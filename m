@@ -1,287 +1,133 @@
-Return-Path: <devicetree+bounces-137352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3998A08B57
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:21:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85899A08BCB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:26:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3416169637
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:20:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 395DE16A665
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:25:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2163E20A5DC;
-	Fri, 10 Jan 2025 09:17:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD6E020E317;
+	Fri, 10 Jan 2025 09:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="guvQKqJ3"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="cGHshVnY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3D76209F40
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 09:17:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B7F20C039;
+	Fri, 10 Jan 2025 09:22:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736500670; cv=none; b=EOP8vmmLdIAmFu6Y32cgPmm8I2bgiQxyie4eu4nTxkp2fnDptJsLLZx8HiOR+pML2hy6jBNeIC3Eo4uN4PvlLjyG39NzzLjWC65l+Ytc3EqljJao83YOUTHDW5ww8QFC8ecfl0OBjLctfyDAlbLAY41rgsptMeb/moJYjLPG5g4=
+	t=1736500938; cv=none; b=ndHChxf63oyMAeTzHuFrIzglfUfK2057i9UdTiQPRgWBQAJbjkNBbOboH8lFp7wiEvIDNf+xZOoJshU1qoyGXa7rzs9pR48v1zQj/TwbR0sa1rqm0ZW7QLFcp8Y3/pLrftRFNjWMp3sA4IIuzHqCBEjDkNGjb1fZrb2HWudpwnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736500670; c=relaxed/simple;
-	bh=LQnipfOZb03UEifPI6AZ79Ld+6aUmjdENX6M8cVAclc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ctO6RFHPt4iL8lhDjq93OHjmXAL4yJvwv5DJyHJFbvYfDaLiKFue815mnbJbkxd+zxA0guOFOnmcH4SwouJAKMlVxrqo/i677JFFygy5x6pSlJ+zEpzKlA1oKnBWW7Enbj+WTHpN9pGsQhyHpra6gZ0OHdeL06+QPMlBBWfJbOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=guvQKqJ3; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-540218726d5so1837556e87.2
-        for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 01:17:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736500666; x=1737105466; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=L2lf5WclkEz+EvG+eiHP21Z389GYrT7IorkLmd4KRl4=;
-        b=guvQKqJ3bwIrY5KOSy1dc3wlq2p5RnRwhkHGpwo76q+kEcouIKsxPTimyt97koiBDo
-         6I3ncX45Sn1KiunRRhYSxieIIrSNsVfLd+0tBKzStbyoAT7nvVuw7EG19dSe1U2bqt9d
-         LSLixW9/7/ERQCY6/wSx6KCF6mIdT2kPt1TTQK4pOpcgfW6kqr3ln/D+S2MH+uMSdx+z
-         8hs7GaCQgF1z3Gq8RIN1IU4J7k1y1S69ksC3NiUfWC57doreipYTtlKLbxnh2omBR0D1
-         YESr/5oLBka/MV/dwbFaf2sig1PczLVXYKjvbb295z61Jt5FW0c9zqMwVtjNF1P02/dR
-         kklw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736500666; x=1737105466;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=L2lf5WclkEz+EvG+eiHP21Z389GYrT7IorkLmd4KRl4=;
-        b=i9OFIn5lQ+LuHa1LfBzj6VfE2B5ZSZyLgrb7Ekp0Q1BCpfe7a7xpdhx5cSKAgUbsf+
-         zO5TxQ4LFNrzZFKIIF8/SZfSgDbN8k1pYx2AsaU9GJJ/y4uHzCPfbn3ODw1rtayftTlx
-         I2BJ6XecDZzTLoFBC8xSd8sobBRsSQvyvPEEFuINlisKKF9Xd402tZCbypWfR3CoIGnP
-         EPlxl6R5HH+Ycwg3GuCw95fdWrCAew1cqUZw3TWxycmt6s7nv3/2oOFFI8cIWwT1O0ke
-         Ez8WYP7bjlS0QfowWQoqvKLWwhzNJq+D9l7YUZKIcZERzyKNgzSwn9muXZXB8Z9LNxca
-         5aDA==
-X-Forwarded-Encrypted: i=1; AJvYcCU40O0B/sz3huD9gtI13vxBEpK/H2AW7xt7lNDnL0SQXvQkLH07kRkA8SxHtg41UTGKljnPkTv3VxD0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/PpC9Im/WtjljRHZWDgXtbMJ/vwgfj1yajDnOGW500PaX1giD
-	3IywNlwEGN16FdZJPOmtwPiIsDe38ZBRrRTD2FySAn2h/XjnxckCXaidVYubOeY=
-X-Gm-Gg: ASbGncsHzYwe2dksbTTHkflovIpVuNu0ndtKD5ppINfLXRUScxEol5NsGxw0cOoDGuI
-	N7+VNljPB9LuvPL06eSdFnsexAo/ueQoa85d9aJYh0E2AP0ZV9ySFQIabWzmrzKi+SiM3JFpSjh
-	z2ll3JnfHtFDrv3LMqay7Klg+Ujvnq4jYJ1cE3Mj8zx5TTC4ScV/hu1SEiWjaAzj+xuCdl+esQl
-	vhK3lxps8CGv0L7oVs6JLPANktMem/Hp1+BcJcbuZV0GbNI1+CkNQ1+qx/sRdZVy3mBkGb8c/2E
-	8SDurhAW89NeG2FUHE67UYXPvK4HiiavOLJQ
-X-Google-Smtp-Source: AGHT+IG+4qk6lHAL/TkzXeydSTLQvUxuwnokkCUltBuWF9YYEQanPry9PUofIV010QxcJ74yeY5qGQ==
-X-Received: by 2002:a05:6512:3a83:b0:540:1b2d:8ef3 with SMTP id 2adb3069b0e04-5428481d30dmr2788001e87.52.1736500665613;
-        Fri, 10 Jan 2025 01:17:45 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428bec0664sm468204e87.193.2025.01.10.01.17.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jan 2025 01:17:44 -0800 (PST)
-Date: Fri, 10 Jan 2025 11:17:42 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
-	Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH RFC 08/11] drm/msm/dsi: Add support for SM8750
-Message-ID: <7eupqawhdrbjgsj2p7e3ky7uj62m252i6dzkb6y23btocedp3q@qmw72nmbk2c4>
-References: <20250109-b4-sm8750-display-v1-0-b3f15faf4c97@linaro.org>
- <20250109-b4-sm8750-display-v1-8-b3f15faf4c97@linaro.org>
- <3p7kjok5jzwvgt7dxuad26xgdkjd52v4gbtuudvgkeoj33skqn@afl2ddtsq7s2>
- <4fc7fdd5-36cd-42e6-af4a-e0e429f9f50b@linaro.org>
+	s=arc-20240116; t=1736500938; c=relaxed/simple;
+	bh=UbCNhfluu9hQBeFStNvJp8VYoLuxzBp5XOiyyROBf6Q=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=X5sGtV0V4SV+bQl+UXYrbmqa0ZGuC5PmlTIYaUB1Qr2Gl94fEEcAxsAEh05ASpRcJUM1elpO5kfT/rDhxkTxBfXhyRAgFdNP1g99aRt2yBJhrAZK7U+DKdDLGSiwguWxx9riV7+JPzxd4XqiS0A9hA3WU8JbYnKZGPPqYQVDhYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=cGHshVnY; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50A3QQOU006235;
+	Fri, 10 Jan 2025 10:21:57 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=ug/esXvlXPzNIJKb14lQ1+
+	ZPUlmHKKmJRUVvjbEcQN8=; b=cGHshVnYAZgSPIuTPu4gOXOzUKK5GWcPsiYzHC
+	uXWvuwaIfErhVfjTkLwkcufyaqL/ElzbJaeKQchN2ErwXs4NXUhHk491vp5WXr8Y
+	F2BbbcbTT3dn/TKG01Cn7ju87Hdfb+r4HDvGjzPZMoAWjESauKKZl+3+TDqzD2t7
+	vPUcTg+sLFjCG5+ntVs5TwDPnWP0LVrbvYvFLF6yEyyhVJvK5ROv4CkZ4ouFo2yH
+	r5JZo2v10f4N6oRsGB+ushyh+/ZbML3zJDJhxBD5885qc2ouk7ns4naTnkFbyvuc
+	qhnCtPb/4yhxZXiJnslKzdiZ49YG4jD5UDqU3/OSbM4E5TRw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 442hnxay3t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Jan 2025 10:21:57 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id B6A734004D;
+	Fri, 10 Jan 2025 10:21:01 +0100 (CET)
+Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 967E7289EF1;
+	Fri, 10 Jan 2025 10:19:59 +0100 (CET)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
+ (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 10 Jan
+ 2025 10:19:59 +0100
+Received: from localhost (10.252.28.64) by SAFDAG1NODE1.st.com (10.75.90.17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 10 Jan
+ 2025 10:19:59 +0100
+From: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+To: <lee@kernel.org>, <ukleinek@kernel.org>, <alexandre.torgue@foss.st.com>
+CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <wbg@kernel.org>, <jic23@kernel.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <linux-iio@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <olivier.moysan@foss.st.com>, <fabrice.gasnier@foss.st.com>
+Subject: [PATCH v3 0/8] Add STM32MP25 timers support: MFD, PWM, IIO and counter drivers
+Date: Fri, 10 Jan 2025 10:19:14 +0100
+Message-ID: <20250110091922.980627-1-fabrice.gasnier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4fc7fdd5-36cd-42e6-af4a-e0e429f9f50b@linaro.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Fri, Jan 10, 2025 at 09:59:26AM +0100, Krzysztof Kozlowski wrote:
-> On 10/01/2025 00:18, Dmitry Baryshkov wrote:
-> > On Thu, Jan 09, 2025 at 02:08:35PM +0100, Krzysztof Kozlowski wrote:
-> >> Add support for DSI PHY v7.0 on Qualcomm SM8750 SoC which comes with two
-> >> differences worth noting:
-> >>
-> >> 1. ICODE_ACCUM_STATUS_LOW and ALOG_OBSV_BUS_STATUS_1 registers - their
-> >>    offsets were just switched.  Currently these registers are not used
-> >>    in the driver, so the easiest is to document both but keep them
-> >>    commented out to avoid conflict.
-> >>
-> >> 2. DSI PHY PLLs, the parents of pixel and byte clocks, cannot be used as
-> >>    parents before they are prepared and initial rate is set.  Therefore
-> >>    assigned-clock-parents are not working here and driver is responsible
-> >>    for reparenting clocks with proper procedure: see dsi_clk_init_6g_v2_9().
-> > 
-> > Isn't it a description of CLK_SET_PARENT_GATE and/or
-> 
-> No - must be gated accross reparent - so opposite.
-> 
-> > CLK_OPS_PARENT_ENABLE ?
-> 
-> Yes, but does not work. Probably enabling parent, before
-> assigned-clocks-parents, happens still too early:
-> 
-> [    1.623554] DSI PLL(0) lock failed, status=0x00000000
-> [    1.623556] PLL(0) lock failed
-> [    1.624650] ------------[ cut here ]------------
-> [    1.624651] disp_cc_mdss_byte0_clk_src: rcg didn't update its
-> configuration.
-> 
-> Or maybe something is missing in the DSI PHY PLL driver?
+This series adds STM32MP25 support on MFD PWM, IIO, counter timer drivers.
+This new timer variant is managed by using a new DT compatible string.
+It comes with a slightly updated register set, some new features and new
+interconnect signals inside the SoC. There is also a new instance (TIM20).
+Same feature list as on STM32MP1x is supported currently, except for PWM
+capture (not enabled, by DT).
+The device tree files add all instances in stm32mp251 dtsi. PWM, counter
+and trigger examples are provided for stm32mp257f-ev1 board.
 
-Do you have the no-zero-freq workaround?
+Changes in V3
+---
+- MFD updated since Lee's coments
+- IIO patch dropped since applied by Jonathan
 
-> 
-> > 
-> >>
-> >> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >> ---
-> >>  drivers/gpu/drm/msm/dsi/dsi.h                      |  2 +
-> >>  drivers/gpu/drm/msm/dsi/dsi_cfg.c                  | 25 +++++++
-> >>  drivers/gpu/drm/msm/dsi/dsi_cfg.h                  |  1 +
-> >>  drivers/gpu/drm/msm/dsi/dsi_host.c                 | 80 ++++++++++++++++++++++
-> >>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.c              |  2 +
-> >>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.h              |  1 +
-> >>  drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c          | 78 +++++++++++++++++++--
-> >>  .../gpu/drm/msm/registers/display/dsi_phy_7nm.xml  | 14 ++++
-> > 
-> > Please separate DSI and PHY changes.
-> > 
-> >>  8 files changed, 197 insertions(+), 6 deletions(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-> >> index 7754dcec33d06e3d6eb8a9d55e53f24af073adb9..e2a8d6fcc45b6c207a3018ea7c8744fcf34dabd2 100644
-> >> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-> >> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
-> >> @@ -205,6 +205,17 @@ static const struct msm_dsi_config sm8650_dsi_cfg = {
-> >>  	},
-> >>  };
-> >>  
-> >> +static const struct msm_dsi_config sm8750_dsi_cfg = {
-> >> +	.io_offset = DSI_6G_REG_SHIFT,
-> >> +	.regulator_data = sm8650_dsi_regulators,
-> >> +	.num_regulators = ARRAY_SIZE(sm8650_dsi_regulators),
-> >> +	.bus_clk_names = dsi_v2_4_clk_names,
-> >> +	.num_bus_clks = ARRAY_SIZE(dsi_v2_4_clk_names),
-> >> +	.io_start = {
-> >> +		{ 0xae94000, 0xae96000 },
-> >> +	},
-> >> +};
-> >> +
-> >>  static const struct regulator_bulk_data sc7280_dsi_regulators[] = {
-> >>  	{ .supply = "vdda", .init_load_uA = 8350 },	/* 1.2 V */
-> >>  	{ .supply = "refgen" },
-> >> @@ -257,6 +268,18 @@ static const struct msm_dsi_host_cfg_ops msm_dsi_6g_v2_host_ops = {
-> >>  	.calc_clk_rate = dsi_calc_clk_rate_6g,
-> >>  };
-> >>  
-> >> +static const struct msm_dsi_host_cfg_ops msm_dsi_6g_v2_9_host_ops = {
-> >> +	.link_clk_set_rate = dsi_link_clk_set_rate_6g_v2_9,
-> >> +	.link_clk_enable = dsi_link_clk_enable_6g,
-> >> +	.link_clk_disable = dsi_link_clk_disable_6g,
-> >> +	.clk_init_ver = dsi_clk_init_6g_v2_9,
-> >> +	.tx_buf_alloc = dsi_tx_buf_alloc_6g,
-> >> +	.tx_buf_get = dsi_tx_buf_get_6g,
-> >> +	.tx_buf_put = dsi_tx_buf_put_6g,
-> >> +	.dma_base_get = dsi_dma_base_get_6g,
-> >> +	.calc_clk_rate = dsi_calc_clk_rate_6g,
-> >> +};
-> >> +
-> >>  static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
-> >>  	{MSM_DSI_VER_MAJOR_V2, MSM_DSI_V2_VER_MINOR_8064,
-> >>  		&apq8064_dsi_cfg, &msm_dsi_v2_host_ops},
-> >> @@ -300,6 +323,8 @@ static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
-> >>  		&sm8550_dsi_cfg, &msm_dsi_6g_v2_host_ops},
-> >>  	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_8_0,
-> >>  		&sm8650_dsi_cfg, &msm_dsi_6g_v2_host_ops},
-> >> +	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_9_0,
-> >> +		&sm8750_dsi_cfg, &msm_dsi_6g_v2_9_host_ops},
-> >>  };
-> >>  
-> >>  const struct msm_dsi_cfg_handler *msm_dsi_cfg_get(u32 major, u32 minor)
-> >> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.h b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-> >> index 120cb65164c1ba1deb9acb513e5f073bd560c496..859c279afbb0377d16f8406f3e6b083640aff5a1 100644
-> >> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-> >> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
-> >> @@ -30,6 +30,7 @@
-> >>  #define MSM_DSI_6G_VER_MINOR_V2_6_0	0x20060000
-> >>  #define MSM_DSI_6G_VER_MINOR_V2_7_0	0x20070000
-> >>  #define MSM_DSI_6G_VER_MINOR_V2_8_0	0x20080000
-> >> +#define MSM_DSI_6G_VER_MINOR_V2_9_0	0x20090000
-> >>  
-> >>  #define MSM_DSI_V2_VER_MINOR_8064	0x0
-> >>  
-> >> diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
-> >> index 2218d4f0c5130a0b13f428e89aa30ba2921da572..ced28ee61eedc0a82da9f1d0792f17ee2a5538c4 100644
-> >> --- a/drivers/gpu/drm/msm/dsi/dsi_host.c
-> >> +++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
-> >> @@ -119,6 +119,15 @@ struct msm_dsi_host {
-> >>  	struct clk *pixel_clk;
-> >>  	struct clk *byte_intf_clk;
-> >>  
-> >> +	/*
-> >> +	 * Clocks which needs to be properly parented between DISPCC and DSI PHY
-> >> +	 * PLL:
-> >> +	 */
-> >> +	struct clk *byte_src_clk;
-> >> +	struct clk *pixel_src_clk;
-> >> +	struct clk *dsi_pll_byte_clk;
-> >> +	struct clk *dsi_pll_pixel_clk;
-> >> +
-> >>  	unsigned long byte_clk_rate;
-> >>  	unsigned long byte_intf_clk_rate;
-> >>  	unsigned long pixel_clk_rate;
-> >> @@ -269,6 +278,38 @@ int dsi_clk_init_6g_v2(struct msm_dsi_host *msm_host)
-> >>  	return ret;
-> >>  }
-> >>  
-> >> +int dsi_clk_init_6g_v2_9(struct msm_dsi_host *msm_host)
-> >> +{
-> >> +	struct device *dev = &msm_host->pdev->dev;
-> >> +	int ret;
-> >> +
-> >> +	ret = dsi_clk_init_6g_v2(msm_host);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	msm_host->byte_src_clk = devm_clk_get(dev, "byte_src");
-> >> +	if (IS_ERR(msm_host->byte_src_clk))
-> >> +		return dev_err_probe(dev, PTR_ERR(msm_host->byte_src_clk),
-> >> +				     "can't get byte_src clock\n");
-> >> +
-> >> +	msm_host->dsi_pll_byte_clk = devm_clk_get(dev, "dsi_pll_byte");
-> >> +	if (IS_ERR(msm_host->dsi_pll_byte_clk))
-> >> +		return dev_err_probe(dev, PTR_ERR(msm_host->dsi_pll_byte_clk),
-> >> +				     "can't get dsi_pll_byte clock\n");
-> >> +
-> >> +	msm_host->pixel_src_clk = devm_clk_get(dev, "pixel_src");
-> >> +	if (IS_ERR(msm_host->pixel_src_clk))
-> >> +		return dev_err_probe(dev, PTR_ERR(msm_host->pixel_src_clk),
-> >> +				     "can't get pixel_src clock\n");
-> >> +
-> >> +	msm_host->dsi_pll_pixel_clk = devm_clk_get(dev, "dsi_pll_pixel");
-> >> +	if (IS_ERR(msm_host->dsi_pll_pixel_clk))
-> >> +		return dev_err_probe(dev, PTR_ERR(msm_host->dsi_pll_pixel_clk),
-> >> +				     "can't get dsi_pll_pixel clock\n");
-> > 
-> > How is this going to work in the bonded DSI mode when DSI1 is being fed
-> > by the DSI0 PLL? For existing platforms this is being handled by
-> > changing the parents in DT.
-> 
-> I don't see the problem - you just put different clock as input in DTS?
-> 
-> Please trim your replies, so we won't need to keep scrolling to figure
-> out that there is nothing more to read.
-> 
-> Best regards,
-> Krzysztof
+Changes in V2
+---
+- PMW driver updated to address Uwe's review comments
+- Collected Acked-by
+
+Fabrice Gasnier (8):
+  dt-bindings: mfd: stm32-timers: add support for stm32mp25
+  mfd: stm32-timers: add support for stm32mp25
+  counter: stm32-timer-cnt: add support for stm32mp25
+  pwm: stm32: add support for stm32mp25
+  arm64: defconfig: enable STM32 timers drivers
+  arm64: dts: st: add timer nodes on stm32mp251
+  arm64: dts: st: add timer pins for stm32mp257f-ev1
+  arm64: dts: st: add timer nodes on stm32mp257f-ev1
+
+ .../bindings/mfd/st,stm32-timers.yaml         |  18 +-
+ arch/arm64/boot/dts/st/stm32mp25-pinctrl.dtsi |  61 ++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        | 524 ++++++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  58 ++
+ arch/arm64/configs/defconfig                  |   4 +
+ drivers/counter/stm32-timer-cnt.c             |   7 +-
+ drivers/mfd/stm32-timers.c                    |  31 +-
+ drivers/pwm/pwm-stm32.c                       |  42 +-
+ include/linux/mfd/stm32-timers.h              |   9 +
+ 9 files changed, 740 insertions(+), 14 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
 
