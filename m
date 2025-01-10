@@ -1,123 +1,109 @@
-Return-Path: <devicetree+bounces-137402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD632A08E3A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:42:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32227A08E5A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:47:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABA07188B04C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:42:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 328A41688E5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:47:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA87220B1E9;
-	Fri, 10 Jan 2025 10:42:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3FDD2054F0;
+	Fri, 10 Jan 2025 10:47:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ctDyInVu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC8720ADE7
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 10:42:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8847314D6F9;
+	Fri, 10 Jan 2025 10:47:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736505725; cv=none; b=URWvbyg8qst68ZMhTIERIWCO6RJ4d5QbQk0sTYJ83SDpetQSlTi3XqfrgO1FoC2+Eff3cV8Mb8h+wds6Vdhctm66omi2AteuY1yLiOq2mrl52L+W84PI7cxmGbXATG/xZEbqCvf1NqiMCsEcqnUDw09cU1Qs7l3YVMtLLKYirok=
+	t=1736506046; cv=none; b=u2Dik7tEmyKYGhMHRrMu8xOOL40v2CexdqAYjKXGZ6Im0arU3oP2nUIW4fxTdvBnSnhO8BzrUA1rR13qZzAExGRsbNMu+A37py4KrAoITmNWtWOyK2rB479Sb2pNWs8+wna1O2+JYNf1t6EMflowYM0Aut6OZ+5X2evPqrafaS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736505725; c=relaxed/simple;
-	bh=2t6560ciqPluM5jV4icj76vKmnBYruYYY1iaoWGUwOc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D8llSy0qveg3cPn8GpOJPO2hCr9C8DC/vmz6a4PE3gfoWoXiCSwuTzZH4H/poH/H9U9w/8WZAm0EBCFCeSgKh3vvmwjgPqHBxlnb3hPl8zWq8PXrYXgO2RPAPSOXwp42MPi61gdRPDd+8rdnAu+2NIelrL+nOsdf3CcCUAjJ0OQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tWCSd-00010v-9s; Fri, 10 Jan 2025 11:41:51 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1tWCSc-00090F-1b;
-	Fri, 10 Jan 2025 11:41:50 +0100
-Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: mkl-all@blackshift.org)
-	by smtp.blackshift.org (Postfix) with ESMTPSA id 216863A4529;
-	Fri, 10 Jan 2025 10:41:50 +0000 (UTC)
-Date: Fri, 10 Jan 2025 11:41:49 +0100
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Ruffalo Lavoisier <ruffalolavoisier@gmail.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Thomas Kopp <thomas.kopp@microchip.com>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] docs: remove duplicate word
-Message-ID: <20250110-screeching-quixotic-tanuki-1e6fa0-mkl@pengutronix.de>
-References: <20241120044014.92375-1-RuffaloLavoisier@gmail.com>
- <20241120-antique-earwig-of-modernism-1fc66e-mkl@pengutronix.de>
+	s=arc-20240116; t=1736506046; c=relaxed/simple;
+	bh=gkj6A+sPvv0suEZuBjpiMB78rEGAzdi+Z+cmRzsuclQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jSBcqQ8EHF1QuTlcUJ2WyfR4vBMpXE18xTZdrUwcJhH9fw7Fh8kflDfSBPNSl16dcoYZ5ZJTH59/GiBpw7x++vQn1jOldZ1u4tOc6xZyXYg7KyRSJ8CQS3ATmSm/CfNqVSGIKvMU7nrF+/UVTZR2/jP+Bdm9N+xgGQizKkQPvT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=ctDyInVu; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 4247c582cf4011efbd192953cf12861f-20250110
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=C9hARpZb1un6HXEmRsJ7j249RR5J20aGvP0n2v1qFcA=;
+	b=ctDyInVuzr5Y5coZwNpd/0sM5WdKge7UxVoCVVgiGwEgHe8qtkAYL8isZktJi6XAeg0gggG3Yx5pxfi988nP6tuHV4GTd5D/84eLmWuhpEH6FlUAzU1+jfSEPVeuxAt6kF0Gyc3wB+rl/2KIIxAcbppuqLtXA4vGvo6C/qeeURE=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.46,REQID:b41c65dc-ad95-4768-ad5c-fdac965d9431,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:60aa074,CLOUDID:3a7f4d13-8831-4185-8e40-f83b1917e828,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 4247c582cf4011efbd192953cf12861f-20250110
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+	(envelope-from <ot_cathy.xu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1912609671; Fri, 10 Jan 2025 18:47:16 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 10 Jan 2025 18:47:15 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 10 Jan 2025 18:47:14 +0800
+From: Cathy Xu <ot_cathy.xu@mediatek.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@kernel.org>,
+	Lei Xue <lei.xue@mediatek.com>, <wenbin.mei@mediatek.com>
+CC: <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Cathy Xu <ot_cathy.xu@mediatek.com>
+Subject: [PATCH v2 0/2] MediaTek pinctrl patch on mt8196
+Date: Fri, 10 Jan 2025 18:42:27 +0800
+Message-ID: <20250110104703.13625-1-ot_cathy.xu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ip3hmrnf27rnbmsn"
-Content-Disposition: inline
-In-Reply-To: <20241120-antique-earwig-of-modernism-1fc66e-mkl@pengutronix.de>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+Changes in v2:
+- fix driver file's coding style.
+- add pinctrl binding document.
 
---ip3hmrnf27rnbmsn
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] docs: remove duplicate word
-MIME-Version: 1.0
+Changes in v1:
+- add mt8196 pinctrl driver.
+- add pinmux definition file.
 
-On 20.11.2024 09:27:22, Marc Kleine-Budde wrote:
-> On 20.11.2024 13:40:13, Ruffalo Lavoisier wrote:
-> > - Remove duplicate word, 'to'.
->=20
-> Can I add your Signed-off-by to the patch?
->=20
-> https://elixir.bootlin.com/linux/v6.12/source/Documentation/process/submi=
-tting-patches.rst#L396
+Cathy Xu (2):
+  dt-bindings: pinctrl: mediatek: add support for mt8196
+  pinctrl: mediatek: add mt8196 driver
 
-Is it OK to add your Signed-off-by to the patch?
+ .../pinctrl/mediatek,mt8196-pinctrl.yaml      |  266 ++
+ drivers/pinctrl/mediatek/Kconfig              |   12 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt8196.c     | 1764 +++++++++++
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt8196.h | 2789 +++++++++++++++++
+ include/dt-bindings/pinctrl/mt8196-pinfunc.h  | 1572 ++++++++++
+ 6 files changed, 6404 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8196-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt8196.c
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt8196.h
+ create mode 100644 include/dt-bindings/pinctrl/mt8196-pinfunc.h
 
-regards,
-Marc
+-- 
+2.34.1
 
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---ip3hmrnf27rnbmsn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmeA+WoACgkQKDiiPnot
-vG9LlggAlAOvAjXwwTntSfaNIv3HMCQcKByFRx2L9fN9+YOvmAfaAZuwlgi9Qzed
-2Z+XbYsa3t3SOK/5+FbeNu1tWs3mu8cpYpserlakQb7g6V3Bel2LxlqR3W9hCdI4
-Z8y0KbKTTRrWGmIdiOeP6AbZph0H1szaMuP4S0VmTg54HlZX0loblaQ/XCOc0PmS
-KByCbK7C/u3665FnM5PM0BndSGku9kg43FpnENKr3/eExZsSgMj7Ji83ua/7wOKe
-44rBWSCCvG9Ns+eLzepDW5JXqqnGP2ycpTBO3qeEDu/iTVMdP3xqBUbP+9HRqEp4
-YIhdcUlVTIr9G1eSi8SXllPLNg+6Dg==
-=iCBi
------END PGP SIGNATURE-----
-
---ip3hmrnf27rnbmsn--
 
