@@ -1,118 +1,192 @@
-Return-Path: <devicetree+bounces-137494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FE23A09343
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:17:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A50CA09368
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:27:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5333F7A21AE
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:17:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DED3E188B798
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:27:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 251C7210F50;
-	Fri, 10 Jan 2025 14:17:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 334102101B6;
+	Fri, 10 Jan 2025 14:27:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jiwYv5ji"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BD8020E70F;
-	Fri, 10 Jan 2025 14:17:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD052101A9;
+	Fri, 10 Jan 2025 14:26:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736518626; cv=none; b=ZKNlwk84js0E8X8oxwp28As7JS0DpKZ6WOYimFjRvkQylHU/nOVvaIg/bPYwSdXFtzPNOdfHQTXleG8aqPXmQVqD/ZKgK6mR0CHseCsJ75fK5g40cJSseAYSbhjmgnDI0KUSRS6bSqBv7iXfxxlX5hClOPF4SJqNd0+eI0xs+WM=
+	t=1736519221; cv=none; b=UrSuPf/YvylQTCV/Kc2+mwwtyizy3NiPIaYE/OZn5qMpalmu3tvpMaAKmjG0KuPwU7XxMfLms8e068ymf++AMoHIjizGlIDhqDaniPpXOtNRPpJD+CDxDlt3lMe6bIlFKj1u4EvrCPu4X+70a9qSsVLQe4+tLdIErHFLWPTPBro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736518626; c=relaxed/simple;
-	bh=G8V2jhFGtgWlOHG4Qtq684e7x4Mx+F2Tmo67ZfatLO0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=M96Y4aJuOad+E+NfAU6oLGXUiPHnSfCenSPmJyrSWI8wYl36Lk7GrZaPfeuMYFw2G9XtT5C4qJYpSp1oaE5QqwlnNxQgZCg1DaT6DV23ZpwU78QFpfYYASV95UQwxTxHhwlqCKawEOWqRUkTSg4Y0z1fz1TEL2B+QQQBsqp24yc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1736519221; c=relaxed/simple;
+	bh=OPC+yg9FBpWb/X52k+8z4z8ODDxQlLKKuUSgwfZapXk=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uaaeKK3LECCYcl+GxaYVGKY2dBWr8XPoylxJ3CTyyyh915GRaZwfhP0qaRoP/g5H5LPcvHBFva6A6PyBIPGtt8yMgXNAzGAl0KVDa3Fr5MHMByHQDtL1v8mhCvunlAoWDUnBDmq1TqsJqPxD+z9PWduLwvfCF/R9D4f6XpfrJWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jiwYv5ji; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7b6e8fe401eso173287185a.2;
-        Fri, 10 Jan 2025 06:17:04 -0800 (PST)
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2163bd70069so35635975ad.0;
+        Fri, 10 Jan 2025 06:26:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736519219; x=1737124019; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gwkldYtsnRI2uxbAB2Qhl5fxTuU35YkpoPwwrZ8CVIU=;
+        b=jiwYv5jijrDS2/ADmiprTzFbJWn6kpMEmrQSvZT2zpdysxitytx4jWqOO7FVlaG6Ei
+         w2hS18G0HPnTVzrDhDc3R10vj4b5FuJp2DCTfub53n9+ZPg4h5Bk8crfScu0ZffXNCTA
+         /fnF7BME4k7xoHbM6eLmquvdyF4npjdahCgOukBcXkJN+jrNiFLCQiAXX5iUr1aO2dSV
+         gCJ58f5yb5bbp2GyJR2ASEV1gO4Rjb5yOO2lkilBPADbhk4OyQby10gyyB31ANv4hmz6
+         hkefryTsdqwvX5fM0MB2MwDylJDjFpaftPV8TgCMTNkm91Wig3+AJ/1vJm3vo6M28okb
+         Ju9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736518621; x=1737123421;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1736519219; x=1737124019;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/NJ/3l/9PI4oWXepQOlqsgt9YAjfDzU4Qje7tYA2ecQ=;
-        b=LJGGfhdQg+PiH6gerAHVg+vUI4TnpZS+myULE177c+TMQ2JO1N1LJTffeyJg3nPyTE
-         PKFTkDjKRKN/Mtd7GBIAjnM8DUTE864GLVkXSiHZMgXhDs0mDxx1HWdLUHrFL9LNgT2n
-         YeSeQH/hmThMwXqCJo6NiUWoS+2w425+aVtIsd0QI+bzXkrxfl3NpIrdwY2ISuwZqJkK
-         x5hN8IXE/WfPq+T/qCUtB6bbRYrX9NZwSXgUdROexbdxNVVU5B6W9IRNhjj6NDspshPy
-         g5fL+R8HsmddauSH3hoBdUM7k5HmlcAcIc+aBZYoDSkLcomiuW73iN84maXZFm1uB422
-         SUmA==
-X-Forwarded-Encrypted: i=1; AJvYcCV9uXbY9ZGybeMRxIbwSRRZBsYEiddDhaKhwb7k1AcAxLOxCPpmN4ZanrXOQppkx0oCe1+5EK9JGxqq@vger.kernel.org, AJvYcCVetb7W3jsQ+6Ds7BgddVxv0jBs46Q1gwY+xSdaza2XUOzmwPX894TbgLCMJFplpJvTdmYqpWxyGKA=@vger.kernel.org, AJvYcCWoix0ULFuPxnCzkhTX6n3zZRYq5+Op8lEXcDek6wKHiwPvRDoHtJPLQ5CnmhbpeETYUc5gwwS1DZMNIIF6@vger.kernel.org, AJvYcCWwEJuUbxnVeeNzIM/myLHPcg1VrYGQPT9cNAhxd5C7sBK1k/oeVHZzMRTAeCg6UMPQ1w1y+6XkQphckcFbK8i/W+A=@vger.kernel.org, AJvYcCXeu7WEr4C/jMS9PfmOoQVkdN1Ke6HKcutD2ViW6STASFt8iuIBdCMuvKkhL3qOmTfhgXG05k5V80em@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCDxTn+2LzISzSnJ+el1zlF/mK2P5+X3Y0KbZmBfaccokB/ok+
-	5INBkpRBRnKW8gSoytn1Pz+nToBbTaDUVCbLt7YRMKQWY/ZkB1EZOWe2uGat
-X-Gm-Gg: ASbGncsh3FmpzQJC/3ZXZ2z2XoLS7LknJdKzooyrV1BFuYknvSmpgX1RIQ3RjXIcotZ
-	XsKNiOFLvh2ch6YgH2moHIa/IygIaXs4eQ7V9XBxlycxOfkQQ8r/zC+/6eRkSb5jsVHlSkgOjlH
-	esO7qUbbjglLP6y0eYldZrdy1wKDfKX+RSFE1Yp8ebujdlx+Hsrmg3hdruiHDc3hzr7cnKHC40G
-	bx+D4D7k8EFZ/bmR5DdneW2d3HX24o4y99PA3kmdnL0g5Gfu0osXMFOIVlXQsVe5GuwdDHs48dc
-	tO2rh8sOGTNE+yoW3ESU8FA=
-X-Google-Smtp-Source: AGHT+IE5tNwrA25wnZ0jYbpj8xbYwxXFJ94FzLv+CS2Q+NK/ocjsTyOokiI6E0irfOtnsiOrnKXoMw==
-X-Received: by 2002:a05:620a:1903:b0:7b6:c6f8:1d25 with SMTP id af79cd13be357-7bcd97ce10emr1767249385a.55.1736518621170;
-        Fri, 10 Jan 2025 06:17:01 -0800 (PST)
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com. [209.85.222.175])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7bce3503185sm175978785a.95.2025.01.10.06.16.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Jan 2025 06:17:00 -0800 (PST)
-Received: by mail-qk1-f175.google.com with SMTP id af79cd13be357-7b6f19a6c04so176124085a.0;
-        Fri, 10 Jan 2025 06:16:59 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVsG1B1D3oXkQbwcnU4kMo5FVthNQ8h3RAGrMFe6UpbcNjg8dTcc65LHOoGtmXySXUbHDfO5aOI8pY=@vger.kernel.org, AJvYcCWovhDXgMXmuREcSHqsTdqmfafqKnr45Z/v9syX4jH2+LYcRs12OI4OwBxcCgggfebcaTlG3KnRg+6Fgwoo@vger.kernel.org, AJvYcCWtYpVkRbeH98IluxRjzOkHjoiD1jKqdjxH3BdC/KCG93Q3xOypB/z34Yu8kLcaLfW3SluIxF/oJVyr@vger.kernel.org, AJvYcCWzCnTGjz726iQFoxViQ/3hfbXQj0M+mmqkdZb0qeqtb7bNmwrc5Ke828BV6oklfy1Cw9E0LAE6H+7n@vger.kernel.org, AJvYcCXn4cKnGIP4PHFvygK6ljQxaYUMoDiMeTJJ0qFWEs9lW5huo/z0sj58arXByQL4gnDQxdT3sTt1bPGoYsMy1e9Z8Gg=@vger.kernel.org
-X-Received: by 2002:a05:620a:2a08:b0:7b7:5d6:3976 with SMTP id
- af79cd13be357-7bcd97d6489mr1484170685a.58.1736518619196; Fri, 10 Jan 2025
- 06:16:59 -0800 (PST)
+        bh=gwkldYtsnRI2uxbAB2Qhl5fxTuU35YkpoPwwrZ8CVIU=;
+        b=W+m5+7EfybK2l/joBkJMakw20ruttRD3TIYJ59rF9ahp+YlZLCIIttK8zsrZCjzNk5
+         gQCyLHN/JzrgIcyqB/LkCGionnAto4KRXQkekdIJG5Dhx/M9Z2DZy1r8bUIWItMnJciB
+         F0L8mdJtcvNPcl/17Nky9WdjIhkL7mo/+NXUHDtxgXgCHdXXA52Khe+86b6m54DZwCmv
+         +xbD+kisfYsyUV95j7pXL04kWYJn4ZspMcW1fK/SHZLITd/RmU/TUyZSW9E0mopskAjo
+         zHokGT3Oi1pNhJkf+nKFjqN2gXXwAM6FhjeLtAhfB5U2u79SM5NdNs5i4CqW/G4PA2iJ
+         4UBw==
+X-Forwarded-Encrypted: i=1; AJvYcCVUTYYKcrO0+V5iVzasaUk7IFqhEKJXNlE3WB0h9HUG66rF0aWRtHzpkSvjM2jbArNv5Llb6m1jO6rlmEaaAQ==@vger.kernel.org, AJvYcCVu4KYpnL6RrukukFiesbu9ro5H5qzz06ubGEtjQKEoaWqMqpXU+eePlI1VhgGRes53y4kpoyZTFoG8@vger.kernel.org, AJvYcCWNtBulT2KAiMa+JVm5knAgSDSd75yF58v33Oc0Upni1UZtV5gE5QLbWpTkaxjQiA1HWXdRCgy7+ADcDJbG@vger.kernel.org
+X-Gm-Message-State: AOJu0YwV38aqKWDFl40PAZ/6jzTeI0dw7Tzrqi/9tTUsrCwnDfIAmJEj
+	HgXPDAAvzpTdVh13vAA9ubgr/7zMtf8kDJqohbRKJwz+C+wYSAVJs6Yknou6GDMIcA==
+X-Gm-Gg: ASbGncss9FFkFcLqg+7qVboBtK3MqF+1qCSk7uzCqOPDVYPaEi4l1ts/fWwHaDJHIju
+	KegvMcbqVKNa5Fb+6c0ypMk/1oYnkp0ctDdzCxQNgROn7HAZy8GaYELZxc/Vs1gqu9DLXrAjIsm
+	pY/ggZ+B5Cb8nWlHo8MuhbKPQxG0XuMRtBUvw0THQaP2aQ+znTS5/aA+T/cDuSb0zn4MrKX3y6H
+	noX+eWzRBQSDi+fTIPlmaY00XxuJQnkjz0xACPDSsRFPbpZq+bmam0=
+X-Google-Smtp-Source: AGHT+IFp5BkEGYbwBqUZXm370jPDvf4t12qAjDreAbp2iAHT8rGDrJru5tWyj21B/bhgYXKFUTBBTw==
+X-Received: by 2002:a05:6a20:6a11:b0:1dc:790e:3bd0 with SMTP id adf61e73a8af0-1e88cfa6af5mr17754032637.15.1736519218833;
+        Fri, 10 Jan 2025 06:26:58 -0800 (PST)
+Received: from nuvole.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a318e055feesm2957074a12.30.2025.01.10.06.26.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jan 2025 06:26:58 -0800 (PST)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: konrad.dybcio@oss.qualcomm.com
+Cc: andersson@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	mitltlatltl@gmail.com,
+	robh@kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp: correct usb phy power supply
+Date: Fri, 10 Jan 2025 22:25:30 +0800
+Message-ID: <20250110142531.194629-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.47.1
+In-Reply-To: <2e240422-b964-42ce-b537-413b1d8ae07d@oss.qualcomm.com>
+References: <2e240422-b964-42ce-b537-413b1d8ae07d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com> <20250103163805.1775705-2-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20250103163805.1775705-2-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 10 Jan 2025 15:16:47 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX1y7szsqRqE3iCGOV2gWX2Vq37KheZZbk+cEkwXgV6+Q@mail.gmail.com>
-X-Gm-Features: AbW1kvbRaFn4g_AO_oKMfA_tFxNUhSMjIGVqHRYJogvxNkj5hs0eIT7UrCBBWSw
-Message-ID: <CAMuHMdX1y7szsqRqE3iCGOV2gWX2Vq37KheZZbk+cEkwXgV6+Q@mail.gmail.com>
-Subject: Re: [PATCH 1/6] clk: renesas: r9a08g045: Add clocks, resets and power
- domain support for the TSU IP
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com, 
-	lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	p.zabel@pengutronix.de, ulf.hansson@linaro.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jan 3, 2025 at 5:38=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> w=
-rote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Fri, Jan 10, 2025 at 8:28 PM Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
+> On 10.01.2025 10:23 AM, Pengyu Luo wrote:
+> > On this platform, according to dsdt tables, usb{0,1} phy consume the
+> > following regulators. usb2 phy should be corrected also, usb2 in dsdt
+> > is a little complicated, so correct usb{0,1} only for now.
+> >
+> >       usb0    usb1    voltage consumer
+> > hsphy:
+> >       l1c     l1c     1.8v    vdda18-supply
+> >       l9d     l4b     0.912v  vdda-pll-supply
+> >       l7d     l13c    3.072v  vdda33-supply
+> > qmpphy:
+> >       l4d     l3b     1.2v    vdda-phy-supply
+> >       l6d     l6b     0.88v   vdda-pll-supply
 >
-> Add clocks, resets and power domains for the TSU IP available on the
-> Renesas RZ/G3S SoC.
+> Looking at the CRD schematics, it should instead be:
 >
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> USB0    USB1    VOLT            NAME
+> L1B     L8D     0.9ish          PHY
+> L4D     L4D     1.2             PLL
+>
+> I'm hoping I'm reading those right, it's not super obvious
+>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-clk for v6.15.
+Yes, right.
 
-Gr{oetje,eeting}s,
+Yours is correspond to usb2 qmpphy(internal usb)
 
-                        Geert
+this is from sc8280xp-crd:
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+&usb_2_qmpphy0 {
+        vdda-phy-supply = <&vreg_l1b>;
+        vdda-pll-supply = <&vreg_l4d>;
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+        status = "okay";
+};
+
+&usb_2_qmpphy1 {
+        vdda-phy-supply = <&vreg_l8d>;
+        vdda-pll-supply = <&vreg_l4d>;
+
+        status = "okay";
+};
+
+I had checked many dsdt tables of sc8280xp-based devices, they are
+
+Name (LPCC, Package (0x07)
+{
+...
+Package (0x08)
+{
+	"\\_SB.URS0.USB0",
+	...
+	"PPP_RESOURCE_ID_LDO1_C" // 1.8v
+	...
+	"PPP_RESOURCE_ID_LDO9_D" // 0.912v
+	...
+	"PPP_RESOURCE_ID_LDO7_D" // 3.072v
+	...
+	"PPP_RESOURCE_ID_LDO4_D" // 1.2v
+	...
+	"PPP_RESOURCE_ID_LDO6_D" // 0.88v
+	...
+}
+...
+Package (0x08)
+{
+	"\\_SB.URS1.USB1",
+	...
+	"PPP_RESOURCE_ID_LDO1_C" // 1.8v
+	...
+	"PPP_RESOURCE_ID_LDO4_B" // 0.912v
+	...
+	"PPP_RESOURCE_ID_LDO13_C" // 3.072v
+	...
+	"PPP_RESOURCE_ID_LDO3_B" // 1.2v
+	...
+	"PPP_RESOURCE_ID_LDO6_B" // 0.88v
+	...
+}
+...
+}
+
+On many platforms, such as sm8350-hdk, sc8180x-primus, x1e80100-crd, which
+also support qmp phy, their PHY consumes a 1.2v vreg, their PLL consumes a
+0.88v(approx) vreg. So I wirite this patch.
+
+> Konrad
+>
+
+Best wishes,
+Pengyu
 
