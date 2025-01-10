@@ -1,146 +1,151 @@
-Return-Path: <devicetree+bounces-137496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31E5FA0936C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:28:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3420A093AF
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:39:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B537169404
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:28:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF72D3AAB1A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 14:39:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B45AD2101B4;
-	Fri, 10 Jan 2025 14:28:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7381821128B;
+	Fri, 10 Jan 2025 14:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u5t4E4w4"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="HjYkbY5B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82B8820C017;
-	Fri, 10 Jan 2025 14:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B75321127F
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 14:39:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736519303; cv=none; b=C1s3RW3RYjHts+5S02YkfXyjNO2vUY+Jcg5hjkiEqkgf/eyNEcVpxgtSdAPp2wTOqN5cCuAlMyp9ml5l3XXywczbNO7FcwLoacCxAx0RllIcPewWp0VUqeLfsNW8Lo8dBScOcYPNpZ+GZLFzqPFr0MAkUC6W5398A4VJkhHoB6E=
+	t=1736519974; cv=none; b=DaQKzFvzwYaFzwFufZ7KWd5cmX9jT+7rAE1UG51gbZ53XBqIbyrJN7HG5ismwPV5kh2TN9bV9BFE8xcA5xQ/COYwajgv2GfoOjFCQ9xFzpL7kwbe5AXgOryhgPlA7UIjVhwpcLznws8CtkAYT6NCoGHMcnGbcGRw99fN3BQVVB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736519303; c=relaxed/simple;
-	bh=F+pRqybOv0EfGT0TG8OreId9zOD5mPSZO+2Pu0L++UI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pMRjlN/88GvH6WDbdzfWgD6ceQiGbunjEDAaW+Cg+vOAuC2hY+1kzEEq6FSiVVOAllTjj082b+2N3p+LjB5ocN3UttIfjCmRxrZANp/SBDrOYs+EV4VWbpmbh8rHG0rDYqP4WhqmIC+zA3ZCdORBBKu/nSySTrJbxkomY1ffw7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u5t4E4w4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DC34C4CEE0;
-	Fri, 10 Jan 2025 14:28:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736519303;
-	bh=F+pRqybOv0EfGT0TG8OreId9zOD5mPSZO+2Pu0L++UI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=u5t4E4w4hmmlWCg5X8zLnMDjGObdeJf2B/92elesFrEpf6tIYAfjaq9aG3HlpFgO5
-	 FFf7Gu8YgokXqTBvCvDQLWh0JgQQh8+50XbsMAL7nQcqbp+De2+PXLOCeVEGS4eiLy
-	 M9XBNF3N5CxL0i9KmZVtmJT/+V+ureB5vs/5SDXBUnpfd6H8kWGP0nBazOiK2pBjQd
-	 bm3aQ/6ipo6lJO3CplNeliC9B/JDZjEtBOAhE8vbDJQ2G2mL/5BAeRCgbIk3Wy9l+e
-	 UfTGf9nOiIYcUfi/e7awe1eEDWw0VhB0n0W+n/naY0QO/N8d32U5BPg109SwjdSMwn
-	 8Jjp0EpJBPoXw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1tWFzs-000000005Lx-16wQ;
-	Fri, 10 Jan 2025 15:28:24 +0100
-Date: Fri, 10 Jan 2025 15:28:24 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Vikash Garodia <quic_vgarodia@quicinc.com>
-Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Nicolas Dufresne <nicolas@ndufresne.ca>,
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
-	Jianhua Lu <lujianhua000@gmail.com>,
-	Stefan Schmidt <stefan.schmidt@linaro.org>,
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH v9 27/28] media: iris: enable video driver probe of
- SM8250 SoC
-Message-ID: <Z4EuiPEw8mvDQ2gv@hovoldconsulting.com>
-References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
- <20241212-qcom-video-iris-v9-27-e8c2c6bd4041@quicinc.com>
- <Z3_nCPk_g8znto4A@hovoldconsulting.com>
- <64f8bebd-35e1-c743-b212-e1a3292bade2@quicinc.com>
+	s=arc-20240116; t=1736519974; c=relaxed/simple;
+	bh=dNcVzZTesBokg/jzESekrq3gcdde//x7yKqO6CtNHGM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=jDg9sOAOPytgsPig3aqOzLoFxu+gUXXAtsv9Y8ziOGnKoF5Ojsn6/vSa7urIyfXZJN0DB7/cjEuhHRVcHQJI+kfnxWWNtA1J7c7IOIXoa+xbPDekpGc0jwODW+y6pHUWYP80PWbfig40J8IFriqeMI2i7+mi1ReORVmrxrNO8lk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=HjYkbY5B; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4362f61757fso21239455e9.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 06:39:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736519971; x=1737124771; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yvV3AHUuYO6Tr9wrbauX5wDzxdO09agrWxXF+HRfAWU=;
+        b=HjYkbY5BRbbMZ0l9kgNjutWDNTtw3NLD825Z+YvjmMW6HodK/yZSECY1R95IoQ4B3v
+         upvLo5uJybvtN+tXKso7M+ilEPLQ30XZmoM60B8DXC7rOufKjKHFOEP7eamqgrzPTqzF
+         b8jBb0Q+xB2jt2ZnXbZf7i/Mp7S3LpKGGrpPQ6oiplkjDU5RDYXxjeI7m6oFSDzy9qMu
+         ti7ZZMgR8Nn05/b62oZOp5pOUAZI0ZEcKAm2dHNULe1ddVYK5hKiOqB+LY1u2XJS7+NR
+         qjS8WrEUPPZXcS9FFGXnR2YBr/eIhQaH6NgXYA3TsQfXOPJoxkKc5YzhDVEuYXq5eXzu
+         uvjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736519971; x=1737124771;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=yvV3AHUuYO6Tr9wrbauX5wDzxdO09agrWxXF+HRfAWU=;
+        b=oeaG59ATHGEdbVlFS3f1T2BULXbzmIKgTcN+z1rIli5ZW5cSnL26UxJIe4pzFtMueF
+         lf46Lnk5D9/YWhx0rM+p3bqP7BReHWK009s3aG9CB9/PdUQjm0LlUkOufZ+Y+zTqkcHq
+         QiiQa/nL28P7GMEW5PNHw5+MCZmJrWylnGvQ6DLZT5j7ENcyOSVjw0cLVw1IarG9VkX9
+         uzlP4Fh6N5VS1McqxTbR38J7si9qtUNe3DGXR7xUEs95P8IJzZCQjlQ3xs3IGBgY78Z5
+         LcieGpLqvuTY3ERmLdPkuQmc4lSXiNg4xF+UeKtLheCOasRukIDV8q2JeKjFyNtvFcjq
+         AGvw==
+X-Forwarded-Encrypted: i=1; AJvYcCW9xwPJ9AuCUVmrKXUPU/VkBPGQQpfaknRyNXfIzMeVTfzak6I4CH66LV3a6pBVt07H7JyoMu7LFCx0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6uy7e5AvGrnoDGPPJtsuFWIWEnlCC9JK2XPepxinrXAJK1gaq
+	D9Bcck+VJ/WbNntH4v8+FjNvz0jzBGOTcLf59Mh2Ge+MzsYWeV81BNHr+roRHyk=
+X-Gm-Gg: ASbGncvY/WSzQLaEotNwoO56NJZOeUJaQvBMLRJ2PoqKi14mfZFyvofYRW/LOZdgbPd
+	xcTT/HJ6xkxEmudkLGm8CWOcmfigQW4BnFpDN99buixPAby9rpNg0LDrjXHNeKENTlFu1zU6KtA
+	kZ1oUb/n6PoXL0XiDZL5RnYcBnNX2kDk0x2kxI5lm3IDSNgdJkFToV8DuAajH+CiS551u2/Z94k
+	c35OE2oPijUjeelNQPX2EW9js1sOGGZBGZCwWVsJAyKA/yZdC1pHn8=
+X-Google-Smtp-Source: AGHT+IFsvuIAj4E6ymt7QQeU2pHWrvkUqe+Ac8WeW/VVn+1zRvvfjuYtDvvzhEKp8rrWDBKxsvfdDA==
+X-Received: by 2002:a05:6000:1563:b0:385:f44a:a53 with SMTP id ffacd0b85a97d-38a872cfe40mr8748169f8f.4.1736519970862;
+        Fri, 10 Jan 2025 06:39:30 -0800 (PST)
+Received: from localhost ([2a01:e0a:448:76e0:cfad:dcf2:8a42:1d83])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a8e37d447sm4625706f8f.4.2025.01.10.06.39.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Jan 2025 06:39:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <64f8bebd-35e1-c743-b212-e1a3292bade2@quicinc.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 10 Jan 2025 15:39:29 +0100
+Message-Id: <D6YGYCYXJSOF.3BIXI0UPGNNZW@baylibre.com>
+Cc: "Lars-Peter Clausen" <lars@metafoo.de>, "Michael Hennerich"
+ <Michael.Hennerich@analog.com>, =?utf-8?q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Jonathan Corbet" <corbet@lwn.net>, <linux-iio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH v2 2/6] iio: adc: ad4030: add driver for ad4030-24
+From: "Esteban Blanc" <eblanc@baylibre.com>
+To: "Jonathan Cameron" <jic23@kernel.org>, "Marcelo Schmitt"
+ <marcelo.schmitt1@gmail.com>
+X-Mailer: aerc 0.18.2
+References: <20241219-eblanc-ad4630_v1-v2-0-f36e55907bf5@baylibre.com>
+ <20241219-eblanc-ad4630_v1-v2-2-f36e55907bf5@baylibre.com>
+ <Z2eqOSN2Uk8SfTq1@debian-BULLSEYE-live-builder-AMD64>
+ <20241223120419.757eadfb@jic23-huawei>
+In-Reply-To: <20241223120419.757eadfb@jic23-huawei>
 
-On Thu, Jan 09, 2025 at 11:18:29PM +0530, Vikash Garodia wrote:
-> On 1/9/2025 8:41 PM, Johan Hovold wrote:
-> > On Thu, Dec 12, 2024 at 05:21:49PM +0530, Dikshita Agarwal wrote:
-> >> Initialize the platform data and enable video driver probe of SM8250
-> >> SoC. Add a kernel param to select between venus and iris drivers for
-> >> platforms supported by both drivers, for ex: SM8250.
-> > 
-> > Why do you want to use a module parameter for this? What would be the
-> > default configuration? (Module parameters should generally be avoided.)
+On Mon Dec 23, 2024 at 1:04 PM CET, Jonathan Cameron wrote:
+>
+> Just commenting on one particular bit feedback. Makes sure to address the
+> rest!
+>
+> > > +
+> > > +static int ad4030_get_chan_calibscale(struct iio_dev *indio_dev,
+> > > +				      struct iio_chan_spec const *chan,
+> > > +				      int *val,
+> > > +				      int *val2)
+> > > +{
+> > > +	struct ad4030_state *st =3D iio_priv(indio_dev);
+> > > +	u16 gain;
+> > > +	int ret;
+> > > +
+> > > +	ret =3D regmap_bulk_read(st->regmap, AD4030_REG_GAIN_CHAN(chan->add=
+ress),
+> > > +			       st->rx_data.raw, AD4030_REG_GAIN_BYTES_NB);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	gain =3D get_unaligned_be16(st->rx_data.raw); =20
+> > My impression is that it is a bit odd to handle endianness after/before
+> > calling regmap_read/write(). Can you try set
+> > .val_format_endian_default =3D REGMAP_ENDIAN_BIG, in ad4030_regmap_bus?
+> > If that doesn't help, what about doing the get/set_unaligned stuff with=
+in
+> > the bus read/write calls?
+>
+> Unless these are all 16 bit registers (in which case push it into the
+> regmap side of things), then a bulk read is not implying the registers
+> read are one value. They could just be a load of registers next to each o=
+ther.
+> As such the regmap core won't touch them and endian conversion here, at t=
+he
+> layer where we know they are related is the right thing to do.
+>
+> It's  not worth dual regmap stuff just because we have a few pairs of
+> registers.=20
 
-> This was discussed during v4 [1] and implemented as per suggestion
-> 
-> [1]
-> https://lore.kernel.org/linux-media/eea14133-2152-37bb-e2ff-fcc7ed4c47f5@quicinc.com/
+In fact I've already set `.val_format_endian_default =3D REGMAP_ENDIAN_BIG`
+but it has any effect as registers are 8bits long.
 
-First, the background and motivation for this still needs to go in the
-commit message (and be mentioned in the cover letter).
+Most of the time registers are not related to each other. It's only for
+offset and scale that multiple registers form one number
 
-Second, what you implemented here is not even equivalent to what was
-done in the mdm drm driver since that module parameter is honoured by
-both drivers so that at most one driver tries to bind to the platform
-device.
-
-With this patch as it stands, which driver ends up binding depends on
-things like link order and what driver has been built a module, etc. (as
-I pointed out below).
-
-> > Why not simply switch to the new driver (and make sure that the new
-> > driver is selected if the old one was enabled in the kernel config)?
-
-> Its about the platform in migration i.e sm8250. Since new driver is not yet
-> feature parity with old driver, choice is provided to client if it wants to use
-> the new driver (default being old driver for sm8250)
-
-This should be described in the commit message, along with details on
-what the delta is so that the reasoning can be evaluated.
-
-And I'm still not sure using a module parameter for this is the right
-thing to do as it is generally something that should be avoided.
-
-> >>  static int iris_probe(struct platform_device *pdev)
-> >>  {
-> >>  	struct device *dev = &pdev->dev;
-> >> @@ -196,6 +224,9 @@ static int iris_probe(struct platform_device *pdev)
-> >>  	u64 dma_mask;
-> >>  	int ret;
-> >>  
-> >> +	if (!video_drv_should_bind(&pdev->dev, true))
-> >> +		return -ENODEV;
-> > 
-> > AFAICT nothing is preventing venus from binding even when 'prefer_venus'
-> > is false.
-> > 
-> >> +
-> >>  	core = devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
-> >>  	if (!core)
-> >>  		return -ENOMEM;
-
-Johan
+--=20
+Esteban Blanc
+BayLibre
 
