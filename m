@@ -1,139 +1,128 @@
-Return-Path: <devicetree+bounces-137301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B842A0892A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:39:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28250A088FB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:36:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0BFA7188B189
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 07:39:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BF9837A2D9F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 07:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0760920764B;
-	Fri, 10 Jan 2025 07:39:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E85652066C0;
+	Fri, 10 Jan 2025 07:36:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="cUCg55WI"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WihriYKB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m127206.xmail.ntesmail.com (mail-m127206.xmail.ntesmail.com [115.236.127.206])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FCB207656;
-	Fri, 10 Jan 2025 07:39:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.236.127.206
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BD9FC2C6;
+	Fri, 10 Jan 2025 07:36:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736494745; cv=none; b=c4VBG5W0RZ27KJZYdA9AVtxbba/1NTePJMAgbS1FZejR8zrFZPulXQKXR/6OxPIMraaZgqJkmx+uoK48sjbvcVCYxebP8+fgEjklJg9FsedGTIyUy4ZOqTF8rBPa7hJzQRPAtH9rSZCg1R/zg72aw7++H3Acc450yXKnW5RHKvc=
+	t=1736494608; cv=none; b=QQmMTOcUDNNosMzEdOCAomLjEBa0TMu3ORKDFdDLW17IZJnhOHCmCQER5+7Jp9/ZJfDNAzg3dFQhD7h8tRPYeziMNtC1tCgTj1G1TGAQJNjoTtSXUHI4ES5GHNFrzonhbEPF/WDErCeLVCCqUKyVy7TZeyJRMu6/Wdzjse5CFXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736494745; c=relaxed/simple;
-	bh=qZYG4Qfz84oaePgwKuQ+EMUlJvfwgjR748WmO28agoE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n2ggFxEzi4pdoDLVZFEfrftj6qJu/gOlo+5tFSce3IUbOJPk521VZcuvzqWrxm8CTbnsdtVsIRmQE4PZpoSi56BsYQUeuoZjIWdHkXTaUNDrQ5yi1HauHcntzECSaDgouJFozRib/JOt6ITXWFxP12Rvf+RHuy/5EXmZXvfu0h4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=cUCg55WI; arc=none smtp.client-ip=115.236.127.206
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.67] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 8511728f;
-	Fri, 10 Jan 2025 15:33:49 +0800 (GMT+08:00)
-Message-ID: <5025409d-5021-41b4-99ef-94ebde6f9828@rock-chips.com>
-Date: Fri, 10 Jan 2025 15:33:49 +0800
+	s=arc-20240116; t=1736494608; c=relaxed/simple;
+	bh=cFqYNfm9wZC/uzv699M4ZUHZKtarg7OnQEMunm0nJ0E=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YFoJZun48vxUWyaSJ2wk/awl77qA83716ioZPb0bxESCbSXLdNwm95fk2W0oPk8Lf0rarUc7ZAdZcCt7Wx2UXIWBsn/fv7V7UWWJqU6b3FyfdTVIfmm6j3utH8ALRfFG5ybXmRFxQWOCpJvo/ekjF6S8IYUtjC9QSDeiWMeRV8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WihriYKB; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E56CBE0002;
+	Fri, 10 Jan 2025 07:36:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736494604;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1kYzggA9/NfUQOU7gMOUFcIWQrD1ozBXcjW2qdVamGU=;
+	b=WihriYKB93J/o28PlZuqjtqTmouskjgwdK9u9wvYEGHv0EMdvtsve9Gyq6JryiXt+Jwtck
+	czDSJmUT6my7RZfGk4toxh1Sbwsmy745Vsd/UMzBc+YgqSHnX8FcUmouSkwUzbpaGQF9dO
+	mLwYEwqMKfGRBtgAMuc/5FCXxeXnJ+TeRKGPcrX6OXv9971ZhDMrbB4/1tv0ClB8guRufj
+	avKNpmtdAEBC6ata9/oSihYahniukaqbahPoAIeqNa5RhPT+WEwo35voNE4XVM67QDFK+v
+	ZHGsU2YDSRIW/WilcHfLBjxIuhnkqJbU+oOjM0d/bteXuK5j1rCDR3i8ufV9Ew==
+Date: Fri, 10 Jan 2025 08:36:40 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Ayush Singh <ayush@beagleboard.org>, Andrew Davis <afd@ti.com>, Geert
+ Uytterhoeven <geert@linux-m68k.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 0/7] of: overlay: Add support for export-symbols node
+ feature
+Message-ID: <20250110083640.04a39ec6@bootlin.com>
+In-Reply-To: <Z4Chb_nEDTHms_ZN@zatzit>
+References: <20241209151830.95723-1-herve.codina@bootlin.com>
+	<33c61b28-c0b8-478d-8107-c6ed1ff9e466@beagleboard.org>
+	<20241210104141.39acffb1@bootlin.com>
+	<bab9f277-a366-48ec-acdd-0896c8307ad9@beagleboard.org>
+	<20241210115515.1886f73f@bootlin.com>
+	<6d48095d-59b1-4439-8e2a-927aa1aa1b55@beagleboard.org>
+	<20250108090750.45685a50@bootlin.com>
+	<d25572fa-8f0c-4f19-874c-6698a1db40ae@beagleboard.org>
+	<20250108104719.0412ad94@bootlin.com>
+	<Z4Chb_nEDTHms_ZN@zatzit>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/7] dt-bindings: PCI: dw: rockchip: Add rk3576 support
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
- Simon Xue <xxm@rock-chips.com>, Conor Dooley <conor+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
- linux-pci@vger.kernel.org, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- linux-arm-kernel@lists.infradead.org
-References: <20250107074911.550057-1-kever.yang@rock-chips.com>
- <20250107074911.550057-3-kever.yang@rock-chips.com>
- <tsxho4vhadrl6tsb2k5e2vxaeuun3k5pdkojzwjruqkof54dyd@gs3wsuxzwu4a>
-Content-Language: en-US
-From: Kever Yang <kever.yang@rock-chips.com>
-In-Reply-To: <tsxho4vhadrl6tsb2k5e2vxaeuun3k5pdkojzwjruqkof54dyd@gs3wsuxzwu4a>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0NCHVZNSEhOSh5OGUtDHh1WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a944f22372003afkunm8511728f
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6K0k6HRw5TTIPTA8jFiMXPzIs
-	AxIaFBhVSlVKTEhNT0JPT0hKTUJLVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJS0xPNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=cUCg55WIgxh7Krkfj5w+j2tmu5+OrqTz198q9yBn6KHGeWg4DqxM0S6ixBBrvTZlZThXX+QKAfbbYtXiZwoJVDrTYlZaFbNtNpWcybdvlQCOGmN7aIjPj4YT37Y9zkC7vhcUdAbJsavbzJHWRLuLsPev/ZlwcdV9gywUhcaRSHw=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=TOxPOUhClqqhDKpCo7Jmi3oX0GLglQHl4yT+VgEP/lI=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Krzysztof,
+Hi David,
 
-On 2025/1/8 16:16, Krzysztof Kozlowski wrote:
-> On Tue, Jan 07, 2025 at 03:49:06PM +0800, Kever Yang wrote:
->> rk3576 is using dwc controller, with msi interrupt directly to gic instead
->> of to gic its, so
->> - no its support is required and the 'msi-map' is not need anymore,
->> - a new 'msi' interrupt is needed.
->>
->> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
->> ---
->>
->> Changes in v4:
->> - Fix wrong indentation in dt_binding_check report by Rob
->>
->> Changes in v3:
->> - Fix dtb check broken on rk3588
->> - Update commit message
->>
->> Changes in v2:
->> - remove required 'msi-map'
->> - add interrupt name 'msi'
->>
->>   .../devicetree/bindings/pci/rockchip-dw-pcie-common.yaml      | 4 +++-
->>   Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml   | 4 +---
->>   2 files changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
->> index cc9adfc7611c..e4fcc2dff413 100644
->> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
->> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
->> @@ -81,7 +81,9 @@ properties:
->>         - const: msg
->>         - const: legacy
->>         - const: err
->> -      - const: dma0
->> +      - enum:
->> +          - msi
->> +          - dma0
-> Commit msg said new interrupt, but this basically replaces existing DMA0
-> interrupt. Maybe that's the problem with this common binding and you
-> just miss constraining in each device binding. If so: fix also them.
-rk3588 has 9 interrupt, and the 6th-9th is dma0-3;
-rk3568 only has 5 interrupts, no dma0-3;
-rk3576 add one more "msi" interrupt which is the 6th interrupt;
-The upcomming rk3562 is the same as rk3576.
-I'm sorry I'm not so good at this yaml grammar, how should I take care 
-of this case?
+On Fri, 10 Jan 2025 15:26:23 +1100
+David Gibson <david@gibson.dropbear.id.au> wrote:
 
+> On Wed, Jan 08, 2025 at 10:47:19AM +0100, Herve Codina wrote:
+> > Hi Ayush,
+> > 
+> > On Wed, 8 Jan 2025 13:58:04 +0530
+> > Ayush Singh <ayush@beagleboard.org> wrote:
+> > 
+> > ...  
+> > > 
+> > > I will experiment with adding support to dtc and see how things look. 
+> > > Hopefully, 2025 is the year of addon board support.
+> > >   
+> > 
+> > Also one point different between fdtoverlay an runtime loading is
+> > that runtime loading allows to set the target node of the overlay
+> > at runtime.  
+> 
+> I'm not really sure what you mean by "runtime loading".  Do you mean
+> the kernel's implementation of loading dtbo overlays?
 
-Thanks,
-- Kever
->
-> Also: your interrupts property does not match this anymore.
->
-> Best regards,
-> Krzysztof
->
->
+Yes, exactly.
+
+> 
+> While that is a different implementation from the one in fdtoverlay
+> (AIUI), they're both working from the same dtb format.  As we
+> discovered attempting Ayush's proposal, it turns out that the dtbo
+> simply doesn't have the information we need to correctly path
+> substitutions; and it's not at all easy to add it.
+> 
+> So, the problem of the encoding format needs to be solved regardless
+> of which implementation is actually processing the overlays.
+> 
+
+What is the issue with the encoding format?
+
+It works on my side (kernel loading) and I didn't see anything problematic.
+
+Best regards
+Hervé
 
