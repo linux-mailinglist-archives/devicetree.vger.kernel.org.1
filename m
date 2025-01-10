@@ -1,140 +1,153 @@
-Return-Path: <devicetree+bounces-137248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73E8EA084E1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 02:30:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DD37A084EA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 02:38:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 992333A8A45
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 01:30:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88EA0168CF2
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 01:38:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE01207DF7;
-	Fri, 10 Jan 2025 01:28:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="BR/icQdD"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5724038DE1;
+	Fri, 10 Jan 2025 01:38:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03B5D20764B;
-	Fri, 10 Jan 2025 01:28:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E204C2C9D;
+	Fri, 10 Jan 2025 01:38:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736472491; cv=none; b=MZWX9ykDOut27P60LkZLhFNCrLWHAp/bh0zuNtOQn6eKZ+1skv/CvhOpv0P6dQrpHWQkO3Okd9vt31dp4IenyrZzpSx+EMNNctE4hyilQ8VqWF+EfRfQHRR1XNY0uPOQerix/Mn31AnjC5rZkNr1V70i//ndEdjm1CHp5TlVG5I=
+	t=1736473125; cv=none; b=BAa0/am0SBwIJMJ5WQ5xsNEegt+TetFb5VZcseZWIr8X+oVfYURZCPGeHyZcaiWRbaAMaLpM+kFdaJG4kNynDt/JwN+3EAOP/8nVVCpTBikHlizicJpYXcnLNoUwaYOX3JlVmEO0jBBjHXJWW4le0dVXLRD1MNUHlFllU5kF3tg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736472491; c=relaxed/simple;
-	bh=Um8SOZv6+V38oYUUpjV7oJ5u0VN3MlIg/ArcDS+fYoI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=r+TJGJX/Ne4wFH0oBeqJZhjEuxO0633Nj6gxXsJFS1G4Qy2jEbU9sqnDxaPOOLbCO6dDyG8488dcDg5eGJSHew+1BMtKRHkAElC0M9OQb33Q/VWpe2YpgkuXzg7CDz6dPFCtsi4qqnLHfwt0deawGLMEiILxLigr3MNGon1MM2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=BR/icQdD; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 23aabf60cef211efbd192953cf12861f-20250110
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=hDcDVFoj8Dck1LqNJ4Zh+DbWOWQuRE0YqYBI3Mzm9w0=;
-	b=BR/icQdD1D+63llrz1uMg25kkpq9Hjc82jeOd3wl9BqhswuVe356IGA69SUuvEASCrUIEJt/Mi//mMcnC33mVsNh2qVIvPPbhumCgFFvDWJpbsvEGpQFQPqddCZqvud4EolbmkvF/oiwt2deqVL4QjyxkjmvUEymfZGySDYaC0o=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:d4aa6050-04e6-460c-8992-5968c09e1d75,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:12d4a80e-078a-483b-8929-714244d25c49,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV
-	:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 23aabf60cef211efbd192953cf12861f-20250110
-Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
-	(envelope-from <kyrie.wu@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1656018737; Fri, 10 Jan 2025 09:28:04 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 10 Jan 2025 09:28:03 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 10 Jan 2025 09:28:02 +0800
-From: kyrie.wu <kyrie.wu@mediatek.com>
-To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, Tzung-Bi Shih <tzungbi@chromium.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, kyrie wu
-	<kyrie.wu@mediatek.corp-partner.google.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	kyrie.wu <kyrie.wu@mediatek.com>
-Subject: [RESEND,V1,12/12] media: mediatek: jpeg: fix remove buffer operation for multi-core
-Date: Fri, 10 Jan 2025 09:27:49 +0800
-Message-ID: <20250110012749.30072-13-kyrie.wu@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250110012749.30072-1-kyrie.wu@mediatek.com>
-References: <20250110012749.30072-1-kyrie.wu@mediatek.com>
+	s=arc-20240116; t=1736473125; c=relaxed/simple;
+	bh=N/fkSfTpPv525nzBXiPAxWNErjJTrH0nc7ei9Yz/eeM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JtvWZyvHMZH290eZkw9CKzCIFGt46z2YIrPLZbKYS0QLt25HUX4Yt2m5+ABSJjqhvv8YBCk7cMd7Mg64HCcGXB8d07EdH08oBmz011aWsfLw4fTUv48F8SIvw8cjlqqF4FI7yKjkipmkrtgWGDmrz5NdhQycazVbjcSddGmXJHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1tW3yk-000000003IH-3Wbj;
+	Fri, 10 Jan 2025 01:38:26 +0000
+Date: Fri, 10 Jan 2025 01:38:22 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Lei Wei <quic_leiwei@quicinc.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, quic_kkumarcs@quicinc.com,
+	quic_suruchia@quicinc.com, quic_pavir@quicinc.com,
+	quic_linchen@quicinc.com, quic_luoj@quicinc.com,
+	srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
+	vsmuthu@qti.qualcomm.com, john@phrozen.org
+Subject: Re: [PATCH net-next v4 3/5] net: pcs: qcom-ipq9574: Add PCS
+ instantiation and phylink operations
+Message-ID: <Z4B6DqpZG55aGVh9@makrotopia.org>
+References: <20250108-ipq_pcs_net-next-v4-0-0de14cd2902b@quicinc.com>
+ <20250108-ipq_pcs_net-next-v4-3-0de14cd2902b@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250108-ipq_pcs_net-next-v4-3-0de14cd2902b@quicinc.com>
 
-move remove buffer code to spinlock protect area for multi-core
+Hi Lei,
 
-Signed-off-by: kyrie.wu <kyrie.wu@mediatek.com>
----
- drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+On Wed, Jan 08, 2025 at 10:50:26AM +0800, Lei Wei wrote:
+> ...
+> +/**
+> + * ipq_pcs_get() - Get the IPQ PCS MII instance
+> + * @np: Device tree node to the PCS MII
+> + *
+> + * Description: Get the phylink PCS instance for the given PCS MII node @np.
+> + * This instance is associated with the specific MII of the PCS and the
+> + * corresponding Ethernet netdevice.
+> + *
+> + * Return: A pointer to the phylink PCS instance or an error-pointer value.
+> + */
+> +struct phylink_pcs *ipq_pcs_get(struct device_node *np)
+> +{
+> +	struct platform_device *pdev;
+> +	struct ipq_pcs_mii *qpcs_mii;
+> +	struct ipq_pcs *qpcs;
+> +	u32 index;
+> +
+> +	if (of_property_read_u32(np, "reg", &index))
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	if (index >= PCS_MAX_MII_NRS)
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	/* Get the parent device */
+> +	pdev = of_find_device_by_node(np->parent);
+> +	if (!pdev)
+> +		return ERR_PTR(-ENODEV);
+> +
+> +	qpcs = platform_get_drvdata(pdev);
 
-diff --git a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-index 2919fdd92d45..065b35122acf 100644
---- a/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-+++ b/drivers/media/platform/mediatek/jpeg/mtk_jpeg_core.c
-@@ -1665,9 +1665,6 @@ static void mtk_jpegenc_worker(struct work_struct *work)
- 		goto enc_end;
- 	}
- 
--	v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
--	v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
--
- 	schedule_delayed_work(&comp_jpeg[hw_id]->job_timeout_work,
- 			      msecs_to_jiffies(MTK_JPEG_HW_TIMEOUT_MSEC));
- 
-@@ -1688,6 +1685,8 @@ static void mtk_jpegenc_worker(struct work_struct *work)
- 			     &src_buf->vb2_buf);
- 	mtk_jpeg_set_enc_params(ctx, comp_jpeg[hw_id]->reg_base);
- 	mtk_jpeg_enc_start(comp_jpeg[hw_id]->reg_base);
-+	v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
-+	v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
- 	jpeg_buf_queue_inc(ctx);
- 	v4l2_m2m_job_finish(jpeg->m2m_dev, ctx->fh.m2m_ctx);
- 	spin_unlock_irqrestore(&comp_jpeg[hw_id]->hw_lock, flags);
-@@ -1770,9 +1769,6 @@ static void mtk_jpegdec_worker(struct work_struct *work)
- 		goto dec_end;
- 	}
- 
--	v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
--	v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
--
- 	mtk_jpeg_set_dec_src(ctx, &src_buf->vb2_buf, &bs);
- 	if (mtk_jpeg_set_dec_dst(ctx,
- 				 &jpeg_src_buf->dec_param,
-@@ -1800,6 +1796,8 @@ static void mtk_jpegdec_worker(struct work_struct *work)
- 				jpeg_src_buf->bs_size,
- 				&bs,
- 				&fb);
-+	v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
-+	v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
- 	mtk_jpeg_dec_start(comp_jpeg[hw_id]->reg_base);
- 	jpeg_buf_queue_inc(ctx);
- 	v4l2_m2m_job_finish(jpeg->m2m_dev, ctx->fh.m2m_ctx);
--- 
-2.46.0
+What if the node referenced belongs to another driver?
 
+> +	if (!qpcs) {
+> +		put_device(&pdev->dev);
+> +
+> +		/* If probe is not yet completed, return DEFER to
+> +		 * the dependent driver.
+> +		 */
+> +		return ERR_PTR(-EPROBE_DEFER);
+> +	}
+> +
+> +	qpcs_mii = qpcs->qpcs_mii[index];
+> +	if (!qpcs_mii) {
+> +		put_device(&pdev->dev);
+> +		return ERR_PTR(-ENOENT);
+> +	}
+> +
+> +	return &qpcs_mii->pcs;
+> +}
+> +EXPORT_SYMBOL(ipq_pcs_get);
+
+All the above seems a bit fragile to me, and most of the comments
+Russell King has made on my series implementing a PCS driver for the
+MediaTek SoCs apply here as well, esp.:
+
+"If we are going to have device drivers for PCS, then we need to
+seriously think about how we look up PCS and return the phylink_pcs
+pointer - and also how we handle the PCS device going away. None of that
+should be coded into _any_ PCS driver."
+
+It would hence be better to implement a generic way to get/put
+phylink_pcs instances from a DT node, and take care of what happens
+if the PCS device goes away.
+
+See also
+https://patchwork.kernel.org/comment/25625601/
+
+I've since (unsucessfully) started to work on such infrastructure.
+In order to avoid repeating the same debate and mistakes, you may want
+to take a look at at:
+
+https://patchwork.kernel.org/project/netdevbpf/patch/ba4e359584a6b3bc4b3470822c42186d5b0856f9.1721910728.git.daniel@makrotopia.org/
+
+
+Cheers
+
+
+Daniel
 
