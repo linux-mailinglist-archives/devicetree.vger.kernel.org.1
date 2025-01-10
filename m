@@ -1,98 +1,113 @@
-Return-Path: <devicetree+bounces-137582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797CCA09A3B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 19:51:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93462A09BC8
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 20:23:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C4D4188E315
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 18:51:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9F5E116AA5B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 19:23:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FF9F24B22D;
-	Fri, 10 Jan 2025 18:51:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 880CA2144C1;
+	Fri, 10 Jan 2025 19:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TQILPZV0"
+	dkim=pass (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b="HD73YyIG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B54424B226;
-	Fri, 10 Jan 2025 18:51:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD5C24B240
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 19:23:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.121.94.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736535089; cv=none; b=ELDgEifWvD5xhiwgJsn4KIjiVNDjVld0sXIIi1wXH0Pf+8gCJ2K9DoWwies2ahH2XtRWMY2mEaKuywfm0VKj95R0fEYDo0fcM9Aq0mrpru+CGE3FsVXmBYzL/9EIw3/gaoAnhkyk61wzTsQAE1v3BPxpdbxtiVCZ2PV5VT8+7G4=
+	t=1736537023; cv=none; b=cDtQkP37Mgqv4dP1jdKKkt61jK7eZFYL4atQ8D1Q0LmEtkPpcYzJjPjuun91g8J8NiUjVj1AZm9QR3fcij7YhvA4RrrCy49zXEQ1C86fiDUea8w95fvkJmgu68e1L8RqMjxaCaLEo5Gd1s/X3UsV8LZMOi0TWdAWm0NZm0AaKIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736535089; c=relaxed/simple;
-	bh=HQxv7WnjrE+8+bqn4CqOYY0sq7deL2ZeVIILSNz8DkU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nGg6Wnh+0YWjYNmzGpJlVIw0E5geKGs1ieIEM7+NJOxBZ8UX2ZVZsEXgfXSAq/qDOIQSHN8GNVFm/ZVYraMa5/9bPvxfRYK2Zlht/97bkeFWZ4au4gvCXNuznJVesH1ye/BZEwwqCbOQawfD6ppdwrkp/im2IgbRNeLTDKAZepI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TQILPZV0; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30039432861so22449811fa.2;
-        Fri, 10 Jan 2025 10:51:27 -0800 (PST)
+	s=arc-20240116; t=1736537023; c=relaxed/simple;
+	bh=SKvv2wL/SHI91AQ3qMk4EbzIXzqQAPhYnMO18KKIh2Q=;
+	h=Date:Message-Id:From:To:Cc:In-Reply-To:Subject:References; b=ZBZ6jEzod8wbuJE2wGdaj9Pnz9ewRvzGeDUDkHeculWNmpr6IucJyNQurmNnCmz3fUq5DqdLf4+fpbnDhXUxNaRE67sZ6wxTIS+zZNziJGweYNZ9eG8U8jUUIvOHAhxp5u8xYsiGBUM1E0hFD1cf+Ryytc9Cd3VY//tgCNjhW1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xs4all.nl; spf=pass smtp.mailfrom=xs4all.nl; dkim=pass (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b=HD73YyIG; arc=none smtp.client-ip=195.121.94.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xs4all.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xs4all.nl
+X-KPN-MessageId: 3fb7d581-cf88-11ef-bc52-005056992ed3
+Received: from smtp.kpnmail.nl (unknown [10.31.155.8])
+	by ewsoutbound.so.kpn.org (Halon) with ESMTPS
+	id 3fb7d581-cf88-11ef-bc52-005056992ed3;
+	Fri, 10 Jan 2025 20:22:36 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736535085; x=1737139885; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HQxv7WnjrE+8+bqn4CqOYY0sq7deL2ZeVIILSNz8DkU=;
-        b=TQILPZV0dZ1r4yjsLwvHr1lIf6rVoffjRpAAt68hR4AkBTctzIocFkh8XdpqMolBkn
-         KsYtCItzl07fcTnOHicNqwn28lYblVwiKpk4MokK7EHSPWaWGrgEto+huF8mera9XV2i
-         c0eV2Q3AcIYdCC5oEumCJcbMf+k43M7mqOXuMYoS0/UptIAwKkNH6iSRbGEoq8OKe2Od
-         QsnXpJihFmqDqi8jo2kefWj+IdrdPn4RUWgo7gXjMP4/xe6kNd7RMixvOO7H1bObz6x+
-         8eNu1jC0NlWCpevbecPezChcaB1tXB6uhm+OT+wQwN09vgN6eMFE1m56IN1IV5p65Mhj
-         XOfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736535085; x=1737139885;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HQxv7WnjrE+8+bqn4CqOYY0sq7deL2ZeVIILSNz8DkU=;
-        b=FdlbWp5zjvQrdiCekDiKX1DsKhZdEo9XeDThWVeC2sg47565nW+MSTv0uVCxJCHDch
-         GNMQkdigz5WEVQb9deDiTpmcVw6jkRDpbiX7dpRkvtcAIugyn8SBjTMDX/zS1ByXJMVr
-         3yykUmDbEf/Tk2kCD41xVkZ2TiGLotIUy39OtH/JAMsZCduHIiITRkeGf9W2EuU4G08N
-         fXt+F80pWjOEpabdTrhVQxFGWzUCWapIDXduQ2sfPeFXyStPZOVFWrXEchWZ8YFwnD0e
-         XwS+kpLpb+XJe18xyWXCBmSvU60WJaUNNoaAUzM7ALwRgsgvwSSIxOwcaZprBgxd/iAm
-         Mi8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVUpalNBKJTHJBcRrDPFFDyMosiR48ZRf2aeqTsxZof0qu5/JdASkLkDRCVveaSm0/KtIUEkJ9hl9dC@vger.kernel.org, AJvYcCXYRnEbsXGP/YolE+YQg4kLoOto5iuHkv0GplOVHYRhToP1Q2GVAEcDqmRqLkXS2+8EsDlJ2Z6f8HVE+58=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEWFzXTwruViJXCtO3TUCHQUQsr/S6ix1P7+YCIm3Ngar4Zmku
-	irwr5QuoDgwx/M4UtbcTwNIS2cfIfik/gl/isBYCFC6RkWynustmOIjNI5Qn8vUYNn6Lv3KA5UW
-	TJFwwXQKzX9xCXp9oTVNI9HjhmRE=
-X-Gm-Gg: ASbGncsyhMGcqlRWtJBoKbPYeVrc4vEi+QGfy+vJWcFgMy6iSvg0oMqUBE1m87nRVee
-	Uo571si2/sbUem+rbkbH3DF6px5/g1jpuPtYwrEGcsPj9qIqfK/tiYjXlnJNGkl1ZafDlww==
-X-Google-Smtp-Source: AGHT+IHycRFrAFKt/YbEZu0xgaUi0rNt/iS0+nu37UnQFxTlg8JS0vtUEJf4LaYkZg+Q06LcbM8QIN9ZeiacPS8osG4=
-X-Received: by 2002:a05:6512:2394:b0:53e:3a22:7a2e with SMTP id
- 2adb3069b0e04-542845d1265mr3969138e87.47.1736535085069; Fri, 10 Jan 2025
- 10:51:25 -0800 (PST)
+	d=xs4all.nl; s=xs4all01;
+	h=subject:to:from:message-id:date;
+	bh=/KJAI6rZMyrjpAxu9pgZwMk+8GZtTyA5Rf3XMKlCiTs=;
+	b=HD73YyIGE4gHpyjA22GJ4eiyLk505qcsE/l17BfsqrNxP+Hw1YLEX6XnVmA31Z8zgJAaf94nAlfQC
+	 6SrW3Bxcr+D7J78tlaAsOIphNVdVdpbKuUS2YQp+j6scSZ2pljOSTZ+8anemWEZzKwOMeQR2OhmmFg
+	 cH8Pt4rQO4ktGfAD4aX5kPJTLYT1NExihK2OtXcf9dfRaCIcbmIhqPTS4vMcko6tM3ETJn/oNVH05z
+	 VF4RM9kT7x6ZNmUaTMg0tE8LK292W5yCF4cY+qUm0NONBpyDBGQb8hr0cHGuuGt0tiJsMX6jJuTdds
+	 I8hjIOajc9qnX/NyaPnEFMUdmGSd8zA==
+X-KPN-MID: 33|wXVuMNrdWrxB13ZpC56pa88QK1GxPQ79V/REObUI/8pgxD9phj+Km3IoP4/kr8O
+ prt/2tQ9SZAuwssehM1qU6BOaIPRzbWre//eXY0yPfeU=
+X-KPN-VerifiedSender: Yes
+X-CMASSUN: 33|GIHfWUSF6CnM6ln1WfNvLbA1HdK5TvV7mkIicrjwkf4raD1jjTjLhpE9wgEGJNf
+ 2zudQ8lIqYHBT29xAk5yxtg==
+Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
+	by smtp.xs4all.nl (Halon) with ESMTPSA
+	id 3c6a1ca4-cf88-11ef-894c-00505699d6e5;
+	Fri, 10 Jan 2025 20:22:31 +0100 (CET)
+Date: Fri, 10 Jan 2025 20:22:30 +0100
+Message-Id: <87frlqv5hl.fsf@bloch.sibelius.xs4all.nl>
+From: Mark Kettenis <mark.kettenis@xs4all.nl>
+To: Johan Hovold <johan@kernel.org>
+Cc: kettenis@openbsd.org, andersson@kernel.org,
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, quic_rjendra@quicinc.com,
+	abel.vesa@linaro.org, quic_sibis@quicinc.com,
+	johan+linaro@kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <Z4FND-b-gEb6YJw6@hovoldconsulting.com> (message from Johan
+	Hovold on Fri, 10 Jan 2025 17:38:39 +0100)
+Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Mark usb_2 as dma-coherent
+References: <20250109205232.92336-1-kettenis@openbsd.org> <Z4FND-b-gEb6YJw6@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250109000503.45264-1-festevam@gmail.com> <20250110160926.GA2966032-robh@kernel.org>
-In-Reply-To: <20250110160926.GA2966032-robh@kernel.org>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Fri, 10 Jan 2025 15:51:13 -0300
-X-Gm-Features: AbW1kvYBHdhul60z-wLHL_iCM2crW5A83CaSgxRRZUBl1U1quJcpAg9Vr49E70E
-Message-ID: <CAOMZO5CMnUorJtTH1Nmnip-s9F9WWWySDSLZor7mYoEors4gWw@mail.gmail.com>
-Subject: Re: [PATCH] media: dt-bindings: adv7180: Document the 'interrupts' property
-To: Rob Herring <robh@kernel.org>
-Cc: hverkuil-cisco@xs4all.nl, mchehab@kernel.org, lars@metafoo.de, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 10, 2025 at 1:09=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
+> Date: Fri, 10 Jan 2025 17:38:39 +0100
+> From: Johan Hovold <johan@kernel.org>
+> 
+> On Thu, Jan 09, 2025 at 09:52:31PM +0100, Mark Kettenis wrote:
+> > Make this USB controller consistent with the others on this platform.
+> > 
+> > Fixes: 4af46b7bd66f ("arm64: dts: qcom: x1e80100: Add USB nodes")
+> > Signed-off-by: Mark Kettenis <kettenis@openbsd.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > index 4936fa5b98ff..aad1153a443d 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > @@ -4814,6 +4814,8 @@ usb_2_dwc3: usb@a200000 {
+> >  				snps,dis-u1-entry-quirk;
+> >  				snps,dis-u2-entry-quirk;
+> >  
+> > +				dma-coherent;
+> > +
+> 
+> Can someone from Qualcomm please confirm that this is correct, and that
+> it's not the other way round and this property should be removed from
+> the other controllers (e.g. if this was just some copy-pasta from sm8550
+> which is the only other Qualcomm platform that claims to have
+> dma-coherent USB controllers).
 
-> How many interrupts are there?
+It certainly wouldn't hurt to have confirmation from someone familliar
+with the SoC design.
 
-Only one.
-
-I sent a v2 that makes this clear.
+However treating the controllers as DMA coherent when they're not
+would almost certainly resulted in reports of USB devices being
+unreliable on these machines as the OS would skip necessary cache
+flushes.  I did test this patch on the ASUS Vivobook S 15 where the
+microSD-card reader uses the usb_2 controller.
 
