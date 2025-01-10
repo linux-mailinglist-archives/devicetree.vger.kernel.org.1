@@ -1,100 +1,112 @@
-Return-Path: <devicetree+bounces-137542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64EA2A09688
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:57:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B9C1A09692
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 17:00:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4688F188DCDF
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:57:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20E8C7A12A0
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26AC6211A0F;
-	Fri, 10 Jan 2025 15:57:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NEvyIBtR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61675212B1C;
+	Fri, 10 Jan 2025 16:00:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F108420A5FB;
-	Fri, 10 Jan 2025 15:57:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0EE212B0F;
+	Fri, 10 Jan 2025 16:00:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736524630; cv=none; b=Mmh+Bc5C5cMeg39wSg8HaHbcV1AppO3+CfjthyQLNTOmMqergow8vC1ib6kfUzmxoy6eR1DHJ/7EPqkoAv8Z3uIxN7uMJBrJSiU4vKJidiVUcRFsNFouU/IET4vVpf7WPew3fMbMVCYjP3HvUzVhTif6iJdY8FMTpkrokEQVp9Y=
+	t=1736524818; cv=none; b=GICaSAmV6KsZOFLaNE8CIdUnSUchQR/KRzKbmLLq0flvsSizht6wyag5WG5iqYXG9nRC1BH/UuMTA3t6Q1RFy2/9TsAV/pa8mrLC+tDK0z/vUrqt64yf1/+wPmavoHaFntmQrnyjC5/VAYYIIwNCV74I0jVrXg3XGxPlBoxGIeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736524630; c=relaxed/simple;
-	bh=Zepb3Xf1LqvXqepzt+MhmKK6OG5jBl8iAJLNE0dVQPw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WlgcO/2+cLEBX1uzz6dhTI/hEfztDDJ8rEjVwyu3CVxz/l1q5U3im8AkLOK6XmfmHJloQwTl8FYMdeT0u+2+/eABblV0Wyy5rOJP8WXi3PtjSUr9nYPfH7I8bw2vC4XJp9y/8y9Vj1Klts2srhYmU/S4SnHHqO+je7Pe3LBS3j0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NEvyIBtR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6422CC4CED6;
-	Fri, 10 Jan 2025 15:57:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736524629;
-	bh=Zepb3Xf1LqvXqepzt+MhmKK6OG5jBl8iAJLNE0dVQPw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NEvyIBtRig1NynjUKr+d72gORi8xggQKkHvmTDwaw+mxp6ygcL0HqICFfzPh84x3Z
-	 LsJY2EfD8qZPaOR8yGe4MxG4lwmy4wziMf4LNwY33JkuVXED7L2c+QHfb9j8A7Wq1J
-	 Tr6CQHqBQxP2XUEimgcLM6KrYb4Q0q/Bndd8xIW1y32DUGOGJwOKAz5EJd+YhfIpIJ
-	 XkrhSUFBUN6AG28zCvbRnoJYIymyJY+Pt1P68yuiveXnp2xvXXDS4jf+JkNG7/4Zxl
-	 du9aEo6KNrAuqISmeSYHyXfkMRZpVCxVR4ntT3PxWZvGRbF/03xLiO3dZVjvHsn+kp
-	 Y5qJP2Z4A3XNg==
-Date: Fri, 10 Jan 2025 09:57:08 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, tzimmermann@suse.de,
-	jitao.shi@mediatek.com, linux-kernel@vger.kernel.org,
-	mripard@kernel.org, ck.hu@mediatek.com, p.zabel@pengutronix.de,
-	jie.qiu@mediatek.com, junzhi.zhao@mediatek.com,
-	lewis.liao@mediatek.com, simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com, krzk+dt@kernel.org,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	ives.chenjh@mediatek.com, tommyyl.chen@mediatek.com,
-	linux-arm-kernel@lists.infradead.org, matthias.bgg@gmail.com,
-	kernel@collabora.com, chunkuang.hu@kernel.org, conor+dt@kernel.org,
-	jason-jh.lin@mediatek.com, dmitry.baryshkov@linaro.org,
-	airlied@gmail.com
-Subject: Re: [PATCH v4 08/34] dt-bindings: display: mediatek: Add binding for
- MT8195 HDMI-TX v2
-Message-ID: <173652462808.2939128.70242417447514107.robh@kernel.org>
-References: <20250108112744.64686-1-angelogioacchino.delregno@collabora.com>
- <20250108112744.64686-9-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1736524818; c=relaxed/simple;
+	bh=iVnoh5XxXBNvRf9VFz2lCK25OBZOXAulTqGhLM/TeG8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lnA2AqRBuKQQrbMhRqEuG7fIlF+s95EFvs6HCN1P7wEf6cIKkVHGT48jCZ6sv9RH/d0a5UCBaj3EsZQrml7ACdJY4eVjVOar4W6ndD+Iszrf7vrGGSO7Ibd2KTmnMiUJ8U0LSfrq8fxBWiaMcfjr5d1QGB0ENKJ/YLp+HCDU4+w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-540201cfedbso2004241e87.3;
+        Fri, 10 Jan 2025 08:00:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736524813; x=1737129613;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xier1H0iRZQUKFRWlNiMydYcr5ZwkdaYGgLJSuP7jbw=;
+        b=SP7f0e+2D/vDrqYwcrSGLA+174IMfo0K6K2/DG70OhYPe+JQKFV2c8t9SjX02LEBUP
+         cq076FnnuBiCSHdyY3PpzTYJopsgZcSrqP1a5M/ybDDpDpsOXnbgKDQkvWfiwkeQNXKX
+         fJd8D4z86F6vf/IMuOmaU+M6rrfIIierzeimSrhhcy2xPCSUZpbxeOZVuSjMtdapyKZp
+         aHwabADH1ihlx1lVa5jbBuzt1WIEKbZwIoRWlVnb9lpuOnWGzxAQVae13p5HTw0KuXtT
+         2fIBUQGaGe8DCfHY/1FotAGCnuFkHbaxhg90/Ph2kb79z6f9gzWGNJLATNWov+ke0bBt
+         Di8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV1i19vTnXEyfRATMWZ73iE8zoyXiRKndEW9SnsxKvZFk5LD0JuRgP63MmJLpcT5cKdM1+XP5I0NBCidnLY@vger.kernel.org, AJvYcCWyM4tFh0VlBYXIWCvLW5tSBviJKIQmhvYy8sxpAB8ZNRb3iC6ERQ9GrQSJO/TVYta65o11B0IEfPg=@vger.kernel.org, AJvYcCXcGnpJdKD4kP8a4gcv8qMIVm1i4x2Q+qt4Mqe+6l7QYB4dOYr8bvJYyrGMt5R3Yv97eGiOeOVrmpxW@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLtgGEgNmPGjg3w0dx3R6+xntlGEwvGDtxKFxvgu+2f4JGIA/Z
+	kQqHL99m3nwKHTLm0HU1yF1AXQwD+IWz+4V1ZBEQ35HtMhsY5lFCtf+WBCR/
+X-Gm-Gg: ASbGncsU+BhzotzFxH4iV+bA7O9liYRTK+OzMLv9qlcTvcmpZS/RN2xYa5iFcijMNSD
+	KU344Ze0UA7gYCJv2cBBUXUFeIZXhllie8nHHjiJO+YT51bDxXSPgUmG07FGjR09espdT6AobTl
+	Vn5Fwydl74vAyz9/8JntcNQg0cfWOLdP9mXYuWfKcgYeq7lHIhc0z3Cv8IrhyNzjEIlsDpzC/p7
+	Sx9cj9Zbs974wWtV4zXpPYWQkrG5vUiF27F92oAnvkMBNGoRPm1VcZWCzArN+sclF2+SCNHpGN8
+	4NZvE7GPJKL70w==
+X-Google-Smtp-Source: AGHT+IFjZPj88on5ZUCpfj08JYr6RHeVrSjVgrDO8wv1n2c8oDuQwAGq4LKqnlyG5LjO25wBVFIsFg==
+X-Received: by 2002:a05:6512:6c9:b0:53e:37e4:1457 with SMTP id 2adb3069b0e04-54284559defmr3796873e87.33.1736524813038;
+        Fri, 10 Jan 2025 08:00:13 -0800 (PST)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428bea77ffsm560356e87.160.2025.01.10.08.00.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Jan 2025 08:00:12 -0800 (PST)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-3003e203acaso17666361fa.1;
+        Fri, 10 Jan 2025 08:00:10 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW1yEEiHsuh93ofC28rAIHacIZvlXus/obaI+G1lOYAs2EIBse1j+VYbYX/SkFIST6RnELq43lqV4hU@vger.kernel.org, AJvYcCWSSZ+iM5kfAbhzIxjQ82aIb6sKCCd6WLWe7gc2xTN4pL8SPVIJlSGkQc9WmbkW6fGEnra9AbMj+OOJ5hhg@vger.kernel.org, AJvYcCXP0uJLZGa0dqWZG47kniGLEwowYmRtYAqma28CGBEBwKB4d8vbZeM6GpTezB1mamjGazD7Z+WF67A=@vger.kernel.org
+X-Received: by 2002:a05:651c:19ac:b0:2ff:cfbb:c893 with SMTP id
+ 38308e7fff4ca-305f459ab20mr34723811fa.6.1736524810623; Fri, 10 Jan 2025
+ 08:00:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250108112744.64686-9-angelogioacchino.delregno@collabora.com>
+References: <20250107131027.246608-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250107131027.246608-1-krzysztof.kozlowski@linaro.org>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Fri, 10 Jan 2025 23:59:55 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64p9S+o7+97GqTHak1PuVR2AUo2H8BQmmcFgA7CSiFKtQ@mail.gmail.com>
+X-Gm-Features: AbW1kvZjBbLkmy_SyJ-PR0LLBGaZFrw-ONgajjMHJLqhUh37HElpVRr_LdJUQeI
+Message-ID: <CAGb2v64p9S+o7+97GqTHak1PuVR2AUo2H8BQmmcFgA7CSiFKtQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: thermal: Correct indentation and style in
+ DTS example
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Vasily Khoruzhick <anarsoul@gmail.com>, Yangtao Li <tiny.windzz@gmail.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	imx@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On Wed, 08 Jan 2025 12:27:18 +0100, AngeloGioacchino Del Regno wrote:
-> Add a binding for the HDMI TX v2 Encoder found in MediaTek MT8195
-> and MT8188 SoCs.
-> 
-> This fully supports the HDMI Specification 2.0b, hence it provides
-> support for 3D-HDMI, Polarity inversion, up to 16 bits Deep Color,
-> color spaces including RGB444, YCBCR420/422/444 (ITU601/ITU709) and
-> xvYCC, with output resolutions up to 3840x2160p@60Hz.
-> 
-> Moreover, it also supports HDCP 1.4 and 2.3, Variable Refresh Rate
-> (VRR) and Consumer Electronics Control (CEC).
-> 
-> This IP also includes support for HDMI Audio, including IEC60958
-> and IEC61937 SPDIF, 8-channel PCM, DSD, and other lossless audio
-> according to HDMI 2.0.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Tue, Jan 7, 2025 at 9:10=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> DTS example in the bindings should be indented with 2- or 4-spaces and
+> aligned with opening '- |', so correct any differences like 3-spaces or
+> mixtures 2- and 4-spaces in one binding.
+>
+> No functional changes here, but saves some comments during reviews of
+> new patches built on existing code.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../mediatek/mediatek,mt8195-hdmi.yaml        | 151 ++++++++++++++++++
->  1 file changed, 151 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml
-> 
+>  .../thermal/allwinner,sun8i-a83t-ths.yaml     | 48 +++++++++----------
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+Acked-by: Chen-Yu Tsai <wens@csie.org>
 
