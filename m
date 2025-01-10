@@ -1,328 +1,603 @@
-Return-Path: <devicetree+bounces-137345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8501A08AD1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:59:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F53A08AFE
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:12:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB5A5169134
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:59:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AAFB188C170
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFB79209F27;
-	Fri, 10 Jan 2025 08:59:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24F6C209F38;
+	Fri, 10 Jan 2025 09:12:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gFKxMwmX"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="RcJ7eaLB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2131.outbound.protection.outlook.com [40.107.20.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03BA2208978
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 08:59:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736499573; cv=none; b=kBY28MkHqMvH7PJOHdca2NGtbPA7VUDlp/ybbmLkLtZf9AREfI34NArFpi6uAGGpunIsBqHO2HrDbWRV+YrzfmafL0ppy5lphWxlJeqZduRknN/jr6KY0rqfLL+WRiCf/Av66YiRmZ6uSbfEUxSpv0EfV0CmvpEEbKUYAPDcw+o=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736499573; c=relaxed/simple;
-	bh=HXD+3vBFq3ftj+fQdTwmu+nD89WB1mRYA0tNbZJ/EaM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LQuwcCbm4WJgcfh2uREcY78H1zUnuPThoTBg0jGme87U6ULNLYecJxaekVma+k7Pgij3OB2dJnOYfsxDvX21LHP32qKFOf+lhi2wj4ogl5bAPI7Fip/wKhaYkPySX6zy31tz+zWnmqPXgBNnIeC7we9Kht811qZXRzx+KYRm/i4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gFKxMwmX; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4363299010dso2195465e9.1
-        for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 00:59:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736499569; x=1737104369; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=7hGLjdZowT5PE1ZxrLTVLx1p/trcvoJO2svUWorXuAc=;
-        b=gFKxMwmXEhmdfGIqlLZPA7m1MSuArnl8tgSDOVcMWoL/4MmYwrLpwry/CVFqLZmi84
-         mFg0ZV5Jxp2+dIGPFXQu6pZHjBLCyRRyrudd4tSlWI++81/hpX7P3vvaLCLjT85L8pCH
-         l08S3CbU4eHmmIXGxkX/lfMWBMYBVMXCWJQTET6KloPnb9NwgMOzJADEDTir/kuzDvsa
-         EsjItDb1pt81tjLR8Rp3z3WCERaFYFWDeuZ6z4qDXcHLAYvmYwF/iy9Qd+69bO0tIrjC
-         z2TUr/mEEk01jS1ujDfHuBSAo/AYxC8XFzg7bnNW44GYr41b3aNPAoBFQTY/BQ9cfxHZ
-         kwVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736499569; x=1737104369;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7hGLjdZowT5PE1ZxrLTVLx1p/trcvoJO2svUWorXuAc=;
-        b=wcXBpVHAAl5sWScrURCxD0TXSJ3ACl49TqPlkQ7PNWMuaGrpAIMUPm+pNsNFw12mf9
-         bYInTBIjo5krAq3htoqo+QclzdGTP+r8Qf9X0oGi3GJEyjpg4rCT2U5Q6tijY3ppW2Um
-         8diBqo2XK3IMGu8A6RrFitBA4atHH33T+1ARAxh5Ot3nG+aHqZDLMeg6Ht0uJbCpbt8L
-         6C688FnQ1MGSKS/6pn2lRdnoQRhrj832qiTzc0oYM5NKIQQG9AhfgLL250JZB+Wr9gJY
-         Hfnh2JbYAsX6blU4S5+eaK9paHVkisIcolRO7YuWD4J4PhAt12znHoPYcKEr6S2loMer
-         zjdw==
-X-Forwarded-Encrypted: i=1; AJvYcCUv9veig/NXRbxtnvy+Zrei1IcGHEx6KvfSebvWa4rCF1JcsI/RAdp2TAmNVFGOFjM0ahM/MUVQgiGQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyfx9QgHgoyGTLfW724doHiyWuLAJI1RCLUl6KEsAqAQ7r7Mo7I
-	uZQ9O+Jy9rGXCLAeWU4PAN3/3Lu2EKeOsFsUtoqRNqEIGgwqXYcKDRVv+90MBcU=
-X-Gm-Gg: ASbGncuml6vm/9yDVJp8TDMAuXkRtewFPVvxX/sYuGIlUdZ1Uu19IlyRhzsWTX+c+gl
-	yF9FbXu26hW107fOHISNa80prsHHdz0GKNq/gs11bu5aXJE0mF+zw4Aw1hpMXnam+PC30glOffO
-	DkrR/EoXgW2Kr03Yw9IoJNMy+vwMtRBvnKETQGJDpY4CS2fyPDcG+X+x/7LQFLuVnBZ4a2WDkjO
-	UHviXvViFsh8hi0Wl8/U4o7psOAVXGdfqaQ5i/MHuEkxJAP+scKuHsmTmPgw5zkkRXp6pO2i8EE
-X-Google-Smtp-Source: AGHT+IEwkrz+PoZxV4MO0Kjo8rXrqQ8ksbadzeeixn9+7H03IOjhaq561a8mPD+Elnwcr7igIHcNDw==
-X-Received: by 2002:a05:600c:4e52:b0:434:a339:ec67 with SMTP id 5b1f17b1804b1-436eba35780mr19968995e9.3.1736499569224;
-        Fri, 10 Jan 2025 00:59:29 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.223.165])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2e92dc4sm79327445e9.39.2025.01.10.00.59.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Jan 2025 00:59:28 -0800 (PST)
-Message-ID: <4fc7fdd5-36cd-42e6-af4a-e0e429f9f50b@linaro.org>
-Date: Fri, 10 Jan 2025 09:59:26 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2DC71ADFE4;
+	Fri, 10 Jan 2025 09:12:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.131
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736500359; cv=fail; b=WfulQy35DkE9wOQZGjZK1nqJE1G+GxLnednuOSPHfV/aM6k6UKa+5HWQc2+gySb9TzdC3YwkRR6PX2M9a3YK9nWH4oFxde77bvKBwNkizrw4BgzGSt7D3qjBe5zDYBHW1ral9H3epM00JaIz8dsB5FOwrXKy8nIV/yIPL7dICpI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736500359; c=relaxed/simple;
+	bh=EEXFkjidPpNZnaM465+SDXPfl9x2NHuz+2TF8RFQ5T4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=YAMSI1B6KgBN+IEfzoPAtASxoEbJ+03vk61c8i8E1yUPtdlTbZzLXfPaU2pFKpsvyJB1i4jltsBkIJnZq3Nf/NyuuMbFLFSfJzB8qc9eLNSzAGWyxSwjTh9/62TtpvO0oB6HzMl90M7W8odlFlG3M+kkcYytbJaKwxJ7Ofzg87g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=RcJ7eaLB; arc=fail smtp.client-ip=40.107.20.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xPbMep1NR220ybDf93D7HHVAYF22aRmQnISgAe8wuWGSsn6s/w1QLoga1gebTYQoqSy1D+zxwK9yw9jJlPxk9wAcgCQm+7xvGcS1r4+fnPMZWF0eTVRLObT3b6kUs5XeZ1xiBKw4T1ZTqwatuXkc1nnd2syvkWoZwqqHX6rpyETt05Fz9Lmxuzj57Tz3vtd+RcpVQXe0Y3wgey1cDkIiZjEMXwi8tesDqFuUyXMk3JKt0R/oafEFwFalHx8YB8N91SVH6hloXEvooopVcmidjLOiPL7Cx0//s3fA0dwA1+vARMXWwh5qF+2GwWIvkAH2SAXH1ecWUT+GmTzmRf/fBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LFGw58zz3CLLFoh2EmDK14D+Zmdu1ESzOnJxw0VTDEk=;
+ b=rKbdioVUeO6nDk1OxtlrMYssroQxnb63w3WFiu9LQgGj+3pEuhJHqKEZmRFvh3UIq92oHcS10KWRdR/AeLmf48sRgDIUvtfIH74mZrXPTBCXJ7oyyyttvfCmi7WGIqRZbleagonpEivZcLmBLW8y6Hncf4fGjwlWnOaPmLwWbIH33H+/cWmkm+UXowZuzqZBzffw94s/zyUuyJYAUiis84h6dst0MFuEa5/zcslIsP56+BMF+VzP4MGGh6dg44Oj4qgdEJbIinfhN2fBHq5RDyEBkPM3m5HN9OmxSFe9NDq1HV/sifUGr6S5P1NZmdDRdFngOBPOq6XjxQcveTr39A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LFGw58zz3CLLFoh2EmDK14D+Zmdu1ESzOnJxw0VTDEk=;
+ b=RcJ7eaLB0unXVbxHHeD44q9HMvoYiHvsNy67Yu0W0aNT2yEBSOyKa1UOjnNffTIIjCEZ4TA+Yjx8oFtGrgMEpShmKFRvU7IVj+1Kv9+sAMFYEZvSIurf5HfHKwzbUhnxozoF3xzgzb+AAKYTgG1wt7CuqIDwhKheui68jvBDs2I=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by PAXPR08MB6574.eurprd08.prod.outlook.com (2603:10a6:102:12d::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.13; Fri, 10 Jan
+ 2025 09:12:33 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4e72:c5d4:488e:f16d]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4e72:c5d4:488e:f16d%5]) with mapi id 15.20.8335.012; Fri, 10 Jan 2025
+ 09:12:33 +0000
+Message-ID: <78fa589d-f9b6-41d8-bee5-766d0d1c3b17@wolfvision.net>
+Date: Fri, 10 Jan 2025 10:12:29 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/6] media: rockchip: add a driver for the rockchip
+ camera interface (cif)
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,
+ Alexander Shiyan <eagle.alexander923@gmail.com>,
+ Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Mehdi Djait <mehdi.djait@bootlin.com>,
+ Gerald Loacker <gerald.loacker@wolfvision.net>
+References: <20241217-v6-8-topic-rk3568-vicap-v2-0-b1d488fcc0d3@wolfvision.net>
+ <20241217-v6-8-topic-rk3568-vicap-v2-4-b1d488fcc0d3@wolfvision.net>
+ <Z3-f1SrrRjMnB-1C@kekkonen.localdomain>
+ <561bef3e-2511-4741-9175-5c15239f9b1f@wolfvision.net>
+ <Z4ACALOeioLroqmw@kekkonen.localdomain>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@wolfvision.net>
+Organization: WolfVision GmbH
+In-Reply-To: <Z4ACALOeioLroqmw@kekkonen.localdomain>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR06CA0217.eurprd06.prod.outlook.com
+ (2603:10a6:802:2c::38) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 08/11] drm/msm/dsi: Add support for SM8750
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar
- <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Krishna Manikandan <quic_mkrishn@quicinc.com>,
- Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Srini Kandagatla <srinivas.kandagatla@linaro.org>
-References: <20250109-b4-sm8750-display-v1-0-b3f15faf4c97@linaro.org>
- <20250109-b4-sm8750-display-v1-8-b3f15faf4c97@linaro.org>
- <3p7kjok5jzwvgt7dxuad26xgdkjd52v4gbtuudvgkeoj33skqn@afl2ddtsq7s2>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <3p7kjok5jzwvgt7dxuad26xgdkjd52v4gbtuudvgkeoj33skqn@afl2ddtsq7s2>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|PAXPR08MB6574:EE_
+X-MS-Office365-Filtering-Correlation-Id: ec572120-c8ba-48c8-c25e-08dd3156ead4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?VGx3NFBLbldVNUh4SmFNNFdmSHVOVWRjUm5DSmQvdGNzM0kwV0NRR0pzTXJt?=
+ =?utf-8?B?emdJWEUvYUZpOURqZjlncnFZZG9Wc09rTDdqZVl4a2tueUtZcENQMUUyQity?=
+ =?utf-8?B?Q1FHWit1dmkxKzlheG5rMlY5REw3ek9OQWJTSER3YUhkV05VWTFOcWhjUXpJ?=
+ =?utf-8?B?b05QQzd4aE5IYWxSYTFVYlpPMFhQNEo1VU9pNDZta2J3M1JFMndMTXdBRXl2?=
+ =?utf-8?B?Zk9IVENnTUh6bkM1YjUxbjh6b2U1dUYwL0w0elk0WUR5Q3lBN2kxdjVQWlZ4?=
+ =?utf-8?B?NmROVGJzZjJEVUFkcHYzelM3RUQ4akRxczJzd2hVd0xQOEl0a29JcXN3V1dl?=
+ =?utf-8?B?RVNPNzlVS2tHaXY5WUtvUzNCT1BFSDljZnN0Y1VLLzNiQUVrNERHWTBDejVy?=
+ =?utf-8?B?aTNvd1JOSGVIY1kzUGNwVUd3K296OXhLbzdSRXhWQkpReCt0eHNHZ2Z0VHJs?=
+ =?utf-8?B?cmxMQUk2SDY1OXY5aDJUNHZ2a1hMb2kxZ1kzdk5WaFdBQ1FXUWU5OVYzRVlj?=
+ =?utf-8?B?SHl1N29qQk1RVG9jdUVTY21nZkVod2wrdHN6Z0d4WEl0NlZpNFZTYUxNRnIy?=
+ =?utf-8?B?dmRQZTJPbTMwWlY3TFMxRFBrZzNRc29leDFQdU5xUncvUVRyaEJBTmY4aE81?=
+ =?utf-8?B?d1hBeE56bWZqZUlZbTlMNmNOOTFjRTZNSWxBbStkalhpM1ptdWpDSmdoYmRM?=
+ =?utf-8?B?WGJuR3ZRcXdQWUdHdXNGMDRlZi9mcUt6dWdlMnJUN2NwUTlZa3FvQUI3clly?=
+ =?utf-8?B?My9qcXdDTCtkcXl0NFFPeUY2REl2NkVSOWJtdUdyYXBscEZBdEpVYjlQeVRm?=
+ =?utf-8?B?VmV3MWhzOXNRVXhjbmhSSmpEN3Rha1dUdFhpR0xQbWNxbFFPSExkR096cjla?=
+ =?utf-8?B?VVhqZzU3NlljREtabXk3U2Nac2FQQXg1dE45TTVLSnhIWFRIUDFSM0JaTmZH?=
+ =?utf-8?B?ZjEyTDloUVFYM2FHRmtRZCtaa2ppYnRKaHlxb3ppVjhyQXZxRGM2eXhtTEky?=
+ =?utf-8?B?TUFqY1Izcm4xMGprSStKQno4UXBWc2ppcmtyUHMvVDcrNmNHNU9ieXIzY2ZY?=
+ =?utf-8?B?ZWt3UnFxallWMjVnSURHM21jaXpHRExKTk1xcVVCZnRxWWlXbmQ0RVQraTVG?=
+ =?utf-8?B?eHBwRHNzYys1ZkszekU3SG5kSE02NkJ6YWpvcXZ0dHFBYnRZZU00bnZYaXZj?=
+ =?utf-8?B?RHVWM1FkNmRsUnhoUk5zcjV4a3RVOUgyZWZqZmZRRm1YUW1QVFJyanV3RXVK?=
+ =?utf-8?B?SlZ0UGY5Q3R4R2dZOVRxL1Q3K0RkYi9aQXpFSTZsNjVSeFl2NmZNYjQ2c0ls?=
+ =?utf-8?B?a1dSaHcrNDlCaFAvMWhhbndEa3pRMXdJaEVSSGVoc2xBMk0xUWNQTDM3ZmZs?=
+ =?utf-8?B?MTlwZnF3N3FMbklxYTJZWS9FUjVsQmxMZGpDNjM4bXIyMTExRk1KM2VMcS9R?=
+ =?utf-8?B?V0VwazVCRDNWUXN1UUliL2s2MytaREtUdkJOVjYvTlNzWVdnUGRLUGVscUhq?=
+ =?utf-8?B?aUxvRzZMSjlFNFBxM0N2RmNTZXNKVnBMTDVwbVVFYVlCYkdSNnZaOWhQRnJ4?=
+ =?utf-8?B?TG5XVWUwRDFBT0Era1RQckRjZDYwVklhaFRuSVNCRXlwU2RLYm9YRTlzUzhr?=
+ =?utf-8?B?TExvRkJmMEhuM3VJUk9GdHQ1STBwRjk5TmFVOXJQdHRjZWltSDhnMk1ic212?=
+ =?utf-8?B?d2xLYkpWZGVITG4ycUNHd3pvVDBUNEF2cFlHdVJwc1E5KzV4QStCZ0lIemJ2?=
+ =?utf-8?B?UnBuMGtFai9SSFkxR3BuT1BjNHo4ZTJFeGVqa2JFZ2JpMmhjTFo5a0taZi82?=
+ =?utf-8?B?R1FlNzEySXpsVGs2dGhlb0JiWGpMTk5hbW1XT1pzQUJvVnFiZnBtWStDRG5J?=
+ =?utf-8?Q?hay+SdSykBc7P?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ZUNnTFhGVGcvUDlPclo3WXlsV3FMbDVwZ1FtYTN6UFpBbEZoa0RiUG5wMG5R?=
+ =?utf-8?B?VUp5NHNnOWRtN3N3MWtJeHhLdEpHSkVBUU1Ma251emhRK0Rvblc3a21BOEhE?=
+ =?utf-8?B?YXl2a2NFb2F1c0x2YlAyT1BGMVJtUExFR1VreXdlTjlxUXM1RllJMHM4M1NV?=
+ =?utf-8?B?UXFKVm1JZXd5cVl0QXczZngxZ1JSdjJ0dDEvZ2ZFUVJXampiUk12aWNRaDFy?=
+ =?utf-8?B?NTgzbGtYMlR5Yk5sTFpkYXcvZW5TZHdWWlFiN0JLVW9KQ0hlQXloRHF3OEtN?=
+ =?utf-8?B?N1N3QUVWemtOV0NhK1F0ZDNUdFdNN2l4WFpjZmJ2cEZUd01Xb3VsVGJTc05n?=
+ =?utf-8?B?cmNpZkd2aG14VTlRMWQyTHJReC9vNXcycExEWFBXeDVpUWVyaDFNOU1oalBZ?=
+ =?utf-8?B?RThRL1hndFJpYlAxMXI2azZlSnNISmo3dkRvUzJYaTFCc1pBS2dKWlhEU1hj?=
+ =?utf-8?B?YkFqUGdpOHc4d3FBWFVVNkVXeXFBVlhNMTZCYUlqbU9KYXV6Q09Hb2hzNzJ3?=
+ =?utf-8?B?b05rL1BjbVhROFdmcGs2RUhVSjVVd01hSDEzNFdPQ1BaOE1VT0lCMnB2MUJR?=
+ =?utf-8?B?Qm9pVmZSeWx6K2lVQ3U3ZFptUm9YWCtxQjMvS0NoTW53aU1RWVpaaVlCeHJl?=
+ =?utf-8?B?Y1FrY3F5UnBlTlZJZWk3TmxyRzFWcU9CbnZKYUJ0bk5DS2huSXAxOC9mZ3k5?=
+ =?utf-8?B?YU95M1d1QytBZXJQZk5hOGRmdHBMOGwxUy9kWVhDTzRkeFMyZlZRZkV0a0VM?=
+ =?utf-8?B?d0YvclcrcXFDQWdjVmxKRUZ1WkR6RGF2b1lGdlRTZHllOG1pRHY4MXFucjlZ?=
+ =?utf-8?B?SkN4YnRDV25sSk9yKzYvcFZRRzNKMTRvYmQ4KzMvSUxBaXh6VlFoa2FqSVRu?=
+ =?utf-8?B?ZlpCbUlpUjhzTVJWS3p6K0pFUXoreXVCNmRFZXVPNE5waDJkVzNiWXhkRFo2?=
+ =?utf-8?B?UzRZWWJUNytrK29hRmkzYllzWXNZRFhOQUVsUkV0WXlIVENVV3IrOS9qWmtq?=
+ =?utf-8?B?SVRZalNqTHVQdXFOaXkzbDRzOFNIemg2MDU2V0hCUGdUM2tBVUtuRmdnQXcy?=
+ =?utf-8?B?STl2SkJoYm9jQ3RQaGJveDh5RmM0SVNBV2E5SVo3ZEJiRHlndHNwaTI5Ymdl?=
+ =?utf-8?B?QjNBRXl1RHo4WU9VRDBnd1hEeFJxNzBUM3pPdWdBNURKSWJSdTNtM0VsbTY2?=
+ =?utf-8?B?VkYxdkdNZjQrRGxWY2pRT1MxQ3BqT0ZJVEhyYUx1WjZqcnVJSWZjNTNwWkcx?=
+ =?utf-8?B?MDYwaXpKOUpFOVI4Q0owZkJESHhIOU50SkJiMHR6ZEx4TUxPTnE0TFZYd0JJ?=
+ =?utf-8?B?aHlBMy9ma3VER0dwYTQ3STF0bHhkMFVwQkc4TFVGT0Z5cU0veFdCNXVqeDE3?=
+ =?utf-8?B?eDdoTG5PN2p0blZhdE9NUjgwQ3lKRmcxT1o1WnlJWnA5WkN3YW1pcXlZU2Za?=
+ =?utf-8?B?eVNXT0tua3JJZW80NStFYUlZRVhKUk5BZlFnSWRhRElXNG01aDJRWVNneURT?=
+ =?utf-8?B?WHdrQldRTFpmUDhYRWZDWnk0eTRhRFRiWmp0V1JOVmZNeXNOamI2TVNoc3Zo?=
+ =?utf-8?B?YVFWWVJCOEJOWVk5TmxHKzErZ01PcDRGVG5QVnZMR0M1RFZoc2EyM3Y1RkZo?=
+ =?utf-8?B?Z0JEQ3Z3OVd4RGx6bHcwbnh0dW9nb096WHpRNWlSbUdZeC9ERTdUa2RiNVBJ?=
+ =?utf-8?B?ZW56MktDejMza2J1VktJbTVTWVF1T1luVlRHUElyTWlUWTY5aldVR0dyRFdM?=
+ =?utf-8?B?L0p1N1M0RnJxLy9hWVNlNXV2NSs2MDZLUUVFZ08rU0M1bzhTUEY3NXRVSmpH?=
+ =?utf-8?B?eTZsSlltWEZhanFZa1d3MXRoaCtSS1NVdDl1QlJsUzgyUnlyZzZiNkM5YUlZ?=
+ =?utf-8?B?ckxTZ3FKK0xBSVlFaTNZMEl2Yk1ZK1lDc282REM0TmdRY1RtVSsrV2YvbzRZ?=
+ =?utf-8?B?NFUrSnlyVHMyZXdob3BJemNpeHpFZEFjbjB3TFNSdnkyZVlZaFdsaWpJdWQv?=
+ =?utf-8?B?WDg3elRNd3BwaGV5MlB5YTFLUEROR1BEQ3B0c3AzVkhuelhMWXhCQWFjQXI5?=
+ =?utf-8?B?RXhlS3l4N2M1V1Jqd2FvQmZWc1RNdDlSbXZVdGlyTkhnbWFSOWNkWllaU1lQ?=
+ =?utf-8?B?b08xN3h4Z0FNcmJpTVh6QTBzN045Mk5FSXpCTEtveHREYTBZTENnTXlKaTNm?=
+ =?utf-8?B?bWc9PQ==?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec572120-c8ba-48c8-c25e-08dd3156ead4
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2025 09:12:33.4244
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: T85+ySnthiEKywOuN3CLQlmrPCJmx2sKwzNoY5FnaBpSqmbv5iqMt7UxCMn8Nyt4Bv01kf5+pVXug82r2HlC/ex4Aq2oIfXouto7yVhlQLU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR08MB6574
 
-On 10/01/2025 00:18, Dmitry Baryshkov wrote:
-> On Thu, Jan 09, 2025 at 02:08:35PM +0100, Krzysztof Kozlowski wrote:
->> Add support for DSI PHY v7.0 on Qualcomm SM8750 SoC which comes with two
->> differences worth noting:
+Hi Sakari,
+
+On 1/9/25 18:06, Sakari Ailus wrote:
+> Hi Michael,
+> 
+> On Thu, Jan 09, 2025 at 02:05:54PM +0100, Michael Riesch wrote:
+>> Hi Sakari,
 >>
->> 1. ICODE_ACCUM_STATUS_LOW and ALOG_OBSV_BUS_STATUS_1 registers - their
->>    offsets were just switched.  Currently these registers are not used
->>    in the driver, so the easiest is to document both but keep them
->>    commented out to avoid conflict.
->>
->> 2. DSI PHY PLLs, the parents of pixel and byte clocks, cannot be used as
->>    parents before they are prepared and initial rate is set.  Therefore
->>    assigned-clock-parents are not working here and driver is responsible
->>    for reparenting clocks with proper procedure: see dsi_clk_init_6g_v2_9().
+>> Thanks a lot for your review!
 > 
-> Isn't it a description of CLK_SET_PARENT_GATE and/or
-
-No - must be gated accross reparent - so opposite.
-
-> CLK_OPS_PARENT_ENABLE ?
-
-Yes, but does not work. Probably enabling parent, before
-assigned-clocks-parents, happens still too early:
-
-[    1.623554] DSI PLL(0) lock failed, status=0x00000000
-[    1.623556] PLL(0) lock failed
-[    1.624650] ------------[ cut here ]------------
-[    1.624651] disp_cc_mdss_byte0_clk_src: rcg didn't update its
-configuration.
-
-Or maybe something is missing in the DSI PHY PLL driver?
-
+> You're welcome!
 > 
 >>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  drivers/gpu/drm/msm/dsi/dsi.h                      |  2 +
->>  drivers/gpu/drm/msm/dsi/dsi_cfg.c                  | 25 +++++++
->>  drivers/gpu/drm/msm/dsi/dsi_cfg.h                  |  1 +
->>  drivers/gpu/drm/msm/dsi/dsi_host.c                 | 80 ++++++++++++++++++++++
->>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.c              |  2 +
->>  drivers/gpu/drm/msm/dsi/phy/dsi_phy.h              |  1 +
->>  drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c          | 78 +++++++++++++++++++--
->>  .../gpu/drm/msm/registers/display/dsi_phy_7nm.xml  | 14 ++++
-> 
-> Please separate DSI and PHY changes.
-> 
->>  8 files changed, 197 insertions(+), 6 deletions(-)
+>> On 1/9/25 11:07, Sakari Ailus wrote:
+>>> Hi Michael,
+>>>
+>>> Thanks for the update.
+>>>
+>>> On Tue, Dec 17, 2024 at 04:55:16PM +0100, Michael Riesch wrote:
+> ...
+>>>> +static int cif_subdev_notifier_register(struct cif_device *cif_dev, int index)
+>>>
+>>> This function name is misleading. It does not register a notifier, it
+>>> prepares one though.
 >>
->> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.c b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
->> index 7754dcec33d06e3d6eb8a9d55e53f24af073adb9..e2a8d6fcc45b6c207a3018ea7c8744fcf34dabd2 100644
->> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.c
->> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.c
->> @@ -205,6 +205,17 @@ static const struct msm_dsi_config sm8650_dsi_cfg = {
->>  	},
->>  };
->>  
->> +static const struct msm_dsi_config sm8750_dsi_cfg = {
->> +	.io_offset = DSI_6G_REG_SHIFT,
->> +	.regulator_data = sm8650_dsi_regulators,
->> +	.num_regulators = ARRAY_SIZE(sm8650_dsi_regulators),
->> +	.bus_clk_names = dsi_v2_4_clk_names,
->> +	.num_bus_clks = ARRAY_SIZE(dsi_v2_4_clk_names),
->> +	.io_start = {
->> +		{ 0xae94000, 0xae96000 },
->> +	},
->> +};
->> +
->>  static const struct regulator_bulk_data sc7280_dsi_regulators[] = {
->>  	{ .supply = "vdda", .init_load_uA = 8350 },	/* 1.2 V */
->>  	{ .supply = "refgen" },
->> @@ -257,6 +268,18 @@ static const struct msm_dsi_host_cfg_ops msm_dsi_6g_v2_host_ops = {
->>  	.calc_clk_rate = dsi_calc_clk_rate_6g,
->>  };
->>  
->> +static const struct msm_dsi_host_cfg_ops msm_dsi_6g_v2_9_host_ops = {
->> +	.link_clk_set_rate = dsi_link_clk_set_rate_6g_v2_9,
->> +	.link_clk_enable = dsi_link_clk_enable_6g,
->> +	.link_clk_disable = dsi_link_clk_disable_6g,
->> +	.clk_init_ver = dsi_clk_init_6g_v2_9,
->> +	.tx_buf_alloc = dsi_tx_buf_alloc_6g,
->> +	.tx_buf_get = dsi_tx_buf_get_6g,
->> +	.tx_buf_put = dsi_tx_buf_put_6g,
->> +	.dma_base_get = dsi_dma_base_get_6g,
->> +	.calc_clk_rate = dsi_calc_clk_rate_6g,
->> +};
->> +
->>  static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
->>  	{MSM_DSI_VER_MAJOR_V2, MSM_DSI_V2_VER_MINOR_8064,
->>  		&apq8064_dsi_cfg, &msm_dsi_v2_host_ops},
->> @@ -300,6 +323,8 @@ static const struct msm_dsi_cfg_handler dsi_cfg_handlers[] = {
->>  		&sm8550_dsi_cfg, &msm_dsi_6g_v2_host_ops},
->>  	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_8_0,
->>  		&sm8650_dsi_cfg, &msm_dsi_6g_v2_host_ops},
->> +	{MSM_DSI_VER_MAJOR_6G, MSM_DSI_6G_VER_MINOR_V2_9_0,
->> +		&sm8750_dsi_cfg, &msm_dsi_6g_v2_9_host_ops},
->>  };
->>  
->>  const struct msm_dsi_cfg_handler *msm_dsi_cfg_get(u32 major, u32 minor)
->> diff --git a/drivers/gpu/drm/msm/dsi/dsi_cfg.h b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
->> index 120cb65164c1ba1deb9acb513e5f073bd560c496..859c279afbb0377d16f8406f3e6b083640aff5a1 100644
->> --- a/drivers/gpu/drm/msm/dsi/dsi_cfg.h
->> +++ b/drivers/gpu/drm/msm/dsi/dsi_cfg.h
->> @@ -30,6 +30,7 @@
->>  #define MSM_DSI_6G_VER_MINOR_V2_6_0	0x20060000
->>  #define MSM_DSI_6G_VER_MINOR_V2_7_0	0x20070000
->>  #define MSM_DSI_6G_VER_MINOR_V2_8_0	0x20080000
->> +#define MSM_DSI_6G_VER_MINOR_V2_9_0	0x20090000
->>  
->>  #define MSM_DSI_V2_VER_MINOR_8064	0x0
->>  
->> diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
->> index 2218d4f0c5130a0b13f428e89aa30ba2921da572..ced28ee61eedc0a82da9f1d0792f17ee2a5538c4 100644
->> --- a/drivers/gpu/drm/msm/dsi/dsi_host.c
->> +++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
->> @@ -119,6 +119,15 @@ struct msm_dsi_host {
->>  	struct clk *pixel_clk;
->>  	struct clk *byte_intf_clk;
->>  
->> +	/*
->> +	 * Clocks which needs to be properly parented between DISPCC and DSI PHY
->> +	 * PLL:
->> +	 */
->> +	struct clk *byte_src_clk;
->> +	struct clk *pixel_src_clk;
->> +	struct clk *dsi_pll_byte_clk;
->> +	struct clk *dsi_pll_pixel_clk;
->> +
->>  	unsigned long byte_clk_rate;
->>  	unsigned long byte_intf_clk_rate;
->>  	unsigned long pixel_clk_rate;
->> @@ -269,6 +278,38 @@ int dsi_clk_init_6g_v2(struct msm_dsi_host *msm_host)
->>  	return ret;
->>  }
->>  
->> +int dsi_clk_init_6g_v2_9(struct msm_dsi_host *msm_host)
->> +{
->> +	struct device *dev = &msm_host->pdev->dev;
->> +	int ret;
->> +
->> +	ret = dsi_clk_init_6g_v2(msm_host);
->> +	if (ret)
->> +		return ret;
->> +
->> +	msm_host->byte_src_clk = devm_clk_get(dev, "byte_src");
->> +	if (IS_ERR(msm_host->byte_src_clk))
->> +		return dev_err_probe(dev, PTR_ERR(msm_host->byte_src_clk),
->> +				     "can't get byte_src clock\n");
->> +
->> +	msm_host->dsi_pll_byte_clk = devm_clk_get(dev, "dsi_pll_byte");
->> +	if (IS_ERR(msm_host->dsi_pll_byte_clk))
->> +		return dev_err_probe(dev, PTR_ERR(msm_host->dsi_pll_byte_clk),
->> +				     "can't get dsi_pll_byte clock\n");
->> +
->> +	msm_host->pixel_src_clk = devm_clk_get(dev, "pixel_src");
->> +	if (IS_ERR(msm_host->pixel_src_clk))
->> +		return dev_err_probe(dev, PTR_ERR(msm_host->pixel_src_clk),
->> +				     "can't get pixel_src clock\n");
->> +
->> +	msm_host->dsi_pll_pixel_clk = devm_clk_get(dev, "dsi_pll_pixel");
->> +	if (IS_ERR(msm_host->dsi_pll_pixel_clk))
->> +		return dev_err_probe(dev, PTR_ERR(msm_host->dsi_pll_pixel_clk),
->> +				     "can't get dsi_pll_pixel clock\n");
+>> cif_subdev_notifier_add(..) ?
 > 
-> How is this going to work in the bonded DSI mode when DSI1 is being fed
-> by the DSI0 PLL? For existing platforms this is being handled by
-> changing the parents in DT.
+> Sounds good.
+> 
+>>>> +{
+>>>> +	struct v4l2_async_notifier *ntf = &cif_dev->notifier;
+>>>> +	struct v4l2_fwnode_endpoint *vep;
+>>>> +	struct cif_remote *remote;
+>>>> +	struct device *dev = cif_dev->dev;
+>>>> +	struct fwnode_handle *ep;
+>>>> +	int ret;
+>>>> +
+>>>> +	ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), index, 0,
+>>>> +					     FWNODE_GRAPH_ENDPOINT_NEXT);
+>>>> +	if (!ep)
+>>>> +		return -ENODEV;
+>>>> +
+>>>> +	if (index == 0) {
+>>>
+>>> index seems to be always 0.
+>>
+>> Right now, yes. The soon-to-be-added MIPI paths shall bring different
+>> indices into play.
+> 
+> Ack.
+> 
+>>
+>>>
+>>>> +		vep = &cif_dev->dvp.vep;
+>>>> +
+>>>> +		vep->bus_type = V4L2_MBUS_UNKNOWN;
+>>>> +		ret = v4l2_fwnode_endpoint_parse(ep, vep);
+>>>> +		if (ret)
+>>>> +			goto complete;
+>>>> +
+>>>> +		if (vep->bus_type != V4L2_MBUS_BT656 &&
+>>>> +		    vep->bus_type != V4L2_MBUS_PARALLEL) {
+>>>> +			v4l2_err(&cif_dev->v4l2_dev, "unsupported bus type\n");
+>>>> +			goto complete;
+>>>> +		}
+>>>> +
+>>>> +		remote = v4l2_async_nf_add_fwnode_remote(ntf, ep,
+>>>> +							 struct cif_remote);
+>>>> +		if (IS_ERR(remote)) {
+>>>> +			ret = PTR_ERR(remote);
+>>>> +			goto complete;
+>>>> +		}
+>>>> +
+>>>> +		cif_dev->dvp.stream.remote = remote;
+>>>> +		remote->stream = &cif_dev->dvp.stream;
+>>>> +	} else {
+>>>> +		ret = -ENODEV;
+>>>> +		goto complete;
+>>>> +	}
+>>>> +
+>>>> +complete:
+>>>> +	fwnode_handle_put(ep);
+>>>> +
+>>>> +	return ret;
+>>>> +}
+>>>> +
+>>>> +static void cif_subdev_notifier_unregister(struct cif_device *cif_dev,
+>>>> +					   int index)
+>>>
+>>> This seems to be redundant.
+>>
+>> Ack.
+>>
+>>>
+>>>> +{
+>>>> +}
+>>>> +
+>>>> +static int cif_entities_register(struct cif_device *cif_dev)
+>>>
+>>> This function appears to be misnamed.
+>>
+>> Hm. The function registers the different entities of this hardware, such
+>> as the DVP. However, I am not emotionally attached to this name and any
+>> suggestions are welcome :-)
+> 
+> Ok, fair enough: one of the things it does is to register the video device
+> but it does a whole lot of other stuff unrelated to it. How about just
+> cif_register()?
 
-I don't see the problem - you just put different clock as input in DTS?
+Sounds good!
 
-Please trim your replies, so we won't need to keep scrolling to figure
-out that there is nothing more to read.
+> 
+>>
+>>>
+>>>> +{
+>>>> +	struct v4l2_async_notifier *ntf = &cif_dev->notifier;
+>>>> +	struct device *dev = cif_dev->dev;
+>>>> +	int ret;
+>>>> +
+>>>> +	v4l2_async_nf_init(ntf, &cif_dev->v4l2_dev);
+>>>> +	ntf->ops = &cif_subdev_notifier_ops;
+>>>> +
+>>>> +	if (cif_dev->match_data->dvp) {
+>>>> +		ret = cif_subdev_notifier_register(cif_dev, 0);
+>>>> +		if (ret) {
+>>>> +			dev_err(dev,
+>>>> +				"failed to register notifier for dvp: %d\n",
+>>>> +				ret);
+>>>> +			goto err;
+>>>> +		}
+>>>> +
+>>>> +		ret = cif_dvp_register(cif_dev);
+>>>> +		if (ret) {
+>>>> +			dev_err(dev, "failed to register dvp: %d\n", ret);
+>>>> +			goto err_dvp_notifier_unregister;
+>>>> +		}
+>>>> +	}
+>>>> +
+>>>> +	ret = v4l2_async_nf_register(ntf);
+>>>> +	if (ret)
+>>>> +		goto err_notifier_cleanup;
+>>>> +
+>>>> +	return 0;
+>>>> +
+>>>> +err_notifier_cleanup:
+>>>> +	if (cif_dev->match_data->dvp)
+>>>> +		cif_dvp_unregister(cif_dev);
+>>>> +err_dvp_notifier_unregister:
+>>>> +	if (cif_dev->match_data->dvp)
+>>>> +		cif_subdev_notifier_unregister(cif_dev, 0);
+>>>> +	v4l2_async_nf_cleanup(ntf);
+>>>> +err:
+>>>> +	return ret;
+>>>> +}
+>>>> +
+>>>> +static void cif_entities_unregister(struct cif_device *cif_dev)
+> 
+> And similarly here.
 
-Best regards,
-Krzysztof
+Ack.
+
+> 
+>>>> +{
+>>>> +	v4l2_async_nf_unregister(&cif_dev->notifier);
+>>>> +	v4l2_async_nf_cleanup(&cif_dev->notifier);
+>>>> +
+>>>> +	if (cif_dev->match_data->dvp) {
+>>>> +		cif_subdev_notifier_unregister(cif_dev, 0);
+>>>> +		cif_dvp_unregister(cif_dev);
+>>>> +	}
+>>>> +}
+>>>> +
+>>>> +static irqreturn_t cif_isr(int irq, void *ctx)
+>>>> +{
+>>>> +	irqreturn_t ret = IRQ_NONE;
+>>>> +
+>>>> +	if (cif_dvp_isr(irq, ctx) == IRQ_HANDLED)
+>>>> +		ret = IRQ_HANDLED;
+>>>> +
+>>>> +	return ret;
+>>>> +}
+>>>> +
+>>>> +static int cif_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +	struct device *dev = &pdev->dev;
+>>>> +	struct cif_device *cif_dev;
+>>>> +	u32 cif_clk_delaynum = 0;
+>>>> +	int ret, irq, i;
+>>>> +
+>>>> +	cif_dev = devm_kzalloc(dev, sizeof(*cif_dev), GFP_KERNEL);
+>>>> +	if (!cif_dev)
+>>>> +		return -ENOMEM;
+>>>> +
+>>>> +	cif_dev->match_data = of_device_get_match_data(dev);
+>>>> +	if (!cif_dev->match_data)
+>>>> +		return -ENODEV;
+>>>> +
+>>>> +	dev_set_drvdata(dev, cif_dev);
+>>>> +	cif_dev->dev = dev;
+>>>> +
+>>>> +	cif_dev->base_addr = devm_platform_ioremap_resource(pdev, 0);
+>>>> +	if (IS_ERR(cif_dev->base_addr))
+>>>> +		return PTR_ERR(cif_dev->base_addr);
+>>>> +
+>>>> +	irq = platform_get_irq(pdev, 0);
+>>>> +	if (irq < 0)
+>>>> +		return irq;
+>>>> +
+>>>> +	ret = devm_request_irq(dev, irq, cif_isr, IRQF_SHARED,
+>>>> +			       dev_driver_string(dev), dev);
+>>>> +	if (ret)
+>>>> +		return dev_err_probe(dev, ret, "failed to request irq\n");
+>>>> +	cif_dev->irq = irq;
+>>>
+>>> Where do you need the irq field?
+>>
+>> Hm. Seems to be a leftover. Should we check irq == cif_dev->irq in the
+>> ISR or is this unnecessary?
+> 
+> You've got the device context already, I don't think you need to check the
+> irq.
+
+Ack.
+
+> 
+>>>> +	cif_dev->media_dev.dev = dev;
+>>>> +	strscpy(cif_dev->media_dev.model, CIF_DRIVER_NAME,
+>>>> +		sizeof(cif_dev->media_dev.model));
+>>>> +	media_device_init(&cif_dev->media_dev);
+>>>> +
+>>>> +	cif_dev->v4l2_dev.mdev = &cif_dev->media_dev;
+>>>> +	cif_dev->v4l2_dev.notify = cif_notify;
+>>>> +	strscpy(cif_dev->v4l2_dev.name, CIF_DRIVER_NAME,
+>>>> +		sizeof(cif_dev->v4l2_dev.name));
+>>>
+>>> Do you need to set the name? v4l2_device_register() assigns a default one.
+>>
+>> I guess we can use the default, then.
+>>
+>> We do need to set the model of the media device, though, right?
+> 
+> Correct.
+> 
+>>>> +static int cif_stream_start_streaming(struct vb2_queue *queue,
+>>>> +				      unsigned int count)
+>>>> +{
+>>>> +	struct cif_stream *stream = queue->drv_priv;
+>>>> +	struct cif_device *cif_dev = stream->cif_dev;
+>>>> +	struct v4l2_subdev *sd = stream->remote->sd;
+>>>> +	int ret;
+>>>> +
+>>>> +	stream->frame_idx = 0;
+>>>> +	stream->frame_phase = 0;
+>>>> +
+>>>> +	ret = video_device_pipeline_start(&stream->vdev, &stream->pipeline);
+>>>> +	if (ret) {
+>>>> +		dev_err(cif_dev->dev, "failed to start pipeline %d\n", ret);
+>>>> +		goto err_out;
+>>>> +	}
+>>>> +
+>>>> +	ret = pm_runtime_resume_and_get(cif_dev->dev);
+>>>> +	if (ret < 0) {
+>>>> +		dev_err(cif_dev->dev, "failed to get runtime pm, %d\n", ret);
+>>>> +		goto err_pipeline_stop;
+>>>> +	}
+>>>> +
+>>>> +	ret = cif_stream_init_buffers(stream);
+>>>> +	if (ret)
+>>>> +		goto err_runtime_put;
+>>>> +
+>>>> +	if (stream->start_streaming) {
+>>>> +		ret = stream->start_streaming(stream);
+>>>> +		if (ret < 0)
+>>>> +			goto err_runtime_put;
+>>>> +	}
+>>>> +
+>>>> +	ret = v4l2_subdev_call(sd, video, s_stream, 1);
+>>>
+>>> Could you use v4l2_subdev_enable_streams() instead for this?
+>>>
+>>> See e.g. drivers/media/pci/intel/ipu6 for an example.
+>>
+>> This should be pretty much a 1:1 replacement I guess? But with support
+>> for streams?
+> 
+> Yes, and I'd prefer to get rid of the s_stream() op altogether. That may
+> take a long time though.
+
+Ack.
+
+> 
+>>>> +static int cif_stream_enum_framesizes(struct file *file, void *fh,
+>>>> +				      struct v4l2_frmsizeenum *fsize)
+>>>> +{
+>>>> +	struct cif_stream *stream = video_drvdata(file);
+>>>> +	struct v4l2_subdev_frame_size_enum fse = {
+>>>> +		.index = fsize->index,
+>>>> +		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
+>>>> +	};
+>>>> +	struct v4l2_subdev *sd = stream->remote->sd;
+>>>> +	const struct cif_output_fmt *fmt;
+>>>> +	int ret;
+>>>> +
+>>>> +	fmt = cif_stream_find_output_fmt(stream, fsize->pixel_format);
+>>>> +	if (!fmt)
+>>>> +		return -EINVAL;
+>>>> +
+>>>> +	fse.code = fmt->mbus_code;
+>>>> +
+>>>> +	ret = v4l2_subdev_call(sd, pad, enum_frame_size, NULL, &fse);
+>>>
+>>> You shouldn't get this information from the sensor driver but just convey
+>>> what this device supports.
+>>
+>> OK, but what does this device support? In principle, there is a
+>> continuous range of frame sizes up to a certain maximum size. But in
+>> practice, it depends on the subdevice as there is no scaler in the DVP
+>> path. Thus, every frame size but the one that the subdevice delivers
+>> will result in a broken stream?
+> 
+> Could you use CIF_MAX_WIDTH and CIF_MAX_HEIGHT?
+> 
+>>
+>> If this does not return the only possible frame size, is this callback
+>> useful at all?
+> 
+> In order not to configure an output size for the sensor that can't be
+> received by this block?
+
+Right... Forgot about this case. This means user space needs to
+determine the possible frame sizes of each V4L2 device and subdevice in
+the pipeline and find a size that matches, right?
+
+> 
+>>>> diff --git a/drivers/media/platform/rockchip/cif/cif-stream.h b/drivers/media/platform/rockchip/cif/cif-stream.h
+>>>> new file mode 100644
+>>>> index 000000000000..5bfa260eda83
+>>>> --- /dev/null
+>>>> +++ b/drivers/media/platform/rockchip/cif/cif-stream.h
+>>>> @@ -0,0 +1,24 @@
+>>>> +/* SPDX-License-Identifier: GPL-2.0 */
+>>>> +/*
+>>>> + * Rockchip Camera Interface (CIF) Driver
+>>>> + *
+>>>> + * Copyright (C) 2024 Michael Riesch <michael.riesch@wolfvision.net>
+>>>> + */
+>>>> +
+>>>> +#ifndef _CIF_STREAM_H
+>>>> +#define _CIF_STREAM_H
+>>>> +
+>>>> +#include "cif-common.h"
+>>>> +
+>>>> +struct cif_stream_config {
+>>>> +	const char *name;
+>>>> +};
+>>>> +
+>>>> +void cif_stream_pingpong(struct cif_stream *stream);
+>>>> +
+>>>> +int cif_stream_register(struct cif_device *cif_dev, struct cif_stream *stream,
+>>>> +			const struct cif_stream_config *config);
+>>>> +
+>>>> +void cif_stream_unregister(struct cif_stream *stream);
+>>>
+>>> There are other CIFs out there. I think it'd be good to use either some
+>>> Rockchip specific prefix (rk maybe?) or a namespace.
+>>
+>> Are there? In drivers/media or in general?
+> 
+> I may recall something that may be after all related to this.
+> 
+> Either way, "cif" is a non-specific short string and it's entirely
+> conceivable it'll easily conflict with something else.
+
+Fair enough.
+
+> 
+>>
+>> And would that apply to all the method and struct names in this driver
+>> or to the driver as well (location, file names)?
+>>
+>> The name has been discussed several times during the 13 iterations of
+>> the PX30 VIP series and I believe it changed from (cif//rkcif_) in
+>> downstream -> (vip//vip_) in Maximes work -> (cif/cif-/cif_) in Mehdis
+>> work, where the tuple is (driver directory/filename prefix/function and
+>> structs prefix).
+>>
+>> Hence I am a bit reluctant to change the naming convention yet again.
+>> That said, I'll be prepared to change it JUST ONE MORE TIME to any tuple
+>> you suggest -- but this really should be the end of the name bikeshedding.
+> 
+> I don't care about the internal naming but the global symbols. Using a
+> namespace is another option.
+> 
+
+I would suggest the tuple (rkcif/rkcif-/rkcif_) then. This is in
+alignment with the Rockchip ISP driver (rkisp1/rkisp1-/rkisp1_).
+Unfortunately, the Rockchip RGA differs here (but with the tuple
+(rga/rga-/rga_) it uses the same prefix for everything at least).
+
+There seems to be even less alignment when looking at other
+drivers/media/platform/ drivers, therefore I can only try to maximize
+the alignment within drivers/media/platform/rockchip/.
+
+What do you think?
+
+Regards,
+Michael
 
