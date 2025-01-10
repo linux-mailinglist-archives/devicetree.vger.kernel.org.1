@@ -1,126 +1,125 @@
-Return-Path: <devicetree+bounces-137408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82A2CA08E7A
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:50:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ECC3A08E87
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:52:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53792188C069
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:50:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B2887A0F7B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:51:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A28B20ADC2;
-	Fri, 10 Jan 2025 10:50:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UoGoi+o9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52C8220550F;
+	Fri, 10 Jan 2025 10:51:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com [209.85.217.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26EB120550F;
-	Fri, 10 Jan 2025 10:50:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40CFE1CF5CE;
+	Fri, 10 Jan 2025 10:51:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736506229; cv=none; b=ul4j3HLtIarfJKkEvgwIpnBwQlWij7C6VPALAF0A1WkwqVYG8xwDOHUjqBRQeSKaFZoYQsvqC7sd95Ja/8oHIMSNGGhmQ7vj3GY3sdwAIcoS53k56QITT/bMANnBUZKFugu466n6gFgxyGRpTNy6zm3IkC4A4F63ESY1l/5xyGE=
+	t=1736506319; cv=none; b=RQSzaDTmkU3VP1ppalHHvGtLSZ2wlZKQhJdDzB5xWhjMNwogUPvjZz997b/JyKyYaaAfJjaeWDJliwn9HnyGWvqELlJ6nBfysNsNh/I8kLiFoQ2dZeGboX6pGwBTruogkuFkrZZPN/7IIXi/jzRK/PH6pOpZhRAWTaUKHKiyYI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736506229; c=relaxed/simple;
-	bh=YHf2RJqhxGDA+WfEWQHhGYToLRBlHLMD5ZuBDEVZj5k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cR4VGFjiy0+bmFKIdTBvww+Xo90mXCwvhcH5dvDL3EVAyrfTwTqU9l3M1ps9MG/aSzc3G+wBq59WpB0+nVq3VXmrMdN1vPSnsNPihzWbXjMzokirQFw6J2pcCCxVwE9wTUKx5JB7V6e5St5nUb7JWxr/l8bt/dX9cQA/x9YheW0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UoGoi+o9; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50AAoKqc3106649
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 10 Jan 2025 04:50:20 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736506220;
-	bh=rYrQC0kXwBVMa1J45wEqt9TQ8aBV6ll3GFZxCHeR19w=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=UoGoi+o99ilNkoPbD9QVCUxa1zhtOlhpzbxhqm7K20thbDMKoORdR4GRNoJ3vNhPR
-	 FlazG57RWWvXBATEoMcw8NrSXZNOwMCtamq8eUOfpfrn9MO0ZqV7/ADSLSmdsqeEGm
-	 ucPwdq//pC3liDAnX7jEuYxo7+ClXt3Az4uZIGRY=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50AAoK4R120658
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 10 Jan 2025 04:50:20 -0600
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 10
- Jan 2025 04:50:19 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 10 Jan 2025 04:50:20 -0600
-Received: from [10.24.72.180] (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.72.180])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50AAoGxT104651;
-	Fri, 10 Jan 2025 04:50:17 -0600
-Message-ID: <b67cc247-0c96-493c-b048-315db295158a@ti.com>
-Date: Fri, 10 Jan 2025 16:20:15 +0530
+	s=arc-20240116; t=1736506319; c=relaxed/simple;
+	bh=Ku/tZqIZfUSi3lyGMriIrimGxm678r/JWq9SnXVIu/U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XSZloZO9jQjO+xq5T0q2WoPaXn/qtn3bztKLU4BSQPxLdseW+VYMnQm/8eqOu3FayTvql3RaLGusdg9Rs22myR+GtCjDb/qRidjKdSRlKUGbHmQcJNayIMbu71jT7fZ9+b2L0nxAjAyz/IMDB+uB1Fe2y2A5zkppNKJQkzc5WG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4afe7429d37so591131137.2;
+        Fri, 10 Jan 2025 02:51:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736506316; x=1737111116;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xD+QBn4eamxGTa5r0rGEze9z++OC/hTeuXgPbAlNZ6k=;
+        b=sYTuk/dzfTjeCARt+YQFcZDLI3/DaiPFXV55EDI7960fHR5UuZPewF8MGRKeEmxYEq
+         QtXITzu/WvWkjQhmnMGxYgEhnoQk+ho9V0R0uwX+VY7GUqMIf3h8Yz0/usYTTPT3Y2Vo
+         3lOX0ouLI8ObxghuGhrgkrKIbGH8u5ifVEU59N8Hp3/8GOsWkz1zfHNsQAMqaAZbuVU2
+         LmN4SOkrGkl9Dm77mGUYCV/irsqPMroSE/rpQ/8p/6MxzrQvTjlTi8tiUesfFx61s4KH
+         vuDRIRqFXH1jAPWxWxFHuODk5aHcKWlvWnrSbVVa5U9mDEzCdRXDku2zSNskh3b3lZ/v
+         I77g==
+X-Forwarded-Encrypted: i=1; AJvYcCVMwnqsPV2m6iEz2BoyZls3hcxkDPavDNT9ywlxZsH1OhAowFf7Vrp98185Km2xk/sLI833OdntllHA0z8UBaJPebA=@vger.kernel.org, AJvYcCXn5wzdMYpYRM5ro/TISbaVNE/bkCLUO3sdeXZOEigvr/q7CYMUGnGPu3f+xC83e3SnwVA/tqzL+xJ3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHZJJswiqX9Z/7N4WG3LANTGgKbLHWbLGaMt+eUMawn5hpYQgU
+	tBnq0U5ZRnptmsC9N2qMlflOvTzO2O3RP0j1hEFMUXH8F4MuPoDSyB6Laqu6
+X-Gm-Gg: ASbGnctK9+6exz5uK7eb8HzuIn0xUhsQ0GFirKbCsNOaWfkjJQI+n22kCODooloAl39
+	v7FuTEDrJg8DWxggz0hUmJduKEIN80Vck6L2mL0aPlXpw5+rKlorDS4CTZuVI73wftmykgwMZvn
+	dnxYoFBP8VhZWWHa+F4xq56GyfH1NZrCv88Ab3Yvmr/gJ+imOnuZfAGO/BMVMH/62Sk/r2SFS40
+	pTv4TgxOkEsTln9kckT2htAM1L/SbsHNV8P6cuJEuwNxs7l+2Ludp2+3gy3d9nwC1NOzN8xy6tm
+	45N/6iIzySGccayOpg8=
+X-Google-Smtp-Source: AGHT+IFnVgwt0lbuPmb715YY5ELIKVaDn1bF8f6MozjPr+OuRQytWio7FhAnBR0NJSIKrDKMlo6xww==
+X-Received: by 2002:a05:6102:6cc:b0:4b1:1eb5:8ee3 with SMTP id ada2fe7eead31-4b3d104a934mr9274344137.22.1736506315743;
+        Fri, 10 Jan 2025 02:51:55 -0800 (PST)
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4b608f02ee3sm2246579137.4.2025.01.10.02.51.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Jan 2025 02:51:55 -0800 (PST)
+Received: by mail-vs1-f51.google.com with SMTP id ada2fe7eead31-4afdd15db60so672076137.1;
+        Fri, 10 Jan 2025 02:51:55 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWrELnePbql9S2N2/4nT4tz8ahdTZSC1eZCo8ykK+HmLsmhu3/QV7LWkuFOOkyezdMDmvJiSmZNMiR0@vger.kernel.org, AJvYcCX5ZxPWWfWLBYCN5DQfTUftbuGQRseBW8g+8gCvpkhtz4C61rTyku4v3w4HqgFDeN7U67XE3d/Ai5xSL+vMU16TcCE=@vger.kernel.org
+X-Received: by 2002:a05:6102:ccb:b0:4b6:20a5:776 with SMTP id
+ ada2fe7eead31-4b620a50949mr2130481137.17.1736506315147; Fri, 10 Jan 2025
+ 02:51:55 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-j784s4-evm:quad-port-eth-exp1: Remove
- duplicate hogs
-To: Siddharth Vadapalli <s-vadapalli@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <c-vankar@ti.com>
-References: <20250110101855.156136-1-j-choudhary@ti.com>
- <ybyexqc4ssjt5lkr76bfiaf7usmq7xto42byyboov5pjkdc4fn@wsj26klcliio>
-Content-Language: en-US
-From: Jayesh Choudhary <j-choudhary@ti.com>
-In-Reply-To: <ybyexqc4ssjt5lkr76bfiaf7usmq7xto42byyboov5pjkdc4fn@wsj26klcliio>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250109125433.2402045-1-niklas.soderlund+renesas@ragnatech.se> <20250109125433.2402045-3-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20250109125433.2402045-3-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 10 Jan 2025 11:51:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXg=htmVv5G+VQX7GZvAEsnowtdEopt5MOu+SiJptiR8A@mail.gmail.com>
+X-Gm-Features: AbW1kva363ycvdroFB9DzPthq00JtP-7QdII1Pqszh3ii4hGo1-ngWGShj4bN8U
+Message-ID: <CAMuHMdXg=htmVv5G+VQX7GZvAEsnowtdEopt5MOu+SiJptiR8A@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a779a0: Add VSPX instances
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Jacopo Mondi <jacopo.mondi+renesas@ideasonboard.com>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello Siddharth,
+Hi Niklas,
 
-Thank you for the review.
+On Thu, Jan 9, 2025 at 1:55=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Add device nodes for the VSPX instances on R-Car V3U.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
-On 10/01/25 16:15, Siddharth Vadapalli wrote:
-> On Fri, Jan 10, 2025 at 03:48:55PM +0530, Jayesh Choudhary wrote:
-> 
-> Hello Jayesh,
-> 
-> In the $subject of this patch, please use the overlay name as-is instead
-> of adding the colon which splits the overlay name:
-> s/k3-j784s4-evm:quad-port-eth-exp1/k3-j784s4-evm-quad-port-eth-exp1
+Thanks for your patch!
 
-I will fix this typo.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.15.
 
-> 
->> The j784s4-evm board dts now has the gpio hogs for MUX2 after integration
->> of audio support.
->> Remove duplicate gpio-hogs from the overlay dtso to prevent mux probe
->> failures leading to can-phy3 deferred probe:
->> 'gpio-mux mux-controller: probe with driver gpio-mux failed with error -16'
-> 
-> This appears to be a fix since overlay functionality was broken since
-> the commit which introduced audio support. Please add a "Fixes" tag
-> to indicate this.
-> 
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
+> @@ -2926,6 +2926,50 @@ fcpvx3: fcp@fedc8000 {
+>                         iommus =3D <&ipmmu_vi1 27>;
+>                 };
+>
+> +               vspx0: vsp@fedd0000 {
 
-Will add it in v2.
+I think it makes sense to move these next to the existing vsp nodes.
+If you agree, I can do that while applying.
 
-Warm Regards,
-Jayesh
+Gr{oetje,eeting}s,
 
->>
->> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-> 
-> With the above comments addressed,
-> 
-> Reviewed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> 
-> Regards,
-> Siddharth.
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
