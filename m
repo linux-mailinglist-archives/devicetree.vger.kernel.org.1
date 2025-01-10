@@ -1,120 +1,126 @@
-Return-Path: <devicetree+bounces-137395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30F73A08DBA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:19:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 061FFA08DBD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:22:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB6A47A13FD
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:19:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A6BD168154
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:22:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B2AE20ADCE;
-	Fri, 10 Jan 2025 10:19:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0772620A5EB;
+	Fri, 10 Jan 2025 10:22:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DRvAv0b5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PPTcRcZd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E664520A5E0;
-	Fri, 10 Jan 2025 10:19:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEFB61C3C04;
+	Fri, 10 Jan 2025 10:22:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736504348; cv=none; b=sEgZtLxXH9k1uj/lyiXZlHUJpjI7kPQGmSHa7qcBcjq2JD2KbAhi0mwQqfJeaPJJiQkRDcSOLUlY2oS5CoAuKDAv9xGUg0L6Htn31bgLjWsF2Nvi80VcaPcGXX/LVP3g/MN7vTQ66YT/gT7cpO3jho9jnPhXhMjerocgArirkoQ=
+	t=1736504520; cv=none; b=f6860S6pGT23EdSqJ19FJKymea1ewEK+mCcq47q+/ozoh7nr+jkVwOikxLdeACqTI+UKSnyQEf/1mtP0vxPtMUUxon/0b/ui+aC9miY18Q5tqy9L+jqHda0gJ8hfjDGszfX59eEK+UvHPRFUFsXtLEkU96XzzAGcLijOAzcEcY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736504348; c=relaxed/simple;
-	bh=z+UqJz2A6dtfRQh+5iPbzrM+jK4Z0bSJkobdHpqEkug=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NzYjFBJMMatEwvqrKo9yOyHyMo8cReFgO/7XMgrBm905YHGnAJ2WV/qciS9UVl8VbCoXWXANud73qyZ49oaJLR+aov6gQU0zA453pT/tGguytetRRIw9diKeLM40PczHpZno5F+LrDrAXwGik0Ichwx5jOVIOiqJP15Y9hBJg8Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DRvAv0b5; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 50AAIv1f086443;
-	Fri, 10 Jan 2025 04:18:57 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736504337;
-	bh=UKCYMmIFPGTevk1M+TLdbDXaK0IumqN4N8D9eli0/eA=;
-	h=From:To:CC:Subject:Date;
-	b=DRvAv0b5grdp54++pvQYPvIsXqAAMCVkRWo1k4nvcmP5k5L+cSPqUGK5KStBRjg+A
-	 DVr8YoAuq5hBlgdlPeoFIEmq6IqDf3KMvt18KxbKu6ZS2nDfrOb9xeCfTa73utF9Od
-	 UiIkJVp/ELzAwSb4ahP7ohN074ZArrEcQZLCDEnk=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50AAIv6Y103098
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 10 Jan 2025 04:18:57 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 10
- Jan 2025 04:18:56 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 10 Jan 2025 04:18:56 -0600
-Received: from localhost (jayesh-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.72.180])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50AAItBT056820;
-	Fri, 10 Jan 2025 04:18:56 -0600
-From: Jayesh Choudhary <j-choudhary@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <s-vadapalli@ti.com>, <c-vankar@ti.com>, <j-choudhary@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j784s4-evm:quad-port-eth-exp1: Remove duplicate hogs
-Date: Fri, 10 Jan 2025 15:48:55 +0530
-Message-ID: <20250110101855.156136-1-j-choudhary@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1736504520; c=relaxed/simple;
+	bh=KZFaGRzO42N3iOtxZMGsNXlcKOn51BtlCOw1JMLOfhM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=G6U9KxfWimdAxM+KS1n1xGjjlOFfETyihMml8p5nPO1kbW1SW+Aed+x40IlOqcfurfTVEwTVZR1MAlCVoqY3u2ZrqtljxpeaZGchBMpKt8U5k/o/VJ0vMRA9YHkfffoB7FaySRHFMmyhhPJ+t9OmQfl3OQbjurdlV59Y7SNVqaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PPTcRcZd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E14C4C4CED6;
+	Fri, 10 Jan 2025 10:21:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736504520;
+	bh=KZFaGRzO42N3iOtxZMGsNXlcKOn51BtlCOw1JMLOfhM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PPTcRcZdS96583Dr6442J01etvfZD9Xg4Bt4ehvfEsqcBE7vSMZtvh1uX6yQToUD6
+	 nCOhSaXTJUu9gwLxvxmm+sPGrCJrRMEi9Sys6x7jO8IxNUSPZ/llnMtLkTKrA8sxND
+	 ygfDKMoMztaMpX2KLQ1V37yBiXFNhpxEQc8hhkujKcnUki2TGp+ItFR+IeokIWZN+F
+	 tYOs4wKQZbl9y6bcoo5/BlSWT0Yj1S2xKNZSQrS3uZ+oojnH2EcZrUyTryJlzHSdKk
+	 ijGQ2CPBWuC4XZ4OBLlJLOHKezxnXwlymf+qZ64EgTkLIXL4qXd/LUqLBtT+hVdk1H
+	 3FGRefYZa6+GA==
+Date: Fri, 10 Jan 2025 11:21:57 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Kever Yang <kever.yang@rock-chips.com>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org, 
+	linux-pwm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 11/17] dt-bindings: pwm: rockchip: Add
+ rockchip,rk3562-pwm
+Message-ID: <qtcyfcdgrtyjtwaexxkspbvncdckpzentq4nmxthr4hgtfzqvx@x44hdqzkisqv>
+References: <20241224094920.3821861-1-kever.yang@rock-chips.com>
+ <20241224094920.3821861-12-kever.yang@rock-chips.com>
+ <qvr7x4anlxxtpxjywrqjihxyxejw4i73wrh2ibl3hasayew4s2@obyuxce4ez4g>
+ <46372c17-d317-4477-9635-36564c73cc6a@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gt6eakxipv7gzido"
+Content-Disposition: inline
+In-Reply-To: <46372c17-d317-4477-9635-36564c73cc6a@rock-chips.com>
 
-The j784s4-evm board dts now has the gpio hogs for MUX2 after integration
-of audio support.
-Remove duplicate gpio-hogs from the overlay dtso to prevent mux probe
-failures leading to can-phy3 deferred probe:
-'gpio-mux mux-controller: probe with driver gpio-mux failed with error -16'
 
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
----
+--gt6eakxipv7gzido
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 11/17] dt-bindings: pwm: rockchip: Add
+ rockchip,rk3562-pwm
+MIME-Version: 1.0
 
-GPIO 13 and 15 are set to high in k3-j784s4-evm.dts in exp2 node
-as gpio-hog and GPIO 14 is set to high using idle-state in mux1 node.
+On Fri, Jan 10, 2025 at 06:09:24PM +0800, Kever Yang wrote:
+> Hi Uwe,
+>=20
+> =A0=A0=A0 Thanks very much for your review.
+>=20
+> On 2024/12/27 15:24, Uwe Kleine-K=F6nig wrote:
+> > On Tue, Dec 24, 2024 at 05:49:14PM +0800, Kever Yang wrote:
+> > > Add rockchip,rk3562-pwm compatible string.
+> > >=20
+> > > Signed-off-by: Kever Yang<kever.yang@rock-chips.com>
+> > What is your merge plan here? From my POV merging the pwm update via my
+> > pwm tree would be the easiest. But if you want to let it go via (say)
+> > arm-soc to have it all in a single tree soon and then base new
+> > development on top of that, that would be fine for me, too.
+> I send this in a patch set for a new soc and board because there is
+> no driver change needed, and I think it would be more clear for the new s=
+oc
+> support. It will be great if maintainers like you can pick the patches
+> for the module which I guess is preferred way in the kernel maintain rule?
+> Or else I have to follow the comments fromKrzysztof to send patches one
+> by one separately.
 
-Log with probe issue:
-<https://gist.github.com/Jayesh2000/861ba647dfaec2dd8ed745a5b8d002e4>
+Sometimes it's sensible to let a complete machine/SoC support go in
+together via a single tree, but if there are no such necessities, that's
+fine for me.
 
-Log with this fix:
-<https://gist.github.com/Jayesh2000/73d59504d52a36bb31fe49a4faae2693>
+In that case it's a good idea to explicitly mention dependencies between
+the patches in the cover letter and ask for individual application.
 
- .../boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso      | 7 -------
- 1 file changed, 7 deletions(-)
+Best regards
+Uwe
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso b/arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
-index dcd2c7c39ec3..c1f9573557d0 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
-@@ -102,13 +102,6 @@ qsgmii-line-hog {
- 		gpios = <16 GPIO_ACTIVE_HIGH>;
- 		output-low;
- 	};
--
--	/* Toggle MUX2 for MDIO lines */
--	mux-sel-hog {
--		gpio-hog;
--		gpios = <13 GPIO_ACTIVE_HIGH>, <14 GPIO_ACTIVE_HIGH>, <15 GPIO_ACTIVE_HIGH>;
--		output-high;
--	};
- };
- 
- &main_pmx0 {
--- 
-2.34.1
+--gt6eakxipv7gzido
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmeA9MMACgkQj4D7WH0S
+/k5D1wf9HrQkx97o93w9Uwklb5T1csbudprqqwZx1eOhIrwaVPLb2LUqjKdW/ZKC
+jKJYsEIuw908eaNx9TpTt4eFqyataXJzcEvi0s2PnqjRygAfQR4zML5yA9U4C4jU
+KlsNtfCei41fD8u7G1CW+OwYI2cUUC7NtYrrZ3VndVaHpJlo8NXdRYpcI/U3pHIG
+hUi4SNniHkpyWgFlxu0pLUcjjhHe9ur6kX1TMjUXQcSShWa7Iv2j7ZZzErRuJCPM
+ZAP3v3z0YPM9rXl/TofONk4W53rmvyiATSVmJwieHYPq8o63oGdau10dmkfIHy2t
++jciLqLZ+v2JB1lJfD7hvzqPbL3BIw==
+=v+BO
+-----END PGP SIGNATURE-----
+
+--gt6eakxipv7gzido--
 
