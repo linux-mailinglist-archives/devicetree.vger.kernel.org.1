@@ -1,198 +1,132 @@
-Return-Path: <devicetree+bounces-137303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE1F5A08935
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:42:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F09D7A0893A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:43:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C446B3A2BB4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 07:42:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F00B6169452
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 07:43:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010A7206F1B;
-	Fri, 10 Jan 2025 07:42:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DB1F207673;
+	Fri, 10 Jan 2025 07:43:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nRQ5DgAT"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="DFCSwCio"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C56BCBA33;
-	Fri, 10 Jan 2025 07:42:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2EED206F1B;
+	Fri, 10 Jan 2025 07:43:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736494967; cv=none; b=XtnpdS+CwREJ0rh/xf1odic+ygmutHlFVKR/YUQStOUSDH7pykooILXZjW6ylXwb+huvk8UP5AY7E423AwMCTMQqvRnAw2JJHUHnqGzCJ870c2H/bIVXwBtwwBBoQ6ZVBEkkbB4DzMmUhnOn23OU9JVNYP0WmFD4AGlp6tw5hRg=
+	t=1736495010; cv=none; b=iNc0ENLBwxm6JOeVOCCpMJ3CzW0EX/AQi7LOYtfLvWseR/W2eS/ME9aFTMg/lr470uQwRsdHEb9LBv+l6Fl2CFW2a6Gw3G0RuYZgtEZtheuxT9F5cp5N7ZjPXn7XI0d32nM7wUL4PBMptFhbXZgmCKLUWstVM1wCOKtL3f6jcLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736494967; c=relaxed/simple;
-	bh=XmYgjpNvIDSw8Yc0EFTFMPiabKK7MhC3gK3twFF80Ac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YZYQBsPzwEiOswS6EzpqYhOC4ZWtFO1iO0mw6KLcAHpJtbTxkgDcGP6W/5FPGA4+NmfMNqCSyMg/2W/GiHpodrMvSpemqUXnhrf8VrCAyoyuXyTOfsHo6Uxa0yBwKms9kOzdzichamva76lKzNIqsDQ46YqVFrmCvkdxF2IX+50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nRQ5DgAT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57A5EC4CED6;
-	Fri, 10 Jan 2025 07:42:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736494967;
-	bh=XmYgjpNvIDSw8Yc0EFTFMPiabKK7MhC3gK3twFF80Ac=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nRQ5DgATufb9Jd8uFEtMIRU41Hpb/TPoJIf+hkKZ/nRNW/luySUcdtBZ4czDpb0KW
-	 sX8eyy6em8haxZbjBvtlJsdbnM0OFxm8VWAEBjRXQgp8jN4IvLP/IiAiDZj9v81cj7
-	 zLWIJMLYnZRlbPhSjkcA8NtxNAB+LuqVwBHL9ExbyKHQWBSzdcMyVYa/yr8Y+B/0it
-	 ITSd7yFHyuVejzo+gBhsw8LCtn91JzH04IaqvXICgJ9SQJAtV0OMi1I3R11BJU6sst
-	 GtYqSG0YmQF6hEPz9GSVT0wV5su/6lAp6CdbmN9dSJZl04/q00XVfTv0+DRrZH4FHN
-	 qxfkAF9QAicxw==
-Message-ID: <9caddd6a-fe1b-468a-ba1e-0513e46404dc@kernel.org>
-Date: Fri, 10 Jan 2025 08:42:40 +0100
+	s=arc-20240116; t=1736495010; c=relaxed/simple;
+	bh=7N0olu4BlMRguZ5wloHWkhC+2NeWyOGqmceCcv0hPUY=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lhN7x9KHqGzXO4rn3VK7eqALY9Unbsg48AaoEVEmW92FjiXhcKvxBm58nMtJCAjvA4xJbC3C8YWTYken8PXqMi8U1en6l7E8u/hLqKI5VUmN/8ffdigM7y++AViY44yGPbmxtMz4DtDXf2RfFlHecY6Kb+edu+nqjVnuo5PW9pg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=DFCSwCio; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50A6LCD3001985;
+	Fri, 10 Jan 2025 02:43:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=cwERC/HaSv5cWLlyrMkI/z2Ygoq
+	6SWAxVZxBwsI3Sos=; b=DFCSwCioGZ7B/Fx7kJ3+ZKF6zr/KGphJI4rHwOz3kWT
+	VHSmpNTiutuLdEtkHpszN1zviuM5Os5V12KFbGJGZc1rlZ4WMMRb/MbOtGowC64I
+	l+TcsnIrayADCZ8lWOPnFGGfMj/BfFqA2UMZ0OMBj3YWN5Vg8QwGqnGkAbpNG2RY
+	lVSHpCvuPLIeOFomcfnRStKpDFORYTO6mLfqaIouQorJsHWbBEBBkC1WkbgR8j3Q
+	nZCYqlrooTkmIByYnw5kLpJ++JbQ6yYdXxC+8rmxIp6hGsKTOmwJYXWPsVYdvKkW
+	/oRJP7jREXl1VaXAhasZ6UVGRFyO88SfzlAAXnRRqOg==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 442mavam1q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Jan 2025 02:43:11 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 50A7hAwc051810
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 10 Jan 2025 02:43:10 -0500
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Fri, 10 Jan
+ 2025 02:43:10 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 10 Jan 2025 02:43:10 -0500
+Received: from dell-precision-robert.ad.analog.com ([10.48.65.204])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 50A7gvop032122;
+	Fri, 10 Jan 2025 02:42:59 -0500
+From: Robert Budai <robert.budai@analog.com>
+To: Nuno Sa <nuno.sa@analog.com>,
+        Ramona Gradinariu
+	<ramona.gradinariu@analog.com>,
+        Antoniu Miclaus <antoniu.miclaus@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich
+	<Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>, Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Robert Budai
+	<robert.budai@analog.com>,
+        Alex Lanzano <lanzano.alex@gmail.com>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>
+Subject: [PATCH v4 0/6] Add support for ADIS16550 and ADIS16550W
+Date: Fri, 10 Jan 2025 09:42:48 +0200
+Message-ID: <20250110074254.38966-1-robert.budai@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/5] dt-bindings: clock: Document clock and reset unit
- of RK3528
-To: Yao Zi <ziyao@disroot.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250108114605.1960-2-ziyao@disroot.org>
- <20250108114605.1960-3-ziyao@disroot.org>
- <tep74dy3oc6y2wwhp6bthv6brhkge7cojzrtj6x53lvtsws4g5@areqtyxhyayq>
- <Z3-T3JwcsW0xYKvk@pie>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <Z3-T3JwcsW0xYKvk@pie>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: sI04RTTAfgY72GnptvE2XQzZ7dd_hSji
+X-Proofpoint-GUID: sI04RTTAfgY72GnptvE2XQzZ7dd_hSji
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ bulkscore=0 adultscore=0 clxscore=1015 mlxlogscore=999 phishscore=0
+ lowpriorityscore=0 malwarescore=0 priorityscore=1501 suspectscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501100063
 
-On 09/01/2025 10:16, Yao Zi wrote:
-> On Thu, Jan 09, 2025 at 09:59:25AM +0100, Krzysztof Kozlowski wrote:
->> On Wed, Jan 08, 2025 at 11:46:02AM +0000, Yao Zi wrote:
->>> There are two types of clocks in RK3528 SoC, CRU-managed and
->>> SCMI-managed. Independent IDs are assigned to them.
->>>
->>> For the reset part, differing from previous Rockchip SoCs and
->>> downstream bindings which embeds register offsets into the IDs, gapless
->>> numbers starting from zero are used.
->>>
->>> Signed-off-by: Yao Zi <ziyao@disroot.org>
->>> ---
->>>  .../bindings/clock/rockchip,rk3528-cru.yaml   |  67 +++
->>>  .../dt-bindings/clock/rockchip,rk3528-cru.h   | 453 ++++++++++++++++++
->>>  .../dt-bindings/reset/rockchip,rk3528-cru.h   | 241 ++++++++++
->>>  3 files changed, 761 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml
->>>  create mode 100644 include/dt-bindings/clock/rockchip,rk3528-cru.h
->>>  create mode 100644 include/dt-bindings/reset/rockchip,rk3528-cru.h
->>>
->>> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml
->>> new file mode 100644
->>> index 000000000000..19dbda858172
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml
->>> @@ -0,0 +1,67 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/clock/rockchip,rk3528-cru.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Rockchip RK3528 Clock and Reset Controller
->>> +
->>> +maintainers:
->>> +  - Yao Zi <ziyao@disroot.org>
->>> +
->>> +description: |
->>> +  The RK3528 clock controller generates the clock and also implements a reset
->>> +  controller for SoC peripherals. For example, it provides SCLK_UART0 and
->>> +  PCLK_UART0 as well as SRST_P_UART0 and SRST_S_UART0 for the first UART
->>> +  module.
->>> +  Each clock is assigned an identifier, consumer nodes can use it to specify
->>> +  the clock. All available clock and reset IDs are defined in dt-binding
->>> +  headers.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: rockchip,rk3528-cru
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  assigned-clocks: true
->>> +
->>> +  assigned-clock-rates: true
->>
->> Drop both, totally redundant.
-> 
-> Okay, will fix in next version.
-> 
->>> +
->>> +  clocks:
->>> +    items:
->>> +      - description: External 24MHz oscillator clock
->>> +      - description: 50MHz clock generated by PHY module
->>> +
->>> +  clock-names:
->>> +    items:
->>> +      - const: xin24m
->>> +      - const: gmac0
->>
->> gmac
->> (unless you have gmac1 here as well but then please add it now)
-> 
-> RK3528 comes with two onchip gmacs. This input clock is only used for
-> the first one and I think keeping the number would give the reader an
-> extra hint. What do you think about it?
-You don't get the point. What clock is from this module perspective? gmac.
+Add support for ADIS16550 and ADIS16550W
 
-Best regards,
-Krzysztof
+Robert Budai (6):
+  iio: imu: adis: Add custom ops struct
+  iio: imu: adis: Add reset to custom ops
+  iio: imu: adis: Add DIAG_STAT register size
+  dt-bindings: iio: Add adis16550 bindings
+  iio: imu: adis16550: add adis16550 support
+  docs: iio: add documentation for adis16550 driver
+
+ .../bindings/iio/imu/adi,adis16550.yaml       |   96 ++
+ Documentation/iio/adis16550.rst               |  378 ++++++
+ Documentation/iio/index.rst                   |    1 +
+ MAINTAINERS                                   |    9 +
+ drivers/iio/imu/Kconfig                       |   13 +
+ drivers/iio/imu/Makefile                      |    1 +
+ drivers/iio/imu/adis.c                        |   30 +-
+ drivers/iio/imu/adis16550.c                   | 1202 +++++++++++++++++
+ include/linux/iio/imu/adis.h                  |   33 +-
+ 9 files changed, 1749 insertions(+), 14 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+ create mode 100644 Documentation/iio/adis16550.rst
+ create mode 100644 drivers/iio/imu/adis16550.c
+
+-- 
+2.34.1
+
 
