@@ -1,174 +1,144 @@
-Return-Path: <devicetree+bounces-137235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3911A08419
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 01:38:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4312A084BD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 02:28:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A215D188C730
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 00:38:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8100C188BBF3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 01:28:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DCC522094;
-	Fri, 10 Jan 2025 00:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31A3A80BEC;
+	Fri, 10 Jan 2025 01:28:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CjZB72gN"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="n/1+PvK+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE61E1EEE6
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 00:38:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8AA7224D7;
+	Fri, 10 Jan 2025 01:27:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736469510; cv=none; b=M9Xu1HI4+ezvB+jy9oGKBMQZtd96jykcyQsLPZDrJode8FCJlIa25jv6pGmgDQD8DgkjPjUXO48nELAiEFEqa+Cya7mGFqOkXW9K/ywc4tx94Aj+jviM6K5W+OkAqXYnt6LtjeZWl6OPCiAf9b7juWxQCskQFswVWjwWeLDG23o=
+	t=1736472481; cv=none; b=atsTzdf13SdmHaeRhjcAmNpvqM6iEZ2BiuGzr2Er42GAL6AidUhaLv/YfW83EuIYI5thmzbefaagNySjghGcByrfMlJ/cnLsQTO76wmdngVVX9aE/THwjyKmcE4fIFz6LTt1JbI0t1/COqL2tFqHQX1t/0ePYyQFUc0AId77gh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736469510; c=relaxed/simple;
-	bh=qWIZclo97O3t4XnMAadZI3RzDyG5vkOhisR5QJgFLj8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SucJbAMjNtweqgYMUKjr4pXDfEbnxtVcNXWjYNd27dwgfdnySv89pxkqYnnCb6L8bJzs7yM2pgNVj8ya35hovRSQ0CoUXvNKtKsMEznrNEWx4BEEBzIQUteXEpRoyurrgmpMYlwbQQ2AqSpi1aaQg34Nj+LLPE40a5dkr0gD3OU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CjZB72gN; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50A0Xcn0028349
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 00:38:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	kmF+DuU3JzVjgbd8y0t7kRkzSWdwvKPVstxc9QQq5H8=; b=CjZB72gNpfcFbn1B
-	NMtx1dBmxieUB+UHEUnzOXGirMST0xzBwKWxxgG3xBILREr+mc1RPNM8glJs6TJ4
-	7UrMfj3kRL1NjeeBg6JBBFhTKN6ZlVkHpqPEKrTOvI9HWGCprJ4n5iE189MEVeZ5
-	QjCH0O/4ewSbG46ZR6neWfAZrsDoNwUUvOoYSZjatdD27+qMX4RthaCpPCgBovNd
-	idsp2wD9VM3gLx5UMwrCbqXtGRW2q64UDUixwM4lASCDJKznwMB2P14Wyzb2qicy
-	o7XXauBGAL8H49QJxBM93wClU5tc75LHT1br0BAoO2Dzw53TcYynueU7whoyHWDg
-	JzaN6Q==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 442s450089-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 00:38:27 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-6da2abe1720so3579586d6.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 16:38:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736469506; x=1737074306;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kmF+DuU3JzVjgbd8y0t7kRkzSWdwvKPVstxc9QQq5H8=;
-        b=fRkxVeglagFhq3qXXmnMB6jv4MUB/nxyie0UVnImcEsArkBnCz6R7dmuYVIGDDNVPS
-         yxZ6usa/6k4DCbBUEwJ8NqLOb3x5T3Ju+IP2/lhr3XJ4F4hDk5d2iyrrf1uTHVBkgybQ
-         mbWapdNeUiLLaFNdk5z4qz5+tUEx2uhCeZkqg4Qk4oScPcWTHOOFdh2T5M/QH6AqPR0i
-         qN+Q8nZG0Ztft5/RycpIeUUW5l+2bSC1/b1e8gpm/KkwsDf9arl6tQ68xkmCLSXMwgK5
-         lnfzu1+BGbq4/TD82tRkE0fGTIaLoDCwAHcBgl6HTsgXP8e2Bejx1agLZRqHDB6hC4+a
-         DCVw==
-X-Forwarded-Encrypted: i=1; AJvYcCUKULXatFkunzJ83DI/6uLIY1FIHTYu36LqzRfgYl4ckgxuDh+4psu0kUJyCvtTkOyl8FTn0dJNsMLO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw51wJWVvEvDHrWxFxCxB4lIYWAvurLL5m9dHEAoBf5cFRxNFkz
-	D23yARZhDUvkyfUK44CX8WP3sJCupWaBD0jidfW2cFKCIuqRtDRqXJ92WvsNOv/uRy7fJua3tYD
-	ljEm+aJ0+phiVX99VjGLiDGheNATy0+ORRt/iI/vcUFFb4+aECxik6bMj0s1T
-X-Gm-Gg: ASbGncslnq/BphJaT8ho3tiVGQtSW7lmkHcHwUEurHB6CRvOFz/gfvwPtJB9aLeoy81
-	/ump9AzLiDqDkEYKOLrHPJL2PXhpECilevDRRpT5B18U9G3rmYpHMjqGlWahKqh+3FPjU5694BI
-	lgBibsIt1CukpgCHbcM5XVbnvYxufnYAsaKjh1sMwoUzwZsBXXNJvAr4xnU3GgIl/LW+eAmAMur
-	8K29Tm8K8eJYiDrWqUgwzw9PvyAqHcLfIxmxotiKrxONiozdaqhnC2XX6S4eNXjmsFCej/agYYu
-	elUF+Eh9Ka7nq5e/Uua4CR2FriAVGRQ0Sj8=
-X-Received: by 2002:a05:622a:180c:b0:467:5d7f:c684 with SMTP id d75a77b69052e-46c710e105bmr55517901cf.12.1736469506235;
-        Thu, 09 Jan 2025 16:38:26 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFozTpKFg1C/Y/ohAM2r+YfB4QhoW6K8Hsfv6wtkptViZjHIU9D6x8pLZdO9xilbQsJvyLgGg==
-X-Received: by 2002:a05:622a:180c:b0:467:5d7f:c684 with SMTP id d75a77b69052e-46c710e105bmr55517771cf.12.1736469505858;
-        Thu, 09 Jan 2025 16:38:25 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab2c95648e7sm117905366b.95.2025.01.09.16.38.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Jan 2025 16:38:24 -0800 (PST)
-Message-ID: <53657ae6-71a7-4800-8107-a08d47a17cb5@oss.qualcomm.com>
-Date: Fri, 10 Jan 2025 01:38:21 +0100
+	s=arc-20240116; t=1736472481; c=relaxed/simple;
+	bh=ryI+5YVGxBNztPnwwj7sKOaAHDLl13z22X+SyoAPRoc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UxiLaoWxqMDQvA4nHjUYC6TpMbgMO0DRE2wuW3NHb57nUAIiDU7Au9P8TsJirRHqh8UR5uCTWmw3skbeZ3lSLeZEq2jhZlwekKwycLLMJsZqV/uzoei1bbpcVHRLEF1oTXctftysWDNW/igGbI+syFlDVVZ9sFZo/IyzHctmIro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=n/1+PvK+; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 1d1c551ecef211ef99858b75a2457dd9-20250110
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=gAHO4w1hXNy3c35imVv0FqBXeCgA2twC673V0Mqfm+I=;
+	b=n/1+PvK+tPSu+oed5lOaTiIP2q7ykDEXH85+KnijEmp8cFLffIcIXwYFZ5xmiKYNZQdeDEJPVrv9m5d8UUeMJkZql40jCbvvzJwVS5qTYGaWvyx6SIzdSybtYkISjA2CcUxcCq6Q1bCOxEiLbQrAyIGhLUt7HsyHSCnG1J+pxWE=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.46,REQID:dc3c7e39-4999-4bd6-914c-d9997f83d7fb,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:60aa074,CLOUDID:a666fbd1-15ca-4d8b-940c-bbea7162947b,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 1d1c551ecef211ef99858b75a2457dd9-20250110
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+	(envelope-from <kyrie.wu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1407025278; Fri, 10 Jan 2025 09:27:53 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 10 Jan 2025 09:27:52 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 10 Jan 2025 09:27:51 +0800
+From: kyrie.wu <kyrie.wu@mediatek.com>
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>, Rob Herring <robh+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, Tzung-Bi Shih <tzungbi@chromium.org>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, kyrie wu
+	<kyrie.wu@mediatek.corp-partner.google.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	kyrie.wu <kyrie.wu@mediatek.com>
+Subject: [RESEND,V1,00/12] Enable jpeg enc & dec multi-hardwares for MT8196
+Date: Fri, 10 Jan 2025 09:27:37 +0800
+Message-ID: <20250110012749.30072-1-kyrie.wu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 6/6] arm64: dts: qcom: sc7180: Add SoC specific
- compatible to soc node
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Stephen Boyd <swboyd@chromium.org>,
-        Bjorn Andersson
- <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org,
-        patches@lists.linux.dev, devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Arnd Bergmann <arnd@arndb.de>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-References: <20250108012846.3275443-1-swboyd@chromium.org>
- <20250108012846.3275443-7-swboyd@chromium.org>
- <n3fn5mnrrinrgrvadqgymv3cx355qpx5kk27nlrz2emoxfmjyt@ymwpfxf7lv4r>
- <0ab00013-0265-4336-bc30-f49492e96424@oss.qualcomm.com>
- <x6smfgtq2ojzl774jd6d6fsilxj5dte4jbfypbvxvdmaqd7pem@nnpcnyzz4l4i>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <x6smfgtq2ojzl774jd6d6fsilxj5dte4jbfypbvxvdmaqd7pem@nnpcnyzz4l4i>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: Q2_cJryNy8PSNIVWwLm374RBn56Ep5lo
-X-Proofpoint-GUID: Q2_cJryNy8PSNIVWwLm374RBn56Ep5lo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- bulkscore=0 adultscore=0 priorityscore=1501 lowpriorityscore=0
- clxscore=1015 suspectscore=0 mlxscore=0 impostorscore=0 malwarescore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501100002
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On 10.01.2025 12:45 AM, Dmitry Baryshkov wrote:
-> On Thu, Jan 09, 2025 at 03:10:33PM +0100, Konrad Dybcio wrote:
->> On 8.01.2025 2:02 PM, Dmitry Baryshkov wrote:
->>> On Tue, Jan 07, 2025 at 05:28:43PM -0800, Stephen Boyd wrote:
->>>> Allow an SoC driver to probe for these devices. Add the SoC specific
->>>> compatible to the soc node. Leave the original simple-bus compatible in
->>>> place so that everything keeps working.
->>>>
->>>> Cc: Rob Herring <robh@kernel.org>
->>>> Cc: Bjorn Andersson <andersson@kernel.org>
->>>> Cc: Konrad Dybcio <konradybcio@kernel.org>
->>>> Cc: <linux-arm-msm@vger.kernel.org>
->>>> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 +-
->>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->>>> index 76fe314d2ad5..257890a193e6 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
->>>> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->>>> @@ -782,7 +782,7 @@ soc: soc@0 {
->>>>  		#size-cells = <2>;
->>>>  		ranges = <0 0 0 0 0x10 0>;
->>>>  		dma-ranges = <0 0 0 0 0x10 0>;
->>>> -		compatible = "simple-bus";
->>>> +		compatible = "qcom,soc-sc7180", "simple-bus";
->>>
->>> If the new driver requires this compatible, it will break compatibility
->>> with older DT files (and it should be avoided).
->>
->> IIUC the intent here is to provide backwards compatibility through checking
->> for sth like IS_SOCPM_MANAGED(), sorta like HAS_ACPI_COMPANION(). In that
->> case, power sequencing would be done by the socpm driver, whereas if it
->> doesn't hold, the resources would be toggled by the device driver
-> 
-> I think that this way we end up having PM code both in the device driver
-> and in the socpm. Ideally in my opinion we should be able to migrate all
-> pm code to socpm, keeping compat with old DT files. In the end, if this
-> is the only change to the SoC.dtsi, then we should be able to live
-> without this compat change.
+This series adds support for mt8196 multi-hardwares jpeg enc & dec,
+by first adding mt8196 jpegdec and jpegenc compatible to install
+kernel driver. Add smmu setting to support smmu and iommu at the
+same time.
+Secondly refactor buffer and clock setting to support multi-hw jpeg
+working.
+Lastly, fix some bugs, including resolution change handleing, stop
+streaming sw flow and others.
 
-We should be able to do that with a dynamic overlay, I suppose.. which we
-could drop after some time (probably a rather large amount of time)
+This series has been tested with MT8196 tast test.
+Encoding and decoding worked for this chip.
 
-Konrad
+Patches 1-3 Adds jpeg encoder and decoder compatible.
+Patches 4 add jpeg smmu sid setting.
+Patches 5 fix jpeg hw count setting to support different chips.
+Patches 6 refactor jpeg buffer payload setting to handle buffer
+size bug while resolution changed.
+Patches 7 reconstruct jpeg dst buffer layout.
+Patches 8 fix multi-core stop streaming flow
+Patches 9 refactor multi-core clk suspend/resume setting
+Patches 10 fix decoding buffer number setting timing issue
+Patches 11 refactor decoding resolution change operation
+Patches 12 fix remove buffer operation
+
+---
+This series patches dependent on:
+[1]
+https://patchwork.kernel.org/project/linux-mediatek/patch/20240808092555.12999-1-jianhua.lin@mediatek.com/
+
+kyrie.wu (12):
+  dt-bindings: mediatek: Add mediatek, mt8196-jpgdec compatible
+  dt-bindings: mediatek: Add mediatek, mt8196-jpgenc compatible
+  media: mediatek: jpeg: add jpeg compatible
+  media: mediatek: jpeg: add jpeg smmu sid setting
+  media: mediatek: jpeg: fix jpeg hw count setting
+  media: mediatek: jpeg: refactor jpeg buffer payload setting
+  media: mediatek: jpeg: refactor jpeg dst buffer layout
+  media: mediatek: jpeg: fix stop streaming flow for multi-core
+  media: mediatek: jpeg: refactor multi-core clk suspend and resume
+    setting
+  media: mediatek: jpeg: fix decoding buffer number setting timing issue
+  media: mediatek: jpeg: refactor decoding resolution change operation
+  media: mediatek: jpeg: fix remove buffer operation for multi-core
+
+ ....yaml => mediatek,multi-core-jpegdec.yaml} |  10 +-
+ ....yaml => mediatek,multi-core-jpegenc.yaml} |  10 +-
+ .../platform/mediatek/jpeg/mtk_jpeg_core.c    | 126 ++++++++++++------
+ .../platform/mediatek/jpeg/mtk_jpeg_core.h    |  17 ++-
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.c  | 115 +++++++++++++++-
+ .../platform/mediatek/jpeg/mtk_jpeg_dec_hw.h  |   4 +
+ .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.c  | 112 +++++++++++++++-
+ .../platform/mediatek/jpeg/mtk_jpeg_enc_hw.h  |   4 +
+ 8 files changed, 341 insertions(+), 57 deletions(-)
+ rename Documentation/devicetree/bindings/media/{mediatek,mt8195-jpegdec.yaml => mediatek,multi-core-jpegdec.yaml} (95%)
+ rename Documentation/devicetree/bindings/media/{mediatek,mt8195-jpegenc.yaml => mediatek,multi-core-jpegenc.yaml} (94%)
+
+-- 
+2.46.0
+
 
