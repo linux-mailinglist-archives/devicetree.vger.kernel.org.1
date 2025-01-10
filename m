@@ -1,140 +1,156 @@
-Return-Path: <devicetree+bounces-137504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D77A094D7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:17:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CA6DA094E2
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:19:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E9E2168D35
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:17:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A8267A0764
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:19:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88AFC211487;
-	Fri, 10 Jan 2025 15:17:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD437210F65;
+	Fri, 10 Jan 2025 15:19:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="N34Zwy/L"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W14AQlqF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DA46211466;
-	Fri, 10 Jan 2025 15:17:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29FB210F7A;
+	Fri, 10 Jan 2025 15:19:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736522253; cv=none; b=topM46JaIjmqz4D6CkI2J8eGELujOCAF1tSJcCSCrWt/cCB5P8apSjxoxLfSH/ylRTPaocByNGA+X8STyq7SEDYpWIskBSDYIzKU+asueuWWWYiBPSMEAddCH1wmx1CMIf/bFJH3xtFJt/fxKMxQTxP04w5yoCZ7evaBIfjOqKI=
+	t=1736522346; cv=none; b=YMwP6TNUGsMOwoKcvQPZrgApSBaUVFVeWrxzrTBy+aMvL6CA/vj1DlLGha4U7geCWCym2/YMOGf0XyIt8K/bE7V4/Qd5mNOGmCjQf7g0JqcJg7bEzAWG8op0NnUaSJu8sGTsDeeyQwHYrAALzc4NnhLk6tPi+M6mP5iGOK+tJUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736522253; c=relaxed/simple;
-	bh=vV5YP4ti6joqgVLYym/e9MtCph3opVzCLEJw51PCJBs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R28FYYeCjja2PaLIlyUCQanAbBUXqSPGXPx1mNyLDV0RTjiuTZy9zmvEtT1532WU1fL0OZ4v+ojJ0KtHxymT+85kI/6sHwdZ7V+Ru864Ajglm9Qy8mywLVa6ORvi1cE6m8UfGtdS3Bl2LGQFJeTuZjB94OY0lYzhuDyXZ9tLL+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=N34Zwy/L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C1ABC4CEE0;
-	Fri, 10 Jan 2025 15:17:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1736522252;
-	bh=vV5YP4ti6joqgVLYym/e9MtCph3opVzCLEJw51PCJBs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N34Zwy/LPLAJtyes0nTlsjEjtaQtcD21wLTToYB9GKDmsELEVS6F8b97TjHG0AjaK
-	 Gg28VlgJXBv5xjl0XRTTeEOWWla9v9oTNFnnki3PS+NMhM7mEeB4O4PYNQ92L5wAf8
-	 81yg6IF0+P7CugZsyUDbKza15SfNZlEJa2vq/u3U=
-Date: Fri, 10 Jan 2025 16:17:29 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Kory Maincent <kory.maincent@bootlin.com>,
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v5 9/9] misc: add FPC202 dual port controller driver
-Message-ID: <2025011011-backache-facing-6c99@gregkh>
-References: <20250108-fpc202-v5-0-a439ab999d5a@bootlin.com>
- <20250108-fpc202-v5-9-a439ab999d5a@bootlin.com>
+	s=arc-20240116; t=1736522346; c=relaxed/simple;
+	bh=GdxQAAhkvYNc45ogZEOTdokhwj27OmZxfHC7bNT6WS4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Lt84ipP5xY+6tU5+GjNRrLdNoV1PdVUP8MLqTdGVUF5057c8EgsP3eQB8jwgTg/7MVmsf9r5kUUtXiPIuxgBF50lD3WI/c1tJO0puzclSf3v1xWjO4FTg067ZU55Zd1R7jZvnQSWfLQhBGqd7lV0tfSejuR7KK6oEwwa+ZpcwP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W14AQlqF; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43623f0c574so16516995e9.2;
+        Fri, 10 Jan 2025 07:19:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736522343; x=1737127143; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=e5aEpMmoZZCQQPaRUNn2M/cjTXlmafGJ+ljwOWiSLUI=;
+        b=W14AQlqF+3O9P4HZT06GxD2w9nRuLl+03Uqxw7fUQDZeUwKY0/psJeZyEVaGUA9+b1
+         IjH1fWOL+UHwatF0gPvD1HJhktHU3ozWcrQ95Q8Kb9pTi3lAJJoqLenvkDg7lhu/l7mG
+         6u/c2uplmVi6GVl/jdTKu4zg6GB6OlPBqhm0RTK3tm2eQs1lFPYwkj9z6D8+zlWGeHj2
+         Gg5xvBID3cpnSJrFglWM7oOZB94e+sXYabsuh8g9pfVqnGsutp5J/IQHtd3yHp/bPPkw
+         nPsw7Q26gLfMU58GaFNU2pAFBMSvHpl2c4Aal/wL3CNHJLBRRcxHjbYoI/HYyMs+Vg1O
+         x3Xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736522343; x=1737127143;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e5aEpMmoZZCQQPaRUNn2M/cjTXlmafGJ+ljwOWiSLUI=;
+        b=rMkiPDbHaJGZRgqa8W+vitqbxsuxXYmpc672gaQWDZTZGbxBY9M+RP24YDLNjV1zMy
+         /jRYKCEHn/1PNJpZBNaf69XDK643pTBYbITZPJnY3Puljisi5HvHMrMvDZMhAwGR3uW1
+         GsXU+STTz2zcsc39c9JSLD9K6N3WiRa5lftpXH+oEVrXLThzlgwPwT/k5ua5PoAyk5s2
+         Ha2lShza6U13HvpdwF0wdH28byM6DKF0w6OnZce1eLC0UaqIougGJyBhqyXIEKoK+rMO
+         vOU4+bIG75Cpwi8Fh65jGC2KfYWTBeajLuxrPM2vpmmsuTU1+B5X9jkxin1x/b3vR8/9
+         E9yQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWVKVOHWaEyWTGERWUwksmvUEWbHoD+xOjv4lHjYePJ/Dy4TAUjACUrjpV6Bp/ycw9Net3HudYH0VHdOXY=@vger.kernel.org, AJvYcCX5+KZ7jq8EGPy6tWM41yfxcp8a72dQ+2uJj5ravZJ9HFN5shb5+c1HBzS9iB177xEQdUaFz4Vh@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgSauNUqytED1XsXHEuKuR38yUumk2wYWwE/Ont2AT43wypnME
+	cKbnuEOgp7Gidpi2v0xcoY8dgUYePdGFrTbvaufCADEffa0iGtwj
+X-Gm-Gg: ASbGnctUjvpuq26U992mvMeEd4unQ/dTAUrDTuIcHAx7JoFijHy4L2y28hI1Q+/EsHA
+	vdrfTxa+YrbuVxLCw1d2vhkJHJRr3lzefgSQx4hxxAlzLh4mNhBgFeyd22rCw5dT5qgtnnCGtUP
+	HIRaqWKIqZorhpDINLEZDwAzPDtEnjBjplUExgstOEGtxaOpa4s0G/ZdWCDnmoIP31CJWyoN1pK
+	Ueelcot6CKcq0IqaMD5KiFmUKaXz0xjOXA0dy7WzVZJU+4FpGms3y9+8uPUQh3j8HgIWDem
+X-Google-Smtp-Source: AGHT+IECfAJ2WoCuNj7wvzCw79nESfWsenN47zMVWMkB4VRz8D5aWBaZsf1e+N3uhc6SbLU9mvw4vw==
+X-Received: by 2002:a05:600c:1e17:b0:434:9d62:aa23 with SMTP id 5b1f17b1804b1-436e26dda97mr99240525e9.20.1736522343081;
+        Fri, 10 Jan 2025 07:19:03 -0800 (PST)
+Received: from eichest-laptop.toradex.int ([2a02:168:af72:0:d0fc:3598:a372:ece6])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9e6249csm54511425e9.38.2025.01.10.07.19.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jan 2025 07:19:02 -0800 (PST)
+From: Stefan Eichenberger <eichest@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	max.krummenacher@toradex.com,
+	francesco.dolcini@toradex.com
+Cc: devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+	stable@vger.kernel.org
+Subject: [PATCH v1] ARM: dts: imx6qdl-apalis: Fix poweroff on Apalis iMX6
+Date: Fri, 10 Jan 2025 16:18:29 +0100
+Message-ID: <20250110151846.214234-1-eichest@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250108-fpc202-v5-9-a439ab999d5a@bootlin.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jan 08, 2025 at 05:14:10PM +0100, Romain Gantois wrote:
-> The TI FPC202 dual port controller serves as a low-speed signal aggregator
-> for common port types such as SFP, QSFP, Mini-SAS HD, and others.
-> 
-> It aggregates GPIO and I2C signals across two downstream ports, acting as
-> both a GPIO controller and an I2C address translator for up to two logical
-> devices per port.
-> 
-> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
-> ---
->  MAINTAINERS              |   1 +
->  drivers/misc/Kconfig     |  11 ++
->  drivers/misc/Makefile    |   1 +
->  drivers/misc/ti_fpc202.c | 440 +++++++++++++++++++++++++++++++++++++++++++++++
->  4 files changed, 453 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2ef5c0d395b3668167dddbd27237a2177f85571e..865ef413b38c293e1c7b1405322fafe9df81ea96 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -23502,6 +23502,7 @@ M:	Romain Gantois <romain.gantois@bootlin.com>
->  L:	linux-kernel@vger.kernel.org
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/misc/ti,fpc202.yaml
-> +F:	drivers/misc/ti_fpc202.c
->  
->  TI FPD-LINK DRIVERS
->  M:	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> index 09cbe3f0ab1e56f85852c0cb50cfc03cae659d2b..3c7e82e86e4ae83eff84999d123cd8c0f018323c 100644
-> --- a/drivers/misc/Kconfig
-> +++ b/drivers/misc/Kconfig
-> @@ -114,6 +114,17 @@ config RPMB
->  
->  	  If unsure, select N.
->  
-> +config TI_FPC202
-> +	tristate "TI FPC202 Dual Port Controller"
-> +	select GPIOLIB
-> +	depends on I2C_ATR
-> +	help
-> +	  If you say yes here you get support for the Texas Instruments FPC202
-> +	  Dual Port Controller.
-> +
-> +	  This driver can also be built as a module. If so, the module will be
-> +	  called fpc202.
-> +
->  config TIFM_CORE
->  	tristate "TI Flash Media interface support"
->  	depends on PCI
-> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-> index 40bf953185c773afa91f7784a286ae0752bb0b53..ba47db46a5ff2559de597447ce7e2d88e26efa61 100644
-> --- a/drivers/misc/Makefile
-> +++ b/drivers/misc/Makefile
-> @@ -12,6 +12,7 @@ obj-$(CONFIG_ATMEL_SSC)		+= atmel-ssc.o
->  obj-$(CONFIG_DUMMY_IRQ)		+= dummy-irq.o
->  obj-$(CONFIG_ICS932S401)	+= ics932s401.o
->  obj-$(CONFIG_LKDTM)		+= lkdtm/
-> +obj-$(CONFIG_TI_FPC202)         += ti_fpc202.o
+From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 
-Nit, you didn't use a tab here :(
+The current solution for powering off the Apalis iMX6 is not functioning
+as intended. To resolve this, it is necessary to power off the
+vgen2_reg, which will also set the POWER_ENABLE_MOCI signal to a low
+state. This ensures the carrier board is properly informed to initiate
+its power-off sequence.
 
-thanks,
+The new solution uses the regulator-poweroff driver, which will power
+off the regulator during a system shutdown.
 
-greg k-h
+CC: stable@vger.kernel.org
+Fixes: 4eb56e26f92e ("ARM: dts: imx6q-apalis: Command pmic to standby for poweroff")
+Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
+---
+ arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
+index 1c72da417011..614b65821995 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
+@@ -108,6 +108,11 @@ lvds_panel_in: endpoint {
+ 		};
+ 	};
+ 
++	poweroff {
++		compatible = "regulator-poweroff";
++		cpu-supply = <&vgen2_reg>;
++	};
++
+ 	reg_module_3v3: regulator-module-3v3 {
+ 		compatible = "regulator-fixed";
+ 		regulator-always-on;
+@@ -236,10 +241,6 @@ &can2 {
+ 	status = "disabled";
+ };
+ 
+-&clks {
+-	fsl,pmic-stby-poweroff;
+-};
+-
+ /* Apalis SPI1 */
+ &ecspi1 {
+ 	cs-gpios = <&gpio5 25 GPIO_ACTIVE_LOW>;
+@@ -527,7 +528,6 @@ &i2c2 {
+ 
+ 	pmic: pmic@8 {
+ 		compatible = "fsl,pfuze100";
+-		fsl,pmic-stby-poweroff;
+ 		reg = <0x08>;
+ 
+ 		regulators {
+-- 
+2.45.2
+
 
