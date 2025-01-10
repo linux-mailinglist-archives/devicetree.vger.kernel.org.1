@@ -1,161 +1,243 @@
-Return-Path: <devicetree+bounces-137416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45852A08EB7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:58:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57043A08EDE
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 12:11:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 415C61630AA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:58:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 530B616420D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:11:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C29920B215;
-	Fri, 10 Jan 2025 10:58:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E1A3205AC3;
+	Fri, 10 Jan 2025 11:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="g8aJHxBG";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Ogk5Wcav"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="sksXLEWa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C06820B1FB;
-	Fri, 10 Jan 2025 10:58:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E86C320550A
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 11:10:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736506718; cv=none; b=ZsfAnPPlMBniwtOsY78m7snQzVJ6dhA7l5th4yOA8kdSeGxjvkLV+sy+SRsfkvhnoJ1Brh82UwuNcdUvb0HtdIvJgAs7IjFMyDnVlDrhVRelFF6fAqMVvrypNHhdXIRobHyGiv4LHrdkkhnpcZc0yqag2XTWen81EFW4W6Fbsm4=
+	t=1736507461; cv=none; b=AqvcVdVjEBJOeF7gYHHXfFoUIkUmS2CjHYN+8qDLh5wVyYsc3gk4tJKl8qJDduh7fanifnO4zppw1PtQR0n/QfbEpuxdjLOFYwN4qIcn/ems76K+JgkN7rFP8DOYckuRlmP99R+dnZ3yVm8/NkGDcyvzF4JBvmuTalXB3P80HbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736506718; c=relaxed/simple;
-	bh=bsb7nGnIMHG782pJr7xs4qULS0u8F1JK2QkTYU8aCDc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t32lh2RULde2RmniO1v4JW/usWxKDS7NlvRStjTC/y2tIkaqBpP29hTRqxpJSOkaapxPjOHKScIQy+8yPJqrZARTPq3plyRgKr5U6YKQWAwAjlTZGh5rQlot2mO+MB7I76dncMyQnCAliGNLdJDKKrCEFTlrNWkxxb+6/HdDdIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=g8aJHxBG; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Ogk5Wcav; arc=none smtp.client-ip=103.168.172.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-01.internal (phl-compute-01.phl.internal [10.202.2.41])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 2C25A1140196;
-	Fri, 10 Jan 2025 05:58:35 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-01.internal (MEProxy); Fri, 10 Jan 2025 05:58:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1736506715;
-	 x=1736593115; bh=t0SWmKsw6nOR/LlUb0Oe1pm8yGxwNK1s6lacmIwvK4Q=; b=
-	g8aJHxBGf/JRKchTSDkuJm2fYPzCZs93jvqkz0pDWvcpAX+dvEhST3lgWXlX85AE
-	vuxUz28leYrfL3yZSH4h1NCaqbPPwuelPtbFDk56rtapCc7kY1IovAWEOOx0c1oA
-	bQP/gHsyDfA80WCKFZg5UMgfPIZPJDUk8/apWx91uEAIeE2LI8KNEA2z6qevLuGB
-	nekeUShrLVigZ/5cy4wWgGVCWH5uZJKB6P9W3pdnisT5QCWlgVD/cbWoVdr9tXr8
-	hE5zbTPwUvjeIFrhDriEvZS7L/J7cxm8g+epuT+7IyF8T3jBO/2hGOrmlw2LvkXr
-	CyHvJpVgO7yg5PpU8ZEmBg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1736506715; x=
-	1736593115; bh=t0SWmKsw6nOR/LlUb0Oe1pm8yGxwNK1s6lacmIwvK4Q=; b=O
-	gk5WcavAVQWLwiA4fso+RSz7RlPVZJF/vDStAHF+ZYK6J3E0om3+bTmKZEmuHhzU
-	fc0EfNVG/rPZaDMoc8IxNyUwV6kbZ8nuFjM5RNqZWbucesFGODt1dttTAWY96N1y
-	Jts9Gw967fIKn8t+YpdjZCoYGUDUz1B78TFEc40azDZPx2g4+KzE5DIcmgbaNuVu
-	Ujz39xhpzbn1st1fB7A0YwbKzZ9r8YkQulLzRLIAEm/tv3BB4nir9bQ5HWGf5Ll0
-	ir8AmG+/KvPotaWKKiu5E6yVA56NIhAjCTXwF4w6Fwns8jgW5ZNwuMH0sxhxQqoK
-	jVo5Xgu0u5zuZdE54IoJw==
-X-ME-Sender: <xms:Wv2AZ8JLaI7Qw_f18D4SxeKIBA2RlEvOoC5mvVtSoh3qAaqXhXxs4g>
-    <xme:Wv2AZ8KpRrFZGAYm20AAiNGDu8gBpu6044hlXg-efdVvx0lXk3lBPeCQuTwRVOl3i
-    OmaoV9vEt_K-dv_E7s>
-X-ME-Received: <xmr:Wv2AZ8vr0qkRIIJEl_RgEUuoF3sPQ7h4-SYrehokZ_0P4bsB8D-mhA9Y-bxG9slKNL-wZmO2gvbEqEiDHbHfIOszKCK7ZSW-yA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudegkedgvddvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdej
-    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
-    gvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvqeenucggtffrrght
-    thgvrhhnpeefhfellefhffejgfefudfggeejlefhveehieekhfeulefgtdefueehffdtvd
-    elieenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehn
-    ihhklhgrshdrshhouggvrhhluhhnugdorhgvnhgvshgrshesrhgrghhnrghtvggthhdrsh
-    gvpdhnsggprhgtphhtthhopeegpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehg
-    vggvrhhtsehlihhnuhigqdhmieekkhdrohhrghdprhgtphhtthhopehjrggtohhpohdrmh
-    honhguihdorhgvnhgvshgrshesihguvggrshhonhgsohgrrhgurdgtohhmpdhrtghpthht
-    oheplhhinhhugidqrhgvnhgvshgrshdqshhotgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-    dprhgtphhtthhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:Wv2AZ5YzrnyryOo8iJgAHkYbHCZmL310OEbuk120xRA-vjMDyMbTQw>
-    <xmx:Wv2AZzZ_EHdFmeI8E4_DRc-TOz5gw6vP7uUIzZ98xMDOVX9qI_yMHA>
-    <xmx:Wv2AZ1BK_x4FQlLrep5DNSmTRLFqKencfSrFSqpBGMpGfKeJPh4bFg>
-    <xmx:Wv2AZ5YV1OMIVO9wrgiBc8gsSxOpO4KjUeHwIrCKBqryJJqImDKhfQ>
-    <xmx:W_2AZyWBXrWsYRRIC5a0viLJj0AS5gTEL5S6trQBAkA6dMkeHotyDcco>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 10 Jan 2025 05:58:34 -0500 (EST)
-Date: Fri, 10 Jan 2025 11:58:33 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Jacopo Mondi <jacopo.mondi+renesas@ideasonboard.com>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: renesas: r8a779a0: Add FCPVX instances
-Message-ID: <20250110105833.GC308750@ragnatech.se>
-References: <20250109125433.2402045-1-niklas.soderlund+renesas@ragnatech.se>
- <20250109125433.2402045-2-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdW1D=o8aaPOAQLPEZw-Y-9MVzzCRGEykEU=39CYeuRW2A@mail.gmail.com>
+	s=arc-20240116; t=1736507461; c=relaxed/simple;
+	bh=nu1CaLU4FwPi8KmGxZNKa3FBcBUfFSrg7ePK7lPL20s=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=MD0YCnR+/w6VHVKcW5BgTe4EBgwirg+p+UFtJ+ap11ATSZN1U8OTjMAT3OVRke6vO8QMi/tIHtTe65h+/p2o+kCeOFJ2C5Yhs7oPIqScWxM+GIUjwGRdRv2/Le+CYhjCxACWaNHRHU+sK6kUzH8OxMHwh1c+amoUJklbxheynV0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=sksXLEWa; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-43618283d48so14451825e9.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 03:10:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736507457; x=1737112257; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lsaqDGLgq3FpBwdxK7jjD5A86PMJqRlSRSiGJFRnRYk=;
+        b=sksXLEWa56T9ovfVz+cmzJJHRBaw/0sZH/w+jZpWNv6WMG4l57YN54TVa47kcca1CT
+         QMKccE8w6yjNIMllRpjGMjmo8MlqoaX3o2UlqJetz9KBGUjB2rjrTWZsyV88p0QJ+0b0
+         Vj+8p9dXCPxymEnoKniD3XjqgZ/4NzjAUWuS9NFAd7O9zFYRTexYQQRhLPSlaELvX/wd
+         rzk73GFaXtH9JVaHctTonTVLkWuDtEAMv4rknuVJjDUyudFjvvSTVRTZrZjCapfosTnD
+         uVJhwWrysf++n8fJ5yP/Gy5f+U/r6nR1OGufeaHD3jHimIQgVJ4i+Uq4Jf0NORB5kjmS
+         De9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736507457; x=1737112257;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lsaqDGLgq3FpBwdxK7jjD5A86PMJqRlSRSiGJFRnRYk=;
+        b=quRkN884skJDSkmGc9o2mQTGo3h7apHHkHQ1kqUW8EdLjEKUqdOAX8NsG0uHaTajxt
+         Si2TirSUYJWPASz8YZzhtqctlV8u4pSio9QfjUTH0B2DidPbmGY86dmqkyU19UpL2l3C
+         D9W2OUbLG47y4t81r+y1SVgCJH4Z5JJidZ2zVnEkD9MP0UTTxQJ+XDmWjmmftu8C9jIh
+         jKpQ1w6YRDycGio5RHJ8zSSaOhLEGk5XHl2y5/cjjk8Ni+cM8QbMOLRjrdgGImSia8Tc
+         gc+ei3j2ht69WMCYay0V9Im3w7uTMDRaWvXxRF4jmVVaqz7jWnnFyUdB6a/aN91Ik0nQ
+         ozjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU7AuBgA5/7SGasxkGwxrB8BuuSGCQ32rCz7Lff12TXbnHBgH/DIzkPHrhyUX9kWoZCU5DhLf8gvpDl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+Bzfwaq+VNpNYvmF1OwmSQJcRRaUSMD4Hkt+EEpqFizvPxtOu
+	bkoUVYtlxJxgRwkEtJ//+P3PhV5MsSaPRDOXUS0hfXzvkpMaDPrf4rtlbRoUbu8=
+X-Gm-Gg: ASbGnctRrIxd/uS2IHuhFoPiwP/+PZlNLSItYqRrGehOBktwCrG9RggfrZX1bAtPZPB
+	u9H0+JUkygxt4GpNbFkJnQcScUrx2pwQp2mKEOFWDFQHIlsbiYEUc/tOoDEYfcMKBqCrsaw0nCq
+	Wj7TTGNWKuQBkVwA54/WkpKmB1noTK1cCeKSvTw8+7qOAqNi9iOF4EpthdrbJYD71YrX6JBBFJs
+	2YiJp2gElst2GpMai++2N5+Ownipi0ZDr7YPULPEdpRJUbnxIdw0zD400am
+X-Google-Smtp-Source: AGHT+IF0mB+wjHcXUCtZvjAkIwwZ+lCuWna5//dGlNJreuZoiAf3DMNyafyopVYrRkuOu/Fi+TNmGg==
+X-Received: by 2002:a05:600c:1d07:b0:434:9934:575 with SMTP id 5b1f17b1804b1-436e26a8f4dmr108353855e9.16.1736507457222;
+        Fri, 10 Jan 2025 03:10:57 -0800 (PST)
+Received: from [127.0.1.1] ([2a01:e0a:5ee:79d0:2555:edac:4d05:947d])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38a8e38ef6asm4363463f8f.60.2025.01.10.03.10.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Jan 2025 03:10:56 -0800 (PST)
+From: Alexandre Mergnat <amergnat@baylibre.com>
+Date: Fri, 10 Jan 2025 12:10:46 +0100
+Subject: [PATCH] arm64: dts: mediatek: add mmc2 support for mt8365-evk
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdW1D=o8aaPOAQLPEZw-Y-9MVzzCRGEykEU=39CYeuRW2A@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250109-mmc2-support-v1-1-9b9d1b1ae35d@baylibre.com>
+X-B4-Tracking: v=1; b=H4sIADYAgWcC/x2N0QrCMAwAf2Xk2UBbWXH+ivjQ1swFtq4kToSxf
+ zfs8Q6O20FJmBTu3Q5CX1Zeq4G/dFCmVN+E/DKG4ELvvBtwWUpA3Vpb5YNDzFdKvY/+FsGSnJQ
+ wS6plsqhu82yyCY38Ox+P53H8AY2Xdz9zAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ macpaul.Lin@mediatek.com
+Cc: vsatoes@baylibre.com, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, 
+ Alexandre Mergnat <amergnat@baylibre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3770; i=amergnat@baylibre.com;
+ h=from:subject:message-id; bh=nu1CaLU4FwPi8KmGxZNKa3FBcBUfFSrg7ePK7lPL20s=;
+ b=owEBbQKS/ZANAwAKAStGSZ1+MdRFAcsmYgBngQBAWEL2uuWIHepsCFdpenZ0Y9BCJFm8n1x6SK+d
+ WNkXNr2JAjMEAAEKAB0WIQQjG17X8+qqcA5g/osrRkmdfjHURQUCZ4EAQAAKCRArRkmdfjHURUXAD/
+ 9xCQfkKXbv4ITr507PfOZMAzOBPIFU+1EKpaA6yOT0uYG5y9eHqMJwoJiGUNrKFO15FcuXk0hmh1lh
+ 93djOEDHM77SqfksLf5TvEGs8XRcrhnocO9DwHLHPpiDpkq2rGeTozAN0XlHN1TpH7fgfjypXrQTVa
+ fFmOa+irEKsQoGVyELew3nHgKYqtdIxPQWcqk3PhFnQRONXhES/4dbOJd3Ki3/Au/4ZZsy71MNkU+Z
+ KL/iKAgMNPb/9jQeGXG8+c1UP5eAyI64cdmPPSw2KZEIEWUkdRB2Hilhjwluf/DCfgeKV4lNIuyvf6
+ dAyZCXlZUyERSbsasGZ26HPnagcEovwi9lvSkrhkp3eehmQInIyCp21hIoqbaiPBP9L4Qmylofpgp6
+ 4PaI2hOY0oFANeIOes8cLDHt0UOJdpwBjtm5UFxA/tTTdURKHl3Blc9WHj4WgfidfsBKU4RbC3E3Z5
+ hYvtrBJAFJ1Y6x/s8aO2kfqc56BB83dDlgsx8kPh3MXu6OFvhCImXnBy8gzz9syRKDqN72l3Zg7Ehj
+ yTLcUrzNHJ6pAVhzzJREg5x1M3d4aMWYBqx7rP/XzLd3k3l4mSgNuPeE0+ZHj5qZcxPp966zKbYEoc
+ s/hasqA/hzMDaeliPgoYTH3fywZDVOSe3ug5m69360z7u7i73rsPg331qp8w==
+X-Developer-Key: i=amergnat@baylibre.com; a=openpgp;
+ fpr=231B5ED7F3EAAA700E60FE8B2B46499D7E31D445
 
-Hi Geert,
+Adds support for the MMC2 interface on the MT8365 EVK board.
+It introduces a fixed regulator for the MMC2 VDD33 supply and configures
+the MMC2 node with a 4-bit bus width, high-speed capabilities, UHS
+modes, and appropriate power supplies. Enabled SDIO IRQ, wakeup source,
+and kept power during suspend for wireless chip functionality.
 
-Thanks for your review.
+Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
+---
+ arch/arm64/boot/dts/mediatek/mt8365-evk.dts | 85 +++++++++++++++++++++++++++++
+ 1 file changed, 85 insertions(+)
 
-On 2025-01-10 11:44:21 +0100, Geert Uytterhoeven wrote:
-> Hi Niklas,
-> 
-> On Thu, Jan 9, 2025 at 1:55 PM Niklas Söderlund
-> <niklas.soderlund+renesas@ragnatech.se> wrote:
-> > Add device nodes for the FCPVX instances on R-Car V3U.
-> >
-> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> 
-> Thanks for your patch!
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> i.e. will queue in renesas-devel for v6.15.
-> 
-> > --- a/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r8a779a0.dtsi
-> > @@ -2890,6 +2890,42 @@ port@1 {
-> >                         };
-> >                 };
-> >
-> > +               fcpvx0: fcp@fedb0000 {
-> 
-> I think it makes sense to move these next to the existing fcp nodes.
-> If you agree, I can do that while applying.
+diff --git a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+index 7d90112a7e27..309dc76322d4 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8365-evk.dts
+@@ -53,6 +53,15 @@ memory@40000000 {
+ 		reg = <0 0x40000000 0 0xc0000000>;
+ 	};
+ 
++	mmc2_vdd33: mmc2_vdd33-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "mmc2_vdd33";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		gpio = <&pio 121 0>;
++		enable-active-high;
++	};
++
+ 	usb_otg_vbus: regulator-0 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "otg_vbus";
+@@ -197,6 +206,28 @@ &mmc1 {
+ 	status = "okay";
+ };
+ 
++&mmc2 {
++	assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL>;
++	assigned-clocks = <&topckgen CLK_TOP_MSDC50_2_SEL>;
++	bus-width = <4>;
++	cap-sd-highspeed;
++	cap-sdio-irq;
++	hs400-ds-delay = <0x12012>;
++	keep-power-in-suspend;
++	max-frequency = <200000000>;
++	non-removable;
++	pinctrl-0 = <&mmc2_default_pins>;
++	pinctrl-1 = <&mmc2_uhs_pins>;
++	pinctrl-names = "default", "state_uhs";
++	sd-uhs-sdr104;
++	sd-uhs-sdr25;
++	sd-uhs-sdr50;
++	vmmc-supply = <&mmc2_vdd33>;
++	vqmmc-supply = <&mt6357_vcn18_reg>;
++	wakeup-source;
++	status = "okay";
++};
++
+ &mt6357_pmic {
+ 	interrupts-extended = <&pio 145 IRQ_TYPE_LEVEL_HIGH>;
+ 	interrupt-controller;
+@@ -410,6 +441,60 @@ cmd-dat-pins {
+ 		};
+ 	};
+ 
++	mmc2_default_pins: mmc2-default-pins {
++		clk-pins {
++			pinmux = <MT8365_PIN_81_MSDC2_CLK__FUNC_MSDC2_CLK>;
++			drive-strength = <4>;
++			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
++		};
++
++		cmd-dat-pins {
++			pinmux = <MT8365_PIN_82_MSDC2_DAT0__FUNC_MSDC2_DAT0>,
++				 <MT8365_PIN_83_MSDC2_DAT1__FUNC_MSDC2_DAT1>,
++				 <MT8365_PIN_84_MSDC2_DAT2__FUNC_MSDC2_DAT2>,
++				 <MT8365_PIN_85_MSDC2_DAT3__FUNC_MSDC2_DAT3>,
++				 <MT8365_PIN_80_MSDC2_CMD__FUNC_MSDC2_CMD>;
++			input-enable;
++			drive-strength = <4>;
++			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
++		};
++
++		sys-en-pins {
++			pinmux = <MT8365_PIN_120_DMIC1_CLK__FUNC_GPIO120>;
++			output-low;
++		};
++	};
++
++	mmc2_uhs_pins: mmc2-uhs-pins {
++		clk-pins {
++			pinmux = <MT8365_PIN_81_MSDC2_CLK__FUNC_MSDC2_CLK>;
++			drive-strength = <8>;
++			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
++		};
++
++		cmd-dat-pins {
++			pinmux = <MT8365_PIN_82_MSDC2_DAT0__FUNC_MSDC2_DAT0>,
++				 <MT8365_PIN_83_MSDC2_DAT1__FUNC_MSDC2_DAT1>,
++				 <MT8365_PIN_84_MSDC2_DAT2__FUNC_MSDC2_DAT2>,
++				 <MT8365_PIN_85_MSDC2_DAT3__FUNC_MSDC2_DAT3>,
++				 <MT8365_PIN_80_MSDC2_CMD__FUNC_MSDC2_CMD>;
++			input-enable;
++			drive-strength = <8>;
++			bias-pull-up = <MTK_PUPD_SET_R1R0_01>;
++		};
++
++		ds-pins {
++			pinmux = <MT8365_PIN_86_MSDC2_DSL__FUNC_MSDC2_DSL>;
++			drive-strength = <8>;
++			bias-pull-down = <MTK_PUPD_SET_R1R0_10>;
++		};
++
++		sys-en-pins {
++			pinmux = <MT8365_PIN_120_DMIC1_CLK__FUNC_GPIO120>;
++			output-high;
++		};
++	};
++
+ 	uart0_pins: uart0-pins {
+ 		pins {
+ 			pinmux = <MT8365_PIN_35_URXD0__FUNC_URXD0>,
 
-The rational here was I sorted it based on addresses, but I'm fine 
-either way. If you can fix this when applying I would be grateful, 
-thanks!
+---
+base-commit: 9d89551994a430b50c4fffcb1e617a057fa76e20
+change-id: 20250109-mmc2-support-96b3ea516186
 
-Same for patch 2/2.
-
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> -- 
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
-
+Best regards,
 -- 
-Kind Regards,
-Niklas Söderlund
+Alexandre Mergnat <amergnat@baylibre.com>
+
 
