@@ -1,182 +1,179 @@
-Return-Path: <devicetree+bounces-137518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07DDBA095C5
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:33:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A290CA095D5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 16:37:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D49723AC655
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:30:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 504FF188A195
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 15:37:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B2B02116F2;
-	Fri, 10 Jan 2025 15:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3F820E035;
+	Fri, 10 Jan 2025 15:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q65my6Xu"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="VKOOHwJa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com [209.85.219.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E89A1E1C01;
-	Fri, 10 Jan 2025 15:30:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3A2D1DA3D;
+	Fri, 10 Jan 2025 15:37:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736523048; cv=none; b=onyCpYq8yQF6pR7AoltePYKW1kMegcYPmilHr1UjDnpgiprPDfGcuTNCehSg1XMQJdo0ocYVOt2JAlZY6Ngkrw41YdLSsIhvrbEiREfIvltVbwCoZOkrC17orGdvzB6ACTXjrewGcSxOqW+DIDegCFNFkzSGqRRTEdJDFQSxrX8=
+	t=1736523429; cv=none; b=lDf3v5REZdamiLbSt68G+Uf42ifxlc91Aw5swlKP7suKCkSmqJcztJSqyA2Za/q0/BngLfGXamoHFOs1fmkHj/6rDhchjiUxGz28iUtlpPTEZCs3/GFJMPx5iOYkUpFop6N/Ek5kLLiLPFCe5acziIsArKSY5fPmb0hArE9ARwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736523048; c=relaxed/simple;
-	bh=lWLWetFCTJQsI+G8IfYblUhMjvW1e+4lxaTUwFYAMfM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=geXKCE1ncmCBdOUNWh+VfF1V6XZ19GmKscgZIEw94tasWSVcMZ1polM4z9HL+cW6rfQJUiBnwRMBAcSWuw2mCLpVWKLJl5dLfRgX7Knsx81O79A1kFgRihCilV8rehGXiMzy7zc1C92uceCr6Sj0w7sjO7Nlfb0CVGcwqC0YaxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q65my6Xu; arc=none smtp.client-ip=209.85.219.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f49.google.com with SMTP id 6a1803df08f44-6d91653e9d7so17125806d6.1;
-        Fri, 10 Jan 2025 07:30:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736523045; x=1737127845; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0zrOTe4P32MUWq2MQOl7BIWqEU3Y6SIXQqIMZmB2WSs=;
-        b=Q65my6XuBWE/3kWwgfjw6bHwmWxNDfX92lSvYZm2cbmbjJTXMX1ZQ9QMnRLgCzMDo/
-         WAe8Yn8Jr6X9dThVPW+PkJ7XzsmDrVHosvfVlZKzkWEZrAYEF18YrmBFOFmf6A0FKLXR
-         Gp+BV+KIAVolY3yLkp+wot70o5cRMqUzEsynIxXO762KdK1HhJJEA2qk61EvmLKk4PdA
-         jwIS218DKBqJX/H5dxyWa9jcJH2TuxqorQl54HEjYJDlbzUrJbfjfySJ5Uuh8vTCXT2C
-         sjUpbyPCu/XaoJAvm5ikoRbpHeQ2gf5i6tsAapbSwRw6DXxT/Df/AcHmYpmkT0S8ne40
-         pMLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736523045; x=1737127845;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0zrOTe4P32MUWq2MQOl7BIWqEU3Y6SIXQqIMZmB2WSs=;
-        b=Sq3aV4owj3dgtaVk3cBrYqomFW9WOEbi9vKWldUayU4ZU1giuH/uQiy2D7Q77oesVp
-         NFTHTztz2vWElP91qXmEIiCHkdQSdcFu1X6HndVUjDTXrDVvi/xmn9ZdKGBY3AWcu7Y5
-         ptb0WUTVVHCZU4etcLbyjNmWQM3ApXAngUCIyqUFDhUd5pup4TaCiQ89Civc4xUCLZDM
-         n2qRsdu3og9hwE2+ZVFC9SoFLxciARERJxM1NvIF31JfYsxLorGOzTKF1+66l9S+4Xum
-         y1kqNpRgbmHkdduTk9OTYhS7mMbH9drIU7gwzQzm2GNJhjYpNvVkIXj5YRVZONBtgEnO
-         tW2w==
-X-Forwarded-Encrypted: i=1; AJvYcCV3nnzjLW7UUTyqL79ql/lB/IYWUriTosucxgXd/YjNnkZmMmQn9QNtldopFXeRll9biXdkSmLjz+QB@vger.kernel.org, AJvYcCX+Xti5riJfmGOVskDJi0Xi4Ro8b0ihH96IRkp3SpxI5rzuc8JmtLIuSBbafY9M0C5MOvEsINNLgmnvUlQR@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBxlj5OwaQ39cDXuuw/yX3trtY0k2/Y/kMiG3dgMV3ilKXXS10
-	lTIlwBE5qy+D1OKhmtV80KdPBpwoAkN3EfB3t0L1wUlhAJND5eZOLQNRXHaBdB8qJiYZDVzCeR6
-	2uX2hSzaduofRvWjrN4RZtsa+lGU=
-X-Gm-Gg: ASbGncs0EmX/SM54UoLMDTcaQl4jsp2Mf+6zo0T4osX1ntGmPy/c9iR/B/Xa8p19ykH
-	H9IzDW0mXz+lpCzNkyQlTUYK8VrJ5dp1KyVZkUXqMbHVADO5opqVL5sUZnNqK8Qb5ZAgXeDE=
-X-Google-Smtp-Source: AGHT+IEnoFFUcCDxyWMJMccGcHdpcHtEs8d1tHvHYzHwmCtEP6B4k/qEsVE4N1SvaESd/DasJz0P1wR/TvZ73iY/h6o=
-X-Received: by 2002:ad4:5dec:0:b0:6d4:1425:6d2d with SMTP id
- 6a1803df08f44-6df9b2d62b2mr177775706d6.43.1736523043867; Fri, 10 Jan 2025
- 07:30:43 -0800 (PST)
+	s=arc-20240116; t=1736523429; c=relaxed/simple;
+	bh=n4tdxyCF3JYvVTJ8ok+wFQDptiJ3aQFnTaM4GSLNOBc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=eHsIXPqDHKSuk3xW1L/HggulVuNXionyIW7RnU9+CRfVPGn578/KdYtLD8Y1kaLHgogh0hxQQU8wgQzC25a44nwSyXTIYH289yKkwBcWoGhgLI9mqpVArQsrRFkBwPY0OToGfkzAT3aRoGelnqlDA1R0Hn7Ok7IUgaL5AQSq6UU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=VKOOHwJa; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369457.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50ABpdGv019917;
+	Fri, 10 Jan 2025 16:36:20 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	c/Qxz5rQoH3z73VG+7QliAVS43rJ+oVZjv3N8LtNERY=; b=VKOOHwJaVzU8zyc3
+	Uk9mCiTKiBn1qwVaMlM4DE41fylBp7Puq5fLrwLYv8Y1j4qfDi8bCNLq/F6b7Axu
+	hJsSgAEs5FaNiK7HnvLIuwGn0NP+hwJgk7ZxgL+rxy5uYLbEDeQoT2YYzWLgNtko
+	S4ECUMMopB0lUXNyAl2QBvB5mRZyGID237XbR7xFGEbrHWVBz362SkNVhj6fMzaE
+	eC1bt81A0XlHltOab7UVE9HmRGeCACRfUtCva8nLiZdo7PkWcsbKX2xBi8e1VAPA
+	cr3CiQ2XLg/jj+87txfqVvfYjkqAETA2ZE46FAH4moL0GpTKOgrn9PzzNUwdyxwf
+	WtKY7g==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 44331t8vb8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Jan 2025 16:36:20 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id EB3CC40092;
+	Fri, 10 Jan 2025 16:34:55 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id AF63C2954B8;
+	Fri, 10 Jan 2025 16:33:12 +0100 (CET)
+Received: from [10.129.178.212] (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 10 Jan
+ 2025 16:33:12 +0100
+Message-ID: <96492d7e-8039-43be-9f63-eff81083f790@foss.st.com>
+Date: Fri, 10 Jan 2025 16:33:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250108-rk3588-h96-max-v58-v2-0-522301b905d6@gmail.com>
- <1950286.IobQ9Gjlxr@diego> <CABjd4Yy4Qd1rD43u3B-s=HxVBnaQt7fSgP9NFY2YeY0eKMESvQ@mail.gmail.com>
- <2731770.KRxA6XjA2N@diego>
-In-Reply-To: <2731770.KRxA6XjA2N@diego>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Fri, 10 Jan 2025 19:30:33 +0400
-X-Gm-Features: AbW1kvbKtZndFgN6a8gaF4CRnBwYqi1xlW_2MAE9e2Mp3DOEVgrwl-t4iXkVcz0
-Message-ID: <CABjd4Yy48dwZA83XRps_L_sowA_e95PcXYqvAo2J+xVydSA44A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: Add SPDIF nodes to RK3588(s)
- device trees
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/5] PCI: stm32: Add PCIe endpoint support for
+ STM32MP25
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: <lpieralisi@kernel.org>, <kw@linux.com>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>, <cassel@kernel.org>,
+        <quic_schintav@quicinc.com>, <fabrice.gasnier@foss.st.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20241126155119.1574564-1-christian.bruel@foss.st.com>
+ <20241126155119.1574564-5-christian.bruel@foss.st.com>
+ <20241203152230.5mdrt27u5u5ecwcz@thinkpad>
+ <4e257489-4d90-4e47-a4d9-a2444627c356@foss.st.com>
+ <20241216161700.dtldi7fari6kafrr@thinkpad>
+Content-Language: en-US
+From: Christian Bruel <christian.bruel@foss.st.com>
+In-Reply-To: <20241216161700.dtldi7fari6kafrr@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Thu, Jan 9, 2025 at 2:28=E2=80=AFAM Heiko St=C3=BCbner <heiko@sntech.de>=
- wrote:
->
-> Hi Alexey,
->
-> Am Mittwoch, 8. Januar 2025, 16:30:35 CET schrieb Alexey Charkov:
-> > On Wed, Jan 8, 2025 at 2:01=E2=80=AFPM Heiko St=C3=BCbner <heiko@sntech=
-.de> wrote:
-> > >
-> > > Hi Alexey,
-> > >
-> > > Am Mittwoch, 8. Januar 2025, 10:09:07 CET schrieb Alexey Charkov:
-> > > > RK3588s has four SPDIF transmitters, and the full RK3588 has six.
-> > > > They are fully compatible to RK3568 ones. Add respective nodes
-> > > > to .dtsi files.
-> > >
-> > > While it may seem that way, we still want soc-specific compatibles,
-> > > to future-proof this.
-> > >
-> > > I.e. going the the
-> > >         compatible =3D "rockchip,rk3588-spdif", "rockchip,rk3568-spdi=
-f";
-> > > way, so that now things can just match against the rk3568, but if som=
-e
-> > > fault emerges later on the code can be fixed with the DT staying just
-> > > compatible.
-> > >
-> > > The spdif also has an example already for all the spdif variants that=
- are
-> > > compatible to the rk3066 [3], so it'd need another "items" block for =
-things
-> > > being compatible with the rk3568.
-> >
-> > Hmm, if we are to believe the driver ([4], [5]), they are all the same
-> > as the good old RK3366, which in turn is software compatible to the
-> > good old RK3066. Same seems to apply to RK3576, given that its current
-> > .dtsi just references the "rockchip,rk3568-spdif" compatible.
->
-> I was for a short while afraid that something slipped into mainline :-)
-> But I guess that "rockchip,rk3568-spdif" compatible on the rk3576 is
-> only used in the vendor-kernel.
 
-Sorry, didn't mean to give you a heart attack :-)
 
-> > Does it mean that the binding needs to be restructured so that the
-> > required fallback compatible ("rockchip,rk3066-spdif") applies to all
-> > variants? Or shall the existing ones be left alone, and just RK3588
-> > and RK3576 added inside that "items" block?
->
-> I noticed that the spdif binding has had an interestings growth over
-> the years, with some socs being outliers.
->
-> I wouldn't change the whole binding, especially as that then touches
-> established stuff.
-
-Noted, thanks.
-
-> The question would be weather to add the rk3588 + rk3576 to the
-> existing enum marking them as compatible with the rk3066, or create
-> a separate items block and just saying the rk3588-spdif is compatible wit=
-h
-> the rk3568 one, like:
->
+On 12/16/24 17:17, Manivannan Sadhasivam wrote:
+> On Mon, Dec 16, 2024 at 11:02:07AM +0100, Christian Bruel wrote:
+>> Hi Manivanna,
+>>
+>> On 12/3/24 16:22, Manivannan Sadhasivam wrote:
+>>> On Tue, Nov 26, 2024 at 04:51:18PM +0100, Christian Bruel wrote:
+>>>
+>>> [...]
+>>>
+>>>> +static int stm32_pcie_start_link(struct dw_pcie *pci)
+>>>> +{
+>>>> +	struct stm32_pcie *stm32_pcie = to_stm32_pcie(pci);
+>>>> +	int ret;
+>>>> +
+>>>> +	if (stm32_pcie->link_status == STM32_PCIE_EP_LINK_ENABLED) {
+>>>> +		dev_dbg(pci->dev, "Link is already enabled\n");
+>>>> +		return 0;
+>>>> +	}
+>>>> +
+>>>> +	ret = stm32_pcie_enable_link(pci);
+>>>> +	if (ret) {
+>>>> +		dev_err(pci->dev, "PCIe cannot establish link: %d\n", ret);
+>>>> +		return ret;
+>>>> +	}
+>>>
+>>> How the REFCLK is supplied to the endpoint? From host or generated locally?
+>>
+>>  From Host only, we don't support the separated clock model.
+>>
+> 
+> OK. So even without refclk you are still able to access the controller
+> registers? So the controller CSRs should be accessible by separate local clock I
+> believe.
+> 
+> Anyhow, please add this limitation (refclk dependency from host) in commit
+> message.
+> 
 > [...]
->       - const: rockchip,rk3568-spdif
->       - items:
->           - enum:
->               - rockchip,rk3128-spdif
->               - rockchip,rk3188-spdif
->               - rockchip,rk3288-spdif
->               - rockchip,rk3308-spdif
->           - const: rockchip,rk3066-spdif
->       - items:
->           - enum:
->               - rockchip,rk3576-spdif
->               - rockchip,rk3588-spdif
->           - const: rockchip,rk3568-spdif
-> [...]
->
-> With the RK3066 being released in 2012, part of me is amazed that that
-> block survived that long, on the other hand going with the above snippet
-> somehow feels saver ;-) .
+> 
+>>>> +	ret = phy_set_mode(stm32_pcie->phy, PHY_MODE_PCIE);
+>>>
+>>> Hmm, so PHY mode is common for both endpoint and host?
+>>
+>> Yes it is. We need to init the phy here because it is a clock source for the
+>> PCIe core clk
+>>
+> 
+> Clock source? Is it coming directly to PCIe or through RCC? There is no direct
+> clock representation from PHY to PCIe in DT binding.
 
-Let me first submit a short series dealing with RK3588 alone, as
-that's the only one I can test at the moment.
+We have the following simplified clock dependencies (details in the RM)
 
-Best,
-Alexey
+                                 _____________
+RCC  ck_icn_pcie--- ------------|-> dbi_clk  |
+                     _________   |            |
+      ck_icn_phy ---|->       |  |            |
+                    |  pipe0--|--|->core_clk  |
+      ck_ker ----- -|->       |  |            |
+                    |         |  |            |
+      100mhz pad ---|-> pll   |  |            |
+                    |_________|  |____________|
+                      COMBOPHY      PCIE
+
+
+I considered adding the COMBOPHY pipe0 as the clock provider for the 
+PCIe core_clk, but this did not provide any advantage since the PLL 
+needs to be locked first and all settings need to be completed. 
+Therefore, using clock_prepare_enable(pipe0) would be redundant with 
+what phy_init already accomplishes. The phy_init function is necessary 
+because it is used by the USB3 driver.
+
+Since the core_clk is operational when all three other clocks are 
+enabled and the PLL is locked, modeling pipe0 had minimal value, 
+especially considering the dependencies of the USB3 driver.
+
+I will add a comment in the code to explain this.
+
+> 
+> - Mani
+> 
 
