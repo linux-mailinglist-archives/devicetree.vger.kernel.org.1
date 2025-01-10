@@ -1,193 +1,123 @@
-Return-Path: <devicetree+bounces-137401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137402-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9E51A08E26
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:37:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD632A08E3A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 11:42:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D58A216888C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:37:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABA07188B04C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 10:42:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDE0A20ADFD;
-	Fri, 10 Jan 2025 10:37:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NZuiqyG2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA87220B1E9;
+	Fri, 10 Jan 2025 10:42:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25B0820A5FC;
-	Fri, 10 Jan 2025 10:37:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC8720ADE7
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 10:42:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736505461; cv=none; b=lWuP2hzZz5IFYepNnOPowsoPPtpM4XMninN704TeHeFc/kXU9Nwg1vjmCcJxm5ulFMHzGGVw+1EQ6JN5sxJFZ9AdykywYUoYDqi9rRocN1weZSzXB+vr25nf7HWDA4GeKhaGZM1TDtQSHXk5+TsL2Gp6wf3obJOuKBVMKKtCHis=
+	t=1736505725; cv=none; b=URWvbyg8qst68ZMhTIERIWCO6RJ4d5QbQk0sTYJ83SDpetQSlTi3XqfrgO1FoC2+Eff3cV8Mb8h+wds6Vdhctm66omi2AteuY1yLiOq2mrl52L+W84PI7cxmGbXATG/xZEbqCvf1NqiMCsEcqnUDw09cU1Qs7l3YVMtLLKYirok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736505461; c=relaxed/simple;
-	bh=uJYOTl7B8MBckYkMtZtBQCm2Zvq1+VaHDB3X1GJcbn4=;
+	s=arc-20240116; t=1736505725; c=relaxed/simple;
+	bh=2t6560ciqPluM5jV4icj76vKmnBYruYYY1iaoWGUwOc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=liGiXP9YEGHncNT82PXUzFajBJHtphHPJDh5NpU4X0xKJYQsaFWoSVKqrFVmS8toTaux9kXnZEfCxBmcJeqhEZwfluhXGNtSU6OUrUn9CZxbpky26fP0pF/95p5SgHyAnr+LR+5nAaCunJO784hNZBXdjgvrBVuLUzBgTsqCqNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NZuiqyG2; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736505460; x=1768041460;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=uJYOTl7B8MBckYkMtZtBQCm2Zvq1+VaHDB3X1GJcbn4=;
-  b=NZuiqyG2V6qwtsK/oJ5K7Z9IPkimbHoW3oWABYw+NDUst3H6hR7LrEBC
-   X9S07t3GBuLIQjGCtQ/xqUTmaB9zzi4yyhzfMFmpvXDpa7xvrZ6JT3c9y
-   2S16TMVg0Hg1xDePAuop83QNcioxVsl0TatOWVi9h1MlCamBYkB5UsyqJ
-   nKYOhScC4/751oOIqOWgguF/oLQyjMdHOA0KKrFfF5AnHE1h5h0ra61su
-   eY4vsVH+WG8m9Yr+MhSvUK31QrqGJvViKLcqTscJZvxB+Xg3+Ti4D2Gm4
-   nN+E3aThfsy53sf9FoaBwJ91IXZ1dBFw3hTpx9a4ETJm6JTMJX+fbV49/
-   g==;
-X-CSE-ConnectionGUID: 8CpG1Q/0T6ajAhN4NGW8Lg==
-X-CSE-MsgGUID: ubaWsqcjRuGtMZM+7lfPSQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11310"; a="54212357"
-X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; 
-   d="scan'208";a="54212357"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jan 2025 02:37:39 -0800
-X-CSE-ConnectionGUID: D5SBEckiSJWrOsnWZFDHbw==
-X-CSE-MsgGUID: 41rOFE7bRNOq5/uQEhoMqA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,303,1728975600"; 
-   d="scan'208";a="104256826"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jan 2025 02:37:34 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id 604EB12049D;
-	Fri, 10 Jan 2025 12:37:31 +0200 (EET)
-Date: Fri, 10 Jan 2025 10:37:31 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Michael Riesch <michael.riesch@wolfvision.net>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Nicolas Dufresne <nicolas@ndufresne.ca>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Alexander Shiyan <eagle.alexander923@gmail.com>,
-	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Mehdi Djait <mehdi.djait@bootlin.com>,
-	Gerald Loacker <gerald.loacker@wolfvision.net>
-Subject: Re: [PATCH v2 4/6] media: rockchip: add a driver for the rockchip
- camera interface (cif)
-Message-ID: <Z4D4a0GZ88sqc-rg@kekkonen.localdomain>
-References: <20241217-v6-8-topic-rk3568-vicap-v2-0-b1d488fcc0d3@wolfvision.net>
- <20241217-v6-8-topic-rk3568-vicap-v2-4-b1d488fcc0d3@wolfvision.net>
- <Z3-f1SrrRjMnB-1C@kekkonen.localdomain>
- <561bef3e-2511-4741-9175-5c15239f9b1f@wolfvision.net>
- <Z4ACALOeioLroqmw@kekkonen.localdomain>
- <78fa589d-f9b6-41d8-bee5-766d0d1c3b17@wolfvision.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=D8llSy0qveg3cPn8GpOJPO2hCr9C8DC/vmz6a4PE3gfoWoXiCSwuTzZH4H/poH/H9U9w/8WZAm0EBCFCeSgKh3vvmwjgPqHBxlnb3hPl8zWq8PXrYXgO2RPAPSOXwp42MPi61gdRPDd+8rdnAu+2NIelrL+nOsdf3CcCUAjJ0OQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tWCSd-00010v-9s; Fri, 10 Jan 2025 11:41:51 +0100
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1tWCSc-00090F-1b;
+	Fri, 10 Jan 2025 11:41:50 +0100
+Received: from pengutronix.de (pd9e59fec.dip0.t-ipconnect.de [217.229.159.236])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 216863A4529;
+	Fri, 10 Jan 2025 10:41:50 +0000 (UTC)
+Date: Fri, 10 Jan 2025 11:41:49 +0100
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Ruffalo Lavoisier <ruffalolavoisier@gmail.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Thomas Kopp <thomas.kopp@microchip.com>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] docs: remove duplicate word
+Message-ID: <20250110-screeching-quixotic-tanuki-1e6fa0-mkl@pengutronix.de>
+References: <20241120044014.92375-1-RuffaloLavoisier@gmail.com>
+ <20241120-antique-earwig-of-modernism-1fc66e-mkl@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ip3hmrnf27rnbmsn"
 Content-Disposition: inline
-In-Reply-To: <78fa589d-f9b6-41d8-bee5-766d0d1c3b17@wolfvision.net>
+In-Reply-To: <20241120-antique-earwig-of-modernism-1fc66e-mkl@pengutronix.de>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi Michael,
 
-On Fri, Jan 10, 2025 at 10:12:29AM +0100, Michael Riesch wrote:
-...
-> >>>> +static int cif_stream_enum_framesizes(struct file *file, void *fh,
-> >>>> +				      struct v4l2_frmsizeenum *fsize)
-> >>>> +{
-> >>>> +	struct cif_stream *stream = video_drvdata(file);
-> >>>> +	struct v4l2_subdev_frame_size_enum fse = {
-> >>>> +		.index = fsize->index,
-> >>>> +		.which = V4L2_SUBDEV_FORMAT_ACTIVE,
-> >>>> +	};
-> >>>> +	struct v4l2_subdev *sd = stream->remote->sd;
-> >>>> +	const struct cif_output_fmt *fmt;
-> >>>> +	int ret;
-> >>>> +
-> >>>> +	fmt = cif_stream_find_output_fmt(stream, fsize->pixel_format);
-> >>>> +	if (!fmt)
-> >>>> +		return -EINVAL;
-> >>>> +
-> >>>> +	fse.code = fmt->mbus_code;
-> >>>> +
-> >>>> +	ret = v4l2_subdev_call(sd, pad, enum_frame_size, NULL, &fse);
-> >>>
-> >>> You shouldn't get this information from the sensor driver but just convey
-> >>> what this device supports.
-> >>
-> >> OK, but what does this device support? In principle, there is a
-> >> continuous range of frame sizes up to a certain maximum size. But in
-> >> practice, it depends on the subdevice as there is no scaler in the DVP
-> >> path. Thus, every frame size but the one that the subdevice delivers
-> >> will result in a broken stream?
-> > 
-> > Could you use CIF_MAX_WIDTH and CIF_MAX_HEIGHT?
-> > 
-> >>
-> >> If this does not return the only possible frame size, is this callback
-> >> useful at all?
-> > 
-> > In order not to configure an output size for the sensor that can't be
-> > received by this block?
-> 
-> Right... Forgot about this case. This means user space needs to
-> determine the possible frame sizes of each V4L2 device and subdevice in
-> the pipeline and find a size that matches, right?
+--ip3hmrnf27rnbmsn
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] docs: remove duplicate word
+MIME-Version: 1.0
 
-Correct.
+On 20.11.2024 09:27:22, Marc Kleine-Budde wrote:
+> On 20.11.2024 13:40:13, Ruffalo Lavoisier wrote:
+> > - Remove duplicate word, 'to'.
+>=20
+> Can I add your Signed-off-by to the patch?
+>=20
+> https://elixir.bootlin.com/linux/v6.12/source/Documentation/process/submi=
+tting-patches.rst#L396
 
-Ideally this would be available on sub-device nodes, not video devices, but
-I guess v4l2-compliance requires it on video devices.
+Is it OK to add your Signed-off-by to the patch?
 
-> >> And would that apply to all the method and struct names in this driver
-> >> or to the driver as well (location, file names)?
-> >>
-> >> The name has been discussed several times during the 13 iterations of
-> >> the PX30 VIP series and I believe it changed from (cif//rkcif_) in
-> >> downstream -> (vip//vip_) in Maximes work -> (cif/cif-/cif_) in Mehdis
-> >> work, where the tuple is (driver directory/filename prefix/function and
-> >> structs prefix).
-> >>
-> >> Hence I am a bit reluctant to change the naming convention yet again.
-> >> That said, I'll be prepared to change it JUST ONE MORE TIME to any tuple
-> >> you suggest -- but this really should be the end of the name bikeshedding.
-> > 
-> > I don't care about the internal naming but the global symbols. Using a
-> > namespace is another option.
-> > 
-> 
-> I would suggest the tuple (rkcif/rkcif-/rkcif_) then. This is in
-> alignment with the Rockchip ISP driver (rkisp1/rkisp1-/rkisp1_).
-> Unfortunately, the Rockchip RGA differs here (but with the tuple
-> (rga/rga-/rga_) it uses the same prefix for everything at least).
-> 
-> There seems to be even less alignment when looking at other
-> drivers/media/platform/ drivers, therefore I can only try to maximize
-> the alignment within drivers/media/platform/rockchip/.
-> 
-> What do you think?
+regards,
+Marc
 
-The rkcif prefix for anything global seems good to me.
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
 
--- 
-Kind regards,
+--ip3hmrnf27rnbmsn
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Sakari Ailus
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEUEC6huC2BN0pvD5fKDiiPnotvG8FAmeA+WoACgkQKDiiPnot
+vG9LlggAlAOvAjXwwTntSfaNIv3HMCQcKByFRx2L9fN9+YOvmAfaAZuwlgi9Qzed
+2Z+XbYsa3t3SOK/5+FbeNu1tWs3mu8cpYpserlakQb7g6V3Bel2LxlqR3W9hCdI4
+Z8y0KbKTTRrWGmIdiOeP6AbZph0H1szaMuP4S0VmTg54HlZX0loblaQ/XCOc0PmS
+KByCbK7C/u3665FnM5PM0BndSGku9kg43FpnENKr3/eExZsSgMj7Ji83ua/7wOKe
+44rBWSCCvG9Ns+eLzepDW5JXqqnGP2ycpTBO3qeEDu/iTVMdP3xqBUbP+9HRqEp4
+YIhdcUlVTIr9G1eSi8SXllPLNg+6Dg==
+=iCBi
+-----END PGP SIGNATURE-----
+
+--ip3hmrnf27rnbmsn--
 
