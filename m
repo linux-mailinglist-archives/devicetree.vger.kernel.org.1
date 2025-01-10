@@ -1,178 +1,229 @@
-Return-Path: <devicetree+bounces-137323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7347DA089B9
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:20:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4CDFA08A10
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 09:27:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F5551616E0
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:20:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A47B13A98C8
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 08:27:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19B91207A02;
-	Fri, 10 Jan 2025 08:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669FA2080E6;
+	Fri, 10 Jan 2025 08:26:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="Hb2BU193"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nGEi57sZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013026.outbound.protection.outlook.com [40.107.162.26])
+Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44DD4257D;
-	Fri, 10 Jan 2025 08:20:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.26
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736497218; cv=fail; b=rxPA2G3LTzZbPX4OHrGipZH2RyMMlZmUdvrmjgxP8RgmJPThQgzqiSLjssIZBL1IptGT6y8O3dsW9DeCRVG1ypJZ1yjt73EddcRRXo52cWLZ9/au4oav6FKZqvy1l91lkHDEcQPCw+aD2ITHeKRta6T2EyUsd3aVcXyRoyn1RUs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736497218; c=relaxed/simple;
-	bh=LDDJcUrXFkWKe5FKTIJ1hpQpKblSf4eAw0bOSHuH8iE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i+oCidfBK3U5uQ8EIuWfSJy267h6RIM6Tpy2jlC4RB36hqPloPeknbS1WpxRKiVjdLOzuvyNgTTXnXsEugF59XhEmhrnXBQSi2NfqWt7VLSh7DHVfp4DEpYM0bEILk2yDhOwKYyhD+bdmRZajNZOL4loAQip+igjbzAsq9Oqvlk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com; spf=fail smtp.mailfrom=leica-geosystems.com; dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b=Hb2BU193; arc=fail smtp.client-ip=40.107.162.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oP6oprrVhTeeLkDPyV0BxqRex6UEfFgLVvcd2fIqQP2b0OGQOQIZ0uDJvIBDTI1S6POGO2xdX9lD4aRqWg3utajNkY8jfjj/joiMhfteDJCI4zND1WZ8ulNolruXLg76mQD5VVAG/POMgk2W2DQH/XDgsFV6pGKggrDf3HRu+Gmh4vj3Tp12LRAQfpJrePHJmwzPPci2zUrrtBX74kuDIfyd1U6jJQhoG2plqzrsgwVPEiI5r2yih901W9/3Eb75Lv6AIpwuTkqAc10PdTKysmJvw9nrdBfMVrK8+Scb4JYv9nSglMjUPhVe9nR4ZEpx5mLx4EM8D3ywj9fDW5KJnw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z7ePe8LrpbKbpFWmraqm2BTfhKZLA99rUCyeM3NWd/s=;
- b=jjD5eC8PRjVKMzBO6b4P6FFH94ZDcgdlj2neCvKUBzzvPTAXUO+qeE2bn5VWT2dfh204fpJtBVTv4qicyqBgaXf09SaTMifwSCesuhA5C04l/wkBHBwPBGrPM5p9N8jQTOMsXSxqIfkl/UYSu34FfYQLrUEHSkWu0rI30fBcfvQljhzurQvvKfh8sDzk5KQG3fn8qvmspta4nUiYUPM6dXJJsiP9nxUPSa99tNs5FbxLeEDIhI8i06oWS0Lh5RYZm5PVQnFVumPG3C5CKGc0w9AntEEyF154CNxbmJs81/Ctb6Plmhq+fFpdJ0RQEHnyyvm4jMuP2c55w9hCBpKRuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=leica-geosystems.com; dmarc=pass (p=reject sp=reject pct=100)
- action=none header.from=leica-geosystems.com; dkim=none (message not signed);
- arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z7ePe8LrpbKbpFWmraqm2BTfhKZLA99rUCyeM3NWd/s=;
- b=Hb2BU193yYjTdzhi1EYMSCYOpSqYvQC0hpH9aitksFbwHJo4Vhrk4GmlzYG1fS5NviDl4isZTIgdP0TBV4XNt9v2LDnqvd2oY+tIoHsKF80XcW/6NDpBiv53/NNi63stY70xkEq94GuM0/tXAkea3e3xUMNbBhwof0QOPKpCe18=
-Received: from AS8PR07CA0058.eurprd07.prod.outlook.com (2603:10a6:20b:459::15)
- by VI0PR06MB9747.eurprd06.prod.outlook.com (2603:10a6:800:21c::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.12; Fri, 10 Jan
- 2025 08:20:11 +0000
-Received: from AM4PEPF00025F9C.EURPRD83.prod.outlook.com
- (2603:10a6:20b:459:cafe::5c) by AS8PR07CA0058.outlook.office365.com
- (2603:10a6:20b:459::15) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8356.6 via Frontend Transport; Fri,
- 10 Jan 2025 08:20:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
- smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=leica-geosystems.com;
-Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com
- designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
- client-ip=193.8.40.94; helo=hexagon.com; pr=C
-Received: from hexagon.com (193.8.40.94) by
- AM4PEPF00025F9C.mail.protection.outlook.com (10.167.16.11) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8356.0 via Frontend Transport; Fri, 10 Jan 2025 08:20:11 +0000
-Received: from aherlnxbspsrv01.lgs-net.com ([10.60.34.116]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
-	 Fri, 10 Jan 2025 09:20:08 +0100
-From: Catalin Popescu <catalin.popescu@leica-geosystems.com>
-To: andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org
-Cc: netdev@vger.kernel.org,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9853E207E09;
+	Fri, 10 Jan 2025 08:26:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.240
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736497611; cv=none; b=qUaSjL6x7sV/0zQzF/BBwbnltswY41tkifigjfbTO9kxqiBL72RHpOlrwDpKzxCdG6nq92d5V7WqPwby1dU+C9PaMZRNigUidEkpS+GYDzeVNjVHTstVpdad3cmwMq4oL1TavYyzDePRp9BlpHjSfUjoKo2OKpRtj2i7TIjtRSw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736497611; c=relaxed/simple;
+	bh=8iT/CGxqNYEqYQ8S645HB11lrNIMFUJ4tKGMU+hgkXE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rcVpWF9QDR31tKrBNr8/4JhahbmYREp1pqSQDPyBfZ4XkyzdgezEr7AZDKmvyWuYtg77KBc0JNUbixQtmFmCrWfREhnLWMqMKMERAFTFdlYTcs7rRckS961yA1/u0uerHI28R6yquiCKo38HZsLLXhra4Dm6EJ1Y00Bic53WmM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nGEi57sZ; arc=none smtp.client-ip=217.70.178.240
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from relay7-d.mail.gandi.net (unknown [217.70.183.200])
+	by mslow1.mail.gandi.net (Postfix) with ESMTP id A1243C47F9;
+	Fri, 10 Jan 2025 08:21:56 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPA id D2D9720003;
+	Fri, 10 Jan 2025 08:21:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736497314;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=KNe0gefFKBFIwU4dgG9OeQZfa+i4R5oJpGtPJS6WYvE=;
+	b=nGEi57sZdauzAOIXOFT7pr6Ast6QQ2qDVVZirGwu5NgjK8INFicO26zNgtwOd0vGaQfRc7
+	oZNnUxk/G+T3GRLPouurVwcPJO3a8kXjvrzdXe10l7y5K71mKJkftGDkd35XDQzspcQqMo
+	cSYv86nPxw0aOAriUejS652P2bykWKLMonN5eHO+9yboUufTt8Nsh5epgco89CiK4muKCx
+	Xl0LOrTecMkt2AKkO3Ki+1ISXVfqM51zZOENy21qs0PWIrPDCK12TFySquRmfqcM9WL0+E
+	iD8ydVNj5aK1gJaes0BGpZdoQkQCCFPZB7pY4cxcogQqZXCI6rI6mE7sDXukYw==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lizhi Hou <lizhi.hou@amd.com>
+Cc: linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-wireless@vger.kernel.org,
-	m.felsch@pengutronix.de,
-	bsp-development.geo@leica-geosystems.com,
-	Catalin Popescu <catalin.popescu@leica-geosystems.com>
-Subject: [PATCH net-next 2/2] net: rfkill: gpio: allow booting in blocked state
-Date: Fri, 10 Jan 2025 09:19:02 +0100
-Message-Id: <20250110081902.1846296-2-catalin.popescu@leica-geosystems.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250110081902.1846296-1-catalin.popescu@leica-geosystems.com>
-References: <20250110081902.1846296-1-catalin.popescu@leica-geosystems.com>
+	linux-pci@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH v6 0/5] Add support for the PCI host bridge device-tree node creation.
+Date: Fri, 10 Jan 2025 09:21:36 +0100
+Message-ID: <20250110082143.917590-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-OriginalArrivalTime: 10 Jan 2025 08:20:08.0371 (UTC) FILETIME=[75D40830:01DB6338]
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM4PEPF00025F9C:EE_|VI0PR06MB9747:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: 03912be0-91aa-4275-17ec-08dd314f9a47
-X-SET-LOWER-SCL-SCANNER: YES
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?PNzEp44U+6aQdrmUQkUgVNYN/gdAW6WF3Kr6+U9usSajPF5LNfnVg56dvu9o?=
- =?us-ascii?Q?Jf7Igm32bCTcIPShi0b5tRle1X/GxLW9QskvwVGvUwZr/M13yTB6EAvW9YQC?=
- =?us-ascii?Q?lKBfcZq2DJkqzLB7A9sIopBVBrvkOQJyUDeITIXetClDHANrBqDlilDQomFi?=
- =?us-ascii?Q?OBf3AqNf3Bg3hJGNzYW+AHxp1ZwwLaxnF3JC9ZHxLWjYP2rcPmofNDaI0g14?=
- =?us-ascii?Q?/X4ICBxgqWVWLei2Cj7d3WlxUg7t5eF5WY1IDjwvWEYSvvy9NWoS1AHTkk5F?=
- =?us-ascii?Q?p00f/ffoPrD6X+/c6J71T4tyaaLFaPVMNRh+/7vTT9KHy8R6w2H9U3AdlU90?=
- =?us-ascii?Q?4GP5YurUxUDZPQvQXmRUcgzpM2XdCIDE5dH7hmwUqzYIZk1BV8fC9YyeHs6S?=
- =?us-ascii?Q?aJBp40y99MHEpWKdKUWT++JVoVoot7fy4FYJGPShQp0BQJtTE6HQ9QzUB0tt?=
- =?us-ascii?Q?ldZnvP3SmObQVKIkqJ06aiGGXLPpZf3uhCz8cQxMz/YZ+EPVLWQi/19Meh0D?=
- =?us-ascii?Q?P0QOJ91AyBlZP9n6ntxP/MskJrHfRJbZWqqvpRQLZbOe3ttG2jByf3/W6FWw?=
- =?us-ascii?Q?JI/OrYxA4JcKj81zjUF3nHnNk8b7IOSvfaBFhoQXUluZ+KYrGDelz/lIeue3?=
- =?us-ascii?Q?7DTuDgQwF5NqzUEMA8M4EXP7Uh6W5yVCBgmaMPen6+FhBVjIRHB9yhKs80xf?=
- =?us-ascii?Q?+V/7xNJKJ7sJsihXlRrIsE6htxjfdJqOnfItGrOfO8y6gcJ5WZlc23SJ4DtN?=
- =?us-ascii?Q?Go7WtAohZcJoUJxJCYnQdxrm+CkH9rsCKc3s8P897d5jWfM0cyfyyengJiBI?=
- =?us-ascii?Q?hlHLVFXawdPkjlOemnzik9V7xviHJSxj6NH1VIRWELKcVRpFnahTkMUnQSda?=
- =?us-ascii?Q?RZiV/cSCNLIkBD9H/rBcSC1xMQ/F83N2yks0ApqAvpLdGxAAmp71V6dXrL9k?=
- =?us-ascii?Q?f2tu9KF9GQZsdEPIMEu4GzRU6d9b2zZ9097ZFG5qrMTB1yBcYEiQSLYmJ2E9?=
- =?us-ascii?Q?2lcLEHk/yUygIBnlshIbqEP+oZzhQ1U6lBvV1kU8XajS2+6yXa8YjZ9eSZol?=
- =?us-ascii?Q?tAX6Byvx15HJdiJIZxfzHgQWgcneZeuANWChHODLOqDezsA9Z3u0uU61uDfk?=
- =?us-ascii?Q?4Xw7CKscfDDX3MPk71qo3b/tY+44p76SX4AILuPBUjTDDEkPk3qyqPVEIa12?=
- =?us-ascii?Q?XSvYt6EbTnojcvKeSAPvS0VHviOeUF3Iy26vlRBk/K6DQZbefjcYLU2LfzE2?=
- =?us-ascii?Q?bYNKOhkBHVuLEAch4ad6+JpQDooCYv6PS/vFNt+3G7tDH9FCCbnaFk9UP6xi?=
- =?us-ascii?Q?hclFc8AiYtGH7Oq6we4D2b9tEIG0iEPT++nRBYQMwlo/obnGu2SOTOrCguzm?=
- =?us-ascii?Q?KNwHSRs1XDSn1ldi6FdA3rZPdkIkrD+xZm4rHHCbxEHD1jM9R/CMY8oLVyL+?=
- =?us-ascii?Q?tL2Uf6QJIMoq/vVeUUOtY1oecyd/1utETthZeqIZ/xiYu5VkPT4vR/8P1090?=
- =?us-ascii?Q?SFKC70TdsH/GDvQ=3D?=
-X-Forefront-Antispam-Report:
-	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: leica-geosystems.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jan 2025 08:20:11.6068
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 03912be0-91aa-4275-17ec-08dd314f9a47
-X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AM4PEPF00025F9C.EURPRD83.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR06MB9747
+X-GND-Sasl: herve.codina@bootlin.com
 
-By default, rfkill state is unblocked and this behavior is not
-configurable. Add support for booting in blocked state based on the
-presence of a devicetree property.
+Hi,
 
-Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
----
- net/rfkill/rfkill-gpio.c | 3 +++
- 1 file changed, 3 insertions(+)
+This series adds support for creating a device-tree node for the PCI
+host bridge on non device-tree based system.
 
-diff --git a/net/rfkill/rfkill-gpio.c b/net/rfkill/rfkill-gpio.c
-index 9fa019e0dcad..41e657e97761 100644
---- a/net/rfkill/rfkill-gpio.c
-+++ b/net/rfkill/rfkill-gpio.c
-@@ -162,6 +162,9 @@ static int rfkill_gpio_probe(struct platform_device *pdev)
- 	if (!rfkill->rfkill_dev)
- 		return -ENOMEM;
- 
-+	if (device_property_present(&pdev->dev, "default-blocked"))
-+		rfkill_init_sw_state(rfkill->rfkill_dev, true);
-+
- 	ret = rfkill_register(rfkill->rfkill_dev);
- 	if (ret < 0)
- 		goto err_destroy;
+Creating device-tree nodes for PCI devices and PCI-PCI bridges already
+exists upstream. It was added in commit 407d1a51921e ("PCI: Create
+device tree node for bridge"). Created device-tree nodes need a parent
+node to be attached to. For the first level devices, on device-tree
+based system, this parent node (i.e. the PCI host bridge) is described
+in the base device-tree. The PCI bus related to this bridge (PCI root
+bus) inherit of the PCI host bridge device-tree node.
+
+The LAN966x PCI device driver, available since commit 185686beb464
+("misc: Add support for LAN966x PCI device"), relies on this feature.
+
+On system where the base hardware is not described by a device-tree, the
+PCI host bridge to which first level created PCI devices need to be
+attach to does not exist. This is the case for instance on ACPI
+described systems such as x86.
+
+This series goal is to handle this case.
+
+In order to have the PCI host bridge device-tree node available even
+on x86, this top level node is created (if not already present) based on
+information computed by the PCI core. It follows the same mechanism as
+the one used for PCI devices device-tree node creation.
+
+As for device-tree based system, the PCI root bus handled by the PCI
+host bridge inherit of this created node.
+
+In order to have this feature available, a number of changes are needed:
+  - Patch 1 and 2: Introduce and use device_{add,remove}_of_node().
+    This function will also be used in the root PCI bus node creation.
+
+  - Patch 3 and 4: Improve existing functions to reuse them in the root
+    PCI bus node creation.
+
+  - Patch 5: The PCI host bridge device-tree node creation itself.
+
+With those modifications, the LAN966x PCI device is working on x86 systems
+and all device-tree kunit tests (including the of_unittest_pci_node test)
+pass successfully with the following command:
+  qemu-system-x86_64 -machine q35 -nographic \
+    -kernel arch/x86_64/boot/bzImage --append console=ttyS0 \
+    -device pcie-root-port,port=0x10,chassis=9,id=pci.9,bus=pcie.0,multifunction=on,addr=0x3 \
+    -device pcie-root-port,port=0x11,chassis=10,id=pci.10,bus=pcie.0,addr=0x3.0x1 \
+    -device x3130-upstream,id=pci.11,bus=pci.9,addr=0x0 \
+    -device xio3130-downstream,port=0x0,chassis=11,id=pci.12,bus=pci.11,multifunction=on,addr=0x0 \
+    -device i82801b11-bridge,id=pci.13,bus=pcie.0,addr=0x4 \
+    -device pci-bridge,chassis_nr=14,id=pci.14,bus=pci.13,addr=0x0 \
+    -device pci-testdev,bus=pci.12,addr=0x0
+
+Compare to previous iteration, this v6 series:
+  - Add a return error code in device_add_of_node()
+  - Handle this error code in device_add_of_node() callers
+
+Best regards,
+Hervé Codina
+
+Changes v5 -> v6
+  v5: https://lore.kernel.org/lkml/20241209130339.81354-1-herve.codina@bootlin.com/
+
+  - Patch 1
+    Add a return error code in device_add_of_node()
+
+  - Patches 2 and 5
+    Handle the device_add_of_node() error code
+
+  - Patches 3 and 4
+    No changes
+
+Changes v4 -> v5
+  v4: https://lore.kernel.org/lkml/20241202131522.142268-1-herve.codina@bootlin.com/
+
+  - Patch 1
+    Use dev_warn() instead of WARN()
+
+  - Patches 2 to 4
+    No changes
+
+  - Patch 5 (v4 patch 6)
+    Use dev_err()
+    Fix a typo in commit log
+
+  Patch removed in v5
+    - Patch 5 in v4
+      Already applied
+
+Changes v3 -> v4
+  v3: https://lore.kernel.org/lkml/20241114165446.611458-1-herve.codina@bootlin.com/
+
+  Rebase on top of v6.13-rc1
+
+  - Patches 1 to 6
+    No changes
+
+Changes v2 -> v3
+  v2: https://lore.kernel.org/lkml/20241108143600.756224-1-herve.codina@bootlin.com/
+
+  - Patch 5
+    Fix commit log.
+    Use 2 for #size-cells.
+
+  - Patches 1 to 4 and 6
+    No changes
+
+Changes v1 -> v2
+  v1: https://lore.kernel.org/lkml/20241104172001.165640-1-herve.codina@bootlin.com/
+
+  - Patch 1
+    Remove Cc: stable
+
+  - Patch 2
+    Remove Fixup tag and Cc: stable
+
+  - Patches 3 and 4
+    No changes
+
+  - Patch 5
+    Add #address-cells/#size-cells in the empty root DT node instead of
+    updating default values for x86.
+    Update commit log and commit title.
+
+  - Patch 6
+    Create device-tree node for the PCI host bridge and reuse it for
+    the PCI root bus. Rename functions accordingly.
+    Use "pci" instead of "pci-root" for the PCI host bridge node name.
+    Use "res->start - windows->offset" for the PCI bus addresses.
+    Update commit log and commit title.
+
+Herve Codina (5):
+  driver core: Introduce device_{add,remove}_of_node()
+  PCI: of: Use device_{add,remove}_of_node() to attach of_node to
+    existing device
+  PCI: of_property: Add support for NULL pdev in of_pci_set_address()
+  PCI: of_property: Constify parameter in of_pci_get_addr_flags()
+  PCI: of: Create device-tree PCI host bridge node
+
+ drivers/base/core.c       |  61 ++++++++++++++++++++
+ drivers/pci/of.c          | 115 +++++++++++++++++++++++++++++++++++++-
+ drivers/pci/of_property.c | 114 +++++++++++++++++++++++++++++++++++--
+ drivers/pci/pci.h         |   6 ++
+ drivers/pci/probe.c       |   2 +
+ drivers/pci/remove.c      |   2 +
+ include/linux/device.h    |   2 +
+ 7 files changed, 295 insertions(+), 7 deletions(-)
+
 -- 
-2.34.1
+2.47.1
 
 
