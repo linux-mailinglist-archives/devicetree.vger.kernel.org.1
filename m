@@ -1,185 +1,204 @@
-Return-Path: <devicetree+bounces-137230-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4B4CA083B1
-	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 00:54:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D83B2A083D1
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 01:12:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC1393A6640
-	for <lists+devicetree@lfdr.de>; Thu,  9 Jan 2025 23:54:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9ED10188BAD9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Jan 2025 00:12:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F90E2063E2;
-	Thu,  9 Jan 2025 23:54:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3702C6AA7;
+	Fri, 10 Jan 2025 00:12:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ci+fUMwT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vnVsI+Ut"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7F92063CE
-	for <devicetree@vger.kernel.org>; Thu,  9 Jan 2025 23:54:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 455881FA4
+	for <devicetree@vger.kernel.org>; Fri, 10 Jan 2025 00:12:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736466883; cv=none; b=sv9uVZc0md4JCcoYTDBPljpd6Q2bcTrPMR/AaJ+u5tIk4QiVYAxAHiAjhezOmmTd04zzjJPy1Dhh9/9wXadY2NUvAIYs+S+MFtTC4knCgxj7l1XZQ7BDTH/hvN4YpdaYG/ox6w0C+swmfoSFpWVdWuBGedqf2e3KClE8zab8QuE=
+	t=1736467953; cv=none; b=Wz4bXRbGFtt1tE1S5rPH90jf1sGd7DhqEyj8fPsKxfMrrcdvNa2G+YR5U1lWoow00TMnBPT+ZQg3Hmjh2hfBF+VTItKMIX/oqzVaoM6hdQSt3+D2EheIGmkCAmqy3tGF8hW4hpemcTsmZ11Lx+X8guXBidfpZjf4gi/L4FhJ4nI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736466883; c=relaxed/simple;
-	bh=FjKK0rI8Ms9lkRFrMPcOVJOxH3kjCjHVUFI2nxmoACo=;
+	s=arc-20240116; t=1736467953; c=relaxed/simple;
+	bh=9HYxOlBVMJGp+kYa5cCj+uVdCLrvkLZ1Yp+RYPBpmpE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PXEWk68FGk214o32lP6fOzBYVt89E3tc0REKo17sVouywAqvJpnBg3rGkA9U/GUDi7Sa8hJ3I92li9f6AoPwNFY1DAgEu+TksrJPlQD4UtUXQiSueGJKvDC5EUquHhT+QHBHtpolMU5O2++D8Pg/ztJgLpYF+7kx2O0OTS1P/7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ci+fUMwT; arc=none smtp.client-ip=209.85.167.49
+	 Content-Type:Content-Disposition:In-Reply-To; b=CJoM4uJPlVeo5o0b4+14mripOh4zlETNgPp1EO4o8PxZ0GeG7+it5tcie2s6pV7D0Qi2s4UA28u+SvmuxLSxAKbF0vQEPJrIlcRfxBpnsUz/h4VLQ+xKZ6S5c1HgzMOXOgDIfJRBJxFjFp1tQWOlsDbU9TE4Y5Od+0gFkizTuTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vnVsI+Ut; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5401e6efffcso1578319e87.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 15:54:40 -0800 (PST)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54021daa6cbso1319459e87.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Jan 2025 16:12:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736466879; x=1737071679; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=FRNnDNKo7frSuIUs5Hy6anVWpgbvz5zJrTUHbShG9EI=;
-        b=ci+fUMwT5k7py0XlkvsgCOMWoUMhBqFcF1k06fk1yt8cVsapMA0t7C4+QeEZhpkolj
-         sJTd3/AoVlL8xXTThlB6sxjZAYWg4Wl5el7bYBklF/8JMwh+Eah+iD0WXFNoiv7CEanp
-         7u57eitWdWueothh9oNtG4ekyCo0G+6EsvRtmt/GXqPlh/rgY53NZ9mKDGMTDkal6DdQ
-         5xbZtPd/KCU01yauJbog4CQ8O1kx5+sJz/fKYmYV36wMM8BDCyDE9sqUjQ1BNfW+cqMF
-         v5ycizIQDTKlOj3FDcTRfnZP16MMJLzxRxT559grO3VsT/dFhOl2mCdTgYWIEY7yT/S0
-         UIdA==
+        d=linaro.org; s=google; t=1736467949; x=1737072749; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=bOM8iTrS8cJotx5OK5PF3W6RZdr+BZepKPQm6WfCyO8=;
+        b=vnVsI+UtEqXLL4qXpUUlt0sn36RKLG3V1y/RISqU/HKa6x89dDnYUN/Z4KKt78jIse
+         4CwEB/udzjGJtXqhMUXKncZOlmM4vD4yYbP3CmbciFwp0N6hI/jQjtFOfd8KMKLmh6mb
+         ZZ/UymStrjHnxi1UvWzxxNMJseJXXg68rrch9cbqd2E9niekFMLkSiaRQrbqNNfo0dOC
+         HyVpnWHzol+UdMkhOtajj8TGBXO0mCyZCZvYe/2b20tQOL6M7k5Hhl8tq0nL9x2pzTXh
+         t++fnGkxlT+3ncpAh8M+S9h3racyOVjzsmAotT1xs97MfyaveuWu1SHAMBpOr+sMUXhH
+         o0NQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736466879; x=1737071679;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FRNnDNKo7frSuIUs5Hy6anVWpgbvz5zJrTUHbShG9EI=;
-        b=XMTkCKisRDyJWOveHB9COLMJj1nxeWvVjFlxbbofQYrJJylk6uo7FKilC/nbz8Zifk
-         XFClKiovHQmOSR0Jldz2qki49DrLx0B3/w85zfxRqUWTvfZ4hOCBQGeBMVWRBT8e8Jz/
-         EPFYi0jHEBeUQMljNlZZMWND26QJuIB7LH0ImDu4vHmOikAYfYtkQn5xocpuwsJc89tC
-         YSRGBHi9fKsU9Zu3CLvSd5OOVxoUyIKDOvAKW8DZL4ZcBA2Z4Pa0PCuwF7+V/0H4BSbW
-         0KHbIFGHYXYx0wztKzCgdlkEzfyiPeE+P+Tg80Uzie5ZtyM85Zuw8IHNus9P3XYn8t58
-         wczQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWh4n/RvD94ZrGmFMNAhnK7w7QjSe25293icY/JQZGGO23kHcHhdOPUUkCttQBqKKgnK2uHyevg3MRd@vger.kernel.org
-X-Gm-Message-State: AOJu0YzCgDnJrzkZlaQT+jQXiU/098nDdHhg2Bacl0jiYaYhJIY62So2
-	3l9LqfOwOJ4knWiWXEranMpbjkcbLjCCok4ZaDOtQeQynUQzXasF1wyC2A15vNE=
-X-Gm-Gg: ASbGncu1bxLe/xJIi8/q6vbUt7oKs2Vb2dl8nXQGzn1qajsmOGdUgD2nYvkg3+GURHo
-	ZU5GbkZPAuktZePUbwos4ptTmMbrUwXkAXv+8LPR0T+GiWuLQy6qyuEKrzXhH3Cj+GpHNem3npW
-	9OZtp4NOpnvTOGJruJL6iCK4IIK/50tY39H+6zQqgeM6t/ZKksi36GP6crDr6P7Au5unNdILFej
-	I9COEhTgBFaDdGv0hOl6nS/g3baC89fcFvozzBjt1tndWaIFFO1b0WyIHrjE8SNoEMKXEWDz8hq
-	xCxM7GOXqZ2ymXCiiCXHJKtzLWaeX0n6x2Vw
-X-Google-Smtp-Source: AGHT+IHLuIQ06TZzrrj4vtwF/OP2Cww1gDE4ud7HhI0ahmVJGuMiFw0HoTdSaptnu+mwHQq4vYxZvw==
-X-Received: by 2002:a05:6512:398c:b0:542:213f:78fd with SMTP id 2adb3069b0e04-54284815fcdmr2023405e87.40.1736466879189;
-        Thu, 09 Jan 2025 15:54:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736467949; x=1737072749;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bOM8iTrS8cJotx5OK5PF3W6RZdr+BZepKPQm6WfCyO8=;
+        b=hbdINMQqy6SGLBABsr0wmJrnTYmbxxPvRvZegajTij+bsNvL3NBYcab907gGFrx5ZK
+         1UChYBVaggaolvlcBoO/sKMGrrzohbqUpzeIYWENztNky/353Ie9/r9TPv2eaZtXuzWk
+         wYE2rmEbbpnHAH4AyNWEpvXqwl7c/RoHwi/57aCdMH9S9M6F91s9oRD1tbfxAoeIxg1J
+         15iWpwhTYBgl4xLS5ZPp7UQk/psZHHgWIOgj6Oa+Z4S96QFRZmG7J7p7xwuFNoBeBYZQ
+         RfpnOrfUIVcAREwh1wb9Df9yNhqI7kZ8XNOaY2zvxQ3DthT4qdVFPUaSxGFixfgEFOtG
+         q4BQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVTKPWNJ2wIKCkaOOvZX6mhAtMzfTvPyHeugduIjcrwgzZp6btXWrzTWj6m6RbkvRiBM5lwvd/PCX3V@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5I7AADE0YWqwfcQZK1uAa7DmDw34uasBpDRyZq18jAKT55Edf
+	2XC7sm/2R0cT4drC0H7BQtvnLKnG9h7rQNJdRkvraclr3pF4HCvxCUEDx2hmCLg=
+X-Gm-Gg: ASbGnctSDHIJpPRN3j2HLCf5rdrwDWxY+sxuoGLPtPOtyyOJvx1K24iwl1MGQidYA8E
+	GUvcLVUbcGZc3jv2yveaO198TMRL1WrtaG7+xsfQS3inCYnZ50MigsCnrAc34NbTjhiB+X4KDYJ
+	dIGbr4wHHZ5BlSjSiSFkS9/S7IAU3iPeSbUiILvTfOODD0xxRjRZTPxk6pSnZPdzL0SBMAbcBPQ
+	seeKkjYFnG2nI6kv706hQdxfZNe7Wms30ZzJPtfODSPL4FTRPMbsQUzi6PGDq8fonhXMiRXrbX+
+	8bPtKquagUX6KXQJoVGSP8Orfo+Z7ZdBLdnv
+X-Google-Smtp-Source: AGHT+IGwIl2CKZkBwjuoikiFYrtznIYuYloYMjubKPdN284XWv1Xg6SBpze2m0OXrZNk5dsJj+ecLw==
+X-Received: by 2002:a05:6512:3b9d:b0:542:6d01:f55f with SMTP id 2adb3069b0e04-5428481ceaamr2920549e87.48.1736467949461;
+        Thu, 09 Jan 2025 16:12:29 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428bec3ee8sm336598e87.226.2025.01.09.15.54.36
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428becafaasm339014e87.239.2025.01.09.16.12.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Jan 2025 15:54:37 -0800 (PST)
-Date: Fri, 10 Jan 2025 01:54:35 +0200
+        Thu, 09 Jan 2025 16:12:28 -0800 (PST)
+Date: Fri, 10 Jan 2025 02:12:26 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
-Cc: Wasim Nazir <quic_wasimn@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel@quicinc.com
-Subject: Re: [PATCH v5 6/6] arm64: dts: qcom: Enable cpu cooling devices for
- QCS9075 platforms
-Message-ID: <6zftdu5myuporxsvxlxhojnlhnfa74pjj7nvy3wmiaw7jdsuo2@3ebcpevzvtlc>
-References: <20241229152332.3068172-1-quic_wasimn@quicinc.com>
- <20241229152332.3068172-7-quic_wasimn@quicinc.com>
- <zn4uf3mmlmt3who474hwkr44poycfqtjtidshybbg55a3hr63y@zxefqbhiwkbg>
- <d54c6706-3c6b-211c-6acb-fa3984c30c67@quicinc.com>
- <ubasbsyspn5euygihgphyw3xg4ckveytvgnjpwdiyg4pv7degr@6y44ya4gvaqj>
- <07c41571-28ca-6f9e-bcee-899bbf77f687@quicinc.com>
- <sufmykle5inyk73i3qfmy3xqq7plgfr7txiruyahc5wgvvn6uo@kytxtb5zc3tg>
- <cf2ad828-d00d-133b-f310-1688fc0ed59b@quicinc.com>
+To: Johan Hovold <johan@kernel.org>
+Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>, 
+	Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sebastian Fricke <sebastian.fricke@collabora.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, Jianhua Lu <lujianhua000@gmail.com>, 
+	Stefan Schmidt <stefan.schmidt@linaro.org>, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Bjorn Andersson <andersson@kernel.org>
+Subject: Re: [PATCH v9 27/28] media: iris: enable video driver probe of
+ SM8250 SoC
+Message-ID: <te2nhzkl2mx3y7vknokzwtr7szfge7dum7sy37ndy6laot5yqn@urv7svjqgmk7>
+References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
+ <20241212-qcom-video-iris-v9-27-e8c2c6bd4041@quicinc.com>
+ <Z3_nCPk_g8znto4A@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cf2ad828-d00d-133b-f310-1688fc0ed59b@quicinc.com>
+In-Reply-To: <Z3_nCPk_g8znto4A@hovoldconsulting.com>
 
-On Wed, Jan 08, 2025 at 09:38:19PM +0530, Manaf Meethalavalappu Pallikunhi wrote:
+On Thu, Jan 09, 2025 at 04:11:04PM +0100, Johan Hovold wrote:
+> On Thu, Dec 12, 2024 at 05:21:49PM +0530, Dikshita Agarwal wrote:
+> > Initialize the platform data and enable video driver probe of SM8250
+> > SoC. Add a kernel param to select between venus and iris drivers for
+> > platforms supported by both drivers, for ex: SM8250.
 > 
-> Hi Dmitry,
+> Why do you want to use a module parameter for this? What would be the
+> default configuration? (Module parameters should generally be avoided.)
 > 
-> 
-> On 1/8/2025 6:16 PM, Dmitry Baryshkov wrote:
-> > On Wed, Jan 08, 2025 at 05:57:06PM +0530, Manaf Meethalavalappu Pallikunhi wrote:
-> > > Hi Dmitry,
-> > > 
-> > > 
-> > > On 1/3/2025 11:21 AM, Dmitry Baryshkov wrote:
-> > > > On Tue, Dec 31, 2024 at 05:31:41PM +0530, Manaf Meethalavalappu Pallikunhi wrote:
-> > > > > Hi Dmitry,
-> > > > > 
-> > > > > On 12/30/2024 9:10 PM, Dmitry Baryshkov wrote:
-> > > > > > On Sun, Dec 29, 2024 at 08:53:32PM +0530, Wasim Nazir wrote:
-> > > > > > > From: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
-> > > > > > > 
-> > > > > > > In QCS9100 SoC, the safety subsystem monitors all thermal sensors and
-> > > > > > > does corrective action for each subsystem based on sensor violation
-> > > > > > > to comply safety standards. But as QCS9075 is non-safe SoC it
-> > > > > > > requires conventional thermal mitigation to control thermal for
-> > > > > > > different subsystems.
-> > > > > > > 
-> > > > > > > The cpu frequency throttling for different cpu tsens is enabled in
-> > > > > > > hardware as first defense for cpu thermal control. But QCS9075 SoC
-> > > > > > > has higher ambient specification. During high ambient condition, even
-> > > > > > > lowest frequency with multi cores can slowly build heat over the time
-> > > > > > > and it can lead to thermal run-away situations. This patch restrict
-> > > > > > > cpu cores during this scenario helps further thermal control and
-> > > > > > > avoids thermal critical violation.
-> > > > > > > 
-> > > > > > > Add cpu idle injection cooling bindings for cpu tsens thermal zones
-> > > > > > > as a mitigation for cpu subsystem prior to thermal shutdown.
-> > > > > > > 
-> > > > > > > Add cpu frequency cooling devices that will be used by userspace
-> > > > > > > thermal governor to mitigate skin thermal management.
-> > > > > > Does anything prevent us from having this config as a part of the basic
-> > > > > > sa8775p.dtsi setup? If HW is present in the base version but it is not
-> > > > > > accessible for whatever reason, please move it the base device config
-> > > > > > and use status "disabled" or "reserved" to the respective board files.
-> > > > > Sure,  I will move idle injection node for each cpu to sa8775p.dtsi and keep
-> > > > > it disabled state. #cooling cells property for CPU, still wanted to keep it
-> > > > > in board files as we don't want to enable any cooling device in base DT.
-> > > > "we don't want" is not a proper justification. So, no.
-> > > As noted in the commit, thermal cooling mitigation is only necessary for
-> > > non-safe SoCs. Adding this cooling cell property to the CPU node in the base
-> > > DT (sa8775p.dtsi), which is shared by both safe and non-safe SoCs, would
-> > > violate the requirements for safe SoCs. Therefore, we will include it only
-> > > in non-safe SoC boards.
-> > "is only necessary" is fine. It means that it is an optional part which
-> > is going to be unused / ignored / duplicate functionality on the "safe"
-> > SoCs. What kind of requirement is going to be violated in this way?
-> 
-> From the perspective of a safe SoC, any software mitigation that compromises
-> the safety subsystem’s compliance should not be allowed. Enabling the
-> cooling device also opens up the sysfs interface for userspace, which we may
-> not fully control.
+> Why not simply switch to the new driver (and make sure that the new
+> driver is selected if the old one was enabled in the kernel config)?
 
-THere are a lot of interfaces exported to the userspace.
+Because the new driver doesn't yet have feature parity with the venus
+driver. So it was agreed that developers provide upgrade path to allow
+users to gradually test and switch to the new driver. When the feature
+parity is achieved, the plan is to switch default to point to the Iris
+driver, then after a few releases start removing platforms from Venus.
 
-> Userspace apps or partner apps might inadvertently use
-> it. Therefore, we believe it is better not to expose such an interface, as
-> it is not required for that SoC and helps to avoid opening up an interface
-> that could potentially lead to a safety failure.
+> > Tested-by: Stefan Schmidt <stefan.schmidt@linaro.org> # x1e80100 (Dell
+> 
+> Looks like something is missing from Stefan's Tested-by tag throughout
+> the series ("Dell XPS13"?)
+> 
+> > Reviewed-by: Stefan Schmidt <stefan.schmidt@linaro.org>
+> > Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+>  
+> > +static bool prefer_venus = true;
+> > +MODULE_PARM_DESC(prefer_venus, "Select whether venus or iris driver should be preferred");
+> > +module_param(prefer_venus, bool, 0444);
+> > +
+> > +/* list all platforms supported by only iris driver */
+> > +static const char *const iris_only_platforms[] = {
+> > +	"qcom,sm8550-iris",
+> > +	NULL,
+> > +};
+> 
+> Surely you don't want to have to add every new platform to two tables
+> (i.e. the id table and again here).
 
-How can thermal mitigation interface lead to safety failure? Userspace
-can possibly lower trip points, but it can not override existing
-firmware-based mitigation.
-And if there is a known problem with the interface, it should be fixed
-instead.
+I'd agree here, this list should go. We should only list platforms under
+the migration.
 
 > 
-> Best Regards,
+> > +
+> > +/* list all platforms supported by both venus and iris drivers */
+> > +static const char *const venus_to_iris_migration[] = {
+> > +	"qcom,sm8250-venus",
+> > +	NULL,
+> > +};
+> > +
+> > +static bool video_drv_should_bind(struct device *dev, bool is_iris_driver)
+
+The name should follow other names in the driver.
+`video_drv_should_bind` doesn't have a common prefix.
+
+Also export it and use it from the venus driver if Iris is enabled.
+
+> > +{
+> > +	if (of_device_compatible_match(dev->of_node, iris_only_platforms))
+> > +		return is_iris_driver;
+> > +
+> > +	/* If it is not in the migration list, use venus */
+> > +	if (!of_device_compatible_match(dev->of_node, venus_to_iris_migration))
+> > +		return !is_iris_driver;
+> > +
+> > +	return prefer_venus ? !is_iris_driver : is_iris_driver;
+> > +}
+> > +
+> >  static int iris_probe(struct platform_device *pdev)
+> >  {
+> >  	struct device *dev = &pdev->dev;
+> > @@ -196,6 +224,9 @@ static int iris_probe(struct platform_device *pdev)
+> >  	u64 dma_mask;
+> >  	int ret;
+> >  
+> > +	if (!video_drv_should_bind(&pdev->dev, true))
+> > +		return -ENODEV;
 > 
-> Manaf
+> AFAICT nothing is preventing venus from binding even when 'prefer_venus'
+> is false.
 > 
-> > 
+> > +
+> >  	core = devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
+> >  	if (!core)
+> >  		return -ENOMEM;
+> > @@ -324,6 +355,10 @@ static const struct of_device_id iris_dt_match[] = {
+> >  		.compatible = "qcom,sm8550-iris",
+> >  		.data = &sm8550_data,
+> >  	},
+> > +	{
+> > +		.compatible = "qcom,sm8250-venus",
+> > +		.data = &sm8250_data,
+> > +	},
+> >  	{ },
+> >  };
+> >  MODULE_DEVICE_TABLE(of, iris_dt_match);
+> 
+> Johan
 
 -- 
 With best wishes
