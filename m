@@ -1,81 +1,78 @@
-Return-Path: <devicetree+bounces-137706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A37C3A0A644
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 23:45:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87A03A0A647
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 23:46:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C6031887FC3
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 22:45:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83CC93A75A7
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 22:46:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AE2B1BF33F;
-	Sat, 11 Jan 2025 22:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBC61B87D8;
+	Sat, 11 Jan 2025 22:46:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fok4dvxP"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T3ANu8ZZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 748151BD519;
-	Sat, 11 Jan 2025 22:45:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A81E1CFBC;
+	Sat, 11 Jan 2025 22:46:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736635508; cv=none; b=NA2deMxsnjp5RSVA6M8+EO5P6Fpgy+DXYEoZgcvRKjcHeA3Pfnye/Pqaiq3uYJ5VNHC/N8ChTM9O3u653Hdm62J47RKkjJN/LSAD0BtBhmxZqYJjrZlIfqaXGMDqBi+dNhmLuu/ZTDaZHMzakYH0l7JafynGmeSSiYCOcgbbyig=
+	t=1736635577; cv=none; b=jGB/j/s5144+k5tu47LdRoLWJcNjNNVzoqjlu6AKACMfg4RRHhktSgKu5wv8rqbTxBnnce9ElhM80xaoxvf2fimyR2XjhuGfDi9rxRj9Tabr8Mws8HGzQ71rkhPOAqsgkigdTv6YkjiLSdQX1mZgvSAF5Q8c/tdo3hfz/hoicqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736635508; c=relaxed/simple;
-	bh=OuF1DBNjktO+j3VH4grhShjnFkpvY3tANz5NIQik5jM=;
+	s=arc-20240116; t=1736635577; c=relaxed/simple;
+	bh=o+w5Li6CugsY1rMtBKHT3w/3ElEQqX2buH+hTrsXbQY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aHkAh3hzeAAUSakJCkQdEEEav7grNaZY7iW15lsU2K6p1u/nSDzCov6kf6HLfgT1ldYjaKr1n92CyKs081DKwdEDsA/XSnKkOksvs4jbzzeTf9gEIDDoEryo121m5BrJmex0xSAcUgDC4JKer090tq2OS8haLSErtneCXXVoFp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fok4dvxP; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	 In-Reply-To:Content-Type; b=LYORn4+c6hsMQc5ylx/+Ova0yWyJ2QUwj8JHBZ45E6DBxiqmZQJOZ8s5GF9PjnaXIjzPAgS6tuCcZxacxsHwJRUj0qZkRZNMDU9WdbTC//JY1ualzgwkWnz/++HdtMAThlLTKc99gGWe2F6Q/wKFn3F7C4ROE/zm2UBfz0REQLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T3ANu8ZZ; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-218c8aca5f1so66821635ad.0;
-        Sat, 11 Jan 2025 14:45:06 -0800 (PST)
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5d4e2aa7ea9so6076462a12.2;
+        Sat, 11 Jan 2025 14:46:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736635506; x=1737240306; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=3c+MC59cltI83Rp0W3IJS/Fp68qTFA5+u886Rvk5aKs=;
-        b=Fok4dvxPb0GAK/aO9uzA3EXHYNB7WAlQq0MvpLEDTKgiLj7/lggKQZp9+30rmA0XXR
-         IywAeTZ4ZSmyG8Wx+RjRmyfxAI+iZi5DaChhY7DrT0aarJED5iFNhqrHoOjLZs31hFbI
-         l9tnYcZacOON3qx7/wkUnnad1vvnBoJFwxaBFJKKaSTSEAu/PBzHpgGEwrfBj3RQ0T8J
-         dQ27GoNmSRbKx7A08BWFivfJvq8EL3m171ZSS59UDiaiVarKwu8eW7V5Gy6z0nfgAZeT
-         5r7bfELxDRoDS4OAMhh6gzz4RQg93AsOpXvq/bwIwW7R90+gMKz3eUg5UiInrrfoOHPp
-         ZA9A==
+        d=gmail.com; s=20230601; t=1736635573; x=1737240373; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=/CWQH26Pe6Delzux6Jgpfafp+fCmhkNG341Nb6v67/w=;
+        b=T3ANu8ZZtuWwzRDp7SyFCDewGcelKiGDn49X/1cY11nd/BTi1CVF6KnTkVmz98cI/8
+         njrEOmlSB1JKyFXvr339U+G4By5L4+7S1wP3/OpXkhd+TRUPtNzOGPOLELZ57d3v0T/9
+         2Rflr5QAHQij5D38tA5i/uC/c+OHzzIIgYc+ylPQab2VxR6avGDgVjm39CdhrWdLip3w
+         TsLkgCi9iNqRVypVqXoVZY02i9YyQkODAOsinG75pBLmXFrtPYJkO29j9WDdGH5sO9qX
+         wwhUub64oaqRTMXS1/QDKuDQBj63Qs2slKFrCwsHUhR8cdA13udrCfjG+uvQwK77qsYi
+         ofmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736635506; x=1737240306;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3c+MC59cltI83Rp0W3IJS/Fp68qTFA5+u886Rvk5aKs=;
-        b=W6OAMrU5LbYQSwAoh0YPSnwUtV85gZeBCnScvrYCN1BrWXVU27GR9cIi+T8D9WywQ8
-         v9d7ppNAC9pa2FQXqM9Hbf3Ipa68rAk6MKUrFHF5F8tMlz67YJebOEInuIZ/ZaCmwd5i
-         NxvrNLg0KeM0DdP4G8eUtt/Ek/CI4cnbpJ/dtRh3kAqLlz/GNpe724nBi02iObHxZ7In
-         XFRE1LzMEJT44/UygFM3SmayJP4kH1ln3RqrJgkPXGVBylcFPkbjkKxZIH6Nof7vt37J
-         RoRG1Aga0nDytz43tQYy/vTbvxUQrJbd/yhMmAaYjUoWZD0pTgwHjcTP7rFFlg++I7jA
-         i6dA==
-X-Forwarded-Encrypted: i=1; AJvYcCU77y+uWnvMJ7IbfcV8kTI56gMS3+SRoNOMmL5VGIwaFgntD24EcDFGrWVmoX22i8nzFL43BGFa4mS+@vger.kernel.org, AJvYcCV0BLTtDNO/KYBts/e8Sp8eGqIYZx7KSFyrcDJNX/S/JJJo/ao36AFdsz6pOaAdF/agmuZiqviwKvYtK3mp@vger.kernel.org, AJvYcCXzN+CFDlCP3c7tTwgV/wCJulChWvCPbojbQBDrAmI1KqKG4DO2LBg5CyEalhqpf2cEn59k807BZjFid2s=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuwdmTKgZbACFH5xnCxeg6abhb8q1U7CR6Zj+iHrxOu1VlKqT6
-	zKiFlGL5b7xpV9E2kDFFlPW7aYsPwmXyjfi2rTD8o24AosM+H2F3PEX5cQ==
-X-Gm-Gg: ASbGnct05rK6bkSQ18aJqmLAOoPBgtiFSHVT95Gxrtuld4VHEVKB+oEIwx7xzmXfCN8
-	5Jc4SsaoVOG3wdECSO57imr+mQ1iguGc+ilQbgG+Gfjr8MTNBrQLTgdvGt+rq3/XcJ40e1t7v3M
-	qO/bWBLnYUFR5SvswnMfNEuS1qPLjylCdS4SvojvYC96um3AHOIhrt5yC0P2sLOAekItOtn1TEK
-	q9i3fQB94yCqFbY6XPE1mTSJiAMd78rnZ6YIfQMb8r0Gp+9ese3AT4zWeU7Fri0506m/wyMFRfM
-	WRY2mhluk0eHDRtLxS0We8QsEdp2qw==
-X-Google-Smtp-Source: AGHT+IHZ0c5wXMx6YKekzvg0dkM+CxlQgFjx1Lxj7k5RtxG6zP2xUUpODrI87JjF+Cb082/DMnUmvg==
-X-Received: by 2002:a05:6a21:38b:b0:1e0:c50c:9842 with SMTP id adf61e73a8af0-1e88d361a43mr28100481637.31.1736635505718;
-        Sat, 11 Jan 2025 14:45:05 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72d40568dccsm3470731b3a.47.2025.01.11.14.45.04
+        d=1e100.net; s=20230601; t=1736635573; x=1737240373;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/CWQH26Pe6Delzux6Jgpfafp+fCmhkNG341Nb6v67/w=;
+        b=gfB1ruTgqox1hTW4iMUxO5scVhknJxTRbUaqlQFhuzZPyEErn98hTcIADRP54tFeB3
+         BCHD4rIG2pL3h9uNWD4Mg1ApaUKlbdQdSPx9QRp4VdEh93y/0pFSS1Hmt0aHzzNVId+e
+         L+aTeatgUS+9x7Hc5XTVkl+0wgi1eaeJ94fys/P7BCmKRrvnD8Sx9jHmiJYqmM9rJ7J3
+         y3Hx1IF61SPR6XtkGUyVs2HYzG8RKe2q80+ni5N33zcUYPNq2E59DVLTpt3BuhNWVbTi
+         1X8x9rMBP3ii5uFRKk0d/6RH+NDB3D2zEKzYQs8Cmj9sCedM3lL5Dxm8Rre685G8/0Cu
+         fXew==
+X-Forwarded-Encrypted: i=1; AJvYcCVRmqQKak9tvqtCpkt+iiaPDEnH/TueDt2QlTXoiTDx9x0BlRxSHf3Qe3+WiQ2zlTX2Vx/J0UYtatd7r1Sk@vger.kernel.org, AJvYcCXR34ZmLlLuJwZ2bfMBv/BiHifxhvSSh7zyA00K6ZGIo2QPXzM1L5YqTzEN/KSCQfBLPaLHhJaa7XyW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzwlXQW+C0S48nGIfQpxiwAdg+CctkD/nNV65e2UomApC9RNWmF
+	eGkZvNB9ggEXVm6FBiACLPzQmWjMYrBtr1JuZ1PBFmQDmVc1/U6Hy152p/yC
+X-Gm-Gg: ASbGncu9NiHjvzhcq2cow96X9p0TNmI2+5UQrzqrqrwZi9IX31vgWKPEjKlO+CKwaM2
+	DR8DnEXi7U/abx6z+D23wRqKBibwxps7lBk67pmUfbNQyAPdouAMH+gdre0/KEZOq1lbR9s1/2I
+	LgkRiOYlOiTxDES9rYM/1GQ+XfQEqd+pjLJI4GalYfCwey1IwQ8q8vIocYGI408MppVhyU7hwFM
+	johTFBLGyg0FiF+MzyJ4Bdz3IQDwIvlogNCbgekLsbyetxeiFxuETRoVvWKuyfsd5Lf
+X-Google-Smtp-Source: AGHT+IHurMzxNme4ab1sCrMZd1yFcHCqtF9mNKR9A2LesfnhlWpxJG93sV11qxlTe2D6Hs/QTPrmkA==
+X-Received: by 2002:a17:907:2ce5:b0:aa6:7c36:3423 with SMTP id a640c23a62f3a-ab2ab675c18mr1285015866b.1.1736635572708;
+        Sat, 11 Jan 2025 14:46:12 -0800 (PST)
+Received: from [192.168.31.111] ([194.39.226.133])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab2c90dace5sm317977766b.60.2025.01.11.14.46.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 11 Jan 2025 14:45:05 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <34f7e4c0-5385-442f-a4a1-7813b40c40dc@roeck-us.net>
-Date: Sat, 11 Jan 2025 14:45:03 -0800
+        Sat, 11 Jan 2025 14:46:12 -0800 (PST)
+Message-ID: <cdbcb8eb-b3f4-4a2c-b303-0ebedbab06b7@gmail.com>
+Date: Sun, 12 Jan 2025 00:46:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,92 +80,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
- property
-To: Peter Korsgaard <peter@korsgaard.com>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20250103101448.890946-1-peter@korsgaard.com>
- <20250103195810.GA2624225-robh@kernel.org>
- <dbf7cdd3-c5ab-4801-be85-163124b8a898@korsgaard.com>
- <20250106173805.GA501301-robh@kernel.org> <87sepq8mcc.fsf@dell.be.48ers.dk>
- <f6ee420b-7c3f-4a21-831b-619fe38408b5@roeck-us.net>
- <874j25dx9y.fsf@dell.be.48ers.dk>
+Subject: Re: [PATCH 4/4] dt-bindings: iio: accel: mc3230: document mc3510c
+To: nekodevelopper@gmail.com, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250111-mainlining-mc3510c-v1-0-57be503addf8@gmail.com>
+ <20250111-mainlining-mc3510c-v1-4-57be503addf8@gmail.com>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
- nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
- hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
- c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
- 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
- GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
- sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
- Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
- HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
- BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
- l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
- J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
- cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
- wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
- hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
- nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
- QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
- trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
- WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
- HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <874j25dx9y.fsf@dell.be.48ers.dk>
+From: Markuss Broks <markuss.broks@gmail.com>
+In-Reply-To: <20250111-mainlining-mc3510c-v1-4-57be503addf8@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 1/11/25 10:24, Peter Korsgaard wrote:
->>>>>> "Guenter" == Guenter Roeck <linux@roeck-us.net> writes:
-> 
-> Hi,
-> 
->   >> Guenter, what do you say? This way we don't need any new device tree
->   >> properties. I personally find it less clear than a default-pwm property,
->   >> but oh well.
->   >>
-> 
->   > I would not call that "default". It is more along the line of
->   > "If available, use highest cooling level as maximum allowed".
-> 
-> Sorry, what are you referring to exactly? The commit message? The change
-> is about the default/initial pwm setting, there is nothing disallowing
-> user space to increase it afterwards?
-> 
+Hey Vasiliy,
 
- From the current probe function:
+On 1/11/25 10:11 PM, Vasiliy Doylov via B4 Relay wrote:
+> From: Vasiliy Doylov <nekodevelopper@gmail.com>
+>
+> The MC3510C is a 3 asix digital accelerometer.
+> It handled by the same driver as MC3230.
+> Document it as a trivial device.
+>
+> Signed-off-by: Vasiliy Doylov <nekodevelopper@gmail.com>
+> ---
+>   Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>   1 file changed, 2 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index fadbd3c041c8c39faedfe62874d4eba25a0bf30e..6c34e4c0dcc6df5a4d8edc5effb80980de820db9 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -187,6 +187,8 @@ properties:
+>             - maxim,max6621
+>               # mCube 3-axis 8-bit digital accelerometer
+>             - mcube,mc3230
+> +            # mCube 3-axis 8-bit digital accelerometer
+> +          - mcube,mc3510c
+>               # Measurement Specialities I2C temperature and humidity sensor
+>             - meas,htu21
+>               # Measurement Specialities I2C pressure and temperature sensor
 
-"Set duty cycle to maximum allowed". If you dislike the term "maximum allowed",
-please consider something like "Set initial duty cycle to maximum or, if provided,
-to the highest cooling level".
+DT bindings changes are supposed to be on top of the series for the ease 
+of picking them by DT bindings maintainers.
 
-Guenter
+- Markuss
 
 
