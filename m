@@ -1,59 +1,67 @@
-Return-Path: <devicetree+bounces-137646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77F5DA0A2C8
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 11:31:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B64F3A0A2D1
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 11:34:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77BAA3AA3FE
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 10:31:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAEAC1667CC
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 10:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 026E318FC65;
-	Sat, 11 Jan 2025 10:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65FB619048A;
+	Sat, 11 Jan 2025 10:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X5kK1dwU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eEt9SZVA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C719FA55;
-	Sat, 11 Jan 2025 10:31:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26C3C24B229;
+	Sat, 11 Jan 2025 10:34:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736591504; cv=none; b=Q34xQDrCL9QbgUQDcDGnNKzbXv/W6Pj0a/RjImRbRuWekNmc9UHWZ6SUjwgbjouiO3J4WgqOotIOCb/yx4HWi9iKe1UMrcb90NGOyvgvXPHvC19WWX1kZEO4rFTUIwyhRUBtfHjlKpwkDI90r/ucCWBGRC+6TJ7fRhhE2NBdo6U=
+	t=1736591685; cv=none; b=hrnBkh3HfWev0beZAIc1Tza755rbEKlxwYp2bT3VhjGsdh0W51UPh6i/1RliPJdhYqmTZOFFBFCa//rF7VTdOJBZXst71M5kBqSawjbOI4J/N/i/UllPMR562rw2IWa6KbQp3La8MMqYR/eEVuWtMgmePePv6SIDIXDYc37W7R0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736591504; c=relaxed/simple;
-	bh=6JsI7vDM5nZG58UdeKoU+Trnllvjbuz2Vyb5UX6CZgg=;
+	s=arc-20240116; t=1736591685; c=relaxed/simple;
+	bh=fZZO1bOwQFo1CHWDq8ozMF5xVNRUoFfXSFD36dQXts0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fspIcg3UdYIW2lM7qYTj4+vNSxBQ57JBTro7Rc8YCfvODU30SzfSHRUHsL/+Gog8YfIix90g4M6qCP4rLGzxcxPs1LqiUn3NEif9oOMXfAVyNBRGKfq3ZuWYNJZH4I0Duj3QeKFQcUVnlmob8uAel+OnDa3t4twrmEHEwh6zGEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X5kK1dwU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA52FC4CED2;
-	Sat, 11 Jan 2025 10:31:43 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=blXYU9TrL5CHgTCjyCRRdXdQRUa2cBIe7Bu+xF7viuUVIo1cZraI9fTEZ2d5tLUHPnQRtv9bliz73mexzdNLoaRY3AxwHVXcTElSbHIV7osjiX3cUzv+vK3+9gBhYvCg6tyot9ZmEDV3W6fxy8dJcopJn3wBdSkl014haQyVd7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eEt9SZVA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3E9DC4CED2;
+	Sat, 11 Jan 2025 10:34:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736591504;
-	bh=6JsI7vDM5nZG58UdeKoU+Trnllvjbuz2Vyb5UX6CZgg=;
+	s=k20201202; t=1736591684;
+	bh=fZZO1bOwQFo1CHWDq8ozMF5xVNRUoFfXSFD36dQXts0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X5kK1dwUKIjrwKuElYh5xG3DgeWVPwLatce3CIQTZKra94ql/4g+S+ddpdVcHLw7K
-	 hjESyznrWD2T0f4XrDJCRjF6vXmKhK6cFRG9g8drK5M1q/HhnFaEA7qq4xNCv6IeEV
-	 xzZMWzbI22rWvWh9xfbpfAe9Cem5i2/FtDEJuF4Pu9vhEHFDb98q+Tk1OAx9vVCLYP
-	 x9eMM6DKiIbnx84XCy6ejdGvFVDLdJ1UK3Ti9NvTmiLek3P95uTlD263HOCK+YdNjL
-	 GPRY0TpG+pllSimFtOmrLm6iNiuw5FM4Q7GENHkpCvRVYAx6CxiQ4grEFJUFalgKbt
-	 LHfMA65ORADJA==
-Date: Sat, 11 Jan 2025 11:31:41 +0100
+	b=eEt9SZVAcsDhaE3khNvA4RArfSbaSsdZOo02A1OVG5A5LcKCD+z/U6fppXTQnqBcE
+	 DHTRPht/9CbH5fTgCV3RP2aC2aQnBbtAIAjchoW4TwDAKODiQJSlsuqZpKC6KVCVB8
+	 vhmVPlbpWSIzLNt/7ti308tHeIgRKluU/U5Q6CLJofPbYiIbZz1wcqrI32gn6N9bRx
+	 Krd1Lnc5GIRl6hEvhc+YqLzIzLiHcFHl3cXCK//sX4UpFDXyDT7yWYTLR1eUkFbM85
+	 ghKuyTqPhlWMDEqCucRvvKEwgNnkFOTsPkMWLYaGkmQkVaywRIYxjtg6DNc3QczD4q
+	 N5qcXnanbMiTQ==
+Date: Sat, 11 Jan 2025 11:34:42 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>, 
-	Jai Luthra <jai.luthra@ideasonboard.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 17/19] media: dt-bindings: ti,ds90ub960: Add "i2c-addr"
- link property
-Message-ID: <iet6yl4mloktmpm7ngkug2dgtddriot7qwrkgg6loqermj7f74@mzyg34r7f4pc>
-References: <20250110-ub9xx-improvements-v1-0-e0b9a1f644da@ideasonboard.com>
- <20250110-ub9xx-improvements-v1-17-e0b9a1f644da@ideasonboard.com>
+To: Andras Szemzo <szemzo.andras@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Maxime Ripard <mripard@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 06/12] dt-bindings: clk: sunxi-ng: add V853 CCU
+ clock/reset
+Message-ID: <tttj7va4hzpqugah4rhm2u5kganuix5iy7373h62b3rgfwvdbt@53vexrsfmskk>
+References: <20250110123923.270626-1-szemzo.andras@gmail.com>
+ <20250110123923.270626-7-szemzo.andras@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,58 +70,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250110-ub9xx-improvements-v1-17-e0b9a1f644da@ideasonboard.com>
+In-Reply-To: <20250110123923.270626-7-szemzo.andras@gmail.com>
 
-On Fri, Jan 10, 2025 at 11:14:17AM +0200, Tomi Valkeinen wrote:
-> From: Jai Luthra <jai.luthra@ideasonboard.com>
+On Fri, Jan 10, 2025 at 01:39:17PM +0100, Andras Szemzo wrote:
+> As the device tree needs the clock/reset indices, add them to DT binding
+> headers.
 > 
-> The serializer's I2C address on the FPD-Link bus is usually communicated
-> to the deserializer once the forward-channel is established. But in some
-> cases it might be necessary to program the serializer (over the
-> back-channel) before the forward-channel is established.
-> 
-> This can be used e.g. to correct serializer configuration which
-> otherwise would prevent the FC to be enabled.
-> 
-> Add a new optional property to specify the I2C address of the
-> serializer.
-> 
-> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-
-Why only these folks? Why not all of the maintainers?
-
-Anyway, Please drop the autogenerated scripts/get_maintainer.pl CC-entries from
-commit msg. There is no single need to store automated output of
-get_maintainers.pl in the git log. It can be easily re-created at any
-given time, thus its presence in the git history is redundant and
-obfuscates the log.
-
-If you need it for your own patch management purposes, keep it under the
---- separator.
-
+> Signed-off-by: Andras Szemzo <szemzo.andras@gmail.com>
 > ---
->  Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> index 0b71e6f911a8..e17b508b6409 100644
-> --- a/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> +++ b/Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
-> @@ -75,6 +75,13 @@ properties:
->                address on the I2C bus where the deserializer resides are
->                forwarded to the serializer.
->  
-> +          i2c-addr:
-> +            $ref: /schemas/types.yaml#/definitions/uint32
+>  include/dt-bindings/clock/sun8i-v853-ccu.h   | 132 +++++++++++++++++++
 
-Why isn't this part of reg, if that's the same device? If that is not
-the same device, you are not expected to encode addresses of other
-devices in this device. Address of 'foo' is not a property of device
-'bar'. Phandles or graphs express relationships between devices.
+Please use full compatible as filename.
+
+>  include/dt-bindings/clock/sun8i-v853-r-ccu.h |  16 +++
+>  include/dt-bindings/reset/sun8i-v853-ccu.h   |  62 +++++++++
+>  include/dt-bindings/reset/sun8i-v853-r-ccu.h |  14 ++
+>  4 files changed, 224 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/sun8i-v853-ccu.h
+>  create mode 100644 include/dt-bindings/clock/sun8i-v853-r-ccu.h
+>  create mode 100644 include/dt-bindings/reset/sun8i-v853-ccu.h
+>  create mode 100644 include/dt-bindings/reset/sun8i-v853-r-ccu.h
+> 
+> diff --git a/include/dt-bindings/clock/sun8i-v853-ccu.h b/include/dt-bindings/clock/sun8i-v853-ccu.h
+> new file mode 100644
+> index 000000000000..a405b982f914
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/sun8i-v853-ccu.h
+> @@ -0,0 +1,132 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+
+BTW, also checkpatch warns about this...
 
 Best regards,
 Krzysztof
