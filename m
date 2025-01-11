@@ -1,141 +1,127 @@
-Return-Path: <devicetree+bounces-137670-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137671-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C74B7A0A3AD
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 13:53:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1556A0A3B3
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 13:56:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E1D23AA55D
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 12:52:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4E47166EE5
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 12:56:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE21B19AA58;
-	Sat, 11 Jan 2025 12:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F66A19DF64;
+	Sat, 11 Jan 2025 12:56:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="HcezXZny"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lkWo5q6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pv50p00im-ztdg10012001.me.com (pv50p00im-ztdg10012001.me.com [17.58.6.51])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D537197A9F
-	for <devicetree@vger.kernel.org>; Sat, 11 Jan 2025 12:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B6B24B23A;
+	Sat, 11 Jan 2025 12:56:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736599971; cv=none; b=Vmdc2TDdItW6QKB2XrA6BtA1Sr4JuYrwqHE7t11r0reA9jqMBT5Zg4hcmmT34OCUqXKT10FM4mY3Amwt8L2fz4wSTHsVWfkgZCQu93HDjtKB8Xx0+nx89oR3PPZtuSr3+wr3tC410sWyDLult4WaR6K2C+vJ8Q6BN+YPZA15kdI=
+	t=1736600192; cv=none; b=FPG0jUJCJ7m7Sq89R0WUsf8vhyp2rcNNLUizH09qdUwJ4KbTmQCG2j1clSVH890sL673iC3zdWnLBwk4dkTXW8gEuRiLFFQId69kL/zkNqqOyBvO0UIHr44xIZm/NhL/SfLWuo3WNsTR7yRQrKOXxOglf8Zio2DfwE7orVM5DPc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736599971; c=relaxed/simple;
-	bh=CG7wOT9feGtbJytF5bO/h6edaWj/RbG31qKSWxqnBAg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X80qAIiWXej7cZKVtMvr0sRpW2iixDL8FVda9BqHCFYpjn03biBvDc3sTaJloKUoEPUa0bFfy48qK7Y/t3rNOOjEQQQP+S3ZlTsyVLKtnyqSdHdejSN81rDBP6sQ3KaeN20PhfVd8dKDRru9L8fVWaWBFsXtilxRl3RA15eSJYU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=HcezXZny; arc=none smtp.client-ip=17.58.6.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1736599970;
-	bh=LMpX2Ad36CGz6ptWggqRWYsj20HCMu4L/jmLJQ3uV/c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:
-	 x-icloud-hme;
-	b=HcezXZnyCj6xuHh9YxczAVkqexdlWdfsNC07F6VvBXOBQfaVQWvFzDH1gqTwGzBAz
-	 cDG1RZ763WSdotdBf9aZhlq/eo+g6ieBKcy1TLbrfucnIipmb1eV3Crk4b3p22kEv7
-	 lKX9JRUhgI57+zRVXo6ghNt+Y/PdNiJWWP0OZIdHl3ZhuZSEHlnZjSd6BlNecv4stB
-	 vsIKEbIZre0JKjX4nN/Z3AePGW2tjFVPSBFTJXAGr8AhphlPx5fj0ZYUqKqU+Nt8Hj
-	 Z3DU26yzGuHi5tD8vSzHxFZV+YnpkD9k37kvOZsG5vhAD0eEIF9QAaFQKf9cPzw7Bl
-	 cbH91tRFC8XoQ==
-Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-ztdg10012001.me.com (Postfix) with ESMTPSA id 30784A0366;
-	Sat, 11 Jan 2025 12:52:43 +0000 (UTC)
-Message-ID: <7ac7b17a-0cfa-44a9-bfe7-35792609e248@icloud.com>
-Date: Sat, 11 Jan 2025 20:52:39 +0800
+	s=arc-20240116; t=1736600192; c=relaxed/simple;
+	bh=LhZdJ42sMqFKGDmGiTMv1PLug74O089BpN8CgVbPYBk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nrOf2RKHAB6WyJH+li+/m7oV4vh0ap8EPhoWXDzQY78/GzeATcrYc7Fx22IbQWib8vGBNfrim1PqkY8+OFmhDu1lrIdv4igXrz97tYDrvYeYSya9hzBjV9zti1HKUwpWq8O3wDbO4APkevxsWz8jnJfW4HwfOD9BHlq1VbKhKDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lkWo5q6n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BF68C4CED2;
+	Sat, 11 Jan 2025 12:56:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736600191;
+	bh=LhZdJ42sMqFKGDmGiTMv1PLug74O089BpN8CgVbPYBk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=lkWo5q6nB1BMYay3bfUHadpZckebW9PR1fQLv5VW4ytwZYsWPFBkYDklHf3zOGJdH
+	 /53bPXtalkRP5EcE4ev8NVijCBucSpJ9SyWU/mv3TFZ3i5nWQq2v000ku8fn7NnORO
+	 aHLpbO4T2gaZK7ehC8mt/O24TFRFsyHkTmVGIpyUnOuYw/xa8Nk9fdQD8qlP6RKS8o
+	 uhZ16J0PIUIJEeR5eIs64Y0TN4KyRq6RH+9b9bv/LpCeHfIEMc5bgnaipTJx31o6s1
+	 KkcITkxKuSltO2aJ3l6VkOxX3YpS1nGpK35v5z8DzMmM5+IRt70DM1bqDgnmFgzC3P
+	 UWrsBTRPm6W/A==
+Date: Sat, 11 Jan 2025 12:56:16 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Yu-Hsian Yang <j2anfernee@gmail.com>
+Cc: marcelo.schmitt@analog.com, olivier.moysan@foss.st.com,
+ avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+ venture@google.com, yuenn@google.com, benjaminfair@google.com,
+ lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ nuno.sa@analog.com, dlechner@baylibre.com, javier.carrasco.cruz@gmail.com,
+ andriy.shevchenko@linux.intel.com, mitrutzceclan@gmail.com,
+ tgamblin@baylibre.com, matteomartelli3@gmail.com, alisadariana@gmail.com,
+ gstols@baylibre.com, thomas.bonnefille@bootlin.com,
+ herve.codina@bootlin.com, chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
+ yhyang2@nuvoton.com, openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] iio: adc: add Nuvoton NCT7201 ADC driver
+Message-ID: <20250111125616.2b12f03e@jic23-huawei>
+In-Reply-To: <CA+4VgcKK1Hfz08paYjDCV=YL-C4bsWCNCRdH1Q8=4=hjEuYC9w@mail.gmail.com>
+References: <20241226055313.2841977-1-j2anfernee@gmail.com>
+	<20241226055313.2841977-3-j2anfernee@gmail.com>
+	<20241228133531.5e98357e@jic23-huawei>
+	<CA+4VgcKK1Hfz08paYjDCV=YL-C4bsWCNCRdH1Q8=4=hjEuYC9w@mail.gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 06/14] of: property: Avoiding using uninitialized
- variable @imaplen in parse_interrupt_map()
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Maxime Ripard <mripard@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Grant Likely <grant.likely@secretlab.ca>, Marc Zyngier <maz@kernel.org>,
- Andreas Herrmann <andreas.herrmann@calxeda.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Mike Rapoport <rppt@kernel.org>,
- Oreoluwa Babatunde <quic_obabatun@quicinc.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
-References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
- <20250109-of_core_fix-v4-6-db8a72415b8c@quicinc.com>
- <20250110202649.GA3227291-robh@kernel.org>
- <dc7328d2-502c-4d10-af8f-f3ae02f636b8@icloud.com>
- <jmwcuelvywejhgy3mjo4y4odewirotlagmlahevsh2kicrakey@qvdajicxn7tc>
-Content-Language: en-US
-From: Zijun Hu <zijun_hu@icloud.com>
-In-Reply-To: <jmwcuelvywejhgy3mjo4y4odewirotlagmlahevsh2kicrakey@qvdajicxn7tc>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: lc2EQkYlwLtMiKbKtOsuzw2TRLEqvi4i
-X-Proofpoint-ORIG-GUID: lc2EQkYlwLtMiKbKtOsuzw2TRLEqvi4i
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-11_05,2025-01-10_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 adultscore=0 phishscore=0
- bulkscore=0 malwarescore=0 mlxlogscore=999 mlxscore=0 clxscore=1015
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2501110111
 
-On 2025/1/11 17:01, Krzysztof Kozlowski wrote:
-> On Sat, Jan 11, 2025 at 06:34:21AM +0800, Zijun Hu wrote:
->> On 2025/1/11 04:26, Rob Herring wrote:
->>> On Thu, Jan 09, 2025 at 09:26:57PM +0800, Zijun Hu wrote:
->>>> From: Zijun Hu <quic_zijuhu@quicinc.com>
->>>>
->>>> parse_interrupt_map() will use uninitialized variable @imaplen if fails
->>>> to get property 'interrupt-map'.
->>>>
->>>> Fix by using the variable after successfully getting the property.
->>>>
->>>> Fixes: e7985f43609c ("of: property: Fix fw_devlink handling of interrupt-map")
->>>> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
->>>> ---
->>>>  drivers/of/property.c | 2 +-
->>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/of/property.c b/drivers/of/property.c
->>>> index dca1a3ebccae1093b2b11f51e8e692bca854d0e3..6245cbff3527d762c16e7f4b7b7b3d4f2e9ddbe6 100644
->>>> --- a/drivers/of/property.c
->>>> +++ b/drivers/of/property.c
->>>> @@ -1391,9 +1391,9 @@ static struct device_node *parse_interrupt_map(struct device_node *np,
->>>>  	addrcells = of_bus_n_addr_cells(np);
->>>>  
->>>>  	imap = of_get_property(np, "interrupt-map", &imaplen);
->>>> -	imaplen /= sizeof(*imap);
->>>>  	if (!imap)
->>>>  		return NULL;
->>>> +	imaplen /= sizeof(*imap);
->>>
->>> sizeof() is a compile time constant, there's not an actual dereference 
->>> here.
->>>
->>
->> the uninitialized variable is @imaplen, and not sizeof(*imap).
-> 
-> Correct. I think error is harmless, because whatever stack/random value
-> of imaplen we use in 'imaplen / =sizeof', we immediately return.
-> 
-> Anyway, for code correctness and silencing whatever warnings there are
-> (if there are you should actually paste them in commit msg):
-> 
 
-thank you Krzysztof Kozlowski for code review.
+<snip>
 
-no warning messages since this issue is found by reading code.
+> > > +
+> > > +     /*
+> > > +      * After about 25 msecs, the device should be ready and then
+> > > +      * the Power Up bit will be set to 1. If not, wait for it.
+> > > +      */
+> > > +     mdelay(25);
+> > > +     err = regmap_read(chip->regmap, NCT7201_REG_BUSY_STATUS, &value);
+> > > +     if (err < 0)
+> > > +             return err;
+> > > +     if (!(value & NCT7201_BIT_PWR_UP))
+> > > +             return dev_err_probe(&chip->client->dev, -EIO, "failed to power up after reset\n");
+> > > +
+> > > +     /* Enable Channel */
+> > > +     guard(mutex)(&chip->access_lock);
+> > > +     regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1,
+> > > +                  NCT7201_REG_CHANNEL_ENABLE_1_MASK);  
+> >
+> > Check return value.  This is over an I2C bus, not the most reliable of
+> > transports!
+> >
+> > Consider doing this differently and using a bulk write for the larger
+> > case.
+> >
+> >         if (chip->num_vin_channels <= 8)
+> >                 ret = regmap_write();
+> >         else
+> >                 ret = regmap_bulk_write();
+> >
+> > However as you read ENABLE_2 unconditionally below, can you instead just
+> > always use a bulk write here?
+> >  
+> 
+> We can't use regmap_bulk_write() due to the chip's limit.
+> regmap_bulk_write(chip->regmap, ..., ..., 2) ,
+> the first byte is well written, but the second byte don't changed.
 
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Find out why.  You may well need to set a few more parameters for
+the configuration of the regmap to ensure the correct form of bulk
+write. 
+
 > 
-> Best regards,
-> Krzysztof
 > 
+> > > +     if (chip->num_vin_channels == 12)
+> > > +             regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_2,
+> > > +                          NCT7201_REG_CHANNEL_ENABLE_2_MASK);
+> > > +
+
+Jonathan
 
 
