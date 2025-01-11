@@ -1,158 +1,239 @@
-Return-Path: <devicetree+bounces-137711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3C46A0A6A8
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 00:22:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F9D7A0A6AB
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 00:38:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8BA61689CB
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 23:22:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 072091680BD
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 23:38:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C89541BBBD3;
-	Sat, 11 Jan 2025 23:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580C61BCA0F;
+	Sat, 11 Jan 2025 23:38:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NbSanFuH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i9LXH4uB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D7AB199924;
-	Sat, 11 Jan 2025 23:22:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A340918FC7E;
+	Sat, 11 Jan 2025 23:38:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736637764; cv=none; b=KLJvY+n/Ht++dIF6g8Yu5cZfK09QW6x65VRF6UMbIvZYfoi2U0xOwL0AWqysem1iZkg6pjUItc2ipMEbBAC9u2fnCNAhMexNusACvo9VM9KHC0SlnS+nmy8qsZsVIMgBXKvCtx2+q8/5QOVO20smCXuqQ49cRDaAmqzEO7kdH9k=
+	t=1736638723; cv=none; b=SQv9D7DuECEgnMT3B5nZYLI+a9whqNthYpmWERXWALbaUSgi3zfwA+DdaBYcbknp0igC0k1o30xvr+VVLQX2aIEXv1RD6lXngmnz/873Chph7wsVo8CWq8Vr3+z1bgnuL2RBXmGbwlWaJt4eao9C4xwqVtXsWmTGLnliR31HPSU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736637764; c=relaxed/simple;
-	bh=kgTx0iPuTYR3nDwT/CHQ41bHPGBEFQn1moXbgDdo8FU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LgCia8/UIRf2q9ISjFEl+dfl7Plyo5b19k4qGcgTrCk5JQNadMXenEqbIj9VvxvDb/ev2dNU/p/Jxs5O/91D3odAWe5RdNOGfm41AiuMk7kvhDTiEcFagF2SYTxgTJLio2EbihFR+SYWQYZI3246dWnnwFbseNd+8QQxNdoYHgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NbSanFuH; arc=none smtp.client-ip=209.85.161.47
+	s=arc-20240116; t=1736638723; c=relaxed/simple;
+	bh=FSTwPLy6DPUHJWyvtcZkx0zy2EepS5FHcGB09vkShdk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QLsK+oa0KXWyF5W6NnrGhBtK4ZirCiy0GHctll9rE8mel4paOqkXB97QNjHNH8D3DCbfqsMFEIqNwuZNfTYAQ62iJlrJWicEjUcjkcT+wy09TbRP7nVzVOt3by1Zg+hRSA1U554BYMVVPM03QlBSd4ztFLNjm7jFTlcp5aI+mQ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i9LXH4uB; arc=none smtp.client-ip=209.85.166.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5f2e32b44dfso257045eaf.2;
-        Sat, 11 Jan 2025 15:22:42 -0800 (PST)
+Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-844e9b8b0b9so243457039f.0;
+        Sat, 11 Jan 2025 15:38:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736637762; x=1737242562; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:reply-to:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=33Dv9n42OXA67oxG0b3KHx/ASsgttylLmsdpaayyPls=;
-        b=NbSanFuHiNKw9fXlqC3sQVzKYf0/3K1lnaAbXsAkhL2rvtjUbVbcxRpo01InNGP5Sh
-         7qtSZYkGloyoOQiKN83/n8mM3vc5RrLcf28CUKggk/Nd6+tezDhiO5RUNc1xszhnyDcJ
-         pm9jsI3fdgnRGsnKh6UwQPBdASPzw6ozuQaeE5fSj/E90EiS/g+78XsbJOd7YFCPDcT5
-         EwLeQuNyM0e83kgdgDr+qEvDZKvwYC7mYjBF8vRipCgTLtNdvNdktuKbQADSAMPNsar/
-         wrcs25V+X8bVoW1PyRtbJfeKU4X6zHglK9JvS1fD1gSQ2qa/oPCrgQM7XTwQiMB3kcVd
-         Dp8g==
+        d=gmail.com; s=20230601; t=1736638721; x=1737243521; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GSmGDNX9CC2d3HL4afoZjaMZrOh6/NAEiJbAyqPRBEo=;
+        b=i9LXH4uBr0Hb+h1JxkaBAQi33gTsUU3FTwfgT5P4NiNl5l7k+BpaKifFytGhAH6C+X
+         shMyfU+nvsN0lNG7WM3xwEl1g5sYcnGU8x7TfmGmBmFtVUrojJOtndMd97X5NeWK8GbP
+         vw0bvx0+nbF90aitrKrkErgAHqyvJ3k4oYyHFQURxiyRdTjeMfCc2ILFJnKX391mlaNk
+         fRTcXIpJLscaabC3UZUSsYVI0c5REfhHx0OPOvslJjrBPqK31tseIeb7X0cLA/x0DUby
+         yfAVL9BVOIn6qBKUw29RVKowAX1rf71cyo6ov6GgRKmdqWGevmnwriJ3HbXQ+hfzTiVq
+         BMSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736637762; x=1737242562;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:reply-to:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=33Dv9n42OXA67oxG0b3KHx/ASsgttylLmsdpaayyPls=;
-        b=AjeLhWyxO8AVWIE3sSHofOCBPR9Va88tKTLBnFSwKPYCMIAGFkKP288McWgWfSKH2s
-         5hcYOTHf1O89eeKvNCsV2d/vYpyaikcwcVkwXe9PJesUeG+E8XRajV8TbIErdcI+0naq
-         sAqPYeclcnqP4wUrAUZv78cYvK3qCGMhVuak9RSUjp+ybFJoLNo8ygKiKwf1MBWTScMs
-         J22KG4fJkgYIztJ32re+ZcAK9IeT3Ujyx0G5nUAw2FBVlx+1qgt0TREMVuug+ozVH/Y+
-         pKX6P5WoO5KlxzU5peA4ozdcD9y4xK+p0jCwv5svhvHUPhAF3+Zfxw6pjq20viMM+29S
-         RRBA==
-X-Forwarded-Encrypted: i=1; AJvYcCU62Qsz2JTlbl3MD/nPStFmQ13zpigC/tQf0ELjjdzJ7sEeQUM1xdH1M5MGLZiuT99dxhztbbh7E23h@vger.kernel.org, AJvYcCW3DfLXHcVeq3PjhknGGAoBb/AuzpEiMaJf5OmYGgALTq5+up33KWRNqm+RT1Ly3OAYAoL+7RmjpyaN@vger.kernel.org, AJvYcCWdSTiOi58mrqIyalrfykSYospUvzJsYkibMaYIcwWHOrI7+d63F9LJrvigTBRmg6oWNkvQROvnh7pRAVoO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9AZmodro0U0k7jKnYfsD3D8Z1cQ0cwnuTuj5aC2ygWFxPn0v5
-	Z6UTRpgdQjrGO8t2XSonSPuI6LoJFmuBGEpAcwszFdllqY++Ohfw
-X-Gm-Gg: ASbGncuxl8ibm7xI2O80FC2OrZH2GKvtwSDpy2fsvR2f6R0lL/grfp68P415dF6Zdok
-	l8V29JpS8+2YfP+IUt77w/wMIk8Glc6wcNcKg9mJKQDHswOsgbcUYuelTE8vbY9iqloVmafJXsb
-	eaunUnwfWt4dsXjUbrerfT9vuPExg+yDF4hqJGhowQKTRzfJAw/ktZvN80eXWqRF3fA2n2KQasD
-	1NJ9AHlYMmLRaynv3ct25WHvICMJtXHw8JGiwuM3W7NZSujcZlVVEh+zRGRdGOkqKlerGRyX2Hp
-	FQ==
-X-Google-Smtp-Source: AGHT+IEWzbM18iz+WUFAvgzwU9Y5Xjpzidv1HXQ8icujb5px+DQQ8Fq/vi6rKDmeRpphLT+zlNsnbA==
-X-Received: by 2002:a05:6830:660f:b0:71d:4eef:8f03 with SMTP id 46e09a7af769-721e2cd8c1cmr3515485a34.0.1736637762125;
-        Sat, 11 Jan 2025 15:22:42 -0800 (PST)
-Received: from JSANTO12-L01.ad.analog.com ([189.121.203.94])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7231855290esm2115147a34.29.2025.01.11.15.22.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Jan 2025 15:22:40 -0800 (PST)
-Date: Sat, 11 Jan 2025 20:22:36 -0300
-From: Jonathan Santos <jonath4nns@gmail.com>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v1 03/15] Documentation: ABI: testing: ad7768-1: Add
- device specific ABI documentation.
-Message-ID: <Z4L9PKKNfonI/4E2@JSANTO12-L01.ad.analog.com>
-Reply-To: 58ea1899-05be-4743-911b-77a56f08c347@baylibre.com
-References: <cover.1736201898.git.Jonathan.Santos@analog.com>
- <f78c3dee381b23c17787f1e2bc9c5667741d407b.1736201898.git.Jonathan.Santos@analog.com>
- <58ea1899-05be-4743-911b-77a56f08c347@baylibre.com>
+        d=1e100.net; s=20230601; t=1736638721; x=1737243521;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=GSmGDNX9CC2d3HL4afoZjaMZrOh6/NAEiJbAyqPRBEo=;
+        b=QqIf0TXPPdZESctT4SV606Ge8ozEYxSYnpTU6s+2n9JdcLysUg6f6SWVEnjIxIrpwj
+         myOjmM3YT+8NWWJYJB4RKrea1jmkfVklaZlu5ADQI9yKnle+zKSpmGXQDaQ76gG4jUUC
+         vcEv1aOlUcNjU3Zk+Oy6yYvBY0IJF0Sk3EiCXG4bGNbY19k22ME+PA6rFyO2u1u3Cd45
+         VGFgHqp2ZKxp2whiUJuXnPyM8QrEPEEzo0R4eE7p1vhL8L6qcsTOi/oTiZHZkbvLOSQw
+         hwZHnn0fuDNBkEw6mfq7vVL35LX7Mge5APXGAtMdst1IVY3HOBSbWp5nCh1c3Wiznn6l
+         qrJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUQ3WaTExfhJnLFb8D2YAyzIRT0NRl7jBbm+pkqUlKxfwsfL5M6qvCwwcJhlOIElfVTzf5B/ucOqryFJg==@vger.kernel.org, AJvYcCV2PTy/HabEF739Rtzok0N2JB8oC0rnqoe3QOuDeLlcm7VrTBgJUqUChIEx/F/XvLLjU1B5BzZF@vger.kernel.org, AJvYcCVDisvpVKH63AzgKGhi+8DG/Q6PDO0eIE4BAwLlC3VYIO1zZ7GVkmmW6Lsn6F9cLHC1xWk3Lvd/mrh9@vger.kernel.org, AJvYcCW822iJwd5tsb25hDbfVmCkadlR82E1yGzaOU7LZvn2sTIWGxkXueUT9/dpFMvA/DDz+XwHMHPXYbmCHwv5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkOVzFCvQ9HQLK5jHf8jv4bvnZtf2TTDlUHySdIPrlRFpFhf24
+	DWfUMGNSzjr0BZVl2784TjQGXQgRaKaAwyCgxIDlf7/7Aga6crm3jRZbMX0o0M17kKYTYCRtnaj
+	d0m78gRVeXq7HQEle0c5ZiQmJEdI=
+X-Gm-Gg: ASbGncvIWzfw1zDwpvI57lLP9XUtxJUcwdK3hD/n5Tg0F/NyHfN4trz5VQJ4Aii3Paj
+	t1jAlUU/Qwd0cqK+oJQuokp/qyrfs5Zo8gius
+X-Google-Smtp-Source: AGHT+IH6Z6JztDq8NnTac66FF1FRfOdf7YDCCFhupP4kXxxaC7X0XENWJ4B8Agrqh55Q23BphIsV5KAlzt5FAVergck=
+X-Received: by 2002:a05:6e02:1607:b0:3cd:d08a:5c99 with SMTP id
+ e9e14a558f8ab-3ce3a87a5d9mr120667135ab.8.1736638720742; Sat, 11 Jan 2025
+ 15:38:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <58ea1899-05be-4743-911b-77a56f08c347@baylibre.com>
+References: <20250109105600.41297-1-basharath@couthit.com> <20250110055906.65086-7-basharath@couthit.com>
+In-Reply-To: <20250110055906.65086-7-basharath@couthit.com>
+From: Jason Xing <kerneljasonxing@gmail.com>
+Date: Sun, 12 Jan 2025 07:38:04 +0800
+X-Gm-Features: AbW1kva3z-1aEzVTv2r3xLbpbKMOSjkZCC8BNOujNXCLZUG9WKMOdO0gPkmPI7o
+Message-ID: <CAL+tcoD6WuJH6yXaEGvuz_s3sROPXtEMeZw1hBNQvb6wnKKr-w@mail.gmail.com>
+Subject: Re: [RFC PATCH 06/10] net: ti: prueth: Adds HW timestamping support
+ for PTP using PRU-ICSS IEP module
+To: Basharath Hussain Khaja <basharath@couthit.com>
+Cc: danishanwar@ti.com, rogerq@kernel.org, andrew+netdev@lunn.ch, 
+	davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nm@ti.com, 
+	ssantosh@kernel.org, tony@atomide.com, richardcochran@gmail.com, 
+	parvathi@couthit.com, schnelle@linux.ibm.com, rdunlap@infradead.org, 
+	diogo.ivo@siemens.com, m-karicheri2@ti.com, horms@kernel.org, 
+	jacob.e.keller@intel.com, m-malladi@ti.com, javier.carrasco.cruz@gmail.com, 
+	afd@ti.com, s-anna@ti.com, linux-arm-kernel@lists.infradead.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, pratheesh@ti.com, 
+	prajith@ti.com, vigneshr@ti.com, praneeth@ti.com, srk@ti.com, rogerq@ti.com, 
+	krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 01/07, David Lechner wrote:
-> On 1/7/25 9:24 AM, Jonathan Santos wrote:
-> > Add ABI documentation specific to the ad7768-1 device, detailing
-> > the decimation_rate attribute for better clarity and usability.
-> > 
-> > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> > ---
-> >  .../ABI/testing/sysfs-bus-iio-adc-ad7768-1          | 13 +++++++++++++
-> >  1 file changed, 13 insertions(+)
-> >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad7768-1
-> > 
-> > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-ad7768-1 b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad7768-1
-> > new file mode 100644
-> > index 000000000000..065247f07cfb
-> > --- /dev/null
-> > +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad7768-1
-> > @@ -0,0 +1,13 @@
-> > +What:		/sys/bus/iio/devices/iio:deviceX/decimation_rate_available
-> > +KernelVersion:
-> > +Contact:	linux-iio@vger.kernel.org
-> > +Description:
-> > +		Reading returns a range of possible decimation rate values.
-> > +
-> > +What:		/sys/bus/iio/devices/iio:deviceX/decimation_rate
-> > +KernelVersion:
-> > +Contact:	linux-iio@vger.kernel.org
-> > +Description:
-> > +		Sets up the decimation rate for the digital filter. This can
-> > +		directly impact in the final sampling frequency. Reading returns
-> > +		the decimation rate. Writing sets the decimation rate.
-> 
-> If this only affects the filter, I would suggest to add `filter_` to the
-> beginning of the attribute names.
-> 
-> Also, an explanation of how to interpret the numbers would be helpful. It looks
-> like a unitless number that acts a sort of a multiplier or divider, but that
-> part isn't so clear to me. 
-> 
-> Or...
-> 
-> Since the decimation rate affects the -3dB point of the filters we could use
-> the standard IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY instead of introducing
-> a new attribute.
+On Fri, Jan 10, 2025 at 2:01=E2=80=AFPM Basharath Hussain Khaja
+<basharath@couthit.com> wrote:
+>
+> From: Roger Quadros <rogerq@ti.com>
+>
+> PRU-ICSS IEP module, which is capable of timestamping RX and
+> TX packets at HW level, is used for time synchronization by PTP4L.
+>
+> This change includes interaction between firmware and user space
+> application (ptp4l) with required packet timestamps. The driver
+> initializes the PRU firmware with appropriate mode and configuration
+> flags. Firmware updates local registers with the flags set by driver
+> and uses for further operation. RX SOF timestamp comes along with
+> packet and firmware will rise interrupt with TX SOF timestamp after
+> pushing the packet on to the wire.
+>
+> IEP driver is available in upstream and we are reusing for hardware
+> configuration for ICSSM as well. On top of that we have extended it
+> with the changes for AM57xx SoC.
+>
+> Extended ethtool for reading HW timestamping capability of the PRU
+> interfaces.
+>
+> Currently ordinary clock (OC) configuration has been validated with
+> Linux ptp4l.
+>
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> Signed-off-by: Andrew F. Davis <afd@ti.com>
+> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
+> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
+> ---
+>  drivers/net/ethernet/ti/icssg/icss_iep.c      |  42 ++
+>  drivers/net/ethernet/ti/icssm/icssm_ethtool.c |  26 +
+>  drivers/net/ethernet/ti/icssm/icssm_prueth.c  | 443 +++++++++++++++++-
+>  drivers/net/ethernet/ti/icssm/icssm_prueth.h  |  11 +
+>  .../net/ethernet/ti/icssm/icssm_prueth_ptp.h  |  85 ++++
+>  5 files changed, 605 insertions(+), 2 deletions(-)
+>  create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_ptp.h
+>
+> diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c b/drivers/net/ether=
+net/ti/icssg/icss_iep.c
+> index 768578c0d958..9a2ea13703d8 100644
+> --- a/drivers/net/ethernet/ti/icssg/icss_iep.c
+> +++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
+> @@ -937,11 +937,53 @@ static const struct icss_iep_plat_data am654_icss_i=
+ep_plat_data =3D {
+>         .config =3D &am654_icss_iep_regmap_config,
+>  };
+>
+> +static const struct icss_iep_plat_data am57xx_icss_iep_plat_data =3D {
+> +       .flags =3D ICSS_IEP_64BIT_COUNTER_SUPPORT |
+> +                ICSS_IEP_SLOW_COMPEN_REG_SUPPORT,
+> +       .reg_offs =3D {
+> +               [ICSS_IEP_GLOBAL_CFG_REG] =3D 0x00,
+> +               [ICSS_IEP_COMPEN_REG] =3D 0x08,
+> +               [ICSS_IEP_SLOW_COMPEN_REG] =3D 0x0C,
+> +               [ICSS_IEP_COUNT_REG0] =3D 0x10,
+> +               [ICSS_IEP_COUNT_REG1] =3D 0x14,
+> +               [ICSS_IEP_CAPTURE_CFG_REG] =3D 0x18,
+> +               [ICSS_IEP_CAPTURE_STAT_REG] =3D 0x1c,
+> +
+> +               [ICSS_IEP_CAP6_RISE_REG0] =3D 0x50,
+> +               [ICSS_IEP_CAP6_RISE_REG1] =3D 0x54,
+> +
+> +               [ICSS_IEP_CAP7_RISE_REG0] =3D 0x60,
+> +               [ICSS_IEP_CAP7_RISE_REG1] =3D 0x64,
+> +
+> +               [ICSS_IEP_CMP_CFG_REG] =3D 0x70,
+> +               [ICSS_IEP_CMP_STAT_REG] =3D 0x74,
+> +               [ICSS_IEP_CMP0_REG0] =3D 0x78,
+> +               [ICSS_IEP_CMP0_REG1] =3D 0x7c,
+> +               [ICSS_IEP_CMP1_REG0] =3D 0x80,
+> +               [ICSS_IEP_CMP1_REG1] =3D 0x84,
+> +
+> +               [ICSS_IEP_CMP8_REG0] =3D 0xc0,
+> +               [ICSS_IEP_CMP8_REG1] =3D 0xc4,
+> +               [ICSS_IEP_SYNC_CTRL_REG] =3D 0x180,
+> +               [ICSS_IEP_SYNC0_STAT_REG] =3D 0x188,
+> +               [ICSS_IEP_SYNC1_STAT_REG] =3D 0x18c,
+> +               [ICSS_IEP_SYNC_PWIDTH_REG] =3D 0x190,
+> +               [ICSS_IEP_SYNC0_PERIOD_REG] =3D 0x194,
+> +               [ICSS_IEP_SYNC1_DELAY_REG] =3D 0x198,
+> +               [ICSS_IEP_SYNC_START_REG] =3D 0x19c,
+> +       },
+> +       .config =3D &am654_icss_iep_regmap_config,
+> +};
+> +
+>  static const struct of_device_id icss_iep_of_match[] =3D {
+>         {
+>                 .compatible =3D "ti,am654-icss-iep",
+>                 .data =3D &am654_icss_iep_plat_data,
+>         },
+> +       {
+> +               .compatible =3D "ti,am5728-icss-iep",
+> +               .data =3D &am57xx_icss_iep_plat_data,
+> +       },
+>         {},
+>  };
+>  MODULE_DEVICE_TABLE(of, icss_iep_of_match);
+> diff --git a/drivers/net/ethernet/ti/icssm/icssm_ethtool.c b/drivers/net/=
+ethernet/ti/icssm/icssm_ethtool.c
+> index cce3276d5565..86d62d64dc4d 100644
+> --- a/drivers/net/ethernet/ti/icssm/icssm_ethtool.c
+> +++ b/drivers/net/ethernet/ti/icssm/icssm_ethtool.c
+> @@ -7,6 +7,7 @@
+>
+>  #include <linux/if_bridge.h>
+>  #include "icssm_prueth.h"
+> +#include "../icssg/icss_iep.h"
+>
+>  #define PRUETH_MODULE_VERSION "0.2"
+>  #define PRUETH_MODULE_DESCRIPTION "PRUSS Ethernet driver"
+> @@ -189,12 +190,37 @@ static void icssm_emac_get_regs(struct net_device *=
+ndev,
+>         regs->version =3D PRUETH_REG_DUMP_GET_VER(prueth);
+>  }
+>
+> +static int icssm_emac_get_ts_info(struct net_device *ndev,
+> +                                 struct kernel_ethtool_ts_info *info)
+> +{
+> +       struct prueth_emac *emac =3D netdev_priv(ndev);
+> +
+> +       if ((PRUETH_IS_EMAC(emac->prueth) && !emac->emac_ptp_tx_irq))
+> +               return ethtool_op_get_ts_info(ndev, info);
+> +
+> +       info->so_timestamping =3D
+> +               SOF_TIMESTAMPING_TX_HARDWARE |
+> +               SOF_TIMESTAMPING_TX_SOFTWARE |
+> +               SOF_TIMESTAMPING_RX_HARDWARE |
+> +               SOF_TIMESTAMPING_RX_SOFTWARE |
+> +               SOF_TIMESTAMPING_SOFTWARE |
+> +               SOF_TIMESTAMPING_RAW_HARDWARE;
 
-Well, here the -3dB cutoff depends on the ODR, which is determined by both the MCLK
-divider and decimation rate.
+In addtion to what Richard suggested, there is no need to re-mark the
+following flags "SOF_TIMESTAMPING_RX_SOFTWARE" and
+"SOF_TIMESTAMPING_SOFTWARE", please see __ethtool_get_ts_info().
 
-Wideband: -3dB at 0.433 × ODR
-Sinc5: -3dB at 0.204 × ODR
-Sinc3: -3dB at 0.2617 × ODR
-
-If we use _filter_low_pass_3db_frequency to control the decimation and _sampling_frequency
-to control the MCLK divider, wouldn’t it be confusing for one to always affect the other?
-A different ODR would result in a different cutoff, and vice versa.
-
-Would something like <type>[_name]_oversampling_ratio make more sense? Let me know what you think
-
+Thanks,
+Jason
 
