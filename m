@@ -1,78 +1,77 @@
-Return-Path: <devicetree+bounces-137680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD895A0A412
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 15:16:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E797AA0A499
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 17:15:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 37016188B7CB
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 14:16:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6759169A67
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 16:14:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4713F18F2DB;
-	Sat, 11 Jan 2025 14:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D260D19F40B;
+	Sat, 11 Jan 2025 16:14:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="djS9aRd5"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j8QtUdTt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601E93D6A;
-	Sat, 11 Jan 2025 14:16:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06FC082899;
+	Sat, 11 Jan 2025 16:14:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736604979; cv=none; b=rwHxyIFDjHk/ol1urrderIFe/XAVZ3GCi/ywDmP7bXAoGzL49OMtrqx2lYgktgVTWe0l7JbjUQj93Ko20Bwrh1FeGeY9E2dmi5KLrxwvq6krNsVyoFC9NJ7WJT4xwF4DGkLsx2gn9fzjHnTOW/A9OurasEWALR4jAyn1u030uGA=
+	t=1736612096; cv=none; b=lmYnFsZVfHRI/8Ixhv7mfd5qvOcfnkWTEJvGtdDV0bc7FdfNbs/gi+uzSbYQie3YNNRhK9DsSrXhDBX9iTLUeLTKjLCXREApkdse07T0hAx8EVf/44ek801RLsCsZaGfC0EiCYW2BGppAq5m3vjErkW/g6JrlUzAl6+N2h7Si7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736604979; c=relaxed/simple;
-	bh=9BzmE+4c0iDeoDcuF/Q77BHKZxC2T5SFkz9XkZGwGkw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=l5YHX+gGBUsszWsLxWuTe1KrFLbeJoVWhb9rOFnJ/zelCXyFAon0ayPEV4IrPfU0lmyvBHA0wkMp/hk3nWoy42b/TSRchFjyIEN6njS7DNEWHq5JVwF16SClF+hmpYWoH4xXcp8XISJsq3JhihTqDAZfOH7NDdqQSORmpkpja9Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=djS9aRd5; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 97415044d02611ef99858b75a2457dd9-20250111
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=bBcRZz23qe7sBpVEFNsRfliAszcO1sjImonnNjn1wvI=;
-	b=djS9aRd5dBePP/Apjt2iwmB0oRJiaCLMUVPjnVDzY2BRM1AN47ETesIybNCXWzskKGt3BB8uUJUnh10rLEds3Y5O9+hci7r3B331lfWeDNDRcI2+8HYA4Vy5Gfy8ubH38rwC381lgfPk/wf1WTtZhYaCgBaYHb0M2/bprGetwFs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:549b58ef-8d41-48ec-9939-f6f7c0144fac,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:a887b937-e11c-4c1a-89f7-e7a032832c40,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:-3
-	,IP:nil,URL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0
-	,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: 97415044d02611ef99858b75a2457dd9-20250111
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-	(envelope-from <chunfeng.yun@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1842934770; Sat, 11 Jan 2025 22:16:03 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
+	s=arc-20240116; t=1736612096; c=relaxed/simple;
+	bh=4BCNF1K5gTtzLMK6o3TysxdxJB/SU9lvn8Zp9GdSb1M=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hRwAEmtkyUHwnn9E2jRA3JeGU+8ZaiE9xnwh8YRwHE0HV+OKQR8wCGQakeDECMknbc85dSO0aZ69NofOoIOaXyrV1eJTRb1+LrTXhnREMarw6wIRGmsV5kWtgEPEpqkExNOiasGLPdDNEBwGOF7NbGxzDNa6mSPWgUYBvkq94fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j8QtUdTt; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50BDqUaR030543;
+	Sat, 11 Jan 2025 16:14:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=nvhPutBJiDRCgnRY3Qtk+K
+	UVHKnWzw+UEKOTJOLWw5Q=; b=j8QtUdTtETBGXYVHcYGqx9XGKmIQ2GJwZBXdoC
+	R06Nl5oIhVx6+PGkUWsyqiN+k3WQVHQwL+KBgR3PMJ0omq0s1W7FfFRApMHX5Lzz
+	gIWGcixxy54Srfxn8cXbOnT4ZG69sZQIWoBEm34sWYxyZrjsblomg2c+tGU/bn7X
+	nv9RhkC7g/2cmPj602/a07/suB1tVg8eIwHiJvbfLM5cPWsVKYZ4CqXC3kckJdNb
+	fiz4/nb5KAFY6Cg4AAaA/Uj7bFIc5Ni0841EQdD9rDQuKL8GNUrXDoByizU1DX0e
+	ipiKPLgeu/3TLfIryEVsA6tjRkwTYgDlI8sWZjyJc9sVtFrw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 443hx70rev-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 11 Jan 2025 16:14:51 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50BGEpjA005533
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 11 Jan 2025 16:14:51 GMT
+Received: from 4206f847eb12.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Sat, 11 Jan 2025 22:16:02 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Sat, 11 Jan 2025 22:16:01 +0800
-From: Chunfeng Yun <chunfeng.yun@mediatek.com>
-To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>
-CC: Chunfeng Yun <chunfeng.yun@mediatek.com>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: [RESEND PATCH 2/2] phy: mediatek: xsphy: add support to set disconnect threshold
-Date: Sat, 11 Jan 2025 22:15:42 +0800
-Message-ID: <20250111141542.5007-2-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250111141542.5007-1-chunfeng.yun@mediatek.com>
-References: <20250111141542.5007-1-chunfeng.yun@mediatek.com>
+ 15.2.1544.9; Sat, 11 Jan 2025 08:14:47 -0800
+From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Odelu Kukatla <quic_okukatla@quicinc.com>,
+        "Mike
+ Tipton" <mdptipton@quicinc.com>,
+        Vivek Aknurwar <viveka@quicinc.com>
+CC: Sibi Sankar <quic_sibis@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [V7 0/5]  Add EPSS L3 provider support on SA8775P SoC
+Date: Sat, 11 Jan 2025 16:14:24 +0000
+Message-ID: <20250111161429.51-1-quic_rlaggysh@quicinc.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,63 +80,80 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-MTK: N
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: YK8JJJ7OeKc_JLW59iq-vL_21V-1WMnf
+X-Proofpoint-ORIG-GUID: YK8JJJ7OeKc_JLW59iq-vL_21V-1WMnf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0 mlxscore=0
+ clxscore=1015 spamscore=0 adultscore=0 suspectscore=0 mlxlogscore=999
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501110138
 
-Add a property to tune usb2 phy's disconnect threshold.
+Add Epoch Subsystem (EPSS) L3 provider support on SA8775P SoCs.
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-based on kernel 6.13-rc1
----
- drivers/phy/mediatek/phy-mtk-xsphy.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+Current interconnect framework is based on static IDs for creating node
+and registering with framework. This becomes a limitation for topologies
+where there are multiple instances of same interconnect provider. Add
+icc_node_create_alloc_id() API to create icc node with dynamic id, this
+will help to overcome the dependency on static IDs.
 
-diff --git a/drivers/phy/mediatek/phy-mtk-xsphy.c b/drivers/phy/mediatek/phy-mtk-xsphy.c
-index 7c248f5cfca5..718ed8f17c2d 100644
---- a/drivers/phy/mediatek/phy-mtk-xsphy.c
-+++ b/drivers/phy/mediatek/phy-mtk-xsphy.c
-@@ -59,6 +59,7 @@
- #define XSP_USBPHYACR6		((SSUSB_SIFSLV_U2PHY_COM) + 0x018)
- #define P2A6_RG_BC11_SW_EN	BIT(23)
- #define P2A6_RG_OTG_VBUSCMP_EN	BIT(20)
-+#define PA6_RG_U2_DISCTH	GENMASK(7, 4)
- 
- #define XSP_U2PHYDTM1		((SSUSB_SIFSLV_U2PHY_COM) + 0x06C)
- #define P2D_FORCE_IDDIG		BIT(9)
-@@ -95,6 +96,7 @@ struct xsphy_instance {
- 	int eye_src;
- 	int eye_vrt;
- 	int eye_term;
-+	int discth;
- };
- 
- struct mtk_xsphy {
-@@ -244,9 +246,12 @@ static void phy_parse_property(struct mtk_xsphy *xsphy,
- 					 &inst->eye_vrt);
- 		device_property_read_u32(dev, "mediatek,eye-term",
- 					 &inst->eye_term);
--		dev_dbg(dev, "intr:%d, src:%d, vrt:%d, term:%d\n",
-+		device_property_read_u32(dev, "mediatek,discth",
-+					 &inst->discth);
-+		dev_dbg(dev, "intr:%d, src:%d, vrt:%d, term:%d, discth:%d\n",
- 			inst->efuse_intr, inst->eye_src,
--			inst->eye_vrt, inst->eye_term);
-+			inst->eye_vrt, inst->eye_term,
-+			inst->discth);
- 		break;
- 	case PHY_TYPE_USB3:
- 		device_property_read_u32(dev, "mediatek,efuse-intr",
-@@ -285,6 +290,9 @@ static void u2_phy_props_set(struct mtk_xsphy *xsphy,
- 	if (inst->eye_term)
- 		mtk_phy_update_field(pbase + XSP_USBPHYACR1, P2A1_RG_TERM_SEL,
- 				     inst->eye_term);
-+	if (inst->discth)
-+		mtk_phy_update_field(pbase + XSP_USBPHYACR6, PA6_RG_U2_DISCTH,
-+				     inst->discth);
- }
- 
- static void u3_phy_props_set(struct mtk_xsphy *xsphy,
+Change since v6:
+ - Added icc_node_create_alloc_id() API to dynamically allocate ID while 
+   creating the node. Replaced the IDA (ID allocator) with
+   icc_node_create_alloc_id() API to allocate node IDs dynamically.
+ - Removed qcom,epss-l3-perf generic compatible as per the comment.
+ - Added L3 ICC handles for CPU0 and CPU4 in DT, as per Bjorn comment.
+   Link to comment:
+   https://lore.kernel.org/lkml/ww3t3tu7p36qzlhcetaxif2xzrpgslydmuqo3fqvisbuar4bjh@qc2u43dck3qi/
+
+Change since v5:
+ - Reused qcom,sm8250-epss-l3 compatible for sa8775p SoC.
+ - Rearranged the patches, moved dt changes to end of series.
+ - Updated the commit text.
+
+Changes since v4:
+ - Added generic compatible "qcom,epss-l3-perf" and split the driver
+   changes accordingly.
+
+Changes since v3:
+ - Removed epss-l3-perf generic compatible changes. These will be posted
+   as separate patch until then SoC specific compatible will be used for
+   probing.
+
+Changes since v2:
+ - Updated the commit text to reflect the reason for code change.
+ - Added SoC-specific and generic compatible to driver match table.
+
+Changes since v1:
+ - Removed the usage of static IDs and implemented dynamic ID assignment
+   for icc nodes using IDA.
+ - Removed separate compatibles for cl0 and cl1. Both cl0 and cl1
+   devices use the same compatible.
+ - Added new generic compatible for epss-l3-perf.
+
+Jagadeesh Kona (1):
+  arm64: dts: qcom: sa8775p: Add CPU OPP tables to scale DDR/L3
+
+Raviteja Laggyshetty (4):
+  interconnect: core: Add dynamic id allocation support
+  interconnect: qcom: Add multidev EPSS L3 support
+  dt-bindings: interconnect: Add EPSS L3 compatible for SA8775P
+  arm64: dts: qcom: sa8775p: add EPSS l3 interconnect provider
+
+ .../bindings/interconnect/qcom,osm-l3.yaml    |   1 +
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi         | 229 ++++++++++++++++++
+ drivers/interconnect/core.c                   |  32 +++
+ drivers/interconnect/qcom/osm-l3.c            |  91 +++++--
+ include/linux/interconnect-provider.h         |   6 +
+ 5 files changed, 335 insertions(+), 24 deletions(-)
+
 -- 
-2.46.0
+2.39.2
 
 
