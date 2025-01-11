@@ -1,754 +1,253 @@
-Return-Path: <devicetree+bounces-137692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9CEAA0A4E5
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 17:55:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06BA5A0A500
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 18:15:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 770B61889082
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 16:55:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02EB23A383E
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 17:15:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D181B425F;
-	Sat, 11 Jan 2025 16:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562931B4240;
+	Sat, 11 Jan 2025 17:15:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lzlyUes4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="llSCPBrp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61A7A10F1;
-	Sat, 11 Jan 2025 16:54:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83CFD1B4156;
+	Sat, 11 Jan 2025 17:15:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736614486; cv=none; b=AOKh0Xpjf/2Kx2UrW0BvDdP2a9DQszCNkLbAoPNDXX4ZNgBAAnYX3BxByhmXhuTzF6R52eTC92pf71ZNIn21JeQ3AAmrIP9Q6o65KRZhhcUkI0PMj6rFJe7atEOYOQdbatOfHcJq6JkjmhHJL9tGTJ/vGPoc7X6ZWvG1kwXPKZE=
+	t=1736615710; cv=none; b=I4dLa748zjLf2e1xJcge4Xc+FYFLP53iSHjbYSRE0zj/0CkiK+d65X/E742KZ84SegRvyXL3ljbyxfgjnGSQU2kHQJ3XYLXh9BBf+GGJdPIwGPy5hPPKaRIstEQNHjDAR0q4eFIRsrSpck4kk67h8w0FpUfwXYbOjjjzwNyY6LI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736614486; c=relaxed/simple;
-	bh=TXwe4AGMg500Pf5WQjlVnR7F8OrmQb4fx8CjlnXOJLI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=f5TO3jB5SecGnbNGoZTsjJZ1FCjOlm0VoH/1DGLaVQXnsMQJOgaWW0ipnTBQfandJuG53bMb1srUWAS81aA+X4MxTuB6FDK4BVGqsQ2DaSTSVSDjtTlNPV2tnLo188Nfshrg+vsM5GAzjpSKTLhq3K2JfdpNvm7vstV4C6z6Jso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lzlyUes4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F8ECC4CED2;
-	Sat, 11 Jan 2025 16:54:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736614486;
-	bh=TXwe4AGMg500Pf5WQjlVnR7F8OrmQb4fx8CjlnXOJLI=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=lzlyUes4Uxo1gym748nZVtJH5F7zmrErESGgmHgZ0xz43du3uHXxm9g+I+UOKJDHN
-	 SmzN+dQwvfL3fniBovcojxAlK50TFn/6lCdpjdtWdgG3I+qodOp5y8LjoVQz4eLJkm
-	 f4owKa03NxbdLQxy3E8vmVCYhX87+ESsIWE2ntPiETEC7K+hASfjEE4fO1vMiRl3qw
-	 yc13aM/YS5XbSe4vfgeJGxf5TEW1qtvmPpGv8nDETB//Ei4tm0NeFbOHK0/zpv+vJi
-	 vXjGbNbMRbJ1XbxI43FnZE0ANBhWqxUpLpAp8TECvyIA4cFFdYnF56buWx1g+OPnzg
-	 FesxAi1dHszOA==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Sat, 11 Jan 2025 17:54:19 +0100
-Subject: [PATCH 2/2] arm64: dts: qcom: x1e80100: Set CPU interconnect paths
- as ACTIVE_ONLY
+	s=arc-20240116; t=1736615710; c=relaxed/simple;
+	bh=vXx+XHp6NBot7yoeYCeI2py7axlr6mmQo5hYV22il5Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mSUA+zSMvv3dBNpcDlEz9zoNvytvPqv4WB5HL1CdQO+pLD02Pwg8a6QQvJRoiQFr+E9oRAgx5Ta0ZJdAe/C+eW0OX6uLEai+kkFi0Ebw/B9zVBEdc5QmRAfQmYTM+ZANDuBqf7AYoTOSPgduYanm8QphN9A8+gdAfA98+CPNLN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=llSCPBrp; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-21636268e43so67670685ad.2;
+        Sat, 11 Jan 2025 09:15:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736615708; x=1737220508; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=wH+hX4+lfDobaMlIAuh/B70W4752LjE2E15kTIXP5p4=;
+        b=llSCPBrpwKEbob2Ct24fnuHZDcUnGV4vTqEkB72exzcBjxAJq8wG5qMlCDkmRVbVMQ
+         bL0UFbGJvMcY7XoqpruE4f5CuNmtqIv0wRWghdXQC25+BGCrzTNhOE5JEXqO4nIvu6kb
+         DS3GDIfeNxvE+ieXXqp3xqXulIE9aY/QhfGiZEH0phso/yfVnJR7YA/DINF8CcBnn63B
+         mVqOCAwgMUNQWV2AyNIECqAZc+RkmXBVHodRdm5qABK78wsqu+q5OAEuV2V+rjlk00OJ
+         LCUXarca/vu8BvHwx/pC77TZkUisKyieOVQQZU8msUT5XUt6haXYAqdsJdEn8AroMc7Z
+         vGAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736615708; x=1737220508;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wH+hX4+lfDobaMlIAuh/B70W4752LjE2E15kTIXP5p4=;
+        b=hKHDJGbfoyMMZVxtgMAn6Qh0levM4wXIMEpTwuov+sadpb9NYUqhnHyGQ87m4GMF6D
+         d58dXiINYpFHyOYrZGaRZiug10aXYdaK0zmSL+BfgSFC/UFpAdljhkvEGK2vIz12tb5i
+         mej1vEAN1annYsn1Cj18tMrH9pnO55QOvMe7xXa/fwBZQJX8LOTeC9nfifQ9TWlNt2p3
+         yprkJ+R/iOjJQYmMAnT6cuAwrSevc8f3hJaztiFN+BkDUSDGwBZ8Yu0nKwTxXM8hY/W5
+         p2yvIkG///FiVGTNGneWHZAF1ANslzDps3nj4QaUuRNch1T5grs/i95l2mNw55DrVWv8
+         DpwQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU1kuyLYCTTP1+fSk6Bq8Q5z6s2ToEWmzt4fqUJ6k6HLNdKD+gcNQKbt09cUIHMcHR30dSZBVDH+IQE2w==@vger.kernel.org, AJvYcCUR6ZsBFdmYmGVwH2cuvUSP4nR3BZGgc2zvVljidqxsNAyKnMXf0NT582IrCVrzdI2iRF+F4YvvNOzYTowr@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCrQ/hbHAa0wVV5AzZMHkMuMU+AXmGoOhv91GCej9pKf5bIiOf
+	7EiN4dl2HsKMAqeglPHyZY8oExZQbF2fJqd/TB96CiO1y/4sa9Nn
+X-Gm-Gg: ASbGncvKvUPU/qVIrlUw/Httuz703xMwFJpzzXTx/mjBDhhXLjT6OeJAKqt3BTxfHGH
+	dNRKSmECxNzpyvHpWRcnjI73dgmJ31CBcLE0OAYmFYhVhz9OBtYbqVS82oeBw5LCOwEv8/qAuib
+	QcT/MFFnqfc6yWOmS/mYC0Q6PCY2KFVb9itg9EtsGWQZPfxe8wlaFUOSzvtSgIbTFUFxHDmE9po
+	9Tz1OzpAc6TFlfcOm4E0unzeihyAkTbOR3P5HLQd7lX71kS7CYvjbL562rhsiTAsjFuYi9ZLzct
+	nWiUzRSVyiCmqu2LQRZPVrxfkPiANQ==
+X-Google-Smtp-Source: AGHT+IHrg1QniTccrI6m7UimadAlI5zJ2i0YpAUriM2WJlqVz/Dh7jrWbEQIDVskBeZBLGdAhXrzGQ==
+X-Received: by 2002:a17:902:c941:b0:215:7fad:49ab with SMTP id d9443c01a7336-21a83f46a12mr247657425ad.10.1736615707706;
+        Sat, 11 Jan 2025 09:15:07 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21a9f21a409sm29670715ad.114.2025.01.11.09.15.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 11 Jan 2025 09:15:07 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <f6ee420b-7c3f-4a21-831b-619fe38408b5@roeck-us.net>
+Date: Sat, 11 Jan 2025 09:15:05 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: pwm-fan: Document default-pwm
+ property
+To: Peter Korsgaard <peter@korsgaard.com>, Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+ Jean Delvare <jdelvare@suse.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20250103101448.890946-1-peter@korsgaard.com>
+ <20250103195810.GA2624225-robh@kernel.org>
+ <dbf7cdd3-c5ab-4801-be85-163124b8a898@korsgaard.com>
+ <20250106173805.GA501301-robh@kernel.org> <87sepq8mcc.fsf@dell.be.48ers.dk>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <87sepq8mcc.fsf@dell.be.48ers.dk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250111-topic-x1e_fixups-v1-2-77dc39237c12@oss.qualcomm.com>
-References: <20250111-topic-x1e_fixups-v1-0-77dc39237c12@oss.qualcomm.com>
-In-Reply-To: <20250111-topic-x1e_fixups-v1-0-77dc39237c12@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- Abel Vesa <abel.vesa@linaro.org>, linux-arm-msm@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736614468; l=32489;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=FT00uvjAac7IQlMIZOFcdGaYBpLijEndzW+Vr4TlmuU=;
- b=7sMRuQkWy7H00r4jhtRk8Vg3lYosk6FkhPg1Y/wHmBMlbaxXYwYHbP1MSCZULO2juCFupZcT8
- 8XcNB+1ZUpeD6lWmsDzmCWvwEUjsCxxDQpjacbSM1ppsmlBuMxZSAtU
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On 1/10/25 12:06, Peter Korsgaard wrote:
+>>>>>> "Rob" == Rob Herring <robh@kernel.org> writes:
+> On 1/6/25 18:38, Rob Herring wrote:
+> 
+>>> I am not sure I what you mean with the RPM reference here? The
+>>> cooling-levels support in the fan-pwm.c driver is a mapping between cooling
+>>> levels and PWM values, NOT RPM value.
+>>
+>> Did I say RPM anywhere for this option?
+>>
+>> It is the index of the array that is meaningful to anything outside of
+>> the driver. The values are opaque. They are duty cycle in some cases
+>> and RPMs in other cases. The thermal subsystem knows nothing about PWM
+>> duty cycle nor RPMs.
+>>
+>> Defining a default-cooling-level would be useful to anyone, not just
+>> your usecase.
+>>
+>> IOW, you are proposing:
+>>
+>> default-pwm = <123>;
+>>
+>> I'm proposing doing this instead:
+>>
+>> cooling-levels = <0 123 255>;
+>> default-cooling-level = <1>;
+> 
+> I don't have CONFIG_THERMAL enabled in my builds (and don't know the
+> subsystem), but I see the pwm-fan driver has some logic to default to
+> the highest cooling level, it just forgets to actually set the PWM to
+> match it, so perhaps we can just fix that?
+> 
+> E.G. something like:
+> 
+> commit 02c8ba74eb7dddf210ceefa253385bc8e40f49ae
+> Author: Peter Korsgaard <peter@korsgaard.com>
+> Date:   Thu Jan 2 18:26:45 2025 +0100
+> 
+>      hwmon: (pwm-fan): Default to the Maximum cooling level if provided
+>      
+>      The pwm-fan driver uses full PWM (255) duty cycle at startup, which may not
+>      always be desirable because of noise or power consumption peaks.
+>      
+>      The driver optionally accept a list of "cooling-levels" for the thermal
+>      subsystem.  If provided, use the PWM value corresponding to the maximum
+>      cooling level rather than the full level.
+>      
+>      Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
+> 
+> diff --git a/drivers/hwmon/pwm-fan.c b/drivers/hwmon/pwm-fan.c
+> index 53a1a968d00d..33525096f1e7 100644
+> --- a/drivers/hwmon/pwm-fan.c
+> +++ b/drivers/hwmon/pwm-fan.c
+> @@ -499,6 +499,7 @@ static int pwm_fan_probe(struct platform_device *pdev)
+>   	const struct hwmon_channel_info **channels;
+>   	u32 pwm_min_from_stopped = 0;
+>   	u32 *fan_channel_config;
+> +	u32 default_pwm = MAX_PWM;
+>   	int channel_count = 1;	/* We always have a PWM channel. */
+>   	int i;
+>   
+> @@ -545,11 +546,18 @@ static int pwm_fan_probe(struct platform_device *pdev)
+>   
+>   	ctx->enable_mode = pwm_disable_reg_enable;
+>   
+> +	ret = pwm_fan_get_cooling_data(dev, ctx);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (ctx->pwm_fan_cooling_levels)
+> +		default_pwm = ctx->pwm_fan_cooling_levels[ctx->pwm_fan_max_state];
+> +
+>   	/*
+> -	 * Set duty cycle to maximum allowed and enable PWM output as well as
+> +	 * Set duty cycle to default and enable PWM output as well as
+>   	 * the regulator. In case of error nothing is changed
+>   	 */
+> -	ret = set_pwm(ctx, MAX_PWM);
+> +	ret = set_pwm(ctx, default_pwm);
+>   	if (ret) {
+>   		dev_err(dev, "Failed to configure PWM: %d\n", ret);
+>   		return ret;
+> @@ -661,10 +669,6 @@ static int pwm_fan_probe(struct platform_device *pdev)
+>   		return PTR_ERR(hwmon);
+>   	}
+>   
+> -	ret = pwm_fan_get_cooling_data(dev, ctx);
+> -	if (ret)
+> -		return ret;
+> -
+>   	ctx->pwm_fan_state = ctx->pwm_fan_max_state;
+>   	if (IS_ENABLED(CONFIG_THERMAL)) {
+>   		cdev = devm_thermal_of_cooling_device_register(dev,
+> 
+> 
+> Guenter, what do you say? This way we don't need any new device tree
+> properties. I personally find it less clear than a default-pwm property,
+> but oh well.
+> 
 
-There is no use wasting power on keeping the links between the CPU and
-something else online when the CPUs are online. Change the interconnect
-tag for such paths, so that RPMh is requested to automatically
-clock-gate those when possible.
+I would not call that "default". It is more along the line of
+"If available, use highest cooling level as maximum allowed".
 
-Keeping these paths online is also a potential power collapse blocker,
-however this commit alone doesn't magically fix all the remaining
-TODOs related to suspend.
+Other than that, I don't like it, but since it looks like we
+won't get approval for the devicetree property, I'd say go for it.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 236 ++++++++++++++++-----------------
- 1 file changed, 118 insertions(+), 118 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 4936fa5b98ff7a9a009e3106f4dba90131251971..9d38436763432892ceef95daf0335d4cf446357c 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -863,8 +863,8 @@ i2c16: i2c@880000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -899,8 +899,8 @@ spi16: spi@880000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -935,8 +935,8 @@ i2c17: i2c@884000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -971,8 +971,8 @@ spi17: spi@884000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1007,8 +1007,8 @@ i2c18: i2c@888000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1043,8 +1043,8 @@ spi18: spi@888000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1079,8 +1079,8 @@ i2c19: i2c@88c000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1115,8 +1115,8 @@ spi19: spi@88c000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1151,8 +1151,8 @@ i2c20: i2c@890000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1187,8 +1187,8 @@ spi20: spi@890000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1223,8 +1223,8 @@ i2c21: i2c@894000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1259,8 +1259,8 @@ spi21: spi@894000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1295,8 +1295,8 @@ uart21: serial@894000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>;
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>;
- 				interconnect-names = "qup-core",
- 						     "qup-config";
- 
-@@ -1320,8 +1320,8 @@ i2c22: i2c@898000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1356,8 +1356,8 @@ spi22: spi@898000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1392,8 +1392,8 @@ i2c23: i2c@89c000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1428,8 +1428,8 @@ spi23: spi@89c000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_2 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1508,8 +1508,8 @@ i2c8: i2c@a80000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1544,8 +1544,8 @@ spi8: spi@a80000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1580,8 +1580,8 @@ i2c9: i2c@a84000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1616,8 +1616,8 @@ spi9: spi@a84000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1652,8 +1652,8 @@ i2c10: i2c@a88000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1688,8 +1688,8 @@ spi10: spi@a88000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1724,8 +1724,8 @@ i2c11: i2c@a8c000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1760,8 +1760,8 @@ spi11: spi@a8c000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1796,8 +1796,8 @@ i2c12: i2c@a90000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1832,8 +1832,8 @@ spi12: spi@a90000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1868,8 +1868,8 @@ i2c13: i2c@a94000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1904,8 +1904,8 @@ spi13: spi@a94000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1940,8 +1940,8 @@ i2c14: i2c@a98000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -1976,8 +1976,8 @@ spi14: spi@a98000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2012,8 +2012,8 @@ uart14: serial@a98000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>;
- 				interconnect-names = "qup-core",
- 						     "qup-config";
- 
-@@ -2037,8 +2037,8 @@ i2c15: i2c@a9c000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2073,8 +2073,8 @@ spi15: spi@a9c000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre1_noc MASTER_QUP_1 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2152,8 +2152,8 @@ i2c0: i2c@b80000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2188,8 +2188,8 @@ spi0: spi@b80000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2224,8 +2224,8 @@ i2c1: i2c@b84000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2260,8 +2260,8 @@ spi1: spi@b84000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2296,8 +2296,8 @@ i2c2: i2c@b88000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2332,8 +2332,8 @@ uart2: serial@b88000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>;
- 				interconnect-names = "qup-core",
- 						     "qup-config";
- 
-@@ -2357,8 +2357,8 @@ spi2: spi@b88000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2393,8 +2393,8 @@ i2c3: i2c@b8c000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2429,8 +2429,8 @@ spi3: spi@b8c000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2465,8 +2465,8 @@ i2c4: i2c@b90000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2501,8 +2501,8 @@ spi4: spi@b90000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2537,8 +2537,8 @@ i2c5: i2c@b94000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2573,8 +2573,8 @@ spi5: spi@b94000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2609,8 +2609,8 @@ i2c6: i2c@b98000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2645,8 +2645,8 @@ spi6: spi@b98000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2681,8 +2681,8 @@ i2c7: i2c@b9c000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -2717,8 +2717,8 @@ spi7: spi@b9c000 {
- 
- 				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
- 						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
--						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
-+						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ACTIVE_ONLY>,
- 						<&aggre2_noc MASTER_QUP_0 QCOM_ICC_TAG_ALWAYS
- 						 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 				interconnect-names = "qup-core",
-@@ -3194,8 +3194,8 @@ pcie3: pcie@1bd0000 {
- 
- 			interconnects = <&pcie_north_anoc MASTER_PCIE_3 QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
--					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--					 &cnoc_main SLAVE_PCIE_3 QCOM_ICC_TAG_ALWAYS>;
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &cnoc_main SLAVE_PCIE_3 QCOM_ICC_TAG_ACTIVE_ONLY>;
- 			interconnect-names = "pcie-mem",
- 					     "cpu-pcie";
- 
-@@ -3395,8 +3395,8 @@ pcie6a: pci@1bf8000 {
- 
- 			interconnects = <&pcie_south_anoc MASTER_PCIE_6A QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
--					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--					 &cnoc_main SLAVE_PCIE_6A QCOM_ICC_TAG_ALWAYS>;
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &cnoc_main SLAVE_PCIE_6A QCOM_ICC_TAG_ACTIVE_ONLY>;
- 			interconnect-names = "pcie-mem",
- 					     "cpu-pcie";
- 
-@@ -3522,8 +3522,8 @@ pcie5: pci@1c00000 {
- 
- 			interconnects = <&pcie_north_anoc MASTER_PCIE_5 QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
--					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--					 &cnoc_main SLAVE_PCIE_5 QCOM_ICC_TAG_ALWAYS>;
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &cnoc_main SLAVE_PCIE_5 QCOM_ICC_TAG_ACTIVE_ONLY>;
- 			interconnect-names = "pcie-mem",
- 					     "cpu-pcie";
- 
-@@ -3646,8 +3646,8 @@ pcie4: pci@1c08000 {
- 
- 			interconnects = <&pcie_north_anoc MASTER_PCIE_4 QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
--					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--					 &cnoc_main SLAVE_PCIE_4 QCOM_ICC_TAG_ALWAYS>;
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &cnoc_main SLAVE_PCIE_4 QCOM_ICC_TAG_ACTIVE_ONLY>;
- 			interconnect-names = "pcie-mem",
- 					     "cpu-pcie";
- 
-@@ -4694,8 +4694,8 @@ usb_1_ss2: usb@a0f8800 {
- 
- 			interconnects = <&usb_south_anoc MASTER_USB3_2 QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
--					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--					 &config_noc SLAVE_USB3_2 QCOM_ICC_TAG_ALWAYS>;
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_USB3_2 QCOM_ICC_TAG_ACTIVE_ONLY>;
- 			interconnect-names = "usb-ddr",
- 					     "apps-usb";
- 
-@@ -4794,8 +4794,8 @@ usb_2: usb@a2f8800 {
- 
- 			interconnects = <&usb_north_anoc MASTER_USB2 QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
--					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--					 &config_noc SLAVE_USB2 QCOM_ICC_TAG_ALWAYS>;
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_USB2 QCOM_ICC_TAG_ACTIVE_ONLY>;
- 			interconnect-names = "usb-ddr",
- 					     "apps-usb";
- 
-@@ -4879,8 +4879,8 @@ usb_mp: usb@a4f8800 {
- 
- 			interconnects = <&usb_north_anoc MASTER_USB3_MP QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
--					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--					 &config_noc SLAVE_USB3_MP QCOM_ICC_TAG_ALWAYS>;
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_USB3_MP QCOM_ICC_TAG_ACTIVE_ONLY>;
- 			interconnect-names = "usb-ddr",
- 					     "apps-usb";
- 
-@@ -5053,8 +5053,8 @@ usb_1_ss1: usb@a8f8800 {
- 
- 			interconnects = <&usb_south_anoc MASTER_USB3_1 QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
--					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
--					 &config_noc SLAVE_USB3_1 QCOM_ICC_TAG_ALWAYS>;
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_USB3_1 QCOM_ICC_TAG_ACTIVE_ONLY>;
- 			interconnect-names = "usb-ddr",
- 					     "apps-usb";
- 
-
--- 
-2.47.1
+Guenter
 
 
