@@ -1,93 +1,88 @@
-Return-Path: <devicetree+bounces-137619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60174A0A1F0
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 09:10:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEED1A0A1FE
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 09:33:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77E1B188E3E0
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 08:10:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A6241887D37
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 08:33:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1AC1865E3;
-	Sat, 11 Jan 2025 08:09:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A262156960;
+	Sat, 11 Jan 2025 08:33:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="glsJ+t7e"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DIaM78uj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A830C18FC7E
-	for <devicetree@vger.kernel.org>; Sat, 11 Jan 2025 08:09:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D9324B22C;
+	Sat, 11 Jan 2025 08:33:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736582980; cv=none; b=P96dRqty567/jS7UP5vToG+zGs/2Kj/D//FhYBb0CvtlbvSmWue2zKZlqQUzLE1S6tIThs9koLh92Z2VS+/lrYaP7LIGKTOcYzoWztXlw4EkQ2iIEczRBekU70SYcgTZW7aSMJdMY7MDXEYZvoOVS5ErZJDSCSmScwBvkKbGhHs=
+	t=1736584427; cv=none; b=eiFz+lBR0fwXvOa6IQqI5wcxj54jMYS3xPT1DmL9trN+dKBIxVE8cnlgkdwn72HsapWEJCrmrH80c1cvIoiqeEBCuQiC60Tg+tGhwMxpnPNyPxPwDRhtglsXuSwDre9Doi8MkoSKTGBggEf7OCoAB4dG4oHQGkTDXPr1LDxeI3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736582980; c=relaxed/simple;
-	bh=A4Uyt3UOZV9NkxZNCl27n6y72RfXzI/BzSbQg5Tl8tw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=n2dye5PjMHtYGiWBARBHI8DgIsOhEKtOTk3z25oMFtHMh1PhDl47Z99o4D/clhVLxiG2eFIiNm+jcCG9u4dKjIzLz6B+/jgLN5/+/CH+0YMJVoU8u1YpYfh8n3esm7E1Dco41o9+VfmYe/2rOTeQcnnOc0shf5cr4fz4dZJRz/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=glsJ+t7e; arc=none smtp.client-ip=209.85.216.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2ef8c012913so3629639a91.3
-        for <devicetree@vger.kernel.org>; Sat, 11 Jan 2025 00:09:38 -0800 (PST)
+	s=arc-20240116; t=1736584427; c=relaxed/simple;
+	bh=ySnKGRM/zKHx9eQNSC+JTuF9YIj++vO03SwnaqeqVmE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZPcok6Ld4lUKuYC9PA4kr8aJWUYgTKoDaFGOzFXSAAaVouhxYbG3rwErC5HJFlt5Ae/DkT44PxT6ncyIW9csNpFS//d5lX7sgoXf40okW+BssU+++vzKskBCg6ZNdToOLCWGMh4LTyxn1feusaHhT7sw7/QOpyWOAig5fGMZ36o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DIaM78uj; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2163b0c09afso49908095ad.0;
+        Sat, 11 Jan 2025 00:33:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1736582978; x=1737187778; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EJmA1+cUkZQqYWT17Z2TnXdqbQr34ioZCcvEwe60th8=;
-        b=glsJ+t7eagDalY/Foq+m07AfXlhuDjZGRQufXKEWDNxmvOH2IltBe93+zUnmXW6TXG
-         3Pe1Eh33PdwElG7uCHx8uu3RfAlNZ1IDN0QQfQZAUZQ/60s4pKww7QOtmelvsALiPajL
-         tEv7Csaao2DiVMHZvAmNwY061Ow8ypAgX26ChOmjHz46sHHA1dA87cJzNSC400Wews8B
-         DMuy6nSFh32v+uux66ltz7OzksqdytywM0RUVsp9UuAAZxJdrCnui3KfSZSA2d8gdpzE
-         m259wKhUw3fgGNtBBHkqsiqV7FR7OTSQBMeMcZb43pXZq2QXKhXpCh21OyP7Q1cgxyVk
-         37iw==
+        d=gmail.com; s=20230601; t=1736584425; x=1737189225; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=L4b/LB0Ux4JJmdMJUe88KB+PNR+gt0GjqvwSU215vkE=;
+        b=DIaM78ujPOsPmTz/XcZuAm7zE/SvAEJHexjT/iHctklJBcePVa87bf0BcFI7gBPPEp
+         uzH0n3sTT65YHm2qePGhabk7S6itDAnmp84XshF4ZTTe+quf7S9BdzfY7Bfwign2IrjI
+         IzJPLJhDt0XUy55SPcQT9pEmP2wU2efDfqhkqbkBkcsg2wCcIsDBUfKu6aJK9e350xLJ
+         ZNhrTx7l0qCqqS/xnEyGIxpBvcs1iJLNZ+CwbVuel0lnrSLnlUnBfXlng49r9xi9hWIt
+         EAZ4YCLo6wPAC7MmAEdW88/VKax7wPn2hb7gSmAfAp9HSoDoW3rfiK1BWN+tJ98gMUIa
+         lt/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736582978; x=1737187778;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EJmA1+cUkZQqYWT17Z2TnXdqbQr34ioZCcvEwe60th8=;
-        b=gouv8kihKOVETAzkaAVgxlRQSKPHGz7JXrnuhcb8YoEoPdUt5J0U6TGQiGe9q23nHf
-         t5Q1IWleD1/6Z6O+0RKr8HwX1hwjD075IPByKWqeTeRMcUNOua9qbdourO8ClsMYus9n
-         9J2vYH8Vj9GaCtg/LTztgmyBv0K/MHjDWsE4FsRkhYLCVXAjOtLkgkiVINlRXSFr71AT
-         FlPSIihEdjSCorWyYu57L4RAYTzyIq4uDK7VK70HQpwJHzWl4cSi/XrWVECDKS+Nkg+w
-         nFy0pfsShB9c/wRAiBkMu3nkqAMyi8eiMEcdS0I/fc8mXFl90SJR90G21NK6dptxyf5E
-         4n8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCURgjhNPbNwW9v+qtXdMwPOIIwdJPfSuiLXaNOoCk9hOYHFilgaQQlxmd9JKop0CT5r32fKnLFCyXvY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjbxL/Cr3pOpDC3BUgoamt4897iYuHTvJ62Z15CJeMH9kzw2Hg
-	U4dzEucPmEngTEXteTbSDs7LoHbmm6gTFsaCM4prSOvgyMHEv1xRcgiDrooi
-X-Gm-Gg: ASbGncvBZa9ej/IK5l/yBE7DUUKoXzNDNUpcnmGc9lDOJ8JO/Wq29u9vmuF3hzuaJ4N
-	96Z5ndnSqgZcuzgbwUu3zC+OaQTtywP9aZTYr/z6XXv/dX5WvDWU8loCD1wAwWj5X+YErwHfALX
-	MN6TNMZ+skuecEsk+NJoDQmCSd2lL1POXdQQnuXKh0kD4soWv6Yc8aPfH+D9sykvQunoy1tT9+P
-	XPKTJUPqU59ngYhO/nJemp9nsLbU/0j54R50bHYXohnl8DZ8HIJ7RJXcw==
-X-Google-Smtp-Source: AGHT+IHC4XD2JqlYhh1O1d22Xvj5qQCOneQIjph6oWSVs8txEHRQ3lKYZ0deviHayoheco8rSmsIbg==
-X-Received: by 2002:a17:90b:54cb:b0:2ee:863e:9fe8 with SMTP id 98e67ed59e1d1-2f548ec793fmr21562441a91.18.1736582977921;
-        Sat, 11 Jan 2025 00:09:37 -0800 (PST)
-Received: from localhost ([2405:6581:5360:1800:aeaa:a1da:95e3:2274])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f559451a30sm4337119a91.33.2025.01.11.00.09.35
+        d=1e100.net; s=20230601; t=1736584425; x=1737189225;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=L4b/LB0Ux4JJmdMJUe88KB+PNR+gt0GjqvwSU215vkE=;
+        b=uFE5sM4eGqQAFVm21z8q5uiZf5mWhv67akmJoI2Rq3GnakNehfH+4Ubx/UPzSJ5EWh
+         cVLg8ekxQH59hqxYdflpnFRo8LiWU9jpLwRYT7dJmhUPDCssSxe+iTa/GabikS6DBznh
+         ijXSDFApN6VLIu7pG5pboin8ZtovAX4ukbNi+ygEkq9DG04E8n7PiunUyyAC8V6NFDxz
+         BQaC6SIg+u6DqILOXfFz37byUt7WcNDQvNtFCLKOz93SO6zCWGIuxLIeHGhYYBgGxaI4
+         pZOS88LlOILcysP1E9kQ/2W5oHTA5r0Qi2+3srdXzo7fpdOsPWKdTCoOjIzH2zHudS3m
+         3j5w==
+X-Forwarded-Encrypted: i=1; AJvYcCUygAj4ePAmQiGMJ3Hrcsu7HvbJEtgQg77CZvXzD8K8v0eKob+jO0sd/+7egIaihcwU5gNTqwEyl10txashhA==@vger.kernel.org, AJvYcCWRdWgKPuB+sRvcOpevdF61UTI+bTZ+CyQ147TE7YgF9VRE/wj/3kW3pFLmkrLgRhcPB0ibnZQpz3Nm@vger.kernel.org, AJvYcCWoazKgmiaKybstP+9iMsh+SMCiI46TByRg7QcHQEvIGwkr2pxG7kuH59+CRscE9AR0JwIlVp/0+POtl1vt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5zgxa+fuItg9Yo94X0G/xySWJVElbJFr5CYEN3GGSHaVJKXfT
+	HQY82rZTxsn+r2RL2l+qG9nh0FeiPTvJNzG0PWYKHJNsQckb1Lyzw8pdzBfhmVY=
+X-Gm-Gg: ASbGncudx+mX51cIaZ2PuFyfDpeDY4g72iNpFGsA/T8GzkOxzVIYeuvXkllWCGrBA7s
+	KpTI1PtgrIzbz9t4KMQJUFfgRiBROY82rIQinNDsCVO8xw3aBNyHuWGEGeZrVy5N5fMyI5reW0B
+	rueXRQ46zqa0hVIKVxJaGRRtguoDE6wv2sW8WALiVv7pFQbbpsaA8TtBHh/e+mXOcaV9eikRL0v
+	Sxx5aGnbfYehlurPuO6pSC2BTkeJtWklp2uferZjWyFV3+O2oer9IE=
+X-Google-Smtp-Source: AGHT+IEnHx8ZchudlBirXi3YohInviHQ+NVE0qwD3tuLagTStOixww/Kz/6tSww5mzi1lVQcirj4Nw==
+X-Received: by 2002:a17:902:e552:b0:215:b5c6:9ee8 with SMTP id d9443c01a7336-21a83f33a44mr164593225ad.7.1736584425237;
+        Sat, 11 Jan 2025 00:33:45 -0800 (PST)
+Received: from nuvole.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21a9f10f86bsm23443845ad.36.2025.01.11.00.33.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Jan 2025 00:09:37 -0800 (PST)
-From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
+        Sat, 11 Jan 2025 00:33:44 -0800 (PST)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
+Cc: Pengyu Luo <mitltlatltl@gmail.com>,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Masato Kiuchi <kiuchi_masato@yuridenki.co.jp>,
-	Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: [PATCH 4/4] arm64: dts: renesas: Add initial device tree for Yuridenki-Shokai Kakip board
-Date: Sat, 11 Jan 2025 17:09:03 +0900
-Message-ID: <20250111080903.3566296-5-iwamatsu@nigauri.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250111080903.3566296-1-iwamatsu@nigauri.org>
-References: <20250111080903.3566296-1-iwamatsu@nigauri.org>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: qcom: sc8280xp-pmics: Fix slave ID in interrupts configuration
+Date: Sat, 11 Jan 2025 16:32:07 +0800
+Message-ID: <20250111083209.262269-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,180 +91,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add basic support for Yuridenki-Shokai Kakip board based on R9A09G057H48.
-This commit supports the following:
+According to the binding for qcom,spmi-pmic-arb, the cell 1 should be
+slave id, the slave id of pmc8280_2 is 3.
 
-  - Memory
-  - Input clocks
-  - Pin Control
-  - SCIF
-  - OSTM0 - OSTM7
-  - SDHI0
-
-Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
 ---
- arch/arm64/boot/dts/renesas/Makefile          |   1 +
- .../boot/dts/renesas/r9a09g057h48-kakip.dts   | 138 ++++++++++++++++++
- 2 files changed, 139 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
+ arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 928635f2e76bbb..698f790bd42524 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -149,6 +149,7 @@ dtb-$(CONFIG_ARCH_R9A09G011) += r9a09g011-v2mevk2.dtb
- dtb-$(CONFIG_ARCH_R9A09G047) += r9a09g047e57-smarc.dtb
- 
- dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h44-rzv2h-evk.dtb
-+dtb-$(CONFIG_ARCH_R9A09G057) += r9a09g057h48-kakip.dtb
- 
- dtb-$(CONFIG_ARCH_RCAR_GEN3) += draak-ebisu-panel-aa104xd12.dtbo
- dtb-$(CONFIG_ARCH_RCAR_GEN3) += salvator-panel-aa104xd12.dtbo
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
-new file mode 100644
-index 00000000000000..4046b87a1f3bd6
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
-@@ -0,0 +1,138 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for Yuridenki-Shokai the Kakip board
-+ *
-+ * Copyright (C) 2024 Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/pinctrl/renesas,r9a09g057-pinctrl.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include "r9a09g057.dtsi"
-+
-+/ {
-+	model = "Yuridenki-Shokai Kakip Board based on r9a09g057h48";
-+	compatible = "yuridenki,kakip", "renesas,r9a09g057h48", "renesas,r9a09g057";
-+
-+	aliases {
-+		serial0 = &scif;
-+		mmc0 = &sdhi0;
-+	};
-+
-+	chosen {
-+		bootargs = "ignore_loglevel";
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@48000000 {
-+		device_type = "memory";
-+		/* first 128MB is reserved for secure area. */
-+		reg = <0x0 0x48000000 0x1 0xF8000000>;
-+	};
-+
-+	reg_3p3v: regulator1 {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "fixed-3.3V";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+
-+	vqmmc_sdhi0: regulator-vccq-sdhi0 {
-+		compatible = "regulator-gpio";
-+		regulator-name = "SDHI0 VccQ";
-+		gpios = <&pinctrl RZV2H_GPIO(A, 0) GPIO_ACTIVE_HIGH>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpios-states = <0>;
-+		states = <3300000 0 1800000 1>;
-+	};
-+};
-+
-+&qextal_clk {
-+	clock-frequency = <24000000>;
-+};
-+
-+&pinctrl {
-+	scif_pins: scif {
-+		pins =  "SCIF_RXD", "SCIF_TXD";
-+	};
-+
-+	sd0-pwr-en-hog {
-+		gpio-hog;
-+		gpios = <RZV2H_GPIO(A, 1) GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "sd0_pwr_en";
-+	};
-+
-+	sdhi0_pins: sd0 {
-+		sd0_data {
-+			pins = "SD0DAT0", "SD0DAT1", "SD0DAT2", "SD0DAT3", "SD0CMD";
-+			input-enable;
-+			renesas,output-impedance = <3>;
-+			slew-rate = <0>;
-+		};
-+
-+		sd0_clk {
-+			pins = "SD0CLK";
-+			renesas,output-impedance = <3>;
-+			slew-rate = <0>;
-+		};
-+
-+		sd0_mux {
-+			pinmux = <RZV2H_PORT_PINMUX(A, 5, 15)>; /* SD0_CD */
-+		};
-+	};
-+};
-+
-+&scif {
-+	pinctrl-0 = <&scif_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&ostm0 {
-+	status = "okay";
-+};
-+
-+&ostm1 {
-+	status = "okay";
-+};
-+
-+&ostm2 {
-+	status = "okay";
-+};
-+
-+&ostm3 {
-+	status = "okay";
-+};
-+
-+&ostm4 {
-+	status = "okay";
-+};
-+
-+&ostm5 {
-+	status = "okay";
-+};
-+
-+&ostm6 {
-+	status = "okay";
-+};
-+
-+&ostm7 {
-+	status = "okay";
-+};
-+
-+&sdhi0 {
-+	pinctrl-0 = <&sdhi0_pins>;
-+	pinctrl-names = "default";
-+	vmmc-supply = <&reg_3p3v>;
-+	vqmmc-supply = <&vqmmc_sdhi0>;
-+	bus-width = <4>;
-+
-+	status = "okay";
-+};
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+index 1e3babf2e..c19fb9c39 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+@@ -212,7 +212,7 @@ pmc8280_2: pmic@3 {
+ 		pm8280_2_temp_alarm: temp-alarm@a00 {
+ 			compatible = "qcom,spmi-temp-alarm";
+ 			reg = <0xa00>;
+-			interrupts-extended = <&spmi_bus 0x2 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
++			interrupts-extended = <&spmi_bus 0x3 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+ 			io-channels = <&pmk8280_vadc PM8350_ADC7_DIE_TEMP(3)>;
+ 			io-channel-names = "thermal";
+ 			#thermal-sensor-cells = <0>;
 -- 
-2.45.2
+2.47.1
 
 
