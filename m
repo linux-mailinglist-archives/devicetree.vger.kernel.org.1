@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-137624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 925D7A0A22F
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 10:17:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83A68A0A241
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 10:25:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A90D188CD80
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 09:17:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B85016C10C
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 09:25:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E85E185B5F;
-	Sat, 11 Jan 2025 09:17:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 313F9188596;
+	Sat, 11 Jan 2025 09:25:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ppqS5Z6I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jsKT0sWe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 355D315666D;
-	Sat, 11 Jan 2025 09:17:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2B4314F132;
+	Sat, 11 Jan 2025 09:25:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736587049; cv=none; b=drKo4dHqDKVx5545h/uitFEhRGnyaVVH29mtAsTPVUIVOuCpefIgXxcSORQ69XSy03fC613AJwlqTWvvjBM9WV0knWZqX3iCRLjVGHVLnjHOLUuSobdbP4/oUOXgSQQGF3XbjSCzOI0qjmWIzpJOHNFXqqbKilfoPLUjhwBherM=
+	t=1736587549; cv=none; b=FWQAr3L7mlwBuoP77Y2VBDg4eaYgyduS1JsUFQlut9WwvWsCtXtauAX+XdkHD5vb4j04JJz5FNXU2OyV/ru1ta5pi0m1iMchprnAanASLtJVLRxGY6YOCiipkPjWfK9FGs/R5Bu9j05Y/Vs8GaISG89sOSvSaSrR65a0kuQIVtM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736587049; c=relaxed/simple;
-	bh=jAY3A5+U07arOiBAm81W7RPb00md+pgl+2ChnnkktS0=;
+	s=arc-20240116; t=1736587549; c=relaxed/simple;
+	bh=Z83WXJZoT28SBDIuoOe79g+ADfiCinqPsdEf+EaBKnI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X82zoL8BWOD1psQeGhQQWzAOpDRR9osx/ui9kXkI1+E0WzI2FI5GgVrkqdMpCRSEr/FmgBpS/5ccgUKMxjHoc2h+h1zrC3HBMx+x1SsByU14l1LQvpCCzz56D+DJbsd/4M2HHLn4eNVZj5vSDkMyDEISq8Oma36KrUfjMJPMCZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ppqS5Z6I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A01CC4CED2;
-	Sat, 11 Jan 2025 09:17:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NTP38Xt7P42thLdMiO1PglTz1MSvtz6xoKtw0+V7+KMOhzYEV1WvPgtuQl6rECnZFsizG95TLARHqJSEYWRWOngaARoFIQE98m5C63HYQcUkdbN0u38KUawbpL1UEi/+IE3Xvyju7Gnsb0vnmPFGiyF+lxnCpyeo5uhfunN846k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jsKT0sWe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECFF1C4CEDD;
+	Sat, 11 Jan 2025 09:25:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736587048;
-	bh=jAY3A5+U07arOiBAm81W7RPb00md+pgl+2ChnnkktS0=;
+	s=k20201202; t=1736587548;
+	bh=Z83WXJZoT28SBDIuoOe79g+ADfiCinqPsdEf+EaBKnI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ppqS5Z6IQ0O26hKPz1Few3dyl9b7fNvHTDW/z0MEY2yi8C+sJsCvRFTFIzSr691kv
-	 FvcOwS1gBlJChFnaIMlG/OIQPfQz1iBUAVKNKdqKHJiCdJkeanU+AlL3mkbxwIJh7q
-	 4nJCBX+7MUJDIBt2X+xaO/UlW/gKyahhHHQm4xUxYZIuaFxoF9MwiHB2gTYe6OBI1Z
-	 LRoLNs9ja5SQXbzwFRj26c74cEAX5Ox7xp1tkcm6nrijlmhfxUjuXQtbohBeT4xeXI
-	 iWRPkNlGF2J6D4SLnpx2CNiA9VfRTeV+IC8m3lQZ0a50xLD1PKUxGmbKzMySfI3ja7
-	 S6t4x8pUrKuVA==
-Date: Sat, 11 Jan 2025 10:17:25 +0100
+	b=jsKT0sWer0S+oyjZTnsrYwJwGgp70I+ShlBu3pf7DVCCEaSKzGqLLZNz7ThLBitUv
+	 vLxgsh6E9TKKC+UeBCwL4y398nARXKbk7VHtD5SMUXdL8DKlZDlzsicjR9c87CMaGj
+	 1tKKgli2nbvcSskJveAG9eP3qqtt8kPYSBIL5UHH5N8kuQuXfzRn68/ujbT58klMxo
+	 ZPWjL/bfwtcWKu69sEa7I7ClWvg/tnvjsVPCwo5dCDuSJKdDdUpx87K1GF64uDG6ki
+	 sy1cLecLOOrG7zKU27CgYA3bvBbkl0H17wLc/awhiJCg2mPGX5X9R/VrGxVSwAEwk/
+	 HXBw/CP8a03CA==
+Date: Sat, 11 Jan 2025 10:25:45 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Maxime Ripard <mripard@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
-	Grant Likely <grant.likely@secretlab.ca>, Marc Zyngier <maz@kernel.org>, 
-	Andreas Herrmann <andreas.herrmann@calxeda.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Mike Rapoport <rppt@kernel.org>, 
-	Oreoluwa Babatunde <quic_obabatun@quicinc.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Zijun Hu <quic_zijuhu@quicinc.com>
-Subject: Re: [PATCH v4 14/14] of: Improve __of_add_property_sysfs()
- readability
-Message-ID: <qvyhzgeye7qwppcafisvjkg4wwkrenwxq7nebnsjxdenj7wvxm@qwxzet3iyzyx>
-References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
- <20250109-of_core_fix-v4-14-db8a72415b8c@quicinc.com>
- <20250110204154.GA3529721-robh@kernel.org>
- <c79dd576-0a85-48e2-a7f8-e4b4e005a18b@icloud.com>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: convert stm32 rcc bindings to
+ json-schema
+Message-ID: <bfxyod5l2s6g3j47be7mjh6i7wgjapka2q5b6f2mleipiai6gm@hfvclvkzrtyd>
+References: <20250109211908.1553072-1-dario.binacchi@amarulasolutions.com>
+ <20250109211908.1553072-2-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,40 +64,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <c79dd576-0a85-48e2-a7f8-e4b4e005a18b@icloud.com>
+In-Reply-To: <20250109211908.1553072-2-dario.binacchi@amarulasolutions.com>
 
-On Sat, Jan 11, 2025 at 07:48:48AM +0800, Zijun Hu wrote:
-> On 2025/1/11 04:41, Rob Herring wrote:
-> > On Thu, Jan 09, 2025 at 09:27:05PM +0800, Zijun Hu wrote:
-> >> From: Zijun Hu <quic_zijuhu@quicinc.com>
-> >>
-> >> __of_add_property_sysfs() hard codes string "security-" length as 9, but
-> >> that is not obvious for readers.
-> >>
-> >> Improve its readability by using strlen().
-> > 
-> > Does the compiler optimize the strlen call away? Maybe, maybe not. If 
-> > not, that's N calls to strlen() where N is the number of properties in 
-> > your DT. That's in the 1000s easily.
-> > 
-> > Do you really want to go test enough compiler versions we support to 
-> > feel confident this is optimized away. I don't.
-> > 
-> 
-> i understand your concern about performance.
-> perhaps, such impact about performance may be ignored for linux OS.
-> 
-> what about below solution ?
-> 
-> const char security_prefix[] = "security-";
-> use 'sizeof(security_prefix) - 1' for the length of string.
+On Thu, Jan 09, 2025 at 10:18:28PM +0100, Dario Binacchi wrote:
+> +maintainers:
+> +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> +
+> +description: |
+> +  The RCC IP is both a reset and a clock controller.
+> +  The reset phandle argument is the bit number within the RCC registers bank,
+> +  starting from RCC base address.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: st,stm32f42xx-rcc
+> +          - const: st,stm32-rcc
+> +      - items:
+> +          - enum:
+> +              - st,stm32f469-rcc
+> +          - const: st,stm32f42xx-rcc
+> +          - const: st,stm32-rcc
+> +      - items:
+> +          - const: st,stm32f746-rcc
 
-Code is still not equivalent - just de-assemble it and you will see
-some overhead.
+Why this isn't just part of enum with first group/list? Different
+groups/lists are for different fallbacks and I am pretty sure fallback
+is the same.
 
-Maybe just introduce builtin_strlen() to string.h and use such? It would
-be the pretty obvious code.
+> +          - const: st,stm32-rcc
+> +      - items:
+> +          - enum:
+> +              - st,stm32f769-rcc
+> +          - const: st,stm32f746-rcc
+> +          - const: st,stm32-rcc
+> +      - items:
+> +          - const: st,stm32h743-rcc
 
+Same here.
+
+Rest looks good, so with combining entries above:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
