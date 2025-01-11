@@ -1,77 +1,76 @@
-Return-Path: <devicetree+bounces-137617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADFB2A0A1EA
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 09:09:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF531A0A1ED
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 09:10:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2E513AABC0
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 08:09:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8D533AB141
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 08:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8FFC189B94;
-	Sat, 11 Jan 2025 08:09:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79546185924;
+	Sat, 11 Jan 2025 08:09:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="rhM9LaCg"
+	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="a4hBhPfe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-pj1-f51.google.com (mail-pj1-f51.google.com [209.85.216.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85410188A0C
-	for <devicetree@vger.kernel.org>; Sat, 11 Jan 2025 08:09:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC1718CBFE
+	for <devicetree@vger.kernel.org>; Sat, 11 Jan 2025 08:09:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736582972; cv=none; b=AlIbkqH0a68tqL0Ad7yd+1NyXXZXs3o516LPt23v2QSz7IV0OB6Wtth6NI/f+LI6asVRHBkNT+0ueYLjlLt3CemiqAwIENxquLnOQGXQrf9Ojh1JQ8esocCx6A59zE0BSNZOe7zaKAJ2I2BSwzDcJIyMeKiUPgOAmt7Peu9XZu0=
+	t=1736582976; cv=none; b=bu2Fp7iyFsQyCHM4CFWJPsCwfS6vMvsZlOy5nZ52Cz5s0JbM8GimiTlSY0Rl6yYMKoUgBAgbSwW+es8erpBufSMbowwJdHl73x6CV6UkVaZi1a4ONsvDS78SN8wXw2pG0wIvzAvyjcMxna2FT0In0d+f+JKGpfVxjTEOGUgiSTA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736582972; c=relaxed/simple;
-	bh=QeLi9rN/Y81guSYpnmIBy+QWiBOTr/C3o5Sn3h3tGHw=;
+	s=arc-20240116; t=1736582976; c=relaxed/simple;
+	bh=F0rO7GwPFgCntxyY1X7jcmwB9CP2/KhEzeRrAmViSio=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NdA031XlNJcvUSQY6PJF0rAVjlXEcXPZecDyCWGl6wIoWHr/ZwrpNikUvL6geueTd3j3oBIMUhhW/hq4LFqsh0dQag58CIirpHjeQf0+9+l1UmQiMek4vnqDiMUtLuhfZ5UqyORWIvs18C7VV6R9dq+9YXGJ2wVpViJrVYivX8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=rhM9LaCg; arc=none smtp.client-ip=209.85.214.170
+	 MIME-Version; b=NXfoszPet4w7NPXHp1t0p2QZUbE/cqD2GtgYG4qBuHvv2hT4knc3T1LTxveIl/f4jkacWQIZSJ8DuGE63F6Qx2V1fLOTyYrwPHACVJcEzLX6Gueqhzn9p0/Oy+3p+V8WvfRoJmbZuZRUD8Vfc7wS1YeESErn1R7kjqNimAomjr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=a4hBhPfe; arc=none smtp.client-ip=209.85.216.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2162c0f6a39so68247865ad.0
-        for <devicetree@vger.kernel.org>; Sat, 11 Jan 2025 00:09:31 -0800 (PST)
+Received: by mail-pj1-f51.google.com with SMTP id 98e67ed59e1d1-2ef28f07dbaso3821736a91.2
+        for <devicetree@vger.kernel.org>; Sat, 11 Jan 2025 00:09:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1736582971; x=1737187771; darn=vger.kernel.org;
+        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1736582974; x=1737187774; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=iYtOCvBtRy+GJqb4Nu0sYWtJIb4DzvtcXV+G0BBPLpw=;
-        b=rhM9LaCgnHhBCwiNTaUh2+0J1VMch6h0oFy1q64tc6l/zHoXqOdi76HeWofKgndYiZ
-         SD9wampZoGewyJFfBSb/4ekqXNsQ+gO+6TibFfg3B5Ju92b+RQ/9aend8DP0N2aSb3BX
-         NyrnrQF3Hxj0fRRx9ROvOFbpax6GjGswC0YETUNoTAYazNmzigfSmh8Z1+5wGoJqCx6A
-         CYzflTe27lEST/db6lXATMUWpScSbqwY5J9XTyj91faXG2bLWNinqUwqZsgkXaaBdqu9
-         nxVf0Gnn1RlPQFTarGhuOjD/NM9KE7PVTi228wIMd5bFfG4G6gKFeJ39KN0+ZPEC74ae
-         fc+Q==
+        bh=cJyTaiY5yPtcoRWlc3FY2KSATmJJUKLyen9MIhS791E=;
+        b=a4hBhPfePpTcU2JBDFgBTZ187wwLTHg4ZbJKHp9MTPTvyN9uQP6GIe70ZWxOEyWhrF
+         8e8vj7l2f+r8cZZnUfnxHrDCEQMqFtM06JsGpKhHe++NYaXARy4DsWTYJF8ru/zgx2bP
+         gq5qbYZHRnbfM2fqs/YVVB9IxP8WoG1KN8gpV1SMTo1mNH5e7RjXn/TI0kfMESbfadPP
+         yPuYXyFKt9lDqfeFNlkn703Wcc24CEQFt8XRy90zqIJ8JPEGMMSeT+h9qFJSwNSJcyMN
+         qkN330yoHfwf2IF+M7bwAfeq3zjXUKLwlNzkk5KG9IFwnU85ZtDV1IRmEj2y/QXjpmgK
+         VcaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736582971; x=1737187771;
+        d=1e100.net; s=20230601; t=1736582974; x=1737187774;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=iYtOCvBtRy+GJqb4Nu0sYWtJIb4DzvtcXV+G0BBPLpw=;
-        b=TIBjXMj2ZH5qmsrqvY/JL8jCZKICfbU3geWJ6cuLFtH27rmH98dDkWK/u8JIxw3EgP
-         Bnr841gR3E90p0fMT6OWCXoBKe+nd+nsl7AsV3h031dYSFlfvROX0sTBKrr3sf83naZX
-         +wqpQ3AGKGQqa2zfSVLkxqR+zMvHmMxc2TbWfNOIK1z4ATsLYbMMbv+dbg2JoOnXal/z
-         Ba6VSfZZfDo5nboyalcz66d9/NJ5upWN2uzzhQh5liu+dhqHXuWfPrdzL+TcYR1ugLUG
-         34XRa/GrCF/apwgzZP4WmOHu/oVkHXxRgSwoS4xvjJeWcXaQDSrXzCgKUOtGj6iVma7z
-         6vew==
-X-Forwarded-Encrypted: i=1; AJvYcCWHWWx1arSGBniIRYzweVo3lvH+WuXPItSe7eAxtiGlIvX4wGJQ+8BU2cXSpiW0l616VVfvy3DtGpLq@vger.kernel.org
-X-Gm-Message-State: AOJu0YycojlKz50q2vvTjRtEiI1ASbAskezR1qsEW3qp2KAFZXoV8dbg
-	uVfLz54K7hy+e/93MzffNEUvvzFutqq3bVFRgNTSbpK6M0aK0ayVY1cO0eToCRSeLsXg+K53tQ=
-	=
-X-Gm-Gg: ASbGncs57+BmcdcHukrdGa1xk7HuCRsNni6sL2Qy0VjVxXEXyG67XV5va8fEt+6xk9L
-	yVHAwAxn1Doy6phQ/UPhBhqfssM1eRJVYv4VoTIYUOCdo0jXOjRpIZlDZw3uT2SlgC0MLXceL0P
-	dvZDeTDYLWm3289qIvHZNa15YT9Y0089rQNonQAXRKoy2vWnHAycl1n3vQkrk3Jqj038HJZ4O1k
-	L5brfa4CjKfAqdLSK+cKtXnMmH9aoqiYiepnQokE6FQqTCL0ViggEOIRg==
-X-Google-Smtp-Source: AGHT+IEGRfgKX+kFYzNCu9oGzJKNeMqUdJW+ydknt0Uo1OVsYm+SZRMugsPQogJVA8Iyl7HqyXu7Cg==
-X-Received: by 2002:a05:6a20:6a05:b0:1e1:eaff:2c23 with SMTP id adf61e73a8af0-1e89c9f27a7mr15199395637.12.1736582970954;
-        Sat, 11 Jan 2025 00:09:30 -0800 (PST)
+        bh=cJyTaiY5yPtcoRWlc3FY2KSATmJJUKLyen9MIhS791E=;
+        b=G3fcuf1WXvC0XEHeEU3gpLAPtf073ML21xqASVEjQmzBcMWQPvup6uU5DM6Eu4jpsk
+         BXBLjvDtHVgxq1Er8miIwn2ts5DinMkuE+lmG+1t3DY95RuJkF5lSfonCRw/l/Pe5SGv
+         feey5tkTZCNSL/9P9VChzIlMPt8g2wH0tmaQUX785JiIy39pjQddTmAbbMvOpN9PtB6x
+         8Zl2GqXewMmgY9CcX5uc8xKH1zp9bQzmBhVwsKm7LglxahCJe5d/CUEs4r0mRf6T4Tq9
+         Ju3weqH+gCg/wXa7pqCbRi6eFYkcE08iAWs/+df7pqCFwFkSuPu4rqWkofeFwPKurKm+
+         zMRA==
+X-Forwarded-Encrypted: i=1; AJvYcCXb3fsWY5QYwqNYJvbxLRKgXWDwgRzrXUQeZ7XQPR12/o9EGpyQ9GchUEkk+Dy3wz9AfzCRmrvcrK9Z@vger.kernel.org
+X-Gm-Message-State: AOJu0YxB8CcOqJ/6IMFVi+iTtFFKysnys13TgC0YNYaJsUMdLhDJAJyL
+	aZHpKhLlMYtO+ksC6S2mbz85WOhnHUulHccDe+iuao6myQRp07cOtas6tELc
+X-Gm-Gg: ASbGncvubbhFHTdcOZCO2xpNGQQkxl4F3/WmEdMFSJyIAaSTDwrYFyryWXDVoXp5X+N
+	UtKAbP5+J70eYTOkkokiRX63rN3ABl1T0FAAj3kVgA6z+GOzB/2Sytj76hjXRnlqSFJnZkjLm00
+	k72/t4iqa2yoXYpVDG3g2nVfmepy5WqRJLBGdSz6WZsP3hrTDn2JvbQpkTMqhToGEtO4pO805Zd
+	UDwOhmrdyVVpM41Wi1mB8iRVhap7kReuO6P+gtdZ2jQLAx5jSD4kve75g==
+X-Google-Smtp-Source: AGHT+IF+bZKCKcfLHldyX72tIsAR7fkbo+/YIv2jnNBkzrTu4tO7/zKc2r24g6W/gKjkD/1onhfM/g==
+X-Received: by 2002:a17:90b:2e41:b0:2ee:96a5:721e with SMTP id 98e67ed59e1d1-2f548eb25cfmr24097314a91.12.1736582973897;
+        Sat, 11 Jan 2025 00:09:33 -0800 (PST)
 Received: from localhost ([2405:6581:5360:1800:aeaa:a1da:95e3:2274])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a31ddb9e3f9sm3778699a12.73.2025.01.11.00.09.28
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f55942eed5sm4415937a91.27.2025.01.11.00.09.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Jan 2025 00:09:29 -0800 (PST)
+        Sat, 11 Jan 2025 00:09:33 -0800 (PST)
 From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
 To: Geert Uytterhoeven <geert+renesas@glider.be>,
 	Magnus Damm <magnus.damm@gmail.com>,
@@ -83,9 +82,9 @@ Cc: linux-renesas-soc@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Masato Kiuchi <kiuchi_masato@yuridenki.co.jp>,
 	Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Subject: [PATCH 2/4] dt-bindings: vendor-prefixes: Add Yuridenki-Shokai Co. Ltd.
-Date: Sat, 11 Jan 2025 17:09:01 +0900
-Message-ID: <20250111080903.3566296-3-iwamatsu@nigauri.org>
+Subject: [PATCH 3/4] dt-bindings: soc: renesas: Document Yuridenki-Shokai Kakip board
+Date: Sat, 11 Jan 2025 17:09:02 +0900
+Message-ID: <20250111080903.3566296-4-iwamatsu@nigauri.org>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20250111080903.3566296-1-iwamatsu@nigauri.org>
 References: <20250111080903.3566296-1-iwamatsu@nigauri.org>
@@ -97,26 +96,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add entry for Yuridenki-Shokai Co. Ltd. (https://www.yuridenki.co.jp)
+Add "yuridenki,kakip" which targets the Yuridenki-Shokai Kakip board.
 
 Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
 ---
- Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index da01616802c768..5e26fe32a50e7b 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1727,6 +1727,8 @@ patternProperties:
-     description: Shenzhen Yashi Changhua Intelligent Technology Co., Ltd.
-   "^ysoft,.*":
-     description: Y Soft Corporation a.s.
-+  "^yuridenki,.*":
-+    description: Yuridenki-Shokai Co. Ltd.
-   "^zarlink,.*":
-     description: Zarlink Semiconductor
-   "^zealz,.*":
+diff --git a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+index 4f2645e8140c5c..294ac7c7ae8a5d 100644
+--- a/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
++++ b/Documentation/devicetree/bindings/soc/renesas/renesas.yaml
+@@ -548,6 +548,7 @@ properties:
+         items:
+           - enum:
+               - renesas,rzv2h-evk # RZ/V2H EVK
++              - yuridenki,kakip # Yuridenki-Shokai RZ/V2H Kakip board
+           - enum:
+               - renesas,r9a09g057h41 # RZ/V2H
+               - renesas,r9a09g057h42 # RZ/V2H with Mali-G31 support
 -- 
 2.45.2
 
