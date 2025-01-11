@@ -1,408 +1,180 @@
-Return-Path: <devicetree+bounces-137687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82EF0A0A4AE
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 17:16:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3A99A0A4C9
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 17:33:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3267916B773
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 16:16:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B12643A7967
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 16:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E45E1B86E4;
-	Sat, 11 Jan 2025 16:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D20531B218C;
+	Sat, 11 Jan 2025 16:33:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J64ztOrB"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="D4INJEUM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3772D1AF0C4;
-	Sat, 11 Jan 2025 16:15:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A493028370;
+	Sat, 11 Jan 2025 16:33:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736612119; cv=none; b=dXGEsSznqm2/Tk5GF4ABlrUMk/pOQXHT0pAJbRYT5KlMb4LYZqnW542bCSaqMkNDkdGp9qAWlLCwFZw4iT7VQnRja+XRY4VjiY1a7jXetEcO2GJ1OckCsjN+5fpaEW1AoOoCROx53GJam6RP7SmVUTlf1ln2DJj0anSCyoIfL6M=
+	t=1736613199; cv=none; b=od6Mbwx/Cxyv6r6GQgzOEUsgjyg7dgz3gLo2WT7WWT23SAT29DuN+1G9vzpv/nKUvaSRCrdxIffTZ36PGuYpSBW9LpiD4GAqj0EffPbP1FWoC+OuLuw/Pb0EjNZAz4aOxCI7//UMpreg0Fm76PxSvwR0Dfa7KZZCusUDp69zxZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736612119; c=relaxed/simple;
-	bh=m58ZUu+U5WoOnc2WhNOfgkrycbBwdSg3+lcKmWxSiJo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=US2QkVFCbLzuMwgU+FndFSxoYnCI+bAu7RqWv1DxVdlCs0R98W8FB4iUVbIWjKU920iS4hl8BLBN24V3StoQv74yAUfwMFIwhrneXMS5FftikpVBcofksIUJUV0b+xMcwQkyuANOX30bdv942z1wXw0kKzF7SIyrCIByhqJ/CfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J64ztOrB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50BFKYYB014799;
-	Sat, 11 Jan 2025 16:15:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qEU8ccAFRoOn9oGJyphWK0yNLySYV5Zg1SywAKNpopM=; b=J64ztOrBmakFmdw/
-	skHVV9GWj62a9c9YMxREy9eO24YMaG9xDQsbtoymlZYHkmDJVTtSvQkVYxzP+vpt
-	GtDkDokEbraGwcEmSSfPaz6Ar9+/9BhD1CS+5WbIAkK1vkD3CvtWaeIscHFeh6t6
-	Jd1QNSvhm3T2Uyj7B11DXML+Un0Ct6sepSDDn8cypUnr3fHqG9wP8AuyqfrRrXdd
-	qnDLwZ1/FhcVSy/3AbymMa22QmGrhGJ9CfFGnYFlSvZvchbbsZrD1RGSivYTnmTw
-	egLiqIXWqSj0YdqVaoUm3rM0JStu9ROb4sBCPRNiRVtA5vXJbRBc655aslblR/YQ
-	NA0kqg==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 443hx70rft-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 11 Jan 2025 16:15:13 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50BGFCAf015251
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 11 Jan 2025 16:15:12 GMT
-Received: from 4206f847eb12.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sat, 11 Jan 2025 08:15:08 -0800
-From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-To: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Odelu Kukatla <quic_okukatla@quicinc.com>,
-        "Mike
- Tipton" <mdptipton@quicinc.com>,
-        Vivek Aknurwar <viveka@quicinc.com>
-CC: Sibi Sankar <quic_sibis@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Shivnandan Kumar <quic_kshivnan@quicinc.com>
-Subject: [PATCH V7 5/5] arm64: dts: qcom: sa8775p: Add CPU OPP tables to scale DDR/L3
-Date: Sat, 11 Jan 2025 16:14:29 +0000
-Message-ID: <20250111161429.51-6-quic_rlaggysh@quicinc.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20250111161429.51-1-quic_rlaggysh@quicinc.com>
-References: <20250111161429.51-1-quic_rlaggysh@quicinc.com>
+	s=arc-20240116; t=1736613199; c=relaxed/simple;
+	bh=m33bPEFe8tV+b4Hv2+2AcKBR6ewzDTZegjr1D2kPCaY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bWs7EtCcvDkG5n+2rTWcByAnswI6LajWMHUx6LgTpIYuTPvtlCU4C6Zf5NZ1ApkT4Q7Uj4+zpnozUj2m8F1gDMl0CO8ysxeggWreW2vEo+7KpGtv71VRd+8gY/nKpo5RwpGmC8cE1247flk9kztHJsHecQVUtkriM6+HFexCGPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=D4INJEUM; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id C8A5425B0A;
+	Sat, 11 Jan 2025 17:33:07 +0100 (CET)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id unQxvsKQvIgB; Sat, 11 Jan 2025 17:33:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1736613183; bh=m33bPEFe8tV+b4Hv2+2AcKBR6ewzDTZegjr1D2kPCaY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=D4INJEUMB2Ada9Fu+aAQjqUet9PPThcZKKuTMzUYBg5gw5wHyCjLtjSARq8Hr7mt9
+	 nfUXWpNb6p6JNnEhQvbmp4PFC7xdKlwGeV5sgfzAQw9wteNKhIfTjOemWtbxWrnYuC
+	 CacO2aMen8F+07Nun844liml2y1NJQWpIrOoRhGhwDtKzCvMnXJTHpnVGREHYIt7hq
+	 vMIi5tcS7Xm0QWOYMJDuCvzlsRXvCG5XQpEINxHwT7mWhsQ3e25pp9NPN3Kt9OL8aM
+	 wOH6mpQwq56uaGlAGKBqowHmGNfg5MvCd0EZH9qHNvrTx9QoLyqxVATNLv4M3+bEU2
+	 J39OG0OkAyd6Q==
+Date: Sat, 11 Jan 2025 16:32:52 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: clock: Document clock and reset unit
+ of RK3528
+Message-ID: <Z4KdNGPVpZxJXqxa@pie>
+References: <20250108114605.1960-2-ziyao@disroot.org>
+ <20250108114605.1960-3-ziyao@disroot.org>
+ <tep74dy3oc6y2wwhp6bthv6brhkge7cojzrtj6x53lvtsws4g5@areqtyxhyayq>
+ <Z3-T3JwcsW0xYKvk@pie>
+ <9caddd6a-fe1b-468a-ba1e-0513e46404dc@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: gNG2wkyMQFomrz_UZBN_3YaO8rWBwYzK
-X-Proofpoint-ORIG-GUID: gNG2wkyMQFomrz_UZBN_3YaO8rWBwYzK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0 mlxscore=0
- clxscore=1015 spamscore=0 adultscore=0 suspectscore=0 mlxlogscore=999
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501110138
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9caddd6a-fe1b-468a-ba1e-0513e46404dc@kernel.org>
 
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
+On Fri, Jan 10, 2025 at 08:42:40AM +0100, Krzysztof Kozlowski wrote:
+> On 09/01/2025 10:16, Yao Zi wrote:
+> > On Thu, Jan 09, 2025 at 09:59:25AM +0100, Krzysztof Kozlowski wrote:
+> >> On Wed, Jan 08, 2025 at 11:46:02AM +0000, Yao Zi wrote:
+> >>> There are two types of clocks in RK3528 SoC, CRU-managed and
+> >>> SCMI-managed. Independent IDs are assigned to them.
+> >>>
+> >>> For the reset part, differing from previous Rockchip SoCs and
+> >>> downstream bindings which embeds register offsets into the IDs, gapless
+> >>> numbers starting from zero are used.
+> >>>
+> >>> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> >>> ---
+> >>>  .../bindings/clock/rockchip,rk3528-cru.yaml   |  67 +++
+> >>>  .../dt-bindings/clock/rockchip,rk3528-cru.h   | 453 ++++++++++++++++++
+> >>>  .../dt-bindings/reset/rockchip,rk3528-cru.h   | 241 ++++++++++
+> >>>  3 files changed, 761 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml
+> >>>  create mode 100644 include/dt-bindings/clock/rockchip,rk3528-cru.h
+> >>>  create mode 100644 include/dt-bindings/reset/rockchip,rk3528-cru.h
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..19dbda858172
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml
+> >>> @@ -0,0 +1,67 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/clock/rockchip,rk3528-cru.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Rockchip RK3528 Clock and Reset Controller
+> >>> +
+> >>> +maintainers:
+> >>> +  - Yao Zi <ziyao@disroot.org>
+> >>> +
+> >>> +description: |
+> >>> +  The RK3528 clock controller generates the clock and also implements a reset
+> >>> +  controller for SoC peripherals. For example, it provides SCLK_UART0 and
+> >>> +  PCLK_UART0 as well as SRST_P_UART0 and SRST_S_UART0 for the first UART
+> >>> +  module.
+> >>> +  Each clock is assigned an identifier, consumer nodes can use it to specify
+> >>> +  the clock. All available clock and reset IDs are defined in dt-binding
+> >>> +  headers.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: rockchip,rk3528-cru
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  assigned-clocks: true
+> >>> +
+> >>> +  assigned-clock-rates: true
+> >>
+> >> Drop both, totally redundant.
+> > 
+> > Okay, will fix in next version.
+> > 
+> >>> +
+> >>> +  clocks:
+> >>> +    items:
+> >>> +      - description: External 24MHz oscillator clock
+> >>> +      - description: 50MHz clock generated by PHY module
+> >>> +
+> >>> +  clock-names:
+> >>> +    items:
+> >>> +      - const: xin24m
+> >>> +      - const: gmac0
+> >>
+> >> gmac
+> >> (unless you have gmac1 here as well but then please add it now)
+> > 
+> > RK3528 comes with two onchip gmacs. This input clock is only used for
+> > the first one and I think keeping the number would give the reader an
+> > extra hint. What do you think about it?
+> You don't get the point. What clock is from this module perspective? gmac.
 
-Add OPP tables required to scale DDR and L3 per freq-domain
-on SA8775P platform.
+I'm not sure what "from this module perspective" means. If it's about
+the source of the input clock, it's also gmac0 and gmac1 has nothing to
+do with it. Pointing this out explicitly brings us (and the later
+reader) only extra information.
 
-If a single OPP table is used for both CPU domains, then
-_allocate_opp_table() won't be invoked for CPU4 but instead
-CPU4 will be added as device under the CPU0 OPP table. Due
-to this, dev_pm_opp_of_find_icc_paths() won't be invoked for
-CPU4 device and hence CPU4 won't be able to independently scale
-it's interconnects. Both CPU0 and CPU4 devices will scale the
-same ICC path which can lead to one device overwriting the BW
-vote placed by other device. Hence CPU0 and CPU4 require separate
-OPP tables to allow independent scaling of DDR and L3 frequencies
-for each CPU domain, with the final DDR and L3 frequencies being
-an aggregate of both.
+And in the previous series, Conor mentioned[1],
 
-Co-developed-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 210 ++++++++++++++++++++++++++
- 1 file changed, 210 insertions(+)
+> clocks should be named after how they're used in the IP in question,
+> not the name of the source of that clock in the SoC.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index c6a889d4ddaf..7c52bca958fe 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -49,6 +49,11 @@ cpu0: cpu@0 {
- 			next-level-cache = <&l2_0>;
- 			capacity-dmips-mhz = <1024>;
- 			dynamic-power-coefficient = <100>;
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&epss_l3_cl0 MASTER_EPSS_L3_APPS
-+					 &epss_l3_cl0 SLAVE_EPSS_L3_SHARED>;
- 			l2_0: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-@@ -71,6 +76,11 @@ cpu1: cpu@100 {
- 			next-level-cache = <&l2_1>;
- 			capacity-dmips-mhz = <1024>;
- 			dynamic-power-coefficient = <100>;
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&epss_l3_cl0 MASTER_EPSS_L3_APPS
-+					 &epss_l3_cl0 SLAVE_EPSS_L3_SHARED>;
- 			l2_1: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-@@ -88,6 +98,11 @@ cpu2: cpu@200 {
- 			next-level-cache = <&l2_2>;
- 			capacity-dmips-mhz = <1024>;
- 			dynamic-power-coefficient = <100>;
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&epss_l3_cl0 MASTER_EPSS_L3_APPS
-+					 &epss_l3_cl0 SLAVE_EPSS_L3_SHARED>;
- 			l2_2: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-@@ -105,6 +120,11 @@ cpu3: cpu@300 {
- 			next-level-cache = <&l2_3>;
- 			capacity-dmips-mhz = <1024>;
- 			dynamic-power-coefficient = <100>;
-+			operating-points-v2 = <&cpu0_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&epss_l3_cl0 MASTER_EPSS_L3_APPS
-+					 &epss_l3_cl0 SLAVE_EPSS_L3_SHARED>;
- 			l2_3: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-@@ -122,6 +142,11 @@ cpu4: cpu@10000 {
- 			next-level-cache = <&l2_4>;
- 			capacity-dmips-mhz = <1024>;
- 			dynamic-power-coefficient = <100>;
-+			operating-points-v2 = <&cpu4_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&epss_l3_cl1 MASTER_EPSS_L3_APPS
-+					 &epss_l3_cl1 SLAVE_EPSS_L3_SHARED>;
- 			l2_4: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-@@ -145,6 +170,11 @@ cpu5: cpu@10100 {
- 			next-level-cache = <&l2_5>;
- 			capacity-dmips-mhz = <1024>;
- 			dynamic-power-coefficient = <100>;
-+			operating-points-v2 = <&cpu4_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&epss_l3_cl1 MASTER_EPSS_L3_APPS
-+					 &epss_l3_cl1 SLAVE_EPSS_L3_SHARED>;
- 			l2_5: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-@@ -162,6 +192,11 @@ cpu6: cpu@10200 {
- 			next-level-cache = <&l2_6>;
- 			capacity-dmips-mhz = <1024>;
- 			dynamic-power-coefficient = <100>;
-+			operating-points-v2 = <&cpu4_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&epss_l3_cl1 MASTER_EPSS_L3_APPS
-+					 &epss_l3_cl1 SLAVE_EPSS_L3_SHARED>;
- 			l2_6: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-@@ -179,6 +214,11 @@ cpu7: cpu@10300 {
- 			next-level-cache = <&l2_7>;
- 			capacity-dmips-mhz = <1024>;
- 			dynamic-power-coefficient = <100>;
-+			operating-points-v2 = <&cpu4_opp_table>;
-+			interconnects = <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&epss_l3_cl1 MASTER_EPSS_L3_APPS
-+					 &epss_l3_cl1 SLAVE_EPSS_L3_SHARED>;
- 			l2_7: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-@@ -268,6 +308,176 @@ cluster_sleep_apss_rsc_pc: cluster-sleep-1 {
- 		};
- 	};
- 
-+	cpu0_opp_table: opp-table-cpu0 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		cpu0_opp_1267mhz: opp-1267200000 {
-+			opp-hz = /bits/ 64 <1267200000>;
-+			opp-peak-kBps = <6220800 29491200>;
-+		};
-+
-+		cpu0_opp_1363mhz: opp-1363200000 {
-+			opp-hz = /bits/ 64 <1363200000>;
-+			opp-peak-kBps = <6220800 29491200>;
-+		};
-+
-+		cpu0_opp_1459mhz: opp-1459200000 {
-+			opp-hz = /bits/ 64 <1459200000>;
-+			opp-peak-kBps = <6220800 29491200>;
-+		};
-+
-+		cpu0_opp_1536mhz: opp-1536000000 {
-+			opp-hz = /bits/ 64 <1536000000>;
-+			opp-peak-kBps = <6220800 29491200>;
-+		};
-+
-+		cpu0_opp_1632mhz: opp-1632000000 {
-+			opp-hz = /bits/ 64 <1632000000>;
-+			opp-peak-kBps = <6835200 39321600>;
-+		};
-+
-+		cpu0_opp_1708mhz: opp-1708800000 {
-+			opp-hz = /bits/ 64 <1708800000>;
-+			opp-peak-kBps = <6835200 39321600>;
-+		};
-+
-+		cpu0_opp_1785mhz: opp-1785600000 {
-+			opp-hz = /bits/ 64 <1785600000>;
-+			opp-peak-kBps = <6835200 39321600>;
-+		};
-+
-+		cpu0_opp_1862mhz: opp-1862400000 {
-+			opp-hz = /bits/ 64 <1862400000>;
-+			opp-peak-kBps = <6835200 39321600>;
-+		};
-+
-+		cpu0_opp_1939mhz: opp-1939200000 {
-+			opp-hz = /bits/ 64 <1939200000>;
-+			opp-peak-kBps = <6835200 39321600>;
-+		};
-+
-+		cpu0_opp_2016mhz: opp-2016000000 {
-+			opp-hz = /bits/ 64 <2016000000>;
-+			opp-peak-kBps = <6835200 39321600>;
-+		};
-+
-+		cpu0_opp_2112mhz: opp-2112000000 {
-+			opp-hz = /bits/ 64 <2112000000>;
-+			opp-peak-kBps = <8371200 49766400>;
-+		};
-+
-+		cpu0_opp_2188mhz: opp-2188800000 {
-+			opp-hz = /bits/ 64 <2188800000>;
-+			opp-peak-kBps = <8371200 49766400>;
-+		};
-+
-+		cpu0_opp_2265mhz: opp-2265600000 {
-+			opp-hz = /bits/ 64 <2265600000>;
-+			opp-peak-kBps = <8371200 49766400>;
-+		};
-+
-+		cpu0_opp_2361mhz: opp-2361600000 {
-+			opp-hz = /bits/ 64 <2361600000>;
-+			opp-peak-kBps = <12787200 51609600>;
-+		};
-+
-+		cpu0_opp_2457mhz: opp-2457600000 {
-+			opp-hz = /bits/ 64 <2457600000>;
-+			opp-peak-kBps = <12787200 51609600>;
-+		};
-+
-+		cpu0_opp_2553mhz: opp-2553600000 {
-+			opp-hz = /bits/ 64 <2553600000>;
-+			opp-peak-kBps = <12787200 54681600>;
-+		};
-+	};
-+
-+	cpu4_opp_table: opp-table-cpu4 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		cpu4_opp_1267mhz: opp-1267200000 {
-+			opp-hz = /bits/ 64 <1267200000>;
-+			opp-peak-kBps = <6220800 29491200>;
-+		};
-+
-+		cpu4_opp_1363mhz: opp-1363200000 {
-+			opp-hz = /bits/ 64 <1363200000>;
-+			opp-peak-kBps = <6220800 29491200>;
-+		};
-+
-+		cpu4_opp_1459mhz: opp-1459200000 {
-+			opp-hz = /bits/ 64 <1459200000>;
-+			opp-peak-kBps = <6220800 29491200>;
-+		};
-+
-+		cpu4_opp_1536mhz: opp-1536000000 {
-+			opp-hz = /bits/ 64 <1536000000>;
-+			opp-peak-kBps = <6220800 29491200>;
-+		};
-+
-+		cpu4_opp_1632mhz: opp-1632000000 {
-+			opp-hz = /bits/ 64 <1632000000>;
-+			opp-peak-kBps = <6835200 39321600>;
-+		};
-+
-+		cpu4_opp_1708mhz: opp-1708800000 {
-+			opp-hz = /bits/ 64 <1708800000>;
-+			opp-peak-kBps = <6835200 39321600>;
-+		};
-+
-+		cpu4_opp_1785mhz: opp-1785600000 {
-+			opp-hz = /bits/ 64 <1785600000>;
-+			opp-peak-kBps = <6835200 39321600>;
-+		};
-+
-+		cpu4_opp_1862mhz: opp-1862400000 {
-+			opp-hz = /bits/ 64 <1862400000>;
-+			opp-peak-kBps = <6835200 39321600>;
-+		};
-+
-+		cpu4_opp_1939mhz: opp-1939200000 {
-+			opp-hz = /bits/ 64 <1939200000>;
-+			opp-peak-kBps = <6835200 39321600>;
-+		};
-+
-+		cpu4_opp_2016mhz: opp-2016000000 {
-+			opp-hz = /bits/ 64 <2016000000>;
-+			opp-peak-kBps = <6835200 39321600>;
-+		};
-+
-+		cpu4_opp_2112mhz: opp-2112000000 {
-+			opp-hz = /bits/ 64 <2112000000>;
-+			opp-peak-kBps = <8371200 49766400>;
-+		};
-+
-+		cpu4_opp_2188mhz: opp-2188800000 {
-+			opp-hz = /bits/ 64 <2188800000>;
-+			opp-peak-kBps = <8371200 49766400>;
-+		};
-+
-+		cpu4_opp_2265mhz: opp-2265600000 {
-+			opp-hz = /bits/ 64 <2265600000>;
-+			opp-peak-kBps = <8371200 49766400>;
-+		};
-+
-+		cpu4_opp_2361mhz: opp-2361600000 {
-+			opp-hz = /bits/ 64 <2361600000>;
-+			opp-peak-kBps = <12787200 51609600>;
-+		};
-+
-+		cpu4_opp_2457mhz: opp-2457600000 {
-+			opp-hz = /bits/ 64 <2457600000>;
-+			opp-peak-kBps = <12787200 51609600>;
-+		};
-+
-+		cpu4_opp_2553mhz: opp-2553600000 {
-+			opp-hz = /bits/ 64 <2553600000>;
-+			opp-peak-kBps = <12787200 54681600>;
-+		};
-+	};
-+
- 	dummy-sink {
- 		compatible = "arm,coresight-dummy-sink";
- 
--- 
-2.39.2
+Since its usage is exactly to generate clocks required by gmac0, as
+confirmed by Heiko, I consider gmac0 appropriate and am willing to
+make its description more clear.
 
+Further explanation will be appreciated, thanks for your review.
+
+Best regards,
+Yao Zi
+
+[1]: https://lore.kernel.org/linux-rockchip/20241001-name-stooge-7a939f71a08e@spud/
 
