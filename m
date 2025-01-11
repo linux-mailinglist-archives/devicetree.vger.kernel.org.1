@@ -1,158 +1,132 @@
-Return-Path: <devicetree+bounces-137614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54FD0A0A1DD
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 08:48:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04251A0A1E4
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 09:09:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 392AD7A372B
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 07:48:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01C1E3AAB57
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 08:09:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ED97165EFC;
-	Sat, 11 Jan 2025 07:48:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4D4F16BE3A;
+	Sat, 11 Jan 2025 08:09:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LCR9nuL4"
+	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="EVKuqwJO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24C6824B256;
-	Sat, 11 Jan 2025 07:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24BF815666D
+	for <devicetree@vger.kernel.org>; Sat, 11 Jan 2025 08:09:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736581701; cv=none; b=r0mcOnet/yngydCChFY0I0nSQ0oB972cw6qkJEA1IQ1M6j+Sfmru20nu8uLHO3U3FKQC2WxCm6q3OP9t/vCP57avfqYfT6KutC8EB3k3UJmWSlLy7OKvYiPdSWoTtK6+cRnmwfCQ2XVOWkoXertPTqMb9FZA256ZOatMzqkvJlk=
+	t=1736582965; cv=none; b=Ru0Cy7GBlj4g2YJZiGWmE/27QFqV82z/iAAmI6+Wz0eFcK0DsqWEyh2HhD8lYu+OozXiV2haECISTkn+pSJdfXUqsb4/jknd3GyLG50dbXgPrzPgu3eUozLzBkQ/KXAuB+Z7ZPJZrvy9tOV+0J7sTnxJtQ6Grq8uDu3LeT3MRLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736581701; c=relaxed/simple;
-	bh=fo3Nyik4IoaUbdBCHzX/7gw3smsm4pD3krSrVo4Mm+o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VjvVRteogmIK1WbOUDfoeEe+di1rWq1O1G9xdlVC50Ns/R3/GIv0Yr4rJE1uUKUtHPYSqrrHqkLVO44qzPyPNJ1P8QaLQ8pO1NYGdXGMeLa1MP3yjj/AJy73jg1QOcqYljTaJaP5tsaOXZ0ux2VS9XET39ZRB0zNncgeSzuvD10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LCR9nuL4; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736581698; x=1768117698;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fo3Nyik4IoaUbdBCHzX/7gw3smsm4pD3krSrVo4Mm+o=;
-  b=LCR9nuL4o3qIQhG2m74BF212oDg8YOVYQ/PgtOj2DFBQsC+x3eMMehgO
-   HvpefhZzU7XiuKWtVmR8MCmsslXd63TIcwnlwGfltxFhGt4phFcxiAmfx
-   6KgsbZQHJl4DPlAYgyECx3WXUdEZaoRwqZzvZ7qbRswcKLDE3IBXEsrEk
-   ouOhsOvnRtrHuErkwqJ2ouKkTeTpirhEw9Q6Ur0giTYDAFp1ddNzhiRr6
-   M7akfwQP/wW9XI8SKz2Lf4cbX8/Ip1qOqOTCWKhIiZ7bIPVpCQNw6XDSU
-   I7tzNxg5NP5zpv7fM7YBwaaRF6VNS+whoDrttn3EyHROnkKOIvWpL7Mcs
-   w==;
-X-CSE-ConnectionGUID: NUOm9OWRT/iXUHB0Xzb6Lg==
-X-CSE-MsgGUID: XloXI541Qu+xPs1jir9Zhw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11311"; a="54424937"
-X-IronPort-AV: E=Sophos;i="6.12,306,1728975600"; 
-   d="scan'208";a="54424937"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jan 2025 23:48:17 -0800
-X-CSE-ConnectionGUID: GiJZoRTOSeiC0hZFzYsRWg==
-X-CSE-MsgGUID: VhYXp1TpQOeJ9sXXpdQuNw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="134841946"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa001.fm.intel.com with ESMTP; 10 Jan 2025 23:48:13 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tWWE6-000KMF-29;
-	Sat, 11 Jan 2025 07:48:10 +0000
-Date: Sat, 11 Jan 2025 15:47:10 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ao Xu via B4 Relay <devnull+ao.xu.amlogic.com@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	s=arc-20240116; t=1736582965; c=relaxed/simple;
+	bh=1fzBvUF2DGmuKbQvhmfhqe7NSnB/WcK6n0Zplbp+dwE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=d70sk7ccdhoiYnj+OirEs/BW8Zh7lxf4W716CRPs6snPq+mywrqREL54MY4+IQ7sYN3TsDGZLc8L/vy3mnAPwwok6ku0prgeEMLT2V+34ihi+uegieg9oI3WeQf7zfPL91t8ikOVmIDWrQvogh5YU7DHzF38FU8sCkuvxUBTFcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=EVKuqwJO; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2ee989553c1so4560518a91.3
+        for <devicetree@vger.kernel.org>; Sat, 11 Jan 2025 00:09:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1736582963; x=1737187763; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FCioaaXcQd55rRmoK6px3r9qrgwb74I5tMT10C21g1Y=;
+        b=EVKuqwJObFslgTer3BIZ4LA61g/lnMR5SF6ExMmRxQvlPcw2tjfP6LhgX7vgM7ur5I
+         zVFW0w/BjZY0AiBs8yReb0yqD7dmJj/GoZ7JJQnGqypVFRIxnEAICc8l0wwtp0e1x85P
+         tsGU7udp5q2a5/99wnpsCASLcMhBfZVLtvIXzMTLTE1eQarQBBLHXxtdnyzAYNmvW3Dh
+         BUEY3Web+4Mqs13pRcn1/RFHiJfYNuKTgelb5KdlqmuxcLCfcn45PChsmmPovs9P2ijv
+         vLfUcAzmfV0Bq09JLxK+0vUPK9/KBkO5TcisHuEzFzTROfCSb4VahGO/oKox0L1u+zux
+         25bA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736582963; x=1737187763;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FCioaaXcQd55rRmoK6px3r9qrgwb74I5tMT10C21g1Y=;
+        b=kPAj+f3gka1bfhi6NYT1F9CBvy86OQ4q+TpeKHKVWxI840QYib9bo/47Js31Qkyhd6
+         Lwn/F8m8c+RbCWEKAWjUuhJt3qps5ZyM/cbeReznocfqR2qW9aION3cR0u1SucfoIBcY
+         KL/94mIoOvMtPVLn9n5573+2qMLYyd25+bky7hKEJO/9fUQ0ntpJV6FSHEMcisMX4MJ0
+         laMignu+u8yco5aaENoylEbkMz1qwJfwuE0hzQFRqNKOGST1hdd2j3UtutuZl4RJvKwU
+         bbXtO49OmDKlrVQIVLbCozdOlf/IKCB1+j5PeCagDsyUGTz14mKnxzn6Tn6YcGP5goTN
+         WxkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVPn3UyKoIvr7nJmRDhENFBwVeKVRP7ddDE2hlY2w7QOQIIu02o1KLgH+BHGJnNt9wI6Kawr5UlkIK8@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuDbTkm/lBKobNO20kJIpDo6NO9bieAg8d/uy/J6qnU+mSxezJ
+	hIvip6goOaSNmQvJFJwywSO0xxGpLwrkU0DY3/o2g8Sk7nsKLGbh4VU0POH2
+X-Gm-Gg: ASbGnct60X+TVj7yjCqNSNJD+1P6eaiUHqcoavGXdvt9Pqy0tlCHFh+vcLceJoWGfpQ
+	d4hEETTTO8jc1dZ5J6by8O4mKGHRdJMH8Ik469gbpnBai1sdHdZJ18m9EP2eN8NLxw/iQSSdjlS
+	5wDFJFYjlpS45b4Xwh+PeuOKIdCtcYDHGT2QH+XG6FjJxCxy6EIc3IeW8AidoNoTufzs59FQUlv
+	M9hVFAN12PuG3rEAeN3JN2AtzUvHIHSEE2S2EmwBGY6oLtlvZhE7GRBjA==
+X-Google-Smtp-Source: AGHT+IGspfHYn3IaJPnUKvFg2LgedQPRGrZFITI/z/DYce9fvxR058+6baDm1GXXg6jE2N8cn/Xk5A==
+X-Received: by 2002:a17:90b:2c8d:b0:2ee:ab29:1482 with SMTP id 98e67ed59e1d1-2f548f2a9admr22163074a91.16.1736582963215;
+        Sat, 11 Jan 2025 00:09:23 -0800 (PST)
+Received: from localhost ([2405:6581:5360:1800:aeaa:a1da:95e3:2274])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f54a34dbeesm7160715a91.41.2025.01.11.00.09.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Jan 2025 00:09:22 -0800 (PST)
+From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Ao Xu <ao.xu@amlogic.com>
-Subject: Re: [PATCH 03/11] drm: meson: add S4 compatible for DRM driver
-Message-ID: <202501111505.wNSI9zrC-lkp@intel.com>
-References: <20250110-drm-s4-v1-3-cbc2d5edaae8@amlogic.com>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Masato Kiuchi <kiuchi_masato@yuridenki.co.jp>,
+	Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Subject: [PATCH 0/4] Add support Yuridenki-Shokai Kakip board
+Date: Sat, 11 Jan 2025 17:08:59 +0900
+Message-ID: <20250111080903.3566296-1-iwamatsu@nigauri.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250110-drm-s4-v1-3-cbc2d5edaae8@amlogic.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Ao,
+Hi all,
 
-kernel test robot noticed the following build errors:
+This patch series add basic support for Yuridenki-Shokai[0] Kakip board[1] based
+on R9A09G057H48.
+And this series supports the following:
 
-[auto build test ERROR on 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab]
+  - Memory
+  - Input clocks
+  - Pin Control
+  - SCIF
+  - OSTM0 - OSTM7
+  - SDHI0
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ao-Xu-via-B4-Relay/dt-bindings-display-meson-dw-hdmi-Add-compatible-for-S4-HDMI-controller/20250110-134113
-base:   6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
-patch link:    https://lore.kernel.org/r/20250110-drm-s4-v1-3-cbc2d5edaae8%40amlogic.com
-patch subject: [PATCH 03/11] drm: meson: add S4 compatible for DRM driver
-config: arm64-randconfig-002-20250111 (https://download.01.org/0day-ci/archive/20250111/202501111505.wNSI9zrC-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project f5cd181ffbb7cb61d582fe130d46580d5969d47a)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250111/202501111505.wNSI9zrC-lkp@intel.com/reproduce)
+Best regatrds,
+  Nobuhiro
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501111505.wNSI9zrC-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/gpu/drm/meson/meson_drv.c:541:3: error: no member named 'dev' in 'struct device'; did you mean 'devt'?
-     541 |                 drm_err(dev, "suspend error: %d", ret);
-         |                 ^
-   include/drm/drm_print.h:601:2: note: expanded from macro 'drm_err'
-     601 |         __drm_printk((drm), err,, "*ERROR* " fmt, ##__VA_ARGS__)
-         |         ^
-   include/drm/drm_print.h:588:35: note: expanded from macro '__drm_printk'
-     588 |         dev_##level##type((drm) ? (drm)->dev : NULL, "[drm] " fmt, ##__VA_ARGS__)
-         |                                          ^
-   include/linux/device.h:794:10: note: 'devt' declared here
-     794 |         dev_t                   devt;   /* dev_t, creates the sysfs "dev" */
-         |                                 ^
-   1 error generated.
+[0]: https://www.yuridenki.co.jp/
+[1]: https://www.kakip.ai/
 
 
-vim +541 drivers/gpu/drm/meson/meson_drv.c
+Nobuhiro Iwamatsu (4):
+  dt-bindings: soc: renesas: Document Renesas RZ/V2H SoC variants
+  dt-bindings: vendor-prefixes: Add Yuridenki-Shokai Co. Ltd.
+  dt-bindings: soc: renesas: Document Yuridenki-Shokai Kakip board
+  arm64: dts: renesas: Add initial device tree for Yuridenki-Shokai
+    Kakip board
 
-   530	
-   531	static int __maybe_unused meson_drv_pm_suspend(struct device *dev)
-   532	{
-   533		int ret;
-   534		struct meson_drm *priv = dev_get_drvdata(dev);
-   535	
-   536		if (!priv)
-   537			return 0;
-   538	
-   539		ret = drm_mode_config_helper_suspend(priv->drm);
-   540		if (unlikely(ret)) {
- > 541			drm_err(dev, "suspend error: %d", ret);
-   542			return ret;
-   543		}
-   544	
-   545		meson_setup_clk(priv, false);
-   546	
-   547		return ret;
-   548	}
-   549	
+ .../bindings/soc/renesas/renesas.yaml         |   4 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/renesas/Makefile          |   1 +
+ .../boot/dts/renesas/r9a09g057h48-kakip.dts   | 138 ++++++++++++++++++
+ 4 files changed, 145 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.45.2
+
 
