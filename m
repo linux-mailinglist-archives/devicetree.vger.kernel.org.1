@@ -1,127 +1,142 @@
-Return-Path: <devicetree+bounces-137671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1556A0A3B3
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 13:56:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 781C1A0A3C6
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 14:09:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4E47166EE5
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 12:56:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7969E3AA18A
+	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 13:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F66A19DF64;
-	Sat, 11 Jan 2025 12:56:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81BB819F131;
+	Sat, 11 Jan 2025 13:09:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lkWo5q6n"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QRshf6EE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04B6B24B23A;
-	Sat, 11 Jan 2025 12:56:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3763139D;
+	Sat, 11 Jan 2025 13:09:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736600192; cv=none; b=FPG0jUJCJ7m7Sq89R0WUsf8vhyp2rcNNLUizH09qdUwJ4KbTmQCG2j1clSVH890sL673iC3zdWnLBwk4dkTXW8gEuRiLFFQId69kL/zkNqqOyBvO0UIHr44xIZm/NhL/SfLWuo3WNsTR7yRQrKOXxOglf8Zio2DfwE7orVM5DPc=
+	t=1736600949; cv=none; b=OKE/LtnHtCJtAhx6wULH6xNnrNVJ6j5rhKlhoJm9zdsfydGdx6rmdIY6U2tDf2J4tC0I62fJFjaEdfjDEAUCHH7VraDebl01SDI+/aCO6EzQujjqyuXuJS3BaLQyLdvkbc9beZBA8Nif4guVQQ63vvwObnhdWOBK4M5Ji7CUECE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736600192; c=relaxed/simple;
-	bh=LhZdJ42sMqFKGDmGiTMv1PLug74O089BpN8CgVbPYBk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nrOf2RKHAB6WyJH+li+/m7oV4vh0ap8EPhoWXDzQY78/GzeATcrYc7Fx22IbQWib8vGBNfrim1PqkY8+OFmhDu1lrIdv4igXrz97tYDrvYeYSya9hzBjV9zti1HKUwpWq8O3wDbO4APkevxsWz8jnJfW4HwfOD9BHlq1VbKhKDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lkWo5q6n; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BF68C4CED2;
-	Sat, 11 Jan 2025 12:56:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736600191;
-	bh=LhZdJ42sMqFKGDmGiTMv1PLug74O089BpN8CgVbPYBk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=lkWo5q6nB1BMYay3bfUHadpZckebW9PR1fQLv5VW4ytwZYsWPFBkYDklHf3zOGJdH
-	 /53bPXtalkRP5EcE4ev8NVijCBucSpJ9SyWU/mv3TFZ3i5nWQq2v000ku8fn7NnORO
-	 aHLpbO4T2gaZK7ehC8mt/O24TFRFsyHkTmVGIpyUnOuYw/xa8Nk9fdQD8qlP6RKS8o
-	 uhZ16J0PIUIJEeR5eIs64Y0TN4KyRq6RH+9b9bv/LpCeHfIEMc5bgnaipTJx31o6s1
-	 KkcITkxKuSltO2aJ3l6VkOxX3YpS1nGpK35v5z8DzMmM5+IRt70DM1bqDgnmFgzC3P
-	 UWrsBTRPm6W/A==
-Date: Sat, 11 Jan 2025 12:56:16 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Yu-Hsian Yang <j2anfernee@gmail.com>
-Cc: marcelo.schmitt@analog.com, olivier.moysan@foss.st.com,
- avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
- venture@google.com, yuenn@google.com, benjaminfair@google.com,
- lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- nuno.sa@analog.com, dlechner@baylibre.com, javier.carrasco.cruz@gmail.com,
- andriy.shevchenko@linux.intel.com, mitrutzceclan@gmail.com,
- tgamblin@baylibre.com, matteomartelli3@gmail.com, alisadariana@gmail.com,
- gstols@baylibre.com, thomas.bonnefille@bootlin.com,
- herve.codina@bootlin.com, chanh@os.amperecomputing.com, KWLIU@nuvoton.com,
- yhyang2@nuvoton.com, openbmc@lists.ozlabs.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] iio: adc: add Nuvoton NCT7201 ADC driver
-Message-ID: <20250111125616.2b12f03e@jic23-huawei>
-In-Reply-To: <CA+4VgcKK1Hfz08paYjDCV=YL-C4bsWCNCRdH1Q8=4=hjEuYC9w@mail.gmail.com>
-References: <20241226055313.2841977-1-j2anfernee@gmail.com>
-	<20241226055313.2841977-3-j2anfernee@gmail.com>
-	<20241228133531.5e98357e@jic23-huawei>
-	<CA+4VgcKK1Hfz08paYjDCV=YL-C4bsWCNCRdH1Q8=4=hjEuYC9w@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1736600949; c=relaxed/simple;
+	bh=th1e+p23X+UdstG6BGZ9C9GnjYoYqz3mjlgM+5zrhSs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FcE02Z4UXSC4txeBjLLMyf1v9tzO28Tb5IJlevZLvpxsvFjRU1L7DOCY+FSgoNhOf9kedLBXpeNCS2CPZ22xzR+Qvdf7o3ikd3mmRe7hItxz4uX57/4EVwYSeNHKjsxq8GWDfVIkDN7cd9TBQmR84r8QGt+Tb2a2GBOwIUFmwk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QRshf6EE; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1736600948; x=1768136948;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=th1e+p23X+UdstG6BGZ9C9GnjYoYqz3mjlgM+5zrhSs=;
+  b=QRshf6EEX5GPYSt16wmqWoNGNFfAk4LiPH1+MclCBihRuk/CFiTiA6ds
+   3TD1NeY8N0oNj3oJCHBXQLTAaz51HhdD6xYfUtdhEflHbahhOdrEZ5q9l
+   0AvZwos56Y66NSjL5R8INwtjYZSweR2W0j9V8LysP1Jd+hcjBps/dSEO3
+   up2yDGfqxeQl0VqA2o8Q3NaoE/p3+K/1HU6h+ENA+E/FjboBEpRQQNoMG
+   q/s8jmhpMPfb3isvOsERwlkm91RL9THme3k40kC5an+IwLvUYmETg2WLZ
+   QCrhKjtXRhgla+9i54VFy8cTZ8ExqUzJNpgIE9uPtAf+4YbXCJH7kRigF
+   g==;
+X-CSE-ConnectionGUID: TcYgMklTSN2fZOw3/FI88w==
+X-CSE-MsgGUID: haST1oCwSWSxsEzezJnihg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11312"; a="24492512"
+X-IronPort-AV: E=Sophos;i="6.12,307,1728975600"; 
+   d="scan'208";a="24492512"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jan 2025 05:09:05 -0800
+X-CSE-ConnectionGUID: 1WQ5tDhmQlmBHSfszG4lLw==
+X-CSE-MsgGUID: lwElejONRY+RkC+Q317r1A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="108042240"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa003.fm.intel.com with ESMTP; 11 Jan 2025 05:09:01 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tWbEY-000KfX-2S;
+	Sat, 11 Jan 2025 13:08:58 +0000
+Date: Sat, 11 Jan 2025 21:08:12 +0800
+From: kernel test robot <lkp@intel.com>
+To: Cathy Xu <ot_cathy.xu@mediatek.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sean Wang <sean.wang@kernel.org>, Lei Xue <lei.xue@mediatek.com>,
+	wenbin.mei@mediatek.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Guodong Liu <guodong.liu@mediatek.com>,
+	Cathy Xu <ot_cathy.xu@mediatek.com>
+Subject: Re: [PATCH v2 2/2] pinctrl: mediatek: add mt8196 driver
+Message-ID: <202501112005.DuwEi3Ig-lkp@intel.com>
+References: <20250110104703.13625-3-ot_cathy.xu@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250110104703.13625-3-ot_cathy.xu@mediatek.com>
+
+Hi Cathy,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on linusw-pinctrl/devel]
+[also build test ERROR on linusw-pinctrl/for-next robh/for-next krzk-dt/for-next pinctrl-samsung/for-next linus/master v6.13-rc6 next-20250110]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Cathy-Xu/dt-bindings-pinctrl-mediatek-add-support-for-mt8196/20250110-184846
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
+patch link:    https://lore.kernel.org/r/20250110104703.13625-3-ot_cathy.xu%40mediatek.com
+patch subject: [PATCH v2 2/2] pinctrl: mediatek: add mt8196 driver
+config: arm64-randconfig-003-20250111 (https://download.01.org/0day-ci/archive/20250111/202501112005.DuwEi3Ig-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250111/202501112005.DuwEi3Ig-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501112005.DuwEi3Ig-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/pinctrl/mediatek/pinctrl-mt8196.c:1753:23: error: use of undeclared identifier 'mtk_eint_pm_ops'
+    1753 |                 .pm = pm_sleep_ptr(&mtk_eint_pm_ops),
+         |                                     ^
+   1 error generated.
 
 
-<snip>
+vim +/mtk_eint_pm_ops +1753 drivers/pinctrl/mediatek/pinctrl-mt8196.c
 
-> > > +
-> > > +     /*
-> > > +      * After about 25 msecs, the device should be ready and then
-> > > +      * the Power Up bit will be set to 1. If not, wait for it.
-> > > +      */
-> > > +     mdelay(25);
-> > > +     err = regmap_read(chip->regmap, NCT7201_REG_BUSY_STATUS, &value);
-> > > +     if (err < 0)
-> > > +             return err;
-> > > +     if (!(value & NCT7201_BIT_PWR_UP))
-> > > +             return dev_err_probe(&chip->client->dev, -EIO, "failed to power up after reset\n");
-> > > +
-> > > +     /* Enable Channel */
-> > > +     guard(mutex)(&chip->access_lock);
-> > > +     regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_1,
-> > > +                  NCT7201_REG_CHANNEL_ENABLE_1_MASK);  
-> >
-> > Check return value.  This is over an I2C bus, not the most reliable of
-> > transports!
-> >
-> > Consider doing this differently and using a bulk write for the larger
-> > case.
-> >
-> >         if (chip->num_vin_channels <= 8)
-> >                 ret = regmap_write();
-> >         else
-> >                 ret = regmap_bulk_write();
-> >
-> > However as you read ENABLE_2 unconditionally below, can you instead just
-> > always use a bulk write here?
-> >  
-> 
-> We can't use regmap_bulk_write() due to the chip's limit.
-> regmap_bulk_write(chip->regmap, ..., ..., 2) ,
-> the first byte is well written, but the second byte don't changed.
+  1748	
+  1749	static struct platform_driver mt8196_pinctrl_driver = {
+  1750		.driver = {
+  1751			.name = "mt8196-pinctrl",
+  1752			.of_match_table = mt8196_pinctrl_of_match,
+> 1753			.pm = pm_sleep_ptr(&mtk_eint_pm_ops),
+  1754		},
+  1755		.probe = mtk_paris_pinctrl_probe,
+  1756	};
+  1757	
 
-Find out why.  You may well need to set a few more parameters for
-the configuration of the regmap to ensure the correct form of bulk
-write. 
-
-> 
-> 
-> > > +     if (chip->num_vin_channels == 12)
-> > > +             regmap_write(chip->regmap, NCT7201_REG_CHANNEL_ENABLE_2,
-> > > +                          NCT7201_REG_CHANNEL_ENABLE_2_MASK);
-> > > +
-
-Jonathan
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
