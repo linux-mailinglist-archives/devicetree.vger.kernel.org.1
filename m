@@ -1,135 +1,135 @@
-Return-Path: <devicetree+bounces-137800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2C8DA0AA78
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 16:28:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA906A0AA85
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 16:34:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFFDC1886903
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 15:28:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D7F8F164DA3
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 15:34:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71FAE1BC08B;
-	Sun, 12 Jan 2025 15:28:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BE241BBBC4;
+	Sun, 12 Jan 2025 15:34:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fGhBaRx3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WvK/tfQ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3BB71B6CE1
-	for <devicetree@vger.kernel.org>; Sun, 12 Jan 2025 15:28:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE89E1B4135;
+	Sun, 12 Jan 2025 15:34:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736695682; cv=none; b=ifOlcBNge5dMI4krFkGTFqkh5s5hH5Y0cnB84K0EiFWJe9SUYMB2iptjgrJkRs5xoqNXfcNLZwdzRJ89hS8LO0bP3sEukKhKr5caJl18KDPxSxhUhDaWT4U4wXtsls//3xuigT3DwScY/a+ZtTQsmxnvv2CGW6cO74vvtiMWmH4=
+	t=1736696050; cv=none; b=aWZu2GiigVNDNxGc/PnKC+9Rs3OOl/BxpneGTDKF32SvBsl42NwGAQRjznyicvKSq63lIHBKnOCijw9bjz/DuarMpvNY4x5XW72irqDOl8iAnoMxj6muExUBiOBmqIkxLf/u7Pp3jZbC27S60BTcGCTUOvScmtqPO/BL1jNu/lA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736695682; c=relaxed/simple;
-	bh=w+1HevnkSVnWipoDnFwbDZ8xG3ppmW7Bxk6nuXd0sNI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=tL/ToJ9Kjeirh4eX905wVKsLz1Om/xyN6OcdeyiXKAgbGJxNFnJW9WY3BdVCny8l/5eMCiGmq6Y+QR+014bSpUJvoGAvQv3GHinqJEl8AJjIKSxDmJTSXJRupDefHQIj8qg9L9D6tt5CQgQe6kyAznkA9rTUg+2mM7T5mcBNp/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fGhBaRx3; arc=none smtp.client-ip=209.85.160.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-2a88c7fabdeso1661935fac.1
-        for <devicetree@vger.kernel.org>; Sun, 12 Jan 2025 07:28:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736695680; x=1737300480; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Pwdo4qQeCKznPv9ebQBvPBmgu2DZRJWGaG2NfRNb44U=;
-        b=fGhBaRx3u0HuTJKGkBOqfA6jpLWX3uxX5doonDS+/31j63MngTyjq25VUom5NPPh+A
-         XLZ1PM7Nft4LNQ/SY3DNM25NHAQGE+E7OqEKWKV+6ysnSn4S3r9RMrowo7E6SqveAXd5
-         yHS2g0I7w0jx8Dv8Gk1KP8ILHpXUqOc46CiteRNzoVCE+T07TNJkhlgG9IEqykjiOiIF
-         us9FYCs24EW0qlrDkxQACjllh/UhP7VTGTCzBR9k44yA7gqSfdSeBefXtS5rZe/PKVYb
-         LxGfjqYbLyJ0YKE4mwFOCzRwmcCyDIXFvrJNLJoDDL7fHFYIywozX3V9kL25Q7u97OYt
-         4Rlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736695680; x=1737300480;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Pwdo4qQeCKznPv9ebQBvPBmgu2DZRJWGaG2NfRNb44U=;
-        b=hF8c5Oqpai2MXufKVHgGX/JRDdlWQqaHwMFX+L299vTZScFHhKIsGMmoK1rQQMMXS7
-         e/bDw4v4dUgA6lImQAgMD8oGebgrLYB2yRKDMcdnTHA4c+4NI6AEME+1KgPe6KAIGswo
-         j3BKd1HJ7hRFTfY05LAsvlM+hxmKIUAvAskpfJyabB5V5cY9gJMpZuDS7eWH0GQAslaR
-         q9uGgD4Hs6JzkAirrGI54G18nBkZueJodHVpzUADV79F8XizcL8Oa4VPXf/lzZ7/WfPX
-         zIDTnYntorXwtvlmE5Ey9CdOwugPxstbLs19ev+Bm+LMyFvowiL2cvQAewU9tR60Jort
-         qNmw==
-X-Forwarded-Encrypted: i=1; AJvYcCVLSbZEK+wvHtEvYT80m1Eu5aUu3ydIqlAMSmzzGG2J/X9F0xrTrLz51UQbbxm3mSuHGUlx+656Gd2i@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRJ+YrIH+Zresr46nDlFMT7WmiBrsRs2v7SylBsxkWjJPah1iy
-	CTlYWOBnvf6PrlZ4T50DVo0rzAAt/VbcKzEP7KVb7fX8Pxc6ZO5Z
-X-Gm-Gg: ASbGnctZ+WBlqCIy4LU0u190Zn825gCSb+pRRXN8KPgvdoH0L50CEcea40m3TSD/mhN
-	+544aB828G4M7H56NaKH8FT/I2rt2tn7MJLSbzoWs/bka7oUAyQEiDT0ylgYakVc/4ZzXauAr8d
-	egvdWqOzS/qjGfUezZx57V+Ve+6ROaspnhnlqMwAimLKxZ0CaCrbK0GXpFVxDMIGq3bEu7ZZ/pN
-	QZT6Bt6kAUnG8gx//f9607np1cGB1sMuFZpMnB0zKJ7M7YW+LwocxXDeKYka2eURcKVKw==
-X-Google-Smtp-Source: AGHT+IHGgArEfN9u2RPH9RRrlk20P9prFqs8qFY9RW76sTAmV/urO4/B2SkzhIvQzXSVvGyn3gaIBQ==
-X-Received: by 2002:a05:6870:7e8c:b0:29e:2d50:11aa with SMTP id 586e51a60fabf-2aa066b6229mr9191645fac.18.1736695680164;
-        Sun, 12 Jan 2025 07:28:00 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:8c53:b609:d83:9568])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2ad80547c11sm2858083fac.18.2025.01.12.07.27.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jan 2025 07:27:58 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	kernel@pengutronix.de,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH v2 2/2] dt-bindings: clock: imx5: Fix the CCM interrupts description
-Date: Sun, 12 Jan 2025 12:27:45 -0300
-Message-Id: <20250112152745.1079880-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250112152745.1079880-1-festevam@gmail.com>
-References: <20250112152745.1079880-1-festevam@gmail.com>
+	s=arc-20240116; t=1736696050; c=relaxed/simple;
+	bh=7uOWkHH8UcGTGaRqhqKvqG7A/cJ7tHUf3cEH/3nGjYo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mUi9/zL618XJv5zXRIR20po5Mhr56FO4wIzaJHp7EW3EGCL+lt984B5qyzz9z1mRu/k/5ZUALw0ErTfDXYrBvFIxIZKYPBsaD9DeJs32eVCaXxCmJYjq2LIV7MxGWOBkAaDKkysxno/XzwG2+0lWn3IStUBBkMQZ+Vf99NptKDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WvK/tfQ1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BCC7C4CEDF;
+	Sun, 12 Jan 2025 15:34:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736696050;
+	bh=7uOWkHH8UcGTGaRqhqKvqG7A/cJ7tHUf3cEH/3nGjYo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=WvK/tfQ12ur7+hVzrLbX57PCjkbWBxRRpqGf/Y47vYawBKSRTqOYMJun0xj5TczvC
+	 wVeBCWdBQSGFaphXfzA/8PR8t7jTDNmGniCSNNitMLkoePYHyT40M1SIAdIL+5rAxm
+	 tFG/UoL+6mJc0hEnr2gPr7/MlpNMYcf6ROfgP8o5kAzPix6D63VH0cYYCwJfHsy2qX
+	 0DodCev31UGtGaDuAl9hhbQP8QVQTm6VQ1GMCJWSSWbFjzWQ0EMtmHaw6n5I8N5QLA
+	 Q/oUCKbCH9mTr1+uGL6VNLU5k6IzjEl1lOSOD3waSGovkGt8W4oep41zUg//QqHcRS
+	 MMPmQoVx1GOVw==
+Date: Sun, 12 Jan 2025 15:33:58 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: kernel test robot <lkp@intel.com>
+Cc: Robert Budai <robert.budai@analog.com>, Nuno Sa <nuno.sa@analog.com>,
+ Ramona Gradinariu <ramona.gradinariu@analog.com>, Antoniu Miclaus
+ <antoniu.miclaus@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Lanzano <lanzano.alex@gmail.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v4 5/6] iio: imu: adis16550: add adis16550 support
+Message-ID: <20250112153358.16631b46@jic23-huawei>
+In-Reply-To: <202501111951.NHXp98OK-lkp@intel.com>
+References: <20250110074254.38966-6-robert.budai@analog.com>
+	<202501111951.NHXp98OK-lkp@intel.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Fabio Estevam <festevam@denx.de>
+On Sat, 11 Jan 2025 20:03:22 +0800
+kernel test robot <lkp@intel.com> wrote:
 
-On the i.MX5 chips the peripheral interrupts are represented directly only
-by their interrupt numbers.
+> Hi Robert,
+> 
+> kernel test robot noticed the following build errors:
+> 
+> [auto build test ERROR on jic23-iio/togreg]
+> [also build test ERROR on linus/master v6.13-rc6 next-20250110]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Robert-Budai/iio-imu-adis-Add-custom-ops-struct/20250110-154645
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+> patch link:    https://lore.kernel.org/r/20250110074254.38966-6-robert.budai%40analog.com
+> patch subject: [PATCH v4 5/6] iio: imu: adis16550: add adis16550 support
+> config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250111/202501111951.NHXp98OK-lkp@intel.com/config)
+> compiler: m68k-linux-gcc (GCC) 14.2.0
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250111/202501111951.NHXp98OK-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202501111951.NHXp98OK-lkp@intel.com/
+> 
+> All errors (new ones prefixed by >>):
+> 
+>    In file included from include/linux/module.h:22,
+>                     from include/linux/device/driver.h:21,
+>                     from include/linux/device.h:32,
+>                     from include/linux/iio/iio.h:10,
+>                     from include/linux/iio/buffer.h:10,
+>                     from drivers/iio/imu/adis16550.c:12:
+> >> drivers/iio/imu/adis16550.c:1202:18: error: expected ',' or ';' before 'IIO_ADISLIB'  
+>     1202 | MODULE_IMPORT_NS(IIO_ADISLIB);
+>          |                  ^~~~~~~~~~~
+>    include/linux/moduleparam.h:26:61: note: in definition of macro '__MODULE_INFO'
+>       26 |                 = __MODULE_INFO_PREFIX __stringify(tag) "=" info
+>          |                                                             ^~~~
+>    include/linux/module.h:299:33: note: in expansion of macro 'MODULE_INFO'
+>      299 | #define MODULE_IMPORT_NS(ns)    MODULE_INFO(import_ns, ns)
+>          |                                 ^~~~~~~~~~~
+>    drivers/iio/imu/adis16550.c:1202:1: note: in expansion of macro 'MODULE_IMPORT_NS'
+>     1202 | MODULE_IMPORT_NS(IIO_ADISLIB);
+>          | ^~~~~~~~~~~~~~~~
+> 
+> 
+> vim +1202 drivers/iio/imu/adis16550.c
+> 
+>   1196	
+>   1197	MODULE_AUTHOR("Nuno Sa <nuno.sa@analog.com>");
+>   1198	MODULE_AUTHOR("Ramona Gradinariu <ramona.gradinariu@analog.com>");
+>   1199	MODULE_AUTHOR("Antoniu Miclaus <antoniu.miclaus@analog.com>");
+>   1200	MODULE_DESCRIPTION("Analog Devices ADIS16550 IMU driver");
+>   1201	MODULE_LICENSE("GPL");
+> > 1202	MODULE_IMPORT_NS(IIO_ADISLIB);  
+> 
 
-Make the CCM nodes to follow this format.
+You need a base commit from rc2 or above.  (technically 2 patches after rc1
+but rc2 is probably a better choice!)  This will be material for next kernel
+release anyway now so this all may become moot!
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
-Changes since v1:
-- Use interrupts = <71>, <72>;
-
- Documentation/devicetree/bindings/clock/imx5-clock.yaml | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/clock/imx5-clock.yaml b/Documentation/devicetree/bindings/clock/imx5-clock.yaml
-index 423c0142c1d3..ad03c0a13e64 100644
---- a/Documentation/devicetree/bindings/clock/imx5-clock.yaml
-+++ b/Documentation/devicetree/bindings/clock/imx5-clock.yaml
-@@ -46,13 +46,11 @@ additionalProperties: false
- examples:
-   - |
-     #include <dt-bindings/clock/imx5-clock.h>
--    #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
-     clock-controller@53fd4000{
-         compatible = "fsl,imx53-ccm";
-         reg = <0x53fd4000 0x4000>;
--        interrupts = <0 71 IRQ_TYPE_LEVEL_HIGH>,
--                     <0 72 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupts = <71>, <72>;
-         #clock-cells = <1>;
-     };
- ...
--- 
-2.34.1
-
+Jonathan
 
