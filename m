@@ -1,132 +1,141 @@
-Return-Path: <devicetree+bounces-137774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D310A0A925
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:30:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62196A0A926
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:30:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1827B1886A89
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 12:30:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C8771886C5B
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 12:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E32D1B4144;
-	Sun, 12 Jan 2025 12:30:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9BA01B0F27;
+	Sun, 12 Jan 2025 12:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AjPVd2Wm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ApFOpOxq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D68471B3725
-	for <devicetree@vger.kernel.org>; Sun, 12 Jan 2025 12:30:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD80E3232;
+	Sun, 12 Jan 2025 12:30:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736685009; cv=none; b=mmrIs/Kpg70ECavTx2z+O+1Ka/ZgeZgHCdY3O3EIT7T8BTKFbWzs+QyBAVuVhPdGnQwGd25OE/IP1VjShOvqMxo4LiFWa+6DlnzOTkkimaE2mxqNCkERaKFSVmciRj/A8qUTBsx7ytzF3GWTzeLKgLwi5M4ue7/CKgDFhb8tlKI=
+	t=1736685033; cv=none; b=JXuvPZaHQfpqeHymGhsRSB+uKeS+c+d9seVQNnvwAOiNWthmi/Q9aKgOsgS6x9DUwsArofjYn3imqtowBkErEQRAHUNOMH+Rd3V690pd1HQOZ7TP1JFL2EIon4xIG4Cxm6c0hwFe0PCnOZ5mWyi+8aXQWUjmi0bPFtFcZzyDX1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736685009; c=relaxed/simple;
-	bh=55SJtEopymqDLK9jEfPDJlSY2zUu3iFsgAynO+ND2xQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=oxVTefPvKwghZZnHcl6RivRAmVcNcl3+QzcxlZHpnWGL6C2085nhBSvCPnN1rhTaDMLP6J7rFWzxkTKrDS2jlISfjTz9kab6EkuEF/pm5whPXhrj1xpABy4Au+MB9Veey3T1VIX/x41Bt7zDQeTTfVPZaTdtgrJoPz87vGYNddg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AjPVd2Wm; arc=none smtp.client-ip=209.85.167.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3eb8accbde3so2163155b6e.0
-        for <devicetree@vger.kernel.org>; Sun, 12 Jan 2025 04:30:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736685007; x=1737289807; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zxHvRU79mZPg7YVqFDPmYG/fyVRd96eq7pLfVRnFKlQ=;
-        b=AjPVd2Wmg1De0WL0DLDk8XHNSlHXJPT8ATlWwH/4UybrETbjMfbtC56Ac9W1G3dO/l
-         S4y02JLyegohwVrJ5BJf09869Y85elklbw0Shju4vKqZUP0sVSPMf1j+/BayGRcurF37
-         t1BHXRifZHPFOlibK+XB+yO88mxZJgpK0zyRudOcz9jRg4HFlPcWK5ra7agPqZp+1ukh
-         BRFWfUzavP4eqmfwxCufaZvaLAviPUL/o/mKtOVm29d20NRDdOa6T0ZQM1/2Y91i7i9q
-         i03Yehu+/ibjMVKtTT3rde+iZDRLAeGhMxrm9gVpn9vNZDWemtDv991W+3KQEdwYXm+u
-         j4mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736685007; x=1737289807;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zxHvRU79mZPg7YVqFDPmYG/fyVRd96eq7pLfVRnFKlQ=;
-        b=NwMXYcFblGDFTCTb7fMrzmTzDjs5ceWket8HKFoymnFmUZlOWfJkKbeuGW/EGMVxMD
-         I8IjIRYGncx28BCNgtg0sd+WL5QEIJhGOqBe1rp+I1f7lwb1RF61I6XpbMUrRYCU7DUP
-         TA6TtyWRRvXyv4if4gYxTSiFzeGMJ+UNS1m0VdqessPKKmmOurgfI98jhoaky+aR5bqD
-         Hfy2IqGwDusd1lVUpZIYA5VrT8l3mh6BvR4bh0+9Wjl9V4Y7TbaVfbJunqC+S6mGSs5e
-         63xFViCCnMoBccowey2eqVksgC20iVQtEF3h6MCzJnYEuk6JOoEEWLmJQpc4YqmFDiav
-         +NUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVidK8ovLhiAztxPwqKFQwzoQLEbJJK3t6K+nduL4Jd1wpXJ1jtU/mdu9BXpuDNVYrCJ/fNi4aNts9q@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOhv7ALFdQwq2ybbyGi/V4yflZVQsbzKD/uwJS4Sj3vKdNL3XT
-	/dmbZliEykjF4Ho6nbeB5As+32J3uCdaM8QvfFACoR5LrBAAxxow
-X-Gm-Gg: ASbGnctrAJ+nNaP4J4Q2Mh1ZsN38xTwC5Q/vNSl8K0rNSOxgy/wN4G2JZsRS8YoAD4E
-	NtdEIHAZVC7U4MfxjWPueTn7IXTebJ14mjUPas18OjAyUlYmSQJF8c6mj1FQxYadGTSxfIpVndS
-	0ZFi4MAjeuJAt+vNmJPtzJFTZSdg+o8ilvE6ZLc9R4fBMbwiQw/th0a9l22Nxp02eHa5nGC3odR
-	dzPyfNGDXSdIXkVtlNIg19kP0tDt2rIY5xNaTXfo4MX93zwQm4GE9ui06X3QO8fcBwoFQ==
-X-Google-Smtp-Source: AGHT+IHBEpxax2xMY9nJrTyjERREv7VKhbMGJmdVOS/eKfcaNST6ATYJ5Bmp1DZ6uORogDWU++riWw==
-X-Received: by 2002:a05:6808:3945:b0:3e7:bd4e:5b98 with SMTP id 5614622812f47-3f038359e56mr5897262b6e.0.1736685007081;
-        Sun, 12 Jan 2025 04:30:07 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:8c53:b609:d83:9568])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f037653ff2sm2196609b6e.13.2025.01.12.04.30.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jan 2025 04:30:05 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	kernel@pengutronix.de,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: [PATCH 2/2] dt-bindings: clock: imx5: Fix the CCM interrupts description
-Date: Sun, 12 Jan 2025 09:29:39 -0300
-Message-Id: <20250112122939.988309-2-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250112122939.988309-1-festevam@gmail.com>
-References: <20250112122939.988309-1-festevam@gmail.com>
+	s=arc-20240116; t=1736685033; c=relaxed/simple;
+	bh=5h5xs1inuhF6iOgl16LMuCRdGTY1joMZRij9/bhd7ko=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=F+6GdxWRKBylB0w/I72QXW7rHSHMK85oUeO4xPxcbppLMCR6teSMUmCXzb/bzLbhf4qSBK0Ck5IdbCVrTRka2gqnhL/0FtNMwMOZ3kPs0DWgKU9IQwvU5LdAr00BCp0qAh2z594TQWegpXJBIR8ZehhHwSU41saI2W3ij5Bdjpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ApFOpOxq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5C8AC4CEDF;
+	Sun, 12 Jan 2025 12:30:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736685033;
+	bh=5h5xs1inuhF6iOgl16LMuCRdGTY1joMZRij9/bhd7ko=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ApFOpOxqC6amGgyrUt3Ij/DqWmaU3BsYcPTKVda3IuyAfRfLkGrRFTKVZECJfQAB2
+	 6UUU9JDgDJCANojJBku9C+GnNm5pslSOEI7dWX5h4wXhCUQD//rluZCahGMP3MrUmJ
+	 B/iv7a57rC8UXdR2IZiqAVw+3mawkkfaHKmoy3rcFvnsq21RQyxmHWCL2CeaOXO4GX
+	 O1LVYU8t6k07SDwzkoKKFEv8TX0+3zLos7JpscG7QhThlmg3XQKdmN00A54WltbfLw
+	 XMR+gmzFCxSnBI4lj3q7OBgKBorVLpznenUfzAFiuAF6P4lq+sWTRcbZQojar2Z+lE
+	 bL3XahDLpms7g==
+Date: Sun, 12 Jan 2025 12:30:23 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Jonathan Santos
+ <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, lars@metafoo.de,
+ Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Subject: Re: [PATCH v1 05/15] iio: adc: ad7768-1: set MOSI idle state to
+ high
+Message-ID: <20250112123023.75dc7750@jic23-huawei>
+In-Reply-To: <Z4GXikxVw6mHIYHc@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1736201898.git.Jonathan.Santos@analog.com>
+	<714ff48341753de0509208e3c553b19c1c43e480.1736201898.git.Jonathan.Santos@analog.com>
+	<4449ec60-08cd-4074-ba0b-95603864a458@baylibre.com>
+	<Z4GXikxVw6mHIYHc@debian-BULLSEYE-live-builder-AMD64>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-From: Fabio Estevam <festevam@denx.de>
+On Fri, 10 Jan 2025 18:56:26 -0300
+Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
 
-On the i.MX5 chips the peripheral interrupts are represented directly only
-by their interrupt numbers.
+> On 01/07, David Lechner wrote:
+> > On 1/7/25 9:25 AM, Jonathan Santos wrote:  
+> > > All supported parts require that the MOSI line stays high
+> > > while in idle.
+> > > 
+> > > Configure SPI controller to set MOSI idle state to high.
+> > > 
+> > > Fixes: a5f8c7da3dbe ("iio: adc: Add AD7768-1 ADC basic support")
+> > > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> > > ---  
+> ...
+> > > @@ -574,6 +574,15 @@ static int ad7768_probe(struct spi_device *spi)
+> > >  		return -ENOMEM;
+> > >  
+> > >  	st = iio_priv(indio_dev);
+> > > +	/*
+> > > +	 * The ADC SDI line must be kept high when
+> > > +	 * data is not being clocked out of the controller.
+> > > +	 * Request the SPI controller to make MOSI idle high.
+> > > +	 */
+> > > +	spi->mode |= SPI_MOSI_IDLE_HIGH;
+> > > +	ret = spi_setup(spi);
+> > > +	if (ret < 0)
+> > > +		return ret;
+> > >  	st->spi = spi;
+> > >  
+> > >  	st->vref = devm_regulator_get(&spi->dev, "vref");  
+> > 
+> > Very few SPI controllers currently have the SPI_MOSI_IDLE_HIGH capability flag
+> > set in Linux right now (whether they actually support it or not), so this could
+> > break existing users.  
+> 
+> Good point. Maybe only dev_warn() if SPI_MOSI_IDLE_HIGH is not supported?
+> 
+> >   
+> ...
+> > 
+> > If we ever do implement a data read of more than 64 bits without toggling CS,
+> > then we could just set the TX data to be all 0xFF and have the same effect
+> > without requiring the SPI controller to support SPI_MOSI_IDLE_HIGH.  
+> 
+> One point of having SPI_MOSI_IDLE_HIGH is that the controller may bring MOSI low
+> between data words of a transfer. I think all transfer words are going to be
+> either 16 or 24 with the new patches setting bits_per_word in all transfers but
+> that might still not be enough if eventually the controller is unable to support
+> those word sizes. 
 
-Make the CCM nodes to follow this format.
+Can we make the use of SPI_MOSI_IDLE_HIGH only apply if controller doesn't support
+what is required to do the transfers in one go?
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
----
- Documentation/devicetree/bindings/clock/imx5-clock.yaml | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+> Plus you would have the complication of filling the tx_buf for
+> all transfers.
 
-diff --git a/Documentation/devicetree/bindings/clock/imx5-clock.yaml b/Documentation/devicetree/bindings/clock/imx5-clock.yaml
-index 423c0142c1d3..ad03c0a13e64 100644
---- a/Documentation/devicetree/bindings/clock/imx5-clock.yaml
-+++ b/Documentation/devicetree/bindings/clock/imx5-clock.yaml
-@@ -46,13 +46,11 @@ additionalProperties: false
- examples:
-   - |
-     #include <dt-bindings/clock/imx5-clock.h>
--    #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
-     clock-controller@53fd4000{
-         compatible = "fsl,imx53-ccm";
-         reg = <0x53fd4000 0x4000>;
--        interrupts = <0 71 IRQ_TYPE_LEVEL_HIGH>,
--                     <0 72 IRQ_TYPE_LEVEL_HIGH>;
-+        interrupts = <71 72>;
-         #clock-cells = <1>;
-     };
- ...
--- 
-2.34.1
+Wrap that up in a regmap, or read and write functions and that should be easy enough.
+
+> 
+> For the part that instigated the development of SPI_MOSI_IDLE_HIGH, the MOSI line
+> also had to be high in between transfers. The diagrams at AD7768-1 datasheet
+> page 51 suggest the same would be needed for this chip too.
+
+Whilst the datasheet indeed draws lines for that, i doubt it notices except on
+clock transitions and between transfers the clock won't do anything.
+If we confirm that the device does notice, then I don't mind limiting the controllers
+to those with that can ensure it doesn't get set wrong.
+
+Jonathan
+
 
 
