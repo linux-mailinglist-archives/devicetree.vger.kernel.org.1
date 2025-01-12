@@ -1,93 +1,86 @@
-Return-Path: <devicetree+bounces-137791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 732C9A0A9C1
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 14:41:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 53EEDA0A9C4
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 14:41:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86F6A165435
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:41:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67B161653B7
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:41:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C48A01BC9F6;
-	Sun, 12 Jan 2025 13:40:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A0111B85C5;
+	Sun, 12 Jan 2025 13:40:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="d9M4Dlzm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DyScSc+q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 195771BBBFE;
-	Sun, 12 Jan 2025 13:40:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C173A1B6D1F;
+	Sun, 12 Jan 2025 13:40:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736689235; cv=none; b=ZyMdZjZW+TPF3zUNKQ97Hk3csTyrvtM0FA1cf9+coghEajEuI1SIMrnDiNtJ+LOqQWMQB7hZR3m/1dNxGN5muLKCml5qfIDxCb6rRwdnjjh58l3n+1YiSwEXszkFAmmLY33ifZhaVI5dFnH3tbU+pb28Hze09vs2S8Gm3xPyBxg=
+	t=1736689242; cv=none; b=oggwqnu6UPYe42HROa9dpkUNZORKDfSCTeoRUuwpWVMAgN6v7ZtoGGY6pDlGLdmIUnPhA8Dzi7NQvg9GZcSynDtx9PC/BI/1OTBhchRYCw5mtwzw3CNh8xuG8YAbAYjEP66XtloVsQECuGVeaj1RRxW66FR8Eh+U3dmryefIyog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736689235; c=relaxed/simple;
-	bh=c03WokknUq9N5q+PemBa9FQe4GiJG6bh3QDTACDUWP8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nEN1WtuYSXvgM72HSMxOL6dnKgBeDwoEMd2lniiE7uE6CrPzU4SYH4LLwQv/MEy2lWCs6FMiCRYUXfpB3ZT8bG/GQIpIXan2NFK15UYEODMEDBZ6GKPBBINFiD7k9oOeodRtNvia2VwVtJaq9zPybCntSqlt7Mr6++ugVX9SNXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=d9M4Dlzm; arc=none smtp.client-ip=209.85.218.44
+	s=arc-20240116; t=1736689242; c=relaxed/simple;
+	bh=yIHB0gIMvdYSSOiBf0D5YdppwSlkv9r4zi3nhWmUffE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LSKu/I4qUaYpbjAKS4TEiLS673zuVQkqCHZjhjvL+KP5GfOEILHA8p4IkKbZRNN25f1S98QOgH4sRasSvZMbyyBjdgl3EMSgoO2eC62IYEhB3yXnuuXHRZ78/h4edwVfP5U6jppFMIUlJp+Azxjz+W9M8tfC0P2LyleAbMlTNr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DyScSc+q; arc=none smtp.client-ip=209.85.210.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aa6a92f863cso672587266b.1;
-        Sun, 12 Jan 2025 05:40:33 -0800 (PST)
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-71e3f291ad6so2229722a34.0;
+        Sun, 12 Jan 2025 05:40:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736689232; x=1737294032; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3MsIaz2pAYFsvkh3Vy2uCEBJ6/wXDXMbjZ51UGtrJ78=;
-        b=d9M4DlzmJiF63jMz1RbcL7LWyhlmf4TA4wxzT/e1OquGN5rRoDAygY4K0pvy9nXW46
-         gwyBShRwLUH0oR7Sr+OQGyYlBXBftdCybYrZj7MxVlHJqDIQ6MARqsjlSRkDLbvw+RIv
-         k6svZ2YzOe9tr12/xbK3CdJ6UhH/z1VPTc3dKZF6D4c4jzosXDXBBDBG45QAxvNzmRYE
-         l0zdldUJFfMrghQyIVG99RkcL9Q2/6ryKs36LAbcfsB+SotPaNbKiJivtue9rRiqPL+s
-         j+C12vwXyN+uLoOrJXWf7DRdBm7iDTVU0j/cbZ+tQJAp6FFeMxQZrmpDts6VaLaoX009
-         13sQ==
+        d=gmail.com; s=20230601; t=1736689240; x=1737294040; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mOL07lOWY81zH31m+9h/IVYwwC86e9SDz5dm3zJfWBI=;
+        b=DyScSc+qq4KkCWvu/oMaLQVv8x1yGffKnAO/s7jrKdop4S36l5a8Bx3Y+yxmju+J0k
+         QGqga/dc8TLpjYr5LAzz8Y1YhE3oMjY+eoU+o9DE6RMvmHIPv4oDCR8+FrpatpvHyTaY
+         mK7oNpjWvtE5vecNP+HMm+NrPNff0UcFFWVbjemZd9OMvVig7LJ2ZbSrwA0DbfN4tm24
+         23w5jlNm4VUbQDPpGZQasAeYswL0f7y8ye7TJrWUwLCBwya9cD7SLyBHleof7ml8waGo
+         tr8dJI0EvkKI0JG2Y+YKDmP1erL5/0G1feXOoGhkFURUtA49vQrx7dVz7N3b7a/1IEg1
+         H1Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736689232; x=1737294032;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3MsIaz2pAYFsvkh3Vy2uCEBJ6/wXDXMbjZ51UGtrJ78=;
-        b=e51qZrB29vK8R4vS0lLHoQDlxwRPBR5D9QqQ2WtH+ks56pbHr3lvFA4muvqCivPnP/
-         PGKqtwkRnW5eZJfWQ0SoZ1RW0qnrCpenk5fp1PXl7YC9lZ6o6PVbW4qydljmsLKVtWLy
-         TOhVW2kjvBM5mlJDfzJ5isRhuR/DYM4oWprh0mHPqAYAZfVtOBYep8we/HXv1H0S5k7F
-         Ae2SMEZ2US6JZN7a2WFLVG9J5VSVvlyMk0oWNMoRhFFbCdmbeVXmAIzw5CyY0symB7K9
-         /aH6tFgZokTNQluNwjhIIgVNczzRTZW4DrOAvLhATqeCA6oe3ncfmH5VOTgmtOzAxEQU
-         Xm2w==
-X-Forwarded-Encrypted: i=1; AJvYcCVhq7hIh78OiubfzjVGt+uhGOYCIF7AHQWsKz//TVbbbwwLFYJAAskcLWfodsdzD917kodenOE/QwTm@vger.kernel.org, AJvYcCWVMwkmkrPz/Gfuf8JuCFVkksa33XnVRmJ5x4Z8Fr1W6jsBaXDAHOZ0SEOofDm7ZVVHXbJiU9EYBzA/@vger.kernel.org, AJvYcCWtmIQZd6m9atej5gRyleI2v5uUQ/efQpjuse+7mze7troMFe1olzOQ1uLoI736XsjEmqSwL0Wl5i0iUATu@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywy1HMYBz+l49X1UaabC36oYonW9XVvDdb+caJFAWwN004Vwo0S
-	p5hXsy1efRNpnEiqi68/18awSyCkrnh2Myaml8Cg0m7ovRKGd891
-X-Gm-Gg: ASbGncsQ3XIS/28/Fgfg0JS+VFTtbo2iD9VAImejFDMm2UeS85IiD7G7i/KJD1fJxyw
-	FTYAg1zTeCQFkrdoeZrk+rC+15dCBi4ivKTcco4yfthJFml6O2PiaIYo4LfPrEBwaIJiJwlV/W6
-	BjBTiuQyORHeDpnRUn+3dDNx9GZ5HTnJp63t0os0WhmIf5fBUmlXhdUxQe+thlDoRaTn/6MWshr
-	VLuwUHLVQDVBdSmwKZej2Y42NpZHey/sg7oT0Mzie/jZ7VoKKXouDjVtjX5FmmTxNxnSBE=
-X-Google-Smtp-Source: AGHT+IGhRDdWMzNmO6jwI7oj/9fOIu8HnI8mDuXnPVaFjjbIlG3LyzW46cc9QsoyEZsHxvPDBVFgJw==
-X-Received: by 2002:a17:907:d88:b0:aa6:5910:49af with SMTP id a640c23a62f3a-ab2ab70a152mr1607944466b.24.1736689232140;
-        Sun, 12 Jan 2025 05:40:32 -0800 (PST)
-Received: from localhost.localdomain ([109.52.222.172])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-ab2c90d9a46sm379421266b.54.2025.01.12.05.40.29
+        d=1e100.net; s=20230601; t=1736689240; x=1737294040;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mOL07lOWY81zH31m+9h/IVYwwC86e9SDz5dm3zJfWBI=;
+        b=OP5Tl4ILrmW6MbCrzMf3ISQXB0Y71uzwBcXn/ymn4uRSt/pCKFTGhzwauusnreoBgP
+         obXZfgV4kCTJjmTeJckyesiXao54OcDnrmKUUe29fv7YYnl5W7jm8wnH5RSrCtWUBWBl
+         51Tq6J9ySdL9U5vUQYDKN59J2fcBgZPwqMWzsOfJEZuntJWdsNadT2+ZIxGzxoEcrYwy
+         8AbNX720D363HStJx9jr4qsB+J9WAsA6c1m9EYlOpPOfZ8H3Fh5Ao1Cm3hUOwLInNcdC
+         QXagv6cOGhqrGOTAk2qEQxIph0hb5EIfvBaXPBvFOHZ5gGhjNLxxlNL3GqJKfda93Dln
+         1XEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUPM6CQv09WhSXZ3VZOizhRj1nOkVaS/o65EpkqmkPbIznMiDssLFhNyjeHC+IziCgQqoQwpwxZM/Oh@vger.kernel.org, AJvYcCVDCaLCuWkujFY0ZlC6c/VXNZT42ccvig2Od8xlvG4LAgn+pQ7q4FGNVnmU9wq46Ig/8nMqJ0j4Uxox@vger.kernel.org
+X-Gm-Message-State: AOJu0YzymFRJCIpJp7lZk7P9t0TECqZ9/wozstuIXJT3KCkq7v+TJSBv
+	yjxZhfIxLAeEm7KypqDTcX4JkK7M5vSpZ7aITzIgiub/ERHc4Vpd
+X-Gm-Gg: ASbGnct4twuhBrHUwGSxc+jK3SfTk5uZALS+2DSZMSN30QxjYRn1eIhkc8Yi96Lc9Tu
+	QuS3InX+GY2gdYrE0Fihw5GRYTGKzKkjB88GMEBYM4CjaLfnE7D/JSmBpe97KWEZ9EN8MOxJiVl
+	kdZeHSyUqX4otFesxzmkEwV/FXaimh0In0yrgHlN92NoKx0qvKdVu9TU6Gw1SnxM6/9cz+rdFWW
+	/QGxdKcewRzTk4cqIA1upRLnehXNMk8P353m6yhH5o7/HUBEnbG32T63k3Ba+eP2ymFEw==
+X-Google-Smtp-Source: AGHT+IHXcD2TgkDMU+glU0K4QWgjgoX6hOscu9pJSkDTRFsGC5ER1GF1tOtVhll7wfsdIMLRnAr+dg==
+X-Received: by 2002:a05:6830:26df:b0:723:2959:fe5 with SMTP id 46e09a7af769-72329591233mr3823450a34.4.1736689239765;
+        Sun, 12 Jan 2025 05:40:39 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:8c53:b609:d83:9568])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-723185382adsm2579832a34.15.2025.01.12.05.40.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 12 Jan 2025 05:40:31 -0800 (PST)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+        Sun, 12 Jan 2025 05:40:38 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: alexandre.belloni@bootlin.com
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-rtc@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	upstream@airoha.com
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH v5 4/4] clk: en7523: Add clock for eMMC for EN7581
-Date: Sun, 12 Jan 2025 14:39:40 +0100
-Message-ID: <20250112133953.10404-4-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250112133953.10404-1-ansuelsmth@gmail.com>
-References: <20250112133953.10404-1-ansuelsmth@gmail.com>
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH] dt-bindings: rtc: mxc: Document fsl,imx31-rtc
+Date: Sun, 12 Jan 2025 10:40:27 -0300
+Message-Id: <20250112134027.1013213-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,48 +89,43 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add clock for eMMC for EN7581. This is used to give info of the current
-eMMC source clock and to switch it from 200MHz or 150MHz.
+From: Fabio Estevam <festevam@denx.de>
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+imx31.dtsi uses the following RTC compatible:
+
+compatible = "fsl,imx31-rtc", "fsl,imx21-rtc";
+
+Document 'fsl,imx31-rtc' to fix the following dt-schema warning:
+
+'fsl,imx31-rtc' is not one of ['fsl,imx1-rtc', 'fsl,imx21-rtc']
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
-Changes v4:
-- Move to patch 4
-Changes v2:
-- Rename emmc_base to emmc7581_base to make it more clear
+ Documentation/devicetree/bindings/rtc/rtc-mxc.yaml | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
- drivers/clk/clk-en7523.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
-index 3a4b7ed40af4..6a763bc9ac1a 100644
---- a/drivers/clk/clk-en7523.c
-+++ b/drivers/clk/clk-en7523.c
-@@ -91,6 +91,7 @@ static const u32 emi7581_base[] = { 540000000, 480000000, 400000000, 300000000 }
- static const u32 bus7581_base[] = { 600000000, 540000000 };
- static const u32 npu7581_base[] = { 800000000, 750000000, 720000000, 600000000 };
- static const u32 crypto_base[] = { 540000000, 480000000 };
-+static const u32 emmc7581_base[] = { 200000000, 150000000 };
+diff --git a/Documentation/devicetree/bindings/rtc/rtc-mxc.yaml b/Documentation/devicetree/bindings/rtc/rtc-mxc.yaml
+index a14b52178c4b..2599b847f406 100644
+--- a/Documentation/devicetree/bindings/rtc/rtc-mxc.yaml
++++ b/Documentation/devicetree/bindings/rtc/rtc-mxc.yaml
+@@ -14,9 +14,13 @@ maintainers:
  
- static const struct en_clk_desc en7523_base_clks[] = {
- 	{
-@@ -281,6 +282,15 @@ static const struct en_clk_desc en7581_base_clks[] = {
- 		.base_shift = 0,
- 		.base_values = crypto_base,
- 		.n_base_values = ARRAY_SIZE(crypto_base),
-+	}, {
-+		.id = EN7581_CLK_EMMC,
-+		.name = "emmc",
-+
-+		.base_reg = REG_CRYPTO_CLKSRC2,
-+		.base_bits = 1,
-+		.base_shift = 12,
-+		.base_values = emmc7581_base,
-+		.n_base_values = ARRAY_SIZE(emmc7581_base),
- 	}
- };
+ properties:
+   compatible:
+-    enum:
+-      - fsl,imx1-rtc
+-      - fsl,imx21-rtc
++    oneOf:
++      - const: fsl,imx1-rtc
++      - const: fsl,imx21-rtc
++      - items:
++          - enum:
++              - fsl,imx31-rtc
++          - const: fsl,imx21-rtc
  
+   reg:
+     maxItems: 1
 -- 
-2.45.2
+2.34.1
 
 
