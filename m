@@ -1,239 +1,161 @@
-Return-Path: <devicetree+bounces-137712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F9D7A0A6AB
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 00:38:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8239DA0A6B0
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 01:01:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 072091680BD
-	for <lists+devicetree@lfdr.de>; Sat, 11 Jan 2025 23:38:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 736003A672D
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 00:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 580C61BCA0F;
-	Sat, 11 Jan 2025 23:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE2F2256D;
+	Sun, 12 Jan 2025 00:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i9LXH4uB"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WdVKmThT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A340918FC7E;
-	Sat, 11 Jan 2025 23:38:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C97819;
+	Sun, 12 Jan 2025 00:01:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736638723; cv=none; b=SQv9D7DuECEgnMT3B5nZYLI+a9whqNthYpmWERXWALbaUSgi3zfwA+DdaBYcbknp0igC0k1o30xvr+VVLQX2aIEXv1RD6lXngmnz/873Chph7wsVo8CWq8Vr3+z1bgnuL2RBXmGbwlWaJt4eao9C4xwqVtXsWmTGLnliR31HPSU=
+	t=1736640062; cv=none; b=sIoXIkeSC/wyygFsmPo+8+LsF0jKYLuLB9asieHVyb/wZZI9WiYrDNnJ9cnZYaeGArH6ZtiMUh3/TiLSe6ioqa4P4EPyCgF0JHKBUsySfczuCUYoQJ6M85p6e5hPie+UXwfsS4+b6GNE3mHs4ZSNLkL3Jpjc8swgx1nBiESiWHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736638723; c=relaxed/simple;
-	bh=FSTwPLy6DPUHJWyvtcZkx0zy2EepS5FHcGB09vkShdk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QLsK+oa0KXWyF5W6NnrGhBtK4ZirCiy0GHctll9rE8mel4paOqkXB97QNjHNH8D3DCbfqsMFEIqNwuZNfTYAQ62iJlrJWicEjUcjkcT+wy09TbRP7nVzVOt3by1Zg+hRSA1U554BYMVVPM03QlBSd4ztFLNjm7jFTlcp5aI+mQ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i9LXH4uB; arc=none smtp.client-ip=209.85.166.51
+	s=arc-20240116; t=1736640062; c=relaxed/simple;
+	bh=FxH0cllwR1HPI/Hq0JZ72sZwNkw/QzoeKvTAn9qTgNg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L5irTiQkdWq7v/BN3b6R705t5jCbvY4e/6DIa5cCvQJdRyoXUIZol6r0InGoSM+lvL5P1kYvNEP9r5hSrF2rizeVM6FXtQZ/8vWGedK5siNvmddcvze8UMiSSDt2Va9jm7RIvZFgbQZN1UDqsEAdPNhcl3dojd8519kZXyZstBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WdVKmThT; arc=none smtp.client-ip=209.85.210.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-844e9b8b0b9so243457039f.0;
-        Sat, 11 Jan 2025 15:38:41 -0800 (PST)
+Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-71e3c7117e8so69521a34.2;
+        Sat, 11 Jan 2025 16:01:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736638721; x=1737243521; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1736640060; x=1737244860; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GSmGDNX9CC2d3HL4afoZjaMZrOh6/NAEiJbAyqPRBEo=;
-        b=i9LXH4uBr0Hb+h1JxkaBAQi33gTsUU3FTwfgT5P4NiNl5l7k+BpaKifFytGhAH6C+X
-         shMyfU+nvsN0lNG7WM3xwEl1g5sYcnGU8x7TfmGmBmFtVUrojJOtndMd97X5NeWK8GbP
-         vw0bvx0+nbF90aitrKrkErgAHqyvJ3k4oYyHFQURxiyRdTjeMfCc2ILFJnKX391mlaNk
-         fRTcXIpJLscaabC3UZUSsYVI0c5REfhHx0OPOvslJjrBPqK31tseIeb7X0cLA/x0DUby
-         yfAVL9BVOIn6qBKUw29RVKowAX1rf71cyo6ov6GgRKmdqWGevmnwriJ3HbXQ+hfzTiVq
-         BMSA==
+        bh=ViMxrOr6TBlIcv8Q9XOTTtXutX4mRftVRSACLwo6Z9c=;
+        b=WdVKmThTooXV6uj0yFupgVv08MOHUqgx71lhHLOsZS2iKaWM+y6TEMKrsnHZZxgam/
+         7fsnza5ICjMRfrM2Vfquwb3WIctyj9qbrA/FKabFNCV/X1iX2D9hnB6zsTr+h8TsMh3m
+         Euus0UGl/YSb7zU+45ios2eCwEMBzidASuRGm1GuIDa/9d5TIiLHgYbPxr/P5jXQ8Da5
+         5zCiek3uBOWBv1Mpl4kL9N5zBJE2BU97ZKOP4wXkr72+bvwhQ5q0EZFcFRSJwhEkT0pG
+         Y7iaPnsOTWANA3oaDC80IFg5MOyXZlaXht2q6mVxLSGEusBmhyZCaC+4fWnGc+KkR5R0
+         JlNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736638721; x=1737243521;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1736640060; x=1737244860;
+        h=in-reply-to:content-disposition:mime-version:references:reply-to
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GSmGDNX9CC2d3HL4afoZjaMZrOh6/NAEiJbAyqPRBEo=;
-        b=QqIf0TXPPdZESctT4SV606Ge8ozEYxSYnpTU6s+2n9JdcLysUg6f6SWVEnjIxIrpwj
-         myOjmM3YT+8NWWJYJB4RKrea1jmkfVklaZlu5ADQI9yKnle+zKSpmGXQDaQ76gG4jUUC
-         vcEv1aOlUcNjU3Zk+Oy6yYvBY0IJF0Sk3EiCXG4bGNbY19k22ME+PA6rFyO2u1u3Cd45
-         VGFgHqp2ZKxp2whiUJuXnPyM8QrEPEEzo0R4eE7p1vhL8L6qcsTOi/oTiZHZkbvLOSQw
-         hwZHnn0fuDNBkEw6mfq7vVL35LX7Mge5APXGAtMdst1IVY3HOBSbWp5nCh1c3Wiznn6l
-         qrJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUQ3WaTExfhJnLFb8D2YAyzIRT0NRl7jBbm+pkqUlKxfwsfL5M6qvCwwcJhlOIElfVTzf5B/ucOqryFJg==@vger.kernel.org, AJvYcCV2PTy/HabEF739Rtzok0N2JB8oC0rnqoe3QOuDeLlcm7VrTBgJUqUChIEx/F/XvLLjU1B5BzZF@vger.kernel.org, AJvYcCVDisvpVKH63AzgKGhi+8DG/Q6PDO0eIE4BAwLlC3VYIO1zZ7GVkmmW6Lsn6F9cLHC1xWk3Lvd/mrh9@vger.kernel.org, AJvYcCW822iJwd5tsb25hDbfVmCkadlR82E1yGzaOU7LZvn2sTIWGxkXueUT9/dpFMvA/DDz+XwHMHPXYbmCHwv5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkOVzFCvQ9HQLK5jHf8jv4bvnZtf2TTDlUHySdIPrlRFpFhf24
-	DWfUMGNSzjr0BZVl2784TjQGXQgRaKaAwyCgxIDlf7/7Aga6crm3jRZbMX0o0M17kKYTYCRtnaj
-	d0m78gRVeXq7HQEle0c5ZiQmJEdI=
-X-Gm-Gg: ASbGncvIWzfw1zDwpvI57lLP9XUtxJUcwdK3hD/n5Tg0F/NyHfN4trz5VQJ4Aii3Paj
-	t1jAlUU/Qwd0cqK+oJQuokp/qyrfs5Zo8gius
-X-Google-Smtp-Source: AGHT+IH6Z6JztDq8NnTac66FF1FRfOdf7YDCCFhupP4kXxxaC7X0XENWJ4B8Agrqh55Q23BphIsV5KAlzt5FAVergck=
-X-Received: by 2002:a05:6e02:1607:b0:3cd:d08a:5c99 with SMTP id
- e9e14a558f8ab-3ce3a87a5d9mr120667135ab.8.1736638720742; Sat, 11 Jan 2025
- 15:38:40 -0800 (PST)
+        bh=ViMxrOr6TBlIcv8Q9XOTTtXutX4mRftVRSACLwo6Z9c=;
+        b=mKu4k6Vx6FZ/dUj3WkkwDaJRBqB5Ensp2ucnZa0Z3cMyDXJGddCqyiwjSzvqLvFgjI
+         LoA3bBJ2OiaMwDB+tyQvI2JOMLGgRrar88rPYpJKFWrmMY+y/ujERIVcH2NErp6klwjj
+         4orP9HaolBxj0IWGIz7FvSQg5FQuRHNq+a8t+lUC9HaEpI0TH58lzJYD98icBQTuYkub
+         oZuTkdhTQW5DQujg7EeT5sFpuC06YXsB6+2qf79/i/tUgYcutoFiAj7AaPX2fY9oZjJO
+         iqvcsJ9mMU+OiZ7WCGSIqnqu5bGHWj9wGOg6KUstBRvc2BzF2QAtd3OsbE/9WHde96gg
+         rHxw==
+X-Forwarded-Encrypted: i=1; AJvYcCU1UDkicvxnxGUctiuCJm5+7wdOjMK6NcfvMeT5nyZybcy+lApOh79HGXQ0uIsYV0sSFwkP4A5Gq+y4@vger.kernel.org, AJvYcCUrbJdrOUjwYvwZlX/TQpOxTVahblsGpkOcm35ESxaXoGwJDZpqq/iapwL5bg3jCXpxdH99vgsa8mLoPvXL@vger.kernel.org, AJvYcCXshqeRMgt3bDJMi3+N1UdiabjLvq3tkg8NyQX+GEssVfcOS319cOaB7stR0sFHA167mTt0SJBQCdV1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFmZp63AV/Lugjjrqr0W7P6EvNnY440ashXNJcpVZxYD289zjt
+	TRdW61lWpwE0J+rsqYzDFiaYGf1g4y4HhJfu/h2Jk/ZqHZ9zLlQ1
+X-Gm-Gg: ASbGncsVwJA6+Yst2gQttpek4y2HMPM1zhUgFsgyL25iVN3VKvU0Swxf8EIZlPmCYoT
+	GA773TctIweCFN/tivkeQ+K+USQYxtjPs8lgBHafXlPWpg8+UpX8Ql3M9PLCAD8rVvHKabZNWYx
+	d9WGLH4iJK5s3Y7ZWlEtHm0ETBEIi6qstso9gCQhqXK2cbDEK8b+H12loSgDxkjw9zqP7O+cgJe
+	GmEf4LO6+fBkbHA6/MUve9jSdy6qHeaMQcC83X28nCxOJ5aqr7FUmxRjfEh74KiUSsRzljPqc2e
+	iw==
+X-Google-Smtp-Source: AGHT+IF1Fq+N/UGakrZ4h80jKryj7M8L1Vv+uvDDr3m1UkvGL7n9zUVHCuXf3m932Y9dipoGq5dkiw==
+X-Received: by 2002:a05:6830:6118:b0:71e:af5:4981 with SMTP id 46e09a7af769-721e2f29f30mr3386140a34.6.1736640060176;
+        Sat, 11 Jan 2025 16:01:00 -0800 (PST)
+Received: from JSANTO12-L01.ad.analog.com ([189.121.203.94])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7231862a38csm2136656a34.68.2025.01.11.16.00.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 11 Jan 2025 16:00:59 -0800 (PST)
+Date: Sat, 11 Jan 2025 21:00:55 -0300
+From: Jonathan Santos <jonath4nns@gmail.com>
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>, lars@metafoo.de,
+	Michael.Hennerich@analog.com, jic23@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v1 04/15] iio: adc: ad7768-1: Fix conversion result sign
+Message-ID: <Z4MGNyDTMj0JBGod@JSANTO12-L01.ad.analog.com>
+Reply-To: Z4GWpjnAoRKtexz2@debian-bullseye-live-builder-amd64.smtp.subspace.kernel.org
+References: <cover.1736201898.git.Jonathan.Santos@analog.com>
+ <e521bb5cb60d413edbcd1ea582fd81073218eaf5.1736201898.git.Jonathan.Santos@analog.com>
+ <Z4GWpjnAoRKtexz2@debian-BULLSEYE-live-builder-AMD64>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250109105600.41297-1-basharath@couthit.com> <20250110055906.65086-7-basharath@couthit.com>
-In-Reply-To: <20250110055906.65086-7-basharath@couthit.com>
-From: Jason Xing <kerneljasonxing@gmail.com>
-Date: Sun, 12 Jan 2025 07:38:04 +0800
-X-Gm-Features: AbW1kva3z-1aEzVTv2r3xLbpbKMOSjkZCC8BNOujNXCLZUG9WKMOdO0gPkmPI7o
-Message-ID: <CAL+tcoD6WuJH6yXaEGvuz_s3sROPXtEMeZw1hBNQvb6wnKKr-w@mail.gmail.com>
-Subject: Re: [RFC PATCH 06/10] net: ti: prueth: Adds HW timestamping support
- for PTP using PRU-ICSS IEP module
-To: Basharath Hussain Khaja <basharath@couthit.com>
-Cc: danishanwar@ti.com, rogerq@kernel.org, andrew+netdev@lunn.ch, 
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, nm@ti.com, 
-	ssantosh@kernel.org, tony@atomide.com, richardcochran@gmail.com, 
-	parvathi@couthit.com, schnelle@linux.ibm.com, rdunlap@infradead.org, 
-	diogo.ivo@siemens.com, m-karicheri2@ti.com, horms@kernel.org, 
-	jacob.e.keller@intel.com, m-malladi@ti.com, javier.carrasco.cruz@gmail.com, 
-	afd@ti.com, s-anna@ti.com, linux-arm-kernel@lists.infradead.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, pratheesh@ti.com, 
-	prajith@ti.com, vigneshr@ti.com, praneeth@ti.com, srk@ti.com, rogerq@ti.com, 
-	krishna@couthit.com, pmohan@couthit.com, mohan@couthit.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z4GWpjnAoRKtexz2@debian-BULLSEYE-live-builder-AMD64>
 
-On Fri, Jan 10, 2025 at 2:01=E2=80=AFPM Basharath Hussain Khaja
-<basharath@couthit.com> wrote:
+On 01/10, Marcelo Schmitt wrote:
+> On 01/07, Jonathan Santos wrote:
+> > From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> > 
+> > The ad7768-1 is a fully differential ADC, meaning that the voltage
+> > conversion result is a signed value. Since the value is a 24 bit one,
+> Hmm, I think the reason why we sign _raw values should be because of the ADC
+> output code format. There are differential ADCs that can measure a negative
+> difference between IN+ and IN- but outputting straight binary data format (not
+> signed values). In those cases, the _offset attribute is used to "shift" the
+> _raw value so that output codes that represent IN+ < IN- are adjusted to a
+> negative decimal value (the _raw + _offset part of IIO ABI to get to mV units).
+> For AD7768-1/ADAQ7768-1, the ADC output code is indeed two's complement and thus
+> signed so the code change is correct for it.
+> Since you are probably going to re-spin on the patch series, will be nice
+> to adjust the message to something like:
+> The ad7768-1 ADC output code is two's complement, meaning that the voltage
+> conversion result is a signed value. ...
+> 
+> With that,
+> Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
 >
-> From: Roger Quadros <rogerq@ti.com>
->
-> PRU-ICSS IEP module, which is capable of timestamping RX and
-> TX packets at HW level, is used for time synchronization by PTP4L.
->
-> This change includes interaction between firmware and user space
-> application (ptp4l) with required packet timestamps. The driver
-> initializes the PRU firmware with appropriate mode and configuration
-> flags. Firmware updates local registers with the flags set by driver
-> and uses for further operation. RX SOF timestamp comes along with
-> packet and firmware will rise interrupt with TX SOF timestamp after
-> pushing the packet on to the wire.
->
-> IEP driver is available in upstream and we are reusing for hardware
-> configuration for ICSSM as well. On top of that we have extended it
-> with the changes for AM57xx SoC.
->
-> Extended ethtool for reading HW timestamping capability of the PRU
-> interfaces.
->
-> Currently ordinary clock (OC) configuration has been validated with
-> Linux ptp4l.
->
-> Signed-off-by: Roger Quadros <rogerq@ti.com>
-> Signed-off-by: Andrew F. Davis <afd@ti.com>
-> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
-> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
-> ---
->  drivers/net/ethernet/ti/icssg/icss_iep.c      |  42 ++
->  drivers/net/ethernet/ti/icssm/icssm_ethtool.c |  26 +
->  drivers/net/ethernet/ti/icssm/icssm_prueth.c  | 443 +++++++++++++++++-
->  drivers/net/ethernet/ti/icssm/icssm_prueth.h  |  11 +
->  .../net/ethernet/ti/icssm/icssm_prueth_ptp.h  |  85 ++++
->  5 files changed, 605 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_ptp.h
->
-> diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c b/drivers/net/ether=
-net/ti/icssg/icss_iep.c
-> index 768578c0d958..9a2ea13703d8 100644
-> --- a/drivers/net/ethernet/ti/icssg/icss_iep.c
-> +++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
-> @@ -937,11 +937,53 @@ static const struct icss_iep_plat_data am654_icss_i=
-ep_plat_data =3D {
->         .config =3D &am654_icss_iep_regmap_config,
->  };
->
-> +static const struct icss_iep_plat_data am57xx_icss_iep_plat_data =3D {
-> +       .flags =3D ICSS_IEP_64BIT_COUNTER_SUPPORT |
-> +                ICSS_IEP_SLOW_COMPEN_REG_SUPPORT,
-> +       .reg_offs =3D {
-> +               [ICSS_IEP_GLOBAL_CFG_REG] =3D 0x00,
-> +               [ICSS_IEP_COMPEN_REG] =3D 0x08,
-> +               [ICSS_IEP_SLOW_COMPEN_REG] =3D 0x0C,
-> +               [ICSS_IEP_COUNT_REG0] =3D 0x10,
-> +               [ICSS_IEP_COUNT_REG1] =3D 0x14,
-> +               [ICSS_IEP_CAPTURE_CFG_REG] =3D 0x18,
-> +               [ICSS_IEP_CAPTURE_STAT_REG] =3D 0x1c,
-> +
-> +               [ICSS_IEP_CAP6_RISE_REG0] =3D 0x50,
-> +               [ICSS_IEP_CAP6_RISE_REG1] =3D 0x54,
-> +
-> +               [ICSS_IEP_CAP7_RISE_REG0] =3D 0x60,
-> +               [ICSS_IEP_CAP7_RISE_REG1] =3D 0x64,
-> +
-> +               [ICSS_IEP_CMP_CFG_REG] =3D 0x70,
-> +               [ICSS_IEP_CMP_STAT_REG] =3D 0x74,
-> +               [ICSS_IEP_CMP0_REG0] =3D 0x78,
-> +               [ICSS_IEP_CMP0_REG1] =3D 0x7c,
-> +               [ICSS_IEP_CMP1_REG0] =3D 0x80,
-> +               [ICSS_IEP_CMP1_REG1] =3D 0x84,
-> +
-> +               [ICSS_IEP_CMP8_REG0] =3D 0xc0,
-> +               [ICSS_IEP_CMP8_REG1] =3D 0xc4,
-> +               [ICSS_IEP_SYNC_CTRL_REG] =3D 0x180,
-> +               [ICSS_IEP_SYNC0_STAT_REG] =3D 0x188,
-> +               [ICSS_IEP_SYNC1_STAT_REG] =3D 0x18c,
-> +               [ICSS_IEP_SYNC_PWIDTH_REG] =3D 0x190,
-> +               [ICSS_IEP_SYNC0_PERIOD_REG] =3D 0x194,
-> +               [ICSS_IEP_SYNC1_DELAY_REG] =3D 0x198,
-> +               [ICSS_IEP_SYNC_START_REG] =3D 0x19c,
-> +       },
-> +       .config =3D &am654_icss_iep_regmap_config,
-> +};
-> +
->  static const struct of_device_id icss_iep_of_match[] =3D {
->         {
->                 .compatible =3D "ti,am654-icss-iep",
->                 .data =3D &am654_icss_iep_plat_data,
->         },
-> +       {
-> +               .compatible =3D "ti,am5728-icss-iep",
-> +               .data =3D &am57xx_icss_iep_plat_data,
-> +       },
->         {},
->  };
->  MODULE_DEVICE_TABLE(of, icss_iep_of_match);
-> diff --git a/drivers/net/ethernet/ti/icssm/icssm_ethtool.c b/drivers/net/=
-ethernet/ti/icssm/icssm_ethtool.c
-> index cce3276d5565..86d62d64dc4d 100644
-> --- a/drivers/net/ethernet/ti/icssm/icssm_ethtool.c
-> +++ b/drivers/net/ethernet/ti/icssm/icssm_ethtool.c
-> @@ -7,6 +7,7 @@
->
->  #include <linux/if_bridge.h>
->  #include "icssm_prueth.h"
-> +#include "../icssg/icss_iep.h"
->
->  #define PRUETH_MODULE_VERSION "0.2"
->  #define PRUETH_MODULE_DESCRIPTION "PRUSS Ethernet driver"
-> @@ -189,12 +190,37 @@ static void icssm_emac_get_regs(struct net_device *=
-ndev,
->         regs->version =3D PRUETH_REG_DUMP_GET_VER(prueth);
->  }
->
-> +static int icssm_emac_get_ts_info(struct net_device *ndev,
-> +                                 struct kernel_ethtool_ts_info *info)
-> +{
-> +       struct prueth_emac *emac =3D netdev_priv(ndev);
-> +
-> +       if ((PRUETH_IS_EMAC(emac->prueth) && !emac->emac_ptp_tx_irq))
-> +               return ethtool_op_get_ts_info(ndev, info);
-> +
-> +       info->so_timestamping =3D
-> +               SOF_TIMESTAMPING_TX_HARDWARE |
-> +               SOF_TIMESTAMPING_TX_SOFTWARE |
-> +               SOF_TIMESTAMPING_RX_HARDWARE |
-> +               SOF_TIMESTAMPING_RX_SOFTWARE |
-> +               SOF_TIMESTAMPING_SOFTWARE |
-> +               SOF_TIMESTAMPING_RAW_HARDWARE;
 
-In addtion to what Richard suggested, there is no need to re-mark the
-following flags "SOF_TIMESTAMPING_RX_SOFTWARE" and
-"SOF_TIMESTAMPING_SOFTWARE", please see __ethtool_get_ts_info().
+You are right, Thanks! will do that.
 
-Thanks,
-Jason
+> > stored in a 32 bit variable, the sign should be extended in order to get
+> > the correct representation.
+> > 
+> > Also the channel description has been updated to signed representation,
+> > to match the ADC specifications.
+> > 
+> > Fixes: a5f8c7da3dbe ("iio: adc: Add AD7768-1 ADC basic support")
+> > Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> > ---
+> >  drivers/iio/adc/ad7768-1.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
+> > index 113703fb7245..c3cf04311c40 100644
+> > --- a/drivers/iio/adc/ad7768-1.c
+> > +++ b/drivers/iio/adc/ad7768-1.c
+> > @@ -142,7 +142,7 @@ static const struct iio_chan_spec ad7768_channels[] = {
+> >  		.channel = 0,
+> >  		.scan_index = 0,
+> >  		.scan_type = {
+> > -			.sign = 'u',
+> > +			.sign = 's',
+> >  			.realbits = 24,
+> >  			.storagebits = 32,
+> >  			.shift = 8,
+> > @@ -371,7 +371,7 @@ static int ad7768_read_raw(struct iio_dev *indio_dev,
+> >  
+> >  		ret = ad7768_scan_direct(indio_dev);
+> >  		if (ret >= 0)
+> > -			*val = ret;
+> > +			*val = sign_extend32(ret, chan->scan_type.realbits - 1);
+> >  
+> >  		iio_device_release_direct_mode(indio_dev);
+> >  		if (ret < 0)
+> > -- 
+> > 2.34.1
+> > 
 
