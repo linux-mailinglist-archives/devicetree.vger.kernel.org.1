@@ -1,163 +1,127 @@
-Return-Path: <devicetree+bounces-137722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0925A0A73E
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 05:53:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 025DCA0A76F
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 08:40:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4BC4E7A2EA7
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 04:52:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFAF9166C28
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 07:40:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D6F74086A;
-	Sun, 12 Jan 2025 04:52:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D506C14F9EB;
+	Sun, 12 Jan 2025 07:40:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UHuGyLwW"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="qhXwYR0a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6066E14F90;
-	Sun, 12 Jan 2025 04:52:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19DEC14900F;
+	Sun, 12 Jan 2025 07:40:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736657573; cv=none; b=qukc6brXWnQsM94ahL54JhrOeJ3OBBRDhBFCVPd2LuS2/YTySP1dHjKae7nClFCUgxb/eTD9JFjfPaUemYHBqjM531J+SorEkQoGP1JRHFrvhVRhrk0MEYz8RAljPrhKsDvSMej48fhLPmfezPTfvhD4Z1bHCwyWpttWE9BZwBE=
+	t=1736667607; cv=none; b=Z+8MHgPYSEPrMrpAzxQwIu4YkF/8ONVON54ABkj6S9e+3lLSZtOsql+yjs3PWdzlMfBO4URlmciYjosCt4JXb/o/ONzzoDWYIle8aqsRLHYdRqFVC+ipv/Zfw+OiK6EPek1oUV+aZIRKlm91xHokXkLWkzTy4NCx0Fbc0oQQiOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736657573; c=relaxed/simple;
-	bh=S6Vbj3DnhAGTqEs4fvOLiBBt0ILIKGbKIuliWiD1C8U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aYGSZHOeKq6SUevXB1Yc9mL3OsZ7MISsH9Ul+VtAi1UZod4PBGUO2PW+gMImwhi0ZeY7ONgEcKo8GCWqTSz1gohDfbwAiJfB/iPqbbtDAPMrG78tb280xlWl1CuNAnRmEl6RIra+0zDjgQOHakrzf39abTELHuIEYKqhrTwqy0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UHuGyLwW; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736657572; x=1768193572;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=S6Vbj3DnhAGTqEs4fvOLiBBt0ILIKGbKIuliWiD1C8U=;
-  b=UHuGyLwW8MNaLk1FncMISP0J3GmZl/P46gjpb38D8h+//N4+Z4263iuf
-   KdXL5k+Ayoe3QsP1bRmo+lirXXvMcmhl0OfZiph1QUrhWL33zh0zstzTa
-   gssXZ/mfQaNe95mxwM/B0XGiXtzY3lPoE70+C1cyvBmoMfItpDBIY+jsL
-   WiaENIM8rtdt/D3B0f+6yFIbmxVAk1lNtsBLcFg0HXoJVV/YvA1CDDPcf
-   DFPspgf3dbmudh7UZJqCEuDqkhKlUHW0rnuChJ2NbfeLf5IAzrTvuQcz0
-   CM1FrxZvo2N9PZgYsNH/xGLFfT7eswQGfhT0JjQ8b54nx/IsFJA5yPdr0
-   Q==;
-X-CSE-ConnectionGUID: tlZcMIWFSGyCk/huH+Pndg==
-X-CSE-MsgGUID: +mqgwE+lSkyPovp6NQ3wYA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11312"; a="37069765"
-X-IronPort-AV: E=Sophos;i="6.12,308,1728975600"; 
-   d="scan'208";a="37069765"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Jan 2025 20:52:51 -0800
-X-CSE-ConnectionGUID: Dl/XJOA0TV6JyRP/TiuxRw==
-X-CSE-MsgGUID: 4MNUk4+CQbeSz57zZtVYBw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="104974837"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 11 Jan 2025 20:52:47 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tWpxt-000LaQ-0r;
-	Sun, 12 Jan 2025 04:52:45 +0000
-Date: Sun, 12 Jan 2025 12:52:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Markus Burri <markus.burri@mt.com>, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Markus Burri <markus.burri@mt.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	Manuel Traut <manuel.traut@mt.com>
-Subject: Re: [PATCH v1 3/7] rtc-rv8803: add register definitions for rv8901
- tamper detection
-Message-ID: <202501121203.Kw9SnPYP-lkp@intel.com>
-References: <20250110061401.358371-4-markus.burri@mt.com>
+	s=arc-20240116; t=1736667607; c=relaxed/simple;
+	bh=9p0hEFoSsqeo+7024SmrUqO2tn4nPCF3spfIRBSzaEY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=FkkqZTuFYarjh8nwXgsPf2PRR/OLLvLc29bPo5sGWdyYx55LpZMWPSDjDmkEndZarmwJv5kywwKtuXkGdj/6FMFy8KI/MLMakyGkH+FBi9bPT9cKOc1N3dKwm6OTUwtAweqtV2dZO7nZPRbf57BRZjDQHr2OQeaJtA6WcV0jCko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=qhXwYR0a; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from bigfoot-server-storage.classfun.cn (unknown [124.72.162.122])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id 012E17891C;
+	Sun, 12 Jan 2025 15:33:57 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 012E17891C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1736667241;
+	bh=HVVCWqz7om8BHjjEZbzs4VlK2aeGgOGoS2Oo6h3uT1Y=;
+	h=From:To:Cc:Subject:Date:From;
+	b=qhXwYR0aO6ZVDV/sRRd8TWAZFzu28o1EjBjXcG5akjti63KHmNJEu/LQ3KVR7KZwl
+	 OIANxyqRHiLX/r5KeU/6eySKwK4GeV1yuduwWYC9tjw5xH3COZKSMuRWxu/qjcJ8xB
+	 k55yaxRc5atxRkCDt5K5RqwPlUlZ+M1C7tsxJT/g=
+From: Junhao Xie <bigfoot@classfun.cn>
+To: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	Junhao Xie <bigfoot@classfun.cn>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Dragan Simic <dsimic@manjaro.org>,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/3] Add support for Ariaboard Photonicat RK3568
+Date: Sun, 12 Jan 2025 15:33:41 +0800
+Message-ID: <20250112073344.1976411-1-bigfoot@classfun.cn>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250110061401.358371-4-markus.burri@mt.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Markus,
+Add dts for Ariaboard Photonicat RK3568.
 
-kernel test robot noticed the following build warnings:
+This series bring support for:
+* Debug UART
+* SDIO QCA9377 WiFi and Bluetooth
+* M.2 E-Key PCIe WiFi and Bluetooth
+* M.2 B-Key USB Modem WWAN
+* Ethernet WAN Port
+* MicroSD Card slot
+* eMMC
+* HDMI Output
+* Mali GPU
+* USB Type-A
 
-[auto build test WARNING on abelloni/rtc-next]
-[also build test WARNING on robh/for-next linus/master v6.13-rc6 next-20250110]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Changed from v1:
+- move some general nodes (firmware, ramoops, reboot-mode) to rk356x.dtsi
+- gmac1 change to phy-mode rgmii-id
+- corrected some regulator to be closer to schematics
+- rename rk3568-ariaboard-photonicat.dts to rk3568-photonicat.dts
+https://lore.kernel.org/lkml/20240904111456.87089-1-bigfoot@classfun.cn/
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Markus-Burri/dt-bindings-rtc-add-new-type-for-epson-rx8901/20250110-141934
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/20250110061401.358371-4-markus.burri%40mt.com
-patch subject: [PATCH v1 3/7] rtc-rv8803: add register definitions for rv8901 tamper detection
-config: m68k-randconfig-r122-20250111 (https://download.01.org/0day-ci/archive/20250112/202501121203.Kw9SnPYP-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 14.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20250112/202501121203.Kw9SnPYP-lkp@intel.com/reproduce)
+Changed from v2:
+- remove unused headers
+- corrected some regulator to be closer to schematics
+- remove usb_host1_ohci, usb_host1_ehci, usb2phy1_host that have no connection
+https://lore.kernel.org/lkml/20240906045706.1004813-1-bigfoot@classfun.cn/
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501121203.Kw9SnPYP-lkp@intel.com/
+Changed from v3:
+- corrected some regulator to be closer to schematics
+- changed to using clk32k_out1 in xin32k
+https://lore.kernel.org/lkml/20240911122809.1789778-2-bigfoot@classfun.cn/
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/rtc/rtc-rv8803.c:141:26: sparse: sparse: symbol 'pull_resistor_txt' was not declared. Should it be static?
->> drivers/rtc/rtc-rv8803.c:153:26: sparse: sparse: symbol 'trigger_txt' was not declared. Should it be static?
->> drivers/rtc/rtc-rv8803.c:161:26: sparse: sparse: symbol 'buffer_mode_txt' was not declared. Should it be static?
->> drivers/rtc/rtc-rv8803.c:167:26: sparse: sparse: symbol 'trg_status_txt' was not declared. Should it be static?
+Changed from v4:
+- corrected some regulator to be closer to schematics
+- corrected some label to match node name
+- use resets props in phy node instead deprecated snps,reset-gpio
+https://lore.kernel.org/lkml/20240914145549.879936-1-bigfoot@classfun.cn/
 
-vim +/pull_resistor_txt +141 drivers/rtc/rtc-rv8803.c
+Changed from v5:
+- resort regulator nodes
+- remove dr_mode from usb_host1_xhci
+https://lore.kernel.org/lkml/20241108031847.700606-1-bigfoot@classfun.cn/
 
-   140	
- > 141	const struct cfg_val_txt pull_resistor_txt[] = {
-   142		{ "no", no },
-   143		{ "PU/500k", pull_up_500k },
-   144		{ "PU/1M", pull_up_1M },
-   145		{ "PU/10M", pull_up_10M },
-   146		{ "PD/500k", pull_down_500k },
-   147		{ "no", 0b101, 1 },
-   148		{ "no", 0b110, 1 },
-   149		{ "no", 0b111, 1 },
-   150		{ NULL }
-   151	};
-   152	
- > 153	const struct cfg_val_txt trigger_txt[] = {
-   154		{ "falling", falling_edge },
-   155		{ "rising", rising_edge },
-   156		{ "both", both_edges },
-   157		{ "both", 0b11, 1 },
-   158		{ NULL }
-   159	};
-   160	
- > 161	const struct cfg_val_txt buffer_mode_txt[] = {
-   162		{ "inhibit", inhibit },
-   163		{ "overwrite", overwrite },
-   164		{ NULL }
-   165	};
-   166	
- > 167	const struct cfg_val_txt trg_status_txt[] = {
-   168		{ "EVIN1", BIT(5) },
-   169		{ "EVIN2", BIT(6) },
-   170		{ "EVIN3", BIT(7) },
-   171		{ "CMD", BIT(4) },
-   172		{ "VBATL", BIT(3) },
-   173		{ "VTMPL", BIT(2) },
-   174		{ "VDDL", BIT(1) },
-   175		{ "OSCSTP", BIT(0) },
-   176		{ NULL }
-   177	};
-   178	
+Junhao Xie (3):
+  dt-bindings: vendor-prefixes: Add prefix for Ariaboard
+  dt-bindings: arm: rockchip: Add Ariaboard Photonicat RK3568
+  arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3568-photonicat.dts   | 599 ++++++++++++++++++
+ 4 files changed, 607 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.47.1
+
 
