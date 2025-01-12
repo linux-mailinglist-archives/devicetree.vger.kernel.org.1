@@ -1,129 +1,109 @@
-Return-Path: <devicetree+bounces-137784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9758A0A965
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 14:04:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEC9DA0A966
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 14:04:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9064D1885741
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:04:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2ABE3A6258
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 474031B412C;
-	Sun, 12 Jan 2025 13:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932481B412C;
+	Sun, 12 Jan 2025 13:04:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GIdZuInt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i8Oe7h0f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 535CC8F58;
-	Sun, 12 Jan 2025 13:04:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62D4F224D7;
+	Sun, 12 Jan 2025 13:04:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736687054; cv=none; b=oBgiDLGhvjYB/mW5C+ipAW1XYYTC0tDAwkpHcWOtpSew6N43gZbBCYSZbN0kQ3RMIc/f68IhTAdwIQL4Ib7KGSXwsu/yhB+blEi6udbnFMWo5s8B+balqyZ88TaNpj7vBnJwBZNJRXjVk/743O4W6ZvPYEF/GsgAtS5d2dPkgZI=
+	t=1736687076; cv=none; b=ot6sTzDPK23Tqmo36q9Ei8CFoOFWi33LvdcDrL9l0GLAsBaiyHUXK1eaJU2pohPpTM1gSOQ/PozD/MyvVErDlFzHFVkyxfOxTXztD4YIQ4iDUcjPiPII3/16Kzkzrjw69+BKlnHt4u624zwm9tQySl1QdWMYoFjYaNu+8KtWsq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736687054; c=relaxed/simple;
-	bh=Hn3dydyfTlJbV5r1Av3VGoNL6Ugia52Cv5EnLxMPhzA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P9uyulZd80p9Ty+KdiBmjcjH9rBmH74gOCm+1K/oNiUZ0iVfx8tmgGCDR3CX4rE9M0Az+CrFcScb3lnjmGivOiaCDSTHvmJ/HZDGGFt/cKWCGEC2hh0qntDaIs2ZLL8ht0GiASduLvIF66MCmCUcwKogWJlfh3Exk+e+n2o7nfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GIdZuInt; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736687052; x=1768223052;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Hn3dydyfTlJbV5r1Av3VGoNL6Ugia52Cv5EnLxMPhzA=;
-  b=GIdZuIntZiV6BwD4F4Uc1i8bUec2BOAfJMdahhnYhsRIyK98hk/m1WFT
-   HTHohefbGbIS39SSCsKoIsaNygV+hmuUYbqBMO0HUaKypuaG72tVNmbSn
-   SoCHNjgJ240vm4AhyFdvg+OEeNwfi4+H2vnDEADLusXHMqODbHzPpjhUa
-   MTF2Q8cR0ZsYCgMIK/aUvu6lcA9VoYrp3qy6rBHss0PFJgkMxzk80zO/X
-   13Kn7Z2sGyRjuDU1wI/X9lHnoRyr26Gz5Q0wn6ORHSW9zcp3NB0Z8PToq
-   AURh/wrzk4suspWnG2g2vJ76AEXRziWzwTeZw4oEJCwz3uIwbWqdSV5Yh
-   A==;
-X-CSE-ConnectionGUID: QxhasGnMQCuhF2rkDczM/g==
-X-CSE-MsgGUID: T/khm9bLTLWOZxgCYmr56A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11313"; a="54470058"
-X-IronPort-AV: E=Sophos;i="6.12,309,1728975600"; 
-   d="scan'208";a="54470058"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2025 05:04:11 -0800
-X-CSE-ConnectionGUID: wzfyStBZT1aaQyCd1kyJfg==
-X-CSE-MsgGUID: PSWINvAtRp6E2G9/eHURDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,309,1728975600"; 
-   d="scan'208";a="104129280"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 12 Jan 2025 05:04:10 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tWxdP-000Ly7-2g;
-	Sun, 12 Jan 2025 13:04:07 +0000
-Date: Sun, 12 Jan 2025 21:04:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Benjamin Larsson <benjamin.larsson@genexis.eu>,
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, ansuelsmth@gmail.com, lorenzo@kernel.org,
-	krzk@kernel.org, gregkh@linuxfoundation.org,
-	Benjamin Larsson <benjamin.larsson@genexis.eu>
-Subject: Re: [PATCH 2/2] serial: Airoha SoC UART and HSUART support
-Message-ID: <202501122042.DwBZgyJe-lkp@intel.com>
-References: <20250111132250.3642694-3-benjamin.larsson@genexis.eu>
+	s=arc-20240116; t=1736687076; c=relaxed/simple;
+	bh=5z7pUTVj8hCbgOiWle6Q+0t/vIfOR2hASvkUXFUt1DY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=E4+hFcxkkLKSi9He7Tqt6sDJ+QVNh/Cy6hZxzDOeDWn96Lrb47E1kCX0BzWwduIxmhYqL/u0kCGbutKFWR7MHVkuHeYswlNczXvTZg41n/uMagReBEW1zsXOpjigMCESLzUafsq2R98dBDjVsQNuSZXolNKShaigSfrlm2mS/bE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i8Oe7h0f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A278C4CEDF;
+	Sun, 12 Jan 2025 13:04:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736687075;
+	bh=5z7pUTVj8hCbgOiWle6Q+0t/vIfOR2hASvkUXFUt1DY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=i8Oe7h0fyqP0hNqJn8ZtGt7GfKoMOO4OWQvAn2Kk4OBddA9KfyOPLL5kWR10MK6Mh
+	 EOhV5iPVkfsu5v6oBUWYndyjgkhFbE30OSscsrqpNKDa1/qEAgwI4QwIJUeIu0CcXC
+	 xGjel2KZqSkm4+6sJSoKh4lhJmgLI97toV8KELpOEEUKlgO7xcrKMLoNxRoCUrzNmb
+	 8iETBSjFJwb/VqVk7aB5EKBFZZd2FWBdsFuglnLqBf/Ek4zKrn2Askvhi58KgWbztu
+	 PqL8LSY1Inl0OB4WoFUcJSzQSt/pCfFLvTQ8HckWJQNwV+yddocy7fHp8LpD6QRep6
+	 k/gWv4mW3/xdQ==
+Date: Sun, 12 Jan 2025 13:04:26 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, lars@metafoo.de,
+ Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, marcelo.schmitt1@gmail.com, PopPaul2021
+ <paul.pop@analog.com>
+Subject: Re: [PATCH v1 15/15] iio: adc: ad7768-1: add filter type and
+ decimation rate attributes
+Message-ID: <20250112130426.29b660b1@jic23-huawei>
+In-Reply-To: <5d492f38-b103-4850-8d13-ef1fd1d2c483@baylibre.com>
+References: <cover.1736201898.git.Jonathan.Santos@analog.com>
+	<b88a167234c49a66792c0d3e182bb40b5b695b5c.1736201898.git.Jonathan.Santos@analog.com>
+	<5d492f38-b103-4850-8d13-ef1fd1d2c483@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250111132250.3642694-3-benjamin.larsson@genexis.eu>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Benjamin,
+On Tue, 7 Jan 2025 17:50:56 -0600
+David Lechner <dlechner@baylibre.com> wrote:
 
-kernel test robot noticed the following build warnings:
+> On 1/7/25 9:27 AM, Jonathan Santos wrote:
+> > Separate filter type and decimation rate from the sampling frequency
+> > attribute. The new filter type attribute enables SINC3 and WIDEBAND
+> > filters, which were previously unavailable.  
+> 
+> See related comments in my reply to the documentation patches about wideband vs.
+> FIR and decimation rate vs. -3dB cutoff.
+> 
+> > 
+> > Previously, combining decimation and MCLK divider in the sampling
+> > frequency obscured performance trade-offs. Lower MCLK divider
+> > settings increase power usage, while lower decimation rates reduce
+> > precision by decreasing averaging. By creating a decimation attribute,
+> > users gain finer control over performance.  
+> 
+> It seems like we would also want a power_mode attribute. We already have an
+> attribute for this for used by accelerometers so there is some precedent for
+> such an attribute.
 
-[auto build test WARNING on tty/tty-testing]
-[also build test WARNING on tty/tty-next tty/tty-linus linus/master v6.13-rc6 next-20250110]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+I'm not sure that attribute was ever a good idea :(
+So would prefer we don't use it again unless we are really really stuck.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Benjamin-Larsson/dt-bindings-serial-8250-Add-Airoha-compatibles/20250111-212544
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
-patch link:    https://lore.kernel.org/r/20250111132250.3642694-3-benjamin.larsson%40genexis.eu
-patch subject: [PATCH 2/2] serial: Airoha SoC UART and HSUART support
-config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20250112/202501122042.DwBZgyJe-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250112/202501122042.DwBZgyJe-lkp@intel.com/reproduce)
+Usual assumption tends to be if anyone wants to reduce power they
+should be able to do so with other controls (i.e. reduce sampling rate or
+oversampling). Those are easier to interpret than magic low power mode
+attributes.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501122042.DwBZgyJe-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/tty/serial/8250/8250_airoha.c:48: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
-    * airoha8250_set_baud_rate() baud rate calculation routine
+Jonathan
 
 
-vim +48 drivers/tty/serial/8250/8250_airoha.c
+> 
+> > 
+> > The addition of those attributes allows a wider range of sampling
+> > frequencies and more access to the device features.  
+> 
+> 
 
-    46	
-    47	/**
-  > 48	 * airoha8250_set_baud_rate() baud rate calculation routine
-    49	 * @port: uart port
-    50	 * @baud: requested uart baud rate
-    51	 * @hs: uart type selector, 0 for regular uart and 1 for high-speed uart
-    52	 *
-    53	 */
-    54	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
