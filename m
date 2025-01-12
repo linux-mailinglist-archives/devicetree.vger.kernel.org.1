@@ -1,184 +1,106 @@
-Return-Path: <devicetree+bounces-137786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE9ADA0A96E
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 14:10:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23736A0A9A6
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 14:36:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 641123A6DA8
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:10:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E8DB3A5B63
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:36:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A401B4220;
-	Sun, 12 Jan 2025 13:10:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D11E81B6539;
+	Sun, 12 Jan 2025 13:36:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kg0DMTUO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WF1QK/k0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF741B412C;
-	Sun, 12 Jan 2025 13:10:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8493175BF;
+	Sun, 12 Jan 2025 13:36:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736687432; cv=none; b=eVgtCK1c5eSMdlmi3Lx62jOaQMq17Rzf+EKNmeybfagadxQ3KtTI/AKavWV/3tfuV0hAXQXG2Tw5uZaYx2Msqu3PFzCX/xO9t/FUxPvpj31QGts804H0mefBH/qdgvDs2e0OjbXdYm+AXrJy6GYtG0GVr6A3hWzV0QZhpICMGtw=
+	t=1736688987; cv=none; b=NIznl7Gk3LiKBCG9KWglkRhzbEVc5zJ900G8gMGobV0U7NAx/SqIa8fe2CqfFHZmO2wgiurm42kiP65fvKSEJjhl6uGUOMu35xy49m2ed0DHop/V8/6YPQC1O0mhn+3zsFtUS09olOfkrA5MVJwNgnUipmnXsXl9/7BxbY1T0X0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736687432; c=relaxed/simple;
-	bh=ysjZ5IJlw7eJ62zdCOogSMFUW49AmFyKgZVlZj8mgc4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SHgwjvkJ1fe2e6j9Dg36U8dgx7UqUAIzZN8/sAra1FgpXs4br2EBRqomQ5qCL0lruJ+CASywx5PY0N3/1P4fPdB+ruvrMqHI+OytaY5ZcNwSOi/y86byvR7fAoVPQOVcu6PinyJC6xuuMHJBTMMuiCqo3E0tt4tP/YxsiGyE1Zw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kg0DMTUO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB3DAC4CEDF;
-	Sun, 12 Jan 2025 13:10:26 +0000 (UTC)
+	s=arc-20240116; t=1736688987; c=relaxed/simple;
+	bh=QZcrZWvks66LVdzTQOYREinftqMEv37ZYZC7nabyMGc=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=YfNx0tA13/29U635BRKXAEhNYzVmjlKwcyPlL6JvNwcpBD1irJirpS9mtHbWLnYLDLlrwruU9Ro4otheLpLvYOUpsWOznMwKuKjbEd99GGfzuaEzOWEQLnzkhEW4hp+pQSRrjpGg27csO00l/ZeKtAzjOzAxSnEmr3aIKKFLrj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WF1QK/k0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E22A1C4CEDF;
+	Sun, 12 Jan 2025 13:36:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736687431;
-	bh=ysjZ5IJlw7eJ62zdCOogSMFUW49AmFyKgZVlZj8mgc4=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Kg0DMTUOcJsmx33Vj15AoDuuEoyrHGJuf5eia6N6jYBkmRFqmUDp7tZ5RzUiwX5xD
-	 +hXQWnPvlXx9Izr3+CuWNMbB9cLoXoruJOl1j5zxLzTqk2ENoo4UzwdS5Hbd6atWnI
-	 BkbT+brYpLHQsAqaj8EcBHm1A/wKAoIN28E9xOzyKX4hfmb+I7s9DhQtd1JArEiCoL
-	 IB0xH5A1Xn5rf4B+4ZfvqyqBYDHwFEBtZPngEsysR3xtBy840HN3yJNYDAg75wuPj0
-	 CPpldolfILE+iMotGgH0rD6MG6wH07mSmGgRNufhQTReTn5x0XHF5PWUqPWiUV97+c
-	 ICLRamMpOwf5w==
-Date: Sun, 12 Jan 2025 13:10:21 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jonathan Santos <jonath4nns@gmail.com>
-Cc: 58ea1899-05be-4743-911b-77a56f08c347@baylibre.com, David Lechner
- <dlechner@baylibre.com>, Jonathan Santos <Jonathan.Santos@analog.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, lars@metafoo.de,
- Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v1 03/15] Documentation: ABI: testing: ad7768-1: Add
- device specific ABI documentation.
-Message-ID: <20250112131021.5601aaea@jic23-huawei>
-In-Reply-To: <20250112122047.1e1978e0@jic23-huawei>
-References: <cover.1736201898.git.Jonathan.Santos@analog.com>
-	<f78c3dee381b23c17787f1e2bc9c5667741d407b.1736201898.git.Jonathan.Santos@analog.com>
-	<58ea1899-05be-4743-911b-77a56f08c347@baylibre.com>
-	<Z4L9PKKNfonI/4E2@JSANTO12-L01.ad.analog.com>
-	<20250112122047.1e1978e0@jic23-huawei>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=k20201202; t=1736688987;
+	bh=QZcrZWvks66LVdzTQOYREinftqMEv37ZYZC7nabyMGc=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=WF1QK/k0pcSAWth0kTisAImgLfWO4kjyamVC+wBdQ5aXS9RpK99JQOxe1XQ9XlhDM
+	 r2A7TGAxd7E5q+2k/436AK47nAy2G3MSUDZWGVlBpm9D/86Y0Vi+gytxE1Ov086h61
+	 2bNAeak5aJEynjCo5mAVlNrYZ8pZIS1jJnMGl5kCTxG8dbWj//hYQuuyP0cGhQb30A
+	 lN5MInbo46T9FhWyz7Sbli7+9h0WIKd/8rsIBwhGpTn/aRfsvbaOzOXNjjhDH8BiZG
+	 9eigd+xnO6QXkfRabc7LX8ev9u42R+sEDP1INtwutJxUpko8MfOfc2RyV+YB1cNvQc
+	 /pZCO1BBa0cyA==
+Date: Sun, 12 Jan 2025 07:36:25 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-On Sun, 12 Jan 2025 12:20:47 +0000
-Jonathan Cameron <jic23@kernel.org> wrote:
-
-> On Sat, 11 Jan 2025 20:22:36 -0300
-> Jonathan Santos <jonath4nns@gmail.com> wrote:
->=20
-> > On 01/07, David Lechner wrote: =20
-> > > On 1/7/25 9:24 AM, Jonathan Santos wrote:   =20
-> > > > Add ABI documentation specific to the ad7768-1 device, detailing
-> > > > the decimation_rate attribute for better clarity and usability.
-> > > >=20
-> > > > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> > > > ---
-> > > >  .../ABI/testing/sysfs-bus-iio-adc-ad7768-1          | 13 +++++++++=
-++++
-> > > >  1 file changed, 13 insertions(+)
-> > > >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad7=
-768-1
-> > > >=20
-> > > > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-ad7768-1 b=
-/Documentation/ABI/testing/sysfs-bus-iio-adc-ad7768-1
-> > > > new file mode 100644
-> > > > index 000000000000..065247f07cfb
-> > > > --- /dev/null
-> > > > +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad7768-1
-> > > > @@ -0,0 +1,13 @@
-> > > > +What:		/sys/bus/iio/devices/iio:deviceX/decimation_rate_available
-> > > > +KernelVersion:
-> > > > +Contact:	linux-iio@vger.kernel.org
-> > > > +Description:
-> > > > +		Reading returns a range of possible decimation rate values.
-> > > > +
-> > > > +What:		/sys/bus/iio/devices/iio:deviceX/decimation_rate
-> > > > +KernelVersion:
-> > > > +Contact:	linux-iio@vger.kernel.org
-> > > > +Description:
-> > > > +		Sets up the decimation rate for the digital filter. This can
-> > > > +		directly impact in the final sampling frequency. Reading returns
-> > > > +		the decimation rate. Writing sets the decimation rate.   =20
-> > >=20
-> > > If this only affects the filter, I would suggest to add `filter_` to =
-the
-> > > beginning of the attribute names.
-> > >=20
-> > > Also, an explanation of how to interpret the numbers would be helpful=
-. It looks
-> > > like a unitless number that acts a sort of a multiplier or divider, b=
-ut that
-> > > part isn't so clear to me.=20
-> > >=20
-> > > Or...
-> > >=20
-> > > Since the decimation rate affects the -3dB point of the filters we co=
-uld use
-> > > the standard IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY instead of i=
-ntroducing
-> > > a new attribute.   =20
-> >=20
-> > Well, here the -3dB cutoff depends on the ODR, which is determined by b=
-oth the MCLK
-> > divider and decimation rate.
-> >=20
-> > Wideband: -3dB at 0.433 =C3=97 ODR
-> > Sinc5: -3dB at 0.204 =C3=97 ODR
-> > Sinc3: -3dB at 0.2617 =C3=97 ODR
-> >=20
-> > If we use _filter_low_pass_3db_frequency to control the decimation and =
-_sampling_frequency
-> > to control the MCLK divider, wouldn=E2=80=99t it be confusing for one t=
-o always affect the other?
-> > A different ODR would result in a different cutoff, and vice versa. =20
->=20
-> We should definitely not have a filter control changing sampling frequenc=
-y (which tends to
-> be a more common control for users to fiddle with).  However the other wa=
-y around is
-> fine.  So for a given _sampling_frequency present via
-> in_xx_filter_low_pass_3db_frequency_available the list of
-> possible 3db frequencies and use them to configure the decimation.
->=20
-> >=20
-> > Would something like <type>[_name]_oversampling_ratio make more sense? =
-Let me know what you think =20
->=20
-> I'd rather not if we can avoid that new ABI, but it is is better than a n=
-ew term
-> like decimation_rate.
-Reading the code I realised I'd misunderstood this question.
-Yes for controlling decimation via oversampling.  Decimation (to me at leas=
-t)
-means 'ignoring' data but seems here it means averaging it.
-
-Controls should be in order of preference
-sampling_frequency (try to keep this constant as others chagnes - if you ha=
-ve to because of range issues,
-  tweak it) This is the rate we get data at after filter.
-oversampling_ratio (again try to keep constant) - controls samples taken pe=
-r output one.
-_3db_frequency - anything left to control on the filter, or just a RO outpu=
-t of what it currently means.
-
-Jonathan
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org, 
+ shawnguo@kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>, 
+ kernel@pengutronix.de
+To: Fabio Estevam <festevam@gmail.com>
+In-Reply-To: <20250112122939.988309-2-festevam@gmail.com>
+References: <20250112122939.988309-1-festevam@gmail.com>
+ <20250112122939.988309-2-festevam@gmail.com>
+Message-Id: <173668898583.2984154.9988580107147542250.robh@kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: clock: imx5: Fix the CCM interrupts
+ description
 
 
+On Sun, 12 Jan 2025 09:29:39 -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> On the i.MX5 chips the peripheral interrupts are represented directly only
+> by their interrupt numbers.
+> 
+> Make the CCM nodes to follow this format.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  Documentation/devicetree/bindings/clock/imx5-clock.yaml | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
 
->=20
-> Jonathan
->=20
-> >  =20
->=20
->=20
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/imx5-clock.example.dtb: clock-controller@53fd4000: interrupts: [[71, 72]] is too short
+	from schema $id: http://devicetree.org/schemas/clock/imx5-clock.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250112122939.988309-2-festevam@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
