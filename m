@@ -1,138 +1,126 @@
-Return-Path: <devicetree+bounces-137731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0ECDA0A7CD
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 09:50:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5758EA0A7E7
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 10:12:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36AC13A85B4
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 08:50:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3EAE63A8793
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 09:12:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2509B17F4F6;
-	Sun, 12 Jan 2025 08:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE55C1898F2;
+	Sun, 12 Jan 2025 09:12:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="CkisH2as"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="bMaivOT0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-m21473.qiye.163.com (mail-m21473.qiye.163.com [117.135.214.73])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55701BA3F;
-	Sun, 12 Jan 2025 08:50:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B17B8BE8;
+	Sun, 12 Jan 2025 09:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.214.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736671827; cv=none; b=KwPxsT/9x4SgIWbtGXJnb4473M4ISBOoEhq68Hs3EdLqUmmYaxBNTkK2NU+k7d5/cWy2EADc5lEzK5HFU3SX+PrMpu/jGKvpLtiiTDDu1tK3gjj/3DXznbND92jL8utjYgh+c0Qk/HXj2sOsSG8DUZWhezl/kWrfILLWfiSOyHA=
+	t=1736673171; cv=none; b=r97rcqN8+Wo6KyRe1OVhUY1v7acrk2hpm+R4tcbs3NIE99+N6tRkG3ics/ZhZRN0RNFSH/XsUPTqfBSOn1G+Ku+70KWex/3MJRFvLoUw9Ary0+tOU3zPh+w2ww1T7WQppXiCFR7EeaBEL2Fw3OtKmrb9uplBdwAKZAMthLFoWgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736671827; c=relaxed/simple;
-	bh=ZcRZSKKwnYnxztyc5ODcptuA5nB+w29g6uM9hf1SJzc=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=NZVbSVUR21I0bmCqURasTcfb7aLnDDTkLiUS4Ax0cbUwkvI3argQRl1Rl8EDDLlDy/7SKU+UjPNoKjPiMge6cPxVEEKmdSMElxQhrQG9E8gjSu7NpIMoA4+0rUbeW8tTDO8txWIOyjbafKD1vebnm9YkSJK/vwSBlqStLo0qdaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=CkisH2as; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1736673171; c=relaxed/simple;
+	bh=sNPYPg03NDb/dgWYVkNZpyJtayOlj6QBgLMD+v9znH8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=snycjLhGIzZO85eM9oOOJrvuy2Qw4H6GmwnwBUiWZBCj+bHkYVoO1zV629M+qAY1XZV5Ofqjgazhln1jgJw/H7HE9hSsqdYIl1QolbIKFRZkH9Go4gVeQzVOhuJdY3unfiwY92QrU3SDyJaM/19muTzRVz5emCe1RTqg9GUZd38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=bMaivOT0; arc=none smtp.client-ip=117.135.214.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 8700928a;
+	Sun, 12 Jan 2025 17:07:30 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	rfoss@kernel.org,
+	vkoul@kernel.org,
+	sebastian.reichel@collabora.com,
+	cristian.ciocaltea@collabora.com,
+	l.stach@pengutronix.de,
+	dmitry.baryshkov@linaro.org,
+	andy.yan@rock-chips.com,
+	hjc@rock-chips.com,
+	algea.cao@rock-chips.com,
+	kever.yang@rock-chips.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v1 0/6] Add eDP mode support for Rockchip Samsung HDPTX PHY
+Date: Sun, 12 Jan 2025 17:07:08 +0800
+Message-Id: <20250112090714.1564158-1-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1736671823;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/dhTXKaqK6t8LBWqwmZRt3DR4x2EToM+pcutkF8mX6s=;
-	b=CkisH2asLJuwPUw3e5b07/MikVDKpoCq0TXc2SSTUp2lZcboDvXltAiYHf5MLAH/HhdJSW
-	oXFRk9gyXRNYIE7vBYd94TUoh9cLxIzpz4zILZcg7bM7GoN400xgNYe9zG5WLubqrRhPKu
-	tH8U389BqgLhyvROA9YzmwBLIt8/wpRNaz8bBIxTQq2RHMSlyZVK9ad8uCzssWrapZqRf+
-	5d4NDTberFHMoSH6G2eYwPvKl40mAtjMt5qqduXR9Z2qOmyEQpHf/zTXiff2knlQX7nyKp
-	l5aC+FQ9h9o3nuh9PE3gq6DaEu5IZOR2pgC6ey2rcdVcU0uz33fkMs5ME6bv+A==
-Date: Sun, 12 Jan 2025 09:50:23 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Junhao Xie <bigfoot@classfun.cn>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Jonas
- Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>, FUKAUMI Naoki
- <naoki@radxa.com>, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/3] Add support for Ariaboard Photonicat RK3568
-In-Reply-To: <20250112073344.1976411-1-bigfoot@classfun.cn>
-References: <20250112073344.1976411-1-bigfoot@classfun.cn>
-Message-ID: <c520a0d829bbe26b9802f57f94f3957c@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGk9MQlYeSRhISkJJTk4fQ0xWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCS0
+	NVSktLVUpCWQY+
+X-HM-Tid: 0a9459c4b35803a3kunm8700928a
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Pgg6Qgw6SDIPIQMTPRg*IQlJ
+	PAgwClZVSlVKTEhNTUxJQ05JSE5OVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKQkhJNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=bMaivOT0Wh9/4kvva65NbKLlK+dnEW8dzXphtaWe8kUcRcDwDGosE+4djEO4nNYlVdSqjoLsagUXRvlC4ZbgbWmQnEvMRZcVo0AFm7UAV6/Ez1MxxG/Devt10QN+1HnMUg/fqEFE6Ovd1L9aBEhzmrI4zDDIzNK8r+AB1hFiVjw=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=TejvzfV3E3bwIKDx62w3f3JYivHUtIsr/IuSQftkJIs=;
+	h=date:mime-version:subject:message-id:from;
 
-Hello Junhao,
+Picked from:
+https://patchwork.kernel.org/project/linux-rockchip/list/?series=923593
 
-On 2025-01-12 08:33, Junhao Xie wrote:
-> Add dts for Ariaboard Photonicat RK3568.
-> 
-> This series bring support for:
-> * Debug UART
-> * SDIO QCA9377 WiFi and Bluetooth
-> * M.2 E-Key PCIe WiFi and Bluetooth
-> * M.2 B-Key USB Modem WWAN
-> * Ethernet WAN Port
-> * MicroSD Card slot
-> * eMMC
-> * HDMI Output
-> * Mali GPU
-> * USB Type-A
-> 
-> Changed from v1:
-> - move some general nodes (firmware, ramoops, reboot-mode) to 
-> rk356x.dtsi
+These patchs have been tested with a 1536x2048p60 eDP panel on
+RK3588S EVB1 board, and HDMI 1080P/4K display also has been verified
+on RK3588 EVB1 board.
 
-This entry from the changelog caught my attention, so I tried
-to find out what exactly happened back then.  Though, after going
-through the mailing list archive, I still don't see where the
-as-described change took place, so perhaps this changelog entry
-needs adjusting.
+Damon Ding (6):
+  phy: phy-rockchip-samsung-hdptx: Swap the definitions of LCPLL_REF and
+    ROPLL_REF
+  phy: phy-rockchip-samsung-hdptx: Supplement some register names with
+    their full version
+  phy: phy-rockchip-samsung-hdptx: Add the '_MASK' suffix to all
+    registers
+  phy: phy-rockchip-samsung-hdptx: Add eDP mode support for RK3588
+  dt-bindings: display: rockchip: Fix label name of hdptxphy for RK3588
+    HDMI TX Controller
+  arm64: dts: rockchip: Fix label name of hdptxphy for RK3588
 
-> - gmac1 change to phy-mode rgmii-id
-> - corrected some regulator to be closer to schematics
-> - rename rk3568-ariaboard-photonicat.dts to rk3568-photonicat.dts
-> https://lore.kernel.org/lkml/20240904111456.87089-1-bigfoot@classfun.cn/
-> 
-> Changed from v2:
-> - remove unused headers
-> - corrected some regulator to be closer to schematics
-> - remove usb_host1_ohci, usb_host1_ehci, usb2phy1_host that have no 
-> connection
-> https://lore.kernel.org/lkml/20240906045706.1004813-1-bigfoot@classfun.cn/
-> 
-> Changed from v3:
-> - corrected some regulator to be closer to schematics
-> - changed to using clk32k_out1 in xin32k
-> https://lore.kernel.org/lkml/20240911122809.1789778-2-bigfoot@classfun.cn/
-> 
-> Changed from v4:
-> - corrected some regulator to be closer to schematics
-> - corrected some label to match node name
-> - use resets props in phy node instead deprecated snps,reset-gpio
-> https://lore.kernel.org/lkml/20240914145549.879936-1-bigfoot@classfun.cn/
-> 
-> Changed from v5:
-> - resort regulator nodes
-> - remove dr_mode from usb_host1_xhci
-> https://lore.kernel.org/lkml/20241108031847.700606-1-bigfoot@classfun.cn/
-> 
-> Junhao Xie (3):
->   dt-bindings: vendor-prefixes: Add prefix for Ariaboard
->   dt-bindings: arm: rockchip: Add Ariaboard Photonicat RK3568
->   arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
-> 
->  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3568-photonicat.dts   | 599 ++++++++++++++++++
->  4 files changed, 607 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
+ .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml  |   2 +-
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |   4 +-
+ .../dts/rockchip/rk3588-coolpi-cm5-evb.dts    |   2 +-
+ .../rockchip/rk3588-coolpi-cm5-genbook.dts    |   2 +-
+ .../boot/dts/rockchip/rk3588-evb1-v10.dts     |   2 +-
+ .../rk3588-friendlyelec-cm3588-nas.dts        |   2 +-
+ .../arm64/boot/dts/rockchip/rk3588-jaguar.dts |   2 +-
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   |   2 +-
+ .../dts/rockchip/rk3588-orangepi-5-plus.dts   |   2 +-
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |   2 +-
+ .../boot/dts/rockchip/rk3588-tiger-haikou.dts |   2 +-
+ .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   |   2 +-
+ .../dts/rockchip/rk3588s-indiedroid-nova.dts  |   2 +-
+ .../boot/dts/rockchip/rk3588s-nanopi-r6.dtsi  |   2 +-
+ .../boot/dts/rockchip/rk3588s-odroid-m2.dts   |   2 +-
+ .../boot/dts/rockchip/rk3588s-orangepi-5.dtsi |   2 +-
+ .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   2 +-
+ .../boot/dts/rockchip/rk3588s-rock-5c.dts     |   2 +-
+ .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 971 +++++++++++++++++-
+ 19 files changed, 934 insertions(+), 75 deletions(-)
+
+-- 
+2.34.1
+
 
