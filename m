@@ -1,132 +1,157 @@
-Return-Path: <devicetree+bounces-137772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17D0BA0A91B
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:26:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFF96A0A924
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:30:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB3B57A286D
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 12:26:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2E9A3A5CA0
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 12:30:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340141B4137;
-	Sun, 12 Jan 2025 12:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 377811B219B;
+	Sun, 12 Jan 2025 12:30:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O6E8YAwI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XqQEDwVh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 072ED1B2EFB;
-	Sun, 12 Jan 2025 12:26:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2E4A1B0424
+	for <devicetree@vger.kernel.org>; Sun, 12 Jan 2025 12:30:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736684781; cv=none; b=rUHCC8gHvNdsvO5h9dYzcajNYKdeoDFi9pNLWolfASWiI9xTKsjcjZwvq4TqWjR3l7pJaOv5CzNIIS3cwX/9J3G/lCTf6GUZHbrM8Ni0gcDCOwHLa1HGGJSpLjj+Qm+p1LwcDLSzZOtcB/neFhEfXYjSIl4XxsEHwITIZ+KJkwE=
+	t=1736685004; cv=none; b=ranI6MY19JQ6t2vSj4d8hbsAmtmO88kOAB1SMjtxf5Hd1/BFAoAqYUFLBFKjuPWElsSlFjExQyUwfqcwvO6ERgEY6rGTys4e07RDbfu2dYXibOUVYBO3NI+Kyud2M4xMITCMhzRwZuh8XPiQkXpEc2Ax496NB/iocxM6xzkCdhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736684781; c=relaxed/simple;
-	bh=54TbCEVIqaLsT6+mK26KHcEnUNW3F9y6yj+SI4+oyn4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=u6CGpBLEYcIIACNo/SCPqoI8fpdJeYhn2K4eFQ2IlzdgYDrrOki1TLoKR7ErhMn9IxrZApg16qCVDLYaMoXbZCekWHJ+NZa5apjucCMkyPW0gy3AFiZPAF7SVlv17dkvogkuZ8CNwjfpu1YCrRL8a9BRmYHDvXiKLHb0MC/qsbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O6E8YAwI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 70186C4CEED;
-	Sun, 12 Jan 2025 12:26:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736684780;
-	bh=54TbCEVIqaLsT6+mK26KHcEnUNW3F9y6yj+SI4+oyn4=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=O6E8YAwIxCYJuLyKUt6xhHVsxJvl8qvxn9Bso2PZ19sp4xPXtq5/KniyPSpm+S6VZ
-	 PnSYxktiHRAMDpOdAZr5d0ddOWUcO2OZXIV/JeDdouBgEdxSOkQT2A7EQbsGsujRz0
-	 4djdQTH33MZl0oNld3mR3UpCbt7nUzFdmq16iSqdhIS3y6CyXaUF2XGEoscBo0ztzh
-	 hMp4sKCAGQLd8pNrsBupROFDK/TOjWJN7v9cQxXV5e5fI+DTxghaaTWgjwea8R9V/2
-	 xgH6J6WQ72+FyHcuW/f3N2PQ0w87kSqhvDCoSXQCCgJMBozNUkCopVkg6O5o2CnAvY
-	 AzaCCfb+ce3qA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 670B4E77188;
-	Sun, 12 Jan 2025 12:26:20 +0000 (UTC)
-From: Vasiliy Doylov via B4 Relay <devnull+nekodevelopper.gmail.com@kernel.org>
-Date: Sun, 12 Jan 2025 15:25:39 +0300
-Subject: [PATCH v3 5/5] iio: accel: mc3230: add mc3510c support
+	s=arc-20240116; t=1736685004; c=relaxed/simple;
+	bh=JqALaE1v++PpbcezM7wf/66LPJa9yR5iEjCEheIUvDo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=g7UxnQuuUan9piKKgX5KGpDKDSzb+4izkCY4rmVODCEhD/+1CgVXWc2VD6PQ1mwRhy5WEpptT2rWQ29U8emuCNg3ksBLJCXAq0tqBaNgT9rZcDkdhHr89PFnBHp3bB4bYh3dEOyZfJyjU0u0g4zmNE8YC68AGSMQCVmGqL0xGr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XqQEDwVh; arc=none smtp.client-ip=209.85.167.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3eba0f09c3aso1077744b6e.1
+        for <devicetree@vger.kernel.org>; Sun, 12 Jan 2025 04:30:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736685001; x=1737289801; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EOiX4crFqNs9gEIrhVXrHiO5ip88JrNxPsu4lZh+erE=;
+        b=XqQEDwVhRq/gQwFc5pfZY1vaoVqyHnUWdYdVutdiRtGhdFgd7Yj8R1w2CvL07fYuMi
+         lxZonKNndEd60sF2L5fXDYn1+vh+u9Tfz99qxJf9fBzDvCiarzElOAEKWJG634bEbrUu
+         L5C8fkvfCHmQSi2y29Doqn5ETJD9W+d6IvGlsjw0CdEa0TrvdSLks9MLu7y3ykYMxt6Y
+         cFCciGwFGCzq/RlPuI60uNomr200ZWEJ+g6P5Ds2fJYWAaTsI36SN6WrnnUAk2EixDVF
+         rYSKWiv0yHz94YhgPUWoipEMSHe/lYY6Pve+iF7Rh5swvy1rbveOtUckTQTnFwrLOMcu
+         alzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736685001; x=1737289801;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EOiX4crFqNs9gEIrhVXrHiO5ip88JrNxPsu4lZh+erE=;
+        b=KA9/PKexiqmIrVkCcBxRZpTS+4xNIISIOgffESG0qyXXUlvTyWhQN89ALR7WYgGhBG
+         oOevX+Q13pmEFX9uywlw92v25YscEzGmMGK5gmqOjuG+SzuyqfEc47si7DjIDVMdx8gC
+         AsiGS6+E6NzPHWd4g475Nvx4Ar4mjMs6I5bx8dlMpFnvYH0qTYXBrBlj2ZJ99N6UHriQ
+         zdgQE5Qg+l+AkwDdfW30DImZROorJ1R+So4xHc2EJjdJ4RHT6YMT86M2VI5diVmrkAb4
+         g1YjLqepCg0A+WmNn3Pxz53quQ+8DnnznR2pEFC0IsDYtTilKWBy0V/fh6YvO9kw3nhF
+         o0Yw==
+X-Forwarded-Encrypted: i=1; AJvYcCUUNjEFsOn7iu1lZ5D84UtadjzgN84YLB0VIDXt5TaPqKzTRpGf6fJe8lUpnyO/QD2JdOdjoOpjDPfs@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsRI5WVTgP44G2NW9v4uC5ZznQIPhAqN5BA1P4zfXxLngZ30xE
+	Igv6h/L1Ep2sraaw/nMKtiy7GmlsNahGACFe5u3Yd1VfrdDHNeAZ
+X-Gm-Gg: ASbGncvcmUHI/C9pgs4S36UDBkmuoRfZF+heocSuNNwpK5TLv92FzPxUKHVnboIUiHQ
+	8tDnizR2Cy8WQiJ91BUi+TxjJLu6GMCsoOhFOhAezbx+9jaquJqAYovJIafKArmACWb+SgOFAzI
+	7/RSFIUzGCJ7ZVpqAPNMfSPz6H3CKiZFGl7Gn5APQFahyorSUdq4EvHXWvbWzv3OSdbHgy8Ux44
+	rr6rUd62oin2tsnUPKYhfTYQ/RZ8ZBUVB21hLFCeNm2ROpjZ8UO2HjQz2QKho1BBOBZ9A==
+X-Google-Smtp-Source: AGHT+IHUMa7cT6Nz+jMGSMZwZ5HGk0gv+giMFYc59Vdedh64PI165/u7NrAV0tRuTmem/Cd8rrEn1A==
+X-Received: by 2002:a05:6808:1922:b0:3eb:59f2:329c with SMTP id 5614622812f47-3ef2ec6c76fmr8758189b6e.3.1736685001618;
+        Sun, 12 Jan 2025 04:30:01 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:8c53:b609:d83:9568])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f037653ff2sm2196609b6e.13.2025.01.12.04.29.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Jan 2025 04:30:00 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: shawnguo@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	kernel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Fabio Estevam <festevam@denx.de>
+Subject: [PATCH 1/2] ARM: dts: imx5: Fix the CCM interrupts description
+Date: Sun, 12 Jan 2025 09:29:38 -0300
+Message-Id: <20250112122939.988309-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250112-mainlining-mc3510c-v3-5-9ee6520ab69d@gmail.com>
-References: <20250112-mainlining-mc3510c-v3-0-9ee6520ab69d@gmail.com>
-In-Reply-To: <20250112-mainlining-mc3510c-v3-0-9ee6520ab69d@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Vasiliy Doylov <nekodevelopper@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1445;
- i=nekodevelopper@gmail.com; h=from:subject:message-id;
- bh=8NnUIWTvd4feGzNACN4tIbU/CIslPoRvUoNTUHEipMg=;
- b=owGbwMvMwCW2fZ/SFZeSpU2Mp9WSGNKbt7yyUji+dZfq45fBdxmu7yhbtZv3poPu457vmyZo3
- JwTa3ltd0cpC4MYF4OsmCKLzUaP2WL54ZKTpj1VgJnDygQyhIGLUwAmsqqKkWFrmQrTofY9AXtl
- dGtmLmV10j0W1FSVsDhFtYCP+cmLE5MYGS7qntzKMV90ywX3W+8X9KwQUYisFNzyV++h05OlN6c
- 02TADAA==
-X-Developer-Key: i=nekodevelopper@gmail.com; a=openpgp;
- fpr=3CB1489B166F57199296E520B7BE22D44474A582
-X-Endpoint-Received: by B4 Relay for nekodevelopper@gmail.com/default with
- auth_id=314
-X-Original-From: Vasiliy Doylov <nekodevelopper@gmail.com>
-Reply-To: nekodevelopper@gmail.com
+Content-Transfer-Encoding: 8bit
 
-From: Vasiliy Doylov <nekodevelopper@gmail.com>
+From: Fabio Estevam <festevam@denx.de>
 
-This commit integrates support for the mc3510c into the mc3230 driver.
+On the i.MX5 chips the peripheral interrupts are represented directly only
+by their interrupt numbers.
 
-Tested on Huawei MediaPad T3 10 (huawei-agassi)
+The CCM nodes are not following this format and cause the following
+dt-schema warnings:
 
-Signed-off-by: Vasiliy Doylov <nekodevelopper@gmail.com>
+ccm@73fd4000: interrupts: [[0], [71], [4], [0], [72], [4]] is too long
+
+Fix it by passing only the two interrupt numbers.
+
+Run-time tested in on an imx53-qsb board.
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
 ---
- drivers/iio/accel/mc3230.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ arch/arm/boot/dts/nxp/imx/imx50.dtsi | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx51.dtsi | 2 +-
+ arch/arm/boot/dts/nxp/imx/imx53.dtsi | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/iio/accel/mc3230.c b/drivers/iio/accel/mc3230.c
-index 1b58f3ea50655b6563a78a2531b16a8088e8f8d5..92934975edc77b11ed6dc3da077a28d317314fab 100644
---- a/drivers/iio/accel/mc3230.c
-+++ b/drivers/iio/accel/mc3230.c
-@@ -46,6 +46,14 @@ static struct mc3230_chip_info mc3230_chip_info = {
- 	.scale = 115411765,
- };
+diff --git a/arch/arm/boot/dts/nxp/imx/imx50.dtsi b/arch/arm/boot/dts/nxp/imx/imx50.dtsi
+index 1b6f444443dd..f0b12a70f614 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx50.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx50.dtsi
+@@ -338,7 +338,7 @@ src: reset-controller@53fd0000 {
+ 			clks: ccm@53fd4000 {
+ 				compatible = "fsl,imx50-ccm";
+ 				reg = <0x53fd4000 0x4000>;
+-				interrupts = <0 71 0x04 0 72 0x04>;
++				interrupts = <71 72>;
+ 				#clock-cells = <1>;
+ 			};
  
-+static struct mc3230_chip_info mc3510c_chip_info = {
-+	.chip_id = 0x23,
-+	.name = "mc3510c",
-+	.product_code = 0x10,
-+	/* Was obtained empirically */
-+	.scale = 625000000,
-+};
-+
- #define MC3230_CHANNEL(reg, axis) {	\
- 	.type = IIO_ACCEL,	\
- 	.address = reg,	\
-@@ -225,12 +233,14 @@ static DEFINE_SIMPLE_DEV_PM_OPS(mc3230_pm_ops, mc3230_suspend, mc3230_resume);
+diff --git a/arch/arm/boot/dts/nxp/imx/imx51.dtsi b/arch/arm/boot/dts/nxp/imx/imx51.dtsi
+index cc88da4d7785..2bfb6baa67fc 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx51.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx51.dtsi
+@@ -458,7 +458,7 @@ src: reset-controller@73fd0000 {
+ 			clks: ccm@73fd4000 {
+ 				compatible = "fsl,imx51-ccm";
+ 				reg = <0x73fd4000 0x4000>;
+-				interrupts = <0 71 0x04 0 72 0x04>;
++				interrupts = <71 72>;
+ 				#clock-cells = <1>;
+ 			};
+ 		};
+diff --git a/arch/arm/boot/dts/nxp/imx/imx53.dtsi b/arch/arm/boot/dts/nxp/imx/imx53.dtsi
+index 845e2bf8460a..b7147cc7a316 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx53.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/imx53.dtsi
+@@ -598,7 +598,7 @@ src: reset-controller@53fd0000 {
+ 			clks: ccm@53fd4000 {
+ 				compatible = "fsl,imx53-ccm";
+ 				reg = <0x53fd4000 0x4000>;
+-				interrupts = <0 71 0x04 0 72 0x04>;
++				interrupts = <71 72>;
+ 				#clock-cells = <1>;
+ 			};
  
- static const struct i2c_device_id mc3230_i2c_id[] = {
- 	{ "mc3230", (kernel_ulong_t)&mc3230_chip_info },
-+	{ "mc3510c", (kernel_ulong_t)&mc3510c_chip_info },
- 	{}
- };
- MODULE_DEVICE_TABLE(i2c, mc3230_i2c_id);
- 
- static const struct of_device_id mc3230_of_match[] = {
- 	{ .compatible = "mcube,mc3230", &mc3230_chip_info },
-+	{ .compatible = "mcube,mc3510c", &mc3510c_chip_info },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, mc3230_of_match);
-
 -- 
-2.47.1
-
+2.34.1
 
 
