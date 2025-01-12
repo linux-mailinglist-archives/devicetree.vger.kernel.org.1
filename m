@@ -1,91 +1,92 @@
-Return-Path: <devicetree+bounces-137713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8239DA0A6B0
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 01:01:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF3F5A0A6BB
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 01:26:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 736003A672D
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 00:01:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D04B53A8DAB
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 00:26:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE2F2256D;
-	Sun, 12 Jan 2025 00:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3031C36;
+	Sun, 12 Jan 2025 00:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WdVKmThT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MIXVwz3f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C97819;
-	Sun, 12 Jan 2025 00:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1B7120E6;
+	Sun, 12 Jan 2025 00:26:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736640062; cv=none; b=sIoXIkeSC/wyygFsmPo+8+LsF0jKYLuLB9asieHVyb/wZZI9WiYrDNnJ9cnZYaeGArH6ZtiMUh3/TiLSe6ioqa4P4EPyCgF0JHKBUsySfczuCUYoQJ6M85p6e5hPie+UXwfsS4+b6GNE3mHs4ZSNLkL3Jpjc8swgx1nBiESiWHs=
+	t=1736641594; cv=none; b=Lv1ikZliPf1RH51ba4NYsN3Tr2Czl540c7iKwZ8qyvRSvQZ3+RkKSeDkg8Okwc/J/SSQDShKozerUxCgN7NqzxsNvzS973nl0UZ7lma/4E++tTkSut2krbGBhpupQhoC66u617jVyqlCfjaFhwP2nVrh3l4zhIoPyOQtwesCvvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736640062; c=relaxed/simple;
-	bh=FxH0cllwR1HPI/Hq0JZ72sZwNkw/QzoeKvTAn9qTgNg=;
+	s=arc-20240116; t=1736641594; c=relaxed/simple;
+	bh=ZYR2ncLEcZIOkWazztcbfkScekNfCPXhgQdQBr6yddM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L5irTiQkdWq7v/BN3b6R705t5jCbvY4e/6DIa5cCvQJdRyoXUIZol6r0InGoSM+lvL5P1kYvNEP9r5hSrF2rizeVM6FXtQZ/8vWGedK5siNvmddcvze8UMiSSDt2Va9jm7RIvZFgbQZN1UDqsEAdPNhcl3dojd8519kZXyZstBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WdVKmThT; arc=none smtp.client-ip=209.85.210.44
+	 Content-Type:Content-Disposition:In-Reply-To; b=AT1S3ld7VGuzAskhJX5h65vpVoNcbSo2wRG8xCtjOdVX6gFES1QYxbVp9ccI3kNoHx0olUzkvvhHqxs/o5IdCS4eoMCCB2ZCH8dciW+Mk6/P1rem9va/w2dTwdsKLWlBkKQrgsbHC2FAuy0gT+OFXVeMhQkzNZlYVhVd68ac2hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MIXVwz3f; arc=none smtp.client-ip=209.85.167.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-71e3c7117e8so69521a34.2;
-        Sat, 11 Jan 2025 16:01:01 -0800 (PST)
+Received: by mail-oi1-f176.google.com with SMTP id 5614622812f47-3eb82fc512aso62029b6e.2;
+        Sat, 11 Jan 2025 16:26:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736640060; x=1737244860; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1736641590; x=1737246390; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:reply-to
          :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ViMxrOr6TBlIcv8Q9XOTTtXutX4mRftVRSACLwo6Z9c=;
-        b=WdVKmThTooXV6uj0yFupgVv08MOHUqgx71lhHLOsZS2iKaWM+y6TEMKrsnHZZxgam/
-         7fsnza5ICjMRfrM2Vfquwb3WIctyj9qbrA/FKabFNCV/X1iX2D9hnB6zsTr+h8TsMh3m
-         Euus0UGl/YSb7zU+45ios2eCwEMBzidASuRGm1GuIDa/9d5TIiLHgYbPxr/P5jXQ8Da5
-         5zCiek3uBOWBv1Mpl4kL9N5zBJE2BU97ZKOP4wXkr72+bvwhQ5q0EZFcFRSJwhEkT0pG
-         Y7iaPnsOTWANA3oaDC80IFg5MOyXZlaXht2q6mVxLSGEusBmhyZCaC+4fWnGc+KkR5R0
-         JlNQ==
+        bh=V0q37gL0J4tzCHMzLwcFXciR9c+zRsUFJpKRfT/0PIg=;
+        b=MIXVwz3f4r5iWu/9yUkYYs6lNOrmEoNtz+3RUoG5aUkfyOHCXAPTMtEwssZ5OBKo+I
+         OyczQhdQg9tIV11BjBldv2luAcCSef4YZ6/nezmqcLqC6KON8lQhAD0Ff83EDJS3ao1w
+         28IAYQOSrN002EjJFx9PA5NBqKhc89g1vNPk4Sv/U5Uc3I7GCCobspFfiAtsBUa55Nyb
+         rjlQDXZz4KAzQ+I91iPB4yWaYdHBOsY14MkEF7kWx7Dm/XkN9DIJAW/7jx9L+YBU681A
+         n7CQ2H8WwyPw9y3JjQC3I/HaTobEnkjTsoEEseCZk0/Ic6W7WNIg9yE4Kqmf5r3RuMln
+         cZMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736640060; x=1737244860;
+        d=1e100.net; s=20230601; t=1736641590; x=1737246390;
         h=in-reply-to:content-disposition:mime-version:references:reply-to
          :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ViMxrOr6TBlIcv8Q9XOTTtXutX4mRftVRSACLwo6Z9c=;
-        b=mKu4k6Vx6FZ/dUj3WkkwDaJRBqB5Ensp2ucnZa0Z3cMyDXJGddCqyiwjSzvqLvFgjI
-         LoA3bBJ2OiaMwDB+tyQvI2JOMLGgRrar88rPYpJKFWrmMY+y/ujERIVcH2NErp6klwjj
-         4orP9HaolBxj0IWGIz7FvSQg5FQuRHNq+a8t+lUC9HaEpI0TH58lzJYD98icBQTuYkub
-         oZuTkdhTQW5DQujg7EeT5sFpuC06YXsB6+2qf79/i/tUgYcutoFiAj7AaPX2fY9oZjJO
-         iqvcsJ9mMU+OiZ7WCGSIqnqu5bGHWj9wGOg6KUstBRvc2BzF2QAtd3OsbE/9WHde96gg
-         rHxw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1UDkicvxnxGUctiuCJm5+7wdOjMK6NcfvMeT5nyZybcy+lApOh79HGXQ0uIsYV0sSFwkP4A5Gq+y4@vger.kernel.org, AJvYcCUrbJdrOUjwYvwZlX/TQpOxTVahblsGpkOcm35ESxaXoGwJDZpqq/iapwL5bg3jCXpxdH99vgsa8mLoPvXL@vger.kernel.org, AJvYcCXshqeRMgt3bDJMi3+N1UdiabjLvq3tkg8NyQX+GEssVfcOS319cOaB7stR0sFHA167mTt0SJBQCdV1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFmZp63AV/Lugjjrqr0W7P6EvNnY440ashXNJcpVZxYD289zjt
-	TRdW61lWpwE0J+rsqYzDFiaYGf1g4y4HhJfu/h2Jk/ZqHZ9zLlQ1
-X-Gm-Gg: ASbGncsVwJA6+Yst2gQttpek4y2HMPM1zhUgFsgyL25iVN3VKvU0Swxf8EIZlPmCYoT
-	GA773TctIweCFN/tivkeQ+K+USQYxtjPs8lgBHafXlPWpg8+UpX8Ql3M9PLCAD8rVvHKabZNWYx
-	d9WGLH4iJK5s3Y7ZWlEtHm0ETBEIi6qstso9gCQhqXK2cbDEK8b+H12loSgDxkjw9zqP7O+cgJe
-	GmEf4LO6+fBkbHA6/MUve9jSdy6qHeaMQcC83X28nCxOJ5aqr7FUmxRjfEh74KiUSsRzljPqc2e
-	iw==
-X-Google-Smtp-Source: AGHT+IF1Fq+N/UGakrZ4h80jKryj7M8L1Vv+uvDDr3m1UkvGL7n9zUVHCuXf3m932Y9dipoGq5dkiw==
-X-Received: by 2002:a05:6830:6118:b0:71e:af5:4981 with SMTP id 46e09a7af769-721e2f29f30mr3386140a34.6.1736640060176;
-        Sat, 11 Jan 2025 16:01:00 -0800 (PST)
+        bh=V0q37gL0J4tzCHMzLwcFXciR9c+zRsUFJpKRfT/0PIg=;
+        b=A3w2GwEyDm/EDc2CYlGAHx1GiW791MRh1PuOJCEJuz2XkOdWiYyMhyLAiBMhYk1ZyM
+         LvtbgBDBP3rGABsX+uDHCmwWbp+dBb2rfCkTIsJH4aqKKQhq+yVLcC1NXiuQauFxaOrs
+         IWd1Esy3LPG+OnzwlusRvsKP26+CpCytQD7rAvebHzMUlezXut11ekWZL6NHDe+VWKNl
+         Shlk32LNeofnpKRTYdZKrk5FKW58Srr1KVfsYueOK6vvMoe1Kq29Ncg9q6WrvlkBG9kE
+         QfLqzDN8oYPiCPFDiuf6XR6UVAXHKO1stsR7KYsQE3bGdknEKjOZGel+U+kBVgdIW+Lx
+         BMLA==
+X-Forwarded-Encrypted: i=1; AJvYcCUy4AieLEWgQLxB5YVi3o9VFQcQEQc4ITye0DFaq8Obzcnrn7VJ4j7ScPU89U3HhaXtXbwd8fQYEAOi8xGK@vger.kernel.org, AJvYcCVjzvB6+id4ahJdj9GvS9AI3ymcaQY41BZc7GcyFRwfhuhBxnP68TKEgNT+W6xLnXcWr7FcOk7i0nTi@vger.kernel.org, AJvYcCWW7bV7BEfnbtBvf3rn+M8sH1mfx54634q+z9kF2L/VLR8lW1CQHFi1MIz/VwHKiyMXP3ZTtdG54wS1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+RpGA1lI25s4SKgj7Udyni0a4Un9/V1V6FP3Arn/i5APUtO+s
+	Xra4Z2z6OL8WwTopls8E633PJkzNOTWKm9b0Mm2Q2mQymHF8kcni
+X-Gm-Gg: ASbGncuihrjGzqyKWOaFhNKlJmF1psWCs8lKim0+FVl3g6VmFyssOYAkysixwUoVTni
+	4Id0Mn0ODyXLWsAjWbY6TfH1eqk+RXO4WvXQe1jGMCr5YvcCBMMz+M4O0R7jFkXWJsUhCFuECvx
+	seyZ3RpoPz5m2W2lH+7MzAF/xzpHuGzjyA8mTlavFRscKrwPMPp8bptpxG3DjLGLNUZfqkZn53L
+	vrVrqT2T2HLb0G+lgdFQiFz2gZbUvpyGhxulEz0YdieBCsluyLbOBNRhzck00aKykPdkbgVIgvR
+	TA==
+X-Google-Smtp-Source: AGHT+IHSCKkXwzHjhG4S9sReq53EyqzW8rNHHDbQgzcPp6UsSN2IEAy7m2HswRnjU8dPT7kQ1DDzqg==
+X-Received: by 2002:a05:6808:1590:b0:3eb:834f:775b with SMTP id 5614622812f47-3ef2ec6e218mr3618937b6e.4.1736641590545;
+        Sat, 11 Jan 2025 16:26:30 -0800 (PST)
 Received: from JSANTO12-L01.ad.analog.com ([189.121.203.94])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7231862a38csm2136656a34.68.2025.01.11.16.00.56
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f037a22ee7sm1926707b6e.50.2025.01.11.16.26.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 11 Jan 2025 16:00:59 -0800 (PST)
-Date: Sat, 11 Jan 2025 21:00:55 -0300
+        Sat, 11 Jan 2025 16:26:29 -0800 (PST)
+Date: Sat, 11 Jan 2025 21:26:25 -0300
 From: Jonathan Santos <jonath4nns@gmail.com>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
 Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Sergiu Cuciurean <sergiu.cuciurean@analog.com>, lars@metafoo.de,
-	Michael.Hennerich@analog.com, jic23@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Subject: Re: [PATCH v1 04/15] iio: adc: ad7768-1: Fix conversion result sign
-Message-ID: <Z4MGNyDTMj0JBGod@JSANTO12-L01.ad.analog.com>
-Reply-To: Z4GWpjnAoRKtexz2@debian-bullseye-live-builder-amd64.smtp.subspace.kernel.org
+	lars@metafoo.de, Michael.Hennerich@analog.com, jic23@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH v1 08/15] iio: adc: ad7768-1: use guard(mutex) to
+ simplify code
+Message-ID: <Z4MMMThN0qxIrA6o@JSANTO12-L01.ad.analog.com>
+Reply-To: 3de36de0-93ee-4ef3-a4a9-7a8f187eb4d8@baylibre.com
 References: <cover.1736201898.git.Jonathan.Santos@analog.com>
- <e521bb5cb60d413edbcd1ea582fd81073218eaf5.1736201898.git.Jonathan.Santos@analog.com>
- <Z4GWpjnAoRKtexz2@debian-BULLSEYE-live-builder-AMD64>
+ <245cce4d379d225ab6794fc3326d95f88d2abf1a.1736201898.git.Jonathan.Santos@analog.com>
+ <3de36de0-93ee-4ef3-a4a9-7a8f187eb4d8@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,68 +95,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Z4GWpjnAoRKtexz2@debian-BULLSEYE-live-builder-AMD64>
+In-Reply-To: <3de36de0-93ee-4ef3-a4a9-7a8f187eb4d8@baylibre.com>
 
-On 01/10, Marcelo Schmitt wrote:
-> On 01/07, Jonathan Santos wrote:
-> > From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+On 01/07, David Lechner wrote:
+> On 1/7/25 9:25 AM, Jonathan Santos wrote:
+> > Use guard(mutex) from cleanup.h to remove most of the gotos and to make
+> > the code simpler and less likely to fail due to forgetting to unlock
+> > the resources.
 > > 
-> > The ad7768-1 is a fully differential ADC, meaning that the voltage
-> > conversion result is a signed value. Since the value is a 24 bit one,
-> Hmm, I think the reason why we sign _raw values should be because of the ADC
-> output code format. There are differential ADCs that can measure a negative
-> difference between IN+ and IN- but outputting straight binary data format (not
-> signed values). In those cases, the _offset attribute is used to "shift" the
-> _raw value so that output codes that represent IN+ < IN- are adjusted to a
-> negative decimal value (the _raw + _offset part of IIO ABI to get to mV units).
-> For AD7768-1/ADAQ7768-1, the ADC output code is indeed two's complement and thus
-> signed so the code change is correct for it.
-> Since you are probably going to re-spin on the patch series, will be nice
-> to adjust the message to something like:
-> The ad7768-1 ADC output code is two's complement, meaning that the voltage
-> conversion result is a signed value. ...
-> 
-> With that,
-> Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
->
-
-You are right, Thanks! will do that.
-
-> > stored in a 32 bit variable, the sign should be extended in order to get
-> > the correct representation.
-> > 
-> > Also the channel description has been updated to signed representation,
-> > to match the ADC specifications.
-> > 
-> > Fixes: a5f8c7da3dbe ("iio: adc: Add AD7768-1 ADC basic support")
-> > Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
 > > ---
-> >  drivers/iio/adc/ad7768-1.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
-> > index 113703fb7245..c3cf04311c40 100644
-> > --- a/drivers/iio/adc/ad7768-1.c
-> > +++ b/drivers/iio/adc/ad7768-1.c
-> > @@ -142,7 +142,7 @@ static const struct iio_chan_spec ad7768_channels[] = {
-> >  		.channel = 0,
-> >  		.scan_index = 0,
-> >  		.scan_type = {
-> > -			.sign = 'u',
-> > +			.sign = 's',
-> >  			.realbits = 24,
-> >  			.storagebits = 32,
-> >  			.shift = 8,
-> > @@ -371,7 +371,7 @@ static int ad7768_read_raw(struct iio_dev *indio_dev,
+> 
+> ...
+> 
+> > @@ -484,7 +477,7 @@ static irqreturn_t ad7768_trigger_handler(int irq, void *p)
+> >  	struct ad7768_state *st = iio_priv(indio_dev);
+> >  	int ret;
 > >  
-> >  		ret = ad7768_scan_direct(indio_dev);
-> >  		if (ret >= 0)
-> > -			*val = ret;
-> > +			*val = sign_extend32(ret, chan->scan_type.realbits - 1);
+> > -	mutex_lock(&st->lock);
+> > +	guard(mutex)(&st->lock);
 > >  
-> >  		iio_device_release_direct_mode(indio_dev);
-> >  		if (ret < 0)
-> > -- 
-> > 2.34.1
-> > 
+> >  	ret = spi_read(st->spi, &st->data.scan.chan, 3);
+> >  	if (ret < 0)
+> > @@ -495,7 +488,6 @@ static irqreturn_t ad7768_trigger_handler(int irq, void *p)
+> >  
+> >  err_unlock:
+> 
+> nit: also rename the label since it is no longer unlocking
+> 
+> >  	iio_trigger_notify_done(indio_dev->trig);
+> > -	mutex_unlock(&st->lock);
+> >  
+> >  	return IRQ_HANDLED;
+> >  }
+> 
+> I'm also wondering if we should just drop this lock. It is only protecting
+> a triggered buffer SPI xfer and debugfs register access from happening at the
+> same time.
+> 
+> Since we have to write a magic value to exit conversion mode, reading registers
+> during a buffered read is going to cause problems anyway. So we could just
+> remove the mutex lock and use iio_device_claim_direct_mode() instead in
+> ad7768_reg_access().
+>
+Ok, that makes sense. I will change in the next version.
+
 
