@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-137755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 340F4A0A8D5
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 12:55:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7665AA0A8E8
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:05:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F4AB188686C
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 11:55:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80E4A167828
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 12:05:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00FD11AF0C8;
-	Sun, 12 Jan 2025 11:55:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A18E1A9B32;
+	Sun, 12 Jan 2025 12:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RCx6+qYW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qn4f9Ylg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBF0D1ACECA;
-	Sun, 12 Jan 2025 11:55:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEB8A139B;
+	Sun, 12 Jan 2025 12:05:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736682903; cv=none; b=LugvnBkQzrly0OZV1+1z+bzgRkBhQhKb0STsZ/SuPdWreJ+Bprd7sN/YeMCg0t6WR6oEmWeVFQjUgieAoHDwBbDVzTjZk5y9oqUrR5XlxYwQVGgz1rlQbk2x0lsPGZWyWXgDuYYdTD1J+V2a54JZW3UxcBLdSIHOGe4Epcnz0ss=
+	t=1736683541; cv=none; b=F0VL5bqhxZwtY80veT/sFDoQ7XD8gYk/6gJ8JSdoRvHDoacI1qVa8/cgb26P0PLN4BJsmyVCGJdS0WoH/6oMcC8Qv6NorcB4lqu0NaFL6kRAGuGQqw02Ixo5XCrIYY2bVgo6z9d5F5MirYARe7ihvrbFeUHL1KvN0ikO83Cu8qo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736682903; c=relaxed/simple;
-	bh=VmTcEtVKqj4u7husfN+bDDlV9bObcEGnscGrS0K4Rek=;
+	s=arc-20240116; t=1736683541; c=relaxed/simple;
+	bh=ktLANMa+jnGipKDn/U875LSbC2dHl2mcA7foa9+gLW8=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SQKz1r3LFotKOLvsyL2tXQ5l0JkxYrdgkP7LDV+KH+cTzJlwSIaGPkfJe1v7aCxBJcOo6KjczpMjrJR6SexbfAauTlSDLx9huLLmz+3vSIfjlyuReTEYYe5rPfYkKH9S6dgk9o5aGrlX2bfeQiKs8uCL5RiDlOsMhTSiKMCIR8U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RCx6+qYW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A7A5C4CEDF;
-	Sun, 12 Jan 2025 11:54:59 +0000 (UTC)
+	 MIME-Version:Content-Type; b=pUlxwIjddzZDTNi0VAT8qJwnBkghBJe6EnuIYQ+I5ac8qtpz/WoZLAfJU4Cq+Q49rksdii5apHSWUPeJSCRY3hUBDsbm4LTDyCM3WBNBUCyKuQwXqv/Sw13LVaQ4PKyeGmhf93I0ENzL08LGrCPDGrNOrrLTW8SIyzsB5kqQf8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qn4f9Ylg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 779EDC4CEDF;
+	Sun, 12 Jan 2025 12:05:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736682903;
-	bh=VmTcEtVKqj4u7husfN+bDDlV9bObcEGnscGrS0K4Rek=;
+	s=k20201202; t=1736683540;
+	bh=ktLANMa+jnGipKDn/U875LSbC2dHl2mcA7foa9+gLW8=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=RCx6+qYWwDMGdBwybgB/bJvQztXm93fuO5UbA474YwIUjSi4p9Z0k8mcTgBTNftSm
-	 5g8iMuAmSElK6qRQ2orkFhA0CUlfYUv9FQVKEG9TsEzGwEOtzhJrI/tczVGEjjBudp
-	 dHGdCjXXQ6azYiBiBWDCa41Onb3yYlk0PkD8Z+Hd9Aa5y9YHe+Tfkj0fEvVgXNFwlN
-	 B4jOB8YRfNmlmUSJK7MDjvHQPcSFb+aVAs9903ZWSQgww3htxsEbidjFtWhhlZeGWT
-	 HKHGdNAGfsWbLksQgHLNTnNx1cg2yuPuMV5Ai3YRCJT6ksUZqrLbIhZvx1G6FUfix7
-	 EZZ1YZHBWb3ew==
-Date: Sun, 12 Jan 2025 11:54:54 +0000
+	b=qn4f9Ylgmrh+a0G1KAVNZpIXUVhg8KW5EA2dDZ1LBL/aFF+jy6toZI53zNELdJfZm
+	 44OTUkyqz3Y5YfXIqbPzxw6jzUrUdt2EyvhLcZ7yKxu99VN70UYwLZ+g2DAwWGIDNA
+	 rER6lTixlBmlJaSntEnuRh6J0jIREBEGvNhEe5FW4s9o/S9wkUWTXfPC6KMw8h+VdL
+	 y1WSJyx2aaZ0uowSTGi4YB5le/ePbQe0qYcGk441hcT6DKw8FAakr6gOSyAOO0ajGJ
+	 T/W5KI9fz/JLsMj2s2GRuMDaD9MZ2/OEjoC+DxsQY/SHcxCMJBXNpwR2jdxNdx7kZE
+	 ZR15P9BtL3jSw==
+Date: Sun, 12 Jan 2025 12:05:30 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Puranjay Mohan <puranjay@kernel.org>, Joshua Felmeden
- <jfelmeden@thegoodpenguin.co.uk>, Sankar Velliangiri <navin@linumiz.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: Correct indentation and style in DTS
- example
-Message-ID: <20250112115454.4ff5fb2f@jic23-huawei>
-In-Reply-To: <20250107125848.226899-1-krzysztof.kozlowski@linaro.org>
-References: <20250107125848.226899-1-krzysztof.kozlowski@linaro.org>
+To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, lars@metafoo.de,
+ Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Subject: Re: [PATCH v1 01/15] dt-bindings: iio: adc: ad7768-1: add
+ synchronization over SPI property
+Message-ID: <20250112120530.1950a265@jic23-huawei>
+In-Reply-To: <Z4GWSgruwnkDfYSg@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1736201898.git.Jonathan.Santos@analog.com>
+	<bde43579b41199f0c17f07dfacefcb137028e66e.1736201898.git.Jonathan.Santos@analog.com>
+	<Z4GWSgruwnkDfYSg@debian-BULLSEYE-live-builder-AMD64>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -66,20 +65,99 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Tue,  7 Jan 2025 13:58:47 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+On Fri, 10 Jan 2025 18:51:06 -0300
+Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
 
-> DTS example in the bindings should be indented with 2- or 4-spaces and
-> aligned with opening '- |', so correct any differences like 3-spaces or
-> mixtures 2- and 4-spaces in one binding.
+> On 01/07, Jonathan Santos wrote:
+> > Add adi,sync-in-spi property to enable synchronization over SPI.
+> > This should be used in the case when the GPIO cannot provide a
+> > pulse synchronous with the base MCLK signal.
+> > 
+> > User can choose between SPI, GPIO synchronization or neither of them,
+> > but only if a external pulse can be provided, for example, by another
+> > device in a multidevice setup.
+> > 
+> > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> > ---
+> >  .../bindings/iio/adc/adi,ad7768-1.yaml        | 24 ++++++++++++++++++-
+> >  1 file changed, 23 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> > index 3ce59d4d065f..55cec27bfe60 100644
+> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> > @@ -47,6 +47,15 @@ properties:
+> >        in any way, for example if the filter decimation rate changes.
+> >        As the line is active low, it should be marked GPIO_ACTIVE_LOW.
+> >  
+> > +  adi,sync-in-spi:
+> > +    description:
+> > +      Enables synchronization of multiple devices over SPI. This property is
+> > +      used when a signal synchronous to the base MCLK signal cannot be provided
+> > +      via GPIO. It requires the SYNC_OUT pin to be connected to the SYNC_IN pin
+> > +      on the ADC. In the case of multiple devices, the SYNC_OUT pin of one device
+> > +      should be routed to the SYNC_IN pins of the other devices.  
+> So, if I'm getting it right,
+
+Datasheet on this is indeed complex!
+
+>/SYNC_IN may be driven by a GPIO (ADAQ7768-1 datasheet Figure 131),
+
+For that we expose a gpio binding already. If that's present we know what is going on.
+
+>/SYNC_IN may be driven by own device /SYNC_OUT (ADAQ7768-1 datasheet Figure 133),
+
+This is the default - no information provided so it isn't wired externally.
+We don't normally bother to describe required chip to chip connections.
+I couldn't entirely figure out if this is 'required' if we aren't driving explicitly
+from GPIO or another chip but i think it is(?).
+
+>/SYNC_IN may be driven by other AD7768-1 > /SYNC_OUT pin (also Figure 133).
+This is only case we are about for sync in I think.
+
+As long as there isn't a valid 'not connected' It think we are fine with a boolean.
+
+> That is too much to describe with a boolean.
 > 
-> No functional changes here, but saves some comments during reviews of
-> new patches built on existing code.
+> If David's suggestion of using a trigger-source doesn't fit, this property
+> should at least become an enum or string.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Applied and pushed out as testing for 0-day to take a look.
+> > +    type: boolean
+> > +
+> >    reset-gpios:
+> >      maxItems: 1
+> >  
+> > @@ -65,7 +74,6 @@ required:
+> >    - vref-supply
+> >    - spi-cpol
+> >    - spi-cpha
+> > -  - adi,sync-in-gpios
+> >  
+> >  patternProperties:
+> >    "^channel@([0-9]|1[0-5])$":
+> > @@ -89,6 +97,20 @@ patternProperties:
+> >  allOf:
+> >    - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> >  
+> > +  # adi,sync-in-gpios and adi,sync-in-spi are mutually exclusive (neither is also valid)
+> > +  - if:
+> > +      required:
+> > +        - adi,sync-in-gpios
+> > +    then:
+> > +      properties:
+> > +        adi,sync-in-spi: false
+> > +  - if:
+> > +      required:
+> > +        - adi,sync-in-spi
+> > +    then:
+> > +      properties:
+> > +        adi,sync-in-gpios: false
+> > +
+> >  unevaluatedProperties: false
+> >  
+> >  examples:
+> > -- 
+> > 2.34.1
+> >   
 
-This has probably just missed this cycle :(
-
-Jonathan
 
