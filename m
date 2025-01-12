@@ -1,133 +1,129 @@
-Return-Path: <devicetree+bounces-137783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C5CA0A960
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:59:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9758A0A965
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 14:04:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5480D188580F
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 12:59:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9064D1885741
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 13:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB3331B412C;
-	Sun, 12 Jan 2025 12:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 474031B412C;
+	Sun, 12 Jan 2025 13:04:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h45FQaKR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="GIdZuInt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DC0D3C1F;
-	Sun, 12 Jan 2025 12:59:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 535CC8F58;
+	Sun, 12 Jan 2025 13:04:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736686762; cv=none; b=KrDNkCJ6w99X1AiEV2zoMkbVZ+IjDrNW9l2Qm6W2jYJtR7JWniWxaGpJDygkCwpvjyaR0rHkC7aFFy/hQ2lNhn5kPl/cBcLPgGIIkPC+6+ZR7WjQz8mg6eReqdLZTaGqHeFDPC5DnYJIBrHHO1dHeHF+yQIoHRpAfP+urz7mncI=
+	t=1736687054; cv=none; b=oBgiDLGhvjYB/mW5C+ipAW1XYYTC0tDAwkpHcWOtpSew6N43gZbBCYSZbN0kQ3RMIc/f68IhTAdwIQL4Ib7KGSXwsu/yhB+blEi6udbnFMWo5s8B+balqyZ88TaNpj7vBnJwBZNJRXjVk/743O4W6ZvPYEF/GsgAtS5d2dPkgZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736686762; c=relaxed/simple;
-	bh=WkrHIGdtR5ZdYcpXZgxkITmKXrAiqITdKKOcQ66HBCU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DS6gauJneoL4mZWc/pfws7be/xYf/xiqmEDZZwizEmV8C8JaZl5s+Pp6SiXAp3OydxEndK9YiKdTuwza2vostedtivNWKM3LmieVNFr3e+dLVLB8AzFsWmv+5yO0n2xyRpJeUBUV/cqn71KhvWkvXbfZ31jaljmHaL4qQHXW22g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h45FQaKR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7A46C4CEE2;
-	Sun, 12 Jan 2025 12:59:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736686762;
-	bh=WkrHIGdtR5ZdYcpXZgxkITmKXrAiqITdKKOcQ66HBCU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=h45FQaKRzrf0dToOgmhgUDBtGTtvAA43FP58SHlm8DvDnaByPLv3ulTMrdGJ7G2fo
-	 cfckFfrvQHdmjd0s6rY9PZUV+8Gglf5Yh0etnNEYcTScmL5NeXM7+RvR95ywP0r84w
-	 3iWV7J7WpvXNe/85vYUHL8G0A/0SIdu9o8GOkktEClJXV2QlWq/c61qo+b1Y4G5a0q
-	 RkDh4SIvAqbK1C/sdFxxJOmibjFnwAtSZke516olbiDmU3Fza+0Q98CzBCJBUfUwoD
-	 SZPfnZAD3dKjgl/+Jh8XOAlfBTmCQNd9gt6ti/6c904gHchwyFa+XxYCpN305SikTG
-	 wARvMsXbB8rjA==
-Date: Sun, 12 Jan 2025 12:59:13 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, lars@metafoo.de,
- Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v1 14/15] iio: adc: ad7768-1: add support for
- Synchronization over SPI
-Message-ID: <20250112125913.3ea9c71b@jic23-huawei>
-In-Reply-To: <c0981545-5e0e-4b6e-93d9-cb2871b583e8@baylibre.com>
-References: <cover.1736201898.git.Jonathan.Santos@analog.com>
-	<0f9a15e6e2e6b7b2c82ef79d8cb883d9eb6c55dd.1736201898.git.Jonathan.Santos@analog.com>
-	<c0981545-5e0e-4b6e-93d9-cb2871b583e8@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1736687054; c=relaxed/simple;
+	bh=Hn3dydyfTlJbV5r1Av3VGoNL6Ugia52Cv5EnLxMPhzA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P9uyulZd80p9Ty+KdiBmjcjH9rBmH74gOCm+1K/oNiUZ0iVfx8tmgGCDR3CX4rE9M0Az+CrFcScb3lnjmGivOiaCDSTHvmJ/HZDGGFt/cKWCGEC2hh0qntDaIs2ZLL8ht0GiASduLvIF66MCmCUcwKogWJlfh3Exk+e+n2o7nfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=GIdZuInt; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1736687052; x=1768223052;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Hn3dydyfTlJbV5r1Av3VGoNL6Ugia52Cv5EnLxMPhzA=;
+  b=GIdZuIntZiV6BwD4F4Uc1i8bUec2BOAfJMdahhnYhsRIyK98hk/m1WFT
+   HTHohefbGbIS39SSCsKoIsaNygV+hmuUYbqBMO0HUaKypuaG72tVNmbSn
+   SoCHNjgJ240vm4AhyFdvg+OEeNwfi4+H2vnDEADLusXHMqODbHzPpjhUa
+   MTF2Q8cR0ZsYCgMIK/aUvu6lcA9VoYrp3qy6rBHss0PFJgkMxzk80zO/X
+   13Kn7Z2sGyRjuDU1wI/X9lHnoRyr26Gz5Q0wn6ORHSW9zcp3NB0Z8PToq
+   AURh/wrzk4suspWnG2g2vJ76AEXRziWzwTeZw4oEJCwz3uIwbWqdSV5Yh
+   A==;
+X-CSE-ConnectionGUID: QxhasGnMQCuhF2rkDczM/g==
+X-CSE-MsgGUID: T/khm9bLTLWOZxgCYmr56A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11313"; a="54470058"
+X-IronPort-AV: E=Sophos;i="6.12,309,1728975600"; 
+   d="scan'208";a="54470058"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Jan 2025 05:04:11 -0800
+X-CSE-ConnectionGUID: wzfyStBZT1aaQyCd1kyJfg==
+X-CSE-MsgGUID: PSWINvAtRp6E2G9/eHURDw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,309,1728975600"; 
+   d="scan'208";a="104129280"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 12 Jan 2025 05:04:10 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tWxdP-000Ly7-2g;
+	Sun, 12 Jan 2025 13:04:07 +0000
+Date: Sun, 12 Jan 2025 21:04:02 +0800
+From: kernel test robot <lkp@intel.com>
+To: Benjamin Larsson <benjamin.larsson@genexis.eu>,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, ansuelsmth@gmail.com, lorenzo@kernel.org,
+	krzk@kernel.org, gregkh@linuxfoundation.org,
+	Benjamin Larsson <benjamin.larsson@genexis.eu>
+Subject: Re: [PATCH 2/2] serial: Airoha SoC UART and HSUART support
+Message-ID: <202501122042.DwBZgyJe-lkp@intel.com>
+References: <20250111132250.3642694-3-benjamin.larsson@genexis.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250111132250.3642694-3-benjamin.larsson@genexis.eu>
 
-On Tue, 7 Jan 2025 17:50:29 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+Hi Benjamin,
 
-> On 1/7/25 9:27 AM, Jonathan Santos wrote:
-> > The synchronization method using GPIO requires the generated pulse to be
-> > truly synchronous with the base MCLK signal. When it is not possible to
-> > do that in hardware, the datasheet recommends using synchronization over
-> > SPI, where the generated pulse is already synchronous with MCLK. This
-> > requires the SYNC_OUT pin to be connected to SYNC_IN pin.
-> > 
-> > Add the option to handle device synchronization over SPI.
-> > 
-> > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> > ---  
-> 
-> ...
-> 
-> >  static int ad7768_gpio_direction_input(struct gpio_chip *chip, unsigned int offset)
-> > @@ -697,11 +708,21 @@ static int ad7768_setup(struct ad7768_state *st)
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > -	st->gpio_sync_in = devm_gpiod_get(&st->spi->dev, "adi,sync-in",
-> > -					  GPIOD_OUT_LOW);
-> > +	st->gpio_sync_in = devm_gpiod_get_optional(&st->spi->dev, "adi,sync-in",
-> > +						   GPIOD_OUT_LOW);
-> >  	if (IS_ERR(st->gpio_sync_in))
-> >  		return PTR_ERR(st->gpio_sync_in);
-> >  
-> > +	if (device_property_present(&st->spi->dev, "adi,sync-in-spi"))
-> > +		st->en_spi_sync = true;
-> > +
-> > +	/*
-> > +	 * GPIO and SPI Synchronization are mutually exclusive.
-> > +	 * Return error if both are enabled  
-> 
-> Should it also be an error if we have neither? Otherwise it sounds like
-> decimation won't work correctly since there is a comment that says we have
-> to toggle this after updating the decimation rate register.
+kernel test robot noticed the following build warnings:
 
-I'm not quite sure how this interacts with potential future support
-for daisy chaining but for now, if we have no GPIO specified why can't
-we assume spi sync is the way to go?
+[auto build test WARNING on tty/tty-testing]
+[also build test WARNING on tty/tty-next tty/tty-linus linus/master v6.13-rc6 next-20250110]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-If no GPIO is provided and for a single device SYNC_OUT is not wired
-to SYNC_IN I think the board is broken anyway and we don't have to care.
+url:    https://github.com/intel-lab-lkp/linux/commits/Benjamin-Larsson/dt-bindings-serial-8250-Add-Airoha-compatibles/20250111-212544
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git tty-testing
+patch link:    https://lore.kernel.org/r/20250111132250.3642694-3-benjamin.larsson%40genexis.eu
+patch subject: [PATCH 2/2] serial: Airoha SoC UART and HSUART support
+config: sh-allyesconfig (https://download.01.org/0day-ci/archive/20250112/202501122042.DwBZgyJe-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250112/202501122042.DwBZgyJe-lkp@intel.com/reproduce)
 
-Jonathan
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501122042.DwBZgyJe-lkp@intel.com/
 
-> 
-> > +	 */
-> > +	if (st->gpio_sync_in && st->en_spi_sync)
-> > +		return -EINVAL;  
-> 
-> A dev_err_probe() message would be helpful here when creating a new DT and
-> bringing up a new system since it is easy to forget a property or make a typo
-> that could lead to this error.
-> 
-> > +
-> >  	ret = ad7768_gpio_init(st);
-> >  	if (ret < 0)
-> >  		return ret;  
-> 
-> 
+All warnings (new ones prefixed by >>):
 
+>> drivers/tty/serial/8250/8250_airoha.c:48: warning: This comment starts with '/**', but isn't a kernel-doc comment. Refer Documentation/doc-guide/kernel-doc.rst
+    * airoha8250_set_baud_rate() baud rate calculation routine
+
+
+vim +48 drivers/tty/serial/8250/8250_airoha.c
+
+    46	
+    47	/**
+  > 48	 * airoha8250_set_baud_rate() baud rate calculation routine
+    49	 * @port: uart port
+    50	 * @baud: requested uart baud rate
+    51	 * @hs: uart type selector, 0 for regular uart and 1 for high-speed uart
+    52	 *
+    53	 */
+    54	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
