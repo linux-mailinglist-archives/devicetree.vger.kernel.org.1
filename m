@@ -1,131 +1,142 @@
-Return-Path: <devicetree+bounces-137812-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137813-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBB3DA0AB0D
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 17:59:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFFBEA0AB14
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 18:02:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 991CE3A5022
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 16:59:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A67ED3A6441
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 17:02:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DBCB1BEF77;
-	Sun, 12 Jan 2025 16:59:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2792F1BFE00;
+	Sun, 12 Jan 2025 17:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eOcTgTGp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iZUVpy2U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ECEF1B4236;
-	Sun, 12 Jan 2025 16:59:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5FE1BEF93;
+	Sun, 12 Jan 2025 17:02:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736701187; cv=none; b=mopSrg/zhWPblZxATHugf3nhmAZ8lE8XQTwhOHZ6KjCCC6/CoVNraqFQpBRHx+2TQt0aQWqJIr454fcueLOo346QsFy3wHtYA3HaRRVBIyfJeApB3DeutB6Cy77idEeHPgYg/PlugJQKb3DlNrg9hpWTWLpyfj/eYhZtVxi+DKY=
+	t=1736701364; cv=none; b=hmQjpaYLGVzpf+V8TiZ0jbfnCbLi4NyvFTKCudIm2mHXc83nXicpjxP+s4/9Kd+itsGSQCFou8xInqhqIgHVKJzqm5qf2JotR2nsAwf7R+K471brGjrM361vTrHvGTjMTr40mPKPvfF/hj5nJW20CNdo9bnaexxRC1Wdhe4hXWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736701187; c=relaxed/simple;
-	bh=bNyYXhW+zhFq6eoO4rqSrLxtNpjjGxMBOGZPAwUPvkA=;
+	s=arc-20240116; t=1736701364; c=relaxed/simple;
+	bh=uXUV6QB4mU/J21HH05qS9tWV1iNFTromic7goEe6nVU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Kac0ZjygX9u++lmlG1w71PVwfVS3qcqwmMCaBVibcG/z5FaVlm/Dg16xMmiVSjc0u0oBMK32XKxSPEswmfq6XIAF14j+bz8H+XdYVZks3wJn9W8XcLhR15C7YDpWzg/2Ku4LkXqK567/yBQkiapl81JbgtacMEdigh3Mbcs5cp8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eOcTgTGp; arc=none smtp.client-ip=209.85.161.45
+	 To:Cc:Content-Type; b=EvlqTGSO4QLbWPoeW0EeR5lhEUCJP/CLzQOO1FX+vuMIBUA51fnroWgU+YqfCDN0mYFDzrVKPEJjEQnQuqU3DSstOugwqmzePBnF/jwgsFt8p8X4T4fY2s5k6fL8ZT3owiAbh3Gja32OBzFRpvRmvbA9pbCAlXpkl+bVsS0Zcxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iZUVpy2U; arc=none smtp.client-ip=209.85.160.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5f6497fbccbso2386748eaf.0;
-        Sun, 12 Jan 2025 08:59:45 -0800 (PST)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-2a3c075ddb6so1809303fac.2;
+        Sun, 12 Jan 2025 09:02:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736701185; x=1737305985; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1736701361; x=1737306161; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=quwvRH4bGbRvrQGvh2yWVM8KSskEfHUR5/oizr6Kep4=;
-        b=eOcTgTGprmCjZnFfXI4IJcPePEiaW2gvWSRZ6xf4xbf3GcQyuubf3/l4YhjXup485h
-         1+NOPyNfIKo3me22YaZU5KIolqbkmYzp5iaaN/5XwQE3pWHZs6fbyJjEIj/4Sn99e+I/
-         KjxSuN/G+KxDKk2J6powJw0QjgZWmhvJIrkBz2Eev63RN92tvJO/hiuceGE74Tslg0Ow
-         GdLfVYUELLV7z26uzJUDCBpdeZVTnLYSqcMl2m+p5kEarYTqgHI4bfRtCSHJYBIeLq9u
-         2aVe6zzu+BLybW1pkpPaB+6+cNkTd1gSo7DDK/jVqGMTqysDFpsudKqmFBXVXB9vfvJK
-         eNyg==
+        bh=mLHGH+epv3M5YYT+PPWV3TJBLGXoTr8WFrivrQEhYaU=;
+        b=iZUVpy2U+wgq9YXAvYnvLEtPSYITd9oaz8dtJkB+YwlbIkiiW7P5+CBwkOi9vpoRxg
+         Yu+yeTma0fHICd2nqUF0y01wnbLGMHE4uxfam04nIKDrFPr0TajW7xXtT3UjZ4YWg1Q2
+         BLg5Gcayt8FIEqx3WVN8qEajTr/so8TeF9dgK8PibozWkMTLvNiZdY0nw9Hsx61k8dQN
+         wJv+Qjmx7pT6H90EkWhDuwOLaSuaAEVDXZU6Kdmjovx0Z6WbpyCQQMQot9Amzx5m0Rnm
+         zqOQelt7uAnk2uAUG+BEDb7kZO+r2S0ChYVHvy+877Xj6fDRzwmL8NYUd9y+pl+ccQaD
+         ZhzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736701185; x=1737305985;
+        d=1e100.net; s=20230601; t=1736701361; x=1737306161;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=quwvRH4bGbRvrQGvh2yWVM8KSskEfHUR5/oizr6Kep4=;
-        b=gm+zb5Y0HibaH8i/K7QCPUyOrRNkgCoX/wHDwLZiftzeSE4nkTwmW3HWf4ccpm5I4G
-         Dm1Os80nnGvYlJfwiYH7UAONq9VBbkQWG+Dl5wLPLhlbXUzsDpi9XKODh+xG95IykhGx
-         wbYEcuI4EP1fUCk7o03pbZXcdPQVumzJGxS+Q0xHBVJWIO0LORcw4By/W6EEG4q6SiRh
-         SvsCs1ZmjEUW093yyYUKiHjr40EXlI8WHL/cwS6cR1RojVtSzZ1QaCq3a2VQQ1NRhtiB
-         jqO0gRkdIqVOza1XW8LcKANG99cT99oyN+c9aRZCm05sybtxP4h8xytzzZ+nO1CMS/Gv
-         83Sw==
-X-Forwarded-Encrypted: i=1; AJvYcCVow6F5ONfOffGqEk8KbneBOtB2Zh9GllDBQUHj1OGToM+rZM0gKbAGl17Frrrm/pe9OXzJxSiBTtRdJ/3OTT2RopI=@vger.kernel.org, AJvYcCW5KiAzK38VesOWtbFmIYh3kaGoI/HFF0O64t+fi4Y7QgSJHZV2/Voxj9/muC5GzK9cI5wfc+eFGbJ2sCHU@vger.kernel.org, AJvYcCX51CHPi4nNHtjG8XsDkIhzIYBKamUdX0FqaudTuRujyO0W5A64Nrcz1PwLXL4vVJGzoZP+EcptgIoB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxIoCW504+W3MwqDXAvKlKnMSo10HPk+fUsXhQRB7APXUuF2gBv
-	yyzaD5aKszOS/XDKJCiT+rTbcVHMNd18mjoJkvniRKq+zIXiOOd+Yb8MEOgXl+vsksLUaMf3T8J
-	Cxf5SlH2dqq9b6ERNaAX7xkLc00Y=
-X-Gm-Gg: ASbGncsLQxNtyjanPh7bjqW9CIGpWPYHtqtAwEW6qZVDljE8DM6V1nfS+352jaQijAw
-	dRuepmT0cMI3H6ITnrYA5Gn08gKmFXlI1+QIlFhA=
-X-Google-Smtp-Source: AGHT+IEQfGA2U8QldzatkkBgSiG0ZMHBvwWPEdHTVVXcVjAFGGsjXDL6nXJioSINr/i9gFuWSbwMCv44uKtuvxQmJnQ=
-X-Received: by 2002:a05:6871:5e10:b0:29e:37af:a943 with SMTP id
- 586e51a60fabf-2ad80907cc8mr8709428fac.18.1736701185046; Sun, 12 Jan 2025
- 08:59:45 -0800 (PST)
+        bh=mLHGH+epv3M5YYT+PPWV3TJBLGXoTr8WFrivrQEhYaU=;
+        b=YFrWkcf7tba91sNE1wGEkfnQmvzJEjYnXTbfwjW4scbC4OyAO8mcEA6jk7v9ESLGur
+         fH/mRJTb6lGLFMONFqMm+dcdM9BKhYmPTtToy2CdgsbzytgCxWEf55ICJXD+DRez+VYd
+         miqNzj37YS5dKKM8AyYbPuxq1zjct7Y1YjeeHLeD/RK0U48sR+brDiPOZzlsXADLFexB
+         nvd9IFlD/gt+W4igHAF0sPHeZSAkumWQZL7KYK2rxsXy8rXXy/n9BqQJy184TnBnsR4e
+         mkpq0fz5pYPC0li2cmWkJe/EF3jJpS32xsLRkLTIA2trOXMNXWcPqJdywa4LV2cMe34I
+         AazA==
+X-Forwarded-Encrypted: i=1; AJvYcCUTFhhynhZh0iqQMIm0rhAKzdFZpeu7Sod/GBPn/hJlsKN8qI65JurdmzlnabJjbsIXH7qMJXKkXu+q@vger.kernel.org, AJvYcCWOP5YU9D5LwplnSD/HGHMs/hVNJD6y6GuCGckBufmlNzG/IEb0/frPEB9wzd8+ev7pFGnf0kUE3g9lYuld@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjwZCJAZGqAjpY+2S3w9RH7OSjkbpx2jtwPeOZ4He9IsmjChfu
+	dbOpUfg+tUW2UbPkgNo26WbbK+hNFqCS/oAL/NQdYKXs0j6VzYwF+L61fn20pYH0hW+TQ5DkK+y
+	4ks6l8gTJjMpB5xyWcwwv9HWaB74=
+X-Gm-Gg: ASbGncukdsmHHY36WRMlP+bDag7E3j87FBolxCsHeeGyvj1duHnnQfjT0dXXr3llosE
+	Fs1u1D2Nn6PYNiLIL3vcfLCNtPW386ZMkwrKSTzU=
+X-Google-Smtp-Source: AGHT+IE+nbx6AlzWrejQjGji+VB54fgrOIOIydNSnwo6l8H/PczwvJZYdI9qfx3ZuLqSObfZhkV7LJ2bPXcsbulebYg=
+X-Received: by 2002:a05:6871:a403:b0:29e:6ae2:442 with SMTP id
+ 586e51a60fabf-2aa068d6800mr9772628fac.32.1736701361506; Sun, 12 Jan 2025
+ 09:02:41 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241217-acpm-v4-upstream-mbox-v5-0-cd1d3951fe84@linaro.org>
- <20241217-acpm-v4-upstream-mbox-v5-1-cd1d3951fe84@linaro.org>
- <ec3cdfd1-df7a-466c-8581-c9546ca6b089@linaro.org> <CABb+yY0rBzP8JPAik5aaXp6GivQKEf++sgiMM9fTPgd_5YXT1w@mail.gmail.com>
- <eaab647a-f6f4-4562-89fa-e64daa80bdf4@linaro.org> <CABb+yY0AkpqC_P-3cHeuWDu-gJzxCnarsNFNQWk45+tHKrDLmg@mail.gmail.com>
- <4e97b33f-b4a5-4875-a65d-9e25bcc5a46c@linaro.org> <8f21d5f2-5327-488c-878c-a62d85857240@linaro.org>
-In-Reply-To: <8f21d5f2-5327-488c-878c-a62d85857240@linaro.org>
+References: <20241230034446.1195728-1-karl.li@mediatek.com>
+ <20241230034446.1195728-4-karl.li@mediatek.com> <CABb+yY2G1C7rvsha9qm7mRSk1e_xBahshzHCs39=DzTCUGrsuQ@mail.gmail.com>
+ <CAGXv+5E98VZnf_PL2kEF=VxytNVyCEV4iY=aEnEoZz0Z7AJiTg@mail.gmail.com>
+In-Reply-To: <CAGXv+5E98VZnf_PL2kEF=VxytNVyCEV4iY=aEnEoZz0Z7AJiTg@mail.gmail.com>
 From: Jassi Brar <jassisinghbrar@gmail.com>
-Date: Sun, 12 Jan 2025 10:59:32 -0600
-X-Gm-Features: AbW1kvbTrH1X7Mg1VWhps-7-6TpTz4UKuTz3YpkSXF5eHOwG7kdqYiJ57bLEtrs
-Message-ID: <CABb+yY0JMZfwR9xQ8s80Kmg0gE1DRDJ9bHB=eMnw70uw5nBshw@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: mailbox: add google,gs101-mbox
-To: Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, andre.draszik@linaro.org, 
-	peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
-	daniel.lezcano@linaro.org, vincent.guittot@linaro.org, ulf.hansson@linaro.org, 
-	arnd@arndb.de
+Date: Sun, 12 Jan 2025 11:02:30 -0600
+X-Gm-Features: AbW1kvawhR9q_j_zMWhY9OH_vnifw3V8ugjcAxvz2Ds9ffqbhNNV3c1iJIS2tYA
+Message-ID: <CABb+yY0FHBxvc2Lwg9O1G9O+rxoXk-tS1QFwi63=_zsV0SyYuw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] mailbox: mediatek: Add mtk-apu-mailbox driver
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: "Karl.Li" <karl.li@mediatek.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, Chungying Lu <chungying.lu@mediatek.com>, 
+	Chien-Chih Tseng <Chien-Chih.Tseng@mediatek.com>, Andy Teng <Andy.Teng@mediatek.com>, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 8, 2025 at 3:38=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro.=
-org> wrote:
+On Thu, Jan 2, 2025 at 10:56=E2=80=AFPM Chen-Yu Tsai <wenst@chromium.org> w=
+rote:
 >
-> Hi, Jassi,
->
-> On 1/3/25 9:57 AM, Tudor Ambarus wrote:
-> >>> Then I updated the mailbox core to allow clients to request channels =
-by
-> >>> passing some args containing channel identifiers to the controllers,
-> >>> that the controllers xlate() using their own method.
-> >>>
-> >> This is unnecessary.
-> >> If you don't pass the doorbell number from DT, each channel populated
-> >> by the driver is just a s/w construct or a 'virtual' channel. Make use
-> >> of 'void *data'  in send_data() to specify the doorbell.
-> >>
-> > I think this introduces concurrency problems if the channel identifiers
-> > passed by 'void *data' don't match the virtual channel used for sending
-> > the messages. Do we want to allow this?
+> On Fri, Jan 3, 2025 at 12:30=E2=80=AFPM Jassi Brar <jassisinghbrar@gmail.=
+com> wrote:
 > >
-> > Also, if we use 'void *data' to pass channel identifiers, the channel
-> > checks will have to be made at send_data() time. Thus if passing wrong
-> > channel type for example, the mailbox client will eventually get a
-> > -ENOBUFS and a "Try increasing MBOX_TX_QUEUE_LEN" message, which I find
-> > misleading.
+> > On Sun, Dec 29, 2024 at 9:46=E2=80=AFPM Karl.Li <karl.li@mediatek.com> =
+wrote:
+> > ....
+> > > +
+> > > +static irqreturn_t mtk_apu_mailbox_irq(int irq, void *data)
+> > > +{
+> > > +       struct mbox_chan *chan =3D data;
+> > > +       struct mtk_apu_mailbox *apu_mbox =3D get_mtk_apu_mailbox(chan=
+->mbox);
+> > > +       struct mbox_chan *link =3D &apu_mbox->mbox.chans[0];
+> > > +       u8 data_cnt =3D fls(readl(apu_mbox->regs + MTK_APU_MBOX_OUTBO=
+X_IRQ));
+> > > +
+> > > +       memcpy_fromio(apu_mbox->msgs.data, apu_mbox->regs + MTK_APU_M=
+BOX_OUTBOX,
+> > > +                     sizeof(*apu_mbox->msgs.data) * data_cnt);
+> > > +
+> > > +       mbox_chan_received_data(link, apu_mbox->msgs.data);
+> > > +
+> > > +       return IRQ_WAKE_THREAD;
+> > > +}
+> > > +
+> > You don't seem to do anything that 'ack' the irq line. So if you merge
+> > this into mtk_apu_mailbox_irq_thread() and do
+> >  devm_request_threaded_irq(dev, irq,   NULL,
+> > mtk_apu_mailbox_irq_thread,  IRQF_ONESHOT,  ...);
+> > you can avoid adding a new api and keep your client code simple.
+> > mbox_chan_received_data() is strictly between the client and
+> > controller driver. If it is not called from an atomic context, feel
+> > free to do memcpy() from it.
 >
-> Shall I still use 'void *data' to pass channel identifiers through
-> send_data()? I'd like to respin everything.
+> That sounds great. Could we perhaps update the API documentation and
+> drop the "atomic" requirement, or update it to something you describe
+> here as "between the client and controller driver".
 >
-Yes, please do.
+Not drop, but simply add a line that the client needs to respect the
+context in which the controller does the callback.
 
 thanks
 
