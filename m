@@ -1,110 +1,131 @@
-Return-Path: <devicetree+bounces-137811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15E42A0AAFA
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 17:39:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBB3DA0AB0D
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 17:59:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5869D1882EF8
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 16:39:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 991CE3A5022
+	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 16:59:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F35C81BEF63;
-	Sun, 12 Jan 2025 16:38:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DBCB1BEF77;
+	Sun, 12 Jan 2025 16:59:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cWe2podS"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eOcTgTGp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3211120DF4;
-	Sun, 12 Jan 2025 16:38:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ECEF1B4236;
+	Sun, 12 Jan 2025 16:59:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736699937; cv=none; b=cZ2SNR+oHBH0eueoBviYaLqXP6Du4vztYZz9FNyR2tWwXScsWEiG3cCd5xUMeQ2RmfA7GxA6ItC3Y50/FLcWuY4gQ+8wxsb+NB9QJtCoikYryCer7jsvzKr/ku8kJZ/eL7TiwfpcqAJj3dULTGnxeOG/Maf9QMDT/KvnQ/x26Lk=
+	t=1736701187; cv=none; b=mopSrg/zhWPblZxATHugf3nhmAZ8lE8XQTwhOHZ6KjCCC6/CoVNraqFQpBRHx+2TQt0aQWqJIr454fcueLOo346QsFy3wHtYA3HaRRVBIyfJeApB3DeutB6Cy77idEeHPgYg/PlugJQKb3DlNrg9hpWTWLpyfj/eYhZtVxi+DKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736699937; c=relaxed/simple;
-	bh=jPpGORFM6DLQsfgJohdnFBDUgiOLrJ46EWkWEEzNJ40=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CaXtJmyN819U+NGYfUAxdbcJl8c45Upqi49u8q37uOQtuIPJai76/punLtAd1Q6BoNCMWJcp18OTUZA9yt6sOPqne0lKHGxECLur7DR2OV7ai8vhX7r/lRPfhRdsoGMLtqbBHl0ZPwmp9W4f2NXjEnYplctA6yn7qLZlrGof7PM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cWe2podS; arc=none smtp.client-ip=209.85.167.51
+	s=arc-20240116; t=1736701187; c=relaxed/simple;
+	bh=bNyYXhW+zhFq6eoO4rqSrLxtNpjjGxMBOGZPAwUPvkA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Kac0ZjygX9u++lmlG1w71PVwfVS3qcqwmMCaBVibcG/z5FaVlm/Dg16xMmiVSjc0u0oBMK32XKxSPEswmfq6XIAF14j+bz8H+XdYVZks3wJn9W8XcLhR15C7YDpWzg/2Ku4LkXqK567/yBQkiapl81JbgtacMEdigh3Mbcs5cp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eOcTgTGp; arc=none smtp.client-ip=209.85.161.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53e3c47434eso3379182e87.3;
-        Sun, 12 Jan 2025 08:38:55 -0800 (PST)
+Received: by mail-oo1-f45.google.com with SMTP id 006d021491bc7-5f6497fbccbso2386748eaf.0;
+        Sun, 12 Jan 2025 08:59:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736699934; x=1737304734; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ds2jyaTBI3B9tgp/razIWjdXXtbhaGZ8vh/IiAlVgko=;
-        b=cWe2podSq52a9vi9iKVt+3sVLMZ48t+VwtKn0bPc3plQSHp4ctUUfX4fkwGIn4VKDS
-         8Kie3sHrGG0hNJluBvO30qARaYRJ1IhVC0mzrMoXzTglSqgzCQcFlv1Nbg9nbp31FiKb
-         Qb6cFnhGXuhXIX3x4nj+591COPPTpAq8d1k1VSoG7A6NlI7D4ZQxBZCMi8MGJoQQk4sl
-         bO5XSwYdD55ktaagBH7XHXmTghBAXOL4LKbKhb7ybz98Z1kJv/Kb1aisAUV0vYyYEw7a
-         jT2GBvJukMH0S4ZNeA4WMfouvHQYRj/SQ5K4n+HqcHd0BB88lyla+/w3MGfDlyO2p8db
-         KBwQ==
+        d=gmail.com; s=20230601; t=1736701185; x=1737305985; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=quwvRH4bGbRvrQGvh2yWVM8KSskEfHUR5/oizr6Kep4=;
+        b=eOcTgTGprmCjZnFfXI4IJcPePEiaW2gvWSRZ6xf4xbf3GcQyuubf3/l4YhjXup485h
+         1+NOPyNfIKo3me22YaZU5KIolqbkmYzp5iaaN/5XwQE3pWHZs6fbyJjEIj/4Sn99e+I/
+         KjxSuN/G+KxDKk2J6powJw0QjgZWmhvJIrkBz2Eev63RN92tvJO/hiuceGE74Tslg0Ow
+         GdLfVYUELLV7z26uzJUDCBpdeZVTnLYSqcMl2m+p5kEarYTqgHI4bfRtCSHJYBIeLq9u
+         2aVe6zzu+BLybW1pkpPaB+6+cNkTd1gSo7DDK/jVqGMTqysDFpsudKqmFBXVXB9vfvJK
+         eNyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736699934; x=1737304734;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ds2jyaTBI3B9tgp/razIWjdXXtbhaGZ8vh/IiAlVgko=;
-        b=oJIah7hETsEU3130kZeNO/Wh0tMeNQKOOjDlxJyU9otXd4QgXyCf4ETs4DgcpUgpRm
-         CS4BlzfM95nASz/YEx7fiKuS9gqDU/SuBaQhS/gHxAXLRfoiAkWuyqV4iDS4jOHnKBPr
-         UwjvBrfzG4P4DRXw/b3g5C0ZhGk/w/nHBfNLePDt+TNhzzn+suBXUqds8Tl2uiagQ5Ad
-         ZpOd5Nyf5Nj1tMbdhUH1gHDgCJEzjyuu7OV684dWQLpSsEg87rdhEqXxqjjkoVks6h6S
-         VZl9L7y7y6K2EONHr2n1E0rHYLPhIatzrFYutK6kj9xh6Ag+1rJME0hBGlkU/L0qrzXL
-         qM9A==
-X-Forwarded-Encrypted: i=1; AJvYcCV4CXxPgzSY73AZvDMzNSADbhlwrbIpn3g91mYLB9tNFSgUrEBjIkA3X4LDK/w+tjC+OEsKnIea2l0t@vger.kernel.org, AJvYcCV4q0041uS0HqFRpWraGA0N8sTxT+bwOGZG/PN/wGEhculYPTEpXNleabn5mCxequ/Ydgul+jA5UtbN3yK5@vger.kernel.org, AJvYcCWj2VbEq2b5xnFI+6vdRU+tcKUefheBLWRuk7CElzaHvC2j50Tt6n9Lqy8AL1LOGaAmsI9oIOuvSmal@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSUbwEszbhys/1fakE5RE9HSzRWBMqjjTwzqyFa6o9+slBHXaj
-	0AbFoT2R+VYXWHsYr5+Y23dVg9ULVZeE6HJ0qnIH6m6kWVx4EmpvfEJzka3ydUrE6w==
-X-Gm-Gg: ASbGncsFYwXDU6WhCUH2FDhX7IQQLo9oSL+Q2hJ0b7pgph6Fk17WOq9X4goj1Xg9fZx
-	AtI492L9L93OyfReQxdYfEc6WJDNo4PlBMDENvUYbnCuPo9zOuaf6WrUCrgLG+SbtCpe5IM40hc
-	BewKfNpQoiOm9nMWeFHm6XXlrcpb2KhmAf5fI71I/E8qj3vm976/sgl0iT9Wjm8jgUbq4/VW+tu
-	buRwUGkn+2VwW+pgsp7C9WBibcI+/k7H2/HNYj3z+pcjn162ruMuE0ig60dIpOC5Q==
-X-Google-Smtp-Source: AGHT+IGo0aM5LCtEa90lCe66FeXky8murQpb0RO1LekxgSviijCpb5SaMTYFb63BR0dtQcEDjc14EQ==
-X-Received: by 2002:a05:6512:318d:b0:542:8cbb:b204 with SMTP id 2adb3069b0e04-5428cbbb7d3mr4312014e87.21.1736699933877;
-        Sun, 12 Jan 2025 08:38:53 -0800 (PST)
-Received: from [192.168.1.78] ([45.136.247.92])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5429941669bsm409196e87.7.2025.01.12.08.38.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Jan 2025 08:38:53 -0800 (PST)
-Message-ID: <5210adc6-eb1b-4797-a2f1-0368cc44c392@gmail.com>
-Date: Sun, 12 Jan 2025 19:38:51 +0300
+        d=1e100.net; s=20230601; t=1736701185; x=1737305985;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=quwvRH4bGbRvrQGvh2yWVM8KSskEfHUR5/oizr6Kep4=;
+        b=gm+zb5Y0HibaH8i/K7QCPUyOrRNkgCoX/wHDwLZiftzeSE4nkTwmW3HWf4ccpm5I4G
+         Dm1Os80nnGvYlJfwiYH7UAONq9VBbkQWG+Dl5wLPLhlbXUzsDpi9XKODh+xG95IykhGx
+         wbYEcuI4EP1fUCk7o03pbZXcdPQVumzJGxS+Q0xHBVJWIO0LORcw4By/W6EEG4q6SiRh
+         SvsCs1ZmjEUW093yyYUKiHjr40EXlI8WHL/cwS6cR1RojVtSzZ1QaCq3a2VQQ1NRhtiB
+         jqO0gRkdIqVOza1XW8LcKANG99cT99oyN+c9aRZCm05sybtxP4h8xytzzZ+nO1CMS/Gv
+         83Sw==
+X-Forwarded-Encrypted: i=1; AJvYcCVow6F5ONfOffGqEk8KbneBOtB2Zh9GllDBQUHj1OGToM+rZM0gKbAGl17Frrrm/pe9OXzJxSiBTtRdJ/3OTT2RopI=@vger.kernel.org, AJvYcCW5KiAzK38VesOWtbFmIYh3kaGoI/HFF0O64t+fi4Y7QgSJHZV2/Voxj9/muC5GzK9cI5wfc+eFGbJ2sCHU@vger.kernel.org, AJvYcCX51CHPi4nNHtjG8XsDkIhzIYBKamUdX0FqaudTuRujyO0W5A64Nrcz1PwLXL4vVJGzoZP+EcptgIoB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIoCW504+W3MwqDXAvKlKnMSo10HPk+fUsXhQRB7APXUuF2gBv
+	yyzaD5aKszOS/XDKJCiT+rTbcVHMNd18mjoJkvniRKq+zIXiOOd+Yb8MEOgXl+vsksLUaMf3T8J
+	Cxf5SlH2dqq9b6ERNaAX7xkLc00Y=
+X-Gm-Gg: ASbGncsLQxNtyjanPh7bjqW9CIGpWPYHtqtAwEW6qZVDljE8DM6V1nfS+352jaQijAw
+	dRuepmT0cMI3H6ITnrYA5Gn08gKmFXlI1+QIlFhA=
+X-Google-Smtp-Source: AGHT+IEQfGA2U8QldzatkkBgSiG0ZMHBvwWPEdHTVVXcVjAFGGsjXDL6nXJioSINr/i9gFuWSbwMCv44uKtuvxQmJnQ=
+X-Received: by 2002:a05:6871:5e10:b0:29e:37af:a943 with SMTP id
+ 586e51a60fabf-2ad80907cc8mr8709428fac.18.1736701185046; Sun, 12 Jan 2025
+ 08:59:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/5] iio: accel: mc3230: add OF match table
-To: Jonathan Cameron <jic23@kernel.org>,
- Vasiliy Doylov via B4 Relay <devnull+nekodevelopper.gmail.com@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250112-mainlining-mc3510c-v3-0-9ee6520ab69d@gmail.com>
- <20250112-mainlining-mc3510c-v3-3-9ee6520ab69d@gmail.com>
- <20250112162917.6f0cfa9f@jic23-huawei>
-Content-Language: en-US
-From: Vasiliy Doylov <nekodevelopper@gmail.com>
-In-Reply-To: <20250112162917.6f0cfa9f@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20241217-acpm-v4-upstream-mbox-v5-0-cd1d3951fe84@linaro.org>
+ <20241217-acpm-v4-upstream-mbox-v5-1-cd1d3951fe84@linaro.org>
+ <ec3cdfd1-df7a-466c-8581-c9546ca6b089@linaro.org> <CABb+yY0rBzP8JPAik5aaXp6GivQKEf++sgiMM9fTPgd_5YXT1w@mail.gmail.com>
+ <eaab647a-f6f4-4562-89fa-e64daa80bdf4@linaro.org> <CABb+yY0AkpqC_P-3cHeuWDu-gJzxCnarsNFNQWk45+tHKrDLmg@mail.gmail.com>
+ <4e97b33f-b4a5-4875-a65d-9e25bcc5a46c@linaro.org> <8f21d5f2-5327-488c-878c-a62d85857240@linaro.org>
+In-Reply-To: <8f21d5f2-5327-488c-878c-a62d85857240@linaro.org>
+From: Jassi Brar <jassisinghbrar@gmail.com>
+Date: Sun, 12 Jan 2025 10:59:32 -0600
+X-Gm-Features: AbW1kvbTrH1X7Mg1VWhps-7-6TpTz4UKuTz3YpkSXF5eHOwG7kdqYiJ57bLEtrs
+Message-ID: <CABb+yY0JMZfwR9xQ8s80Kmg0gE1DRDJ9bHB=eMnw70uw5nBshw@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] dt-bindings: mailbox: add google,gs101-mbox
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org, 
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, andre.draszik@linaro.org, 
+	peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
+	daniel.lezcano@linaro.org, vincent.guittot@linaro.org, ulf.hansson@linaro.org, 
+	arnd@arndb.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Jan 8, 2025 at 3:38=E2=80=AFAM Tudor Ambarus <tudor.ambarus@linaro.=
+org> wrote:
+>
+> Hi, Jassi,
+>
+> On 1/3/25 9:57 AM, Tudor Ambarus wrote:
+> >>> Then I updated the mailbox core to allow clients to request channels =
+by
+> >>> passing some args containing channel identifiers to the controllers,
+> >>> that the controllers xlate() using their own method.
+> >>>
+> >> This is unnecessary.
+> >> If you don't pass the doorbell number from DT, each channel populated
+> >> by the driver is just a s/w construct or a 'virtual' channel. Make use
+> >> of 'void *data'  in send_data() to specify the doorbell.
+> >>
+> > I think this introduces concurrency problems if the channel identifiers
+> > passed by 'void *data' don't match the virtual channel used for sending
+> > the messages. Do we want to allow this?
+> >
+> > Also, if we use 'void *data' to pass channel identifiers, the channel
+> > checks will have to be made at send_data() time. Thus if passing wrong
+> > channel type for example, the mailbox client will eventually get a
+> > -ENOBUFS and a "Try increasing MBOX_TX_QUEUE_LEN" message, which I find
+> > misleading.
+>
+> Shall I still use 'void *data' to pass channel identifiers through
+> send_data()? I'd like to respin everything.
+>
+Yes, please do.
 
-On 1/12/25 7:29 PM, Jonathan Cameron wrote:
-> Are you sure that didn't previously work?  I thought there were
-> fallbacks that would make it use the driver name if nothing else matched.
-
-It works if I modprobe module, but module doesn't loading automatically 
-on boot like other modules.
-
-With OF match it loads automatically during boot, without i need to call 
-modprobe explicitly
-
+thanks
 
