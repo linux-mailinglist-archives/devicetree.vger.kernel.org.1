@@ -1,168 +1,156 @@
-Return-Path: <devicetree+bounces-138012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDFA0A0B71F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:41:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9877A0B732
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:43:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D94C116733F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:41:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D89EA1887379
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:43:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4826122AE7B;
-	Mon, 13 Jan 2025 12:41:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1384822F16A;
+	Mon, 13 Jan 2025 12:43:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UtVXcCWP"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IkBdRG5m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A85F522A4D1;
-	Mon, 13 Jan 2025 12:41:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0F522AE41;
+	Mon, 13 Jan 2025 12:43:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736772064; cv=none; b=utqiGZlwK5jWNaPDBVnyY+khkmTGd3Xl9FAjG9tqxVbmL2GnhuxIC640/hSAXfMTc1Vfw1tZZ1VmHS/E4jX5fCPLs7YJmYjXDZSE4kRKxp5lS4VVdGTCm0fQW0dWryewDKWxZ3F50nZbo5UtwDu5AH+ilVrMgssHbx4Pf+3tUow=
+	t=1736772191; cv=none; b=MWlUJDEHCOOrDXxlpRrgmbyrTAk9GJQTKrFzslN/1l300DPnTHVnRTxQS0Uagkf+5YY7hi6R476HZW/PzNRpdM1rmCQdhTXsl6BxtKavDbNA2yuF+oZ6IY/FgROWKiv8yYZo/Oomy9iMObNmqrrpinAaC2TeNASkt1zvyaGsbjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736772064; c=relaxed/simple;
-	bh=O85+Z9UZF+eVdNlADq/jx6gqrVveANxisqyvRXkMKS8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sptFv/2FrmVPkE3FUduu76xmnjvPN5N6Wu+rhEQ1YsoAjC9+HQsl24VWIVZJzXXxwXxJIkhy+xB1KOtZ870IQH3e87F/fYEG5C8RQK/bBOrTupa2L6JS7P2pmGu9/gCV8KnvgprNskJohrG9ixQ6WUlZ8KCtdL+zWSZ82dIxw1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UtVXcCWP; arc=none smtp.client-ip=209.85.221.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-5187aa2c97dso1524283e0c.2;
-        Mon, 13 Jan 2025 04:41:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736772061; x=1737376861; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TbYfOIsPsYkd3/eNbN10A7EuEo53UW73o1TC5uqOCds=;
-        b=UtVXcCWPYLN4EHuGu0hv3mdzz/hX05+SVHL1C4OkSggsOhJvZ72IYsqjNGiuvFKsp2
-         jdU6ByI/PRL3QDyeQSkKlQfpSgsRxqXCQ62NHFfWT7i0Kj/WrYWdtS5qH7zdv0n0vrpJ
-         RPuEtuf3hi1b6saqcAJzc7NbohquB2JMKy3qgFxU66vhBgkns9D/6YKd5KMFIg5wBTU2
-         eF+rhKMH6JHryBtEF+ZoXxxn6KO2bwGOUAbI9z9PKqvfHgzbdWrLJA/D3QD+2+at7haH
-         xvjO5DdjDxD9JIoZeG4ALOSoZ5txi8mXsvyiO0EGuuU2gVQbxhYJWyS6tZUcPPylzN1l
-         0kzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736772061; x=1737376861;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TbYfOIsPsYkd3/eNbN10A7EuEo53UW73o1TC5uqOCds=;
-        b=LDIuEZjfkTQ08IjCI0uuOW4Bypf9PYzQzFUztrKJhfXcNtIaexDJSm/vnrGC58UcGY
-         wD5rqj4iT1ADWcpV+3LGFHoxkSpK3w2m2S4D7MML2+6OgfsvKPTlHLYSAeYLQ9pzQcT9
-         rcHgRMbMlw+205E6WHnPX2xowfEQ3Cd0uyX2COK/2tXiePmoYLDzjv2+2VYk8Ga598KB
-         R4hHT2vucJ+Y7rnGK4lf6pIEc8i65U6eDDDtikWjhHVPS87Jt20CSsabEvH3j5QTjPU2
-         pkhGgJWO3VLuh3efntlMUIoQqD38V+pdxbcxvwpggIn0Q30xr8ucJWt5XqAtNKGvU4+D
-         fQRw==
-X-Forwarded-Encrypted: i=1; AJvYcCUFABrT5tER/aAGO1RukGhpVUxYWywvZhQJFeMucr40N77PWjiVVve34PSVIlH65h3/+n3oF2//Z2Lz@vger.kernel.org, AJvYcCUMjzFOsK86cfNPfF/vDN9BgikTTG0VsmZ6zlNGw13hNKxBvk9Rc26JQ5mu6RwTFq4zuN7IKRfzxswiorZKV2c=@vger.kernel.org, AJvYcCWvF5CGVLzpMmHye7CXlF4Gw8XBRogFx5lS1rZuQnJRloB+5N+q8qE5f+ldcWm+31/kIW3ZAIicPwDvXrM3gANOcks=@vger.kernel.org, AJvYcCXNO/OvJdvlQvkOy+hn/XEzX/I42IhHrJaCj5hAbA7GJFCTkWgkSurbeo+eABRdUcbh8pFhaz/AWy6Q@vger.kernel.org, AJvYcCXhYYYH9g6XanMcqzDmSMayXmntA4Nv0eqsVeMv4isodlN2ydUqj6UA1QnVZK0joPuByOME5uYz9gh2zkfw@vger.kernel.org
-X-Gm-Message-State: AOJu0YyS2LRZ58hK/0UJ5LQB09h2MOzJYpBzt2yBZI7Pu0gYU8EGcCye
-	8Yrul56n+LHZf+v+sJSzpD090OzqG9RgHlUNhbf/jxtF+W8/4YlddU7rNhGfktBXYTlAh2zcHKm
-	3n9XsFXuo8cRoHH2rXmv++hBtj00=
-X-Gm-Gg: ASbGncsi0QjQ8PlNN4bUURMfNPeKjkS2Euk+tkfRKdRsUE3PdX0rElVcP0W1IZWtcVg
-	9yU408YhHHXvK02usLdDQD22gS0p11sb0yqTou4I=
-X-Google-Smtp-Source: AGHT+IEY6Lh8p4eF9JzEPm1V+mWfKXtieyo7nbeSUWhLLqKanFFUUYTByNlPBo2fzKO3WrlPTQKg1SULA9DF5CycXI0=
-X-Received: by 2002:a05:6122:510:b0:515:daa7:ed07 with SMTP id
- 71dfb90a1353d-51c6c1cd3dcmr15614435e0c.0.1736772061470; Mon, 13 Jan 2025
- 04:41:01 -0800 (PST)
+	s=arc-20240116; t=1736772191; c=relaxed/simple;
+	bh=x5SgPW8bfo57jTlR9MQ3YN3nEDklpzcCf+voPz8Secs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=h4ufL4PcMU2wKCDS4HU0zX7BEMjCv9Z2G4PyttrCJsNLmUqUJ54wEqyjeibhtEwiyAaDwQkpynQyxfiKc/fwfpQjc5VFcVg9Lu+uOn7HrEd3pLz+3uBMfH0L3jOaJsSkUEhTOBdorttFJMGxVV3ZFmU7YvlmGCbX2GPnP4u48B8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=IkBdRG5m; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DDE1B24000B;
+	Mon, 13 Jan 2025 12:43:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736772186;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=iefv3ZxEy14mmBM/AkA5K3Ony2LyBSi5HCJzyxiTX0k=;
+	b=IkBdRG5mS34VAGOKBOWiZelgrFOk/9dvWawzesRoTzJoJ5OdDb97AOM2y/C1yhvGWx2Yf9
+	fklVLD82yNcujoOFAM1sC7IxK2w2Rv250bOiSLhAfHM0yZDqBoEYV+9jEiVQyLdNGVDXjx
+	DDVjR13ccXiXwmK96kCvYO6NoNqpttLkmipHr1Vf36dK0I99gFbniNGMXhNCw7DTSknbKo
+	FKVouXTMqo/ioiojkRwNNOCa86GVQK+BtkJ7hdVHzW2N6wc4fe4ITwjfZ5M4cW+g/kIsLR
+	IFeqmzj/mpti94hwAFCo0cJ6zW2yhB3hXnskTuxSIYcW6K+tR2zmBXFbRedOFw==
+From: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Subject: [PATCH v3 0/7] Add support for MAX7360
+Date: Mon, 13 Jan 2025 13:42:24 +0100
+Message-Id: <20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <TY3PR01MB11346D7617436A7779B6697B3861F2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB11346D7617436A7779B6697B3861F2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 13 Jan 2025 12:40:35 +0000
-X-Gm-Features: AbW1kvaxlIESxJqj1vJ4FPNOFvj1nHLzDyf9sFgK9BkMkK7ltbc-rjC_JsrGybc
-Message-ID: <CA+V-a8tQ_tyxPn2pO=mSPVW2RffVhFz=CPCxR2pxXP1FLkcQcA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] Add support to retrieve the bootstatus from
- watchdog for RZ/V2H(P) SoC
-To: Biju Das <biju.das.jz@bp.renesas.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Guenter Roeck <linux@roeck-us.net>, Magnus Damm <magnus.damm@gmail.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADAKhWcC/33NzQ6CMAzA8VchOzvDWj4mJ9/DeBhblSXCyIYLh
+ vDuDk6aGI//pv11YYG8pcCabGGeog3WDSnwkDHdqeFO3JrUDHIoBIgT703LezXXWOU8PMfR+Yk
+ DoJKairJVyNLl6Olm5129XFN3NkzOv/YnUWzT/14UPOeSJIq6lNvauXVuetjhqF3PNjHChwL4W
+ 4GkYK2kAdBYkflW1nV9A6c/M7/+AAAA
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Kamel Bouhara <kamel.bouhara@bootlin.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
+ linux-pwm@vger.kernel.org, 
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736772185; l=3060;
+ i=mathieu.dubois-briand@bootlin.com; s=20241219; h=from:subject:message-id;
+ bh=x5SgPW8bfo57jTlR9MQ3YN3nEDklpzcCf+voPz8Secs=;
+ b=22OGeXHrSKqh8Z+epoYqJRRN3/gOubcatAXVDgcsvS1FDRqdH9Ka5NmHticPMK7BF8RVXi65R
+ 4WRJ/+VTCBNBrAPy/busS5AuPNE0ATaR+8g7Q7deHDRxtEJpxbtV6Mr
+X-Developer-Key: i=mathieu.dubois-briand@bootlin.com; a=ed25519;
+ pk=1PVTmzPXfKvDwcPUzG0aqdGoKZJA3b9s+3DqRlm0Lww=
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-Hi Biju,
+This series implements a set of drivers allowing to support the Maxim
+Integrated MAX7360 device.
 
-On Mon, Jan 13, 2025 at 11:38=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.c=
-om> wrote:
->
-> Hi Prabhakar,
->
-> > -----Original Message-----
-> > From: Prabhakar <prabhakar.csengg@gmail.com>
-> > Sent: 13 January 2025 11:24
-> > Subject: [PATCH v3 0/6] Add support to retrieve the bootstatus from wat=
-chdog for RZ/V2H(P) SoC
-> >
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Hi All,
-> >
-> > This patch series adds SYSCON support to retrieve boot status informati=
-on for RZ/V2H(P) SoC.
-> > Summary of Changes,
-> >
-> >     Clock:
-> >         Add syscon compatible support to the CPG block in bindings and
-> >         device trees.
-> >
-> >     Watchdog:
-> >         Document the renesas,r9a09g057-syscon-wdt-errorrst property.
-> >         Update the watchdog driver to fetch and report boot status via
-> >         Error Reset Registers (CPG_ERROR_RSTm).
-> >
-> >     Device Tree:
-> >         Add the syscon property to CPG and WDT nodes in R9A09G057 and
-> >         R9A09G047 SoC DTSI.
-> >
-> > These changes enable the watchdog driver to identify boot sources like =
-Power-on Reset and Watchdog
-> > Reset, improving system diagnostics.
->
-> This means that, we should assume U-boot/bootloader should not clear the =
-WDT reset status bit.
->
-> If they clear it, there should be a way to propagate it from u-boot/bootl=
-oader to linux,
-> otherwise, we get wrong bootstatus in linux.
-> But the clearing of watchdog status by one of the cases:
->
-> 1) u-boot identify the boot source and clear the status bit
->
-I agree, if the tf-a/u-boot clears the register, the bootstatus
-reported by Linux will be in-correct.
+The MAX7360 is an I2C key-switch and led controller, with following
+functionalities:
+- Keypad controller for a key matrix of up to 8 rows and 8 columns.
+- Rotary encoder support, for a single rotary encoder.
+- Up to 8 PWM outputs.
+- Up to 8 GPIOs with support for interrupts and 6 GPOs.
 
-Alternative solution, would be:
+Chipset pins are shared between all functionalities, so all cannot be
+used at the same time.
 
-Let the TF-A create WDT nodes for us and add a property
-`renesas,r9a09g057-wdt-bootstatus` and propagate the WDT nodes to
-Linux.
+Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+---
+Changes in v3:
+- Fix MFD device tree binding to add gpio child nodes.
+- Fix various small issues in device tree bindings.
+- Add missing line returns in error messages.
+- Use dev_err_probe() when possible.
+- Link to v2: https://lore.kernel.org/r/20241223-mdb-max7360-support-v2-0-37a8d22c36ed@bootlin.com
 
-renesas,r9a09g057-wdt-bootstatus =3D <0/1>;
+Changes in v2:
+- Removing device tree subnodes for keypad, rotary encoder and pwm
+  functionalities.
+- Fixed dt-bindings syntax and naming.
+- Fixed missing handling of requested period in PWM driver.
+- Cleanup of the code
+- Link to v1: https://lore.kernel.org/r/20241219-mdb-max7360-support-v1-0-8e8317584121@bootlin.com
 
-0 -> Power on reset
-1 -> WDT reset
+---
+Kamel Bouhara (2):
+      mfd: Add max7360 support
+      pwm: max7360: Add MAX7360 PWM support
 
-Geert/Rob/Krzysztof - Is the proposed approach acceptable or is there
-any alternative where this can be avoided.
+Mathieu Dubois-Briand (5):
+      dt-bindings: mfd: gpio: Add MAX7360
+      gpio: max7360: Add MAX7360 gpio support
+      input: keyboard: Add support for MAX7360 keypad
+      input: misc: Add support for MAX7360 rotary
+      MAINTAINERS: Add entry on MAX7360 driver
 
-Cheers,
-Prabhakar
+ .../bindings/gpio/maxim,max7360-gpio.yaml          |  90 ++++
+ .../devicetree/bindings/mfd/maxim,max7360.yaml     | 140 +++++++
+ MAINTAINERS                                        |  12 +
+ drivers/gpio/Kconfig                               |  11 +
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-max7360.c                        | 454 +++++++++++++++++++++
+ drivers/input/keyboard/Kconfig                     |  12 +
+ drivers/input/keyboard/Makefile                    |   1 +
+ drivers/input/keyboard/max7360-keypad.c            | 284 +++++++++++++
+ drivers/input/misc/Kconfig                         |  11 +
+ drivers/input/misc/Makefile                        |   1 +
+ drivers/input/misc/max7360-rotary.c                | 183 +++++++++
+ drivers/mfd/Kconfig                                |  12 +
+ drivers/mfd/Makefile                               |   1 +
+ drivers/mfd/max7360.c                              | 296 ++++++++++++++
+ drivers/pwm/Kconfig                                |  11 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-max7360.c                          | 220 ++++++++++
+ include/linux/mfd/max7360.h                        | 109 +++++
+ 19 files changed, 1850 insertions(+)
+---
+base-commit: 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+change-id: 20241219-mdb-max7360-support-223a8ce45ba3
+
+Best regards,
+-- 
+Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+
 
