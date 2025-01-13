@@ -1,127 +1,128 @@
-Return-Path: <devicetree+bounces-138132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F18CA0BC59
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:45:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F7E7A0BC70
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:46:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3FF8165B41
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:44:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C2771616ED
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:46:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E61820AF63;
-	Mon, 13 Jan 2025 15:44:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39D1F229804;
+	Mon, 13 Jan 2025 15:45:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BKWYjuLi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i0ocW51T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3823F1FBBFC;
-	Mon, 13 Jan 2025 15:44:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FE5E20AF8D;
+	Mon, 13 Jan 2025 15:45:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736783074; cv=none; b=F6vhf6PgMpXZGLPpS1DuB3S1MoSIPrBbwfaphXX/e9+ZzpEKdI2VvpLyKQHzaTwmxcQXb72WI8RXNt/LS0N0ksfoPqbPhIWOCtrvSZv8RyIVamO8dRT//XQLjkUkOqsLW/ejdNmRmuQ4lT48ckM4+1+vaOG8yyFceEkyAiRSs7U=
+	t=1736783139; cv=none; b=fbbCFUBHioxP6IZr0jOzy23yPwbDQbI/PxId6EPJBdg/oY8Fay8m45kFvUg9Zeh5aYFdWnKB/763mkVOXJxdu1pnk6Fsn9K5PUsV/vT19zEn7buMYEs8ANzLJd7QBJRU4wQtRqxP2MDQprC9Kw8YTB5zeVgDy2n2xkzTQt0DuRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736783074; c=relaxed/simple;
-	bh=RJ8swjTnV3zKK6OTGxFywdGEVTxm9ACKzJyWakdOS3w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pdNZicXb5JlzcpvWF8Y5oQDXQsKXrXpR2RZc8OS3o/ARbFjAZudElDvy4pGPmfGVhcB2LDAOB1tlY6iQpZT0TLylD1IYvLWNuS/O8/EabUEEt2C1g01oivqrUj4zXWvQ82TYPbYZbg5leHXtX8IQaEToNp0Fe7/56fODGZe9D50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BKWYjuLi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D072AC4CED6;
-	Mon, 13 Jan 2025 15:44:31 +0000 (UTC)
+	s=arc-20240116; t=1736783139; c=relaxed/simple;
+	bh=kFeLziEXwb4LmNstzswtbbTTT5NoVgjGzw0cvelcy4I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FWwi12N2KkFrlMr0rd465NKO3j/QVpkKn8tWb/f9RDZ3Q+/H0eJU4ziAtb+sktk/BsScI9Bf5tBLoBAkvzxqQKeZGHsYzFQUBBZsMLV0vBU0SbUXMMiQL2zQ2OY1mD9tUCg3/5eb0g7w9GJwtdYeEgC+YJCaMJP/ic5QKkeTDVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i0ocW51T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F6ACC4CEE4;
+	Mon, 13 Jan 2025 15:45:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736783073;
-	bh=RJ8swjTnV3zKK6OTGxFywdGEVTxm9ACKzJyWakdOS3w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BKWYjuLixbRnn1GsK/q6ILRVJvHdqq9eA3UJrv/Lpw0bwr3RUR0y8tP/aaHW5Az4m
-	 psj55Yj+ppBeCOnQRviNgITGmkfD0HyWRybaAMb9NKnuXFyLYkJmq6tB9s53boFlCs
-	 Iu0NXF475nRnkLeNSQNuqb1s/d+4ldPFXguAoI9FLmtDLKBct5/OV4Osifo2PmsjMK
-	 Q7tzqMDWYMo1VyFnBz53HpXfTF83O8fAByw6o4wbais36VGgZWbqCE1fUU2liDb3hD
-	 L7v4a+rzwlUfm7/Z4W25Wjko8ErO1QPOJRYEsDw14ZOzmKMINBcljbOnPlftPRFHEG
-	 WPRPqvIPBoFLw==
-Date: Mon, 13 Jan 2025 15:44:29 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de
-Subject: Re: [PATCH 1/2] regulator: Add support for power budget
-Message-ID: <8f5ce662-f8bc-449e-99cf-737066dabebd@sirena.org.uk>
-References: <20250113-feature_regulator_pw_budget-v1-0-01e1d95c2015@bootlin.com>
- <20250113-feature_regulator_pw_budget-v1-1-01e1d95c2015@bootlin.com>
- <69eaaadf-a6b3-4a5a-af4a-5b574f9edad4@sirena.org.uk>
- <20250113154551.32e20d1c@kmaincent-XPS-13-7390>
- <b184e29e-06b0-49cf-8469-1fa0778f06e7@sirena.org.uk>
- <20250113162620.3c244302@kmaincent-XPS-13-7390>
+	s=k20201202; t=1736783138;
+	bh=kFeLziEXwb4LmNstzswtbbTTT5NoVgjGzw0cvelcy4I=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=i0ocW51TdDn6VQUqakRMn3OYAZk/6pYWPCJVfkNyxD+D/gaPxzpY63MQTP/CZz3xV
+	 TU4sbrA7psPD7FZkPI3GyeTnAK9C0fOcRAbpJ9sXGQheEbnBiE6vuXpBZT/d58q4SG
+	 WppLyxO3TjMHEPNNB+1D36cDRJFmHwzillwyntSWAGYX2oMSy/gaqARFA8i39HaP2S
+	 pS/BDTEnGGban9ArN4oZU1Hclt/hkJtGaASzWAYh8fNCAJOrwbbGNPUyurOvMkO6xB
+	 sxhuQt0p21UbDLbRHeg9QcDUjdsX8Hsk9emj3n+/1kyzn/fEnvIuMYd+tQZMDjNEpq
+	 HChGVTsy379dw==
+Message-ID: <4a140ee1-5021-40f6-a8e9-93173c1a4faa@kernel.org>
+Date: Mon, 13 Jan 2025 16:45:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nV2lxtOOeFV9pNzI"
-Content-Disposition: inline
-In-Reply-To: <20250113162620.3c244302@kmaincent-XPS-13-7390>
-X-Cookie: You will outgrow your usefulness.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: vfxxx: Fix the CAAM job ring node names
+To: Fabio Estevam <festevam@gmail.com>, shawnguo@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ kernel@pengutronix.de, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, Fabio Estevam <festevam@denx.de>
+References: <20250112124127.994141-1-festevam@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250112124127.994141-1-festevam@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 12/01/2025 13:41, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> According to fsl,sec-v4.0.yaml, the job ring node names
+> should be 'jr'.
+> 
+> Change them to fix the following dt-schema warnings:
+> 
+> crypto@400f0000: 'jr0@1000', 'jr1@2000' do not match any of the regexes:
+> '^jr@[0-9a-f]+$', '^rtic@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> ---
+>  arch/arm/boot/dts/nxp/vf/vfxxx.dtsi | 4 ++--
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
---nV2lxtOOeFV9pNzI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jan 13, 2025 at 04:26:20PM +0100, Kory Maincent wrote:
-> Mark Brown <broonie@kernel.org> wrote:
-> > On Mon, Jan 13, 2025 at 03:45:51PM +0100, Kory Maincent wrote:
-> > > Mark Brown <broonie@kernel.org> wrote: =20
-
-> > but the others are legit.  Still, we should be able to map between the
-> > two.
-
-> We could have something like that in regulator_request_power_budget()?
-
-> if (rdev->desc->ops->get_voltage && rdev->desc->ops->set_current_limit) {
-> 	ret =3D regulator_get_voltage(rdev);
-> 	if (ret < 0)
-> 		return ret;
->=20
-> 	tmp_64 =3D pw_req;
-> 	tmp_64 *=3D 1000000000ull;
-> 	/* uA =3D mW * 1000000000 / uV */
-> 	uA =3D DIV_ROUND_CLOSEST_ULL(tmp_64, uV);
-> 	ret =3D regulator_set_current_limit(rdev, uA);
-> 	if (ret)
-> 		return ret;
-
-Yup, indeed.  That said I am wondering if it's safer to just configure
-the constraint in the hardware rather than the currently requested
-limit, considering what might happen in the case where there's multiple
-consumers that have only been partially updated.  If the hardware limits
-or shuts down rather than warning it'll blow up badly so it might be
-better to be conservative.  Unfortunately we don't distinguish in the
-ops.  Possibly it should be a policy thing even but then that's better
-at runtime...
-
---nV2lxtOOeFV9pNzI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmeFNNwACgkQJNaLcl1U
-h9AQQwf+IcvhRbYMC7JpDIZFaapjIZBqyf6ZhnLJgg1FfXbMoXuFDdOyzgaCeprC
-sefdN2Nt9IqaCzjasWaVmXuQd4dAqhakGeDKmW8Evf/yOV03Ws7YSuSX/mTySMy3
-5qExmCi8vWA2flFqNUzvlNtoNNqyhoIteLiNurChB++jC3KYjZ3nf2ZGCKgWO6+D
-GabAlm4V44Oiikk+FyyrKOZlQyMN4/C3+oFFJ5l7YrILVhH4zJOvkvMkwkRdinV4
-8uYDLpD/eTqn2G4rsOteWU3T4SOs3y/8OTpnxRVJPuGhbi7Cmee/6njxa2OtNawu
-n/XN4n1Dl4+qxeY5q8KooRPpOWAOJA==
-=mJYA
------END PGP SIGNATURE-----
-
---nV2lxtOOeFV9pNzI--
+Best regards,
+Krzysztof
 
