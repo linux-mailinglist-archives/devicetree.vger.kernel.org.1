@@ -1,157 +1,185 @@
-Return-Path: <devicetree+bounces-138006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1C25A0B691
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:17:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6575A0B69F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:20:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D36B18865EA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:17:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDB1B1882706
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB1122A4D8;
-	Mon, 13 Jan 2025 12:17:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97ECD21ADB4;
+	Mon, 13 Jan 2025 12:19:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="KYX5/8OW";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Ac7C9uQC"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="C/xhGw3G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from sender4-pp-o92.zoho.com (sender4-pp-o92.zoho.com [136.143.188.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A6823314D;
-	Mon, 13 Jan 2025 12:16:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736770620; cv=none; b=RQC1lGveDbE8bjM/q9IECZCLsqofE41BXLsHK9kxXtV9Kdl+dZYasUEnYOjLFg+sVBf08aC78TdIQbOTGczUqhME1Rb5zGAPEPhRYylg4ICfKMo6+4XknvX1yOPKW3R17CfScG50guYPQfk4icvUHm2a+roz4fFb5POkDTlzpCI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736770620; c=relaxed/simple;
-	bh=Un1kvi9W5WQQ+48XFletoPgm7L4mV6GyNZaoYgkco7c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=trgWOplpusAdmHv/mQuOJSDt+iVg4GTznAnqaAuKLg3Dok24rlfQenQgCf5euSFG18/pKTuDjEySzDFFQUV3vo0fwlxPbVo3D3EErwnMcDSV/jwQbDXDqsf5PBrnnCahTzj2oFykhdW2hc1b7IzmeKDQfHV7oXRfH6qOJpxoFi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=KYX5/8OW; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Ac7C9uQC reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1736770616; x=1768306616;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=h/I8ofgS/1dP08mnYQl4u8YsIuLHQEi0Cj5vHjiYV6k=;
-  b=KYX5/8OW2pj9ixH82eLDLSQ0TN2PvikCQMmiaWWlFPRTdHTMioos4cQR
-   3yvhfEfHdjIoi1kAXouSRHbEwHuNTS+jy/oJugkQ5QjQDACF2ofLrwbfI
-   27CFmpeOJ47lUPCqfFfaeyPmlQBI1EAM4WSs8gKleAr//DMNL3pEuf2fL
-   F1U+QitHX5V/EBXwXdPNCvTMCi6Yl/O3pH1RHSo7DZt5+HH8zuLXl61Pe
-   0vMd7hOizD0mIqWnNJv0asj+yd3Y5Qfb+0ExDyxwNoUDLhCsnCE9tSB7w
-   f8vlaSqZlPCdAkfZcjlldgvCyhqHV7k9YFWiOpf4GUNiF7rtG2Ddn+3ZJ
-   g==;
-X-CSE-ConnectionGUID: 1qdIUrH+QMyWDUbbj50IAQ==
-X-CSE-MsgGUID: EUfQ4QiHQJW34iNFwyctOg==
-X-IronPort-AV: E=Sophos;i="6.12,310,1728943200"; 
-   d="scan'208";a="41016138"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 13 Jan 2025 13:16:53 +0100
-X-CheckPoint: {67850435-31-1CE016C0-E589DA3E}
-X-MAIL-CPID: 120C5A0C0DE13FDF760E80BE027CE42F_1
-X-Control-Analysis: str=0001.0A682F27.67850436.001E,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 09A9D16126B;
-	Mon, 13 Jan 2025 13:16:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1736770609;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=h/I8ofgS/1dP08mnYQl4u8YsIuLHQEi0Cj5vHjiYV6k=;
-	b=Ac7C9uQCZ35A/+fQR7yoeb9o+uj1ZH9FqfqxRd7hKAgFaWh/j+iTwniqK8GbVh57j87e9d
-	yjYbycnZ4bUgeunosg5mLFOHd8hvvjNeJaGVzdkt3Un8CQ+wj9i4KIuskUtbjNkTD10xrX
-	3BoV4+gVy2z4jbviap+kygofq0nUFr7GFLMo7tx8Ap0/PNPHEYqa20+RA2laaFtgxc+djW
-	HKmzaECbg4tm2aJat6yqYki94rj3B4cGHhRV6DawPB6wWciNI3cmkAqHFELOJq8KtSG8pj
-	H7DFC3wwhqJ7AfQSqrkfj6Avw4rD5mGCaa1NE2/nOwjVzJtWNCwB0Et+q2I22A==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Peng Fan <peng.fan@nxp.com>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support accessing controller for i.MX9
-Date: Mon, 13 Jan 2025 13:16:48 +0100
-Message-ID: <4956524.GXAFRqVoOG@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <DB9PR04MB84615C152538FD411F462B19881D2@DB9PR04MB8461.eurprd04.prod.outlook.com>
-References: <20250108-imx-ocotp-v5-0-a6d90e18ebe9@nxp.com> <868241455.0ifERbkFSE@steina-w> <DB9PR04MB84615C152538FD411F462B19881D2@DB9PR04MB8461.eurprd04.prod.outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6B371BD9FF;
+	Mon, 13 Jan 2025 12:19:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.92
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736770796; cv=pass; b=VjiD0YK2xfDv5jTL2IVCgYRTvy+v+7ZejBeebt3Ji28F7DaciCgmsjUvXCafE9FspOtyLWFf3t7CYC9i11nTj4JXXqSKUTwNFeZesVt3fX3Z3uwrpMRsNJWd345ERq+JQrb6Zt6VHidt8A3wEiSJnXpcPNJixBmgvcJfe7Ojhio=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736770796; c=relaxed/simple;
+	bh=Xl74J1MalzuceQrzY2ktCKG1QU8F4qFiY3UBLZmJjFs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iZh4y18snQS+/IcZCFLwMm3nTonVCsnBuCCZt1IcDXwpA0fB+tW5ro/DSQA0at9kVaLK1z40N172lzEVqHh7EACSZleiqO3rn00IBK/xfiLlKSdWC6aoIhXkv/sHkF0jXQCr3NYxjBhQYVd5WMiHiscG63SJyJWUBIb1uhFCZYM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=C/xhGw3G; arc=pass smtp.client-ip=136.143.188.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1736770782; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=GlmJnh0wJyDrDeO54WDVZREmrXSWXpTgiT2QRaS1g0lgjA7PKBt67+60Ksj4Sb7clUHCXmqdOao8SkEmMdI1dbfl6VQQOa6QJFN6SXxi8XstHhfhmw3UgNbmkbQxhbQYeJXLeBOR2tvWqpHzE2y4US9jZgGVpTXdtJmlXWhPecs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1736770782; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=yg980IXsItT1ob0TGMGNg+N1u7n0tXM7s7EHT8ZvaOE=; 
+	b=EvW23UyJyUUYf2T87/6FrFBZkDk4HrTsi8CGOaBdUFmf+egYHU2aub0buO7ovDMo5D0A03xn0nzfr96YBmGzHNrymi+xJnyfbsLMzX0VftGaQIgyJlf49uI7A1kfmFpkTA21Z9DKxpIrQ1WxTLMHLZQfGwQslTT4v5t9hl0rS54=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
+	dmarc=pass header.from=<kingxukai@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1736770782;
+	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
+	bh=yg980IXsItT1ob0TGMGNg+N1u7n0tXM7s7EHT8ZvaOE=;
+	b=C/xhGw3Gdf0JU2WhUT6ycBFraS0/yQWo9mYI9JUP1Ap7bRSjybjmxF3RKMpzdZpK
+	iKD0H6a25NJ4ACR6ouyx4gKMELMrnK4ax6Vf1jJup31GdQsIgKT+4A/Fq4NVQfC0RL2
+	kDRoyGMli7GY0OGIKKEXLBGr9qXbmMzNT60XJmFk=
+Received: by mx.zohomail.com with SMTPS id 173677077432099.51494040975774;
+	Mon, 13 Jan 2025 04:19:34 -0800 (PST)
+Message-ID: <a1386cfb-7698-43f6-acff-628d9626da47@zohomail.com>
+Date: Mon, 13 Jan 2025 20:19:19 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
-
-Hi,
-
-Am Samstag, 11. Januar 2025, 13:41:58 CET schrieb Peng Fan:
-> > Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support accessing
-> > controller for i.MX9
-> >=20
-> > Hi,
-> >=20
-> > Am Donnerstag, 9. Januar 2025, 04:34:18 CET schrieb Peng Fan:
-> > > On Wed, Jan 08, 2025 at 11:15:40AM +0100, Alexander Stein wrote:
-> > > >Hi Peng,
-> > > >
-> > > >Am Mittwoch, 8. Januar 2025, 08:00:18 CET schrieb Peng Fan (OSS):
-> > > >> From: Peng Fan <peng.fan@nxp.com>
-> > > >>
-> > > >> i.MX9 OCOTP supports a specific peripheral or function being
-> > fused
-> > > >> which means disabled, so
-> > > >>  - Introduce ocotp_access_gates to be container of efuse gate info
-> > > >>  - Iterate all nodes to check accessing permission. If not
-> > > >>    allowed to be accessed, detach the node
-> > > >>
-> > > >> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > >> ---
-> > > >>  drivers/nvmem/imx-ocotp-ele.c | 172
-> > > >> +++++++++++++++++++++++++++++++++++++++++-
-> > > >>  1 file changed, 171 insertions(+), 1 deletion(-)
-> > > >>
-> > > [....]
-> > > >> +
-> > > >> +	return imx_ele_ocotp_access_control(priv);
-> > > >
-> > > >In [1] you mentioned devlink should solve the probe order. How
-> > does
-> > > >this play when the driver is compiled in (e.g. ethernet for NFS boot)
-> > > >but this OCOTP driver is just a module?
-> > >
-> > > OCOTP needs to built in for using devlink. Or the users needs to be
-> > > built as module.
-> >=20
-> > I don't like this kind of assumption. Would it make more sense to make
-> > CONFIG_NVMEM_IMX_OCOTP_ELE as bool instead of tristate?
->=20
-> No. Users could setup their own system with this driver build in
-> or built related drivers as modules.
-
-Sure, but if the kernel locks/fails/panics while accessing peripherals
-just because of the kernel config seems at east very unfortunate to me.
-How is someone supposed to analyze/debug this?
-
-> At least for Android GKI, this driver needs to be as module.
-
-Any particular reason this needs to be a module?
-Which means any affected driver needs to be a module as well just because if
-a DT reference, no? With no means to know which drivers are affected, despi=
-te
-checking for the DT references manually?
-
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] riscv: dts: canaan: Add clock initial support for
+ K230
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ Troy Mitchell <TroyMitchell988@gmail.com>
+References: <20250108-b4-k230-clk-v2-0-27b30a2ca52d@zohomail.com>
+ <20250108-b4-k230-clk-v2-3-27b30a2ca52d@zohomail.com>
+ <ebj26gfkaypgtvi7o2ab3mfvcgc7yk4scdoxroftlp7lnx3xix@p3nnfiva3hdm>
+From: Xukai Wang <kingxukai@zohomail.com>
+Content-Language: en-US
+In-Reply-To: <ebj26gfkaypgtvi7o2ab3mfvcgc7yk4scdoxroftlp7lnx3xix@p3nnfiva3hdm>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Feedback-ID: rr08011227102e394c4ece469786f9a63f0000268b6dc8886a4bdfe9cfcc1d7509dc8a729330385f8b10a251:zu08011227060641b058f7bd561e629be2000014ba64026e331fba48e2cc9e36c581def167ce43f42c3ee11c:rf0801122c06663dad68cb3878c535246800002ee0df51d8bf8a147c9dbba85400de34851e84c7c0c613b553fb57f1c3a7:ZohoMail
+X-ZohoMailClient: External
 
 
+On 2025/1/9 17:09, Krzysztof Kozlowski wrote:
+> On Wed, Jan 08, 2025 at 07:53:09PM +0800, Xukai Wang wrote:
+>> This patch provides basic support for the K230 clock, which does not
+>> cover all clocks.
+>>
+>> The clock tree of the K230 SoC consists of OSC24M,
+>> PLLs and sysclk.
+>>
+>> Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
+>> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+>> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
+>> ---
+>>  arch/riscv/boot/dts/canaan/k230.dtsi | 27 +++++++++++++++++++++++++++
+>>  1 file changed, 27 insertions(+)
+>>
+>> diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
+>> index 95c1a3d8fb1192e30113d96d3e96329545bc6ae7..c407471af3daac154e0fbdd377d57ea3ff4698e1 100644
+>> --- a/arch/riscv/boot/dts/canaan/k230.dtsi
+>> +++ b/arch/riscv/boot/dts/canaan/k230.dtsi
+>> @@ -3,6 +3,7 @@
+>>   * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
+>>   */
+>>  
+>> +#include <dt-bindings/clock/k230-clk.h>
+>>  #include <dt-bindings/interrupt-controller/irq.h>
+>>  
+>>  /dts-v1/;
+>> @@ -65,6 +66,13 @@ apb_clk: apb-clk-clock {
+>>  		#clock-cells = <0>;
+>>  	};
+>>  
+>> +	osc24m: clock-24m {
+>> +		compatible = "fixed-clock";
+>> +		#clock-cells = <0>;
+>> +		clock-frequency = <24000000>;
+>> +		clock-output-names = "osc24m";
+>> +	};
+>> +
+>>  	soc {
+>>  		compatible = "simple-bus";
+>>  		interrupt-parent = <&plic>;
+>> @@ -138,5 +146,24 @@ uart4: serial@91404000 {
+>>  			reg-shift = <2>;
+>>  			status = "disabled";
+>>  		};
+>> +
+>> +		sysclk: clock-controller@91100000 {
+> Does not look like placed in correct order.
+>
+>> +			compatible = "canaan,k230-clk";
+>> +			reg = <0x0 0x91102000 0x0 0x1000>, <0x0 0x91100000 0x0 0x1000>;
+>> +			clocks = <&osc24m>;
+>> +			#clock-cells = <1>;
+>> +			clock-output-names =
+> Unnecessary blank line
+>
+>> +			"CPU0_ACLK", "CPU0_PLIC", "CPU0_NOC_DDRCP4", "CPU0_PCLK",
+> Messed indentation/alignment. See DTS coding style.
+
+I've reorder the properties and changed the indentation:
+
+osc24m: clock-24m {
+        compatible = "fixed-clock";
+        clock-frequency = <24000000>;
+        clock-output-names = "osc24m";
+        #clock-cells = <0>;
+};
+
+sysclk: clock-controller@91102000 {
+
+        compatible = "canaan,k230-clk";
+        reg = <0x0 0x91102000 0x0 0x1000>,
+              <0x0 0x91100000 0x0 0x1000>;
+        clocks = <&osc24m>;
+        clock-output-names = "CPU0_ACLK", "CPU0_PLIC", "CPU0_NOC_DDRCP4",
+                             "CPU0_PCLK", "PMU_PCLK", "HS_HCLK_HIGH_SRC",
+                             "HS_HCLK_HIGH_GATE", "HS_HCLK_SRC",
+                             "HS_SD0_HS_AHB_GAT", "HS_SD1_HS_AHB_GAT",
+                             "HS_SSI1_HS_AHB_GA", "HS_SSI2_HS_AHB_GA",
+                             "HS_USB0_HS_AHB_GA", "HS_USB1_HS_AHB_GA",
+                             "HS_SSI0_AXI", "HS_SSI1", "HS_SSI2",
+                             "HS_QSPI_AXI_SRC", "HS_SSI1_ACLK_GATE",
+                             "HS_SSI2_ACLK_GATE", "HS_SD_CARD_SRC",
+                             "HS_SD0_CARD_TX", "HS_SD1_CARD_TX",
+                             "HS_SD_AXI_SRC", "HS_SD0_AXI_GATE",
+                             "HS_SD1_AXI_GATE", "HS_SD0_BASE_GATE",
+                             "HS_SD1_BASE_GATE", "HS_OSPI_SRC",
+                             "HS_USB_REF_51M", "HS_SD_TIMER_SRC",
+                             "HS_SD0_TIMER_GATE", "HS_SD1_TIMER_GATE",
+                             "HS_USB0_REFERENCE", "HS_USB1_REFERENCE";
+        #clock-cells = <1>;
+};
+
+Does this updated version looks appropriate？
+
+>
+> Best regards,
+> Krzysztof
+>
 
