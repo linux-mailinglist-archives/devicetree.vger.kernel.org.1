@@ -1,141 +1,99 @@
-Return-Path: <devicetree+bounces-137844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E8A2A0AD9C
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 03:59:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B61F3A0ADD3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 04:21:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A5801884EDB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 02:59:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D14E316518B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 03:21:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B92F28249F;
-	Mon, 13 Jan 2025 02:59:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="KS0DsQsM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0C88823DE;
+	Mon, 13 Jan 2025 03:21:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from SHSQR01.spreadtrum.com (mx1.unisoc.com [222.66.158.135])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBB8C749C;
-	Mon, 13 Jan 2025 02:59:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28C4B4174A;
+	Mon, 13 Jan 2025 03:21:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=222.66.158.135
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736737179; cv=none; b=aYAvb/nb14xd2DG46bwSSM6INlyn8OJW0sENDOWZwlbWsiKRjvHFkMDml5HaFLCa4aPp/qYRG1J+t2YsdBLk0lVRZB65x1LisSMa4qnkU4mtTr9tmi1D/LmYrrccJCWtgyxmz4V+G7KlplNkQ6RL6qwZuafvdpTzlJUNGEXKK9g=
+	t=1736738513; cv=none; b=a8Eh1PboYn/lNXziKfkmbzM4W/LjOcAHtuWDlgABkALlBIvfny+mesIz7mZwDEoHfq+3za9w9w0Ff0oSExEjgypY481tKJEEGOHS+8W5/8vpfcVeIKr9RZ8QmBk+GdUJ+w4sbxk50OVrg+bQTmyrY2oS0QLz2lYm2cxMxPIzcNM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736737179; c=relaxed/simple;
-	bh=BcAl9u+K5vYiMaqtPIMLtTKIylCdEyNnUF/i4eAGuOY=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=P396GkSV3hSbwD8MFcaredaFlr47FXfz4tnc0xWG+KJqRz8lM/PuvE9QBcPoImCcJ0tWyP8Hcg1xE5giz/psQ7pua+FvRYMF2ekNVFRPP1ObUkZ8P4vJcLMFthfmDP8lJs/7/8mwvewTR6e7JJNgDiSAe0yfnPTEjUcB0D0t5VA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=KS0DsQsM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50D2sIJO030898;
-	Mon, 13 Jan 2025 02:59:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Rw1HisMX7BaCF0HZd08xQbXqYY/N4Tw0QDxlmJ/5qaU=; b=KS0DsQsMwQR9cMV0
-	bNYkzdEfZzhLu0lJN8LmQw8OQLp8MeR7eZeKyMadG/bps2Iu9Rdn8BzbkrJloZJr
-	h9PEr+yE2qXvNfiozIiibNpRv9678N0PNVAwtwT8iLeqYBfTs5TGrnNp7tsfPELy
-	OucNqR+QqJQj4QJonwYf2HnSbX78yZKZDIL8ynAqmVGcQ6h68HTijnJPeioPHy5U
-	5uWGVoZVZK1fSurbAxB9VBLrGnD/72/f7NLrQQTUMOQExQZmBjGCVT3WHPlvF8DP
-	Oi7jVQTxAhIsRTiU23jk2wkWzWqWo4r4GK06TVRBS+rl7RbP1s1uQlogYBj+qxmR
-	VDQAmQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 444tevr0c7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 02:59:14 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50D2xDuY019382
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 02:59:13 GMT
-Received: from [10.64.68.72] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 12 Jan
- 2025 18:59:06 -0800
-Message-ID: <c1128991-29fe-47e2-887e-10f63cb4f7f5@quicinc.com>
-Date: Mon, 13 Jan 2025 10:59:04 +0800
+	s=arc-20240116; t=1736738513; c=relaxed/simple;
+	bh=JXmigsw5VdGaOjR9q5ZqKgCdE6l5XdMEjE18F8MpZIY=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=eqjmng9rySMSGRzOO628yOsLPWal2tgjZStHSXwqo1y+PgNWGoC2XZH900hjoEKTGre9eJ5/nHviwNiKZCACuyiYVpyl6YMPgGarokOY0Tw4Qi7vLRFfbwyPl3OrSVgW2nNVnEatI+FNdxMvdSGzvCobL/C/ACYK63E1QWJToWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=unisoc.com; spf=pass smtp.mailfrom=unisoc.com; arc=none smtp.client-ip=222.66.158.135
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=unisoc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=unisoc.com
+Received: from dlp.unisoc.com ([10.29.3.86])
+	by SHSQR01.spreadtrum.com with ESMTP id 50D3JPTp015679;
+	Mon, 13 Jan 2025 11:19:25 +0800 (+08)
+	(envelope-from Wenhua.Lin@unisoc.com)
+Received: from SHDLP.spreadtrum.com (shmbx06.spreadtrum.com [10.0.1.11])
+	by dlp.unisoc.com (SkyGuard) with ESMTPS id 4YWcq52MYGz2PgVth;
+	Mon, 13 Jan 2025 11:16:17 +0800 (CST)
+Received: from zeshkernups01.spreadtrum.com (10.29.55.99) by
+ shmbx06.spreadtrum.com (10.0.1.11) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Mon, 13 Jan 2025 11:19:22 +0800
+From: Wenhua Lin <Wenhua.Lin@unisoc.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby
+	<jirislaby@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang
+	<baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>, Cixi
+ Geng <cixi.geng@linux.dev>,
+        <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, wenhua lin
+	<wenhua.lin1994@gmail.com>,
+        Wenhua Lin <Wenhua.Lin@unisoc.com>,
+        Xiongpeng Wu
+	<xiongpeng.wu@unisoc.com>,
+        Zhaochen Su <Zhaochen.Su@unisoc.com>,
+        Zhirong Qiu
+	<Zhirong.Qiu@unisoc.com>
+Subject: [PATCH V2 0/2] serial: sprd: Modification of UNISOC Platform UART Driver
+Date: Mon, 13 Jan 2025 11:19:15 +0800
+Message-ID: <20250113031917.3354988-1-Wenhua.Lin@unisoc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: (subset) [PATCH v4 0/3] Enable UFS on QCS615
-From: Xin Liu <quic_liuxin@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-scsi@vger.kernel.org>, <quic_jiegan@quicinc.com>,
-        <quic_aiquny@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        <quic_sayalil@quicinc.com>
-References: <20241216095439.531357-1-quic_liuxin@quicinc.com>
- <173631142070.110881.10056360680137751835.b4-ty@kernel.org>
- <6292f709-ca4b-423f-8d78-e7e0531b3026@quicinc.com>
-In-Reply-To: <6292f709-ca4b-423f-8d78-e7e0531b3026@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: GQaxR1X0zUXOyUkGHu0vCt0EOlg2OMFb
-X-Proofpoint-GUID: GQaxR1X0zUXOyUkGHu0vCt0EOlg2OMFb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- mlxscore=0 suspectscore=0 bulkscore=0 impostorscore=0 lowpriorityscore=0
- spamscore=0 phishscore=0 adultscore=0 mlxlogscore=999 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501130023
+Content-Type: text/plain
+X-ClientProxiedBy: SHCAS03.spreadtrum.com (10.0.1.207) To
+ shmbx06.spreadtrum.com (10.0.1.11)
+X-MAIL:SHSQR01.spreadtrum.com 50D3JPTp015679
 
-I mean the modification of binding.
-dt-bindings: ufs: qcom: Add UFS Host Controller for QCS615
+In order to be compatible with UNISOC's new UART IP, the UART driver uses
+private data for adaptation. Patch1 adds UART timeout interrupt BIT17, and
+the old project uses BIT13. In order to be compatible with all projects,
+private data is used for adaptation. Patch2 adds a new compatible string.
 
-https://lore.kernel.org/all/20241216095439.531357-2-quic_liuxin@quicinc.com/
+Change in V2:
+-Change commit message in PATCH 2/2.
+-Add a new items supports sc9832 compatible string in PATCH 2/2.
 
-在 2025/1/13 10:02, Xin Liu 写道:
-> This patch has been reviewed one month ago, do you have any other 
-> comments? Thank you very much.
-> 
-> https://lore.kernel.org/linux-arm-msm/20241216095439.531357-2- 
-> quic_liuxin@quicinc.com/
-> 
-> 在 2025/1/8 12:43, Bjorn Andersson 写道:
->>
->> On Mon, 16 Dec 2024 17:54:36 +0800, Xin Liu wrote:
->>> From: Sayali Lokhande <quic_sayalil@quicinc.com>
->>>
->>> Add UFS support to the QCS615 Ride platform. The UFS host controller and
->>> QMP UFS PHY hardware of QCS615 are derived from SM6115. Include the
->>> relevant binding documents accordingly. Additionally, configure UFS- 
->>> related
->>> clock, power, and interconnect settings in the device tree.
->>>
->>> [...]
->>
->> Applied, thanks!
->>
->> [2/3] arm64: dts: qcom: qcs615: add UFS node
->>        commit: a6a9d10e796957aefbc4c8d53ed7673714e83b31
->> [3/3] arm64: dts: qcom: qcs615-ride: Enable UFS node
->>        commit: 4b120ef62ed653f4bc05e5f68832d2d2ac548b60
->>
->> Best regards,
-> 
+Wenhua Lin (2):
+  dt-bindings: serial: Add a new compatible string for UMS9632
+  serial: sprd: Add support for sc9632
 
+ .../devicetree/bindings/serial/sprd-uart.yaml |  5 +++
+ drivers/tty/serial/sprd_serial.c              | 41 ++++++++++++++++---
+ 2 files changed, 41 insertions(+), 5 deletions(-)
+
+-- 
+2.34.1
 
