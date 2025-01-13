@@ -1,149 +1,144 @@
-Return-Path: <devicetree+bounces-138245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15C5AA0C3DD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 22:38:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C1DBA0C3FC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 22:47:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 393321887152
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 21:38:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF94E18858BE
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 21:47:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAF991D61BF;
-	Mon, 13 Jan 2025 21:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06BD41DAC90;
+	Mon, 13 Jan 2025 21:46:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rqu4QIw0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fsvW5+dR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2885E146A66;
-	Mon, 13 Jan 2025 21:38:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FFF01C68B6;
+	Mon, 13 Jan 2025 21:46:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736804282; cv=none; b=BwJwOda69OSJvUpVuUcLKaBMVNhr3pUCctC6U8Aq/CRh+EjQ/uyMoL27NmDaCZRNPAIwj/9i/eKvnR4Ym715t3oQt1vxU/mxaJSpNsTXvf65Xe0NdWb8wmpSnLd2rtqGabVqTiaoogZM5L6sNoaZE0vqeGnyrrWeQcpZyD8Q7uE=
+	t=1736804816; cv=none; b=D8e2oz9pAVnTXst9fZzlxD5mbNJMp4svzmTgdJRr4cRWVt4eH5M9BZwlT9f/2O4LQp0DvDaDHF89GYstVV+Mf+GED0Z607jB4U6zbvabzBQcYON2OMFPa6qVw/4IqkoRCPwOZTKenyjr8/f2u+p/D63E54tzoSZnHU8UVmjvHxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736804282; c=relaxed/simple;
-	bh=TL3dgHo15L+Av+lMP/IMBMM2NUM8OSveBZEp0Vf4b6o=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KYVojH/6+hAjEwcT6IJvDiXfLY454lkY1p/Rb6g+urqzZjnIAz2IBp59+W6j7TPpA8OVggI6vL7DSyW9GK5tzBFuhkbb3VPGwJkq1d7m7RM2kxgxE658Nno0uPNeJS6yOfC8TSwZwY/kDmQgdGsBAbMnWqQ3gKLkrYJuV9A+MrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rqu4QIw0; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4362f61757fso45831985e9.2;
-        Mon, 13 Jan 2025 13:38:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736804279; x=1737409079; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=btAHjp/MHlc7ntbhptRjA5RM1/6iiaQV5XzrNvH2vpc=;
-        b=Rqu4QIw0JYdGsS7OvWmjEL/Q4iz6CTwA/Bfh2Si/ZEZABkcQZlpw4UxOBLw1FoHGuc
-         7CQ+3h86FwqUOikBsLSHiFNXVtQKhIum8RCoa99fHis6jcGMc2GFoOt05cqx59uAV0Ow
-         xD7Z7Zll6GvRKffSb0YU3GZ7bmkEQQUaZKFlxIpElnbVbHZjgnC7Tdv1Gw1oiMxgxIk9
-         gsCeRkyzyEK9gk1oii6HaTz4GwWE6Revr+xq6qsvDR1qgeGRgG8EW4zaKGavTH+AkwoY
-         K0r1zV376isGlq+WWIw7VM0XYe6jNepxikT/+gHAB1oDZQ9+Ne7SdTR9wdPnxQeC+ppn
-         RMxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736804279; x=1737409079;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=btAHjp/MHlc7ntbhptRjA5RM1/6iiaQV5XzrNvH2vpc=;
-        b=AMgL/zhe/iJLUKVdkYoj+tgziQBddFlglPBcHKjUIRx6DbNlRb62SOi4lKB3zGYGhS
-         dSCDhU+PWuKjdVtKH13Z7+x0yd5DLMygK3V00LgVFTrQySbLxtXdVAppuNxJg1cWXKh/
-         U+N8p6OZTP/glHd87Urb0+23meQhEDog2mlcgswLB1MgFdHzhy8sHkAzYVRqZeLSY9h5
-         YJucUnDbPWbGOCQCzDCFtjPqASQNX9SfGTQW8JTGR+YzcgdEYEMjUzaLBoT1BHdyzus1
-         hAEGBsIl54aQQlmt3vEvA7vO5m1cKZDlVEWgAI2sdfpAqT3a16fOoavwFujB0e342V7G
-         qM/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCV8D82kKOrkoNGzEicq7TBpPAsPhzJVKdFd/1BaHZhRrrfD/Nua3JwKuLM+Qrwjzo77SSoCAxAgKM8JZPCV@vger.kernel.org, AJvYcCWUWnlES7iRHyxZ89nkqc0PBPy4GrEsbRZWt0j7tyl9C169wAe089d4wxOdkh/3NZS+PwHdojvSB8xg@vger.kernel.org, AJvYcCXk9S91Zp0U9QCLFolCtvValAy7FAzAoQGtEkBjh5UoqHUESYHtVtzJZ5nB7jRCQ8GEX0ZlLpkRvy1G@vger.kernel.org
-X-Gm-Message-State: AOJu0YzSVD3nnlAueycvNt3BSbTVVsAsvy4VYoiir+hCkcqC/HHcuhV+
-	ty7LfUW6CyGFQMfd4RvkjgNBXQcYsbKq32bycEYpPiqZMeO8XNpyWNThqQ==
-X-Gm-Gg: ASbGncuE8S+QbyQmI4gFchcKfhcJC2hN/Ra1d3N8YbeMGPKy0ocUVA/EI/kIEPwx3pA
-	pvLUT7qKy+rVRDwStb8Qg7jxuFtVtjDvEQOP9NM2ZMHgz/8m4GwqFDP+N6D5qSHpOwsm3Q7UmPS
-	7a0XBypx7dbOR1IbpZrz/q95GYYF4bvYPoVzj+D3RqiutwCn2F7iOnJks1482or9ezKbFKgEvvu
-	jhUPziV/fSI+7X9tRK84uLmiNawTYp1lHczJ1MjcQmEFILAAGVzVrJEljfIAxMWefy2WdFXJn8k
-	esNJvLpNYhOo
-X-Google-Smtp-Source: AGHT+IGhjYmLHDzEmNKUqpVAG6eKWiqlox4OoiaK5qVHeMLESLMtvrrp4P82zdVj5ZoGIPHjeRLB/A==
-X-Received: by 2002:a05:600c:5246:b0:434:feb1:adbb with SMTP id 5b1f17b1804b1-436e271d5d6mr207240855e9.31.1736804279261;
-        Mon, 13 Jan 2025 13:37:59 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2ddd113sm193349145e9.25.2025.01.13.13.37.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2025 13:37:58 -0800 (PST)
-Message-ID: <678587b6.050a0220.32320f.317d@mx.google.com>
-X-Google-Original-Message-ID: <Z4WHtK_-DGSGzYyi@Ansuel-XPS.>
-Date: Mon, 13 Jan 2025 22:37:56 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-	upstream@airoha.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 2/4] dt-bindings: clock: drop NUM_CLOCKS define for
- EN7581
-References: <20250112133953.10404-1-ansuelsmth@gmail.com>
- <20250112133953.10404-2-ansuelsmth@gmail.com>
- <15742b3ea7b5ee1cfdeb78657e9dc4c5.sboyd@kernel.org>
+	s=arc-20240116; t=1736804816; c=relaxed/simple;
+	bh=hUnnOWugqb4RWlmCrJy6G05aZvBoiDwZ9bY8/w40AW8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=ZnBW8bssBZqPA0yRfvawOBrFUfi3LkkrMvCaGDQaaS9WtdeUih7puRq+j9dktIsgmhl9g/v/R+ZhZVNLuJtWvT1uROz9AnkDIl1wjGNvOLt08eXiWu9oE5333oYztXhXYywUXOor5NVdWnljaGVBCjMQ3GewHQmFlLttPJRsLxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fsvW5+dR; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50DDWYs8007213;
+	Mon, 13 Jan 2025 21:46:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=dhvWu87/0R3YAZvNh5uBEJ
+	rXLjGOkhMumYnUwn/LIT4=; b=fsvW5+dROvMhkBl1kdUK5Tk0vKNf+jPD3uifRT
+	QoSUMEkVcDgl9oUNhupZYJFm0Kxg36iQ2acTgc9zgNJ/QTF3BToZ8ZRCB5taD3Gd
+	kOEJdjAbLY4sG8ufXcN3pbQ1LSSyeltDTixbiClwxbTc3KmalFFmvYko8bvpTYBr
+	DWjXaaa1hRvXzIAujumVJOlVQxhKhO9yNgnTZ/A4HSNJqWN3GDIVmOGjHZUVbFfs
+	iBZjqVXlvbGA5H4nt4klYWsv5RtrBv70yB/XLL32J5O8C11LJpsrAWKBZGZYcadK
+	FpvnaeEPznBsQO9FEAZ5yz33+3FPzBJvYM0wR9QuvjI92hHw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4453tas4qt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 21:46:33 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50DLkWnF011155
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 21:46:33 GMT
+Received: from hu-molvera-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 13 Jan 2025 13:46:32 -0800
+From: Melody Olvera <quic_molvera@quicinc.com>
+Subject: [PATCH 0/5] Add UFS support for SM8750
+Date: Mon, 13 Jan 2025 13:46:23 -0800
+Message-ID: <20250113-sm8750_ufs_master-v1-0-b3774120eb8c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <15742b3ea7b5ee1cfdeb78657e9dc4c5.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAK+JhWcC/y3MQQqDQAyF4atI1g4koo7tVaTIoFGz0LaJFkG8u
+ 0N1+T14/w7GKmzwTHZQ/onJe46gNIF2DPPATrpoyDArkNA7mypfYLP21kzBFlb3CDkRloR58BB
+ /H+Vetn+zfl1W/q4xvdzjcZw84O4zeAAAAA==
+X-Change-ID: 20250107-sm8750_ufs_master-9a41106104a7
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Satya Durga Srinivasu Prabhala
+	<quic_satyap@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-scsi@vger.kernel.org>, Melody Olvera <quic_molvera@quicinc.com>,
+        "Nitin Rawat" <quic_nitirawa@quicinc.com>,
+        Manish Pandey
+	<quic_mapa@quicinc.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736804792; l=1231;
+ i=quic_molvera@quicinc.com; s=20241204; h=from:subject:message-id;
+ bh=hUnnOWugqb4RWlmCrJy6G05aZvBoiDwZ9bY8/w40AW8=;
+ b=PiuNkryuy/SikDb172DKfYRkwbTB45YbU/7XwdEw6YlkTGuqU79oiIsKRLwMQdYfVHOJ1fI6/
+ 7+DhBKbwKD6B6pZuMfi2CuzPUNkBptGrF6NlCveul7Qw4m7EFxWJ10Z
+X-Developer-Key: i=quic_molvera@quicinc.com; a=ed25519;
+ pk=1DGLp3zVYsHAWipMaNZZTHR321e8xK52C9vuAoeca5c=
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: V1SSnG1BkWwwSfi0iO7KsqE1-EmvSOIJ
+X-Proofpoint-GUID: V1SSnG1BkWwwSfi0iO7KsqE1-EmvSOIJ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 spamscore=0 malwarescore=0 bulkscore=0 clxscore=1011
+ mlxlogscore=698 mlxscore=0 lowpriorityscore=0 suspectscore=0 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501130171
 
-On Mon, Jan 13, 2025 at 01:33:35PM -0800, Stephen Boyd wrote:
-> Subject says EN7581....
-> 
-> Quoting Christian Marangi (2025-01-12 05:39:38)
-> > Drop NUM_CLOCKS define for EN7581 include. This is not a binding and
-> > should not be placed here. Value is derived internally in the user
-> > driver.
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> > Changes v5:
-> > - Add ack tag
-> > Changes v4:
-> > - Move to patch 2 (improves bisectability)
-> > Changes v3:
-> > - Add this patch
-> > 
-> >  include/dt-bindings/clock/en7523-clk.h | 2 --
-> >  1 file changed, 2 deletions(-)
-> > 
-> > diff --git a/include/dt-bindings/clock/en7523-clk.h b/include/dt-bindings/clock/en7523-clk.h
-> > index 717d23a5e5ae..28e56745ccff 100644
-> > --- a/include/dt-bindings/clock/en7523-clk.h
-> > +++ b/include/dt-bindings/clock/en7523-clk.h
-> > @@ -12,6 +12,4 @@
-> >  #define EN7523_CLK_CRYPTO      6
-> >  #define EN7523_CLK_PCIE                7
-> >  
-> > -#define EN7523_NUM_CLOCKS      8
-> 
-> But this is EN7523
-> 
-> drivers/clk/clk-en7523.c:539:25: error: ‘EN7523_NUM_CLOCKS’ undeclared (first use in this function)
->   539 |         clk_data->num = EN7523_NUM_CLOCKS;
->       |                         ^~~~~~~~~~~~~~~~~
+Add UFS support for SM8750 SoCs.
 
-Hi Stephen,
+Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+---
+Nitin Rawat (5):
+      dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy: Document the SM8750 QMP UFS PHY
+      phy: qcom-qmp-ufs: Add PHY Configuration support for SM8750
+      dt-bindings: ufs: qcom: Document the SM8750 UFS Controller
+      arm64: dts: qcom: sm8750: Add UFS nodes for SM8750 SoC
+      arm64: dts: qcom: sm8750: Add UFS nodes for SM8750 QRD and MTP boards
 
-the same define is used for both EN7523 and EN7581, do you want me to resubmit with a
-better description?
+ .../bindings/phy/qcom,sc8280xp-qmp-ufs-phy.yaml    |   2 +
+ .../devicetree/bindings/ufs/qcom,ufs.yaml          |   2 +
+ arch/arm64/boot/dts/qcom/sm8750-mtp.dts            |  18 +++
+ arch/arm64/boot/dts/qcom/sm8750-qrd.dts            |  18 +++
+ arch/arm64/boot/dts/qcom/sm8750.dtsi               |  81 ++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v6.h |  12 ++
+ .../qualcomm/phy-qcom-qmp-qserdes-txrx-ufs-v7.h    |  68 ++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-ufs.c            | 174 ++++++++++++++++++++-
+ 8 files changed, 374 insertions(+), 1 deletion(-)
+---
+base-commit: 37136bf5c3a6f6b686d74f41837a6406bec6b7bc
+change-id: 20250107-sm8750_ufs_master-9a41106104a7
 
-Both clock are updated so no regression.
-
+Best regards,
 -- 
-	Ansuel
+Melody Olvera <quic_molvera@quicinc.com>
+
 
