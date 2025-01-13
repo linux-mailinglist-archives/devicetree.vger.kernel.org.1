@@ -1,120 +1,92 @@
-Return-Path: <devicetree+bounces-138020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58C3DA0B752
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:44:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 759D0A0B758
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:45:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EDEF47A26D0
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:44:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 875B01885557
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:45:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B737B23DE80;
-	Mon, 13 Jan 2025 12:43:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B32222F175;
+	Mon, 13 Jan 2025 12:43:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AbgcJxC+"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="hBPLmk6G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EABC0233144;
-	Mon, 13 Jan 2025 12:43:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81421231CA4;
+	Mon, 13 Jan 2025 12:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736772196; cv=none; b=bY33Tvaccch+lSmJzusXcq65pU6L2A5opb114Aoa7w0qBQ4Dija0TNv27ZQqH+d+shtVpC+GCOpF1fGYUNKu2JVdzAa+DbcaJjBTNV2zUqNnRRtX2j50j7gP44Bm5G9pJZvTe0SP1NpwupY5FXYu4nRCBDIQRcSgHdVYhOY74jU=
+	t=1736772216; cv=none; b=t1rUsYkJhmvhdiWjrg9/l3hr+ZSeX3zx0f9qsgnMQmDv+ZgcRqfnex2aFerspAvGAlV8hWNaEDoA5rdUOwQ2zhvOqvrGqOkBj08w11LP/lV48S8Q0Y2Cly/FbZaUn21cQo2q8z9r3wbIL+ouCRNlBWjLwmQoV6K23Bi72fYUiHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736772196; c=relaxed/simple;
-	bh=Zm3hNlIJK4Ghndaqp+86HMZP8tXSaWZb3j50onuWCKQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Elf8M6K0uWPTqs+6cZEhvSj5v9lbNq9rzpZ0TYAee0xckxoB2EqkPKCpUo7DV6bzEIv5z/AXaTt9g8pYBAKWCe2F7mi3ou4W8ObHGqa6aJuw3S3PLcwFSecq3oWOWs4vnaew80wNMHcV2GspYEpuUcH2on7gcOllQkDTzR55G/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AbgcJxC+; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C110C240011;
-	Mon, 13 Jan 2025 12:43:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736772191;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=T34nWd9yFdkrXkigkffAdGJP10kcUe8wrA4kltse+QE=;
-	b=AbgcJxC+/JM45CvkHwzXFbyfZj/IpLhq01NQXqSBWnyH+EBH4YXgvdVOrm89uCme5r/8mj
-	pNGl/xCSYwQbLhbD0gG46oPgCX2IlHdGGZSDxkGwfCrb0D9EH74m6VacUNmorIUN3os0FO
-	Wt+08mS3xD8KoaLRpJUemuYxbAerFfEun3XTgJ3GRhNijJK4F+LR8IiMU/b3r0oimgHHul
-	ePYWe3YTpkn73nYMetcbDsL39mG2USqZGydHb5NGLRUAqkE4gkIi3ISir3lcKNytVVqGmE
-	Q33yJOme6wRFTGtkkGYSzjHDWNTQ9l11exP0/vFkDlb7oysfNnNi5l8PevlMNw==
-From: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Date: Mon, 13 Jan 2025 13:42:31 +0100
-Subject: [PATCH v3 7/7] MAINTAINERS: Add entry on MAX7360 driver
+	s=arc-20240116; t=1736772216; c=relaxed/simple;
+	bh=XqOdrAUyZQEqWO9kl3ygr7Rm5FHHWvXG6zMZ73zjWoI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iuoLjWHPTf0DucWGp/oUOe0vqed1LxK8vnnehK9Ft8r0lcPmeJLiAsfRtBpUVCuJwilDbDcu6xIvLCiDF320UpK+mLuD8S2JmbkCciTWiZWhXD9r0WCC+JXL2EeAT8Z/S7Rf2h6huigDfmZnzVXS/YGOQsbzPAuz8xgA+bsYHaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=hBPLmk6G; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1736772212;
+	bh=XqOdrAUyZQEqWO9kl3ygr7Rm5FHHWvXG6zMZ73zjWoI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hBPLmk6GWQy1vyJIfBrutua3CRI70AufqxQbmPahw15Hj9nSyI1dQSQc6qPqnSAHk
+	 qrNtxLP7c6rsf6ufv/DpLShIacZVQ1gdEz91frKosTaIvYfq/N8v9DqRiQrWhZ7/go
+	 21Lw5BeLj+GOGAN3x12YRhWxeMmeavLRAqx8hk0o00/uJq5Hg0qa4R0tDsZQ9lrkQw
+	 WHwchd+kNiH/8Kf2WDIjNqXvQSAit5h283+B/RSdGazOUKdgqQpc4MnQY7E928d7N9
+	 lnnBETKvzKen4SCgbMJrafrG8oLQkfjxqPU68KjLJhAbISI/0dXl82bz0go3d14Qnt
+	 /oFEr7Gt0iQUA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 22DED17E04AC;
+	Mon, 13 Jan 2025 13:43:32 +0100 (CET)
+Message-ID: <97ea80ef-abf4-445e-979a-4357dbae2c2b@collabora.com>
+Date: Mon, 13 Jan 2025 13:43:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: phy: mediatek,xsphy: add property
+ to set disconnect threshold
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250111141542.5007-1-chunfeng.yun@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250111141542.5007-1-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250113-mdb-max7360-support-v3-7-9519b4acb0b1@bootlin.com>
-References: <20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com>
-In-Reply-To: <20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Kamel Bouhara <kamel.bouhara@bootlin.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-pwm@vger.kernel.org, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736772185; l=1042;
- i=mathieu.dubois-briand@bootlin.com; s=20241219; h=from:subject:message-id;
- bh=Zm3hNlIJK4Ghndaqp+86HMZP8tXSaWZb3j50onuWCKQ=;
- b=BXIHAy/REsXdcegRFICgGS+96EvHZVhydynAR4c/AVNhKvcpCQADJJsXK0YRu0Rm5Kg73QILh
- 7sPmor/D0sIDkTDVkREVLCwNW6NXriuiMNrjWrLyZeKB3QhpQGY9auL
-X-Developer-Key: i=mathieu.dubois-briand@bootlin.com; a=ed25519;
- pk=1PVTmzPXfKvDwcPUzG0aqdGoKZJA3b9s+3DqRlm0Lww=
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-Add myself as maintainer of Maxim MAX7360 driver and device-tree bindings.
+Il 11/01/25 15:15, Chunfeng Yun ha scritto:
+> Add a property to tune usb2 phy's disconnect threshold.
+> And add a compatible for mt8196.
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 
-Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
----
- MAINTAINERS | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index baf0eeb9a355..18a7b7cf0b60 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14132,6 +14132,18 @@ L:	linux-iio@vger.kernel.org
- S:	Maintained
- F:	drivers/iio/temperature/max30208.c
- 
-+MAXIM MAX7360 KEYPAD LED MFD DRIVER
-+M:	Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/gpio/maxim,max7360-gpio.yaml
-+F:	Documentation/devicetree/bindings/mfd/maxim,max7360.yaml
-+F:	drivers/gpio/gpio-max7360.c
-+F:	drivers/input/keyboard/max7360-keypad.c
-+F:	drivers/input/misc/max7360-rotary.c
-+F:	drivers/mfd/max7360.c
-+F:	drivers/pwm/pwm-max7360.c
-+F:	include/linux/mfd/max7360.h
-+
- MAXIM MAX77650 PMIC MFD DRIVER
- M:	Bartosz Golaszewski <brgl@bgdev.pl>
- L:	linux-kernel@vger.kernel.org
-
--- 
-2.39.5
-
+> ---
+> based on kernel 6.13-rc1
+> 
+> this property is porting from t-phy driver, due to the u2 phy are similar.
+> ---
+>   Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml | 8 ++++++++
+>   1 file changed, 8 insertions(+)
+> 
 
