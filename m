@@ -1,248 +1,273 @@
-Return-Path: <devicetree+bounces-138105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54E3DA0BAD4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:01:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0723CA0BACD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:00:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E50BC7A5007
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:59:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 618EF165F9E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:00:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E35A23D3E4;
-	Mon, 13 Jan 2025 14:53:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B1FE2297E2;
+	Mon, 13 Jan 2025 14:53:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NMyL1ZQX"
+	dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b="N5X1yVZO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BE7F28EC64;
-	Mon, 13 Jan 2025 14:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D45522BAC8;
+	Mon, 13 Jan 2025 14:53:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.243.120.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736780011; cv=none; b=rXHXr0XLkjPXwMCrqu3c92n4WQP1Di9oet+mg2NjMxMpKARLIrjr3mKajsl6AMypGmO84k0XnU7a6Q9/zS+kE+vfPj4G6DZ46obpkaWx/ZnuvnurqzfbpdpN5kGcRjDgHzAEgAZyXYUkTzzk7xZ/CLalovG9pIkTO8W12ZIylF4=
+	t=1736780025; cv=none; b=CuiwLie/U7EwwzXpzKQvSIxUMbIqgI51Gie3IUW1nmqtQpgAmyYNThjWV3gQjmax2HsOdlduCAY0w3LZ6yG4RZQ+xiPII3qtCSVxYwB4baSHuR9d+oh7umAu4TlIUuaWOQPdQlT0Nvuvqp4x9sidNcJR1/OIAIFn+qGPAIEzX6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736780011; c=relaxed/simple;
-	bh=47AStvkbj+NCmZLLkXJURGi/6ahp/SyXHJbrlK4nG/0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=B4Qko4Dx//fbe5pSAQcGfk/V9ZlO4xTAtc/YmwnTJoL3nUpodEhAheaLeGFQDykRjadeThwKpAp6OfTkHaXQROreDLAqfoPW2UaA4intpN0Hx2faon9AjBqh5PJeeqSbtHfCUjMRfa8pWSGNTBQJ4kq3w0OooljdnLHyqh8iHhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NMyL1ZQX; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1736780007;
-	bh=47AStvkbj+NCmZLLkXJURGi/6ahp/SyXHJbrlK4nG/0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=NMyL1ZQXcausTvnCxXGdKNrSE8r4ftoPsbpOrdbzJaqD475s5YQ2shv2A8vI4lhXQ
-	 tflEo0krzrahtybNUFnmhANynWkWn76Fbkp6raB/PaRIDvRfSTdy2k3QhaeHj71enb
-	 rW9StqoiUC0ZzfZR+hrbG+ogWBPU0FQ/kCt2T47URz/O/mUwnQgCZkD+B8LPPkWV8Y
-	 Lb2g/lo5B4ZPTq0wOcWZ2c7GB+kuXHMPoDrSTWmt+bwtKcvT2xeVqpf7SUUif/gWNt
-	 iX9YeAFLvHKUQG1YfR/UvhjBlFDkmzju56HKa24VskcRc8shF2VQJap1f3PADwCFIM
-	 U42oNL/YnxCzw==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8030917E0FAA;
-	Mon, 13 Jan 2025 15:53:26 +0100 (CET)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: chunkuang.hu@kernel.org
-Cc: p.zabel@pengutronix.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	ck.hu@mediatek.com,
-	jitao.shi@mediatek.com,
-	jie.qiu@mediatek.com,
-	junzhi.zhao@mediatek.com,
-	dri-devel@lists.freedesktop.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com,
-	dmitry.baryshkov@linaro.org,
-	lewis.liao@mediatek.com,
-	ives.chenjh@mediatek.com,
-	tommyyl.chen@mediatek.com,
-	jason-jh.lin@mediatek.com
-Subject: [PATCH v5 34/34] drm/mediatek: mtk_hdmi_v2: Add debugfs ops and implement ABIST
-Date: Mon, 13 Jan 2025 15:52:32 +0100
-Message-ID: <20250113145232.227674-35-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250113145232.227674-1-angelogioacchino.delregno@collabora.com>
-References: <20250113145232.227674-1-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1736780025; c=relaxed/simple;
+	bh=bqzH04A6cBKVCFaS4bRYc+LsF/h7ks2mUkV/inCw8hM=;
+	h=Date:From:To:Cc:Message-Id:In-Reply-To:References:Mime-Version:
+	 Content-Type:Subject; b=WWl2pcw0lz8DmBoloytejLmQio2yUtacUzWEMMA9Y67wJ24W7S+D1npeTSqvegqcniqzf7KlXGqnSXn9ux47nbLVDZMk97JXzbiuEdeeHJHNPKPKWHld/vY7AACTJzhlLoh/ZEwK457KONGkpDj4Kcdw2jLWbCRLtQRAPNXZwoA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com; spf=pass smtp.mailfrom=hugovil.com; dkim=pass (1024-bit key) header.d=hugovil.com header.i=@hugovil.com header.b=N5X1yVZO; arc=none smtp.client-ip=162.243.120.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hugovil.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hugovil.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+	; s=x; h=Subject:Content-Transfer-Encoding:Mime-Version:Message-Id:Cc:To:From
+	:Date:subject:date:message-id:reply-to;
+	bh=U11dyIvXIMO3dAD1yKnKPDScOmCAaiP0x5FqmbSwOHk=; b=N5X1yVZOgWHXAITtuskUc8Tcf1
+	cdEoCHq8STkxjud5NReqxsy1pQkXCYt8Hw2UhjCCeK4IiR9A7p/IMuWSbOssPj5L00wa9C4lcIojU
+	If5xl959lyjB9rPXV4+stnbg/1d+9C9r2jos1Am2cIFJ6QfHsRdJfbdoBM9aIDarh+BU=;
+Received: from modemcable168.174-80-70.mc.videotron.ca ([70.80.174.168]:37960 helo=pettiford.lan)
+	by mail.hugovil.com with esmtpa (Exim 4.92)
+	(envelope-from <hugo@hugovil.com>)
+	id 1tXLoi-00073g-Na; Mon, 13 Jan 2025 09:53:25 -0500
+Date: Mon, 13 Jan 2025 09:53:24 -0500
+From: Hugo Villeneuve <hugo@hugovil.com>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Andre Werner <andre.werner@systec-electronic.com>,
+ "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+ "jirislaby@kernel.org" <jirislaby@kernel.org>, "hvilleneuve@dimonoff.com"
+ <hvilleneuve@dimonoff.com>, "andy@kernel.org" <andy@kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+ "lech.perczak@camlingroup.com" <lech.perczak@camlingroup.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+ <conor+dt@kernel.org>, "robh@kernel.org" <robh@kernel.org>
+Message-Id: <20250113095324.560a091d90642528ae820aae@hugovil.com>
+In-Reply-To: <CAHp75VdP7M4Jwjn095mwkr5Eh6mwvHXGthKxGwVkyYcpKnea+w@mail.gmail.com>
+References: <20250110073104.1029633-1-andre.werner@systec-electronic.com>
+	<20250110073104.1029633-2-andre.werner@systec-electronic.com>
+	<CAHp75VdP7M4Jwjn095mwkr5Eh6mwvHXGthKxGwVkyYcpKnea+w@mail.gmail.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 70.80.174.168
+X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Level: 
+X-Spam-Report: 
+	* -1.0 ALL_TRUSTED Passed through trusted hosts only via SMTP
+	* -1.5 NICE_REPLY_A Looks like a legit reply (A)
+Subject: Re: [PATCH v5 2/2] serial: sc16is7xx: Add polling mode if no IRQ
+ pin is available
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 
-Implement the Automated Built-In Self-Test ABIST functionality
-provided by the HDMIv2 IP and expose it through the "hdmi_abist"
-debugfs file.
+On Fri, 10 Jan 2025 20:37:29 +0200
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-Write "1" to this file to activate ABIST, or "0" to deactivate.
+> пʼятниця, 10 січня 2025 р. Andre Werner <andre.werner@systec-electronic.com>
+> пише:
+> 
+> > Fall back to polling mode if no interrupt is configured because there
+> > is no possibility to connect the interrupt pin.
+> > If "interrupts" property is missing in devicetree the driver
+> > uses a delayed worker to pull the state of interrupt status registers.
+> >
+> > Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
+> > ---
+> > V2:
+> > - Change warning for polling mode to debug log entry
+> > - Correct typo: Resuse -> Reuse
+> > - Format define with missing tabs for SC16IS7XX_POLL_PERIOD
+> > - Format struct declaration sc16is7xx_one_config with missing tabs for
+> > polling and shutdown
+> > - Adapt dtbinding with new polling feature
+> > V3:
+> > - Use suffix with units and drop a comment SC16IS7XX_POLL_PERIOD_MS. Sorry
+> > for that miss.
+> > - Make Kernel lowercase.
+> > V4:
+> > - Reword commit messages for better understanding.
+> > - Remove 'shutdown' property for canceling delayed worker.
+> > - Rename worker function: sc16is7xx_transmission_poll ->
+> > sc16is7xx_poll_proc
+> > - Unify argument for worker functions: kthread_work *work -> kthread_work
+> > *ws
+> > V5:
+> > - Replace of_property check with IRQ number check to set polling
+> >   property. This will add support
+> 
+> 
+> >
+> It other way around, i.e. it won’t break the existing support of
+> interrupt-driven non-DT setups.
+> 
+> 
+> > for usage without device tree
+> >   definitions. Thanks for that advice.
+> > - Add blank line es requested.
+> > ---
+> >  drivers/tty/serial/sc16is7xx.c | 37 ++++++++++++++++++++++++++++++++++
+> >  1 file changed, 37 insertions(+)
+> >
+> > diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/
+> > sc16is7xx.c
+> > index a3093e09309f..7b51cdc274fd 100644
+> > --- a/drivers/tty/serial/sc16is7xx.c
+> > +++ b/drivers/tty/serial/sc16is7xx.c
+> > @@ -314,6 +314,7 @@
+> >  #define SC16IS7XX_FIFO_SIZE            (64)
+> >  #define SC16IS7XX_GPIOS_PER_BANK       4
+> >
+> > +#define SC16IS7XX_POLL_PERIOD_MS       10
+> >  #define SC16IS7XX_RECONF_MD            BIT(0)
+> >  #define SC16IS7XX_RECONF_IER           BIT(1)
+> >  #define SC16IS7XX_RECONF_RS485         BIT(2)
+> > @@ -348,6 +349,8 @@ struct sc16is7xx_port {
+> >         u8                              mctrl_mask;
+> >         struct kthread_worker           kworker;
+> >         struct task_struct              *kworker_task;
+> > +       struct kthread_delayed_work     poll_work;
+> > +       bool                            polling;
+> >         struct sc16is7xx_one            p[];
+> >  };
+> >
+> > @@ -861,6 +864,18 @@ static irqreturn_t sc16is7xx_irq(int irq, void
+> > *dev_id)
+> >         return IRQ_HANDLED;
+> >  }
+> >
+> > +static void sc16is7xx_poll_proc(struct kthread_work *ws)
+> > +{
+> > +       struct sc16is7xx_port *s = container_of(ws, struct sc16is7xx_port,
+> > poll_work.work);
+> > +
+> > +       /* Reuse standard IRQ handler. Interrupt ID is unused in this
+> > context. */
+> > +       sc16is7xx_irq(0, s);
+> > +
+> > +       /* Setup delay based on SC16IS7XX_POLL_PERIOD_MS */
+> > +       kthread_queue_delayed_work(&s->kworker, &s->poll_work,
+> > +                                  msecs_to_jiffies(SC16IS7XX_
+> > POLL_PERIOD_MS));
+> > +}
+> > +
+> >  static void sc16is7xx_tx_proc(struct kthread_work *ws)
+> >  {
+> >         struct uart_port *port = &(to_sc16is7xx_one(ws, tx_work)->port);
+> > @@ -1149,6 +1164,7 @@ static int sc16is7xx_config_rs485(struct uart_port
+> > *port, struct ktermios *termi
+> >  static int sc16is7xx_startup(struct uart_port *port)
+> >  {
+> >         struct sc16is7xx_one *one = to_sc16is7xx_one(port, port);
+> > +       struct sc16is7xx_port *s = dev_get_drvdata(port->dev);
+> >         unsigned int val;
+> >         unsigned long flags;
+> >
+> > @@ -1211,6 +1227,10 @@ static int sc16is7xx_startup(struct uart_port *port)
+> >         sc16is7xx_enable_ms(port);
+> >         uart_port_unlock_irqrestore(port, flags);
+> >
+> > +       if (s->polling)
+> > +               kthread_queue_delayed_work(&s->kworker, &s->poll_work,
+> > +                                          msecs_to_jiffies(SC16IS7XX_
+> > POLL_PERIOD_MS));
+> > +
+> >         return 0;
+> >  }
+> >
+> > @@ -1232,6 +1252,9 @@ static void sc16is7xx_shutdown(struct uart_port
+> > *port)
+> >
+> >         sc16is7xx_power(port, 0);
+> >
+> > +       if (s->polling)
+> > +               kthread_cancel_delayed_work_sync(&s->poll_work);
+> > +
+> >         kthread_flush_worker(&s->kworker);
+> >  }
+> >
+> > @@ -1538,6 +1561,11 @@ int sc16is7xx_probe(struct device *dev, const
+> > struct sc16is7xx_devtype *devtype,
+> >         /* Always ask for fixed clock rate from a property. */
+> >         device_property_read_u32(dev, "clock-frequency", &uartclk);
+> >
+> > +       s->polling = !!irq;
+> 
+> 
+> This is incorrect, you should check for positive numbers only for IRQ
+> support and for the rest otherwise. I do not see that frameworks guarantee
+> this never be negative.
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/gpu/drm/mediatek/mtk_hdmi_v2.c | 123 +++++++++++++++++++++++++
- 1 file changed, 123 insertions(+)
+Hi Greg,
+I just noticed that v5 of this patch is now in the tty-testing
+branch. It should not, as there is currently a v6 fixing it, and
+possibly a v7 coming.
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c b/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
-index 5145698158f6..91729ec28b17 100644
---- a/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
-+++ b/drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
-@@ -1170,6 +1170,128 @@ static int mtk_hdmi_v2_hdmi_write_infoframe(struct drm_bridge *bridge,
- 	return 0;
- }
- 
-+static int mtk_hdmi_v2_set_abist(struct mtk_hdmi *hdmi, bool enable)
-+{
-+	struct drm_display_mode *mode = &hdmi->mode;
-+	int abist_format = -EINVAL;
-+	bool interlaced;
-+
-+	if (!enable) {
-+		regmap_clear_bits(hdmi->regs, TOP_CFG00, HDMI_ABIST_ENABLE);
-+		return 0;
-+	}
-+
-+	if (!mode->hdisplay || !mode->vdisplay)
-+		return -EINVAL;
-+
-+	interlaced = mode->flags & DRM_MODE_FLAG_INTERLACE;
-+
-+	switch (mode->hdisplay) {
-+	case 720:
-+		if (mode->vdisplay == 480)
-+			abist_format = 2;
-+		else if (mode->vdisplay == 576)
-+			abist_format = 11;
-+		break;
-+	case 1280:
-+		if (mode->vdisplay == 720)
-+			abist_format = 3;
-+		break;
-+	case 1440:
-+		if (mode->vdisplay == 480)
-+			abist_format = interlaced ? 5 : 9;
-+		else if (mode->vdisplay == 576)
-+			abist_format = interlaced ? 14 : 18;
-+		break;
-+	case 1920:
-+		if (mode->vdisplay == 1080)
-+			abist_format = interlaced ? 4 : 10;
-+		break;
-+	case 3840:
-+		if (mode->vdisplay == 2160)
-+			abist_format = 25;
-+		break;
-+	case 4096:
-+		if (mode->vdisplay == 2160)
-+			abist_format = 26;
-+		break;
-+	default:
-+		break;
-+	}
-+	if (!abist_format)
-+		return -EINVAL;
-+
-+	regmap_update_bits(hdmi->regs, TOP_CFG00, HDMI_ABIST_VIDEO_FORMAT,
-+			   FIELD_PREP(HDMI_ABIST_VIDEO_FORMAT, abist_format));
-+	regmap_set_bits(hdmi->regs, TOP_CFG00, HDMI_ABIST_ENABLE);
-+	return 0;
-+}
-+
-+static int mtk_hdmi_v2_debug_abist_show(struct seq_file *m, void *arg)
-+{
-+	struct mtk_hdmi *hdmi = m->private;
-+	bool en;
-+	u32 val;
-+	int ret;
-+
-+	if (!hdmi)
-+		return -EINVAL;
-+
-+	ret = regmap_read(hdmi->regs, TOP_CFG00, &val);
-+	if (ret)
-+		return ret;
-+
-+	en = FIELD_GET(HDMI_ABIST_ENABLE, val);
-+
-+	seq_printf(m, "HDMI Automated Built-In Self Test: %s\n",
-+		   en ? "Enabled" : "Disabled");
-+
-+	return 0;
-+}
-+
-+static ssize_t mtk_hdmi_v2_debug_abist_write(struct file *file,
-+					     const char __user *ubuf,
-+					     size_t len, loff_t *offp)
-+{
-+	struct seq_file *m = file->private_data;
-+	int ret;
-+	u32 en;
-+
-+	if (!m || !m->private || *offp)
-+		return -EINVAL;
-+
-+	ret = kstrtouint_from_user(ubuf, len, 0, &en);
-+	if (ret)
-+		return ret;
-+
-+	if (en < 0 || en > 1)
-+		return -EINVAL;
-+
-+	mtk_hdmi_v2_set_abist((struct mtk_hdmi *)m->private, en);
-+	return len;
-+}
-+
-+static int mtk_hdmi_v2_debug_abist_open(struct inode *inode, struct file *file)
-+{
-+	return single_open(file, mtk_hdmi_v2_debug_abist_show, inode->i_private);
-+}
-+
-+static const struct file_operations mtk_hdmi_debug_abist_fops = {
-+	.owner = THIS_MODULE,
-+	.open = mtk_hdmi_v2_debug_abist_open,
-+	.read = seq_read,
-+	.write = mtk_hdmi_v2_debug_abist_write,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+};
-+
-+static void mtk_hdmi_v2_debugfs_init(struct drm_bridge *bridge, struct dentry *root)
-+{
-+	struct mtk_hdmi *dpi = hdmi_ctx_from_bridge(bridge);
-+
-+	debugfs_create_file("hdmi_abist", 0640, root, dpi, &mtk_hdmi_debug_abist_fops);
-+}
-+
- static const struct drm_bridge_funcs mtk_v2_hdmi_bridge_funcs = {
- 	.attach = mtk_hdmi_v2_bridge_attach,
- 	.detach = mtk_hdmi_v2_bridge_detach,
-@@ -1189,6 +1311,7 @@ static const struct drm_bridge_funcs mtk_v2_hdmi_bridge_funcs = {
- 	.hdmi_tmds_char_rate_valid = mtk_hdmi_v2_hdmi_tmds_char_rate_valid,
- 	.hdmi_clear_infoframe = mtk_hdmi_v2_hdmi_clear_infoframe,
- 	.hdmi_write_infoframe = mtk_hdmi_v2_hdmi_write_infoframe,
-+	.debugfs_init = mtk_hdmi_v2_debugfs_init,
- };
- 
- /*
+Hugo.
+
+
+
+> > +       if (s->polling)
+> > +               dev_dbg(dev,
+> > +                       "No interrupt pin definition, falling back to
+> > polling mode\n");
+> > +
+> >         s->clk = devm_clk_get_optional(dev, NULL);
+> >         if (IS_ERR(s->clk))
+> >                 return PTR_ERR(s->clk);
+> > @@ -1665,6 +1693,12 @@ int sc16is7xx_probe(struct device *dev, const
+> > struct sc16is7xx_devtype *devtype,
+> >                 goto out_ports;
+> >  #endif
+> >
+> > +       if (s->polling) {
+> > +               /* Initialize kernel thread for polling */
+> > +               kthread_init_delayed_work(&s->poll_work,
+> > sc16is7xx_poll_proc);
+> > +               return 0;
+> 
+> 
+> 
+> > +       }
+> > +
+> >         /*
+> >          * Setup interrupt. We first try to acquire the IRQ line as level
+> > IRQ.
+> >          * If that succeeds, we can allow sharing the interrupt as well.
+> > @@ -1724,6 +1758,9 @@ void sc16is7xx_remove(struct device *dev)
+> >                 sc16is7xx_power(&s->p[i].port, 0);
+> >         }
+> >
+> > +       if (s->polling)
+> > +               kthread_cancel_delayed_work_sync(&s->poll_work);
+> > +
+> >         kthread_flush_worker(&s->kworker);
+> >         kthread_stop(s->kworker_task);
+> >
+> > --
+> > 2.47.1
+> >
+> >
+
+
 -- 
-2.47.0
-
+Hugo Villeneuve
 
