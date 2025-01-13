@@ -1,125 +1,127 @@
-Return-Path: <devicetree+bounces-138131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CA18A0BC30
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:38:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F18CA0BC59
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:45:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B5A4162063
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:38:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3FF8165B41
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:44:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA341C5D6E;
-	Mon, 13 Jan 2025 15:38:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E61820AF63;
+	Mon, 13 Jan 2025 15:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pdMjRWGB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BKWYjuLi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62DE329D19
-	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 15:37:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3823F1FBBFC;
+	Mon, 13 Jan 2025 15:44:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736782681; cv=none; b=Mzd2H8KfbF0ouYd2jIwqQmUnDqG0lqO9WWqA2RVTFTdNH6DakQRlHFLciKX1s3LQa9otEt9GXCiq8qYqDb4MbvIwiYysTqokvj0WP7HamRswk0C7a6VIf772vt/UySX5vAomhogx5h9rVNpDLzDNbxtjDdKtjOl6FZPf6xWJ6LM=
+	t=1736783074; cv=none; b=F6vhf6PgMpXZGLPpS1DuB3S1MoSIPrBbwfaphXX/e9+ZzpEKdI2VvpLyKQHzaTwmxcQXb72WI8RXNt/LS0N0ksfoPqbPhIWOCtrvSZv8RyIVamO8dRT//XQLjkUkOqsLW/ejdNmRmuQ4lT48ckM4+1+vaOG8yyFceEkyAiRSs7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736782681; c=relaxed/simple;
-	bh=UgWOTZGuQDDiIxbJBPlqOCO2mm65GMRFIxvKgoDvxME=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=onQAPJdVl4XjY0wI1y5+gGMdJVnuM16EAfCSANsUeyyCPSbZIEZHoHBEdg2WpAcaP+Os+6Wk+mDxY+Iajz9xL/TDZrN5rLRSe1NhQZFAZLtq98Nw6LUO+4o/sUAxiFsnbIaIAazhQLIOYPtmC2N/Sz454+I6FZCmlCl3hEGZL3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pdMjRWGB; arc=none smtp.client-ip=209.85.219.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-e549be93d5eso7751218276.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 07:37:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736782678; x=1737387478; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WHmss5GuNuMPMuJLhtCwmXANZEgbIohfRiOzTjx30TE=;
-        b=pdMjRWGBChwMkQSArt/FWlYOnKMAkNdm5rLxmczBuOHSYZ5QTQ82EajGzZheCAcC71
-         GVBPA1PWx6B0znGYojwt8mLfGz2sdGtmBPrpfc9yB/43LHnHSsWKYqqxDJNy5fak62V/
-         oJRH+t934TWoC4pWZOtidyhHKfPzvHFh2lCLkubETddcNFj/NCE/u0UWLxqUCNLQgeeM
-         5INH7bQHNa+t69p0QXQRmmUKtqZoouOtW4G0McB68qhxOMPvW7A4sw3SD23Cdl70K1qL
-         wsanF3+k9aCsz4AxLELOyu8cuVkrcsanKPq2O4k8ThFrpsYGGR9JKwGFe4yyaNvQtzT2
-         RA8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736782678; x=1737387478;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WHmss5GuNuMPMuJLhtCwmXANZEgbIohfRiOzTjx30TE=;
-        b=pjf/XmbHkOWmfKJ1Y2Zs7j4f/fpK0ewnarKS+OaxW128SIe+iAfnRxoEICuO8bNNlj
-         0dEQasQXHVAZeVnD3EcgUQ7aLB4ArWSNurARr9kCIDe8RFJ/VkymjV9NC+BxfykeSVDl
-         iBPjCOM7Q65CisYQca0qDUI+vEzTkLy0BL7bAiChGBHsWXBpNrDNrwjihmmwid1/St7J
-         5I9TIhl3AQecsuTf/e68PtXQmJrPbF7eQI+5H4yB763Ll4mlsLI9uAo1AFTYqUvJjXr2
-         CzuQu3zCKTe9qrrz8hksndwlRFHdriY5HzdBKXGQGu0dBcHPn8aeKeA3qiqXngo/m9aX
-         meiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW5T00pE7DwL/dhEBk8x4Vie4Cppv2fa7EwZsJPPBO2L25zZT96Nbs9bWDYpH05d97JmNZ2yGsIPmxo@vger.kernel.org
-X-Gm-Message-State: AOJu0YynFqGaVpTHzB5BmK1g1IW7LrCghKbRTi0+ylwchjHdwpsz5Gva
-	JwRa6sLZ7IPj2BGVWhK/ddBHz2vLMNSdPXKGKLY++/h5vQH4gcjBUxjt9F4snpgcx3pjkTkK+dW
-	xKI9/mr1SdRKfz52caVOLal7+O6LbIpGU3DJBYg==
-X-Gm-Gg: ASbGncus3i8o+K93PIwT+EKrfI2vCQE1JPNZPNqaOvGjiSR2WDQ96M57WM5mcM0GMmW
-	l55iJVrY/3sGXp20uh1I85W24n1JCfThh6N04oJ4=
-X-Google-Smtp-Source: AGHT+IHmfuzafpUqk3KxG+kn0+sH+vHEKlPScEseDnN/W27tVQ+3wEY9S4Ua75At7AAxf3Kwrj/jQOrBdgSbPpY4wvU=
-X-Received: by 2002:a05:690c:3693:b0:6ef:5abd:d0d with SMTP id
- 00721157ae682-6f530f28e53mr163298117b3.0.1736782678456; Mon, 13 Jan 2025
- 07:37:58 -0800 (PST)
+	s=arc-20240116; t=1736783074; c=relaxed/simple;
+	bh=RJ8swjTnV3zKK6OTGxFywdGEVTxm9ACKzJyWakdOS3w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pdNZicXb5JlzcpvWF8Y5oQDXQsKXrXpR2RZc8OS3o/ARbFjAZudElDvy4pGPmfGVhcB2LDAOB1tlY6iQpZT0TLylD1IYvLWNuS/O8/EabUEEt2C1g01oivqrUj4zXWvQ82TYPbYZbg5leHXtX8IQaEToNp0Fe7/56fODGZe9D50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BKWYjuLi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D072AC4CED6;
+	Mon, 13 Jan 2025 15:44:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736783073;
+	bh=RJ8swjTnV3zKK6OTGxFywdGEVTxm9ACKzJyWakdOS3w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BKWYjuLixbRnn1GsK/q6ILRVJvHdqq9eA3UJrv/Lpw0bwr3RUR0y8tP/aaHW5Az4m
+	 psj55Yj+ppBeCOnQRviNgITGmkfD0HyWRybaAMb9NKnuXFyLYkJmq6tB9s53boFlCs
+	 Iu0NXF475nRnkLeNSQNuqb1s/d+4ldPFXguAoI9FLmtDLKBct5/OV4Osifo2PmsjMK
+	 Q7tzqMDWYMo1VyFnBz53HpXfTF83O8fAByw6o4wbais36VGgZWbqCE1fUU2liDb3hD
+	 L7v4a+rzwlUfm7/Z4W25Wjko8ErO1QPOJRYEsDw14ZOzmKMINBcljbOnPlftPRFHEG
+	 WPRPqvIPBoFLw==
+Date: Mon, 13 Jan 2025 15:44:29 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de
+Subject: Re: [PATCH 1/2] regulator: Add support for power budget
+Message-ID: <8f5ce662-f8bc-449e-99cf-737066dabebd@sirena.org.uk>
+References: <20250113-feature_regulator_pw_budget-v1-0-01e1d95c2015@bootlin.com>
+ <20250113-feature_regulator_pw_budget-v1-1-01e1d95c2015@bootlin.com>
+ <69eaaadf-a6b3-4a5a-af4a-5b574f9edad4@sirena.org.uk>
+ <20250113154551.32e20d1c@kmaincent-XPS-13-7390>
+ <b184e29e-06b0-49cf-8469-1fa0778f06e7@sirena.org.uk>
+ <20250113162620.3c244302@kmaincent-XPS-13-7390>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250105161344.420749-1-ivo.ivanov.ivanov1@gmail.com> <20250105161344.420749-2-ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <20250105161344.420749-2-ivo.ivanov.ivanov1@gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 13 Jan 2025 16:37:22 +0100
-X-Gm-Features: AbW1kvb6SL7ENMYcV-U0gwzZDQlxjULLo1-VKuQbPKeXd7cbjjP45Tg9iM2uUAc
-Message-ID: <CAPDyKFoUajmhPu-xTzvjrMZUzqmECGXX-N-KLq=A6+hrwNuvWQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: mmc: samsung,exynos-dw-mshc: add
- specific compatible for exynos8895
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Jaehoon Chung <jh80.chung@samsung.com>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-
-On Sun, 5 Jan 2025 at 17:13, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com> wrote:
->
-> Add samsung,exynos8895-dw-mshc-smu specific compatible to the bindings
-> documentation. Since Samsung, as usual, likes reusing devices from older
-> designs, use the samsung,exynos7-dw-mshc-smu compatible.
->
-> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Applied for next, thanks!
-
-Kind regards
-Uffe
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="nV2lxtOOeFV9pNzI"
+Content-Disposition: inline
+In-Reply-To: <20250113162620.3c244302@kmaincent-XPS-13-7390>
+X-Cookie: You will outgrow your usefulness.
 
 
-> ---
->  .../devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml          | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
-> index 5fe65795f..ef2d1d7c9 100644
-> --- a/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/samsung,exynos-dw-mshc.yaml
-> @@ -29,6 +29,7 @@ properties:
->                - samsung,exynos5433-dw-mshc-smu
->                - samsung,exynos7885-dw-mshc-smu
->                - samsung,exynos850-dw-mshc-smu
-> +              - samsung,exynos8895-dw-mshc-smu
->            - const: samsung,exynos7-dw-mshc-smu
->
->    reg:
-> --
-> 2.43.0
->
+--nV2lxtOOeFV9pNzI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Jan 13, 2025 at 04:26:20PM +0100, Kory Maincent wrote:
+> Mark Brown <broonie@kernel.org> wrote:
+> > On Mon, Jan 13, 2025 at 03:45:51PM +0100, Kory Maincent wrote:
+> > > Mark Brown <broonie@kernel.org> wrote: =20
+
+> > but the others are legit.  Still, we should be able to map between the
+> > two.
+
+> We could have something like that in regulator_request_power_budget()?
+
+> if (rdev->desc->ops->get_voltage && rdev->desc->ops->set_current_limit) {
+> 	ret =3D regulator_get_voltage(rdev);
+> 	if (ret < 0)
+> 		return ret;
+>=20
+> 	tmp_64 =3D pw_req;
+> 	tmp_64 *=3D 1000000000ull;
+> 	/* uA =3D mW * 1000000000 / uV */
+> 	uA =3D DIV_ROUND_CLOSEST_ULL(tmp_64, uV);
+> 	ret =3D regulator_set_current_limit(rdev, uA);
+> 	if (ret)
+> 		return ret;
+
+Yup, indeed.  That said I am wondering if it's safer to just configure
+the constraint in the hardware rather than the currently requested
+limit, considering what might happen in the case where there's multiple
+consumers that have only been partially updated.  If the hardware limits
+or shuts down rather than warning it'll blow up badly so it might be
+better to be conservative.  Unfortunately we don't distinguish in the
+ops.  Possibly it should be a policy thing even but then that's better
+at runtime...
+
+--nV2lxtOOeFV9pNzI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmeFNNwACgkQJNaLcl1U
+h9AQQwf+IcvhRbYMC7JpDIZFaapjIZBqyf6ZhnLJgg1FfXbMoXuFDdOyzgaCeprC
+sefdN2Nt9IqaCzjasWaVmXuQd4dAqhakGeDKmW8Evf/yOV03Ws7YSuSX/mTySMy3
+5qExmCi8vWA2flFqNUzvlNtoNNqyhoIteLiNurChB++jC3KYjZ3nf2ZGCKgWO6+D
+GabAlm4V44Oiikk+FyyrKOZlQyMN4/C3+oFFJ5l7YrILVhH4zJOvkvMkwkRdinV4
+8uYDLpD/eTqn2G4rsOteWU3T4SOs3y/8OTpnxRVJPuGhbi7Cmee/6njxa2OtNawu
+n/XN4n1Dl4+qxeY5q8KooRPpOWAOJA==
+=mJYA
+-----END PGP SIGNATURE-----
+
+--nV2lxtOOeFV9pNzI--
 
