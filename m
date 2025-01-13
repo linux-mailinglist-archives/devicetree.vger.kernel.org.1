@@ -1,121 +1,256 @@
-Return-Path: <devicetree+bounces-138070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FC16A0BA57
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:52:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7E7DA0BA62
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:52:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D9933A05AB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:51:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF80818803EA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:52:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1056623A0F6;
-	Mon, 13 Jan 2025 14:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10B023A10B;
+	Mon, 13 Jan 2025 14:52:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ATXTWNbG"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="nrn7QHFd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD16323A0E7;
-	Mon, 13 Jan 2025 14:51:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 927C223A0E7;
+	Mon, 13 Jan 2025 14:52:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736779919; cv=none; b=tD6GuHY1GyWTvdJTM8ojyn2DnmcAMpKnw9gPpSS30bcSqfTDMmhoiaivzr2H6yF1JJ9f1sLYvtq/eG+oEM7yGMbsQQMzzCLs87E9Azb3vem/oaqlDmdTwpfQ106DURQZmhtxrBMVGUVt5ucErfi3BRVVqA48pjjyYJaQQV2pWp8=
+	t=1736779962; cv=none; b=TEzCzKjOB/7E2StxkhwiaeF2I9Q7TGxoX7RV2h+MyPaVp/rCBNfSljPhn2R991jNt22z9VlEd+2e6sAxt30jyNmzTpeJRu5XAVUNep5FQchgMAAfHFeyHLlmLLSsKgkhAAEUcY5zGlgq3E28wLBBqeEUr9EMn7eUxeSzDDvjnfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736779919; c=relaxed/simple;
-	bh=uLQz9Gspj9N6xZEdlZSbNEFyBFC8Xjh/R+rkbGHpbbU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JerjIlEyW7/xIE+UlCDkMNAaO9kcOemz3fO5HZ7c+5o/u1zkKiiUd9mRYtDTPv06/Gh9FmsoXCSXokoDSF6G/Uq3oYzlTuC21U2DBb1sA+zumU7HkPRTR1BIst5KFSWdGOd0Mki2Ecss5Xfe2+2sd6nHhZCW/9lS2QHt9/4a15M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ATXTWNbG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 491A4C4CEE2;
-	Mon, 13 Jan 2025 14:51:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736779918;
-	bh=uLQz9Gspj9N6xZEdlZSbNEFyBFC8Xjh/R+rkbGHpbbU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ATXTWNbGWGl813XPS+jv1Ix0weR28R0oBo00ogyVUhjNv6nEywtbwQUsNt5+fyKbT
-	 csndsc8tIwWbmWgjjH0dHuz8goh59MNlzbXm/NWPwBo9C2mV56TLjELeGRjg9fsMhl
-	 C1K2SwqT0kKd2DThb+4IrysSq0deY8a7Z1NiMrVVpN+n8C9lR1URsYxlHWmxLaQX/t
-	 24WD+rPWsA+HTx/AnQH4TirjwMfxM8Ie/8hXaeF2rxyyAcvkuc57j089LsuxTs/IwJ
-	 Uryza0r+/tzMnzOgh2MisptXkUciATQ6kBXamQ+DioYp5Mv57PrSkFrx7vditusjjt
-	 vZ2ogqjIbG/mQ==
-Date: Mon, 13 Jan 2025 14:51:53 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de
-Subject: Re: [PATCH 1/2] regulator: Add support for power budget
-Message-ID: <b184e29e-06b0-49cf-8469-1fa0778f06e7@sirena.org.uk>
-References: <20250113-feature_regulator_pw_budget-v1-0-01e1d95c2015@bootlin.com>
- <20250113-feature_regulator_pw_budget-v1-1-01e1d95c2015@bootlin.com>
- <69eaaadf-a6b3-4a5a-af4a-5b574f9edad4@sirena.org.uk>
- <20250113154551.32e20d1c@kmaincent-XPS-13-7390>
+	s=arc-20240116; t=1736779962; c=relaxed/simple;
+	bh=mOnoaGS/56qjJj1pufHBy52zxphOeqK0rJ4zuw+X9ts=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mlkeSfiP+A4IS7UEj8FdIujDRsMANgnG5torPKQw/oMR4tF0m3QtHoCvbSIIQHCGEH2ZGFSnW/O2rFhyYVSisdkzTkjM9GsznnkQkykPl3+vyyb2FIEpOz5+R7ynVbyW28xF84aUH2ydu8F2sSCXz5mBQ81l4zjNdtxcPPrsehQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=nrn7QHFd; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1736779957;
+	bh=mOnoaGS/56qjJj1pufHBy52zxphOeqK0rJ4zuw+X9ts=;
+	h=From:To:Cc:Subject:Date:From;
+	b=nrn7QHFd9al6+RLw0cbl6ZqZU06OJhqCfZnwpr1fz2tx+js6xl9H+fHLqXr4dy6NV
+	 hDiVk/XwCghuFWd9GwKjeg/IsGBpulEXuXbCW1OjLc1V/MLJsrxJubxCYjD4DtPDYF
+	 tb6hGnEnEKLYiq0mMfRgIRI9jAfjHLOy/cFqfzIuN2RBMaD4iuYRsM8vlz20b+jCFd
+	 a97ijkN78u/sw4CYfoLFRUfI8C8rsDRarPMYjg2CEEr1yx0P9UzQixr+kafu9ALi9I
+	 QAKabzA29LQPPE880h8GxJaWVrnMn4oPP+83CvDQ3bh20vXddrBhVcTec2cmpv/IQv
+	 WPiZpUyJdi5PQ==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 47AE317E0D9D;
+	Mon, 13 Jan 2025 15:52:36 +0100 (CET)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: chunkuang.hu@kernel.org
+Cc: p.zabel@pengutronix.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	ck.hu@mediatek.com,
+	jitao.shi@mediatek.com,
+	jie.qiu@mediatek.com,
+	junzhi.zhao@mediatek.com,
+	dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com,
+	dmitry.baryshkov@linaro.org,
+	lewis.liao@mediatek.com,
+	ives.chenjh@mediatek.com,
+	tommyyl.chen@mediatek.com,
+	jason-jh.lin@mediatek.com
+Subject: [PATCH v5 00/34] Add support for MT8195/88 DPI, HDMIv2 and DDCv2
+Date: Mon, 13 Jan 2025 15:51:58 +0100
+Message-ID: <20250113145232.227674-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7Ez1COzbfkS4RkPI"
-Content-Disposition: inline
-In-Reply-To: <20250113154551.32e20d1c@kmaincent-XPS-13-7390>
-X-Cookie: You will outgrow your usefulness.
+Content-Transfer-Encoding: 8bit
+
+Changes in v5:
+ - Rebased over next-20250113
+ - Resolved merge issues with next-20250113
+ - Added bitfield.h inclusion in mtk_dpi in commit [02/33] to resolve
+   build issue from 0day CI
+ - Removed .atomic_check callback from mtk_hdmi_v2 as it is now part
+   of drm_bridge_connector as pointed out by Dmitry B
+ - Removed call to pm_runtime_disable() as the driver uses devm
+ - Tested again :-)
+
+Changes in v4:
+ - DDCv2 binding erroneously dropped in v3 is included again (oops!)
+ - Added reference to dai-common.yaml in HDMIv2 binding
+ - Dropped pinctrl entries from HDMIv2 binding
+ - Fixed required list in HDMIv2 binding and changed node name to
+   'hdmi' instead of 'hdmi-tx'
+ - Fixed issue in mtk_hdmi derived from wrong commit splitting action
+   from version 3
+ - Exported necessary symbols and added namespaces for those
+ - Fixed module build for both HDMIv1 and HDMIv2
+ - Other cleanups
+
+Changes in v3:
+ - Added hpd_enable() and hpd_disable() callbacks as suggested by Dmitry B
+ - Removed audio mute call in bridge_enable() as suggested by CK
+ - Reworked commonization commits for mtk_hdmi/mtk_hdmi_common and split
+   out debugfs/abist implementation as suggested by CK
+ - Removed .mode_valid() callback as it is now provided by the bridge
+   API in drm_bridge_connector_helper_funcs
+ - A bit of cleanups here and there
+ - Tested again on HW especially for new hpd_enable/disable callbacks.
+
+Changes in v2:
+ - Merged series "Add support for MT8195/8188 and Pattern Generator"
+   and "drm/mediatek: Add support for HDMIv2 and DDCv2 IPs" in one
+   as they are directly related, as requested by CK Hu
+ - More commonization: moved some audio functions to mtk_hdmi_common
+ - Fixed a bug in DDCv2 driver to allow sending a message with len=1
+ - Renamed some functions in HDMIv2 to consistently use the prefix
+   mtk_hdmi_v2_ across the driver
+ - Added .mode_valid() callback to HDMIv2
+ - Added .atomic_check() callback to HDMIv2
+ - Reordered drm_bridge_funcs in HDMIv2 driver
+ - Rewritten .edid_read() callback in HDMIv2 to move checking audio
+   availability to bridge_pre_enable() stage, and to stop using the
+   drm_edid_read_ddc() in favor of drm_edid_read()
+ - Added support for API provided HDMI Helpers
+ - Added .tmds_char_rate_valid() callback to HDMIv2 for HDMI helpers
+ - Added .hdmi_{read,write}_infoframe() callback to HDMIv2 for helpers
+ - Added support for Vendor infoframes in HDMIv2
+ - Added missing audio-dai-cells to HDMIv2 binding to fix check error
+ - Added more information to the HDMIv2 binding for clocks and PHY
+ - Added some comments to the HDMIv2 code to clarify why the controller
+   is preconfigured in bridge_pre_enable() instead of bridge_enable()
+ - Added a mention of the differences in HPD between v1 and v2 to the
+   commit introducing the v2 driver (v2 is not using CEC for HPD)
+ - ...and tested again on HW! :-)
 
 
---7Ez1COzbfkS4RkPI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This series adds support for the HDMI-TX v2 Encoder and DDCv2, and for
+the direct connection DPI as found in MT8195, MT8188 and their variants.
 
-On Mon, Jan 13, 2025 at 03:45:51PM +0100, Kory Maincent wrote:
-> Mark Brown <broonie@kernel.org> wrote:
+Tested on Genio 700 EVK:
+ - ABIST ON: ok, pattern generated internally from HDMI is shown on
+   HDMI screen at the correct resolution;
+ - ABIST OFF + DPI Pattern Generator ON: ok, pattern coming from DPI is
+   shown on HDMI screen at the correct resolution;
+ - Can negotiate up to 4k60
 
-> > joining it up with the power limiting.  It's fortunately not used
-> > dynamically by anything at the minute so we could just remove that API
-> > and replace it by a power one, given that nobody uses it and there do
-> > appear to be users for the power based API.  We do have some things that
-> > set current limits in constraints IIRC.
+and on MT8395 Radxa NIO 12L:
+ - ABIST ON: ok, pattern generated internally from HDMI is shown on
+   HDMI screen at the correct resolution;
+ - ABIST OFF + DPI Pattern Generator ON: ok, pattern coming from DPI is
+   shown on HDMI screen at the correct resolution;
+ - Dual screen usecase validated (DSI + HDMI 3840x2160p 60Hz)
+ - Can negotiate up to 4k60
 
-> There is few users for the regulator_set_current_limit function.
-> https://elixir.bootlin.com/linux/v6.12.6/A/ident/regulator_set_current_limit
+Please note that this submission does *not* include support for HDCP
+nor for CECv2, as I want this to be upstream before implementing
+additional features which are not strictly required for simple
+HDMI output.
 
-> Not sure we could replace it to power limit that easily.
+Bonus in this series is the addition of support for the Pattern Generator
+found in the DPI HW: since I needed this for debugging during development,
+I had to code in the actual support bits and it looked like a waste of
+time to just remove it.
+I instead decided to clean it up and upstream it, as this will anyway come
+handy for multiple things, of which the most important (imo) are:
+ - Adding support for new SoCs in the future will be less time consuming
+   as this driver already has the pattern generator in;
+ - CI Testing might be able to make use of this to validate that the
+   data that comes out is not garbled (so, to help testing display
+   support in an automated manner).
 
-Huh, I wonder what tree I grepped in.  The DRM usage is yet more broken
-usage of the regulator API, I'm not sure why it attracts this so much,
-but the others are legit.  Still, we should be able to map between the
-two.
+AngeloGioacchino Del Regno (33):
+  dt-bindings: display: mediatek: dpi: Add MT8195 and MT8188 compat
+  drm/mediatek: mtk_dpi: Add support for Pattern Generator in debugfs
+  drm/mediatek: mtk_dpi: Use an array for pixclk factor calculation
+  drm/mediatek: mtk_dpi: Move pixel clock setting flow to function
+  drm/mediatek: mtk_dpi: Add checks for reg_h_fre_con existence
+  drm/mediatek: Add support for MT8195 Digital Parallel Interface
+  dt-bindings: display: mediatek: Add binding for HDMIv2 DDC
+  dt-bindings: display: mediatek: Add binding for MT8195 HDMI-TX v2
+  drm/mediatek: mtk_cec: Switch to register as module_platform_driver
+  drm/mediatek: mtk_hdmi_ddc: Switch to register as
+    module_platform_driver
+  drm/mediatek: mtk_hdmi: Convert to module_platform_driver macro
+  drm/mediatek: mtk_hdmi: Unregister audio platform device on failure
+  drm/mediatek: mtk_hdmi: Fix typo for aud_sampe_size member
+  drm/mediatek: mtk_hdmi: Disgregate function mtk_hdmi_audio_set_param()
+  drm/mediatek: mtk_hdmi: Move audio params selection to new function
+  drm/mediatek: mtk_hdmi: Move plugged_cb/codec_dev setting to new
+    function
+  drm/mediatek: mtk_hdmi: Move N/CTS setting to new function
+  drm/mediatek: mtk_hdmi: Move vendor/product strings to drm_bridge
+  drm/mediatek: mtk_hdmi: Use dev_err_probe() in
+    mtk_hdmi_dt_parse_pdata()
+  drm/mediatek: mtk_hdmi: Move CEC device parsing in new function
+  drm/mediatek: mtk_hdmi: Remove unused members of struct mtk_hdmi
+  drm/mediatek: mtk_hdmi: Move output init to
+    mtk_hdmi_register_audio_driver()
+  drm/mediatek: mtk_hdmi: Use devm managed version of drm_bridge_add
+  drm/mediatek: mtk_hdmi: Remove ifdef for CONFIG_PM_SLEEP
+  drm/mediatek: mtk_hdmi: Remove goto in mtk_hdmi_clk_enable_audio()
+  drm/mediatek: mtk_hdmi: Cleanup function mtk_hdmi_resume()
+  drm/mediatek: mtk_hdmi: Improve mtk_hdmi_get_all_clk() flexibility
+  drm/mediatek: mtk_hdmi: Split driver and add common probe function
+  drm/mediatek: mtk_hdmi_common: Assign DDC adapter pointer to bridge
+  drm/mediatek: mtk_hdmi_common: Add OP_HDMI if helper funcs assigned
+  drm/mediatek: Introduce HDMI/DDC v2 for MT8195/MT8188
+  drm/mediatek: mtk_hdmi_common: Add var to enable interlaced modes
+  drm/mediatek: mtk_hdmi_v2: Add debugfs ops and implement ABIST
 
-> > We probably also need something explicit about how we handle baseline
-> > load from things like passive components, the assumption probably needs
-> > to be that it's negligable.
+Guillaume Ranquet (1):
+  drm/mediatek: hdmi: Use regmap instead of iomem for main registers
 
-> We could add a devicetree property on the consumer node, but lets keep it for
-> later.
+ .../display/mediatek/mediatek,dpi.yaml        |    5 +
+ .../mediatek/mediatek,mt8195-hdmi-ddc.yaml    |   41 +
+ .../mediatek/mediatek,mt8195-hdmi.yaml        |  151 ++
+ drivers/gpu/drm/mediatek/Kconfig              |   18 +-
+ drivers/gpu/drm/mediatek/Makefile             |   11 +-
+ drivers/gpu/drm/mediatek/mtk_cec.c            |    7 +-
+ drivers/gpu/drm/mediatek/mtk_dpi.c            |  312 +++-
+ drivers/gpu/drm/mediatek/mtk_dpi_regs.h       |   10 +
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        |    2 +
+ drivers/gpu/drm/mediatek/mtk_hdmi.c           |  811 ++-------
+ drivers/gpu/drm/mediatek/mtk_hdmi.h           |   14 -
+ drivers/gpu/drm/mediatek/mtk_hdmi_common.c    |  443 +++++
+ drivers/gpu/drm/mediatek/mtk_hdmi_common.h    |  198 +++
+ drivers/gpu/drm/mediatek/mtk_hdmi_ddc.c       |    2 +-
+ drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c    |  403 +++++
+ drivers/gpu/drm/mediatek/mtk_hdmi_regs_v2.h   |  263 +++
+ drivers/gpu/drm/mediatek/mtk_hdmi_v2.c        | 1492 +++++++++++++++++
+ 17 files changed, 3386 insertions(+), 797 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi-ddc.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,mt8195-hdmi.yaml
+ delete mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi.h
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi_common.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi_common.h
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi_regs_v2.h
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_hdmi_v2.c
 
-One problem is that there might not be a consumer node - things like
-random passives don't tend to get represented.
+-- 
+2.47.0
 
---7Ez1COzbfkS4RkPI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmeFKIgACgkQJNaLcl1U
-h9CGHQf9FDviKeOJDjm0M0B7Wm/a6fur07ae/mB4j2EmuYRmtyDel/2pEXEFxDKv
-v7A6zy37shCjMShi6BLBGJfQ1UW5zWpu6AUHmN2G+S9bUfecUjyR0AkrFJ1e+1uS
-4EhYoNLzJ/D9s1Ou5JGJqlGKexN4VBrM9L2VK/LR1w3zCQQmbBKloOFQu353eO9z
-e/aSNtEZKJxKR4B+Dz+xtnxclRhiLrTvmf66Ih1MyNbzVKEA3GR0awghn8cPtAtM
-vvrwGpaYoslRzgTQdpA/0ZtyrnVyyZxygBklBeWcO6dkk23x2+ozjiBh/firOeW1
-d3VfvyWgX5SfDWkmZm9Z5hd0Mle0qw==
-=5s+3
------END PGP SIGNATURE-----
-
---7Ez1COzbfkS4RkPI--
 
