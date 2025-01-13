@@ -1,117 +1,124 @@
-Return-Path: <devicetree+bounces-138066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93EDFA0BA32
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:47:57 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EEA6A0BA44
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:50:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C56D169D14
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:46:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 074A27A2529
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:48:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2259322C9E3;
-	Mon, 13 Jan 2025 14:42:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98D2D22F845;
+	Mon, 13 Jan 2025 14:45:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pPO8LK3Z"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QrU16DrQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E2992297FF
-	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 14:42:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD13C23A10A;
+	Mon, 13 Jan 2025 14:45:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736779357; cv=none; b=YJWmcFGaKn0HH48MGOVdy0BIy+fDatLOe4i/5AJJHJcJZMawXv3fat/uPBABTOjap/A4HHfAvg84N+kTj1XqVvWjWYAA8r4v5oWYvt8FkQL9kb3S9bmXH1Zrm5gypBJC6ecURzxJwp0YxSNdTjxU3Egx6Rfp/lCDFUogoX8Xmtg=
+	t=1736779558; cv=none; b=Bfbbw9pXYYRnk81F9O0yrXBj80by1IicullRoiFJRFzvDq/KaI/Q7VWcFEAZBAcyI0naohomX0PK0f5V5v6PE/9ObzhLCzOckY5tW3WKsHTHSHyWcmc8pqFN3sok+FBUVbDAG0ExZBPs9EZjvLHy6YATJtX0ne8aU6gNbB+23UU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736779357; c=relaxed/simple;
-	bh=7W2mhWlK4BTLc7JxE1Pn3ZSLtHFOTiBo+aWyoKQ1jUU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=j0IsfnYiqLJFdNVIhtZVWQMrfmroV734DfDgJuLJ9UxZfW4TIDPJeZqezvUfn8Zweonejozz0Kmnmw4M9iovPTvV+0mTIjsrcD4LNhZihPVStUpPKGfgDh3ROWQtdYQDJu03aBdnqD6rWPPsuIm0FJKONA6vIcDcdofFM/jd75A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pPO8LK3Z; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-304d9a1f198so36186701fa.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 06:42:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736779353; x=1737384153; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7W2mhWlK4BTLc7JxE1Pn3ZSLtHFOTiBo+aWyoKQ1jUU=;
-        b=pPO8LK3ZHzhtuzWp7Qv6FslshKIVbUM9moWsnJxDXjErWmnt9WSQFmRanC8GmWavj2
-         VWSa5I9ZVwtm4vnlKG4WwMGhGfKi3CzMScEtVkKmfOKeesesTBqZFAxtt1BeLKekdl4t
-         sdJPeCGdFJG54YLJWLf5zKoCe9cKY0Zr3sjpenN5V6Df8/zklwLsDIi9euf3priKIIpe
-         p5OmycaxzSZdxrf+N0k6b/ZuVxWIOaj+8tCAfx9tDzB/srwOxSuri2oPWS2Olu9b0oai
-         2Aq7zlEGugacFCP/BEON1yX5ScuMAaPeduSXKL/J1140IHm2vRqiTPhN3x/zRCEQOdle
-         fTfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736779353; x=1737384153;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7W2mhWlK4BTLc7JxE1Pn3ZSLtHFOTiBo+aWyoKQ1jUU=;
-        b=m0uZ5B2zw+98AHFdiJVBte1HgbUy9vjx2VgQ0qu+wBbmlQuk/OM2IHnanz6apQWNWo
-         SvKqf0UOhtwIlEdUc0IOvy1yq1lSMuZpuGMdaRs+Zzwkf+fJ3v4b1PA9yRqy1vsvg+FP
-         WKJfzwE8vy5ARgtomG18IwwZ6ucnETRRc+edfK4++B4sqXtItA8ax/L6MdgqOqGWlhTC
-         GN0FNh15kgyrh2YFTtxGAHJ6+qycXOsEYmE9B0xMTrxqt9AwiTh0tlRAW0Dbn5Svhkze
-         nBf0CPRRkH+ZymZP5McqOVCHJ9+PrjyU9Fytg+zCWM5ZN2VPkcyTk4b0CyTrmpyow0HV
-         OTfA==
-X-Forwarded-Encrypted: i=1; AJvYcCUa7JI2+43zcNqNKs4Af4biW51RpXXlVtni9kf3zRDyDV2M73hhUU+YIBPMqH2GeX7655VR3GIrmv6T@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqJ2ko3wArW0vL2O3zwJle86yVoVHHwqoDHZY+V5GSOzxhD+Ec
-	nFnhdomOinuOSEZrsMqpJcN/NKARrbKbdB+1Fw1/jFoRBUStGk5mrbtJqLiNycf7JrWBuP6q9yP
-	o5lxHEgdc6a68iSeRr4xHOlm2gRYoqnT/BLZrCA==
-X-Gm-Gg: ASbGncsq3oNOQSmjmP/dRMov+bFF3zVy6A/LZuVj7TS1F28xNyAtyFVMrmPweFszfro
-	ss61gQ05VfT90TXmTnSI8RakMl9PTrZf5v1sC
-X-Google-Smtp-Source: AGHT+IENOE2ll5qeBQdJ80yylesb06tRQDSUG+UU61Vm3q3uDxQQ0+DlCXsReKBTut8XEJ7ObVreQKDUPla+i1+OZQk=
-X-Received: by 2002:a2e:bea4:0:b0:302:4135:7d99 with SMTP id
- 38308e7fff4ca-305f455e7b4mr69133281fa.4.1736779353384; Mon, 13 Jan 2025
- 06:42:33 -0800 (PST)
+	s=arc-20240116; t=1736779558; c=relaxed/simple;
+	bh=qfeie2LLC6r/LxMgG+94vh0yegDB2ugw7gjpK6LFCqQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MZRo/pCfiJUgQjk08S4Q5l1u3GAOeP5VmHtl7XRE6ep9QY98Ow6iA5tDM7esNQY4/EXMHMCHtg9t7iAcgecC4fivlGs36g/zhZMAhCe3gqPjMA2I0kWUQIPwJ5aNyXyqXcGq8FvO0dg9Zyo/bhIgc1NTJa8P6uAFq0sdImeY/4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QrU16DrQ; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0B4001C0006;
+	Mon, 13 Jan 2025 14:45:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736779553;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VZmriakMmvwgKfcGmyVyT7f/1gfTYnpJw7Y+QlZNwTM=;
+	b=QrU16DrQ9fl4XFvCxVERRasoWvcYQMsIDKfg/yaVR8vUw9kxgwNCGlduLrZBb34OrdX8FW
+	jjL5ZVLwZxcuPT4eCzOX6iryeql9MrxD4LXzI3cLEjwBw2vHcm+4QYdVZZxYQl2XxCBnI0
+	LyYtecC2xZF6FSbnPyAUQYmNdkG6EHejrZARIoWh4L982O8Kgu3mtEoJGUzL2fq9u1svua
+	057PI51y4rSz4V/5p6rVyiodOhFK3vvL/Vhwa6Czl3iEy684JBcFzc9dPf0a3sSMVE+xcL
+	zXqqljC6jB0XYZYnBKs1vbTomQpQ+UmUklsT/ZUaFq0uM/12BX9mDmkOhyDc4A==
+Date: Mon, 13 Jan 2025 15:45:51 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Oleksij Rempel
+ <o.rempel@pengutronix.de>, kernel@pengutronix.de
+Subject: Re: [PATCH 1/2] regulator: Add support for power budget
+Message-ID: <20250113154551.32e20d1c@kmaincent-XPS-13-7390>
+In-Reply-To: <69eaaadf-a6b3-4a5a-af4a-5b574f9edad4@sirena.org.uk>
+References: <20250113-feature_regulator_pw_budget-v1-0-01e1d95c2015@bootlin.com>
+	<20250113-feature_regulator_pw_budget-v1-1-01e1d95c2015@bootlin.com>
+	<69eaaadf-a6b3-4a5a-af4a-5b574f9edad4@sirena.org.uk>
+Organization: bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250108-fpc202-v5-0-a439ab999d5a@bootlin.com> <20250108-fpc202-v5-9-a439ab999d5a@bootlin.com>
-In-Reply-To: <20250108-fpc202-v5-9-a439ab999d5a@bootlin.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 13 Jan 2025 15:42:22 +0100
-X-Gm-Features: AbW1kvaddZgkHI_ZE8MDKIDy3uHycNLLq64wY8GBa-n8x8phy3UrJ9DEp0n2mjk
-Message-ID: <CACRpkdYgJ_rbrTWh0HS-F8DJJ6u48uqr-zQ555o3Q4mYnFhjXg@mail.gmail.com>
-Subject: Re: [PATCH v5 9/9] misc: add FPC202 dual port controller driver
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, 
-	Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Kory Maincent <kory.maincent@bootlin.com>, 
-	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Wed, Jan 8, 2025 at 5:14=E2=80=AFPM Romain Gantois
-<romain.gantois@bootlin.com> wrote:
+On Mon, 13 Jan 2025 14:11:16 +0000
+Mark Brown <broonie@kernel.org> wrote:
 
-> The TI FPC202 dual port controller serves as a low-speed signal aggregato=
-r
-> for common port types such as SFP, QSFP, Mini-SAS HD, and others.
->
-> It aggregates GPIO and I2C signals across two downstream ports, acting as
-> both a GPIO controller and an I2C address translator for up to two logica=
-l
-> devices per port.
->
-> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+> On Mon, Jan 13, 2025 at 02:07:45PM +0100, Kory Maincent wrote:
+>=20
+> > +	rdev->pw_available_mW -=3D pw_req; =20
+>=20
+> ...
+>=20
+> > +	if (!of_property_read_u32(np, "regulator-power-budget-milliwatt",
+> > &pval))
+> > +		constraints->pw_budget_mW =3D pval;
+> > + =20
+>=20
+> This is only tracking the currently free power budget which both
+> restricts what we can do for tracking things like mismatched or missing
+> frees and means there's less information for diagnostic tools.  I'd
+> prefer to keep track of how much is in use and check against the budget
+> when trying to increase it, allowing us to check for releasing more
+> budget than was requested.
 
-From a GPIO point of view this looks good to me!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Ack.=20
 
-Yours,
-Linus Walleij
+> There's also an interaction with hardware with support for enforcing
+> power limits, either via alarms or by actually limiting.  Current
+> limiting/warning support is reasonably common, we should probably be
+> joining it up with the power limiting.  It's fortunately not used
+> dynamically by anything at the minute so we could just remove that API
+> and replace it by a power one, given that nobody uses it and there do
+> appear to be users for the power based API.  We do have some things that
+> set current limits in constraints IIRC.
+
+There is few users for the regulator_set_current_limit function.
+https://elixir.bootlin.com/linux/v6.12.6/A/ident/regulator_set_current_limit
+
+Not sure we could replace it to power limit that easily.
+
+> We probably also need something explicit about how we handle baseline
+> load from things like passive components, the assumption probably needs
+> to be that it's negligable.
+
+We could add a devicetree property on the consumer node, but lets keep it f=
+or
+later.
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
