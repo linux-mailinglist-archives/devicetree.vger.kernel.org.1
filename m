@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-137906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88286A0B0E4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:21:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74DA3A0B0E9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:21:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A23E718876FF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:21:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AEFD73A4A98
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:21:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB1492343B3;
-	Mon, 13 Jan 2025 08:20:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC99523314D;
+	Mon, 13 Jan 2025 08:21:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gnQSVPx8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rr6SUMaX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ADC02343AE;
-	Mon, 13 Jan 2025 08:20:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACEBB23236F;
+	Mon, 13 Jan 2025 08:21:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736756434; cv=none; b=rOJJzHhRfyxA1PaxKxce8DOiahEdpNi5JlPg1V3INQNVGIEZR16rWrXja1y1MtJs+V73EcdF3oqhmA7COrgT2YNjQLa6r8AKx8QN/dYQMCSPI5dWJksMMeIvi7O/PCpe5EVFrKjlwrHN1kKnz3wYCWrUuspjY3Wl2RzOR4c6Vm4=
+	t=1736756483; cv=none; b=eCL+4CmnvrzYv7bxvp7Vvfl28c+CUqJ6jtzUZYAyIT1SbxNgX1UagaSKV2PSIiKtGODHx2Bjiyvdyt1UTEahfE4LUacmfPwuH94JUG7huFMwacIs2PisXMQ6T4JCnVdQwZJpkgwI9BSqbgXLb+G1nop63muaIVw+VUqPGwwcS3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736756434; c=relaxed/simple;
-	bh=T2+vwE8Q/jX5sjYtCnlHq5K3xPwjojUoWuI3P0DevBk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EjJ09pXYpdXzYPWBGqfyBMOCsN4Hcj7hdWcClaX4OEMLRE3ZnPW7N9Lp9L3ZulHXb0y9LiV53aVZkfDs0KEdrgtbejZEfSFQj+62d+Wz9VPRJGCz9FLljl8U7t76MpCw+BVHP1Dnrn8zGlrawbJINBz/RUYeWSTwhbnw2o98y0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gnQSVPx8; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50CNVmNK001429;
-	Mon, 13 Jan 2025 08:20:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	KTOGnUSuzyr+oWqVsvrpKAAsSXbxNV6JiMO8j/CSbgA=; b=gnQSVPx8SzXP5jLi
-	GRLKap5D6FO5Ovkep4MJICmvTQMzTTg6B/lnklB+1H3XsC9wzvRXDJy+0HSY2awQ
-	bA85QjI9NVi0cwUjqbSDhtehybG/dr/AiyuMmtnnWlK1VGlH/PSUnGkIhAlCO2oU
-	Z/uS36vr/bXJf+aOXzd5ubwVqI5bqFj6Jswr0TTnS9NXPNDfmu8c2AZ9bM7AKmuT
-	jYn8x4BsG5D4LSDEJm2rgBcfJNqvtGmlU8N3B8Cy4SHRkPqyPKAGbaqpwJFGMqm0
-	htcDpCWFUrUDyheLhC9WrE836jH/GFdNAHXJu8/BWhIPm6WBql4qDmvdFjDBy3Ze
-	8w6VDg==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 444f5bhjr2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 08:20:19 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50D8KHKF014816
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 08:20:17 GMT
-Received: from [10.253.33.98] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 13 Jan
- 2025 00:20:11 -0800
-Message-ID: <45d3eda0-7a2f-4ba3-9646-1f0e4b4f8943@quicinc.com>
-Date: Mon, 13 Jan 2025 16:20:09 +0800
+	s=arc-20240116; t=1736756483; c=relaxed/simple;
+	bh=IUwQT37Q5694N5OlGBsritmBKUoU/caZrqNKpv5TSTE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=peeeIEPHeAHsygJcCUutVNDvL6rrGPOVymDnEf2SQK8fxkzlcH7XFJfhDCwiUpjMZV8G9l90PQ0G19KEDxReCui8V5p2u3KCG7Wq+TiykhfP32rHnQmufJMk4bcI/8ppzUIHO1kPnuV0ef2lLI4xKF5qXhRH5NbmbDQ0tpkGFHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rr6SUMaX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B38EC4CED6;
+	Mon, 13 Jan 2025 08:21:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736756483;
+	bh=IUwQT37Q5694N5OlGBsritmBKUoU/caZrqNKpv5TSTE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Rr6SUMaXT2aCGEE9bCvykrGWWIX1Y1VLQ5cWQyPPPQlVkJCI51myzrYxLfCO4vYl7
+	 17IndjbH51OpMRrtxus+AyAVkp5zjOHBMuIp6Ki9TxffSXeAImhpUM/KrBBD4hQWC1
+	 qcAsJyhWg+g034H97T+MwMM/CAbE7rMwXN9NK5JgpypNdN7dcwO4AJM31+eGw/Z2Zt
+	 lgLqsrmBMbp28T4a2/SgjNNLmf7ttjfcGVnkadVSOwqcMX0RlPl8BuN9aJMuY0y/JC
+	 PqyC/UrZWgyjeQ0NKoMtIRil+6utW+E+xtOsDrVFV2Aiiabhuhth2HeOahxqvdis/i
+	 rpkNgYHRx6PJQ==
+Message-ID: <fef71e03-489f-4503-9d1b-d61051d45dde@kernel.org>
+Date: Mon, 13 Jan 2025 09:21:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,64 +50,139 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v4 3/5] net: pcs: qcom-ipq9574: Add PCS
- instantiation and phylink operations
-To: Jakub Kicinski <kuba@kernel.org>, Simon Horman <horms@kernel.org>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Paolo Abeni
-	<pabeni@redhat.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Andrew Lunn
-	<andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King
-	<linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <quic_kkumarcs@quicinc.com>,
-        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
-        <quic_linchen@quicinc.com>, <quic_luoj@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
-        <vsmuthu@qti.qualcomm.com>, <john@phrozen.org>
-References: <20250108-ipq_pcs_net-next-v4-0-0de14cd2902b@quicinc.com>
- <20250108-ipq_pcs_net-next-v4-3-0de14cd2902b@quicinc.com>
- <20250108100358.GG2772@kernel.org>
- <8ac3167c-c8aa-4ddb-948f-758714df7495@quicinc.com>
- <20250110105252.GY7706@kernel.org> <20250110163225.43fe8043@kernel.org>
+Subject: Re: [PATCH 06/12] dt-bindings: clk: sunxi-ng: add V853 CCU
+ clock/reset
+To: wens@csie.org
+Cc: Andras Szemzo <szemzo.andras@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20250110123923.270626-1-szemzo.andras@gmail.com>
+ <20250110123923.270626-7-szemzo.andras@gmail.com>
+ <de280eed-bcc8-4802-9734-5e95ad1f6611@kernel.org>
+ <CAGb2v65arvBMg+reReVqK-Y6dL+CSrSx4618msiRKcNf=Vk1=A@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Lei Wei <quic_leiwei@quicinc.com>
-In-Reply-To: <20250110163225.43fe8043@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4PZO-eVY0aKhcDrThjj0pMLQBrPJeRZM
-X-Proofpoint-ORIG-GUID: 4PZO-eVY0aKhcDrThjj0pMLQBrPJeRZM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- mlxlogscore=938 malwarescore=0 clxscore=1015 impostorscore=0
- priorityscore=1501 bulkscore=0 suspectscore=0 adultscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501130070
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CAGb2v65arvBMg+reReVqK-Y6dL+CSrSx4618msiRKcNf=Vk1=A@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-
-On 1/11/2025 8:32 AM, Jakub Kicinski wrote:
-> On Fri, 10 Jan 2025 10:52:52 +0000 Simon Horman wrote:
->> I don't think there is a need to update the code just to make Smatch happy.
->> Only if there is a real problem. Which, with the discussion at the link
->> above in mind, does not seem to be the case here.
+On 13/01/2025 09:06, Chen-Yu Tsai wrote:
+> On Fri, Jan 10, 2025 at 9:56 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 10/01/2025 13:39, Andras Szemzo wrote:
+>>> As the device tree needs the clock/reset indices, add them to DT binding
+>>> headers.
+>>>
+>>> Signed-off-by: Andras Szemzo <szemzo.andras@gmail.com>
+>>
+>> That's never a separate commit from the binding.
+>>
+>>
+>> ...
+>>
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/clock/sun8i-v853-r-ccu.h
+>>> @@ -0,0 +1,16 @@
+>>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>>> +/* Copyright(c) 2020 - 2023 Allwinner Technology Co.,Ltd. All rights reserved.
+>>> + *
+>>> + * Copyright (C) 2023 rengaomin@allwinnertech.com
+>>> + */
+>>> +#ifndef _DT_BINDINGS_CLK_SUN8I_V85X_R_CCU_H_
+>>> +#define _DT_BINDINGS_CLK_SUN8I_V85X_R_CCU_H_
+>>> +
+>>> +#define CLK_R_TWD            0
+>>> +#define CLK_R_PPU            1
+>>> +#define CLK_R_RTC            2
+>>> +#define CLK_R_CPUCFG         3
+>>> +
+>>> +#define CLK_R_MAX_NO         (CLK_R_CPUCFG + 1)
+>>
+>> Nope, drop. Not a binding.
+>>
+>>> +
+>>> +#endif
+>>> diff --git a/include/dt-bindings/reset/sun8i-v853-ccu.h b/include/dt-bindings/reset/sun8i-v853-ccu.h
+>>> new file mode 100644
+>>> index 000000000000..89d94fcbdb55
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/reset/sun8i-v853-ccu.h
+>>> @@ -0,0 +1,62 @@
+>>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+>>
+>> Odd license. Did you copy the file with such license from the downstream?
 > 
-> Maybe be good to add a one line comment in the code to make it clear
-> this is intentional. Chances are we'll get a semi-automated "fixes"
-> for this before long.
+> AFAIK all the existing sunxi clock / reset binding header files are
+> dual licensed. OOTH all the YAML files are GPL 2.0 only.
+> 
+> IIRC we started out GPL 2.0 only, but then figured that the header files
+> couldn't be shared with non-GPL projects, so we changed those to dual
+> license.
+> 
+> Hope that explains the current situation. Relicensing the whole lot
+> to just MIT or BSD is probably doable.
+That's not what the comment is about. Dual license, as expressed by
+submitting bindings/patches and enforced by checkpatch are expected. But
+not GPLv3, GPLv4 and GPLv10.
 
-Sure, I will add the comment to make it clear.
+Best regards,
+Krzysztof
 
