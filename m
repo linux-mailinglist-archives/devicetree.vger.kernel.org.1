@@ -1,152 +1,124 @@
-Return-Path: <devicetree+bounces-138023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38E73A0B77D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:51:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 131EAA0B783
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:51:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 249AA188607E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:51:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 535DA3A8D3A
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:51:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86FB9233159;
-	Mon, 13 Jan 2025 12:51:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Dy0k6PBF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BAB422F17B;
+	Mon, 13 Jan 2025 12:51:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8748C22F15B;
-	Mon, 13 Jan 2025 12:51:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B94D22F16E;
+	Mon, 13 Jan 2025 12:51:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736772665; cv=none; b=f7b14mzR2RYFtR2zCHGVEuxEsSXU2oKp8VOQO2fmhyCNiDszbnw/h/MqZ6GuChEL1YhkGACN39H4UpRDoDVL+Z/iPW2Jg7Wx8WWwgRAq+PAdGXGttLJJ89TFl2A31G811MfnABMCkkkzF0dbpEQrnJSvcaqYB7jH90QtUJOFdHE=
+	t=1736772678; cv=none; b=eJWr8CyqNwREryTLLiwGZK7VMj+rr9HrQyDTF2B/4anwMY78aUihf+x6EK+v2Y8VC5R+g29ys1MxAhS+YePTjdqP5T6Lersf2PBI7x5VaA3xfhnJNBFlMAT7ZY8mZUYgR6AhbzDP8T35eCiZlsnxKl6O5zO1HWHWEVzOa40n6Sk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736772665; c=relaxed/simple;
-	bh=l5Yi6dDEY/SW8SVIP06gR3s9bTtz+F9A6zrpSwBrNTk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uk7QEgbIPZpaaMvO1S1bDTVWxlQ8ojslCRpG84AakoqDy6aL8n7C4/cH0OBYEpp4wVBXTuxHuQF+RSPeHg/B2OlFe/ScCoSvJ2cKbvemKEy7VgWzX1QGIw9/1WrytxVy2F300uAwFwkVh0SvpG+VZt1eD3eihX0MmeQwush7fLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Dy0k6PBF; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1736772661;
-	bh=l5Yi6dDEY/SW8SVIP06gR3s9bTtz+F9A6zrpSwBrNTk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Dy0k6PBF18AOmyn3UeO46HEbOcPjhLi4tKlmGaXxz3wjQ1Kn4XX8BWL4mqoAs3fU1
-	 fH6uGhumN1OnXXajFVFjoKWiA6ggJUGAX+F6rjImRWXuvLkWI5Q88E5wu3j4oq+yW5
-	 VianQ4HEe/WRpAWn9KSiLsRg6cCZJHmMHDp2OGBIM2l6F10pT2QRcUaigN4NavkfXZ
-	 5EDp6ICYiNdWnhry0i1uyM06Ls0I1EdoG+Anta98o0vLJbRG2FdKvirUvvyqAGKp36
-	 NlyyIBuc3LgY3tuujNDEp9CQNE+ME46PGQ6lMa8gFHxRa1boAtZOLPyKRZ3wl936ks
-	 aqup0t6zj6n0g==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9BF9317E04AC;
-	Mon, 13 Jan 2025 13:51:00 +0100 (CET)
-Message-ID: <09c87f13-477d-4721-b27d-f2f2e48f4f71@collabora.com>
-Date: Mon, 13 Jan 2025 13:50:59 +0100
+	s=arc-20240116; t=1736772678; c=relaxed/simple;
+	bh=3XJxJH8SHU3yEfZPfWDkKeJ0zJoqvKnHeUvTiEjB58E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gomDxBZs25XdX9163EfCy2JvL4GgJbIAWbasMPwiVACiDHJKO9rBFhESC2waD0GsF1we7ntfbdFPSjUJ3pIFNr76uEz75HdzqPcbcO9iP8mr+gVYaBmiBcPwsFuHF+i1NTHmczp11NiC7M1JoiHIl+SNZ+nun7ExFps5PhuZEKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: StjtsS2DQOKrjH2y6WStng==
+X-CSE-MsgGUID: W7QKwxaWSKOYStZZLC8fRg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="36246587"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
+   d="scan'208";a="36246587"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2025 04:51:16 -0800
+X-CSE-ConnectionGUID: vCwjopi/SXqnR11YVw0e/A==
+X-CSE-MsgGUID: adibO7cMS/aOZM2T7a0Umw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
+   d="scan'208";a="104642530"
+Received: from unknown (HELO smile.fi.intel.com) ([10.237.72.154])
+  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2025 04:51:14 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andy@kernel.org>)
+	id 1tXJuR-00000000SnY-2DT0;
+	Mon, 13 Jan 2025 14:51:11 +0200
+Date: Mon, 13 Jan 2025 14:51:11 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: Andre Werner <andre.werner@systec-electronic.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org,
+	hvilleneuve@dimonoff.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	lech.perczak@camlingroup.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, robh@kernel.org
+Subject: Re: [PATCH v6 2/2] serial: sc16is7xx: Add polling mode if no IRQ pin
+ is available
+Message-ID: <Z4UMP1-0x25g1fX2@smile.fi.intel.com>
+References: <20250113073030.15970-1-andre.werner@systec-electronic.com>
+ <20250113073030.15970-2-andre.werner@systec-electronic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/12] Add Mediatek Soc DRM support for mt8196
-To: "paul-pl.chen" <paul-pl.chen@mediatek.com>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, chunkuang.hu@kernel.org
-Cc: matthias.bgg@gmail.com, p.zabel@pengutronix.de,
- jason-jh.lin@mediatek.com, nancy.lin@mediatek.com, singo.chang@mediatek.com,
- xiandong.wang@mediatek.com, sirius.wang@mediatek.com,
- sunny.shen@mediatek.com, fshao@chromium.org, treapking@chromium.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250113073030.15970-2-andre.werner@systec-electronic.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Il 10/01/25 13:33, paul-pl.chen ha scritto:
-> From: "Paul-pl.Chen" <paul-pl.chen@mediatek.com>
-> 
-> Add support multiple mmsys instances in the one mediatek-drm instance.
-> 
+On Mon, Jan 13, 2025 at 08:30:30AM +0100, Andre Werner wrote:
+> Fall back to polling mode if no interrupt is configured because there
+> is no possibility to connect the interrupt pin.
+> If "interrupts" property is missing in devicetree the driver
+> uses a delayed worker to pull the state of interrupt status registers.
 
-Hello Paul,
+pull ? Hmm...
 
-EXDMA, BLENDER and OUTPROC seem to have many things in common with the current
-mtk_disp_ovl.c driver.
+...
 
-Please commonize code from mtk_disp_ovl to reuse in these three components that
-you're adding, as there is a lot of code duplication.
+> V6:
+> - Use polling mode for IRQ numbers <= 0 which encounter no valid IRQ
+>   were found/defined.
 
-Thanks,
-Angelo
+Thanks, this part looks better now.
 
-> Nancy.Lin (7):
->    soc: mediatek: add mmsys support for MT8196
->    soc: mediatek: mutex: add mutex support for MT8196
->    drm/mediatek: add EXDMA support for MT8196
->    drm/mediatek: add BLENDER support for MT8196
->    drm/mediatek: add OUTPROC support for MT8196
->    drm/mediatek: add ovlsys_adaptor support for MT8196
->    drm/mediatek: Add support for multiple mmsys in the one mediatek-drm
->      driver
-> 
-> Paul-pl.Chen (5):
->    dt-bindings: arm: mediatek: mmsys: add compatible for MT8196
->    dt-bindings: soc: mediatek: add mutex yaml for MT8196
->    dt-bindings: display: mediatek: add EXDMA yaml for MT8196
->    dt-bindings: display: mediatek: add BLENDER yaml for MT8196
->    dt-bindings: display: mediatek: add OUTPROC yaml for MT8196
-> 
->   .../bindings/arm/mediatek/mediatek,mmsys.yaml |   5 +
->   .../display/mediatek/mediatek,blender.yaml    |  50 ++
->   .../display/mediatek/mediatek,exdma.yaml      |  77 ++
->   .../display/mediatek/mediatek,outproc.yaml    |  57 ++
->   .../bindings/soc/mediatek/mediatek,mutex.yaml |   2 +
->   drivers/gpu/drm/mediatek/Makefile             |   4 +
->   drivers/gpu/drm/mediatek/mtk_crtc.c           | 350 ++++++--
->   drivers/gpu/drm/mediatek/mtk_crtc.h           |   6 +-
->   drivers/gpu/drm/mediatek/mtk_ddp_comp.c       | 134 +++-
->   drivers/gpu/drm/mediatek/mtk_ddp_comp.h       |   6 +
->   drivers/gpu/drm/mediatek/mtk_disp_blender.c   | 352 ++++++++
->   drivers/gpu/drm/mediatek/mtk_disp_blender.h   |  17 +
->   drivers/gpu/drm/mediatek/mtk_disp_drv.h       |  66 +-
->   drivers/gpu/drm/mediatek/mtk_disp_exdma.c     | 447 +++++++++++
->   drivers/gpu/drm/mediatek/mtk_disp_outproc.c   | 244 ++++++
->   drivers/gpu/drm/mediatek/mtk_disp_outproc.h   |  22 +
->   .../drm/mediatek/mtk_disp_ovlsys_adaptor.c    | 758 ++++++++++++++++++
->   drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 287 ++++++-
->   drivers/gpu/drm/mediatek/mtk_drm_drv.h        |  28 +-
->   drivers/soc/mediatek/mt8196-mmsys.h           | 447 +++++++++++
->   drivers/soc/mediatek/mtk-mmsys.c              | 204 ++++-
->   drivers/soc/mediatek/mtk-mmsys.h              |  18 +
->   drivers/soc/mediatek/mtk-mutex.c              | 233 +++++-
->   include/linux/soc/mediatek/mtk-mmsys.h        |  60 ++
->   include/linux/soc/mediatek/mtk-mutex.h        |   2 +
->   25 files changed, 3734 insertions(+), 142 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,blender.yaml
->   create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,exdma.yaml
->   create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,outproc.yaml
->   create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_blender.c
->   create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_blender.h
->   create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_exdma.c
->   create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_outproc.c
->   create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_outproc.h
->   create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_ovlsys_adaptor.c
->   create mode 100644 drivers/soc/mediatek/mt8196-mmsys.h
-> 
+...
 
+> +static void sc16is7xx_poll_proc(struct kthread_work *ws)
+> +{
+> +	struct sc16is7xx_port *s = container_of(ws, struct sc16is7xx_port, poll_work.work);
+> +
+> +	/* Reuse standard IRQ handler. Interrupt ID is unused in this context. */
+
+Period.
+
+> +	sc16is7xx_irq(0, s);
+> +
+> +	/* Setup delay based on SC16IS7XX_POLL_PERIOD_MS */
+
+No period.
+
+> +	kthread_queue_delayed_work(&s->kworker, &s->poll_work,
+> +				   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD_MS));
+> +}
+
+Please, go through the comments you added in the patch and use the style that
+is mostly used in the driver for the similar (one-line comment) situations.
+
+...
+
+> +		/* Initialize kernel thread for polling */
+
+Again, no period.
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
