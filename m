@@ -1,112 +1,154 @@
-Return-Path: <devicetree+bounces-137909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16CE3A0B0F9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:24:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0030CA0B121
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:30:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24E1A1885817
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:24:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 261531884EAA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:30:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01214233135;
-	Mon, 13 Jan 2025 08:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E646233159;
+	Mon, 13 Jan 2025 08:30:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="d8Empi5W"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i41oIbcY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B47F1465AE;
-	Mon, 13 Jan 2025 08:24:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F4E233154
+	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 08:30:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736756662; cv=none; b=pqtr4JimRTXfKBQcpveY9s8Yu3DhQekKWnV48r7giacdo4n61aCF4B+PmVZQmVie+8r0twOXPZ0e1qwVAvwfzqEORDQML28pAuw2TQYW2FB6pmEHyUEezFL0hgkDU0t++eJ172alRc2pIjQ3qthFsWVA20me2SRsXHn7YLdeutU=
+	t=1736757002; cv=none; b=EkSA4s9KmR8FrIm8VCi+A3LaFewpUoknaPk6i8lvN5fBTY/gSZxMAPg+pB9TNBrrI5VID3S/b2Pqhh7bHHQ93v6DjJtUpx85cJ8LaYUBu2TEWtitc1all7LRvcAgM95WsoOr1dZ8ij3dTy9xUz4mTyhRi1CkuGp0jaZBCfgP3ek=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736756662; c=relaxed/simple;
-	bh=W1AJx50RbfJIo7DGCNaPzhN+xsJZQ6D7nxxHOWYulYQ=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=RQmHmDdWzvXNtSD5Uz6KDBS9387pGlyddXGk4io9+MXYN8Lf4+9kUZD1U89uKqmY6CM+GkVB6tNKH3EpQEeIU2gzNAu7xmatEOKOn6UirO+cYqtBhk4Of/tGkw0mneW4r53g1UKdt142k2IcmgkJL/CiFwen1iO4u+FI3UHIUFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=d8Empi5W; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1736757002; c=relaxed/simple;
+	bh=sf6dD5Jhczzuy/5Ap2KhKugjig5e4+SbB93j6g2Fhw8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bfy7+zMKs4OiUfgMghXuri/rDQImgAvRRnRhXd3YpOChWfhJePp25wAD1rMZfFtyVkeyJNWvvkvkt14iyo5YKZ7bf+NNfX51OLwPrzgc1vLzsAcy/s1yHIJBeHfzu05VajwVfON0rB9+vupBUoh9OtRVbIffSuPstyZpcwBYuhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i41oIbcY; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-304d757a9c1so36746371fa.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 00:30:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736756998; x=1737361798; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=wpNfgPmZHWvswUwSBHQaLXxsDd/iOPSUp9zWO21bZZk=;
+        b=i41oIbcYyTZIg+bXgNvVGoYxu12HOMcNmAFsdAdS5VNxkipxJNJBJT9kBKh092OKfJ
+         XnLgfqM03s2Wo/SaIrgF/j58i/NLXkbAxZAt+L4yH2czFYiN5TVSTvxXLBXjbIbhIfxx
+         +M5xuXacW3AGA+DKJg0RI5ovIQj+xZXGABLEbbxKTjKknzdegkLFZfLZ5OIO6hWlC5RO
+         bNEkOfYXyFvuyfrPJOFGQ+NXeBlGU9f7Be+d+z7mNq9gXA/2IRyz8ZYOxFYTdwxkod+f
+         LdK5qY3J8//DaDcKIzXaIzUzAvav21OVTY9JH9JYN02nCwKn9BEjX7OlkVB9P4Y5oqY7
+         mQkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736756998; x=1737361798;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wpNfgPmZHWvswUwSBHQaLXxsDd/iOPSUp9zWO21bZZk=;
+        b=xE3RtliBcAjnJOee9sta5k7DzTHWhfco26j//x8lw16jr5PlAmCqMhsqvzlBeLeuso
+         MINgYb2r9i6Yjah9Rd1M8ZHwNpk4/S0VpuShV6hWkJ8E44jtfvByecZa4loZyGMdPe+E
+         LzHsqzbpH6WnCO039Bh6hF4V0G04rUJRLwdOV6wSTOuKo1PfuhFDzJPbOrlCmVs6AutF
+         zDfH0itaBPhVyWVVTMUiOCATXTy3o75XWIJAHsGJCcFtA+YAxK8qLtAPybwaZxOG8vDV
+         0Pi2Wnm49ZglWuT7MMhD3ON1l+MFa8J8U8hVMrOsfdVpGh7B29W3UVYNt10d7SHNKi29
+         NdJg==
+X-Forwarded-Encrypted: i=1; AJvYcCXfaarri1pUV5kAuWgYwyWmXA6flMmZwl6ZVyF5zMCuVRvucbYnleHEWaiDtzL/IlLcRpZmZ9aAIVub@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzfmYSYNHOuC+1doIOP5nwtudot65HolRmqT6el0End/HcY5o1
+	9SV4B8ZE2a7eWCqF9rCDhI6nzmoGgavdhRedOZkkWO33rDGZu7T40RmRuuGaIuE=
+X-Gm-Gg: ASbGncs8TbgEsINCD0du3ZBCcndhvAYXYb+QB6Q4K7bveYu241UUvsmie2oYqnopRs2
+	7GsfXyeglJuu8Eo3XITNtuskVW5bMDU/K8uDXo9z7pwPqlxX4kkoZk4Jtbna9fW0/b3EscSRrVf
+	GDBzIzrz4/LashthE1WMakCD2scDog+Hfa/Wafnql7C53xdc79e59vVgsVskU7SqLJciLk/uQ2l
+	04/dKV7/AYUeXNT68i+Z2bMwiI8CCg29BA1wiNm3PsmZMyJCXB2tA+lBeR9wXMHqh6ADRJjHEQ8
+	eh7ZAnyP2dmwsoENHFBHD0zLTqzBPh7EjRoi
+X-Google-Smtp-Source: AGHT+IE54yzyiPD4ub1IysG2kNFqrLtRmbf0RfdOOdV+LhLhjjBOzskOmKPSTGDp09AS8bI5jIgTSw==
+X-Received: by 2002:a05:651c:b08:b0:302:2cb3:bb1d with SMTP id 38308e7fff4ca-305fee0b3a6mr41291591fa.12.1736756998394;
+        Mon, 13 Jan 2025 00:29:58 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-305ff0cf1f8sm13837701fa.27.2025.01.13.00.29.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2025 00:29:57 -0800 (PST)
+Date: Mon, 13 Jan 2025 10:29:54 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
+	Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Srini Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH RFC 08/11] drm/msm/dsi: Add support for SM8750
+Message-ID: <uyidfuh5ul5kcg4keeev6yagmjc5ksun626dyb6kdgwegc76d7@iu7ggdhgt5qr>
+References: <20250109-b4-sm8750-display-v1-0-b3f15faf4c97@linaro.org>
+ <20250109-b4-sm8750-display-v1-8-b3f15faf4c97@linaro.org>
+ <3p7kjok5jzwvgt7dxuad26xgdkjd52v4gbtuudvgkeoj33skqn@afl2ddtsq7s2>
+ <4fc7fdd5-36cd-42e6-af4a-e0e429f9f50b@linaro.org>
+ <7eupqawhdrbjgsj2p7e3ky7uj62m252i6dzkb6y23btocedp3q@qmw72nmbk2c4>
+ <6ee02d22-7a00-4c7c-a5e9-63e91d7d84ba@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1736756657;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NP5Y8/O0Oc9k478L1LRw9mJQHwjSZlVZoadTLuLD3bY=;
-	b=d8Empi5WA2UJ1zS0ddwUrM+Qk1NkOfJa4O3dj5SEXV6LaLW7Y+bc12XtymLBfnjfJ6AgIt
-	sf/zpnRI2sY1w1ufENH7lsq77JuGSqiG8Td2KqrSyllg3aqZthzhUOWKQcWfVXzlnh9n9p
-	dZT1YstAPQKIzzzJWDIxgoHf4KrYWzWgolISWRgFS1fN0vRprnNkcGA9HTODoDwmrfU47C
-	eMai8Ilw7AxGhPCMWO6oGs0+Fwa4ZtXEX+98DYe7iRKAA7k/Pc2dy2Mzbm/e8R0hVILBxM
-	fGNUlWyfs/7sVCUtcMkdK3zpn4r3OmQqBgMLkhnUrWlel2a+BNWaVQKoVLZ49g==
-Date: Mon, 13 Jan 2025 09:24:16 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Junhao Xie <bigfoot@classfun.cn>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Jonas
- Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>, FUKAUMI Naoki
- <naoki@radxa.com>, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 3/3] arm64: dts: rockchip: add dts for Ariaboard
- Photonicat RK3568
-In-Reply-To: <54b5dac0-5791-4b20-a237-dac6fd03c259@classfun.cn>
-References: <20250112073344.1976411-1-bigfoot@classfun.cn>
- <20250112073344.1976411-4-bigfoot@classfun.cn>
- <1e72cc9cdc390e79e97806fe4f7d8abf@manjaro.org>
- <35f8fe37-b06f-49eb-b0c2-430421f1ff3b@classfun.cn>
- <7b55c7469774c41d9896df3100df1630@manjaro.org>
- <54b5dac0-5791-4b20-a237-dac6fd03c259@classfun.cn>
-Message-ID: <3ee25756b12e999631bd959d787ff248@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6ee02d22-7a00-4c7c-a5e9-63e91d7d84ba@linaro.org>
 
-Hello Junhao,
-
-On 2025-01-13 09:18, Junhao Xie wrote:
-> On 2025/1/13 12:25, Dragan Simic wrote:
->> On 2025-01-12 23:16, Junhao Xie wrote:
->>> On 2025/1/12 16:47, Dragan Simic wrote:
->>>> Unless the design of the board is proprietary, it would be good
->>>> to provide a link to the board schematic, for those interested
->>>> in verifying the board DT file.
->>>> 
->>>> As a note, I already tried to find the board schematic with no
->>>> success, so the design might be proprietary.
->>> 
->>> Yes, this board is proprietary. I asked the manufacturer and
->>> they don't provide schematics.
->>> 
->>> But I found a partial schematic diagram of some of connectors
->>> on the board here
->>> https://dl.ariaboard.com/photonicat_rk3568/Photonicat%20rk3568%20EVB%20Board%20spec.pdf
->> 
->> Yes, I also found that PDF file.  It's somewhat similar to what
->> Raspberry Pi provides with its reduced schematics -- helpful to
->> an extent, but still leaving a lot to be desired.
->> 
->> Out of curiosity, what did you actually use as a reference to create
->> the board dts file?  Perhaps some downstream dts file provided by
->> the manufacturer or found in some operating system image?
+On Fri, Jan 10, 2025 at 01:43:28PM +0100, Krzysztof Kozlowski wrote:
+> On 10/01/2025 10:17, Dmitry Baryshkov wrote:
+> > On Fri, Jan 10, 2025 at 09:59:26AM +0100, Krzysztof Kozlowski wrote:
+> >> On 10/01/2025 00:18, Dmitry Baryshkov wrote:
+> >>> On Thu, Jan 09, 2025 at 02:08:35PM +0100, Krzysztof Kozlowski wrote:
+> >>>> Add support for DSI PHY v7.0 on Qualcomm SM8750 SoC which comes with two
+> >>>> differences worth noting:
+> >>>>
+> >>>> 1. ICODE_ACCUM_STATUS_LOW and ALOG_OBSV_BUS_STATUS_1 registers - their
+> >>>>    offsets were just switched.  Currently these registers are not used
+> >>>>    in the driver, so the easiest is to document both but keep them
+> >>>>    commented out to avoid conflict.
+> >>>>
+> >>>> 2. DSI PHY PLLs, the parents of pixel and byte clocks, cannot be used as
+> >>>>    parents before they are prepared and initial rate is set.  Therefore
+> >>>>    assigned-clock-parents are not working here and driver is responsible
+> >>>>    for reparenting clocks with proper procedure: see dsi_clk_init_6g_v2_9().
+> >>>
+> >>> Isn't it a description of CLK_SET_PARENT_GATE and/or
+> >>
+> >> No - must be gated accross reparent - so opposite.
+> >>
+> >>> CLK_OPS_PARENT_ENABLE ?
+> >>
+> >> Yes, but does not work. Probably enabling parent, before
+> >> assigned-clocks-parents, happens still too early:
+> >>
+> >> [    1.623554] DSI PLL(0) lock failed, status=0x00000000
+> >> [    1.623556] PLL(0) lock failed
+> >> [    1.624650] ------------[ cut here ]------------
+> >> [    1.624651] disp_cc_mdss_byte0_clk_src: rcg didn't update its
+> >> configuration.
+> >>
+> >> Or maybe something is missing in the DSI PHY PLL driver?
+> > 
+> > Do you have the no-zero-freq workaround?
 > 
-> I wrote this device tree based on other rk3568 devices in mainline,
-> and downstream board dts:
-> https://github.com/photonicat/rockchip_rk3568_kernel/blob/novotech-5.10/arch/arm64/boot/dts/rockchip/rk3568-photonicat-base.dtsi
+> Yes, it is necessary also for my variant. I did not include it here, but
+> I should mention it in the cover letter.
 
-Thanks for the clarification.  It would be good to include that
-link in the description of patch 3/3, for future reference.
+Could you please possibly backtrace the corresponding enable() calls?
+I'd let Stephen and/or Bjorn or Konrad to correct me, but I think that
+such requirement should be handled by the framework instead of having
+the drivers to manually reparent the clocks.
+
+-- 
+With best wishes
+Dmitry
 
