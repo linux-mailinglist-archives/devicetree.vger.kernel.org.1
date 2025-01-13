@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-138125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01C7BA0BBCF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:26:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29DA7A0BBC9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:26:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F8697A1CA0
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:26:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB0891882777
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:26:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CE01C5D5D;
-	Mon, 13 Jan 2025 15:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FE011C5D7A;
+	Mon, 13 Jan 2025 15:26:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IrMOxQ1M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jYfqx2/Z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2202D240253;
-	Mon, 13 Jan 2025 15:26:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F8A1C5D73;
+	Mon, 13 Jan 2025 15:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736781970; cv=none; b=s/QjsY/4ZzztEpPRZ/E/5+sVWjHZKJDI/3fB4nlsez/HUS3D7b+2ckqNV+vCPmUx+ZB1Cp9F2XIoxFLE/M0HI/31mhLWJ2p/vEs9L3A1TSS7cCyQ9kuSlIclWIwSBnFh15/RU5BvO7nACH0YVrSAD0bssZyzvbtu3TUCVTuH2dI=
+	t=1736781971; cv=none; b=Nl5EhwsuG36JXtM9n2FORsmk2vg8WrRD7hWXRsLWYitb2cvz4BBRD+RiZlQkLcGJovOnGi926MO3ZhEfwPoQXcRrzPiz8PSMrnRr/TEKim8d5Dp7vGrMdA2KWuCOngDqH9AeG/Py9EXS5YDO5ZWZ2QV4D1MNC4REYXXlXNJVYsY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736781970; c=relaxed/simple;
-	bh=SHv5WGVqcb9Ckrr9LW4LClgkQEX+U6HBdJhDCMNsKWA=;
+	s=arc-20240116; t=1736781971; c=relaxed/simple;
+	bh=T7t+1Ze8yLQOWuB84xpWs3Ri1LIErbNg7RQFQV/TxUQ=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Dz9/+A4gaikoGf74GyaNQuuop5TvkcbIxzBrnnMQb4rpzfAs973ZekmgKrb82jj3eyalDFGzbEiqdn1uYXPVKTTrWDLZ88MJhYhUbegGW7xKjgbS3c6Eaa4McFkrcWcaS7IK1igCAhOdLVD2brREip29XLOvqgmAnaxE1L6XMBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IrMOxQ1M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87055C4CED6;
-	Mon, 13 Jan 2025 15:26:09 +0000 (UTC)
+	 Message-Id:Subject; b=NRaP06AkbEsYbRYffVDfToQzqj086PA3Go4RYpA25oqiJhKrGzFv14oeIb7TVPQU5IazeKG4Aw1bOtHdhZKk6ZSna4KRnVnLXTzvfSTCsZZH3v/F+H26uv73ixjRNWusK2fV1KjDH+Ng+Q4fjWlPtfIdSoy7bzn1gCU3PpvnrI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jYfqx2/Z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 980F5C4CEE6;
+	Mon, 13 Jan 2025 15:26:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736781969;
-	bh=SHv5WGVqcb9Ckrr9LW4LClgkQEX+U6HBdJhDCMNsKWA=;
+	s=k20201202; t=1736781970;
+	bh=T7t+1Ze8yLQOWuB84xpWs3Ri1LIErbNg7RQFQV/TxUQ=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=IrMOxQ1MPWoCY7zQ0i7+/pUC0xeQ57oKXxNKhyK3p45LnKDFNSoAcTMElCZM37OJ/
-	 a5sLBtFXtPXFbqnwlFViqhKUYtHsL7AQQ/UKQ4RbonIWLYbRJjEJcxUSwZHysOMjhe
-	 aSSjlzLntzKNk/0qna8VMPq+pQnuMimPF+4hUTW/mu44sTtSt6D4DdFLP5N3r25XhU
-	 A3ddfhLLJCAkI7EEAMZLeb6no2vZGVKT3G9RpiQI4/St5VMbQvHoetV82WnqtZjPYS
-	 sG5ubspWVrAo/6GnXImz8FmP2KwO0ercQbMNfu4JRjf6/fn5U0Z1muAae3VVTQKZGa
-	 KW+O/QjJ11/ZA==
-Date: Mon, 13 Jan 2025 09:26:08 -0600
+	b=jYfqx2/Z4QGhBfoSDKllsJeP9TSCI17tpVC+pdmI+BN+iG1sGEOtdQGgrZIldw7wh
+	 kHluGCOY0QaXSPFusc2eiQI4+bqmFDgr/mUud5vGEJGaA/CYoGYtWA8IdBsN+KojWS
+	 /sggSFJ2hQw+t+BfLhsJWTFKNOCJU/2jb42LqVV6nrW/trDBNWHYZvw/Z6SLBcY5Dx
+	 mKgqPiuJ8yFCE8nV4EzMPibJ+IUJ5km+9PlhM7lUkrMi3z+vyJ2zNkzq0+jGcqGraJ
+	 w5wnBXBcPK8mSJg1InYS54PA/zwBDNgzdEWFZZ3GV1Fbn13B4cOC0S1Mwl0Ye+S+Kn
+	 ssXo7DlFm3Tqg==
+Date: Mon, 13 Jan 2025 09:26:09 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,78 +51,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
- Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
- Guenter Roeck <linux@roeck-us.net>, linux-renesas-soc@vger.kernel.org, 
- Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, linux-clk@vger.kernel.org, 
- linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Wolfram Sang <wsa+renesas@sang-engineering.com>, 
- Biju Das <biju.das.jz@bp.renesas.com>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-In-Reply-To: <20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Message-Id: <173678160483.2153339.17454160603856685559.robh@kernel.org>
-Subject: Re: [PATCH v3 0/6] Add support to retrieve the bootstatus from
- watchdog for RZ/V2H(P) SoC
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Mark Brown <broonie@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jaroslav Kysela <perex@perex.cz>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Jerome Brunet <jbrunet@baylibre.com>, 
+ devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
+ linux-amlogic@lists.infradead.org, linux-sound@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+To: jiebing chen <jiebing.chen@amlogic.com>
+In-Reply-To: <20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com>
+References: <20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com>
+Message-Id: <173678161502.2153418.9839486392491673173.robh@kernel.org>
+Subject: Re: [PATCH 0/3] Add support for S4 audio
 
 
-On Mon, 13 Jan 2025 11:23:43 +0000, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon, 13 Jan 2025 14:35:12 +0800, jiebing chen wrote:
+> Add the tdmout pad control and tocodec control driver.
 > 
-> Hi All,
+> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
+> ---
+> jiebing chen (3):
+>       ASoC: dt-bindings: Add Amlogic S4 audio
+>       ASoC: meson: s4:support for the on-chip audio
+>       arm64: dts: amlogic: Add Amlogic S4 Audio
 > 
-> This patch series adds SYSCON support to retrieve boot status information
-> for RZ/V2H(P) SoC.
-> Summary of Changes,
+>  .../bindings/sound/amlogic,s4-tdmout-pad.yaml      |  36 ++
+>  .../bindings/sound/amlogic,s4-tocodec.yaml         |  44 +++
+>  .../boot/dts/amlogic/meson-s4-s805x2-aq222.dts     | 226 ++++++++++++
+>  arch/arm64/boot/dts/amlogic/meson-s4.dtsi          | 385 ++++++++++++++++++++-
+>  sound/soc/meson/Kconfig                            |  16 +
+>  sound/soc/meson/Makefile                           |   6 +
+>  sound/soc/meson/s4-pad-out-control.c               | 372 ++++++++++++++++++++
+>  sound/soc/meson/s4-tocodec-control.c               | 376 ++++++++++++++++++++
+>  sound/soc/meson/t9015.c                            |   5 +-
+>  9 files changed, 1461 insertions(+), 5 deletions(-)
+> ---
+> base-commit: 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
+> change-id: 20250110-audio_drvier-07a5381c494b
 > 
->     Clock:
->         Add syscon compatible support to the CPG block in bindings and
->         device trees.
-> 
->     Watchdog:
->         Document the renesas,r9a09g057-syscon-wdt-errorrst property.
->         Update the watchdog driver to fetch and report boot status via
->         Error Reset Registers (CPG_ERROR_RSTm).
-> 
->     Device Tree:
->         Add the syscon property to CPG and WDT nodes in R9A09G057 and
->         R9A09G047 SoC DTSI.
-> 
-> These changes enable the watchdog driver to identify boot sources like
-> Power-on Reset and Watchdog Reset, improving system diagnostics.
-> 
-> v2->v3
-> - Updated comment section to mentione there arent any ABI breakages with
->   this patch series.
-> 
-> Cheers,
-> Prabhakar
-> 
-> Lad Prabhakar (6):
->   dt-bindings: clock: rzv2h-cpg: Add syscon compatible for CPG block
->   arm64: dts: renesas: r9a09g047: Add `syscon` compatible for CPG node
->   arm64: dts: renesas: r9a09g057: Add `syscon` compatible for CPG node
->   dt-bindings: watchdog: renesas: Document
->     `renesas,syscon-cpg-error-rst` property
->   watchdog: rzv2h_wdt: Add support to retrieve the bootstatus
->     information
->   arm64: dts: renesas: r9a09g057: Add `renesas,syscon-cpg-error-rst`
->     property to WDT node
-> 
->  .../bindings/clock/renesas,rzv2h-cpg.yaml     | 10 +++---
->  .../bindings/watchdog/renesas,wdt.yaml        | 17 +++++++++
->  arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |  2 +-
->  arch/arm64/boot/dts/renesas/r9a09g057.dtsi    |  6 +++-
->  drivers/watchdog/rzv2h_wdt.c                  | 35 +++++++++++++++++++
->  5 files changed, 64 insertions(+), 6 deletions(-)
-> 
+> Best regards,
 > --
-> 2.43.0
+> jiebing chen <jiebing.chen@amlogic.com>
 > 
 > 
 > 
@@ -142,9 +113,54 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/renesas/' for 20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/amlogic/' for 20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com:
 
-arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dtb: /soc/spi@10060000/flash@0: failed to match any schema with compatible: ['micron,mt25qu512a', 'jedec,spi-nor']
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:0: 'sclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:1: 'lrclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: clock-names:2: 'mclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-0: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:0: 'sclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:1: 'lrclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: clock-names:2: 'mclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-1: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:0: 'sclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:1: 'lrclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: clock-names:2: 'mclk' was expected
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller-2: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-iface.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: bus@fe000000: audio-controller@1A000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: bus@330000: audio-controller@E58: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: clock-controller@0: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/clock/amlogic,axg-audio-clkc.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@300: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@340: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@380: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@3c0: compatible: ['amlogic,sm1-tdmin', 'amlogic,axg-tdmin'] is too long
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,axg-tdm-formatters.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-controller@1A000: 'AVDD-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/sound/amlogic,t9015.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: audio-amplifier-0: '#sound-dai-cells' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/sound/simple-audio-amplifier.yaml#
+arch/arm64/boot/dts/amlogic/meson-s4-s805x2-aq222.dtb: sound: 'anyOf' conditional failed, one must be fixed:
+	'clocks' is a required property
+	'#clock-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/clock.yaml#
 
 
 
