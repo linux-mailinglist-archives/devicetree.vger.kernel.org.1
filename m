@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-137851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45795A0AE27
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 05:25:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 506B7A0AE30
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 05:31:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C0FA97A2ED5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 04:25:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24B8C3A67CB
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 04:31:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17141187553;
-	Mon, 13 Jan 2025 04:25:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1121448E0;
+	Mon, 13 Jan 2025 04:31:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="LNbCiOsq"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="HQMw8pc0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10C57170826;
-	Mon, 13 Jan 2025 04:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 982452F56;
+	Mon, 13 Jan 2025 04:31:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736742350; cv=none; b=p+uJi61f6HAxs6eubZ3CcV+vMDEh3IjR3boijgmGum53woEICZpybGFXzreCdDigzUNQHpt/TyL2uerp4+jv9GU4ZF4CSQTq6c8tyuW+8CieNN/rCC8PxD1mwqmUjvgKJlnpU7x18duHf4z4JaEdtuiMHvNN56Q13xPNnXmHcw0=
+	t=1736742663; cv=none; b=mu01YpIS8GZmGhnT8VkoM7Zy98rSVzdse55m/BMhxcyp+TOVPkRDbuV9sbIlp5Ku41htMKp2QkEiHwzWAWVqB5ZdlkHwnNEQnZNJW2AhVB01GNAR4E+9I6gky0PTmZ3FoNfaRTDmH78pDmSAko4w/v88GMslv4cVfQc8mnibwb8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736742350; c=relaxed/simple;
-	bh=tItQfXcfn4H2R1URTtbXDQFDvW7NXBZ1ci8UKNoZSUQ=;
+	s=arc-20240116; t=1736742663; c=relaxed/simple;
+	bh=quZ9KRiWywfkBtSwwRp2znsItWyB+yJKnyOvmlDbb8o=;
 	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=YQaepuiRnn+dUeFW6wFy5PWvETtgG8naP4J2mayvHOxYa1dx0mzivsp5iNqmcjRvaO44QyKsoC++JaSNgXTqLZjoUBQPcO7V7qM5hF9jHjg23bFu8rsEcCUWI5R5LD/Fin5ZxWifGWK8le8XrHPU10R39PVBJZAjx3Cadu8tK2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=LNbCiOsq; arc=none smtp.client-ip=116.203.91.91
+	 Message-ID:Content-Type; b=YfH05NHQgzZ46QlaTVtrej/TGuaQwqyMcipehL14UQ7iivXC5bNn3mQ5tsKTivVMY5dWFbi98z1QXlDxWhy87spaPla75KSjUr2UaWvTAX2a+vHh44wV40oi9pVLjJi0RjKzTkdD+mYh2X9Wg7fxKpwkyCFBLjvbFX0oMHdXc+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=HQMw8pc0; arc=none smtp.client-ip=116.203.91.91
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
@@ -38,18 +38,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1736742345;
+	t=1736742659;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=0i/rYtONain48RRX0u5I3QgFdCO9Q8AGBJWpvj/+2GM=;
-	b=LNbCiOsqcKhBuhmC+ka4eaFtsvRGNV9N9yDGYt065LSqN2h6wpjt8HqKqdgfh5AK9pL53e
-	Gu4PRBhlJXoyPCukxwzdmhXC4kKch/mepdvJfwC4vVgRclFaCTEYAhV2wZRdPc+sqXYHuW
-	W95mRt5Ep8+aiqxsll2kRwseXuUxzD82QBikOLPbtjuivLN94k77gZUtW/1qRWidCaLx2n
-	hJLFjQwL1sg7RTR7Kb5D7lXePybHDfKjzPwgLV9I3gqLCw2pttN6QJK2J4JTnyIgxfKjs1
-	i6YIFqWzCuzDpZHZqOszZ7zLPHd5+v71P14vuHEdNTg8ipZPw3oASDRVh4UBRQ==
-Date: Mon, 13 Jan 2025 05:25:44 +0100
+	bh=07ejYXIKIrcD3/kHRGf9djGVZsaJOUEXa1BtdRMH9Dw=;
+	b=HQMw8pc01xVq5qweIoyG+O9dX2sCtsMT7qubGQMankj+ewQmkUqfUteq8KagLgXr7fnQd6
+	hX6ey6CdgF+DAzQezUXMy35u0pzDqfb0MjCtblTTnjSYd9WV8MzPN0FpZdekwZpgNNx+bZ
+	1bM4jjH7prDU6UYUaOP9R7U3hEWg/4DzLN/UmeM2i6JQraf/kAw7i/3sQnlnf3H6FKV7XR
+	NtA1pggxmGSz+I6CqJjnYi1balKCXFERMvNWL3/xbABDtQ3D0IkUxDghMChXL4cWEuiOoA
+	U2u+v1od9oU7zB64+kyXInci43aYdfACpWZaGtNQDzm8Ti3glxnOZ3vhmYJAsA==
+Date: Mon, 13 Jan 2025 05:30:59 +0100
 From: Dragan Simic <dsimic@manjaro.org>
 To: Junhao Xie <bigfoot@classfun.cn>
 Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Rob
@@ -58,14 +58,12 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Rob
  Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>, FUKAUMI Naoki
  <naoki@radxa.com>, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 3/3] arm64: dts: rockchip: add dts for Ariaboard
- Photonicat RK3568
-In-Reply-To: <35f8fe37-b06f-49eb-b0c2-430421f1ff3b@classfun.cn>
+Subject: Re: [PATCH v6 0/3] Add support for Ariaboard Photonicat RK3568
+In-Reply-To: <526e0c19-6495-4dcf-bf6b-b5bd62a7a631@classfun.cn>
 References: <20250112073344.1976411-1-bigfoot@classfun.cn>
- <20250112073344.1976411-4-bigfoot@classfun.cn>
- <1e72cc9cdc390e79e97806fe4f7d8abf@manjaro.org>
- <35f8fe37-b06f-49eb-b0c2-430421f1ff3b@classfun.cn>
-Message-ID: <7b55c7469774c41d9896df3100df1630@manjaro.org>
+ <c520a0d829bbe26b9802f57f94f3957c@manjaro.org>
+ <526e0c19-6495-4dcf-bf6b-b5bd62a7a631@classfun.cn>
+Message-ID: <ff16c764821c3d010f49524e4a3a177b@manjaro.org>
 X-Sender: dsimic@manjaro.org
 Content-Type: text/plain; charset=UTF-8;
  format=flowed
@@ -75,68 +73,88 @@ Authentication-Results: ORIGINATING;
 
 Hello Junhao,
 
-On 2025-01-12 23:16, Junhao Xie wrote:
-> On 2025/1/12 16:47, Dragan Simic wrote:
+On 2025-01-12 23:27, Junhao Xie wrote:
+> On 2025/1/12 16:50, Dragan Simic wrote:
 >> On 2025-01-12 08:33, Junhao Xie wrote:
 >>> Add dts for Ariaboard Photonicat RK3568.
 >>> 
->>> Working IO:
->>>     Debug UART
->>>     SDIO QCA9377 WiFi and Bluetooth
->>>     M.2 E-Key PCIe WiFi and Bluetooth
->>>     M.2 B-Key USB Modem WWAN
->>>     Ethernet WAN Port
->>>     MicroSD Card slot
->>>     eMMC
->>>     HDMI Output
->>>     Mali GPU
->>>     USB Type-A
+>>> This series bring support for:
+>>> * Debug UART
+>>> * SDIO QCA9377 WiFi and Bluetooth
+>>> * M.2 E-Key PCIe WiFi and Bluetooth
+>>> * M.2 B-Key USB Modem WWAN
+>>> * Ethernet WAN Port
+>>> * MicroSD Card slot
+>>> * eMMC
+>>> * HDMI Output
+>>> * Mali GPU
+>>> * USB Type-A
 >>> 
->>> Not working IO:
->>>     Ethernet LAN Port (Lack of SGMII support)
->>>     Power management MCU on UART4 (Driver pending)
->>> 
->>> Not working IO in MCU:
->>>     Battery voltage sensor
->>>     Board temperature sensor
->>>     Hardware Power-off
->>>     Hardware Watchdog
->>>     Network status LED
->>>     Real-time clock
->>>     USB Charger voltage sensor
->>> 
->>> About onboard power management MCU:
->>>     A heartbeat must be sent to the MCU within 60 seconds,
->>>     otherwise the MCU will restart the system.
->>>     When powering off, a shutdown command needs to be sent to the 
->>> MCU.
->>>     When the power button is long pressed, the MCU will send a 
->>> shutdown
->>>     command to the system. If system does not shutdown within 60 
->>> seconds,
->>>     the power will be turned off directly.
->>>     MCU only provides voltage for charger and battery.
->>>     Manufacturer removed RK8xx PMIC.
+>>> Changed from v1:
+>>> - move some general nodes (firmware, ramoops, reboot-mode) to 
+>>> rk356x.dtsi
 >> 
->> Unless the design of the board is proprietary, it would be good
->> to provide a link to the board schematic, for those interested
->> in verifying the board DT file.
->> 
->> As a note, I already tried to find the board schematic with no
->> success, so the design might be proprietary.
+>> This entry from the changelog caught my attention, so I tried
+>> to find out what exactly happened back then.  Though, after going
+>> through the mailing list archive, I still don't see where the
+>> as-described change took place, so perhaps this changelog entry
+>> needs adjusting.
 > 
-> Yes, this board is proprietary. I asked the manufacturer and
-> they don't provide schematics.
+> Chukun Pan suggested moving these nodes to rk356x.dtsi, but I have
+> not done that yet and simply deleted them. I will fix the changelog.
+> https://lore.kernel.org/lkml/20240905034009.28124-1-amadeus@jmu.edu.cn/
 > 
-> But I found a partial schematic diagram of some of connectors
-> on the board here
-> https://dl.ariaboard.com/photonicat_rk3568/Photonicat%20rk3568%20EVB%20Board%20spec.pdf
+> - remove some general nodes (firmware, ramoops, reboot-mode)
 
-Yes, I also found that PDF file.  It's somewhat similar to what
-Raspberry Pi provides with its reduced schematics -- helpful to
-an extent, but still leaving a lot to be desired.
+Oh, thanks for the nudge, I just added a TODO to "sprinkle" a few
+"syscon-reboot-mode" and "ramoops" nodes onto the relevant SoC dtsi
+files.  Those will be highly useful when debugging mysterious crashes
+and lockups that happen on various devices in the field.
 
-Out of curiosity, what did you actually use as a reference to create
-the board dts file?  Perhaps some downstream dts file provided by
-the manufacturer or found in some operating system image?
+>>> - gmac1 change to phy-mode rgmii-id
+>>> - corrected some regulator to be closer to schematics
+>>> - rename rk3568-ariaboard-photonicat.dts to rk3568-photonicat.dts
+>>> https://lore.kernel.org/lkml/20240904111456.87089-1-bigfoot@classfun.cn/
+>>> 
+>>> Changed from v2:
+>>> - remove unused headers
+>>> - corrected some regulator to be closer to schematics
+>>> - remove usb_host1_ohci, usb_host1_ehci, usb2phy1_host that have no 
+>>> connection
+>>> https://lore.kernel.org/lkml/20240906045706.1004813-1-bigfoot@classfun.cn/
+>>> 
+>>> Changed from v3:
+>>> - corrected some regulator to be closer to schematics
+>>> - changed to using clk32k_out1 in xin32k
+>>> https://lore.kernel.org/lkml/20240911122809.1789778-2-bigfoot@classfun.cn/
+>>> 
+>>> Changed from v4:
+>>> - corrected some regulator to be closer to schematics
+>>> - corrected some label to match node name
+>>> - use resets props in phy node instead deprecated snps,reset-gpio
+>>> https://lore.kernel.org/lkml/20240914145549.879936-1-bigfoot@classfun.cn/
+>>> 
+>>> Changed from v5:
+>>> - resort regulator nodes
+>>> - remove dr_mode from usb_host1_xhci
+>>> https://lore.kernel.org/lkml/20241108031847.700606-1-bigfoot@classfun.cn/
+>>> 
+>>> Junhao Xie (3):
+>>>   dt-bindings: vendor-prefixes: Add prefix for Ariaboard
+>>>   dt-bindings: arm: rockchip: Add Ariaboard Photonicat RK3568
+>>>   arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
+>>> 
+>>>  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+>>>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>>>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>>>  .../boot/dts/rockchip/rk3568-photonicat.dts   | 599 
+>>> ++++++++++++++++++
+>>>  4 files changed, 607 insertions(+)
+>>>  create mode 100644 
+>>> arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
+> 
+> Thanks for your review, I will fix all problems in next version!
+
+Thanks, although it was just a "mile-high" review that covered
+only a few things that caught my attention. :)
 
