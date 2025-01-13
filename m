@@ -1,165 +1,167 @@
-Return-Path: <devicetree+bounces-138137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B60EA0BCF2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 17:09:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A338A0BD6C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 17:28:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98CE0164CF4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:09:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0E2D3AA532
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:28:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DCD920AF91;
-	Mon, 13 Jan 2025 16:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73B79233522;
+	Mon, 13 Jan 2025 16:26:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A41AA1FBBEA
-	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 16:09:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC20A22F84C
+	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 16:26:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736784583; cv=none; b=GBjxp6/OFzlNA8LopGKLLwIxmH2W1ygYQXXbZhM3tbyNPfz6uNw3fJN+rDG/0jX12xW9NfrjduOF8x1aXjLdP5g6QssylctkqSEK6XCSx6w0v5GD+96R54yUBxn62XPWZe3kuV/SLqkur8wtjGO2KeX1a9qPy4p7QWmgBnG9u10=
+	t=1736785577; cv=none; b=c8NrkXY+9fARglDa8+zGn4mSkLBThu82fhOq904fk1Km9xuRfQVCnEKbt7NPzH89P9q82GaOBmhgEyXTKRHRXgK6gJ3ejwActUocwqBdtiZ8th882D1YMYXIvbeT6Q9Ehl9Zx+rE0w+UmT+rRATkTAqgh1zjWcOlw+XvYjM0VQo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736784583; c=relaxed/simple;
-	bh=Pm+KD02tcADamsCS0wc/Gp4EUipnsdSbq3MH4JwZ0Zk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tvjTh4EOKz6/ycjOeXB57uw4RDNZJVKbQMlgkR4bogB2j3J/3bAygUXkwTMSZuxbwmzMQjCCBJdZ7+Q4rmUguTjA2sKQ1fH5YjrHiLFGMELumdPLkDKfQ6Wbw1C/CAnYz56gR4n6yYiW0ecFhL6jkiFJwmbkRtVTxIg7a0XPTto=
+	s=arc-20240116; t=1736785577; c=relaxed/simple;
+	bh=sFLyBSuLrvullFBEAJNO+fofARBeP56USsuwBnXypkg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=h5cB66d+qyRp/qw4uRcbkKs3OizGpDRszdoL/UsbAWgVe+vwPPtFoCIAp35EwDr/5dtYsJAONCpp1Z0nVATzBCPSrvoGA4d+VHE/+obgTPzI0tjJDFg960lC1yNBUbBfMQo4NOgBbbCneblQp/oYYVDp9rERKvMhrT5ovqzgX78=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
 	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1tXN0C-0007mJ-8O; Mon, 13 Jan 2025 17:09:20 +0100
-Message-ID: <45bbdacc-6683-43df-b7ff-d3bd09842f65@pengutronix.de>
-Date: Mon, 13 Jan 2025 17:09:19 +0100
+	id 1tXNFs-0000JE-AS; Mon, 13 Jan 2025 17:25:32 +0100
+Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tXNFp-000HzE-2Z;
+	Mon, 13 Jan 2025 17:25:30 +0100
+Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
+	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tXNFq-007FQL-2t;
+	Mon, 13 Jan 2025 17:25:30 +0100
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: [PATCH v2 00/12] reboot: support runtime configuration of
+ emergency hw_protection action
+Date: Mon, 13 Jan 2025 17:25:25 +0100
+Message-Id: <20250113-hw_protection-reboot-v2-0-161d3fc734f0@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/6] dt-bindings: clock: imx8m: document
- nominal/overdrive properties
-To: Frank Li <Frank.li@nxp.com>
-Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Abel Vesa <abel.vesa@linaro.org>,
- Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org, imx@lists.linux.dev,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250113-imx8m-clk-v3-0-0d6e9bdeaa4e@pengutronix.de>
- <20250113-imx8m-clk-v3-1-0d6e9bdeaa4e@pengutronix.de>
- <Z4U4OElqJMeuF1tw@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <Z4U4OElqJMeuF1tw@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-B4-Tracking: v=1; b=H4sIAHU+hWcC/22NwQ6CMBBEf4Xs2Zp2QaSe/A9DDMICe2nJtiKG8
+ O9WEm8e32TmzQqBhCnAJVtBaObA3iXAQwbt2LiBFHeJATUWBk2lxtd9Eh+pjamphB7eR2VLe8o
+ Lm5+xbCBNJ6Gel117qxOPHKKX9/4ym2/6E9r/wtkorbDMG92arq80XidywzOKd7wcO4J627YPZ
+ ZUH3L0AAAA=
+X-Change-ID: 20241218-hw_protection-reboot-96953493726a
+To: Andrew Morton <akpm@linux-foundation.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, 
+ Fabio Estevam <festevam@denx.de>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
+ Jonathan Corbet <corbet@lwn.net>, Serge Hallyn <serge@hallyn.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Matti Vaittinen <mazziesaccount@gmail.com>, 
+ Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+ Guenter Roeck <groeck@chromium.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+ linux-doc@vger.kernel.org, linux-security-module@vger.kernel.org, 
+ chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
+ kernel@pengutronix.de, Ahmad Fatoum <a.fatoum@pengutronix.de>, 
+ Matteo Croce <mcroce@microsoft.com>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
 X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 13.01.25 16:58, Frank Li wrote:
-> On Mon, Jan 13, 2025 at 02:42:51PM +0100, Ahmad Fatoum wrote:
->> The imx8m-clock.yaml binding covers the clock controller inside all
->> of the i.MX8M Q/M/N/P SoCs. All of them have in common that they
->> support two operating modes: nominal and overdrive mode.
->>
->> While the overdrive mode allows for higher frequencies for many IPs,
->> the nominal mode needs a lower SoC voltage, thereby reducing
->> heat generation and power usage.
->>
->> As increasing clock rates beyond the maximum permitted by the supplied
->> SoC voltage can lead to difficult to debug issues, device tree consumers
->> would benefit from knowing what mode is active to enforce the clock rate
->> limits that come with it.
->>
->> To facilitate this, extend the clock controller bindings with an
->> optional fsl,operating-mode property. This intentionally allows the
->> absence of the property, because there is no default suitable for all
->> boards:
->>
->> For i.MX8M Mini and Nano, the kernel SoC DTSIs has assigned-clock-rates
->> that are all achievable in nominal mode. For i.MX8MP, there are some
->> rates only validated for overdrive mode.
->>
->> But even for the i.MX8M Mini/Nano boards, we don't know what rates they
->> may configure at runtime, so it has not been possible so far to infer from
->> just the device tree what the mode is.
->>
->> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
->> ---
->>  Documentation/devicetree/bindings/clock/imx8m-clock.yaml | 11 +++++++++++
->>  1 file changed, 11 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
->> index c643d4a814786a1fc7e559140fe58911990f71bb..b03672255cae9462013a8a4e7a2adaff440f1420 100644
->> --- a/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
->> +++ b/Documentation/devicetree/bindings/clock/imx8m-clock.yaml
->> @@ -43,6 +43,16 @@ properties:
->>        ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8m-clock.h
->>        for the full list of i.MX8M clock IDs.
->>
->> +  fsl,operating-mode:
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    description:
->> +      The operating mode of the SoC. This affects the maximum clock rates that
->> +      can safely be configured by the clock controller.
->> +    oneOf:
->> +      - enum:
->> +          - nominal
->> +          - overdrive
-> 
-> I remember
-> 
-> fsl,operating-mode:
->   enum: [nominal, overdrive]
-> 
-> should work without oneOf
+We currently leave the decision of whether to shutdown or reboot to
+protect hardware in an emergency situation to the individual drivers.
 
-Yes, you're right. This is a left-over from the example I copy-pasted from.
-Thanks, will fix for v4. Feel free to leave some Reviewed-by on the
-other patches though in the mean-time. :-)
+This works out in some cases, where the driver detecting the critical
+failure has inside knowledge: It binds to the system management controller
+for example or is guided by hardware description that defines what to do.
 
-Cheers,
-Ahmad
+This is inadequate in the general case though as a driver reporting e.g.
+an imminent power failure can't know whether a shutdown or a reboot would
+be more appropriate for a given hardware platform.
 
-> 
-> Frank
-> 
-> 
->> +
->>  required:
->>    - compatible
->>    - reg
->> @@ -109,6 +119,7 @@ examples:
->>                   <&clk_ext3>, <&clk_ext4>;
->>          clock-names = "osc_32k", "osc_24m", "clk_ext1", "clk_ext2",
->>                        "clk_ext3", "clk_ext4";
->> +        fsl,operating-mode = "nominal";
->>      };
->>
->>    - |
->>
->> --
->> 2.39.5
->>
-> 
+To address this, this series adds a hw_protection kernel parameter and
+sysfs toggle that can be used to change the action from the shutdown
+default to reboot. A new hw_protection_trigger API then makes use of
+this default action.
 
+My particular use case is unattended embedded systems that don't
+have support for shutdown and that power on automatically when power is
+supplied:
 
+  - A brief power cycle gets detected by the driver
+  - The kernel powers down the system and SoC goes into shutdown mode
+  - Power is restored
+  - The system remains oblivious to the restored power
+  - System needs to be manually power cycled for a duration long enough
+    to drain the capacitors
+
+With this series, such systems can configure the kernel with
+hw_protection=reboot to have the boot firmware worry about critical
+conditions.
+
+---
+Changes in v2:
+- Added Rob's dt-bindings Acked-by
+- Add kernel-doc for all newly introduced enums, functions and
+  function parameters (lkp)
+- Fix kernel-doc warning for do_kernel_restart even though it
+  wasn't introduced in this series (lkp)
+- Rename the work function and object in patch 2 already to align
+  with the functional change
+-
+- Link to v1: https://lore.kernel.org/r/20241219-hw_protection-reboot-v1-0-263a0c1df802@pengutronix.de
+
+---
+Ahmad Fatoum (12):
+      reboot: replace __hw_protection_shutdown bool action parameter with an enum
+      reboot: reboot, not shutdown, on hw_protection_reboot timeout
+      docs: thermal: sync hardware protection doc with code
+      reboot: describe do_kernel_restart's cmd argument in kernel-doc
+      reboot: rename now misleading __hw_protection_shutdown symbols
+      reboot: indicate whether it is a HARDWARE PROTECTION reboot or shutdown
+      reboot: add support for configuring emergency hardware protection action
+      regulator: allow user configuration of hardware protection action
+      platform/chrome: cros_ec_lpc: prepare for hw_protection_shutdown removal
+      dt-bindings: thermal: give OS some leeway in absence of critical-action
+      thermal: core: allow user configuration of hardware protection action
+      reboot: retire hw_protection_reboot and hw_protection_shutdown helpers
+
+ Documentation/ABI/testing/sysfs-kernel-reboot      |   8 ++
+ Documentation/admin-guide/kernel-parameters.txt    |   6 +
+ .../devicetree/bindings/thermal/thermal-zones.yaml |   5 +-
+ Documentation/driver-api/thermal/sysfs-api.rst     |  25 ++--
+ drivers/platform/chrome/cros_ec_lpc.c              |   2 +-
+ drivers/regulator/core.c                           |   4 +-
+ drivers/regulator/irq_helpers.c                    |  16 +--
+ drivers/thermal/thermal_core.c                     |  17 +--
+ drivers/thermal/thermal_core.h                     |   1 +
+ drivers/thermal/thermal_of.c                       |   7 +-
+ include/linux/reboot.h                             |  36 ++++--
+ include/uapi/linux/capability.h                    |   1 +
+ kernel/reboot.c                                    | 140 ++++++++++++++++-----
+ 13 files changed, 195 insertions(+), 73 deletions(-)
+---
+base-commit: 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+change-id: 20241218-hw_protection-reboot-96953493726a
+
+Best regards,
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Ahmad Fatoum <a.fatoum@pengutronix.de>
+
 
