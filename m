@@ -1,169 +1,138 @@
-Return-Path: <devicetree+bounces-137980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15242A0B582
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:26:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8092A0B5AE
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:30:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9B3C7A3108
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:26:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C32871881D6E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:30:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D4B246335;
-	Mon, 13 Jan 2025 11:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7714823A56E;
+	Mon, 13 Jan 2025 11:26:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bZjzEpQ5"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="RNS8/buR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE53246324;
-	Mon, 13 Jan 2025 11:24:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 387AE1CAA6D
+	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 11:26:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736767445; cv=none; b=mAmZ6MKfy6gJGwuI4oyG91DDJ+DQPTbCUaEe39/ENWM0r064nvbG3RQzo2eErumjhb9fw3vBoeC9Zlt7mhwcYxAEF+LW64GYRScbRo5ML2/7uHHzpAu4X9O6qiY67HTza1p7riKyD++jj0SnBV4t7lh+2aLB3xTZXbGg8ZGGQkY=
+	t=1736767572; cv=none; b=lL7Ce+X3iKXTSj2B1Y8hKqvY107bsCYQ4S/+woHP2hIiGsbEqY3zewcxG+AxM9KHAELkaHO7Cq8Gz2inohdSipvsUD67FrB5RavgDbXiMldrO6b0AW79We76aNG9Pn/fwyMePTk4xeENEN8JyRvjneRMIDbVqZNMgQKYv7KgAE4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736767445; c=relaxed/simple;
-	bh=QR3s227urM9NghcFxW59UIOKQvvW5b6Cpn0kVjkcw6k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Od+Ea+j0Q15ZwPt5+oA4mwgeb/UbRGH5lNnE4wGz7oKrZBY+MsG1Dz4lVL2GZX2ZxI/Qu0IjXDtY1hKR2nY6hI70AwoSVeYciFT0W//qUq0bo7m6CYiXhDIdAygkUBZWkA+Co4a5kYLX8ajmJnaYuJpMludkq1Xrvvwzn9AbZlI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bZjzEpQ5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49BB7C4CEE8;
-	Mon, 13 Jan 2025 11:24:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736767444;
-	bh=QR3s227urM9NghcFxW59UIOKQvvW5b6Cpn0kVjkcw6k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bZjzEpQ5Q3vRlFXoSkFWYA/Sq4pm8vB6U6F1rRvo6znK2HmbHuXBtlHzX0muWq4nv
-	 Z91219eKchv0g4bUEZh0kyDnAyLljM2F28mm4ljJbsSzErvlwmlpjjHlTyA4MlkmHN
-	 ri5o1M7MP1hcoYCoqRI1KQUM/EUeBEcVe8eANbseTMh2dl9KZwo2fbbNkuitBr0xzO
-	 QPLYTdBzKvgIEQYv02SpjBc1oH8awTYngyzyDNX7VSTGiSb6yMfr2rDe02m79e0lP1
-	 copUrIb23Bqebtk0YoEliyyoRvMk/nQDTkD7XmY9mUseCb/xcPbzjPtkHoWROJJgDu
-	 2HJk009IKKThQ==
-Message-ID: <f47bc5f9-cabc-4cbb-b641-693f3c729012@kernel.org>
-Date: Mon, 13 Jan 2025 12:24:00 +0100
+	s=arc-20240116; t=1736767572; c=relaxed/simple;
+	bh=u3hahkWocHwmmkAO+vdyrc0iLuCr5couR8jZqwcdfd0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IR/L3fhFonW1tXX0AQOcvlet1VzVEgnu/bAJX64me5xe8tOg4VIeRLyHsNk3e2DyMlg3W85JYANHyNtZYd0JWhKdl8DTgZFvgxGFJNZp/BdiefUoh7V0eH7ymUz6J29Ng9AUfHspD9zM7WA3A9QKHIPC5t5mPwRo6bZ7lfpJhtI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=RNS8/buR; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-518a52c8b5aso1330558e0c.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 03:26:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1736767569; x=1737372369; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=u3hahkWocHwmmkAO+vdyrc0iLuCr5couR8jZqwcdfd0=;
+        b=RNS8/buRF2+FkUTzpTQkZLTC/6VC+xbW7gTHPkM6VWp2NCjDJ9FDl+r/1QOYIAj1eG
+         7jsHi/4V6NIm8b8KVf8oeVqrSx3Uj7e/zhKuTUSLFOhn7UN+dTNZDqRlKlMIWC4qv1cD
+         bPtg0B7nGW7XGT8+UBwvNdpwnCTmxujxXiwE8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736767569; x=1737372369;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=u3hahkWocHwmmkAO+vdyrc0iLuCr5couR8jZqwcdfd0=;
+        b=wnH3kSWV4RYPhHgWUFMoNRfT+QpBY1FQnhHMVa1+o4V8ubEPiBDajYo2ZKJHCbw2NC
+         QMn+crUy63OIFnZjhaOJaeNFMxpsioH0Zv+0HmjWAMxujru6q6Lq1D2ftY6iAlky1Sln
+         KxLqQAPgeKjggEhdJgnxOqKs+rnNvUaM8BHt2Fy2qtzEuLVHiChYF6w5pV/AHnSo6+b5
+         1Gn4J2iymud8BakGkcnslmA6Dh6WV6NG0Fn1KRq3RGr0nacVtc2TZsUWpe4jCIWSzY4J
+         Iu+MMeuTq7hvLCHLb9W3uJjTwzdjJN/u+OQ7fOgJe/9N4r3slTV7brTLPtcqmwT4bWWZ
+         qTvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXP59TknusXP23IV1c0LUsSnG9Xgslrb1TbWWjPQmKf+siuMxQXbMVbIbUNJ57Ft3UrkYplokyFNdcz@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJPG7n6Rs2meapvJBpUfC+Uz29ixznqrtucwB1cDIVnS3sSjAJ
+	1Q/S9Er6EKHjx+Ygvyva6e9JyqsjdDnCyXClqVTLxtYxKROggdf5vuuFfZfZw8JVAsVLoT0SMD4
+	=
+X-Gm-Gg: ASbGnctfhdj4VHNsMESKnaNltCDMsfFM2rfimI+mKL95qZt9SaFWAz6pRsYt6pdYwzm
+	BXab5XFVIUtCShShU0dd00wA2CQOGpIh8R9qIkvY31+EM6EJpX4Aam6lWR+STyNe0cWhhXxyhg+
+	B0jMTRrjmJlfmeQh8AG8T714iH8uPPeeqNMq6x63cufPYRxj1Zh50LEo1autlOpvM1ezyL92pW8
+	UVadC7IlKedPXs5lozv5dJ4o4MAknuNKt3qwTQSRLKYNKZYhWovgd7qHs8uNsLCw7c+yS88H7NS
+	0Xb/mjlRu201rm/S
+X-Google-Smtp-Source: AGHT+IFrdnjUeWdV3NpompJ7+lYxGT8+rJlPTmIr+zdlfliAzcT3wYle2Z6vyo0EzswimfBzfH4mOw==
+X-Received: by 2002:a05:6102:3750:b0:4b2:5d67:94c3 with SMTP id ada2fe7eead31-4b3d0fc4134mr16139714137.18.1736767569060;
+        Mon, 13 Jan 2025 03:26:09 -0800 (PST)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4b608f033ffsm4229293137.6.2025.01.13.03.26.08
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Jan 2025 03:26:08 -0800 (PST)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-85bb264993cso924762241.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 03:26:08 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW91r/0Mb+xZl0Esvma82hFOswyRd73pKWdIYe4dtcbpPdJAgT4IU/fukIryNjH0VvsRp7JF3+fqvr3@vger.kernel.org
+X-Received: by 2002:a05:6102:26d6:b0:4a3:ab95:9637 with SMTP id
+ ada2fe7eead31-4b3d0f1a897mr14365630137.12.1736767568272; Mon, 13 Jan 2025
+ 03:26:08 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adf4371: add refin mode
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20250109133707.3845-1-antoniu.miclaus@analog.com>
- <20250109133707.3845-2-antoniu.miclaus@analog.com>
- <mr7j4znl63p3ldhrxpc47mio63deszpqswbsqxxiby5nftpgbr@b4h47yp3xev5>
- <2f483161cbe1f797a9095ca3c9f4f472d3785acb.camel@gmail.com>
- <499ef047-d3fc-4d2a-ba7d-342ff08a351d@kernel.org>
- <98dad0cd3ba55411797c1871c5ceb5f656b8225b.camel@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <98dad0cd3ba55411797c1871c5ceb5f656b8225b.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
+ <20250110123835.2719824-2-paul-pl.chen@mediatek.com> <0499ee04-0fcc-42e1-aab8-3cb8daa88c88@kernel.org>
+In-Reply-To: <0499ee04-0fcc-42e1-aab8-3cb8daa88c88@kernel.org>
+From: Fei Shao <fshao@chromium.org>
+Date: Mon, 13 Jan 2025 19:25:32 +0800
+X-Gmail-Original-Message-ID: <CAC=S1nionnQ=g-7Ys=D_iQegPebuPfOH5S9aOx73aVh987DMLA@mail.gmail.com>
+X-Gm-Features: AbW1kvai0eVMYu31zp3zyb5u2A5YMsTuoKfeRhXsuHOuCIeklBH2XCKHTQA_efQ
+Message-ID: <CAC=S1nionnQ=g-7Ys=D_iQegPebuPfOH5S9aOx73aVh987DMLA@mail.gmail.com>
+Subject: Re: [PATCH 01/12] dt-bindings: arm: mediatek: mmsys: add compatible
+ for MT8196
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: "paul-pl.chen" <paul-pl.chen@mediatek.com>, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, chunkuang.hu@kernel.org, 
+	angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com, 
+	p.zabel@pengutronix.de, jason-jh.lin@mediatek.com, nancy.lin@mediatek.com, 
+	singo.chang@mediatek.com, xiandong.wang@mediatek.com, 
+	sirius.wang@mediatek.com, sunny.shen@mediatek.com, treapking@chromium.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 13/01/2025 12:17, Nuno Sá wrote:
-> On Mon, 2025-01-13 at 11:21 +0100, Krzysztof Kozlowski wrote:
->> On 13/01/2025 10:55, Nuno Sá wrote:
->>> On Mon, 2025-01-13 at 09:37 +0100, Krzysztof Kozlowski wrote:
->>>> On Thu, Jan 09, 2025 at 03:37:05PM +0200, Antoniu Miclaus wrote:
->>>>>    clock-names:
->>>>>      description:
->>>>> -      Must be "clkin"
->>>>> -    maxItems: 1
->>>>> +      Must be "clkin" if the input reference is single ended or "clkin-
->>>>> diff"
->>>>> +      if the input reference is differential. By default single ended
->>>>> input
->>>>> is
->>>>> +      applied.
->>>>> +    enum: [clkin, clkin-diff]
->>>>> +    default: clkin
->>>>
->>>> Which pins are these? I went through adf4371 datasheet and no reference
->>>> on clock inputs like clkin or clkin-diff.
->>>>
->>>>
->>>
->>> Hmm, I guess we should call this 'refp' and 'refp-n' then (the latter seems
->>> a
->>> bit more odd)? Or just 'ref' and 'ref-diff'?
->>
->> That mistake was done at the beginning - the "clkin" is just useless
->> name. It cannot be "clkout" and it cannot be anything else than clk, so
->> it is 100% redundant.
->>
-> 
-> Oh sure... Makes sense and I forgot that the property is not new...
-> 
->> But looking for pins brought second point - here you claim these are
->> mutually exclusive while datasheet suggests that both inputs can be
->> connected. Unless they come from the same source always?
->>
-> 
-> If you have a single ended input then only one pin (the positive one) will be
-> used. If the input signal is differential, then both pins will be used. So they
+On Fri, Jan 10, 2025 at 8:58=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 10/01/2025 13:33, paul-pl.chen wrote:
+> > From: "Paul-pl.Chen" <paul-pl.chen@mediatek.com>
+> >
+> > Add compatible for mmsys yaml of MT8196
+> >
+> > Signed-off-by: Paul-pl.Chen <paul-pl.chen@mediatek.com>
+>
+>
+> This is a wide pattern now in Mediatek: login name is used as family
+> name. Repeating the same comment to every Mediatek employee is a bit
+> tedious, so maybe you could fix it internally?
+>
+> Create some guideline for your colleagues so you won't repeat the same
+> things over and over?
 
-But the clocks describe input pins, at least in typical case, so that's
-my question: how many clock sources do you have here? One or two?
+Not a guarantee that this will go away once and for all, but I can
+ping some MediaTek folks via a separate channel, and hopefully they
+can amplify this message internally.
 
-> are mutually exclusive... You either have single ended or a differential input. 
-> And depending on the input type, the limit of the input frequency varies.
+Regards,
+Fei
 
-Based on this, this is the same clock, so using "diff" is not a property
-of "clocks". Look at other bindings how they encode differential choice
-for some signals - usually bool property, but not always - see other
-adi/admv devices.
-
-Best regards,
-Krzysztof
+>
+> Best regards,
+> Krzysztof
 
