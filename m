@@ -1,90 +1,130 @@
-Return-Path: <devicetree+bounces-138271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C41DCA0C4D9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 23:45:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C1D8A0C54F
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:11:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF5291884AC5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 22:45:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4691B166010
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 23:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04D881F9F52;
-	Mon, 13 Jan 2025 22:45:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E441FA147;
+	Mon, 13 Jan 2025 23:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VDWWLNaJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ES67ri/s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28291F9F46;
-	Mon, 13 Jan 2025 22:45:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 437021F9F7A;
+	Mon, 13 Jan 2025 23:10:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736808323; cv=none; b=rtYucp5DQZc2oMDdHaUZv3OJdm4Ti3T9NcWmk8xNTfpkF/GaM13P3lKmy5DtlcyoUzLlIAHZI/vVrCDpDiNxC1Pi41NIrI1//bZt5rX1uADxaJLEWJ8mIGP/P/t3Ledl1dqzoOoNtQQuOK8ljDAV65dRQNXQ/YGyvFj4YQF0/nw=
+	t=1736809860; cv=none; b=pihVAIKfoizvyCI16IvervrwHiX1yuk5ax19Be/E6It8sAVf8agx0jEXFq1w7MzE+404E8BryI9VzUqDFV1hSAHxECATJoxYfe+jSgAybiwrxxeUJrBRLlKhEBDYrtAUKmW1lN2AUoy+I3VvGEzW98zkFXyN+Ue252CXBt+rjCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736808323; c=relaxed/simple;
-	bh=yAYV7mK6IK4Rg9ncDt+lVzAk3Pi0bSmxLYacuo3tFi0=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=YyS07lnTKsi7kUPGtzqlOjoYEcudFvxKwrAtw32MbvI3tmRyaSKVQloGVXStpyfdFmEWNbAV0JWp7JbhBGQcvoQFP8linALLZMVR3n5E0cEKqU1GuZb/7ejJo7pr9TRfBxLOpqveiBSdEjtVrdjo6M9ttnOf29xRw8DFRuf3Sao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VDWWLNaJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40F71C4CED6;
-	Mon, 13 Jan 2025 22:45:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736808323;
-	bh=yAYV7mK6IK4Rg9ncDt+lVzAk3Pi0bSmxLYacuo3tFi0=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=VDWWLNaJ1SaHaCrxFZRd2YNiqe/q9C5iZr3TWChlunIKpa+2s79+ufLsrD8RXGP1r
-	 fMI0mLq5IPzoMHF1zsN+MwCXO30l4dc63wlKrnz4PpA0noRUq4YHwcvR2Ms7ZcyaJP
-	 6nHJnBpaWzKjU8sGuGo7eWNe8fHjimUWMoaJ7cCQnspXDaE6PM1uQFAmATizv73rB0
-	 g87MtxMI/P52NOfhkcBTMig/M7KwhUI39d5x/Y+EQwKHgHcmR9lqbjJDGhY5+7hHB2
-	 Gkyw24nqfVcEOEM9E65XK43ZdHGA5H01sKmsj3lLe89GmnDOhG0iEpwSQeGvNBH9bF
-	 VZUKgl9YCPYqg==
-Message-ID: <944dfd5c97e44d8cff3e576e0fa4a711.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1736809860; c=relaxed/simple;
+	bh=AAvpsXF1+H4gukTifuHEMsVKWNGupmyCd2o92xQZzTk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rT9bu2xsDZl5ZJFS4+962fuGSLWUrV0azJnOBPiUA6ry/Ua2qyyMq4fzJjjTxuUgsAcZEaZ+YRbg0mp9mdZNvomx9bKNy8dctdp9o4EVb0Aaaizzguxxke+uGVQMo00hu482SZW7w8Pr5FiLWKN+9vkN/JuSupT5w7f6j9ceHLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ES67ri/s; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4361f664af5so55805765e9.1;
+        Mon, 13 Jan 2025 15:10:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736809857; x=1737414657; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EoW7D7fpY5zn1VtbIuKRdA5nocvl44YbIESlTnz4Wpw=;
+        b=ES67ri/snb2+NYsID1TwDPa6yIMTKikzzTEmAPczOiU2pZ2npE91Z1ustFR/hx1ro2
+         1Lm0HVRrkJnAXbWMEsaHw2fvzv+LZV/7FzX9IZEacC64UvL7Dgs4VF3iHe3ndzFKthKV
+         yQppIXekxT6027mnuKwiiHH3Qva64Enqs3xRyMio/m1jHzfHo4K2Pu1532At9/iSMknh
+         tloiU5whztcKU8I9CcTTRerBm/LfUbxSNO7MYlawhBrYX9loW8r/IER3RolzA9SPWueM
+         lIbgusWsRP4biPE84mgMX7NBRhQmcrXQG1PumgN8Resi26PvOq07ADJG7/pZaZrVNCYh
+         4lqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736809857; x=1737414657;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EoW7D7fpY5zn1VtbIuKRdA5nocvl44YbIESlTnz4Wpw=;
+        b=dy1txnkJa+HOTHIYSowGpoNgj5fv805sGVMaTngWOYEcLpHkZGByo5OIC2WU592jjv
+         pIrKuAh3JWbRinE5LcsVl7LyrMjBReSFf8a/lGaPpTwF5HS6eHPhdIWtvIdCpla1PgfN
+         +/cf6FT9ZQv8HQVwxSUkIMnmL9Wf46wU0Jx1+TGdP3zXHWnoLABKP99Xg5J9wxZZ710v
+         x2utopacT6PwEAi7VLOjOnaU2y+K1cOuvUpeTG4bMryv5JEEgsVYJKXVHAvsWJ4QEna6
+         /nhRbjIuqE0WOVr4h9Rajr0K1ZT7rvnk8t560ra4fGpazdRwOPmcYEzNbLiGiszWO4Eb
+         g/BQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWOAPjAItyfRwZmBzgGnnxN8NdZ5QJzlnt8hke6xBv+BSVk2dyUeCiRtpPAkx12ZHofnlzkdJQhGRWU@vger.kernel.org, AJvYcCWwABTOR85dpBYnkdP3U/fLCzPqrjf9AzbIsxU9BfDzhWNJi7iLPZ2dsYi110y8/7ue0reLRhdcJnqz@vger.kernel.org, AJvYcCX5bE92y6sN2Y3pKxGtVqPiw9Q+Vuw5Aw6KW0P1X4Xgw3v4BxB9uVXTuO/tHP5pvxEdy317oVEAHvT+YUZT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfxswCIKwgg6ZDl4RGcW1hvl+4ZoYkq+/nMHj9BZ70OSytETDY
+	9CUTClBLIS6fLlFeE9RieK4xEaK8s7HPpOdJza3rkxRI4rdthPb0
+X-Gm-Gg: ASbGncthNo666SMs7DoRy4wFS2i3V2KBH6xAxvC8Km0QmoncfFJ0IyMlUz5sa5aTt0w
+	stAC7NxkkfN1SpXH2lm1AqDmPKqPG23/Nk63FriMedVuuv7fr4Zs9WdQGJOgAdGsd7oBOAbeAHP
+	GFxruBtka4Fxl0jk0kl9FA5Vo7jDKQWN3ga5hyFnu2iADZVWGiY1+Rh1vyJz/qRH91pYiOYXVMU
+	UeSqvEKjF6Lr1g0iMFfx2LzCsRheO+E1W4W6fWEtL5x811m9nbfMEenl5h/V3J5qnUhc3g+t5KP
+	3Eh3mRRIsctozHXCEoG2rIdykg==
+X-Google-Smtp-Source: AGHT+IGfWKYTvLE02nqegFqwkla6p3hgdw1Q0e5yhkRsB+PIQLGYAy7dUnN4VRPjIiHeFQXxTiJaHg==
+X-Received: by 2002:a05:600c:3c9f:b0:432:cbe5:4f09 with SMTP id 5b1f17b1804b1-436e2686716mr201060575e9.4.1736809857286;
+        Mon, 13 Jan 2025 15:10:57 -0800 (PST)
+Received: from localhost.localdomain (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436e9dd1de9sm156091075e9.15.2025.01.13.15.10.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2025 15:10:56 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	upstream@airoha.com
+Cc: Christian Marangi <ansuelsmth@gmail.com>
+Subject: [PATCH v6 0/4] clk: en7523: cleanup + eMMC clk for EN7581
+Date: Tue, 14 Jan 2025 00:10:01 +0100
+Message-ID: <20250113231030.6735-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <67859111.df0a0220.a316d.bad1@mx.google.com>
-References: <20250112133953.10404-1-ansuelsmth@gmail.com> <20250112133953.10404-2-ansuelsmth@gmail.com> <15742b3ea7b5ee1cfdeb78657e9dc4c5.sboyd@kernel.org> <678587b6.050a0220.32320f.317d@mx.google.com> <3b60a7a7775b6bae58d231a52bd9ef10.sboyd@kernel.org> <67859111.df0a0220.a316d.bad1@mx.google.com>
-Subject: Re: [PATCH v5 2/4] dt-bindings: clock: drop NUM_CLOCKS define for EN7581
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, upstream@airoha.com, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Date: Mon, 13 Jan 2025 14:45:21 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+Content-Transfer-Encoding: 8bit
 
-Quoting Christian Marangi (2025-01-13 14:17:49)
-> On Mon, Jan 13, 2025 at 01:53:46PM -0800, Stephen Boyd wrote:
-> >=20
-> > Please resubmit the entire patchset. It doesn't compile.
->=20
-> Hope I don't get annoying and sorry for this extra mail.
+This small series have some simple cleanup and the additional clock
+needed to support eMMC on EN7581 SoC.
 
-No worries.
+Changes v6:
+- Add base-commit info
+- Rebase on top of clk-next
+Cumulative changes before cover letter:
+Changes v5:
+- Set clk_data->num before accessing hws to follow counted_by
+- Add ack tag
+Changes v4:
+- Reorder patch
+Changes v3:
+- Rework num_clocks for en7523
+- Add ack tag
+Changes v2:
+- Rename emmc_base to emmc7581_base to make it more clear
+- Drop additional define for EN7581_NUM_CLOCKS
 
->=20
-> I can't repro the compile error, it seems patch 1 of this series wasn't
-> applied and changes were tested only with patch 2?
->=20
-> Patch 2 depends on patch 1 as we drop the define.
->=20
+Christian Marangi (4):
+  clk: en7523: Rework clock handling for different clock numbers
+  dt-bindings: clock: drop NUM_CLOCKS define for EN7581
+  dt-bindings: clock: add ID for eMMC for EN7581
+  clk: en7523: Add clock for eMMC for EN7581
 
-I applied the first patch, but on top of v6.13-rc1 like all other
-patches that don't tell me their base.
+ drivers/clk/clk-en7523.c               | 24 ++++++++++++++++++------
+ include/dt-bindings/clock/en7523-clk.h |  2 +-
+ 2 files changed, 19 insertions(+), 7 deletions(-)
 
-What's the base of the patch series? Please resend with a cover letter
-and use --base=3D<commitish> when formatting the patch series. When I
-applied the first patch I got this diffstat
 
- drivers/clk/clk-en7523.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+base-commit: 58ad39edcabc988aefe0482b6e0579b93b0a4301
+-- 
+2.45.2
 
-so I suspect I'm missing something in clk-fixes for this patch series.
-Please call out dependencies in the cover letter.
 
