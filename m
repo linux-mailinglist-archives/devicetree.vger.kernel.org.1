@@ -1,199 +1,108 @@
-Return-Path: <devicetree+bounces-137992-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9550EA0B62D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:59:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4F05A0B630
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:59:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 651C63A3482
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:58:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9AE5B3A40DF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:59:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D42D91CAA9A;
-	Mon, 13 Jan 2025 11:59:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2629A1CAA9B;
+	Mon, 13 Jan 2025 11:59:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ia40z2Pd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB7F522CF02;
-	Mon, 13 Jan 2025 11:58:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B195C22CF02;
+	Mon, 13 Jan 2025 11:59:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736769540; cv=none; b=ULYnwG4fzuAmz9Z103otIUyjdWfH6yiGVCwb/GR/+JS/Tu7h0bzUqdmIUDFCYBS2O+HpzpbtHlnLTB6nLTsGfs/uUXH56O6XSW5Tgk6gwGbwZzA9Z9vLxPudDgfmQEpYLnTYCe87BQnhM4wxgQqkj9zqNK+JtkvrtC2y3tPkVng=
+	t=1736769576; cv=none; b=LZNOX7R6TNWuTzeFQ/5o4NBgFaxf+E+kd9vLdfL2R5efa8DHXONcGYCUGYZ6jM0XCZlMnDyrhB3lExW+niMoOvshA6bHkecR4Bvkww4mumGjeiWIbiF3sL3nSw6M8y7/QQmI48w3M9xnXneTR55c7eFgiZgDuK506uuJL9F0d2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736769540; c=relaxed/simple;
-	bh=jdaZOpd+6otjgr312EaVcV+7PpIPVPcp+ZkS1FqhF9M=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tgETb0INQUPhsjVh7ZEdhpLOU2hLSe8rhstfrJApn0e8uKbdWamp9Xa8RAqLD6eL7UqQmI8T9pAL5l6oX69C0yBv4v/dTmewimPCFoBMbtjWUDPz6IIKe2wlZjxJiMK1WFL9657ER0Z+Gs5bQSI4MvZuSLS6nQaJUl80TdYftXw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4YWrN90pJ2z6M4t2;
-	Mon, 13 Jan 2025 19:57:13 +0800 (CST)
-Received: from frapeml500003.china.huawei.com (unknown [7.182.85.28])
-	by mail.maildlp.com (Postfix) with ESMTPS id 37EBA140A70;
-	Mon, 13 Jan 2025 19:58:55 +0800 (CST)
-Received: from localhost (10.203.177.99) by frapeml500003.china.huawei.com
- (7.182.85.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Mon, 13 Jan
- 2025 12:58:54 +0100
-Date: Mon, 13 Jan 2025 11:58:49 +0000
-From: Alireza Sanaee <alireza.sanaee@huawei.com>
-To: Mark Rutland <mark.rutland@arm.com>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "robh@kernel.org" <robh@kernel.org>, Linuxarm
-	<linuxarm@huawei.com>, Shameerali Kolothum Thodi
-	<shameerali.kolothum.thodi@huawei.com>, Jonathan Cameron
-	<jonathan.cameron@huawei.com>, jiangkunkun <jiangkunkun@huawei.com>,
-	yangyicong <yangyicong@huawei.com>, "zhao1.liu@intel.com"
-	<zhao1.liu@intel.com>
-Subject: Re: [PATCH] arm64: of: handle multiple threads in ARM cpu node
-Message-ID: <20250113115849.00006fee@huawei.com>
-In-Reply-To: <Z4FYHvbVhMHrGQI4@J2N7QTR9R3>
-References: <20250110161057.445-1-alireza.sanaee@huawei.com>
-	<Z4FJZPRg75YIUR2l@J2N7QTR9R3>
-	<20250110170211.00004ac2@huawei.com>
-	<Z4FYHvbVhMHrGQI4@J2N7QTR9R3>
-Organization: Huawei
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1736769576; c=relaxed/simple;
+	bh=0ziyVnqwVO91ruckBX8kVtEvVd6P0Dly9BB+fEhpFWQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OV1oNmr9yFzccd+eqIRfzcNCD+K2YmAlnxF7wrgAU45ZrT1QEHhB9v3YYoIWyIu4TZ4lHzDNi7nIZG/0TxFoiQltZXKlA1wGbKNa98sUkJq1BWsZOhkbon1ipXgHn9mj+xPpR7u5tUULeOzs+brzWWciCYWbAjAJuFrqs4DsZv4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ia40z2Pd; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-2ef89dbd8eeso5261668a91.0;
+        Mon, 13 Jan 2025 03:59:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736769574; x=1737374374; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4BZHmOiaKjZIN7/i2N/P/VavWYL8MUkbjD/7u3MK1MA=;
+        b=ia40z2PdkoysNkJhqQBg0oKhHaWwmuYMsGI/fmOjIT9PCmkXR9lKUqtcwd4od1NGYD
+         MHeVkzCeXWh0sw+5tID86tJrCGBDyPpymJeam6ByR6RvI6YsQHPDPxF6hDRKvX+DwYgA
+         GbJO23utpuzLxEzfnlG3yCmRHuhS7sQBu53HYI/4zhKrRrHcZ43pIWwlImhOeFrgD1Xs
+         lHRLYjjc95BkQK27ogfbKYU5rjpz4BTdc2LZxRHGn6wnPd//0RT0rUMIjCGWZz+1jFcx
+         JpRxLtzoEAwI+Zhh7jV//PeScVodIVss5kysptq6yu4oyhoxYLJNJRUz2Rk8SHha0Fl8
+         yHHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736769574; x=1737374374;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4BZHmOiaKjZIN7/i2N/P/VavWYL8MUkbjD/7u3MK1MA=;
+        b=SrLOa0GqwsSz8K5Eg3wvqH/UYff0NR6CL+U2TW+hR6by0oHR11KlsrUgruTLH80Grg
+         q6YX4shkcaek78JzqWt4H4xtn/YtUU4IL3zfbK7LdU/tYpjHgutor/IAPQe/lgB0ysvB
+         f6CtfUikzUH1kmOkAhYYTrRw8hVrtT7rgMk9cyxY12a9jLiRjNn9zt7BqUVDFag9gaxS
+         Hpq0WmcQ5RgHbufCIXGN67d6g+KJhyDYxZZTnBGp5Y+EvsYqbEMLYDT8SuDR9/tB0rYS
+         cnBtolg6mwgijWOGqggIe1nLgmm/sF85xvfqRZopbawRPn/ExFJYA9LEFtJ6iwzkDYHK
+         eAhg==
+X-Forwarded-Encrypted: i=1; AJvYcCXIw5qt4zdiObRBhXFPhrQDcd96p1cE+h5/Q78/nJPc33IJ0iEvzUvf5YmYRGbNUo2EJP5tCkLUDZKN@vger.kernel.org, AJvYcCXqFqUKrC4jPG280tIEy6rBEYVpLmmW7ULdZyBFTSi4QQvskn5fo29PTGC6wzln/oVemigfPoz2e+iQhGM=@vger.kernel.org, AJvYcCXsb3+AAxIbe8BkgFS6WiZBEJioPoQxwsaJBiwLARJVCfi2LbMKpW9omkapvUR7DS1BhqPNyruhDhdeDdNq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy/ZN6tCuVHm3gzqjCP5tGlb9u3jPdj8vF7CeIf5RNfs1h2AXvQ
+	Sn+RrsOn8mKbyNqIk4fI6T4b2lSBHP7icrmZG7ArOp+yN3usHZUkG/yVyLdUZrL792p2/OiMDOO
+	ILlPv7DpQ/7Lsqq5xFpH4Q6T3ZNU=
+X-Gm-Gg: ASbGncufwKu4MEXGVpkAbi1oLnH3I+ra/dPfZYf4m1nFufPdk28KpAD8Ys7ZLnoJexc
+	JfiykcluYFlcAhuVZ7o+urIFO+eI3F2W9Hw==
+X-Google-Smtp-Source: AGHT+IFFtFvwWjMl/5EMpK2S7nSEZ6pgoPxNoo69HRCpuXIwKyRJxcrGj6mncXjqy6XcaiA0mXO/qFfFeO0UEvjFYlo=
+X-Received: by 2002:a17:90b:2c8e:b0:2f6:539:3cd8 with SMTP id
+ 98e67ed59e1d1-2f6060edd49mr13264006a91.18.1736769573984; Mon, 13 Jan 2025
+ 03:59:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100002.china.huawei.com (7.191.160.241) To
- frapeml500003.china.huawei.com (7.182.85.28)
+References: <20250113090321.3193464-1-shengjiu.wang@nxp.com>
+In-Reply-To: <20250113090321.3193464-1-shengjiu.wang@nxp.com>
+From: Daniel Baluta <daniel.baluta@gmail.com>
+Date: Mon, 13 Jan 2025 14:01:00 +0200
+X-Gm-Features: AbW1kvZExglXQIlMfF2a_bl5zrshwSuduhxAp_KYgu9q4zErtaUNw0cuP3BKxhQ
+Message-ID: <CAEnQRZCz5Okdy1RPh-Cs3+E8zJdmC7XeQtU1H-8F5oGu2madaA@mail.gmail.com>
+Subject: Re: [PATCH 0/2] ASoC: fsl: Support MQS on i.MX943
+To: Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc: shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com, 
+	nicoleotsuka@gmail.com, lgirdwood@gmail.com, broonie@kernel.org, 
+	perex@perex.cz, tiwai@suse.com, linux-sound@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 10 Jan 2025 17:25:50 +0000
-Mark Rutland <mark.rutland@arm.com> wrote:
+On Mon, Jan 13, 2025 at 11:04=E2=80=AFAM Shengjiu Wang <shengjiu.wang@nxp.c=
+om> wrote:
+>
+> There are two MQS instances on the i.MX943 platform.
+> The definition of bit positions in the control register are
+> different. In order to support these MQS modules, define
+> two compatible strings to distinguish them.
+>
+> Shengjiu Wang (2):
+>   ASoC: fsl_mqs: Add i.MX943 platform support
+>   ASoC: dt-bindings: fsl,mqs: Add compatible string for i.MX943 platform
 
-Hi Mark,
 
-Just resending, but without the screenshot mistakenly attached to
-the other email. Sorry about that.
+For entire patchseries:
 
-> On Fri, Jan 10, 2025 at 05:02:11PM +0000, Alireza Sanaee wrote:
-> > On Fri, 10 Jan 2025 16:23:00 +0000
-> > Mark Rutland <mark.rutland@arm.com> wrote:
-> > 
-> > Hi Mark,
-> > 
-> > Thanks for prompt feedback.
-> > 
-> > Please look inline.
-> >   
-> > > On Fri, Jan 10, 2025 at 04:10:57PM +0000, Alireza Sanaee wrote:  
-> > > > Update `of_parse_and_init_cpus` to parse reg property of CPU
-> > > > node as an array based as per spec for SMT threads.
-> > > > 
-> > > > Spec v0.4 Section 3.8.1:    
-> > > 
-> > > Which spec, and why do we care?  
-> > 
-> > For the spec, this is what I looked
-> > into https://github.com/devicetree-org/devicetree-specification/releases/download/v0.4/devicetree-specification-v0.4.pdf 
-> > Section 3.8.1 
-> > 
-> > Sorry I didn't put the link in there.  
-> 
-> Ok, so that's "The devicetree specification v0.4 from ${URL}", rather
-> than "Spec v0.4".
-
-:) sure, I will be more precise in my future correspondences.
-
-> 
-> > One limitation with the existing approach is that it is not really
-> > possible to describe shared caches for SMT cores as they will be
-> > seen as separate CPU cores in the device tree. Is there anyway to
-> > do so?  
-> 
-> Can't the existing cache bindings handle that? e.g. give both threads
-> a next-level-cache pointing to the shared L1?
-
-Unfortunately, I have tested this recently, there are some leg work to
-be able to even enable that, and does not work right now.
-
-> 
-> > More discussion over sharing caches for threads
-> > here https://lore.kernel.org/kvm/20241219083237.265419-1-zhao1.liu@intel.com/  
-> 
-> In that thread Rob refers to earlier discussions, so I don't think
-> that thread alone has enough context.
-
-https://lore.kernel.org/linux-devicetree/CAL_JsqLGEvGBQ0W_B6+5cME1UEhuKXadBB-6=GoN1tmavw9K_w@mail.gmail.com/
-
-This was the earlier discussion, where Rob pointed me towards
-investigating this approach (this patch).
-
-> 
-> > > > The value of reg is a <prop-encoded-**array**> that defines a
-> > > > unique CPU/thread id for the CPU/threads represented by the CPU
-> > > > node. **If a CPU supports more than one thread (i.e.  multiple
-> > > > streams of execution) the reg property is an array with 1
-> > > > element per thread**.  The address-cells on the /cpus node
-> > > > specifies how many cells each element of the array takes.
-> > > > Software can determine the number of threads by dividing the
-> > > > size of reg by the parent node's address-cells.    
-> > > 
-> > > We already have systems where each thread gets a unique CPU node
-> > > under /cpus, so we can't rely on this to determine the topology.  
-> > 
-> > I assume we can generate unique values even in reg array, but
-> > probably makes things more complicated.  
-> 
-> The other bindings use phandles to refer to threads, and phandles
-> point to nodes in the dt, so it's necessary for threads to be given
-> separate nodes.
-> 
-> Note that the CPU topology bindings use that to describe threads, see
-> 
->   Documentation/devicetree/bindings/cpu/cpu-topology.txt
-
-Noted. Makes sense.
-
-> 
-> > > Further, there are bindings which rely on being able to address
-> > > each CPU/thread with a unique phandle (e.g. for affinity of PMU
-> > > interrupts), which this would break.  
-> 
-> > > Regardless, as above I do not think this is a good idea. While it
-> > > allows the DT to be written in a marginally simpler way, it makes
-> > > things more complicated for the kernel and is incompatible with
-> > > bindings that we already support.
-> > > 
-> > > If anything "the spec" should be relaxed here.  
-> > 
-> > Hi Rob,
-> > 
-> > If this approach is too disruptive, then shall we fallback to the
-> > approach where go share L1 at next-level-cache entry?  
-> 
-> Ah, was that previously discussed, and were there any concerns against
-> that approach?
-> 
-> To be clear, my main concern here is that threads remain represented
-> as distinct nodes under /cpus; I'm not wedded to the precise solution
-> for representing shared caches.
-
-This was basically what comes to mind as a
-non-invasive preliminary solution. That said
-there were no discussions over downsides or advantages of having a
-separate layer for l1-cache YET. 
-
-But if it is something reasonable, I can look into it.  
-
-> 
-> Mark.
-> 
-> 
-
-Thanks,
-Alireza
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
