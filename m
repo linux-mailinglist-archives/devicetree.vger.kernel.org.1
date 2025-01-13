@@ -1,182 +1,237 @@
-Return-Path: <devicetree+bounces-137947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDA8EA0B2C0
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:27:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02C3FA0B2C7
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:29:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5CF83A0135
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:27:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5BB97A04E8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:29:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951C12397A0;
-	Mon, 13 Jan 2025 09:27:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A21B2397B2;
+	Mon, 13 Jan 2025 09:29:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O1dn8fNA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tj+vE0u/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED54C233159;
-	Mon, 13 Jan 2025 09:27:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C3EE14A09C;
+	Mon, 13 Jan 2025 09:29:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736760443; cv=none; b=ICLVTaPAJic1oTPAAOW4M3DkWHItaHNesVim2qNjufA8NNeQvk77rQNqYTh2o1nFNCAzH4pJm9eTP45hqBYROzupbkcx11ID3cal+LobxSk2MEc6nrDVhFS4codl7Zaf3hUBTAsNzrdudWJJGx2qoF0KGqy7Juz+wYVE/cPEsXU=
+	t=1736760589; cv=none; b=u4Bt82l3d90B+KXKqnkWNkZbMDZ/GHuuYFCn2032dk+EFm4BtDvoGOAEITZb2MwrzlxkCZehw/1CEMUkP/Ppc/01yaWwQfazPEL/LycgO5M0gf5L7PeBcdKh7vDzhLtlJLCSl/MpKERPKVJolsL2Su1N/CBq6Ch6YK6PldFkMQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736760443; c=relaxed/simple;
-	bh=9nbbm0iwPkHhn7AiKvDMza0I+r4iJKlFuYZdqeto4m8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=shuJ0Tgm0lIv5tLzizHk9yN1NlGK7DFuomCK4DTiFqgD5afB0AzfVz4+NchXUta9GNFHDzsW0soRb0e3vHZCmOm8J9+oK7GkRK6Fm/maifZ1NqIqRR1lwN2caqf8LwvOxEYp5zSbj8pQwHVg+6i1rthJv55hgTvlYwccu5dOKoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=O1dn8fNA; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50D6glEL024409;
-	Mon, 13 Jan 2025 09:27:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	MOfjFAH+CybZ33SMwzfNlmQyC6CmVOKixDLWbRV01BM=; b=O1dn8fNAabIUgm/j
-	3BKm3WVSMnTh8LSexcu482RLtmKRfjcX2yK8sjt8q42vfX2+VXSRqG7xFdhKQVaa
-	artSSdfyh6Gj+qf21EcNSQAhLTnC40CAxedR5HFvby7u1Lyt0+TXaYbCoZOEW5e5
-	UT50Ggril+HHlopK9d5ivvzrz6h535htRps9WdtXoZHukccPtd5yow2efJ67H4j7
-	nyA1dkF3C0P6YC9XgjWIzgOsH4HjKPiC5uBZ5/P43vTTRZNc2EdmIZ/BWu8NuC/i
-	h08Dfgg5OScI6Lw4grVeS6tDMW9pcNODeNc5z4emleqhAYZI+MYX2bXu0b9FkaHv
-	ZZXj7w==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 444wt4rd06-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 09:27:06 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50D9R57H029576
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 09:27:05 GMT
-Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 13 Jan
- 2025 01:26:59 -0800
-Message-ID: <9a87724c-1906-4a9b-bf01-e603b310e47a@quicinc.com>
-Date: Mon, 13 Jan 2025 17:26:56 +0800
+	s=arc-20240116; t=1736760589; c=relaxed/simple;
+	bh=uuhhoIuboHPWhczc/6YMTwUy8feTwWUv8uqp0LqwNug=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=QcpyEe7MHYUnB0j9fdugow2tz3j7ZGg/X4PUG9qB6eb+gA0dUahmonBDtHCwk5rNeV6iYv1DEL33LkJJbM/IGqse+KsdQ3MP4ED+ROFPVejTR05msGJ0MTeN5rV/dqVAzGbad3K5IZdLs5VSkXgcXaopThCpzuwzPF8srUbzv3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tj+vE0u/; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-436202dd730so28277245e9.2;
+        Mon, 13 Jan 2025 01:29:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736760586; x=1737365386; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=p0cX2s6y1CpgFWbk714th6XfIo828EXlRRcCeLbR80U=;
+        b=Tj+vE0u/BCHN6XFw8nryqIakkZsFvGuh2x/Z0isolFf6PBREwK9zirag9Q9PGi4rYI
+         n8Idai5GsSW9OTD3KHg0lN9iFSNR71cLpuT7qzyRrb2NR1UIXFU92j/IXMpRakrGpd9L
+         l8/wPBM8Qlk8HfBswJ7isMtRT3pp075bQVGWFczZlk7tvKj9g4K2po8Hpl9lVBF8pHgb
+         kFWEMghtct74icFFKsJOAipSg/Q86/rg4TC9B/BAUSsouQAVDt6k8a+KKKhS5LDz4wGo
+         zJBK9S0O+tgPwrCuAVgnoZHqZtGVowvNS+0d5P/YK6u1Jx/zlria2MIwQlY36AsIwgTB
+         bE2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736760586; x=1737365386;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=p0cX2s6y1CpgFWbk714th6XfIo828EXlRRcCeLbR80U=;
+        b=tGaRK9MWTwoSo0hms5c4Ig+JpAkCXDdXP9/BSCQPtSTBWVM/lZTJq+qxkNq5wqaaIq
+         8WcnMbO0CrA/bDNLXCbOX1u/GQRKikFLPjmwlJ6WgN7qEv+KHxIClo/LdtfzJbEVWmg3
+         CSa5cHGgl1g4u5/2EBdkXyogk8n4FUhoa84//nUfyqlK52RiqxW/fz4GF3x9evH745yq
+         HK08ON3rwHyF533ZBIgESnb8QFq4TNY+vNJmfzZi08/Q3ZD8DI/fYkpJ/6woBvYkV9wc
+         RwRf+JfmUCk2OwaD6nK+6kkBeA/lYU63LTWG/sfOzjWIrxKYqgeRAjChBKKm83jT79sQ
+         EK5A==
+X-Forwarded-Encrypted: i=1; AJvYcCUlUVUHzEuwFlwxfHGBqyToJuHKY3GhhudRyMGJEFseWJi0qmzFMfdjv9XLWC4tXTBa7KKZm5WPpEtZ@vger.kernel.org, AJvYcCVBmMCpGFYUi1m2PJBu6t8BUnAr46CGzIKg7xuHwNrxVDPCFnpxdbgNCuYzmBq9xewaz3+DrDYNEK/uDNaG@vger.kernel.org, AJvYcCW28XHV7WYNjDUE1EKha1UItkQgtgaRZGIFMfKTvjz2wys0/85ePoJUpOCIzGPRyXbnzh3MQJr0jisz@vger.kernel.org, AJvYcCX3NbDV7pa5g/GucaXiSNbzdR/Jf9Kg5Pfsevf8EYz2X+5qVTJzsQI+7dLwXaSG4avTIYh4xja5w4/3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxS54j98LhwHqDDGO3WxFyrNCI09g05zUYArgaGq3YHfC4/wy/I
+	zGLrrlcDhIEreV5jAA8mbjHr9MPP8SXqSLAzAaQrf7AKjO5FqYde
+X-Gm-Gg: ASbGncv+f9pH8YTRdscZ2U/y0qG8PHn12z+TFBuHsnWIKfo79iAXA1BOeoBzm5DAxia
+	RZ1JCM4iLfWWpyevKuRUe+0pv1JD6qFmmvbYen0O/cFrZPFk0Z09ZlyiwWF5emJ1wCfMOofm0OF
+	IZVYTCSG1TcGZW4zdbvlkJ8B/eNUSn7ezOw96YDn4SZA5mZRKQOsKQlJ7bBpFHj+vt7NywbW8s5
+	h71E7Nl048/GZbPH1VykZCLYuCHqVpnizCua9S0BDPNL8UlrUTpov8H9DMpseq2SUDnAtchEQXi
+	joKKnA7S7R2tD25aQZUjNhimM8m1
+X-Google-Smtp-Source: AGHT+IEi6E132aBc5zotFnSPKgF4a2PYwlIZFpppWVMgdMhRO0HF+t4W3CnCbYcOa6CRz1H7P7+qPA==
+X-Received: by 2002:a05:6000:2a3:b0:388:e2a6:ba81 with SMTP id ffacd0b85a97d-38a87355917mr17953620f8f.47.1736760585678;
+        Mon, 13 Jan 2025 01:29:45 -0800 (PST)
+Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2df2faesm172831695e9.26.2025.01.13.01.29.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2025 01:29:45 -0800 (PST)
+Message-ID: <7a6290b673d8d9492418365392b2554e310ef557.camel@gmail.com>
+Subject: Re: [PATCH v4 4/6] dt-bindings: iio: Add adis16550 bindings
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>, Robert Budai
+ <robert.budai@analog.com>
+Cc: Nuno Sa <nuno.sa@analog.com>, Ramona Gradinariu	
+ <ramona.gradinariu@analog.com>, Antoniu Miclaus
+ <antoniu.miclaus@analog.com>,  Lars-Peter Clausen	 <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
+ <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Alex Lanzano	
+ <lanzano.alex@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Date: Mon, 13 Jan 2025 09:29:44 +0000
+In-Reply-To: <20250112154836.47feeea8@jic23-huawei>
+References: <20250110074254.38966-1-robert.budai@analog.com>
+		<20250110074254.38966-5-robert.budai@analog.com>
+	 <20250112154836.47feeea8@jic23-huawei>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/4] Display enablement changes for Qualcomm QCS8300
- platform
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten
-	<marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, "Simona
- Vetter" <simona@ffwll.ch>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kuogee Hsieh
-	<quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-        "Kishon Vijay
- Abraham I" <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski@linaro.org>
-References: <20250113-mdssdt_qcs8300-v3-0-6c8e93459600@quicinc.com>
- <qsq5so5i7fy3r7xcjtcr7aq2vtbywh57j3b3e7ddbsmmeu5qwy@pgcntgxknuul>
-Content-Language: en-US
-From: Yongxing Mou <quic_yongmou@quicinc.com>
-In-Reply-To: <qsq5so5i7fy3r7xcjtcr7aq2vtbywh57j3b3e7ddbsmmeu5qwy@pgcntgxknuul>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: FZvTmcrhQQEHUT1SOKIGh2bA7JiNFdyI
-X-Proofpoint-GUID: FZvTmcrhQQEHUT1SOKIGh2bA7JiNFdyI
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- clxscore=1015 impostorscore=0 malwarescore=0 phishscore=0 mlxlogscore=999
- suspectscore=0 bulkscore=0 priorityscore=1501 mlxscore=0 adultscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501130080
+
+On Sun, 2025-01-12 at 15:48 +0000, Jonathan Cameron wrote:
+> On Fri, 10 Jan 2025 09:42:52 +0200
+> Robert Budai <robert.budai@analog.com> wrote:
+>=20
+> > Document the ADIS16550 device devicetree bindings.
+> >=20
+> > Co-developed-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
+> > Signed-off-by: Robert Budai <robert.budai@analog.com>
+> > ---
+> >=20
+> > 4:
+> > - applied styling changes to the bindings file
+> > - restricted sync-mode to intervals 1-2=20
+> >=20
+> > =C2=A0.../bindings/iio/imu/adi,adis16550.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0 | 96 +++++++++++++++++++
+> > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 9 ++
+> > =C2=A02 files changed, 105 insertions(+)
+> > =C2=A0create mode 100644
+> > Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16550.ya=
+ml
+> > b/Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+> > new file mode 100644
+> > index 000000000000..e7ccf3883e55
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16550.yaml
+> > @@ -0,0 +1,96 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/imu/adi,adis16550.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Analog Devices ADIS16550 and similar IMUs
+> > +
+> > +maintainers:
+> > +=C2=A0 - Nuno Sa <nuno.sa@analog.com>
+> > +=C2=A0 - Ramona Gradinariu <ramona.gradinariu@analog.com>
+> > +=C2=A0 - Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > +
+> > +properties:
+> > +=C2=A0 compatible:
+> > +=C2=A0=C2=A0=C2=A0 enum:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,adis16550
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - adi,adis16550w
+> > +
+> > +=C2=A0 reg:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 spi-cpha: true
+> > +
+> > +=C2=A0 spi-cpol: true
+> > +
+> > +=C2=A0 spi-max-frequency:
+> > +=C2=A0=C2=A0=C2=A0 maximum: 15000000
+> > +
+> > +=C2=A0 vdd-supply: true
+> > +
+> > +=C2=A0 interrupts:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 reset-gpios:
+> > +=C2=A0=C2=A0=C2=A0 description:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 RESET active low pin.
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +
+> > +=C2=A0 clocks:
+> > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > +=C2=A0=C2=A0=C2=A0 description: If not provided, then the internal clo=
+ck is used.
+> > +
+> > +=C2=A0 adi,sync-mode:
+> > +=C2=A0=C2=A0=C2=A0 description:
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Configures the device SYNC pin. The fol=
+lowing modes are supported
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0 - output_sync
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 1 - direct_sync
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 2 - scaled_sync
+>=20
+> A little more on these would be good.=C2=A0 They are 'weird' options
+> that are not commonly seen so help the reader out.
+>=20
+> For scaled_sync don't we need information on the scale for it to be usefu=
+l?
+> If we had that then a value of 1 would mean direct sync and wouldn't need
+> another control.=20
+>=20
+> I'm not fully understanding the usecases for this.
+>=20
+> If we have a say a pulse per second input, the control of the scale shoul=
+d
+> be userspace anyway.=C2=A0 So maybe this maps to the input clock that we =
+can elect
+> to
+> use and control the effective frequency of by using scaled sync?
+
+I guess you likely already saw it in the driver. The scale value is
+automatically set by the driver depending on the desired ODR (sampling
+frequency).
+
+>=20
+> I'm not sure what pulse sync is. Grepping the datasheet didn't give me
+> anything that seemed related.=C2=A0=C2=A0 The sync pin is input only so I=
+'m also
+> not sure on output sync.
+
+I think this is a copy paste from the adis16475 bindings. For this device, =
+it
+seems we only have:
+ * internal clock;
+ * external:
+   * direct mode
+   * scaled mode
+
+But yeah, as you pointed out I think we do not need the binding. The presen=
+ce of
+an optional input clock plus the frequency should be all we need in order t=
+o set
+the desired configuration. It should also be possible to add the allowed ra=
+nges
+to the external input clock in the bindings...
 
 
+- Nuno S=C3=A1
 
-On 2025/1/13 17:02, Dmitry Baryshkov wrote:
-> On Mon, Jan 13, 2025 at 04:03:07PM +0800, Yongxing Mou wrote:
->> This series introduces support to enable the Mobile Display Subsystem (MDSS)
->> , Display Processing Unit (DPU), DisplayPort controller for the Qualcomm
->> QCS8300 target. It includes the addition of the hardware catalog, compatible
->> string, and their YAML bindings.
->>
->> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
->> ---
->> Changes in v3:Fixed review comments from Krzysztof, Dmitry.
->> - Fix the missing space issue in commit message.[Krzysztof]
->> - Separate the patch for the phy from this series.[Dmitry]
->> - Remove unused dependencies and update in the cover letter.[Dmitry][Krzysztof]
->> - Link to v2: https://lore.kernel.org/r/20241226-mdssdt_qcs8300-v2-0-acba0db533ce@quicinc.com
->>
->> Changes in v2:Fixed review comments from Krzysztof, Dmitry, Rob.
->> - Decouple the devicetree changes from this series.[Dmitry][Krzysztof]
->> - Drop the dpu driver changes and reuse SA8775P DPU driver.[Dmitry]
->> - Fix compilation issues in MDSS bindings.[Rob][Krzysztof]
->> - Correct formatting errors and remove unnecessary status in MDSS
->>    bindings.[Krzysztof]
->> - Add the the necessary information in MDSS changes commit msg.[Dmitry]
->> - Rebase MDSS driver changes to https://lore.kernel.org/dri-devel/
->>    20241127-msm-mdss-ubwc-v3-0-9782a7c2b023@linaro.org/.[Dmitry]
->> - Package the DisplayPort controller and eDP PHY bindings document to
->>    this patch series.
->> - Collecting MDSS changes reviewd-by Dmitry.
->> - Reuse the sa8775p eDP PHY as a fallback compat.[Dmitry]
->> - Reuse the sm8650 DP controller as a fallback compat.[Dmitry]
->> - Link to v1: https://lore.kernel.org/r/20241127-mdss_qcs8300-v1-0-29b2c3ee95b8@quicinc.com
->> ~
->>
->> ---
->> Yongxing Mou (4):
->>        dt-bindings: display/msm: Document the DPU for QCS8300
->>        dt-bindings: display: msm: dp-controller: document QCS8300 compatible
->>        dt-bindings: display/msm: Document MDSS on QCS8300
-> 
-> Is there any reason for not using a common style for these three
-> commits?
-> 
-Hi，actually, for the dp-controller.yamel file, I just noticed that the 
-previous platforms added the dt-binding files using this format. So, I 
-followed their format to write the commit message. Such as dt-bindings 
-for sm8650/sm8150/sm8250...
->>        drm/msm: mdss: Add QCS8300 support
->>
->>   .../bindings/display/msm/dp-controller.yaml        |   4 +
->>   .../bindings/display/msm/qcom,qcs8300-mdss.yaml    | 244 +++++++++++++++++++++
->>   .../bindings/display/msm/qcom,sm8650-dpu.yaml      |  13 +-
->>   drivers/gpu/drm/msm/msm_mdss.c                     |  11 +
->>   4 files changed, 268 insertions(+), 4 deletions(-)
->> ---
->> base-commit: 2b88851f583d3c4e40bcd40cfe1965241ec229dd
->> change-id: 20241224-mdssdt_qcs8300-11b7883dc60b
->>
->> Best regards,
->> -- 
->> Yongxing Mou <quic_yongmou@quicinc.com>
->>
-> 
 
 
