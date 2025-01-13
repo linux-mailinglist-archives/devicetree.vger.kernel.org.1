@@ -1,101 +1,128 @@
-Return-Path: <devicetree+bounces-138028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A66DDA0B7B3
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:08:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D51C5A0B7CA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:11:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24E667A02A4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:07:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D6060188694E
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:11:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97116233D92;
-	Mon, 13 Jan 2025 13:07:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lBTSAtWX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57513230D2B;
+	Mon, 13 Jan 2025 13:11:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C495122A4D2;
-	Mon, 13 Jan 2025 13:07:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC9AE1FDA8B;
+	Mon, 13 Jan 2025 13:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736773674; cv=none; b=A4kWSDOrM5bkb8bpJK+Raye9Is2nfIYuqanYJLJcQ1tAA55hccH9mGOsJ47WQTLqtk1G+vgMBpUmHSJ+lrJGXRlbNtVhXS9xTVi4OaNORwaxEPH1gGO8hw8q0+G/8/rqqwW/kmwIzWo6xpyMRGDlkRJDN/Phl8LOLrgZ2mvhHC8=
+	t=1736773872; cv=none; b=XhDtTaDDw+JkGtpRmzQeaFk4ZOpd4p+M8UZAMBGBFW6+pBguKsIAGz6h5V9Uk1dH/Wfvk4WVu0xo+DSf+rYPfqRZHWa0ZZjlLnvooF0Nj/bWOu7A8mYZhaVpuxvK8xkdLH98TZKSbVjH2rJ34dSdrKco5DXXmUsws94tzNftQgo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736773674; c=relaxed/simple;
-	bh=AaxsF7Wp0Ff3wHe3K3yrOxF4t6kgPYou/mSyMG1Nfvw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mVEUjUgaeHhaPBPcssuee9g9ugXH7iiVlzYVZe4RwKJfbrmqsMmMOx+RhMTp6W4h6msTAjsV/tpqQDKY0RrDQJzYlFYu2rDgH723aVidYpcKfXOgKxl68JDSkXozoMvGbqgv9HIfH7XU9YXTMC0Q2t1MZbE9T4swzGdKXT0I9Hg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lBTSAtWX; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AFA63FF807;
-	Mon, 13 Jan 2025 13:07:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736773671;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=LTjlH9cX7Bb8V7lNAEmu46wmRV4VdGDqqdHzwRaCtYo=;
-	b=lBTSAtWXPWE4jRN3iWoD2RPyziq8p/K1iFa9gxa/KESyV02pn7pfrPOj19PYwQgnkPQDBB
-	f+OD5//B4ubavcCH5TkhRkB+ttL2OVgqilydsgjpIoTpgQhZEbNBIW1U2+DZr+WyH2Aqv3
-	TKncsL5mL+XSQm/RwWsPrMMx6BpF2/1AciRqw0n/kQL+N3EOk096lE8l7Uya9lAwsL4zoh
-	qdj8N/0qr/1po6a8Jx5Hf1G9lbvKO/TMd97SNuXEsyvakGyh3N6x8aGrBpxZ95+ILPufpS
-	ZJnvmp+lJOk4vmKWROYnJ9GBR8ZF5KR+Mvnwmtkj68wegUByotkNjXUKLSxSOA==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Mon, 13 Jan 2025 14:07:46 +0100
-Subject: [PATCH 2/2] regulator: dt-bindings: Add
- regulator-power-budget-milliwatt property
+	s=arc-20240116; t=1736773872; c=relaxed/simple;
+	bh=b7mRbVZSj31a1uvMGjop45KSBdwunxeQqSpb+HZutLU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VQb/VnV25W76+tkH9I5IYM3xD8IE9WRIQ12AGzQ7QDYjto/Gg85H0aBo5/LzoDPd0c53j2EltQBGSijqoASdGsFuW2uC3WHkPhtSwEsaIsXj8+giUlmAOJchXN/WEP0TFcYVyhNcKn8VK7E0PsdH+ZgfhtUn+MxNQJFCM/K3/u0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: 3W1PIW8bQRKOT1kHJe5cgw==
+X-CSE-MsgGUID: DpVJ9jM6RgiGqItS9CbEaA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="36248380"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
+   d="scan'208";a="36248380"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2025 05:11:10 -0800
+X-CSE-ConnectionGUID: f3+YdzYNQguEKr1U3RdSXQ==
+X-CSE-MsgGUID: fmKDRB1uTUumX0S+smad7w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
+   d="scan'208";a="104264335"
+Received: from unknown (HELO smile.fi.intel.com) ([10.237.72.154])
+  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Jan 2025 05:11:07 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andy@kernel.org>)
+	id 1tXKDf-00000000TF9-3c4D;
+	Mon, 13 Jan 2025 15:11:03 +0200
+Date: Mon, 13 Jan 2025 15:11:03 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: Andre Werner <andre.werner@systec-electronic.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org,
+	hvilleneuve@dimonoff.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	lech.perczak@camlingroup.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, robh@kernel.org
+Subject: Re: [External Email] Re: [PATCH v6 2/2] serial: sc16is7xx: Add
+ polling mode if no IRQ pin is available
+Message-ID: <Z4UQ56-DDr8zim-e@smile.fi.intel.com>
+References: <20250113073030.15970-1-andre.werner@systec-electronic.com>
+ <20250113073030.15970-2-andre.werner@systec-electronic.com>
+ <Z4UMP1-0x25g1fX2@smile.fi.intel.com>
+ <6ccaf061-c3d7-c78a-17e3-f0b9642c412f@systec-electronic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250113-feature_regulator_pw_budget-v1-2-01e1d95c2015@bootlin.com>
-References: <20250113-feature_regulator_pw_budget-v1-0-01e1d95c2015@bootlin.com>
-In-Reply-To: <20250113-feature_regulator_pw_budget-v1-0-01e1d95c2015@bootlin.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de, 
- Kory Maincent <kory.maincent@bootlin.com>
-X-Mailer: b4 0.14.1
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6ccaf061-c3d7-c78a-17e3-f0b9642c412f@systec-electronic.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Introduce a new property to describe the power budget of the regulator.
-This property will allow power management support for regulator consumers
-like PSE controllers, enabling them to make decisions based on the
-available power capacity.
+On Mon, Jan 13, 2025 at 02:02:25PM +0100, Andre Werner wrote:
+> On Mon, 13 Jan 2025, Andy Shevchenko wrote:
+> > On Mon, Jan 13, 2025 at 08:30:30AM +0100, Andre Werner wrote:
 
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
- Documentation/devicetree/bindings/regulator/regulator.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+...
 
-diff --git a/Documentation/devicetree/bindings/regulator/regulator.yaml b/Documentation/devicetree/bindings/regulator/regulator.yaml
-index 1ef380d1515e..77573bcb6b79 100644
---- a/Documentation/devicetree/bindings/regulator/regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/regulator.yaml
-@@ -34,6 +34,9 @@ properties:
-   regulator-input-current-limit-microamp:
-     description: maximum input current regulator allows
- 
-+  regulator-power-budget-milliwatt:
-+    description: power budget of the regulator
-+
-   regulator-always-on:
-     description: boolean, regulator should never be disabled
-     type: boolean
+> > > +static void sc16is7xx_poll_proc(struct kthread_work *ws)
+> > > +{
+> > > +	struct sc16is7xx_port *s = container_of(ws, struct sc16is7xx_port, poll_work.work);
+> > > +
+> > > +	/* Reuse standard IRQ handler. Interrupt ID is unused in this context. */
+> >
+> > Period.
+> 
+> What do you expect here? Shall I add the period time from the define as
+> the dedicated value? I do not understand what I should add here in
+> detail.
+> 
+> >
+> > > +	/* Setup delay based on SC16IS7XX_POLL_PERIOD_MS */
+> >
+> > No period.
+> 
+> Or do you mean that I add the define only once and not add all used
+> places?
+
+...
+
+> > Please, go through the comments you added in the patch and use the style that
+> > is mostly used in the driver for the similar (one-line comment) situations.
+
+^^^ Read this. You have added three comments in two different styles.
+It's not a big or anyhow critical issue in this case, it's matter of
+the consistency with the existing style.
+
+I expect that all three will in the same style, preferable the one
+that is currently in use in the driver for other comments.
+
+...
+
+> > > +		/* Initialize kernel thread for polling */
+> >
+> > Again, no period.
+> 
+> Same here. Do you expect the value here or the name of the used define?
+
 
 -- 
-2.34.1
+With Best Regards,
+Andy Shevchenko
+
 
 
