@@ -1,129 +1,168 @@
-Return-Path: <devicetree+bounces-138011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 741C6A0B715
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:38:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDFA0A0B71F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:41:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D3A61677B6
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:38:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D94C116733F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:41:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B93922A4D1;
-	Mon, 13 Jan 2025 12:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4826122AE7B;
+	Mon, 13 Jan 2025 12:41:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n0s7Aun4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UtVXcCWP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE24115667D;
-	Mon, 13 Jan 2025 12:38:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A85F522A4D1;
+	Mon, 13 Jan 2025 12:41:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736771923; cv=none; b=CFCC5hQU7O62DYl9oMbpnliebbV/e5dWyMJQNvasQFWZDuUSWxc/8khTllg5ay+Krs5oCURC07DNYVJC5yyrFcPlF8TFbP/kdZpF+AifVroxP+IrDd0PC6gFGfgbToZKKJE/kdKr9xPZH71/oZPoKnycnQP2v7jjtkm04VETzGI=
+	t=1736772064; cv=none; b=utqiGZlwK5jWNaPDBVnyY+khkmTGd3Xl9FAjG9tqxVbmL2GnhuxIC640/hSAXfMTc1Vfw1tZZ1VmHS/E4jX5fCPLs7YJmYjXDZSE4kRKxp5lS4VVdGTCm0fQW0dWryewDKWxZ3F50nZbo5UtwDu5AH+ilVrMgssHbx4Pf+3tUow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736771923; c=relaxed/simple;
-	bh=tjqMiNiQbn1nzZHkqLUV+mgpgwbFs0hkK4i43iXFpx4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=pA+C0rEr/1Zt2QtzK2VHGWB3ql679rjem3NB4fhKTnZwieZcWNQ4C3n3gB4m6RE8yvVg5WVUd917Mlq3gs8CPo8ErNQWLyPkc7JfrgtW07XTPYHfE+kCb9Z996D4p4TYObFzO6COSsYjrXk2v5ree8S/d1OcdLECYuInqTnbv1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n0s7Aun4; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50DAieLc015594;
-	Mon, 13 Jan 2025 12:38:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	X+1jxtuHqGrt+7AWlzi82hXADTE/630O73IYS0ye7sk=; b=n0s7Aun4PDfBPVXr
-	AWYwWbzFUlR4trS2jG3kWCZmlSVmGp8goNX1VWmmeDRnjMyLJWOLdscF9iAS84Hl
-	qyDe5OxUp++IQDCXD7EW80RgKYLMt4SzQ56mq+wO9CiO0WgJ7L/JgyzcoDz3lxAC
-	lySTQHTgG4s3muJMbYfFHmpi3zVRMNTX5+e1zbBubNH89yihAUeUBAVJCYGBLwyb
-	wx9GWRdAhzMe/UfbgRxdyvDRAitod9Uqp42+sUnLgf5G+6WdD9HvR4XEFLo/CvEW
-	dj9vVGoxdI1frDFDRN5MDTCgQ8redEecmXwLMN/sOhBSxdYzBlCZxE6EJlpM1PxD
-	xyFmKQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 444f5bjfwr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 12:38:38 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50DCcchq006178
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 12:38:38 GMT
-Received: from [10.216.33.75] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 13 Jan
- 2025 04:38:35 -0800
-Message-ID: <d7d68648-6356-43da-b13a-1a6b2cf976de@quicinc.com>
-Date: Mon, 13 Jan 2025 18:08:26 +0530
+	s=arc-20240116; t=1736772064; c=relaxed/simple;
+	bh=O85+Z9UZF+eVdNlADq/jx6gqrVveANxisqyvRXkMKS8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=sptFv/2FrmVPkE3FUduu76xmnjvPN5N6Wu+rhEQ1YsoAjC9+HQsl24VWIVZJzXXxwXxJIkhy+xB1KOtZ870IQH3e87F/fYEG5C8RQK/bBOrTupa2L6JS7P2pmGu9/gCV8KnvgprNskJohrG9ixQ6WUlZ8KCtdL+zWSZ82dIxw1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UtVXcCWP; arc=none smtp.client-ip=209.85.221.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-5187aa2c97dso1524283e0c.2;
+        Mon, 13 Jan 2025 04:41:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736772061; x=1737376861; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TbYfOIsPsYkd3/eNbN10A7EuEo53UW73o1TC5uqOCds=;
+        b=UtVXcCWPYLN4EHuGu0hv3mdzz/hX05+SVHL1C4OkSggsOhJvZ72IYsqjNGiuvFKsp2
+         jdU6ByI/PRL3QDyeQSkKlQfpSgsRxqXCQ62NHFfWT7i0Kj/WrYWdtS5qH7zdv0n0vrpJ
+         RPuEtuf3hi1b6saqcAJzc7NbohquB2JMKy3qgFxU66vhBgkns9D/6YKd5KMFIg5wBTU2
+         eF+rhKMH6JHryBtEF+ZoXxxn6KO2bwGOUAbI9z9PKqvfHgzbdWrLJA/D3QD+2+at7haH
+         xvjO5DdjDxD9JIoZeG4ALOSoZ5txi8mXsvyiO0EGuuU2gVQbxhYJWyS6tZUcPPylzN1l
+         0kzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736772061; x=1737376861;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TbYfOIsPsYkd3/eNbN10A7EuEo53UW73o1TC5uqOCds=;
+        b=LDIuEZjfkTQ08IjCI0uuOW4Bypf9PYzQzFUztrKJhfXcNtIaexDJSm/vnrGC58UcGY
+         wD5rqj4iT1ADWcpV+3LGFHoxkSpK3w2m2S4D7MML2+6OgfsvKPTlHLYSAeYLQ9pzQcT9
+         rcHgRMbMlw+205E6WHnPX2xowfEQ3Cd0uyX2COK/2tXiePmoYLDzjv2+2VYk8Ga598KB
+         R4hHT2vucJ+Y7rnGK4lf6pIEc8i65U6eDDDtikWjhHVPS87Jt20CSsabEvH3j5QTjPU2
+         pkhGgJWO3VLuh3efntlMUIoQqD38V+pdxbcxvwpggIn0Q30xr8ucJWt5XqAtNKGvU4+D
+         fQRw==
+X-Forwarded-Encrypted: i=1; AJvYcCUFABrT5tER/aAGO1RukGhpVUxYWywvZhQJFeMucr40N77PWjiVVve34PSVIlH65h3/+n3oF2//Z2Lz@vger.kernel.org, AJvYcCUMjzFOsK86cfNPfF/vDN9BgikTTG0VsmZ6zlNGw13hNKxBvk9Rc26JQ5mu6RwTFq4zuN7IKRfzxswiorZKV2c=@vger.kernel.org, AJvYcCWvF5CGVLzpMmHye7CXlF4Gw8XBRogFx5lS1rZuQnJRloB+5N+q8qE5f+ldcWm+31/kIW3ZAIicPwDvXrM3gANOcks=@vger.kernel.org, AJvYcCXNO/OvJdvlQvkOy+hn/XEzX/I42IhHrJaCj5hAbA7GJFCTkWgkSurbeo+eABRdUcbh8pFhaz/AWy6Q@vger.kernel.org, AJvYcCXhYYYH9g6XanMcqzDmSMayXmntA4Nv0eqsVeMv4isodlN2ydUqj6UA1QnVZK0joPuByOME5uYz9gh2zkfw@vger.kernel.org
+X-Gm-Message-State: AOJu0YyS2LRZ58hK/0UJ5LQB09h2MOzJYpBzt2yBZI7Pu0gYU8EGcCye
+	8Yrul56n+LHZf+v+sJSzpD090OzqG9RgHlUNhbf/jxtF+W8/4YlddU7rNhGfktBXYTlAh2zcHKm
+	3n9XsFXuo8cRoHH2rXmv++hBtj00=
+X-Gm-Gg: ASbGncsi0QjQ8PlNN4bUURMfNPeKjkS2Euk+tkfRKdRsUE3PdX0rElVcP0W1IZWtcVg
+	9yU408YhHHXvK02usLdDQD22gS0p11sb0yqTou4I=
+X-Google-Smtp-Source: AGHT+IEY6Lh8p4eF9JzEPm1V+mWfKXtieyo7nbeSUWhLLqKanFFUUYTByNlPBo2fzKO3WrlPTQKg1SULA9DF5CycXI0=
+X-Received: by 2002:a05:6122:510:b0:515:daa7:ed07 with SMTP id
+ 71dfb90a1353d-51c6c1cd3dcmr15614435e0c.0.1736772061470; Mon, 13 Jan 2025
+ 04:41:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: qcs9100: Update memory map
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250113-sa8775p-iot-memory-map-v2-0-aa2bb544706e@quicinc.com>
- <20250113-sa8775p-iot-memory-map-v2-2-aa2bb544706e@quicinc.com>
- <5cd4e2aa-be24-4298-a23d-352e82e9c1e1@kernel.org>
-Content-Language: en-US
-From: Pratyush Brahma <quic_pbrahma@quicinc.com>
-In-Reply-To: <5cd4e2aa-be24-4298-a23d-352e82e9c1e1@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: HJLEaqTUabMjFN37hE2FHOmxnqXCYD8J
-X-Proofpoint-ORIG-GUID: HJLEaqTUabMjFN37hE2FHOmxnqXCYD8J
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- mlxlogscore=586 malwarescore=0 clxscore=1011 impostorscore=0
- priorityscore=1501 bulkscore=0 suspectscore=0 adultscore=0 spamscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501130106
+References: <20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <TY3PR01MB11346D7617436A7779B6697B3861F2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY3PR01MB11346D7617436A7779B6697B3861F2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 13 Jan 2025 12:40:35 +0000
+X-Gm-Features: AbW1kvaxlIESxJqj1vJ4FPNOFvj1nHLzDyf9sFgK9BkMkK7ltbc-rjC_JsrGybc
+Message-ID: <CA+V-a8tQ_tyxPn2pO=mSPVW2RffVhFz=CPCxR2pxXP1FLkcQcA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] Add support to retrieve the bootstatus from
+ watchdog for RZ/V2H(P) SoC
+To: Biju Das <biju.das.jz@bp.renesas.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
+	Guenter Roeck <linux@roeck-us.net>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Biju,
 
-On 1/13/2025 5:50 PM, Krzysztof Kozlowski wrote:
-> On 13/01/2025 13:13, Pratyush Brahma wrote:
->> Update the iot specific memory map for qcs9100* boards.
-> Why?
+On Mon, Jan 13, 2025 at 11:38=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.c=
+om> wrote:
 >
-> Every single time. Don't say what, we see it easily. Say why.
-I assumed incorrectly it would be perhaps enough to have mentioned
-this in patch 1 of this series and the cover letter, so didn't mention here.
+> Hi Prabhakar,
+>
+> > -----Original Message-----
+> > From: Prabhakar <prabhakar.csengg@gmail.com>
+> > Sent: 13 January 2025 11:24
+> > Subject: [PATCH v3 0/6] Add support to retrieve the bootstatus from wat=
+chdog for RZ/V2H(P) SoC
+> >
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Hi All,
+> >
+> > This patch series adds SYSCON support to retrieve boot status informati=
+on for RZ/V2H(P) SoC.
+> > Summary of Changes,
+> >
+> >     Clock:
+> >         Add syscon compatible support to the CPG block in bindings and
+> >         device trees.
+> >
+> >     Watchdog:
+> >         Document the renesas,r9a09g057-syscon-wdt-errorrst property.
+> >         Update the watchdog driver to fetch and report boot status via
+> >         Error Reset Registers (CPG_ERROR_RSTm).
+> >
+> >     Device Tree:
+> >         Add the syscon property to CPG and WDT nodes in R9A09G057 and
+> >         R9A09G047 SoC DTSI.
+> >
+> > These changes enable the watchdog driver to identify boot sources like =
+Power-on Reset and Watchdog
+> > Reset, improving system diagnostics.
+>
+> This means that, we should assume U-boot/bootloader should not clear the =
+WDT reset status bit.
+>
+> If they clear it, there should be a way to propagate it from u-boot/bootl=
+oader to linux,
+> otherwise, we get wrong bootstatus in linux.
+> But the clearing of watchdog status by one of the cases:
+>
+> 1) u-boot identify the boot source and clear the status bit
+>
+I agree, if the tf-a/u-boot clears the register, the bootstatus
+reported by Linux will be in-correct.
 
-Can you please review the memory map changes in patch 1 as well?
-Once the strategy for the dts changes are baked in internally with the
-current reviews, I will send out another series incorporating the comments
-with the memory map changes.
->> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs9100-ride-r3.dts | 2 ++
->>   arch/arm64/boot/dts/qcom/qcs9100-ride.dts    | 2 ++
->>   2 files changed, 4 insertions(+)
->>
-> Best regards,
-> Krzysztof
+Alternative solution, would be:
 
--- 
-Thanks and Regards
-Pratyush Brahma
+Let the TF-A create WDT nodes for us and add a property
+`renesas,r9a09g057-wdt-bootstatus` and propagate the WDT nodes to
+Linux.
 
+renesas,r9a09g057-wdt-bootstatus =3D <0/1>;
+
+0 -> Power on reset
+1 -> WDT reset
+
+Geert/Rob/Krzysztof - Is the proposed approach acceptable or is there
+any alternative where this can be avoided.
+
+Cheers,
+Prabhakar
 
