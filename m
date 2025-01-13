@@ -1,128 +1,89 @@
-Return-Path: <devicetree+bounces-138290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E70E9A0C5AB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:28:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8943BA0C5B8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:32:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DAD83A51F7
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 23:28:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFFEF1888211
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 23:32:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF3201FA147;
-	Mon, 13 Jan 2025 23:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 703C21FA150;
+	Mon, 13 Jan 2025 23:32:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dVy+aiEO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qbIFG4vq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B48D1D61A2;
-	Mon, 13 Jan 2025 23:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 471DB1F9A93;
+	Mon, 13 Jan 2025 23:32:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736810896; cv=none; b=BuZFCWhjTL1PWzkngUBXs3vK9JWR7yNJgt1gH0GQp3qWqzYaF+B2PB7PRnYsTtXoV80UC54Cmh3YjIba4Hz9yyWzd4mYNm5jUFu/Xvd2h53ik6tzJ5toUAhI/8bSNvppY1RBszI8lzG64M6jHVw9MZa3EnE3+I7+oufJ6/d2obQ=
+	t=1736811126; cv=none; b=ePKg3rAitN4NZdlbqOKUeqF4Q2hva0FhuXL9vfh0HV15YoVVet/kr0X8xOLoex+ktMSTDO/52Hf9fb0LOTgyHKc0X6+are+ziqWCKRuhjHReq3tqFZHWD6SzLoW4hKBhp5SNZnm+4E9wGVD4EIAtqSn9bSrGdFeX7VdRk94CwZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736810896; c=relaxed/simple;
-	bh=qnML/MjmfWbEVuGNTbx209LYPz08WZNs1swxEtBqmrI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=OGWBmXXHdzZV8Ak2KnXJJWlbS6KFub95t+JVaGb6UVg9bgbFPCOpfEq7YvPsDvYnn8ow+67k/ibZHLGhAy2Fjf6gWpCdZ4lXdT2X3SWj2qEfjcCixzFkxztslJ4zr7pQGcwyLj4VkgYrpiiOZSUyofSKxJxC4WlVuL9o9aD46YE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dVy+aiEO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50DHDiJe014953;
-	Mon, 13 Jan 2025 23:28:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qnML/MjmfWbEVuGNTbx209LYPz08WZNs1swxEtBqmrI=; b=dVy+aiEOCg6Whv5A
-	CcKmWRzUUlilHFYXD+lL05q68lYC9GIYqjdgkWRmcUb5TO4//2dS79r6EKXIR+71
-	LtRzOFU4PctsHgXDi/N7wdAJhuvF8lERSy8iiDdH8pi0NrOgqOWymiemLXp8YvYz
-	Ph+VcsIsGt58ALEYomPFJECeRFnfDZboeqRdRmwXALFwnD53ruX82+/zLRUSoPRQ
-	3PzNyIGl/8yvsBG0e02e9CY7vIfB0eSWBgdSU4B+IDvlFwRJQ2BgIxKJg+DICEIa
-	bI+NKRPPUey4JPxn5YKTdPIYx463MwVnMexkpdCoSTUTak1t0eouT0nQ9EBKjAvk
-	OcJDsw==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44571yrrme-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 23:28:03 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50DNS2NJ011042
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 23:28:02 GMT
-Received: from [10.110.66.138] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 13 Jan
- 2025 15:28:01 -0800
-Message-ID: <060a6fb1-05a6-488a-aba2-64d7bc8693df@quicinc.com>
-Date: Mon, 13 Jan 2025 15:28:00 -0800
+	s=arc-20240116; t=1736811126; c=relaxed/simple;
+	bh=0taGTqMVGP+DP+do77R5YOfYOI6TQXQcar+XeG01OJo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DDw4xjMFd65VDm92wrBNVKkmUHH7HwTddmssuMouF+PvSyvs2YYURDaB2mYGbZCmWqTRywAIwwr5IBrbWRoNwZY1mag8abLvKpfbCe3W52Sh6G2u2t9/x93ceZqNqGKagP7HmjQ8gsgUNYe0BskxBLq5a9deXE2hWfIpawsY3Qs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qbIFG4vq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A911C4CEE2;
+	Mon, 13 Jan 2025 23:32:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736811125;
+	bh=0taGTqMVGP+DP+do77R5YOfYOI6TQXQcar+XeG01OJo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qbIFG4vqjCTM1fOLBPz9N6Vm3+PJnfq1JhiMW0viNsW/CTD+TaSMxCfRb+unqC/20
+	 K4G2ju8JUpOFTL/T/HytxQISRLXxq9BTiaGD9rRS9bLbTqlCY0FiwcL/8LKF9lyUaA
+	 6hkbWAO7A3nH6NnAzw633U8xlXTzkM3Yvh7TDpPU274KurPgvsoJN8eP3Su3STpl+y
+	 QmsW51Onk6hejul1LSRY/FqPfoVYKUIBTlNtQs7mefD1EjGWJlOJ0YwwEoy6RNTRM3
+	 SkaFI63dGE68nVTiKN4FOplaG94qpQupExUAAZ4RfiqGXWmvZ4nsR3lHexyleZ6Kyk
+	 JNprNYmnLF6xQ==
+Date: Mon, 13 Jan 2025 17:32:04 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Zijun Hu <zijun_hu@icloud.com>
+Cc: Oreoluwa Babatunde <quic_obabatun@quicinc.com>,
+	Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org,
+	Robin Murphy <robin.murphy@arm.com>, Marc Zyngier <maz@kernel.org>,
+	devicetree@vger.kernel.org, Saravana Kannan <saravanak@google.com>,
+	Zijun Hu <quic_zijuhu@quicinc.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Grant Likely <grant.likely@secretlab.ca>,
+	Andreas Herrmann <andreas.herrmann@calxeda.com>,
+	Mike Rapoport <rppt@kernel.org>
+Subject: Re: [PATCH v4 12/14] of: reserved-memory: Move an assignment to
+ effective place in __reserved_mem_alloc_size()
+Message-ID: <173681112366.3626286.2586032513628607123.robh@kernel.org>
+References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
+ <20250109-of_core_fix-v4-12-db8a72415b8c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v32 02/32] xhci: sideband: add initial api to register a
- secondary interrupter entity
-To: Mathias Nyman <mathias.nyman@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
-        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <krzk+dt@kernel.org>, <pierre-louis.bossart@linux.intel.com>,
-        <Thinh.Nguyen@synopsys.com>, <tiwai@suse.com>, <robh@kernel.org>,
-        <gregkh@linuxfoundation.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>
-References: <20250108012213.1659364-1-quic_wcheng@quicinc.com>
- <20250108012213.1659364-3-quic_wcheng@quicinc.com>
- <b029c775-a0cf-4991-95b7-a02187c0863b@linux.intel.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <b029c775-a0cf-4991-95b7-a02187c0863b@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: akqRraIlZUG8tlhrebYekkqcbiiDY1kA
-X-Proofpoint-ORIG-GUID: akqRraIlZUG8tlhrebYekkqcbiiDY1kA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 phishscore=0 spamscore=0 impostorscore=0 bulkscore=0
- clxscore=1015 lowpriorityscore=0 adultscore=0 suspectscore=0 mlxscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501130184
-
-Hi Mathias,
-
-On 1/8/2025 6:10 AM, Mathias Nyman wrote:
-> On 8.1.2025 3.21, Wesley Cheng wrote:
->> From: Mathias Nyman <mathias.nyman@linux.intel.com>
->>
->> Introduce XHCI sec intr, which manages the USB endpoints being requested by
->> a client driver.  This is used for when client drivers are attempting to
->> offload USB endpoints to another entity for handling USB transfers.  XHCI
->> sec intr will allow for drivers to fetch the required information about the
->> transfer ring, so the user can submit transfers independently.  Expose the
->> required APIs for drivers to register and request for a USB endpoint and to
->> manage XHCI secondary interrupters.
->
-> The "sec intr" above should also be renamed back to "sideband"
->
->
-
-Sounds good, will do...
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250109-of_core_fix-v4-12-db8a72415b8c@quicinc.com>
 
 
-Thanks
-Wesley Cheng
+On Thu, 09 Jan 2025 21:27:03 +0800, Zijun Hu wrote:
+> From: Zijun Hu <quic_zijuhu@quicinc.com>
+> 
+> The assignment '@base = 0' in __reserved_mem_alloc_size() is meaningless
+> since @base was already initialized to 0.
+> 
+> Move the assignment to effective and proper place.
+> 
+> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+> ---
+>  drivers/of/of_reserved_mem.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+
+Applied, thanks!
 
 
