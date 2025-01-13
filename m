@@ -1,203 +1,240 @@
-Return-Path: <devicetree+bounces-137915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6668A0B183
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:44:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8800CA0B18F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:45:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3297167027
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:44:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91DE11635B9
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DFCA2343AA;
-	Mon, 13 Jan 2025 08:44:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s47YjWke"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FE7A233D88;
+	Mon, 13 Jan 2025 08:45:31 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F26E4233D7C
-	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 08:43:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 005192327BA;
+	Mon, 13 Jan 2025 08:45:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736757842; cv=none; b=Prs76LOwQWaGagcoYD+emtgy+FjxuqT1nxyEi9NmBL3OsjoIldOvemX+MXHuojj3QI35KisOoqwvW8KQ1iv3Qs0smjCpq6z6/TKpHzMLTrNw5gVOOxW5g8KIA9w+0yzXm6vqSsOnW9RkFf3aNT0V5e+Jj6O0McQKEGxI2A709Nc=
+	t=1736757931; cv=none; b=hGjsEF86eTKqgUWoSSxIY/n5trLvrB3gUBKFM4cv9m1WqMsiw7P3TcqqI1SWwV2rI3H0q6/IEytfz1JR1BH03fq9fmrrVbsxbEbomIgGjhvrG+uVR1ClMaliYldRSIrpG4BA/oXqA/gAaoHu9ZSb7vSoOvKMQMEU5WHrfShLz44=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736757842; c=relaxed/simple;
-	bh=A5UwJ4xTHOsuoyyy3BEtdF0duObFIXQD0RkPE1f5f2Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CKXFaikfWqcPgvZaGuMuox+x3H5SfB3QJu6hOicNPlUxZ2Ai4tb0nkJgALXIlpqcV0u7jh9au5jEtgv6D2am9PSsF8H3ujRWRP67aL45GTBPHjoNGUu9yF+9lW19RPAcMBZGt1qoXvjKUWWK8nLL7nZPJnmLf9pY/OZhxVq4j5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s47YjWke; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-54025432becso3705372e87.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 00:43:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736757838; x=1737362638; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=MWTv8k1B3J3FaWjfN8qADIkUbxhAzRPicYRxev1lj6o=;
-        b=s47YjWkeGr0/fcP2VL48uOSdomX/WmlnheD79LGvXs6eF6rCj0NnfMU0NO0kU9Dx8e
-         +bKRjCHLquYRAh9ZX9Za/1njhK4UQmZ/8PMwlGpuLNfQ5CX4oNuuRuGJzh6B5DUr/8WL
-         fkjyamcNZAQ6BtPg8Gp1QFq8fOEFtXSSJw3LDppYGg+xqghlZOvLvUoxtLCuxzVaht9q
-         uOA3d0euiowceBLPKuLIkNXwnwSUJcnQt9R0iyALZC1sz+93Z6ypsm7UZ96rhksVDpD8
-         0S/6mHZ/R8g/kShfRp3JV29wXo7Bhe0j4fxHjM43HgmV9wrD7OuSaQPhrm9cR0WQ20vk
-         pEJA==
+	s=arc-20240116; t=1736757931; c=relaxed/simple;
+	bh=85JIzD3dBKg6S5CVubuGChnys/7Jgrel2vwRVe+85Ws=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FILoECGA6HyNPAS69TYYyRUeGFLnt8BEJhtPfZ/FpjwDejbHvzbKhMUu+ECY6438+1mtpef4XG79bmJlzOCb5KX71BPRv0MrwnJLGfDDBbBJ491ew+6oOLtoUg7ISBaZpu4b99kNGsOH18NLAfrYWXIAu/d9eYN2iZ62CxJMz08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-304d9a1f198so32967171fa.0;
+        Mon, 13 Jan 2025 00:45:27 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736757838; x=1737362638;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MWTv8k1B3J3FaWjfN8qADIkUbxhAzRPicYRxev1lj6o=;
-        b=jMAgs4beYizdzlwtH2XAHyRmBJ9dE7e6FGL67QbzN6x8fTy0cD832DmlBE1zHL5VD2
-         6WEhjCMBe+FK0Mrrved9CruXYGGcIW//njGW+AdNjqxsnYjepLWvNHm1MBAxl5nB6aiL
-         5e7aZl6dJ7Ik93fwNwwP9iWI5cSr0tNg0381LdAhVg8/CP6dlVL03PPmgBpUzYnBC7pC
-         /TAvg79JJ5tgpA8YoFK/gRdQweurQmAeosly3sp8RAkZBq9/jDa3j7hpitAFm1cFDHYP
-         G9sOFI3zIyPPmygdLgmXWBks6rmiFVdib1VQ8RI+eo55UDM9m0r5DXOecHfoS06p968r
-         onNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVotEG/gXzTfOJCncILoxK+VXLoHLS5q636GJ5RNtzYD1mak5nh7WljqgLil9X561ABGzUao32sQjLH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy13j0vnBu6isoG6P1cLuIfFdUacMB662G/quWAwSzDy2y6VGz8
-	1ViladwhL9PpRYdHRyeFzTj0gU0mJkZjyYUOHWlETPYw5zGrp4ePWRCUvDg2iZs=
-X-Gm-Gg: ASbGncs6aut+nFHTVyt2VdcX9/yTo7Qsf6byzDsMcvcWr0aaMBDYxGupb0ny8M8Kn7b
-	jqmmkpRfyiRBrB1kn99PSCFDC/dpmp/YfndWhDzl1uLzdrUq2keqe5WVACJPFYq0zFUUQLEbJ7F
-	54SFbx3qpVMYqQfhJTzFT07WkcXrkcx80uCVJUYV7wU8sL1CGggmpgTBeaj4NEXMcAAP4GKnGNZ
-	4UmqiRaJnvQvzU0E9iCT27vv0LLfzS2ymF4rxnpzOjI1cHXK8Ujvowr7Yq5daHRh0q6V02pU1HX
-	o4u4QJtFBzoArmN1USzpBrmit0bORChisQC4
-X-Google-Smtp-Source: AGHT+IEB5Fd5VVj7DS9ykAk49nxB8j0E1Gm+dV0EnEhjruNxp6XC4G/xyYsTt3oGN7HYXx43etbVCw==
-X-Received: by 2002:a05:6512:398b:b0:542:29ec:d338 with SMTP id 2adb3069b0e04-542845b0a94mr6246252e87.39.1736757837666;
-        Mon, 13 Jan 2025 00:43:57 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428bea67d5sm1299920e87.136.2025.01.13.00.43.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2025 00:43:57 -0800 (PST)
-Date: Mon, 13 Jan 2025 10:43:54 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>, 
-	Wasim Nazir <quic_wasimn@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	kernel@quicinc.com
-Subject: Re: [PATCH v5 6/6] arm64: dts: qcom: Enable cpu cooling devices for
- QCS9075 platforms
-Message-ID: <y4jlmm64nd5xip5kcprk2zvwis66iaosy2jrjjzfqjq4rhq7h6@jnant4eonkya>
-References: <20241229152332.3068172-1-quic_wasimn@quicinc.com>
- <20241229152332.3068172-7-quic_wasimn@quicinc.com>
- <zn4uf3mmlmt3who474hwkr44poycfqtjtidshybbg55a3hr63y@zxefqbhiwkbg>
- <d54c6706-3c6b-211c-6acb-fa3984c30c67@quicinc.com>
- <ubasbsyspn5euygihgphyw3xg4ckveytvgnjpwdiyg4pv7degr@6y44ya4gvaqj>
- <07c41571-28ca-6f9e-bcee-899bbf77f687@quicinc.com>
- <sufmykle5inyk73i3qfmy3xqq7plgfr7txiruyahc5wgvvn6uo@kytxtb5zc3tg>
- <cf2ad828-d00d-133b-f310-1688fc0ed59b@quicinc.com>
- <6zftdu5myuporxsvxlxhojnlhnfa74pjj7nvy3wmiaw7jdsuo2@3ebcpevzvtlc>
- <fdba317e-abd2-4620-a341-568ae497622e@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1736757924; x=1737362724;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WASk+gE3NJv8dH2tIoBohA4wKX3eYlj864c+8gk1xzY=;
+        b=CneZYDvkHAnyAX4kTZDEfb5Ah9xUkCS9QW+XIoIT65uw7UWj04CRmgx8vkFNQqA/qI
+         CAiNfQrku8u1Rfe36VuTLbLemFK/9imwVxYfp6XolLEqhSBKDOdMzc9ALCmmJyRftMkv
+         e31ZpJoKB5rRStGnbI+klGpEe7XtgiTu+KjTWW181CJtG+S38v2Rl9JahAUg1fwfVB3z
+         0+Lr0QO3hMMFWixwM77d544Kf3a4hDxMblXbDy8CwlYXNyWd7ASyhT19jNoZLWXxZBFD
+         uU32O3zWaeQvPiT8qTBH9eeK7AGUSm5nlLfQ1PeTf1P3DbJpnILyizvxA3tBDNVZWHl1
+         mzyA==
+X-Forwarded-Encrypted: i=1; AJvYcCURfYDgXsLB8Q3ANFx1ZMVd+kDy52oU7ymSEckU3hWGhXd8n/kVHbb4sjnbT8JAfmAnWwIlnBfn/Dq6@vger.kernel.org, AJvYcCVgH3Go9AqqH+3ThxU1KZc1vhnUT4ez+GKJ9nxu7huukGQvh+afQyXLKO3CDeS6QEDuYSRLunrVO+3R@vger.kernel.org, AJvYcCVqexIH9FmqZnlGNDA2lk3g2NAhtkN+QptGpy9qzVYHc++HqoCjBDroNp+FE11aIRs4opd3xa6kqqQ=@vger.kernel.org, AJvYcCXOQfquBpt6+uj6CfsI3JotyrRpMZUkYojy2Vck7286SqhYh7L7N2oAqkEqdMa65oiw8Ic1HA3Jw1cWfQ==@vger.kernel.org, AJvYcCXwu5DxS21Fy8evN0JuHNiqQIPdH9Fpx2POqw+YdWOiiE2+3N8To9WOt9Ljx9CnEGLXT5QlNQeEWOIVvZnz@vger.kernel.org
+X-Gm-Message-State: AOJu0Yylc2gH6AAOfB+uPSlvFfDMVICgrypRd6saWBgQZNUMNMXz3X3j
+	CNwfFE3Wry9+fXrlH9OpFXvImunXdCqLAJFR5lwjYQfGGn3029IaFQavQcd0GmI=
+X-Gm-Gg: ASbGnct2Jl5PcugfQlRlv+I2TwxOZAdq454PthZZ6cjklcLgb0ocNn6eGm8Lg3KmFY+
+	tadlZMBbgVYlpZrt7/xAi96UGaqlg/Mh1qw5bTi2HUVj1rKZ+ofMpBJGLQuwoILaHmWspHzTurB
+	Rg3p7H/cgFxLO4RMk7TdwvDSGG3AfuNkpIUYWJdnv3JYxDWBY6VNKgKNYZZgtW/59MOX/MaJ5xn
+	GbsmZxszMpdUZpRV58CXYfyhRnwa8a9LcBh6LJdZlQLwgtrKuf0qJo04nQskYheRF2QRrPm3AyL
+	IQIr8aKYwzURnw==
+X-Google-Smtp-Source: AGHT+IGnbe1zdyBEZq6jXOWCz9p+/eYXnTe4yuUFEE54Hc3ZP05Px5scSWRCax4y/c9lh8KM/+g8nA==
+X-Received: by 2002:a05:651c:4cb:b0:302:1cdd:73c2 with SMTP id 38308e7fff4ca-305f45a73d2mr67856031fa.20.1736757924022;
+        Mon, 13 Jan 2025 00:45:24 -0800 (PST)
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com. [209.85.208.172])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-305ff0cf0cfsm13730391fa.30.2025.01.13.00.45.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Jan 2025 00:45:23 -0800 (PST)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-304d9a1f198so32966701fa.0;
+        Mon, 13 Jan 2025 00:45:23 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUs/PtvQCk/DD0ER2Z0TcDv9P/F1XEtUufVYVmwdRVQzVevp2ypHSolKvPyGyrO2DK5TxRsUchWuKa6I7UW@vger.kernel.org, AJvYcCVcd/CYv6GFWNOgxDsqFgxQVtp+pw0mDLh96ev+s+F5RSgeswjFyPx4a4kHhpXIZ6aLH9eRd4L40yM=@vger.kernel.org, AJvYcCWTpHvd75e8YOhpE3DtyPT63IBGOSKbBMYcILCrT0PS52wuBdxxrwbxTrBvdhsDXArmu72aowMZqiyh@vger.kernel.org, AJvYcCXZkh1o3TSf9LtMmd3FZ1taQlxTSfwLIVo1m3ap2/uQJG6JML69FoUN0Cbe3sZtvv4WCd5O5upq/IeZ@vger.kernel.org, AJvYcCXcg5NeoMnjLpfeZNToCHi/MfZZhdPIeMeYsKMtEUIhqwihbRb+iOBM1mqFbMnYclNfc04b3XvbHs3ZHw==@vger.kernel.org
+X-Received: by 2002:a05:6512:e93:b0:541:1c48:8c17 with SMTP id
+ 2adb3069b0e04-542845b0a66mr5904614e87.46.1736757923296; Mon, 13 Jan 2025
+ 00:45:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fdba317e-abd2-4620-a341-568ae497622e@oss.qualcomm.com>
+References: <20250110123923.270626-1-szemzo.andras@gmail.com>
+ <20250110123923.270626-7-szemzo.andras@gmail.com> <de280eed-bcc8-4802-9734-5e95ad1f6611@kernel.org>
+ <CAGb2v65arvBMg+reReVqK-Y6dL+CSrSx4618msiRKcNf=Vk1=A@mail.gmail.com> <fef71e03-489f-4503-9d1b-d61051d45dde@kernel.org>
+In-Reply-To: <fef71e03-489f-4503-9d1b-d61051d45dde@kernel.org>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Mon, 13 Jan 2025 16:45:10 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67_yMB_4SCjFOR5S6nDxX9=zbX-mDM6YjjL_NRxrEMUFg@mail.gmail.com>
+X-Gm-Features: AbW1kvZtDHwSmVGYxqRRgoOst1sjetl-67if_VRPdIRHwhs3tGpanfWm11zl1N4
+Message-ID: <CAGb2v67_yMB_4SCjFOR5S6nDxX9=zbX-mDM6YjjL_NRxrEMUFg@mail.gmail.com>
+Subject: Re: [PATCH 06/12] dt-bindings: clk: sunxi-ng: add V853 CCU clock/reset
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andras Szemzo <szemzo.andras@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Maxime Ripard <mripard@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 10, 2025 at 01:31:00PM +0100, Konrad Dybcio wrote:
-> On 10.01.2025 12:54 AM, Dmitry Baryshkov wrote:
-> > On Wed, Jan 08, 2025 at 09:38:19PM +0530, Manaf Meethalavalappu Pallikunhi wrote:
+On Mon, Jan 13, 2025 at 4:21=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> On 13/01/2025 09:06, Chen-Yu Tsai wrote:
+> > On Fri, Jan 10, 2025 at 9:56=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
 > >>
-> >> Hi Dmitry,
+> >> On 10/01/2025 13:39, Andras Szemzo wrote:
+> >>> As the device tree needs the clock/reset indices, add them to DT bind=
+ing
+> >>> headers.
+> >>>
+> >>> Signed-off-by: Andras Szemzo <szemzo.andras@gmail.com>
+> >>
+> >> That's never a separate commit from the binding.
 > >>
 > >>
-> >> On 1/8/2025 6:16 PM, Dmitry Baryshkov wrote:
-> >>> On Wed, Jan 08, 2025 at 05:57:06PM +0530, Manaf Meethalavalappu Pallikunhi wrote:
-> >>>> Hi Dmitry,
-> >>>>
-> >>>>
-> >>>> On 1/3/2025 11:21 AM, Dmitry Baryshkov wrote:
-> >>>>> On Tue, Dec 31, 2024 at 05:31:41PM +0530, Manaf Meethalavalappu Pallikunhi wrote:
-> >>>>>> Hi Dmitry,
-> >>>>>>
-> >>>>>> On 12/30/2024 9:10 PM, Dmitry Baryshkov wrote:
-> >>>>>>> On Sun, Dec 29, 2024 at 08:53:32PM +0530, Wasim Nazir wrote:
-> >>>>>>>> From: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
-> >>>>>>>>
-> >>>>>>>> In QCS9100 SoC, the safety subsystem monitors all thermal sensors and
-> >>>>>>>> does corrective action for each subsystem based on sensor violation
-> >>>>>>>> to comply safety standards. But as QCS9075 is non-safe SoC it
-> >>>>>>>> requires conventional thermal mitigation to control thermal for
-> >>>>>>>> different subsystems.
-> >>>>>>>>
-> >>>>>>>> The cpu frequency throttling for different cpu tsens is enabled in
-> >>>>>>>> hardware as first defense for cpu thermal control. But QCS9075 SoC
-> >>>>>>>> has higher ambient specification. During high ambient condition, even
-> >>>>>>>> lowest frequency with multi cores can slowly build heat over the time
-> >>>>>>>> and it can lead to thermal run-away situations. This patch restrict
-> >>>>>>>> cpu cores during this scenario helps further thermal control and
-> >>>>>>>> avoids thermal critical violation.
-> >>>>>>>>
-> >>>>>>>> Add cpu idle injection cooling bindings for cpu tsens thermal zones
-> >>>>>>>> as a mitigation for cpu subsystem prior to thermal shutdown.
-> >>>>>>>>
-> >>>>>>>> Add cpu frequency cooling devices that will be used by userspace
-> >>>>>>>> thermal governor to mitigate skin thermal management.
-> >>>>>>> Does anything prevent us from having this config as a part of the basic
-> >>>>>>> sa8775p.dtsi setup? If HW is present in the base version but it is not
-> >>>>>>> accessible for whatever reason, please move it the base device config
-> >>>>>>> and use status "disabled" or "reserved" to the respective board files.
-> >>>>>> Sure,  I will move idle injection node for each cpu to sa8775p.dtsi and keep
-> >>>>>> it disabled state. #cooling cells property for CPU, still wanted to keep it
-> >>>>>> in board files as we don't want to enable any cooling device in base DT.
-> >>>>> "we don't want" is not a proper justification. So, no.
-> >>>> As noted in the commit, thermal cooling mitigation is only necessary for
-> >>>> non-safe SoCs. Adding this cooling cell property to the CPU node in the base
-> >>>> DT (sa8775p.dtsi), which is shared by both safe and non-safe SoCs, would
-> >>>> violate the requirements for safe SoCs. Therefore, we will include it only
-> >>>> in non-safe SoC boards.
-> >>> "is only necessary" is fine. It means that it is an optional part which
-> >>> is going to be unused / ignored / duplicate functionality on the "safe"
-> >>> SoCs. What kind of requirement is going to be violated in this way?
+> >> ...
 > >>
-> >> From the perspective of a safe SoC, any software mitigation that compromises
-> >> the safety subsystem’s compliance should not be allowed. Enabling the
-> >> cooling device also opens up the sysfs interface for userspace, which we may
-> >> not fully control.
-> > 
-> > THere are a lot of interfaces exported to the userspace.
-> > 
-> >> Userspace apps or partner apps might inadvertently use
-> >> it. Therefore, we believe it is better not to expose such an interface, as
-> >> it is not required for that SoC and helps to avoid opening up an interface
-> >> that could potentially lead to a safety failure.
-> > 
-> > How can thermal mitigation interface lead to safety failure? Userspace
-> > can possibly lower trip points, but it can not override existing
-> > firmware-based mitigation.
-> > And if there is a known problem with the interface, it should be fixed
-> > instead.
-> 
-> I think the intended case to avoid is where a malicious actor would set
-> the trips too low, resulting in throttling down the CPU to FMIN / Linux
-> throttling CPUs to try and escape what it believes to be possible thermal
-> runaway / a system reboot. Not something desired in a car.
+> >>> --- /dev/null
+> >>> +++ b/include/dt-bindings/clock/sun8i-v853-r-ccu.h
+> >>> @@ -0,0 +1,16 @@
+> >>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> >>> +/* Copyright(c) 2020 - 2023 Allwinner Technology Co.,Ltd. All rights=
+ reserved.
+> >>> + *
+> >>> + * Copyright (C) 2023 rengaomin@allwinnertech.com
+> >>> + */
+> >>> +#ifndef _DT_BINDINGS_CLK_SUN8I_V85X_R_CCU_H_
+> >>> +#define _DT_BINDINGS_CLK_SUN8I_V85X_R_CCU_H_
+> >>> +
+> >>> +#define CLK_R_TWD            0
+> >>> +#define CLK_R_PPU            1
+> >>> +#define CLK_R_RTC            2
+> >>> +#define CLK_R_CPUCFG         3
+> >>> +
+> >>> +#define CLK_R_MAX_NO         (CLK_R_CPUCFG + 1)
+> >>
+> >> Nope, drop. Not a binding.
+> >>
+> >>> +
+> >>> +#endif
+> >>> diff --git a/include/dt-bindings/reset/sun8i-v853-ccu.h b/include/dt-=
+bindings/reset/sun8i-v853-ccu.h
+> >>> new file mode 100644
+> >>> index 000000000000..89d94fcbdb55
+> >>> --- /dev/null
+> >>> +++ b/include/dt-bindings/reset/sun8i-v853-ccu.h
+> >>> @@ -0,0 +1,62 @@
+> >>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> >>
+> >> Odd license. Did you copy the file with such license from the downstre=
+am?
+> >
+> > AFAIK all the existing sunxi clock / reset binding header files are
+> > dual licensed. OOTH all the YAML files are GPL 2.0 only.
+> >
+> > IIRC we started out GPL 2.0 only, but then figured that the header file=
+s
+> > couldn't be shared with non-GPL projects, so we changed those to dual
+> > license.
+> >
+> > Hope that explains the current situation. Relicensing the whole lot
+> > to just MIT or BSD is probably doable.
+> That's not what the comment is about. Dual license, as expressed by
+> submitting bindings/patches and enforced by checkpatch are expected. But
+> not GPLv3, GPLv4 and GPLv10.
 
-Being able to set trip points via sysfs means that the system is already
-compromised. At this point it can do whatever the actor wants - e.g.
-display malicious HUD or just a gren bar or black screen, scream into
-dynamic, etc. That doesn't sound like the temperature trip points being
-the only or the major problem of a car.
+I take back my statement. It seems we have a lot of GPLv2 or later going on=
+.
 
-Anyway, if that's really the only problem, please use the framework to
-make the temperature and hysteresis of the trip point R/O for sa8775p /
-qcs9100. Other attributes might need to be made R/O too. It well might
-be that I'm missing one of the automotive peculiarties here. In such a
-case the commit message should be more explicit that it's AGL or some
-other requirement and provide a link.
+include/dt-bindings/clock/sun20i-d1-ccu.h:/* SPDX-License-Identifier:
+(GPL-2.0+ OR MIT) */
+include/dt-bindings/clock/sun20i-d1-r-ccu.h:/*
+SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+include/dt-bindings/clock/sun50i-a100-ccu.h:/*
+SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+include/dt-bindings/clock/sun50i-a100-r-ccu.h:/*
+SPDX-License-Identifier: GPL-2.0 */
+include/dt-bindings/clock/sun50i-h6-ccu.h:/* SPDX-License-Identifier:
+(GPL-2.0+ OR MIT) */
+include/dt-bindings/clock/sun50i-h6-r-ccu.h:/*
+SPDX-License-Identifier: GPL-2.0 */
+include/dt-bindings/clock/sun50i-h616-ccu.h:/*
+SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+include/dt-bindings/clock/sun5i-ccu.h:/* SPDX-License-Identifier:
+GPL-2.0-or-later */
+include/dt-bindings/clock/sun6i-rtc.h:/* SPDX-License-Identifier:
+(GPL-2.0+ OR MIT) */
+include/dt-bindings/clock/sun8i-de2.h: * SPDX-License-Identifier:
+(GPL-2.0+ OR MIT)
+include/dt-bindings/clock/sun8i-tcon-top.h:/* SPDX-License-Identifier:
+(GPL-2.0+ OR MIT) */
+include/dt-bindings/clock/suniv-ccu-f1c100s.h:/*
+SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+include/dt-bindings/reset/sun20i-d1-ccu.h:/* SPDX-License-Identifier:
+(GPL-2.0+ OR MIT) */
+include/dt-bindings/reset/sun20i-d1-r-ccu.h:/*
+SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+include/dt-bindings/reset/sun50i-a100-ccu.h:/*
+SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+include/dt-bindings/reset/sun50i-a100-r-ccu.h:/*
+SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+include/dt-bindings/reset/sun50i-h6-ccu.h:/* SPDX-License-Identifier:
+(GPL-2.0+ OR MIT) */
+include/dt-bindings/reset/sun50i-h6-r-ccu.h:/*
+SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+include/dt-bindings/reset/sun50i-h616-ccu.h:/*
+SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+include/dt-bindings/reset/sun5i-ccu.h:/* SPDX-License-Identifier:
+GPL-2.0-or-later */
+include/dt-bindings/reset/sun8i-de2.h: * SPDX-License-Identifier:
+(GPL-2.0+ OR MIT)
+include/dt-bindings/reset/suniv-ccu-f1c100s.h:/*
+SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 
--- 
-With best wishes
-Dmitry
+Is there a requirement that new files have to be GPL 2.0 only, not
+GPL 2.0 or later?
+
+Documentation/process/license-rules.rst says:
+The license described in the COPYING file applies to the kernel source
+as a whole, though individual source files can have a different license
+which is required to be compatible with the GPL-2.0::
+
+    GPL-1.0+  :  GNU General Public License v1.0 or later
+    GPL-2.0+  :  GNU General Public License v2.0 or later
+    ...
+
+Aside from that, individual files can be provided under a dual license,
+e.g. one of the compatible GPL variants and alternatively under a
+permissive license like BSD, MIT etc.
+
+
+ChenYu
+
+> Best regards,
+> Krzysztof
+>
 
