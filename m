@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-138181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FB8CA0C0AD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 19:50:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0E30A0C0AF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 19:50:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C92BE164F36
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 18:50:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D765D1883B91
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 18:50:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E87071CD205;
-	Mon, 13 Jan 2025 18:44:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBB981C3BF0;
+	Mon, 13 Jan 2025 18:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vOHQYYn9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h3H4Qjag"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1991CC8B0;
-	Mon, 13 Jan 2025 18:44:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D5301B87C6;
+	Mon, 13 Jan 2025 18:46:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736793861; cv=none; b=Yw2bIaNkNgiHTS6nNXEr8iJuz/aStEMZn4Bw3MT8B7oIoGwsFLZQcDy544zQC6Ro+9nlmWeFL/GgOMXp9AOZBA1z2e8OwbOB79D4gkpYVArdqiPZHJGHyE3DCO/hQhTEE9SSUKI30TMxlRyhH4G/47xRP8gPkeADKayGTN7ZHAM=
+	t=1736793971; cv=none; b=OGET2JT6/MZcjRpOSrWKh97H7n9R3jsODWKPdSuoiGDO36TVahP0hJg0n3XSsv1eRsCKiwj+dJcY7NNYDNdnKgGeNsqkMmUUt2tAHfOaQrfTKhVNkVCxPkoeFRK3F2oTd9yK/XZu7AZmqt1STFH/y2Nd66LlgqF0tQk/ECkBFs8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736793861; c=relaxed/simple;
-	bh=REzVxlFlZt3jmyJLhz4812x6+rsJC8868RgubbOogdQ=;
+	s=arc-20240116; t=1736793971; c=relaxed/simple;
+	bh=BwQVGqVogjfAZiqdAXI325GZJjdhV19DLDNfba8RADk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CBQbzxUsrEKKXwiM4dyo9ov0me8nqN5Ho8jpYUqLnWNnjVqe6y3HuSDK7jDOyUAbqIHb8IavIcpWY73aGGbePuIFS6qCiR145EsQFDy+G7Ypw9iQtGCJPlWqV2z7oJsa+GOXvT+8oCDtE2QRqij4ZB34bEk4JXpeMu/82rrHV0M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vOHQYYn9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74740C4CED6;
-	Mon, 13 Jan 2025 18:44:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=acQ/CkMNzyhhQpn8gAikAHLH8JHH9kwOob32xqChyr+du3u/RZMo72+YgoaK/bgkVyeYFqTzWpZ5lwFzZbAD9NkzoFwVnoyVu8FU/aAqt4BxWA2o+4islZxRdMAqgrm43QrY4jvgYyqP673+LEbkxDZPNXnGp+HmtaB/l2g7BbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h3H4Qjag; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A13A6C4CED6;
+	Mon, 13 Jan 2025 18:46:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736793861;
-	bh=REzVxlFlZt3jmyJLhz4812x6+rsJC8868RgubbOogdQ=;
+	s=k20201202; t=1736793971;
+	bh=BwQVGqVogjfAZiqdAXI325GZJjdhV19DLDNfba8RADk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vOHQYYn9UlplFd26nMocQ5aNJqYCOGIRMK+Zz/MW7zp9lEnDJPPLxAGuQckjVDQy0
-	 aFtU9mp1TLaIt3yGFhvOmf58brOJq3kXi4w2EoHZ4BZK/eyxutMvX8FlIc7oedkoru
-	 HdAlmAKPQzrp9zkHPM2a+tzqtfYCESVAGC7C8rf7B/m7nMrgAtVA6+mcT3ZJLv4rYO
-	 mYzOL56Mvu0mtlgFNlBBl/XOLsm3k4zHJEcpGM39C8RXLba+soTDWso0BhSUaXOMxp
-	 kZWZ5txewsHsWXjkeMMOL9cPPvXtj2okhsO0ybnocA5oBsFeuoIrtEYbTPTeSWIlCT
-	 fjLrtu36kcDnw==
-Date: Mon, 13 Jan 2025 18:44:17 +0000
+	b=h3H4Qjagl7HEbtovfuNDa/Kb3n/x+d+iVwg41WQACsAP3uSUi/R9sKqFOecyFxr3d
+	 LxEsXsUL7Ysvv2B9s7+gTzUI5GHA4ODYDw/wXzd3koDGUIbbbdGVlgWjBdYMVQrlqZ
+	 xZncj8hlJgX4/PmTfMKCR+5g83ejDyu4WJIDg6RDp5mUcfOMAss0tzZryM/R1jKOPS
+	 vAxsAI/f3KgsLAdM3KIj1DyMRZHDtcDiAKZX9k4DopfzCG3+ah8VpPIaCY7E5ePyAA
+	 g3IAYm8XtwT7w0rH77+GhrYH1FJV0HLT9nnPJoWv9XaI7DWdcL/1w7n/EEsY0/sN/8
+	 ANh1BnjNOwZPQ==
+Date: Mon, 13 Jan 2025 18:46:07 +0000
 From: Conor Dooley <conor@kernel.org>
-To: E Shattow <e@freeshell.de>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Minda Chen <minda.chen@starfivetech.com>
-Subject: Re: [PATCH v1 1/2] riscv: dts: starfive: jh7110: pciephy0 USB 3.0
- configuration registers
-Message-ID: <20250113-mushiness-snugness-0f55574e3956@spud>
-References: <20250102183746.411526-1-e@freeshell.de>
- <20250102183746.411526-2-e@freeshell.de>
+To: Paul Handrigan <paulha@opensource.cirrus.com>
+Cc: linux-clk@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+	devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+	conor+dt@kernel.org, patches@opensource.cirrus.com
+Subject: Re: [PATCH v5 1/2] dt-bindings: clock: cs2600: Add support for the
+ CS2600
+Message-ID: <20250113-periscope-dig-232ad4af47fd@spud>
+References: <20241231201742.3955733-1-paulha@opensource.cirrus.com>
+ <20241231201742.3955733-2-paulha@opensource.cirrus.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,57 +59,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="FOHyHV9iOj/jYnyr"
+	protocol="application/pgp-signature"; boundary="7gTCqxLCKyT5lVrF"
 Content-Disposition: inline
-In-Reply-To: <20250102183746.411526-2-e@freeshell.de>
+In-Reply-To: <20241231201742.3955733-2-paulha@opensource.cirrus.com>
 
 
---FOHyHV9iOj/jYnyr
+--7gTCqxLCKyT5lVrF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 02, 2025 at 10:37:36AM -0800, E Shattow wrote:
-> StarFive JH7110 contains a Cadence USB2.0+USB3.0 controller IP block that
-> may exclusively use pciephy0 for USB3.0 connectivity. Add the register
-> offsets for the driver to enable/disable USB3.0 on pciephy0.
->=20
-> Signed-off-by: E Shattow <e@freeshell.de>
-> ---
->  arch/riscv/boot/dts/starfive/jh7110.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/d=
-ts/starfive/jh7110.dtsi
-> index 0d8339357bad..75ff07303e8b 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -611,6 +611,8 @@ usbphy0: phy@10200000 {
->  		pciephy0: phy@10210000 {
->  			compatible =3D "starfive,jh7110-pcie-phy";
->  			reg =3D <0x0 0x10210000 0x0 0x10000>;
-> +			starfive,sys-syscon =3D <&sys_syscon 0x18>;
-> +			starfive,stg-syscon =3D <&stg_syscon 0x148 0x1f4>;
+On Tue, Dec 31, 2024 at 02:17:41PM -0600, Paul Handrigan wrote:
 
-Why weren't these added in the first place? Minda, do you know?
+> +  cirrus,aux-output-source:
+> +    description:
+> +      Specifies the function of the auxiliary output pin with "phase_unlock"
+> +      to indicate the input and output clocks are not in phase, "freq_unlock"
+> +      to indicate the PLL is unlocked, and "no_clkin" to indicate the clock on
+> +      the clk_in pin is not present.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum:
+> +      - phase_unock
+> +      - freq_unlock
+> +      - no_clkin
+> +
+> +  cirrus,clock-mode:
+> +    description:
+> +      Sets the device into smart mode whith "smart_mode" and sets the device
+> +      into smart mode that only outputs a clock when clk_in starts with
+> +      "smart_clkin_only_mode".
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum:
+> +      - smart_mode
+> +      - smart_clkin_only_mode
 
->  			#phy-cells =3D <0>;
->  		};
-> =20
-> --=20
-> 2.45.2
->=20
+Both of these vendor properties are not required, so they need to have a
+default added to the binding.
 
---FOHyHV9iOj/jYnyr
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+
+
+--7gTCqxLCKyT5lVrF
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4VfAQAKCRB4tDGHoIJi
-0svDAP9bn1shXngVSxwtTd7ldTcxUpfFziGGwYPkzQJxx0mfAgEA82jk5WOM83MQ
-gtS8YQT14ttMooCsyg4YEnYq4j6tYQQ=
-=u+LI
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4VfbwAKCRB4tDGHoIJi
+0g26AQCGkWuuHO0+CqJndoE9cc1yi0dxP9LeyodyM81H2Z10XgEA4hOtOk7pJ4EG
+i6K8YTpdQsZkXxfcCyCV5rRez6HewAc=
+=U+xz
 -----END PGP SIGNATURE-----
 
---FOHyHV9iOj/jYnyr--
+--7gTCqxLCKyT5lVrF--
 
