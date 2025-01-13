@@ -1,187 +1,111 @@
-Return-Path: <devicetree+bounces-137889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36537A0AFEE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:18:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE981A0AFF8
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:20:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 102D93A5AAC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 07:18:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E75281882D4B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 07:20:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B15231CB9;
-	Mon, 13 Jan 2025 07:18:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F6D1BD9FF;
+	Mon, 13 Jan 2025 07:19:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="J0KNBWnA"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mjKFkpRj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7995E1714C6;
-	Mon, 13 Jan 2025 07:18:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B8D28FD;
+	Mon, 13 Jan 2025 07:19:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736752704; cv=none; b=AEgrYLH7FnA98AwHHALXqb/PULlHC/WyV6VOm0exyPkVuqgdVhJhPwEdUg/913UWBg6WlJrtVHhVNAPAMyiCH8vNPKY2IT1YfNVzxhBphi4GnamVk7yO+IEIcs9yjjVy48Tm8H8S3dVdUFhZtuypdedngY1JvzYfJYuanRbI7+0=
+	t=1736752797; cv=none; b=BGxVtUBL4oZaY+yBfOI9/NX+GAczC5JJSwjSPGlwKOOlDHrDiay60vz7lmZPe2pcLQtXppOpuxQx0Fer4HLP3SHzBkao5SYPF0MUHw2+gFCjwM6wkLNIcCfvvVR6zn0prcuLQdH0dam0peAwITkmHOEUapC1wvDjDujavWO2NX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736752704; c=relaxed/simple;
-	bh=42oYf7k1pGRgtJYa8Ps3IOlsFdSUm4C/6z8/MyTKOKE=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Hm1g3LzeOsiiv3BwP4v5/0GE+3mhAhNLmC/0b3lGVo4ZCztj5+DeUXm6qE2mZHPTGqbrtGFezvdQlE6lY+6KOGaC6kTTsZtO2vFkQn6VduIR4vkufn6ZVy1TsCB/Qx9575fwcmhA4BvLv3mmQINCh/MaVcX36L8+4ArlH4AMnkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=J0KNBWnA; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1736752702; x=1768288702;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=42oYf7k1pGRgtJYa8Ps3IOlsFdSUm4C/6z8/MyTKOKE=;
-  b=J0KNBWnA/UV6jEsjkKY4T8dEbQZbt4Lcd9zlcwhfXveT0E1l3lZZRS4w
-   ORqxc7zoo70+u0Hkgno0GvN/695MBlHnMlRSD14u+zo7Ai8xLjzAoJf/k
-   NIZfu2rxJEER8ohOAfQ1ZLzVUTCl0Zhm61WxT3k6KU+6HDA7LKc4NhiJA
-   CSrE0w2QpWZL/QUJsnVR/eZdtb/NCZ8eYSCZyQ/+M7hpKYtksqz4uITyO
-   JRhqcAQCURvxS36zO8USRKs8ZPEIURWgjwvTLdLsLVfz8OS9jcE7iJoHH
-   v8RPpvhGsyo/ftbvIMZgzs1k+xN0HSf03wqwyOYzNdI9KODE1AhLbdQuQ
-   w==;
-X-CSE-ConnectionGUID: n6lK1I+ESfyKbS9ug4OrHw==
-X-CSE-MsgGUID: 93KtI5A/Q/iv4dsczwbKVQ==
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
-   d="scan'208";a="36094120"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 13 Jan 2025 00:18:16 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 13 Jan 2025 00:17:59 -0700
-Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 13 Jan 2025 00:17:57 -0700
-From: Andrei Simion <andrei.simion@microchip.com>
-To: <nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
-	<alexandre.belloni@bootlin.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Andrei Simion <andrei.simion@microchip.com>
-Subject: [PATCH] ARM: dts: microchip: at91-sam9x75_curiosity: Add PMIC suspend voltage configuration
-Date: Mon, 13 Jan 2025 09:17:11 +0200
-Message-ID: <20250113071710.40821-1-andrei.simion@microchip.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1736752797; c=relaxed/simple;
+	bh=MYJh3nER0YHHitikyQndEMbpoJyhZPDW6g9Dil0vlRY=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=Qy0m4JS89y+I51EKrcUJ/ILrhXgq5HwL1LHcPk+WrhJdkKvRLR6DD5OXUXIkfk/ycPo/qSVyUtLVo7ayCjpAZvUYO8DOY7EVSJyI7MtMY+bbiN2rTnm43a/nSKy9m9zI/Y5jC5ixbc/zoLDo7qHZ7amFHya+oUftxGfYW98BO+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mjKFkpRj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A9A8C4CED6;
+	Mon, 13 Jan 2025 07:19:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736752797;
+	bh=MYJh3nER0YHHitikyQndEMbpoJyhZPDW6g9Dil0vlRY=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=mjKFkpRjdNsXXJ5zthwnqTsDxtfOwux3uS6dTV9/A8lV3ByHLs7QPzZoG5eOX3XTu
+	 Z9Y6yGThfI432tMiVYIueQY4bFTd1oy20h+H2JfbtijnbZom14Vzd9PoG9p+HObrH+
+	 9iCFrUMlX5B8RSLX1xf+dtGPqjlK/NNjZjtmjShbqyj14xpNMwiLKjA9JdT4ucp919
+	 asB5Q5Di+p3sPXIQ08Tf8telCIYOX1wkRg4Iqvhzmzl28rHR9ZATGve5/jmPTXItjZ
+	 7ccTeP5T3pn2qLLwpSljNU4DSYOWTiFUyD7EwozyfUT+HrvoLTZ3kkBaTgI8KnFP/n
+	 MppiBw38PetPw==
+Date: Mon, 13 Jan 2025 01:19:56 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Jaroslav Kysela <perex@perex.cz>, Kevin Hilman <khilman@baylibre.com>, 
+ linux-sound@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>, 
+ Takashi Iwai <tiwai@suse.com>, devicetree@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Liam Girdwood <lgirdwood@gmail.com>
+To: jiebing chen <jiebing.chen@amlogic.com>
+In-Reply-To: <20250113-audio_drvier-v1-1-8c14770f38a0@amlogic.com>
+References: <20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com>
+ <20250113-audio_drvier-v1-1-8c14770f38a0@amlogic.com>
+Message-Id: <173675279619.745064.11661644624607210871.robh@kernel.org>
+Subject: Re: [PATCH 1/3] ASoC: dt-bindings: Add Amlogic S4 audio
 
-Add missing essential configuration for the PMIC rails, which is necessary
-for proper low-power mode operation. This patch adds the required settings
-to ensure that the regulators behave correctly during Suspend-to-RAM and
-Standby states. Otherwise, after resuming, it receives: "No configuration"
-message.
 
-Our driver implements the set_suspend_voltage and set_suspend_mode
-callbacks, which require the `regulator-suspend-microvolt` property to be
-specified in the device tree for each regulator node. This property defines
-the voltage level that the regulator should maintain during suspend mode.
+On Mon, 13 Jan 2025 14:35:13 +0800, jiebing chen wrote:
+> Add documentation describing the Amlogic S4 TDM output pad and toacodec.
+> 
+> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
+> ---
+>  .../bindings/sound/amlogic,s4-tdmout-pad.yaml      | 36 ++++++++++++++++++
+>  .../bindings/sound/amlogic,s4-tocodec.yaml         | 44 ++++++++++++++++++++++
+>  2 files changed, 80 insertions(+)
+> 
 
-Additionally, according to the datasheet, some regulators need to be turned
-on or off during suspend mode. This patch addresses these requirements by
-adding the `regulator-on-in-suspend` and `regulator-off-in-suspend`
-properties where appropriate.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Fixes: 371a47c9a58a ("ARM: dts: microchip: sam9x75_curiosity: add sam9x75 curiosity board")
-Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
----
- .../dts/microchip/at91-sam9x75_curiosity.dts   | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+yamllint warnings/errors:
 
-diff --git a/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-index 1a6a909a5043..5514ad10cda5 100644
---- a/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-@@ -110,10 +110,12 @@ vdd_3v3: VDD_IO {
- 
- 				regulator-state-standby {
- 					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
- 					regulator-mode = <4>;
- 				};
- 
- 				regulator-state-mem {
-+					regulator-off-in-suspend;
- 					regulator-mode = <4>;
- 				};
- 			};
-@@ -128,11 +130,13 @@ vddioddr: VDD_DDR {
- 
- 				regulator-state-standby {
- 					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1350000>;
- 					regulator-mode = <4>;
- 				};
- 
- 				regulator-state-mem {
- 					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1350000>;
- 					regulator-mode = <4>;
- 				};
- 			};
-@@ -147,10 +151,12 @@ vddcore: VDD_CORE {
- 
- 				regulator-state-standby {
- 					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1150000>;
- 					regulator-mode = <4>;
- 				};
- 
- 				regulator-state-mem {
-+					regulator-off-in-suspend;
- 					regulator-mode = <4>;
- 				};
- 			};
-@@ -166,10 +172,12 @@ dcdc4: VDD_OTHER {
- 
- 				regulator-state-standby {
- 					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1150000>;
- 					regulator-mode = <4>;
- 				};
- 
- 				regulator-state-mem {
-+					regulator-off-in-suspend;
- 					regulator-mode = <4>;
- 				};
- 			};
-@@ -182,6 +190,11 @@ vldo1: LDO1 {
- 
- 				regulator-state-standby {
- 					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
- 				};
- 			};
- 
-@@ -192,6 +205,11 @@ vldo2: LDO2 {
- 
- 				regulator-state-standby {
- 					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
- 				};
- 			};
- 		};
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/sound/amlogic,s4-tocodec.example.dts:23.35-36 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/sound/amlogic,s4-tocodec.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
-base-commit: 37136bf5c3a6f6b686d74f41837a6406bec6b7bc
--- 
-2.34.1
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250113-audio_drvier-v1-1-8c14770f38a0@amlogic.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
