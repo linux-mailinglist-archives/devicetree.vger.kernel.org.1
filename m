@@ -1,160 +1,226 @@
-Return-Path: <devicetree+bounces-138135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1AFBA0BCBE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 17:00:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A84E1A0BCE7
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 17:09:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2AE2F7A1238
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:59:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 378EE3A7710
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:09:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE99B1FBBCF;
-	Mon, 13 Jan 2025 15:59:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3802420F06F;
+	Mon, 13 Jan 2025 16:08:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="6To6T4eq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eRVT0ifl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1B511420DD;
-	Mon, 13 Jan 2025 15:59:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D70320AF78;
+	Mon, 13 Jan 2025 16:08:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736783994; cv=none; b=EwQzQ9rX7AyL8McNqu9ed+0bY0GhYgxwajO9T4fw1vIZUJOu5GwdIF13izBArr91ZTNQMWXhin68oe5udnJZD7vf6eTlp8KoLO6jKIu68Qz6dcmQkLeAx/1h9DvZ9n/z1tMIleHHhbRSAR6PkUlSsbDtbTMN602g0ZbDmxDQbFA=
+	t=1736784537; cv=none; b=KxRSWLq9WzeznyWpk5TOc1rI4/tx5sU1q7orEoqijeMWIagk7hfgrpQHoExQO1zmZHn3oAqKhpcYp7g9hr5Q3OwtxGzhCLKQ6Qe0IYvCahAy60XpBTEygR7iIIqCrlTGZgrMGgy5r4OzAR+EYXGOzisw5mVJKfOyBzFlmSzgQqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736783994; c=relaxed/simple;
-	bh=0mRezYsIRETVR9LowYE1d/AT0UNKa27L8I9LtzK8HNI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m5ijgg/AzaJ6/IMXFoQrnoa5q+/j8UOWbUTaTnrF2CM9IRQAuJrXGCEhK3OciiGDIsb2hcIOvbnGfEQ91fquP0Crlh8MVTatSCwKbPCdQVXMH2ADCzOdjklLMQN9FB9QG4Yixltp+axwUUHJkrMJJPLfNXraow7o9z8sQeFyxCY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=6To6T4eq; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=SJf7sTIHMVoyN452+drIiRGVhPY1OdqWNinj135Rt5M=; b=6To6T4eqIb9D/f6GnK2y9E3X+K
-	/LXB2M6aaMJ8/VMHIKxyTGfTPBNR0A/0qyBQlLr2off5hhlDsY7BzS/M1+PqdrCTa70Cv7I0mxo2s
-	skHAcPXbWDzs9YmIc78f0PqiU+waPYbKiL8CIkB1W4tkTa0iwZMRJ6m/OCUNJ9SgQDzE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tXMqo-0048x9-KA; Mon, 13 Jan 2025 16:59:38 +0100
-Date: Mon, 13 Jan 2025 16:59:38 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: dimitri.fedrau@liebherr.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 0/2] net: phy: dp83822: Add support for changing
- the transmit amplitude voltage
-Message-ID: <5118eb9a-ff6e-4e78-8529-d174e09cf52e@lunn.ch>
-References: <20250113-dp83822-tx-swing-v1-0-7ed5a9d80010@liebherr.com>
- <fcffef06-c8d1-4398-bc20-30d252cd2fd2@lunn.ch>
- <20250113141828.GA4250@debian>
+	s=arc-20240116; t=1736784537; c=relaxed/simple;
+	bh=IfgGRWz6ae8S4EK9cNKKZjQIeQuO+rzio0Y7EIEjxs0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=neFDDZMg36PsVVVCnz/EyujRpnYPQ6LxAh3gdb8Ya97DIF9eOEELeARvnJ7uskTrTaVvBnnw7ZsbApOuUL9KDzlNSf7/8LUDTDkPfdQuYwgGVULfVGV8b2A52w0jKxiLQe/SxpRTHz6pWOiAYfPa3EAUO9hg/hsts/unFDjV2H4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eRVT0ifl; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2ee786b3277so5693388a91.1;
+        Mon, 13 Jan 2025 08:08:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736784534; x=1737389334; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=NRETzwkOZKuaOhGGrnA3lxukHHTM1H1HlsIzOvybFl4=;
+        b=eRVT0iflqkGmyPQPAZ9Ez21YxVLaj5XoKttpMLsdb/rF+uM1ajzqeHsfistj3+hHbP
+         dscjGzSbJHJP0qStXgokjQGpIxk2lMWFpJWe76iwjTOJeozThbJk1LAdY+bjvmq2WU4I
+         IEkpoZrR3TTYIa1tblImt39x4pmaUDnBCpGC/5eYr1FPOvydWgVEwdAJuxFA4tYYvKEQ
+         NXEXymmZ3k6H9pZavBEV/iPnC4OqAbGyG4SjwRZUoej6PC2k+ghN4eP0usQRmWm7JLtU
+         fGi3YVBEfA7UwuAHDx1CC8gdITMDIjODvelj4DDHPv2q5O6Bk/GRMDOFBanXK2vbmriG
+         4+AA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736784534; x=1737389334;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NRETzwkOZKuaOhGGrnA3lxukHHTM1H1HlsIzOvybFl4=;
+        b=o8Wxt/+DTYvI3kOPmZUnp/Fa7ldPqAd6+bVbKFs8BVDFTAE5PnvuCegzpONBZMk8yw
+         3xYW3kvqE6nolfDZfl4kvCNpALcDLgTTOZQDEdotFKt2X5aE2UCVqE67VR1sTtwKMx3X
+         01uNcPCovMMvFkfxItUMNYVc9XgDFuSuJDd1r5IPEz1rtJTLsVm6Ft/9a7tOoxaZK9sN
+         chAAyjEB2lHpwdVnR4BNKg2Juhbre0TnghfyRy+5OV9EdvZcMltteNGBvDf3JEPRyW4l
+         RkAauPI7LRB6rUyKEh58/F5sWs0EvzSg/et/HAxn+5e2PGm7BwNhuddjrWnaxTXY9AOC
+         Oa9g==
+X-Forwarded-Encrypted: i=1; AJvYcCUTy23GbGLIqrKIszhbDeUI/m8dX3+gwaFMGAskALMTesmeCCh9zsqribUrMoGhYzu2mMg8BGmu2XqDxl5P3tDz138=@vger.kernel.org, AJvYcCVg9FqcrKmWY3BDwFvra6ag+qooZ3ZQpKqDw/XxA/2nMvmb14BBktAj2dQjhGbVs3XZwXTvJ2taeAL4@vger.kernel.org, AJvYcCX0rmnP7D+ablMiGTCA+hUMhP0PntuEKXGNnZJWBGxm2X906jaiZbyS2p4pEwmKyXVQfF6Hg7WKoyuv@vger.kernel.org, AJvYcCX2lecvBIbrtNR0CgK7u3OzG4M31PdaXWnTBcmcTGfSjOblhPrMLmj5GZvhk1Ru5xUt0WgtsDy0umnFSKlTihA=@vger.kernel.org, AJvYcCXLkcmDE0gGkxxzLSJnfRMl3nA49EmRa0ML++ibVch4zeG8N7mVkD1NFCjgnwDihSHp4q4tnxJ0OAl30epH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxeOUkfFtylU+SZEF1tdBXHvdxEANljQcP/QzGMXUJzgnSfZLaZ
+	wm65BBiqUJUs9ULJgLPaqZBhFQgdXaQxSdGqg8UARASNPlHNJudU
+X-Gm-Gg: ASbGncs3CHIO+/nmEh54GQGQM0BIv4gVtUWZtKkA2xM9u0u0vY8Oi86xklQhofY0LLX
+	5b7QUQBwAEM53olH3OXj9+Lzwcfh+rTXmGgN7mUpwdpwiBjFGlHJtscI5NU7h01APjOkv78YrxD
+	Ym2pLMCsg9lCjqwrsHLAcPhZ/wnNtE5uxoRztvGS5cdQG6HLZrbRPX3J7ED4gUxOCtQgVUDRAo/
+	m48XugN91crtikSP1X9iUubJk7mu7wwUHYypRALNpanUYjgbJ/BitFgpFTekz449GF3idYk6wHM
+	cL/xS+W6jlD2UbHLC5lbESd2z175Qg==
+X-Google-Smtp-Source: AGHT+IEhnLpZ/7Lxjz0KTy7GYhvIULupFuK4VJsIGKRNP5/8fvGuTmf67/SE0EhBQd4QB2pJrr5JIA==
+X-Received: by 2002:a17:90b:2dc2:b0:2ee:863e:9ffc with SMTP id 98e67ed59e1d1-2f548ee5378mr28145322a91.21.1736784533566;
+        Mon, 13 Jan 2025 08:08:53 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f5593feae0sm8030878a91.17.2025.01.13.08.08.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Jan 2025 08:08:52 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <5cb9f4c9-c1b2-477c-9c6a-797a4e60d30e@roeck-us.net>
+Date: Mon, 13 Jan 2025 08:08:50 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250113141828.GA4250@debian>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/6] Add support to retrieve the bootstatus from
+ watchdog for RZ/V2H(P) SoC
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+ Biju Das <biju.das.jz@bp.renesas.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <TY3PR01MB11346D7617436A7779B6697B3861F2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CA+V-a8tQ_tyxPn2pO=mSPVW2RffVhFz=CPCxR2pxXP1FLkcQcA@mail.gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <CA+V-a8tQ_tyxPn2pO=mSPVW2RffVhFz=CPCxR2pxXP1FLkcQcA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jan 13, 2025 at 03:18:28PM +0100, Dimitri Fedrau wrote:
-> Hi Andrew,
+On 1/13/25 04:40, Lad, Prabhakar wrote:
+> Hi Biju,
 > 
-> Am Mon, Jan 13, 2025 at 02:54:28PM +0100 schrieb Andrew Lunn:
-> > On Mon, Jan 13, 2025 at 06:40:11AM +0100, Dimitri Fedrau via B4 Relay wrote:
-> > > Add support for changing the transmit amplitude voltage in 100BASE-TX mode.
-> > > Add support for configuration via DT.
-> > 
-> > The commit message is supposed to answer the question "Why?". Isn't
-> > reducing the voltage going to make the device non conforming? Why
-> > would i want to break it? I could understand setting it a bit higher
-> > than required to handle losses on the PCB and connector, so the
-> > voltages measured on the RJ45 pins are conforming.
-> >
-> - Will add the "Why?" to the commit description. You already answered it.
-> - Yes you are right.
-> - I don't want to break it, the PHY just provides these settings. And I
->   just wanted to reflect this in the code, although it probably doesn't
->   make sense.
-> - In my case I want to set it a bit higher to be conforming.
+> On Mon, Jan 13, 2025 at 11:38 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+>>
+>> Hi Prabhakar,
+>>
+>>> -----Original Message-----
+>>> From: Prabhakar <prabhakar.csengg@gmail.com>
+>>> Sent: 13 January 2025 11:24
+>>> Subject: [PATCH v3 0/6] Add support to retrieve the bootstatus from watchdog for RZ/V2H(P) SoC
+>>>
+>>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>>>
+>>> Hi All,
+>>>
+>>> This patch series adds SYSCON support to retrieve boot status information for RZ/V2H(P) SoC.
+>>> Summary of Changes,
+>>>
+>>>      Clock:
+>>>          Add syscon compatible support to the CPG block in bindings and
+>>>          device trees.
+>>>
+>>>      Watchdog:
+>>>          Document the renesas,r9a09g057-syscon-wdt-errorrst property.
+>>>          Update the watchdog driver to fetch and report boot status via
+>>>          Error Reset Registers (CPG_ERROR_RSTm).
+>>>
+>>>      Device Tree:
+>>>          Add the syscon property to CPG and WDT nodes in R9A09G057 and
+>>>          R9A09G047 SoC DTSI.
+>>>
+>>> These changes enable the watchdog driver to identify boot sources like Power-on Reset and Watchdog
+>>> Reset, improving system diagnostics.
+>>
+>> This means that, we should assume U-boot/bootloader should not clear the WDT reset status bit.
+>>
+>> If they clear it, there should be a way to propagate it from u-boot/bootloader to linux,
+>> otherwise, we get wrong bootstatus in linux.
+>> But the clearing of watchdog status by one of the cases:
+>>
+>> 1) u-boot identify the boot source and clear the status bit
+>>
+> I agree, if the tf-a/u-boot clears the register, the bootstatus
+> reported by Linux will be in-correct.
+> 
 
-I have seen use cases for deeply embedded systems where they want to
-reduce it, to avoid some EMC issues and save some power/heat. They
-know the cable lengths, so know a lower voltage won't cause an
-issue. The issue in that case is that the configuration was policy,
-not a description of the hardware. So i pushed for it to be a PHY
-tunable, which can be set at runtime. Your use case is however about
-the hardware, you need a slightly higher voltage because of the
-hardware design. So for this case, i think DT is O.K. But you will
-need to make this clear in the commit message, you want to make the
-device conform by increasing the voltage. And put something in the
-binding description to indicate this setting should be used to tune
-the PHY for conformance. It is not our problem if somebody misuses it
-for EMC/power saving and makes there device non-conform.
+I would rephrase that: Today, the boot status is _always_ incorrect if a reboot
+was triggered by a watchdog reset. After this patch, it will be correct unless
+the boot loader resets the status bit.
 
-> > Also, what makes the dp8382 special? I know other PHYs can actually do
-> > this. So why are we adding some vendor specific property just for
-> > 100base-tx?
-> >
-> I don't think that the dp83822 is special in this case. I just didn't
-> know better. Would be removing the vendor specific property enough ?
-> Or is there already a defined property describing this. Didn't found
-> anything.
+> Alternative solution, would be:
+> 
+> Let the TF-A create WDT nodes for us and add a property
+> `renesas,r9a09g057-wdt-bootstatus` and propagate the WDT nodes to
+> Linux.
+> 
+> renesas,r9a09g057-wdt-bootstatus = <0/1>;
+> 
 
-If i remember correctly, there might be a property for
-automotive/safety critical, where there is a choice of two
-voltages. But it might be just deciding which of the two voltages are
-used?
+That would require both a property change as well as a change in the bootloader.
+I suspect it would also be inappropriate as standard property and would have
+to be passed as 'chosen' property (if that is even permitted) or as command line
+argument.
 
-There is also:
+Either case, if the boot loader has to be changed anyway, why not just tell it
+to leave the boot status alone ?
 
-  ti,cfg-dac-minus-one-bp:
-    description: |
-       DP83826 PHY only.
-       Sets the voltage ratio (with respect to the nominal value)
-       of the logical level -1 for the MLT-3 encoded TX data.
-    enum: [5000, 5625, 6250, 6875, 7500, 8125, 8750, 9375, 10000,
-           10625, 11250, 11875, 12500, 13125, 13750, 14375, 15000]
-    default: 10000
+Guenter
 
-  ti,cfg-dac-plus-one-bp:
-    description: |
-       DP83826 PHY only.
-       Sets the voltage ratio (with respect to the nominal value)
-       of the logical level +1 for the MLT-3 encoded TX data.
-    enum: [5000, 5625, 6250, 6875, 7500, 8125, 8750, 9375, 10000,
-           10625, 11250, 11875, 12500, 13125, 13750, 14375, 15000]
-    default: 10000
-
-I'm not so much an analogue person, but these don't make too much
-sense to me. A ratio of 10,000 relative to nominal sounds rather
-large. I would of expected a ration of 1 as the default? Since this
-makes little sense to me, i don't think it is a good idea to copy it!
-
-I've not looked at 802.3.... Do we need different settings for
-different link modes?  Are the losses dependent on the link mode?  Are
-the voltages different for different link modes? Is voltage actually
-the best unit, if different link modes have different differential
-voltages? Would a gain make more sense for a generic binding, and then
-let the PHY driver convert that into whatever the hardware uses?
-
-So, please take a step back, think about the general case, not your
-specific PHY, and try to come up with a generic binding applicable to
-all PHYs.
-
-	    Andrew
 
