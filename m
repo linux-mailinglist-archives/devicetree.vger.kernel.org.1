@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-137904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D863A0B0D5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:18:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23ECFA0B0E0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:20:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47F2C18873F1
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:18:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B8E016627B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:20:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3BE3231C8D;
-	Mon, 13 Jan 2025 08:18:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF951233159;
+	Mon, 13 Jan 2025 08:20:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="rA7lYVdN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="mkubaI8I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from classfun.cn (unknown [129.204.178.38])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E633028377;
-	Mon, 13 Jan 2025 08:18:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14E4B231A56;
+	Mon, 13 Jan 2025 08:20:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736756309; cv=none; b=K1CW4KnvnX1kPS+nNl1QbFA6Vkvf6YsAFQ1i2RValX7iJXmWiPDdAMEruLCEB26ssnxo82mKm/tCYCR35ADTdTHJsGt5AHqt25T/7wmv+XpZk7E9qflFVqqNCpGCA1+h0BJsAa1hID4KpanZYNH7Oh91YPRk4AIvVaMqsMu1bq8=
+	t=1736756430; cv=none; b=omyllWWxwfS2OA5CDZ+pQsV38G2sdcdeOHD40qyxqOJ3k9N13gqK/P6PPd0x2ZTY4OYKxKaDh/+HKki05XIe9sG2xs425puV3GtudP0cQwgFoegEpXYcw3BdTJdK1NtpQMCKSXKWcRrfyKNd5JnzAQBN1Thdb/fkFxGNi0AXoZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736756309; c=relaxed/simple;
-	bh=keSfTFDZ4AFOeNYkutWTcS2xnlO16SIrBLbjEmcDM4Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E33Ajdp17QjlXbAl3EyBduLoOpZD1Lihg7fDs1audWZ3Lz8dMy8Joey1txqRUfejPGNSu/uiaMItCqPhl7E82wBYuVpjXhIZTij/oSNOGHkXiU+tQtU2JhXNmDPHEdJ3Z1Cn85G7mI4KWnfg/0F/cFOAfIccgRHH+D9uTd1p4hQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=rA7lYVdN; arc=none smtp.client-ip=129.204.178.38
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
-Received: from [192.168.0.160] (unknown [222.77.7.241])
-	(Authenticated sender: bigfoot)
-	by classfun.cn (Postfix) with ESMTPSA id 64ADF7817F;
-	Mon, 13 Jan 2025 16:18:11 +0800 (CST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 64ADF7817F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
-	s=default; t=1736756295;
-	bh=V24IXTryrVGcjHqIUfjWLveVF6uP2q3j+D/mtRq378w=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rA7lYVdN5Hh4AQKwBodrNJQFyoyXZDDh39M71ZklGOPkNl5vNeT8Q2z80o9bmR5JX
-	 POPCVNKc6wHyZtidh/DeBLZ8pCxdF9Df2y1gHBZtNdJt004mxNZIicRHudtObTW9CQ
-	 9pnnpwOHdf5LwHULUluFc30RgYlOd8QBZ8NsAfeg=
-Message-ID: <54b5dac0-5791-4b20-a237-dac6fd03c259@classfun.cn>
-Date: Mon, 13 Jan 2025 16:18:19 +0800
+	s=arc-20240116; t=1736756430; c=relaxed/simple;
+	bh=4+chX1jsbW61op44SlDeuJje9hKl94J6pDz8yqfyt3Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=A4/rGOjOVLW/eHxsOVQGqaOd7bEV9bleDF6YkPN8nC7bKKstObFkjhw85aDLnm3IEMjWNkZkLNwnETvOyEzgnOcYKnegwPtyBgkd3vRTF/QQsRSSGPhK3VbDVVd+GvLOFu52bC9QUDdgwrjjH3TkR0U+1V691Hf2zU5Wff+8DOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=mkubaI8I; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50D4sdvw001454;
+	Mon, 13 Jan 2025 08:20:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PgTDnGsNKXJLy6fZXS3tEtI7+FhqPIzJUmiGDgsJesU=; b=mkubaI8I5ym0gxjL
+	dXimjiGjOnYdOSxVp42/7vfL57uzFjP22fk50mYo7TMpzJlq8nKhbbbdPh5R49/F
+	kJPl1vEoyNy9cjcTqDikK+uaw4QPEox3GuSzS5MydyuEQSsJKeRbv1exXu6Ul5yQ
+	j1KgouwDdWYYWphNouqmG+PFIEhf0jdbLu5TYr6L5gqrOqECBPgti+GawY5aj1BR
+	XgBErqwN7y8xbEWy7qRIN3oyfBIjILDVRUCbyLjtnFCGD1RM1IgN5npf74hHkDve
+	TYu++yh03rZnq9mQkH0W1Ifprdqt74CZGmnwDsPesSLiTCkIdmALrYP40cNSYzZt
+	IB2qAg==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 444v728e1s-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 08:20:04 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50D8K35W030308
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 08:20:03 GMT
+Received: from [10.253.33.98] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 13 Jan
+ 2025 00:19:57 -0800
+Message-ID: <44e82323-b40d-41ea-86ee-57c4872a46e8@quicinc.com>
+Date: Mon, 13 Jan 2025 16:19:54 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,95 +65,147 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 3/3] arm64: dts: rockchip: add dts for Ariaboard
- Photonicat RK3568
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
- FUKAUMI Naoki <naoki@radxa.com>, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Junhao Xie <bigfoot@classfun.cn>
-References: <20250112073344.1976411-1-bigfoot@classfun.cn>
- <20250112073344.1976411-4-bigfoot@classfun.cn>
- <1e72cc9cdc390e79e97806fe4f7d8abf@manjaro.org>
- <35f8fe37-b06f-49eb-b0c2-430421f1ff3b@classfun.cn>
- <7b55c7469774c41d9896df3100df1630@manjaro.org>
+Subject: Re: [PATCH net-next v4 3/5] net: pcs: qcom-ipq9574: Add PCS
+ instantiation and phylink operations
+To: Simon Horman <horms@kernel.org>
+CC: Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit
+	<hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <quic_kkumarcs@quicinc.com>,
+        <quic_suruchia@quicinc.com>, <quic_pavir@quicinc.com>,
+        <quic_linchen@quicinc.com>, <quic_luoj@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
+        <vsmuthu@qti.qualcomm.com>, <john@phrozen.org>
+References: <20250108-ipq_pcs_net-next-v4-0-0de14cd2902b@quicinc.com>
+ <20250108-ipq_pcs_net-next-v4-3-0de14cd2902b@quicinc.com>
+ <20250108100358.GG2772@kernel.org>
+ <8ac3167c-c8aa-4ddb-948f-758714df7495@quicinc.com>
+ <20250110105252.GY7706@kernel.org>
 Content-Language: en-US
-From: Junhao Xie <bigfoot@classfun.cn>
-In-Reply-To: <7b55c7469774c41d9896df3100df1630@manjaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Lei Wei <quic_leiwei@quicinc.com>
+In-Reply-To: <20250110105252.GY7706@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ppbTE0bSAqDDpyLkLjeisu1cD4C7AiqM
+X-Proofpoint-ORIG-GUID: ppbTE0bSAqDDpyLkLjeisu1cD4C7AiqM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
+ suspectscore=0 mlxscore=0 clxscore=1015 bulkscore=0 phishscore=0
+ impostorscore=0 priorityscore=1501 malwarescore=0 lowpriorityscore=0
+ mlxlogscore=822 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501130070
 
-On 2025/1/13 12:25, Dragan Simic wrote:
-> Hello Junhao,
-> 
-> On 2025-01-12 23:16, Junhao Xie wrote:
->> On 2025/1/12 16:47, Dragan Simic wrote:
->>> On 2025-01-12 08:33, Junhao Xie wrote:
->>>> Add dts for Ariaboard Photonicat RK3568.
->>>>
->>>> Working IO:
->>>>     Debug UART
->>>>     SDIO QCA9377 WiFi and Bluetooth
->>>>     M.2 E-Key PCIe WiFi and Bluetooth
->>>>     M.2 B-Key USB Modem WWAN
->>>>     Ethernet WAN Port
->>>>     MicroSD Card slot
->>>>     eMMC
->>>>     HDMI Output
->>>>     Mali GPU
->>>>     USB Type-A
->>>>
->>>> Not working IO:
->>>>     Ethernet LAN Port (Lack of SGMII support)
->>>>     Power management MCU on UART4 (Driver pending)
->>>>
->>>> Not working IO in MCU:
->>>>     Battery voltage sensor
->>>>     Board temperature sensor
->>>>     Hardware Power-off
->>>>     Hardware Watchdog
->>>>     Network status LED
->>>>     Real-time clock
->>>>     USB Charger voltage sensor
->>>>
->>>> About onboard power management MCU:
->>>>     A heartbeat must be sent to the MCU within 60 seconds,
->>>>     otherwise the MCU will restart the system.
->>>>     When powering off, a shutdown command needs to be sent to the MCU.
->>>>     When the power button is long pressed, the MCU will send a shutdown
->>>>     command to the system. If system does not shutdown within 60 seconds,
->>>>     the power will be turned off directly.
->>>>     MCU only provides voltage for charger and battery.
->>>>     Manufacturer removed RK8xx PMIC.
->>>
->>> Unless the design of the board is proprietary, it would be good
->>> to provide a link to the board schematic, for those interested
->>> in verifying the board DT file.
->>>
->>> As a note, I already tried to find the board schematic with no
->>> success, so the design might be proprietary.
+
+
+On 1/10/2025 6:52 PM, Simon Horman wrote:
+> On Thu, Jan 09, 2025 at 09:11:05PM +0800, Lei Wei wrote:
 >>
->> Yes, this board is proprietary. I asked the manufacturer and
->> they don't provide schematics.
 >>
->> But I found a partial schematic diagram of some of connectors
->> on the board here
->> https://dl.ariaboard.com/photonicat_rk3568/Photonicat%20rk3568%20EVB%20Board%20spec.pdf
+>> On 1/8/2025 6:03 PM, Simon Horman wrote:
+>>> On Wed, Jan 08, 2025 at 10:50:26AM +0800, Lei Wei wrote:
+>>>> This patch adds the following PCS functionality for the PCS driver
+>>>> for IPQ9574 SoC:
+>>>>
+>>>> a.) Parses PCS MII DT nodes and instantiate each MII PCS instance.
+>>>> b.) Exports PCS instance get and put APIs. The network driver calls
+>>>> the PCS get API to get and associate the PCS instance with the port
+>>>> MAC.
+>>>> c.) PCS phylink operations for SGMII/QSGMII interface modes.
+>>>>
+>>>> Signed-off-by: Lei Wei <quic_leiwei@quicinc.com>
+>>>
+>>> ...
+>>>
+>>>> +static int ipq_pcs_enable(struct phylink_pcs *pcs)
+>>>> +{
+>>>> +	struct ipq_pcs_mii *qpcs_mii = phylink_pcs_to_qpcs_mii(pcs);
+>>>> +	struct ipq_pcs *qpcs = qpcs_mii->qpcs;
+>>>> +	int index = qpcs_mii->index;
+>>>> +	int ret;
+>>>> +
+>>>> +	ret = clk_prepare_enable(qpcs_mii->rx_clk);
+>>>> +	if (ret) {
+>>>> +		dev_err(qpcs->dev, "Failed to enable MII %d RX clock\n", index);
+>>>> +		return ret;
+>>>> +	}
+>>>> +
+>>>> +	ret = clk_prepare_enable(qpcs_mii->tx_clk);
+>>>> +	if (ret) {
+>>>> +		dev_err(qpcs->dev, "Failed to enable MII %d TX clock\n", index);
+>>>> +		return ret;
+>>>
+>>> Hi Lei Wei,
+>>>
+>>> I think you need something like the following to avoid leaking qpcs_mii->rx_clk.
+>>>
+>>> 		goto err_disable_unprepare_rx_clk;
+>>> 	}
+>>>
+>>> 	return 0;
+>>>
+>>> err_disable_unprepare_rx_clk:
+>>> 	clk_disable_unprepare(qpcs_mii->rx_clk);
+>>> 	return ret;
+>>> }
+>>>
+>>> Flagged by Smatch.
+>>>
+>>
+>> We had a conversation with Russell King in v2 that even if the phylink pcs
+>> enable sequence encounters an error, it does not unwind the steps it has
+>> already done. So we removed the call to unprepare in case of error here,
+>> since an error here is essentially fatal in this path with no unwind
+>> possibility.
+>>
+>> https://lore.kernel.org/all/38d7191f-e4bf-4457-9898-bb2b186ec3c7@quicinc.com/
+>>
+>> However to satisfy this smatch warning/error, we may need to revert back to
+>> the adding the unprepare call in case of error. Request Russel to comment as
+>> well if this is fine.
 > 
-> Yes, I also found that PDF file.  It's somewhat similar to what
-> Raspberry Pi provides with its reduced schematics -- helpful to
-> an extent, but still leaving a lot to be desired.
+> Thanks, I had missed that.
 > 
-> Out of curiosity, what did you actually use as a reference to create
-> the board dts file?  Perhaps some downstream dts file provided by
-> the manufacturer or found in some operating system image?
+> I don't think there is a need to update the code just to make Smatch happy.
+> Only if there is a real problem. Which, with the discussion at the link
+> above in mind, does not seem to be the case here.
+> 
 
-I wrote this device tree based on other rk3568 devices in mainline, and downstream board dts:
-https://github.com/photonicat/rockchip_rk3568_kernel/blob/novotech-5.10/arch/arm64/boot/dts/rockchip/rk3568-photonicat-base.dtsi
+OK.
 
-Best regards,
-Junhao
+>> Is it possible to share the log/command-options of the smatch failure so
+>> that we can reproduce this? Thanks.
+> 
+> Sure, I hope this answers your question.
+> 
+> Smatch can be found here https://github.com/error27/smatch/
+> 
+> And I invoked it like this:
+> $ PATH=".../smatch/bin:$PATH" .../smatch/smatch_scripts/kchecker drivers/net/pcs/pcs-qcom-ipq9574.o
+> 
+> Which yields the following warning:
+> drivers/net/pcs/pcs-qcom-ipq9574.c:283 ipq_pcs_enable() warn: 'qpcs_mii->rx_clk' from clk_prepare_enable() not released on lines: 280.
+>
+
+Thanks for sharing this information.
+
+> 
+> 
 
 
