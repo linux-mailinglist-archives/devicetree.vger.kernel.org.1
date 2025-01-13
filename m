@@ -1,123 +1,101 @@
-Return-Path: <devicetree+bounces-138156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0B45A0BEAB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 18:14:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2864CA0BEBE
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 18:19:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 944E43A9F41
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 17:14:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 462EE167B76
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 17:19:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7B1B229816;
-	Mon, 13 Jan 2025 17:12:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sL/TBU25"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 772CE18FDAF;
+	Mon, 13 Jan 2025 17:19:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B796D20F077;
-	Mon, 13 Jan 2025 17:12:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB02B4D8CE;
+	Mon, 13 Jan 2025 17:19:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.18.0.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736788356; cv=none; b=n0FVTr0zP4xH3u1yZV/s4bnOoHiqM+cvLOsjr8LoF/xj8A0tnKNoqFzRVenqXpSFyGD81RBPWnH25YmxFe5vMBNA3w0hZ1nH7IaD6msUmJ8Dn/cAkCbU21CAeoumIkIzFwrZQnwA7hRvMnUW+ZzmZTd+vQQ3lMSAHdrNn65OL4E=
+	t=1736788765; cv=none; b=iUZnZIDSOwRXoIdDNuyhnN8nvMkZDo9xeA84aaAGKS4FZ2mogFuUZVu83vHVaIiSYo0X1+IW597vNgQfDiUlYAalK6svEiDCk2Au3UkWF5wL0Q4WbcIlrb3zJmOFhGe//qeUOEUil9ivM5mPn1MjTkRMZVSE2JT+8WtqXh/YbUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736788356; c=relaxed/simple;
-	bh=p7KTq7ocGVxzf3s383nFbxujoDj1GKtU7clsCOG54u0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AfE6O+oACj2X/F9I7ZiBzUdKFEWjdseWgXw2HlzdqiOuDNg22Uo175wWclxUpKzKCYr/ClA/pE/jFxmW/1qIMg+2gMPB8h66K0vq9cET+E23X8uHwFEQ2pdhPtBe+JBxrxmPOGuINKlKN67chAyhCC6Cra6Hb2D8fO9eU0gK3wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sL/TBU25; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B946C4CED6;
-	Mon, 13 Jan 2025 17:12:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736788356;
-	bh=p7KTq7ocGVxzf3s383nFbxujoDj1GKtU7clsCOG54u0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sL/TBU252fL3QsrYN9X3y7uxE9NGxJf7rzeb9OZVYXsdXDn5f2zfI1lLAIhdBQPsF
-	 PRxdBC/wp6uw5do3cPFstt37seqzkdbj0a0odDs99vE2p/ukfOCpYSveKGQFE3AgUv
-	 jAp6FMADZSBTW4k71Oacljkz/3V0XehbpbX8zsA0BOJARixUX2D1eHENxWK7H2dl1A
-	 WJOmlFn2Wwt4VRMp7IHKk63q5QuU3A8BwC2x0I65TLxFYQWojKOmdcwat3Yrm17bzY
-	 hj6mqX0Tunqi/C1oDiQUQHVLxkzY+IIBAFtsSPgtzxv+Vj6jn2UuQvesEmAAqI8758
-	 wo8wAxpKKeCbQ==
-Date: Mon, 13 Jan 2025 17:12:32 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Wenliang Yan <wenliang202407@163.com>
-Cc: linux@roeck-us.net, Jean Delvare <jdelvare@suse.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings:Add SQ52206 to ina2xx devicetree
- bindings
-Message-ID: <20250113-unmoving-drinking-eced6d36979e@spud>
-References: <20250113035023.365697-1-wenliang202407@163.com>
- <20250113035023.365697-2-wenliang202407@163.com>
+	s=arc-20240116; t=1736788765; c=relaxed/simple;
+	bh=SSrLKhlE8vC+RFUXjq8ac2aaMrjWgMgdgDkC26UaUUI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FYSczgaFZ6undvY5RteZ03t6MkHtVPeB38Wnl7jPoDezZK+DluTen1+8I5kTKuK+Fo2X0k1IoB1sdS8Li7BWcj23VJvLNF1q+AG+WUhGUg+pwdIbS6eJcddT5GhgA9l4kPVAhv8COsVaWNxM9njaOY6D81rqpALdGuOlpv9OGQU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=nefkom.net; arc=none smtp.client-ip=212.18.0.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nefkom.net
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+	by mail-out.m-online.net (Postfix) with ESMTP id 4YWzWg3XF3z1syCW;
+	Mon, 13 Jan 2025 18:19:10 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 4YWzWf4fXdz1qqlS;
+	Mon, 13 Jan 2025 18:19:10 +0100 (CET)
+X-Virus-Scanned: amavis at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+ by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavis, port 10024)
+ with ESMTP id bKJXdFLjhbnz; Mon, 13 Jan 2025 18:19:09 +0100 (CET)
+X-Auth-Info: RJP4YQIDgk2uuS6UlA0k7P2b2CGzg+Atfl66D+TZf71TOBLfLAQ05dRnW2RmzQ+w
+Received: from igel.home (aftr-82-135-83-122.dynamic.mnet-online.de [82.135.83.122])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.mnet-online.de (Postfix) with ESMTPSA;
+	Mon, 13 Jan 2025 18:19:09 +0100 (CET)
+Received: by igel.home (Postfix, from userid 1000)
+	id 6C1FE2C1ADE; Mon, 13 Jan 2025 18:19:09 +0100 (CET)
+From: Andreas Schwab <schwab@linux-m68k.org>
+To: <linuxppc-dev@lists.ozlabs.org>
+Cc: <robh@kernel.org>, saravanak@google.com, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, Michael Ellerman <mpe@ellerman.id.au>
+Subject: [PATCH] powerpc/prom_init: Fixup missing #size-cells on PowerBook6,7
+Date: Mon, 13 Jan 2025 18:19:09 +0100
+Message-ID: <875xmizl6a.fsf@igel.home>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="c3POeVvxXWnGjl+N"
-Content-Disposition: inline
-In-Reply-To: <20250113035023.365697-2-wenliang202407@163.com>
+Content-Type: text/plain
+
+Similar to the PowerMac3,1, the PowerBook6,7 is missing the #size-cells
+property on the i2s node.
+
+Depends-on: 045b14ca5c36 ("of: WARN on deprecated #address-cells/#size-cells handling")
+Signed-off-by: Andreas Schwab <schwab@linux-m68k.org>
+---
+ arch/powerpc/kernel/prom_init.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/powerpc/kernel/prom_init.c b/arch/powerpc/kernel/prom_init.c
+index 8e776ba39497..24b1523eeea8 100644
+--- a/arch/powerpc/kernel/prom_init.c
++++ b/arch/powerpc/kernel/prom_init.c
+@@ -2898,11 +2898,11 @@ static void __init fixup_device_tree_pmac(void)
+ 	char type[8];
+ 	phandle node;
+ 
+-	// Some pmacs are missing #size-cells on escc nodes
++	// Some pmacs are missing #size-cells on escc or i2s nodes
+ 	for (node = 0; prom_next_node(&node); ) {
+ 		type[0] = '\0';
+ 		prom_getprop(node, "device_type", type, sizeof(type));
+-		if (prom_strcmp(type, "escc"))
++		if (prom_strcmp(type, "escc") && prom_strcmp(type, "i2s"))
+ 			continue;
+ 
+ 		if (prom_getproplen(node, "#size-cells") != PROM_ERROR)
+-- 
+2.48.0
 
 
---c3POeVvxXWnGjl+N
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jan 13, 2025 at 11:50:22AM +0800, Wenliang Yan wrote:
-> Add the sq52206 compatible to the ina2xx.yaml
->=20
-> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
-> ---
->=20
-> The new features added to sq52206 compared to ina238 do not
-> affect the differences in hardware properties.The properties
-> described in the ina2xx.yaml are applicable to the sq52206.
-
-This blurb is a bit confusing, as it makes it seem like the devices are
-compatible. The driver patch, however, suggests otherwise. Please
-mention in your commit message what differs between the new device
-you're adding and existing ones.
-
->=20
->  Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Doc=
-umentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-> index 05a9cb36cd82..f0b7758ab29f 100644
-> --- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-> +++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-> @@ -20,6 +20,7 @@ description: |
->  properties:
->    compatible:
->      enum:
-> +      - silergy,sq52206
->        - silergy,sy24655
->        - ti,ina209
->        - ti,ina219
-> --=20
-> 2.43.0
->=20
-
---c3POeVvxXWnGjl+N
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4VJfwAKCRB4tDGHoIJi
-0oaHAQCoWfl0mlNHCGFkaAdZCQu7IHIHt608QqlbkAxErUkqVwEAkxyeq51nQsP5
-1K/qssUOYXHNQXidC3nxwYYljDE1TQw=
-=m461
------END PGP SIGNATURE-----
-
---c3POeVvxXWnGjl+N--
+-- 
+Andreas Schwab, schwab@linux-m68k.org
+GPG Key fingerprint = 7578 EB47 D4E5 4D69 2510  2552 DF73 E780 A9DA AEC1
+"And now for something completely different."
 
