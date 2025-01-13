@@ -1,56 +1,89 @@
-Return-Path: <devicetree+bounces-137965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04CABA0B4C8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:49:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43DA5A0B4CD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:51:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 297287A1B38
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:49:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FB871886C7F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:51:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D8A22C358;
-	Mon, 13 Jan 2025 10:49:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC21622C35D;
+	Mon, 13 Jan 2025 10:51:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Zfbkp5MI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HmGUmU4k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB96016EC19;
-	Mon, 13 Jan 2025 10:49:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50FF014373F;
+	Mon, 13 Jan 2025 10:51:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736765372; cv=none; b=DxthBxhC9f/mJs4vsByoONwBvajNom+K+WJ+47VjGNfUw2mD9kKRsW9k0oaxuVjIMsI6PPHNXpcuIIvW6r5piSv1XFV6KMHx9xKso9bnoPd7tk5WLjkoZ497/2lzELi4VMUWoWQ2BHxWsRx9YKgpUKpUXp0NfyuQM7U6iIICp8Q=
+	t=1736765476; cv=none; b=jiLd2SwAOUKbnWe7Q3bZSZ6W5WXF8y/6MwGgpFdLLq1L/mLfrOg99NyMPajrazCFm0zInQcIsrle/FcnR1psq9JTeqxhHZpJmaVOzUGdQ90HEJqGt08KxIAhOzrID7zsuSLH659oA0Hyj9KiXzKSaErbliX+JuOzLGT1txrtt70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736765372; c=relaxed/simple;
-	bh=vZTHgXmRwUcukRAdmDGKxJ+UN7XyM2ptJATLXOspjDw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lxQWDuPkUZj+aXy6q7TxoQjlBrWOokhiqTqgQdH8wk704Y/Ut/4f+doz5b9fJqn3iFLt+FveRrx22uUGyvSnIcrPgyDE+9nLkEpT7p55YsSiQmPHXzOcwaBpsYUKnWwKOk0gkcdb0V2Z6rBrPbUWxu66nhxvlCJWeckqbWiI/Kg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=Zfbkp5MI; arc=none smtp.client-ip=220.197.31.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=5c1RH
-	mM1cAEbY78r+MfYlRCpJaIAWuqFWRnpFbls3KQ=; b=Zfbkp5MI6rmFx5UBaJKVP
-	6ELrl3UVDnJdlamQ37p5b+pdEW0tdNmeVaFgj/oMp5Pia9ZkHFxqRlEWosynsf/g
-	209D1pa/+gHCgZNef2pXulNw6lIQ2dOssT3YN988KZwo6wmITFSxzi3SrLXlz5rX
-	++ZWGa6yc/LEzHE2yDCtsE=
-Received: from ProDesk.. (unknown [])
-	by gzga-smtp-mtada-g0-4 (Coremail) with SMTP id _____wD3_yB874RnnvU5Fw--.18888S2;
-	Mon, 13 Jan 2025 18:48:33 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: heiko@sntech.de
-Cc: krzk+dt@kernel.org,
-	dsimic@manjaro.org,
+	s=arc-20240116; t=1736765476; c=relaxed/simple;
+	bh=l5e8ZG1nuN+ZcvImZWznBRa3XRpHDO5bPAXWUYNdm5g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EQQ85frc61SSmt9hSwarHTZG9Z1qvyXnNikKfa2iFIn2k+6tyD7g5hpGPsty4ecZmtq8nACi8kBpmtviOdI6ec9q/54sZe0F+6oo8+pi5PXIebLX2Cm+f5bBcTTAIUXCBKXbwnwxKuNpc9BIfBPUKO2D14WlPm0AyGnV/YzhSco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HmGUmU4k; arc=none smtp.client-ip=209.85.161.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-5f31b3db5ecso1789767eaf.0;
+        Mon, 13 Jan 2025 02:51:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736765474; x=1737370274; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=urUqfOs5ZprO9Xw0z/tnXaTr0uAH0u4Ma4Hh29vNsJQ=;
+        b=HmGUmU4kd1lJ0LadGQ8fenU/P6gl0Ue6ibjXtuAwJIxY2cJJsHe1Rq/bqjqZkWkFjK
+         bY5c2/USjP2fchqaF8elQ6Xk0jrQtgbFnGa+GK/foQoJqwGIA429KC02HCOZOTwE3hrK
+         i3bRyWAcbRYopFIChk+PzQRyCqSH+rSEBZeR/154fTzmTtkBRGk9tQVWExdLZv8y5mtO
+         Z4GOROIzusnvuYowm2oZAjs/BzguDaGvq7/6j2aCcwByOyQ3BgZnyteNSvY8ZgDKT0Gt
+         kcq4kBUD8v7GfILTADE/gXjpscC0V05E7SEtBzJeaZmePR+733lFU90mMolWPG2ohWu7
+         JMBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736765474; x=1737370274;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=urUqfOs5ZprO9Xw0z/tnXaTr0uAH0u4Ma4Hh29vNsJQ=;
+        b=VFIABmsd15sMcpoDPnI/MAKujeR2L+IaZL1JTQKGBo8tJEU0CDOCdXfAcNQUAfo86n
+         BGaVGBeuS5IyYJm5RpQF7TfXHQXO3/vGsS+UchEM9yi0dC4aly3ylTv78TWtMn1YNMS9
+         srtIJ0TR2p/n7MI+zwXGrE+Mj/auE8mhbg072EKqSK5Wn8lxLRlJasbWt407ePADkk8W
+         9+DndUpThlEOojmT3kNZRE+fzmu+zEpX9h/09wqsK6jEclO1PFhFi089OjbR/V7da92N
+         rf3Z6rheW7+g8RgeHf4mGUX7Jl9dMMCvxddvY4uiNlqUAklFG2pVxhR62DkqWp1tHSSP
+         bznQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU3oYJvU61t4bITMbL01hlTcaXz4NtyUTrnvAKef/hxaaT7dQH4qtxH6GC+nKEahVKNaCtKq9PabiJNKXs=@vger.kernel.org, AJvYcCVshshVoFvkAR8e2h94Cj40TK5xaGkW9GuwY2/ciIaZnPopc+dB3Nw2Sd3y/dFeVHdqr2UG/K6kpm7T@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6ubICecdYct+v7riiopZO5DIcPMJPL28fDFFpW2DvTZHX4JLS
+	Nnrk1rFKhvYaHbSTGCmCwnNtnhjf5I7W8ICSJpBJMD0/gh2k+j1lLHnKew==
+X-Gm-Gg: ASbGncs/W9vDLTI1jTMecSKccytCHr2HsJ5uxj86xFsAHixk5EwtkZFgxxSTUqf4vH/
+	BSqzIxqv67lkcbL2AJePhdfzFNzABSuX7Gsm0teBsjgDK5t2qVTCqQNIL3XtEyqp4V9DdEkx0/E
+	NO4YPeR0l1pYYrTdzFv9EI2lBKgcflHoZCkhogpBRLTThn8cQlDS68hCfzJuVCnx6oP6TW1ZLYA
+	69qN/ebjuwIgk6Jmfb78uwZS36HXxy61RXqIpdK7aspRzNjHkHr2ioFkzpDIcACR85FJXQ=
+X-Google-Smtp-Source: AGHT+IFPyTIIfjevDpsljLimNeExOHdnw4G1Y3DEL4NU+snMOqFDKBVVpxAmHBjqOBCcW9sXk+u6mw==
+X-Received: by 2002:a05:6870:e2cf:b0:2a3:c59f:577b with SMTP id 586e51a60fabf-2aa0673060bmr3835827fac.24.1736765474154;
+        Mon, 13 Jan 2025 02:51:14 -0800 (PST)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:17c3:3d19:3f6f:3a38])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2ad80548d04sm3681440fac.17.2025.01.13.02.51.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2025 02:51:12 -0800 (PST)
+From: Fabio Estevam <festevam@gmail.com>
+To: hverkuil-cisco@xs4all.nl
+Cc: mchehab@kernel.org,
+	lars@metafoo.de,
 	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-media@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Andy Yan <andyshrk@163.com>
-Subject: [PATCH] arm64: dts: rockchip: Fix lcdpwr_en pin for Cool Pi GenBook
-Date: Mon, 13 Jan 2025 18:47:34 +0800
-Message-ID: <20250113104825.2390427-1-andyshrk@163.com>
-X-Mailer: git-send-email 2.43.0
+	Fabio Estevam <festevam@denx.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v3] media: dt-bindings: adv7180: Document the 'interrupts' property
+Date: Mon, 13 Jan 2025 07:51:02 -0300
+Message-Id: <20250113105102.1239513-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,46 +91,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3_yB874RnnvU5Fw--.18888S2
-X-Coremail-Antispam: 1Uf129KBjvJXoWrtr48Kr1rtryUWr4UXFy8uFg_yoW8JrW3pw
-	nxC397KF97WryUtF4qg3ZxJrs5Cw4Dtan0kr97XryxtF4fZF1DJ3W2gwn3CF1DXr4Iva1r
-	uFsagry7WF1DZaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pRuHq7UUUUU=
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0hzTXmeE551qTAABs9
 
-According to the schematic, the lcdpwr_en pin is GPIO0_C4,
-not GPIO1_C4.
+From: Fabio Estevam <festevam@denx.de>
 
-Fixes: 4a8c1161b843 ("arm64: dts: rockchip: Add support for rk3588 based Cool Pi CM5 GenBook")
-Signed-off-by: Andy Yan <andyshrk@163.com>
+The ADV7180 family of chips have an INTRQ pin that can be connected
+to a SoC GPIO.
+
+Allow the 'interrupts' property to be described to fix the following
+dt-schema warning:
+
+'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
+
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
+Changes since v2:
+- Do not wrap the dt-schema warning. (Krzysztof)
+- Remove unneeded description. (Krzysztof)
+- Added Krzysztof's Acked-by tag.
 
- arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-genbook.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Changes since v1:
+- Detail the interrupt description.
+ Documentation/devicetree/bindings/media/i2c/adv7180.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-genbook.dts b/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-genbook.dts
-index 92f0ed83c990..bc6b43a77153 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-genbook.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-coolpi-cm5-genbook.dts
-@@ -113,7 +113,7 @@ vcc3v3_lcd: regulator-vcc3v3-lcd {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc3v3_lcd";
- 		enable-active-high;
--		gpio = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;
-+		gpio = <&gpio0 RK_PC4 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&lcdpwr_en>;
- 		vin-supply = <&vcc3v3_sys>;
-@@ -241,7 +241,7 @@ &pcie3x4 {
- &pinctrl {
- 	lcd {
- 		lcdpwr_en: lcdpwr-en {
--			rockchip,pins = <1 RK_PC4 RK_FUNC_GPIO &pcfg_pull_down>;
-+			rockchip,pins = <0 RK_PC4 RK_FUNC_GPIO &pcfg_pull_down>;
- 		};
+diff --git a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
+index 4371a0ef2761..9ee1483775f6 100644
+--- a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
+@@ -49,6 +49,10 @@ properties:
+       Indicates that the output is a BT.656-4 compatible stream.
+     type: boolean
  
- 		bl_en: bl-en {
++  interrupts:
++    items:
++      - description: The GPIO connected to the INTRQ pin.
++
+   port:
+     $ref: /schemas/graph.yaml#/$defs/port-base
+     unevaluatedProperties: false
 -- 
-2.43.0
+2.34.1
 
 
