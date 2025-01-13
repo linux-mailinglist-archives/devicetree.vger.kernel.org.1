@@ -1,94 +1,73 @@
-Return-Path: <devicetree+bounces-138281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B80FA0C55B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:12:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80767A0C543
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:10:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2609C1641FF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 23:12:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7D1518857F4
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 23:10:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A948D1FC0E9;
-	Mon, 13 Jan 2025 23:11:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 230E61FA147;
+	Mon, 13 Jan 2025 23:10:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OJ93zlQ4"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="H2ncouGZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C801A1FBCB6;
-	Mon, 13 Jan 2025 23:11:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480591F9EDC;
+	Mon, 13 Jan 2025 23:10:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736809865; cv=none; b=r/1Z1Z6HevREhIKyjRUZ3Pimjfk4UFg7EJPaupx027cyZTxeqWZkwpkmAfFkr6fF8pRr2h8bRF+y8+TjYFZ3ZyULiHn6plw3mK5Im0w7qLbzFjVJwQ3rf3ysCAeK3YBHDGuY/3gPRiP0jc7zp+9d+gqak8sYUvgDPuc5bBcZp5U=
+	t=1736809838; cv=none; b=NfZ0f3AKhxQ49rpW65wcWWB5qrJXo14kRptWWW4/V+sPBwn0qdWrwNcpJ5dKd6u7wvQj9UOu+gtyUTGfdIUPNQy4eitD6VtNvPpCUkpZL4qw9fz/gqZ4waHdRRk0UzK8jG/6DPtxBlY60uMBG9VbnjqPT6TENrac52KEX9XNTlw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736809865; c=relaxed/simple;
-	bh=FloLwnsydALG9DWp3x3cdg0I6IWnX1uauQMK+s6dyUg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NoaYJ4CVzUWFa0snRXDQKQQ3wax2p6VFYjUQxLCx2E//hCk8clnKwpxYwGLJiWe7lWKZms3mEi3F8E/zL1QE4zEFFSq6GoWfgJXaorOhlsFUOFHj+HJoWuczyhkRgKDQO6tpSnPqpK3XJtWBsDUATXwOYi/V6ZOVTiY9Pbza5TA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OJ93zlQ4; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-38632b8ae71so3483001f8f.0;
-        Mon, 13 Jan 2025 15:11:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736809862; x=1737414662; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HtfMtrOtq29iez+tmvkbjmrH2ZD30DiNbYNJfGXFPHM=;
-        b=OJ93zlQ47njQYxIc/GBbpHmO7zEg2Uoiq/IfWwaG2oYcAXlIhlplDPq5jcyGDwrW/P
-         9x/ey3IveW/vvtU72pF++yj4cwyW2tP2rubB1SxucyXXF0S9BIQK50+uUaAyNnXpZuAf
-         DFg7EqywNz0FCV76fAzWPhsxTaL4qe1DnDKuZBeT2/sjYBmd6G4JvD1dbieyuCP7KTBb
-         AQhJLhynG7EBCSARwQyTI8Dlnjc6wvb2VH/zvDRDJA5gff1k281ZSMqSFpyOrL8zLX6n
-         H0z4w4o4yKqTXXiPLTdoLHz8dKCE/EYmPlzynQL1LqaPARIUq6KP24hESxHGgA1lDBEV
-         K6mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736809862; x=1737414662;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=HtfMtrOtq29iez+tmvkbjmrH2ZD30DiNbYNJfGXFPHM=;
-        b=tArSEO6AGLNGyE/wj8RvMFb2B06HJLcCVR0zrVsBlbsevLlPSiByzkvpppfhrLTd9H
-         Xu6U84lnpz9xjhnPOxM94jnu3gJ/MRxzQB40rXnc97z+0OasiAM+wYKBFietPwKmkRXW
-         J5EjKG+QfxwPEU2+VfZ8tEjAah1Mid7tYGFRL42XtQDNbE5g3WYfG2JReGII8EmHUzLc
-         lwsxG64mddpfGkJ6dcLcuYmaXkVblYJuAlHr/sE2cLQy+aQ+swOxCB8ooWMVsrojVBBc
-         DC/E2prslyozuVlTkH3K1I1jyaJGLnwm1c7mzEKiXgk66idqkhE7EFd9beb3AefmRdc/
-         mPlA==
-X-Forwarded-Encrypted: i=1; AJvYcCUSQ2ALZQWsuRdNAsxIVDP6q8MSanz/SRdV9zXUajYMSIUviDkFEtjGZS8otIC3UZhut+iV8IaPDwCu@vger.kernel.org, AJvYcCWjr69mp0/xvqd+SHu5YacaZ0LGRV9pBAoVZr5INuwBprB4m2zzJvwOCpNIdUdjtNOWCZHDsF4yvmAd@vger.kernel.org, AJvYcCXjhsKoqLhc6dEmOZfdiBAkXRPhRMd5E/RUzraOuLraJD8SHjjvTRr+f9haIIkLSb6W3BTI+gtPlDXoXsYc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKS6tLGpUX6U0mbr8egsim8dLO0fkOAWl69VSF2Sn45y9/zB0a
-	i7gD23B8U45FESTBr3MXAo2xRFqXW/NRTe2IN1CEUrsSywjCND/F
-X-Gm-Gg: ASbGnctNxfA7wR72+34Zf2ICHbMLb+wqla/Lvxz1SSt33lrpHVrb4mv7XytKq6kSnjN
-	i1uXV2uKavhzEL/ziakk20pD0+wDCIdW1RV9KZ/xjH0GSt5jj9KyawDS2ksmuMUiiI+np92ES03
-	nxLjjt1kXcyQYKGBPgyw2PRvcWhbFBa6uEQdiFqUeTIo6M9zqoo/Cjwi7WYVdu+lks5XZfYtvmt
-	Aeb/+vaK0vl8Qh7Q//LCHLyhgPGma4xf6WUMDwV9kuAObb5HkNiyaFNdP/cunQItsLk6hnwDElS
-	Pxgz9Wh+N1HUDAbCJX8bSIpuNw==
-X-Google-Smtp-Source: AGHT+IEW5PxcJkAyB11SX6cfzx5zT0Sl2H3iqrYPIG17QunlSue81Hy4daKRkHG3nHrB+lC0MD5l3Q==
-X-Received: by 2002:a5d:6d01:0:b0:385:faaa:9d1d with SMTP id ffacd0b85a97d-38a8731508amr18277913f8f.35.1736809862065;
-        Mon, 13 Jan 2025 15:11:02 -0800 (PST)
-Received: from localhost.localdomain (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436e9dd1de9sm156091075e9.15.2025.01.13.15.11.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2025 15:11:01 -0800 (PST)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	upstream@airoha.com
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH v6 4/4] clk: en7523: Add clock for eMMC for EN7581
-Date: Tue, 14 Jan 2025 00:10:05 +0100
-Message-ID: <20250113231030.6735-5-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250113231030.6735-1-ansuelsmth@gmail.com>
-References: <20250113231030.6735-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1736809838; c=relaxed/simple;
+	bh=hqxdz3xMnfqi6DswrpfL1Son2ONYGQE5KL/6wdxyTP8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Kcio0vJqgrpXWzEQamojEqJ5GhlonyvFR0p+wSuPbgHsS0hmjOSnDabBV2ZQmIZ4MHeEFErQjtd+bX/5m6IyxRIV6lQr0UWCvZABK/BBRDU7wM34YWe2FNVo7d8EAU3+BIf/q6z0n5F72S5CIfzZpB/gysq6budRZdPJbuPL5AY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=H2ncouGZ; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50DNAJNr3762057
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 13 Jan 2025 17:10:19 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1736809819;
+	bh=X2ibNLMuL9jD+RQ2YdfCDeZ0sh4YZKzO/lG3VEoyxeQ=;
+	h=From:To:CC:Subject:Date;
+	b=H2ncouGZ8WzkuNvOG+Iw9i20FpkLFDSeTR3i905sJlxXpemXv+nWa9TeECFOCmGk4
+	 lCycjL2OJSEmuKBNoAdM7ZPSeJXT3VHOIEv53NCngzOMfBwcxZ82Iaazdk+InKL1F/
+	 dCdCD/9/owvi0o0fEscUBtX+ae8PU1LYnhJerVHk=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50DNAID5046951
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 13 Jan 2025 17:10:18 -0600
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 13
+ Jan 2025 17:10:18 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 13 Jan 2025 17:10:18 -0600
+Received: from DMZ007XYY.dhcp.ti.com (dmz007xyy.dhcp.ti.com [128.247.29.11])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50DNAILx067169;
+	Mon, 13 Jan 2025 17:10:18 -0600
+From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <aaro.koskinen@iki.fi>,
+        <andreas@kemnade.info>, <khilman@baylibre.com>, <rogerq@kernel.org>,
+        <tony@atomide.com>, <jerome.neanne@baylibre.com>,
+        <linux-omap@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <m-leonard@ti.com>, <praneeth@ti.com>, <christophe.jaillet@wanadoo.fr>
+Subject: [PATCH v3 0/4] Add TI TPS65215 PMIC Regulator Support
+Date: Mon, 13 Jan 2025 17:10:14 -0600
+Message-ID: <20250113231018.125426-1-s-ramamoorthy@ti.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,44 +75,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add clock for eMMC for EN7581. This is used to give info of the current
-eMMC source clock and to switch it from 200MHz or 150MHz.
+TPS65215 is a Power Management Integrated Circuit (PMIC) that has
+significant register map overlap with TPS65219. The series introduces
+TPS65215 and restructures the existing driver to support multiple devices.
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+This follow-up series is dependent on the TPS65215 MFD Driver Series:
+Commit 8206c20f4c82 ("mfd: tps65215: Add support for TI TPS65215 PMIC")
+Commit 0e0b7f00c111 ("mfd: tps65215: Remove regmap_read check")
+
+TPS65219 Cleanup Series:
+GPIO: https://lore.kernel.org/all/20241217204755.1011731-1-s-ramamoorthy@ti.com/
+MFD: https://lore.kernel.org/all/20241217204935.1012106-1-s-ramamoorthy@ti.com/
+Reg: https://lore.kernel.org/all/20241217204526.1010989-1-s-ramamoorthy@ti.com/
+
+- Both TPS65215 and TPS65219 have 3 Buck regulators.
+- TPS65215 has 2 LDOs, whereas TPS65219 has 4 LDOs.
+- TPS65215 and TPS65219's LDO1 are the same.
+- TPS65215's LDO2 maps to TPS65219's LDO3.
+- TPS65215 has 1 GPO, whereas TPS65219 has 2 GPOs.
+- The remaining features are the same.
+
+TPS65215 TRM: https://www.ti.com/lit/pdf/slvucw5/
+
+AM62L + TPS65215 Test Logs:
+https://gist.github.com/ramamoorthyhs/7560eca6110fafc77b51894fa2c0fd22
+
 ---
- drivers/clk/clk-en7523.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Change Log:
+v2 -> v3:
+dt-bindings: 
+- Alphanumeric order for PMIC list
+- add allOf:if:then: which will disallow :false two LDOs and their supplies
 
-diff --git a/drivers/clk/clk-en7523.c b/drivers/clk/clk-en7523.c
-index 3a4b7ed40af4..6a763bc9ac1a 100644
---- a/drivers/clk/clk-en7523.c
-+++ b/drivers/clk/clk-en7523.c
-@@ -91,6 +91,7 @@ static const u32 emi7581_base[] = { 540000000, 480000000, 400000000, 300000000 }
- static const u32 bus7581_base[] = { 600000000, 540000000 };
- static const u32 npu7581_base[] = { 800000000, 750000000, 720000000, 600000000 };
- static const u32 crypto_base[] = { 540000000, 480000000 };
-+static const u32 emmc7581_base[] = { 200000000, 150000000 };
- 
- static const struct en_clk_desc en7523_base_clks[] = {
- 	{
-@@ -281,6 +282,15 @@ static const struct en_clk_desc en7581_base_clks[] = {
- 		.base_shift = 0,
- 		.base_values = crypto_base,
- 		.n_base_values = ARRAY_SIZE(crypto_base),
-+	}, {
-+		.id = EN7581_CLK_EMMC,
-+		.name = "emmc",
-+
-+		.base_reg = REG_CRYPTO_CLKSRC2,
-+		.base_bits = 1,
-+		.base_shift = 12,
-+		.base_values = emmc7581_base,
-+		.n_base_values = ARRAY_SIZE(emmc7581_base),
- 	}
- };
- 
+regulator.c:
+- Revert addition of 2 probe helper functions
+- Add empty tps65215_regulator_irq_types struct to minimize loops in probe
+- Consolidate patches to define and use func/structs in the same patches to
+  prevent build error due to no users of the defined functions
+- Apply reverse xmas tree style to variable defintions in functions
+- Remove unnecessary new lines & add new line after declarations
+
+v1 -> v2:
+- have any PMIC lists be in alpha-numeric order: TPS65215, then TPS65219
+- Add driver prefix to chip_data struct
+- Have probe() helper functions use dev_err_probe instead of dev_err() to 
+  log the error code in a human readable format & combined with return, it 
+  saves a few LoC since { } can be removed.
+- Add error handling of 'irq_data' in probe() as previously done.
+---
+
+Shree Ramamoorthy (4):
+  regulator: tps65215: Update struct names
+  regulator: dt-bindings: Add TI TPS65215 PMIC bindings
+  regulator: tps65215: Add support for TPS65215 regulator resources
+  regulator: tps65215: Add support for TPS65215 Regulator IRQs
+
+ .../bindings/regulator/ti,tps65219.yaml       |  21 +-
+ drivers/regulator/Kconfig                     |   7 +-
+ drivers/regulator/tps65219-regulator.c        | 188 +++++++++++++-----
+ 3 files changed, 165 insertions(+), 51 deletions(-)
+
 -- 
-2.45.2
+2.43.0
 
 
