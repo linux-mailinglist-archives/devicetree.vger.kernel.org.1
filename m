@@ -1,169 +1,104 @@
-Return-Path: <devicetree+bounces-138026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5C15A0B7A0
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:02:38 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02E9BA0B7B1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:07:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C54B01604F6
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:02:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C9E783A4B3F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F39922F148;
-	Mon, 13 Jan 2025 13:02:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0E0D22F148;
+	Mon, 13 Jan 2025 13:07:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b="Im9q1i+U"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FXtXXmfE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.systec-electronic.com (mail.systec-electronic.com [77.220.239.22])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D94422F156;
-	Mon, 13 Jan 2025 13:02:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.220.239.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BA271FDA8B;
+	Mon, 13 Jan 2025 13:07:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736773352; cv=none; b=C0Fz/RElxRsOCwIq4t9u39PHj/p3EAgAPi6yX4ofjIT/eNAOzV4pMkHtoQYbZHEJXX05CQuFNXFC69DfKmX78/Wi9IqV5ysFwu7qJMenWG/PWJ7sxkkCsA5Gfmef58c6EwA5M4Os1bUHJZa4jRcZn1sZWstmr/C8hNRa+dIEMUQ=
+	t=1736773673; cv=none; b=XEbrA545JvkP4PwLzRoJQ0pBcUJogRMtr8AFV4tI5NjSR1bt0+DteZbCfjf1XnF6mP3/K7+8dGy5zu9CyxTxYUYJAHWKmr+QIefNO3AoVc00UcALxP9KrdF+ZhBoS+8pIzVraapTkXrq4HKodGsU3fpLnfix3Wus612+4w4wcG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736773352; c=relaxed/simple;
-	bh=aqmu/qkjqlhGQv0Lis8wCSKZ/oaM4MH5pWfoNvpe6T4=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=d+t1KFmqOD+GW/FztuYEN40f+GLdBEpC8ZjBwDq0SFvxtNPIZLDj65qDwCAVVob5rBFpCv7pvvf9KGsQTl5gRaDmkF3wimj9NytZeTBAX95WIy6f+a3aSZP+Q768xjJ4BXKru/XXKmClrKSpdU7l3ewP7gFZ4iRkH/6bNPwn6mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com; spf=pass smtp.mailfrom=systec-electronic.com; dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b=Im9q1i+U; arc=none smtp.client-ip=77.220.239.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=systec-electronic.com
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.systec-electronic.com (Postfix) with ESMTP id C53A79400101;
-	Mon, 13 Jan 2025 14:02:26 +0100 (CET)
-Received: from mail.systec-electronic.com ([127.0.0.1])
- by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id TW_d09oMz2ln; Mon, 13 Jan 2025 14:02:26 +0100 (CET)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.systec-electronic.com (Postfix) with ESMTP id 9BE4594016AA;
-	Mon, 13 Jan 2025 14:02:26 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.systec-electronic.com 9BE4594016AA
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=systec-electronic.com; s=B34D3B04-5DC7-11EE-83E3-4D8CAB78E8CD;
-	t=1736773346; bh=/5zRGO5vds9rfmPHMvEZh5mofeIUv2zJYgNyTxnkLSY=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=Im9q1i+UEMmilbbvt3zbh4isQrFCPYCoc5REM1cmUrcSBpmadkJlaNBRT50XxSH6L
-	 nf+wzcgTrro593BuGgYf6HNXBgQ65tX+k3OgvY+tzg711iS5bXZj8AfVEQTnqWlEGD
-	 5veilSKOoEIQPSAkUaxRwBcUibwcqkjjJVhNdJGTXMiAEuBg7ETCrb2/tq4as+Io5a
-	 hrAR3EoTl5EHFZ1nXoEjfeYocQdUZw4VcLsX9fSWU4iMKaeA8pp7KdbcRgtTfc+KV1
-	 UXJUzhv1UFFuJVt0hBVDia6gWMQLinyqb2PV2FTbpdT05KquWMfpRe4y5M6Aif26hk
-	 NBQxLRTM4L9WA==
-X-Virus-Scanned: amavis at systec-electronic.com
-Received: from mail.systec-electronic.com ([127.0.0.1])
- by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id 7jcFuSWnzWFY; Mon, 13 Jan 2025 14:02:26 +0100 (CET)
-Received: from lt-278851.systec.local (unknown [212.185.67.148])
-	by mail.systec-electronic.com (Postfix) with ESMTPSA id 3D8129400101;
-	Mon, 13 Jan 2025 14:02:26 +0100 (CET)
-Date: Mon, 13 Jan 2025 14:02:25 +0100 (CET)
-From: Andre Werner <andre.werner@systec-electronic.com>
-Reply-To: Andre Werner <andre.werner@systec-electronic.com>
-To: Andy Shevchenko <andy@kernel.org>
-cc: Andre Werner <andre.werner@systec-electronic.com>, 
-    gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com, 
-    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-    linux-serial@vger.kernel.org, lech.perczak@camlingroup.com, 
-    krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
-Subject: Re: [External Email] Re: [PATCH v6 2/2] serial: sc16is7xx: Add
- polling mode if no IRQ pin is available
-In-Reply-To: <Z4UMP1-0x25g1fX2@smile.fi.intel.com>
-Message-ID: <6ccaf061-c3d7-c78a-17e3-f0b9642c412f@systec-electronic.com>
-References: <20250113073030.15970-1-andre.werner@systec-electronic.com> <20250113073030.15970-2-andre.werner@systec-electronic.com> <Z4UMP1-0x25g1fX2@smile.fi.intel.com>
+	s=arc-20240116; t=1736773673; c=relaxed/simple;
+	bh=CHJ07KTsERl1XNqysW3XfRj9sL4/N7Msv8OrELdA7v0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=GUxFFwqEp48/kq97PUUTTD2JFFzUlJ1Gwcem5oCQl0At8X9v4zKVV1IK5/4S2OQre0eoDFqelIYElAllET06kDKP4julh9JQ3XG0D4WGtgvW8ayyXmBX3dIhbuayUrAjnwXsmtA3KeSUX6l2srOXX/P2cJP7qPKbmG8nVfK01K8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FXtXXmfE; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7724CFF80C;
+	Mon, 13 Jan 2025 13:07:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736773670;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=lRe7TYZfi6vfJNz8awjP9OieAhppNXHZ95CphyCVH64=;
+	b=FXtXXmfEier4kCr9odZG0HV2oGKs8MylQITCBpR2Z4LmGUOBtD6lKwuPN5Z0BuYmbolft6
+	M2+XA2mtEYF/C9wp/1h2DKCOW0S2rk2YtFY3qaNCRcZ5bCkRlLFAeKnKcFRwDIgDQs0Z3L
+	R2HWzCJPfFKp/zaH1BDASROnisN9ShX/tM6GV7sSvk9m6XJcGmB+/SJkOgNowSZba0x/a9
+	ARdDKE6QzFJs57vRTixlT7zaNI0Q2swySl6o3dLbusp5SoBBtvv6jMShKylkdj4po/2Liv
+	pgMFsLIL9L/DaOHGf5i5YuWmz8M56bLA/LmLv6uTP0m+V3xxfBHv0hhG6EI94g==
+From: Kory Maincent <kory.maincent@bootlin.com>
+Subject: [PATCH 0/2] Add support for power budget
+Date: Mon, 13 Jan 2025 14:07:44 +0100
+Message-Id: <20250113-feature_regulator_pw_budget-v1-0-01e1d95c2015@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="-1463794929-1597953312-1736773346=:17662"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACAQhWcC/x3MQQrCMBAF0KuUWRuYVKroVUTCaH/igLRlklSh9
+ O4Gl2/zNsowRaZrt5Fh1azz1OAPHT1fMiU4HZup535g79lFSKmGYEj1LWW2sHzCo44JxUXG+Xg
+ 5SRQeqA2LIer3v9/u+/4DlR2TJm0AAAA=
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de, 
+ Kory Maincent <kory.maincent@bootlin.com>
+X-Mailer: b4 0.14.1
+X-GND-Sasl: kory.maincent@bootlin.com
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+In preparation for future support of PSE budget evaluation strategy and
+power management, we need the power budget value of the power supply.
 
----1463794929-1597953312-1736773346=:17662
-Content-Type: text/plain; charset=ISO-8859-15
-Content-Transfer-Encoding: quoted-printable
+This addition allows the regulator to track the available power
+budget, which will be essential for prioritizing ports when
+making power allocation decisions.
 
-On Mon, 13 Jan 2025, Andy Shevchenko wrote:
+The related budget evaluation strategy patch series sent:
+https://lore.kernel.org/netdev/20250104161622.7b82dfdf@kmaincent-XPS-13-7390/T/#t
 
-> On Mon, Jan 13, 2025 at 08:30:30AM +0100, Andre Werner wrote:
-> > Fall back to polling mode if no interrupt is configured because there
-> > is no possibility to connect the interrupt pin.
-> > If "interrupts" property is missing in devicetree the driver
-> > uses a delayed worker to pull the state of interrupt status registers=
-.
->
-> pull ? Hmm...
+Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+---
+Kory Maincent (2):
+      regulator: Add support for power budget
+      regulator: dt-bindings: Add regulator-power-budget-milliwatt property
 
-Ah ... poll ... sorry.
+ .../devicetree/bindings/regulator/regulator.yaml   |  3 +
+ drivers/regulator/core.c                           | 89 ++++++++++++++++++++++
+ drivers/regulator/of_regulator.c                   |  3 +
+ include/linux/regulator/consumer.h                 | 21 +++++
+ include/linux/regulator/driver.h                   |  2 +
+ include/linux/regulator/machine.h                  |  2 +
+ 6 files changed, 120 insertions(+)
+---
+base-commit: 36d9fc502ebc4dd56ea95de1e4f10a4ac5c1691c
+change-id: 20250110-feature_regulator_pw_budget-f0e7396afa05
 
->
-> ...
->
-> > V6:
-> > - Use polling mode for IRQ numbers <=3D 0 which encounter no valid IR=
-Q
-> >   were found/defined.
->
-> Thanks, this part looks better now.
->
-> ...
->
-> > +static void sc16is7xx_poll_proc(struct kthread_work *ws)
-> > +{
-> > +	struct sc16is7xx_port *s =3D container_of(ws, struct sc16is7xx_port=
-, poll_work.work);
-> > +
-> > +	/* Reuse standard IRQ handler. Interrupt ID is unused in this conte=
-xt. */
->
-> Period.
+Best regards,
+-- 
+Köry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
-What do you expect here? Shall I add the period time from the define as
-the dedicated value? I do not understand what I should add here in
-detail.
-
->
-> > +	sc16is7xx_irq(0, s);
-> > +
-> > +	/* Setup delay based on SC16IS7XX_POLL_PERIOD_MS */
->
-> No period.
-
-Or do you mean that I add the define only once and not add all used
-places?
-
->
-> > +	kthread_queue_delayed_work(&s->kworker, &s->poll_work,
-> > +				   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD_MS));
-> > +}
->
-> Please, go through the comments you added in the patch and use the styl=
-e that
-> is mostly used in the driver for the similar (one-line comment) situati=
-ons.
->
-> ...
->
-> > +		/* Initialize kernel thread for polling */
->
-> Again, no period.
-
-Same here. Do you expect the value here or the name of the used define?
-
->
-> --
-> With Best Regards,
-> Andy Shevchenko
->
->
->
-
-Thanks in advance
-
-Andr=E9
----1463794929-1597953312-1736773346=:17662--
 
