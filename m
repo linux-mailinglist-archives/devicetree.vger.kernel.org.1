@@ -1,166 +1,169 @@
-Return-Path: <devicetree+bounces-137983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1BCCA0B593
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:27:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15242A0B582
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:26:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA2A01886C15
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:27:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B9B3C7A3108
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:26:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81C7422F166;
-	Mon, 13 Jan 2025 11:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D4B246335;
+	Mon, 13 Jan 2025 11:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FLsyVzyN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bZjzEpQ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A705C2500B3;
-	Mon, 13 Jan 2025 11:24:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE53246324;
+	Mon, 13 Jan 2025 11:24:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736767448; cv=none; b=VwgrVSLzOLy7eMGV+FFH6cNadm7XjZLAQn63buGlQpIpSEH2a03wpoNrLwFu5ydsG7v5JxkRln5jlyEdeJuCtWUwrXfbVNTyolJ5WHxXg1Aut803tcuGqpAgicBAeAM5f3DgYG9tMWPiBmxo+H8BIovJgNOU+GeCgoKhduOue6Y=
+	t=1736767445; cv=none; b=mAmZ6MKfy6gJGwuI4oyG91DDJ+DQPTbCUaEe39/ENWM0r064nvbG3RQzo2eErumjhb9fw3vBoeC9Zlt7mhwcYxAEF+LW64GYRScbRo5ML2/7uHHzpAu4X9O6qiY67HTza1p7riKyD++jj0SnBV4t7lh+2aLB3xTZXbGg8ZGGQkY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736767448; c=relaxed/simple;
-	bh=XspZ05IZVNTm1NQ/M5BBZkdQULLT5XRn7YKALCQZGns=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jpwNgGnPWr8kzAlL+MjsQHjXQ37KWj3HuvKXc921hcKHwBf/DMKpDQ+Gz01ucL+THQ0xnq0Y+UdFVipyVKPYNk0scCkVxiLEZfIiAnq/g9zxQaPulyGXmFGA+DEbe7p2ZRY7YdtKprLXWm6ZRHhi4MSsz0MNIMi8idpR0ncTKpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FLsyVzyN; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43625c4a50dso29595745e9.0;
-        Mon, 13 Jan 2025 03:24:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736767445; x=1737372245; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ywlKhGt5gUaID62FWIDPFXIzDq6q04U4bYSUh8E0K8Y=;
-        b=FLsyVzyNL5BewE5WwG8Aq8KLQAlok1vdMtOz6ShePaZf8XR7J6ypzNxDE7xoPOo3Cc
-         IAenqekcGYSGMIRgAWtA0bQe5+MRauAlEKF22PpfVSWA93EB4GKBEgv9mP6f1zLE9ort
-         darUb3AWotCwEm+xxItyaSc7JRhyB9EPbHKDOL30e7+MPD3j5uiNyFzreeDx0HB5xism
-         lqBLQNnoX6McyIWCyzj1AvNUA6wwYmL757nuqT9Z4681Q+k+N4/jVucgEH06g5lYpfpm
-         kvbNK+esRuNbDmVavgcU1gwnEohkCQQBYDFI3XzfzL13AI1G2otUvyI1B2vh0tWUCiXC
-         hp3g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736767445; x=1737372245;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ywlKhGt5gUaID62FWIDPFXIzDq6q04U4bYSUh8E0K8Y=;
-        b=JOuSTTgIxnpdATYStRV/m9+kxkjRjFcecAcHl4Fn9jPRFwmZvvUZ7qmplGo0bnz4Mh
-         FKAHSQS2uK72ZnOxfh2sqJWU07HKnZ6tbr72PCrEDFWPcyAT66AKOFKzt4TnwLDIJ8NK
-         W+lHZbMy3sXKvwFGyEFa8BB/T+ZYYjQ4yjjb5ScuaXEpUCoJlk7HB+vQwoS13W3M+iZy
-         Xg9Y/CPuG0KK+RyecVIOJ3WCvNxz+nZywnbCD3HvYRTlh+/tW2BnUIxPGbG85w7dRkNQ
-         y/32swW82LVUQDACUERBfpHu5njFItCp4iyVWFExAN/sCH3UePiQ4EKM+kOiRX89CslC
-         EeXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUD7/HUcv/S5oEb5aKxP//o4sCY2ED0WhbjpbevpoClgJAzbTqkv5K1J+uReVxnyg4aOm+VLMngyp33r/5oLYE=@vger.kernel.org, AJvYcCW15Bwed+M1V8dr1nHBUweV+gF+KGyr63uM4jey+1ceGwglWo6TjeqyW9Us8Cp+CbiTNtALu2aL3R4cxytm@vger.kernel.org, AJvYcCWJch/SRh7HV17+nT+cHzdrDvi5yqe7L3QyUQDgr+7HuZw7Jk8b6uTP3fKPqz8gxhiI006Fpm6nTtey@vger.kernel.org, AJvYcCXFIAwk/Cby6cLCmuU7N6hSVMOVvAMZAszEMv9EVX/JIjjIGE+aNnD7Pbka4Wvi9keD1Y0t28UU8PN1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMRE/uSXqA7yvKJ7kuGbMDwXKqp/GBzAN4X4F3JgJgAkzG0cJo
-	04/BtR0etqqyTntiNgBQaUWFgwKrKpv0Yno+EpVGSmPbBFwz2JV+
-X-Gm-Gg: ASbGncvRJ/rlVHiFcv5zxPfl+QaRevzUXCrDcmPIVKkL875UzxjaWSr10HbtpthNqmF
-	jvvu7/YswA0X6BIQh+cZzUhmc4S4/8OjIEnWLfdbghydf4bJw9mRPv3Z9muq4Rm9AuTg5le+vxF
-	yPUaflmtYOw++nIYUKeAW2ufbYkOrLC/Uw9LXddc4iW+PrAqVmz3Lmuwa1vGE+APRp7FnmmYg4j
-	qCTVCLpwIUr0eJFF2F6XUd3x1n5sOQISCe7XEn/wcox77HuTkzGRI/p2CKnQGFTAIABA/6HxaHa
-	RIvGLnE9bg==
-X-Google-Smtp-Source: AGHT+IE6CocWrtO0ToLT6sMtjNQ+LPB106b5FZefFzVLxNvRIqnJYihS2xXNmOxoUdYOSjy3NGlQnQ==
-X-Received: by 2002:a05:6000:1869:b0:38a:8b2c:53ad with SMTP id ffacd0b85a97d-38a8b2c5601mr17252523f8f.39.1736767444504;
-        Mon, 13 Jan 2025 03:24:04 -0800 (PST)
-Received: from prasmi.Home ([2a06:5906:61b:2d00:acc9:404c:3a6c:d1aa])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436f04df606sm107597115e9.12.2025.01.13.03.24.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2025 03:24:04 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 6/6] arm64: dts: renesas: r9a09g057: Add `renesas,syscon-cpg-error-rst` property to WDT node
-Date: Mon, 13 Jan 2025 11:23:49 +0000
-Message-ID: <20250113112349.801875-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1736767445; c=relaxed/simple;
+	bh=QR3s227urM9NghcFxW59UIOKQvvW5b6Cpn0kVjkcw6k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Od+Ea+j0Q15ZwPt5+oA4mwgeb/UbRGH5lNnE4wGz7oKrZBY+MsG1Dz4lVL2GZX2ZxI/Qu0IjXDtY1hKR2nY6hI70AwoSVeYciFT0W//qUq0bo7m6CYiXhDIdAygkUBZWkA+Co4a5kYLX8ajmJnaYuJpMludkq1Xrvvwzn9AbZlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bZjzEpQ5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49BB7C4CEE8;
+	Mon, 13 Jan 2025 11:24:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736767444;
+	bh=QR3s227urM9NghcFxW59UIOKQvvW5b6Cpn0kVjkcw6k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bZjzEpQ5Q3vRlFXoSkFWYA/Sq4pm8vB6U6F1rRvo6znK2HmbHuXBtlHzX0muWq4nv
+	 Z91219eKchv0g4bUEZh0kyDnAyLljM2F28mm4ljJbsSzErvlwmlpjjHlTyA4MlkmHN
+	 ri5o1M7MP1hcoYCoqRI1KQUM/EUeBEcVe8eANbseTMh2dl9KZwo2fbbNkuitBr0xzO
+	 QPLYTdBzKvgIEQYv02SpjBc1oH8awTYngyzyDNX7VSTGiSb6yMfr2rDe02m79e0lP1
+	 copUrIb23Bqebtk0YoEliyyoRvMk/nQDTkD7XmY9mUseCb/xcPbzjPtkHoWROJJgDu
+	 2HJk009IKKThQ==
+Message-ID: <f47bc5f9-cabc-4cbb-b641-693f3c729012@kernel.org>
+Date: Mon, 13 Jan 2025 12:24:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adf4371: add refin mode
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20250109133707.3845-1-antoniu.miclaus@analog.com>
+ <20250109133707.3845-2-antoniu.miclaus@analog.com>
+ <mr7j4znl63p3ldhrxpc47mio63deszpqswbsqxxiby5nftpgbr@b4h47yp3xev5>
+ <2f483161cbe1f797a9095ca3c9f4f472d3785acb.camel@gmail.com>
+ <499ef047-d3fc-4d2a-ba7d-342ff08a351d@kernel.org>
+ <98dad0cd3ba55411797c1871c5ceb5f656b8225b.camel@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <98dad0cd3ba55411797c1871c5ceb5f656b8225b.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 13/01/2025 12:17, Nuno Sá wrote:
+> On Mon, 2025-01-13 at 11:21 +0100, Krzysztof Kozlowski wrote:
+>> On 13/01/2025 10:55, Nuno Sá wrote:
+>>> On Mon, 2025-01-13 at 09:37 +0100, Krzysztof Kozlowski wrote:
+>>>> On Thu, Jan 09, 2025 at 03:37:05PM +0200, Antoniu Miclaus wrote:
+>>>>>    clock-names:
+>>>>>      description:
+>>>>> -      Must be "clkin"
+>>>>> -    maxItems: 1
+>>>>> +      Must be "clkin" if the input reference is single ended or "clkin-
+>>>>> diff"
+>>>>> +      if the input reference is differential. By default single ended
+>>>>> input
+>>>>> is
+>>>>> +      applied.
+>>>>> +    enum: [clkin, clkin-diff]
+>>>>> +    default: clkin
+>>>>
+>>>> Which pins are these? I went through adf4371 datasheet and no reference
+>>>> on clock inputs like clkin or clkin-diff.
+>>>>
+>>>>
+>>>
+>>> Hmm, I guess we should call this 'refp' and 'refp-n' then (the latter seems
+>>> a
+>>> bit more odd)? Or just 'ref' and 'ref-diff'?
+>>
+>> That mistake was done at the beginning - the "clkin" is just useless
+>> name. It cannot be "clkout" and it cannot be anything else than clk, so
+>> it is 100% redundant.
+>>
+> 
+> Oh sure... Makes sense and I forgot that the property is not new...
+> 
+>> But looking for pins brought second point - here you claim these are
+>> mutually exclusive while datasheet suggests that both inputs can be
+>> connected. Unless they come from the same source always?
+>>
+> 
+> If you have a single ended input then only one pin (the positive one) will be
+> used. If the input signal is differential, then both pins will be used. So they
 
-Add `renesas,syscon-cpg-error-rst` property to WDT node, to
-determine whether the current boot resulted from a `Power-on Reset`
-or a `Watchdog Reset`.
+But the clocks describe input pins, at least in typical case, so that's
+my question: how many clock sources do you have here? One or two?
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v2->v3
-- No change
+> are mutually exclusive... You either have single ended or a differential input. 
+> And depending on the input type, the limit of the input frequency varies.
 
-v1->v2
-- No change
----
- arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+Based on this, this is the same clock, so using "diff" is not a property
+of "clocks". Look at other bindings how they encode differential choice
+for some signals - usually bool property, but not always - see other
+adi/admv devices.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-index e7428b80bda2..01b4b4184e5c 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-@@ -445,6 +445,7 @@ wdt0: watchdog@11c00400 {
- 			clock-names = "pclk", "oscclk";
- 			resets = <&cpg 0x75>;
- 			power-domains = <&cpg>;
-+			renesas,syscon-cpg-error-rst = <&cpg 0xb40 0>;
- 			status = "disabled";
- 		};
- 
-@@ -455,6 +456,7 @@ wdt1: watchdog@14400000 {
- 			clock-names = "pclk", "oscclk";
- 			resets = <&cpg 0x76>;
- 			power-domains = <&cpg>;
-+			renesas,syscon-cpg-error-rst = <&cpg 0xb40 1>;
- 			status = "disabled";
- 		};
- 
-@@ -465,6 +467,7 @@ wdt2: watchdog@13000000 {
- 			clock-names = "pclk", "oscclk";
- 			resets = <&cpg 0x77>;
- 			power-domains = <&cpg>;
-+			renesas,syscon-cpg-error-rst = <&cpg 0xb40 2>;
- 			status = "disabled";
- 		};
- 
-@@ -475,6 +478,7 @@ wdt3: watchdog@13000400 {
- 			clock-names = "pclk", "oscclk";
- 			resets = <&cpg 0x78>;
- 			power-domains = <&cpg>;
-+			renesas,syscon-cpg-error-rst = <&cpg 0xb40 3>;
- 			status = "disabled";
- 		};
- 
--- 
-2.43.0
-
+Best regards,
+Krzysztof
 
