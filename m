@@ -1,120 +1,132 @@
-Return-Path: <devicetree+bounces-138057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CA99A0B91A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:11:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06068A0B93F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:18:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C18A167A12
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:11:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB9223A19D1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:18:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B12F523ED6E;
-	Mon, 13 Jan 2025 14:11:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55120231CA3;
+	Mon, 13 Jan 2025 14:18:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VFz8S0J7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UEuBWui8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890AE23ED51;
-	Mon, 13 Jan 2025 14:11:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974761CAA6A;
+	Mon, 13 Jan 2025 14:18:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736777481; cv=none; b=IGvF2JneZzJtdX5a631EoRAv2o37VrOw5OP08H8f+2jfWfGPE0Ia1Tn1rkz70ahMvTW+OZhfXx7IBMy5gjFD1WpSCgXJLsFNS2im3engWVJY0jgJB0wdBrjFhIuowjkBHssi7pjGxz84m9Y+mjZci0kcrrynQI//Iae70+xRUgM=
+	t=1736777915; cv=none; b=AoABY95a7u4M5UdgsIKTXo6OHZeL3M1RfKR1zDScvMRYNNKEn4q9fcI+Hs/wEHBjPRO6O+9/nLyiKM+pVaRzBYaocQfL3cYox20KlNF3zMIGYEtU+sr5zsGRK85/P5VdrPm+dSfkKuZyieyH00vwJU+/jvfcya4TuQJ4uW3guG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736777481; c=relaxed/simple;
-	bh=GqaN3+SFZNcBDRY9ScVfOywga1V0Cb23gLVTi6EmOgE=;
+	s=arc-20240116; t=1736777915; c=relaxed/simple;
+	bh=7YimBG3LQ3J6ndU/hvJ1ZvNEDHgvt22mDIjip1m80mA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rHavkcTLcnO5r6H3/polylgP6dv2CGTFDScMsgn50woaCrjUT+X2b6MkkTjnVF5yZVmWIauhiXP7K3LuipTQUW12fxFcTslAO/x7C5G5l3KG704gY9kBiDoUbSrrUg0+28u4pL8+MDwU0xljQXGZH+jDCmbtx4aRxfzdEuJN9Bw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VFz8S0J7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C4BFC4CED6;
-	Mon, 13 Jan 2025 14:11:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736777481;
-	bh=GqaN3+SFZNcBDRY9ScVfOywga1V0Cb23gLVTi6EmOgE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VFz8S0J7Q0gvwmH+GmC+uN6sHmLzG7xlueqqurenjTsXHbi7HtUki+I1T2qxmw1sr
-	 mSpLbDrobkQAGNBR6CBwfIZJPc9rVstPHVzqF4fpThrlGgc27ii8sBglWRY38bcB8E
-	 LyyV29GtALgx9D4wxjwxPzFDp+pwz4eMOODcu59ghtPbM/gPh1OweUfnL1hQss9Lac
-	 PlNvTAZkFVVuhPUPIgYv22r4IhHg3pO7dU80GrOZLa5lWBy4m1Cr43AdQh5gyDZYpL
-	 K8IkN4w+y7R4CNy293JmxqWfVWrMmffPdK1i2L7qtbh2Tu1USiEeUqdidWSd1wPjjU
-	 x2gCTlY+N4A7g==
-Date: Mon, 13 Jan 2025 14:11:16 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=LxcmOe7zjItsbxrrWzCrAhgkkuWGV+tocTvlh2s0dSoS6/JQq23zsMJpwpbRPe7NGOO0dmi4kZq+bZdywsmuxs/mAZRkkxdxSWZi81yRYdYhq+a8rQ8Ln4SAAieFNgmX9vvZJ7Zs7MhrsI3zEhjShUOh9BhzWgyNXNW8liC0Mzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UEuBWui8; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-435f8f29f8aso31144865e9.2;
+        Mon, 13 Jan 2025 06:18:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736777912; x=1737382712; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=U2es6yriLWnAabX2QUZDG1SzGg71ZT0n2Mtutr6FZ6g=;
+        b=UEuBWui8GTlEkaUHq+vd64sFZtIPNvwwSorOGuHejuZACqYfbQ2eXa6cad9YpBHnzX
+         ZMFHLzRbLt0lrYKiappEdEYb/djVC5vGULhHIXhCzaRLzLtSYep6qTdXHBB/c20gKLi+
+         srw/2t3ylm+w5KjCGQ5ECuLZdyoNvaeNyhMmO547cYvZCZvXxoWd60140QvTIjwZevs5
+         U0aoC1AK9m+hdBmWqr3MgtShDr5o/K3c7wVuimEsYNKKreNiFRbf03l3kyox7Ux2I9zz
+         hJqQAqXesXPFxyK6ridKa0ldtJxOzoxxbYt4KlT7FtssZN+YBeuRsInPrt+8qJAKuv8p
+         vHqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736777912; x=1737382712;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U2es6yriLWnAabX2QUZDG1SzGg71ZT0n2Mtutr6FZ6g=;
+        b=ZGSavs+aVY2YG0e8F7f7szNCjEIuA1aC+Jth7J4vEvdHVJefCPIo/VwWDsFD365JPm
+         7mCeV/sz55s9+tp772mJjeLD91uzNvSfT/PuXPqzQB5iLhbGag6r1i7Sf/hL3oZtlShK
+         q5nXhnwF854J36PZXmpV32RtcvUxvwpd0N+bT4fV7KvPwjXbmNLrBl/d3n4H10aFHJ4l
+         E0rzzwtE7FxNpTAFLGzuKIsRxjq2dY/176whTYL7w5KcvoiOsvH8i38BoaCTx96fYcs2
+         YHU5Ah05nBh0k6k4pHAsZzQNEhqQ2s4pBS7sACUUV22PO8KTePbWO7Rn5pAp5EqG4vlo
+         2yaw==
+X-Forwarded-Encrypted: i=1; AJvYcCUdZrC/o5CkFltz1pvty6boYj9bahMbIMg/UrSw4Bcg9Mxyxm6WRl4kCppJQYWryNDjq8SLzxzTOFvf@vger.kernel.org, AJvYcCWxlyOxUiccL/kwn6FBRGXpKwSOpVwIVurShJ+jZDvlIP0xQqR2HwLsUSO2ezxozeQ44cLlBBWhX667VXOk@vger.kernel.org, AJvYcCX5ow73aWgFEnBFCJbK1LgbXxkUoRnD4dQNhyRf13jIbWpI8TatZ6t1nY+vP8v25H72e30CR5GZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+tXpTmJaDP9Sqb8QsLb7fDrV56UdJMLGJSWVuh6tqE8g+S6Z3
+	7uM5YmcaeHHUXUvhVlkCHi6u3k+5xUhYn0B2e1ItzRvqqV/5o5gM
+X-Gm-Gg: ASbGncshbQQamNjj+T6RhEPJkTgmS+yNiWKmrsD3WUBd3G/8nV3yAc6DePjSaSjrMi4
+	GVthSOLUDP1DtxwroXtSdsYP+6GufYErqJc3G7RRep/il7067UfzTu84woobddu8MHFuTQS9vdQ
+	HucUuofQdXtoT3miT/xYBDdEyV1bLo9sOy7dncW4mFgv6wj5oSjcUOrJldREdrOzTO/UQn2dNCd
+	iAeMKFFmHs41dV6PrNep17ohA4Wu3/GaggBJekibhvc2YOcS6Gd
+X-Google-Smtp-Source: AGHT+IG04VKJi+ixrAU4Wm0abXxVfnfxurgCJ8NE/rCLyxx5AgLs1/IbR4L9IAmuCdNEQSKmle4V1g==
+X-Received: by 2002:a05:600c:5486:b0:434:f131:1e64 with SMTP id 5b1f17b1804b1-436e2696d1fmr188716265e9.9.1736777911548;
+        Mon, 13 Jan 2025 06:18:31 -0800 (PST)
+Received: from debian ([2a00:79c0:620:b000:303:6c5b:4b07:6715])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2da7768sm182271275e9.5.2025.01.13.06.18.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2025 06:18:31 -0800 (PST)
+Date: Mon, 13 Jan 2025 15:18:28 +0100
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: dimitri.fedrau@liebherr.com, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de
-Subject: Re: [PATCH 1/2] regulator: Add support for power budget
-Message-ID: <69eaaadf-a6b3-4a5a-af4a-5b574f9edad4@sirena.org.uk>
-References: <20250113-feature_regulator_pw_budget-v1-0-01e1d95c2015@bootlin.com>
- <20250113-feature_regulator_pw_budget-v1-1-01e1d95c2015@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 0/2] net: phy: dp83822: Add support for changing
+ the transmit amplitude voltage
+Message-ID: <20250113141828.GA4250@debian>
+References: <20250113-dp83822-tx-swing-v1-0-7ed5a9d80010@liebherr.com>
+ <fcffef06-c8d1-4398-bc20-30d252cd2fd2@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4EA8TZnBQl64Q46U"
-Content-Disposition: inline
-In-Reply-To: <20250113-feature_regulator_pw_budget-v1-1-01e1d95c2015@bootlin.com>
-X-Cookie: You will outgrow your usefulness.
-
-
---4EA8TZnBQl64Q46U
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <fcffef06-c8d1-4398-bc20-30d252cd2fd2@lunn.ch>
 
-On Mon, Jan 13, 2025 at 02:07:45PM +0100, Kory Maincent wrote:
+Hi Andrew,
 
-> +	rdev->pw_available_mW -= pw_req;
+Am Mon, Jan 13, 2025 at 02:54:28PM +0100 schrieb Andrew Lunn:
+> On Mon, Jan 13, 2025 at 06:40:11AM +0100, Dimitri Fedrau via B4 Relay wrote:
+> > Add support for changing the transmit amplitude voltage in 100BASE-TX mode.
+> > Add support for configuration via DT.
+> 
+> The commit message is supposed to answer the question "Why?". Isn't
+> reducing the voltage going to make the device non conforming? Why
+> would i want to break it? I could understand setting it a bit higher
+> than required to handle losses on the PCB and connector, so the
+> voltages measured on the RJ45 pins are conforming.
+>
+- Will add the "Why?" to the commit description. You already answered it.
+- Yes you are right.
+- I don't want to break it, the PHY just provides these settings. And I
+  just wanted to reflect this in the code, although it probably doesn't
+  make sense.
+- In my case I want to set it a bit higher to be conforming.
 
-...
+> Also, what makes the dp8382 special? I know other PHYs can actually do
+> this. So why are we adding some vendor specific property just for
+> 100base-tx?
+>
+I don't think that the dp83822 is special in this case. I just didn't
+know better. Would be removing the vendor specific property enough ?
+Or is there already a defined property describing this. Didn't found
+anything.
 
-> +	if (!of_property_read_u32(np, "regulator-power-budget-milliwatt", &pval))
-> +		constraints->pw_budget_mW = pval;
-> +
-
-This is only tracking the currently free power budget which both
-restricts what we can do for tracking things like mismatched or missing
-frees and means there's less information for diagnostic tools.  I'd
-prefer to keep track of how much is in use and check against the budget
-when trying to increase it, allowing us to check for releasing more
-budget than was requested.
-
-There's also an interaction with hardware with support for enforcing
-power limits, either via alarms or by actually limiting.  Current
-limiting/warning support is reasonably common, we should probably be
-joining it up with the power limiting.  It's fortunately not used
-dynamically by anything at the minute so we could just remove that API
-and replace it by a power one, given that nobody uses it and there do
-appear to be users for the power based API.  We do have some things that
-set current limits in constraints IIRC.
-
-We probably also need something explicit about how we handle baseline
-load from things like passive components, the assumption probably needs
-to be that it's negligable.
-
---4EA8TZnBQl64Q46U
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmeFHwMACgkQJNaLcl1U
-h9C7Fgf/ZrDq+0uds6OgryI/aZh6h90aLGvztpQ8ImhY3ELpqj427AYJA83zj7id
-5wb2a7FODKVOd6F2+xEAkBC5H3t08Phbuz37CS0GoK5U9zubeDZmJRRpCYqkkuAh
-o/+eCxykbNs+MBustQ5UyczX8RhDBEt4e53VH6zFUWBv6M+T+yPPUebQvBC1njCQ
-x2rkavTBRD8fwnXgnbZPbrMYugBSOrjKrbgVQPlkYplZjCdo01P4Qp6PIjUdl2+C
-Anmfybj2ALnR5i4V25LlH0B+1DodOTiQwjY9SFwQijkmfOVTWMuMdHg3Dr7Ov/a3
-a8Xmn8gwBDRKtZlU4sgUQn9X116lYg==
-=M0x3
------END PGP SIGNATURE-----
-
---4EA8TZnBQl64Q46U--
+Best regards,
+Dimitri
 
