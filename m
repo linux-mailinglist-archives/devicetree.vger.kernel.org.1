@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-138175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C896BA0BFD0
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 19:30:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17842A0BFD3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 19:32:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A0E87A2FC4
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 18:30:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E87683A4030
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 18:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4038F1C07C9;
-	Mon, 13 Jan 2025 18:30:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25C521BEF81;
+	Mon, 13 Jan 2025 18:32:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rEeA/yUK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E45S/juY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 145F51865E5;
-	Mon, 13 Jan 2025 18:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7F0A1865E5;
+	Mon, 13 Jan 2025 18:32:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736793049; cv=none; b=UlXEBrJS8FaZSHqne0Afjqqmx+5PufY0zQbhNicX8UtwWnLlOW6/ikL7sgbwI7CvN62XfH6vkgTek4ON44gNzmYhn0zBgEMiFJR3U3yQZi4lFz6VTreNs/eD9PlsdXWUHqyvS+THaFMUH7fRxJ+3G1UsOMk9CxsfQ61x2rcBm0I=
+	t=1736793132; cv=none; b=mNTMMOL3E3THEUxqjfObh3ORAIP/vJq7mSacDZ1ONkU3H5kcseZES9heeBisz8CsdCjEchBQntN8Eb4wdDs7NoDnQoJgBhejZ0afwNaim5LeGzNWd+OQu0qgXelPIymWu0k5MSZov7MtMbIM0qDhpgLNubMoHAVD7v9KevpRnfc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736793049; c=relaxed/simple;
-	bh=P6o9b9OJEbbN6mvPN7cHfla1Cu8ASLwXWJu0Q2N2xEU=;
+	s=arc-20240116; t=1736793132; c=relaxed/simple;
+	bh=ChatsE/2ZwoToNESr2wfZSXK7J1h+JSx79alnmHkTEA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jSkKvDYO12oo0HbUueZXlPmzbOMO72O+aIhDzl8ukgpCkVrPH7PsjieS2Ifn2bcdoMrkpRWCQ0ZMaPSUPdmixtdjNCi/DhyyqVZYR5RbOl7O6BQQ6IqPYrMOYcqJdiGFDxoE/L24PIn8FE5gOl/A2C8dZ3TxizPWLucrHvdWKVU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rEeA/yUK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AA6EC4CED6;
-	Mon, 13 Jan 2025 18:30:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=MUsUluFnw5DDJv19/sPhV0uxVXBfN4EB1VsQLXSSutA80JsATIhlne2Xug6OAipz4WXP1byue5T+N4MYrzjhnb33Qp/9p0pIoAEdEqxKhLMpvKo2l2zIjdHHTgUWCXE+zd8Z20ayq1dqpL/YYv6r6oAjkIUfDrCPC0H3dCQKnec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E45S/juY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBA22C4CED6;
+	Mon, 13 Jan 2025 18:32:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736793048;
-	bh=P6o9b9OJEbbN6mvPN7cHfla1Cu8ASLwXWJu0Q2N2xEU=;
+	s=k20201202; t=1736793131;
+	bh=ChatsE/2ZwoToNESr2wfZSXK7J1h+JSx79alnmHkTEA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rEeA/yUKsAqWherMVsQL3MgtjM9tx+cBFSLOXmyVc9crUJyTMUG9rxP0Vj6vdShWB
-	 moIFFK0hRAKiYEwRBHXj8WLwvYriZtvUG/AL98sZ42u8NGnWbO8lz9nNWZUTyGUm5h
-	 b5ouCotv5ASLnK215CQQrEMGiz+gXx7VymMZNHDcy2YHQZ7NxPEsYkqiGGiXBLLkxm
-	 a+5IOKKyx2Mf5dAGLtT1dX/5jK2AyXTZeiQcuUVk1cPw+TD3IacFa+J0oE2zlHGyWi
-	 2F2Mm2ARw0gVyBDn9w/xftidEroQ8euUzLcyBfWbYtO23e+fxQ9MJkfwQYQd4oKCr6
-	 bUr9vfV75pWhg==
-Date: Mon, 13 Jan 2025 18:30:43 +0000
+	b=E45S/juYtSzPs6KuAbowE5vvW5IMM44ewkoQDCk4T+EG9Gy9nzL/iJMZdsjaBWG2V
+	 pJu1+oOG+Kvw08ZSDDzpcL/DxGZv0E89O7EXR9qOC7T6oJpSzAfXRpoaPngqG5X4aP
+	 lbC1CmEz+s6cYt0sJK7E/+Gr+/qj5nhkzdcjDQbOKkaZrOJrRJuohhu/mCk6HGwuEW
+	 hF3WKnQfg757d/5KV62NkqZal3lhKdf+PgWwbPh737zRa7HyC/UXyepz2bEs5HwWRY
+	 rW8wqfvc+VHywt7G8RGBZZgyI8K/jFgwZ6Xmy1Mf5xKVUz/Q0obMUyEdPoQ/4y1T3n
+	 wg04yEdcaQLGQ==
+Date: Mon, 13 Jan 2025 18:32:06 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND PATCH 1/2] dt-bindings: phy: mediatek,xsphy: add
- property to set disconnect threshold
-Message-ID: <20250113-aerobics-tall-e570d8bbcf2c@spud>
-References: <20250111141542.5007-1-chunfeng.yun@mediatek.com>
+To: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-wireless@vger.kernel.org,
+	m.felsch@pengutronix.de, bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH net-next 1/2] dt-bindings: net: rfkill-gpio: enable
+ booting in blocked state
+Message-ID: <20250113-skater-surrogate-4c72df770dbf@spud>
+References: <20250110081902.1846296-1-catalin.popescu@leica-geosystems.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,73 +60,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="RGQVYqBrFU+TitZQ"
+	protocol="application/pgp-signature"; boundary="Dt87A4u3Gm4vB2U0"
 Content-Disposition: inline
-In-Reply-To: <20250111141542.5007-1-chunfeng.yun@mediatek.com>
+In-Reply-To: <20250110081902.1846296-1-catalin.popescu@leica-geosystems.com>
 
 
---RGQVYqBrFU+TitZQ
+--Dt87A4u3Gm4vB2U0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jan 11, 2025 at 10:15:41PM +0800, Chunfeng Yun wrote:
-> Add a property to tune usb2 phy's disconnect threshold.
-> And add a compatible for mt8196.
+On Fri, Jan 10, 2025 at 09:19:01AM +0100, Catalin Popescu wrote:
+> By default, rfkill state is set to unblocked. Sometimes, we want to boot
+> in blocked state and let the application unblock the rfkill.
 >=20
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
 > ---
-> based on kernel 6.13-rc1
+>  Documentation/devicetree/bindings/net/rfkill-gpio.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 >=20
-> this property is porting from t-phy driver, due to the u2 phy are similar.
-> ---
->  Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml b/=
-Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
-> index a9e3139fd421..2e012d5e1da1 100644
-> --- a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
-> @@ -49,6 +49,7 @@ properties:
->        - enum:
->            - mediatek,mt3611-xsphy
->            - mediatek,mt3612-xsphy
-> +          - mediatek,mt8196-xsphy
->        - const: mediatek,xsphy
+> diff --git a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml b/Doc=
+umentation/devicetree/bindings/net/rfkill-gpio.yaml
+> index 9630c8466fac..22f26f1a3856 100644
+> --- a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+> @@ -32,6 +32,10 @@ properties:
+>    shutdown-gpios:
+>      maxItems: 1
 > =20
->    reg:
-> @@ -129,6 +130,13 @@ patternProperties:
->          minimum: 1
->          maximum: 7
-> =20
-> +      mediatek,discth:
-> +        description:
-> +          The selection of disconnect threshold (U2 phy)
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +        minimum: 1
-> +        maximum: 15
+> +  default-blocked:
+> +    description: configure rfkill state as blocked at boot
+> +    type: boolean
 
-What unit is this? Unitless? How are the values determined?
+type here should be flag, not boolean.
 
 > +
->        mediatek,efuse-intr:
->          description:
->            The selection of Internal Resistor (U2/U3 phy)
+>  required:
+>    - compatible
+>    - radio-type
+> @@ -48,4 +52,5 @@ examples:
+>          label =3D "rfkill-pcie-wlan";
+>          radio-type =3D "wlan";
+>          shutdown-gpios =3D <&gpio2 25 GPIO_ACTIVE_HIGH>;
+> +        default-blocked;
+>      };
+>=20
+> base-commit: 25cc469d6d344f5772e9fb6a5cf9d82a690afe68
+> prerequisite-patch-id: 0000000000000000000000000000000000000000
 > --=20
-> 2.46.0
+> 2.34.1
+>=20
 >=20
 
---RGQVYqBrFU+TitZQ
+--Dt87A4u3Gm4vB2U0
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4Vb0wAKCRB4tDGHoIJi
-0vKoAP4zLF3EUp+hEhLKk1EO3mA43mZ+y4hvXWvOmzulSeWtcAD8DUyZ7/MQOMPF
-usYBcosdsvVr84zavQbRDKFCKsLWQAY=
-=5d+a
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4VcJgAKCRB4tDGHoIJi
+0rF3AQCM/r9pxHi+so72DkY+Xwx5EGfUKpRnJ7wVsCHV1iYzzwEA+m9whbZwaGtp
+wE3gnhkwa6VfYNEMn9om0jw4Y93S2Aw=
+=uxlE
 -----END PGP SIGNATURE-----
 
---RGQVYqBrFU+TitZQ--
+--Dt87A4u3Gm4vB2U0--
 
