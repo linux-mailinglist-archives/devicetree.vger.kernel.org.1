@@ -1,109 +1,123 @@
-Return-Path: <devicetree+bounces-137837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9413FA0ACA9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 00:35:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F78A0ACCC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 01:24:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57FE13A5378
-	for <lists+devicetree@lfdr.de>; Sun, 12 Jan 2025 23:35:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04DA4188680D
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 00:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6712F1AA1C4;
-	Sun, 12 Jan 2025 23:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47D89749C;
+	Mon, 13 Jan 2025 00:24:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Oham5EBT"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="K//zqXzj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E40F2154C0D;
-	Sun, 12 Jan 2025 23:35:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B3F633C5;
+	Mon, 13 Jan 2025 00:24:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736724943; cv=none; b=PNHVPBS9wjPW+xDxftkGhb1QkKFs2EHOd7SM+W4KS+bGJqqOgbAt4ap+OHYI6fHJopaatCDGLVzC3DydiHU7mN45NEtawnlaLhWTa4MPrgYwYPgPszpcBrcSQ+KD/Chqu8s0WcdDjIwQPBEvHYvit3HfX1RmtD2Mnr1cGBJcCl8=
+	t=1736727846; cv=none; b=TC0O+5haMDvXM/DW3P/zIPa84SM3i3ReODdL50h0QM2QcbT8t8MPCLgS4CcQNNUxB0JuhGNmDo4TTQvfNaoEa73DILQPBfvcypxhzcM5fP91u91h3n0DsV86MxXy0/ti9PbFhAfF9OhCX7eyrYmjeoG9Dk0RCqkgoKKfrHFDw+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736724943; c=relaxed/simple;
-	bh=HcsC9tXf4TL6Zkki/ome21MbUBFM1SZ3hoO3K1qADng=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZrIZe/MP15ijoKVhA+jPKiBH1lH9hnMd1SldBYwk7hdMU6Knrz5/zOr2p9Li8m/vpjyexQrAfcXdDWj8uO3wYp5TWr8BycRrXfah9yOPC5CrQ5MOWSmKHEgMURSJSMcFWb+7ax4aQ4VMjk9CtQ65pbqtR73YClDUaCpeDFY3NA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Oham5EBT; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 93E1A20002;
-	Sun, 12 Jan 2025 23:35:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736724939;
+	s=arc-20240116; t=1736727846; c=relaxed/simple;
+	bh=7IWIetYQnTMZ2QhsC+VEmaER3VBDdgItL1467q5IqJA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=beTnuGBDShTP171yWlBL+phV87ZZUdq1PaTR5X0iCuGtlP4HGmL34JUn6ovImAMfDkEmM4+ky3HT6Sn6ameywSROBxRAhtcOdeAm9kH15QMBzgJGj5M0jURFsX7EmpCfACxmne8FAY3xqurqOH/VRNZ5kMmBTOzUo3YtTFtvIys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=K//zqXzj; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 51BA0101F415F;
+	Mon, 13 Jan 2025 01:24:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1736727841;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=a87+Qa+zFOoCG7+eaGG+I3SphmFr1f5RzL18ViMCxI8=;
-	b=Oham5EBTt7vPNzjgpxWjVCtS1ngOB2nz1SbiLNi11j340AYwlrNonb389GXCux2EVnvTgD
-	L7Qgmu1hUyB78SWi6bGIotiz3hjNjgB2lJZTJfx3SLWDDTsj4EP2CsI2WYNHaVWRm+m2RC
-	G62zcHyS2TooCtc9jgvY4gO2mVYolggNhybM3MibbFjtj+lR0fl2V0nx1CVOglGF44Feb9
-	9AZ0/2UvuDPb5ZozqsNkeTD+jtk5VtzEkmsc7aeV3aQzeLLD58eoudrqBXt+yY7k7DEQxo
-	XT2viNI/KcNdWLb5QDGiRyj/WQ5+0BDQOaTeqzByi+TpnyWCuSsZVIrIto3+Bw==
-Date: Mon, 13 Jan 2025 00:35:38 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Jonathan Marek <jonathan@marek.ca>
-Cc: linux-arm-msm@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=GAG6rXKySx7N9XWN2CeELl6QmJfJrz+oozSKI5vLgEw=;
+	b=K//zqXzjSTO4cwuwJ6PGV074z/ESc/IDzKRAtsrdt4XUXGyDzwydm52ICeg0wWzXMuPCJy
+	OnZjpbmJixDigYzqUxFnngAW75rw+D5i/KAO0LfsPIbDhyXPzCm4pQzKwCE3EtP5nTWC6J
+	9QkRg1H6HXX2SjGJELY0qtDKUkW/1M3OrhD4BC7naCEYeYJjU1LNcxAuCVTs08Gv16wfhH
+	YG3zoJrxknbLAfRb/0wKjZ+GbJxJIBjodtKUcRc2DICz56XBfGZYghV41+83wfpiVDBQa7
+	VVtbEJ8r6dPQ8Kywoax/8Yx90eWFwrYHJn5Ay3e5D8GnweO3xGYkIXRvPZBP+w==
+From: Marek Vasut <marex@denx.de>
+To: linux-leds@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Christian Marangi <ansuelsmth@gmail.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	"open list:REAL TIME CLOCK (RTC) SUBSYSTEM" <linux-rtc@vger.kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Lukasz Majewski <lukma@denx.de>,
+	Pavel Machek <pavel@ucw.cz>,
 	Rob Herring <robh@kernel.org>,
-	Satya Priya <quic_c_skakit@quicinc.com>
-Subject: Re: [PATCH v3 0/5] x1e80100 RTC support
-Message-ID: <202501122335384a545895@mail.local>
-References: <20241015004945.3676-1-jonathan@marek.ca>
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: leds: Document netdev trigger netdev-trigger-mode property
+Date: Mon, 13 Jan 2025 01:23:37 +0100
+Message-ID: <20250113002346.297481-1-marex@denx.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015004945.3676-1-jonathan@marek.ca>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hello,
+Document netdev trigger specific netdev-trigger-mode property which
+is used to configure the netdev trigger mode flags. Those mode flags
+define events on which the LED acts upon when the hardware offload is
+enabled. This is traditionally configured via sysfs, but that depends
+on udev rules which are available either too late or never in case of
+non-Linux systems.
 
-Did I miss v4 of this series?
+For each LED with linux,default-trigger = "netdev" described in DT, this
+optional netdev-trigger-mode property supplies the default configuration
+of the PHY LED mode via DT. This property should be set to a subset of
+TRIGGER_NETDEV_* flags.
 
-On 14/10/2024 20:47:25-0400, Jonathan Marek wrote:
-> x1e80100 needs a workaround because the RTC alarm is not owned by HLOS.
-> It also needs the same offset workaround as sc8280xp/etc.
-> 
-> v2: remove duplicated ops and use RTC_FEATURE_ALARM instead
-> v3:
->  - renamed flag to qcom,no-alarm
->  - don't remove alarm registers/interrupt from dts
-> 
-> Jonathan Marek (5):
->   rtc: pm8xxx: implement qcom,no-alarm flag for non-HLOS owned alarm
->   dt-bindings: rtc: qcom-pm8xxx: document qcom,no-alarm flag
->   arm64: dts: qcom: x1e80100-pmics: enable RTC
->   arm64: dts: qcom: x1e80100-crd: add rtc offset to set rtc time
->   arm64: dts: qcom: x1e78100-t14s: add rtc offset to set rtc time
-> 
->  .../bindings/rtc/qcom-pm8xxx-rtc.yaml         |  5 +++
->  .../qcom/x1e78100-lenovo-thinkpad-t14s.dts    | 11 +++++
->  arch/arm64/boot/dts/qcom/x1e80100-crd.dts     | 11 +++++
->  arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi  |  3 +-
->  drivers/rtc/rtc-pm8xxx.c                      | 44 +++++++++++++------
->  5 files changed, 58 insertions(+), 16 deletions(-)
-> 
-> -- 
-> 2.45.1
-> 
-> 
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Heiner Kallweit <hkallweit1@gmail.com>
+Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Lee Jones <lee@kernel.org>
+Cc: Lukasz Majewski <lukma@denx.de>
+Cc: Pavel Machek <pavel@ucw.cz>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-leds@vger.kernel.org
+---
+ Documentation/devicetree/bindings/leds/common.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index 3e8319e443392..1f1148fdf20c0 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -233,6 +233,12 @@ properties:
+       Maximum timeout in microseconds after which the flash LED is turned off.
+       Required for flash LED nodes with configurable timeout.
+ 
++  # Requires netdev trigger
++  netdev-trigger-mode:
++    description:
++      The netdev LED trigger default mode flags, use TRIGGER_NETDEV_ * flags.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++
+ allOf:
+   - if:
+       required:
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.45.2
+
 
