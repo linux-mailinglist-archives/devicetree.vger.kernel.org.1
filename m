@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-138124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82DE2A0BBCC
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:26:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01C7BA0BBCF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 16:26:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4209E7A1BA5
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:26:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F8697A1CA0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:26:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D33811C5D53;
-	Mon, 13 Jan 2025 15:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54CE01C5D5D;
+	Mon, 13 Jan 2025 15:26:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MfOQiOLm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IrMOxQ1M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB97E240253;
-	Mon, 13 Jan 2025 15:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2202D240253;
+	Mon, 13 Jan 2025 15:26:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736781968; cv=none; b=Mg0WyBS6f4eZxVtlRp6435d+kjmTqIA4bvJjlnkOIMe+sMZ62av4dn9Pke2/cOT1hecx7/E/yNNbtfk0qFVT7D+jRAqseJQL59jdi8PvbixedlIzz9GV34mPSkjsp/K4Y1SArCTSlBCHXqOHnLckNgiswtHnPJa5zCA6SjUGJOs=
+	t=1736781970; cv=none; b=s/QjsY/4ZzztEpPRZ/E/5+sVWjHZKJDI/3fB4nlsez/HUS3D7b+2ckqNV+vCPmUx+ZB1Cp9F2XIoxFLE/M0HI/31mhLWJ2p/vEs9L3A1TSS7cCyQ9kuSlIclWIwSBnFh15/RU5BvO7nACH0YVrSAD0bssZyzvbtu3TUCVTuH2dI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736781968; c=relaxed/simple;
-	bh=73D5EHe/Vgj6koGgSYdh+Yle0nMTbNBUnceSww4jyq8=;
+	s=arc-20240116; t=1736781970; c=relaxed/simple;
+	bh=SHv5WGVqcb9Ckrr9LW4LClgkQEX+U6HBdJhDCMNsKWA=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=cTY3YLu7rzY3LHYS+ie03sJ2G2iqXuQIZBHLrqFeTO7ZuPLTME7fJteqkgmLb2hm796UValICHgycZq4jo1G/gPV+Pwx9BMqXKe60WAUgNQo+9lh4yk2ETcCKyS1x8YAnblm64AYDZk6BNAa8R5VgsbF3bQxCQbmMBTHlpZNk7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MfOQiOLm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EB2EC4CEE4;
-	Mon, 13 Jan 2025 15:26:08 +0000 (UTC)
+	 Message-Id:Subject; b=Dz9/+A4gaikoGf74GyaNQuuop5TvkcbIxzBrnnMQb4rpzfAs973ZekmgKrb82jj3eyalDFGzbEiqdn1uYXPVKTTrWDLZ88MJhYhUbegGW7xKjgbS3c6Eaa4McFkrcWcaS7IK1igCAhOdLVD2brREip29XLOvqgmAnaxE1L6XMBc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IrMOxQ1M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87055C4CED6;
+	Mon, 13 Jan 2025 15:26:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736781968;
-	bh=73D5EHe/Vgj6koGgSYdh+Yle0nMTbNBUnceSww4jyq8=;
+	s=k20201202; t=1736781969;
+	bh=SHv5WGVqcb9Ckrr9LW4LClgkQEX+U6HBdJhDCMNsKWA=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=MfOQiOLmtiZszoCJizUkuHWAr8UTK+MHfQ3OoJuleUWBGRwrxuvTwDO21wUuejKwv
-	 E+kSW4GzY4BC+LN46kbEibK3lWFSOE64/RWOsqisuGcjdNXREKmQpK0qbN3Z5RT1k4
-	 O8UDuFXX9hkxXoAjiP90toBFuHiCPoeiAJiHQP/PIwDoOXNm+ongQ5FNElp30dXT+3
-	 NmLqCJ/5TW1aXlU7fueGswJlbZ2kQ0UPYwdrumrc9gMU8V2osUGKKTCltO1dBg+bIu
-	 g2czujMlqzvSAV4QOOgzcSK+F2xtkr9DiFKaH1qnvgIFJOucT+UlG1yepKOsV6QzP0
-	 RXtCEpVA3AAOg==
-Date: Mon, 13 Jan 2025 09:26:07 -0600
-Content-Type: text/plain; charset="us-ascii"
+	b=IrMOxQ1MPWoCY7zQ0i7+/pUC0xeQ57oKXxNKhyK3p45LnKDFNSoAcTMElCZM37OJ/
+	 a5sLBtFXtPXFbqnwlFViqhKUYtHsL7AQQ/UKQ4RbonIWLYbRJjEJcxUSwZHysOMjhe
+	 aSSjlzLntzKNk/0qna8VMPq+pQnuMimPF+4hUTW/mu44sTtSt6D4DdFLP5N3r25XhU
+	 A3ddfhLLJCAkI7EEAMZLeb6no2vZGVKT3G9RpiQI4/St5VMbQvHoetV82WnqtZjPYS
+	 sG5ubspWVrAo/6GnXImz8FmP2KwO0ercQbMNfu4JRjf6/fn5U0Z1muAae3VVTQKZGa
+	 KW+O/QjJ11/ZA==
+Date: Mon, 13 Jan 2025 09:26:08 -0600
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -51,50 +51,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, "Kirill A. Korinsky" <kirill@korins.ky>, 
- oe-kbuild-all@lists.linux.dev
-To: kernel test robot <lkp@intel.com>
-In-Reply-To: <202501122343.SKoJXYQa-lkp@intel.com>
-References: <871px910m1.wl-kirill@korins.ky>
- <202501122343.SKoJXYQa-lkp@intel.com>
-Message-Id: <173678160118.2153260.16967853026754163149.robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: add HONOR MagicBook Art 14
- devicetree
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+ Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+ Guenter Roeck <linux@roeck-us.net>, linux-renesas-soc@vger.kernel.org, 
+ Stephen Boyd <sboyd@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, linux-clk@vger.kernel.org, 
+ linux-watchdog@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+ Biju Das <biju.das.jz@bp.renesas.com>, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+In-Reply-To: <20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Message-Id: <173678160483.2153339.17454160603856685559.robh@kernel.org>
+Subject: Re: [PATCH v3 0/6] Add support to retrieve the bootstatus from
+ watchdog for RZ/V2H(P) SoC
 
 
-On Mon, 13 Jan 2025 00:03:47 +0800, kernel test robot wrote:
-> Hi Kirill,
+On Mon, 13 Jan 2025 11:23:43 +0000, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > 
-> kernel test robot noticed the following build errors:
+> Hi All,
 > 
-> [auto build test ERROR on next-20250110]
-> [cannot apply to robh/for-next v6.13-rc6 v6.13-rc5 v6.13-rc4 linus/master v6.13-rc6]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> This patch series adds SYSCON support to retrieve boot status information
+> for RZ/V2H(P) SoC.
+> Summary of Changes,
 > 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Kirill-A-Korinsky/arm64-dts-qcom-x1e80100-add-HONOR-MagicBook-Art-14-devicetree/20250112-061420
-> base:   next-20250110
-> patch link:    https://lore.kernel.org/r/871px910m1.wl-kirill%40korins.ky
-> patch subject: [PATCH] arm64: dts: qcom: x1e80100: add HONOR MagicBook Art 14 devicetree
-> config: arm64-randconfig-001-20250112 (https://download.01.org/0day-ci/archive/20250112/202501122343.SKoJXYQa-lkp@intel.com/config)
-> compiler: aarch64-linux-gcc (GCC) 14.2.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250112/202501122343.SKoJXYQa-lkp@intel.com/reproduce)
+>     Clock:
+>         Add syscon compatible support to the CPG block in bindings and
+>         device trees.
 > 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202501122343.SKoJXYQa-lkp@intel.com/
+>     Watchdog:
+>         Document the renesas,r9a09g057-syscon-wdt-errorrst property.
+>         Update the watchdog driver to fetch and report boot status via
+>         Error Reset Registers (CPG_ERROR_RSTm).
 > 
-> All errors (new ones prefixed by >>):
+>     Device Tree:
+>         Add the syscon property to CPG and WDT nodes in R9A09G057 and
+>         R9A09G047 SoC DTSI.
 > 
-> >> Error: arch/arm64/boot/dts/qcom/x1e80100-honor-magicbook-art-14.dts:1093.1-12 Label or path ufs_mem_hc not found
-> >> Error: arch/arm64/boot/dts/qcom/x1e80100-honor-magicbook-art-14.dts:1102.1-13 Label or path ufs_mem_phy not found
->    FATAL ERROR: Syntax error parsing input tree
+> These changes enable the watchdog driver to identify boot sources like
+> Power-on Reset and Watchdog Reset, improving system diagnostics.
+> 
+> v2->v3
+> - Updated comment section to mentione there arent any ABI breakages with
+>   this patch series.
+> 
+> Cheers,
+> Prabhakar
+> 
+> Lad Prabhakar (6):
+>   dt-bindings: clock: rzv2h-cpg: Add syscon compatible for CPG block
+>   arm64: dts: renesas: r9a09g047: Add `syscon` compatible for CPG node
+>   arm64: dts: renesas: r9a09g057: Add `syscon` compatible for CPG node
+>   dt-bindings: watchdog: renesas: Document
+>     `renesas,syscon-cpg-error-rst` property
+>   watchdog: rzv2h_wdt: Add support to retrieve the bootstatus
+>     information
+>   arm64: dts: renesas: r9a09g057: Add `renesas,syscon-cpg-error-rst`
+>     property to WDT node
+> 
+>  .../bindings/clock/renesas,rzv2h-cpg.yaml     | 10 +++---
+>  .../bindings/watchdog/renesas,wdt.yaml        | 17 +++++++++
+>  arch/arm64/boot/dts/renesas/r9a09g047.dtsi    |  2 +-
+>  arch/arm64/boot/dts/renesas/r9a09g057.dtsi    |  6 +++-
+>  drivers/watchdog/rzv2h_wdt.c                  | 35 +++++++++++++++++++
+>  5 files changed, 64 insertions(+), 6 deletions(-)
 > 
 > --
-> 0-DAY CI Kernel Test Service
-> https://github.com/intel/lkp-tests/wiki
+> 2.43.0
+> 
 > 
 > 
 
@@ -113,11 +142,9 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/nxp/' for 202501122343.SKoJXYQa-lkp@intel.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/renesas/' for 20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com:
 
-arch/arm/boot/dts/nxp/imx/imx6q-dmo-edmqmx6.dtb: /soc/bus@2100000/mipi@21dc000: failed to match any schema with compatible: ['fsl,imx6-mipi-csi2']
-arch/arm/boot/dts/nxp/imx/imx6q-cm-fx6.dtb: /soc/bus@2100000/mipi@21dc000: failed to match any schema with compatible: ['fsl,imx6-mipi-csi2']
-arch/arm/boot/dts/nxp/imx/imx6q-phytec-mira-rdk-nand.dtb: /display-subsystem: failed to match any schema with compatible: ['fsl,imx-display-subsystem']
+arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dtb: /soc/spi@10060000/flash@0: failed to match any schema with compatible: ['micron,mt25qu512a', 'jedec,spi-nor']
 
 
 
