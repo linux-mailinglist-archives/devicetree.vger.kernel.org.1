@@ -1,160 +1,264 @@
-Return-Path: <devicetree+bounces-137852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 506B7A0AE30
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 05:31:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C32AA0AE33
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 05:32:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24B8C3A67CB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 04:31:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74E59164E1B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 04:32:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D1121448E0;
-	Mon, 13 Jan 2025 04:31:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8685E1494A3;
+	Mon, 13 Jan 2025 04:32:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="HQMw8pc0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cPYvG8+C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 982452F56;
-	Mon, 13 Jan 2025 04:31:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FB712F56;
+	Mon, 13 Jan 2025 04:32:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736742663; cv=none; b=mu01YpIS8GZmGhnT8VkoM7Zy98rSVzdse55m/BMhxcyp+TOVPkRDbuV9sbIlp5Ku41htMKp2QkEiHwzWAWVqB5ZdlkHwnNEQnZNJW2AhVB01GNAR4E+9I6gky0PTmZ3FoNfaRTDmH78pDmSAko4w/v88GMslv4cVfQc8mnibwb8=
+	t=1736742743; cv=none; b=WHZslcV+9KnKDxw4Q2MiMrRo8VLQtkavbz4P6c47BMdOFuSTENywmkakWaMsqElfbMjzBuDVdx8f1faDsFFsSVFYsOSYxRC6RCb6XAZtAHn4ikv3S9toFDgV7WZ0xtKolFA7hnjFZjQClcdOpjpiOw321OeFyt45kAKbLGV6wYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736742663; c=relaxed/simple;
-	bh=quZ9KRiWywfkBtSwwRp2znsItWyB+yJKnyOvmlDbb8o=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=YfH05NHQgzZ46QlaTVtrej/TGuaQwqyMcipehL14UQ7iivXC5bNn3mQ5tsKTivVMY5dWFbi98z1QXlDxWhy87spaPla75KSjUr2UaWvTAX2a+vHh44wV40oi9pVLjJi0RjKzTkdD+mYh2X9Wg7fxKpwkyCFBLjvbFX0oMHdXc+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=HQMw8pc0; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1736742743; c=relaxed/simple;
+	bh=wx2YLbqt4T6HFJTSEsrYSpp2s62eqZMG59BLn0D0xCg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WxIkMK4C4q8tjksXXQ6qUlStqZ4wQI0RUYr2j0TeO7Cwlz5R0uD+/jhvx5REeX+/O4aIu1EKlJMVG78PJ4tT4xDSsC7Zljn+Yt2vEsM4NuHufQSjarjtfkfSt1M7GPrytAo2DyFHe3G/z21q/FEZB7bu05OKXVNpwgVye3ikyfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cPYvG8+C; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50D1qdj0013279;
+	Mon, 13 Jan 2025 04:32:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=xY5s+eUJtznQ4mpAuoSmEs
+	DnruyscamnW70cYuv6ya8=; b=cPYvG8+CQUlPcv240QkL0td7f7SldxIXzYHSOF
+	ChIfFAAURT6v0E3F0rhLbKBo10n4NCkdPQ0bbKqEKQZJy1YDKI8bMfqbc/2KnuOi
+	0NZco01LJhsto6WXOyNeJSIJOcSWraMK4XFkMMn418iLM/b+FNbuU1eWHhTRSB6u
+	eeEhzjqX3gezj//H0iQo6Y66hYnbmJctdEDEe2anvA/hvlAlwp/6IQN1Wzhi0O8i
+	1YeY+o63gb8YroXLnr4r8EG1ibWtSOpRixTneNFZKvMRPHvfp1oUOKOQaKDvqL7y
+	svewuDmujetgkb0WYrqwnBQAv1Ll/ZcaNgYXDz/IAZXgInRg==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 444shqg9pg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 04:32:16 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50D4WEYP021356
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 04:32:14 GMT
+Received: from hu-depengs-sha.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Sun, 12 Jan 2025 20:32:07 -0800
+From: Depeng Shao <quic_depengs@quicinc.com>
+To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <vladimir.zapolskiy@linaro.org>,
+        <hverkuil@xs4all.nl>
+CC: <quic_eberman@quicinc.com>, <quic_depengs@quicinc.com>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+Subject: [PATCH v9 00/16] media: qcom: camss: Add sm8550 support
+Date: Mon, 13 Jan 2025 10:01:17 +0530
+Message-ID: <20250113043133.1387162-1-quic_depengs@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1736742659;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=07ejYXIKIrcD3/kHRGf9djGVZsaJOUEXa1BtdRMH9Dw=;
-	b=HQMw8pc01xVq5qweIoyG+O9dX2sCtsMT7qubGQMankj+ewQmkUqfUteq8KagLgXr7fnQd6
-	hX6ey6CdgF+DAzQezUXMy35u0pzDqfb0MjCtblTTnjSYd9WV8MzPN0FpZdekwZpgNNx+bZ
-	1bM4jjH7prDU6UYUaOP9R7U3hEWg/4DzLN/UmeM2i6JQraf/kAw7i/3sQnlnf3H6FKV7XR
-	NtA1pggxmGSz+I6CqJjnYi1balKCXFERMvNWL3/xbABDtQ3D0IkUxDghMChXL4cWEuiOoA
-	U2u+v1od9oU7zB64+kyXInci43aYdfACpWZaGtNQDzm8Ti3glxnOZ3vhmYJAsA==
-Date: Mon, 13 Jan 2025 05:30:59 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Junhao Xie <bigfoot@classfun.cn>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Jonas
- Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>, FUKAUMI Naoki
- <naoki@radxa.com>, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 0/3] Add support for Ariaboard Photonicat RK3568
-In-Reply-To: <526e0c19-6495-4dcf-bf6b-b5bd62a7a631@classfun.cn>
-References: <20250112073344.1976411-1-bigfoot@classfun.cn>
- <c520a0d829bbe26b9802f57f94f3957c@manjaro.org>
- <526e0c19-6495-4dcf-bf6b-b5bd62a7a631@classfun.cn>
-Message-ID: <ff16c764821c3d010f49524e4a3a177b@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: leiR1q5JoAZupUctNr8sKxwj-BbeRWC8
+X-Proofpoint-GUID: leiR1q5JoAZupUctNr8sKxwj-BbeRWC8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ mlxlogscore=999 priorityscore=1501 adultscore=0 suspectscore=0
+ clxscore=1015 phishscore=0 spamscore=0 mlxscore=0 lowpriorityscore=0
+ bulkscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2501130036
 
-Hello Junhao,
+v9:
+- Add RB for the dt-binding change - Krzysztof
+- Rebase the patch [9/16] due to conflict - Bryan
+- Link to v8: https://lore.kernel.org/all/20250108143733.2761200-1-quic_depengs@quicinc.com/
 
-On 2025-01-12 23:27, Junhao Xie wrote:
-> On 2025/1/12 16:50, Dragan Simic wrote:
->> On 2025-01-12 08:33, Junhao Xie wrote:
->>> Add dts for Ariaboard Photonicat RK3568.
->>> 
->>> This series bring support for:
->>> * Debug UART
->>> * SDIO QCA9377 WiFi and Bluetooth
->>> * M.2 E-Key PCIe WiFi and Bluetooth
->>> * M.2 B-Key USB Modem WWAN
->>> * Ethernet WAN Port
->>> * MicroSD Card slot
->>> * eMMC
->>> * HDMI Output
->>> * Mali GPU
->>> * USB Type-A
->>> 
->>> Changed from v1:
->>> - move some general nodes (firmware, ramoops, reboot-mode) to 
->>> rk356x.dtsi
->> 
->> This entry from the changelog caught my attention, so I tried
->> to find out what exactly happened back then.  Though, after going
->> through the mailing list archive, I still don't see where the
->> as-described change took place, so perhaps this changelog entry
->> needs adjusting.
-> 
-> Chukun Pan suggested moving these nodes to rk356x.dtsi, but I have
-> not done that yet and simply deleted them. I will fix the changelog.
-> https://lore.kernel.org/lkml/20240905034009.28124-1-amadeus@jmu.edu.cn/
-> 
-> - remove some general nodes (firmware, ramoops, reboot-mode)
+v8:
+- Add correct version number for each patch - Krzysztof, Hans, Bryan
+- Correct the copyright in patches [15/16] and [16/16]
+- Link to v7: https://lore.kernel.org/all/20241225133523.4034820-1-quic_depengs@quicinc.com/
 
-Oh, thanks for the nudge, I just added a TODO to "sprinkle" a few
-"syscon-reboot-mode" and "ramoops" nodes onto the relevant SoC dtsi
-files.  Those will be highly useful when debugging mysterious crashes
-and lockups that happen on various devices in the field.
+v7:
+- Due to the patches in https://lore.kernel.org/all/20241217140656.965235-1-quic_vikramsa@quicinc.com/
+  are merged, so rebased below patches to fix the conflict.
+  media: qcom: camss: csiphy-3ph: Remove redundant PHY init sequence control loop
+  media: qcom: camss: csiphy-3ph: Move CSIPHY variables to data field inside csiphy struct
+  media: qcom: camss: Add sm8550 compatible
+  media: qcom: camss: csiphy-3ph: Move CSIPHY variables to data field inside csiphy struct
+  media: qcom: camss: csiphy-3ph: Add Gen2 v2.1.2 two-phase MIPI CSI-2 DPHY support
+  media: qcom: camss: Add support for VFE 780
+- Add RB for "media: qcom: camss: Add CSID 780 support" - Bryan
+- Use TAG name for ICC and remove offline HW ICC - Bryan
+- Remove the logic that moving enable_irq();/disable_irq(); to wm_start() 
+  and wm_stop() to make sure no logical change in VFE refactor change.
+- Update the commit message and title for the TPG change. - Bryan
+- Link to v6: https://lore.kernel.org/all/20241211140738.3835588-1-quic_depengs@quicinc.com/
 
->>> - gmac1 change to phy-mode rgmii-id
->>> - corrected some regulator to be closer to schematics
->>> - rename rk3568-ariaboard-photonicat.dts to rk3568-photonicat.dts
->>> https://lore.kernel.org/lkml/20240904111456.87089-1-bigfoot@classfun.cn/
->>> 
->>> Changed from v2:
->>> - remove unused headers
->>> - corrected some regulator to be closer to schematics
->>> - remove usb_host1_ohci, usb_host1_ehci, usb2phy1_host that have no 
->>> connection
->>> https://lore.kernel.org/lkml/20240906045706.1004813-1-bigfoot@classfun.cn/
->>> 
->>> Changed from v3:
->>> - corrected some regulator to be closer to schematics
->>> - changed to using clk32k_out1 in xin32k
->>> https://lore.kernel.org/lkml/20240911122809.1789778-2-bigfoot@classfun.cn/
->>> 
->>> Changed from v4:
->>> - corrected some regulator to be closer to schematics
->>> - corrected some label to match node name
->>> - use resets props in phy node instead deprecated snps,reset-gpio
->>> https://lore.kernel.org/lkml/20240914145549.879936-1-bigfoot@classfun.cn/
->>> 
->>> Changed from v5:
->>> - resort regulator nodes
->>> - remove dr_mode from usb_host1_xhci
->>> https://lore.kernel.org/lkml/20241108031847.700606-1-bigfoot@classfun.cn/
->>> 
->>> Junhao Xie (3):
->>>   dt-bindings: vendor-prefixes: Add prefix for Ariaboard
->>>   dt-bindings: arm: rockchip: Add Ariaboard Photonicat RK3568
->>>   arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
->>> 
->>>  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
->>>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->>>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->>>  .../boot/dts/rockchip/rk3568-photonicat.dts   | 599 
->>> ++++++++++++++++++
->>>  4 files changed, 607 insertions(+)
->>>  create mode 100644 
->>> arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
-> 
-> Thanks for your review, I will fix all problems in next version!
+v6:
+- Add bus type property in dt-binding which will be limited
+  by a latest change 
+  https://lore.kernel.org/all/20241209-camss-dphy-v1-0-5f1b6f25ed92@fairphone.com/
+- Add RB for "media: qcom: camss: Add sm8550 compatible" and
+  "media: qcom: camss: Add support for VFE 780"
+- Uppercase the hex in csiphy register list - Bryan
+- Add empty function for csid tpg - Vladimir
+- Set testgen mode to CSID_PAYLOAD_MODE_DISABLED in subdev init interface
+- encapsulate the guard __thus__ for new header - Bryan
+- Add a standalone patch for the platform which doesn't support CSID TPG
+  to make sure new platform driver can set CSID_PAYLOAD_MODE_DISABLED
+  to disable TPG
+- Update the csid for csid and vfe driver - Bryan
+- Link to v5: https://lore.kernel.org/all/20241205155538.250743-1-quic_depengs@quicinc.com/
 
-Thanks, although it was just a "mile-high" review that covered
-only a few things that caught my attention. :)
+v5:
+- Update dt-bindings required items order - Krzysztof
+- Sort the reg order based on the comments in sc7280 dt-binding - Vladimir
+- Change the irq type to IRQ_TYPE_EDGE_RISING - Vladimir
+- Remove the Krzysztof's RB tag from dt-binding patch due to above
+  updates in dt-binding patch
+- Move regulator from csid resource to csiphy resource - Bryan, Vladimir
+- Move the change to add default case in vfe_src_pad_code to a
+  standalone patch. - Bryan
+- Rename csid-gen3 as csid-780 - Bryan
+- use macros() to bury bit shifts - Bryan
+- Sort the macros by register offset order  -  Vladimir
+- Redefine a macro for rup_aup in csid driver - Vladimir
+- Remove the unused macros in vfe 780 driver - Vladimir
+- Add dummy function for unsupported hw_ops in vfe 780
+  driver - Vladimir, Bryan
+- Use a standalone patch for the callback API of RUP and buf done update
+- Use a standalone patch to make CSID TPG optional - Vladimir
+- Link to v4: https://lore.kernel.org/all/20240812144131.369378-1-quic_depengs@quicinc.com/
+
+v4:
+- Update dt-bindings based on comments - Krzysztof, bod, Vladimir
+- Move common code into csid core and vfe core driver - bod
+- Remove *_relaxed in the csid and vfe drivers - Krzysztof
+- Reorganize patches in logical junks, make sure that new added
+structures have users in current patch - Krzysztof
+- Remove notify function  and add new functions in camss for buf done
+and reg update - bod
+- Remove custom code to get csid base - bod
+- Remove ISR function in vfe780 driver since it is never fired - bod
+- Move csid_top_base to camss structure since we only have one csid
+top block, and just need to get base once for csid top
+- Add Vladimir's RB
+- Remove prerequisite-patch-id in the cover letter since the changes
+have been merged
+- Add dtsi patch link for reference - Krzysztof
+https://lore.kernel.org/all/20240807123333.2056518-1-quic_depengs@quicinc.com/
+- Link to v3: https://lore.kernel.org/all/20240709160656.31146-1-quic_depengs@quicinc.com/
+
+v3:
+- Rebased the change based on below change which will be merged firstly.
+"Move camss version related defs in to resources"
+Link: https://lore.kernel.org/all/20240522154659.510-1-quic_grosikop@quicinc.com/
+- Rebased the change based on Bryan's csiphy optimization change and add
+these changes into this series, so that the new csiphy-3ph driver don't
+need to add duplicate code. This has got Bryan's permission to add his
+patches into this series.
+- Refactor some changes based on the comments to move the random code to
+patches where they are used.
+- Remove the vfe780 irq function since it isn't doing the actual work.
+- Add dt-binding for sm8550 camss driver.
+Link to V2: https://lore.kernel.org/all/20240320141136.26827-1-quic_depengs@quicinc.com/
+
+v2:
+- Update some commit messages
+Link to V1: https://lore.kernel.org/all/20240320134227.16587-1-quic_depengs@quicinc.com/
+
+v1:
+SM8550 is a Qualcomm flagship SoC. This series adds support to
+bring up the CSIPHY, CSID, VFE/RDI interfaces in SM8550.
+
+SM8550 provides
+
+- 3 x VFE, 3 RDI per VFE
+- 2 x VFE Lite, 4 RDI per VFE
+- 3 x CSID
+- 2 x CSID Lite
+- 8 x CSI PHY
+
+Bryan O'Donoghue (6):
+  media: qcom: camss: csiphy-3ph: Fix trivial indentation fault in
+    defines
+  media: qcom: camss: csiphy-3ph: Remove redundant PHY init sequence
+    control loop
+  media: qcom: camss: csiphy-3ph: Rename struct
+  media: qcom: camss: csiphy: Add an init callback to CSI PHY devices
+  media: qcom: camss: csiphy-3ph: Move CSIPHY variables to data field
+    inside csiphy struct
+  media: qcom: camss: csiphy-3ph: Use an offset variable to find common
+    control regs
+
+Depeng Shao (10):
+  media: qcom: camss: csid: Move common code into csid core
+  media: qcom: camss: vfe: Move common code into vfe core
+  media: qcom: camss: Add callback API for RUP update and buf done
+  media: qcom: camss: Add default case in vfe_src_pad_code
+  media: qcom: camss: csid: Only add TPG v4l2 ctrl if TPG hardware is
+    available
+  dt-bindings: media: camss: Add qcom,sm8550-camss binding
+  media: qcom: camss: Add sm8550 compatible
+  media: qcom: camss: csiphy-3ph: Add Gen2 v2.1.2 two-phase MIPI CSI-2
+    DPHY support
+  media: qcom: camss: Add CSID 780 support
+  media: qcom: camss: Add support for VFE 780
+
+ .../bindings/media/qcom,sm8550-camss.yaml     | 597 +++++++++++++
+ drivers/media/platform/qcom/camss/Makefile    |   2 +
+ .../platform/qcom/camss/camss-csid-4-1.c      |  19 -
+ .../platform/qcom/camss/camss-csid-4-7.c      |  42 -
+ .../platform/qcom/camss/camss-csid-780.c      | 337 ++++++++
+ .../platform/qcom/camss/camss-csid-780.h      |  25 +
+ .../platform/qcom/camss/camss-csid-gen2.c     |  60 --
+ .../media/platform/qcom/camss/camss-csid.c    | 137 ++-
+ .../media/platform/qcom/camss/camss-csid.h    |  31 +
+ .../qcom/camss/camss-csiphy-2ph-1-0.c         |   6 +
+ .../qcom/camss/camss-csiphy-3ph-1-0.c         | 794 ++++++++++--------
+ .../media/platform/qcom/camss/camss-csiphy.c  |   4 +
+ .../media/platform/qcom/camss/camss-csiphy.h  |   8 +
+ .../media/platform/qcom/camss/camss-vfe-17x.c | 112 +--
+ .../media/platform/qcom/camss/camss-vfe-4-1.c |   9 -
+ .../media/platform/qcom/camss/camss-vfe-4-7.c |  11 -
+ .../media/platform/qcom/camss/camss-vfe-4-8.c |  11 -
+ .../media/platform/qcom/camss/camss-vfe-480.c | 274 +-----
+ .../media/platform/qcom/camss/camss-vfe-780.c | 159 ++++
+ drivers/media/platform/qcom/camss/camss-vfe.c | 274 ++++++
+ drivers/media/platform/qcom/camss/camss-vfe.h |  59 +-
+ drivers/media/platform/qcom/camss/camss.c     | 359 ++++++++
+ drivers/media/platform/qcom/camss/camss.h     |   4 +
+ 23 files changed, 2464 insertions(+), 870 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sm8550-camss.yaml
+ create mode 100644 drivers/media/platform/qcom/camss/camss-csid-780.c
+ create mode 100644 drivers/media/platform/qcom/camss/camss-csid-780.h
+ create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-780.c
+
+
+base-commit: 2b88851f583d3c4e40bcd40cfe1965241ec229dd
+-- 
+2.34.1
+
 
