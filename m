@@ -1,181 +1,202 @@
-Return-Path: <devicetree+bounces-137871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 531B1A0AED9
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 06:40:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E97A0AEF3
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 06:56:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D586A3A7E7E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 05:40:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 975B31642BC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 05:56:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE36A231A28;
-	Mon, 13 Jan 2025 05:40:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53BB3231A23;
+	Mon, 13 Jan 2025 05:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IDmg6CEO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jDAEIQVX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91D69230D3E;
-	Mon, 13 Jan 2025 05:40:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7EB5231A21;
+	Mon, 13 Jan 2025 05:56:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736746829; cv=none; b=CmDjZ+F6Mp0gPj3TDWU8axRhzjE4kdJMHVfnixHdBD6PBOlaTwLRKTzspO8IHJWz9doAbplun7SoXdPcBYGYEcU2JZeoA03bWz6WCgypO0hUqPnec6ajD41ikAaPEQ6je5B3qOSQOOXiP8/tu0woLdQfTMqpV0sEGNv7mopFiPA=
+	t=1736747777; cv=none; b=cCkWsuB4iSpz7hnlFoIFqYpyaFomESqbzDIMSZZv29CR/QclMeBZbfs89vLMO1QmyOnorGapJ61zu29DZq1upbRtB7zN81qKPbamlLAvfakd246xdk6RLk02UxYhB5ZCuP5vGQFaxOsE/PbXFk/emXSPft2WPW+x9J0jQ+DpbBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736746829; c=relaxed/simple;
-	bh=4m1E63LsxQwGq2W9c7d+meXAs2CvrElfIIgO8UnS36Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oKfbBtRJ2ZXz+B/F/Uh7Fdi0Gi4BbbEwcW4I3uyJVgLJzj9By4JSt3LxNNgoIhK7IFb+LclSWEkgeaQCqakX/D16K1JpjxJtUZMaXN/LnaswhFkXEGJ9T3AjQhwrtP0I6gyzw7CDnoKWbfsSEiv+0NdaoXtOzLbRYjBHdeNvszg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IDmg6CEO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 313D6C4CEE3;
-	Mon, 13 Jan 2025 05:40:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736746829;
-	bh=4m1E63LsxQwGq2W9c7d+meXAs2CvrElfIIgO8UnS36Q=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=IDmg6CEO8/EIjr9rzJsX2CT/BsIN/xTBXrYDQutakRTbYClCExpM5Gtfr347Nvpcd
-	 SeE+stcTfYqwuy4oc0ZLn/ap5y+3xUX1eSQauf7f4FlgvAoe/bz7jRbQgPSnKP5XVr
-	 QSnB6demdqiJvOt8ObE9gv0dR2aEs2bPu5GO8Hd8kWYknhFzhDeb0/l45RRbN7K9aV
-	 7X4sBJo1pzGyuE6k6tDAbQXUn9MDFDNOv67DAbKsFbUEUI8wR/bcPZZNLacIIGHrws
-	 IUVOc54RxUQQ5qlMjG21TZjrwm6qkfFS6QpIGVI9dGOODLrpcLG/8eEH+Cn6pO3+M8
-	 Peu2Dp+DRXtDQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 1F80DC02183;
-	Mon, 13 Jan 2025 05:40:29 +0000 (UTC)
-From: Dimitri Fedrau via B4 Relay <devnull+dimitri.fedrau.liebherr.com@kernel.org>
-Date: Mon, 13 Jan 2025 06:40:13 +0100
-Subject: [PATCH net-next 2/2] net: phy: dp83822: Add support for changing
- the transmit amplitude voltage
+	s=arc-20240116; t=1736747777; c=relaxed/simple;
+	bh=NoZTOLI0Jqi9bqOBRnp6rMReokednWOQjHoLJHtOBGY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=sU7urlqauNJz6RSh7F3FL+LYwsBKBlLTxBypljX+dUOY64MpvOqE3Rfqh6syQw9CWejaH38xHkkwKoPw4Py/CkyiGdlEKr1xFO3X2dgLqRLvozhJ6nnr82IiD80uKcekcUTw013Ya5O5XwdBM9MrvgCvW0fDIcROzmJnESmHeQY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jDAEIQVX; arc=none smtp.client-ip=209.85.216.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2f44353649aso5189607a91.0;
+        Sun, 12 Jan 2025 21:56:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736747774; x=1737352574; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=B5kSRwp/LQmi9TB9FOxDQuTUZ2FNweKukw5dyy4zYRQ=;
+        b=jDAEIQVXLH5Pl/m8RKN1U08AnAhozghYqw+eA5waI5wIHtUel0wa+DwszGKF8HzLU0
+         2n0+lDr1FmZHR6Aa7j3DzT7zyfkMiqgbhwyUoSSie/iUSbJBY6xdKUF/5fe/vDfhGbIx
+         t3hN7+v4TvJdXIsE9j4ETLPG2mToO3QMI6Bsyn+1Rkni32eKvedl4c0V2zwZ0hjRjYde
+         oHcjahiFDX86ABQN5WEG3IFe8U13L2tExWIiKsqBB4HGcXFtHP9am383YMlS32NwOU6q
+         27kiRLB5tJhrV93kNaQ1VzFbFzanbFaiOUhpoLijoozeuMm878GTh2hh7VtyGcGrsKAL
+         LTXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736747774; x=1737352574;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B5kSRwp/LQmi9TB9FOxDQuTUZ2FNweKukw5dyy4zYRQ=;
+        b=AwL/VZlNkC0Oi5X1iDZr0JseCXzPM5CXq0R771HiDEhjoAsxgaA//aAeZdGNRjhEz1
+         us9OV+ik+JxU3rPDyTbxOqN0SyK5MgGfGSlpQ/lEIZeY4bx0+XEI+a1JewIydZjS/qXt
+         HyUgoRUFRJX/MNbaWnTHPRj0B7shjgObg45lfiPZ7Sw+XZyzXw9gasLeeXcW76WibwwE
+         QkUusCefazQMEBLzJWE4NFe7JxtngoUWZEGFxfeQsJQMur4hIgKeybUcNcrzOlRee0x+
+         0709RwBs4pOSPlCF6AfCMXSqRAtfo3XyzfwnrvgH/dxy+6gMLyiPGuorxFF9tSPJbvVI
+         DzEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWL/98ddmxUZy+EWK1O9mlGGsInJwdOPU4X81phlkbCDX2uKdCfvcSdA7TeTXIaYP8b/ef5u/DfaC0+@vger.kernel.org, AJvYcCXfBGY+5x0TcvDhfs6XjHeyQ1wIUEs05qZNrqcVujQbkit9uzEf6s5NwTuAUI5tYyy4h2XXRuOSWsmtXIKU@vger.kernel.org, AJvYcCXu+Nnic17J8HfA44ZvTAGMu5q370XbgNfFnzzZ5BDDbRonNbk8i1O4Y6ktj37lpW+ou5Kx16U9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw24xAYG9jUMa5B3oeZkynW9zoQkZCnWzsWlE26o0oqkFgvBz/r
+	gz6nLNppkhszgXbMnn8Zlk/wJNRmau8W6rQ+SNDZ4dyV2fi+Lk6v
+X-Gm-Gg: ASbGnctVVvCafhO2B2S/syAV4kYLUC3kHj3Pp2qODTyGyqQOINA2PCivcpoCYFBS5rJ
+	d+zlKVeXVhYqXwsGyet+vcO75QNDQ/jNBHsgooobrlzmGBedk1Be1VzypFclX0ndU7DxrDtC3sz
+	M9OyJnLXRS+W/8YkyizE/GhGTI9YIyQ5FrNHVmJWKgUGY6jClrR+5jbRLDwjgKq3XZngCM8/6w4
+	211xRgWmfpnFDC8/VfkSGaSxwyUzybO1vIYhofWX2tD1CC0NdxEYozRpt+ozZQDIPWFPLMR4KMp
+	qn1im6y47wQ4mIYpdMt28g==
+X-Google-Smtp-Source: AGHT+IFmIR9Ae+L9E2pmOyCcc+X8PWxnJne3SU6MtRQ2xXHY6ezLUBmNIufZB6pkQGPkrrzXMSDgtQ==
+X-Received: by 2002:a17:90b:51d1:b0:2ea:7fd8:9dc1 with SMTP id 98e67ed59e1d1-2f548edf181mr30621775a91.18.1736747773860;
+        Sun, 12 Jan 2025 21:56:13 -0800 (PST)
+Received: from yclu-ubuntu.. (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f55942188csm7768806a91.23.2025.01.12.21.56.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 12 Jan 2025 21:56:13 -0800 (PST)
+From: Joey Lu <a0987203069@gmail.com>
+To: andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mcoquelin.stm32@gmail.com,
+	richardcochran@gmail.com
+Cc: alexandre.torgue@foss.st.com,
+	joabreu@synopsys.com,
+	ychuang3@nuvoton.com,
+	schung@nuvoton.com,
+	yclu4@nuvoton.com,
+	peppe.cavallaro@st.com,
+	linux-arm-kernel@lists.infradead.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	openbmc@lists.ozlabs.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Joey Lu <a0987203069@gmail.com>
+Subject: [PATCH net-next v7 0/3] Add support for Nuvoton MA35D1 GMAC
+Date: Mon, 13 Jan 2025 13:54:31 +0800
+Message-Id: <20250113055434.3377508-1-a0987203069@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250113-dp83822-tx-swing-v1-2-7ed5a9d80010@liebherr.com>
-References: <20250113-dp83822-tx-swing-v1-0-7ed5a9d80010@liebherr.com>
-In-Reply-To: <20250113-dp83822-tx-swing-v1-0-7ed5a9d80010@liebherr.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Russell King <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dimitri Fedrau <dimitri.fedrau@liebherr.com>, 
- Dimitri Fedrau <dima.fedrau@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736746828; l=3137;
- i=dimitri.fedrau@liebherr.com; s=20241202; h=from:subject:message-id;
- bh=Js90gzAB4QuC7WswX0cokUbCfUb0Ln86Q2F24a7ti1c=;
- b=PKEKhj/u5oyszmPvrqXVgeZm60wrbUHIjDqyQKCL7WKkHlVo6JOgV7UoG0EqwopmFs7TPibd3
- yp9vGFIIMruBrG7JrFhRxi55ICV8Ak3CVBtDgXfL3TpBjCGBB6QBZj9
-X-Developer-Key: i=dimitri.fedrau@liebherr.com; a=ed25519;
- pk=rT653x09JSQvotxIqQl4/XiI4AOiBZrdOGvxDUbb5m8=
-X-Endpoint-Received: by B4 Relay for dimitri.fedrau@liebherr.com/20241202
- with auth_id=290
-X-Original-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Reply-To: dimitri.fedrau@liebherr.com
+Content-Transfer-Encoding: 8bit
 
-From: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+This patch series is submitted to add GMAC support for Nuvoton MA35D1
+SoC platform. This work involves implementing a GMAC driver glue layer
+based on Synopsys DWMAC driver framework to leverage MA35D1's dual GMAC
+interface capabilities.
 
-Add support for changing the transmit amplitude voltage in 100BASE-TX mode.
-Add support for configuration via DT.
+Overview:
+  1. Added a GMAC driver glue layer for MA35D1 SoC, providing support for
+  the platform's two GMAC interfaces.
+  2. Added device tree settings, with specific configurations for our
+  development boards:
+    a. SOM board: Configured for two RGMII interfaces.
+    b. IoT board: Configured with one RGMII and one RMII interface.
+  3. Added dt-bindings for the GMAC interfaces.
 
-Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
----
- drivers/net/phy/dp83822.c | 35 +++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+v7:
+  - Update dwmac-nuvoton driver
+    - Update probe function to use stmmac_pltfr_probe instead.
 
-diff --git a/drivers/net/phy/dp83822.c b/drivers/net/phy/dp83822.c
-index 4262bc31503b20640f19596449325d8a5938e20c..cc2ee9add648bc5f72dd92c7813ceec5e4b6db53 100644
---- a/drivers/net/phy/dp83822.c
-+++ b/drivers/net/phy/dp83822.c
-@@ -31,6 +31,7 @@
- #define MII_DP83822_RCSR	0x17
- #define MII_DP83822_RESET_CTRL	0x1f
- #define MII_DP83822_MLEDCR	0x25
-+#define MII_DP83822_LDCTRL	0x403
- #define MII_DP83822_LEDCFG1	0x460
- #define MII_DP83822_IOCTRL1	0x462
- #define MII_DP83822_IOCTRL2	0x463
-@@ -123,6 +124,9 @@
- #define DP83822_IOCTRL1_GPIO1_CTRL		GENMASK(2, 0)
- #define DP83822_IOCTRL1_GPIO1_CTRL_LED_1	BIT(0)
- 
-+/* LDCTRL bits */
-+#define DP83822_100BASE_TX_LINE_DRIVER_SWING	GENMASK(7, 4)
-+
- /* IOCTRL2 bits */
- #define DP83822_IOCTRL2_GPIO2_CLK_SRC		GENMASK(6, 4)
- #define DP83822_IOCTRL2_GPIO2_CTRL		GENMASK(2, 0)
-@@ -197,6 +201,12 @@ struct dp83822_private {
- 	bool set_gpio2_clk_out;
- 	u32 gpio2_clk_out;
- 	bool led_pin_enable[DP83822_MAX_LED_PINS];
-+	int tx_amplitude_100base_tx_index;
-+};
-+
-+static const u32 tx_amplitude_100base_tx[] = {
-+	1600, 1633, 1667, 1700, 1733, 1767, 1800, 1833,
-+	1867, 1900, 1933, 1967, 2000, 2033, 2067, 2100,
- };
- 
- static int dp83822_config_wol(struct phy_device *phydev,
-@@ -522,6 +532,12 @@ static int dp83822_config_init(struct phy_device *phydev)
- 			       FIELD_PREP(DP83822_IOCTRL2_GPIO2_CLK_SRC,
- 					  dp83822->gpio2_clk_out));
- 
-+	if (dp83822->tx_amplitude_100base_tx_index >= 0)
-+		phy_modify_mmd(phydev, MDIO_MMD_VEND2, MII_DP83822_LDCTRL,
-+			       DP83822_100BASE_TX_LINE_DRIVER_SWING,
-+			       FIELD_PREP(DP83822_100BASE_TX_LINE_DRIVER_SWING,
-+					  dp83822->tx_amplitude_100base_tx_index));
-+
- 	err = dp83822_config_init_leds(phydev);
- 	if (err)
- 		return err;
-@@ -780,6 +796,8 @@ static int dp83822_of_init(struct phy_device *phydev)
- 	struct dp83822_private *dp83822 = phydev->priv;
- 	struct device *dev = &phydev->mdio.dev;
- 	const char *of_val;
-+	u32 val;
-+	int i;
- 
- 	/* Signal detection for the PHY is only enabled if the FX_EN and the
- 	 * SD_EN pins are strapped. Signal detection can only enabled if FX_EN
-@@ -815,6 +833,23 @@ static int dp83822_of_init(struct phy_device *phydev)
- 		dp83822->set_gpio2_clk_out = true;
- 	}
- 
-+	dp83822->tx_amplitude_100base_tx_index = -1;
-+	if (!device_property_read_u32(dev, "ti,tx-amplitude-100base-tx-millivolt", &val)) {
-+		for (i = 0; i < ARRAY_SIZE(tx_amplitude_100base_tx); i++) {
-+			if (tx_amplitude_100base_tx[i] == val) {
-+				dp83822->tx_amplitude_100base_tx_index = i;
-+				break;
-+			}
-+		}
-+
-+		if (dp83822->tx_amplitude_100base_tx_index < 0) {
-+			phydev_err(phydev,
-+				   "Invalid value for ti,tx-amplitude-100base-tx-millivolt property (%u)\n",
-+				   val);
-+			return -EINVAL;
-+		}
-+	}
-+
- 	return dp83822_of_init_leds(phydev);
- }
- 
+v6:
+  - Update dwmac-nuvoton driver
+    - Use NVT as the previx for all functions, structs, and defines.
+    - Remove unnecessary comments.
+
+v5:
+  - Update yaml
+    - Remove the properties already defined in snps dwmac.
+  - Update dwmac-nuvoton driver
+    - Add a comment to explain the override of PMT flag.
+
+v4:
+  - Update yaml
+    - Remove unnecessary property 'select'.
+    - Remove unnecessary compatible entries and fix items.
+    - Specify number of entries for 'reg'.
+    - Remove already defined property 'phy-handle'.
+    - Update example.
+    - Modify the property internal path delay to match the driver.
+  - Update dtsi
+    - Move 'status' to be the last property.
+  - Update dwmac-nuvoton driver
+    - Use remove instead of remove_new.
+    - Use dev_err_probe instead.
+
+v3:
+  - Update yaml
+    - Fix for dt_binding_check warnings & errors.
+    - Add compatible in snps dwmac.
+  - Update dtsi
+    - Update dtsi to follow examples in yaml.
+  - Update dwmac-nuvoton driver
+    - Fix for auto build test warnings.
+    - Invalid path delay arguments will be returned.
+
+v2:
+  - Update yaml
+    - Rename file to align with the compatible property.
+    - Add an argument to syscon to replace mac-id,
+      with corresponding descriptions.
+    - Use tx-internal-delay-ps and rx-internal-delay-ps properties for
+      configurable path delay with corresponding descriptions,
+      allowing selection between GMAC internal and PHY.
+    - Add all supported phy-mode options.
+    - Remove unused properties.
+  - Update dtsi
+    - Modify syscon configuration to include an argument for
+      GMAC interface selection.
+  - Update dwmac-nuvoton driver
+    - Remove redundant device information print statements.
+    - Remove non-global parameters.
+    - Retrieve GMAC interface selection from the syscon argument.
+    - Parse Tx and Rx path delays by correct properties.
+    - Update configurations to support Wake-on-LAN.
+
+Joey Lu (3):
+  dt-bindings: net: nuvoton: Add schema for Nuvoton MA35 family GMAC
+  arm64: dts: nuvoton: Add Ethernet nodes
+  net: stmmac: dwmac-nuvoton: Add dwmac glue for Nuvoton MA35 family
+
+ .../bindings/net/nuvoton,ma35d1-dwmac.yaml    | 126 ++++++++++++
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+ .../boot/dts/nuvoton/ma35d1-iot-512m.dts      |  12 ++
+ .../boot/dts/nuvoton/ma35d1-som-256m.dts      |  10 +
+ arch/arm64/boot/dts/nuvoton/ma35d1.dtsi       |  54 ++++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-nuvoton.c   | 179 ++++++++++++++++++
+ 8 files changed, 394 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/nuvoton,ma35d1-dwmac.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
 
 -- 
-2.39.5
-
+2.34.1
 
 
