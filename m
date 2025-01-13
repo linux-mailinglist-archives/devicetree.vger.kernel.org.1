@@ -1,78 +1,46 @@
-Return-Path: <devicetree+bounces-137877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDDBCA0AF02
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 06:57:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22598A0AF1C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 07:10:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4913F188533D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 05:57:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 976E27A25D0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 06:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41083231A55;
-	Mon, 13 Jan 2025 05:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D572C230D17;
+	Mon, 13 Jan 2025 06:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HtGL52a9"
+	dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b="IlqVJXcR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out30-111.freemail.mail.aliyun.com (out30-111.freemail.mail.aliyun.com [115.124.30.111])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D89D231A49;
-	Mon, 13 Jan 2025 05:56:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC16E13D504;
+	Mon, 13 Jan 2025 06:10:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.30.111
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736747803; cv=none; b=eKlrDcJek17Z4VgymJLIW1W4jZ93Q8anq7Dd8Op2Pil8wWYZug605wSXFZWxGIIaI9u/xjax2xVInfGaadxH7BTcgrjIiLIqgBY5K6AAwhhXLJeP1h0yu5aZ4UG3BU+pslM+wJJxc80R5/I9FryrRZ58rv8Ta+EpczXiTokqKl0=
+	t=1736748641; cv=none; b=cVplY+HUqEUBwi6HRQbZKGzRKXUiH31qKMuNKuV0sLCaX+YAuyf57woSUfUiLSzDxGFGO8YoaGvd4Jw2ZeVu8kBtzQySuPywc+3yg3Nqgli1LEQ9HXggRc+m/EErmWjNIaTPXvAueUDfRrzz4Q/+CSWLBFG0bMtOsQk1erVZ8Bw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736747803; c=relaxed/simple;
-	bh=1OcVdR8QXo7h7I9CrTdObAst3NnP9BFHsBeH404rn5k=;
+	s=arc-20240116; t=1736748641; c=relaxed/simple;
+	bh=OLnS4dY1F262TKpWd9J+Wp5PORcxdAPh0sFUA6uJon4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dqfug+C6Up9/MPQz3qQZJaDpX4MHGs6SViZx24hm0QiFWqL4DCOMkRt3Y0aSUSZnY9uySmhDWOl2JJi4VbVrQ7LyrTpK65M4r5YG09KmyAy4xiaOiMHTY0TSa+E88k7eL/yay/PFnH/3lOomyP8ZNocRnBE/uCUtnUtqIO6PMfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HtGL52a9; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aaecf50578eso772116866b.2;
-        Sun, 12 Jan 2025 21:56:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736747800; x=1737352600; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UsALnG9/Q3jBM38ejFycw2fZLXx4mUZU9n4CJ679lYQ=;
-        b=HtGL52a9/Tj3YE0vTTCSMkOkbDRZyxx+kELT55tbd3H58foJQcH0AhBRoga6r0JDH8
-         HmT/pmKuptoRw1SG3a8jnVFwY/MosLDo8+2DSkOWuqcu6H3t1ZSRfcgAtl1wkOVSes7j
-         gzUj9LKk0s2+TCXUAbxuyFyclJxjuXqAvqPM7ezxfdlXk1wWMaSQmfbTQu6VHRlAORpa
-         rUjGSkUY0xADWCdsE6DJP+tqjV4DUJrl3hr5kHTf/lML+REvBrV+wY9lmTKofvJGGMme
-         ghde5GOzH32iUgRuajCcI5IDcRa84iDhhJf1st8jaYJBRdUaxx3jEpKW1Ik76W4Qvf1R
-         5MDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736747800; x=1737352600;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UsALnG9/Q3jBM38ejFycw2fZLXx4mUZU9n4CJ679lYQ=;
-        b=fM/mvaQ23HIKpU1o82FziElfW6VF2xf5vnaLiYhXZyogRkHkgfMuhy6p+ktBQ8qcUD
-         Q7n5Mbq+o3qT6SaZuKlWkp8SrxBB7X7+n0Uv6FaBcPeEuKk7C6Gfnii6WqaqaoMDvMEH
-         5a6Pt3g1yHKSAKL/UxzypQWbz2iVMXm5ej9BvLgCC+P3Ud7AXOCp3nyfSUGBX+OHP+mI
-         mF95p8OZWQDfigxCMymp1bpvtzyqJrhuDOHXwIzEC4AbcT+MMkzq4slk2pgReVcy8oql
-         Ex67SZuvjh3KCq/Nvm6jiaD7o2Q/mql3U4giXpszblxAB8EiGmFbtz/QuY9S2ebm9J0y
-         RiYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUoBtbM4wx6iTpa4cY1zPsfoF1q2ruZprj1jX6DLZmkPlybIXGddsbpUthFKPywdLlSFvfn2KaQ0Wum8Q==@vger.kernel.org, AJvYcCWh3b4NDyMTTgV1imZ5vQCq7dm+FT/k5eWva79IbzbCVqZJa4ZCze04QnWsrSxiwK6UQibFh33PdHmA9N4=@vger.kernel.org, AJvYcCXYjv4SWW9Nk888tTU3HE6j+EtwSBkQ+o5e+xGoj5eP4SdSry4B4UFyyJoMG8hkZ+ftXCaeKm0AAhbFgHg=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbWowYxLEkfrZaVt+yL8Sc71mtljq9bdCBKyv8d63Dd55U4MN+
-	GwrwPCDX+/lO2l3IEa5nW+/Az9b5g24VnSBjQEOwy1jJ5kEtP6XWXrxu5A==
-X-Gm-Gg: ASbGncv05MrKyibvo2chfXsHcMp9VBnTETdqEuaKPPFi28moJAZUWO5+dqyBbpgLQYs
-	nFzROapF+9k8qNJqhICv9ta5O/AJC5gqD7jieN1uqceGlbMApQdePe5Ci+dI6P0mVGosTHa7zsR
-	rRrenQBMb0Gl6KnvZ2Ao6m5bUG/HggO/09wk6w8wcyOKOqBpXrxM4+Q0aDdHAL7oSbxTkb8rul/
-	S8Wogh1v1L4WBDU90TS2+R+bb48+NcOM8BSGCNZsxe9ZMsHfLoqNyyTYffwpXmuR5zxrg==
-X-Google-Smtp-Source: AGHT+IGV0nYkYjJVPqWOd5aTZADzdU5bEMNbbXVQ393U2Hur3U0GrL/ykyQaGM250ELY1CffgHr8nw==
-X-Received: by 2002:a17:906:1196:b0:ab2:eb1a:9471 with SMTP id a640c23a62f3a-ab2eb1a9d1cmr767396266b.48.1736747799518;
-        Sun, 12 Jan 2025 21:56:39 -0800 (PST)
-Received: from [192.168.1.10] ([95.43.220.235])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-ab2c90dad57sm458909566b.66.2025.01.12.21.56.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 12 Jan 2025 21:56:39 -0800 (PST)
-Message-ID: <a35c8cfc-d7a1-4c3f-9541-ee247e2490f4@gmail.com>
-Date: Mon, 13 Jan 2025 07:56:38 +0200
+	 In-Reply-To:Content-Type; b=BQLpVRWfz6Gyzt7XFmE8gITx3NxszCsC4UlTOZR2lUQZ92R0/fv+6LyR3aEb3P+5Ya8bgV6Yfs+6bGzbH3mfOokvvUpJxI2aTwJFuY54ehYsQlNoyWfwjyGZp3eJTjK6EthDbfacnc7z0aet3ocjZgGuwS/v326iTe4FRfmbug0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com; spf=pass smtp.mailfrom=linux.alibaba.com; dkim=pass (1024-bit key) header.d=linux.alibaba.com header.i=@linux.alibaba.com header.b=IlqVJXcR; arc=none smtp.client-ip=115.124.30.111
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.alibaba.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.alibaba.com
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linux.alibaba.com; s=default;
+	t=1736748630; h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type;
+	bh=EItjLVmJF27mB8Ga2WTnmZ3AKDY+t6Bh09q/7CtH9VE=;
+	b=IlqVJXcRRNDnBbbm0bgZ4CK4Rpo6UNJ9XKaAZLllNU5lwcQAMDrpJmZmnONuMXE3WU50ZlZ8Ke2f4BRoYTcHSyRDa0dqE+0mIqrjD3kqvFY+UrpT20ZyCliLglDfI6nZTxDX2OcMmrp9YUxNhRLiEsAEJXN4tjBf3dsgj5acZ2A=
+Received: from 30.74.144.122(mailfrom:baolin.wang@linux.alibaba.com fp:SMTPD_---0WNTg6HF_1736748308 cluster:ay36)
+          by smtp.aliyun-inc.com;
+          Mon, 13 Jan 2025 14:05:09 +0800
+Message-ID: <37702364-4452-4ccf-bbe9-9cbe6d21a57f@linux.alibaba.com>
+Date: Mon, 13 Jan 2025 14:05:07 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,40 +48,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/5] ASoC: cpcap: Implement jack headset detection
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-omap@vger.kernel.org, linux-sound@vger.kernel.org
-References: <20241228114514.91594-1-ivo.g.dimitrov.75@gmail.com>
-Content-Language: en-GB
-From: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-In-Reply-To: <20241228114514.91594-1-ivo.g.dimitrov.75@gmail.com>
+Subject: Re: [PATCH V2 0/2] serial: sprd: Modification of UNISOC Platform UART
+ Driver
+To: Wenhua Lin <Wenhua.Lin@unisoc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Orson Zhai <orsonzhai@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>,
+ Cixi Geng <cixi.geng@linux.dev>, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+ wenhua lin <wenhua.lin1994@gmail.com>, Xiongpeng Wu
+ <xiongpeng.wu@unisoc.com>, Zhaochen Su <Zhaochen.Su@unisoc.com>,
+ Zhirong Qiu <Zhirong.Qiu@unisoc.com>
+References: <20250113031917.3354988-1-Wenhua.Lin@unisoc.com>
+From: Baolin Wang <baolin.wang@linux.alibaba.com>
+In-Reply-To: <20250113031917.3354988-1-Wenhua.Lin@unisoc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-ping
 
-On 28.12.24 г. 13:45 ч., Ivaylo Dimitrov wrote:
-> cpcap audio codec found on cpcap PMIC supports headset detection
-> and PTT button through its 3.5 mm jack. This series implements
-> support for those capabilities.
+
+On 2025/1/13 11:19, Wenhua Lin wrote:
+> In order to be compatible with UNISOC's new UART IP, the UART driver uses
+> private data for adaptation. Patch1 adds UART timeout interrupt BIT17, and
+> the old project uses BIT13. In order to be compatible with all projects,
+> private data is used for adaptation. Patch2 adds a new compatible string.
 > 
-> Ivaylo Dimitrov (5):
->    arch: arm: dts: cpcap-mapphone: Set VAUDIO regulator always-on
->    ASoC: cpcap: Implement .set_bias_level
->    dt-bindings: mfd: motorola-cpcap: Document audio-codec interrupts
->    arch: arm: dts: cpcap-mapphone: Add audio-codec jack detection
->      interrupts
->    ASoC: cpcap: Implement jack detection
+> Change in V2:
+> -Change commit message in PATCH 2/2.
+
+You did NOT change any commit messages compared to V1[1]! Please write 
+correct commit messages.
+
+[1] 
+https://lore.kernel.org/lkml/20241113110516.2166328-2-Wenhua.Lin@unisoc.com/
+
+> -Add a new items supports sc9832 compatible string in PATCH 2/2.
 > 
->   .../bindings/mfd/motorola-cpcap.txt           |   9 +
->   .../dts/ti/omap/motorola-cpcap-mapphone.dtsi  |   8 +-
->   sound/soc/codecs/cpcap.c                      | 200 +++++++++++++++++-
->   3 files changed, 215 insertions(+), 2 deletions(-)
+> Wenhua Lin (2):
+>    dt-bindings: serial: Add a new compatible string for UMS9632
+>    serial: sprd: Add support for sc9632
+> 
+>   .../devicetree/bindings/serial/sprd-uart.yaml |  5 +++
+>   drivers/tty/serial/sprd_serial.c              | 41 ++++++++++++++++---
+>   2 files changed, 41 insertions(+), 5 deletions(-)
 > 
 
