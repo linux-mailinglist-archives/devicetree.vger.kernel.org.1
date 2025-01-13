@@ -1,184 +1,162 @@
-Return-Path: <devicetree+bounces-137925-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD78BA0B1EB
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:59:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE1D1A0B248
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:04:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0202165CE7
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:59:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEC3C1887F1F
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1030B234978;
-	Mon, 13 Jan 2025 08:59:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 863D223DEA0;
+	Mon, 13 Jan 2025 09:02:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iF3rsECn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="y5Xxeqbj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6A15233D69;
-	Mon, 13 Jan 2025 08:59:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8AFA2397A6
+	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 09:02:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736758743; cv=none; b=rC55G8hGRbPr2SJzNXZ2yiiU1br+dinLGRWhhFHAFKh/fXT62WU92feTgEC6YbudcaEL2nNeTRNDmKmDGlm8SGBEijFyEbiNUoFT+HktvZF5R9WYG3wiGfsedllome5o6+gwXFAUXXy1/M4MlMLkCyQLN5Xkx5ypM6xJzgc1HAY=
+	t=1736758971; cv=none; b=QMnVV/v/os/k6bW1wKcSeUqHfmX/BHw43hsJ3/DoWf4JJSOSmQBkHEMPRDkgZuU7JHnVX7IM0PJ+nUL5afVRBtfgYp3TFCcrEd6H8ZqeaIAfv7CWhuepQasG85xsqlUY5uuhLVwl2BzaloIF/Jven8H0ihNZsbYn8KtXNmCejqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736758743; c=relaxed/simple;
-	bh=2wJJM13zlSd944RH/1F0Bz3tql/OxPThH7169R04jPw=;
+	s=arc-20240116; t=1736758971; c=relaxed/simple;
+	bh=BkeTz5E8UCQ3jOOXNvrHG/VwprMxWxrenqNBAUuiqLY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fUuIQ0IODsyElxHsm9glXFc2eNo8s75BJ5LirbgxzeBnLVkGrTO+gVxRzRcqQzcnJSxVDbp/F2m4UsUSrSVp/SxwSrPzmkmtcqNgsPIwfawzR+rdqchDrZ+fej5Jx1GhtQ+hc618VrpqLRll63axGuqsUkN/nWOTPBLzXva10qE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iF3rsECn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F7ABC4CED6;
-	Mon, 13 Jan 2025 08:59:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736758742;
-	bh=2wJJM13zlSd944RH/1F0Bz3tql/OxPThH7169R04jPw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iF3rsECnnNXnLPj/o91djAfP13GvTUDHa2aK3jynTdpWUxaFsoHt+YYpkPFr2bKhE
-	 paaaxfqSUYRyNmmn5DgXeZlS7H1ClTLKP+oyDF+5GGDc2WsJ1et8+uLlDwJA6dc8Yh
-	 iBKHhWS8W7njrgoB4rmdN/Dy6jnx/scMlCusFopJtOhRwT7LIC432I46q+uA2e4VTT
-	 IygCnhmFDWjW+tC5D5GmeULFnqs4qDnkJIkQqQYXJQsOvzLw5ublYsF1jTSODgkwbC
-	 9BDvIfgqmUwktgiixLRMuCPn3STy19yGn/+3RanXIrVLiaNUHa+N7JZ6x5ru221kEl
-	 e3ah5b52n3SCg==
-Date: Mon, 13 Jan 2025 09:58:59 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vphl0an8ybXFnaBruLQGtARyxDhoh3r6G69n6PQz9fjAjazpwpRS70xxMIeivYSAYFTR0tJEzXggXz5X0O9jbwlMaH4rCQCmk33gN5X64pdecdIbSu6juWfuoJwxjgiCwd+9TEx+NJ6+pnLAFOWfTvTVJ7dUO7/1p98eAmRZgxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=y5Xxeqbj; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-53df80eeeedso3734168e87.2
+        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 01:02:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736758967; x=1737363767; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VYkQdxTA3vBXlKKUBFkrgSmL9ucWyZWWWLZyZzkAa3w=;
+        b=y5Xxeqbjj8uNxGw+s9dzHDW+sz9PcBTAtEOpuCQWiMm7mTcysxy+UEISy+BlR5+P1V
+         r4KGPcJ0u4CFKLyKbvZduU7V97weYHSiE2v2Ydbp/dkcdR0Tqmp9bnkkUZnIQFTAq4Jf
+         7yFyzuNrPaS0KY6dqyPAKf3l5Koe+rvIYkVvmaa1qcMpRPh6T1MCcA6/j8hXFpiIQNLo
+         4GL4GLiWLRaDlibKF0PefvtD7JSWLsORGCSg8JwnYSIHHMQ6wvFrsrMoH6vl2aW/CqFD
+         etPcnI3/NigJPRF1CcD7uuV+d4DakcTli4lGTZq2I6KboJ2c6VA2SaBFZlKbF7wZiAEn
+         Rf+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736758967; x=1737363767;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VYkQdxTA3vBXlKKUBFkrgSmL9ucWyZWWWLZyZzkAa3w=;
+        b=Eihugh4juKjboCp7ST4zPDK5XTGw4DQqzLHf+O4b+duOkOY6Fb5rNybab0bdI32DZz
+         97WzFchnLo0pwL+AI2dzcCV8nA/RqjuWlWCJl2zRSQH+WOCxJ0G8gRrvS2Px1LPWA7JT
+         TiUOK+0dC5DCARlAvxQnxAlOjFt6zTcKi2fWBcSZtwBVunzopyjQLxnTIkbClK9D2iPI
+         UYLcx4J94N1Csio+ytMaWdpNE3mt8dnadi//pFtas53cYQptusR7OT72220LGz6DbP//
+         SPgGP1lz570tRTi1r+Yi0Bh/6hVpWcHdiNaUjq9bypSRC67PTGsrTkSUfcFo41PHmH5u
+         JqNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU/bYPDBwh65gb5aKZj1zePEv+MH9fVrF3BkAeHRGU1h+EwxcLNdwDuGLFk2hoeCulwL1W4Bb+ZDGd/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYRR1oinVvS5G9sxV5Bnm6Qwk23A1tFV7MtLUA4n4Ldu/HN4gE
+	EnceL0GJ828VzJ7pXud5eAbWKiCllXGml3sjjvn9zeVzQ/wMYML3oFceYlxc/bI=
+X-Gm-Gg: ASbGncuuujOiRaqVr5Sfc6Exw+2xWV2nuBdUhonK0n9DBNx+rEKlSObyerr5nRNM+SB
+	Jg8gLXMMy/vCHXidgIOFugcQxNxIAA1yFruQCkRUt3Pwhm8HFxgoh+EnQdjqDDLnOgtJDHnsfHG
+	PDCgHBJcpgGJDhVNWYOX71reSDFErVI7vLzMFOCMAFFRkBs3B2cwBbClcDm6e61FeixrzpgABQv
+	PB9JB88DAiR/B3x1X0JWSGQ0YOModGNIUpDuDph6bwu+gmdSGbCy6XZZCjt0BxDeHWAXvE/f7OL
+	4PGT9u9PoJxj3ZF5P+k8H8ahPM8VZ6ZTDIav
+X-Google-Smtp-Source: AGHT+IHowqb7rFqBBDpRnlzRpSHyTMrFA26GRZ+fcN9JLnlQvPTm5oxedl6vvT+6rf1rsSPJNSIUoA==
+X-Received: by 2002:a05:6512:3e17:b0:53d:ed69:a593 with SMTP id 2adb3069b0e04-542845282a5mr6463480e87.22.1736758965311;
+        Mon, 13 Jan 2025 01:02:45 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428be5483bsm1300830e87.105.2025.01.13.01.02.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2025 01:02:44 -0800 (PST)
+Date: Mon, 13 Jan 2025 11:02:43 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Yongxing Mou <quic_yongmou@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
 	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Alyssa Ross <hi@alyssa.is>
-Subject: Re: [PATCH v3 1/5] dt-bindings: display: Add Apple pre-DCP display
- controller
-Message-ID: <7rr3fja4rxjbdmgpdqaid5fybiu6uctpbvp24ujv5drfmeiowf@u4pkhzyhy3pd>
-References: <20250112-adpdrm-v3-0-c674dc19fa7f@gmail.com>
- <20250112-adpdrm-v3-1-c674dc19fa7f@gmail.com>
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 0/4] Display enablement changes for Qualcomm QCS8300
+ platform
+Message-ID: <qsq5so5i7fy3r7xcjtcr7aq2vtbywh57j3b3e7ddbsmmeu5qwy@pgcntgxknuul>
+References: <20250113-mdssdt_qcs8300-v3-0-6c8e93459600@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250112-adpdrm-v3-1-c674dc19fa7f@gmail.com>
+In-Reply-To: <20250113-mdssdt_qcs8300-v3-0-6c8e93459600@quicinc.com>
 
-On Sun, Jan 12, 2025 at 09:43:48PM +0100, Sasha Finkelstein wrote:
- +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Input port. Always connected to the primary controller
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Output MIPI DSI port to the panel
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ports
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    dsi@228200000 {
-> +        compatible = "apple,t8103-display-pipe-mipi", "apple,h7-display-pipe-mipi";
-> +        reg = <0x28200000 0xc000>;
+On Mon, Jan 13, 2025 at 04:03:07PM +0800, Yongxing Mou wrote:
+> This series introduces support to enable the Mobile Display Subsystem (MDSS)
+> , Display Processing Unit (DPU), DisplayPort controller for the Qualcomm 
+> QCS8300 target. It includes the addition of the hardware catalog, compatible
+> string, and their YAML bindings.
+> 
+> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
+> ---
+> Changes in v3:Fixed review comments from Krzysztof, Dmitry.
+> - Fix the missing space issue in commit message.[Krzysztof]
+> - Separate the patch for the phy from this series.[Dmitry]
+> - Remove unused dependencies and update in the cover letter.[Dmitry][Krzysztof]
+> - Link to v2: https://lore.kernel.org/r/20241226-mdssdt_qcs8300-v2-0-acba0db533ce@quicinc.com
+> 
+> Changes in v2:Fixed review comments from Krzysztof, Dmitry, Rob.
+> - Decouple the devicetree changes from this series.[Dmitry][Krzysztof]
+> - Drop the dpu driver changes and reuse SA8775P DPU driver.[Dmitry]
+> - Fix compilation issues in MDSS bindings.[Rob][Krzysztof]
+> - Correct formatting errors and remove unnecessary status in MDSS
+>   bindings.[Krzysztof]
+> - Add the the necessary information in MDSS changes commit msg.[Dmitry]
+> - Rebase MDSS driver changes to https://lore.kernel.org/dri-devel/
+>   20241127-msm-mdss-ubwc-v3-0-9782a7c2b023@linaro.org/.[Dmitry]
+> - Package the DisplayPort controller and eDP PHY bindings document to
+>   this patch series.
+> - Collecting MDSS changes reviewd-by Dmitry.
+> - Reuse the sa8775p eDP PHY as a fallback compat.[Dmitry]
+> - Reuse the sm8650 DP controller as a fallback compat.[Dmitry]
+> - Link to v1: https://lore.kernel.org/r/20241127-mdss_qcs8300-v1-0-29b2c3ee95b8@quicinc.com
+> ~
+> 
+> ---
+> Yongxing Mou (4):
+>       dt-bindings: display/msm: Document the DPU for QCS8300
+>       dt-bindings: display: msm: dp-controller: document QCS8300 compatible
+>       dt-bindings: display/msm: Document MDSS on QCS8300
 
-This looks not matching unit address.
+Is there any reason for not using a common style for these three
+commits?
 
-> +        power-domains = <&ps_dispdfr_mipi>;
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
+>       drm/msm: mdss: Add QCS8300 support
+> 
+>  .../bindings/display/msm/dp-controller.yaml        |   4 +
+>  .../bindings/display/msm/qcom,qcs8300-mdss.yaml    | 244 +++++++++++++++++++++
+>  .../bindings/display/msm/qcom,sm8650-dpu.yaml      |  13 +-
+>  drivers/gpu/drm/msm/msm_mdss.c                     |  11 +
+>  4 files changed, 268 insertions(+), 4 deletions(-)
+> ---
+> base-commit: 2b88851f583d3c4e40bcd40cfe1965241ec229dd
+> change-id: 20241224-mdssdt_qcs8300-11b7883dc60b
+> 
+> Best regards,
+> -- 
+> Yongxing Mou <quic_yongmou@quicinc.com>
+> 
 
-Make the example complete, so you will see that address/size cells are
-unnecessary here or, if you really have more than one endpoint, they are
-supposed to be here.
-
-> +            };
-> +
-> +            port@1 {
-> +                reg = <1>;
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/display/apple,h7-display-pipe.yaml b/Documentation/devicetree/bindings/display/apple,h7-display-pipe.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..dc07edccb437b221ea9772b9356e1896326aa7da
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/apple,h7-display-pipe.yaml
-> @@ -0,0 +1,88 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/apple,h7-display-pipe.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Apple pre-DCP display controller
-> +
-> +maintainers:
-> +  - Sasha Finkelstein <fnkl.kernel@gmail.com>
-> +
-> +description:
-> +  A secondary display controller used to drive the "touchbar" on
-> +  certain Apple laptops.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - apple,t8112-display-pipe
-> +          - apple,t8103-display-pipe
-> +      - const: apple,h7-display-pipe
-> +
-> +  reg:
-> +    maxItems: 2
-> +
-> +  reg-names:
-> +    items:
-> +      - const: be
-> +        description: Primary register block, controls planes and blendinga
-
-Description goes to 'reg:' field, just like I asked last time.
-
-> +      - const: fe
-> +        description:
-> +          Contains other configuration registers like interrupt
-> +          and FIFO control
-> +
-> +  power-domains:
-> +    description:
-> +      Phandles to pmgr entries that are needed for this controller to turn on.
-> +      Aside from that, their specific functions are unknown
-> +    maxItems: 2
-> +
-> +  interrupts:
-
-Same comments as before - list and describe the items.
-
-Best regards,
-Krzysztof
-
+-- 
+With best wishes
+Dmitry
 
