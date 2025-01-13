@@ -1,167 +1,129 @@
-Return-Path: <devicetree+bounces-137902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD7E2A0B0A6
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:08:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 605D7A0B0C7
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:15:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 315AB3A3DA6
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:07:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4660A1887401
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:15:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9438D233141;
-	Mon, 13 Jan 2025 08:06:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 714BB2327AE;
+	Mon, 13 Jan 2025 08:14:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KVN45Gn/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D8EE231CA0;
-	Mon, 13 Jan 2025 08:06:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D352A232366
+	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 08:14:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736755607; cv=none; b=uwa27VytO4YYaQ59bQHo9/H/sExoHAaWvECIZStg+dx/DYXdDDAXJsbwGXJsJTvlaux6EqOsocZ6HORmRWlad+J5/wsZq/pOBzitKrWDjmNxnWhgCk356e9NCyYI6oUvJL2XmPkaQxZfasQMrQ/RxYGM3OYfn3qD1goljnASIG0=
+	t=1736756094; cv=none; b=ukXXVM056U0+okfCFeX1BGgbwJgzNSiYsQHYUiXJGj8khEFMbPXYbeiFKzglF4lUL8T6CvP+7Xk3JuJjDM6vfnhv4lF73nHFKWKHM9ZMguIsPcSyDFTWloQ3vN20KBPpD1NGOOAZS3zTkmCS6ghWWIuO1gpLECEvVfPNOi2Ilnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736755607; c=relaxed/simple;
-	bh=6THSFx/AFsr9lz4GIRAGYuA0iwZKBXlb/hbJB4FiF2M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L+/LhY6+ny6BombJ0ZHLhFDGPx5M+AdHv1c2iWvEoQjoWY1Hev0K6Y6p53kL0nUF+kKTGME2aVGmgpDo3dotV9A7E2qHn00hV3/5C13DJJmcjksSrbgxxvyJgGAdcqWFP5YHppznzP3fbgrFOCSysbrqCESvtzqmd/yjYatHPT8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-30229d5b21cso32010591fa.1;
-        Mon, 13 Jan 2025 00:06:44 -0800 (PST)
+	s=arc-20240116; t=1736756094; c=relaxed/simple;
+	bh=Hvgcs+cliAfpJ3VVSWJBygzxwPv3GVFdCfpgC7KIO4A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gRMlMEEUOuHHcar9tUA07oF3KfDtpUDndnFHsYqdYDzoiIi914Kp2qHUVuEBrc86mJBl+XC3J6PD359DjWwkSUruG78mPNBxdgYG0jPzNayO6xfdsUJwRpJPkcHiYw9I1n7b34VjUDEEk9jbhBTBHnVD9XZ6uE8J8fc5TRbSAPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KVN45Gn/; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-30034ad2ca3so28335511fa.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 00:14:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736756090; x=1737360890; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=EiBQMlbbRKX1jfLOnAiy2eBHbg9zc0uMkgrPET/8Jyw=;
+        b=KVN45Gn/TeQcr8nxOFWmfi5aYFaqpsUZngD324pbbkZf3kC87yhZWqMkS8fxtJWyhJ
+         6LUQOO9PbgWAnU/OzQY0oT1Ac+S77Dvy5494MNGw2UpsJoLw9eKpoax0AY86GhSIPP77
+         QdyVLX+NnpqFKhyGxpmFwRa4vsylKm8miJ78niEGgTl9c9FaxxHgw+PTPwDXj2kT06AQ
+         BdVtZE7MQg2AhksRsMRH+zom8UDpHllH3thYlpNKnZBzOFJDnKVL8GBn4SibvFsG/q3M
+         woFfuub6dTfJLowWkXB9WEcmdFDO7U0QfBfgEl4bCayFezUdxd1yeBaizvMp4I9HyZwS
+         xV7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736755601; x=1737360401;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=x9SvbOZC1nnq5Y5FqEi1BPs9LivsVwnmqcjEJAXSzCg=;
-        b=rugAQh+cgkoWHckZ/Co301Ih5408LkV2jtp/wJ8YfosJzEjBzUz8rVNhM8daid047J
-         IQeg+mFPRJSSmP88jzr9A4b6yU5y6MFgrLG63t6YQZvgU2DpTyz90h4VLZXc3fq+uvkC
-         T9KLHtbr/7ICDq41zXoit0Aia5aLhvfj/U2pcrlX4xYGQrhqFjYFaouVkSsE3tLFIeX0
-         wSt0BwMnjjFWSj2GYbYJ2jKMeTJ0ZwJXJO+uSLnPxt7pxPEfFi/sINj3Y4PwZz88skR8
-         mJW/+mot/+aaqedA3WeP5F4R8Mb+GTDE8qpUhV2HIDzIB7yjvdWNTwCMYk4xmRjOaDjO
-         31NQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVKjCLoVi1uW0FuoLiXNzGYp5HR3ezBcB/+Wg3P36lZQfh1MMIqp3NzLEzoglAE5ZESt89Ts4sSZ8Vq@vger.kernel.org, AJvYcCX5PM8stdQDROX+RSNRjdJ+4PGIm4GEnm7Q6VV8/oPMDkbveDGep0RbMdh0ylzoGwaxYoNmiOUBxO++@vger.kernel.org, AJvYcCXYcuhsFmOo3Q6lp5vzNGWgCOgdPVa1C9h+aN92SljWQxq4uHoyjpr59JlG1FR+RC/dEVVacW1HXxk=@vger.kernel.org, AJvYcCXb5kbwcTGL5VJhvDv8v8H75BKRUqTKBhGOpLkTpr2EWBHtAfkOv3Vo8ZicePdWAN20zDnNfQXDDYqPpw==@vger.kernel.org, AJvYcCXr3Fb0xRh87DR+E90ykWhyfNvKeAe2/Jdh3BXhQYHjeuBaak4ApGsEh7tK8Kpdb6+jZwSWE4waS56kjBMw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxweF6nargi/9EzHf4j3INP/FsOD7NDIXgFlGayfymeRLm3zIcM
-	zYWeZ7qyajkMgiQFwRS8/9XdklvQhE+y/0pvDfDvfy8sy1L5xfgjW6evVzA8
-X-Gm-Gg: ASbGncvZjFX1KOasx1HFhSfwS0DK/AguUJ0yJ5UKz10Mq8SAks7JlMnDyazIcAsEOTB
-	5TWHAinTJIyTP9PUKjwxRiP1d57jTiCo9l4zZKDJkr4ntedYADlMSYNSC9kpPdJQTpFl+WHN8SQ
-	ew8uUR4cJe0zNF++bO3L6GvuJrxOC3ImhNe3uN0wGUs5ulaa5j+xFevTJ+Tn/53HEJZ1vh1Xz6Y
-	pcGnqen5c/qo3cwFwPVugGSCesPz+Jv7a3/26DJWEV8haCcy5b4os7zqILkXN7K6CbiNKXNI9Rj
-	OnkJWfUW1g==
-X-Google-Smtp-Source: AGHT+IFrLyVeXUmX1JK92spdrQvhTE35RvlCzsFcOzDe1x8/Vd/a0dn38G9gzxSSwlwTdgMjAX5Czg==
-X-Received: by 2002:a05:651c:a0b:b0:300:1f2c:e3d1 with SMTP id 38308e7fff4ca-305f45a09abmr63215401fa.23.1736755601156;
-        Mon, 13 Jan 2025 00:06:41 -0800 (PST)
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com. [209.85.167.47])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-305ff1c7b6asm14027671fa.79.2025.01.13.00.06.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Jan 2025 00:06:40 -0800 (PST)
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5401d3ea5a1so3956903e87.3;
-        Mon, 13 Jan 2025 00:06:40 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV/lvUq//tBamzpeiNCuKcwJYZOHSKiRaKv0UUDipmJC2R61ooBJyWTyeI/0gco0vVzu0rL5nCzWgi0@vger.kernel.org, AJvYcCVyAZ8m29Kyh+Xunf9uN3zUYsrGgeNCKdPKpVOwm1SMeUzP/ujEUDur9usIrQ3vB7IbRZV4PeQV4/f9@vger.kernel.org, AJvYcCWD+QH8I0S6R/cqvQ4NpV3eySB/PG96YkP1DukBXSpAWDdYvEM2E5tg3cI2keYFzkPcDEOq02u7FpWbG2Mx@vger.kernel.org, AJvYcCWk24AJ3Ce8nk4hIUD7YD0YB3FGFHlkYKuEL3x+MdYr8vSd9Jrwx839a1c5ya/DvZ1MTHDKaHXpWfg=@vger.kernel.org, AJvYcCXHu+0KgXz99ff5dWloZ/ggWYGRPZS5trctFNuolzEnkXtLCOSR3fZjVs9RbxTH/4kv5AoYUs+e/skwZA==@vger.kernel.org
-X-Received: by 2002:a05:6512:1149:b0:540:2201:57d1 with SMTP id
- 2adb3069b0e04-542845c01b8mr6646548e87.49.1736755599852; Mon, 13 Jan 2025
- 00:06:39 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736756090; x=1737360890;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EiBQMlbbRKX1jfLOnAiy2eBHbg9zc0uMkgrPET/8Jyw=;
+        b=mG+TpIDs6XSTdfdjHOl01Di8Iziukwp2aulz5VIG/uKRWTDSrbkLDSKFjW8lUjipcj
+         pfG5HIDJolDmVdFf+dFw5efgjGhZGyeQ2S8d1vPMtbrnofUhJn7mUyF2ImHfB+3HB9TE
+         hT0cTLpCcdLWxS96dCkgM+ZqVG9DmNH59PIEh02z7RBffKl/Xa9G5GxS4fwJ+4OmuLov
+         w/EYgAcmR8sKUzoriQBTFUmqFWWe5vHK7zBOTXe6VaFCLl1xcZmElIbOBifJoJqcRKDj
+         iSG0elriDpUGkc2dSC81yJRDsf4TXyxIvZg3OiKxHrkdVwoAGKiIvu6Xkimgkoul0p8O
+         ZmfA==
+X-Forwarded-Encrypted: i=1; AJvYcCVeJGXxkQDYouZj/kwPby7n0lCzfcehPy7PDl76DJd71oaAoaxVAKAy6D+RXqEjkYr1ZEsWfM88An4E@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxv0NmHA40E9FDUoeGRiprTT0SeqfpqRvJEfSDtSwq7PMkbYuvF
+	lk9nRPEvy69ooNu6CKRgLZ5lhh/WqCCMyoqSNx1iSAcVJ4CALQjEHFZtxog8B0g=
+X-Gm-Gg: ASbGnctjaT8JyRErIasTtQ8y/gKKr0XPZBw613qu1j09F8tsjHELsUJTLAFdmwNLy0b
+	7Jm4nRtvRRI9noYPoa5aAkgMaZQNwjqgzUbJLToAIhdKc9fqdVr/FvDOudH4hDEATPYmtdovX74
+	0YmzPUuz6FPSqCVv+Z9I+BGhoU90e8aYbr7yXFtAT/5v4OF0ejWwTr/V4VMoNdlUIy79PuKZOLi
+	VjUTJys7/cpQVY+M7LNJNsnd3szRVW9+w5RQ0/tJHOiVDvb/XJrfH5AZgPjkY8GwwUhy7iE/au+
+	N6S450KFlEBCpTcYh/GMVayMXdYtE4mpGIo0
+X-Google-Smtp-Source: AGHT+IFiOGkWxTgwDiqqZRV/TncB2+0Lbwph18oB4337Oov0d7u7UgJwOOmW10YyJRV+FY90JH+dtg==
+X-Received: by 2002:a05:6512:39cc:b0:540:3581:5047 with SMTP id 2adb3069b0e04-54284820134mr7051637e87.48.1736756089990;
+        Mon, 13 Jan 2025 00:14:49 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428be49dd5sm1253953e87.48.2025.01.13.00.14.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2025 00:14:48 -0800 (PST)
+Date: Mon, 13 Jan 2025 10:14:46 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Odelu Kukatla <quic_okukatla@quicinc.com>, Mike Tipton <mdptipton@quicinc.com>, 
+	Vivek Aknurwar <viveka@quicinc.com>, Sibi Sankar <quic_sibis@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V7 1/5] interconnect: core: Add dynamic id allocation
+ support
+Message-ID: <x4lsksrpwe5z6ti7gi2kufyhrpvffsmo2im3oqhqgfaft2ihfm@7xnd6bvy47rv>
+References: <20250111161429.51-1-quic_rlaggysh@quicinc.com>
+ <20250111161429.51-2-quic_rlaggysh@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250110123923.270626-1-szemzo.andras@gmail.com>
- <20250110123923.270626-7-szemzo.andras@gmail.com> <de280eed-bcc8-4802-9734-5e95ad1f6611@kernel.org>
-In-Reply-To: <de280eed-bcc8-4802-9734-5e95ad1f6611@kernel.org>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Mon, 13 Jan 2025 16:06:26 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65arvBMg+reReVqK-Y6dL+CSrSx4618msiRKcNf=Vk1=A@mail.gmail.com>
-X-Gm-Features: AbW1kva6YUV9q8y_q0KQe84KsHadIWhU7SR1t_0-KhCfFvLqL38ru64zHHHYBmg
-Message-ID: <CAGb2v65arvBMg+reReVqK-Y6dL+CSrSx4618msiRKcNf=Vk1=A@mail.gmail.com>
-Subject: Re: [PATCH 06/12] dt-bindings: clk: sunxi-ng: add V853 CCU clock/reset
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andras Szemzo <szemzo.andras@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Maxime Ripard <mripard@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Albert Ou <aou@eecs.berkeley.edu>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250111161429.51-2-quic_rlaggysh@quicinc.com>
 
-On Fri, Jan 10, 2025 at 9:56=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 10/01/2025 13:39, Andras Szemzo wrote:
-> > As the device tree needs the clock/reset indices, add them to DT bindin=
-g
-> > headers.
-> >
-> > Signed-off-by: Andras Szemzo <szemzo.andras@gmail.com>
->
-> That's never a separate commit from the binding.
->
->
-> ...
->
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/sun8i-v853-r-ccu.h
-> > @@ -0,0 +1,16 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> > +/* Copyright(c) 2020 - 2023 Allwinner Technology Co.,Ltd. All rights r=
-eserved.
-> > + *
-> > + * Copyright (C) 2023 rengaomin@allwinnertech.com
-> > + */
-> > +#ifndef _DT_BINDINGS_CLK_SUN8I_V85X_R_CCU_H_
-> > +#define _DT_BINDINGS_CLK_SUN8I_V85X_R_CCU_H_
-> > +
-> > +#define CLK_R_TWD            0
-> > +#define CLK_R_PPU            1
-> > +#define CLK_R_RTC            2
-> > +#define CLK_R_CPUCFG         3
-> > +
-> > +#define CLK_R_MAX_NO         (CLK_R_CPUCFG + 1)
->
-> Nope, drop. Not a binding.
->
-> > +
-> > +#endif
-> > diff --git a/include/dt-bindings/reset/sun8i-v853-ccu.h b/include/dt-bi=
-ndings/reset/sun8i-v853-ccu.h
-> > new file mode 100644
-> > index 000000000000..89d94fcbdb55
-> > --- /dev/null
-> > +++ b/include/dt-bindings/reset/sun8i-v853-ccu.h
-> > @@ -0,0 +1,62 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->
-> Odd license. Did you copy the file with such license from the downstream?
+On Sat, Jan 11, 2025 at 04:14:25PM +0000, Raviteja Laggyshetty wrote:
+> Current interconnect framework is based on static IDs for creating node
+> and registering with framework. This becomes a limitation for topologies
+> where there are multiple instances of same interconnect provider. Add
+> icc_node_create_alloc_id() API to create icc node with dynamic id, this
+> will help to overcome the dependency on static IDs.
 
-AFAIK all the existing sunxi clock / reset binding header files are
-dual licensed. OOTH all the YAML files are GPL 2.0 only.
+This doesn't overcome the dependency on static ID. Drivers still have to
+manually lookup the resulting ID and use it to link the nodes. Instead
+ICC framework should be providing a completely dynamic solution:
+- icc_node_create() should get a completely dynamic counterpart. Use
+  e.g. 1000000 as a dynamic start ID.
+- icc_link_create() shold get a counterpart which can create a link
+  between two icc_node instances directly, without an additional lookup.
 
-IIRC we started out GPL 2.0 only, but then figured that the header files
-couldn't be shared with non-GPL projects, so we changed those to dual
-license.
+You can check if your implementation is correct if you can refactor
+existing ICC drivers (e.g. icc-clk and/or icc-rpm to drop ID arrays
+completely).
 
-Hope that explains the current situation. Relicensing the whole lot
-to just MIT or BSD is probably doable.
+> 
+> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+> ---
+>  drivers/interconnect/core.c           | 32 +++++++++++++++++++++++++++
+>  include/linux/interconnect-provider.h |  6 +++++
+>  2 files changed, 38 insertions(+)
+> 
 
-
-ChenYu
-
->
-> Best regards,
-> Krzysztof
->
+-- 
+With best wishes
+Dmitry
 
