@@ -1,136 +1,236 @@
-Return-Path: <devicetree+bounces-137966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43DA5A0B4CD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:51:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FEC2A0B4EA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:58:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FB871886C7F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:51:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 218427A2EAF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:57:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC21622C35D;
-	Mon, 13 Jan 2025 10:51:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HmGUmU4k"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40C6222F146;
+	Mon, 13 Jan 2025 10:57:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50FF014373F;
-	Mon, 13 Jan 2025 10:51:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.42
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D660E21ADDB;
+	Mon, 13 Jan 2025 10:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736765476; cv=none; b=jiLd2SwAOUKbnWe7Q3bZSZ6W5WXF8y/6MwGgpFdLLq1L/mLfrOg99NyMPajrazCFm0zInQcIsrle/FcnR1psq9JTeqxhHZpJmaVOzUGdQ90HEJqGt08KxIAhOzrID7zsuSLH659oA0Hyj9KiXzKSaErbliX+JuOzLGT1txrtt70=
+	t=1736765877; cv=none; b=Mncu0hsnVjdW2IFJYN4v4ZV5V7yKBA4JTq0wFR2Xk7zf+F+9Fa1cjPCjQM6EHujTiCArjo3cbtJ4buFJkBv1Qlty6qUX7hqfTQD6/oFNfTaGKSNOtf4UMcfsVW8jKhRwNAIjMZzITNfKt7kc0+UAvTbDmm0H7Dz9lzNyepD8i+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736765476; c=relaxed/simple;
-	bh=l5e8ZG1nuN+ZcvImZWznBRa3XRpHDO5bPAXWUYNdm5g=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EQQ85frc61SSmt9hSwarHTZG9Z1qvyXnNikKfa2iFIn2k+6tyD7g5hpGPsty4ecZmtq8nACi8kBpmtviOdI6ec9q/54sZe0F+6oo8+pi5PXIebLX2Cm+f5bBcTTAIUXCBKXbwnwxKuNpc9BIfBPUKO2D14WlPm0AyGnV/YzhSco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HmGUmU4k; arc=none smtp.client-ip=209.85.161.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f42.google.com with SMTP id 006d021491bc7-5f31b3db5ecso1789767eaf.0;
-        Mon, 13 Jan 2025 02:51:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736765474; x=1737370274; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=urUqfOs5ZprO9Xw0z/tnXaTr0uAH0u4Ma4Hh29vNsJQ=;
-        b=HmGUmU4kd1lJ0LadGQ8fenU/P6gl0Ue6ibjXtuAwJIxY2cJJsHe1Rq/bqjqZkWkFjK
-         bY5c2/USjP2fchqaF8elQ6Xk0jrQtgbFnGa+GK/foQoJqwGIA429KC02HCOZOTwE3hrK
-         i3bRyWAcbRYopFIChk+PzQRyCqSH+rSEBZeR/154fTzmTtkBRGk9tQVWExdLZv8y5mtO
-         Z4GOROIzusnvuYowm2oZAjs/BzguDaGvq7/6j2aCcwByOyQ3BgZnyteNSvY8ZgDKT0Gt
-         kcq4kBUD8v7GfILTADE/gXjpscC0V05E7SEtBzJeaZmePR+733lFU90mMolWPG2ohWu7
-         JMBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736765474; x=1737370274;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=urUqfOs5ZprO9Xw0z/tnXaTr0uAH0u4Ma4Hh29vNsJQ=;
-        b=VFIABmsd15sMcpoDPnI/MAKujeR2L+IaZL1JTQKGBo8tJEU0CDOCdXfAcNQUAfo86n
-         BGaVGBeuS5IyYJm5RpQF7TfXHQXO3/vGsS+UchEM9yi0dC4aly3ylTv78TWtMn1YNMS9
-         srtIJ0TR2p/n7MI+zwXGrE+Mj/auE8mhbg072EKqSK5Wn8lxLRlJasbWt407ePADkk8W
-         9+DndUpThlEOojmT3kNZRE+fzmu+zEpX9h/09wqsK6jEclO1PFhFi089OjbR/V7da92N
-         rf3Z6rheW7+g8RgeHf4mGUX7Jl9dMMCvxddvY4uiNlqUAklFG2pVxhR62DkqWp1tHSSP
-         bznQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU3oYJvU61t4bITMbL01hlTcaXz4NtyUTrnvAKef/hxaaT7dQH4qtxH6GC+nKEahVKNaCtKq9PabiJNKXs=@vger.kernel.org, AJvYcCVshshVoFvkAR8e2h94Cj40TK5xaGkW9GuwY2/ciIaZnPopc+dB3Nw2Sd3y/dFeVHdqr2UG/K6kpm7T@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6ubICecdYct+v7riiopZO5DIcPMJPL28fDFFpW2DvTZHX4JLS
-	Nnrk1rFKhvYaHbSTGCmCwnNtnhjf5I7W8ICSJpBJMD0/gh2k+j1lLHnKew==
-X-Gm-Gg: ASbGncs/W9vDLTI1jTMecSKccytCHr2HsJ5uxj86xFsAHixk5EwtkZFgxxSTUqf4vH/
-	BSqzIxqv67lkcbL2AJePhdfzFNzABSuX7Gsm0teBsjgDK5t2qVTCqQNIL3XtEyqp4V9DdEkx0/E
-	NO4YPeR0l1pYYrTdzFv9EI2lBKgcflHoZCkhogpBRLTThn8cQlDS68hCfzJuVCnx6oP6TW1ZLYA
-	69qN/ebjuwIgk6Jmfb78uwZS36HXxy61RXqIpdK7aspRzNjHkHr2ioFkzpDIcACR85FJXQ=
-X-Google-Smtp-Source: AGHT+IFPyTIIfjevDpsljLimNeExOHdnw4G1Y3DEL4NU+snMOqFDKBVVpxAmHBjqOBCcW9sXk+u6mw==
-X-Received: by 2002:a05:6870:e2cf:b0:2a3:c59f:577b with SMTP id 586e51a60fabf-2aa0673060bmr3835827fac.24.1736765474154;
-        Mon, 13 Jan 2025 02:51:14 -0800 (PST)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:17c3:3d19:3f6f:3a38])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2ad80548d04sm3681440fac.17.2025.01.13.02.51.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2025 02:51:12 -0800 (PST)
-From: Fabio Estevam <festevam@gmail.com>
-To: hverkuil-cisco@xs4all.nl
-Cc: mchehab@kernel.org,
-	lars@metafoo.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3] media: dt-bindings: adv7180: Document the 'interrupts' property
-Date: Mon, 13 Jan 2025 07:51:02 -0300
-Message-Id: <20250113105102.1239513-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1736765877; c=relaxed/simple;
+	bh=BATHPOH1ZF+4sDXVwdaVfLqUINhlCzVJAIGqneFqunk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=t83s0PUzLlKNmAdlMeD6nRfqx/OdO7w5AAYnVBiGxDK3QBCVl+r4B5oAN7yvMtHLvOphwdsssDnh6l9NcJYHP9EmsnduRyReqicwOQmOpX8/Zv1sXYih5dYEUIYBNvRbj7Ow54M+KS2Wg9VLkF3a2pu5+XkbQsMtump9BCjik/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 840A31424;
+	Mon, 13 Jan 2025 02:58:22 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3FFBB3F66E;
+	Mon, 13 Jan 2025 02:57:49 -0800 (PST)
+Date: Mon, 13 Jan 2025 10:57:44 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chen-Yu Tsai <wens@csie.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Andras Szemzo
+ <szemzo.andras@gmail.com>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jernej
+ Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, Vinod Koul
+ <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Ulf Hansson
+ <ulf.hansson@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>, Florian
+ Fainelli <florian.fainelli@broadcom.com>, <linux-clk@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+ <linux-phy@lists.infradead.org>, <linux-gpio@vger.kernel.org>,
+ <linux-pm@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH 06/12] dt-bindings: clk: sunxi-ng: add V853 CCU
+ clock/reset
+Message-ID: <20250113105744.6f7a47b9@donnerap.manchester.arm.com>
+In-Reply-To: <CAGb2v67_yMB_4SCjFOR5S6nDxX9=zbX-mDM6YjjL_NRxrEMUFg@mail.gmail.com>
+References: <20250110123923.270626-1-szemzo.andras@gmail.com>
+	<20250110123923.270626-7-szemzo.andras@gmail.com>
+	<de280eed-bcc8-4802-9734-5e95ad1f6611@kernel.org>
+	<CAGb2v65arvBMg+reReVqK-Y6dL+CSrSx4618msiRKcNf=Vk1=A@mail.gmail.com>
+	<fef71e03-489f-4503-9d1b-d61051d45dde@kernel.org>
+	<CAGb2v67_yMB_4SCjFOR5S6nDxX9=zbX-mDM6YjjL_NRxrEMUFg@mail.gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-From: Fabio Estevam <festevam@denx.de>
+On Mon, 13 Jan 2025 16:45:10 +0800
+Chen-Yu Tsai <wens@csie.org> wrote:
 
-The ADV7180 family of chips have an INTRQ pin that can be connected
-to a SoC GPIO.
+> On Mon, Jan 13, 2025 at 4:21=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.=
+org> wrote:
+> >
+> > On 13/01/2025 09:06, Chen-Yu Tsai wrote: =20
+> > > On Fri, Jan 10, 2025 at 9:56=E2=80=AFPM Krzysztof Kozlowski <krzk@ker=
+nel.org> wrote: =20
+> > >>
+> > >> On 10/01/2025 13:39, Andras Szemzo wrote: =20
+> > >>> As the device tree needs the clock/reset indices, add them to DT bi=
+nding
+> > >>> headers.
+> > >>>
+> > >>> Signed-off-by: Andras Szemzo <szemzo.andras@gmail.com> =20
+> > >>
+> > >> That's never a separate commit from the binding.
+> > >>
+> > >>
+> > >> ...
+> > >> =20
+> > >>> --- /dev/null
+> > >>> +++ b/include/dt-bindings/clock/sun8i-v853-r-ccu.h
+> > >>> @@ -0,0 +1,16 @@
+> > >>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> > >>> +/* Copyright(c) 2020 - 2023 Allwinner Technology Co.,Ltd. All righ=
+ts reserved.
+> > >>> + *
+> > >>> + * Copyright (C) 2023 rengaomin@allwinnertech.com
+> > >>> + */
+> > >>> +#ifndef _DT_BINDINGS_CLK_SUN8I_V85X_R_CCU_H_
+> > >>> +#define _DT_BINDINGS_CLK_SUN8I_V85X_R_CCU_H_
+> > >>> +
+> > >>> +#define CLK_R_TWD            0
+> > >>> +#define CLK_R_PPU            1
+> > >>> +#define CLK_R_RTC            2
+> > >>> +#define CLK_R_CPUCFG         3
+> > >>> +
+> > >>> +#define CLK_R_MAX_NO         (CLK_R_CPUCFG + 1) =20
+> > >>
+> > >> Nope, drop. Not a binding.
+> > >> =20
+> > >>> +
+> > >>> +#endif
+> > >>> diff --git a/include/dt-bindings/reset/sun8i-v853-ccu.h b/include/d=
+t-bindings/reset/sun8i-v853-ccu.h
+> > >>> new file mode 100644
+> > >>> index 000000000000..89d94fcbdb55
+> > >>> --- /dev/null
+> > >>> +++ b/include/dt-bindings/reset/sun8i-v853-ccu.h
+> > >>> @@ -0,0 +1,62 @@
+> > >>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */ =20
+> > >>
+> > >> Odd license. Did you copy the file with such license from the downst=
+ream? =20
+> > >
+> > > AFAIK all the existing sunxi clock / reset binding header files are
+> > > dual licensed. OOTH all the YAML files are GPL 2.0 only.
+> > >
+> > > IIRC we started out GPL 2.0 only, but then figured that the header fi=
+les
+> > > couldn't be shared with non-GPL projects, so we changed those to dual
+> > > license.
+> > >
+> > > Hope that explains the current situation. Relicensing the whole lot
+> > > to just MIT or BSD is probably doable. =20
+> > That's not what the comment is about. Dual license, as expressed by
+> > submitting bindings/patches and enforced by checkpatch are expected. But
+> > not GPLv3, GPLv4 and GPLv10. =20
+>=20
+> I take back my statement. It seems we have a lot of GPLv2 or later going =
+on.
+>=20
+> include/dt-bindings/clock/sun20i-d1-ccu.h:/* SPDX-License-Identifier:
+> (GPL-2.0+ OR MIT) */
+> include/dt-bindings/clock/sun20i-d1-r-ccu.h:/*
+> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> include/dt-bindings/clock/sun50i-a100-ccu.h:/*
+> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> include/dt-bindings/clock/sun50i-a100-r-ccu.h:/*
+> SPDX-License-Identifier: GPL-2.0 */
+> include/dt-bindings/clock/sun50i-h6-ccu.h:/* SPDX-License-Identifier:
+> (GPL-2.0+ OR MIT) */
+> include/dt-bindings/clock/sun50i-h6-r-ccu.h:/*
+> SPDX-License-Identifier: GPL-2.0 */
+> include/dt-bindings/clock/sun50i-h616-ccu.h:/*
+> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> include/dt-bindings/clock/sun5i-ccu.h:/* SPDX-License-Identifier:
+> GPL-2.0-or-later */
+> include/dt-bindings/clock/sun6i-rtc.h:/* SPDX-License-Identifier:
+> (GPL-2.0+ OR MIT) */
+> include/dt-bindings/clock/sun8i-de2.h: * SPDX-License-Identifier:
+> (GPL-2.0+ OR MIT)
+> include/dt-bindings/clock/sun8i-tcon-top.h:/* SPDX-License-Identifier:
+> (GPL-2.0+ OR MIT) */
+> include/dt-bindings/clock/suniv-ccu-f1c100s.h:/*
+> SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> include/dt-bindings/reset/sun20i-d1-ccu.h:/* SPDX-License-Identifier:
+> (GPL-2.0+ OR MIT) */
+> include/dt-bindings/reset/sun20i-d1-r-ccu.h:/*
+> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> include/dt-bindings/reset/sun50i-a100-ccu.h:/*
+> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> include/dt-bindings/reset/sun50i-a100-r-ccu.h:/*
+> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> include/dt-bindings/reset/sun50i-h6-ccu.h:/* SPDX-License-Identifier:
+> (GPL-2.0+ OR MIT) */
+> include/dt-bindings/reset/sun50i-h6-r-ccu.h:/*
+> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> include/dt-bindings/reset/sun50i-h616-ccu.h:/*
+> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> include/dt-bindings/reset/sun5i-ccu.h:/* SPDX-License-Identifier:
+> GPL-2.0-or-later */
+> include/dt-bindings/reset/sun8i-de2.h: * SPDX-License-Identifier:
+> (GPL-2.0+ OR MIT)
+> include/dt-bindings/reset/suniv-ccu-f1c100s.h:/*
+> SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>=20
+> Is there a requirement that new files have to be GPL 2.0 only, not
+> GPL 2.0 or later?
+>=20
+> Documentation/process/license-rules.rst says:
+> The license described in the COPYING file applies to the kernel source
+> as a whole, though individual source files can have a different license
+> which is required to be compatible with the GPL-2.0::
+>=20
+>     GPL-1.0+  :  GNU General Public License v1.0 or later
+>     GPL-2.0+  :  GNU General Public License v2.0 or later
+>     ...
+>=20
+> Aside from that, individual files can be provided under a dual license,
+> e.g. one of the compatible GPL variants and alternatively under a
+> permissive license like BSD, MIT etc.
 
-Allow the 'interrupts' property to be described to fix the following
-dt-schema warning:
+Documentation/devicetree/bindings/submitting-patches.rst overrides the
+general rule, for binding files, and it says (GPL-2.0-only OR BSD-2-Clause)
+is preferred. Also when I checked checkpatch indeed warned about this. As
+for the existing files: yes, many of them are not compliant atm:
+$ git grep -h SPDX include/dt-bindings | sort | uniq -c | sort -n | tail -13
+     10 /* SPDX-License-Identifier: GPL-2.0 OR MIT */
+     13 /* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+     13 /* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
+     14 /* SPDX-License-Identifier: GPL-2.0+
+     19 /* SPDX-License-Identifier: GPL-2.0
+     27 /* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
+     31 /* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+     31 /* SPDX-License-Identifier: GPL-2.0-or-later */
+     33 /* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+     36 /* SPDX-License-Identifier: GPL-2.0+ */
+    176 /* SPDX-License-Identifier: GPL-2.0-only */
+    192 /* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+    281 /* SPDX-License-Identifier: GPL-2.0 */
 
-'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
+But for new patches we should definitely aim to be correct. Differing
+license requirements are one price we pay for not having a separate DT
+repository.
 
-Signed-off-by: Fabio Estevam <festevam@denx.de>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-Changes since v2:
-- Do not wrap the dt-schema warning. (Krzysztof)
-- Remove unneeded description. (Krzysztof)
-- Added Krzysztof's Acked-by tag.
-
-Changes since v1:
-- Detail the interrupt description.
- Documentation/devicetree/bindings/media/i2c/adv7180.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml b/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-index 4371a0ef2761..9ee1483775f6 100644
---- a/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/adv7180.yaml
-@@ -49,6 +49,10 @@ properties:
-       Indicates that the output is a BT.656-4 compatible stream.
-     type: boolean
- 
-+  interrupts:
-+    items:
-+      - description: The GPIO connected to the INTRQ pin.
-+
-   port:
-     $ref: /schemas/graph.yaml#/$defs/port-base
-     unevaluatedProperties: false
--- 
-2.34.1
-
+Cheers,
+Andre
 
