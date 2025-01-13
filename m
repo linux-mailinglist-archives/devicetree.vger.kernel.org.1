@@ -1,108 +1,157 @@
-Return-Path: <devicetree+bounces-138186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13836A0C127
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 20:16:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D43AA0C1E6
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 20:49:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23930169221
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 19:16:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 781497A3641
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 19:49:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7EC11C3C15;
-	Mon, 13 Jan 2025 19:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C30B1CB31D;
+	Mon, 13 Jan 2025 19:49:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HPyVretU"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="jSq+utTx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AFDC84A2F;
-	Mon, 13 Jan 2025 19:16:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 028FC1C3C17;
+	Mon, 13 Jan 2025 19:49:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736795796; cv=none; b=iXzj/Zmkw2M1hqB7QCRqKaawz6cvDY5OCv3QtpkM0ZTIVJW8nCtiMJTH3RKJMPq8wmJ69HeMm/h9Rm986A+gWwuTOSyBzyiew/gkxqDFK7Cp9tN4myoBGIA1plKLr6a7x7SfxFjRwo6Do1HMxO8TtnSnaYsZjleLvrXzPwUHTvA=
+	t=1736797753; cv=none; b=MTZLwSr+vrEM2dza3rIlaU7MYhZJW4P3DQYstS+XRBvXRlXqdNDe2dAVPjLoeGc54qU2CxIEoMnd1AKc3pzKzGkCtd0/CDfQjzDrdFu2A+851+/f4a9Ceazr2lWVRsoqHGFh/ET51lnoodV799zCyCCJM7tzj+HIDWW8SneNY+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736795796; c=relaxed/simple;
-	bh=9jUMB+ykRgFU94wAQYrBu1ygWssAQiefWbH8uqqCTcY=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=U9GiVNMO+sW3ud44X2oHwENTUEbwWywNLYTLWJm7+zNfxNkHTPSJROuQNAoQWUy6L6ZqEJv6p1nTdhEaWLXVx3R672jZlUswtOIGwpLI6wZYVrfUaG5fj/mTTF21Zn7H9LvQ9eoOSqIZIV9+e6O4KzYEbwpa0Mu+Zk3FJyV8Jmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HPyVretU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DD19C4CED6;
-	Mon, 13 Jan 2025 19:16:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736795796;
-	bh=9jUMB+ykRgFU94wAQYrBu1ygWssAQiefWbH8uqqCTcY=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=HPyVretUH6T6pORpFo+WF3jZ0aru5Z1UculBcYZhOOk3xOmksXxdsir/i6IdfuV5j
-	 b18Y+4XlAw0GlBhSRTZlJbc7rBxsVO5w3Ks8tJThdbUVx123N8+fBWO921z8cP71ff
-	 W+t5N825p+lyZ77WBE5U4lY6Uu0ZIfsks9aVLs4uK2hnF0p7V0vGfGKGevvVJO3eaM
-	 1mh9s0h/cL4b0Wt39ruAct5GL1Uqa/jALLtBKnsfCvhMbAiDclUCZsjOXDDmbReDcP
-	 vXPxODH1VClQQrVa7OBqiBGAml9my6vODfdHeI200GNdtyCIoVfrwN8zUPSyKIovMm
-	 9RUhFOQlLR+yQ==
-From: Mark Brown <broonie@kernel.org>
-To: shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com, 
- nicoleotsuka@gmail.com, lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com, 
- linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, devicetree@vger.kernel.org, 
- Shengjiu Wang <shengjiu.wang@nxp.com>
-In-Reply-To: <20250113090321.3193464-1-shengjiu.wang@nxp.com>
-References: <20250113090321.3193464-1-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH 0/2] ASoC: fsl: Support MQS on i.MX943
-Message-Id: <173679579298.112994.9434417929541495183.b4-ty@kernel.org>
-Date: Mon, 13 Jan 2025 19:16:32 +0000
+	s=arc-20240116; t=1736797753; c=relaxed/simple;
+	bh=xFLqtv/ZOg4V9KghZMH+l2XHfrfpUV1TnXaQc4Zp/ak=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LxPtHI/j8+lpBmM12CHc9CBO0k8JsGYQYHig5/mg4XPP19Stu4iQ/bX/vIH3eF8YNt0ZdBW++JB8xHhYjU5nVDULfpXK45O6hOgEinbtt06fnCN6je82bZvgm9TxWJwqq5wmM8kwb1cvbsakhK+PKjOA8gV5l4kDqPV1mukN/EU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=jSq+utTx; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50DDNPfV020828;
+	Mon, 13 Jan 2025 19:48:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=pp1; bh=qaIFLaOUiRvCT9Os5n5OgFpUMzb9zTAPapw6oIOdZ
+	Xs=; b=jSq+utTxSzLFYah/a0Grs9wV+O3dSfk1QBoAUpVvcSaGgKg6Pp09/Z2V9
+	qIh140z9Rd2HDztqer/TFZfd6uZ/U7gJJlWG1A7S+kRITNT61g/1rKY5VwQWLtC/
+	vKerS/dMyt+DV/bvp4PcMD6AXlSk5E4T2JMi4bt0Rl9iczUccVaYbs+W14ww5gTQ
+	mmCqNQoP725neI+4UJSOJo54mf8DhNNV+yqigl6OYem619SJcJZ143WetNTkHA6c
+	/E20bcARcDoMMcamzpcQ6zABQwvxAl7vAE5GVteQp3mpLVOTEMkdkKK+Qkj5uOj/
+	gispywSE3IYTn7akupVGc6dc3vh5Q==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 444qvhmgr3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 19:48:28 +0000 (GMT)
+Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 50DJmRoV027756;
+	Mon, 13 Jan 2025 19:48:27 GMT
+Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 444qvhmgr0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 19:48:27 +0000 (GMT)
+Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma12.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 50DJ5Zh4004551;
+	Mon, 13 Jan 2025 19:48:26 GMT
+Received: from smtprelay01.wdc07v.mail.ibm.com ([172.16.1.68])
+	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 4442ysg1dw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 19:48:26 +0000
+Received: from smtpav02.wdc07v.mail.ibm.com (smtpav02.wdc07v.mail.ibm.com [10.39.53.229])
+	by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 50DJmPW811993564
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 13 Jan 2025 19:48:25 GMT
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 068C658058;
+	Mon, 13 Jan 2025 19:48:25 +0000 (GMT)
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 1707D58059;
+	Mon, 13 Jan 2025 19:48:24 +0000 (GMT)
+Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
+	by smtpav02.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Mon, 13 Jan 2025 19:48:23 +0000 (GMT)
+From: Ninad Palsule <ninad@linux.ibm.com>
+To: minyard@acm.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com,
+        openipmi-developer@lists.sourceforge.net, netdev@vger.kernel.org,
+        joel@jms.id.au, andrew@codeconstruct.com.au,
+        devicetree@vger.kernel.org, eajames@linux.ibm.com,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+Cc: Ninad Palsule <ninad@linux.ibm.com>
+Subject: [PATCH v4 0/9] DTS updates for system1 BMC
+Date: Mon, 13 Jan 2025 13:48:10 -0600
+Message-ID: <20250113194822.571884-1-ninad@linux.ibm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-1b0d6
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: tqbnUedT_PDrHvclV9WE6JMAZm_je1hk
+X-Proofpoint-ORIG-GUID: -z05ANiWUTwGX-gCJbwBmVqOAmYpWNt7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
+ priorityscore=1501 bulkscore=0 adultscore=0 mlxscore=0 spamscore=0
+ phishscore=0 impostorscore=0 mlxlogscore=500 lowpriorityscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501130156
 
-On Mon, 13 Jan 2025 17:03:19 +0800, Shengjiu Wang wrote:
-> There are two MQS instances on the i.MX943 platform.
-> The definition of bit positions in the control register are
-> different. In order to support these MQS modules, define
-> two compatible strings to distinguish them.
-> 
-> Shengjiu Wang (2):
->   ASoC: fsl_mqs: Add i.MX943 platform support
->   ASoC: dt-bindings: fsl,mqs: Add compatible string for i.MX943 platform
-> 
-> [...]
+Hello,
 
-Applied to
+Please review the patch set.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+V4:
+---
+  - Removed "Add RGMII support" patch as it needs some work from the
+    driver side.
+  - Improved IPBM device documentation.
+  - There is a new warning in CHECK_DTBS which are false positive so
+    ignored them.
+    arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: gpio@1e780000: 'hog-0', 'hog-1', 'hog-2', 'hog-3' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-Thanks!
+V3:
+---
+  - Fixed dt_binding_check warnings in ipmb-dev.yaml
+  - Updated title and description in ipmb-dev.yaml file.
+  - Updated i2c-protocol description in ipmb-dev.yaml file.
 
-[1/2] ASoC: fsl_mqs: Add i.MX943 platform support
-      commit: 6f490e6b2c34792e363685bacb48a759e7e40cd1
-[2/2] ASoC: dt-bindings: fsl,mqs: Add compatible string for i.MX943 platform
-      commit: a1a771e5f1e31e4764d9a225c02e93969d3f5389
+V2:
+---
+  Fixed CHECK_DTBS errors by
+    - Using generic node names
+    - Documenting phy-mode rgmii-rxid in ftgmac100.yaml
+    - Adding binding documentation for IPMB device interface
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+NINAD PALSULE (6):
+  ARM: dts: aspeed: system1: Add IPMB device
+  ARM: dts: aspeed: system1: Add GPIO line name
+  ARM: dts: aspeed: system1: Reduce sgpio speed
+  ARM: dts: aspeed: system1: Update LED gpio name
+  ARM: dts: aspeed: system1: Remove VRs max8952
+  ARM: dts: aspeed: system1: Mark GPIO line high/low
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Ninad Palsule (3):
+  dt-bindings: net: faraday,ftgmac100: Add phys mode
+  bindings: ipmi: Add binding for IPMB device intf
+  ARM: dts: aspeed: system1: Disable gpio pull down
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+ .../devicetree/bindings/ipmi/ipmb-dev.yaml    |  55 +++++++
+ .../bindings/net/faraday,ftgmac100.yaml       |   3 +
+ .../dts/aspeed/aspeed-bmc-ibm-system1.dts     | 139 +++++++++++-------
+ 3 files changed, 143 insertions(+), 54 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ipmi/ipmb-dev.yaml
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.43.0
 
 
