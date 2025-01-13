@@ -1,129 +1,144 @@
-Return-Path: <devicetree+bounces-137903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 605D7A0B0C7
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:15:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D863A0B0D5
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:18:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4660A1887401
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:15:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47F2C18873F1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:18:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 714BB2327AE;
-	Mon, 13 Jan 2025 08:14:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3BE3231C8D;
+	Mon, 13 Jan 2025 08:18:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KVN45Gn/"
+	dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b="rA7lYVdN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D352A232366
-	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 08:14:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+Received: from classfun.cn (unknown [129.204.178.38])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E633028377;
+	Mon, 13 Jan 2025 08:18:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=129.204.178.38
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736756094; cv=none; b=ukXXVM056U0+okfCFeX1BGgbwJgzNSiYsQHYUiXJGj8khEFMbPXYbeiFKzglF4lUL8T6CvP+7Xk3JuJjDM6vfnhv4lF73nHFKWKHM9ZMguIsPcSyDFTWloQ3vN20KBPpD1NGOOAZS3zTkmCS6ghWWIuO1gpLECEvVfPNOi2Ilnc=
+	t=1736756309; cv=none; b=K1CW4KnvnX1kPS+nNl1QbFA6Vkvf6YsAFQ1i2RValX7iJXmWiPDdAMEruLCEB26ssnxo82mKm/tCYCR35ADTdTHJsGt5AHqt25T/7wmv+XpZk7E9qflFVqqNCpGCA1+h0BJsAa1hID4KpanZYNH7Oh91YPRk4AIvVaMqsMu1bq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736756094; c=relaxed/simple;
-	bh=Hvgcs+cliAfpJ3VVSWJBygzxwPv3GVFdCfpgC7KIO4A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gRMlMEEUOuHHcar9tUA07oF3KfDtpUDndnFHsYqdYDzoiIi914Kp2qHUVuEBrc86mJBl+XC3J6PD359DjWwkSUruG78mPNBxdgYG0jPzNayO6xfdsUJwRpJPkcHiYw9I1n7b34VjUDEEk9jbhBTBHnVD9XZ6uE8J8fc5TRbSAPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KVN45Gn/; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-30034ad2ca3so28335511fa.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 00:14:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736756090; x=1737360890; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=EiBQMlbbRKX1jfLOnAiy2eBHbg9zc0uMkgrPET/8Jyw=;
-        b=KVN45Gn/TeQcr8nxOFWmfi5aYFaqpsUZngD324pbbkZf3kC87yhZWqMkS8fxtJWyhJ
-         6LUQOO9PbgWAnU/OzQY0oT1Ac+S77Dvy5494MNGw2UpsJoLw9eKpoax0AY86GhSIPP77
-         QdyVLX+NnpqFKhyGxpmFwRa4vsylKm8miJ78niEGgTl9c9FaxxHgw+PTPwDXj2kT06AQ
-         BdVtZE7MQg2AhksRsMRH+zom8UDpHllH3thYlpNKnZBzOFJDnKVL8GBn4SibvFsG/q3M
-         woFfuub6dTfJLowWkXB9WEcmdFDO7U0QfBfgEl4bCayFezUdxd1yeBaizvMp4I9HyZwS
-         xV7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736756090; x=1737360890;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EiBQMlbbRKX1jfLOnAiy2eBHbg9zc0uMkgrPET/8Jyw=;
-        b=mG+TpIDs6XSTdfdjHOl01Di8Iziukwp2aulz5VIG/uKRWTDSrbkLDSKFjW8lUjipcj
-         pfG5HIDJolDmVdFf+dFw5efgjGhZGyeQ2S8d1vPMtbrnofUhJn7mUyF2ImHfB+3HB9TE
-         hT0cTLpCcdLWxS96dCkgM+ZqVG9DmNH59PIEh02z7RBffKl/Xa9G5GxS4fwJ+4OmuLov
-         w/EYgAcmR8sKUzoriQBTFUmqFWWe5vHK7zBOTXe6VaFCLl1xcZmElIbOBifJoJqcRKDj
-         iSG0elriDpUGkc2dSC81yJRDsf4TXyxIvZg3OiKxHrkdVwoAGKiIvu6Xkimgkoul0p8O
-         ZmfA==
-X-Forwarded-Encrypted: i=1; AJvYcCVeJGXxkQDYouZj/kwPby7n0lCzfcehPy7PDl76DJd71oaAoaxVAKAy6D+RXqEjkYr1ZEsWfM88An4E@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxv0NmHA40E9FDUoeGRiprTT0SeqfpqRvJEfSDtSwq7PMkbYuvF
-	lk9nRPEvy69ooNu6CKRgLZ5lhh/WqCCMyoqSNx1iSAcVJ4CALQjEHFZtxog8B0g=
-X-Gm-Gg: ASbGnctjaT8JyRErIasTtQ8y/gKKr0XPZBw613qu1j09F8tsjHELsUJTLAFdmwNLy0b
-	7Jm4nRtvRRI9noYPoa5aAkgMaZQNwjqgzUbJLToAIhdKc9fqdVr/FvDOudH4hDEATPYmtdovX74
-	0YmzPUuz6FPSqCVv+Z9I+BGhoU90e8aYbr7yXFtAT/5v4OF0ejWwTr/V4VMoNdlUIy79PuKZOLi
-	VjUTJys7/cpQVY+M7LNJNsnd3szRVW9+w5RQ0/tJHOiVDvb/XJrfH5AZgPjkY8GwwUhy7iE/au+
-	N6S450KFlEBCpTcYh/GMVayMXdYtE4mpGIo0
-X-Google-Smtp-Source: AGHT+IFiOGkWxTgwDiqqZRV/TncB2+0Lbwph18oB4337Oov0d7u7UgJwOOmW10YyJRV+FY90JH+dtg==
-X-Received: by 2002:a05:6512:39cc:b0:540:3581:5047 with SMTP id 2adb3069b0e04-54284820134mr7051637e87.48.1736756089990;
-        Mon, 13 Jan 2025 00:14:49 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428be49dd5sm1253953e87.48.2025.01.13.00.14.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2025 00:14:48 -0800 (PST)
-Date: Mon, 13 Jan 2025 10:14:46 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-Cc: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Odelu Kukatla <quic_okukatla@quicinc.com>, Mike Tipton <mdptipton@quicinc.com>, 
-	Vivek Aknurwar <viveka@quicinc.com>, Sibi Sankar <quic_sibis@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V7 1/5] interconnect: core: Add dynamic id allocation
- support
-Message-ID: <x4lsksrpwe5z6ti7gi2kufyhrpvffsmo2im3oqhqgfaft2ihfm@7xnd6bvy47rv>
-References: <20250111161429.51-1-quic_rlaggysh@quicinc.com>
- <20250111161429.51-2-quic_rlaggysh@quicinc.com>
+	s=arc-20240116; t=1736756309; c=relaxed/simple;
+	bh=keSfTFDZ4AFOeNYkutWTcS2xnlO16SIrBLbjEmcDM4Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E33Ajdp17QjlXbAl3EyBduLoOpZD1Lihg7fDs1audWZ3Lz8dMy8Joey1txqRUfejPGNSu/uiaMItCqPhl7E82wBYuVpjXhIZTij/oSNOGHkXiU+tQtU2JhXNmDPHEdJ3Z1Cn85G7mI4KWnfg/0F/cFOAfIccgRHH+D9uTd1p4hQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn; spf=pass smtp.mailfrom=classfun.cn; dkim=pass (1024-bit key) header.d=classfun.cn header.i=@classfun.cn header.b=rA7lYVdN; arc=none smtp.client-ip=129.204.178.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=classfun.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=classfun.cn
+Received: from [192.168.0.160] (unknown [222.77.7.241])
+	(Authenticated sender: bigfoot)
+	by classfun.cn (Postfix) with ESMTPSA id 64ADF7817F;
+	Mon, 13 Jan 2025 16:18:11 +0800 (CST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 classfun.cn 64ADF7817F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=classfun.cn;
+	s=default; t=1736756295;
+	bh=V24IXTryrVGcjHqIUfjWLveVF6uP2q3j+D/mtRq378w=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rA7lYVdN5Hh4AQKwBodrNJQFyoyXZDDh39M71ZklGOPkNl5vNeT8Q2z80o9bmR5JX
+	 POPCVNKc6wHyZtidh/DeBLZ8pCxdF9Df2y1gHBZtNdJt004mxNZIicRHudtObTW9CQ
+	 9pnnpwOHdf5LwHULUluFc30RgYlOd8QBZ8NsAfeg=
+Message-ID: <54b5dac0-5791-4b20-a237-dac6fd03c259@classfun.cn>
+Date: Mon, 13 Jan 2025 16:18:19 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250111161429.51-2-quic_rlaggysh@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/3] arm64: dts: rockchip: add dts for Ariaboard
+ Photonicat RK3568
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jonas Karlman <jonas@kwiboo.se>, Chukun Pan <amadeus@jmu.edu.cn>,
+ FUKAUMI Naoki <naoki@radxa.com>, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Junhao Xie <bigfoot@classfun.cn>
+References: <20250112073344.1976411-1-bigfoot@classfun.cn>
+ <20250112073344.1976411-4-bigfoot@classfun.cn>
+ <1e72cc9cdc390e79e97806fe4f7d8abf@manjaro.org>
+ <35f8fe37-b06f-49eb-b0c2-430421f1ff3b@classfun.cn>
+ <7b55c7469774c41d9896df3100df1630@manjaro.org>
+Content-Language: en-US
+From: Junhao Xie <bigfoot@classfun.cn>
+In-Reply-To: <7b55c7469774c41d9896df3100df1630@manjaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sat, Jan 11, 2025 at 04:14:25PM +0000, Raviteja Laggyshetty wrote:
-> Current interconnect framework is based on static IDs for creating node
-> and registering with framework. This becomes a limitation for topologies
-> where there are multiple instances of same interconnect provider. Add
-> icc_node_create_alloc_id() API to create icc node with dynamic id, this
-> will help to overcome the dependency on static IDs.
-
-This doesn't overcome the dependency on static ID. Drivers still have to
-manually lookup the resulting ID and use it to link the nodes. Instead
-ICC framework should be providing a completely dynamic solution:
-- icc_node_create() should get a completely dynamic counterpart. Use
-  e.g. 1000000 as a dynamic start ID.
-- icc_link_create() shold get a counterpart which can create a link
-  between two icc_node instances directly, without an additional lookup.
-
-You can check if your implementation is correct if you can refactor
-existing ICC drivers (e.g. icc-clk and/or icc-rpm to drop ID arrays
-completely).
-
+On 2025/1/13 12:25, Dragan Simic wrote:
+> Hello Junhao,
 > 
-> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-> ---
->  drivers/interconnect/core.c           | 32 +++++++++++++++++++++++++++
->  include/linux/interconnect-provider.h |  6 +++++
->  2 files changed, 38 insertions(+)
+> On 2025-01-12 23:16, Junhao Xie wrote:
+>> On 2025/1/12 16:47, Dragan Simic wrote:
+>>> On 2025-01-12 08:33, Junhao Xie wrote:
+>>>> Add dts for Ariaboard Photonicat RK3568.
+>>>>
+>>>> Working IO:
+>>>>     Debug UART
+>>>>     SDIO QCA9377 WiFi and Bluetooth
+>>>>     M.2 E-Key PCIe WiFi and Bluetooth
+>>>>     M.2 B-Key USB Modem WWAN
+>>>>     Ethernet WAN Port
+>>>>     MicroSD Card slot
+>>>>     eMMC
+>>>>     HDMI Output
+>>>>     Mali GPU
+>>>>     USB Type-A
+>>>>
+>>>> Not working IO:
+>>>>     Ethernet LAN Port (Lack of SGMII support)
+>>>>     Power management MCU on UART4 (Driver pending)
+>>>>
+>>>> Not working IO in MCU:
+>>>>     Battery voltage sensor
+>>>>     Board temperature sensor
+>>>>     Hardware Power-off
+>>>>     Hardware Watchdog
+>>>>     Network status LED
+>>>>     Real-time clock
+>>>>     USB Charger voltage sensor
+>>>>
+>>>> About onboard power management MCU:
+>>>>     A heartbeat must be sent to the MCU within 60 seconds,
+>>>>     otherwise the MCU will restart the system.
+>>>>     When powering off, a shutdown command needs to be sent to the MCU.
+>>>>     When the power button is long pressed, the MCU will send a shutdown
+>>>>     command to the system. If system does not shutdown within 60 seconds,
+>>>>     the power will be turned off directly.
+>>>>     MCU only provides voltage for charger and battery.
+>>>>     Manufacturer removed RK8xx PMIC.
+>>>
+>>> Unless the design of the board is proprietary, it would be good
+>>> to provide a link to the board schematic, for those interested
+>>> in verifying the board DT file.
+>>>
+>>> As a note, I already tried to find the board schematic with no
+>>> success, so the design might be proprietary.
+>>
+>> Yes, this board is proprietary. I asked the manufacturer and
+>> they don't provide schematics.
+>>
+>> But I found a partial schematic diagram of some of connectors
+>> on the board here
+>> https://dl.ariaboard.com/photonicat_rk3568/Photonicat%20rk3568%20EVB%20Board%20spec.pdf
 > 
+> Yes, I also found that PDF file.  It's somewhat similar to what
+> Raspberry Pi provides with its reduced schematics -- helpful to
+> an extent, but still leaving a lot to be desired.
+> 
+> Out of curiosity, what did you actually use as a reference to create
+> the board dts file?  Perhaps some downstream dts file provided by
+> the manufacturer or found in some operating system image?
 
--- 
-With best wishes
-Dmitry
+I wrote this device tree based on other rk3568 devices in mainline, and downstream board dts:
+https://github.com/photonicat/rockchip_rk3568_kernel/blob/novotech-5.10/arch/arm64/boot/dts/rockchip/rk3568-photonicat-base.dtsi
+
+Best regards,
+Junhao
+
 
