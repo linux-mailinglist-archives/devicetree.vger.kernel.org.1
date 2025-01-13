@@ -1,236 +1,228 @@
-Return-Path: <devicetree+bounces-137967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FEC2A0B4EA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:58:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2A9EA0B4FE
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:03:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 218427A2EAF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:57:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3D7A167EA1
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:03:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40C6222F146;
-	Mon, 13 Jan 2025 10:57:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FEAF1BEF8A;
+	Mon, 13 Jan 2025 11:03:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qU4RcTrf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D660E21ADDB;
-	Mon, 13 Jan 2025 10:57:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 400561FDA84
+	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 11:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736765877; cv=none; b=Mncu0hsnVjdW2IFJYN4v4ZV5V7yKBA4JTq0wFR2Xk7zf+F+9Fa1cjPCjQM6EHujTiCArjo3cbtJ4buFJkBv1Qlty6qUX7hqfTQD6/oFNfTaGKSNOtf4UMcfsVW8jKhRwNAIjMZzITNfKt7kc0+UAvTbDmm0H7Dz9lzNyepD8i+0=
+	t=1736766180; cv=none; b=hr1p/Nwbai1PRXWXSY0w9dun0WUGW/JL3p0uL2PIsooOEpdPwLpQBWJFr9h74oQnFigusMD4AJw3f+wo/bhAcydOjAp8RuVwjBhUarIjYAXo4OCUzYsdv40JRIxWjP1tlwpTQgznWb5ILdAPeRHlqipcIZ8eamczNKp+8gSv9vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736765877; c=relaxed/simple;
-	bh=BATHPOH1ZF+4sDXVwdaVfLqUINhlCzVJAIGqneFqunk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t83s0PUzLlKNmAdlMeD6nRfqx/OdO7w5AAYnVBiGxDK3QBCVl+r4B5oAN7yvMtHLvOphwdsssDnh6l9NcJYHP9EmsnduRyReqicwOQmOpX8/Zv1sXYih5dYEUIYBNvRbj7Ow54M+KS2Wg9VLkF3a2pu5+XkbQsMtump9BCjik/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 840A31424;
-	Mon, 13 Jan 2025 02:58:22 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3FFBB3F66E;
-	Mon, 13 Jan 2025 02:57:49 -0800 (PST)
-Date: Mon, 13 Jan 2025 10:57:44 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Andras Szemzo
- <szemzo.andras@gmail.com>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jernej
- Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- Linus Walleij <linus.walleij@linaro.org>, Philipp Zabel
- <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, Vinod Koul
- <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Ulf Hansson
- <ulf.hansson@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Uwe
- =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>, Florian
- Fainelli <florian.fainelli@broadcom.com>, <linux-clk@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
- <linux-phy@lists.infradead.org>, <linux-gpio@vger.kernel.org>,
- <linux-pm@vger.kernel.org>, <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH 06/12] dt-bindings: clk: sunxi-ng: add V853 CCU
- clock/reset
-Message-ID: <20250113105744.6f7a47b9@donnerap.manchester.arm.com>
-In-Reply-To: <CAGb2v67_yMB_4SCjFOR5S6nDxX9=zbX-mDM6YjjL_NRxrEMUFg@mail.gmail.com>
-References: <20250110123923.270626-1-szemzo.andras@gmail.com>
-	<20250110123923.270626-7-szemzo.andras@gmail.com>
-	<de280eed-bcc8-4802-9734-5e95ad1f6611@kernel.org>
-	<CAGb2v65arvBMg+reReVqK-Y6dL+CSrSx4618msiRKcNf=Vk1=A@mail.gmail.com>
-	<fef71e03-489f-4503-9d1b-d61051d45dde@kernel.org>
-	<CAGb2v67_yMB_4SCjFOR5S6nDxX9=zbX-mDM6YjjL_NRxrEMUFg@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1736766180; c=relaxed/simple;
+	bh=w9bjIDTeYRMRDdhsC4AANMNrvKdOE7QTlPhg/Aq002U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l/38M3lsoThl/qJOX6GflHUjVEd1MeB3UqCNlg90njWDYIu3ah7y1eETOkScL05Z+M8U8zhdT0Vxbn75OGJ9ar4oZIFWqcvh5psEuIUcgCrC9MQxrS1lTRH4utZ9vmde4ddUEtGHZLna7PRtQWLvi7jr/c4E2Srf2GCUpH+a7y0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qU4RcTrf; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4361f09be37so5361555e9.1
+        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 03:02:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736766177; x=1737370977; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=z9Dd2XqQ2DPCgpaKqWn0I/p1u51xriQJuHotLaVuG1E=;
+        b=qU4RcTrfE2wJ75haoHEkxcLdPyHreP22wPCH2v0p2BePRBpM60yDrJCoRv/PBM3yYj
+         cUARkLy3NmTLBUqney6ljBeV6AfxspRwyGdDXEhZunwDFWvjZV6zCfvCZ9wniWt1W+qc
+         XGnTixHDrfpqyuxCvhgNixdzTQKNuQi765SwgeT9uxv63jdjVjWYW4rpCCGSk6ziZsoB
+         qwB/yExmkJHXSCl7ipMfVXaHvd1UwClLaYhlUH35rhzJBqKBjLVzBM44B0UoN/ogHpva
+         lkXRKAJj/Qae+24o1v9f5nNSY9HetW0XrzsoxGY1DSneWRmpeUN+WyLi2hWC/jzlXM0r
+         LkCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736766177; x=1737370977;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=z9Dd2XqQ2DPCgpaKqWn0I/p1u51xriQJuHotLaVuG1E=;
+        b=rQLUVhV5+JTG1tRa3rckjsh5nrg5xNgwfP20iZeDQAgxSOOownQJkbw5QbL+witFiL
+         XeTuN1uPFX8cgEV9nAyzKYX72vKWbyG2kPPmecSiN+3MXRYjrv0DPI9jdYSJHHmSCwzS
+         eXosrENluRlZ/pbecIxlsEMe7AJZaCwAiO7+Ccvf8RdCWGnnI6NXHLaH9mSwWydtOstp
+         GxMOEBFTIS/wP3chanmeHprWjt7sUGIp34znxph6JAueSjYAVI/qyR1Aos1uUFBZyZPB
+         uIrU3ALiyTLm8rbomSCak+dqaE3hjwKlwrOdBxqm4mSfVP/stp03TRWEbLUT65gq0pBj
+         89cg==
+X-Forwarded-Encrypted: i=1; AJvYcCWL+BFyTJJDEFRQyCc1c+uqbj51EhsOob6uBYG4G1ALJsVktu3SXFYolwitJu4yI7wOwBvFKMIaY6Ec@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoOHvmcCcwj5upOdmC6ADF+p6Wb5o3wuazdTak063Hpk+QBvNk
+	LO6OLvb7XGJP95x6yqa9sTIH3DlWGuDcwMObiOcBFNKJ/QRxg6990OlX0cXTaqA=
+X-Gm-Gg: ASbGncuGSILSiFwKv6VhZA9D/hxzI5HWuu+i/3VZ/5zGxYVfoEgsUnm6hmYcq6BKq2h
+	bNba8nFeRsnDC+OYtOjipnA4kKVoVSlFn3OOHowCqVZkvSordx48rXBaohofSURDpsY45KblD9B
+	sNTIFp6N9rKfaPAdYuuNHwbmyvkbkXrHZPOQ0YmO7yZJ2AHLmYuws8W+jpKwK3/Akae6yNdiXrS
+	GSApfTPHsOsXSEKKE7AYV87P1G1dyjXfltIfTnvxlhRDh/Z78gTWIUVaBW1ncicpi3Iu9ykE44u
+X-Google-Smtp-Source: AGHT+IHFmc21g+vgzvqpGaYICtDIioR3gsSRtnb91mx1nSQcVPnQd30y3bfiZ2BQqcxU67HcH0Zl8Q==
+X-Received: by 2002:a05:600c:46c3:b0:434:f335:85c with SMTP id 5b1f17b1804b1-436e26f4258mr78966405e9.6.1736766177571;
+        Mon, 13 Jan 2025 03:02:57 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2ddd013sm176129175e9.24.2025.01.13.03.02.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Jan 2025 03:02:56 -0800 (PST)
+Message-ID: <7255ae24-983d-452c-bd6d-85804c367f8f@linaro.org>
+Date: Mon, 13 Jan 2025 12:02:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 08/11] drm/msm/dsi: Add support for SM8750
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Srini Kandagatla <srinivas.kandagatla@linaro.org>
+References: <20250109-b4-sm8750-display-v1-0-b3f15faf4c97@linaro.org>
+ <20250109-b4-sm8750-display-v1-8-b3f15faf4c97@linaro.org>
+ <3p7kjok5jzwvgt7dxuad26xgdkjd52v4gbtuudvgkeoj33skqn@afl2ddtsq7s2>
+ <4fc7fdd5-36cd-42e6-af4a-e0e429f9f50b@linaro.org>
+ <7eupqawhdrbjgsj2p7e3ky7uj62m252i6dzkb6y23btocedp3q@qmw72nmbk2c4>
+ <6ee02d22-7a00-4c7c-a5e9-63e91d7d84ba@linaro.org>
+ <uyidfuh5ul5kcg4keeev6yagmjc5ksun626dyb6kdgwegc76d7@iu7ggdhgt5qr>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <uyidfuh5ul5kcg4keeev6yagmjc5ksun626dyb6kdgwegc76d7@iu7ggdhgt5qr>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Mon, 13 Jan 2025 16:45:10 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
+On 13/01/2025 09:29, Dmitry Baryshkov wrote:
+> On Fri, Jan 10, 2025 at 01:43:28PM +0100, Krzysztof Kozlowski wrote:
+>> On 10/01/2025 10:17, Dmitry Baryshkov wrote:
+>>> On Fri, Jan 10, 2025 at 09:59:26AM +0100, Krzysztof Kozlowski wrote:
+>>>> On 10/01/2025 00:18, Dmitry Baryshkov wrote:
+>>>>> On Thu, Jan 09, 2025 at 02:08:35PM +0100, Krzysztof Kozlowski wrote:
+>>>>>> Add support for DSI PHY v7.0 on Qualcomm SM8750 SoC which comes with two
+>>>>>> differences worth noting:
+>>>>>>
+>>>>>> 1. ICODE_ACCUM_STATUS_LOW and ALOG_OBSV_BUS_STATUS_1 registers - their
+>>>>>>    offsets were just switched.  Currently these registers are not used
+>>>>>>    in the driver, so the easiest is to document both but keep them
+>>>>>>    commented out to avoid conflict.
+>>>>>>
+>>>>>> 2. DSI PHY PLLs, the parents of pixel and byte clocks, cannot be used as
+>>>>>>    parents before they are prepared and initial rate is set.  Therefore
+>>>>>>    assigned-clock-parents are not working here and driver is responsible
+>>>>>>    for reparenting clocks with proper procedure: see dsi_clk_init_6g_v2_9().
+>>>>>
+>>>>> Isn't it a description of CLK_SET_PARENT_GATE and/or
+>>>>
+>>>> No - must be gated accross reparent - so opposite.
+>>>>
+>>>>> CLK_OPS_PARENT_ENABLE ?
+>>>>
+>>>> Yes, but does not work. Probably enabling parent, before
+>>>> assigned-clocks-parents, happens still too early:
+>>>>
+>>>> [    1.623554] DSI PLL(0) lock failed, status=0x00000000
+>>>> [    1.623556] PLL(0) lock failed
+>>>> [    1.624650] ------------[ cut here ]------------
+>>>> [    1.624651] disp_cc_mdss_byte0_clk_src: rcg didn't update its
+>>>> configuration.
+>>>>
+>>>> Or maybe something is missing in the DSI PHY PLL driver?
+>>>
+>>> Do you have the no-zero-freq workaround?
+>>
+>> Yes, it is necessary also for my variant. I did not include it here, but
+>> I should mention it in the cover letter.
+> 
+> Could you please possibly backtrace the corresponding enable() calls?
 
-> On Mon, Jan 13, 2025 at 4:21=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.=
-org> wrote:
-> >
-> > On 13/01/2025 09:06, Chen-Yu Tsai wrote: =20
-> > > On Fri, Jan 10, 2025 at 9:56=E2=80=AFPM Krzysztof Kozlowski <krzk@ker=
-nel.org> wrote: =20
-> > >>
-> > >> On 10/01/2025 13:39, Andras Szemzo wrote: =20
-> > >>> As the device tree needs the clock/reset indices, add them to DT bi=
-nding
-> > >>> headers.
-> > >>>
-> > >>> Signed-off-by: Andras Szemzo <szemzo.andras@gmail.com> =20
-> > >>
-> > >> That's never a separate commit from the binding.
-> > >>
-> > >>
-> > >> ...
-> > >> =20
-> > >>> --- /dev/null
-> > >>> +++ b/include/dt-bindings/clock/sun8i-v853-r-ccu.h
-> > >>> @@ -0,0 +1,16 @@
-> > >>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> > >>> +/* Copyright(c) 2020 - 2023 Allwinner Technology Co.,Ltd. All righ=
-ts reserved.
-> > >>> + *
-> > >>> + * Copyright (C) 2023 rengaomin@allwinnertech.com
-> > >>> + */
-> > >>> +#ifndef _DT_BINDINGS_CLK_SUN8I_V85X_R_CCU_H_
-> > >>> +#define _DT_BINDINGS_CLK_SUN8I_V85X_R_CCU_H_
-> > >>> +
-> > >>> +#define CLK_R_TWD            0
-> > >>> +#define CLK_R_PPU            1
-> > >>> +#define CLK_R_RTC            2
-> > >>> +#define CLK_R_CPUCFG         3
-> > >>> +
-> > >>> +#define CLK_R_MAX_NO         (CLK_R_CPUCFG + 1) =20
-> > >>
-> > >> Nope, drop. Not a binding.
-> > >> =20
-> > >>> +
-> > >>> +#endif
-> > >>> diff --git a/include/dt-bindings/reset/sun8i-v853-ccu.h b/include/d=
-t-bindings/reset/sun8i-v853-ccu.h
-> > >>> new file mode 100644
-> > >>> index 000000000000..89d94fcbdb55
-> > >>> --- /dev/null
-> > >>> +++ b/include/dt-bindings/reset/sun8i-v853-ccu.h
-> > >>> @@ -0,0 +1,62 @@
-> > >>> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */ =20
-> > >>
-> > >> Odd license. Did you copy the file with such license from the downst=
-ream? =20
-> > >
-> > > AFAIK all the existing sunxi clock / reset binding header files are
-> > > dual licensed. OOTH all the YAML files are GPL 2.0 only.
-> > >
-> > > IIRC we started out GPL 2.0 only, but then figured that the header fi=
-les
-> > > couldn't be shared with non-GPL projects, so we changed those to dual
-> > > license.
-> > >
-> > > Hope that explains the current situation. Relicensing the whole lot
-> > > to just MIT or BSD is probably doable. =20
-> > That's not what the comment is about. Dual license, as expressed by
-> > submitting bindings/patches and enforced by checkpatch are expected. But
-> > not GPLv3, GPLv4 and GPLv10. =20
->=20
-> I take back my statement. It seems we have a lot of GPLv2 or later going =
-on.
->=20
-> include/dt-bindings/clock/sun20i-d1-ccu.h:/* SPDX-License-Identifier:
-> (GPL-2.0+ OR MIT) */
-> include/dt-bindings/clock/sun20i-d1-r-ccu.h:/*
-> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> include/dt-bindings/clock/sun50i-a100-ccu.h:/*
-> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> include/dt-bindings/clock/sun50i-a100-r-ccu.h:/*
-> SPDX-License-Identifier: GPL-2.0 */
-> include/dt-bindings/clock/sun50i-h6-ccu.h:/* SPDX-License-Identifier:
-> (GPL-2.0+ OR MIT) */
-> include/dt-bindings/clock/sun50i-h6-r-ccu.h:/*
-> SPDX-License-Identifier: GPL-2.0 */
-> include/dt-bindings/clock/sun50i-h616-ccu.h:/*
-> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> include/dt-bindings/clock/sun5i-ccu.h:/* SPDX-License-Identifier:
-> GPL-2.0-or-later */
-> include/dt-bindings/clock/sun6i-rtc.h:/* SPDX-License-Identifier:
-> (GPL-2.0+ OR MIT) */
-> include/dt-bindings/clock/sun8i-de2.h: * SPDX-License-Identifier:
-> (GPL-2.0+ OR MIT)
-> include/dt-bindings/clock/sun8i-tcon-top.h:/* SPDX-License-Identifier:
-> (GPL-2.0+ OR MIT) */
-> include/dt-bindings/clock/suniv-ccu-f1c100s.h:/*
-> SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> include/dt-bindings/reset/sun20i-d1-ccu.h:/* SPDX-License-Identifier:
-> (GPL-2.0+ OR MIT) */
-> include/dt-bindings/reset/sun20i-d1-r-ccu.h:/*
-> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> include/dt-bindings/reset/sun50i-a100-ccu.h:/*
-> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> include/dt-bindings/reset/sun50i-a100-r-ccu.h:/*
-> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> include/dt-bindings/reset/sun50i-h6-ccu.h:/* SPDX-License-Identifier:
-> (GPL-2.0+ OR MIT) */
-> include/dt-bindings/reset/sun50i-h6-r-ccu.h:/*
-> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> include/dt-bindings/reset/sun50i-h616-ccu.h:/*
-> SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-> include/dt-bindings/reset/sun5i-ccu.h:/* SPDX-License-Identifier:
-> GPL-2.0-or-later */
-> include/dt-bindings/reset/sun8i-de2.h: * SPDX-License-Identifier:
-> (GPL-2.0+ OR MIT)
-> include/dt-bindings/reset/suniv-ccu-f1c100s.h:/*
-> SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->=20
-> Is there a requirement that new files have to be GPL 2.0 only, not
-> GPL 2.0 or later?
->=20
-> Documentation/process/license-rules.rst says:
-> The license described in the COPYING file applies to the kernel source
-> as a whole, though individual source files can have a different license
-> which is required to be compatible with the GPL-2.0::
->=20
->     GPL-1.0+  :  GNU General Public License v1.0 or later
->     GPL-2.0+  :  GNU General Public License v2.0 or later
->     ...
->=20
-> Aside from that, individual files can be provided under a dual license,
-> e.g. one of the compatible GPL variants and alternatively under a
-> permissive license like BSD, MIT etc.
 
-Documentation/devicetree/bindings/submitting-patches.rst overrides the
-general rule, for binding files, and it says (GPL-2.0-only OR BSD-2-Clause)
-is preferred. Also when I checked checkpatch indeed warned about this. As
-for the existing files: yes, many of them are not compliant atm:
-$ git grep -h SPDX include/dt-bindings | sort | uniq -c | sort -n | tail -13
-     10 /* SPDX-License-Identifier: GPL-2.0 OR MIT */
-     13 /* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-     13 /* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
-     14 /* SPDX-License-Identifier: GPL-2.0+
-     19 /* SPDX-License-Identifier: GPL-2.0
-     27 /* SPDX-License-Identifier: (GPL-2.0 OR MIT) */
-     31 /* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-     31 /* SPDX-License-Identifier: GPL-2.0-or-later */
-     33 /* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
-     36 /* SPDX-License-Identifier: GPL-2.0+ */
-    176 /* SPDX-License-Identifier: GPL-2.0-only */
-    192 /* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-    281 /* SPDX-License-Identifier: GPL-2.0 */
+It's the same backtrace I shared some time ago in internal discussions:
+https://pastebin.com/kxUFgzD9
+Unless you ask for some other backtrace?
 
-But for new patches we should definitely aim to be correct. Differing
-license requirements are one price we pay for not having a separate DT
-repository.
+> I'd let Stephen and/or Bjorn or Konrad to correct me, but I think that
+> such requirement should be handled by the framework instead of having
+> the drivers to manually reparent the clocks.
 
-Cheers,
-Andre
+I don't know how exactly you would like to solve it. The clocks can be
+reparented only after some other device specific enable sequence. It's
+the third device here, but not reflected in the clocks hierarchy. Maybe
+it's the result how entire Display device nodes were designed in the
+first place?
+
+Assigned clocks are between DSI PHY and DISP cc, but they are a property
+of DSI controller. This looks exactly too specific for core to handle
+and drivers, not framework, should manually reparent such clocks.
+Otherwise we need
+"clk_pre_prepare_callback_if_we_are_called_when_phy_is_disabled" sort of
+callback.
+
+
+
+
+
+Best regards,
+Krzysztof
 
