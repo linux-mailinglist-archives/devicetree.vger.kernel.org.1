@@ -1,84 +1,123 @@
-Return-Path: <devicetree+bounces-137944-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEAB4A0B283
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:16:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A0C6A0B2B2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:26:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 13C2C188666B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:16:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E52327A30AF
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:26:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF18E23314C;
-	Mon, 13 Jan 2025 09:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300EB2397A7;
+	Mon, 13 Jan 2025 09:26:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fqYj4ms/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oIT55bXS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84125231CA3;
-	Mon, 13 Jan 2025 09:16:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 637D823A56F
+	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 09:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736759781; cv=none; b=JJCvtmQ8TeBQvlvNTIDjMjHAXVvGX0TX0Qz4CpTk4PdkQbbr7PSfpAi4yVRlj9bdNbRQKKyOY1JhIT7/lsfTpgEsEpM1biqDR9Ap4jqG7sw401rOySEkCGl/8DrU9vESTpJGHE2w+5av8OVS7lxfkhi6pal9aZCmYJvOha5PRKo=
+	t=1736760361; cv=none; b=WY0kcPP5tPUccMJVV4k4EqejV2/y/HoVSh0WbM2i0KAxjLgD4YMf9Gu6f2OZR/tMonk5Tk1HnpD93+NdY8G1iM9/STlP/Jd2V3NkwlRApbpFt8I2HUdSpZhai/Rw5Z7xfeF2tDbeR2X/o0eCT1yB1SOSoXx6djIwjVM6JGNZXWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736759781; c=relaxed/simple;
-	bh=3yK1CkFMlEOY/PMetAalc6+5NlmHuoFvXe8naQX+ibc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h5f1N1EUD0pTRPePlDh/HQQ0zCvoYvn36ByCn2XFTuu0zfpoCKNgYqmsIoc9EW1KwVvgPooFXRrGqSQrsxlEohT+L8cHmrWKepE/11SSFuokZni7CbJVPrwsfvxUGI6TIKSPDBPgJXHpjj9xKQalMO79Ry+G4/4bMQdY2T0Y+lw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fqYj4ms/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EA21C4CEE2;
-	Mon, 13 Jan 2025 09:16:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736759780;
-	bh=3yK1CkFMlEOY/PMetAalc6+5NlmHuoFvXe8naQX+ibc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fqYj4ms/J59VU+rulw5bVn1dpacZEPaDFi4u5FfQfCtx0YqZob88dC2qEedkQZe8r
-	 DXsUtla/sIjD3QoKjPJSvMMZ99PMkMwbz1YrPdx9wQ/vG4JIt5AQmbw0fY3RqhFEuR
-	 p0vToZ0FkZ6EyVGHnhO7TewLbyXqBin8my7w4rvCItoW6BHWj+Yam8zO72HNtEIU1x
-	 sXGzIG9s55gd99X+7IsIY9TFIUt+QuUvQixCJKJSAyUC6tQiF9VyXWuBa88jdC4KGe
-	 SCLWdX3EbgxCNB+rJYKUOkETRfcA6gjZotnf/DKGrF0xnvoeWiwMbfyg/K+O0tkVBv
-	 nWR0blci4JIBA==
-Date: Mon, 13 Jan 2025 10:16:16 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, kernel@pengutronix.de, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH v2 2/2] dt-bindings: clock: imx5: Fix the CCM interrupts
- description
-Message-ID: <irln3zatlquwajbh66uxfo5kvw32pjzrldjfnuxc4bawv7k4q3@6dp4wnonvtw3>
-References: <20250112152745.1079880-1-festevam@gmail.com>
- <20250112152745.1079880-2-festevam@gmail.com>
+	s=arc-20240116; t=1736760361; c=relaxed/simple;
+	bh=LzhQ97fHILTYwmA3VvX34lCCeJsGHBrrga3Q8maQrXM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Bq6iWmFrynFqYt90xwDh9C4mEoT6hFjFBgDHzYi6xVtTHFXgyMIsRLD5Mkx0GDsTSxYBp1IKqthWLXcnI7Fg1TjhLbC/DolJFj0DLtpIU5kyPqvtyrIb5p0CCPfvz+ctt5obVo6XaPP17NTiIItMobsJ52tgsnScD5Ycp/qeCeA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oIT55bXS; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-436345cc17bso28579395e9.0
+        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 01:25:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736760358; x=1737365158; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=1oTNvOqfukHrgIuovSK0uBo5g5AB7kI/WzXWHrElV1A=;
+        b=oIT55bXSjBZ4i4nZ/u4nxOIIJAH6KZ+MUS9iHKW4dojKQ54ytHKXHSaBLizrI82f1W
+         TU7bUu4U+Mz7jXg3sALsUrovvUKtuzF/AscPs1JjAKo+d3w9Vyb75pIPQsSx0wLqNW7O
+         L3ybu+mWGJwGVbwDzgZGkg37QYrKqjBZD8m4WoTXpYiDHtpwb4KOOhGXezofsDF/G+rK
+         jE5YHrY4bgkiG+IOGUqXzmoMzI4oUiV9KqmNxvZbAKvv3+Zlou+Nl4IPC9lTaAAejKA1
+         yoazC1HrYhdytEnz4MjdblaEDbq/S5zwm0xHTytpzvoHaxIl7V6r6wG+FwI6UlxqMLFA
+         +bBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736760358; x=1737365158;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1oTNvOqfukHrgIuovSK0uBo5g5AB7kI/WzXWHrElV1A=;
+        b=BVhg5D9Rll9foDl2K1SPHXvcxo43fXtUq+RzlEpoHhPDhpQNjm92JQZnB6LXGip6Q0
+         xrp59UykpWQXTLJKh5IRSOS4OD9XorQvRqp54ZoP6QfsnNmKasWT2Lg1pwyInvJdTZHY
+         AUippOsCL8KMnYvh/VE7UOVfcBpWPSJkNqgUATmtuQWcgjh+yoznF25zG2sq5dRXm/fF
+         su4pKQHIEHkSOiRHGWb0BOaDPmE6YLUiy83t7oadIFw9FC0YCDZ6urLOMhQnDyJquVaz
+         l4cithZsjV8li9IGBaxWjto5CNfLes+vyu+9eBvPnaXsWAkiLH62ZQSIT7bvkyrcyGlM
+         9vMA==
+X-Forwarded-Encrypted: i=1; AJvYcCXbiLi6MWRVuIXnhdRozLxy3lOKhRamFAOS6HLVWUAAkWsrQ8/96JQMcuhyhDowcjwIOyA817YDyBEX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiZEjkDl3DOoRStPAWobBdP5cUa8gYP4Nm+Tu/c8rA5yG8v06h
+	OCKSjMiMM4BzaTE5OBX8nMws9HctjKZNfKhOqE8FTZG2qd2DS8BHDIZwTysvoz0=
+X-Gm-Gg: ASbGnctCNE8oC53Sep6qKfaxfLb3MP5Y1f0uG5HCfFuaHLpVq0NogEnRhWVB7JJcF+2
+	+7zuJHWXZlIcGb93B94ShNp3uUt6UsP503vjC+XjTjvPrEjAfirAOCF2mJ76MaBJS0OBad81nyg
+	amJ3YlxDPLk1DwQWkAkE1tgrCcshZjCyiu/01qpXTjB3gtakpEYo5q4yeoyM41bRhyBVXFu/iCr
+	N1SvbrgDdWxg0Gj1KTHLnlg1V7S5VaNAE8LK3uNP8gz8cj+J0wlNX3Ls9yA+LqkG2hNk/mbCA4q
+	IRZrPxOVsEnIIo3mLPf6
+X-Google-Smtp-Source: AGHT+IGrBvoo7a9T5ollC4Kafzr+5dvI/yM48bSNQ9PzhCKzvzS2+NRcCKfJfrFmUMRa61h//DtHbg==
+X-Received: by 2002:a5d:47a6:0:b0:385:d7a7:ad60 with SMTP id ffacd0b85a97d-38a872f6a32mr16896203f8f.3.1736760357235;
+        Mon, 13 Jan 2025 01:25:57 -0800 (PST)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436e9e03e5fsm136289565e9.18.2025.01.13.01.25.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Jan 2025 01:25:56 -0800 (PST)
+Message-ID: <a679d4df-839b-4fd0-87b6-0e2ea2e357b1@linaro.org>
+Date: Mon, 13 Jan 2025 10:25:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250112152745.1079880-2-festevam@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND PATCH v4 2/2] thermal: Add support for Airoha EN7581
+ thermal sensor
+To: Christian Marangi <ansuelsmth@gmail.com>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, upstream@airoha.com
+References: <20241218073016.2200-1-ansuelsmth@gmail.com>
+ <20241218073016.2200-2-ansuelsmth@gmail.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20241218073016.2200-2-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Sun, Jan 12, 2025 at 12:27:45PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On 18/12/2024 08:29, Christian Marangi wrote:
+> Add support for Airoha EN7581 thermal sensor. This provide support for
+> reading the CPU or SoC Package sensor and to setup trip points for hot
+> and critical condition. An interrupt is fired to react on this and
+> doesn't require passive poll to read the temperature.
 > 
-> On the i.MX5 chips the peripheral interrupts are represented directly only
-> by their interrupt numbers.
+> The thermal regs provide a way to read the ADC value from an external
+> register placed in the Chip SCU regs. Monitor will read this value and
+> fire an interrupt if the trip condition configured is reached.
 > 
-> Make the CCM nodes to follow this format.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
-> Changes since v1:
-> - Use interrupts = <71>, <72>;
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Sorry fpr the delay, this month has been complicate for patch review.
 
-Best regards,
-Krzysztof
+I'm reviewing it now
 
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
