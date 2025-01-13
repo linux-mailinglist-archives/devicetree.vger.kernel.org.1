@@ -1,89 +1,81 @@
-Return-Path: <devicetree+bounces-137912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 443B5A0B135
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:35:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id F13D2A0B143
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:37:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C8451667FE
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:35:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A6FC57A30B2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25FAE2343A5;
-	Mon, 13 Jan 2025 08:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B84C5233152;
+	Mon, 13 Jan 2025 08:37:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="imDm6zXc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jW0Zyn4O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43AF3233D98;
-	Mon, 13 Jan 2025 08:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 852548249F;
+	Mon, 13 Jan 2025 08:37:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736757318; cv=none; b=hzMIw5UDttRpZJnNVZ/acWZTF7Ocjs4ziEqx6I7sABJqIOluBGTwHumpq3IIJuXKNLL4HE351RaDeH7xRRzc5X43S5yGK5IKnge7IYtrLX1wjTbo8xwSplKqLLB9xjDQHKr5/wj+eK7AjOnTT+8JFgY0zncmwgoTazPJvEfqb/Q=
+	t=1736757428; cv=none; b=Z8QUDalEVRgjoG5HAFLfFsTSyUe3iu/i+ByXiv+05PUeNsWDsNHWnWzs2iahyguOPPDuJMSDqjfidFbL3ZyN1/M8DQAf3Hftdl1fLMLrj6gV0QB6hMfyJJKTrtJ+6grGl2p/J++3LWpX1h1bQz6ahB3RNhdyf9MkAqwlBmFIHfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736757318; c=relaxed/simple;
-	bh=/w4cGWEdvtF1jTVRXD4TLqnRhH1cGPm/56RjSTYR5J8=;
+	s=arc-20240116; t=1736757428; c=relaxed/simple;
+	bh=dpvkAEpxF6mBVe4BNBqZTcRAkzFIeejvQ5WZMpPBRq4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HWI4jctNAJfCUj3GTdooYMU2F23pkDE58fpjN8t15A9VewJIsA657t6DbDwH45WsWJ6Gd3yqOvBzvbIAe+4wB2qi4X9N7J6uoJfY5RXzeaS8/aU+lGvJ8J+Qj+ae2pkUp+6FTmcB2xBUi2hXw/waCuD7GoBAYy6TgcZ0REN2ZMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=imDm6zXc; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E3A5760007;
-	Mon, 13 Jan 2025 08:35:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736757312;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=IWmQ8MiO5uYzUdLoRcFdPB79dMwYGmi5sgzBTCSL1xw=;
-	b=imDm6zXcGeyK8CdpOD6BaZf7kxmdzcJeNpnUoDjsv0XgjwCt6nLR5C6B9LOQ/46cv6PW+G
-	9YoI6J5RH2eNTS2tNQgNzoGcm0eCeY94qocuqWVTeIexXsjbSin87Q1M5NWT7gnh7HuQXV
-	VeyJ6BNHMO8PeXBcZo/mRNuGRZdWs9qv1+0+iOnu5OAOS1eis9eYRQkwg39oaFaAKUcjrV
-	XGPe9qeYctouHHziW8rD184O3Tl74imxb+ub99PEHwAAf10MgdzX0lLyTv8dO32EirGKC3
-	TosGQbuxezNDN30qL+oGO+oTxiWH8Q2HiHQjIv/xC0uLQ030z5xy3LC+wOGPaA==
-Date: Mon, 13 Jan 2025 09:35:11 +0100
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] dt-bindings: rtc: mxc: Document fsl,imx31-rtc
-Message-ID: <173675730309.1496086.6217131350465680601.b4-ty@bootlin.com>
-References: <20250112134027.1013213-1-festevam@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kx1YgajGkgWXiP3jtTHCLNwskaLy30v9UyyChvKxf6g3GKn3Xn4wvSngdqvlaZrKEBBnxrgWN9UuWFLqVRSCNh7ZZY1HKdViXe8KdDOoa94q89sM0RKXM2s5Qf4B6OBD3+mFVq6i3Jw7EaHimCfvCGf908r/IRg+Odoff9vnb7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jW0Zyn4O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AEC3C4CED6;
+	Mon, 13 Jan 2025 08:37:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736757428;
+	bh=dpvkAEpxF6mBVe4BNBqZTcRAkzFIeejvQ5WZMpPBRq4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jW0Zyn4OM8Mk/Zyxb9Iz7S50JmTUo1Efn7KKJGKfWDDtlDo/kff1zrNrwl6e84gLY
+	 Mt2EPgLRCsvNAXuTjEvYO5E8i9IIFLTlifeamxuQoUr6ikeFUeEGa9ZwcWjwSbS/iN
+	 umouNj+ralkmi6ECScM2Zct2noc+pcyVjLLDqDA73SfHMFoPjxy/PmuQRswULqa9JI
+	 bT+p+qH3RjkI8PTJRvicIMAVf+uh2zxnS8fLoco3Vurf1/dA7DI3cxFEEAiat30k4l
+	 Z2G3GYSnbVVWSRuZo8TYFCFrlTLYsXErcJjptMnxWYdqd9jmBYnMpPeZnU7NcIhyjq
+	 UTxdm3+g9eV5Q==
+Date: Mon, 13 Jan 2025 09:37:04 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adf4371: add refin mode
+Message-ID: <mr7j4znl63p3ldhrxpc47mio63deszpqswbsqxxiby5nftpgbr@b4h47yp3xev5>
+References: <20250109133707.3845-1-antoniu.miclaus@analog.com>
+ <20250109133707.3845-2-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250112134027.1013213-1-festevam@gmail.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+In-Reply-To: <20250109133707.3845-2-antoniu.miclaus@analog.com>
 
-On Sun, 12 Jan 2025 10:40:27 -0300, Fabio Estevam wrote:
-> imx31.dtsi uses the following RTC compatible:
-> 
-> compatible = "fsl,imx31-rtc", "fsl,imx21-rtc";
-> 
-> Document 'fsl,imx31-rtc' to fix the following dt-schema warning:
-> 
-> 'fsl,imx31-rtc' is not one of ['fsl,imx1-rtc', 'fsl,imx21-rtc']
-> 
-> [...]
+On Thu, Jan 09, 2025 at 03:37:05PM +0200, Antoniu Miclaus wrote:
+>    clock-names:
+>      description:
+> -      Must be "clkin"
+> -    maxItems: 1
+> +      Must be "clkin" if the input reference is single ended or "clkin-diff"
+> +      if the input reference is differential. By default single ended input is
+> +      applied.
+> +    enum: [clkin, clkin-diff]
+> +    default: clkin
 
-Applied, thanks!
-
-[1/1] dt-bindings: rtc: mxc: Document fsl,imx31-rtc
-      https://git.kernel.org/abelloni/c/6758bd0692e2
+Which pins are these? I went through adf4371 datasheet and no reference
+on clock inputs like clkin or clkin-diff.
 
 Best regards,
+Krzysztof
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
