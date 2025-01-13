@@ -1,116 +1,144 @@
-Return-Path: <devicetree+bounces-138035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 157B1A0B857
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:38:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDCD2A0B87C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:44:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C0A1162952
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:38:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1486B18882FC
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF03822C33C;
-	Mon, 13 Jan 2025 13:38:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="w7vN9zyB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7E0223ED68;
+	Mon, 13 Jan 2025 13:43:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2AED125B2;
-	Mon, 13 Jan 2025 13:38:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B21CC2451C0
+	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 13:43:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736775491; cv=none; b=VX7U5qNfDMeHumokBhi7W3vfXTit0lYTZKL9ARRtbZYxZnuvFtrPS/cUnI8yenvl0jdbaFkLc1je9DtA/47p1pSXqa9WBykxbwaYyVdpgQTco8r//mWc4x8mZI8dRj22ABoffAjiaeLP1rsQ0zT9boC+Ec6wrFuRCgKmrJeAnyM=
+	t=1736775795; cv=none; b=qjAR5aomlavlt1IFc3m3/6ieQMK9JRMsqy/vl4WcNiZTUOJG7VrzxAF0PB7QxH1/mC636cBVqWPWF3uawhhvqLVkgK8HW9k8rSlsuSDteAxJIMegpjCW2AEgYsVtQTe7FIlr4STzJYdrJwR1dfixSXGHSvn48tLQOjYk43wSo/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736775491; c=relaxed/simple;
-	bh=nHN3ZaTTiEw6x6KDpMqEEiPy8Os0si5mupUZrQsZhAQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=um6hO14BRtsGZsEY2I4uGLyyT/CNnNQkcYjIQ9GwiT0gTh6aA9VeOMANWSHK94dmLcY/8XZ+IWz2u1tZu/uq6itHgC7M2iS2lnURqKI2UGQwJWFd2ocihl4jAgjRco5rujm/2SbQF1xMAnywToz29Du9rvwAdA2u5HLon264nPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=w7vN9zyB; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=K3/LnQGpJFz1AF0FoQuzUY+SDS8BerFJpfW2HEfDwmg=; b=w7vN9zyBghaON2SXZA2zkbWGCK
-	ioUyHajgaWLXq1Ib45mo9URWcz+QYj2uk2rSGyvvWk6gKSlh0xAGaFn+/vYKTPPEjQBBTKotFLOHf
-	7yrV/eE6KxMgDbDc5GoZh9aJ+iqrDhXSEKiWxY0AIjoNPJKWgcbSqy/1Y+DUVUxnkAQU=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tXKdd-0046S9-3A; Mon, 13 Jan 2025 14:37:53 +0100
-Date: Mon, 13 Jan 2025 14:37:53 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lei Wei <quic_leiwei@quicinc.com>
-Cc: Luo Jie <quic_luoj@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Suruchi Agarwal <quic_suruchia@quicinc.com>,
-	Pavithra R <quic_pavir@quicinc.com>,
-	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	Kees Cook <kees@kernel.org>,
-	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
-	quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
-	srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
-	john@phrozen.org
-Subject: Re: [PATCH net-next v2 12/14] net: ethernet: qualcomm: Initialize
- PPE L2 bridge settings
-Message-ID: <8bdde187-b329-480d-a745-16871276a331@lunn.ch>
-References: <20250108-qcom_ipq_ppe-v2-0-7394dbda7199@quicinc.com>
- <20250108-qcom_ipq_ppe-v2-12-7394dbda7199@quicinc.com>
- <4dbf1550-32e9-4cce-bf0c-8b92dbd49b50@lunn.ch>
- <c67f4510-e71b-4211-8fe2-35dabfc7b44e@quicinc.com>
+	s=arc-20240116; t=1736775795; c=relaxed/simple;
+	bh=dDgjCsArEUnKjcCMTMQscbgA5YD7IqjDgsb8HJ/MzLU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=o8y8yMHTdlAC6gdP5bIj9XDZMz137D/TMfbBc7tWeChzxQfOuZFlrf/dJ2Hl5DaaS/ln2V+Sy28jvh588ZY66+R9Itgm5D5aaJZL8cQuh/UP5g4+iLrIdvCEu4V4MgAvFPUSVdHivz/PnGvNEt+XlfY3H3ktkjgJlZQZhLH4Ptc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tXKib-0002oy-Dh; Mon, 13 Jan 2025 14:43:01 +0100
+Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tXKia-000Ghu-1M;
+	Mon, 13 Jan 2025 14:43:00 +0100
+Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
+	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.96)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1tXKib-00GZFh-1p;
+	Mon, 13 Jan 2025 14:43:00 +0100
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: [PATCH v3 0/6] arm64: dts: freescale: imx8mp-skov: switch to
+ nominal drive mode
+Date: Mon, 13 Jan 2025 14:42:50 +0100
+Message-Id: <20250113-imx8m-clk-v3-0-0d6e9bdeaa4e@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c67f4510-e71b-4211-8fe2-35dabfc7b44e@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFoYhWcC/2WMywqDMBQFf0WybkoSNdGu+h+li0tyo6H1QWKDR
+ fz3RkEQupzDmVlIQO8wkFu2EI/RBTf0CfJLRnQLfYPUmcREMFFwwRV13Vx1VL9ftC6kUjI3Vpu
+ KpP/o0bp5bz2eiVsXpsF/93Tk23pU6lMlcsqotmAtsEoZkPcR++Yz+aF389Ug2VJRHHrJOJNnX
+ SRdAiAY0LK0+Kev6/oDL4II0uYAAAA=
+X-Change-ID: 20241217-imx8m-clk-9467763dfcd8
+To: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Abel Vesa <abel.vesa@linaro.org>, 
+ Marek Vasut <marex@denx.de>
+Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Ahmad Fatoum <a.fatoum@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-> > Why is learning needed on physical ports? In general, switches forward
-> > unknown destination addresses to the CPU. Which is what you want when
-> > the ports are isolated from each other. Everything goes to the
-> > CPU. But maybe this switch does not work like this?
-> > 
-> 
-> L2 forwarding can be disabled in PPE in two ways:
-> 
-> 1.) Keep the learning enabled (which is the default HW setting) and
-> configure the FDB-miss-action to redirect to CPU.
-> 
-> This works because even if FDB learning is enabled, we need to represent
-> the bridge and the physical ports using their 'virtual switch instance'
-> (VSI) in the PPE HW, and create the 'port membership' for the bridge VSI
-> (the list of slave ports), before FDB based forwarding can take place. Since
-> we do not yet support switchdev, these VSI are not created and packets are
-> always forwarded to CPU due to FDB miss.
-> 
-> (or)
-> 
-> 2.) Explicitly disable learning either globally or on the ports.
-> 
-> With method 1 we can achieve packet forwarding to CPU without explicitly
-> disabling learning. When switchdev is enabled later, L2 forwarding can be
-> enabled as a natural extension on top of this configuration. So we have
-> chosen the first approach.
+Unlike the i.MX8MM and i.MX8MN SoCs added earlier, the imx8mp.dtsi
+configures some clocks at frequencies that are only validated for
+overdrive mode, i.e., when VDD_SOC is 950 mV.
 
-How does ageing work in this setup? Will a cable unplug/plug flush all
-the learned entries? Is ageing set to some reasonable default in case
-a MAC address moves?
+For the Skov i.MX8MP board, we want to run the SoC at the lower voltage of
+850 mV though to reduce heat generation and power usage. For this to work,
+clock rates need to adhere to the limits of the nominal drive mode.
 
-	Andrew
+This is done by this series: A new imx8mp-nominal.dtsi reconfigures
+the imx8mp.dtsi clock tree to be compatible with nominal mode, an adaptation
+to the Linux clock driver makes it sanity check the actual clock rates against
+the SoC operating mode's constraints and finally the Skov DT makes use
+of it.
+
+Actual configuration of the VDD_SOC rail continues to happen prior to Linux
+as well as PLL configuration that needs to happen earlier than the kernel
+running. See the corresponding barebox patch series[1] for details.
+Note that the barebox series didn't yet include VDD_SOC reconfiguration
+to 850mV, that would follow once the kernel changes have been merged.
+
+[1]: https://lore.kernel.org/barebox/20240503103717.1370636-1-a.fatoum@pengutronix.de/
+
+---
+Changes in v3:
+- change boolean mode properties to string property, so it's possible to
+  override in overlays (Frank).
+- Dropped Conor's Ack again due to aforementioned binding change.
+- make struct imx8mp_clock_constraints::clkid unsigned (Stephen)
+- Remove comma after sentinel member (Stephen)
+- Link to v2: https://lore.kernel.org/r/20250106-imx8m-clk-v2-0-6aaeadac65fe@pengutronix.de
+
+Changes in v2:
+- Explain in Patch 1/6 why two properties are added instead of one
+  (Conor)
+- Collect Conor's Acked-by
+- Collect Peng's Reviewed-by
+- Link to v1: https://lore.kernel.org/r/20241219-imx8m-clk-v1-0-cfaffa087da6@pengutronix.de
+
+---
+Ahmad Fatoum (6):
+      dt-bindings: clock: imx8m: document nominal/overdrive properties
+      arm64: dts: imx8mp: Add optional nominal drive mode DTSI
+      arm64: dts: imx8mp: add fsl,nominal-mode property into nominal.dtsi
+      arm64: dts: freescale: imx8mp-skov: fix LDB clock rate configuration
+      arm64: dts: freescale: imx8mp-skov: operate SoC in nominal mode
+      clk: imx8mp: inform CCF of maximum frequency of clocks
+
+ .../devicetree/bindings/clock/imx8m-clock.yaml     |  11 ++
+ arch/arm64/boot/dts/freescale/imx8mp-nominal.dtsi  |  64 +++++++++
+ .../arm64/boot/dts/freescale/imx8mp-skov-reva.dtsi |   5 +-
+ .../freescale/imx8mp-skov-revb-mi1010ait-1cp1.dts  |  19 +--
+ drivers/clk/imx/clk-imx8mp.c                       | 151 +++++++++++++++++++++
+ 5 files changed, 234 insertions(+), 16 deletions(-)
+---
+base-commit: 78d4f34e2115b517bcbfe7ec0d018bbbb6f9b0b8
+change-id: 20241217-imx8m-clk-9467763dfcd8
+
+Best regards,
+-- 
+Ahmad Fatoum <a.fatoum@pengutronix.de>
+
 
