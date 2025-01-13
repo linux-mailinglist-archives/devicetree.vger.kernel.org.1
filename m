@@ -1,159 +1,157 @@
-Return-Path: <devicetree+bounces-138005-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138006-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03874A0B683
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:14:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1C25A0B691
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:17:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 867C9188324A
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:14:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D36B18865EA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:17:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241BF230D1C;
-	Mon, 13 Jan 2025 12:13:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB1122A4D8;
+	Mon, 13 Jan 2025 12:17:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="V+uFfffY"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="KYX5/8OW";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="Ac7C9uQC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 996B422A4E8;
-	Mon, 13 Jan 2025 12:13:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A6823314D;
+	Mon, 13 Jan 2025 12:16:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736770417; cv=none; b=q+j6T2jAIFwllCgP8wds07j20ZrFpF/0n327dpM8tevhI/AsFDNBOGRit1Kh2opFDVd7n5fiAv55qoKKmgv4FDZP4nw2wyYGrNpOjkmbbEWFZC0iu/JYuXYbxzzLCaU3+p4ztULFe1gRsyOymDmvKihx3Os39Y619/aAg6+IcBU=
+	t=1736770620; cv=none; b=RQC1lGveDbE8bjM/q9IECZCLsqofE41BXLsHK9kxXtV9Kdl+dZYasUEnYOjLFg+sVBf08aC78TdIQbOTGczUqhME1Rb5zGAPEPhRYylg4ICfKMo6+4XknvX1yOPKW3R17CfScG50guYPQfk4icvUHm2a+roz4fFb5POkDTlzpCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736770417; c=relaxed/simple;
-	bh=PaFzif1sJvn2/yPj5jQHN74vPbwpP3BV/hQP1N2aCSY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=IWi4DdvUidCVkixrmT/pUaRHs+FcrxL89iNsAlxVNT5HuR4a4uAb5y+jx1qZcf3nII4js0yiyNKheDN5GUFH4+0ITVlVhjR+jxzWf6AFHabDFX+0jlVvbn4L9ZxljswKKUmkmY1+SQ8h/O7J50ovf+7JqQ02sjgcP8rWxxbTM/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=V+uFfffY; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50DBD0gt021694;
-	Mon, 13 Jan 2025 12:13:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	e5JZoap/hMEkgDwTgoI3MPEzte/kchJYBufBAF1WdKM=; b=V+uFfffYXgTFb099
-	a73W9XIPRjDnQRxedOxdiF2rkesR5I7sRPudsURXFGLJZzmds1+f7SmNqAJMdB0/
-	J/pLT2wwB7BVToJkAHCGdXNYK57ozJfVobjY08DQkuF3uS4mHQc6USkebuvVQq7e
-	st+yBOPf1JxChLnYtSrWOCqdn2uejWfumTDJKP+C44bgIt/IHAbNkTKMS2HXN/Mj
-	UIOA3vTurHGq4IQ/GehoYpdqTUjr8U6XW99nbLHFxgd5xwTW8F7wuDvVykOhgydj
-	9EawzDVaB5t7X6IfJMiK3YnjhNHAH3y2RK1dnLvrCSS4wGW5dyjN4tgb1gSNa+cV
-	caaL5A==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 444swy9ggv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 12:13:32 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50DCDVtA006575
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 12:13:31 GMT
-Received: from hu-pbrahma-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 13 Jan 2025 04:13:29 -0800
-From: Pratyush Brahma <quic_pbrahma@quicinc.com>
-Date: Mon, 13 Jan 2025 17:43:08 +0530
-Subject: [PATCH v2 3/3] arm64: dts: qcom: qcs9075: Update memory map
+	s=arc-20240116; t=1736770620; c=relaxed/simple;
+	bh=Un1kvi9W5WQQ+48XFletoPgm7L4mV6GyNZaoYgkco7c=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=trgWOplpusAdmHv/mQuOJSDt+iVg4GTznAnqaAuKLg3Dok24rlfQenQgCf5euSFG18/pKTuDjEySzDFFQUV3vo0fwlxPbVo3D3EErwnMcDSV/jwQbDXDqsf5PBrnnCahTzj2oFykhdW2hc1b7IzmeKDQfHV7oXRfH6qOJpxoFi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=KYX5/8OW; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=Ac7C9uQC reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1736770616; x=1768306616;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=h/I8ofgS/1dP08mnYQl4u8YsIuLHQEi0Cj5vHjiYV6k=;
+  b=KYX5/8OW2pj9ixH82eLDLSQ0TN2PvikCQMmiaWWlFPRTdHTMioos4cQR
+   3yvhfEfHdjIoi1kAXouSRHbEwHuNTS+jy/oJugkQ5QjQDACF2ofLrwbfI
+   27CFmpeOJ47lUPCqfFfaeyPmlQBI1EAM4WSs8gKleAr//DMNL3pEuf2fL
+   F1U+QitHX5V/EBXwXdPNCvTMCi6Yl/O3pH1RHSo7DZt5+HH8zuLXl61Pe
+   0vMd7hOizD0mIqWnNJv0asj+yd3Y5Qfb+0ExDyxwNoUDLhCsnCE9tSB7w
+   f8vlaSqZlPCdAkfZcjlldgvCyhqHV7k9YFWiOpf4GUNiF7rtG2Ddn+3ZJ
+   g==;
+X-CSE-ConnectionGUID: 1qdIUrH+QMyWDUbbj50IAQ==
+X-CSE-MsgGUID: EUfQ4QiHQJW34iNFwyctOg==
+X-IronPort-AV: E=Sophos;i="6.12,310,1728943200"; 
+   d="scan'208";a="41016138"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 13 Jan 2025 13:16:53 +0100
+X-CheckPoint: {67850435-31-1CE016C0-E589DA3E}
+X-MAIL-CPID: 120C5A0C0DE13FDF760E80BE027CE42F_1
+X-Control-Analysis: str=0001.0A682F27.67850436.001E,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 09A9D16126B;
+	Mon, 13 Jan 2025 13:16:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1736770609;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=h/I8ofgS/1dP08mnYQl4u8YsIuLHQEi0Cj5vHjiYV6k=;
+	b=Ac7C9uQCZ35A/+fQR7yoeb9o+uj1ZH9FqfqxRd7hKAgFaWh/j+iTwniqK8GbVh57j87e9d
+	yjYbycnZ4bUgeunosg5mLFOHd8hvvjNeJaGVzdkt3Un8CQ+wj9i4KIuskUtbjNkTD10xrX
+	3BoV4+gVy2z4jbviap+kygofq0nUFr7GFLMo7tx8Ap0/PNPHEYqa20+RA2laaFtgxc+djW
+	HKmzaECbg4tm2aJat6yqYki94rj3B4cGHhRV6DawPB6wWciNI3cmkAqHFELOJq8KtSG8pj
+	H7DFC3wwhqJ7AfQSqrkfj6Avw4rD5mGCaa1NE2/nOwjVzJtWNCwB0Et+q2I22A==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Peng Fan <peng.fan@nxp.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support accessing controller for i.MX9
+Date: Mon, 13 Jan 2025 13:16:48 +0100
+Message-ID: <4956524.GXAFRqVoOG@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <DB9PR04MB84615C152538FD411F462B19881D2@DB9PR04MB8461.eurprd04.prod.outlook.com>
+References: <20250108-imx-ocotp-v5-0-a6d90e18ebe9@nxp.com> <868241455.0ifERbkFSE@steina-w> <DB9PR04MB84615C152538FD411F462B19881D2@DB9PR04MB8461.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250113-sa8775p-iot-memory-map-v2-3-aa2bb544706e@quicinc.com>
-References: <20250113-sa8775p-iot-memory-map-v2-0-aa2bb544706e@quicinc.com>
-In-Reply-To: <20250113-sa8775p-iot-memory-map-v2-0-aa2bb544706e@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Pratyush Brahma <quic_pbrahma@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736770400; l=1955;
- i=quic_pbrahma@quicinc.com; s=20250113; h=from:subject:message-id;
- bh=PaFzif1sJvn2/yPj5jQHN74vPbwpP3BV/hQP1N2aCSY=;
- b=iBuarlDNxMpqTkUyMG+NkeltSrw728jq7gBjvjdknMNfqUKY+5Vdwin/yzIDDNRRQ8laJVvPY
- JXzg7n599V/Bh4+8zPVqqEwjutpQqooY3ooG8hbVVxj5y2vgpAUzhYC
-X-Developer-Key: i=quic_pbrahma@quicinc.com; a=ed25519;
- pk=YvfZKC4rRO1Fot+wlXZqsoQWnAtLqrpMyEzslw3Ji+M=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: JK3xm1B8mr9rrFY-kgJySnuETn9WvZzB
-X-Proofpoint-ORIG-GUID: JK3xm1B8mr9rrFY-kgJySnuETn9WvZzB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 spamscore=0
- clxscore=1015 mlxscore=0 bulkscore=0 mlxlogscore=512 impostorscore=0
- phishscore=0 priorityscore=1501 lowpriorityscore=0 adultscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501130102
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Update the iot specific memory map for qcs9075* boards.
+Hi,
 
-This depends on Wasim Nazir's patches [1] to introduce
-qcs9075 boards.
+Am Samstag, 11. Januar 2025, 13:41:58 CET schrieb Peng Fan:
+> > Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support accessing
+> > controller for i.MX9
+> >=20
+> > Hi,
+> >=20
+> > Am Donnerstag, 9. Januar 2025, 04:34:18 CET schrieb Peng Fan:
+> > > On Wed, Jan 08, 2025 at 11:15:40AM +0100, Alexander Stein wrote:
+> > > >Hi Peng,
+> > > >
+> > > >Am Mittwoch, 8. Januar 2025, 08:00:18 CET schrieb Peng Fan (OSS):
+> > > >> From: Peng Fan <peng.fan@nxp.com>
+> > > >>
+> > > >> i.MX9 OCOTP supports a specific peripheral or function being
+> > fused
+> > > >> which means disabled, so
+> > > >>  - Introduce ocotp_access_gates to be container of efuse gate info
+> > > >>  - Iterate all nodes to check accessing permission. If not
+> > > >>    allowed to be accessed, detach the node
+> > > >>
+> > > >> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > >> ---
+> > > >>  drivers/nvmem/imx-ocotp-ele.c | 172
+> > > >> +++++++++++++++++++++++++++++++++++++++++-
+> > > >>  1 file changed, 171 insertions(+), 1 deletion(-)
+> > > >>
+> > > [....]
+> > > >> +
+> > > >> +	return imx_ele_ocotp_access_control(priv);
+> > > >
+> > > >In [1] you mentioned devlink should solve the probe order. How
+> > does
+> > > >this play when the driver is compiled in (e.g. ethernet for NFS boot)
+> > > >but this OCOTP driver is just a module?
+> > >
+> > > OCOTP needs to built in for using devlink. Or the users needs to be
+> > > built as module.
+> >=20
+> > I don't like this kind of assumption. Would it make more sense to make
+> > CONFIG_NVMEM_IMX_OCOTP_ELE as bool instead of tristate?
+>=20
+> No. Users could setup their own system with this driver build in
+> or built related drivers as modules.
 
-[1] https://lore.kernel.org/all/20241229152332.3068172-1-quic_wasimn@quicinc.com/
+Sure, but if the kernel locks/fails/panics while accessing peripherals
+just because of the kernel config seems at east very unfortunate to me.
+How is someone supposed to analyze/debug this?
 
-Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs9075-rb8.dts     | 1 +
- arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts | 1 +
- arch/arm64/boot/dts/qcom/qcs9075-ride.dts    | 1 +
- 3 files changed, 3 insertions(+)
+> At least for Android GKI, this driver needs to be as module.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs9075-rb8.dts b/arch/arm64/boot/dts/qcom/qcs9075-rb8.dts
-index 3ab6deeaacf18eb4d5859f1bbb80c244bf8f224c..4458e2db2f3f2b222376b92e5c46c6557a1583b3 100644
---- a/arch/arm64/boot/dts/qcom/qcs9075-rb8.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs9075-rb8.dts
-@@ -10,6 +10,7 @@
- #include "sa8775p.dtsi"
- #include "sa8775p-pmics.dtsi"
- #include "qcs9075-thermal.dtsi"
-+#include "sa8775p-iot.dtsi"
- 
- / {
- 	model = "Qualcomm Technologies, Inc. Robotics RB8";
-diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
-index 5f2d9f4166172a85f8d69f6cd8813d4469de5bd3..231c1e3f73eb3e11dc50bbebb1773e31a0c71723 100644
---- a/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs9075-ride-r3.dts
-@@ -6,6 +6,7 @@
- 
- #include "sa8775p-ride.dtsi"
- #include "qcs9075-thermal.dtsi"
-+#include "sa8775p-iot.dtsi"
- 
- / {
- 	model = "Qualcomm Technologies, Inc. QCS9075 Ride Rev3";
-diff --git a/arch/arm64/boot/dts/qcom/qcs9075-ride.dts b/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
-index 10ce48e7ba2f53a6daef8beba4d29d2907990baf..3d85a7636adb2d9462308d48cf0431e266807af7 100644
---- a/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs9075-ride.dts
-@@ -6,6 +6,7 @@
- 
- #include "sa8775p-ride.dtsi"
- #include "qcs9075-thermal.dtsi"
-+#include "sa8775p-iot.dtsi"
- 
- / {
- 	model = "Qualcomm Technologies, Inc. QCS9075 Ride";
+Any particular reason this needs to be a module?
+Which means any affected driver needs to be a module as well just because if
+a DT reference, no? With no means to know which drivers are affected, despi=
+te
+checking for the DT references manually?
 
--- 
-2.22.0
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
