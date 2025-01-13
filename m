@@ -1,164 +1,113 @@
-Return-Path: <devicetree+bounces-138060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92D1AA0B96E
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:27:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F2E2A0B984
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:30:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1F0F165744
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:27:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE4BE3A1DD2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:30:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6216A22AE59;
-	Mon, 13 Jan 2025 14:27:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3A682451C6;
+	Mon, 13 Jan 2025 14:30:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="eNsa+SII"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vJRCP7JH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE58522CF01;
-	Mon, 13 Jan 2025 14:27:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5666323ED68
+	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 14:30:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736778429; cv=none; b=THktTzWpJlPhuTmh+Tji+IU1m3YbIalTMyCS3532ldFkh1Dkf1/RXZh+RgBZN3zYHKV74FiLblCeR1BJetJgKt3sFkpoTkbPxaSB7EZ9aNEMhU/fOixQf6AHDGNsBwYK/M/ckluq2Acl6i8oYIINYwEO2ZYYrYUghQOQZ7yDkEw=
+	t=1736778639; cv=none; b=SqmRUE4UmRP3Nio3J7wE/rGPsA+SavWivw/ClIAgPAN/ctGTqtEAkoA7W9CLoexSP+UPKk722p5I8HqX9F5oZ6wXcw4yA/mFBbjsgOilWhfC8wi2wetFeXXsjVMvWZKlLKRD/FW+O7Vf+qg+R6jmVZua5Y0gY0q3Op82OhBJF0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736778429; c=relaxed/simple;
-	bh=L5oYjLOGj7P+hW9teS8apQMGC4DtRjzNV+LFKafzGaw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UZN/vxXzh1WcWRBWU5cL9kqwBRwCO27EApmVNVJsdd5ullnQMCBDagNKgcsWVWICPvP+zPtFkWF/LMPPsMYkmL+WPHPhUYkRLyOQz3UMKC/WXT7fGKlfNAAklicIKmS3RmybgNi6dt4/oHuFfYG4Jd8/FLRGrfd7jGduEDwbhTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=eNsa+SII; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50DD4iCY019939;
-	Mon, 13 Jan 2025 14:26:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=Re1AWy
-	nCh34gObTCxI5E9tYgcxtbbp4c3dsc92FesJk=; b=eNsa+SIIMnv4fh5Y37zDo2
-	RJwSsnglnbxwhPcVcXoxP1ovUD87h+dcCwi2aiVGKBCmuENnNghJE/b6+z3qwl7i
-	xmRdOwHadN7aDygj5IYGYUhBpELtckz9sMU594Ul2/YXm4KyQVE+CkiKtwb5ucUz
-	pt1vCMJvh5E8lJXkEzgCA6O5zE1tDWDbgDIcEyae+0Cf/vvav7Jc5AbVMD9IrPjc
-	DTqeZN6b7SYWoihopp3ACIIFZ6O+dH306Q6FS5cEgmx97wA6eqi/E4DJzowmUuI/
-	er7FJymUQfIVsaHnOGDdtq4rlQzr3R6m7Fp9UwiM5yamd0ofge26P9ZooX4cTsig
-	==
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 444qvhk102-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 14:26:12 +0000 (GMT)
-Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
-	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 50DEKZWa015977;
-	Mon, 13 Jan 2025 14:26:11 GMT
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 444qvhk100-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 14:26:11 +0000 (GMT)
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 50DCn0Qe016976;
-	Mon, 13 Jan 2025 14:26:10 GMT
-Received: from smtprelay04.wdc07v.mail.ibm.com ([172.16.1.71])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4444fjxg2m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 13 Jan 2025 14:26:10 +0000
-Received: from smtpav01.dal12v.mail.ibm.com (smtpav01.dal12v.mail.ibm.com [10.241.53.100])
-	by smtprelay04.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 50DEQ90M46596426
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 13 Jan 2025 14:26:10 GMT
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 9A19B58064;
-	Mon, 13 Jan 2025 14:26:09 +0000 (GMT)
-Received: from smtpav01.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id EDC8658061;
-	Mon, 13 Jan 2025 14:26:08 +0000 (GMT)
-Received: from [9.24.12.86] (unknown [9.24.12.86])
-	by smtpav01.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Mon, 13 Jan 2025 14:26:08 +0000 (GMT)
-Message-ID: <bcebe5ed-6080-4642-b6a5-5007d97fac71@linux.ibm.com>
-Date: Mon, 13 Jan 2025 08:26:08 -0600
+	s=arc-20240116; t=1736778639; c=relaxed/simple;
+	bh=yQiQxuwGR8sipxLnE2QpNqD0m337joQm8Mgec26elhM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M2cQ++gA2do7CsNerW3kC+TY0WCli7mk1+HnL5i1yyDs2Q/31wyD7Mw8YWyWI2I8nzZ+3MxW6o3Kb/OTQRXqtMGn5NaV/VfztbjEQqHrFJordgcOKmZYX5yidUNIBYpS/x/Fgs9xncLsXPm7ebA+GxTx3RznYa2vrbGcmDrV8BM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vJRCP7JH; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-303489e8775so37805251fa.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 06:30:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736778635; x=1737383435; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yQiQxuwGR8sipxLnE2QpNqD0m337joQm8Mgec26elhM=;
+        b=vJRCP7JHCmA8mWQDiSFlV8GUugVUxXlPe0hdhmeL5c+Lr95DLJaZC/5Ixm0y/pWHN0
+         IWQ3fAhfjVrd0ONx7JwHcDEDOqPQG9/OCoW+wQvciLMr7TvRVN5JnpZzc3mT4l5ja9pa
+         q6150s78X0PswQC5fO0jlNRiplthwybM93s5ujCagkVKufZhn1LqIlscLKmAn1Wf+2nm
+         dmKSq3vkwi6QJhteaq5PwSVrHk+qOWRyx9wNhwUJIpDyCSNPFy+zXYxv45JFRd+kqNVk
+         6aYhW0sRnGwIErO6HeJLadja6OJSpCjKxePDpIJOL6NPz9QTMxwjoyMgB2IrUbqKD5cf
+         7H6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736778635; x=1737383435;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yQiQxuwGR8sipxLnE2QpNqD0m337joQm8Mgec26elhM=;
+        b=f7SCDZBiJ2btjuQMaY0Eqc09K/NB2gVOrTJddghpjb+Vn8HczEFJe4E42oTaenRjiL
+         92GLp/jVvhrNqcD3qFbuoKSAqYmGhjgu7lRtnGygPgsbDUeC7M2+uKIwindlDchiqGPP
+         iwWQRJBwlHux2HwZ5T+tdNxYt0DaLahf8Xu/tM+vYsDtA0KkEJlWcXnkb5Cvu66P1beZ
+         LOvCc30G+oKp+4sgGRZyfQnd/Pjhpvv0IbNdDAyhpYSknnwu9eP7ZS3w3abnY16kffpv
+         f94QIebq5awwnCZwbYGKibIf3YLZwWN9RfcCd/svzPUmDlz0KbDODcT57IUt4wmA8DME
+         jRaQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU8HudK5ECQcdtwb6HPcs0fBlizBxvTOtpnJQzGlJeXJrQ5izdog15AdqhWZgUKmQjfwKiRQxG4nwhN@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIj+Zh/N+vvpqUL66MPYFOX7cD1c4kxQDS4ilrFe15ntEp62mW
+	DG22Lj1aPgnjo8JyPfydaqUV44AGs6D/eQyOJGAMafrRHyyqraoMLXUPMrBKMrytpEz/Dq/+9Iy
+	3PTWvgICJTJ2BsH5p1CSmCg9FrtXqqJfSON4S2w==
+X-Gm-Gg: ASbGncuEq6CySbO6XMqXLapZ8ogQs0Zxu8MBNiDw0CwQCtp5OnrUOsomhwjMu+xaWOn
+	+lZn0/2f3xCY6mutkT6Jcj1jKjMJkfz3o8HUK
+X-Google-Smtp-Source: AGHT+IGhfOPi0kkaR3fzIiz3zYVKzNITf7WqJXfvCEhBW44RAY34fqtT6fXLyl378DmtnGYFFnV3yeRTPKvHK9wdrxk=
+X-Received: by 2002:a05:651c:221f:b0:302:1c90:58e8 with SMTP id
+ 38308e7fff4ca-3060ce3d06emr30538601fa.33.1736778635404; Mon, 13 Jan 2025
+ 06:30:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOWbnuimhjog5Zue6KaGOiDlm57opoY6IFtQQVRDSCB2MiAwNS8x?=
- =?UTF-8?Q?0=5D_ARM=3A_dts=3A_aspeed=3A_system1=3A_Add_RGMII_support?=
-To: Jacky Chou <jacky_chou@aspeedtech.com>, Andrew Lunn <andrew@lunn.ch>
-Cc: "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-        "andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "eajames@linux.ibm.com" <eajames@linux.ibm.com>,
-        "edumazet@google.com" <edumazet@google.com>,
-        "joel@jms.id.au"
- <joel@jms.id.au>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "minyard@acm.org" <minyard@acm.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "openipmi-developer@lists.sourceforge.net"
- <openipmi-developer@lists.sourceforge.net>,
-        "pabeni@redhat.com" <pabeni@redhat.com>,
-        "ratbert@faraday-tech.com" <ratbert@faraday-tech.com>,
-        "robh@kernel.org" <robh@kernel.org>
-References: <SEYPR06MB5134CC0EBA73420A4B394A009D122@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <0c42bbd8-c09d-407b-8400-d69a82f7b248@lunn.ch>
- <b2aec97b-63bc-44ed-9f6b-5052896bf350@linux.ibm.com>
- <59116067-0caa-4666-b8dc-9b3125a37e6f@lunn.ch>
- <SEYPR06MB51344BA59830265A083469489D132@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <8042c67c-04d3-41c0-9e88-8ce99839f70b@lunn.ch>
- <c0b653ea-3fe0-4bdb-9681-bf4e3ef1364a@linux.ibm.com>
- <c05c0476-c8bd-42f4-81da-7fe96e8e503b@lunn.ch>
- <SEYPR06MB5134A63DBE28AA1305967A0C9D1C2@SEYPR06MB5134.apcprd06.prod.outlook.com>
- <d80f5916-4918-4849-bf4e-2ef608ece09d@linux.ibm.com>
- <SEYPR06MB51340579A53502150F67ADEC9D1F2@SEYPR06MB5134.apcprd06.prod.outlook.com>
-Content-Language: en-US
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <SEYPR06MB51340579A53502150F67ADEC9D1F2@SEYPR06MB5134.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: PzMhasNMDNoKxdyKdAi2vxo5N7CWP4lG
-X-Proofpoint-ORIG-GUID: LOmVa8asSR9IfG6trFhNTjMZnecHBQjs
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
- definitions=2024-10-15_01,2024-10-11_01,2024-09-30_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
- priorityscore=1501 bulkscore=0 adultscore=0 mlxscore=0 spamscore=0
- phishscore=0 impostorscore=0 mlxlogscore=999 lowpriorityscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501130118
+References: <20241227-a133-display-support-v1-0-13b52f71fb14@linumiz.com> <20241227-a133-display-support-v1-10-13b52f71fb14@linumiz.com>
+In-Reply-To: <20241227-a133-display-support-v1-10-13b52f71fb14@linumiz.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 13 Jan 2025 15:30:24 +0100
+X-Gm-Features: AbW1kvZgkONvTczIqxIzrr227mixg_kY6H8hXCa96ZE9JLa4yEIXQA2LwUItM1s
+Message-ID: <CACRpkdY29s6Cz3zvtksLO8sESwxhkVdmGUipVAqiEtix3E1=Vw@mail.gmail.com>
+Subject: Re: [PATCH 10/22] pinctrl: sunxi: add missed lvds pins for a100/a133
+To: Parthiban Nallathambi <parthiban@linumiz.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+	Robin Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Maxime Ripard <mripard@kernel.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, iommu@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-phy@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Jacky,
+On Fri, Dec 27, 2024 at 12:09=E2=80=AFPM Parthiban Nallathambi
+<parthiban@linumiz.com> wrote:
 
-On 1/13/25 00:22, Jacky Chou wrote:
-> Hi Ninad,
+> lvds, lcd, dsi all shares the same GPIO D bank and lvds0
+> data 3 lines and lvds1 pins are missed, add them.
 >
->> Thanks. When are you planning to push this change? I might need to hold on to
->> mac changes until then.
-> Yes. We have a plan to push the patch about RGMII delay configuration.
-> Currently, I try to align our SDK to kernel.
+> Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
 
-Thanks. What will be the "phy-mode" value after you make these changes?
+Nobody seems to have any objections about this patch and it seems
+technically correct so I just applied it to the pin control tree.
 
-Will it be "rgmii-id" for MAC1..4?
-
-If that is the case then I can test it with current configuration which 
-may add extra delays in the RX from PHY side.
-
-Regards,
-
-Ninad
-
->
-> Thanks,
-> Jacky
+Yours,
+Linus Walleij
 
