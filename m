@@ -1,342 +1,157 @@
-Return-Path: <devicetree+bounces-138031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AC7CA0B805
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:21:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73D8AA0B844
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:36:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6959B7A0223
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:20:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8CF97A12BD
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:36:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 244BA1A28D;
-	Mon, 13 Jan 2025 13:21:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8B241CAA8F;
+	Mon, 13 Jan 2025 13:36:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PjLU69Ra"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hhBPV4cf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A2022CF31;
-	Mon, 13 Jan 2025 13:20:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13143125B2;
+	Mon, 13 Jan 2025 13:36:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736774460; cv=none; b=EqCApcmJEZrHTzlL68iufXPftKc1wzpkWOJC+Z9mrk2UGhhjp/sKIjnzob0Ujvhg5SqwifbS3iUXkjcEMg1uecQEKw24fxWLx7uzJyXNSsYZkXXtYG1CVjHo61sB7ngwApISGlPi7M61g9ncmu09MiF/qdUAO8ox5lphIbyvo7s=
+	t=1736775366; cv=none; b=ruXrtcIqqaDMGY8H5knvh48FJHtIZvHvxXsxij40cG/t3M4WROJqheIYDrlC4S80yw5MCHHEtOwv/WO1TBhJ72sr0hfyN0ehOjrmlmvj1YTTrAYrVR+Z7kL8UcHc74BNshDDq8WgBwtPrkMCPCcUEwdMnBUe+liMDEQneQ81qQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736774460; c=relaxed/simple;
-	bh=22Vhv7yDpoIIO9QZJmXGVQZPynnp6QNPf2YUTj++1xg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mmZIc4jeETzZC0Kc8si68//WsxTXVw3NH+gF/Dbw4pHGZApL8Z6aQHZ4mNNGxDLgAgyjzCh3Ac9SZuqSGunxoqyotzfkUTlMAP9mcuKhczUQqsTGbhih0HPNAcTEkicKoJ0UwhxYwdN3xsiplB8vzg3JW0bqZsefaz3u9dF0zcQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PjLU69Ra; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1736774455;
-	bh=22Vhv7yDpoIIO9QZJmXGVQZPynnp6QNPf2YUTj++1xg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PjLU69RaepD7xUbmVYwxw9S9Tez+FlQrXUSVLditygrYflSpkULyPOkO97FpOnBJc
-	 uNPci/lRLeVrcVkvtvEe1RHT6P1LqCbD5HJd2D/hgcZMpv7EZ4+3EC+e9dr4APFDPg
-	 vR6Ko+m05oojBRgO821AeQRyQ8C6ueV6xKAI9DXl9ceWBZHyUUMYxdwRWYgbMMh5hG
-	 CNS6qtms+HNa4skOHcIITbMlCLB9V4D4RbSrTGKGxFrDF+IxI98B+k9LNEeLCqB9cc
-	 qikuFWd0kyC5HiC1mrK1UxUFwwoUuz3FkidNThopl7pPzHrDYUIdVD9Zo+TqFwKkn2
-	 X+9mXiVlcFsVg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id EF86E17E0CDE;
-	Mon, 13 Jan 2025 14:20:54 +0100 (CET)
-Message-ID: <66218a3c-04c5-42ea-ba9c-e0fbc72ed16f@collabora.com>
-Date: Mon, 13 Jan 2025 14:20:54 +0100
+	s=arc-20240116; t=1736775366; c=relaxed/simple;
+	bh=x6ha5Ky2lC0qUjPPvUiU85NoPbXUXu7Yam+Wmm5D+wo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lyTITs+yUNDgqM1d5WEFtmHWE6q/rGTD4QmywMHWO+Yy4eho7rlcGkuYCymUhhwD2YLKfvmL+fbm6z16bz0Aorxif6nq1n+kCaL88uK7e9pI+pjhXfMjt9TshW0bkBDdrvc72DW1sKrUhhB9wJxroPqw1kue5eava0+PTfpN6U0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hhBPV4cf; arc=none smtp.client-ip=209.85.222.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-860f0e91121so2924293241.0;
+        Mon, 13 Jan 2025 05:36:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736775364; x=1737380164; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Je3pBYcDo10F18n9QDSn0Ys9/NG5PE+POke78jldIrM=;
+        b=hhBPV4cfvLoCgVEfI7rdrbL6jaXsW9wPnoB/RC5gqvbdj6DGmkdBeGeGAo8xnXoAJj
+         n7h9s6wArRo1N6Q8bmdZlYiZMtAIu/AU8uYEIo9FCLADpDJtSsbuztuNVmZ1J9lgrPYe
+         VKBViNKEyj2jdJ2CaKqLqC5Ss2HvQbiXRb82f3YBfcfX89rvlBOXVMkLeTxOPrwHJ2h0
+         qySjBRAHA88fCILOp9e4H8iVak81lcJkD8b8cZDEiFF6yBWqexHDycp8NgELaFu2xjek
+         ce9MUbfdNp0VReUwg87God4aMK7XqT2t+WEV3XAIfhAW/9y8htFpuxNs1B08px1jFMZe
+         2y4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736775364; x=1737380164;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Je3pBYcDo10F18n9QDSn0Ys9/NG5PE+POke78jldIrM=;
+        b=igC+iMEcUzbfpCug2O7xbiQIJtS1C4IIsRTx7EM0qzxhZANQ0z0k2LVNxvMPbAm787
+         fk3lifF3RMq00GQNBSvEQGFOlO3ulA4OSOBx3qVkIiIE21iEFH3HmTjAsFB9yMMWDIif
+         tTrprYifIqQmHGI7VZ7YPJMSf0j9iwp2sHC4ax42hqsavbwSxtBC6o1Z0BhoaTBhQrXw
+         3WwnGKiOkgDaltZ2UgUI6KGdEgLYQvqPKUclDWOg4nrgU+ZiKY/F9+zLwkt+GnPegmPG
+         dFqO+4tNdhfZDC6QXmvFdtu3YCLTdW9pcE9JpgrxckToVzgtjASvalezKtCCtJxqyd33
+         XGQg==
+X-Forwarded-Encrypted: i=1; AJvYcCWYIgNmmVWuVhj/BAtuHAdIBhK9vq5knBHSYDLtzA8yuycuXQvxmPkM1XPF1fUi3NY3/NHlELUqYVXRIYM=@vger.kernel.org, AJvYcCWZcXerMYeh2TQY9Aj3NMZQLmA507Wc+M8srGuLr6eQck3wPRCHyFYn2rRM73fvBzNHoY3fEBwSNaV2@vger.kernel.org, AJvYcCXM6Pas8qHNj2fvoJeGOAmfK2kzwZFA+KKV6BEBxUl8q6ndaMDDWSQxPeZUDp5OKEi2+pKvdL94xKXvdw==@vger.kernel.org, AJvYcCXdDO6sgM/hgDwUOe1G6Xb59QE7xDcEybfiCA4U/VQ6mjLCiRLB5UmfpKH6dQ7uq2lI6xdBN7VttXE=@vger.kernel.org, AJvYcCXdEHw0ed3LlqAz/X5CDSZnur8zbdFeiZsIsyAGYm+Lx/2Ny+12EiJIW6LAWrayH/LqnCUCf47ZxVcdeDJr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8R3I6Fg3LlU1r4VdUTQw50+u3yqK42JLbGkFHII+0T6jd+C1S
+	aD5X9ubDoMPvbtVi4lOZfLMeYyF4dm5PhhUkKu7iOLRlx8b3DQFbm77OqYVFz1aQiKC58PlqyBz
+	/fK1vGhZ6LJGMqPgOPvboQccLyEw=
+X-Gm-Gg: ASbGncurQ43glo7p8u0WaWJLdoy+RIYNcfQ8Vpt+ixgBYZX/gXJgx2mZXvKOoCbRpGJ
+	Vt+G6JHmGUHQYz0JfDwp/Nd3D2R/BciAG4Ok7mA==
+X-Google-Smtp-Source: AGHT+IEJr+Arylij/5HPtp83Stfq9iUWZWYnxqY1tWSnXNDXdyAjXhsAoB35wLJqa7gStu8nZ23tfz0bjL9eH0NNvDs=
+X-Received: by 2002:ac5:cb1c:0:b0:515:1fde:1cb1 with SMTP id
+ 71dfb90a1353d-51c7c818a5dmr11549565e0c.3.1736775363888; Mon, 13 Jan 2025
+ 05:36:03 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: mediatek: add support for
- mt8196
-To: Krzysztof Kozlowski <krzk@kernel.org>, Cathy Xu <ot_cathy.xu@mediatek.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Sean Wang <sean.wang@kernel.org>, Lei Xue <lei.xue@mediatek.com>,
- wenbin.mei@mediatek.com, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Guodong Liu <guodong.liu@mediatek.com>
-References: <20250110104703.13625-1-ot_cathy.xu@mediatek.com>
- <20250110104703.13625-2-ot_cathy.xu@mediatek.com>
- <dnjtaapqbn6zy55k5ky7zltswkbg7cjh2xwlnrmqdiz7tfm6rc@wbepc5koem6e>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <dnjtaapqbn6zy55k5ky7zltswkbg7cjh2xwlnrmqdiz7tfm6rc@wbepc5koem6e>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250108-starqltechn_integration_upstream-v14-0-f6e84ec20d96@gmail.com>
+ <20250108-starqltechn_integration_upstream-v14-7-f6e84ec20d96@gmail.com>
+ <20250109120158.GH6763@google.com> <20250109120308.GI6763@google.com> <CABTCjFCMky1kRZ0a8q999_WNdeOhqsDwtqxMCcWsmUoWv_rhDw@mail.gmail.com>
+In-Reply-To: <CABTCjFCMky1kRZ0a8q999_WNdeOhqsDwtqxMCcWsmUoWv_rhDw@mail.gmail.com>
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Date: Mon, 13 Jan 2025 16:35:53 +0300
+X-Gm-Features: AbW1kvZ2qog6kGbZ1YG6oeO5x7IGSNUtBvLoX71ZgTLHS-d-lGX3QVMqzXpEjpU
+Message-ID: <CABTCjFArONRgDBjiDABHfRhp1OQnZRFoirx4gNAR=wB4VPBZvg@mail.gmail.com>
+Subject: Re: [PATCH v14 07/10] mfd: simple-mfd-i2c: Add MAX77705 support
+To: Lee Jones <lee@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
+	Hans de Goede <hdegoede@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 11/01/25 10:41, Krzysztof Kozlowski ha scritto:
-> On Fri, Jan 10, 2025 at 06:42:28PM +0800, Cathy Xu wrote:
->> 1.Add pinctrl file on MediaTek mt8196.
-> 
-> Where? What is pinctrl file?
-> 
->> 2.Add the new binding document for pinctrl on MediaTek mt8196.
-> 
-> Look at git history how commit msgs are written for such changes.
-> 
->>
->> Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
->> Signed-off-by: Cathy Xu <ot_cathy.xu@mediatek.com>
->> ---
->>   .../pinctrl/mediatek,mt8196-pinctrl.yaml      |  266 +++
->>   include/dt-bindings/pinctrl/mt8196-pinfunc.h  | 1572 +++++++++++++++++
->>   2 files changed, 1838 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt8196-pinctrl.yaml
->>   create mode 100644 include/dt-bindings/pinctrl/mt8196-pinfunc.h
->>
->> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt8196-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8196-pinctrl.yaml
->> new file mode 100644
->> index 000000000000..abeb0d942cc4
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt8196-pinctrl.yaml
->> @@ -0,0 +1,266 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/pinctrl/mediatek,mt8196-pinctrl.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: MediaTek MT8196 Pin Controller
->> +
->> +maintainers:
->> +  - Lei Xue <lei.xue@mediatek.com>
->> +  - Cathy Xu <ot_cathy.xu@mediatek.com>
->> +
->> +description:
->> +  The MediaTek's MT8196 Pin controller is used to control SoC pins.
->> +
->> +properties:
->> +  compatible:
->> +    const: mediatek,mt8196-pinctrl
->> +
->> +  gpio-controller: true
->> +
->> +  '#gpio-cells':
->> +    description:
->> +      Number of cells in GPIO specifier, should be two. The first cell is the
->> +      pin number, the second cell is used to specify optional parameters which
->> +      are defined in <dt-bindings/gpio/gpio.h>.
->> +    const: 2
->> +
->> +  gpio-ranges:
->> +    maxItems: 1
->> +
->> +  gpio-line-names: true
->> +
->> +  reg:
->> +    items:
->> +      - description: gpio registers base address
->> +      - description: rt group io configuration registers base address
->> +      - description: rm1 group io configuration registers base address
->> +      - description: rm2 group io configuration registers base address
->> +      - description: rb group io configuration registers base address
->> +      - description: bm1 group io configuration registers base address
->> +      - description: bm2 group io configuration registers base address
->> +      - description: bm3 group io configuration registers base address
->> +      - description: lt group io configuration registers base address
->> +      - description: lm1 group io configuration registers base address
->> +      - description: lm2 group io configuration registers base address
->> +      - description: lb1 group io configuration registers base address
->> +      - description: lb2 group io configuration registers base address
->> +      - description: tm1 group io configuration registers base address
->> +      - description: tm2 group io configuration registers base address
->> +      - description: tm3 group io configuration registers base address
->> +
->> +  reg-names:
->> +    items:
->> +      - const: iocfg0
->> +      - const: iocfg_rt
->> +      - const: iocfg_rm1
->> +      - const: iocfg_rm2
->> +      - const: iocfg_rb
->> +      - const: iocfg_bm1
->> +      - const: iocfg_bm2
->> +      - const: iocfg_bm3
->> +      - const: iocfg_lt
->> +      - const: iocfg_lm1
->> +      - const: iocfg_lm2
->> +      - const: iocfg_lb1
->> +      - const: iocfg_lb2
->> +      - const: iocfg_tm1
->> +      - const: iocfg_tm2
->> +      - const: iocfg_tm3
-> 
-> Are you sure these are separate address spaces?
-> 
+=D1=87=D1=82, 9 =D1=8F=D0=BD=D0=B2. 2025=E2=80=AF=D0=B3. =D0=B2 15:53, Dzmi=
+try Sankouski <dsankouski@gmail.com>:
+>
+> =D1=87=D1=82, 9 =D1=8F=D0=BD=D0=B2. 2025=E2=80=AF=D0=B3. =D0=B2 15:03, Le=
+e Jones <lee@kernel.org>:
+> >
+> > On Thu, 09 Jan 2025, Lee Jones wrote:
+> >
+> > > On Wed, 08 Jan 2025, Dzmitry Sankouski wrote:
+> > >
+> > > > Add MAX77705 support - fuel gauge and hwmon devices.
+> > > > Hwmon provides charger input and system bus measurements.
+> > > >
+> > > > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> > > > ---
+> > > > Changes in v13:
+> > > > - remove compatible from cells
+> > > > - change mfd compatible to match max77705 fuel gauge node
+> > > > ---
+> > > >  drivers/mfd/simple-mfd-i2c.c | 11 +++++++++++
+> > > >  1 file changed, 11 insertions(+)
+> > > >
+> > > > diff --git a/drivers/mfd/simple-mfd-i2c.c b/drivers/mfd/simple-mfd-=
+i2c.c
+> > > > index 6eda79533208..22159913bea0 100644
+> > > > --- a/drivers/mfd/simple-mfd-i2c.c
+> > > > +++ b/drivers/mfd/simple-mfd-i2c.c
+> > > > @@ -83,11 +83,22 @@ static const struct simple_mfd_data maxim_max59=
+70 =3D {
+> > > >     .mfd_cell_size =3D ARRAY_SIZE(max5970_cells),
+> > > >  };
+> > > >
+> > > > +static const struct mfd_cell max77705_sensor_cells[] =3D {
+> > > > +   { .name =3D "max77705-battery" },
+> > > > +   { .name =3D "max77705-hwmon", },
+> > > > +};
+> >
+> > Why not register these from the proper MFD driver?
+> >
+>
+> Because the fuel gauge address is different from the max77705 mfd device.
 
-Those are different partitions of the GPIO controller, of which, each one does
-provide full control and different functions that are partition-global and not
-controller-global.
+In more details:
 
-So, I can confirm that these are indeed separate address spaces - this is right.
+we had a discussion with Krzysztof about fuel gauge device
+[1], [2], [3] and agreed that it should be modeled as a separate device,
+because it has no common resources with max77705 device, and has separate
+address. This means its node are out of MAX77705 mfd node, forming its own
+MFD with shared i2c bus.
 
->> +
->> +  interrupt-controller: true
->> +
->> +  '#interrupt-cells':
->> +    const: 2
->> +
->> +  interrupts:
->> +    description: The interrupt outputs to sysirq.
->> +    maxItems: 1
->> +
->> +  mediatek,rsel-resistance-in-si-unit:
->> +    type: boolean
->> +    description:
->> +      We provide two methods to select the resistance for I2C when pull up or
->> +      pull down. The first is by RSEL definition value, another one is by
->> +      resistance value(ohm). This flag is used to identify if the method is
->> +      resistance(si unit) value.
-> 
-> What is the point of choosing it? This is one hardware, one SoC, so how
-> different boards can have different units? No, just use Ohms
-> 
+https://lore.kernel.org/lkml/55f32164-f504-4409-8ce2-6462b833da89@kernel.or=
+g/
+https://patchwork.kernel.org/project/linux-input/patch/20241202-starqltechn=
+_integration_upstream-v9-3-a1adc3bae2b8@gmail.com/
+https://patches.linaro.org/project/linux-leds/patch/20241217-starqltechn_in=
+tegration_upstream-v12-2-ed840944f948@gmail.com/#951752
 
-That's legacy from when the paris driver didn't specify the RSEL in ohms, and I
-agree about deprecating that property and making it a default.
-
-Cathy, please add a `has_legacy_rsel` boolean in the platform data and assign that
-to true in *all* MediaTek pinctrl drivers that are not MT8196, then in
-pinctrl-paris:
-
-if (hw->soc->has_legacy_rsel)
-	hw->rsel_si_unit = of_property_read_bool(....)
-else
-	hw->rsel_si_unit = true;
-
-That way we can finally drop this property from drivers for new SoCs, including
-the one for MT8196.
-
->> +
->> +# PIN CONFIGURATION NODES
->> +patternProperties:
->> +  '-pins$':
->> +    type: object
->> +    additionalProperties: false
->> +
->> +    patternProperties:
->> +      '^pins':
->> +        type: object
->> +        $ref: /schemas/pinctrl/pincfg-node.yaml
->> +        additionalProperties: false
->> +        description:
->> +          A pinctrl node should contain at least one subnode representing the
->> +          pinctrl groups available on the machine. Each subnode will list the
->> +          pins it needs, and how they should be configured, with regard to muxer
->> +          configuration, pullups, drive strength, input enable/disable and input
->> +          schmitt.
->> +
->> +        properties:
->> +          pinmux:
->> +            description:
->> +              Integer array, represents gpio pin number and mux setting.
->> +              Supported pin number and mux varies for different SoCs, and are
->> +              defined as macros in dt-bindings/pinctrl/mt8196-pinfunc.h
->> +              directly, for this SoC.
->> +
->> +          drive-strength:
->> +            enum: [2, 4, 6, 8, 10, 12, 14, 16]
->> +
->> +          drive-strength-microamp:
->> +            enum: [125, 250, 500, 1000]
-> 
-> Why duplicating properties? No, use only one.
-> 
-
-The problem here is not entirely about duplicating properties, and I'm not
-sure that the reason is actually acceptable (but being this a special case
-the `description` field would be mandatory to have IMO!!).
-
-So, the reason for this separation is that the drive-strength-microamp does
-activate a special feature in the controller called "advanced drive strength
-mode", which is switching to different shunts that will decrease the power
-efficiency of the chip (by an ignorable amount, if that's one pin - but if
-that goes to something like 100 pins, it's not ignorable anymore).
-
-I'd be happy if we could let them retain both properties after putting a
-clear description of what's happening and why there are two of them.
-
->> +
->> +          bias-pull-down:
->> +            oneOf:
->> +              - type: boolean
->> +              - enum: [100, 101, 102, 103]
->> +                description: mt8196 pull down PUPD/R0/R1 type define value.
->> +              - enum: [200, 201, 202, 203, 204, 205, 206, 207]
->> +                description: mt8196 pull down RSEL type define value.
-
-These two must go away, RSEL shall be defined in Ohms unit in DTs/bindings.
-
->> +              - enum: [75000, 5000]
->> +                description: mt8196 pull down RSEL type si unit value(ohm).
->> +            description: |
->> +              For pull down type is normal, it doesn't need add RSEL & R1R0
->> +              define and resistance value.
->> +              For pull down type is PUPD/R0/R1 type, it can add R1R0 define to
->> +              set different resistance. It can support "MTK_PUPD_SET_R1R0_00" &
->> +              "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" &
->> +              "MTK_PUPD_SET_R1R0_11" define in mt8196.
->> +              For pull down type is RSEL, it can add RSEL define & resistance
->> +              value(ohm) to set different resistance by identifying property
->> +              "mediatek,rsel-resistance-in-si-unit". It can support
->> +              "MTK_PULL_SET_RSEL_000" & "MTK_PULL_SET_RSEL_001" &
->> +              "MTK_PULL_SET_RSEL_010" & "MTK_PULL_SET_RSEL_011" &
->> +              "MTK_PULL_SET_RSEL_100" & "MTK_PULL_SET_RSEL_101" &
->> +              "MTK_PULL_SET_RSEL_110" & "MTK_PULL_SET_RSEL_111" define in
->> +              mt8196. It can also support resistance value(ohm) "75000" & "5000"
->> +              in mt8196.
->> +
->> +          bias-pull-up:
->> +            oneOf:
->> +              - type: boolean
->> +              - enum: [100, 101, 102, 103]
->> +                description: mt8196 pull up PUPD/R0/R1 type define value.
->> +              - enum: [200, 201, 202, 203, 204, 205, 206, 207]
->> +                description: mt8196 pull up RSEL type define value.
->> +              - enum: [1000, 1500, 2000, 3000, 4000, 5000, 10000, 75000]
->> +                description: mt8196 pull up RSEL type si unit value(ohm).
-> 
-> Same problems.
-> 
->> +++ b/include/dt-bindings/pinctrl/mt8196-pinfunc.h
->> @@ -0,0 +1,1572 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
->> +/*
->> + * Copyright (C) 2025 Mediatek Inc.
->> + * Author: Guodong Liu <Guodong.Liu@mediatek.com>
->> + */
->> +
->> +#ifndef __MT8196_PINFUNC_H
->> +#define __MT8196_PINFUNC_H
->> +
->> +#include <dt-bindings/pinctrl/mt65xx.h>
->> +
->> +#define PINMUX_GPIO0__FUNC_GPIO0 (MTK_PIN_NO(0) | 0)
->> +#define PINMUX_GPIO0__FUNC_DMIC1_CLK (MTK_PIN_NO(0) | 1)
->> +#define PINMUX_GPIO0__FUNC_SPI3_A_MO (MTK_PIN_NO(0) | 3)
->> +#define PINMUX_GPIO0__FUNC_FMI2S_B_LRCK (MTK_PIN_NO(0) | 4)
->> +#define PINMUX_GPIO0__FUNC_SCP_DMIC1_CLK (MTK_PIN_NO(0) | 5)
->> +#define PINMUX_GPIO0__FUNC_TP_GPIO14_AO (MTK_PIN_NO(0) | 6)
-> 
-> You got comment, so respond to it. Sending the same and expecting
-> different results is fast way to get a grumpy response.
-> 
-
-...and I agree about every other comment from Krzysztof.
-
-Cheers,
-Angelo
+--=20
+Best regards and thanks for review,
+Dzmitry
 
