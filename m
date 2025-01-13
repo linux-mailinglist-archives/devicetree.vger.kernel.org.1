@@ -1,111 +1,193 @@
-Return-Path: <devicetree+bounces-137890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE981A0AFF8
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:20:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62D66A0B008
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:25:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E75281882D4B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 07:20:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3621F3A1621
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 07:25:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4F6D1BD9FF;
-	Mon, 13 Jan 2025 07:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B8CB1C1F00;
+	Mon, 13 Jan 2025 07:25:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mjKFkpRj"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Mbui2LO6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B8D28FD;
-	Mon, 13 Jan 2025 07:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ED561BD9FF
+	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 07:25:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736752797; cv=none; b=BGxVtUBL4oZaY+yBfOI9/NX+GAczC5JJSwjSPGlwKOOlDHrDiay60vz7lmZPe2pcLQtXppOpuxQx0Fer4HLP3SHzBkao5SYPF0MUHw2+gFCjwM6wkLNIcCfvvVR6zn0prcuLQdH0dam0peAwITkmHOEUapC1wvDjDujavWO2NX8=
+	t=1736753130; cv=none; b=Q7BCSLyRKdE3ctPsg8ODeRJXPh5NKe+ftdnF7M0oTAgGM581j4SBaOmzd/TivM3DrFHh6egUXb65xXhsELwi7zpZq8ySdohMPhi1FD4DS/eNqj9wOYvtg7DRvG4ut73aTiW1Xd3mf0h//k0Ck9H4OZAEJL8J7bZi51+hxOGstWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736752797; c=relaxed/simple;
-	bh=MYJh3nER0YHHitikyQndEMbpoJyhZPDW6g9Dil0vlRY=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=Qy0m4JS89y+I51EKrcUJ/ILrhXgq5HwL1LHcPk+WrhJdkKvRLR6DD5OXUXIkfk/ycPo/qSVyUtLVo7ayCjpAZvUYO8DOY7EVSJyI7MtMY+bbiN2rTnm43a/nSKy9m9zI/Y5jC5ixbc/zoLDo7qHZ7amFHya+oUftxGfYW98BO+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mjKFkpRj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A9A8C4CED6;
-	Mon, 13 Jan 2025 07:19:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736752797;
-	bh=MYJh3nER0YHHitikyQndEMbpoJyhZPDW6g9Dil0vlRY=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=mjKFkpRjdNsXXJ5zthwnqTsDxtfOwux3uS6dTV9/A8lV3ByHLs7QPzZoG5eOX3XTu
-	 Z9Y6yGThfI432tMiVYIueQY4bFTd1oy20h+H2JfbtijnbZom14Vzd9PoG9p+HObrH+
-	 9iCFrUMlX5B8RSLX1xf+dtGPqjlK/NNjZjtmjShbqyj14xpNMwiLKjA9JdT4ucp919
-	 asB5Q5Di+p3sPXIQ08Tf8telCIYOX1wkRg4Iqvhzmzl28rHR9ZATGve5/jmPTXItjZ
-	 7ccTeP5T3pn2qLLwpSljNU4DSYOWTiFUyD7EwozyfUT+HrvoLTZ3kkBaTgI8KnFP/n
-	 MppiBw38PetPw==
-Date: Mon, 13 Jan 2025 01:19:56 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1736753130; c=relaxed/simple;
+	bh=vLxK9kCiNhRmeVJOrScPwyT3tOezqgo0CjNRyjzBxkg=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=sCWMWNgBNUuIs/c/h0JU2zfSJnaaBa2xXhxT/gRJmACvwj4BUkz+hUVXAM7Gi/7J68hVmsTqlP0+jBWpc/9h+2cZT51X6pZYjft6KOUnUUJApBBr5JiS7fj8gAYcSqZ2zlg7elNJ7OBe+JOhniH5SssvVNaEeoYPwgRBWQmRwaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Mbui2LO6; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250113072523epoutp02748cb15e5e49ba54a8d87b75bd6ab8d1~aL8O2Dl6H2250222502epoutp02t
+	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 07:25:23 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250113072523epoutp02748cb15e5e49ba54a8d87b75bd6ab8d1~aL8O2Dl6H2250222502epoutp02t
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1736753123;
+	bh=WkCWYHTQGDIwmO+j3qhFei4FrNp6GwwlquFou5+NMYI=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=Mbui2LO6mI0xHUNvTs/aHBUSr/sXvYOJsXh9Y7dfqSDRuCNIuXwmQGEZeKB1YFuk0
+	 Vrokb1NUiSPOtWbK6EbbPKlGNb0wKYv5gxjAlClU3+aGlqBa8/5pLJ1p8ItGU7iXdo
+	 BAuEQw7uf/9ONmfHMWSixummX76yqRdTqSdL4th8=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20250113072523epcas2p1306db34a76855979540454bb3943a1c8~aL8OZPx173015930159epcas2p1a;
+	Mon, 13 Jan 2025 07:25:23 +0000 (GMT)
+Received: from epsmgec2p1-new.samsung.com (unknown [182.195.36.98]) by
+	epsnrtp4.localdomain (Postfix) with ESMTP id 4YWkLV4btgz4x9Q9; Mon, 13 Jan
+	2025 07:25:22 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+	epsmgec2p1-new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	40.89.32010.1EFB4876; Mon, 13 Jan 2025 16:25:21 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250113072521epcas2p3407e7a18e7a17f6e9c35b3dda27d813c~aL8MfiA8I1253612536epcas2p3l;
+	Mon, 13 Jan 2025 07:25:21 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250113072521epsmtrp2c3f9c0f5e22a23be68b856f7f050c5ee~aL8MeyIqN1851618516epsmtrp2M;
+	Mon, 13 Jan 2025 07:25:21 +0000 (GMT)
+X-AuditID: b6c32a4d-acffa70000007d0a-8f-6784bfe12425
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	A0.1D.18729.1EFB4876; Mon, 13 Jan 2025 16:25:21 +0900 (KST)
+Received: from KORCO078619 (unknown [12.36.160.53]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250113072521epsmtip1d8fbb6808b7317e71d0cf1dd30a9ac68~aL8MUSgbZ1685816858epsmtip1s;
+	Mon, 13 Jan 2025 07:25:21 +0000 (GMT)
+From: =?utf-8?B?64KY7IaM7JuQL1NPV09OIE5B?= <sowon.na@samsung.com>
+To: <vkoul@kernel.org>
+Cc: <krzk+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
+	<robh@kernel.org>, <krzk@kernel.org>, <conor+dt@kernel.org>,
+	<alim.akhtar@samsung.com>, <kishon@kernel.org>
+In-Reply-To: <20241226031142.1764652-1-sowon.na@samsung.com>
+Subject: RE: [PATCH v4 0/3] Support ExynosAutov920 ufs phy driver
+Date: Mon, 13 Jan 2025 16:25:20 +0900
+Message-ID: <000001db658c$4dce63c0$e96b2b40$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Jaroslav Kysela <perex@perex.cz>, Kevin Hilman <khilman@baylibre.com>, 
- linux-sound@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, 
- Neil Armstrong <neil.armstrong@linaro.org>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>, 
- Takashi Iwai <tiwai@suse.com>, devicetree@vger.kernel.org, 
- linux-amlogic@lists.infradead.org, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Liam Girdwood <lgirdwood@gmail.com>
-To: jiebing chen <jiebing.chen@amlogic.com>
-In-Reply-To: <20250113-audio_drvier-v1-1-8c14770f38a0@amlogic.com>
-References: <20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com>
- <20250113-audio_drvier-v1-1-8c14770f38a0@amlogic.com>
-Message-Id: <173675279619.745064.11661644624607210871.robh@kernel.org>
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: Add Amlogic S4 audio
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQH4Gf4Ht2pT+J2pScYPrVRUV1+UogJvt6+kssdl10A=
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPJsWRmVeSWpSXmKPExsWy7bCmhe7D/S3pBv8v6Fg8mLeNzWLN3nNM
+	FvOPnGO1ONr6n9ni5ax7bBbnz29gt7i8aw6bxYzz+5gs/u/ZwW6x884JZgcuj02rOtk8+ras
+	YvT4vEkugDkq2yYjNTEltUghNS85PyUzL91WyTs43jne1MzAUNfQ0sJcSSEvMTfVVsnFJ0DX
+	LTMH6BYlhbLEnFKgUEBicbGSvp1NUX5pSapCRn5xia1SakFKToF5gV5xYm5xaV66Xl5qiZWh
+	gYGRKVBhQnbGnI/fmQsmCVTMvsrWwPiFp4uRk0NCwETiytQlLF2MXBxCAnsYJfpX32SDcD4x
+	SmzdMQXK+cYocensXyaYlu8LtrJDJPYySnQ1bWKEcF4wSvw5fJcVpIpNwFGi7cEiFhBbREBM
+	4t+7h2BFzALvGCXmve1mB0lwCthInGibydzFyMEhDNQw7QsXSJhFQFXiwNXbYL28ApYSK+bs
+	YISwBSVOznwCFmcWkJfY/nYOM8RFChI/ny5jhdhlJfFh4Wd2iBoRidmdbcwgeyUEtnBIzP2z
+	jxWiwUVi/fTzbBC2sMSr41vYIWwpic/v9kLF8yXWP7wLZVdI3D30nwXCtpdYdOYnO8jNzAKa
+	Eut36YOYEgLKEkduQZ3GJ9Fx+C87RJhXoqNNCKJRSaLj/BxoGEpIrHoxmW0Co9IsJI/NQvLY
+	LCQPzELYtYCRZRWjVGpBcW56arJRgaFuXmo5PL6T83M3MYJTqpbvDsbX6//qHWJk4mA8xCjB
+	wawkwvtGsDFdiDclsbIqtSg/vqg0J7X4EKMpMLgnMkuJJucDk3peSbyhiaWBiZmZobmRqYG5
+	kjhv9Y6WdCGB9MSS1OzU1ILUIpg+Jg5OqQamwsS7GdKHNl9Xs9Fc/P7TKS2nO3ZL3Tb9v/jw
+	9WvmBZfzvy7ik7m3//ql1uLQn1e4FglfSq+Ykln6ysM/24ZH5/3LuLO2Sl4Hn8wKTnC7uaQs
+	Mp/3jrbcMT410fdpDWcjjHg5IzokH0UpPQjtnJvYaZ6uX7/kjulnkReWPAxmms22Ml+Ohu45
+	ExSaUHt708H8bx7iWicrpxmvqI6Ts/9+OnPxbKmNksUabCdLeXh+RJcen1KS9zh873bxbuuO
+	n20rdztKGa488J8/rfnXbo6DrPVn4kIPKMa12NdxHXLdHjLhSrIf68klYdJGp34/ks0raDhm
+	nKx5vTbhulxOyKlZRYsVS5ey3bZr2tgTLaHEUpyRaKjFXFScCABnbrd1MgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrAIsWRmVeSWpSXmKPExsWy7bCSnO7D/S3pBuueiVg8mLeNzWLN3nNM
+	FvOPnGO1ONr6n9ni5ax7bBbnz29gt7i8aw6bxYzz+5gs/u/ZwW6x884JZgcuj02rOtk8+ras
+	YvT4vEkugDmKyyYlNSezLLVI3y6BK2POx+/MBZMEKmZfZWtg/MLTxcjJISFgIvF9wVb2LkYu
+	DiGB3YwSi25uYYJISEh8e7MHyhaWuN9yhBWi6BmjxLUX/xlBEmwCjhJtDxaxgNgiAmIS/949
+	ZAQpYhb4wSjxef8kNoiOXkaJ7/NXglVxCthInGibydzFyMEhDNQ97QsXSJhFQFXiwNXbYCW8
+	ApYSK+bsYISwBSVOznwCFmcW0JZ4evMplC0vsf3tHGaI6xQkfj5dxgpxhJXEh4Wf2SFqRCRm
+	d7ZB1ZhKrPw8kxXmm7sPXrJPYBSdhWTFLCQrZiFZMQvJqAWMLKsYJVMLinPTc4sNCwzzUsv1
+	ihNzi0vz0vWS83M3MYIjUUtzB+P2VR/0DjEycTAeYpTgYFYS4X0j2JguxJuSWFmVWpQfX1Sa
+	k1p8iFGag0VJnFf8RW+KkEB6YklqdmpqQWoRTJaJg1OqgcnszJ/Khvkbs4/EKP35WdQ5Zf2d
+	Z4sPskRWiS+zEt6zsMjjmPdr/mNvO4UkfmTOZ3isX5pvm+Dn8d70fZjVrbncOa1ODbxz1OZp
+	1+5VOCm8wvF8xdzppYFpFhsfFIfs52mTjDp4a/Pj7XcriqdfPdbQv/COgba4fLjTdS0FnzvP
+	1K1cmlcvW1HlyG0e1O6bxit0c2bQj7ulH48l7//Cw3257ta3jmVJslf/TkrJdZf55CM0m/Vs
+	+fnvSwQ37vLawPzXjKfDSKx9j/H7P3dmnBaXrfvmLxtr/vBA9OxJm/JFv3S+X96m6du7xC1f
+	g5Xhg/Vc2fqXK/n9rC43dFrly745sv+g9XGVMkm3yzsKDymxFGckGmoxFxUnAgAgX5O4MwMA
+	AA==
+X-CMS-MailID: 20250113072521epcas2p3407e7a18e7a17f6e9c35b3dda27d813c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20241226031145epcas2p4fa41b44749a7f675364437856d01a4c6
+References: <CGME20241226031145epcas2p4fa41b44749a7f675364437856d01a4c6@epcas2p4.samsung.com>
+	<20241226031142.1764652-1-sowon.na@samsung.com>
 
+Hi Vinod,
 
-On Mon, 13 Jan 2025 14:35:13 +0800, jiebing chen wrote:
-> Add documentation describing the Amlogic S4 TDM output pad and toacodec.
+> -----Original Message-----
+> From: Sowon Na <sowon.na@samsung.com>
+> Sent: Thursday, December 26, 2024 12:12 PM
+> To: robh@kernel.org; krzk@kernel.org; conor+dt@kernel.org;
+> vkoul@kernel.org; alim.akhtar@samsung.com; kishon@kernel.org
+> Cc: krzk+dt@kernel.org; linux-kernel@vger.kernel.org;
+> devicetree@vger.kernel.org; linux-samsung-soc@vger.kernel.org;
+> sowon.na@samsung.com
+> Subject: [PATCH v4 0/3] Support ExynosAutov920 ufs phy driver
 > 
-> Signed-off-by: jiebing chen <jiebing.chen@amlogic.com>
-> ---
->  .../bindings/sound/amlogic,s4-tdmout-pad.yaml      | 36 ++++++++++++++++++
->  .../bindings/sound/amlogic,s4-tocodec.yaml         | 44 ++++++++++++++++++++++
->  2 files changed, 80 insertions(+)
+> This patchset introduces ExynosAuto v920 SoC ufs phy driver as Generic PHY
+> driver framework.
+> 
+> Changes from v3:
+> - Use lower case for all addresses
+> - Add empty line between macro and function
+> 
+> Changes from v2:
+> - simplify function name from samsung_exynosautov920_ufs_phy_wait_cdr_lock
+>   to exynosautov920_ufs_phy_wait_cdr_lock
+> - return immediately after getting the CDR lock
+> - add comment for wait CDR lock
+> 
+> Changes from v1:
+> - use exynosautov920 instead of exynosauto to specify
+> - remove obvious comment
+> - change soc name as ExynosAutov920 to keep consistent
+> - use macros instead of magic numbers
+> - specify function name
+> - add error handling for CDR lock failure
+> 
+> 
+> Sowon Na (3):
+>   dt-bindings: phy: Add ExynosAutov920 UFS PHY bindings
+>   phy: samsung-ufs: support ExynosAutov920 ufs phy driver
+>   arm64: dts: exynosautov920: add ufs phy for ExynosAutov920 SoC
+> 
+>  .../bindings/phy/samsung,ufs-phy.yaml         |   1 +
+>  .../arm64/boot/dts/exynos/exynosautov920.dtsi |  11 ++
+>  drivers/phy/samsung/Makefile                  |   1 +
+>  drivers/phy/samsung/phy-exynosautov920-ufs.c  | 168 ++++++++++++++++++
+>  drivers/phy/samsung/phy-samsung-ufs.c         |   9 +-
+>  drivers/phy/samsung/phy-samsung-ufs.h         |   4 +
+>  6 files changed, 191 insertions(+), 3 deletions(-)  create mode 100644
+> drivers/phy/samsung/phy-exynosautov920-ufs.c
+> 
+> --
+> 2.45.2
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I can't see these patches in -next yet, 
+do let me know if anything is missing to be addressed from myside.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/sound/amlogic,s4-tocodec.example.dts:23.35-36 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/sound/amlogic,s4-tocodec.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250113-audio_drvier-v1-1-8c14770f38a0@amlogic.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+Sowon Na.
 
 
