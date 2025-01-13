@@ -1,99 +1,118 @@
-Return-Path: <devicetree+bounces-138286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 772BFA0C59A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:27:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22F06A0C59D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:27:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 987171886C40
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 23:27:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF8CF3A5B05
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 23:27:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E59531F941C;
-	Mon, 13 Jan 2025 23:27:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A7B1F9F69;
+	Mon, 13 Jan 2025 23:27:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VBAbPCwk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I3uAMJeS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE07E16EC19;
-	Mon, 13 Jan 2025 23:27:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11C581F9415;
+	Mon, 13 Jan 2025 23:27:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736810834; cv=none; b=Tw/Z+39sSjMTMP1xltZfluiCjNI5Tb2Tb6E1ahQ5UbFWL0zxpXpS7/yt3kWZ9XubkgYGuPAwBkwwh/sD6RtI/nu1AxdS1k51UORAEdIaKZfGD0z1i6Wa1PNLWpoZYNKINDj+vbyEl5Cg+Rmsg7Y3bfOX5wgIe6HAbrvFnvfEBwE=
+	t=1736810844; cv=none; b=uACfbiSiWK9x/g5SLpYzy4vzaygTYbK3fnFbUQYQAli59uezcP+rnY/Jh/AhjcYvYaspi2b3JANQx3zSyL0PJgAvk0Uolwa8kMgATHWTcO2pxsYGQQaPl3v1pL1/9Ir1854dL8wpMW/0EngXQYyiYLyATY79G5zR5zW7PcBTY2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736810834; c=relaxed/simple;
-	bh=+nxIsWODGcS24rqD3KZPjewsaUOhZ1q2F2mSUjf8z6c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cr92nxckpqkaA9RqAGfhaRaAoqb8/bbBQ3cSM0NiYlhpMtlXxqsW+keySwTix0HNUGafNhAvNhgAffeJ0KXuuhnR+nXqOtFCtCNxfkJniNkIz01KBZUJ7WqGJ5w+2kRSZjOZvgI4Ie42P58RpAeQR/Lrry3RzsYU9NLI4JG9jxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VBAbPCwk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 742EDC4CED6;
-	Mon, 13 Jan 2025 23:27:14 +0000 (UTC)
+	s=arc-20240116; t=1736810844; c=relaxed/simple;
+	bh=Wyd0GkcBwPWXois4+LKVXlzTBRXNw0WbLYeURxTamHg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=m7qbs4VwC6c3jGyHkaQc50pxyMlg9ACt/tQ8yNgN2PXZ91sQIJqO8hJKR0AOa3tBfgnBhWxWaKtjix4yBLOUdXO5rWWg8zFkTjfR1dczG+bXrvnewny6lpcszEXnfIBH747QZ8zKVY7iOVS5zondw6tXhsruNw24gHVnIzL7KUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I3uAMJeS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68FB8C4CEE2;
+	Mon, 13 Jan 2025 23:27:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736810834;
-	bh=+nxIsWODGcS24rqD3KZPjewsaUOhZ1q2F2mSUjf8z6c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VBAbPCwkwv2wAOqdw3BfFezTctZUN49cPIqVrdjiSeLqjKw0RL8On2TuPtmmQBy1E
-	 5Bz4N32inRoA1prlqHjEY+ymrqvZTOMxj+MFjxIyXhdAwdFIxLHYWpUMFGAWYAlDbS
-	 MgLTqRj0W1vHVZgkYy0fjnvmvpsYzU/qcfkUONmJZFnEQzgBN/b8pJcVA+PBwRZ9yu
-	 b2xnoEZlwgh3dkTxbbdaEcvmXjLIH4HCUJmUSwmGSqxSEkSizLwXUo9AgY0DsgzX9v
-	 sT10bSn2TvZDBfSUw+9IUgR1cIDEu7+RGBbL1pKaayE4MXv9IHKz2YLkH90bKtuu5w
-	 VVYNFQuGn54Nw==
-Date: Mon, 13 Jan 2025 17:27:13 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: Catalin Marinas <catalin.marinas@arm.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Zijun Hu <quic_zijuhu@quicinc.com>,
-	Grant Likely <grant.likely@secretlab.ca>,
-	Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org,
-	Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Oreoluwa Babatunde <quic_obabatun@quicinc.com>,
-	Andreas Herrmann <andreas.herrmann@calxeda.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Mike Rapoport <rppt@kernel.org>
-Subject: Re: [PATCH v4 10/14] of: reserved-memory: Do not make kmemleak
- ignore freed address
-Message-ID: <173681079939.3603903.12281721450645476296.robh@kernel.org>
-References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
- <20250109-of_core_fix-v4-10-db8a72415b8c@quicinc.com>
+	s=k20201202; t=1736810843;
+	bh=Wyd0GkcBwPWXois4+LKVXlzTBRXNw0WbLYeURxTamHg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=I3uAMJeS15prghq7+Kg6lXcRid8omW21cyV3RO8r5ELoTOhgWVC6aGwxWwXFnz8fx
+	 AMrbO7x1n7S+0gYWpSD/jHCY3EtrI+rld6e9mJ4A/1e5tywXx+DlVdOZl1HoqDGft+
+	 C5GXUiFhgjPNJSZ7Pj7y33kHbXQR9UqK+4SsP0rKe5lNVaD7HSjOSiR/XZxrPvdlJK
+	 QLc2LlxgDRNQAs5zFTYDFVvJ7wc7Uc5FCisrXMx0CfGgI7JGTyPxi+RlCizLrj29JB
+	 ZF7X482UUobRP3eFzYY3iJSL3kDjsRYSIoA9tTDGpwDYJ652Fkhl9NX5FH33khzdH/
+	 /RlxjLI8G0osA==
+Date: Mon, 13 Jan 2025 17:27:22 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250109-of_core_fix-v4-10-db8a72415b8c@quicinc.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Conor Dooley <conor+dt@kernel.org>, 
+ Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, 
+ linux-arm-msm@vger.kernel.org, Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Will Deacon <will@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Vinod Koul <vkoul@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ linux-usb@vger.kernel.org, Trilok Soni <quic_tsoni@quicinc.com>, 
+ Konrad Dybcio <konradybcio@kernel.org>, linux-phy@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Catalin Marinas <catalin.marinas@arm.com>, 
+ devicetree@vger.kernel.org, Wesley Cheng <quic_wcheng@quicinc.com>
+To: Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <20250113-sm8750_usb_master-v1-2-09afe1dc2524@quicinc.com>
+References: <20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com>
+ <20250113-sm8750_usb_master-v1-2-09afe1dc2524@quicinc.com>
+Message-Id: <173681084057.3609181.3813483305054365666.robh@kernel.org>
+Subject: Re: [PATCH 2/7] dt-bindings: phy: Add the M31 based eUSB2 PHY
+ bindings
 
 
-On Thu, 09 Jan 2025 21:27:01 +0800, Zijun Hu wrote:
-> From: Zijun Hu <quic_zijuhu@quicinc.com>
+On Mon, 13 Jan 2025 13:52:08 -0800, Melody Olvera wrote:
+> From: Wesley Cheng <quic_wcheng@quicinc.com>
 > 
-> early_init_dt_alloc_reserved_memory_arch() will free address @base when
-> suffers memblock_mark_nomap() error, but it still makes kmemleak ignore
-> the freed address @base via kmemleak_ignore_phys().
+> On SM8750, the M31 eUSB2 PHY is being used to support USB2. Add the
+> binding definition for the PHY driver.
 > 
-> That is unnecessary, besides, also causes unnecessary warning messages:
-> 
-> kmemleak_ignore_phys()
->  -> make_black_object()
->     -> paint_ptr()
->        -> kmemleak_warn() // warning message here.
-> 
-> Fix by avoiding kmemleak_ignore_phys() when suffer the error.
-> 
-> Fixes: 658aafc8139c ("memblock: exclude MEMBLOCK_NOMAP regions from kmemleak")
-> Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
->  drivers/of/of_reserved_mem.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  .../bindings/phy/qcom,m31-eusb2-phy.yaml           | 84 ++++++++++++++++++++++
+>  1 file changed, 84 insertions(+)
 > 
 
-Applied, thanks!
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/phy/qcom,m31-eusb2-phy.example.dts:18:18: fatal error: dt-bindings/clock/qcom,sm8750-gcc.h: No such file or directory
+   18 |         #include <dt-bindings/clock/qcom,sm8750-gcc.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/phy/qcom,m31-eusb2-phy.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250113-sm8750_usb_master-v1-2-09afe1dc2524@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
