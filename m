@@ -1,153 +1,181 @@
-Return-Path: <devicetree+bounces-137949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E251A0B34D
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:42:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4848CA0B378
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:46:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E8F33AB410
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:39:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D33E3A8C27
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:42:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD2002451C6;
-	Mon, 13 Jan 2025 09:34:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4726322AE6C;
+	Mon, 13 Jan 2025 09:36:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iIDTaIUj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LrCHGPcC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A93A323ED7E
-	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 09:34:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BE3B21ADA6
+	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 09:36:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736760863; cv=none; b=tYRHQHgT27z+PrMg7fR7CQFxLvVjfGrj/sosmi4rSQ3f9jsKlQOqU6sJmsj+VE9AdI8Y9jyaeWt9BiXUMguEOnEdIVFVWRCfOLt3tNRdf2SYxlNntzaFBLdnZ/HucuBq2uF6VhQ5SLzTfnNk4epyV1hPUcZRtsTyw+EwR3Qbt4A=
+	t=1736760991; cv=none; b=FcviBKRToaVz58j3jFfFDelSAuk1jZ+5MdGah1duu5r3lSH0GR0zAzaGBYgrP+lnQOa6H7MiL/Tvll/h7n0doSmr/QBQXSHPmH4RH8J0DHN8QtFP55NrF0VkWs0kYC80gWMo687YknLht1TXEbDoY2jNYoVq/HI4FbVtuedYhKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736760863; c=relaxed/simple;
-	bh=byGk+WV91vg1IroZxWCBoXTAvtlQ4F8Ubeg1Q7ZsOUs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ObISiRjME77scZuuJvTj/RxsgEns3x+O+IdrChXR2tD3dMJ1ZtUTM4dhM6/DiyXTNLAkbDdVBt3iXfDiW9QcpxIoF7Ji6LdmdSlpcImEWpqBsVI4ZvmbKT2h8iflsYKwFBTJ81QiVYoAp6YuAIdRL/oYWiHLpg0nrYUcgXgY8kc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iIDTaIUj; arc=none smtp.client-ip=209.85.128.51
+	s=arc-20240116; t=1736760991; c=relaxed/simple;
+	bh=f6Fi9jIf7oDTuhJCo7ZuYkX89fOMUuxiSHQX0kBcNuM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IfRClogX8uljn+NpmsyA0fk0uNKnWB4v+4rFkrJ9hNyBoL3E/hwOdvRFCVa8F9y9GIJ75q6Nssw3WcbmoZKqRHhrdHpFzf30PHR+KJoA5Pz4EfWXxuVUbsut0wUgcKJvEKYzEsj4PBP9ngOESibxAg+HDK59TG2DaMH0Z+Nlq/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LrCHGPcC; arc=none smtp.client-ip=209.85.208.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-43624b2d453so41394665e9.2
-        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 01:34:21 -0800 (PST)
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-30616d71bb0so10860271fa.3
+        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 01:36:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736760860; x=1737365660; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mcn9xoOYu8W8aqg79TZi7MJEchbnlTtS4s5gSCJbvAQ=;
-        b=iIDTaIUjDa2oDYf6D9zcjzcAcS97vxsWGY65S3MG95OnCGV6MBr1O2H2PGbYoE75sq
-         Gq9QrpSJVsEvZ/ov+/LEIlUz4b9IsgXN3mHDW/Co/2oQijiriwmP+rpo8kLKjC3Sp9qR
-         F0yCHSn8cVGZZY7eBs2/LxniR/4JWXEM2RVxDnhzqLSt7HFcmQhomnS+/3uw4FcSw1uW
-         0AuF0nEy4HweV2nbhFGBBChXJWZLzUfN/hW9SkV48CxjvxJUIpEx3hwcw8Z5wlWqnR/6
-         FvzR1ncrEm21gkoEVdPGWyT6fx3tXPJD047/llC/WwQ83LO0XZsP9/wupj7NqIh1cR3t
-         Q7UQ==
+        d=linaro.org; s=google; t=1736760985; x=1737365785; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=DmCzDFErLnBOfEME/9QnQ60BqhOwOM+03PSKJOPU4Wk=;
+        b=LrCHGPcC0vWoMW43lrMxcsNtVCBP+bWV10xW7peu5IPgZatRlHqtO2uTJbEe1ui7Gy
+         lWFwZqDCSYKmPvm8+q8WUiGaplpZ62TqmUvvCwDLeC0VGH+Ejxw/2Qo7NpHuUdAOoPXn
+         I7ghwf/cSbCYkhroqqtR+FhE+QYwpexLnhqxujqksKFdQ1BrcgeyRYqp1S70D287pYnt
+         NQ8BH1+XGJ/4m6rVqtuFVP3LzhWlxURrQTElmAiLli0/cBlbU6OlW8DSenANIXCIUGRy
+         Gd5DAffpmfrUNAQv0xS+7lkcSnSgygojPtSSEDYN3ypMYHo0GRHknAqZmV2DfyJSHnY0
+         kqZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736760860; x=1737365660;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1736760985; x=1737365785;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mcn9xoOYu8W8aqg79TZi7MJEchbnlTtS4s5gSCJbvAQ=;
-        b=VWpIoAexBnU3YdI1BFYPLWnliqBetJkd6Avj3ZMVidjs2jIVy2dYUrh8CD2wp7repe
-         2XYQLwI2HN8R0JSYJ8YOsK5brfrSDwuwE0wiCxJkMfhiGujasYBeiW5viTWF8h3k9/WP
-         codfKtRusl1aUlsnOJofntjrjlze29F8b8NIA97jgZodWJ9OE49jnW/oOoK1gQkoMS/7
-         IQLZUUK7iLXLJosJYRnUDYiEGqsX3tWGjpKbjgmSuWidEMQdR/wyKVHoow8HPQ+aWXrN
-         Yq7A6SicZB2OLN7U6ZryahfvAk/C76WgXVbOVDgXB/hTEesQEwAbX4glOoHAW1zUsl+i
-         QhuA==
-X-Forwarded-Encrypted: i=1; AJvYcCWB6omO+KHPbNd1GOt5qGcA6S/YQKlJHDQN/sylYARIbOawKtc0k0zGoBJPYkxVuv6ibpUX2LUW70vs@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqBdt8w9X1O+MwnLI+eZWzcrCAEaJuQ5ljmp+L6XFo04rJ7n3w
-	C8mUBoNPqfLadPyeZrVghV7v69ALJ8FfEiP6boZI0O43HE5bBQCGLunAv7nMD8c=
-X-Gm-Gg: ASbGnctm9HMGg5P7vLCy7ThtAjqOsG4VGe5sVXls7idIq8qiq4ykekQVe1InDOLxG49
-	+xOyJlRbDse1+oyZWolS4P968f/sq2bgBwWxXltp0s4O6xEd1JCS3pN4eeOhVtjCKFzcaVbulox
-	mSirl22fEljYqiFYmOHXNp/17dEdJlDLFBJpojzTbIIFQ3q8i2P+wYR+tN0gDYVfIYDuoXenl0K
-	yQR72sfEj8lcI8mSuK+4yvuds7Xwr7r+4nZncYbuvMlJRnWBii8Fn+ocSP9oGaSgw==
-X-Google-Smtp-Source: AGHT+IGFH+x4nfdStxwZGkAyFCJvnk1LXrp25GiWHQEWRueM3fKqk/Y3Ijad7YFj8i45jHfeLn4/VQ==
-X-Received: by 2002:a05:600c:1c8b:b0:434:a852:ba77 with SMTP id 5b1f17b1804b1-436e26a7e1emr197156785e9.15.1736760859971;
-        Mon, 13 Jan 2025 01:34:19 -0800 (PST)
-Received: from [192.168.0.14] ([188.26.60.120])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e9e37d69sm136986415e9.30.2025.01.13.01.34.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Jan 2025 01:34:19 -0800 (PST)
-Message-ID: <7dc02926-905e-430d-91f5-e1ad7af7135e@linaro.org>
-Date: Mon, 13 Jan 2025 09:34:17 +0000
+        bh=DmCzDFErLnBOfEME/9QnQ60BqhOwOM+03PSKJOPU4Wk=;
+        b=rwsEQaRKffTU4hqHCutJS+yDZzGx0wNsHg/lJlJdHIIG5VEI0Z/qMNRJO44aCbbrgJ
+         L8ta7IT0TF7LlnmvDWOGCbA/6vL01Wp0i4Opp3NUUimb4w+ZPIhQoqY2CCJhnJmxw85J
+         E0P+mR1xh54Eo7QxhXDPCc/IE4SpaXgpL3a2gdp2EMlDha8g+aC3yIsB4+t/IyneFjBz
+         0piZMKf05unk4uKN6MSPXw68vIMWIv9E3qHW3Q9tyTwbNfnc8KpnxxzwL61hTih2fCyM
+         jv3MWwVDYZ31+x5sCLLF3f+umAs4QYRO3qaNCTno+m+v+1M1GeVTGL2j1f7L8HviIobj
+         SPlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXuFYttNX9/sSqxoiYhQhmnRLQA7yp6xThM4yTMnMo32jzNM4w4q+QzihhWBl1SOVjcAGSrZPD8TE/d@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMHeFxyd29q5vZsFZkSKRlWJdQl2H7UtaYb5uJM+8HIoE1/BnZ
+	lHJbgZtOsLJcGQsSYLotTyTwx7iiY10T/qXyqxf5nq4ZypThNpPJxIrZKIZ0BzQ=
+X-Gm-Gg: ASbGnctufj9gsQdUGpe+XddmTRpnu4eUO/QHnKHatBeyXehXWdY7wD9W4kint5WtoVW
+	UVvVZNpF8HJ5q2mjG9hYFWthDSxKIRiV8oaiC6+3kujeqk9R+dsWxea0ig+ZGWiT8pVqRCAfHtJ
+	tLYxUZJfhXSTTp0sVyrLMWP0hgxY7xykyXa76OnsE3ZSXl8rRLy9AnUoBKY9m5GtvwBfSZS0N2d
+	I5Ow3F99jAitryYv/jw2Tv9INNV+cWOVglJeQVK80YEKtPmYiKsh7JMLiXZp5htDNNZxmqi3i/1
+	R8Aua6o+5i5onvGSN9IyaPhd5l0WYUvvGMlW
+X-Google-Smtp-Source: AGHT+IFbM2UcO1EMYcGq6BZ2DVYviG/knD27dv0NN39pkseZUIPzaniaUfN4FBwQvW32Hm9VBxgPAA==
+X-Received: by 2002:a05:6512:220b:b0:53e:389d:8ce6 with SMTP id 2adb3069b0e04-542845d1dbamr6309742e87.28.1736760985355;
+        Mon, 13 Jan 2025 01:36:25 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428becd501sm1272396e87.246.2025.01.13.01.36.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2025 01:36:24 -0800 (PST)
+Date: Mon, 13 Jan 2025 11:36:22 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Yongxing Mou <quic_yongmou@quicinc.com>
+Cc: Rob Clark <robdclark@gmail.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v3 0/4] Display enablement changes for Qualcomm QCS8300
+ platform
+Message-ID: <5exaup4mceoq3a3wk44csybigcg3yc2drvv7nwdndbig7edzya@5d543uzrnoxx>
+References: <20250113-mdssdt_qcs8300-v3-0-6c8e93459600@quicinc.com>
+ <qsq5so5i7fy3r7xcjtcr7aq2vtbywh57j3b3e7ddbsmmeu5qwy@pgcntgxknuul>
+ <9a87724c-1906-4a9b-bf01-e603b310e47a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/3] dt-bindings: mailbox: add google,gs101-mbox
-To: Jassi Brar <jassisinghbrar@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, linux-kernel@vger.kernel.org,
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, andre.draszik@linaro.org,
- peter.griffin@linaro.org, kernel-team@android.com, willmcvicker@google.com,
- daniel.lezcano@linaro.org, vincent.guittot@linaro.org,
- ulf.hansson@linaro.org, arnd@arndb.de
-References: <20241217-acpm-v4-upstream-mbox-v5-0-cd1d3951fe84@linaro.org>
- <20241217-acpm-v4-upstream-mbox-v5-1-cd1d3951fe84@linaro.org>
- <ec3cdfd1-df7a-466c-8581-c9546ca6b089@linaro.org>
- <CABb+yY0rBzP8JPAik5aaXp6GivQKEf++sgiMM9fTPgd_5YXT1w@mail.gmail.com>
- <eaab647a-f6f4-4562-89fa-e64daa80bdf4@linaro.org>
- <CABb+yY0AkpqC_P-3cHeuWDu-gJzxCnarsNFNQWk45+tHKrDLmg@mail.gmail.com>
- <4e97b33f-b4a5-4875-a65d-9e25bcc5a46c@linaro.org>
- <8f21d5f2-5327-488c-878c-a62d85857240@linaro.org>
- <CABb+yY0JMZfwR9xQ8s80Kmg0gE1DRDJ9bHB=eMnw70uw5nBshw@mail.gmail.com>
-Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <CABb+yY0JMZfwR9xQ8s80Kmg0gE1DRDJ9bHB=eMnw70uw5nBshw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9a87724c-1906-4a9b-bf01-e603b310e47a@quicinc.com>
 
+On Mon, Jan 13, 2025 at 05:26:56PM +0800, Yongxing Mou wrote:
+> 
+> 
+> On 2025/1/13 17:02, Dmitry Baryshkov wrote:
+> > On Mon, Jan 13, 2025 at 04:03:07PM +0800, Yongxing Mou wrote:
+> > > This series introduces support to enable the Mobile Display Subsystem (MDSS)
+> > > , Display Processing Unit (DPU), DisplayPort controller for the Qualcomm
+> > > QCS8300 target. It includes the addition of the hardware catalog, compatible
+> > > string, and their YAML bindings.
+> > > 
+> > > Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
+> > > ---
+> > > Changes in v3:Fixed review comments from Krzysztof, Dmitry.
+> > > - Fix the missing space issue in commit message.[Krzysztof]
+> > > - Separate the patch for the phy from this series.[Dmitry]
+> > > - Remove unused dependencies and update in the cover letter.[Dmitry][Krzysztof]
+> > > - Link to v2: https://lore.kernel.org/r/20241226-mdssdt_qcs8300-v2-0-acba0db533ce@quicinc.com
+> > > 
+> > > Changes in v2:Fixed review comments from Krzysztof, Dmitry, Rob.
+> > > - Decouple the devicetree changes from this series.[Dmitry][Krzysztof]
+> > > - Drop the dpu driver changes and reuse SA8775P DPU driver.[Dmitry]
+> > > - Fix compilation issues in MDSS bindings.[Rob][Krzysztof]
+> > > - Correct formatting errors and remove unnecessary status in MDSS
+> > >    bindings.[Krzysztof]
+> > > - Add the the necessary information in MDSS changes commit msg.[Dmitry]
+> > > - Rebase MDSS driver changes to https://lore.kernel.org/dri-devel/
+> > >    20241127-msm-mdss-ubwc-v3-0-9782a7c2b023@linaro.org/.[Dmitry]
+> > > - Package the DisplayPort controller and eDP PHY bindings document to
+> > >    this patch series.
+> > > - Collecting MDSS changes reviewd-by Dmitry.
+> > > - Reuse the sa8775p eDP PHY as a fallback compat.[Dmitry]
+> > > - Reuse the sm8650 DP controller as a fallback compat.[Dmitry]
+> > > - Link to v1: https://lore.kernel.org/r/20241127-mdss_qcs8300-v1-0-29b2c3ee95b8@quicinc.com
+> > > ~
+> > > 
+> > > ---
+> > > Yongxing Mou (4):
+> > >        dt-bindings: display/msm: Document the DPU for QCS8300
+> > >        dt-bindings: display: msm: dp-controller: document QCS8300 compatible
+> > >        dt-bindings: display/msm: Document MDSS on QCS8300
+> > 
+> > Is there any reason for not using a common style for these three
+> > commits?
+> > 
+> Hi，actually, for the dp-controller.yamel file, I just noticed that the
+> previous platforms added the dt-binding files using this format. So, I
+> followed their format to write the commit message. Such as dt-bindings for
+> sm8650/sm8150/sm8250...
 
+I don't care about either of the formats, but please be self-consistent.
+If one patch out of three has a different subject prefix, that looks
+strange.
 
-On 1/12/25 4:59 PM, Jassi Brar wrote:
-
->>>>> Then I updated the mailbox core to allow clients to request channels by
->>>>> passing some args containing channel identifiers to the controllers,
->>>>> that the controllers xlate() using their own method.
->>>>>
->>>> This is unnecessary.
->>>> If you don't pass the doorbell number from DT, each channel populated
->>>> by the driver is just a s/w construct or a 'virtual' channel. Make use
->>>> of 'void *data'  in send_data() to specify the doorbell.
->>>>
->>> I think this introduces concurrency problems if the channel identifiers
->>> passed by 'void *data' don't match the virtual channel used for sending
->>> the messages. Do we want to allow this?
->>>
->>> Also, if we use 'void *data' to pass channel identifiers, the channel
->>> checks will have to be made at send_data() time. Thus if passing wrong
->>> channel type for example, the mailbox client will eventually get a
->>> -ENOBUFS and a "Try increasing MBOX_TX_QUEUE_LEN" message, which I find
->>> misleading.
->>
->> Shall I still use 'void *data' to pass channel identifiers through
->> send_data()? I'd like to respin everything.
->>
-> Yes, please do.
+> > >        drm/msm: mdss: Add QCS8300 support
+> > > 
+> > >   .../bindings/display/msm/dp-controller.yaml        |   4 +
+> > >   .../bindings/display/msm/qcom,qcs8300-mdss.yaml    | 244 +++++++++++++++++++++
+> > >   .../bindings/display/msm/qcom,sm8650-dpu.yaml      |  13 +-
+> > >   drivers/gpu/drm/msm/msm_mdss.c                     |  11 +
+> > >   4 files changed, 268 insertions(+), 4 deletions(-)
+> > > ---
+> > > base-commit: 2b88851f583d3c4e40bcd40cfe1965241ec229dd
+> > > change-id: 20241224-mdssdt_qcs8300-11b7883dc60b
+> > > 
+> > > Best regards,
+> > > -- 
+> > > Yongxing Mou <quic_yongmou@quicinc.com>
+> > > 
+> > 
 > 
 
-What shall I do in driver's of_xlate method, always return
-&mbox->chans[0], as bcm2835 does? All 14 doorbels will be serialized
-with mobox->chans[0].lock.
-
-I could use a list of channels in the controller and provide some
-get/put channel methods, but the virtual channel ID will not match the
-actual channel ID that's used for communication. I'll also need to
-introduce channel ops, to put the channel that was acquired via of_xlate
-from the list of available channels.
-
-Aren't we better off with the mbox_request_channel_by_args() that I
-introduced in v6? Or if you think there's better option I'll be happy to
-implement it. I need an agreement on the overall idea.
-
-Thanks,
-ta
+-- 
+With best wishes
+Dmitry
 
