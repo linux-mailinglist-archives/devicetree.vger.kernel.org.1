@@ -1,79 +1,63 @@
-Return-Path: <devicetree+bounces-137946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A0C6A0B2B2
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:26:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDA8EA0B2C0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:27:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E52327A30AF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:26:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5CF83A0135
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300EB2397A7;
-	Mon, 13 Jan 2025 09:26:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951C12397A0;
+	Mon, 13 Jan 2025 09:27:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oIT55bXS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O1dn8fNA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 637D823A56F
-	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 09:25:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED54C233159;
+	Mon, 13 Jan 2025 09:27:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736760361; cv=none; b=WY0kcPP5tPUccMJVV4k4EqejV2/y/HoVSh0WbM2i0KAxjLgD4YMf9Gu6f2OZR/tMonk5Tk1HnpD93+NdY8G1iM9/STlP/Jd2V3NkwlRApbpFt8I2HUdSpZhai/Rw5Z7xfeF2tDbeR2X/o0eCT1yB1SOSoXx6djIwjVM6JGNZXWk=
+	t=1736760443; cv=none; b=ICLVTaPAJic1oTPAAOW4M3DkWHItaHNesVim2qNjufA8NNeQvk77rQNqYTh2o1nFNCAzH4pJm9eTP45hqBYROzupbkcx11ID3cal+LobxSk2MEc6nrDVhFS4codl7Zaf3hUBTAsNzrdudWJJGx2qoF0KGqy7Juz+wYVE/cPEsXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736760361; c=relaxed/simple;
-	bh=LzhQ97fHILTYwmA3VvX34lCCeJsGHBrrga3Q8maQrXM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Bq6iWmFrynFqYt90xwDh9C4mEoT6hFjFBgDHzYi6xVtTHFXgyMIsRLD5Mkx0GDsTSxYBp1IKqthWLXcnI7Fg1TjhLbC/DolJFj0DLtpIU5kyPqvtyrIb5p0CCPfvz+ctt5obVo6XaPP17NTiIItMobsJ52tgsnScD5Ycp/qeCeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oIT55bXS; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-436345cc17bso28579395e9.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 01:25:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736760358; x=1737365158; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=1oTNvOqfukHrgIuovSK0uBo5g5AB7kI/WzXWHrElV1A=;
-        b=oIT55bXSjBZ4i4nZ/u4nxOIIJAH6KZ+MUS9iHKW4dojKQ54ytHKXHSaBLizrI82f1W
-         TU7bUu4U+Mz7jXg3sALsUrovvUKtuzF/AscPs1JjAKo+d3w9Vyb75pIPQsSx0wLqNW7O
-         L3ybu+mWGJwGVbwDzgZGkg37QYrKqjBZD8m4WoTXpYiDHtpwb4KOOhGXezofsDF/G+rK
-         jE5YHrY4bgkiG+IOGUqXzmoMzI4oUiV9KqmNxvZbAKvv3+Zlou+Nl4IPC9lTaAAejKA1
-         yoazC1HrYhdytEnz4MjdblaEDbq/S5zwm0xHTytpzvoHaxIl7V6r6wG+FwI6UlxqMLFA
-         +bBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736760358; x=1737365158;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1oTNvOqfukHrgIuovSK0uBo5g5AB7kI/WzXWHrElV1A=;
-        b=BVhg5D9Rll9foDl2K1SPHXvcxo43fXtUq+RzlEpoHhPDhpQNjm92JQZnB6LXGip6Q0
-         xrp59UykpWQXTLJKh5IRSOS4OD9XorQvRqp54ZoP6QfsnNmKasWT2Lg1pwyInvJdTZHY
-         AUippOsCL8KMnYvh/VE7UOVfcBpWPSJkNqgUATmtuQWcgjh+yoznF25zG2sq5dRXm/fF
-         su4pKQHIEHkSOiRHGWb0BOaDPmE6YLUiy83t7oadIFw9FC0YCDZ6urLOMhQnDyJquVaz
-         l4cithZsjV8li9IGBaxWjto5CNfLes+vyu+9eBvPnaXsWAkiLH62ZQSIT7bvkyrcyGlM
-         9vMA==
-X-Forwarded-Encrypted: i=1; AJvYcCXbiLi6MWRVuIXnhdRozLxy3lOKhRamFAOS6HLVWUAAkWsrQ8/96JQMcuhyhDowcjwIOyA817YDyBEX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiZEjkDl3DOoRStPAWobBdP5cUa8gYP4Nm+Tu/c8rA5yG8v06h
-	OCKSjMiMM4BzaTE5OBX8nMws9HctjKZNfKhOqE8FTZG2qd2DS8BHDIZwTysvoz0=
-X-Gm-Gg: ASbGnctCNE8oC53Sep6qKfaxfLb3MP5Y1f0uG5HCfFuaHLpVq0NogEnRhWVB7JJcF+2
-	+7zuJHWXZlIcGb93B94ShNp3uUt6UsP503vjC+XjTjvPrEjAfirAOCF2mJ76MaBJS0OBad81nyg
-	amJ3YlxDPLk1DwQWkAkE1tgrCcshZjCyiu/01qpXTjB3gtakpEYo5q4yeoyM41bRhyBVXFu/iCr
-	N1SvbrgDdWxg0Gj1KTHLnlg1V7S5VaNAE8LK3uNP8gz8cj+J0wlNX3Ls9yA+LqkG2hNk/mbCA4q
-	IRZrPxOVsEnIIo3mLPf6
-X-Google-Smtp-Source: AGHT+IGrBvoo7a9T5ollC4Kafzr+5dvI/yM48bSNQ9PzhCKzvzS2+NRcCKfJfrFmUMRa61h//DtHbg==
-X-Received: by 2002:a5d:47a6:0:b0:385:d7a7:ad60 with SMTP id ffacd0b85a97d-38a872f6a32mr16896203f8f.3.1736760357235;
-        Mon, 13 Jan 2025 01:25:57 -0800 (PST)
-Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-436e9e03e5fsm136289565e9.18.2025.01.13.01.25.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 13 Jan 2025 01:25:56 -0800 (PST)
-Message-ID: <a679d4df-839b-4fd0-87b6-0e2ea2e357b1@linaro.org>
-Date: Mon, 13 Jan 2025 10:25:55 +0100
+	s=arc-20240116; t=1736760443; c=relaxed/simple;
+	bh=9nbbm0iwPkHhn7AiKvDMza0I+r4iJKlFuYZdqeto4m8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=shuJ0Tgm0lIv5tLzizHk9yN1NlGK7DFuomCK4DTiFqgD5afB0AzfVz4+NchXUta9GNFHDzsW0soRb0e3vHZCmOm8J9+oK7GkRK6Fm/maifZ1NqIqRR1lwN2caqf8LwvOxEYp5zSbj8pQwHVg+6i1rthJv55hgTvlYwccu5dOKoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=O1dn8fNA; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50D6glEL024409;
+	Mon, 13 Jan 2025 09:27:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MOfjFAH+CybZ33SMwzfNlmQyC6CmVOKixDLWbRV01BM=; b=O1dn8fNAabIUgm/j
+	3BKm3WVSMnTh8LSexcu482RLtmKRfjcX2yK8sjt8q42vfX2+VXSRqG7xFdhKQVaa
+	artSSdfyh6Gj+qf21EcNSQAhLTnC40CAxedR5HFvby7u1Lyt0+TXaYbCoZOEW5e5
+	UT50Ggril+HHlopK9d5ivvzrz6h535htRps9WdtXoZHukccPtd5yow2efJ67H4j7
+	nyA1dkF3C0P6YC9XgjWIzgOsH4HjKPiC5uBZ5/P43vTTRZNc2EdmIZ/BWu8NuC/i
+	h08Dfgg5OScI6Lw4grVeS6tDMW9pcNODeNc5z4emleqhAYZI+MYX2bXu0b9FkaHv
+	ZZXj7w==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 444wt4rd06-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 09:27:06 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50D9R57H029576
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 09:27:05 GMT
+Received: from [10.64.68.119] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 13 Jan
+ 2025 01:26:59 -0800
+Message-ID: <9a87724c-1906-4a9b-bf01-e603b310e47a@quicinc.com>
+Date: Mon, 13 Jan 2025 17:26:56 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,43 +65,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v4 2/2] thermal: Add support for Airoha EN7581
- thermal sensor
-To: Christian Marangi <ansuelsmth@gmail.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, upstream@airoha.com
-References: <20241218073016.2200-1-ansuelsmth@gmail.com>
- <20241218073016.2200-2-ansuelsmth@gmail.com>
+Subject: Re: [PATCH v3 0/4] Display enablement changes for Qualcomm QCS8300
+ platform
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar
+	<quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kuogee Hsieh
+	<quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+        "Kishon Vijay
+ Abraham I" <kishon@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski@linaro.org>
+References: <20250113-mdssdt_qcs8300-v3-0-6c8e93459600@quicinc.com>
+ <qsq5so5i7fy3r7xcjtcr7aq2vtbywh57j3b3e7ddbsmmeu5qwy@pgcntgxknuul>
 Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20241218073016.2200-2-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Yongxing Mou <quic_yongmou@quicinc.com>
+In-Reply-To: <qsq5so5i7fy3r7xcjtcr7aq2vtbywh57j3b3e7ddbsmmeu5qwy@pgcntgxknuul>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: FZvTmcrhQQEHUT1SOKIGh2bA7JiNFdyI
+X-Proofpoint-GUID: FZvTmcrhQQEHUT1SOKIGh2bA7JiNFdyI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1015 impostorscore=0 malwarescore=0 phishscore=0 mlxlogscore=999
+ suspectscore=0 bulkscore=0 priorityscore=1501 mlxscore=0 adultscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501130080
 
-On 18/12/2024 08:29, Christian Marangi wrote:
-> Add support for Airoha EN7581 thermal sensor. This provide support for
-> reading the CPU or SoC Package sensor and to setup trip points for hot
-> and critical condition. An interrupt is fired to react on this and
-> doesn't require passive poll to read the temperature.
+
+
+On 2025/1/13 17:02, Dmitry Baryshkov wrote:
+> On Mon, Jan 13, 2025 at 04:03:07PM +0800, Yongxing Mou wrote:
+>> This series introduces support to enable the Mobile Display Subsystem (MDSS)
+>> , Display Processing Unit (DPU), DisplayPort controller for the Qualcomm
+>> QCS8300 target. It includes the addition of the hardware catalog, compatible
+>> string, and their YAML bindings.
+>>
+>> Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
+>> ---
+>> Changes in v3:Fixed review comments from Krzysztof, Dmitry.
+>> - Fix the missing space issue in commit message.[Krzysztof]
+>> - Separate the patch for the phy from this series.[Dmitry]
+>> - Remove unused dependencies and update in the cover letter.[Dmitry][Krzysztof]
+>> - Link to v2: https://lore.kernel.org/r/20241226-mdssdt_qcs8300-v2-0-acba0db533ce@quicinc.com
+>>
+>> Changes in v2:Fixed review comments from Krzysztof, Dmitry, Rob.
+>> - Decouple the devicetree changes from this series.[Dmitry][Krzysztof]
+>> - Drop the dpu driver changes and reuse SA8775P DPU driver.[Dmitry]
+>> - Fix compilation issues in MDSS bindings.[Rob][Krzysztof]
+>> - Correct formatting errors and remove unnecessary status in MDSS
+>>    bindings.[Krzysztof]
+>> - Add the the necessary information in MDSS changes commit msg.[Dmitry]
+>> - Rebase MDSS driver changes to https://lore.kernel.org/dri-devel/
+>>    20241127-msm-mdss-ubwc-v3-0-9782a7c2b023@linaro.org/.[Dmitry]
+>> - Package the DisplayPort controller and eDP PHY bindings document to
+>>    this patch series.
+>> - Collecting MDSS changes reviewd-by Dmitry.
+>> - Reuse the sa8775p eDP PHY as a fallback compat.[Dmitry]
+>> - Reuse the sm8650 DP controller as a fallback compat.[Dmitry]
+>> - Link to v1: https://lore.kernel.org/r/20241127-mdss_qcs8300-v1-0-29b2c3ee95b8@quicinc.com
+>> ~
+>>
+>> ---
+>> Yongxing Mou (4):
+>>        dt-bindings: display/msm: Document the DPU for QCS8300
+>>        dt-bindings: display: msm: dp-controller: document QCS8300 compatible
+>>        dt-bindings: display/msm: Document MDSS on QCS8300
 > 
-> The thermal regs provide a way to read the ADC value from an external
-> register placed in the Chip SCU regs. Monitor will read this value and
-> fire an interrupt if the trip condition configured is reached.
+> Is there any reason for not using a common style for these three
+> commits?
 > 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
+Hi，actually, for the dp-controller.yamel file, I just noticed that the 
+previous platforms added the dt-binding files using this format. So, I 
+followed their format to write the commit message. Such as dt-bindings 
+for sm8650/sm8150/sm8250...
+>>        drm/msm: mdss: Add QCS8300 support
+>>
+>>   .../bindings/display/msm/dp-controller.yaml        |   4 +
+>>   .../bindings/display/msm/qcom,qcs8300-mdss.yaml    | 244 +++++++++++++++++++++
+>>   .../bindings/display/msm/qcom,sm8650-dpu.yaml      |  13 +-
+>>   drivers/gpu/drm/msm/msm_mdss.c                     |  11 +
+>>   4 files changed, 268 insertions(+), 4 deletions(-)
+>> ---
+>> base-commit: 2b88851f583d3c4e40bcd40cfe1965241ec229dd
+>> change-id: 20241224-mdssdt_qcs8300-11b7883dc60b
+>>
+>> Best regards,
+>> -- 
+>> Yongxing Mou <quic_yongmou@quicinc.com>
+>>
+> 
 
-Sorry fpr the delay, this month has been complicate for patch review.
-
-I'm reviewing it now
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
