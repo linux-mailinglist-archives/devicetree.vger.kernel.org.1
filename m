@@ -1,70 +1,69 @@
-Return-Path: <devicetree+bounces-137839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5B88A0ACCF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 01:24:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 013FCA0ACD2
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 01:34:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1BE43A5361
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 00:24:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CACE3A5968
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 00:34:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4310C8F66;
-	Mon, 13 Jan 2025 00:24:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 570664C9F;
+	Mon, 13 Jan 2025 00:34:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Cci70lU8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="N/czuBXH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA6B749A;
-	Mon, 13 Jan 2025 00:24:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1A8322E;
+	Mon, 13 Jan 2025 00:34:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736727847; cv=none; b=kDP9SIFP774j+fdMqtrKqs4TouDjfwjGzegBKBi/4KBwIEgcDqFRG5vYsIP0nnPKP9LKTHCoNg+rHNWGq8cn8epnYXhTRPk1kR+MYp5LBpcv66VmDk82Ggfq+auRbhkaTNLZ6EYpQHMqE7w9BbfAmU7zcTO+03hM//BcWw+6I8Y=
+	t=1736728460; cv=none; b=Rmxzyb26JmTEX1gGeJydpyVwb6O5n4J6M8XI8LHCoQ15U2bvxhC9e57YuDEliuzBzc3iNRBgBOgLEeATFHlsdH7JTl8y6HzUi8X96ArNYGPXI4UlRw0hcusE3IyySUrGFWUTEOuwo1+O81MqHUdwSYDamzu67PlWf6zlyRCrkJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736727847; c=relaxed/simple;
-	bh=LK36QBCDL7VmwpsAxJ3myMP3WAaaLSWzzF3ae6NLIbU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=hApz7LItdvxFQJUzBB50m9vWvfuvlVOXgSuRlQjV42NunFq3gAsErWPAzXqAsFb/bLi2xWvVnYCEpc24NACFKCafejNdVND0HJ3wJPU1eVMoBaelydFLQ3YE19J7N9OF5yAnuRcrPs4ZAIJL/VQImuEYvE39feOjDW5kC1hmJbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Cci70lU8; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 19B77101D23A3;
-	Mon, 13 Jan 2025 01:24:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1736727842;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CiinI+Vz1CC4T2hrWYGNflx0pjUKdpQ9DrI6EquLXFM=;
-	b=Cci70lU8JxhsgWjag55yL5tDNa41fTbFIyuWFz/qofb7wSwPcfhNPrVSu6OYrri/CG561n
-	A3elaYHv/TaLtOv80HrBGirZx5ViJ7j6agYbD30oxRmfIFtvqf/DF/B1IpfSW45Dotehk3
-	NzNTPbc1qq0nyrZp5yZkNGBMEnFUgyK+daNSpnshmOoScFO+c72JG/WM2BQPwL7tkcfjuN
-	xUmos7GImV3LiT0GZcGIaeWy9e9oRhCpeXjDrtEMZEnRc35/junJh5V+9w8LQzgMiMu8ud
-	53wpxSBzCxuJ6xnz9qC6Hc2pRvfcl/hCXgRzDVSRknIuSnadw0y73sMzo8LZSA==
-From: Marek Vasut <marex@denx.de>
-To: linux-leds@vger.kernel.org
-Cc: Marek Vasut <marex@denx.de>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>,
-	Lukasz Majewski <lukma@denx.de>,
-	Pavel Machek <pavel@ucw.cz>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH 2/2] leds: trigger: netdev: Introduce OF mode configuration using netdev-trigger-mode property
-Date: Mon, 13 Jan 2025 01:23:38 +0100
-Message-ID: <20250113002346.297481-2-marex@denx.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250113002346.297481-1-marex@denx.de>
-References: <20250113002346.297481-1-marex@denx.de>
+	s=arc-20240116; t=1736728460; c=relaxed/simple;
+	bh=3eZtJieOoNsVTDXLeuLY4v+ogZ/sWZGx7njjb+VNNbc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=m5UDvfo9ZlLUra/+kQE/YEBZGPcxweG7LZpQfazhzCpYJS1N7RTw6HAlVh827sDfBwmtQWnrr3ulTGRHLV4kvOECaWC3m5GYJYAiFYribxiZtukd4PnFv9oAxkpqUnUdf+pIvUzoUWeaLQz84QYOj8nh+y+8hgqIoaxsytGSrDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=N/czuBXH; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50CNRZdY020190;
+	Mon, 13 Jan 2025 00:34:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=YtPLZc1KnfoMo4+mfY5Kv+
+	hi5HDfEFOQSazUvQ80W5o=; b=N/czuBXHNwyZuS3znzOWel9GhSLgel2c1Moojc
+	BGRxXwqAyuj/H+nJhd+Q+hpK7C3yfYErxbBQqV7e5TEK98I4CTXMnnPlJeIH0vzb
+	76x5wYnq0+3uUaAbf+g21BoWwlTE3cIKbhiLtY7d0DMrnVi39vHoSnL/Gs/PmJPm
+	r9Bvxkzenkh6C/xHN5VvG0aqs8M4ma8HcLJSP8rCufXMbIfjeGy5gK7SrnysCezM
+	8rGUsvX4gxvIdp7lTtvvI++OPv5K9T/paWcQHZSd1CMZsqG8XYw00J1aL/g8rXa0
+	omo3ITO+cebys9ZWg+8y6p/pH9A/FjPc/NZrQ3HKHv0dAbYQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 443hhvts0v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 00:34:03 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50D0Y3QL008928
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 00:34:03 GMT
+Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Sun, 12 Jan 2025 16:33:59 -0800
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+Subject: [PATCH] arm64: dts: qcom: ipq5332: Configure I2C APPS clock frequency
+Date: Mon, 13 Jan 2025 06:03:48 +0530
+Message-ID: <20250113003348.1459042-1-quic_mmanikan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,153 +71,44 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: pqnlOoj4ppKvgx10Bzgj4xf58vsau_q4
+X-Proofpoint-GUID: pqnlOoj4ppKvgx10Bzgj4xf58vsau_q4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
+ priorityscore=1501 lowpriorityscore=0 mlxlogscore=771 impostorscore=0
+ clxscore=1015 malwarescore=0 adultscore=0 bulkscore=0 spamscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501130003
 
-Introduce netdev trigger specific netdev-trigger-mode property which
-is used to configure the netdev trigger mode flags. Those mode flags
-define events on which the LED acts upon when the hardware offload is
-enabled. This is traditionally configured via sysfs, but that depends
-on userspace, which is available too late and makes ethernet PHY LEDs
-not work e.g. when NFS root is being mounted.
+Set the I2C APPS clock frequency to 50MHz in accordance with the
+frequency plan.
 
-For each LED with linux,default-trigger = "netdev" described in DT, the
-optional netdev-trigger-mode property supplies the default configuration
-of the PHY LED mode via DT. This property should be set to a subset of
-TRIGGER_NETDEV_* flags.
-
-For each LED with linux,default-trigger = "netdev" described in DT, the
-netdev trigger is activated during kernel boot. The trigger is extended
-the parse the netdev-trigger-mode property and set it as a default value
-of trigger_data->mode.
-
-It is not possible to immediately configure the LED mode, because the
-interface to which the PHY and the LED is connected to might not be
-attached to the PHY yet. The netdev_trig_notify() is called when the
-PHY got attached to interface, extend netdev_trig_notify() to detect
-the condition where the LED does have netdev trigger configured in DT
-but the mode was not yet configured and configure the baseline mode
-from the notifier. This can reuse most of set_device_name() except for
-the rtnl_lock() which cannot be claimed in the notifier, so split the
-relevant core code into set_device_name_locked() and call only the core
-code.
-
-Signed-off-by: Marek Vasut <marex@denx.de>
+Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
 ---
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Heiner Kallweit <hkallweit1@gmail.com>
-Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Lee Jones <lee@kernel.org>
-Cc: Lukasz Majewski <lukma@denx.de>
-Cc: Pavel Machek <pavel@ucw.cz>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-leds@vger.kernel.org
----
- drivers/leds/trigger/ledtrig-netdev.c | 51 ++++++++++++++++++++-------
- 1 file changed, 38 insertions(+), 13 deletions(-)
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/leds/trigger/ledtrig-netdev.c b/drivers/leds/trigger/ledtrig-netdev.c
-index c15efe3e50780..20dfc9506c0a6 100644
---- a/drivers/leds/trigger/ledtrig-netdev.c
-+++ b/drivers/leds/trigger/ledtrig-netdev.c
-@@ -23,6 +23,7 @@
- #include <linux/module.h>
- #include <linux/netdevice.h>
- #include <linux/mutex.h>
-+#include <linux/of.h>
- #include <linux/phy.h>
- #include <linux/rtnetlink.h>
- #include <linux/timer.h>
-@@ -256,19 +257,9 @@ static ssize_t device_name_show(struct device *dev,
- 	return len;
- }
- 
--static int set_device_name(struct led_netdev_data *trigger_data,
--			   const char *name, size_t size)
-+static void set_device_name_locked(struct led_netdev_data *trigger_data,
-+				  const char *name, size_t size)
- {
--	if (size >= IFNAMSIZ)
--		return -EINVAL;
--
--	cancel_delayed_work_sync(&trigger_data->work);
--
--	/*
--	 * Take RTNL lock before trigger_data lock to prevent potential
--	 * deadlock with netdev notifier registration.
--	 */
--	rtnl_lock();
- 	mutex_lock(&trigger_data->lock);
- 
- 	if (trigger_data->net_dev) {
-@@ -298,6 +289,24 @@ static int set_device_name(struct led_netdev_data *trigger_data,
- 		set_baseline_state(trigger_data);
- 
- 	mutex_unlock(&trigger_data->lock);
-+}
-+
-+static int set_device_name(struct led_netdev_data *trigger_data,
-+			   const char *name, size_t size)
-+{
-+	if (size >= IFNAMSIZ)
-+		return -EINVAL;
-+
-+	cancel_delayed_work_sync(&trigger_data->work);
-+
-+	/*
-+	 * Take RTNL lock before trigger_data lock to prevent potential
-+	 * deadlock with netdev notifier registration.
-+	 */
-+	rtnl_lock();
-+
-+	set_device_name_locked(trigger_data, name, size);
-+
- 	rtnl_unlock();
- 
- 	return 0;
-@@ -579,6 +588,20 @@ static int netdev_trig_notify(struct notifier_block *nb,
- 	    && evt != NETDEV_CHANGENAME)
- 		return NOTIFY_DONE;
- 
-+	if (evt == NETDEV_REGISTER && !trigger_data->device_name[0] &&
-+	    led_cdev->hw_control_get && led_cdev->hw_control_set &&
-+	    led_cdev->hw_control_is_supported) {
-+		struct device *ndev = led_cdev->hw_control_get_device(led_cdev);
-+		if (ndev) {
-+			const char *name = dev_name(ndev);
-+
-+			trigger_data->hw_control = true;
-+
-+			cancel_delayed_work_sync(&trigger_data->work);
-+			set_device_name_locked(trigger_data, name, strlen(name));
-+		}
-+	}
-+
- 	if (!(dev == trigger_data->net_dev ||
- 	      (evt == NETDEV_CHANGENAME && !strcmp(dev->name, trigger_data->device_name)) ||
- 	      (evt == NETDEV_REGISTER && !strcmp(dev->name, trigger_data->device_name))))
-@@ -689,6 +712,7 @@ static int netdev_trig_activate(struct led_classdev *led_cdev)
- 	struct led_netdev_data *trigger_data;
- 	unsigned long mode = 0;
- 	struct device *dev;
-+	u32 val;
- 	int rc;
- 
- 	trigger_data = kzalloc(sizeof(struct led_netdev_data), GFP_KERNEL);
-@@ -706,7 +730,8 @@ static int netdev_trig_activate(struct led_classdev *led_cdev)
- 	trigger_data->net_dev = NULL;
- 	trigger_data->device_name[0] = 0;
- 
--	trigger_data->mode = 0;
-+	rc = of_property_read_u32(led_cdev->dev->of_node, "netdev-trigger-mode", &val);
-+	trigger_data->mode = rc ? 0 : val;
- 	atomic_set(&trigger_data->interval, msecs_to_jiffies(NETDEV_LED_DEFAULT_INTERVAL));
- 	trigger_data->last_activity = 0;
- 
+diff --git a/arch/arm64/boot/dts/qcom/ipq5332.dtsi b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+index d3c3e215a15c..e33f99f50224 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5332.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq5332.dtsi
+@@ -298,6 +298,8 @@ blsp1_i2c1: i2c@78b6000 {
+ 			clocks = <&gcc GCC_BLSP1_QUP2_I2C_APPS_CLK>,
+ 				 <&gcc GCC_BLSP1_AHB_CLK>;
+ 			clock-names = "core", "iface";
++			assigned-clocks = <&gcc GCC_BLSP1_QUP2_I2C_APPS_CLK>;
++			assigned-clock-rates = <50000000>;
+ 			dmas = <&blsp_dma 6>, <&blsp_dma 7>;
+ 			dma-names = "tx", "rx";
+ 			status = "disabled";
 -- 
-2.45.2
+2.34.1
 
 
