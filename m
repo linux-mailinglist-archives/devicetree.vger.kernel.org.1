@@ -1,110 +1,169 @@
-Return-Path: <devicetree+bounces-138025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F9EAA0B796
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:00:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5C15A0B7A0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:02:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B1F43A36AD
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:00:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C54B01604F6
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 13:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DEED235BED;
-	Mon, 13 Jan 2025 13:00:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F39922F148;
+	Mon, 13 Jan 2025 13:02:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fkBhVLYr"
+	dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b="Im9q1i+U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.systec-electronic.com (mail.systec-electronic.com [77.220.239.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60E34233D7C;
-	Mon, 13 Jan 2025 13:00:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D94422F156;
+	Mon, 13 Jan 2025 13:02:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.220.239.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736773210; cv=none; b=O2fW4ebiD5iF/key+WigctmAb5riFrJwDO+p94BrSWkTU7pm+1ZTO1/izgNq4GjNT4JKjj2GrzdtisAsYjDC7p3J46S8prWIcTS30/LF0b2Db013BX4KC1kGhYqgouWyg0ap18NB3U216P3Md1ZNfKHBDIcSjFa7WNFxZkavFrs=
+	t=1736773352; cv=none; b=C0Fz/RElxRsOCwIq4t9u39PHj/p3EAgAPi6yX4ofjIT/eNAOzV4pMkHtoQYbZHEJXX05CQuFNXFC69DfKmX78/Wi9IqV5ysFwu7qJMenWG/PWJ7sxkkCsA5Gfmef58c6EwA5M4Os1bUHJZa4jRcZn1sZWstmr/C8hNRa+dIEMUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736773210; c=relaxed/simple;
-	bh=8fxejSnj7Vmhk27SVFdD9TVyLiLKcYlRJjTpEcchn3g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ooeB5Dcnb2789klOWGkWMt5PIHXSDn3XGcCSJgtzQSvKREfdJaVnnDgcoWUpZgPguRnL4KgtdQtJqx/0sB6JRXSQ0WiuqZEh2cv404xXhSIlecpm5gXFY75IoClWDzfrrlCo8shlhjk/hJGqOW8TonNNgj/FJLleJRUOU7sDbyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fkBhVLYr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8B18C4CED6;
-	Mon, 13 Jan 2025 13:00:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736773210;
-	bh=8fxejSnj7Vmhk27SVFdD9TVyLiLKcYlRJjTpEcchn3g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fkBhVLYrd9TSA3zGQKNh1iGH0znOgjdbJZDbu80sWuJdIsHGuD6tcAfV00LQ8IC3K
-	 mYNpjXzkorrzfKJAFX3M5T/HFscaaXEHbY13AFmSEkxHkp3LKOAJoaGHLJvCZ23KYC
-	 SsEbhwXRfvvCFLzM8SDks14zPZlj85PJNVOlAaujR+GYbTABKrIYkNT9F9dVTRZILT
-	 vwEuEswUIL2ZCmN5iJyWrZgxJbYBrLVjfAQ2EZcNFb5L2Byg7BcIGyF/hke5jl8sIZ
-	 ZF4haaVOVlGyBZsAJ/tWOh1m5LdSN8NlYG7MALd5vh9zPJVZBHZ7iNc4i3gI4Ff855
-	 txW+A35PWeXTg==
-Date: Mon, 13 Jan 2025 13:00:03 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Tony Lindgren <tony@atomide.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH 0/5] ASoC: cpcap: Implement jack headset detection
-Message-ID: <cd396e7a-3861-42ea-9e02-c4701e684df2@sirena.org.uk>
-References: <20241228114514.91594-1-ivo.g.dimitrov.75@gmail.com>
- <a35c8cfc-d7a1-4c3f-9541-ee247e2490f4@gmail.com>
+	s=arc-20240116; t=1736773352; c=relaxed/simple;
+	bh=aqmu/qkjqlhGQv0Lis8wCSKZ/oaM4MH5pWfoNvpe6T4=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=d+t1KFmqOD+GW/FztuYEN40f+GLdBEpC8ZjBwDq0SFvxtNPIZLDj65qDwCAVVob5rBFpCv7pvvf9KGsQTl5gRaDmkF3wimj9NytZeTBAX95WIy6f+a3aSZP+Q768xjJ4BXKru/XXKmClrKSpdU7l3ewP7gFZ4iRkH/6bNPwn6mk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com; spf=pass smtp.mailfrom=systec-electronic.com; dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b=Im9q1i+U; arc=none smtp.client-ip=77.220.239.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=systec-electronic.com
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.systec-electronic.com (Postfix) with ESMTP id C53A79400101;
+	Mon, 13 Jan 2025 14:02:26 +0100 (CET)
+Received: from mail.systec-electronic.com ([127.0.0.1])
+ by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id TW_d09oMz2ln; Mon, 13 Jan 2025 14:02:26 +0100 (CET)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.systec-electronic.com (Postfix) with ESMTP id 9BE4594016AA;
+	Mon, 13 Jan 2025 14:02:26 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.systec-electronic.com 9BE4594016AA
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=systec-electronic.com; s=B34D3B04-5DC7-11EE-83E3-4D8CAB78E8CD;
+	t=1736773346; bh=/5zRGO5vds9rfmPHMvEZh5mofeIUv2zJYgNyTxnkLSY=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=Im9q1i+UEMmilbbvt3zbh4isQrFCPYCoc5REM1cmUrcSBpmadkJlaNBRT50XxSH6L
+	 nf+wzcgTrro593BuGgYf6HNXBgQ65tX+k3OgvY+tzg711iS5bXZj8AfVEQTnqWlEGD
+	 5veilSKOoEIQPSAkUaxRwBcUibwcqkjjJVhNdJGTXMiAEuBg7ETCrb2/tq4as+Io5a
+	 hrAR3EoTl5EHFZ1nXoEjfeYocQdUZw4VcLsX9fSWU4iMKaeA8pp7KdbcRgtTfc+KV1
+	 UXJUzhv1UFFuJVt0hBVDia6gWMQLinyqb2PV2FTbpdT05KquWMfpRe4y5M6Aif26hk
+	 NBQxLRTM4L9WA==
+X-Virus-Scanned: amavis at systec-electronic.com
+Received: from mail.systec-electronic.com ([127.0.0.1])
+ by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id 7jcFuSWnzWFY; Mon, 13 Jan 2025 14:02:26 +0100 (CET)
+Received: from lt-278851.systec.local (unknown [212.185.67.148])
+	by mail.systec-electronic.com (Postfix) with ESMTPSA id 3D8129400101;
+	Mon, 13 Jan 2025 14:02:26 +0100 (CET)
+Date: Mon, 13 Jan 2025 14:02:25 +0100 (CET)
+From: Andre Werner <andre.werner@systec-electronic.com>
+Reply-To: Andre Werner <andre.werner@systec-electronic.com>
+To: Andy Shevchenko <andy@kernel.org>
+cc: Andre Werner <andre.werner@systec-electronic.com>, 
+    gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com, 
+    devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+    linux-serial@vger.kernel.org, lech.perczak@camlingroup.com, 
+    krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
+Subject: Re: [External Email] Re: [PATCH v6 2/2] serial: sc16is7xx: Add
+ polling mode if no IRQ pin is available
+In-Reply-To: <Z4UMP1-0x25g1fX2@smile.fi.intel.com>
+Message-ID: <6ccaf061-c3d7-c78a-17e3-f0b9642c412f@systec-electronic.com>
+References: <20250113073030.15970-1-andre.werner@systec-electronic.com> <20250113073030.15970-2-andre.werner@systec-electronic.com> <Z4UMP1-0x25g1fX2@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3hDDK6MCElFz9qGL"
-Content-Disposition: inline
-In-Reply-To: <a35c8cfc-d7a1-4c3f-9541-ee247e2490f4@gmail.com>
-X-Cookie: You will outgrow your usefulness.
+Content-Type: multipart/mixed; boundary="-1463794929-1597953312-1736773346=:17662"
 
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
---3hDDK6MCElFz9qGL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+---1463794929-1597953312-1736773346=:17662
+Content-Type: text/plain; charset=ISO-8859-15
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 13, 2025 at 07:56:38AM +0200, Ivaylo Dimitrov wrote:
-> ping
+On Mon, 13 Jan 2025, Andy Shevchenko wrote:
 
-Please don't send content free pings and please allow a reasonable time
-for review.  People get busy, go on holiday, attend conferences and so=20
-on so unless there is some reason for urgency (like critical bug fixes)
-please allow at least a couple of weeks for review.  If there have been
-review comments then people may be waiting for those to be addressed.
+> On Mon, Jan 13, 2025 at 08:30:30AM +0100, Andre Werner wrote:
+> > Fall back to polling mode if no interrupt is configured because there
+> > is no possibility to connect the interrupt pin.
+> > If "interrupts" property is missing in devicetree the driver
+> > uses a delayed worker to pull the state of interrupt status registers=
+.
+>
+> pull ? Hmm...
 
-Sending content free pings adds to the mail volume (if they are seen at
-all) which is often the problem and since they can't be reviewed
-directly if something has gone wrong you'll have to resend the patches
-anyway, so sending again is generally a better approach though there are
-some other maintainers who like them - if in doubt look at how patches
-for the subsystem are normally handled.
+Ah ... poll ... sorry.
 
---3hDDK6MCElFz9qGL
-Content-Type: application/pgp-signature; name="signature.asc"
+>
+> ...
+>
+> > V6:
+> > - Use polling mode for IRQ numbers <=3D 0 which encounter no valid IR=
+Q
+> >   were found/defined.
+>
+> Thanks, this part looks better now.
+>
+> ...
+>
+> > +static void sc16is7xx_poll_proc(struct kthread_work *ws)
+> > +{
+> > +	struct sc16is7xx_port *s =3D container_of(ws, struct sc16is7xx_port=
+, poll_work.work);
+> > +
+> > +	/* Reuse standard IRQ handler. Interrupt ID is unused in this conte=
+xt. */
+>
+> Period.
 
------BEGIN PGP SIGNATURE-----
+What do you expect here? Shall I add the period time from the define as
+the dedicated value? I do not understand what I should add here in
+detail.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmeFDlMACgkQJNaLcl1U
-h9DuzAgAhaPADhA+7VYoP5SNGDV/Sq09OSw0JDoYkc2HVCasJ6dnBV1K+t8RMxTT
-FGtTMNbZWA6G2kP2yFNLNG786c9ipiBI+8bGrJYroVUHZdatR11i8pjbqJiPpwZZ
-JmlPY0xu9+al7s6eYXJ8AcQrU8A0eCQHja67QzI8yZUGD2x/VChYbVIXK8e2G1Tr
-Jt/9/3W5oF80oSoVCFZVFuUFP4YRpjzE+I8ggmvkcz0ZEcrX3kT1b8B1ljMbRDit
-BMPR+xzi4AyVLL2vmGPdPQb+FlWBYaZ/3XmNEQs40yIw03VVucbzq9hTx6wzWTMj
-45piVjT714PN8AAMKFla5lByG4afKg==
-=+72S
------END PGP SIGNATURE-----
+>
+> > +	sc16is7xx_irq(0, s);
+> > +
+> > +	/* Setup delay based on SC16IS7XX_POLL_PERIOD_MS */
+>
+> No period.
 
---3hDDK6MCElFz9qGL--
+Or do you mean that I add the define only once and not add all used
+places?
+
+>
+> > +	kthread_queue_delayed_work(&s->kworker, &s->poll_work,
+> > +				   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD_MS));
+> > +}
+>
+> Please, go through the comments you added in the patch and use the styl=
+e that
+> is mostly used in the driver for the similar (one-line comment) situati=
+ons.
+>
+> ...
+>
+> > +		/* Initialize kernel thread for polling */
+>
+> Again, no period.
+
+Same here. Do you expect the value here or the name of the used define?
+
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
+>
+
+Thanks in advance
+
+Andr=E9
+---1463794929-1597953312-1736773346=:17662--
 
