@@ -1,248 +1,141 @@
-Return-Path: <devicetree+bounces-138276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45AD0A0C54C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:11:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBB7EA0C563
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:13:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 520CC165A6F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 23:11:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 504E67A20EE
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 23:13:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 478F31F9F52;
-	Mon, 13 Jan 2025 23:10:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F51E1F9F5B;
+	Mon, 13 Jan 2025 23:12:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OwUBJo0Z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kVE49cnd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B8901FA8CF;
-	Mon, 13 Jan 2025 23:10:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F8151F9F6D;
+	Mon, 13 Jan 2025 23:12:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736809848; cv=none; b=WA4WYse132mJ3mLGXOMJ3XCqbBTFyqo+cz44mn1xZp0tCjWnlxD97B7lrmUgiSFSjP6FlRJm/ukK9qbYAd6tiPWXUTpezos2CSaD6+yMEdgYhGH0Jz8uA1UYAn6iIPJ9jqi3mScCJY5WgZ+Kq1TzsMkwifr4mORq/oSHFDpyW9I=
+	t=1736809964; cv=none; b=OkYVBzFKtloqnr9Er8XIfGhNuzuY5yr1R3FJQ8h0DGu4XP4rvyH2j+LEe4NaE5ecUoiyCZTdHZIRJfyLolG1QWHhpmH22sGVE3hVr01bt1222a1zlgt2rThOcPvsvyRCck3TxhK0tIpFhYzCQ/xXYnTXPrdnSPUZGyV5Ji8+qGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736809848; c=relaxed/simple;
-	bh=F0xxCZWJGpJw/QGFfQCihwskQ1SgzfEp6aScoOWb8jk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dW3HNUoxkpi6pFtMzzYvOK7p5gBUm+zty6l1Tr69c6RP3gO9JSYzqSxPTBLFQx6IAlnOQy4eIqAl/LK4p3c7O8pZCQjTDQ1fvp3J/RKuZTzFrKBgOwSuZV+Z/I5oK1wICFvnLmQ/zh/K3kbWaKivJ8Ucpmt+bHzFgjHsOZgwM44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OwUBJo0Z; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 50DNAJjG034647;
-	Mon, 13 Jan 2025 17:10:19 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1736809819;
-	bh=Pis1+Ul2tJ+hDJeXWXKiWWpLORPG+6ZP35ZHn3QG0aM=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=OwUBJo0Zy5BuG/Gyz33pSNkf2EoWeaVrjny3UnTMP/lbnmM0brL1rJqNB9siNR9o8
-	 MZLmgjJj3fJ+d75k6V1S7XEcvL1rOlFtmyEbDATtQT8cFINl5PchHZYKLxcM2cZR/6
-	 mKZgn2Fyh2RBpk5I1+YZxjl5wJeMaaUHxDEL93YE=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50DNAJUY012958
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 13 Jan 2025 17:10:19 -0600
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 13
- Jan 2025 17:10:18 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 13 Jan 2025 17:10:18 -0600
-Received: from DMZ007XYY.dhcp.ti.com (dmz007xyy.dhcp.ti.com [128.247.29.11])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50DNAIM3067169;
-	Mon, 13 Jan 2025 17:10:18 -0600
-From: Shree Ramamoorthy <s-ramamoorthy@ti.com>
-To: <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <aaro.koskinen@iki.fi>,
-        <andreas@kemnade.info>, <khilman@baylibre.com>, <rogerq@kernel.org>,
-        <tony@atomide.com>, <jerome.neanne@baylibre.com>,
-        <linux-omap@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <m-leonard@ti.com>, <praneeth@ti.com>, <christophe.jaillet@wanadoo.fr>
-Subject: [PATCH v3 4/4] regulator: tps65215: Add support for TPS65215 Regulator IRQs
-Date: Mon, 13 Jan 2025 17:10:18 -0600
-Message-ID: <20250113231018.125426-5-s-ramamoorthy@ti.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250113231018.125426-1-s-ramamoorthy@ti.com>
-References: <20250113231018.125426-1-s-ramamoorthy@ti.com>
+	s=arc-20240116; t=1736809964; c=relaxed/simple;
+	bh=OxdqALPYbC8AHAtMeN/IRPfMzgwIUN2nhBx9EsKG/hk=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jcybOjdXyg2dDntuwr5f1182iTu5pZxQygIZUIooCNC5DhCnc3Zsygdl2VaveLD5d9NWs7ebNQapJnBmwBGTZ6kLaXt7wWDcFW04NpoSz2YbhX8EFQNB2BDmJJAxbYRteweET7DK3JfkGJnoL8xd10T8CD41gcYFMdzGZiKYK3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kVE49cnd; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4361e89b6daso35001925e9.3;
+        Mon, 13 Jan 2025 15:12:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736809960; x=1737414760; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=kx8PXHEebO5/aVclGcZvE/Gv+JDFq1YsvtVYPBY6g3s=;
+        b=kVE49cndngV7TxGc0pOFttQrh0wzP+aY8c/VadAHdb1dSVOgnt++QxVmtSrTEOyXpy
+         GRrH2d3Bhj9ydeI3fmkvNxSNvG3FDFEWVa08hTpfcOqRp6zPMWUTzvUhGTyhpXzfk4B9
+         W1+AWJcQ35G8nhUfHn/BYvw4vQiUgirSTZA1t0OyyZi11bzHuV6WHRJQ09xX33eJN0I+
+         nQ4AcfRJ2/R7ifKG6VL/mD/FQRtc3NGA7cMLuQGIRFBlzUh85n6GlVy/18ez4NXTm2bT
+         Q3YCRIcSk3+WjlisjHpDXUfffbCNfj5xPFI4IgHthhAT8B9e1LIcpUNoEzTTsjtfQZMd
+         jJ+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736809960; x=1737414760;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kx8PXHEebO5/aVclGcZvE/Gv+JDFq1YsvtVYPBY6g3s=;
+        b=YsHIEv9towpm1H01vyXtD3Bbc0ifd4k0rMPT/tyU27tHr7i+/8j15iyeiBHaJ9Jerf
+         SugA34lAqNuuiwFXWKUUQt93Xn4koMUNta/8ZV/rnP5PqJLCf6PKrSROCapPDwCs9yhD
+         /Wv9s6k2YZpTHT2cOzNPJPEAQr6I+oq2VJWSB/WaMwmCEBJxAcdmkpRNPYLtuXEjoZfE
+         +pSofyayRDgXvvxoCzK3xapQwhNycM+YN9qYORHYEjb47gEVoHoNX+YGJiF1p7P0QSP5
+         YcStvFwpoGrSExx+uc2a7NBRn/Pb1IEpF3o08L6fw78kIyrivrVh5ic1tzwuaaX+2XaA
+         obJg==
+X-Forwarded-Encrypted: i=1; AJvYcCURM9yTKch46Xl9xCOtObxiTNM0syfFCm3VubSG0LpVL7p4hphjMo1YkKBq2DT8/FEtU66FQepr7mhn@vger.kernel.org, AJvYcCW2HOB91CeDXqeMT4eybpDj9k+d0Q0gsl6Utk5+HnFKFfl/qHFoOpgKvggxS23EZQnc8nyRozzz116/@vger.kernel.org, AJvYcCW72ooApuCsf1AjBNt+GsbvilFJyHeiWpaGezMasOdxieWR5PRIkGttS/kJEIerNhLFESN8c1M8dDPpI1yE@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLeEeWg3KNkt693DYgZBVHCTTj6Qf84dIaCi1po/eoPhfSs+hb
+	9iEGyp3CMVz5z3U06lr5suPZ3c2hZt1wrXfrEqtFFc8YqTW2aJsl
+X-Gm-Gg: ASbGncudZ/+FLWjFuqrtRHWvNVZVxwGb/rA/g/OTA+WeqtUlh1bXbGKca+/c3PMWEil
+	PY31GiIKUOm+TyIpZo1UxT0+tNjM0SCMblbMHBqbXw2gZtiA0hAZY8v6gb1GKm60C4B/kGcWvAL
+	fu7ARZjUliQnkVLrcJOum1/hNkkHry4jdVdpwBuVibMsw4Yb062vbveatAwEmpBW4ZIJ1B7brp2
+	bkJP+5s0OGGmNr7sAbxaNfAmqwiWG2+uwnT8tE0H6Li4BhE/E821niskZQwKFZDImP6G8KEYEjN
+	8MdrUZaTYKQi
+X-Google-Smtp-Source: AGHT+IFDz+NJFMXug6dZac/WOzSGHpi4jkLgKJu8Kp0xAIFURCC3A24XsIharH+RSYakSyvhfWyhPA==
+X-Received: by 2002:a05:600c:1987:b0:434:a386:6ae with SMTP id 5b1f17b1804b1-436e267850cmr211279395e9.7.1736809959712;
+        Mon, 13 Jan 2025 15:12:39 -0800 (PST)
+Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2e92794sm189006885e9.37.2025.01.13.15.12.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 13 Jan 2025 15:12:39 -0800 (PST)
+Message-ID: <67859de7.050a0220.184b6e.ffee@mx.google.com>
+X-Google-Original-Message-ID: <Z4Wd5N8b5IibhJyf@Ansuel-XPS.>
+Date: Tue, 14 Jan 2025 00:12:36 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	upstream@airoha.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 2/4] dt-bindings: clock: drop NUM_CLOCKS define for
+ EN7581
+References: <20250112133953.10404-1-ansuelsmth@gmail.com>
+ <20250112133953.10404-2-ansuelsmth@gmail.com>
+ <15742b3ea7b5ee1cfdeb78657e9dc4c5.sboyd@kernel.org>
+ <678587b6.050a0220.32320f.317d@mx.google.com>
+ <3b60a7a7775b6bae58d231a52bd9ef10.sboyd@kernel.org>
+ <67859111.df0a0220.a316d.bad1@mx.google.com>
+ <944dfd5c97e44d8cff3e576e0fa4a711.sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <944dfd5c97e44d8cff3e576e0fa4a711.sboyd@kernel.org>
 
-Isolate all changes involving regulator IRQ types:
-- Adding in TPS65215 resources
-- Organize what resources are common vs device-specific
-- How the chip_data uses these resource structs
-- Restructure the probe() for multi-PMIC support.
+On Mon, Jan 13, 2025 at 02:45:21PM -0800, Stephen Boyd wrote:
+> Quoting Christian Marangi (2025-01-13 14:17:49)
+> > On Mon, Jan 13, 2025 at 01:53:46PM -0800, Stephen Boyd wrote:
+> > > 
+> > > Please resubmit the entire patchset. It doesn't compile.
+> > 
+> > Hope I don't get annoying and sorry for this extra mail.
+> 
+> No worries.
+> 
+> > 
+> > I can't repro the compile error, it seems patch 1 of this series wasn't
+> > applied and changes were tested only with patch 2?
+> > 
+> > Patch 2 depends on patch 1 as we drop the define.
+> > 
+> 
+> I applied the first patch, but on top of v6.13-rc1 like all other
+> patches that don't tell me their base.
+> 
+> What's the base of the patch series? Please resend with a cover letter
+> and use --base=<commitish> when formatting the patch series. When I
+> applied the first patch I got this diffstat
+> 
+>  drivers/clk/clk-en7523.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+> 
+> so I suspect I'm missing something in clk-fixes for this patch series.
+> Please call out dependencies in the cover letter.
 
-Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
----
- drivers/regulator/tps65219-regulator.c | 68 +++++++++++++++++++-------
- 1 file changed, 51 insertions(+), 17 deletions(-)
+Indeed v6.13-rc1 didn't had the counted_by fix. I referenced the
+clk-next base branch and sent v6 with the cover letter. Hope it's clear
+now.
 
-diff --git a/drivers/regulator/tps65219-regulator.c b/drivers/regulator/tps65219-regulator.c
-index cfb2ab6dbab4..732e28c213c3 100644
---- a/drivers/regulator/tps65219-regulator.c
-+++ b/drivers/regulator/tps65219-regulator.c
-@@ -29,6 +29,8 @@ struct tps65219_regulator_irq_type {
- 	unsigned long event;
- };
- 
-+static struct tps65219_regulator_irq_type tps65215_regulator_irq_types[] = { 0 };
-+
- static struct tps65219_regulator_irq_type tps65219_regulator_irq_types[] = {
- 	{ "LDO3_SCG", "LDO3", "short circuit to ground", REGULATOR_EVENT_REGULATION_OUT },
- 	{ "LDO3_OC", "LDO3", "overcurrent", REGULATOR_EVENT_OVER_CURRENT },
-@@ -36,6 +38,14 @@ static struct tps65219_regulator_irq_type tps65219_regulator_irq_types[] = {
- 	{ "LDO4_SCG", "LDO4", "short circuit to ground", REGULATOR_EVENT_REGULATION_OUT },
- 	{ "LDO4_OC", "LDO4", "overcurrent", REGULATOR_EVENT_OVER_CURRENT },
- 	{ "LDO4_UV", "LDO4", "undervoltage", REGULATOR_EVENT_UNDER_VOLTAGE },
-+	{ "LDO3_RV", "LDO3", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
-+	{ "LDO4_RV", "LDO4", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
-+	{ "LDO3_RV_SD", "LDO3", "residual voltage on shutdown", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
-+	{ "LDO4_RV_SD", "LDO4", "residual voltage on shutdown", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
-+};
-+
-+/*  All of TPS65215's irq types are the same as common_regulator_irq_types */
-+static struct tps65219_regulator_irq_type common_regulator_irq_types[] = {
- 	{ "LDO1_SCG", "LDO1", "short circuit to ground", REGULATOR_EVENT_REGULATION_OUT },
- 	{ "LDO1_OC", "LDO1", "overcurrent", REGULATOR_EVENT_OVER_CURRENT },
- 	{ "LDO1_UV", "LDO1", "undervoltage", REGULATOR_EVENT_UNDER_VOLTAGE },
-@@ -59,8 +69,6 @@ static struct tps65219_regulator_irq_type tps65219_regulator_irq_types[] = {
- 	{ "BUCK3_RV", "BUCK3", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
- 	{ "LDO1_RV", "LDO1", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
- 	{ "LDO2_RV", "LDO2", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
--	{ "LDO3_RV", "LDO3", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
--	{ "LDO4_RV", "LDO4", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
- 	{ "BUCK1_RV_SD", "BUCK1", "residual voltage on shutdown",
- 	 REGULATOR_EVENT_OVER_VOLTAGE_WARN },
- 	{ "BUCK2_RV_SD", "BUCK2", "residual voltage on shutdown",
-@@ -69,8 +77,6 @@ static struct tps65219_regulator_irq_type tps65219_regulator_irq_types[] = {
- 	 REGULATOR_EVENT_OVER_VOLTAGE_WARN },
- 	{ "LDO1_RV_SD", "LDO1", "residual voltage on shutdown", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
- 	{ "LDO2_RV_SD", "LDO2", "residual voltage on shutdown", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
--	{ "LDO3_RV_SD", "LDO3", "residual voltage on shutdown", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
--	{ "LDO4_RV_SD", "LDO4", "residual voltage on shutdown", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
- 	{ "SENSOR_3_WARM", "SENSOR3", "warm temperature", REGULATOR_EVENT_OVER_TEMP_WARN},
- 	{ "SENSOR_2_WARM", "SENSOR2", "warm temperature", REGULATOR_EVENT_OVER_TEMP_WARN },
- 	{ "SENSOR_1_WARM", "SENSOR1", "warm temperature", REGULATOR_EVENT_OVER_TEMP_WARN },
-@@ -313,8 +319,12 @@ static irqreturn_t tps65219_regulator_irq_handler(int irq, void *data)
- struct tps65219_chip_data {
- 	size_t rdesc_size;
- 	size_t common_rdesc_size;
-+	size_t dev_irq_size;
-+	size_t common_irq_size;
- 	const struct regulator_desc *rdesc;
- 	const struct regulator_desc *common_rdesc;
-+	struct tps65219_regulator_irq_type *irq_types;
-+	struct tps65219_regulator_irq_type *common_irq_types;
- };
- 
- static struct tps65219_chip_data chip_info_table[] = {
-@@ -323,12 +333,20 @@ static struct tps65219_chip_data chip_info_table[] = {
- 		.rdesc_size = ARRAY_SIZE(tps65215_regs),
- 		.common_rdesc = common_regs,
- 		.common_rdesc_size = ARRAY_SIZE(common_regs),
-+		.irq_types = tps65215_regulator_irq_types,
-+		.dev_irq_size = ARRAY_SIZE(tps65215_regulator_irq_types),
-+		.common_irq_types = common_regulator_irq_types,
-+		.common_irq_size = ARRAY_SIZE(common_regulator_irq_types),
- 	},
- 	[TPS65219] = {
- 		.rdesc = tps65219_regs,
- 		.rdesc_size = ARRAY_SIZE(tps65219_regs),
- 		.common_rdesc = common_regs,
- 		.common_rdesc_size = ARRAY_SIZE(common_regs),
-+		.irq_types = tps65219_regulator_irq_types,
-+		.dev_irq_size = ARRAY_SIZE(tps65219_regulator_irq_types),
-+		.common_irq_types = common_regulator_irq_types,
-+		.common_irq_size = ARRAY_SIZE(common_regulator_irq_types),
- 	},
- };
- 
-@@ -336,7 +354,6 @@ static int tps65219_regulator_probe(struct platform_device *pdev)
- {
- 	struct tps65219_regulator_irq_data *irq_data;
- 	struct tps65219_regulator_irq_type *irq_type;
--
- 	struct tps65219_chip_data *pmic;
- 	struct regulator_dev *rdev;
- 	int error;
-@@ -370,33 +387,50 @@ static int tps65219_regulator_probe(struct platform_device *pdev)
- 					     pmic->rdesc[i].name);
- 	}
- 
--	irq_data = devm_kmalloc(tps->dev,
--				ARRAY_SIZE(tps65219_regulator_irq_types) *
--				sizeof(struct tps65219_regulator_irq_data),
--				GFP_KERNEL);
-+	irq_data = devm_kmalloc(tps->dev, pmic->common_irq_size, GFP_KERNEL);
- 	if (!irq_data)
- 		return -ENOMEM;
- 
--	for (i = 0; i < ARRAY_SIZE(tps65219_regulator_irq_types); ++i) {
--		irq_type = &tps65219_regulator_irq_types[i];
--
-+	for (i = 0; i < pmic->common_irq_size; ++i) {
-+		irq_type = &pmic->common_irq_types[i];
- 		irq = platform_get_irq_byname(pdev, irq_type->irq_name);
- 		if (irq < 0)
- 			return -EINVAL;
- 
- 		irq_data[i].dev = tps->dev;
- 		irq_data[i].type = irq_type;
-+		error = devm_request_threaded_irq(tps->dev, irq, NULL,
-+						  tps65219_regulator_irq_handler,
-+						  IRQF_ONESHOT,
-+						  irq_type->irq_name,
-+						  &irq_data[i]);
-+		if (error)
-+			return dev_err_probe(tps->dev, PTR_ERR(rdev),
-+					     "Failed to request %s IRQ %d: %d\n",
-+					     irq_type->irq_name, irq, error);
-+	}
-+
-+	irq_data = devm_kmalloc(tps->dev, pmic->dev_irq_size, GFP_KERNEL);
-+	if (!irq_data)
-+		return -ENOMEM;
- 
-+	for (i = 0; i < pmic->dev_irq_size; ++i) {
-+		irq_type = &pmic->irq_types[i];
-+		irq = platform_get_irq_byname(pdev, irq_type->irq_name);
-+		if (irq < 0)
-+			return -EINVAL;
-+
-+		irq_data[i].dev = tps->dev;
-+		irq_data[i].type = irq_type;
- 		error = devm_request_threaded_irq(tps->dev, irq, NULL,
- 						  tps65219_regulator_irq_handler,
- 						  IRQF_ONESHOT,
- 						  irq_type->irq_name,
- 						  &irq_data[i]);
--		if (error) {
--			dev_err(tps->dev, "failed to request %s IRQ %d: %d\n",
--				irq_type->irq_name, irq, error);
--			return error;
--		}
-+		if (error)
-+			return dev_err_probe(tps->dev, PTR_ERR(rdev),
-+					     "Failed to request %s IRQ %d: %d\n",
-+					     irq_type->irq_name, irq, error);
- 	}
- 
- 	return 0;
 -- 
-2.43.0
-
+	Ansuel
 
