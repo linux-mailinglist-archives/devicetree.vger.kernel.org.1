@@ -1,154 +1,147 @@
-Return-Path: <devicetree+bounces-137910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0030CA0B121
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:30:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA1B8A0B12C
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:33:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 261531884EAA
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:30:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B14FF3A574B
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 08:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E646233159;
-	Mon, 13 Jan 2025 08:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3537A233134;
+	Mon, 13 Jan 2025 08:33:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i41oIbcY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oH4qNTC2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F4E233154
-	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 08:30:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BAC1232366;
+	Mon, 13 Jan 2025 08:33:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736757002; cv=none; b=EkSA4s9KmR8FrIm8VCi+A3LaFewpUoknaPk6i8lvN5fBTY/gSZxMAPg+pB9TNBrrI5VID3S/b2Pqhh7bHHQ93v6DjJtUpx85cJ8LaYUBu2TEWtitc1all7LRvcAgM95WsoOr1dZ8ij3dTy9xUz4mTyhRi1CkuGp0jaZBCfgP3ek=
+	t=1736757217; cv=none; b=mWwi4sr57fefx3X6k8+n83NFducXoSgANlBv82kXfxNLC0+Mvg3Ae/fSsyuTAV1ddrW2UOLMDoyoChEg9tU19ugn/AKdGsE9gvJ0777e4nLt3gRbUfaLzerW22OHMZOM1bo24Z/GQQYDtB1XMm1Y+3vKveCs+sN1uXLdFB/Bq4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736757002; c=relaxed/simple;
-	bh=sf6dD5Jhczzuy/5Ap2KhKugjig5e4+SbB93j6g2Fhw8=;
+	s=arc-20240116; t=1736757217; c=relaxed/simple;
+	bh=G3U++KIr+G48m3HRdZchvamanmjNeMM6ZfT0ivLMkuM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bfy7+zMKs4OiUfgMghXuri/rDQImgAvRRnRhXd3YpOChWfhJePp25wAD1rMZfFtyVkeyJNWvvkvkt14iyo5YKZ7bf+NNfX51OLwPrzgc1vLzsAcy/s1yHIJBeHfzu05VajwVfON0rB9+vupBUoh9OtRVbIffSuPstyZpcwBYuhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i41oIbcY; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-304d757a9c1so36746371fa.0
-        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 00:30:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736756998; x=1737361798; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=wpNfgPmZHWvswUwSBHQaLXxsDd/iOPSUp9zWO21bZZk=;
-        b=i41oIbcYyTZIg+bXgNvVGoYxu12HOMcNmAFsdAdS5VNxkipxJNJBJT9kBKh092OKfJ
-         XnLgfqM03s2Wo/SaIrgF/j58i/NLXkbAxZAt+L4yH2czFYiN5TVSTvxXLBXjbIbhIfxx
-         +M5xuXacW3AGA+DKJg0RI5ovIQj+xZXGABLEbbxKTjKknzdegkLFZfLZ5OIO6hWlC5RO
-         bNEkOfYXyFvuyfrPJOFGQ+NXeBlGU9f7Be+d+z7mNq9gXA/2IRyz8ZYOxFYTdwxkod+f
-         LdK5qY3J8//DaDcKIzXaIzUzAvav21OVTY9JH9JYN02nCwKn9BEjX7OlkVB9P4Y5oqY7
-         mQkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736756998; x=1737361798;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wpNfgPmZHWvswUwSBHQaLXxsDd/iOPSUp9zWO21bZZk=;
-        b=xE3RtliBcAjnJOee9sta5k7DzTHWhfco26j//x8lw16jr5PlAmCqMhsqvzlBeLeuso
-         MINgYb2r9i6Yjah9Rd1M8ZHwNpk4/S0VpuShV6hWkJ8E44jtfvByecZa4loZyGMdPe+E
-         LzHsqzbpH6WnCO039Bh6hF4V0G04rUJRLwdOV6wSTOuKo1PfuhFDzJPbOrlCmVs6AutF
-         zDfH0itaBPhVyWVVTMUiOCATXTy3o75XWIJAHsGJCcFtA+YAxK8qLtAPybwaZxOG8vDV
-         0Pi2Wnm49ZglWuT7MMhD3ON1l+MFa8J8U8hVMrOsfdVpGh7B29W3UVYNt10d7SHNKi29
-         NdJg==
-X-Forwarded-Encrypted: i=1; AJvYcCXfaarri1pUV5kAuWgYwyWmXA6flMmZwl6ZVyF5zMCuVRvucbYnleHEWaiDtzL/IlLcRpZmZ9aAIVub@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzfmYSYNHOuC+1doIOP5nwtudot65HolRmqT6el0End/HcY5o1
-	9SV4B8ZE2a7eWCqF9rCDhI6nzmoGgavdhRedOZkkWO33rDGZu7T40RmRuuGaIuE=
-X-Gm-Gg: ASbGncs8TbgEsINCD0du3ZBCcndhvAYXYb+QB6Q4K7bveYu241UUvsmie2oYqnopRs2
-	7GsfXyeglJuu8Eo3XITNtuskVW5bMDU/K8uDXo9z7pwPqlxX4kkoZk4Jtbna9fW0/b3EscSRrVf
-	GDBzIzrz4/LashthE1WMakCD2scDog+Hfa/Wafnql7C53xdc79e59vVgsVskU7SqLJciLk/uQ2l
-	04/dKV7/AYUeXNT68i+Z2bMwiI8CCg29BA1wiNm3PsmZMyJCXB2tA+lBeR9wXMHqh6ADRJjHEQ8
-	eh7ZAnyP2dmwsoENHFBHD0zLTqzBPh7EjRoi
-X-Google-Smtp-Source: AGHT+IE54yzyiPD4ub1IysG2kNFqrLtRmbf0RfdOOdV+LhLhjjBOzskOmKPSTGDp09AS8bI5jIgTSw==
-X-Received: by 2002:a05:651c:b08:b0:302:2cb3:bb1d with SMTP id 38308e7fff4ca-305fee0b3a6mr41291591fa.12.1736756998394;
-        Mon, 13 Jan 2025 00:29:58 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-305ff0cf1f8sm13837701fa.27.2025.01.13.00.29.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2025 00:29:57 -0800 (PST)
-Date: Mon, 13 Jan 2025 10:29:54 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>, 
-	Jonathan Marek <jonathan@marek.ca>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Srini Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH RFC 08/11] drm/msm/dsi: Add support for SM8750
-Message-ID: <uyidfuh5ul5kcg4keeev6yagmjc5ksun626dyb6kdgwegc76d7@iu7ggdhgt5qr>
-References: <20250109-b4-sm8750-display-v1-0-b3f15faf4c97@linaro.org>
- <20250109-b4-sm8750-display-v1-8-b3f15faf4c97@linaro.org>
- <3p7kjok5jzwvgt7dxuad26xgdkjd52v4gbtuudvgkeoj33skqn@afl2ddtsq7s2>
- <4fc7fdd5-36cd-42e6-af4a-e0e429f9f50b@linaro.org>
- <7eupqawhdrbjgsj2p7e3ky7uj62m252i6dzkb6y23btocedp3q@qmw72nmbk2c4>
- <6ee02d22-7a00-4c7c-a5e9-63e91d7d84ba@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q69ZFNP9axO+UVHLpSUGQ6CozXq9cdnzEZFCSTqkVpQj+1oY22UVcQgonsFQDwJ9elOf9T3pX5Hmft+Bk3y+NLnA8rfDCLb6mfLIqRyyj2eGv/WxA02gxqPA+zc2dj/Ksog9FwXPLEg9wxBqUyI0w1Nr4xAav4hNVgDy9Nfi2eo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oH4qNTC2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA0C9C4CED6;
+	Mon, 13 Jan 2025 08:33:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736757216;
+	bh=G3U++KIr+G48m3HRdZchvamanmjNeMM6ZfT0ivLMkuM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oH4qNTC2vWeE29Y8C01hXgP2lBOxNoR/vlUEQRe2weCzWWapF9ymLPsGQ6kx1kIWt
+	 U3u9lVcJue1wSzFmS4pJCpueK8dkuiz2uAHZQKioZJX4NZ6hjcg1rOs/KVYdRFRhty
+	 sAFVjbBSWtnbcIxbGrnrvyh15TNU0uxbY40ftcsEHnwfBJJ5HR2M0syjedUsZDHPbd
+	 PElv9T8JRAKYOBxuzNrrUgBFDcOwFRe+mDi1F8oWm5PQH0mjysV8Y4cJZuKzb8FBbH
+	 4nvsXtxRCL9hFzbXwMH3lDitqC5C0m55OvazidVZZ1IhbBET3QPFJO5Jd5tcUw/fAI
+	 0IYnnXHJTSjdg==
+Date: Mon, 13 Jan 2025 09:33:32 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Zijun Hu <zijun_hu@icloud.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
+	Maxime Ripard <mripard@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
+	Grant Likely <grant.likely@secretlab.ca>, Marc Zyngier <maz@kernel.org>, 
+	Andreas Herrmann <andreas.herrmann@calxeda.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Mike Rapoport <rppt@kernel.org>, 
+	Oreoluwa Babatunde <quic_obabatun@quicinc.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Zijun Hu <quic_zijuhu@quicinc.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	Kees Cook <kees@kernel.org>
+Subject: Re: [PATCH v4 14/14] of: Improve __of_add_property_sysfs()
+ readability
+Message-ID: <lpd4bay4mv4qh2ax6ywdwe3hb47bd7ppcxn3uv32fsrzo3e6lj@yyocdgrpwnkq>
+References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
+ <20250109-of_core_fix-v4-14-db8a72415b8c@quicinc.com>
+ <20250110204154.GA3529721-robh@kernel.org>
+ <c79dd576-0a85-48e2-a7f8-e4b4e005a18b@icloud.com>
+ <qvyhzgeye7qwppcafisvjkg4wwkrenwxq7nebnsjxdenj7wvxm@qwxzet3iyzyx>
+ <680a0b08-b085-41aa-a0e3-f36c153c91f6@icloud.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <6ee02d22-7a00-4c7c-a5e9-63e91d7d84ba@linaro.org>
+In-Reply-To: <680a0b08-b085-41aa-a0e3-f36c153c91f6@icloud.com>
 
-On Fri, Jan 10, 2025 at 01:43:28PM +0100, Krzysztof Kozlowski wrote:
-> On 10/01/2025 10:17, Dmitry Baryshkov wrote:
-> > On Fri, Jan 10, 2025 at 09:59:26AM +0100, Krzysztof Kozlowski wrote:
-> >> On 10/01/2025 00:18, Dmitry Baryshkov wrote:
-> >>> On Thu, Jan 09, 2025 at 02:08:35PM +0100, Krzysztof Kozlowski wrote:
-> >>>> Add support for DSI PHY v7.0 on Qualcomm SM8750 SoC which comes with two
-> >>>> differences worth noting:
+On Sat, Jan 11, 2025 at 08:44:34PM +0800, Zijun Hu wrote:
+> On 2025/1/11 17:17, Krzysztof Kozlowski wrote:
+> > On Sat, Jan 11, 2025 at 07:48:48AM +0800, Zijun Hu wrote:
+> >> On 2025/1/11 04:41, Rob Herring wrote:
+> >>> On Thu, Jan 09, 2025 at 09:27:05PM +0800, Zijun Hu wrote:
+> >>>> From: Zijun Hu <quic_zijuhu@quicinc.com>
 > >>>>
-> >>>> 1. ICODE_ACCUM_STATUS_LOW and ALOG_OBSV_BUS_STATUS_1 registers - their
-> >>>>    offsets were just switched.  Currently these registers are not used
-> >>>>    in the driver, so the easiest is to document both but keep them
-> >>>>    commented out to avoid conflict.
+> >>>> __of_add_property_sysfs() hard codes string "security-" length as 9, but
+> >>>> that is not obvious for readers.
 > >>>>
-> >>>> 2. DSI PHY PLLs, the parents of pixel and byte clocks, cannot be used as
-> >>>>    parents before they are prepared and initial rate is set.  Therefore
-> >>>>    assigned-clock-parents are not working here and driver is responsible
-> >>>>    for reparenting clocks with proper procedure: see dsi_clk_init_6g_v2_9().
+> >>>> Improve its readability by using strlen().
 > >>>
-> >>> Isn't it a description of CLK_SET_PARENT_GATE and/or
+> >>> Does the compiler optimize the strlen call away? Maybe, maybe not. If 
+> >>> not, that's N calls to strlen() where N is the number of properties in 
+> >>> your DT. That's in the 1000s easily.
+> >>>
+> >>> Do you really want to go test enough compiler versions we support to 
+> >>> feel confident this is optimized away. I don't.
+> >>>
 > >>
-> >> No - must be gated accross reparent - so opposite.
+> >> i understand your concern about performance.
+> >> perhaps, such impact about performance may be ignored for linux OS.
 > >>
-> >>> CLK_OPS_PARENT_ENABLE ?
+> >> what about below solution ?
 > >>
-> >> Yes, but does not work. Probably enabling parent, before
-> >> assigned-clocks-parents, happens still too early:
-> >>
-> >> [    1.623554] DSI PLL(0) lock failed, status=0x00000000
-> >> [    1.623556] PLL(0) lock failed
-> >> [    1.624650] ------------[ cut here ]------------
-> >> [    1.624651] disp_cc_mdss_byte0_clk_src: rcg didn't update its
-> >> configuration.
-> >>
-> >> Or maybe something is missing in the DSI PHY PLL driver?
+> >> const char security_prefix[] = "security-";
+> >> use 'sizeof(security_prefix) - 1' for the length of string.
 > > 
-> > Do you have the no-zero-freq workaround?
+> > Code is still not equivalent - just de-assemble it and you will see
+> > some overhead.
+> > 
 > 
-> Yes, it is necessary also for my variant. I did not include it here, but
-> I should mention it in the cover letter.
+> Thank you Krzysztof Kozlowski for code review
+> 
+> the overhead may be that use of stack is increased a bit.
+> it may not almost impact performance since 'sizeof(security_prefix) - 1'
+> may be still a compile time constant.
 
-Could you please possibly backtrace the corresponding enable() calls?
-I'd let Stephen and/or Bjorn or Konrad to correct me, but I think that
-such requirement should be handled by the framework instead of having
-the drivers to manually reparent the clocks.
+No, I was talking about initialization. Look how it is done.
 
--- 
-With best wishes
-Dmitry
+> 
+> > Maybe just introduce builtin_strlen() to string.h and use such? It would
+> > be the pretty obvious code.
+> > 
+> 
+> it is a good idea to introduce API for this common issue, it seems the
+> main strncmp() usages in current kernel tree is to check if a string
+> begin with the other string a shown below:
+> 
+> // "s2_string" is wrote twice, and also impact performance
+> strncmp(s1, "s2_string", strlen("s2_string"))
+> 
+> // it is not obvious for readers that "s2_string" length is 9
+> strncmp(s1, "s2_string", 9)
+> 
+> //"s2_string" is wrote twice, same as strcmp(), may be wrong
+> strncmp(s1, "s2_string", sizeof("s2_string"))
+> 
+> //"s2_string" is wrote twice
+> strncmp(s1, "s2_string", sizeof("s2_string") - 1)
+> 
+> what about a new API such as ?
+> 
+> // check if @s1 begins with @s2
+> bool str_begin_with(const char *cs, const char *ct)
+
+Nothing related to my proposal, so no clue why you ask me. Anyway, as it
+is one more unsafe str-like function, I don't see how it makes things
+much better.
+
+Best regards,
+Krzysztof
+
 
