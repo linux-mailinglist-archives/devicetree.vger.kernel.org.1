@@ -1,172 +1,120 @@
-Return-Path: <devicetree+bounces-137951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0246A0B381
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:47:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4345A0B376
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 10:46:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8A1203AB5F7
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:42:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99778169564
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 09:44:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AF9C22C327;
-	Mon, 13 Jan 2025 09:36:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RN56A3YJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7195A1FDA81;
+	Mon, 13 Jan 2025 09:42:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A8B22AE76;
-	Mon, 13 Jan 2025 09:36:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 620BD235C0C;
+	Mon, 13 Jan 2025 09:42:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736761002; cv=none; b=Rq5lTExhsE9q+ijW9gveIsewNyBuW3Sxsa6HE6z0girxyH5Af4tZDRBlF+nV3FPJjmkt9VSLxwGVq9bdEin3RpzG+qmdPU1+jButoKJ3yzV1SrVPkV0cjmxXO7INaYkuTlWbxxm6HmVffF3lgdctlh3QltdG4PUJlLy+d6VK74U=
+	t=1736761325; cv=none; b=rq/tn26Hwj9Y2nS+R2mkdiVOBrQIInlJFIhjhOalNZvBN0rJDvd48jEQoK2Z7alUCBdMtP9Q4Pp5wMEvIp3LGLH+Sg4aYVV6blsEuOOazJGLQkzSYKo+wtiBDvmuXDXiiY6Ibh/ulPmV0I+mB8/cTHoRhITpw5W6PAwNCgmrb/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736761002; c=relaxed/simple;
-	bh=CnSGARktw4IXiEEBL5guac/mAy2S/VeEr/vvlM4oBsY=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=BTVbQMS5z8Zp3fNBqOZzQJS/o9AWJnasoaEpSQIj/h5YSepNbFplKQ/jmInLy5mWRWFUnMIcucChVdh/e/UMZTVFglQIwX6huTP+k9n/34HpANumwBL/n8HN0Wnuq/AY3saHYrx8XcFe93pJyrCC3V/icUSwl8xywVB/NbFiY6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RN56A3YJ; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1736761325; c=relaxed/simple;
+	bh=tEAEhITnEkgQ+vuaOKMiYtiFy4veOYklRUGRcAkf9j8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=G4AtS/mRdbw9AsWZur6vBunEH1kOIUOXKI/RFW76HtL9dkm1pIHOfWytk5BLW7rjqEguhSCg9NjvsiUogQU5PAiMfxxc2qYSnHa7q6q5PwkdcvopLjNaDwHUQFV8LYCqN5rTx4BLHL5eKREL/PriTbETK/9pzvHS71SBRi7J9sA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-388cae9eb9fso2114850f8f.3;
-        Mon, 13 Jan 2025 01:36:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736760999; x=1737365799; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=7nyUSHHP0yR3ZtnhpxdtDCyqMGbgmdlP3dka+ZfZ0PI=;
-        b=RN56A3YJ6jJ9fVBaydvYqdI4fjOnhhIAeKz4rWms8cOcwKkCmZ8FSbM0FSPa0vUSIV
-         Rc/sEXT4Fid1WJfLdAIoV0GDy1D8pTF42GdIhUnxEwZcajMHyT9PzVth+KVXf8gek3hk
-         bBYywYes7exrSuR09QkFVBZ4nT21p3Q1sb21WFFANDDg5cAnH6AO/NmVgfQ9hHf7I/a4
-         dfAYeRWp3j/8+j3F8rBVbovmeT5wbCwSJHTNLxrU6wnWLxnCGifqAyLKReU3bnbXJncU
-         PDOuiSANTK3NXwtRHL0JwqM8gYs55Y9yH/tV0xxbh1Y7eA1skQcHXixRGDutJx80nty/
-         83bg==
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5d3e9a88793so6878925a12.1;
+        Mon, 13 Jan 2025 01:42:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736760999; x=1737365799;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=7nyUSHHP0yR3ZtnhpxdtDCyqMGbgmdlP3dka+ZfZ0PI=;
-        b=LcPVutEpoGqa91xvLsiPv9fqpaH7Kc0/Q6KZNJRsXyVWwJf7/nwA551akBnHk8u72f
-         Oyn9tbI6gEnQ33h2hHzgJJpHAJ9z+Lxz0CpIocyug4M57zw6EOyjc5dRbauhX6mQFVjn
-         0UeV4WRaB68dH53ebSH2SFjTfZL2sZYrz6/+EkFc8BaXgUfswFKn9JIwZJITwWUixqkf
-         tgjrDCpdKEUUdSKgQIPm/9mMbXSDtL4OPrUk7G4fLKv2eeLFRVD0S0MnET8ebquvjdTf
-         udaUkTyG2EMBRNsFHfm7QiYTBUVR4gwtHHM7D3zOKAck0VD7BO8GOkh4y2Bs3op0dkbp
-         G+DQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVUr1Q+0SGFz0f2wWUTb3RCBpwW77Jc0mbSN9oW73RYq6lBNviEfFWcabN/PEMs8pliCFUIAHqGD7LK@vger.kernel.org, AJvYcCXK0LVKO7YdbGK9RDXkiiTuGjbvlI6NvqDXzA2edACz4wDyM7ca8QFmt8AQEdd4t9sSgSgBQ49nuV8U@vger.kernel.org, AJvYcCXU2Pv4+8A/TQmzT4BX/62Nb0rH4hMYCJi0c9iXpHMg7EGPJATex0se8O+JDZyaq6M3NFWQ6dFozGHf@vger.kernel.org, AJvYcCXvB+tLYRVMWBKd/2rfwa5weZVvjnjqs+vFI5AuWCuSJsewkp02tb0GdJhq7gEGUIN4nG7EFj2ysIzvcy2g@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeE4P9Q0ZAxfEifGI0kcmfYMYaxf/FAGPvsopIWRB7U55NvFNo
-	h5cgUF5IBNIcyoVr2MqgfRl+g2ODplXJ39req9u+33bsSchkqumr
-X-Gm-Gg: ASbGncuACnq2de47WrvIjcW2UfPjlAMeO63N/ZLnzbdH/mcOClDl7y2p6iIs6aR7R8O
-	Juqu5pCXlEOeA+4Z1F8+qtKDNUGvjkV/kOPCGGSI1KHEbnSaP4kKVo382KxFD2FbUMqjs5jqipW
-	rUhYx4bFd9afZYnmiJ9srpJsLEoV9Gz9ayE31psIYuL3aqBGGspU1DkUbp27wMZLNvRVJASBQYg
-	p2WL81l+Kn3jDUY5cdgvUBuxb/yC7f/aiUW155bFh46Oiw03TBmY9F/41Z5r3HH53EUHe8t/8nA
-	oPsfSkOnSFPHOi/eU4ctg5YPLkxu
-X-Google-Smtp-Source: AGHT+IESwRCXbGth1qot4cl0kyw6thE3Qlkh6tb8Sk5ZxVbqvaA8AEXyrAMpEIhD/zBSCKA7evuCVg==
-X-Received: by 2002:a05:6000:1acc:b0:385:db39:2cf with SMTP id ffacd0b85a97d-38a872c943fmr16012470f8f.12.1736760999113;
-        Mon, 13 Jan 2025 01:36:39 -0800 (PST)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a8e4b80d4sm11395176f8f.85.2025.01.13.01.36.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2025 01:36:38 -0800 (PST)
-Message-ID: <c5bbfd1555a8a141caca944f2bb1b6eccb88fd67.camel@gmail.com>
-Subject: Re: [PATCH v4 5/6] iio: imu: adis16550: add adis16550 support
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, Robert Budai
- <robert.budai@analog.com>
-Cc: Nuno Sa <nuno.sa@analog.com>, Ramona Gradinariu	
- <ramona.gradinariu@analog.com>, Antoniu Miclaus
- <antoniu.miclaus@analog.com>,  Lars-Peter Clausen	 <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, Alex Lanzano	
- <lanzano.alex@gmail.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, 	linux-kernel@vger.kernel.org,
- linux-doc@vger.kernel.org
-Date: Mon, 13 Jan 2025 09:36:38 +0000
-In-Reply-To: <20250112161141.563064c2@jic23-huawei>
-References: <20250110074254.38966-1-robert.budai@analog.com>
-		<20250110074254.38966-6-robert.budai@analog.com>
-	 <20250112161141.563064c2@jic23-huawei>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 
+        d=1e100.net; s=20230601; t=1736761320; x=1737366120;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nk3EkV0Yif/1K3QpdnWUDxP88GHxUnUAsBLg0hGBmrc=;
+        b=DH8uhCEr1UEOAvDR8+k2oLOJ8AXD5PvdYvVoYBjZ6rb70QKhlj7ph1OB/nZmC/PaFV
+         HSAI+fqW/romVsrtChE6P+VxoLFEQLYLcqS41d3MtU4KDICSrYxNhtRpEmQwbhK7xalJ
+         ZXaQfwCYQ39vjS/REBlsLHh4Ep6nd0reJLzHMOsIGnMXx/kPPDqufQ05OFpRNht2/2DX
+         DcPhknNiDlWPgMFXKwFmYweNGEBOhpvFHfVYAGgiVU24AEwbl3T16AEXfMUwxi4bfYJD
+         72wcUflOaEm6mC9gVt2xDy6evbZlkjZJjXSxoh4vbfAOBdzeiV/ykTgaM1i4b21+5Fv8
+         802w==
+X-Forwarded-Encrypted: i=1; AJvYcCW4VRL4flpvLHj2I1Yk9uK1ITlMQpQmrZ7f8hekus2BSsIneu22HRch32h0SIOqvmfBEAlhCej/mOfKvubq@vger.kernel.org, AJvYcCXPMo73iQ51wdh/aNSepZczPKyaGzXgnog2sc0k8VXWAOBhbBYWHvVTqcRpQ48r0/pBzU03+Zih6NdoCBTG3uyTKJY=@vger.kernel.org, AJvYcCXYEkRAoQBbkaJmuHh8mddqPuRQw7UzDNeuqmxwH6QW+8mZ/0CnZSC/E+S0546W6RuxqTI6W2T4AKDx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyTe/0Vu9CTAw1UHDlUlfOXmrVW1bmN/DJ7ziKLXUNWiSqeWo7j
+	OyWmPMqwUw+SWrV6jLbhsbMNu+kCFCV14AYQeL+Yyxero1JhVtbZtWx2uFNgY5A=
+X-Gm-Gg: ASbGnctXLLloe+ZWjpWYld7BYVeiJxswY6gBCXTBEdjrTicqaPJNAv3DoINjhUzgK+C
+	9A0mTMkJWWEC2v0pW8nP2TW0laSSJfsSFlouJ+f1L7UZI34HChvW5OqmjrNnbS6dvk7oVSYy/m/
+	dttIepr1ObveDIN5leTE8Y9IRp4LRFcf9Uxtuo+2d2puf/PQga+cuTd5sSVNPnmWyRY+x8+wa9u
+	fGWv3ye8RGVOx5ph954M3zC64YziQU8tOKwM5IHR1CmAP8xVRbtah8SWCeyvBNESeMQxjTQbJPt
+	q0NZHIEGMYDpLRfPUOM=
+X-Google-Smtp-Source: AGHT+IFFCkjiXtxu/U6v67jWx5/JIt+U4vqzcn3yqZNyDuzKfppTB7AjnVKgWjWWZNYyWwh14m5MZw==
+X-Received: by 2002:a05:6402:13c1:b0:5d0:ea2a:726c with SMTP id 4fb4d7f45d1cf-5d972e069b5mr17366805a12.8.1736761320087;
+        Mon, 13 Jan 2025 01:42:00 -0800 (PST)
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com. [209.85.208.49])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d9900c45aasm4594223a12.28.2025.01.13.01.41.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 13 Jan 2025 01:41:57 -0800 (PST)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5d3cf094768so7169739a12.0;
+        Mon, 13 Jan 2025 01:41:57 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU3OetmWWwCPDdl33OFYZz4mp2H7dUTAgnzkgzu8/ksI2/M37fGJNSdqbrER5tDf3snZjG6+FuY/BZne9qs@vger.kernel.org, AJvYcCV2JHpJAj9Mz+egV5uh1mC3VSG4QEHCn/dfulicxaeiH2WAdyio0DqBxDbSMuWXZxkYZ4trJvTpF6EL@vger.kernel.org, AJvYcCX/25tUzLRTKOIavixvfd5SzuC9iJMX6dvlkFcB9qvuQG2/LISHbE6z69Lco6tDIcbejLiWi5dupBwYD/Px6LemCwY=@vger.kernel.org
+X-Received: by 2002:a05:6402:27cd:b0:5d3:cd5b:64da with SMTP id
+ 4fb4d7f45d1cf-5d972e4cc99mr16591487a12.23.1736761317433; Mon, 13 Jan 2025
+ 01:41:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20250111080903.3566296-1-iwamatsu@nigauri.org>
+In-Reply-To: <20250111080903.3566296-1-iwamatsu@nigauri.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 13 Jan 2025 10:41:38 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXdvAYLi-3Eyt=5LTuDG+7rh5fo7VT9kbG1TD5dLLsvbw@mail.gmail.com>
+X-Gm-Features: AbW1kvYF1XD1pP1ZWfcXFXxenTotNO_Q21MKxoDph118L2P91yuMGm3e1O_vhd4
+Message-ID: <CAMuHMdXdvAYLi-3Eyt=5LTuDG+7rh5fo7VT9kbG1TD5dLLsvbw@mail.gmail.com>
+Subject: Re: [PATCH 0/4] Add support Yuridenki-Shokai Kakip board
+To: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Masato Kiuchi <kiuchi_masato@yuridenki.co.jp>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, 2025-01-12 at 16:11 +0000, Jonathan Cameron wrote:
-> On Fri, 10 Jan 2025 09:42:53 +0200
-> Robert Budai <robert.budai@analog.com> wrote:
->=20
-> > The ADIS16550 is a complete inertial system that includes a triaxis
-> > gyroscope and a triaxis accelerometer. Each inertial sensor in
-> > the ADIS16550 combines industry leading MEMS only technology
-> > with signal conditioning that optimizes dynamic performance. The
-> > factory calibration characterizes each sensor for sensitivity, bias,
-> > and alignment. As a result, each sensor has its own dynamic com-
-> > pensation formulas that provide accurate sensor measurements
-> >=20
-> > Co-developed-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
-> > Signed-off-by: Ramona Gradinariu <ramona.gradinariu@analog.com>
-> > Co-developed-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> > Signed-off-by: Robert Budai <robert.budai@analog.com>
-> > ---
-> >=20
-> > 4:
-> > - reorganized channels to match the order in the datasheet
-> > - removed extra checks and goto statements
-> > - for buffer memory allocation used only kfree, since adis library alre=
-ady
-> > takes care of freeing the buffer
->=20
-> That last bit makes for a mess wrt to who owns the buffer and lifetime
-> management. Suggestions inline.
->=20
->=20
+Hi Iwamatsu-san,
 
-...
+On Sat, Jan 11, 2025 at 9:09=E2=80=AFAM Nobuhiro Iwamatsu <iwamatsu@nigauri=
+.org> wrote:
+> This patch series add basic support for Yuridenki-Shokai[0] Kakip board[1=
+] based
+> on R9A09G057H48.
 
-> > +
-> > +	/*
-> > +	 * Allocate the xfer and buffer for the burst read operation. The
-> > buffer
-> > +	 * is used to store the burst data and the xfer is used to send the
-> > burst
-> > +	 * command and receive the data. On device remove the adis libraary
-> > is going
->=20
-> library.
->=20
-> > +	 * to free the xfer and buffer.
->=20
-> That is a horrible lifetime control.=C2=A0 They should either be allocate=
-d in the
-> library
-> and freed in the library or allocated and freed in the driver.=C2=A0 Mixi=
-ng that
-> doesn't
-> make sense.
+Thanks for your series!
 
-Agreed. TBH, I did not remembered at all to suggest ignoring the library an=
-d let
-it call kfree() on NULL. I also don't like that much of how things are done=
- in
-the lib but I don't think it would be that straight to change things for th=
-e non
-'burst mode' cases. For the devices implementing 'burst mode' doing the fre=
-e +
-allocation on every update_scan_modes seems unnecessary. Anyways, maybe
-something worth looking at in the future.
+> [1]: https://www.kakip.ai/
 
-- Nuno S=C3=A1
+Are the full schematics available, too?  The "Simple H/W Ref." document
+contains only a block diagram and connector pinout.  Access to the
+schematics would make it easier to review DTS patches.
 
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
