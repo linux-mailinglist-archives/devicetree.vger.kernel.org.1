@@ -1,124 +1,121 @@
-Return-Path: <devicetree+bounces-138067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EEA6A0BA44
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:50:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAB1FA0BA46
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 15:50:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 074A27A2529
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:48:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A187C3A4E05
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 14:50:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98D2D22F845;
-	Mon, 13 Jan 2025 14:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D41C23A0F2;
+	Mon, 13 Jan 2025 14:50:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="QrU16DrQ"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="D+w4RxjD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD13C23A10A;
-	Mon, 13 Jan 2025 14:45:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FCD44409;
+	Mon, 13 Jan 2025 14:50:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736779558; cv=none; b=Bfbbw9pXYYRnk81F9O0yrXBj80by1IicullRoiFJRFzvDq/KaI/Q7VWcFEAZBAcyI0naohomX0PK0f5V5v6PE/9ObzhLCzOckY5tW3WKsHTHSHyWcmc8pqFN3sok+FBUVbDAG0ExZBPs9EZjvLHy6YATJtX0ne8aU6gNbB+23UU=
+	t=1736779832; cv=none; b=W6TEKaXQXl3M2lOS4jdlF13nnQD17soajOxvrKH7XwsQo6hErsU3xMIhukLS2nxFm7kGo96JnUHIda2scRyONKBySyLOV+dUmR3NpvQPP0f2kcz8JhnoGVhe3rzKBewccDJTBlrWgLD3/lAexvwFSxQuV3vifVqfjhfDsMzdTpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736779558; c=relaxed/simple;
-	bh=qfeie2LLC6r/LxMgG+94vh0yegDB2ugw7gjpK6LFCqQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MZRo/pCfiJUgQjk08S4Q5l1u3GAOeP5VmHtl7XRE6ep9QY98Ow6iA5tDM7esNQY4/EXMHMCHtg9t7iAcgecC4fivlGs36g/zhZMAhCe3gqPjMA2I0kWUQIPwJ5aNyXyqXcGq8FvO0dg9Zyo/bhIgc1NTJa8P6uAFq0sdImeY/4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=QrU16DrQ; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0B4001C0006;
-	Mon, 13 Jan 2025 14:45:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736779553;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VZmriakMmvwgKfcGmyVyT7f/1gfTYnpJw7Y+QlZNwTM=;
-	b=QrU16DrQ9fl4XFvCxVERRasoWvcYQMsIDKfg/yaVR8vUw9kxgwNCGlduLrZBb34OrdX8FW
-	jjL5ZVLwZxcuPT4eCzOX6iryeql9MrxD4LXzI3cLEjwBw2vHcm+4QYdVZZxYQl2XxCBnI0
-	LyYtecC2xZF6FSbnPyAUQYmNdkG6EHejrZARIoWh4L982O8Kgu3mtEoJGUzL2fq9u1svua
-	057PI51y4rSz4V/5p6rVyiodOhFK3vvL/Vhwa6Czl3iEy684JBcFzc9dPf0a3sSMVE+xcL
-	zXqqljC6jB0XYZYnBKs1vbTomQpQ+UmUklsT/ZUaFq0uM/12BX9mDmkOhyDc4A==
-Date: Mon, 13 Jan 2025 15:45:51 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Oleksij Rempel
- <o.rempel@pengutronix.de>, kernel@pengutronix.de
-Subject: Re: [PATCH 1/2] regulator: Add support for power budget
-Message-ID: <20250113154551.32e20d1c@kmaincent-XPS-13-7390>
-In-Reply-To: <69eaaadf-a6b3-4a5a-af4a-5b574f9edad4@sirena.org.uk>
-References: <20250113-feature_regulator_pw_budget-v1-0-01e1d95c2015@bootlin.com>
-	<20250113-feature_regulator_pw_budget-v1-1-01e1d95c2015@bootlin.com>
-	<69eaaadf-a6b3-4a5a-af4a-5b574f9edad4@sirena.org.uk>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1736779832; c=relaxed/simple;
+	bh=7KvE8j+4pN0K0rSxsoELbLESV9+Fx140Q67buw+gOBs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=obRK260lRLRcdM3XCH26yUL1czZP05xTBY63Y3MU3PiOsAuuDkUUhhC1ZfcKVZsvOWIRxpqShS+P+D7TLJuMZKCVi1Wtgqncd7jBIXx5Zvm1Lk9H8ds1ieUlPGF4mBPNiLfwnJfCK5vyBg0swXQxtaiaiiUf2Yysi+PePJSq1Ug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=D+w4RxjD; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 20D6D10000A;
+	Mon, 13 Jan 2025 17:50:09 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 20D6D10000A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1736779809;
+	bh=3Z0sdnVMXkMM+PvR3lzPK52+uryZkoCDg7AZ36tPRr4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+	b=D+w4RxjDwuC6fWy2qdieubaEQBk++0K+QSltkUkmp5vBe7SRwXHCsr32e1QqqS9jm
+	 mPSsHstDaw+Eb4Q8AeBtwptf0Ae/JzU/HxFfuBwPLgJCB2vM+agE8kWq0GRItGJVqM
+	 zWxuSwlXjGtLcCvAnyhLogXjx1q1kDdS1AI7Qo+ahU7cJdLCikga1VdekU+PVCtHBD
+	 bXMtu1VAoNNW4iwTKYPvUqe95eZ5cMFg8IKc0Pr5L9zOf6WVOSdYYhP9ewBM/44e/w
+	 jv3atxiGARRLgHgWjTSx6+ywrrCYuO4FzgY9sG7R0UenlcGJ6OusrgubKjMChFruY9
+	 4jeAvC2QXn4EA==
+Received: from smtp.sberdevices.ru (p-i-exch-a-m1.sberdevices.ru [172.24.196.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Mon, 13 Jan 2025 17:50:08 +0300 (MSK)
+Message-ID: <388076e3-35f1-4573-b682-90f6f5932f28@salutedevices.com>
+Date: Mon, 13 Jan 2025 17:49:20 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/2] Introduce initial support of Amlogic AC200 board
+To: Christian Hewitt <christianshewitt@gmail.com>, Conor Dooley
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>, Jerome Brunet
+	<jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, <linux-amlogic@lists.infradead.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>, Xianwei Zhao
+	<xianwei.zhao@amlogic.com>
+References: <20241114154856.3353691-1-jan.dakinevich@salutedevices.com>
+Content-Language: en-US
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+In-Reply-To: <20241114154856.3353691-1-jan.dakinevich@salutedevices.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: p-i-exch-a-m2.sberdevices.ru (172.24.196.120) To
+ p-i-exch-a-m1.sberdevices.ru (172.24.196.116)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 190309 [Jan 13 2025]
+X-KSMG-AntiSpam-Version: 6.1.1.7
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 49 0.3.49 28b3b64a43732373258a371bd1554adb2caa23cb, {Tracking_smtp_not_equal_from}, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, lore.kernel.org:7.1.1;sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;salutedevices.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_white_helo}, FromAlignment: n
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2025/01/13 14:03:00
+X-KSMG-LinksScanning: Clean, bases: 2025/01/13 14:02:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2025/01/13 07:04:00 #26996016
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On Mon, 13 Jan 2025 14:11:16 +0000
-Mark Brown <broonie@kernel.org> wrote:
+Gentle ping.
 
-> On Mon, Jan 13, 2025 at 02:07:45PM +0100, Kory Maincent wrote:
->=20
-> > +	rdev->pw_available_mW -=3D pw_req; =20
->=20
-> ...
->=20
-> > +	if (!of_property_read_u32(np, "regulator-power-budget-milliwatt",
-> > &pval))
-> > +		constraints->pw_budget_mW =3D pval;
-> > + =20
->=20
-> This is only tracking the currently free power budget which both
-> restricts what we can do for tracking things like mismatched or missing
-> frees and means there's less information for diagnostic tools.  I'd
-> prefer to keep track of how much is in use and check against the budget
-> when trying to increase it, allowing us to check for releasing more
-> budget than was requested.
+On 11/14/24 18:48, Jan Dakinevich wrote:
+> Changes v1 [1] -> v2:
+>  - added "Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>" to
+>    dt-bindings
+>  - don't share the definition of sound card between ac2xx boards
+> 
+> Links:
+>  [1] https://lore.kernel.org/all/20240521222155.28094-1-jan.dakinevich@salutedevices.com/
+> 
+> Jan Dakinevich (2):
+>   dt-bindings: arm: amlogic: document AC200 support
+>   arch/arm64: dts: ac200: introduce initial support of the board
+> 
+>  .../devicetree/bindings/arm/amlogic.yaml      |   1 +
+>  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+>  .../boot/dts/amlogic/meson-sm1-ac200.dts      | 109 ++++++++++++++++++
+>  3 files changed, 111 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-sm1-ac200.dts
+> 
 
-Ack.=20
-
-> There's also an interaction with hardware with support for enforcing
-> power limits, either via alarms or by actually limiting.  Current
-> limiting/warning support is reasonably common, we should probably be
-> joining it up with the power limiting.  It's fortunately not used
-> dynamically by anything at the minute so we could just remove that API
-> and replace it by a power one, given that nobody uses it and there do
-> appear to be users for the power based API.  We do have some things that
-> set current limits in constraints IIRC.
-
-There is few users for the regulator_set_current_limit function.
-https://elixir.bootlin.com/linux/v6.12.6/A/ident/regulator_set_current_limit
-
-Not sure we could replace it to power limit that easily.
-
-> We probably also need something explicit about how we handle baseline
-> load from things like passive components, the assumption probably needs
-> to be that it's negligable.
-
-We could add a devicetree property on the consumer node, but lets keep it f=
-or
-later.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+-- 
+Best regards
+Jan Dakinevich
 
