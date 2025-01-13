@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-137984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-137986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7554A0B5AF
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:30:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43EC3A0B5C0
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 12:31:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBE663A9F46
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:29:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 389681881DB7
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 11:31:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BAE422F172;
-	Mon, 13 Jan 2025 11:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 896B522AE49;
+	Mon, 13 Jan 2025 11:30:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GxieR594"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lRlg9+xV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4535122A4DF;
-	Mon, 13 Jan 2025 11:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A1C22A4FA;
+	Mon, 13 Jan 2025 11:30:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736767570; cv=none; b=V/4g66WVRKxduCJgDhr0bJme3i3r3vnPtvzFonUkXax9cSRZTTmY/1eKJepwhrVURn4UVNyqhK+IcrX0vbkCywGJ3jE/KbyGtYZ/eEBByXHfOHymr46/FVRbBZ5MsAvWNVZTBDuZF+bP0yF5eCHBF3KJ0ZjsoI89fmK6K9fTpdg=
+	t=1736767832; cv=none; b=k6NWu4hsHT0hzOtP9513F4MD/qKhneqZRnZyyVCHD86us4wjChcyzKGwMrLojnsWhu4LETUcR054jfGZtwdB+/nuG9zrQ/ymtE5nRjaSRT7tTfBuHF0XJOLnR/u2MVnBUcZk9CMADMZ3XZTQTS2lF8RnfPG5V35WAbMhtCs+evo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736767570; c=relaxed/simple;
-	bh=XcLozn4zX9P4PK+jgJPOpEix1IEYh5jHwJQNST5Qp5U=;
+	s=arc-20240116; t=1736767832; c=relaxed/simple;
+	bh=yD5fxdZYWbSqHbEKTorQI7Gsq8/tWYBWir3zkhkczEY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BmzTzpNgAwQO6MCP6i69JqIevlWY28HfZTSQAKd1mTdbOUBuV0P4MB7rn7eGS31nRhgIYSUqqxaUlZstvyTtrGgjUb9rqZ+IPGegQUgW4qvzMeCcOjUdXuTks63sWDBIlnPMeHNJEMPC3fbQJaVDW70UeBgbHx/26qWcj7S3nkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GxieR594; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94A87C4CED6;
-	Mon, 13 Jan 2025 11:26:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gOHUlvXP+5SY8axYnFXzadFcQuvHcqmWCnaJzgHvIejl26/6WArdqnPMUZM7r3gD/gT4o8LT6O2SB3FGjMy4vdUsRSg32C/QpoDd5wmv9Bd/wtjH8ubg7lYKfTx2OZ1dMLjrSs9QIRUDJozHeXCtR4Ypdc31zLdEoPQcq/Wfdgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lRlg9+xV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43718C4CED6;
+	Mon, 13 Jan 2025 11:30:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736767568;
-	bh=XcLozn4zX9P4PK+jgJPOpEix1IEYh5jHwJQNST5Qp5U=;
+	s=k20201202; t=1736767831;
+	bh=yD5fxdZYWbSqHbEKTorQI7Gsq8/tWYBWir3zkhkczEY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GxieR594U5Pc8sXylVWalAObd8c+jbAoRK5gbMR2gsLe7CV6WpQv9+d/16k+5gj0C
-	 M3dbGszsAfYn2iWtPA0CFWKJILeJV5hQiopJnFRy6fHKpDKpZg0SjWcEfvrgVcwD4c
-	 BA5NN9Ff1VIeo9thjlkM5C9CGBTv32MMlbBmtMi/YNKJCMfOrZvz+F5KK9fCJpMKV5
-	 6wO3lnR7rJrBHXxnhUNGLRN8pwEevkQWXAwwrewj+q6Lh4pQ+oGkuM1i/OYeBLSS7j
-	 1ouAmqiA8dfq6MOu3XSHkuQf8CDdKA+3RVqqXXIt5C3IWUjs3oNfcMnQXXGtd3jyDQ
-	 uZLZXiIxBpd7Q==
-Message-ID: <0d2ebb1c-be69-45ca-8a66-4e4a8ca59513@kernel.org>
-Date: Mon, 13 Jan 2025 12:26:00 +0100
+	b=lRlg9+xVrjN7DuA/ZgriATkdStJ13pwCR2WAtQWco9DhAPQfN6fJMNk4dGvfubySX
+	 w0oPhhr09lECqVUVOi9uI0+kl3SGpm/kgvMFTJetpl86F0ndboGr2/TA5SCn6kOeT9
+	 6+3kuzRNWpEDCVFMAecDXzS2sFCjgDPIeaskO39TrfrowtvNfd7qNZRALG4sagpJsU
+	 jkt7MiGTXwF6aZ5Tjd2rHumi675Y0C6Uj381goKY9kMK83Fg34gIOCmYu4EroikoCc
+	 i4SIjogZRw98bldrWRGhwgtQr849RFjrqOGdpEDAPoEmjQs/WfTPvS8ydKN7CWYrhw
+	 9en2TMjZcUIVQ==
+Message-ID: <91cef3ea-f967-494f-aae3-35302c9b03c9@kernel.org>
+Date: Mon, 13 Jan 2025 12:30:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] net: stmmac: qcom-ethqos: Enable RX programmable swap
- on qcs615
-To: Yijie Yang <quic_yijiyang@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
- Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Jose Abreu <joabreu@synopsys.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+Subject: Re: [PATCH 01/12] dt-bindings: arm: mediatek: mmsys: add compatible
+ for MT8196
+To: Fei Shao <fshao@chromium.org>
+Cc: "paul-pl.chen" <paul-pl.chen@mediatek.com>, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, chunkuang.hu@kernel.org,
+ angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com,
+ p.zabel@pengutronix.de, jason-jh.lin@mediatek.com, nancy.lin@mediatek.com,
+ singo.chang@mediatek.com, xiandong.wang@mediatek.com,
+ sirius.wang@mediatek.com, sunny.shen@mediatek.com, treapking@chromium.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20241225-support_10m100m-v1-0-4b52ef48b488@quicinc.com>
- <20241225-support_10m100m-v1-2-4b52ef48b488@quicinc.com>
- <4b4ef1c1-a20b-4b65-ad37-b9aabe074ae1@kernel.org>
- <278de6e8-de8f-458a-a4b9-92b3eb81fa77@quicinc.com>
- <df1e2fbd-7fae-4910-9908-10fdb78e4299@kernel.org>
- <e2625cfd-128c-4b56-a1c5-c0256db5c486@quicinc.com>
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
+ <20250110123835.2719824-2-paul-pl.chen@mediatek.com>
+ <0499ee04-0fcc-42e1-aab8-3cb8daa88c88@kernel.org>
+ <CAC=S1nionnQ=g-7Ys=D_iQegPebuPfOH5S9aOx73aVh987DMLA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,74 +112,39 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <e2625cfd-128c-4b56-a1c5-c0256db5c486@quicinc.com>
+In-Reply-To: <CAC=S1nionnQ=g-7Ys=D_iQegPebuPfOH5S9aOx73aVh987DMLA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 08/01/2025 11:33, Yijie Yang wrote:
-> 
-> 
-> On 2024-12-27 15:03, Krzysztof Kozlowski wrote:
->> On 26/12/2024 03:29, Yijie Yang wrote:
+On 13/01/2025 12:25, Fei Shao wrote:
+> On Fri, Jan 10, 2025 at 8:58 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 10/01/2025 13:33, paul-pl.chen wrote:
+>>> From: "Paul-pl.Chen" <paul-pl.chen@mediatek.com>
 >>>
+>>> Add compatible for mmsys yaml of MT8196
 >>>
->>> On 2024-12-25 19:37, Krzysztof Kozlowski wrote:
->>>> On 25/12/2024 11:04, Yijie Yang wrote:
->>>>
->>>>>    static int qcom_ethqos_probe(struct platform_device *pdev)
->>>>>    {
->>>>> -	struct device_node *np = pdev->dev.of_node;
->>>>> +	struct device_node *np = pdev->dev.of_node, *root;
->>>>>    	const struct ethqos_emac_driver_data *data;
->>>>>    	struct plat_stmmacenet_data *plat_dat;
->>>>>    	struct stmmac_resources stmmac_res;
->>>>> @@ -810,6 +805,15 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->>>>>    	ret = of_get_phy_mode(np, &ethqos->phy_mode);
->>>>>    	if (ret)
->>>>>    		return dev_err_probe(dev, ret, "Failed to get phy mode\n");
->>>>> +
->>>>> +	root = of_find_node_by_path("/");
->>>>> +	if (root && of_device_is_compatible(root, "qcom,sa8540p-ride"))
->>>>
->>>>
->>>> Nope, your drivers are not supposed to poke root compatibles. Drop and
->>>> fix your driver to behave correctly for all existing devices.
->>>>
->>>
->>> Since this change introduces a new flag in the DTS, we must maintain ABI
->>> compatibility with the kernel. The new flag is specific to the board, so
+>>> Signed-off-by: Paul-pl.Chen <paul-pl.chen@mediatek.com>
 >>
->> It's not, I don't see it specific to the board in the bindings.
+>>
+>> This is a wide pattern now in Mediatek: login name is used as family
+>> name. Repeating the same comment to every Mediatek employee is a bit
+>> tedious, so maybe you could fix it internally?
+>>
+>> Create some guideline for your colleagues so you won't repeat the same
+>> things over and over?
 > 
-> I'm sorry for the confusion. This feature is not board-specific but 
-> rather a tunable option. All RGMII boards can choose whether to enable 
-> this bit in the DTS, so there are no restrictions in the binding.
+> Not a guarantee that this will go away once and for all, but I can
+> ping some MediaTek folks via a separate channel, and hopefully they
+> can amplify this message internally.
 
-If it is not specific to the board, I don't see why this cannot be
-implied by compatible.
+Thanks. I still expect from Mediatek employees, so Paul and dozen of
+others who appear on the list, to actually care about their upstreaming
+process thus incorporate such feedback into some sort of internal
+guidelines or trainings, so they will not repeat the same mistake.
 
-> 
->>
->>> I need to ensure root nodes are matched to allow older boards to
->>> continue functioning as before. I'm happy to adopt that approach if
->>> there are any more elegant solutions.
->>
->> I don't think you understood the problem. Why you are not handling this
->> for my board, sa8775p-rideX and sa8225-pre-ride-yellow-shrimp?
->>
-> 
-> This feature is specifically for RGMII boards. The driver won't enable 
-
-So board specific?
-
-> this bit if the DTS doesn't specify it. To handle compatibility, we need 
-
-Do not describe us how drivers and DTS work. We all know.
-
-> to identify legacy RGMII boards with MAC versions greater or equal to 3 
-> which require this bit to be enabled.
-> According to my knowledge, the SA8775P is of the SGMII type.
-
+Big companies have responsibilities. Otherwise it is some sort of
+exploit of community by big company.
 
 Best regards,
 Krzysztof
