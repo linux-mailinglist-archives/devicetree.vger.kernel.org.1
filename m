@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-138220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A305A0C33B
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 22:04:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1195A0C344
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 22:08:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D49AC3A5E9F
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 21:04:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9784F18885DA
+	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 21:08:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FEDC1FC7D1;
-	Mon, 13 Jan 2025 21:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86A921CDA13;
+	Mon, 13 Jan 2025 21:08:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="aewhOC9m"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="LTyrAtFf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 936C81F892E
-	for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 21:01:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E55921EA65;
+	Mon, 13 Jan 2025 21:08:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736802077; cv=none; b=gVhv1P+fQmTXhLQpJm/FHuODpDoFxG8PxTTIbDmIvTGclJBl7M/OecK20H7s986we6KKJJcokR8WV/5i5fL2OYcbOxSWxo8IrtsGzi7YEJgHOpxV1MHOfedcsdMc4y1bih4Nwb2CjzvH1gtPyvryYgaMlUwN4R5dZag8j6saILw=
+	t=1736802517; cv=none; b=nbuSygGFb3lVFIzrbCpnnj23UR039+XVgyuy4eVVRDZ6yEq9hDSgvUJ3uhRKst7taPEIkeSxxF0P9rjjQwBXAxmI/CX2njmRqH6LxG3UXzYaYEjkWOmm2Et+md3MBFU15h6YBxG2I6/1mvoSscwWWuemVWAGzyTuU0lw2DY9d0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736802077; c=relaxed/simple;
-	bh=VjnhHll/OJ7MvQ7X87mHVdGjGGFGKfjfrLs/98CvvVM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=udn0Pum+MdLMr3LJQdGa1MqjBTYQeOtpb1T4ftCP4Tn90gDXi0+p4VzrjCEakM74xF+OX5rstB8D84sPt2g1GhsHufsene4P2HwkrBl3JHjM++AyZZXNaFJ7wIfJa9SnwxJieaGU/g6ePodl0dg3A53DhuCCTANb7Y5t5beWxNU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=aewhOC9m; arc=none smtp.client-ip=209.85.210.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-71e3284f963so2442190a34.1
-        for <devicetree@vger.kernel.org>; Mon, 13 Jan 2025 13:01:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736802071; x=1737406871; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ut553xAl4qrxbnk0QZzc/W+Fhixkn3BLwHaZPLvysyc=;
-        b=aewhOC9mUbd+MeowPQ492fvWzQ+ZGVv0SLpbeMlZnqOWKWjJQkuSHe1TFslhiV8zb6
-         /MnCbbZpSf0vo6d7GHbYaROq0emcgX7luXMc49JwvFZOj18ch7Iflykr16ZsPAtswXdc
-         F6r3jMff85ywVjFGmNZ5BstpEIxlFtYb8PVJ3AS5zlMkfNYiyvLZe2tE6fedfu8i7vzB
-         mHCVcnI3N+NjpU1tFmyqDONLiFhMEJp3Pd8TsAH9AXj6fYZOTMCM9n2cEmLMuzBQ2VpF
-         EKboghZBtVPokmlNKcOPYys3/I8PoqzO+Vji504JehWTyZs7/aB4BdQ+fMuXg924z+60
-         SRNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736802071; x=1737406871;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ut553xAl4qrxbnk0QZzc/W+Fhixkn3BLwHaZPLvysyc=;
-        b=vx3d9u3fgM3YY9CaR4yxgC0pTXvL4y8IBr2Gh3rQ0G/g9t4zPWGL7Js8r2fk/F6LhT
-         xoZMA7W8iQTlMRfZHpNYVKLiEqsbnupVTBLX4qsb5KxWDWqyh75OUyq2xjM06/2Vx/2T
-         kSWq/8A+tqin9aK0Ty+8EFSEjloRR5terVZ2I7QeJZIKZ4MmxjiSS5qisxXccTGkpmbS
-         1rMgtK1pQ8q+LkaAOI77fBX4X9+zA2IgRnPzwVaAXm+dy6PEDMkfGvc1xm64pkGdJWJ9
-         9c5vNujHa/dTi4JUfwjGx8vNIer+TL1awV9kRK3Ygo9eTYL5rIkUV+/tfadRGd2xFdOb
-         J/ZA==
-X-Forwarded-Encrypted: i=1; AJvYcCVhSg4dLiNEG9UYhmi0fiZzOW/XjesfSZRNDMqh+j6DqWGCnZIqwysXAdUfxbNp3GpLqasPjKi8Op7y@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHbcFKV/sVdslBPE/iDv2FmZce5U+0U3vRFteVtp5HJrjrsFse
-	Umgl0FnLoyFZVAWBDCJoT+YL2X9PatLmVfdARIrWcIehz1Mjy0wNdz1C/OqMkzk=
-X-Gm-Gg: ASbGncv2OuFzfX4/K9pRYslIvIIl+iMVXwI5iHQqRbEdCv2aKtZaqmAlhf/SOk2kfez
-	XH+n6jOlxAIVV+CqaXImUDT0uSRuhksw6zj10qoPvLbu3AbfQRedBDIIzV/WMhBF00xsZX3+pua
-	Y/3kpqNL4GoYEqwc/w5Q5nPlvHywKjjzo5XsNw6BEa5BvF0c9fGTwIQt3dCJYlgORGiPnGyZ7iK
-	MirELWvVGbZtx3LoKjeb3QBuPsKCzNobWbelW8LGdnzgZniT2sm3kHPbrW4f/q3CeauFxgvBYI/
-	V+twu+EdhGN1
-X-Google-Smtp-Source: AGHT+IHrB6vSbspWOk3Rx9IKrNZYhVIur8SbVj/M6Ygov49+hczQXsqAhEvexS5+SvuMDkJrDQpqaQ==
-X-Received: by 2002:a05:6830:6509:b0:718:a52:e1cc with SMTP id 46e09a7af769-721e2ecc7e6mr15932371a34.25.1736802071421;
-        Mon, 13 Jan 2025 13:01:11 -0800 (PST)
-Received: from [127.0.1.1] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7231855effasm3927744a34.33.2025.01.13.13.01.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2025 13:01:11 -0800 (PST)
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 13 Jan 2025 15:00:22 -0600
-Subject: [PATCH v7 17/17] iio: dac: ad5791: Add offload support
+	s=arc-20240116; t=1736802517; c=relaxed/simple;
+	bh=u86pFjr/gswDn64tcLgFaVm6wWSL3MypRv30v2+1NLw=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=sDLfRBcP/WlpWegeQMB0oyoSHHG3mC3JXamuxkk+0trUfLtcFDBu+dej1ghLlfj+BgIqenq64LwPkOT9EZAjGgUEtX3OJFuwBDKJ6G4kK+1s4fmDGLQtvvuyqmHrfubDZKfFe+ZB+6rftngzpJH/p89k9pT78svlpsTW4BWnd7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=LTyrAtFf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50DH3h6e020108;
+	Mon, 13 Jan 2025 21:08:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=TRkATnv+asOVlrEbiSLV+w
+	5Cn4+nN8JQq7iTNUpH97k=; b=LTyrAtFfbOdLDVPhMwrKB0o9cm+XvBSxG8LUnI
+	3l3ue87yBva5rCKE6eVbbWRA72Xq77HRSQsDCtfUPfGliNzCBDPaDwlooRpAZ0Px
+	wgF+z9chXUE43XMy8Re2Z3CKeNVKTBSaYUaWS6O251ZWX0D9R7rhTV9KRdv14Vay
+	Hza7xFUDNZKWQ0i+ElYiwL59ucwy/J8Lhn1WUu/emcnTQhKTGzrBJrzLwgegd/Qa
+	ZfYv1owipBmbtmnZ31c9WQ0b2Fd1pifuoGtZPs5cOvnyGAZwi7CxyutofJcZc/ww
+	l/Wpnf4/LS1JigFCbiyILUBV/KYMA1lRkpx/CzrnWWsLXJWQ==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4456wa8hfx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 21:08:27 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50DL8Q97021206
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 13 Jan 2025 21:08:26 GMT
+Received: from hu-molvera-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 13 Jan 2025 13:08:26 -0800
+From: Melody Olvera <quic_molvera@quicinc.com>
+Subject: [PATCH 0/2] arm64: dts: qcom: sm8750: Introduce BWMONs
+Date: Mon, 13 Jan 2025 13:08:16 -0800
+Message-ID: <20250113-sm8750_bwmon_master-v1-0-f082da3a3308@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,312 +66,68 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250113-dlech-mainline-spi-engine-offload-2-v7-17-e0860c81caae@baylibre.com>
-References: <20250113-dlech-mainline-spi-engine-offload-2-v7-0-e0860c81caae@baylibre.com>
-In-Reply-To: <20250113-dlech-mainline-spi-engine-offload-2-v7-0-e0860c81caae@baylibre.com>
-To: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>
-Cc: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>, 
- Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org, 
- Axel Haslam <ahaslam@baylibre.com>, 
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- David Lechner <dlechner@baylibre.com>
+X-B4-Tracking: v=1; b=H4sIAMCAhWcC/x3MQQ5AMBBA0avIrDWZClGuItJQg1m0pCNIxN01l
+ m/x/wNCkUmgzR6IdLLwFhJ0noFbh7CQ4ikZCiwq1Fgr8aau0I6X34L1gxwUlZvK0ZBGg66BVO6
+ RZr7/a9e/7wcvl72vZQAAAA==
+X-Change-ID: 20250107-sm8750_bwmon_master-cd4b8e1080c9
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Georgi Djakov
+	<djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Satya
+ Durga Srinivasu Prabhala" <quic_satyap@quicinc.com>,
+        Trilok Soni
+	<quic_tsoni@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Melody Olvera
+	<quic_molvera@quicinc.com>,
+        Shivnandan Kumar <quic_kshivnan@quicinc.com>
 X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736802506; l=617;
+ i=quic_molvera@quicinc.com; s=20241204; h=from:subject:message-id;
+ bh=u86pFjr/gswDn64tcLgFaVm6wWSL3MypRv30v2+1NLw=;
+ b=/l9NS95xsAH2gooHH+kxMzk4rc2yEX20NNSY1tYITEPBHArvP51p4RObhpXUmcpuZbmH5uc+1
+ xoUg8UIxvqFApGD6+wsIbhuCCUynqlvswcXibS4LjLB5qnfGCIJMLH5
+X-Developer-Key: i=quic_molvera@quicinc.com; a=ed25519;
+ pk=1DGLp3zVYsHAWipMaNZZTHR321e8xK52C9vuAoeca5c=
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: f0srBoZUZcgHIknXzKd_1jGyePkq5vTn
+X-Proofpoint-ORIG-GUID: f0srBoZUZcgHIknXzKd_1jGyePkq5vTn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
+ suspectscore=0 adultscore=0 mlxlogscore=712 priorityscore=1501
+ phishscore=0 malwarescore=0 impostorscore=0 lowpriorityscore=0 mlxscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501130168
 
-From: Axel Haslam <ahaslam@baylibre.com>
+Document and describe the BWMONs in the SM8750 SoC.
 
-Add SPI offload support to stream TX buffers using DMA.
-This allows loading samples to the DAC with a rate of 1 MSPS.
-
-Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
-Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-Signed-off-by: David Lechner <dlechner@baylibre.com>
+Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 ---
+Shivnandan Kumar (2):
+      dt-bindings: interconnect: qcom,msm8998-bwmon: Add SM8750 CPU BWMONs
+      arm64: dts: qcom: sm8750: Add BWMONs
 
-v7 changes:
-* Removed extra space character.
-* Added write_raw_get_fmt callback to avoid having to check val2.
-* Don't allow sampling frequency of 0 Hz.
-
-v6 changes: new patch in v6
+ .../bindings/interconnect/qcom,msm8998-bwmon.yaml  |  1 +
+ arch/arm64/boot/dts/qcom/sm8750.dtsi               | 74 ++++++++++++++++++++++
+ 2 files changed, 75 insertions(+)
 ---
- drivers/iio/dac/Kconfig  |   3 +
- drivers/iio/dac/ad5791.c | 163 +++++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 166 insertions(+)
+base-commit: 37136bf5c3a6f6b686d74f41837a6406bec6b7bc
+change-id: 20250107-sm8750_bwmon_master-cd4b8e1080c9
 
-diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
-index 5690a37267d86ea3ec805adfa32e13c052864061..4811ea973125a0dea1f8a9cdee1e0c045bc21981 100644
---- a/drivers/iio/dac/Kconfig
-+++ b/drivers/iio/dac/Kconfig
-@@ -296,6 +296,9 @@ config AD5770R
- config AD5791
- 	tristate "Analog Devices AD5760/AD5780/AD5781/AD5790/AD5791 DAC SPI driver"
- 	depends on SPI
-+	select SPI_OFFLOAD
-+	select IIO_BUFFER
-+	select IIO_BUFFER_DMAENGINE
- 	help
- 	  Say yes here to build support for Analog Devices AD5760, AD5780,
- 	  AD5781, AD5790, AD5791 High Resolution Voltage Output Digital to
-diff --git a/drivers/iio/dac/ad5791.c b/drivers/iio/dac/ad5791.c
-index 24462cb020e19e8e2c6faa13109ac047cf423c37..aacbd22af13c63a44ddd855330dd935dc77f3731 100644
---- a/drivers/iio/dac/ad5791.c
-+++ b/drivers/iio/dac/ad5791.c
-@@ -15,9 +15,12 @@
- #include <linux/module.h>
- #include <linux/regulator/consumer.h>
- #include <linux/slab.h>
-+#include <linux/spi/offload/consumer.h>
- #include <linux/spi/spi.h>
- #include <linux/sysfs.h>
-+#include <linux/units.h>
- 
-+#include <linux/iio/buffer-dmaengine.h>
- #include <linux/iio/dac/ad5791.h>
- #include <linux/iio/iio.h>
- #include <linux/iio/sysfs.h>
-@@ -64,11 +67,13 @@
-  * struct ad5791_chip_info - chip specific information
-  * @name:		name of the dac chip
-  * @channel:		channel specification
-+ * @channel_offload:	channel specification for offload
-  * @get_lin_comp:	function pointer to the device specific function
-  */
- struct ad5791_chip_info {
- 	const char *name;
- 	const struct iio_chan_spec channel;
-+	const struct iio_chan_spec channel_offload;
- 	int (*get_lin_comp)(unsigned int span);
- };
- 
-@@ -81,6 +86,11 @@ struct ad5791_chip_info {
-  * @gpio_clear:		clear gpio
-  * @gpio_ldac:		load dac gpio
-  * @chip_info:		chip model specific constants
-+ * @offload_msg:	spi message used for offload
-+ * @offload_xfer:	spi transfer used for offload
-+ * @offload:		offload device
-+ * @offload_trigger:	offload trigger
-+ * @offload_trigger_hz:	offload sample rate
-  * @vref_mv:		actual reference voltage used
-  * @vref_neg_mv:	voltage of the negative supply
-  * @ctrl:		control register cache
-@@ -96,6 +106,11 @@ struct ad5791_state {
- 	struct gpio_desc		*gpio_clear;
- 	struct gpio_desc		*gpio_ldac;
- 	const struct ad5791_chip_info	*chip_info;
-+	struct spi_message		offload_msg;
-+	struct spi_transfer		offload_xfer;
-+	struct spi_offload		*offload;
-+	struct spi_offload_trigger	*offload_trigger;
-+	unsigned int			offload_trigger_hz;
- 	unsigned short			vref_mv;
- 	unsigned int			vref_neg_mv;
- 	unsigned			ctrl;
-@@ -232,6 +247,25 @@ static int ad5780_get_lin_comp(unsigned int span)
- 		return AD5780_LINCOMP_10_20;
- }
- 
-+static int ad5791_set_sample_freq(struct ad5791_state *st, int val)
-+{
-+	struct spi_offload_trigger_config config = {
-+		.type = SPI_OFFLOAD_TRIGGER_PERIODIC,
-+		.periodic = {
-+			.frequency_hz = val,
-+		},
-+	};
-+	int ret;
-+
-+	ret = spi_offload_trigger_validate(st->offload_trigger, &config);
-+	if (ret)
-+		return ret;
-+
-+	st->offload_trigger_hz = config.periodic.frequency_hz;
-+
-+	return 0;
-+}
-+
- static int ad5791_read_raw(struct iio_dev *indio_dev,
- 			   struct iio_chan_spec const *chan,
- 			   int *val,
-@@ -259,6 +293,9 @@ static int ad5791_read_raw(struct iio_dev *indio_dev,
- 		do_div(val64, st->vref_mv);
- 		*val = -val64;
- 		return IIO_VAL_INT;
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		*val = st->offload_trigger_hz;
-+		return IIO_VAL_INT;
- 	default:
- 		return -EINVAL;
- 	}
-@@ -299,6 +336,24 @@ static const struct ad5791_chip_info _name##_chip_info = {		\
- 			},						\
- 			.ext_info = ad5791_ext_info,			\
- 	},								\
-+	.channel_offload = {						\
-+			.type = IIO_VOLTAGE,				\
-+			.output = 1,					\
-+			.indexed = 1,					\
-+			.address = AD5791_ADDR_DAC0,			\
-+			.channel = 0,					\
-+			.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),	\
-+			.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) |	\
-+				BIT(IIO_CHAN_INFO_OFFSET),		\
-+			.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),\
-+			.scan_type = {					\
-+				.sign = 'u',				\
-+				.realbits = (bits),			\
-+				.storagebits = 32,			\
-+				.shift = (_shift),			\
-+			},						\
-+			.ext_info = ad5791_ext_info,			\
-+	},								\
- }
- 
- AD5791_DEFINE_CHIP_INFO(ad5760, 16, 4, ad5780_get_lin_comp);
-@@ -322,14 +377,106 @@ static int ad5791_write_raw(struct iio_dev *indio_dev,
- 
- 		return ad5791_spi_write(st, chan->address, val);
- 
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		if (val < 1)
-+			return -EINVAL;
-+		return ad5791_set_sample_freq(st, val);
- 	default:
- 		return -EINVAL;
- 	}
- }
- 
-+static int ad5791_write_raw_get_fmt(struct iio_dev *indio_dev,
-+				    struct iio_chan_spec const *chan,
-+				    long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SAMP_FREQ:
-+		return IIO_VAL_INT;
-+	default:
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	}
-+}
-+
-+static int ad5791_buffer_preenable(struct iio_dev *indio_dev)
-+{
-+	struct ad5791_state *st = iio_priv(indio_dev);
-+	struct spi_offload_trigger_config config = {
-+		.type = SPI_OFFLOAD_TRIGGER_PERIODIC,
-+		.periodic = {
-+			.frequency_hz = st->offload_trigger_hz,
-+		},
-+	};
-+
-+	if (st->pwr_down)
-+		return -EINVAL;
-+
-+	return spi_offload_trigger_enable(st->offload, st->offload_trigger,
-+					 &config);
-+}
-+
-+static int ad5791_buffer_postdisable(struct iio_dev *indio_dev)
-+{
-+	struct ad5791_state *st = iio_priv(indio_dev);
-+
-+	spi_offload_trigger_disable(st->offload, st->offload_trigger);
-+
-+	return 0;
-+}
-+
-+static const struct iio_buffer_setup_ops ad5791_buffer_setup_ops = {
-+	.preenable = &ad5791_buffer_preenable,
-+	.postdisable = &ad5791_buffer_postdisable,
-+};
-+
-+static int ad5791_offload_setup(struct iio_dev *indio_dev)
-+{
-+	struct ad5791_state *st = iio_priv(indio_dev);
-+	struct spi_device *spi = st->spi;
-+	struct dma_chan *tx_dma;
-+	int ret;
-+
-+	st->offload_trigger = devm_spi_offload_trigger_get(&spi->dev,
-+		st->offload, SPI_OFFLOAD_TRIGGER_PERIODIC);
-+	if (IS_ERR(st->offload_trigger))
-+		return dev_err_probe(&spi->dev, PTR_ERR(st->offload_trigger),
-+				     "failed to get offload trigger\n");
-+
-+	ret = ad5791_set_sample_freq(st, 1 * MEGA);
-+	if (ret)
-+		return dev_err_probe(&spi->dev, ret,
-+				     "failed to init sample rate\n");
-+
-+	tx_dma = devm_spi_offload_tx_stream_request_dma_chan(&spi->dev,
-+							     st->offload);
-+	if (IS_ERR(tx_dma))
-+		return dev_err_probe(&spi->dev, PTR_ERR(tx_dma),
-+				     "failed to get offload TX DMA\n");
-+
-+	ret = devm_iio_dmaengine_buffer_setup_with_handle(&spi->dev,
-+		indio_dev, tx_dma, IIO_BUFFER_DIRECTION_OUT);
-+	if (ret)
-+		return ret;
-+
-+	st->offload_xfer.len = 4;
-+	st->offload_xfer.bits_per_word = 24;
-+	st->offload_xfer.offload_flags = SPI_OFFLOAD_XFER_TX_STREAM;
-+
-+	spi_message_init_with_transfers(&st->offload_msg, &st->offload_xfer, 1);
-+	st->offload_msg.offload = st->offload;
-+
-+	return devm_spi_optimize_message(&spi->dev, st->spi, &st->offload_msg);
-+}
-+
- static const struct iio_info ad5791_info = {
- 	.read_raw = &ad5791_read_raw,
- 	.write_raw = &ad5791_write_raw,
-+	.write_raw_get_fmt = &ad5791_write_raw_get_fmt,
-+};
-+
-+static const struct spi_offload_config ad5791_offload_config = {
-+	.capability_flags = SPI_OFFLOAD_CAP_TRIGGER |
-+			    SPI_OFFLOAD_CAP_TX_STREAM_DMA,
- };
- 
- static int ad5791_probe(struct spi_device *spi)
-@@ -416,6 +563,21 @@ static int ad5791_probe(struct spi_device *spi)
- 	indio_dev->channels = &st->chip_info->channel;
- 	indio_dev->num_channels = 1;
- 	indio_dev->name = st->chip_info->name;
-+
-+	st->offload = devm_spi_offload_get(&spi->dev, spi, &ad5791_offload_config);
-+	ret = PTR_ERR_OR_ZERO(st->offload);
-+	if (ret && ret != -ENODEV)
-+		return dev_err_probe(&spi->dev, ret, "failed to get offload\n");
-+
-+	if (ret != -ENODEV) {
-+		indio_dev->channels = &st->chip_info->channel_offload;
-+		indio_dev->setup_ops = &ad5791_buffer_setup_ops;
-+		ret = ad5791_offload_setup(indio_dev);
-+		if (ret)
-+			return dev_err_probe(&spi->dev, ret,
-+					     "fail to setup offload\n");
-+	}
-+
- 	return devm_iio_device_register(&spi->dev, indio_dev);
- }
- 
-@@ -452,3 +614,4 @@ module_spi_driver(ad5791_driver);
- MODULE_AUTHOR("Michael Hennerich <michael.hennerich@analog.com>");
- MODULE_DESCRIPTION("Analog Devices AD5760/AD5780/AD5781/AD5790/AD5791 DAC");
- MODULE_LICENSE("GPL v2");
-+MODULE_IMPORT_NS("IIO_DMAENGINE_BUFFER");
-
+Best regards,
 -- 
-2.43.0
+Melody Olvera <quic_molvera@quicinc.com>
 
 
