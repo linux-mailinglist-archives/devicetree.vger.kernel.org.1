@@ -1,134 +1,129 @@
-Return-Path: <devicetree+bounces-138532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA248A10F3D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 19:08:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72E11A10F95
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 19:14:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14CAE1623C4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 18:08:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCA177A0315
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 18:14:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C5022248B4;
-	Tue, 14 Jan 2025 18:03:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42D9B1FBEBC;
+	Tue, 14 Jan 2025 18:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AxXr13e0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mVlOusam"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E265B2248A0;
-	Tue, 14 Jan 2025 18:03:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1834A1FA838;
+	Tue, 14 Jan 2025 18:11:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736877810; cv=none; b=J+0lWbYaIMhHJiG6hs4KjK2a8wmZzM4HQWCw2hQF9ekRCqmXxI+obSerVQ05v28PHhbwPIM/mRbwlHNieyd40p4kASw/Ng3AbCLawTxFJSQD+xA6yCNR7JSI0zL05vJqQsdxGlCQAodMZ8ilCMmHLP/6WFrQxtE6IFM+sBtOmIE=
+	t=1736878316; cv=none; b=sE3Ym4PY9A+WeDlOrPRUEgfwCXzNT5You7eusyxhbeDhI1G94f85fB010Fxd1fgDkJ5c9AUNjoT8z/UyYserPJ9rNIl3JqcV4HXJFdrj5+0aiOFIy8BawOhHYksQpRNaBUHNZKd8l2vWxhfa9rJ6YHJRGarV2+O7zbRktp0XbHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736877810; c=relaxed/simple;
-	bh=MmOXTa5EHspyjS8oxod82U1sWxThiBJVqcug/LpRe7E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kBvIV2YHudML/xfWzv3dsUtiFSRQngdz+fDx4hFgyNbsi9fmvXB3AjXJ4t7eDBPOewmAkW7Ea2nr/sQBm1in69LUXxF63YJ7eXEIqJnrT89IxAHtyzKhFZ92atS2zgFZwnizc0C1fm85ZHfUvt7RJWcIxPq1mPMb3vFzmb0VBbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AxXr13e0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DF03C4CEE6;
-	Tue, 14 Jan 2025 18:03:24 +0000 (UTC)
+	s=arc-20240116; t=1736878316; c=relaxed/simple;
+	bh=uBXQnziVlP1k5rM6iYlEXPJKkpDHL/qERalon7FwP3Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KI47Sbr+bTHSUpEv9U2UPaRR12QA5ZIk5RFTKMG5qe6ApT29yggsR3aqNbx0bU7ECfH+kh59asw9QOm1YbHhYPDQCXDZW3GJjtmpj1xFEax1MeE5mU65pGVwzjCGc/w/mMRsE0nWhdQC1MLRBrIFUE+Z3JVgMyEJhdUs/AN9crw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mVlOusam; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58D11C4CEDD;
+	Tue, 14 Jan 2025 18:11:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736877809;
-	bh=MmOXTa5EHspyjS8oxod82U1sWxThiBJVqcug/LpRe7E=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AxXr13e0VaijvtVckoICLSIaNspZ6FTcNZkx3owF1c4rEfP6l1bab/NDuQaOd1hFQ
-	 /0fjsb5I84t5RemnHbyZszmCL3F9Oo4WYef7SGPo88yIWskEWcKMM0+w1jokcZu+Ek
-	 LUrHkgdEYewAfudOiDuX8G3buY4N9OU8KzTwsTziG0TuIpuEjz/1my3t+ctuyrm5Vk
-	 9sgyMcHUCb0O7B1TVRK5fegd7KdYMVn8injtHHX8KERQ/jAw8iU0MYFF/9RXfl6REI
-	 +ZAYwE1iQFWt/3XVp5ol7hLZHq5vzaAjjBcXDWWEaNjwbxIHmd2ba1Vq4lmWH7ihkU
-	 yPg7iW2mScpGg==
-Message-ID: <81ff734b-7a5e-4c98-9df2-9b65996fff78@kernel.org>
-Date: Tue, 14 Jan 2025 19:03:22 +0100
+	s=k20201202; t=1736878315;
+	bh=uBXQnziVlP1k5rM6iYlEXPJKkpDHL/qERalon7FwP3Q=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mVlOusamDxJN1SL1np1WBka1FO/6+7a1yNS+IRB612TyiciAs8hCdLgeoIbL2gaEh
+	 3l7s+Tw8ErDVfzgRFi0FKSPYzb91n1f+7cbewIIElE78Mz+BzIqc7dd7zJND70b8qY
+	 23pjcaDkwQeZ7mnZtIWAn8BNoZOlPmfRnBUrJtHSdqPtxjm2hljWQ5NT1xcZnqr0iW
+	 C7cGMBp9tyu4Q5cbnYaRFrJfvsOtmFTsbjjfKcd5iFDY9eKNJaCLp2/KgwPP+ChPnu
+	 lhytmmtFC1xKr6NVGYJCgp6aFGAGbzpyqV6qmYV9Z1hZCBKrV1/jjw2UNIi/thjV5U
+	 ctsJowCM3nmOw==
+Date: Tue, 14 Jan 2025 18:11:51 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Minda Chen <minda.chen@starfivetech.com>
+Cc: E Shattow <e@freeshell.de>, Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/2] riscv: dts: starfive: jh7110: pciephy0 USB 3.0
+ configuration registers
+Message-ID: <20250114-recollect-dictate-104e890d116e@spud>
+References: <20250102183746.411526-1-e@freeshell.de>
+ <20250102183746.411526-2-e@freeshell.de>
+ <20250113-mushiness-snugness-0f55574e3956@spud>
+ <SHXPR01MB0863DBF85A9874C9F93ECD25E618A@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/4] soc: samsung: usi: add a routine for unconfiguring
- the ip
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Peter Griffin <peter.griffin@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250109090325.595475-1-ivo.ivanov.ivanov1@gmail.com>
- <20250109090325.595475-3-ivo.ivanov.ivanov1@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250109090325.595475-3-ivo.ivanov.ivanov1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="zkMmGR8EqwgS0H6h"
+Content-Disposition: inline
+In-Reply-To: <SHXPR01MB0863DBF85A9874C9F93ECD25E618A@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
 
-On 09/01/2025 10:03, Ivaylo Ivanov wrote:
-> +static void exynos_usi_unconfigure(void *data)
-> +{
-> +	struct exynos_usi *usi = data;
-> +	u32 val;
-> +
-> +	/* Make sure that we've stopped providing the clock to USI IP */
-> +	val = readl(usi->regs + USI_OPTION);
-> +	val &= ~USI_OPTION_CLKREQ_ON;
-> +	val |= ~USI_OPTION_CLKSTOP_ON;
-> +	writel(val, usi->regs + USI_OPTION);
-> +
-> +	/* Set USI block state to reset */
-> +	val = readl(usi->regs + USI_CON);
-> +	val |= USI_CON_RESET;
-> +	writel(val, usi->regs + USI_CON);
-Also shouldn't you enable clocks for accessing these? They are being
-disabled at the end of exynos_usi_enable().
 
-Best regards,
-Krzysztof
+--zkMmGR8EqwgS0H6h
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Jan 14, 2025 at 05:42:28AM +0000, Minda Chen wrote:
+>=20
+>=20
+> >=20
+> > On Thu, Jan 02, 2025 at 10:37:36AM -0800, E Shattow wrote:
+> > > StarFive JH7110 contains a Cadence USB2.0+USB3.0 controller IP block
+> > > that may exclusively use pciephy0 for USB3.0 connectivity. Add the
+> > > register offsets for the driver to enable/disable USB3.0 on pciephy0.
+> > >
+> > > Signed-off-by: E Shattow <e@freeshell.de>
+> > > ---
+> > >  arch/riscv/boot/dts/starfive/jh7110.dtsi | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > index 0d8339357bad..75ff07303e8b 100644
+> > > --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > @@ -611,6 +611,8 @@ usbphy0: phy@10200000 {
+> > >  		pciephy0: phy@10210000 {
+> > >  			compatible =3D "starfive,jh7110-pcie-phy";
+> > >  			reg =3D <0x0 0x10210000 0x0 0x10000>;
+> > > +			starfive,sys-syscon =3D <&sys_syscon 0x18>;
+> > > +			starfive,stg-syscon =3D <&stg_syscon 0x148 0x1f4>;
+> >=20
+> > Why weren't these added in the first place? Minda, do you know?
+> >=20
+> The driver only require to set syscon register while the PHY attach to Ca=
+dence USB.(star64 board case)
+> The PHY default attach to PCIe0, VF2 board do not set any setting. So I d=
+on't set it.
+
+Does this mean that the change should be made in files where it will
+only affect non-VF2 boards, or is it harmless if applied to the VF2
+also?
+
+--zkMmGR8EqwgS0H6h
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4ao5wAKCRB4tDGHoIJi
+0nL0AP4tkI2HO0ATW7TcIVGIb2mlhpZ8ZVcIBo227WoH3KCBCgD/dQ/WePMc2ft+
+/1Nb9a/IDtAAuVL3adir9sq1W8OnBQw=
+=2Tua
+-----END PGP SIGNATURE-----
+
+--zkMmGR8EqwgS0H6h--
 
