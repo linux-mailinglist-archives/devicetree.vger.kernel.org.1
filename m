@@ -1,182 +1,168 @@
-Return-Path: <devicetree+bounces-138379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB9F6A102B8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:10:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20600A102BC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:11:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C90CE168DA3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:10:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2CC93A6AEA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:11:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EAE428EC60;
-	Tue, 14 Jan 2025 09:10:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 922CA28EC6B;
+	Tue, 14 Jan 2025 09:11:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ke6SM0YU"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="nj3Ui0gO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F28541CA84;
-	Tue, 14 Jan 2025 09:10:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD89F1CA84
+	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 09:11:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736845842; cv=none; b=UhWsGQEpFJYcDJnDIwI9lsIpcUBdemhdOYKNLqaS5Rgw62Y/SRMWeWf42H9NhdtvzIwJ83K0q+vZioOGn5Pr9NlRNi4qROLQhE1AkZywL2s/pGB9hHiKHh0+vM28KJzwv5hjwTsZja/eD1RbFJsdWoJoCnQun1J/aN1S/xMZaDo=
+	t=1736845864; cv=none; b=jLW78L9r5lCCDzIDzMWqBSEbwhTCCVbGoIqLyDjIHM8nJECE1sToEpRUMx3h/3/+6zWpg9pNtoEGD4OVaGP8AcZomDS83VMrzNV6Fpb4kffYpnLSH/gLPxSN0tUNWGLLMO5CrIU91o0jj8g+7mFxpKXzm8dPeCOuOVPjEp3Ooio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736845842; c=relaxed/simple;
-	bh=KWR1i4NTTXotSiVPXRJjXMkD1sNo2WV+XgKVBQLu3mQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kHuify4Dye4uZqFHFnLkxiLYQz+v4EyHRpSClk4M9MWstrD9/JmV87UBK0WHl2WAT5NkmI10EnlXseY8mblDSuVmBUzpr5vU3bSO5LqjiDJkYRef9gzBWl9c6+RInwb9hp4LmRO+3KUctQJEkwf3kJDJUB1Imvz0cRiGAq0R594=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ke6SM0YU; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736845840; x=1768381840;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KWR1i4NTTXotSiVPXRJjXMkD1sNo2WV+XgKVBQLu3mQ=;
-  b=Ke6SM0YUtmRNVrHM3v4U/uA/S7UuIyg0w13xi15YyixnLBxBJ3Prq+54
-   oUViWLHWvcbs1PGdrLNLosw0R/KIFBTc07SAG68iHReOpTdt6fOfjyLZG
-   PwAICIIhnPomsaxWsJtXNhQtD8Mv2scNE0q+Qf3KPWYWVtUZKd7EwwmRy
-   WoxkzGKZ/TazzsqgHZFS99T1mKV9ZIFs5as2jHxNURyM/U4XKYuHGRc1I
-   rJWVRJoJlsDF29DKw9xGqzMKPA798vCopX5ZbvqNxSRzaU3emqKT6ZMLF
-   ffFmFx4T3uKj91R+MpjIXAWMIWvBZ3ya2sc4wSI8Rk1OULihW5UBPScmf
-   A==;
-X-CSE-ConnectionGUID: sP4GudlyRXayr4Z45opC3Q==
-X-CSE-MsgGUID: kUcraufnTgCTlmjfo/AcYg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="48540883"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
-   d="scan'208";a="48540883"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2025 01:10:38 -0800
-X-CSE-ConnectionGUID: PdmIumZiS9W+o8d+jtbXRw==
-X-CSE-MsgGUID: DFjBuiTqSAm7ZBTfTTupAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,313,1728975600"; 
-   d="scan'208";a="104572870"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 14 Jan 2025 01:10:34 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tXcwS-000OJf-0i;
-	Tue, 14 Jan 2025 09:10:32 +0000
-Date: Tue, 14 Jan 2025 17:09:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: jiebing chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org,
-	jiebing chen <jiebing.chen@amlogic.com>
-Subject: Re: [PATCH 2/3] ASoC: meson: s4:support for the on-chip audio
-Message-ID: <202501141658.tM15P1iG-lkp@intel.com>
-References: <20250113-audio_drvier-v1-2-8c14770f38a0@amlogic.com>
+	s=arc-20240116; t=1736845864; c=relaxed/simple;
+	bh=hRYADXuuMQL0WU6YweqbfVIpCJlQAKmMZXUM2sMi/uM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=kzDojY9dnE61Rey108z41Nhj0Gxj+m7OGflsfRZ3UbmbeZrjY5Githojqa6MZiQnCH84DpEvrpYI4aOy4iLHoZCx64HoGdxgvLVxPByWMtyuNRBfR0HX2reBQU8vv8b0yMPNj34XGOkT73AlOTvNqWfPpRcuPMTvcpdfPvdohWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=nj3Ui0gO; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e53a91756e5so9332545276.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 01:11:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1736845861; x=1737450661; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=laOni/3pZswCtnZWqEbh9/nDgLWlbXlzzIl5mtJ7ij0=;
+        b=nj3Ui0gOQ4eGDTtpnrBS67q9Afk/az0V1L/fRgrrDXm5Xh+SdtNW9tJTDd2FOj3YRi
+         VjlWKrSh6tZi/3i4fbHM23uIyxzfPqzcvMae4h8wLkZXQqn0zmI7dAhU6RgGOiuafiK7
+         X53gmR6jjZPoayWTiBFYdwQEbNLkHRQvKGm2k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736845861; x=1737450661;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=laOni/3pZswCtnZWqEbh9/nDgLWlbXlzzIl5mtJ7ij0=;
+        b=S6UhuQIUcbDHkXUySOIRwj2BCNo85bhwCRLihkUuYo3Sohy6muEqsax8JKemiQtIgK
+         jzT/SV0AV74GHOFjEVOfsSDcXaqAf8E4NJzOOYRhlNxoSutXwzmJvWWWqCCHv+ZhukD/
+         t4dSYKTAyJ9FOVqE8k3C/16kvSEE1RgkLJKMlwdWnUUdR94If+4OEMDsUTiq7Ebs382E
+         u71fs1TFO9OSeqQay0xIePCWoXMYkHCtvVGIjLgZbsJSqVa3PLNzcS4TVvq0mb+4OPW6
+         XIZ4OyLA7rUthaLbv/4acTXAPNK2YoLsyq1tbVEoXJmSTjqKJJIFw/D8ERj8iozWVlCC
+         kifg==
+X-Forwarded-Encrypted: i=1; AJvYcCVBjjU9UefKXb6403UXNKYCdz03IKfvUG3uxviHaAGj/wuPi6uTqvNQqVDyvuY5/6X3nf6ppfbcG5Vv@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKRqr11Ve1ruZtwARRAhSx2Ec5USL1lQsrGwyYWQSvEcsPKMG+
+	Gy/KH2ZY3tjQt7fxz3I+75X93JWaXfD+uMuPGEW9Zt1siLLxs2OCo8VxMbUeWPMHrAmv+qjgizt
+	wUES7DUU9W4kODo20Qxzn0qqPl90m7DJey56Kgg==
+X-Gm-Gg: ASbGncvfYi1DR8DU5PJU6NW/GWdeOPh+LdOfcNCZHjM5hRMmgHg9mu6eRvlz9Jfz3xI
+	9kxPn1WnL/RJesxXPI72PliATLmtjNbGqaNwu
+X-Google-Smtp-Source: AGHT+IE9CA2Xfhzw3GHaovQ1IHfqCWAXv4doOMw3356PJ8sdDTE1sLuY9FIcA5CUBN/UDJxnGUnMXzDsrursJPWiJDo=
+X-Received: by 2002:a05:6902:72a:b0:e38:af38:de3c with SMTP id
+ 3f1490d57ef6-e54ee138757mr17712009276.17.1736845861696; Tue, 14 Jan 2025
+ 01:11:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250113-audio_drvier-v1-2-8c14770f38a0@amlogic.com>
+References: <20250109211908.1553072-1-dario.binacchi@amarulasolutions.com>
+ <20250109211908.1553072-2-dario.binacchi@amarulasolutions.com> <bfxyod5l2s6g3j47be7mjh6i7wgjapka2q5b6f2mleipiai6gm@hfvclvkzrtyd>
+In-Reply-To: <bfxyod5l2s6g3j47be7mjh6i7wgjapka2q5b6f2mleipiai6gm@hfvclvkzrtyd>
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date: Tue, 14 Jan 2025 10:10:51 +0100
+X-Gm-Features: AbW1kvak2sUesICzzkmsj5TX2inw2Pxvk9l2RhEMwr_4GvlhnKKbrVqsFXF8zsk
+Message-ID: <CABGWkvqu10dyW6y5S7qvY4G7uh0OaUgr6k-F7BA1AU0H9bA9GQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: convert stm32 rcc bindings to json-schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi jiebing,
+On Sat, Jan 11, 2025 at 10:25=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On Thu, Jan 09, 2025 at 10:18:28PM +0100, Dario Binacchi wrote:
+> > +maintainers:
+> > +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> > +
+> > +description: |
+> > +  The RCC IP is both a reset and a clock controller.
+> > +  The reset phandle argument is the bit number within the RCC register=
+s bank,
+> > +  starting from RCC base address.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - const: st,stm32f42xx-rcc
+> > +          - const: st,stm32-rcc
+> > +      - items:
+> > +          - enum:
+> > +              - st,stm32f469-rcc
+> > +          - const: st,stm32f42xx-rcc
+> > +          - const: st,stm32-rcc
+> > +      - items:
+> > +          - const: st,stm32f746-rcc
+>
+> Why this isn't just part of enum with first group/list? Different
+> groups/lists are for different fallbacks and I am pretty sure fallback
+> is the same.
 
-kernel test robot noticed the following build warnings:
+I tried running tests after applying the changes you suggested, but
+the tests are failing.
+Thanks and regards,
+Dario
 
-[auto build test WARNING on 6ecd20965bdc21b265a0671ccf36d9ad8043f5ab]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/jiebing-chen-via-B4-Relay/ASoC-dt-bindings-Add-Amlogic-S4-audio/20250113-143911
-base:   6ecd20965bdc21b265a0671ccf36d9ad8043f5ab
-patch link:    https://lore.kernel.org/r/20250113-audio_drvier-v1-2-8c14770f38a0%40amlogic.com
-patch subject: [PATCH 2/3] ASoC: meson: s4:support for the on-chip audio
-config: s390-allyesconfig (https://download.01.org/0day-ci/archive/20250114/202501141658.tM15P1iG-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250114/202501141658.tM15P1iG-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501141658.tM15P1iG-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   sound/soc/meson/s4-tocodec-control.c: In function 'aml_tocodec_sel_set':
->> sound/soc/meson/s4-tocodec-control.c:151:15: warning: unused variable 'clk_name' [-Wunused-variable]
-     151 |         char *clk_name;
-         |               ^~~~~~~~
+>
+> > +          - const: st,stm32-rcc
+> > +      - items:
+> > +          - enum:
+> > +              - st,stm32f769-rcc
+> > +          - const: st,stm32f746-rcc
+> > +          - const: st,stm32-rcc
+> > +      - items:
+> > +          - const: st,stm32h743-rcc
+>
+> Same here.
+>
+> Rest looks good, so with combining entries above:
+>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+> Best regards,
+> Krzysztof
+>
 
 
-vim +/clk_name +151 sound/soc/meson/s4-tocodec-control.c
+--=20
 
-   137	
-   138	static int aml_tocodec_sel_set(struct snd_soc_dapm_widget *w)
-   139	{
-   140		struct snd_soc_dai *be;
-   141		struct axg_tdm_stream *stream;
-   142		struct axg_tdm_iface *iface;
-   143		struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
-   144		struct toacodec *priv = snd_soc_component_get_drvdata(component);
-   145		unsigned int tdm_id = TDM_A_PAD;
-   146		const char *dai_widget_name;
-   147		struct snd_soc_dapm_path *p;
-   148		unsigned int lane = 0;
-   149		unsigned int val = 0;
-   150		struct clk *sclk, *mclk;
- > 151		char *clk_name;
-   152		int mclk_id, sclk_id;
-   153	
-   154		be = tocodec_tdm_get_ahead_be(w);
-   155		if (!be) {
-   156			dev_err(component->dev, "%s not find the be\n", __func__);
-   157			return -EINVAL;
-   158		}
-   159		stream = snd_soc_dai_dma_data_get_playback(be);
-   160		if (!stream) {
-   161			dev_err(component->dev, "%s not find the stream\n", __func__);
-   162			return -EINVAL;
-   163		}
-   164		/*we like to use dai id, but it is fixed val*/
-   165		dai_widget_name = be->stream[SNDRV_PCM_STREAM_PLAYBACK].widget->name;
-   166		if (strstr(dai_widget_name, "TDM_A"))
-   167			tdm_id = TDM_A_PAD;
-   168		else if (strstr(dai_widget_name, "TDM_B"))
-   169			tdm_id = TDM_B_PAD;
-   170		else if (strstr(dai_widget_name, "TDM_C"))
-   171			tdm_id = TDM_C_PAD;
-   172		snd_soc_dapm_widget_for_each_source_path(w, p) {
-   173			if (p->connect && p->name) {
-   174				lane = aml_simple_strtoull(p->name);
-   175				val = lane + tdm_id * S4_LANE_OFFSET;
-   176				regmap_field_write(priv->field_dat_sel, val);
-   177			}
-   178		}
-   179		iface = stream->iface;
-   180		mclk = iface->mclk;
-   181		sclk = iface->sclk;
-   182		mclk_id = aml_get_clk_id(__clk_get_name(mclk));
-   183		sclk_id = aml_get_clk_id(__clk_get_name(sclk));
-   184		regmap_field_write(priv->field_mclk_sel, mclk_id);
-   185		regmap_field_write(priv->field_bclk_sel, sclk_id);
-   186		regmap_field_write(priv->field_lrclk_sel, sclk_id);
-   187	
-   188		return 0;
-   189	}
-   190	
+Dario Binacchi
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Senior Embedded Linux Developer
+
+dario.binacchi@amarulasolutions.com
+
+__________________________________
+
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
 
