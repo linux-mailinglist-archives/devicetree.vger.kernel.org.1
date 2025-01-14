@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-138376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 982F6A10286
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:59:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B0EDA10288
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:00:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6E431653BF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 08:59:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6288218879C3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:00:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62A2528EC74;
-	Tue, 14 Jan 2025 08:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E351284A68;
+	Tue, 14 Jan 2025 09:00:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gVVys9wR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H2oTM9XU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25C2284A40
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 08:59:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1166322ACF7
+	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 09:00:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736845183; cv=none; b=OhXnRYoEDJz1M9jUQynge2jBEZEULvziSsjP8uAVab1SJmIEStsy1c4buQ/a/o5TPviTXgze5n+a82mrSksrHUqRuOiDS4pC9a7BhkP9WS3Y6HGox/NlYzhHJTEQUD0uLW1VeGRObQkP5JRJGLCCcKTJgtUWMnu+crB35tCZtFU=
+	t=1736845225; cv=none; b=iffPrdXzO4N8WjUe+H3AGONg+n9gY18tF4pfBOQM509+Do1QxDBJ+MCUD7MhB5HJVHG47fm5AwnpweBCFI9OsJ8XoamlSZuqHJ/JBzl6dvYWwwyEJ9esuPifMfr/JR1QMofr3rNKZ8tdEQTA4nSeLYYM/aEs+1Isk2jelyk1xw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736845183; c=relaxed/simple;
-	bh=Sz6Au314BEahyGJyDO9QGYNHTk5kPRTXgAB7P1Uu//c=;
+	s=arc-20240116; t=1736845225; c=relaxed/simple;
+	bh=dxWspYwX9RQd/bgor892GB/MZtKGUOEtPYxU5c+sY3U=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ApqJrpMREKnVZ5ezCvnoJTNaVtmV17P4Vi6eUUQtdjR3NjS2q7farqbLPYrWMFdrwLzk/lNBTifzeAuxi8p9b5lZN/H/F3jSvwgMJXxX1WMsEZYFU/2IE+oDNmAHO/GHnTYLf/m5GE6p5OToQNvVWHF31PMAA+Y44cs42CwFGPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gVVys9wR; arc=none smtp.client-ip=209.85.128.43
+	 In-Reply-To:Content-Type; b=Z9+IQxGCKJDPyw54icuS5J8SGPxHODnp7mnaRxgtDmPhMMaJzZeT0yi8+FZ1/szEKDqSJpF/IS/Hv+PV/gnsu5hHB759oUm0o6g0uARIVRh3Zkig+dln4Y4Usnm0nvYDTTMUXYPCbqLXjq9O4Pr48XcwV8M9cm3O9U1r6aB+W7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H2oTM9XU; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4361815b96cso36431795e9.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 00:59:39 -0800 (PST)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-385e27c75f4so3673397f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 01:00:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736845178; x=1737449978; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1736845221; x=1737450021; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pcORAj+/UxPcWnW6nq1LVkg0dYOj+RS3yTTqznnbGl4=;
-        b=gVVys9wRRpc9o5F2db+vqjkdZiBH1jH/6pse1xnVNtWbc1JVCIr9rsSyan9VV8d7x4
-         OPP+oHPX/tg4kgn4nAaJwrmfTY0DID87O05g/aA6Z1nfSfUON1V/o51w/z4Yx28Ait3j
-         MYn7SVuEaNdBRKo3CDU4khJ4bJX3ibBHwVf9A6b6yu8t12xMqKz7iSA+NjFONH2qhahS
-         894hzZOAr1enlxv7qmoeSYKYcFrwzXPf8v2KRs8haJmepn2BIKhZgIByly9eNOsQeemY
-         Ey8ie0zfeFWtdntByOSLOPqMY1Joc8attsDERF+q7JBGl52owBA5UNnl/XVs8qqJsmoL
-         BMaQ==
+        bh=hLPU6n+9ojUizcMYapLhRHNo+gzm51fW6qO6dS7gCcY=;
+        b=H2oTM9XUQ4Q4Ws/W0bx/JVjpj5+B+faLMy1W8lsrs7fYBHYwXIv7RheajMRL4xmWFZ
+         +ZCf6wfz9Ids8aRQ/RZpDQZ/Se64K9a8Ffgs3kIXRP1c1ns5kpNROoHmRwU23uppV9th
+         L2RK7z8mhXLUUe+zGQ2bRGHChP7wc9aQo2CE6KUOMGMIkTbEAs2zdycOVP9M6+PHPnoB
+         DtC0uaqyumfDI7hX4+UoBkoqnNjdOnHcF0qR70hrb1iGcWUdSGxCeJKax3mb4YyOwyoG
+         Ru//C3XlGFloIDguy6vOd/XnWTK72xF+e0M2BkTeydCjC31fF00/NsZTnBYPormCH9fH
+         E3tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736845178; x=1737449978;
+        d=1e100.net; s=20230601; t=1736845221; x=1737450021;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=pcORAj+/UxPcWnW6nq1LVkg0dYOj+RS3yTTqznnbGl4=;
-        b=vPlg+Cy3vSUA59TXwjSWE2elbxM/0Jm8BcqaolCfAmyK7XUHesiNvn9Mh7Z/5DTNdQ
-         skUqq59qSMnH5Co3d53tSOM/ygNUjq4l521ix/IV3ouEEoYlDXgVMA8nMRQTZD3hn/51
-         ZcL014f+8o/Jtl9u5WkBzXDnPsJSNFxTuw3qScGSLEGLFD6VuzQkZ/gIGeikmr67dnRQ
-         2Ul0G9syuidoXKuJNd3UbfvuckLieReJILzDuZOfP5xacpGSFIpkpQGpVoPu4QKsTbS8
-         Frpk6lFOyKARKaFmrZsmljkG8JO2gnkNSmqdY6QqxYSAh1j1UZqHwfQlJnCbw/La/lOY
-         Wr2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVeU6c77F3DACe1zYoPmMR0YYhjBE6qIwyxH9FvWgQ4Pj+kFnmL4muNry0GliXQHJxaPj6VvJ8OCFCx@vger.kernel.org
-X-Gm-Message-State: AOJu0YxR0OzdZk8VW0iAd3IoNPjJWzEYD5LX6gpyrWa9z9X7MIWnLyK9
-	EofRNwKvagsQ0oj2rILEHp5t0tLzcoFrGBjvoOCTXg8N45fZWARWauyV4PymnA4=
-X-Gm-Gg: ASbGncvrcDsJeE3twpoFm9BNIdzJSs76u7b5KdFKZI4b3GhnabzkqtcI4lwNs//c+wF
-	fav4NX5f9eH533hsAa7r/JwjEf60eCtxldJHlrlrqQbRlacnoyLtDJlYbv0eHZirichMlB+E8Fv
-	4ffLeHoxnS8S/mSahcKwKq8btZYQo5tnTywF0TZd6G786Fvgors9u3SIoAduEKMHfUCLySb8+Y9
-	EHtELMpHff8xyyaonvALJeYhNgSt/q2pC42dhU7zVWOip2M328ZGh2gX2AlOXQ0jlYL+v4srSdZ
-	1ML9wAxUtEkkBxjDaZpGIlK/LVpHrIYqRQ==
-X-Google-Smtp-Source: AGHT+IFFFexQwetdn+2agut/gc6XC1ZwnsOWZnJiPDyLjNzMeC0Ik7JGVENCxS6EvhU9XUC/9+i25Q==
-X-Received: by 2002:a05:600c:500f:b0:436:51bb:7a52 with SMTP id 5b1f17b1804b1-436e2697170mr223461015e9.7.1736845177824;
-        Tue, 14 Jan 2025 00:59:37 -0800 (PST)
+        bh=hLPU6n+9ojUizcMYapLhRHNo+gzm51fW6qO6dS7gCcY=;
+        b=fVh1Sj8gwzH/P74r04X72rS5o54fGc0rxJP/NNtv3mY1cc5V91T7sgNN9nvYbtaZ4D
+         8ouPy0FA6eFhEX1PUdpqnlc9fMAZEvOCyiN+e2/0Kjm2lBV9Ey21y/GJyGFcvT7vrmiF
+         pwnmt4JrHny8+g9fte/K3glT+NPbjs1Cp9nuQYazu3hYUl3f94hJcENmAduFzIeN5Z8d
+         P5awRkLTfQoijBthitx585xzr8unnfdMlcShSjB2xWiMGjalYhTgTWtMHhKy0MIeUzqv
+         vEA34UNf/UMZkAeg+BFF/5a+fj+J5XfbB8S9BUSpAG7p2alnU4QG/9n84LRpzGyMe0e7
+         IYMg==
+X-Forwarded-Encrypted: i=1; AJvYcCXjqzJQ6dmpVqUxzFsmL6yH85PWZo6gZsXJN97S2xNYSm7NDK7jkGgzWDhZ0oszwl3fPr6dsnxWyEI2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzIvQQTB4lW9/OgI4G2jFdh0BkYSqfa+isTm5Zt7V+dcYuVtYbV
+	OeBJ99Lf8pUTrez3vh40N5WdpIgZ1UhVVCb76FGaUH9Sg/SXP28MV/BA/MkjuUU=
+X-Gm-Gg: ASbGnctOQsdVJLNUVeVqoL/XhIZPwvhm7qKlcNlq59g3U8PGuW3CKCFz3j8js+btqG4
+	YMorvTIT0txpKyqC48Ulf/Lvw6nj76j5DSqZc4OG3YqOVkR5xGoXDoCy36LoeHMBHyMfxMWaHMz
+	SIL/Lhm03W7nuwQD6axC50+4h/UQQYtDwjwwDuZEYsf9IsSvXzZsoZoSoXHzolvJJPs52BvqYYj
+	hrG7Q1639l+z6uReSbh/u4X5ZRf78iINgv4y1xZLlFER3I3CDrY8kEUv9t5FQz5HuNgBVrfBFIJ
+	2SC0o2nPQ77dk+xGw7YTO83qdCzaKDfigQ==
+X-Google-Smtp-Source: AGHT+IHtKaoubiUh++N0bjKcGGDptmArpTEbbwMO6yBbxpUADCY3BFyS45Sg8tl4Oq8oVDlLGxs6rw==
+X-Received: by 2002:a05:6000:4011:b0:386:3835:9fec with SMTP id ffacd0b85a97d-38a873306cemr23705555f8f.44.1736845221099;
+        Tue, 14 Jan 2025 01:00:21 -0800 (PST)
 Received: from ?IPV6:2a01:e0a:982:cbb0:a5df:aa69:5642:11b5? ([2a01:e0a:982:cbb0:a5df:aa69:5642:11b5])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a8e4b8209sm14448412f8f.70.2025.01.14.00.59.36
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a8e37d111sm14610879f8f.18.2025.01.14.01.00.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jan 2025 00:59:37 -0800 (PST)
-Message-ID: <a0ad8d3b-3c45-4490-8559-4ff9deb86894@linaro.org>
-Date: Tue, 14 Jan 2025 09:59:36 +0100
+        Tue, 14 Jan 2025 01:00:20 -0800 (PST)
+Message-ID: <97b3fdcf-2829-4080-8285-d6458b2bb7d3@linaro.org>
+Date: Tue, 14 Jan 2025 10:00:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,24 +85,25 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 4/7] phy: qcom: qmp-combo: Add new PHY sequences for
+Subject: Re: [PATCH 2/5] phy: qcom-qmp-ufs: Add PHY Configuration support for
  SM8750
 To: Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
  Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
+ <conor+dt@kernel.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, Bjorn Andersson
+ <andersson@kernel.org>, Andy Gross <agross@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>,
  Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
  Trilok Soni <quic_tsoni@quicinc.com>
 Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com>
- <20250113-sm8750_usb_master-v1-4-09afe1dc2524@quicinc.com>
+ linux-scsi@vger.kernel.org, Nitin Rawat <quic_nitirawa@quicinc.com>,
+ Manish Pandey <quic_mapa@quicinc.com>
+References: <20250113-sm8750_ufs_master-v1-0-b3774120eb8c@quicinc.com>
+ <20250113-sm8750_ufs_master-v1-2-b3774120eb8c@quicinc.com>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -129,259 +130,340 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20250113-sm8750_usb_master-v1-4-09afe1dc2524@quicinc.com>
+In-Reply-To: <20250113-sm8750_ufs_master-v1-2-b3774120eb8c@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 13/01/2025 22:52, Melody Olvera wrote:
-> From: Wesley Cheng <quic_wcheng@quicinc.com>
+On 13/01/2025 22:46, Melody Olvera wrote:
+> From: Nitin Rawat <quic_nitirawa@quicinc.com>
 > 
-> Add new register offsets and PHY values for SM8750. Some of the previous
-> definitions can be leveraged from older PHY versions as offsets within
-> registers have not changed. This also updates the PHY sequence that is
-> recommended after running hardware characterization.
+> Add SM8750 specific register layout and table configs. The serdes
+> TX RX register offset has changed for SM8750 and hence keep UFS
+> specific serdes offsets in a dedicated header file.
 > 
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
+> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
+> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
 > Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
->   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 198 ++++++++++++++++++++++++++++++
->   1 file changed, 198 insertions(+)
+>   drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v6.h |  12 ++
+>   .../qualcomm/phy-qcom-qmp-qserdes-txrx-ufs-v7.h    |  68 ++++++++
+>   drivers/phy/qualcomm/phy-qcom-qmp-ufs.c            | 174 ++++++++++++++++++++-
+>   3 files changed, 253 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> index b09fa00e9fe7db8d97b7179ee15d3f07fe578b0c..823a60029ea6acbd1f0f8c7d27aaa58de39ed758 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> @@ -1471,6 +1471,139 @@ static const struct qmp_phy_init_tbl x1e80100_usb43dp_pcs_tbl[] = {
->   	QMP_PHY_INIT_CFG(QPHY_V6_N4_PCS_EQ_CONFIG5, 0x10),
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v6.h b/drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v6.h
+> index 328c6c0b0b09ae4ff5bf14e846772e6d0f31ce5a..aa2278f9377408b3c602f6fa0de5021804f21f52 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v6.h
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v6.h
+> @@ -86,4 +86,16 @@
+>   #define QSERDES_V6_COM_CMN_STATUS				0x1d0
+>   #define QSERDES_V6_COM_C_READY_STATUS				0x1f8
+>   
+> +#define QSERDES_V6_COM_ADAPTIVE_ANALOG_CONFIG			0x268
+> +#define QSERDES_V6_COM_CP_CTRL_ADAPTIVE_MODE0			0x26c
+> +#define QSERDES_V6_COM_PLL_RCCTRL_ADAPTIVE_MODE0		0x270
+> +#define QSERDES_V6_COM_PLL_CCTRL_ADAPTIVE_MODE0			0x274
+> +#define QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE0		0x58
+> +
+> +#define QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE0		0x5c
+> +#define QSERDES_V6_COM_CP_CTRL_ADAPTIVE_MODE1			0x278
+> +#define QSERDES_V6_COM_PLL_RCCTRL_ADAPTIVE_MODE1		0x27c
+> +#define QSERDES_V6_COM_PLL_CCTRL_ADAPTIVE_MODE1			0x280
+> +#define QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE1		0x50
+> +#define QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE1		0x54
+>   #endif
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-qserdes-txrx-ufs-v7.h b/drivers/phy/qualcomm/phy-qcom-qmp-qserdes-txrx-ufs-v7.h
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..73b3857e0277ce6cdbe658066772172a94f25d6e
+> --- /dev/null
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-qserdes-txrx-ufs-v7.h
+> @@ -0,0 +1,68 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (c) 2024, Linaro Limited
+> + */
+> +
+> +#ifndef QCOM_PHY_QMP_QSERDES_TXRX_UFS_V7_H_
+> +#define QCOM_PHY_QMP_QSERDES_TXRX_UFS_V7_H_
+> +
+> +#define QSERDES_UFS_V7_TX_RES_CODE_LANE_TX				0x28
+> +#define QSERDES_UFS_V7_TX_RES_CODE_LANE_RX				0x2c
+> +#define QSERDES_UFS_V7_TX_RES_CODE_LANE_OFFSET_TX			0x30
+> +#define QSERDES_UFS_V7_TX_RES_CODE_LANE_OFFSET_RX			0x34
+> +#define QSERDES_UFS_V7_TX_LANE_MODE_1					0x7c
+> +#define QSERDES_UFS_V7_TX_FR_DCC_CTRL					0x108
+> +
+> +#define QSERDES_UFS_V7_RX_UCDR_SO_SATURATION				0x28
+> +#define QSERDES_UFS_V7_RX_UCDR_PI_CTRL1					0x58
+> +#define QSERDES_UFS_V7_RX_TERM_BW_CTRL0					0xC4
+> +#define QSERDES_UFS_V7_RX_MODE_RATE_0_1_B0				0x218
+> +#define QSERDES_UFS_V7_RX_MODE_RATE_0_1_B1				0x21C
+> +#define QSERDES_UFS_V7_RX_MODE_RATE_0_1_B2				0x220
+> +#define QSERDES_UFS_V7_RX_MODE_RATE_0_1_B3				0x224
+> +#define QSERDES_UFS_V7_RX_MODE_RATE_0_1_B4				0x228
+> +#define QSERDES_UFS_V7_RX_MODE_RATE_0_1_B6				0x230
+> +#define QSERDES_UFS_V7_RX_MODE_RATE_0_1_B7				0x234
+> +#define QSERDES_UFS_V7_RX_MODE_RATE2_B3					0x248
+> +#define QSERDES_UFS_V7_RX_MODE_RATE2_B6					0x254
+> +#define QSERDES_UFS_V7_RX_MODE_RATE2_B7					0x258
+> +#define QSERDES_UFS_V7_RX_MODE_RATE3_B0					0x260
+> +#define QSERDES_UFS_V7_RX_MODE_RATE3_B1					0x264
+> +#define QSERDES_UFS_V7_RX_MODE_RATE3_B2					0x268
+> +#define QSERDES_UFS_V7_RX_MODE_RATE3_B3					0x26C
+> +#define QSERDES_UFS_V7_RX_MODE_RATE3_B4					0x270
+> +#define QSERDES_UFS_V7_RX_MODE_RATE3_B5					0x274
+> +#define QSERDES_UFS_V7_RX_MODE_RATE3_B7					0x27C
+> +#define QSERDES_UFS_V7_RX_MODE_RATE3_B8					0x280
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SA_B0				0x284
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SA_B1				0x288
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SA_B2				0x28C
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SA_B3				0x290
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SA_B4				0x294
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SA_B5				0x298
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SA_B6				0x29C
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SA_B7				0x2A0
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SB_B0				0x2A8
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SB_B1				0x2AC
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SB_B2				0x2B0
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SB_B3				0x2B4
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SB_B4				0x2B8
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SB_B5				0x2BC
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SB_B6				0x2C0
+> +#define QSERDES_UFS_V7_RX_MODE_RATE4_SB_B7				0x2C4
+> +#define QSERDES_UFS_V7_RX_DLL0_FTUNE_CTRL				0x348
+> +#define QSERDES_UFS_V7_RX_SIGDET_CAL_TRIM				0x380
+> +#define QSERDES_UFS_V7_RX_INTERFACE_MODE				0x1F0
+> +#define QSERDES_UFS_V7_RX_UCDR_FO_GAIN_RATE2				0xD4
+> +#define QSERDES_UFS_V7_RX_UCDR_FO_GAIN_RATE4				0xDC
+> +#define QSERDES_UFS_V7_RX_UCDR_SO_GAIN_RATE4				0xF0
+> +#define QSERDES_UFS_V7_RX_UCDR_PI_CONTROLS				0xF4
+> +#define QSERDES_UFS_V7_RX_UCDR_FASTLOCK_COUNT_HIGH_RATE4		0x54
+> +#define QSERDES_UFS_V7_RX_UCDR_FASTLOCK_FO_GAIN_RATE4			0x10
+> +#define QSERDES_UFS_V7_RX_UCDR_FASTLOCK_SO_GAIN_RATE4			0x24
+> +#define QSERDES_UFS_V7_RX_EQ_OFFSET_ADAPTOR_CNTRL1			0x1CC
+> +#define QSERDES_UFS_V7_RX_OFFSET_ADAPTOR_CNTRL3				0x1D4
+> +#define QSERDES_UFS_V7_RX_EQU_ADAPTOR_CNTRL4				0x1B4
+> +#define QSERDES_UFS_V7_RX_VGA_CAL_MAN_VAL				0x178
+> +
+> +#endif
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> index d964bdfe870029226482f264c78a27d0ec43bf2b..a1695b368fe7622bf8663343d0241b4d0d40ab59 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-ufs.c
+> @@ -31,6 +31,7 @@
+>   #include "phy-qcom-qmp-pcs-ufs-v6.h"
+>   
+>   #include "phy-qcom-qmp-qserdes-txrx-ufs-v6.h"
+> +#include "phy-qcom-qmp-qserdes-txrx-ufs-v7.h"
+>   
+>   /* QPHY_PCS_READY_STATUS bit */
+>   #define PCS_READY				BIT(0)
+> @@ -949,6 +950,132 @@ static const struct qmp_phy_init_tbl sm8650_ufsphy_g5_pcs[] = {
+>   	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_RX_HSG5_SYNC_WAIT_TIME, 0x9e),
 >   };
 >   
-> +static const struct qmp_phy_init_tbl sm8750_usb3_serdes_tbl[] = {
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_STEP_SIZE1_MODE1, 0xc0),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_STEP_SIZE2_MODE1, 0x01),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE1, 0x02),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE1, 0x16),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE1, 0x36),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CORECLK_DIV_MODE1, 0x04),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE1, 0x16),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE1, 0x41),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE1, 0x41),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MSB_MODE1, 0x00),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START1_MODE1, 0x55),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START2_MODE1, 0x75),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START3_MODE1, 0x01),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_SEL_1, 0x01),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE1_MODE1, 0x25),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE2_MODE1, 0x02),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE1, 0x5c),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE1, 0x0f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE0, 0x5c),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE0, 0x0f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_STEP_SIZE1_MODE0, 0xc0),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_STEP_SIZE2_MODE0, 0x01),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE0, 0x02),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE0, 0x16),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE0, 0x36),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE0, 0x08),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE0, 0x1a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE0, 0x41),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MSB_MODE0, 0x00),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START1_MODE0, 0x55),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START2_MODE0, 0x75),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DIV_FRAC_START3_MODE0, 0x01),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE1_MODE0, 0x25),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE2_MODE0, 0x02),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BG_TIMER, 0x0a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_EN_CENTER, 0x01),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_PER1, 0x62),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SSC_PER2, 0x02),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SYSCLK_BUF_ENABLE, 0x0c),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SYSCLK_EN_SEL, 0x1a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP_CFG, 0x14),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE_MAP, 0x04),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CORE_CLK_EN, 0x20),
+> +static const struct qmp_phy_init_tbl sm8750_ufsphy_serdes[] = {
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_SYSCLK_EN_SEL, 0xD9),
 > +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CMN_CONFIG_1, 0x16),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_AUTO_GAIN_ADJ_CTRL_1, 0xb6),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_AUTO_GAIN_ADJ_CTRL_2, 0x4a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_AUTO_GAIN_ADJ_CTRL_3, 0x36),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_ADDITIONAL_MISC, 0x0c),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_SEL_1, 0x11),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_HSCLK_HS_SWITCH_SEL_1, 0x00),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP_EN, 0x01),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP_CFG, 0x60),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_IVCO, 0x1F),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_IVCO_MODE1, 0x1F),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CMN_IETRIM, 0x07),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CMN_IPTRIM, 0x20),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE_MAP, 0x04),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_VCO_TUNE_CTRL, 0x40),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_ADAPTIVE_ANALOG_CONFIG, 0x06),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE0, 0x41),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE0, 0x06),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE0, 0x18),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE0, 0x14),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_ADAPTIVE_MODE0, 0x06),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCCTRL_ADAPTIVE_MODE0, 0x18),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_ADAPTIVE_MODE0, 0x14),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE0, 0x7F),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE0, 0x06),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE0, 0x92),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE0, 0x1E),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_DEC_START_MODE1, 0x4C),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_MODE1, 0x06),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCTRL_MODE1, 0x18),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_MODE1, 0x14),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_CP_CTRL_ADAPTIVE_MODE1, 0x06),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_RCCTRL_ADAPTIVE_MODE1, 0x18),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_PLL_CCTRL_ADAPTIVE_MODE1, 0x14),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP1_MODE1, 0x99),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_LOCK_CMP2_MODE1, 0x07),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE1_MODE1, 0xBE),
+> +	QMP_PHY_INIT_CFG(QSERDES_V6_COM_BIN_VCOCAL_CMP_CODE2_MODE1, 0x23),
 > +};
 > +
-> +static const struct qmp_phy_init_tbl sm8750_usb3_tx_tbl[] = {
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_TX_RES_CODE_LANE_TX, 0x00),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_TX_RES_CODE_LANE_RX, 0x00),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_TX_RES_CODE_LANE_OFFSET_TX, 0x1f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_TX_RES_CODE_LANE_OFFSET_RX, 0x09),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_TX_LANE_MODE_1, 0xf5),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_TX_LANE_MODE_3, 0x11),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_TX_LANE_MODE_4, 0x31),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_TX_LANE_MODE_5, 0x5f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_TX_RCV_DETECT_LVL_2, 0x12),
-> +	QMP_PHY_INIT_CFG_LANE(QSERDES_V6_TX_PI_QEC_CTRL, 0x21, 1),
-> +	QMP_PHY_INIT_CFG_LANE(QSERDES_V6_TX_PI_QEC_CTRL, 0x05, 2),
+> +static const struct qmp_phy_init_tbl sm8750_ufsphy_tx[] = {
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_TX_LANE_MODE_1, 0x00),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_TX_RES_CODE_LANE_OFFSET_TX, 0x07),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_TX_RES_CODE_LANE_OFFSET_RX, 0x17),
 > +};
 > +
-> +static const struct qmp_phy_init_tbl sm8750_usb3_rx_tbl[] = {
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_FO_GAIN, 0x0a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_SO_GAIN, 0x06),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_FASTLOCK_FO_GAIN, 0x2f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_SO_SATURATION_AND_ENABLE, 0x7f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_FASTLOCK_COUNT_LOW, 0xff),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_FASTLOCK_COUNT_HIGH, 0x0f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_PI_CONTROLS, 0x99),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_SB2_THRESH1, 0x08),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_SB2_THRESH2, 0x08),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_SB2_GAIN1, 0x00),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_UCDR_SB2_GAIN2, 0x0a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_AUX_DATA_TCOARSE_TFINE, 0x20),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_VGA_CAL_CNTRL1, 0x54),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_VGA_CAL_CNTRL2, 0x0f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_GM_CAL, 0x13),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_EQU_ADAPTOR_CNTRL2, 0x0e),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_EQU_ADAPTOR_CNTRL3, 0x4a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_EQU_ADAPTOR_CNTRL4, 0x0a),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_IDAC_TSETTLE_LOW, 0x07),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_IDAC_TSETTLE_HIGH, 0x00),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_EQ_OFFSET_ADAPTOR_CNTRL1, 0x27),
-> +
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_SIDGET_ENABLES, 0x0c),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_SIGDET_CNTRL, 0x04),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_SIGDET_DEGLITCH_CNTRL, 0x0e),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_00_LOW, 0x3f),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_00_HIGH, 0xbf),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_00_HIGH2, 0xff),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_00_HIGH3, 0xdf),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_00_HIGH4, 0xed),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_01_LOW, 0x19),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_01_HIGH, 0x09),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_01_HIGH2, 0x91),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_01_HIGH3, 0xb7),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_RX_MODE_01_HIGH4, 0xaa),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_DFE_EN_TIMER, 0x04),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_DFE_CTLE_POST_CAL_OFFSET, 0x38),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_DCC_CTRL1, 0x0c),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_VTH_CODE, 0x10),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_SIGDET_CAL_CTRL1, 0x14),
-> +	QMP_PHY_INIT_CFG(QSERDES_V6_RX_SIGDET_CAL_TRIM, 0x08),
+> +static const struct qmp_phy_init_tbl sm8750_ufsphy_rx[] = {
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_UCDR_FO_GAIN_RATE2, 0x0C),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_UCDR_FO_GAIN_RATE4, 0x0C),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_UCDR_SO_GAIN_RATE4, 0x04),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_EQ_OFFSET_ADAPTOR_CNTRL1, 0x14),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_UCDR_PI_CONTROLS, 0x07),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_OFFSET_ADAPTOR_CNTRL3, 0x0E),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_UCDR_FASTLOCK_COUNT_HIGH_RATE4, 0x02),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_UCDR_FASTLOCK_FO_GAIN_RATE4, 0x1C),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_UCDR_FASTLOCK_SO_GAIN_RATE4, 0x06),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_VGA_CAL_MAN_VAL, 0x8E),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_EQU_ADAPTOR_CNTRL4, 0x0F),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE_0_1_B0, 0xCE),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE_0_1_B1, 0xCE),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE_0_1_B2, 0x18),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE_0_1_B3, 0x1A),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE_0_1_B4, 0x0F),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE_0_1_B6, 0x60),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE_0_1_B7, 0x62),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE2_B3, 0x9A),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE2_B6, 0xE2),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE2_B7, 0x06),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE3_B0, 0x1B),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE3_B1, 0x1B),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE3_B2, 0x98),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE3_B3, 0x9B),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE3_B4, 0x2A),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE3_B5, 0x12),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE3_B7, 0x06),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE3_B8, 0x01),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SA_B0, 0x93),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SA_B1, 0x93),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SA_B2, 0x60),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SA_B3, 0x99),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SA_B4, 0x5F),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SA_B5, 0x92),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SA_B6, 0xE3),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SA_B7, 0x06),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SB_B0, 0x9B),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SB_B1, 0x9B),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SB_B2, 0x60),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SB_B3, 0x99),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SB_B4, 0x5F),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SB_B5, 0x92),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SB_B6, 0xFB),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_MODE_RATE4_SB_B7, 0x06),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_UCDR_SO_SATURATION, 0x1F),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_UCDR_PI_CTRL1, 0x94),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_TERM_BW_CTRL0, 0xFA),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_DLL0_FTUNE_CTRL, 0x30),
+> +	QMP_PHY_INIT_CFG(QSERDES_UFS_V7_RX_SIGDET_CAL_TRIM, 0x77),
 > +};
 > +
-> +static const struct qmp_phy_init_tbl sm8750_usb3_pcs_tbl[] = {
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_LOCK_DETECT_CONFIG1, 0xc4),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_LOCK_DETECT_CONFIG2, 0x89),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_LOCK_DETECT_CONFIG3, 0x20),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_LOCK_DETECT_CONFIG6, 0x13),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_REFGEN_REQ_CONFIG1, 0x21),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_RX_SIGDET_LVL, 0x55),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_RCVR_DTCT_DLY_P1U2_L, 0xe7),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_RCVR_DTCT_DLY_P1U2_H, 0x03),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_CDR_RESET_TIME, 0x0a),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_ALIGN_DETECT_CONFIG1, 0x88),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_ALIGN_DETECT_CONFIG2, 0x13),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_PCS_TX_RX_CONFIG, 0x0c),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_EQ_CONFIG1, 0x4b),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_EQ_CONFIG5, 0x10),
+> +static const struct qmp_phy_init_tbl sm8750_ufsphy_pcs[] = {
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_MULTI_LANE_CTRL1, 0x02),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_MID_TERM_CTRL1, 0x43),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_PCS_CTRL1, 0x40),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_LARGE_AMP_DRV_LVL, 0x0F),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_RX_SIGDET_CTRL2, 0x68),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_POST_EMP_LVL_S4, 0x0E),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_POST_EMP_LVL_S5, 0x12),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_POST_EMP_LVL_S6, 0x15),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_POST_EMP_LVL_S7, 0x19),
 > +};
 > +
-> +static const struct qmp_phy_init_tbl sm8750_usb3_pcs_usb_tbl[] = {
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_USB3_LFPS_DET_HIGH_COUNT_VAL, 0xf8),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_USB3_RXEQTRAINING_DFE_TIME_S2, 0x07),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_USB3_RCVR_DTCT_DLY_U3_L, 0x40),
-> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_USB3_RCVR_DTCT_DLY_U3_H, 0x00),
+> +static const struct qmp_phy_init_tbl sm8750_ufsphy_g4_pcs[] = {
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_HSGEAR_CAPABILITY, 0x04),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_RX_HSGEAR_CAPABILITY, 0x04),
 > +};
 > +
->   static const struct qmp_phy_init_tbl x1e80100_usb43dp_pcs_usb_tbl[] = {
->   	QMP_PHY_INIT_CFG(QPHY_V6_PCS_USB3_LFPS_DET_HIGH_COUNT_VAL, 0xf8),
->   	QMP_PHY_INIT_CFG(QPHY_V6_PCS_USB3_RXEQTRAINING_DFE_TIME_S2, 0x07),
-> @@ -1781,6 +1914,22 @@ static const struct qmp_combo_offsets qmp_combo_offsets_v5 = {
->   	.dp_dp_phy	= 0x2200,
+> +static const struct qmp_phy_init_tbl sm8750_ufsphy_g5_pcs[] = {
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_PLL_CNTL, 0x33),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_TX_HSGEAR_CAPABILITY, 0x05),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_RX_HSGEAR_CAPABILITY, 0x05),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_RX_HS_G5_SYNC_LENGTH_CAPABILITY, 0x4d),
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_RX_HSG5_SYNC_WAIT_TIME, 0x9e),
+> +};
+> +
+> +static const struct qmp_phy_init_tbl sm8750_ufsphy_hs_b_pcs[] = {
+> +	QMP_PHY_INIT_CFG(QPHY_V6_PCS_UFS_PCS_CTRL1, 0x41),
+> +};
+> +
+>   struct qmp_ufs_offsets {
+>   	u16 serdes;
+>   	u16 pcs;
+> @@ -1523,6 +1650,45 @@ static const struct qmp_phy_cfg sm8650_ufsphy_cfg = {
+>   	.regs			= ufsphy_v6_regs_layout,
 >   };
 >   
-> +static const struct qmp_combo_offsets qmp_combo_offsets_v8 = {
-
-Why v8 ?
-
-> +	.com		= 0x0000,
-> +	.txa		= 0x1400,
-> +	.rxa		= 0x1600,
-> +	.txb		= 0x1800,
-> +	.rxb		= 0x1a00,
-> +	.usb3_serdes	= 0x1000,
-> +	.usb3_pcs_misc	= 0x1c00,
-> +	.usb3_pcs	= 0x1e00,
-> +	.usb3_pcs_usb	= 0x2100,
-> +	.dp_serdes	= 0x3000,
-> +	.dp_txa		= 0x3400,
-> +	.dp_txb		= 0x3800,
-> +	.dp_dp_phy	= 0x3c00,
-> +};
+> +static const struct qmp_phy_cfg sm8750_ufsphy_cfg = {
+> +	.lanes			= 2,
 > +
->   static const struct qmp_phy_cfg sar2130p_usb3dpphy_cfg = {
->   	.offsets		= &qmp_combo_offsets_v3,
->   
-> @@ -2280,6 +2429,51 @@ static const struct qmp_phy_cfg sm8650_usb3dpphy_cfg = {
->   	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
->   };
->   
-> +static const struct qmp_phy_cfg sm8750_usb3dpphy_cfg = {
-> +	.offsets		= &qmp_combo_offsets_v8,
+> +	.offsets		= &qmp_ufs_offsets_v6,
+> +	.max_supported_gear	= UFS_HS_G5,
 > +
-> +	.serdes_tbl		= sm8750_usb3_serdes_tbl,
-> +	.serdes_tbl_num		= ARRAY_SIZE(sm8750_usb3_serdes_tbl),
-> +	.tx_tbl			= sm8750_usb3_tx_tbl,
-> +	.tx_tbl_num		= ARRAY_SIZE(sm8750_usb3_tx_tbl),
-> +	.rx_tbl			= sm8750_usb3_rx_tbl,
-> +	.rx_tbl_num		= ARRAY_SIZE(sm8750_usb3_rx_tbl),
-> +	.pcs_tbl		= sm8750_usb3_pcs_tbl,
-> +	.pcs_tbl_num		= ARRAY_SIZE(sm8750_usb3_pcs_tbl),
-> +	.pcs_usb_tbl		= sm8750_usb3_pcs_usb_tbl,
-> +	.pcs_usb_tbl_num	= ARRAY_SIZE(sm8750_usb3_pcs_usb_tbl),
+> +	.tbls = {
+> +		.serdes		= sm8750_ufsphy_serdes,
+> +		.serdes_num	= ARRAY_SIZE(sm8750_ufsphy_serdes),
+> +		.tx		= sm8750_ufsphy_tx,
+> +		.tx_num		= ARRAY_SIZE(sm8750_ufsphy_tx),
+> +		.rx		= sm8750_ufsphy_rx,
+> +		.rx_num		= ARRAY_SIZE(sm8750_ufsphy_rx),
+> +		.pcs		= sm8750_ufsphy_pcs,
+> +		.pcs_num	= ARRAY_SIZE(sm8750_ufsphy_pcs),
+> +	},
 > +
-> +	.dp_serdes_tbl		= qmp_v6_dp_serdes_tbl,
-> +	.dp_serdes_tbl_num	= ARRAY_SIZE(qmp_v6_dp_serdes_tbl),
-> +	.dp_tx_tbl		= qmp_v6_dp_tx_tbl,
-> +	.dp_tx_tbl_num		= ARRAY_SIZE(qmp_v6_dp_tx_tbl),
+> +	.tbls_hs_b = {
+> +		.pcs		= sm8750_ufsphy_hs_b_pcs,
+> +		.pcs_num	= ARRAY_SIZE(sm8750_ufsphy_hs_b_pcs),
+> +	},
 > +
-> +	.serdes_tbl_rbr		= qmp_v6_dp_serdes_tbl_rbr,
-> +	.serdes_tbl_rbr_num	= ARRAY_SIZE(qmp_v6_dp_serdes_tbl_rbr),
-> +	.serdes_tbl_hbr		= qmp_v6_dp_serdes_tbl_hbr,
-> +	.serdes_tbl_hbr_num	= ARRAY_SIZE(qmp_v6_dp_serdes_tbl_hbr),
-> +	.serdes_tbl_hbr2	= qmp_v6_dp_serdes_tbl_hbr2,
-> +	.serdes_tbl_hbr2_num	= ARRAY_SIZE(qmp_v6_dp_serdes_tbl_hbr2),
-> +	.serdes_tbl_hbr3	= qmp_v6_dp_serdes_tbl_hbr3,
-> +	.serdes_tbl_hbr3_num	= ARRAY_SIZE(qmp_v6_dp_serdes_tbl_hbr3),
+> +	.tbls_hs_overlay[0] = {
+> +		.pcs		= sm8750_ufsphy_g4_pcs,
+> +		.pcs_num	= ARRAY_SIZE(sm8750_ufsphy_g4_pcs),
+> +		.max_gear	= UFS_HS_G4,
+> +	},
+> +	.tbls_hs_overlay[1] = {
+> +		.pcs		= sm8750_ufsphy_g5_pcs,
+> +		.pcs_num	= ARRAY_SIZE(sm8750_ufsphy_g5_pcs),
+> +		.max_gear	= UFS_HS_G5,
+> +	},
 > +
-> +	.swing_hbr_rbr		= &qmp_dp_v6_voltage_swing_hbr_rbr,
-> +	.pre_emphasis_hbr_rbr	= &qmp_dp_v6_pre_emphasis_hbr_rbr,
-> +	.swing_hbr3_hbr2	= &qmp_dp_v5_voltage_swing_hbr3_hbr2,
-> +	.pre_emphasis_hbr3_hbr2 = &qmp_dp_v5_pre_emphasis_hbr3_hbr2,
-> +
-> +	.dp_aux_init		= qmp_v4_dp_aux_init,
-> +	.configure_dp_tx	= qmp_v4_configure_dp_tx,
-> +	.configure_dp_phy	= qmp_v4_configure_dp_phy,
-> +	.calibrate_dp_phy	= qmp_v4_calibrate_dp_phy,
-> +
-> +	.regs			= qmp_v6_usb3phy_regs_layout,
-> +	.reset_list		= msm8996_usb3phy_reset_l,
-> +	.num_resets		= ARRAY_SIZE(msm8996_usb3phy_reset_l),
 > +	.vreg_list		= qmp_phy_vreg_l,
 > +	.num_vregs		= ARRAY_SIZE(qmp_phy_vreg_l),
+> +	.regs			= ufsphy_v6_regs_layout,
+> +
 > +};
 > +
->   static int qmp_combo_dp_serdes_init(struct qmp_combo *qmp)
+>   static void qmp_ufs_serdes_init(struct qmp_ufs *qmp, const struct qmp_phy_cfg_tbls *tbls)
 >   {
->   	const struct qmp_phy_cfg *cfg = qmp->cfg;
-> @@ -3915,6 +4109,10 @@ static const struct of_device_id qmp_combo_of_match_table[] = {
->   		.compatible = "qcom,sm8650-qmp-usb3-dp-phy",
->   		.data = &sm8650_usb3dpphy_cfg,
+>   	void __iomem *serdes = qmp->serdes;
+> @@ -1593,8 +1759,10 @@ static void qmp_ufs_init_registers(struct qmp_ufs *qmp, const struct qmp_phy_cfg
+>   		qmp_ufs_pcs_init(qmp, &cfg->tbls_hs_overlay[i]);
+>   	}
+>   
+> -	if (qmp->mode == PHY_MODE_UFS_HS_B)
+> +	if (qmp->mode == PHY_MODE_UFS_HS_B) {
+>   		qmp_ufs_serdes_init(qmp, &cfg->tbls_hs_b);
+> +		qmp_ufs_pcs_init(qmp, &cfg->tbls_hs_b);
+> +	}
+>   }
+>   
+>   static int qmp_ufs_com_init(struct qmp_ufs *qmp)
+> @@ -2061,7 +2229,11 @@ static const struct of_device_id qmp_ufs_of_match_table[] = {
+>   	}, {
+>   		.compatible = "qcom,sm8650-qmp-ufs-phy",
+>   		.data = &sm8650_ufsphy_cfg,
+> +	}, {
+> +		.compatible = "qcom,sm8750-qmp-ufs-phy",
+> +		.data = &sm8750_ufsphy_cfg,
 >   	},
-> +	{
-> +		.compatible = "qcom,sm8750-qmp-usb3-dp-phy",
-> +		.data = &sm8750_usb3dpphy_cfg,
-> +	},
->   	{
->   		.compatible = "qcom,x1e80100-qmp-usb3-dp-phy",
->   		.data = &x1e80100_usb3dpphy_cfg,
+> +
+>   	{ },
+>   };
+>   MODULE_DEVICE_TABLE(of, qmp_ufs_of_match_table);
 > 
 
-Apart that, this looks good:
+Looks good
+
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
