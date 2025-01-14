@@ -1,60 +1,62 @@
-Return-Path: <devicetree+bounces-138364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F71A101C7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:11:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45BA1A101D1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:14:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B7B01887CA9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 08:11:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68F7618862B8
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 08:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28F22500C4;
-	Tue, 14 Jan 2025 08:11:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD9142500C9;
+	Tue, 14 Jan 2025 08:13:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SSDQUTLK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vm5YCZZ3"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98B4F2500B0;
-	Tue, 14 Jan 2025 08:11:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A05942500A8;
+	Tue, 14 Jan 2025 08:13:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736842294; cv=none; b=WF8jR+zUMq6RLIOhckyf83qSAlRt3TImbt+z/l8/E7Mwd8x9GZ8s2yNfIM4/d7QHg+ZXw+hkwaG0qcL4K52JhWNIMZL9GQFagj5+vr5p4HOEWyoMBPlKE0RIHmEz0jtZZI516NI2iNcrH/DL/O9vXwfk5OTSwXwmbbL4H9Y6dsc=
+	t=1736842435; cv=none; b=lKnB9zlFShKgOl+SPM9kJgg/vonWQQeaGux6A/3UOlw6060piHoF0CesBROpjbMU5jsMTrL2T6HXQKDdu3T6a472Haa9++8jFPj0IcOtvzQ1DrtBKOELd/o3zz1UFgRyH5KQHPggObRAP0+OdNuTGiH6CliasgGYvEivGzDMrgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736842294; c=relaxed/simple;
-	bh=iiO05K3Bxxi9dSe08vcscT16JO/vw8lUwAhzAZKYWNE=;
+	s=arc-20240116; t=1736842435; c=relaxed/simple;
+	bh=4ClXcc+yoIv8fGvL3au1hEk5msyMnUJUrObGjjguQyU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S9/e+QLOcwSqwtG642srBKJLfH1KInGajTInIXNmK2S+WBO3ag1vwcvhH9jMXyELfL3x5oHPhRJoC9Xbstg3KmYk8HPjK/+AZQ16BTJG9reuUfvHtQgO0Wv2jEKKAC0UHkOL2y1yYbMJCAponPXSJjhJFbRpDg4tqxDGAHhYJpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SSDQUTLK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CA81C4CEDD;
-	Tue, 14 Jan 2025 08:11:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kg1JqibPGmGKz9FNIKS08BqIr1fsj2BC4rCpB6xc23AhTNVNHvWSQGO/AyLG/EcF2G53n+aXTJd+FJj6j3kk921P2q1hmGK99/HgZ2BmgQ5hb+BsSgAGRd7+oPVvvPua7tqtJfiLoG2eg0h5Oc+Nah0Bx0fNYwrAOciqXPj4hEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vm5YCZZ3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CEBAC4CEDD;
+	Tue, 14 Jan 2025 08:13:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736842294;
-	bh=iiO05K3Bxxi9dSe08vcscT16JO/vw8lUwAhzAZKYWNE=;
+	s=k20201202; t=1736842435;
+	bh=4ClXcc+yoIv8fGvL3au1hEk5msyMnUJUrObGjjguQyU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SSDQUTLK93tuwOlPYS+6GQ6ms41EHH4/N6CewjGCJomnrvtwuVXNbNAUTlLQCIOhV
-	 vt7dJhwlh1qyk/gBQRwG3zHgEhUGPzf2j5gaz/Vqha+tUodxoBMgDpYwz8BqGIQSyG
-	 Vot2mIZoGpU3YSQ5ZB71W4EGLImKO7wBokVnYxWWdpW0RYkuN/gc6yVStStmkUNlLv
-	 FGH6Y7D/trhAqu/72vNRijkEfFvVv2UBBG4RN/h5PtToDYVH5u0XuW1MC9QBqaAod4
-	 cRq4hjKrpYJ5dmiL4RNTTzLE0t46saoPKGJ/uCaMbkSS7G8tdwqO5eXBic7wNI4hcE
-	 X2unBGrRZ+5bA==
-Date: Tue, 14 Jan 2025 09:11:30 +0100
+	b=Vm5YCZZ3GcIBaHzz/mEOWIW+kNpnIeg8Uh4vSPeihqA5xYxDV45GbSMuPBIGwyLE/
+	 aZWbY+yaeYsCgfCrV4HZehUiD/X4mBuFTAjBkAeRwG38b1gOq2FXWrZJDuAsqG/Dal
+	 DFyeDWROKY9hGDcjLLKB2naxnNY6laUqXxCee9Tathv4TVXNTL/1+SWBTYlWj9BLf5
+	 6WSCWAbfplB/NnxPK6GcYshPqtoYYKpHLBy6oTojCZ33WsUN24EDKUGoTpfqfZQ6el
+	 Dl3Z2q79kT553ZzbNvhaojIPdWBeDqqcyniBma8AdDGxlbV93Q+3HIgLs+Zyrv8eq5
+	 eWiC4Pxo0qIKg==
+Date: Tue, 14 Jan 2025 09:13:51 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
-	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	=?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 1/7] dt-bindings: mfd: gpio: Add MAX7360
-Message-ID: <gerivs3f3gd3a227tu3ojn6wi6l2fbtwvw4q6n4k5aaqqupyya@xojqkp6nkrkb>
-References: <20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com>
- <20250113-mdb-max7360-support-v3-1-9519b4acb0b1@bootlin.com>
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Abel Vesa <abel.vesa@linaro.org>, Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org, 
+	imx@lists.linux.dev, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/6] dt-bindings: clock: imx8m: document
+ nominal/overdrive properties
+Message-ID: <v6bm2wnlsdbfvcvpo7p5azbe7rqrssjz6kehd2aex47mldot7k@45k622hphi7n>
+References: <20250113-imx8m-clk-v3-0-0d6e9bdeaa4e@pengutronix.de>
+ <20250113-imx8m-clk-v3-1-0d6e9bdeaa4e@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,193 +65,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250113-mdb-max7360-support-v3-1-9519b4acb0b1@bootlin.com>
+In-Reply-To: <20250113-imx8m-clk-v3-1-0d6e9bdeaa4e@pengutronix.de>
 
-On Mon, Jan 13, 2025 at 01:42:25PM +0100, Mathieu Dubois-Briand wrote:
-> +  interrupt-controller: true
-> +
-> +  "#interrupt-cells":
-> +    const: 2
-> +
-> +  maxim,constant-current-disable:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: >
+On Mon, Jan 13, 2025 at 02:42:51PM +0100, Ahmad Fatoum wrote:
+>  
+> +  fsl,operating-mode:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      The operating mode of the SoC. This affects the maximum clock rates that
+> +      can safely be configured by the clock controller.
+> +    oneOf:
+> +      - enum:
 
-Drop >
+Just enum, no need for oneOf.
 
-> +      Bit field, each bit disables constant-current output of the associated
-> +      GPIO, starting from the least significant bit for the first GPIO.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-maximum: 0xff?
+Best regards,
+Krzysztof
 
-> +
-> +required:
-> +  - compatible
-> +  - gpio-controller
-> +  - ngpios
-> +
-
-allOf: here, so you won't re-indent it later.
-
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - maxim,max7360-gpio
-> +then:
-> +  required:
-> +    - interrupt-controller
-> +else:
-> +  properties:
-> +    interrupt-controller: false
-> +    maxim,constant-current-disable: false
-> +
-> +    ngpios:
-> +      maximum: 6
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    gpio {
-> +      compatible = "maxim,max7360-gpio";
-> +
-> +      gpio-controller;
-> +      #gpio-cells = <2>;
-> +      ngpios = <8>;
-> +      maxim,constant-current-disable = <0x06>;
-> +
-> +      interrupt-controller;
-> +      #interrupt-cells = <2>;
-> +    };
-
-...
-
-> +  interrupt-names:
-> +    items:
-> +      - const: inti
-> +      - const: intk
-> +
-> +  keypad-debounce-delay-ms:
-> +    description: Keypad debounce delay in ms
-> +    minimum: 9
-> +    maximum: 40
-> +    default: 9
-> +
-> +  autorepeat: true
-
-Drop, not needed.
-
-> +
-> +  rotary-debounce-delay-ms:
-> +    description: Rotary encoder debounce delay in ms
-> +    minimum: 0
-> +    maximum: 15
-> +    default: 0
-> +
-> +  linux,axis:
-> +    description: The input subsystem axis to map to this rotary encoder.
-
-Missing type. I guess you wanted to reference rotary encoder schema,
-next to input and matrix-keymap?
-
-> +
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +  gpio:
-> +    $ref: /schemas/gpio/maxim,max7360-gpio.yaml#
-> +    description: >
-
-Drop >
-
-> +      PORT0 to PORT7 general purpose input/output pins configuration.
-> +
-> +  gpo:
-> +    $ref: /schemas/gpio/maxim,max7360-gpio.yaml#
-> +    description: >
-
-Drop >
-
-> +      COL2 to COL7 general purpose output pins configuration.
-> +      Allows to use unused keypad columns as outputs.
-> +      The MAX7360 has 8 column lines and 6 of them can be used as GPOs. Value
-> +      of ngpios must be coherent with the value of keypad,num-columns, as their
-> +      sum must not exceed the number of physical lines.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +  - linux,keymap
-> +  - linux,axis
-> +  - "#pwm-cells"
-
-gpio and gpo nodes are optional? How would the driver behave? I assume
-you need to define the partition between GPIOs, especially that 'ngpios'
-are a required property in their schema.
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/input/input.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    i2c {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      io-expander@38 {
-> +        compatible = "maxim,max7360";
-> +        reg = <0x38>;
-> +
-> +        interrupt-parent = <&gpio1>;
-> +        interrupts = <23 IRQ_TYPE_LEVEL_LOW>,
-> +                     <24 IRQ_TYPE_LEVEL_LOW>;
-> +        interrupt-names = "inti", "intk";
-> +
-> +        keypad,num-rows = <8>;
-> +        keypad,num-columns = <4>;
-> +        linux,keymap = <
-> +          MATRIX_KEY(0x00, 0x00, KEY_F5)
-> +          MATRIX_KEY(0x01, 0x00, KEY_F4)
-> +          MATRIX_KEY(0x02, 0x01, KEY_F6)
-> +          >;
-> +        keypad-debounce-delay-ms = <10>;
-> +        autorepeat;
-> +
-> +        rotary-debounce-delay-ms = <2>;
-> +        linux,axis = <0>; /* REL_X */
-> +
-> +        #pwm-cells = <3>;
-> +
-> +        max7360_gpio: gpio {
-> +          compatible = "maxim,max7360-gpio";
-> +
-> +          gpio-controller;
-> +          #gpio-cells = <2>;
-> +          ngpios = <8>;
-> +          maxim,constant-current-disable = <0x06>;
-> +
-> +          interrupt-controller;
-> +          #interrupt-cells = <0x2>;
-> +        };
-> +
-> +        max7360_gpo: gpo {
-> +          compatible = "maxim,max7360-gpo";
-> +
-> +          gpio-controller;
-> +          #gpio-cells = <2>;
-> +          ngpios = <4>;
-> +        };
-> +      };
-> +    };
-> 
-> -- 
-> 2.39.5
-> 
 
