@@ -1,119 +1,255 @@
-Return-Path: <devicetree+bounces-138318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138319-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBFB0A0FEB7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 03:23:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4F0FA0FEB9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 03:25:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE5111660C6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 02:23:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E27A7A0569
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 02:25:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E6CE230276;
-	Tue, 14 Jan 2025 02:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C832230279;
+	Tue, 14 Jan 2025 02:25:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZBJ6F12F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com [209.85.214.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CD71C28E;
-	Tue, 14 Jan 2025 02:22:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4AF542A83;
+	Tue, 14 Jan 2025 02:25:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736821378; cv=none; b=txADFv0vdZaKWRU+7dSRMTi5tgwq5NvvhLs9j0TprUEGBgN4mnnVpwX0IzE6N+SBBhzAaINTU0p6bTAc1pdq6YJ7B33iypsxAV2hlvNmf1hwxlyX3jYwIaEHCHl6CO1q8AEXxG8hFED2Z8ufw5GKdC7DqVVjQG4UHgn9b8nquPk=
+	t=1736821546; cv=none; b=c/AFNuQfdlPjr8FLKuWSrwEnjpEnvJn2PsyUWPfhH56DuDELa+4xsoArQAv4KKP2CRUdRbvSXPg/CpKLYmeB4zPv1zLGGRzjGPQlyrQHweDe3Uzd/BsjB/+lKovwuN0nJ/k2Ih3iK4N/sQq9dY7ejJTdwFGh/e90/+cIjCH4yWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736821378; c=relaxed/simple;
-	bh=pYb34rK5k562Yj5BCnzi5OkVcgnaIbFhOsGpPdugyI0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OdU8ID1FDW5F3WfiiyN1qXK1qNTdZMHH+KywG4uFnyLpuHF7DWypkM82RtSiDdNMo04TK1JOXDPP8nYk0aa1ENqoSKv/uye+Tmk/6tWRkK6TCj+LuVR4jqyFLJrKKcX5yfITLyH9nGhEY2FrgTaFvDF8ojfEI9/IytMWlRP2o2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
-Received: from [192.168.0.224] (ip5f5ae8ae.dynamic.kabel-deutschland.de [95.90.232.174])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: pmenzel)
-	by mx.molgen.mpg.de (Postfix) with ESMTPSA id 55E1861E64780;
-	Tue, 14 Jan 2025 03:22:03 +0100 (CET)
-Message-ID: <d9fc5212-9710-449e-90b9-a195305d990f@molgen.mpg.de>
-Date: Tue, 14 Jan 2025 03:21:59 +0100
+	s=arc-20240116; t=1736821546; c=relaxed/simple;
+	bh=9YIL/iwPETtS3Uc4g5zKiFIi3rMywxSN4XY/P1/T/g8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=n5vrNpJwH8Y+Z6aShkRJRaW+O3pXIwG198LZB0/lo+3WIrt15RXtuw4OPJYadt+aH5g24Jy3K5fov3684XZi2su85wuuSYCHjc8+GXO4Srv5ram8KBpsg3jpwMIU+I+6DtYYvG0Rsi2bzNuBEqMlvssj1RhXiQfhlc2W7lauEvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZBJ6F12F; arc=none smtp.client-ip=209.85.214.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f193.google.com with SMTP id d9443c01a7336-2163bd70069so89844155ad.0;
+        Mon, 13 Jan 2025 18:25:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736821544; x=1737426344; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ovYJILSVRDnDMfqXl3o1WSHf4vb82agxa/r/cx4UTlg=;
+        b=ZBJ6F12FacPZDCjCKay3vj9RpQx2uBtM/P0VVw16IjO41cp0LBXOsSaqdqU8WYl3oh
+         1buqUpO/uIsRV56h8u6y+eYndPtoV3OAGOlmiapUQFzRWqs1iiizodyrg9gvDB45bEse
+         SBVlTxlTT5xhUoTtSI/N+QCbRH1hsKwNl3AxeNnLuU1o2M5vwpmT59v+PSZXfXLHKBU3
+         5uy52dIlypoCS3ZA9bMvoSz4OC1PtSI/Q4OUUUixhDXhui0yqZnL3vErX7Y02krhYuF8
+         G4w3stB4vFMLzTryclytbQVgDUBCrUSff2+AWHd3Ps32suo5H6u8G1TY5mFzRUSIYx2C
+         GMJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736821544; x=1737426344;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ovYJILSVRDnDMfqXl3o1WSHf4vb82agxa/r/cx4UTlg=;
+        b=Rw6P0tpLrlhsgOJlNbFKM0TRUZzICiJBF35M5KQxdMiOhVU9puCxjtMgIay59reCY4
+         9pS67nWa9ZbpG61j2ObI+nglON/O+zaeqN/ozs8TLd1FPfBjlBYnq/d326rcbIAVrQ9m
+         PYkCoy8Uy4OK9be2a0prZptNtC1e+Q7/Z7zwDGNYYR2xtGospA5rp2w0uY0fF1U8yuU9
+         Xo00nIvdGmNyn9ectF2lJERvfBvpQ3gxgGr9iGhEQEJ1SO2QOSkGunjIUE5YyYnVVc0G
+         1jvXWqDl9nw6R6XQqv13GhPpA9brUC18apM8+PB1kfd0/jtiT6VHLSldNWn4E7SELmju
+         3nMg==
+X-Forwarded-Encrypted: i=1; AJvYcCVcdNx/96mlMlMc2nroIBV+pGwsT2TafmzhRRYwdJTROPhZWym1pDy+fYFHOtE6UHh2rQB5v5YLnx1V@vger.kernel.org, AJvYcCXJ6U+zVKwecu2BfbYyoQpBNIrUW/NomqUhzoczKHXpRodmCIw1NDrTazk8f9+/O3feFRYmidAmNSIJCuo8@vger.kernel.org, AJvYcCXQ4dofLX2McslpNZAnoyoy76Btf1q6YAcFbO2zVua52VMCp+AAd86Uqs6swAKUkBwk82vbNyh9ry1PZfc3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQMC2RUNSeF1iPNydHrrwd+FrwDLOtDnlXWqVN+duATeJdptAT
+	D8Nz9ua3mxBI1Pt3NZdlC8Xj7hG8m6IGPvI7MguyBXVjww/DsPQdtuNlvoZayf/2IlPjgcY+3FU
+	4LaIoe/+T+c61aEQO88OYJME4Eyw=
+X-Gm-Gg: ASbGncubZhr59hnGv78gwUAfhDxkDmpBhv4/n3HB/fWNADiV2EJEXiXBUAR6mtjVZPh
+	6mM0UgOXq9AHIzfcN4oNXOpD6xTLQjQ1dvh5Cn8M=
+X-Google-Smtp-Source: AGHT+IGP6i//JJgpTX27oV9PRMOvdfH3t41hB8kWi16VUWsAtyGttoeJ6QkexjvS/wDs/fL4592N/MAEALXiO9jTX3Q=
+X-Received: by 2002:a17:902:cec1:b0:216:3c36:69a7 with SMTP id
+ d9443c01a7336-21a83ffbe22mr356266955ad.45.1736821544065; Mon, 13 Jan 2025
+ 18:25:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 3/3] net: stmmac: dwmac-nuvoton: Add dwmac
- glue for Nuvoton MA35 family
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Joey Lu <a0987203069@gmail.com>, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
- devicetree@vger.kernel.org, ychuang3@nuvoton.com, netdev@vger.kernel.org,
- openbmc@lists.ozlabs.org, alexandre.torgue@foss.st.com,
- linux-kernel@vger.kernel.org, joabreu@synopsys.com, schung@nuvoton.com,
- peppe.cavallaro@st.com, yclu4@nuvoton.com,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250113055434.3377508-1-a0987203069@gmail.com>
- <20250113055434.3377508-4-a0987203069@gmail.com>
- <a30b338f-0a6f-47e7-922b-c637a6648a6d@molgen.mpg.de>
- <e7041d36-9bc7-482a-877d-6d8f549c0ada@lunn.ch>
-Content-Language: en-US
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <e7041d36-9bc7-482a-877d-6d8f549c0ada@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250113031917.3354988-1-Wenhua.Lin@unisoc.com>
+ <20250113031917.3354988-3-Wenhua.Lin@unisoc.com> <CAAfSe-uAsDfDvDbOdEqrR=0=U-bfSuDpLSw_EFv8=GNMGDEvgw@mail.gmail.com>
+In-Reply-To: <CAAfSe-uAsDfDvDbOdEqrR=0=U-bfSuDpLSw_EFv8=GNMGDEvgw@mail.gmail.com>
+From: wenhua lin <wenhua.lin1994@gmail.com>
+Date: Tue, 14 Jan 2025 10:25:32 +0800
+X-Gm-Features: AbW1kvYznCjGzoZXOIKRBOGNeRQ6G5op6dSUTq91uCjIqFSdjCeP_U0CyB0nVMw
+Message-ID: <CAB9BWhcnagYYtdq1+-r-MrEmr45gTPg1PnzAx-Q6YqaY1vNR2g@mail.gmail.com>
+Subject: Re: [PATCH V2 2/2] serial: sprd: Add support for sc9632
+To: Chunyan Zhang <zhang.lyra@gmail.com>
+Cc: Wenhua Lin <Wenhua.Lin@unisoc.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	Cixi Geng <cixi.geng@linux.dev>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	Xiongpeng Wu <xiongpeng.wu@unisoc.com>, Zhaochen Su <Zhaochen.Su@unisoc.com>, 
+	Zhirong Qiu <Zhirong.Qiu@unisoc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dear Andrew,
+On Mon, Jan 13, 2025 at 3:13=E2=80=AFPM Chunyan Zhang <zhang.lyra@gmail.com=
+> wrote:
+>
+> On Mon, 13 Jan 2025 at 11:20, Wenhua Lin <Wenhua.Lin@unisoc.com> wrote:
+> >
+> > Due to the platform's new project uart ip upgrade,
+> > the new project's timeout interrupt needs to use bit17
+> > while other projects' timeout interrupt needs to use
+> > bit13, using private data to adapt and be compatible
+> > with all projects.
+> >
+>
+> It seems that this patch has got merged into the last release, why do
+> you resend this?
 
+Hi Chunyan:
+  I'm sorry, I didn't realize that this commit had already been merged.
+  I resubmitted PATCH V2 to fix the issue with tags[1].
+  I made a mistake. Thank you for reminding me.
 
-Thank you for your quick reply.
+Thanks
 
-
-Am 14.01.25 um 21:16 schrieb Andrew Lunn:
->>> +#define NVT_MISCR_RMII          BIT(0)
->>> +
->>> +/* 2000ps is mapped to 0x0 ~ 0xF */
->>
->> Excuse my ignorance: What is ps?
-> 
-> picoseconds. An RGMII link needs a 2ns delay between the clock line
-> and the data lines. Some MACs allow you to tune the delay they can
-> insert, in this case in steps of 2ns / 16.
-
-Thank you for the clarification. Maybe it’s my English, but I didn’t 
-deduce this from how the comment is worded. I do not have a better idea 
-either.
-
->>> +#define NVT_PATH_DELAY_DEC      134
->>> +#define NVT_TX_DELAY_MASK       GENMASK(19, 16)
->>> +#define NVT_RX_DELAY_MASK       GENMASK(23, 20)
->>> +
->>> +struct nvt_priv_data {
->>> +	struct platform_device *pdev;
->>> +	struct regmap *regmap;
->>> +};
->>> +
->>> +static struct nvt_priv_data *
->>> +nvt_gmac_setup(struct platform_device *pdev, struct plat_stmmacenet_data *plat)
->>> +{
->>> +	struct device *dev = &pdev->dev;
->>> +	struct nvt_priv_data *bsp_priv;
->>> +	phy_interface_t phy_mode;
->>> +	u32 tx_delay, rx_delay;
->>
->> Please append the unit to the variable name.
-> 
-> Which is trick, because they are in units of 2000/16 of a picosecond.
-
-Understood. Maybe a comment could be added?
-
-
-Kind regards,
-
-Paul
+>
+> > Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
+> > ---
+> >  drivers/tty/serial/sprd_serial.c | 41 ++++++++++++++++++++++++++++----
+> >  1 file changed, 36 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/tty/serial/sprd_serial.c b/drivers/tty/serial/sprd=
+_serial.c
+> > index 3fc54cc02a1f..882580c3cf37 100644
+> > --- a/drivers/tty/serial/sprd_serial.c
+> > +++ b/drivers/tty/serial/sprd_serial.c
+> > @@ -53,10 +53,12 @@
+> >  #define SPRD_IEN_TX_EMPTY      BIT(1)
+> >  #define SPRD_IEN_BREAK_DETECT  BIT(7)
+> >  #define SPRD_IEN_TIMEOUT       BIT(13)
+> > +#define SPRD_IEN_DATA_TIMEOUT  BIT(17)
+> >
+> >  /* interrupt clear register */
+> >  #define SPRD_ICLR              0x0014
+> >  #define SPRD_ICLR_TIMEOUT      BIT(13)
+> > +#define SPRD_ICLR_DATA_TIMEOUT BIT(17)
+> >
+> >  /* line control register */
+> >  #define SPRD_LCR               0x0018
+> > @@ -102,6 +104,7 @@
+> >  #define SPRD_IMSR_TX_FIFO_EMPTY        BIT(1)
+> >  #define SPRD_IMSR_BREAK_DETECT BIT(7)
+> >  #define SPRD_IMSR_TIMEOUT      BIT(13)
+> > +#define SPRD_IMSR_DATA_TIMEOUT BIT(17)
+> >  #define SPRD_DEFAULT_SOURCE_CLK        26000000
+> >
+> >  #define SPRD_RX_DMA_STEP       1
+> > @@ -118,6 +121,12 @@ struct sprd_uart_dma {
+> >         bool enable;
+> >  };
+> >
+> > +struct sprd_uart_data {
+> > +       unsigned int timeout_ien;
+> > +       unsigned int timeout_iclr;
+> > +       unsigned int timeout_imsr;
+> > +};
+> > +
+> >  struct sprd_uart_port {
+> >         struct uart_port port;
+> >         char name[16];
+> > @@ -126,6 +135,7 @@ struct sprd_uart_port {
+> >         struct sprd_uart_dma rx_dma;
+> >         dma_addr_t pos;
+> >         unsigned char *rx_buf_tail;
+> > +       const struct sprd_uart_data *pdata;
+> >  };
+> >
+> >  static struct sprd_uart_port *sprd_port[UART_NR_MAX];
+> > @@ -134,6 +144,18 @@ static int sprd_ports_num;
+> >  static int sprd_start_dma_rx(struct uart_port *port);
+> >  static int sprd_tx_dma_config(struct uart_port *port);
+> >
+> > +static const struct sprd_uart_data sc9836_data =3D {
+> > +       .timeout_ien =3D SPRD_IEN_TIMEOUT,
+> > +       .timeout_iclr =3D SPRD_ICLR_TIMEOUT,
+> > +       .timeout_imsr =3D SPRD_IMSR_TIMEOUT,
+> > +};
+> > +
+> > +static const struct sprd_uart_data sc9632_data =3D {
+> > +       .timeout_ien =3D SPRD_IEN_DATA_TIMEOUT,
+> > +       .timeout_iclr =3D SPRD_ICLR_DATA_TIMEOUT,
+> > +       .timeout_imsr =3D SPRD_IMSR_DATA_TIMEOUT,
+> > +};
+> > +
+> >  static inline unsigned int serial_in(struct uart_port *port,
+> >                                      unsigned int offset)
+> >  {
+> > @@ -637,6 +659,8 @@ static irqreturn_t sprd_handle_irq(int irq, void *d=
+ev_id)
+> >  {
+> >         struct uart_port *port =3D dev_id;
+> >         unsigned int ims;
+> > +       struct sprd_uart_port *sp =3D
+> > +               container_of(port, struct sprd_uart_port, port);
+> >
+> >         uart_port_lock(port);
+> >
+> > @@ -647,14 +671,14 @@ static irqreturn_t sprd_handle_irq(int irq, void =
+*dev_id)
+> >                 return IRQ_NONE;
+> >         }
+> >
+> > -       if (ims & SPRD_IMSR_TIMEOUT)
+> > -               serial_out(port, SPRD_ICLR, SPRD_ICLR_TIMEOUT);
+> > +       if (ims & sp->pdata->timeout_imsr)
+> > +               serial_out(port, SPRD_ICLR, sp->pdata->timeout_iclr);
+> >
+> >         if (ims & SPRD_IMSR_BREAK_DETECT)
+> >                 serial_out(port, SPRD_ICLR, SPRD_IMSR_BREAK_DETECT);
+> >
+> >         if (ims & (SPRD_IMSR_RX_FIFO_FULL | SPRD_IMSR_BREAK_DETECT |
+> > -                  SPRD_IMSR_TIMEOUT))
+> > +                  sp->pdata->timeout_imsr))
+> >                 sprd_rx(port);
+> >
+> >         if (ims & SPRD_IMSR_TX_FIFO_EMPTY)
+> > @@ -729,7 +753,7 @@ static int sprd_startup(struct uart_port *port)
+> >         /* enable interrupt */
+> >         uart_port_lock_irqsave(port, &flags);
+> >         ien =3D serial_in(port, SPRD_IEN);
+> > -       ien |=3D SPRD_IEN_BREAK_DETECT | SPRD_IEN_TIMEOUT;
+> > +       ien |=3D SPRD_IEN_BREAK_DETECT | sp->pdata->timeout_ien;
+> >         if (!sp->rx_dma.enable)
+> >                 ien |=3D SPRD_IEN_RX_FULL;
+> >         serial_out(port, SPRD_IEN, ien);
+> > @@ -1184,6 +1208,12 @@ static int sprd_probe(struct platform_device *pd=
+ev)
+> >
+> >         up->mapbase =3D res->start;
+> >
+> > +       sport->pdata =3D of_device_get_match_data(&pdev->dev);
+> > +       if (!sport->pdata) {
+> > +               dev_err(&pdev->dev, "get match data failed!\n");
+> > +               return -EINVAL;
+> > +       }
+> > +
+> >         irq =3D platform_get_irq(pdev, 0);
+> >         if (irq < 0)
+> >                 return irq;
+> > @@ -1248,7 +1278,8 @@ static int sprd_resume(struct device *dev)
+> >  static SIMPLE_DEV_PM_OPS(sprd_pm_ops, sprd_suspend, sprd_resume);
+> >
+> >  static const struct of_device_id serial_ids[] =3D {
+> > -       {.compatible =3D "sprd,sc9836-uart",},
+> > +       {.compatible =3D "sprd,sc9836-uart", .data =3D &sc9836_data},
+> > +       {.compatible =3D "sprd,sc9632-uart", .data =3D &sc9632_data},
+> >         {}
+> >  };
+> >  MODULE_DEVICE_TABLE(of, serial_ids);
+> > --
+> > 2.34.1
+> >
 
