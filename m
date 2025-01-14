@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-138405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2082A10435
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 11:32:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90729A10437
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 11:32:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B03863A15F6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:32:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E663167A46
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:32:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBCA6229636;
-	Tue, 14 Jan 2025 10:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DCFC22DC30;
+	Tue, 14 Jan 2025 10:32:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="piQEL5bU"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UmOqlKPQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB46E22961E;
-	Tue, 14 Jan 2025 10:32:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F05A1ADC75;
+	Tue, 14 Jan 2025 10:32:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736850747; cv=none; b=bFtXLBu1l7hiOxoY+9ijzqZbg8TDm9ca/0nv2PDyZw+o+uKev+Pl1xNzgVAkYohif7ooIzI43vgJQaC7pb6vdVXs6HtbSEe5An59cw5c1P4DpIna6wlpEauF9cOHpf9Ynv0tdiWCBdIg4NZaDNYnIFKaKszDF7br7IeFeHQLMxg=
+	t=1736850750; cv=none; b=SQWKfrusYvfWjhx5rikI9XD3uw4q6lQX3UP8qAM1A2++aMJTtKiJO0D1jvswUfnPmN3O/h0yVBB0hWUE8IEDkReUPClyHxSblYcztju4urVSePRs0fk6MwgoS218k332Fdv1QGUkSKVzVrbzFdqnBLxO/sq1mFGoOuuake8Um0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736850747; c=relaxed/simple;
-	bh=gTTeMn+E3DCHVqMg0J3tutnrD2qfrPRaA0W7YuCj0IM=;
+	s=arc-20240116; t=1736850750; c=relaxed/simple;
+	bh=i6Mcj9q1p4UBYKeh3HAX0U/Icv+ABLJke6uy3OaX3bU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ck1ZF9YXTG1OQ7DGox3y+Fa08ywAfnq7ZJJfVJoHi8PA+4KHRcVvGfzHGrf9g6L6XwlVWTG1p8BgIxGTvQRR4T/xSG36fXE8Wxaz54zv9N3dlT27cAfVtTFHmEbFkpfY+7r0TRd2eFeQE/bVVb56uBYzzeRadXSWf9EL6WV6thA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=piQEL5bU; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=DQSbuqdLpnduS7HFJGdiYcwQqU5/Nw303c9AoTxGxDNotXQil4ZSmTji2EzaphmWZSEZSvcnEMKSbA6/3ZiFWLQCldozsnr2lEgKL4f3yg8jeJLkeYyA8HaBRWebiqkyevIQ8uQDTYmsO/MLiFURaOhLK9p//d14hKu9j4MYTyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UmOqlKPQ; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1736850744;
-	bh=gTTeMn+E3DCHVqMg0J3tutnrD2qfrPRaA0W7YuCj0IM=;
+	s=mail; t=1736850746;
+	bh=i6Mcj9q1p4UBYKeh3HAX0U/Icv+ABLJke6uy3OaX3bU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=piQEL5bUhPfSBzn3AY6sjpcce2ovZfwpw6ndr++u6Y7Leip4eFx9fyiOoBPXyCB2L
-	 3w9xXgdsRkpMRzlqpVQA08rQN+kAYlhzW0qbvQqsPg0+ALqWqZs7BsrHP+yHmQRSx7
-	 w0tvzuvyLWFIh/u738JruOHdafsSvUK4400HK6qOSP5xHR4fWqUEv+Fd8ASCciqT93
-	 M3cexzcwr89PrseHWxdXtKnY+MIr4yuJ4BHZBTpJFxmsQDQRUJHqChKqpBM5aA1VW6
-	 4B322pDxCug3415pZyO+BYusNF8RXhEUKKkwEqkhtamW1XA/JzunpnozN3oQGE3kBC
-	 tlrQc17h3HC9Q==
+	b=UmOqlKPQY5VQH3N3NMxOVvfTRvi7mfYbt7tq74IQbWIe4kMQ9tT/m/XpHyuKmsBmH
+	 p8iQwGuMn3UUennqZNuZxSJ+oGlEKjW+2x7PHzAB2L1F1m3AuM8dqErNp5a1GHEuxd
+	 vzo7UC+fZJFZOHq9D02t6m/Nf6alrzXfXS7bhkr5QdybHxI8rewIbCsFusWntWkdYQ
+	 QyOvxsskagcPCOrGXkrUAJph9EoEY438+Oxevg0fwbfCPdRU+DFU5JyxeCrojB94Bh
+	 8F1GgtnxmE7OqZUdS8qrPX5k2+uyFNx6e+qapqeD8rg1vEz1EKIRTSb9JBQQotsdPF
+	 bKCOMjyIavYOw==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 67DF717E0DB7;
-	Tue, 14 Jan 2025 11:32:23 +0100 (CET)
-Message-ID: <c041b875-23a6-4e0a-a31a-40bee27b62b5@collabora.com>
-Date: Tue, 14 Jan 2025 11:32:23 +0100
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2057917E0DF3;
+	Tue, 14 Jan 2025 11:32:26 +0100 (CET)
+Message-ID: <c4000cde-e889-46ef-8b56-ffa18c9fe004@collabora.com>
+Date: Tue, 14 Jan 2025 11:32:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,8 +57,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: mediatek: add device-tree for Genio 510
- EVK board
+Subject: Re: [PATCH 2/3] arm64: dts: mediatek: add support for MT8370 SoC
 To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
@@ -67,68 +66,160 @@ Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
  kernel@collabora.com
 References: <20250114-dts_mt8370-genio-510-v1-0-8517ee0fdbe8@collabora.com>
- <20250114-dts_mt8370-genio-510-v1-3-8517ee0fdbe8@collabora.com>
+ <20250114-dts_mt8370-genio-510-v1-2-8517ee0fdbe8@collabora.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20250114-dts_mt8370-genio-510-v1-3-8517ee0fdbe8@collabora.com>
+In-Reply-To: <20250114-dts_mt8370-genio-510-v1-2-8517ee0fdbe8@collabora.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 Il 14/01/25 08:38, Louis-Alexis Eyraud ha scritto:
-> This commit adds a basic device-tree (mt8370-genio-510-evk.dts) in
-> order to be able to boot the Genio 510 EVK board, based on MediaTek
-> MT8370 SoC and very close to the Genio 700 EVK board. It also
-> splits mt8390-genio-700-evk.dts file in two to create
-> mt8390-genio-common.dtsi include file, containing common definitions
-> for both boards.
+> This commit add the support of the Mediatek MT8370 SoC.
+> It is a less powerful variant of MT8390 SoC and their
+> main differences are:
+> - Arm Cortex-A55 cores number (4 vs 6)
+> - Arm Cortex-A78 core speed (2.0 GHz vs 2.2 Ghz)
+> - Arm Mali-G57 GPU core number (2 vs 3)
+
+You're mentioning the number of GPU cores, but you're not adding any variation
+in mt8370.dtsi: this is fine because the GPU is disabled by default, but please
+either add it, or mention in the commit message that the override will be done
+in a later commit.
+
 > 
+> Like MT8390, MT8370 hardware register maps are identical to MT8188.
+> 
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8188.dtsi |  8 ++--
+>   arch/arm64/boot/dts/mediatek/mt8370.dtsi | 64 ++++++++++++++++++++++++++++++++
+>   2 files changed, 68 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> index 338120930b819645662465fa7b3c6be6491764ff..5d78f51c6183c15018986df2c76e6fdc1f9f43b4 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> @@ -492,7 +492,7 @@ cpu_little0_crit: trip-crit {
+>   			};
+>   
+>   			cooling-maps {
+> -				map0 {
+> +				cpu_little0_cooling_map0: map0 {
+>   					trip = <&cpu_little0_alert0>;
+>   					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>   							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> @@ -530,7 +530,7 @@ cpu_little1_crit: trip-crit {
+>   			};
+>   
+>   			cooling-maps {
+> -				map0 {
+> +				cpu_little1_cooling_map0: map0 {
+>   					trip = <&cpu_little1_alert0>;
+>   					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>   							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> @@ -568,7 +568,7 @@ cpu_little2_crit: trip-crit {
+>   			};
+>   
+>   			cooling-maps {
+> -				map0 {
+> +				cpu_little2_cooling_map0: map0 {
+>   					trip = <&cpu_little2_alert0>;
+>   					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>   							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> @@ -606,7 +606,7 @@ cpu_little3_crit: trip-crit {
+>   			};
+>   
+>   			cooling-maps {
+> -				map0 {
+> +				cpu_little3_cooling_map0: map0 {
+>   					trip = <&cpu_little3_alert0>;
+>   					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>   							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8370.dtsi b/arch/arm64/boot/dts/mediatek/mt8370.dtsi
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..cf1a3759451ff899ce9e63e5a00f192fb483f6e5
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/mediatek/mt8370.dtsi
+> @@ -0,0 +1,64 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (c) 2025 Collabora Ltd.
+> + * Author: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> + */
+> +
+> +/dts-v1/;
+> +#include "mt8188.dtsi"
+> +
+> +/ {
+> +	compatible = "mediatek,mt8370";
+> +
+> +	cpus {
+> +		/delete-node/ cpu@400;
+> +		/delete-node/ cpu@500;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				/delete-node/ core4;
+> +				/delete-node/ core5;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&cpu6 {
+> +	clock-frequency = <2200000000>;
+> +};
+> +
+> +&cpu7 {
+> +	clock-frequency = <2200000000>;
+> +};
+> +
+> +&cpu_little0_cooling_map0 {
+> +	cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
 
-Please split this commit in two parts (and rename the suggested commit
-titles as you wish):
-  1. arm64: dts: mediatek: mt8390-genio-700-evk: Move common parts to dtsi
-     (in preparation for introducing support for genio 510 evk, blahblah)
-  2. arm64: dts: mediatek: Add device-tree for Genio 510 EVK
+Please fix the indentation:
 
-This makes the patches a bit more readable and, if anything happens, whoever
-looks at the commit history will be able to more immediately understand what's
-actually going on :-)
+	cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+			 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+			 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+			 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+
+Other than that, looks good.
 
 Cheers,
 Angelo
 
-> The Genio 510 EVK has following features:
-> - MT8370 SoC
-> - MT6365 PMIC
-> - MT6319 Buck IC
-> - 4GB LPDDR4X
-> - 64GB eMMC 5.1
-> - 12V DC Jack
-> - Micro SD card slot
-> - Push Button x 4 (Power, Reset, Download and Home Key)
-> - LED x 4 (Power, Reset, System on and Charging Status)
-> - USB Device Port x 1 (Micro USB Connector)
-> - USB Host Port x 1 (Type-C USB Connector)
-> - 3.5mm Earphone Jack x 1 (with Microphone Input)
-> - 3.5mm Line Out Audio Jack x 1
-> - Analog Microphone x 1
-> - Digital Microphone x 2
-> - Gigabit Ethernet with RJ45 connector
-> - HDMI 2.0 TX port with Type A HDMI connector
-> - eDP port
-> - 3x UART with serial-to-usb converters and micro USB connectors
-> - M.2 Slot x 2
-> - I2C Capacitive Touch Pad
-> - 4-Lane DSI x 2
-> - 4-Data Lane CSI x 2
-> - I2S Pin header
-> - 40-Pin 2.54mm Pin Header x 1
+> +};
+> +
+> +&cpu_little1_cooling_map0 {
+> +	cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +};
+> +
+> +&cpu_little2_cooling_map0 {
+> +	cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +};
+> +
+> +&cpu_little3_cooling_map0 {
+> +	cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +				<&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +};
+> +
+> +&ppi_cluster0 {
+> +	affinity = <&cpu0 &cpu1 &cpu2 &cpu3>;
+> +};
 > 
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-> ---
->   arch/arm64/boot/dts/mediatek/Makefile              |    1 +
->   .../boot/dts/mediatek/mt8370-genio-510-evk.dts     |   19 +
->   .../boot/dts/mediatek/mt8390-genio-700-evk.dts     | 1033 +------------------
->   .../boot/dts/mediatek/mt8390-genio-common.dtsi     | 1040 ++++++++++++++++++++
->   4 files changed, 1061 insertions(+), 1032 deletions(-)
-> 
+
+
+
 
