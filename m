@@ -1,130 +1,85 @@
-Return-Path: <devicetree+bounces-138549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81A40A1116A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 20:49:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 343EEA11172
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 20:50:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 367E23A788D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 19:48:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6330A1882584
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 19:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90EDC20AF65;
-	Tue, 14 Jan 2025 19:47:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C6AD2054E9;
+	Tue, 14 Jan 2025 19:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JtatnGMV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DIb0e2hY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B7B62066EA;
-	Tue, 14 Jan 2025 19:47:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F31F615623A;
+	Tue, 14 Jan 2025 19:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736884073; cv=none; b=jzoaTJa520zYxE5OWlGylDglkr3JZOZoLoHLqER+/YPzdln7cTPkQ7SpcHxsnWV5TfpFg+NMn91OIIdi0veV94hYK97fH6UPA69qSesZwCYL1wk00595JOVDyice7XJR36hOfxEk0LyPdwOtpint3j8fXukRYPIK3nf9DFMeqQI=
+	t=1736884223; cv=none; b=p9OS7Swsu8bB6whSGN5EFwTk1zVyU7rTucSAbfixkcapr/5mFzXvnLhOm0AEKuUWCW+WaniYO5W1QpVK4d9Gie3ekX9TNKO9hzkVjQRHolcx5O2EGcLWvfnCMiGd+XybacUCmAoFP0DNOMK5i6PUqmmgkUloySwTG4F8Fiz1rx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736884073; c=relaxed/simple;
-	bh=MsjZ4CtuKkX2wvVRKgcL8WTZmMPeHu69t0uOloOTQ6g=;
+	s=arc-20240116; t=1736884223; c=relaxed/simple;
+	bh=BGfcXiEE1FnlDqT6Q5FOiW3hDYWzsKAxUl4wjY5sYIA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GvcT/uh3mnPvudCTr4XEZqURecEIXWfPIJv3rL/3Za9y3/WrGu+Dq265mVXlTfli7SZga7tyeP3PkFNtLa0illzY7nVbWsTQm0BFGcr8oNx64DvMA4SfKGCogRBTOcdg/FmDCckUY5MUgFhQ3QH3949g/n9L1qcq2Vq/ukGyAns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JtatnGMV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88A4AC4CEDD;
-	Tue, 14 Jan 2025 19:47:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=YWtAgB3y+l6MdiYKoL3QXE52dZW9WOUcmNf6Jh1iybnY8+TaNoeav89QKiHUT5UyyYrT1Nuh4UNY1J7BSyiEBBMKhO3iSSnBjvWd8T/0S6rBaTTdxc577T4tNPPRz3M6r9520rrNAHIcET2WQJWg9d0Zjpp0zGD/8A59bMi/z58=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DIb0e2hY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D62EC4CEDD;
+	Tue, 14 Jan 2025 19:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736884072;
-	bh=MsjZ4CtuKkX2wvVRKgcL8WTZmMPeHu69t0uOloOTQ6g=;
+	s=k20201202; t=1736884222;
+	bh=BGfcXiEE1FnlDqT6Q5FOiW3hDYWzsKAxUl4wjY5sYIA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JtatnGMVODyegv/CTTIokOQagjRF6w6iaxG6O0ua8VLQTR4ZpgyuEqZEu0xe3Ew7R
-	 XOct0DKOBerowvncxq+a0fty+mcVyqO/HejCqHaQvy7giv86spFWMwFLkBMbcd/zfr
-	 ukVkreewFK63XOx4UDQit2yNnJq7l2Z5qdMF4j4FkCpILjO5dUTPDh4wj4J7LgqbNO
-	 0jMwQeXvQ0XQ5EseugH2/SOXz9+eW/SOAl7kx+RIZTmZtntGmOOwtXzEHjsgkV0RD2
-	 kktQH1hq7k+zw1qEFcBWNnGTQ0SI4awG8yeFOtCgilK2Pbv6l8SMQZ9WntSPGZtn5I
-	 qVe4jULPSKCDg==
-Date: Tue, 14 Jan 2025 13:47:51 -0600
-From: Rob Herring <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	b=DIb0e2hYuwe3RKgNS9UAeT2oQQGuKW2jlZnfolG/eWxpdR/z9FFG9JDq6eLUU9sZx
+	 PUMzuPKZunqn6wKOOiTx9IEW4hDt1KiNA6EGns2k6TJEd2HtAUYYzHCc7aVnYUvPPh
+	 o0839Z1RCTidzHlQuLr5pTmuHlW+yoZuC/U/FY3sL7B5gIVN2JkMAa3yvwGXcA5okF
+	 6teBuBckcDv5y1WZXNzFyxcrhcEbu+CY+utzKE2tB9ZBtlUJ/Y6N37K11w/M7ZFZpP
+	 vrb9NrL/2oifxel7Dig32onyfO/X9GXVF9UZ9KiF2Yvd54B0EhQgft0KyAXjIqjwze
+	 SaiH/1kfJSDHQ==
+Date: Tue, 14 Jan 2025 13:50:21 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Markus Burri <markus.burri@mt.com>
+Cc: devicetree@vger.kernel.org, Marek Vasut <marek.vasut@gmail.com>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linux-input@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Simon Horman <horms@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: net: ethernet-controller: Add mac
- offset option
-Message-ID: <20250114194751.GA1601275-robh@kernel.org>
-References: <20241220-net-mac-nvmem-offset-v1-0-e9d1da2c1681@linaro.org>
- <20241220-net-mac-nvmem-offset-v1-1-e9d1da2c1681@linaro.org>
- <20241231133533.GA50130-robh@kernel.org>
- <CACRpkdbF9ezSg0qR=RwFpHJNf5P7i4cS+CmRkReNScKk5mxB0g@mail.gmail.com>
+	Manuel Traut <manuel.traut@mt.com>
+Subject: Re: [PATCH v5 3/7] dt-bindings: input: matrix_keypad - convert to
+ YAML
+Message-ID: <173688422090.1615715.3179682317896999462.robh@kernel.org>
+References: <20250110054906.354296-1-markus.burri@mt.com>
+ <20250110054906.354296-4-markus.burri@mt.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdbF9ezSg0qR=RwFpHJNf5P7i4cS+CmRkReNScKk5mxB0g@mail.gmail.com>
+In-Reply-To: <20250110054906.354296-4-markus.burri@mt.com>
 
-On Mon, Jan 13, 2025 at 03:59:24PM +0100, Linus Walleij wrote:
-> On Tue, Dec 31, 2024 at 2:35 PM Rob Herring <robh@kernel.org> wrote:
-> > On Fri, Dec 20, 2024 at 08:17:06PM +0100, Linus Walleij wrote:
+
+On Fri, 10 Jan 2025 06:49:02 +0100, Markus Burri wrote:
+> Convert the gpio-matrix-keypad bindings from text to DT schema.
 > 
-> > > In practice (as found in the OpenWrt project) many devices
-> > > with multiple ethernet interfaces just store a base MAC
-> > > address in NVMEM and increase the lowermost byte with one for
-> > > each interface, so as to occupy less NVMEM.
-> > >
-> > > Support this with a per-interface offset so we can encode
-> > > this in a predictable way for each interface sharing the
-> > > same NVMEM cell.
-> >
-> > This has come up several times before[1][2][3]. Based on those I know
-> > this is not sufficient with the different variations of how MAC
-> > addresses are shared. OTOH, I don't think a bunch of properties to deal
-> > with all the possible transforms works either. It will be one of those
-> > cases of properties added one-by-one where we end up with something
-> > poorly designed. I think probably we want to just enumerate different
-> > schemes and leave it to code to deal with each scheme.
+> Signed-off-by: Markus Burri <markus.burri@mt.com>
 > 
-> The problem here is that the code needs some handle on which
-> ethernet instance we are dealing with so the bindings need some
-> way to pass that along from the consumer.
+> ---
+>  .../bindings/input/gpio-matrix-keypad.txt     | 49 -----------
+>  .../bindings/input/gpio-matrix-keypad.yaml    | 88 +++++++++++++++++++
+>  .../bindings/power/wakeup-source.txt          |  2 +-
+>  3 files changed, 89 insertions(+), 50 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/gpio-matrix-keypad.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/gpio-matrix-keypad.yaml
 > 
-> What about a third, implementation-defined nvmem cell?
-> #mac-index-cells = <1>; or however we best deal with
-> this.
 
-We have #nvmem-cells-cells, doesn't that work?
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-> If it really is per-machine then maybe this is simply one of those
-> cases where the kernel should:
-> 
-> if (IS_ENABLED(CONFIG_ARCH_FOO) &&
->    of_machine_is_compatible("foo,bar-machine)) {
->     // Read third cell if present
->     // Add to minor mac address
-> }
-
-Where would that go? I think it needs to be in the nvmem driver because 
-that is what knows the format of the data and the transform needed.
-
-> 
-> > Or we could just say it is the bootloader's problem to figure this out
-> > and populate the DT using the existing properties for MAC addresses.
-> > Though bootloaders want to use DT too...
-> 
-> In my current case it's so fantastically organized that if the bootloader
-> goes into TFTP boot it will use *another* unique MAC address.
-> (Yes, it's fantastic.)
-
-Fun.
-
-Rob
 
