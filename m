@@ -1,185 +1,211 @@
-Return-Path: <devicetree+bounces-138383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FF58A102C7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:11:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A89AA102DA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:18:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEDA3168FE2
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:11:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D6A47A0420
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:18:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B54E3DABF7;
-	Tue, 14 Jan 2025 09:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDE81BDC3;
+	Tue, 14 Jan 2025 09:18:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="is4RTWpG"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bgrxjFHy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D62028EC91
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 09:11:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D0D822DC49;
+	Tue, 14 Jan 2025 09:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736845898; cv=none; b=IxxuUE3kiMcM6O+35RhMKlkfd7qYovNrPTNxza5hzOve6naI7gtkjQU9cRcyJXlqoOMppiFN55OVloo+UJJK0cQR7fkZX/pUESbxOfN9pGsEYc49tdPFGZDrYhfznaj/g4T1pwd+0x63bFsYWiv6BGBJU9H/baK+WM09bMhOLDI=
+	t=1736846302; cv=none; b=bNcZS/cGkK3mrLpylERIgPLl/Fz9c9PytumGPry/5kRAGLBIqXnOaXiUr/iha7q+adpERMem7pHPXAqKveIe07j97+3pDs3wVhjY10NKer5QIQA80lQYfKSlSibGuWp+2E8AGfiZFVLg2r2QpKUR95zMB6qxDoPfZS1NZVN4eWA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736845898; c=relaxed/simple;
-	bh=Jm64LKstJ4pAW9yrMK46CoLm71la60rak1jBChy8Qio=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bWfu7rLgncuFRZLEIP59UdcfsfuUfraUoYR9vZl+ra62kvbO4igNvmN0+Ti8hlXleeYBiyAXr/PgwH2fzg74ktmGw90ZR63HvlhXMppRFq5eh9RKqFHpoCUMoHFTqwIqeNbkCqgcaaU8RMoT5958v6d92wrsiigwA9M+R6Cbqds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=is4RTWpG; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-aa6a92f863cso986383166b.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 01:11:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1736845896; x=1737450696; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=siX7FCTD0wixOLRdc1jnWvPAPiYOmQR7y0biY9ez4Ss=;
-        b=is4RTWpGFfkuujd48o4N8R9JU1m3pgji0Yl4CUxkXNOSGi8xh9KaghXrIODi2rUsVS
-         /haGcCuvsdJ06yB9t49IHdZDoLK80GGSBbcXlnO8Ul2FxTo1REx3XzZQc9tMcrhADvoW
-         MTsHPZHFpYZd9v6GpSCzjmUaRQmQ93Csroi48=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736845896; x=1737450696;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=siX7FCTD0wixOLRdc1jnWvPAPiYOmQR7y0biY9ez4Ss=;
-        b=ilswHCC3pWxWaCSUW4Rp4bDmiGI+bXfCV6LSdbV5GZRxgZbbtASlmmIpFfJceDztnf
-         JS7v+7Vm4a8/JjKRQAymA5y2ssy5x64+Hw/hcBijWIA4cSBQ+WG956uA0AwaBRTpkETc
-         ajbSI0mJg5jIQpgYxptt1Q2HbRrQ+Vlu4GtcYVQXnq1O+nJQcEgCpjXVGVfPvkXIuSR+
-         PTu3nzmGPzXh/tMzN8HHAZDMVOXqIi2LKLYM0lwwopm3PMa4g2eoQjnKqp6ZVOApDGUN
-         4QiAd4E4ZII970fw19GBQVUrzZpFCmuAfCdgcoq+j2V1MqEt+JxX/WlL24mQX9V3oGN8
-         O89Q==
-X-Forwarded-Encrypted: i=1; AJvYcCX0YNPt/R4n45c8VfMODlXTwAT6BnBGQzrIervDtFwTCiDz/CydYL4dZv589f2aiVpr0bTZ1MjMoH6J@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0Wqw6kUu8lUNIiKF1sYKbKGdaSpuDOFER/PrwjgweEU1rwKUv
-	b5WK6AnbHShOPU08jYKaCSRU89An9l+ckTQNNmkXrMX4LBHMPbIsjcj5IbcAkDs=
-X-Gm-Gg: ASbGncuFYTDuOjvcOAy1eYI/E7PMnbQLwe8m2UfqhLiq3nibXBLlNVJHLbtT2q2w/B4
-	PYKI7Hi01Urn2rHNLdMxcTsBMRT7CrZObgzu8Oo+qVBomEaAy4H/rbXFvXoDVjp5RtBMgTcMrQ4
-	ml4hybWxn8iApHD8ZCDyCraH3NTq4uHB0+JhmqYtidpxcgxJdcMzNl7AF0yUxIZatNUhOzRZ2Ux
-	hZGWUvMrVECd45oYmlr08dXl7zHjnEdBK5EHmy9kH6ZqNcS0d3TdqyL1NKsa0x7cDqztLDqwsFJ
-	17j/BOfjUeMiMUzJSQVjwQ==
-X-Google-Smtp-Source: AGHT+IEv+eCR9PUfncvDs0wzTMLxOKsmlNsAPus1k4vRWAgjsSpUPjW9jboACPYNr+RGKV19oiU74w==
-X-Received: by 2002:a17:907:704:b0:aa6:a87e:f2e1 with SMTP id a640c23a62f3a-ab2abcb198emr2288992866b.56.1736845895670;
-        Tue, 14 Jan 2025 01:11:35 -0800 (PST)
-Received: from dario-ThinkPad-T14s-Gen-2i.. ([2.196.42.147])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab2c95b7317sm599640766b.154.2025.01.14.01.11.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jan 2025 01:11:35 -0800 (PST)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Rob Herring <robh@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH v3 2/4] dt-bindings: clock: st,stm32-rcc: support spread spectrum clocking
-Date: Tue, 14 Jan 2025 10:11:14 +0100
-Message-ID: <20250114091128.528757-3-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250114091128.528757-1-dario.binacchi@amarulasolutions.com>
-References: <20250114091128.528757-1-dario.binacchi@amarulasolutions.com>
+	s=arc-20240116; t=1736846302; c=relaxed/simple;
+	bh=Yy0eIwnOSh6G3GWKBNkJQj10YUu8tYJe0B2qTW0mQEI=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
+	 In-Reply-To:Content-Type; b=nTR4a+h+8gCJDFCDjAayyXRYBWD/kUKRMtfMlv3k1WRmeYiwnjvknG+Ep6PdqsBqKEIOjJiM0bWEmzHYDjmJqzqC4KJWhPNRF3T0R52EEInzRrvAl4ETXnSLhFTHCAb3mDJ3VDWW4iFJZqySFI+XzAPP7X3N9+HZ8khfK80MD3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bgrxjFHy; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50E7cZIt019694;
+	Tue, 14 Jan 2025 09:18:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Ez/MatY4ncetVheu42gjWT0fmCQoTLlhYeLYizkO/aU=; b=bgrxjFHyiiDvaC5n
+	DwQrTn/dW3/Lc2gYKjpKXVXEziH49nrEs32dBHtDkI+AdKH0HM+iOkijmy4xEBNG
+	6GOikmZeR8ARTl3nzCsE5fkvfTGtOif34XB2AWCnyRGhi3Cv23i7ftvdKAL3VR1x
+	Kn8b76Mm6X1DHxK89zIJYPgQX5Ruh9ckWY4ATMcUur1sjT9Lzf6t7VRlGKbVExXo
+	xUWf6euDFMyoejTXgcx2vep4QsdgMtcudSgWKFs8jJGQpII4phrhepwq4MZ1Nt0e
+	K4tRGGY1v0R55SG/uBuiz/DDpRJ2AMyYDxnRanSwbhbWTAuUuDPkj81cJWWn3+NE
+	Nv77bw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 445kqc071r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 14 Jan 2025 09:18:12 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50E9IC0X008885
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 14 Jan 2025 09:18:12 GMT
+Received: from [10.216.21.195] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 14 Jan
+ 2025 01:18:04 -0800
+Message-ID: <1566eafb-7286-4f27-922d-0bbaaab8120b@quicinc.com>
+Date: Tue, 14 Jan 2025 14:48:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] dmaengine: gpi: Add Lock and Unlock TRE support to
+ access I2C exclusively
+From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+To: Vinod Koul <vkoul@kernel.org>, Md Sadre Alam <quic_mdalam@quicinc.com>
+CC: <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
+        <andi.shyti@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>, <conor+dt@kernel.org>,
+        <agross@kernel.org>, <devicetree@vger.kernel.org>, <linux@treblig.org>,
+        <dan.carpenter@linaro.org>, <Frank.Li@nxp.com>,
+        <konradybcio@kernel.org>, <bryan.odonoghue@linaro.org>,
+        <krzk+dt@kernel.org>, <robh@kernel.org>, <quic_vdadhani@quicinc.com>
+References: <20241129144357.2008465-1-quic_msavaliy@quicinc.com>
+ <20241129144357.2008465-3-quic_msavaliy@quicinc.com> <Z01YBLcxDXI2UwXR@vaman>
+ <d49b16b2-95e5-42b4-9bc1-40cb0bfa15b1@quicinc.com> <Z1BJSbf+1G8ojTib@vaman>
+ <5ef44277-6739-4e1e-af62-0f40ae081ec1@quicinc.com> <Z2qFyQFFjiHy+FvY@vaman>
+ <b34e3ac0-70b4-491c-a807-dc13fac41d06@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <b34e3ac0-70b4-491c-a807-dc13fac41d06@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: H5KyG2jT57WlKMZNDFeUMgpS4lFEtgp0
+X-Proofpoint-ORIG-GUID: H5KyG2jT57WlKMZNDFeUMgpS4lFEtgp0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ suspectscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
+ priorityscore=1501 spamscore=0 clxscore=1015 bulkscore=0 adultscore=0
+ phishscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2501140075
 
-The addition of DT bindings for enabling and tuning spread spectrum
-clocking generation is available only for the main PLL of stm32f{4,7}
-platforms.
+Hi Vinod,
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On 12/26/2024 5:52 PM, Mukesh Kumar Savaliya wrote:
+> 
+> 
+> On 12/24/2024 3:28 PM, Vinod Koul wrote:
+>> On 18-12-24, 18:04, Mukesh Kumar Savaliya wrote:
+>>> Hi Vinod, Thanks !  I just saw your comments now as somehow it was 
+>>> going in
+>>> some other folder and didn't realize.
+>>>
+>>> On 12/4/2024 5:51 PM, Vinod Koul wrote:
+>>>> On 02-12-24, 16:13, Mukesh Kumar Savaliya wrote:
+>>>>> Thanks for the review comments Vinod !
+>>>>>
+>>>>> On 12/2/2024 12:17 PM, Vinod Koul wrote:
+>>>>>> On 29-11-24, 20:13, Mukesh Kumar Savaliya wrote:
+>>>>>>> GSI DMA provides specific TREs(Transfer ring element) namely Lock 
+>>>>>>> and
+>>>>>>> Unlock TRE. It provides mutually exclusive access to I2C 
+>>>>>>> controller from
+>>>>>>> any of the processor(Apps,ADSP). Lock prevents other subsystems from
+>>>>>>> concurrently performing DMA transfers and avoids disturbance to 
+>>>>>>> data path.
+>>>>>>> Basically for shared I2C usecase, lock the SE(Serial Engine) for 
+>>>>>>> one of
+>>>>>>> the processor, complete the transfer, unlock the SE.
+>>>>>>>
+>>>>>>> Apply Lock TRE for the first transfer of shared SE and Apply Unlock
+>>>>>>> TRE for the last transfer.
+>>>>>>>
+>>>>>>> Also change MAX_TRE macro to 5 from 3 because of the two 
+>>>>>>> additional TREs.
+>>>>>>>
+>>>>>>
+>>>>>> ...
+>>>>>>
+>>>>>>> @@ -65,6 +65,9 @@ enum i2c_op {
+>>>>>>>      * @rx_len: receive length for buffer
+>>>>>>>      * @op: i2c cmd
+>>>>>>>      * @muli-msg: is part of multi i2c r-w msgs
+>>>>>>> + * @shared_se: bus is shared between subsystems
+>>>>>>> + * @bool first_msg: use it for tracking multimessage xfer
+>>>>>>> + * @bool last_msg: use it for tracking multimessage xfer
+>>>>>>>      */
+>>>>>>>     struct gpi_i2c_config {
+>>>>>>>         u8 set_config;
+>>>>>>> @@ -78,6 +81,9 @@ struct gpi_i2c_config {
+>>>>>>>         u32 rx_len;
+>>>>>>>         enum i2c_op op;
+>>>>>>>         bool multi_msg;
+>>>>>>> +    bool shared_se;
+>>>>>>
+>>>>>> Looking at this why do you need this field? It can be internal to 
+>>>>>> your
+>>>>>> i2c driver... Why not just set an enum for lock and use the values as
+>>>>>> lock/unlock/dont care and make the interface simpler. I see no 
+>>>>>> reason to
+>>>>>> use three variables to communicate the info which can be handled in
+>>>>>> simpler way..?
+>>>>>>
+>>>>> Below was earlier reply to [PATCH V3, 2/4], please let me know if 
+>>>>> you have
+>>>>> any additional comment and need further clarifications.
+>>>>
+>>>> Looks like you misunderstood, the question is why do you need three
+>>>> variables to convey this info..? Use a single variable please
+>>> Yes, I think so. Please let me clarify.
+>>> First variable is a feature flag and it's required to be explicitly
+>>> mentioned by client (i2c/spi/etc) to GSI driver.
+>>>
+>>> Second and third, can be optimized to boolean so either first or last 
+>>> can be
+>>> passed.
+>>>
+>>> Please correct me or add simple change where you would like to make, 
+>>> i can
+>>> add that.
+>>
+>> I though we could do with a single and derive
+>>
+> Sure, so as mentioned in the other crypto BAM patch probably dmaengine.h 
+> can hold flag and that can add support for lock/unlock similar to that 
+> patch.
+> I just realized it from your shared patch. let me work internally with 
+> Md sadre and review. Thanks for the comment.
+>> Also, please see 20241212041639.4109039-3-quic_mdalam@quicinc.com, folks
+>> from same company should talk together on same solutions, please
+>> converge and come up with a single proposal which works for both drivers
+>>
+I have discussed with Md Sadre and tried to understand and utilize the 
+enum of lock and unlock in my changes. Below is the summary.
 
----
+I can't use those lock and unlock enums here because it's required for 
+first and last message respectively. intermediate transfers will not use 
+anything. So we need to define one more enum like dma_ctrl_none.
 
-Changes in v3:
-- Add 'Reviewed-by' tag of Krzysztof Kozlowski
+if i create another internal parent structure having required 3 members, 
+then also it will need 3 child members. So i think current one looks 
+good to me.
 
-Changes in v2:
-- Update the commit message
-- Change st,ssc-modmethod type from non-unique-string-array to string
+Please help review and suggest if anything can be better here.
 
- .../bindings/clock/st,stm32-rcc.yaml          | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml b/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-index 779e547700be..628bbbcf2875 100644
---- a/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
-@@ -56,6 +56,26 @@ properties:
-       Phandle to system configuration controller. It can be used to control the
-       power domain circuitry.
- 
-+  st,ssc-modfreq-hz:
-+    description:
-+      The modulation frequency for main PLL (in Hz)
-+
-+  st,ssc-moddepth-permyriad:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      The modulation rate for main PLL (in permyriad, i.e. 0.01%)
-+    minimum: 25
-+    maximum: 200
-+
-+  st,ssc-modmethod:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    description:
-+      The modulation techniques for main PLL.
-+    items:
-+      enum:
-+        - center-spread
-+        - down-spread
-+
- required:
-   - compatible
-   - reg
-@@ -81,6 +101,10 @@ allOf:
-             - description: high speed external (HSE) clock input
-             - description: low speed external (LSE) clock input
-             - description: Inter-IC sound (I2S) clock input
-+        st,ssc-modfreq-hz: false
-+        st,ssc-moddepth-permyriad: false
-+        st,ssc-modmethod: false
-+
-     else:
-       properties:
-         '#clock-cells':
-@@ -98,6 +122,18 @@ additionalProperties: false
- 
- examples:
-   # Reset and Clock Control Module node:
-+  - |
-+    clock-controller@40023800 {
-+        compatible = "st,stm32f42xx-rcc", "st,stm32-rcc";
-+        reg = <0x40023800 0x400>;
-+        #clock-cells = <2>;
-+        #reset-cells = <1>;
-+        clocks = <&clk_hse>, <&clk_i2s_ckin>;
-+        st,syscfg = <&pwrcfg>;
-+        st,ssc-modfreq-hz = <10000>;
-+        st,ssc-moddepth-permyriad = <200>;
-+        st,ssc-modmethod = "center-spread";
-+    };
-   - |
-     clock-controller@58024400 {
-         compatible = "st,stm32h743-rcc", "st,stm32-rcc";
--- 
-2.43.0
+> Sure
+> 
+> 
 
 
