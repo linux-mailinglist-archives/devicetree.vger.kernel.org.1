@@ -1,196 +1,91 @@
-Return-Path: <devicetree+bounces-138511-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138512-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BEDDA10BA2
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 17:01:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69B2FA10BBB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 17:04:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FD8818899CD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 16:01:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D8081883B85
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 16:05:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFB31553B7;
-	Tue, 14 Jan 2025 16:00:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB221607B4;
+	Tue, 14 Jan 2025 16:04:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KCsq3Rc2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA24723245B;
-	Tue, 14 Jan 2025 16:00:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E07741553A3;
+	Tue, 14 Jan 2025 16:04:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736870455; cv=none; b=mVrUBfaYbE7hsFIV4qwVkPXVanrO1Ysc4ipEqjVLYD4D6eQ62T3PrpZB/oJuoXTxSQnm/p4s/hUKltFK9Yx575xVp8Ybgf4Eu58p3cJywENXYY5e6mTSf7gzmiFtJs47UTFV+bafWZSObl8uvO9GSRjpUJe6Dk/ePmmvKgpFq6E=
+	t=1736870694; cv=none; b=nxDLtvZOCPxsDMPn82zRJwyJrMrutg8EiQBYC+KTrrRXLbEBoL0ooxLBS0gcAaWkodhyTGSvyd21cp4safxIHJ+sOpqcQPzilNDZlynKM/bYB2SWKlY1HZMDTMXnR3Uvhi6am3xm1jIxJDSe7RP9vK9dL8MdZ+f3uwtOCTKx9dw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736870455; c=relaxed/simple;
-	bh=aWfKJEabF6fhYzlM/VczVohRgjerSXRLXxXHniHZnZ4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WWYNl6wZoKX8C/vItVgHdNcyWdmr7M6acO5iZjr/9UVH6ZrvndANSyibV/yIfHkM6JgzuAEAcG2Cb7mTcURCshW58eUK5qz1GAWHFV0F6wUbUTRJCzcrasFA3UtHZauNVCy/oZCFeLP6s6bc1D9QOaInyDuXBLY+6OTfQeDSIC8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 68F4C11FB;
-	Tue, 14 Jan 2025 08:01:21 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2A3A23F673;
-	Tue, 14 Jan 2025 08:00:48 -0800 (PST)
-Date: Tue, 14 Jan 2025 16:00:45 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Parthiban Nallathambi <parthiban@linumiz.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin
- Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu
- Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
- Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Linus
- Walleij <linus.walleij@linaro.org>, Vinod Koul <vkoul@kernel.org>, Kishon
- Vijay Abraham I <kishon@kernel.org>, iommu@lists.linux.dev,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-phy@lists.infradead.org
-Subject: Re: [PATCH RESEND 10/22] pinctrl: sunxi: add missed lvds pins for
- a100/a133
-Message-ID: <20250114160045.2baacdaa@donnerap.manchester.arm.com>
-In-Reply-To: <20241227-a133-display-support-v1-10-abad35b3579c@linumiz.com>
-References: <20241227-a133-display-support-v1-0-abad35b3579c@linumiz.com>
-	<20241227-a133-display-support-v1-10-abad35b3579c@linumiz.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1736870694; c=relaxed/simple;
+	bh=qhWdcZn1dnf9UswuIjBHrCxfXiNgcVjed/B1j0/Eqtg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DuiADD7seGWcAzYrsk4KT43+EZ3MLn3gIZRQeAIerwVKnyu3U3bEGKNcmKdCMEVeNKJZDfQZg7yuh+oKeAaPZIVrZlMz7eYtuQpX/1cHmbYtvVI2wWgUp3F0GHzYNtuVBN/xAGR2T4ex7lQuKochqY80Jc+Qxf3tvH+FDoymsDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KCsq3Rc2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C6FDC4CEDD;
+	Tue, 14 Jan 2025 16:04:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736870693;
+	bh=qhWdcZn1dnf9UswuIjBHrCxfXiNgcVjed/B1j0/Eqtg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KCsq3Rc2qthMAhAiSM7c/C7pcVVoI80EmGwO2gE4wneNBcSqS/zBtMKa0HK+IvoYx
+	 dPRNXLMNBWGPrE6PRGuA9MbsQ5O6hNqKuOKAFe4igczL9VghyWZUZ0wZbGNY0Dn5pS
+	 st8HmWv/85vgO1xs2xewKdtW7FAsRvQA0pnqxzSxRO34vbX89L+gwdcz7lgboEeXFB
+	 38psowrl69SdQ5KlOCu+5ED14AavMCyIl1CufyXnCG6vSFwlD8miyda2K1MTxBdQvz
+	 4jYfUHGM98REpIS5LaQKW7t2hfx64iFMUhbq5a3seUklkxsCdr/fgTAp3NH6F588H0
+	 MFKKBMNK75ieg==
+Date: Tue, 14 Jan 2025 10:04:52 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Mao Jinlong <quic_jinlmao@quicinc.com>
+Cc: James Clark <james.clark@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Mike Leach <mike.leach@linaro.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	coresight@lists.linaro.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: arm: coresight: Update the pattern
+ of ete node name
+Message-ID: <173687067372.1133944.2572630345939017589.robh@kernel.org>
+References: <20250107090031.3319-1-quic_jinlmao@quicinc.com>
+ <20250107090031.3319-2-quic_jinlmao@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250107090031.3319-2-quic_jinlmao@quicinc.com>
 
-On Fri, 27 Dec 2024 18:30:59 +0530
-Parthiban Nallathambi <parthiban@linumiz.com> wrote:
 
-Hi,
-
-since LinusW wants to pull this already, I gave it a look, despite this
-series being not complete.
-
-> lvds, lcd, dsi all shares the same GPIO D bank and lvds0
-> data 3 lines and lvds1 pins are missed, add them.
+On Tue, 07 Jan 2025 17:00:30 +0800, Mao Jinlong wrote:
+> The device full name is embedded trace extension. There is no good fit
+> in generic names list for the embedded trace extension. ETE is abbreviation
+> of embedded trace extension and the number is the CPU number that ete is
+> associated. Change the pattern of the node name as it won't affect any
+> device tree node as of now.
 > 
-> Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  .../bindings/arm/arm,embedded-trace-extension.yaml          | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c b/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c
-> index df90c75fb3c5..b97de80ae2f3 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c
-> @@ -256,72 +256,84 @@ static const struct sunxi_desc_pin a100_pins[] = {
->  		  SUNXI_FUNCTION(0x0, "gpio_in"),
->  		  SUNXI_FUNCTION(0x1, "gpio_out"),
->  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D12 */
-> +		  SUNXI_FUNCTION(0x3, "lvds0"),		/* D3P */
 
-I initially stumbled upon those first two pins being from lvds0, with the
-other 8 pins missing for this interface, but then realised that those are
-on portD, and we already describe them in this table (above). So those two
-were missing all the time.
-
-So having compared these lines to the A133 user manual, I can now say that
-they are all correct:
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Linus, in contrast to what I originally thought, this patch *is* fine, so
-feel free to keep it in your tree.
-Sorry for the noise!
-
-Cheers,
-Andre
-
->  		  SUNXI_FUNCTION(0x4, "dsi0"),		/* DP3 */
->  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 8)),
->  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 9),
->  		  SUNXI_FUNCTION(0x0, "gpio_in"),
->  		  SUNXI_FUNCTION(0x1, "gpio_out"),
->  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D13 */
-> +		  SUNXI_FUNCTION(0x3, "lvds0"),		/* D3N */
->  		  SUNXI_FUNCTION(0x4, "dsi0"),		/* DM3 */
->  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 9)),
->  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 10),
->  		  SUNXI_FUNCTION(0x0, "gpio_in"),
->  		  SUNXI_FUNCTION(0x1, "gpio_out"),
->  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D14 */
-> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D0P */
->  		  SUNXI_FUNCTION(0x4, "spi1"),		/* CS */
->  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 10)),
->  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 11),
->  		  SUNXI_FUNCTION(0x0, "gpio_in"),
->  		  SUNXI_FUNCTION(0x1, "gpio_out"),
->  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D15 */
-> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D0N */
->  		  SUNXI_FUNCTION(0x4, "spi1"),		/* CLK */
->  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 11)),
->  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 12),
->  		  SUNXI_FUNCTION(0x0, "gpio_in"),
->  		  SUNXI_FUNCTION(0x1, "gpio_out"),
->  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D18 */
-> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D1P */
->  		  SUNXI_FUNCTION(0x4, "spi1"),		/* MOSI */
->  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 12)),
->  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 13),
->  		  SUNXI_FUNCTION(0x0, "gpio_in"),
->  		  SUNXI_FUNCTION(0x1, "gpio_out"),
->  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D19 */
-> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D1N */
->  		  SUNXI_FUNCTION(0x4, "spi1"),		/* MISO */
->  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 13)),
->  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 14),
->  		  SUNXI_FUNCTION(0x0, "gpio_in"),
->  		  SUNXI_FUNCTION(0x1, "gpio_out"),
->  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D20 */
-> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D2P */
->  		  SUNXI_FUNCTION(0x4, "uart3"),		/* TX */
->  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 14)),
->  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 15),
->  		  SUNXI_FUNCTION(0x0, "gpio_in"),
->  		  SUNXI_FUNCTION(0x1, "gpio_out"),
->  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D21 */
-> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D2N */
->  		  SUNXI_FUNCTION(0x4, "uart3"),		/* RX */
->  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 15)),
->  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 16),
->  		  SUNXI_FUNCTION(0x0, "gpio_in"),
->  		  SUNXI_FUNCTION(0x1, "gpio_out"),
->  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D22 */
-> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* CKP */
->  		  SUNXI_FUNCTION(0x4, "uart3"),		/* RTS */
->  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 16)),
->  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 17),
->  		  SUNXI_FUNCTION(0x0, "gpio_in"),
->  		  SUNXI_FUNCTION(0x1, "gpio_out"),
->  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D23 */
-> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* CKN */
->  		  SUNXI_FUNCTION(0x4, "uart3"),		/* CTS */
->  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 17)),
->  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 18),
->  		  SUNXI_FUNCTION(0x0, "gpio_in"),
->  		  SUNXI_FUNCTION(0x1, "gpio_out"),
->  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* CLK */
-> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D3P */
->  		  SUNXI_FUNCTION(0x4, "uart4"),		/* TX */
->  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 18)),
->  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 19),
->  		  SUNXI_FUNCTION(0x0, "gpio_in"),
->  		  SUNXI_FUNCTION(0x1, "gpio_out"),
->  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* DE */
-> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D3N */
->  		  SUNXI_FUNCTION(0x4, "uart4"),		/* RX */
->  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 19)),
->  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 20),
-> 
+Applied, thanks!
 
 
