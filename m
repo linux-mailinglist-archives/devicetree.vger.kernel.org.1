@@ -1,70 +1,121 @@
-Return-Path: <devicetree+bounces-138297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 703CAA0C5FB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:55:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (unknown [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B99CA0CECF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 01:04:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 384CD3A684C
-	for <lists+devicetree@lfdr.de>; Mon, 13 Jan 2025 23:55:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55EA51679DB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E3AA1FA24A;
-	Mon, 13 Jan 2025 23:55:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF5512914;
+	Tue, 14 Jan 2025 00:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Y9G+aond"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r1CZwdgd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5C7E1F9F5B;
-	Mon, 13 Jan 2025 23:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B13C517FE;
+	Tue, 14 Jan 2025 00:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736812538; cv=none; b=nTaOl8V6b3pznHaV/DIvyKUqlBWgRPP/K9txq9zjVTtN7yrKaRzonRd4b1sNCveyOjTj/tNh7gXfhCHB5Fv62iqkzjaozj5LdgHaoNdHPxCf3vDZzQAsGU9jqjLL9xbboVjbe75/aKxZadmPD7MX7dMRi0jJ9TJD9JOzEg3U4A8=
+	t=1736813091; cv=none; b=h8sVX0Tmh91gZP89TB6zydy9u3gmQENnOIGu+/aDl/IT2NKrrknT81sM/jVnd6ScYDrXbFW8ueJE8icng3YgkuK9/nM6gsk9oFTDDWf2XnmS435bWeDxw2Y03APJL67w31x3MMA+U9NZ/3BJKXRneyL2bpWss94HqsRkUQVJ9ZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736812538; c=relaxed/simple;
-	bh=vJ2bG1drkXXn9fntaj3EwZfrWNAknw640XGGFFJhblg=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=A/JH8aM31kMVLjEEKTnPiVmQS9sBpdE4INO9nbhy1JfMJdjcUMie66gXaDgkEzQZ2GeBPbdmLUXu6e59LOvl11E2T2Tb9CeIJApn/BleUS4ms3+JZM7g8m4LJEtmaxtLJsavoolMnI9vanAQjIfoNAkmwh3Ys7bRzmxLszR4Bnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Y9G+aond; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92B1AC4CED6;
-	Mon, 13 Jan 2025 23:55:38 +0000 (UTC)
+	s=arc-20240116; t=1736813091; c=relaxed/simple;
+	bh=NrgMw8h+fitbqMNvG385KgsvxtlRiPe0cIHOPL1U6Vg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=SE4beW0QPups5E1qlNVMyIaE1alT+aRX5emKasxnYbqFyC+YKXaIkGTbRQo1RONF/MoNMOVSl2pEoAYbPn4TgvdAkTosF3GT42bpOKnyj926QLulX1lu3FXoZLvEGy/whHSckkPhKiGKjeEtrEijCBvlJzU9w762JrEhLN20cYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r1CZwdgd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16401C4CED6;
+	Tue, 14 Jan 2025 00:04:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736812538;
-	bh=vJ2bG1drkXXn9fntaj3EwZfrWNAknw640XGGFFJhblg=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=Y9G+aondbzT4XWEJcZuLcbiTM0FGCcOPZqCU8knhLEbLZqte6O8+s0n60H7VFUaZp
-	 1hCZpOSNesW2Q/YhU5Sj/YnmkMHzrw6uaYOX44Iiu7OEl/4sqcnSjc5HhQV+aCTArT
-	 5TzHX5cmvvgAtNNNDUsNujDGnCwJl9isBh/Vwe4QC/PZ5ZXcV8yM2oFN7mRj3yWxk3
-	 4UthNb6TVo18ehGLGlRGSu/Mqu57z+ONHtePEJVlKAkHFPZ3x7KzCxOoxKhcbUx6fv
-	 8CnU6XwJJWE8P4N7LarRcGkFdlTPQpPhheJ8ZMapgWoD2psoJydOpU8NPqTghdXZGB
-	 doOZaEATgbDig==
-Message-ID: <422ee3f09935e7365a9cfc633df780ba.sboyd@kernel.org>
+	s=k20201202; t=1736813091;
+	bh=NrgMw8h+fitbqMNvG385KgsvxtlRiPe0cIHOPL1U6Vg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=r1CZwdgdgX6W24ySZ8xoXJ8FoA5BU2ZIs96Owad1lg66t2hErixPRqi7xRpLfRYxO
+	 gIIDE4jFe2Y4VCxtIxUGYQkqnrAscy0Qm2AQPXxTD21BMEn42/lV6wvtBNAV3AEvNS
+	 4hEd0zFUO5CZdG59s//mzyXiiS0+uyB8z0LpreNyb6KCXYQWTx0pruRUJZuBa424Sa
+	 rZujphiQsDzskqZgYyE5hM8gdJVddaBo8u3KgiRnZFcfO4PbRA6nldsVeqwd3YaxSV
+	 fNXd8vhlPcZ+I0mvN+gaetlnJrkAUeYc8Wd6TK+6dk8lGTda6C1HUAGSa2Fgo+2mpi
+	 FHUAF1ejMU8rQ==
+Date: Mon, 13 Jan 2025 18:04:50 -0600
 Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250113231030.6735-5-ansuelsmth@gmail.com>
-References: <20250113231030.6735-1-ansuelsmth@gmail.com> <20250113231030.6735-5-ansuelsmth@gmail.com>
-Subject: Re: [PATCH v6 4/4] clk: en7523: Add clock for eMMC for EN7581
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, upstream@airoha.com
-Date: Mon, 13 Jan 2025 15:55:35 -0800
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, linux-arm-kernel@lists.infradead.org, 
+ Shawn Guo <shawnguo@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev
+To: Frank Li <Frank.Li@nxp.com>
+In-Reply-To: <20250113-imx95_15x15-v1-0-8c20cbaab9ed@nxp.com>
+References: <20250113-imx95_15x15-v1-0-8c20cbaab9ed@nxp.com>
+Message-Id: <173681284597.3684963.16712339968479881126.robh@kernel.org>
+Subject: Re: [PATCH 0/4] arm64: dts: add imx95_15x15_evk boards support
 
-Quoting Christian Marangi (2025-01-13 15:10:05)
-> Add clock for eMMC for EN7581. This is used to give info of the current
-> eMMC source clock and to switch it from 200MHz or 150MHz.
->=20
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+
+On Mon, 13 Jan 2025 13:01:58 -0500, Frank Li wrote:
+> Add related binding doc.
+> 
+> Add imx95_15x15_evk boards, which have big difference with imx95_19x19_evk
+> boards.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
+> Frank Li (4):
+>       dt-bindings: arm: fsl: add i.MX95 15x15 EVK board
+>       arm64: dts: imx95: Add #io-channel-cells = <1> for adc node
+>       arm64: dts: imx95: Add i3c1 and i3c2
+>       arm64: dts: imx95: Add imx95-15x15-evk support
+> 
+>  Documentation/devicetree/bindings/arm/fsl.yaml    |    1 +
+>  arch/arm64/boot/dts/freescale/Makefile            |    1 +
+>  arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts | 1064 +++++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx95.dtsi          |   27 +
+>  4 files changed, 1093 insertions(+)
+> ---
+> base-commit: 1300d5fe48f1e09a9a7d2dfe3b2e74be8ccaa322
+> change-id: 20250110-imx95_15x15-6a64db8c0187
+> 
+> Best regards,
+> ---
+> Frank Li <Frank.Li@nxp.com>
+> 
+> 
+> 
 
-Applied to clk-next
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/' for 20250113-imx95_15x15-v1-0-8c20cbaab9ed@nxp.com:
+
+arch/arm64/boot/dts/freescale/imx95-15x15-evk.dtb: i3c@42520000: Unevaluated properties are not allowed ('inctrl-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/i3c/silvaco,i3c-master.yaml#
+
+
+
+
+
 
