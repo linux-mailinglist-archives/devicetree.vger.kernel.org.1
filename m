@@ -1,108 +1,148 @@
-Return-Path: <devicetree+bounces-138519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA208A10D66
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 18:18:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC762A10DCF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 18:31:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A28B1887F34
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 17:18:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0E0016798D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 17:31:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 604001FA24A;
-	Tue, 14 Jan 2025 17:18:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E942D1FA82C;
+	Tue, 14 Jan 2025 17:31:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p/0xJnkK"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="L+Mn8MLe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320B41D5AA9;
-	Tue, 14 Jan 2025 17:18:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA041428F3;
+	Tue, 14 Jan 2025 17:31:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736875092; cv=none; b=jIvPi07+cSPuAZHJxVTUKvKSlF0WdJ0pmFQWk7U/6Zt+GaYdGRKAWONrLENdwo9WKUnyMIzx6HCyzbYQovAxh5fcK77VzyvqIIU4NqeNIdm3Yu248kwTmuW4iIdhSJ1jZijwXQrKoveLKFRuP4WdNWB9tvFw9ZBeRAW2dfXK1v4=
+	t=1736875872; cv=none; b=PCau2CVE/e36P4OU+4qROo/IYqkktpcmIUssMRf085ZIQ+JJcQLZYUBU0R7w8vfiKrEQ30bFAnUOMnFgIHxkfYwS6RBG9ZcRMRGWi89qxexK4J3uOkuTdb1Nrn1wJLZl6RZXJki6qBMWZqntV4fn7XMzjLiIo5uRz+78W3hvuC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736875092; c=relaxed/simple;
-	bh=/5Iyd6ukvw+wlfQuDAyxHew2KnpdZoyclKKn5oIODnc=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=BTszssJw60vOScXWa4QuVUEIBxEdkzbznznT5jAZs6CSQfXRrbze+6gM/qqPy++ufyXX1XvAHoRP7tRcnBOM7oBvvX6TbKRNuAtEKRyRxxjjdUreRs6ZjLijsDGlpMUCyIHuF5ZoT4GkE5/kc3NxFJ8clvay/Y2bx5txLCo2D2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p/0xJnkK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E103C4CEDD;
-	Tue, 14 Jan 2025 17:18:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736875091;
-	bh=/5Iyd6ukvw+wlfQuDAyxHew2KnpdZoyclKKn5oIODnc=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=p/0xJnkKcMlzgcYf+caIAsKLu41HOHiDmbDt7TflB3ciDUvNV0mapiUS4aZ2sl8bM
-	 71BZlEr1vxuE8K3p0XpbdGKjlF6vqqSduHIRtX7WVMQ33NP1aT3GB0h7FCl72XhYtU
-	 hIwy0e6+K71x9qrGKINpjjN4dBZQhfpnX86/Qb9AQSuGYc3YjNMnLZvcnP5fSFY8fo
-	 PnMigJHQe+Az0t5Xdw5B4HZ4zZndZ5lL/gCZb603LvkFNE9u0opnxUTLSaubJ8/HqM
-	 2VlFEX8r+qF36MobSHXgHk5yDP37XCMr/U9kKMyqn+FBtlg/zdBeHnWcW00jW9H568
-	 NrC5sgbnSG9JQ==
-From: Mark Brown <broonie@kernel.org>
-To: shengjiu.wang@gmail.com, Xiubo.Lee@gmail.com, festevam@gmail.com, 
- nicoleotsuka@gmail.com, lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com, 
- linux-sound@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, devicetree@vger.kernel.org, 
- Shengjiu Wang <shengjiu.wang@nxp.com>
-In-Reply-To: <20250114102720.3664667-1-shengjiu.wang@nxp.com>
-References: <20250114102720.3664667-1-shengjiu.wang@nxp.com>
-Subject: Re: [PATCH 0/2] ASoC: fsl: Support micfil on i.MX943
-Message-Id: <173687508729.71321.6375235704794853519.b4-ty@kernel.org>
-Date: Tue, 14 Jan 2025 17:18:07 +0000
+	s=arc-20240116; t=1736875872; c=relaxed/simple;
+	bh=9GdbNDKiM+RoKbvZkVAFZz4THlAvdV9kynwzUGgJQlw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZZX0eKZ+yIK297RdtO7Ft1BdE7Q7BullJBY1d8ylf67tJXcTb+g0gE0Q0yNWJHELyUYNmGHVCt+3shtBUtwUDK04kT5yF7gbX2mLDQkCFWcUG2G5+9zbQvmVxxq9aVSxT5aFV0euIWl5F3f6KkWX4+mSTxcM7RsnGEygSSGl0JQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=L+Mn8MLe; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=vK4b5hmfFQg90bKf5c35DlRbGDFITMqw3G3MDy4quhw=; b=L+Mn8MLeKAqlc3Yy3KOe4L8g73
+	WZimn4WgzcyM0muig8nFU9U7oZoRkZXYu9gfUshX0xsVcSpeM4ltf2FunIveIcvBkcL4sE330nOwn
+	hvOAQ/fa++zhoCC/Ba8nng+m8vgBLpcuD0b0h4jKnwM5+Xw7bOcS3Fenvvak5uFcZWKHHEnYicAPJ
+	dxqxsWtuX9MGUxNhvXFC75M5LBKbQgyJnOhE9CTzWI29oezpyCTks6eVjB7SeyeMG9nOId+vK7d3f
+	hodL28z6NCAwZsOcVs1TT+N+1yXW9B5ibz6l6Gx5a5Gcdn0Q39dgbEL8wy2ysiy1L/GxhvyXvGjT+
+	X7liPiYA==;
+Received: from i53875b2c.versanet.de ([83.135.91.44] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tXkkJ-0005Ki-N1; Tue, 14 Jan 2025 18:30:31 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Chris Hofstaedtler <zeha@debian.org>, andy.yan@rock-chips.com,
+ Guochun Huang <hero.huang@rock-chips.com>
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ quentin.schulz@cherry.de, Heiko Stuebner <heiko.stuebner@cherry.de>,
+ Daniel Semkowicz <dse@thaumatec.com>, Dmitry Yashin <dmt.yashin@gmail.com>
+Subject:
+ Re: [PATCH v4 1/3] drm/bridge/synopsys: Add MIPI DSI2 host controller bridge
+Date: Tue, 14 Jan 2025 18:30:30 +0100
+Message-ID: <3556284.QJadu78ljV@diego>
+In-Reply-To: <Z3IDh0TOAKqaovz2@per.namespace.at>
+References:
+ <20241209231021.2180582-1-heiko@sntech.de>
+ <20241209231021.2180582-2-heiko@sntech.de>
+ <Z3IDh0TOAKqaovz2@per.namespace.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-1b0d6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, 14 Jan 2025 18:27:18 +0800, Shengjiu Wang wrote:
-> On i.MX943, the FIFO data address is changed and the bit width
-> of CICOSR is changed.
-> Add a new compatible string and update driver for these changes.
+Hi Chris,
+
+Am Montag, 30. Dezember 2024, 03:20:55 CET schrieb Chris Hofstaedtler:
+> On Tue, Dec 10, 2024 at 12:10:19AM +0100, Heiko Stuebner wrote:
+> > From: Heiko Stuebner <heiko.stuebner@cherry.de>
+> > 
+> > Add a Synopsys Designware MIPI DSI host DRM bridge driver for their
+> > DSI2 host controller, based on the Rockchip version from the driver
+> > rockchip/dw-mipi-dsi2.c in their vendor-kernel with phy & bridge APIs.
+> > 
+> > While the driver is heavily modelled after the previous IP, the register
+> > set of this DSI2 controller is completely different and there are also
+> > additional properties like the variable-width phy interface.
+> > 
+> > Tested-by: Daniel Semkowicz <dse@thaumatec.com>
+> > Tested-by: Dmitry Yashin <dmt.yashin@gmail.com>
+> > Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
+> [..]
+> > +static void dw_mipi_dsi2_set_vid_mode(struct dw_mipi_dsi2 *dsi2)
+> > +{
+> > +	u32 val = 0, mode;
+> > +	int ret;
+> > +
+> > +	if (dsi2->mode_flags & MIPI_DSI_MODE_VIDEO_NO_HFP)
+> > +		val |= BLK_HFP_HS_EN;
+> > +
+> > +	if (dsi2->mode_flags & MIPI_DSI_MODE_VIDEO_NO_HBP)
+> > +		val |= BLK_HBP_HS_EN;
+> > +
+> > +	if (dsi2->mode_flags & MIPI_DSI_MODE_VIDEO_NO_HSA)
+> > +		val |= BLK_HSA_HS_EN;
 > 
-> Shengjiu Wang (2):
->   ASoC: fsl_micfil: Add i.MX943 platform support
->   ASoC: dt-bindings: fsl,micfil: Add compatible string for i.MX943
->     platform
-> 
-> [...]
+> For all three of these: is setting an ENable bit the right thing to
+> turn features *off*?
 
-Applied to
+first of all, thanks a lot for noticing this discrepancy :-) .
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Looking at the documentation, all 3 of those hw-bits are described as
+  "Enables filling the H.. period with blanking packets. ..."
 
-Thanks!
+where the MIPI_DSI_VIDEO_MODE_NO_* flags are described as
+  "disable hfront-porch/... area"
 
-[1/2] ASoC: fsl_micfil: Add i.MX943 platform support
-      commit: eab69050450ba63a4edb17d3d1a8654d2a130786
-[2/2] ASoC: dt-bindings: fsl,micfil: Add compatible string for i.MX943 platform
-      commit: 3927c51e49c1a45785334dc578f0b29c685619ec
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+So yes, I _think_ "disable front-porch" would _should_ result in
+"don't fill the period with blanking packets", but am not fully sure.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+I've run the two boards I have with inverting the checks as sounds
+sensible right now, aka doing:
+	if (!(dsi2->mode_flags & MIPI_DSI_MODE_VIDEO_NO_HFP))
+etc and both displays I have ran just fine.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+As the driver was originally part of a vendor-kernel based on 5.10, which
+I think was before the _NO addition from [0] it could be caused by a
+misread of the flags that were named differently back then.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
 
-Thanks,
-Mark
+So yes, switching things around does sound like the right thing to do.
+
+
+Heiko
+
+[0] https://lore.kernel.org/all/20210629074703.v2.1.I629b2366a6591410359c7fcf6d385b474b705ca2@changeid/
+
+
 
 
