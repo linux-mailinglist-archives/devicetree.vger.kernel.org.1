@@ -1,143 +1,145 @@
-Return-Path: <devicetree+bounces-138469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE315A108AE
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:10:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EAD5A108C9
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:12:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81A9E7A2E9E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:10:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E8DE3A3013
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:11:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B89413C67E;
-	Tue, 14 Jan 2025 14:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC8A913C695;
+	Tue, 14 Jan 2025 14:11:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=remarkable.no header.i=@remarkable.no header.b="cgZ3Xh1y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XWvS/D86"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E7B8C07
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 14:09:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5823136E3F;
+	Tue, 14 Jan 2025 14:11:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736863778; cv=none; b=BFr2FhlIn3eSEWiRIXqUCVrZjowUstYXfImr4ZPsUiPe+48kHGu/sY4xMR+wTzGM3pWqBJVsLFw0ezc7yL85v3J/b2BSSmMmtHyhwrT1AAbN9pVUmm0h8o0hao8tdIRbhrA75HEroDpmZdtM08gdTfzgzfhhcrsjp6Vne+JvkL8=
+	t=1736863881; cv=none; b=UKDKCGUHUkm9Z+tMYOSZ9gGxRjnHEg6UMCWV+w1xilr1vNFaOfgZfnPQumH8s8qmJ91h7er8MjuvlRMnl+iRCcQsrMUTeAPIXuqKpIfi//7ezOCOq2qH0sacq3c8KCwU7xpIEkg4nOqcePYjqjw9GFeFkbTeksu9OfqtA5rPrGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736863778; c=relaxed/simple;
-	bh=Rw0YwheHGkjgBmtJ3XrHVYkwWRiQHC6U1g7GiN7Nu8Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F/Rk/7y6O8XF01DMWuieD6aT3bJLMiHgybFpt//th7lkVCtrskewogYb66NWtkz4T1BAWv3VFNEcuRhQUhdE9Ch0kBQhTLHSdZEBJDDZQ5Mou2NUIOtFGw24W2Ezuby6VhlPllhF72wHNONVf/BypIjtN3A1Cq8vp5mzV2wj3hI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=remarkable.no; spf=pass smtp.mailfrom=remarkable.no; dkim=pass (2048-bit key) header.d=remarkable.no header.i=@remarkable.no header.b=cgZ3Xh1y; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=remarkable.no
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=remarkable.no
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54287a3ba3cso5504628e87.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 06:09:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=remarkable.no; s=google; t=1736863774; x=1737468574; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=91GZIzgjXBcFI31iM5fj3Hf8Rb+AoJ8tIZRBGy0zkpw=;
-        b=cgZ3Xh1yd4WUFzHL4mi7PFoIxQv79JiX1BcXqx6H4FA8VWs9gEYx+G16/4HQx31A28
-         LNyN7SaR1mn63ksfnmHfDnsIv7g7zwaYqXjfuSJAtjjg12UMEN8jdwHh3l9s3m4iRNhc
-         4VFcu4+RaF9DGbfrZJsFm4K2njY/5rxDxVLFtfLhD1T/COAkhplwVb092a0bmF6q879C
-         3V9V6lm7ah2TLrC47NNOCFlEltc1UvA3AGFo+0PvvL3gfdW6sopAJOH2wN3zEd6T/XW5
-         bnN+5RUIEn5OhsCMQgkGEyJMwfPjG6904l6/UPlaiMw4nWRnYTIjtBJAJWn3HItV0RE1
-         XLaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736863774; x=1737468574;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=91GZIzgjXBcFI31iM5fj3Hf8Rb+AoJ8tIZRBGy0zkpw=;
-        b=ti0kJGE7H0X7p+2zO85YRgFHZnxuG3nxRrYML4LYQwUTUQzdsYXH/4Bg56jxgWsPEM
-         RAbyQ+P4ShCngqiVBZ3sO4bAyaUQWKiRMpAWwlPAwtHXPf6Gz6lAQYVFA3uTBYWeBgOx
-         CZWjwS6vneE6anpqnFvmG1JpRFrzAPTV3/Uzl20mjWQ+k/5keo7XwNqj7VDJuyeML3xv
-         Pwj77x968vOTpSdB+ZRRTFuYK7qs5530Xeif0QnRgvRkI5up2B1V/ysAE7vj7Y+NVN7n
-         0VooXIwae+tnX+OjPrZV+E/BI/Y/KCj1jGiB0vtzPvAI00goTQnBi3eUk6g7ewPGvogC
-         S8Ng==
-X-Forwarded-Encrypted: i=1; AJvYcCX6Age6FB8yBQlG2ljNBKze0lCAxJDtwjW5SZHNUX8N1PTWStE9w814p9QeueWBWpo62XYddfpXmEuP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7mNXlMeMLWnTi2BMIGnScyxcDZlGUby0JQ0JtFHXwHFA6u0hl
-	4CKXRd6K56x8e/SIOLzvgrlArMcgdneNnIIZ4CIS1SOUa9qPsuFJl/WUQE9Gxg==
-X-Gm-Gg: ASbGncsTxhDNu6HWpnj9WHZAheXcw/ihtoXXEc8MmkAxlfYjnXfJdRlNMGd5Ggi08uM
-	16Fa9MGl2ujHubOlOkkvRuoYS+5rKubmyOtuvlUGKhAakOrZssnob388fAuIHeWImyLQ/QPUhIw
-	0gVj6P7UPy4//wtuuKlli3N2gDPW5MYFBbkuXZAftM/oe9z1KVcAdGFffGAkVHsni0zNVgAInzy
-	4ne7XOwIBPkvJEKc9QL6yRzjJlPnAQ1WLhAauRmMQYdwfUVlxHm/KTTXqtdgLvXbNAPR8gntX6c
-	15mUAe1uNq9ckz0ahgSIrRQO7nIwWc0=
-X-Google-Smtp-Source: AGHT+IFoRDuCSh+PCWGYFtIoF6NIctlAFX3rohBL5ZQstpfFeSZSElly5OSQJQFTSaC7IKBKDWvYhg==
-X-Received: by 2002:a19:6a0f:0:b0:542:8a7c:509f with SMTP id 2adb3069b0e04-5428a7c5293mr5001343e87.2.1736863774384;
-        Tue, 14 Jan 2025 06:09:34 -0800 (PST)
-Received: from ?IPV6:2001:4643:2b9c:0:742e:f778:f9f1:b089? ([2001:4643:2b9c:0:742e:f778:f9f1:b089])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428be4999bsm1687773e87.14.2025.01.14.06.09.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jan 2025 06:09:33 -0800 (PST)
-Message-ID: <30b09e71-6790-4ab2-8945-e011996ee85f@remarkable.no>
-Date: Tue, 14 Jan 2025 15:09:32 +0100
+	s=arc-20240116; t=1736863881; c=relaxed/simple;
+	bh=wJsHWxYhcsyG5A7Fmu89Lm5IzY+TrzTNbM1pZ6xRyuE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QsC4XJMwQWRBZZMPla+fTmXXYhNByb0X3nc3zj8/G/Nflqq187ikAlQvOmUxmRW/3jQaS8ruySefA6bcCcIBYrKn1+pFA64nzg5G29JG5ksgfN1wSAJ131SX/kMF6YA1Ij6oZlfhAHe5rby7p89rtA7NJfbMJ+yr9wM0e9Vtn+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XWvS/D86; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4B001C4CEDD;
+	Tue, 14 Jan 2025 14:11:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736863881;
+	bh=wJsHWxYhcsyG5A7Fmu89Lm5IzY+TrzTNbM1pZ6xRyuE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=XWvS/D86kpOtNiVH7UZOppRWwVTYbQEWnhbIBukunl1BLAGW7hpGMQdPHLlYPQSCT
+	 ZJQn47rJBVx/66vUyLZX38H/7XBc1He5ydJmoVyiu/WInLdfhsxBHtFySlzOxsgzzX
+	 1ZxsM0qtEqUGN0ca1Ro9d6wpsHUUxZlq7lap3TBRu4QdxRTI42mSyjIrcpFA7zFi6t
+	 SL96K3cqLKzTXSkYXX+JtL/1oAu+IWnjj/3khkoPsQPyA5apH+LAsbp8hC4cI+ePxD
+	 JXzP+MuiTfPiyKB1S3bM/SEprQLL5JBUCoitDhrQeERbz2o7pvVVBAS3vvaoeVrCTc
+	 iNByBpte9z/xw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 439B7E77188;
+	Tue, 14 Jan 2025 14:11:21 +0000 (UTC)
+From: Ricky Cheung via B4 Relay <devnull+rcheung844.gmail.com@kernel.org>
+Subject: [PATCH 0/3] arm64: dts: qcom: msm8916-xiaoxun-jz0145-v33: Add
+ initial device tree
+Date: Tue, 14 Jan 2025 22:11:17 +0800
+Message-Id: <20250114-xiaoxun-jz0145-v33-v1-0-dc51f7ce3bd8@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] Bluetooth: btnxpuart: Add support for set BD
- address
-To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
- "marcel@holtmann.org" <marcel@holtmann.org>,
- "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
-Cc: "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Amitkumar Karwar <amitkumar.karwar@nxp.com>, Sherry Sun
- <sherry.sun@nxp.com>, Luke Wang <ziniu.wang_1@nxp.com>,
- "kristian.krohn@remarkable.no" <kristian.krohn@remarkable.no>,
- Manjeet Gupta <manjeet.gupta@nxp.com>
-References: <20250114133548.2362038-1-neeraj.sanjaykale@nxp.com>
- <20250114133548.2362038-2-neeraj.sanjaykale@nxp.com>
- <43beb3f3-071d-4f58-b356-6dc6b9de947a@remarkable.no>
- <PA4PR04MB9687E566EEC90DEF5FB44A2CE7182@PA4PR04MB9687.eurprd04.prod.outlook.com>
-Content-Language: en-US
-From: Johan Korsnes <johan.korsnes@remarkable.no>
-In-Reply-To: <PA4PR04MB9687E566EEC90DEF5FB44A2CE7182@PA4PR04MB9687.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIVwhmcC/x3MMQqAMAxA0atIZgNJqw5eRRykRo1DlRalWLy7x
+ fEN/2eIElQi9FWGILdGPXwB1xW4bfKroM7FYMi0xNxg0ulIl8f9IW5avK1FY2dH1LmFLUEJzyC
+ Lpn86jO/7AaeUMlpkAAAA
+X-Change-ID: 20250114-xiaoxun-jz0145-v33-23dc006cf130
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, Ricky Cheung <rcheung844@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736863880; l=2342;
+ i=rcheung844@gmail.com; s=20250114; h=from:subject:message-id;
+ bh=wJsHWxYhcsyG5A7Fmu89Lm5IzY+TrzTNbM1pZ6xRyuE=;
+ b=ZAXZ0/J6ksJVo7SKTvqRwfq1e9sErlRm7OX9qB4dMAKAmPD0E5Uc7ajZvbQ9PkPyX9ka/yHbv
+ yt1YQ9/4mLACYvsHIOn/sqzdng3Inmggvl2U5jkRbNkwbW7AneC43bQ
+X-Developer-Key: i=rcheung844@gmail.com; a=ed25519;
+ pk=JjZsSnuDD1xuR4EXY4XGKELgToA++HxxheDlHU/41yI=
+X-Endpoint-Received: by B4 Relay for rcheung844@gmail.com/20250114 with
+ auth_id=323
+X-Original-From: Ricky Cheung <rcheung844@gmail.com>
+Reply-To: rcheung844@gmail.com
 
-On 1/14/25 3:07 PM, Neeraj Sanjay Kale wrote:
-> 
-> Hi Johan,
-> 
->>
->> On 1/14/25 2:35 PM, Neeraj Sanjay Kale wrote:
->>> This adds support for setting BD address during hci registration. NXP
->>> FW does not allow vendor commands unless it receives a reset command
->>> after FW download and initialization done.
->>> As a workaround, the .set_bdaddr callback function will first send the
->>> HCI reset command, followed by the actual vendor command to set BD
->>> address.
->>>
->>
->> Hi Neeraj,
->>
->> If NXP firmware does not allow vendor commands prior to this reset, would it
->> not be better to perform this reset during probe/init?
->>
-> HCI reset is already part of kernel init sequence hci_init0_sync().
-> However, .set_bdaddr() is called immediately after FW download is complete, but before this init sequence.
-> 
-> Also, if local-bd-address property is not defined in the DTB, sending HCI reset command in probe does not add any value.
-> 
-> With current implementation, if local-bd-address is defined, driver sends HCI reset, followed by set BD address vendor command, and kernel continues with the HCI init sequence.
->
+Good evening.
 
-Thanks for clarifying, that makes sense :-)
+This patch adds support for the XiaoXun JZ0145 v33 4G LTE WiFi modem
+based on the MSM8916 chipset by a new manufacturer / vendor for the
+Linux Kernel called called XiaoXun BiCheng Technology. Below is some
+information about these changes.
 
-Kind regards,
-Johan
+Addition of a new vendor prefix
+----------
 
-> Thanks,
-> Neeraj
+XiaoXun BiCheng Technology is not well known in that they don't seem
+to have a presence in the Western world. I purchased my own modem
+on TaoBao, which requires stores to registered as businesses, so
+I believe it is justified to add it as a vendor prefix. Note that the
+company appears to have shut down just this month.
+
+Status of patch
+----------
+
+This device shares many similarities to pre-existing devices within
+arch/arm64/boot/dts/msm8916-ufi.dtsi, so I am sure most features would
+function with the correct firmware on this device.
+
+However, due to the poor quality of these devices, my unit's EMMC has
+failed and I cannot conduct further tests. Previous, the modem was
+able to boot with devicetree of a UZ801, albeit with LED and Modem
+issues, which is addressed in this patch.
+
+I have sent the code for testing to some kind folks on the Internet with
+good outcomes, so do consider this code as ready and functional.
+
+This patch was also reviewed over at the msm8916-mainline organization
+and deemed ready by the maintainer:
+
+	https://github.com/msm8916-mainline/linux/pull/386
+
+Note that this is my first patch to the LKML, so if there's something I
+did wrong / the patch is missing, please point it out.
+
+Best Regards,
+Ricky Cheung
+Tipz Team
+
+Signed-off-by: Ricky Cheung <rcheung844@gmail.com>
+---
+Ricky Cheung (3):
+      dt-bindings: vendor-prefixes: Add XiaoXun BiCheng Technology
+      dt-bindings: arm: qcom: Add XiaoXun JZ0145 v33
+      arm64: dts: qcom: msm8916-xiaoxun-jz0145-v33: Add initial device tree
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |  2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |  1 +
+ .../boot/dts/qcom/msm8916-xiaoxun-jz0145-v33.dts   | 66 ++++++++++++++++++++++
+ 4 files changed, 70 insertions(+)
+---
+base-commit: d390303b28dabbb91b2d32016a4f72da478733b9
+change-id: 20250114-xiaoxun-jz0145-v33-23dc006cf130
+
+Best regards,
+-- 
+Ricky Cheung <rcheung844@gmail.com>
+
 
 
