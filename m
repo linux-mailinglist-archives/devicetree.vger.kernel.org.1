@@ -1,225 +1,111 @@
-Return-Path: <devicetree+bounces-138478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BA6DA108EC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:17:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F3F3A108F1
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:17:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64F393A8984
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:17:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3793118847F7
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:17:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDC885C5E;
-	Tue, 14 Jan 2025 14:17:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E44898528E;
+	Tue, 14 Jan 2025 14:17:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="J6wdGop5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jYTwnVyx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A79323244E;
-	Tue, 14 Jan 2025 14:17:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A8D317993
+	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 14:17:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736864225; cv=none; b=bc2F1n008xA9Tjr7At4jKiaSzEPoYepUTAzpDwUHYQcys4W2XT+uC5wx8zotpdbyBAQDpFN1anYcvvhwlgMlY3+RUmfJ1Ilaqv6Jp1YXzsViX5pYezRGuSWzgVzp8PHv3eueOqo5CXvKGhHm4ivGREqPnlWYdAmBbC3vyGOICrI=
+	t=1736864269; cv=none; b=abQkq68rMLnylFxNSxeWFcb1OX6aD4qI5/6PrId/h/w8Ekm3n2yKPBtj2pWEDgPx7DJh7AqBasq9yf4T93dPj99PrIyj3l471QRoKr5pvONOyyAdcC8ajOd+g0Akw/5XesxF6Gf1PCTITzRhrvD5mchB+a/VIOwoWZMBSHzycU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736864225; c=relaxed/simple;
-	bh=UcLT/NGwEPJZ5L1DHsFtFzF+XOJMTV8UvHS9FoikQUE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=lvS3KdtUfWhQmgFfeB+oq+xu4M7nOrR1/zfZoZUFmDuYcl+7ImaTgBIwguVbDSnG63kAxCiUs9Rzp/xELaSmPRh5vUHQBKQzZqmnFY2/qEG2TTVTjUWmy2NhGXn2biLLns4gzsEeFUbEZg1zU1rxbpraMCklff2xWsvrMGcXPJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=J6wdGop5; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1736864221;
-	bh=UcLT/NGwEPJZ5L1DHsFtFzF+XOJMTV8UvHS9FoikQUE=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=J6wdGop5G4nss4xyIPKF1t7RgMLG7uignLmWgtjyf/K7aqRNzaFLmZOLNdIgQoN03
-	 mBtzE0NfcjP8UrsFiF2V36hFhuIUuS/Pwwrrr132lusduiDR6OUdojfNFgn/O+h84e
-	 E2KCxWlMg/96AjAfJJ1HvgLwCevc73sjTmXVbWg0y9eU9v+GpGKZwoT+JAaBAH40NX
-	 44l/ff93fblxo6G79nkFpDImkyQ9G/UAiQ7clKytn/JT3zObw37DhHGdQBDVM+L3YP
-	 RbFY9HaEDzuKW2N7JPG8T+pwHMNNLsZy6WOwacukqcrxE9BIA51dW4iXT/PlZXg56e
-	 YFAM0Wx6kGIsw==
-Received: from nicolas-tpx395.localdomain (unknown [IPv6:2606:6d00:15:862e::7a9])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 869C917E02BE;
-	Tue, 14 Jan 2025 15:16:58 +0100 (CET)
-Message-ID: <c71eb0c2052814f709d1cc36bd3e968d72a96749.camel@collabora.com>
-Subject: Re: [RESEND PATCH v5 0/4] Add Synopsys DesignWare HDMI RX Controller
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Dmitry Osipenko <dmitry.osipenko@collabora.com>, Tim Surber	
- <me@timsurber.de>, Shreeya Patel <shreeya.patel@collabora.com>,
- heiko@sntech.de, 	mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, 	mturquette@baylibre.com, sboyd@kernel.org,
- p.zabel@pengutronix.de, 	jose.abreu@synopsys.com,
- nelson.costa@synopsys.com, shawn.wen@rock-chips.com, 	hverkuil@xs4all.nl,
- hverkuil-cisco@xs4all.nl
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-Date: Tue, 14 Jan 2025 09:16:55 -0500
-In-Reply-To: <9399a881-7d45-4ca3-8249-2e554184d038@collabora.com>
-References: <20241210193904.883225-1-shreeya.patel@collabora.com>
-	 <acb91a34-c0f8-4f03-8945-755b4e42dcf3@timsurber.de>
-	 <925d7571-48e4-437d-b55c-3f7bbad8af1d@collabora.com>
-	 <fbb5016e-678c-4e54-a6a8-0ccaa2bdf45c@timsurber.de>
-	 <a5226fac-2a5b-47f3-b32e-8662bf932bd4@collabora.com>
-	 <d61e344f-fcdd-47af-a142-e8d42edec045@timsurber.de>
-	 <9399a881-7d45-4ca3-8249-2e554184d038@collabora.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.54.2 (3.54.2-1.fc41) 
+	s=arc-20240116; t=1736864269; c=relaxed/simple;
+	bh=O/WRM1ywqimJ2aPAr2Tip0blUkgzcD//gX/qp+tJeTM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=j1yldbgOlTA/2x+bjoVu7xGsTbbKoIkWovQuTjHvzQuuzwGnpa/3Owyk8dOiOpIBxsKlWIe9UdOmQNLLyICHwrajTMULlcuogHOsWkzAqzfjQ0u6Xb9qgdLPWNrLpTsZUNMfw8D7I1kFsMarevDCzAygDc7Hxtwb44wgDbH1yME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jYTwnVyx; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-30036310158so43787441fa.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 06:17:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736864266; x=1737469066; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=O/WRM1ywqimJ2aPAr2Tip0blUkgzcD//gX/qp+tJeTM=;
+        b=jYTwnVyxr54/9zvIEYInoB/PszQ9wT9atZLhsMWKS3w+qWIppwB5nwN6v95Y4cYlcI
+         CPkoOnDs8q7ZZI9FmBpn/hCb39hknH9oSP6w4+qiMaZmI9Iv9hf+lWAaUEvX9FeJt6im
+         BhyOZ6TiVZSO4HUUFSyZY415Bfn/pRHz9RKfVXhqZCu5N0rqYLMVlOyIxdUXGEU40jni
+         wrj0ozRiWKMUiQ9VdR1skkrDWbDfu2vZFXYJDmwOuvcCs3nm8qVJXXhkAzkTb6FF5H5V
+         FQn6IG98aurAponCo44wldB2K7y70ImdNFIYYrtx1s6im/FLgm5TgnTu/mEZJL3uynF4
+         fu5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736864266; x=1737469066;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=O/WRM1ywqimJ2aPAr2Tip0blUkgzcD//gX/qp+tJeTM=;
+        b=s+k0/TuzIG7ZWtYKzWaXthl8fhYoPaTEivKc+0IfMQKzfGPrUpSH8nr+DCcGnDYCxr
+         VrswiYmtFGk0deS/vdPlfZDaPVNBDe5gim58SE1n1P4kq1ciFHJRFSdBdOscUe5Yk3wF
+         aNNLWxNFTs4hhHCee7IBIIjC/H2h9x5ndmJfnAPU3VeowixClqmuG2ZVr5bbRbeDFjcp
+         mXcjH2yiT5FbX0wFg8YZlS4U78aFKPbsWiCHZHJWWyoIr8XWJoWb70z+dvGHyRKGVpLe
+         kI2y3ysdsOgccYxv2FGABDC9+/ULbHW/uhNxVqSERrDck5zS8Bx0mQ6BOd9VxFNFc00S
+         26NA==
+X-Forwarded-Encrypted: i=1; AJvYcCWwe14SwLaEwk7geS/3MWFyoQkk6T7lG5/8Tq7wWLRoe1KgK1JW4vExXXHtFV3fLK9ddc+xY3wjSnJi@vger.kernel.org
+X-Gm-Message-State: AOJu0YwgzuThyfvMhL4RK3YMzoiFx+4NCp0fzilgWbGpu8I/8N1rvi0E
+	8jMvK7aLkCL+IiustGt7yqRSdaFNjrUmuW4YZlyLevvVM+fXuYVebBlArE8hKoF8oSVaV5oAoUp
+	5YbZnKqSlm23n3uYmMoTvI44qo4aFoWxcf1iUyQ==
+X-Gm-Gg: ASbGncvFq3+h1XLj8tlu/g8BaDd0VJ09fGdqT1VDuIKSOkdRL5k9b4B/QjEytmfz2Qf
+	jFX7rrvbzh4EDgJ+aCdObXFAYcP6LZ1mzKxvA
+X-Google-Smtp-Source: AGHT+IFPFJTmNosakpUt5JU8cN5nBrvR7+LTD4fCMkRrHXEcHL6oNl6Fgp0ggW/W8QtR1cS9S/mGb7h5l9NZcPFPlko=
+X-Received: by 2002:a2e:bc1c:0:b0:300:33b1:f0e7 with SMTP id
+ 38308e7fff4ca-305f45478f1mr79313431fa.10.1736864266081; Tue, 14 Jan 2025
+ 06:17:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250107125836.225447-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250107125836.225447-1-krzysztof.kozlowski@linaro.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 14 Jan 2025 15:17:35 +0100
+X-Gm-Features: AbW1kvbukVMqrBajLgYQt1hKpFELkNSEFH3GzkQaHu95dam2b6lvaqOS79Rlmww
+Message-ID: <CACRpkdbJziJ0kKqZLrBuZ4G5HmnJbL5+j8zJLQ1H+q8NE9P3oA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: Correct indentation and style in
+ DTS example
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+	Michal Simek <michal.simek@amd.com>, Manikandan Muralidharan <manikandan.m@microchip.com>, 
+	TY Chang <tychang@realtek.com>, Krishna Potthuri <sai.krishna.potthuri@amd.com>, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Le mardi 14 janvier 2025 à 14:37 +0300, Dmitry Osipenko a écrit :
-> On 1/9/25 02:17, Tim Surber wrote:
-> > Hi,
-> > 
-> > I tested your patch with the command
-> > 
-> > # gst-launch-1.0 -v v4l2src device=/dev/video1 ! fakesink
-> > 
-> > If this worked I moved on to a visual test using
-> > 
-> > # gst-launch-1.0 -v v4l2src device=/dev/video1 ! queue ! v4l2convert !
-> > waylandsink
-> > 
-> > I used a Windows PC  with a Nvidia GTX 4060 as my source for the
-> > following tests.
-> > 
-> > > Format       | Result                                      |
-> > > ------------ | ------------------------------------------- |
-> > > 4k60p RGB    | Recognized as 1080p / 120 fps - no output   |
-> > > 4k60p 4:2:2  | Recognized as 1080p / 120 fps - no output   |
-> > > 4k60p 4:4:4  | Error: Device wants 1 planes                |
-> > > 4k30p RGB    | ok                                          |
-> > > 4k30p 4:2:2  | ok                                          |
-> > > 4k30p 4:4:4  | Error: Device wants 1 planes                |
-> > > FHD60p RGB   | ok                                          |
-> > > FHD60p 4:2:2 | ok                                          |
-> > > FHD60p 4:4:4 | Error: Device wants 1 planes                |
-> > 
-> > 
-> > When testing 4:4:4 chroma I got the following error:
-> > 
-> > # gst-launch-1.0 -v v4l2src device=/dev/video1 ! fakesink
-> > /sys/v4l2/gstv4l2object.c(4344): gst_v4l2_object_set_format_full (): /
-> > GstPipeline:pipeline0/GstV4l2Src:v4l2src0:
-> > Device wants 1 planes
-> > 
-> > I could record and convert (with errors) the files with 4:4:4 chroma
-> > using the command Shreeya posted, but the resulting video had wrong
-> > colors and was flashing.
-> > 
-> > I was not able to test 4:2:0 chroma. I tried to generate an custom EDID
-> > with support for it but I could not select it in the graphics driver in
-> > the source, maybe this is just an issue with my setup.
-> 
-> Thanks a lot for the testing, very appreciate it! Good that RGB works
-> for you with no problems.
-> 
-> Testing YUV formats isn't trivial. Personally I've a custom setup with a
-> modified display driver of RPi to test them. See more below.
-> 
-> > I also observed that the the framerate is reported wrong, for example
-> > setting the source to FHD60p RGB resulted in the following:
-> > 
-> > # v4l2-ctl --all -L --list-formats-ext -d /dev/video0
-> > Active width: 1920
-> >     Active height: 1080
-> >     Total width: 2200
-> >     Total height: 1125
-> >     Frame format: progressive
-> >     Polarities: -vsync -hsync
-> >     Pixelclock: 214076000 Hz (86.50 frames per second)
-> > 
-> > This wrong framerate reporting seemed to happen across all framerates
-> > and resolutions. Gstreamer Pipeline negotation showed the same results.
-> 
-> I've re-tested YUV444 4k capture using RPi4, works flawlessly. Note for
-> gst-launch-1.0 you used video1 and video0 device is used by v4l2-ctl
-> command above, maybe you're using wrong device. Please post a complete
-> output of the v4l2-ctl command.
-> 
-> The command I used to test YUV444 capture:
-> 
-> # v4l2-ctl --verbose -d /dev/video1
-> --set-fmt-video=width=3840,height=2160,pixelformat=NV24 --stream-mmap=4
-> --stream-skip=3 --stream-count=3300 --stream-to=hdmi.raw --stream-poll
-> 
-> The I converted captured data to a video file and played it:
-> 
-> # ffmpeg -f rawvideo -vcodec rawvideo -s 3840x2160 -r 30 -pix_fmt nv24
-> -y -i hdmi.raw output.mkv && mpv output.mkv -loop 0
-> 
-> Don't see any problems with a reported framerate:
-> 
-> DV timings:
->         Active width: 3840
->         Active height: 2160
->         Total width: 4400
->         Total height: 2250
->         Frame format: progressive
->         Polarities: -vsync -hsync
->         Pixelclock: 296992000 Hz (30.00 frames per second)
-> 
-> Note the timing data reported by v4l2-ctl updates after launching the
-> capture. It's not updated dynamically when you changing mode on the source.
+On Tue, Jan 7, 2025 at 1:58=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-GStreamer uses G_PARM to get and report the frame interval (and flip the
-fraction over to make it a frame rate). I've assumed these two should match and
-it wasn't worth a special case of HDMI receivers.
+> DTS example in the bindings should be indented with 2- or 4-spaces and
+> aligned with opening '- |', so correct any differences like 3-spaces or
+> mixtures 2- and 4-spaces in one binding.
+>
+> No functional changes here, but saves some comments during reviews of
+> new patches built on existing code.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Nicolas
+Thanks Krzysztof, patch applied!
 
-> 
-> Lastly, please run `echo 3 >
-> /sys/module/synopsys_hdmirx/parameters/debug`.  Watch the kmsg log.
-> Check that it says "hdmirx_get_pix_fmt: pix_fmt: YUV444" when you
-> connecting HDMI cable to a YUV444 source and see other related messages.
-> If it says RGB, then your source is transmitting RGB.
-> 
-> > During my testing I got sometimes an error
-> > 
-> > 
-> > # dmesg
-> > dma alloc of size 24883200 failed
-> > 
-> > 
-> > I'm not sure when this happened and how to reproduce it.
-> 
-> This comes from v4l core, should be harmless as long as capture works.
-> It's a known noisy msg, you may ignore it for today.
-> 
-> > Then I tried to use an AppleTV 4k as source. I don't know what
-> > resolution it tried to negotiate but I got this error in addition to the
-> > previous "Device wants 1 planes" and no connection:
-> > 
-> > # dmesg
-> > fdee0000.hdmi_receiver: hdmirx_query_dv_timings: signal is not locked
-> > fdee0000.hdmi_receiver: hdmirx_wait_signal_lock: signal not lock,
-> > tmds_clk_ratio:0
-> > fdee0000.hdmi_receiver: hdmirx_wait_signal_lock: mu_st:0x0, scdc_st:0x0,
-> > dma_st10:0x10
-> > fdee0000.hdmi_receiver: hdmirx_wait_signal_lock: signal not lock,
-> > tmds_clk_ratio:0
-> > fdee0000.hdmi_receiver: hdmirx_wait_signal_lock: mu_st:0x0, scdc_st:0x0,
-> > dma_st10:0x14
-> 
-> "Device wants 1 planes" sounds like you're using a wrong v4l video
-> device. Please double check. Though, the "signal not lock" means it
-> doesn't work anyways, please make sure you're using the default driver
-> EDID and not a custom one.
-> 
-
+Yours,
+Linus Walleij
 
