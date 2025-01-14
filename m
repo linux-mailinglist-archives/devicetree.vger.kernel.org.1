@@ -1,116 +1,125 @@
-Return-Path: <devicetree+bounces-138464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65077A10831
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:53:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27205A10834
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:53:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96F1C1887A98
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 13:53:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9F8427A3741
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 13:53:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF80522F19;
-	Tue, 14 Jan 2025 13:53:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4CDA80034;
+	Tue, 14 Jan 2025 13:53:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=remarkable.no header.i=@remarkable.no header.b="VVdqWxN7"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="HDrjMt5r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4E1B1DA32
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 13:53:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BEB585626;
+	Tue, 14 Jan 2025 13:53:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736862809; cv=none; b=SGTBZozi8J4ld42a8Ix5QJhvjJswjahH+h9IaA11H6IyvlD84Oz+Nx9Kz5Xoll5dycOoL53bR4fyTPfzzDeyr+8bs4xwTzqE4hPNTn696WCkgbWRyAGj+uUGnI65pi3YIgfummTqzIG9QGD8F8jAQWI1Q52KGPEzwTtf5Dwv6nM=
+	t=1736862814; cv=none; b=oSluebZtV7u9P5D2UkTg8zztuUp1n+oDJInhRB1uC+d0tJbZi8ZWP8yNA9UvRV62OiJH6535ceoAMYLusrkE+nMDoS734NEZ83UeNS6OS76j/Qeh0HyL83RTZ1esG4TMBCEouE3aX+NgYFnxG+GeV99uehD76dTpfaUaWz+B2t8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736862809; c=relaxed/simple;
-	bh=hJkX5+o+uJNtJT90xi4kgUIBJmunFB2qz5pb5sKqQRw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iHDw+lLNvOo6Xqak935KuNEoQIuK2WdqzbONK78ri4nHWx8WI7ULrHBtDTIN++3EfFQ9AoWNxFbD73blXj5Fla7g7iWE4A7a7X52e+c0vzwU4boQHiyFf4whXOZByCfx8jVJtBQqXmHGa49ApR/PBx1KwuiSld7dPQ5cli4UVe4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=remarkable.no; spf=pass smtp.mailfrom=remarkable.no; dkim=pass (2048-bit key) header.d=remarkable.no header.i=@remarkable.no header.b=VVdqWxN7; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=remarkable.no
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=remarkable.no
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5401bd6cdb4so5101680e87.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 05:53:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=remarkable.no; s=google; t=1736862806; x=1737467606; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hJkX5+o+uJNtJT90xi4kgUIBJmunFB2qz5pb5sKqQRw=;
-        b=VVdqWxN7Vfzjw6FtzWsF4xevt1EdWtHXTEBSVLHsSq8XRaQlgAng2e4TuSCPlE6Cip
-         rpTQKmhgmUAQBRS89ty52/x5fKWI1TVpb8U5Vc0gSpx/tE1ONep4eHWmDCpGkBWVmEoE
-         qVfgcjRh5fw61UrLS3UakTJO8yj05+Wdzy8Vzwodqcn15hZVxsOPShcLgvqpkUGqNufQ
-         PlOF0WQVDkwaJ4Vmco/zM+EQgUyHgeRQ6igj5pQ7CqgbSU0U/+nsJbspLAA4R4LzIbQ+
-         M+NqlL7DClkTUG4gzx+mM4/WcrPLD1w7j8q/3WQwTMkHwVqLI+kjwsW3fzSQAp18h3NU
-         HImg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736862806; x=1737467606;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hJkX5+o+uJNtJT90xi4kgUIBJmunFB2qz5pb5sKqQRw=;
-        b=VSfDASM2LP2+1O04MIenOBiGA+RpFQEWJ0j/VDL14aoXZBQcYcOeKm3RnE1QIN252/
-         uhwMhMZGHD6iebdXGPEfPlqZZMDvVSv7E+krRKB6KkwRhv5LRazwEV0IdmGpwaEH6aXe
-         WmeFY8oYIRG0RYfA4kMDHgWzCLZTwi+MvSsWCuY9kyrpO/AzAYbMo3zuXBjthW1+J+A5
-         AP1s3RML0KTwYBSTJi0BkC2N7Vo3TKJNwVR9gXhJ8L6WKtAJlh5SaDv5IWAzUWPERSvt
-         1AKjU6FuXamM9rZTK32ezr4w7QVNGy1erAzhppV71YmFNSaBc1Kn+YGxV2oSfIP6v2Km
-         LGVw==
-X-Forwarded-Encrypted: i=1; AJvYcCV13mKAIcoru3u5WP/tKhatvqR/RTT02/CXjFsUduCtadQTvFTtsh9FOckxx/hHkcbo8kvczrL06WKb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXRJy3KkiHPZNweCdfuFdJJktEnbeXDge3XqJabLzNU59VXAWd
-	UzqipKUQd3YziJcha4sSF7LFhf8M1SvYBR3HhiGsB+UXW7MAHUgAzOUaRPG4PQ==
-X-Gm-Gg: ASbGncsah+86rRKZg3J0WFlOfVK3R9qeICv4asldV5stvVFdhEQ1LDnfg1t4D9KyI8A
-	MTNFlk2GZoDNKkA3IIYiopRFHl0nfOn+CRQ+NcmrOPNyAnami3g9AZX+Qn9clveLhk5Pi4+nVgu
-	Z+ryV6Jr7A1IEaCmWAP/+5rFjgLejsoVM56cAkQmuC20belydQYJ8BanBSoUPWCo7yb6jZzafmL
-	ubd2n6MQkufeic5F1oeq9qD32W/XYMGTyRSxAE+xwcFcZGxq2mvMnXGH0UGhDjc1fOyLGhhlO6c
-	iSTgUXPBK5qjV9sR2recBvZuaLYjI4o=
-X-Google-Smtp-Source: AGHT+IH1UnEjelCgHrf8XrW9PCaVmULOAto7W+p38OG4x2aB45dMf3YdxSc5kdK3NURqwyo4D6jMqA==
-X-Received: by 2002:a05:6512:3049:b0:542:2137:3a2c with SMTP id 2adb3069b0e04-542845469e1mr8691546e87.24.1736862805901;
-        Tue, 14 Jan 2025 05:53:25 -0800 (PST)
-Received: from ?IPV6:2001:4643:2b9c:0:742e:f778:f9f1:b089? ([2001:4643:2b9c:0:742e:f778:f9f1:b089])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428beaaa95sm1686191e87.174.2025.01.14.05.53.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jan 2025 05:53:25 -0800 (PST)
-Message-ID: <43beb3f3-071d-4f58-b356-6dc6b9de947a@remarkable.no>
-Date: Tue, 14 Jan 2025 14:53:24 +0100
+	s=arc-20240116; t=1736862814; c=relaxed/simple;
+	bh=+ySX4Xs4GMMlR6qYAIWuxAeyZXR3wjJ4EO7Rth0aZoo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=OJQWO317eLY2XBz9ftGIGRt1A3720UDKkH6yBlAhcDAF4e0GaGXPFSCEIGPpV5mV/LVA2xarpTFAVf7ysjP1R8uEwVxd4HrdnfRaKna8wEmRtiKy0KmYTOCQ0ahcqzXQ+yQud6d4Op7RNLWiT72Aj7AOvIKH9WGZQkm9G6YV91o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=HDrjMt5r; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id DE49B20004;
+	Tue, 14 Jan 2025 13:53:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736862810;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xReQIINobAiCL6hAIyZoNV7yMmwjTKDr/zWDi9QjNHw=;
+	b=HDrjMt5rMYCktvTh0oYXpB7rhsAPiRbALGRBNVjaopOkvhJZUiwjl4pcFDML+J0BU4DDnj
+	GWXhE7w3U25c2jSXKEtsEci1nF5P+7r9UBkqdvckzyAyycEz8Mo3B8bX7YYKaDLo4s+tcS
+	pxslifJH6iO0N61OiFZ+mhWITO7LztYbavv/EqPK+950AQlXutBTSbJMPy1vipTCSNpSW6
+	aKYP/78cib9WqKPzqfRgQ3sY095lI8MYdeLdvbF35dgm1uwNH5bCE961OtTqDTaBt3CJ2s
+	oVAfPCIyXQziJbStE7qYz+z3Ioj0EWFHMeewMWiBhIclXmgBR1m6hNL1rlzGsg==
+Date: Tue, 14 Jan 2025 14:53:28 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Oleksij Rempel
+ <o.rempel@pengutronix.de>, kernel@pengutronix.de
+Subject: Re: [PATCH 1/2] regulator: Add support for power budget
+Message-ID: <20250114145328.437a3375@kmaincent-XPS-13-7390>
+In-Reply-To: <8f5ce662-f8bc-449e-99cf-737066dabebd@sirena.org.uk>
+References: <20250113-feature_regulator_pw_budget-v1-0-01e1d95c2015@bootlin.com>
+ <20250113-feature_regulator_pw_budget-v1-1-01e1d95c2015@bootlin.com>
+ <69eaaadf-a6b3-4a5a-af4a-5b574f9edad4@sirena.org.uk>
+ <20250113154551.32e20d1c@kmaincent-XPS-13-7390>
+ <b184e29e-06b0-49cf-8469-1fa0778f06e7@sirena.org.uk>
+ <20250113162620.3c244302@kmaincent-XPS-13-7390>
+ <8f5ce662-f8bc-449e-99cf-737066dabebd@sirena.org.uk>
+Organization: bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] Bluetooth: btnxpuart: Add support for set BD
- address
-To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>, marcel@holtmann.org,
- luiz.dentz@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, amitkumar.karwar@nxp.com, sherry.sun@nxp.com,
- ziniu.wang_1@nxp.com, kristian.krohn@remarkable.no, manjeet.gupta@nxp.com
-References: <20250114133548.2362038-1-neeraj.sanjaykale@nxp.com>
- <20250114133548.2362038-2-neeraj.sanjaykale@nxp.com>
-Content-Language: en-US
-From: Johan Korsnes <johan.korsnes@remarkable.no>
-In-Reply-To: <20250114133548.2362038-2-neeraj.sanjaykale@nxp.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On 1/14/25 2:35 PM, Neeraj Sanjay Kale wrote:
-> This adds support for setting BD address during hci registration. NXP
-> FW does not allow vendor commands unless it receives a reset command
-> after FW download and initialization done.
-> As a workaround, the .set_bdaddr callback function will first send the
-> HCI reset command, followed by the actual vendor command to set BD
-> address.
->
+On Mon, 13 Jan 2025 15:44:29 +0000
+Mark Brown <broonie@kernel.org> wrote:
 
-Hi Neeraj,
+> On Mon, Jan 13, 2025 at 04:26:20PM +0100, Kory Maincent wrote:
+> > Mark Brown <broonie@kernel.org> wrote: =20
+> > > On Mon, Jan 13, 2025 at 03:45:51PM +0100, Kory Maincent wrote: =20
+>  [...] =20
+>=20
+> > > but the others are legit.  Still, we should be able to map between the
+> > > two. =20
+>=20
+> > We could have something like that in regulator_request_power_budget()? =
+=20
+>=20
+> > if (rdev->desc->ops->get_voltage && rdev->desc->ops->set_current_limit)=
+ {
+> > 	ret =3D regulator_get_voltage(rdev);
+> > 	if (ret < 0)
+> > 		return ret;
+> >=20
+> > 	tmp_64 =3D pw_req;
+> > 	tmp_64 *=3D 1000000000ull;
+> > 	/* uA =3D mW * 1000000000 / uV */
+> > 	uA =3D DIV_ROUND_CLOSEST_ULL(tmp_64, uV);
+> > 	ret =3D regulator_set_current_limit(rdev, uA);
+> > 	if (ret)
+> > 		return ret; =20
+>=20
+> Yup, indeed.  That said I am wondering if it's safer to just configure
+> the constraint in the hardware rather than the currently requested
+> limit, considering what might happen in the case where there's multiple
+> consumers that have only been partially updated.  If the hardware limits
+> or shuts down rather than warning it'll blow up badly so it might be
+> better to be conservative.  Unfortunately we don't distinguish in the
+> ops.  Possibly it should be a policy thing even but then that's better
+> at runtime...
 
-If NXP firmware does not allow vendor commands prior to this reset, would
-it not be better to perform this reset during probe/init?
+Indeed, should we begin without it and see later if we add it?
 
-Kind regards,
-Johan
+We could simply add an event for now:
+regulator_notifier_call_chain(rdev, REGULATOR_EVENT_OVER_CURRENT, NULL);
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
