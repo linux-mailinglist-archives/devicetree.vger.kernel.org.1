@@ -1,205 +1,121 @@
-Return-Path: <devicetree+bounces-138314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6CBCA0FE4D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 02:52:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56B9EA0FE60
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 03:04:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 985F33A5A2D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 01:52:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 569C4169A15
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 02:04:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D941CAA9F;
-	Tue, 14 Jan 2025 01:52:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D9E91FA147;
+	Tue, 14 Jan 2025 02:04:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YgQLqRFB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZJAo2+tW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FC241EB2E;
-	Tue, 14 Jan 2025 01:52:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B87773596D;
+	Tue, 14 Jan 2025 02:04:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736819543; cv=none; b=CKhHIAFWt8J9x6KgZ+lxrnye7YCCCtMYkS+WGvJz9OlxHyUmF1nWHPHzlraw/weU8rMwo39hh8Usu/S7t4/ihHwMFzF6HDiicbxeLOD9yN7tsSZWHEGdlxcjdvYUnH0wujcmwOYo2MsYKji57fJxpu+1CKUSNIQsM789nd8Z9oA=
+	t=1736820249; cv=none; b=RVdVsUCwetIbo7GgRyMyLJppEZ7hnhN8BsijLv8pHOIusr2RmQ8OXPEkHp2OoeVPLIOvHbHjyHJjitDG06627TXcubA73sR2hZKzBiVfIRaz7qQMI2OXH9P7iMebgCoBFK6TSnAydolSCII504TRnWPped+kGbmIT1PUWh8lxFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736819543; c=relaxed/simple;
-	bh=3CCevYT+/bbbRH5gglOO94RRhrdLIoEsNiEuUDoFDAU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=R07i+zL5idq22VAHSNpyp6+w6Y4ZXIMCL6YyKZclBuFBNzpfJQmhBSLjUZS0HedppWigyuehJk7dNcUscs7Vzq0YcuvWBpE+mmzuSnVmATXDl4hhCJs+jKaBOtwqbpcpH1P341Eebmr9hWEM3UB0X26EeBmhmiz13vifYfWKjmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YgQLqRFB; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50DErXaX021602;
-	Tue, 14 Jan 2025 01:52:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jpVAiiC29GD6GRICsgtfevCjVsE+CyffzHyHWhR0W2E=; b=YgQLqRFBKBU/UvMR
-	HvFLlqkfO8mSF+2Vj73niBQAo3BqnVEsSIsOFdFNgL9mYHC8yZhp6q+zjyvYV3xs
-	fvn50iJOmg7nd8OZR94if+ESUwoh0qFzQ3M/DyXeCtDmf7ijz9FJYIIviNcPP97H
-	B1+3XT4cJVtMVFI3VHqpefIr9iV6KmWc/+LxAvR1wSuDXKkrytaKBjrOI+d13/VZ
-	xmJ4yWuJm/EYXzEKBjHeakpbY8GJCWCGPv5ixlhzkGKOwnIqtB/wMnlGSlo71LaW
-	I7gGAmLwc3E9+h9w9mR+thv7WuC/tRmjQfjHT/UbZ1gPmJy5Gu9/bTlBZCaewQi9
-	9gaHyA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44550ahcv2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 Jan 2025 01:52:02 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50E1q1lx005840
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 14 Jan 2025 01:52:01 GMT
-Received: from [10.253.75.207] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 13 Jan
- 2025 17:51:46 -0800
-Message-ID: <482e62d3-d1c6-460d-8371-9c46f0ff09bf@quicinc.com>
-Date: Tue, 14 Jan 2025 09:51:40 +0800
+	s=arc-20240116; t=1736820249; c=relaxed/simple;
+	bh=ypL3YR6Nj7hFe7BA8SQGlMhJEFX7dzD/evw+JMLqZ5Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cxA5Hc/5okDCKZGdq0L52jDduHfOhKeF1Zs/nOkxeG2m3/gG6siBdZQgHGbKXMWm7JSJizfrCqJgT2XrAn615J8WBmfrFo+GtGGD2YrrhhKDv1soGsr4sbHMc4Xl7o8ceJm0IsScdqfYbkgUA9uy+ruoctv9RAesjvB80kXoMBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZJAo2+tW; arc=none smtp.client-ip=209.85.214.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f195.google.com with SMTP id d9443c01a7336-21670dce0a7so106169935ad.1;
+        Mon, 13 Jan 2025 18:04:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736820247; x=1737425047; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hxHtvBKbO0u1b3b5PRLS0QHvtIJ0sddmymxdVVEe6AE=;
+        b=ZJAo2+tWMDTEEbYEN35pvGrci5LXcxvsBhyCcqaAcARYjEHz8oa3LfEWvpahEIuPlV
+         HRCIeVq7lVlvMldOlqibVV7DK+Qk9no5cW8B4DglK1bwCscPZ4VRKUCHuCm9FEoXeEHd
+         8FVJx3HtjojWt7qp3ZO/z7flx5dC6W6JtAigOBcY6l6H4By5Fi6jBusyULb7WiWIJPy0
+         8UDs3kLiCcr1JNn2a+Zl34bPlVDw5LN2OPH7ZZtZHC7R3IZpzzm8PhQZLpJEQzdpZO0y
+         mlI+1NyKWIaEJazwl8UCNvv1y1NlcL2KnatGsaFvRUB/fvLeWMbaYtCJRECMSjHQDOh0
+         6aAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736820247; x=1737425047;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hxHtvBKbO0u1b3b5PRLS0QHvtIJ0sddmymxdVVEe6AE=;
+        b=NtCEMi4mTUv1DFrSWowmYgzTBsGRnozwv2kHY5NsOAtjDtwQ4n7WqnA7ObQUVdrDt4
+         1Z0BSZTpOnGEDx50LA/uPSBwxEnKiPKDm5kasrvwE1LaAraQ8eJGfW9gA+B4RplO0R7T
+         PBeWhw5dHlmdFXnpE57ERBheaCk3rBBgTIcvTYcKoK/jVvtFb9XGabtQScC4Iqp9gr+2
+         43s5AncRwSTZxKVmcpfDcswWIn1yjaac+WyYA99dxoqsDfeGz5o43Peq45mpzlf7FFPd
+         DhHfAWEnWzgNTrjmKaCgEFThSC6sbNSAcchW2A8CqJ1+mCSMJJRqCVJxbS9kFFQ3xLJl
+         mU5A==
+X-Forwarded-Encrypted: i=1; AJvYcCU7gTtxF8Oe4afDERpz3eNGE/pXvEE5HE8lS1mKNhc66LnqwILPlEdcyRj0COLOAp/l6Jf3gow3Dkv+fLWP@vger.kernel.org, AJvYcCVDUDK9/wg6WsQnvdwMuzfH6mEbVU+d+qCS4ReAkNy0scYa3ElrpwaG20fvP+/JPq3feVszyPCpPFWw@vger.kernel.org, AJvYcCX4UmDt93JwGsvQOnMQGCUyRSG+Y8Wbb2/ppMa005wgUagDrU7GLC5cjrmOXJkP6t4htcJ0zG99Tjar1GDT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKbWPUYVAE4WbyVa0Embb5MRCxPsAaP9k6bJqKIksixkBt+1zZ
+	USrw8EZmUqVXSfwm9T25xo8WVD8cipU7/0WFG9SOmMaixH8lKBSDf1hDqQpI6z6kYaEui10yDPL
+	ny0eNDwJfEj+wniLyemdj0nVK5OM=
+X-Gm-Gg: ASbGnctiKjl/kGDQNf8p1bcUZ/H8BEkhJ901GxXM2kqwzA4gIAO68IWHVshu+uTJFDB
+	s0uuoLS5Sc83hsoSkOM8KQQwFLgStaYgAvssrWxk=
+X-Google-Smtp-Source: AGHT+IFZD3TPfZu6EfSA7//VeesR9pTZrj+xVeYdp7Mk2x83AZo0gb1juo0UiMXcq4hwczn5Us/QfxCGTw2p5glAVBg=
+X-Received: by 2002:a17:902:cec1:b0:216:3c36:69a7 with SMTP id
+ d9443c01a7336-21a83ffbe22mr355297125ad.45.1736820246925; Mon, 13 Jan 2025
+ 18:04:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] net: stmmac: qcom-ethqos: Enable RX programmable swap
- on qcs615
-To: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo
- Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-CC: <netdev@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20241225-support_10m100m-v1-0-4b52ef48b488@quicinc.com>
- <20241225-support_10m100m-v1-2-4b52ef48b488@quicinc.com>
- <4b4ef1c1-a20b-4b65-ad37-b9aabe074ae1@kernel.org>
- <278de6e8-de8f-458a-a4b9-92b3eb81fa77@quicinc.com>
- <df1e2fbd-7fae-4910-9908-10fdb78e4299@kernel.org>
- <e2625cfd-128c-4b56-a1c5-c0256db5c486@quicinc.com>
- <0d2ebb1c-be69-45ca-8a66-4e4a8ca59513@kernel.org>
-Content-Language: en-US
-From: Yijie Yang <quic_yijiyang@quicinc.com>
-In-Reply-To: <0d2ebb1c-be69-45ca-8a66-4e4a8ca59513@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: baoGFiavzHlsv08ViAduGfEuLlVpWf_s
-X-Proofpoint-GUID: baoGFiavzHlsv08ViAduGfEuLlVpWf_s
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 priorityscore=1501
- suspectscore=0 mlxlogscore=999 adultscore=0 impostorscore=0 spamscore=0
- clxscore=1015 malwarescore=0 bulkscore=0 phishscore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501140013
+References: <20250113031917.3354988-1-Wenhua.Lin@unisoc.com>
+ <20250113031917.3354988-3-Wenhua.Lin@unisoc.com> <7385b093-378a-499d-ae1f-4c85001f088c@linux.alibaba.com>
+In-Reply-To: <7385b093-378a-499d-ae1f-4c85001f088c@linux.alibaba.com>
+From: wenhua lin <wenhua.lin1994@gmail.com>
+Date: Tue, 14 Jan 2025 10:03:55 +0800
+X-Gm-Features: AbW1kvYTGp5LHcN6Jv4eb5zhJk0GyEzXpwu8fJXYJemOmCqwaSzqbg5j6kfgil0
+Message-ID: <CAB9BWhc9iCOMvJ=UuvB1pqh3PSvhn0h1+jAJaSpFMcLcmYX+1g@mail.gmail.com>
+Subject: Re: [PATCH V2 2/2] serial: sprd: Add support for sc9632
+To: Baolin Wang <baolin.wang@linux.alibaba.com>
+Cc: Wenhua Lin <Wenhua.Lin@unisoc.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Orson Zhai <orsonzhai@gmail.com>, Chunyan Zhang <zhang.lyra@gmail.com>, 
+	Cixi Geng <cixi.geng@linux.dev>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	Xiongpeng Wu <xiongpeng.wu@unisoc.com>, Zhaochen Su <Zhaochen.Su@unisoc.com>, 
+	Zhirong Qiu <Zhirong.Qiu@unisoc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Jan 13, 2025 at 2:08=E2=80=AFPM Baolin Wang
+<baolin.wang@linux.alibaba.com> wrote:
+>
+>
+>
+> On 2025/1/13 11:19, Wenhua Lin wrote:
+> > Due to the platform's new project uart ip upgrade,
+> > the new project's timeout interrupt needs to use bit17
+> > while other projects' timeout interrupt needs to use
+> > bit13, using private data to adapt and be compatible
+> > with all projects.
+> >
+> > Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
+>
+> People have already given you reviewed or acked tags[1], if you did not
+> change the code, please keep them in the next version.
+>
+> [1]
+> https://lore.kernel.org/lkml/20241113110516.2166328-2-Wenhua.Lin@unisoc.c=
+om/
 
-
-On 2025-01-13 19:26, Krzysztof Kozlowski wrote:
-> On 08/01/2025 11:33, Yijie Yang wrote:
->>
->>
->> On 2024-12-27 15:03, Krzysztof Kozlowski wrote:
->>> On 26/12/2024 03:29, Yijie Yang wrote:
->>>>
->>>>
->>>> On 2024-12-25 19:37, Krzysztof Kozlowski wrote:
->>>>> On 25/12/2024 11:04, Yijie Yang wrote:
->>>>>
->>>>>>     static int qcom_ethqos_probe(struct platform_device *pdev)
->>>>>>     {
->>>>>> -	struct device_node *np = pdev->dev.of_node;
->>>>>> +	struct device_node *np = pdev->dev.of_node, *root;
->>>>>>     	const struct ethqos_emac_driver_data *data;
->>>>>>     	struct plat_stmmacenet_data *plat_dat;
->>>>>>     	struct stmmac_resources stmmac_res;
->>>>>> @@ -810,6 +805,15 @@ static int qcom_ethqos_probe(struct platform_device *pdev)
->>>>>>     	ret = of_get_phy_mode(np, &ethqos->phy_mode);
->>>>>>     	if (ret)
->>>>>>     		return dev_err_probe(dev, ret, "Failed to get phy mode\n");
->>>>>> +
->>>>>> +	root = of_find_node_by_path("/");
->>>>>> +	if (root && of_device_is_compatible(root, "qcom,sa8540p-ride"))
->>>>>
->>>>>
->>>>> Nope, your drivers are not supposed to poke root compatibles. Drop and
->>>>> fix your driver to behave correctly for all existing devices.
->>>>>
->>>>
->>>> Since this change introduces a new flag in the DTS, we must maintain ABI
->>>> compatibility with the kernel. The new flag is specific to the board, so
->>>
->>> It's not, I don't see it specific to the board in the bindings.
->>
->> I'm sorry for the confusion. This feature is not board-specific but
->> rather a tunable option. All RGMII boards can choose whether to enable
->> this bit in the DTS, so there are no restrictions in the binding.
-> 
-> If it is not specific to the board, I don't see why this cannot be
-> implied by compatible.
-> 
-
-Whether this bit should be enabled should be determined on a per-board 
-basis, but it should be available for all RGMII-type boards. It should 
-be left to the users to decide whether to enable this bit in the DTS 
-file, rather than controlling its existence in the binding file, 
-shouldn't it?
-
->>
->>>
->>>> I need to ensure root nodes are matched to allow older boards to
->>>> continue functioning as before. I'm happy to adopt that approach if
->>>> there are any more elegant solutions.
->>>
->>> I don't think you understood the problem. Why you are not handling this
->>> for my board, sa8775p-rideX and sa8225-pre-ride-yellow-shrimp?
->>>
->>
->> This feature is specifically for RGMII boards. The driver won't enable
-> 
-> So board specific?
-
-It is 'phy-mode' specific, to be more precise.
-
-> 
->> this bit if the DTS doesn't specify it. To handle compatibility, we need
-> 
-> Do not describe us how drivers and DTS work. We all know.
-
-Sure, I will take care of it.
-
-> 
->> to identify legacy RGMII boards with MAC versions greater or equal to 3
->> which require this bit to be enabled.
->> According to my knowledge, the SA8775P is of the SGMII type.
-> 
-> 
-> Best regards,
-> Krzysztof
-
--- 
-Best Regards,
-Yijie
-
+Hi Baolin:
+   OK, the issue with tags[1] will be resolved through a new submission.
+   Thank you for your reminder.
+Thanks
 
