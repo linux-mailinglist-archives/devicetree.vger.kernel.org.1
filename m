@@ -1,277 +1,190 @@
-Return-Path: <devicetree+bounces-138431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE284A1053A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 12:22:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ADCCA10545
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 12:25:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 870DC166D92
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 11:22:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B359188792A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 11:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCFA228EC81;
-	Tue, 14 Jan 2025 11:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E303422DC5D;
+	Tue, 14 Jan 2025 11:25:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="Hai0nwT8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 902AD1D79B8;
-	Tue, 14 Jan 2025 11:21:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4006D20F97C
+	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 11:25:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736853719; cv=none; b=c06yMbBBEgDKBTA2FDsgBVMzREeMWXkmhPQX0u1YiXifNks6IFrEpeCZF248Mh1lzjaTh0nddE/xk4Eu4GLHCtUiU+HRr/2rHIaj2uIvtlGyYevjCHEq9nXEkyKVUn/AEJnBDMekmOSw37Cams5/FMK3O0ZNtVh8IWfINVh8Iks=
+	t=1736853927; cv=none; b=bihkbEUFFb/yyk2HNAK0BrLSrajZWwI08lrW8M2Gv8XjYf24atHlKIfN04LjcTGRbqoSN1EcF+4ij4vgo6KhVjuI3TFmOW987wxywEDOy/jnU6dZlKMiT7/j+PrlWPCthXvwmrczwViAtNzXf8vl78kFUCz1gSj5WK7PKBV/T7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736853719; c=relaxed/simple;
-	bh=QaLrvM7SFNLtlilHraRkSy3EanVychYDHqY+bkjn3B8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Km2XQZ0WW82xqwMPSIlSkuRUfMsNxwLKxlhgaR2fR/k6wdPDQm9dxv/kpFLGptHabxA+x1NFPEIxUCuU9rXJrq85s5gzlbuUFn/tBo2gBJeENsUSg8C2HDBmUhhGJJw0tPAV8Ew+ifne7Qw80+FvRtDkmhZ8PJfCMYUuVZ+PS1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6082E11FB;
-	Tue, 14 Jan 2025 03:22:24 -0800 (PST)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DE7B83F66E;
-	Tue, 14 Jan 2025 03:21:53 -0800 (PST)
-Date: Tue, 14 Jan 2025 11:21:49 +0000
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
- Holland <samuel@sholland.org>, <linux-gpio@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 5/7] dt-bindings: pinctrl: add compatible for Allwinner
- A523/T527
-Message-ID: <20250114112149.5448baae@donnerap.manchester.arm.com>
-In-Reply-To: <CAGb2v663LeDtk1ZGOAztQ+Sx5OtbSx+xkLgypZYRjXkAr6_GRA@mail.gmail.com>
-References: <20241111005750.13071-1-andre.przywara@arm.com>
-	<20241111005750.13071-6-andre.przywara@arm.com>
-	<CAGb2v64x_QE8w_4h10waG33xNpkd9QLt_B=xSPMMe0M=6bqsJw@mail.gmail.com>
-	<20241120101228.26bbf100@donnerap.manchester.arm.com>
-	<CAGb2v663LeDtk1ZGOAztQ+Sx5OtbSx+xkLgypZYRjXkAr6_GRA@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1736853927; c=relaxed/simple;
+	bh=hJ+djB3d/zAzbtQIrH3vQ1RhorhbA7PXwlkOtnRzC24=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UFmCwsoL4muNRUH2rI7oJbRs4EdwrRIjEhflGHWL5eeFhe9GYWkn/7OVz5FWdJBBS8X25WTm4kvh6jUC4Plg5aCsS2AYazIUZaD5w57dYfiJPBHR3JyzW9D5o5JxlmiHaNwCM9erUADH2rWMheUzrUDFqYqSpphpKrNoRDlm4jU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=Hai0nwT8; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e3c9ec344efso8336149276.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 03:25:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1736853925; x=1737458725; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DNeWxGrE8uIS0WDqmIGcYolBV0o+ZDhi6egQ4fiiws8=;
+        b=Hai0nwT8lbb/tSW2tqWGbJerhP2ItnHL7ClWxAQ4RS7bFHlQ4xSMKgHHJg3g7pUNPW
+         2mxBFNzi8TPt18cknmoPV7iiPMuML+7n79fzb/NpWwOHdOEM1yLbURAEr5lR/uqMaeo3
+         9OhZgbtKeyoEB9obeVdeO4yQ7sLF7Vw+xg4Wo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736853925; x=1737458725;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DNeWxGrE8uIS0WDqmIGcYolBV0o+ZDhi6egQ4fiiws8=;
+        b=D2h0SLe18ZCGg/E4wjpfdJteBQyZT+9EPut9rtVQHoODYYT+o69I3ks/47n/OOvitK
+         9/33+wWFgjcPOaMh3RqlRFfdl3cQOAqBCnseWYECFHQOu8QOMkTM3hIsrW16kKt4rY1B
+         06i8bTkKqE9mZF/SMefdo9Cn0PbhBGR4nYQlxIlBoQWrRLHZpp+1lMdfmISeHL6jHGhV
+         HyRdDPuWtUx90PxV1F8BsWXrYm8JhznaFQbaXBEbkBPeFUq5iEsWETjMtkw8w7CJBlvg
+         aixivpc3ci6VENBXOIYJUiU6LXloVEtohk0e+bduYI8I+OdmQfq1IbPMK7l3twnNUFAQ
+         ygWw==
+X-Forwarded-Encrypted: i=1; AJvYcCUV7kcVViCNFyRA4EptmKcKUDi9lQe7w4fpXJyjzXPhorN3AUzt2NHtepLNwpi5T5FCyvzjoiGJWWIj@vger.kernel.org
+X-Gm-Message-State: AOJu0YzglrVOFxBG/d/XA7doDM8AIsJPl6DligrdDlVsJt2nu++3W3nX
+	XOR5sJ4OSQPNmQKxuFd5OHg/5UtWN5bpsTC/uEAGkQTkHylsiBA6riVZ36A9G3LwlDXB954LZmc
+	GP9aPn6qa/1us9WSgTbLrG6G8Zal9Qd72pMLANw==
+X-Gm-Gg: ASbGncu8HdVFFytd3vesX0VbxufLkhnqMz+8VWq2O2umHI+Tade7K1Iwi4uTsKmb9NY
+	5pebgU7SxApuV7rtxFTk6Buk5DGxTlkJXtMEH
+X-Google-Smtp-Source: AGHT+IE5ADFy4Rcdxdx8eIWS6qutMEezXMUhyeb5SIbQjo2wdqwdsiAVueYpuLW3T5twpKf4mq41MGduOKyevWn0ZOQ=
+X-Received: by 2002:a05:6902:988:b0:e57:3a77:99b6 with SMTP id
+ 3f1490d57ef6-e573a779d1bmr8361818276.19.1736853925209; Tue, 14 Jan 2025
+ 03:25:25 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20250114091128.528757-1-dario.binacchi@amarulasolutions.com>
+ <20250114091128.528757-2-dario.binacchi@amarulasolutions.com>
+ <79a90c01-9e21-4e3f-a334-6ba9e1df4150@kernel.org> <CABGWkvofUphcXTwBS5UBEoQ1GYpngP7gWi9Ax=WW28XKK0qoYA@mail.gmail.com>
+ <54b63cfc-7a51-4b69-8b32-eb7591b2169b@kernel.org> <CABGWkvrYUU=HAh4uYNpZSpzeyanfp5a_xjK_178ftQyDKH=cTg@mail.gmail.com>
+ <581275bf-11f3-4a8a-8e58-75b00c515c79@linaro.org>
+In-Reply-To: <581275bf-11f3-4a8a-8e58-75b00c515c79@linaro.org>
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date: Tue, 14 Jan 2025 12:25:14 +0100
+X-Gm-Features: AbW1kvaNobnTd2MQAHzRF4uGLRR152GowylzO20cIOWKbfYsbQamDcVMjctIi7w
+Message-ID: <CABGWkvpGGdjJVTHppOohGPq3yi_Y20t9b0WWkPOriFU9=CHQMg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: convert stm32 rcc bindings to json-schema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-amarula@amarulasolutions.com, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, 14 Jan 2025 15:01:31 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
-
-Hi Chen-Yu,
-
-before I get to your specific question below: what do you think in
-general of the idea of getting rid of that table based approach we use so
-far? Is that something worthwhile? I definitely think yes, but wanted to
-hear the maintainers' opinion about this. Happy to present some arguments
-if need be.
-
-...
-
-> On Wed, Nov 20, 2024 at 6:12=E2=80=AFPM Andre Przywara <andre.przywara@ar=
-m.com> wrote:
+On Tue, Jan 14, 2025 at 11:13=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 14/01/2025 11:00, Dario Binacchi wrote:
+> > On Tue, Jan 14, 2025 at 10:48=E2=80=AFAM Krzysztof Kozlowski <krzk@kern=
+el.org> wrote:
+> >>
+> >> On 14/01/2025 10:36, Dario Binacchi wrote:
+> >>>> Nothing improved here.
+> >>>
+> >>> In my humble opinion, there is nothing to improve. Any modification
+> >>> made causes the tests to fail.
+> >>>
+> >>> $ git grep st,stm32f746-rcc arch/
+> >>> arch/arm/boot/dts/st/stm32f746.dtsi:                    compatible =
+=3D
+> >>> "st,stm32f746-rcc", "st,stm32-rcc";
+> >>> arch/arm/boot/dts/st/stm32f769-disco.dts:       compatible =3D
+> >>> "st,stm32f769-rcc", "st,stm32f746-rcc", "st,stm32-rcc";
+> >>>
+> >>> Or am I missing something?
+> >>
+> >> How can I know what you are missing if you do not show the code?
 > >
-> > On Wed, 13 Nov 2024 16:50:19 +0800
-> > Chen-Yu Tsai <wens@csie.org> wrote:
+> > Sorry, but I still can't understand. I run multiple tests, trying to
+>
+> You don't understand that I cannot improve your code if I do not see the
+> code? So let me rephrase: In order to tell what is wrong with some sort
+> of code, I need to see it. I cannot tell what is wrong with code without
+> seeing it.
+
+You told me that this code was not exactly correct for the parts
+marked with *********:
+
+properties:
+  compatible:
+    oneOf:
+      - items:
+          - const: st,stm32f42xx-rcc
+          - const: st,stm32-rcc
+      - items:
+          - enum:
+              - st,stm32f469-rcc
+          - const: st,stm32f42xx-rcc
+          - const: st,stm32-rcc
+      - items:
+          - const: st,stm32f746-rcc ********
+          - const: st,stm32-rcc
+      - items:
+          - enum:
+              - st,stm32f769-rcc
+          - const: st,stm32f746-rcc
+          - const: st,stm32-rcc
+      - items:
+          - const: st,stm32h743-rcc *********
+          - const: st,stm32-rcc
+
+I haven't found a way to make changes to those elements without causing the
+tests to fail. Could you kindly provide more explicit guidance on the kind =
+of
+modification you're expecting?
+
+Thanks and regards,
+Dario
+
+>
+> > modify things
+> > based on what I understood of your suggestions, but the tests failed
+> > every time.
 > >
-> > Hi Chen-Yu,
-> >
-> > sorry for the late reply, I was away for a week.
-> > =20
-> > > On Mon, Nov 11, 2024 at 8:58=E2=80=AFAM Andre Przywara <andre.przywar=
-a@arm.com> wrote: =20
-> > > >
-> > > > The A523 contains a pin controller similar to previous SoCs, althou=
-gh
-> > > > using 10 GPIO banks (PortB-PortK), all of them being IRQ capable.
-> > > > This introduces a new style of binding, where the pinmux values for=
- each
-> > > > pin group is stored in the new "allwinner,pinmux" property in the DT
-> > > > node, instead of requiring every driver to store a mapping between =
-the
-> > > > function names and the required pinmux.
-> > > >
-> > > > Add the new name to the list of compatible strings, and required it=
- to
-> > > > have 10 interrupts described. Also add the new pinmux property.
-> > > >
-> > > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > > > ---
-> > > >  .../pinctrl/allwinner,sun4i-a10-pinctrl.yaml  | 23 +++++++++++++++=
-++--
-> > > >  1 file changed, 21 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,su=
-n4i-a10-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,=
-sun4i-a10-pinctrl.yaml
-> > > > index 4502405703145..6fc18e92e1e94 100644
-> > > > --- a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10=
--pinctrl.yaml
-> > > > +++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10=
--pinctrl.yaml
-> > > > @@ -56,6 +56,8 @@ properties:
-> > > >        - allwinner,sun50i-h6-r-pinctrl
-> > > >        - allwinner,sun50i-h616-pinctrl
-> > > >        - allwinner,sun50i-h616-r-pinctrl
-> > > > +      - allwinner,sun55i-a523-pinctrl
-> > > > +      - allwinner,sun55i-a523-r-pinctrl
-> > > >        - allwinner,suniv-f1c100s-pinctrl
-> > > >        - nextthing,gr8-pinctrl
-> > > >
-> > > > @@ -64,7 +66,7 @@ properties:
-> > > >
-> > > >    interrupts:
-> > > >      minItems: 1
-> > > > -    maxItems: 8
-> > > > +    maxItems: 10
-> > > >      description:
-> > > >        One interrupt per external interrupt bank supported on the
-> > > >        controller, sorted by bank number ascending order.
-> > > > @@ -119,13 +121,17 @@ patternProperties:
-> > > >          $ref: /schemas/types.yaml#/definitions/uint32
-> > > >          enum: [10, 20, 30, 40]
-> > > >
-> > > > +      allwinner,pinmux:
-> > > > +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> > > > +        description: pinmux selector for each pin
-> > > > + =20
-> > >
-> > > Why not just the standard "pinmux" property, as given in
-> > > Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml =20
-> >
-> > I had it like this in my last post two years ago, but learned from
-> > LinusW [1] that the generic pinmux property has a slightly different
-> > meaning, and abusing it for just the pinmux index values would not match
-> > the generic definition.
-> > We *could* use the generic definition, but then this would include what=
-'s
-> > in the "pins" property, like I sketched out in the cover letter, as an
-> > alternative to this approach:
-> >         pinmux =3D <SUNXI_PIN(PB, 9, 2)>, <SUNXI_PIN(PB, 10, 2)>;
-> > Where the SUNXI_PIN macro would combine the pin number and the pinmux i=
-nto
-> > one 32-bit cell. See the Apple GPIO DT nodes for an example.
-> > This looks indeed nicer, but requires quite some rewrite of the existing
-> > pinctrl driver, AFAICS. =20
->=20
-> Sorry for taking so long to get back to this.
->=20
-> Could we maybe add a generic replacement of the existing "function"
-> property, which takes a string? Like "function-id" or "function-selector"
-> that takes u32 (or u8). Then it could be one or the other. Not sure
-> if the binding maintainers would accept this or not.
+> > Could you kindly provide an example of what you'd like me to do?
+> Any qcom binding? Any other SoC binding with multiple devices?
+>
+> Best regards,
+> Krzysztof
+--
 
-Do you mean specifically a *generic* property, as opposed to something
-prefixed with a vendor string, and coded up in just the sunxi driver?
+Dario Binacchi
 
-Because otherwise "allwinner,pinmux" is that numeric equivalent to
-"function". I kept "function", as a string, because the GPIO framework
-still needs a string at places, for instance for sysfs. We could create
-those strings, based on the node name, by sprintf'ing something, but I
-figured we might as well keep "function".
-In my U-Boot patches [1] I actually ignore the new pinmux property, and
-still use the function name, as it was easier to integrate into the
-existing code. U-Boot uses a very limited subset of our current table,
-so each new SoC doesn't add much to the code.
+Senior Embedded Linux Developer
 
-[1] https://github.com/apritzel/u-boot/commit/ab4f7ed0879022357646
+dario.binacchi@amarulasolutions.com
 
-Code-wise I think we would still need our own driver code, so whether we
-use "function-id" or "allwinner,pinmux" in there doesn't make much of a
-difference, I think.=20
+__________________________________
 
-> I understand that we probably don't want the mux value combined with
-> the pin number.
 
-You mean like the Apple GPIO does? I wonder why not, actually? I find this
-actually quite clever and compact. Again the "pins" property atm is quite
-string-heavy, so the code has to translate this back into a bank and pin
-number, then lookup the function string in our table to get the pinmux
-value. We could fit all of this information easily into this new
-generic "pinmux" property, and the code just needs to mask and shift that
-number. Each pin occupies a cell, I don't think we can get much better
-than that?
+Amarula Solutions SRL
 
-Cheers,
-Andre
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
 
-> ChenYu
->=20
-> > [1] Previous reply from LinusW:
-> > https://lore.kernel.org/linux-sunxi/CACRpkdbMc-Q6wjgsiddu6-tWC1dt2uFk+4=
-LyerMdgFk2KRGK4w@mail.gmail.com/
-> > =20
-> > > =20
-> > > >      required:
-> > > >        - pins
-> > > >        - function =20
-> > >
-> > > This section should be made to apply only to the existing
-> > > compatibles? Maybe we could just split the files and have
-> > > a clean slate for sun55i? =20
-> >
-> > Yeah, I couldn't find a good example how to make it *required* for one
-> > compatible and *not allowed* for all the others. But creating a whole n=
-ew
-> > file is actually a good idea, as this also avoids adding another case to
-> > the already quite indented if-else cascade.
-> >
-> > Cheers,
-> > Andre
-> > =20
-> > > ChenYu
-> > > =20
-> > > >      additionalProperties: false
-> > > >
-> > > > -  "^vcc-p[a-ilm]-supply$":
-> > > > +  "^vcc-p[a-klm]-supply$":
-> > > >      description:
-> > > >        Power supplies for pin banks.
-> > > >
-> > > > @@ -156,6 +162,17 @@ allOf:
-> > > >          - interrupts
-> > > >          - interrupt-controller
-> > > >
-> > > > +  - if:
-> > > > +      properties:
-> > > > +        compatible:
-> > > > +          enum:
-> > > > +            - allwinner,sun55i-a523-pinctrl
-> > > > +
-> > > > +    then:
-> > > > +      properties:
-> > > > +        interrupts:
-> > > > +          minItems: 10
-> > > > +
-> > > >    - if:
-> > > >        properties:
-> > > >          compatible:
-> > > > @@ -166,6 +183,7 @@ allOf:
-> > > >        properties:
-> > > >          interrupts:
-> > > >            minItems: 8
-> > > > +          maxItems: 8
-> > > >
-> > > >    - if:
-> > > >        properties:
-> > > > @@ -244,6 +262,7 @@ allOf:
-> > > >              - allwinner,sun8i-v3s-pinctrl
-> > > >              - allwinner,sun9i-a80-r-pinctrl
-> > > >              - allwinner,sun50i-h6-r-pinctrl
-> > > > +            - allwinner,sun55i-a523-r-pinctrl
-> > > >
-> > > >      then:
-> > > >        properties:
-> > > > --
-> > > > 2.46.2
-> > > > =20
-> > =20
+T. +39 042 243 5310
+info@amarulasolutions.com
 
+www.amarulasolutions.com
 
