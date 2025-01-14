@@ -1,164 +1,147 @@
-Return-Path: <devicetree+bounces-138492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DA5BA1099B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:43:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EBCDA109B6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:46:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85EA37A3181
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:43:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2DE81888D7D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857A5149C4D;
-	Tue, 14 Jan 2025 14:43:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AB9414BF87;
+	Tue, 14 Jan 2025 14:46:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="POJ79/Q4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q7SOd79q"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A665232437;
-	Tue, 14 Jan 2025 14:43:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2EB913A879;
+	Tue, 14 Jan 2025 14:46:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736865830; cv=none; b=lyAV3a4Stisl1JI2lwmKXWjL6HM+eoZ8H/8+byslCkkouEbn1HVkeLIewNl8b7eZrPlkt6qs9ymXgtb/HIgdYp3H817zhLo8kqSdKp2wwFX5h67ZKFCATE/iPzhO6RSqaqDvubUJVCn8UQEJxXiTiW8edj4HaIMuE+TH9QsOxic=
+	t=1736866014; cv=none; b=mRXeOFgrdzbZQ5XuMQ0fhplwDDyazT7wNVegaonaPhnGl48UaU6oGpi2L4d3tnGWEkOZxp0S9KWeFhakT4mWM6GqZmqqKxoWLfRlv40T1dM8Yh+IYzy53vgBHMZ9ivciHZBlZJKdzpRULUcGkSx0SKicVZ1/EQvAynWuiFv3bR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736865830; c=relaxed/simple;
-	bh=Jxbairy/WoxAViGP+GS8+YL2QWSQ/jRrTknwJjQ2WpM=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=qDf2fnNr4f4UIiLgpGXNLoBL6UHsL0cu2LftIg361OUtpcf7Tr3D/KKEnaDXtOb4UfJkduwj0qh5XukmSg4/LcFoWWFSelWVUVwehDoWffzr3yA8ZpYREMo8FEWSAeW2NOCBd5BiC5DScYHGyHRnjyaDJgE/y8HX/u7aDFLQvck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=POJ79/Q4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3639C4CEDD;
-	Tue, 14 Jan 2025 14:43:49 +0000 (UTC)
+	s=arc-20240116; t=1736866014; c=relaxed/simple;
+	bh=/bE4XzpALQsGRT7BVYVcM1aIJxF5UAB4vSiqb7huymA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ut1TP6bej1HSV8CV7GwJwjEAxYjJn4cFTZou59VtCJhsG2SiqJMU7Ft9VlK9a3eJOJ7pGXWfOa0MYMXxT+NuKlcIa03oGCLdz7UjmvXGByoF07Ao8Hvxq7+jktEOyDHz3woao8H9MINQl9N7acg1g/kmGhqz7uUnlRf6U7+iv80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q7SOd79q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 60DF6C4CEDD;
+	Tue, 14 Jan 2025 14:46:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736865830;
-	bh=Jxbairy/WoxAViGP+GS8+YL2QWSQ/jRrTknwJjQ2WpM=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=POJ79/Q4eDeO1+RQaoggZZnOwSoKjiH+BHrAk96LifP9/y8toEzzbYUhsS+ZBp+YK
-	 54BatVms1eFGGXiQaXvJZYlZqb/Zq2fKeM5+FTqmkdR7S2sUbLby3gIejkA+f13HDs
-	 19QB4ag0N5cwhPWL36aLH8AfE48JUcJZ/Uw8A9Th5S1Em1AApMMSpW0Jt1iDbsw0Y8
-	 LQCh+anIkOccs1+9PKHmCnMxQQzaWFID5+A8+wsDIs6dozinmJwT85ZBHYQfpJNTno
-	 5+O7oTOCKrMapHfxY6vLWsFhYv+iyW9Uafgw0VWk7xT0zmUmEIgEKE4gC3ExWZciOB
-	 iFY8AOdRzIfKA==
-Date: Tue, 14 Jan 2025 08:43:48 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1736866014;
+	bh=/bE4XzpALQsGRT7BVYVcM1aIJxF5UAB4vSiqb7huymA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=q7SOd79qDNurmiThSZ7KaYad6M2JSaMDPreuS7qAzQLXuAFugroog5BJhS/OgkgTi
+	 qDQdQWu4NXEyxh0c9dfaub+PMWOiG262DNEWw25bUg0BUynx1cbT4FtnDQ2tw5Q0ty
+	 vODsnBKGKPi+uG3wtO2rbU/2GlGZ6iG+g7icGVcyT24g0PwQIlHhScjNhoyTE/Uor+
+	 fWuhmhHD9/HletG9uaZdacipjUxm9F1sg1jsYGofihWY6rHZHMthLAvY0wtYPtM1Wp
+	 B6KjMiAyLJYgbmnJiodTlmvfc/6ykvZ7SSFJaY6+twrBtLWLc6aWvh6Zsmkf/KTUZs
+	 ispQx6rR32DwA==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5594DC02183;
+	Tue, 14 Jan 2025 14:46:54 +0000 (UTC)
+From: Ricky Cheung via B4 Relay <devnull+rcheung844.gmail.com@kernel.org>
+Subject: [PATCH RESEND v2 0/3] arm64: dts: qcom:
+ msm8916-xiaoxun-jz0145-v33: Add initial device tree
+Date: Tue, 14 Jan 2025 22:46:47 +0800
+Message-Id: <20250114-xiaoxun-jz0145-v33-v2-0-495e986579ce@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Dragan Simic <dsimic@manjaro.org>, Heiko Stuebner <heiko@sntech.de>, 
- devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Chukun Pan <amadeus@jmu.edu.cn>, 
- Jonas Karlman <jonas@kwiboo.se>, FUKAUMI Naoki <naoki@radxa.com>
-To: Junhao Xie <bigfoot@classfun.cn>
-In-Reply-To: <20250114001411.1848529-1-bigfoot@classfun.cn>
-References: <20250114001411.1848529-1-bigfoot@classfun.cn>
-Message-Id: <173686580742.898653.5081010500008594364.robh@kernel.org>
-Subject: Re: [PATCH v7 0/3] Add support for Ariaboard Photonicat RK3568
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, Ricky Cheung <rcheung844@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736866013; l=2571;
+ i=rcheung844@gmail.com; s=20250114; h=from:subject:message-id;
+ bh=/bE4XzpALQsGRT7BVYVcM1aIJxF5UAB4vSiqb7huymA=;
+ b=SHxIaPdzGLLDhG7GH9Xp2sO0D5n0X8vIkl2J21qwE2X7tDTvXmrTSv2Kk3l+jywhpx6U5Vw3f
+ tdaVZdzKNMDACAWnqfLrRsn50LE6b2zPZjvnTPCsvUuoTJfG2gGM7Ye
+X-Developer-Key: i=rcheung844@gmail.com; a=ed25519;
+ pk=JjZsSnuDD1xuR4EXY4XGKELgToA++HxxheDlHU/41yI=
+X-Endpoint-Received: by B4 Relay for rcheung844@gmail.com/20250114 with
+ auth_id=323
+X-Original-From: Ricky Cheung <rcheung844@gmail.com>
+Reply-To: rcheung844@gmail.com
 
+Good evening.
 
-On Tue, 14 Jan 2025 08:14:08 +0800, Junhao Xie wrote:
-> Add dts for Ariaboard Photonicat RK3568.
-> 
-> This series bring support for:
-> * Debug UART
-> * SDIO QCA9377 WiFi and Bluetooth
-> * M.2 E-Key PCIe WiFi and Bluetooth
-> * M.2 B-Key USB Modem WWAN
-> * Ethernet WAN Port
-> * MicroSD Card slot
-> * eMMC
-> * HDMI Output
-> * Mali GPU
-> * USB Type-A
-> 
-> Changed from v1:
-> - remove some general nodes (firmware, ramoops, reboot-mode)
-> - gmac1 change to phy-mode rgmii-id
-> - corrected some regulator to be closer to schematics
-> - rename rk3568-ariaboard-photonicat.dts to rk3568-photonicat.dts
-> https://lore.kernel.org/lkml/20240904111456.87089-1-bigfoot@classfun.cn/
-> 
-> Changed from v2:
-> - remove unused headers
-> - corrected some regulator to be closer to schematics
-> - remove usb_host1_ohci, usb_host1_ehci, usb2phy1_host that have no connection
-> https://lore.kernel.org/lkml/20240906045706.1004813-1-bigfoot@classfun.cn/
-> 
-> Changed from v3:
-> - corrected some regulator to be closer to schematics
-> - changed to using clk32k_out1 in xin32k
-> https://lore.kernel.org/lkml/20240911122809.1789778-2-bigfoot@classfun.cn/
-> 
-> Changed from v4:
-> - corrected some regulator to be closer to schematics
-> - corrected some label to match node name
-> - use resets props in phy node instead deprecated snps,reset-gpio
-> https://lore.kernel.org/lkml/20240914145549.879936-1-bigfoot@classfun.cn/
-> 
-> Changed from v5:
-> - resort regulator nodes
-> - remove dr_mode from usb_host1_xhci
-> https://lore.kernel.org/lkml/20241108031847.700606-1-bigfoot@classfun.cn/
-> 
-> Changed from v6:
-> - fix property gpios to gpio in vcc3v3_pi6c
-> - rename rgmii_phy1 to rgmii_phy
-> - change address from 0x0 to 0x3 in rgmii_phy
-> - add link to downstream board dts
-> https://lore.kernel.org/lkml/20250112073344.1976411-1-bigfoot@classfun.cn/
-> 
-> Junhao Xie (3):
->   dt-bindings: vendor-prefixes: Add prefix for Ariaboard
->   dt-bindings: arm: rockchip: Add Ariaboard Photonicat RK3568
->   arm64: dts: rockchip: add dts for Ariaboard Photonicat RK3568
-> 
->  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3568-photonicat.dts   | 591 ++++++++++++++++++
->  4 files changed, 599 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-photonicat.dts
-> 
-> --
-> 2.47.1
-> 
-> 
-> 
+This patch adds support for the XiaoXun JZ0145 v33 4G LTE WiFi modem
+based on the MSM8916 chipset by a new manufacturer / vendor for the
+Linux Kernel called called XiaoXun BiCheng Technology. Below is some
+information about these changes.
 
+Addition of a new vendor prefix
+----------
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+XiaoXun BiCheng Technology is not well known in that they don't seem
+to have a presence in the Western world. I purchased my own modem
+on TaoBao, which requires stores to registered as businesses, so
+I believe it is justified to add it as a vendor prefix. Note that the
+company appears to have shut down just this month.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+Status of patch
+----------
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+This device shares many similarities to pre-existing devices within
+arch/arm64/boot/dts/msm8916-ufi.dtsi, so I am sure most features would
+function with the correct firmware on this device.
 
-  pip3 install dtschema --upgrade
+However, due to the poor quality of these devices, my unit's EMMC has
+failed and I cannot conduct further tests. Previous, the modem was
+able to boot with devicetree of a UZ801, albeit with LED and Modem
+issues, which is addressed in this patch.
 
+I have sent the code for testing to some kind folks on the Internet with
+good outcomes, so do consider this code as ready and functional.
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20250114001411.1848529-1-bigfoot@classfun.cn:
+This patch was also reviewed over at the msm8916-mainline organization
+and deemed ready by the maintainer:
 
-arch/arm64/boot/dts/rockchip/rk3568-photonicat.dtb: bluetooth: 'clock-names' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
-arch/arm64/boot/dts/rockchip/rk3568-photonicat.dtb: phy@fe8c0000: 'phy-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,pcie3-phy.yaml#
-arch/arm64/boot/dts/rockchip/rk3568-photonicat.dtb: rfkill-modem: 'reset-gpios' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/net/rfkill-gpio.yaml#
+	https://github.com/msm8916-mainline/linux/pull/386
 
+Note that this is my first patch to the LKML, so if there's something I
+did wrong / the patch is missing, please point it out.
 
+Best Regards,
+Ricky Cheung
+Tipz Team
 
+Signed-off-by: Ricky Cheung <rcheung844@gmail.com>
+---
+Changes in v2:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v1: https://lore.kernel.org/r/20250114-xiaoxun-jz0145-v33-v1-0-dc51f7ce3bd8@gmail.com
+
+---
+Ricky Cheung (3):
+      dt-bindings: vendor-prefixes: Add XiaoXun BiCheng Technology
+      dt-bindings: arm: qcom: Add XiaoXun JZ0145 v33
+      arm64: dts: qcom: msm8916-xiaoxun-jz0145-v33: Add initial device tree
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |  2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |  1 +
+ .../boot/dts/qcom/msm8916-xiaoxun-jz0145-v33.dts   | 66 ++++++++++++++++++++++
+ 4 files changed, 70 insertions(+)
+---
+base-commit: d390303b28dabbb91b2d32016a4f72da478733b9
+change-id: 20250114-xiaoxun-jz0145-v33-23dc006cf130
+
+Best regards,
+-- 
+Ricky Cheung <rcheung844@gmail.com>
 
 
 
