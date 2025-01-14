@@ -1,120 +1,146 @@
-Return-Path: <devicetree+bounces-138462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71940A10813
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:45:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B1C6A1082A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:50:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28D293A4B94
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 13:45:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD97D3A83A7
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 13:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 886CEC2C8;
-	Tue, 14 Jan 2025 13:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46F163F9D5;
+	Tue, 14 Jan 2025 13:50:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="oqCGNPQi"
+	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="bEFXh/PO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C840C23243A
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 13:45:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 196DA1A28D
+	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 13:50:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736862345; cv=none; b=DKYDVLsAYkOUc1GDekisn8Kub8Ht/FrTPDaeYjh9PprnR9cV5Io6+Bb17T4OklbCoDSx5DsK4iURuRZ3/0TZMyYrEgh12++YQ8XlNCjC3RoA7xljHuqmIxZr2JTcB8FO/1K6YMmI6ZVJqAHvWPkEu6B/wWHzJYLcYe1L5YaQkLQ=
+	t=1736862643; cv=none; b=ULCKVT2f//mW7ah8x/gANnNUotlnGvN5bCFNumM+no4cwsFu6I2USaH8jqgTelC7BW6F3WQQLXd2W58oY5gNIDsjhiE8lKokaq0VyPCjx7AoLqCyiUJ1IVyDjhkbHjp7j9QSVcST/jYpA1N5ur+iGE70h0f6zjrXJICx83eL2n8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736862345; c=relaxed/simple;
-	bh=bsLMFG+J1r7oFl5VogEQPhlrLhQfw/mx5kqBlLHZbS0=;
+	s=arc-20240116; t=1736862643; c=relaxed/simple;
+	bh=MK2AphVmYBUjHm1HCF0DhkauVUycpjqvY/5QFbqNgB4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ipWQ3zzGoGPVuzmitUaALsPJUCqjLWl/IWQvY/l8gMIrSSLWIvHIvr+EjpULLGYB/GMar2w+9EXwB9JR+gWbcfcR0QmVDph9KXfcQ7H4bOvbM5sGJ6E5bvM3o69PZ29XkFpbM+/zAPt6nm1V7UdY11EnXbwclRrr62i0l5XjO/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=oqCGNPQi; arc=none smtp.client-ip=209.85.218.44
+	 To:Cc:Content-Type; b=cGgDcxEA7F/7GCWq30Qh8YZo4emsmiu3RSjXXscaHRPhlLLX5NztBz3O01tO0wZWX0Gd80PIJhRUg9Xe8l19YS8iKgF6a3N8PAENhpqCN81ABmmK3x2WwTENwZqraJza4LvYOVt9YrQ+QngvvOYIjAHR59ldLiCnJrPS3DuO8LA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=bEFXh/PO; arc=none smtp.client-ip=209.85.208.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aa6c0d1833eso355003966b.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 05:45:43 -0800 (PST)
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5d3d14336f0so9430979a12.3
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 05:50:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1736862342; x=1737467142; darn=vger.kernel.org;
+        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1736862639; x=1737467439; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4PPw6FpRN54/gYF6MDe7e/niZ0I7JKIP2WTfMVVEs4k=;
-        b=oqCGNPQiisd6mQ+SQ/zHfLetNi5mCh8AAUg2LPOY0RHwO/DDhRPbJxenbv+SjnCpfl
-         BKQAx9kSPyghzoC/ysFOLDARBUKIlk8dhDwMqFJZJLKznXT/akD2GYYmboZvCmh+QPlV
-         CHFYXKgVH4lW7ilRa5Eb73kPZQjCc6Au4Dlzobna3rNFbyQ2zuXQdK5iRPkHTDGUUMXx
-         MBx8coEiZQVkYxsmAUFQ/djJ0Hg2m7ANdPClwiBJK3d7C9PJnxkz5WCu16+MXIQUpfDD
-         AUKEBz1CUCXPvirGppe5nocRKxwrlTKSQDNyXuOjFL2ZOlXY/J6/UDYv8ub+WCEURMNd
-         3luQ==
+        bh=qK8eJ72oUfZkFBOw+tTcLnGpMzZXzfZ2mLBjQdYOmks=;
+        b=bEFXh/POozmDGCRznXWNSkQrNAb4Gv7QjPzIcp1Hb7amkblZBooQDnqgd/ldb1uU2P
+         fVgCtEyXsQZ7k8CZrE01/riIWUCdrsuQv0XXR0X5LTilImVzvL9xsB3rdw9tE+Qwd7ai
+         n4cuXs2hYyL6Mm1R9O+ugzsJf5X3M5KZKU9dTNkuagm+ZHJe80mGmjUW1U51cXVWFzKc
+         hx7nphzBMKxuJNEyJKdX2evsjOgs/LxOOO+BkM54xJRJOI/I1pljYd2l41/rVpYH/QWL
+         na9xmzonwRxJKtchTi8Vcar7yZoOcwM0fakqs0Guc7FXQAr0DkyBlJgFC+dLuh7CzLfr
+         c7jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736862342; x=1737467142;
+        d=1e100.net; s=20230601; t=1736862639; x=1737467439;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4PPw6FpRN54/gYF6MDe7e/niZ0I7JKIP2WTfMVVEs4k=;
-        b=cqfc+d5W8YgVCg0Q4dDW5Rh/A1FCSf/G6xIOs7FKXcmJyVeQfvTju8XVzG9ns54HTd
-         SpERKlN6yAbInyQF+u7TXWoa9Kw0pr3hn77tvqk00xEt0P8jyak260P184GL+9pL6Yae
-         /TIQnUTgIJfmg2yQeFcsMwShOcudS/+X9Q6YE77eLSQTJgDmmtpKbyUz6Q2eNTs2urWR
-         lNmXzkB9sd6lNwWbVumzyb7uZ7f6Q0bI0XUPYn1Rr8ql9QeCSRDzgZ3y1GDTXTPrwES5
-         aRMJlUTIWfKHDD+v0m/Ybx6g6PC16aLVexQPVz5OnVZXr6KXBkThXWSsUv0MzpCnn4zX
-         lOng==
-X-Forwarded-Encrypted: i=1; AJvYcCULNWD2L2VtGmy1aKidSiNjU7xwcbz18vtN1chOkNK9yL/YIvQo0CzDHqqm6T/81+EY96OmcRPvL3zE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx8M7X0jOrjVpAk5OWRpzhA7TQVtoo+bPIQShMnfbZ7K9dhxl7u
-	6Xe7WlYEzPFgdv2euLdldOcxGceNBINPD8eesOOktAoHsOXPP7V/OsKgPLUXsX/jHRa0+ElQohZ
-	9TNyxCS/e1zNRY0yzr0bcpQYA0B2j8/XLe7U=
-X-Gm-Gg: ASbGncve/+E/cZrGBncUwF7vMhfyI472boP01FS2rVuEB91kxSDo1m13u+9vGTSgzAb
-	xfyEEvxMyifVuWo1oCMeggiJ9AHXnBSVNcQgSQ6H0n/6D3gKIYcBTRXOHbP77yZAd1M9fq6Y=
-X-Google-Smtp-Source: AGHT+IE+OIdZryYN6cdQrJ0IANM5C4W1bdAokKQCgKQ7axcCcD03TGdAvMbfbq3c/QMYMEyiOqj9G6Nk1y/s+MCGx8Q=
-X-Received: by 2002:a17:907:a48:b0:ab2:c1e2:1da9 with SMTP id
- a640c23a62f3a-ab2c1e22977mr2315552866b.51.1736862341998; Tue, 14 Jan 2025
- 05:45:41 -0800 (PST)
+        bh=qK8eJ72oUfZkFBOw+tTcLnGpMzZXzfZ2mLBjQdYOmks=;
+        b=G44oFOmgGavaP3PSNE6dmR2MnaH25zqxc38rXc7bHUUCSoVBtQ8bRaqU2F+q3uiYGJ
+         TnuyxWCc+/wkVPmKEnCZb8cGuL9JMCcgmM0eptVk/DZje9tFO0FRUy2H8HDW48yLUsRb
+         jEH9e5J3sF77itQlE+JUnRP5lVuLlPzG1+9HkTYi0afHGamxiKSCfAPoDknPegtePH0/
+         5Qxrr+N7R2siesqB9KdPjo50S8z23YlvGegynm87MNCxuVQjcu7hzZpw5wEXM4TuH86E
+         x3xsIHjxPlbOJtHiElcqeBNlXh0qAQ33Qo8VMuxTlguwSwKEAvdIScrgA0mAdA4H5s03
+         ILDg==
+X-Forwarded-Encrypted: i=1; AJvYcCUIoa85DI4Eo6UHyZTVqXnR9zh0IUHiXhQErwWGVzNul9TmG0zZJbuoJmAOiksioONu6JiMIRXDGwXf@vger.kernel.org
+X-Gm-Message-State: AOJu0YytC3WILL3s87L/qcINU5TLGRd3lBeCRRfxLSZytzrgrsoi3Nv7
+	0D5QwiLkORAH9V+CR5dWH4xE/kiv6DzxRAG3raJVESS/df9xLW4E64v43GlLlmqEAGlcNnzqz08
+	pGnwxMxkD4nHsNHlEmYzXcL5AEK3f13Gpuoo=
+X-Gm-Gg: ASbGncsMinU6AZ58YjcyBysX5i/bGhPaBbCZXI1elLXtVLZejXwGryLCh5Z4h+UmGrw
+	sA9qxLH3LtEYEhHGwnKsz3s/7aDYPy1yDsCyETBngyy9AJKmecKnhUZdyB4pMoegypMCXEpE=
+X-Google-Smtp-Source: AGHT+IF46TQhtbMMZMIZCKwTcvvfKRkqdMf4+iusbVX+iTYMmw+SknyG/9KNTOsKRbNl7xnQQq1VrKvxMWJ1gHVadbI=
+X-Received: by 2002:a17:907:3d89:b0:aac:1ff1:d33d with SMTP id
+ a640c23a62f3a-ab2ab740dd9mr2228481666b.30.1736862639349; Tue, 14 Jan 2025
+ 05:50:39 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250111080903.3566296-1-iwamatsu@nigauri.org> <CAMuHMdXdvAYLi-3Eyt=5LTuDG+7rh5fo7VT9kbG1TD5dLLsvbw@mail.gmail.com>
-In-Reply-To: <CAMuHMdXdvAYLi-3Eyt=5LTuDG+7rh5fo7VT9kbG1TD5dLLsvbw@mail.gmail.com>
+References: <20241121071325.2148854-1-iwamatsu@nigauri.org>
+In-Reply-To: <20241121071325.2148854-1-iwamatsu@nigauri.org>
 From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Date: Tue, 14 Jan 2025 22:45:15 +0900
-X-Gm-Features: AbW1kva3pu29N9nfRW3UKRrj3KH10M_890YMRUbFgf-FwaZCpfGktJFFoz9G3ho
-Message-ID: <CABMQnVJ8bAF29s_=nusZWK_Q57Ru6vGsnW4PL5j0YE_DdqD2pw@mail.gmail.com>
-Subject: Re: [PATCH 0/4] Add support Yuridenki-Shokai Kakip board
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Masato Kiuchi <kiuchi_masato@yuridenki.co.jp>
+Date: Tue, 14 Jan 2025 22:50:13 +0900
+X-Gm-Features: AbW1kvYfwvDX59DGr73TkVKQWrZUOAfV-Cykp2gPV41y5Dp3jhO_fwHVhjZEQuo
+Message-ID: <CABMQnVJVTmnsx3RNYK01ikZ-jnn_y4pbrNAeZaKPzz0N_YFz5g@mail.gmail.com>
+Subject: Re: [PATCH v2] ARM: dts: socfpga: sodia: Fix mdio bus probe and PHY address
+To: dinguyen@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org
+Cc: Andrew Lunn <andrew@lunn.ch>, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Dinh,
 
-2025=E5=B9=B41=E6=9C=8813=E6=97=A5(=E6=9C=88) 18:42 Geert Uytterhoeven <gee=
-rt@linux-m68k.org>:
->
-> Hi Iwamatsu-san,
->
-> On Sat, Jan 11, 2025 at 9:09=E2=80=AFAM Nobuhiro Iwamatsu <iwamatsu@nigau=
-ri.org> wrote:
-> > This patch series add basic support for Yuridenki-Shokai[0] Kakip board=
-[1] based
-> > on R9A09G057H48.
->
-> Thanks for your series!
->
-> > [1]: https://www.kakip.ai/
->
-> Are the full schematics available, too?  The "Simple H/W Ref." document
-> contains only a block diagram and connector pinout.  Access to the
-> schematics would make it easier to review DTS patches.
+Could you check and apply this patch?
 
-Currently they are not publicly available. But as you wrote, I believe
-they should be made public.
-I am asking about this.
-
-Best regards,
+Thanks,
   Nobuhiro
+
+2024=E5=B9=B411=E6=9C=8821=E6=97=A5(=E6=9C=A8) 16:13 Nobuhiro Iwamatsu <iwa=
+matsu@nigauri.org>:
+>
+> On SoCFPGA/Sodia board, mdio bus cannot be probed, so the PHY cannot be
+> found and the network device does not work.
+>
+> ```
+> stmmaceth ff702000.ethernet eth0: __stmmac_open: Cannot attach to PHY (er=
+ror: -19)
+> ```
+>
+> To probe the mdio bus, add "snps,dwmac-mdio" as compatible string of the
+> mdio bus. Also the PHY address connected to this board is 4. Therefore,
+> change to 4.
+>
+> Cc: stable@vger.kernel.org # 6.3+
+> Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+> ---
+>  v2: Update commit message from 'ID' to 'address'.
+>      Drop Fixes tag, because that commit is not the cause.
+>
+>  arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts b=
+/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts
+> index ce0d6514eeb571..e4794ccb8e413f 100644
+> --- a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts
+> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts
+> @@ -66,8 +66,10 @@ &gmac1 {
+>         mdio0 {
+>                 #address-cells =3D <1>;
+>                 #size-cells =3D <0>;
+> -               phy0: ethernet-phy@0 {
+> -                       reg =3D <0>;
+> +               compatible =3D "snps,dwmac-mdio";
+> +
+> +               phy0: ethernet-phy@4 {
+> +                       reg =3D <4>;
+>                         rxd0-skew-ps =3D <0>;
+>                         rxd1-skew-ps =3D <0>;
+>                         rxd2-skew-ps =3D <0>;
+> --
+> 2.45.2
+>
+
 
 --=20
 Nobuhiro Iwamatsu
