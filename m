@@ -1,157 +1,261 @@
-Return-Path: <devicetree+bounces-138307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4346FA0FDA7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 01:44:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 601F5A0FDAD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 01:50:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50338169BC0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:44:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A3763A3A22
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:50:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19E561C28E;
-	Tue, 14 Jan 2025 00:44:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D82CF8BF8;
+	Tue, 14 Jan 2025 00:50:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m8gHDYfn"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VnIUkXyt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78B6D35940;
-	Tue, 14 Jan 2025 00:44:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A852D19A;
+	Tue, 14 Jan 2025 00:50:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736815484; cv=none; b=rUBOQeY/YaEufDydk7JDS1z/LsmVfQpcL2aKnbWvoQuRoMEzuDXoO0eAPw5mNP3K4uxMiCV/sDJtl8dN/nuJ7KCx8ZVTO2CSugCFwtrZw7gmrTBHHZl9NOL842yUVDbxK4Sbs5VEHGUNdzIqYXyOrhYE5zyA70BkGmh0bJgkEB8=
+	t=1736815805; cv=none; b=uGP9DzHmxPfsqLt5ye7Ye45hsNawn4mk6UqBhjCmF0uCMIx6Fi+nkH7si+yD2E+E4LlAf5+U0uAAM4Ias6OhT+dwD5msj9EVOONle5dTbBJC2Oy/ptHuykvP05Rj1uilDjJzu2QERs2a1/PUudvsqrWk6HFAtf+LbAtOXRIZJo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736815484; c=relaxed/simple;
-	bh=Dr56/ZUNN+NWzqYqrWsZW+rik7XiksfiJ3M6ThMMpp0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MgfDCx+GzMaRCxJxNTH9+vOJAYIqKER/xLv0GuKHgkeyBZf+FQ2gFWOYB+/PkUOvwEpbg03hpAY4rb3t5ia8R9Xbnc7AYMJw8gnux2K21oYDAytsRKT0ci57QyWqefmFNgch/0zwbMvAGOILGtBMsgzjH9YWu1WyJ4P26CRVNXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m8gHDYfn; arc=none smtp.client-ip=209.85.222.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7b6ebcec3aaso39390985a.0;
-        Mon, 13 Jan 2025 16:44:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736815480; x=1737420280; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6GE4ZjTIeCod5vEk7KsTlHbMo8hr4rgjC9/L2IcRCXg=;
-        b=m8gHDYfnKaPX9zGxMjlWy33LME37p8Kg5pG/HssxoFz4JjBn2UW6Sz7R8V0wOQcdRI
-         Nl+t9XXohiIyqBnCY0yjC+c8Mc2kmaebeYwQ1d1GRMQGJ/6l6/Kg+jB2gMp5o+I+LITf
-         0Y2zXd4iwcQ87FCJIepgluFuo76DBnyElHV+s/WpjUkcfsGxlBXA+QPjPg7WRimAap+b
-         PG3KvhD8cnxlqNosWWU8u9nwjcGbcyDgUsC/Opfvbb+9iDC62jyuKjaUauBKlXEpSxwU
-         uLsvKCPwCHMniSH7GQdJlwqaLqX5pPnW4UzWTbS0qgeY4cCvr5UX1torD0AF2vQQHYv/
-         Apxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736815480; x=1737420280;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6GE4ZjTIeCod5vEk7KsTlHbMo8hr4rgjC9/L2IcRCXg=;
-        b=qSJWHSXpO/z2WdnfzoRm6c9l+k7ni3DiC5+tdSwnjtktbKy7ncQy8rRzJsb5nAL6Xx
-         W4JwaYct6gKgSHpyMXlaOACiszqTXrBghtP239ut5ZLzbDE2uHWlypDbOJCNH4riMOfY
-         rryKUtnCgvbcX6EGlVzeJ1TQDoh6bsQRhsvl0sdb+nWYZZ+93TAboB3JQZDpU4CTA2u5
-         pL5cxYx/hJgaIDSa5YVL/UcPeo4bu2UCNTTEv4p3pTEQCKh6Tt/OriwUlSPVIJjbPX4y
-         hRbMHWXdSUwWJJzHslPfFGpCwcByeYpmijho7UadCGnTzDmWMC20eem+OFCDFHkKthJs
-         dmZg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4v0x0hTRbpI5OhXQHzBoyc2zVNgyrwTrxI8Eglg2anCov6qow7s23QQvqTTimUSHRE/cVVb669gJBOiwE@vger.kernel.org, AJvYcCVMg1giomSr5RqH458ZOHC6AV5sonTEd+tI+bddDs7elOgDzjw3NGwObTwDwziG4E5J4B2xvqFcmgTm@vger.kernel.org, AJvYcCWxTruShVmiLia1Q3SUp77IgTdjHgZqlQuKbLL1nN9wkNbG7pf9+pECUOEFSeUUG/8vzkFBRL9+1qTM@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCG5EnL1vPYn8cClhlydZuj0gMUlLqAxjSMY2nPcnFXPVkcQMq
-	F/d0hapYeu+YqFF9wfaFfEqd42/Q2lE2COmXAGt46r9Xa0Wc7mqD
-X-Gm-Gg: ASbGncssqS8y0hWNIfqLcH7QJt5JmSxcEoRvinW7LprnmmeM8BrhXdHPhebFNBdT5Yc
-	CLUFlWqXAnQLaAWrS0PgTkoJWsCnZdJfOQZoW7ElBkHAatqBPshbC2ycpoBdn+rJDRwiElw879W
-	yfPHXN7q4YZVTRA/NsOALKYhuHlY4snbKGDylxVthpsp7lAVYAm8tiUMFUlIIpMN6VB5ODxx92/
-	wLH05LLpybFh/i0Q7W/52nlqjQAWox0dwhvVW4Bkj+VAUObSYcuqboc9txQeVaOMGfpalHWP7N4
-	Kg==
-X-Google-Smtp-Source: AGHT+IFzqSCljcv4/ZImVYR7WqmlbqaSxQ2K1uIuw2fSrjcvRwQX8tqI2XfvvA2X9I0gkKKyIDfYuw==
-X-Received: by 2002:a05:6214:3a01:b0:6d8:b562:efcd with SMTP id 6a1803df08f44-6df9b2b2f97mr119468086d6.7.1736815480343;
-        Mon, 13 Jan 2025 16:44:40 -0800 (PST)
-Received: from JSANTO12-L01.ad.analog.com ([189.121.203.94])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-46c873dbf16sm46980101cf.67.2025.01.13.16.44.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2025 16:44:40 -0800 (PST)
-Date: Mon, 13 Jan 2025 21:44:35 -0300
-From: Jonathan Santos <jonath4nns@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: 8601da92-1f08-40e3-9b39-f9b99dbc1507@baylibre.com,
-	David Lechner <dlechner@baylibre.com>,
-	Jonathan Santos <Jonathan.Santos@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, lars@metafoo.de,
-	Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v1 02/15] Documentation: ABI: add wideband filter type to
- sysfs-bus-iio
-Message-ID: <Z4Wzc+qsAI5Ga+jQ@JSANTO12-L01.ad.analog.com>
-Reply-To: 20250112121617.668f90c2@jic23-huawei.smtp.subspace.kernel.org
-References: <cover.1736201898.git.Jonathan.Santos@analog.com>
- <40707fa904ba7b1659554747ff7520139dd6f94e.1736201898.git.Jonathan.Santos@analog.com>
- <8601da92-1f08-40e3-9b39-f9b99dbc1507@baylibre.com>
- <Z4L1qrqHBUE5JGdX@JSANTO12-L01.ad.analog.com>
- <20250112121617.668f90c2@jic23-huawei>
+	s=arc-20240116; t=1736815805; c=relaxed/simple;
+	bh=VuDgjpLXhrGhLhHXuKHfrLTWkr1sX6yOs+o8jtS+hvU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=RH618BTv3xq1iygA32/mp304aAh0DNLQJCiOe0ParqaHvqV/sdVS90vxuN7ZmLX/oznWT1SXLbRqomJ5C6TN4e0+1xStZrm0GFVJO0cpH8W+JjUbUzl9cwMisiAgeN4UskH32SSb17Av68ZjZK3Pza3zCtLIfO66x+wkELWoISc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VnIUkXyt; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50E0nitl3772085
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Mon, 13 Jan 2025 18:49:44 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1736815784;
+	bh=N6ymDFIM6DuHMRIcqXS9o0dMcBn54aPJytQyw8WdQCU=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=VnIUkXyt/2/OfnnGfbvnP1KeHSrjVrFQdWjhowlpDafI87pE/mAijevpkSwu0oYP8
+	 eYb7H9i5a/AqDEnMQPme7Wz476zkbQe09bd4dTwGsEqJXqxCq1H7tgyrvhd0UI/6EA
+	 NuYcHPFg5ubfyxiu4YWum28R5+w7MozVayACgeqk=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50E0nicp105797;
+	Mon, 13 Jan 2025 18:49:44 -0600
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 13
+ Jan 2025 18:49:44 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 13 Jan 2025 18:49:44 -0600
+Received: from [10.249.42.149] ([10.249.42.149])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50E0nhgc038391;
+	Mon, 13 Jan 2025 18:49:43 -0600
+Message-ID: <d3c16f4c-8141-40af-b7cb-d717b7443344@ti.com>
+Date: Mon, 13 Jan 2025 18:49:43 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250112121617.668f90c2@jic23-huawei>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 4/4] regulator: tps65215: Add support for TPS65215
+ Regulator IRQs
+To: Shree Ramamoorthy <s-ramamoorthy@ti.com>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <aaro.koskinen@iki.fi>, <andreas@kemnade.info>,
+        <khilman@baylibre.com>, <rogerq@kernel.org>, <tony@atomide.com>,
+        <jerome.neanne@baylibre.com>, <linux-omap@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC: <m-leonard@ti.com>, <praneeth@ti.com>, <christophe.jaillet@wanadoo.fr>
+References: <20250113231018.125426-1-s-ramamoorthy@ti.com>
+ <20250113231018.125426-5-s-ramamoorthy@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250113231018.125426-5-s-ramamoorthy@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 01/12, Jonathan Cameron wrote:
-> On Sat, 11 Jan 2025 19:50:18 -0300
-> Jonathan Santos <jonath4nns@gmail.com> wrote:
+On 1/13/25 5:10 PM, Shree Ramamoorthy wrote:
+> Isolate all changes involving regulator IRQ types:
+> - Adding in TPS65215 resources
+> - Organize what resources are common vs device-specific
+> - How the chip_data uses these resource structs
+> - Restructure the probe() for multi-PMIC support.
 > 
-> > On 01/07, David Lechner wrote:
-> > > On 1/7/25 9:24 AM, Jonathan Santos wrote:  
-> > > > The Wideband Low Ripple FIR filter is used for AD7768-1 Driver.
-> > > > Document wideband filter option into filter_type_avaialable  
-> > > 
-> > > s/avaialable/available/
-> > >   
-> > > > attribute.
-> > > > 
-> > > > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> > > > ---
-> > > >  Documentation/ABI/testing/sysfs-bus-iio | 2 ++
-> > > >  1 file changed, 2 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-> > > > index f83bd6829285..c4c21a7bfba1 100644
-> > > > --- a/Documentation/ABI/testing/sysfs-bus-iio
-> > > > +++ b/Documentation/ABI/testing/sysfs-bus-iio
-> > > > @@ -2291,6 +2291,8 @@ Description:
-> > > >  		* "sinc3+pf2" - Sinc3 + device specific Post Filter 2.
-> > > >  		* "sinc3+pf3" - Sinc3 + device specific Post Filter 3.
-> > > >  		* "sinc3+pf4" - Sinc3 + device specific Post Filter 4.
-> > > > +		* "wideband" - FIR filter with wideband low ripple passband  
-> > > 
-> > > I think "fir" would be a more specific filter type name than "wideband". (i.e.
-> > > there are wikipedia pages for sinc and FIR filters, but not one for "wideband"
-> > > filters)
-> > >   
-> > 
-> > Isn't "fir" a bit too generic for this case? Since Wideband here is a class of a FIR filter.
-> > Maybe something like "wideband-fir" or "fir-wideband" would work better?
+> Signed-off-by: Shree Ramamoorthy <s-ramamoorthy@ti.com>
+> ---
+>   drivers/regulator/tps65219-regulator.c | 68 +++++++++++++++++++-------
+>   1 file changed, 51 insertions(+), 17 deletions(-)
 > 
-> 
-> Not sure FIR is even useful. That's just a particular filter architecture, not
-> related directly to the characteristics userspace cares about.
-> You can sometimes at least build a very similar response from an IIR filter.
-> The sinc ones describe the pattern they let through, FIR isn't that specific.
-> So I'd not mention FIR anywhere.
-> 
+> diff --git a/drivers/regulator/tps65219-regulator.c b/drivers/regulator/tps65219-regulator.c
+> index cfb2ab6dbab4..732e28c213c3 100644
+> --- a/drivers/regulator/tps65219-regulator.c
+> +++ b/drivers/regulator/tps65219-regulator.c
+> @@ -29,6 +29,8 @@ struct tps65219_regulator_irq_type {
+>   	unsigned long event;
+>   };
+>   
+> +static struct tps65219_regulator_irq_type tps65215_regulator_irq_types[] = { 0 };
 
-So is "wideband" ok for this situation? Removing the FIR mention.
+This creates a struct array of length 1, guessing you wanted an empty
+array here, so { 0 }; -> { };
 
-> > 
-> > > > +		  and sharp transition band.
-> > > >  
-> > > >  What:		/sys/.../events/in_proximity_thresh_either_runningperiod
-> > > >  KernelVersion:	6.6  
-> > >   
-> 
+But might be even easier if you have no extra irqs for this device to
+drop this empty array then below in the device definition simply do this:
+
++		.irq_types = NULL,
++		.dev_irq_size = 0,
+
+Andrew
+
+> +
+>   static struct tps65219_regulator_irq_type tps65219_regulator_irq_types[] = {
+>   	{ "LDO3_SCG", "LDO3", "short circuit to ground", REGULATOR_EVENT_REGULATION_OUT },
+>   	{ "LDO3_OC", "LDO3", "overcurrent", REGULATOR_EVENT_OVER_CURRENT },
+> @@ -36,6 +38,14 @@ static struct tps65219_regulator_irq_type tps65219_regulator_irq_types[] = {
+>   	{ "LDO4_SCG", "LDO4", "short circuit to ground", REGULATOR_EVENT_REGULATION_OUT },
+>   	{ "LDO4_OC", "LDO4", "overcurrent", REGULATOR_EVENT_OVER_CURRENT },
+>   	{ "LDO4_UV", "LDO4", "undervoltage", REGULATOR_EVENT_UNDER_VOLTAGE },
+> +	{ "LDO3_RV", "LDO3", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+> +	{ "LDO4_RV", "LDO4", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+> +	{ "LDO3_RV_SD", "LDO3", "residual voltage on shutdown", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+> +	{ "LDO4_RV_SD", "LDO4", "residual voltage on shutdown", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+> +};
+> +
+> +/*  All of TPS65215's irq types are the same as common_regulator_irq_types */
+> +static struct tps65219_regulator_irq_type common_regulator_irq_types[] = {
+>   	{ "LDO1_SCG", "LDO1", "short circuit to ground", REGULATOR_EVENT_REGULATION_OUT },
+>   	{ "LDO1_OC", "LDO1", "overcurrent", REGULATOR_EVENT_OVER_CURRENT },
+>   	{ "LDO1_UV", "LDO1", "undervoltage", REGULATOR_EVENT_UNDER_VOLTAGE },
+> @@ -59,8 +69,6 @@ static struct tps65219_regulator_irq_type tps65219_regulator_irq_types[] = {
+>   	{ "BUCK3_RV", "BUCK3", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+>   	{ "LDO1_RV", "LDO1", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+>   	{ "LDO2_RV", "LDO2", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+> -	{ "LDO3_RV", "LDO3", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+> -	{ "LDO4_RV", "LDO4", "residual voltage", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+>   	{ "BUCK1_RV_SD", "BUCK1", "residual voltage on shutdown",
+>   	 REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+>   	{ "BUCK2_RV_SD", "BUCK2", "residual voltage on shutdown",
+> @@ -69,8 +77,6 @@ static struct tps65219_regulator_irq_type tps65219_regulator_irq_types[] = {
+>   	 REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+>   	{ "LDO1_RV_SD", "LDO1", "residual voltage on shutdown", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+>   	{ "LDO2_RV_SD", "LDO2", "residual voltage on shutdown", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+> -	{ "LDO3_RV_SD", "LDO3", "residual voltage on shutdown", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+> -	{ "LDO4_RV_SD", "LDO4", "residual voltage on shutdown", REGULATOR_EVENT_OVER_VOLTAGE_WARN },
+>   	{ "SENSOR_3_WARM", "SENSOR3", "warm temperature", REGULATOR_EVENT_OVER_TEMP_WARN},
+>   	{ "SENSOR_2_WARM", "SENSOR2", "warm temperature", REGULATOR_EVENT_OVER_TEMP_WARN },
+>   	{ "SENSOR_1_WARM", "SENSOR1", "warm temperature", REGULATOR_EVENT_OVER_TEMP_WARN },
+> @@ -313,8 +319,12 @@ static irqreturn_t tps65219_regulator_irq_handler(int irq, void *data)
+>   struct tps65219_chip_data {
+>   	size_t rdesc_size;
+>   	size_t common_rdesc_size;
+> +	size_t dev_irq_size;
+> +	size_t common_irq_size;
+>   	const struct regulator_desc *rdesc;
+>   	const struct regulator_desc *common_rdesc;
+> +	struct tps65219_regulator_irq_type *irq_types;
+> +	struct tps65219_regulator_irq_type *common_irq_types;
+>   };
+>   
+>   static struct tps65219_chip_data chip_info_table[] = {
+> @@ -323,12 +333,20 @@ static struct tps65219_chip_data chip_info_table[] = {
+>   		.rdesc_size = ARRAY_SIZE(tps65215_regs),
+>   		.common_rdesc = common_regs,
+>   		.common_rdesc_size = ARRAY_SIZE(common_regs),
+> +		.irq_types = tps65215_regulator_irq_types,
+> +		.dev_irq_size = ARRAY_SIZE(tps65215_regulator_irq_types),
+> +		.common_irq_types = common_regulator_irq_types,
+> +		.common_irq_size = ARRAY_SIZE(common_regulator_irq_types),
+>   	},
+>   	[TPS65219] = {
+>   		.rdesc = tps65219_regs,
+>   		.rdesc_size = ARRAY_SIZE(tps65219_regs),
+>   		.common_rdesc = common_regs,
+>   		.common_rdesc_size = ARRAY_SIZE(common_regs),
+> +		.irq_types = tps65219_regulator_irq_types,
+> +		.dev_irq_size = ARRAY_SIZE(tps65219_regulator_irq_types),
+> +		.common_irq_types = common_regulator_irq_types,
+> +		.common_irq_size = ARRAY_SIZE(common_regulator_irq_types),
+>   	},
+>   };
+>   
+> @@ -336,7 +354,6 @@ static int tps65219_regulator_probe(struct platform_device *pdev)
+>   {
+>   	struct tps65219_regulator_irq_data *irq_data;
+>   	struct tps65219_regulator_irq_type *irq_type;
+> -
+>   	struct tps65219_chip_data *pmic;
+>   	struct regulator_dev *rdev;
+>   	int error;
+> @@ -370,33 +387,50 @@ static int tps65219_regulator_probe(struct platform_device *pdev)
+>   					     pmic->rdesc[i].name);
+>   	}
+>   
+> -	irq_data = devm_kmalloc(tps->dev,
+> -				ARRAY_SIZE(tps65219_regulator_irq_types) *
+> -				sizeof(struct tps65219_regulator_irq_data),
+> -				GFP_KERNEL);
+> +	irq_data = devm_kmalloc(tps->dev, pmic->common_irq_size, GFP_KERNEL);
+>   	if (!irq_data)
+>   		return -ENOMEM;
+>   
+> -	for (i = 0; i < ARRAY_SIZE(tps65219_regulator_irq_types); ++i) {
+> -		irq_type = &tps65219_regulator_irq_types[i];
+> -
+> +	for (i = 0; i < pmic->common_irq_size; ++i) {
+> +		irq_type = &pmic->common_irq_types[i];
+>   		irq = platform_get_irq_byname(pdev, irq_type->irq_name);
+>   		if (irq < 0)
+>   			return -EINVAL;
+>   
+>   		irq_data[i].dev = tps->dev;
+>   		irq_data[i].type = irq_type;
+> +		error = devm_request_threaded_irq(tps->dev, irq, NULL,
+> +						  tps65219_regulator_irq_handler,
+> +						  IRQF_ONESHOT,
+> +						  irq_type->irq_name,
+> +						  &irq_data[i]);
+> +		if (error)
+> +			return dev_err_probe(tps->dev, PTR_ERR(rdev),
+> +					     "Failed to request %s IRQ %d: %d\n",
+> +					     irq_type->irq_name, irq, error);
+> +	}
+> +
+> +	irq_data = devm_kmalloc(tps->dev, pmic->dev_irq_size, GFP_KERNEL);
+> +	if (!irq_data)
+> +		return -ENOMEM;
+>   
+> +	for (i = 0; i < pmic->dev_irq_size; ++i) {
+> +		irq_type = &pmic->irq_types[i];
+> +		irq = platform_get_irq_byname(pdev, irq_type->irq_name);
+> +		if (irq < 0)
+> +			return -EINVAL;
+> +
+> +		irq_data[i].dev = tps->dev;
+> +		irq_data[i].type = irq_type;
+>   		error = devm_request_threaded_irq(tps->dev, irq, NULL,
+>   						  tps65219_regulator_irq_handler,
+>   						  IRQF_ONESHOT,
+>   						  irq_type->irq_name,
+>   						  &irq_data[i]);
+> -		if (error) {
+> -			dev_err(tps->dev, "failed to request %s IRQ %d: %d\n",
+> -				irq_type->irq_name, irq, error);
+> -			return error;
+> -		}
+> +		if (error)
+> +			return dev_err_probe(tps->dev, PTR_ERR(rdev),
+> +					     "Failed to request %s IRQ %d: %d\n",
+> +					     irq_type->irq_name, irq, error);
+>   	}
+>   
+>   	return 0;
 
