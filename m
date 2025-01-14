@@ -1,190 +1,167 @@
-Return-Path: <devicetree+bounces-138432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ADCCA10545
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 12:25:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1BDDA1056A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 12:30:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B359188792A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 11:25:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0119167B8B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 11:30:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E303422DC5D;
-	Tue, 14 Jan 2025 11:25:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BA86284A72;
+	Tue, 14 Jan 2025 11:30:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="Hai0nwT8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BZMf0cI/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4006D20F97C
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 11:25:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7AE3224B1A;
+	Tue, 14 Jan 2025 11:30:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736853927; cv=none; b=bihkbEUFFb/yyk2HNAK0BrLSrajZWwI08lrW8M2Gv8XjYf24atHlKIfN04LjcTGRbqoSN1EcF+4ij4vgo6KhVjuI3TFmOW987wxywEDOy/jnU6dZlKMiT7/j+PrlWPCthXvwmrczwViAtNzXf8vl78kFUCz1gSj5WK7PKBV/T7o=
+	t=1736854202; cv=none; b=Kd7JVDNA8O4bQKrOhRU4HDHQOVByVRII6J+D4TeRjtbsBhw0RtlaeSz6TsWZLismffGM9v8FVqSe54p4w15zx8wylF9Z/VIuomO2q7cEO+3/O3tmGCsaAuXbxZiIflAj6Gr3H05UqCOTUQ7tK/p+n+G+0BeCUa5yqRamLiZbp8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736853927; c=relaxed/simple;
-	bh=hJ+djB3d/zAzbtQIrH3vQ1RhorhbA7PXwlkOtnRzC24=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UFmCwsoL4muNRUH2rI7oJbRs4EdwrRIjEhflGHWL5eeFhe9GYWkn/7OVz5FWdJBBS8X25WTm4kvh6jUC4Plg5aCsS2AYazIUZaD5w57dYfiJPBHR3JyzW9D5o5JxlmiHaNwCM9erUADH2rWMheUzrUDFqYqSpphpKrNoRDlm4jU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=Hai0nwT8; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e3c9ec344efso8336149276.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 03:25:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1736853925; x=1737458725; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DNeWxGrE8uIS0WDqmIGcYolBV0o+ZDhi6egQ4fiiws8=;
-        b=Hai0nwT8lbb/tSW2tqWGbJerhP2ItnHL7ClWxAQ4RS7bFHlQ4xSMKgHHJg3g7pUNPW
-         2mxBFNzi8TPt18cknmoPV7iiPMuML+7n79fzb/NpWwOHdOEM1yLbURAEr5lR/uqMaeo3
-         9OhZgbtKeyoEB9obeVdeO4yQ7sLF7Vw+xg4Wo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736853925; x=1737458725;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DNeWxGrE8uIS0WDqmIGcYolBV0o+ZDhi6egQ4fiiws8=;
-        b=D2h0SLe18ZCGg/E4wjpfdJteBQyZT+9EPut9rtVQHoODYYT+o69I3ks/47n/OOvitK
-         9/33+wWFgjcPOaMh3RqlRFfdl3cQOAqBCnseWYECFHQOu8QOMkTM3hIsrW16kKt4rY1B
-         06i8bTkKqE9mZF/SMefdo9Cn0PbhBGR4nYQlxIlBoQWrRLHZpp+1lMdfmISeHL6jHGhV
-         HyRdDPuWtUx90PxV1F8BsWXrYm8JhznaFQbaXBEbkBPeFUq5iEsWETjMtkw8w7CJBlvg
-         aixivpc3ci6VENBXOIYJUiU6LXloVEtohk0e+bduYI8I+OdmQfq1IbPMK7l3twnNUFAQ
-         ygWw==
-X-Forwarded-Encrypted: i=1; AJvYcCUV7kcVViCNFyRA4EptmKcKUDi9lQe7w4fpXJyjzXPhorN3AUzt2NHtepLNwpi5T5FCyvzjoiGJWWIj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzglrVOFxBG/d/XA7doDM8AIsJPl6DligrdDlVsJt2nu++3W3nX
-	XOR5sJ4OSQPNmQKxuFd5OHg/5UtWN5bpsTC/uEAGkQTkHylsiBA6riVZ36A9G3LwlDXB954LZmc
-	GP9aPn6qa/1us9WSgTbLrG6G8Zal9Qd72pMLANw==
-X-Gm-Gg: ASbGncu8HdVFFytd3vesX0VbxufLkhnqMz+8VWq2O2umHI+Tade7K1Iwi4uTsKmb9NY
-	5pebgU7SxApuV7rtxFTk6Buk5DGxTlkJXtMEH
-X-Google-Smtp-Source: AGHT+IE5ADFy4Rcdxdx8eIWS6qutMEezXMUhyeb5SIbQjo2wdqwdsiAVueYpuLW3T5twpKf4mq41MGduOKyevWn0ZOQ=
-X-Received: by 2002:a05:6902:988:b0:e57:3a77:99b6 with SMTP id
- 3f1490d57ef6-e573a779d1bmr8361818276.19.1736853925209; Tue, 14 Jan 2025
- 03:25:25 -0800 (PST)
+	s=arc-20240116; t=1736854202; c=relaxed/simple;
+	bh=jVoYk1AmULzhUU8WlSEvj9i7fgoomwuf9PP0j4l/piw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=nbauK/yeD11WQ+VhDm/8dn3a5GitR3x02FTMQDvU1QN+F776O9fBDjlmhcO1lCbbKUlAH/muE7zvazrHp2B98S9s8MJqTTqzRqneolxxuZ9suQmBf1c1ili1ypzROm4vS95k61CSonmLgFHpLHxTQ/F7MVyKMyfXalkErEV34w0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BZMf0cI/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50E8Conq028872;
+	Tue, 14 Jan 2025 11:29:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	2n3EadQ8u+lFGYjWg3XzykC7KMKSjEnNBtScXvNI6y4=; b=BZMf0cI/9k+ijul6
+	U4F55LdE8JjDmwuRNgHOKFMf4vPdGivdec456UvisFF4Sbvptg1VddRmT7u+2S8t
+	Md0O8pMajmIYP7ZmlYKMcwuYYN62sZHB8i19rLbbOkJG3bEnnG3CfmhM/4B3n6UL
+	lliMKE8EzCPXuYKZXoTehPhOIvRnsDsnMXxIIWT9cmp1CE58AXWuUQE39/bQqOHS
+	p5NQfiwDnX/6CDtxsDSjJXbZrPU4l6vsqltjIpxStJdSPmCEJGbj9RtAQ4KCSJg+
+	tPWE9nMEXqe2U69Updsm5neUjVYoFIpSo96lpr4bOkq3LiiAe8lZKru4wjQBtwsF
+	s0X0Qw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 445m7b0d5w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 14 Jan 2025 11:29:43 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50EBThfr031183
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 14 Jan 2025 11:29:43 GMT
+Received: from [10.253.32.159] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 14 Jan
+ 2025 03:29:37 -0800
+Message-ID: <4599e35b-eb2b-4d12-82c7-f2a8a804e08f@quicinc.com>
+Date: Tue, 14 Jan 2025 19:29:35 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250114091128.528757-1-dario.binacchi@amarulasolutions.com>
- <20250114091128.528757-2-dario.binacchi@amarulasolutions.com>
- <79a90c01-9e21-4e3f-a334-6ba9e1df4150@kernel.org> <CABGWkvofUphcXTwBS5UBEoQ1GYpngP7gWi9Ax=WW28XKK0qoYA@mail.gmail.com>
- <54b63cfc-7a51-4b69-8b32-eb7591b2169b@kernel.org> <CABGWkvrYUU=HAh4uYNpZSpzeyanfp5a_xjK_178ftQyDKH=cTg@mail.gmail.com>
- <581275bf-11f3-4a8a-8e58-75b00c515c79@linaro.org>
-In-Reply-To: <581275bf-11f3-4a8a-8e58-75b00c515c79@linaro.org>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Tue, 14 Jan 2025 12:25:14 +0100
-X-Gm-Features: AbW1kvaNobnTd2MQAHzRF4uGLRR152GowylzO20cIOWKbfYsbQamDcVMjctIi7w
-Message-ID: <CABGWkvpGGdjJVTHppOohGPq3yi_Y20t9b0WWkPOriFU9=CHQMg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: clock: convert stm32 rcc bindings to json-schema
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-amarula@amarulasolutions.com, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Jan 14, 2025 at 11:13=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 14/01/2025 11:00, Dario Binacchi wrote:
-> > On Tue, Jan 14, 2025 at 10:48=E2=80=AFAM Krzysztof Kozlowski <krzk@kern=
-el.org> wrote:
-> >>
-> >> On 14/01/2025 10:36, Dario Binacchi wrote:
-> >>>> Nothing improved here.
-> >>>
-> >>> In my humble opinion, there is nothing to improve. Any modification
-> >>> made causes the tests to fail.
-> >>>
-> >>> $ git grep st,stm32f746-rcc arch/
-> >>> arch/arm/boot/dts/st/stm32f746.dtsi:                    compatible =
-=3D
-> >>> "st,stm32f746-rcc", "st,stm32-rcc";
-> >>> arch/arm/boot/dts/st/stm32f769-disco.dts:       compatible =3D
-> >>> "st,stm32f769-rcc", "st,stm32f746-rcc", "st,stm32-rcc";
-> >>>
-> >>> Or am I missing something?
-> >>
-> >> How can I know what you are missing if you do not show the code?
-> >
-> > Sorry, but I still can't understand. I run multiple tests, trying to
->
-> You don't understand that I cannot improve your code if I do not see the
-> code? So let me rephrase: In order to tell what is wrong with some sort
-> of code, I need to see it. I cannot tell what is wrong with code without
-> seeing it.
-
-You told me that this code was not exactly correct for the parts
-marked with *********:
-
-properties:
-  compatible:
-    oneOf:
-      - items:
-          - const: st,stm32f42xx-rcc
-          - const: st,stm32-rcc
-      - items:
-          - enum:
-              - st,stm32f469-rcc
-          - const: st,stm32f42xx-rcc
-          - const: st,stm32-rcc
-      - items:
-          - const: st,stm32f746-rcc ********
-          - const: st,stm32-rcc
-      - items:
-          - enum:
-              - st,stm32f769-rcc
-          - const: st,stm32f746-rcc
-          - const: st,stm32-rcc
-      - items:
-          - const: st,stm32h743-rcc *********
-          - const: st,stm32-rcc
-
-I haven't found a way to make changes to those elements without causing the
-tests to fail. Could you kindly provide more explicit guidance on the kind =
-of
-modification you're expecting?
-
-Thanks and regards,
-Dario
-
->
-> > modify things
-> > based on what I understood of your suggestions, but the tests failed
-> > every time.
-> >
-> > Could you kindly provide an example of what you'd like me to do?
-> Any qcom binding? Any other SoC binding with multiple devices?
->
-> Best regards,
-> Krzysztof
---
-
-Dario Binacchi
-
-Senior Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 12/14] net: ethernet: qualcomm: Initialize PPE
+ L2 bridge settings
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Luo Jie <quic_luoj@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Suruchi Agarwal <quic_suruchia@quicinc.com>,
+        Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>,
+        "Gustavo A. R.
+ Silva" <gustavoars@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
+        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
+        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
+        <john@phrozen.org>
+References: <20250108-qcom_ipq_ppe-v2-0-7394dbda7199@quicinc.com>
+ <20250108-qcom_ipq_ppe-v2-12-7394dbda7199@quicinc.com>
+ <4dbf1550-32e9-4cce-bf0c-8b92dbd49b50@lunn.ch>
+ <c67f4510-e71b-4211-8fe2-35dabfc7b44e@quicinc.com>
+ <8bdde187-b329-480d-a745-16871276a331@lunn.ch>
+Content-Language: en-US
+From: Lei Wei <quic_leiwei@quicinc.com>
+In-Reply-To: <8bdde187-b329-480d-a745-16871276a331@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Xn8srb3T476UNFJ326d45w4emPi_uQ39
+X-Proofpoint-GUID: Xn8srb3T476UNFJ326d45w4emPi_uQ39
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
+ malwarescore=0 clxscore=1015 mlxscore=0 mlxlogscore=999 adultscore=0
+ lowpriorityscore=0 suspectscore=0 impostorscore=0 spamscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501140096
 
 
-Amarula Solutions SRL
 
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
+On 1/13/2025 9:37 PM, Andrew Lunn wrote:
+>>> Why is learning needed on physical ports? In general, switches forward
+>>> unknown destination addresses to the CPU. Which is what you want when
+>>> the ports are isolated from each other. Everything goes to the
+>>> CPU. But maybe this switch does not work like this?
+>>>
+>>
+>> L2 forwarding can be disabled in PPE in two ways:
+>>
+>> 1.) Keep the learning enabled (which is the default HW setting) and
+>> configure the FDB-miss-action to redirect to CPU.
+>>
+>> This works because even if FDB learning is enabled, we need to represent
+>> the bridge and the physical ports using their 'virtual switch instance'
+>> (VSI) in the PPE HW, and create the 'port membership' for the bridge VSI
+>> (the list of slave ports), before FDB based forwarding can take place. Since
+>> we do not yet support switchdev, these VSI are not created and packets are
+>> always forwarded to CPU due to FDB miss.
+>>
+>> (or)
+>>
+>> 2.) Explicitly disable learning either globally or on the ports.
+>>
+>> With method 1 we can achieve packet forwarding to CPU without explicitly
+>> disabling learning. When switchdev is enabled later, L2 forwarding can be
+>> enabled as a natural extension on top of this configuration. So we have
+>> chosen the first approach.
+> 
+> How does ageing work in this setup? Will a cable unplug/plug flush all
+> the learned entries? Is ageing set to some reasonable default in case
+> a MAC address moves?
+> 
 
-T. +39 042 243 5310
-info@amarulasolutions.com
+I would like to clarify that representing the bridge and its slave ports
+inside PPE (using a VSI - virtual switch instance) is a pre-requisite 
+before learning can take place on a port. At this point, since switchdev
+is not enabled, VSI is not created for port/bridge and hence FDB 
+learning does not take place. Later when we enable switchdev and 
+represent the bridge/slave-ports in PPE, FDB learning will automatically 
+occur on top of this initial configuration. I will add this note in the 
+comments and commit message to make it clear.
 
-www.amarulasolutions.com
+Regarding FDB entry ageing (when switchdev is enabled later), MAC 
+address move can be automatically detected and old entry flushed by the 
+PPE. However for link change events on a port, PPE will rely on software 
+to flush FDB entries for the port.
+
+> 	Andrew
+
 
