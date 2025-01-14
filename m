@@ -1,214 +1,214 @@
-Return-Path: <devicetree+bounces-138456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D17DAA107E8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:34:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B755A107EB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:34:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF2AD1888811
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 13:34:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E13A1888C40
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 13:35:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FAA620F960;
-	Tue, 14 Jan 2025 13:34:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D29E420F979;
+	Tue, 14 Jan 2025 13:34:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="Bl/w/Owo"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="nU+Abs3p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2080.outbound.protection.outlook.com [40.107.103.80])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 851FC1C4617
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 13:34:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736861681; cv=none; b=iLOscwIsSWE6jB0wYDJ09w530CC1c2E6vDow0YoFoSXrORcLoUF+vke+UtbShwZVFYjuJNzXZJyGe9XgcMwbgcXmjm5dxT9rTGpemCYGtLpX5vlwF1QGJu9AdRK4GRCJF/DvULltsArD8EBZxi87chRjcvUcSqlAtGdwwGU490Y=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736861681; c=relaxed/simple;
-	bh=PfW+vIdHSp5SfVS7CGxfItYz5ZEpiurMDgI/E9Kh0PU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sFSEAA5yQ1y4TGrkarPbuSJ+1voBLey2rvIYJTf7nn4XeKG7Ci6hXtydIqvksgVTkN6vZaGrhXTAtQzrZ8vN3UxeD1gmIW9AKj1kNrRA9i3wRvb6k4yE9MwjU+PvYFF8xRTkD5EFAD2ZjvM6B9+l/TWcfR0tOd/7IlMWYFIVQcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=Bl/w/Owo; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aa684b6d9c7so960868966b.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 05:34:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1736861678; x=1737466478; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=V7P/Z2nIx3feZjuva4LXV+jsAFqWXgIZABUnFggSj6g=;
-        b=Bl/w/Owo6o8VpbfjJfTkceq9fH0JzglHbbQOsn4RdZkyMUnVym92PXcxIIpHh5/3MF
-         V1R/AF+MVReYLOd7Ql6rNGU2Z/TRe/MUYWSQTRMVyQhnjhpRTu+Ur4aLczTPeBT60oUi
-         lqBg+TkA/4umYd8NFj2SkFRoYTJXlrbdL7exMH/bpeGKOWnHfhQ6Li1dRpZZZA1GrkTb
-         gB3HHH9oi6goTIN4FI+Oil3+TwqW3l2twvhCFZE/TOtk+kk04xQT5cDOtsgtUgMXcu0u
-         jG7yy5UfGFI4mPQnax9KaERS7B2nPFNQGJC4ojg9PxoHHcjgM7d6JI+bzTTdYai3CoGK
-         WW7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736861678; x=1737466478;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V7P/Z2nIx3feZjuva4LXV+jsAFqWXgIZABUnFggSj6g=;
-        b=RrM1UPQwPcG+B/iFkjd8AZVgKWtPMOUouJPKX8SzPP0NgOd3IwUrbG3ukcliRgYHV4
-         R9FUSVwgMR9YJu2koVPSBchiiLJ+Jil3X7Umia2YJNzoTSlkDr4CiwZibdQjbvNXCkGY
-         Aer0EnquQhDmzjrjTViJd9CZYAu2ZE1dckgMTAHlWQdB6jjy/lNAD4zQh9Gyyvz0ZfW6
-         o0yEgjZA+OnHVVqK1JX/K7KIJEDG+OdvGFIM+kDYsOe3DTUMcyrXCwwYaCacQSiyBo5c
-         xdo8/Gy579ZjkKVOrAkH1MN1cWCqEIMubs/YIAaVAvuYHeoWpfZTfYnJvNqEaVV0p0g7
-         flGw==
-X-Forwarded-Encrypted: i=1; AJvYcCUK4nImMEJKqGF5Khs6v/mbe29QnI7IDqE+CceqymaOgSM9DF13gHKEwgvsWi/iC91uARCQyIO3BvDQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYsMYe5JPn/ntuD3gywwYnkixFfgVck8M9bA3WU5uEnJ6i16as
-	+rV+UXU6omr/KsPNfqdjlNbxaHFgKUMBW682aUfeWzZEFyJ6nb12y19GUAkNBb2AtgyKIfMX9cf
-	mlNvwyRRQzAz5+qC+cy2UvXIfjSKAvfVIcaYHnpLu+8cw30ZG
-X-Gm-Gg: ASbGncsxsOYNPe0tTs5f4TYau621BF//3RUhhYCK0qpXteIr6mQKGyfvMQViPegMf0X
-	v4PUiYEcC+IUkyfiRlN0hbvj4PutQbeLrar/oIhCvWHd74x7+LggykUc2IcAD3QW8bh4TBcs=
-X-Google-Smtp-Source: AGHT+IG0YP7ePcdqFAiYeXXWovt/Wu3lLKBpOb4oMZ0iep556/wFDmW3FWNOLCdsy3bQr3iJckDrTz/NqmdlMJ/qJe4=
-X-Received: by 2002:a17:907:1c2a:b0:ab3:3eea:1ccc with SMTP id
- a640c23a62f3a-ab33eea225cmr179739066b.27.1736861677841; Tue, 14 Jan 2025
- 05:34:37 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94DCD20F960;
+	Tue, 14 Jan 2025 13:34:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.80
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736861687; cv=fail; b=dugRwmLBLtA2NTxj9F8/PloGOLttiEJGjGLihIqAWlNPybvbnfU9n25Q7gCiUyGO2gP+f/1LrAgZ3mQx9Z2krSeCuDDjAKGMMy6G3kYyi8b+rboCfet1PnfhXMhqm9UB+DAyEjb+DnhdLfDW1pkdl+kAwPbU5FrmvFS7+ADHuXo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736861687; c=relaxed/simple;
+	bh=lOr2ynDC3rVHzudBhL2rzyatyYuBUbWQNL1wZgvPxaI=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Hoc8znjIjKpM9j4hICEBeeK5wpkUcu5bsgwTD43aQjYPhkmDUtklhR/NLP2FAOoheUoOMX9eVywtsI5qO3pc5rG5J6h9Ll+GuAvM9LLTo/iHQhgHwooJ28cqCSH1Ki6/AtUqARm0J2ZqeJOIkYNIxh8jmpnOh7VH7oCMGlPNEOE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=nU+Abs3p; arc=fail smtp.client-ip=40.107.103.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SDgsIQgIABaxcI1vx5K9Flrhj/mFIPa3FmHQ9TGNX+w4j1qFBHfY8VeuFkmbXVpQfxmjicBnA5rOo9pnHQiw8iEHaTnZS68aKwkJHFkY0MxxiJJCuXYzhmDfZTVZB0pxukTCBLFtbXC3otTuxso4EtdDXyjtTz7F4z6xNsdBZofO1BRonhCzwJL1WPOdwv3Ww+75AZqSNIeBbKuawJecKDqti0Uam8dLquCy8lkKZQgYjN2NjF0Ru/wb2Csffy3AvDwkjQmrZFJnIoz2oT/83wAvBMbIsC1mvW+CdmPKwnLsQt6sBvwMpzTdbMWdtsLhFYo0lIFlyrM2Yw5zHZ7ynQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=z07CRdol8+YWxA0ylPz7VlRfoOx00FZgxis0xuMQPck=;
+ b=boSqHwoaJQRpX2w4eTj4EE0ZQn4NC47GkLbtz427wbUo5olQMy9ItWh+XzCuTXrdhIx6HLut3uygfOfzBRpBso/vXaxa8vAOlAQlvqn3OYTyEuQvrcCWFIjHU581o0DTHzeN2/Xdb/3b7HgiL4ALuJzu/MfIAkMFZfijuAv6SW2iMorOCUwYMRJu/epmWJnF/gMx9firIXpL3aM7/2juDzzcyLIU6l9Vom267lZPny2ez98dx8XXGUNTQuUCPoJc8B+sJvQ5h5CHM+vAQuWtFQjZ2XgUMECQyMrZTJMr34EQ2klLY6aNkXo4VuKgE4HljKrz4BZRDWHyc91utfgDBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z07CRdol8+YWxA0ylPz7VlRfoOx00FZgxis0xuMQPck=;
+ b=nU+Abs3pNacIDhNGQqouVbp0Ql4Jb6eHp9xYsVL67s4T+8OsSsnIlFJyYLgs8AbFgNxZGD9cJe7OltHy0PUad6Ioq/BivzngXWASUQAVIYZgYZGPsOsXFu1WvIXzF4xkJu7kbvVXkX8jep5F8oLWa2Bg9j2pdOZSh+VxWhD6oCbuQ+GeU143JfMrNg9xIVT6EAIPRSFXufHUFSDFUTZIrQtcsTi6CKV5qm9TD8WN47RhhCez+Tpi/p4y+fePanorACExHPRzQH0rqwv47fZHmo8QVqd40QN+8n2jQ3zVFZfTtzAOHp+3dqDjRsIfC2XnEwkRhdOQEgxtMdnRVpONyQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PA4PR04MB9687.eurprd04.prod.outlook.com (2603:10a6:102:270::15)
+ by DB9PR04MB8252.eurprd04.prod.outlook.com (2603:10a6:10:24d::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.18; Tue, 14 Jan
+ 2025 13:34:42 +0000
+Received: from PA4PR04MB9687.eurprd04.prod.outlook.com
+ ([fe80::742e:a5ac:15f4:116a]) by PA4PR04MB9687.eurprd04.prod.outlook.com
+ ([fe80::742e:a5ac:15f4:116a%5]) with mapi id 15.20.8335.015; Tue, 14 Jan 2025
+ 13:34:42 +0000
+From: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+To: marcel@holtmann.org,
+	luiz.dentz@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-bluetooth@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	amitkumar.karwar@nxp.com,
+	neeraj.sanjaykale@nxp.com,
+	sherry.sun@nxp.com,
+	ziniu.wang_1@nxp.com,
+	johan.korsnes@remarkable.no,
+	kristian.krohn@remarkable.no,
+	manjeet.gupta@nxp.com
+Subject: [PATCH v2 1/2] dt-bindings: net: bluetooth: nxp: Add support to set BD address
+Date: Tue, 14 Jan 2025 19:05:47 +0530
+Message-Id: <20250114133548.2362038-1-neeraj.sanjaykale@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0045.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::16) To DB9PR04MB9676.eurprd04.prod.outlook.com
+ (2603:10a6:10:308::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250111080903.3566296-1-iwamatsu@nigauri.org>
- <20250111080903.3566296-5-iwamatsu@nigauri.org> <467573be-f143-4cfc-a04e-86be092d1b58@kernel.org>
-In-Reply-To: <467573be-f143-4cfc-a04e-86be092d1b58@kernel.org>
-From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Date: Tue, 14 Jan 2025 22:34:11 +0900
-X-Gm-Features: AbW1kvY8DnQqPhj0K4VQG_x62UqFeahUJYQNENi1v3_Hh0Xc0XZueX26VsBb28s
-Message-ID: <CABMQnVKhwQnRwNEvMeAXx3LLA-HhJN-s0QCJmzJxwowbUhD1-Q@mail.gmail.com>
-Subject: Re: [PATCH 4/4] arm64: dts: renesas: Add initial device tree for
- Yuridenki-Shokai Kakip board
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Masato Kiuchi <kiuchi_masato@yuridenki.co.jp>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR04MB9687:EE_|DB9PR04MB8252:EE_
+X-MS-Office365-Filtering-Correlation-Id: 599534bd-6dfc-4c4a-0852-08dd34a03353
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|52116014|1800799024|376014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?QrV8rxLUNBCi5nQWLn97xrshi7n+TARsZadBxClsKTTaLhNJzS72W4GexFw8?=
+ =?us-ascii?Q?y/tRX6mfATeJbQySEJyn0q3svtlMQMNo/fUYT4yEmp3byPrsvBQwWqKIjDUi?=
+ =?us-ascii?Q?BH++B+rErpDQov8GLxnNuZFZfu21P9ticPvPpwL88dh+COQgcIe0QKzcPBFt?=
+ =?us-ascii?Q?pBydbgi9RrbsCdMIasqNK49TZYmYQA0/XaV6nJM3plL/JHKpC/gt0oqUlANs?=
+ =?us-ascii?Q?6EeCl/k6A3SuFGYNDKkfZWglE944UIGdaxCoqgKCbcokWjFko96xtmKKSQNf?=
+ =?us-ascii?Q?NzUDrWVnIQMKIcXX9h7UgJlYumNCE5j0O5Fm6QTHwRN9wX8YuJ9Y/qP+9yWl?=
+ =?us-ascii?Q?4rJ/CNhCm+D1t6+LoJUvoFkwZyrOQeArl/mObQLrKxyiQgQzcOFqOqe3d/WB?=
+ =?us-ascii?Q?BXHIp6U1xeTnnx2ZOor0/Ua09wbq/xE8IxPQG30hdDQEF9sv1vtnjBN1g9cr?=
+ =?us-ascii?Q?X3WKexTn7mu5/qDeTxoTXy/whykT1LHEzgWb6/nLmE97g/iSkOcCZ8ezuGMI?=
+ =?us-ascii?Q?T/Y2YTQeicT25esoEBbj3qs4640jv4i+vGzUdnDl27xlN9A+9Lyl2r39NcWv?=
+ =?us-ascii?Q?W03EAX4xAhiqzL5Pnv2IKfsHQjh48XEluVkazqTg/UTEyj7k1knrCDYk6IlZ?=
+ =?us-ascii?Q?dviJoo43/nGDbqWIBsPBna5cytS0uXD8p0JStf2inCyhxsNC4nyhKXdl1xTy?=
+ =?us-ascii?Q?kAbqNPI9atznJspx38bWPvzz8RETxUNW2KqMTA249fubSAkdnziTdYFRTb3U?=
+ =?us-ascii?Q?4dRnWMsXboDrls81lQZWChyDODPOE6J9Nm/nXzUmOnabpz2D5p+UVaLkVtkU?=
+ =?us-ascii?Q?5sPZOLOVYeqOKtNsOVM93iVLLTAFSgdTjtdbb1nbtDMwrzgcp2nSxDCtSGMT?=
+ =?us-ascii?Q?yM6JGAlxL1gog9w5kDYgdZnN7HNy4S2GpWRKpz0nBL8W58cIyt6Gh6gXuoHI?=
+ =?us-ascii?Q?e1We/YARwIhQO793wKsXbNxtwRCiji3ATgrLZlRpe3B8obiLaMPrcXCwOI23?=
+ =?us-ascii?Q?asH2qKs2XnSKNFsE4aJDUH6ojRLW6VTvOiZjLjsHuCO/Mh94tdpYKU3S5BxH?=
+ =?us-ascii?Q?rfNWLCPCLlGxYm3K05oiiwZFlSGcFlepxiLjdjrGoKxNaZTStd4kFsNxW4Um?=
+ =?us-ascii?Q?aOP240/t+qAGqmR8GPSLSkQkGuRkH9AiMf3vb7QPm5pcSvw/f4gyavGoVXBz?=
+ =?us-ascii?Q?8X3UB73fumSxkSlcs9+sDKCvpWBZCzm2YpN+RXGVVd12hxqJxkW4WKcUImfx?=
+ =?us-ascii?Q?YkhXeA6rbkhbtL0m8sBPDmU3Tn0KpQCfkfhwjov7NcebnB1B9B6qFtiD86JO?=
+ =?us-ascii?Q?LVkn6QD8tcj1jr6Y6VdbjJeqVApbEEfC8CHKoLZT/LlvsJ646OqPTFEQbqGf?=
+ =?us-ascii?Q?WCYvWaf80G+bI3G8uhMQyq8kBcIWRXlNbaqnUdlymNsAZWymddjTpiZAnm2j?=
+ =?us-ascii?Q?Jxwf1ARZgqoB7Z0x2kzWnhvaWMj9acqV?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB9687.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(1800799024)(376014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?cHqAepqUI5k3kMKNoxWcG4qsQqlXz9TcFCBGowUmPY5jbxN8gokzCxfmjoFY?=
+ =?us-ascii?Q?sNlbHcvh///sUyixTyKjYuIkUrlUVTNYEFb1C4wRz1TW9UFa0xA/ycMUyESw?=
+ =?us-ascii?Q?s23R82UQ7ETq3zcoxAcc8eTcufZNtkNs0rOpyrnH9dCdnl0b2J4MKmFooyeG?=
+ =?us-ascii?Q?8oXfNB87WYD3zW8kfMUuCa1ADs9PDRTQdYZhe+VbHBDYf9JqSZs5csfVdNyu?=
+ =?us-ascii?Q?hMRCJ28a18V7MwPBRN1Dw9Ve8BuNyNQffsf2NFyAJEXR7+6pDhu4/jaz5IyD?=
+ =?us-ascii?Q?RcIEjBopdpUKdhwYAJlu+IUaUkDOYG9/D62weLLimbV23ANYFpGxAnc/ELv9?=
+ =?us-ascii?Q?D7z5l+zlHQ7zl7B/Hp3htms8h+I+hWCMx3oJffOWZNITM4jAeVlUevYZ/yrz?=
+ =?us-ascii?Q?PjA9+0SzENegLRcAdaubk9T+8VEdTag72CngrVXq0j91iZdswbx3zXsTXJmb?=
+ =?us-ascii?Q?hh7ZE/RmHUVaeHXN52TGFR1AgUdeO5/S5MLSKz4F0ogCpc6U1QU4sS0YPXpS?=
+ =?us-ascii?Q?WXi4jp1Jrx4fRThQCUYTAepBxXZHjM2/9CpgsZ3hysKKM/sBE2Oxz+ASefeB?=
+ =?us-ascii?Q?7EI/P6N5Ha+I0CbQL8ApADEfXyTgrv6Af/DCI2QIM3jiVJGW9fGA0INBOE1Z?=
+ =?us-ascii?Q?XT8yj5Y6vrydDKTfNeHF4HcT59M/8I1C6V8nCjkPt+IIJbDlw9eva7tcdkPG?=
+ =?us-ascii?Q?fPt6KxtpjZb5zNo2LlUJHYav6bRQH4wfV3zgGI6JKd3QqFtTMixNlnwPJVGa?=
+ =?us-ascii?Q?WcTV+2w/VVAatIzomUAq1r/MPCVkcYKqHhp/xwckW+UO5smDrWdrAv3u6pJv?=
+ =?us-ascii?Q?v7YKktk6FO3i1t8YrCIRUx6BSg8nJ+SPdnueZ09zTBTuSApczxnuCIZ9Ef9v?=
+ =?us-ascii?Q?b/liLSk0NETuM0H9dJ3Gu/oVsq4Ydb9Mt5c3oHuLVIEvi4FnfZHRXMbxCfVC?=
+ =?us-ascii?Q?oREuVnvXwU4zCgC3PqSKdcKqQK4S1wrTx3im8btcewIJ84yrtq1ydpRvJ7nA?=
+ =?us-ascii?Q?gyc5InfduTIgKmQLTVBXlGWC5t7RPe8KT5olbe0P9YFl2Gl9d5lq/girU/lE?=
+ =?us-ascii?Q?h3HSrTYoRPsw/1mjOIJqa1czirPBgMRo2HbZr1zRlzw7KQKFWbcKq37bfe9p?=
+ =?us-ascii?Q?5pkptCmc0tKCMlxrV8bJ6yfsUHlR3zLp3zptDULtxPli/bdq0tIyQqaaz0Zh?=
+ =?us-ascii?Q?8tw/a9iV5fX5tX1uswWt/D1077hZMhKjmGno1AjD79wBKNFUblALi4YElyO4?=
+ =?us-ascii?Q?j7Wt0MS2BhIbDsjxOzZlJCLtfFQItfpDEPUyAZ+V2fe9yCwBZlan6oUQjdHE?=
+ =?us-ascii?Q?P7B6o3t7vVMCa+3oG8xrErohf+T+gnyMcBKbGDt3hox9/6SHM69XPrOv9GiE?=
+ =?us-ascii?Q?3xePPZrXNhTpA9LlTHZc1QAwa1TqB7zBkuKmRG8i8OyX3qJlko3+HExHTBfa?=
+ =?us-ascii?Q?qiXKY4bIE3AzGZd5hTqUTNV/10QVZJWwtPekXLbWg3KrLemG6RyLxpSToyxq?=
+ =?us-ascii?Q?pLtnbUm3oPZ+PthlCGZnBCQyrho8Q3hv65HdXRJi98j3TCoDKFwB9/UObfIZ?=
+ =?us-ascii?Q?cnJ45RhllyxrDjSSwguPIlNPopdU9Rq8gDTAnp1emzb5ZhPkvmXmVFhWnc3v?=
+ =?us-ascii?Q?gg=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 599534bd-6dfc-4c4a-0852-08dd34a03353
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9676.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Jan 2025 13:34:42.4058
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HLmm5MC4RmYUXRedKaGK1U3XFFRNL6fk89bTccDKA+KzHfe+Nlg6VFHdXjqdWVkVv9JZpGIbux7go5m70XPBXaSNymRCoMxpUV2isDZu9JQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8252
 
-Hi,
+This adds a new optional device tree property local-bd-address to allow
+user to set custom BD address for NXP chipsets.
 
-Thanks for your review.
+Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+---
+v2: Add allOf and unevaluatedProperties: false (Krzysztof)
+--- 
+ .../devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
-2025=E5=B9=B41=E6=9C=8811=E6=97=A5(=E5=9C=9F) 18:34 Krzysztof Kozlowski <kr=
-zk@kernel.org>:
->
-> On 11/01/2025 09:09, Nobuhiro Iwamatsu wrote:
-> > +++ b/arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
-> > @@ -0,0 +1,138 @@
-> > +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +/*
-> > + * Device Tree Source for Yuridenki-Shokai the Kakip board
-> > + *
-> > + * Copyright (C) 2024 Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include <dt-bindings/pinctrl/renesas,r9a09g057-pinctrl.h>
-> > +#include <dt-bindings/gpio/gpio.h>
-> > +#include "r9a09g057.dtsi"
-> > +
-> > +/ {
-> > +     model =3D "Yuridenki-Shokai Kakip Board based on r9a09g057h48";
-> > +     compatible =3D "yuridenki,kakip", "renesas,r9a09g057h48", "renesa=
-s,r9a09g057";
-> > +
-> > +     aliases {
-> > +             serial0 =3D &scif;
-> > +             mmc0 =3D &sdhi0;
-> > +     };
-> > +
-> > +     chosen {
-> > +             bootargs =3D "ignore_loglevel";
->
-> Not really suitable for mainline DTS. This is just debugging, so drop.
-> Just like earlycon - not suitable for mainline usage.
+diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+index 0a2d7baf5db3..5d75a45cac14 100644
+--- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
++++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+@@ -17,6 +17,9 @@ description:
+ maintainers:
+   - Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+ 
++allOf:
++  - $ref: bluetooth-controller.yaml#
++
+ properties:
+   compatible:
+     enum:
+@@ -40,10 +43,12 @@ properties:
+       Host-To-Chip power save mechanism is driven by this GPIO
+       connected to BT_WAKE_IN pin of the NXP chipset.
+ 
++  local-bd-address: true
++
+ required:
+   - compatible
+ 
+-additionalProperties: false
++unevaluatedProperties: false
+ 
+ examples:
+   - |
+@@ -54,5 +59,6 @@ examples:
+             fw-init-baudrate = <3000000>;
+             firmware-name = "uartuart8987_bt_v0.bin";
+             device-wakeup-gpios = <&gpio 11 GPIO_ACTIVE_HIGH>;
++            local-bd-address = [11 22 33 44 55 66];
+         };
+     };
+-- 
+2.25.1
 
-OK, I will drop this.
->
-> > +             stdout-path =3D "serial0:115200n8";
-> > +     };
-> > +
-> > +     memory@48000000 {
-> > +             device_type =3D "memory";
-> > +             /* first 128MB is reserved for secure area. */
-> > +             reg =3D <0x0 0x48000000 0x1 0xF8000000>;
-> > +     };
-> > +
-> > +     reg_3p3v: regulator1 {
->
-> Keep consistent naming. regulator-1 or the name as in bindings:
-> 'regulator-[0-9]v[0-9]'
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/D=
-ocumentation/devicetree/bindings/regulator/fixed-regulator.yaml?h=3Dv6.11-r=
-c1#n46
->
-
-Thanks, I will fix naming and use regulator-*.
-
-> > +             compatible =3D "regulator-fixed";
-> > +
-> > +             regulator-name =3D "fixed-3.3V";
-> > +             regulator-min-microvolt =3D <3300000>;
-> > +             regulator-max-microvolt =3D <3300000>;
-> > +             regulator-boot-on;
-> > +             regulator-always-on;
-> > +     };
-> > +
-> > +     vqmmc_sdhi0: regulator-vccq-sdhi0 {
->
-> regulator-2? Why different styles of names?
->
-> > +             compatible =3D "regulator-gpio";
-> > +             regulator-name =3D "SDHI0 VccQ";
-> > +             gpios =3D <&pinctrl RZV2H_GPIO(A, 0) GPIO_ACTIVE_HIGH>;
-> > +             regulator-min-microvolt =3D <1800000>;
-> > +             regulator-max-microvolt =3D <3300000>;
-> > +             gpios-states =3D <0>;
-> > +             states =3D <3300000 0 1800000 1>;
-> > +     };
-> > +};
-> > +
-> > +&qextal_clk {
-> > +     clock-frequency =3D <24000000>;
-> > +};
-> > +
-> > +&pinctrl {
-> > +     scif_pins: scif {
-> > +             pins =3D  "SCIF_RXD", "SCIF_TXD";
-> > +     };
-> > +
-> > +     sd0-pwr-en-hog {
-> > +             gpio-hog;
-> > +             gpios =3D <RZV2H_GPIO(A, 1) GPIO_ACTIVE_HIGH>;
-> > +             output-high;
-> > +             line-name =3D "sd0_pwr_en";
-> > +     };
-> > +
-> > +     sdhi0_pins: sd0 {
-> > +             sd0_data {
->
->
-> No underscores in node names. Please follow DTS coding style.
->
-
-OK, I will fix these.
-
->
-> Best regards,
-> Krzysztof
-
-Best regards,
-  Nobuhiro
-
---=20
-Nobuhiro Iwamatsu
-   iwamatsu at {nigauri.org / debian.org / kernel.org}
-   GPG ID: 32247FBB40AD1FA6
 
