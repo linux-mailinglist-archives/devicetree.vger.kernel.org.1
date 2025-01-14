@@ -1,135 +1,154 @@
-Return-Path: <devicetree+bounces-138459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDF6CA10800
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:36:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1CD5A10804
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:39:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 29DA93A8FD7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 13:36:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2F21F7A1A75
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 13:39:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D3A2361EE;
-	Tue, 14 Jan 2025 13:36:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A5B41F9EC6;
+	Tue, 14 Jan 2025 13:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V0JKWdHH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u7CqJNTv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBD432361C7;
-	Tue, 14 Jan 2025 13:36:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E77B1E47BD;
+	Tue, 14 Jan 2025 13:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736861778; cv=none; b=DnIBy+GkFzXdaNyR7tTkiZLj4MLZcVAvVA08ZdaIn9REJpbdJ4BVRTPbvs4+Wu/OkStjJsSpZHOpPs2h7KBAtn0PuBBppky+Of6UaAAcgd9xKLG3R4I83R6yAD9HM7dklJeRo0YPY1/VyOC+BJ3JX+AsqUx+gbUEAd4aWIigjOQ=
+	t=1736861959; cv=none; b=i1DR3A4nUY/tROf5MfiHc6IqG73EsV9+6d37myVbU71O/dp+b+szDINTBKvJ/eVfgbYF0cg1qZN5WrFa3YTtiUPQSku9J/Fni/Mmj83AXAQCJ0FjPYbf7E0OwvWvsIaBhV/hYpdmMiiQWntfy2qd73bhpVrpY/Ex4yH2n4jhucw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736861778; c=relaxed/simple;
-	bh=1c2e9HFcCsMuViOIoYsTPgJ00QsEdw7rWxveG6pUH7M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YUEFl57RwPkpn/blzgHd2AeZqknugotgcX7VLprgXoRZdwiMNbR0J261cUcHhoQP6MEf8NOQbWY254z/Wa7tQ9fImP0kvf8dXprUF/BT0/Vze3q3l2F75qaX2hpPZWzx8LSD1VyYMAOgXCQBgye459sZNroOqpVf0rRaFpOrOzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V0JKWdHH; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-21634338cfdso86117375ad.2;
-        Tue, 14 Jan 2025 05:36:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736861776; x=1737466576; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PNsRSkhgwMOrmcttajWEwZ4HWjMO7ApWFCKlHWG3OeU=;
-        b=V0JKWdHHvPqFk4XeFg/SF6HGkJUuFCIxTHc3KdrvG50WedYxQ3Yi6pGYn1IDjsLA7R
-         nnGlhpJJ3Y+aQIiMd8jOF2LYZYoh/yC+u91bxJNVI/RGQrp5xT1bQ9YPCAmpy0gfera8
-         sfUWwAzkJWgKhh4uNOgKeZtmUPJGlnCk68axigFy5fWM8LjYnSpcWf3eh3Az0E2cXb4L
-         Xt+P53W3qzdhs1W1U9Hx5XLlvlizUrneWV+IkeoS91Ss2mepVs/ZCRB5EwKarxUwWCNx
-         p4GeGPoNUM8KXBqS65kDeIVOg2HC2X0uvspbfwWqf6Vrej5I3wTFfT1oKjaD4TZzGHzk
-         oWWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736861776; x=1737466576;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PNsRSkhgwMOrmcttajWEwZ4HWjMO7ApWFCKlHWG3OeU=;
-        b=DDLJmIhb7jMbtwOd7+pxdcGebJyJQCV0nTg0Tvwea3IEkS9r/EPEOMCr/+F64gQmpZ
-         Ci+iI4woAolJLbUu8EyfSr0dd6sVfd5dTpypzEm/SXOAF1TzYUsjTK0R/6xJd5VezUoK
-         Em0qJfPXFqJ+tsur8trod61ugsQsNFYtHRE6Ho0Z3wQxXaApdsWhJgbv4oJxp3gRyYni
-         AomsM0Xq2go8+RGHiIotAJA+MgTxxheUuCKyKvnZpGZI7jxYQ6RpnrC/HMZv/PAOiUyc
-         jx1PeC35ysHPVbDJfFhy4XCPyOeDPEr/9ul0Mf6LNIpgoDJvclnOMFkX70Dh9QrAwgs2
-         MFjw==
-X-Forwarded-Encrypted: i=1; AJvYcCUrQ5U5M5EhMw7dbasoHjCBFuRCRBcUfZwwRYx5BYWBuk9nKJ+0kvhRgZlwRQ0Kk/SDB1robxWeldzV@vger.kernel.org, AJvYcCVaFBaPPf8O46Zlshs1M2CwwNQVFOgTBmMozitJpWP0mSqE+RtE62c7xUwigPoE1PP3aNaVmR7W7cjn@vger.kernel.org, AJvYcCWiCxkf0K0yi2Pqo+x2r66uZzu6DDY1iaqXcp1MThhEmwZA7kC319mCTENicsAYc2L6UN4S36GW39qyrPmF@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjqQcVbFuum0M/G9ART8Jzu2YQjLFoBR2jOgmT4leRC3uK0pq2
-	N+qfwypFaprYOePx+IYosIYk7/MEWUM8b3jEcqrlSVro7TE5N+kj
-X-Gm-Gg: ASbGncuN7uxqkSLU/gbjC3UI5yQLQIjfiZITa+hTF4Xjz3yyzKVtJS8JKYmkFqfXuqN
-	DyRJMinOo/UMkMNo+s2/XQAlTDGqaBrY8MrDwJLOTyIHv7nHEPOvLTQbwSvbynON9HnHZengVNh
-	pnJjVyjgT/m6ni7w877gA+q4wAFJxu8P9PVsQbN+HwbWsASHOHQFyAvuLJwBYp+QE4N0N/EQ8xK
-	u4AHyMvPikUEhLq4mjRfmaxNawo/DEZ+KFoggWSJK5L2pf+nn5lzatmJ5GSxuDGpjo=
-X-Google-Smtp-Source: AGHT+IHUj0smiqPZR2hVR0Bs7Xojitz+U9xqf+KjhyJXe1PEQTkY2psgSe1FQBooBb9BXgunnfMPlQ==
-X-Received: by 2002:a05:6a21:7886:b0:1db:ff76:99d7 with SMTP id adf61e73a8af0-1e88d2ec11emr45187159637.35.1736861776028;
-        Tue, 14 Jan 2025 05:36:16 -0800 (PST)
-Received: from localhost ([2804:30c:1f79:9d00:c6c6:ec89:7531:7838])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a31840e93absm8413516a12.20.2025.01.14.05.36.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jan 2025 05:36:15 -0800 (PST)
-Date: Tue, 14 Jan 2025 10:36:54 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, lars@metafoo.de,
-	Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ana-maria.cusco@analog.com
-Subject: Re: [RFC PATCH 4/4] Documentation: iio: Add ADC documentation
-Message-ID: <Z4ZodgpXRTNP5Rer@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1734530280.git.marcelo.schmitt@analog.com>
- <48876e204590c47c532fc5f71e02ca3a00028cb7.1734530280.git.marcelo.schmitt@analog.com>
- <a2e76ca6-ec21-4ce5-91f7-4d3a0ed792ce@baylibre.com>
- <20241219125503.6c909c24@jic23-huawei>
+	s=arc-20240116; t=1736861959; c=relaxed/simple;
+	bh=xiZnGB7FxKyfPcZN+P7K+0l7TthoDGrGZM6bSAeUYYs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=U5Cd6baffQPCOquJxT9icWiFvrDKWdktprNrjAh8rek5gspZwt/n/eb8OaguaP5gBvQnLkaFFIaiYpcV5YlPRIXrCD6py9CMzLwZphuLXn1NVCAJCrYxUgDtSZ3X6Y1NKiTh4yr5yXKGL3I0j8cIu6OKB9c0AsT5UiUlE1dv0QA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u7CqJNTv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E976EC4CEDD;
+	Tue, 14 Jan 2025 13:39:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736861958;
+	bh=xiZnGB7FxKyfPcZN+P7K+0l7TthoDGrGZM6bSAeUYYs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=u7CqJNTvX1o/Hf+UtEmbp5x79F0DiwIx7eqPDb5ZyICuhRJVFSlXP3voIzI29hJF1
+	 YNoKnK3vbs38o9AeCQZNSJZeqLKOta/jh0zp+N+FWdml+9OeTrBiFH7z8FCDUa41KR
+	 rPVU99PJr3EyrS4ce6z0G/h8Q6YJR4DkISnpR24pFx9m5+tL8Nwrz9LMGzKK2SZ1IM
+	 mDxR1tpj+fJKqDpv/kwfBJHAhTW8/9/hcnF5DkLc4BJFgOviTYaEKCrWUYr+D2LaJZ
+	 PKv29e/zYvMN4XTyKOGaa1Xi9BPYF2kWoWUFMZUjdUJOJsWZ8zA2W4qsNHvQuRvNhP
+	 fC8XsjYyBcFEg==
+Message-ID: <003b6048-eb38-4bbc-8c83-31d45f0db46d@kernel.org>
+Date: Tue, 14 Jan 2025 14:39:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241219125503.6c909c24@jic23-huawei>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: net: bluetooth: nxp: Add support to
+ set BD address
+To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>, marcel@holtmann.org,
+ luiz.dentz@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Cc: linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, amitkumar.karwar@nxp.com, sherry.sun@nxp.com,
+ ziniu.wang_1@nxp.com, johan.korsnes@remarkable.no,
+ kristian.krohn@remarkable.no, manjeet.gupta@nxp.com
+References: <20250114133548.2362038-1-neeraj.sanjaykale@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20250114133548.2362038-1-neeraj.sanjaykale@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 12/19, Jonathan Cameron wrote:
-> On Wed, 18 Dec 2024 14:46:14 -0600
-> David Lechner <dlechner@baylibre.com> wrote:
+On 14/01/2025 14:35, Neeraj Sanjay Kale wrote:
+> This adds a new optional device tree property local-bd-address to allow
+
+Please do not use "This commit/patch/change", but imperative mood. See
+longer explanation here:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+> user to set custom BD address for NXP chipsets.
+
+
 > 
-> > On 12/18/24 8:38 AM, Marcelo Schmitt wrote:
-> > > ADCs can have different input configurations such that developers can get
-> > > confused when trying to model some of them into IIO channels.
-> > > 
-...
-> > > Add documentation about common ADC characteristics and IIO support for them.
-> > > 
-> > > [1]: https://lore.kernel.org/linux-iio/0fef36f8-a7db-40cc-86bd-9449cb4ab46e@gmail.com/
-> > > [2]: https://www.analog.com/en/resources/technical-articles/sar-adc-input-types.html.
-> > > 
-> > > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > > ---  
-> > 
-...
-> > > +1. ADC Channel Types
-> > > +====================
-> > > +
-> > > +ADCs can have distinct types of inputs, each of them measuring analog voltages
-> > > +in a slightly different way. An ADC digitizes the analog input voltage over a
-> > > +span given by the provided voltage reference, the input type, and the input
-> > > +polarity. The input range allowed to an ADC channel is needed to determine the
-> > > +scale factor and offset needed to obtain the measured value in real-world
-> > > +units (millivolts for voltage measurement, milliamps for current measurement,
-> > > +etc.).
+> Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+> ---
+> v2: Add allOf and unevaluatedProperties: false (Krzysztof)
+> --- 
+>  .../devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
 > 
-> Add some 'weasel' words in here.  There are more complex non linear ADCs and ones
-> only capable of reaching some fraction of the reference voltage.
-> Maybe throw in a "generally" somewhere.
+> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> index 0a2d7baf5db3..5d75a45cac14 100644
+> --- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-bt.yaml
+> @@ -17,6 +17,9 @@ description:
+>  maintainers:
+>    - Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+>  
+> +allOf:
+> +  - $ref: bluetooth-controller.yaml#
+> +
+>  properties:
+>    compatible:
+>      enum:
+> @@ -40,10 +43,12 @@ properties:
+>        Host-To-Chip power save mechanism is driven by this GPIO
+>        connected to BT_WAKE_IN pin of the NXP chipset.
+>  
+> +  local-bd-address: true
 
-V2 will come with a short paragraph with a disclaimer for complex ADCs :)
+In case I was not clear: drop. And rephrase the commit msg to reflect this.
 
-Thanks,
-Marcelo
+Best regards,
+Krzysztof
 
