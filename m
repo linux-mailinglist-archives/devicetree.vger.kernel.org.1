@@ -1,168 +1,138 @@
-Return-Path: <devicetree+bounces-138380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20600A102BC
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:11:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D983CA102C3
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:11:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2CC93A6AEA
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:11:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 575237A237C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:11:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 922CA28EC6B;
-	Tue, 14 Jan 2025 09:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24C028EC6B;
+	Tue, 14 Jan 2025 09:11:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="nj3Ui0gO"
+	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="dJY2RMK7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD89F1CA84
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 09:11:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F13B622ACF7
+	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 09:11:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736845864; cv=none; b=jLW78L9r5lCCDzIDzMWqBSEbwhTCCVbGoIqLyDjIHM8nJECE1sToEpRUMx3h/3/+6zWpg9pNtoEGD4OVaGP8AcZomDS83VMrzNV6Fpb4kffYpnLSH/gLPxSN0tUNWGLLMO5CrIU91o0jj8g+7mFxpKXzm8dPeCOuOVPjEp3Ooio=
+	t=1736845895; cv=none; b=K78fGUsBwb/qmIxO3R/MmnI3TzGrjOhZwDSBSvpvTMpnr9jLomaMTkvkM01z1geikMRtu1cf14uQNeSK0l78FN+Hl0JIFdZW0bNRTP8YlpSmWVKLvTdfCdAwJG4vbGU52vuInq3cRq2QQ9QSPKOxYmmZeUbcZNdsk+R7LPhjjho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736845864; c=relaxed/simple;
-	bh=hRYADXuuMQL0WU6YweqbfVIpCJlQAKmMZXUM2sMi/uM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kzDojY9dnE61Rey108z41Nhj0Gxj+m7OGflsfRZ3UbmbeZrjY5Githojqa6MZiQnCH84DpEvrpYI4aOy4iLHoZCx64HoGdxgvLVxPByWMtyuNRBfR0HX2reBQU8vv8b0yMPNj34XGOkT73AlOTvNqWfPpRcuPMTvcpdfPvdohWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=nj3Ui0gO; arc=none smtp.client-ip=209.85.219.172
+	s=arc-20240116; t=1736845895; c=relaxed/simple;
+	bh=nAUIhH40V9b0M+O9A10WUps+rpYZiNa1arFJMVCaiDo=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XDHWp95E3NT5vrh9QR3aAiiyTYPUQCoVNXE9NG4ZwDNDXks6VEyETFo3VUVNwcAEC/Zt0aCv1VYEp84YrDGuskzQ4+XHfy1tIkgU1cNB5gJe/CybJjkVgsgT9erxwJAT8VpaPExj5zOJGmZXc0SUT+3NihtfVsCKy+Fmrec1SCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=dJY2RMK7; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e53a91756e5so9332545276.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 01:11:02 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aa684b6d9c7so916241766b.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 01:11:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1736845861; x=1737450661; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=laOni/3pZswCtnZWqEbh9/nDgLWlbXlzzIl5mtJ7ij0=;
-        b=nj3Ui0gOQ4eGDTtpnrBS67q9Afk/az0V1L/fRgrrDXm5Xh+SdtNW9tJTDd2FOj3YRi
-         VjlWKrSh6tZi/3i4fbHM23uIyxzfPqzcvMae4h8wLkZXQqn0zmI7dAhU6RgGOiuafiK7
-         X53gmR6jjZPoayWTiBFYdwQEbNLkHRQvKGm2k=
+        d=amarulasolutions.com; s=google; t=1736845892; x=1737450692; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=tBJtngiebfYxaY6Xsqyz7X62QEYJt/s8BWutCfjsmVg=;
+        b=dJY2RMK7hHjF89YobKcYPvnCJZcJwxKCocWvJnxf+ve5gP4LLz0MgKCubCN+Fsshxz
+         Wh6L7Kz6IhUpqN2AmvGcNYJktHxF+qK2tnZ3yOOPPO86VhCcseeR8eWo6MY+6kghWEto
+         7sKuNpWylU1FHd4UxQYAquA75/dZr52150H10=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736845861; x=1737450661;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=laOni/3pZswCtnZWqEbh9/nDgLWlbXlzzIl5mtJ7ij0=;
-        b=S6UhuQIUcbDHkXUySOIRwj2BCNo85bhwCRLihkUuYo3Sohy6muEqsax8JKemiQtIgK
-         jzT/SV0AV74GHOFjEVOfsSDcXaqAf8E4NJzOOYRhlNxoSutXwzmJvWWWqCCHv+ZhukD/
-         t4dSYKTAyJ9FOVqE8k3C/16kvSEE1RgkLJKMlwdWnUUdR94If+4OEMDsUTiq7Ebs382E
-         u71fs1TFO9OSeqQay0xIePCWoXMYkHCtvVGIjLgZbsJSqVa3PLNzcS4TVvq0mb+4OPW6
-         XIZ4OyLA7rUthaLbv/4acTXAPNK2YoLsyq1tbVEoXJmSTjqKJJIFw/D8ERj8iozWVlCC
-         kifg==
-X-Forwarded-Encrypted: i=1; AJvYcCVBjjU9UefKXb6403UXNKYCdz03IKfvUG3uxviHaAGj/wuPi6uTqvNQqVDyvuY5/6X3nf6ppfbcG5Vv@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKRqr11Ve1ruZtwARRAhSx2Ec5USL1lQsrGwyYWQSvEcsPKMG+
-	Gy/KH2ZY3tjQt7fxz3I+75X93JWaXfD+uMuPGEW9Zt1siLLxs2OCo8VxMbUeWPMHrAmv+qjgizt
-	wUES7DUU9W4kODo20Qxzn0qqPl90m7DJey56Kgg==
-X-Gm-Gg: ASbGncvfYi1DR8DU5PJU6NW/GWdeOPh+LdOfcNCZHjM5hRMmgHg9mu6eRvlz9Jfz3xI
-	9kxPn1WnL/RJesxXPI72PliATLmtjNbGqaNwu
-X-Google-Smtp-Source: AGHT+IE9CA2Xfhzw3GHaovQ1IHfqCWAXv4doOMw3356PJ8sdDTE1sLuY9FIcA5CUBN/UDJxnGUnMXzDsrursJPWiJDo=
-X-Received: by 2002:a05:6902:72a:b0:e38:af38:de3c with SMTP id
- 3f1490d57ef6-e54ee138757mr17712009276.17.1736845861696; Tue, 14 Jan 2025
- 01:11:01 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736845892; x=1737450692;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tBJtngiebfYxaY6Xsqyz7X62QEYJt/s8BWutCfjsmVg=;
+        b=C/4h/GFIhT3aYHXHN4u/g3lqzXYJe0OgvwwvZNQL43a2mqf9gpyQxhZ4TDgujQ4F7A
+         LR0JCXlkqhugPP/BfMfNVATJFzfNk9+Kg+NjNVGstF4titx4Qcq8D4lUBsASIw04u6Wo
+         U5ED/WhG7wd058kuHySXcAG8x4CtvOfw6BtuIir4OQUpgb6Gi8OX03lJ7+RiP91BbMky
+         at88YViUenHQJHIIRUJlNM7z4E7eXiht9iWBPKyfB97M/W4K2jnSebYAx5qnp8teCo2O
+         URQT+LEwpu0O6YLRUf2kHcW+Fs3LQQJIONQSructRVR+MHiSrOCaE0a67AxdYZITWNHT
+         gcbw==
+X-Forwarded-Encrypted: i=1; AJvYcCUkUFFAU4/dXMKTZAhYBMdbbVErqI09+ILPJ8s+Zi+5Y51n/yG5lCaMO9lEbrcMgr1dNAhg0PHM2CBb@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPOWt7I1rqj9CXmqWxsWZkdUzc+58acZgyCHbnZLdMVpCQU0pg
+	KczrSNR9ABBHc0VRgfZfRPVZBve3qj5xq6XcI+E9B2T+1hBb3nHIirxzZmZrM9s=
+X-Gm-Gg: ASbGncvklS8Pgf5EEcQ/fJ/gBxEaEw8HcKl1pqxLT2ocIPWkcrGLXZdSbsAj3Lzev8w
+	USIqEdQHKUIxkm/6T4HDyHl8shSY5EOGoO3COBnMvHI+G/YnDkvZIFEHhqcOvTM38K00LTjfaIE
+	KTahDLr/y3CI78UTKgx+2xf7BMOosqkqIrZWulFhrFtTKPnRnU37nb9bQHTqu5sGobD3g0+snRg
+	nMNlDIZlqttRFU0gOUS5z/MCDSZyB2UdhKzMj8NNDSYUwr5s3YbEGgdT2X1zzS6RGZgY96BxLN7
+	AjNPQpizofWnF1tpMptuoA==
+X-Google-Smtp-Source: AGHT+IFP0NoB1nleymlyPhioCTpMBb5sIxJwE/HcZBxgMFsQqKGSpudKtOUDjpU6FXv2wGNPs8+Egg==
+X-Received: by 2002:a17:907:7e91:b0:aa6:834b:d138 with SMTP id a640c23a62f3a-ab2ab6b52e7mr2115633366b.19.1736845892238;
+        Tue, 14 Jan 2025 01:11:32 -0800 (PST)
+Received: from dario-ThinkPad-T14s-Gen-2i.. ([2.196.42.147])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab2c95b7317sm599640766b.154.2025.01.14.01.11.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jan 2025 01:11:31 -0800 (PST)
+From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To: linux-kernel@vger.kernel.org
+Cc: linux-amarula@amarulasolutions.com,
+	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v3 0/4] Support spread spectrum clocking for stm32f{4,7} platforms
+Date: Tue, 14 Jan 2025 10:11:12 +0100
+Message-ID: <20250114091128.528757-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250109211908.1553072-1-dario.binacchi@amarulasolutions.com>
- <20250109211908.1553072-2-dario.binacchi@amarulasolutions.com> <bfxyod5l2s6g3j47be7mjh6i7wgjapka2q5b6f2mleipiai6gm@hfvclvkzrtyd>
-In-Reply-To: <bfxyod5l2s6g3j47be7mjh6i7wgjapka2q5b6f2mleipiai6gm@hfvclvkzrtyd>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Tue, 14 Jan 2025 10:10:51 +0100
-X-Gm-Features: AbW1kvak2sUesICzzkmsj5TX2inw2Pxvk9l2RhEMwr_4GvlhnKKbrVqsFXF8zsk
-Message-ID: <CABGWkvqu10dyW6y5S7qvY4G7uh0OaUgr6k-F7BA1AU0H9bA9GQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: convert stm32 rcc bindings to json-schema
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Sat, Jan 11, 2025 at 10:25=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On Thu, Jan 09, 2025 at 10:18:28PM +0100, Dario Binacchi wrote:
-> > +maintainers:
-> > +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> > +
-> > +description: |
-> > +  The RCC IP is both a reset and a clock controller.
-> > +  The reset phandle argument is the bit number within the RCC register=
-s bank,
-> > +  starting from RCC base address.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - const: st,stm32f42xx-rcc
-> > +          - const: st,stm32-rcc
-> > +      - items:
-> > +          - enum:
-> > +              - st,stm32f469-rcc
-> > +          - const: st,stm32f42xx-rcc
-> > +          - const: st,stm32-rcc
-> > +      - items:
-> > +          - const: st,stm32f746-rcc
->
-> Why this isn't just part of enum with first group/list? Different
-> groups/lists are for different fallbacks and I am pretty sure fallback
-> is the same.
+The series adds support for spread spectrum clocking for stm32f{4,7}
+main PLL.
 
-I tried running tests after applying the changes you suggested, but
-the tests are failing.
-Thanks and regards,
-Dario
+To achieve this, it was considered necessary to also apply patches to
+improve the documentation (conversion of `st,stm32-rcc.txt` according to
+the json-schema) and the code (use of FIELD helpers).
 
->
-> > +          - const: st,stm32-rcc
-> > +      - items:
-> > +          - enum:
-> > +              - st,stm32f769-rcc
-> > +          - const: st,stm32f746-rcc
-> > +          - const: st,stm32-rcc
-> > +      - items:
-> > +          - const: st,stm32h743-rcc
->
-> Same here.
->
-> Rest looks good, so with combining entries above:
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> Best regards,
-> Krzysztof
->
+The series has been tested on the STM32F469I-DISCO board.
 
+Changes in v3:
+- Changes to patch 4/4 "clk: stm32f4: support spread spectrum clock generation"
+  according to Stephen Boyd's suggestions.
 
---=20
+Changes in v2:
+- Fixup patches:
+  2/6 dt-bindings: reset: st,stm32-rcc: update reference due to rename
+  3/6 dt-bindings: clock: stm32fx: update reference due to rename
+  to
+  1/6 dt-bindings: clock: convert stm32 rcc bindings to json-schema
+- Changes to dt-bindings: clock: convert stm32 rcc bindings to json-schema
+- Changes to dt-bindings: clock: st,stm32-rcc: support spread spectrum clocking
 
-Dario Binacchi
+Dario Binacchi (4):
+  dt-bindings: clock: convert stm32 rcc bindings to json-schema
+  dt-bindings: clock: st,stm32-rcc: support spread spectrum clocking
+  clk: stm32f4: use FIELD helpers to access the PLLCFGR fields
+  clk: stm32f4: support spread spectrum clock generation
 
-Senior Embedded Linux Developer
+ .../bindings/clock/st,stm32-rcc.txt           | 138 ----------------
+ .../bindings/clock/st,stm32-rcc.yaml          | 147 +++++++++++++++++
+ .../bindings/reset/st,stm32-rcc.txt           |   2 +-
+ drivers/clk/clk-stm32f4.c                     | 155 +++++++++++++++++-
+ include/dt-bindings/clock/stm32fx-clock.h     |   2 +-
+ 5 files changed, 298 insertions(+), 146 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/st,stm32-rcc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/st,stm32-rcc.yaml
 
-dario.binacchi@amarulasolutions.com
+-- 
+2.43.0
 
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
 
