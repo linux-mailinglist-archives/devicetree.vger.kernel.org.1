@@ -1,124 +1,131 @@
-Return-Path: <devicetree+bounces-138564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D6C0A11331
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 22:39:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AEA7A11382
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 22:57:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC552188748F
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 21:39:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DD723A52CB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 21:57:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD51421322F;
-	Tue, 14 Jan 2025 21:38:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 750E021322C;
+	Tue, 14 Jan 2025 21:57:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EFLZhVae"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nyla7Fjd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72BF0212B24;
-	Tue, 14 Jan 2025 21:38:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A870420F98F;
+	Tue, 14 Jan 2025 21:57:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736890739; cv=none; b=COd5z2VgBsp5gCdRyyO9GMnLue/dgoes4zyQFfbaDy68LSdMvcqFqvED/fJ1mi3WPV2Xvg7y/nCeB0UVEjNz1JKC7X0irbHYvzsq+U3+39yGyDSBIEVkzBYifxnQjQ5mgetlI7gFsDEy46n1/phDtrKveoMkHHPWhIYxlHSiiQk=
+	t=1736891853; cv=none; b=PhJBskgFSp/j5pACrwkPMPQAo7K1ZWMSPOiYu8G9pvX6z2pN+9F9JymJ4zTl5Muou7CDdhPD1PfBW1b0WdOGfpJOxBpb7eP1fV5zlQVvfQbZYgQpcTbGnPUORgrutfX8SGP2Ltuhp2nXe6EXS1jDJheWUgv5oUZMToD/i3L8caI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736890739; c=relaxed/simple;
-	bh=y7I3ysTNSviVxSY83s+mUanX/HzCwqOMU6EU00x1sxM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ou3b5VoJhE2rGvBave729OZlUyjk6RAqKR3uP6KB/YgN5WkVUjCF2FYT01+KMrJxkhTNCLgLAm11MlLuTV0c/i+QqlrIQpqtStlkyY2MbcWalNbvAzlKxR58OJ64YyA7cLnSll2b14T4o4TK/2Qjn30RAlP8kkF8pYILfkTyPMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EFLZhVae; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 15302C4CEE4;
-	Tue, 14 Jan 2025 21:38:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736890739;
-	bh=y7I3ysTNSviVxSY83s+mUanX/HzCwqOMU6EU00x1sxM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=EFLZhVaeJT6CDmekEYZuOeQdu0U6SclgGrQ+LrZp1Pd5+iNlq2pM2Hd3HOlDln8v/
-	 KFRle1OMq40FGmOJl8doCss2A06D4Du+WY0Uk5D+/yi6n+/Q2dLEGONjRFfX2ij3f1
-	 p7mZrZz8MVu0mi+uxfCTVx/3qAKyQFCJJAIrSONk2htTkmakQOVi7HjYN4dOUh90w0
-	 kE4mupetrAfF5KVOvrMKUhMWu7Yy4jI4qV1F00l8lySWM2AeiZuHGx+MUyFUIPQRna
-	 IcecO1m8wQ+UzWxU1Z5ZKQea1liZoVAfLdWwMVOoDm9Xs7TlobH72DRhfNvq53FhUK
-	 kkLq51OgRjAtA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0B0E5C02183;
-	Tue, 14 Jan 2025 21:38:59 +0000 (UTC)
-From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
-Date: Tue, 14 Jan 2025 22:38:56 +0100
-Subject: [PATCH v4 5/5] MAINTAINERS: Add entries for touchbar display
- driver
+	s=arc-20240116; t=1736891853; c=relaxed/simple;
+	bh=mY1ByvAzkq/1267QcOicrnww0Bug5ydkNL9fEvOoNE0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dSsuFCSVHfAEs75lTHic+t1bUSVwW0rnMgrYjwM089DxNaew/KHM3rkGeShvhq2U7DO7dmyapIMfePF1XsMdfGLzcfrM133KUFeY5SnVLILQaw177YG6gMMmTWQ1WB+rlMHW8x+A9eNlE3ERxJcCgUx4hbzrUxuefPvlcEba72U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nyla7Fjd; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5d3d479b1e6so8444138a12.2;
+        Tue, 14 Jan 2025 13:57:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736891850; x=1737496650; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=hQu9l4If54VEx/qw1TONKfUdVJ9/1OBl33V3eKp1goI=;
+        b=Nyla7FjdyWIqatwColAvhvAEGLj7r+0UqljkFMpFuI3UpVnErcriuVSjgCgyCIf+va
+         iZofu0bT8vkfyl3JIbztgIW3c5TAfbrvn2QR1u/yEMcbU3y9b38a3ZqBrjxkQETnh/78
+         5aafLK9HVRzDjaGbWhGhMIvaHwFrN7VksCUxnhi4gIfPnirrhejh/6l5lfXAIzqsHT9V
+         K9dwFX9ODnCFYZrZtR+sKayXpPRHr8+Ca6YUI51WNQycQAFkJ+/bONF83fv0mqWYa0Sn
+         dUcG5gsmHEfAtbiMf+o4UBK6DSpoNSRCbWBtkBRItZrPZ+g0qjeefBbpuPUcVsKBwIX7
+         7eRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736891850; x=1737496650;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hQu9l4If54VEx/qw1TONKfUdVJ9/1OBl33V3eKp1goI=;
+        b=mETZpR8XcR6lmoEx3qQmWIMutKBIGUi/r5q/VUjDUO6PDZ8fGSs2JVjbpHTwB3kpR/
+         wdbjAxZ2NPGrdh0sJRK8ILK+uMZWEf6HxdTeFdo0kWLef2CCSR5BltaGTDMB07PpAAbf
+         pr86+GlMqXsIMthzZPYkkH8hojQ8h1I1fHw4uVTPST3nBuRemKnLw3liQz2XEdjq0TcR
+         PeOMgZz8qUQh9nRp1mtNlmST9DOEdObEiLf/xcOvhrMWyW9FGXCNsZwRfL8yGs/zAwQK
+         QZof/GQJwghVdHQvOuVgx5UPo1zGGohKfj5+XIG2+IKi1fcOjqB9uYTlYPILIW/rgAbb
+         W01A==
+X-Forwarded-Encrypted: i=1; AJvYcCUvT/eRmCb+ZG4NgWl4ueLxIC/EBO+RNKksruRQWzHo09AKt2xmpR+8ABfV5VTRxUgmeveA+RRWZfegeQE5BYXAnTo=@vger.kernel.org, AJvYcCUy1V0Kfta9EmwnDig3Lfktre3H/tuqulCllneku5bRsWjt64vo4JvexMhhRqEGhrcvfhZcqCP6H8JtGho=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVxWwcpLkmA3ergDMdoFa8rP3qIWpVYTpCzrE+iLcezasAvJYG
+	5Xw91Plp5kuMtYvOC3wD7REqGzMgu/I8AEr4tb6I12pPu7rOOdi2
+X-Gm-Gg: ASbGnctCO7klElFXtE/ZVdAQ38IVZh6TwPsc+iK3+l+IXZCCCE/GmrIK5rjrou8Fj++
+	iMFHaQoBvLBvm/I6mmS3UUFL/rTDNZ+arAeN9+QHc16cDfToMB3rv9Pu6fTb1+H7SDUhr+YfACm
+	VkYwCeEJvi/bHfpPfp181NXhtxuM20fgwSbqgLIKUSfu4P4xU3wQKYk206rZB0WRwSgyx6P/bpM
+	IqchUIeoRpXFuBuwCIU7Jb3aLbhPBpXAPCFZt7sSnRr1FzTzKf8fdZRFsl8wDXKSC2+pz6EdO0U
+	LyfHY3RepQ2JyR1MpTjkgTYUFkZ9vshpH0E=
+X-Google-Smtp-Source: AGHT+IH2uBguYrAt8RmEQaVYzAmbMVFnqhUDBVbYGhqIhJtoDuRg3mXoojY+VnqzpULof5Ie/4Sl9Q==
+X-Received: by 2002:a05:6402:26c5:b0:5d0:d491:2d5e with SMTP id 4fb4d7f45d1cf-5d972dfff56mr31360609a12.7.1736891849618;
+        Tue, 14 Jan 2025 13:57:29 -0800 (PST)
+Received: from [192.168.1.107] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d99008c523sm6730831a12.8.2025.01.14.13.57.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Jan 2025 13:57:29 -0800 (PST)
+Message-ID: <15e9931a-b817-4dd3-abb6-9718e002c6bd@gmail.com>
+Date: Tue, 14 Jan 2025 23:57:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] soc: samsung: usi: add a routine for unconfiguring
+ the ip
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sam Protsenko <semen.protsenko@linaro.org>,
+ Peter Griffin <peter.griffin@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250109090325.595475-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250109090325.595475-3-ivo.ivanov.ivanov1@gmail.com>
+ <81ff734b-7a5e-4c98-9df2-9b65996fff78@kernel.org>
+Content-Language: en-US
+From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <81ff734b-7a5e-4c98-9df2-9b65996fff78@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250114-adpdrm-v4-5-e9b5260a39f1@gmail.com>
-References: <20250114-adpdrm-v4-0-e9b5260a39f1@gmail.com>
-In-Reply-To: <20250114-adpdrm-v4-0-e9b5260a39f1@gmail.com>
-To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Alyssa Ross <hi@alyssa.is>, Sasha Finkelstein <fnkl.kernel@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736890736; l=1377;
- i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
- bh=KEf80SVHicxgRXKAdu52Cd2dNEz+kgXSg0wZwqOZ7j0=;
- b=tIjqWyPizwmuQ4MvM1PbsbAt5UwiHuHH2S/xckQkz+poI3Wc1LrropTswbyz0A+KoDSg0qqp3
- rsdSKCfGiq0BCan/6ZNOoqZuNhkkvYcx+c4DdO1OV0ee1JEVHHyD+mw
-X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
- pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
-X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
- auth_id=283
-X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Reply-To: fnkl.kernel@gmail.com
 
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+On 1/14/25 20:03, Krzysztof Kozlowski wrote:
+> On 09/01/2025 10:03, Ivaylo Ivanov wrote:
+>> +static void exynos_usi_unconfigure(void *data)
+>> +{
+>> +	struct exynos_usi *usi = data;
+>> +	u32 val;
+>> +
+>> +	/* Make sure that we've stopped providing the clock to USI IP */
+>> +	val = readl(usi->regs + USI_OPTION);
+>> +	val &= ~USI_OPTION_CLKREQ_ON;
+>> +	val |= ~USI_OPTION_CLKSTOP_ON;
+>> +	writel(val, usi->regs + USI_OPTION);
+>> +
+>> +	/* Set USI block state to reset */
+>> +	val = readl(usi->regs + USI_CON);
+>> +	val |= USI_CON_RESET;
+>> +	writel(val, usi->regs + USI_CON);
+> Also shouldn't you enable clocks for accessing these? They are being
+> disabled at the end of exynos_usi_enable().
 
-Add the MAINTAINERS entries for the driver
+Hm, perhaps. But I find that weird, since I haven't seen it in the downstream
+driver implementation.
 
-Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
----
- MAINTAINERS | 5 +++++
- 1 file changed, 5 insertions(+)
+Best regards,
+Ivaylo
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a87ddad78e26f28ffd0f3433560d6db1518f9f95..4ce0d3bcf67910d909ba41261535dcb14a24a7b7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2189,6 +2189,9 @@ F:	Documentation/devicetree/bindings/arm/apple.yaml
- F:	Documentation/devicetree/bindings/arm/apple/*
- F:	Documentation/devicetree/bindings/clock/apple,nco.yaml
- F:	Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
-+F:	Documentation/devicetree/bindings/display/apple,h7-display-pipe-mipi.yaml
-+F:	Documentation/devicetree/bindings/display/apple,h7-display-pipe.yaml
-+F:	Documentation/devicetree/bindings/display/panel/apple,summit.yaml
- F:	Documentation/devicetree/bindings/dma/apple,admac.yaml
- F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
-@@ -2208,6 +2211,8 @@ F:	drivers/bluetooth/hci_bcm4377.c
- F:	drivers/clk/clk-apple-nco.c
- F:	drivers/cpufreq/apple-soc-cpufreq.c
- F:	drivers/dma/apple-admac.c
-+F:	drivers/gpu/drm/adp/
-+F:	drivers/gpu/drm/panel/panel-summit.c
- F:	drivers/pmdomain/apple/
- F:	drivers/i2c/busses/i2c-pasemi-core.c
- F:	drivers/i2c/busses/i2c-pasemi-platform.c
-
--- 
-2.48.0
-
+>
+> Best regards,
+> Krzysztof
 
 
