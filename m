@@ -1,174 +1,165 @@
-Return-Path: <devicetree+bounces-138388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA70A10319
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:37:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAA5BA10336
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:43:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93E9F7A1728
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:37:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF54E1885871
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:43:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B7BE28EC86;
-	Tue, 14 Jan 2025 09:37:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCB2284A63;
+	Tue, 14 Jan 2025 09:43:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="X3tPFBtp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f20ITt3c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DBB428EC78
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 09:37:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116C1230D0F;
+	Tue, 14 Jan 2025 09:43:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736847431; cv=none; b=Kh/Oi/MnLdWMUajHEsViSNYsnvnARmJfi/Svv5T95I3nyan6dvOZhXqALlZWZNA7M3EaM3fRQ24lr9ty0mviSoYD5Itl+PZ1L6U9G+IA2em4wZfvwoGRxRGsbqTyiTeRGiYd7Z1a++Cu60iDQQrSqIp7LC//YX47VhDbNWcgc1s=
+	t=1736847831; cv=none; b=mbAGxYbs646A8IZeDcmhkXQju6xyBQEsPU59TLlzqmOSu8Vuarkqi/SqGo4r35OavHkP+4I677BIJF7GXPBWBlfABzCd4x0CNzGk1ZpUisPExRvrHFCZkIf2fFj/V97hQlS9252zloxN2soBjsh0ywSQcJz4h8yaTI4I6ZdLjh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736847431; c=relaxed/simple;
-	bh=fqMjmyNb3Uwk54SDpRDPOEd/CFydxcRIzz9wq6VjFl4=;
+	s=arc-20240116; t=1736847831; c=relaxed/simple;
+	bh=gz3j4LSQUGTBc6G+JzcwXpBUEdENWWL1Z9KVZpZq88Q=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dkOW0suoxwgTNA7dsI2q4vtNE1/jubxWMPX9ryf35qnyCM2oELNLdL7s5Z9pIrmsOw8ZXivwAopoI/sp41bnPj4PIzYwpR0wb6hbv9T14evpTUfaTLReKCpSm16RIu3BGitOF8vt39OZy8LQLdWbHuNhjMZ7dmtCDwkl2HhmwVE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=X3tPFBtp; arc=none smtp.client-ip=209.85.219.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e545c1e8a15so8129822276.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 01:37:08 -0800 (PST)
+	 To:Cc:Content-Type; b=LbnnctmwWkAz+aNmYk+zxb1ddJ1CzBUROvYrqCDNdCKJj+SgQ49l2Pj3ISyuzIrK+N77gPkB2SYZ3HYPKCIhTwmaKfEr81O3PY1zBCEs5UFQXIBG8snYF96wkEBdoMwe3IU3nYUwfqBEeIOz1/lvY+kVzfBx6G5/hvGafd5oE5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f20ITt3c; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aa6a92f863cso992086266b.1;
+        Tue, 14 Jan 2025 01:43:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1736847428; x=1737452228; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1736847828; x=1737452628; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=l89tcIhQpLFA95BmF/dtjUV+SmX9AcHiGhoZt2rDB4Y=;
-        b=X3tPFBtpUs1jSdIgaSrMP2IDWO/kFjfUtxDwgqIiHmqCmEfyOMkv1K21AO7seUvvb3
-         iNigqwjJwhx/xrZtrMqn67ZQS+a8M78gITJpJc7lskgeZHm0IgF0Jga79UT2ERmDgbiN
-         R+gHgM/mF8k9zAxcAx/1jZS7dBPlZRPlQRl/o=
+        bh=s4ddnLC7R3AnxKxF1WharRszc6HLAQzXaIR1Cc3GioU=;
+        b=f20ITt3czn03J3c3NNzCNl9o/dq38MjDvOhWwW09HSEVRAbpqR7Tb776YEPB3EH5+L
+         EUianDcseHnBnJK8xRC0iqmAmei/rLoVH4x/aRavy2AtAzazdWs1CKNHCuLwuqkm039y
+         irwWLvBhI09/TgP68VMN4uZ6gNf3ldBIW7zn2L5zmVpFBuu7ibmNnjCeG7KAePRwx0Vm
+         Y4E+bl4/6iZ3L+g8w8SCP6IUwMBeNXJ7B9iWLUB/Kpy3tI5HIJM5dPc3PsaOYrMX2fPx
+         UuF79bQbBQx+JDMa9e5HAkJEEAx75jLZJsHDX6tASfIdxanIQ/HHFfs6IlNgqlOnjj/y
+         K6zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736847428; x=1737452228;
+        d=1e100.net; s=20230601; t=1736847828; x=1737452628;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=l89tcIhQpLFA95BmF/dtjUV+SmX9AcHiGhoZt2rDB4Y=;
-        b=KkW+yWNRHN6wQeInF6Ab8mPUMh+rMFgHK920W1+AX/7uvu2OHJIDJnP0aJhsDOe2G2
-         gQa96yNYHfyAbCpqGDNbwrC6DO/b90p8lGKjALSzbGq77E5SEpNPoEnYCGJlu1PYKrMK
-         /GPOBCHHvjEMvhTJwoVfRRm+XKZ6BCN7cuYqJndEmiqrhvp2K62Xl6rub5DJ9frATuMw
-         WPVjIKQ3SpWK7P43rencz1WL+J90pmY2RXZkvZKoZ6BC6nH6hhcEikgIUYrlEY05TiQp
-         BrvjTMyvYFgNUUIzs4mmxb/efqcAnHuRjkkR4+eunU/fQbvhMB1otW8Us6KhzNgNYuAQ
-         Bb5w==
-X-Forwarded-Encrypted: i=1; AJvYcCUM3rFo20BGPt7A2wYFzwqWxawVCFgWYWxyJq8X3C3j7NNASeWjU4YilOYiLNGwQddIYeqCrL8VzC5v@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5z/BVfpHT3bRexNd4k9R4+IZyAb+eVjV2n6XJ1mWF9ISav/Rn
-	20iT4o/U+iSTOVHQIlqGx8wk4V76QKZFVo86dKyl2s6cWoSJ+bIwnCgeUUGZkhuLVO2IS3O/OuM
-	8YXpud3wwfvTf/i63gfDnfQRqNRXHv6pGjO5WPw==
-X-Gm-Gg: ASbGnctrogvasK36NGVngykfXFeavmPFvpv5FByTdGS2U0264FyyM9wKdgPgvx9OCRX
-	7aFOBgLS4UraEElmw5Y7VSuwkiqvmNhEkfYni
-X-Google-Smtp-Source: AGHT+IF6e2gulZmmKMZM/9qfdCNmIYsXwgatFmybYBzO3L6nSNvtxPxQhBPTkQU3rmXIGx0U/IzVq/5dxO9CIKDtZus=
-X-Received: by 2002:a05:6902:12cd:b0:e57:2a07:a97b with SMTP id
- 3f1490d57ef6-e572a07ab0bmr10989327276.19.1736847428039; Tue, 14 Jan 2025
- 01:37:08 -0800 (PST)
+        bh=s4ddnLC7R3AnxKxF1WharRszc6HLAQzXaIR1Cc3GioU=;
+        b=PK3RGQZJ8SBe1eR9j+98b/TjsnKaf8BIIgOWLF+XEpADP+56JmF/kCn2qJlVgXFSyi
+         ydQX+Cpssxyf7dsKIeTqBesHSsfQ0H58uKI925nuXqQWQBrBhe5iKLhBlzFZmSyJ1qkW
+         FYyLrizTcNs7HSbgiJF9vJtpBe58XufgXJY7DubNB9yaWhu9O9+4CpnX7Por+f63umQH
+         t4zZu2kvJnfKxFo8pC3YQmS12LO5eUF+/Y2j9HmtFrbdF5aPx5A18ttOby2k1EvVFOLB
+         Fceff1jpn+Gkqo8/wCiWDOvYi3wb6wJPEjQNBcRKXUMGVjT1VN79ToHjw+Y4nb2Zw2XV
+         BTKg==
+X-Forwarded-Encrypted: i=1; AJvYcCVW61e3uCV40wnF3DUg8s8d4lhTVPjLm29P26qhQtFQUSVYLKU9YRB+D8zbqVzfpq540PZAcXtO/gU8@vger.kernel.org, AJvYcCW4LhD89xVH96iCH7L7Jm3kJspNkX6SLXHan0kj4ISPSsR2OEAiN3N57YySn0ZI81O50qwIkUMLC6BAEyhH@vger.kernel.org, AJvYcCXaR+5qnshMTT0NTYDCUSXTVB2pI3RT2CrFoKBz3Hfo2C9dju0V8OVDfGs8uiQAAwdibqeWptVcbGNk@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlbzNoLyR9vahgfO88fVRdd1evWjPLTQSsohxfhXDsk9geseOR
+	tcl/LedxLMmTTY1EQdTp83gqTYyayRRdr+GMkgbAzkSt8wkAtjICHp9rgmXmTyyGpn3uQfXuQZE
+	ulZtfr2tzArqwp/TqkUt8Wx/p/rc=
+X-Gm-Gg: ASbGncvXGBNu4KFhdcjS4IqkEyXcvhP+s//rP2ZpXrFwic7krjtqvwSKotNYqZPKB02
+	Z3+BP0fOa/rqZ6iZv4ZTaTivTB9pPh/CMR5p5gA==
+X-Google-Smtp-Source: AGHT+IEjLsKdifmYxBceuBRUhzQSXsIHy21C5OvzReHgRJldHJBOhkxV4ELNS+tp01DLClQuYww4PkHy2frF4iL/tJE=
+X-Received: by 2002:a17:907:7e91:b0:ab3:f88:b54e with SMTP id
+ a640c23a62f3a-ab30f88b5d5mr716496966b.31.1736847828120; Tue, 14 Jan 2025
+ 01:43:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250114091128.528757-1-dario.binacchi@amarulasolutions.com>
- <20250114091128.528757-2-dario.binacchi@amarulasolutions.com> <79a90c01-9e21-4e3f-a334-6ba9e1df4150@kernel.org>
-In-Reply-To: <79a90c01-9e21-4e3f-a334-6ba9e1df4150@kernel.org>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Tue, 14 Jan 2025 10:36:57 +0100
-X-Gm-Features: AbW1kvbHaMA7-gPSLKl8JCA0np6oyUkVl3x_8EI0Z9Yf3VmqaAgjofQDW5nCXfo
-Message-ID: <CABGWkvofUphcXTwBS5UBEoQ1GYpngP7gWi9Ax=WW28XKK0qoYA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: clock: convert stm32 rcc bindings to json-schema
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com
+References: <20250112104453.45673-1-apokusinski01@gmail.com>
+ <20250112104453.45673-3-apokusinski01@gmail.com> <CAHp75VedQvf2xwY3fDWX=FQaHyhaUSVJW3Y6Yt2ecpwru756vw@mail.gmail.com>
+ <20250113221905.ruv3w3k4w53hvf2b@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
+In-Reply-To: <20250113221905.ruv3w3k4w53hvf2b@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Tue, 14 Jan 2025 11:43:11 +0200
+X-Gm-Features: AbW1kvbQwRaXNMYtgKB2WXq76hJsvg9oad8fE5WUUR3ShP5wYYrP-gLDDL8Wva4
+Message-ID: <CAHp75Vf-zdsh6CP3XX6jyjVutch9Z_iH78zrpaFkt9WkP=qz4w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] iio: magnetometer: si7210: add driver for Si7210
+To: Antoni Pokusinski <apokusinski01@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andrej.skvortzov@gmail.com, neil.armstrong@linaro.org, 
+	icenowy@aosc.io, megi@xff.cz, danila@jiaxyga.com, 
+	javier.carrasco.cruz@gmail.com, andy@kernel.org, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 14, 2025 at 10:29=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On 14/01/2025 10:11, Dario Binacchi wrote:
-> > The patch converts st,stm32-rcc.txt to the JSON schema, but it does mor=
-e
-> > than that. The old bindings, in fact, only covered the stm32f{4,7}
-> > platforms and not the stm32h7. Therefore, to avoid patch submission tes=
-ts
-> > failing, it was necessary to add the corresponding compatible (i. e.
-> > st,stm32h743-rcc) and specify that, in this case, 3 are the clocks inst=
-ead
-> > of the 2 required for the stm32f{4,7} platforms.
-> > Additionally, the old bindings made no mention of the st,syscfg propert=
-y,
-> > which is used by both the stm32f{4,7} and the stm32h7 platforms.
+On Tue, Jan 14, 2025 at 12:19=E2=80=AFAM Antoni Pokusinski
+<apokusinski01@gmail.com> wrote:
+
+> Thanks for the review. I'm currently implementing some changes in the
+> driver according to the review, however I have some doubts regarding
+> removal of the `i2c_client` from `si7210_data`.
+
+...
+
+> > > +struct si7210_data {
+> > > +       struct i2c_client *client;
 > >
-> > The patch also fixes the files referencing to the old st,stm32-rcc.txt.
+> > Do we really need a room for that? Isn't it derivable from the below
+> > regmap? Also note the frequency of use of client vs. regmap. The
+> > result in the object file can be much better if regmap becomes the
+> > first member here. Check it (with bloat-o-meter, for example).
 > >
-> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 >
+> I used arm-linux-nm and the bloat-o-meter to compare the sizes and it
+> turned out that the version which contains the `i2c_client` has
+> slightly smaller size actually. Here are the results:
 >
-> Drop the tag. It was conditional.
+> $ ./scripts/bloat-o-meter -p arm-linux-  ./old_si7210.ko  ./new_si7210.ko
+> add/remove: 0/0 grow/shrink: 1/0 up/down: 4/0 (4)
+> Function                                     old     new   delta
+> si7210_probe                                 556     560      +4
+> Total: Before=3D4021, After=3D4025, chg +0.10%
 >
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - const: st,stm32f42xx-rcc
-> > +          - const: st,stm32-rcc
-> > +      - items:
-> > +          - enum:
-> > +              - st,stm32f469-rcc
-> > +          - const: st,stm32f42xx-rcc
-> > +          - const: st,stm32-rcc
-> > +      - items:
-> > +          - const: st,stm32f746-rcc
-> > +          - const: st,stm32-rcc
+> Here is the diff (shortened for better readability) between
+> the old_si7210.ko (uses `si7210_data->i2c_client`) and
+> new_si7210.ko (does not use `si7210_data->i2c_client`):
 >
-> Nothing improved here.
-
-In my humble opinion, there is nothing to improve. Any modification
-made causes the tests to fail.
-
-$ git grep st,stm32f746-rcc arch/
-arch/arm/boot/dts/st/stm32f746.dtsi:                    compatible =3D
-"st,stm32f746-rcc", "st,stm32-rcc";
-arch/arm/boot/dts/st/stm32f769-disco.dts:       compatible =3D
-"st,stm32f769-rcc", "st,stm32f746-rcc", "st,stm32-rcc";
-
-Or am I missing something?
-
-Thanks and regards,
-Dario
+>  struct si7210_data {
+> -       struct i2c_client *client;
+>         struct regmap *regmap;
+> ...
+>  static int si7210_device_wake(struct si7210_data *data)
+>  {
+> +       struct device *dev =3D regmap_get_device(data->regmap);
+>         int ret;
 >
-> Best regards,
-> Krzysztof
+> -       ret =3D i2c_smbus_read_byte(data->client);
+> +       ret =3D i2c_smbus_read_byte(to_i2c_client(dev));
+> ...
+> static int si7210_probe(struct i2c_client *client)
+>         data =3D iio_priv(indio_dev);
+> -       data->client =3D client;
+>
+> Hence, I guess that it's actually better to leave the `i2c_client` as it =
+is.
 
+I don't think you have tested all that I was talking about, i.e. have
+you tried to swap the positions of client and regmap? What I expect is
+that when you swap them you will see a good size reduction due to
+pointer arithmetics becoming no-op for the regmap pointer. And then
+the dropping of the client might waste all that beneficial size.
 
+> > > +       struct regmap *regmap;
+> > > +       struct regulator *vdd;
+> > > +       struct mutex fetch_lock; /* lock for a single measurement fet=
+ch */
+> > > +       s8 temp_offset;
+> > > +       s8 temp_gain;
+> > > +       s8 scale_20_a[A_REGS_COUNT];
+> > > +       s8 scale_200_a[A_REGS_COUNT];
+> > > +       u8 curr_scale;
+> > > +};
 
 --=20
-
-Dario Binacchi
-
-Senior Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
+With Best Regards,
+Andy Shevchenko
 
