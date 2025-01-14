@@ -1,282 +1,196 @@
-Return-Path: <devicetree+bounces-138510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDB7DA10B7C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 16:51:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BEDDA10BA2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 17:01:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F14C31886904
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:51:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FD8818899CD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 16:01:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D027015746B;
-	Tue, 14 Jan 2025 15:51:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="D5FRSsbH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFB31553B7;
+	Tue, 14 Jan 2025 16:00:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f45.google.com (mail-oa1-f45.google.com [209.85.160.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5A8B159209
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 15:51:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.45
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA24723245B;
+	Tue, 14 Jan 2025 16:00:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736869891; cv=none; b=KFAqTR9EniZZv9SO7ojf3RJOZQ947bQxULDipGy6fCpdsKAWpa/SYNoh0NLkm6Ky7RaAZ/vTFmXQzZDvtByQ6BTY6xedes/Wau8n+HcMeMMBd52vMuOcyGVC/6trD5Irlua64rX9cXmdsKrcZ1KqEKg6f8WBOuEnbgLjU9f75Wg=
+	t=1736870455; cv=none; b=mVrUBfaYbE7hsFIV4qwVkPXVanrO1Ysc4ipEqjVLYD4D6eQ62T3PrpZB/oJuoXTxSQnm/p4s/hUKltFK9Yx575xVp8Ybgf4Eu58p3cJywENXYY5e6mTSf7gzmiFtJs47UTFV+bafWZSObl8uvO9GSRjpUJe6Dk/ePmmvKgpFq6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736869891; c=relaxed/simple;
-	bh=L74jRs1dONVGrPeAHFmIlQs5fRrA3AGMZqSCnDcXEwI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JCi0CXE4tmdQYisYVAa6FFQdakoK3x3tP7xcjZGdrJOnKJCsFEcMzf+RQTZOw1teZwmIOp6YPP1vFtFy5c/cxHvhXAoEaynbd2P/MN0sy9bQ2SraaSp/6qT9Zeai4G74avz1PmkPDyqIFkT+qKLvoFooPvWzLjoUEA1ZByRLLmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=D5FRSsbH; arc=none smtp.client-ip=209.85.160.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f45.google.com with SMTP id 586e51a60fabf-2a383315d96so2864945fac.3
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 07:51:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736869889; x=1737474689; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tvuSSpwSkjYIraUioNxnd9y7q+DAaxVqELrz32e6A30=;
-        b=D5FRSsbH/jrCcfFa2WYsYzDjkWv36q/hxECbF70hmKaDwSXVx+QCVJP1zX3lr7R+xc
-         4N+ID4JPy898pe4AoZcfXaltMcK/R5DP0+KaINBUincts41pd6m2qUrQFQ1Odf8e5AeB
-         sR28AcczQvh/fojL6YKYrkoKxNV/WmZm5LBf+SdtyzgpnOq3xZRF1rN5jEk5sbEb9LWu
-         l18pv0RXzi+Y4QQKGYs/0hLmthWsV2Uv5K7Kj2VmA3Pg/UaCoYsd8+vvbv2276vaZX1X
-         OQx/PnDmmlOUZageQlcxvTlO+aaMI+0nN8V2CikIHg1NatauPOC6R63DwfSx3UEj5XBM
-         Nyhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736869889; x=1737474689;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tvuSSpwSkjYIraUioNxnd9y7q+DAaxVqELrz32e6A30=;
-        b=QtMAsDshub/midY846lq9ZlLKZYIqoaQfWj6CEY7Khpi9u01KEqEJ3fla6666mqQzU
-         EezWqfQNItF97cNHFq/+jDJQHa91rZaiMXiv8/h3Ry6ZKCao+bDHNsy7wlBdXH18snoQ
-         jdYxRiU4jggPrt/2cNhnKpWzVQ+CGdvIBtIFUEXf1RlRKbHcJYN9QkY+ELFmt9rsLp84
-         mWdEDY9RbeggG0a+yugVjxxxPdpDQENv4InnLNrhm0RWZ4ywTqQtdiAUcuB012dhmRYW
-         iLB43aZGsBiOagNfTEjPw1RnYvudBlYu62yQpiSJdodHvjOjwCkea563mnswuxqbvIjX
-         /nbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXip+hbX3QdO+zLuglYY7fjbds+U70B0TtYQG3taSjSPE6sLzcy8QmHoTm68FaLiTJBPYy2URUeSqbn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9FfFiqtpVa86T03mCCr8u+NNVQRLu8aEj6B4ZEoFJUDKfhWST
-	zhZTD31wu2PhXKYInYAbqAJbjhZd0dsdzFnFU378u6hNQ5Y1rIZkfy+BNKoyVpI=
-X-Gm-Gg: ASbGncuq/+6Zm7H+YUDs+ecUFWiS+9FP5GP+noem77blHXcyAe1pDF76qmeBOWWlMk0
-	SFYUK9Xtk+514/L7DgehXmazemtD38DhSIvYpbmupd3lMSc7n4gNVVVRyk30dyeNJj6cZbDDAGq
-	CClQM2TFzLfy+L5kTleKVWgq3wMZprpKW7bJJTEF1LJe3985ySLfSUUaRbCniQAdylWwxNSn/Fn
-	pAyRAomEVO3M4G2+FTMMjQn23q7DkKylY7AFIEMD0ebeiihqHmpL8BQCdZVWwVSRCQ6W78O7552
-	Pp0Jt25T1FdiEDHI/w==
-X-Google-Smtp-Source: AGHT+IGALdOvjLIjRKcsuyz9XUa9hgth8o9CIfqhXL6qycHUaaR7ZJ3MTLSS5iUrarkgheuuDhPueA==
-X-Received: by 2002:a05:6870:2007:b0:29e:5297:a2a7 with SMTP id 586e51a60fabf-2aa068d657fmr16043927fac.30.1736869888835;
-        Tue, 14 Jan 2025 07:51:28 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2ad8017c2d0sm5093216fac.0.2025.01.14.07.51.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jan 2025 07:51:27 -0800 (PST)
-Message-ID: <95e54ca0-041e-4e6e-8364-d22d6d2e16a5@baylibre.com>
-Date: Tue, 14 Jan 2025 09:51:26 -0600
+	s=arc-20240116; t=1736870455; c=relaxed/simple;
+	bh=aWfKJEabF6fhYzlM/VczVohRgjerSXRLXxXHniHZnZ4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WWYNl6wZoKX8C/vItVgHdNcyWdmr7M6acO5iZjr/9UVH6ZrvndANSyibV/yIfHkM6JgzuAEAcG2Cb7mTcURCshW58eUK5qz1GAWHFV0F6wUbUTRJCzcrasFA3UtHZauNVCy/oZCFeLP6s6bc1D9QOaInyDuXBLY+6OTfQeDSIC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 68F4C11FB;
+	Tue, 14 Jan 2025 08:01:21 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2A3A23F673;
+	Tue, 14 Jan 2025 08:00:48 -0800 (PST)
+Date: Tue, 14 Jan 2025 16:00:45 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Parthiban Nallathambi <parthiban@linumiz.com>
+Cc: Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin
+ Murphy <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu
+ Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Michael Turquette <mturquette@baylibre.com>, Stephen
+ Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Linus
+ Walleij <linus.walleij@linaro.org>, Vinod Koul <vkoul@kernel.org>, Kishon
+ Vijay Abraham I <kishon@kernel.org>, iommu@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-clk@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH RESEND 10/22] pinctrl: sunxi: add missed lvds pins for
+ a100/a133
+Message-ID: <20250114160045.2baacdaa@donnerap.manchester.arm.com>
+In-Reply-To: <20241227-a133-display-support-v1-10-abad35b3579c@linumiz.com>
+References: <20241227-a133-display-support-v1-0-abad35b3579c@linumiz.com>
+	<20241227-a133-display-support-v1-10-abad35b3579c@linumiz.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 8/8] iio: adc: ad4851: add ad485x driver
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc: "jic23@kernel.org" <jic23@kernel.org>, "robh@kernel.org"
- <robh@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-References: <20241220120134.42760-1-antoniu.miclaus@analog.com>
- <20241220120134.42760-8-antoniu.miclaus@analog.com>
- <37fcda1c-0051-4a8c-b61c-583a1b8faa1e@baylibre.com>
- <CY4PR03MB3399F8E7AFA00340321BB2A69B182@CY4PR03MB3399.namprd03.prod.outlook.com>
- <20250114132035.00004abd@huawei.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <20250114132035.00004abd@huawei.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 1/14/25 7:20 AM, Jonathan Cameron wrote:
-> 
-> Hi Antoniu
-> 
-> For future replies please crop to only the bits you are reply to.
-> Took me a couple of goes to find the reply, so in some cases
-> the important parts can be completely missed by a reader if
-> the rest isn't cropped down.
-> 
-> ...
-> 
->>>> +static int ad4851_set_oversampling_ratio(struct iio_dev *indio_dev,
->>>> +					 const struct iio_chan_spec *chan,
->>>> +					 unsigned int osr)
->>>> +{
->>>> +	struct ad4851_state *st = iio_priv(indio_dev);
->>>> +	int val, ret;
->>>> +
->>>> +	guard(mutex)(&st->lock);
->>>> +
->>>> +	if (osr == 1) {
->>>> +		ret = regmap_clear_bits(st->regmap,  
->>> AD4851_REG_OVERSAMPLE,  
->>>> +					AD4851_OS_EN_MSK);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +	} else {
->>>> +		val = ad4851_osr_to_regval(osr);
->>>> +		if (val < 0)
->>>> +			return -EINVAL;
->>>> +
->>>> +		ret = regmap_update_bits(st->regmap,  
->>> AD4851_REG_OVERSAMPLE,  
->>>> +					 AD4851_OS_EN_MSK |
->>>> +					 AD4851_OS_RATIO_MSK,
->>>> +					 FIELD_PREP(AD4851_OS_EN_MSK,  
->>> 1) |  
->>>> +  
->>> FIELD_PREP(AD4851_OS_RATIO_MSK, val));  
->>>> +		if (ret)
->>>> +			return ret;
->>>> +	}
->>>> +
->>>> +	ret = iio_backend_oversampling_ratio_set(st->back, osr);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	switch (st->info->resolution) {
->>>> +	case 20:
->>>> +		switch (osr) {
->>>> +		case 0:
->>>> +			return -EINVAL;
->>>> +		case 1:
->>>> +			val = 20;
->>>> +			break;
->>>> +		default:
->>>> +			val = 24;
->>>> +			break;
->>>> +		}
->>>> +		break;
->>>> +	case 16:
->>>> +		val = 16;
->>>> +		break;
->>>> +	default:
->>>> +		return -EINVAL;
->>>> +	}
->>>> +
->>>> +	ret = iio_backend_data_size_set(st->back, val);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	if (osr == 1 || st->info->resolution == 16) {
->>>> +		ret = regmap_clear_bits(st->regmap, AD4851_REG_PACKET,
->>>> +					AD4851_PACKET_FORMAT_MASK);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +
->>>> +		st->resolution_boost_enabled = false;
->>>> +	} else {
->>>> +		ret = regmap_update_bits(st->regmap, AD4851_REG_PACKET,  
->>>
->>> regmap_set_bits  
->>
->> Why? Packet format is two bits wide according to the register map.
+On Fri, 27 Dec 2024 18:30:59 +0530
+Parthiban Nallathambi <parthiban@linumiz.com> wrote:
 
-Oops, I was expecting it to be symmetric with regmap_clear_bits() above. But
-of course you are correct.
+Hi,
 
->>
->>>> +					 AD4851_PACKET_FORMAT_MASK,
->>>> +  
->>> FIELD_PREP(AD4851_PACKET_FORMAT_MASK, 1));  
->>>> +		if (ret)
->>>> +			return ret;
->>>> +
->>>> +		st->resolution_boost_enabled = true;
->>>> +	}
->>>> +
->>>> +	if (st->osr != osr) {
->>>> +		ret = ad4851_scale_fill(indio_dev);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +
->>>> +		st->osr = osr;
->>>> +	}
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +
-> ...
+since LinusW wants to pull this already, I gave it a look, despite this
+series being not complete.
+
+> lvds, lcd, dsi all shares the same GPIO D bank and lvds0
+> data 3 lines and lvds1 pins are missed, add them.
 > 
->>>> +static int ad4851_setup(struct ad4851_state *st)
->>>> +{
->>>> +	unsigned int product_id;
->>>> +	int ret;
->>>> +
->>>> +	if (st->pd_gpio) {
->>>> +		/* To initiate a global reset, bring the PD pin high twice */
->>>> +		gpiod_set_value(st->pd_gpio, 1);
->>>> +		fsleep(1);
->>>> +		gpiod_set_value(st->pd_gpio, 0);
->>>> +		fsleep(1);
->>>> +		gpiod_set_value(st->pd_gpio, 1);
->>>> +		fsleep(1);
->>>> +		gpiod_set_value(st->pd_gpio, 0);
->>>> +		fsleep(1000);
->>>> +	} else {
->>>> +		ret = regmap_set_bits(st->regmap,  
->>> AD4851_REG_INTERFACE_CONFIG_A,  
->>>> +				      AD4851_SW_RESET);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +	}
->>>> +
->>>> +	if (st->vrefbuf_en) {
->>>> +		ret = regmap_set_bits(st->regmap,  
->>> AD4851_REG_DEVICE_CTRL,  
->>>> +				      AD4851_REFBUF_PD);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +	}
->>>> +
->>>> +	if (st->vrefio_en) {
->>>> +		ret = regmap_set_bits(st->regmap,  
->>> AD4851_REG_DEVICE_CTRL,  
->>>> +				      AD4851_REFSEL_PD);
->>>> +		if (ret)
->>>> +			return ret;
->>>> +	}  
->>>
->>> PD stands for power down, so should we be powering down if not enabled?
->>> (i.e.
->>> if is missing !)  
->> We power down the internal reference if the external one is used. Not sure what is wrong here.
-
-
-I see. The macro name is wrong, which made me think it was doing something
-different. It should be AD4851_REF_SEL rather than AD4851_REFSEL_PD.
-
-
->>>> +
->>>> +	ret = regmap_write(st->regmap,  
->>> AD4851_REG_INTERFACE_CONFIG_B,  
->>>> +			   AD4851_SINGLE_INSTRUCTION);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	ret = regmap_write(st->regmap,  
->>> AD4851_REG_INTERFACE_CONFIG_A,  
->>>> +			   AD4851_SDO_ENABLE);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
+> Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
+> ---
+>  drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> Thanks,
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c b/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c
+> index df90c75fb3c5..b97de80ae2f3 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sun50i-a100.c
+> @@ -256,72 +256,84 @@ static const struct sunxi_desc_pin a100_pins[] = {
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D12 */
+> +		  SUNXI_FUNCTION(0x3, "lvds0"),		/* D3P */
+
+I initially stumbled upon those first two pins being from lvds0, with the
+other 8 pins missing for this interface, but then realised that those are
+on portD, and we already describe them in this table (above). So those two
+were missing all the time.
+
+So having compared these lines to the A133 user manual, I can now say that
+they are all correct:
+
+Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+
+Linus, in contrast to what I originally thought, this patch *is* fine, so
+feel free to keep it in your tree.
+Sorry for the noise!
+
+Cheers,
+Andre
+
+>  		  SUNXI_FUNCTION(0x4, "dsi0"),		/* DP3 */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 8)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 9),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D13 */
+> +		  SUNXI_FUNCTION(0x3, "lvds0"),		/* D3N */
+>  		  SUNXI_FUNCTION(0x4, "dsi0"),		/* DM3 */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 9)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 10),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D14 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D0P */
+>  		  SUNXI_FUNCTION(0x4, "spi1"),		/* CS */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 10)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 11),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D15 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D0N */
+>  		  SUNXI_FUNCTION(0x4, "spi1"),		/* CLK */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 11)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 12),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D18 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D1P */
+>  		  SUNXI_FUNCTION(0x4, "spi1"),		/* MOSI */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 12)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 13),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D19 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D1N */
+>  		  SUNXI_FUNCTION(0x4, "spi1"),		/* MISO */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 13)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 14),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D20 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D2P */
+>  		  SUNXI_FUNCTION(0x4, "uart3"),		/* TX */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 14)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 15),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D21 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D2N */
+>  		  SUNXI_FUNCTION(0x4, "uart3"),		/* RX */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 15)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 16),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D22 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* CKP */
+>  		  SUNXI_FUNCTION(0x4, "uart3"),		/* RTS */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 16)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 17),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* D23 */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* CKN */
+>  		  SUNXI_FUNCTION(0x4, "uart3"),		/* CTS */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 17)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 18),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* CLK */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D3P */
+>  		  SUNXI_FUNCTION(0x4, "uart4"),		/* TX */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 18)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 19),
+>  		  SUNXI_FUNCTION(0x0, "gpio_in"),
+>  		  SUNXI_FUNCTION(0x1, "gpio_out"),
+>  		  SUNXI_FUNCTION(0x2, "lcd0"),		/* DE */
+> +		  SUNXI_FUNCTION(0x3, "lvds1"),		/* D3N */
+>  		  SUNXI_FUNCTION(0x4, "uart4"),		/* RX */
+>  		  SUNXI_FUNCTION_IRQ_BANK(0x6, 2, 19)),
+>  	SUNXI_PIN(SUNXI_PINCTRL_PIN(D, 20),
 > 
-> Jonathan
 
 
