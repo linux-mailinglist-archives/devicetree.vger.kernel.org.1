@@ -1,140 +1,143 @@
-Return-Path: <devicetree+bounces-138468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C8DA108B0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:10:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE315A108AE
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:10:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E53211889EE8
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:09:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81A9E7A2E9E
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7BB145FEB;
-	Tue, 14 Jan 2025 14:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B89413C67E;
+	Tue, 14 Jan 2025 14:09:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jurpx9Tp"
+	dkim=pass (2048-bit key) header.d=remarkable.no header.i=@remarkable.no header.b="cgZ3Xh1y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C4F13E02E;
-	Tue, 14 Jan 2025 14:08:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E7B8C07
+	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 14:09:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736863738; cv=none; b=Wnux/iYS9a9a5Fabc47PQIqh1vK6sznglEI3lp/4uGdrlUJn6dihU/JZ63S41t8DfbsmVjJsf61CXU5Eo8H3Ff0aXouYMPmRnP6zAuiIHKy2Yi2xlZxNucfqa16Dk28fcybJtcXWqOeyie8lzdCg0GU1c7HYTCXH9FmRvLKySCQ=
+	t=1736863778; cv=none; b=BFr2FhlIn3eSEWiRIXqUCVrZjowUstYXfImr4ZPsUiPe+48kHGu/sY4xMR+wTzGM3pWqBJVsLFw0ezc7yL85v3J/b2BSSmMmtHyhwrT1AAbN9pVUmm0h8o0hao8tdIRbhrA75HEroDpmZdtM08gdTfzgzfhhcrsjp6Vne+JvkL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736863738; c=relaxed/simple;
-	bh=LKLfIkczdAeAEqoQum/VH0YMDdlw2/4likL6Vp+GRnA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rdsezGjQj1Us9R7Pej6Cfq6LEZ903X4Tjj6NUjG6zj+shgqz4VHkwVwDjIHJsY8qhcDmLoWuRdo49b1hq9Z0S47ciNkMyliyxUHQxqwPX0Kgxf9esXHDN9PEzGbCVHf8dlz4OgFnrB9R2VDu1n5FCzX6v0RRSC4iBg6O29senDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jurpx9Tp; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-aafc9d75f8bso1064019366b.2;
-        Tue, 14 Jan 2025 06:08:56 -0800 (PST)
+	s=arc-20240116; t=1736863778; c=relaxed/simple;
+	bh=Rw0YwheHGkjgBmtJ3XrHVYkwWRiQHC6U1g7GiN7Nu8Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F/Rk/7y6O8XF01DMWuieD6aT3bJLMiHgybFpt//th7lkVCtrskewogYb66NWtkz4T1BAWv3VFNEcuRhQUhdE9Ch0kBQhTLHSdZEBJDDZQ5Mou2NUIOtFGw24W2Ezuby6VhlPllhF72wHNONVf/BypIjtN3A1Cq8vp5mzV2wj3hI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=remarkable.no; spf=pass smtp.mailfrom=remarkable.no; dkim=pass (2048-bit key) header.d=remarkable.no header.i=@remarkable.no header.b=cgZ3Xh1y; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=remarkable.no
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=remarkable.no
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54287a3ba3cso5504628e87.0
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 06:09:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736863735; x=1737468535; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gb1b/9RqdKd5KXtgNSScAQgWp7C/b3VuxIQL7OqFmG8=;
-        b=Jurpx9TpQNlRflh0YdEdXlLCXsZeje6G6OjTwLaMuIbDwFy25/uT8/mi0YZtIPpF58
-         vcy01Ps12qNMWRXDCvO0DXwaRNfD6NX7atlTohafdCceCmtLpmDdMGKgntAbvxMFZxuw
-         dGIJlptf3su5AdBDCJy3Vk679IBwKc6EHEVlZiESOyDr4BFr0FOnjtADxUun1kXEKkqe
-         g6fsgZfQrnWLsx29j2vCRXm5NKGRhY0+9bSf/1G/kVYlBSf15PdCP7rVqTCqhZJR4PvY
-         ig583Ce/vP0ljxu2qAshtj4+L2Jck+RlvN0p/whGzTDMbPF2DxMZEWYuXCoJUvliEoHJ
-         S0Gg==
+        d=remarkable.no; s=google; t=1736863774; x=1737468574; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=91GZIzgjXBcFI31iM5fj3Hf8Rb+AoJ8tIZRBGy0zkpw=;
+        b=cgZ3Xh1yd4WUFzHL4mi7PFoIxQv79JiX1BcXqx6H4FA8VWs9gEYx+G16/4HQx31A28
+         LNyN7SaR1mn63ksfnmHfDnsIv7g7zwaYqXjfuSJAtjjg12UMEN8jdwHh3l9s3m4iRNhc
+         4VFcu4+RaF9DGbfrZJsFm4K2njY/5rxDxVLFtfLhD1T/COAkhplwVb092a0bmF6q879C
+         3V9V6lm7ah2TLrC47NNOCFlEltc1UvA3AGFo+0PvvL3gfdW6sopAJOH2wN3zEd6T/XW5
+         bnN+5RUIEn5OhsCMQgkGEyJMwfPjG6904l6/UPlaiMw4nWRnYTIjtBJAJWn3HItV0RE1
+         XLaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736863735; x=1737468535;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gb1b/9RqdKd5KXtgNSScAQgWp7C/b3VuxIQL7OqFmG8=;
-        b=g7QtVdmSsZX8v+L9tAEFSGafAHJ8ECZSOcMiDyXt9tR1NUlMEnKrTF45MVQCJJo9Q4
-         LsKFkyeG1vlQ31TSwZ0SM61v0DC0kUK9mR0QF4yVDzs2/aJBKQwR+ROhDCOy1Q4LUSLq
-         WiA5ZZ+byeUs5ChJe7H+W0KuMLZn1ukCn2BjzQK8kAyxKGvmcyYYSq+gJMSbfMZngXzZ
-         LByV94V4+xxtFMKggHwYRzkpetspaUN5+v0p4p1SGpPTLyMAKKCTwmJ5CetqO6bHDnSu
-         M/WWopCityNtsr+EaXptORXs/sGnI5a9rh27/lkHKxHO0++5yTUiEZ2Gzo9DYkK8AoXN
-         0SwA==
-X-Forwarded-Encrypted: i=1; AJvYcCU8Vf/rtmmq6AQ7Jx3h8s22hdReYqUNmFrZGSItbEgY8AwQK2DT+XrTG+q6/Z1t44Ftf6famE+yIIJHNy3v0w==@vger.kernel.org, AJvYcCUBrInkz870dzIJbzRQwJuYKG297QYQvPwXiWPyS2cfyv3+N1XFWDlf+PSD70THJKDRXHb+aCO0ps/cDvc=@vger.kernel.org, AJvYcCUniEMLj8i8+SMRWidsYyVEh0unfB/bgNNglIGDGTp/BG024/k2lQtYGnDIMYlbobV+phbsgwfmRtNSoXA=@vger.kernel.org, AJvYcCVEwDj1LxljVlo1s4qpDZs/olapNMudWRjjxdy8D5RX+zERj8Qt5rk9tq/tq6C+kL5R2NixjRunpfwQ@vger.kernel.org, AJvYcCVjNhr7D/6/HuPoQwrY35p7uld/pyIQ5qAZ1+7LmQNBoCGI6rFCPNy9Bj0EABTmo3uH1OXByA4/v0RF@vger.kernel.org, AJvYcCWIbo0gKRFx4/ssxv8RnE5b99MCAaadutgjVwoEMFDPLimjlYjPyW6Rdtbch3IVj/KwAczCPCBiGTNU@vger.kernel.org, AJvYcCWa9uBzll5iOTeYo5YDbs71Z+Hwh1WrihTuIuasPtvyyBpAI4N67v63wh/4wj4NEpQItjhyCksbAiPQQ+As@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxMR6fD/PUNUFUOseLKtOGE1VdEv8RgfR69j+SR6H3gaSb2HDl
-	S1hUv/IjRRW9LKUTVkPRi0jksAIBTkci9NwpaA0bPK6nlmaNVTsk
-X-Gm-Gg: ASbGncsp2zXKh1M3DhXB0+PgnAJ7SD/Evb4rxtZUS6wnASmJ9re3c+taDclQc/lhrGn
-	giPKbsLMziTQfui5rgEOacFRscluLUEmkMGwRyNta5F/EgDwBvLaFFXAGaHlKX+lrcGLHHisXTg
-	6M0YkGl8jBd+kl1t98pIxvtRD5fX5Hz2k6Im68XQkvbosjHRt50XF7P7M0A0xabHR8GiSo3AnyM
-	eh3tIYbIIe2XCr/bD0jZFZFkyc12TDAgYKjorMTo3x3v6f/jPw9XAmng/L1TZ/RjMgJjvbO6A==
-X-Google-Smtp-Source: AGHT+IHg+26ImkrnaHx4f06Z3uIYfL6CCoYkDwVz3k6+euEU7ujJitxiK1iLBauB18LY8tUFYwPmBw==
-X-Received: by 2002:a17:906:f59a:b0:aa6:9503:aa73 with SMTP id a640c23a62f3a-ab2abcb1135mr2473124266b.51.1736863734231;
-        Tue, 14 Jan 2025 06:08:54 -0800 (PST)
-Received: from foxbook (adqh124.neoplus.adsl.tpnet.pl. [79.185.141.124])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab2c9647299sm640635166b.177.2025.01.14.06.08.52
-        (version=TLS1_2 cipher=AES128-SHA bits=128/128);
-        Tue, 14 Jan 2025 06:08:53 -0800 (PST)
-Date: Tue, 14 Jan 2025 15:08:47 +0100
-From: =?UTF-8?B?TWljaGHFgg==?= Pecio <michal.pecio@gmail.com>
-To: Wesley Cheng <quic_wcheng@quicinc.com>
-Cc: <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
- <conor+dt@kernel.org>, <corbet@lwn.net>, <devicetree@vger.kernel.org>,
- <dmitry.torokhov@gmail.com>, <gregkh@linuxfoundation.org>,
- <krzk+dt@kernel.org>, <lgirdwood@gmail.com>,
- <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
- <linux-input@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
- <mathias.nyman@intel.com>, <perex@perex.cz>,
- <pierre-louis.bossart@linux.intel.com>, <robh@kernel.org>,
- <srinivas.kandagatla@linaro.org>, <tiwai@suse.com>
-Subject: Re: [PATCH v32 01/32] usb: host: xhci: Repurpose event handler for
- skipping interrupter events
-Message-ID: <20250114150847.1c3c9ebe@foxbook>
-In-Reply-To: <f8a9e454-72f4-4979-b29d-109700b2a204@quicinc.com>
-References: <20250113143632.63c52d74@foxbook>
-	<f8a9e454-72f4-4979-b29d-109700b2a204@quicinc.com>
+        d=1e100.net; s=20230601; t=1736863774; x=1737468574;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=91GZIzgjXBcFI31iM5fj3Hf8Rb+AoJ8tIZRBGy0zkpw=;
+        b=ti0kJGE7H0X7p+2zO85YRgFHZnxuG3nxRrYML4LYQwUTUQzdsYXH/4Bg56jxgWsPEM
+         RAbyQ+P4ShCngqiVBZ3sO4bAyaUQWKiRMpAWwlPAwtHXPf6Gz6lAQYVFA3uTBYWeBgOx
+         CZWjwS6vneE6anpqnFvmG1JpRFrzAPTV3/Uzl20mjWQ+k/5keo7XwNqj7VDJuyeML3xv
+         Pwj77x968vOTpSdB+ZRRTFuYK7qs5530Xeif0QnRgvRkI5up2B1V/ysAE7vj7Y+NVN7n
+         0VooXIwae+tnX+OjPrZV+E/BI/Y/KCj1jGiB0vtzPvAI00goTQnBi3eUk6g7ewPGvogC
+         S8Ng==
+X-Forwarded-Encrypted: i=1; AJvYcCX6Age6FB8yBQlG2ljNBKze0lCAxJDtwjW5SZHNUX8N1PTWStE9w814p9QeueWBWpo62XYddfpXmEuP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz7mNXlMeMLWnTi2BMIGnScyxcDZlGUby0JQ0JtFHXwHFA6u0hl
+	4CKXRd6K56x8e/SIOLzvgrlArMcgdneNnIIZ4CIS1SOUa9qPsuFJl/WUQE9Gxg==
+X-Gm-Gg: ASbGncsTxhDNu6HWpnj9WHZAheXcw/ihtoXXEc8MmkAxlfYjnXfJdRlNMGd5Ggi08uM
+	16Fa9MGl2ujHubOlOkkvRuoYS+5rKubmyOtuvlUGKhAakOrZssnob388fAuIHeWImyLQ/QPUhIw
+	0gVj6P7UPy4//wtuuKlli3N2gDPW5MYFBbkuXZAftM/oe9z1KVcAdGFffGAkVHsni0zNVgAInzy
+	4ne7XOwIBPkvJEKc9QL6yRzjJlPnAQ1WLhAauRmMQYdwfUVlxHm/KTTXqtdgLvXbNAPR8gntX6c
+	15mUAe1uNq9ckz0ahgSIrRQO7nIwWc0=
+X-Google-Smtp-Source: AGHT+IFoRDuCSh+PCWGYFtIoF6NIctlAFX3rohBL5ZQstpfFeSZSElly5OSQJQFTSaC7IKBKDWvYhg==
+X-Received: by 2002:a19:6a0f:0:b0:542:8a7c:509f with SMTP id 2adb3069b0e04-5428a7c5293mr5001343e87.2.1736863774384;
+        Tue, 14 Jan 2025 06:09:34 -0800 (PST)
+Received: from ?IPV6:2001:4643:2b9c:0:742e:f778:f9f1:b089? ([2001:4643:2b9c:0:742e:f778:f9f1:b089])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428be4999bsm1687773e87.14.2025.01.14.06.09.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Jan 2025 06:09:33 -0800 (PST)
+Message-ID: <30b09e71-6790-4ab2-8945-e011996ee85f@remarkable.no>
+Date: Tue, 14 Jan 2025 15:09:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] Bluetooth: btnxpuart: Add support for set BD
+ address
+To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+ "marcel@holtmann.org" <marcel@holtmann.org>,
+ "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>
+Cc: "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Amitkumar Karwar <amitkumar.karwar@nxp.com>, Sherry Sun
+ <sherry.sun@nxp.com>, Luke Wang <ziniu.wang_1@nxp.com>,
+ "kristian.krohn@remarkable.no" <kristian.krohn@remarkable.no>,
+ Manjeet Gupta <manjeet.gupta@nxp.com>
+References: <20250114133548.2362038-1-neeraj.sanjaykale@nxp.com>
+ <20250114133548.2362038-2-neeraj.sanjaykale@nxp.com>
+ <43beb3f3-071d-4f58-b356-6dc6b9de947a@remarkable.no>
+ <PA4PR04MB9687E566EEC90DEF5FB44A2CE7182@PA4PR04MB9687.eurprd04.prod.outlook.com>
+Content-Language: en-US
+From: Johan Korsnes <johan.korsnes@remarkable.no>
+In-Reply-To: <PA4PR04MB9687E566EEC90DEF5FB44A2CE7182@PA4PR04MB9687.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Thanks, I think I now see how this is meant to work.
+On 1/14/25 3:07 PM, Neeraj Sanjay Kale wrote:
+> 
+> Hi Johan,
+> 
+>>
+>> On 1/14/25 2:35 PM, Neeraj Sanjay Kale wrote:
+>>> This adds support for setting BD address during hci registration. NXP
+>>> FW does not allow vendor commands unless it receives a reset command
+>>> after FW download and initialization done.
+>>> As a workaround, the .set_bdaddr callback function will first send the
+>>> HCI reset command, followed by the actual vendor command to set BD
+>>> address.
+>>>
+>>
+>> Hi Neeraj,
+>>
+>> If NXP firmware does not allow vendor commands prior to this reset, would it
+>> not be better to perform this reset during probe/init?
+>>
+> HCI reset is already part of kernel init sequence hci_init0_sync().
+> However, .set_bdaddr() is called immediately after FW download is complete, but before this init sequence.
+> 
+> Also, if local-bd-address property is not defined in the DTB, sending HCI reset command in probe does not add any value.
+> 
+> With current implementation, if local-bd-address is defined, driver sends HCI reset, followed by set BD address vendor command, and kernel continues with the HCI init sequence.
+>
 
+Thanks for clarifying, that makes sense :-)
 
-Cover leter mostly discusses the ALSA side of things, but not low level
-details of xHCI operation, such as who will be ringing doorbells and
-how, handling IRQs, updating event ring dequeue, or handling halted EPs.
+Kind regards,
+Johan
 
-So for the record, as far as I see:
-1. There is no API for ringing doorbells or even getting a pointer,
-   the coprocessor needs to have its own access. Fair enough.
-2. Same for event ring dequeue, but the driver must clean up leftover
-   unacknowledged events after sideband operation stops.
-3. Linux IRQ handler never needs to worry about sideband interrupts.
-4. Resetting halted endpoints is not implemented at all, I think?
-   So this code is currently mostly useful with isochronous.
+> Thanks,
+> Neeraj
 
-
-And the 'skip_events' flag only exists to enable ring cleanup when the
-interrupter is removed? In such case I think it's overkill.
-
-The code would be simpler and its intent more visible if 'skip_events'
-were a new parameter of xhci_handle_events(). Existing IRQ would call
-the function normally, while xhci_skip_sec_intr_events() would use the
-new parameter to suppress event handling in this one special case.
-
-It would be immediately clear that skipping only applies on removal.
-
-You could completely get rid of PATCH 01/32 because 02/32 would no
-longer need to set this flag on the interrupter, and the 'if' branch
-adedd by 01/32 could go into 03/32 where it logically belongs.
-
-Just a suggestion. I simply don't see any need to have a flag which
-causes events on a ring to always be skipped as a matter of policy.
-Your code doesn't seem to require it. Probably nobody ever will.
-
-
-Regards,
-Michal
 
