@@ -1,169 +1,143 @@
-Return-Path: <devicetree+bounces-138353-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138354-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEE4AA10161
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 08:38:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA802A10164
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 08:39:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4B0A16766B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 07:38:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D80C2188498C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 07:39:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731FD2451FA;
-	Tue, 14 Jan 2025 07:38:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26B64246347;
+	Tue, 14 Jan 2025 07:39:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GkmeK26p"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Ydo2mUqE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4562B1BD9E5;
-	Tue, 14 Jan 2025 07:38:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D66FF24632A;
+	Tue, 14 Jan 2025 07:39:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736840318; cv=none; b=lSlpTUKQGY7RN7X20vMVFjGMOFtRDHc93OeEM2qQOat8u7/hg5C6NFwNlmwuNu4S1RS1MTo1o78qRolivlN7eRkixSB9QyPBetZW1TPG6fAzOpjRiaJhh5gVsD5h89r2HSADNL5Bdot/YT4cv6g7Q35bXWupmqdm3W/coWh2844=
+	t=1736840343; cv=none; b=AcYxXBFrlmMnbphfjlm5WONKwXRvpZe64NcVJdZ47jZwwfgKnJr0de7glr/ZeIAfg3ALnZUywXQzbc/wDMlgzeGJ2T9tuZ4j2T/HeKr9M5OGDQD8HFhLPooGJg79cNl2NTYnFJNoGvtL3CqFKsm7Yd+EtruL4KTR4pq85VcZQeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736840318; c=relaxed/simple;
-	bh=7QEn/jNEjKBqaFl/1HEgaVG+Z+Eprdso/L7tSzzUSzA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k8xfLUETgbs4GRJy1y7ZdKbsyEOaudCVLGhDt0owfEAB9EdsrJovigR0ZiFmnK5MkebOLLMuogs9jPgC/K7wPOv6JoOMr7Erfh5qb8zZ58l1YWBteNxIPfhDHWrlNyebWnccceIcjRd+w50mRkthujwpcefxJYwWX+N7BEGpY4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GkmeK26p; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CECCC4CEDD;
-	Tue, 14 Jan 2025 07:38:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736840317;
-	bh=7QEn/jNEjKBqaFl/1HEgaVG+Z+Eprdso/L7tSzzUSzA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GkmeK26pamPSB8mTr4YEbpE6dZbkCCb5b/UkrBuVFXKkQuDZgXRFJkr25z8ghg9zW
-	 4yGOohqSpmfWJFbGdiSVE0uxLiTn0kq1LXWhYzAZRaIOp3qttTTT4TzgNPc67lq+k+
-	 qccBUC2/jfGIvKYfGm13GmEh4EtmF7RHE8IadmYJ9mIOQcLcgtF1svoQhHPdX6wS0d
-	 e6/pjz+J5QwUyIv0RJul842wQ4glpw0uoiY/V6WZYRnou0kNmFkZpOai3/pqtMBfCM
-	 VDH6YYblWO4OE0v/xpWH6r+r9+WvfPr0i7uW+fMCbH8tyz4CKpwIW3T0YPKG+ef7Qk
-	 OCxx9O2E7Cr/A==
-Message-ID: <4591ac0a-80fc-4922-b463-79395c9f41d1@kernel.org>
-Date: Tue, 14 Jan 2025 08:38:30 +0100
+	s=arc-20240116; t=1736840343; c=relaxed/simple;
+	bh=FB0+qrN59+wsgrB59fSYukLc9bwu1EZidKzIxpC2CBw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ksPFUGA3F5bXYTOcaguL1JA3LeRJp2vuBrZTy7gclfLM1yHevFz6Cx4WsQ5wuS+tbXzsbrUjtrqnXpmGEangMbqIfOHibUVNE94dhq00w/XFwyEtdzQnqlGHvY/qjQyAgO/5owEqcBOUX53bRYRgouNLfXG53y6MInpRigdB6yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Ydo2mUqE; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1736840338;
+	bh=FB0+qrN59+wsgrB59fSYukLc9bwu1EZidKzIxpC2CBw=;
+	h=From:Subject:Date:To:Cc:From;
+	b=Ydo2mUqEd4ibZWY52KrzIEsBO7N+jbP0VLKPgV5wMZ55LUz9wyxa/an+tlffnEf7o
+	 zcn21/BzN8H3DbDgjYBnp5C59+vCa/aw/lPGVuRrOXNToDp7snXWyW3hyKuRNOZwHe
+	 sHMPvKJ3LSOYI/7Av2ygQPrpuOfq3CjsrC64boNM9jWPITpmkj1175unLDxqyd8HJC
+	 dgYL1Wy3YP/9svGicM82OM3CTE4fvu/Or+CT/z+7CI8p2Ahr1oqHcGjebhrYzd9w1z
+	 EcD4n6deuBhWhtC8W3YcUY7MK9ZR/fP6cj81yRNM1xhlj4SiDDP5reaGWaUL8dMoCE
+	 KQKGgXakpU/NA==
+Received: from fedora.home (lfbn-tou-1-1147-231.w90-76.abo.wanadoo.fr [90.76.208.231])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: laeyraud)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1663917E0E1C;
+	Tue, 14 Jan 2025 08:38:58 +0100 (CET)
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Subject: [PATCH 0/3] Add support for Mediatek Genio 510 EVK board
+Date: Tue, 14 Jan 2025 08:38:38 +0100
+Message-Id: <20250114-dts_mt8370-genio-510-v1-0-8517ee0fdbe8@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: serial: Add a new compatible string for
- UMS9632
-To: Wenhua Lin <Wenhua.Lin@unisoc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Cixi Geng <cixi.geng@linux.dev>,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, wenhua lin <wenhua.lin1994@gmail.com>,
- Xiongpeng Wu <xiongpeng.wu@unisoc.com>, Zhaochen Su
- <Zhaochen.Su@unisoc.com>, Zhirong Qiu <Zhirong.Qiu@unisoc.com>
-References: <20250114054553.3376837-1-Wenhua.Lin@unisoc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250114054553.3376837-1-Wenhua.Lin@unisoc.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAH4UhmcC/x3MSQqAMAxA0atI1gYSS52uIiIOUbOwSisiiHe3u
+ HyL/x8I4lUC1MkDXi4NursIThMY194tgjpFQ0aZJWaD0xm67SxNQbiI0x0tExqb01AS09BXENP
+ Dy6z3v23a9/0AxyL5pGYAAAA=
+X-Change-ID: 20250113-dts_mt8370-genio-510-3560b8010ba9
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@mediatek.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ kernel@collabora.com, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736840337; l=2223;
+ i=louisalexis.eyraud@collabora.com; s=20250113; h=from:subject:message-id;
+ bh=FB0+qrN59+wsgrB59fSYukLc9bwu1EZidKzIxpC2CBw=;
+ b=IxM8NDfTIiqm+gkoWM1h71DqwBuJq8uNDdGbb8qkT6xblhoP+Ppo1+kZ+tIv2tWCJVx0pZj+G
+ gZdQs64zgwvAihLcpUR1RGcgaK8SDReWn6dlqFLHO5pF0imQEh/MCUi
+X-Developer-Key: i=louisalexis.eyraud@collabora.com; a=ed25519;
+ pk=CHFBDB2Kqh4EHc6JIqFn69GhxJJAzc0Zr4e8QxtumuM=
 
-On 14/01/2025 06:45, Wenhua Lin wrote:
-> Due to the platform's new project uart ip upgrade,
-> the new project's timeout interrupt needs to use bit17
-> while other projects' timeout interrupt needs to use
-> bit13, using private data to adapt and be compatible
+This patchset adds the basic support of the Mediatek Genio 510 EVK
+board, based on the Mediatek MT8370 SoC.
 
-Where is private data in this patch?
+It adds a device-tree file for the board (mt8370-genio-510-evk.dtb) 
+and an include file for the SoC (mt8370.dtsi), in order to be able to
+boot. As the board is very close to the Genio 700 EVK board, an include file
+(mt8390-genio-common.dtsi) is also created to factorize the common
+definitions.
 
-> with all projects. The sc9632-uart is incompatible
-> with sc9836-uart, Add sc9632-uart dedicated compatible
-> for representing uart of the new project UMS9632 SoC.
+The Genio 510 EVK has following features:
+- MT8370 SoC
+- MT6365 PMIC
+- MT6319 Buck IC
+- 4GB LPDDR4X
+- 64GB eMMC 5.1
+- 12V DC Jack
+- Micro SD card slot
+- Push Button x 4 (Power, Reset, Download and Home Key)
+- LED x 4 (Power, Reset, System on and Charging Status)
+- USB Device Port x 1 (Micro USB Connector)
+- USB Host Port x 1 (Type-C USB Connector)
+- 3.5mm Earphone Jack x 1 (with Microphone Input)
+- 3.5mm Line Out Audio Jack x 1
+- Analog Microphone x 1
+- Digital Microphone x 2
+- Gigabit Ethernet with RJ45 connector
+- HDMI 2.0 TX port with Type A HDMI connector
+- eDP port
+- 3x UART with serial-to-usb converters and micro USB connectors
+- M.2 Slot x 2
+- I2C Capacitive Touch Pad
+- 4-Lane DSI x 2
+- 4-Data Lane CSI x 2
+- I2S Pin header
+- 40-Pin 2.54mm Pin Header x 1 
 
-First part of commit said these are not compatible. Here you claim they
-are compatible, so this is just confusing.
+Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+---
+Louis-Alexis Eyraud (3):
+      dt-bindings: arm: mediatek: add mt8370-evk board
+      arm64: dts: mediatek: add support for MT8370 SoC
+      arm64: dts: mediatek: add device-tree for Genio 510 EVK board
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-> 
-> Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
-> ---
->  Documentation/devicetree/bindings/serial/sprd-uart.yaml | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/sprd-uart.yaml b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-> index a2a5056eba04..35fe9c301cd2 100644
-> --- a/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-> @@ -17,13 +17,17 @@ properties:
->      oneOf:
->        - items:
->            - enum:
-> -              - sprd,sc9632-uart
-
-No, not explained, not justified.
-
->                - sprd,sc9860-uart
->                - sprd,sc9863a-uart
->                - sprd,ums512-uart
->                - sprd,ums9620-uart
->            - const: sprd,sc9836-uart
->        - const: sprd,sc9836-uart
-> +      - items:
-> +          - enum:
-> +              - sprd,sc9632-uart
-> +          - const: sprd,sc9632-uart
-
-This means nothing. Device cannot be compatible with itself.
-
+ .../devicetree/bindings/arm/mediatek.yaml          |    5 +
+ arch/arm64/boot/dts/mediatek/Makefile              |    1 +
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi           |    8 +-
+ .../boot/dts/mediatek/mt8370-genio-510-evk.dts     |   19 +
+ arch/arm64/boot/dts/mediatek/mt8370.dtsi           |   64 ++
+ .../boot/dts/mediatek/mt8390-genio-700-evk.dts     | 1033 +------------------
+ .../boot/dts/mediatek/mt8390-genio-common.dtsi     | 1040 ++++++++++++++++++++
+ 7 files changed, 1134 insertions(+), 1036 deletions(-)
+---
+base-commit: 37136bf5c3a6f6b686d74f41837a6406bec6b7bc
+change-id: 20250113-dts_mt8370-genio-510-3560b8010ba9
 
 Best regards,
-Krzysztof
+-- 
+Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+
 
