@@ -1,264 +1,98 @@
-Return-Path: <devicetree+bounces-138508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7343A10B4C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 16:44:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53A46A10B6B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 16:47:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D724F1686CB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:44:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 333BE188414A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:46:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E49501BD9D8;
-	Tue, 14 Jan 2025 15:41:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZN2Vuu6e"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27D414AD22;
+	Tue, 14 Jan 2025 15:46:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27321BD012;
-	Tue, 14 Jan 2025 15:41:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28A6E23245C;
+	Tue, 14 Jan 2025 15:46:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736869263; cv=none; b=kAzc5REk/cEstN4rXSk+L10I5dti3tJUz1dfBz34AkGH/wC9wJgigSnaUytV64yLgAi9r89N4ELvPRuyva/AjQ6bf13HgntKzV0xB8nTI+TE3K3hKveLTosIPljO5W6i3NNg4AG+Neq007PnGHPwiXDUzHBnWVy3EElstwPoQiw=
+	t=1736869595; cv=none; b=l/G92Sik108rz1vu705iIYYQqIu0XRIrsMfPIeXZVzic8CZChP9h/THUztw4DLuXzf1cdy5nenUPUJIrg5TC3ST7ZF12B1A/Szf9jX3/jYcNefVRqFgpRl7fzfwcQU0zH0vqwVZZZtRBOE8a/vNFNUQVDsa2ZEJvrsY7Gn1BzyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736869263; c=relaxed/simple;
-	bh=qn0liHuV+HqEbBeQ5aYzpXs6UUzCWEWNkcftd2sCrYI=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=Q3/2CcMXn2Q8dKmPBkLq+dyb5SrdhLtdabtf6Op4sW9mZHHqumz76d1I+h0smSajJkHc6titKcmkdHzqhDMXUvEEwQtkZ1afFp4rhZL03vtRxtwsxb9CxGqilR7I1RPnX7++Vk4nLnuneYEA0lEtn5LrtO4kiCYinTj4k801wm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZN2Vuu6e; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736869262; x=1768405262;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version:content-id;
-  bh=qn0liHuV+HqEbBeQ5aYzpXs6UUzCWEWNkcftd2sCrYI=;
-  b=ZN2Vuu6eIZjLpcyaRAiwSGsWRK9mKzaROu3jFt5SHE1t4vSjJlXhLvzs
-   A/2yoebuayhGnOrsQwil/PP2LYBxpTYOWyEuxvv7dr5Zd/IIrVl4ZY2jh
-   y4T1uzx3U1SdJhXo+r4FAPS9zRV2Pi6ie++wjYXjMYr8ZZgqeJElOxQVS
-   Qn9GvXyp6dtsyiQhi3RFuugn88G48R2i/Zlzv0VKUPJf1TQr64j+b9KvI
-   VYge5Te+VnuBLAfQBkAUZuXW8oTE0mKPclfV3Qpf+SxgC+5FVSIVlKLvO
-   1PqPBSN5Gmm69MIknySFIaA1fwgEKeF+robgZoYCa8J2Zkd40HqoLaLfh
-   A==;
-X-CSE-ConnectionGUID: Xht8FwqoRta4GJL6j7tNCg==
-X-CSE-MsgGUID: 8KJloBnlRkaGX15EFQqU8Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11315"; a="36382267"
-X-IronPort-AV: E=Sophos;i="6.12,314,1728975600"; 
-   d="scan'208";a="36382267"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2025 07:41:00 -0800
-X-CSE-ConnectionGUID: 5HLHvUtqSW6Cs32LBcDWVw==
-X-CSE-MsgGUID: 8RF7edNCQ6+5zyjKd/T0yQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,314,1728975600"; 
-   d="scan'208";a="104784037"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.54])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2025 07:40:55 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Tue, 14 Jan 2025 17:40:51 +0200 (EET)
-To: Pengyu Luo <mitltlatltl@gmail.com>
-cc: andersson@kernel.org, bryan.odonoghue@linaro.org, conor+dt@kernel.org, 
-    devicetree@vger.kernel.org, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Hans de Goede <hdegoede@redhat.com>, heikki.krogerus@linux.intel.com, 
-    jdelvare@suse.com, konradybcio@kernel.org, krzk+dt@kernel.org, 
-    linux-arm-msm@vger.kernel.org, linux-hwmon@vger.kernel.org, 
-    LKML <linux-kernel@vger.kernel.org>, linux-pm@vger.kernel.org, 
-    linux-usb@vger.kernel.org, linux@roeck-us.net, 
-    platform-driver-x86@vger.kernel.org, robh@kernel.org, sre@kernel.org
-Subject: Re: [PATCH v3 2/6] platform: arm64: add Huawei Matebook E Go EC
- driver
-In-Reply-To: <20250114083133.607318-1-mitltlatltl@gmail.com>
-Message-ID: <d2a42fc7-37a9-3fcc-4c35-e542ddb112e8@linux.intel.com>
-References: <402b261b-e51d-7121-1e13-b1bc1f5d40f5@linux.intel.com> <20250114083133.607318-1-mitltlatltl@gmail.com>
+	s=arc-20240116; t=1736869595; c=relaxed/simple;
+	bh=aa7NdIF/RsOjWlxdLoQ1fr760uFjUhbc7xZg2HditVM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IMNMoIiu4U0RNzg3fLgcRXBSoyzkjqGsgoxtK1GSt2VKlICGZ355eRl50x4sfBk20GkOsAUOz2LxiQHP41zANbt3vPOaRodrjypbn6MyFUaq0BSHHhVyasaXiJdzPWObcTga/CSl3zz+hJOZoKGbPurQ3iImhSGVD0uKUPLUttQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C884E11FB;
+	Tue, 14 Jan 2025 07:47:01 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 81B6E3F673;
+	Tue, 14 Jan 2025 07:46:28 -0800 (PST)
+Date: Tue, 14 Jan 2025 15:46:25 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Parthiban Nallathambi <parthiban@linumiz.com>, Joerg Roedel
+ <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy
+ <robin.murphy@arm.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai
+ <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland
+ <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Michael Turquette <mturquette@baylibre.com>, Stephen
+ Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Vinod Koul
+ <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ iommu@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-phy@lists.infradead.org
+Subject: Re: [PATCH 10/22] pinctrl: sunxi: add missed lvds pins for
+ a100/a133
+Message-ID: <20250114154625.7d82c858@donnerap.manchester.arm.com>
+In-Reply-To: <CACRpkdY29s6Cz3zvtksLO8sESwxhkVdmGUipVAqiEtix3E1=Vw@mail.gmail.com>
+References: <20241227-a133-display-support-v1-0-13b52f71fb14@linumiz.com>
+	<20241227-a133-display-support-v1-10-13b52f71fb14@linumiz.com>
+	<CACRpkdY29s6Cz3zvtksLO8sESwxhkVdmGUipVAqiEtix3E1=Vw@mail.gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323328-1499874815-1736864506=:1077"
-Content-ID: <03944f23-5ba5-efab-3be2-7e7a72fa6aa4@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Mon, 13 Jan 2025 15:30:24 +0100
+Linus Walleij <linus.walleij@linaro.org> wrote:
 
---8323328-1499874815-1736864506=:1077
-Content-Type: text/plain; CHARSET=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-Content-ID: <839add08-5968-6c24-36a6-f31790b45694@linux.intel.com>
-
-On Tue, 14 Jan 2025, Pengyu Luo wrote:
-> On Tue, Jan 14, 2025 at 2:56=E2=80=AFAM Ilpo J=C3=A4rvinen <ilpo.jarvinen=
-@linux.intel.com> wrote:
-> > On Tue, 14 Jan 2025, Pengyu Luo wrote:
-> >=20
-> > > There are three variants of which Huawei released the first two
-> > > simultaneously.
-> > >
-> > > Huawei Matebook E Go LTE(sc8180x), codename seems to be gaokun2.
-> > > Huawei Matebook E Go(sc8280xp@3.0GHz), codename must be gaokun3. (see=
- [1])
-> > > Huawei Matebook E Go 2023(sc8280xp@2.69GHz), codename should be also =
-gaokun3.
-> > >
-> > > Adding support for the latter two variants for now, this driver shoul=
-d
-> > > also work for the sc8180x variant according to acpi table files, but =
-I
-> > > don't have the device to test yet.
-> > >
-> > > Different from other Qualcomm Snapdragon sc8280xp based machines, the
-> > > Huawei Matebook E Go uses an embedded controller while others use
-> > > a system called PMIC GLink. This embedded controller can be used to
-> > > perform a set of various functions, including, but not limited to:
-> > >
-> > > - Battery and charger monitoring;
-> > > - Charge control and smart charge;
-> > > - Fn_lock settings;
-> > > - Tablet lid status;
-> > > - Temperature sensors;
-> > > - USB Type-C notifications (ports orientation,  DP alt mode HPD);
-> > > - USB Type-C PD (according to observation, up to 48w).
-> > >
-> > > Add a driver for the EC which creates devices for UCSI and power supp=
-ly
-> > > devices.
-> > >
-> > > [1] https://bugzilla.kernel.org/show_bug.cgi?id=3D219645
-> > >
-> > > Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-
-> > > +/**
-> > > + * gaokun_ec_psy_get_smart_charge_enable - check if smart charge is =
-enabled
-> > > + * @ec: The gaokun_ec
-> > > + * @on: The state
-> > > + *
-> > > + * Return: 0 on success or negative error code.
-> > > + */
-> > > +int gaokun_ec_psy_get_smart_charge_enable(struct gaokun_ec *ec, bool=
- *on)
-> > > +{
-> > > +     /* GBAC */
-> > > +     *on =3D 0; /* clear other 3 Bytes */
-> >=20
-> > =3D false (as it's bool)
-> >=20
-> > What that comment means??? The type is bool so what "3 Bytes" ???
-> >=20
+> On Fri, Dec 27, 2024 at 12:09=E2=80=AFPM Parthiban Nallathambi
+> <parthiban@linumiz.com> wrote:
 >=20
-> We will write to the lowest Byte, the higher 3 Bytes are dirty, so clear =
-it.
-
-Are you saying you assume bool is 4 bytes long? I'd be cautious on making=
-=20
-assumptions on sizeof(bool).
-=20
-> We can also implememnt it like this
+> > lvds, lcd, dsi all shares the same GPIO D bank and lvds0
+> > data 3 lines and lvds1 pins are missed, add them.
+> >
+> > Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com> =20
 >=20
-> int ret;
-> u8 resp;
->=20
-> ret =3D gaokun_ec_read_byte(.., &resp);
-> if (ret)
->         return ret;
->=20
-> *on =3D !!resp;
+> Nobody seems to have any objections about this patch and it seems
+> technically correct so I just applied it to the pin control tree.
 
-Yes, I prefer explicit u8 -> bool conversion like this.
+I think Parthiban had troubles with his email server, so not the whole
+series was sent out:
+https://lore.kernel.org/linux-sunxi/314b6bbe-613e-41a6-955e-50db6e11ef8e@li=
+numiz.com/T/#u
+At least that put me off from reviewing it in anger.
 
-> > > +/* Fn lock */
-> > > +static int gaokun_ec_get_fn_lock(struct gaokun_ec *ec, bool *on)
-> > > +{
-> > > +     /* GFRS */
-> > > +     u8 req[] =3D MKREQ(0x02, 0x6B, 0);
-> >=20
-> > Does that random acronym map to one of the literal? In which case a def=
-ine
-> > would be more useful than a comment. (You seem to have a few similar
-> > comments preceeding the req definitions)
-> >=20
->=20
-> They are ACPI method names/identifiers, it will be useful if someone want
-> to locate ACPI's implementations.
+I do have a comment on this, will reply in another mail. So can you hold
+this patch back still, for now?
 
-Okay, I guess it's fine as is then.
-
-
-> > > +static int gaokun_ec_get_temp(struct gaokun_ec *ec, u8 idx, int *tem=
-p)
-> > > +{
-> > > +     /* GTMP */
-> > > +     u8 req[] =3D MKREQ(0x02, 0x61, 1, temp_reg[idx]);
-> > > +     u8 resp[] =3D MKRESP(sizeof(__le16));
-> > > +     __le16 tmp;
-> > > +     int ret;
-> > > +
-> > > +     ret =3D gaokun_ec_read(ec, req, sizeof(resp), resp);
-> > > +     if (ret)
-> > > +             return ret;
-> > > +
-> > > +     extr_resp((u8 *)&tmp, resp, sizeof(tmp));
-> > > +     *temp =3D le16_to_cpu(tmp) * 100; /* convert to HwMon's unit */
-> >=20
-> > extr_resp() does memcpy() but there should be no need to copy anything
-> > here. You just want to have __le16 pointer of the response data data.
-> >=20
->=20
-> I think this would break abstraction, recently, these data are accessed b=
-y
-> extr_resp() and refill_req() only.
-
-If you want to keep doing it like that, not a big deal for me.
-
-There are different ways to do the abstraction though, and not all require
-memcpy() when changing a layer (e.g., a pointer advancing to the other=20
-layer).
-
-> > > +/* -----------------------------------------------------------------=
---------- */
-> > > +/* EC */
-> > > +
-> > > +static irqreturn_t gaokun_ec_irq_handler(int irq, void *data)
-> > > +{
-> > > +     struct gaokun_ec *ec =3D data;
-> > > +     u8 req[] =3D MKREQ(EC_EVENT, EC_QUERY, 0);
-> >=20
-> > Great, here you have named them. Could you name all of the other litera=
-ls
-> > too, please.
->=20
-> I mentioned this in previous version. Most of them are magic, it is hard =
-to
-> generalize them. We could name partial scmd according to specific functio=
-ns
-> (sysfs functions), their function names have implied registers' meaning, =
-and
-> these registers would be never reused in other functions.
-
-Fair (I didn't read every comment made to the previous version).
-
-> > > +/* -----------------------------------------------------------------=
---------- */
-> > > +/* API For UCSI */
-> >=20
-> > for
-> >=20
->=20
-> Agree
-
-For me, you don't need to reply "Agree", "Ack" or something along those=20
-lines if you're going to act on the feedback. Just make sure you don't=20
-forget them :-). It'll save us both some time when we focus on points that=
-=20
-need further discussion.
-
---=20
- i.
---8323328-1499874815-1736864506=:1077--
+Cheers,
+Andre
 
