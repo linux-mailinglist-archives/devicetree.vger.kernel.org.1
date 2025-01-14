@@ -1,255 +1,218 @@
-Return-Path: <devicetree+bounces-138319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4F0FA0FEB9
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 03:25:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 823ACA0FEDA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 03:41:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1E27A7A0569
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 02:25:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 419B03A6A68
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 02:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C832230279;
-	Tue, 14 Jan 2025 02:25:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2770E230276;
+	Tue, 14 Jan 2025 02:41:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZBJ6F12F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kgSHOFB2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com [209.85.214.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4AF542A83;
-	Tue, 14 Jan 2025 02:25:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECD7B8488;
+	Tue, 14 Jan 2025 02:41:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736821546; cv=none; b=c/AFNuQfdlPjr8FLKuWSrwEnjpEnvJn2PsyUWPfhH56DuDELa+4xsoArQAv4KKP2CRUdRbvSXPg/CpKLYmeB4zPv1zLGGRzjGPQlyrQHweDe3Uzd/BsjB/+lKovwuN0nJ/k2Ih3iK4N/sQq9dY7ejJTdwFGh/e90/+cIjCH4yWg=
+	t=1736822506; cv=none; b=IIvA4AHQK6TphCALqJVmBk1YUWZ0Kx24peoORtn+oJ25J8ZByIL2rN/0mxgcRdIzhme7krvmVU+l98htAvgIlJwo2NiFnY6NFU+o+CCT8StisdMUe5vUnfndUghjqqIFiAtYPzY2jQ5Sq/FvK9msRmEAT75K7Xcit1SejfJ8YLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736821546; c=relaxed/simple;
-	bh=9YIL/iwPETtS3Uc4g5zKiFIi3rMywxSN4XY/P1/T/g8=;
+	s=arc-20240116; t=1736822506; c=relaxed/simple;
+	bh=RFaFgbO3WympoeYCTU1TUued9NzMv/ua64e3Tsa/l+I=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=n5vrNpJwH8Y+Z6aShkRJRaW+O3pXIwG198LZB0/lo+3WIrt15RXtuw4OPJYadt+aH5g24Jy3K5fov3684XZi2su85wuuSYCHjc8+GXO4Srv5ram8KBpsg3jpwMIU+I+6DtYYvG0Rsi2bzNuBEqMlvssj1RhXiQfhlc2W7lauEvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZBJ6F12F; arc=none smtp.client-ip=209.85.214.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f193.google.com with SMTP id d9443c01a7336-2163bd70069so89844155ad.0;
-        Mon, 13 Jan 2025 18:25:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736821544; x=1737426344; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ovYJILSVRDnDMfqXl3o1WSHf4vb82agxa/r/cx4UTlg=;
-        b=ZBJ6F12FacPZDCjCKay3vj9RpQx2uBtM/P0VVw16IjO41cp0LBXOsSaqdqU8WYl3oh
-         1buqUpO/uIsRV56h8u6y+eYndPtoV3OAGOlmiapUQFzRWqs1iiizodyrg9gvDB45bEse
-         SBVlTxlTT5xhUoTtSI/N+QCbRH1hsKwNl3AxeNnLuU1o2M5vwpmT59v+PSZXfXLHKBU3
-         5uy52dIlypoCS3ZA9bMvoSz4OC1PtSI/Q4OUUUixhDXhui0yqZnL3vErX7Y02krhYuF8
-         G4w3stB4vFMLzTryclytbQVgDUBCrUSff2+AWHd3Ps32suo5H6u8G1TY5mFzRUSIYx2C
-         GMJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736821544; x=1737426344;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ovYJILSVRDnDMfqXl3o1WSHf4vb82agxa/r/cx4UTlg=;
-        b=Rw6P0tpLrlhsgOJlNbFKM0TRUZzICiJBF35M5KQxdMiOhVU9puCxjtMgIay59reCY4
-         9pS67nWa9ZbpG61j2ObI+nglON/O+zaeqN/ozs8TLd1FPfBjlBYnq/d326rcbIAVrQ9m
-         PYkCoy8Uy4OK9be2a0prZptNtC1e+Q7/Z7zwDGNYYR2xtGospA5rp2w0uY0fF1U8yuU9
-         Xo00nIvdGmNyn9ectF2lJERvfBvpQ3gxgGr9iGhEQEJ1SO2QOSkGunjIUE5YyYnVVc0G
-         1jvXWqDl9nw6R6XQqv13GhPpA9brUC18apM8+PB1kfd0/jtiT6VHLSldNWn4E7SELmju
-         3nMg==
-X-Forwarded-Encrypted: i=1; AJvYcCVcdNx/96mlMlMc2nroIBV+pGwsT2TafmzhRRYwdJTROPhZWym1pDy+fYFHOtE6UHh2rQB5v5YLnx1V@vger.kernel.org, AJvYcCXJ6U+zVKwecu2BfbYyoQpBNIrUW/NomqUhzoczKHXpRodmCIw1NDrTazk8f9+/O3feFRYmidAmNSIJCuo8@vger.kernel.org, AJvYcCXQ4dofLX2McslpNZAnoyoy76Btf1q6YAcFbO2zVua52VMCp+AAd86Uqs6swAKUkBwk82vbNyh9ry1PZfc3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQMC2RUNSeF1iPNydHrrwd+FrwDLOtDnlXWqVN+duATeJdptAT
-	D8Nz9ua3mxBI1Pt3NZdlC8Xj7hG8m6IGPvI7MguyBXVjww/DsPQdtuNlvoZayf/2IlPjgcY+3FU
-	4LaIoe/+T+c61aEQO88OYJME4Eyw=
-X-Gm-Gg: ASbGncubZhr59hnGv78gwUAfhDxkDmpBhv4/n3HB/fWNADiV2EJEXiXBUAR6mtjVZPh
-	6mM0UgOXq9AHIzfcN4oNXOpD6xTLQjQ1dvh5Cn8M=
-X-Google-Smtp-Source: AGHT+IGP6i//JJgpTX27oV9PRMOvdfH3t41hB8kWi16VUWsAtyGttoeJ6QkexjvS/wDs/fL4592N/MAEALXiO9jTX3Q=
-X-Received: by 2002:a17:902:cec1:b0:216:3c36:69a7 with SMTP id
- d9443c01a7336-21a83ffbe22mr356266955ad.45.1736821544065; Mon, 13 Jan 2025
- 18:25:44 -0800 (PST)
+	 To:Cc:Content-Type; b=raa93M/1kKtrFPp6+fL+CaGE2MJVwYDghNIpmuWmO4B/t1/AmXhSWqgXXmXxSdPpF5Zejm6OCi1REgTZw8CUlskhP02gqfEijKaVrBldNjq7L1S5ftGxGpi6jW47UiVdHPgb/bgLHwwMvrKfOAdEnAlVwTKKxDElIxGUJZQrLaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kgSHOFB2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CD4CC4CED6;
+	Tue, 14 Jan 2025 02:41:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736822505;
+	bh=RFaFgbO3WympoeYCTU1TUued9NzMv/ua64e3Tsa/l+I=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=kgSHOFB2V+koPUWDz+1Z2QWD2LKbOnZlD94THG7bu76RaJvxNTscoAsReYIo51wjJ
+	 SjmSxd6IZIMFpaefnmfyVFZkB4uEpwpC8FmLFhzH/hboaL1zpfGIShY9BTGEwGKUD1
+	 qDrx7hKvjQIKgJVTfqrpsyd4ww3z236IkVMqRPmqWyMgnQW7vctfVY/su3q5ZxRGXr
+	 t7f1CWWTA5aqBqDJcguO47V/w71L6lFxYPLYzLVGiTfjUkTLLnUqr3QQNN+sbJv/Xv
+	 oPFNwZCWia1zrYHKFMfVsyvBTP9OWWFH0OZvtych3uSmw9q/ShjlvVc5Bss/Tm5yVM
+	 XBC6UIv6ZT08A==
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-53e3778bffdso5180544e87.0;
+        Mon, 13 Jan 2025 18:41:45 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCU0BKNBufuubRztxSo+EWLDu7IscA4oow+w+ZgN6futPchpOTrcaJTTPwAelP9emsNgZaUdaenC1sV/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyx+yWV60Vg3aAhkQxu76EusnOtAMID3UYJAEaQwQRH14w8JmOf
+	nHVIn+YcKJfVNahuDnWrVV7x+3ACtYLG1SLWP/dUJ3SOSBDBk8YAvN5Lih87d5UrQcJzhMGMUmc
+	Xt2pNZcUu6niwkmHK3g31iYGiaEE=
+X-Google-Smtp-Source: AGHT+IGwUhYAH2rnXf/w/VZURPd81phBaedUSJJDsnKne9UNQSJzAyJtQQypVFOs1jxCbsrtgbj1DEFvpSFMkUCGzgo=
+X-Received: by 2002:a05:6512:33c9:b0:542:2905:ae52 with SMTP id
+ 2adb3069b0e04-542845b0a89mr7081980e87.45.1736822504065; Mon, 13 Jan 2025
+ 18:41:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250113031917.3354988-1-Wenhua.Lin@unisoc.com>
- <20250113031917.3354988-3-Wenhua.Lin@unisoc.com> <CAAfSe-uAsDfDvDbOdEqrR=0=U-bfSuDpLSw_EFv8=GNMGDEvgw@mail.gmail.com>
-In-Reply-To: <CAAfSe-uAsDfDvDbOdEqrR=0=U-bfSuDpLSw_EFv8=GNMGDEvgw@mail.gmail.com>
-From: wenhua lin <wenhua.lin1994@gmail.com>
-Date: Tue, 14 Jan 2025 10:25:32 +0800
-X-Gm-Features: AbW1kvYznCjGzoZXOIKRBOGNeRQ6G5op6dSUTq91uCjIqFSdjCeP_U0CyB0nVMw
-Message-ID: <CAB9BWhcnagYYtdq1+-r-MrEmr45gTPg1PnzAx-Q6YqaY1vNR2g@mail.gmail.com>
-Subject: Re: [PATCH V2 2/2] serial: sprd: Add support for sc9632
-To: Chunyan Zhang <zhang.lyra@gmail.com>
-Cc: Wenhua Lin <Wenhua.Lin@unisoc.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	Cixi Geng <cixi.geng@linux.dev>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	Xiongpeng Wu <xiongpeng.wu@unisoc.com>, Zhaochen Su <Zhaochen.Su@unisoc.com>, 
-	Zhirong Qiu <Zhirong.Qiu@unisoc.com>
+References: <20241222094701.207592-1-masahiroy@kernel.org> <05f5eebf-8253-48dd-b3bb-b5bf07b04598@amd.com>
+In-Reply-To: <05f5eebf-8253-48dd-b3bb-b5bf07b04598@amd.com>
+From: Masahiro Yamada <masahiroy@kernel.org>
+Date: Tue, 14 Jan 2025 11:41:07 +0900
+X-Gmail-Original-Message-ID: <CAK7LNAQDj9x7hHeSO=5PHpswRm6ku3bb1RW9fVZw9N+xswPQrA@mail.gmail.com>
+X-Gm-Features: AbW1kvZlVe8Zu5-Hf86bouZ-cGhRVEbLaakQsgia3my8xgyp-aQIzJweUeyXG-4
+Message-ID: <CAK7LNAQDj9x7hHeSO=5PHpswRm6ku3bb1RW9fVZw9N+xswPQrA@mail.gmail.com>
+Subject: Re: [PATCH] microblaze: migrate to the generic rule for built-in DTB
+To: Michal Simek <michal.simek@amd.com>
+Cc: linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 13, 2025 at 3:13=E2=80=AFPM Chunyan Zhang <zhang.lyra@gmail.com=
-> wrote:
+On Wed, Jan 8, 2025 at 1:37=E2=80=AFAM Michal Simek <michal.simek@amd.com> =
+wrote:
 >
-> On Mon, 13 Jan 2025 at 11:20, Wenhua Lin <Wenhua.Lin@unisoc.com> wrote:
+> Hi Masahiro,
+>
+> On 12/22/24 10:46, Masahiro Yamada wrote:
+> > Commit 654102df2ac2 ("kbuild: add generic support for built-in boot
+> > DTBs") introduced generic support for built-in DTBs.
 > >
-> > Due to the platform's new project uart ip upgrade,
-> > the new project's timeout interrupt needs to use bit17
-> > while other projects' timeout interrupt needs to use
-> > bit13, using private data to adapt and be compatible
-> > with all projects.
+> > Select GENERIC_BUILTIN_DTB to use the generic rule.
 > >
->
-> It seems that this patch has got merged into the last release, why do
-> you resend this?
-
-Hi Chunyan:
-  I'm sorry, I didn't realize that this commit had already been merged.
-  I resubmitted PATCH V2 to fix the issue with tags[1].
-  I made a mistake. Thank you for reminding me.
-
-Thanks
-
->
-> > Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
+> > MicroBlaze is the only architecture that places the built-in DTB to its
+> > own section, __fdt_blob, rather than the standard location defined by
+> > the KERNEL_DTB() macro.
+> >
+> > For backward compatibility, arch/microblaze/boot/dts/system.dtb is stil=
+l
+> > placed in the __fdt_blob section, and possibly overwritten by an extern=
+el
+> > DTB passed via the r7 register.
+> >
+> > Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 > > ---
-> >  drivers/tty/serial/sprd_serial.c | 41 ++++++++++++++++++++++++++++----
-> >  1 file changed, 36 insertions(+), 5 deletions(-)
 > >
-> > diff --git a/drivers/tty/serial/sprd_serial.c b/drivers/tty/serial/sprd=
-_serial.c
-> > index 3fc54cc02a1f..882580c3cf37 100644
-> > --- a/drivers/tty/serial/sprd_serial.c
-> > +++ b/drivers/tty/serial/sprd_serial.c
-> > @@ -53,10 +53,12 @@
-> >  #define SPRD_IEN_TX_EMPTY      BIT(1)
-> >  #define SPRD_IEN_BREAK_DETECT  BIT(7)
-> >  #define SPRD_IEN_TIMEOUT       BIT(13)
-> > +#define SPRD_IEN_DATA_TIMEOUT  BIT(17)
+> >   arch/microblaze/Kbuild                | 1 -
+> >   arch/microblaze/Kconfig               | 5 +++++
+> >   arch/microblaze/boot/dts/Makefile     | 5 -----
+> >   arch/microblaze/boot/dts/linked_dtb.S | 2 --
+> >   arch/microblaze/kernel/vmlinux.lds.S  | 2 +-
+> >   5 files changed, 6 insertions(+), 9 deletions(-)
+> >   delete mode 100644 arch/microblaze/boot/dts/linked_dtb.S
 > >
-> >  /* interrupt clear register */
-> >  #define SPRD_ICLR              0x0014
-> >  #define SPRD_ICLR_TIMEOUT      BIT(13)
-> > +#define SPRD_ICLR_DATA_TIMEOUT BIT(17)
+> > diff --git a/arch/microblaze/Kbuild b/arch/microblaze/Kbuild
+> > index 077a0b8e9615..70510389eb92 100644
+> > --- a/arch/microblaze/Kbuild
+> > +++ b/arch/microblaze/Kbuild
+> > @@ -2,7 +2,6 @@
+> >   obj-y                       +=3D kernel/
+> >   obj-y                       +=3D mm/
+> >   obj-$(CONFIG_PCI)   +=3D pci/
+> > -obj-y                        +=3D boot/dts/
 > >
-> >  /* line control register */
-> >  #define SPRD_LCR               0x0018
-> > @@ -102,6 +104,7 @@
-> >  #define SPRD_IMSR_TX_FIFO_EMPTY        BIT(1)
-> >  #define SPRD_IMSR_BREAK_DETECT BIT(7)
-> >  #define SPRD_IMSR_TIMEOUT      BIT(13)
-> > +#define SPRD_IMSR_DATA_TIMEOUT BIT(17)
-> >  #define SPRD_DEFAULT_SOURCE_CLK        26000000
+> >   # for cleaning
+> >   subdir- +=3D boot
+> > diff --git a/arch/microblaze/Kconfig b/arch/microblaze/Kconfig
+> > index f18ec02ddeb2..4ed8ca89f0c9 100644
+> > --- a/arch/microblaze/Kconfig
+> > +++ b/arch/microblaze/Kconfig
+> > @@ -10,6 +10,7 @@ config MICROBLAZE
+> >       select ARCH_MIGHT_HAVE_PC_PARPORT
+> >       select ARCH_WANT_IPC_PARSE_VERSION
+> >       select BUILDTIME_TABLE_SORT
+> > +     select GENERIC_BUILTIN_DTB
+> >       select TIMER_OF
+> >       select CLONE_BACKWARDS3
+> >       select COMMON_CLK
+> > @@ -47,6 +48,10 @@ config MICROBLAZE
+> >       select TRACE_IRQFLAGS_SUPPORT
+> >       select GENERIC_IRQ_MULTI_HANDLER
 > >
-> >  #define SPRD_RX_DMA_STEP       1
-> > @@ -118,6 +121,12 @@ struct sprd_uart_dma {
-> >         bool enable;
-> >  };
-> >
-> > +struct sprd_uart_data {
-> > +       unsigned int timeout_ien;
-> > +       unsigned int timeout_iclr;
-> > +       unsigned int timeout_imsr;
-> > +};
+> > +config BUILTIN_DTB_NAME
+> > +     string
+> > +     default "system"
 > > +
-> >  struct sprd_uart_port {
-> >         struct uart_port port;
-> >         char name[16];
-> > @@ -126,6 +135,7 @@ struct sprd_uart_port {
-> >         struct sprd_uart_dma rx_dma;
-> >         dma_addr_t pos;
-> >         unsigned char *rx_buf_tail;
-> > +       const struct sprd_uart_data *pdata;
-> >  };
+> >   # Endianness selection
+> >   choice
+> >       prompt "Endianness selection"
+> > diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot/d=
+ts/Makefile
+> > index b84e2cbb20ee..87c1d25ff096 100644
+> > --- a/arch/microblaze/boot/dts/Makefile
+> > +++ b/arch/microblaze/boot/dts/Makefile
+> > @@ -4,11 +4,6 @@
+> >   dtb-y :=3D system.dtb
 > >
-> >  static struct sprd_uart_port *sprd_port[UART_NR_MAX];
-> > @@ -134,6 +144,18 @@ static int sprd_ports_num;
-> >  static int sprd_start_dma_rx(struct uart_port *port);
-> >  static int sprd_tx_dma_config(struct uart_port *port);
-> >
-> > +static const struct sprd_uart_data sc9836_data =3D {
-> > +       .timeout_ien =3D SPRD_IEN_TIMEOUT,
-> > +       .timeout_iclr =3D SPRD_ICLR_TIMEOUT,
-> > +       .timeout_imsr =3D SPRD_IMSR_TIMEOUT,
-> > +};
-> > +
-> > +static const struct sprd_uart_data sc9632_data =3D {
-> > +       .timeout_ien =3D SPRD_IEN_DATA_TIMEOUT,
-> > +       .timeout_iclr =3D SPRD_ICLR_DATA_TIMEOUT,
-> > +       .timeout_imsr =3D SPRD_IMSR_DATA_TIMEOUT,
-> > +};
-> > +
-> >  static inline unsigned int serial_in(struct uart_port *port,
-> >                                      unsigned int offset)
-> >  {
-> > @@ -637,6 +659,8 @@ static irqreturn_t sprd_handle_irq(int irq, void *d=
-ev_id)
-> >  {
-> >         struct uart_port *port =3D dev_id;
-> >         unsigned int ims;
-> > +       struct sprd_uart_port *sp =3D
-> > +               container_of(port, struct sprd_uart_port, port);
-> >
-> >         uart_port_lock(port);
-> >
-> > @@ -647,14 +671,14 @@ static irqreturn_t sprd_handle_irq(int irq, void =
-*dev_id)
-> >                 return IRQ_NONE;
-> >         }
-> >
-> > -       if (ims & SPRD_IMSR_TIMEOUT)
-> > -               serial_out(port, SPRD_ICLR, SPRD_ICLR_TIMEOUT);
-> > +       if (ims & sp->pdata->timeout_imsr)
-> > +               serial_out(port, SPRD_ICLR, sp->pdata->timeout_iclr);
-> >
-> >         if (ims & SPRD_IMSR_BREAK_DETECT)
-> >                 serial_out(port, SPRD_ICLR, SPRD_IMSR_BREAK_DETECT);
-> >
-> >         if (ims & (SPRD_IMSR_RX_FIFO_FULL | SPRD_IMSR_BREAK_DETECT |
-> > -                  SPRD_IMSR_TIMEOUT))
-> > +                  sp->pdata->timeout_imsr))
-> >                 sprd_rx(port);
-> >
-> >         if (ims & SPRD_IMSR_TX_FIFO_EMPTY)
-> > @@ -729,7 +753,7 @@ static int sprd_startup(struct uart_port *port)
-> >         /* enable interrupt */
-> >         uart_port_lock_irqsave(port, &flags);
-> >         ien =3D serial_in(port, SPRD_IEN);
-> > -       ien |=3D SPRD_IEN_BREAK_DETECT | SPRD_IEN_TIMEOUT;
-> > +       ien |=3D SPRD_IEN_BREAK_DETECT | sp->pdata->timeout_ien;
-> >         if (!sp->rx_dma.enable)
-> >                 ien |=3D SPRD_IEN_RX_FULL;
-> >         serial_out(port, SPRD_IEN, ien);
-> > @@ -1184,6 +1208,12 @@ static int sprd_probe(struct platform_device *pd=
-ev)
-> >
-> >         up->mapbase =3D res->start;
-> >
-> > +       sport->pdata =3D of_device_get_match_data(&pdev->dev);
-> > +       if (!sport->pdata) {
-> > +               dev_err(&pdev->dev, "get match data failed!\n");
-> > +               return -EINVAL;
-> > +       }
-> > +
-> >         irq =3D platform_get_irq(pdev, 0);
-> >         if (irq < 0)
-> >                 return irq;
-> > @@ -1248,7 +1278,8 @@ static int sprd_resume(struct device *dev)
-> >  static SIMPLE_DEV_PM_OPS(sprd_pm_ops, sprd_suspend, sprd_resume);
-> >
-> >  static const struct of_device_id serial_ids[] =3D {
-> > -       {.compatible =3D "sprd,sc9836-uart",},
-> > +       {.compatible =3D "sprd,sc9836-uart", .data =3D &sc9836_data},
-> > +       {.compatible =3D "sprd,sc9632-uart", .data =3D &sc9632_data},
-> >         {}
-> >  };
-> >  MODULE_DEVICE_TABLE(of, serial_ids);
-> > --
-> > 2.34.1
-> >
+> >   ifneq ($(DTB),)
+> > -obj-y +=3D linked_dtb.o
+> > -
+> > -# Ensure system.dtb exists
+> > -$(obj)/linked_dtb.o: $(obj)/system.dtb
+> > -
+> >   # Generate system.dtb from $(DTB).dtb
+> >   ifneq ($(DTB),system)
+> >   $(obj)/system.dtb: $(obj)/$(DTB).dtb
+> > diff --git a/arch/microblaze/boot/dts/linked_dtb.S b/arch/microblaze/bo=
+ot/dts/linked_dtb.S
+> > deleted file mode 100644
+> > index 23345af3721f..000000000000
+> > --- a/arch/microblaze/boot/dts/linked_dtb.S
+> > +++ /dev/null
+> > @@ -1,2 +0,0 @@
+> > -.section __fdt_blob,"a"
+> > -.incbin "arch/microblaze/boot/dts/system.dtb"
+> > diff --git a/arch/microblaze/kernel/vmlinux.lds.S b/arch/microblaze/ker=
+nel/vmlinux.lds.S
+> > index ae50d3d04a7d..e86f9ca8e979 100644
+> > --- a/arch/microblaze/kernel/vmlinux.lds.S
+> > +++ b/arch/microblaze/kernel/vmlinux.lds.S
+> > @@ -47,7 +47,7 @@ SECTIONS {
+> >       . =3D ALIGN (8) ;
+> >       __fdt_blob : AT(ADDR(__fdt_blob) - LOAD_OFFSET) {
+> >               _fdt_start =3D . ;                /* place for fdt blob *=
+/
+> > -             *(__fdt_blob) ;                 /* Any link-placed DTB */
+> > +             *(.dtb.init.rodata) ;           /* Any link-placed DTB */
+> >               . =3D _fdt_start + 0x10000;       /* Pad up to 64kbyte */
+> >               _fdt_end =3D . ;
+> >       }
+>
+> This patch is better then previous one but still it is changing behavior =
+of
+> build. When this patch is applied linux.bin contains dtb which is not the=
+ same
+> behavior as before (which was empty).
+> DTB should be filled when simpleImage.<dt> is built.
+
+Why is it a problem?
+
+Microblaze always keeps 64kbyte space in case
+an external DTB is passed from a boot-loader.
+
+Even if the default system.dtb is placed there,
+nothing is wasted.
+
+
+One more thing, Microblaze is only the architecture
+that determines the built-in DTB by the command line.
+
+I do not think it is a sensible way.
+
+    $ make linux.bin simpleImage.foo
+      --> linux.bin also contains the builtin device tree
+
+    $ make simpleImage.foo simpleImage.bar
+      --> does not work
+
+
+All other architectures determinantes the built-in DTB
+by CONFIG option.
+
+
+--=20
+Best Regards
+Masahiro Yamada
 
