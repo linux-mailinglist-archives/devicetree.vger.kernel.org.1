@@ -1,121 +1,144 @@
-Return-Path: <devicetree+bounces-138298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (unknown [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B99CA0CECF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 01:04:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02DB1A0F7FC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 01:08:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55EA51679DB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:04:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F34FA16839B
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 00:08:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF5512914;
-	Tue, 14 Jan 2025 00:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8F5D4A3E;
+	Tue, 14 Jan 2025 00:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r1CZwdgd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gOTFj0wR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B13C517FE;
-	Tue, 14 Jan 2025 00:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CA0A1361;
+	Tue, 14 Jan 2025 00:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736813091; cv=none; b=h8sVX0Tmh91gZP89TB6zydy9u3gmQENnOIGu+/aDl/IT2NKrrknT81sM/jVnd6ScYDrXbFW8ueJE8icng3YgkuK9/nM6gsk9oFTDDWf2XnmS435bWeDxw2Y03APJL67w31x3MMA+U9NZ/3BJKXRneyL2bpWss94HqsRkUQVJ9ZY=
+	t=1736813249; cv=none; b=VoI0iEz/e5tKZPKLcmzHfTgy+s+DLYc0yC3Nzf4NVqoEmbTFCmhsSDjFrMOjNkD85iB9y7rK7gl+8vx728OIzRMDFgAQW8e9+9DwlsInuayxtx3sWX7gCOY6t6OnEuVpbXYI1TkAyYuX/N+rRkTvzbwy35I3CR5grNRerWvJVbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736813091; c=relaxed/simple;
-	bh=NrgMw8h+fitbqMNvG385KgsvxtlRiPe0cIHOPL1U6Vg=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=SE4beW0QPups5E1qlNVMyIaE1alT+aRX5emKasxnYbqFyC+YKXaIkGTbRQo1RONF/MoNMOVSl2pEoAYbPn4TgvdAkTosF3GT42bpOKnyj926QLulX1lu3FXoZLvEGy/whHSckkPhKiGKjeEtrEijCBvlJzU9w762JrEhLN20cYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r1CZwdgd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16401C4CED6;
-	Tue, 14 Jan 2025 00:04:51 +0000 (UTC)
+	s=arc-20240116; t=1736813249; c=relaxed/simple;
+	bh=YFHHVZRBvQPdmgWH/zLMVMHmLYNVEI8tzbQwTlW2Ih0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=shlGn5xXtL4FVnUVkxjtUwk2I0/5rx+xmjI3q2/S1TuxAPiedjT09y4lxDb3Nh+K0nQVgqOJQSGlLJKwt7ks12QQuBKV+pv5KH/yTvrFSzFhwcY4HKCSe2PHpCxxfHMWUohJDjELtl+p08ACD9N3UD5aVoYsEmDFl2iT4WFXeFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gOTFj0wR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC8A6C4CED6;
+	Tue, 14 Jan 2025 00:07:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736813091;
-	bh=NrgMw8h+fitbqMNvG385KgsvxtlRiPe0cIHOPL1U6Vg=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=r1CZwdgdgX6W24ySZ8xoXJ8FoA5BU2ZIs96Owad1lg66t2hErixPRqi7xRpLfRYxO
-	 gIIDE4jFe2Y4VCxtIxUGYQkqnrAscy0Qm2AQPXxTD21BMEn42/lV6wvtBNAV3AEvNS
-	 4hEd0zFUO5CZdG59s//mzyXiiS0+uyB8z0LpreNyb6KCXYQWTx0pruRUJZuBa424Sa
-	 rZujphiQsDzskqZgYyE5hM8gdJVddaBo8u3KgiRnZFcfO4PbRA6nldsVeqwd3YaxSV
-	 fNXd8vhlPcZ+I0mvN+gaetlnJrkAUeYc8Wd6TK+6dk8lGTda6C1HUAGSa2Fgo+2mpi
-	 FHUAF1ejMU8rQ==
-Date: Mon, 13 Jan 2025 18:04:50 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1736813249;
+	bh=YFHHVZRBvQPdmgWH/zLMVMHmLYNVEI8tzbQwTlW2Ih0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gOTFj0wRO1DfGUp6+VPCpqUafTsi7L81Xr/N1PyvWv1a0wb1I4O86uruKRYFwp/yb
+	 igPuym1uXdVCyaO46OsTWZUuJAeWGwjtlxxC8TFV3UYQ7vSkFlpWbKNa+ttNjOZmS8
+	 DqED6du4VBtXZGo24cMncrjO+hPNftFqjQ2ivI/4lO/jbzA89ZglO+T2AL/lgVeyl+
+	 ri9/TJeJp7GMU4FOlVQfq5iRNAJHTgDVY59qI3DaMhQXZ6DWnW+B3v2AiqX+EF7MvC
+	 xzTniRwae/Ojf+PxOth+YwBTUMArkHFSH4ZpuPDAh+QcNg4CK4BoHzKC4ZKB/x+ki5
+	 M53UnNGvTfAmQ==
+Date: Mon, 13 Jan 2025 18:07:27 -0600
+From: Rob Herring <robh@kernel.org>
+To: Ninad Palsule <ninad@linux.ibm.com>
+Cc: linux-aspeed@lists.ozlabs.org, davem@davemloft.net, edumazet@google.com,
+	andrew@codeconstruct.com.au, netdev@vger.kernel.org,
+	kuba@kernel.org, joel@jms.id.au,
+	linux-arm-kernel@lists.infradead.org,
+	openipmi-developer@lists.sourceforge.net, conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org, pabeni@redhat.com,
+	ratbert@faraday-tech.com, eajames@linux.ibm.com,
+	devicetree@vger.kernel.org, andrew+netdev@lunn.ch, minyard@acm.org,
+	krzk+dt@kernel.org
+Subject: Re: [PATCH v3 00/10] DTS updates for system1 BMC
+Message-ID: <20250114000727.GA3693942-robh@kernel.org>
+References: <20250108163640.1374680-1-ninad@linux.ibm.com>
+ <173637565834.1164228.2385240280664730132.robh@kernel.org>
+ <a8893ef1-251d-447c-b42f-8f1ebc9623bb@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, linux-arm-kernel@lists.infradead.org, 
- Shawn Guo <shawnguo@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, imx@lists.linux.dev
-To: Frank Li <Frank.Li@nxp.com>
-In-Reply-To: <20250113-imx95_15x15-v1-0-8c20cbaab9ed@nxp.com>
-References: <20250113-imx95_15x15-v1-0-8c20cbaab9ed@nxp.com>
-Message-Id: <173681284597.3684963.16712339968479881126.robh@kernel.org>
-Subject: Re: [PATCH 0/4] arm64: dts: add imx95_15x15_evk boards support
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a8893ef1-251d-447c-b42f-8f1ebc9623bb@linux.ibm.com>
 
-
-On Mon, 13 Jan 2025 13:01:58 -0500, Frank Li wrote:
-> Add related binding doc.
+On Mon, Jan 13, 2025 at 01:52:01PM -0600, Ninad Palsule wrote:
+> Hello,
 > 
-> Add imx95_15x15_evk boards, which have big difference with imx95_19x19_evk
-> boards.
+> On 1/8/25 16:34, Rob Herring (Arm) wrote:
+> > On Wed, 08 Jan 2025 10:36:28 -0600, Ninad Palsule wrote:
+> > > Hello,
+> > > 
+> > > Please review the patch set.
+> > > 
+> > > V3:
+> > > ---
+> > >    - Fixed dt_binding_check warnings in ipmb-dev.yaml
+> > >    - Updated title and description in ipmb-dev.yaml file.
+> > >    - Updated i2c-protocol description in ipmb-dev.yaml file.
+> > > 
+> > > V2:
+> > > ---
+> > >    Fixed CHECK_DTBS errors by
+> > >      - Using generic node names
+> > >      - Documenting phy-mode rgmii-rxid in ftgmac100.yaml
+> > >      - Adding binding documentation for IPMB device interface
+> > > 
+> > > NINAD PALSULE (7):
+> > >    ARM: dts: aspeed: system1: Add IPMB device
+> > >    ARM: dts: aspeed: system1: Add GPIO line name
+> > >    ARM: dts: aspeed: system1: Add RGMII support
+> > >    ARM: dts: aspeed: system1: Reduce sgpio speed
+> > >    ARM: dts: aspeed: system1: Update LED gpio name
+> > >    ARM: dts: aspeed: system1: Remove VRs max8952
+> > >    ARM: dts: aspeed: system1: Mark GPIO line high/low
+> > > 
+> > > Ninad Palsule (3):
+> > >    dt-bindings: net: faraday,ftgmac100: Add phys mode
+> > >    bindings: ipmi: Add binding for IPMB device intf
+> > >    ARM: dts: aspeed: system1: Disable gpio pull down
+> > > 
+> > >   .../devicetree/bindings/ipmi/ipmb-dev.yaml    |  44 +++++
+> > >   .../bindings/net/faraday,ftgmac100.yaml       |   3 +
+> > >   .../dts/aspeed/aspeed-bmc-ibm-system1.dts     | 177 ++++++++++++------
+> > >   3 files changed, 165 insertions(+), 59 deletions(-)
+> > >   create mode 100644 Documentation/devicetree/bindings/ipmi/ipmb-dev.yaml
+> > > 
+> > > --
+> > > 2.43.0
+> > > 
+> > > 
+> > > 
+> > 
+> > My bot found new DTB warnings on the .dts files added or changed in this
+> > series.
+> > 
+> > Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> > are fixed by another series. Ultimately, it is up to the platform
+> > maintainer whether these warnings are acceptable or not. No need to reply
+> > unless the platform maintainer has comments.
+> > 
+> > If you already ran DT checks and didn't see these error(s), then
+> > make sure dt-schema is up to date:
+> > 
+> >    pip3 install dtschema --upgrade
+> > 
+> > 
+> > New warnings running 'make CHECK_DTBS=y aspeed/aspeed-bmc-ibm-system1.dtb' for 20250108163640.1374680-1-ninad@linux.ibm.com:
+> > 
+> > arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: gpio@1e780000: 'hog-0', 'hog-1', 'hog-2', 'hog-3' do not match any of the regexes: 'pinctrl-[0-9]+'
+> > 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
-> Frank Li (4):
->       dt-bindings: arm: fsl: add i.MX95 15x15 EVK board
->       arm64: dts: imx95: Add #io-channel-cells = <1> for adc node
->       arm64: dts: imx95: Add i3c1 and i3c2
->       arm64: dts: imx95: Add imx95-15x15-evk support
-> 
->  Documentation/devicetree/bindings/arm/fsl.yaml    |    1 +
->  arch/arm64/boot/dts/freescale/Makefile            |    1 +
->  arch/arm64/boot/dts/freescale/imx95-15x15-evk.dts | 1064 +++++++++++++++++++++
->  arch/arm64/boot/dts/freescale/imx95.dtsi          |   27 +
->  4 files changed, 1093 insertions(+)
-> ---
-> base-commit: 1300d5fe48f1e09a9a7d2dfe3b2e74be8ccaa322
-> change-id: 20250110-imx95_15x15-6a64db8c0187
-> 
-> Best regards,
-> ---
-> Frank Li <Frank.Li@nxp.com>
-> 
-> 
-> 
+> This is a false positive. So ignoring it.
 
+No, it is not. You need to define hog nodes in aspeed,ast2400-gpio.yaml. 
+See other GPIO controller bindings that do this.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/' for 20250113-imx95_15x15-v1-0-8c20cbaab9ed@nxp.com:
-
-arch/arm64/boot/dts/freescale/imx95-15x15-evk.dtb: i3c@42520000: Unevaluated properties are not allowed ('inctrl-names' was unexpected)
-	from schema $id: http://devicetree.org/schemas/i3c/silvaco,i3c-master.yaml#
-
-
-
-
-
+Rob
 
