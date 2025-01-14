@@ -1,153 +1,335 @@
-Return-Path: <devicetree+bounces-138312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90A5EA0FE2D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 02:39:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21477A0FE5D
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 03:00:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CC991699F0
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 01:39:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B896169D04
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 02:00:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6EEB22FE02;
-	Tue, 14 Jan 2025 01:39:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I+y1JCH9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A91B823027D;
+	Tue, 14 Jan 2025 02:00:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F3B212D70;
-	Tue, 14 Jan 2025 01:39:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BBAB230277;
+	Tue, 14 Jan 2025 02:00:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736818752; cv=none; b=jFUjgZ5Vt/jSIzRNflwCie5vjYix85iNVTkLG9b9GlaP0rAtgn8CIIGZaNoxC7nu2fHQ+589I00j7vFrOpMsAGRbJq1uisdl7qJhJcbINL2JDAfHsv79eRSvZmT2Dzb3qjvfrE/noUU3E52P7hpEoxUBowN26us9rU1lwD0Cb9g=
+	t=1736820011; cv=none; b=qtT6PYBdb/za2kVBQ1QxWE1frgLP3VtyduuYo6cRtuzF261NPRjr+MR6qwaph3VG/20IgjJ2Wureaeoo69Wa5aH3gzvbMyLwAikFkXHwNLBpNM9MuABR5NX5m2tDWQXppET3a3B9TDrfOVDpZu7k93blf1W/g+QQ4vLr4vkw0fw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736818752; c=relaxed/simple;
-	bh=QjXQnC3m88Tvct8v6cQxi3wtUpqS+ezrv0Pa3DF25OM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RMOTD8h/qH371t0yCXAsCzD8ujlTPGnI2mNHYX15DoR+znAH5QItAKj6i56idHWT1kY/AmWIwIZuKF3W8HS40qmZWvWizk8UT/HTmAaWVGC8nlkGMDen6C91B09C51E1M0CBNNHF8qa/4McB04uJXMeAuY4/dH4B97KFMDXxVkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I+y1JCH9; arc=none smtp.client-ip=209.85.219.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-6dfa69e6922so4843266d6.2;
-        Mon, 13 Jan 2025 17:39:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736818750; x=1737423550; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=oON0wCmXlIW0fT9gHxRj+F7jSIjXPNusV6zFg/CqJjg=;
-        b=I+y1JCH9C5ZpQS/oDM/wov6lyTmz+Jk0tJDQtZRo07+GNyeVRB8nzZMVZp089Aeoz8
-         tME2H3tx0sxabUyQVEvrRBGzIZKyUtm2dVE5YAAo0/cvkl9XSt3eAuDxFsPef9zqp712
-         lz0wB9u3vlPAjRArd3EjJ0dSFH5Dg/3EGwsYkCQvMROzP++lvJWPyQaBebx/0aZAvL74
-         sh52rlE5dTe9O2WI6e22cKOOybZ8V/OtMG66bdWOK0RSMaUNhSrQ3dIZcPM57Xc3gbhD
-         Q42WmxOnKLrKtDILbUIl52GTElCaGAWrPZTNebUrVIz/z+tXfseSmp9cEkBUtTK5Rr/Q
-         /ZTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736818750; x=1737423550;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=oON0wCmXlIW0fT9gHxRj+F7jSIjXPNusV6zFg/CqJjg=;
-        b=FuQvDa3lyxyUvj2cKbn4UfFUaUA6q9/VaVeiJuepJoUvxMst8fXdOpq9uBYMhfRv6j
-         iU54YEzEu4nlW8I/yvNVY7RWXIpkIEcv6jRpE8Kh0rVgCWpdsV5mLtWkLLdpqaJB8Zsi
-         nWN8z2GPFTOB4Io8ZPJuR8baAsbIuH3RQ8jjAfC4s2Xrzy06cKcEsLt6RjvV9exmUPxW
-         rmxykWKpUQd6vKpf6tWZATUAXA8ej4h9OMq8I8s/oB0yXUwa1j1B0TUXnojtosLOYe0Q
-         ZyO3tD0hoocvIaAaknpoM235fOw+Sg/XeRWUvlqAF2eTlUaFdQCncd8goNTS1vemyk0/
-         8wDA==
-X-Forwarded-Encrypted: i=1; AJvYcCURVZDj/naRvn3lAzcZ/IOEWD04vrd7DCo0xH58itTUx1M9ZPF01xzO/NFHkch6CLHCtd0FKibAsyva@vger.kernel.org, AJvYcCUvjsPRcNRUuQ/hIdHpwYnkShMWCri01xRVGuSUr5oq0cmQ4/Mh+7cWMskpDxWAAfccmwPFz/QOn9VXSDwH@vger.kernel.org, AJvYcCV9pHFzj5XgD19shtK3zF4vfNFlIf8YzQxG0h3jgWbIsXAr3zTF87UhibQavxuv90Zv+VIYXLeFTk2J@vger.kernel.org
-X-Gm-Message-State: AOJu0YwC+ISiwIzTp8HGfxF0TJtXS1tjolm3r6uYzeVB+qWEn5MLzdjA
-	R+8Pf8ytD+0To29PaBvI4YweLyB8cXi5NbnNlUsTlhZ/DHPKVz82y4AzDJmkfWY=
-X-Gm-Gg: ASbGncvQ7yTtKfYKH0LDOhIRP+aIItOFL4PBTAzdSHivDss1Bhbp2eaCGqJOYD5d1Wh
-	ivsQTMIvHWFFsa7bYon+rGtvcldRMc1a4KoRl8fEVCPZGWkanxF/r9cU1plhG42qNlMLgcXpR9h
-	IJaBVBu97SDZkqWF17VdBjsocY4JopLDxSSHVgr1Lyd6xTc1Efb7CjOA4CEcWai9FgJ28ybS0TX
-	pxSAw7KBWQLxXm1um8LjLrX+DF6aFXFOW+O2pskw3TN8PYOWK5wu41JEyJkqbgrhHxklwl19+mM
-	ew==
-X-Google-Smtp-Source: AGHT+IE0Bf3qQqbhV97CAlSY0dSPj/TIcn9mgqXUo/+eoaW7OZ/ZvtNzpffXTVpGg6E7SdwRZsVyHA==
-X-Received: by 2002:a05:620a:244f:b0:7b6:d089:2749 with SMTP id af79cd13be357-7bcd97184demr1263663685a.7.1736818749740;
-        Mon, 13 Jan 2025 17:39:09 -0800 (PST)
-Received: from JSANTO12-L01.ad.analog.com ([189.121.203.94])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6dfade73250sm47519736d6.79.2025.01.13.17.39.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 13 Jan 2025 17:39:08 -0800 (PST)
-Date: Mon, 13 Jan 2025 22:39:03 -0300
-From: Jonathan Santos <jonath4nns@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: David Lechner <dlechner@baylibre.com>,
-	Jonathan Santos <Jonathan.Santos@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, lars@metafoo.de,
-	Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, marcelo.schmitt1@gmail.com,
-	PopPaul2021 <paul.pop@analog.com>
-Subject: Re: [PATCH v1 15/15] iio: adc: ad7768-1: add filter type and
- decimation rate attributes
-Message-ID: <Z4XAN+aVJwChONzQ@JSANTO12-L01.ad.analog.com>
-Reply-To: 20250112130426.29b660b1@jic23-huawei.smtp.subspace.kernel.org
-References: <cover.1736201898.git.Jonathan.Santos@analog.com>
- <b88a167234c49a66792c0d3e182bb40b5b695b5c.1736201898.git.Jonathan.Santos@analog.com>
- <5d492f38-b103-4850-8d13-ef1fd1d2c483@baylibre.com>
- <20250112130426.29b660b1@jic23-huawei>
+	s=arc-20240116; t=1736820011; c=relaxed/simple;
+	bh=tZcYR4ElbxoN5FjdE2e7V8PpIbm3cW/Dpnr6AgbFpuo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FONSvVcjP9qGsdAqQ0YaZg1YxXU3Q1EXM/ZJBDsN0YKe8wqRRBToSNRCeSGEPfrrGXX7aU27Wl7FGw9T7T7znBsyANY9igtXgNX1zc+G6fEp8FPd/rEqMfYNiYdUaFvdJ66fgLBpgwWKtG0Ce2GuiH9zVFv86pphRSEoPIbXwig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
+Received: from [192.168.0.224] (ip5f5ae8ae.dynamic.kabel-deutschland.de [95.90.232.174])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: pmenzel)
+	by mx.molgen.mpg.de (Postfix) with ESMTPSA id 7F0A661E64780;
+	Tue, 14 Jan 2025 02:49:37 +0100 (CET)
+Message-ID: <a30b338f-0a6f-47e7-922b-c637a6648a6d@molgen.mpg.de>
+Date: Tue, 14 Jan 2025 02:49:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250112130426.29b660b1@jic23-huawei>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v7 3/3] net: stmmac: dwmac-nuvoton: Add dwmac
+ glue for Nuvoton MA35 family
+To: Joey Lu <a0987203069@gmail.com>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
+ devicetree@vger.kernel.org, ychuang3@nuvoton.com, netdev@vger.kernel.org,
+ openbmc@lists.ozlabs.org, alexandre.torgue@foss.st.com,
+ linux-kernel@vger.kernel.org, joabreu@synopsys.com,
+ Andrew Lunn <andrew@lunn.ch>, schung@nuvoton.com, peppe.cavallaro@st.com,
+ yclu4@nuvoton.com, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org
+References: <20250113055434.3377508-1-a0987203069@gmail.com>
+ <20250113055434.3377508-4-a0987203069@gmail.com>
+Content-Language: en-US
+From: Paul Menzel <pmenzel@molgen.mpg.de>
+In-Reply-To: <20250113055434.3377508-4-a0987203069@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 01/12, Jonathan Cameron wrote:
-> On Tue, 7 Jan 2025 17:50:56 -0600
-> David Lechner <dlechner@baylibre.com> wrote:
-> 
-> > On 1/7/25 9:27 AM, Jonathan Santos wrote:
-> > > Separate filter type and decimation rate from the sampling frequency
-> > > attribute. The new filter type attribute enables SINC3 and WIDEBAND
-> > > filters, which were previously unavailable.  
-> > 
-> > See related comments in my reply to the documentation patches about wideband vs.
-> > FIR and decimation rate vs. -3dB cutoff.
-> > 
-> > > 
-> > > Previously, combining decimation and MCLK divider in the sampling
-> > > frequency obscured performance trade-offs. Lower MCLK divider
-> > > settings increase power usage, while lower decimation rates reduce
-> > > precision by decreasing averaging. By creating a decimation attribute,
-> > > users gain finer control over performance.  
-> > 
-> > It seems like we would also want a power_mode attribute. We already have an
-> > attribute for this for used by accelerometers so there is some precedent for
-> > such an attribute.
-> 
-> I'm not sure that attribute was ever a good idea :(
-> So would prefer we don't use it again unless we are really really stuck.
-> 
-> Usual assumption tends to be if anyone wants to reduce power they
-> should be able to do so with other controls (i.e. reduce sampling rate or
-> oversampling). Those are easier to interpret than magic low power mode
-> attributes.
-> 
-> Jonathan
-> 
+Dear Joey,
 
-I tend do agree with Jonathan in this one. the power mode is directly linked to
-MCLK divider, which is under sampling frequency now. Basicly, we assume
-that higher sample rates lead to an increase in power usage.
-Even oversampling does not affect the power mode. 
 
-Configuring an inadequate power mode, depending on the mclk divider, may
-result in malfunction.
+Thank you for your patch.
 
+Am 13.01.25 um 00:54 schrieb Joey Lu:
+> Add support for Gigabit Ethernet on Nuvoton MA35 series using dwmac driver.
+
+It’d be great if you added the datasheet name and revision to the commit 
+message.
+
+Also, please document how tested the driver. Maybe even paste new log 
+messages.
+
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Joey Lu <a0987203069@gmail.com>
+
+As you use your company email address in the AUTHOR line below, please 
+also add that email address to the commit message (and maybe even as the 
+author).
+
+> ---
+>   drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
+>   drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+>   .../ethernet/stmicro/stmmac/dwmac-nuvoton.c   | 179 ++++++++++++++++++
+>   3 files changed, 191 insertions(+)
+>   create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
 > 
-> > 
-> > > 
-> > > The addition of those attributes allows a wider range of sampling
-> > > frequencies and more access to the device features.  
-> > 
-> > 
-> 
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> index 4cc85a36a1ab..2b424544cf6f 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
+> @@ -121,6 +121,17 @@ config DWMAC_MESON
+>   	  the stmmac device driver. This driver is used for Meson6,
+>   	  Meson8, Meson8b and GXBB SoCs.
+>   
+> +config DWMAC_NUVOTON
+> +	tristate "Nuvoton MA35 dwmac support"
+> +	default ARCH_MA35
+> +	depends on OF && (ARCH_MA35 || COMPILE_TEST)
+> +	select MFD_SYSCON
+> +	help
+> +	  Support for Ethernet controller on Nuvoton MA35 series SoC.
+> +
+> +	  This selects the Nuvoton MA35 series SoC glue layer support
+> +	  for the stmmac device driver.
+
+Also mention the module name `dwmac-nuvoton`?
+
+> +
+>   config DWMAC_QCOM_ETHQOS
+>   	tristate "Qualcomm ETHQOS support"
+>   	default ARCH_QCOM
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
+> index b26f0e79c2b3..48e25b85ea06 100644
+> --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
+> +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
+> @@ -19,6 +19,7 @@ obj-$(CONFIG_DWMAC_IPQ806X)	+= dwmac-ipq806x.o
+>   obj-$(CONFIG_DWMAC_LPC18XX)	+= dwmac-lpc18xx.o
+>   obj-$(CONFIG_DWMAC_MEDIATEK)	+= dwmac-mediatek.o
+>   obj-$(CONFIG_DWMAC_MESON)	+= dwmac-meson.o dwmac-meson8b.o
+> +obj-$(CONFIG_DWMAC_NUVOTON)	+= dwmac-nuvoton.o
+>   obj-$(CONFIG_DWMAC_QCOM_ETHQOS)	+= dwmac-qcom-ethqos.o
+>   obj-$(CONFIG_DWMAC_ROCKCHIP)	+= dwmac-rk.o
+>   obj-$(CONFIG_DWMAC_RZN1)	+= dwmac-rzn1.o
+> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
+> new file mode 100644
+> index 000000000000..edf1b88ce1cd
+> --- /dev/null
+> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
+> @@ -0,0 +1,179 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Nuvoton DWMAC specific glue layer
+> + *
+> + * Copyright (C) 2024 Nuvoton Technology Corp.
+> + *
+> + * Author: Joey Lu <yclu4@nuvoton.com>
+> + */
+> +
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/of_device.h>
+> +#include <linux/of_net.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/stmmac.h>
+> +
+> +#include "stmmac.h"
+> +#include "stmmac_platform.h"
+> +
+> +#define NVT_REG_SYS_GMAC0MISCR  0x108
+> +#define NVT_REG_SYS_GMAC1MISCR  0x10C
+> +
+> +#define NVT_MISCR_RMII          BIT(0)
+> +
+> +/* 2000ps is mapped to 0x0 ~ 0xF */
+
+Excuse my ignorance: What is ps?
+
+> +#define NVT_PATH_DELAY_DEC      134
+> +#define NVT_TX_DELAY_MASK       GENMASK(19, 16)
+> +#define NVT_RX_DELAY_MASK       GENMASK(23, 20)
+> +
+> +struct nvt_priv_data {
+> +	struct platform_device *pdev;
+> +	struct regmap *regmap;
+> +};
+> +
+> +static struct nvt_priv_data *
+> +nvt_gmac_setup(struct platform_device *pdev, struct plat_stmmacenet_data *plat)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct nvt_priv_data *bsp_priv;
+> +	phy_interface_t phy_mode;
+> +	u32 tx_delay, rx_delay;
+
+Please append the unit to the variable name.
+
+> +	u32 macid, arg, reg;
+> +
+> +	bsp_priv = devm_kzalloc(dev, sizeof(*bsp_priv), GFP_KERNEL);
+> +	if (!bsp_priv)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	bsp_priv->regmap =
+> +		syscon_regmap_lookup_by_phandle_args(dev->of_node, "nuvoton,sys", 1, &macid);
+> +	if (IS_ERR(bsp_priv->regmap)) {
+> +		dev_err_probe(dev, PTR_ERR(bsp_priv->regmap), "Failed to get sys register\n");
+> +		return ERR_PTR(-ENODEV);
+> +	}
+> +	if (macid > 1) {
+> +		dev_err_probe(dev, -EINVAL, "Invalid sys arguments\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	if (of_property_read_u32(dev->of_node, "tx-internal-delay-ps", &arg)) {
+> +		tx_delay = 0;
+> +	} else {
+> +		if (arg <= 2000) {
+> +			tx_delay = (arg == 2000) ? 0xF : (arg / NVT_PATH_DELAY_DEC);
+
+Write hexcharacters lowercase?
+
+> +			dev_dbg(dev, "Set Tx path delay to 0x%x\n", tx_delay);
+> +		} else {
+> +			dev_err(dev, "Invalid Tx path delay argument.\n");
+> +			return ERR_PTR(-EINVAL);
+> +		}
+> +	}
+> +	if (of_property_read_u32(dev->of_node, "rx-internal-delay-ps", &arg)) {
+> +		rx_delay = 0;
+> +	} else {
+> +		if (arg <= 2000) {
+> +			rx_delay = (arg == 2000) ? 0xF : (arg / NVT_PATH_DELAY_DEC);
+> +			dev_dbg(dev, "Set Rx path delay to 0x%x\n", rx_delay);
+> +		} else {
+> +			dev_err(dev, "Invalid Rx path delay argument.\n");
+> +			return ERR_PTR(-EINVAL);
+> +		}
+> +	}
+> +
+> +	regmap_read(bsp_priv->regmap,
+> +		    macid == 0 ? NVT_REG_SYS_GMAC0MISCR : NVT_REG_SYS_GMAC1MISCR, &reg);
+> +	reg &= ~(NVT_TX_DELAY_MASK | NVT_RX_DELAY_MASK);
+> +
+> +	if (of_get_phy_mode(pdev->dev.of_node, &phy_mode)) {
+> +		dev_err(dev, "missing phy mode property\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	switch (phy_mode) {
+> +	case PHY_INTERFACE_MODE_RGMII:
+> +	case PHY_INTERFACE_MODE_RGMII_ID:
+> +	case PHY_INTERFACE_MODE_RGMII_RXID:
+> +	case PHY_INTERFACE_MODE_RGMII_TXID:
+> +		reg &= ~NVT_MISCR_RMII;
+> +		break;
+> +	case PHY_INTERFACE_MODE_RMII:
+> +		reg |= NVT_MISCR_RMII;
+> +		break;
+> +	default:
+> +		dev_err(dev, "Unsupported phy-mode (%d)\n", phy_mode);
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	if (!(reg & NVT_MISCR_RMII)) {
+> +		reg |= FIELD_PREP(NVT_TX_DELAY_MASK, tx_delay);
+> +		reg |= FIELD_PREP(NVT_RX_DELAY_MASK, rx_delay);
+> +	}
+> +
+> +	regmap_write(bsp_priv->regmap,
+> +		     macid == 0 ? NVT_REG_SYS_GMAC0MISCR : NVT_REG_SYS_GMAC1MISCR, reg);
+> +
+> +	bsp_priv->pdev = pdev;
+> +
+> +	return bsp_priv;
+> +}
+> +
+> +static int nvt_gmac_probe(struct platform_device *pdev)
+> +{
+> +	struct plat_stmmacenet_data *plat_dat;
+> +	struct stmmac_resources stmmac_res;
+> +	struct nvt_priv_data *priv_data;
+> +	int ret;
+> +
+> +	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
+> +	if (ret)
+> +		return ret;
+> +
+> +	plat_dat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
+> +	if (IS_ERR(plat_dat))
+> +		return PTR_ERR(plat_dat);
+> +
+> +	/* Nuvoton DWMAC configs */
+> +	plat_dat->has_gmac = 1;
+> +	plat_dat->tx_fifo_size = 2048;
+> +	plat_dat->rx_fifo_size = 4096;
+> +	plat_dat->multicast_filter_bins = 0;
+> +	plat_dat->unicast_filter_entries = 8;
+> +	plat_dat->flags &= ~STMMAC_FLAG_USE_PHY_WOL;
+> +
+> +	priv_data = nvt_gmac_setup(pdev, plat_dat);
+> +	if (IS_ERR(priv_data))
+> +		return PTR_ERR(priv_data);
+> +
+> +	ret = stmmac_pltfr_probe(pdev, plat_dat, &stmmac_res);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* The PMT flag is determined by the RWK property.
+> +	 * However, our hardware is configured to support only MGK.
+> +	 * This is an override on PMT to enable WoL capability.
+> +	 */
+> +	plat_dat->pmt = 1;
+> +	device_set_wakeup_capable(&pdev->dev, 1);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id nvt_dwmac_match[] = {
+> +	{ .compatible = "nuvoton,ma35d1-dwmac"},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, nvt_dwmac_match);
+> +
+> +static struct platform_driver nvt_dwmac_driver = {
+> +	.probe  = nvt_gmac_probe,
+> +	.remove = stmmac_pltfr_remove,
+> +	.driver = {
+> +		.name           = "nuvoton-dwmac",
+> +		.pm		= &stmmac_pltfr_pm_ops,
+> +		.of_match_table = nvt_dwmac_match,
+> +	},
+> +};
+> +module_platform_driver(nvt_dwmac_driver);
+> +
+> +MODULE_AUTHOR("Joey Lu <yclu4@nuvoton.com>");
+
+Maybe Nuvoton can set up a generic address?
+
+> +MODULE_DESCRIPTION("Nuvoton DWMAC specific glue layer");
+> +MODULE_LICENSE("GPL v2");
+
+
+Kind regards,
+
+Paul
 
