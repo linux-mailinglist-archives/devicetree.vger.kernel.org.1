@@ -1,60 +1,58 @@
-Return-Path: <devicetree+bounces-138607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B1DA114F7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 00:07:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9619A11541
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 00:19:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43D4E7A358E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 23:07:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 171061889FAC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 23:19:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FD3822577D;
-	Tue, 14 Jan 2025 23:04:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44F0721578A;
+	Tue, 14 Jan 2025 23:19:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JydcXOJc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SZajQZdj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB39A221DB1;
-	Tue, 14 Jan 2025 23:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18089232429;
+	Tue, 14 Jan 2025 23:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736895892; cv=none; b=N3MscfKf3CDRq/I62LAoNpY8/XYWNh2xxy+/GkmBMS/BTDh+11u+gA8ramZxMATfQA9wPKqzwzATYT+nbN61aD2dChUXK7QpXgaHTD1NO0VU5PwCRh8zM2ZHGZ3bELqqL2zJcvZdfR9YV7Ca2CTDeYgb/Scs2tmeYUdBAip98co=
+	t=1736896783; cv=none; b=IqjpyLTv8EaTgBIejSr3eLyh/nIAHSfMQ4IFiHqi9bFCh7P80JmgbqQpnL/68S71NMtpY8leAZN0aby3RX4fWssBd/UiIyHdsU5xSyZqAWvCjvEF6e2hE3hUIpqITjLZ7eKSj/GvgnI+9bjjWZQcxP3wyucmE0WtlXEpuHHfpyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736895892; c=relaxed/simple;
-	bh=BDTu/UGBHqvqR/oBOPzTd6pu0SwRgZfuzWa5ftsPDb8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XU0AERtZK9VJNEWuiBAHej2nhAfwRWxeVD0yp6L5xDJMceKcJEccekdpVSpMnwSqDyODlJjFt8PPnIXIu3zXNUAg32oAAdFZzS+rNL7LR4YH54OxqJXoeKV7LOuy+VzhPfhqPAO/VQ8J7ft81U+AIQ6Z5DOul0ZmuU2HLVhqdl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JydcXOJc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 484FDC4CEDD;
-	Tue, 14 Jan 2025 23:04:50 +0000 (UTC)
+	s=arc-20240116; t=1736896783; c=relaxed/simple;
+	bh=L6B6WDszISMt6Ham4nV/TMXvAl8fXJGFrEuTt4xWNE8=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=NuXDRqk486lfjKWy1W+6zoQ9yF51ZiTgnPuTutfQgq0PLgKdxtULLnUzAxmhL9WvNpnzst0aI3I5FS01jp5MUIlZ3vQxQmxwABQiHucITQvOGL5mEi+nv9cWMhxoDKlA78eZGRSFwNvto9EEGjh+1yD+0A/Q+SJTjzQ1S0QsmEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SZajQZdj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68EBDC4CEDD;
+	Tue, 14 Jan 2025 23:19:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736895891;
-	bh=BDTu/UGBHqvqR/oBOPzTd6pu0SwRgZfuzWa5ftsPDb8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JydcXOJcDslTcyYsKUw5dZInb4/aigzSvXoXn0ipywY334Q8WZjrGi6eS1INQlU6g
-	 0JrNGPXW3Qz6el1ztm97ipap5RR9lSnsEIxzX1/mqHpHs8ZqKuoKkG+AlyzEj/Wp5B
-	 +E2p1JNRgdky+xOowakBypUv2QhC0ECsauKGlftYYDsNTuX/PNww8lY1Qw5tmhuytq
-	 qayPNld7CtkzhWllD2U3pIwzbElY7qiI+wZqPub3K/FSGFi9+/hpZfoWRHzF1LBhcA
-	 qP2N1WQcXCuv0oEV05XDoUDneE0u2p5lF4U/KvsUfH1k2FklstkySH4RPrbcJuW6cN
-	 S15NqcqQrv2ig==
-Date: Tue, 14 Jan 2025 17:04:48 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>, 
-	Wesley Cheng <quic_wcheng@quicinc.com>, Saravana Kannan <saravanak@google.com>, 
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.li@nxp.com>, linux-arm-msm@vger.kernel.org, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/12] usb: dwc3: qcom: Flatten dwc3 structure
-Message-ID: <srhxu3r4sxy5ntx53nicf7l43sdjpiwavzd2qsgq2ovquzvt3u@cskcthmqznex>
-References: <20250113-dwc3-refactor-v3-0-d1722075df7b@oss.qualcomm.com>
- <20250114174452.GB1414434-robh@kernel.org>
+	s=k20201202; t=1736896780;
+	bh=L6B6WDszISMt6Ham4nV/TMXvAl8fXJGFrEuTt4xWNE8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=SZajQZdjOwBfNi9tg2ujzMMljXGL40t9RiHvJVDGaWNYPa8w6nLKeO3RTQIaF5Y3c
+	 5GgkzXTxe/fwKz+0MINkN6Rx2fDI9waCP1p4rKbJzrRVaf5tBkOOIWPNx2O2y30eiW
+	 aHBnafdqCP+XcAkyw5N697QUaVxvox7UjcTATXmos8mOpWBRfKZR8PIfDUNzLwa5CZ
+	 T8DJSJfDrZWzcXEUbkNgi8Z37teAOsyxON2ckbhZ1WfKKF0kvGtnWSkXiKfaQx+qAP
+	 toHISZ3fERNW2HY+zz6xNG+/IKy0SzD23WCNF59Bv9dyX09m0iGLw4F5Tpy/QWmwQ7
+	 8++o9Z2NqLM0Q==
+Date: Tue, 14 Jan 2025 17:19:39 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: daire.mcnamara@microchip.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, conor.dooley@microchip.com,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ilpo.jarvinen@linux.intel.com,
+	kevin.xie@starfivetech.com
+Subject: Re: [PATCH v10 0/3] Fix address translations on MPFS PCIe controller
+Message-ID: <20250114231939.GA496825@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,47 +61,87 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250114174452.GB1414434-robh@kernel.org>
+In-Reply-To: <20250114-espresso-display-846f670d2088@spud>
 
-On Tue, Jan 14, 2025 at 11:44:52AM -0600, Rob Herring wrote:
-> On Mon, Jan 13, 2025 at 09:11:33PM -0800, Bjorn Andersson wrote:
-> > The USB IP-block found in most Qualcomm platforms is modelled in the
-> > Linux kernel as 3 different independent device drivers, but as shown by
-> > the already existing layering violations in the Qualcomm glue driver
-> > they can not be operated independently.
-> > 
-> > With the current implementation, the glue driver registers the core and
-> > has no way to know when this is done. As a result, e.g. the suspend
-> > callbacks needs to guard against NULL pointer dereferences when trying
-> > to peek into the struct dwc3 found in the drvdata of the child.
-> > 
-> > Missing from the upstream Qualcomm USB support is proper handling of
-> > role switching, in which the glue needs to be notified upon DRD mode
-> > changes. Several attempts has been made through the years to register
-> > callbacks etc, but they always fall short when it comes to handling of
-> > the core's probe deferral on resources etc.
-> > 
-> > Furhtermore, the DeviceTree binding is a direct representation of the
-> > Linux driver model, and doesn't necessarily describe "the USB IP-block".
-> > 
-> > This series therefor attempts to flatten the driver split, and operate
-> > the glue and core out of the same platform_device instance. And in order
-> > to do this, the DeviceTree representation of the IP block is flattened.
-> > 
-> > To avoid littering the dwc3-qcom driver with the migration code - which
-> > we should be able to drop again in a LTS or two - this is now placed in
-> > drivers/of/overlays.
-> > 
-> > A patch to convert a single platform - sc8280xp - is included in the
-> > series. The broader conversion will be submitted in a follow up series.
+On Tue, Jan 14, 2025 at 05:16:10PM +0000, Conor Dooley wrote:
+> Hey folks,
 > 
-> Is it not possible to use the same overlays also fixup the .dts files at 
-> build time?
+> Has this patchset fallen through the cracks?
+
+Yes, unfortunately.  I applied it to pci/controller/microchip for
+v6.14.
+
+I had to adapt it slightly to account for the changes of ac7f53b7e728
+("PCI: microchip: Add support for using either Root Port 1 or 2"), so
+please take a look and make sure I did it right.
+
+> On Wed, Nov 13, 2024 at 11:50:44AM +0000, Conor Dooley wrote:
+> > On Fri, Oct 11, 2024 at 03:00:40PM +0100, daire.mcnamara@microchip.com wrote:
+> > > From: Daire McNamara <daire.mcnamara@microchip.com>
+> > > 
+> > > Hi all,
+> > > 
+> > > On Microchip PolarFire SoC (MPFS), the PCIe controller is connected to the
+> > > CPU via one of three Fabric Interface Connectors (FICs).  Each FIC present
+> > > to the CPU complex as 64-bit AXI-M and 64-bit AXI-S.  To preserve
+> > > compatibility with other PolarFire family members, the PCIe controller is
+> > > connected to its encapsulating FIC via a 32-bit AXI-M and 32-bit AXI-S
+> > > interface.
+> > > 
+> > > Each FIC is implemented in FPGA logic and can incorporate logic along its 64-bit
+> > > AXI-M to 32-bit AXI-M chain (including address translation) and, likewise, along
+> > > its 32-bit AXI-S to 64-bit AXI-S chain (again including address translation).
+> > > 
+> > > In order to reduce the potential support space for the PCIe controller in
+> > > this environment, MPFS supports certain reference designs for these address
+> > > translations: reference designs for cache-coherent memory accesses
+> > > and reference designs for non-cache-coherent memory accesses. The precise
+> > > details of these reference designs and associated customer guidelines
+> > > recommending that customers adhere to the addressing schemes used in those
+> > > reference designs are available from Microchip, but the implication for the
+> > > PCIe controller address translation between CPU-space and PCIe-space are:
+> > > 
+> > > For outbound address translation, the PCIe controller address translation tables
+> > > are treated as if they are 32-bit only.  Any further address translation must
+> > > be done in FPGA fabric.
+> > > 
+> > > For inbound address translation, the PCIe controller is configurable for two
+> > > cases:
+> > > * In the case of cache-coherent designs, the base of the AXI-S side of the
+> > >   address translation must be set to 0 and the size should be 4 GiB wide. The
+> > >   FPGA fabric must complete any address translations based on that 0-based
+> > >   address translation.
+> > > * In the case of non-cache coherent designs, the base of AXI-S side of the
+> > >   address translation must be set to 0x8000'0000 and the size shall be 2 GiB
+> > >   wide.  The FPGA fabric must complete any address translation based on that
+> > >   0x80000000 base.
+> > > 
+> > > So, for example, in the non-cache-coherent case, with a device tree property
+> > > that maps an inbound range from 0x10'0000'0000 in PCIe space to 0x10'0000'0000
+> > > in CPU space, the PCIe rootport will translate a PCIe address of 0x10'0000'0000
+> > > to an intermediate 32-bit AXI-S address of 0x8000'0000 and the FIC is
+> > > responsible for translating that intermediate 32-bit AXI-S address of
+> > > 0x8000'0000 to a 64-bit AXI-S address of 0x10'0000'0000.
+> > > 
+> > > And similarly, for example, in the cache-coherent case, with a device tree
+> > > property that maps an inbound range from 0x10'0000'0000 in PCIe space to
+> > > 0x10'0000'0000 in CPU space, the PCIe rootport will translate a PCIe address
+> > > of 0x10'0000'0000 to an intermediate 32-bit AXI-S address of 0x0000'0000 and
+> > > the FIC is responsible for translating that intermediate 32-bit AXI-S address
+> > > of 0x0000'0000 to a 64-bit AXI-S address of 0x10'0000'0000.
+> > > 
+> > > See https://lore.kernel.org/all/20220902142202.2437658-1-daire.mcnamara@microchip.com/T/
+> > > for backstory.
+> > > 
+> > > Changes since v9:
+> > > - Dropped plda_setup_inbound_address_translation() from StarFive driver
+> > 
+> > Since I had some success bumping the other series for this driver, any
+> > chance of some attention here?
+> > AFAIK, Daire's addressed what's been pointed out by reviewers and
+> > exempted the StarFive driver from overwriting the firmware-set values
+> > with once calculated from DT as they requested.
 > 
 
-I presume so. What would the benefit of that be, over fixing up the
-source asap?
 
-Regards,
-Bjorn
 
