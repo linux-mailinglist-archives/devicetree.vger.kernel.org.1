@@ -1,165 +1,189 @@
-Return-Path: <devicetree+bounces-138389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAA5BA10336
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:43:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 920B3A1033A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:44:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF54E1885871
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:43:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BFF5188587C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:44:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFCB2284A63;
-	Tue, 14 Jan 2025 09:43:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD64284A71;
+	Tue, 14 Jan 2025 09:44:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f20ITt3c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GmcGH7H9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 116C1230D0F;
-	Tue, 14 Jan 2025 09:43:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8941719922A
+	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 09:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736847831; cv=none; b=mbAGxYbs646A8IZeDcmhkXQju6xyBQEsPU59TLlzqmOSu8Vuarkqi/SqGo4r35OavHkP+4I677BIJF7GXPBWBlfABzCd4x0CNzGk1ZpUisPExRvrHFCZkIf2fFj/V97hQlS9252zloxN2soBjsh0ywSQcJz4h8yaTI4I6ZdLjh4=
+	t=1736847860; cv=none; b=oT5tyXI5QxWlPxmbZ8jaTc2bE8QBBEnORHimLvj7MjJLIPSCzuAumd6/7m+DcsVbT788vcY+cpeEd/9cZH755SpJNGS1/ms+gQlBcFmPimVPEgHMlSv0bxOJsbjrQcBpRF/8FEW1up1kcvwdzLAnxCJBH7ozgBjHo2vjHg1RQRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736847831; c=relaxed/simple;
-	bh=gz3j4LSQUGTBc6G+JzcwXpBUEdENWWL1Z9KVZpZq88Q=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LbnnctmwWkAz+aNmYk+zxb1ddJ1CzBUROvYrqCDNdCKJj+SgQ49l2Pj3ISyuzIrK+N77gPkB2SYZ3HYPKCIhTwmaKfEr81O3PY1zBCEs5UFQXIBG8snYF96wkEBdoMwe3IU3nYUwfqBEeIOz1/lvY+kVzfBx6G5/hvGafd5oE5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f20ITt3c; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aa6a92f863cso992086266b.1;
-        Tue, 14 Jan 2025 01:43:49 -0800 (PST)
+	s=arc-20240116; t=1736847860; c=relaxed/simple;
+	bh=96T38eBtoOQ2VC92hfgSApqZrOYI6n6Trqp6BTruXkM=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=CahTMRZyycGljlEgktngMRVT46bY3JSTj8JoPOGkl+krAhjqilk52Voew+AnbDY9s+caLcIvVN7EhWnUrXf+cxbtIEp5Wc7DqzMgd3h9LxmlN72KguTE6k5sBkt3LuodufpEZ5a7r/1/pRbUktUPN+EluYXjTQKgpzWEUOeAPwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GmcGH7H9; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-437a92d7b96so4810125e9.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 01:44:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736847828; x=1737452628; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s4ddnLC7R3AnxKxF1WharRszc6HLAQzXaIR1Cc3GioU=;
-        b=f20ITt3czn03J3c3NNzCNl9o/dq38MjDvOhWwW09HSEVRAbpqR7Tb776YEPB3EH5+L
-         EUianDcseHnBnJK8xRC0iqmAmei/rLoVH4x/aRavy2AtAzazdWs1CKNHCuLwuqkm039y
-         irwWLvBhI09/TgP68VMN4uZ6gNf3ldBIW7zn2L5zmVpFBuu7ibmNnjCeG7KAePRwx0Vm
-         Y4E+bl4/6iZ3L+g8w8SCP6IUwMBeNXJ7B9iWLUB/Kpy3tI5HIJM5dPc3PsaOYrMX2fPx
-         UuF79bQbBQx+JDMa9e5HAkJEEAx75jLZJsHDX6tASfIdxanIQ/HHFfs6IlNgqlOnjj/y
-         K6zg==
+        d=linaro.org; s=google; t=1736847856; x=1737452656; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dvdDzI0+QAZcMVq4vHT+3PeGIs3aadbqB663qDJpMpY=;
+        b=GmcGH7H9hKEaX4mP5cbkPL4iKH9Wmyp85/hiQijBHj+twFDStnzI/rWdeuhZYAxa4e
+         WJa04jikrp23mWDqysrlhT0QFOOhD1XRtyU12hMZZBJwilwcUQiIvyGo78uQpHwGOnXn
+         DURuXB4MfKk5Mp9dcQOWF4s8uca/jkn2qvuEsDFWilwYZDuTb/Y6n8EY1e98HQ+f0T7y
+         u7C9wf4ERgCn/5zlFkEwhEwKgI0BnAgfDgBs0K2EijQMXRiObdLT1IMp0ImUGCW3/vzC
+         EIhBxBjHCGdd3OtXmjJb5njwGbPH2gqypDV56KwaTGYH1V3GlW8STJJPoHXwE4zLeyks
+         UsQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736847828; x=1737452628;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s4ddnLC7R3AnxKxF1WharRszc6HLAQzXaIR1Cc3GioU=;
-        b=PK3RGQZJ8SBe1eR9j+98b/TjsnKaf8BIIgOWLF+XEpADP+56JmF/kCn2qJlVgXFSyi
-         ydQX+Cpssxyf7dsKIeTqBesHSsfQ0H58uKI925nuXqQWQBrBhe5iKLhBlzFZmSyJ1qkW
-         FYyLrizTcNs7HSbgiJF9vJtpBe58XufgXJY7DubNB9yaWhu9O9+4CpnX7Por+f63umQH
-         t4zZu2kvJnfKxFo8pC3YQmS12LO5eUF+/Y2j9HmtFrbdF5aPx5A18ttOby2k1EvVFOLB
-         Fceff1jpn+Gkqo8/wCiWDOvYi3wb6wJPEjQNBcRKXUMGVjT1VN79ToHjw+Y4nb2Zw2XV
-         BTKg==
-X-Forwarded-Encrypted: i=1; AJvYcCVW61e3uCV40wnF3DUg8s8d4lhTVPjLm29P26qhQtFQUSVYLKU9YRB+D8zbqVzfpq540PZAcXtO/gU8@vger.kernel.org, AJvYcCW4LhD89xVH96iCH7L7Jm3kJspNkX6SLXHan0kj4ISPSsR2OEAiN3N57YySn0ZI81O50qwIkUMLC6BAEyhH@vger.kernel.org, AJvYcCXaR+5qnshMTT0NTYDCUSXTVB2pI3RT2CrFoKBz3Hfo2C9dju0V8OVDfGs8uiQAAwdibqeWptVcbGNk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlbzNoLyR9vahgfO88fVRdd1evWjPLTQSsohxfhXDsk9geseOR
-	tcl/LedxLMmTTY1EQdTp83gqTYyayRRdr+GMkgbAzkSt8wkAtjICHp9rgmXmTyyGpn3uQfXuQZE
-	ulZtfr2tzArqwp/TqkUt8Wx/p/rc=
-X-Gm-Gg: ASbGncvXGBNu4KFhdcjS4IqkEyXcvhP+s//rP2ZpXrFwic7krjtqvwSKotNYqZPKB02
-	Z3+BP0fOa/rqZ6iZv4ZTaTivTB9pPh/CMR5p5gA==
-X-Google-Smtp-Source: AGHT+IEjLsKdifmYxBceuBRUhzQSXsIHy21C5OvzReHgRJldHJBOhkxV4ELNS+tp01DLClQuYww4PkHy2frF4iL/tJE=
-X-Received: by 2002:a17:907:7e91:b0:ab3:f88:b54e with SMTP id
- a640c23a62f3a-ab30f88b5d5mr716496966b.31.1736847828120; Tue, 14 Jan 2025
- 01:43:48 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736847856; x=1737452656;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=dvdDzI0+QAZcMVq4vHT+3PeGIs3aadbqB663qDJpMpY=;
+        b=rw/y8QiVD3xVxLlEYh3lV2sqjpIXPJYUNBjmZKc/5xoSvJmb6zlCr8DGGYk/R/tzwz
+         NOQiYo1NRiCDETDU9Pi4zPlm6O5Ml24tNlIF2eJhS5E2sAW+8Aeo/T7HGUNCEizt0bXi
+         EiIAkkPVWEDH6B19RZ0n23fowPKi99hijKji/roG5PsTxnQwW2dy/hRklyVH7w0gf+D3
+         jARetWvPHv7QrlUNTfVa0mR33kah3sqa6tFJ5vhnBq4j/J9grqxQFQec3sueyTZG2bj+
+         QTQByFOBYMoDyr6E7bcF7vSMldZkhlWbb9fcPPMGsbPo7gRkjvTOmGTKMTdGmWSuSltK
+         r33w==
+X-Forwarded-Encrypted: i=1; AJvYcCVOiRkJ/7xjXJjue9glAnb1Q/l0vXBkT9U0cS+ulTJChWA9fhxdKxhl7kB2JFb/J1jfU9Gc5TrCp53F@vger.kernel.org
+X-Gm-Message-State: AOJu0YyECf+7iQUcBddV4j9uJ6r0qI/5gbyrYF3Q2jRW6mBnJTdxnHj6
+	oa7h3aoAJ9sRY0J0Y06rYwsD82jMHe/OVUsya7bgL/cWuLEAB1r3NxK1P9QeC9Y=
+X-Gm-Gg: ASbGnct5JbKIINEGxDxEzu3hbBn85uUWBkHyMEHbe5EBTOHV4gwVyNY9tv2+F6TgTFX
+	qDjoaUYQp/axV490qLQkrHCi5SCdxvCFgkUC8oc6KGfYkJw/DUvgDMXH2/zfRACLM2mOaYuxvrK
+	k/SllWzxeAGCcwWuIVil0aObTmzkfwWSL1eXY6g2Bbw+m86QBK1OPB4GBfPV+zpcLnTP7+E/H4M
+	idP9G90X1XGhng700IEERJbqZRXgs/W6J02FTjn9YsZ9QmQ7GPxnqLiLChv4LekdhF62NLGPRDc
+	sW3HrWPHxkDmgzSC7DNNmtB0V+R4RTqVZQ==
+X-Google-Smtp-Source: AGHT+IGEMQzRSU5vsVP1Q6F049dN1Km/Z8NDSTMgd2TrWtE0LlgsHlOnh+81l0FN2f++K7l1tOQrvA==
+X-Received: by 2002:a05:600c:a0a:b0:434:ff30:a159 with SMTP id 5b1f17b1804b1-436e255ded6mr233292645e9.0.1736847855823;
+        Tue, 14 Jan 2025 01:44:15 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:a5df:aa69:5642:11b5? ([2a01:e0a:982:cbb0:a5df:aa69:5642:11b5])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2dc0babsm203233435e9.14.2025.01.14.01.44.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Jan 2025 01:44:15 -0800 (PST)
+Message-ID: <3688ad34-86a2-4762-86ee-cbac8c3b9aa7@linaro.org>
+Date: Tue, 14 Jan 2025 10:44:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250112104453.45673-1-apokusinski01@gmail.com>
- <20250112104453.45673-3-apokusinski01@gmail.com> <CAHp75VedQvf2xwY3fDWX=FQaHyhaUSVJW3Y6Yt2ecpwru756vw@mail.gmail.com>
- <20250113221905.ruv3w3k4w53hvf2b@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
-In-Reply-To: <20250113221905.ruv3w3k4w53hvf2b@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 14 Jan 2025 11:43:11 +0200
-X-Gm-Features: AbW1kvbQwRaXNMYtgKB2WXq76hJsvg9oad8fE5WUUR3ShP5wYYrP-gLDDL8Wva4
-Message-ID: <CAHp75Vf-zdsh6CP3XX6jyjVutch9Z_iH78zrpaFkt9WkP=qz4w@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] iio: magnetometer: si7210: add driver for Si7210
-To: Antoni Pokusinski <apokusinski01@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, andrej.skvortzov@gmail.com, neil.armstrong@linaro.org, 
-	icenowy@aosc.io, megi@xff.cz, danila@jiaxyga.com, 
-	javier.carrasco.cruz@gmail.com, andy@kernel.org, linux-kernel@vger.kernel.org, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/2] drm/panel: simple: Add DataImage FG080016DNCWAG03
+ driver support
+To: Jonas Rebmann <jre@pengutronix.de>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@pengutronix.de
+References: <20250109-panel-dataimage_fg080016dncwag-v1-0-0465603f6669@pengutronix.de>
+ <20250109-panel-dataimage_fg080016dncwag-v1-2-0465603f6669@pengutronix.de>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250109-panel-dataimage_fg080016dncwag-v1-2-0465603f6669@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jan 14, 2025 at 12:19=E2=80=AFAM Antoni Pokusinski
-<apokusinski01@gmail.com> wrote:
+On 09/01/2025 12:34, Jonas Rebmann wrote:
+> Add DataImage FG080016DNCWAG03 8" 640x480 TFT LCD panel support.
+> 
+> Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
+> ---
+>   drivers/gpu/drm/panel/panel-simple.c | 28 ++++++++++++++++++++++++++++
+>   1 file changed, 28 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index 222c170dde8be261e98ff41168ef8a3a42c167c8..14d4cf235036cfd662bf16cb794ea2454d6fd2b2 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -1734,6 +1734,31 @@ static const struct panel_desc dataimage_fg040346dsswbg04 = {
+>   	.connector_type = DRM_MODE_CONNECTOR_DPI,
+>   };
+>   
+> +static const struct display_timing dataimage_fg080016dncwag03_timing = {
+> +	.pixelclock = { 24000000, 25000000, 32500000 },
+> +	.hactive = { 640, 640, 640 },
+> +	.hfront_porch = { 64, 70, 115 },
+> +	.hback_porch =  { 64, 70, 115 },
+> +	.hsync_len = { 20, 20, 20 },
+> +	.vactive = { 480, 480, 480 },
+> +	.vfront_porch = { 8, 12, 30 },
+> +	.vback_porch =  { 8, 13, 31 },
+> +	.vsync_len = { 20, 20, 20 },
+> +};
+> +
+> +static const struct panel_desc dataimage_fg080016dncwag03 = {
+> +	.timings = &dataimage_fg080016dncwag03_timing,
+> +	.num_timings = 1,
+> +	.bpc = 6,
+> +	.size = {
+> +		.width = 217,
+> +		.height = 136,
+> +	},
+> +	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
+> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
+> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
+> +};
+> +
+>   static const struct display_timing dataimage_fg1001l0dsswmg01_timing = {
+>   	.pixelclock = { 68900000, 71110000, 73400000 },
+>   	.hactive = { 1280, 1280, 1280 },
+> @@ -4731,6 +4756,9 @@ static const struct of_device_id platform_of_match[] = {
+>   	}, {
+>   		.compatible = "dataimage,fg040346dsswbg04",
+>   		.data = &dataimage_fg040346dsswbg04,
+> +	}, {
+> +		.compatible = "dataimage,fg080016dncwag03",
+> +		.data = &dataimage_fg080016dncwag03,
+>   	}, {
+>   		.compatible = "dataimage,fg1001l0dsswmg01",
+>   		.data = &dataimage_fg1001l0dsswmg01,
+> 
 
-> Thanks for the review. I'm currently implementing some changes in the
-> driver according to the review, however I have some doubts regarding
-> removal of the `i2c_client` from `si7210_data`.
-
-...
-
-> > > +struct si7210_data {
-> > > +       struct i2c_client *client;
-> >
-> > Do we really need a room for that? Isn't it derivable from the below
-> > regmap? Also note the frequency of use of client vs. regmap. The
-> > result in the object file can be much better if regmap becomes the
-> > first member here. Check it (with bloat-o-meter, for example).
-> >
->
-> I used arm-linux-nm and the bloat-o-meter to compare the sizes and it
-> turned out that the version which contains the `i2c_client` has
-> slightly smaller size actually. Here are the results:
->
-> $ ./scripts/bloat-o-meter -p arm-linux-  ./old_si7210.ko  ./new_si7210.ko
-> add/remove: 0/0 grow/shrink: 1/0 up/down: 4/0 (4)
-> Function                                     old     new   delta
-> si7210_probe                                 556     560      +4
-> Total: Before=3D4021, After=3D4025, chg +0.10%
->
-> Here is the diff (shortened for better readability) between
-> the old_si7210.ko (uses `si7210_data->i2c_client`) and
-> new_si7210.ko (does not use `si7210_data->i2c_client`):
->
->  struct si7210_data {
-> -       struct i2c_client *client;
->         struct regmap *regmap;
-> ...
->  static int si7210_device_wake(struct si7210_data *data)
->  {
-> +       struct device *dev =3D regmap_get_device(data->regmap);
->         int ret;
->
-> -       ret =3D i2c_smbus_read_byte(data->client);
-> +       ret =3D i2c_smbus_read_byte(to_i2c_client(dev));
-> ...
-> static int si7210_probe(struct i2c_client *client)
->         data =3D iio_priv(indio_dev);
-> -       data->client =3D client;
->
-> Hence, I guess that it's actually better to leave the `i2c_client` as it =
-is.
-
-I don't think you have tested all that I was talking about, i.e. have
-you tried to swap the positions of client and regmap? What I expect is
-that when you swap them you will see a good size reduction due to
-pointer arithmetics becoming no-op for the regmap pointer. And then
-the dropping of the client might waste all that beneficial size.
-
-> > > +       struct regmap *regmap;
-> > > +       struct regulator *vdd;
-> > > +       struct mutex fetch_lock; /* lock for a single measurement fet=
-ch */
-> > > +       s8 temp_offset;
-> > > +       s8 temp_gain;
-> > > +       s8 scale_20_a[A_REGS_COUNT];
-> > > +       s8 scale_200_a[A_REGS_COUNT];
-> > > +       u8 curr_scale;
-> > > +};
-
---=20
-With Best Regards,
-Andy Shevchenko
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
