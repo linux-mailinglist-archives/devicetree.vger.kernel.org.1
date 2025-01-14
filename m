@@ -1,148 +1,154 @@
-Return-Path: <devicetree+bounces-138385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9A04A102EF
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:22:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23793A102FF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:28:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A9927A13E4
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:22:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D55B71881F43
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:28:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8C26284A7C;
-	Tue, 14 Jan 2025 09:22:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00C6D28EC6B;
+	Tue, 14 Jan 2025 09:28:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fg/34Mwn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XcRvbyAD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E961C3BFC;
-	Tue, 14 Jan 2025 09:22:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C65A422DC21;
+	Tue, 14 Jan 2025 09:28:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736846553; cv=none; b=tyy/rtJnIY9BEMLBlsf5BUF19aJNL8empO37V8GFtvFjaJXeLuIz1LBLsPl6NlH7z09D1ZQBG2qNIwhKSR0kD1aixdxHECs/mNOOFOOIsgSWFu9au8bhVlUkglDceq56u+mxvVuv6IsLdk8zI8qPt5jKvv9DTYpR8q/GsGwHYQ4=
+	t=1736846910; cv=none; b=euM5DMg9KMd0losU0WtOTmUBIkfMzKbLA638i4Cs72qXVuM7z48YOkOdcNsH0JyfC8j5bVH7eJjvHUfhbY87ckDiTl5o4R6Fs+URd8X4nq5KqfQ6fwWum5k/pWhO44HrAaKyQMOYDZ2bgPW2g5tSGcBFeFjxDExfplF8zB51SXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736846553; c=relaxed/simple;
-	bh=MaCmJ233eT2WiOTriAslC3oFILgWS8EmsqGuiDrklOc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d+UI/z/iOeolNSf1yDiSf8vHcpfT4Thi+ICxUn+ocDwecR/0hlm5539LquIM7kA9cy0bF/FLmc4guFrUatET/ux9Bv6xBWOzvr6lSIWV7FU31U0ItpwtQsWzYutZ1u5GhHWKAwneiKu0fMxZYHV/7Lgmt01U2KJBYsGzQMwRv5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fg/34Mwn; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2164b1f05caso91383165ad.3;
-        Tue, 14 Jan 2025 01:22:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736846551; x=1737451351; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3Z4LX5lwtVmpDeNtFjY28PP+zpGux3htcdBHReHRR7k=;
-        b=fg/34Mwn2hQ/5vGefbgfqayzCeIEldaIcxvnSomNvzyhqrhDx7v2OzX3Hgmi57Qjud
-         x0MSkBlm0+JQRFUeTIJf+mLwAbqi1zbwuzViE4huwpTK12yIz+/cV0P/CtBFgpG7yAMn
-         4jEfVyq7p1SOuxmbcKPl37OWyz/hdtoe27FT0cYvAGuLm7aYXYiXVKB9roghGrO+P7H2
-         bUmTTcs2GYXdFYZYNex3UTFI7psrMmXCfgmc+4AckTL47MrkW5gWztrVkQuTMZwNJmlz
-         WRq4+itlryAKQG+gdE355x2FWG9scBnShUuwDMeguvZPvSoqAzdMKcolBmN0XfzqFAYt
-         GntQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736846551; x=1737451351;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3Z4LX5lwtVmpDeNtFjY28PP+zpGux3htcdBHReHRR7k=;
-        b=QVEGeKTE8Y7AAAEspykM03l0funqkQEotBdq89tHfoGg4x6KMbNa+hr/1GoTmPg8vL
-         9J5k5eQuI9YrIOa/mz3kTOoA/4XgjCfJAKn6JAdVDiSZEFiMpD0G4185mWLvMIfQ0DIk
-         bYs+YywAZYgXKDXinlNmYPWhRc+gyG83yL9aOpLEwiANLvHyIESKyJGHLU19QuoMi2mJ
-         kgV6IJ1wvwCaJaOjnkC5GN9reOedtT6iKilPC3dHSYcnNkn9JMk8QgX3ijN596luTX3u
-         tTOMqQb8D9wVIyjt6RSEQyOVCOSRTf6J5i8149SJ+PKnQq4aABZD3e0YQ0q6Q93aM3Z+
-         wccA==
-X-Forwarded-Encrypted: i=1; AJvYcCUFoC9NuB/SvJ0z3r/xmB+hbL9hX0VVBdepZnuTDRYARhjG1qh5dM/QpPE8T8oqkOXHRiI7HVyjMsrX@vger.kernel.org, AJvYcCXzaUTHs8MQW+nkygry7+jMS1cFGmMmgjsOK+MUUgBE/Zc8Jw+f2FaF74kTA7KyWmwdrJmJwsL8CCv6snRN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfGnd+nXJcsx9Qxw/vfcmB52uZPqfqo9A6E0ySyLk3kFNqbqZX
-	wgqZfdRDS19gj5OP0DbXouYQJrG/6ZvGxxix1qI88eeqZWfAWIz/
-X-Gm-Gg: ASbGncvl9HHOG6aoTh9GjBMsaYGc5EVcj+4sb/sBRcUTuIiCdd6QsNNn7eZsBZG65vP
-	+6q5Dyrvfol5F1Apoa+vsVAWxM7b/lPLL0bUT6V5TkiR39hVzGPKK1C7yUiFbb3cIIpckHt1Jm8
-	QfWHY5TxsrbYrXbS0+1mqRf8/5VQ7kCQd58mRl1AmhuGaHlPDClJWTNk35m7MtUxFjKb5N63nX0
-	gzowwBpxwkYVLdD6jTlwD+yZXtRHHJF46LOcJ003pL5taMjk68iLKM=
-X-Google-Smtp-Source: AGHT+IGFwDYeYkpNHqhvAd/SxiIC6AuscsQfEKEwBJjgYJJMpFpVqOJ3ei425eGqfMkjSosMGo/6GA==
-X-Received: by 2002:a17:902:d50d:b0:216:4c88:d939 with SMTP id d9443c01a7336-21a83fc77cemr359026715ad.38.1736846551435;
-        Tue, 14 Jan 2025 01:22:31 -0800 (PST)
-Received: from nuvole.. ([144.202.86.13])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21a9f219b00sm64368855ad.150.2025.01.14.01.22.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jan 2025 01:22:31 -0800 (PST)
-From: Pengyu Luo <mitltlatltl@gmail.com>
-To: krzk@kernel.org
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	mitltlatltl@gmail.com,
-	robh@kernel.org
-Subject: Re: [PATCH v3 1/6] dt-bindings: platform: Add Huawei Matebook E Go EC
-Date: Tue, 14 Jan 2025 17:21:04 +0800
-Message-ID: <20250114092104.637699-1-mitltlatltl@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <7mojfix3wobcowdlmux6gznwdqlhd3y7q3zxb5jvjkqzt2tzol@ogdrn7yxs2r7>
-References: <7mojfix3wobcowdlmux6gznwdqlhd3y7q3zxb5jvjkqzt2tzol@ogdrn7yxs2r7>
+	s=arc-20240116; t=1736846910; c=relaxed/simple;
+	bh=OJWtwbRS0GQYnP2iRmQnG5KMhHxA7svt0XHwtX+wAlQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l/jyfXRNVkNGN337GcqfTZ1kHC5ILjNxL53FbkaeBNfHOWAfMpmbBbaPC2D2paa3+XYBMC5uwKOigBs80wdGOl359NElAS08bEVRgDnQ3RPBnaDh74ELq0Vi5Oksc9757lCCYUvCb1XDwwgOLJPurXU+Qz2ds/hA/7iK8gooyGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XcRvbyAD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B31FC4CEDD;
+	Tue, 14 Jan 2025 09:28:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736846910;
+	bh=OJWtwbRS0GQYnP2iRmQnG5KMhHxA7svt0XHwtX+wAlQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XcRvbyADGXCNuCGb751eenW4IeCS5w2PZMR+MDGpDES3t1vihwuObyxnVh4+FBgfs
+	 0Zc+pq+f2s9W4zzip8qVD1dptDvGnkl+Vx28MGiFHHNN46lUJKicHQ1A2EOhw2t2J5
+	 cMJxoVzgMVrNtq/ofu70qxsy4JwzZVkBTeae6w7Yd7jquayBVXOlHKjNjF4WrvBXP2
+	 BzkfFJSSdFclwuZJw+g60Uew5Mr4q/jUa02NIgPgtBqzxGQuq7Klo3F9FDt35clXyr
+	 zuc2wAFGnIMV/4q3CidjXnApB4n6GyOPEgyekXas1sAGFhwmnj2KAWJR1P1nmp3OJD
+	 QZxsG/72WyTSw==
+Message-ID: <679440a5-5ee2-47a3-9811-3be96cdcf2a2@kernel.org>
+Date: Tue, 14 Jan 2025 10:28:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: convert stm32 rcc bindings to
+ json-schema
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20250109211908.1553072-1-dario.binacchi@amarulasolutions.com>
+ <20250109211908.1553072-2-dario.binacchi@amarulasolutions.com>
+ <bfxyod5l2s6g3j47be7mjh6i7wgjapka2q5b6f2mleipiai6gm@hfvclvkzrtyd>
+ <CABGWkvqu10dyW6y5S7qvY4G7uh0OaUgr6k-F7BA1AU0H9bA9GQ@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CABGWkvqu10dyW6y5S7qvY4G7uh0OaUgr6k-F7BA1AU0H9bA9GQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On Tue, Jan 14, 2025 at 4:27 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> On Tue, Jan 14, 2025 at 01:50:23AM +0800, Pengyu Luo wrote:
-> > Add binding for the EC found in the Huawei Matebook E Go and
-> > Huawei Matebook E Go LTE 2-in-1 tablets, the former one is a QS sc8280xp
-> > based tablet, the latter one is a QS sc8180x based tablet.
-> >
-> > This series has a codename, gaokun. More information about gaokun, please
-> > check https://bugzilla.kernel.org/show_bug.cgi?id=219645
-> >
-> > Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-> > ---
-> >  .../bindings/platform/huawei,gaokun-ec.yaml   | 124 ++++++++++++++++++
-> >  1 file changed, 124 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/platform/huawei,gaokun-ec.yaml
-> >
->
-> This got disconnected from the rest, so you need to resend. Otherwise I
-> don't see how maintainer can apply the set.
->
+On 14/01/2025 10:10, Dario Binacchi wrote:
+> On Sat, Jan 11, 2025 at 10:25 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On Thu, Jan 09, 2025 at 10:18:28PM +0100, Dario Binacchi wrote:
+>>> +maintainers:
+>>> +  - Dario Binacchi <dario.binacchi@amarulasolutions.com>
+>>> +
+>>> +description: |
+>>> +  The RCC IP is both a reset and a clock controller.
+>>> +  The reset phandle argument is the bit number within the RCC registers bank,
+>>> +  starting from RCC base address.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - items:
+>>> +          - const: st,stm32f42xx-rcc
+>>> +          - const: st,stm32-rcc
+>>> +      - items:
+>>> +          - enum:
+>>> +              - st,stm32f469-rcc
+>>> +          - const: st,stm32f42xx-rcc
+>>> +          - const: st,stm32-rcc
+>>> +      - items:
+>>> +          - const: st,stm32f746-rcc
+>>
+>> Why this isn't just part of enum with first group/list? Different
+>> groups/lists are for different fallbacks and I am pretty sure fallback
+>> is the same.
+> 
+> I tried running tests after applying the changes you suggested, but
+> the tests are failing.
+And? Fix the code then?
 
-I am sorry, I screwed up. I used a wrong way to send it. I think I will send
-next version in the next few days. Since Guenter and Ilpo have reviewed the
-base driver, I need fix something.
-
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->
-> ---
->
-> <form letter>
-> This is an automated instruction, just in case, because many review tags
-> are being ignored. If you know the process, you can skip it (please do
-> not feel offended by me posting it here - no bad intentions intended).
-> If you do not know the process, here is a short explanation:
->
-> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-> versions of patchset, under or above your Signed-off-by tag, unless
-> patch changed significantly (e.g. new properties added to the DT
-> bindings). Tag is "received", when provided in a message replied to you
-> on the mailing list. Tools like b4 can help here. However, there's no
-> need to repost patches *only* to add the tags. The upstream maintainer
-> will do that for tags received on the version they apply.
->
-> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-> </form letter>
->
-> Best regards,
-> Krzysztof
->
-
-Best wishes,
-Pengyu
+Best regards,
+Krzysztof
 
