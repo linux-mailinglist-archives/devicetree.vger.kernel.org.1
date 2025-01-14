@@ -1,112 +1,140 @@
-Return-Path: <devicetree+bounces-138506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E106CA10AA5
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 16:24:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 380F4A10AD6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 16:30:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05E5B188221D
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:24:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EF441881584
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF931B0F2F;
-	Tue, 14 Jan 2025 15:23:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 248F6191F94;
+	Tue, 14 Jan 2025 15:30:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="sYZ/B44H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fVYIR/+F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pv50p00im-ztdg10012101.me.com (pv50p00im-ztdg10012101.me.com [17.58.6.49])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C1191B4148
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 15:23:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F47191F77;
+	Tue, 14 Jan 2025 15:30:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736868222; cv=none; b=JC2QtU0aNXaE/lJLeGVIWRv8eFMXjgvHjUyK+gMUj25MKbQ/g9XbKSjXS+f2Wglgcd6w7hagoNBxKrLwbvEUP0MPv2HObPqYDOxJBvjIVs2BhEdkz5mo+aRATKWxTV6wrqK8zryyZmxTG/Ithihf9IC7RuYrSH66z4LEpXSU+0k=
+	t=1736868609; cv=none; b=OG6Ns4qe1C43dZkUEjiYe6ZZLQRiX81ViPNREOLIb+Go1EDHyyVDXwydUCxa8N41sTgxHwtHKvYaUBt2TvEDTArk4Tor6WbivHwm5GwCr3JQ+qLdrvnlRiYfhqpOHpzuhqebnAPzqRXniWXvl6scEy9cKAEXksXbPLzOsgj+0B8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736868222; c=relaxed/simple;
-	bh=d1s9ZfvC1jghcNOdLj6ATp7UMx2J54qBMdja9wmUxhE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LAbVdwoSb3XyP0ZhB42PKyUHaDUxHXgrVVmAmlzKG8jsvp3lGTB3SVuvGuhdiutUN5uu2Tw1uw3p9Pn2JOf24+svPLEfsDiAIYC9oz4gj/GWP7FKbaMedx7RFeuYWExV3lrZtaxV+sGB2v0I/NNX/+eiMmDkzCi0zoNtkXxi+X0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=sYZ/B44H; arc=none smtp.client-ip=17.58.6.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1736868221;
-	bh=w16vMjwdN8Ia+lnbvpB82rHqjNQzRwERV77jgJ4m4ao=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:
-	 x-icloud-hme;
-	b=sYZ/B44HfzJd8YKhuF0TR2/jowaxKrSNPjOFkbLlUsIXPPDh95kboknOBEqPnONA3
-	 kG+eQ1zo3fR+UY0DK2LQfT+GFhCRv3w2byPuJM23/euJbBvW65xPPxnEs4Hk4/BO4P
-	 dED5U+2Oo7gbeax6O7qrvq4u7hX0RDZ2PPwieRu7izPkwlHTJeX2o2zzFXb7bUzVLc
-	 o5oCSjA6S6ZYOS5j959J2GPF2cbK1FQsKFH2wkr2mofIdJrw1O2/vMSsJU75JpHaIo
-	 hmjExEw2Tu6Khy40DoLbfWm5BHpZjne9BlHI6We0Yn747LwFIKhr0U3+EFmgfI7YA2
-	 E4fkmlReZDvlw==
-Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-ztdg10012101.me.com (Postfix) with ESMTPSA id 591C5740369;
-	Tue, 14 Jan 2025 15:23:36 +0000 (UTC)
-From: Zijun Hu <zijun_hu@icloud.com>
-Date: Tue, 14 Jan 2025 23:23:05 +0800
-Subject: [PATCH v5 3/3] of: Correct element count for two arrays in API
- of_parse_phandle_with_args_map()
+	s=arc-20240116; t=1736868609; c=relaxed/simple;
+	bh=EqcUylhusVYBo3Rb0QLFQ4ZNh6CRloFr970DPKRw/JY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iijCucltLKOf0S70tbCpm7hOeTSnEfOR2PBtXksLYmVW9iEYDVD4UrcpZrGcgTBhW+zSC96zFC35ZC8n5X2+e3CxYYxGhNDPINA1K1unC20jD+MBeYJavSC4y3SGVceXSc/N0fGvMaIRXxdWgmvgncRO6Izgaf8Vlqhn/eaRCrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fVYIR/+F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30D92C4CEDD;
+	Tue, 14 Jan 2025 15:30:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736868608;
+	bh=EqcUylhusVYBo3Rb0QLFQ4ZNh6CRloFr970DPKRw/JY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=fVYIR/+FyZHGcYnlEoV4Cvfv0N64X43mfVFjqZUzPQ7ELaDwuDd8Gu7VAPx8aal9k
+	 qgr606MkMFthedEl5l4Ai1+Z0jjxwKR9CB/NxkRReR+yhOe3isVsHfAKuimisEGzIE
+	 vx3FuIS1oSK1oV5eBZyVXXo3S6YQaq3H1cOeixVZO4rRGLm3KOcub7JYaaK3PxnTrn
+	 xsEaSmiCLrguRRpcwDd2NNRxbtnGSIip9MD34i4MOEHbpwGcU0aRB57sHv3ehPA7vs
+	 UEp+7FxX5OX3/TIhu9+OJur+EIMZ1/QwkFTfh4Te3PbTyxsjmeud7+YOjc68knIbLr
+	 5luT+B+B0CYBg==
+Message-ID: <4a90b17a-54ec-4ea3-a872-b0d79d9438e3@kernel.org>
+Date: Tue, 14 Jan 2025 16:30:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250114-of_core_fix-v5-3-b8bafd00a86f@quicinc.com>
-References: <20250114-of_core_fix-v5-0-b8bafd00a86f@quicinc.com>
-In-Reply-To: <20250114-of_core_fix-v5-0-b8bafd00a86f@quicinc.com>
-To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
- Oreoluwa Babatunde <quic_obabatun@quicinc.com>
-Cc: Zijun Hu <zijun_hu@icloud.com>, devicetree@vger.kernel.org, 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 14/14] of: Improve __of_add_property_sysfs()
+ readability
+To: Zijun Hu <zijun_hu@icloud.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ Maxime Ripard <mripard@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Grant Likely <grant.likely@secretlab.ca>, Marc Zyngier <maz@kernel.org>,
+ Andreas Herrmann <andreas.herrmann@calxeda.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Mike Rapoport <rppt@kernel.org>,
+ Oreoluwa Babatunde <quic_obabatun@quicinc.com>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Proofpoint-ORIG-GUID: H3kdc_4ygtUMBEws7xV4wHIYMR9xf_pb
-X-Proofpoint-GUID: H3kdc_4ygtUMBEws7xV4wHIYMR9xf_pb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-14_05,2025-01-13_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxlogscore=902
- phishscore=0 adultscore=0 clxscore=1015 malwarescore=0 suspectscore=0
- mlxscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2501140121
-X-Apple-Remote-Links: v=1;h=KCk=;charset=UTF-8
+References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
+ <20250109-of_core_fix-v4-14-db8a72415b8c@quicinc.com>
+ <20250110204154.GA3529721-robh@kernel.org>
+ <c79dd576-0a85-48e2-a7f8-e4b4e005a18b@icloud.com>
+ <qvyhzgeye7qwppcafisvjkg4wwkrenwxq7nebnsjxdenj7wvxm@qwxzet3iyzyx>
+ <55a2e1cc-0a34-4599-8d62-a2479a0eac87@icloud.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <55a2e1cc-0a34-4599-8d62-a2479a0eac87@icloud.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Zijun Hu <quic_zijuhu@quicinc.com>
+On 14/01/2025 16:20, Zijun Hu wrote:
+> On 2025/1/11 17:17, Krzysztof Kozlowski wrote:
+>>> const char security_prefix[] = "security-";
+>>> use 'sizeof(security_prefix) - 1' for the length of string.
+>> Code is still not equivalent - just de-assemble it and you will see
+>> some overhead.
+>>
+>> Maybe just introduce builtin_strlen() to string.h and use such? It would
+>> be the pretty obvious code.
+> 
+> strncmp(s1, "s2_string", builtin_strlen("s2_string")) is similar as
+> strncmp(s1, "s2_string", sizeof("s2_string") - 1).
 
-of_parse_phandle_with_args_map() defines array @dummy_mask and @dummy_pass
-these two arrays only need @MAX_PHANDLE_ARGS elements separately, but they
-actually have (@MAX_PHANDLE_ARGS + 1) elements, One extra element doesn't
-hurt anything except for some stack usage.
+Above yes, but maybe builtin_strlen() could be made to work on the
+pointer, thus you would have "s2_string" in only one place.
 
-Fix by using (@MAX_PHANDLE_ARGS - 1) as max element index in initializer.
+> 
+> so perhaps, it is not worthy of a new builtin_strlen().
 
-Signed-off-by: Zijun Hu <quic_zijuhu@quicinc.com>
----
- drivers/of/base.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/of/base.c b/drivers/of/base.c
-index f4ab4086b80f62c4d9ce428cdde042d0ed4febe2..2432e0f4646d1d829d5b94ae2d2b1717afe286cf 100644
---- a/drivers/of/base.c
-+++ b/drivers/of/base.c
-@@ -1448,8 +1448,8 @@ int of_parse_phandle_with_args_map(const struct device_node *np,
- 	char *pass_name __free(kfree) = kasprintf(GFP_KERNEL, "%s-map-pass-thru", stem_name);
- 	struct device_node *cur, *new = NULL;
- 	const __be32 *map, *mask, *pass;
--	static const __be32 dummy_mask[] = { [0 ... MAX_PHANDLE_ARGS] = cpu_to_be32(~0) };
--	static const __be32 dummy_pass[] = { [0 ... MAX_PHANDLE_ARGS] = cpu_to_be32(0) };
-+	static const __be32 dummy_mask[] = { [0 ... (MAX_PHANDLE_ARGS - 1)] = cpu_to_be32(~0) };
-+	static const __be32 dummy_pass[] = { [0 ... (MAX_PHANDLE_ARGS - 1)] = cpu_to_be32(0) };
- 	__be32 initial_match_array[MAX_PHANDLE_ARGS];
- 	const __be32 *match_array = initial_match_array;
- 	int i, ret, map_len, match;
-
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
