@@ -1,131 +1,89 @@
-Return-Path: <devicetree+bounces-138565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AEA7A11382
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 22:57:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13A9AA11385
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 22:58:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DD723A52CB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 21:57:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BE791611FC
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 21:58:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 750E021322C;
-	Tue, 14 Jan 2025 21:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D1F6212B0B;
+	Tue, 14 Jan 2025 21:58:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nyla7Fjd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="krqqAD/t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A870420F98F;
-	Tue, 14 Jan 2025 21:57:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 183FB20F091;
+	Tue, 14 Jan 2025 21:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736891853; cv=none; b=PhJBskgFSp/j5pACrwkPMPQAo7K1ZWMSPOiYu8G9pvX6z2pN+9F9JymJ4zTl5Muou7CDdhPD1PfBW1b0WdOGfpJOxBpb7eP1fV5zlQVvfQbZYgQpcTbGnPUORgrutfX8SGP2Ltuhp2nXe6EXS1jDJheWUgv5oUZMToD/i3L8caI=
+	t=1736891885; cv=none; b=WZTO5U6AQkZG6shAMfgi8gaP7NSiAW82tRmOkAkKP1QFKcokJZ/K9CoQ3d7IsI4ypsKlwYOimkjHDFSAZyef0rJJ4rlnor8MiECRSsQ48DuKNSThNlsrXpeVpCgYtw+zjpFSluIsZc3FK03P1inny8DIIr+RW70t7+dX1/SpYsk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736891853; c=relaxed/simple;
-	bh=mY1ByvAzkq/1267QcOicrnww0Bug5ydkNL9fEvOoNE0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dSsuFCSVHfAEs75lTHic+t1bUSVwW0rnMgrYjwM089DxNaew/KHM3rkGeShvhq2U7DO7dmyapIMfePF1XsMdfGLzcfrM133KUFeY5SnVLILQaw177YG6gMMmTWQ1WB+rlMHW8x+A9eNlE3ERxJcCgUx4hbzrUxuefPvlcEba72U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nyla7Fjd; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5d3d479b1e6so8444138a12.2;
-        Tue, 14 Jan 2025 13:57:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736891850; x=1737496650; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hQu9l4If54VEx/qw1TONKfUdVJ9/1OBl33V3eKp1goI=;
-        b=Nyla7FjdyWIqatwColAvhvAEGLj7r+0UqljkFMpFuI3UpVnErcriuVSjgCgyCIf+va
-         iZofu0bT8vkfyl3JIbztgIW3c5TAfbrvn2QR1u/yEMcbU3y9b38a3ZqBrjxkQETnh/78
-         5aafLK9HVRzDjaGbWhGhMIvaHwFrN7VksCUxnhi4gIfPnirrhejh/6l5lfXAIzqsHT9V
-         K9dwFX9ODnCFYZrZtR+sKayXpPRHr8+Ca6YUI51WNQycQAFkJ+/bONF83fv0mqWYa0Sn
-         dUcG5gsmHEfAtbiMf+o4UBK6DSpoNSRCbWBtkBRItZrPZ+g0qjeefBbpuPUcVsKBwIX7
-         7eRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736891850; x=1737496650;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hQu9l4If54VEx/qw1TONKfUdVJ9/1OBl33V3eKp1goI=;
-        b=mETZpR8XcR6lmoEx3qQmWIMutKBIGUi/r5q/VUjDUO6PDZ8fGSs2JVjbpHTwB3kpR/
-         wdbjAxZ2NPGrdh0sJRK8ILK+uMZWEf6HxdTeFdo0kWLef2CCSR5BltaGTDMB07PpAAbf
-         pr86+GlMqXsIMthzZPYkkH8hojQ8h1I1fHw4uVTPST3nBuRemKnLw3liQz2XEdjq0TcR
-         PeOMgZz8qUQh9nRp1mtNlmST9DOEdObEiLf/xcOvhrMWyW9FGXCNsZwRfL8yGs/zAwQK
-         QZof/GQJwghVdHQvOuVgx5UPo1zGGohKfj5+XIG2+IKi1fcOjqB9uYTlYPILIW/rgAbb
-         W01A==
-X-Forwarded-Encrypted: i=1; AJvYcCUvT/eRmCb+ZG4NgWl4ueLxIC/EBO+RNKksruRQWzHo09AKt2xmpR+8ABfV5VTRxUgmeveA+RRWZfegeQE5BYXAnTo=@vger.kernel.org, AJvYcCUy1V0Kfta9EmwnDig3Lfktre3H/tuqulCllneku5bRsWjt64vo4JvexMhhRqEGhrcvfhZcqCP6H8JtGho=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVxWwcpLkmA3ergDMdoFa8rP3qIWpVYTpCzrE+iLcezasAvJYG
-	5Xw91Plp5kuMtYvOC3wD7REqGzMgu/I8AEr4tb6I12pPu7rOOdi2
-X-Gm-Gg: ASbGnctCO7klElFXtE/ZVdAQ38IVZh6TwPsc+iK3+l+IXZCCCE/GmrIK5rjrou8Fj++
-	iMFHaQoBvLBvm/I6mmS3UUFL/rTDNZ+arAeN9+QHc16cDfToMB3rv9Pu6fTb1+H7SDUhr+YfACm
-	VkYwCeEJvi/bHfpPfp181NXhtxuM20fgwSbqgLIKUSfu4P4xU3wQKYk206rZB0WRwSgyx6P/bpM
-	IqchUIeoRpXFuBuwCIU7Jb3aLbhPBpXAPCFZt7sSnRr1FzTzKf8fdZRFsl8wDXKSC2+pz6EdO0U
-	LyfHY3RepQ2JyR1MpTjkgTYUFkZ9vshpH0E=
-X-Google-Smtp-Source: AGHT+IH2uBguYrAt8RmEQaVYzAmbMVFnqhUDBVbYGhqIhJtoDuRg3mXoojY+VnqzpULof5Ie/4Sl9Q==
-X-Received: by 2002:a05:6402:26c5:b0:5d0:d491:2d5e with SMTP id 4fb4d7f45d1cf-5d972dfff56mr31360609a12.7.1736891849618;
-        Tue, 14 Jan 2025 13:57:29 -0800 (PST)
-Received: from [192.168.1.107] (91-139-201-119.stz.ddns.bulsat.com. [91.139.201.119])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d99008c523sm6730831a12.8.2025.01.14.13.57.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jan 2025 13:57:29 -0800 (PST)
-Message-ID: <15e9931a-b817-4dd3-abb6-9718e002c6bd@gmail.com>
-Date: Tue, 14 Jan 2025 23:57:27 +0200
+	s=arc-20240116; t=1736891885; c=relaxed/simple;
+	bh=fIRjaf2CBR9Qy+fI83to34FCd1RO8+IPvgldD3ddWh0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dkr2yPFlX943rL8W53inlUpHMTnjocxZZOOXo4VHljGm0FwWkPX/3spNRwY6BtPgKWU9PjfSBMA1yzujngTaVXgkYxb5bO1unol483VJkLeRxZEISisWtHvl/hKJd/Lvng0bCg7WVBSI/PQQL+YCn1GtqU0xvbg/lUlgge60CVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=krqqAD/t; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CF61C4CEDD;
+	Tue, 14 Jan 2025 21:58:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736891884;
+	bh=fIRjaf2CBR9Qy+fI83to34FCd1RO8+IPvgldD3ddWh0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=krqqAD/tinsHRONkhI0CAN1VER5dNJQoyDRkkj5L3Fv3NE2bIkwbFlbgRQ9/KkAj/
+	 F8zeNWmDZP8L+Y3Yc5Tt3wp22Azhw4P0b7Dsj5EfMCra94eP2rmcsBxarrn7BMwgfG
+	 TexrpasEOfT4xLLd6qpX8ZUif1r4852u2MYAEFTL0LAi7fVlZ0S5c4aa1k15MpxF1O
+	 LzAkc1eB0u+7ngi0MEpqxDyblcL4W4c92Y8M4oo5IEoBu+YGtFqTULFyvtJpxsI2Gp
+	 MfAd7XdMBVVOjfcfSa7Ukrhx6y3a8gwpXZZVAlJtYl5ba+fXg01qbtja/K6rSH6Mg7
+	 soPWNoGBPU14A==
+Date: Tue, 14 Jan 2025 15:58:03 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Melody Olvera <quic_molvera@quicinc.com>
+Cc: Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	Gaurav Kashyap <quic_gaurkash@quicinc.com>,
+	Thara Gopinath <thara.gopinath@gmail.com>,
+	Bjorn Andersson <andersson@kernel.org>, devicetree@vger.kernel.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: crypto: qcom-qce: Document the SM8750
+ crypto engine
+Message-ID: <173689164413.1704764.8805395503286034717.robh@kernel.org>
+References: <20250113-sm8750_crypto_master-v1-0-d8e265729848@quicinc.com>
+ <20250113-sm8750_crypto_master-v1-1-d8e265729848@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/4] soc: samsung: usi: add a routine for unconfiguring
- the ip
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Peter Griffin <peter.griffin@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250109090325.595475-1-ivo.ivanov.ivanov1@gmail.com>
- <20250109090325.595475-3-ivo.ivanov.ivanov1@gmail.com>
- <81ff734b-7a5e-4c98-9df2-9b65996fff78@kernel.org>
-Content-Language: en-US
-From: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
-In-Reply-To: <81ff734b-7a5e-4c98-9df2-9b65996fff78@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250113-sm8750_crypto_master-v1-1-d8e265729848@quicinc.com>
 
-On 1/14/25 20:03, Krzysztof Kozlowski wrote:
-> On 09/01/2025 10:03, Ivaylo Ivanov wrote:
->> +static void exynos_usi_unconfigure(void *data)
->> +{
->> +	struct exynos_usi *usi = data;
->> +	u32 val;
->> +
->> +	/* Make sure that we've stopped providing the clock to USI IP */
->> +	val = readl(usi->regs + USI_OPTION);
->> +	val &= ~USI_OPTION_CLKREQ_ON;
->> +	val |= ~USI_OPTION_CLKSTOP_ON;
->> +	writel(val, usi->regs + USI_OPTION);
->> +
->> +	/* Set USI block state to reset */
->> +	val = readl(usi->regs + USI_CON);
->> +	val |= USI_CON_RESET;
->> +	writel(val, usi->regs + USI_CON);
-> Also shouldn't you enable clocks for accessing these? They are being
-> disabled at the end of exynos_usi_enable().
 
-Hm, perhaps. But I find that weird, since I haven't seen it in the downstream
-driver implementation.
+On Mon, 13 Jan 2025 13:16:21 -0800, Melody Olvera wrote:
+> From: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+> 
+> Document the crypto engine on the SM8750 Platform.
+> 
+> Signed-off-by: Gaurav Kashyap <quic_gaurkash@quicinc.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/crypto/qcom-qce.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Best regards,
-Ivaylo
-
->
-> Best regards,
-> Krzysztof
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
