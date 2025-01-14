@@ -1,157 +1,147 @@
-Return-Path: <devicetree+bounces-138417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B241A104C7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 11:57:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C4E3A104CD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 11:58:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0987C3A1972
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:57:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 384C6162269
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:58:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E7E820F966;
-	Tue, 14 Jan 2025 10:57:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3A7B20F969;
+	Tue, 14 Jan 2025 10:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RmQD2IGQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ezAoWA8B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC6120F960;
-	Tue, 14 Jan 2025 10:57:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A40F20F964
+	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 10:58:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736852269; cv=none; b=a2ws4kAsA4W2wLE8rhAKhy+bR/1jKW6KQ8Z5aqD69cwk6yQbA7ydBlFClx3iao8Sz5HqJBz9VRJdFa8x9IeEv1DnpPaSpK80E8IJZCNZf3c2O/gxcWm+Y+KLCijdtVBuOyEQHC5NRKHPhy9bDjpTLXMWwPe6wwEU056OHhYwTnM=
+	t=1736852317; cv=none; b=gpbjxGfu43IqAll9uQ2VxgiQckWSt4Yst6LylvA60rq4oNjC8PbhKgbmM29NJouXL2h8COiNjHD42WAsuoJpGPlKMYSPcjE7d7TkW1MMNoln6rAyX47zZsgWo0YfabBXMAL+E38MioGIR+MbCjLdJSIlz8Qt65xFl/5FSqgUw8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736852269; c=relaxed/simple;
-	bh=bxAHs9LEAY2usisCAODMbK8ZEBJ9bQYnYbegOqBBi2s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GPaPnCSme9916KLJCj4bZWhiPWOTF7KBOPIh2pLRKZG+CgP+vX/DtjcxfMMb2omApOjvdlk2hIQcQujSbgn3dTIPJa3507KDIN3fGZhGPkUSaAjQn3FBxmm5sNVWt217B+K+PFNj1R+6E4IzmK/aRMxRIhT/Z65eKcm51KbGbSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RmQD2IGQ; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-518a52c8b5aso1701452e0c.2;
-        Tue, 14 Jan 2025 02:57:47 -0800 (PST)
+	s=arc-20240116; t=1736852317; c=relaxed/simple;
+	bh=tfQsTc1nT0Ft+LZBuVNjWxLnJbLWjrvfw684D9dezC0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pYvBs53aA3XT4kIdPnzU7hwSckoVJxwwPOeuYdLUPiVZlAXvq33UxAH0Saq+2RUZNb6o+EuV9vBXquxzaJl/C1Sj8uMR6o4KJcuIbbTO8MlfityBcIfe8ga3W+pU+JDBXfASzi+e/x0vSwAqrr9Rdby2yP0crQBOuMCHAjOzy9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ezAoWA8B; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5401bd6cdb7so5323126e87.2
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 02:58:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736852267; x=1737457067; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yhLoTeZEg3O6/J3xmcZwI5/1WUYN2UyOx2hfQpSKVo4=;
-        b=RmQD2IGQjDNM1p/cIEP0+V4WXl1ojuMIOMJNav/UsZZ0KZ/XQQGSftoEPdLVLM6vFd
-         buqTuJlLNMnQyG+SKugUsQcsA8b3fapJHC95WoFPFbBESd+n9Lwxr10HrL7BJSzr4uV6
-         sPnoxA/wPSN39lqAtqV5qGZK0abj7oWDwHSXTIdPFoZ8YhKxTil8iW90aPnepr5u+THd
-         KQ9w5QPjMeD7OqJNbpFUJ8Vu8WEOxGGw3Rta37yD1zR1zhJlw4JXVY4OoK1S3gqp3BQC
-         TpjugDYd4Cq/eQ4z3N8gbmhLHpRm8c5ceoiPWmCtW3x0/avudvR1mmYVxHyNoe2pBc9d
-         B9ag==
+        d=linaro.org; s=google; t=1736852314; x=1737457114; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=v06DTStht/BGs7htXIBio0Lcr2lokSmMNBRohHl881Y=;
+        b=ezAoWA8BAhmTVTYB6tsIj3DWNGNMeo5uKLZ72+oZD5z7dG7v3YWXm32fbwilkQZ9tF
+         1cQ9tdUcuNpzOBnAJeBeZXlGn3mrCMAwar00AGp1tka25gQ3mu5TmaK3TiPWvGs3xQ12
+         l2fvamne2KUhVrz5K2DepR1gl8B5iC3nyT9X7BfRkub5PQjs3GKt52Zj2SAnWvM/hzTH
+         /6gRXkoFpvGT+xKbRLCywVvPDgd6/fEsKadkvWxBxMPjpEe2suvUAFsxBGFpdJ1zcV/0
+         orWpM/daqMIK23D7etqsAa61Cvh/W3K2l07VILNMP/1h+dZnjttHbu1jTjOIJTv2EEXT
+         gM5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736852267; x=1737457067;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yhLoTeZEg3O6/J3xmcZwI5/1WUYN2UyOx2hfQpSKVo4=;
-        b=vW/TiUwM3gLdEBlkLfWwkoTLuIf4q9Xv+t5aW0+MEjXD7Rg7+ts7QFuVsyh8euxm0v
-         yD10ijiIfswj8feXPOkYVbHoMT2aF4q3/REd5dcwgsN6r6N/ieZswL+aDlNkaAPWtFzJ
-         slVtiGRCPjv3MsuCpzSJTZQEFUCKZCKtCiyAgFSQsJ4W66IWGEqu1Z9HgXr9Mt2h/zQ2
-         hr6OpRCp4fIazRZsFkxTM6tXjyWEhsCCtAcDZGPlHwqvSYSqe93ApuN7ISYe9Mbtkq8W
-         WsiZAz/B7llNmGL+VJp3HDu4aH0ywXlaLYvI8wcDzOZNjDIILenZDBXaejMoSAuSGCsa
-         xEfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUH7o8LKuh6cMOlSCbJCqc7kDxSbEdb2Ob+nmefDIh6jyhyyj4kb+NBiYSJl72f9I4nHYW93gGntkqx@vger.kernel.org, AJvYcCUrzpnZiDMvXU8NEzpovaYid4DWKsjjjiyi4nyza6CCoObpI7oL7dEJRb/pNA4PSniGTbiJBfbosEDSJkfVELo=@vger.kernel.org, AJvYcCV55EDHRlN55Pb4psPDRS7+WltK8ttOZnzzj+MnjWxVx8erukpSD77X7unzqtPaOiVHAk4VawCAMOJ+@vger.kernel.org, AJvYcCVisf7XNCkEG8afliB2veLDe7cQP4TSgwG0mdloft1jemXHWC5hOY6L16H+MbdJHij5OZq/J87XmjqDmV0M@vger.kernel.org, AJvYcCVsotrE++ORxlutnssayQ3K9XVsuRD1tBt28zOeO8cen4gokHDMPuR8xyEjGk7RGFodRkGEQ1tTgV+1Sj2ERFpn05c=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRtuDNsXpk8l7dInkGwzetqVJjcKhZWpY3CK+aBdB0mqYm4eE2
-	M134+FRJSUheLRRWD7/tBk1WBNGRTTGlIxgCgwhU8Tp86kIr14pDe2K94KVBiT/Orw7VKkjCqT5
-	19K7LEUsH3nuJacE+zH5PGOrzjRc=
-X-Gm-Gg: ASbGncv8RxjzupnUf+iLCjbRzfUTDHn8sbTsTKB1yM+ActMIOPmqMHuiqqXrVs17rTW
-	Ou0XeiPYtAmPGxsxdeBa/tczICB/jwFYPjZEC5xw=
-X-Google-Smtp-Source: AGHT+IEbPc3lPMcMjZAEH3DA1YlXXwtQLJAZLsiX6fyp+5PlE4CRwwDQOvoBWYK5DOBGgWonP/TxVQMxcdiTZ5omF5A=
-X-Received: by 2002:a05:6122:1d14:b0:50b:e9a5:cd7b with SMTP id
- 71dfb90a1353d-51c6c50fa64mr19314886e0c.9.1736852266690; Tue, 14 Jan 2025
- 02:57:46 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736852314; x=1737457114;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=v06DTStht/BGs7htXIBio0Lcr2lokSmMNBRohHl881Y=;
+        b=XQHi4hHsS4kcvLyBXgsgoCOdNXnYoJjMJoHN3lJ6b2wdWojDZdtU+8qmlS71RA+j/7
+         oUIU2O6AEAdTBz7WaUfcMqos08v2GZz4JA92v1d2hEak/hIXiQBOissXLMtujzxeCOnj
+         a40vkJztFyk8bkFFST6USz0NilRYhMmexldOHMuF3/3QNmm1sQr6TKSUhBVGDH/7DSfV
+         AvnYQ1aWv3CrDPSOOl3z6F0ka0fWSrHOhzAekLQvtk+APD9zcMnbzbbraWBiFx1MJ9YU
+         oM8GXp8Q7n70Zcl5LkXAESXpFY/EtlTHj8uxcEQqi1yt1fO+bzyapaiVhNoOKGjSHRyp
+         allA==
+X-Forwarded-Encrypted: i=1; AJvYcCUDM1YBsgGC9+D9GRfD5Z54xsKAnE44VZdvtuF5zweHE/mWMgtT17IW3Ns/Jd8SOjoiYMmH9DwpgTGX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrGycMCUdweuLaAmYnP6WVuQ2cO+EBU1VZFeRXZwvekykY7EkV
+	uippEVl06Uu6hLzJuieSQOmX/BR18rK4Dh9vrjb3Lddm7OCWhfF0fIgAuY1tIn8=
+X-Gm-Gg: ASbGncvc+Copnp+UrBFMTXXlJ3EANGSPp2iFddW5Pw+hKK5RV766dkNrjTGcEKlXg0N
+	cmTD8pbDm5KjSGEQmEfQEcRE3wOhp1C6Sw6PlP0No1u2kt8kSKTwOfiVZoyjYQJdgn0+31Ar2kR
+	cypOx2AMRCR0F16mIl0baJYjv7UNhaHUtGjlSEr9cS5omqe053wXqoPFcsReORQZxqAIvStioGI
+	6eaiBqElh0pk9AwWitTxGlLYC9xad0cEgs1EO0q7/bzVqkGPeCMvfaFGW49oCjH7tW6jgXuRYxT
+	y4fi80K11Qzni51gLULXqEJwdo60qRHrjocc
+X-Google-Smtp-Source: AGHT+IETi/WjVadv1RFOndvu0JxOjoN1KgR9F9kiGHeQVMY2QDkVGRBDuKCOeEVC+YNHHTcQ87OekA==
+X-Received: by 2002:a05:6512:3188:b0:542:98e9:63b1 with SMTP id 2adb3069b0e04-54298e965fcmr4074618e87.31.1736852314398;
+        Tue, 14 Jan 2025 02:58:34 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428bea669dsm1676326e87.164.2025.01.14.02.58.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jan 2025 02:58:34 -0800 (PST)
+Date: Tue, 14 Jan 2025 12:58:31 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Melody Olvera <quic_molvera@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] soc: qcom: llcc-qcom: Add support for LLCC V6
+Message-ID: <ididns3nh3zcokenxdutxgzotmegmhgmtbxokt7tsicd3ja6rw@v35fmdneranv>
+References: <20250113-sm8750_llcc_master-v1-0-5389b92e2d7a@quicinc.com>
+ <20250113-sm8750_llcc_master-v1-2-5389b92e2d7a@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250113112349.801875-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250113112349.801875-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <TY3PR01MB11346890814785C2150BB484D86182@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB11346890814785C2150BB484D86182@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Tue, 14 Jan 2025 10:57:20 +0000
-X-Gm-Features: AbW1kva_YoFFjsmaXXXJnaiop5H1mz9PaYeI-HrK3aI3xD2vDW5geg1w68hePDc
-Message-ID: <CA+V-a8vrhb7Wt4RwQJ1wpDYfiy8-jiT0Dej7UYcRszyS9cKx4g@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] watchdog: rzv2h_wdt: Add support to retrieve the
- bootstatus information
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250113-sm8750_llcc_master-v1-2-5389b92e2d7a@quicinc.com>
 
-Hi Biju,
+On Mon, Jan 13, 2025 at 01:26:41PM -0800, Melody Olvera wrote:
+> Add support for LLCC V6. V6 adds several additional usecase IDs,
+> rearrages several registers and offsets, and supports slice IDs
+> over 31, so add a new function for programming LLCC V6.
+> 
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>  drivers/soc/qcom/llcc-qcom.c       | 212 ++++++++++++++++++++++++++++++++++++-
+>  include/linux/soc/qcom/llcc-qcom.h |   8 ++
+>  2 files changed, 216 insertions(+), 4 deletions(-)
+> 
+> diff --git a/include/linux/soc/qcom/llcc-qcom.h b/include/linux/soc/qcom/llcc-qcom.h
+> index 8e5d78fb4847a232ab17a66c2775552dcb287752..7a69210a250c4646b7fd6cf400995e35d3f00493 100644
+> --- a/include/linux/soc/qcom/llcc-qcom.h
+> +++ b/include/linux/soc/qcom/llcc-qcom.h
 
-On Tue, Jan 14, 2025 at 9:55=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
->
-> Hi Prabhakar,
->
-> Thanks for the patch.
->
-> > -----Original Message-----
-> > From: Prabhakar <prabhakar.csengg@gmail.com>
-> > Sent: 13 January 2025 11:24
-> > Subject: [PATCH v3 5/6] watchdog: rzv2h_wdt: Add support to retrieve th=
-e bootstatus information
-> >
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > On the RZ/V2H(P) SoC we can determine if the current boot is due to `Po=
-wer-on-Reset` or due to the
-> > `Watchdog`. The information used to determine this is present on the CP=
-G block.
-> >
-> > The CPG_ERROR_RSTm(m =3D 2 - 8) registers are set in response to an err=
-or interrupt causing an reset.
-> > CPG_ERROR_RST2[ERROR_RST0/1/2] is set if there was an underflow/overflo=
-w on WDT1 causing an error
-> > interrupt.
-> >
-> > To fetch this information from CPG block `syscon` is used and bootstatu=
-s field in the watchdog device
-> > is updated based on the CPG_ERROR_RST2[ERROR_RST0/1/2] bit. Upon consum=
-ig
-> > CPG_ERROR_RST2[ERROR_RST0/1/2] bit we clear it.
->
-> As syscon-cpg is available, can we get rid of Linux assuming TF_A/U-boot =
-for configuring Error Reset
-> Select Registers(0x10420B04)for the watchdog to reset the system?
->
-Agreed.
+These are not relevant to v6 support, move them to the platform-support
+patch.
 
-> After this, each watchdog device node will have, selection{offset,bit} st=
-atus{ offset,bit}
-> renesas,syscon-cpg-error-rst-sel =3D <&cpg 0xb04 1>;
-> renesas,syscon-cpg-error-rst =3D <&cpg 0xb40 1>;
->
-> Or
->
-> renesas,syscon-cpg-error-rst =3D < &cpg 0xb04 1 0xb40 1>;
->
-As we already have 0xb40 we can do 0xb40 - 0x3c to get `0xb04` in the
-WDT driver and the same bit numbers can be re-used for
-CPG_ERRORRST_SEL2,  so by this way we can avoid adding another
-property in DT. And I think this works for G3E too?
+LGTM otherwise.
 
-Cheers,
-Prabhakar
+> @@ -24,6 +24,7 @@
+>  #define LLCC_CMPTDMA     15
+>  #define LLCC_DISP        16
+>  #define LLCC_VIDFW       17
+> +#define LLCC_CAMFW       18
+>  #define LLCC_MDMHPFX     20
+>  #define LLCC_MDMPNG      21
+>  #define LLCC_AUDHW       22
+> @@ -67,6 +68,13 @@
+>  #define LLCC_EVCS_LEFT	 67
+>  #define LLCC_EVCS_RIGHT	 68
+>  #define LLCC_SPAD	 69
+> +#define LLCC_VIDDEC	 70
+> +#define LLCC_CAMOFE	 71
+> +#define LLCC_CAMRTIP	 72
+> +#define LLCC_CAMSRTIP	 73
+> +#define LLCC_CAMRTRF	 74
+> +#define LLCC_CAMSRTRF	 75
+> +#define LLCC_CPUSSMPAM	 89
+>  
+>  /**
+>   * struct llcc_slice_desc - Cache slice descriptor
+> 
+> -- 
+> 2.46.1
+> 
+
+-- 
+With best wishes
+Dmitry
 
