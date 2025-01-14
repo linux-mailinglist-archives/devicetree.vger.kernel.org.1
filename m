@@ -1,313 +1,137 @@
-Return-Path: <devicetree+bounces-138530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3516FA10EC5
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 19:01:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8CFAA10EDF
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 19:02:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22BC23AD5AD
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 18:00:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21578188A31A
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 18:02:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF6F02066EB;
-	Tue, 14 Jan 2025 17:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B78BB20AF6D;
+	Tue, 14 Jan 2025 17:59:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="R4RWdRTH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YXDscY6o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7C5E2066CE;
-	Tue, 14 Jan 2025 17:57:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BC251FAC3B;
+	Tue, 14 Jan 2025 17:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736877476; cv=none; b=okllLSkpfQqYXB4J5jCYqASs0qwhdIS/PWoPNHdT3f00AflwMF0GxsbrjWz/BKcILFdxo024Qgv719TfZ463ywB1GHdsPD38DgJX3KkgpDyEgsnJZo2ZiO7vGV1VuHejrNXSKQWuM9x9GyC0JuMZYjkmDyRAx9r48pxkiumO6oA=
+	t=1736877554; cv=none; b=Os+ZAxHQoL0J8+b+zSU+kBAYts/6tCGY2ahwr8dgTHK2qmKc/WLt8n6bl6cvApOF1BEtFGbKQkM13G2HPrAhxX6tumbhYE/5fI7KebjjjnbJ8dzmttELQoTSoui+aRs+tpZKK6aIQjcAQt7DEw1yjss3FMiqrnKktiwWQoOHtls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736877476; c=relaxed/simple;
-	bh=SgFT1UWpPmVo0Y98co/q2WsoNw9++nsxnDkJ/dhtUQc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=guCYoW2ANpgVF59PW+MxMUcEfDnU0YyzlWPMcJ9y6kPOs84pSRmIara5cQ9KgdjkzQAil8qwRZuIIJ1sETaXLSGX8lQrxqt/RlhwsepNIFXawRN1uNkcxt2tyDepuCcDWxDWG0ZB07qsPzUPmCX4oBK9Qq2Y184wKj/n8PNtel0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=R4RWdRTH; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id ED70A240003;
-	Tue, 14 Jan 2025 17:57:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736877466;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=lzZWLx1qDKjqrP+46ITVilq+OsTRK7y1u7bGvKmKqbA=;
-	b=R4RWdRTHBej/D5sjufp9dYMMS3NyDJEYWbAs52H+nvubOO+0oLxu4RuLpEHo3kS0WFseaP
-	jNlglDrZGzpIuJsjsdITohg2lOF4LSEDIwI4eF6EZmTYixzJQ4jBXnWt0rqY0LbeBlkTDo
-	Ltj+UeQcYGyUVLPkPwz67qCk6aviHI8yeOc/aqhn7ESmVJGsyco4MhKP5R0hu4HTe4b0qQ
-	XLoNmm9tSdECZLJPXgggBWpkl4N50EI1+I9xDXPLt+biF2rObEvIziMf35EqRZn0sJmMBM
-	TxpvSrZi0lQW0RRVrM7KA0ARp251YoYNWCQHzCSevA2XVaRdBkKfrmPWa81VsQ==
+	s=arc-20240116; t=1736877554; c=relaxed/simple;
+	bh=Ch9ESDHNaHxMb5XpRE3Yg/Ozfn95HCCeTGAYOqh1oDo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eOC7uzekGSnRZgLi8BRIyYLgEsOx6ikDXjjG7/SDsMlOhctrlkE0qXAj6H0vv4SMh33MjUE2a2dJFwmvuxVnlzoj2In9hqERMEESMg80fWRPC6QsIRsG/SgMVwBU/OzKUkJMtMGBX6A/PtGVSjkLF5rZyVW3VqsyLqC8fN772uU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YXDscY6o; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 158E4C4CEE6;
+	Tue, 14 Jan 2025 17:59:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736877554;
+	bh=Ch9ESDHNaHxMb5XpRE3Yg/Ozfn95HCCeTGAYOqh1oDo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YXDscY6ow/+EgX2aAajatG99IA6EdzJ4FMzZH8dxbN6NyLQUAZxWBI+Q3D2zV2nHA
+	 UmXnadvo97gW42lQk8mvwUWxY4J77YNmqUg5UwDSOp3FEkzIQIcxaTm0Rbl1lwRK1Y
+	 dgxrBYPnyQoT3SGPPeAGFj2zj8NqHexBPoqGnzTyNhi4kj/Ljzt55Yg2Dgv6AB731W
+	 KHHtdMZ0R1jx9UNNsYMLe1uoAISxsoqsKqXikUCKaIdAeVCjOU4O39awQaMZ1dSLKr
+	 EMz24m6eHwaUf008Aq8EB1rfVSE9g9NPxf/KkLM5oUmzUfg8n8rEoIizp8XaAWoAWY
+	 rQvapZGbwdqkg==
+Message-ID: <26aa96ba-36e4-400c-a982-48344f2096e4@kernel.org>
+Date: Tue, 14 Jan 2025 18:59:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] soc: samsung: usi: add a routine for unconfiguring
+ the ip
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Sam Protsenko <semen.protsenko@linaro.org>,
+ Peter Griffin <peter.griffin@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250109090325.595475-1-ivo.ivanov.ivanov1@gmail.com>
+ <20250109090325.595475-3-ivo.ivanov.ivanov1@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250109090325.595475-3-ivo.ivanov.ivanov1@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Tue, 14 Jan 2025 18:57:45 +0100
-Message-Id: <D71ZOCDV6CTL.G3BF0PKHLUTU@bootlin.com>
-Subject: Re: [PATCH v3 4/7] gpio: max7360: Add MAX7360 gpio support
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>,
- "Bartosz Golaszewski" <brgl@bgdev.pl>, "Dmitry Torokhov"
- <dmitry.torokhov@gmail.com>, =?utf-8?q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
- <linux-input@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: "Linus Walleij" <linus.walleij@linaro.org>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com>
- <20250113-mdb-max7360-support-v3-4-9519b4acb0b1@bootlin.com>
- <CACRpkdb5rmUK06uW3M2Lsy4Wam8JvrjmGM83cJa-V3LZwTX9dg@mail.gmail.com>
-In-Reply-To: <CACRpkdb5rmUK06uW3M2Lsy4Wam8JvrjmGM83cJa-V3LZwTX9dg@mail.gmail.com>
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+Content-Transfer-Encoding: 7bit
 
-On Tue Jan 14, 2025 at 3:33 PM CET, Linus Walleij wrote:
-> Hi Mathieu,
->
-> thanks for your patch!
->
-> On Mon, Jan 13, 2025 at 1:43=E2=80=AFPM Mathieu Dubois-Briand
-> <mathieu.dubois-briand@bootlin.com> wrote:
->
-> > Add driver for Maxim Integrated MAX7360 GPIO/GPO controller.
-> >
-> > Two sets of GPIOs are provided by the device:
-> > - Up to 8 GPIOs, shared with the PWM and rotary encoder functionalities=
-.
-> >   These GPIOs also provide interrupts on input changes.
-> > - Up to 6 GPOs, on unused keypad columns pins.
-> >
-> > Co-developed-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> > Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
-> > Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com=
->
-> (...)
-> > +#include <linux/gpio/consumer.h>
->
-> Why?
->
-> My most generic feedback is if you have looked at using
-> select GPIO_REGMAP for this driver?
->
-> The regmap utility library is very helpful, look how other driver
-> selecting GPIO_REGMAP gets default implementations
-> from the library just git grep GPIO_REGMAP drivers/gpio/
->
+On 09/01/2025 10:03, Ivaylo Ivanov wrote:
+>  static int exynos_usi_parse_dt(struct device_node *np, struct exynos_usi *usi)
+>  {
+>  	int ret;
+> @@ -251,6 +268,10 @@ static int exynos_usi_probe(struct platform_device *pdev)
+>  			return PTR_ERR(usi->regs);
+>  	}
+>  
+> +	ret = devm_add_action_or_reset(&pdev->dev, exynos_usi_unconfigure, usi);
+> +	if (ret)
+> +		return ret;
 
-Thanks, I was not aware of that. I tested it and I should be able to get
-rid of a lot of code using GPIO_REGMAP.
+You should not reverse the action before the action actually takes place.
 
-My main concern so far is with the request()/free() functions, as I
-believe I will not be able to define them as callback anymore.
+> +
+>  	ret = exynos_usi_configure(usi);
+>  	if (ret)
+>  		return ret;
 
-I also saw the equivalent REGMAP_IRQ, but I'm not sure I will be able to
-use it, as I believe I would need to have registers identifying the
-exact GPIO source of the IRQ.
-
-> > +static void max7360_gpio_set_value(struct gpio_chip *gc,
-> > +                                  unsigned int pin, int state)
-> > +{
-> > +       struct max7360_gpio *max7360_gpio =3D gpiochip_get_data(gc);
-> > +       int ret;
-> > +
-> > +       if (max7360_gpio->gpio_function =3D=3D MAX7360_GPIO_COL) {
->
-> OK some custom stuff...
->
-> > +               int off =3D MAX7360_MAX_GPIO - (gc->ngpio - pin);
-> > +
-> > +               ret =3D regmap_write_bits(max7360_gpio->regmap, MAX7360=
-_REG_PORTS,
-> > +                                       BIT(off), state ? BIT(off) : 0)=
-;
->
-> Fairly standard.
->
-> > +       } else {
-> > +               ret =3D regmap_write(max7360_gpio->regmap,
-> > +                                  MAX7360_REG_PWMBASE + pin, state ? 0=
-xFF : 0);
-> > +       }
->
-> Some custom stuff.
->
-> > +static int max7360_gpio_get_value(struct gpio_chip *gc, unsigned int p=
-in)
-> > +{
-> > +       struct max7360_gpio *max7360_gpio =3D gpiochip_get_data(gc);
-> > +       unsigned int val;
-> > +       int off;
-> > +       int ret;
-> > +
-> > +       if (max7360_gpio->gpio_function =3D=3D MAX7360_GPIO_COL) {
-> > +               off =3D MAX7360_MAX_GPIO - (gc->ngpio - pin);
-> > +
-> > +               ret =3D regmap_read(max7360_gpio->regmap, MAX7360_REG_P=
-ORTS, &val);
-> > +       } else {
-> > +               off =3D pin;
-> > +               ret =3D regmap_read(max7360_gpio->regmap, MAX7360_REG_G=
-PIOIN, &val);
-> > +       }
-> > +
-> > +       if (ret) {
-> > +               dev_err(max7360_gpio->dev, "failed to read gpio-%d", pi=
-n);
-> > +               return ret;
-> > +       }
-> > +
-> > +       return !!(val & BIT(off));
-> > +}
->
-> Looks like stock template regmap-gpio.
->
-> > +static int max7360_gpio_get_direction(struct gpio_chip *gc, unsigned i=
-nt pin)
-> > +{
-> > +       struct max7360_gpio *max7360_gpio =3D gpiochip_get_data(gc);
-> > +       unsigned int val;
-> > +       int ret;
-> > +
-> > +       if (max7360_gpio->gpio_function =3D=3D MAX7360_GPIO_COL)
-> > +               return GPIO_LINE_DIRECTION_OUT;
-> > +
-> > +       ret =3D regmap_read(max7360_gpio->regmap, MAX7360_REG_GPIOCTRL,=
- &val);
-> > +       if (ret) {
-> > +               dev_err(max7360_gpio->dev, "failed to read gpio-%d dire=
-ction",
-> > +                       pin);
-> > +               return ret;
-> > +       }
-> > +
-> > +       if (val & BIT(pin))
-> > +               return GPIO_LINE_DIRECTION_OUT;
-> > +
-> > +       return GPIO_LINE_DIRECTION_IN;
-> > +}
->
-> Dito.
->
-> > +static int max7360_gpio_direction_input(struct gpio_chip *gc, unsigned=
- int pin)
-> > +{
-> > +       struct max7360_gpio *max7360_gpio =3D gpiochip_get_data(gc);
-> > +       int ret;
-> > +
-> > +       if (max7360_gpio->gpio_function =3D=3D MAX7360_GPIO_COL)
-> > +               return -EIO;
-> > +
-> > +       ret =3D regmap_write_bits(max7360_gpio->regmap, MAX7360_REG_GPI=
-OCTRL,
-> > +                               BIT(pin), 0);
-> > +       if (ret) {
-> > +               dev_err(max7360_gpio->dev, "failed to set gpio-%d direc=
-tion",
-> > +                       pin);
-> > +               return ret;
-> > +       }
-> > +
-> > +       return 0;
-> > +}
->
-> Dito.
->
-> > +static int max7360_gpio_direction_output(struct gpio_chip *gc, unsigne=
-d int pin,
-> > +                                        int state)
-> > +{
-> > +       struct max7360_gpio *max7360_gpio =3D gpiochip_get_data(gc);
-> > +       int ret;
-> > +
-> > +       if (max7360_gpio->gpio_function =3D=3D MAX7360_GPIO_PORT) {
-> > +               ret =3D regmap_write_bits(max7360_gpio->regmap,
-> > +                                       MAX7360_REG_GPIOCTRL, BIT(pin),
-> > +                                       BIT(pin));
-> > +               if (ret) {
-> > +                       dev_err(max7360_gpio->dev,
-> > +                               "failed to set gpio-%d direction", pin)=
-;
-> > +                       return ret;
-> > +               }
-> > +       }
-> > +
-> > +       max7360_gpio_set_value(gc, pin, state);
-> > +
-> > +       return 0;
-> > +}
->
-> Dito.
->
-> > +static int max7360_gpio_request(struct gpio_chip *gc, unsigned int pin=
-)
-> > +{
-> > +       struct max7360_gpio *max7360_gpio =3D gpiochip_get_data(gc);
-> > +
-> > +       /*
-> > +        * GPOs on COL pins (keypad columns) can always be requested: t=
-his
-> > +        * driver has full access to them, up to the number set in chip=
-.ngpio.
-> > +        * GPIOs on PORT pins are shared with the PWM and rotary encode=
-r
-> > +        * drivers: they have to be requested from the MFD driver.
-> > +        */
-> > +       if (max7360_gpio->gpio_function =3D=3D MAX7360_GPIO_COL)
-> > +               return 0;
-> > +
-> > +       return max7360_port_pin_request(max7360_gpio->dev->parent, pin,=
- true);
-> > +}
-> > +
-> > +static void max7360_gpio_free(struct gpio_chip *gc, unsigned int pin)
-> > +{
-> > +       struct max7360_gpio *max7360_gpio =3D gpiochip_get_data(gc);
-> > +
-> > +       if (max7360_gpio->gpio_function =3D=3D MAX7360_GPIO_COL)
-> > +               return;
-> > +
-> > +       max7360_port_pin_request(max7360_gpio->dev->parent, pin, false)=
-;
-> > +}
->
-> The pin request looks a bit like a custom pin control implementation...
->
-> But I think it's fine, pin control can be a bit heavy to implement on sim=
-ple
-> devices, but if there is elaborate muxing and config going on, pin contro=
-l
-> should be used.
-
-Just so remove any doubt, all this does is request the pin for the
-exclusive use of this driver, preventing the PWM or rotary encoder
-drivers to use it. There is no hardware configuration done here.
-
-Yet I agree that this does look a bit like some pin muxing.
-
->
-> Yours,
-> Linus Walleij
-
-Thanks for your review.
+Registering cleanup should therefore happen here.
 
 
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Best regards,
+Krzysztof
 
