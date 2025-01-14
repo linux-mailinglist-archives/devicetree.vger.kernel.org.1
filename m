@@ -1,195 +1,118 @@
-Return-Path: <devicetree+bounces-138473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 018F2A108C3
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:12:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 288FAA108D7
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:14:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0E31188664C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:11:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9C1E18841C2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:14:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2700013E41A;
-	Tue, 14 Jan 2025 14:11:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7CE143C40;
+	Tue, 14 Jan 2025 14:14:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tbQWzb0l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HQwo7w4A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5E8B13C3D3;
-	Tue, 14 Jan 2025 14:11:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB7F713D520
+	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 14:14:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736863882; cv=none; b=NPvpy741Hb+CbzmWjmBFAjDOrkBHMNL02p8K87M54i9H1RLzLwaMPtBZyvyYAgDkykBL48bVzUbZw9UfhPaTIHs3X1BJTXmsgrECOua1J5DdRlHE9wlwAN5g+LOr/BV4k4eynvvXakBIuk+FE3BIqSXTixwO2IiP4jULyvP+UPg=
+	t=1736864070; cv=none; b=ZZRbmBVBWVsboPT3l6aG3DynX2JrXMi5ljly5A+j3vCMrDHXr8Th2NK+bOtOEwXTkG+/lCKj8ju7DosbYfhmzDtvOy3fuXwLnI9/Y3hw7zVGwiFY+BPln475WCB5bRY0UGl1pBdo7GIBjxjrvIyofhv5sLV8D25B/a5LX/l6zQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736863882; c=relaxed/simple;
-	bh=SzgaLH47i8Fl4TwxX9pjbIuQJnVn2ovdLScqBdOV78E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=YrlmoRT7pdflweEQPd/lIj0NMFrlt5yPC94ROSbxF9EAdR+1HlRVLIYg0H7+CAlxSnT4h4gYV9fR4UL6vmz1VqjQrjQyxxVadsFjO9CtiYjoCaGIJrXZfb7IMWfIlO8awCt93t7CT8YH2YLDiUDl1NtM46He8lqyoLPA3t5/0jE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tbQWzb0l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 74763C4CEE8;
-	Tue, 14 Jan 2025 14:11:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736863881;
-	bh=SzgaLH47i8Fl4TwxX9pjbIuQJnVn2ovdLScqBdOV78E=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=tbQWzb0lK7zF4QnRpLWZlaFDR3L4K0zaEH6T6dgA75/dPafp/qXs/SO4GlfiEC28n
-	 Gcra5g4/PKzu9V1dd3NI+P7Pnh7OeJV7pPY0TA9C7v9RCCSG78Js3mTnsSazrZnuLi
-	 UQlTj9HLqbI8WeFpfx0m0BZkeat1T4BjFXH1JhRsEzhyEgd/A/Jsp4wUl6m48j03R5
-	 byhezLeN8z8dpqZyJDnx9HuaHSZATu3U0HAZ1ubmmSyY1FReokQQBs6IzseCyp3YOO
-	 L33ClNnR1he7nKAWfzcLm24VJ8RY1ydXb7tAaNogCksdF32auSaqe8BnoK1mgpryvm
-	 mxzq3miB5miaw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 6ABBEC02183;
-	Tue, 14 Jan 2025 14:11:21 +0000 (UTC)
-From: Ricky Cheung via B4 Relay <devnull+rcheung844.gmail.com@kernel.org>
-Date: Tue, 14 Jan 2025 22:11:20 +0800
-Subject: [PATCH 3/3] arm64: dts: qcom: msm8916-xiaoxun-jz0145-v33: Add
- initial device tree
+	s=arc-20240116; t=1736864070; c=relaxed/simple;
+	bh=kb+N7KX0rT6TQGPdAoyZC4q4c2muk934hfkb7Zz1PYk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IhFd1wK6XnZhVvi4DAxcAb+pp0NKl0zHASnos+/wx1GErJ6GP8Aws24T9BTdyDAmwkXYjfO2CVcVbflhz6gtb57fnYDrzht87uh/97W4jKIO78prlvW00iAV7IWstSxazwqHNfStoSShSngZKLemsClL6ckBLKDcWj2seTx9nbI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HQwo7w4A; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-54026562221so5735849e87.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 06:14:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736864066; x=1737468866; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kb+N7KX0rT6TQGPdAoyZC4q4c2muk934hfkb7Zz1PYk=;
+        b=HQwo7w4Au6FKAwDGBLwwBdFLw/dJRQH4WnJvHHPxUHvpqpe3esDAhBJLm4oGkHav0K
+         b35V32MSFWokv2mc7zfbyIXx6vyal33Yms3txIxI7oyasTbRp0DvJMV22rQX6Dn0Jod9
+         S74LKAJ852hiIeWQA/rdMM+QIMyjs0H1W101J0dr1vOo6P6FgNrSHIJy3K53G8VFssT/
+         0CC2SfeOnVn7wRmm0dLwacNoInM0KzLPobUTsBdOk+aRKXBrB/mdxGH9CUV4Tirozm87
+         ZIWxTuPAatznJoe2hbJRSWS18U9JLutgn4hbEoZKFb5ZzKC+p7Yyq+AFsBQ3d5ZkKHbF
+         9ANw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736864066; x=1737468866;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kb+N7KX0rT6TQGPdAoyZC4q4c2muk934hfkb7Zz1PYk=;
+        b=ra4gckCtByd3acc6W/Zqm2CPyf2wPZkeigdsDlfrVCYfzquApMaODRvb612CI7Xys0
+         9fVI5ZSmpsVd50XbZvxPdQ8ePMKpr95vMNyhnBdFZS1hzVqoR/2uEskyTbqmInowA4iC
+         Rm46TNy61zFtTv4mBq+grTip2arQ4MSMe1fDfoUU+rzY8O+QirRlr+psj15DjO+BE+Ed
+         vC7GgjA4k7dkFLnCP/getLFAs0wyTQRARucr4JwJeXhTgDjvB8x9a2kuupWtpjkkkVjg
+         2Y5O/OzaDm7mONMocu2wk6A6rphBBlk1C+H84pj0REyAVS6iDTwoAqn3l0m6C4QFNf8f
+         Vcuw==
+X-Forwarded-Encrypted: i=1; AJvYcCW7Sq8SEYu9zrErNvHmndO4eyQ31mrX+3y6LPdk8LqU98RzcgB4FSdzeRaftqzA1PJzudyVwXimqZpF@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEqa6VfbH5ERudjIAfkSSx8JOgYmmfEJa1sGUjTJT6e601HEEj
+	1C30UGIT7QfhtEuRu1p8dmTR5vQXZc5RYwIWLWHzTTU8jcW2lUA8xbJinL5d/OtReVUqXe8ENpj
+	77lS5Kou6+T0Xz9zSCV6gnveDgQz4vG3JlXiGRA==
+X-Gm-Gg: ASbGncsqCn7VWytJ7/B1xl3P3TizgScqOjHqEFv5qXR+ivq2lNCDojGBRtAt+bZB9Yx
+	nppJ/DEtaXtFTHbCJi26fhjAtELV46kUjKrj6
+X-Google-Smtp-Source: AGHT+IGQT/qQTanY0VeTmw14H4V1Aaz+aOnG3UKuUwYfMTsXxCW542oDFqS8vWTFAvYHrASeV6/2sAbC1dUoPYmd1+8=
+X-Received: by 2002:a05:6512:104b:b0:542:8d45:cb3e with SMTP id
+ 2adb3069b0e04-5428d45cce2mr7226522e87.18.1736864066034; Tue, 14 Jan 2025
+ 06:14:26 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250114-xiaoxun-jz0145-v33-v1-3-dc51f7ce3bd8@gmail.com>
-References: <20250114-xiaoxun-jz0145-v33-v1-0-dc51f7ce3bd8@gmail.com>
-In-Reply-To: <20250114-xiaoxun-jz0145-v33-v1-0-dc51f7ce3bd8@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, Ricky Cheung <rcheung844@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736863880; l=2981;
- i=rcheung844@gmail.com; s=20250114; h=from:subject:message-id;
- bh=zknxHLh/0yD6xrk03GtNYivOjkwjH1tCp9FwILMCT+8=;
- b=kSCS7SQZPecgrWAfh5fmzsRHNmCikB5YdyEti+49Kze6EDGs1IzIPKQ6fAh1W0KLm0EMCpOu6
- 0aVNtRfbl3FAeS9ewBgxwUE8RKnRo8/rwAXlugPpbByWzjlk6a713G7
-X-Developer-Key: i=rcheung844@gmail.com; a=ed25519;
- pk=JjZsSnuDD1xuR4EXY4XGKELgToA++HxxheDlHU/41yI=
-X-Endpoint-Received: by B4 Relay for rcheung844@gmail.com/20250114 with
- auth_id=323
-X-Original-From: Ricky Cheung <rcheung844@gmail.com>
-Reply-To: rcheung844@gmail.com
+References: <20250110123923.270626-1-szemzo.andras@gmail.com> <20250110123923.270626-4-szemzo.andras@gmail.com>
+In-Reply-To: <20250110123923.270626-4-szemzo.andras@gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 14 Jan 2025 15:14:14 +0100
+X-Gm-Features: AbW1kvZbpuLPblFhcOWb0pAf-vXkkjGwXrNgVmso7Oy8q5LSTsj10tRLuD4ySG4
+Message-ID: <CACRpkdaz7ABO2QQwv1NFaPm1dOF_maO-bxWQdPNoYAmUXDKCDw@mail.gmail.com>
+Subject: Re: [PATCH 03/12] pinctrl: sunxi: add driver for Allwinner V853.
+To: Andras Szemzo <szemzo.andras@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Maxime Ripard <mripard@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Albert Ou <aou@eecs.berkeley.edu>, =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Ricky Cheung <rcheung844@gmail.com>
+On Fri, Jan 10, 2025 at 1:39=E2=80=AFPM Andras Szemzo <szemzo.andras@gmail.=
+com> wrote:
 
-This commit implements support for the JZ0145 v33 WiFi/LTE dongle
-based on MSM8916, which was sold by XiaoXun BiCheng Technology.
+> The V853 family has multiple package variants, from BGA to QFN88.
+> The latter has co-packaged DRAM and fewer pins, and less features (pin mu=
+xes).
+> All family members can be supported by a single driver, as the available =
+pins
+> with allowed muxes is the same across the devices.
+>
+> Signed-off-by: Andras Szemzo <szemzo.andras@gmail.com>
 
-The stock bootloader could boot with this patch with lk2nd, but only
-one CPU core would be enabled. Enablement for all CPU cores require
-lk1st and d410c firmware files.
+Looks good to me, waiting for a review of the bindings before applying,
+but I see no problem with the patch as it's just using the core sunxi
+infrastructure and any minor issues can be fixed in-tree.
 
-Currently supported / tested:
-- All CPU cores
-- Buttons
-- LEDs
-- Modem
-- SDHC
-- USB Device Mode
-
-Although I do not have UART equipment on hand, UART should function
-and is labelled on the PCB of this device.
-
-Signed-off-by: Ricky Cheung <rcheung844@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile                  |  1 +
- .../boot/dts/qcom/msm8916-xiaoxun-jz0145-v33.dts   | 66 ++++++++++++++++++++++
- 2 files changed, 67 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index ae002c7cf1268a6f848fefdfadbd746091ee517b..b41bf312ebb6ed9c216ec3887e5dc128209d3f4f 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -58,6 +58,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-ufi001c.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86518.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt86528.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
-+dtb-$(CONFIG_ARCH_QCOM) += msm8916-xiaoxun-jz0145-v33.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8929-wingtech-wt82918hd.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-huawei-kiwi.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-xiaoxun-jz0145-v33.dts b/arch/arm64/boot/dts/qcom/msm8916-xiaoxun-jz0145-v33.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..7f1049e111b37213eeadc6a247d4cf21e7e0cd5f
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8916-xiaoxun-jz0145-v33.dts
-@@ -0,0 +1,66 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8916-ufi.dtsi"
-+
-+/ {
-+	model = "JZ0145 v33 4G Modem Stick";
-+	compatible = "xiaoxun,jz0145-v33", "qcom,msm8916";
-+};
-+
-+&button_restart {
-+	gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&led_b {
-+	gpios = <&tlmm 8 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&led_g {
-+	gpios = <&tlmm 7 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&led_r {
-+	gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&mpss {
-+	pinctrl-0 = <&sim_ctrl_default>;
-+	pinctrl-names = "default";
-+};
-+
-+&button_default {
-+	pins = "gpio37";
-+	bias-pull-down;
-+};
-+
-+&gpio_leds_default {
-+	pins = "gpio6", "gpio7", "gpio8";
-+};
-+
-+/* This selects the external SIM card slot by default */
-+&tlmm {
-+	sim_ctrl_default: sim-ctrl-default-state {
-+		esim-sel-pins {
-+			pins = "gpio22", "gpio23";
-+			function = "gpio";
-+			bias-disable;
-+			output-low;
-+		};
-+
-+		sim-en-pins {
-+			pins = "gpio1";
-+			function = "gpio";
-+			bias-disable;
-+			output-low;
-+		};
-+
-+		sim-sel-pins {
-+			pins = "gpio20";
-+			function = "gpio";
-+			bias-disable;
-+			output-high;
-+		};
-+	};
-+};
-
--- 
-2.47.1
-
-
+Yours,
+Linus Walleij
 
