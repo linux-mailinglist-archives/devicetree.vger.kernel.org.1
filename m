@@ -1,111 +1,152 @@
-Return-Path: <devicetree+bounces-138479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F3F3A108F1
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:17:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25852A108FB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:19:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3793118847F7
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:17:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76CDA162BAD
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:18:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E44898528E;
-	Tue, 14 Jan 2025 14:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D10B13A879;
+	Tue, 14 Jan 2025 14:18:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jYTwnVyx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qt+kgUFN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A8D317993
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 14:17:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 320AF17993;
+	Tue, 14 Jan 2025 14:18:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736864269; cv=none; b=abQkq68rMLnylFxNSxeWFcb1OX6aD4qI5/6PrId/h/w8Ekm3n2yKPBtj2pWEDgPx7DJh7AqBasq9yf4T93dPj99PrIyj3l471QRoKr5pvONOyyAdcC8ajOd+g0Akw/5XesxF6Gf1PCTITzRhrvD5mchB+a/VIOwoWZMBSHzycU4=
+	t=1736864338; cv=none; b=tatxzUdEAma4g4eLem/Q5v+TUXaEc1/Dgk15H3HYWZFeboMb3i5wBDd571MBVyQr2UYKD+LGbOKcpLr4ZI2pDl/NnoCKxcLY6VrazqJBKMrnulb+0501SYxpwA2tF8xokUVPzINziSJIH32voO0Fe7qy/6YXsrMid9BO/oCzUYo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736864269; c=relaxed/simple;
-	bh=O/WRM1ywqimJ2aPAr2Tip0blUkgzcD//gX/qp+tJeTM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=j1yldbgOlTA/2x+bjoVu7xGsTbbKoIkWovQuTjHvzQuuzwGnpa/3Owyk8dOiOpIBxsKlWIe9UdOmQNLLyICHwrajTMULlcuogHOsWkzAqzfjQ0u6Xb9qgdLPWNrLpTsZUNMfw8D7I1kFsMarevDCzAygDc7Hxtwb44wgDbH1yME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jYTwnVyx; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-30036310158so43787441fa.0
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 06:17:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736864266; x=1737469066; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=O/WRM1ywqimJ2aPAr2Tip0blUkgzcD//gX/qp+tJeTM=;
-        b=jYTwnVyxr54/9zvIEYInoB/PszQ9wT9atZLhsMWKS3w+qWIppwB5nwN6v95Y4cYlcI
-         CPkoOnDs8q7ZZI9FmBpn/hCb39hknH9oSP6w4+qiMaZmI9Iv9hf+lWAaUEvX9FeJt6im
-         BhyOZ6TiVZSO4HUUFSyZY415Bfn/pRHz9RKfVXhqZCu5N0rqYLMVlOyIxdUXGEU40jni
-         wrj0ozRiWKMUiQ9VdR1skkrDWbDfu2vZFXYJDmwOuvcCs3nm8qVJXXhkAzkTb6FF5H5V
-         FQn6IG98aurAponCo44wldB2K7y70ImdNFIYYrtx1s6im/FLgm5TgnTu/mEZJL3uynF4
-         fu5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736864266; x=1737469066;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=O/WRM1ywqimJ2aPAr2Tip0blUkgzcD//gX/qp+tJeTM=;
-        b=s+k0/TuzIG7ZWtYKzWaXthl8fhYoPaTEivKc+0IfMQKzfGPrUpSH8nr+DCcGnDYCxr
-         VrswiYmtFGk0deS/vdPlfZDaPVNBDe5gim58SE1n1P4kq1ciFHJRFSdBdOscUe5Yk3wF
-         aNNLWxNFTs4hhHCee7IBIIjC/H2h9x5ndmJfnAPU3VeowixClqmuG2ZVr5bbRbeDFjcp
-         mXcjH2yiT5FbX0wFg8YZlS4U78aFKPbsWiCHZHJWWyoIr8XWJoWb70z+dvGHyRKGVpLe
-         kI2y3ysdsOgccYxv2FGABDC9+/ULbHW/uhNxVqSERrDck5zS8Bx0mQ6BOd9VxFNFc00S
-         26NA==
-X-Forwarded-Encrypted: i=1; AJvYcCWwe14SwLaEwk7geS/3MWFyoQkk6T7lG5/8Tq7wWLRoe1KgK1JW4vExXXHtFV3fLK9ddc+xY3wjSnJi@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgzuThyfvMhL4RK3YMzoiFx+4NCp0fzilgWbGpu8I/8N1rvi0E
-	8jMvK7aLkCL+IiustGt7yqRSdaFNjrUmuW4YZlyLevvVM+fXuYVebBlArE8hKoF8oSVaV5oAoUp
-	5YbZnKqSlm23n3uYmMoTvI44qo4aFoWxcf1iUyQ==
-X-Gm-Gg: ASbGncvFq3+h1XLj8tlu/g8BaDd0VJ09fGdqT1VDuIKSOkdRL5k9b4B/QjEytmfz2Qf
-	jFX7rrvbzh4EDgJ+aCdObXFAYcP6LZ1mzKxvA
-X-Google-Smtp-Source: AGHT+IFPFJTmNosakpUt5JU8cN5nBrvR7+LTD4fCMkRrHXEcHL6oNl6Fgp0ggW/W8QtR1cS9S/mGb7h5l9NZcPFPlko=
-X-Received: by 2002:a2e:bc1c:0:b0:300:33b1:f0e7 with SMTP id
- 38308e7fff4ca-305f45478f1mr79313431fa.10.1736864266081; Tue, 14 Jan 2025
- 06:17:46 -0800 (PST)
+	s=arc-20240116; t=1736864338; c=relaxed/simple;
+	bh=/bE4XzpALQsGRT7BVYVcM1aIJxF5UAB4vSiqb7huymA=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BwRnGemv/FS6GZrNeMaWO3LHdAIUFvVPfYdbfpiGSq7qN6QSSwas+R6rC72qaoRZLbW0dysfgUPrz2tICPjnr8V6ay64szgy5mkPL7vlLivISWRZ+N25txunqX0mdHHH9vquqtXQwFA2tW+Wwi8CUldcjkFKtjS6rjZdQ9qTbHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qt+kgUFN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B0826C4CEE1;
+	Tue, 14 Jan 2025 14:18:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736864337;
+	bh=/bE4XzpALQsGRT7BVYVcM1aIJxF5UAB4vSiqb7huymA=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=Qt+kgUFN42RNG5gf4RFpaNaK/i2rvWNL//upRrhA38JF3Rdi1omg7HeEWjesgQWe7
+	 LNLQCe5g9Gn1LpLAu0bhpuwl02nrg7jBy1D4e+NjTBhpie+3X8qptnVjrPP4M9omZq
+	 3L4M3lFkf2PNoZ2fx7SoBo/z7tvlb3kgj5xAePR/wqWWinTqmZ/nT8IpgDdzM/kG1+
+	 f8ryon3jh3oGO7WoQ8DpA1aWo9gNMzQnv30HAlH8xlAuJUbQGIgd40VCVhj68JM6F6
+	 MPgmYGJ0/8Oz469sQOgBHUp8gNVRRWaXDIWe2jb+5bBdA4EkMIl9no+runkI0h0ycs
+	 Z+AYnKUuoKQGg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 9EF1CC02185;
+	Tue, 14 Jan 2025 14:18:57 +0000 (UTC)
+From: Ricky Cheung via B4 Relay <devnull+rcheung844.gmail.com@kernel.org>
+Subject: [PATCH v2 0/3] arm64: dts: qcom: msm8916-xiaoxun-jz0145-v33: Add
+ initial device tree
+Date: Tue, 14 Jan 2025 22:18:54 +0800
+Message-Id: <20250114-xiaoxun-jz0145-v33-v2-0-8b42f77badfa@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250107125836.225447-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250107125836.225447-1-krzysztof.kozlowski@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 14 Jan 2025 15:17:35 +0100
-X-Gm-Features: AbW1kvbukVMqrBajLgYQt1hKpFELkNSEFH3GzkQaHu95dam2b6lvaqOS79Rlmww
-Message-ID: <CACRpkdbJziJ0kKqZLrBuZ4G5HmnJbL5+j8zJLQ1H+q8NE9P3oA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: Correct indentation and style in
- DTS example
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Nicolas Ferre <nicolas.ferre@microchip.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
-	Michal Simek <michal.simek@amd.com>, Manikandan Muralidharan <manikandan.m@microchip.com>, 
-	TY Chang <tychang@realtek.com>, Krishna Potthuri <sai.krishna.potthuri@amd.com>, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAE5yhmcC/32NQQ6CMBBFr0Jm7ZiZFtS48h6GBbYFxgglrTYo4
+ e5WDuDyveS/v0B0QVyEc7FAcEmi+DGD2hVg+mbsHIrNDIpURcwlztL4+TXi/UNcVpi0RqWtITq
+ YljVBHk7BtTJv0WuduZf49OG9fST+2b+5xEhoTcXt0Th9s6dLNzTy2Bs/QL2u6xe+w1KNtAAAA
+ A==
+X-Change-ID: 20250114-xiaoxun-jz0145-v33-23dc006cf130
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, Ricky Cheung <rcheung844@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736864336; l=2571;
+ i=rcheung844@gmail.com; s=20250114; h=from:subject:message-id;
+ bh=/bE4XzpALQsGRT7BVYVcM1aIJxF5UAB4vSiqb7huymA=;
+ b=gdEj1aM2kbqmhgHAv2gUxOFCR1Z8t7jumCdoHGX2/9AA3Lbcvjtbm3weMgdtDxOPCsd6aJ3Zi
+ lXCXh9WWe9aDJF4WIevq+G84Ezz9rpWYJ6acouSF3W41rxM/0j0d/8L
+X-Developer-Key: i=rcheung844@gmail.com; a=ed25519;
+ pk=JjZsSnuDD1xuR4EXY4XGKELgToA++HxxheDlHU/41yI=
+X-Endpoint-Received: by B4 Relay for rcheung844@gmail.com/20250114 with
+ auth_id=323
+X-Original-From: Ricky Cheung <rcheung844@gmail.com>
+Reply-To: rcheung844@gmail.com
 
-On Tue, Jan 7, 2025 at 1:58=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+Good evening.
 
-> DTS example in the bindings should be indented with 2- or 4-spaces and
-> aligned with opening '- |', so correct any differences like 3-spaces or
-> mixtures 2- and 4-spaces in one binding.
->
-> No functional changes here, but saves some comments during reviews of
-> new patches built on existing code.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This patch adds support for the XiaoXun JZ0145 v33 4G LTE WiFi modem
+based on the MSM8916 chipset by a new manufacturer / vendor for the
+Linux Kernel called called XiaoXun BiCheng Technology. Below is some
+information about these changes.
 
-Thanks Krzysztof, patch applied!
+Addition of a new vendor prefix
+----------
 
-Yours,
-Linus Walleij
+XiaoXun BiCheng Technology is not well known in that they don't seem
+to have a presence in the Western world. I purchased my own modem
+on TaoBao, which requires stores to registered as businesses, so
+I believe it is justified to add it as a vendor prefix. Note that the
+company appears to have shut down just this month.
+
+Status of patch
+----------
+
+This device shares many similarities to pre-existing devices within
+arch/arm64/boot/dts/msm8916-ufi.dtsi, so I am sure most features would
+function with the correct firmware on this device.
+
+However, due to the poor quality of these devices, my unit's EMMC has
+failed and I cannot conduct further tests. Previous, the modem was
+able to boot with devicetree of a UZ801, albeit with LED and Modem
+issues, which is addressed in this patch.
+
+I have sent the code for testing to some kind folks on the Internet with
+good outcomes, so do consider this code as ready and functional.
+
+This patch was also reviewed over at the msm8916-mainline organization
+and deemed ready by the maintainer:
+
+	https://github.com/msm8916-mainline/linux/pull/386
+
+Note that this is my first patch to the LKML, so if there's something I
+did wrong / the patch is missing, please point it out.
+
+Best Regards,
+Ricky Cheung
+Tipz Team
+
+Signed-off-by: Ricky Cheung <rcheung844@gmail.com>
+---
+Changes in v2:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v1: https://lore.kernel.org/r/20250114-xiaoxun-jz0145-v33-v1-0-dc51f7ce3bd8@gmail.com
+
+---
+Ricky Cheung (3):
+      dt-bindings: vendor-prefixes: Add XiaoXun BiCheng Technology
+      dt-bindings: arm: qcom: Add XiaoXun JZ0145 v33
+      arm64: dts: qcom: msm8916-xiaoxun-jz0145-v33: Add initial device tree
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |  1 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |  2 +
+ arch/arm64/boot/dts/qcom/Makefile                  |  1 +
+ .../boot/dts/qcom/msm8916-xiaoxun-jz0145-v33.dts   | 66 ++++++++++++++++++++++
+ 4 files changed, 70 insertions(+)
+---
+base-commit: d390303b28dabbb91b2d32016a4f72da478733b9
+change-id: 20250114-xiaoxun-jz0145-v33-23dc006cf130
+
+Best regards,
+-- 
+Ricky Cheung <rcheung844@gmail.com>
+
+
 
