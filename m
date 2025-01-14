@@ -1,99 +1,92 @@
-Return-Path: <devicetree+bounces-138534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5EA2A10F9B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 19:15:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8661A10FA2
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 19:16:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1406188BF8B
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 18:15:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A1151883624
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 18:16:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 846D81FCD05;
-	Tue, 14 Jan 2025 18:12:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 623371FBCB7;
+	Tue, 14 Jan 2025 18:15:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aFfzljbs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RP76AX8P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 564311DFD8B;
-	Tue, 14 Jan 2025 18:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ACF81FA8F3;
+	Tue, 14 Jan 2025 18:15:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736878379; cv=none; b=XP/WxIREWoa9KaAQ7dkj2rzrhZbXQMj2qudDuRq67iToE/k9vyt/4qsSp1Y/DM9EDAFZUkzN37WWMHps4ytP2LuCufVNOYUe2qXNcOE3KYafx96mDufRTdGGRmmVWhnr+xayDFeUWlp0kW5oZzIRB98th33s3tuaDZwq3/AhZu0=
+	t=1736878501; cv=none; b=jwqczaeUaJXG3PkHv70cGMidGSG9+p7n0t9E5hyFIWugxY+DIe+jifsTfBCqlQJLM1taUrro2J+j+OnNLE+XeLdL0nbb25yP2s7EYpXunZixsUuSCPwyJAdMli9XuFMGy7EvHiM42xjva5RBbjHW4VqViKj0UcXHSeTOpgmLLfk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736878379; c=relaxed/simple;
-	bh=FZ0JYVdCbkB3X+LIyznCf/o5QfngqCx0aNGkx8ffvYk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HtKxeopRo9mb78ih+AdAOZyEq/e8N0fK+Tj4Nl7MN77KQDwtVOacCvSCNKUrR/SFcldOxuCThmu5g70z/2Icn4nZMyETVVgpWBj61yUttP9Ctgqc0OZsrYDW1hwKXRDnMmiDoD1fO48Ry3cv7SLz9ZW2CvJpfA7PVtWigZkWpSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aFfzljbs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C277C4CEDD;
-	Tue, 14 Jan 2025 18:12:56 +0000 (UTC)
+	s=arc-20240116; t=1736878501; c=relaxed/simple;
+	bh=q7pee8LrMaif6k6BA66qapoE0HqFyZmTUIujhYuO6n0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VLvTiznQmKLn8yhgUwlZcN4PsUYIJGfGW0yUHDUH8TeZwS5aLkpnH45Dy7qNnNzw/P9eS+Jr/BxiNzGNTS9rV6pMx9J7162U3B8ChnoF7pcRZk0R1vIRQdTz+e1/FqNSGegq4L0TVpmJJUJhHjQ7voO8hM/e1+FVOBTlXVMYEsY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RP76AX8P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C830C4CEDD;
+	Tue, 14 Jan 2025 18:14:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736878378;
-	bh=FZ0JYVdCbkB3X+LIyznCf/o5QfngqCx0aNGkx8ffvYk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aFfzljbsUi3dbQQTqnFefJril2aJRmA/BMdF/t/kCM0K8Xr3LRoGob9nCaPm3DqCQ
-	 SttcfzmfGC1h9guyFn7hjbSrvcJxulHLvMiugqkDz9bKfVxSR8u6R8xE4CDV12b5FO
-	 T0PghZZegzCskJUPKRKtBoi7s+KL2JylRxh0WbPfNqKETLqSu61aungDGvwP2zi40G
-	 fnBK7keiA0HOM2eVZ2v4gKdkcOO99YHNyvtvX+gvMAmWKh2WVG2c/XLc1Ou6IUay+n
-	 69gGBvVs1RFtMrBfGyXSqvU5/z1Dho4RNgE5Wmud/eYMhZd14ErbRNBhMLXOBUNilH
-	 CD7zRVRdYX90A==
-Date: Tue, 14 Jan 2025 18:12:54 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=k20201202; t=1736878500;
+	bh=q7pee8LrMaif6k6BA66qapoE0HqFyZmTUIujhYuO6n0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=RP76AX8PvT/v//Ukvar3hfWFUiWqun2Lp9LQVfyqnxld8PoizyN+Ia4kVYMsJCkHb
+	 ra2BwjVeoMj6UXsgajl60s2RFO4/L4sD8BXvuVcxYAlUFXisYkxcptNbh4zXrDuoon
+	 /4bmH5EVERG5z/alyaCEzZwk1PV0Z/wKY/4ub/LGvHOGIhTGR6djztoEQA6LW9LAw5
+	 kFs8h3V25ChtXmyET4LIA3c94MP/dyJgTrj9J7Kb77yzs770wgnTTI73IBcmyjUxOc
+	 b5Sdd45qk8plync5q3/PUe8tn8tZy6VTwLtW5EVl/dGhHd5rs6WfbOho04pYQKjy5b
+	 z7p/nZHPOQ/pw==
+From: Masahiro Yamada <masahiroy@kernel.org>
+To: Michal Simek <monstr@monstr.eu>
+Cc: linux-kernel@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/6] dt-bindings: arm: fsl: add more compatibles for Skov
- i.MX8MP variants
-Message-ID: <20250114-porous-scarf-8f57cf59d2bc@spud>
-References: <20250113-skov-imx8mp-new-boards-v1-0-75288def1271@pengutronix.de>
- <20250113-skov-imx8mp-new-boards-v1-1-75288def1271@pengutronix.de>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH 1/4] microblaze: fix 'FORCE prerequisite is missing' warning
+Date: Wed, 15 Jan 2025 03:13:51 +0900
+Message-ID: <20250114181359.4192564-1-masahiroy@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="67+ZtTgybKyBgflV"
-Content-Disposition: inline
-In-Reply-To: <20250113-skov-imx8mp-new-boards-v1-1-75288def1271@pengutronix.de>
+Content-Transfer-Encoding: 8bit
 
+If you add foo.dtb into the arch/microblaze/boot/dts/ directory and
+run 'make simpleImage.foo', you will observe the following warning:
 
---67+ZtTgybKyBgflV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+  arch/microblaze/boot/dts/Makefile:15: FORCE prerequisite is missing
 
-On Mon, Jan 13, 2025 at 11:29:05PM +0100, Ahmad Fatoum wrote:
-> The Skov i.MX8MP boards are a family of climate controllers.
->=20
-> In preparation for adding device trees for three more variants,
-> describe their DT compatible in the bindings.
->=20
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Without FORCE, if_changed cannot detect the command line changes.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
+---
 
---67+ZtTgybKyBgflV
-Content-Type: application/pgp-signature; name="signature.asc"
+ arch/microblaze/boot/dts/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
------BEGIN PGP SIGNATURE-----
+diff --git a/arch/microblaze/boot/dts/Makefile b/arch/microblaze/boot/dts/Makefile
+index b84e2cbb20ee..932dc7550a1b 100644
+--- a/arch/microblaze/boot/dts/Makefile
++++ b/arch/microblaze/boot/dts/Makefile
+@@ -11,7 +11,7 @@ $(obj)/linked_dtb.o: $(obj)/system.dtb
+ 
+ # Generate system.dtb from $(DTB).dtb
+ ifneq ($(DTB),system)
+-$(obj)/system.dtb: $(obj)/$(DTB).dtb
++$(obj)/system.dtb: $(obj)/$(DTB).dtb FORCE
+ 	$(call if_changed,copy)
+ endif
+ endif
+-- 
+2.43.0
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4apJgAKCRB4tDGHoIJi
-0hESAP4kSZNl8bX508wWQ8RqKvF66vBP8r42Lh4HYi1CSHskOAEAg7bHJv0LRoXz
-p+sQIz+Lq0HDIIwfYeWQosSbrGSP1wo=
-=F2y6
------END PGP SIGNATURE-----
-
---67+ZtTgybKyBgflV--
 
