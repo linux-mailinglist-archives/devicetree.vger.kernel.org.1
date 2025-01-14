@@ -1,81 +1,48 @@
-Return-Path: <devicetree+bounces-138390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 920B3A1033A
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:44:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F33DAA10344
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 10:48:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BFF5188587C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:44:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B09133A7945
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 09:48:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD64284A71;
-	Tue, 14 Jan 2025 09:44:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68E92240251;
+	Tue, 14 Jan 2025 09:48:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GmcGH7H9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n2WGI3Xe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8941719922A
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 09:44:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3731922DC44;
+	Tue, 14 Jan 2025 09:48:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736847860; cv=none; b=oT5tyXI5QxWlPxmbZ8jaTc2bE8QBBEnORHimLvj7MjJLIPSCzuAumd6/7m+DcsVbT788vcY+cpeEd/9cZH755SpJNGS1/ms+gQlBcFmPimVPEgHMlSv0bxOJsbjrQcBpRF/8FEW1up1kcvwdzLAnxCJBH7ozgBjHo2vjHg1RQRE=
+	t=1736848109; cv=none; b=H3bfFe/wEQuLvVHor6wIamOmfml7PNWAN7766eqVnxr7OrsQ3dLVu/3VuC7+EA6wkLaPoM8wiqu3i9g809xkBKq/DWyFBWYFjs5In5k+pwrzULeKMIz40juRioLH/LDo0dwEz6VsYVtZTzF1A7cE+asmyxwt3W6eB6Z+tWDxNY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736847860; c=relaxed/simple;
-	bh=96T38eBtoOQ2VC92hfgSApqZrOYI6n6Trqp6BTruXkM=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=CahTMRZyycGljlEgktngMRVT46bY3JSTj8JoPOGkl+krAhjqilk52Voew+AnbDY9s+caLcIvVN7EhWnUrXf+cxbtIEp5Wc7DqzMgd3h9LxmlN72KguTE6k5sBkt3LuodufpEZ5a7r/1/pRbUktUPN+EluYXjTQKgpzWEUOeAPwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GmcGH7H9; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-437a92d7b96so4810125e9.2
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 01:44:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736847856; x=1737452656; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dvdDzI0+QAZcMVq4vHT+3PeGIs3aadbqB663qDJpMpY=;
-        b=GmcGH7H9hKEaX4mP5cbkPL4iKH9Wmyp85/hiQijBHj+twFDStnzI/rWdeuhZYAxa4e
-         WJa04jikrp23mWDqysrlhT0QFOOhD1XRtyU12hMZZBJwilwcUQiIvyGo78uQpHwGOnXn
-         DURuXB4MfKk5Mp9dcQOWF4s8uca/jkn2qvuEsDFWilwYZDuTb/Y6n8EY1e98HQ+f0T7y
-         u7C9wf4ERgCn/5zlFkEwhEwKgI0BnAgfDgBs0K2EijQMXRiObdLT1IMp0ImUGCW3/vzC
-         EIhBxBjHCGdd3OtXmjJb5njwGbPH2gqypDV56KwaTGYH1V3GlW8STJJPoHXwE4zLeyks
-         UsQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736847856; x=1737452656;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=dvdDzI0+QAZcMVq4vHT+3PeGIs3aadbqB663qDJpMpY=;
-        b=rw/y8QiVD3xVxLlEYh3lV2sqjpIXPJYUNBjmZKc/5xoSvJmb6zlCr8DGGYk/R/tzwz
-         NOQiYo1NRiCDETDU9Pi4zPlm6O5Ml24tNlIF2eJhS5E2sAW+8Aeo/T7HGUNCEizt0bXi
-         EiIAkkPVWEDH6B19RZ0n23fowPKi99hijKji/roG5PsTxnQwW2dy/hRklyVH7w0gf+D3
-         jARetWvPHv7QrlUNTfVa0mR33kah3sqa6tFJ5vhnBq4j/J9grqxQFQec3sueyTZG2bj+
-         QTQByFOBYMoDyr6E7bcF7vSMldZkhlWbb9fcPPMGsbPo7gRkjvTOmGTKMTdGmWSuSltK
-         r33w==
-X-Forwarded-Encrypted: i=1; AJvYcCVOiRkJ/7xjXJjue9glAnb1Q/l0vXBkT9U0cS+ulTJChWA9fhxdKxhl7kB2JFb/J1jfU9Gc5TrCp53F@vger.kernel.org
-X-Gm-Message-State: AOJu0YyECf+7iQUcBddV4j9uJ6r0qI/5gbyrYF3Q2jRW6mBnJTdxnHj6
-	oa7h3aoAJ9sRY0J0Y06rYwsD82jMHe/OVUsya7bgL/cWuLEAB1r3NxK1P9QeC9Y=
-X-Gm-Gg: ASbGnct5JbKIINEGxDxEzu3hbBn85uUWBkHyMEHbe5EBTOHV4gwVyNY9tv2+F6TgTFX
-	qDjoaUYQp/axV490qLQkrHCi5SCdxvCFgkUC8oc6KGfYkJw/DUvgDMXH2/zfRACLM2mOaYuxvrK
-	k/SllWzxeAGCcwWuIVil0aObTmzkfwWSL1eXY6g2Bbw+m86QBK1OPB4GBfPV+zpcLnTP7+E/H4M
-	idP9G90X1XGhng700IEERJbqZRXgs/W6J02FTjn9YsZ9QmQ7GPxnqLiLChv4LekdhF62NLGPRDc
-	sW3HrWPHxkDmgzSC7DNNmtB0V+R4RTqVZQ==
-X-Google-Smtp-Source: AGHT+IGEMQzRSU5vsVP1Q6F049dN1Km/Z8NDSTMgd2TrWtE0LlgsHlOnh+81l0FN2f++K7l1tOQrvA==
-X-Received: by 2002:a05:600c:a0a:b0:434:ff30:a159 with SMTP id 5b1f17b1804b1-436e255ded6mr233292645e9.0.1736847855823;
-        Tue, 14 Jan 2025 01:44:15 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:a5df:aa69:5642:11b5? ([2a01:e0a:982:cbb0:a5df:aa69:5642:11b5])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-436e2dc0babsm203233435e9.14.2025.01.14.01.44.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 14 Jan 2025 01:44:15 -0800 (PST)
-Message-ID: <3688ad34-86a2-4762-86ee-cbac8c3b9aa7@linaro.org>
-Date: Tue, 14 Jan 2025 10:44:14 +0100
+	s=arc-20240116; t=1736848109; c=relaxed/simple;
+	bh=TQ8w7u/bsH8D9M7txgUCjNloimmDG53pGG2+cWgaGmU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LLIDbSjFadkFjCAimPi6gDYOk8A4wzPA6xsVMLEsf2DvzqIUYV604zIgW7tWE0VxMh7LBIoSlbB5kbtDsEWdJl+rpluY5CI2SQBWsxePKxJGuyBkxMX0Ikfn042yhYoUhCBEpdP9GmEm1FUsTepFcCwNdRKi9/CqxYcdC4MS5XA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n2WGI3Xe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B3B6C4CEDD;
+	Tue, 14 Jan 2025 09:48:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736848108;
+	bh=TQ8w7u/bsH8D9M7txgUCjNloimmDG53pGG2+cWgaGmU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=n2WGI3XeIpKnc5LppwNPNK7xSZi1YsCn4j6pqo7gqASEOaLXry7JlykjRPDuDG7Fl
+	 TrzIRwz2VulFY7DQIEwL1GAk2MVr7i/4rXuqldFTuHlHjyUiJTF5VX75mOVO6XmFPS
+	 0kPGYJeDYVWT56rZNMjIG9kWtaFlgxp7HoYbSiQwPsxSkROsAe5bJ2yR4R6vdpoXm0
+	 cSHU/LMcn1dzsOy2owpIgtuXc6QISYPTQOAkpzalXzpbNsbgtCJQl77uBdAp133IpL
+	 3CSKGkE0MZMtUAoC4+aoDLLu6H07ARQrFCGvHEkE741hIezV03thcXee1buQuOvGqk
+	 SWl+FpEYfmpow==
+Message-ID: <54b63cfc-7a51-4b69-8b32-eb7591b2169b@kernel.org>
+Date: Tue, 14 Jan 2025 10:48:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,107 +50,88 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/2] drm/panel: simple: Add DataImage FG080016DNCWAG03
- driver support
-To: Jonas Rebmann <jre@pengutronix.de>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@pengutronix.de
-References: <20250109-panel-dataimage_fg080016dncwag-v1-0-0465603f6669@pengutronix.de>
- <20250109-panel-dataimage_fg080016dncwag-v1-2-0465603f6669@pengutronix.de>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250109-panel-dataimage_fg080016dncwag-v1-2-0465603f6669@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v3 1/4] dt-bindings: clock: convert stm32 rcc bindings to
+ json-schema
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com
+References: <20250114091128.528757-1-dario.binacchi@amarulasolutions.com>
+ <20250114091128.528757-2-dario.binacchi@amarulasolutions.com>
+ <79a90c01-9e21-4e3f-a334-6ba9e1df4150@kernel.org>
+ <CABGWkvofUphcXTwBS5UBEoQ1GYpngP7gWi9Ax=WW28XKK0qoYA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CABGWkvofUphcXTwBS5UBEoQ1GYpngP7gWi9Ax=WW28XKK0qoYA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/01/2025 12:34, Jonas Rebmann wrote:
-> Add DataImage FG080016DNCWAG03 8" 640x480 TFT LCD panel support.
+On 14/01/2025 10:36, Dario Binacchi wrote:
+>> Nothing improved here.
 > 
-> Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
-> ---
->   drivers/gpu/drm/panel/panel-simple.c | 28 ++++++++++++++++++++++++++++
->   1 file changed, 28 insertions(+)
+> In my humble opinion, there is nothing to improve. Any modification
+> made causes the tests to fail.
 > 
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-> index 222c170dde8be261e98ff41168ef8a3a42c167c8..14d4cf235036cfd662bf16cb794ea2454d6fd2b2 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -1734,6 +1734,31 @@ static const struct panel_desc dataimage_fg040346dsswbg04 = {
->   	.connector_type = DRM_MODE_CONNECTOR_DPI,
->   };
->   
-> +static const struct display_timing dataimage_fg080016dncwag03_timing = {
-> +	.pixelclock = { 24000000, 25000000, 32500000 },
-> +	.hactive = { 640, 640, 640 },
-> +	.hfront_porch = { 64, 70, 115 },
-> +	.hback_porch =  { 64, 70, 115 },
-> +	.hsync_len = { 20, 20, 20 },
-> +	.vactive = { 480, 480, 480 },
-> +	.vfront_porch = { 8, 12, 30 },
-> +	.vback_porch =  { 8, 13, 31 },
-> +	.vsync_len = { 20, 20, 20 },
-> +};
-> +
-> +static const struct panel_desc dataimage_fg080016dncwag03 = {
-> +	.timings = &dataimage_fg080016dncwag03_timing,
-> +	.num_timings = 1,
-> +	.bpc = 6,
-> +	.size = {
-> +		.width = 217,
-> +		.height = 136,
-> +	},
-> +	.bus_format = MEDIA_BUS_FMT_RGB666_1X18,
-> +	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_POSEDGE,
-> +	.connector_type = DRM_MODE_CONNECTOR_DPI,
-> +};
-> +
->   static const struct display_timing dataimage_fg1001l0dsswmg01_timing = {
->   	.pixelclock = { 68900000, 71110000, 73400000 },
->   	.hactive = { 1280, 1280, 1280 },
-> @@ -4731,6 +4756,9 @@ static const struct of_device_id platform_of_match[] = {
->   	}, {
->   		.compatible = "dataimage,fg040346dsswbg04",
->   		.data = &dataimage_fg040346dsswbg04,
-> +	}, {
-> +		.compatible = "dataimage,fg080016dncwag03",
-> +		.data = &dataimage_fg080016dncwag03,
->   	}, {
->   		.compatible = "dataimage,fg1001l0dsswmg01",
->   		.data = &dataimage_fg1001l0dsswmg01,
+> $ git grep st,stm32f746-rcc arch/
+> arch/arm/boot/dts/st/stm32f746.dtsi:                    compatible =
+> "st,stm32f746-rcc", "st,stm32-rcc";
+> arch/arm/boot/dts/st/stm32f769-disco.dts:       compatible =
+> "st,stm32f769-rcc", "st,stm32f746-rcc", "st,stm32-rcc";
 > 
+> Or am I missing something?
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+How can I know what you are missing if you do not show the code?
+
+Best regards,
+Krzysztof
 
