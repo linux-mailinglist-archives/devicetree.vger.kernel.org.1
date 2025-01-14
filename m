@@ -1,140 +1,264 @@
-Return-Path: <devicetree+bounces-138507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 380F4A10AD6
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 16:30:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7343A10B4C
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 16:44:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EF441881584
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:30:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D724F1686CB
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:44:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 248F6191F94;
-	Tue, 14 Jan 2025 15:30:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E49501BD9D8;
+	Tue, 14 Jan 2025 15:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fVYIR/+F"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZN2Vuu6e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F47191F77;
-	Tue, 14 Jan 2025 15:30:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27321BD012;
+	Tue, 14 Jan 2025 15:41:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736868609; cv=none; b=OG6Ns4qe1C43dZkUEjiYe6ZZLQRiX81ViPNREOLIb+Go1EDHyyVDXwydUCxa8N41sTgxHwtHKvYaUBt2TvEDTArk4Tor6WbivHwm5GwCr3JQ+qLdrvnlRiYfhqpOHpzuhqebnAPzqRXniWXvl6scEy9cKAEXksXbPLzOsgj+0B8=
+	t=1736869263; cv=none; b=kAzc5REk/cEstN4rXSk+L10I5dti3tJUz1dfBz34AkGH/wC9wJgigSnaUytV64yLgAi9r89N4ELvPRuyva/AjQ6bf13HgntKzV0xB8nTI+TE3K3hKveLTosIPljO5W6i3NNg4AG+Neq007PnGHPwiXDUzHBnWVy3EElstwPoQiw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736868609; c=relaxed/simple;
-	bh=EqcUylhusVYBo3Rb0QLFQ4ZNh6CRloFr970DPKRw/JY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iijCucltLKOf0S70tbCpm7hOeTSnEfOR2PBtXksLYmVW9iEYDVD4UrcpZrGcgTBhW+zSC96zFC35ZC8n5X2+e3CxYYxGhNDPINA1K1unC20jD+MBeYJavSC4y3SGVceXSc/N0fGvMaIRXxdWgmvgncRO6Izgaf8Vlqhn/eaRCrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fVYIR/+F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30D92C4CEDD;
-	Tue, 14 Jan 2025 15:30:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736868608;
-	bh=EqcUylhusVYBo3Rb0QLFQ4ZNh6CRloFr970DPKRw/JY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fVYIR/+FyZHGcYnlEoV4Cvfv0N64X43mfVFjqZUzPQ7ELaDwuDd8Gu7VAPx8aal9k
-	 qgr606MkMFthedEl5l4Ai1+Z0jjxwKR9CB/NxkRReR+yhOe3isVsHfAKuimisEGzIE
-	 vx3FuIS1oSK1oV5eBZyVXXo3S6YQaq3H1cOeixVZO4rRGLm3KOcub7JYaaK3PxnTrn
-	 xsEaSmiCLrguRRpcwDd2NNRxbtnGSIip9MD34i4MOEHbpwGcU0aRB57sHv3ehPA7vs
-	 UEp+7FxX5OX3/TIhu9+OJur+EIMZ1/QwkFTfh4Te3PbTyxsjmeud7+YOjc68knIbLr
-	 5luT+B+B0CYBg==
-Message-ID: <4a90b17a-54ec-4ea3-a872-b0d79d9438e3@kernel.org>
-Date: Tue, 14 Jan 2025 16:30:00 +0100
+	s=arc-20240116; t=1736869263; c=relaxed/simple;
+	bh=qn0liHuV+HqEbBeQ5aYzpXs6UUzCWEWNkcftd2sCrYI=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=Q3/2CcMXn2Q8dKmPBkLq+dyb5SrdhLtdabtf6Op4sW9mZHHqumz76d1I+h0smSajJkHc6titKcmkdHzqhDMXUvEEwQtkZ1afFp4rhZL03vtRxtwsxb9CxGqilR7I1RPnX7++Vk4nLnuneYEA0lEtn5LrtO4kiCYinTj4k801wm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZN2Vuu6e; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1736869262; x=1768405262;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version:content-id;
+  bh=qn0liHuV+HqEbBeQ5aYzpXs6UUzCWEWNkcftd2sCrYI=;
+  b=ZN2Vuu6eIZjLpcyaRAiwSGsWRK9mKzaROu3jFt5SHE1t4vSjJlXhLvzs
+   A/2yoebuayhGnOrsQwil/PP2LYBxpTYOWyEuxvv7dr5Zd/IIrVl4ZY2jh
+   y4T1uzx3U1SdJhXo+r4FAPS9zRV2Pi6ie++wjYXjMYr8ZZgqeJElOxQVS
+   Qn9GvXyp6dtsyiQhi3RFuugn88G48R2i/Zlzv0VKUPJf1TQr64j+b9KvI
+   VYge5Te+VnuBLAfQBkAUZuXW8oTE0mKPclfV3Qpf+SxgC+5FVSIVlKLvO
+   1PqPBSN5Gmm69MIknySFIaA1fwgEKeF+robgZoYCa8J2Zkd40HqoLaLfh
+   A==;
+X-CSE-ConnectionGUID: Xht8FwqoRta4GJL6j7tNCg==
+X-CSE-MsgGUID: 8KJloBnlRkaGX15EFQqU8Q==
+X-IronPort-AV: E=McAfee;i="6700,10204,11315"; a="36382267"
+X-IronPort-AV: E=Sophos;i="6.12,314,1728975600"; 
+   d="scan'208";a="36382267"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2025 07:41:00 -0800
+X-CSE-ConnectionGUID: 5HLHvUtqSW6Cs32LBcDWVw==
+X-CSE-MsgGUID: 8RF7edNCQ6+5zyjKd/T0yQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,314,1728975600"; 
+   d="scan'208";a="104784037"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.54])
+  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2025 07:40:55 -0800
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Tue, 14 Jan 2025 17:40:51 +0200 (EET)
+To: Pengyu Luo <mitltlatltl@gmail.com>
+cc: andersson@kernel.org, bryan.odonoghue@linaro.org, conor+dt@kernel.org, 
+    devicetree@vger.kernel.org, 
+    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+    Hans de Goede <hdegoede@redhat.com>, heikki.krogerus@linux.intel.com, 
+    jdelvare@suse.com, konradybcio@kernel.org, krzk+dt@kernel.org, 
+    linux-arm-msm@vger.kernel.org, linux-hwmon@vger.kernel.org, 
+    LKML <linux-kernel@vger.kernel.org>, linux-pm@vger.kernel.org, 
+    linux-usb@vger.kernel.org, linux@roeck-us.net, 
+    platform-driver-x86@vger.kernel.org, robh@kernel.org, sre@kernel.org
+Subject: Re: [PATCH v3 2/6] platform: arm64: add Huawei Matebook E Go EC
+ driver
+In-Reply-To: <20250114083133.607318-1-mitltlatltl@gmail.com>
+Message-ID: <d2a42fc7-37a9-3fcc-4c35-e542ddb112e8@linux.intel.com>
+References: <402b261b-e51d-7121-1e13-b1bc1f5d40f5@linux.intel.com> <20250114083133.607318-1-mitltlatltl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 14/14] of: Improve __of_add_property_sysfs()
- readability
-To: Zijun Hu <zijun_hu@icloud.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
- Maxime Ripard <mripard@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Grant Likely <grant.likely@secretlab.ca>, Marc Zyngier <maz@kernel.org>,
- Andreas Herrmann <andreas.herrmann@calxeda.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Mike Rapoport <rppt@kernel.org>,
- Oreoluwa Babatunde <quic_obabatun@quicinc.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>
-References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
- <20250109-of_core_fix-v4-14-db8a72415b8c@quicinc.com>
- <20250110204154.GA3529721-robh@kernel.org>
- <c79dd576-0a85-48e2-a7f8-e4b4e005a18b@icloud.com>
- <qvyhzgeye7qwppcafisvjkg4wwkrenwxq7nebnsjxdenj7wvxm@qwxzet3iyzyx>
- <55a2e1cc-0a34-4599-8d62-a2479a0eac87@icloud.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <55a2e1cc-0a34-4599-8d62-a2479a0eac87@icloud.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; BOUNDARY="8323328-1499874815-1736864506=:1077"
+Content-ID: <03944f23-5ba5-efab-3be2-7e7a72fa6aa4@linux.intel.com>
 
-On 14/01/2025 16:20, Zijun Hu wrote:
-> On 2025/1/11 17:17, Krzysztof Kozlowski wrote:
->>> const char security_prefix[] = "security-";
->>> use 'sizeof(security_prefix) - 1' for the length of string.
->> Code is still not equivalent - just de-assemble it and you will see
->> some overhead.
->>
->> Maybe just introduce builtin_strlen() to string.h and use such? It would
->> be the pretty obvious code.
-> 
-> strncmp(s1, "s2_string", builtin_strlen("s2_string")) is similar as
-> strncmp(s1, "s2_string", sizeof("s2_string") - 1).
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Above yes, but maybe builtin_strlen() could be made to work on the
-pointer, thus you would have "s2_string" in only one place.
+--8323328-1499874815-1736864506=:1077
+Content-Type: text/plain; CHARSET=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
+Content-ID: <839add08-5968-6c24-36a6-f31790b45694@linux.intel.com>
 
-> 
-> so perhaps, it is not worthy of a new builtin_strlen().
+On Tue, 14 Jan 2025, Pengyu Luo wrote:
+> On Tue, Jan 14, 2025 at 2:56=E2=80=AFAM Ilpo J=C3=A4rvinen <ilpo.jarvinen=
+@linux.intel.com> wrote:
+> > On Tue, 14 Jan 2025, Pengyu Luo wrote:
+> >=20
+> > > There are three variants of which Huawei released the first two
+> > > simultaneously.
+> > >
+> > > Huawei Matebook E Go LTE(sc8180x), codename seems to be gaokun2.
+> > > Huawei Matebook E Go(sc8280xp@3.0GHz), codename must be gaokun3. (see=
+ [1])
+> > > Huawei Matebook E Go 2023(sc8280xp@2.69GHz), codename should be also =
+gaokun3.
+> > >
+> > > Adding support for the latter two variants for now, this driver shoul=
+d
+> > > also work for the sc8180x variant according to acpi table files, but =
+I
+> > > don't have the device to test yet.
+> > >
+> > > Different from other Qualcomm Snapdragon sc8280xp based machines, the
+> > > Huawei Matebook E Go uses an embedded controller while others use
+> > > a system called PMIC GLink. This embedded controller can be used to
+> > > perform a set of various functions, including, but not limited to:
+> > >
+> > > - Battery and charger monitoring;
+> > > - Charge control and smart charge;
+> > > - Fn_lock settings;
+> > > - Tablet lid status;
+> > > - Temperature sensors;
+> > > - USB Type-C notifications (ports orientation,  DP alt mode HPD);
+> > > - USB Type-C PD (according to observation, up to 48w).
+> > >
+> > > Add a driver for the EC which creates devices for UCSI and power supp=
+ly
+> > > devices.
+> > >
+> > > [1] https://bugzilla.kernel.org/show_bug.cgi?id=3D219645
+> > >
+> > > Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
 
-Best regards,
-Krzysztof
+> > > +/**
+> > > + * gaokun_ec_psy_get_smart_charge_enable - check if smart charge is =
+enabled
+> > > + * @ec: The gaokun_ec
+> > > + * @on: The state
+> > > + *
+> > > + * Return: 0 on success or negative error code.
+> > > + */
+> > > +int gaokun_ec_psy_get_smart_charge_enable(struct gaokun_ec *ec, bool=
+ *on)
+> > > +{
+> > > +     /* GBAC */
+> > > +     *on =3D 0; /* clear other 3 Bytes */
+> >=20
+> > =3D false (as it's bool)
+> >=20
+> > What that comment means??? The type is bool so what "3 Bytes" ???
+> >=20
+>=20
+> We will write to the lowest Byte, the higher 3 Bytes are dirty, so clear =
+it.
+
+Are you saying you assume bool is 4 bytes long? I'd be cautious on making=
+=20
+assumptions on sizeof(bool).
+=20
+> We can also implememnt it like this
+>=20
+> int ret;
+> u8 resp;
+>=20
+> ret =3D gaokun_ec_read_byte(.., &resp);
+> if (ret)
+>         return ret;
+>=20
+> *on =3D !!resp;
+
+Yes, I prefer explicit u8 -> bool conversion like this.
+
+> > > +/* Fn lock */
+> > > +static int gaokun_ec_get_fn_lock(struct gaokun_ec *ec, bool *on)
+> > > +{
+> > > +     /* GFRS */
+> > > +     u8 req[] =3D MKREQ(0x02, 0x6B, 0);
+> >=20
+> > Does that random acronym map to one of the literal? In which case a def=
+ine
+> > would be more useful than a comment. (You seem to have a few similar
+> > comments preceeding the req definitions)
+> >=20
+>=20
+> They are ACPI method names/identifiers, it will be useful if someone want
+> to locate ACPI's implementations.
+
+Okay, I guess it's fine as is then.
+
+
+> > > +static int gaokun_ec_get_temp(struct gaokun_ec *ec, u8 idx, int *tem=
+p)
+> > > +{
+> > > +     /* GTMP */
+> > > +     u8 req[] =3D MKREQ(0x02, 0x61, 1, temp_reg[idx]);
+> > > +     u8 resp[] =3D MKRESP(sizeof(__le16));
+> > > +     __le16 tmp;
+> > > +     int ret;
+> > > +
+> > > +     ret =3D gaokun_ec_read(ec, req, sizeof(resp), resp);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > > +     extr_resp((u8 *)&tmp, resp, sizeof(tmp));
+> > > +     *temp =3D le16_to_cpu(tmp) * 100; /* convert to HwMon's unit */
+> >=20
+> > extr_resp() does memcpy() but there should be no need to copy anything
+> > here. You just want to have __le16 pointer of the response data data.
+> >=20
+>=20
+> I think this would break abstraction, recently, these data are accessed b=
+y
+> extr_resp() and refill_req() only.
+
+If you want to keep doing it like that, not a big deal for me.
+
+There are different ways to do the abstraction though, and not all require
+memcpy() when changing a layer (e.g., a pointer advancing to the other=20
+layer).
+
+> > > +/* -----------------------------------------------------------------=
+--------- */
+> > > +/* EC */
+> > > +
+> > > +static irqreturn_t gaokun_ec_irq_handler(int irq, void *data)
+> > > +{
+> > > +     struct gaokun_ec *ec =3D data;
+> > > +     u8 req[] =3D MKREQ(EC_EVENT, EC_QUERY, 0);
+> >=20
+> > Great, here you have named them. Could you name all of the other litera=
+ls
+> > too, please.
+>=20
+> I mentioned this in previous version. Most of them are magic, it is hard =
+to
+> generalize them. We could name partial scmd according to specific functio=
+ns
+> (sysfs functions), their function names have implied registers' meaning, =
+and
+> these registers would be never reused in other functions.
+
+Fair (I didn't read every comment made to the previous version).
+
+> > > +/* -----------------------------------------------------------------=
+--------- */
+> > > +/* API For UCSI */
+> >=20
+> > for
+> >=20
+>=20
+> Agree
+
+For me, you don't need to reply "Agree", "Ack" or something along those=20
+lines if you're going to act on the feedback. Just make sure you don't=20
+forget them :-). It'll save us both some time when we focus on points that=
+=20
+need further discussion.
+
+--=20
+ i.
+--8323328-1499874815-1736864506=:1077--
 
