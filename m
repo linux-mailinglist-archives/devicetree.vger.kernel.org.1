@@ -1,111 +1,97 @@
-Return-Path: <devicetree+bounces-138497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AE3BA109EB
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:53:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B32E7A10A02
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 15:56:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0F8E188384C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:53:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DCB461883EFA
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:56:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D36A14A0BC;
-	Tue, 14 Jan 2025 14:52:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b="GqMYE55W"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E25C214A60C;
+	Tue, 14 Jan 2025 14:56:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pv50p00im-zteg10021301.me.com (pv50p00im-zteg10021301.me.com [17.58.6.46])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B180713D520
-	for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 14:52:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.6.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 654F08615A;
+	Tue, 14 Jan 2025 14:56:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736866376; cv=none; b=No0touSMUbtOOnQuItJv+v1VQ6qx7FfQ2WxfCNwRrYcdRbUfLXc7cL9NN9A8V1/EvhPKad4VHQLrn6Dj3ue217uGoi7QPrXnDUPMLdFzNI2XNXPb40KmZiITIMk4RbCCvmRXdc3US/Pu9yY+5mTWekTvO8I6tSr85m4qbTs5BFU=
+	t=1736866605; cv=none; b=hrNj1YPNEtXA+15/Wbnev1F2bfOUXqubbQQ0Am+MIa7N+C7z724ZF4pVN2Un12BpAJZE+U90YZl9tSoqvUUM/2oUckACt+cqD45L3QFJpVeJtBqTOQSgoDxj791fioYM/n0DSaMK/UfLlbGaCOTLY+m+zS4IjuFqyy/DJ79X6Mo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736866376; c=relaxed/simple;
-	bh=nm6KDBWSC6V2yQZSzSZpSXCbe/4IkXIekVdMlXyEIrg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b8RwUBfHExPFFPGSUlGzFMTMO5VGaipJm4DYhZPHERu6Nc+nFo7QtPF/31SUtmxpvGZirTFa/dDR6DJ387fMzDSmSz+6Y3NyAlYweqJbstQmcnFKw0YSF0ePNtRLcoAQlE1KGK0899czQdyzQ6DHPDbaEeRSCwytfRLFJ3ZEUjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com; spf=pass smtp.mailfrom=icloud.com; dkim=pass (2048-bit key) header.d=icloud.com header.i=@icloud.com header.b=GqMYE55W; arc=none smtp.client-ip=17.58.6.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=icloud.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icloud.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=icloud.com;
-	s=1a1hai; t=1736866374;
-	bh=6Zmvz4E6wN+/s7A8ScWWoIfWGpOhFeHcM8f2UgBgUwM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:
-	 x-icloud-hme;
-	b=GqMYE55Wblj+O7p2Ecq2O+oFNCkhwTNQL3f6FoROtKYVMJ4loAHmlzSK3oD7YKxqg
-	 zH6goQ5YLR+Tn3FOHQCidmrc78zImwkgd4XEKClnYixBfKYgXl95kPPAkQfBwjI9GG
-	 3M3dCaYtc7dOgg0lnvKjmj3uDMQJJCCHf73DeyUQ/sajjktTE/cVZTgYZT7fBDsmsf
-	 PM869q5eRoH9Jt1aLxoHEVHu8YKr6qihqi9lBPoAPI5vKsysIkk6hG6P57WBkrkryr
-	 KdLRN5XsY6ylptoIuP3Ls+xpEl3zRh9cWrsjB+zgG3fJGuoQVagnD4ROoB9nHoYcDK
-	 gwyNghk6sN33w==
-Received: from [192.168.1.26] (pv50p00im-dlb-asmtp-mailmevip.me.com [17.56.9.10])
-	by pv50p00im-zteg10021301.me.com (Postfix) with ESMTPSA id C378550037E;
-	Tue, 14 Jan 2025 14:52:47 +0000 (UTC)
-Message-ID: <8c593e1d-6c57-427f-9f09-f968ceba6713@icloud.com>
-Date: Tue, 14 Jan 2025 22:52:43 +0800
+	s=arc-20240116; t=1736866605; c=relaxed/simple;
+	bh=lZqPtOu21pGFo3DKRIX7IeK9UAXmqyYL8+QzSi5WSVo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rolxMSdszjD311Brfudhfw2tWqpZoiaK6LlkpnNihzaB/yUiEoKJfGoKZi9x1857HQGMg2vxsXjxYycmgiqhvdiFmJ2pEIn1QLXaf/umOJ52VjRl8gOwkcjjMgMlD30QsQ16O99kvZWe0x7W6XQ/Z0mLTVPm89cxUXB//2Q0uu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: aHxFE2tTT7m3vQ3ZBvO8GA==
+X-CSE-MsgGUID: w1epo5k8T62muGIkRfEz1A==
+X-IronPort-AV: E=McAfee;i="6700,10204,11315"; a="41103959"
+X-IronPort-AV: E=Sophos;i="6.12,314,1728975600"; 
+   d="scan'208";a="41103959"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2025 06:56:44 -0800
+X-CSE-ConnectionGUID: IakiGuqrQ1uqqnpNeuX9Ug==
+X-CSE-MsgGUID: nUR/Tlk2QwqrWmhiIcarQw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="142108199"
+Received: from unknown (HELO smile.fi.intel.com) ([10.237.72.154])
+  by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2025 06:56:41 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andy@kernel.org>)
+	id 1tXiLO-00000000sTe-09vi;
+	Tue, 14 Jan 2025 16:56:38 +0200
+Date: Tue, 14 Jan 2025 16:56:37 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: Andre Werner <andre.werner@systec-electronic.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org,
+	hvilleneuve@dimonoff.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+	lech.perczak@camlingroup.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, robh@kernel.org
+Subject: Re: [PATCH v7 2/2] serial: sc16is7xx: Add polling mode if no IRQ pin
+ is available
+Message-ID: <Z4Z7JUP2vMEX9JsW@smile.fi.intel.com>
+References: <20250114070449.34226-1-andre.werner@systec-electronic.com>
+ <20250114070449.34226-2-andre.werner@systec-electronic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 11/14] of: reserved-memory: Warn for missing static
- reserved memory regions
-To: Rob Herring <robh@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, Maxime Ripard
- <mripard@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Grant Likely <grant.likely@secretlab.ca>, Marc Zyngier <maz@kernel.org>,
- Andreas Herrmann <andreas.herrmann@calxeda.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Mike Rapoport <rppt@kernel.org>,
- Oreoluwa Babatunde <quic_obabatun@quicinc.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Zijun Hu <quic_zijuhu@quicinc.com>,
- stable@vger.kernel.org
-References: <20250109-of_core_fix-v4-0-db8a72415b8c@quicinc.com>
- <20250109-of_core_fix-v4-11-db8a72415b8c@quicinc.com>
- <20250113231619.GA1983895-robh@kernel.org>
-Content-Language: en-US
-From: Zijun Hu <zijun_hu@icloud.com>
-In-Reply-To: <20250113231619.GA1983895-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: _ojIg84qqfQ7kKla5Jd0T_gDFFGoJ5Jw
-X-Proofpoint-GUID: _ojIg84qqfQ7kKla5Jd0T_gDFFGoJ5Jw
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-14_04,2025-01-13_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 clxscore=1015
- adultscore=0 bulkscore=0 phishscore=0 suspectscore=0 spamscore=0
- mlxlogscore=968 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2308100000 definitions=main-2501140118
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250114070449.34226-2-andre.werner@systec-electronic.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 2025/1/14 07:16, Rob Herring wrote:
->> From: Zijun Hu <quic_zijuhu@quicinc.com>
->>
->> For child node of /reserved-memory, its property 'reg' may contain
->> multiple regions, but fdt_scan_reserved_mem_reg_nodes() only takes
->> into account the first region, and miss remaining regions.
->>
->> Give warning message when missing remaining regions.
-> Can't we just fix it to support more than 1 entry?
+On Tue, Jan 14, 2025 at 08:04:49AM +0100, Andre Werner wrote:
+> Fall back to polling mode if no interrupt is configured because there
+> is no possibility to connect the interrupt pin.
+> 
+> If no interrupt pin is available the driver uses a delayed worker to
+> poll the state of interrupt status registers (IIR).
 
-actually, i ever considered supporting more entries.
-and find out there are no simple approach to achieve this aim.
+...
 
-it may need to change 'struct reserved_mem' to support multiple regions
-that may also involve 4 RESERVEDMEM_OF_DECLARE instances.
+> V6:
+> - Use polling mode for IRQ numbers <= 0 which encounter no valid IRQ
+>   were found/defined.
+> V7:
+> - Try to improve and unify comments as requested.
+> - Fix typo in commit message: pull -> poll
 
-RESERVEDMEM_OF_DECLARE(tegra210_emc_table, "nvidia,tegra210-emc-table",
-                       tegra210_emc_table_init);
-RESERVEDMEM_OF_DECLARE(dma, "shared-dma-pool", rmem_dma_setup);
-RESERVEDMEM_OF_DECLARE(cma, "shared-dma-pool", rmem_cma_setup);
-RESERVEDMEM_OF_DECLARE(dma, "restricted-dma-pool", rmem_swiotlb_setup);
+Please, rebase your series on top of the recent Linux Next.
 
-so i finally chose this warning way due to simplification and low risk.
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
