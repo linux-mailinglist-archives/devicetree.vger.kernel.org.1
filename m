@@ -1,167 +1,99 @@
-Return-Path: <devicetree+bounces-138448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F0BEA10724
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 13:55:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33922A10742
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 14:02:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6274F16564E
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 12:55:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A41CA7A01D6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 13:02:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B84A229617;
-	Tue, 14 Jan 2025 12:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACD9020F981;
+	Tue, 14 Jan 2025 13:02:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YKk6ueqC"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="3Zvp6eHE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 331F8236A7D;
-	Tue, 14 Jan 2025 12:55:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48765236A92;
+	Tue, 14 Jan 2025 13:02:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736859307; cv=none; b=YogEz5r/93SjaqVM/qXZLHmSXKd3eBgXuOmfUOrEw7oqsu3jsVTdAKN6xYJ13j9Ca31U7h+RASjLfda36f0a88jcFwlV204FtvB6vta7yGrrbvwI471Kt1As91/fC+d0ucNLMIiGp0AFyPfhpDxjHjKq9Ggm1EllyPYM1Y128Bw=
+	t=1736859745; cv=none; b=QkfeQNxrKCWuvpyyyvoHCs0Vc2XqlNqrZVZTpDAcldJxy9CYkeTBvHQJxpQKsO97YkdeDg9SRTgmk593/qE+9Sm1a9r610aZOaSBDyo4T3S+aZrTd61eUek6cOFLpda6eZToLEa0ZqYiZ6WtTEjwsHA5yV91qPm6/GdI2qbKrgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736859307; c=relaxed/simple;
-	bh=XSIl2gLW+UHJdXzvxra4c/S44JwJZv/XdVXt6EA8+1E=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RWTrNk0PZUS//dN++ItEKaNIS59Qpwg4GYO9zppgklBuxpMXVbvKcqBIGJNPy28Md3BO6U288RQMGmoPe/XUYZauezZ7qte8eir2xnrhMRx2rhGdUruxYDjgLt5mEu+c0NgJ5V7d7U0NLKSFkZCGteo7FJLd/7kBAB9m93dd5zA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YKk6ueqC; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 150491BF206;
-	Tue, 14 Jan 2025 12:54:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736859302;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GetRem5oPol4EWNwAaMciHaBSzuYs3v6WipDaRzEtS4=;
-	b=YKk6ueqCjvimBAE8Su47qnAChzki9AcjKkB75GVX/G6qZ2cxAkaBovqgWZKQx35iScUS5D
-	vk1FaLHJhijV6w0r45WASGJGgOXumlK5Scz//Ua8e/moO54Tih+0cPTGXWg3Bie6bCLKpy
-	/ymGtgtxIpcu78HIjMpWTjMzDtUasr4Inqmgx1iOE2cP30+qOU+9E7jtl0G857MG3EW+WO
-	9KhHeZZSmgooXee3HyoWK3T/cCW1Y4JmXsdiCl5Z/lmzP3esV4FqOW8UIysmvLKLgolrAF
-	7dR5H4cGnugiNKwKEdwcAaJCSHxycpckcpE2YcCM0hJEvAqyexqU7LapJzuPgw==
-Date: Tue, 14 Jan 2025 13:54:56 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut
- <marex@denx.de>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Louis Chauvet
- <louis.chauvet@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 3/3] drm: bridge: ti-sn65dsi83: Add error recovery
- mechanism
-Message-ID: <20250114135456.5366eb2a@bootlin.com>
-In-Reply-To: <20250114-juicy-authentic-mushroom-cfcdfb@houat>
-References: <20250108101907.410456-1-herve.codina@bootlin.com>
-	<20250108101907.410456-4-herve.codina@bootlin.com>
-	<20250114-juicy-authentic-mushroom-cfcdfb@houat>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1736859745; c=relaxed/simple;
+	bh=4KYk04ivc4ZtfYoz6pDV3Q2k/bfEVkdo5B18FdRn4Yc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TUZcQftWP7wHGi3w3vb0gvb8odluQnsA93dGbbPMmlk2xrfD1Ei0801jVOUMbjZJElgv1H77PmSm5Khpd7BjrJB3BDqdfz6+BIf2998m7CwYIPUDZAO1ousY+faNbiDhHhQOAj3WpwNdbpEG638P0T7DbFJZEEFYyPoRrjxe0Cw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=3Zvp6eHE; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Q+YL+GREgbidA0eFi2fS0Vb6HkSnj+9SAko3nhv83Yc=; b=3Zvp6eHEcdajmQ16XPZNsvJ5qa
+	p+IR0twCn0HkAiOlDXII51pf1gQPXQNuktN90W2COIEpo8TQc+Ty5oRVwpcbIzXmyN/v20m+98I3C
+	RVzAMDvKOlAfpnhiwWIWynNaPSC7Hv/gxTef3E54E9mdEo8rLklAFvsBrjalUBTVwOUw=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tXgYY-004RpV-HC; Tue, 14 Jan 2025 14:02:06 +0100
+Date: Tue, 14 Jan 2025 14:02:06 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Lei Wei <quic_leiwei@quicinc.com>
+Cc: Luo Jie <quic_luoj@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Suruchi Agarwal <quic_suruchia@quicinc.com>,
+	Pavithra R <quic_pavir@quicinc.com>,
+	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+	Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-hardening@vger.kernel.org,
+	quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
+	srinivas.kandagatla@linaro.org, bartosz.golaszewski@linaro.org,
+	john@phrozen.org
+Subject: Re: [PATCH net-next v2 12/14] net: ethernet: qualcomm: Initialize
+ PPE L2 bridge settings
+Message-ID: <b7b13bba-e975-469c-ad59-6e48b5722fc7@lunn.ch>
+References: <20250108-qcom_ipq_ppe-v2-0-7394dbda7199@quicinc.com>
+ <20250108-qcom_ipq_ppe-v2-12-7394dbda7199@quicinc.com>
+ <4dbf1550-32e9-4cce-bf0c-8b92dbd49b50@lunn.ch>
+ <c67f4510-e71b-4211-8fe2-35dabfc7b44e@quicinc.com>
+ <8bdde187-b329-480d-a745-16871276a331@lunn.ch>
+ <4599e35b-eb2b-4d12-82c7-f2a8a804e08f@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <4599e35b-eb2b-4d12-82c7-f2a8a804e08f@quicinc.com>
 
-Hi Maxime,
+> I would like to clarify that representing the bridge and its slave ports
+> inside PPE (using a VSI - virtual switch instance) is a pre-requisite before
+> learning can take place on a port. At this point, since switchdev
+> is not enabled, VSI is not created for port/bridge and hence FDB learning
+> does not take place. Later when we enable switchdev and represent the
+> bridge/slave-ports in PPE, FDB learning will automatically occur on top of
+> this initial configuration. I will add this note in the comments and commit
+> message to make it clear.
 
-On Tue, 14 Jan 2025 08:40:51 +0100
-Maxime Ripard <mripard@kernel.org> wrote:
+So it seems like the comment is not the best. You don't actually
+enable learning...
 
-...
-
-> >  
-> > +static int sn65dsi83_reset_pipe(struct sn65dsi83 *sn65dsi83)
-> > +{
-> > +	struct drm_atomic_state *state = ERR_PTR(-EINVAL);
-> > +	struct drm_device *dev = sn65dsi83->bridge.dev;
-> > +	struct drm_connector_state *connector_state;
-> > +	struct drm_modeset_acquire_ctx ctx;
-> > +	struct drm_connector *connector;
-> > +	int err;
-> > +
-> > +	/*
-> > +	 * Reset active outputs of the related CRTC.
-> > +	 *
-> > +	 * This way, drm core will reconfigure each components in the CRTC
-> > +	 * outputs path. In our case, this will force the previous component to
-> > +	 * go back in LP11 mode and so allow the reconfiguration of SN64DSI83
-> > +	 * bridge.
-> > +	 *
-> > +	 * Keep the lock during the whole operation to be atomic.
-> > +	 */
-> > +
-> > +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
-> > +
-> > +	state = drm_atomic_helper_duplicate_state(dev, &ctx);
-> > +	if (IS_ERR(state)) {
-> > +		err = PTR_ERR(state);
-> > +		goto unlock;
-> > +	}  
-> 
-> No, you must not allocate a new state for this, you need to reuse the
-> existing state. You'll find it in bridge->base.state->state.
-
-Thanks for pointing that. I didn't know about bridge->base.state->state.
-
-I will use that if using the state is still relevant (see next comment).
-
-> 
-> > +	state->acquire_ctx = &ctx;
-> > +
-> > +	connector = drm_atomic_get_old_connector_for_encoder(state,
-> > +							     sn65dsi83->bridge.encoder);
-> > +	if (!connector) {
-> > +		err = -EINVAL;
-> > +		goto unlock;
-> > +	}
-> > +
-> > +	connector_state = drm_atomic_get_connector_state(state, connector);
-> > +	if (IS_ERR(connector_state)) {
-> > +		err = PTR_ERR(connector_state);
-> > +		goto unlock;
-> > +	}
-> > +
-> > +	err = drm_atomic_helper_reset_pipe(connector_state->crtc, &ctx);
-> > +	if (err < 0)
-> > +		goto unlock;  
-> 
-> And you'll find the crtc in bridge->encoder->crtc.
-
-I am a bit confused. I looked at the drm_encoder structure [1] and the crtc
-field available in this structure should not be used by atomic drivers. They
-should rely on &drm_connector_state.crtc.
-
-In my case, I have the feeling that I should get the ctrc from the current
-state (i.e. bridge->base.state->state) using the sequence provided in this
-current patch:
-  Retrieve the connector with drm_atomic_get_old_connector_for_encoder()
-  Retrieve the connector state with drm_atomic_get_connector_state()
-
-but you pointed out the bridge->encoder->crtc field.
-
-Should I use this field or use the &drm_connector_state.crtc with the drm
-connector state retrieved from bridge->base.state->state using the proposed
-sequence?
-
-[1] https://elixir.bootlin.com/linux/v6.13-rc1/source/include/drm/drm_encoder.h#L180
-
-Best regards,
-Hervé
+	Andrew
 
