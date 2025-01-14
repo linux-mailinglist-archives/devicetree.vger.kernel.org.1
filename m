@@ -1,66 +1,79 @@
-Return-Path: <devicetree+bounces-138514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89B03A10C58
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 17:33:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E85BA10CA6
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 17:47:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E807F163544
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 16:33:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A89653A06A0
+	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 16:46:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE8C1CDA2E;
-	Tue, 14 Jan 2025 16:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB071D54FE;
+	Tue, 14 Jan 2025 16:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BuSNBXZd"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fQFbUFJH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342F01885BF;
-	Tue, 14 Jan 2025 16:33:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFED41CDFCC;
+	Tue, 14 Jan 2025 16:46:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736872426; cv=none; b=GR2hysQA7btCumeLPv3RWp+qGSSLLZsqfupy+We1I3daT6hjmGtQTAG/e8mTtSFHPBre5i+FFYP8Bx91/TTzD1vrBC/JQap9xlZjsNsTBAHWOCiHsdk1zaeKNCOPr1kkYjVwwX2wBxzus7NugxKVg0fU4ArMX5auFZQesxBtAVg=
+	t=1736873182; cv=none; b=qF7WVXfYl5+kEyMYPOA0UFuY050NDe9t5qkWcdikf+mBdKqCbfVjo9PrNEEAxV+i1aFrlH673SpcjdK+zB3orADYnDChBThjLzqBIoXWEKR4JHH5uSlBE0+3ZWuXxkVbnJd4C+WzOC9k4GQ6n5LtOTyGuqsVdNYnNEMXXHi7IYU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736872426; c=relaxed/simple;
-	bh=KVUmaLRhmiiEcQyF5SAfptVzJKeJAVpd3dFJ7EyCHPE=;
+	s=arc-20240116; t=1736873182; c=relaxed/simple;
+	bh=33PReFVi4h84quEFzRfZtiIUtXNIsE2Hdqjko8U2cUc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CmuGr7U+ILsfJPHoi/q9l7ZBtwTg5wXjdmpqw4ypRktCJZVSVX5yNjtjq9rPMl9i+pWyvcudVVWw65KNJe6+qpZ1qDF+qKmXlq9H2i13UdUnjVxl+1Bck1dbrAPkcSaDMPnP/ezBB+qfAHFt7Lj6EUsjeip+Mp1A72Qu46LOX+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BuSNBXZd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95C3BC4CEDD;
-	Tue, 14 Jan 2025 16:33:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736872425;
-	bh=KVUmaLRhmiiEcQyF5SAfptVzJKeJAVpd3dFJ7EyCHPE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BuSNBXZdQ0ZNDBmy/o0/hbmUxaJ0eS8W+atRLHoWNLKyLvTfu1h+Ybl0S89OnIOCu
-	 dmNyUDmRn/BIoI/+259dFtpwEfeRKiVvXipgnDW7tY4xC2YgP+e6FX9IQ1SZeRdJgQ
-	 VN/Gr/EBqutCR6RRQAys7F40zN/l+Cw3mNCzGF7ACipSaZT+5fkhG8q9bXxdu6itjg
-	 D+2jNh17C2z+gLVbkkgpslNqlsO82DMGCVrpU3B4Yj9XQVmz4pKtqSlqvKAZotBc0w
-	 qzE+claz2bULPMGNl5esAgaH/yhM+NojZO3Bv61ifjK11IxRZL5q6TNyhORQ+sT39t
-	 seOEZvmS77NYA==
-Date: Tue, 14 Jan 2025 17:33:36 +0100
-From: Danilo Krummrich <dakr@kernel.org>
-To: Gary Guo <gary@garyguo.net>, gregkh@linuxfoundation.org
-Cc: rafael@kernel.org, bhelgaas@google.com, ojeda@kernel.org,
-	alex.gaynor@gmail.com, boqun.feng@gmail.com,
-	bjorn3_gh@protonmail.com, benno.lossin@proton.me, tmgross@umich.edu,
-	a.hindborg@samsung.com, aliceryhl@google.com, airlied@gmail.com,
-	fujita.tomonori@gmail.com, lina@asahilina.net, pstanner@redhat.com,
-	ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
-	daniel.almeida@collabora.com, saravanak@google.com,
-	dirk.behme@de.bosch.com, j@jannau.net, fabien.parent@linaro.org,
-	chrisi.schrefl@gmail.com, paulmck@kernel.org,
-	rust-for-linux@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	rcu@vger.kernel.org
-Subject: Re: [PATCH v7 08/16] rust: add devres abstraction
-Message-ID: <Z4aR4OrCQMoF6Boo@pollux>
-References: <20241219170425.12036-1-dakr@kernel.org>
- <20241219170425.12036-9-dakr@kernel.org>
- <20241224215323.560f17a9.gary@garyguo.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LO7LdRvL6DQhSudRDKRSUsDkMHYzKaTwZbFVKkcSSBPRC1baqxz261KmxBLBscY7aA4yJfiag5cPXL4PFdohH/LeycZXswvA+N9IH+w3piTcF0qF711jXdZ2CQupEPlIRpUVAOTIUOmhbsXFfNVg/sCN1jcac8iteSRzzUN7/SY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fQFbUFJH; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1736873181; x=1768409181;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=33PReFVi4h84quEFzRfZtiIUtXNIsE2Hdqjko8U2cUc=;
+  b=fQFbUFJHyNFwiIuPz5p5/kgmzcGrvkp7UsldOXIw0sdlO59pe4pdS2sV
+   nZtz/Q/WCX590ZqS/VyqnmbUhz3SqJ5OaOGk3y1GnQ5nUDb+JuEr3GQuC
+   IzqYUHE4Qh0dH967uFCJlHrcGU2nkrNL09hDHTx7J3mdiLRtxxUBpUJq9
+   LIymmyG1tc93TIUt2Sky95iI45OzqTXIzeiVVInJGWldPK876fiYoDtPX
+   ax0gFCEILAW4J9AjB8TYkgpGdF9kGxU0bo6i8iH9ybIUOfzWH/emmuDTf
+   e3cyWDcUxUCKCdH1zx9SMDB4yJa71QoitrHOWzHmAyznuPrzETMFf+qTW
+   w==;
+X-CSE-ConnectionGUID: O0Zb+UxwSFOvTpb1zCAymg==
+X-CSE-MsgGUID: Ai2EVxBlSSKV9kjcpYr9Yg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11315"; a="39987904"
+X-IronPort-AV: E=Sophos;i="6.12,314,1728975600"; 
+   d="scan'208";a="39987904"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Jan 2025 08:46:20 -0800
+X-CSE-ConnectionGUID: WuQQS6uuTka+n1YVpfcRuw==
+X-CSE-MsgGUID: NY9ioWISRsq57xzSMib7YA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="110001653"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 14 Jan 2025 08:46:18 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tXk3T-000Olb-2I;
+	Tue, 14 Jan 2025 16:46:15 +0000
+Date: Wed, 15 Jan 2025 00:45:18 +0800
+From: kernel test robot <lkp@intel.com>
+To: John Erasmus Mari Geronimo <johnerasmusmari.geronimo@analog.com>,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, Sebastian Reichel <sre@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 2/2] power: supply: add LT8491 battery charger driver
+Message-ID: <202501150030.cWwtcIoo-lkp@intel.com>
+References: <20250110080235.54808-3-johnerasmusmari.geronimo@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,184 +82,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241224215323.560f17a9.gary@garyguo.net>
+In-Reply-To: <20250110080235.54808-3-johnerasmusmari.geronimo@analog.com>
 
-On Tue, Dec 24, 2024 at 09:53:23PM +0000, Gary Guo wrote:
-> On Thu, 19 Dec 2024 18:04:10 +0100
-> Danilo Krummrich <dakr@kernel.org> wrote:
-> 
-> > Add a Rust abstraction for the kernel's devres (device resource
-> > management) implementation.
-> > 
-> > The Devres type acts as a container to manage the lifetime and
-> > accessibility of device bound resources. Therefore it registers a
-> > devres callback and revokes access to the resource on invocation.
-> > 
-> > Users of the Devres abstraction can simply free the corresponding
-> > resources in their Drop implementation, which is invoked when either the
-> > Devres instance goes out of scope or the devres callback leads to the
-> > resource being revoked, which implies a call to drop_in_place().
-> > 
-> > Signed-off-by: Danilo Krummrich <dakr@kernel.org>
-> > ---
-> >  MAINTAINERS            |   1 +
-> >  rust/helpers/device.c  |  10 +++
-> >  rust/helpers/helpers.c |   1 +
-> >  rust/kernel/devres.rs  | 178 +++++++++++++++++++++++++++++++++++++++++
-> >  rust/kernel/lib.rs     |   1 +
-> >  5 files changed, 191 insertions(+)
-> >  create mode 100644 rust/helpers/device.c
-> >  create mode 100644 rust/kernel/devres.rs
-> > 
-> > <snip>
-> >
-> > +pub struct Devres<T>(Arc<DevresInner<T>>);
-> > +
-> > +impl<T> DevresInner<T> {
-> > +    fn new(dev: &Device, data: T, flags: Flags) -> Result<Arc<DevresInner<T>>> {
-> > +        let inner = Arc::pin_init(
-> > +            pin_init!( DevresInner {
-> > +                data <- Revocable::new(data),
-> > +            }),
-> > +            flags,
-> > +        )?;
-> > +
-> > +        // Convert `Arc<DevresInner>` into a raw pointer and make devres own this reference until
-> > +        // `Self::devres_callback` is called.
-> > +        let data = inner.clone().into_raw();
-> > +
-> > +        // SAFETY: `devm_add_action` guarantees to call `Self::devres_callback` once `dev` is
-> > +        // detached.
-> > +        let ret = unsafe {
-> > +            bindings::devm_add_action(dev.as_raw(), Some(Self::devres_callback), data as _)
-> > +        };
-> > +
-> > +        if ret != 0 {
-> > +            // SAFETY: We just created another reference to `inner` in order to pass it to
-> > +            // `bindings::devm_add_action`. If `bindings::devm_add_action` fails, we have to drop
-> > +            // this reference accordingly.
-> > +            let _ = unsafe { Arc::from_raw(data) };
-> > +            return Err(Error::from_errno(ret));
-> > +        }
-> > +
-> > +        Ok(inner)
-> > +    }
-> > +
-> > +    #[allow(clippy::missing_safety_doc)]
-> > +    unsafe extern "C" fn devres_callback(ptr: *mut kernel::ffi::c_void) {
-> > +        let ptr = ptr as *mut DevresInner<T>;
-> > +        // Devres owned this memory; now that we received the callback, drop the `Arc` and hence the
-> > +        // reference.
-> > +        // SAFETY: Safe, since we leaked an `Arc` reference to devm_add_action() in
-> > +        //         `DevresInner::new`.
-> > +        let inner = unsafe { Arc::from_raw(ptr) };
-> > +
-> > +        inner.data.revoke();
-> > +    }
-> > +}
-> > +
-> > +impl<T> Devres<T> {
-> > +    /// Creates a new [`Devres`] instance of the given `data`. The `data` encapsulated within the
-> > +    /// returned `Devres` instance' `data` will be revoked once the device is detached.
-> > +    pub fn new(dev: &Device, data: T, flags: Flags) -> Result<Self> {
-> > +        let inner = DevresInner::new(dev, data, flags)?;
-> > +
-> > +        Ok(Devres(inner))
-> > +    }
-> > +
-> > +    /// Same as [`Devres::new`], but does not return a `Devres` instance. Instead the given `data`
-> > +    /// is owned by devres and will be revoked / dropped, once the device is detached.
-> > +    pub fn new_foreign_owned(dev: &Device, data: T, flags: Flags) -> Result {
-> > +        let _ = DevresInner::new(dev, data, flags)?;
-> > +
-> > +        Ok(())
-> > +    }
-> > +}
-> > +
-> > +impl<T> Deref for Devres<T> {
-> > +    type Target = Revocable<T>;
-> > +
-> > +    fn deref(&self) -> &Self::Target {
-> > +        &self.0.data
-> > +    }
-> > +}
-> > +
-> > +impl<T> Drop for Devres<T> {
-> > +    fn drop(&mut self) {
-> > +        // Revoke the data, such that it gets dropped already and the actual resource is freed.
-> > +        //
-> > +        // `DevresInner` has to stay alive until the devres callback has been called. This is
-> > +        // necessary since we don't know when `Devres` is dropped and calling
-> > +        // `devm_remove_action()` instead could race with `devres_release_all()`.
-> 
-> IIUC, the outcome of that race is the `WARN` if
-> devres_release_all takes the spinlock first and has already remvoed the
-> action?
-> 
-> Could you do a custom devres_release here that mimick
-> `devm_remove_action` but omit the `WARN`? This way it allows the memory
-> behind DevresInner to be freed early without keeping it allocated until
-> the end of device lifetime.
+Hi John,
 
-Better late than never, I now remember what's the *actual* race I was preventing
-here:
+kernel test robot noticed the following build warnings:
 
-  | Task 0                               | Task 1
---|----------------------------------------------------------------------------
-1 | Devres::drop() {                     | devres_release_all() {
-2 |    DevresInner::remove_action() {    |    spin_lock_irqsave();
-3 |                                      |    remove_nodes(&todo);
-4 |                                      |    spin_unlock_irqrestore();
-5 |       devm_remove_action_nowarn();   |
-6 |       let _ = Arc::from_raw();       |
-7 |    }                                 |
-8 | }                                    |
-9 |                                      |    release_nodes(&todo);
-10|                                      | }
+[auto build test WARNING on a3a8799165ff83bb764fd800c6559c3cba0ddac3]
 
-So, if devres_release_all() wins the race it stores the devres action within the
-temporary todo list. Which means that in 9 we enter
-DevresInner::devres_callback() even though DevresInner has been freed already.
+url:    https://github.com/intel-lab-lkp/linux/commits/John-Erasmus-Mari-Geronimo/dt-bindings-power-supply-add-adi-lt8491-yaml/20250110-160441
+base:   a3a8799165ff83bb764fd800c6559c3cba0ddac3
+patch link:    https://lore.kernel.org/r/20250110080235.54808-3-johnerasmusmari.geronimo%40analog.com
+patch subject: [PATCH 2/2] power: supply: add LT8491 battery charger driver
+config: sparc64-randconfig-r071-20250114 (https://download.01.org/0day-ci/archive/20250115/202501150030.cWwtcIoo-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 14.2.0
 
-Unfortunately, this race can happen with [1], but not with this original version
-of Devres.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501150030.cWwtcIoo-lkp@intel.com/
 
-I see two ways to fix it:
+smatch warnings:
+drivers/power/supply/lt8491_charger.c:66 lt8491_read_serial_number() warn: unsigned 'serial_number[i]' is never less than zero.
 
-1) Just revert [1] and stick with the original version.
+vim +66 drivers/power/supply/lt8491_charger.c
 
-2) Use devm_release_action() instead of devm_remove_action() and don't drop the
-   reference in DevresInner::remove_action() (6). This way the reference is
-   always dropped from the callback.
+    57	
+    58	static int lt8491_read_serial_number(struct lt8491_info *info)
+    59	{
+    60		int i, ret;
+    61		u32 serial_number[LT8491_MFR_DATA_LEN];
+    62	
+    63		for (i = 0; i < LT8491_MFR_DATA_LEN; i++) {
+    64			serial_number[i] = i2c_smbus_read_word_data(info->client,
+    65						LT8491_MFR_DATA1_LSB_REG + i * 2);
+  > 66			if (serial_number[i] < 0)
+    67				return serial_number[i];
+    68		}
+    69	
+    70		ret = sprintf(info->serial_number, "%04x%04x%04x", serial_number[0],
+    71			      serial_number[1], serial_number[2]);
+    72		if (ret < 0)
+    73			return ret;
+    74	
+    75		return 0;
+    76	}
+    77	
 
-With 2) we still have an unnecessary call to revoke() if Devres is dropped
-before the device is detached from the driver, but that's still better than
-keeping DevresInner alive until the device is detached from the driver, which
-the original version did. Hence, I'll go ahead and prepare a patch for this,
-unless there are any concerns.
-
-- Danilo
-
-[1] https://lore.kernel.org/rust-for-linux/20250107122609.8135-2-dakr@kernel.org/
-
-> 
-> > +        //
-> > +        // SAFETY: When `drop` runs, it's guaranteed that nobody is accessing the revocable data
-> > +        // anymore, hence it is safe not to wait for the grace period to finish.
-> > +        unsafe { self.revoke_nosync() };
-> > +    }
-> > +}
-> > diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> > index 6c836ab73771..2b61bf99d1ee 100644
-> > --- a/rust/kernel/lib.rs
-> > +++ b/rust/kernel/lib.rs
-> > @@ -41,6 +41,7 @@
-> >  pub mod cred;
-> >  pub mod device;
-> >  pub mod device_id;
-> > +pub mod devres;
-> >  pub mod driver;
-> >  pub mod error;
-> >  #[cfg(CONFIG_RUST_FW_LOADER_ABSTRACTIONS)]
-> 
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
