@@ -1,136 +1,108 @@
-Return-Path: <devicetree+bounces-138733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B111A11EE6
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:06:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F47AA11F0E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:16:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7449C1674EF
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:06:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C1AD6164E94
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:16:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE37520896C;
-	Wed, 15 Jan 2025 10:06:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A861FECC8;
+	Wed, 15 Jan 2025 10:16:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pVDVvkin"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b="j77Z1Cx1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 079552361DA;
-	Wed, 15 Jan 2025 10:06:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736935588; cv=none; b=fnX5S14/3dp16vDQ2ig5XACjURwUl1EhLgV9HxUjoFgT30YwZW8ZmhCVyAuzNx+/Nhjz/Xx/yzAUcaY7tmx/36TG3jzKduVJEFCFp5shh7C3kCrYRgUBCrFZcy9LkNgw/V2uWoXhZsZP4glNvXArKL0cZx43xhjyKKkRJM8x23s=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736935588; c=relaxed/simple;
-	bh=7AS/KitQlguNxF7vSxEkrKlJTDNOIY4kAUsu1PfXNd4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ibe0tCT1fT0T4wgXZZZLjo9G9yLYiFvLoCwzhI+IHNN0F5vjKCkyzhpluacsI6VFDa6/EA/VB+kZxqQNq0U/U7N9rRzUxadhgITH4Qc9dN5fMiBJqCL7aTvn/VvT6SZYnuZIAns0760PLV+VJA4jkx0FY+wMg2tzztxcPzf0RFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pVDVvkin; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50F9KsQe022452;
-	Wed, 15 Jan 2025 10:06:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7AS/KitQlguNxF7vSxEkrKlJTDNOIY4kAUsu1PfXNd4=; b=pVDVvkin6iliRgAn
-	jkp1dszuQc9WpLK1uXiqAKp8PSBl/8InmnNLSSmS8aRDe1sT+cJIpzclBe3fZprQ
-	GoJtfZekr3DpJGekcsdS3xs3PIAPOtve6QkA/hEoXKNwgMYy40u0G0NtPdTvWZ1U
-	Uf2n0gG22sNfTXxaLVmq0LzOjpO6ugbBY3sdpnLtWRtTH5Xmiq3wvaeXERbSpNes
-	+x9rJxKgLazk/ShkVENHRJ0WcICMKtWtI0Bvycw+KXg92A9VcwC3F6PFYIxWdJJd
-	6aGc9XDRZx9oZ8PqLmrroeKbQUqEy3dfDYwInHUNUhkRn9Tto252JhFxZW5bS+ZM
-	BWOEFA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 446aa9g3xh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Jan 2025 10:06:22 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50FA69Bm031718
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Jan 2025 10:06:09 GMT
-Received: from [10.152.201.37] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 15 Jan
- 2025 02:06:04 -0800
-Message-ID: <f0a261ff-e9b1-4c65-8f26-e7ffd86251c0@quicinc.com>
-Date: Wed, 15 Jan 2025 15:35:52 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6E5E1E7C13;
+	Wed, 15 Jan 2025 10:16:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736936183; cv=pass; b=FRjqW1nDld9Sx2gWECPMyN4sk1Px5EK03mfLNV4Ml/9zfwjGnuloZIHzbTDPwnNzCxBrfHUb0mmCwL/lwIyZM5CbRfyoRci8ThXeOpnrwobZ0xErZzEqNhKLjN5o6rS+YrTN6dPMLSbr0ZJeQ+eWCvLoz3/gY0EcCJvna+d28t8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736936183; c=relaxed/simple;
+	bh=2M6YxEYhfG6MzVmfguEy1yvuCugLXk8SLVtWmEEpzBk=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=AvuXLxH48xE8IaY3uDYXPlCt+2eowawPoS6uYY/3tkT3v+yFJ04MX+3VdkNClsfajaAZdBHZqIOwPwAXxVC6rg1d6Z2bQX6LuNyfVOGeqSsz3JlDlCtAXpZHu5tuPiwPOkLIeNlTLDZaTbfDpF2G8CDuJbLpxS84Alha4anb/zA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=louisalexis.eyraud@collabora.com header.b=j77Z1Cx1; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1736936162; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Ovbxj/xtTqCAuQp6DlxbglYNJvjMOhuJlYs2xLyXLHK2uiTzqH1gRYvHUTH20eBLdEa6UvXHhOraJZcBstvdKLBtvf0Rh0Up5Ex94wqE+8bGAujtRjVRkHiC1T3w7paQKpbXc8KulYsueqB8HVTPdkSmIPQZ5w3kizRKR4oBjdg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1736936162; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=f5nuVE6fLIWMYI473a652vd0ocNHHQJa6QX2DBAbAaA=; 
+	b=A2Q8Mx/VyydC2Fr2bzXZLwZJhMYn6QOVBsDmX1Xse4ngMtYtTdCHefqTjebbp9OexcmOJez39uJJ9bMS2yqPJOBwcEyNCag6LdtP9RAdDKZSzVpMhYTYonhWU/BMOqJGUIZSwC9OiOCPegnthdgRpLmBcFnjD2UOq5SA8R7+Peo=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=louisalexis.eyraud@collabora.com;
+	dmarc=pass header.from=<louisalexis.eyraud@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1736936162;
+	s=zohomail; d=collabora.com; i=louisalexis.eyraud@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Message-ID:In-Reply-To:References:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=f5nuVE6fLIWMYI473a652vd0ocNHHQJa6QX2DBAbAaA=;
+	b=j77Z1Cx1mJMylymbPu0FmD1L9Kn4Xrs/fdD00BMDd6rVX3GX17h/3gA+qOFlvvB0
+	TN35FMK8+bSL58fzxCUbgDfRr8+1SlaCg5ua1So1tkE9rLfmqpOFz8x/mtAZVLTtT9A
+	fLjmzSR/7fxSlVvpZPpa+GShdAaZ77+xQFPaiR6E=
+Received: from mail.zoho.com by mx.zohomail.com
+	with SMTP id 173693616069360.269632216771925; Wed, 15 Jan 2025 02:16:00 -0800 (PST)
+Date: Wed, 15 Jan 2025 11:16:00 +0100
+From: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+To: "Conor Dooley" <conor@kernel.org>
+Cc: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
+	"Rob Herring" <robh@kernel.org>,
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+	"Conor Dooley" <conor+dt@kernel.org>,
+	"Matthias Brugger" <matthias.bgg@gmail.com>,
+	"Sean Wang" <sean.wang@mediatek.com>,
+	"devicetree" <devicetree@vger.kernel.org>,
+	"linux-kernel" <linux-kernel@vger.kernel.org>,
+	"linux-arm-kernel" <linux-arm-kernel@lists.infradead.org>,
+	"linux-mediatek" <linux-mediatek@lists.infradead.org>,
+	"kernel" <kernel@collabora.com>
+Message-ID: <19469767d9c.d70b2edd1099115.3136795565203045474@collabora.com>
+In-Reply-To: <20250114-lily-defensive-3383449a7945@spud>
+References: <20250114-dts_mt8370-genio-510-v1-0-8517ee0fdbe8@collabora.com>
+ <20250114-dts_mt8370-genio-510-v1-1-8517ee0fdbe8@collabora.com>
+ <ef8bbe7a-64fa-4e51-86f3-4f7fc0bb3760@collabora.com> <20250114-lily-defensive-3383449a7945@spud>
+Subject: Re: [PATCH 1/3] dt-bindings: arm: mediatek: add mt8370-evk board
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 7/8] arm64: dts: qcom: ipq9574: add nodes to bring up
- q6
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        "jassisinghbrar@gmail.com"
-	<jassisinghbrar@gmail.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "conor+dt@kernel.org"
-	<conor+dt@kernel.org>,
-        "andersson@kernel.org" <andersson@kernel.org>,
-        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
-        "konradybcio@kernel.org" <konradybcio@kernel.org>,
-        "Manikanta Mylavarapu
- (QUIC)" <quic_mmanikan@quicinc.com>,
-        "linux-arm-msm@vger.kernel.org"
-	<linux-arm-msm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-remoteproc@vger.kernel.org"
-	<linux-remoteproc@vger.kernel.org>,
-        "dmitry.baryshkov@linaro.org"
-	<dmitry.baryshkov@linaro.org>
-CC: "Vignesh Viswanathan (QUIC)" <quic_viswanat@quicinc.com>,
-        "Sricharan
- Ramabadhran (QUIC)" <quic_srichara@quicinc.com>
-References: <20250107101647.2087358-1-quic_gokulsri@quicinc.com>
- <20250107101647.2087358-8-quic_gokulsri@quicinc.com>
- <20abe9a9-34dc-4712-8fde-b959eb3e22c6@oss.qualcomm.com>
-Content-Language: en-US
-From: Gokul Sriram P <quic_gokulsri@quicinc.com>
-In-Reply-To: <20abe9a9-34dc-4712-8fde-b959eb3e22c6@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 7ruNp92vKOsCPhN3u-lXEEW12-zBawvo
-X-Proofpoint-ORIG-GUID: 7ruNp92vKOsCPhN3u-lXEEW12-zBawvo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-15_04,2025-01-15_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
- phishscore=0 mlxscore=0 bulkscore=0 mlxlogscore=610 malwarescore=0
- impostorscore=0 priorityscore=1501 clxscore=1015 suspectscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501150077
+Importance: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 
+ ---- On Tue, 14 Jan 2025 18:54:54 +0100  Conor Dooley  wrote --- 
+ > On Tue, Jan 14, 2025 at 11:32:47AM +0100, AngeloGioacchino Del Regno wrote:
+ > > Il 14/01/25 08:38, Louis-Alexis Eyraud ha scritto:
+ > > > Add bindings for the MediaTek mt8370-evk board, also known
+ > > > as the "Genio 510-EVK".
+ > > > 
+ > > > Signed-off-by: Louis-Alexis Eyraud louisalexis.eyraud@collabora.com>
+ > > 
+ > > Reviewed-by: AngeloGioacchino Del Regno angelogioacchino.delregno@collabora.com>
+ > 
+ > Can either of you explain why there's a fallback here to the mt8188?
+ > 
 
-On 1/9/2025 6:42 PM, Konrad Dybcio wrote:
-> On 7.01.2025 11:16 AM, Gokul Sriram Palanisamy wrote:
->> From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->>
->> Enable nodes required for q6 remoteproc bring up.
->>
->> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
->> ---
-> The comments you got on patch 6 apply here and to patch 8 too
+The mt8370 SoC belongs to the same family as the mt8188 and mt8390.
 
-sure Konrad. Will address.
+It is a less powerful variant of mt8390, with less A55 and Mali G57 cores as main differences, and like the mt8390, its hardware register maps are identical to mt8188.
+That is why I added a fallback on mt8188.
+
+I'll reword the commit message in v2 series to add these details (they were only present in the mt8370.dtsi patch).
 
 Regards,
-
-Gokul
-
+Louis-Alexis Eyraud
 
