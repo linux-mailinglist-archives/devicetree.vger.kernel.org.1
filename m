@@ -1,143 +1,123 @@
-Return-Path: <devicetree+bounces-138729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A37A3A11E90
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:50:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59FE8A11E9D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:52:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45B573AEC12
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:50:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B1C1163003
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B39BE1E7C32;
-	Wed, 15 Jan 2025 09:50:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DED41EEA26;
+	Wed, 15 Jan 2025 09:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DImkJAVv"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="g9Hmqxqt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E5C248171;
-	Wed, 15 Jan 2025 09:50:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F23248177;
+	Wed, 15 Jan 2025 09:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736934613; cv=none; b=jHt79AyTM+Hczd9LdNBlpcV1wsmeXrmeF1hiSdveGMXaIodQR1WiVhYMPqRjxhCS/MMOBT8ej5UU1MUYnsR/kx0quT9tyd0+mp6xiNbJjS2B/ZypQ1CytNCJ91Z5I3qqMzYgPTu/zVhyobyIRDn/ZPHH4HC1jm6FIXUM+2nZ7cU=
+	t=1736934728; cv=none; b=kuYxdzVuszFd+wXGR54JNQDXKsWVzyZQBa2RYxEH3x4SopXJyPDFU59iXvvYXtLxneCgiGowvgJTYefRUJhKX8TkKvO5MgYUQVg09zITLsUV9b0iA1lTfcHdupSAUUkYmay0Wjk6yB+gcnb0G1MTt2mBKDRswF2JJ35QQ1GRRsc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736934613; c=relaxed/simple;
-	bh=FAroUXyBDLBEfp+R9giXYoiTywuzUZWagD49ZuybGCI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ACmRF2WuJEwYc3y8SFZjAGzS4XGfGyt5clPvfX5bRUtASALL7V1d3NE+qm5LotUFsYxqHbi53VZzIvEIn1jU89DlkZCZiY4cQvbGRWiMQNJZZIcgfo0cJPdlsoypa9xuqo3HJrMak3Gs5OqnEq3++hSp9QTp3vl0HLABAgCMLnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DImkJAVv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A693C4CEE1;
-	Wed, 15 Jan 2025 09:50:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736934613;
-	bh=FAroUXyBDLBEfp+R9giXYoiTywuzUZWagD49ZuybGCI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DImkJAVvNmB4HstzP6QyZuwro7ZkhI2z7+UN/VI+l4a53L1EiD7SlRf2B5GDtl0c7
-	 28gPdouUlyGvnv2eVpRRjaD8ImWpK0C8W5Cxw47OM7yjjOWfZ4lhDlZ5jkUt71a55j
-	 LD+ONvpoPXR5ZYd/GYr1/3TqSVKll2Mq9SJKuoFzubYGHhlBjZThjYrYD3QVCbVIf2
-	 MFOIVbBpBxUaAqqL0Chf3SxqbMQA0aKgmhFZ95iVyVFadd+g1hYBq5eemjSR1Xktwt
-	 hQ0U3rvJUG0FcPoi3L1CLsHB1I9pzk0PfTL15FKgqik8v6xJsp44WjTJLEKyrcURQW
-	 jiouujojobUUQ==
-Date: Wed, 15 Jan 2025 10:50:09 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Cathy Xu <ot_cathy.xu@mediatek.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Sean Wang <sean.wang@kernel.org>, Lei Xue <lei.xue@mediatek.com>, 
-	wenbin.mei@mediatek.com, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, Guodong Liu <guodong.liu@mediatek.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: mediatek: add support for
- mt8196
-Message-ID: <nmyxygrya6cpalmirsunvkx32uox3kjxd4l5ggdhjtj7edyizz@yodolm5ktboo>
-References: <20250115063555.32492-1-ot_cathy.xu@mediatek.com>
- <20250115063555.32492-2-ot_cathy.xu@mediatek.com>
+	s=arc-20240116; t=1736934728; c=relaxed/simple;
+	bh=p3wlSF8fVhhnJy2je9U9RBF/jzTDV7iCZ0dJog1Yo+s=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=U4YqxYUfk52IAnUQKHcg4McxuYTTOKb3i/5UXSz+kD2QE2LTS4w9MptnqUr4MmfXW8xG/BfepDaQwzuIwdoXKONQzVmx26DkmzRhsI4XqXsuQqT660l1IKKv3K52Hs1las3vKM5tBlyixQjAo5UuKshwnbPkyH4zhvPkWiyRJ6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=g9Hmqxqt; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250115063555.32492-2-ot_cathy.xu@mediatek.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1736934718;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MhzeunR8rJgrZ00XQVoPh7HS7sUwFQAgiu34BTjBQ7E=;
+	b=g9Hmqxqt5W9Fcav3vjfAskxGSrwwUjqsZjenEBNE4dOTvaRg81qCWb95ztMh2IzQH+4Gzk
+	FaiMX/gLzaDOL66pL0m2Io/R015jLWkH6l2vkCuVq4qoxrah2fHGiSG2H+lL9OSNAvGcej
+	rK2dCgXVU/rO5V/YQP0jcP0BzFXL2jyiD8+x398nq73UyMeiIvk4buaYSC0T5cFklaeZ6k
+	/mfSf9nWS1c0vbGlDN4fIrP2f1vcxiShzSmw4WsPlWx+k2KOmWfg4OBvtdVjl/b90cQ2TI
+	ReIbSYuClhAgVltlKK3ADzzbHafZ9YjJ3+5dbfBe3CF8yIegOi3eELWbcm7vsg==
+Date: Wed, 15 Jan 2025 10:51:57 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, didi.debian@cknow.org,
+ marcin.juszkiewicz@linaro.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Describe why is HWRNG disabled in
+ RK356x base dtsi
+In-Reply-To: <6b272e2f8f916c04b05db50df621659a5a7f29ab.1733149874.git.dsimic@manjaro.org>
+References: <6b272e2f8f916c04b05db50df621659a5a7f29ab.1733149874.git.dsimic@manjaro.org>
+Message-ID: <b1f97e555e57e6593251bb1ef1353423@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Wed, Jan 15, 2025 at 02:35:38PM +0800, Cathy Xu wrote:
-> +
-> +        properties:
-> +          pinmux:
-> +            description:
-> +              Integer array, represents gpio pin number and mux setting.
-> +              Supported pin number and mux varies for different SoCs, and are
-> +              defined as macros in dt-bindings/pinctrl/mt8196-pinfunc.h
-> +              directly, for this SoC.
-> +
-> +          drive-strength:
-> +            enum: [2, 4, 6, 8, 10, 12, 14, 16]
-> +
-> +          bias-pull-down:
-> +            oneOf:
-> +              - type: boolean
-> +              - enum: [100, 101, 102, 103]
-> +                description: mt8196 pull down PUPD/R0/R1 type define value.
-> +              - enum: [200, 201, 202, 203, 204, 205, 206, 207]
-> +                description: mt8196 pull down RSEL type define value.
+Just a brief reminder about this patch...
 
-Not much improved.
-
-
-> +            description: |
-> +              For pull down type is normal, it doesn't need add RSEL & R1R0.
-> +              For pull down type is PUPD/R0/R1 type, it can add R1R0 define to
-> +              set different resistance. It can support "MTK_PUPD_SET_R1R0_00" &
-> +              "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10" &
-> +              "MTK_PUPD_SET_R1R0_11" define in mt8196.
-> +              For pull down type is PD/RSEL, it can add RSEL define to set
-> +              different resistance. It can support
-> +              "MTK_PULL_SET_RSEL_000" & "MTK_PULL_SET_RSEL_001" &
-> +              "MTK_PULL_SET_RSEL_010" & "MTK_PULL_SET_RSEL_011" &
-> +              "MTK_PULL_SET_RSEL_100" & "MTK_PULL_SET_RSEL_101" &
-> +              "MTK_PULL_SET_RSEL_110" & "MTK_PULL_SET_RSEL_111" define in
-> +              mt8196.
-
-> diff --git a/include/dt-bindings/pinctrl/mt8196-pinfunc.h b/include/dt-bindings/pinctrl/mt8196-pinfunc.h
-> new file mode 100644
-> index 000000000000..bf0c8374407c
-> --- /dev/null
-> +++ b/include/dt-bindings/pinctrl/mt8196-pinfunc.h
-> @@ -0,0 +1,1572 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
-> +/*
-> + * Copyright (C) 2025 Mediatek Inc.
-> + * Author: Guodong Liu <Guodong.Liu@mediatek.com>
-> + */
-> +
-> +#ifndef __MT8196_PINFUNC_H
-> +#define __MT8196_PINFUNC_H
-> +
-> +#include <dt-bindings/pinctrl/mt65xx.h>
-> +
-> +#define PINMUX_GPIO0__FUNC_GPIO0 (MTK_PIN_NO(0) | 0)
-> +#define PINMUX_GPIO0__FUNC_DMIC1_CLK (MTK_PIN_NO(0) | 1)
-> +#define PINMUX_GPIO0__FUNC_SPI3_A_MO (MTK_PIN_NO(0) | 3)
-> +#define PINMUX_GPIO0__FUNC_FMI2S_B_LRCK (MTK_PIN_NO(0) | 4)
-> +#define PINMUX_GPIO0__FUNC_SCP_DMIC1_CLK (MTK_PIN_NO(0) | 5)
-> +#define PINMUX_GPIO0__FUNC_TP_GPIO14_AO (MTK_PIN_NO(0) | 6)
-
-I do not see how you resolved my comment from v1. In v2 I reminded about
-it, so you responded that yopu will change something, but I do not see
-any changes.
-
-So explain: how did you resolve my comment?
-
-These two examples where you claim you will change something, but send
-the same. I skipped the rest of the patch.
-
-Best regards,
-Krzysztof
-
+On 2024-12-02 15:44, Dragan Simic wrote:
+> Despite the presence of the hardware random number generator (HWRNG) in 
+> the
+> different Rockchip RK356x SoC variants, it remains disabled for the 
+> RK3566
+> SoC because testing showed [1] that it produces unacceptably low 
+> quality of
+> random data, for some yet unknown reason.  The HWRNG is enabled for the 
+> RK3568
+> SoC, on which the testing showed good quality of the generated random 
+> data.
+> 
+> To avoid possible confusion in the future, [2] let's have this 
+> described
+> briefly in the RK356x base SoC dtsi.
+> 
+> [1] 
+> https://lore.kernel.org/linux-rockchip/cover.1720969799.git.daniel@makrotopia.org/T/#u
+> [2] 
+> https://lore.kernel.org/linux-rockchip/20241201234613.52322-1-pbrobinson@gmail.com/T/#u
+> 
+> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk356x-base.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+> b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+> index 62be06f3b863..ab8f42c0a843 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
+> @@ -1032,6 +1032,11 @@ sdhci: mmc@fe310000 {
+>  		status = "disabled";
+>  	};
+> 
+> +	/*
+> +	 * Testing showed that the HWRNG found in RK3566 produces 
+> unacceptably
+> +	 * low quality of random data, so the HWRNG isn't enabled for all 
+> RK356x
+> +	 * SoC variants despite its presence.
+> +	 */
+>  	rng: rng@fe388000 {
+>  		compatible = "rockchip,rk3568-rng";
+>  		reg = <0x0 0xfe388000 0x0 0x4000>;
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
