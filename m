@@ -1,166 +1,209 @@
-Return-Path: <devicetree+bounces-138808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9A0BA12592
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 15:07:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79CF7A125C7
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 15:18:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0A18167E3E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 14:07:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AD1C3A7190
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 14:18:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69A0C3596F;
-	Wed, 15 Jan 2025 14:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6C3086356;
+	Wed, 15 Jan 2025 14:18:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="akbPY3h+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a9Lsdstq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBC412BAF7;
-	Wed, 15 Jan 2025 14:07:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C6BC433CA
+	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 14:18:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736950072; cv=none; b=F6pRTlRXZCxJe1B3M/G/oU5IROjlCOmctq6SOWRCI384KP0JSVb3h6ijD2VSJxPqzvGn4C2lvZW8e5G/tpAPVd4G3TaSN62SatB+Y+UkQRADXXJHaT+C+BVzathJCtP3iPOq4fXK16WYymzcme9uWdnuijrdMUzfrAnuXnRkDTU=
+	t=1736950709; cv=none; b=NfdH/PjxJaS/HLAAgtU5NS1SKI62DDJpmRQfb8zhQuA0erIa2H/Xy4YXxSSJAKVdwkW8dLoN2USe4Vy8Yl+9uI3OpOBL91ECUZEZ/OFVc884WoJpP6ita2TZ7YDusW2FDHUp2LL06QO092nm4FQrQutel1DHL928Hpo+AHJKLg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736950072; c=relaxed/simple;
-	bh=pYNI0+DrSHxt8IA4pT0Q6TIGUdZHoKvWFTtA9bR9DVY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u4l0Jld9yY6aohh5hKqQu3LkiW79gaG2OUynCbTIRrjcQtEP8CcTv8cjvR2HN9OPBIv+YIa48Ql/Is6OBpXHYcngnJRkDxrB8K0IHHSFa3iESIjCBRp9hf6nliG9vgqoKuP1pa1+ZI7T0BqvESKIlQIVkVN1P0+3vYqmgtdNuTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=akbPY3h+; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-2163b0c09afso126474675ad.0;
-        Wed, 15 Jan 2025 06:07:50 -0800 (PST)
+	s=arc-20240116; t=1736950709; c=relaxed/simple;
+	bh=Ra6VjKu0S3TSfrpyZV+gMCodGc+tYkk8uce5ZVbjZAk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=N/CW4F6cImn3bTG/uZD66VZACRq5AUlKbAXNDeM7v/i2F+7E2lKicEaEF/kdEY9BMth08ENC5PF8FqL3PmIhyIYT/uS0y1B7v+7P9QnYGlnSIQD5JUL3uV81vmdNoLwOhUld/JLHbET45956uYK0Udarq6evchVrLSwgRvfFMKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a9Lsdstq; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-436637e8c8dso69907455e9.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 06:18:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736950070; x=1737554870; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5vCPLadSTG0XNEadulJx4woFN95JwHE+lHWPlfdFjqo=;
-        b=akbPY3h+zkcgcBAC4tHkZHIV8AK1rlYHEUrt11vuKD2oY6qdkkrgcZY77WHoioOKOn
-         0J5U1B6a61xW1ZHy0tfVC07ngUA8M/WFj9v2yKRnFHQcCHtvfrpoa2gPOZ5X0+1dGbjI
-         c5V3s87Yf6ZbCw2Nk/S6XgAqDG9VD+GSHfq96H8wgrc08pebaYI6wZc0RNH6SW6aZ7gU
-         l/9ZflT+an0gAt6DFN9CB6YsfAO/aLmXkxvaEHekZ3CTD6xeoht2cOXZQXNhjRSBezDU
-         OUEIXCpu44ZS8mqlHTs9bwEKG8XhqR0s5IoNriSgn2sCqCrkaiJ0BRzDFD5OW9I19McT
-         O0Dg==
+        d=linaro.org; s=google; t=1736950705; x=1737555505; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LyLefsirnFHiBny48nwRg1v70yfpPBzd1WsBXD7eEU0=;
+        b=a9LsdstqCz9KaGW0a3x+4DnluLuuQRVAIbKiSxVN3DIy+xPYQOdWuBd9qHemt/ShQ/
+         GBevwkCC9zDZ9aFmVgMyNm3pGOO2UmClZyfqNarQjPh8GjDvccoMk336xaNEyScjNzh4
+         UoaaHJ15WM826CIPIqgv/Cck4tGI1blfGcmXyGg8sk5KpxDOKRbb2R7msYqmS7Q2o2Oe
+         14lvNSWyPyUC9wJ7ceBoGHEmqb+OzscENmPzRMqSse239XaB8wVnhnw6jHSoLwyBaZb9
+         2vwutpibce8ol3vzfd0EOQuHdlTq6Q1DYF9twIOLXi+AavIKcpA2bijhz/su/L5laWpd
+         RbjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736950070; x=1737554870;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5vCPLadSTG0XNEadulJx4woFN95JwHE+lHWPlfdFjqo=;
-        b=HdZL/o4LWB9iVUGIGtsMSdJT1rAw3O8AJd6gO3p1u7uXKhuZCKPk6XGnltA9JNcItZ
-         cKu5snFIDO31YgctulB+3RwahHDneYdliJDvu9cIJ+HOVRIpV0L4DVeLxqY95cIFfAMl
-         +JCgWkeY+Ucy7HL+fQZzdEW+MqCUitL/xsszfp+cN03Klvu82lzZYuDnjVrGpbeWBcC0
-         jeG1PGs6l6pN3hEmvNnv1ASYMNcfcfpo6q2biUxxwzD/BhsiS23qNzf2Omz49NxfE7By
-         1Bgu4YzE4R+e6CBXpRg3vfTu9fjnSQh8t9zRip2Et84Nps+PrAa3D2cSG6b9sOx/9tnJ
-         AxqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVwTFhEH6AAHjaqzQq8ZMTJRGszc5ZjENfpXuH2YcjAZGxfaAK9JlNIqVzI/5xRX6rhmDiu7KINkWl9@vger.kernel.org, AJvYcCXtmh6v/96wPTNngq2K7NxRZtsueqpmWkabQ21Aq2+CxeMX2OqYXU68rgOgm5LxXR8blM8XJc7knRVI5oQZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YylH3oulBSMXpDVPX9RDCoyr27JNADtMlpuMAKP8gNkBBB5xa4g
-	bGYOSJjnZM0AE15XDILNpaTqgsMM+CDv2THb8gPtGic0hZxROj9Q
-X-Gm-Gg: ASbGncvF0FtQDMCxLbaYI7zyyUj61FsgjrRGJvgBM1YjMWOrcJTHTqQ7bv6AVm0Y3GG
-	iK9tBD3clWdxDOKUFehJEfhrgTQdPzYORAf9sFrLhyVyIY+8mDxajKDHIv1gLRnvwY7AlUReMSH
-	J9HpIm1NJkzi5lu99a2ikHedZ/B4+yhU4WAv9y0FnoMCPcTZ3ExUQT6WGKusY7J3mAkmCoit4Tc
-	jYmwmmyMF6NVtKEhxvygOZaxTQ8qBu32Tdyxk1aULN246ZxSOu7L+hnkMYmsXB/
-X-Google-Smtp-Source: AGHT+IEOHm6oG8q2/VBX+YnEUddFnG0FmgHB02S4iMBT+29EuCT2i15IMPwhfxsK6EdgDfF5iHJflA==
-X-Received: by 2002:a05:6a00:368d:b0:727:99a8:cd31 with SMTP id d2e1a72fcca58-72d21f47fc5mr39933032b3a.14.1736950070133;
-        Wed, 15 Jan 2025 06:07:50 -0800 (PST)
-Received: from [192.168.0.116] ([59.188.211.160])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a317a07cce2sm9929464a12.4.2025.01.15.06.07.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jan 2025 06:07:49 -0800 (PST)
-Message-ID: <00863806-d481-44a1-b97f-ead0fc6f9581@gmail.com>
-Date: Wed, 15 Jan 2025 22:07:44 +0800
+        d=1e100.net; s=20230601; t=1736950705; x=1737555505;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LyLefsirnFHiBny48nwRg1v70yfpPBzd1WsBXD7eEU0=;
+        b=QzN1EchlVXzTx0n6d9cEdwM1tJ/64AJqJKkF4Xz/sUPP/PwkPvW/hqyngPURr4zCy9
+         SSpNGgUxRUtv7uBy20TqnCRpqoBczW3gk3TB0fNAKJsqxf8EExTz4KoWfiXb7koVA17H
+         rq95SvVvwUZjjMk7Cf1uxQSsGAAL53Lvg7uf1AB1oYiZM1XhLxY4vSF7nLr6T+XFkzSS
+         Hk9YwcPQ7Kc+Jg/1nZE1kHbFThdV75NebrRuA0mDTupGRiDaUSIKKiwfvIsLGTH6mnNW
+         2rCfg8lkUG/a4QAp7iWK30bOypmQyI+ioGUfsgxgIvOFKeTvMYRnHVt7rAbXcnB2zha3
+         XhMA==
+X-Forwarded-Encrypted: i=1; AJvYcCXtx+fAl9f+rg9/I62hSXGsd8AMxvl98P3c4Gw9CgKgB0RsErJ+1dSM1birjoP9NCq4yrbbJ1vBNNow@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyo1WfVKirtGwa9DvOkXKuF4Jy+hJ7FKuxiu5jhqHpbRCa4jIVt
+	AqIDDAvZIecz6b4Asb01ezk/HuaRTEFYvtC3poIDavwXAntk76ppOj/zhSz+sGY=
+X-Gm-Gg: ASbGnct9c4g+NGem0z3r8RwR2xrhB0h82OuRNivmRJqlUcIYpgD+GUo/9KJAVEs9CBu
+	Hrar6KrAgqQKs93oduJvgczaRkYGZ0fBwSba5zKqtL/5/31e0oHFn3IEqc2xOPcps6yCncznNMX
+	fQnPouDirru1YNeZ3wMr7eXzEp+U8SlyNT4Bb0iYSpXB228RTwjwLrMsaEoOS3jhhfcn2QNhxYf
+	875Or4cf1DGtmrtgYtSeWZ3okY9XEAOT7muvXlIcwnrb/smhEVxoqtut+D8vhtqZxXDrxXQjlqJ
+	0AU+o9RxJWamctDTwJLiyVSZBn6xbKck0QU1
+X-Google-Smtp-Source: AGHT+IGP60LUIuwASgS9o56h7S+gPKy3P6BFhKHpsGSUmfHT7ch3g+Akxa/OVdsuqoBRuhChB68dWw==
+X-Received: by 2002:a05:600c:3ca4:b0:434:a10f:9b with SMTP id 5b1f17b1804b1-436e26ab2a2mr300078595e9.14.1736950704653;
+        Wed, 15 Jan 2025 06:18:24 -0800 (PST)
+Received: from ta2.c.googlers.com (169.178.77.34.bc.googleusercontent.com. [34.77.178.169])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c74d8e06sm25184555e9.31.2025.01.15.06.18.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jan 2025 06:18:24 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v7 0/3] mailbox: add Samsung Exynos driver
+Date: Wed, 15 Jan 2025 14:18:13 +0000
+Message-Id: <20250115-acpm-v4-upstream-mbox-v7-0-948e09fcb5f2@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/5] arm64: dts: apple: Add touchbar screen nodes
-Content-Language: en-MW
-To: fnkl.kernel@gmail.com, Hector Martin <marcan@marcan.st>,
- Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Alyssa Ross <hi@alyssa.is>, Janne Grunau <j@jannau.net>
-References: <20250114-adpdrm-v4-0-e9b5260a39f1@gmail.com>
- <20250114-adpdrm-v4-4-e9b5260a39f1@gmail.com>
-From: Nick Chan <towinchenmi@gmail.com>
-In-Reply-To: <20250114-adpdrm-v4-4-e9b5260a39f1@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKXDh2cC/4XNTQ6CMBCG4auQrq1px5YfV97DuCh0Ck2EkhYJh
+ nB3CyuMIS7fL5lnZhLQWwzkmszE42iDdV2M7JSQqlFdjdTq2AQYCA4cqKr6lo6CvvoweFQtbUs
+ 30ULkGReMiZJJEm97j8ZOm3t/xG5sGJx/b29Gsa7/xDgwysDkGguojDK3p+2Ud2fna7KSo9wz2
+ REjI1Npri+F5AZz8cOkOwbYEZNGRqWFgJylKEF9McuyfABK4qjrSQEAAA==
+To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ andre.draszik@linaro.org, peter.griffin@linaro.org, kernel-team@android.com, 
+ willmcvicker@google.com, daniel.lezcano@linaro.org, 
+ vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736950703; l=4681;
+ i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
+ bh=Ra6VjKu0S3TSfrpyZV+gMCodGc+tYkk8uce5ZVbjZAk=;
+ b=h33+NfDQmI1lYuSRo6dWA3xcKVXDp8zt+ua3vNaiqopS3831SKpnkgpY5JbC5qMvfYArvfzDr
+ Nb5gwIHttynAIeGp41FEsEx44XfnSP20eo86RQivF9H0/dkFeiJEri+
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
+ pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
+Hi,
 
+Now that the channel identifiers are passed through 'void *data' in
+send_data(), the clients now depend on the message format introduced in
+include/linux/mailbox/exynos-message.h. If Jassi finds this set fine,
+then he shall provide either an immutable tag so that Krzysztof uses it
+if applying the ACPM interface driver, or to ACK this set and let Krzysztof
+queue it.
 
-On 15/1/2025 05:38, Sasha Finkelstein via B4 Relay wrote:
-> From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> 
-> Adds device tree entries for the touchbar screen
-> 
-> Co-developed-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> ---
->  arch/arm64/boot/dts/apple/t8103-j293.dts | 31 ++++++++++++++++
->  arch/arm64/boot/dts/apple/t8103.dtsi     | 60 +++++++++++++++++++++++++++++++
->  arch/arm64/boot/dts/apple/t8112-j493.dts | 31 ++++++++++++++++
->  arch/arm64/boot/dts/apple/t8112.dtsi     | 61 ++++++++++++++++++++++++++++++++
->  4 files changed, 183 insertions(+)
-> 
-[...]
-> diff --git a/arch/arm64/boot/dts/apple/t8103.dtsi b/arch/arm64/boot/dts/apple/t8103.dtsi
-> index 9b0dad6b618444ac6b1c9735c50cccfc3965f947..9b088f74e0cb9f42fbc8df822fca6451dcd1b717 100644
-> --- a/arch/arm64/boot/dts/apple/t8103.dtsi
-> +++ b/arch/arm64/boot/dts/apple/t8103.dtsi
-> @@ -356,6 +356,66 @@ cpufreq_p: performance-controller@211e20000 {
-[...]
-> +
-> +		displaydfr_mipi: dsi@228600000 {
-> +			compatible = "apple,t8103-display-pipe-mipi", "apple,h7-display-pipe-mipi";
-> +			reg = <0x2 0x28600000 0x0 0x100000>;
-> +			power-domains = <&ps_mipi_dsi>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			status = "disabled";
+Description and change log below. Thanks.
+ta
 
-Missing empty line.
-> +			ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				dfr_mipi_in: port@0 {
-> +					reg = <0>;
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +
-> +					dfr_mipi_in_adp: endpoint@0 {
-> +						reg = <0>;
-> +						remote-endpoint = <&dfr_adp_out_mipi>;
-> +					};
-> +				};
-> +
-> +				dfr_mipi_out: port@1 {
-> +					reg = <1>;
-> +					#address-cells = <1>;
-> +					#size-cells = <0>;
-> +				};
-> +			};
-> +		};
-> +
-[...]
+The Samsung Exynos mailbox controller, used on Google GS101 SoC, has 16 flag
+bits for hardware interrupt generation and a shared register for passing
+mailbox messages. When the controller is used by the ACPM protocol the shared
+register is ignored and the mailbox controller acts as a doorbell.
+The controller just raises the interrupt to APM after the ACPM protocol has
+written the message to SRAM.
 
-With that in mind,
+Changes in v7:
+- driver: pass channel identifiers via 'void *data' in send_data().
+- bindings: drop chan type definitions - not used in dt
+- bindings: drop comment and "|".
+- spin-off dt-bindings mailbox patch on its own. #mbox-cells = <0>; was
+  already allowed and used in brcm and mtk.
+- refer to the ACPM driver as "ACPM interface". The interface uses some
+  protocols (PMIC, DVFS, etc.) to communicate with the ACPM firmware.
+- Link to v6: https://lore.kernel.org/r/20241220-acpm-v4-upstream-mbox-v6-0-a6942806e52a@linaro.org
 
-Reviewed-by: Nick Chan <towinchenmi@gmail.com>
+Changes in v6:
+- mailbox: add support for clients to request channels by arguments.
+  Used by the ACPM interface where the channel identifiers are
+  discovered at runtime. Passing them via DT would be redundant.
+  Initial version sent on its own to gather feedback:
+  - Link: https://lore.kernel.org/all/20241219-mbox_request_channel_by_args-v1-0-617a6910f842@linaro.org/
+  - the patches differ from the initial version as they allow #mbox-cells = 0
+- bindings: google,gs101-mbox: update description, make #mbox-cells
+  const 0.
+- mailbox: exynos-mailbox:
+  - replace exynos_mbox_of_xlate with exynos_mbox_xlate, the channel
+    identifiers are discovered at runtime and passed as
+    'const struct mbox_xlate_args *sp'
+  - in the xlate method, the first argument is the channel and the
+    second the type, as channels can be configured either in DOORBELL or
+    DATA modes. This becomes an example for when an exynos_mbox_of_xlate()
+    method will be introduced.
+  - make exynos_mbox_chan_index() inline and directly
+    return chan - chan->mbox->chans;
+- drop Krzysztof's and Peter's R-b tags from the google,gs101-mbox
+  bindings and the Samsung Exynos mailbox driver as they were updated.
+- add Krzysztof's and Peter's R-b tags to the MAINTAINERS patch
+- Link to v5: https://lore.kernel.org/r/20241217-acpm-v4-upstream-mbox-v5-0-cd1d3951fe84@linaro.org
+
+Changes in v5:
+- fix dt-bindings by using the correct compatible name in the example
+- drop redundand "bindings" from the dt-bindings patch subject
+- rebase on top of v6.13-rc3
+- Link to v4: https://lore.kernel.org/r/20241212-acpm-v4-upstream-mbox-v4-0-02f8de92cfaf@linaro.org
+
+Changes in v4:
+- rename bindings file to be based on compatible: google,gs101-acpm-mbox
+- specify doorbell or data mode via '#mbox-cells' dt property. Update
+  driver and introduce exynos_mbox_of_xlate() to parse the mode.
+- s/samsung/Samsung/, s/exynos/Exynos/
+- use writel instead of writel_relaxed
+- remove stray of_match_ptr()
+- Link to v3: https://lore.kernel.org/linux-arm-kernel/20241205174137.190545-1-tudor.ambarus@linaro.org/
+
+Changes in v3:
+- decouple the mailbox controller driver from the ACPM protocol driver
+- address Krzysztof's review comments
+
+v2:
+https://lore.kernel.org/linux-arm-kernel/20241017163649.3007062-1-tudor.ambarus@linaro.org/
+
+v1:
+https://lore.kernel.org/linux-arm-kernel/20241004165301.1979527-1-tudor.ambarus@linaro.org/
+
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+Tudor Ambarus (3):
+      dt-bindings: mailbox: add google,gs101-mbox
+      mailbox: add Samsung Exynos driver
+      MAINTAINERS: add entry for Samsung Exynos mailbox driver
+
+ .../bindings/mailbox/google,gs101-mbox.yaml        |  69 +++++++++
+ MAINTAINERS                                        |  10 ++
+ drivers/mailbox/Kconfig                            |  11 ++
+ drivers/mailbox/Makefile                           |   2 +
+ drivers/mailbox/exynos-mailbox.c                   | 157 +++++++++++++++++++++
+ include/linux/mailbox/exynos-message.h             |  19 +++
+ 6 files changed, 268 insertions(+)
+---
+base-commit: 5bc55a333a2f7316b58edc7573e8e893f7acb532
+change-id: 20241212-acpm-v4-upstream-mbox-948714004b05
+
+Best regards,
+-- 
+Tudor Ambarus <tudor.ambarus@linaro.org>
+
 
