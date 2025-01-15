@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-138623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F0BBA1168F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 02:27:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF5A2A11691
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 02:28:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39720188B648
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 01:27:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64AAB161ADD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 01:28:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BE6F126BF9;
-	Wed, 15 Jan 2025 01:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C70EE4644E;
+	Wed, 15 Jan 2025 01:26:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HM37caCm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bLdJ7ZJ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60AE68633F;
-	Wed, 15 Jan 2025 01:26:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E40A481AF;
+	Wed, 15 Jan 2025 01:26:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736904414; cv=none; b=uCcdA25BTmGlV5iVVq8aNAfMdEizirZ/4wKGLCZplJLY/+X+lHntTZCjviD9CELdOxkTNFs9ZF+LpBR5lfPO3VY39yRm9laDiAuU5Sj9Da3QPgD66rMbhsQ254toJTvHiRiQlk9j4PxiBQgSNGOGVoz1uqHyEWIAY20i2cOC4V0=
+	t=1736904416; cv=none; b=KUjkZygblyBvG4W3qWjZL1iAjC2vvjh3Oes1mUYOOsVGVzW5xTCHCqFXVU9mQhzJ0txq/kAFO1NCVs8Cn4psJEUC5f4PK0lSzDdxhtRNWZDfe39cOuIsuNOLK5SQ3UMYevoTBZXHqd/PSn68fY8YMUOijquwcRzj9S2hZGVRRyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736904414; c=relaxed/simple;
-	bh=7QyXOos554TA5g0npv3XCcyipqB+km9lM8OtSYg8IHg=;
+	s=arc-20240116; t=1736904416; c=relaxed/simple;
+	bh=QmDtyYguQ0fizyxSmJo482RF36/4VTJ4Qs7t/dBEjCU=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=gJ8GNfhrdhiZ/k0Cj000dl6QxB4I7l7Zh3BqDnJxlyBy5ADZlMHG69y8Kw/hwZZap+0+uYIAiTDHVxx1eqrN1VD5GSXrFklwjLHZE+iwSh9XEas1HirOs71Pw+ypRk2NHjCILB13OQxF1wYV/R7XqiWbSHOg/2Pl61wjgWom5Vs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HM37caCm; arc=none smtp.client-ip=209.85.160.180
+	 MIME-Version; b=R+y8Oyljy18P5TcL1Wg8DxKReNpMuXZSP1LZ0DPM9tUxSjlFEpPBLlshDIPlZBWtDbT3BXX1Ca/7UeqjIXo2I9dzXWno3KSLvLv6IzEGXUuU4NdM9itel3BXWGR07ktPRo9qnEF9JwF/EUK8pKpJBFxCb+2sIzeg/bWoAGNSfzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bLdJ7ZJ+; arc=none smtp.client-ip=209.85.160.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-4679ea3b13bso51805511cf.1;
-        Tue, 14 Jan 2025 17:26:52 -0800 (PST)
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-46b1d40ac6bso3507751cf.0;
+        Tue, 14 Jan 2025 17:26:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736904411; x=1737509211; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1736904414; x=1737509214; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gVssDOqm+J+pahSUoCWyMm9PmHHWDBPd01GSGUshCEI=;
-        b=HM37caCmMIsTeYmKdJ32foIlDJYZ9uxnzFgW/GtOWwLE1irGRdDP49s/Co0WO1dhft
-         OHcxhHui25Y6ld8b54YPkxAcYCpugf6GwYDaUqPMokLTOzZs25OIlOY0gCkWmtCM93yy
-         Fb16bmgMgzb0LbzVsY440EzraXpgRVy6v17FPMxEJxDDWYG6iRmlAAyFheDhZWERRWhw
-         jNJMj3SfkJw4DH9WHTPcA3jfISQC0w6Ai1X62gsnR7Rk3ez3I8pbS9YHa0nKnQ1EoMN7
-         PB6uUmSQW5A25/qFBVZPBIdSsHEEevQWDutCLz3w9s5tTrQAH7Iq3hMQ/HOhQDWu2nfU
-         olNw==
+        bh=hFMwJAaeoRNdQ7wFB7oOxwf1IaEkyF3Nv5JGSL6B9MU=;
+        b=bLdJ7ZJ+6DO/4c5+hIdYzRas/VY1PkkROV/5T4yzFR9hi29R25HF8yY7j4eW5w1Paf
+         tyGNslg29esIlMfX65DK9wvWldgi+aAGlTZpcCmTuM36a7bfOqAQjFP1ZDcVwxEUqdPJ
+         VMyeunLwmUTsHkWkcATfzJ/crkDPkaY5Z4S8E5IVFg74gtWnWzbXTs0SjrcJf+/6hQ0+
+         w84qdkNd5THFOie4aPgVHHgEMY1ewX/QRJQ2yG3MY+4ZrJhwWuB9Eeew+A63fNdzVSEw
+         gJ89z9i+vV8Ug+r8IfqQSCmXHjQbkuNcwEDAEEwmdbVbUcPLYKX+gJj1Bb4dxJ4xZKOX
+         BjpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736904411; x=1737509211;
+        d=1e100.net; s=20230601; t=1736904414; x=1737509214;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gVssDOqm+J+pahSUoCWyMm9PmHHWDBPd01GSGUshCEI=;
-        b=xRVCLfl5wrF5zL+ZcCPR9H9N5t8inSYP2rQSfvIkwTTI0IiPB97CiAgy0a/eg2o3vS
-         gXMyaOC+m5EpAqCZt63DjDvsKGU7tQ4j3xRYWtCD8hJ4taF4oLCCxA5Wb4lszOX3snb5
-         grgo5/1QWG6KECVpmpBdjwBAisbSTnYZaLY3bMBm5eQS4DFNHYIjy63Sq1rqSuIqatTL
-         lvnf13iJHH6IwoXug2WN421VG+0LBziV35yf+aO1tqCMWVbzMYtD9VxVUcOEUL63eExX
-         Vcum7snzC2pdEDEl5npm2PKxBa/iFxDh1j5IYKaF3LrqRISHJ1fi5UvrGKyAxlqS+qG+
-         nzpg==
-X-Forwarded-Encrypted: i=1; AJvYcCWcbiva04i0sAIulQNW37c7Lgi9LM017jMchSybdTZ19ql9aPKcu1dVn2oZVWIBlrJPlAwyR4RYsB+k@vger.kernel.org, AJvYcCXWfACZan5Odm84OLMuBKmcsHVLYpOUDJvRs41U4WfiOl6m3fhzWHd7Y0jDiysJqNs6nNLC+P/97dfGbQ6N@vger.kernel.org
-X-Gm-Message-State: AOJu0YwP9AUHgekhglX74Y4JkqiGE19im2nU9EWhGUSQazG7xxUg5nkz
-	iiqqQbn/wmIy+miaRnbEd6jhjfLJUqPHTg9wEatvnqp3XFaOgRZb
-X-Gm-Gg: ASbGnct9TzYAHstA6XBWGZ3dJ8mW2hXXwgVxhz7FptKExWDNYzMA0qSWSxt1hIVaqaM
-	uiRxsh9pL6fcgnoB3Q0p+//P7ZQjL4FfBfYLb2aZmU12ZonE4oahqntkSBUkl03gmTesjt3Zhdo
-	7i9DBcHLFETqQxGTuYRIa3xXdMhzD6x3Cwmxd3i9dwBkgYKB1HiecUUjgU9kj9+ZUGAaBbVGYi/
-	A/IR0tqK8uiFktBNx7Om7KWtiPiX8osLXqPF0IKrUUszTAEk9vAtTSttX/f4PdQ2nMo
-X-Google-Smtp-Source: AGHT+IFrgnJpvh7aaVGnucMvaHv2rELTJ/5OFWUkqkYUWq+MAPY2UvyFQanWVih4LLhOlXh3fh8rug==
-X-Received: by 2002:a05:622a:1a94:b0:467:4380:76f6 with SMTP id d75a77b69052e-46c70fd31efmr447700921cf.11.1736904411316;
-        Tue, 14 Jan 2025 17:26:51 -0800 (PST)
+        bh=hFMwJAaeoRNdQ7wFB7oOxwf1IaEkyF3Nv5JGSL6B9MU=;
+        b=JQKqzIcOdWEuulfJDnST5cDWfd+JUDjHFrjMUb3p5K9qvDQ4KQspyqWpzE3AKvdZuV
+         i6Lq+XpNgnVfmiocjMFtBq33UZ/HHp1fdZM+zRuI0mhLOCTkeNG4CansvuwHxS+W0Bu8
+         QdHN/UWONfPjvGssmHLOnHpUa3MCBzQj9VE1r3lsLpSr/RoYqf4tKN8p8d8Hu/Mxd0Xm
+         hkguXIW5fKHRIPEWLGYaO6Cg9VAxcce5iF/4NfQG9tBvjSiO293qx6IpzF1QttARxcF0
+         2zwb8WLGG0yNlqrOnhlkhtOuupAP53zD6+AVJcvXQpdbTDIBWSqWWFIbxIVM+Vbpiz0o
+         w0Pg==
+X-Forwarded-Encrypted: i=1; AJvYcCU5RQ+5Lm9rH2MF2lIST0q3JKdew9izwyDSj7PzZMr0MR8uhLiKX6ckSCFU+0Kv5OCgNiQ+PCSObTHRx/js@vger.kernel.org, AJvYcCVDDvohjY9HQdXyiijrpIq4lbFghtgtBwToh+/CaW6SS0C0SP5be7Osyl5c2iYem2b+JQlPqk7DQ3QS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEDMcT3O+4W+t1zE9UQrggQ1QaCh5issELbAa6PRHmTgGzRimh
+	FbRpeBmMHiZWZ8o6N2Z24gI9AFPBJrMZUYCCdR40+oY8gePiFWFF
+X-Gm-Gg: ASbGncsGWtlVbHqTgrSnlBiZb/Kkv0CEWbIddoGpQu5M+nC1mhLRzEoEK2s8PRJ6vp2
+	E8TZ78HPWPnP0twt6S+96Ba5X0KL9bKcO0M6Q1a/5BNHnw6EkVyaPC4njpvZuGcwrAPbdO2QrMT
+	AMILkL+SGZdak/zcnYeevIo+OQnHiBIm0MbFvDJQf2/PTw7nR6EQrmBsyzJYxcmjZ6oSsqGbrm1
+	UmTy6vgfHX2kG833TFs65XsvHKbF579o1hRva54SRrSDtqb/2SbWlyEMl0mHW1IdtWK
+X-Google-Smtp-Source: AGHT+IFbToSOgBgyFlAAQb6WU2ckT5CIGlBK7iJrhnVXB8ROQS2yvhyIzkDE/m/9jLZTkhccFjgHlg==
+X-Received: by 2002:a05:622a:344:b0:467:6654:3dda with SMTP id d75a77b69052e-46df56ad2d9mr20388131cf.12.1736904413930;
+        Tue, 14 Jan 2025 17:26:53 -0800 (PST)
 Received: from master-x64.sparksnet ([204.111.227.95])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-46c8733130dsm59933881cf.25.2025.01.14.17.26.48
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-46c8733130dsm59933881cf.25.2025.01.14.17.26.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 14 Jan 2025 17:26:50 -0800 (PST)
+        Tue, 14 Jan 2025 17:26:52 -0800 (PST)
 From: Peter Geis <pgwipeout@gmail.com>
 To: Heiko Stuebner <heiko@sntech.de>
 Cc: zyw@rock-chips.com,
@@ -83,15 +83,17 @@ Cc: zyw@rock-chips.com,
 	Conor Dooley <conor+dt@kernel.org>,
 	Diederik de Haas <didi.debian@cknow.org>,
 	Dragan Simic <dsimic@manjaro.org>,
+	FUKAUMI Naoki <naoki@radxa.com>,
 	Johan Jonker <jbx6244@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Rob Herring <robh@kernel.org>,
+	Trevor Woerner <twoerner@gmail.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org
-Subject: [RFC PATCH v1 5/6] arm64: dts: rockchip: enable the usb3 phy on rk3328-roc boards
-Date: Wed, 15 Jan 2025 01:26:26 +0000
-Message-Id: <20250115012628.1035928-6-pgwipeout@gmail.com>
+Subject: [RFC PATCH v1 6/6] arm64: dts: rockchip: enable the usb3 phy on remaining rk3328 boards
+Date: Wed, 15 Jan 2025 01:26:27 +0000
+Message-Id: <20250115012628.1035928-7-pgwipeout@gmail.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <20250115012628.1035928-1-pgwipeout@gmail.com>
 References: <20250115012628.1035928-1-pgwipeout@gmail.com>
@@ -103,19 +105,93 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Enable the new usb3 phy nodes on the rk3328-roc boards.
+Enable the new usb3 phy nodes on the remaining rk3328 boards. This is
+done separately from the rk3328-roc boards due to lack of testing, in
+case of regressions.
 
 Signed-off-by: Peter Geis <pgwipeout@gmail.com>
 ---
 
- arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi   | 12 ++++++++++++
+ .../boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi   | 12 ++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts    | 12 ++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3328-rock64.dts       | 12 ++++++++++++
+ 4 files changed, 48 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
-index b5bd5e7d5748..22d93c1901ed 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
-@@ -360,6 +360,18 @@ &usbdrd3 {
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi
+index 1715d311e1f2..a4d880725a96 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2.dtsi
+@@ -385,6 +385,18 @@ rtl8153: device@2 {
+ 	};
+ };
+ 
++&usb3phy {
++	status = "okay";
++};
++
++&usb3phy_utmi {
++	status = "okay";
++};
++
++&usb3phy_pipe {
++	status = "okay";
++};
++
+ &usb_host0_ehci {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
+index 82021ffb0a49..f70d28e6da5d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
+@@ -349,6 +349,18 @@ rtl8153: device@2 {
+ 	};
+ };
+ 
++&usb3phy {
++	status = "okay";
++};
++
++&usb3phy_utmi {
++	status = "okay";
++};
++
++&usb3phy_pipe {
++	status = "okay";
++};
++
+ &usb_host0_ehci {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+index 425de197ddb8..4ce6b16cf291 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+@@ -440,6 +440,18 @@ &usbdrd3 {
+ 	status = "okay";
+ };
+ 
++&usb3phy {
++	status = "okay";
++};
++
++&usb3phy_utmi {
++	status = "okay";
++};
++
++&usb3phy_pipe {
++	status = "okay";
++};
++
+ &usb_host0_ehci {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+index 745d3e996418..2e366de96390 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+@@ -379,6 +379,18 @@ &usbdrd3 {
  	status = "okay";
  };
  
