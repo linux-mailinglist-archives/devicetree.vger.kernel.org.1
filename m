@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-138685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78BE2A11BD7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:26:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEDE3A11C1C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:35:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66BCA7A4330
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 08:26:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 465A53A62C5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 08:35:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635EB28EC81;
-	Wed, 15 Jan 2025 08:25:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424C91DE3D9;
+	Wed, 15 Jan 2025 08:35:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gXLD3ScF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n9YRZhGs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 210FC236ECC;
-	Wed, 15 Jan 2025 08:25:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 134FB23F28E;
+	Wed, 15 Jan 2025 08:35:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736929546; cv=none; b=IlEEQCr37YaySsliR0t2ilBR0KYq3jHLhTsPQqCZiu4k80ac/CGKFfmTQL8+DGwYMKvaqPAJSTjEdZqceUUw9xFEvpKEDt+tfGfI2aOrDSxVLuwG7yIyylI2ZJAladXGzeJechfacqeEiTyRDbLAV7nO/eKvXbLyQyY6+qrmuiM=
+	t=1736930141; cv=none; b=NsjgVC6mFMeOaHrtxozju5t03tpFJ2aUeJkuvtbwNzn/JeJ8JYIN/Dprle0DpR56FkoMKuzwsr14W4qlEVREqmZQFr+SNH1lEqEGPHuW/uL9PBlYgglYmPmqY6gwjzDzmCJZMPxS7uM/matMXVGCV0dT/qLBpVNw0afz3U+hato=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736929546; c=relaxed/simple;
-	bh=RdVMX+M7bTTToP03/qMEfXQX3C3yCjjqCO/xBjW6898=;
+	s=arc-20240116; t=1736930141; c=relaxed/simple;
+	bh=4wisaHf+Hl4KOzZeEVEFxjN6kc8eMQmrepKNkzXlzDo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FFzJj/OuDnANJpuRkEI2QQHN7vx/XUWeEp8k4rWfqCkXtYOvlN9txJ/P5QwfhlrcOVd5kPwUU3jLhDpW/CWMmD1ozwrxOpI1RUdHJkZkdWSWrdJgMDYnisjdoEuautn19E4HOwa4TPJVMYto+JnIxKFuBMYq5GAUdGq/w3i2sl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gXLD3ScF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E52F1C4CEE4;
-	Wed, 15 Jan 2025 08:25:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=r4NkYKZ6wjy2SDyVMO0P6mQfhP0B5IK87vTF5l26rsaDT+BEjCjeWfaK4jouZ4pBfJgpzCH/gWP08rIKu3/LVTxp2L14qMvXT4bIwyDsWFUwt7WPU9/i7dT80NCaMPocA2NUIX7mtyDTJ1CWCReg70ODHSNWRsob4T7Amujo+Q0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n9YRZhGs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCFC9C4CEE2;
+	Wed, 15 Jan 2025 08:35:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736929545;
-	bh=RdVMX+M7bTTToP03/qMEfXQX3C3yCjjqCO/xBjW6898=;
+	s=k20201202; t=1736930140;
+	bh=4wisaHf+Hl4KOzZeEVEFxjN6kc8eMQmrepKNkzXlzDo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gXLD3ScFQ+HQHUoCCSZ31AO0BKwerb0AMkLDHuCWt7v29uKOZ6WhfaKCZH6eIIDGz
-	 jQe6KR6blRZ9KSOvPqK4F99jMUrSJAi2dtUKcOZ252Hbu5Rsot5SOkTnXbLixXSGMi
-	 fT4dVXlAUritel67ymU9uM/ktbuYmP7Y7DKzV8UdZspOZaKlEUMJ1KrElXpeSOgEdd
-	 CqpFlvb6dWWSz5PTt5MZZD6VbhpseXfz+aIl+MawfqxOYuul7IrqCFdbHBBBeZKtF4
-	 +WxWv++kQI+eXHpTtYDlYLUfMCPWIwBTrbs0YTa54PDzl34EgATjljDwKjzqo8yIoe
-	 peQiPZ8+zrzZw==
-Message-ID: <f5c471e9-56c2-4674-af3e-1d19b2241bc2@kernel.org>
-Date: Wed, 15 Jan 2025 09:25:39 +0100
+	b=n9YRZhGskU1xUSTLNihp9848Xhk/cOOr0A4tP66Z/QW3qUbEJja2aj0BHRQC0rlOI
+	 vvfjneMhayt56fE7La01WFhksgtLCZhp0vbZfJ15pOJq1Ip7hz8H3S3+Km+AXum5UH
+	 4LUIr6ehQdnR8yGkhTQarQ2RbC3uK5X/oWI0BM+Eqfi/e4sfcA/QAitp0jUO7ul0JK
+	 SQj6ngjWlmM+SWeKNAty6j+JZYgLDEGExre6pbUdKiptdDplOApTwLm3jhOwMVG9oF
+	 HX767n8258hjuZ5FRJywWeB58w9jqlcjGbPlh5xNFxykNudYEGKUrNhqB8kEi4642C
+	 rcgXILmrHWdnA==
+Message-ID: <80e59b3b-2160-4e24-93f2-ab183a7cbc74@kernel.org>
+Date: Wed, 15 Jan 2025 09:35:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/4] soc: samsung: usi: add a routine for unconfiguring
- the ip
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Peter Griffin <peter.griffin@linaro.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250109090325.595475-1-ivo.ivanov.ivanov1@gmail.com>
- <20250109090325.595475-3-ivo.ivanov.ivanov1@gmail.com>
- <26aa96ba-36e4-400c-a982-48344f2096e4@kernel.org>
- <23d2ca03-5578-457c-ad80-778ac4347c04@gmail.com>
+Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: Add support for QCS9075 Ride &
+ Ride-r3
+To: Wasim Nazir <quic_wasimn@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <tjrg5zqggupjo36udpyv3vynsij76f4qlus6lkbqotuimusqgq@hosmksp77sif>
+ <Z3ZXWxoBtMNPJ9kk@hu-wasimn-hyd.qualcomm.com>
+ <4wmxjxcvt7un7wk5v43q3jpxqjs2jbc626mgah2fxbfuouu4q6@ptzibxe2apmx>
+ <Z3eMxl1Af8TOAQW/@hu-wasimn-hyd.qualcomm.com>
+ <xuy6tp4dmxiqbjitmoi6x5lngplgcczytnowqjvzvq5hh5zwoa@moipssfsgw3w>
+ <Z3gzezBgZhZJkxzV@hu-wasimn-hyd.qualcomm.com>
+ <37isla6xfjeofsmfvb6ertnqe6ufyu3wh3duqsyp765ivdueex@nlzqyqgnocib>
+ <67b888fb-2207-4da5-b52e-ce84a53ae1f9@kernel.org>
+ <Z3/hmncCDG8OzVkc@hu-wasimn-hyd.qualcomm.com>
+ <b0b08c81-0295-4edb-ad97-73715a88bea6@kernel.org>
+ <Z4dMRjK5I8s2lT3k@hu-wasimn-hyd.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,37 +115,45 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <23d2ca03-5578-457c-ad80-778ac4347c04@gmail.com>
+In-Reply-To: <Z4dMRjK5I8s2lT3k@hu-wasimn-hyd.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/01/2025 22:59, Ivaylo Ivanov wrote:
-> On 1/14/25 19:59, Krzysztof Kozlowski wrote:
->> On 09/01/2025 10:03, Ivaylo Ivanov wrote:
->>>  static int exynos_usi_parse_dt(struct device_node *np, struct exynos_usi *usi)
->>>  {
->>>  	int ret;
->>> @@ -251,6 +268,10 @@ static int exynos_usi_probe(struct platform_device *pdev)
->>>  			return PTR_ERR(usi->regs);
->>>  	}
->>>  
->>> +	ret = devm_add_action_or_reset(&pdev->dev, exynos_usi_unconfigure, usi);
->>> +	if (ret)
->>> +		return ret;
->> You should not reverse the action before the action actually takes place.
+On 15/01/2025 06:48, Wasim Nazir wrote:
+>> The the SoC, I am asking about the board. Why each of them is for
+>> example r3?
 >>
->>> +
->>>  	ret = exynos_usi_configure(usi);
->>>  	if (ret)
->>>  		return ret;
->> Registering cleanup should therefore happen here.
+>> So this is not sufficient explanation, nothing about the board, and
+>> again just look Renesas and NXP.
+>>
 > 
-> Alright, will fix. I'll try to submit the next (and hopefully final, if that's
-> all the critique you have) version in the following days, but I'm currently
-> focused on working on exynos2200.
+> Hi Krzysztof,
+> 
+> sa8775p(AUTO), qcs9100(IOT), qcs9075(IOT) are different SoCs based on
+> safety capabilities and memory map, serving different purpose.
+> Ride & Ride-r3 are different boards based on ethernet capabilities and
+> are compatible with all the SoCs mentioned.
 
-Yeah, rest looks good. Anyway it is too late for this cycle, so I will
-pick this (and everything else not picked up) after the merge window.
+Compatible? What does it mean for a board?
+
+Third time: did you look how other vendors do it?
+
+> 
+> With the combination of these 3 SoCs and 2 boards, we have 6 platforms,
+> all of which we need.
+> - sa8775p-ride.dts is auto grade Ride platform with safety feature.
+> - qcs9100-ride.dts is IOT grade Ride platform with safety feature.
+> - qcs9075-ride.dts is IOT grade Ride platform without safety feature.
+> 
+> Since the Ride-r3 boards are essentially Ride boards with Ethernet
+> modifications, we can convert the Ride-r3 DTS to overlays.
+How one board can be with multiple SoCs? If it is soldered, it's close
+to impossible - that's just not the same board. If it is not soldered,
+why you are not explaining it? What is Ride board? What is there? What
+can go there? How it can be used in other SoCs? Or for which SoCs? Is
+there a datasheet available?
+
+You keep repeating my about SoC and I keep responding the same: don't care.
 
 Best regards,
 Krzysztof
