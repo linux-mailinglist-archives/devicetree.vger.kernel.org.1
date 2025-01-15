@@ -1,79 +1,57 @@
-Return-Path: <devicetree+bounces-138697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138698-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7299EA11CF4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:09:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC7D5A11CF9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:09:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B7B1164101
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:09:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DC763A4697
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6C05246A32;
-	Wed, 15 Jan 2025 09:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFEB41EEA2C;
+	Wed, 15 Jan 2025 09:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UrEai8Dz"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="YwUsiqL+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A295246A0E;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D478D246A10;
 	Wed, 15 Jan 2025 09:09:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736932155; cv=none; b=JzZzLPaaQNFzdNgn5M4dMWVJVrZeI8924DY5Z0NChct+o4KxSW+V5kUUPs84hQacMXxRJmjaCrDQy7XA/OMf4fNC7Sc1Lr1XKHu1O8aiL6Y5GEvwSFW4dVqKZIVlZTRkiUuqGglN0azkyT9JlpUTt1qI5VaqinTcl9t3iVbdQLU=
+	t=1736932157; cv=none; b=SDciiV0AaMUkHFlI4zHdGLnCyjCuYsTpUBG9A3gcnyjOE/e5NA/FP2h1mS8zFLNoEn2guPyQ6CccSGPNzIbt+jC2HcqaL3Pjn1deTFCRpi2f2gyIhXnOS46468h8dxgQpf504W6jz2CYuAZOmKTTB+rBDBBXSRoIc92lvOs4+UE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736932155; c=relaxed/simple;
-	bh=Yfxhe29O/qlnSI3nwcCqFA57vArut96fC+BHmYETDhU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oRekLa4xZkDRT+Ow5jryxz3qpTzN90SDKl7mDgfrgVfbsNtUuOqxTh26O3uhSyIrU2slWYy6L9dZGPbEwFmjf+sN6o5x4Tn2JNvUen+ZnzUUm2GPgS7xpB8mNgvDqLgHP4MLV5Z47+GFkSmvKEdx6HFC0GN9JOw4kp1FjExml9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UrEai8Dz; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-21654fdd5daso109944595ad.1;
-        Wed, 15 Jan 2025 01:09:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736932154; x=1737536954; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GZu3RRCSZ6fAo+lWLsGDi7lH9XSyk6eapVHs6gKrrgo=;
-        b=UrEai8Dz+MTsHE5oMs4e06nwZRENWwCAu9Yziwy8ThQ3aW/m5DaZDn9W3cDiKeBQEO
-         9em8TkuWx034vULeaOMf8IiBpzvgVCURpxmSLPohMS9G3NRmk++tJDb7meGQX28u4wOX
-         Zkwi7pSj4Hy0Vg5h4mLZaWuTOEJPE2ANR8JZrhHnAS6QhHRbKv75LWh/toNQWxfSQVjV
-         k34O1CvFlxU0avWRnNCeIpmsmRdr57ogX0VTLUjs6Sc9qnNSON44OkUEqZh+/Fuihj8L
-         capl2mRW31JxSYOrhshGwHZ0odbSi19vujcdBHgu5ZxBy5CV9JmnATvwL3PZhRybbgIM
-         uYTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736932154; x=1737536954;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GZu3RRCSZ6fAo+lWLsGDi7lH9XSyk6eapVHs6gKrrgo=;
-        b=ezeGVMiOMqbvMdf6yUTIqxuxKv0ii7uSvMs0eKq3Z3l4L6cCb83aRKkB1l2/+72Tj+
-         hgZpq09D0y5ZIaQ+g0dVT2MuGuSkpoxMaI738DpESKPPGY/EIussf7PVOqKSMOenS6Z3
-         3BfLpavp+Ew7E/yK1dqMghvF2sZEg8EZisW6nIewmqrsOiv52TbrjzVccB8R0ofR+Zrk
-         2KDrtkZOhF9qvaU4RBTyESNl+7WyPWR/i1JEXcQhf8hRqVNLL9UMQsiy7p4vNcEg95kZ
-         AoPrdhQQu57c5uY9b0LsEHcxB3cu0t4LoMjJPgmzxfcY4DYEMD5VGit7z2n5Uc76SFCm
-         VSyw==
-X-Forwarded-Encrypted: i=1; AJvYcCUx0rJ3anDXeINVbu2JcNLHwwYmMpBVW4WjR8UGdyfwnR5qFr7PcEHM/CEKtAsDQJftQV5Aff8rB9r4C7T9@vger.kernel.org, AJvYcCVtQUIuFxkjHsz3JH7gGP82wbRcQUeWz594eNFjjBx79tq0FeFqK8hTmqTQgz4uTfN9+LsglB8S@vger.kernel.org, AJvYcCXSqhJBUpu1sPmJyzktQTLnL0clpfc4QQnM2mpORsUr1AdsO46UkFgYj7NPFG5d7aeRSSf3TJrmVCwp@vger.kernel.org
-X-Gm-Message-State: AOJu0YywdnbzrvqZsc+juHpxiEZdlNrKJLqisx92FiR/l4OXRcgvj0We
-	VL07162XVGa60hQTvX4VE/R/SAs6OokzJqN3jli6OuxkQgF9c8Mj
-X-Gm-Gg: ASbGnctE6DI0kxjm+lvdEvWWAIcEFKGUBPjil7XOjs/qdzryH2KTX9Kblx9EKXCNPBh
-	+48SHLdQiZA5+WxgXqIomb/qKsR5mqV6gFyWibRqWil1UPrraszM1ckvQNh8kuz6B7M7vM8sTeh
-	5yspkvaXk5xFCmuTcthcRBsr/hwgeNg9FcrONMNzTr+oKKbX+i+g2MuHEIddARgVTwEQzSInNaL
-	tqAycYTSMqN5IeCYHBU//t1SyGX0JtLjSQbalOIfRbIctk1ee+QqTHrD3bBx3R2QvH9Tzdmb8LY
-	5OJAv6Y3K2kTF2Yfgkpd9nBmcINECcgWgGk=
-X-Google-Smtp-Source: AGHT+IFzyRepggFFHtQT8D4fkFN2tkBOOiPSmaRhjKsx+myOrF3U4xxdVBjzw1AHpDW/+2qMjfDQIg==
-X-Received: by 2002:a17:902:e747:b0:216:3c2b:a5d0 with SMTP id d9443c01a7336-21a84002a70mr352529525ad.51.1736932153585;
-        Wed, 15 Jan 2025 01:09:13 -0800 (PST)
-Received: from [192.168.0.100] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21a9f21a21csm78826285ad.109.2025.01.15.01.09.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jan 2025 01:09:13 -0800 (PST)
-Message-ID: <72e993f1-bb8d-43fb-a9cd-210f1f8f02c5@gmail.com>
-Date: Wed, 15 Jan 2025 17:09:08 +0800
+	s=arc-20240116; t=1736932157; c=relaxed/simple;
+	bh=jzVF8QKbSKlwNeLM5JaEErE+5Hfuig0I3TmeMB+qegc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cZ4mnvrKBjHrjKpzwJfN7Q4jAuzZHHgZ2LfpmfJokjsL3EAbFrm9/ZQ64+h9E1oHzdaSqfa6yyVrJhF+4waSbuBjP1NNfAw8vooNvxnw12Dhc6ZVSpXJq3RBWVX/OFSNuvnIdTl7AsC7ENOqYSHFXLMtCCKLNgwYjz01nJiGNKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=YwUsiqL+; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 4F1A8A0A27;
+	Wed, 15 Jan 2025 10:09:12 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:in-reply-to:message-id:mime-version:references
+	:reply-to:subject:subject:to:to; s=mail; bh=ssZI86T0A6XNN8hCXgMu
+	MZMsnzteKeFLGvw1TpMOAQU=; b=YwUsiqL+mnfGUW9j8eGYD/GWnYrYU4Lh23/R
+	Gk2lpKqoAoqRGyrHg00ogMYZOT6rBU2nNA0yllC476j3q3fUoYLJVNemN00UpP4s
+	RNSd3MN5utnVTVpVHhRiW7g18Rxvg6cg5Mbi0igsJ8aqMJi2LKMdPOWddsY+ja2X
+	HdVuwqmRkFUNTRYG+1vhShK2qKRzlVSPpPbLn1PZT3aeK6GviuuaHTod48xGpBct
+	xITp7DWK5gH6WgPA0466Hq4INt9RjJ3g9jWgF2DO4HcsvCXLUtYqm6VEJSF6skO4
+	QKwbsuC4d9czkpAnsIVGSJP89jgtxCsPE33/NZJaQbojtYFP5lBO/LYuskWxvMgF
+	L+IEVCzwQZ8fR5S7OdoyPZNYIudOpxHv82EgdF5wm/maN/qVoKiD6Jtr/4cSHgyp
+	A0d/IluO1KZddaESPZPCepvmVGSG8fa7b68lneLzG4o93UIraCbzM6rDLsfYHMtg
+	lpWj8ZVDnG6zZDLoLifMkms32GIpx/DhARP/Z8rZ3YYdqa0ClqgGgmZVhYHHRiLK
+	Xglikd9s9lg4opobT3B+ruWbtNC7nBY7dr1DfKu4PDOZqXWX80G3xcgPLCmXTtq1
+	pl4P9NrgOy1MtsywyJ4vVaQqbvy1t76OTxyKF32tbGpRU0vliKNBQ5DbgD/jZTwO
+	3/JuGtg=
+Message-ID: <81cbb273-a4b4-424c-9d25-f53ebc8ea82a@prolan.hu>
+Date: Wed, 15 Jan 2025 10:09:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,47 +59,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 3/3] net: stmmac: dwmac-nuvoton: Add dwmac
- glue for Nuvoton MA35 family
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
- alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
- schung@nuvoton.com, yclu4@nuvoton.com, peppe.cavallaro@st.com,
- linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com,
- Andrew Lunn <andrew@lunn.ch>
-References: <20250113055434.3377508-1-a0987203069@gmail.com>
- <20250113055434.3377508-4-a0987203069@gmail.com>
- <20250114153323.527d4f63@kernel.org>
+Subject: Re: [PATCH 12/12] ARM: dts: sun8i: add DTSI file for V853
+To: Krzysztof Kozlowski <krzk@kernel.org>, Andras Szemzo
+	<szemzo.andras@gmail.com>, Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Chen-Yu
+ Tsai" <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, "Samuel
+ Holland" <samuel@sholland.org>, Linus Walleij <linus.walleij@linaro.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>
+CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+	<u.kleine-koenig@baylibre.com>, Florian Fainelli
+	<florian.fainelli@broadcom.com>, <linux-clk@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-sunxi@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
+	<linux-phy@lists.infradead.org>, <linux-gpio@vger.kernel.org>,
+	<linux-pm@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20250110123923.270626-1-szemzo.andras@gmail.com>
+ <20250110123923.270626-13-szemzo.andras@gmail.com>
+ <ff57cf8d-626e-4d35-a18f-1a89b4d9fa3e@kernel.org>
 Content-Language: en-US
-From: Joey Lu <a0987203069@gmail.com>
-In-Reply-To: <20250114153323.527d4f63@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>
+In-Reply-To: <ff57cf8d-626e-4d35-a18f-1a89b4d9fa3e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: ATLAS.intranet.prolan.hu (10.254.0.229) To
+ ATLAS.intranet.prolan.hu (10.254.0.229)
+X-EsetResult: clean, is OK
+X-EsetId: 37303A2980D94852647063
 
-Dear Jakub,
+Hi,
 
-Thank you for the reply.
+On 2025. 01. 10. 14:58, Krzysztof Kozlowski wrote:
+> On 10/01/2025 13:39, Andras Szemzo wrote:
+>> +// Copyright (C) 2024 Andras Szemzo <szemzo.andras@gmail.com>
+>> +
+>> +#include <dt-bindings/clock/sun6i-rtc.h>
+>> +#include <dt-bindings/clock/sun8i-v853-r-ccu.h>
+>> +#include <dt-bindings/reset/sun8i-v853-r-ccu.h>
+>> +#include <dt-bindings/clock/sun8i-v853-ccu.h>
+>> +#include <dt-bindings/reset/sun8i-v853-ccu.h>
+>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +#include <dt-bindings/power/allwinner,sun8i-v853-ppu.h>
+>> +
+>> +/ {
+>> +	#address-cells = <1>;
+>> +	#size-cells = <1>;
+>> +
+>> +	osc24M: osc24M-clk {
+> 
+> Only lowercase node names.
 
-Jakub Kicinski 於 1/15/2025 7:33 AM 寫道:
-> On Mon, 13 Jan 2025 13:54:34 +0800 Joey Lu wrote:
->> +	regmap_write(bsp_priv->regmap,
->> +		     macid == 0 ? NVT_REG_SYS_GMAC0MISCR : NVT_REG_SYS_GMAC1MISCR, reg);
-> This is a pretty long line and you do it twice, so save the address
-> to a temp variable, pls
-Got it!
->> +MODULE_LICENSE("GPL v2");
-> checkpatch insists:
->
-> WARNING: Prefer "GPL" over "GPL v2" - see commit bf7fbeeae6db ("module: Cure the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity")
+I don't agree. It is customary to write oscillator names with casing in 
+line with the SI prefixes of their frequency, i.e. lowercase k, 
+uppercase M/G/etc. (even though a millihertz oscillator rarely makes 
+sense, it is best to stay consistent).
 
-Understood. I will fix the warning.
-
-BR,
-
-Joey
+Bence
 
 
