@@ -1,230 +1,248 @@
-Return-Path: <devicetree+bounces-138696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 751FEA11C95
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:58:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A744FA11EEA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:07:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88A13162C48
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 08:58:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45C093A0524
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:07:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DB64246A02;
-	Wed, 15 Jan 2025 08:54:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LrT5HDOF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A884020AF6C;
+	Wed, 15 Jan 2025 10:07:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2111.outbound.protection.partner.outlook.cn [139.219.17.111])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24158240803
-	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 08:54:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736931287; cv=none; b=U9YuKh1mpcCxCAH6Hw1Qze4ihtGwetodLQttJWsELiW9WVcYhhd4Pefv0R4i2AdM/67v0Xg6tocFYTniLzL6M3CH2YCRdhkhCMAz2o8MIPrlyyAlViyXu9/10TiqeqBWFsDE86JZEEnnV5BENhGlnhwFee/cgcn4D+zAkuPa1y0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736931287; c=relaxed/simple;
-	bh=crCGIrWAPm3CgX29f926SsUaDye8Py5P+Ve9r02sUzQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bjE1Lfcnz3O7iKT2t18YPGzl1V3Y9W6OGBiGxSYhXre6hF0afSfKWvZr8JC9LjVqLQz3fKdqzgMyGypGSr/z15/HZoNbdnjM1H9Pt/Dm177SBtv0NdyZ/Qpbk/kofZOKRidwF/CgyFLTAQyQhbsXjAKXIEd9S0lYaocwN3IvIzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LrT5HDOF; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-303548a9361so45665821fa.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 00:54:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736931283; x=1737536083; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=HwOpCAY+TRPX5emjLRnKQ+6GKxHIVUBxjpEXCs0EJGE=;
-        b=LrT5HDOFuJSSfkiLf1AdGHIhkhuDwx/6soxoGo+BNL9cslUtMcVZIvppf72STUTTBr
-         /DWJY+wpXreAfxyja+mpRV4iv1Id8N6l97LI8uvC3d8UPwvzH+UavMtdjOSqb2nI1GfP
-         WqmN64w+g5v8z770NRGZrFRwCBgQkE+LiI1uQ0XmhqdMZDDUeO+HiBTkW1a25jrg1dlL
-         VawJgpmoIj9DktE5NgJxVlkci9Gyjx1476dVTwiJFXKLFf14z/osRUlMB3pPCOnd65qd
-         gsvueQyQ1AIEJQ5ZXrN5EwnFSvCnq6sR9K6gTv2I5qECYYrCrxEmU061tqYmB8A9cPLN
-         BLiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736931283; x=1737536083;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HwOpCAY+TRPX5emjLRnKQ+6GKxHIVUBxjpEXCs0EJGE=;
-        b=tUSr6FdadoeT3lpYBKzLbIbJDfzNXGyvds6Kbgo1XL8FzPehBPP2EUJeE8v1as0In2
-         G+6rMfe6wDFmYs21CDf198MSyj7Z7MN6llxFBUCmmCA2gtmxuN8b0m9uNMblRW9LOcsY
-         fDBaPEcPJwuKqMQrbtZZVlwWFayAhKkiTHKt4HnJ+3b1P6/M4DcLfcZv2a4Eg/4yX6Pv
-         v1JXsG7asseaaWZX5+qENt2c2EJuBIqkka5h70XZGPgNwPm/tCWBWNHP9KRalvO96Pd9
-         1XH616nlegRDh/S7XzsT5wPpARZqEMdnFsiTKPAtpehK4mk3E/f2hEC4uhFi8WsAiIc+
-         jhyg==
-X-Forwarded-Encrypted: i=1; AJvYcCVdjbLOGsJCMrMwjsxMLJRqi+Loa//P9yHrVWdJmHemz40k0mJv+1fv25wn6V1SwSXf+hFQcXUA904N@vger.kernel.org
-X-Gm-Message-State: AOJu0YxinELquk/8iWdv3uaQpOSz8IEaLpO3xau2Pgf1gkuftw/IYr/1
-	k8B51OaTdTjRRaK+7kCuCjduYxrVqE+FiJ/viKxhyQKHDMO7+Z3ZkSBTFhzkoUc=
-X-Gm-Gg: ASbGncuno9fH/6cLqQUQSKx34F9ZFHNXgB8C0WnX2TsODlBK8K/gJn+UQWt2LhR+AGQ
-	k8EmhRoi5zJTu9P1xeeNRjdz+qBHw7PO2N1HxSEuwKB46aEYEXPs+myNLBzyYZLlsfIN3UTcDH7
-	2TVzkMCFYeay1cbgCdP4Me7BEn4RpuoV+dSqdABhIW7CoCvRNkeH/NchXAVvQu6mKfW4VzhUHHf
-	mI3gsSW2SWGLzlG6+xGFb6f6sacyr157A8CRXmZIcTRTQHLx3nJDQiYuXHspeGjQxEduzXVaYPL
-	ilKoAYuhjnuDONlIoMNeeHyC79o3A6doEwp1
-X-Google-Smtp-Source: AGHT+IHTpJ70vtWgIUw7Pg1kOPWCf5XJS2r9IyZ+i3djI4Hu/KSN2nxwCCgeiBbZ0I8fFQbv7dMdKA==
-X-Received: by 2002:a2e:a545:0:b0:300:317c:9b75 with SMTP id 38308e7fff4ca-305f45531ccmr89017481fa.12.1736931283059;
-        Wed, 15 Jan 2025 00:54:43 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-305ff0f655bsm21199611fa.53.2025.01.15.00.54.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2025 00:54:41 -0800 (PST)
-Date: Wed, 15 Jan 2025 10:54:39 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
-Cc: Wasim Nazir <quic_wasimn@quicinc.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel@quicinc.com, psodagud@quicinc.com
-Subject: Re: [PATCH v5 6/6] arm64: dts: qcom: Enable cpu cooling devices for
- QCS9075 platforms
-Message-ID: <cmgsyaipal33vuwhw5m2eskmxfv2s5ooxixmpyucln4j4t5jo3@xycvijqnzbun>
-References: <20241229152332.3068172-1-quic_wasimn@quicinc.com>
- <20241229152332.3068172-7-quic_wasimn@quicinc.com>
- <zn4uf3mmlmt3who474hwkr44poycfqtjtidshybbg55a3hr63y@zxefqbhiwkbg>
- <d54c6706-3c6b-211c-6acb-fa3984c30c67@quicinc.com>
- <ubasbsyspn5euygihgphyw3xg4ckveytvgnjpwdiyg4pv7degr@6y44ya4gvaqj>
- <07c41571-28ca-6f9e-bcee-899bbf77f687@quicinc.com>
- <sufmykle5inyk73i3qfmy3xqq7plgfr7txiruyahc5wgvvn6uo@kytxtb5zc3tg>
- <cf2ad828-d00d-133b-f310-1688fc0ed59b@quicinc.com>
- <6zftdu5myuporxsvxlxhojnlhnfa74pjj7nvy3wmiaw7jdsuo2@3ebcpevzvtlc>
- <59d087c3-1a4a-782f-8566-313e8355216c@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A301EEA35;
+	Wed, 15 Jan 2025 10:07:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.111
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736935632; cv=fail; b=DtCLqMH+Cq1ccId3vUisULhz+lf77FSjLMHgoAZi+IW1y4y04rPeHx6CKAWij2rd+yN4O8BI+JClb1RC6kF9fyZFB4MHPQ2alcdExIis6o/Qc3YIYH3d/q6MHDeY8pID/PHI+6K+LRb1eB+/skjO3HqgKsKa/KqDk1pr1Zs4uhs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736935632; c=relaxed/simple;
+	bh=oxUUwhTZkg85KDdorqCj8Qjht1Pp5diioAcPkE9RNeo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=ky3AfHlYkTDwPtdGLtqBhimBMRe1Ymq7muFuFQlwzHNVjhIBmvILfqs/PSF8rNq88IVPfQDRF230SwBAq7Y9gENKNLUxD/7d+qhl9Hkz9ssdayExvDHPchOtOx/pZMZ/U8ZySDD4jFKe4tRd5IKrPeUecJVhKXRWvvLwcVRS7lw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.111
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YUrogUA1p79v46MdMzIfhf/9e2Fg36iOwzoGMVxybNVC9ZOzrqJjK3pfleWm7RcvRbnQAMo556mWh8IbSLI+T0sXzT3ONhyvW1EdzKQOzRWo+JcOwX2yZXDZW5G54tIDQTwOnCqryTijL+oaVtBLcVsiOwkuHWVoViaplWgnReYmaJfifecj7nDIZCIM9AJw2mcLRwib/fQxsgZHoVSQaRj49xUvVtNgZrgfVT7RtI7BdWzf0KLiBeKx1VuRGEZ/r0zoKiaIES6OZ3cLYol4UPMMOfHvvfvcEZ8j2l71EAYRqmdceRWch+4y+LQ1/RXBSkDSqNLVoYKDNTUzPCFzaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZsMrOogKvZ2Z34J8tgkpd6BIpMUol8hpOezL1QzCSVQ=;
+ b=GbYnrK0mFC6siOrOSmfR1pf+P0TWcmN0/Z5FHgel3wtkbKe9vRyZPUoTEJMCj0KNElvd/yfLRCKmj/8/04KWLm0Nd17iFfH4B7q1HVCEnoMpu5hS7XYWzRA46ldIlGSegu6kNZi/TYNA6lD093JRxSS01hVIpbgphR6IKA8FXcAtTt7BoDdnYFx8D7E5La6s/WyWcJpBK00Cd4KGu7VdZqygD6WyeL9QYrxbhNx7ZrASJ943Q77CpFUFGKbo0rdgan7cioH3Ih7Dvtyoyu9NSI7FgFw7s+wZHSYkHuMPZYlhJ4cHUDCLL3nU0a4uthr+jwIoYLiv7U4NFbmf+YLqZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:7::14) by ZQ2PR01MB1161.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c550:6::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.20; Wed, 15 Jan
+ 2025 06:33:08 +0000
+Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::2595:ef4d:fae:37d7]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+ ([fe80::2595:ef4d:fae:37d7%3]) with mapi id 15.20.8335.017; Wed, 15 Jan 2025
+ 06:33:08 +0000
+From: Hal Feng <hal.feng@starfivetech.com>
+To: Conor Dooley <conor@kernel.org>, E Shattow <e@freeshell.de>
+CC: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley
+	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+	<aou@eecs.berkeley.edu>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, Minda Chen <minda.chen@starfivetech.com>
+Subject: RE: [PATCH v1 1/5] riscv: dts: starfive: jh7110-common: replace
+ syscrg clock assignments
+Thread-Topic: [PATCH v1 1/5] riscv: dts: starfive: jh7110-common: replace
+ syscrg clock assignments
+Thread-Index: AQHbXuxdxuZNa36t4UObgTOkoTzN5bMKL5KAgA0EEvA=
+Date: Wed, 15 Jan 2025 06:33:08 +0000
+Message-ID:
+ <ZQ2PR01MB1307A9E106AE06E144875D6EE619A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+References: <20250102194530.418127-1-e@freeshell.de>
+ <20250102194530.418127-2-e@freeshell.de>
+ <20250104-mutilated-unpaved-008eebdb200a@spud>
+ <56c372c3-bb8b-4150-9b34-a6cca906d740@freeshell.de>
+ <20250106-suggest-waltz-47d7f7760069@spud>
+In-Reply-To: <20250106-suggest-waltz-47d7f7760069@spud>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: ZQ2PR01MB1307:EE_|ZQ2PR01MB1161:EE_
+x-ms-office365-filtering-correlation-id: cbc08ad6-5b04-49a8-2807-08dd352e79ce
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|41320700013|366016|38070700018;
+x-microsoft-antispam-message-info:
+ HF3RpKvAFe2E+jeDLL1bBfq6Qz5LpsDckdgqhozK1lDEqZD3ZQYSfgegan55wEpx5rO97bW4hJQVVxUc7+O1YmrL7Zb9G5qI7W5fTJ/b5reqoWaeN6/Jk9pxulRRs1Fo88ai2y5jWpqOwsJLYS0l3o3oajkwwU7nyHSJ+U+T8l63Bk1TKKyJRzlGMyeUA3GR0WxuoQJO05Efz7+UGP7WW61VahEhnDmNxLO9hiouwoxb5J62B/v6kFb2GbDB4bdsdqu4puk0WlrYcPisw7yxF+t8nT1YVmqt9x11dNX6cLPYT0WJ1lECh2efJmyOtDRuPTnsnKCNKmG+iTQgrEa0c+zuvQt7Qrbgb/N2xwEZWmhN9Qol24/mkl53vYZpDF85gvgw7+gS71oJ0ojrTLlHorn6owxtCvznHMR0Sdyp4/A8Fc8q/TMoGykDS6kB0CqQUD5JUDUBN6TDUo5FihjEYOGJ76llXrY5EKEJoRIblQm8xAXG44wDYGlkOaS2FPkjYYRTS3bBzeTUzVpgm+1M+0zCjKZegr+yv7/R6LNkP5O89sZZSBZBFkkA782fjrfQC7z0csx4ApdHgnBoJIsfCJtD7zKJTEvX65Xq4ZJIyXg=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(41320700013)(366016)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?80672Omtatjd24KNZRbVrgCYtDhLk9SkiirZUwgnVeKoDaNGhyIP8kCw2sla?=
+ =?us-ascii?Q?m7AqIvptldY5UqgdCyvDL3MSkWad11AeO1ZcEvS3LSWj2TVdUc+Hv1R1mzgQ?=
+ =?us-ascii?Q?+SAP2gcwh2EVMCEa+JQhzJmp9PwVhpP2cGBghYnbq9NLlRd3wBkdkN0lYHDm?=
+ =?us-ascii?Q?gKb+MSkziiKDDDTMpc6EIMgu9scPwZi6BaNWUHxoGckb+hVHkkS5IM60Z7nS?=
+ =?us-ascii?Q?rjqoT8Y5BKS/c+ETqn+VQP+qJJ/Ffr3sE323R+y70y0Fx34RZ4F1Zvg6rAEE?=
+ =?us-ascii?Q?/OmHq5dwDmQganWkxqbfK6bm3reVKr3frWVp32iziNdirSOCI/DM/D34t5qK?=
+ =?us-ascii?Q?acZOFQXI40m3nPVCFCmtuYqFvjVcZaXT1+saGYE7JHGJK/T1jYKDP41Kp/KI?=
+ =?us-ascii?Q?odw8UhD6GGmCeoWEMG2a7OmjhB0Mpzxs4xOCjJju+tnTwCTnTOm4R6GO+Eiv?=
+ =?us-ascii?Q?Z1tQuM2+iRKH30spmOupsHRJzhcUX3IMhSrrleVQgGOWpqoqCUSUP1+FXhzT?=
+ =?us-ascii?Q?6WlalW4oxNGEwR5xjNv8Tm7tKybwQkgTBPPn9U2npdoqQg/C6wAnb29fvOzX?=
+ =?us-ascii?Q?3E/qaBVVNmi477AThDAndqfhmlTSegfL9T1EyLO3XikvVd8vrgnj/SUgqaP0?=
+ =?us-ascii?Q?POsxFashHYS8lFUEigqR46BvX2ndRYHGuvxMH1dzS6xCjbIha5cUOMgl6nzf?=
+ =?us-ascii?Q?+M6tAD1qmeTb1SoHYMWR6ibkLXeyAAhGaTJXxnyAzYn6WkziNYn7/RFJbf18?=
+ =?us-ascii?Q?8vWBuUR5EIuileCGof793lbFDC1njAEPjINRjGV/bK0mzPB272xi2yRNPnIT?=
+ =?us-ascii?Q?DV/Mrvk7kpTYt345/J6/TDMtIuBVbAUBsvlXk8fzazWO+DKaA7hYJ1A1JElt?=
+ =?us-ascii?Q?ipPp/zc2nlQ5A6lfIO0izN3+Xc8Tdaoh9cjWVhF4toZPZTS1zOWMrs+VGsyl?=
+ =?us-ascii?Q?qBx62rQ3Qpx+NJyTQiAwXhkSAO2Vsmxp5XpXos2B88QjRlxa7ivmd8ufARsP?=
+ =?us-ascii?Q?KDbKKEEhDo2wDbKOWH1W1IKZDJW5nCCQ445JcuDh6Q5sgbV/nUE3QAQZ/ZEI?=
+ =?us-ascii?Q?Q88a/PFQ0VZDCj2ci6RvGfxRw7dUqnwimiKXB7QwXoLKHrnoT6WbPu2ooW/9?=
+ =?us-ascii?Q?PjFiTXZVK9dWmc0XtUi9n0WbFjOWLakm4lByRIhifMbeFzJMV7skr38DlnQE?=
+ =?us-ascii?Q?aFcscDgzJ3bODLTml004IwXcl4nJszl74zOZrbK+7onv3ansgJ3Y+YSIWP/4?=
+ =?us-ascii?Q?5bI0ta5AdfXI+EckmRlmDqO8a6dtiHvy0a5QmLu++Q26udjb2lIlwxw9EkCJ?=
+ =?us-ascii?Q?HqMG3kn+WZOMBiLuEjsVRRsnRheRN/UqrzTiSO1VRbTsu3WOgQ1LDtylypKE?=
+ =?us-ascii?Q?Kdt1gfkGNtz3D2T0zl97E8vTHelckTLmEDMyrJJRVqOZUERv1gWgMxW1Q9MW?=
+ =?us-ascii?Q?TsN4njnd9f+eQFRwuzFY/hs5G4YBOkA3D/JJcRehaEWg2M2rxZHuoJ69LCMi?=
+ =?us-ascii?Q?+3pYVDoHQdovZ3fgH/k7bwNap/uxz5hnlvlXCWVdXiAzVx34wlaSAHswLnHF?=
+ =?us-ascii?Q?BAvKvGisQ9viGNzxnFv19kja3S6wpmqRPD0l8Iac?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <59d087c3-1a4a-782f-8566-313e8355216c@quicinc.com>
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: cbc08ad6-5b04-49a8-2807-08dd352e79ce
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2025 06:33:08.4754
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: hOPMCMXNQglLhXbemuVqJKMScraSh48QsBELZqdG250GQZenFiN03Q6z1GzQp6lTqfhMT0rdMgta4sEKLh4HK7DmAIOHL+4Lm2+PW6flOQE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1161
 
-On Wed, Jan 15, 2025 at 12:46:50AM +0530, Manaf Meethalavalappu Pallikunhi wrote:
-> 
-> Hi Dmitry,
-> 
-> Sorry, I was busy with some other priority tasks.
-> 
-> On 1/10/2025 5:24 AM, Dmitry Baryshkov wrote:
-> > On Wed, Jan 08, 2025 at 09:38:19PM +0530, Manaf Meethalavalappu Pallikunhi wrote:
-> > > Hi Dmitry,
-> > > 
-> > > 
-> > > On 1/8/2025 6:16 PM, Dmitry Baryshkov wrote:
-> > > > On Wed, Jan 08, 2025 at 05:57:06PM +0530, Manaf Meethalavalappu Pallikunhi wrote:
-> > > > > Hi Dmitry,
-> > > > > 
-> > > > > 
-> > > > > On 1/3/2025 11:21 AM, Dmitry Baryshkov wrote:
-> > > > > > On Tue, Dec 31, 2024 at 05:31:41PM +0530, Manaf Meethalavalappu Pallikunhi wrote:
-> > > > > > > Hi Dmitry,
-> > > > > > > 
-> > > > > > > On 12/30/2024 9:10 PM, Dmitry Baryshkov wrote:
-> > > > > > > > On Sun, Dec 29, 2024 at 08:53:32PM +0530, Wasim Nazir wrote:
-> > > > > > > > > From: Manaf Meethalavalappu Pallikunhi <quic_manafm@quicinc.com>
-> > > > > > > > > 
-> > > > > > > > > In QCS9100 SoC, the safety subsystem monitors all thermal sensors and
-> > > > > > > > > does corrective action for each subsystem based on sensor violation
-> > > > > > > > > to comply safety standards. But as QCS9075 is non-safe SoC it
-> > > > > > > > > requires conventional thermal mitigation to control thermal for
-> > > > > > > > > different subsystems.
-> > > > > > > > > 
-> > > > > > > > > The cpu frequency throttling for different cpu tsens is enabled in
-> > > > > > > > > hardware as first defense for cpu thermal control. But QCS9075 SoC
-> > > > > > > > > has higher ambient specification. During high ambient condition, even
-> > > > > > > > > lowest frequency with multi cores can slowly build heat over the time
-> > > > > > > > > and it can lead to thermal run-away situations. This patch restrict
-> > > > > > > > > cpu cores during this scenario helps further thermal control and
-> > > > > > > > > avoids thermal critical violation.
-> > > > > > > > > 
-> > > > > > > > > Add cpu idle injection cooling bindings for cpu tsens thermal zones
-> > > > > > > > > as a mitigation for cpu subsystem prior to thermal shutdown.
-> > > > > > > > > 
-> > > > > > > > > Add cpu frequency cooling devices that will be used by userspace
-> > > > > > > > > thermal governor to mitigate skin thermal management.
-> > > > > > > > Does anything prevent us from having this config as a part of the basic
-> > > > > > > > sa8775p.dtsi setup? If HW is present in the base version but it is not
-> > > > > > > > accessible for whatever reason, please move it the base device config
-> > > > > > > > and use status "disabled" or "reserved" to the respective board files.
-> > > > > > > Sure,  I will move idle injection node for each cpu to sa8775p.dtsi and keep
-> > > > > > > it disabled state. #cooling cells property for CPU, still wanted to keep it
-> > > > > > > in board files as we don't want to enable any cooling device in base DT.
-> > > > > > "we don't want" is not a proper justification. So, no.
-> > > > > As noted in the commit, thermal cooling mitigation is only necessary for
-> > > > > non-safe SoCs. Adding this cooling cell property to the CPU node in the base
-> > > > > DT (sa8775p.dtsi), which is shared by both safe and non-safe SoCs, would
-> > > > > violate the requirements for safe SoCs. Therefore, we will include it only
-> > > > > in non-safe SoC boards.
-> > > > "is only necessary" is fine. It means that it is an optional part which
-> > > > is going to be unused / ignored / duplicate functionality on the "safe"
-> > > > SoCs. What kind of requirement is going to be violated in this way?
-> > >  From the perspective of a safe SoC, any software mitigation that compromises
-> > > the safety subsystem’s compliance should not be allowed. Enabling the
-> > > cooling device also opens up the sysfs interface for userspace, which we may
-> > > not fully control.
-> > THere are a lot of interfaces exported to the userspace.
-> > 
-> > > Userspace apps or partner apps might inadvertently use
-> > > it. Therefore, we believe it is better not to expose such an interface, as
-> > > it is not required for that SoC and helps to avoid opening up an interface
-> > > that could potentially lead to a safety failure.
-> > How can thermal mitigation interface lead to safety failure? Userspace
-> > can possibly lower trip points, but it can not override existing
-> > firmware-based mitigation.
-> Both firmware and software passive mitigations (CPU/GPU) are not permitted
-> for Safe SoC.
+> On 07.01.25 04:08, Conor Dooley wrote:=20
+> On Sat, Jan 04, 2025 at 01:04:30PM -0800, E Shattow wrote:
+> > Hi, Conor  (added CC: Minda Chen, Hal Feng)
+> >
+> > On 1/4/25 10:33, Conor Dooley wrote:
+> > > On Thu, Jan 02, 2025 at 11:45:07AM -0800, E Shattow wrote:
+> > > > Replace syscrg assignments of clocks, clock parents, and rates,
+> > > > for compatibility with downstream boot loader SPL secondary
+> > > > program loader.
+> > > >
+> > > > Signed-off-by: E Shattow <e@freeshell.de>
+> > > > ---
+> > > >   arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 12 +++++++++---
+> > > >   1 file changed, 9 insertions(+), 3 deletions(-)
+> > > >
+> > > > diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> > > > b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> > > > index 48fb5091b817..55c6743100a7 100644
+> > > > --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> > > > +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+> > > > @@ -359,9 +359,15 @@ spi_dev0: spi@0 {
+> > > >   };
+> > > >   &syscrg {
+> > > > -	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_CORE>,
+> > > > -			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
+> > > > -	assigned-clock-rates =3D <500000000>, <1500000000>;
+> > > > +	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_ROOT>,
+> > > > +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
+> > > > +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
+> > > > +			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
+> > > > +	assigned-clock-parents =3D <&pllclk JH7110_PLLCLK_PLL0_OUT>,
+> > > > +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+> > > > +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+> > > > +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
+> > > > +	assigned-clock-rates =3D <0>, <0>, <0>, <0>;
+> > >
+> > > Why is assigned rates here 0s, rather than the property just removed?
+> > >
+> > > >   };
+> > > >   &sysgpio {
+> > > > --
+> > > > 2.45.2
+> > > >
+> >
+> > Assigned rates all zeroes is how it is in U-Boot. Removing the
+> > assigned-clock-rates property as suggested does work in U-Boot and
+> > Linux both.
+> >
+> > For context, U-Boot fails when replacing assigned-clocks to
+> > JH7110_SYSCLK_CPU_CORE (500MHz) and JH7110_PLLCLK_PLL0_OUT
+> (1500MHz)
+> > from Linux. So I tried to merge all properties together and in testing
+> > then U-Boot failed (or I did it wrong). However replacing the Linux
+> > properties with the U-Boot configuration (above) on Linux does work for
+> both.
+> >
+> > I do not know if this is correct but I can test any suggestions and
+> > report if they are working.
+> >
+> > Do these changes make sense? Are there other variations I should test?
+>=20
+> I'd like the commit message to at least explain why these clocks need to =
+be
+> set to zero (I assume that means disabled?). Maybe the StarFive folks kno=
+w
+> why it is required?
 
-Not permitted by whom?
+Here "assigned-clock-rates =3D <0>, ..." means skipping setting clock rates=
+.
+You can refer to
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/cloc=
+k/clock.yaml/
 
-> As mentioned in the commit, it is the responsibility of the
-> safety subsystem to take corrective action for high temperatures. One of the
-> safety requirements (not a functional requirement) for Safe SoC is to avoid
-> scaling of CPUs and bus DCVS, as this could impact safety-critical
-> workloads. Therefore, Safe SoC will operate at maximum frequency with the
-> performance governor. Enabling a cooling device for the CPU would expose the
-> cooling device sysfs interface, allowing userspace to request different
-> cooling states via the cooling device cur_state sysfs, which could
-> potentially lower the frequency and violate the safety requirement.
+Linux here setting JH7110_SYSCLK_CPU_CORE to 500MHz and JH7110_PLLCLK_PLL0_=
+OUT
+to 1500MHz are for increasing the CPU frequency to 1500MHz.
 
-So, you disable thermal mitigation controls, but your description allows
-userspace to change the CPUfreq governor through sysfs. Isn't that also
-unsafe?
+VF2 u-boot is still running at 1000MHz now. You failed to set JH7110_PLLCLK=
+_PLL0_OUT
+to 1500MHz, because CPU power supply voltage needs to be increased before r=
+unning at
+1500MHz.
 
-> > And if there is a known problem with the interface, it should be fixed
-> > instead.
-> 
-> There is no interface issue, as it is not required and can be disabled for
-> Safe SoC. This approach has already been used for commercializing the
-> SA8775P, and we do not want to disrupt it now. Therefore, we believe it is
-> better not to add cpu cooling cell property (CPU cooling device) in sa8775p
-> base dtsi.
+I think a better choice now is changing Linux device tree as follows:
 
-Okay, assuming  SA8775P may not have any thermal-related properties,
-what is the issue with having them for the IoT-related QCS9100 device?
+&syscrg {
+	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_ROOT>,
+			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
+			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
+			  <&syscrg JH7110_SYSCLK_QSPI_REF>,
+			  <&syscrg JH7110_SYSCLK_CPU_CORE>,
+			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
+	assigned-clock-parents =3D <&pllclk JH7110_PLLCLK_PLL0_OUT>,
+				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
+	assigned-clock-rates =3D <0>, <0>, <0>, <0>, <500000000>, <1500000000>;
+};
 
-So, you have an alternative proposal: rename sa8775p.dtsi to
-qcs9100.dtsi, defining a full set of thermal properties there and add
-sa8775p.dtsi which includes qcs9100.dtsi and just removes thermal and
-cpufreq nodes. Doing it in any other way, especially by including a
-random SoC-related include defeats the logic of the DTSI files.
+For u-boot, if there is no requirement to run u-boot at 1500MHz, just keep
+&syscrg {
+	assigned-clock-rates =3D <0>, <0>, <0>, <0>;
+};
+in u-boot device tree. If we need running 1500MHz in u-boot, I will send a =
+patch
+to implement it and then &syscrg{...} in u-boot device tree can be dropped.
 
-> 
-> Best Regards,
-> 
-> Manaf
-> 
-> > 
-> > > Best Regards,
-> > > 
-> > > Manaf
-> > > 
-
--- 
-With best wishes
-Dmitry
+Best regards,
+Hal
 
