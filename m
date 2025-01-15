@@ -1,81 +1,79 @@
-Return-Path: <devicetree+bounces-138771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D4C9A1229C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 12:35:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 471BBA122C1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 12:38:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A519D3A28C9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:35:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAFD53A2174
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:38:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48C421E9910;
-	Wed, 15 Jan 2025 11:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3C1D207DE0;
+	Wed, 15 Jan 2025 11:38:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D04DD248BB5;
-	Wed, 15 Jan 2025 11:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 397741E98F4;
+	Wed, 15 Jan 2025 11:38:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736940911; cv=none; b=gJfMkuKyHeIbDYYxID5gc8iveF7FcIUKhwpelK8cBnXmDIZJD3E6a5dU6KMuupwMpqytzU8lipx2P4uP7IcaT28cP3pDlPQewPTxW+8XaOaJ4VjRQWB6GNCy6nTxmDlAbJP4WCEsoF9gzz2sKVtHXNKICuvRMSj8C/+cTOzqbT8=
+	t=1736941102; cv=none; b=Yt237Uy2ej0qrKDMaaOH4vfX2k5XkDRwdiTflQJxB+LALbYO91DXtH2swAHsinaj5SKa5vYV4LqQw51vz3jaJvBU+r6YLKfOGWmvIHmtnEMDBxF/4Zz+KCHgaGheFIB8+LHQyed19eKTSruyXIRI4v9bXEIA88zA0t5/GSNJ/Fs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736940911; c=relaxed/simple;
-	bh=wfx3JgQvEtAlDYyfO3Dkqkz8H8Nt+l+fznBQ6qkLPiY=;
+	s=arc-20240116; t=1736941102; c=relaxed/simple;
+	bh=iM99rn2iVPC5Vi/SE7y14KyWHheOH8RKJRNQhQG8zPM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=soSg4hPqK3OSl/two7xtrvmmIWUVqIItfTJMWy/ucCMCGiISgl5d0tNVGwKxpuhZjLnZppFxotjJcuwYQOaynwdxpfsBM5+A4OaWt53218A9LMF6GgvQNpVbTwnkoPUxbDMPS6P+QE9G2L6wG6Bn3U4fhkIsaYd5XZJnYt9I+6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.177
+	 Content-Type:Content-Disposition:In-Reply-To; b=A5hClHt3IzZ804274/OKH0QbaAl2E4CNh52xv5pRsMkS3/YNkfK9XkfmlWNXgQ3ABkJT6LXAfBa0nSSGKDXEKZIKjEkHU7t3fgCcsfG6e8MLBCjLmJDHH/vVFuovMofh8d2oejlGBlKO+EhFp6qeWya9uej5fbmThcCXZyiMqZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2165448243fso144227345ad.1;
-        Wed, 15 Jan 2025 03:35:08 -0800 (PST)
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2166022c5caso103085505ad.2;
+        Wed, 15 Jan 2025 03:38:21 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736940908; x=1737545708;
+        d=1e100.net; s=20230601; t=1736941100; x=1737545900;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZkkB4BIMbKkZ0KmrWAf3BaqZndMd7BUpph0XZ45yvX4=;
-        b=eRFoaJLWGrMe/KxyReD4W5zyP0a9jgSSOqVDtIvw/LD0TyFVWmSS6OmNsN9OZ3EvNf
-         bsU/3DucVLLzo/S7NlM25xLdLZyJajix9HgfycZDMcfhSCt3QofaFNn2JwzIFaW4LX3C
-         3VdthM85rmW2UEa6pkKmvx1LAFwUsCesgPY/Ytk57NjKRG7M2wLVlF1VjqQgIch3QH4u
-         1P43YAq35VRmJ6NoIDdJ/OIxxxzzC8YmPTxsORWPWKYk5VyRW7t5tev/UJQMKNS305bl
-         jD5s0S7anS5s8OnxCoEDRzTLn2PTkONySQzPxDEBiJyKDxQfKW7MelYGj3Ox3PKiE9Hv
-         Pxng==
-X-Forwarded-Encrypted: i=1; AJvYcCUhNhM8LfKK6jxX2RLMvRN+gHBZbUuaeA+lVxspmAU7/Lduoacqauy29+5uG8PWVCKKSicvljXLh6dI@vger.kernel.org, AJvYcCX+FgqGCqeEGRyaiktK+5b2rXKCNApwWDaBayZ8BRaOX//UChQyZa9tlrPuuyqSCQjfKMlPp57pg0klBdBA@vger.kernel.org, AJvYcCX0YCTtgpiOcqiYMshNZeW7kOZ62YW6xtCGir5LmRQ81F773MFCuqN0u4rjoH1kpx2tXNFquzkfN6BrBdFR3g==@vger.kernel.org, AJvYcCXkqFOYRDxj+WMo3mOxJYiDz+RWWiFMlliZdRYNuzODd7C+l37tbHIO8ecn9kw/ZNrTrAAx89/ga+HX@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyf8oQEQey9FincfY0kKqoNykMjtPgkkohEX2ljutHjEjrr/ZAL
-	JEuEhOFh3p8yZEAnHxFLzlP/U1zvbP5KTAladSfhrNn9Bp7IxlYt
-X-Gm-Gg: ASbGnctcDRD/C+M9vAgiKNckipYfYfgB/zYy67RXC08oIuLv0GIVkS3NowXqePnCgzB
-	IRTSIkUZVr3eMfgqfx6iY6XFeGgESwIYBsim9lwYiAzHjeBJAliCZNkl7RCxSGXA3dcTtj9r4+0
-	JKAvKwH1yk1zktHnHI0CaA21DLd/rbjKDiLPrhbGNojNuSWMkVQbpl24T+mD+elGApxUbqeIl7H
-	YqizeErcaoRZmIX7eDmxza/n15tQqlm8BgbsGcXCUszMoDRWfJ5oyPbCh7Z/PtneCKHSGbBjH/b
-	MdQHKK3VYTlNCX8=
-X-Google-Smtp-Source: AGHT+IF6rJSoS/v5enpIOoVkN0spwX/9NTrSguhcHfnBBSKsbpcSrWe35R8XcyFdySfo9fqgIOFPKg==
-X-Received: by 2002:a17:902:e950:b0:216:4853:4c0b with SMTP id d9443c01a7336-21a83f92f64mr401679715ad.33.1736940907683;
-        Wed, 15 Jan 2025 03:35:07 -0800 (PST)
+        bh=yObtCYTyS+eH2VsWOaS8ygoiRNvMh6x4WMqXu7RO7qs=;
+        b=YhYnqV08XvIh4JIlk5iO6rWwurQ+bMn4MIRA9NjgG41+EZ+tfuBwSM13147bQac5DX
+         EMKJol7XvuDfxW20SNbp98V6vemR2Ign5uFA2Hx0CF2AWC2tcQ1DSOUbzUlW/LJqv24F
+         HkWcL0EwmIiiYbaPUo+NmIW2LyudSnn/1KHA8Inf55/nocD6+aJWy4KizhtJxHrnePln
+         nULJjE21xZ8Ep53vxAo6GwS5S5VLH6rXMOXKz2EZa9BFNDahSEnnLiSp2Pw66vOKGUqk
+         fzpPR1JhzysPolOoiWTJPUZZ1NmxGCmMD/K9KOyFByTM+Tj/6fyw9kQMWc61l5I3BVx1
+         LosQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUCPVqZGb+TlhNblLTRjHwOfikZgSbriOgunn2LuXLdqqTCldSTFj7AnkaCJUSZhUm0fjYHm5BV4loY@vger.kernel.org, AJvYcCUfNJNJaDsWa/x813mhc07NxMz8+ORBdCM4lLVVKfgQA2Ug4W8PIHrokoXzF/uXReKMkCca/T9aqs00sJ9X@vger.kernel.org, AJvYcCVw90LwSMZRuBh7LKb5+BALX14aLH3k3x6I6xfwbA4nKLIqka3tmMnbX9F+rzNoAnLm8wyYB7pWc5EX@vger.kernel.org, AJvYcCWXRY7bIP3QoknMHqRDPMz7d7MUq4tsVY39ZeZ/oRl3xQR5bcoQ4Wt+Tt/XJkB17f6N/vCy8mVSEtIzrUvGlw==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJ/ldXSKhsvISCjHMTpsojk7XG+8vwsNlou8BVuKBC728oHUgi
+	m4xq5Jfb/5DaeKFRMui7zHEc7UiXSS1ROO54r/AAxe7In8OfQ8KwuoLlNaFy
+X-Gm-Gg: ASbGncvKBqchCGEDoM4dMuorhtzrpz8YxLO6bDBTm5U9eb0my/9eFyLakLp2izvh/o9
+	Mb7mAmBIFx9DHo/5IpQY7YnU9O78kBMk09yge9040f+7Auc/P/kwU8/jK5z6bs1z9ui7O9ZjDz1
+	DE79vTXgxnKL+3FRCt1BSNupeFFcX3XD5V5oDpqnCwUA7dp0CNrVOZQ3Gwjt0raXsKXddDR6X/J
+	s2AGyfRsHluzWLttUJbm2Y8ziOksunpOd2LLy0DKrRUL9M9itTNXOtrNCBPaRejST2QLUyXGPiQ
+	GXmwVDwErQ13Xfo=
+X-Google-Smtp-Source: AGHT+IEcdFb5dU4BMohRNVDTKw9QFYRtiS+kD1Qk8n+hawpZuIlHV5YgyxsF/gZsw+0wIwlq6EXHaQ==
+X-Received: by 2002:a05:6a20:c887:b0:1e0:dc7b:4ee9 with SMTP id adf61e73a8af0-1e88cf7ba69mr46271498637.8.1736941100514;
+        Wed, 15 Jan 2025 03:38:20 -0800 (PST)
 Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21a9f256fe3sm81337695ad.243.2025.01.15.03.35.06
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72d405484bbsm8980275b3a.31.2025.01.15.03.38.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2025 03:35:07 -0800 (PST)
-Date: Wed, 15 Jan 2025 20:35:05 +0900
+        Wed, 15 Jan 2025 03:38:20 -0800 (PST)
+Date: Wed, 15 Jan 2025 20:38:17 +0900
 From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
+	kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
 	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: PCI: qcom,pcie-sm8550: document
- 'global' interrupt
-Message-ID: <20250115113505.GM4176564@rocinante>
-References: <20241126-topic-sm8x50-pcie-global-irq-v1-0-4049cfccd073@linaro.org>
- <20241126-topic-sm8x50-pcie-global-irq-v1-1-4049cfccd073@linaro.org>
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, quic_srichara@quicinc.com,
+	quic_varada@quicinc.com
+Subject: Re: [PATCH 1/4] dt-bindings: PCI: qcom: Document the IPQ5424 PCIe
+ controller
+Message-ID: <20250115113817.GO4176564@rocinante>
+References: <20241213134950.234946-1-quic_mmanikan@quicinc.com>
+ <20241213134950.234946-2-quic_mmanikan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,19 +82,13 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241126-topic-sm8x50-pcie-global-irq-v1-1-4049cfccd073@linaro.org>
+In-Reply-To: <20241213134950.234946-2-quic_mmanikan@quicinc.com>
 
 Hello,
 
-> Qcom PCIe RC controllers are capable of generating 'global' SPI interrupt
-> to the host CPU. This interrupt can be used by the device driver to handle
-> PCIe link specific events such as Link up and Link down, which give the
-> driver a chance to start bus enumeration on its own when link is up and
-> initiate link training if link goes to a bad state. The PCIe driver can
-> still work without this interrupt but it will provide a nice user
-> experience when device gets plugged and removed.
-> 
-> Document the interrupt as optional for SM8550 and SM8650 platforms.
+> Document the PCIe controller on the IPQ5424 platform using the
+> IPQ9574 bindings as a fallback, since the PCIe on the IPQ5424
+> is similar to IPQ9574.
 
 Applied to dt-bindings for v6.14, thank you!
 
