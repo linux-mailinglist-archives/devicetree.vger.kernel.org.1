@@ -1,102 +1,111 @@
-Return-Path: <devicetree+bounces-138813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38850A125F7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 15:25:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9422A1264D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 15:42:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD4653A7212
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 14:24:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 012FC1889501
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 14:42:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6038C7080A;
-	Wed, 15 Jan 2025 14:24:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D721D86320;
+	Wed, 15 Jan 2025 14:42:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="upw8EeuX"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NJKm//BN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3111224A7E9;
-	Wed, 15 Jan 2025 14:24:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E027578C9C;
+	Wed, 15 Jan 2025 14:42:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736951099; cv=none; b=R8FZGXAehDqTnOKVit8D8BmIfEqOaLoDJvMNpKgxqAtx7PYbTqOTXjDvqNrgPBUFPsGuJnOmp0QZiDBREpt2QE8mM5AjzL9ee+aM95bHHfv3cj8dhaPfs632kHX5Lgsosq4RQcuvjndSrv6PVC00gzV5Qv2hZIaaqeYeOG9vu2A=
+	t=1736952133; cv=none; b=L8h3hiKs5+UoGFM2y9cWuGgdHoyIvIw9W5+4o/AdTnEz1vyDXqdX1Jpsy1j8yz8XXLmnJ7AiK/E1nESHegn9K7MSi1Z03okKVm+I0Uk0M0Ac+Stgnv64mvXn2djZ7BSLduUwLErwJTqdDzrD+vDgRqXHAARkeL8k0di2kUNRb5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736951099; c=relaxed/simple;
-	bh=WMcIZXIWDa7GXnAeCZ5NxIJiTsw13XWfpqK4pCdgiWc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ezejjMb6LAQa0L+z5WCyFCEM8fM5Bt3HHKsTSxEU9e950UPR/zJGckDT8GLMFyG4xh9Qn8ChDVnLTMfrdGxfMyjFnou61hwFevOhUJF5j0de8xgiAsH7a+/OI06xCVHy/KevoyzWTrcaf9F+vQyy73CbWRlLFEj/HUT1gq9Lc5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=upw8EeuX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D1BAC4CED1;
-	Wed, 15 Jan 2025 14:24:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736951098;
-	bh=WMcIZXIWDa7GXnAeCZ5NxIJiTsw13XWfpqK4pCdgiWc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=upw8EeuXYaML9/AhOywPJDa8xi5WeR9m2yIsNolj7dP6UH8uX/xTo9rVWXny5BMTZ
-	 5kTFQyivcoBL+oastN9JqrQe83FruI51a77YqLwe3+7tX9GRcy/piFAAR5Hi/iZ3Ob
-	 D0a7xaDbn513HeQ/MUnlsaiuvxDctoKXJhl3txNtdwiRqfYrJEhk4eeo5P1X0Z6oFJ
-	 jP89kAQhk5CKJsTMXGDDzO5WYoXqqIhFWMm/6UbCeTkVhvs6DUJMf816Z5iEyHUkO+
-	 bake0gHU9EG6GTTYaKYBI4BEEZ1A+HJzsGVWCiqY4AVHvCQ8HDDmEv0nHySoX000YD
-	 k1PSgi2nMvPiA==
-Date: Wed, 15 Jan 2025 08:24:57 -0600
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Ninad Palsule <ninad@linux.ibm.com>, minyard@acm.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, andrew+netdev@lunn.ch,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, openipmi-developer@lists.sourceforge.net,
-	netdev@vger.kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
-	devicetree@vger.kernel.org, eajames@linux.ibm.com,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 03/10] dt-bindings: gpio: ast2400-gpio: Add hogs
- parsing
-Message-ID: <20250115142457.GA3859772-robh@kernel.org>
-References: <20250114220147.757075-1-ninad@linux.ibm.com>
- <20250114220147.757075-4-ninad@linux.ibm.com>
- <mbtwdqpalfr2xkhnjc5c5jcjk4w5brrxmgfeydjj5j2jfze4mj@smyyogplpxss>
+	s=arc-20240116; t=1736952133; c=relaxed/simple;
+	bh=v6fpxI1aZCQsKHylK/37f9MkkghsOOFJhi0rW3o8LT0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DgPQnhDEUY6VNkwgpcCs1N7rRyLwaWnQNdBwp84qm+MofY+KSNugQ5hczK5mmT18D7bpuxBJWKydAxeLSdRMEdUs13Ln0A3GL4vvnZg9429ROYiyd7yydLVVUNnPKh/QfpailC7d26Ph29VViKd1ggXK+En0ZRjCOGw+JrRqU3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NJKm//BN; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 304371BF207;
+	Wed, 15 Jan 2025 14:42:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736952124;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=gpFio+Xag10shCz+bKXYK4zhDkqERhhjsyJUPk08ApI=;
+	b=NJKm//BNRLakGsVkCzDIXjk+CRrsUSPuGqLNrshqBODpyd82ID/j9mpTPYWsoSl/ZXtchn
+	mvzednqCfOkSIBfONGNLcXcvHRdYhLAOBK53DiKVfrMGWH5Q4c1ktb9yDESO7l+enrgVQ5
+	4lagIXnMFz9RFb05pPeOk3qrMWnI5E5mWpoe2lVflxK9BgniYsOz3bu821Y0N1kq3Nf0rc
+	N/OhOd0Kn8tfxTMa4KNSxnT4m+mut7bfpCNNe02MYqkeb43tWgYtMKH5GTfydc7qZe8rFl
+	QdWoDCBi5GVKrJ7EXiGlENyfn0jWkQiatKhlCHrf8RZBfmqfdEY+aoSEHkcMzw==
+From: Kory Maincent <kory.maincent@bootlin.com>
+Subject: [PATCH v2 0/2] Add support for power budget
+Date: Wed, 15 Jan 2025 15:41:56 +0100
+Message-Id: <20250115-feature_regulator_pw_budget-v2-0-0a44b949e6bc@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <mbtwdqpalfr2xkhnjc5c5jcjk4w5brrxmgfeydjj5j2jfze4mj@smyyogplpxss>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIADTJh2cC/33NQQqDMBCF4atI1k2ZiaTFrnoPEYk60QFrJIm2R
+ bx7U6HbLv8H880mAnmmIG7ZJjytHNhNKdQpE+1gpp4kd6mFAqUBEaQlExdPtad+GU10vp6fdbN
+ 0PUVpga55cTHWgBZJmD1Zfh16WaUeOKSD9/Fsxe/6c/O/7ooSJCBhV+hWAep741wceTq37iGqf
+ d8/zV+PgcgAAAA=
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de, 
+ Kory Maincent <kory.maincent@bootlin.com>
+X-Mailer: b4 0.14.1
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Wed, Jan 15, 2025 at 09:45:50AM +0100, Krzysztof Kozlowski wrote:
-> On Tue, Jan 14, 2025 at 04:01:37PM -0600, Ninad Palsule wrote:
-> > Allow parsing GPIO controller children nodes with GPIO hogs.
-> > 
-> > Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
-> > ---
-> >  .../devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml       | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml b/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
-> > index b9afd07a9d24..b9bc4fe4d5a6 100644
-> > --- a/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
-> > +++ b/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
-> > @@ -46,6 +46,12 @@ properties:
-> >      minimum: 12
-> >      maximum: 232
-> >  
-> > +patternProperties:
-> > +  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
-> 
-> Choose one - suffix or prefix. More popular is suffix.
+In preparation for future support of PSE budget evaluation strategy and
+power management, we need the power budget value of the power supply.
 
-I was about to say that, but this matches what gpio-hog.yaml defines. 
-Why we did both, I don't remember. We could probably eliminate 
-'hog-[0-9]+' as that doesn't appear to be used much.
+This addition allows the regulator to track the available power
+budget, which will be essential for prioritizing ports when
+making power allocation decisions.
 
-Long term, I want to make all gpio controllers reference a gpio 
-controller schema and put the hog stuff there. Then we have the node 
-names defined in 1 place.
+The related budget evaluation strategy patch series sent:
+https://lore.kernel.org/netdev/20250104161622.7b82dfdf@kmaincent-XPS-13-7390/T/#t
 
-Rob
+Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+---
+Changes in v2:
+- Add event notifier in case of power request over budget.
+- Track how much budget is used instead of free power budget.
+- Link to v1: https://lore.kernel.org/r/20250113-feature_regulator_pw_budget-v1-0-01e1d95c2015@bootlin.com
+
+---
+Kory Maincent (2):
+      regulator: Add support for power budget
+      regulator: dt-bindings: Add regulator-power-budget-milliwatt property
+
+ .../devicetree/bindings/regulator/regulator.yaml   |   3 +
+ drivers/regulator/core.c                           | 114 +++++++++++++++++++++
+ drivers/regulator/of_regulator.c                   |   3 +
+ include/linux/regulator/consumer.h                 |  21 ++++
+ include/linux/regulator/driver.h                   |   2 +
+ include/linux/regulator/machine.h                  |   2 +
+ 6 files changed, 145 insertions(+)
+---
+base-commit: 36d9fc502ebc4dd56ea95de1e4f10a4ac5c1691c
+change-id: 20250110-feature_regulator_pw_budget-f0e7396afa05
+
+Best regards,
+-- 
+Köry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
 
