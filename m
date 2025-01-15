@@ -1,165 +1,181 @@
-Return-Path: <devicetree+bounces-138757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC56DA12166
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:56:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D6CABA1219D
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:58:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 256C67A15FB
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:56:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34B1C7A0887
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:58:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC7F1E98EA;
-	Wed, 15 Jan 2025 10:56:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MDPwCkKb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BFD01E98E7;
+	Wed, 15 Jan 2025 10:58:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from CHN02-SH0-obe.outbound.protection.partner.outlook.cn (mail-sh0chn02on2130.outbound.protection.partner.outlook.cn [139.219.146.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89091248BD1;
-	Wed, 15 Jan 2025 10:56:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736938567; cv=none; b=qcZipOH3tNOAshZpS/kyjirLMGXBnn4aLA99j/lzeRNCIqhc81KFXmz16CZpSCoRXrtqTrOvtpcy12Ao18Q6c34oKHVtvWU3J+OPwlhH2T6Rn+JVfNZwcTv7dJjnc/ds0vftlEZIv8Dejdl8hVvr//vyNPZ/yKCzjLcg/8wllZI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736938567; c=relaxed/simple;
-	bh=a21DYM9Y6e9dtyfgQrzamCDEH03wQiwkyZKuBps1SoA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=q5d4vvTC1bSzOtA/xdSyGLETac3EmBc5gJAJ5DO1V1eLeSBs2awidi6uxvTKIHYdP5+JYbQpbuuCOOsWKrOrx7lrBvlfmTeZkX5KPW0UKeya6OVl5sCBchnpjn/OeiABHyxNpiYdU9wxWIVSzE09bhyOXrLiw54l94ccy9IfwTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MDPwCkKb; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736938566; x=1768474566;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=a21DYM9Y6e9dtyfgQrzamCDEH03wQiwkyZKuBps1SoA=;
-  b=MDPwCkKbGDvFLgMgVoQgPOC4ydnaPwRtLx3eEfQiK03KBryS0bHHHwgU
-   w74FT/wmazmlf4a0By19FWGHl2/Yj7z3y5d8mGy/CuQ2A58fDDRE2KWOF
-   I4ESaBKwLBohe4qdS4B04r9336huKh47w6JFWxtSw1nsHw3sRYnALWRq1
-   lwgDe4bSQFNEp1UDmcsVtq9qWez+k9IQZMBcdgbvYj8qm343JBieKF8LY
-   cUf1mfsd/Ai5z4twJrzdphpNrnu6pXtsOomO0wSM9gFjihh584cyCw3MP
-   2xwYDOCYboC3dBetq7YsiOBCPmutZ+Y1p+Kck3++gCWgm931cT4DQ2+aM
-   Q==;
-X-CSE-ConnectionGUID: 3hV7ylxDQfO6cN/jcSc9QA==
-X-CSE-MsgGUID: QYAsEBqnSHKGtQVpYEmGRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="48676868"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
-   d="scan'208";a="48676868"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2025 02:56:02 -0800
-X-CSE-ConnectionGUID: TmEfFQvuR1ePkAM3ceV8tw==
-X-CSE-MsgGUID: dWdMibSbRlaXaN84cYZa8w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,317,1728975600"; 
-   d="scan'208";a="104936194"
-Received: from bergbenj-mobl1.ger.corp.intel.com (HELO mdjait-mobl) ([10.245.244.123])
-  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2025 02:55:56 -0800
-Date: Wed, 15 Jan 2025 11:55:43 +0100
-From: Mehdi Djait <mehdi.djait@linux.intel.com>
-To: Michael Riesch <michael.riesch@wolfvision.net>
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
-	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Kever Yang <kever.yang@rock-chips.com>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
-	Sebastian Fricke <sebastian.fricke@collabora.com>, Alexander Shiyan <eagle.alexander923@gmail.com>, 
-	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	Mehdi Djait <mehdi.djait@bootlin.com>, Gerald Loacker <gerald.loacker@wolfvision.net>, 
-	Paul Kocialkowski <paulk@sys-base.io>, Sebastian Reichel <sebastian.reichel@collabora.com>
-Subject: Re: [PATCH v2 0/6] media: rockchip: add a driver for the rockchip
- camera interface (cif)
-Message-ID: <vbhqvvdjfjv2plavyd4gd2aypy6epybatq22mhgkcenndjgjly@73vacmvvv2fj>
-References: <20241217-v6-8-topic-rk3568-vicap-v2-0-b1d488fcc0d3@wolfvision.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0220248BD1;
+	Wed, 15 Jan 2025 10:58:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.146.130
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736938730; cv=fail; b=AVWpd2BH46/F3eR5HknCctxADPFqHDjHYrz6GW0rtsTMR4FrqWgzM/CmgSwyzijzuYWd0IAu/h19mXW7xV5VBjx3H1zT6yf0Tkber+y504zcuTKJpZ/5UzSuVkwU5nxSmoiV2W8jf9Ude+IHp5nEOWkIIuyxShNqExWl6dSJZmc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736938730; c=relaxed/simple;
+	bh=qgKfzN2EJEADXZccfDVHMwoUCEz/HENymDngjP64Sss=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=ZhBvTEW9k9g2jGxcccbGPT7oPAg7nlT1bzgzjEyuSuJ/4F7N4fmwOtEUX+dT1yCQfnOpwtHQ2AFiuB6xQlQGTupjF56Ig0ab8Q8uwuDVxheNqQ6M7gXNsCPBR3kZzyZBUDGlAgMRCJokjOdH9f84lkTB47gHXa+Y3oA8W6ui7as=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.146.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YC3TAH/n80X/NR8+1wL6SGFtw/usd8JAbG0zSw5wAuO4CReknhMeuYwW3ziEqA0IAfXisX3WO7LyaqatGrFbtmTiSUYLiM2lUA0cy00E8LML+S1Q/2/nSkAciPLVBx2jQ1KGKEqIw28GXTGKmH9xtDcsjB1fXFFshyx7qoai4nnFJgBm2mrZq2TeSmjE5ZNJRbAdBJwIBio1MzERCt1B58ObyAFSU/1NRaY/i8uPg4RCdIJ0rKsZtRJfOI2Z8LiPyF/WZnDwS6+eQa0rg1s76LWPAhWp5aKvlJR8MteuJNRwU4SjDLLtjfcmqTRYaVo1yID6IP1dZTo+aNQRjDwypw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2FS7hYxgZD+9vtVj6TwYq6h/1Yzs6OQfusY6Om1PpCU=;
+ b=dy9Umxm2Bxup54eqI67xQLb+nyQISUq/n1GPFVidZGAE8LmIWbhesb/9UgMaiBot/aDLbRkaUs12/6In+C7Gd2EYcwbh5xwyyH/IxAP3SRi69vCWYSsfAHL8AlNSIKQZAMkejQVKj++l0DYn6z1Qf1hdaXqyYeL25uiOY8ZiK5BFuQ//SkwG4wq/hzEaZYtvBFOnPJzHA83+IGGC5lmNh+FSjFuDqumYxHhE9Bugc/o/B1PLw8uihFNdZR98SbCfwJkQ9fIoJsvJ114azwXc3XzDuKD8qFgc4QcmdsNWf26Vh2WJ8/5XvPSPn7ZVk5jWf2G91vZz73Rhnx3QalJ90Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:25::15) by SHXPR01MB0559.CHNPR01.prod.partner.outlook.cn
+ (2406:e500:c311:1d::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.20; Wed, 15 Jan
+ 2025 10:58:39 +0000
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ ([fe80::3f35:8db2:7fdf:9ffb]) by
+ SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::3f35:8db2:7fdf:9ffb%4])
+ with mapi id 15.20.8335.015; Wed, 15 Jan 2025 10:58:39 +0000
+From: Minda Chen <minda.chen@starfivetech.com>
+To: Conor Dooley <conor@kernel.org>
+CC: E Shattow <e@freeshell.de>, Emil Renner Berthing <kernel@esmil.dk>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/2] riscv: dts: starfive: jh7110: pciephy0 USB 3.0
+ configuration registers
+Thread-Topic: [PATCH v1 1/2] riscv: dts: starfive: jh7110: pciephy0 USB 3.0
+ configuration registers
+Thread-Index: AQHbZessMJgcIL10+UmGw9zpa2rChbMVwlmQgADRYoCAARlKYA==
+Date: Wed, 15 Jan 2025 10:58:39 +0000
+Message-ID:
+ <SHXPR01MB08631714C914911D343372ACE619A@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+References: <20250102183746.411526-1-e@freeshell.de>
+ <20250102183746.411526-2-e@freeshell.de>
+ <20250113-mushiness-snugness-0f55574e3956@spud>
+ <SHXPR01MB0863DBF85A9874C9F93ECD25E618A@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+ <20250114-recollect-dictate-104e890d116e@spud>
+In-Reply-To: <20250114-recollect-dictate-104e890d116e@spud>
+Accept-Language: en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SHXPR01MB0863:EE_|SHXPR01MB0559:EE_
+x-ms-office365-filtering-correlation-id: 709b3153-f8b8-4960-30c4-08dd35539177
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|41320700013|1800799024|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ 9I+XUpRALPpwIBcNEwpVMkyQMUFd5RbogaRVxhZvEyPoU4p0n4ymIy+GUBCsoc6Wc5yUJvqgEma8DCm7Nfmv0UokQcTL5X94VXEw8qX0QqElWiihjJ3ZOM9xhNuAi9lSWpdaMyUTgOKrkPg06yHT3SckYshhYMGcqzaIHW5Zi5IEKfAcsUVqGiMcPZJcAEK1C6CAwJhFr7njIP9K3IyK8ibb8IEjb9nBkjHezVM/WADGYnMw+lgLN0yQ/Eq2Fap+PCma6TJ05X7OG/PEhaILOwc6AoePl8ErbDLce92Ujhya4CrTcmnEK8myl5WogcrpVliwnd8FJQ30Wr1z+Vcsr8XPTOfO0c5wwsYqnauy2YeCA1+UNjSN2z9yu+fRwMHDxmxDMHGovOqmoVBPFn/sTeUhsUbGajJkJACDt3IOzjyqhBYBSB1XpzQZP5DuYXJPPTUIN1DD94jPnPaY+hpUzFwB3kDSgxd/kmycJ6EurpV2eA1xbYDzN6U1rXlXaoga1K4QaPbvrTZnmdooMGiq4Hj32Xy2BCQrIQxdZu5qwdHWJEKO/1h39/we+o2Dml0gFIM5pZesm1CZDLWfhnxxGYRmlka6/1TCUTiNIdfeMAs=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(366016)(41320700013)(1800799024)(7416014)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?skwWpqJWkX1YWeKsaoJkNsQGf0P34zddSl4XHshJH3XkhSCXDM5DtpCGIDwa?=
+ =?us-ascii?Q?llMSa50MRwjdlfkkBvNF1uuSZciReQbtc2uqUvqYuwv2I2CUZkF2IAlwU/fs?=
+ =?us-ascii?Q?jmQLnXAfh97NQlK9ZIFBBsOvwqg3ZR4TVCHIo7J9hkeSGsCIegQKrhNa/911?=
+ =?us-ascii?Q?rdA1j4icIbobrkMNWOYY3DBcmiVgaol3e4aXoXaCNlzNrJBG5Wv34oq7qHiy?=
+ =?us-ascii?Q?qhd9dJHR61ZjK1nbuWpfryTC9OFvk81P6Sh3IctU+YIp+ZgAKZSSZA/JpEfK?=
+ =?us-ascii?Q?WYGjYH3TOtxu6Z7EOLTkxpfs+uywmLibWhE8vFETz9YQ2Yzk1sghUQkl1p3S?=
+ =?us-ascii?Q?JIJqx2mM8m9WYf+wK3t7Frt8lBEaMJsipFnz3ew4bGxaUTzvg1ZF77OzjQrT?=
+ =?us-ascii?Q?UCmHu+kyZyU6u9SZRnv330PmWBnUzC4aSP/TkE8OHTmcPOuBPMKI6gXu9RJy?=
+ =?us-ascii?Q?+9DcYnJWNWYEAaeZTTpQC9LFqxIf0coMlR0QbdyxRd51aiyncwtb8i96/RGf?=
+ =?us-ascii?Q?i7IeiYvCdfv4UDhG1aX7X13jcKQwFucHASIAkGkMrQTVNHgDGBBjFHgFdC9t?=
+ =?us-ascii?Q?JIeE1ab910TT1oayKOzenJyjrkhxtEluYEVm5ctsyj4fYV4PReWQuOJADpoU?=
+ =?us-ascii?Q?khS1Oidsp/Wm6g100g7A8l4hzzb3paK/2BigJO3kqlp+cyShc8FOsErITJn1?=
+ =?us-ascii?Q?klHnKzzJ/n94qJb5BYYG6+Ubd39faRCK6RLpDUNbmyPwhfR94mvOn8T9ItKi?=
+ =?us-ascii?Q?x5O6MEgOjtiIkI55THjeeuWZsWfETBWZ+SCs8t36/r/88EDxndWsf4w71wun?=
+ =?us-ascii?Q?jN9e0NqvdWROSmOscYWSXk6UNSe1R/CxWx+7u8iVNTW/AR+G1aPRItltghRF?=
+ =?us-ascii?Q?qei9JNHEbYTMT81d7JgdCBBpV2IjQsmH0ttJjybLglSacqH9rSGEf8uHj4/m?=
+ =?us-ascii?Q?2M5+rZZJ0O7e2r+rSqdy5cKGcSfCoYRrkUn1iwIp8d/DkgxxLRt7ecmlmPpq?=
+ =?us-ascii?Q?LcXrSdJ26Cd/mosy/qqQIocrW1AzB67DsdO3BsNUogE1AoONLt9h0bmNzhYI?=
+ =?us-ascii?Q?0Seyb/I4j4gW1L9gY6SoO8Vnj1giGuQS9p6vpAAXwZEgAHV+0snOIIBUVBYN?=
+ =?us-ascii?Q?0N7a6BSMP+c43K+kP2TQ/tmYyPdeTtragsp6BDsd3gTc6BHAVMAF38z/gzQ8?=
+ =?us-ascii?Q?hODhyI+elHx3MpXsOjHJhLmvn/PbFAZB/+XzvkKKgUcgQ//TIz2ba73kRGqq?=
+ =?us-ascii?Q?W8npkPUUJm+fuQ0DO6FQX8iuY8Adu9pjSVYR6rDx00A0RBUeZUX5Opym5zc9?=
+ =?us-ascii?Q?LOSJJwukchrwG4Xq7Hzxg8um7WT/0uoiAH49yI0gaAv/l/NUYTgSHpipZxdH?=
+ =?us-ascii?Q?7g4m7zE6jsXgnEvX7GLJLmd6RYXuBYMVEplLHxPUezZl8Najj4ogO+Yp7Y6D?=
+ =?us-ascii?Q?5twnWjWkRu2Om39MlUwF5lmaBHGMpmIiRibwx09qqzifaEhqSR0izQrf1R/u?=
+ =?us-ascii?Q?e+J36P7nw2iKTm0PpNlstIqTTZ4zR7XpOjtCdYkOkKlDPsq1/pHZh4K0flKg?=
+ =?us-ascii?Q?X24uIRHzyXKyjJcG+f1lNDYV3u/uZJlohxpx55nlAx0HL0p3ckp78S68TG9W?=
+ =?us-ascii?Q?EA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241217-v6-8-topic-rk3568-vicap-v2-0-b1d488fcc0d3@wolfvision.net>
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: 709b3153-f8b8-4960-30c4-08dd35539177
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2025 10:58:39.5301
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: bJ9+v1osw3B9vadUaCoIf+ejb1SFRWaTaP4QSY888kzibeNcd+Rnho9g4AjpIO6QKGMprgCF2t6lvR5om7Kl7ncKIgmrRsKR5s10Tz3goEY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0559
 
-Hi Michael,
 
-On Tue, Dec 17, 2024 at 04:55:12PM +0100, Michael Riesch wrote:
-> Habidere,
-> 
-> TL;DR:
-> 
-> This series introduces support for the Rockchip Camera Interface (CIF),
-> which can be found (in the form of variants that differ significantly) in
-> different Rockchip SoCs in general, and for the Rockchip RK3568 Video
-> Capture (VICAP) variant in particular.
-> 
-> The patches are functional and have been tested successfully on a
-> custom RK3568 board including the ITE Tech. IT6801 HDMI receiver as
-> attached subdevice. The IT6801 driver still needs some loving care but
-> shall be submitted as well at some point.
-> 
-> The long story (gather 'round children):
-> 
-> The Rockchip Camera Interface (CIF) is featured in many Rockchip SoCs
-> in different variations. For example, the PX30 Video Input Processor (VIP)
-> is able to receive video data via the Digital Video Port (DVP, a parallel
-> data interface and transfer it into system memory using a double-buffering
-> mechanism called ping-pong mode. The RK3568 Video Capture (VICAP) unit,
-> on the other hand, features a DVP and a MIPI CSI-2 receiver that can
-> receive video data independently (both using the ping-pong scheme).
-> The different variants may have additional features, such as scaling
-> and/or cropping.
-> Finally, the RK3588 VICAP unit constitutes an essential piece of the camera
-> interface with one DVP, six MIPI CSI-2 receivers, scale/crop units, and
-> different data path multiplexers (to system memory, to ISP, ...).
 
-I wanted to CC Paul on this and add this really GOOD summary he provided
-while reviewing v6 of the CIF driver: Feel free to add (or not) some of
-the infos from it.
-
-----------------------------------------------------------------------------------
-So I have spent a bit of time trying to figure out the history of this unit
-and in which platform in was used. The takeaway is that the earliest Rockchip
-SoC that uses it is the RK3066 (2012) and the latest SoC is the RK3566/RK3568
-(2020). Earlier SoCs (RK29) do mention VIP but seems quite clear that this is
-a whole different unit and the recent RK3588 (2021) has a new VICAP_DVP unit
-(mixed with VICAP_MIPI) which also seems significantly different.
-
-Over the course of the existence of this unit, it is most often referred to
-as CIF. Since this is also the name for the driver in the Rockchip tree,
-I feel like it is best to use CIF as the mainline terminology instead of VIP.
-Note that the unit is also called VICAP in RK3566/RK3568.
-
-Here is the detail of my research on the concerned chips. The + at the beginning
-of the line indicate support in Rockchip's 4.4 tree:
-
-- RK3566/RK3568 (2020): CIF pins + VICAP terminology
-+ RK1808 (2019): CIF pins + VIP registers + VIP_MIPI registers
-+ PX30 (2017): VIP pins + VIP registers
-+ RK3328 (2017): CIF pins + VIP terminology
-- RK3326 (2017): CIF pins + VIP terminology
-- RK3399 (2016): CIF pins
-- RK3368 (2015): CIF pins
-- PX2 (2014-11): CIF pins + CIF registers
-+ RK3126/RK3128 (2014-10): CIF pins + registers
-+ RK3288 (2014-05): CIF pins + VIP terminology
-- RK3026 (2013): CIF pins + CIF registers
-- RK3168/RK3188/PX3 (2012): CIF pins + CIF registers
-- RK3066 (2012): CIF pins + CIF registers
-----------------------------------------------------------------------------------
-
-I also CC'd Sebastian Reichel, as he might be interested in this, he is tracking 
-the upstream status of the RK3588: 
-https://gitlab.collabora.com/hardware-enablement/rockchip-3588/notes-for-rockchip-3588/-/blob/main/mainline-status.md?ref_type=heads
-
---
-Kind Regards
-Mehdi Djait
+>=20
+> On Tue, Jan 14, 2025 at 05:42:28AM +0000, Minda Chen wrote:
+> >
+> >
+> > >
+> > > On Thu, Jan 02, 2025 at 10:37:36AM -0800, E Shattow wrote:
+> > > > StarFive JH7110 contains a Cadence USB2.0+USB3.0 controller IP
+> > > > block that may exclusively use pciephy0 for USB3.0 connectivity.
+> > > > Add the register offsets for the driver to enable/disable USB3.0 on
+> pciephy0.
+> > > >
+> > > > Signed-off-by: E Shattow <e@freeshell.de>
+> > > > ---
+> > > >  arch/riscv/boot/dts/starfive/jh7110.dtsi | 2 ++
+> > > >  1 file changed, 2 insertions(+)
+> > > >
+> > > > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > > b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > > index 0d8339357bad..75ff07303e8b 100644
+> > > > --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > > @@ -611,6 +611,8 @@ usbphy0: phy@10200000 {
+> > > >  		pciephy0: phy@10210000 {
+> > > >  			compatible =3D "starfive,jh7110-pcie-phy";
+> > > >  			reg =3D <0x0 0x10210000 0x0 0x10000>;
+> > > > +			starfive,sys-syscon =3D <&sys_syscon 0x18>;
+> > > > +			starfive,stg-syscon =3D <&stg_syscon 0x148 0x1f4>;
+> > >
+> > > Why weren't these added in the first place? Minda, do you know?
+> > >
+> > The driver only require to set syscon register while the PHY attach to
+> > Cadence USB.(star64 board case) The PHY default attach to PCIe0, VF2 bo=
+ard
+> do not set any setting. So I don't set it.
+>=20
+> Does this mean that the change should be made in files where it will only=
+ affect
+> non-VF2 boards, or is it harmless if applied to the VF2 also?
+Harmless. The PCIe PHY driver still set the PCIe mode syscon setting.
 
