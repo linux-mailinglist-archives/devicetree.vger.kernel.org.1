@@ -1,204 +1,165 @@
-Return-Path: <devicetree+bounces-138756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A063A12149
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:54:55 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC56DA12166
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:56:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 985391880822
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:54:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 256C67A15FB
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:56:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 396A4248BAE;
-	Wed, 15 Jan 2025 10:54:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC7F1E98EA;
+	Wed, 15 Jan 2025 10:56:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yZSyE5CA"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MDPwCkKb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F1AC1DB13A
-	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 10:54:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89091248BD1;
+	Wed, 15 Jan 2025 10:56:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736938490; cv=none; b=N68brWSQgROF86Ghpm6I97TBY2xZEkHBJW0CsLnvDfckwg5ZWc3J0H0bxFi97c+jbj9aCL9C5bDJN1YdVWnWkR4E1QBsEDg+0Jr2QlPHeBcw2SDHh3rSEy+wv6oBrgk01+ZRD6QS1ovJ2qay/scOZajzSnxALIUCYkxu1iCHBGU=
+	t=1736938567; cv=none; b=qcZipOH3tNOAshZpS/kyjirLMGXBnn4aLA99j/lzeRNCIqhc81KFXmz16CZpSCoRXrtqTrOvtpcy12Ao18Q6c34oKHVtvWU3J+OPwlhH2T6Rn+JVfNZwcTv7dJjnc/ds0vftlEZIv8Dejdl8hVvr//vyNPZ/yKCzjLcg/8wllZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736938490; c=relaxed/simple;
-	bh=evSVf9A8RAMJFID55PVqbvdXrYIaH+IlNw8I/KeFD5w=;
+	s=arc-20240116; t=1736938567; c=relaxed/simple;
+	bh=a21DYM9Y6e9dtyfgQrzamCDEH03wQiwkyZKuBps1SoA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PmOaCrg7hN5/NvRSut7etR95osiM2GuTjj5s6wCMFYAnZ9E8Y2bjv/4JQ8vDqLhW7FyKULAZ1K69ft8P/3eiKhT34UW52vLtvzcgciZLlIeE7j7Y7d0sVNaxK/hc/RaQ6//zuEE/F2VQyOxUSLxeB1KX6H7g3fhvkKGf3Y9oX1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yZSyE5CA; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-216401de828so108574145ad.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 02:54:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736938488; x=1737543288; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=uLShVIQL/QTp6sJ0A6x0KhG3HT/hVJ8Re2oAFX3+03k=;
-        b=yZSyE5CA+H74HUcjBotdxxeQMz/eMs40yohHngdt0yEHR4XdPAp+lGjz6efyhBac+q
-         u2HjqMM81V9ocYaYjbNvMHvbs4IO64WEGlyOZCcAWoba/2XEqLSOnq28R59+/E7OYWAq
-         HFdvfiQg+0V57C0/6HwFi4IdyxWqkoRtKf7ktn2kfuOptJjf6SVtmXYd3OpIFKDfuVVJ
-         bVIJpRF9dIH6lmPY0Gsj+koUwatbgljOr30NiYZ/Vr6GTmY0aKaOAThRgwV5kVLSoYnw
-         XNYtdQQ6IiOdG4XsAHRS203Xq5mB0cUsD4pS2g81sRsIJOgJmKFeMTUhWHU9rwpDOrZM
-         dqpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736938488; x=1737543288;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uLShVIQL/QTp6sJ0A6x0KhG3HT/hVJ8Re2oAFX3+03k=;
-        b=ae7enuBkwxk6QiMOZXjJLaUf8ASbqrq+EgobKAp4kZ9IGm743T0eDYlnZlFcLmg27c
-         tai868QdMLQiV90/kGuJCfpu0S5MGNpGfCzjd4POdOndukQygZi5i0vwyTTLBQbMR4Ra
-         fyl4cACY3pgnyh0ND6tld9TiI3utImZlDgQiuBzq5QkcM3DwX7XIBuSxNcNQBbqlSxYk
-         5e5N+gy0rBcBXP40LmsF3LsW8HCCj+AJ5ZwgXXq1/w5Ph0PT8gB899YmMf5h3qbesIqz
-         XrT6APVlJ4GkmSEI3p668pAf698qN4L7bJSLORTLMJvrVCHQGTBsZcP4Ne950fqr0QSx
-         zbXw==
-X-Forwarded-Encrypted: i=1; AJvYcCU+w517oZmDcXkDCOZ0jCAiHOod/l0CwaSAar0Cen/vzDssypJLM/MuCbATFCx6CQfd8xLn0inN/ijQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzxmdhb3W/nNvG1HayZyj4ajQ4gD4qLbw79SlX+vOw48rTeD6fj
-	augPdGb1MjS8ZY2E9Hu7kbNqgL/01o/wHg2n0vLG+PTaFKy+1xRQkwzF27WZXw==
-X-Gm-Gg: ASbGncsnOKk9qVZGI2zgEwd4bw9QsLZA+paF25YexHizp9nqF3NOwr2spDvO70fHoZt
-	jZE7K15lUssqbDDtyOU2KguQzvrKpGd2ymLIfqkqwm3nLY8WZ9uoKIUAADJRR+JulqCMWQtthIb
-	l10kfExQf/IKfbCEz7QN/f3zTQI4sisWQ7kcKCAjLteih+t/VYC0MyioXYD12oM9HKg2MYtsoAS
-	mojnCuyyjrZuSKNcGwCxspEm0HHqUYPsXnFoRSJaFUJQid0DKeccyu3ekhmaB0SE6c=
-X-Google-Smtp-Source: AGHT+IEROJu6RiYDzk2wsYnV9ElHsGb48DA5kHvABhWQg6HYAKDSUAP/J/ns9UtNQZDxdOFdWZefew==
-X-Received: by 2002:a05:6a21:2d85:b0:1e1:bd5b:b82a with SMTP id adf61e73a8af0-1e88d0ddc13mr46860273637.40.1736938487775;
-        Wed, 15 Jan 2025 02:54:47 -0800 (PST)
-Received: from thinkpad ([120.60.139.68])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a31d5047e79sm9551531a12.53.2025.01.15.02.54.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2025 02:54:47 -0800 (PST)
-Date: Wed, 15 Jan 2025 16:24:31 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	=?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-Subject: Re: [PATCH v2 01/21] arm64: dts: qcom: sm8250: Add PCIe bridge node
-Message-ID: <20250115105431.gw34xgta2lmgjqva@thinkpad>
-References: <20250105101612.t6c4pw5uxhb5rdde@thinkpad>
- <20250106230705.GA132316@bhelgaas>
+	 Content-Type:Content-Disposition:In-Reply-To; b=q5d4vvTC1bSzOtA/xdSyGLETac3EmBc5gJAJ5DO1V1eLeSBs2awidi6uxvTKIHYdP5+JYbQpbuuCOOsWKrOrx7lrBvlfmTeZkX5KPW0UKeya6OVl5sCBchnpjn/OeiABHyxNpiYdU9wxWIVSzE09bhyOXrLiw54l94ccy9IfwTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MDPwCkKb; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1736938566; x=1768474566;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=a21DYM9Y6e9dtyfgQrzamCDEH03wQiwkyZKuBps1SoA=;
+  b=MDPwCkKbGDvFLgMgVoQgPOC4ydnaPwRtLx3eEfQiK03KBryS0bHHHwgU
+   w74FT/wmazmlf4a0By19FWGHl2/Yj7z3y5d8mGy/CuQ2A58fDDRE2KWOF
+   I4ESaBKwLBohe4qdS4B04r9336huKh47w6JFWxtSw1nsHw3sRYnALWRq1
+   lwgDe4bSQFNEp1UDmcsVtq9qWez+k9IQZMBcdgbvYj8qm343JBieKF8LY
+   cUf1mfsd/Ai5z4twJrzdphpNrnu6pXtsOomO0wSM9gFjihh584cyCw3MP
+   2xwYDOCYboC3dBetq7YsiOBCPmutZ+Y1p+Kck3++gCWgm931cT4DQ2+aM
+   Q==;
+X-CSE-ConnectionGUID: 3hV7ylxDQfO6cN/jcSc9QA==
+X-CSE-MsgGUID: QYAsEBqnSHKGtQVpYEmGRg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="48676868"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
+   d="scan'208";a="48676868"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2025 02:56:02 -0800
+X-CSE-ConnectionGUID: TmEfFQvuR1ePkAM3ceV8tw==
+X-CSE-MsgGUID: dWdMibSbRlaXaN84cYZa8w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,317,1728975600"; 
+   d="scan'208";a="104936194"
+Received: from bergbenj-mobl1.ger.corp.intel.com (HELO mdjait-mobl) ([10.245.244.123])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2025 02:55:56 -0800
+Date: Wed, 15 Jan 2025 11:55:43 +0100
+From: Mehdi Djait <mehdi.djait@linux.intel.com>
+To: Michael Riesch <michael.riesch@wolfvision.net>
+Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>, 
+	=?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Kever Yang <kever.yang@rock-chips.com>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
+	Sebastian Fricke <sebastian.fricke@collabora.com>, Alexander Shiyan <eagle.alexander923@gmail.com>, 
+	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	Mehdi Djait <mehdi.djait@bootlin.com>, Gerald Loacker <gerald.loacker@wolfvision.net>, 
+	Paul Kocialkowski <paulk@sys-base.io>, Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: Re: [PATCH v2 0/6] media: rockchip: add a driver for the rockchip
+ camera interface (cif)
+Message-ID: <vbhqvvdjfjv2plavyd4gd2aypy6epybatq22mhgkcenndjgjly@73vacmvvv2fj>
+References: <20241217-v6-8-topic-rk3568-vicap-v2-0-b1d488fcc0d3@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250106230705.GA132316@bhelgaas>
+In-Reply-To: <20241217-v6-8-topic-rk3568-vicap-v2-0-b1d488fcc0d3@wolfvision.net>
 
-On Mon, Jan 06, 2025 at 05:07:05PM -0600, Bjorn Helgaas wrote:
-> [+cc Nícolas]
-> 
-> On Sun, Jan 05, 2025 at 03:46:12PM +0530, Manivannan Sadhasivam wrote:
-> > On Fri, Jan 03, 2025 at 03:05:31PM -0600, Bjorn Helgaas wrote:
-> > > On Thu, Mar 21, 2024 at 04:46:21PM +0530, Manivannan Sadhasivam wrote:
-> > > > On Qcom SoCs, the PCIe host bridge is connected to a single PCIe bridge
-> > > > for each controller instance. Hence, add a node to represent the bridge.
-> > > > 
-> > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > > ---
-> > > >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 30 ++++++++++++++++++++++++++++++
-> > > >  1 file changed, 30 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > > index 39bd8f0eba1e..fe5485256b22 100644
-> > > > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > > @@ -2203,6 +2203,16 @@ pcie0: pcie@1c00000 {
-> > > >  			dma-coherent;
-> > > >  
-> > > >  			status = "disabled";
-> > > > +
-> > > > +			pcie@0 {
-> > > > +				device_type = "pci";
-> > > > +				reg = <0x0 0x0 0x0 0x0 0x0>;
-> > > > +				bus-range = <0x01 0xff>;
-> > > 
-> > > Hi Mani, most or all of the patches in this series add this
-> > > "bus-range" property.  IIUC, these are all Root Ports and hence the
-> > > secondary/subordinate bus numbers should be programmable.
-> > 
-> > Right. It is not a functional dependency.
-> > 
-> > > If that's the case, I don't think we need to include "bus-range" in DT
-> > > for them, do we?
-> > 
-> > We mostly include it to silence the below bindings check for the
-> > endpoint device node:
-> > 
-> > Warning (pci_device_bus_num): /soc@0/pcie@1c00000/pcie@0/wifi@0: PCI bus number 1 out of range, expected (0 - 0)
-> > 
-> > DTC check is happy if the 'bus-range' property is absent in the
-> > bridge node. But while validating the endpoint node (if defined), it
-> > currently relies on the parent 'bus-range' property to verify the
-> > bus number provided in the endpoint 'reg' property.
-> > 
-> > I don't know else the check can verify the correctness of the
-> > endpoint bus number. So deferring to Rob here.
-> 
-> I should know more about how this works in DT, but I don't.
-> 
-> I guess https://git.kernel.org/linus/83d2a0a1e2b9 ("arm64: dts: qcom:
-> sm8250: Add PCIe bridge node") added this (subsequently renamed to
-> "pcieport0"):
-> 
->   +			pcie@0 {
->   +				device_type = "pci";
->   +				reg = <0x0 0x0 0x0 0x0 0x0>;
->   +				bus-range = <0x01 0xff>;
-> 
-> which is used at places like
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts?id=v6.12#n788:
-> 
->   &pcieport0 {
-> 	  wifi@0 {
-> 		  compatible = "pci17cb,1101";
-> 		  reg = <0x10000 0x0 0x0 0x0 0x0>;
-> 
-> Based on
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pci/pci.txt?id=v6.12#n46
-> (which is written for Root Ports and Switch Ports, but presumably
-> applies to endpoints like wifi as well), "reg" contains the device's
-> bus/device/function:
-> 
->   - reg:
->      Identifies the PCI-PCI bridge. As defined in the IEEE Std 1275-1994
->      document, it is a five-cell address encoded as (phys.hi phys.mid
->      phys.lo size.hi size.lo). phys.hi should contain the device's BDF as
->      0b00000000 bbbbbbbb dddddfff 00000000. The other cells should be zero.
-> 
-> So 0x10000 would decode to 01:00.0, which matches the <1 1> bus-range.
-> 
-> I don't know the reason for requiring the BDF there, but the venerable
-> https://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf, sec
-> 4.1.1, says "reg" is mandatory for PCI Child Nodes, and the first
-> entry must be the config space address (bus/device/function).
-> 
-> I suppose maybe the BDF is needed to associate the properties with the
-> correct device, and if the OS were to reprogram the bridge secondary
-> bus number, it would have to remember the original value to preserve
-> this association.  I don't think Linux *does* remember that, but it
-> also generally leaves the bridge bus numbers alone.
-> 
+Hi Michael,
 
-Device drivers need to parse the properties defined in the device DT node. And
-the only way to identify the node is by using its 'reg' property which has the
-BDF identifier. This is common to other busses where the device address is
-encoded in the 'reg' property.
+On Tue, Dec 17, 2024 at 04:55:12PM +0100, Michael Riesch wrote:
+> Habidere,
+> 
+> TL;DR:
+> 
+> This series introduces support for the Rockchip Camera Interface (CIF),
+> which can be found (in the form of variants that differ significantly) in
+> different Rockchip SoCs in general, and for the Rockchip RK3568 Video
+> Capture (VICAP) variant in particular.
+> 
+> The patches are functional and have been tested successfully on a
+> custom RK3568 board including the ITE Tech. IT6801 HDMI receiver as
+> attached subdevice. The IT6801 driver still needs some loving care but
+> shall be submitted as well at some point.
+> 
+> The long story (gather 'round children):
+> 
+> The Rockchip Camera Interface (CIF) is featured in many Rockchip SoCs
+> in different variations. For example, the PX30 Video Input Processor (VIP)
+> is able to receive video data via the Digital Video Port (DVP, a parallel
+> data interface and transfer it into system memory using a double-buffering
+> mechanism called ping-pong mode. The RK3568 Video Capture (VICAP) unit,
+> on the other hand, features a DVP and a MIPI CSI-2 receiver that can
+> receive video data independently (both using the ping-pong scheme).
+> The different variants may have additional features, such as scaling
+> and/or cropping.
+> Finally, the RK3588 VICAP unit constitutes an essential piece of the camera
+> interface with one DVP, six MIPI CSI-2 receivers, scale/crop units, and
+> different data path multiplexers (to system memory, to ISP, ...).
 
-- Mani
+I wanted to CC Paul on this and add this really GOOD summary he provided
+while reviewing v6 of the CIF driver: Feel free to add (or not) some of
+the infos from it.
 
--- 
-மணிவண்ணன் சதாசிவம்
+----------------------------------------------------------------------------------
+So I have spent a bit of time trying to figure out the history of this unit
+and in which platform in was used. The takeaway is that the earliest Rockchip
+SoC that uses it is the RK3066 (2012) and the latest SoC is the RK3566/RK3568
+(2020). Earlier SoCs (RK29) do mention VIP but seems quite clear that this is
+a whole different unit and the recent RK3588 (2021) has a new VICAP_DVP unit
+(mixed with VICAP_MIPI) which also seems significantly different.
+
+Over the course of the existence of this unit, it is most often referred to
+as CIF. Since this is also the name for the driver in the Rockchip tree,
+I feel like it is best to use CIF as the mainline terminology instead of VIP.
+Note that the unit is also called VICAP in RK3566/RK3568.
+
+Here is the detail of my research on the concerned chips. The + at the beginning
+of the line indicate support in Rockchip's 4.4 tree:
+
+- RK3566/RK3568 (2020): CIF pins + VICAP terminology
++ RK1808 (2019): CIF pins + VIP registers + VIP_MIPI registers
++ PX30 (2017): VIP pins + VIP registers
++ RK3328 (2017): CIF pins + VIP terminology
+- RK3326 (2017): CIF pins + VIP terminology
+- RK3399 (2016): CIF pins
+- RK3368 (2015): CIF pins
+- PX2 (2014-11): CIF pins + CIF registers
++ RK3126/RK3128 (2014-10): CIF pins + registers
++ RK3288 (2014-05): CIF pins + VIP terminology
+- RK3026 (2013): CIF pins + CIF registers
+- RK3168/RK3188/PX3 (2012): CIF pins + CIF registers
+- RK3066 (2012): CIF pins + CIF registers
+----------------------------------------------------------------------------------
+
+I also CC'd Sebastian Reichel, as he might be interested in this, he is tracking 
+the upstream status of the RK3588: 
+https://gitlab.collabora.com/hardware-enablement/rockchip-3588/notes-for-rockchip-3588/-/blob/main/mainline-status.md?ref_type=heads
+
+--
+Kind Regards
+Mehdi Djait
 
