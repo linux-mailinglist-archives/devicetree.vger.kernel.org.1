@@ -1,811 +1,879 @@
-Return-Path: <devicetree+bounces-138786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3313DA123BD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 13:29:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0F79A123D6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 13:35:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 419531676B4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 12:29:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82E4F188B285
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 12:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F00321858C;
-	Wed, 15 Jan 2025 12:29:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E239D1BEF9E;
+	Wed, 15 Jan 2025 12:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Cu3euZbf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HBcf1IYV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E7FC1E98E0
-	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 12:29:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E010E1DFEF;
+	Wed, 15 Jan 2025 12:35:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736944150; cv=none; b=DBv8oBw6yipc/cH/3RzCW4vH8pzA4xl/1rQG3m+yU+BTGNM3XWSocf965wv4DA4z0mmasiJHuVH+WAY0qtKMnqinEgkw+w4XYE75iBLdXq2+Xh2cUDG0w12c2a3D6GavvHX9YJCnklR5qGfwTAR2F6UWDkasyMQyczKGgnIEwL0=
+	t=1736944530; cv=none; b=LIdonyFXe6VcMdWt9c840qyBdMS9NdwhtL6sGXa5zMmyftdLAa5OR9jeCV2p1rTrxgWLS04wiO3F74fPO5O81BhHxH0QZzDGl4NicmEibDhoTXc8KhRAoE5JM9FGQ3hJpjmntOCB8v/LmynLestRPpuhMuXLKb8OFzqGRgnsr6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736944150; c=relaxed/simple;
-	bh=QXzPLbWHPD9QqJ5voK645S6nV0CWNxdflWrIBptgR54=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A+5q3Tm/BJ9WhnIT4SLbatwsSAjJcYFEwnMIV7kagHMCzq1yKN3XmO1nIR4S2bYvWKotNWOSgpjqYLkP6QLfojiFnnFDsGw3Jd75KdKyn31gVY+dko3+JCeYgVvJFv56wcDaJZSizpjmaC53JAm9l8fpIfNQ6jWL1HIj7qMOtpE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Cu3euZbf; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43690d4605dso46167875e9.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 04:29:07 -0800 (PST)
+	s=arc-20240116; t=1736944530; c=relaxed/simple;
+	bh=o/MzNmJf9rA0vDZ+sc0mJJx1RH7CFBqcx/0Mt1A0jKM=;
+	h=From:Message-Id:Content-Type:Mime-Version:Subject:Date:
+	 In-Reply-To:Cc:To:References; b=jcBWQsw7/RjfrNecwDLoUf3qZaWi4jsTCLMIuWJ9dQlASAMbfRFjvimKwfKxO0DSugA8cXhbwiQoB5c+X5rOAmk9NjqR538emojQqTxQwVl4o8Yi+RpJxP6Q9W/Zu7CPqiNiaTzYTNvKwB67PISc4DbxxtJz6mVTNz7KT1yMFHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HBcf1IYV; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aab6fa3e20eso1201558566b.2;
+        Wed, 15 Jan 2025 04:35:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736944145; x=1737548945; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oCBsVs4bl6SWYHb5IG9mcYBy884hC1pNJFAWPZoPHYo=;
-        b=Cu3euZbfTcqiQQ0N7t6pF2A2Eww0YlFqkppldnj34Zai/qf52BxMsO2NXrHpbXAX8A
-         Uj0jdEWvp0doE7OZRhfpEnYG5ilD6w4JixKHkee2kizSmz4tZuFFxHtzG5LRnJPhxxbC
-         9j78cxR89dFUxkqqydmrabn6Ur06IvF8tbZXAllu7HKvdWaPU3bf64PpALXEc7lcosPk
-         wVnY9l1Sip8eKFC1uLPRQ48NhfQW3nmVq5mNkpevWgFbCJlf0YO+KOGv+eNK4EIQ8xw0
-         YLlrfsGWLs4EuY7kTjZOjp8IgNdBGd1eegUp/DTuOVVum6S9vWS3JOzVcWZUeDpIoNms
-         pj0g==
+        d=gmail.com; s=20230601; t=1736944527; x=1737549327; darn=vger.kernel.org;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0168y1aT6Z0EJNteQDvgEFdn0AAAWihNRg1p9xurWKc=;
+        b=HBcf1IYV9x4KVgGxG504UjrAslty06d7CSTYnnMD5NqML/1vmVTc3MJA1yxoCNBQjY
+         khADoQIbxo01ss0lax+B19fyaK7pu1SrNgBWR4H4RJHXeRUetO5z+NSskMrj790iOgrC
+         /bXFCmagSPLvz4FvvyweybS5wTn28T6OEBgRhmRBjVug66FMqEl9LefCxvDwMV4Quaff
+         +abVujJv3y4oMGz6s/mv4KXDodNxyd8ysmYf6pXbk5KISY8l7OpppWRXEEOcyTWmDjp+
+         0S5xmogWit8V6kbGoWXGNmTI/CD1nQdB5F367pOtNcvDcQS1uBmCXMzbsq8bJWGPj8LE
+         Ww9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736944145; x=1737548945;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oCBsVs4bl6SWYHb5IG9mcYBy884hC1pNJFAWPZoPHYo=;
-        b=KV0VCikV+lLI2/WzqInHLIKTi9/S8xdnBoXx7DS9ABPwMTPAEErpRlxJmkXo9kNWQe
-         bYZx2w5/i6k0OVuD2DZREVmlMQsUzIdIX/5BsTNj+Rog2OWN0Hhnxb89YTDnqQiDe8AS
-         BDK40/Tjo9DLLPSklk/uX9JSLpq4tTfXfqJjWDXnE4zfEDCX7erDo5yX1Z7YXvOIuyr2
-         I53AxDlXrUfoKTy5ZHrwqdK92K/FhPQtMC6UkOxk/o4Q1CtickWeiNQmjBdKcgT3sFOV
-         KNRQgp/aLtgoYSM4vsJfJZ9pXOxtm8oKjSyAoM4HvLq2ihMe9v3vTO55RwnnYIcOwzG5
-         1AZA==
-X-Forwarded-Encrypted: i=1; AJvYcCVUG++UShPNtKwmjhGEmajr0hNN82zGOtc2DaAlPszb+bOFmUTRNiCecaDyZ5u9yCg1tJ1HWx+G47GQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3i6d4/OtgZ13MV7M5ORr6PK6fNk+Zx7wUNTfgGZ+5RhR09N/l
-	LUUV+Fi2MjqjcCpCjALCz++cppGjITY6l4Yd3q/2h2lbHgXCj76Iky2P43MisjI=
-X-Gm-Gg: ASbGncsvR3ogigeClezcA8g0wHjd0EJljwMaWsqBtfMICW7Z0rqN+OMAEhJVyC46jdU
-	gj8RI1jki2VRjrlU2CZHsFLYeEm6RtaNc7aSZ6uUA+0WrRw8PPHIsfHKRxBYzC8jyvZh7pmx3yh
-	F0Bco+3DssOK0ND+GYP+oIwZOD9x6TJ3sr9gXHlZZEfT4hnTdVliapcoeN9ZG0IcdI9CaBxiLxK
-	PaPGUfVlVTD3dChTTdFi0xYOgAYKYeXgSssxUuXA2ixbZyZIhHkjGBpEO3Q3ETXBA==
-X-Google-Smtp-Source: AGHT+IH+0/kaO/uH/Gk+dsWfq7DlQSNQ4aWys09GRVOBnicrOQMFG2Zr0QNNfn+nX1udzf6clGh3lQ==
-X-Received: by 2002:a05:600c:4f81:b0:434:f1d5:1453 with SMTP id 5b1f17b1804b1-436e2531ec8mr284632745e9.0.1736944145279;
-        Wed, 15 Jan 2025 04:29:05 -0800 (PST)
-Received: from [192.168.68.163] ([145.224.90.10])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c74c5b2esm21382465e9.23.2025.01.15.04.29.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jan 2025 04:29:04 -0800 (PST)
-Message-ID: <b8fd3d5a-fc61-4ab0-8fb1-7cacf4cab9f5@linaro.org>
-Date: Wed, 15 Jan 2025 12:29:03 +0000
+        d=1e100.net; s=20230601; t=1736944527; x=1737549327;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0168y1aT6Z0EJNteQDvgEFdn0AAAWihNRg1p9xurWKc=;
+        b=cMiZ6qJMTO2l5CJMqCLpN5Y3yQJagOFEFyCby6DMp1UUuP8Hlzh7ADeiS3pXNEVQCi
+         a76OAMoT8wdL/Ue4CNTMKRnxQDuweWzoyuniimNshKAanVdDIiMJsVGFquO/+cjNMCbn
+         AcqmJHgAcbnNtnR17d42KTU7mZYkY4igxcEhDpp7OVEh3wQZX8zRfx2ChsqJpKArz1Gm
+         Lc05sXZLrFxOxiFmA5H8STNV9Du3SJPhzTvlA6scTjjF4mEqpWi2G39V5cP7jxVMmutV
+         IrTlqTudbtELnsoBwAtWo34OyTey7UXDrs6aUh5zvPiLBSMTGONa+UxRq1Eq18sHWhYh
+         ZqsA==
+X-Forwarded-Encrypted: i=1; AJvYcCUTwRARIQHIVtK0diR7A57AO2VsbHMw29HRVeeDVbpi8lpN4ZXGbc4c5zF3SJhsQxsCAEq3OciIcSB5@vger.kernel.org, AJvYcCWHeyVp2iJGXB59UD1XtQICwtud4NDcEGWfMRi+1t+XASVGK/YMTBgEs3p8PmE+kd/MD/cR14BVmpej@vger.kernel.org, AJvYcCWMmQJvHI5qKpI69lWBe0Rfc1/VvuLDRcj9cuYNZG6rMqxmynBr0U5fZlvNUjgjYPWB/Nfcrm0gasj1MyhG@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw7btTB0dPYu1bERQO25X7paX6GaUIIP28WMmkB7/+8K/2llkiP
+	TV/zqIDKTNipLxzlKU3UkDapu/sAySZ1qhAaLZcwOKpPvMVYf3Zj
+X-Gm-Gg: ASbGnctJmNMAPus+Z8dvv73gOoyCkuA7S56rOqPL25VXcb6nQQzNoL70tmNhrBIVWIo
+	kVa263Gew6Eq0Qn9NI6Gx3WrVMVch1IqCvaet1ci17GITDXGKnsW++/IPruGnUpPzm9bzmtZKXt
+	dDXhDoG88HfzKubjVEfXpkPOvIJi885xhQ2x1fsMXHTH0lPIQ3RuzqR7cWezZw5mtvd849WxxUl
+	7N0FFEyme0SoKwoqD8XqpJas7QbC07282GDiHWJQBZPOAtDNFgOIPf5QMNxVkwJpJdziENP4ohK
+	LDqpmFbq0tLg6QLBiSWJDP486WxqQ0h2eiD++Q==
+X-Google-Smtp-Source: AGHT+IH1/5gtyrRiWonxeBAAJGmFBKiyybkceQtRywcqNbdqTmgdz2KoLz5XTp/bdsR/InqMMaMDqA==
+X-Received: by 2002:a17:906:fd87:b0:aab:cce0:f8b4 with SMTP id a640c23a62f3a-ab2abc9ed6cmr2636637966b.52.1736944526942;
+        Wed, 15 Jan 2025 04:35:26 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab3110467e6sm455284766b.59.2025.01.15.04.35.22
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 15 Jan 2025 04:35:26 -0800 (PST)
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Message-Id: <B1C9DA16-F285-4AD0-AE4E-AF1A5CA20932@gmail.com>
+Content-Type: multipart/mixed;
+	boundary="Apple-Mail=_D28ACD65-2F39-41F0-94BF-7B7ADDBD1390"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/5] Coresight: Add trace_id function to retrieving the
- trace ID
-To: Jie Gan <quic_jiegan@quicinc.com>
-Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
- linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
- <mike.leach@linaro.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-References: <20241226011022.1477160-1-quic_jiegan@quicinc.com>
- <20241226011022.1477160-3-quic_jiegan@quicinc.com>
- <64731493-4bd1-4707-9452-5ca86744875b@linaro.org>
- <a2d995bc-02ff-4374-968e-2fa6d8f921dd@quicinc.com>
- <02f114b7-8654-4402-b105-7aef41d487f0@linaro.org>
- <e3a29406-075d-41f6-888c-ebe168162134@quicinc.com>
-Content-Language: en-US
-From: James Clark <james.clark@linaro.org>
-In-Reply-To: <e3a29406-075d-41f6-888c-ebe168162134@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.300.87.4.3\))
+Subject: Re: [RFC PATCH v1 0/6] rockchip: add a functional usb3 phy driver for
+ rk3328
+Date: Wed, 15 Jan 2025 13:35:11 +0100
+In-Reply-To: <CAMdYzYo2W1hLgiH697AdRSUbhBU4rU2uB=N6EMWMD2-0R+VLBA@mail.gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+ Algea Cao <algea.cao@rock-chips.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ kever.yang@rock-chips.com,
+ linux-phy@lists.infradead.org,
+ wulf@rock-chips.com,
+ zyw@rock-chips.com,
+ Dragan Simic <dsimic@manjaro.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ linux-clk@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Jonas Karlman <jonas@kwiboo.se>,
+ frank.wang@rock-chips.com,
+ Elaine Zhang <zhangqing@rock-chips.com>,
+ Alex Bee <knaerzche@gmail.com>,
+ william.wu@rock-chips.com,
+ Zhang Yubing <yubing.zhang@rock-chips.com>,
+ Johan Jonker <jbx6244@gmail.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Trevor Woerner <twoerner@gmail.com>,
+ Stephen Boyd <sboyd@kernel.org>,
+ linux-kernel@vger.kernel.org,
+ Vinod Koul <vkoul@kernel.org>,
+ FUKAUMI Naoki <naoki@radxa.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Peter Geis <pgwipeout@gmail.com>
+References: <20250115012628.1035928-1-pgwipeout@gmail.com>
+ <2EEA8028-8E4A-4588-A480-E5FF0F7BE82E@gmail.com>
+ <CAMdYzYo2W1hLgiH697AdRSUbhBU4rU2uB=N6EMWMD2-0R+VLBA@mail.gmail.com>
+X-Mailer: Apple Mail (2.3826.300.87.4.3)
+
+
+--Apple-Mail=_D28ACD65-2F39-41F0-94BF-7B7ADDBD1390
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
 
 
-On 15/01/2025 1:44 am, Jie Gan wrote:
-> 
-> 
-> On 1/14/2025 6:07 PM, James Clark wrote:
->>
->>
->> On 14/01/2025 2:51 am, Jie Gan wrote:
->>>
->>>
->>> On 1/13/2025 8:02 PM, James Clark wrote:
->>>>
->>>>
->>>> On 26/12/2024 1:10 am, Jie Gan wrote:
->>>>> Add 'trace_id' function pointer in ops. It's responsible for
->>>>> retrieving the device's trace ID.
->>>>>
->>>>> Add 'struct cs_sink_data' to store the data that is needed by
->>>>> coresight_enable_path/coresight_disable_path. The structure
->>>>> will be transmitted to the helper and sink device to enable
->>>>> related funcationalities.
->>>>>
->>>>
->>>> The new cs_sink_data struct is quite specific to this change. Can we 
->>>> start passing the path around to enable/disable functions, that will 
->>>> allow devices to gather anything they want in the future. Because we 
->>>> already have coresight_get_sink(path), coresight_get_source(path) etc.
->>>>
->>>> And see below, but for this case we can also change the path struct 
->>>> to contain the trace ID. Then all the new functions, allocations and 
->>>> searches for the trace ID are unecessary. The CTCU will have access 
->>>> to the path, and by the time its enable function is called the trace 
->>>> ID is already assigned.
->>>>
->>>> It's also easier to understand at which point a trace ID is 
->>>> allocated, rather than adding the trace_id() callbacks from 
->>>> everywhere which could potentially either read or allocate. I 
->>>> suppose that's "safer" because maybe it's not allocated, but I can't 
->>>> see what case it would happen in reverse.
->>>>
->>> Thank you for comment. I will try this solution.
->>> The biggest challenge for the patch is how to correctly read trace_id 
->>> from source device and passthrough it to helper device as the source 
->>> device always the last one to enable. I believe your proposed 
->>> solution is better than mine and has minimal impact on the basic 
->>> framework, but I think we still need read_trace in source_ops and 
->>> link_ops. Then we can read the trace_id in coresight_build_path 
->>> function and save it to the coresight_path to avoid redundant searching?
->>>
->>>
->>>>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
->>>>> ---
->>>>>   drivers/hwtracing/coresight/coresight-core.c  | 59 ++++++++++++++ 
->>>>> +----
->>>>>   drivers/hwtracing/coresight/coresight-etb10.c |  3 +-
->>>>>   .../hwtracing/coresight/coresight-etm-perf.c  | 37 ++++++++++--
->>>>>   .../coresight/coresight-etm3x-core.c          | 30 ++++++++++
->>>>>   .../coresight/coresight-etm4x-core.c          | 29 +++++++++
->>>>>   drivers/hwtracing/coresight/coresight-priv.h  | 13 +++-
->>>>>   drivers/hwtracing/coresight/coresight-stm.c   | 22 +++++++
->>>>>   drivers/hwtracing/coresight/coresight-sysfs.c | 24 +++++++-
->>>>>   .../hwtracing/coresight/coresight-tmc-etf.c   |  3 +-
->>>>>   .../hwtracing/coresight/coresight-tmc-etr.c   |  6 +-
->>>>>   drivers/hwtracing/coresight/coresight-tpda.c  | 20 +++++++
->>>>>   drivers/hwtracing/coresight/coresight-trbe.c  |  4 +-
->>>>>   drivers/hwtracing/coresight/ultrasoc-smb.c    |  3 +-
->>>>>   include/linux/coresight.h                     |  6 ++
->>>>>   14 files changed, 234 insertions(+), 25 deletions(-)
->>>>>
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/ 
->>>>> drivers/ hwtracing/coresight/coresight-core.c
->>>>> index 0a9380350fb5..2e560b425fd4 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-core.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-core.c
->>>>> @@ -23,6 +23,7 @@
->>>>>   #include "coresight-etm-perf.h"
->>>>>   #include "coresight-priv.h"
->>>>>   #include "coresight-syscfg.h"
->>>>> +#include "coresight-trace-id.h"
->>>>>   /*
->>>>>    * Mutex used to lock all sysfs enable and disable actions and 
->>>>> loading and
->>>>> @@ -331,12 +332,12 @@ static int coresight_enable_helper(struct 
->>>>> coresight_device *csdev,
->>>>>       return helper_ops(csdev)->enable(csdev, mode, data);
->>>>>   }
->>>>> -static void coresight_disable_helper(struct coresight_device *csdev)
->>>>> +static void coresight_disable_helper(struct coresight_device 
->>>>> *csdev, void *data)
->>>>>   {
->>>>> -    helper_ops(csdev)->disable(csdev, NULL);
->>>>> +    helper_ops(csdev)->disable(csdev, data);
->>>>>   }
->>>>> -static void coresight_disable_helpers(struct coresight_device *csdev)
->>>>> +static void coresight_disable_helpers(struct coresight_device 
->>>>> *csdev, void *data)
->>>>>   {
->>>>>       int i;
->>>>>       struct coresight_device *helper;
->>>>> @@ -344,7 +345,7 @@ static void coresight_disable_helpers(struct 
->>>>> coresight_device *csdev)
->>>>>       for (i = 0; i < csdev->pdata->nr_outconns; ++i) {
->>>>>           helper = csdev->pdata->out_conns[i]->dest_dev;
->>>>>           if (helper && coresight_is_helper(helper))
->>>>> -            coresight_disable_helper(helper);
->>>>> +            coresight_disable_helper(helper, data);
->>>>>       }
->>>>>   }
->>>>> @@ -361,7 +362,7 @@ static void coresight_disable_helpers(struct 
->>>>> coresight_device *csdev)
->>>>>   void coresight_disable_source(struct coresight_device *csdev, 
->>>>> void *data)
->>>>>   {
->>>>>       source_ops(csdev)->disable(csdev, data);
->>>>> -    coresight_disable_helpers(csdev);
->>>>> +    coresight_disable_helpers(csdev, NULL);
->>>>>   }
->>>>>   EXPORT_SYMBOL_GPL(coresight_disable_source);
->>>>> @@ -371,7 +372,8 @@ EXPORT_SYMBOL_GPL(coresight_disable_source);
->>>>>    * disabled.
->>>>>    */
->>>>>   static void coresight_disable_path_from(struct list_head *path,
->>>>> -                    struct coresight_node *nd)
->>>>> +                    struct coresight_node *nd,
->>>>> +                    void *sink_data)
->>>>>   {
->>>>>       u32 type;
->>>>>       struct coresight_device *csdev, *parent, *child;
->>>>> @@ -417,13 +419,13 @@ static void 
->>>>> coresight_disable_path_from(struct list_head *path,
->>>>>           }
->>>>>           /* Disable all helpers adjacent along the path last */
->>>>> -        coresight_disable_helpers(csdev);
->>>>> +        coresight_disable_helpers(csdev, sink_data);
->>>>>       }
->>>>>   }
->>>>> -void coresight_disable_path(struct list_head *path)
->>>>> +void coresight_disable_path(struct list_head *path, void *sink_data)
->>>>>   {
->>>>> -    coresight_disable_path_from(path, NULL);
->>>>> +    coresight_disable_path_from(path, NULL, sink_data);
->>>>>   }
->>>>>   EXPORT_SYMBOL_GPL(coresight_disable_path);
->>>>> @@ -505,10 +507,47 @@ int coresight_enable_path(struct list_head 
->>>>> *path, enum cs_mode mode,
->>>>>   out:
->>>>>       return ret;
->>>>>   err:
->>>>> -    coresight_disable_path_from(path, nd);
->>>>> +    coresight_disable_path_from(path, nd, sink_data);
->>>>>       goto out;
->>>>>   }
->>>>> +int coresight_read_traceid(struct list_head *path, enum cs_mode mode,
->>>>> +               struct coresight_trace_id_map *id_map)
->>>>> +{
->>>>> +    int trace_id, type;
->>>>> +    struct coresight_device *csdev;
->>>>> +    struct coresight_node *nd;
->>>>> +
->>>>> +    list_for_each_entry(nd, path, link) {
->>>>
->>>> What do you think about also changing the path to this:
->>>>
->>>>   struct coresight_path {
->>>>     struct list_head *path,
->>>>     u8 trace_id
->>>>   };
->>>>
->>> That's better, I can simplify the coresight_read_traceid function 
->>> without traverse the path.
->>>
->>> But we still need to check the type of the coresight device, because 
->>> the TPDM does not have traceid and we use the trace_id from the TPDA 
->>> device that the TPDM connected. That's why I added trace_id to link_ops.
->>>
->>
->> But if any device that allocates a trace ID saves it into the path, 
->> then as long as any other device that needs the ID is enabled after 
->> that it just reads it from the path directly. Assuming we pass the 
->> path to every enable and disable function.
->>
->> We wouldn't need coresight_read_traceid() if it always happens that 
->> way around, which I think it currently does?
->>
-> I got your point here. You are right. If we passed path to the helper 
-> device, just use coresight_get_source to obtain the source device, then 
-> call the source_ops->trace_id to obtain the trace_id. So we definitely 
-> dont need a standalone function, coresight_read_traceid().
-> 
-> Besides, I still need a function to retrive the trace_id of the TPDA 
-> device if the source device is TPDM, right?
-> 
-> 
-> Thanks,
-> Jie
-> 
+> Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w =
+dniu 15 sty 2025, o godz. 13:25:
+>=20
+>>=20
+>>=20
+>> Do I miss something?
+>>=20
+>=20
+> Good Morning,
+>=20
+> That is an interesting failure. The simplest answer is the
+> `clock-names =3D "refclk-usb3otg", "usb3phy-otg", "usb3phy-pipe";` =
+line
+> was corrupted. Please check that when applied it matches the patch
+> exactly. If you are still having problems, you can send me the
+> compiled DTB and I'll take a look.
+>=20
 
-Yes, and that would require a search as the TPDA not always at one end 
-of the path like coresight_get_source() and coresight_get_sink(). Which 
-is why I was thinking it might be good to save the trace ID in the path 
-struct to avoid it.
+oh - this check i done as first thing to look on :-)
 
->>>
->>>> That would avoid having to traverse the path on every enable and 
->>>> would remove this function. You could also cache the trace ID in the 
->>>> CTCU for a similar benefit, but it wouldn't remove the need to call 
->>>> this at least once.
->>>>
->>>> The expensive part should be the create path part, after that enable 
->>>> and disable should be cheap because they happen on schedule for Perf 
->>>> mode. We should be avoiding allocations and searches.
->>>>
->>> I can move the read trace_id logic to build_path function, I believe 
->>> it's better than current solution.
->>>
->>>>> +        csdev = nd->csdev;
->>>>> +        type = csdev->type;
->>>>> +
->>>>> +        switch (type) {
->>>>> +        case CORESIGHT_DEV_TYPE_SOURCE:
->>>>> +            if (source_ops(csdev)->trace_id != NULL) {
->>>>> +                trace_id = source_ops(csdev)->trace_id(csdev,
->>>>> +                                       mode,
->>>>> +                                       id_map);
->>>>> +                if (IS_VALID_CS_TRACE_ID(trace_id))
->>>>> +                    goto out;
->>>>> +            }
->>>>> +            break;
->>>>> +        case CORESIGHT_DEV_TYPE_LINK:
->>>>> +            if (link_ops(csdev)->trace_id != NULL) {
->>>>> +                trace_id = link_ops(csdev)->trace_id(csdev);
->>>>> +                if (IS_VALID_CS_TRACE_ID(trace_id))
->>>>> +                    goto out;
->>>>> +            }
->>>>> +            break;
->>>>> +        default:
->>>>> +            break;
->>>>> +        }
->>>>> +    }
->>>>> +    return -EINVAL;
->>>>> +out:
->>>>> +    return trace_id;
->>>>> +}
->>>>> +
->>>>>   struct coresight_device *coresight_get_sink(struct list_head *path)
->>>>>   {
->>>>>       struct coresight_device *csdev;
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-etb10.c b/ 
->>>>> drivers/ hwtracing/coresight/coresight-etb10.c
->>>>> index aea9ac9c4bd0..904b5531c256 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-etb10.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-etb10.c
->>>>> @@ -173,7 +173,8 @@ static int etb_enable_perf(struct 
->>>>> coresight_device *csdev, void *data)
->>>>>       pid_t pid;
->>>>>       unsigned long flags;
->>>>>       struct etb_drvdata *drvdata = dev_get_drvdata(csdev- 
->>>>> >dev.parent);
->>>>> -    struct perf_output_handle *handle = data;
->>>>> +    struct cs_sink_data *sink_data = (struct cs_sink_data *)data;
->>>>> +    struct perf_output_handle *handle = sink_data->handle;
->>>>>       struct cs_buffers *buf = etm_perf_sink_config(handle);
->>>>>       spin_lock_irqsave(&drvdata->spinlock, flags);
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-etm-perf.c b/ 
->>>>> drivers/hwtracing/coresight/coresight-etm-perf.c
->>>>> index ad6a8f4b70b6..e676edd42ddc 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-etm-perf.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-etm-perf.c
->>>>> @@ -459,6 +459,7 @@ static void etm_event_start(struct perf_event 
->>>>> *event, int flags)
->>>>>       struct perf_output_handle *handle = &ctxt->handle;
->>>>>       struct coresight_device *sink, *csdev = per_cpu(csdev_src, cpu);
->>>>>       struct list_head *path;
->>>>> +    struct cs_sink_data *sink_data = NULL;
->>>>>       u64 hw_id;
->>>>>       u8 trace_id;
->>>>> @@ -498,9 +499,20 @@ static void etm_event_start(struct perf_event 
->>>>> *event, int flags)
->>>>>       if (WARN_ON_ONCE(!sink))
->>>>>           goto fail_end_stop;
->>>>> +    sink_data = kzalloc(sizeof(*sink_data), GFP_KERNEL);
->>>>
->>>> kzalloc can't be called from here. Check dmesg for the warning. 
->>>> That's another reason to do this change on the path. Because the 
->>>> path is allocated on etm_setup_aux() where allocations are allowed.
->>>>
->>> Will fix it.
->>>
->>>
->>>>> +    if (!sink_data)
->>>>> +        goto fail_end_stop;
->>>>> +
->>>>> +    sink_data->sink = sink;
->>>>> +    sink_data->traceid = coresight_read_traceid(path, CS_MODE_PERF,
->>>>> +                            &sink->perf_sink_id_map);
->>>>> +    sink_data->handle = handle;
->>>>> +
->>>>>       /* Nothing will happen without a path */
->>>>> -    if (coresight_enable_path(path, CS_MODE_PERF, handle))
->>>>> +    if (coresight_enable_path(path, CS_MODE_PERF, sink_data)) {
->>>>> +        kfree(sink_data);
->>>>>           goto fail_end_stop;
->>>>> +    }
->>>>>       /* Finally enable the tracer */
->>>>>       if (source_ops(csdev)->enable(csdev, event, CS_MODE_PERF,
->>>>> @@ -526,6 +538,7 @@ static void etm_event_start(struct perf_event 
->>>>> *event, int flags)
->>>>>           perf_report_aux_output_id(event, hw_id);
->>>>>       }
->>>>> +    kfree(sink_data);
->>>>>   out:
->>>>>       /* Tell the perf core the event is alive */
->>>>>       event->hw.state = 0;
->>>>> @@ -534,7 +547,8 @@ static void etm_event_start(struct perf_event 
->>>>> *event, int flags)
->>>>>       return;
->>>>>   fail_disable_path:
->>>>> -    coresight_disable_path(path);
->>>>> +    coresight_disable_path(path, sink_data);
->>>>> +    kfree(sink_data);
->>>>>   fail_end_stop:
->>>>>       /*
->>>>>        * Check if the handle is still associated with the event,
->>>>> @@ -559,6 +573,7 @@ static void etm_event_stop(struct perf_event 
->>>>> *event, int mode)
->>>>>       struct perf_output_handle *handle = &ctxt->handle;
->>>>>       struct etm_event_data *event_data;
->>>>>       struct list_head *path;
->>>>> +    struct cs_sink_data *sink_data = NULL;
->>>>>       /*
->>>>>        * If we still have access to the event_data via handle,
->>>>> @@ -603,6 +618,10 @@ static void etm_event_stop(struct perf_event 
->>>>> *event, int mode)
->>>>>       if (!sink)
->>>>>           return;
->>>>> +    sink_data = kzalloc(sizeof(*sink_data), GFP_KERNEL);
->>>>
->>>> Same problem as above.
->>>>
->>>>> +    if (!sink_data)
->>>>> +        return;
->>>>> +
->>>>>       /* stop tracer */
->>>>>       coresight_disable_source(csdev, event);
->>>>> @@ -616,12 +635,16 @@ static void etm_event_stop(struct perf_event 
->>>>> *event, int mode)
->>>>>        * have to do anything here.
->>>>>        */
->>>>>       if (handle->event && (mode & PERF_EF_UPDATE)) {
->>>>> -        if (WARN_ON_ONCE(handle->event != event))
->>>>> +        if (WARN_ON_ONCE(handle->event != event)) {
->>>>> +            kfree(sink_data);
->>>>>               return;
->>>>> +        }
->>>>>           /* update trace information */
->>>>> -        if (!sink_ops(sink)->update_buffer)
->>>>> +        if (!sink_ops(sink)->update_buffer) {
->>>>> +            kfree(sink_data);
->>>>>               return;
->>>>> +        }
->>>>>           size = sink_ops(sink)->update_buffer(sink, handle,
->>>>>                             event_data->snk_config);
->>>>> @@ -642,8 +665,12 @@ static void etm_event_stop(struct perf_event 
->>>>> *event, int mode)
->>>>>               WARN_ON(size);
->>>>>       }
->>>>> +    sink_data->sink = sink;
->>>>> +    sink_data->traceid = coresight_read_traceid(path, CS_MODE_PERF,
->>>>> +                            &sink->perf_sink_id_map);
->>>>>       /* Disabling the path make its elements available to other 
->>>>> sessions */
->>>>> -    coresight_disable_path(path);
->>>>> +    coresight_disable_path(path, sink_data);
->>>>> +    kfree(sink_data);
->>>>>   }
->>>>>   static int etm_event_add(struct perf_event *event, int mode)
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-etm3x-core.c b/ 
->>>>> drivers/hwtracing/coresight/coresight-etm3x-core.c
->>>>> index c103f4c70f5d..0f095fab7e0a 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-etm3x-core.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-etm3x-core.c
->>>>> @@ -697,10 +697,40 @@ static void etm_disable(struct 
->>>>> coresight_device *csdev,
->>>>>           coresight_set_mode(csdev, CS_MODE_DISABLED);
->>>>>   }
->>>>> +static int etm_trace_id(struct coresight_device *csdev,
->>>>> +            enum cs_mode mode,
->>>>> +            struct coresight_trace_id_map *id_map)
->>>>> +{
->>>>> +    int trace_id;
->>>>> +    struct etm_drvdata *drvdata;
->>>>> +
->>>>> +    if (csdev == NULL)
->>>>> +        return -EINVAL;
->>>>> +
->>>>> +    drvdata = dev_get_drvdata(csdev->dev.parent);
->>>>> +    switch (mode) {
->>>>> +    case CS_MODE_SYSFS:
->>>>> +        trace_id = etm_read_alloc_trace_id(drvdata);
->>>>> +        break;
->>>>> +    case CS_MODE_PERF:
->>>>> +        trace_id = coresight_trace_id_read_cpu_id_map(drvdata- 
->>>>> >cpu, id_map);
->>>>> +        if (IS_VALID_CS_TRACE_ID(trace_id))
->>>>> +            drvdata->traceid = (u8)trace_id;
->>>>> +        break;
->>>>> +    default:
->>>>> +        trace_id = -EINVAL;
->>>>> +        break;
->>>>> +    }
->>>>> +
->>>>> +    return trace_id;
->>>>> +}
->>>>> +
->>>>> +
->>>>>   static const struct coresight_ops_source etm_source_ops = {
->>>>>       .cpu_id        = etm_cpu_id,
->>>>>       .enable        = etm_enable,
->>>>>       .disable    = etm_disable,
->>>>> +    .trace_id    = etm_trace_id,
->>>>>   };
->>>>>   static const struct coresight_ops etm_cs_ops = {
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/ 
->>>>> drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>>> index dd8c74f893db..bac9ea371688 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
->>>>> @@ -1025,10 +1025,39 @@ static void etm4_disable(struct 
->>>>> coresight_device *csdev,
->>>>>           coresight_set_mode(csdev, CS_MODE_DISABLED);
->>>>>   }
->>>>> +static int etm4_trace_id(struct coresight_device *csdev,
->>>>> +             enum cs_mode mode,
->>>>> +             struct coresight_trace_id_map *id_map)
->>>>> +{
->>>>> +    int trace_id;
->>>>> +    struct etmv4_drvdata *drvdata;
->>>>> +
->>>>> +    if (csdev == NULL)
->>>>> +        return -EINVAL;
->>>>> +
->>>>> +    drvdata = dev_get_drvdata(csdev->dev.parent);
->>>>> +    switch (mode) {
->>>>> +    case CS_MODE_SYSFS:
->>>>> +        trace_id = etm4_read_alloc_trace_id(drvdata);
->>>>> +        break;
->>>>> +    case CS_MODE_PERF:
->>>>> +        trace_id = coresight_trace_id_read_cpu_id_map(drvdata- 
->>>>> >cpu, id_map);
->>>>> +        if (IS_VALID_CS_TRACE_ID(trace_id))
->>>>> +            drvdata->trcid = (u8)trace_id;
->>>>> +        break;
->>>>> +    default:
->>>>> +        trace_id = -EINVAL;
->>>>> +        break;
->>>>> +    }
->>>>> +
->>>>> +    return trace_id;
->>>>> +}
->>>>> +
->>>>>   static const struct coresight_ops_source etm4_source_ops = {
->>>>>       .cpu_id        = etm4_cpu_id,
->>>>>       .enable        = etm4_enable,
->>>>>       .disable    = etm4_disable,
->>>>> +    .trace_id    = etm4_trace_id,
->>>>>   };
->>>>>   static const struct coresight_ops etm4_cs_ops = {
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-priv.h b/ 
->>>>> drivers/ hwtracing/coresight/coresight-priv.h
->>>>> index 05f891ca6b5c..6a95a3ba9339 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-priv.h
->>>>> +++ b/drivers/hwtracing/coresight/coresight-priv.h
->>>>> @@ -105,6 +105,15 @@ struct cs_buffers {
->>>>>       void            **data_pages;
->>>>>   };
->>>>> +/**
->>>>> + * struct cs_sink_data - data used by coresight_enable_path/ 
->>>>> coresight_disable_path
->>>>> + */
->>>>> +struct cs_sink_data {
->>>>> +    struct perf_output_handle    *handle;
->>>>> +    struct coresight_device        *sink;
->>>>> +    u8                traceid;
->>>>> +};
->>>>> +
->>>>>   static inline void coresight_insert_barrier_packet(void *buf)
->>>>>   {
->>>>>       if (buf)
->>>>> @@ -129,9 +138,11 @@ static inline void CS_UNLOCK(void __iomem *addr)
->>>>>       } while (0);
->>>>>   }
->>>>> -void coresight_disable_path(struct list_head *path);
->>>>> +void coresight_disable_path(struct list_head *path, void *sink_data);
->>>>>   int coresight_enable_path(struct list_head *path, enum cs_mode mode,
->>>>>                 void *sink_data);
->>>>> +int coresight_read_traceid(struct list_head *path, enum cs_mode mode,
->>>>> +               struct coresight_trace_id_map *id_map);
->>>>>   struct coresight_device *coresight_get_sink(struct list_head *path);
->>>>>   struct coresight_device *coresight_get_sink_by_id(u32 id);
->>>>>   struct coresight_device *
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-stm.c b/drivers/ 
->>>>> hwtracing/coresight/coresight-stm.c
->>>>> index b581a30a1cd9..5709eda77d9b 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-stm.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-stm.c
->>>>> @@ -281,9 +281,31 @@ static void stm_disable(struct 
->>>>> coresight_device *csdev,
->>>>>       }
->>>>>   }
->>>>> +static int stm_trace_id(struct coresight_device *csdev,
->>>>> +            enum cs_mode mode,
->>>>> +            struct coresight_trace_id_map *id_map)
->>>>> +{
->>>>> +    int trace_id;
->>>>> +    struct stm_drvdata *drvdata;
->>>>> +
->>>>> +    if (csdev == NULL)
->>>>> +        return -EINVAL;
->>>>> +
->>>>> +    drvdata = dev_get_drvdata(csdev->dev.parent);
->>>>> +    trace_id = drvdata->traceid;
->>>>> +    if (!IS_VALID_CS_TRACE_ID(trace_id)) {
->>>>
->>>> Trace ID is static and always set for STM so this isn't necessary, 
->>>> just return drvdata->traceid which would already be valid otherwise 
->>>> the device wouldn't be registered.
->>>>
->>> Thanks for comment.
->>> Will fix in next version
->>>
->>>
->>>>> +        trace_id = coresight_trace_id_get_system_id();
->>>>> +        if (IS_VALID_CS_TRACE_ID(trace_id))
->>>>> +            drvdata->traceid = (u8)trace_id;
->>>>> +    }
->>>>> +
->>>>> +    return trace_id;
->>>>> +}
->>>>> +
->>>>>   static const struct coresight_ops_source stm_source_ops = {
->>>>>       .enable        = stm_enable,
->>>>>       .disable    = stm_disable,
->>>>> +    .trace_id    = stm_trace_id,
->>>>>   };
->>>>>   static const struct coresight_ops stm_cs_ops = {
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-sysfs.c b/ 
->>>>> drivers/ hwtracing/coresight/coresight-sysfs.c
->>>>> index a01c9e54e2ed..8816bccba374 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-sysfs.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-sysfs.c
->>>>> @@ -168,6 +168,7 @@ int coresight_enable_sysfs(struct 
->>>>> coresight_device *csdev)
->>>>>       int cpu, ret = 0;
->>>>>       struct coresight_device *sink;
->>>>>       struct list_head *path;
->>>>> +    struct cs_sink_data *sink_data;
->>>>>       enum coresight_dev_subtype_source subtype;
->>>>>       u32 hash;
->>>>> @@ -209,7 +210,14 @@ int coresight_enable_sysfs(struct 
->>>>> coresight_device *csdev)
->>>>>           goto out;
->>>>>       }
->>>>> -    ret = coresight_enable_path(path, CS_MODE_SYSFS, NULL);
->>>>> +    sink_data = kzalloc(sizeof(*sink_data), GFP_KERNEL);
->>>>> +    if (!sink_data) {
->>>>> +        ret = -ENOMEM;
->>>>> +        goto out;
->>>>> +    }
->>>>> +    sink_data->traceid = coresight_read_traceid(path, 
->>>>> CS_MODE_SYSFS, NULL);
->>>>> +    sink_data->sink = sink;
->>>>> +    ret = coresight_enable_path(path, CS_MODE_SYSFS, sink_data);
->>>>>       if (ret)
->>>>>           goto err_path;
->>>>> @@ -246,15 +254,17 @@ int coresight_enable_sysfs(struct 
->>>>> coresight_device *csdev)
->>>>>           break;
->>>>>       }
->>>>> +    kfree(sink_data);
->>>>>   out:
->>>>>       mutex_unlock(&coresight_mutex);
->>>>>       return ret;
->>>>>   err_source:
->>>>> -    coresight_disable_path(path);
->>>>> +    coresight_disable_path(path, sink_data);
->>>>>   err_path:
->>>>>       coresight_release_path(path);
->>>>> +    kfree(sink_data);
->>>>>       goto out;
->>>>>   }
->>>>>   EXPORT_SYMBOL_GPL(coresight_enable_sysfs);
->>>>> @@ -263,6 +273,7 @@ void coresight_disable_sysfs(struct 
->>>>> coresight_device *csdev)
->>>>>   {
->>>>>       int cpu, ret;
->>>>>       struct list_head *path = NULL;
->>>>> +    struct cs_sink_data *sink_data = NULL;
->>>>>       u32 hash;
->>>>>       mutex_lock(&coresight_mutex);
->>>>> @@ -274,6 +285,10 @@ void coresight_disable_sysfs(struct 
->>>>> coresight_device *csdev)
->>>>>       if (!coresight_disable_source_sysfs(csdev, NULL))
->>>>>           goto out;
->>>>> +    sink_data = kzalloc(sizeof(*sink_data), GFP_KERNEL);
->>>>> +    if (!sink_data)
->>>>> +        goto out;
->>>>> +
->>>>>       switch (csdev->subtype.source_subtype) {
->>>>>       case CORESIGHT_DEV_SUBTYPE_SOURCE_PROC:
->>>>>           cpu = source_ops(csdev)->cpu_id(csdev);
->>>>> @@ -297,8 +312,11 @@ void coresight_disable_sysfs(struct 
->>>>> coresight_device *csdev)
->>>>>           break;
->>>>>       }
->>>>> -    coresight_disable_path(path);
->>>>> +    sink_data->sink = coresight_find_activated_sysfs_sink(csdev);
->>>>> +    sink_data->traceid = coresight_read_traceid(path, 
->>>>> CS_MODE_SYSFS, NULL);
->>>>> +    coresight_disable_path(path, sink_data);
->>>>>       coresight_release_path(path);
->>>>> +    kfree(sink_data);
->>>>>   out:
->>>>>       mutex_unlock(&coresight_mutex);
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etf.c b/ 
->>>>> drivers/hwtracing/coresight/coresight-tmc-etf.c
->>>>> index d4f641cd9de6..7dc536eba3e2 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-tmc-etf.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-tmc-etf.c
->>>>> @@ -250,7 +250,8 @@ static int tmc_enable_etf_sink_perf(struct 
->>>>> coresight_device *csdev, void *data)
->>>>>       pid_t pid;
->>>>>       unsigned long flags;
->>>>>       struct tmc_drvdata *drvdata = dev_get_drvdata(csdev- 
->>>>> >dev.parent);
->>>>> -    struct perf_output_handle *handle = data;
->>>>> +    struct cs_sink_data *sink_data = (struct cs_sink_data *)data;
->>>>> +    struct perf_output_handle *handle = sink_data->handle;
->>>>>       struct cs_buffers *buf = etm_perf_sink_config(handle);
->>>>>       spin_lock_irqsave(&drvdata->spinlock, flags);
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-tmc-etr.c b/ 
->>>>> drivers/hwtracing/coresight/coresight-tmc-etr.c
->>>>> index a48bb85d0e7f..90a4058c9959 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-tmc-etr.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-tmc-etr.c
->>>>> @@ -1254,7 +1254,8 @@ static int tmc_enable_etr_sink_sysfs(struct 
->>>>> coresight_device *csdev)
->>>>>   struct etr_buf *tmc_etr_get_buffer(struct coresight_device *csdev,
->>>>>                      enum cs_mode mode, void *data)
->>>>>   {
->>>>> -    struct perf_output_handle *handle = data;
->>>>> +    struct cs_sink_data *sink_data = (struct cs_sink_data *)data;
->>>>> +    struct perf_output_handle *handle = sink_data->handle;
->>>>>       struct etr_perf_buffer *etr_perf;
->>>>>       switch (mode) {
->>>>> @@ -1648,7 +1649,8 @@ static int tmc_enable_etr_sink_perf(struct 
->>>>> coresight_device *csdev, void *data)
->>>>>       pid_t pid;
->>>>>       unsigned long flags;
->>>>>       struct tmc_drvdata *drvdata = dev_get_drvdata(csdev- 
->>>>> >dev.parent);
->>>>> -    struct perf_output_handle *handle = data;
->>>>> +    struct cs_sink_data *sink_data = (struct cs_sink_data *)data;
->>>>> +    struct perf_output_handle *handle = sink_data->handle;
->>>>>       struct etr_perf_buffer *etr_perf = etm_perf_sink_config(handle);
->>>>>       spin_lock_irqsave(&drvdata->spinlock, flags);
->>>>> diff --git a/drivers/hwtracing/coresight/coresight-tpda.c b/ 
->>>>> drivers/ hwtracing/coresight/coresight-tpda.c
->>>>> index 189a4abc2561..05622333f2d2 100644
->>>>> --- a/drivers/hwtracing/coresight/coresight-tpda.c
->>>>> +++ b/drivers/hwtracing/coresight/coresight-tpda.c
->>>>> @@ -241,9 +241,29 @@ static void tpda_disable(struct 
->>>>> coresight_device *csdev,
->>>>>       dev_dbg(drvdata->dev, "TPDA inport %d disabled\n", in- 
->>>>> >dest_port);
->>>>>   }
->>>>> +static int tpda_trace_id(struct coresight_device *csdev)
->>>>> +{
->>>>> +    int trace_id;
->>>>> +    struct tpda_drvdata *drvdata;
->>>>> +
->>>>> +    if (csdev == NULL)
->>>>> +        return -EINVAL;
->>>>> +
->>>>> +    drvdata = dev_get_drvdata(csdev->dev.parent);
->>>>> +    trace_id = drvdata->atid;
->>>>> +    if (!IS_VALID_CS_TRACE_ID(trace_id)) {
->>>>
->>>> Same comment as STM. This is always set so no ned to try to assign 
->>>> another one.
->>>>
->>> Will fix.
->>>
->>> [...]
->>>
->>> Thanks,
->>> Jie
->>>
->>
-> 
+pls find:
 
+dtsi: https://gist.github.com/warpme/6af9e2778fb06bfb47b64f98fe79d678
+and dt: https://gist.github.com/warpme/79340c54c87b2b1e52f2a146461d8c9f
+
+
+and compiled .dtb
+
+
+--Apple-Mail=_D28ACD65-2F39-41F0-94BF-7B7ADDBD1390
+Content-Disposition: attachment;
+	filename=rk3328-a1.dtb
+Content-Type: application/octet-stream;
+	x-unix-mode=0644;
+	name="rk3328-a1.dtb"
+Content-Transfer-Encoding: base64
+
+0A3+7QAAnX8AAAA4AACSZAAAACgAAAARAAAAEAAAAAAAAAsbAACSLAAAAAAAAAAAAAAAAAAAAAAA
+AAABAAAAAAAAAAMAAAAfAAAAAGF6dyxiZWVsaW5rLWExAHJvY2tjaGlwLHJrMzMyOAAAAAAAAwAA
+AAQAAAALAAAAAQAAAAMAAAAEAAAAHAAAAAIAAAADAAAABAAAACsAAAACAAAAAwAAAAsAAAA3QmVl
+bGluayBBMQAAAAAAAWFsaWFzZXMAAAAAAwAAABcAAAA9L3BpbmN0cmwvZ3Bpb0BmZjIxMDAwMAAA
+AAAAAwAAABcAAABDL3BpbmN0cmwvZ3Bpb0BmZjIyMDAwMAAAAAAAAwAAABcAAABJL3BpbmN0cmwv
+Z3Bpb0BmZjIzMDAwMAAAAAAAAwAAABcAAABPL3BpbmN0cmwvZ3Bpb0BmZjI0MDAwMAAAAAAAAwAA
+ABEAAABVL3NlcmlhbEBmZjExMDAwMAAAAAAAAAADAAAAEQAAAF0vc2VyaWFsQGZmMTIwMDAwAAAA
+AAAAAAMAAAARAAAAZS9zZXJpYWxAZmYxMzAwMDAAAAAAAAAAAwAAAA4AAABtL2kyY0BmZjE1MDAw
+MAAAAAAAAAMAAAAOAAAAci9pMmNAZmYxNjAwMDAAAAAAAAADAAAADgAAAHcvaTJjQGZmMTcwMDAw
+AAAAAAAAAwAAAA4AAAB8L2kyY0BmZjE4MDAwMAAAAAAAAAMAAAATAAAAgS9ldGhlcm5ldEBmZjU0
+MDAwMAAAAAAAAwAAAA4AAACLL21tY0BmZjUwMDAwMAAAAAAAAAMAAAAOAAAAkC9tbWNAZmY1MjAw
+MDAAAAAAAAACAAAAAWNwdXMAAAAAAAAAAwAAAAQAAAAcAAAAAgAAAAMAAAAEAAAAKwAAAAAAAAAB
+Y3B1QDAAAAAAAAADAAAABAAAAJVjcHUAAAAAAwAAAA8AAAAAYXJtLGNvcnRleC1hNTMAAAAAAAMA
+AAAIAAAAoQAAAAAAAAAAAAAAAwAAAAgAAAClAAAAAgAAAAYAAAADAAAABAAAAKwAAAACAAAAAwAA
+AAQAAAC7AAAAAwAAAAMAAAAEAAAAywAAAHgAAAADAAAABQAAAOVwc2NpAAAAAAAAAAMAAAAEAAAA
+8wAAAAQAAAADAAAABAAAAQcAAIAAAAAAAwAAAAQAAAEUAAAAQAAAAAMAAAAEAAABJgAAAQAAAAAD
+AAAABAAAATMAAIAAAAAAAwAAAAQAAAFAAAAAQAAAAAMAAAAEAAABUgAAAIAAAAADAAAABAAAAV8A
+AAAFAAAAAwAAAAQAAAFwAAAABgAAAAMAAAAEAAABewAAAAkAAAACAAAAAWNwdUAxAAAAAAAAAwAA
+AAQAAACVY3B1AAAAAAMAAAAPAAAAAGFybSxjb3J0ZXgtYTUzAAAAAAADAAAACAAAAKEAAAAAAAAA
+AQAAAAMAAAAIAAAApQAAAAIAAAAGAAAAAwAAAAQAAACsAAAAAgAAAAMAAAAEAAAAuwAAAAMAAAAD
+AAAABAAAAMsAAAB4AAAAAwAAAAUAAADlcHNjaQAAAAAAAAADAAAABAAAAPMAAAAEAAAAAwAAAAQA
+AAEHAACAAAAAAAMAAAAEAAABFAAAAEAAAAADAAAABAAAASYAAAEAAAAAAwAAAAQAAAEzAACAAAAA
+AAMAAAAEAAABQAAAAEAAAAADAAAABAAAAVIAAACAAAAAAwAAAAQAAAFfAAAABQAAAAMAAAAEAAAB
+cAAAAAYAAAADAAAABAAAAXsAAAAKAAAAAgAAAAFjcHVAMgAAAAAAAAMAAAAEAAAAlWNwdQAAAAAD
+AAAADwAAAABhcm0sY29ydGV4LWE1MwAAAAAAAwAAAAgAAAChAAAAAAAAAAIAAAADAAAACAAAAKUA
+AAACAAAABgAAAAMAAAAEAAAArAAAAAIAAAADAAAABAAAALsAAAADAAAAAwAAAAQAAADLAAAAeAAA
+AAMAAAAFAAAA5XBzY2kAAAAAAAAAAwAAAAQAAADzAAAABAAAAAMAAAAEAAABBwAAgAAAAAADAAAA
+BAAAARQAAABAAAAAAwAAAAQAAAEmAAABAAAAAAMAAAAEAAABMwAAgAAAAAADAAAABAAAAUAAAABA
+AAAAAwAAAAQAAAFSAAAAgAAAAAMAAAAEAAABXwAAAAUAAAADAAAABAAAAXAAAAAGAAAAAwAAAAQA
+AAF7AAAACwAAAAIAAAABY3B1QDMAAAAAAAADAAAABAAAAJVjcHUAAAAAAwAAAA8AAAAAYXJtLGNv
+cnRleC1hNTMAAAAAAAMAAAAIAAAAoQAAAAAAAAADAAAAAwAAAAgAAAClAAAAAgAAAAYAAAADAAAA
+BAAAAKwAAAACAAAAAwAAAAQAAAC7AAAAAwAAAAMAAAAEAAAAywAAAHgAAAADAAAABQAAAOVwc2Np
+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
+AAAAAXVzYjJwaHlAMTAwAAAAAAMAAAAYAAAAAHJvY2tjaGlwLHJrMzMyOC11c2IycGh5AAAAAAMA
+AAAIAAAAoQAAAQAAAAAQAAAAAwAAAAQAAAClAAAASQAAAAMAAAAHAAAC8HBoeWNsawAAAAAAAwAA
+AAwAAALddXNiNDgwbV9waHkAAAAAAwAAAAQAAALAAAAAAAAAAAMAAAAIAAAGDQAAAAIAAAB7AAAA
+AwAAAAQAAAeDAAAASwAAAAMAAAAFAAACi29rYXkAAAAAAAAAAwAAAAQAAAF7AAAASwAAAAFvdGct
+cG9ydAAAAAAAAAADAAAABAAAB2sAAAAAAAAAAwAAACQAAAKcAAAAAAAAADsAAAAEAAAAAAAAADwA
+AAAEAAAAAAAAAD0AAAAEAAAAAwAAABwAAAbmb3RnLWJ2YWxpZABvdGctaWQAbGluZXN0YXRlAAAA
+AAMAAAAFAAACi29rYXkAAAAAAAAAAwAAAAQAAAF7AAAAWQAAAAIAAAABaG9zdC1wb3J0AAAAAAAA
+AwAAAAQAAAdrAAAAAAAAAAMAAAAMAAACnAAAAAAAAAA+AAAABAAAAAMAAAAKAAAG5mxpbmVzdGF0
+ZQAAAAAAAAMAAAAFAAACi29rYXkAAAAAAAAAAwAAAAQAAAF7AAAAWgAAAAIAAAACAAAAAgAAAAF1
+c2IzLXBoeUBmZjQ2MDAwMAAAAAAAAAMAAAAYAAAAAHJvY2tjaGlwLHJrMzMyOC11c2IzcGh5AAAA
+AAMAAAAQAAAAoQAAAAD/RgAAAAAAAAABAAAAAAADAAAAGAAAAKUAAAACAAAAXwAAAAIAAADgAAAA
+AgAAAOEAAAADAAAAKAAAAvByZWZjbGstdXNiM290ZwB1c2IzcGh5LW90ZwB1c2IzcGh5LXBpcGUA
+AAAAAwAAADAAAAKcAAAAAAAAAEsAAAAEAAAAAAAAAEwAAAAEAAAAAAAAAE0AAAAEAAAAAAAAAE4A
+AAAEAAAAAwAAABoAAAbmYnZhbGlkAGlkAGxpbmVzdGF0ZQByeGRldAAAAAAAAAMAAAAwAAAGPAAA
+AAIAAAB9AAAAAgAAAH4AAAACAAAAfwAAAAIAAAB8AAAAAgAAAJ4AAAACAAAAnwAAAAMAAABiAAAG
+Q3VzYjNwaHktdTItcG9yAHVzYjNwaHktdTMtcG9yAHVzYjNwaHktcGlwZS1tYWMAdXNiM3BoeS11
+dG1pLW1hYwB1c2IzcGh5LXV0bWktYXBiAHVzYjNwaHktcGlwZS1hcGIAAAAAAAADAAAABAAAABwA
+AAACAAAAAwAAAAQAAAArAAAAAgAAAAMAAAAAAAAHmgAAAAMAAAAFAAACi29rYXkAAAAAAAAAAXV0
+bWktcG9ydEBmZjQ3MDAwMAAAAAAAAwAAAB0AAAAAcm9ja2NoaXAscmszMzI4LXVzYjNwaHktdXRt
+aQAAAAAAAAADAAAAEAAAAKEAAAAA/0cAAAAAAAAAAIAAAAAAAwAAAAQAAAdrAAAAAAAAAAMAAAAF
+AAACi29rYXkAAAAAAAAAAwAAAAQAAAF7AAAAYQAAAAIAAAABcGlwZS1wb3J0QGZmNDc4MDAwAAAA
+AAADAAAAHQAAAAByb2NrY2hpcCxyazMzMjgtdXNiM3BoeS1waXBlAAAAAAAAAAMAAAAQAAAAoQAA
+AAD/R4AAAAAAAAAAgAAAAAADAAAABAAAB2sAAAAAAAAAAwAAAAUAAAKLb2theQAAAAAAAAADAAAA
+BAAAAXsAAABiAAAAAgAAAAIAAAABbW1jQGZmNTAwMDAwAAAAAAAAAAMAAAAwAAAAAHJvY2tjaGlw
+LHJrMzMyOC1kdy1tc2hjAHJvY2tjaGlwLHJrMzI4OC1kdy1tc2hjAAAAAAMAAAAQAAAAoQAAAAD/
+UAAAAAAAAAAAQAAAAAADAAAADAAAApwAAAAAAAAADAAAAAQAAAADAAAAIAAAAKUAAAACAAABPQAA
+AAIAAAAhAAAAAgAAAEoAAAACAAAATgAAAAMAAAAdAAAC8GJpdQBjaXUAY2l1LWRyaXZlAGNpdS1z
+YW1wbGUAAAAAAAAAAwAAAAQAAAehAAABAAAAAAMAAAAEAAAHrAIWDsAAAAADAAAACAAABjwAAAAC
+AAAAbQAAAAMAAAAGAAAGQ3Jlc2V0AAAAAAAAAwAAAAUAAAKLb2theQAAAAAAAAADAAAABAAAB7oA
+AAAEAAAAAwAAAAAAAAfEAAAAAwAAAAAAAAfWAAAAAwAAAAAAAAfnAAAAAwAAAAgAAAMcZGVmYXVs
+dAAAAAADAAAAEAAAAyoAAABMAAAATQAAAE4AAABPAAAAAwAAAAQAAAfyAAAAHAAAAAMAAAAEAAAH
+/gAAABwAAAACAAAAAW1tY0BmZjUxMDAwMAAAAAAAAAADAAAAMAAAAAByb2NrY2hpcCxyazMzMjgt
+ZHctbXNoYwByb2NrY2hpcCxyazMyODgtZHctbXNoYwAAAAADAAAAEAAAAKEAAAAA/1EAAAAAAAAA
+AEAAAAAAAwAAAAwAAAKcAAAAAAAAAA0AAAAEAAAAAwAAACAAAAClAAAAAgAAAT4AAAACAAAAIgAA
+AAIAAABLAAAAAgAAAE8AAAADAAAAHQAAAvBiaXUAY2l1AGNpdS1kcml2ZQBjaXUtc2FtcGxlAAAA
+AAAAAAMAAAAEAAAHoQAAAQAAAAADAAAABAAAB6wI8NGAAAAAAwAAAAgAAAY8AAAAAgAAAG4AAAAD
+AAAABgAABkNyZXNldAAAAAAAAAMAAAAJAAACi2Rpc2FibGVkAAAAAAAAAAIAAAABbW1jQGZmNTIw
+MDAwAAAAAAAAAAMAAAAwAAAAAHJvY2tjaGlwLHJrMzMyOC1kdy1tc2hjAHJvY2tjaGlwLHJrMzI4
+OC1kdy1tc2hjAAAAAAMAAAAQAAAAoQAAAAD/UgAAAAAAAAAAQAAAAAADAAAADAAAApwAAAAAAAAA
+DgAAAAQAAAADAAAAIAAAAKUAAAACAAABPwAAAAIAAAAjAAAAAgAAAEwAAAACAAAAUAAAAAMAAAAd
+AAAC8GJpdQBjaXUAY2l1LWRyaXZlAGNpdS1zYW1wbGUAAAAAAAAAAwAAAAQAAAehAAABAAAAAAMA
+AAAEAAAHrAjw0YAAAAADAAAACAAABjwAAAACAAAAbwAAAAMAAAAGAAAGQ3Jlc2V0AAAAAAAAAwAA
+AAUAAAKLb2theQAAAAAAAAADAAAABAAAB7oAAAAIAAAAAwAAAAAAAAfEAAAAAwAAAAAAAAgLAAAA
+AwAAAAAAAAgYAAAAAwAAAAAAAAgeAAAAAwAAAAAAAAgmAAAAAwAAAAgAAAMcZGVmYXVsdAAAAAAD
+AAAADAAAAyoAAABQAAAAUQAAAFIAAAADAAAABAAAB/IAAAAcAAAAAwAAAAQAAAf+AAAAHQAAAAIA
+AAABZXRoZXJuZXRAZmY1NDAwMDAAAAAAAAADAAAAFQAAAAByb2NrY2hpcCxyazMzMjgtZ21hYwAA
+AAAAAAADAAAAEAAAAKEAAAAA/1QAAAAAAAAAAQAAAAAAAwAAAAwAAAKcAAAAAAAAABgAAAAEAAAA
+AwAAAAcAAAbmbWFjaXJxAAAAAAADAAAAOAAAAKUAAAACAAAAZAAAAAIAAABXAAAAAgAAAFgAAAAC
+AAAAWgAAAAIAAABZAAAAAgAAAJYAAAACAAAA3wAAAAMAAABNAAAC8HN0bW1hY2V0aABtYWNfY2xr
+X3J4AG1hY19jbGtfdHgAY2xrX21hY19yZWYAY2xrX21hY19yZWZvdXQAYWNsa19tYWMAcGNsa19t
+YWMAAAAAAAAAAwAAAAgAAAY8AAAAAgAAAGMAAAADAAAACgAABkNzdG1tYWNldGgAAAAAAAADAAAA
+BAAABk8AAAA6AAAAAwAAAAQAAAg0AAAIAAAAAAMAAAAEAAAIQgAAEAAAAAADAAAABAAACFAAAAAE
+AAAAAwAAAAUAAAKLb2theQAAAAAAAAADAAAAEAAABg0AAAACAAAAZAAAAAIAAABmAAAAAwAAAAgA
+AAeDAAAAUwAAAFMAAAADAAAABgAACFtpbnB1dAAAAAAAAAMAAAAEAAAIaAAAAFQAAAADAAAABgAA
+CHNyZ21paQAAAAAAAAMAAAAEAAAIfAAAABwAAAADAAAACAAAAxxkZWZhdWx0AAAAAAMAAAAEAAAD
+KgAAAFUAAAADAAAAAAAACIcAAAADAAAABAAACJAAAAAEAAAAAwAAAAQAAAiZAAAAJgAAAAMAAAAE
+AAAIogAAABEAAAABbWRpbwAAAAAAAAADAAAAEAAAAABzbnBzLGR3bWFjLW1kaW8AAAAAAwAAAAQA
+AAAcAAAAAQAAAAMAAAAEAAAAKwAAAAAAAAABZXRoZXJuZXQtcGh5QDAAAAAAAAMAAAAEAAAAoQAA
+AAAAAAADAAAABAAACKsAACcQAAAAAwAAAAQAAAi7AAB1MAAAAAMAAAAMAAAIzQAAACgAAAARAAAA
+AQAAAAMAAAAEAAABewAAAFQAAAACAAAAAgAAAAIAAAABZXRoZXJuZXRAZmY1NTAwMDAAAAAAAAAD
+AAAAFQAAAAByb2NrY2hpcCxyazMzMjgtZ21hYwAAAAAAAAADAAAAEAAAAKEAAAAA/1UAAAAAAAAA
+AQAAAAAAAwAAAAQAAAZPAAAAOgAAAAMAAAAMAAACnAAAAAAAAAAVAAAABAAAAAMAAAAHAAAG5m1h
+Y2lycQAAAAAAAwAAADgAAAClAAAAAgAAAFQAAAACAAAAUwAAAAIAAABTAAAAAgAAAFUAAAACAAAA
+lQAAAAIAAADeAAAAAgAAAFYAAAADAAAASQAAAvBzdG1tYWNldGgAbWFjX2Nsa19yeABtYWNfY2xr
+X3R4AGNsa19tYWNfcmVmAGFjbGtfbWFjAHBjbGtfbWFjAGNsa19tYWNwaHkAAAAAAAAAAwAAAAgA
+AAY8AAAAAgAAAGIAAAADAAAACgAABkNzdG1tYWNldGgAAAAAAAADAAAABQAACHNybWlpAAAAAAAA
+AAMAAAAEAAAIaAAAAFYAAAADAAAABAAACDQAAAgAAAAAAwAAAAQAAAhCAAAQAAAAAAMAAAAEAAAI
+UAAAAAQAAAADAAAABwAACFtvdXRwdXQAAAAAAAMAAAAJAAACi2Rpc2FibGVkAAAAAAAAAAFtZGlv
+AAAAAAAAAAMAAAAQAAAAAHNucHMsZHdtYWMtbWRpbwAAAAADAAAABAAAABwAAAABAAAAAwAAAAQA
+AAArAAAAAAAAAAFldGhlcm5ldC1waHlAMAAAAAAAAwAAADQAAAAAZXRoZXJuZXQtcGh5LWlkMTIz
+NC5kNDAwAGV0aGVybmV0LXBoeS1pZWVlODAyLjMtYzIyAAAAAAMAAAAEAAAAoQAAAAAAAAADAAAA
+CAAAAKUAAAACAAAAVgAAAAMAAAAIAAAGPAAAAAIAAABkAAAAAwAAAAgAAAMcZGVmYXVsdAAAAAAD
+AAAACAAAAyoAAABXAAAAWAAAAAMAAAAAAAAI2QAAAAMAAAAEAAABewAAAFYAAAACAAAAAgAAAAIA
+AAABdXNiQGZmNTgwMDAwAAAAAAAAAAMAAAAyAAAAAHJvY2tjaGlwLHJrMzMyOC11c2IAcm9ja2No
+aXAscmszMDY2LXVzYgBzbnBzLGR3YzIAAAAAAAADAAAAEAAAAKEAAAAA/1gAAAAAAAAABAAAAAAA
+AwAAAAwAAAKcAAAAAAAAABcAAAAEAAAAAwAAAAgAAAClAAAAAgAAAU0AAAADAAAABAAAAvBvdGcA
+AAAAAwAAAAUAAAjraG9zdAAAAAAAAAADAAAABAAACPMAAAAQAAAAAwAAAAQAAAkFAAABGAAAAAMA
+AAAYAAAJFAAAAQAAAACAAAAAgAAAAEAAAAAgAAAAEAAAAAMAAAAEAAAHNAAAAFkAAAADAAAACQAA
+Bzl1c2IyLXBoeQAAAAAAAAADAAAABQAAAotva2F5AAAAAAAAAAIAAAABdXNiQGZmNWMwMDAwAAAA
+AAAAAAMAAAANAAAAAGdlbmVyaWMtZWhjaQAAAAAAAAADAAAAEAAAAKEAAAAA/1wAAAAAAAAAAQAA
+AAAAAwAAAAwAAAKcAAAAAAAAABAAAAAEAAAAAwAAAAwAAAClAAAAAgAAAU4AAABLAAAAAwAAAAQA
+AAc0AAAAWgAAAAMAAAAEAAAHOXVzYgAAAAADAAAABQAAAotva2F5AAAAAAAAAAMAAAAIAAADHGRl
+ZmF1bHQAAAAAAwAAABgAAAMqAAAAWwAAAFwAAABdAAAAXgAAAF8AAABgAAAAAgAAAAF1c2JAZmY1
+ZDAwMDAAAAAAAAAAAwAAAA0AAAAAZ2VuZXJpYy1vaGNpAAAAAAAAAAMAAAAQAAAAoQAAAAD/XQAA
+AAAAAAABAAAAAAADAAAADAAAApwAAAAAAAAAEQAAAAQAAAADAAAADAAAAKUAAAACAAABTgAAAEsA
+AAADAAAABAAABzQAAABaAAAAAwAAAAQAAAc5dXNiAAAAAAMAAAAJAAACi2Rpc2FibGVkAAAAAAAA
+AAIAAAABbW1jQGZmNWYwMDAwAAAAAAAAAAMAAAAwAAAAAHJvY2tjaGlwLHJrMzMyOC1kdy1tc2hj
+AHJvY2tjaGlwLHJrMzI4OC1kdy1tc2hjAAAAAAMAAAAQAAAAoQAAAAD/XwAAAAAAAAAAQAAAAAAD
+AAAADAAAApwAAAAAAAAABAAAAAQAAAADAAAAIAAAAKUAAAACAAABQAAAAAIAAAAfAAAAAgAAAE0A
+AAACAAAAUQAAAAMAAAAdAAAC8GJpdQBjaXUAY2l1LWRyaXZlAGNpdS1zYW1wbGUAAAAAAAAAAwAA
+AAQAAAehAAABAAAAAAMAAAAEAAAHrAjw0YAAAAADAAAACAAABjwAAAACAAAAaAAAAAMAAAAGAAAG
+Q3Jlc2V0AAAAAAAAAwAAAAkAAAKLZGlzYWJsZWQAAAAAAAAAAgAAAAF1c2JAZmY2MDAwMDAAAAAA
+AAAAAwAAAB8AAAAAcm9ja2NoaXAscmszMzI4LWR3YzMAc25wcyxkd2MzAAAAAAADAAAAEAAAAKEA
+AAAA/2AAAAAAAAAAEAAAAAAAAwAAAAwAAAKcAAAAAAAAAEMAAAAEAAAAAwAAABgAAAClAAAAAgAA
+AGAAAAACAAAAYQAAAAIAAACEAAAAAwAAABwAAALwcmVmX2NsawBzdXNwZW5kX2NsawBidXNfY2xr
+AAAAAAMAAAAFAAAI62hvc3QAAAAAAAAAAwAAAAgAAAc0AAAAYQAAAGIAAAADAAAAEgAABzl1c2Iy
+LXBoeQB1c2IzLXBoeQAAAAAAAAMAAAAKAAAJI3V0bWlfd2lkZQAAAAAAAAMAAAAAAAAJLAAAAAMA
+AAAAAAAJTQAAAAMAAAAAAAAJZQAAAAMAAAAAAAAJhwAAAAMAAAAAAAAJqAAAAAMAAAAAAAAJwQAA
+AAMAAAAFAAACi29rYXkAAAAAAAAAAgAAAAFpbnRlcnJ1cHQtY29udHJvbGxlckBmZjgxMTAwMAAA
+AAAAAAMAAAAMAAAAAGFybSxnaWMtNDAwAAAAAAMAAAAEAAAJ2gAAAAMAAAADAAAABAAAABwAAAAA
+AAAAAwAAAAAAAAnrAAAAAwAAAEAAAAChAAAAAP+BEAAAAAAAAAAQAAAAAAD/gSAAAAAAAAAAIAAA
+AAAA/4FAAAAAAAAAACAAAAAAAP+BYAAAAAAAAAAgAAAAAAMAAAAMAAACnAAAAAEAAAAJAAAPBAAA
+AAMAAAAEAAABewAAAAEAAAACAAAAAWNyeXB0b0BmZjA2MDAwMAAAAAADAAAAFwAAAAByb2NrY2hp
+cCxyazMzMjgtY3J5cHRvAAAAAAADAAAAEAAAAKEAAAAA/wYAAAAAAAAAAEAAAAAAAwAAAAwAAAKc
+AAAAAAAAAB4AAAAEAAAAAwAAABgAAAClAAAAAgAAAVAAAAACAAABUQAAAAIAAAA7AAAAAwAAABwA
+AALwaGNsa19tYXN0ZXIAaGNsa19zbGF2ZQBzY2xrAAAAAAMAAAAIAAAGPAAAAAIAAABEAAAAAwAA
+AAsAAAZDY3J5cHRvLXJzdAAAAAAAAgAAAAFwaW5jdHJsAAAAAAMAAAAYAAAAAHJvY2tjaGlwLHJr
+MzMyOC1waW5jdHJsAAAAAAMAAAAEAAAGTwAAADoAAAADAAAABAAAABwAAAACAAAAAwAAAAQAAAAr
+AAAAAgAAAAMAAAAAAAAHmgAAAAFncGlvQGZmMjEwMDAwAAAAAAAAAwAAABMAAAAAcm9ja2NoaXAs
+Z3Bpby1iYW5rAAAAAAADAAAAEAAAAKEAAAAA/yEAAAAAAAAAAAEAAAAAAwAAAAwAAAKcAAAAAAAA
+ADMAAAAEAAAAAwAAAAgAAAClAAAAAgAAAMgAAAADAAAAAAAAA58AAAADAAAABAAAA68AAAACAAAA
+AwAAAAAAAAnrAAAAAwAAAAQAAAnaAAAAAgAAAAMAAAAEAAABewAAAHAAAAACAAAAAWdwaW9AZmYy
+MjAwMDAAAAAAAAADAAAAEwAAAAByb2NrY2hpcCxncGlvLWJhbmsAAAAAAAMAAAAQAAAAoQAAAAD/
+IgAAAAAAAAAAAQAAAAADAAAADAAAApwAAAAAAAAANAAAAAQAAAADAAAACAAAAKUAAAACAAAAyQAA
+AAMAAAAAAAADnwAAAAMAAAAEAAADrwAAAAIAAAADAAAAAAAACesAAAADAAAABAAACdoAAAACAAAA
+AgAAAAFncGlvQGZmMjMwMDAwAAAAAAAAAwAAABMAAAAAcm9ja2NoaXAsZ3Bpby1iYW5rAAAAAAAD
+AAAAEAAAAKEAAAAA/yMAAAAAAAAAAAEAAAAAAwAAAAwAAAKcAAAAAAAAADUAAAAEAAAAAwAAAAgA
+AAClAAAAAgAAAMoAAAADAAAAAAAAA58AAAADAAAABAAAA68AAAACAAAAAwAAAAAAAAnrAAAAAwAA
+AAQAAAnaAAAAAgAAAAMAAAAEAAABewAAACgAAAACAAAAAWdwaW9AZmYyNDAwMDAAAAAAAAADAAAA
+EwAAAAByb2NrY2hpcCxncGlvLWJhbmsAAAAAAAMAAAAQAAAAoQAAAAD/JAAAAAAAAAAAAQAAAAAD
+AAAADAAAApwAAAAAAAAANgAAAAQAAAADAAAACAAAAKUAAAACAAAAywAAAAMAAAAAAAADnwAAAAMA
+AAAEAAADrwAAAAIAAAADAAAAAAAACesAAAADAAAABAAACdoAAAACAAAAAgAAAAFwY2ZnLXB1bGwt
+dXAAAAAAAAAAAwAAAAAAAAoAAAAAAwAAAAQAAAF7AAAAZQAAAAIAAAABcGNmZy1wdWxsLWRvd24A
+AAAAAAMAAAAAAAAKDQAAAAMAAAAEAAABewAAAG0AAAACAAAAAXBjZmctcHVsbC1ub25lAAAAAAAD
+AAAAAAAAChwAAAADAAAABAAAAXsAAABjAAAAAgAAAAFwY2ZnLXB1bGwtbm9uZS0ybWEAAAAAAAMA
+AAAAAAAKHAAAAAMAAAAEAAAKKQAAAAIAAAADAAAABAAAAXsAAABsAAAAAgAAAAFwY2ZnLXB1bGwt
+dXAtMm1hAAAAAAAAAAMAAAAAAAAKAAAAAAMAAAAEAAAKKQAAAAIAAAACAAAAAXBjZmctcHVsbC11
+cC00bWEAAAAAAAAAAwAAAAAAAAoAAAAAAwAAAAQAAAopAAAABAAAAAMAAAAEAAABewAAAGYAAAAC
+AAAAAXBjZmctcHVsbC1ub25lLTRtYQAAAAAAAwAAAAAAAAocAAAAAwAAAAQAAAopAAAABAAAAAMA
+AAAEAAABewAAAGkAAAACAAAAAXBjZmctcHVsbC1kb3duLTRtYQAAAAAAAwAAAAAAAAoNAAAAAwAA
+AAQAAAopAAAABAAAAAIAAAABcGNmZy1wdWxsLW5vbmUtOG1hAAAAAAADAAAAAAAAChwAAAADAAAA
+BAAACikAAAAIAAAAAwAAAAQAAAF7AAAAZwAAAAIAAAABcGNmZy1wdWxsLXVwLThtYQAAAAAAAAAD
+AAAAAAAACgAAAAADAAAABAAACikAAAAIAAAAAwAAAAQAAAF7AAAAaAAAAAIAAAABcGNmZy1wdWxs
+LW5vbmUtMTJtYQAAAAADAAAAAAAAChwAAAADAAAABAAACikAAAAMAAAAAwAAAAQAAAF7AAAAagAA
+AAIAAAABcGNmZy1wdWxsLXVwLTEybWEAAAAAAAADAAAAAAAACgAAAAADAAAABAAACikAAAAMAAAA
+AwAAAAQAAAF7AAAAawAAAAIAAAABcGNmZy1vdXRwdXQtaGlnaAAAAAAAAAADAAAAAAAACjgAAAAD
+AAAABAAAAXsAAABvAAAAAgAAAAFwY2ZnLW91dHB1dC1sb3cAAAAAAwAAAAAAAApEAAAAAwAAAAQA
+AAF7AAAAbgAAAAIAAAABcGNmZy1pbnB1dC1oaWdoAAAAAAMAAAAAAAAKAAAAAAMAAAAAAAAKTwAA
+AAMAAAAEAAABewAAAGQAAAACAAAAAXBjZmctaW5wdXQAAAAAAAMAAAAAAAAKTwAAAAIAAAABaTJj
+MAAAAAAAAAABaTJjMC14ZmVyAAAAAAAAAwAAACAAAApcAAAAAgAAABgAAAABAAAAYwAAAAIAAAAZ
+AAAAAQAAAGMAAAADAAAABAAAAXsAAAAmAAAAAgAAAAIAAAABaTJjMQAAAAAAAAABaTJjMS14ZmVy
+AAAAAAAAAwAAACAAAApcAAAAAgAAAAQAAAACAAAAYwAAAAIAAAAFAAAAAgAAAGMAAAADAAAABAAA
+AXsAAAAnAAAAAgAAAAIAAAABaTJjMgAAAAAAAAABaTJjMi14ZmVyAAAAAAAAAwAAACAAAApcAAAA
+AgAAAA0AAAABAAAAYwAAAAIAAAAOAAAAAQAAAGMAAAADAAAABAAAAXsAAAArAAAAAgAAAAIAAAAB
+aTJjMwAAAAAAAAABaTJjMy14ZmVyAAAAAAAAAwAAACAAAApcAAAAAAAAAAUAAAACAAAAYwAAAAAA
+AAAGAAAAAgAAAGMAAAADAAAABAAAAXsAAAAsAAAAAgAAAAFpMmMzLXBpbnMAAAAAAAADAAAAIAAA
+ClwAAAAAAAAABQAAAAAAAABjAAAAAAAAAAYAAAAAAAAAYwAAAAIAAAACAAAAAWhkbWlfaTJjAAAA
+AAAAAAFoZG1paTJjLXhmZXIAAAAAAAAAAwAAACAAAApcAAAAAAAAAAUAAAABAAAAYwAAAAAAAAAG
+AAAAAQAAAGMAAAADAAAABAAAAXsAAABFAAAAAgAAAAIAAAABcGRtLTAAAAAAAAABcGRtbTAtY2xr
+AAAAAAAAAwAAABAAAApcAAAAAgAAABIAAAACAAAAYwAAAAMAAAAEAAABewAAABIAAAACAAAAAXBk
+bW0wLWZzeW5jAAAAAAMAAAAQAAAKXAAAAAIAAAAXAAAAAgAAAGMAAAACAAAAAXBkbW0wLXNkaTAA
+AAAAAAMAAAAQAAAKXAAAAAIAAAATAAAAAgAAAGMAAAADAAAABAAAAXsAAAATAAAAAgAAAAFwZG1t
+MC1zZGkxAAAAAAADAAAAEAAAClwAAAACAAAAFAAAAAIAAABjAAAAAwAAAAQAAAF7AAAAFAAAAAIA
+AAABcGRtbTAtc2RpMgAAAAAAAwAAABAAAApcAAAAAgAAABUAAAACAAAAYwAAAAMAAAAEAAABewAA
+ABUAAAACAAAAAXBkbW0wLXNkaTMAAAAAAAMAAAAQAAAKXAAAAAIAAAAWAAAAAgAAAGMAAAADAAAA
+BAAAAXsAAAAWAAAAAgAAAAFwZG1tMC1jbGstc2xlZXAAAAAAAwAAABAAAApcAAAAAgAAABIAAAAA
+AAAAZAAAAAMAAAAEAAABewAAABcAAAACAAAAAXBkbW0wLXNkaTAtc2xlZXAAAAAAAAAAAwAAABAA
+AApcAAAAAgAAABMAAAAAAAAAZAAAAAMAAAAEAAABewAAABgAAAACAAAAAXBkbW0wLXNkaTEtc2xl
+ZXAAAAAAAAAAAwAAABAAAApcAAAAAgAAABQAAAAAAAAAZAAAAAMAAAAEAAABewAAABkAAAACAAAA
+AXBkbW0wLXNkaTItc2xlZXAAAAAAAAAAAwAAABAAAApcAAAAAgAAABUAAAAAAAAAZAAAAAMAAAAE
+AAABewAAABoAAAACAAAAAXBkbW0wLXNkaTMtc2xlZXAAAAAAAAAAAwAAABAAAApcAAAAAgAAABYA
+AAAAAAAAZAAAAAMAAAAEAAABewAAABsAAAACAAAAAXBkbW0wLWZzeW5jLXNsZWVwAAAAAAAAAwAA
+ABAAAApcAAAAAgAAABcAAAAAAAAAZAAAAAIAAAACAAAAAXRzYWRjAAAAAAAAAW90cC1waW4AAAAA
+AwAAABAAAApcAAAAAgAAAA0AAAAAAAAAYwAAAAMAAAAEAAABewAAADgAAAACAAAAAW90cC1vdXQA
+AAAAAwAAABAAAApcAAAAAgAAAA0AAAABAAAAYwAAAAMAAAAEAAABewAAADkAAAACAAAAAgAAAAF1
+YXJ0MAAAAAAAAAF1YXJ0MC14ZmVyAAAAAAADAAAAIAAAClwAAAABAAAACQAAAAEAAABjAAAAAQAA
+AAgAAAABAAAAZQAAAAMAAAAEAAABewAAAB8AAAACAAAAAXVhcnQwLWN0cwAAAAAAAAMAAAAQAAAK
+XAAAAAEAAAALAAAAAQAAAGMAAAADAAAABAAAAXsAAAAgAAAAAgAAAAF1YXJ0MC1ydHMAAAAAAAAD
+AAAAEAAAClwAAAABAAAACgAAAAEAAABjAAAAAwAAAAQAAAF7AAAAIQAAAAIAAAABdWFydDAtcnRz
+LXBpbgAAAAAAAAMAAAAQAAAKXAAAAAEAAAAKAAAAAAAAAGMAAAACAAAAAgAAAAF1YXJ0MQAAAAAA
+AAF1YXJ0MS14ZmVyAAAAAAADAAAAIAAAClwAAAADAAAABAAAAAQAAABjAAAAAwAAAAYAAAAEAAAA
+ZQAAAAMAAAAEAAABewAAACIAAAACAAAAAXVhcnQxLWN0cwAAAAAAAAMAAAAQAAAKXAAAAAMAAAAH
+AAAABAAAAGMAAAADAAAABAAAAXsAAAAjAAAAAgAAAAF1YXJ0MS1ydHMAAAAAAAADAAAAEAAAClwA
+AAADAAAABQAAAAQAAABjAAAAAwAAAAQAAAF7AAAAJAAAAAIAAAABdWFydDEtcnRzLXBpbgAAAAAA
+AAMAAAAQAAAKXAAAAAMAAAAFAAAAAAAAAGMAAAACAAAAAgAAAAF1YXJ0Mi0wAAAAAAF1YXJ0Mm0w
+LXhmZXIAAAAAAAAAAwAAACAAAApcAAAAAQAAAAAAAAACAAAAYwAAAAEAAAABAAAAAgAAAGUAAAAC
+AAAAAgAAAAF1YXJ0Mi0xAAAAAAF1YXJ0Mm0xLXhmZXIAAAAAAAAAAwAAACAAAApcAAAAAgAAAAAA
+AAABAAAAYwAAAAIAAAABAAAAAQAAAGUAAAADAAAABAAAAXsAAAAlAAAAAgAAAAIAAAABc3BpMC0w
+AAAAAAABc3BpMG0wLWNsawAAAAAAAwAAABAAAApcAAAAAgAAAAgAAAABAAAAZQAAAAIAAAABc3Bp
+MG0wLWNzMAAAAAAAAwAAABAAAApcAAAAAgAAAAsAAAABAAAAZQAAAAIAAAABc3BpMG0wLXR4AAAA
+AAAAAwAAABAAAApcAAAAAgAAAAkAAAABAAAAZQAAAAIAAAABc3BpMG0wLXJ4AAAAAAAAAwAAABAA
+AApcAAAAAgAAAAoAAAABAAAAZQAAAAIAAAABc3BpMG0wLWNzMQAAAAAAAwAAABAAAApcAAAAAgAA
+AAwAAAABAAAAZQAAAAIAAAACAAAAAXNwaTAtMQAAAAAAAXNwaTBtMS1jbGsAAAAAAAMAAAAQAAAK
+XAAAAAMAAAAXAAAAAgAAAGUAAAACAAAAAXNwaTBtMS1jczAAAAAAAAMAAAAQAAAKXAAAAAMAAAAa
+AAAAAgAAAGUAAAACAAAAAXNwaTBtMS10eAAAAAAAAAMAAAAQAAAKXAAAAAMAAAAZAAAAAgAAAGUA
+AAACAAAAAXNwaTBtMS1yeAAAAAAAAAMAAAAQAAAKXAAAAAMAAAAYAAAAAgAAAGUAAAACAAAAAXNw
+aTBtMS1jczEAAAAAAAMAAAAQAAAKXAAAAAMAAAAbAAAAAgAAAGUAAAACAAAAAgAAAAFzcGkwLTIA
+AAAAAAFzcGkwbTItY2xrAAAAAAADAAAAEAAAClwAAAADAAAAAAAAAAQAAABlAAAAAwAAAAQAAAF7
+AAAALQAAAAIAAAABc3BpMG0yLWNzMAAAAAAAAwAAABAAAApcAAAAAwAAAAgAAAADAAAAZQAAAAMA
+AAAEAAABewAAADAAAAACAAAAAXNwaTBtMi10eAAAAAAAAAMAAAAQAAAKXAAAAAMAAAABAAAABAAA
+AGUAAAADAAAABAAAAXsAAAAuAAAAAgAAAAFzcGkwbTItcngAAAAAAAADAAAAEAAAClwAAAADAAAA
+AgAAAAQAAABlAAAAAwAAAAQAAAF7AAAALwAAAAIAAAACAAAAAWkyczEAAAAAAAAAAWkyczEtbWNs
+awAAAAAAAAMAAAAQAAAKXAAAAAIAAAAPAAAAAQAAAGMAAAACAAAAAWkyczEtc2NsawAAAAAAAAMA
+AAAQAAAKXAAAAAIAAAASAAAAAQAAAGMAAAACAAAAAWkyczEtbHJja3J4AAAAAAMAAAAQAAAKXAAA
+AAIAAAAQAAAAAQAAAGMAAAACAAAAAWkyczEtbHJja3R4AAAAAAMAAAAQAAAKXAAAAAIAAAARAAAA
+AQAAAGMAAAACAAAAAWkyczEtc2RpAAAAAAAAAAMAAAAQAAAKXAAAAAIAAAATAAAAAQAAAGMAAAAC
+AAAAAWkyczEtc2RvAAAAAAAAAAMAAAAQAAAKXAAAAAIAAAAXAAAAAQAAAGMAAAACAAAAAWkyczEt
+c2RpbzEAAAAAAAMAAAAQAAAKXAAAAAIAAAAUAAAAAQAAAGMAAAACAAAAAWkyczEtc2RpbzIAAAAA
+AAMAAAAQAAAKXAAAAAIAAAAVAAAAAQAAAGMAAAACAAAAAWkyczEtc2RpbzMAAAAAAAMAAAAQAAAK
+XAAAAAIAAAAWAAAAAQAAAGMAAAACAAAAAWkyczEtc2xlZXAAAAAAAAMAAACQAAAKXAAAAAIAAAAP
+AAAAAAAAAGQAAAACAAAAEAAAAAAAAABkAAAAAgAAABEAAAAAAAAAZAAAAAIAAAASAAAAAAAAAGQA
+AAACAAAAEwAAAAAAAABkAAAAAgAAABQAAAAAAAAAZAAAAAIAAAAVAAAAAAAAAGQAAAACAAAAFgAA
+AAAAAABkAAAAAgAAABcAAAAAAAAAZAAAAAIAAAACAAAAAWkyczItMAAAAAAAAWkyczJtMC1tY2xr
+AAAAAAMAAAAQAAAKXAAAAAEAAAAVAAAAAQAAAGMAAAACAAAAAWkyczJtMC1zY2xrAAAAAAMAAAAQ
+AAAKXAAAAAEAAAAWAAAAAQAAAGMAAAACAAAAAWkyczJtMC1scmNrcngAAAAAAAADAAAAEAAAClwA
+AAABAAAAGgAAAAEAAABjAAAAAgAAAAFpMnMybTAtbHJja3R4AAAAAAAAAwAAABAAAApcAAAAAQAA
+ABcAAAABAAAAYwAAAAIAAAABaTJzMm0wLXNkaQAAAAAAAwAAABAAAApcAAAAAQAAABgAAAABAAAA
+YwAAAAIAAAABaTJzMm0wLXNkbwAAAAAAAwAAABAAAApcAAAAAQAAABkAAAABAAAAYwAAAAIAAAAB
+aTJzMm0wLXNsZWVwAAAAAAAAAAMAAABgAAAKXAAAAAEAAAAVAAAAAAAAAGQAAAABAAAAFgAAAAAA
+AABkAAAAAQAAABoAAAAAAAAAZAAAAAEAAAAXAAAAAAAAAGQAAAABAAAAGAAAAAAAAABkAAAAAQAA
+ABkAAAAAAAAAZAAAAAIAAAACAAAAAWkyczItMQAAAAAAAWkyczJtMS1tY2xrAAAAAAMAAAAQAAAK
+XAAAAAEAAAAVAAAAAQAAAGMAAAACAAAAAWkyczJtMS1zY2xrAAAAAAMAAAAQAAAKXAAAAAMAAAAA
+AAAABgAAAGMAAAACAAAAAWkyc20xLWxyY2tyeAAAAAAAAAADAAAAEAAAClwAAAADAAAACAAAAAYA
+AABjAAAAAgAAAAFpMnMybTEtbHJja3R4AAAAAAAAAwAAABAAAApcAAAAAwAAAAgAAAAEAAAAYwAA
+AAIAAAABaTJzMm0xLXNkaQAAAAAAAwAAABAAAApcAAAAAwAAAAIAAAAGAAAAYwAAAAIAAAABaTJz
+Mm0xLXNkbwAAAAAAAwAAABAAAApcAAAAAwAAAAEAAAAGAAAAYwAAAAIAAAABaTJzMm0xLXNsZWVw
+AAAAAAAAAAMAAABQAAAKXAAAAAEAAAAVAAAAAAAAAGQAAAADAAAAAAAAAAAAAABkAAAAAwAAAAgA
+AAAAAAAAZAAAAAMAAAACAAAAAAAAAGQAAAADAAAAAQAAAAAAAABkAAAAAgAAAAIAAAABc3BkaWYt
+MAAAAAABc3BkaWZtMC10eAAAAAAAAwAAABAAAApcAAAAAAAAABsAAAABAAAAYwAAAAMAAAAEAAAB
+ewAAABEAAAACAAAAAgAAAAFzcGRpZi0xAAAAAAFzcGRpZm0xLXR4AAAAAAADAAAAEAAAClwAAAAC
+AAAAEQAAAAIAAABjAAAAAgAAAAIAAAABc3BkaWYtMgAAAAABc3BkaWZtMi10eAAAAAAAAwAAABAA
+AApcAAAAAAAAAAIAAAACAAAAYwAAAAIAAAACAAAAAXNkbW1jMC0wAAAAAAAAAAFzZG1tYzBtMC1w
+d3JlbgAAAAAAAwAAABAAAApcAAAAAgAAAAcAAAABAAAAZgAAAAIAAAABc2RtbWMwbTAtcGluAAAA
+AAAAAAMAAAAQAAAKXAAAAAIAAAAHAAAAAAAAAGYAAAACAAAAAgAAAAFzZG1tYzAtMQAAAAAAAAAB
+c2RtbWMwbTEtcHdyZW4AAAAAAAMAAAAQAAAKXAAAAAAAAAAeAAAAAwAAAGYAAAACAAAAAXNkbW1j
+MG0xLXBpbgAAAAAAAAADAAAAEAAAClwAAAAAAAAAHgAAAAAAAABmAAAAAgAAAAIAAAABc2RtbWMw
+AAAAAAABc2RtbWMwLWNsawAAAAAAAwAAABAAAApcAAAAAQAAAAYAAAABAAAAZwAAAAMAAAAEAAAB
+ewAAAEwAAAACAAAAAXNkbW1jMC1jbWQAAAAAAAMAAAAQAAAKXAAAAAEAAAAEAAAAAQAAAGgAAAAD
+AAAABAAAAXsAAABNAAAAAgAAAAFzZG1tYzAtZGVjdG4AAAAAAAAAAwAAABAAAApcAAAAAQAAAAUA
+AAABAAAAZgAAAAMAAAAEAAABewAAAE4AAAACAAAAAXNkbW1jMC13cnBydAAAAAAAAAADAAAAEAAA
+ClwAAAABAAAABwAAAAEAAABmAAAAAgAAAAFzZG1tYzAtYnVzMQAAAAADAAAAEAAAClwAAAABAAAA
+AAAAAAEAAABoAAAAAgAAAAFzZG1tYzAtYnVzNAAAAAADAAAAQAAAClwAAAABAAAAAAAAAAEAAABo
+AAAAAQAAAAEAAAABAAAAaAAAAAEAAAACAAAAAQAAAGgAAAABAAAAAwAAAAEAAABoAAAAAwAAAAQA
+AAF7AAAATwAAAAIAAAABc2RtbWMwLXBpbnMAAAAAAwAAAIAAAApcAAAAAQAAAAYAAAAAAAAAZgAA
+AAEAAAAEAAAAAAAAAGYAAAABAAAABQAAAAAAAABmAAAAAQAAAAcAAAAAAAAAZgAAAAEAAAADAAAA
+AAAAAGYAAAABAAAAAgAAAAAAAABmAAAAAQAAAAEAAAAAAAAAZgAAAAEAAAAAAAAAAAAAAGYAAAAC
+AAAAAgAAAAFzZG1tYzBleHQAAAAAAAABc2RtbWMwZXh0LWNsawAAAAAAAAMAAAAQAAAKXAAAAAMA
+AAACAAAAAwAAAGkAAAACAAAAAXNkbW1jMGV4dC1jbWQAAAAAAAADAAAAEAAAClwAAAADAAAAAAAA
+AAMAAABmAAAAAgAAAAFzZG1tYzBleHQtd3JwcnQAAAAAAwAAABAAAApcAAAAAwAAAAMAAAADAAAA
+ZgAAAAIAAAABc2RtbWMwZXh0LWRlY3RuAAAAAAMAAAAQAAAKXAAAAAMAAAABAAAAAwAAAGYAAAAC
+AAAAAXNkbW1jMGV4dC1idXMxAAAAAAADAAAAEAAAClwAAAADAAAABAAAAAMAAABmAAAAAgAAAAFz
+ZG1tYzBleHQtYnVzNAAAAAAAAwAAAEAAAApcAAAAAwAAAAQAAAADAAAAZgAAAAMAAAAFAAAAAwAA
+AGYAAAADAAAABgAAAAMAAABmAAAAAwAAAAcAAAADAAAAZgAAAAIAAAABc2RtbWMwZXh0LXBpbnMA
+AAAAAAMAAACAAAAKXAAAAAMAAAAAAAAAAAAAAGYAAAADAAAAAQAAAAAAAABmAAAAAwAAAAIAAAAA
+AAAAZgAAAAMAAAADAAAAAAAAAGYAAAADAAAABAAAAAAAAABmAAAAAwAAAAUAAAAAAAAAZgAAAAMA
+AAAGAAAAAAAAAGYAAAADAAAABwAAAAAAAABmAAAAAgAAAAIAAAABc2RtbWMxAAAAAAABc2RtbWMx
+LWNsawAAAAAAAwAAABAAAApcAAAAAQAAAAwAAAABAAAAZwAAAAIAAAABc2RtbWMxLWNtZAAAAAAA
+AwAAABAAAApcAAAAAQAAAA0AAAABAAAAaAAAAAIAAAABc2RtbWMxLXB3cmVuAAAAAAAAAAMAAAAQ
+AAAKXAAAAAEAAAASAAAAAQAAAGgAAAACAAAAAXNkbW1jMS13cnBydAAAAAAAAAADAAAAEAAAClwA
+AAABAAAAFAAAAAEAAABoAAAAAgAAAAFzZG1tYzEtZGVjdG4AAAAAAAAAAwAAABAAAApcAAAAAQAA
+ABMAAAABAAAAaAAAAAIAAAABc2RtbWMxLWJ1czEAAAAAAwAAABAAAApcAAAAAQAAAA4AAAABAAAA
+aAAAAAIAAAABc2RtbWMxLWJ1czQAAAAAAwAAAEAAAApcAAAAAQAAAA4AAAABAAAAaAAAAAEAAAAP
+AAAAAQAAAGgAAAABAAAAEAAAAAEAAABoAAAAAQAAABEAAAABAAAAaAAAAAIAAAABc2RtbWMxLXBp
+bnMAAAAAAwAAAJAAAApcAAAAAQAAAAwAAAAAAAAAZgAAAAEAAAANAAAAAAAAAGYAAAABAAAADgAA
+AAAAAABmAAAAAQAAAA8AAAAAAAAAZgAAAAEAAAAQAAAAAAAAAGYAAAABAAAAEQAAAAAAAABmAAAA
+AQAAABIAAAAAAAAAZgAAAAEAAAATAAAAAAAAAGYAAAABAAAAFAAAAAAAAABmAAAAAgAAAAIAAAAB
+ZW1tYwAAAAAAAAABZW1tYy1jbGsAAAAAAAAAAwAAABAAAApcAAAAAwAAABUAAAACAAAAagAAAAMA
+AAAEAAABewAAAFAAAAACAAAAAWVtbWMtY21kAAAAAAAAAAMAAAAQAAAKXAAAAAMAAAATAAAAAgAA
+AGsAAAADAAAABAAAAXsAAABRAAAAAgAAAAFlbW1jLXB3cmVuAAAAAAADAAAAEAAAClwAAAADAAAA
+FgAAAAIAAABjAAAAAgAAAAFlbW1jLXJzdG5vdXQAAAAAAAAAAwAAABAAAApcAAAAAwAAABQAAAAC
+AAAAYwAAAAIAAAABZW1tYy1idXMxAAAAAAAAAwAAABAAAApcAAAAAAAAAAcAAAACAAAAawAAAAIA
+AAABZW1tYy1idXM0AAAAAAAAAwAAAEAAAApcAAAAAAAAAAcAAAACAAAAawAAAAIAAAAcAAAAAgAA
+AGsAAAACAAAAHQAAAAIAAABrAAAAAgAAAB4AAAACAAAAawAAAAIAAAABZW1tYy1idXM4AAAAAAAA
+AwAAAIAAAApcAAAAAAAAAAcAAAACAAAAawAAAAIAAAAcAAAAAgAAAGsAAAACAAAAHQAAAAIAAABr
+AAAAAgAAAB4AAAACAAAAawAAAAIAAAAfAAAAAgAAAGsAAAADAAAAEAAAAAIAAABrAAAAAwAAABEA
+AAACAAAAawAAAAMAAAASAAAAAgAAAGsAAAADAAAABAAAAXsAAABSAAAAAgAAAAIAAAABcHdtMAAA
+AAAAAAABcHdtMC1waW4AAAAAAAAAAwAAABAAAApcAAAAAgAAAAQAAAABAAAAYwAAAAMAAAAEAAAB
+ewAAADEAAAACAAAAAgAAAAFwd20xAAAAAAAAAAFwd20xLXBpbgAAAAAAAAADAAAAEAAAClwAAAAC
+AAAABQAAAAEAAABjAAAAAwAAAAQAAAF7AAAAMgAAAAIAAAACAAAAAXB3bTIAAAAAAAAAAXB3bTIt
+cGluAAAAAAAAAAMAAAAQAAAKXAAAAAIAAAAGAAAAAQAAAGMAAAADAAAABAAAAXsAAAAzAAAAAgAA
+AAIAAAABcHdtaXIAAAAAAAABcHdtaXItcGluAAAAAAAAAwAAABAAAApcAAAAAgAAAAIAAAABAAAA
+YwAAAAMAAAAEAAABewAAADQAAAACAAAAAgAAAAFnbWFjLTEAAAAAAAFyZ21paW0xLXBpbnMAAAAA
+AAAAAwAAAWAAAApcAAAAAQAAAAwAAAACAAAAZwAAAAEAAAANAAAAAgAAAGkAAAABAAAAEwAAAAIA
+AABpAAAAAQAAABkAAAACAAAAZwAAAAEAAAAVAAAAAgAAAGkAAAABAAAAFgAAAAIAAABpAAAAAQAA
+ABcAAAACAAAAaQAAAAEAAAAKAAAAAgAAAGkAAAABAAAACwAAAAIAAABpAAAAAQAAAAgAAAACAAAA
+ZwAAAAEAAAAJAAAAAgAAAGcAAAABAAAADgAAAAIAAABpAAAAAQAAAA8AAAACAAAAaQAAAAEAAAAQ
+AAAAAgAAAGcAAAABAAAAEQAAAAIAAABnAAAAAAAAAAgAAAABAAAAZwAAAAAAAAAMAAAAAQAAAGcA
+AAAAAAAAGAAAAAEAAABpAAAAAAAAABAAAAABAAAAZwAAAAAAAAARAAAAAQAAAGcAAAAAAAAAFwAA
+AAEAAABnAAAAAAAAABYAAAABAAAAZwAAAAMAAAAEAAABewAAAFUAAAACAAAAAXJtaWltMS1waW5z
+AAAAAAMAAAEAAAAKXAAAAAEAAAATAAAAAgAAAGwAAAABAAAAGQAAAAIAAABqAAAAAQAAABUAAAAC
+AAAAbAAAAAEAAAAYAAAAAgAAAGwAAAABAAAAFgAAAAIAAABsAAAAAQAAABcAAAACAAAAbAAAAAEA
+AAAKAAAAAgAAAGwAAAABAAAACwAAAAIAAABsAAAAAQAAAAgAAAACAAAAagAAAAEAAAAJAAAAAgAA
+AGoAAAAAAAAACwAAAAEAAABjAAAAAAAAAAwAAAABAAAAYwAAAAAAAAAYAAAAAQAAAGMAAAAAAAAA
+EwAAAAEAAABjAAAAAAAAABAAAAABAAAAYwAAAAAAAAARAAAAAQAAAGMAAAACAAAAAgAAAAFnbWFj
+MnBoeQAAAAAAAAABZmVwaHlsZWQtc3BlZWQxMAAAAAAAAAADAAAAEAAAClwAAAAAAAAAHgAAAAEA
+AABjAAAAAgAAAAFmZXBoeWxlZC1kdXBsZXgAAAAAAwAAABAAAApcAAAAAAAAAB4AAAACAAAAYwAA
+AAIAAAABZmVwaHlsZWQtcnhtMQAAAAAAAAMAAAAQAAAKXAAAAAIAAAAZAAAAAgAAAGMAAAADAAAA
+BAAAAXsAAABXAAAAAgAAAAFmZXBoeWxlZC10eG0xAAAAAAAAAwAAABAAAApcAAAAAgAAABkAAAAD
+AAAAYwAAAAIAAAABZmVwaHlsZWQtbGlua20xAAAAAAMAAAAQAAAKXAAAAAIAAAAYAAAAAgAAAGMA
+AAADAAAABAAAAXsAAABYAAAAAgAAAAIAAAABdHNhZGNfcGluAAAAAAAAAXRzYWRjLWludAAAAAAA
+AAMAAAAQAAAKXAAAAAIAAAANAAAAAgAAAGMAAAACAAAAAXRzYWRjLXBpbgAAAAAAAAMAAAAQAAAK
+XAAAAAIAAAANAAAAAAAAAGMAAAACAAAAAgAAAAFoZG1pX3BpbgAAAAAAAAABaGRtaS1jZWMAAAAA
+AAAAAwAAABAAAApcAAAAAAAAAAMAAAABAAAAYwAAAAMAAAAEAAABewAAAEQAAAACAAAAAWhkbWkt
+aHBkAAAAAAAAAAMAAAAQAAAKXAAAAAAAAAAEAAAAAQAAAG0AAAADAAAABAAAAXsAAABGAAAAAgAA
+AAIAAAABY2lmLTAAAAAAAAABZHZwLWQyZDktbTAAAAAAAwAAAMAAAApcAAAAAwAAAAQAAAACAAAA
+YwAAAAMAAAAFAAAAAgAAAGMAAAADAAAABgAAAAIAAABjAAAAAwAAAAcAAAACAAAAYwAAAAMAAAAI
+AAAAAgAAAGMAAAADAAAACQAAAAIAAABjAAAAAwAAAAoAAAACAAAAYwAAAAMAAAALAAAAAgAAAGMA
+AAADAAAAAQAAAAIAAABjAAAAAwAAAAAAAAACAAAAYwAAAAMAAAADAAAAAgAAAGMAAAADAAAAAgAA
+AAIAAABjAAAAAgAAAAIAAAABY2lmLTEAAAAAAAABZHZwLWQyZDktbTEAAAAAAwAAAMAAAApcAAAA
+AwAAAAQAAAACAAAAYwAAAAMAAAAFAAAAAgAAAGMAAAADAAAABgAAAAIAAABjAAAAAwAAAAcAAAAC
+AAAAYwAAAAMAAAAIAAAAAgAAAGMAAAACAAAAEAAAAAQAAABjAAAAAgAAABEAAAAEAAAAYwAAAAIA
+AAASAAAABAAAAGMAAAADAAAAAQAAAAIAAABjAAAAAwAAAAAAAAACAAAAYwAAAAIAAAAPAAAABAAA
+AGMAAAADAAAAAgAAAAIAAABjAAAAAgAAAAIAAAABcG1pYwAAAAAAAAABcG1pYy1pbnQtbAAAAAAA
+AwAAABAAAApcAAAAAgAAAAYAAAAAAAAAZQAAAAMAAAAEAAABewAAACkAAAACAAAAAgAAAAF1c2Iz
+AAAAAAAAAAF1c2IzMC1ob3N0LWRydgAAAAAAAwAAABAAAApcAAAAAAAAAAAAAAAAAAAAYwAAAAMA
+AAAEAAABewAAAHEAAAACAAAAAgAAAAF1c2IyAAAAAAAAAAF1c2IyMC1ob3N0LWRydgAAAAAAAwAA
+ABAAAApcAAAAAQAAABoAAAAAAAAAYwAAAAMAAAAEAAABewAAAHIAAAACAAAAAgAAAAF3aWZpAAAA
+AAAAAAFidC1kaXMAAAAAAAMAAAAQAAAKXAAAAAIAAAAVAAAAAAAAAG4AAAADAAAABAAAAXsAAABb
+AAAAAgAAAAFidC13YWtlLWhvc3QAAAAAAAAAAwAAABAAAApcAAAAAgAAABAAAAAAAAAAZQAAAAMA
+AAAEAAABewAAAFwAAAACAAAAAWNoaXAtZW4AAAAAAwAAABAAAApcAAAAAgAAABMAAAAAAAAAbgAA
+AAMAAAAEAAABewAAAF0AAAACAAAAAWhvc3Qtd2FrZS1idAAAAAAAAAADAAAAEAAAClwAAAACAAAA
+DwAAAAAAAABvAAAAAwAAAAQAAAF7AAAAXgAAAAIAAAABd2wtZGlzAAAAAAADAAAAEAAAClwAAAAD
+AAAACAAAAAAAAABuAAAAAwAAAAQAAAF7AAAAXwAAAAIAAAABd2wtd2FrZS1ob3N0AAAAAAAAAAMA
+AAAQAAAKXAAAAAMAAAABAAAAAAAAAGUAAAADAAAABAAAAXsAAABgAAAAAgAAAAIAAAACAAAAAWNo
+b3NlbgAAAAAAAwAAABIAAApqc2VyaWFsMjoxNTAwMDAwbjgAAAAAAAACAAAAAWV4dGVybmFsLWdt
+YWMtY2xvY2sAAAAAAwAAAAwAAAAAZml4ZWQtY2xvY2sAAAAAAwAAAAQAAALNB3NZQAAAAAMAAAAL
+AAAC3WdtYWNfY2xraW4AAAAAAAMAAAAEAAACwAAAAAAAAAADAAAABAAAAXsAAABTAAAAAgAAAAF1
+c2IzLWN1cnJlbnQtc3dpdGNoAAAAAAMAAAAQAAAAAHJlZ3VsYXRvci1maXhlZAAAAAADAAAAAAAA
+CnYAAAADAAAADAAACokAAABwAAAAAAAAAAAAAAADAAAACAAAAxxkZWZhdWx0AAAAAAMAAAAEAAAD
+KgAAAHEAAAADAAAADAAABMl2Y2NfaG9zdF81dgAAAAADAAAAAAAABQgAAAADAAAABAAACo4AAAAq
+AAAAAgAAAAF2Y2MtaG9zdDEtNXYtcmVndWxhdG9yAAAAAAADAAAAEAAAAAByZWd1bGF0b3ItZml4
+ZWQAAAAAAwAAAAAAAAp2AAAAAwAAAAwAAAqJAAAAcAAAABsAAAAAAAAAAwAAAAgAAAMcZGVmYXVs
+dAAAAAADAAAABAAAAyoAAAByAAAAAwAAAA0AAATJdmNjX2hvc3QxXzV2AAAAAAAAAAMAAAAAAAAF
+CAAAAAMAAAAEAAAKjgAAACoAAAACAAAAAXZjYy1zeXMAAAAAAwAAABAAAAAAcmVndWxhdG9yLWZp
+eGVkAAAAAAMAAAAIAAAEyXZjY19zeXMAAAAAAwAAAAQAAATYAExLQAAAAAMAAAAEAAAE8ABMS0AA
+AAADAAAABAAAAXsAAAAqAAAAAgAAAAF2ZGQtZ3B1AAAAAAMAAAAQAAAAAHJlZ3VsYXRvci1maXhl
+ZAAAAAADAAAACAAABMl2ZGRfZ3B1AAAAAAMAAAAEAAAE2AARjDAAAAADAAAABAAABPAAEYwwAAAA
+AwAAAAAAAAUIAAAAAwAAAAQAAAF7AAAAPQAAAAIAAAABaXItcmVjZWl2ZXIAAAAAAwAAABEAAAAA
+Z3Bpby1pci1yZWNlaXZlcgAAAAAAAAADAAAADAAAB0gAAAAoAAAAAgAAAAEAAAADAAAADwAACply
+Yy1iZWVsaW5rLWdzMQAAAAAAAgAAAAFzcGRpZi1zb3VuZAAAAAADAAAAEgAAAABzaW1wbGUtYXVk
+aW8tY2FyZAAAAAAAAAMAAAAGAAACdFNQRElGAAAAAAAAAXNpbXBsZS1hdWRpby1jYXJkLGNwdQAA
+AAAAAAMAAAAEAAACkgAAAHMAAAACAAAAAXNpbXBsZS1hdWRpby1jYXJkLGNvZGVjAAAAAAMAAAAE
+AAACkgAAAHQAAAACAAAAAgAAAAFzcGRpZi1kaXQAAAAAAAADAAAAEAAAAABsaW51eCxzcGRpZi1k
+aXQAAAAAAwAAAAQAAAMLAAAAAAAAAAMAAAAEAAABewAAAHQAAAACAAAAAW9wZW52ZmQAAAAAAwAA
+AAkAAAAAb3Blbix2ZmQAAAAAAAAAAwAAAAgAAAqrb3BlbnZmZAAAAAADAAAADAAACrQAAAAoAAAA
+FwAAAAAAAAADAAAADAAACsUAAAAoAAAAFAAAAAAAAAADAAAADAAACtYAAAAoAAAAEgAAAAEAAAAD
+AAAABQAACucCBAMBAAAAAAAAAAMAAAAHAAAK9QACBAMBBQYAAAAAAwAAAAQAAAsGAgAACQAAAAMA
+AAAFAAACi29rYXkAAAAAAAAAAgAAAAIAAAAJY29tcGF0aWJsZQBpbnRlcnJ1cHQtcGFyZW50ACNh
+ZGRyZXNzLWNlbGxzACNzaXplLWNlbGxzAG1vZGVsAGdwaW8wAGdwaW8xAGdwaW8yAGdwaW8zAHNl
+cmlhbDAAc2VyaWFsMQBzZXJpYWwyAGkyYzAAaTJjMQBpMmMyAGkyYzMAZXRoZXJuZXQwAG1tYzAA
+bW1jMQBkZXZpY2VfdHlwZQByZWcAY2xvY2tzACNjb29saW5nLWNlbGxzAGNwdS1pZGxlLXN0YXRl
+cwBkeW5hbWljLXBvd2VyLWNvZWZmaWNpZW50AGVuYWJsZS1tZXRob2QAb3BlcmF0aW5nLXBvaW50
+cy12MgBpLWNhY2hlLXNpemUAaS1jYWNoZS1saW5lLXNpemUAaS1jYWNoZS1zZXRzAGQtY2FjaGUt
+c2l6ZQBkLWNhY2hlLWxpbmUtc2l6ZQBkLWNhY2hlLXNldHMAbmV4dC1sZXZlbC1jYWNoZQBjcHUt
+c3VwcGx5AHBoYW5kbGUAZW50cnktbWV0aG9kAGxvY2FsLXRpbWVyLXN0b3AAYXJtLHBzY2ktc3Vz
+cGVuZC1wYXJhbQBlbnRyeS1sYXRlbmN5LXVzAGV4aXQtbGF0ZW5jeS11cwBtaW4tcmVzaWRlbmN5
+LXVzAGNhY2hlLWxldmVsAGNhY2hlLXVuaWZpZWQAb3BwLXNoYXJlZABvcHAtaHoAb3BwLW1pY3Jv
+dm9sdABjbG9jay1sYXRlbmN5LW5zAG9wcC1zdXNwZW5kAHNpbXBsZS1hdWRpby1jYXJkLGZvcm1h
+dABzaW1wbGUtYXVkaW8tY2FyZCxtY2xrLWZzAHNpbXBsZS1hdWRpby1jYXJkLG5hbWUAc3RhdHVz
+AHNvdW5kLWRhaQBpbnRlcnJ1cHRzAGludGVycnVwdC1hZmZpbml0eQBwb3J0cwAjY2xvY2stY2Vs
+bHMAY2xvY2stZnJlcXVlbmN5AGNsb2NrLW91dHB1dC1uYW1lcwBjbG9jay1uYW1lcwBkbWFzAGRt
+YS1uYW1lcwAjc291bmQtZGFpLWNlbGxzAHBpbmN0cmwtbmFtZXMAcGluY3RybC0wAHBpbmN0cmwt
+MQB2Y2NpbzEtc3VwcGx5AHZjY2lvMi1zdXBwbHkAdmNjaW8zLXN1cHBseQB2Y2NpbzQtc3VwcGx5
+AHZjY2lvNS1zdXBwbHkAdmNjaW82LXN1cHBseQBwbXVpby1zdXBwbHkAZ3Bpby1jb250cm9sbGVy
+ACNncGlvLWNlbGxzACNwb3dlci1kb21haW4tY2VsbHMAb2Zmc2V0AG1vZGUtbm9ybWFsAG1vZGUt
+cmVjb3ZlcnkAbW9kZS1ib290bG9hZGVyAG1vZGUtbG9hZGVyAHJlZy1pby13aWR0aAByZWctc2hp
+ZnQAaTJjLXNjbC1mYWxsaW5nLXRpbWUtbnMAaTJjLXNjbC1yaXNpbmctdGltZS1ucwByb2NrY2hp
+cCxzeXN0ZW0tcG93ZXItY29udHJvbGxlcgB3YWtldXAtc291cmNlAHZjYzEtc3VwcGx5AHZjYzIt
+c3VwcGx5AHZjYzMtc3VwcGx5AHZjYzQtc3VwcGx5AHZjYzUtc3VwcGx5AHZjYzYtc3VwcGx5AHJl
+Z3VsYXRvci1uYW1lAHJlZ3VsYXRvci1taW4tbWljcm92b2x0AHJlZ3VsYXRvci1tYXgtbWljcm92
+b2x0AHJlZ3VsYXRvci1hbHdheXMtb24AcmVndWxhdG9yLWJvb3Qtb24AcmVndWxhdG9yLW9uLWlu
+LXN1c3BlbmQAcmVndWxhdG9yLXN1c3BlbmQtbWljcm92b2x0ACNwd20tY2VsbHMAYXJtLHBsMzMw
+LXBlcmlwaC1idXJzdAAjZG1hLWNlbGxzAHBvbGxpbmctZGVsYXktcGFzc2l2ZQBwb2xsaW5nLWRl
+bGF5AHN1c3RhaW5hYmxlLXBvd2VyAHRoZXJtYWwtc2Vuc29ycwB0ZW1wZXJhdHVyZQBoeXN0ZXJl
+c2lzAHRyaXAAY29vbGluZy1kZXZpY2UAY29udHJpYnV0aW9uAGFzc2lnbmVkLWNsb2NrcwBhc3Np
+Z25lZC1jbG9jay1yYXRlcwBwaW5jdHJsLTIAcmVzZXRzAHJlc2V0LW5hbWVzAHJvY2tjaGlwLGdy
+ZgByb2NrY2hpcCxody10c2h1dC10ZW1wACN0aGVybWFsLXNlbnNvci1jZWxscwByb2NrY2hpcCxo
+dy10c2h1dC1tb2RlAHJvY2tjaGlwLGh3LXRzaHV0LXBvbGFyaXR5AHJvY2tjaGlwLGVmdXNlLXNp
+emUAYml0cwAjaW8tY2hhbm5lbC1jZWxscwBpbnRlcnJ1cHQtbmFtZXMAcG93ZXItZG9tYWlucwBt
+YWxpLXN1cHBseQAjaW9tbXUtY2VsbHMAaW9tbXVzAHJlbW90ZS1lbmRwb2ludABwaHlzAHBoeS1u
+YW1lcwBtdXRlLWdwaW9zAG52bWVtLWNlbGxzAG52bWVtLWNlbGwtbmFtZXMAI3BoeS1jZWxscwAj
+cmVzZXQtY2VsbHMAYXNzaWduZWQtY2xvY2stcGFyZW50cwByYW5nZXMAZmlmby1kZXB0aABtYXgt
+ZnJlcXVlbmN5AGJ1cy13aWR0aABjYXAtbW1jLWhpZ2hzcGVlZABjYXAtc2QtaGlnaHNwZWVkAGRp
+c2FibGUtd3AAdm1tYy1zdXBwbHkAdnFtbWMtc3VwcGx5AG1tYy1kZHItMV84dgBuby1zZABuby1z
+ZGlvAG5vbi1yZW1vdmFibGUAdHgtZmlmby1kZXB0aAByeC1maWZvLWRlcHRoAHNucHMsdHhwYmwA
+Y2xvY2tfaW5fb3V0AHBoeS1oYW5kbGUAcGh5LW1vZGUAcGh5LXN1cHBseQBzbnBzLGFhbABzbnBz
+LHBibAB0eF9kZWxheQByeF9kZWxheQByZXNldC1hc3NlcnQtdXMAcmVzZXQtZGVhc3NlcnQtdXMA
+cmVzZXQtZ3Bpb3MAcGh5LWlzLWludGVncmF0ZWQAZHJfbW9kZQBnLW5wLXR4LWZpZm8tc2l6ZQBn
+LXJ4LWZpZm8tc2l6ZQBnLXR4LWZpZm8tc2l6ZQBwaHlfdHlwZQBzbnBzLGRpcy1kZWwtcGh5LXBv
+d2VyLWNoZy1xdWlyawBzbnBzLGRpc19lbmJsc2xwbV9xdWlyawBzbnBzLGRpcy10eC1pcGdhcC1s
+aW5lY2hlY2stcXVpcmsAc25wcyxkaXMtdTItZnJlZWNsay1leGlzdHMtcXVpcmsAc25wcyxkaXNf
+dTJfc3VzcGh5X3F1aXJrAHNucHMsZGlzX3UzX3N1c3BoeV9xdWlyawAjaW50ZXJydXB0LWNlbGxz
+AGludGVycnVwdC1jb250cm9sbGVyAGJpYXMtcHVsbC11cABiaWFzLXB1bGwtZG93bgBiaWFzLWRp
+c2FibGUAZHJpdmUtc3RyZW5ndGgAb3V0cHV0LWhpZ2gAb3V0cHV0LWxvdwBpbnB1dC1lbmFibGUA
+cm9ja2NoaXAscGlucwBzdGRvdXQtcGF0aABlbmFibGUtYWN0aXZlLWhpZ2gAZ3BpbwB2aW4tc3Vw
+cGx5AGxpbnV4LHJjLW1hcC1uYW1lAGRldl9uYW1lAG9wZW52ZmRfZ3Bpb19kYXQAb3BlbnZmZF9n
+cGlvX2NsawBvcGVudmZkX2dwaW9fc3RiAG9wZW52ZmRfY2hhcnMAb3BlbnZmZF9kb3RfYml0cwBv
+cGVudmZkX2Rpc3BsYXlfdHlwZQA=
+--Apple-Mail=_D28ACD65-2F39-41F0-94BF-7B7ADDBD1390--
 
