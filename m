@@ -1,85 +1,125 @@
-Return-Path: <devicetree+bounces-138819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DACBDA126B8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 16:00:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 187F3A126EC
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 16:09:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 140153A2C9A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 15:00:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AB82162395
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 15:09:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95EAD13C81B;
-	Wed, 15 Jan 2025 15:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2301C13B787;
+	Wed, 15 Jan 2025 15:09:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AZggsKDe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MyGqtP6M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D21078F51;
-	Wed, 15 Jan 2025 15:00:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FB91156872;
+	Wed, 15 Jan 2025 15:09:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736953237; cv=none; b=nmomnIzCt7OaWDQF1ibtJV96taeg3Y3RCz856wAum+OQeaFCAUjlU8N3x2ze4Gstq4ibYrX9Xqb0APGFtiihX4wxLdbJ2phNNDhHyDZoCm4srA1LWItxKPp7hmNN0doOAcu35znRzXh2SOB3HKHM1jPd8nt9hwbw/a0Pz7yMtiI=
+	t=1736953762; cv=none; b=XopDWtTZyUJMqcz59/ivRFTVLctxVFRStNmWlZYrBbIoleY+qJ0ElLEGRwAlvMn/shS/tqDJA1aUy5Po3M29XgTwLKLtLxFqI57OYl2MKSvBDeTuzVg6+FR8CE+8f6o5qFJKGuR90B3PEPPDUi5FvZIIOYGGC3MTsEo0z2wKc28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736953237; c=relaxed/simple;
-	bh=FxbiB88YKQzganFvRxFjhc+yuegeLmf0K5eDZgXZFM8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=YSzy4dllaJ7KE2GFKOSdMbn2woSVqXewvCshGDj9gUja8AJRCPovOg++QnhWBzVG4PvEuzkszys20po4m7R0aIRV3CLQ0mlke4bsNTqLQvv85/5PPQPzX4jkeYIWokr4KA2lDgk7ZvjQxYZUOVjQwdGWUIn7zWkYJkV+02xWKqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AZggsKDe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 114F5C4CED1;
-	Wed, 15 Jan 2025 15:00:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736953237;
-	bh=FxbiB88YKQzganFvRxFjhc+yuegeLmf0K5eDZgXZFM8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=AZggsKDeJR8JDzSsc6Z96Fc3WiXG5A7Ru0B6JKpWFIeNwIpaWXjzaKcgMJXVyUvOY
-	 vAqpQ4wd33MMeqnkx02/GvhbfnC84MLaR+q6TUcXdxnV+iJ0uHKMIsU8qitUKc1Pv2
-	 LSMEDsJpKhivb9Jcr1ypBEga1owd7GEz+vk1DqzkChC6mjvWRVOm0pW6DdV/nlIWTl
-	 6iwm6J+t5l7M45lEpLs57DpCpfhlX5T02PSWhqMt7YDbkioPFzSoySVtjv3oZdyd96
-	 umgcqquwZKzRkJdLG/8viLQ0r9ygxmaHw5kUTYcSf/pWqMPjYzmVgDN48i+7j5EhQk
-	 bhVq5dGi8j+2Q==
-From: Lee Jones <lee@kernel.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Siddharth Vadapalli <s-vadapalli@ti.com>, 
- Kevin Hilman <khilman@baylibre.com>, Romain Naour <romain.naour@skf.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Andrew Davis <afd@ti.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20250103174524.28768-2-afd@ti.com>
-References: <20250103174524.28768-1-afd@ti.com>
- <20250103174524.28768-2-afd@ti.com>
-Subject: Re: (subset) [PATCH 1/3] dt-bindings: mfd: syscon: Fix
- ti,j784s4-acspcie-proxy-ctrl compatible
-Message-Id: <173695323478.4114925.14891333273883216160.b4-ty@kernel.org>
-Date: Wed, 15 Jan 2025 15:00:34 +0000
+	s=arc-20240116; t=1736953762; c=relaxed/simple;
+	bh=9rZ4pxhEV6U39XA0V6eXP/hZQ/fFefihJFDYK9VajvY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jvVDu4R1u8uOkKyhwM4IF3th0GlT2ZEmC8ruKek5w5LCkeAeoktBQQD9hPxtyI+piBLHYvuKnB990BFlVw4hxFqj/XtnjdMatuMdIKCOISZAVug/wxXtDcn2gRq3ZnoRQOczKvXUu6jqJY/NfVL9EeVtwGHqoisQs6+FLX7m+Zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MyGqtP6M; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aa684b6d9c7so1213850366b.2;
+        Wed, 15 Jan 2025 07:09:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736953758; x=1737558558; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jzYu3qJ8QgTzfQt709xDN3GWHbP81C9WCUW/N0FwAvY=;
+        b=MyGqtP6MAIjIjx+QZ0+SvDJgo4tvpv0Lf4WlbbeheU2NYp6ZJCGbw9tH54QHGQFlrl
+         O3PRi0TA7vmQZWRjNlI424jhBq7QzHYmgneR6XbxOrc639fmbkogWMMpXq9p/nr8kSDu
+         dZFSPHVklTgXjAUwfR9CtUKUi2Q9y2hQihPweD6eZVUCPdMhq4GC+TefZnRdVpSFo6pq
+         Yu2WC2vSyVi4j/dFJyruXdouwesew/xpu2+V3daTHSqDdyBZDfKw4uyd13hpy0FLh7Hn
+         9acwCMVqiNshZ92r8TdMWSfxyXWUKzNCzMbFk1ejXZmT/Ob8edI7MoCJULXMKFHuiygJ
+         X7IQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736953758; x=1737558558;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jzYu3qJ8QgTzfQt709xDN3GWHbP81C9WCUW/N0FwAvY=;
+        b=ifD46bJ1ovYB0kfhCS/1CP+wU/+SxNUHtaoAZQt3CebnpzorMIobFItZXVCTRVceNq
+         wdaO1F4MV7S3SevbFLyhLK86tsjPeQYxpdvRfv+uEhzV2yRWfuKVAagcgZ95R+dwbvwp
+         +4uNOdhBi02rh1Sy1kFOITlEmgeK6Gjjxm+kB9HKKMAMcvPWjJ67Y0Y5drCZTAV1XAQd
+         ILz5EOyvMDXQv59PUYKI6hEs+KB0MmLalpt6+iQYTLAUISSkgKH6cqDPEgjkVarkUySX
+         +sxuYn+VuRYla/lhe8jFWc5Qf4UO8HVekVlwDT8IRvNNYlu3vwAQi6Cp/9RVssX6NNHn
+         3TWg==
+X-Forwarded-Encrypted: i=1; AJvYcCUkFzKaF+M/aCDE9t+t16u+E3smWCSsjEYc3+Xg2sOozV+vxT5spNU3G/vDJLciIUEFYZT3FZth5rq2@vger.kernel.org, AJvYcCVBquOpeLfMukG5+5amx0101SI3qZPPB3/6NPAvdHHDC4mbn05Uxq+tvMGHVJzl5tZWrFk6V0qOtUvr0RLF@vger.kernel.org, AJvYcCVKnoELcXUNW6mhvca/5r7UfODrASM+FOFWloYggmQcDIFqMoXmP6XdrvTHL+PvtySG0sbzELFNfLfrdkc6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx35N4UThwrYZWSsidKTHPcM1sMUPjfm2sFutEL//qKZP2a/nYg
+	AarYKG1x+bphrUrad2JoyNeLWt+ouvzFzlqfXzbLOTBwCHnl1srZbnvA7iDdAl25V5EBzGQTnXW
+	EQhTUq0ju2EwOX1cZJ3ZrDc/w39Y=
+X-Gm-Gg: ASbGncsBuAJaHT5bJY7B6ISGWStJJLNYaLZYyNpjWqbmAgO7c0gPpIbFCGnmF3MJDxd
+	I2uHxgfw5W7QcYIIW+Ir63ve7Wn49GovECTejcQNr
+X-Google-Smtp-Source: AGHT+IGVv0kRG4CV80SchQtOvpA6+JA9Z5WM6SCZ833us1IVEIwXNWIt3iZ7cuA3okit6yxwZMyU6RI0v6ILvR3aPtg=
+X-Received: by 2002:a17:907:97d6:b0:aa6:6c6b:15fd with SMTP id
+ a640c23a62f3a-ab2ab6b52b8mr2731889666b.20.1736953757754; Wed, 15 Jan 2025
+ 07:09:17 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.13.0
+References: <20250114070449.34226-1-andre.werner@systec-electronic.com>
+ <20250114070449.34226-2-andre.werner@systec-electronic.com>
+ <Z4Z7JUP2vMEX9JsW@smile.fi.intel.com> <bc6aafdc-4b86-956b-afa0-ecf5b3ef393c@systec-electronic.com>
+In-Reply-To: <bc6aafdc-4b86-956b-afa0-ecf5b3ef393c@systec-electronic.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 15 Jan 2025 17:08:41 +0200
+X-Gm-Features: AbW1kvZFg7gXIxSLY3gVv93jG0XlZjmggBL3SuFU-6b6wqB2q3WoY8deujsiRyc
+Message-ID: <CAHp75Vc==m3mE1TtxjHnpwL-d8W4rFnKreu7XB7MWspJKCCOGA@mail.gmail.com>
+Subject: Re: [External Email] Re: [PATCH v7 2/2] serial: sc16is7xx: Add
+ polling mode if no IRQ pin is available
+To: Andre Werner <andre.werner@systec-electronic.com>
+Cc: Andy Shevchenko <andy@kernel.org>, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
+	hvilleneuve@dimonoff.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	lech.perczak@camlingroup.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	robh@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 03 Jan 2025 11:45:22 -0600, Andrew Davis wrote:
-> This compatible was only added to the list for compatibility with older
-> dtschema (<2024.02). Add it to the other list also so both new and old
-> tools work.
-> 
-> 
+On Wed, Jan 15, 2025 at 7:23=E2=80=AFAM Andre Werner
+<andre.werner@systec-electronic.com> wrote:
+> On Tue, 14 Jan 2025, Andy Shevchenko wrote:
+> > On Tue, Jan 14, 2025 at 08:04:49AM +0100, Andre Werner wrote:
 
-Applied, thanks!
+...
 
-[1/3] dt-bindings: mfd: syscon: Fix ti,j784s4-acspcie-proxy-ctrl compatible
-      commit: 756d4b7a873c1170b65ea1e4cf0312f0a3f9976f
+> > > V6:
+> > > - Use polling mode for IRQ numbers <=3D 0 which encounter no valid IR=
+Q
+> > >   were found/defined.
+> > > V7:
+> > > - Try to improve and unify comments as requested.
+> > > - Fix typo in commit message: pull -> poll
+> >
+> > Please, rebase your series on top of the recent Linux Next.
+>
+> I performed the rebase and get a single new commit to fix the merge
+> conflicts. How do you expect the submission? Is it a new commit or
+> should I mark it as a fixup? Shall it have new version number v8 or
+> is it a full new commit series?
 
---
-Lee Jones [李琼斯]
+When you rebase you should not get _merge_ conflicts.
+What is expected is that the first (DT binding) commit will be gone
+from your local branch, followed by the shrunken / conflicting second
+one.
 
+--=20
+With Best Regards,
+Andy Shevchenko
 
