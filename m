@@ -1,143 +1,175 @@
-Return-Path: <devicetree+bounces-138701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA75CA11D7A
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:24:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6651FA11DB2
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:27:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AD9616174C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:23:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FC523A9677
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D11D24817B;
-	Wed, 15 Jan 2025 09:23:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 223A122F3A4;
+	Wed, 15 Jan 2025 09:26:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ex2Upw8C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 725C8248171;
-	Wed, 15 Jan 2025 09:23:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9860248193;
+	Wed, 15 Jan 2025 09:26:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736933020; cv=none; b=Cp+DYNFgPM9VLscaEJwBqi6G87eH7drIiqXOy8ZwEd1ih8Au4Xb0+emA8Fa6de38hMVOm5HdBUqwGcln8Z6keOfig2Gr90o04VdvA85p9T54/lf2SZLzVOjxq1btpGZN5niD3eWJhzv9MNJmuX675U92AxIsk7k7lq+uuWYPPcw=
+	t=1736933170; cv=none; b=jkV6B8OOruw8aVBeqUKu7Yrypt3+62hgYjwlnJoxOhiXXHRSZjo/JdZaA8XHx/ydogKTEY9LN7sqGQU81bI+BIfJ/iuQDIIFwSFQiRwMZAXwT5Zcuml2ai3iCHS5ShQDHcuGJecMj3h63UZche9K4TCGL7r8kr0BE/c7qGi2vpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736933020; c=relaxed/simple;
-	bh=u9nQ62Cqws90qRdvAbxG1Lsc7wDKsH8xbteVuDu2FWg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fx83A8XmHhbv1Q4/98Ftr0JxLb+D4MhoYyuL8hm+3/bMwl7TumNAOu4C79W8WJP+XoYo7aH0pOkahksJMGa85pvZUXOX6o6V7OKJ4RzZJMlzOJOGoN7YYcOlgTqtqsJztID+zOK+BZFZDdS1cOZvhCQgJjoRpmF2zVwjS901nlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
-Received: from [192.168.0.2] (ip5f5af1b4.dynamic.kabel-deutschland.de [95.90.241.180])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: pmenzel)
-	by mx.molgen.mpg.de (Postfix) with ESMTPSA id 9D6D261E64783;
-	Wed, 15 Jan 2025 10:22:10 +0100 (CET)
-Message-ID: <990a3fc9-7fd6-49b6-8918-d5bf4ae48953@molgen.mpg.de>
-Date: Wed, 15 Jan 2025 10:22:09 +0100
+	s=arc-20240116; t=1736933170; c=relaxed/simple;
+	bh=HMdNi8xEEoDx9a7DMjJFYKL0XAvv0JM24seyGYmW5fU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=K/VDO44PLbS/FmEjLU2azeJYLVCvwgY/Lwfo+nBRba88/128MHBqtowWivZCNOpYXbCqVRktcD1xlGFfmCHFYLq1ba+Ulk9PJvxbBnvpAWVbTNKVS1qSRa45HHIuzMA6CDmfDhDpb5i6OmaWnhp/XvXjrjeQHNIGPQM4EyM/CkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ex2Upw8C; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D320DFF812;
+	Wed, 15 Jan 2025 09:26:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1736933163;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=J7yij69aWCQUXlQKvIa+M3cJt5WrSqaQdzjFiTdDm4k=;
+	b=ex2Upw8CYe5xc1rm9AAnfR7Cyo3Pvsto4i2Fmbwfk5KT7iogQI1BjbvKkS/XbsaRacpXyA
+	IuU2Z+Wdnm2w/Z/fLbKViA70Cy1YhmiFFuGBO/dDT8a1cR15yfuNXnSVI6ulNRIOO8Ol4p
+	OFpTmMT3lFtU2+HLOgLBXiH15qyEKDlOuTGKg+24g3f5NUGMNL5tdCUzhtmKUz+EDVZJut
+	Kj3hg/vmBI7W1C8o7becnwoTZix7AeqEDQRg0/Q/KO+gW7cL64+ZbSRpk2l9jwiw8da8Bw
+	XUbBwsAUAb2Oq8o5XTbkXASZA3tWs4klgKzgztKqz1dttMr5eO12qz146+BgUA==
+From: Romain Gantois <romain.gantois@bootlin.com>
+Subject: [PATCH v6 0/9] misc: Support TI FPC202 dual-port controller
+Date: Wed, 15 Jan 2025 10:25:37 +0100
+Message-Id: <20250115-fpc202-v6-0-d47a34820753@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 3/3] net: stmmac: dwmac-nuvoton: Add dwmac
- glue for Nuvoton MA35 family
-To: Joey Lu <a0987203069@gmail.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
- devicetree@vger.kernel.org, ychuang3@nuvoton.com, netdev@vger.kernel.org,
- openbmc@lists.ozlabs.org, alexandre.torgue@foss.st.com,
- linux-kernel@vger.kernel.org, joabreu@synopsys.com,
- Andrew Lunn <andrew@lunn.ch>, schung@nuvoton.com, peppe.cavallaro@st.com,
- yclu4@nuvoton.com, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250113055434.3377508-1-a0987203069@gmail.com>
- <20250113055434.3377508-4-a0987203069@gmail.com>
- <a30b338f-0a6f-47e7-922b-c637a6648a6d@molgen.mpg.de>
- <2cf758f2-529e-4ccd-9dc1-18fc29ad5ac0@gmail.com>
-Content-Language: en-US
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <2cf758f2-529e-4ccd-9dc1-18fc29ad5ac0@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABJ/h2cC/2XPQW7DIBAF0KtErEsFwwCernqPqgvA0CC1JrIjq
+ 1Xku3ecKokr7+Yj3me4iCmPNU/i5XARY57rVNvAwT0dRDqG4SPL2nMWoAC10l6WU+JZuqKiN8S
+ z7wRfPo251O9r0ds752Odzm38ufbOej39q9Cqu1XMWipZMkJy1MVE8BpbO3/W4Tm1L7GWzLCB+
+ gGBoUfMWDRBgH4PzQaCvUPD0GDuXEzRRuv2EB8QjLpDXF90OgL5ntf1e2hv0KrtHy3DgIZCJKL
+ ehv9wWZZfGtNJy4IBAAA=
+X-Change-ID: 20241017-fpc202-6f0b739c2078
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+ Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>, 
+ Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Kory Maincent <kory.maincent@bootlin.com>, linux-i2c@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-media@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ Romain Gantois <romain.gantois@bootlin.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.2
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Dear Joey,
+Hello everyone,
 
+This is version six of my series which adds support for the TI FPC202
+dual-port controller. This is an unusual kind of device which is used as a
+low-speed signal aggregator for various types of SFP-like hardware ports.
 
-Thank you for your prompt reply.
+The FPC202 exposes an I2C, or SPI (not supported in this series) control
+interface, which can be used to access two downstream I2C busses, along
+with a set of low-speed GPIO signals for each port. It also has I2C address
+translation (ATR) features, which allow multiple I2C devices with the same
+address (e.g. SFP EEPROMs at address 0x50) to be accessed from the upstream
+control interface on different addresses.
 
+I've chosen to add this driver to the misc subsystem, as it doesn't
+strictly belong in either the i2c or gpio sybsystem, and as far as I know
+it is the first device of its kind to be added to the kernel.
 
-Am 15.01.25 um 10:03 schrieb Joey Lu:
+Along with the FPC202 driver itself, this series also adds support for
+dynamic address translation to the i2c-atr module. This allows I2C address
+translators to update their translation table on-the-fly when they receive
+transactions to unmapped clients. This feature is needed by the FPC202
+driver to access up to three logical I2C devices per-port, given that the
+FPC202 address translation table only has two address slots.
 
-> Paul Menzel 於 1/14/2025 9:49 AM 寫道:
+Best Regards,
 
-[…]
+Romain
 
->> Am 13.01.25 um 00:54 schrieb Joey Lu:
->>> Add support for Gigabit Ethernet on Nuvoton MA35 series using dwmac 
->>> driver.
+Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+---
+Changes in v6:
+- Replaced spaces with tabs in misc Makefile
+- Link to v5: https://lore.kernel.org/r/20250108-fpc202-v5-0-a439ab999d5a@bootlin.com
 
-[…]
+Changes in v5:
+- Used mutex guards in ub960 and fpc202 drivers
+- Changed wording of some i2c-atr logs
+- Link to v4: https://lore.kernel.org/r/20241230-fpc202-v4-0-761b297dc697@bootlin.com
 
->> Also, please document how tested the driver. Maybe even paste new log 
->> messages.
-> 
-> These are the kernel configurations for testing the MA35D1 GMAC driver: 
-> ARCH_MA35, STMMAC_PLATFORM, DWMAC_NUVOTON.
-> 
-> I'm not sure if this information is sufficient, so please provide some 
-> guidance on what else I should include to meet your requirements.
+Changes in v4:
+- Fixed unbalanced refcounting in FPC202 port probing path
+- Fixed KASAN bug by setting alias_pool "shared" flag properly
+- Dropped requirement for both FPC202 ports to be described in the DT
+- Enabled dynamic translation by default, dropped support for non dynamic translation
+- Used aliased_addrs list instead of insufficient bitmap in ub960 driver
+- Added i2c_atr_destroy_c2a() function matching i2c_atr_create_c2a()
+- Fixed list corruption bug in dynamic address translation
+- Indented Kconfig entry with tabs instead of spaces
+- Link to v3: https://lore.kernel.org/r/20241125-fpc202-v3-0-34e86bcb5b56@bootlin.com
 
-I’d be interested on what hardware you tested it. Probably some 
-evaluation or customer reference board.
+Changes in v3:
+- Described the "reg" property of downstream ports in the FPC202 bindings
+- Link to v2: https://lore.kernel.org/r/20241118-fpc202-v2-0-744e4f192a2d@bootlin.com
 
-> I will include the log messages at the end of the email.
+Changes in v2:
+- Renamed port nodes to match i2c adapter bindings.
+- Declared atr ops struct as static const.
+- Free downstream ports during FPC202 removal.
+- Link to v1: https://lore.kernel.org/r/20241108-fpc202-v1-0-fe42c698bc92@bootlin.com
 
-Awesome. Thank you. Personally, I also like to see those in the commit 
-message.
+---
+Romain Gantois (9):
+      dt-bindings: misc: Describe TI FPC202 dual port controller
+      media: i2c: ds90ub960: Replace aliased clients list with address list
+      media: i2c: ds90ub960: Protect alias_use_mask with a mutex
+      i2c: use client addresses directly in ATR interface
+      i2c: move ATR alias pool to a separate struct
+      i2c: rename field 'alias_list' of struct i2c_atr_chan to 'alias_pairs'
+      i2c: support per-channel ATR alias pools
+      i2c: Support dynamic address translation
+      misc: add FPC202 dual port controller driver
 
->>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->>> Signed-off-by: Joey Lu <a0987203069@gmail.com>
->>
->> As you use your company email address in the AUTHOR line below, please 
->> also add that email address to the commit message (and maybe even as 
->> the author).
->
-> I will update the AUTHOR to use my personal email address instead of the 
-> company email.
+ .../devicetree/bindings/misc/ti,fpc202.yaml        |  94 ++++
+ MAINTAINERS                                        |   7 +
+ drivers/i2c/i2c-atr.c                              | 483 ++++++++++++++-------
+ drivers/media/i2c/ds90ub913.c                      |   9 +-
+ drivers/media/i2c/ds90ub953.c                      |   9 +-
+ drivers/media/i2c/ds90ub960.c                      |  49 ++-
+ drivers/misc/Kconfig                               |  11 +
+ drivers/misc/Makefile                              |   1 +
+ drivers/misc/ti_fpc202.c                           | 440 +++++++++++++++++++
+ include/linux/i2c-atr.h                            |  54 ++-
+ 10 files changed, 966 insertions(+), 191 deletions(-)
+---
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+change-id: 20241017-fpc202-6f0b739c2078
 
-Understood. (yclu4@nuvoton.com is also personal, but the Gmail address 
-is private, I guess. ;-)).
+Best regards,
+-- 
+Romain Gantois <romain.gantois@bootlin.com>
 
-For statistics, how companies contribute to the Linux kernel, having the 
-company address somewhere would be nice though, as you are doing this as 
-your work at Nuvoton, right?
-
->>> ---
->>>   drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
->>>   drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
->>>   .../ethernet/stmicro/stmmac/dwmac-nuvoton.c   | 179 ++++++++++++++++++
->>>   3 files changed, 191 insertions(+)
->>>   create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
-
-[…]
-
-> log:
-> 
-> [    T0] Booting Linux on physical CPU 0x0000000000 [0x411fd040]
-
-Out of curiosity, how do you get these timestamps T0, T1, …?
-
-[…]
-
-
-Thank you and kind regards,
-
-Paul
 
