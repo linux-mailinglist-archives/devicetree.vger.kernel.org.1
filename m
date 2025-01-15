@@ -1,132 +1,187 @@
-Return-Path: <devicetree+bounces-138839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A080A12860
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 17:14:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67C5AA1286F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 17:15:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3EC3F3A2F2C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 16:12:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8C293A97F3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 16:13:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 754F01DA100;
-	Wed, 15 Jan 2025 16:09:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D0C11A76C7;
+	Wed, 15 Jan 2025 16:11:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="L7/q2dGG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z9DtDpMH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57B0B1D934C;
-	Wed, 15 Jan 2025 16:09:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C8721A0B13
+	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 16:11:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736957386; cv=none; b=s1i57SSa9iHJljtYuvUPVGvs5GIBS/s+D7JPTVeUuoeZ1eFm41y1bJdktPhnYgYjyrLlNDI9wJ9LA/XfuH97ArcuLhIBVqKqzmoXrrXzHkBUA+7tjJrQPI33Fp2us94WWro8Ns+xAeV0wU1R7i/Nfwh9H2OvDhDT9yb/FRlYKKs=
+	t=1736957474; cv=none; b=j0UutA5+U/m4jqHZOSJXrikov0SHnvOZ0O9Yss9GmpQH8QpHszH79IHtitVlZ8lYi5j64Fv3iyX+Zny5nd2WYh/2+Wm4lFkYMs9FSLAp58/E+wj24XbKEqCiSFzCHwpOHKeaHWQRX0jE2qd9bZamA3bIV8txt0nahYA4lh0XLjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736957386; c=relaxed/simple;
-	bh=cLUy2vvvNoLzfO2fi3v0gyTpRgpc0RLU0sgu8ml1W5U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D7hGepk+n78XODKG4ifW6NRhBRHM22rRS2LiAWSHU3JHBV2ILauwoP1LvAFnf3Dm3KGZDsYsUR2k8puTD+azzAywjtCpAxfHESoO5eUfdleUmKG8Hkj5FmschGf2u09en/SzrCJgxbuDRUsA91S913zUYLupkywSE8veLxptBHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=L7/q2dGG; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 50744526;
-	Wed, 15 Jan 2025 17:08:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1736957324;
-	bh=cLUy2vvvNoLzfO2fi3v0gyTpRgpc0RLU0sgu8ml1W5U=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=L7/q2dGGDUh4xuRoFVW7x1oR+X5vmUdZJDoGf80/ZZXk1MGC2iubEg5Rs+bCP6I/D
-	 knjtPnEic+wD4zJGns2r7aDOwL75u8Qp11kjAjrVSxNWvlzprsTV/NZS0/gPRtOAqw
-	 l3TqppcCS2pEIVNa86oI1J/msEAsSt+/e5A0EGvM=
-Message-ID: <b360f7d5-4e3b-434a-a9da-73ae1c5b42a3@ideasonboard.com>
-Date: Wed, 15 Jan 2025 18:09:38 +0200
+	s=arc-20240116; t=1736957474; c=relaxed/simple;
+	bh=k+hHpVP5M11rYH3mSWCj3DR31urk8Ai4nI+3MIHIp7A=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HtesaxRSGEiWzaiALWdHhlPzr9GIcW6PuP50F6jcZUrbRO7RYFn8XgghNm6Ad+Hyr2CLHGejxDw/H9SgkbowTY+UZ8lSrZBr//prSdKdMxOuMaZDX6oqi2IofzD+WhlPlTnsLmALB1Co3NOATjIdm660Ninp+WqUsPiYyqDhkCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z9DtDpMH; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5d9f0a6ad83so5440701a12.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 08:11:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736957470; x=1737562270; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Sk8XcCPQk/QfLtG6UwXSc1dy9JRT7qUXdhOLuEZAWNU=;
+        b=Z9DtDpMH4my9K7mbu5pYPqyu5PMsZB62t6/wEKHd01qX4Eb2icvqHFRjiX8+/aL4cx
+         ju4iAzunirwuRb9mGgV5H/HK/vCaSMybzaGti6cSbw+K5C1h5MZHbO8Wx7zNE63CuZZ3
+         YkPE2/POaK9xX7daxaFo0hHSqTYcjduvj2nDSziyWklcpzlpICcZtRy/+cSUUv4+HHq1
+         /+kCoapCD16TeeufMmE094/SnlNq663lXbuS6y5rMApGbdGbUJgiNI+pOZRYMH5/JrF1
+         ilX+UUJDP2O8Q5paqn3gp5KWyY1sOj/UpXXJ1ugT+6DlyQu1vJil4XdGbJ/p/bdhdJnY
+         JvWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736957470; x=1737562270;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Sk8XcCPQk/QfLtG6UwXSc1dy9JRT7qUXdhOLuEZAWNU=;
+        b=MuxUHfzvBQeGHJOsdHyvMhSIQYAoc2q6cSkG3YYoxSsm1jqDEK3wpx9sfBNomwTzHo
+         Eg8mI8NLIwP/bUqQhvzQUsvBjatEVjx952eDfc9eYItoMoc8WcH4ZwUzvSmwNvN1zLVj
+         CV6LlbwR+cCz0Z2U17CxV4b1QTP8TNX1ztIQijJBWLQbD20eeijmMqqIkde/BS1cg4nu
+         KrWEHYhpxe/78OI9aqFG2hSH9q0PIcdbWQWMcl8uBQUcV4s0nGLOhl2voGdSEAR3mYqL
+         8x7+SOnw4qCGi32dXCfZxvniScMhLfPVy+pw2Vj9nz+cOzUHdhLYxihk1+dd3TWpb9nk
+         z+NA==
+X-Forwarded-Encrypted: i=1; AJvYcCVuMoFAumIswPHoZO4H8RFI3pn/nQ1W3S8cC4UP+RmVbw/i6R6pkZr3dYycSNRvSws8so11sO8L0Lug@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxe+Lsf0r59xF0FapY+7aGnekZsGOiF5v5Gm95+Mvg7RGPu4glW
+	pwB8VRmxsWzdb8wFCSzX2+m2cDf7l0EqY4Mrt50nRz+qBAqjlTQearM9LhqrxBI=
+X-Gm-Gg: ASbGncv0K/3BRx4WByggyC0AGegGwIw8/2EwI+3Knoms3bPrzjBmXqb3n7N3tVY/Km+
+	tA9GvNNAHPSGXtgxR+aH1zzX8DadxoRh3WJa01y3vGvjZ5PfRiWQkrQXDN8EbGRX9GWuWn8Xh8x
+	qW1/83W6yLtuGf9vaymALdOKXcH4p4aZ85qyrjN6trg5f/SNJLO8rxWzul/+fApcRgV99BMbiTY
+	iIrYD036E9A1CbYXZKkoc0w+aXqp44SgmUC1ElQ/csTUBbocRpjX9RPNhvmNWLlaZ4N4UxnVmg4
+	GboG4yFERbH8Vh1vDKpwEs2/YILOKHEyS64LHfg5
+X-Google-Smtp-Source: AGHT+IG8jwVgJoqsILMY+vI3oCTtwUoVhDSB7vFI/n6QxjmCcZpiS0jPwfBOjTCKizLFXRVYFkMgtQ==
+X-Received: by 2002:a05:6402:2345:b0:5d0:b51c:8479 with SMTP id 4fb4d7f45d1cf-5d972e0a087mr28935550a12.10.1736957470374;
+        Wed, 15 Jan 2025 08:11:10 -0800 (PST)
+Received: from puffmais.c.googlers.com (140.20.91.34.bc.googleusercontent.com. [34.91.20.140])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d9904a55f9sm7416232a12.81.2025.01.15.08.11.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jan 2025 08:11:09 -0800 (PST)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH v3 0/4] Google Pixel 6 (simple) framebuffer support
+Date: Wed, 15 Jan 2025 16:11:08 +0000
+Message-Id: <20250115-gs101-simplefb-v3-0-52eca3a582b7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 17/19] media: dt-bindings: ti,ds90ub960: Add "i2c-addr"
- link property
-To: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>,
- Jai Luthra <jai.luthra@ideasonboard.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, devicetree@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <20250110-ub9xx-improvements-v1-0-e0b9a1f644da@ideasonboard.com>
- <20250110-ub9xx-improvements-v1-17-e0b9a1f644da@ideasonboard.com>
- <iet6yl4mloktmpm7ngkug2dgtddriot7qwrkgg6loqermj7f74@mzyg34r7f4pc>
- <19c22201-e3ec-4d07-97ae-c149b172e480@ideasonboard.com>
- <20250115-brave-whispering-cougar-a11f26@lemur>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <20250115-brave-whispering-cougar-a11f26@lemur>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIABzeh2cC/3XMQQ6CMBCF4auQrq2ZGYgUV97DuChlgEkQSGsaD
+ eHuFlYa4/K95PsXFdgLB3XOFuU5SpBpTCM/ZMr1duxYS5O2IqACCU+6Cwiog9zngdtaG2vZAJW
+ Gm1IlNHtu5bkHr7e0ewmPyb/2fsTt/ZuKqEEb52yDJgcyeBlktH46Tr5TWyvShyf48ZS8Q7Cmr
+ biooP7y67q+AdUc+BXtAAAA
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.13.0
 
 Hi,
 
-On 15/01/2025 17:53, Konstantin Ryabitsev wrote:
-> On Tue, Jan 14, 2025 at 01:50:08PM +0200, Tomi Valkeinen wrote:
->>> If you need it for your own patch management purposes, keep it under the
->>> --- separator.
->>
->> I'm using b4. I don't know how to do that with b4, but I'll look into it.
-> 
-> You just put them under --- in your git commit message and b4 will preserve
-> it as-is when it renders the email.
+This series enables simple framebuffer support on Google Pixel 6 and
+Pixel 6 Pro.
 
-Alright, thanks!
+Even if simple-framebuffer is deprecated and DRM should be used
+instead, having it available in DT is beneficial for several reasons at
+this point in time (the phone uses an OLED display):
+* energy consumption goes down significantly, as it changes from white
+  (as left by bootloader) to black (linux console), and we generally
+  don't run out of battery anymore when plugged into a USB port
+* less of a burn-in effect I assume
+* phone stays cooler due to reduced energy consumption by display
 
-  Tomi
+Since Pixel 6 and Pixel 6 Pro use a different resolution display, this
+is the time to separate them into their respective DTs, and provide one
+for each of them. There are other differences between the two, like
+battery design capacity, but they don't matter at this stage due to
+incomplete upstream support.
+
+* dependency note *
+
+None (anymore) - earlier versions of this series had dependencies, but
+those are all part of linux-next already, so none remain.
+
+* dependency note end *
+
+For those who want to try this out:
+The stock bootloader disables the decon hardware trigger before jumping
+to Linux, preventing framebuffer updates from reaching the display. We
+have added a work-around in our Yocto BSP layer for the time being
+(until a proper display exists upstream). An alternative might be to
+port and use uniLoader from https://github.com/ivoszbg/uniLoader, as
+seems to be done for some other Exynos platforms.
+
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+Changes in v3:
+- back to using separate DTBs for Pixel 6 and Pixel 6 Pro (Krzysztof)
+- update name of common dtsi file (Krzysztof)
+- use 'memory-region' property from the start in patch 2, don't
+  introduce it as change in patch 3 (Krzysztof)
+- Link to v2: https://lore.kernel.org/r/20241220-gs101-simplefb-v2-0-c10a8f9e490b@linaro.org
+  and https://lore.kernel.org/r/20241220-gs101-simplefb-oriole-v2-1-df60e566932a@linaro.org
+
+Changes in v2:
+- We now have a generic gs101-based Pixel board DT, which can work on
+  any Pixel 6 / 6 Pro / 6a
+- Pixel 6 (Pro) are overlays onto that one.
+  This has the advantage that all boards can be supported without
+  having to have a full copy of the DT for each of them. We still
+  instruct kbuild to create merged DTBs (in addition to the DTBOs) so
+  that existing scripts can keep working while giving the option to
+  just apply the overlay before boot (e.g. by the bootloader).
+- The binding has been updated according to the above points
+- I've changed the simple-framebuffer node to specify the memory via
+  memory-region instead of reg, as that avoids unnecessary duplication
+  (of the size), and it avoids having to specify #address-cells
+  and #size-cells in the chosen node (and duplicating this in the
+  DTSO), which is otherwise necessary to keep dt_binding_check happy
+  and DT validation working in general.
+- sort overriding/extending nodes ordered by label name (Krzysztof)
+- format patches with diff.renames=copies (Krzysztof)
+- dependencies have been updated, see below
+- Link to v1: https://lore.kernel.org/r/20241216-gs101-simplefb-v1-0-8ccad1830281@linaro.org
+
+---
+André Draszik (4):
+      dt-bindings: arm: google: add gs101-raven
+      arm64: dts: exynos: gs101-oriole: configure simple-framebuffer
+      arm64: dts: exynos: gs101-oriole: move common Pixel6 & 6Pro parts into a .dtsi
+      arm64: dts: exynos: gs101-raven: add new board file
+
+ Documentation/devicetree/bindings/arm/google.yaml  |   3 +-
+ arch/arm64/boot/dts/exynos/google/Makefile         |   1 +
+ arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 267 +--------------------
+ .../{gs101-oriole.dts => gs101-pixel-common.dtsi}  |  22 +-
+ arch/arm64/boot/dts/exynos/google/gs101-raven.dts  |  29 +++
+ 5 files changed, 58 insertions(+), 264 deletions(-)
+---
+base-commit: 4e16367cfe0ce395f29d0482b78970cce8e1db73
+change-id: 20241216-gs101-simplefb-8aae80278ed7
+
+Best regards,
+-- 
+André Draszik <andre.draszik@linaro.org>
 
 
