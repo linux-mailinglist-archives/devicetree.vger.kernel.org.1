@@ -1,142 +1,189 @@
-Return-Path: <devicetree+bounces-138863-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06B7FA12A8B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 19:11:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8122CA12AA0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 19:13:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B1EF163DE1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 18:11:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BB0E1881FE1
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 18:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DFE91D54F2;
-	Wed, 15 Jan 2025 18:11:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7804D1D5CC5;
+	Wed, 15 Jan 2025 18:13:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="L7Q4mID+";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="H2cJsMWe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H1kv1uBf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a3-smtp.messagingengine.com (fhigh-a3-smtp.messagingengine.com [103.168.172.154])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACE7524A7E8;
-	Wed, 15 Jan 2025 18:11:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.154
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4819A24A7ED;
+	Wed, 15 Jan 2025 18:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736964690; cv=none; b=cLtcU+GVQxEK7C1sq5VKqMGLuhMAxJE6y3w7tbYTlbhkJfhsqlyuTwnf0mDFDNRno7Eghl695cesVt+q2cBcuwY0Lg3CPjqncPqCuLCOP5ozzXQpQjOL3efo/nxWinEpa/9pazNw9lw2T0t4g1xwSDUQX6AfEl9savx7Wq1lIiY=
+	t=1736964823; cv=none; b=u50dWJ0b/h2dt3sIFLEV/c+lW4PQBxpK+BLSzCf51GuTNqQLaBAr86pdgbDura/SHU9N44S3tYh8vp5hPwfGoANA1fEu6jc5lQVqzDRQFKs6lKe2TyPrmedvkrX+amf6qGicn+sP5wGtt8FkT6KZHYn2EVPNWW3HypZ/R1Bgebg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736964690; c=relaxed/simple;
-	bh=nsKO2M7NCmXHTBc4WSwoe/wzD3FbwIqQDB5+jERfXeA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Vfmn2bb9vcW8RpxGALTbZUXHtIPBLaUtDK+7tXQ/cBX/4lGIhzC8+uj9Z33sHFG+AwCNEQm3lo00RKxKjVmx1gVnNffFWN0jwnM9/SW3KEBNdBKlpIPFZTC8ZKoj+bBr/oSeAbsVkPR1crs+lH5opeDCc5k40dYF03YWUAq/PTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=L7Q4mID+; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=H2cJsMWe; arc=none smtp.client-ip=103.168.172.154
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-12.internal (phl-compute-12.phl.internal [10.202.2.52])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id C944E1140117;
-	Wed, 15 Jan 2025 13:11:26 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-12.internal (MEProxy); Wed, 15 Jan 2025 13:11:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1736964686;
-	 x=1737051086; bh=2krn7CJqVW6/Yj2wTCbVwlLTl5z1X8fuzhHIqJq/ZWQ=; b=
-	L7Q4mID+lAb7UNqOnBiyyGvmDf7kCW5C355lL6JqFwUyTBT4fhLdp0T7Z6iMWwvT
-	eINIbYYBo+ICAVHET/awVm1HgySm/g5SC82LecVe8lLGoAeJZICsB4sCYkf4L2rQ
-	CVfN9/yUWXpY0SltulZtF39Rdt7aBDc1LbNL6afZwE+NAsNuM3hthIOYpPoCxMh5
-	CbJWqouUV5ml7b0JcWSYuupmVUPYAPf/ozaoEBLS6RaPG0VI251CAbztG5yMsm/j
-	bPpNWSJHwhfAj8nuhpoMABI6PsK0rfxDZAi0ytvU+94xP2R1n4nkJytQTUSBCHQh
-	tt7Yk6fgcJmKjv6gKR22cw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1736964686; x=
-	1737051086; bh=2krn7CJqVW6/Yj2wTCbVwlLTl5z1X8fuzhHIqJq/ZWQ=; b=H
-	2cJsMWeMBpi6UehNUhyOocI4kjJIEWX/t0IJ0EZ/0oo+HJ6kiVaYs4pePCDcgVfY
-	//PMMk9u6opWK7dGyXm9RvoA8SeOvz7NSQdJrxw6xyKtg+Uh7/nKCLW9hci2vqO9
-	FHHUDyRGnZzeneLqaZ3C1KhUxQKfj60efLpLKLZQikn32ieep4/76ofipJ2PLo/+
-	6qJyOtXhb/lekfFemcEH4b/gaPxVHYYHEyleuRKnRC8Zi0oFDEyLIxkWvrN3tHvD
-	8hxy9bOB/ncTXuWofGiHJtaM3DBFx3HmwPRC27QA4whd1Ogd15PYbHJAv689/qr2
-	LARdmRduHENZWlEMLpi1A==
-X-ME-Sender: <xms:TvqHZ3LrVg3m6P5t_IR3VPHbMVP1tWStVxgK1jbkc3vvCa4twkH6JA>
-    <xme:TvqHZ7LHmPbgEx180-0S33UO2MGce1OFfH1mEFhvP0sbi87h-GN_xQz7ODSTIZ3TI
-    smthalRMm3xLllqDLM>
-X-ME-Received: <xmr:TvqHZ_tK763Ds07GU7QHcQBM3oNPobjTpKYK1CWa2ZnP2s-E_TrVetPhHYN1fy_K3WfHTvfx5GxraAPMNW5ZWCrKzg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudehledgkedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucenucfjughrpefhvfevuf
-    ffkffojghfgggtgfesthekredtredtjeenucfhrhhomheppfhikhhlrghsucfunpguvghr
-    lhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnh
-    grthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepheeigfeuveeutdefhfehgeekvedt
-    leeuueekveefudehhffhjeffgfegffelfeegnecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhgusehrrghg
-    nhgrthgvtghhrdhsvgdpnhgspghrtghpthhtohepgedpmhhouggvpehsmhhtphhouhhtpd
-    hrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphht
-    thhopehlihhnuhigqdhrvghnvghsrghsqdhsohgtsehvghgvrhdrkhgvrhhnvghlrdhorh
-    hgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-    pdhrtghpthhtohepnhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrg
-    hgnhgrthgvtghhrdhsvg
-X-ME-Proxy: <xmx:TvqHZwbbhxogWLwsHekfrKVCbzEmvOHhSOuZ5elIrBmUj1C94OYsaQ>
-    <xmx:TvqHZ-Zpa7Tfyxsqe0Xs97UZrsrFfqh6Fx4Son2QgHe4wQD3pPC1yg>
-    <xmx:TvqHZ0BXz-cvjbLcH31u86H-FB2CfdB9EcB2zCtZN7aHSIiBMGMgHw>
-    <xmx:TvqHZ8Y3SV0cJJ2yjXA4NQci_0qddPgx6ta1flxtjVsCf9xRzDEMgQ>
-    <xmx:TvqHZ1W5o96em8ArleXxEqJNKzd0XXbKJ0jcEToFHbaiDF54nCEEjQoS>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 15 Jan 2025 13:11:26 -0500 (EST)
-From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: [PATCH 2/2] arm64: dts: renesas: r8a779h0: Add VSPX instance
-Date: Wed, 15 Jan 2025 19:10:50 +0100
-Message-ID: <20250115181050.3728275-3-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.48.0
-In-Reply-To: <20250115181050.3728275-1-niklas.soderlund+renesas@ragnatech.se>
-References: <20250115181050.3728275-1-niklas.soderlund+renesas@ragnatech.se>
+	s=arc-20240116; t=1736964823; c=relaxed/simple;
+	bh=q6kB5UXw880ATqvZEfGsRHsf4JVQSrzttUx4NVuSPVw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=PF6STj7q38TyL/L/3EHcBil+NnBBZrWJft7h/j2QuXg0A3ozt4opw60M4FrZNjpqZRZmETgMfG61h58vSx78ZlWlOgegx3iG+w8rd0qOzlm5vZjqi5aeusHcVe7nwp4XhTS0fhZh51/amFcGN2UvxZwelzRVIZkTCGZX6KlQD74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H1kv1uBf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F3D9C4CED1;
+	Wed, 15 Jan 2025 18:13:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736964822;
+	bh=q6kB5UXw880ATqvZEfGsRHsf4JVQSrzttUx4NVuSPVw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=H1kv1uBflZBbs/nsQ5Sxfrq2pf3ww3+9EfA9C283lNbKQno/zC7AqozbE3HJSJN3S
+	 VcPHTAyeu4TLJsGX2MJ+s9+4Sbj7/pg5J8j6kcFOKN0X0V8oHI1tYip2HBdzYe57kP
+	 0aOIEvBONFo1Qv4zRFsgu5LoDgRw+5i/IMU6BcmmTnV+Y50Kprc48FcCxy12BKcdyZ
+	 dC1XyX3xBM7eXpjlPV8Jj6kGiuofaa98UDBpGCRZBmtgU5VUoWLxH+HLGdloRClVrm
+	 TNZ+OkFBflhZ0y2kleMdt2B89YmUlLfMCUpLcTquNSofHaqdBLrYVwky3a0FdKv806
+	 GZBQIilwW9vvg==
+Date: Wed, 15 Jan 2025 12:13:40 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	=?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+Subject: Re: [PATCH v2 01/21] arm64: dts: qcom: sm8250: Add PCIe bridge node
+Message-ID: <20250115181340.GA539092@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250115175918.2isv2at337cfgvjd@thinkpad>
 
-Add device node for the VSPX instance on R-Car V4M.
+On Wed, Jan 15, 2025 at 11:29:18PM +0530, Manivannan Sadhasivam wrote:
+> On Wed, Jan 15, 2025 at 11:42:10AM -0600, Bjorn Helgaas wrote:
+> > On Wed, Jan 15, 2025 at 04:24:31PM +0530, Manivannan Sadhasivam wrote:
+> > > On Mon, Jan 06, 2025 at 05:07:05PM -0600, Bjorn Helgaas wrote:
+> > > > On Sun, Jan 05, 2025 at 03:46:12PM +0530, Manivannan Sadhasivam wrote:
+> > > > > On Fri, Jan 03, 2025 at 03:05:31PM -0600, Bjorn Helgaas wrote:
+> > > > > > On Thu, Mar 21, 2024 at 04:46:21PM +0530, Manivannan Sadhasivam wrote:
+> > > > > > > On Qcom SoCs, the PCIe host bridge is connected to a single PCIe bridge
+> > > > > > > for each controller instance. Hence, add a node to represent the bridge.
+> > > > > > > 
+> > > > > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > > > > > ---
+> > > > > > >  arch/arm64/boot/dts/qcom/sm8250.dtsi | 30 ++++++++++++++++++++++++++++++
+> > > > > > >  1 file changed, 30 insertions(+)
+> > > > > > > 
+> > > > > > > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > > > > > index 39bd8f0eba1e..fe5485256b22 100644
+> > > > > > > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > > > > > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
+> > > > > > > @@ -2203,6 +2203,16 @@ pcie0: pcie@1c00000 {
+> > > > > > >  			dma-coherent;
+> > > > > > >  
+> > > > > > >  			status = "disabled";
+> > > > > > > +
+> > > > > > > +			pcie@0 {
+> > > > > > > +				device_type = "pci";
+> > > > > > > +				reg = <0x0 0x0 0x0 0x0 0x0>;
+> > > > > > > +				bus-range = <0x01 0xff>;
+> > > > > > 
+> > > > > > Hi Mani, most or all of the patches in this series add this
+> > > > > > "bus-range" property.  IIUC, these are all Root Ports and hence the
+> > > > > > secondary/subordinate bus numbers should be programmable.
+> > > > > 
+> > > > > Right. It is not a functional dependency.
+> > > > > 
+> > > > > > If that's the case, I don't think we need to include "bus-range" in DT
+> > > > > > for them, do we?
+> > > > > 
+> > > > > We mostly include it to silence the below bindings check for the
+> > > > > endpoint device node:
+> > > > > 
+> > > > > Warning (pci_device_bus_num): /soc@0/pcie@1c00000/pcie@0/wifi@0: PCI bus number 1 out of range, expected (0 - 0)
+> > > > > 
+> > > > > DTC check is happy if the 'bus-range' property is absent in the
+> > > > > bridge node. But while validating the endpoint node (if defined), it
+> > > > > currently relies on the parent 'bus-range' property to verify the
+> > > > > bus number provided in the endpoint 'reg' property.
+> > > > > 
+> > > > > I don't know else the check can verify the correctness of the
+> > > > > endpoint bus number. So deferring to Rob here.
+> > > > 
+> > > > I should know more about how this works in DT, but I don't.
+> > > > 
+> > > > I guess https://git.kernel.org/linus/83d2a0a1e2b9 ("arm64: dts: qcom:
+> > > > sm8250: Add PCIe bridge node") added this (subsequently renamed to
+> > > > "pcieport0"):
+> > > > 
+> > > >   +			pcie@0 {
+> > > >   +				device_type = "pci";
+> > > >   +				reg = <0x0 0x0 0x0 0x0 0x0>;
+> > > >   +				bus-range = <0x01 0xff>;
+> > > > 
+> > > > which is used at places like
+> > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts?id=v6.12#n788:
+> > > > 
+> > > >   &pcieport0 {
+> > > > 	  wifi@0 {
+> > > > 		  compatible = "pci17cb,1101";
+> > > > 		  reg = <0x10000 0x0 0x0 0x0 0x0>;
+> > > > 
+> > > > Based on
+> > > > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pci/pci.txt?id=v6.12#n46
+> > > > (which is written for Root Ports and Switch Ports, but presumably
+> > > > applies to endpoints like wifi as well), "reg" contains the device's
+> > > > bus/device/function:
+> > > > 
+> > > >   - reg:
+> > > >      Identifies the PCI-PCI bridge. As defined in the IEEE Std 1275-1994
+> > > >      document, it is a five-cell address encoded as (phys.hi phys.mid
+> > > >      phys.lo size.hi size.lo). phys.hi should contain the device's BDF as
+> > > >      0b00000000 bbbbbbbb dddddfff 00000000. The other cells should be zero.
+> > > > 
+> > > > So 0x10000 would decode to 01:00.0, which matches the <1 1> bus-range.
+> > > > 
+> > > > I don't know the reason for requiring the BDF there, but the venerable
+> > > > https://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf, sec
+> > > > 4.1.1, says "reg" is mandatory for PCI Child Nodes, and the first
+> > > > entry must be the config space address (bus/device/function).
+> > > > 
+> > > > I suppose maybe the BDF is needed to associate the properties with the
+> > > > correct device, and if the OS were to reprogram the bridge secondary
+> > > > bus number, it would have to remember the original value to preserve
+> > > > this association.  I don't think Linux *does* remember that, but it
+> > > > also generally leaves the bridge bus numbers alone.
+> > > 
+> > > Device drivers need to parse the properties defined in the device DT
+> > > node. And the only way to identify the node is by using its 'reg'
+> > > property which has the BDF identifier. This is common to other
+> > > busses where the device address is encoded in the 'reg' property.
+> > 
+> > Does this assume there is some firmware to configure these bridges
+> > before Linux boots?
+> 
+> No.
+> 
+> >  If bridges are completely unconfigured after
+> > power-on, their secondary and subordinate bus numbers will be zero, so
+> > a bus-range property for the bridge can only be an assumption about
+> > what Linux will do.
+> 
+> Secondary bus number for sure is not an assumption as it depends on
+> the hardware topology which linux would know from DT. But
+> subordinate number could be considered as an assumption.
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
- arch/arm64/boot/dts/renesas/r8a779h0.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+If there's no firmware and the secondary bus number is 0 when Linux
+enumerates the bridge, does Linux know how to get the bus-range from
+DT and program the bridge's secondary bus?
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-index dbd03587b8fd..c767ce0d964e 100644
---- a/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a779h0.dtsi
-@@ -1927,6 +1927,17 @@ vspd0: vsp@fea20000 {
- 			renesas,fcp = <&fcpvd0>;
- 		};
- 
-+		vspx0: vsp@fedd0000 {
-+			compatible = "renesas,vsp2";
-+			reg = <0 0xfedd0000 0 0x8000>;
-+			interrupts = <GIC_SPI 556 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 1028>;
-+			power-domains = <&sysc R8A779H0_PD_A3ISP0>;
-+			resets = <&cpg 1028>;
-+
-+			renesas,fcp = <&fcpvx0>;
-+		};
-+
- 		du: display@feb00000 {
- 			compatible = "renesas,du-r8a779h0";
- 			reg = <0 0xfeb00000 0 0x40000>;
--- 
-2.48.0
+And does Linux know how to update the subordinate bus number in the
+case where several Root Ports specify 0xff in bus-range?
 
+Bjorn
 
