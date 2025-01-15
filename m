@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-138878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F13D6A12C86
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 21:25:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB584A12CB0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 21:31:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B07B3A132B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 20:25:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFFA9166C99
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 20:31:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1E201D90B6;
-	Wed, 15 Jan 2025 20:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DAB51DB54C;
+	Wed, 15 Jan 2025 20:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZoNMTRT7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tXOiMClp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22BD191F75;
-	Wed, 15 Jan 2025 20:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1B061D79A6;
+	Wed, 15 Jan 2025 20:30:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736972752; cv=none; b=YP34qSwWUF1RcGe73V2s8W5qDZLwKBd/V3UaDdueKEUmQZyuNNPfRZ6H3xKUyynYWN6crkuIJgRP1/VgqFycktkDAMJEJgGfDLg9KNHKbeBT/cHMxdTxlCMl0E+QB+H9jOVdia01Pr8shluv5fAKP/pcX9Tj70vl5uDVRMlQsNk=
+	t=1736973035; cv=none; b=Dky7xIWHCqJpkBLy60r9fdju+hodfbVJ3y5l6xr1UKD696lQEPaLgDVL16JsbYUsA/JG11ExQMqT4n8gqEWiucVu5V9D23JzMx9/7HlQz4a1x80Oi9e4p9QI1LdyO6eJ2MbHDYjd3BBukb0Fcb2sS5jfM7AKXA5YfDI0gvFBO1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736972752; c=relaxed/simple;
-	bh=QJyHeWSG220LCnGvtkz1v/6noep0wW4SvHn47nukKSE=;
+	s=arc-20240116; t=1736973035; c=relaxed/simple;
+	bh=gB8UBTvmb8E1QTudIroWAe/RajxF90HeTzlSkghei6M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X0hVy3TAViRPdxehVcPkf9H4BHu89ZeqN3OD9pIz8a5Ol7ZDFKe4I9hJiqPLfoJdIndEE6ICuhcKdcIJooNX06VpCIVtyj6PKmEA6Ph50K69nQzU/PTT6HrbPVImw3/bQh2LcUDo/eYp/z7Moqp/U2UsJci91iLGh8WItuRFiIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZoNMTRT7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4762C4CED1;
-	Wed, 15 Jan 2025 20:25:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=bmpRejZX9FgwnYS2DILmJBL1HDb8BGP2ZGoGHp9r5hbpOjb2Wiwreo9VralzWPBoXS+8doqEPh990Y8BjWFXzQCE32K3OSDUDxxRTPicpOfnP++LTzbix6Kn3QyOqzABnZig9hhIZ8Vk2qRKpH0erf0GjNWB5sqJZdlGK7g5O78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tXOiMClp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9028CC4CEE8;
+	Wed, 15 Jan 2025 20:30:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736972752;
-	bh=QJyHeWSG220LCnGvtkz1v/6noep0wW4SvHn47nukKSE=;
+	s=k20201202; t=1736973035;
+	bh=gB8UBTvmb8E1QTudIroWAe/RajxF90HeTzlSkghei6M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZoNMTRT7wilQBTE/a/fquTyYwow2uvvv2PUPrSIbttpxc1pMVHj4Ryc85/81rcUAV
-	 aGy7JARt8uh/G3wq9/1ImhxHplHCJaYUrMIar27BRMUTcltsOZuXELLiJLH4hLREH0
-	 uAdslg0tZw6+S4rc0Pn0wGBwbuecLDu37aWBg1zdSAj1vN4a9DuHA6CoG3Zl6kh9Jt
-	 5tIhKhptjiMSsexCTnqEakbO/T3Aw9XUmLPS/7oxwKO6nv7NXExU/mUO2NrtysIpM9
-	 UN1u/mlDWUp/I62pA/EKLsj6UDaTvJY2ht8XRvXPaMITZoORTHYWZfx9ARSA2GZ+ZG
-	 qk2YNwawUarTw==
-Message-ID: <a869e66e-4fb0-49b6-9307-9a20c73cb374@kernel.org>
-Date: Wed, 15 Jan 2025 21:25:46 +0100
+	b=tXOiMClpszQtUjtPEHUd3RW/12+ocDakbB9+FdSymLyPBMXjXrPd42638msOw2Uiq
+	 T6LlUv4Di8HpUsnyaL6NBSV9gTwoQAnopvERBkG1sbwwFLMtHsSH1HixDRNY1O3x6z
+	 UsEc3GvRILBl4bXOsSoMGv52ctcWsb5tkCUfXMfrC210MKGg8d0sFB8BJa52JwYIJ8
+	 VVL2hV0okKt2ofQX+hPVwO+Ms6bE7x0mCLXQ8MxQYcyIoaDMkuKLmqB0LEOhGtHUQo
+	 rZ6S38ElZh9bcXoomFwnFSs2QJJPk9os2+mpV3gSd0p9SlZ+T4ceAv4LDr7bYLhIoT
+	 KUgXXOuc6jSjA==
+Message-ID: <d823325a-1549-44e5-a1b5-6fe0d547cfd1@kernel.org>
+Date: Wed, 15 Jan 2025 21:30:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 17/19] media: dt-bindings: ti,ds90ub960: Add "i2c-addr"
- link property
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>,
- Jai Luthra <jai.luthra@ideasonboard.com>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, devicetree@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <20250110-ub9xx-improvements-v1-0-e0b9a1f644da@ideasonboard.com>
- <20250110-ub9xx-improvements-v1-17-e0b9a1f644da@ideasonboard.com>
- <iet6yl4mloktmpm7ngkug2dgtddriot7qwrkgg6loqermj7f74@mzyg34r7f4pc>
- <19c22201-e3ec-4d07-97ae-c149b172e480@ideasonboard.com>
- <ffecd7b0-39f1-494b-8a9f-81702a439752@kernel.org>
- <b083ab17-a34e-42cf-9696-ff774731dc58@ideasonboard.com>
+Subject: Re: [PATCH v5 03/10] dt-bindings: gpio: ast2400-gpio: Add hogs
+ parsing
+To: Rob Herring <robh@kernel.org>
+Cc: Ninad Palsule <ninad@linux.ibm.com>, minyard@acm.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+ openipmi-developer@lists.sourceforge.net, netdev@vger.kernel.org,
+ joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
+ eajames@linux.ibm.com, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+References: <20250114220147.757075-1-ninad@linux.ibm.com>
+ <20250114220147.757075-4-ninad@linux.ibm.com>
+ <mbtwdqpalfr2xkhnjc5c5jcjk4w5brrxmgfeydjj5j2jfze4mj@smyyogplpxss>
+ <20250115142457.GA3859772-robh@kernel.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,39 +109,33 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <b083ab17-a34e-42cf-9696-ff774731dc58@ideasonboard.com>
+In-Reply-To: <20250115142457.GA3859772-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/01/2025 18:19, Tomi Valkeinen wrote:
-> Hi,
-> 
-> On 15/01/2025 10:40, Krzysztof Kozlowski wrote:
-> 
->>>> Why only these folks? Why not all of the maintainers?
->>>
->>> The whole series is sent to the media list and maintainers. I thought
->>> this single patch doesn't warrant sending the whole series to DT list
->>> and maintainers, so I cc'd them here.
+On 15/01/2025 15:24, Rob Herring wrote:
+>>>  
+>>> +patternProperties:
+>>> +  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
 >>
->>
->> I was wondering why only some of the DT maintainers, not all? My usual
->> assumption is: you are not using get_maintainers.pl or you are working
->> on an old kernel.
+>> Choose one - suffix or prefix. More popular is suffix.
 > 
-> It's simpler than that: a copy-paste mistake. I'm not sure how I managed 
-> to miss Conor there.
+> I was about to say that, but this matches what gpio-hog.yaml defines. 
+> Why we did both, I don't remember. We could probably eliminate 
+> 'hog-[0-9]+' as that doesn't appear to be used much.
+
+Only one case:
+arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi:                 hog-0 {
+
+Although there are few "hog" prefixes followed by alphanumeric, so not
+matching above pattern.
+
 > 
-> Any preference on cc'ing the DT maintainers and the dt-list only for 
-> this patch (I'll use --- this time, I promise!), or just sending the 
-> whole series also to DT people?
-I think only Rob uses DT list entirely. I use both - DT list and being
-directly CC-ed on emails, and I think Conor relies on being Cc-ed
-directly. IOW, just cc all maintainers + DT list. Unless you touch
-multiple subsystems, there is rarely a point to strip get_maintainers.pl
-output from maintainers/reviewers/submitters. Do not confuse in skipping
-non-maintainers pointed by Git-fallback (not applicable to b4, I think),
-because these should be used carefully.
+> Long term, I want to make all gpio controllers reference a gpio 
+> controller schema and put the hog stuff there. Then we have the node 
+> names defined in 1 place.
+
+
 
 Best regards,
 Krzysztof
