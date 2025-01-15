@@ -1,241 +1,199 @@
-Return-Path: <devicetree+bounces-138784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9E28A1239D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 13:13:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83BBAA123B4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 13:26:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE51F167CC3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 12:13:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A355F1887C83
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 12:26:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6E71EEA56;
-	Wed, 15 Jan 2025 12:13:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C432B21858C;
+	Wed, 15 Jan 2025 12:26:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="r57ECdC5";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="I6Rrahr5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hXXpAqlh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3B3F1DB145;
-	Wed, 15 Jan 2025 12:13:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736943211; cv=fail; b=HnRBIfb+CYx32T8T+YZsQTd4qgY7H1UIo2yHI7ezcgjcGvxhslB2ZItCd0tYEK88s0byYuIrt+y+btRo/yMLpdkcv4FjSqP11H3FbLgO+vrNVkUHM5gf6jK6RHEJd6OK5gNfXpkrTdA1KJrTYWPDVYWOt5PNoFlrRQ2s8hoI0do=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736943211; c=relaxed/simple;
-	bh=DKfybv/iAdWzJhig38D9HSnlDQ5AlJu4gVtnc2gJ6nc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=HnHsmU8cS1NG/dJGnT5feCAQ4ejK5Ci6MQKr6vPKNX4N+Qe7z7gtFn65jkJvMPiTbwN6oHZGtvMAKnrnRox6CkweOYjtcCHgcb4gsCT8w1EC0bOdPABSO/S2u94u2U6UjuELTqjHanCcgpXoFnlWcWPI0Z8prVdIQpTcKk2KrkQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=r57ECdC5; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=I6Rrahr5; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 1d81ab66d33a11ef99858b75a2457dd9-20250115
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=DKfybv/iAdWzJhig38D9HSnlDQ5AlJu4gVtnc2gJ6nc=;
-	b=r57ECdC5Hb7HhJZtrF3Fpa/VmnAIx3S2RtsjFdAFoGT9j5pLOqA7ih5Y4EgxU1PmMy/b2B4j1w2g/LDOupBo1gzBQrlxP5x4cPqkW/hP1nU3xvs6us7+xAdYZPizpdTG/SEMn2Vzi6K1Wd7y7qNqSPobFqJBvIM0txPx+/Dxm4w=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:064cf709-dd87-4fab-bf15-8a415dbca634,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:0e6eed37-e11c-4c1a-89f7-e7a032832c40,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|50,
-	EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
-	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 1d81ab66d33a11ef99858b75a2457dd9-20250115
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
-	(envelope-from <paul-pl.chen@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1342893400; Wed, 15 Jan 2025 20:13:22 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Wed, 15 Jan 2025 20:13:21 +0800
-Received: from HK3PR03CU002.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Wed, 15 Jan 2025 20:13:21 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bVmLb8V45vFA69966L2689wurnwI/Zo+7XyhUdFKWjEI+Y0O9Vt60BCeHHrA7grxnoI/kgVtrDdwW7ea2XbjcFkJxJOCgjXwELX3jmUUz1B8UxRTDOD1d1JZnOdRlnGgQYAeoXI9BTWC+qLmXnjL+dDjBQOf7wkWO8va+Kb1kJoZ90hPmt2l9rFMC0fC/53lV54txK+I8z8rr5g2DV25dWryVqXTVWCWoHB3KK9KdooPMZEpGTyqWAclyfmg7srcA9bpxQm+cF5cO341uW6u7yyxg5nsmrYstBfJxmwY7HwV/IQDY2cC6uo3mCXoCvCvA3iBK5HzifvfJNUI+HxWTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DKfybv/iAdWzJhig38D9HSnlDQ5AlJu4gVtnc2gJ6nc=;
- b=MvSFD8e5IwjMEtjv8X4xuAPoYVKJK33+rmNE8G7X8GKpiOZc6SMHT5hzS7EsKVGQj25wcfJGO0wt4kMmn316VCkhhFELIEt0V1OSh9GgIxGMJvwUVOlleIhGYV9zqi9gtpWHwbSlNZtHk7O/nVcB7DOusREkkKVDxMCl9jYpj5+o22VvjvgjGT5CaWaDwGquQkKFKkrPuK052GKCC8Y81b3dM5rEM1EuEJ9j6XpoH7csY8J4XPoKILZ5AdCaRM5hZ2zo/iBlz/G23ublmFarPGTcRGHYep1sLGR3JK8IMouyFJpERDicsn81XgQCHkNi1xKI1Wu48z3fD0OhyJOHLQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB9582475E2;
+	Wed, 15 Jan 2025 12:26:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736943971; cv=none; b=hhB26/Ao+63oaHhlSLp2d8xnuaIp2dL/NAhU+O/5Yu/LEJyS3wLTVklLQl2+hy/L4yd3XP8iMU8p37xaqP9eQrbs5N7P9fYeW26dsUN3iArgVmhX9oeh3kyJf+8N3oLazKUmygOlR81m7zJuC2tbr8RyACRhqEXoOr6YHwGaQSQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736943971; c=relaxed/simple;
+	bh=5wpMhUMcmRXdyvebml5WGJTVLxDt+1S0Rr+7+MoSKco=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=envkmcCJ5aqLV/iyRlEOig1rnz9UHSDSnLvaU5zePdU6l/PTuADJxnTr2BsaK0xe8TFMev3KyPpoR4m+ZjjjWy8xW8MD12j/OWF7I3rsRNQ599vnAgRgCdYCEIryX1ez33oOWokO5LSIbvvE36rsb+xoAhaAO4exl1J3QpA2nQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hXXpAqlh; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5d3bdccba49so11165338a12.1;
+        Wed, 15 Jan 2025 04:26:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DKfybv/iAdWzJhig38D9HSnlDQ5AlJu4gVtnc2gJ6nc=;
- b=I6Rrahr52CDLhk0f0B3kqrjnRVZEfF11br5r91IFYGrvVh7L2p8xuu5S6hIYVcc6aUd5cjjCbpco+2vsOUBKmZsQ/BBuokgZUVUNUm4RqMSvaBukLo4PItdr9ct2Gjo1XfbkwpvlLfd2vn0IjsLcT8gmY4uddlRgUP41hEExCSg=
-Received: from SG2PR03MB6636.apcprd03.prod.outlook.com (2603:1096:4:1b8::6) by
- TYZPR03MB8559.apcprd03.prod.outlook.com (2603:1096:405:65::5) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8356.13; Wed, 15 Jan 2025 12:13:19 +0000
-Received: from SG2PR03MB6636.apcprd03.prod.outlook.com
- ([fe80::98e8:d61:f404:4052]) by SG2PR03MB6636.apcprd03.prod.outlook.com
- ([fe80::98e8:d61:f404:4052%3]) with mapi id 15.20.8335.017; Wed, 15 Jan 2025
- 12:13:19 +0000
-From: =?utf-8?B?UGF1bC1wbCBDaGVuICjpmbPmn4/pnJYp?= <Paul-pl.Chen@mediatek.com>
-To: "robh@kernel.org" <robh@kernel.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>
-CC: =?utf-8?B?U3VubnkgU2hlbiAo5rKI5aeN5aeNKQ==?= <Sunny.Shen@mediatek.com>,
-	=?utf-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
-	=?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-	=?utf-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
-	<Xiandong.Wang@mediatek.com>, "linux-mediatek@lists.infradead.org"
-	<linux-mediatek@lists.infradead.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"fshao@chromium.org" <fshao@chromium.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	=?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
-	=?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "treapking@chromium.org" <treapking@chromium.org>
-Subject: Re: [PATCH 03/12] dt-bindings: display: mediatek: add EXDMA yaml for
- MT8196
-Thread-Topic: [PATCH 03/12] dt-bindings: display: mediatek: add EXDMA yaml for
- MT8196
-Thread-Index: AQHbY1yrDUiFOy83+0KImka1ZzUdabMQB4wAgAXBksCAAE/YgIABrgkA
-Date: Wed, 15 Jan 2025 12:13:18 +0000
-Message-ID: <23b4d17ed982172de9576dfe6b6c782596e176ff.camel@mediatek.com>
-References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
-	 <20250110123835.2719824-5-paul-pl.chen@mediatek.com>
-	 <173651725269.2671643.2891127782637834272.robh@kernel.org>
-	 <SG2PR03MB66367B4A9DBCC971F55DB326BC182@SG2PR03MB6636.apcprd03.prod.outlook.com>
-	 <eef2ead1-e9d7-4f9c-8aca-fa84da3e2210@collabora.com>
-In-Reply-To: <eef2ead1-e9d7-4f9c-8aca-fa84da3e2210@collabora.com>
-Accept-Language: zh-TW, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SG2PR03MB6636:EE_|TYZPR03MB8559:EE_
-x-ms-office365-filtering-correlation-id: 9a78d976-43a3-4e8d-f629-08dd355dff69
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info: =?utf-8?B?ZWt2alR5cEpTUnZnL0ZuQkNwbFhvMXRMS0RaSXBkeG1JZTJsc3NEYldyK2Jo?=
- =?utf-8?B?T25DZVRSeEYwdkd4RThBOFJ3SFgzam9iYmVmMW1rSGY0Zkw5NUlvREZ1enM4?=
- =?utf-8?B?YW1PZHoxbTRUelhpQThOK0ZoNEpUS2NidTZXa3hZL0ZBT2ZxWUFobzd1MlBj?=
- =?utf-8?B?WEcxUmE0UE12Z3E2cHQyU0xqUE1GOVl4c1FlVEhZKzdkVEMxTkg3QklSZGVQ?=
- =?utf-8?B?TTh5RTViVE9YSFdCZ2FxdC9nUXhiZG5LUWZpVXdsN2ljdHhCMnhxSjBIM3M1?=
- =?utf-8?B?NzlXdk85TE1qcWNFaHB2amxRT25Ic05pbEppSmJkOEdZRG5aRXQ4b2x4TC82?=
- =?utf-8?B?R2JkUWxYRXJhbFNEcUhrYVNKVllGUFBGM1pFMkViQmN2cnN5K2xuckhQWHJJ?=
- =?utf-8?B?U3BqbTg0L2xueGNCVU0yVTdRT2l2SVhTZjF1TUIrTjNneHpJZWxMMkZOdnd1?=
- =?utf-8?B?MkZkTFc1ZzFaQTJ2a0FqcVdYZHhtVWk2TU5ZL0tHS1R2RVRPQ096eVFtZ3dk?=
- =?utf-8?B?aEM1UUNmN3JLNjhLNS9qZUtiQmR4WlJtK05XR2JiSWNOM2xBUEsxdnc4ZVZK?=
- =?utf-8?B?TzVRSE9nZXI4VTlxaVFMSGhFd2xhN2d4T0YyY2Fiemd5Sy9WM0hOejlWWXJ1?=
- =?utf-8?B?bTVmOFdRY0h3N3dXKzFaeG5jSlVqL1VmVVVuYThHY1c2bXpOMW9ySDBXSlZh?=
- =?utf-8?B?ajM0T2FKNzk4cThqL0JQTHRpaWY5bFRwV2dVMEQrTkEwMzhwOTkrZjhJb3E0?=
- =?utf-8?B?azdLeFZkRExid1hveHdVcUdtYnVEdjlVaFEyTGU2ZTd0VENqak84bUlNanVW?=
- =?utf-8?B?UW5JVlp1Ris4b2M3dTU3aWM5Tmk3a2NSVUlDL1VxVkNXVW83YlIrYmQ2cStB?=
- =?utf-8?B?VjZVRkhyQzVOZTJTSDFWQm1WaDlBTXdKbmh0WGlXMlRlQzdhMU1qMS8wa2xp?=
- =?utf-8?B?MkVrQUE0azRqbVFtdzl4K3NjRTdDbFJTaUhtc2xweFAxMzJGVXZaVkx6Q2R4?=
- =?utf-8?B?dkJPby9MZDIyamFuQW51SGs3dGI4Q2tQb1V3cWtJc0dEZE9HTXRoZjJrYmJJ?=
- =?utf-8?B?OE1abzlZSEh4cXNUTFkyaTg3Ykpiak1JeEM3Ylk5QlNPT0g2WUZKb3RscktW?=
- =?utf-8?B?a1B4bXZqMHMwM0hjQzZrc1NRYmN0cWNOTmRhWmdpYWJBUkdtV2Q0bnVOUnA3?=
- =?utf-8?B?dDVLVEF5bTdjaHltQWI5MWl0Um92d3F0dDF6elJaTERzK1NvWWtoSks5OWZB?=
- =?utf-8?B?VGpYWmlQUTNrWGZrN1ZyWk14MXI0cEtvTEw2SzZZNDdWcEpEWTU1eGw2d2Nu?=
- =?utf-8?B?VzkyaHphNW1sb09GRGpGVVdvaUVWZS9OSFlPdmZyS1B6UkVHT0N3VnRiSFBI?=
- =?utf-8?B?M2I1ODdwU3JLb3lsTmJKcWxoZUx1bkJWMWc1UmdKZ2ViZFRtcGllUkFldnpC?=
- =?utf-8?B?R0lHOWhNdmlyT0tTaXBjUE5wblBNclh0ZGtWRVpCRW52UklNdlFtVSt6b05C?=
- =?utf-8?B?RlpxR3pWRDJTVUNDWThmbjBIUnRhK2lJZmVENjlaK3l0bG0rSW1VR2FPZGc2?=
- =?utf-8?B?aDVNekRBZ0V6dnVIZjhqY21ORktWdllsOFBoM2tmV3l1ejl2RWFncnV1MXBZ?=
- =?utf-8?B?LzlqcFhTS0M5dkJMcVZEZjNVSHBIWkoyOU9yK0JIelJLWkRFK0ZpUFA1VFdL?=
- =?utf-8?B?VzNEYUZ4d1FWM0R2WDZvUmErTGlpZUpYVG5CVksyZmJpYjc4VjlvYUNLUmZo?=
- =?utf-8?B?LzhNblZxdndaT0lBdE1QTmJUdm9CUFBJWVB0aHhTSGNkZXBuMzJGOXp2OHBw?=
- =?utf-8?B?UkRkenBZbXl5TDYvN3ppNEhOb1B4cnlQUnRXNHRXUklOelYyMlRWaGt1TEZj?=
- =?utf-8?B?MmtCM1VTeldLR3M3R3R2ZGFQdzExQWJMRTArcXFVZDdBc0svYkthUCsxY1o2?=
- =?utf-8?Q?R1Z/Bvnku4J0UTrEfuCgwF8s9RKTYEh1?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB6636.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UEdKbWNnOGdWTnR5YjlGZGlzT0t3TmpvS3JteGFVNlBKYzN2QjVYdHVkV0hP?=
- =?utf-8?B?b0hocTZwcVZXV2h4U0FZcTEreVQvQVZlenNxSDRUZHhSZGZRL0lvczNtZTVQ?=
- =?utf-8?B?bFJlUHlaNGFiYXpyeGNld0FYeklVSXMzQUNxeDA2MUxIU0lpRVhza0lpdERj?=
- =?utf-8?B?K0RRbmJ1TVloKzRvcWpCdDJ6U054dzIwR0lFcStneFlDTmZvRzJ1Nk1IY1l5?=
- =?utf-8?B?aG5NSU1rNWpsZ3JSQk55RVlBbFNqU0FjcmgvdGpwajdUVFhjdTBxNFZhSVQz?=
- =?utf-8?B?WXgxUXVhMEhudUVQSzI3d1ZDM3B6VndKSytFTTFEM05wY2dUcG96aitiYkVn?=
- =?utf-8?B?dDZVTlNiQ0N6alQ5K3F1NXY1V0RtN014YzhLeGsvQlhvMWhTQ0N6clFWaFA2?=
- =?utf-8?B?Wlh5MUxQajRhUzB5ZTRZNjlqSjBGMXl1aFZBK0tHdzFWQkNUT0Vpb1JyUS9J?=
- =?utf-8?B?d2lwMUJ4UytqcUxHeWR1SEZMckZDWmRLSkJ4N0VzNzc4WXZPRlNVc0RFVGJG?=
- =?utf-8?B?cUwxSkU0ZkRVQVhxOGZPb2tvN0pTdFhNR3BqQ1lrcnVtUUZxb0dlVXJ3UThi?=
- =?utf-8?B?UDZzUUY1bUJhTEJRRThsdG90TWE1NGI2bzBmblFocngvUVJ3T0NnN2F1Tkwz?=
- =?utf-8?B?VWhQeHRsbzIxazhvQU1pbjRxdGhBWDZQL0dFUUZXMVJJZHFrUk4rbkZkNU5V?=
- =?utf-8?B?NE5WQ0JKZ2RiTXEzb1R1VEpYQmVpSzJGcE1qSEdrZ0t5YzR0Y0VPakhkMmpD?=
- =?utf-8?B?S1lqUUk3aFZZOHhXU01kM09aZmorL0gxN1UwRmJRTStOUHlYVDRKMFhJV1F1?=
- =?utf-8?B?STU1TnI0QmQ0d2xjeTFMRWphSVJZZWJVaHgvTlhURDF6eGR4NC90eTcvMlNP?=
- =?utf-8?B?OEpscFVEMFIvMTM5cXhjTHFDUkZqTmppYmpneWMyUlVPVTZZS2hqUVhoZjNW?=
- =?utf-8?B?c3RVRnJVQTdWMEI1MzduQ3JqTnB3bms4ZjdWc3ozZTRxL0VENklRWWgvVG5o?=
- =?utf-8?B?NERKS0RKc1NmZ1RDdzB1UmJ0aCt4M2RIWCs5SzYwTVNacnpDVDloNUdxK2ZG?=
- =?utf-8?B?cVo2YkFCWmc4c0pVbC9IaFpoSVFSUDN2c3AvT2tVUk9FSEZub29qQWVmZEtH?=
- =?utf-8?B?a0RlN3ppT1FDYmQwd3BWNW8wUVFHZ2tkZkNoTHNmTFRjSlJ0VVdwNTg2RWgr?=
- =?utf-8?B?K3BHZHdFVHM0NHpXQ3NVU3o4R3p3bkpkQ0lSNUZsNUc4a2xoZ3kyMGhqWUpN?=
- =?utf-8?B?WmlYY2N2cHVLeXVSZ2ZiMjdRTEhmTlpXQzF0eUtLajdjdHNWa1pZZHZXTE4w?=
- =?utf-8?B?M09uSGswYk5BbHl1RTFLbE9nS2VOSHhjS2gyVVlZZU9TWHU0R3FzbE9Sanl1?=
- =?utf-8?B?cEFTY0ZqbkFocVlGM1NTS1k4aUoxV2NBcmtBdVA1S3FFUC9meVNuMjBVS0hm?=
- =?utf-8?B?YnpkK1RiQWUrUXdQaGluZ21iTDl0c2FwNFlvWkFXK1o5T21pdlM3Nk52dFBH?=
- =?utf-8?B?K2xudVBNVWNoK0dXbjBzYkdqakpXTHo1czRMa3hmNlBQWTYzWVdrMGxuNEVQ?=
- =?utf-8?B?R3duRytvVVpvbklHeGgyczdFc3hXTW4vYUtpZklRaDBzejFSd0hxRnE4a0VV?=
- =?utf-8?B?VGM4ejdaS1hXY250eVh5VyttL2RGMkRmeFg1SGVvRmQzR054dHpNZzdkejA4?=
- =?utf-8?B?OFlZNzBpSUE4Q3VKeG04SzJuVUEwcW5XdDhYMWJDTlBpSzl3V01tTVRKaXZh?=
- =?utf-8?B?OExkK0J5K1NrYWgxRnNJdU5wdzRSY2dwdDZsU1ZUQ2tuQWdrTHdTWStFdTUw?=
- =?utf-8?B?QnpZa1lsTnRYekFkK25VbUg3YzF4M2dUd2p1bzd4TnRvZThLZlJ0aHJzcEpP?=
- =?utf-8?B?ZHVxd0hTMHljb1hLdjVsa2E3Zmhyd3VwNzROdEZ3ZW9pVTdYcW5aMlozcXJz?=
- =?utf-8?B?aEZjcytQaW5mVzdaS2x6UWVBaXdKSHNxZlU0bmUvb04rWUZCZ3hOUGc1ZWk2?=
- =?utf-8?B?a3hEWjNhc0xQK2FZbVZOVjVFWGhCUEcvSjBJOTdCa3VudGpSVWIvK1RMSEl5?=
- =?utf-8?B?b290cS9uMjVmQ2o1L1FtVGNJTWs2S1luWDgrTGUxU1k1dXdUQjJNV0R1ejI3?=
- =?utf-8?B?a0pPYXJWVXJNSmE4THhvSHJGNDdYSHl2TWY5ay9NK0FnaUtmdnA3T2JDM21m?=
- =?utf-8?B?Mnc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F7CA1F10A757D04B8C2DB875E90DCCF1@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20230601; t=1736943968; x=1737548768; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nMDth/XNkGKYagQ1DtWaoZiZXixgZHuQEB9UafKVxPs=;
+        b=hXXpAqlhs12KuX8It3wSvcIXONVDAOBvvqex6K7XWWqbg/U0/2kHngWyajyZ/xWntY
+         WCdjBrQJo69drcpXQZG/sQYMbGEAcbGTvheW10k4i+EubgbeiZtPXeH7mBzo6jWrve4w
+         vuiZIeDuheaYzsfNb67uiftbIJlKOmebr0gES5rU8alJ07D1CV7/q8uGGxB2PR0SDAqd
+         pNo133VuMlR8V6Foye1sQ5bfDCsjMrTvC2OtEuBHeiT8gLhQOpcqLq2qNZro9Ams31Vv
+         /3SGa7Ki7cEQyxRUWJu2H6nrrdDQHKfQDCfdEbeuBXZLcKPOvqfE6r4PEuP9jLvJ2cu5
+         rPOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736943968; x=1737548768;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nMDth/XNkGKYagQ1DtWaoZiZXixgZHuQEB9UafKVxPs=;
+        b=BEoVh3urQl3AMREBW9pZ0O/SjK6K/PdtugDIAil1puKHSfCVmfYWN/keQErqsM0nCY
+         jFQiKlTZH2xO/2oa/2mlseinZJK/yHDrOMa7NkVjuL3IKXaF03J7476v94uXxV4VbgYY
+         oiPeUj2YyhCyeAGLqX4hNoS5XUhxcu0K1xVm4wNNW3tcOy4Mg3J/h9hAwsnrWEZTFucB
+         kxuQj/3Q0juZfU2fkAJFcm+gLIgkYm1jS6H730VF6kYTRdSkvIBRC+StRd2pb9vn0CP/
+         4bDbg8Cseim+PJx0RSO0vPT4Q1hLuXmUKoKd36A5ymlDkqGIgPeN6DLsqzJtvuEVs+eE
+         wcDg==
+X-Forwarded-Encrypted: i=1; AJvYcCVEaShHA3quwOjt++iKK5KW+961/GmQx9i2mSQcoI1iU0YO0UpFxyxDN07byu353Mfwdv4T291CeXJ4@vger.kernel.org, AJvYcCVYn2ztqLULHxsxqvMiFRI/GCGnHHx7ZYVftGnW+c9nb38Sun0P2LVuY5xYLVSJuSfcmLWD9iq6Bg3C@vger.kernel.org, AJvYcCX56dQCmHxrW1IbiLzAyBSdSYRtKz3gDjJIlCFfox0YWrYrRL+2GOoX5Pqv2zpvoeO9EY7ROg4ya6lJOGbR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMiganFEGtz1c/0CFtTMM1I670zDNObTVbbFaCFQcRYI4QfXog
+	KPaGde59ZikvtiRoU7FLRS9UKMAITTzyGomybWMYYpYaiADQEx8+vRiAFX3pN+9HbtNRiRCxbfp
+	3aUzv0iUeFYvEwi8WOO9s5RiHAqY=
+X-Gm-Gg: ASbGncsUkiSH6SOe8lK4C2CohA8dSo72AvjImiKV/UvfX+WT6di+Wh/0y+oKk55+gI6
+	nck40ABZDGRcsWgSNZAP9CeBtjag+c5V47/jtn9g=
+X-Google-Smtp-Source: AGHT+IH+qvBvGoDx+jCJz+KZPOUstmywrTmIX10mbpjcqahNDzahOjIUSRJNMh25pq9DtMwv8pnkssopEovu8Dv+ZpM=
+X-Received: by 2002:a05:6402:40c6:b0:5d0:b4ea:9743 with SMTP id
+ 4fb4d7f45d1cf-5d972e09f94mr25110291a12.8.1736943967555; Wed, 15 Jan 2025
+ 04:26:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB6636.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a78d976-43a3-4e8d-f629-08dd355dff69
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2025 12:13:18.9275
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Q5Lt5hR1s8cZlhd8S6Di4bxPUxAomcaCmZnF/UohuDTnAJtmih+rIN3kyqhDSKN8p51eEpBfhb0Kuz0UKtAPX17Mb7mFpJlKiYbB6pTCyMk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR03MB8559
+References: <20250115012628.1035928-1-pgwipeout@gmail.com> <2EEA8028-8E4A-4588-A480-E5FF0F7BE82E@gmail.com>
+In-Reply-To: <2EEA8028-8E4A-4588-A480-E5FF0F7BE82E@gmail.com>
+From: Peter Geis <pgwipeout@gmail.com>
+Date: Wed, 15 Jan 2025 07:25:53 -0500
+X-Gm-Features: AbW1kvaJVj90ysXZJNFs0kxY37_GZ4QOK4IDTusf86cx6vh6a5LQgqqnUgTCLtk
+Message-ID: <CAMdYzYo2W1hLgiH697AdRSUbhBU4rU2uB=N6EMWMD2-0R+VLBA@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 0/6] rockchip: add a functional usb3 phy driver for rk3328
+To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Algea Cao <algea.cao@rock-chips.com>, 
+	Michael Turquette <mturquette@baylibre.com>, kever.yang@rock-chips.com, 
+	linux-phy@lists.infradead.org, wulf@rock-chips.com, zyw@rock-chips.com, 
+	Dragan Simic <dsimic@manjaro.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, linux-clk@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Arnd Bergmann <arnd@arndb.de>, Jonas Karlman <jonas@kwiboo.se>, frank.wang@rock-chips.com, 
+	Elaine Zhang <zhangqing@rock-chips.com>, Alex Bee <knaerzche@gmail.com>, 
+	william.wu@rock-chips.com, Zhang Yubing <yubing.zhang@rock-chips.com>, 
+	Johan Jonker <jbx6244@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+	Trevor Woerner <twoerner@gmail.com>, Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org, 
+	Vinod Koul <vkoul@kernel.org>, FUKAUMI Naoki <naoki@radxa.com>, 
+	Diederik de Haas <didi.debian@cknow.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-T24gVHVlLCAyMDI1LTAxLTE0IGF0IDExOjM0ICswMTAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
-ZWdubyB3cm90ZToNCj4gDQo+IEV4dGVybmFsIGVtYWlsIDogUGxlYXNlIGRvIG5vdCBjbGljayBs
-aW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVudGlsDQo+IHlvdSBoYXZlIHZlcmlmaWVkIHRoZSBz
-ZW5kZXIgb3IgdGhlIGNvbnRlbnQuDQo+IA0KPiANCj4gSWwgMTQvMDEvMjUgMDY6NDksIFBhdWwt
-cGwgQ2hlbiAo6Zmz5p+P6ZyWKSBoYSBzY3JpdHRvOg0KPiA+IEhpIFJvYg0KPiA+IFRoYW5rcyBm
-b3IgdGhlIGFkdmljZS4NCj4gPiBUaGUgcm9vdCBjYXVzZSBvZiB0aGUgZXJyb25lb3VzIGxvZyBt
-ZXNzYWdlIGlzIGR1ZSB0byBtaXNzaW5nDQo+ID4gcG93ZXIvY2xvY2sgZGVwZW5kZW5jaWVzLg0K
-PiA+IE9uY2UgdGhlIE1USyBjbG9jay9wb3dlciBoZWFkZXIgZmlsZSBpcyB1cHN0cmVhbWVkLA0K
-PiANCj4gVGhlIG10ODE5Ni1jbGsvcG93ZXIuaCBmaWxlbmFtZXMgYXJlIGFueXdheSB3cm9uZyBm
-b3IgdXBzdHJlYW0uLi4uIDotDQo+ICkNCj4gDQo+IENoZWVycywNCj4gQW5nZWxvDQo+IA0KSGks
-IEFuZ2VsbyANCg0KbWF5IEkgYXNrIGlmIHlvdSBtZWFuIHRoYXQgdGhlIGZpbGVuYW1lcyAibXQ4
-MTk2LWNsay9wb3dlci5oICJuZWVkIHRvDQpiZSBjaGFuZ2VkIHRvIHRoZSBmb2xsb3dpbmc/DQog
-DQoibWVkaWF0ZWssbXQ4MTg4LWNsay5oIg0KIm1lZGlhdGVrLG10ODE4OC1wb3dlci5oIg0KSWYg
-c28sIHdlIHdpbGwgYXNrIHRoZSBNZWRpYXRlayBjbG9jay9wb3dlciBvd25lciB0byBzdWJtaXQg
-dGhlbQ0KYWNjb3JkaW5nIHRvIHRoZSBjb3JyZWN0IHVwc3RyZWFtIGZvcm1hdC4NCj4gDQoNCg0K
-QmVzdCwgDQoNClBhdWwNCi8vc25pcA0K
+On Wed, Jan 15, 2025 at 6:22=E2=80=AFAM Piotr Oniszczuk
+<piotr.oniszczuk@gmail.com> wrote:
+>
+>
+>
+> > Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w d=
+niu 15 sty 2025, o godz. 02:26:
+> >
+> >
+> > This is my newly reworked phy driver for the rk3328 usb3 phy. It is
+> > based loosely on my original version, but as of now almost nothing of
+> > the original driver remains. The main fix here is the discovery of
+> > BIT(6) in the interrupt enable grf register fixes the usb3 disconnectio=
+n
+> > detection (mostly). On occasion an unpopulated usb3 hub will take
+> > several seconds to disconnect. However this means all of the hack aroun=
+d
+> > work to reset the usb core manually is no longer required.
+> >
+> > I did my best to document all registers I could find. A lot was taken
+> > from emails between myself and Rockchip's engineers, much thanks to
+> > William Wu <wulf@rock-chips.com> for their assistance here. The rest of
+> > the config bits were taken from the rk3328 and rk3228h TRMs and the
+> > downstream driver. Everything that I couldn't find a definition for is
+> > prefixed UNK_ or UNKNOWN_. There's a lot of obviously used configuratio=
+n
+> > registers with the pipe interface that are also undocumented.
+> >
+> > The only major bug I have so far is my AX88179 usb3 gigabit ethernet
+> > adapter (Pluggable brand) crashes out when large amounts of data are
+> > transmitted. I suspect this is related to the RX and TX tuning, as
+> > leaving it at defaults makes things worse. As I am not a USB3 engineer
+> > and I do not have the specialized knowledge and hardware to determine
+> > what is going wrong, I am hoping the mailing list will have an answer
+> > here.
+> >
+> > Please test and review.
+> >
+> > Very Respectfully,
+> > Peter Geis
+> >
+> >
+> >
+> > Peter Geis (6):
+> >  clk: rockchip: fix wrong clk_ref_usb3otg parent for rk3328
+> >  dt-bindings: phy: rockchip: add rk3328 usb3 phy
+> >  phy: rockchip: add driver for rk3328 usb3 phy
+> >  arm64: dts: rockchip: add rk3328 usb3 phy node
+> >  arm64: dts: rockchip: enable the usb3 phy on rk3328-roc boards
+> >  arm64: dts: rockchip: enable the usb3 phy on remaining rk3328 boards
+> >
+> > .../bindings/phy/rockchip,inno-usb3phy.yaml   | 166 ++++
+> > .../boot/dts/rockchip/rk3328-nanopi-r2.dtsi   |  12 +
+> > .../dts/rockchip/rk3328-orangepi-r1-plus.dtsi |  12 +
+> > arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi  |  12 +
+> > .../boot/dts/rockchip/rk3328-rock-pi-e.dts    |  12 +
+> > .../arm64/boot/dts/rockchip/rk3328-rock64.dts |  12 +
+> > arch/arm64/boot/dts/rockchip/rk3328.dtsi      |  39 +
+> > drivers/clk/rockchip/clk-rk3328.c             |   2 +-
+> > drivers/phy/rockchip/Kconfig                  |  10 +
+> > drivers/phy/rockchip/Makefile                 |   1 +
+> > drivers/phy/rockchip/phy-rockchip-inno-usb3.c | 869 ++++++++++++++++++
+> > 11 files changed, 1146 insertions(+), 1 deletion(-)
+> > create mode 100644 Documentation/devicetree/bindings/phy/rockchip,inno-=
+usb3phy.yaml
+> > create mode 100644 drivers/phy/rockchip/phy-rockchip-inno-usb3.c
+> >
+> > --
+> > 2.39.5
+> >
+> >
+>
+> Peter,
+> I applied this as test run on 6.12.9 and dmesg says:
+>
+> [   16.368514] rockchip-usb3-phy ff460000.usb3-phy: could not get usb3phy=
+ ref clock
+> [   16.368534] rockchip-usb3-phy ff460000.usb3-phy: parse dt failed -2
+> [   16.368543] rockchip-usb3-phy ff460000.usb3-phy: probe with driver roc=
+kchip-usb3-phy failed with error -2
+>
+> This is on beelink a1 tvbox.
+>
+> Do I miss something?
+>
+
+Good Morning,
+
+That is an interesting failure. The simplest answer is the
+`clock-names =3D "refclk-usb3otg", "usb3phy-otg", "usb3phy-pipe";` line
+was corrupted. Please check that when applied it matches the patch
+exactly. If you are still having problems, you can send me the
+compiled DTB and I'll take a look.
+
+Very Respectfully,
+Peter Geis
+
+>
 
