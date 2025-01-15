@@ -1,130 +1,217 @@
-Return-Path: <devicetree+bounces-138821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 788EFA12701
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 16:15:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F105A12764
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 16:27:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC65C7A07C5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 15:15:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07FF016310A
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 15:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA38214A630;
-	Wed, 15 Jan 2025 15:15:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BhF10V5a"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 810FC15539A;
+	Wed, 15 Jan 2025 15:26:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9847F14900B
-	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 15:15:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DC9B145B2E;
+	Wed, 15 Jan 2025 15:26:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736954112; cv=none; b=JizWmcLK3bZa1iD5fL8aOtRZIB2YuScT1zZMs0qN2mFyZPerXCUJ3l7msDaYTKbM82U+CBhlYv8Qp+yCG4bEPsloDzGNpoktKFO9mV9pg9aQcP7w8m5TEANGxuSU5BB8S8FRF3H0YZ4Lk53lpluMEIKLDsxZY4WoWPj6ZmMz+K8=
+	t=1736954812; cv=none; b=pGNLCXTN7TOpICSKl4Wpjtfa/kAzYPVg/3q4LgQAG3/t8Z3IInSKFt/AFEFB1FbGxX0t7+pXWFkGTdYh82AjQWxQDJc7OZRyLBZTH0qPia6gXYnM9fz6yg6Oc109Hi1E2HF63CuGIXqIG9HmT09a+HfgDsTAEUYZl/iFgtpcc/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736954112; c=relaxed/simple;
-	bh=v+tW/5b7Yz65Cimfgu2a56TKjHf0nLTX2HO5jcRtR8U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M34aYLm7+fVJtjipcS3JqoaGOxjM4a6lx9ogYUo2//cBhF00JbOIPmtKFb9PPPqV+fJsnvqLezIrrbZniqMiNn1aSSbzoCm1n2ZbIiA0kqHT+//y/EC31MrrZjh0qevpUMbWXii2h0qo3TFs9Up/fPZyW4GGyP9JpY3FTyAOUUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BhF10V5a; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43635796b48so6579665e9.0
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 07:15:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736954109; x=1737558909; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=27BCS3obqDWdKu8wPBVyzX/4QMUicUdiJJjn7SeODGI=;
-        b=BhF10V5aK8aNPtemP3T3N2i+gkBUqs7ZJEtO3Lr81mJLaVaVbPYLOR5LsV4HCDunG+
-         qR/KVqCsvS30iBfnKa6MDt8/Y39GbhmaUhZ0V+i4B8ySfFnD1N27GgNtIxg2NdWBCM3X
-         X2JVISsJMZU+UWYoJV+V0vF3crRoghCETB25JCohemdcxjkTBaEMSDUKUji444FywPXg
-         EVYiLc/76BmaC7SQtmpIrlPfVrfo5goVjTLtHz+2zT4gIwnf5vjgQ+mFXZzmgW4fO32/
-         7nW9qqjWrcibalraedx5sDVt94GgRXZPvkEI1oUhqh6Vie3ziwRlTFuOrdhddF/O3fAO
-         0gWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736954109; x=1737558909;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=27BCS3obqDWdKu8wPBVyzX/4QMUicUdiJJjn7SeODGI=;
-        b=L5P2XT/GHtVPsomm2i2UausCb8vSaRMCSLawsxAwEJz5E1N/j1P2eGbTN6Fl5syY6D
-         7x/yfzU8gPgNuH7CgmAYbCAWG53lGgix6pQWwV4IMeVNFVbBbNhUSIpCnJeTR/sM0Feb
-         Wwer4vJzVgXtlmxsvMYcS9IDqzdYwV9ig7Du4B54VEnzqnv0gWtzs/OIPspi5bvQP/Z9
-         zod1lmoZLw6L/mYGuWlUgQuok6vuShWxrQNW6sms9cwUroG4yDCjqw4thN4X8GLq2x04
-         FLsrRxLJNwmEW7le2sB0vqZ6YeeWmB0SQ5bkDQAjnp1jPxKnwyu1AZjPmHZKKFYWIiCT
-         8Rzw==
-X-Forwarded-Encrypted: i=1; AJvYcCX+gKASAFUdgj11kmEagmYJQMY53PbZwNgmzgBIbvOBPlq3sg5v96wU8G7bUUQUpSrKQ75GWaR7Ill/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxiXhc/tDFnL4MhWbt2agzcMuq/yZ5A38mriOTo6cvyQollvRdK
-	1vA+pHVCUFRktmfLisuSENxfbLilHPaS8Ys+nDdrDCWwZrXRL4CiKeWReimRs08=
-X-Gm-Gg: ASbGncub1G4WoapdevLpkZVDn7fhZD3lPPBoMMYwNKqBJGAmcHGciJC4OBSrUt6KxmM
-	PSNmyFwxb9UbeMwTWWntiQsjjyyZpDsWhiiV4BBHT0wUYam7H1ylWxSNUaA/HMtIGP1XLh1tR52
-	ggOupeEdg0XY9BVf9BXgntrN6CwjFfRp/yqeAo75AjUVEL6r/AqdexOW7bo2JsaMMpYnJPWchXA
-	SK2SQ3A1wP4EEV56uPlDtGj09TQ5DaZkf0O0OifJpBdylHNPKXvUwr13BM0PE0yMacfQQ==
-X-Google-Smtp-Source: AGHT+IHcjyEIL1Wamxnymek4xnB4ls055HOXGh964+mQo8ykhNiNVYn3DyPzlDxhYKiSBNi933JvlQ==
-X-Received: by 2002:a7b:cc94:0:b0:434:f2af:6e74 with SMTP id 5b1f17b1804b1-437c6b2ff46mr31074005e9.15.1736954108763;
-        Wed, 15 Jan 2025 07:15:08 -0800 (PST)
-Received: from [192.168.0.35] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c7528076sm27391825e9.25.2025.01.15.07.15.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jan 2025 07:15:08 -0800 (PST)
-Message-ID: <88a0cbea-9462-4ad1-8212-4cb55ffb6a1f@linaro.org>
-Date: Wed, 15 Jan 2025 15:15:06 +0000
+	s=arc-20240116; t=1736954812; c=relaxed/simple;
+	bh=JBcCp53Gsobb/CU+JgBt3NsWKZtsmKsbDhO8bGTGg5A=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=fpetO5zbJqroMhWZa8321nN6dui2SY81VEnYb+y2qrp/Yj4aLvFSYequOi4wA/Zkj7Pm8frkgbjqzfsnC1XleioOdzGuCS4kL7BtYunPoqD3dAbebjh7UmxLUIj/rWoH6geELyuuqA8sNTVUJj6Kswu7gDYzRZU9mSXPZ445O8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AE6FF11FB;
+	Wed, 15 Jan 2025 07:27:11 -0800 (PST)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2FF323F73F;
+	Wed, 15 Jan 2025 07:26:39 -0800 (PST)
+Date: Wed, 15 Jan 2025 15:26:35 +0000
+From: Andre Przywara <andre.przywara@arm.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Andras Szemzo <szemzo.andras@gmail.com>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, Philipp
+ Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, Vinod
+ Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Ulf
+ Hansson <ulf.hansson@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Uwe
+ =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <u.kleine-koenig@baylibre.com>, Florian
+ Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 03/12] pinctrl: sunxi: add driver for Allwinner V853.
+Message-ID: <20250115152635.1b89e7f4@donnerap.manchester.arm.com>
+In-Reply-To: <CACRpkda0nx3SQtdjmXdCEbVJSWM10TM=p-6JbDjbiYcOSF5PxQ@mail.gmail.com>
+References: <20250110123923.270626-1-szemzo.andras@gmail.com>
+	<20250110123923.270626-4-szemzo.andras@gmail.com>
+	<20250114141954.2785879a@donnerap.manchester.arm.com>
+	<CACRpkda0nx3SQtdjmXdCEbVJSWM10TM=p-6JbDjbiYcOSF5PxQ@mail.gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 27/28] media: iris: enable video driver probe of SM8250
- SoC
-To: Hans Verkuil <hverkuil@xs4all.nl>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>, Johan Hovold
- <johan@kernel.org>, Vikash Garodia <quic_vgarodia@quicinc.com>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Nicolas Dufresne <nicolas@ndufresne.ca>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
- Jianhua Lu <lujianhua000@gmail.com>,
- Stefan Schmidt <stefan.schmidt@linaro.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>
-References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com>
- <20241212-qcom-video-iris-v9-27-e8c2c6bd4041@quicinc.com>
- <Z3_nCPk_g8znto4A@hovoldconsulting.com>
- <64f8bebd-35e1-c743-b212-e1a3292bade2@quicinc.com>
- <Z4EuiPEw8mvDQ2gv@hovoldconsulting.com>
- <24334fb8-4d83-eb06-aee3-dfe1f8e4937b@quicinc.com>
- <552972B8-1ACA-4243-A8E3-8F48DAF39C5C@linaro.org>
- <7e75deb6-6c0e-4bf8-b4c5-d76b1abe2d5b@xs4all.nl>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <7e75deb6-6c0e-4bf8-b4c5-d76b1abe2d5b@xs4all.nl>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 11/01/2025 10:45, Hans Verkuil wrote:
-> 4) What is the road forward? (I assume that venus is removed once feature parity is reached?)
+On Wed, 15 Jan 2025 11:23:50 +0100
+Linus Walleij <linus.walleij@linaro.org> wrote:
 
-sm8250 support is to removed and all HFI_6XX platforms of which sm8250 
-is one, are expected to be supported by Iris once feature parity is 
-upstream.
+Hi Linus,
 
-HFI <= HFI_4XX will continue to be venus, including any new upstream 
-submissions for HFI_4XX.
+thanks for the reply, I was hoping to get some insight and discuss this!
 
-Unless/until Iris gets upstream feature parity, we will continue to add 
-new HFI_6XX SoCs to venus.
+> On Tue, Jan 14, 2025 at 3:20=E2=80=AFPM Andre Przywara <andre.przywara@ar=
+m.com> wrote:
+> > Andras Szemzo <szemzo.andras@gmail.com> wrote: =20
+>=20
+> > > The V853 family has multiple package variants, from BGA to QFN88.
+> > > The latter has co-packaged DRAM and fewer pins, and less features (pi=
+n muxes).
+> > > All family members can be supported by a single driver, as the availa=
+ble pins
+> > > with allowed muxes is the same across the devices. =20
+> >
+> > It depends a bit on the outcome of the discussion on the A523 pinctrl
+> > driver [1], but I think we should use the same approach here (and for
+> > every "new" Allwinner SoC coming up, really): put the pinmux value in t=
+he
+> > DT, and get rid of this entire table altogether:
+> > [1]
+> >
+> > The SoC specific pinctrl driver would then be very small ([2]), so this
+> > pinctrl support patch here would actually become much smaller.
+> >
+> > Just feel a bit sorry for you having created this table, in a tedious a=
+nd
+> > eye-straining exercise - been there, done that ;-) =20
+>=20
+> It's pretty stressful for the pin control maintainer as well.
+>=20
+> From the subsystems point of view, groups matches to functions by
+> strings is the best. ("fun1") + ("group1", "group2"):
+>=20
+> pio: pinctrl@1c20800 {
+>                         compatible =3D "allwinner,sun8i-r40-pinctrl";
+> (...)
+>                         i2c0_pins: i2c0-pins {
+>                                 pins =3D "PB0", "PB1";
+>                                 function =3D "i2c0";
+>                         };
+>=20
+> abstract, strings, nice. The driver handles the particulars.
 
----
-bod
+What bugs me about this it that this has quite some seemingly redundant
+information (Who would have thought that the i2c0 pins use function
+"i2c0"?), but misses out on the actual 4 bits(!) of information.
+So the A523 version [1] just *adds* this one property:
+		allwinner,pinmux =3D <2>;
+
+[1]https://lore.kernel.org/linux-sunxi/20241111005750.13071-5-andre.przywar=
+a@arm.com/
+
+And we keep all your beloved strings ;-)
+
+> That is like so because we are designing for users which are
+> let's say customization engineers. If these engineers jump from
+> project to project matching function strings to group strings will
+> be a common way to set up pins, and easy to understand and
+> grasp, and it makes the DTS very readable.
+
+That's an interesting view, and I see the point of it being easy to read,
+but this is partly because it doesn't convey too much actual information,
+does it, as it requires another lookup or two.
+And the pinctrl group nodes are actually in the .dtsi file, which are
+typically written once during the initial SoC enablement, and new board
+.dts files normally just reference the existing pingroup nodes. So anyone
+dealing with just a new board is not bothered by this.
+Also in my experience most people have no problems in understanding the
+concept of pinmuxing and that there is a selector number, also where to
+find this.
+
+> Then there are the engineers creating the pin control drivers,
+> and they want everything to be convinient for *them*, and they
+> think an opaque hex digit in the DTS is perfect at times, thus
+> pinmux =3D <0xdeadbeef>;
+>=20
+> Mediatek and STM32 made a compromise by using pinmux
+> and adding some macros to define them so it looks more
+> pleasant:
+>=20
+>       i2c0_pins_a: i2c0-default {
+>                 pins-i2c0 {
+>                         pinmux =3D <MT7623_PIN_75_SDA0_FUNC_SDA0>,
+>                                  <MT7623_PIN_76_SCL0_FUNC_SCL0>;
+
+Well, I don't really get why they don't use the (MTK_PIN_NO(75) | 1)
+definition directly, seems to be more telling to me?
+So the plan for sunxi would be: <SUNXI_PINMUX(PORTC, 23, MUX_1)>, ...
+And this would not be really "opaque", since it has a fixed known mapping:
+	(port << 16) | (pin << 8) | (mux << 0))
+I find this both technically elegant, because it combines all the
+information into just one compact cell, but also readable by outsiders,
+thanks to the macro.
+
+But please note that using the generic pinmux is just an idea at this
+point, last time I checked this would require significant rework in the
+sunxi pinctrl driver.
+Just adding the "allwinner,pinmux" property on the other hand is a
+comparably easy addition, hence my patch, as a compromise.
+
+>                         bias-disable;
+>                 };
+>         };
+>=20
+> At least the bias control is using strings, this is nice.
+>=20
+> So I'm mostly fine with that as well, but it can be pretty
+> heavy on people coming from the outside, asking us questions
+> like "on MT7689 how do you mux pin nnnn to function yyy"???
+> Well I don't know? Some MT7689_PIN* macro I guess?
+
+MTK_PIN_NO(nnn, yyy)?
+
+> If it was just strings I would know what the
+> expected behaviour and looks would be at least, then the driver
+> could be buggy or missing things but that's clearly cut. That's
+> why I prefer the strings.
+
+My main arguments against the current (string-based) approach:
+- They require the mapping table to be in every DT user, so not only the
+  Linux kernel, but also U-Boot, FreeBSD, you name it...
+https://source.denx.de/u-boot/u-boot/-/blob/master/drivers/pinctrl/sunxi/pi=
+nctrl-sunxi.c?ref_type=3Dheads#L236-768
+https://cgit.freebsd.org/src/tree/sys/arm/allwinner/h6/h6_padconf.c
+- The tables are getting quite large, and they pollute the single image
+  Linux kernel, with tons of very specific information for a number of very
+  pitiful Allwinner SoCs. At the moment the tally is at 145KB of code+data
+  for the existing arm64 SoCs, with the newer SoCs ever growing (H616 alone
+  is 27KB, A523 would be quite larger even, I guess 40K). The new A523
+  specific pinctrl support adds 872 Bytes.
+- Most of the mappings are untested at pinctrl driver commit time, since we
+  don't have the device drivers ready yet - by a margin. The new approach
+  would add the pinmux values when we need them and can test them.
+- The comments in the table give away that something is not quite right:
+                  SUNXI_FUNCTION(0x2, "i2c0")),         /* SDA */
+  This is just a comment, so has no relevance for the code, but it's not
+  meant for humans either. Yet we try to make this correct and maintain
+  it. Odd.
+
+Cheers,
+Andre
 
