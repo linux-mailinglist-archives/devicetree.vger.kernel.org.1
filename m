@@ -1,213 +1,128 @@
-Return-Path: <devicetree+bounces-138676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D61BFA11B24
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 08:42:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 18AD1A11B32
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 08:44:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E88B916852B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 07:42:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30BD8168D8B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 07:44:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D08D122F84A;
-	Wed, 15 Jan 2025 07:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F0CC22F85A;
+	Wed, 15 Jan 2025 07:43:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DnAG9QEs"
+	dkim=pass (2048-bit key) header.d=pegatron-corp-partner-google-com.20230601.gappssmtp.com header.i=@pegatron-corp-partner-google-com.20230601.gappssmtp.com header.b="FlNtMGcU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30F6435944;
-	Wed, 15 Jan 2025 07:42:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9040B18952C
+	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 07:43:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736926965; cv=none; b=AfW+LunlDyeeorVKSkBfKu5M1B7yMobcOzoCDNeocEHEIv2xxdpimWlcNsObP0iuHwazEwwomld5NbEllgdtNUmxnughl+6l2rr/CEk72QjIaWCOVn8o7869FrWzh+JMllX7EjEbTHDOr6zDjrbFLJmyuIGQeFmuW8meXVHmbpk=
+	t=1736927038; cv=none; b=WRP+zkPhaWmgK7OcBrhwnh5hsN+NYGIBWAE0Tlvt1CvKMuID8gAJBvdlutxoKyuzCeaoXRqcbFAMIVhwyT/JQKKp+tKcZZozPPhKJY0ILaEmc5KdFWNnPHoQMtdCX8xZK7fhXa73vG0d4PTRh2e1b2eoNfSTz/iAlvOc8KCMMvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736926965; c=relaxed/simple;
-	bh=Q3PJp5HE0YO0r8URPsO6J7HCltKNBku/OqDt7CVgapo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Fe735tAXT50qiuY0Ts6Bhwyl8EQeQ9N0tEZUw19EHaA0P9SpIXxh8+GOhzlpDYHgmOsSaGkZS1O2i/9AoEJ0qnXKwtlqu0w4HUN9vk7YhSe1UPPK648qcVOHOMe5dr1Ef4TXndpbTQKFHCO8tktuRLyU6WgX/ALdFj3+pgWEusQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DnAG9QEs; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e39779a268bso970230276.1;
-        Tue, 14 Jan 2025 23:42:43 -0800 (PST)
+	s=arc-20240116; t=1736927038; c=relaxed/simple;
+	bh=/+Z8KHUk8nxKTdR7QqzSkQ25mOSdeiem6+Sovxdi8D0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PiVQLZurnrVCeZCneMBMicz/DydEOS01VnZblHTAqQOiBoMEslzB3eIJlGIpBwFW2xVchD6lIPkQ876U565B+tZfnjXwlgxTfeDsbaG5URJ3MjJiIwIA1ncyhWpcsrVHtu8mFHhawyqxUJpGZH+OZT77Yt8e3IVj/c7JA87WEqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pegatron.corp-partner.google.com; spf=pass smtp.mailfrom=pegatron.corp-partner.google.com; dkim=pass (2048-bit key) header.d=pegatron-corp-partner-google-com.20230601.gappssmtp.com header.i=@pegatron-corp-partner-google-com.20230601.gappssmtp.com header.b=FlNtMGcU; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=pegatron.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pegatron.corp-partner.google.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-2165448243fso139600185ad.1
+        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 23:43:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736926963; x=1737531763; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6Sslg/zYwiRkuelfoGvfyVJqoc2ZTiVmVRtL13lnc3M=;
-        b=DnAG9QEsMx3VFNqDcuEJqGNsNwP3sAL6poqCxSqP3ADaRxmt2jp+l09t+iM6z+oNbs
-         CJ0Pa+XOM8W1I7R0ExqPJoAlDzu1HGW+9eUHIedmR3h8x7mszUpVp/9Uz1UASCExvEfI
-         bshlUX9AK+AVhv4i92JH+WgaDTNFda7+xhwNCHVruhVs45UnntStkwO9HtohJ6wF9KgG
-         rNCEsGoDIcmTrB+9gcltskVUnSGDA3XApAl1btQ5lb0b0DsSTwNwYhEy7a/7J2s0Vd8o
-         hRF697kJXqaGhdS1PfOdHeFZYqmHkmWXDH8BPvPQsCdwe8KPhh8s2FSaUEMIZrZDvmyk
-         zxZg==
+        d=pegatron-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1736927036; x=1737531836; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=YFdfy+1xjTxfVlkEQhDUp9pn/DCv3HCHlGHCvqvBZtA=;
+        b=FlNtMGcUpYbR4Rm8CMhBSf4ciLgsmwa/5V/CKlqMxogckDHdpYa9EVSFUS0/fJIA/p
+         ObAm5ye0jYb12CbqsUgHV79uSGZmZAHOPTpfpNmoVzXPyoE2t3W17dSl2SvpENEQesSV
+         FctdIlS8Ey+vZ1BQgxsQC0u6exOO5NCI21iH2poS1DbukPYeuXgY/aERmWDH7W1wwbU9
+         PE71nBaALjAfMwgczNDvvZcpHGI8yyCrnQDkXK+YYoRnQkWrXiOWyG+1xOg3N6UychH/
+         s5DlhiT1aoC2BqFM0YDIa963Cg/zUqHe0OM6mKG6yft128guWHf5noI41jU6kjPJyZ5G
+         v78Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736926963; x=1737531763;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6Sslg/zYwiRkuelfoGvfyVJqoc2ZTiVmVRtL13lnc3M=;
-        b=HbmsSfhm4sLxt6sHefgtAxPK2ukcJquS4AhohlkAKjraPcoFwEAO4nCIsfvtVNGqHM
-         6e+iheQqJ4dEDe7IrxB5AOf7bl0/AKwKvyNm7OxFafPcHGLsTxUcvFV9MMDSB1+ClVVb
-         s9/4L2cWSML6k43w9jUhM2sTAA3bhLp9gmB0Md2rZ036Lk3JHm0paj0weDNzPqZ2LmC7
-         nE4vsIfCApXyXSlwFhmkfF/ed9MEjC3DZwt5OaGWcNvsWPetA2n2S0ylzvkqXefL0l+l
-         RYy8zrt2X7OduFPWDfqpDMaOlFpomCu/LKtSQW4HcPsXl/IjtmJgqVma52IT0tehQCaQ
-         DZSg==
-X-Forwarded-Encrypted: i=1; AJvYcCUVAC48qckL0x2Ca9veqm/pvdgGvobbSQIjbg5H/OgLw76OeLRcrRRXtMaPoyafmQTrdYild4LWV1pM@vger.kernel.org, AJvYcCUvo+3MQ+buSM1Ba07G7T7/RrfPMnVPGgvSpt2tTI9tdftU1x2aasiBt4bXM24/Pkn5+m5RTm4xFmaQ@vger.kernel.org, AJvYcCVcK9OmLSx7R0TS3gYhQLZhtav6snrt3NuL9pCw+vjlZ0mu7WvUWZYzgtduMVVPLbFsGt7S6giNp0w2FnHi@vger.kernel.org, AJvYcCXsoyYV3j4/+ou53s3aspsoIIMpRKQihXVIbZ+k7t8UKCqo/iZUuo5ueg0FWw9j9srCBC16x41yHimP1X4=@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywh8NtP+GOQUTIYfP/dP8jdTJjMoQxiOSDm5zxbKkyu3+U8q7hm
-	FxeLtf679f2CO9JMgr8nC1N8xHgWQA6H4dzYBNqeJwby6u0x4lEyuy5uX6vVdd+5c6CnbpfxUU2
-	9dL+geSTyPl2nMIpCaxyLZOMuyYI=
-X-Gm-Gg: ASbGnctnLH96Kgz2zw/Bid05youf9lQkQVbHP1Z+zsKz8HzYKIDWFZd9vTHWTKdimp1
-	TLR0vGoF0VHqJWVoQjOBe06550wq05APiG+8Piy6QyQZH6pt00/G89dCwUC0ObCTRc4ADtHY=
-X-Google-Smtp-Source: AGHT+IH17XhqxAmd73MvcgPT4rEqzzyk65JKjfzd1/K9q35+ZMaWoV/BtCI1zmz6DXH06SQ6o7zDbFM4qU+9+YpcFVo=
-X-Received: by 2002:a05:6902:1003:b0:e49:ef7f:de1b with SMTP id
- 3f1490d57ef6-e578a1219b7mr1550169276.4.1736926963023; Tue, 14 Jan 2025
- 23:42:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1736927036; x=1737531836;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YFdfy+1xjTxfVlkEQhDUp9pn/DCv3HCHlGHCvqvBZtA=;
+        b=r5X1z178sf7jddK22iuxCVoDcVwPpFnbNhM9uX2yHrCUi/wPGXa8udRuqc6e7fAiI+
+         oHuw/KsfUmpL6c81hgfZwU9ZbTtgB2RBllmwwSDfQCxVZwcel7IEnOMwraFM+w/c5Qgh
+         TPyqSqlJ51NJzkG9R/b/f1mTsu4cNNS8K7Vu9AEDX8uGvJfWQPT+LaORBsTFqhEppr/z
+         EUyI3opwnDs7Bcwsa4WW9Fq6Fcjv88CrvcYbyx4kY3tFy7RdbYFO7nKaKyRpC57UWr9r
+         Uo8phcd/Gf7OyRSZMTaFm7sdSUuXWOG3KGUIsVBRanA/4hr88Wl5M6cJqlMucyL+d9V8
+         zn/A==
+X-Gm-Message-State: AOJu0YwNz75JT7UBEvdK+UurDIwoUPNvjnuR0NJe/2p298UJZyOOLBaF
+	ltSWv+4LVJ44TioUBXwUeqN7hWQF79R/c0M8U1DzVUX2pwerMMtxqzxkBeTbZbg=
+X-Gm-Gg: ASbGncukxFLLcmYKwLyJh1nG+phyqyUzLXMGwD5cGL8Lg5TBIKBTyRJuOBvQST9jJ43
+	8SojesqAqmBfigi/f8U889Bb1FYWPEsqcGGcpFha5GAezEqptTEjltnpvk90BHWc5CynpSvD4xJ
+	PnorFNVJxE+/xLOx5xWS3goILJvzyAvxl+QgLiRAYNXduMuEuTxW9SggTfh9aJq6N+SucqXBfs6
+	asHrhFru0OeOsZiYeyI5SlNRXZURLr5XMDpin1M2bkFmUX+AQmDaHckDi8saWS5KKAtIuGtI0Iy
+	mTXQdlo7Qyyp2pFdCYjCkuLoEhHL00E/4FXb7Zlr7mSPeYyE8TfcGC2TIXjEC7i5xF7qZjagSVS
+	OETRJCAXtTyObd6rc
+X-Google-Smtp-Source: AGHT+IHRN+bPuv53sQRVCdT8bOyRQsVcd7XdkoTww3PedpE8oGS5o/Jnv0ml8LdStXcOalfS26Un6w==
+X-Received: by 2002:a05:6a21:38b:b0:1e0:c50c:9842 with SMTP id adf61e73a8af0-1e88d361a43mr51144117637.31.1736927035895;
+        Tue, 14 Jan 2025 23:43:55 -0800 (PST)
+Received: from [127.0.1.1] (2001-b400-e25f-ed65-f855-8c86-b103-448b.emome-ip6.hinet.net. [2001:b400:e25f:ed65:f855:8c86:b103:448b])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a31d5047ea0sm9335482a12.58.2025.01.14.23.43.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jan 2025 23:43:55 -0800 (PST)
+From: Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
+Subject: [PATCH 0/2] EDITME: cover title for skitty_kernel
+Date: Wed, 15 Jan 2025 15:43:42 +0800
+Message-Id: <20250115-skitty_kernel-v1-0-6ef2086858ba@pegatron.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250110082612.4107571-1-a0282524688@gmail.com>
- <20250110082612.4107571-2-a0282524688@gmail.com> <ba0e0e2b-01ba-4261-ace9-82485e1c253e@roeck-us.net>
-In-Reply-To: <ba0e0e2b-01ba-4261-ace9-82485e1c253e@roeck-us.net>
-From: Ming Yu <a0282524688@gmail.com>
-Date: Wed, 15 Jan 2025 15:42:32 +0800
-X-Gm-Features: AbW1kvZgpC9Ts8_B_gBYp0vBqc0FXESjdD6C-CuJSHI1j6axLypLJeVDLnPCjBw
-Message-ID: <CAOoeyxXMrBvB=GTQUhTMETx-BLATTCwFR0wxmHxtsNm_qbgMuQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] hwmon: (lm90): Add support for NCT7716, NCT7717
- and NCT7718
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: tmyu0@nuvoton.com, jdelvare@suse.com, corbet@lwn.net, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-hwmon@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC5nh2cC/x3MQQqAIBBA0avIrBNU0KirRETkWINhoRGFePek5
+ Vv8nyFhJEzQswwRb0p0hArZMFi2OazIyVaDEkoLKTVPnq7rnTzGgDvvRGuc0doqtFCbM6Kj5/8
+ NYykfoWAi418AAAA=
+X-Change-ID: 20250115-skitty_kernel-9076f655d2ed
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@mediatek.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ herbert1_wu@pegatron.corp-partner.google.com, 
+ Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736927028; l=912;
+ i=geoffrey_chien@pegatron.corp-partner.google.com; s=20241216;
+ h=from:subject:message-id; bh=/+Z8KHUk8nxKTdR7QqzSkQ25mOSdeiem6+Sovxdi8D0=;
+ b=E80o+hiJ6quRwt12oN2OEIzPHAHmB8oXQUkBYK/7jHHv2xx3TS9h/D+9MCn7GGpKdJxyPBlxr
+ wx5fXB7E56vAUgnMi5jDRZA7JSG396+S358Q3SYk1wOYray5qBQjhdH
+X-Developer-Key: i=geoffrey_chien@pegatron.corp-partner.google.com; a=ed25519;
+ pk=P8X+ifKsuR9w8T8cIa35nudXKmZX6qk0iS+5EcuwtrU=
 
-Dear Guenter,
+Signed-off-by: Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
+---
+Geoffrey Chien (2):
+      dt-bindings: arm: mediatek: Add MT8186 Skitty Chromebooks
+      arm64: dts: mt8186: Add MT8186 Krabby platform based Skitty
 
-Thank you for your comments,
-
-Guenter Roeck <linux@roeck-us.net> =E6=96=BC 2025=E5=B9=B41=E6=9C=8810=E6=
-=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8811:56=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> On 1/10/25 00:26, Ming Yu wrote:
-> ...
-> > @@ -2288,7 +2329,19 @@ static const char *lm90_detect_nuvoton(struct i2=
-c_client *client, int chip_id,
-> >       if (config2 < 0)
-> >               return NULL;
-> >
-> > -     if (address =3D=3D 0x4c && !(config1 & 0x2a) && !(config2 & 0xf8)=
-) {
-> > +     if (address =3D=3D 0x48 && !(config1 & 0x30) && !(config2 & 0xfe)=
- &&
->
-> Why config1 & 0x30 (instead of 0x3e) ?
->
-
-Fix it in the next patch.
-
-> > +         convrate <=3D 0x08) {
-> > +             if (chip_id =3D=3D 0x90)
-> > +                     name =3D "nct7717";
-> > +             else if (chip_id =3D=3D 0x91)
-> > +                     name =3D "nct7716";
-> > +     } else if (address =3D=3D 0x49 && !(config1 & 0x30) && !(config2 =
-& 0xfe) &&
-> > +                convrate <=3D 0x08) {
-> > +             name =3D "nct7716";
->
-> Please also check the chip ID, and the other unused configuration registe=
-r bits.
->
-
-Fix it in the next patch.
-
-> > +     } else if (address =3D=3D 0x4c && !(config1 & 0x18) && !(config2 =
-& 0xf8) &&
-> > +                convrate <=3D 0x08) {
-> > +             name =3D "nct7718";
->
-> Please also check the chip ID (0x90 according to the datasheet). Why not =
-check bit 5
-> of config1 ?
->
-> If there is a reason for not checking the reserved configuration register=
- bits,
-> please add a comment to the code explaining the reason.
->
-
-Fix it in the next patch.
-
-> > +     } else if (address =3D=3D 0x4c && !(config1 & 0x2a) && !(config2 =
-& 0xf8)) {
-> >               if (chip_id =3D=3D 0x01 && convrate <=3D 0x09) {
-> >                       /* W83L771W/G */
-> >                       name =3D "w83l771";
-> > @@ -2297,6 +2350,7 @@ static const char *lm90_detect_nuvoton(struct i2c=
-_client *client, int chip_id,
-> >                       name =3D "w83l771";
-> >               }
-> >       }
-> > +
-> >       return name;
-> >   }
-> >
-> > @@ -2484,6 +2538,10 @@ static int lm90_detect(struct i2c_client *client=
-, struct i2c_board_info *info)
-> >               name =3D lm90_detect_maxim(client, common_address, chip_i=
-d,
-> >                                        config1, convrate);
-> >               break;
-> > +     case 0x50:      /* Nuvoton */
-> > +     case 0x5c:      /* Winbond/Nuvoton */
->
-> The new detection code should be implemented as separate function to avoi=
-d
-> weakening the detection mechanism. I would suggest to rename the current
-> lm90_detect_nuvoton() to lm90_detect_winbond() and introduce a new
-> lm90_detect_nuvoton(). Alternatively, add something like lm90_detect_nuvo=
-ton_50().
->
-> Given that all new chips have a chip ID register (called device ID), I wo=
-uld suggest
-> to arrange the new code around the chip IDs. Since all chips have another=
- chip ID
-> register at address 0xfd, it would make sense to check that register as w=
-ell.
-> That would only require a single check since it looks like the value is t=
-he same
-> for all chips. Something like
->
->         int chid =3D i2c_smbus_read_byte_data(client, 0xfd);
->         ...
->
->         if (chid < 0 || config2 < 0)
->                 return NULL;
->
->         if (chid !=3D 0x50 || convrate > 0x08)
->                 return NULL;
->
->         switch (chip_id) {
->         case 0x90:
->                 ...
->         case 0x91:
->                 ...
->         default:
->                 ...
->         }
->
-Okay, I will make these modifications in the next patch.
-
+ .../devicetree/bindings/arm/mediatek.yaml          |  8 ++
+ arch/arm64/boot/dts/mediatek/Makefile              |  4 +
+ .../dts/mediatek/mt8186-corsola-skitty-sku1.dts    | 92 +++++++++++++++++++++
+ .../dts/mediatek/mt8186-corsola-skitty-sku2.dts    | 82 +++++++++++++++++++
+ .../dts/mediatek/mt8186-corsola-skitty-sku3.dts    | 93 ++++++++++++++++++++++
+ .../dts/mediatek/mt8186-corsola-skitty-sku4.dts    | 83 +++++++++++++++++++
+ 6 files changed, 362 insertions(+)
+---
+base-commit: 619f0b6fad524f08d493a98d55bac9ab8895e3a6
+change-id: 20250115-skitty_kernel-9076f655d2ed
 
 Best regards,
-Ming
+-- 
+Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
+
 
