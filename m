@@ -1,123 +1,117 @@
-Return-Path: <devicetree+bounces-138885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84CE1A12CE8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 21:46:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63CD8A12D17
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 22:01:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A907716484C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 20:46:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2D0C3A4DA4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 21:01:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E331D89EC;
-	Wed, 15 Jan 2025 20:46:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7BFE1DB15C;
+	Wed, 15 Jan 2025 21:01:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jQTw6kN1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b8rogVbZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0631D63C7
-	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 20:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4BAA1DACB8
+	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 21:01:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736973978; cv=none; b=Ijc+EaHF5jlPEfjnEudhQBCnxTpqP9OSoNj85jMFgfRhxFzejbB96H8CDlZlikkCun4/WXWa0R4l7Lk8QmRtGufO2XEoQrqT7Jc+6Zd/t1q3r5BakIAV40Xt6whhhFcVZHGXVNp5gmN2Vvt2gdwyA4jQ1dff8lWXFbSEfOglfI8=
+	t=1736974868; cv=none; b=g3uprbWleqn6YcF1pS1VPEg9eU4bTZ1KZaCfO2gAK/I9ZtTwtGRb46VwYN0sIBl2BTQrNkVf3ipKar1kS6c7YXGEgOGI+GaMz53Q7Q0ZryF8GN2EGjUZK8xC1lY4THHb2KjBIHQf/IxvM+ajFIMm0n4Dm/bHzErDqnVsMgKHkkk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736973978; c=relaxed/simple;
-	bh=8xn+hAjrp+dpnTChfesyahewQiVXucAxQWGqp1tO4VQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jNClay3PCiP9HwPZdPY2O4WryJrHqgUNbGwvS0TZ2hb569ApK4SSb4VW94jK0zqQQ3nxrHVUBnTTvpyOTQsZCsGQqK1BHJpQc/8VhcvZsozMTeUh2EgyYFZ8FxeNkmaCKTxZ28v2QEBknO1Q7ZctTD6fbz2zmcaS7bKEI1UcYNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jQTw6kN1; arc=none smtp.client-ip=209.85.128.45
+	s=arc-20240116; t=1736974868; c=relaxed/simple;
+	bh=Yru/S4SXBY9NO29A74t0YcdN+foUcuveHw4jgqMb01M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bj0YdF2Yxc/pFCHk4NKu6q7AwYuqcTYLtjvXq6B3xRqWzlV/+ZRGBeVUD2D60plH8yQ/KY2whF0RmT8GZIRZGWUewxNJDzQVzMlGec0/VQ0NsifIeqkjrowKyCEiyxvxXM38oxQLeEP9SxS0LtP8IpxqFYcuEUyF+nvlEWznP2U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b8rogVbZ; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43637977fa4so149105e9.3
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 12:46:16 -0800 (PST)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-385e0e224cbso108463f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 13:01:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736973975; x=1737578775; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xxyq2n/HkeozPkGjrtu5/5xrNjib0WAov1wya6JfQKY=;
-        b=jQTw6kN1XdJVZwh9JYYPDVJaxNLMbqBwmGL52FH7ge4nn1H+8s7dzZ9AsCC7V8BWlf
-         xbUxia+0Y3cwdKyn8lrsJxXtpfB7EPplYGG5Q0ZM7F4sD6eoNAql3OLxXLztsjgtGoc0
-         BCjfqD3aL4+Ae7OF524GTHNOXwrNpqQspTg5/mADTSeSHfefLMNcAnm4u+uk/RqU+xc1
-         NBn3RFxDOiU7YU+iHh3O+iUx5h5VuMEmaTyI/yMEEEWBwqQNC+hImGKw3R1uVPSmsL3f
-         fd41Mcx27goz2NBJgGQFK7OE0TjbT4LJpKYRdwYNKwFV9n/P8rJng6rdXHO+n7UJBEfk
-         5y1Q==
+        d=linaro.org; s=google; t=1736974865; x=1737579665; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xzLGGAQlqPStmsjhVya2d8yxZkJH7fx5YrloQvwS7X4=;
+        b=b8rogVbZujdxeDJjqYY2JrCwxgIHs63Lsj1U8AtO386vHUn+pbNsh8Yx+uChQySA1H
+         A8vjmwf1uQqcNHYEjyTS7DKUK4VJFVQu62ESJV+JhXUqwiBlRLy3XcmV3uHWVPI5QeER
+         MA/OstJWBT2Gx17UCX3xHjyMCvOjyEYT5Zcnev1KA0mHDpjgawCa+tpa/6EU1nA7MLAP
+         7kRnPRl/TIx1CBnk6e/OScYZc2CTndaYQkCjP25QWnC7kDweCRbFUP1XnMiV5MnHxHGt
+         qku1rH3q5YG1IrjATd530fFlnRcbOnyr30L9bOFH8pH0zrVgzk/mQmqqfCRBMaLGMWbg
+         gZPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736973975; x=1737578775;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Xxyq2n/HkeozPkGjrtu5/5xrNjib0WAov1wya6JfQKY=;
-        b=Xova2rPO5xhB7wcdcfOArZS66Poa+6VbBVPNbRb/ypnjXtBRxzqzDFEn5QHHJWIBmn
-         MNSsE3VP+qqo19HA+TdYRLx2roiDQYTTF4UaSXilGKT/EmRYE5lw1xjHRscn1Vw5CfPC
-         v/cwM8ZASohRZMCHDxWgwMvMUoSni2pcaDpv3efBlW5mV4mteLJF7ubduUAzovP/Eemk
-         iCJ9jYf+HXLZy5DLLFup8geSdSFIBKK8v8delMGawvCqbFyWM9aHs9Q/rp6Lysn49TNP
-         Atz/tJlti2mTmINW5B0ae4uDxxqUgBusJIiQIa6BmDoBhC0wlaRyx0sLMhbJ3GtE1N+q
-         8v1A==
-X-Forwarded-Encrypted: i=1; AJvYcCUVH0do5DxezVyLcK/YOT/84cjw9hfzfHKcOcKmsU+sPxoyyRl260Kf37vUmmcRSJGsugUH3DvrF/cD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzHLakQ4FUnD0e8dHaz/ITHk0BJVOr5wtUjA4SbMJEOSbwsWI4W
-	IbAc2bTSMovjLgPdbqt0bcWOld3Q7OiIAJz1/mb14oDKUxKWp0029fR8EmIaOWU=
-X-Gm-Gg: ASbGncuRuoPxJ7I48kQsYgvtTwKA2PxUtzcH5v2Y37vVNdfKEIBIZF5p0lcsulWjSly
-	uEnGmU/jRNlxQgVoIt8L7M1GMBl4HooF7utDA2zFNvcLapflhFgVzGBmezxqaZPYEYzvn3btVl/
-	CxeLK8+fYcK1h4R9E7gCfYItnhzjwKC1K05kopXixxr88AGaE/ve/GSizFGU1UMYZmb7FJkXiO9
-	H0yVb9ze6UV84bVN1rs8We7wIwgMz34v1fNtQzGLsvjcChE066xKZYmaYY65b8zGr0Myrg=
-X-Google-Smtp-Source: AGHT+IE5Aq4FPLp3TznZADbgWmvqih94kTJxXwSTNAZBQDiPeLOPUk2glxfr3D/LiiLe6fJ/oR6c7w==
-X-Received: by 2002:a05:600c:4fd6:b0:434:f5f8:22cd with SMTP id 5b1f17b1804b1-436e25603fdmr100008315e9.0.1736973975537;
-        Wed, 15 Jan 2025 12:46:15 -0800 (PST)
-Received: from krzk-bin.. ([178.197.223.165])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c74bfa35sm34879505e9.18.2025.01.15.12.46.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2025 12:46:15 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: tegra: tegra210-p2894: Align GPIO hog node name with preferred style
-Date: Wed, 15 Jan 2025 21:46:03 +0100
-Message-ID: <20250115204603.136997-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1736974865; x=1737579665;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xzLGGAQlqPStmsjhVya2d8yxZkJH7fx5YrloQvwS7X4=;
+        b=QWVwgJHzpIgP38ZZFeFsdeeg+jixJPX/pGdCQLep4vRXnzsUlhsmujl7NZKtZXpMMu
+         NdBsOXj2rb1TK3CgS03ejNAO4hsGObSbdVDqyDG1z5dBnyGoa1GZqQOYbj2KOCqk/RkC
+         5dWci1EpQG/eA5jDLfLcqLIMnNfsAzNmcXkdi9H/Vs8+LmLAD86VzzUHtXChTu0U7fTI
+         bjiJesmqXZ6/PuG6HVGzy7BUwgmm0x2NnoVglPD6VZ5sdoqt8kECHLAjBauySocu2IQ3
+         8Gy3eP1GYlz6si+Vz86G+TUX7buOpRp1aeV3EtRDGJYoTrpHpJhzO7RJ0UOzbej/8rAn
+         et/g==
+X-Forwarded-Encrypted: i=1; AJvYcCUQntE3bnCSh6EVHMBvbxoOOsCkK9rU0pi5NRPT/u7h2Va7sPynv5gitaAa+dNmh5aN0bdL1SKimuu/@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywv5s0CSSkLOZTqLdOgnQsdS1zJFPGvEEsjLVIUY/DJlvDfH9SK
+	aWe8XhCKCwzHXTk/raFhtACvhDLeygVkGEoHRI/0UPwonVS3yAbT7S87BP4w9Ws=
+X-Gm-Gg: ASbGncviTFpUG7IaYeGkeEsyaAcK6MWdnP8bKZ7FVQq+5P41WRcn1INNd9pr2KhLpig
+	YEj/GC874xTlOTdAxVjkTybDtVTHUzxOE50xFdp4aTohkoh9DbQsSxW/lA2Co4RikpPnP8PO+ke
+	F7VRBfQSUwEirRPph1dUrweaGqEHxBHJXRSHv3hVn2APySA9f4cw3B8t961v+geCJfVNNd7R8LS
+	SUpjGY/e/UKFTPpDSSi2rR+DBXuIhLEQeMBy4V9jmPs1mxXnNc/+gdOI//eo01+i6spZg==
+X-Google-Smtp-Source: AGHT+IHTg22Q+fG9klizKomPZryDwOzxB/InrEh50EdlHpVQwJM10Smqg7fSX+Z4+PMIk0to3OjhDQ==
+X-Received: by 2002:adf:c007:0:b0:385:eb8b:3ec6 with SMTP id ffacd0b85a97d-38a872e9356mr18598719f8f.29.1736974864869;
+        Wed, 15 Jan 2025 13:01:04 -0800 (PST)
+Received: from [192.168.0.35] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c7528076sm36591545e9.25.2025.01.15.13.01.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jan 2025 13:01:03 -0800 (PST)
+Message-ID: <238411cd-1bcc-496a-9077-07bb6c4892ec@linaro.org>
+Date: Wed, 15 Jan 2025 21:01:01 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 05/16] media: qcom: camss: csiphy-3ph: Move CSIPHY
+ variables to data field inside csiphy struct
+To: Laurentiu Tudor <tudor.laurentiu.oss@gmail.com>,
+ Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
+ todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, vladimir.zapolskiy@linaro.org,
+ hverkuil@xs4all.nl
+Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20250108143733.2761200-1-quic_depengs@quicinc.com>
+ <20250108143733.2761200-6-quic_depengs@quicinc.com>
+ <79b3e4d6-becf-4bcd-91fa-768b4098d01d@gmail.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <79b3e4d6-becf-4bcd-91fa-768b4098d01d@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-GPIO hogs device node names can use 'hog' prefix or suffix, but the
-suffix is preferred.  The pattern in DT schema might narrow in the
-future, so adjust the DTS now.
+On 15/01/2025 18:01, Laurentiu Tudor wrote:
+>> Reviewed-by: default avatarVladimir Zapolskiy 
+>> <vladimir.zapolskiy@linaro.org>
+> 
+> Nit: Something's not right with this tag.
+> 
+> ---
+> Best Regards, Laurentiu
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Doh.
+
+@Hans could you possibly drop the "default avatar" when applying ?
 
 ---
-
-Reference: https://lore.kernel.org/all/20250115142457.GA3859772-robh@kernel.org/
----
- arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi
-index bbd6ff0564da..b84a8e39b404 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi
-@@ -1365,7 +1365,7 @@ fps2 {
- 				};
- 			};
- 
--			hog-0 {
-+			max77620-hog {
- 				gpio-hog;
- 				output-high;
- 				gpios = <2 GPIO_ACTIVE_HIGH>,
--- 
-2.43.0
-
+bod
 
