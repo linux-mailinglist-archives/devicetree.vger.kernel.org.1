@@ -1,118 +1,122 @@
-Return-Path: <devicetree+bounces-138657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE295A119DD
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 07:42:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66C13A119FD
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 07:48:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E5133A2299
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 06:42:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E628D7A3CD6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 06:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AA6222FDEF;
-	Wed, 15 Jan 2025 06:42:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9947022F169;
+	Wed, 15 Jan 2025 06:48:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RKOc0Bcr"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nNKfy+Gv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3948722FAE6;
-	Wed, 15 Jan 2025 06:42:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 179E95223;
+	Wed, 15 Jan 2025 06:48:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736923323; cv=none; b=lN3o7/niqVEu3WJbC15AfA0tASJtyC9Gef/9g2qvJxqhka4rUwQ2ayGfISf8hDbL+SfQPTJ85wdjUkFutgz83BcrPf6Nh2YfCUyVd4gjkD01JGA0XXGF7PcUV+ZqXQzK3y1/cT34aZzaR+K4wiZvOxzWEEu3C5kLdT8y9xf4W7U=
+	t=1736923692; cv=none; b=ugz+wgI+Zwst+9xJbrj8zEA/Xrqzu1GlmiRawhSKjuQ8JHb98g+yypBJV7uS3q0j06Jmlb+fxIYywuEdNkWM/xZwa6PcSHoUOPbpprbftN4HgGANl07THRf4k+dxX6l4K3FG8Bqf4mm4Z4LBqlp75P7/7QDaKk2X5l8PrHxdvA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736923323; c=relaxed/simple;
-	bh=BIBrJL109H6KPuc+9XD6oy5aeMe7UkZxy1rC+jwAgJo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bEPM5t5F+ex39tBmdXFudgteWgQs+yKoFeQ9xJJSSS78rAF1pFhbT0wdaakUYkLtgcGX2GmDZeXhbH+J603kZhQUNtuUa37i3xPKmmtm+eS411Wi8kNIIYD5fu4jA3YmV2YFgugtXXGnOKKqj5lLidUnxJO8mPf3yZwSwbN3Q4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RKOc0Bcr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id AC9ABC4CEE5;
-	Wed, 15 Jan 2025 06:42:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736923322;
-	bh=BIBrJL109H6KPuc+9XD6oy5aeMe7UkZxy1rC+jwAgJo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=RKOc0Bcrm5X41ZbqYtlsmXyDmrTX/ieqZibiHTx79/tGZBoTdefHjsc+TejpJGEqt
-	 E/n9fvOxziAbpeEcEQJo3vVMbLyaWDQuxioIoBwPvGyOvCADsXnDt6A+DiJhlz7F4A
-	 Tf/AmVcsFws7ZxdwcwGFKdeeoKxo+s2bC2QZEdW3srhOd6jlddOFk4Zz4+aPIDmzqs
-	 uksWV1WoVy2Qf+1OHJGFP8g1Y341N+J01JqXBrVUnJYbpfsS9QvPuS2f3U+gUaJsn+
-	 ocFiVYkTz/doImiKQ1YZcRJJYrdU+Z/qM8ecNr7i7qniw2ZFX3YOaLgFC5wZ5W01iM
-	 Se/Cu47UBH0Cg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A2D09C02180;
-	Wed, 15 Jan 2025 06:42:02 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Wed, 15 Jan 2025 14:42:03 +0800
-Subject: [PATCH v3 5/5] MAINTAINERS: Add an entry for Amlogic pinctrl
- driver
+	s=arc-20240116; t=1736923692; c=relaxed/simple;
+	bh=HmgPSZfpOtzPRo4FG6rn2dnPs1lZpaBIEyjFvD1xXeo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=sYd42Kz1lX0bcwNeMUhWEE3iKuUzOzeAuUVnUe5X8GBiAx+1FvZNW+3+KLOKhyxyQvPyIIddEIWOIlrPDtifoLrDmYaNeahzxrC9jpRqXWANelCBKG3aM1KJ4PYyu7LmlcOls+KbXEQN2Ld0rg4eStw+SsnVyUQbYk0acyM9ID4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nNKfy+Gv; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50F2ipQI011392;
+	Wed, 15 Jan 2025 06:48:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=5AUhtyYam9P61nGzKWQsi+
+	ywey8S2d1NmsmWNCGAGEY=; b=nNKfy+GvNgNEkuJx7KH2DQiV8tI94YLzrHwdA/
+	F7HmtnCQQBMuNB0r/Yi549Jp46HAkHM49s+UCzperErxPHR6sBDNUWv+WvUFuFRg
+	sp7kXtZTVlvlBHYT4BmkFkvL6K4R9eREFt42CxLIFR2arnOQqj0osa1AeDfzIBW/
+	HUNRiotPw8mLYK9XXyrPMD073e4eBAAp1vP06+ZeJ8Q4V0Vi0nlkliNMjEyXpFx8
+	vdxKzGLutML4nxYVbwjbw3m71SrTtoKTw5AXI3CTFu2cZWehxrvwZMceK5Ez5kAV
+	MQaUfAMtQmUquj3FISLSAPyZM2i62y7+KM2qKKSeQErkDryg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4464gp8fwp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 15 Jan 2025 06:48:04 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50F6m2P4005031
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 15 Jan 2025 06:48:02 GMT
+Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 14 Jan 2025 22:47:57 -0800
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+To: <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
+Subject: [PATCH v2 0/3] Add PCIe support for IPQ5424
+Date: Wed, 15 Jan 2025 12:17:44 +0530
+Message-ID: <20250115064747.3302912-1-quic_mmanikan@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250115-amlogic-pinctrl-v3-5-2b8536457aba@amlogic.com>
-References: <20250115-amlogic-pinctrl-v3-0-2b8536457aba@amlogic.com>
-In-Reply-To: <20250115-amlogic-pinctrl-v3-0-2b8536457aba@amlogic.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736923319; l=856;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=g90Y7KQss/y457N73Cj7ZyZIWWG4o61VIHvixhZOt74=;
- b=c4t4ZWSqUQS2jrEX0OzSMuVwpF2kpjDeorFlg/oJPUPhTONBvWoiUWXGhhCnOG+rWLY0Mb7GK
- MGhjx/Ol4ViDSIfhoM0oWU5PcEH7nmur1scCcIiko2qBnZbB4OfWmpe
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
- auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: xianwei.zhao@amlogic.com
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: lp-Fu1Q14FmkJoH2cjoE1DErnL_YrPK3
+X-Proofpoint-ORIG-GUID: lp-Fu1Q14FmkJoH2cjoE1DErnL_YrPK3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-15_02,2025-01-13_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
+ lowpriorityscore=0 priorityscore=1501 impostorscore=0 bulkscore=0
+ mlxscore=0 mlxlogscore=634 adultscore=0 suspectscore=0 clxscore=1015
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501150049
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+This series adds support for enabling the PCIe host devices (PCIe0,
+PCIe1, PCIe2, PCIe3) found on IPQ5424 platform. The PCIe0 & PCIe1
+are 1-lane Gen3 host and PCIe2 & PCIe3 are 2-lane Gen3 host.
 
-Add Amlogic pinctrl entry to MAINTAINERS to clarify the maintainers.
+Changes in V2:
+	- Fixed all review comments from Konrad, Varada.
+	- Patches #3 and #4 from V1 have been renumbered
+	  to #2 and #3 in V2 because patch #2 from V1 was
+	  merged into linux-next.
+	- Detailed change logs are added to the respective
+	  patches.
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+V1 can be found at:
+https://lore.kernel.org/linux-arm-msm/20241213134950.234946-1-quic_mmanikan@quicinc.com/
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1e930c7a58b1..b8905e8aa802 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1218,6 +1218,14 @@ F:	Documentation/devicetree/bindings/perf/amlogic,g12-ddr-pmu.yaml
- F:	drivers/perf/amlogic/
- F:	include/soc/amlogic/
- 
-+AMLOGIC PINCTRL DRIVER
-+M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
-+L:	linux-amlogic@lists.infradead.org
-+L:	linux-gpio@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/pinctrl/amlogic,pinctrl-a4.yaml
-+F:	drivers/pinctrl/pinctrl-amlogic.c
-+
- AMLOGIC RTC DRIVER
- M:	Yiting Deng <yiting.deng@amlogic.com>
- M:	Xianwei Zhao <xianwei.zhao@amlogic.com>
+Manikanta Mylavarapu (3):
+  dt-bindings: PCI: qcom: Document the IPQ5424 PCIe controller
+  arm64: dts: qcom: ipq5424: Add PCIe PHYs and controller nodes
+  arm64: dts: qcom: ipq5424: Enable PCIe PHYs and controllers
 
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |   4 +
+ arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts   |  41 +-
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi         | 500 +++++++++++++++++-
+ 3 files changed, 540 insertions(+), 5 deletions(-)
+
+
+base-commit: 2b88851f583d3c4e40bcd40cfe1965241ec229dd
 -- 
-2.37.1
-
+2.34.1
 
 
