@@ -1,171 +1,148 @@
-Return-Path: <devicetree+bounces-138877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61525A12C83
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 21:24:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F13D6A12C86
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 21:25:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E6BD63A10BE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 20:24:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B07B3A132B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 20:25:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A3D01D89E4;
-	Wed, 15 Jan 2025 20:24:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1E201D90B6;
+	Wed, 15 Jan 2025 20:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ettSrmJg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZoNMTRT7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCC5191F75;
-	Wed, 15 Jan 2025 20:24:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22BD191F75;
+	Wed, 15 Jan 2025 20:25:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736972676; cv=none; b=K19w5/4rMhwybKp/zAm8Ix643j51k8VGae7yfoUUU6390Viev4yXTQDDM9uvVff7G6+sNiWuxZlEc49mebKLvXVyc0/7rgWrqI8uWOev8BVzjEgrWPITe7eITvZEH5hNjbjgIP2DDnfz1Eyod2mTDQ1BNEPXJj9+2ULRSuN9waQ=
+	t=1736972752; cv=none; b=YP34qSwWUF1RcGe73V2s8W5qDZLwKBd/V3UaDdueKEUmQZyuNNPfRZ6H3xKUyynYWN6crkuIJgRP1/VgqFycktkDAMJEJgGfDLg9KNHKbeBT/cHMxdTxlCMl0E+QB+H9jOVdia01Pr8shluv5fAKP/pcX9Tj70vl5uDVRMlQsNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736972676; c=relaxed/simple;
-	bh=4gGBLBm2WNgM0NeOFcF0ipjCwZG22PvWbgxnJfvHN2s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N/OShW0m+wSmD1MwGc7Z/NUxk/dW9yuhKWVZOrg+lmWPY7tQlDfo2/uAmSc2qwm26psyP1yQLcSlxj2edn5/NtP7jfs4mconbNLsn+W0mrjBdFriNdu8XJvW0vEH49DY0M9SEzz9oBYSLJ0GrOH0JRutFhptmZWiVIqWO6rBaVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ettSrmJg; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aaef00ab172so30996466b.3;
-        Wed, 15 Jan 2025 12:24:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736972673; x=1737577473; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=46A7egOfjGktXi1rPu6cT+acsY9JmFRJLf+A/0J2Lio=;
-        b=ettSrmJgfVxsaIeUXnqGFZl1OnNTkI06KwzqVcExFDO30o1GveHMiZmnxD+0sc0Jse
-         Wx5IKl2UO9itF/eEQ3PsfNa47MaJD5TLuDlRnyYjQ1v+m6hiPSc6/NcaK/LEBQLaAZGP
-         4xkXoj0h3yZm94/duhYQvkZ9bAePlLCQRjJe0hRIpW5oowDZzO/VmXuCqtLQqXI+SOUi
-         qjOluOiqIf6oyQtnTdegj4ifTRzGmAFCNIS8zcrzIgu4JJYuh07QJ+gGC7/PixicZuTR
-         QsTczdFWgi/Kt7H3XUfh9VbSoSs59gWAB8cQHd99lfc2KIBTiuKsTKfCLpWA6sA2m+rx
-         GRkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736972673; x=1737577473;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=46A7egOfjGktXi1rPu6cT+acsY9JmFRJLf+A/0J2Lio=;
-        b=WtV76Jon4V86GXjtnUeWt++wJJ993/QGTJuhFJA5ycnJSShF6MAH/SpNDEINnxXrAG
-         ja0dE+4FyFUrC7VTOMcpn9uTh3XFBAU5s8nZOKDFTZjs/QJDoZEXXnmJ9TfPoqLtgOSx
-         i/VUWA7Cn/woNk4DO/oHZx7aDQoXQ4wPlhYB2lmDrptlAB0lIHQHLlKZVoOyBO9gtsIb
-         7PfQ1WT4/TNvPZ9qhW+geLuUteJZiZyoy/W+IsUtmzbHOt88wH1470/Xm56Ys6g0ayA/
-         F8Bdi8AOZFlIlOv5QpQmQXc0pGvxB+c2NUlKA5B8IAcDjV5PUUgcOcw5GiRqcTwu2rPJ
-         JYIg==
-X-Forwarded-Encrypted: i=1; AJvYcCV5wHnOOFvY+gGg0lZoQVR57wEhEOfWqwrkqL9/07h/SbWwshi6XlDz4hulaX20R3opYfIEPpuC8Xa8@vger.kernel.org, AJvYcCWasq4SPHV/cHWTTq7DNbFYdEEnRsZA6tZ7IN4FqUUq0S74oaot+M2ll8lk39l3xigMXJVKSO+3U+A4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwtHn2FKmRKIjEfEWig0anY/p6XzDnTXu1t9qf0EqFwzO2K33ZZ
-	4BEXwo0ulPhNlaPUI5UMcao8850EKGxvo9lY8glSvLPYiSI3931e
-X-Gm-Gg: ASbGncueWfzS3o44J5FHAFLzajAQoWFWntNc/3d1f7SxyG2Rb3iqAudln9rSm/FuZ5r
-	MnVcybDJpo6ITQ36m/Yp4hsZoBpssj2X4iObIQ0FMutGj7SglPBSUKCNqvX+JsV6dmr0ymKh82z
-	d7tq45QTLgbZ/JcLlGv89Ub0Dl0z+rHCIuoNMTBhxxXMAWwSWVP4bNZQsbNh010N0tHjXsS0HhV
-	QWQcW+x+PmUfby8oPlsixQNs38SAunwXt1GpLWftYF3LuCmSjbYBx8JInxpjxhL0DTJBhHW9asN
-	qMUsE37oSZLfeonLB11aC3ooAA==
-X-Google-Smtp-Source: AGHT+IFl1rg/QeCIREhZNbg50IZ/OKIksuM+ncImQokSsbydCvH9xhiCosiZ5pbL16uQR8Vu1AXPAg==
-X-Received: by 2002:a05:6402:5251:b0:5d0:bf5e:eb8 with SMTP id 4fb4d7f45d1cf-5d972e63ddfmr65207595a12.23.1736972673007;
-        Wed, 15 Jan 2025 12:24:33 -0800 (PST)
-Received: from antoni-VivoBook-ASUSLaptop-X512FAY-K512FA ([78.210.102.185])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5d99046a195sm7612304a12.57.2025.01.15.12.24.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2025 12:24:31 -0800 (PST)
-Date: Wed, 15 Jan 2025 21:24:08 +0100
-From: Antoni Pokusinski <apokusinski01@gmail.com>
-To: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andrej.skvortzov@gmail.com,
-	neil.armstrong@linaro.org, icenowy@aosc.io, megi@xff.cz,
-	danila@jiaxyga.com, javier.carrasco.cruz@gmail.com, andy@kernel.org
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: magnetometer: add binding for
- Si7210
-Message-ID: <20250115202408.ub5f2w4ovygsh2zd@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
-References: <20250115201622.270130-1-apokusinski01@gmail.com>
- <20250115201622.270130-2-apokusinski01@gmail.com>
+	s=arc-20240116; t=1736972752; c=relaxed/simple;
+	bh=QJyHeWSG220LCnGvtkz1v/6noep0wW4SvHn47nukKSE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X0hVy3TAViRPdxehVcPkf9H4BHu89ZeqN3OD9pIz8a5Ol7ZDFKe4I9hJiqPLfoJdIndEE6ICuhcKdcIJooNX06VpCIVtyj6PKmEA6Ph50K69nQzU/PTT6HrbPVImw3/bQh2LcUDo/eYp/z7Moqp/U2UsJci91iLGh8WItuRFiIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZoNMTRT7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4762C4CED1;
+	Wed, 15 Jan 2025 20:25:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736972752;
+	bh=QJyHeWSG220LCnGvtkz1v/6noep0wW4SvHn47nukKSE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ZoNMTRT7wilQBTE/a/fquTyYwow2uvvv2PUPrSIbttpxc1pMVHj4Ryc85/81rcUAV
+	 aGy7JARt8uh/G3wq9/1ImhxHplHCJaYUrMIar27BRMUTcltsOZuXELLiJLH4hLREH0
+	 uAdslg0tZw6+S4rc0Pn0wGBwbuecLDu37aWBg1zdSAj1vN4a9DuHA6CoG3Zl6kh9Jt
+	 5tIhKhptjiMSsexCTnqEakbO/T3Aw9XUmLPS/7oxwKO6nv7NXExU/mUO2NrtysIpM9
+	 UN1u/mlDWUp/I62pA/EKLsj6UDaTvJY2ht8XRvXPaMITZoORTHYWZfx9ARSA2GZ+ZG
+	 qk2YNwawUarTw==
+Message-ID: <a869e66e-4fb0-49b6-9307-9a20c73cb374@kernel.org>
+Date: Wed, 15 Jan 2025 21:25:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250115201622.270130-2-apokusinski01@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 17/19] media: dt-bindings: ti,ds90ub960: Add "i2c-addr"
+ link property
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>,
+ Jai Luthra <jai.luthra@ideasonboard.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, devicetree@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20250110-ub9xx-improvements-v1-0-e0b9a1f644da@ideasonboard.com>
+ <20250110-ub9xx-improvements-v1-17-e0b9a1f644da@ideasonboard.com>
+ <iet6yl4mloktmpm7ngkug2dgtddriot7qwrkgg6loqermj7f74@mzyg34r7f4pc>
+ <19c22201-e3ec-4d07-97ae-c149b172e480@ideasonboard.com>
+ <ffecd7b0-39f1-494b-8a9f-81702a439752@kernel.org>
+ <b083ab17-a34e-42cf-9696-ff774731dc58@ideasonboard.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <b083ab17-a34e-42cf-9696-ff774731dc58@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Silicon Labs Si7210 is an I2C Hall effect magnetic position
-and temperature sensor.
+On 15/01/2025 18:19, Tomi Valkeinen wrote:
+> Hi,
+> 
+> On 15/01/2025 10:40, Krzysztof Kozlowski wrote:
+> 
+>>>> Why only these folks? Why not all of the maintainers?
+>>>
+>>> The whole series is sent to the media list and maintainers. I thought
+>>> this single patch doesn't warrant sending the whole series to DT list
+>>> and maintainers, so I cc'd them here.
+>>
+>>
+>> I was wondering why only some of the DT maintainers, not all? My usual
+>> assumption is: you are not using get_maintainers.pl or you are working
+>> on an old kernel.
+> 
+> It's simpler than that: a copy-paste mistake. I'm not sure how I managed 
+> to miss Conor there.
+> 
+> Any preference on cc'ing the DT maintainers and the dt-list only for 
+> this patch (I'll use --- this time, I promise!), or just sending the 
+> whole series also to DT people?
+I think only Rob uses DT list entirely. I use both - DT list and being
+directly CC-ed on emails, and I think Conor relies on being Cc-ed
+directly. IOW, just cc all maintainers + DT list. Unless you touch
+multiple subsystems, there is rarely a point to strip get_maintainers.pl
+output from maintainers/reviewers/submitters. Do not confuse in skipping
+non-maintainers pointed by Git-fallback (not applicable to b4, I think),
+because these should be used carefully.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
----
-In the first email I forgot about the `Reviewed-by` tag. Added it in
-here. Sorry for the confusion.
-
-Kind regards,
-Antoni
----
- .../iio/magnetometer/silabs,si7210.yaml       | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/silabs,si7210.yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/magnetometer/silabs,si7210.yaml b/Documentation/devicetree/bindings/iio/magnetometer/silabs,si7210.yaml
-new file mode 100644
-index 000000000000..d4a3f7981c36
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/magnetometer/silabs,si7210.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/magnetometer/silabs,si7210.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Si7210 magnetic position and temperature sensor
-+
-+maintainers:
-+  - Antoni Pokusinski <apokusinski01@gmail.com>
-+
-+description: |
-+  Silabs Si7210 I2C Hall effect magnetic position and temperature sensor.
-+  https://www.silabs.com/documents/public/data-sheets/si7210-datasheet.pdf
-+
-+properties:
-+  compatible:
-+    const: silabs,si7210
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: Regulator that provides power to the sensor
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        magnetometer@30 {
-+            compatible = "silabs,si7210";
-+            reg = <0x30>;
-+            interrupt-parent = <&gpio1>;
-+            interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
-+            vdd-supply = <&vdd_3v3_reg>;
-+        };
-+    };
---
-2.25.1
-
-
+Best regards,
+Krzysztof
 
