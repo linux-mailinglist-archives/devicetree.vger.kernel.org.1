@@ -1,222 +1,285 @@
-Return-Path: <devicetree+bounces-138725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD85AA11E29
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:36:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76C0BA11E2C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:37:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C606A188D9EE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:37:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BDEE188DC91
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:37:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 164121E7C3E;
-	Wed, 15 Jan 2025 09:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8554E1EEA56;
+	Wed, 15 Jan 2025 09:35:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qRvxXnwG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EtZFcOv8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E28AB35966;
-	Wed, 15 Jan 2025 09:35:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40AF920764C;
+	Wed, 15 Jan 2025 09:35:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736933735; cv=none; b=LK0i8gg2DtlEgabd4kZy8SnJp2KXgmSXEZplSG1MeTPriAylPQz1My4MtqoUIsLHzBFQQarVKuoR0s0g+TyJPytxjuq4krP7sT11EspY3ljZGCvIztDOACO7vB/kdqI4DPqEw7BClZGcWRHrCFwxvtPAyjbECIaEgko7UsuGyyM=
+	t=1736933740; cv=none; b=EriUDcF9DKOsp9UnIfzRHG2IkTnEG+OWYYoJ66iQsska2t4AqSRa+T7VsbGnn0kOF81Yz3tmA3yak93RHvHZInPCY43buEq/9rq4gefpZbpzgPel+Yrcmu8ip8BEjLuVWbNJPT/ZG+0GeP/joTv1r8/NKPiwF0yLTE8TX/fDwCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736933735; c=relaxed/simple;
-	bh=p+hqniwq/VG9dhOh6Hnhr7/N5Yo4JFKM4KBxZNiPOn0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Srndsp0W3gWz96g2VXrE5PoJPQNBIzSfCh47TEYeaB2Ww7iCu6ccIhgE369sTuMSZewgks++Dn6dP5/Ii3UKoEGI24eqJF0Pqm6PRPDjBIHwWAhNLKtWYP8x3v6rbaa5GqGeHgzmwyyLMC0QsRwBqbykR8EdAxwuXpvTkly78Kw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qRvxXnwG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A2B3C4CEDF;
-	Wed, 15 Jan 2025 09:35:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736933734;
-	bh=p+hqniwq/VG9dhOh6Hnhr7/N5Yo4JFKM4KBxZNiPOn0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qRvxXnwGSIpQXwIDT7QucTsJ76w30NW8G0Oc2INCOreyRafL45Q1Bnkt+ZjQRc1Q7
-	 rtNO3RX+QlHH0BYPWStorAMVLu8ehU9j4ApR4WRSjvb3hNxzM3ZLFvE0yb7Dq8XSTu
-	 kz3NBv4jVdlwN1IDLbdh4xnsQKfDA2paX5dJsWbZKTsjvOIaisPU8zzRaZ1aLdFmJb
-	 2bkXXmerrlPDPLCXzA/Avdnkab38LIjev2u6Ub0sm260nsXMOUYtrR+ct9/Bowrmsl
-	 U5F+FVxu/TbaabYZ82YrcRO5oHcSBm0bDhDhL9IwbRVQqhryvH/qebYRLt06DYE4bP
-	 LXnKlPEqaTWAg==
-Date: Wed, 15 Jan 2025 09:35:29 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Hal Feng <hal.feng@starfivetech.com>
-Cc: E Shattow <e@freeshell.de>, Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	s=arc-20240116; t=1736933740; c=relaxed/simple;
+	bh=hSoXZbHeOatVgnXPU6wXXJ9z8menycEfNUikfVdwris=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A0h4kVpY/kFqGvswTuIXvqE54kALb220SE7RDTFu0SVaKsSWsGNYb3Ngn4ssQ1ubIQl8qGgR9G4i2aTTEX21upDnQVXTBiNCRK4EL53opXeo4yT9KzS9z6OVv+lBFjnglLv83NuHP2kuilr7L97jRHl0DWBse3q+Z+eYo/TyPLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EtZFcOv8; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-385f07cd1a4so5312290f8f.1;
+        Wed, 15 Jan 2025 01:35:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736933736; x=1737538536; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:subject:cc:to:from:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bJlS2BHE74secUz9CB0R8O3ilQB+OB3FuTYckR6ubFM=;
+        b=EtZFcOv8RMBjxB1pwcF0oQjDNpf+Cetaf365RNKcALyoJnd0fXNOjKH++hYHh/Q9FH
+         e9pWiIYKoMj81CD3yri6ikS6kIfdE3gqknSn87bJYdsDgwZB01o29y+knTY80h9votAO
+         wuOgpUDqenUArt2mAb5gU8NiX7StFB+iD/23BDRBl97EwqGmUVe45mt73cjNHnq2yjxj
+         xJ4vegkms3X3waqr9FUxxh7pv7Yy35JrJAgtqmQGvVkc/hlQqRWqKd0BvHPancFZojZo
+         MWdv38kx2PyM8DujtkyBV5VM3fX4pcqc4CnAoMS+bUp9KHrRgHIYBuvUo0WV+k/DyEO7
+         greA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736933736; x=1737538536;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:subject:cc:to:from:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bJlS2BHE74secUz9CB0R8O3ilQB+OB3FuTYckR6ubFM=;
+        b=iNmFicjgTBIwYdSudc/uei6SQN2jsbEGdHONeelAnbdc4NJqScvaFPhB50kE7VJitq
+         pOJ6f3KtF2w7OeInTq/PSAIxYBOy3/7aBPo3L4PgozVN6YeSwHyavYCWgDDQyhp4WNBe
+         R2v6YIDbRykLp6j08Vfi8cfqtuAzfKtJSkXTYfBfOoRZjsJmkLP47W43BuK1Qm5H/AOP
+         nsdmEHifYfNwJdpqzbdNUHdKDjgAmrLSqop3MgKqhJb15pGUuk7eGP85eM/aRTWV7lIg
+         wBV5DcjuguEYEBO5mpG+oyvM3zVTYP1eqzJy6Lq5TSSqPpcsyDnrnCDlIAXwF5518S1N
+         Aufg==
+X-Forwarded-Encrypted: i=1; AJvYcCUKV4DUQGel49LaPO87OtxSFtftQpzYy8rX8kTG3jRCh4+f2lVpTO3EzqzSx88cZeawX75Z57HzIZbW@vger.kernel.org, AJvYcCWsYMPJKfFB03e+gTnPg6Mt9DLqR1t7J7RGx96C+1src6TYAw1+hy/gu2ntFnn7LgZEQvtJ0cZzH1SQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJGTH1mjgOinq1+Wq8QCPiExBPkQR1EOZF6WC4a7n8gxSwYz0i
+	CHmK3HzUbrXoAd2S6hMsX+6wV2JtlUwr6aL0K11DYi8jALpzO8tB
+X-Gm-Gg: ASbGncsaWaVq+eNx7E10X7ciaC7ZyrInHcfaj9o/WDn4jSSqqo2bCtSfxBQv9ZYY5+H
+	k5/qUPXv8Kjj9CxSkmoXuipXCmMuFIpXy+k9TVOgoiPd2HfCS2ZJJrHS5fwIqigvdIYH+tqq79C
+	liT/6ExvozoJ9ZgiAtQPUidy+2JV0QIeZlyi++WgcRpT4k1QcFEYCaEnrAK1VxKwgFdK9mVrLQ6
+	3jWlc5AhBwnz4Z39JSwkckMNsTY14yXa1bXzuMw6/CSy5GO9bFHbqugmM7i61tlO5se6c9DqkwM
+	qz8FALzkTwJm
+X-Google-Smtp-Source: AGHT+IH2JuWof//uVdkBpA3QQVNZsi6lClPHa+2DDtdHWYts1qlYQ7sw3xXHB+R64tKJpk2Eii7oWg==
+X-Received: by 2002:a05:6000:1542:b0:38a:a047:6c0b with SMTP id ffacd0b85a97d-38aa0476d5amr17286510f8f.35.1736933736287;
+        Wed, 15 Jan 2025 01:35:36 -0800 (PST)
+Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c16ba82csm21964055e9.1.2025.01.15.01.35.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jan 2025 01:35:35 -0800 (PST)
+Message-ID: <67878167.050a0220.9eba5.7501@mx.google.com>
+X-Google-Original-Message-ID: <Z4eBZlZnSRjlhKen@Ansuel-XPS.>
+Date: Wed, 15 Jan 2025 10:35:34 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Wenbin Mei =?utf-8?B?KOaiheaWh+W9rCk=?= <Wenbin.Mei@mediatek.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
 	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Minda Chen <minda.chen@starfivetech.com>
-Subject: Re: [PATCH v1 1/5] riscv: dts: starfive: jh7110-common: replace
- syscrg clock assignments
-Message-ID: <20250115-bunkmate-reluctant-a9bad52d8a04@spud>
-References: <20250102194530.418127-1-e@freeshell.de>
- <20250102194530.418127-2-e@freeshell.de>
- <20250104-mutilated-unpaved-008eebdb200a@spud>
- <56c372c3-bb8b-4150-9b34-a6cca906d740@freeshell.de>
- <20250106-suggest-waltz-47d7f7760069@spud>
- <ZQ2PR01MB1307A9E106AE06E144875D6EE619A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	Chaotian Jing =?utf-8?B?KOS6leacneWkqSk=?= <Chaotian.Jing@mediatek.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	upstream <upstream@airoha.com>
+Subject: Re: [PATCH 2/2] mmc: mtk-sd: add support for AN7581 MMC Host
+References: <20250115073026.31552-1-ansuelsmth@gmail.com>
+ <20250115073026.31552-2-ansuelsmth@gmail.com>
+ <a00c76b9752410ea86d6cac0f774d5d1ea45891d.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="aIHZ/aPXKB+pnUdS"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <ZQ2PR01MB1307A9E106AE06E144875D6EE619A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a00c76b9752410ea86d6cac0f774d5d1ea45891d.camel@mediatek.com>
 
+On Wed, Jan 15, 2025 at 09:33:35AM +0000, Wenbin Mei (梅文彬) wrote:
+> On Wed, 2025-01-15 at 08:29 +0100, Christian Marangi wrote:
+> > External email : Please do not click links or open attachments until
+> > you have verified the sender or the content.
+> > 
+> > 
+> > Add support for AN7581 MMC Host. The MMC Host controller is based on
+> > mt7622 with the difference of not having regulator supply and
+> > state_uhs
+> > pins and hclk clock.
+> > 
+> > Some minor fixes are applied to check if the state_uhs pins are
+> > defined
+> > and make hclk optional for the new airoha compatible.
+> > 
+> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> > ---
+> >  drivers/mmc/host/mtk-sd.c | 55 ++++++++++++++++++++++++++++++++-----
+> > --
+> >  1 file changed, 46 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
+> > index efb0d2d5716b..9d6868883c91 100644
+> > --- a/drivers/mmc/host/mtk-sd.c
+> > +++ b/drivers/mmc/host/mtk-sd.c
+> > @@ -666,6 +666,20 @@ static const struct mtk_mmc_compatible
+> > mt8196_compat = {
+> >         .support_new_rx = true,
+> >  };
+> > 
+> > +static const struct mtk_mmc_compatible an7581_compat = {
+> > +       .clk_div_bits = 12,
+> > +       .recheck_sdio_irq = true,
+> > +       .hs400_tune = false,
+> > +       .pad_tune_reg = MSDC_PAD_TUNE0,
+> > +       .async_fifo = true,
+> > +       .data_tune = true,
+> > +       .busy_check = true,
+> > +       .stop_clk_fix = true,
+> > +       .stop_dly_sel = 3,
+> > +       .enhance_rx = true,
+> > +       .support_64g = false,
+> > +};
+> > +
+> >  static const struct of_device_id msdc_of_ids[] = {
+> >         { .compatible = "mediatek,mt2701-mmc", .data =
+> > &mt2701_compat},
+> >         { .compatible = "mediatek,mt2712-mmc", .data =
+> > &mt2712_compat},
+> > @@ -680,7 +694,7 @@ static const struct of_device_id msdc_of_ids[] =
+> > {
+> >         { .compatible = "mediatek,mt8183-mmc", .data =
+> > &mt8183_compat},
+> >         { .compatible = "mediatek,mt8196-mmc", .data =
+> > &mt8196_compat},
+> >         { .compatible = "mediatek,mt8516-mmc", .data =
+> > &mt8516_compat},
+> > -
+> > +       { .compatible = "airoha,an7581-mmc", .data = &an7581_compat},
+> >         {}
+> >  };
+> >  MODULE_DEVICE_TABLE(of, msdc_of_ids);
+> > @@ -1600,6 +1614,10 @@ static int msdc_ops_switch_volt(struct
+> > mmc_host *mmc, struct mmc_ios *ios)
+> >         struct msdc_host *host = mmc_priv(mmc);
+> >         int ret;
+> > 
+> > +       /* Skip setting supply if not supported */
+> > +       if (!mmc->supply.vqmmc)
+> > +               return 0;
+> > +
+> >         if (!IS_ERR(mmc->supply.vqmmc)) {
+> >                 if (ios->signal_voltage != MMC_SIGNAL_VOLTAGE_330 &&
+> >                     ios->signal_voltage != MMC_SIGNAL_VOLTAGE_180) {
+> > @@ -1699,7 +1717,9 @@ static void msdc_enable_sdio_irq(struct
+> > mmc_host *mmc, int enb)
+> >                                 dev_dbg(host->dev, "SDIO eint irq:
+> > %d!\n", host->eint_irq);
+> >                         }
+> > 
+> > -                       pinctrl_select_state(host->pinctrl, host-
+> > >pins_uhs);
+> > +                       /* Skip setting uhs pins if not supported */
+> > +                       if (host->pins_uhs)
+> > +                               pinctrl_select_state(host->pinctrl,
+> > host->pins_uhs);
+> >                 } else {
+> >                         dev_pm_clear_wake_irq(host->dev);
+> >                 }
+> > @@ -2036,6 +2056,10 @@ static void msdc_ops_set_ios(struct mmc_host
+> > *mmc, struct mmc_ios *ios)
+> > 
+> >         msdc_set_buswidth(host, ios->bus_width);
+> > 
+> > +       /* Skip regulator if not supported */
+> > +       if (!mmc->supply.vmmc)
+> > +               goto skip_regulator;
+> > +
+> If power_mode is MMC_POWER_UP, we need to execute the related flow.
+> Now it will skip mmc_init_hw(host), which will cause problems.
+> BTW, can this be implemented using a fix regulator? if ok, no need
+> to modify here.
 
---aIHZ/aPXKB+pnUdS
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes I didn't think of that, I will test if this is possible and reply
+back, thanks for the hint.
 
-On Wed, Jan 15, 2025 at 06:33:08AM +0000, Hal Feng wrote:
-> > On 07.01.25 04:08, Conor Dooley wrote:=20
-> > On Sat, Jan 04, 2025 at 01:04:30PM -0800, E Shattow wrote:
-> > > Hi, Conor  (added CC: Minda Chen, Hal Feng)
-> > >
-> > > On 1/4/25 10:33, Conor Dooley wrote:
-> > > > On Thu, Jan 02, 2025 at 11:45:07AM -0800, E Shattow wrote:
-> > > > > Replace syscrg assignments of clocks, clock parents, and rates,
-> > > > > for compatibility with downstream boot loader SPL secondary
-> > > > > program loader.
-> > > > >
-> > > > > Signed-off-by: E Shattow <e@freeshell.de>
-> > > > > ---
-> > > > >   arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 12 +++++++++-=
---
-> > > > >   1 file changed, 9 insertions(+), 3 deletions(-)
-> > > > >
-> > > > > diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> > > > > b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> > > > > index 48fb5091b817..55c6743100a7 100644
-> > > > > --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> > > > > +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> > > > > @@ -359,9 +359,15 @@ spi_dev0: spi@0 {
-> > > > >   };
-> > > > >   &syscrg {
-> > > > > -	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_CORE>,
-> > > > > -			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
-> > > > > -	assigned-clock-rates =3D <500000000>, <1500000000>;
-> > > > > +	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_ROOT>,
-> > > > > +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
-> > > > > +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
-> > > > > +			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
-> > > > > +	assigned-clock-parents =3D <&pllclk JH7110_PLLCLK_PLL0_OUT>,
-> > > > > +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
-> > > > > +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
-> > > > > +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
-> > > > > +	assigned-clock-rates =3D <0>, <0>, <0>, <0>;
-> > > >
-> > > > Why is assigned rates here 0s, rather than the property just remove=
-d?
-> > > >
-> > > > >   };
-> > > > >   &sysgpio {
-> > > > > --
-> > > > > 2.45.2
-> > > > >
-> > >
-> > > Assigned rates all zeroes is how it is in U-Boot. Removing the
-> > > assigned-clock-rates property as suggested does work in U-Boot and
-> > > Linux both.
-> > >
-> > > For context, U-Boot fails when replacing assigned-clocks to
-> > > JH7110_SYSCLK_CPU_CORE (500MHz) and JH7110_PLLCLK_PLL0_OUT
-> > (1500MHz)
-> > > from Linux. So I tried to merge all properties together and in testing
-> > > then U-Boot failed (or I did it wrong). However replacing the Linux
-> > > properties with the U-Boot configuration (above) on Linux does work f=
-or
-> > both.
-> > >
-> > > I do not know if this is correct but I can test any suggestions and
-> > > report if they are working.
-> > >
-> > > Do these changes make sense? Are there other variations I should test?
-> >=20
-> > I'd like the commit message to at least explain why these clocks need t=
-o be
-> > set to zero (I assume that means disabled?). Maybe the StarFive folks k=
-now
-> > why it is required?
->=20
-> Here "assigned-clock-rates =3D <0>, ..." means skipping setting clock rat=
-es.
-> You can refer to
-> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/cl=
-ock/clock.yaml/
+> >         /* Suspend/Resume will do power off/on */
+> >         switch (ios->power_mode) {
+> >         case MMC_POWER_UP:
+> > @@ -2071,6 +2095,7 @@ static void msdc_ops_set_ios(struct mmc_host
+> > *mmc, struct mmc_ios *ios)
+> >                 break;
+> >         }
+> > 
+> > +skip_regulator:
+> >         if (host->mclk != ios->clock || host->timing != ios->timing)
+> >                 msdc_set_mclk(host, ios->timing, ios->clock);
+> >  }
+> > @@ -2816,9 +2841,12 @@ static int msdc_of_clock_parse(struct
+> > platform_device *pdev,
+> >         if (IS_ERR(host->src_clk))
+> >                 return PTR_ERR(host->src_clk);
+> > 
+> > -       host->h_clk = devm_clk_get(&pdev->dev, "hclk");
+> > -       if (IS_ERR(host->h_clk))
+> > -               return PTR_ERR(host->h_clk);
+> > +       /* AN7581 SoC doesn't have hclk */
+> > +       if (!device_is_compatible(&pdev->dev, "airoha,an7581-mmc")) {
+> > +               host->h_clk = devm_clk_get(&pdev->dev, "hclk");
+> > +               if (IS_ERR(host->h_clk))
+> > +                       return PTR_ERR(host->h_clk);
+> > +       }
+> > 
+> >         host->bus_clk = devm_clk_get_optional(&pdev->dev, "bus_clk");
+> >         if (IS_ERR(host->bus_clk))
+> > @@ -2926,10 +2954,13 @@ static int msdc_drv_probe(struct
+> > platform_device *pdev)
+> >                 return PTR_ERR(host->pins_default);
+> >         }
+> > 
+> > -       host->pins_uhs = pinctrl_lookup_state(host->pinctrl,
+> > "state_uhs");
+> > -       if (IS_ERR(host->pins_uhs)) {
+> > -               dev_err(&pdev->dev, "Cannot find pinctrl uhs!\n");
+> > -               return PTR_ERR(host->pins_uhs);
+> > +       /* AN7581 doesn't have state_uhs pins */
+> > +       if (!device_is_compatible(&pdev->dev, "airoha,an7581-mmc")) {
+> > +               host->pins_uhs = pinctrl_lookup_state(host->pinctrl,
+> > "state_uhs");
+> > +               if (IS_ERR(host->pins_uhs)) {
+> > +                       dev_err(&pdev->dev, "Cannot find pinctrl
+> > uhs!\n");
+> > +                       return PTR_ERR(host->pins_uhs);
+> > +               }
+> >         }
+> > 
+> >         /* Support for SDIO eint irq ? */
+> > @@ -3010,6 +3041,12 @@ static int msdc_drv_probe(struct
+> > platform_device *pdev)
+> >                 dev_err(&pdev->dev, "Cannot ungate clocks!\n");
+> >                 goto release_clk;
+> >         }
+> > +
+> > +       /* AN7581 without regulator require tune to OCR values */
+> > +       if (device_is_compatible(&pdev->dev, "airoha,an7581-mmc") &&
+> > +           !mmc->ocr_avail)
+> > +               mmc->ocr_avail = MMC_VDD_32_33 | MMC_VDD_33_34;
+> > +
+> >         msdc_init_hw(host);
+> > 
+> >         if (mmc->caps2 & MMC_CAP2_CQE) {
+> > --
+> > 2.45.2
+> > 
 
-If you check the wording there, it says:
-  To skip setting parent or rate of a clock its corresponding entry should =
-be
-  set to 0, or can be omitted if it is not followed by any non-zero entry.
-Since all clocks are being set to 0 above, we should be in the "can be
-omitted" case for the entire property, no? That would...
-
-> Linux here setting JH7110_SYSCLK_CPU_CORE to 500MHz and JH7110_PLLCLK_PLL=
-0_OUT
-> to 1500MHz are for increasing the CPU frequency to 1500MHz.
->=20
-> VF2 u-boot is still running at 1000MHz now. You failed to set JH7110_PLLC=
-LK_PLL0_OUT
-> to 1500MHz, because CPU power supply voltage needs to be increased before=
- running at
-> 1500MHz.
->=20
-> I think a better choice now is changing Linux device tree as follows:
->=20
-> &syscrg {
-> 	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_ROOT>,
-> 			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
-> 			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
-> 			  <&syscrg JH7110_SYSCLK_QSPI_REF>,
-> 			  <&syscrg JH7110_SYSCLK_CPU_CORE>,
-> 			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
-> 	assigned-clock-parents =3D <&pllclk JH7110_PLLCLK_PLL0_OUT>,
-> 				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
-> 				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
-> 				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
-> 	assigned-clock-rates =3D <0>, <0>, <0>, <0>, <500000000>, <1500000000>;
-> };
-
-=2E..make this one a reasonable change...
-
-> For u-boot, if there is no requirement to run u-boot at 1500MHz, just keep
-> &syscrg {
-> 	assigned-clock-rates =3D <0>, <0>, <0>, <0>;
-> };
-
-=2E..but not this one.
-
-> in u-boot device tree. If we need running 1500MHz in u-boot, I will send =
-a patch
-> to implement it and then &syscrg{...} in u-boot device tree can be droppe=
-d.
->=20
-> Best regards,
-> Hal
-
---aIHZ/aPXKB+pnUdS
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4eBYQAKCRB4tDGHoIJi
-0vdWAP9O6R65THOidydMf9y6+5AUKdKrXbUDa7LoIf2/uuhMCQEAqdUmvrNeAAX6
-6jVcoKymWpEdVb6NkXhE7Stf9bs3HQU=
-=1dvY
------END PGP SIGNATURE-----
-
---aIHZ/aPXKB+pnUdS--
+-- 
+	Ansuel
 
