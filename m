@@ -1,78 +1,85 @@
-Return-Path: <devicetree+bounces-138747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2275A11FD1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:38:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB5A0A1205B
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:44:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFD9B16123D
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:38:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 136643A4BA0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2C51248BA6;
-	Wed, 15 Jan 2025 10:38:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VqrVXhyC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F581248BCC;
+	Wed, 15 Jan 2025 10:44:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 866D6248BA2;
-	Wed, 15 Jan 2025 10:38:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18C761E98F8;
+	Wed, 15 Jan 2025 10:44:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736937484; cv=none; b=Zq/l4QpVQS4jkW9Phbw2GUJ0WWlXOR4ehrct+yKWwinPWk8Tlbx7zkR+22/GjvQktl5OGBhKjU795t6pegk6OpJQPJ5a2KbK+BA3Ksaiu3DtRJtGr+IbTXlvQbAqahMsFLcF7514JJdQBa6guCxRzRA/ZhU799Gq1947H2vspNA=
+	t=1736937857; cv=none; b=Y8ZPHcpUjqar3UJOs0lWxTke3CT57rvyXhiZOIaCX5yA25Ttzg3aTRpT1OZ9mrT+m1YSpHzJfu0LABpvLln0H3M5tV8Ku56iqLj6Ms8gdZ9awCaK6fTY8g8ZNau/aK3ZJX86HEwymt2h/tc3E9XmFptwptmSY0r7u4ALFeAt2tc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736937484; c=relaxed/simple;
-	bh=5tJ3GG+Xjhbdz976ZyCxKuJDndXqLpRUBYR7JSi4Ie0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tvoiYhAWeQsDxOpgOqOMpJmSdDDlsM1k61ylG9xCxAPkgM7gV06so0trGutIkcnVDZGavAdkicxnv0b6sLo46ATNNXscds25PJdB34dbbbIH1ynFeQRqwrdWI01VDlNjDp5yFfih4nUmcnS+zfjEjjh/eGrV8YnKU50t4B1VInA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VqrVXhyC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26A63C4CEE8;
-	Wed, 15 Jan 2025 10:38:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736937484;
-	bh=5tJ3GG+Xjhbdz976ZyCxKuJDndXqLpRUBYR7JSi4Ie0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VqrVXhyCEmUHQXjMZmt15GhqsU74xwjNqHaJdbAlmPRFSzpca4jlMEnr2ohx5Q4b7
-	 nAHgu8c3o9umvuiaqMPCmV5Tnl3N8KNKFp0U00W7r6Y/IGcH7gnSOA0Xls/mAy2+5H
-	 mwn3RvKVabHdTAKDhGYeZzmYAXw5wqu6j7c8Q+Fb45rnfKMJeYXKiZ/EdoyMRFFX/U
-	 VsblyM6miYhPQXb0b9il+7O0OFlWv6p1T9sqZZLwifdSZqS/xwt4CN7phyYG3vaziC
-	 dtz9rsbQXs27lDkgUGmAJNJDNft84ANNPK7o1ENoHs3h032+VtLHRw03U9pks8XYHF
-	 e4tnKgrMAeMnw==
-Date: Wed, 15 Jan 2025 11:38:00 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ricky Cheung <rcheung844@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH RESEND v2 0/3] arm64: dts: qcom:
- msm8916-xiaoxun-jz0145-v33: Add initial device tree
-Message-ID: <euv6b7vwb6zjcjw4mennpiwu3hvqd6zvwvabmc7trzll5zowac@5jjfglfoip5w>
-References: <20250114-xiaoxun-jz0145-v33-v2-0-495e986579ce@gmail.com>
+	s=arc-20240116; t=1736937857; c=relaxed/simple;
+	bh=YreGTaxToDhQTEYAOnwnnG5rnM3YMzUqjJ3eF3dQMAI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=c9TWDHdAZyRzVYgDBGC7qtiVozmaN9vqzpHFrND49Rw1VLkAB+q3JnzNmcfrMggb0KhH7y830LLcGm7tBEQjiIcDE/HM9OSC671RQY/d2xZSnxfWOVwKj7+XuANeZbKFMdSOZZlKBDuiFnxLTg59eB7PaBzM+a7cgw/WjivCOSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: 7b5Glj5nSg2tW4vtWLWFtQ==
+X-CSE-MsgGUID: XJL4LDtGSgSnFQRTDv51hQ==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 15 Jan 2025 19:39:05 +0900
+Received: from localhost.localdomain (unknown [10.226.93.251])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 1E681422D9AD;
+	Wed, 15 Jan 2025 19:39:00 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH 0/5] Add support for RZ/G3E WDT
+Date: Wed, 15 Jan 2025 10:38:49 +0000
+Message-ID: <20250115103858.104709-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250114-xiaoxun-jz0145-v33-v2-0-495e986579ce@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jan 14, 2025 at 10:46:47PM +0800, Ricky Cheung wrote:
-> 
-> 	https://github.com/msm8916-mainline/linux/pull/386
-> 
-> Note that this is my first patch to the LKML, so if there's something I
-> did wrong / the patch is missing, please point it out.
+The RZ/G3E WDT IP is similar to RZ/V2H WDT. WDT0 can be used for CM33 cold
+reset, system reset and asserting WDTUDFCM pin where as WDT1 can be used
+for CA55 cold reset, system reset and asserting WDTUDFCA pin. Other 2
+watchdogs can be used for system reset. So define WDT{1..3} in SoC dtsi.
 
-Please slow down a bit with submissions, so one patchset per 24h. You
-sent three within 30 minutes, not leaving us much time to do review.
+Biju Das (5):
+  dt-bindings: watchdog: renesas,wdt: Document RZ/G3E support
+  clk: renesas: r9a09g047: Add WDT clocks/resets
+  watchdog: Make RZV2HWDT driver depend on ARCH_R9A09G47
+  arm64: dts: renesas: r9a09g047: Add WDT1-WDT3 nodes
+  arm64: dts: renesas: r9a09g047e57-smarc: Enable watchdog
 
-Best regards,
-Krzysztof
+ .../bindings/watchdog/renesas,wdt.yaml        |  4 +++
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    | 30 +++++++++++++++++++
+ .../boot/dts/renesas/r9a09g047e57-smarc.dts   |  4 +++
+ drivers/clk/renesas/r9a09g047-cpg.c           | 15 ++++++++++
+ drivers/watchdog/Kconfig                      |  7 +++--
+ 5 files changed, 57 insertions(+), 3 deletions(-)
+
+-- 
+2.43.0
 
 
