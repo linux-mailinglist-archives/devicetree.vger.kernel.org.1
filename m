@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-138693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CDD4A11C54
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:45:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFBFEA11C60
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:48:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93820188970B
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 08:46:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 20C7D188AF08
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 08:48:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FBA51DB139;
-	Wed, 15 Jan 2025 08:45:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C691423F276;
+	Wed, 15 Jan 2025 08:48:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qcxC6SzV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uA/vsMSI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F390723F276;
-	Wed, 15 Jan 2025 08:45:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F3623F262;
+	Wed, 15 Jan 2025 08:48:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736930754; cv=none; b=Nv6iK/xdb8403DrQm/5x/b+IFLPjbgia8SLjrulZ+82UmAT9RuGaeXonMAIyOKBjNuk7NLS+XeD5GWBMiQqw5bS0fqUIrXsJXKiG78VyiGifsPETDSViOM4fIQpWtUHoHBA2IfRL+oiy/yOMVHZDXdfopeA1wWpqvTCn9WHQ0do=
+	t=1736930904; cv=none; b=r8LZdiTSScxKKvFZp+tXILoAU1cF6Idbam15qW+rXpmzZKgAGK1O/AWtBEKal8602CHZENsVpzmV0rYQA323N53IgZd/I3dTqmZHTFVLI5fE+AaMNpXJYZdBc6AvEzUtrEVXpgne0dwfuvnZ7mIF9hFbKQNdNVkIF0+3YbPID/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736930754; c=relaxed/simple;
-	bh=BO+3m4FMfOEG/15U7sR7NT9LJguDOTS3576NIxYCBC4=;
+	s=arc-20240116; t=1736930904; c=relaxed/simple;
+	bh=fOXw5fOyRt7kI5Izd5k38cCPtug2wf6DvlV5sjdUlDc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DOTksKtI/JAdVoTZWs21K7UQK4YJsAlPn0/nNoDbDJevCmDLLns2YNJcdsbyzVgt6UhIO4wuFltaoT0tYSVRPvsdj5tHIFgv4kFix4j4er4E8eLTmNVizKeAj7/b+PBRzZnl2TZkKb8Aw8d+Ns6CBSPOs1DO2euTmvCUHVBPLXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qcxC6SzV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B8FFC4CEDF;
-	Wed, 15 Jan 2025 08:45:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=spOfPGE2MaS5sexx95/FdwsjWvhgkX9EEaDRkPLSA+pzqMBX+wnucIYYvXEs/tsV/In3AEq5SS77iBh9JQ2JygvaN/YZGueXbcmHmd4XO4ZdRRitiaZ/6xBHezL0ohpWI1anXJuT7tBte+aZKFZg1th3FzoEF6+VP967WdxZrJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uA/vsMSI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E3E7C4CEDF;
+	Wed, 15 Jan 2025 08:48:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736930753;
-	bh=BO+3m4FMfOEG/15U7sR7NT9LJguDOTS3576NIxYCBC4=;
+	s=k20201202; t=1736930904;
+	bh=fOXw5fOyRt7kI5Izd5k38cCPtug2wf6DvlV5sjdUlDc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qcxC6SzVOVwXLkfQSuzJsVT1MbWuFE4DDr9Lmivl1awzuPTfYhtERml6+ZC1PhY3i
-	 E05cAcYI5oEg/VnRWQwfJZhslpuwCsVVI3K3k/uH9xtXZ7yCJf/5xe5/SSeF+o2VHL
-	 LGu3WkcCOtQHu6Ri0NKZ3oPHPplPkBr/4CXAebb+bc8YuF3ncvIlHJEwrk9T15/Rjc
-	 buCSPyl8nZjxCkJZcNuOjphLNrOctF2hhaPnSO5T0AS34Ii2KHquycjySlvOPxZYLf
-	 vDksmIIexXrJtsr0S+gzVQhn15ZIX7Y4OYAJ+S989RAHX80XhDs8Y76x0V8FycvmmZ
-	 lK2QqzNmRTNXA==
-Date: Wed, 15 Jan 2025 09:45:50 +0100
+	b=uA/vsMSIDCY6rLfEq8TQ9XgQbg1CNxSMkghiE6jRdMUYtJcHkF1jev4UFzq7RxlG5
+	 cNy6+NTHnMzJ8cahf6NuzV1scc0AiA5IImn3W8FH2cC9L2+TF4LJk4RGTuODeQ04GN
+	 UV6hqUrDAFlz0m8wSWNRkTiDgkvfJVgILHtSlLSA207CvmwPP9nk7ppwgRgGXrQzx4
+	 1y5oFK+CUbvageMfCFni/T358jX5Eto7u7/iNTh4gsGy/gauNPGl0T+ZpJpG5vO1m4
+	 i+MwtUQtv2o7Xqxi+EDCPTi+M9PGW6nSoDaD3MfGEDfpCkZx09G4TwN6anhG/uAkp4
+	 JS1hd9D1/BJVA==
+Date: Wed, 15 Jan 2025 09:48:20 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Ninad Palsule <ninad@linux.ibm.com>
-Cc: minyard@acm.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
-	kuba@kernel.org, pabeni@redhat.com, openipmi-developer@lists.sourceforge.net, 
-	netdev@vger.kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au, 
-	devicetree@vger.kernel.org, eajames@linux.ibm.com, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 03/10] dt-bindings: gpio: ast2400-gpio: Add hogs
- parsing
-Message-ID: <mbtwdqpalfr2xkhnjc5c5jcjk4w5brrxmgfeydjj5j2jfze4mj@smyyogplpxss>
-References: <20250114220147.757075-1-ninad@linux.ibm.com>
- <20250114220147.757075-4-ninad@linux.ibm.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, 
+	linux-mediatek@lists.infradead.org, Ulf Hansson <ulf.hansson@linaro.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-mmc@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Wenbin Mei <wenbin.mei@mediatek.com>, 
+	Conor Dooley <conor+dt@kernel.org>, upstream@airoha.com, Chaotian Jing <chaotian.jing@mediatek.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: mtk-sd: Add eMMC for AN7581
+Message-ID: <dvt3zgjfliu22uyvxrmuteiet32gb5qdn2u6fh3xw6qp4xohw5@vwtkrgsh7asm>
+References: <20250115073026.31552-1-ansuelsmth@gmail.com>
+ <173693027082.3240418.16772447316188600820.robh@kernel.org>
+ <67877449.df0a0220.cdd29.8807@mx.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,28 +64,41 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250114220147.757075-4-ninad@linux.ibm.com>
+In-Reply-To: <67877449.df0a0220.cdd29.8807@mx.google.com>
 
-On Tue, Jan 14, 2025 at 04:01:37PM -0600, Ninad Palsule wrote:
-> Allow parsing GPIO controller children nodes with GPIO hogs.
+On Wed, Jan 15, 2025 at 09:39:34AM +0100, Christian Marangi wrote:
+> > dtschema/dtc warnings/errors:
+> > Error: Documentation/devicetree/bindings/mmc/mtk-sd.example.dts:104.31-32 syntax error
+> > FATAL ERROR: Unable to parse input tree
+> > make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/mmc/mtk-sd.example.dtb] Error 1
+> > make[2]: *** Waiting for unfinished jobs....
+> > make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
+> > make: *** [Makefile:251: __sub-make] Error 2
+> > 
+> > doc reference errors (make refcheckdocs):
+> > 
+> > See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250115073026.31552-1-ansuelsmth@gmail.com
+> > 
+> > The base for the series is generally the latest rc1. A different dependency
+> > should be noted in *this* patch.
+> > 
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> > 
+> > pip3 install dtschema --upgrade
+> > 
+> > Please check and re-submit after running the above command yourself. Note
+> > that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> > your schema. However, it must be unset to test all examples with your schema.
+> >
 > 
-> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
-> ---
->  .../devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml       | 6 ++++++
->  1 file changed, 6 insertions(+)
+> Hi Rob, I think this fails as the CLK define is still not merged as said
+> this patch depends on bfe257f9780d8f77045a7da6ec959ee0659d2f98.
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml b/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
-> index b9afd07a9d24..b9bc4fe4d5a6 100644
-> --- a/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml
-> @@ -46,6 +46,12 @@ properties:
->      minimum: 12
->      maximum: 232
->  
-> +patternProperties:
-> +  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
+> Any hint how to make your bot work with that?
 
-Choose one - suffix or prefix. More popular is suffix.
+Don't use the define, but raw number or just some fake phandle.
 
 Best regards,
 Krzysztof
