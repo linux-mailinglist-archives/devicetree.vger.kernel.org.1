@@ -1,123 +1,123 @@
-Return-Path: <devicetree+bounces-138881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EBE7A12CC4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 21:39:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84CE1A12CE8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 21:46:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A3FF160E40
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 20:39:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A907716484C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 20:46:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA8C81D9A49;
-	Wed, 15 Jan 2025 20:39:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E331D89EC;
+	Wed, 15 Jan 2025 20:46:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hCKqPQfS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jQTw6kN1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A5421D8E07;
-	Wed, 15 Jan 2025 20:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C0631D63C7
+	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 20:46:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736973582; cv=none; b=u/AocBM46HhA+bv+K4XUTHib9fH/rAFmRLpXnuSEfJG5EO888U+pf7oiWf59Nq2WqlcsvmeVr6w7pzfwivzcVPso6nuIa2UnnqsMCiT4RmxEK2/w47pQQJ7+Yd4pIC0Ss8ogOPB5Ow7fbVeRUzuSxm0520ELt+U/GbSb+JGHddY=
+	t=1736973978; cv=none; b=Ijc+EaHF5jlPEfjnEudhQBCnxTpqP9OSoNj85jMFgfRhxFzejbB96H8CDlZlikkCun4/WXWa0R4l7Lk8QmRtGufO2XEoQrqT7Jc+6Zd/t1q3r5BakIAV40Xt6whhhFcVZHGXVNp5gmN2Vvt2gdwyA4jQ1dff8lWXFbSEfOglfI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736973582; c=relaxed/simple;
-	bh=lKnVyd5XjWp1qMnGaWgRYfUAnc3El6o6eyoFWI1XG2M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ifJksss1Gx8iuvOt9vG6hb7L+voVQhOzleepE70K8NEhGRp9wwdRlcyJUGubYP4mnFWMjuf3jR8ujMpT+CsNjl17F4K39wS5DOSm4bpRQc4IoOu9d2RwuB3wbrRP3oUI3c+6a9M2zkT+OOA/5SVbrFdgu7Fr30gIoUmI3oLYCkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hCKqPQfS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3D29EC4CEEC;
-	Wed, 15 Jan 2025 20:39:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736973582;
-	bh=lKnVyd5XjWp1qMnGaWgRYfUAnc3El6o6eyoFWI1XG2M=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=hCKqPQfSlR/xD1Gy2i1mekScyZIunl3mWlqCqxBF94LA6YOnBcHWGoLcHmbd+FWKI
-	 UMIat3MOwXmK+nRhHwSkZ3mg4RCgLe/Nntjn2Ake4KZiu4yTLKQXVqJXN+bl/8QCHF
-	 EXEr/lhUZCBkV+mpEnpfnNOAj7sbb2/fgrrT5Axe8jjA7KzizG2sv7uOQKeHmApA8j
-	 F7ySpri7EhHqTRWNbvIFVNNSGWLiDYScuv1pEghc74UFggDfuOkmBZl3vPZ4VSDsfp
-	 +iOCHqbHH+XenpijdkBzzuJZwgFgmQ6yl7VOHaTuAKxLLkpDnnpcnYZdFk4k+plARW
-	 xFUl03160BgsQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 3501CC02180;
-	Wed, 15 Jan 2025 20:39:42 +0000 (UTC)
-From: =?utf-8?q?Duje_Mihanovi=C4=87_via_B4_Relay?= <devnull+duje.mihanovic.skole.hr@kernel.org>
-Date: Wed, 15 Jan 2025 21:35:57 +0100
-Subject: [PATCH v14 4/4] MAINTAINERS: add myself as Marvell PXA1908
- maintainer
+	s=arc-20240116; t=1736973978; c=relaxed/simple;
+	bh=8xn+hAjrp+dpnTChfesyahewQiVXucAxQWGqp1tO4VQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jNClay3PCiP9HwPZdPY2O4WryJrHqgUNbGwvS0TZ2hb569ApK4SSb4VW94jK0zqQQ3nxrHVUBnTTvpyOTQsZCsGQqK1BHJpQc/8VhcvZsozMTeUh2EgyYFZ8FxeNkmaCKTxZ28v2QEBknO1Q7ZctTD6fbz2zmcaS7bKEI1UcYNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jQTw6kN1; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-43637977fa4so149105e9.3
+        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 12:46:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736973975; x=1737578775; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Xxyq2n/HkeozPkGjrtu5/5xrNjib0WAov1wya6JfQKY=;
+        b=jQTw6kN1XdJVZwh9JYYPDVJaxNLMbqBwmGL52FH7ge4nn1H+8s7dzZ9AsCC7V8BWlf
+         xbUxia+0Y3cwdKyn8lrsJxXtpfB7EPplYGG5Q0ZM7F4sD6eoNAql3OLxXLztsjgtGoc0
+         BCjfqD3aL4+Ae7OF524GTHNOXwrNpqQspTg5/mADTSeSHfefLMNcAnm4u+uk/RqU+xc1
+         NBn3RFxDOiU7YU+iHh3O+iUx5h5VuMEmaTyI/yMEEEWBwqQNC+hImGKw3R1uVPSmsL3f
+         fd41Mcx27goz2NBJgGQFK7OE0TjbT4LJpKYRdwYNKwFV9n/P8rJng6rdXHO+n7UJBEfk
+         5y1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736973975; x=1737578775;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Xxyq2n/HkeozPkGjrtu5/5xrNjib0WAov1wya6JfQKY=;
+        b=Xova2rPO5xhB7wcdcfOArZS66Poa+6VbBVPNbRb/ypnjXtBRxzqzDFEn5QHHJWIBmn
+         MNSsE3VP+qqo19HA+TdYRLx2roiDQYTTF4UaSXilGKT/EmRYE5lw1xjHRscn1Vw5CfPC
+         v/cwM8ZASohRZMCHDxWgwMvMUoSni2pcaDpv3efBlW5mV4mteLJF7ubduUAzovP/Eemk
+         iCJ9jYf+HXLZy5DLLFup8geSdSFIBKK8v8delMGawvCqbFyWM9aHs9Q/rp6Lysn49TNP
+         Atz/tJlti2mTmINW5B0ae4uDxxqUgBusJIiQIa6BmDoBhC0wlaRyx0sLMhbJ3GtE1N+q
+         8v1A==
+X-Forwarded-Encrypted: i=1; AJvYcCUVH0do5DxezVyLcK/YOT/84cjw9hfzfHKcOcKmsU+sPxoyyRl260Kf37vUmmcRSJGsugUH3DvrF/cD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHLakQ4FUnD0e8dHaz/ITHk0BJVOr5wtUjA4SbMJEOSbwsWI4W
+	IbAc2bTSMovjLgPdbqt0bcWOld3Q7OiIAJz1/mb14oDKUxKWp0029fR8EmIaOWU=
+X-Gm-Gg: ASbGncuRuoPxJ7I48kQsYgvtTwKA2PxUtzcH5v2Y37vVNdfKEIBIZF5p0lcsulWjSly
+	uEnGmU/jRNlxQgVoIt8L7M1GMBl4HooF7utDA2zFNvcLapflhFgVzGBmezxqaZPYEYzvn3btVl/
+	CxeLK8+fYcK1h4R9E7gCfYItnhzjwKC1K05kopXixxr88AGaE/ve/GSizFGU1UMYZmb7FJkXiO9
+	H0yVb9ze6UV84bVN1rs8We7wIwgMz34v1fNtQzGLsvjcChE066xKZYmaYY65b8zGr0Myrg=
+X-Google-Smtp-Source: AGHT+IE5Aq4FPLp3TznZADbgWmvqih94kTJxXwSTNAZBQDiPeLOPUk2glxfr3D/LiiLe6fJ/oR6c7w==
+X-Received: by 2002:a05:600c:4fd6:b0:434:f5f8:22cd with SMTP id 5b1f17b1804b1-436e25603fdmr100008315e9.0.1736973975537;
+        Wed, 15 Jan 2025 12:46:15 -0800 (PST)
+Received: from krzk-bin.. ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c74bfa35sm34879505e9.18.2025.01.15.12.46.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jan 2025 12:46:15 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: tegra: tegra210-p2894: Align GPIO hog node name with preferred style
+Date: Wed, 15 Jan 2025 21:46:03 +0100
+Message-ID: <20250115204603.136997-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250115-pxa1908-lkml-v14-4-847d24f3665a@skole.hr>
-References: <20250115-pxa1908-lkml-v14-0-847d24f3665a@skole.hr>
-In-Reply-To: <20250115-pxa1908-lkml-v14-0-847d24f3665a@skole.hr>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
- Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>
-Cc: David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org, 
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=962;
- i=duje.mihanovic@skole.hr; s=20240706; h=from:subject:message-id;
- bh=6vZolXLVCSzdTOeYInagQh75YU9IpR7xHoGIhphNx0U=;
- b=owGbwMvMwCW21nBykGv/WmbG02pJDOkdsjwWDY21N7ZWfmLyC3w98w/3FJYtSmI5jw5dUPwvE
- M2ScNmro5SFQYyLQVZMkSX3v+M13s8iW7dnLzOAmcPKBDKEgYtTACYSbs3IcPrsXgPdH1F2K06z
- MM2fH7fGceXpmefncOrbZEZ/YInc9Z2R4e+u/1WeS1Qv/JnAtmKP6aZcbva5h/aYmHSalohbLu6
- 5yQ4A
-X-Developer-Key: i=duje.mihanovic@skole.hr; a=openpgp;
- fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
-X-Endpoint-Received: by B4 Relay for duje.mihanovic@skole.hr/20240706 with
- auth_id=191
-X-Original-From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Reply-To: duje.mihanovic@skole.hr
 
-From: Duje Mihanović <duje.mihanovic@skole.hr>
+GPIO hogs device node names can use 'hog' prefix or suffix, but the
+suffix is preferred.  The pattern in DT schema might narrow in the
+future, so adjust the DTS now.
 
-Add myself as the maintainer for Marvell PXA1908 SoC support.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
 ---
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a87ddad78e26f28ffd0f3433560d6db1518f9f95..caa5f6b96251a3da0f3f9d2f760b38288eb23ab3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2624,6 +2624,15 @@ F:	drivers/irqchip/irq-mvebu-*
- F:	drivers/pinctrl/mvebu/
- F:	drivers/rtc/rtc-armada38x.c
+Reference: https://lore.kernel.org/all/20250115142457.GA3859772-robh@kernel.org/
+---
+ arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi
+index bbd6ff0564da..b84a8e39b404 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi
++++ b/arch/arm64/boot/dts/nvidia/tegra210-p2894.dtsi
+@@ -1365,7 +1365,7 @@ fps2 {
+ 				};
+ 			};
  
-+ARM/Marvell PXA1908 SOC support
-+M:	Duje Mihanović <duje.mihanovic@skole.hr>
-+L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-+S:	Maintained
-+T:	git https://gitlab.com/LegoLivesMatter/linux
-+F:	arch/arm64/boot/dts/marvell/pxa1908*
-+F:	drivers/clk/mmp/clk-pxa1908*.c
-+F:	include/dt-bindings/clock/marvell,pxa1908.h
-+
- ARM/Mediatek RTC DRIVER
- M:	Eddie Huang <eddie.huang@mediatek.com>
- M:	Sean Wang <sean.wang@mediatek.com>
-
+-			hog-0 {
++			max77620-hog {
+ 				gpio-hog;
+ 				output-high;
+ 				gpios = <2 GPIO_ACTIVE_HIGH>,
 -- 
-2.48.0
-
+2.43.0
 
 
