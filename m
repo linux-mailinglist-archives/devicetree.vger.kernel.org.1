@@ -1,227 +1,123 @@
-Return-Path: <devicetree+bounces-138860-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138861-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21FB6A12A65
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 19:01:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69811A12A88
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 19:11:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE1793A3161
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 18:01:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CFFF163C13
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 18:11:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F22F199FDE;
-	Wed, 15 Jan 2025 18:01:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54201CCEF8;
+	Wed, 15 Jan 2025 18:11:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QcQvsbNP"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="mkFSHwzL";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="wUzSpoSs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout-a7-smtp.messagingengine.com (fout-a7-smtp.messagingengine.com [103.168.172.150])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B634424A7E5;
-	Wed, 15 Jan 2025 18:01:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECA7524A7E8;
+	Wed, 15 Jan 2025 18:11:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736964112; cv=none; b=WOq8YAeHpeYSm6IM2Arq7HdFenBuxwCRV62uUz3TBKnylsAUS6DJkAlUkaNzlv3sd/EsnwT/cm0oF39aKuQICjOScvevg+gqefXhXgqFWzkL/MWteRhAiG3L3YeoEssQgzS1iHJMKkhtDRZXEI+gk2WaxZUzzX7FuYAxD2ZzoXY=
+	t=1736964685; cv=none; b=pH46lomyoFtLL9F1RJX+Y5K4uZpcXFMn7xO4qqHOYmMuxL5zqCS2Y3cD71BuPW+3FN5OD3oFOAmnPGHFJryUbC7SirNcsjQHxsl4ztLHa0Ov/ad9r6YPYIv5eAZ0hm7VbNvkvWRSEoD6BqW8/Yw+8A6m5S3TG3A5zk4Yz86S/T8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736964112; c=relaxed/simple;
-	bh=7AzXyM6KQLvHDwme0ozSkHFX9zoMaG7xLA+75jXGodQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IHlNPk5NCoklbX2+U+mDQ1qFjEJ4NR/vb8gx9Y4Rr/AB+y+0CN1PLPg5X3j4joOaJP0LBJHikOig7YutGT0AbQNH1wDGoDXCSgM4y4mzn/4CQvP4VJ3SwqXN+YW3g6lE75K3h4x//Hq55Zn13dVTSzYaMLHFAPzZUcqpFhFD9MQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QcQvsbNP; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43621d27adeso49117855e9.2;
-        Wed, 15 Jan 2025 10:01:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736964109; x=1737568909; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VczfqdZ4whJ4aH1I/uHwQhdIrVi0r59xlQ64CG5z0Mg=;
-        b=QcQvsbNP+mWBBn25lQMJc3CPYMcLubYVH8f7KIWOMsFRA1j9mrLZL6MBWprZvJjSNi
-         eg3hkwb8f/cR6nlQr2v/sKAQ5NQ96bBvVbxy+/woTWhRjeWtKEooqX10MpFFKns+3bo3
-         0uNbthJszMBYbIoQHlvfDWO9idmTARuRgYDwzQTpfSRuoX4rh+CMvrLtzwE1svRUZm8Q
-         mN1+iR+JYIRPVmMb+x+R5rHaP2yGO+dfA835ltvLnPKEENur6etrLPAbMam8PEAnDp2T
-         1ql8UPazXHN4pplv3pQDB2s4O9GrKZlLio9byDxfeFeUNVXhHdO4jatt+XgIUrzx5iXM
-         mEow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736964109; x=1737568909;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VczfqdZ4whJ4aH1I/uHwQhdIrVi0r59xlQ64CG5z0Mg=;
-        b=leMGettOAzWSHchLJyk+FhkeurbBh+HpIMd8fcNAvtoz/iDaS8FLOCXhcSDXlI2POr
-         p9kGBjFPtWc0BqmYDJhljKDVMaY6RXpRlyPbblzby8OdeH9vtTQGieFQrSxw+e8jIquu
-         ukZ/vzrONW8Yc97LGKPK9GsBZFARfNeNThYb9eLqSk/kKeAZsHj3mXLS5SVO5eBfk43a
-         la/hnEClCQ4L7bFX2lRLrfviRtjRhBOMHcj7yJsjhqjmokXiWD7mA1/zEHI8zOHpoudN
-         2PcKeWxBhe3uvkzZaClldOM7T7pBNV52xPpJHCo2HSOdGr/pxGgGrFMCM8WPrPKHRei9
-         im9w==
-X-Forwarded-Encrypted: i=1; AJvYcCUII8AhTsVkX41kjWgq31Is290aFxlsRmLHF/ZwTNUvcddvb1G7bMUxeaHrSZukKWaemPsEgi8G8oty@vger.kernel.org, AJvYcCUgLqg8+SPbyraAxYnaQbonvIK8WSl8uLW50q2CIRrxyYDbY1XGrPjLoo2cQpbogP4WBbhBywqpUiw2OQWKzA==@vger.kernel.org, AJvYcCWLk82wTrcbH7kEh18MAjPfL5bYIH2GaCbakgQYOjQCPGluQ6Ib2cVmey+Lwux482/jFmIyNXgVfrINFw7i@vger.kernel.org, AJvYcCXxyS8gCWiL9oC2giiKcFQrrvk6HhaDxmFNX3M3Eg0TkbrD6dLFGzsRPEZEHx2WxqB2YsRgcCRv77YLWC0=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxi1ow49os3KBK2arcP+OiPnKfCp+bSUVj0wygkPsfjlgUuQiti
-	3NUHYBnH6hUufsmPTDyf1YYm48fEKP2B3dlYKBNQmsmaBm+KcRxu
-X-Gm-Gg: ASbGncstldH1Kgs1YhaL6Rvdamzxg/gsskyRSfS3vYRvt6YABChjIr6a4ZOCkmLpm1W
-	EkMld2Z58ZHYXKcGmZg6nuyDytWZTIcjwiOr2kK0jJbQOamdvsf4mseIxuTctTc9VjS4MwJM9lw
-	xW7W3+Dh3Q7Lv4rzvmo60pTGUiNVgLtaALB4v8w3eBtZzRAX/WaQU6giZ1E8mFhFgoncYRevNxf
-	n6nsMoTA2skWB6tHJaKFuCJu37I+F9G5eBXKpz5Sj4UZfxk/M1GZolHwJ/EiawVBkcOTM32Y9g2
-	I6RuAGHX5loE1jRDsS75ZQBqC5RdNBN94oUHzIs=
-X-Google-Smtp-Source: AGHT+IE8P45XCPo0nxLHUv2u+tTz5U65fgpuDud/80vjVcjrVVHE6UQRFTAIGb6elydWnTGA5t4Vdw==
-X-Received: by 2002:adf:b1d9:0:b0:386:32ca:9e22 with SMTP id ffacd0b85a97d-38a87308c2bmr22096268f8f.41.1736964108442;
-        Wed, 15 Jan 2025 10:01:48 -0800 (PST)
-Received: from ?IPV6:2a02:2f04:910e:5100:7f33:5cd:6667:af9? ([2a02:2f04:910e:5100:7f33:5cd:6667:af9])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a8e37d0b1sm18396717f8f.12.2025.01.15.10.01.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jan 2025 10:01:47 -0800 (PST)
-Message-ID: <79b3e4d6-becf-4bcd-91fa-768b4098d01d@gmail.com>
-Date: Wed, 15 Jan 2025 20:01:46 +0200
+	s=arc-20240116; t=1736964685; c=relaxed/simple;
+	bh=3Zxzq9OZLP+baCdQt6xMq9cFSPDSnsoobU2c7z+QdnM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=GYy5KsVJHZFkm5Tur4lI6Nx6eAU66udPUa/oMPJGOigC2wfksnwktuRaYl//+EftkLT5lyyu6jPu6mOabT6I13nFmho9Dgre7m1yxVzsZE45CDnTyiC0oqFRioQmsIeR0zD1i+PBfKtuuuy7UxUq3P3BoW13hSD25W7eEoce7uM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=mkFSHwzL; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=wUzSpoSs; arc=none smtp.client-ip=103.168.172.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfout.phl.internal (Postfix) with ESMTP id E11511380169;
+	Wed, 15 Jan 2025 13:11:22 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-10.internal (MEProxy); Wed, 15 Jan 2025 13:11:22 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:message-id:mime-version:reply-to
+	:subject:subject:to:to; s=fm1; t=1736964682; x=1737051082; bh=QD
+	t4+CaFj1pUb2HxPoa0QxqimwQciiAjB4MU2FCvhco=; b=mkFSHwzLIpDvvpm0xi
+	c7KjVX23If4/YSmIpXc0N/THQbCxyfG3846CtZQRG90p3D7w6CerQ52J1jQxsFE9
+	SZVMBrJ3QqKE7ds79YMJfzulDyLhdsV129aBCWlPsJPWkoAXIe8ZYmyWWfmVt0S4
+	VEBHLlmgOQHcY5tdXoaz9XCnyNit++VuNvfLk8o25L8rsCcY8QpNQkrOIF0+C4aE
+	5+cZP7OfbAK5bG2TAR/bi2Hl+4ETqdKnv3wen3PWydpBbcxSBLaw2tXA7WroqldU
+	Nra8sRAN9U8f6nNfFo4VoB3XwxJSEarNh5vv2uEFH9Ci+pXvd3xQPARe5RK6w8VP
+	ycvA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:message-id:mime-version:reply-to:subject
+	:subject:to:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
+	fm2; t=1736964682; x=1737051082; bh=QDt4+CaFj1pUb2HxPoa0QxqimwQc
+	iiAjB4MU2FCvhco=; b=wUzSpoSs4AvPM5umTwkjyZXd8Sa/PnZQ62hWI2IrruEw
+	nwZzZkyx86cCynxsUTc/iACzZtErmVkepraLD2UPEqwsq7o+7bx7lsNBGRZYMWzV
+	DBr4GxBJNMX5d2ZjUOiKRtdJv4AwO0SfUGQxr/GTkk8spHj2R+3S6bFqXMusHLqf
+	vizqYuOI0GGQEXcML8Y/mj2Nwcfgsmnx1vdb45oXBYQ0K81bSszJvmbadD45A3JE
+	rtdbVCV7qCjIjYhOLnQDBP/91ML6Z2OVWDLd8zX+dB/+SK9ApK+Ily9tlESYav1V
+	/7t6a0HVLX7tOv9DS/Je2tdAhLT6Xjdt5gSvUx4H0Q==
+X-ME-Sender: <xms:SvqHZ3ttwp5qnya6G9MerlBsLIURRb6igkBSDiBW11qWY8W7MHgyTw>
+    <xme:SvqHZ4c7fybs7u37MeQbJ92vTBjPrjleN9cbNRkaULNiqAXJbzy7IG1B0CvzoQUrQ
+    j1HhSu5JHvk6fJMC90>
+X-ME-Received: <xmr:SvqHZ6z6e53fEjumWtA2XRnECW-iU-A1FZQyfm0ouVZ45VeapyDu3dkfpHi7ti_lAdVpJwV8XPMPmHkzQz9N5MPhqA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudehledgkeefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucenucfjughrpefhvfevuf
+    ffkffogggtgfesthekredtredtjeenucfhrhhomheppfhikhhlrghsucfunpguvghrlhhu
+    nhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnhgrth
+    gvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepheduleetteekgffffedufeeuvdejiedv
+    kefhveeifeegffehledtvdevhfefteegnecuvehluhhsthgvrhfuihiivgeptdenucfrrg
+    hrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhunhgusehrrghgnhgr
+    thgvtghhrdhsvgdpnhgspghrtghpthhtohepgedpmhhouggvpehsmhhtphhouhhtpdhrtg
+    hpthhtohepghgvvghrthdorhgvnhgvshgrshesghhlihguvghrrdgsvgdprhgtphhtthho
+    pehlihhnuhigqdhrvghnvghsrghsqdhsohgtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpd
+    hrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhr
+    tghpthhtohepnhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnh
+    grthgvtghhrdhsvg
+X-ME-Proxy: <xmx:SvqHZ2Ovc_SSQAWAkRH5Bup855xjBzix6eCvi82SE9_yDqrAPFRsgg>
+    <xmx:SvqHZ39jXMoW53jE6GM4kOhx9lApDdup3hoh_GDBG9Wdt7PetY4Zwg>
+    <xmx:SvqHZ2UTtYZqvJWNAVsIcFH9cBZDWgyeba08q6W_cHpM7sKv0VKRBg>
+    <xmx:SvqHZ4eRP_Rvp7dEZiiGL23ZJbY6X_DNebJqEe7QnQPuOqNCSwO4eg>
+    <xmx:SvqHZzYqCS6lNEEAZpfGUYzorAJ7YiE-FeepiLoEXQHwSPEvvQ-1678o>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
+ 15 Jan 2025 13:11:22 -0500 (EST)
+From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH 0/2] arm64: dts: renesas: r8a779h0: Add FCPVX and VSPX
+Date: Wed, 15 Jan 2025 19:10:48 +0100
+Message-ID: <20250115181050.3728275-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.48.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 05/16] media: qcom: camss: csiphy-3ph: Move CSIPHY
- variables to data field inside csiphy struct
-To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- vladimir.zapolskiy@linaro.org, hverkuil@xs4all.nl
-Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20250108143733.2761200-1-quic_depengs@quicinc.com>
- <20250108143733.2761200-6-quic_depengs@quicinc.com>
-Content-Language: en-US
-From: Laurentiu Tudor <tudor.laurentiu.oss@gmail.com>
-In-Reply-To: <20250108143733.2761200-6-quic_depengs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hi Geert,
 
+This series describe the single FCPVX and single VSPX blocks found on 
+V4M. Worth noting is that the V4M do have two ISP blocks, but only the 
+first one have a ISP core + channel selector while the second only have 
+the channel selector. This only one FCPVX and VSPX is needed.
 
-On 1/8/25 16:37, Depeng Shao wrote:
-> From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> 
-> A .data field in the csiphy device structure allows us to extend out the
-> register layout of the three phase capable CSIPHY layer.
-> 
-> Move the existing lane configuration structure to an encapsulating
-> structure -> struct csiphy_device_regs which is derived from the .data
-> field populated at PHY init time, as opposed to calculated at lane
-> configuration.
-> 
-> Reviewed-by: default avatarVladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Niklas Söderlund (2):
+  arm64: dts: renesas: r8a779h0: Add FCPVX instance
+  arm64: dts: renesas: r8a779h0: Add VSPX instance
 
-Nit: Something's not right with this tag.
+ arch/arm64/boot/dts/renesas/r8a779h0.dtsi | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
----
-Best Regards, Laurentiu
-
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
-> ---
->   .../qcom/camss/camss-csiphy-3ph-1-0.c         | 54 ++++++++++---------
->   .../media/platform/qcom/camss/camss-csiphy.h  |  6 +++
->   2 files changed, 36 insertions(+), 24 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
-> index b283df7634bb..39cc7109ccf0 100644
-> --- a/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
-> +++ b/drivers/media/platform/qcom/camss/camss-csiphy-3ph-1-0.c
-> @@ -470,32 +470,10 @@ static void csiphy_gen1_config_lanes(struct csiphy_device *csiphy,
->   static void csiphy_gen2_config_lanes(struct csiphy_device *csiphy,
->   				     u8 settle_cnt)
->   {
-> -	const struct csiphy_lane_regs *r;
-> -	int i, array_size;
-> +	const struct csiphy_lane_regs *r = csiphy->regs->lane_regs;
-> +	int i, array_size = csiphy->regs->lane_array_size;
->   	u32 val;
->   
-> -	switch (csiphy->camss->res->version) {
-> -	case CAMSS_7280:
-> -		r = &lane_regs_sm8250[0];
-> -		array_size = ARRAY_SIZE(lane_regs_sm8250);
-> -		break;
-> -	case CAMSS_8250:
-> -		r = &lane_regs_sm8250[0];
-> -		array_size = ARRAY_SIZE(lane_regs_sm8250);
-> -		break;
-> -	case CAMSS_8280XP:
-> -		r = &lane_regs_sc8280xp[0];
-> -		array_size = ARRAY_SIZE(lane_regs_sc8280xp);
-> -		break;
-> -	case CAMSS_845:
-> -		r = &lane_regs_sdm845[0];
-> -		array_size = ARRAY_SIZE(lane_regs_sdm845);
-> -		break;
-> -	default:
-> -		WARN(1, "unknown cspi version\n");
-> -		return;
-> -	}
-> -
->   	for (i = 0; i < array_size; i++, r++) {
->   		switch (r->csiphy_param_type) {
->   		case CSIPHY_SETTLE_CNT_LOWER_BYTE:
-> @@ -588,6 +566,34 @@ static void csiphy_lanes_disable(struct csiphy_device *csiphy,
->   
->   static int csiphy_init(struct csiphy_device *csiphy)
->   {
-> +	struct device *dev = csiphy->camss->dev;
-> +	struct csiphy_device_regs *regs;
-> +
-> +	regs = devm_kmalloc(dev, sizeof(*regs), GFP_KERNEL);
-> +	if (!regs)
-> +		return -ENOMEM;
-> +
-> +	csiphy->regs = regs;
-> +
-> +	switch (csiphy->camss->res->version) {
-> +	case CAMSS_845:
-> +		regs->lane_regs = &lane_regs_sdm845[0];
-> +		regs->lane_array_size = ARRAY_SIZE(lane_regs_sdm845);
-> +		break;
-> +	case CAMSS_7280:
-> +	case CAMSS_8250:
-> +		regs->lane_regs = &lane_regs_sm8250[0];
-> +		regs->lane_array_size = ARRAY_SIZE(lane_regs_sm8250);
-> +		break;
-> +	case CAMSS_8280XP:
-> +		regs->lane_regs = &lane_regs_sc8280xp[0];
-> +		regs->lane_array_size = ARRAY_SIZE(lane_regs_sc8280xp);
-> +		break;
-> +	default:
-> +		WARN(1, "unknown csiphy version\n");
-> +		return -ENODEV;
-> +	}
-> +
->   	return 0;
->   }
->   
-> diff --git a/drivers/media/platform/qcom/camss/camss-csiphy.h b/drivers/media/platform/qcom/camss/camss-csiphy.h
-> index 49393dfd5215..4d731597fed7 100644
-> --- a/drivers/media/platform/qcom/camss/camss-csiphy.h
-> +++ b/drivers/media/platform/qcom/camss/camss-csiphy.h
-> @@ -85,6 +85,11 @@ struct csiphy_subdev_resources {
->   	const struct csiphy_formats *formats;
->   };
->   
-> +struct csiphy_device_regs {
-> +	const struct csiphy_lane_regs *lane_regs;
-> +	int lane_array_size;
-> +};
-> +
->   struct csiphy_device {
->   	struct camss *camss;
->   	u8 id;
-> @@ -103,6 +108,7 @@ struct csiphy_device {
->   	struct csiphy_config cfg;
->   	struct v4l2_mbus_framefmt fmt[MSM_CSIPHY_PADS_NUM];
->   	const struct csiphy_subdev_resources *res;
-> +	struct csiphy_device_regs *regs;
->   };
->   
->   struct camss_subdev_resources;
+-- 
+2.48.0
 
 
