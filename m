@@ -1,112 +1,148 @@
-Return-Path: <devicetree+bounces-138796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 513F5A1250C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 14:42:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C59DEA1251C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 14:45:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0FD63A8EF3
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 13:41:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0256162223
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 13:45:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E5924A7C6;
-	Wed, 15 Jan 2025 13:40:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B4E24A7FB;
+	Wed, 15 Jan 2025 13:44:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wjHsk9Mo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6003C24A7C5;
-	Wed, 15 Jan 2025 13:40:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5B0224A7E8
+	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 13:44:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736948448; cv=none; b=KUffXqfaFU6+Ubx3oAYVzqXT1UwDSoeEHVJmZs2yaeebUCCjlkr1IUxg3meFCDJe6daxhKBnkR9x7T81RgthIeETkmzb2xpus1sxWeUeAqS3QV0EHdUWMzhMjGIt61IFWM7dVf+oiJ2Zo0f3QKfKUpufOUDVU1RxAFutVy8e+8Y=
+	t=1736948643; cv=none; b=hNQOjG30pUShzi8WNaRw+yphjZLVMP7n82FcETkr8L/rCicnkvVQ0Im6hJKUvusmHs0a6BYqd+GOy4LF/ECrwNKBeHhV6Dfvy1NvazrxLmJkN40oEqaxpV7lKKsqjT4PT+6poQOMgGV7tPGPIgQeu2YWpPk577U+DP/gQKOMkcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736948448; c=relaxed/simple;
-	bh=ISRDE4tD8KT2AQ2Zab4eqiKfiW9C+Hfm8FDKxGol9EU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mNgqIs7HVTDZ+P95X0+DicJpsbRCtJOXuoNy378yy3WWjCDKkdA5vuukqV326gqJ77ebU0OkaWQD4g5uCKBC3XiC6hIpxABh3ZUvOnqVoGyC5/23BH39i8BZraDfZIdrlMMYEhe/8YHxMcDh8c8+Cundh8smWNKzxnpel3g5t2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-21644aca3a0so148844275ad.3;
-        Wed, 15 Jan 2025 05:40:47 -0800 (PST)
+	s=arc-20240116; t=1736948643; c=relaxed/simple;
+	bh=Qbiv67ybeY9iWVeZn8FLN9LPwZRM69iskFl5dbv2+o4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=I76opkrGBjhjRATmzwOW157SRhPN0igEQIJntk59Uqsn5mxWRfr7AzAgo8Lr1eA6js70DF/HJ3ehfE/IY1YIziRPbJwdJePjzqXaBivcc4QcWvc7FJvz4fIZxsklaLtx3c0a1ACNUrd+F6EVVh0Ee6AzE0/vtAZtjgte03ZHfCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wjHsk9Mo; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-436a03197b2so47886405e9.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 05:44:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736948640; x=1737553440; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jz3sN7tZoiJ85BeuCeUSWazrqiI6w3rVseg0mckYJb8=;
+        b=wjHsk9Mo00zOcbn5ixX9UkiPCThBaBj43zG6LypHUfx8sYTAlrVXjaHz6bOaVKZtbv
+         wfK4U1h/bwT6zFMx8AIBEc7ecaUQFB2xNpp1ti15uSZ/WiFOmsrBjxU/1D3iqFC3Q6y/
+         vcJMaUvONmPgr7Motk4+uW+GMkZK4hjEcCTaiPNNBJMQUrP0j1XeTiBUi7NnKxDJ+RLv
+         anU3s+Yy1Hewc6vUcAVuUfQA4y5EtE+r19Dj/NkYg0KwLNa3EhdI/mJQvIQ/3SHHwAp6
+         gf3im0ymXehzLtsVVe7YVcxDM3bMSV0OY+JYiAvze5ekH0rqoc4F6Q1D9tWr3MtSKWnn
+         wPOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736948446; x=1737553246;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SjRxHp95fgWw/A/HfteiujvMA9qxAfC7IB/XFcENGNQ=;
-        b=MTqPT71CIuSHJbGTvk+8CdZRX4rx1KYzNp8BSPKitpw7H9ysh277f5NHhQjHj/IUYC
-         ILRmHq4ccX/ZgV75dgi+FZKz6Xte7CiVyUemk7m7/7udTnr2DsEwtFi6S85eXJFlnPfl
-         1o0i0UAamEbquqeALJC/k/YA6BUlmLzpra13F35OoCVdvK30LvfpMGNNjhZszjgbHIBI
-         dMdXpMdtJK2ix+Brg3HoWGMgRMpQwT/XS3PAss/Ep23gLoLhTiYtKBs72dVpL1XzM40a
-         8X00N4+CXuFYHtaHtjIYc/36pLi/txBrtoA98Y8AI2+/XQpNoSmHM8ogZ/HtqwjMSmpW
-         Dflw==
-X-Forwarded-Encrypted: i=1; AJvYcCU4IHkahsn681PmVzBaZQUytsPmxnfqmCQtwmX7YrQX4AfPcLD3/2FzDDAvXxXK+uWyUenEdXdIcnjm@vger.kernel.org, AJvYcCUtWbJQerRU9iEp+Sw36pgQgf6MPmlCodjX0Nog3nkznPtGQJWuJD/yt3mDCtzvwwsRvOq4os9A2SHsdgwP@vger.kernel.org, AJvYcCWhevd9DqC3ANtZEIUTfXzl/zPEOdaDg+pFPkWSk3742X2tb77U+tFcH0FIktxtzGheXY1gYOIonXKs@vger.kernel.org
-X-Gm-Message-State: AOJu0YzISucblrBNlCBlLFOJbk3fQLDIBH04qLnDIe9YUDNIV8sbSp9n
-	dhvlGw4QhHXsSLj/VoNOvgiTmQa2EPZi5XiNx/nC95Io8KgbpI+X
-X-Gm-Gg: ASbGnctf1UuFindSlGZiwwnpqmayFwtXPug6nWC5zU9x9yEMAKuSdPTOdhUqnNBYi9I
-	6j1GwhWaxO8UC9QVYTrGl2LMUKMqFbkf7boGkNG0zGU/pJOy8ImYGa3Hqa8CHgb39bkLhtMHoDV
-	/T/K1zBfF+PG1428RP4CQK3xViCwUo6VTyyRh8J5sYt5t6gXRil0MKCF3GKfdpb6joViD11G8P1
-	z5ZaZPPS/Z7+QbsZUWatUR8MWeoLY1nu30y6NpmJgVsBSyptggb9QiRycSeZtSdihzZLuTdohuR
-	dtWOBVnOarnOo2M=
-X-Google-Smtp-Source: AGHT+IFBc9u2m9CIKKe0EemdS8o4PhYCZliHYxexP/9pM9Xw1hjCmQoL6ghLKLnHjOXUvJ+g6cNyvQ==
-X-Received: by 2002:a17:902:cec3:b0:211:ce91:63ea with SMTP id d9443c01a7336-21a83f56f9emr450296855ad.15.1736948446445;
-        Wed, 15 Jan 2025 05:40:46 -0800 (PST)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21a9f12f919sm82767655ad.69.2025.01.15.05.40.45
+        d=1e100.net; s=20230601; t=1736948640; x=1737553440;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Jz3sN7tZoiJ85BeuCeUSWazrqiI6w3rVseg0mckYJb8=;
+        b=PtSwZeDclIgTYN2D8ZsbTBktvrbRv0m6peFwbtNPWRTmUa0tb9AnddY6hRLycD0jf6
+         3eGoqBf/xwHSPMDUKMoSfB0PN3eRJRd4a3dowti90kXP8UAKNuOESgNNkiHuX7NjejTl
+         e38Xytw48d4AeZahNvzsLFzgBaU2O0DpWmMdEsVjnQgTcXe+Mx1riCJEyy3lxhkOg/xL
+         6xw4DhKrcEi5rjbijwmcCTqUICFm1szufiqxKKfQbMrkuNDVqNeJX+KuU144l3N8Et0n
+         HFTK3sQO2pwheqKmUM9lRD8uxkj4OHlVWdUjYQhlbF4aOst2GFiu1SrDLWzXOD3NWJ3f
+         b7dg==
+X-Forwarded-Encrypted: i=1; AJvYcCVAteYR4161dvuhMJfIsTWSgU3kDY7nKsNEzqTk+qweyCNs3SROfbkxl8kDhCVkt6DytxrepMeTqWxj@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywu5mPddNrGWnhvw9F9SbcvGd2BTmn1xeRzSqbG6BIaIaU6oOCQ
+	SFwbGI6W77CSgyd4U3lymJ1A6JrMLJLkFfi24fo57/oedRvGUpBRfjmGN6JEW4Y=
+X-Gm-Gg: ASbGncsW/uRyOq0q7ryPb3LP7CciVx45qkzDOk/x/2T03zOAvNN+Up/FDXDxIiAR7rn
+	zGX/7NJL6ZC2qav8f2v43OQr4zquR9e9yJS58FGs7Dn62nZ+59VXQpieXuNuE8Asoa8o2ROQ+lm
+	c6Nufzy3Z0NbieCIsBiIcKbXIrOmeghIkBL/rRaqoAjFQQ1VFKKIvjHkjit4ro1MbxCTOwzxsjh
+	srUl8KKh5wfPTvobXjhsuAoF1La4z7pXTMiCQ8JfNqwueBrlrPhkfLsXYcodEzy3fDKWzPbGfHJ
+	WA==
+X-Google-Smtp-Source: AGHT+IGgsY36Vejw/3ZvEJ5bN8+OJRo1+M0iEQs0lj0Ay9vhYfWWH999eGnaCP6yImAiBAB/Oo+CtQ==
+X-Received: by 2002:a05:600c:1c14:b0:436:1ac2:1ad2 with SMTP id 5b1f17b1804b1-436e26c0400mr233698995e9.19.1736948640201;
+        Wed, 15 Jan 2025 05:44:00 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c7540ae7sm23454655e9.33.2025.01.15.05.43.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2025 05:40:45 -0800 (PST)
-Date: Wed, 15 Jan 2025 22:40:43 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Richard Zhu <hongxing.zhu@nxp.com>
-Cc: l.stach@pengutronix.de, bhelgaas@google.com, lpieralisi@kernel.org,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	frank.li@nxp.com, s.hauer@pengutronix.de, festevam@gmail.com,
-	imx@lists.linux.dev, kernel@pengutronix.de,
-	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 0/10] A bunch of changes to refine i.MX PCIe driver
-Message-ID: <20250115134043.GA1049031@rocinante>
-References: <20241126075702.4099164-1-hongxing.zhu@nxp.com>
- <20250115130406.GS4176564@rocinante>
- <20250115130609.GT4176564@rocinante>
+        Wed, 15 Jan 2025 05:43:59 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH 00/10] arm64: dts: qcom: sm8[56]50: performance related
+ changes
+Date: Wed, 15 Jan 2025 14:43:52 +0100
+Message-Id: <20250115-topic-sm8x50-upstream-dt-icc-update-v1-0-eaa8b10e2af7@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250115130609.GT4176564@rocinante>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJi7h2cC/x3NQQrCMBBG4auUWTswCQaqVxEXMfmrs2gbMlEKp
+ Xc3dPlt3tvJUBVG92Gnip+arkuHuwyUPnF5gzV3kxcfxLnAbS2a2OZxC8LfYq0izpwba0rdOTa
+ wjB4vIMjtmqmXSsWk23l5PI/jD0zTgcd1AAAA
+X-Change-ID: 20250115-topic-sm8x50-upstream-dt-icc-update-082ebee5094d
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1477;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=Qbiv67ybeY9iWVeZn8FLN9LPwZRM69iskFl5dbv2+o4=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnh7uaZytKO3M3S/82Kh/FXro4FUBK1NsX9AkevD+g
+ kIufrl2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZ4e7mgAKCRB33NvayMhJ0fscD/
+ wP5OywhgyWfFQ/VsMl3qCYCSgGW1RkrXG+I4UWLrJTOt3MYCAoZt5Cr59k4HN2ru6xsI/gw0S3enbl
+ m7/zEIc1d41iYnL7m7MmLZgcQZVFZZZcihpc03CAMI+QPhLWJvagL1BVteligLkIgxNJQrNOjsfO/4
+ CgjMYpATrSp0oVzwLqB5XojNMzUXSahT3RvD69P3uBIP325IFfsOVaNsSD2sjKVdOa0xlYlogGeF/x
+ jIthgtoRfFLJOfehW3TzobsP2EyZ8wdC3cxI5gRH9fog1HW4xbcguqDXmrYXIPfFzW0ds9S3dOPd9c
+ C3lklFVCk+5ZzcmS3JKbAzXkkY5CMmvwTAvd9iSo5taRuid9tdEnGTA7j0YIxo/Mx+LBrypkuTKs2R
+ A1IKmWadczVTRCPXtz6RlvNCGKavN9UU409YoJR6Diw48rsxWm0Z+xpBS3PdSdxxtCysrVxNotVrzU
+ P8L+XXMYVntjbj0FY8yq7V66hW11VgOMywyL/aAkt60e5UVgxk3qBoAkK0P8jw3kQZvOa2w4wsTAQF
+ Jq8N71iIaDNj6Mc+SyB4O+/l0euQTHiFRtqYpXQ9hEJnFwtVAvTOpldwpu/2ss++kskNwx0HBJbNUQ
+ zFlrG2NgXBOb1UMS/mcKW3OLR4QW/iF2IWxFQAEaYya2wr0HbCctBFn/GGJA==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Hello,
+A bunch of changes related to performance properties
+for the Sm8550 and SM8650 platforms, including:
+- Use proper ICC tags
+- Use QCOM_ICC_TAG_ACTIVE_ONLY for cpu paths
+- PCIe OPP table
+- QUP Serial Engine OPP table
+- UFS OPP table (sm8650)
+- USB OPP table (sm8650)
 
-> > > A bunch of changes to refine i.MX PCIe driver.
-> > > - Add ref clock gate for i.MX95 PCIe.
-> > >   The changes of clock part are here [1], and had been applied by Abel.
-> > >   [1] https://lkml.org/lkml/2024/10/15/390
-> > > - Clean i.MX PCIe driver by removing useless codes.
-> > >   Patch #3 depends on dts changes. And the dts changes had been applied
-> > >   by Shawn, there is no dependecy now.
-> > > - Make core reset and enable_ref_clk symmetric for i.MX PCIe driver.
-> > > - Use dwc common suspend resume method, and enable i.MX8MQ, i.MX8Q and
-> > >   i.MX95 PCIe PM supports.
-> > 
-> > Applied to controller/imx6 for v6.14, thank you!
-> 
-> Richard and Frank, please have a look at the code to make sure that
-> everything looks fine to you.  There were some conflicts while I applied
-> the series, and I want to make sure that nothing is broken.
-> 
-> Thank you!
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Neil Armstrong (10):
+      arm64: dts: qcom: sm8550: use ICC tag for all interconnect phandles
+      arm64: dts: qcom: sm8550: set CPU interconnect paths as ACTIVE_ONLY
+      arm64: dts: qcom: sm8550: add OPP table support to PCIe
+      arm64: dts: qcom: sm8550: add QUP serial engines OPP tables
+      arm64: dts: qcom: sm8650: use ICC tag for IPA interconnect phandles
+      arm64: dts: qcom: sm8650: set CPU interconnect paths as ACTIVE_ONLY
+      arm64: dts: qcom: sm8650: add USB interconnect paths
+      arm64: dts: qcom: sm8650: add OPP table support to PCIe
+      arm64: dts: qcom: sm8650: add QUP serial engines OPP tables
+      arm64: dts: qcom: sm8650: add UFS OPP table instead of freq-table-hz property
 
-I moved this series to the controller/dwc branch as we have changes there
-on which this series depends.  Hopefully, this will solve the build failure
-we've seen on our next.
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 598 +++++++++++++++++++++++++++--------
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 544 +++++++++++++++++++++++++------
+ 2 files changed, 915 insertions(+), 227 deletions(-)
+---
+base-commit: dab2734f8e9ecba609d66d1dd087a392a7774c04
+change-id: 20250115-topic-sm8x50-upstream-dt-icc-update-082ebee5094d
 
-	Krzysztof
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
