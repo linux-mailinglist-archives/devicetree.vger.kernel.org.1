@@ -1,294 +1,642 @@
-Return-Path: <devicetree+bounces-138835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7DDFA127C8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 16:43:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15938A127C0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 16:43:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40C57188B03C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 15:43:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A31163A45E2
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 15:42:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD72156886;
-	Wed, 15 Jan 2025 15:43:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A21155352;
+	Wed, 15 Jan 2025 15:42:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sSVGCiFs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U/icKybp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41654153801
-	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 15:43:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FCDA15252D;
+	Wed, 15 Jan 2025 15:42:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736955800; cv=none; b=HVnbvQpCCHDeUnK+TfK7p9e4SJFDRJ35zx7/an5W6Vnc38gu0HT4BUPv6OHbhl1HCBheDyxkVr++V7p4Yba9NfmmFWL1JX9WOr0l5pW2rduul1cBLITKeJibZYVlMOK50MAKwC6erCetOXCJ6tNncSnCaYWchyjs/1dnkxM0xzY=
+	t=1736955778; cv=none; b=TJrSKXgKB0DedE+eMQDJRHofHY0PtinFCa+5LmlW3ChCR8wRcjDWy9bTwBKJTOcnzkAAOeqeCIAZvOI1OAXmaDmcdr6ysnAgrfOfrGyEBQTJSwdb/KJH7s6XuQnpuLNEBoxInivd4BXoRPuIYuv3PPCLpwcv9VxgwAvMOIzf0C0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736955800; c=relaxed/simple;
-	bh=dmMnEGcq21MgikMSqYyZzPg3t/SJw9VOAtnLYskAp30=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=j21HXBAQXb/utuimPluNpEQo6M5jRdk2n6mxbtxxWburRopgD7V9+0Le6HmZhHW6C8tewrgn1X/hb+88n8zWZPsWRGQ3+afXMtURxDA2CnwyVWKSAyQphkrdkx3v0XGs/c2j892UC79sSW761Y8lNRCWvaJ4PepwuoaeGpa2CKo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sSVGCiFs; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ab2b29dfc65so1059159866b.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 07:43:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736955796; x=1737560596; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J3f/BtUt4rfes1Yuu9lxrllgo0vGvTSgAee2lMYuIXM=;
-        b=sSVGCiFsXzjESzJhK7T6vAw6FZ5Irslx6BD97YD+aSQfcUwL4e3pWZuxvqp24VVzq6
-         5MsYUVmL6yvXTHiIGLhjUsqXAP6FQVMqRhHQhuZJIr12jKj+d1DSCg+BqHP5DzTJcS5B
-         f4r0MM05oE7A/Aysc1GxEOAXKHdCHrsltty/E05qWz3uZ94CWsBvgOimqez3qACM8SbL
-         mILA72FYRxTNghMSyQbEFk0OJoxJj3Zqi5kIua2GrOU+sHA6+rOmO2zk9SJ10uY7JqX9
-         RgfkI+vG2sghbmk9FPfXKJ52h/zYczaRhzRhy3a+vEZ7SSQi2sIvQzt448sscB/oAXf7
-         P45g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736955796; x=1737560596;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J3f/BtUt4rfes1Yuu9lxrllgo0vGvTSgAee2lMYuIXM=;
-        b=HZ6SXNV6lI3SUrA6XAWy8R2iGjzWwzsA5UwCE2e916zP5iHkZynVQms+eE7yvUiQZ+
-         LwrHDzxfRdppn5mxX3ynK1SCzjpcym5MwcajA+dn8dHF+4ABntT6ifTV/GPB+dzcLuLZ
-         nqh7pmQu2TnAFErV5U1pSgdydkKBJIJ5TL0YLBXgNsEKPrdXNVsbEr63PIUM9ubMM9gH
-         I9JNxgMLPp0x9+X+fDqUIC2W4k59NSnWG+zaEhOAv+P02QXei15XJ7uFJR75rO0XVmad
-         wvNAlf1eKSVB/3SGlq+oDTFDiREW+ufM5jQ3TL/5zn3DE6bN7ZbGtDioK3zKIHFmNHCH
-         c+5w==
-X-Forwarded-Encrypted: i=1; AJvYcCVVOYIrjPZFq0YuYlG+Ay8qQ9mq1jtnJwD8b4yvARdTVirex+3bQjmMQutkAS/bXn5q1KW1Ebjkcx6h@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcnLeatLiWN0sUyzkK0uu1eLoLx//SyZc5nO3QHPgPFM9abhGp
-	wc0SzslVdC4EwhRxHJD3KikDTwQJdNATfw3w/0A5FJWmBLEUr99UDz9BQTu3ArVoN/Ec/qbaocC
-	k9TjSPKFEW4Ae/n/EtL9020RQ3NPzHU7bS8j0cHdkhRlYSuo2
-X-Gm-Gg: ASbGncvbU+Gp8ikcBMvGrsQvpF5PKvdRMrTCJiAOCswMRtoPnxaFAPzQ4W3etEgNLAv
-	vv2KyCPmqYURcKjlsUlw7u4d2z2RTjuhVhZoowIg=
-X-Google-Smtp-Source: AGHT+IHDoi+mGYLGebHeWkmmNu9kuOD8jns2z/VYjko7Tnbt+R1MkhbZJ+/4XcPAdBtCZQ/TdWXJyEXsB5J2CJpGKLI=
-X-Received: by 2002:a17:907:2cc5:b0:aaf:c326:f2d8 with SMTP id
- a640c23a62f3a-ab2abdc0257mr3047455066b.57.1736955795506; Wed, 15 Jan 2025
- 07:43:15 -0800 (PST)
+	s=arc-20240116; t=1736955778; c=relaxed/simple;
+	bh=AoUSmS04+jSKHiw+nRZOkVIe43RbMUyGJ7BLj93Yw9U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mRoO75c9alsPNUyIJbGn7E8o5R5jxXwIcYP6nbxfamgOBdkWEWt8iGRSemXqJMKCDu9N9Dj9M4R5eBVgHTCOHS7ijnqIq1R+BjEEEPNRW1KV+U6cqG40yatsrpxprNOYVNHSdF5+HjCz2XS0PDWnsWir6+AzH3UfiBP77flTC5Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U/icKybp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA1B1C4CED1;
+	Wed, 15 Jan 2025 15:42:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736955777;
+	bh=AoUSmS04+jSKHiw+nRZOkVIe43RbMUyGJ7BLj93Yw9U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U/icKybpe8VQCqvm3g7ZsvWegVU3uD63KeyKCe6bHa1qxOyks9VFSN+wxiaIWjKaE
+	 mjkUTs+xsghCIS/Q2sUPYbJJPZ/mBsq//g4jrub5lhY73ovHikQejTsrnuxIu+nZM8
+	 wTtVY2Ppj0L6Pz/iHKo+cbJWWjGSi9GA5PGlzaCkj4ShBp5D3hcsiQlWETYCzqc+fV
+	 rrKkHO4YmVoRAqy9c/Go0un4/2j2wFpHwih4K4e9uuGtVehPF9vNTMPgg2Ejlhw8YG
+	 4fMuCba/dAYJIuVqkTH1/oNx3UG/6bAKP99PDbqBk904Dxf/DqJfnyr+M0/NduNaEV
+	 Dn2dFqRPmPWDw==
+Date: Wed, 15 Jan 2025 15:42:52 +0000
+From: Lee Jones <lee@kernel.org>
+To: mathieu.dubois-briand@bootlin.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kamel Bouhara <kamel.bouhara@bootlin.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 2/7] mfd: Add max7360 support
+Message-ID: <20250115154252.GK6763@google.com>
+References: <20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com>
+ <20250113-mdb-max7360-support-v3-2-9519b4acb0b1@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com>
- <20250103163805.1775705-3-claudiu.beznea.uj@bp.renesas.com> <46c8e8ff-ea39-4dbd-a26c-67fcabf4b589@linaro.org>
-In-Reply-To: <46c8e8ff-ea39-4dbd-a26c-67fcabf4b589@linaro.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 15 Jan 2025 16:42:37 +0100
-X-Gm-Features: AbW1kvbeNqMmLKjkvJqDQCdSbnPp1um89aAtf_bRTZINBqlSnyOdq4a4Fmix_nI
-Message-ID: <CAPDyKFq40KB6jKapnm0mOkFGB9-7VEGiBhNrVn_2fzrcziq0=Q@mail.gmail.com>
-Subject: Re: [PATCH 2/6] thermal: of: Export non-devres helper to
- register/unregister thermal zone
-To: Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc: Claudiu <claudiu.beznea@tuxon.dev>, rafael@kernel.org, rui.zhang@intel.com, 
-	lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com, 
-	sboyd@kernel.org, p.zabel@pengutronix.de, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250113-mdb-max7360-support-v3-2-9519b4acb0b1@bootlin.com>
 
-On Thu, 9 Jan 2025 at 18:34, Daniel Lezcano <daniel.lezcano@linaro.org> wro=
-te:
->
->
-> Ulf,
->
-> can you have a look at this particular patch please ?
->
-> Perhaps this scenario already happened in the past and there is an
-> alternative to fix it instead of this proposed change
+On Mon, 13 Jan 2025, mathieu.dubois-briand@bootlin.com wrote:
 
-I think the patch makes sense.
+> From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> 
+> Add core driver to support MAX7360 i2c chip, multi function device
+> with keypad, gpio, pwm, gpo and rotary encoder submodules.
+> 
+> Signed-off-by: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> Co-developed-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> Signed-off-by: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+> ---
+>  drivers/mfd/Kconfig         |  12 ++
+>  drivers/mfd/Makefile        |   1 +
+>  drivers/mfd/max7360.c       | 296 ++++++++++++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/max7360.h | 109 ++++++++++++++++
+>  4 files changed, 418 insertions(+)
+> 
+> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
+> index ae23b317a64e..c1ddda480922 100644
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -2414,5 +2414,17 @@ config MFD_RSMU_SPI
+>  	  Additional drivers must be enabled in order to use the functionality
+>  	  of the device.
+>  
+> +config MFD_MAX7360
+> +	tristate "Maxim MAX7360 Support"
 
-If there is a PM domain that is attached to the device that is
-managing the clocks for the thermal zone, the detach procedure
-certainly needs to be well controlled/synchronized.
+What is it?
 
->
->
-> On 03/01/2025 17:38, Claudiu wrote:
-> > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >
-> > On the Renesas RZ/G3S (and other Renesas SoCs, e.g., RZ/G2{L, LC, UL}),
-> > clocks are managed through PM domains. These PM domains, registered on
-> > behalf of the clock controller driver, are configured with
-> > GENPD_FLAG_PM_CLK. In most of the Renesas drivers used by RZ SoCs, the
-> > clocks are enabled/disabled using runtime PM APIs.
-> >
-> > During probe, devices are attached to the PM domain controlling their
-> > clocks. Similarly, during removal, devices are detached from the PM dom=
-ain.
-> >
-> > The detachment call stack is as follows:
-> >
-> > device_driver_detach() ->
-> >    device_release_driver_internal() ->
-> >      __device_release_driver() ->
-> >        device_remove() ->
-> >          platform_remove() ->
-> >         dev_pm_domain_detach()
-> >
-> > In the upcoming Renesas RZ/G3S thermal driver, the
-> > struct thermal_zone_device_ops::change_mode API is implemented to
-> > start/stop the thermal sensor unit. Register settings are updated withi=
-n
-> > the change_mode API.
-> >
-> > In case devres helpers are used for thermal zone register/unregister th=
-e
-> > struct thermal_zone_device_ops::change_mode API is invoked when the
-> > driver is unbound. The identified call stack is as follows:
-> >
-> > device_driver_detach() ->
-> >    device_release_driver_internal() ->
-> >      device_unbind_cleanup() ->
-> >        devres_release_all() ->
-> >          devm_thermal_of_zone_release() ->
-> >         thermal_zone_device_disable() ->
-> >           thermal_zone_device_set_mode() ->
-> >             rzg3s_thermal_change_mode()
-> >
-> > The device_unbind_cleanup() function is called after the thermal device=
- is
-> > detached from the PM domain (via dev_pm_domain_detach()).
-> >
-> > The rzg3s_thermal_change_mode() implementation calls
-> > pm_runtime_resume_and_get()/pm_runtime_put_autosuspend() before/after
-> > accessing the registers. However, during the unbind scenario, the
-> > devm_thermal_of_zone_release() is invoked after dev_pm_domain_detach().
-> > Consequently, the clocks are not enabled, as the device is removed from
-> > the PM domain at this time, leading to an Asynchronous SError Interrupt=
-.
-> > The system cannot be used after this.
-> >
-> > Add thermal_of_zone_register()/thermal_of_zone_unregister(). These will
-> > be used in the upcomming RZ/G3S thermal driver.
-> >
-> > Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> +	depends on I2C
+> +	select MFD_CORE
+> +	select REGMAP_I2C
+> +	select REGMAP_IRQ
+> +	help
+> +	  Say yes here to add support for Maxim MAX7360.
 
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+60 chars is an odd place to break.
 
-Kind regards
-Uffe
+> +	  This driver provides common support for accessing
+> +	  the device; additional drivers must be enabled in
+> +	  order to use the functionality of the device.
+> +
+>  endmenu
+>  endif
+> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> index e057d6d6faef..6cd55504106d 100644
+> --- a/drivers/mfd/Makefile
+> +++ b/drivers/mfd/Makefile
+> @@ -163,6 +163,7 @@ obj-$(CONFIG_MFD_DA9063)	+= da9063.o
+>  obj-$(CONFIG_MFD_DA9150)	+= da9150-core.o
+>  
+>  obj-$(CONFIG_MFD_MAX14577)	+= max14577.o
+> +obj-$(CONFIG_MFD_MAX7360)	+= max7360.o
+>  obj-$(CONFIG_MFD_MAX77541)	+= max77541.o
+>  obj-$(CONFIG_MFD_MAX77620)	+= max77620.o
+>  obj-$(CONFIG_MFD_MAX77650)	+= max77650.o
+> diff --git a/drivers/mfd/max7360.c b/drivers/mfd/max7360.c
+> new file mode 100644
+> index 000000000000..e2751b4f68b2
+> --- /dev/null
+> +++ b/drivers/mfd/max7360.c
+> @@ -0,0 +1,296 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Maxim MAX7360 Core Driver
+> + *
+> + * Copyright (C) 2024 Kamel Bouhara
+> + * Author: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/i2c.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/max7360.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/regmap.h>
+> +
+> +static DEFINE_SPINLOCK(request_lock);
+> +
+> +struct max7360_mfd {
 
-> > ---
-> >   drivers/thermal/thermal_of.c |  8 +++++---
-> >   include/linux/thermal.h      | 14 ++++++++++++++
-> >   2 files changed, 19 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_of.=
-c
-> > index fab11b98ca49..8fc35d20db60 100644
-> > --- a/drivers/thermal/thermal_of.c
-> > +++ b/drivers/thermal/thermal_of.c
-> > @@ -329,11 +329,12 @@ static bool thermal_of_should_bind(struct thermal=
-_zone_device *tz,
-> >    *
-> >    * @tz: a pointer to the thermal zone structure
-> >    */
-> > -static void thermal_of_zone_unregister(struct thermal_zone_device *tz)
-> > +void thermal_of_zone_unregister(struct thermal_zone_device *tz)
-> >   {
-> >       thermal_zone_device_disable(tz);
-> >       thermal_zone_device_unregister(tz);
-> >   }
-> > +EXPORT_SYMBOL_GPL(thermal_of_zone_unregister);
-> >
-> >   /**
-> >    * thermal_of_zone_register - Register a thermal zone with device nod=
-e
-> > @@ -355,8 +356,8 @@ static void thermal_of_zone_unregister(struct therm=
-al_zone_device *tz)
-> >    *  - ENOMEM: if one structure can not be allocated
-> >    *  - Other negative errors are returned by the underlying called fun=
-ctions
-> >    */
-> > -static struct thermal_zone_device *thermal_of_zone_register(struct dev=
-ice_node *sensor, int id, void *data,
-> > -                                                         const struct =
-thermal_zone_device_ops *ops)
-> > +struct thermal_zone_device *thermal_of_zone_register(struct device_nod=
-e *sensor, int id, void *data,
-> > +                                                  const struct thermal=
-_zone_device_ops *ops)
-> >   {
-> >       struct thermal_zone_device_ops of_ops =3D *ops;
-> >       struct thermal_zone_device *tz;
-> > @@ -429,6 +430,7 @@ static struct thermal_zone_device *thermal_of_zone_=
-register(struct device_node *
-> >
-> >       return ERR_PTR(ret);
-> >   }
-> > +EXPORT_SYMBOL_GPL(thermal_of_zone_register);
-> >
-> >   static void devm_thermal_of_zone_release(struct device *dev, void *re=
-s)
-> >   {
-> > diff --git a/include/linux/thermal.h b/include/linux/thermal.h
-> > index 69f9bedd0ee8..adbb4092a064 100644
-> > --- a/include/linux/thermal.h
-> > +++ b/include/linux/thermal.h
-> > @@ -195,13 +195,23 @@ struct thermal_zone_params {
-> >
-> >   /* Function declarations */
-> >   #ifdef CONFIG_THERMAL_OF
-> > +struct thermal_zone_device *thermal_of_zone_register(struct device_nod=
-e *sensor, int id, void *data,
-> > +                                                  const struct thermal=
-_zone_device_ops *ops);
-> >   struct thermal_zone_device *devm_thermal_of_zone_register(struct devi=
-ce *dev, int id, void *data,
-> >                                                         const struct th=
-ermal_zone_device_ops *ops);
-> >
-> > +void thermal_of_zone_unregister(struct thermal_zone_device *tz);
-> >   void devm_thermal_of_zone_unregister(struct device *dev, struct therm=
-al_zone_device *tz);
-> >
-> >   #else
-> >
-> > +static inline
-> > +struct thermal_zone_device *thermal_of_zone_register(struct device_nod=
-e *sensor, int id, void *data,
-> > +                                                  const struct thermal=
-_zone_device_ops *ops)
-> > +{
-> > +     return ERR_PTR(-ENOTSUPP);
-> > +}
-> > +
-> >   static inline
-> >   struct thermal_zone_device *devm_thermal_of_zone_register(struct devi=
-ce *dev, int id, void *data,
-> >                                                         const struct th=
-ermal_zone_device_ops *ops)
-> > @@ -209,6 +219,10 @@ struct thermal_zone_device *devm_thermal_of_zone_r=
-egister(struct device *dev, in
-> >       return ERR_PTR(-ENOTSUPP);
-> >   }
-> >
-> > +static inline void thermal_of_zone_unregister(struct thermal_zone_devi=
-ce *tz)
-> > +{
-> > +}
-> > +
-> >   static inline void devm_thermal_of_zone_unregister(struct device *dev=
-,
-> >                                                  struct thermal_zone_de=
-vice *tz)
-> >   {
->
->
-> --
-> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
-M SoCs
->
-> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-> <http://twitter.com/#!/linaroorg> Twitter |
-> <http://www.linaro.org/linaro-blog/> Blog
+Drop references to "mfd".
+
+> +	struct regmap *regmap;
+> +	unsigned int requested_ports;
+> +	struct device *dev;
+
+Pop dev at the top.
+
+> +};
+> +
+> +#define GPO_COMPATIBLE "maxim,max7360-gpo"
+> +#define GPIO_COMPATIBLE "maxim,max7360-gpio"
+
+Please use the raw strings instead.
+
+> +static const struct mfd_cell max7360_cells[] = {
+> +	{
+> +		.name           = MAX7360_DRVNAME_PWM,
+
+Raw strings please.
+
+> +	},
+> +	{
+> +		.name           = MAX7360_DRVNAME_GPO,
+> +		.of_compatible	= GPO_COMPATIBLE,
+> +	},
+> +	{
+> +		.name           = MAX7360_DRVNAME_GPIO,
+> +		.of_compatible	= GPIO_COMPATIBLE,
+> +	},
+> +	{
+> +		.name           = MAX7360_DRVNAME_KEYPAD,
+> +	},
+> +	{
+> +		.name           = MAX7360_DRVNAME_ROTARY,
+> +	},
+> +};
+> +
+> +static const struct regmap_range max7360_volatile_ranges[] = {
+> +	{
+> +		.range_min = MAX7360_REG_KEYFIFO,
+> +		.range_max = MAX7360_REG_KEYFIFO,
+> +	}, {
+> +		.range_min = 0x48,
+> +		.range_max = 0x4a,
+> +	},
+> +};
+> +
+> +static const struct regmap_access_table max7360_volatile_table = {
+> +	.yes_ranges = max7360_volatile_ranges,
+> +	.n_yes_ranges = ARRAY_SIZE(max7360_volatile_ranges),
+> +};
+> +
+> +static const struct regmap_config max7360_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = 0xff,
+> +	.volatile_table = &max7360_volatile_table,
+> +	.cache_type = REGCACHE_RBTREE,
+
+A lot of these are being replaced with REGCACHE_MAPLE.
+
+Are you sure you shouldn't be using that too?
+
+> +};
+> +
+> +static int max7360_set_gpos_count(struct max7360_mfd *max7360_mfd)
+
+Pass the dev pointer around instead.
+
+> +{
+> +	/*
+> +	 * Max7360 COL0 to COL7 pins can be used either as keypad columns,
+
+MAX?
+
+> +	 * general purpose output or a mix of both.
+> +	 * Get the number of pins requested by the corresponding drivers, ensure
+> +	 * they are compatible with each others and apply the corresponding
+> +	 * configuration.
+> +	 */
+
+What are you documenting here?
+
+Comments should go with their code snippets.
+
+> +	struct device_node *np;
+
+np usually implies our own node.
+
+> +	u32 gpos = 0;
+> +	u32 columns = 0;
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	np = of_get_compatible_child(max7360_mfd->dev->of_node, GPO_COMPATIBLE);
+
+Why don't you do all of this in the GPO driver?
+
+> +	if (np) {
+> +		ret = of_property_read_u32(np, "ngpios", &gpos);
+> +		if (ret < 0) {
+> +			dev_err(max7360_mfd->dev, "Failed to read gpos count\n");
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	ret = device_property_read_u32(max7360_mfd->dev,
+> +				       "keypad,num-columns", &columns);
+> +	if (ret < 0) {
+> +		dev_err(max7360_mfd->dev, "Failed to read columns count\n");
+> +		return ret;
+> +	}
+> +
+> +	if (gpos > MAX7360_MAX_GPO ||
+> +	    (gpos + columns > MAX7360_MAX_KEY_COLS)) {
+> +		dev_err(max7360_mfd->dev,
+> +			"Incompatible gpos and columns count (%u, %u)\n",
+> +			gpos, columns);
+> +		return -EINVAL;
+> +	}
+> +
+> +	/*
+> +	 * MAX7360_REG_DEBOUNCE contains configuration both for keypad debounce
+> +	 * timings and gpos/keypad columns repartition. Only the later is
+> +	 * modified here.
+> +	 */
+> +	val = FIELD_PREP(MAX7360_PORTS, gpos);
+> +	ret = regmap_write_bits(max7360_mfd->regmap, MAX7360_REG_DEBOUNCE,
+> +				MAX7360_PORTS, val);
+> +	if (ret) {
+> +		dev_err(max7360_mfd->dev,
+> +			"Failed to write max7360 columns/gpos configuration");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +int max7360_port_pin_request(struct device *dev, unsigned int pin, bool request)
+
+This whole function is rough.  What are you trying to achieve?
+
+> +{
+> +	struct i2c_client *client;
+> +	struct max7360_mfd *max7360_mfd;
+> +	unsigned long flags;
+> +	int ret = 0;
+> +
+> +	client = to_i2c_client(dev);
+> +	max7360_mfd = i2c_get_clientdata(client);
+> +
+> +	spin_lock_irqsave(&request_lock, flags);
+> +	if (request) {
+> +		if (max7360_mfd->requested_ports & BIT(pin))
+> +			ret = -EBUSY;
+> +		else
+> +			max7360_mfd->requested_ports |= BIT(pin);
+> +	} else {
+> +		max7360_mfd->requested_ports &= ~BIT(pin);
+> +	}
+> +	spin_unlock_irqrestore(&request_lock, flags);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(max7360_port_pin_request);
+> +
+> +static int max7360_mask_irqs(struct max7360_mfd *max7360_mfd)
+> +{
+> +	unsigned int i;
+
+Use `for (int i;` instead.
+
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	/*
+> +	 * GPIO/PWM interrupts are not masked on reset: mask the during probe,
+> +	 * avoiding repeated spurious interrupts if the corresponding drivers
+> +	 * are not present.
+> +	 */
+> +	for (i = 0; i < MAX7360_PORT_PWM_COUNT; i++) {
+> +		ret = regmap_write_bits(max7360_mfd->regmap,
+> +					MAX7360_REG_PWMCFG + i,
+> +					MAX7360_PORT_CFG_INTERRUPT_MASK,
+> +					MAX7360_PORT_CFG_INTERRUPT_MASK);
+> +		if (ret) {
+> +			dev_err(max7360_mfd->dev,
+> +				"failed to write max7360 port configuration");
+
+You can use 100-chars to avoid the line break.
+
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	/* Read gpio in register, to ack any pending IRQ.
+
+GPIO, ACK
+
+> +	 */
+
+Wrong format.
+
+> +	ret = regmap_read(max7360_mfd->regmap, MAX7360_REG_GPIOIN, &val);
+> +	if (ret) {
+> +		dev_err(max7360_mfd->dev, "Failed to read gpio values: %d\n",
+
+GPIO
+
+> +			ret);
+
+No wrap needed.
+
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int max7360_reset(struct max7360_mfd *max7360_mfd)
+> +{
+> +	int err;
+> +
+> +	/*
+> +	 * Set back the default values.
+> +	 * We do not use GPIO reset function here, as it does not work reliably.
+
+Why?  What's wrong with it?
+
+> +	 */
+> +	err = regmap_write(max7360_mfd->regmap, MAX7360_REG_GPIODEB, 0x00);
+> +	if (err) {
+> +		dev_err(max7360_mfd->dev, "Failed to set configuration\n");
+
+Use a goto to only print this out once.
+
+> +		return err;
+> +	}
+> +
+> +	err = regmap_write(max7360_mfd->regmap, MAX7360_REG_GPIOCURR, MAX7360_REG_GPIOCURR_FIXED);
+> +	if (err) {
+> +		dev_err(max7360_mfd->dev, "Failed to set configuration\n");
+> +		return err;
+> +	}
+> +
+> +	err = regmap_write(max7360_mfd->regmap, MAX7360_REG_GPIOOUTM, 0x00);
+> +	if (err) {
+> +		dev_err(max7360_mfd->dev, "Failed to set configuration\n");
+> +		return err;
+> +	}
+> +
+> +	err = regmap_write(max7360_mfd->regmap, MAX7360_REG_PWMCOM, 0x00);
+> +	if (err) {
+> +		dev_err(max7360_mfd->dev, "Failed to set configuration\n");
+> +		return err;
+> +	}
+> +
+> +	err = regmap_write(max7360_mfd->regmap, MAX7360_REG_SLEEP, 0);
+> +	if (err) {
+> +		dev_err(max7360_mfd->dev, "Failed to set configuration\n");
+> +		return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int max7360_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct regmap *regmap;
+> +	struct max7360_mfd *max7360_mfd;
+> +	int err;
+> +
+> +	regmap = devm_regmap_init_i2c(client, &max7360_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(dev, PTR_ERR(regmap),
+> +				     "Failed to initialise regmap\n");
+> +
+> +	max7360_mfd = devm_kzalloc(dev, sizeof(*max7360_mfd), GFP_KERNEL);
+> +	if (!max7360_mfd)
+> +		return -ENOMEM;
+> +
+> +	max7360_mfd->regmap = regmap;
+> +	max7360_mfd->dev = dev;
+> +	i2c_set_clientdata(client, max7360_mfd);
+> +
+> +	err = max7360_reset(max7360_mfd);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to reset device\n");
+> +
+> +	err = max7360_set_gpos_count(max7360_mfd);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to set GPOS pin count\n");
+> +
+> +	/*
+> +	 * Get the device out of shutdown mode.
+> +	 */
+
+Single line comment please.
+
+> +	err = regmap_write_bits(regmap, MAX7360_REG_GPIOCFG,
+> +				MAX7360_GPIO_CFG_GPIO_EN,
+> +				MAX7360_GPIO_CFG_GPIO_EN);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to set device out of shutdown\n");
+
+This doesn't read well.
+
+> +	err = max7360_mask_irqs(max7360_mfd);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "could not mask interrupts\n");
+
+Some messages start with an uppercase char, others do not.
+
+I suggest you use one for consistency.
+
+> +	err =  devm_mfd_add_devices(dev, PLATFORM_DEVID_NONE,
+> +				    max7360_cells, ARRAY_SIZE(max7360_cells),
+> +				    NULL, 0, NULL);
+> +	if (err)
+> +		return dev_err_probe(dev, err, "Failed to register child devices\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id max7360_dt_match[] = {
+> +	{ .compatible = "maxim,max7360" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, max7360_dt_match);
+> +
+> +static struct i2c_driver max7360_driver = {
+> +	.driver = {
+> +		.name = "max7360",
+> +		.of_match_table = max7360_dt_match,
+> +	},
+> +	.probe = max7360_probe,
+> +};
+> +module_i2c_driver(max7360_driver);
+> +
+> +MODULE_DESCRIPTION("Maxim MAX7360 MFD core driver");
+
+There is no such thing as an MFD driver.  What does it do?
+
+> +MODULE_AUTHOR("Kamel Bouhara <kamel.bouhara@bootlin.com>");
+> +MODULE_LICENSE("GPL");
+> diff --git a/include/linux/mfd/max7360.h b/include/linux/mfd/max7360.h
+> new file mode 100644
+> index 000000000000..2665a8e6b0f0
+> --- /dev/null
+> +++ b/include/linux/mfd/max7360.h
+> @@ -0,0 +1,109 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+
+'\n'
+
+> +#ifndef __LINUX_MFD_MAX7360_H
+> +#define __LINUX_MFD_MAX7360_H
+
+'\n'
+
+> +#include <linux/bitfield.h>
+> +#include <linux/device.h>
+> +
+> +#define MAX7360_MAX_KEY_ROWS	8
+> +#define MAX7360_MAX_KEY_COLS	8
+> +#define MAX7360_MAX_KEY_NUM	(MAX7360_MAX_KEY_ROWS * MAX7360_MAX_KEY_COLS)
+> +#define MAX7360_ROW_SHIFT	3
+> +
+> +#define MAX7360_MAX_GPIO 8
+> +#define MAX7360_MAX_GPO 6
+> +#define MAX7360_PORT_PWM_COUNT	8
+> +#define MAX7360_PORT_RTR_PIN	(MAX7360_PORT_PWM_COUNT - 1)
+
+'\n'
+
+> +/*
+> + * MAX7360 registers
+> + */
+> +#define MAX7360_REG_KEYFIFO	0x00
+> +#define MAX7360_REG_CONFIG	0x01
+> +#define MAX7360_REG_DEBOUNCE	0x02
+> +#define MAX7360_REG_INTERRUPT	0x03
+> +#define MAX7360_REG_PORTS	0x04
+> +#define MAX7360_REG_KEYREP	0x05
+> +#define MAX7360_REG_SLEEP	0x06
+> +
+> +/*
+> + * MAX7360 registers
+> + */
+
+How is this different to the ones above?
+
+> +#define MAX7360_REG_GPIOCFG	0x40
+> +#define MAX7360_REG_GPIOCTRL	0x41
+> +#define MAX7360_REG_GPIODEB	0x42
+> +#define MAX7360_REG_GPIOCURR	0x43
+> +#define MAX7360_REG_GPIOOUTM	0x44
+> +#define MAX7360_REG_PWMCOM	0x45
+> +#define MAX7360_REG_RTRCFG	0x46
+> +#define MAX7360_REG_GPIOIN	0x49
+> +#define MAX7360_REG_RTR_CNT	0x4A
+> +#define MAX7360_REG_PWMBASE	0x50
+> +#define MAX7360_REG_PWMCFG	0x58
+> +
+> +#define MAX7360_REG_PORTCFGBASE 0x58
+> +
+> +/*
+> + * Configuration register bits
+> + */
+> +#define MAX7360_FIFO_EMPTY	0x3f
+> +#define MAX7360_FIFO_OVERFLOW	0x7f
+> +#define MAX7360_FIFO_RELEASE	BIT(6)
+> +#define MAX7360_FIFO_COL	GENMASK(5, 3)
+> +#define MAX7360_FIFO_ROW	GENMASK(2, 0)
+> +
+> +#define MAX7360_CFG_SLEEP	BIT(7)
+> +#define MAX7360_CFG_INTERRUPT	BIT(5)
+> +#define MAX7360_CFG_KEY_RELEASE	BIT(3)
+> +#define MAX7360_CFG_WAKEUP	BIT(1)
+> +#define MAX7360_CFG_TIMEOUT	BIT(0)
+> +
+> +#define MAX7360_DEBOUNCE	GENMASK(4, 0)
+> +#define MAX7360_DEBOUNCE_MIN	9
+> +#define MAX7360_DEBOUNCE_MAX	40
+> +#define MAX7360_PORTS		GENMASK(8, 5)
+> +
+> +#define MAX7360_INTERRUPT_TIME_MASK GENMASK(4, 0)
+> +#define MAX7360_INTERRUPT_FIFO_MASK GENMASK(7, 5)
+> +
+> +#define MAX7360_PORT_CFG_INTERRUPT_MASK BIT(7)
+> +#define MAX7360_PORT_CFG_INTERRUPT_EDGES BIT(6)
+> +
+> +#define MAX7360_REG_GPIOCURR_FIXED 0xC0
+> +
+> +/*
+> + * Autosleep register values (ms)
+> + */
+> +#define MAX7360_AUTOSLEEP_8192	0x01
+> +#define MAX7360_AUTOSLEEP_4096	0x02
+> +#define MAX7360_AUTOSLEEP_2048	0x03
+> +#define MAX7360_AUTOSLEEP_1024	0x04
+> +#define MAX7360_AUTOSLEEP_512	0x05
+> +#define MAX7360_AUTOSLEEP_256	0x06
+> +
+> +#define MAX7360_GPIO_CFG_RTR_EN		BIT(7)
+> +#define MAX7360_GPIO_CFG_GPIO_EN	BIT(4)
+> +#define MAX7360_GPIO_CFG_GPIO_RST	BIT(3)
+> +
+> +#define MAX7360_ROT_DEBOUNCE	GENMASK(3, 0)
+> +#define MAX7360_ROT_DEBOUNCE_MIN 0
+> +#define MAX7360_ROT_DEBOUNCE_MAX 15
+> +#define MAX7360_ROT_INTCNT	GENMASK(6, 4)
+> +#define MAX7360_ROT_INTCNT_DLY	BIT(7)
+> +
+> +#define MAX7360_INT_INTI	0
+> +#define MAX7360_INT_INTK	1
+> +
+> +#define MAX7360_INT_GPIO   0
+> +#define MAX7360_INT_KEYPAD 1
+> +#define MAX7360_INT_ROTARY 2
+> +
+> +#define MAX7360_NR_INTERNAL_IRQS	3
+> +
+> +#define MAX7360_DRVNAME_PWM	"max7360-pwm"
+> +#define MAX7360_DRVNAME_GPO	"max7360-gpo"
+> +#define MAX7360_DRVNAME_GPIO	"max7360-gpio"
+> +#define MAX7360_DRVNAME_KEYPAD	"max7360-keypad"
+> +#define MAX7360_DRVNAME_ROTARY	"max7360-rotary"
+
+Nope.
+
+> +
+> +int max7360_port_pin_request(struct device *dev, unsigned int pin, bool request);
+> +
+> +#endif
+> 
+> -- 
+> 2.39.5
+> 
+
+-- 
+Lee Jones [李琼斯]
 
