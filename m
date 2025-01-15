@@ -1,138 +1,210 @@
-Return-Path: <devicetree+bounces-138665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19748A11A35
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 07:58:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8782A11A59
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 08:06:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5D203A7F1C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 06:57:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB29C1664B2
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 07:06:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 854A422F85A;
-	Wed, 15 Jan 2025 06:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE2F422F853;
+	Wed, 15 Jan 2025 07:06:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UzCmS5Up"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rfe7+HPs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F374522F392;
-	Wed, 15 Jan 2025 06:57:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4718D22E3E1;
+	Wed, 15 Jan 2025 07:06:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736924278; cv=none; b=CN/k/c/DrpBjOfNKj9SIwgDJ8ZIJJ5ZcGvp+EMxgcplzOI6iVlyZdsoFEFcdFMvgpQk0f40nSGxz1evba6uhYC1IOn7MmVzQJpY2q28ZNW6S9lmino/MInOsRBe3fs9DQopUTXkLHer/H8iNesknygl/lMP332iAhVde5TmxMSs=
+	t=1736924765; cv=none; b=p4kqeaB8xqDwr4kLLEQMgMUHqkxfIz+ZaEpTBLwnaiyycWVJ9NoNkAnA8wZwhpccoEejFry5hA5n0dwgag3yh60bfJ49YCvv6RfIlRYazl48eE5MbfkKGsyLcXLhK1Cd+8k3Li6D43Mwv+nXaOxMpXgWDMWPCzzLT/p1eMSpAe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736924278; c=relaxed/simple;
-	bh=9ylhe8VN6RPEcVd12Whd6qqqDNqOc7amBumoDE9CDao=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=W0kbVrfwLLcxC+VqxpDxoDNCN/dfyRgesLCaPy0Wcn3meoFoABul3Y46uBCSII4u3C/8QSGYOxASFmeAfgvlXApCgKqHeeMepIMxeh3NYXJYFm3VnrxCV6EBrI4BRDp7Xb83gokBXzlIofzF/AZpv60JWdYBOlN5gK3jkL5GVN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UzCmS5Up; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50F1YZ6Y007853;
-	Wed, 15 Jan 2025 06:57:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8Yx8n/XQSKNINcFDuWn8kaPdgeJlpCZUR09RqodhtIs=; b=UzCmS5UpOenAGWHI
-	Hch87xXQuxEftkkZEoXyr42fHzL/+iq6/wI5+4H2X2WgejlUFlsDD2MxihoWWZa7
-	06/lLmADk7N16GjJjpVnFOtRZpeI0xm0+ybmzhlYtS3rhFE/Pn2MXMB3VrQTlivf
-	ld5kPWGuds056Y5nCntt0gAUrzdydxRmWeLDanpc+dsZIcnvUlCuKAGdJWe7U1Y+
-	FDcIeDKqPYvaqpk8tWnChXl7VN/aVCNjWNp6hi1nRlKyIbKNF7S5b8P8pmD3zzxT
-	2GZHnTSTo0sxgVTcxe8FBeLBNWeZJiEb3BiHyxWQ69DXitPFlYfksFQ+seTMPida
-	NJe5fA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4463frrnvx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Jan 2025 06:57:40 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50F6vdIg018961
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Jan 2025 06:57:39 GMT
-Received: from [10.253.32.159] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 14 Jan
- 2025 22:57:33 -0800
-Message-ID: <224f8e60-06de-4db3-9025-7ada999d676b@quicinc.com>
-Date: Wed, 15 Jan 2025 14:57:31 +0800
+	s=arc-20240116; t=1736924765; c=relaxed/simple;
+	bh=pAGdabZkwYiFEeXRaPXEn8T+VPtNpxHNcGYYo35edqk=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=kuIKN5pNuZbJL7LOd6BrkFwGMU76OuBTfDpl2FOMmRHJ6HV3va4T0wDdnAmTdbGRQlU3wM2GUhsxKCeJ55flDOY+xKHPCtAVPZXlk1X+8kfrqQ6TV6wX0xidtW4MmlXfGrJjapj1heACjstvR9MWtt4qKDZkaTLl7NIT/Vy5xfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rfe7+HPs; arc=none smtp.client-ip=209.85.167.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-3eba50d6da7so1585140b6e.2;
+        Tue, 14 Jan 2025 23:06:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736924763; x=1737529563; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oI5ZjcuPckd6Ch/6DIyVBb1ek8gxp9mfdlh3C8bbL+g=;
+        b=Rfe7+HPs2SXJdzllKEv0i9kditr0LM8PZ57nK/hbBfSJjhdd++Vowe163OwyxU9bpr
+         7vZ7l5Hy9iQvzVDbAKC9nt6aeMXPlf58VYOh9hR048xGzQJRrFixsc7VOtHTEgO72WU3
+         8sfuif4WvZyhRA9Fnpv2uXfD4dNr0FbQcHO/lMmUN3tk7FpYVrUoYFVYHbiugVjLQApT
+         jwzsTB8pFS8k88ptxmAqOLunb9n82EMNal8h884FDLJrZWPdGRoasvWGZ5Ss8Cd3aaWt
+         x1/+lHjl/QWzJoZoHazTQU4UG0/26ILb/xn56zIMg9IPdXipywekf8jP8DQn41+87mBC
+         pVNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736924763; x=1737529563;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oI5ZjcuPckd6Ch/6DIyVBb1ek8gxp9mfdlh3C8bbL+g=;
+        b=qP0e3/QZBHSfs0TUNXtIXEqJ4wWvYbs3mTSYRRVvWe2HpjZE7dbu6Z3R5zALGCMAZg
+         K3kdTxvi5Z5BOKZFKu1d2Qp8QgPBcGxpH+oPuvEi6T4/w9JWLYgrj1ngVouon0vVLQow
+         SqfvLHIRCMmE6Dr264oL83Rj9jgs4wM1WM3ivXVoeWihywrLG4gcwmovCoz7W85o589d
+         aAxy2bZLuCSGDz1DIInCH9g1BjGsNjX0+DbfvdbKhi6YsRxVhiI4QdyhoOpkFIPAlLaj
+         OUArIyMQ8VzgbPuZwjOt/cWMrNrG+xcq7aqclsVMpa4D/ltEeynlIxgm5/zvdD8gKoJw
+         wd+w==
+X-Forwarded-Encrypted: i=1; AJvYcCWxqx1w/rQg216maaPQ5rQ4WE+ZssYEzHFl+Nzrun/zUcPkSDjypp6eLOIJOFNU/6ApxFxs6yl/0V9QNrUD@vger.kernel.org, AJvYcCX0Ay5V45dlLy3sls3DtBENRT5pAUMKjq0sUi8guHxgQj9eIr/1GCIZspLPnC3ELcClDgHQPkii/ssB@vger.kernel.org, AJvYcCX1FkuVEIf5SYwn/eqn//iONc4HmX0YMVmvqR0/1nhMQMs1Adu10ggdHuUIh9w1hlOzwinfSzgo54Z1@vger.kernel.org
+X-Gm-Message-State: AOJu0YzU2ZZOOZU7MBJz12EMi8X1e75OvluwmIl3QxX2hvOo/SMfflnI
+	yvMNmOqFbuV6zqPBURTLDiUPkyvCvT+J5nYCCeFDmKq3wbi3AjNF
+X-Gm-Gg: ASbGncsRVm9BuT7brBugG0GoOG6OH6A3uX7u0LCUNmM+PJ8mIiTMsvXISX/0vmMsJoC
+	lTNeRKUbePkmPsSFLlIHkr3k538uoVElHt5rUg2XXY8XNDU1COxYXmOc1BkPi5c7MsoXh7EmDtd
+	oaktqmi6+iiUlw9ObRAVaQHfeJ5VcMsKf0XCGcjIvgJYK/rmx7/iVnai9HuOD34Mi2653GrPfIx
+	npvlbi4eIY/8k5kFk+O0A0z4ACxZHjGe1Pw5gY6vRU2tRhqvaK3nbLEY2+DHDUayJM=
+X-Google-Smtp-Source: AGHT+IFkR6nnCpwOXELoB6VRu3HqkfESX5AtlZc9JkL6/31ySuvemmaJeL/mLBsU0qBVg79TjKGu2w==
+X-Received: by 2002:a05:6808:398c:b0:3ea:6149:d6fd with SMTP id 5614622812f47-3ef2ebb9028mr20514321b6e.2.1736924763079;
+        Tue, 14 Jan 2025 23:06:03 -0800 (PST)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f0379eff52sm4779278b6e.40.2025.01.14.23.05.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jan 2025 23:06:01 -0800 (PST)
+From: Chen Wang <unicornxw@gmail.com>
+To: kw@linux.com,
+	u.kleine-koenig@baylibre.com,
+	aou@eecs.berkeley.edu,
+	arnd@arndb.de,
+	bhelgaas@google.com,
+	unicorn_wang@outlook.com,
+	conor+dt@kernel.org,
+	guoren@kernel.org,
+	inochiama@outlook.com,
+	krzk+dt@kernel.org,
+	lee@kernel.org,
+	lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	pbrobinson@gmail.com,
+	robh@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	fengchun.li@sophgo.com,
+	helgaas@kernel.org
+Subject: [PATCH v3 0/5] Add PCIe support to Sophgo SG2042 SoC
+Date: Wed, 15 Jan 2025 15:05:52 +0800
+Message-Id: <cover.1736923025.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 12/14] net: ethernet: qualcomm: Initialize PPE
- L2 bridge settings
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Luo Jie <quic_luoj@quicinc.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Suruchi Agarwal <quic_suruchia@quicinc.com>,
-        Pavithra R <quic_pavir@quicinc.com>, Simon Horman <horms@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, Kees Cook <kees@kernel.org>,
-        "Gustavo A. R.
- Silva" <gustavoars@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <quic_kkumarcs@quicinc.com>, <quic_linchen@quicinc.com>,
-        <srinivas.kandagatla@linaro.org>, <bartosz.golaszewski@linaro.org>,
-        <john@phrozen.org>
-References: <20250108-qcom_ipq_ppe-v2-0-7394dbda7199@quicinc.com>
- <20250108-qcom_ipq_ppe-v2-12-7394dbda7199@quicinc.com>
- <4dbf1550-32e9-4cce-bf0c-8b92dbd49b50@lunn.ch>
- <c67f4510-e71b-4211-8fe2-35dabfc7b44e@quicinc.com>
- <8bdde187-b329-480d-a745-16871276a331@lunn.ch>
- <4599e35b-eb2b-4d12-82c7-f2a8a804e08f@quicinc.com>
- <b7b13bba-e975-469c-ad59-6e48b5722fc7@lunn.ch>
-Content-Language: en-US
-From: Lei Wei <quic_leiwei@quicinc.com>
-In-Reply-To: <b7b13bba-e975-469c-ad59-6e48b5722fc7@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: x3DXd7vF2lTHN9YzXtgbNYOhtm42Ag0i
-X-Proofpoint-GUID: x3DXd7vF2lTHN9YzXtgbNYOhtm42Ag0i
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-15_02,2025-01-13_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- bulkscore=0 mlxlogscore=999 spamscore=0 suspectscore=0 priorityscore=1501
- mlxscore=0 impostorscore=0 phishscore=0 adultscore=0 clxscore=1015
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501150050
+Content-Transfer-Encoding: 8bit
+
+From: Chen Wang <unicorn_wang@outlook.com>
+
+Sophgo's SG2042 SoC uses Cadence PCIe core to implement RC mode.
+
+SG2042 PCIe controller supports two ways to report MSI:
+
+Method A, the PICe controller implements an MSI interrupt controller
+inside, and connect to PLIC upward through one interrupt line. Provides
+memory-mapped msi address, and by programming the upper 32 bits of the
+address to zero, it can be compatible with old pcie devices that only
+support 32-bit msi address.
+
+Method B, the PICe controller connects to PLIC upward through an
+independent MSI controller "sophgo,sg2042-msi" on the SOC. The MSI
+controller provides multiple(up to 32) interrupt sources to PLIC.
+Compared with the first method, the advantage is that the interrupt
+source is expanded, but because for SG2042, the msi address provided
+by the MSI controller is fixed and only supports 64-bit address(> 2^32),
+it is not compatible with old pcie devices that only support 32-bit
+msi address.
+
+This patchset depends on another patchset for the SG2042 MSI controller[msi].
+If you want to have a test, you need to apply the corresponding patchset.
+
+Link: https://lore.kernel.org/linux-riscv/cover.1736921549.git.unicorn_wang@outlook.com/ [msi]
+
+Thanks,
+Chen
+
+---
+
+Changes in v3:
+
+  The patch series is based on v6.13-rc7.
+
+  Fixed following issues as per comments from Rob Herring, Bjorn Helgaas, thanks.
+
+  - Driver binding:
+    - Fallback to still using "sophgo,link-id" instead of "sophgo,pcie-port",
+      and improve the description of this property.
+    - Some text improvements.
+  - Improve driver code:
+    - Removed CONFIG_SMP.
+    - Removed checking of CONFIG_PCIE_CADENCE_HOST
+    - Improved Kconfig to select some dependencies explicitly.
+    - Some text improvements.
+
+Changes in v2:
+
+  The patch series is based on v6.13-rc2. You can simply review or test the
+  patches at the link [2].
+
+  Fixed following issues as per comments from Rob Herring, Bjorn Helgaas, thanks.
+
+  - Improve driver binding description
+    - Define a new embeded object property msi to replace the "sophgo,internal-msi".
+    - Rename "sophgo,link-id" to "sophgo,pcie-port" as per suggestion from Bjorn,
+      and add more explanaion for this property.
+    - Use msi-parent.
+  - Improve driver code:
+    - Improve coding style.
+    - Fix a bug and make sure num_applied_vecs updated with the max value.
+    - Use the MSI parent model.
+    - Remove .cpu_addr_fixup.
+    - Reorder Kconfig menu item to keep them in alphabetical order by vendor.
+
+Changes in v1:
+
+  The patch series is based on v6.12-rc7. You can simply review or test the
+  patches at the link [1].
+
+Link: https://lore.kernel.org/linux-riscv/cover.1731303328.git.unicorn_wang@outlook.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/cover.1733726572.git.unicorn_wang@outlook.com/ [2]
+---
+
+Chen Wang (5):
+  dt-bindings: pci: Add Sophgo SG2042 PCIe host
+  PCI: sg2042: Add Sophgo SG2042 PCIe driver
+  dt-bindings: mfd: syscon: Add sg2042 pcie ctrl compatible
+  riscv: sophgo: dts: add pcie controllers for SG2042
+  riscv: sophgo: dts: enable pcie for PioneerBox
+
+ .../devicetree/bindings/mfd/syscon.yaml       |   2 +
+ .../bindings/pci/sophgo,sg2042-pcie-host.yaml | 147 +++++
+ .../boot/dts/sophgo/sg2042-milkv-pioneer.dts  |  12 +
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi        |  89 +++
+ drivers/pci/controller/cadence/Kconfig        |  13 +
+ drivers/pci/controller/cadence/Makefile       |   1 +
+ drivers/pci/controller/cadence/pcie-sg2042.c  | 528 ++++++++++++++++++
+ 7 files changed, 792 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/sophgo,sg2042-pcie-host.yaml
+ create mode 100644 drivers/pci/controller/cadence/pcie-sg2042.c
 
 
-
-On 1/14/2025 9:02 PM, Andrew Lunn wrote:
->> I would like to clarify that representing the bridge and its slave ports
->> inside PPE (using a VSI - virtual switch instance) is a pre-requisite before
->> learning can take place on a port. At this point, since switchdev
->> is not enabled, VSI is not created for port/bridge and hence FDB learning
->> does not take place. Later when we enable switchdev and represent the
->> bridge/slave-ports in PPE, FDB learning will automatically occur on top of
->> this initial configuration. I will add this note in the comments and commit
->> message to make it clear.
-> 
-> So it seems like the comment is not the best. You don't actually
-> enable learning...
->
-
-Yes, I will update the comment to make it more clear.
-
-> 	Andrew
+base-commit: 5bc55a333a2f7316b58edc7573e8e893f7acb532
+prerequisite-patch-id: d3c733a9ccc3fb4c62f145edcc692a0ca9484e53
+prerequisite-patch-id: bd8d797ce40a6c2b460872eda31a7685ddba0d67
+prerequisite-patch-id: f9b3c6061c52320f85ca4144e3d580fa6d0e54ef
+-- 
+2.34.1
 
 
