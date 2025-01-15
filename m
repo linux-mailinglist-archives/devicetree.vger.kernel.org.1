@@ -1,178 +1,139 @@
-Return-Path: <devicetree+bounces-138849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 168E0A12993
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 18:15:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26AFAA129A0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 18:19:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD7297A3A17
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 17:15:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D4841889007
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 17:19:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E14D1C07EE;
-	Wed, 15 Jan 2025 17:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF932159565;
+	Wed, 15 Jan 2025 17:19:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zho0SInE"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="NpGdcY1T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 444A81B3955;
-	Wed, 15 Jan 2025 17:15:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4757C70812;
+	Wed, 15 Jan 2025 17:19:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736961319; cv=none; b=tP/KanJt4g030kEXEzZBlxykQOKpA4i2BcwarvhAYM8prqZyqoRI+80n2MpA1AYzcU/THCqd5Mp32PyHZwKFQ/LHZClSgLMk2QQkrhf1c/KGHIKdGNoYUGfiHTj5Amz/M3IF5SxZ9VHaUc9Li3TxsYkA2d6R2MCFC2sFu86lYwE=
+	t=1736961557; cv=none; b=Qd0LnVresSZEKbHOI0umWcSLQdlq8q4Lb1z1yuc3NpDOTJO7xWZE4lyh+5GFH/wGlVA5A5bA3Synep5R0uFT083h80uAWx5ZQ8XquTsWCfubbgOh/hUoQNMqYyYy+EBJKsthgfKxzSlYmQD2N9l/Ppn9gf33Z259CcdvE4XFUoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736961319; c=relaxed/simple;
-	bh=XeJK5selCG6aOykBOS7AbrE28fzidoUy6E/2EIkrpc4=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=cJk8+PQeWIwIR83jeJXwUtkFgz1UVGC6eeF6zIWW9wzHRXXhP/hGxqYdI3MbDvhayy0MzZxA1KJXB8kUb/iYQSwoWGSwo7ChwzpbL8w8VPOJhJQMY7JOpM3K99l/0sh5BUy9bcSQuRAULP+aGKb0nASV5JPu49oASAtdgb7NKOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zho0SInE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1E91C4CED1;
-	Wed, 15 Jan 2025 17:15:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736961318;
-	bh=XeJK5selCG6aOykBOS7AbrE28fzidoUy6E/2EIkrpc4=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Zho0SInEZJb875wPmZjkvQZfzX680y4FWufqIhabcF7LcgWSjiejyzm3ypiHTKzrY
-	 wkzFfNDhk3U/etHJN8fCBSIhFAhPXYdDvGSqKLb8FTuqoJmcPjyGHpJUPDWy00yMJg
-	 p2JLt23DaS4MIV50fwGFwQ0S6YAbanMcJpIwaHM//L9MkMADiPGmqqyjLt9fRPXJEr
-	 jJrpSAU1yCroL17TTrbZqcoCUnycuDX73hsVZDhW3laq+UmguLWUrI/G7g/dQkYHFM
-	 WRxr4w126cr31LfKsdJRuXrJ5QrATLIH+7TrFMkV9xKBmeuoCzvs2La3T42R2a3Egv
-	 jjR5TU9b1dz1Q==
-Date: Wed, 15 Jan 2025 11:15:17 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1736961557; c=relaxed/simple;
+	bh=gqrBU1gUF5yo0xMHlXHHkS2L/VlMzO2x48llo6fkfuI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Lk/8hOq9UwqkAJT4bIb/ib12fA9JGgp6+3oiXMF8rfkR2Q6I+L7C31i4+TVm/2chbN/SNBEpNjPVRTuzNvbWtftp5rAoRGnxsy908U+xZuCNL8iSNc3Lqv6uJmCa7Ul6msbdtXrC4kg65i67iTmWrftULPo66I/CGQ6W3SSc1wI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=NpGdcY1T; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 139034AD;
+	Wed, 15 Jan 2025 18:18:16 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1736961496;
+	bh=gqrBU1gUF5yo0xMHlXHHkS2L/VlMzO2x48llo6fkfuI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NpGdcY1TutHcfzDRlar2g7RRdGBSAKmGJNNOWwGNxorev2KBvqnzaYhLpnHuZse/I
+	 cXX1IbAZPqwCzUbq2XSRAc1EJAIEjFKbVFwoHRTsalG5krCZYXEr9HC7pvAkmJD4EV
+	 KDgb0kJ0HewE8qeiasgr0jadPQCyOsqXP7WjZXwc=
+Message-ID: <b083ab17-a34e-42cf-9696-ff774731dc58@ideasonboard.com>
+Date: Wed, 15 Jan 2025 19:19:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Sean Wang <sean.wang@mediatek.com>, 
- linux-arm-kernel@lists.infradead.org, 
- Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
- kernel@collabora.com, linux-kernel@vger.kernel.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, linux-mediatek@lists.infradead.org
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-In-Reply-To: <20250115-dts_mt8370-genio-510-v2-0-fc9b01d08834@collabora.com>
-References: <20250115-dts_mt8370-genio-510-v2-0-fc9b01d08834@collabora.com>
-Message-Id: <173696121021.72515.902119199625523031.robh@kernel.org>
-Subject: Re: [PATCH v2 0/4] Add support for Mediatek Genio 510 EVK board
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 17/19] media: dt-bindings: ti,ds90ub960: Add "i2c-addr"
+ link property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>,
+ Jai Luthra <jai.luthra@ideasonboard.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>, devicetree@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20250110-ub9xx-improvements-v1-0-e0b9a1f644da@ideasonboard.com>
+ <20250110-ub9xx-improvements-v1-17-e0b9a1f644da@ideasonboard.com>
+ <iet6yl4mloktmpm7ngkug2dgtddriot7qwrkgg6loqermj7f74@mzyg34r7f4pc>
+ <19c22201-e3ec-4d07-97ae-c149b172e480@ideasonboard.com>
+ <ffecd7b0-39f1-494b-8a9f-81702a439752@kernel.org>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <ffecd7b0-39f1-494b-8a9f-81702a439752@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hi,
 
-On Wed, 15 Jan 2025 11:29:01 +0100, Louis-Alexis Eyraud wrote:
-> This patchset adds the basic support of the Mediatek Genio 510 EVK
-> board, based on the Mediatek MT8370 SoC.
-> 
-> It adds a device-tree file for the board (mt8370-genio-510-evk.dtb)
-> and an include file for the SoC (mt8370.dtsi), in order to be able to
-> boot. As the board is very close to the Genio 700 EVK board, an include file
-> (mt8390-genio-common.dtsi) is also created to factorize the common
-> definitions.
-> 
-> The Genio 510 EVK has following features:
-> - MT8370 SoC
-> - MT6365 PMIC
-> - MT6319 Buck IC
-> - 4GB LPDDR4X
-> - 64GB eMMC 5.1
-> - 12V DC Jack
-> - Micro SD card slot
-> - Push Button x 4 (Power, Reset, Download and Home Key)
-> - LED x 4 (Power, Reset, System on and Charging Status)
-> - USB Device Port x 1 (Micro USB Connector)
-> - USB Host Port x 1 (Type-C USB Connector)
-> - 3.5mm Earphone Jack x 1 (with Microphone Input)
-> - 3.5mm Line Out Audio Jack x 1
-> - Analog Microphone x 1
-> - Digital Microphone x 2
-> - Gigabit Ethernet with RJ45 connector
-> - HDMI 2.0 TX port with Type A HDMI connector
-> - eDP port
-> - 3x UART with serial-to-usb converters and micro USB connectors
-> - M.2 Slot x 2
-> - I2C Capacitive Touch Pad
-> - 4-Lane DSI x 2
-> - 4-Data Lane CSI x 2
-> - I2S Pin header
-> - 40-Pin 2.54mm Pin Header x 1
-> 
-> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-> ---
-> Changes in v2:
-> - Reword "dt-bindings: arm: mediatek: add mt8370-evk board" commit
->   message to add details on MT8370 SoC and links to MT8188 and MT8390
-> - Add note about gpu support in "arm64: dts: mediatek: add support for
->   MT8370 SoC" commit message
-> - Split "arm64: dts: mediatek: add device-tree for Genio 510 EVK board"
->   commit in two, as requested by AngeloGioacchino Del Regno
-> - Link to v1: https://lore.kernel.org/r/20250114-dts_mt8370-genio-510-v1-0-8517ee0fdbe8@collabora.com
-> 
-> ---
-> Louis-Alexis Eyraud (4):
->       dt-bindings: arm: mediatek: add mt8370-evk board
->       arm64: dts: mediatek: add support for MT8370 SoC
->       arm64: dts: mediatek: mt8390-genio-700-evk: Move common parts to dtsi
->       arm64: dts: mediatek: add device-tree for Genio 510 EVK board
-> 
->  .../devicetree/bindings/arm/mediatek.yaml          |    5 +
->  arch/arm64/boot/dts/mediatek/Makefile              |    1 +
->  arch/arm64/boot/dts/mediatek/mt8188.dtsi           |    8 +-
->  .../boot/dts/mediatek/mt8370-genio-510-evk.dts     |   19 +
->  arch/arm64/boot/dts/mediatek/mt8370.dtsi           |   64 ++
->  .../boot/dts/mediatek/mt8390-genio-700-evk.dts     | 1033 +------------------
->  .../boot/dts/mediatek/mt8390-genio-common.dtsi     | 1040 ++++++++++++++++++++
->  7 files changed, 1134 insertions(+), 1036 deletions(-)
-> ---
-> base-commit: 37136bf5c3a6f6b686d74f41837a6406bec6b7bc
-> change-id: 20250113-dts_mt8370-genio-510-3560b8010ba9
-> 
-> Best regards,
-> --
-> Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+On 15/01/2025 10:40, Krzysztof Kozlowski wrote:
+
+>>> Why only these folks? Why not all of the maintainers?
+>>
+>> The whole series is sent to the media list and maintainers. I thought
+>> this single patch doesn't warrant sending the whole series to DT list
+>> and maintainers, so I cc'd them here.
 > 
 > 
-> 
+> I was wondering why only some of the DT maintainers, not all? My usual
+> assumption is: you are not using get_maintainers.pl or you are working
+> on an old kernel.
 
+It's simpler than that: a copy-paste mistake. I'm not sure how I managed 
+to miss Conor there.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Any preference on cc'ing the DT maintainers and the dt-list only for 
+this patch (I'll use --- this time, I promise!), or just sending the 
+whole series also to DT people?
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/mediatek/' for 20250115-dts_mt8370-genio-510-v2-0-fc9b01d08834@collabora.com:
-
-arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: pinctrl@10005000: 'pcie-default' does not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8188-pinctrl.yaml#
-arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: pmic: regulators: 'compatible' is a required property
-	from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6397.yaml#
-arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: pmic: '#sound-dai-cells', 'mt6359codec', 'mt6359rtc' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6397.yaml#
-arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: mailbox@10320000: 'clock-names' is a required property
-	from schema $id: http://devicetree.org/schemas/mailbox/mediatek,gce-mailbox.yaml#
-arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: mailbox@10330000: 'clock-names' is a required property
-	from schema $id: http://devicetree.org/schemas/mailbox/mediatek,gce-mailbox.yaml#
-arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: jpeg-decoder@1a040000: iommus: [[123, 685], [123, 686], [123, 690], [123, 691], [123, 692], [123, 693]] is too long
-	from schema $id: http://devicetree.org/schemas/media/mediatek-jpeg-decoder.yaml#
-arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku3.dtb: mailbox@10330000: 'clock-names' is a required property
-	from schema $id: http://devicetree.org/schemas/mailbox/mediatek,gce-mailbox.yaml#
-
-
-
-
+  Tomi
 
 
