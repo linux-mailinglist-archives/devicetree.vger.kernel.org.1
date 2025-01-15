@@ -1,181 +1,294 @@
-Return-Path: <devicetree+bounces-138833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54B6FA127B9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 16:41:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7DDFA127C8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 16:43:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 784A0166C42
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 15:41:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40C57188B03C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 15:43:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE563150994;
-	Wed, 15 Jan 2025 15:41:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD72156886;
+	Wed, 15 Jan 2025 15:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="i7FOZ4sF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sSVGCiFs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EEF21482E8;
-	Wed, 15 Jan 2025 15:41:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41654153801
+	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 15:43:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736955705; cv=none; b=fuBZkLdSPQZgzow3huI1PpMuLC5Q/yGuo5je3Q3Bbog3Hl595U5Viwd6DT4Ltx82fHkdANRXFo8p8zyCf8glT+PrCp+khURwpOUM5GYcssbue2ukPVS0uXSjteOd1rWb/ENU2eI8aUIL6jmhGyIR9CyaynMZnIsGI13L+0FgMws=
+	t=1736955800; cv=none; b=HVnbvQpCCHDeUnK+TfK7p9e4SJFDRJ35zx7/an5W6Vnc38gu0HT4BUPv6OHbhl1HCBheDyxkVr++V7p4Yba9NfmmFWL1JX9WOr0l5pW2rduul1cBLITKeJibZYVlMOK50MAKwC6erCetOXCJ6tNncSnCaYWchyjs/1dnkxM0xzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736955705; c=relaxed/simple;
-	bh=/JQcXIt1wLFAPb73uMqYH+GL+shVQH/XP7NaxK0o6u4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dfRG0PtOjhPNFPCUOhqTsmLNb8RzBettOKM+7/5jDXDatXtBIpFVvMRVK95Y8k0+eOKuVEJtPkxl/OnlRDa1RGiQ7umM/4/x522A+SOoZqLXpWpVfT2XlAZ3glSa1UHa7z0RHExcInLYyThigoxqsUW41KYqr7dJPYhyzWManBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=i7FOZ4sF; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DE2564000E;
-	Wed, 15 Jan 2025 15:41:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1736955696;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=6WRfJqGcUNJe/nt9EhTNn6hFenqCKXxQ42q3Q/uX84A=;
-	b=i7FOZ4sF+kBSYya1uYOqNVZhLbKzpxAjU/vDyoK1KG5HhEpRp0IEKzce6TRzGcGtlesfj0
-	cMkZBwOYbblfLv4uHmXPesSgwNU+23RLrCtuDhz5bGRBWrhjTPo809lgT2j5sCM3jJEFnU
-	k9VayJEBuKVom4BPRcQNZRjBNz6AU9C9/hpiZ/THKriqGxyffAAAc3TdgtdZNBSBsdHuEE
-	MmHFqWF7zMRyCDlvsUZxm86DPh2YldtuQIxbLOfwr/Ly3Y0Tljf+1NdL+AV+4i9tMlEHij
-	/X78VHu2O+pwOM7/VNu6j4KZUHKiTPZNUyXJmD60cdeb85tHm7fhddbWMxm9+Q==
-Date: Wed, 15 Jan 2025 16:41:33 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, Laurent
- Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
- <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Marek Vasut
- <marex@denx.de>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Louis Chauvet
- <louis.chauvet@bootlin.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 3/3] drm: bridge: ti-sn65dsi83: Add error recovery
- mechanism
-Message-ID: <20250115164133.35afb889@bootlin.com>
-In-Reply-To: <20250114135456.5366eb2a@bootlin.com>
-References: <20250108101907.410456-1-herve.codina@bootlin.com>
-	<20250108101907.410456-4-herve.codina@bootlin.com>
-	<20250114-juicy-authentic-mushroom-cfcdfb@houat>
-	<20250114135456.5366eb2a@bootlin.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1736955800; c=relaxed/simple;
+	bh=dmMnEGcq21MgikMSqYyZzPg3t/SJw9VOAtnLYskAp30=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=j21HXBAQXb/utuimPluNpEQo6M5jRdk2n6mxbtxxWburRopgD7V9+0Le6HmZhHW6C8tewrgn1X/hb+88n8zWZPsWRGQ3+afXMtURxDA2CnwyVWKSAyQphkrdkx3v0XGs/c2j892UC79sSW761Y8lNRCWvaJ4PepwuoaeGpa2CKo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sSVGCiFs; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ab2b29dfc65so1059159866b.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 07:43:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1736955796; x=1737560596; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J3f/BtUt4rfes1Yuu9lxrllgo0vGvTSgAee2lMYuIXM=;
+        b=sSVGCiFsXzjESzJhK7T6vAw6FZ5Irslx6BD97YD+aSQfcUwL4e3pWZuxvqp24VVzq6
+         5MsYUVmL6yvXTHiIGLhjUsqXAP6FQVMqRhHQhuZJIr12jKj+d1DSCg+BqHP5DzTJcS5B
+         f4r0MM05oE7A/Aysc1GxEOAXKHdCHrsltty/E05qWz3uZ94CWsBvgOimqez3qACM8SbL
+         mILA72FYRxTNghMSyQbEFk0OJoxJj3Zqi5kIua2GrOU+sHA6+rOmO2zk9SJ10uY7JqX9
+         RgfkI+vG2sghbmk9FPfXKJ52h/zYczaRhzRhy3a+vEZ7SSQi2sIvQzt448sscB/oAXf7
+         P45g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736955796; x=1737560596;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=J3f/BtUt4rfes1Yuu9lxrllgo0vGvTSgAee2lMYuIXM=;
+        b=HZ6SXNV6lI3SUrA6XAWy8R2iGjzWwzsA5UwCE2e916zP5iHkZynVQms+eE7yvUiQZ+
+         LwrHDzxfRdppn5mxX3ynK1SCzjpcym5MwcajA+dn8dHF+4ABntT6ifTV/GPB+dzcLuLZ
+         nqh7pmQu2TnAFErV5U1pSgdydkKBJIJ5TL0YLBXgNsEKPrdXNVsbEr63PIUM9ubMM9gH
+         I9JNxgMLPp0x9+X+fDqUIC2W4k59NSnWG+zaEhOAv+P02QXei15XJ7uFJR75rO0XVmad
+         wvNAlf1eKSVB/3SGlq+oDTFDiREW+ufM5jQ3TL/5zn3DE6bN7ZbGtDioK3zKIHFmNHCH
+         c+5w==
+X-Forwarded-Encrypted: i=1; AJvYcCVVOYIrjPZFq0YuYlG+Ay8qQ9mq1jtnJwD8b4yvARdTVirex+3bQjmMQutkAS/bXn5q1KW1Ebjkcx6h@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcnLeatLiWN0sUyzkK0uu1eLoLx//SyZc5nO3QHPgPFM9abhGp
+	wc0SzslVdC4EwhRxHJD3KikDTwQJdNATfw3w/0A5FJWmBLEUr99UDz9BQTu3ArVoN/Ec/qbaocC
+	k9TjSPKFEW4Ae/n/EtL9020RQ3NPzHU7bS8j0cHdkhRlYSuo2
+X-Gm-Gg: ASbGncvbU+Gp8ikcBMvGrsQvpF5PKvdRMrTCJiAOCswMRtoPnxaFAPzQ4W3etEgNLAv
+	vv2KyCPmqYURcKjlsUlw7u4d2z2RTjuhVhZoowIg=
+X-Google-Smtp-Source: AGHT+IHDoi+mGYLGebHeWkmmNu9kuOD8jns2z/VYjko7Tnbt+R1MkhbZJ+/4XcPAdBtCZQ/TdWXJyEXsB5J2CJpGKLI=
+X-Received: by 2002:a17:907:2cc5:b0:aaf:c326:f2d8 with SMTP id
+ a640c23a62f3a-ab2abdc0257mr3047455066b.57.1736955795506; Wed, 15 Jan 2025
+ 07:43:15 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250103163805.1775705-3-claudiu.beznea.uj@bp.renesas.com> <46c8e8ff-ea39-4dbd-a26c-67fcabf4b589@linaro.org>
+In-Reply-To: <46c8e8ff-ea39-4dbd-a26c-67fcabf4b589@linaro.org>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 15 Jan 2025 16:42:37 +0100
+X-Gm-Features: AbW1kvbeNqMmLKjkvJqDQCdSbnPp1um89aAtf_bRTZINBqlSnyOdq4a4Fmix_nI
+Message-ID: <CAPDyKFq40KB6jKapnm0mOkFGB9-7VEGiBhNrVn_2fzrcziq0=Q@mail.gmail.com>
+Subject: Re: [PATCH 2/6] thermal: of: Export non-devres helper to
+ register/unregister thermal zone
+To: Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc: Claudiu <claudiu.beznea@tuxon.dev>, rafael@kernel.org, rui.zhang@intel.com, 
+	lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	geert+renesas@glider.be, magnus.damm@gmail.com, mturquette@baylibre.com, 
+	sboyd@kernel.org, p.zabel@pengutronix.de, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Maxime,
+On Thu, 9 Jan 2025 at 18:34, Daniel Lezcano <daniel.lezcano@linaro.org> wro=
+te:
+>
+>
+> Ulf,
+>
+> can you have a look at this particular patch please ?
+>
+> Perhaps this scenario already happened in the past and there is an
+> alternative to fix it instead of this proposed change
 
-On Tue, 14 Jan 2025 13:54:56 +0100
-Herve Codina <herve.codina@bootlin.com> wrote:
+I think the patch makes sense.
 
-> Hi Maxime,
-> 
-> On Tue, 14 Jan 2025 08:40:51 +0100
-> Maxime Ripard <mripard@kernel.org> wrote:
-> 
-> ...
-> 
-> > >  
-> > > +static int sn65dsi83_reset_pipe(struct sn65dsi83 *sn65dsi83)
-> > > +{
-> > > +	struct drm_atomic_state *state = ERR_PTR(-EINVAL);
-> > > +	struct drm_device *dev = sn65dsi83->bridge.dev;
-> > > +	struct drm_connector_state *connector_state;
-> > > +	struct drm_modeset_acquire_ctx ctx;
-> > > +	struct drm_connector *connector;
-> > > +	int err;
-> > > +
-> > > +	/*
-> > > +	 * Reset active outputs of the related CRTC.
-> > > +	 *
-> > > +	 * This way, drm core will reconfigure each components in the CRTC
-> > > +	 * outputs path. In our case, this will force the previous component to
-> > > +	 * go back in LP11 mode and so allow the reconfiguration of SN64DSI83
-> > > +	 * bridge.
-> > > +	 *
-> > > +	 * Keep the lock during the whole operation to be atomic.
-> > > +	 */
-> > > +
-> > > +	DRM_MODESET_LOCK_ALL_BEGIN(dev, ctx, 0, err);
-> > > +
-> > > +	state = drm_atomic_helper_duplicate_state(dev, &ctx);
-> > > +	if (IS_ERR(state)) {
-> > > +		err = PTR_ERR(state);
-> > > +		goto unlock;
-> > > +	}    
-> > 
-> > No, you must not allocate a new state for this, you need to reuse the
-> > existing state. You'll find it in bridge->base.state->state.  
-> 
-> Thanks for pointing that. I didn't know about bridge->base.state->state.
-> 
-> I will use that if using the state is still relevant (see next comment).
-> 
-> >   
-> > > +	state->acquire_ctx = &ctx;
-> > > +
-> > > +	connector = drm_atomic_get_old_connector_for_encoder(state,
-> > > +							     sn65dsi83->bridge.encoder);
-> > > +	if (!connector) {
-> > > +		err = -EINVAL;
-> > > +		goto unlock;
-> > > +	}
-> > > +
-> > > +	connector_state = drm_atomic_get_connector_state(state, connector);
-> > > +	if (IS_ERR(connector_state)) {
-> > > +		err = PTR_ERR(connector_state);
-> > > +		goto unlock;
-> > > +	}
-> > > +
-> > > +	err = drm_atomic_helper_reset_pipe(connector_state->crtc, &ctx);
-> > > +	if (err < 0)
-> > > +		goto unlock;    
-> > 
-> > And you'll find the crtc in bridge->encoder->crtc.  
-> 
-> I am a bit confused. I looked at the drm_encoder structure [1] and the crtc
-> field available in this structure should not be used by atomic drivers. They
-> should rely on &drm_connector_state.crtc.
-> 
-> In my case, I have the feeling that I should get the ctrc from the current
-> state (i.e. bridge->base.state->state) using the sequence provided in this
-> current patch:
->   Retrieve the connector with drm_atomic_get_old_connector_for_encoder()
->   Retrieve the connector state with drm_atomic_get_connector_state()
-> 
-> but you pointed out the bridge->encoder->crtc field.
-> 
-> Should I use this field or use the &drm_connector_state.crtc with the drm
-> connector state retrieved from bridge->base.state->state using the proposed
-> sequence?
-> 
-> [1] https://elixir.bootlin.com/linux/v6.13-rc1/source/include/drm/drm_encoder.h#L180
-> 
+If there is a PM domain that is attached to the device that is
+managing the clocks for the thermal zone, the detach procedure
+certainly needs to be well controlled/synchronized.
 
-I did some test and I cannot use bridge->base.state->state to retrieve the
-CRTC from the current state because this last state field is not set in my
-case (i.e. NULL pointer).
+>
+>
+> On 03/01/2025 17:38, Claudiu wrote:
+> > From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >
+> > On the Renesas RZ/G3S (and other Renesas SoCs, e.g., RZ/G2{L, LC, UL}),
+> > clocks are managed through PM domains. These PM domains, registered on
+> > behalf of the clock controller driver, are configured with
+> > GENPD_FLAG_PM_CLK. In most of the Renesas drivers used by RZ SoCs, the
+> > clocks are enabled/disabled using runtime PM APIs.
+> >
+> > During probe, devices are attached to the PM domain controlling their
+> > clocks. Similarly, during removal, devices are detached from the PM dom=
+ain.
+> >
+> > The detachment call stack is as follows:
+> >
+> > device_driver_detach() ->
+> >    device_release_driver_internal() ->
+> >      __device_release_driver() ->
+> >        device_remove() ->
+> >          platform_remove() ->
+> >         dev_pm_domain_detach()
+> >
+> > In the upcoming Renesas RZ/G3S thermal driver, the
+> > struct thermal_zone_device_ops::change_mode API is implemented to
+> > start/stop the thermal sensor unit. Register settings are updated withi=
+n
+> > the change_mode API.
+> >
+> > In case devres helpers are used for thermal zone register/unregister th=
+e
+> > struct thermal_zone_device_ops::change_mode API is invoked when the
+> > driver is unbound. The identified call stack is as follows:
+> >
+> > device_driver_detach() ->
+> >    device_release_driver_internal() ->
+> >      device_unbind_cleanup() ->
+> >        devres_release_all() ->
+> >          devm_thermal_of_zone_release() ->
+> >         thermal_zone_device_disable() ->
+> >           thermal_zone_device_set_mode() ->
+> >             rzg3s_thermal_change_mode()
+> >
+> > The device_unbind_cleanup() function is called after the thermal device=
+ is
+> > detached from the PM domain (via dev_pm_domain_detach()).
+> >
+> > The rzg3s_thermal_change_mode() implementation calls
+> > pm_runtime_resume_and_get()/pm_runtime_put_autosuspend() before/after
+> > accessing the registers. However, during the unbind scenario, the
+> > devm_thermal_of_zone_release() is invoked after dev_pm_domain_detach().
+> > Consequently, the clocks are not enabled, as the device is removed from
+> > the PM domain at this time, leading to an Asynchronous SError Interrupt=
+.
+> > The system cannot be used after this.
+> >
+> > Add thermal_of_zone_register()/thermal_of_zone_unregister(). These will
+> > be used in the upcomming RZ/G3S thermal driver.
+> >
+> > Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-So, in the next iteration, I will use directly bridge->encoder->crtc to get
-the CRTC.
+Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-Best regards,
-Hervé
+Kind regards
+Uffe
+
+> > ---
+> >   drivers/thermal/thermal_of.c |  8 +++++---
+> >   include/linux/thermal.h      | 14 ++++++++++++++
+> >   2 files changed, 19 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/thermal/thermal_of.c b/drivers/thermal/thermal_of.=
+c
+> > index fab11b98ca49..8fc35d20db60 100644
+> > --- a/drivers/thermal/thermal_of.c
+> > +++ b/drivers/thermal/thermal_of.c
+> > @@ -329,11 +329,12 @@ static bool thermal_of_should_bind(struct thermal=
+_zone_device *tz,
+> >    *
+> >    * @tz: a pointer to the thermal zone structure
+> >    */
+> > -static void thermal_of_zone_unregister(struct thermal_zone_device *tz)
+> > +void thermal_of_zone_unregister(struct thermal_zone_device *tz)
+> >   {
+> >       thermal_zone_device_disable(tz);
+> >       thermal_zone_device_unregister(tz);
+> >   }
+> > +EXPORT_SYMBOL_GPL(thermal_of_zone_unregister);
+> >
+> >   /**
+> >    * thermal_of_zone_register - Register a thermal zone with device nod=
+e
+> > @@ -355,8 +356,8 @@ static void thermal_of_zone_unregister(struct therm=
+al_zone_device *tz)
+> >    *  - ENOMEM: if one structure can not be allocated
+> >    *  - Other negative errors are returned by the underlying called fun=
+ctions
+> >    */
+> > -static struct thermal_zone_device *thermal_of_zone_register(struct dev=
+ice_node *sensor, int id, void *data,
+> > -                                                         const struct =
+thermal_zone_device_ops *ops)
+> > +struct thermal_zone_device *thermal_of_zone_register(struct device_nod=
+e *sensor, int id, void *data,
+> > +                                                  const struct thermal=
+_zone_device_ops *ops)
+> >   {
+> >       struct thermal_zone_device_ops of_ops =3D *ops;
+> >       struct thermal_zone_device *tz;
+> > @@ -429,6 +430,7 @@ static struct thermal_zone_device *thermal_of_zone_=
+register(struct device_node *
+> >
+> >       return ERR_PTR(ret);
+> >   }
+> > +EXPORT_SYMBOL_GPL(thermal_of_zone_register);
+> >
+> >   static void devm_thermal_of_zone_release(struct device *dev, void *re=
+s)
+> >   {
+> > diff --git a/include/linux/thermal.h b/include/linux/thermal.h
+> > index 69f9bedd0ee8..adbb4092a064 100644
+> > --- a/include/linux/thermal.h
+> > +++ b/include/linux/thermal.h
+> > @@ -195,13 +195,23 @@ struct thermal_zone_params {
+> >
+> >   /* Function declarations */
+> >   #ifdef CONFIG_THERMAL_OF
+> > +struct thermal_zone_device *thermal_of_zone_register(struct device_nod=
+e *sensor, int id, void *data,
+> > +                                                  const struct thermal=
+_zone_device_ops *ops);
+> >   struct thermal_zone_device *devm_thermal_of_zone_register(struct devi=
+ce *dev, int id, void *data,
+> >                                                         const struct th=
+ermal_zone_device_ops *ops);
+> >
+> > +void thermal_of_zone_unregister(struct thermal_zone_device *tz);
+> >   void devm_thermal_of_zone_unregister(struct device *dev, struct therm=
+al_zone_device *tz);
+> >
+> >   #else
+> >
+> > +static inline
+> > +struct thermal_zone_device *thermal_of_zone_register(struct device_nod=
+e *sensor, int id, void *data,
+> > +                                                  const struct thermal=
+_zone_device_ops *ops)
+> > +{
+> > +     return ERR_PTR(-ENOTSUPP);
+> > +}
+> > +
+> >   static inline
+> >   struct thermal_zone_device *devm_thermal_of_zone_register(struct devi=
+ce *dev, int id, void *data,
+> >                                                         const struct th=
+ermal_zone_device_ops *ops)
+> > @@ -209,6 +219,10 @@ struct thermal_zone_device *devm_thermal_of_zone_r=
+egister(struct device *dev, in
+> >       return ERR_PTR(-ENOTSUPP);
+> >   }
+> >
+> > +static inline void thermal_of_zone_unregister(struct thermal_zone_devi=
+ce *tz)
+> > +{
+> > +}
+> > +
+> >   static inline void devm_thermal_of_zone_unregister(struct device *dev=
+,
+> >                                                  struct thermal_zone_de=
+vice *tz)
+> >   {
+>
+>
+> --
+> <http://www.linaro.org/> Linaro.org =E2=94=82 Open source software for AR=
+M SoCs
+>
+> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+> <http://twitter.com/#!/linaroorg> Twitter |
+> <http://www.linaro.org/linaro-blog/> Blog
 
