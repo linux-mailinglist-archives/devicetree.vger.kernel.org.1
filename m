@@ -1,111 +1,177 @@
-Return-Path: <devicetree+bounces-138619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4EF2A1164C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 01:58:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD869A11685
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 02:26:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89B603A6EA4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 00:57:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85D723A7635
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 01:26:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E56ED42AB0;
-	Wed, 15 Jan 2025 00:57:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF5D84594D;
+	Wed, 15 Jan 2025 01:26:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rFiEz9sd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FkaxjCb2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B239741760;
-	Wed, 15 Jan 2025 00:57:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054308493;
+	Wed, 15 Jan 2025 01:26:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736902655; cv=none; b=e5lrfhNWPgibkCQG/0VBrDjGIPmFG6tttuazpZIqoeueKJEmZms+Rrj7MEDV78MP2WjWGsfaRe5lTJlDK7En3f9/FsAqAU7MwVt1NiQ5LGSo8Tjw1k1wpWMxhgfG7MBcAwAD/nGvjvzD705rHE9+UujoMADqL1BpYYvmaW1AcQM=
+	t=1736904401; cv=none; b=BN60JayRT5mKsKkYVH/AWgVVxNUDNgHC0oPW1Dsf5JcikXdD7MeRoRva8U9izORk+SjE2OlIEp9X/Zih+Bm3tcjrty29MFktmTOq+JeCl9befOtggKUUgGuc0iUg9+d0npbgX4kMQXFbWU6zF5zOfrAXzBjtoqoWWq7QvrpegMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736902655; c=relaxed/simple;
-	bh=l+9twYi0Uwgk+vxDb18woIEDFmtH67VIxPOkzuSyE9I=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=BcX+ukWMq+cCgH+1K1MmtE4zqH/qaPvjRl4/q5qGY0b+Ut3c8OG9bpTPAmb7YMp407gt/afi20nZ+26kDh4rriLPxABDaJmwOTN9zNtF3DUn5dLDx1B55mrvIU40UAaqjQIEAynwW10hI00MQXSLD6pjLR6SqDo+Tx+x5nGRYUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rFiEz9sd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC13EC4CEE6;
-	Wed, 15 Jan 2025 00:57:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736902655;
-	bh=l+9twYi0Uwgk+vxDb18woIEDFmtH67VIxPOkzuSyE9I=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=rFiEz9sdhNL1vEEfFmlCwjSPfCJhRy58Tc5CsvZ05oGqRKI6H+gGqCXvMFxcwcYZg
-	 wQvdQgnB4miB73msApRp2XtVaIaznh/qWrPzZ30oWn8usbxBva2Y3t6cIUDkUxtT7u
-	 65qG2n2zNlS1V92zM5bQlfH1dMSY513GmD1wxhNPs6GRfmgT4SUl3Eu5/FO+Vgwu5W
-	 6CdBe8WoS53Q6akeOV6W3AArLH8y3iPvf5vp9NNQTdXpZM4/aSxoxvvARE+OJ4t8eM
-	 cWUAGlUtsX8m8POXWpXpKNlL0h4bn2zhxixyMxVeHzUsElPzgyuhpEqiojgv97JHLZ
-	 ZMD5n7EiLgGtA==
-Date: Tue, 14 Jan 2025 18:57:33 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1736904401; c=relaxed/simple;
+	bh=IFtlo0+ZAvHJKhbaxfhDoG298UPSqKuepFwWHNIbYUo=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rqUZsX8zhDLl2pZDQKS2bDR+xFk2D5CRfZrlTECLH5GFBJTAdLUEIhTJwnIGh3j+Ra58BT0XLT/vCPNFcYP67QGu6+9fyx1s186Sv7OICVJnNL+MluSIZ06LY3b9nerKGkLWPsCXuiipHfKRhWuQkiIhkyFfMnsPBYxjDHBVe+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FkaxjCb2; arc=none smtp.client-ip=209.85.160.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f174.google.com with SMTP id d75a77b69052e-46788c32a69so76037631cf.2;
+        Tue, 14 Jan 2025 17:26:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736904399; x=1737509199; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zxKAeTboBvObYWkDQ0AR6zNtcZLXj4I4J7ZDM4Fl16Q=;
+        b=FkaxjCb2wOlp8KPBYTCCXFGnkgYNyFrt3KveYB7KhP3UaUFFcdakPEeNqGb2XjT7c9
+         i4h6E29ctSUyezeCScC74ZOfi6tQzDKvuHj7eQ3FPf/LgpEJWFr0v/za3BM/ywlXatkQ
+         C06sn1TwBWOXBKxk9hVU79tMawW/0eCIsNann1QGIJUlzS+6SDJ2upxg1Csbe/PVJFf9
+         o0sK2jNC7CIeMPEObsuSbBLot2nVL/6W+JMWaGYHT5lwu7B2cl4sP8pADtIU+bL+PbNJ
+         WnBXYOKKUK2MZu2VvoM5GD6gZYzk5nHweNEdtBcAFBTAAjFuFwvxdyLtCtI5hKXiu8pw
+         6YfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736904399; x=1737509199;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zxKAeTboBvObYWkDQ0AR6zNtcZLXj4I4J7ZDM4Fl16Q=;
+        b=hEsomBJAAfK12ouL9KkXbYwN6B2djqKsnbjqouA1dyx8tY1Ha1VTEm6CBFHMl4F9IZ
+         mErugMtQrZkADzBNxHn/Fn+DezoveV9hFRqblFjr1Rnumj4GrWhbiT48xjPOX8bMmmPr
+         sKqBdxcZftQjbplJSmVvb/VidWVP3Vuyqk/steqbaE45bLf9Taka2VmRPG4K6HAsrJy2
+         +umIPjKxEnhflW48NxPWqijfjKS8cmW8DhzmeZfTeIgQMlimxkhIxfzQpqZ3Yzve1wxb
+         DRwWzkcZbnPaPW14SL2LnUa2cA4ckToZCm25nVx67vQBwd0cWW03S0HgKSNqhxM7QoSH
+         8QWw==
+X-Forwarded-Encrypted: i=1; AJvYcCVxZWgv5Pkfuhr2jxMfwhS0iR/4geIlJo/0JMW4yGDHJ54Jq/sMDsTNNvqO3sfuPyxnVV4NVCXsGMGo@vger.kernel.org, AJvYcCWWOR8g4ND5wWutprp9l3LGfu+ZPt0IPL1qh1m4Iv2D1OyKURYvDGhgU33jSMITMxP6eNVl881raUp0@vger.kernel.org, AJvYcCWyqNmVay0cHu/buoTr0+8sBgptoA9al+bQjdx/vO0wawGzgn46UWhHEn7a8aTmKaVeV7PTspWuZh9xe/LX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQCZD+9EQCi6zPFJlLX9ClRRzZoclw30wkXqC9dt+kmKTHP1+o
+	c6zx5Ufgtq9BKjmZaEvCK5Nu42sYg2JJX6TOqkOJOJa7uETTooh7
+X-Gm-Gg: ASbGncs5kh5C7PD31ni2rj6iR6Z2RVBIh/myFi/Jz72zp3ZQ3c9q9CfNjclxCqZnfVu
+	21xzuxOBQeN6v2p7Kz1oJF3mHOTNVxRPJjkkIrCUslgVGowpvJCIVjT58pJ/Rvc4l6iU7nFE8Uq
+	0HyQycvYEN9DqSIPZvUbt+0ZIMlPKQmx+/Sg1twW/Bh3chR3bcKPZPQDhbEH8YCD4pot6jh9yrD
+	UKjVAnEyLuJqUzUnp9MYuN+1UjNo9/4kTWoYh/FOB3vUdTgUy19dnOCpl0mSuV5CbY9
+X-Google-Smtp-Source: AGHT+IHkjY+lSGkYzydQLdwGyg5cAMqfVAt8/A/Vokcc+X5oQZqhnf93yNQ9PAJuXC0Ab72Srz1tdA==
+X-Received: by 2002:a05:622a:34c:b0:466:8c53:7758 with SMTP id d75a77b69052e-46c70fd31b0mr421291791cf.5.1736904398819;
+        Tue, 14 Jan 2025 17:26:38 -0800 (PST)
+Received: from master-x64.sparksnet ([204.111.227.95])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-46c8733130dsm59933881cf.25.2025.01.14.17.26.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 14 Jan 2025 17:26:37 -0800 (PST)
+From: Peter Geis <pgwipeout@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: zyw@rock-chips.com,
+	kever.yang@rock-chips.com,
+	frank.wang@rock-chips.com,
+	william.wu@rock-chips.com,
+	wulf@rock-chips.com,
+	linux-rockchip@lists.infradead.org,
+	Peter Geis <pgwipeout@gmail.com>,
+	Alex Bee <knaerzche@gmail.com>,
+	Algea Cao <algea.cao@rock-chips.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Johan Jonker <jbx6244@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Trevor Woerner <twoerner@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Zhang Yubing <yubing.zhang@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org
+Subject: [RFC PATCH v1 0/6] rockchip: add a functional usb3 phy driver for rk3328
+Date: Wed, 15 Jan 2025 01:26:21 +0000
+Message-Id: <20250115012628.1035928-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Namhyung Kim <namhyung@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, Peter Zijlstra <peterz@infradead.org>, 
- Mark Rutland <mark.rutland@arm.com>, linux-riscv@lists.infradead.org, 
- weilin.wang@intel.com, Will Deacon <will@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Anup Patel <anup@brainfault.org>, 
- Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
- Jiri Olsa <jolsa@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, 
- Ingo Molnar <mingo@redhat.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Ian Rogers <irogers@google.com>, linux-perf-users@vger.kernel.org, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@sifive.com>, Conor Dooley <conor@kernel.org>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, Atish Patra <atishp@atishpatra.org>, 
- kvm@vger.kernel.org, Arnaldo Carvalho de Melo <acme@kernel.org>, 
- kvm-riscv@lists.infradead.org
-To: Atish Patra <atishp@rivosinc.com>
-In-Reply-To: <20250114-counter_delegation-v2-10-8ba74cdb851b@rivosinc.com>
-References: <20250114-counter_delegation-v2-0-8ba74cdb851b@rivosinc.com>
- <20250114-counter_delegation-v2-10-8ba74cdb851b@rivosinc.com>
-Message-Id: <173690265103.2069740.11443232308035656965.robh@kernel.org>
-Subject: Re: [PATCH v2 10/21] dt-bindings: riscv: add Smcntrpmf ISA
- extension description
+Content-Transfer-Encoding: 8bit
 
 
-On Tue, 14 Jan 2025 14:57:35 -0800, Atish Patra wrote:
-> Add the description for Smcntrpmf ISA extension
-> 
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
-> ---
->  Documentation/devicetree/bindings/riscv/extensions.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
+This is my newly reworked phy driver for the rk3328 usb3 phy. It is
+based loosely on my original version, but as of now almost nothing of
+the original driver remains. The main fix here is the discovery of
+BIT(6) in the interrupt enable grf register fixes the usb3 disconnection
+detection (mostly). On occasion an unpopulated usb3 hub will take
+several seconds to disconnect. However this means all of the hack around
+work to reset the usb core manually is no longer required.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I did my best to document all registers I could find. A lot was taken
+from emails between myself and Rockchip's engineers, much thanks to
+William Wu <wulf@rock-chips.com> for their assistance here. The rest of
+the config bits were taken from the rk3328 and rk3228h TRMs and the
+downstream driver. Everything that I couldn't find a definition for is
+prefixed UNK_ or UNKNOWN_. There's a lot of obviously used configuration
+registers with the pipe interface that are also undocumented.
 
-yamllint warnings/errors:
+The only major bug I have so far is my AX88179 usb3 gigabit ethernet
+adapter (Pluggable brand) crashes out when large amounts of data are
+transmitted. I suspect this is related to the RX and TX tuning, as
+leaving it at defaults makes things worse. As I am not a USB3 engineer
+and I do not have the specialized knowledge and hardware to determine
+what is going wrong, I am hoping the mailing list will have an answer
+here.
 
-dtschema/dtc warnings/errors:
+Please test and review.
+
+Very Respectfully,
+Peter Geis
 
 
-doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250114-counter_delegation-v2-10-8ba74cdb851b@rivosinc.com
+Peter Geis (6):
+  clk: rockchip: fix wrong clk_ref_usb3otg parent for rk3328
+  dt-bindings: phy: rockchip: add rk3328 usb3 phy
+  phy: rockchip: add driver for rk3328 usb3 phy
+  arm64: dts: rockchip: add rk3328 usb3 phy node
+  arm64: dts: rockchip: enable the usb3 phy on rk3328-roc boards
+  arm64: dts: rockchip: enable the usb3 phy on remaining rk3328 boards
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+ .../bindings/phy/rockchip,inno-usb3phy.yaml   | 166 ++++
+ .../boot/dts/rockchip/rk3328-nanopi-r2.dtsi   |  12 +
+ .../dts/rockchip/rk3328-orangepi-r1-plus.dtsi |  12 +
+ arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi  |  12 +
+ .../boot/dts/rockchip/rk3328-rock-pi-e.dts    |  12 +
+ .../arm64/boot/dts/rockchip/rk3328-rock64.dts |  12 +
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi      |  39 +
+ drivers/clk/rockchip/clk-rk3328.c             |   2 +-
+ drivers/phy/rockchip/Kconfig                  |  10 +
+ drivers/phy/rockchip/Makefile                 |   1 +
+ drivers/phy/rockchip/phy-rockchip-inno-usb3.c | 869 ++++++++++++++++++
+ 11 files changed, 1146 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/rockchip,inno-usb3phy.yaml
+ create mode 100644 drivers/phy/rockchip/phy-rockchip-inno-usb3.c
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.39.5
 
 
