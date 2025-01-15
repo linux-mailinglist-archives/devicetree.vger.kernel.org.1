@@ -1,107 +1,110 @@
-Return-Path: <devicetree+bounces-138901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA253A12E07
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 23:02:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9187A12E41
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 23:27:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D7BA1889C82
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 22:02:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81D583A6514
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 22:27:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43261DB14F;
-	Wed, 15 Jan 2025 22:02:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 392E31DC9A7;
+	Wed, 15 Jan 2025 22:27:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="H6ZO5+1c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA34A132C38;
-	Wed, 15 Jan 2025 22:02:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA94B1DC99C;
+	Wed, 15 Jan 2025 22:27:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736978562; cv=none; b=JsOGbMUAnEE49ZzjM8tf0fS+Yet8EiFOViwajKhEaAZluYkBjmRAmJiNKRV79eUYXquuYsXzOmkwR/jNEfcyvyRJArGoFH2KoB6MIzanPYGnP/NLJZaYpAjs5ku80zLQXJ5RvrI1jSU7MsLYgNAcJJ+jZxxeOjwbFU6TTdc+59I=
+	t=1736980057; cv=none; b=W2aZUHBQMbgzlBcSgbGxhs1i1hlSg++K09IQoV2VhmtT1Fdy0+kgog0XzlCxGV5Xbuq8lOzosU+nQiVUZbmK5P5rQU5/uJGu7dio4gB3IqTOk7DBC/rzv1QCLexrlIiLnSsOZepjXbTcdMf4x9BNysmFxZS9BpoWMPKRWyD7YnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736978562; c=relaxed/simple;
-	bh=ijlIvHMTyrjTCxvbB/pvCCuD+jmZ39Q6g0EnWlcR5mE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=XD+j1U0whvZGQOq8Jm6PVjDEdhbuJcpT36RGkZqFS/oC5EUMvGEdSLl6/F/stfzY3fJe1UXJxamF9hJ2QQdPCkg8+RtHyW8saYdM6fG1uavCdDacHdkOEJgpJzE8lllooEnN9cc1RrpGhfW6DmYveJfixfYtAGsXC2JRaUJBPrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32891C4CEE1;
-	Wed, 15 Jan 2025 22:02:42 +0000 (UTC)
-Received: by mercury (Postfix, from userid 1000)
-	id E31B61060346; Wed, 15 Jan 2025 23:02:39 +0100 (CET)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Sebastian Reichel <sre@kernel.org>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
- Hans de Goede <hdegoede@redhat.com>, 
- Marek Szyprowski <m.szyprowski@samsung.com>, 
- Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, 
- Purism Kernel Team <kernel@puri.sm>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-leds@vger.kernel.org
-In-Reply-To: <20241223-starqltechn_integration_upstream-v13-0-fbc610c70832@gmail.com>
-References: <20241223-starqltechn_integration_upstream-v13-0-fbc610c70832@gmail.com>
-Subject: Re: [PATCH v13 00/10] Add support for Maxim Integrated MAX77705
- PMIC
-Message-Id: <173697855990.458200.13692575371536759973.b4-ty@collabora.com>
-Date: Wed, 15 Jan 2025 23:02:39 +0100
+	s=arc-20240116; t=1736980057; c=relaxed/simple;
+	bh=L6v3ltkFxCKX/HYK5XpNob3hJTjyKUlopNZSEjK9jNM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YLWvJT/zSqmw0b6SLJquQkWpVxZcaruqhd+Yn+DGWwXvb2cwPZgARDLTedg7CXVbdS1ijykLYj3ej9WtQgVebQVuu8eDE6XrXdweIiMhWPxXRNK8dbhU4NuXmTDKr44WEwibazoSFeE+guyZSo6q7gvDcQsV+rmuZ4qlVxZ1ZWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=H6ZO5+1c; arc=none smtp.client-ip=65.109.113.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 7EE5940E0269;
+	Wed, 15 Jan 2025 22:27:25 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id cdTVkAjB66QY; Wed, 15 Jan 2025 22:27:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1736980041; bh=RT9Ae+k3g5ewDq5EuYzjdb2YU/NgkPnTTN+cUDaL0PQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=H6ZO5+1cTiAApFj1mE8Z/BaiL4rxS3C+90tNlLMFAaxxUhuAZOe5g2imOANwsroVv
+	 IS46JTrtzR5VFRw7jgR33DyZjsxqZOxYfTiWFQvw/okc+JVSA78D/Z/3OeBSNrob2P
+	 jALXxbRTD4dO1kJNWf53D/VZbJiWJqKqkx89FVq7XdwskSSkT2gm+jiRi/7qX2dj4d
+	 vQkvcceQ8n59Sf/6cXrUNa/UU0gNX1OSW+hUn5ud1yGRD5q0ueljRGd4fVqPEdpy6W
+	 wvns3bJsUjbSa//NcLr+12ltDuDO1peuu6fmuqJJEFmZLfwyxbm4WkWvq53hWcjPAY
+	 P8ojeZesTlnSCyPWGC/7EngvPL6bi8T/dymCdhY4F4duFAvbqw5Uv5J22xqrEL9EBa
+	 NExWm5pC1QpBP8iwj0Z1bn1IOHVYA3uMCqyhOF7YOqWHDEf7lG+Uvr5dQvXNkHGU0i
+	 O0yeL+qvc1eRPX4hKLqFubFVeQGiITmIoVv4CIPVNFqCBnFOCEwMBiRISci+YErCbx
+	 e47cgHXI5+9htgNuZC7MKZ+/ybtpYWZIycRiifL1yzMjZYTBSuHCtTeg90fqslsCiK
+	 MDy7FbB6m+165et/kmL0adS8B+WbzQfTtjUSXPrjeTmiQL5q8/onIuwsRXcN9PVwTx
+	 /FWG55rwdxv28fesf91t6vho=
+Received: from zn.tnic (p200300ea971F93c3329C23FffEA6A903.dip0.t-ipconnect.de [IPv6:2003:ea:971f:93c3:329c:23ff:fea6:a903])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 2D52640E021D;
+	Wed, 15 Jan 2025 22:27:09 +0000 (UTC)
+Date: Wed, 15 Jan 2025 23:27:02 +0100
+From: Borislav Petkov <bp@alien8.de>
+To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Tony Luck <tony.luck@intel.com>,
+	James Morse <james.morse@arm.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Robert Richter <rric@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-edac@vger.kernel.org, git@amd.com
+Subject: Re: [PATCH v5 1/5] cdx: export the symbols
+Message-ID: <20250115222702.GCZ4g2NhPjxGq0OmeC@fat_crate.local>
+References: <20250106053358.21664-1-shubhrajyoti.datta@amd.com>
+ <20250106053358.21664-2-shubhrajyoti.datta@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250106053358.21664-2-shubhrajyoti.datta@amd.com>
 
+On Mon, Jan 06, 2025 at 11:03:54AM +0530, Shubhrajyoti Datta wrote:
+> export the symbols for modules.
 
-On Mon, 23 Dec 2024 16:59:37 +0300, Dzmitry Sankouski wrote:
-> The Maxim MAX77705 is a Companion Power Management and Type-C
-> interface IC which includes charger, fuelgauge, LED, haptic motor driver and
-> Type-C management IC. It's used in Samsung S series smart phones
-> starting from S9 model.
-> 
-> Add features:
->   - charger
->   - fuelgauge
->   - haptic
->   - led
-> 
-> [...]
+Which modules are going to use those? Why?
 
-Applied, thanks!
+Why is this patch in this set?
 
-[01/10] power: supply: add undervoltage health status property
-        commit: df998c22321dde3f70cd3cf8c183dfd6bf64c759
-[02/10] dt-bindings: power: supply: max17042: add max77705 support
-        commit: 4519e13aef44269b0f8b6694a7adeb13d7d66b14
-[03/10] dt-bindings: power: supply: add maxim,max77705 charger
-        (no commit info)
-[04/10] dt-bindings: mfd: add maxim,max77705
-        (no commit info)
-[05/10] power: supply: max17042: add max77705 fuel gauge support
-        commit: 260d7c5e5392ac41c94152005d416172ba0a906d
-[06/10] power: supply: max77705: Add charger driver for Maxim 77705
-        (no commit info)
-[07/10] mfd: simple-mfd-i2c: Add MAX77705 support
-        (no commit info)
-[08/10] mfd: Add new driver for MAX77705 PMIC
-        (no commit info)
-[09/10] input: max77693: add max77705 haptic support
-        (no commit info)
-[10/10] leds: max77705: Add LEDs support
-        (no commit info)
+This commit message is largely inadequate. Your other commit messages too.
 
-Best regards,
+Yeah, the goal is for our commit messages to be as clear to humans as
+possible, even for people who do not have intimate knowledge of the matter.
+
+And, more importantly, when we start doing git archeology months, years from
+now, it should be perfectly clear why a commit was done.
+
+So please try to explain the issue in a clear and detailed way.
+
+People and you yourself will be thankful for it.
+
 -- 
-Sebastian Reichel <sebastian.reichel@collabora.com>
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
 
