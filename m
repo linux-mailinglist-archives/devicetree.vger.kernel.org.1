@@ -1,104 +1,166 @@
-Return-Path: <devicetree+bounces-138614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EE93A115C1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 00:58:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00DE3A115F0
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 01:13:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 396307A188C
-	for <lists+devicetree@lfdr.de>; Tue, 14 Jan 2025 23:58:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CB641887B73
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 00:13:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A34C22331F;
-	Tue, 14 Jan 2025 23:57:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DDBE1876;
+	Wed, 15 Jan 2025 00:13:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YR4jv4Vq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ijJ0wii/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA2D222594;
-	Tue, 14 Jan 2025 23:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F2F0801;
+	Wed, 15 Jan 2025 00:13:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736899079; cv=none; b=fjQ8l7fPogsjglre3x2VRKdH9gfBle1O1zlgUFVuhxbfc80FMlcD/PdguIrujND/1R9HJa94cgT5/3KwIyA89cnZADPIhZMwct6awCqg6PHaLVrSk4a6Z5p6NnK2COhNMprQ0y84r9BurY8LiAnFEynsbeC9GM68RAzu0X6vjMo=
+	t=1736899991; cv=none; b=Ns5qUhErG/pnFa0B9v4iVbUXRczDUqOqbq05raqarwo7PnXClGXguAG2oldkWeeCcjanEJKCvf7cCd1M3F2ZPt86Njw884Lu0rcKoAs5zWIJ5eASBALhNficuYpBjmzfQKaWHL51bhhrqZ2A5xH/2xSyZKaO5sY3PsUbAmU8+QI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736899079; c=relaxed/simple;
-	bh=tpzPtlhfSg1oMQzL2Ct27bJY5cpUAeZYKUcwY61RUAs=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=jqsh214T6v2YZk7REcgdIb5D58B+jMx4MWQcqGPO7aSXHCHOf2jQg/FPexVxbfTe+Sjnv42O+Amm5O9kcj6PlT0PC5KtQpM6ZJl2oIODg5SPrasFh1X66dK+DNne8mJ+RRSWp5kvSGG6jZMfO2ZGjUh4ez90IHhU6hs2w7Y1JvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YR4jv4Vq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66EA0C4CEDF;
-	Tue, 14 Jan 2025 23:57:58 +0000 (UTC)
+	s=arc-20240116; t=1736899991; c=relaxed/simple;
+	bh=QCdx+7T6KB4BIkX67bM4rEWTwO+57c4nzW6/2P/N9iI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=c3nX1Bd9ospwiC3QBf5C0UhrR/2aQ2vxRypuADymN0GU71PkAgbIOe0oGT6fLjc1aFE6umKtcmbdYPTewiMC0x2g59hozuMXOB4U7JZygPCzqEb53ZgM038xWKXqGrXcZxg3C50GEqEPj1rRsn3sPAAdGTzZOpw9hhxRYryWc30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ijJ0wii/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FB06C4CEDD;
+	Wed, 15 Jan 2025 00:13:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736899078;
-	bh=tpzPtlhfSg1oMQzL2Ct27bJY5cpUAeZYKUcwY61RUAs=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=YR4jv4VqMwHB30SIKNMX6+CkulB9Ga/HxazCKrQ9IEhW3b/hkvOihD10wmNx5Zwep
-	 xgfu+TfRDvQSNWzq+8nyUNAmlBR4NBhplr8wvhekLzglPGcNjTNu9GPdn6wVp4yCMJ
-	 cB+8b70SUbUZECxB/C9SOvcS993DDbrPCKVhNekVJsEnDJ23Rywpi2j2yI8IRb8KSi
-	 ndbzYFzP7E/ezdJa8n1pRKj9+3TwSEnWczBn2EHciN9COm2PPFSXlCg3fUbT5VkQIs
-	 t4uAsa9uobHF8IBR1P+LB6GGxx3R0XxsgDAoDKZjatJ1Nc5cGFNhYhFuvAIUy2jqGB
-	 FVzZJOsLOGrOQ==
-Date: Tue, 14 Jan 2025 17:57:57 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1736899990;
+	bh=QCdx+7T6KB4BIkX67bM4rEWTwO+57c4nzW6/2P/N9iI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=ijJ0wii/pQrY1T35xNhRorMcOPQM+Mr0TZNZoCO4Tb8WKxiheHAY3fTnW5O9NRkWE
+	 QSoOEsFZfWh0cgUcP7i2IGvOzKQXt6b9gCQdbhGnsEEg/igjbY9dSCPh9eHXlJ+mQL
+	 P+iaMNzmSXG70Lsh9BDhQe4zj0KZLNTVEC7WLxOBqvF1A/x9l0j/G9J64RkvHfvFYR
+	 UBXkU7uMSM/IXGnB2YAqvUco1FydsKp5isMa4m6RVHXXuSYx7Ubw8Xycz3LZu4/YdX
+	 s6bJc6sOFxSPTjbYsI9HD15Z5k8rw+Exa+hHMwjTYhquwh7gISQcUP8r/J2QS3SLxU
+	 WhC+Hcdd1elpg==
+Date: Tue, 14 Jan 2025 18:13:09 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: daire.mcnamara@microchip.com
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	conor.dooley@microchip.com, lpieralisi@kernel.org, kw@linux.com,
+	robh@kernel.org, bhelgaas@google.com, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ilpo.jarvinen@linux.intel.com,
+	kevin.xie@starfivetech.com
+Subject: Re: [PATCH v10 1/3] PCI: microchip: Fix outbound address translation
+ tables
+Message-ID: <20250115001309.GA508227@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: andrew+netdev@lunn.ch, pabeni@redhat.com, 
- linux-arm-kernel@lists.infradead.org, edumazet@google.com, joel@jms.id.au, 
- krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
- andrew@codeconstruct.com.au, devicetree@vger.kernel.org, 
- davem@davemloft.net, kuba@kernel.org, 
- openipmi-developer@lists.sourceforge.net, netdev@vger.kernel.org, 
- linux-aspeed@lists.ozlabs.org, conor+dt@kernel.org, eajames@linux.ibm.com, 
- minyard@acm.org
-To: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <20250114220147.757075-4-ninad@linux.ibm.com>
-References: <20250114220147.757075-1-ninad@linux.ibm.com>
- <20250114220147.757075-4-ninad@linux.ibm.com>
-Message-Id: <173689907575.1972841.5521973699547085746.robh@kernel.org>
-Subject: Re: [PATCH v5 03/10] dt-bindings: gpio: ast2400-gpio: Add hogs
- parsing
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241011140043.1250030-2-daire.mcnamara@microchip.com>
 
-
-On Tue, 14 Jan 2025 16:01:37 -0600, Ninad Palsule wrote:
-> Allow parsing GPIO controller children nodes with GPIO hogs.
+On Fri, Oct 11, 2024 at 03:00:41PM +0100, daire.mcnamara@microchip.com wrote:
+> From: Daire McNamara <daire.mcnamara@microchip.com>
 > 
-> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
+> On Microchip PolarFire SoC (MPFS) the PCIe Root Port can be behind one of
+> three general-purpose Fabric Interface Controller (FIC) buses that
+> encapsulate an AXI-M interface. That FIC is responsible for managing
+> the translations of the upper 32-bits of the AXI-M address. On MPFS,
+> the Root Port driver needs to take account of that outbound address
+> translation done by the parent FIC bus before setting up its own
+> outbound address translation tables.  In all cases on MPFS,
+> the remaining outbound address translation tables are 32-bit only.
+> 
+> Limit the outbound address translation tables to 32-bit only.
+
+I don't quite understand what this is saying.  It seems like the code
+keeps only the low 32 bits of a PCI address and throws away any
+address bits above the low 32.
+
+If that's what the FIC does, I wouldn't describe the FIC as
+"translating the upper 32 bits" since it sounds like the translation
+is just truncation.
+
+I guess it must be more complicated than that?  I assume you can still
+reach BARs that have PCI addresses above 4GB using CPU loads/stores?
+
+The apertures through the host bridge for MMIO access are described by
+DT ranges properties, so this must be something that can't be
+described that way?
+
+> Fixes: 6f15a9c9f941 ("PCI: microchip: Add Microchip Polarfire PCIe controller driver")
+> Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Reviewed-by: Ilpo Jarvinen <ilpo.jarvinen@linux.intel.com>
 > ---
->  .../devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml       | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../pci/controller/plda/pcie-microchip-host.c | 30 ++++++++++++++++---
+>  1 file changed, 26 insertions(+), 4 deletions(-)
 > 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250114220147.757075-4-ninad@linux.ibm.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
+> index 48f60a04b740..fa4c85be21f0 100644
+> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
+> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+> @@ -21,6 +21,8 @@
+>  #include "../../pci.h"
+>  #include "pcie-plda.h"
+>  
+> +#define MC_OUTBOUND_TRANS_TBL_MASK		GENMASK(31, 0)
+> +
+>  /* PCIe Bridge Phy and Controller Phy offsets */
+>  #define MC_PCIE1_BRIDGE_ADDR			0x00008000u
+>  #define MC_PCIE1_CTRL_ADDR			0x0000a000u
+> @@ -612,6 +614,27 @@ static void mc_disable_interrupts(struct mc_pcie *port)
+>  	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_HOST);
+>  }
+>  
+> +static int mc_pcie_setup_iomems(struct pci_host_bridge *bridge,
+> +			   struct plda_pcie_rp *port)
+> +{
+> +	void __iomem *bridge_base_addr = port->bridge_addr;
+> +	struct resource_entry *entry;
+> +	u64 pci_addr;
+> +	u32 index = 1;
+> +
+> +	resource_list_for_each_entry(entry, &bridge->windows) {
+> +		if (resource_type(entry->res) == IORESOURCE_MEM) {
+> +			pci_addr = entry->res->start - entry->offset;
+> +			plda_pcie_setup_window(bridge_base_addr, index,
+> +					       entry->res->start & MC_OUTBOUND_TRANS_TBL_MASK,
+> +					       pci_addr, resource_size(entry->res));
+> +			index++;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int mc_platform_init(struct pci_config_window *cfg)
+>  {
+>  	struct device *dev = cfg->parent;
+> @@ -622,15 +645,14 @@ static int mc_platform_init(struct pci_config_window *cfg)
+>  	int ret;
+>  
+>  	/* Configure address translation table 0 for PCIe config space */
+> -	plda_pcie_setup_window(bridge_base_addr, 0, cfg->res.start,
+> -			       cfg->res.start,
+> -			       resource_size(&cfg->res));
+> +	plda_pcie_setup_window(bridge_base_addr, 0, cfg->res.start & MC_OUTBOUND_TRANS_TBL_MASK,
+> +			       0, resource_size(&cfg->res));
+>  
+>  	/* Need some fixups in config space */
+>  	mc_pcie_enable_msi(port, cfg->win);
+>  
+>  	/* Configure non-config space outbound ranges */
+> -	ret = plda_pcie_setup_iomems(bridge, &port->plda);
+> +	ret = mc_pcie_setup_iomems(bridge, &port->plda);
+>  	if (ret)
+>  		return ret;
+>  
+> -- 
+> 2.43.0
+> 
 
