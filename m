@@ -1,174 +1,178 @@
-Return-Path: <devicetree+bounces-138662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5ABAA11A07
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 07:48:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D58EA11A2F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 07:56:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88A403A89FF
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 06:48:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EC851888C20
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 06:56:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 613AE23026C;
-	Wed, 15 Jan 2025 06:48:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B22A522F823;
+	Wed, 15 Jan 2025 06:56:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="D0/XwgmE"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="hqtqwnR5";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="rRaUt3r4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF075223;
-	Wed, 15 Jan 2025 06:48:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A682822F392;
+	Wed, 15 Jan 2025 06:56:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736923706; cv=none; b=BaiiwvllARwPTF1l/WCY1v+fXiLUjKC8BryrICAwKGHXw7t5RWnargI8TAQoaa/h2wz5lLswm41aLo7MGcYLNYZoDtgeMi8HtJXA+I/bU6Mn9t+HKJSdJftipre/YNzFKRPv16/KFhWGsK6XCymz05bekhsy3DrNIYjHV/qv8j0=
+	t=1736924173; cv=none; b=VG47gEGUiwUvj6v+yWkWSGBnOlzrhH3mxpqLJwB2i6sSSvGeNmzKKnPnJil6xM6OJzCUQ2A6+24ELwHa6YeDtLd5FbHKNO5HH1kT1NjTB4+O7Lw5h3xtpF4yZZ0FmZxkBrG0px0T6/tvgjviYxC47of8rmkSdx1BKn89J6GrB1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736923706; c=relaxed/simple;
-	bh=m5OEpVoI63DZwcR9TguGmDDONdRscwKlIGU+8JvzPu8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=h9tFc1NfzMX5k/aiUznasCYpyHi1zgrEvYfn/eS66gL7O7hbTr3ypikmB8atzzRD6ckLfIpbPiip3Mzzl14hpnSrC2n2Y1bM2kyvjD0Id++nFSrjYEyGG+GzXrXR4Yfw74wNWcNT5xIqtMWXnZRbcyaYs9ujsc5uSx2+Msve20M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=D0/XwgmE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50F0bhPn002544;
-	Wed, 15 Jan 2025 06:48:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	U7y5XI/ogBdlpYlDZW9rMCcRFyBZScGo6nZIm6wSEyU=; b=D0/XwgmEfXOtkGgp
-	kxTaZpQm6d6xEzmMvi7RJRpZB56Ux8HLW/dSih2WDuJBZu+eDIvZfQuZJ0t7VXiq
-	jKwvjtapTqDyjHRcAGL6NrDntJq17gpyOuru9vckc3Y/yXaPpnfDkNebJmxQD9I5
-	Vz0hNYjcFahM0cxq/XuF/ASnVwrY83OSBAN1pRskGl2zsP6h1xfJ+EQlwvCdGo7v
-	GY8srbz6MzIPs6TMgChjyQJnpk3lE9kHZXnndz1oOikPKG9EHSEi4WmccVAWkA4T
-	nq1aPza4TNqvfzbcI+PPoIFE19bPNVHd4SC6tk2CQeYSZFtERcvaFiVvhr7q+9LT
-	FFBftg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4462mkgr5x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Jan 2025 06:48:18 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50F6mH3s019382
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Jan 2025 06:48:17 GMT
-Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 14 Jan 2025 22:48:12 -0800
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-To: <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
-        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-Subject: [PATCH v2 3/3] arm64: dts: qcom: ipq5424: Enable PCIe PHYs and controllers
-Date: Wed, 15 Jan 2025 12:17:47 +0530
-Message-ID: <20250115064747.3302912-4-quic_mmanikan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250115064747.3302912-1-quic_mmanikan@quicinc.com>
-References: <20250115064747.3302912-1-quic_mmanikan@quicinc.com>
+	s=arc-20240116; t=1736924173; c=relaxed/simple;
+	bh=uplevQf1DBuL/p+VfT9NuX2d3lq3vkW1oymExHJLGkY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=f+98qFUde8V549SvbqdYuy15LVrpKBy4wGD5qgbLVAwxPy8h74pl4z4VyubJFzTkq9xxFzWg2JaNWaWMnTEIzfn59ACsH/PTg1ue45JEyhhYx1QpzhV7aXdyxsVh9bTQ6gwQI60MhGPbdyGPHGN5Us/rVUfaGgE62IQPJ3Rhero=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=hqtqwnR5; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=rRaUt3r4 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1736924171; x=1768460171;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=NZWScfnhG5GpViQRhxbdTtAg65z7x4RzTUF+ZyOs9oE=;
+  b=hqtqwnR5mgUD9Miho3/QOJTC1LlO7hs9+ksy8DuypfGR0toWQ20jaxeN
+   sygGs3lPv65H+aicTYihqtfP4AX5TAh612Zn3/U0eBKk/CUkEVvjm8BVO
+   supmc4c91rT109MdCflctSOQ8KSmKQMOsmwziyM9ZetsDQTvvJ+r/NfPD
+   bp7tPJOyLWLWM4RKzFTCsRfcsjHN8VG3lxOVxRwr+ohTcR6tVxYJ1zhBe
+   YIK3qECOWuSnit21yQlJR0ojkA9p4Mmd7SXJAWSpHyNbSXBFBSwxQQtdA
+   jwnAI1r5N4wwQU7XkLWGQH0NuRzVQauWK/3llPaF0qzcoRcX+l8H3JyYB
+   w==;
+X-CSE-ConnectionGUID: gsu/clicSM+xgQm8P2XkNw==
+X-CSE-MsgGUID: /xlyy+hpQRu21QT+U+Ca/g==
+X-IronPort-AV: E=Sophos;i="6.12,316,1728943200"; 
+   d="scan'208";a="41055623"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 15 Jan 2025 07:56:08 +0100
+X-CheckPoint: {67875C08-2A-3C670366-E45AD810}
+X-MAIL-CPID: 4DCA0B359B8F2B8B5BAA414B640255C3_4
+X-Control-Analysis: str=0001.0A682F28.67875C08.009C,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id DE05516A656;
+	Wed, 15 Jan 2025 07:56:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1736924164;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NZWScfnhG5GpViQRhxbdTtAg65z7x4RzTUF+ZyOs9oE=;
+	b=rRaUt3r4mq0n3eb7lakp4IuWL8VHI5lLgQFtofeKLZDIi1fAcaaTZ8JIyAlDw5Us6wSQ0M
+	xYYjkvmdGBCha/mkYW6snO2AY0f8xOYD0d4lNGon0ALqk+YPaCmXl+XWUEmP4Wp5xgS5TC
+	XbYPn/PJGbavKZbz7kEp0oiJpEt3sAmegaDAZmydMLBH+AjMi3VOtpjk/ju5gB8ICgOT4k
+	inRn5+MkpDdUx/JGMj5VSnuD4aIobLqC89rzX+rydW1EH4rB9/8Pnk04kW5AtmUmurtIMQ
+	AyER144bIk1+4EKeu0xef4TWFv/uY+Jf8WONTsc+odM0AM1u9iJ9RbhdY9GmYw==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Peng Fan <peng.fan@nxp.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support accessing controller for i.MX9
+Date: Wed, 15 Jan 2025 07:56:03 +0100
+Message-ID: <6018578.MhkbZ0Pkbq@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <PAXPR04MB84598515572A669E5856379F88182@PAXPR04MB8459.eurprd04.prod.outlook.com>
+References: <20250108-imx-ocotp-v5-0-a6d90e18ebe9@nxp.com> <4956524.GXAFRqVoOG@steina-w> <PAXPR04MB84598515572A669E5856379F88182@PAXPR04MB8459.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: dP9mHta9VrNqYQmOW1yL5c6jodqISBvi
-X-Proofpoint-GUID: dP9mHta9VrNqYQmOW1yL5c6jodqISBvi
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-15_02,2025-01-13_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 spamscore=0
- impostorscore=0 malwarescore=0 phishscore=0 priorityscore=1501
- lowpriorityscore=0 mlxlogscore=827 clxscore=1015 mlxscore=0 adultscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501150049
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Enable the PCIe controller and PHY nodes corresponding to RDP466.
+Hi,
 
-Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
----
-Changes in V2:
-	- Drop the inner wrapper in pcie2_default_state and
-	  pcie3_default_state nodes.
-	- Reordered the pcie nodes.
+Am Dienstag, 14. Januar 2025, 09:35:41 CET schrieb Peng Fan:
+> > Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support accessing
+> > controller for i.MX9
+> >=20
+> > Hi,
+> >=20
+> > Am Samstag, 11. Januar 2025, 13:41:58 CET schrieb Peng Fan:
+> > > > Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support
+> > accessing
+> > > > controller for i.MX9
+> > > >
+> > > > Hi,
+> > > >
+> > > > Am Donnerstag, 9. Januar 2025, 04:34:18 CET schrieb Peng Fan:
+> > > > > On Wed, Jan 08, 2025 at 11:15:40AM +0100, Alexander Stein
+> > wrote:
+> > > > > >Hi Peng,
+> > > > > >
+> > > > > >Am Mittwoch, 8. Januar 2025, 08:00:18 CET schrieb Peng Fan
+> > (OSS):
+> > > > > >> From: Peng Fan <peng.fan@nxp.com>
+> > > > > >>
+> > > > > >> i.MX9 OCOTP supports a specific peripheral or function being
+> > > > fused
+> > > > > >> which means disabled, so
+> > > > > >>  - Introduce ocotp_access_gates to be container of efuse gate
+> > > > > >> info
+> > > > > >>  - Iterate all nodes to check accessing permission. If not
+> > > > > >>    allowed to be accessed, detach the node
+> > > > > >>
+> > > > > >> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > > >> ---
+> > > > > >>  drivers/nvmem/imx-ocotp-ele.c | 172
+> > > > > >> +++++++++++++++++++++++++++++++++++++++++-
+> > > > > >>  1 file changed, 171 insertions(+), 1 deletion(-)
+> > > > > >>
+> > > > > [....]
+> > > > > >> +
+> > > > > >> +	return imx_ele_ocotp_access_control(priv);
+> > > > > >
+> > > > > >In [1] you mentioned devlink should solve the probe order. How
+> > > > does
+> > > > > >this play when the driver is compiled in (e.g. ethernet for NFS
+> > > > > >boot) but this OCOTP driver is just a module?
+> > > > >
+> > > > > OCOTP needs to built in for using devlink. Or the users needs to
+> > > > > be built as module.
+> > > >
+> > > > I don't like this kind of assumption. Would it make more sense to
+> > > > make CONFIG_NVMEM_IMX_OCOTP_ELE as bool instead of tristate?
+> > >
+> > > No. Users could setup their own system with this driver build in or
+> > > built related drivers as modules.
+> >=20
+> > Sure, but if the kernel locks/fails/panics while accessing peripherals =
+just
+> > because of the kernel config seems at east very unfortunate to me.
+> > How is someone supposed to analyze/debug this?
+> >=20
+> > > At least for Android GKI, this driver needs to be as module.
+> >=20
+> > Any particular reason this needs to be a module?
+>=20
+> Android has a minimal kernel which is controlled by Google.
+> Vendors could only built modules based on Google's Image.
+>=20
+> Updating this to y in upstream, means we need to change
+> it back to m in NXP downstream android kernel.
 
- arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts | 41 ++++++++++++++++++++-
- 1 file changed, 40 insertions(+), 1 deletion(-)
+Ok, that's an Android thing.
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
-index b6e4bb3328b3..73e6b38ecc26 100644
---- a/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts
-@@ -53,6 +53,30 @@ &dwc_1 {
- 	dr_mode = "host";
- };
- 
-+&pcie2 {
-+	pinctrl-0 = <&pcie2_default_state>;
-+	pinctrl-names = "default";
-+
-+	perst-gpios = <&tlmm 31 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&pcie2_phy {
-+	status = "okay";
-+};
-+
-+&pcie3 {
-+	pinctrl-0 = <&pcie3_default_state>;
-+	pinctrl-names = "default";
-+
-+	perst-gpios = <&tlmm 34 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&pcie3_phy {
-+	status = "okay";
-+};
-+
- &qusb_phy_0 {
- 	vdd-supply = <&vreg_misc_0p925>;
- 	vdda-pll-supply = <&vreg_misc_1p8>;
-@@ -147,6 +171,22 @@ data-pins {
- 			bias-pull-up;
- 		};
- 	};
-+
-+	pcie2_default_state: pcie2-default-state {
-+		pins = "gpio31";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+		output-low;
-+	};
-+
-+	pcie3_default_state: pcie3-default-state {
-+		pins = "gpio34";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+		output-low;
-+	};
- };
- 
- &uart1 {
-@@ -166,4 +206,3 @@ &usb3 {
- &xo_board {
- 	clock-frequency = <24000000>;
- };
--
--- 
-2.34.1
+> If you need it built in, you could modify your downstream
+> config, right?
+
+I'm not saying I need a built-in. My concern is that a wrong Kconfig will
+result in silent errors/lockups.
+
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
