@@ -1,223 +1,146 @@
-Return-Path: <devicetree+bounces-138616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AADA8A1160E
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 01:24:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BEA51A11647
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 01:57:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C8003A80CC
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 00:24:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D40BE7A1E78
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 00:57:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3858111AD;
-	Wed, 15 Jan 2025 00:24:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA01A1C6B4;
+	Wed, 15 Jan 2025 00:57:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="X9KITJsz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dfybK6JS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BAD2111
-	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 00:24:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6EE93C0B;
+	Wed, 15 Jan 2025 00:57:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736900649; cv=none; b=Fr1gII20OhyEnA88mVaoEcWPqMPtkSd/yOPx0QwYb9X+ZR6970oTMYqsahu1+FF6xviAT/FFy4ODuCFBgLqQF59QvvTmIAv4p5IeVLSkCZ5/uY6vh/X5+gHBYKoU5xuKN1nAECB2G965CzvU4JSRqXsVcrgroekSrgVe8sNzyCI=
+	t=1736902652; cv=none; b=tDeSH68VXDg2tBEufNi2TMf5z2JUR9gd83HydKhWXgX1bPTyRzZwhYrfAnObkppq1LgM4/YwZrb69ElRvKt2Khx132ZZJFRBMrCwLUXeKNmy3NsnWKkesl0WBnMrOVr0lsiiWurGlHRjnt/yJ/T/qme/CW+ih5zohy+omXarJDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736900649; c=relaxed/simple;
-	bh=GlrHrjyH7schnzpzjXM5JH4X1WNKBqsNsXzi+kBESOg=;
-	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jQsjdCcAOXSAtWXpC3GwyF6iOBq3EANEVSrYXQAzabXmLAwb0sI9H+aBNeKdYVc5BfzHC6EHmQmw8dJ21d277sId69GzZ9tPs/S68hI+zB2aKgFCOGwIngOink+SeRxDXmb7ViDglu6A8DuaYP5tglzSLoU+SVRKbQeiX3RNvm0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=X9KITJsz; arc=none smtp.client-ip=209.85.222.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-7b6ff72ba5aso582971585a.1
-        for <devicetree@vger.kernel.org>; Tue, 14 Jan 2025 16:24:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1736900647; x=1737505447; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XdkrQTRhznZOHJugzyblEZGatDWjWHhDWzWqyeJbNHU=;
-        b=X9KITJszZgbF4fv3rNt7BRDSf9KWL0Cq81XtZ7yjH2kNr7hj3yR7Yq2FZi+r3eYCiX
-         sL096YA494ZUk6ZntJzkEf3GSPQDpF6x/mC/fblcTZtV8Bpu3vLHcH8AWmfivAaqwYaH
-         Cscyv1proqkA9SOtdll6/BsRLcGRBAccVTPLE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736900647; x=1737505447;
-        h=cc:to:subject:message-id:date:user-agent:from:references
-         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XdkrQTRhznZOHJugzyblEZGatDWjWHhDWzWqyeJbNHU=;
-        b=bSklADZfFrMSHrTSdykaapWkH4VCkKYoyrWGmNQlpe2ohPG7EZ8z+Ub00MqUMyzQRn
-         ueCv0fcUQnniNODFmoZ4XdIG9bOrz3rH9WAYxPba6cUVAwpkK5U6A+QtiW1p8yZpsnAn
-         qAM0Gd17Q2XDVK/Q8YYWrqR1cN2Hb4CGyak6aeRfOoiJHW552r2hdFqu+lh4JbVkxWa8
-         DQAaO4Z/6OnQYDp/zcIRVLQ9afY+yMGh1V6mkqonAuawsT6e6xKS6TKQ3hURJuflbHuK
-         RWE38/44Bn83Cg0XyygnrM04M0265l7cTvWnZah81Q+jSIt3CyPNIjzxjGZgU9FpmxH2
-         E6+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWkAq77xXMb4x99sCnkbhl1EP60dNLe7UhpWkgQ1550I3/KrqbSWoIsZUEOMS5Ltu/Bdu7h0iGo596G@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3WwRwS3Hbb/CbrexQzyyHWSLRTRgMPxAwL9FPSuYSLB7m35Ck
-	ITKJ1/rRks2Bkqt7F0vvYI0JhqV0Ixkvb3K7FgPDpg5SG7TOxuta4Z7yNRriEMyG4FoAgs/VAVu
-	c+OdE3RTuTIZ9oo2gInb5FeOG1DSuc78m6SkX
-X-Gm-Gg: ASbGncuWA+U4ARH4uBbVXrc5OXKFQUrhqucThPomUJlci6OzglFwVdAWTk03eJhsIdJ
-	ARqikBHJN90eVTcffZ9uKHyUMoDqtQUoB0w7CtYEN+DD5T2O+5ZarepMBv4R+FTt2+g==
-X-Google-Smtp-Source: AGHT+IGFlnDsW2kYH9Fj+I7/X5kk5DRoyvUl1Vg4TYrbwt2tYG+HP+0yjJ7qusb6i1E+hOnMy50XeRmYAHgeARPLxE8=
-X-Received: by 2002:a05:620a:1b8f:b0:7b6:6ffc:e972 with SMTP id
- af79cd13be357-7bcd96fa261mr4559763085a.5.1736900646849; Tue, 14 Jan 2025
- 16:24:06 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 14 Jan 2025 16:24:06 -0800
+	s=arc-20240116; t=1736902652; c=relaxed/simple;
+	bh=KGGNDzoaWvSUYYvzmYVu6FGehnU8B6otZzhgT9PcGl0=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=ktXDUfeDtxWMsbxluKwZwEeJQ3k2lrIVexAey+1Js9acnApNIGiOlE3f3BDIoqDQRUJUTbq8KXJBNYYywgmFwMAmix6uKIZGfEJ0UqP+XycU1a9XEYwy/96heQEXqztZPmuqohKunPtIIb3X8xyVrVZ5hkyMyQOAQrMPvSAC0YI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dfybK6JS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9063C4CEDD;
+	Wed, 15 Jan 2025 00:57:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736902652;
+	bh=KGGNDzoaWvSUYYvzmYVu6FGehnU8B6otZzhgT9PcGl0=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=dfybK6JS3Et6WBGW9KdBFspT/KTVKi3djXQeQQ+vCsdquH0oxKA8TAiL2RBIHBQy3
+	 qmvwqwUtlrFqOqAZDdiPT08X8XYi1ie6B4A7FIYnMtKbn66rkP4YHX3YrZuBmpTwyW
+	 kvsPO6uwsv8Z6jpY2ht9krItPCPlEyVN2TaI0fTtoUtwKXGnZ0fXTP8dMxFQgZxigQ
+	 09hHjXAJqFq/BF4e/FVLDH8UXVwJwOVHlMgiMFPsTr+YPtae310NzwKabz2CeZyAoF
+	 Bd+CQUnkbufQIIAnLutb7IzJOpl4UK04alZfDJlsCw0seeI1zn2TfhBlDGH+CDEXu1
+	 9Pi4ObO/0FpRw==
+Date: Tue, 14 Jan 2025 18:57:31 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20250110140934.GB2630182-robh@kernel.org>
-References: <20250108012846.3275443-1-swboyd@chromium.org> <20250108012846.3275443-6-swboyd@chromium.org>
- <20250110140934.GB2630182-robh@kernel.org>
-From: Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
-Date: Tue, 14 Jan 2025 16:24:06 -0800
-X-Gm-Features: AbW1kvavzIgI9aEsq8_mXYL0R-E63WYKH0DsECCwhvKpTHMjYrqscz7VM-RM9s4
-Message-ID: <CAE-0n51sr_D7e66WiSETiSuE3nZaAJwS5KfuYzdVWsLbL=q2zA@mail.gmail.com>
-Subject: Re: [RFC PATCH 5/6] bus: qcom-sc7180: Attach pm domain to watchdog device
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	linux-kernel@vger.kernel.org, patches@lists.linux.dev, 
-	devicetree@vger.kernel.org, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Arnd Bergmann <arnd@arndb.de>, 
-	Conor Dooley <conor+dt@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Alexander Shishkin <alexander.shishkin@linux.intel.com>, 
+ linux-arm-kernel@lists.infradead.org, Anup Patel <anup@brainfault.org>, 
+ Will Deacon <will@kernel.org>, weilin.wang@intel.com, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, kvm-riscv@lists.infradead.org, 
+ Arnaldo Carvalho de Melo <acme@kernel.org>, kvm@vger.kernel.org, 
+ Atish Patra <atishp@atishpatra.org>, Palmer Dabbelt <palmer@dabbelt.com>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Jiri Olsa <jolsa@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>, 
+ Namhyung Kim <namhyung@kernel.org>, Palmer Dabbelt <palmer@sifive.com>, 
+ linux-perf-users@vger.kernel.org, Peter Zijlstra <peterz@infradead.org>, 
+ linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+ Ingo Molnar <mingo@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
+ Ian Rogers <irogers@google.com>
+To: Atish Patra <atishp@rivosinc.com>
+In-Reply-To: <20250114-counter_delegation-v2-4-8ba74cdb851b@rivosinc.com>
+References: <20250114-counter_delegation-v2-0-8ba74cdb851b@rivosinc.com>
+ <20250114-counter_delegation-v2-4-8ba74cdb851b@rivosinc.com>
+Message-Id: <173690237126.2063459.986002304235117552.robh@kernel.org>
+Subject: Re: [PATCH v2 04/21] dt-bindings: riscv: add Sxcsrind ISA
+ extension description
 
-Quoting Rob Herring (2025-01-10 06:09:34)
-> > diff --git a/drivers/bus/qcom/qcom-sc7180.c b/drivers/bus/qcom/qcom-sc7180.c
-> > index a615cf5a2129..7dfe6b32efef 100644
-> > --- a/drivers/bus/qcom/qcom-sc7180.c
-> > +++ b/drivers/bus/qcom/qcom-sc7180.c
-> > @@ -3,18 +3,140 @@
-> >   * SoC bus driver for Qualcomm SC7180 SoCs
-> >   */
-> >
-> > +#include <linux/cleanup.h>
-> > +#include <linux/clk.h>
-> >  #include <linux/device.h>
-> > +#include <linux/dev_printk.h>
-[...]
-> > +
-> > +static int qcom_soc_domain_power_on(struct generic_pm_domain *domain)
-> > +{
-> > +     struct qcom_soc_pm_domain *soc_domain;
-> > +
-> > +     pr_info("Powering on device\n");
-> > +     soc_domain = gpd_to_qcom_soc_pm_domain(domain);
-> > +
-> > +     return clk_prepare_enable(soc_domain->clk);
-> > +}
-> > +
-> > +static int qcom_soc_domain_power_off(struct generic_pm_domain *domain)
-> > +{
-> > +     struct qcom_soc_pm_domain *soc_domain;
-> > +
-> > +     pr_info("Powering off device\n");
-> > +     soc_domain = gpd_to_qcom_soc_pm_domain(domain);
-> > +
-> > +     clk_disable_unprepare(soc_domain->clk);
->
-> How's this going to scale when there are multiple clocks and it's not
-> just turn on/off all the clocks in any order? Or when there's ordering
-> requirements between different resources.
 
-We'll need different power_on/power_off functions when the ordering
-requirements are different. It would be similar to how we have different
-clk_ops for different types of clks.
+On Tue, 14 Jan 2025 14:57:29 -0800, Atish Patra wrote:
+> Add the S[m|s]csrind ISA extension description.
+> 
+> Signed-off-by: Atish Patra <atishp@rivosinc.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/extensions.yaml | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
 
->
-> I'm pretty sure I've seen attempts to order clock entries in DT based on
-> the order they want to enable them.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Yes, I've seen that too. The order in DT shouldn't matter. The SoC PM
-driver will know what order of operations to take, including between
-different resources like resets, interconnects, power-domains, etc.
-That's the general idea of this driver, it will coordinate all the power
-for devices in the soc node, because it's written for that particular
-SoC. For example, if there are ordering requirements it can get clks by
-name and "do the right thing".
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/riscv/extensions.yaml:149:1: [error] syntax error: found character '\t' that cannot start any token (syntax)
 
-Another goal I have is to power off devices that aren't bound to a
-driver, and/or never will be. If we can figure out the runtime PM state
-of devices before adding them to the platform bus it would allow us to
-power those devices off at runtime or during system suspend if userspace
-isn't actively trying to power down devices. Maybe to do that we'll have
-to be notified by subsystem frameworks when a provider is registered and
-then once all the providers are registered, get the PM resources like
-clks and interconnects, etc., figure out if they're on/off, set the
-runtime PM state of the device to match, and finally add the device to
-the bus. Then we can extend the driver PM core to allow userspace to
-turn off devices that aren't bound to a driver, because we've moved the
-SoC PM glue out of each driver into this one driver that both adds the
-devices to the system and manages the device power.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/extensions.yaml: ignoring, error parsing file
+./Documentation/devicetree/bindings/riscv/extensions.yaml:149:1: found character '\t' that cannot start any token
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpu/idle-states.example.dtb: cpu@0: False schema does not allow {'device_type': ['cpu'], 'compatible': ['riscv'], 'reg': [[0]], 'riscv,isa': ['rv64imafdc'], 'mmu-type': ['riscv,sv48'], 'cpu-idle-states': [[13], [14], [15], [16]], 'interrupt-controller': {'#interrupt-cells': 1, 'compatible': ['riscv,cpu-intc'], 'interrupt-controller': True}, '$nodename': ['cpu@0']}
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpu/idle-states.example.dtb: cpu@0: Unevaluated properties are not allowed ('riscv,isa' was unexpected)
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpu/idle-states.example.dtb: cpu@1: False schema does not allow {'device_type': ['cpu'], 'compatible': ['riscv'], 'reg': [[1]], 'riscv,isa': ['rv64imafdc'], 'mmu-type': ['riscv,sv48'], 'cpu-idle-states': [[13], [14], [15], [16]], 'interrupt-controller': {'#interrupt-cells': 1, 'compatible': ['riscv,cpu-intc'], 'interrupt-controller': True}, '$nodename': ['cpu@1']}
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpu/idle-states.example.dtb: cpu@1: Unevaluated properties are not allowed ('riscv,isa' was unexpected)
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpu/idle-states.example.dtb: cpu@10: False schema does not allow {'device_type': ['cpu'], 'compatible': ['riscv'], 'reg': [[16]], 'riscv,isa': ['rv64imafdc'], 'mmu-type': ['riscv,sv48'], 'cpu-idle-states': [[17], [18], [19], [20]], 'interrupt-controller': {'#interrupt-cells': 1, 'compatible': ['riscv,cpu-intc'], 'interrupt-controller': True}, '$nodename': ['cpu@10']}
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpu/idle-states.example.dtb: cpu@10: Unevaluated properties are not allowed ('riscv,isa' was unexpected)
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpu/idle-states.example.dtb: cpu@11: False schema does not allow {'device_type': ['cpu'], 'compatible': ['riscv'], 'reg': [[17]], 'riscv,isa': ['rv64imafdc'], 'mmu-type': ['riscv,sv48'], 'cpu-idle-states': [[17], [18], [19], [20]], 'interrupt-controller': {'#interrupt-cells': 1, 'compatible': ['riscv,cpu-intc'], 'interrupt-controller': True}, '$nodename': ['cpu@11']}
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpu/idle-states.example.dtb: cpu@11: Unevaluated properties are not allowed ('riscv,isa' was unexpected)
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+make[2]: *** Deleting file 'Documentation/devicetree/bindings/riscv/extensions.example.dts'
+Documentation/devicetree/bindings/riscv/extensions.yaml:149:1: found character '\t' that cannot start any token
+make[2]: *** [Documentation/devicetree/bindings/Makefile:26: Documentation/devicetree/bindings/riscv/extensions.example.dts] Error 1
+make[2]: *** Waiting for unfinished jobs....
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/cpus.example.dtb: cpu@0: False schema does not allow {'clock-frequency': 0, 'compatible': ['sifive,rocket0', 'riscv'], 'device_type': ['cpu'], 'i-cache-block-size': 64, 'i-cache-sets': 128, 'i-cache-size': 16384, 'reg': [[0]], 'riscv,isa-base': ['rv64i'], 'riscv,isa-extensions': [1761635584, 1627415296], 'interrupt-controller': {'#interrupt-cells': 1, 'compatible': ['riscv,cpu-intc'], 'interrupt-controller': True}, '$nodename': ['cpu@0']}
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/cpus.example.dtb: cpu@0: Unevaluated properties are not allowed ('riscv,isa-base', 'riscv,isa-extensions' were unexpected)
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/cpus.example.dtb: cpu@1: False schema does not allow {'clock-frequency': 0, 'compatible': ['sifive,rocket0', 'riscv'], 'd-cache-block-size': 64, 'd-cache-sets': 64, 'd-cache-size': 32768, 'd-tlb-sets': 1, 'd-tlb-size': 32, 'device_type': ['cpu'], 'i-cache-block-size': 64, 'i-cache-sets': 64, 'i-cache-size': 32768, 'i-tlb-sets': 1, 'i-tlb-size': 32, 'mmu-type': ['riscv,sv39'], 'reg': [[1]], 'tlb-split': True, 'riscv,isa-base': ['rv64i'], 'riscv,isa-extensions': [1761635584, 1627416064, 1677746944], 'interrupt-controller': {'#interrupt-cells': 1, 'compatible': ['riscv,cpu-intc'], 'interrupt-controller': True}, '$nodename': ['cpu@1']}
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/cpus.example.dtb: cpu@1: Unevaluated properties are not allowed ('riscv,isa-base', 'riscv,isa-extensions' were unexpected)
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/cpus.example.dtb: cpu@0: False schema does not allow {'device_type': ['cpu'], 'reg': [[0]], 'compatible': ['riscv'], 'mmu-type': ['riscv,sv48'], 'riscv,isa-base': ['rv64i'], 'riscv,isa-extensions': [1761635584, 1627416064, 1677746944], 'interrupt-controller': {'#interrupt-cells': 1, 'interrupt-controller': True, 'compatible': ['riscv,cpu-intc']}, '$nodename': ['cpu@0']}
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/riscv/cpus.example.dtb: cpu@0: Unevaluated properties are not allowed ('riscv,isa-base', 'riscv,isa-extensions' were unexpected)
+	from schema $id: http://devicetree.org/schemas/riscv/cpus.yaml#
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
+make: *** [Makefile:251: __sub-make] Error 2
 
-If a node is status = "disabled" I'd like to still get all the PM
-resources for that device and either put them into one overall SoC PM
-domain, or in an "unused device" domain that we can have userspace tell
-the kernel it's safe to power down those devices that were left in a
-(semi-)powered state by the bootloader. Obviously I haven't gotten to
-this point yet, but it's another TODO item. We could also populate those
-devices but never let them be bound to a driver because they're marked
-disabled in DT. Then we don't have to do anything different from devices
-that are ok to use, but we waste kernel memory. Either way, the PM
-resources for disabled devices need to be dealt with.
+doc reference errors (make refcheckdocs):
 
->
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int qcom_soc_add_clk_domain(struct platform_device *socdev,
-> > +                                struct platform_device *pdev)
-> > +{
-> > +     struct qcom_soc_pm_domain *domain;
-> > +     struct generic_pm_domain *pd;
-> > +     int ret;
-> > +
-> > +     domain = devm_kzalloc(&socdev->dev, sizeof(*domain), GFP_KERNEL);
-> > +     if (!domain)
-> > +             return -ENOMEM;
-> > +
-> > +     pd = &domain->pd;
-> > +     pd->name = "wdog";
-> > +     ret = pm_genpd_init(pd, NULL, false);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     /* TODO: Wrap this in a generic_pm_domain function similar to power_on() */
-> > +     pd->domain.activate = qcom_soc_domain_activate;
-> > +     pd->power_on = qcom_soc_domain_power_on;
-> > +     pd->power_off = qcom_soc_domain_power_off;
-> > +
-> > +     dev_info(&socdev->dev, "adding pm domain for %s\n", dev_name(&pdev->dev));
-> > +     dev_pm_domain_set(&pdev->dev, &pd->domain);
-> > +
-> > +     return 0;
-> > +}
-> >
-> >  static int qcom_soc_sc7180_probe(struct platform_device *pdev)
-> >  {
-> >       struct device *dev = &pdev->dev;
-> >       struct device_node *np = dev->of_node;
-> > +     struct platform_device *sdev;
-> > +     int ret;
-> > +
-> > +     sdev = qcom_soc_alloc_device(pdev, "qcom,apss-wdt-sc7180");
->
-> We're going to have to have an explicit call for every child node?
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250114-counter_delegation-v2-4-8ba74cdb851b@rivosinc.com
 
-Probably! Or we can populate the "complicated" ones that require
-something different and then populate the rest of the nodes that didn't
-get populated explicitly with some sort of loop over non-populated nodes
-that attaches a simple pm domain that does generic on/off sequencing. I
-haven't gotten that far to know if populating everything explicitly will
-be a problem.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
