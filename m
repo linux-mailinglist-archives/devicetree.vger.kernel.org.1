@@ -1,248 +1,127 @@
-Return-Path: <devicetree+bounces-138734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A744FA11EEA
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:07:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7299EA11CF4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:09:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45C093A0524
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:07:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B7B1164101
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A884020AF6C;
-	Wed, 15 Jan 2025 10:07:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6C05246A32;
+	Wed, 15 Jan 2025 09:09:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UrEai8Dz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2111.outbound.protection.partner.outlook.cn [139.219.17.111])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2A301EEA35;
-	Wed, 15 Jan 2025 10:07:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.111
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736935632; cv=fail; b=DtCLqMH+Cq1ccId3vUisULhz+lf77FSjLMHgoAZi+IW1y4y04rPeHx6CKAWij2rd+yN4O8BI+JClb1RC6kF9fyZFB4MHPQ2alcdExIis6o/Qc3YIYH3d/q6MHDeY8pID/PHI+6K+LRb1eB+/skjO3HqgKsKa/KqDk1pr1Zs4uhs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736935632; c=relaxed/simple;
-	bh=oxUUwhTZkg85KDdorqCj8Qjht1Pp5diioAcPkE9RNeo=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ky3AfHlYkTDwPtdGLtqBhimBMRe1Ymq7muFuFQlwzHNVjhIBmvILfqs/PSF8rNq88IVPfQDRF230SwBAq7Y9gENKNLUxD/7d+qhl9Hkz9ssdayExvDHPchOtOx/pZMZ/U8ZySDD4jFKe4tRd5IKrPeUecJVhKXRWvvLwcVRS7lw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.111
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YUrogUA1p79v46MdMzIfhf/9e2Fg36iOwzoGMVxybNVC9ZOzrqJjK3pfleWm7RcvRbnQAMo556mWh8IbSLI+T0sXzT3ONhyvW1EdzKQOzRWo+JcOwX2yZXDZW5G54tIDQTwOnCqryTijL+oaVtBLcVsiOwkuHWVoViaplWgnReYmaJfifecj7nDIZCIM9AJw2mcLRwib/fQxsgZHoVSQaRj49xUvVtNgZrgfVT7RtI7BdWzf0KLiBeKx1VuRGEZ/r0zoKiaIES6OZ3cLYol4UPMMOfHvvfvcEZ8j2l71EAYRqmdceRWch+4y+LQ1/RXBSkDSqNLVoYKDNTUzPCFzaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZsMrOogKvZ2Z34J8tgkpd6BIpMUol8hpOezL1QzCSVQ=;
- b=GbYnrK0mFC6siOrOSmfR1pf+P0TWcmN0/Z5FHgel3wtkbKe9vRyZPUoTEJMCj0KNElvd/yfLRCKmj/8/04KWLm0Nd17iFfH4B7q1HVCEnoMpu5hS7XYWzRA46ldIlGSegu6kNZi/TYNA6lD093JRxSS01hVIpbgphR6IKA8FXcAtTt7BoDdnYFx8D7E5La6s/WyWcJpBK00Cd4KGu7VdZqygD6WyeL9QYrxbhNx7ZrASJ943Q77CpFUFGKbo0rdgan7cioH3Ih7Dvtyoyu9NSI7FgFw7s+wZHSYkHuMPZYlhJ4cHUDCLL3nU0a4uthr+jwIoYLiv7U4NFbmf+YLqZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=starfivetech.com; dmarc=pass action=none
- header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
-Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:7::14) by ZQ2PR01MB1161.CHNPR01.prod.partner.outlook.cn
- (2406:e500:c550:6::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.20; Wed, 15 Jan
- 2025 06:33:08 +0000
-Received: from ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- ([fe80::2595:ef4d:fae:37d7]) by ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
- ([fe80::2595:ef4d:fae:37d7%3]) with mapi id 15.20.8335.017; Wed, 15 Jan 2025
- 06:33:08 +0000
-From: Hal Feng <hal.feng@starfivetech.com>
-To: Conor Dooley <conor@kernel.org>, E Shattow <e@freeshell.de>
-CC: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, Minda Chen <minda.chen@starfivetech.com>
-Subject: RE: [PATCH v1 1/5] riscv: dts: starfive: jh7110-common: replace
- syscrg clock assignments
-Thread-Topic: [PATCH v1 1/5] riscv: dts: starfive: jh7110-common: replace
- syscrg clock assignments
-Thread-Index: AQHbXuxdxuZNa36t4UObgTOkoTzN5bMKL5KAgA0EEvA=
-Date: Wed, 15 Jan 2025 06:33:08 +0000
-Message-ID:
- <ZQ2PR01MB1307A9E106AE06E144875D6EE619A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
-References: <20250102194530.418127-1-e@freeshell.de>
- <20250102194530.418127-2-e@freeshell.de>
- <20250104-mutilated-unpaved-008eebdb200a@spud>
- <56c372c3-bb8b-4150-9b34-a6cca906d740@freeshell.de>
- <20250106-suggest-waltz-47d7f7760069@spud>
-In-Reply-To: <20250106-suggest-waltz-47d7f7760069@spud>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=starfivetech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: ZQ2PR01MB1307:EE_|ZQ2PR01MB1161:EE_
-x-ms-office365-filtering-correlation-id: cbc08ad6-5b04-49a8-2807-08dd352e79ce
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|7416014|41320700013|366016|38070700018;
-x-microsoft-antispam-message-info:
- HF3RpKvAFe2E+jeDLL1bBfq6Qz5LpsDckdgqhozK1lDEqZD3ZQYSfgegan55wEpx5rO97bW4hJQVVxUc7+O1YmrL7Zb9G5qI7W5fTJ/b5reqoWaeN6/Jk9pxulRRs1Fo88ai2y5jWpqOwsJLYS0l3o3oajkwwU7nyHSJ+U+T8l63Bk1TKKyJRzlGMyeUA3GR0WxuoQJO05Efz7+UGP7WW61VahEhnDmNxLO9hiouwoxb5J62B/v6kFb2GbDB4bdsdqu4puk0WlrYcPisw7yxF+t8nT1YVmqt9x11dNX6cLPYT0WJ1lECh2efJmyOtDRuPTnsnKCNKmG+iTQgrEa0c+zuvQt7Qrbgb/N2xwEZWmhN9Qol24/mkl53vYZpDF85gvgw7+gS71oJ0ojrTLlHorn6owxtCvznHMR0Sdyp4/A8Fc8q/TMoGykDS6kB0CqQUD5JUDUBN6TDUo5FihjEYOGJ76llXrY5EKEJoRIblQm8xAXG44wDYGlkOaS2FPkjYYRTS3bBzeTUzVpgm+1M+0zCjKZegr+yv7/R6LNkP5O89sZZSBZBFkkA782fjrfQC7z0csx4ApdHgnBoJIsfCJtD7zKJTEvX65Xq4ZJIyXg=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(41320700013)(366016)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?80672Omtatjd24KNZRbVrgCYtDhLk9SkiirZUwgnVeKoDaNGhyIP8kCw2sla?=
- =?us-ascii?Q?m7AqIvptldY5UqgdCyvDL3MSkWad11AeO1ZcEvS3LSWj2TVdUc+Hv1R1mzgQ?=
- =?us-ascii?Q?+SAP2gcwh2EVMCEa+JQhzJmp9PwVhpP2cGBghYnbq9NLlRd3wBkdkN0lYHDm?=
- =?us-ascii?Q?gKb+MSkziiKDDDTMpc6EIMgu9scPwZi6BaNWUHxoGckb+hVHkkS5IM60Z7nS?=
- =?us-ascii?Q?rjqoT8Y5BKS/c+ETqn+VQP+qJJ/Ffr3sE323R+y70y0Fx34RZ4F1Zvg6rAEE?=
- =?us-ascii?Q?/OmHq5dwDmQganWkxqbfK6bm3reVKr3frWVp32iziNdirSOCI/DM/D34t5qK?=
- =?us-ascii?Q?acZOFQXI40m3nPVCFCmtuYqFvjVcZaXT1+saGYE7JHGJK/T1jYKDP41Kp/KI?=
- =?us-ascii?Q?odw8UhD6GGmCeoWEMG2a7OmjhB0Mpzxs4xOCjJju+tnTwCTnTOm4R6GO+Eiv?=
- =?us-ascii?Q?Z1tQuM2+iRKH30spmOupsHRJzhcUX3IMhSrrleVQgGOWpqoqCUSUP1+FXhzT?=
- =?us-ascii?Q?6WlalW4oxNGEwR5xjNv8Tm7tKybwQkgTBPPn9U2npdoqQg/C6wAnb29fvOzX?=
- =?us-ascii?Q?3E/qaBVVNmi477AThDAndqfhmlTSegfL9T1EyLO3XikvVd8vrgnj/SUgqaP0?=
- =?us-ascii?Q?POsxFashHYS8lFUEigqR46BvX2ndRYHGuvxMH1dzS6xCjbIha5cUOMgl6nzf?=
- =?us-ascii?Q?+M6tAD1qmeTb1SoHYMWR6ibkLXeyAAhGaTJXxnyAzYn6WkziNYn7/RFJbf18?=
- =?us-ascii?Q?8vWBuUR5EIuileCGof793lbFDC1njAEPjINRjGV/bK0mzPB272xi2yRNPnIT?=
- =?us-ascii?Q?DV/Mrvk7kpTYt345/J6/TDMtIuBVbAUBsvlXk8fzazWO+DKaA7hYJ1A1JElt?=
- =?us-ascii?Q?ipPp/zc2nlQ5A6lfIO0izN3+Xc8Tdaoh9cjWVhF4toZPZTS1zOWMrs+VGsyl?=
- =?us-ascii?Q?qBx62rQ3Qpx+NJyTQiAwXhkSAO2Vsmxp5XpXos2B88QjRlxa7ivmd8ufARsP?=
- =?us-ascii?Q?KDbKKEEhDo2wDbKOWH1W1IKZDJW5nCCQ445JcuDh6Q5sgbV/nUE3QAQZ/ZEI?=
- =?us-ascii?Q?Q88a/PFQ0VZDCj2ci6RvGfxRw7dUqnwimiKXB7QwXoLKHrnoT6WbPu2ooW/9?=
- =?us-ascii?Q?PjFiTXZVK9dWmc0XtUi9n0WbFjOWLakm4lByRIhifMbeFzJMV7skr38DlnQE?=
- =?us-ascii?Q?aFcscDgzJ3bODLTml004IwXcl4nJszl74zOZrbK+7onv3ansgJ3Y+YSIWP/4?=
- =?us-ascii?Q?5bI0ta5AdfXI+EckmRlmDqO8a6dtiHvy0a5QmLu++Q26udjb2lIlwxw9EkCJ?=
- =?us-ascii?Q?HqMG3kn+WZOMBiLuEjsVRRsnRheRN/UqrzTiSO1VRbTsu3WOgQ1LDtylypKE?=
- =?us-ascii?Q?Kdt1gfkGNtz3D2T0zl97E8vTHelckTLmEDMyrJJRVqOZUERv1gWgMxW1Q9MW?=
- =?us-ascii?Q?TsN4njnd9f+eQFRwuzFY/hs5G4YBOkA3D/JJcRehaEWg2M2rxZHuoJ69LCMi?=
- =?us-ascii?Q?+3pYVDoHQdovZ3fgH/k7bwNap/uxz5hnlvlXCWVdXiAzVx34wlaSAHswLnHF?=
- =?us-ascii?Q?BAvKvGisQ9viGNzxnFv19kja3S6wpmqRPD0l8Iac?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A295246A0E;
+	Wed, 15 Jan 2025 09:09:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736932155; cv=none; b=JzZzLPaaQNFzdNgn5M4dMWVJVrZeI8924DY5Z0NChct+o4KxSW+V5kUUPs84hQacMXxRJmjaCrDQy7XA/OMf4fNC7Sc1Lr1XKHu1O8aiL6Y5GEvwSFW4dVqKZIVlZTRkiUuqGglN0azkyT9JlpUTt1qI5VaqinTcl9t3iVbdQLU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736932155; c=relaxed/simple;
+	bh=Yfxhe29O/qlnSI3nwcCqFA57vArut96fC+BHmYETDhU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oRekLa4xZkDRT+Ow5jryxz3qpTzN90SDKl7mDgfrgVfbsNtUuOqxTh26O3uhSyIrU2slWYy6L9dZGPbEwFmjf+sN6o5x4Tn2JNvUen+ZnzUUm2GPgS7xpB8mNgvDqLgHP4MLV5Z47+GFkSmvKEdx6HFC0GN9JOw4kp1FjExml9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UrEai8Dz; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-21654fdd5daso109944595ad.1;
+        Wed, 15 Jan 2025 01:09:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1736932154; x=1737536954; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GZu3RRCSZ6fAo+lWLsGDi7lH9XSyk6eapVHs6gKrrgo=;
+        b=UrEai8Dz+MTsHE5oMs4e06nwZRENWwCAu9Yziwy8ThQ3aW/m5DaZDn9W3cDiKeBQEO
+         9em8TkuWx034vULeaOMf8IiBpzvgVCURpxmSLPohMS9G3NRmk++tJDb7meGQX28u4wOX
+         Zkwi7pSj4Hy0Vg5h4mLZaWuTOEJPE2ANR8JZrhHnAS6QhHRbKv75LWh/toNQWxfSQVjV
+         k34O1CvFlxU0avWRnNCeIpmsmRdr57ogX0VTLUjs6Sc9qnNSON44OkUEqZh+/Fuihj8L
+         capl2mRW31JxSYOrhshGwHZ0odbSi19vujcdBHgu5ZxBy5CV9JmnATvwL3PZhRybbgIM
+         uYTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736932154; x=1737536954;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GZu3RRCSZ6fAo+lWLsGDi7lH9XSyk6eapVHs6gKrrgo=;
+        b=ezeGVMiOMqbvMdf6yUTIqxuxKv0ii7uSvMs0eKq3Z3l4L6cCb83aRKkB1l2/+72Tj+
+         hgZpq09D0y5ZIaQ+g0dVT2MuGuSkpoxMaI738DpESKPPGY/EIussf7PVOqKSMOenS6Z3
+         3BfLpavp+Ew7E/yK1dqMghvF2sZEg8EZisW6nIewmqrsOiv52TbrjzVccB8R0ofR+Zrk
+         2KDrtkZOhF9qvaU4RBTyESNl+7WyPWR/i1JEXcQhf8hRqVNLL9UMQsiy7p4vNcEg95kZ
+         AoPrdhQQu57c5uY9b0LsEHcxB3cu0t4LoMjJPgmzxfcY4DYEMD5VGit7z2n5Uc76SFCm
+         VSyw==
+X-Forwarded-Encrypted: i=1; AJvYcCUx0rJ3anDXeINVbu2JcNLHwwYmMpBVW4WjR8UGdyfwnR5qFr7PcEHM/CEKtAsDQJftQV5Aff8rB9r4C7T9@vger.kernel.org, AJvYcCVtQUIuFxkjHsz3JH7gGP82wbRcQUeWz594eNFjjBx79tq0FeFqK8hTmqTQgz4uTfN9+LsglB8S@vger.kernel.org, AJvYcCXSqhJBUpu1sPmJyzktQTLnL0clpfc4QQnM2mpORsUr1AdsO46UkFgYj7NPFG5d7aeRSSf3TJrmVCwp@vger.kernel.org
+X-Gm-Message-State: AOJu0YywdnbzrvqZsc+juHpxiEZdlNrKJLqisx92FiR/l4OXRcgvj0We
+	VL07162XVGa60hQTvX4VE/R/SAs6OokzJqN3jli6OuxkQgF9c8Mj
+X-Gm-Gg: ASbGnctE6DI0kxjm+lvdEvWWAIcEFKGUBPjil7XOjs/qdzryH2KTX9Kblx9EKXCNPBh
+	+48SHLdQiZA5+WxgXqIomb/qKsR5mqV6gFyWibRqWil1UPrraszM1ckvQNh8kuz6B7M7vM8sTeh
+	5yspkvaXk5xFCmuTcthcRBsr/hwgeNg9FcrONMNzTr+oKKbX+i+g2MuHEIddARgVTwEQzSInNaL
+	tqAycYTSMqN5IeCYHBU//t1SyGX0JtLjSQbalOIfRbIctk1ee+QqTHrD3bBx3R2QvH9Tzdmb8LY
+	5OJAv6Y3K2kTF2Yfgkpd9nBmcINECcgWgGk=
+X-Google-Smtp-Source: AGHT+IFzyRepggFFHtQT8D4fkFN2tkBOOiPSmaRhjKsx+myOrF3U4xxdVBjzw1AHpDW/+2qMjfDQIg==
+X-Received: by 2002:a17:902:e747:b0:216:3c2b:a5d0 with SMTP id d9443c01a7336-21a84002a70mr352529525ad.51.1736932153585;
+        Wed, 15 Jan 2025 01:09:13 -0800 (PST)
+Received: from [192.168.0.100] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21a9f21a21csm78826285ad.109.2025.01.15.01.09.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jan 2025 01:09:13 -0800 (PST)
+Message-ID: <72e993f1-bb8d-43fb-a9cd-210f1f8f02c5@gmail.com>
+Date: Wed, 15 Jan 2025 17:09:08 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: starfivetech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn
-X-MS-Exchange-CrossTenant-Network-Message-Id: cbc08ad6-5b04-49a8-2807-08dd352e79ce
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2025 06:33:08.4754
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: hOPMCMXNQglLhXbemuVqJKMScraSh48QsBELZqdG250GQZenFiN03Q6z1GzQp6lTqfhMT0rdMgta4sEKLh4HK7DmAIOHL+4Lm2+PW6flOQE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: ZQ2PR01MB1161
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v7 3/3] net: stmmac: dwmac-nuvoton: Add dwmac
+ glue for Nuvoton MA35 family
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+ pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
+ alexandre.torgue@foss.st.com, joabreu@synopsys.com, ychuang3@nuvoton.com,
+ schung@nuvoton.com, yclu4@nuvoton.com, peppe.cavallaro@st.com,
+ linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ openbmc@lists.ozlabs.org, linux-stm32@st-md-mailman.stormreply.com,
+ Andrew Lunn <andrew@lunn.ch>
+References: <20250113055434.3377508-1-a0987203069@gmail.com>
+ <20250113055434.3377508-4-a0987203069@gmail.com>
+ <20250114153323.527d4f63@kernel.org>
+Content-Language: en-US
+From: Joey Lu <a0987203069@gmail.com>
+In-Reply-To: <20250114153323.527d4f63@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-> On 07.01.25 04:08, Conor Dooley wrote:=20
-> On Sat, Jan 04, 2025 at 01:04:30PM -0800, E Shattow wrote:
-> > Hi, Conor  (added CC: Minda Chen, Hal Feng)
-> >
-> > On 1/4/25 10:33, Conor Dooley wrote:
-> > > On Thu, Jan 02, 2025 at 11:45:07AM -0800, E Shattow wrote:
-> > > > Replace syscrg assignments of clocks, clock parents, and rates,
-> > > > for compatibility with downstream boot loader SPL secondary
-> > > > program loader.
-> > > >
-> > > > Signed-off-by: E Shattow <e@freeshell.de>
-> > > > ---
-> > > >   arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 12 +++++++++---
-> > > >   1 file changed, 9 insertions(+), 3 deletions(-)
-> > > >
-> > > > diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> > > > b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> > > > index 48fb5091b817..55c6743100a7 100644
-> > > > --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> > > > +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-> > > > @@ -359,9 +359,15 @@ spi_dev0: spi@0 {
-> > > >   };
-> > > >   &syscrg {
-> > > > -	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_CORE>,
-> > > > -			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
-> > > > -	assigned-clock-rates =3D <500000000>, <1500000000>;
-> > > > +	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_ROOT>,
-> > > > +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
-> > > > +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
-> > > > +			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
-> > > > +	assigned-clock-parents =3D <&pllclk JH7110_PLLCLK_PLL0_OUT>,
-> > > > +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
-> > > > +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
-> > > > +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
-> > > > +	assigned-clock-rates =3D <0>, <0>, <0>, <0>;
-> > >
-> > > Why is assigned rates here 0s, rather than the property just removed?
-> > >
-> > > >   };
-> > > >   &sysgpio {
-> > > > --
-> > > > 2.45.2
-> > > >
-> >
-> > Assigned rates all zeroes is how it is in U-Boot. Removing the
-> > assigned-clock-rates property as suggested does work in U-Boot and
-> > Linux both.
-> >
-> > For context, U-Boot fails when replacing assigned-clocks to
-> > JH7110_SYSCLK_CPU_CORE (500MHz) and JH7110_PLLCLK_PLL0_OUT
-> (1500MHz)
-> > from Linux. So I tried to merge all properties together and in testing
-> > then U-Boot failed (or I did it wrong). However replacing the Linux
-> > properties with the U-Boot configuration (above) on Linux does work for
-> both.
-> >
-> > I do not know if this is correct but I can test any suggestions and
-> > report if they are working.
-> >
-> > Do these changes make sense? Are there other variations I should test?
->=20
-> I'd like the commit message to at least explain why these clocks need to =
-be
-> set to zero (I assume that means disabled?). Maybe the StarFive folks kno=
-w
-> why it is required?
+Dear Jakub,
 
-Here "assigned-clock-rates =3D <0>, ..." means skipping setting clock rates=
-.
-You can refer to
-https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/cloc=
-k/clock.yaml/
+Thank you for the reply.
 
-Linux here setting JH7110_SYSCLK_CPU_CORE to 500MHz and JH7110_PLLCLK_PLL0_=
-OUT
-to 1500MHz are for increasing the CPU frequency to 1500MHz.
+Jakub Kicinski 於 1/15/2025 7:33 AM 寫道:
+> On Mon, 13 Jan 2025 13:54:34 +0800 Joey Lu wrote:
+>> +	regmap_write(bsp_priv->regmap,
+>> +		     macid == 0 ? NVT_REG_SYS_GMAC0MISCR : NVT_REG_SYS_GMAC1MISCR, reg);
+> This is a pretty long line and you do it twice, so save the address
+> to a temp variable, pls
+Got it!
+>> +MODULE_LICENSE("GPL v2");
+> checkpatch insists:
+>
+> WARNING: Prefer "GPL" over "GPL v2" - see commit bf7fbeeae6db ("module: Cure the MODULE_LICENSE "GPL" vs. "GPL v2" bogosity")
 
-VF2 u-boot is still running at 1000MHz now. You failed to set JH7110_PLLCLK=
-_PLL0_OUT
-to 1500MHz, because CPU power supply voltage needs to be increased before r=
-unning at
-1500MHz.
+Understood. I will fix the warning.
 
-I think a better choice now is changing Linux device tree as follows:
+BR,
 
-&syscrg {
-	assigned-clocks =3D <&syscrg JH7110_SYSCLK_CPU_ROOT>,
-			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
-			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
-			  <&syscrg JH7110_SYSCLK_QSPI_REF>,
-			  <&syscrg JH7110_SYSCLK_CPU_CORE>,
-			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
-	assigned-clock-parents =3D <&pllclk JH7110_PLLCLK_PLL0_OUT>,
-				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
-				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
-				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
-	assigned-clock-rates =3D <0>, <0>, <0>, <0>, <500000000>, <1500000000>;
-};
+Joey
 
-For u-boot, if there is no requirement to run u-boot at 1500MHz, just keep
-&syscrg {
-	assigned-clock-rates =3D <0>, <0>, <0>, <0>;
-};
-in u-boot device tree. If we need running 1500MHz in u-boot, I will send a =
-patch
-to implement it and then &syscrg{...} in u-boot device tree can be dropped.
-
-Best regards,
-Hal
 
