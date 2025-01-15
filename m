@@ -1,160 +1,240 @@
-Return-Path: <devicetree+bounces-138686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEDE3A11C1C
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:35:48 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17DA4A11C1F
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 09:36:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 465A53A62C5
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 08:35:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28A1C1883EB8
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 08:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424C91DE3D9;
-	Wed, 15 Jan 2025 08:35:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C71B01DB150;
+	Wed, 15 Jan 2025 08:36:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n9YRZhGs"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BhZtAVae"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 134FB23F28E;
-	Wed, 15 Jan 2025 08:35:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3609B155A30
+	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 08:36:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736930141; cv=none; b=NsjgVC6mFMeOaHrtxozju5t03tpFJ2aUeJkuvtbwNzn/JeJ8JYIN/Dprle0DpR56FkoMKuzwsr14W4qlEVREqmZQFr+SNH1lEqEGPHuW/uL9PBlYgglYmPmqY6gwjzDzmCJZMPxS7uM/matMXVGCV0dT/qLBpVNw0afz3U+hato=
+	t=1736930196; cv=none; b=mdnpICyy6LFioz49o3kpvl7UwYjKjOt/3Frn/ComACwmgexiSR1pIVRDpG021rEAKU9V6fv8YLnJecdnXoeIbpdrUe87AqEiLnaIaVNs+VGUGY2aV74bsgDcNbv41GB9OIKcdBiCwB3d4o9FwSkCHkojhZdyUmCpwsVk9uKC3v0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736930141; c=relaxed/simple;
-	bh=4wisaHf+Hl4KOzZeEVEFxjN6kc8eMQmrepKNkzXlzDo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r4NkYKZ6wjy2SDyVMO0P6mQfhP0B5IK87vTF5l26rsaDT+BEjCjeWfaK4jouZ4pBfJgpzCH/gWP08rIKu3/LVTxp2L14qMvXT4bIwyDsWFUwt7WPU9/i7dT80NCaMPocA2NUIX7mtyDTJ1CWCReg70ODHSNWRsob4T7Amujo+Q0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n9YRZhGs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCFC9C4CEE2;
-	Wed, 15 Jan 2025 08:35:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736930140;
-	bh=4wisaHf+Hl4KOzZeEVEFxjN6kc8eMQmrepKNkzXlzDo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n9YRZhGskU1xUSTLNihp9848Xhk/cOOr0A4tP66Z/QW3qUbEJja2aj0BHRQC0rlOI
-	 vvfjneMhayt56fE7La01WFhksgtLCZhp0vbZfJ15pOJq1Ip7hz8H3S3+Km+AXum5UH
-	 4LUIr6ehQdnR8yGkhTQarQ2RbC3uK5X/oWI0BM+Eqfi/e4sfcA/QAitp0jUO7ul0JK
-	 SQj6ngjWlmM+SWeKNAty6j+JZYgLDEGExre6pbUdKiptdDplOApTwLm3jhOwMVG9oF
-	 HX767n8258hjuZ5FRJywWeB58w9jqlcjGbPlh5xNFxykNudYEGKUrNhqB8kEi4642C
-	 rcgXILmrHWdnA==
-Message-ID: <80e59b3b-2160-4e24-93f2-ab183a7cbc74@kernel.org>
-Date: Wed, 15 Jan 2025 09:35:34 +0100
+	s=arc-20240116; t=1736930196; c=relaxed/simple;
+	bh=N+rD8Fc501GUvq0ViLsHtr99/9fGf1D0Vy95kbI29SQ=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=NvrcSNd5zXfns8VoZoQzwKWZ782unoSUTEaUV3KtttmnQ02prwv+nqz8Jr5PDJf6ISTwwZl5zTGQq4dJ6UIZE23a6gcengVDESzZ3En+o/kiU8cKewOtKsrlVuC0M9IHtORb6lO8TMI/gwcjQLgJBP0NcepC8G00eXomnsIsoyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BhZtAVae; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4361815b96cso45186925e9.1
+        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 00:36:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1736930192; x=1737534992; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lB3rHXjrUs5AJYYMIbdtSlreS8MQ74B9bY+rKil3MA8=;
+        b=BhZtAVaeLeAhta1TJwovoWLrvHd6l9PH9FIJiikETLM4MZn6FgRo/Ci6jW2t0aMg7Y
+         bTKJd82X7kglPydlRzmJfn43VnSZ05TIOp5P1/lzBAzmB0Cjv1t7+fBaRp0Bhj5Q4VLA
+         g3sRrArQqM0fkF1jBN30LeHJAgvaVcJnOteE8z0F3U8SmN+FtQ2+OLqSPPAD4kTA+OC4
+         /t/+70Ot6ICChSIeotWOqQHS7iTMH2bZ4YtvCPYZhEpamYyssTloDFqNlUs6jE8WKqgn
+         TL+ROyFRaDBdiJOAGXwRxkC5NwqKFanU1CSc+jVlLPiG3SphQNYWUa0pdnOHwyyS/bMU
+         0pjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736930192; x=1737534992;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=lB3rHXjrUs5AJYYMIbdtSlreS8MQ74B9bY+rKil3MA8=;
+        b=u/F5EwPWbzkBcROfqCPgQf8FSs6L343wJGgV76ya79/+ikJw5r7qkpYwLSq33F/87Q
+         NCdDw3G4A7Gr04l/yC8rP3kPHOW0qQ/4iElrbgiJRCDI32FZfo4vVS4D6/UPW/v62UBw
+         kzVPWKn+lJNkHNQ4CzSRbV7aOEebScz6nF1JITC2x9xcUZQ/Jj+68d/Tk3oid9Siu/d/
+         Q9QlHxB/Qeyiz+h5Z8ArslilXS3uc5DIQn/Ug6o553iCyvKL7F6QAPNXjz0u76fnWEC/
+         DhAsHALdt1bxuzByIprLTF7DUdg8Jz42NVaDeWnHrOhEKHp5ok2EVf2s5k9roxkEDylO
+         +FAg==
+X-Forwarded-Encrypted: i=1; AJvYcCVKVmUtufLvrh/Wuh7D8s33nqqzoBo4yUSwq6KAr5VUAS8errN9D0y0xasYfEzV/k85esVerich6+fr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+OINFXVxTFUQGm7/Ns3TycCV5g1IRciwtAlOWZ2TOFdDYqkp3
+	8HzUjc+A7Jh37WpLjig2AMlYUPpu15oarhF35F+pqn67/+W9kTw1iI9WARHb9ho=
+X-Gm-Gg: ASbGncvZGcuV+vypjw2/2RcEA94mRiRj3nz3mZ0x9Wd+NoIPCXRdRSFbhjqIRsThznS
+	w4yhavbEraT017hrOhzuynwLxHsd7hIOSsTkaArov1L3g/yIaYYINUP5ZK8YL1sosG+CzH2bIgg
+	/K8qXuPD5wBGJ2LMUxHaBrmpB0zWHFGwt7pla3yxSCJLnKZ/HsizVTR+HdHTBF1AwBmpfcZc+gO
+	2U0SrmavSuRL8uOY22yMnPBCRrufgzauCDneSbbRibj/BKQm8PVfuz0
+X-Google-Smtp-Source: AGHT+IGHLV3oniHk2tCYLxFndHHL9KG5RVtJRTDpiO1CMzyqcEywc4SzfBdAV2UjsP92dEf3xkAv9g==
+X-Received: by 2002:a05:600c:3554:b0:436:1be4:c9b4 with SMTP id 5b1f17b1804b1-436e26ff1b2mr227264435e9.27.1736930192380;
+        Wed, 15 Jan 2025 00:36:32 -0800 (PST)
+Received: from localhost ([2a01:e0a:3c5:5fb1:e7b8:6186:fc23:f678])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a8e37d447sm16644404f8f.4.2025.01.15.00.36.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jan 2025 00:36:31 -0800 (PST)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Jiebing Chen <jiebing.chen@amlogic.com>
+Cc: jiebing chen via B4 Relay <devnull+jiebing.chen.amlogic.com@kernel.org>,
+  Liam Girdwood <lgirdwood@gmail.com>,  Mark Brown <broonie@kernel.org>,
+  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>,  Jaroslav Kysela <perex@perex.cz>,
+  Takashi Iwai <tiwai@suse.com>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,
+  linux-sound@vger.kernel.org,  devicetree@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
+  linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH 2/3] ASoC: meson: s4:support for the on-chip audio
+In-Reply-To: <e5055b4d-7a10-4a5e-ad85-d94c1f64eb03@amlogic.com> (Jiebing
+	Chen's message of "Wed, 15 Jan 2025 10:56:17 +0800")
+References: <20250113-audio_drvier-v1-0-8c14770f38a0@amlogic.com>
+	<20250113-audio_drvier-v1-2-8c14770f38a0@amlogic.com>
+	<1jwmey9451.fsf@starbuckisacylon.baylibre.com>
+	<e2f26ca2-4c38-4b07-bf17-95544588a2f2@amlogic.com>
+	<e69cd38e-898c-4cbc-a327-14148a71c764@amlogic.com>
+	<1j8qrd7aor.fsf@starbuckisacylon.baylibre.com>
+	<e5055b4d-7a10-4a5e-ad85-d94c1f64eb03@amlogic.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Wed, 15 Jan 2025 09:36:31 +0100
+Message-ID: <1jr0545v8w.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/6] arm64: dts: qcom: Add support for QCS9075 Ride &
- Ride-r3
-To: Wasim Nazir <quic_wasimn@quicinc.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <tjrg5zqggupjo36udpyv3vynsij76f4qlus6lkbqotuimusqgq@hosmksp77sif>
- <Z3ZXWxoBtMNPJ9kk@hu-wasimn-hyd.qualcomm.com>
- <4wmxjxcvt7un7wk5v43q3jpxqjs2jbc626mgah2fxbfuouu4q6@ptzibxe2apmx>
- <Z3eMxl1Af8TOAQW/@hu-wasimn-hyd.qualcomm.com>
- <xuy6tp4dmxiqbjitmoi6x5lngplgcczytnowqjvzvq5hh5zwoa@moipssfsgw3w>
- <Z3gzezBgZhZJkxzV@hu-wasimn-hyd.qualcomm.com>
- <37isla6xfjeofsmfvb6ertnqe6ufyu3wh3duqsyp765ivdueex@nlzqyqgnocib>
- <67b888fb-2207-4da5-b52e-ce84a53ae1f9@kernel.org>
- <Z3/hmncCDG8OzVkc@hu-wasimn-hyd.qualcomm.com>
- <b0b08c81-0295-4edb-ad97-73715a88bea6@kernel.org>
- <Z4dMRjK5I8s2lT3k@hu-wasimn-hyd.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Z4dMRjK5I8s2lT3k@hu-wasimn-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 15/01/2025 06:48, Wasim Nazir wrote:
->> The the SoC, I am asking about the board. Why each of them is for
->> example r3?
+On Wed 15 Jan 2025 at 10:56, Jiebing Chen <jiebing.chen@amlogic.com> wrote:
+
+> =E5=9C=A8 2025/1/14 22:05, Jerome Brunet =E5=86=99=E9=81=93:
+>> [ EXTERNAL EMAIL ]
 >>
->> So this is not sufficient explanation, nothing about the board, and
->> again just look Renesas and NXP.
+>> On Tue 14 Jan 2025 at 19:20, Jiebing Chen <jiebing.chen@amlogic.com> wro=
+te:
 >>
-> 
-> Hi Krzysztof,
-> 
-> sa8775p(AUTO), qcs9100(IOT), qcs9075(IOT) are different SoCs based on
-> safety capabilities and memory map, serving different purpose.
-> Ride & Ride-r3 are different boards based on ethernet capabilities and
-> are compatible with all the SoCs mentioned.
+>>>>>> +
+>>>>>> +MODULE_DESCRIPTION("Amlogic to codec driver");
+>>>>>> +MODULE_AUTHOR("jiebing.chen@amlogic.com");
+>>>>>> +MODULE_LICENSE("GPL");
+>>>>>> diff --git a/sound/soc/meson/t9015.c b/sound/soc/meson/t9015.c
+>>>>>> index
+>>>>>> 571f65788c592050abdca264f5656d4d1a9d99f6..2db1cd18cf2cea507f3d728205=
+4e03d953586648
+>>>>>> 100644
+>>>>>> --- a/sound/soc/meson/t9015.c
+>>>>>> +++ b/sound/soc/meson/t9015.c
+>>>>>> @@ -89,10 +89,7 @@ static struct snd_soc_dai_driver t9015_dai =3D {
+>>>>>>                 .channels_min =3D 1,
+>>>>>>                 .channels_max =3D 2,
+>>>>>>                 .rates =3D SNDRV_PCM_RATE_8000_96000,
+>>>>>> -             .formats =3D (SNDRV_PCM_FMTBIT_S8 |
+>>>>>> -                         SNDRV_PCM_FMTBIT_S16_LE |
+>>>>>> -                         SNDRV_PCM_FMTBIT_S20_LE |
+>>>>>> -                         SNDRV_PCM_FMTBIT_S24_LE),
+>>>>>> +             .formats =3D (SNDRV_PCM_FMTBIT_S16_LE |
+>>>>>> SNDRV_PCM_FMTBIT_S32_LE),
+>>>>> Again, mixed up changes with zero justification.
+>>>>>
+>>>>> This drops S8 and S16 format support for the existing SoCs (such as G=
+XL)
+>>>>> which is known to work and add S32 support on an HW documented as 24b=
+its
+>>>>> only. Can you explain ?
+>>> for g12a, sm1 etc, it is use new audio ip, GXL is old ip,
+>> If there are chips difference we did not know about, then you should
+>> introduce those difference, without breaking existing support -
+>> including for GXL, which is what you did IIUC.
+>>
+>>> the new ip not support 24 bit,
+>> Are sure about that ? that code has been there for a while.
+>>
+>> If sm1 does not support SNDRV_PCM_FMTBIT_S24_LE, you should a fix up pat=
+ch for
+>> that, with the proper "Fixes:" tag, how to reproduce the problem and
+>> explaining the fix.
+>
+> maybe there are some gap , we support SNDRV_PCM_FMTBIT_S24, not support t=
+he
+>
+> SNDRV_PCM_FMTBIT_S24_3LE,=C2=A0 for SNDRV_PCM_FMTBIT_S24
+>
+> it is=C2=A0 Signed, 24-bit (32-bit in memory), little endian , the audio =
+dma
+> busrt is 64bit
 
-Compatible? What does it mean for a board?
+It makes absolutely no sense to discuss memory layout for the codec.
 
-Third time: did you look how other vendors do it?
+>
+> it can get the full data. we send the 32 bit data=C2=A0 mclk =3D 32bit* 4=
+8k *4,=C2=A0
+> use the clk to send
+>
+> the=C2=A0 SNDRV_PCM_FMTBIT_S24,=C2=A0=C2=A0 the hadware always send the 3=
+2bit data
 
-> 
-> With the combination of these 3 SoCs and 2 boards, we have 6 platforms,
-> all of which we need.
-> - sa8775p-ride.dts is auto grade Ride platform with safety feature.
-> - qcs9100-ride.dts is IOT grade Ride platform with safety feature.
-> - qcs9075-ride.dts is IOT grade Ride platform without safety feature.
-> 
-> Since the Ride-r3 boards are essentially Ride boards with Ethernet
-> modifications, we can convert the Ride-r3 DTS to overlays.
-How one board can be with multiple SoCs? If it is soldered, it's close
-to impossible - that's just not the same board. If it is not soldered,
-why you are not explaining it? What is Ride board? What is there? What
-can go there? How it can be used in other SoCs? Or for which SoCs? Is
-there a datasheet available?
+No it does not. It send 24 bits of data over a 32 bits physical word with
+8 bits ignored.
 
-You keep repeating my about SoC and I keep responding the same: don't care.
+>
+> so, i think we only add the SNDRV_PCM_FMTBIT_S32 base on it
 
-Best regards,
-Krzysztof
+That's wrong if the codec does not actually use the full 32bits ... and
+I have clear indication that's what the codec is doing, on GXL at least.
+
+>
+> we think the 24 bit is the SNDRV_PCM_FMTBIT_S24_3LE, it is 24bit in memro=
+y,
+>
+> due to the dma busrt 64 bit limit, it can't align the sample bit, if it is
+> 24 bit
+
+Again, memory layout makes no sense here.
+
+>
+> so the clock configure can't 24bit clock,
+
+I disagree and this has been tested. If you have a test case showing
+otherwise please share it.
+
+> by the way, We discuss internally for gxl,
+>
+> it also support the SNDRV_PCM_FMTBIT_S32
+>
+
+Does it really ? If it is just to ignore the 8bits LSB, that not a support.
+
+>
+>>
+>>> usually support 16/32 bit for new audio ip , for SNDRV_PCM_FMTBIT_S24_L=
+E,
+>>> it width =3D24, phy =3D32
+>> Yes physical of SNDRV_PCM_FMTBIT_S24_LE, so most chip supporting 32 bits
+>> width would support this S24_LE, unless there is something odd.
+>>
+>>> it was  treated as 32 bit to send for tdm, so we can only add the S32LE
+>>> base on it , right ?
+>> You are asking me ? How am I suppose to know ?
+>>
+>>> but if the gxl not support the 32bit
+>> I don't see a problem with a DAC taking input on 32bits physical
+>> interface and ignoring some bit on processing.
+>>
+>> If that's not the case, please send a proper fix change with some explan=
+ation
+>>
+>>> we need add new snd_soc_dai_driver t9015_dai_s4 ?
+>>>
+>> If I understood correctly format depends on the chip and needs to
+>> adjusted including for sm1.
+>>
+>>>>>>         },
+>>>>>>         .ops =3D &t9015_dai_ops,
+>>>>>>    };
+>>>>> -- Jerome
+>> --
+>> Jerome
+
+--=20
+Jerome
 
