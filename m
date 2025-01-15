@@ -1,176 +1,159 @@
-Return-Path: <devicetree+bounces-138872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4399A12C23
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 20:59:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADAEBA12C5E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 21:17:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0856F18876D8
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 19:59:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D207C160B64
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 20:17:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 294E41D88DB;
-	Wed, 15 Jan 2025 19:59:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED1801D88CA;
+	Wed, 15 Jan 2025 20:16:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XJKOl3AG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BF/oHRri"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC791D6DBB
-	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 19:59:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B33D14B959;
+	Wed, 15 Jan 2025 20:16:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736971183; cv=none; b=b1dli7AaivxRtlLhRd6C7NgUQ1B8pabW+4jLj4xvIZoSMBmr/Z79vHTMuv8VUyORbGwosMrMlgeyE3OFvN+JBtEfLuStGGTrq1dDVQqpah6FlrXeQ4og4uJzJ31xFIPl8/lh2/8WX8tXcboWHnHnbDdoiYK/CHuK19a7xN+01Wk=
+	t=1736972214; cv=none; b=JsvLJ9RC/691+us06LevfKXXSd4CoQV7fp026lCeadZ+7Oz4918a9OfzUBzwI4Yqw7RDYsbO6emqCAfFsYr93SHNQrx4OWJwkFgEIyZ7xrU770TUuuBMlwMUck915vITeFam/4hFWRoGWbirARpYIyT2yJ1svbujzyStR8SzmHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736971183; c=relaxed/simple;
-	bh=rRmOJmRIOy/wdMHwdCmOnXcji1lJDV0SyC/BXE9Q77Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xj6mZRqalO0qrW3ET7jEsRRzysFzd1TI2EtT0NPINnlIl10xv4BBTS6nI8lMl6yOKgzPWXI8oWZD9gFfdMpjgz31aOI27j71/ce6kb9clClIG2q43OjoZUXF8OxdBFudOsAG7epdtyyi+G8LisYauF+j1W9pT9AcPVAUpYdqgLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XJKOl3AG; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53f22fd6832so188753e87.1
-        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 11:59:40 -0800 (PST)
+	s=arc-20240116; t=1736972214; c=relaxed/simple;
+	bh=OfKvVenTWgyY5jrKSeMk7EtiNZxRSTQm4Fd0esr3HxQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FpLVu/n3SxVsamwIx+FwCAeW/EOWgEp+f99ldbxMbae4/+ZkL+5Dphf3EgJ+Vk0RCkdWCrCaHyNsKmhZ9gVFrAy0CnL5+x/DtgSOfuo8mGrHlw/KbU70XqPcIh7+avqXuK4Cbb3vcAHFyLNzs+xEy+Ab5L8ItAWge6kqu3tG4Dw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BF/oHRri; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-aaeef97ff02so36665066b.1;
+        Wed, 15 Jan 2025 12:16:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1736971179; x=1737575979; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=x37MGVTi+7LLCYAbiXmT4g42J1cDZJlwMsnlJFXjsC8=;
-        b=XJKOl3AGEqP6kUeK5ZNBAULsWSrYiiD+LbgdCb+1aQwWeXZc2R+rTtXcXw9hV6sKc3
-         z9yVpyn7WjKXHqdAlVA9tLIgGyIGwel9ogzL+J2aUn+N5NgqOZjVXW4cOOneW4HHSzHd
-         JLM4mWoMgrO3VRkMwhSBjOZ6NJNWZj/lNRZJ9xYojSN10LQY95Yts3dx3mj9Iq5483gG
-         PWglgy5c0Cftp5Yzc1WP2LUrTQkDHAgtd7buoEoQ4vXI0o7keOAtkTaSEeA/4Y6ODz3V
-         pPBacjg3/C8OaEFcisEPyg8lxY1059Ez1kjRgnuGPbagVvwHdCRF1SYFF9W5xapkduHb
-         zxCQ==
+        d=gmail.com; s=20230601; t=1736972211; x=1737577011; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RJ3tWXahCaQRStvfHnSmG39c+4v0pNaMUd6j5ximL0w=;
+        b=BF/oHRricep3xYGCN8Q4jMtBUQiDiKDFw+XGF8zQWRjwgLYltoOAeNp96vie2OhyW2
+         hVAi9LADm4iD1IRWrQl0CujrHOl59Gta3aKwKkkAB0C6RlUw0699ErTA+xG+38jOBOWk
+         jyZ60eGdIvrtTSYw4HD1FPUpYYQO5RyE3jAQpe7TFT5xZyhEexf4OBTxo07UqWEea1eC
+         bJNDDo7LtZdPQKBZMN/8e3dhw2NlLcrR1a9SVifOIyoh8NQ4rsImUpncSJoMNvm8cOSg
+         mVwDtnrBqjP1u1lfuGddDGN+dBNs2qxd13vTBJP+IT3HSz1wgU8iwlNSRdtghx/5TrlQ
+         dMTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736971179; x=1737575979;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x37MGVTi+7LLCYAbiXmT4g42J1cDZJlwMsnlJFXjsC8=;
-        b=iV29RWbNDVfPYh9CzKKI9Vq0W5UEgeKZggLMDc35y7ichGO/4HBHvAkVAafyfixpi9
-         wD6myOqyv/MRp3MWs11zhclFINbFE+hoQoZwvet4nn6I5vSEOzY81fbKfHj2X3jJlwnX
-         K53A5TkNQToAgl7s7z4MmrEBuEY6n2tIiF0sqsEEIZ6NDDv1wnchFuz3K8ajGwjw3UDE
-         gcn+SF/f9yEn96kvlM58tB94OMfnPmX20vmhRpBwdYy61/O/7uhK2kBXD5uthL+6mhMs
-         LiHWAJxwukkVWM9JtK3shsiMJtWT+gosn/YAMLrNI5rJwoOv3CpsDaspARrk5Dh8gs/d
-         Xarw==
-X-Forwarded-Encrypted: i=1; AJvYcCX5fuq9vpdcsE8wHryVsyfdgA22nSfSYLhToRtgkcWrc7IK2JT/XoqxJQAyxGgsEGkEqCSpAF5z7+8p@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIURG/suKZ0KKaqS6xwY7TpON46sWdBuecIzEW73Phbs8zPQuG
-	8tqDsfHtoY2RdL7KIr7BxHMPV7WQ3OyHOx9TOcfE3CLGenCyXn7pXG9+afae9Ro=
-X-Gm-Gg: ASbGncty/kqB+tpHBd4A8pehKCCUnAFvhJm/zk8q8+vJaUK+3YeSj7jPNG4HU5vRfKV
-	DjzaEfyru7AExE/HgII58BI+3d6Og37nalhS7UQe/ibYAiG4toh6136FY2Xd9upceyedhRjpfga
-	9EBnt/JLaEgrZWH1K86DO+PuHEOsUEgWOW+gwUFBpU6xkXlFZ4talGaYr93CQ+EBNlbUj0tdmzM
-	CQD+nspKfFuPDbbyFg//uRPLYbB3ntGY2z6TgKZYyd0rqYTyyQxvtsezlHjkE35E7YAohGqPbvK
-	4yunXrnao/kwwoeYXYq6/lcQ0LhqrWxPKO6d
-X-Google-Smtp-Source: AGHT+IEgsaKsijQtzxn7rCfFidNVZj0/9WmlBcq9snlTFjWsJkPsdGTXxyCiCkpWSsFsl61eUySb8g==
-X-Received: by 2002:a05:6512:1055:b0:542:91a5:1d5c with SMTP id 2adb3069b0e04-54291a51db8mr6711480e87.8.1736971179233;
-        Wed, 15 Jan 2025 11:59:39 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428be499fcsm2104336e87.8.2025.01.15.11.59.36
+        d=1e100.net; s=20230601; t=1736972211; x=1737577011;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RJ3tWXahCaQRStvfHnSmG39c+4v0pNaMUd6j5ximL0w=;
+        b=Y9rzDOmFOWZoto35ZTvx9dcIEfQGRLSspkDyq+prsXP8s7aFMfFaBKhAx1bhnbwcpe
+         y1Yy3XRK0sC8cOBcQdZHbeFoU10uIgaegy6q8HaUp2/RcDjgbuTnM1y/PnqCH6p5O4T3
+         wQ3bPErPPLwjyi61xyzqsqSfOF9TLmVeQYNSv3KiHnlCm0bx11wqHDEsohYOKS/EG8/7
+         bvnLb547ddrDOVVD/dylwoobvns3y508eRAmKiO6pbBHPLrhaJOo/wn6CdVp1DHVMnCh
+         NgRoB/q/a3/6ggRoTl33YsvWggbASJNjVFvSCTnZrFoxhX2o1EfNzEEwn4WaEQmFU6nH
+         4Wfg==
+X-Forwarded-Encrypted: i=1; AJvYcCUsXhlccYR+MZ+pulcPTJpvRxF1HWZw1x+81s8SEaDU3w0eYcze++61CATHz9Ru2lunvUKTolsysNwy@vger.kernel.org, AJvYcCWSKVG9370IyV1QGwFJt5pW5LeQ0mGEhUc34r+UQr1bpSJIQxlQ8LipGaeiwsyrFpOSx64yD2JAOvsf@vger.kernel.org, AJvYcCX/H6y5SZs1qtxWEWzJURusPU9smJxSjLzvMtWT9U2V2HqNVeg1J6bkqxUypPYPSIbP7hhVqsehnPSkjNqj@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2n9knqWc3m7PNhzuBUcQwniiX9AmUJNH0v4uV76vRxXg0IVky
+	9T5kEY7mHoca2Xk6Y3TpG67iFxNzVzl+FAn0Yi04DOHflXKSQAys
+X-Gm-Gg: ASbGncsDVxnOPMS8K1e4RbjtsyufFiUqJ7JPmpKRPzTNWRPSWyDlcaUMluyZQTpyXY/
+	Fs/n99oMrxTSTEysgyVxwanvEPo5joQ/gfkaq2nGIkXK4/cBCxQdlwfU2ZyWr3ufw5Sq8S3/28p
+	xnZ56TMHQZWkzbOoyJwccechP/xoqVj20Vs14MMX5t5rOICqRZ+R4bpsBvo7TnE9Rv00qhoguqd
+	tM6Cyq82FjgPpYsJnCnQyqUz6y/3yVWoejtdOwKzB2vBHIMYLMPPJnxxAv5idDRXzs6jMfIp/8=
+X-Google-Smtp-Source: AGHT+IH2BEbOnyG0gINaLp2mp6Egx4vBLtHPvTZImFkY7DQvHzKraKHLBXcYDdGjY3BIURwBc1Ifsg==
+X-Received: by 2002:a17:907:d06:b0:ab3:61f5:13c7 with SMTP id a640c23a62f3a-ab361f51473mr100377366b.53.1736972211082;
+        Wed, 15 Jan 2025 12:16:51 -0800 (PST)
+Received: from localhost.localdomain ([78.210.102.185])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab2c90dc101sm813697966b.56.2025.01.15.12.16.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2025 11:59:37 -0800 (PST)
-Date: Wed, 15 Jan 2025 21:59:35 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
-	Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
-	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC 1/4] drm/msm/adreno: Add speedbin support for X1-85
-Message-ID: <enykcipequ4xjykcjbkpnmtlclrbbmkhncj7fx3zy4sgmo3h4n@y3k7xgjscpfc>
-References: <20250109-x1e-speedbin-b4-v1-0-009e812b7f2a@quicinc.com>
- <20250109-x1e-speedbin-b4-v1-1-009e812b7f2a@quicinc.com>
- <356986fa-e66c-4e78-ab92-2593b037ab9a@oss.qualcomm.com>
- <837602a7-bbd5-4436-ab9f-2b101bdcaac2@quicinc.com>
+        Wed, 15 Jan 2025 12:16:50 -0800 (PST)
+From: Antoni Pokusinski <apokusinski01@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrej.skvortzov@gmail.com,
+	neil.armstrong@linaro.org,
+	icenowy@aosc.io,
+	megi@xff.cz,
+	danila@jiaxyga.com,
+	javier.carrasco.cruz@gmail.com,
+	andy@kernel.org
+Cc: apokusinski01@gmail.com,
+	linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v4 0/2] iio: magnetometer: add support for Si7210
+Date: Wed, 15 Jan 2025 21:16:20 +0100
+Message-Id: <20250115201622.270130-1-apokusinski01@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <837602a7-bbd5-4436-ab9f-2b101bdcaac2@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Jan 16, 2025 at 01:07:17AM +0530, Akhil P Oommen wrote:
-> On 1/9/2025 7:27 PM, Konrad Dybcio wrote:
-> > On 8.01.2025 11:42 PM, Akhil P Oommen wrote:
-> >> Adreno X1-85 has an additional bit which is at a non-contiguous
-> >> location in qfprom. Add support for this new "hi" bit along with
-> >> the speedbin mappings.
-> >> ---
-> >>  drivers/gpu/drm/msm/adreno/a6xx_catalog.c |  5 +++++
-> >>  drivers/gpu/drm/msm/adreno/adreno_gpu.c   | 15 ++++++++++++++-
-> >>  2 files changed, 19 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-> >> index 0c560e84ad5a53bb4e8a49ba4e153ce9cf33f7ae..e2261f50aabc6a2f931d810f3637dfdba5695f43 100644
-> >> --- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-> >> +++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
-> >> @@ -1412,6 +1412,11 @@ static const struct adreno_info a7xx_gpus[] = {
-> >>  			.gmu_cgc_mode = 0x00020202,
-> >>  		},
-> >>  		.address_space_size = SZ_256G,
-> >> +		.speedbins = ADRENO_SPEEDBINS(
-> >> +			{ 0,   0 },
-> >> +			{ 263, 1 },
-> >> +			{ 315, 0 },
-> >> +		),
-> >>  		.preempt_record_size = 4192 * SZ_1K,
-> >>  	}, {
-> >>  		.chip_ids = ADRENO_CHIP_IDS(0x43051401), /* "C520v2" */
-> >> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> >> index 75f5367e73caace4648491b041f80b7c4d26bf89..7b31379eff444cf3f8ed0dcfd23c14920c13ee9d 100644
-> >> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> >> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-> >> @@ -1078,7 +1078,20 @@ void adreno_gpu_ocmem_cleanup(struct adreno_ocmem *adreno_ocmem)
-> >>  
-> >>  int adreno_read_speedbin(struct device *dev, u32 *speedbin)
-> >>  {
-> >> -	return nvmem_cell_read_variable_le_u32(dev, "speed_bin", speedbin);
-> >> +	u32 hi_bits = 0;
-> >> +	int ret;
-> >> +
-> >> +	ret = nvmem_cell_read_variable_le_u32(dev, "speed_bin", speedbin);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	/* Some chipsets have MSB bits (BIT(8) and above) at a non-contiguous location */
-> >> +	ret = nvmem_cell_read_variable_le_u32(dev, "speed_bin_hi", &hi_bits);
-> >> +	if (ret != -ENOENT)
-> >> +		return ret;
-> >> +
-> >> +	*speedbin |= (hi_bits << 8);
-> > 
-> > Now that we're overwriting speedbin, we should probably have some checks in
-> > order to make sure somebody passing a too-wide cell to one of these won't
-> > result in cripplingly-untraceable value corruption
-> > 
-> > I guess we could just introduce nvmem_cell_read_variable_le_u8() and call it
-> > a day?
-> 
-> X1E is an outlier here, because this was fixed from the next chipset
-> onward. For newer chipsets, we can use just the "speed_bin" node, which
-> represents a contiguous 9 bits. So, just do a "WARN_ON(fls(speedbin) >
-> 8)" here?
+This patch series adds support for the Si7210 Hall effect I2C sensor.
+The driver currently supports the basic functionalities (i.e. making
+temperature and magnetic field measurements and changing the
+measurements scale) but I plan to add support for some other features in
+the future as well (e.g. the digital output interrupt).
 
-Or extend nvmem core to support non-contiguous fields.
+---
+Changes since v3:
+* si7210: fetch_measurement/read_raw: fix issue with endianess
+* si7210: replace `if (ret < 0)` with `if (ret)` wherever possible
+* si7210: read_raw: use SI metric prefixes (MICRO, MILLI)
+* si7210: si7210_data: swap i2c_client with regmap
+* si7210: read_otpreg_val: remove unnecessary cast
+* si7210: minor formatting updates
+(add missing trailing commas, spaces etc)
+* si7210: probe: use devm_mutex_init
+* si7210: add missing includes
 
-> 
-> -Akhil.
-> 
-> > 
-> > Konrad
-> 
+Changes since v2:
+* Makefile: fix alignment
+* si7210: fetch_measurement: use temporary variable to read the
+measurement instead of reading directly to `buf`
+* si7210: read_raw: change `tmp` to `temp`
+* si7210: read_raw: adjust temperature computation to match the spec better
+* si7210: device_wake: do not init `ret` to 0
+* si7210: MODULE_LICENSE: change license type to GPL
+* si7210: minor improvements in comments
+
+Changes since v1:
+* dt-binding: add `vdd-supply`
+* si7210: reorder includes in alphabetic order
+* si7210: add comment for `fetch_lock`
+* si7210: remove `otp_lock`
+* si7210: fetch_measurement: change result type to __be16
+* si7210: use guard(mutex) instead of scoped_guard
+* si7210: read_raw: use FIELD_GET to get raw temperature value
+* si7210: read_raw: return temperature in milli-celsius
+* si7210: use regulator for getting the voltage
+* si7210: si7210_device_wake: remove unnecessary cast
+* si7210: si7210_device_init: use fsleep instead of usleep_range
+* si7210: si7210_probe: remove i2c_set_clientdata()
+* si7210: minor alignment and formatting fixes
+
+Antoni Pokusinski (2):
+  dt-bindings: iio: magnetometer: add binding for Si7210
+  iio: magnetometer: si7210: add driver for Si7210
+
+ .../iio/magnetometer/silabs,si7210.yaml       |  48 ++
+ drivers/iio/magnetometer/Kconfig              |  11 +
+ drivers/iio/magnetometer/Makefile             |   2 +
+ drivers/iio/magnetometer/si7210.c             | 444 ++++++++++++++++++
+ 4 files changed, 505 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/silabs,si7210.yaml
+ create mode 100644 drivers/iio/magnetometer/si7210.c
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
 
