@@ -1,179 +1,136 @@
-Return-Path: <devicetree+bounces-138732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C325AA11ECE
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:02:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B111A11EE6
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:06:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B1781885240
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:03:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7449C1674EF
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:06:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0FC41EEA35;
-	Wed, 15 Jan 2025 10:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE37520896C;
+	Wed, 15 Jan 2025 10:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dlwMvqpA"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pVDVvkin"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92D19248160;
-	Wed, 15 Jan 2025 10:02:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 079552361DA;
+	Wed, 15 Jan 2025 10:06:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736935376; cv=none; b=s7c0aj/jR32ieimNCmfDf4ubUYz0f+gcLYnDNJi6FxZzDzlauQZkAnA7mDRnRnfdDv9feWngoyiYQqefa6thngH28D+i1q6bODchnkajRvAE0KdZlgJjX+ypUO00hzzkimTL3Ps9mWFAjU1p5jhsM2CrVfULX5SKjfX9lpy/Lxw=
+	t=1736935588; cv=none; b=fnX5S14/3dp16vDQ2ig5XACjURwUl1EhLgV9HxUjoFgT30YwZW8ZmhCVyAuzNx+/Nhjz/Xx/yzAUcaY7tmx/36TG3jzKduVJEFCFp5shh7C3kCrYRgUBCrFZcy9LkNgw/V2uWoXhZsZP4glNvXArKL0cZx43xhjyKKkRJM8x23s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736935376; c=relaxed/simple;
-	bh=JoZEgsC26B+m7sk2PctIPwPPabGPfFf+j0coBGyXGVs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LmmGCQHYv2ROTt5FE7AsxZQb5H7a835kHLNCh8dc9YPB+RMGkIMPzMruGFK2Mb7jowdZMfQmL3NFN/a/QZxD+2VQ6qUwXwHkpcvKrXVe/Ue1s/JP6lYNoQJCvWfg0NqJ5ViNIglTgTjSNDDksAPgH4atolbFzWWitRk7ZT71Ks8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dlwMvqpA; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1736935372; x=1768471372;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JoZEgsC26B+m7sk2PctIPwPPabGPfFf+j0coBGyXGVs=;
-  b=dlwMvqpA+LFPMQTooG2FFX8dBKeTdCHtufLY6qFfDqV2P2KOU7b0R2+Y
-   YQXmDmzF0FsR71n0j9emDQTE9VUFZlFqBNHYql6B6ZJdTLT85yKlUs0Vq
-   zMo8N7pRFkxxGorAQa49DxzFNh7Ri1N8krE58svfSPP6KYeonwJ2npOTQ
-   PpX9ZRLq7eU8Ixm11d85gslas66GuPhxUFV6Px2/Yoc7HSHMmi5jIIAUP
-   y7xzg18bmoSwNQ7KQozNjn5RyDI57aGj5rl4opXJvcSs0efy60uSauur0
-   pKHh/sW6aQ1jgzx9JUrL5x4ZV77WtDXzpbm9MENOI+S6g/uTa2GFH01K8
-   w==;
-X-CSE-ConnectionGUID: xljbMPecQ3CV1dWQ8jcqiQ==
-X-CSE-MsgGUID: vqWdyVK/ToekrSSDbpmuTA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11315"; a="48264441"
-X-IronPort-AV: E=Sophos;i="6.12,316,1728975600"; 
-   d="scan'208";a="48264441"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2025 02:02:51 -0800
-X-CSE-ConnectionGUID: wo8lSug0RymJn/8J9m7osg==
-X-CSE-MsgGUID: 8vuEDfHkR7adKfLZDXc8zw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="135945796"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jan 2025 02:02:48 -0800
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id E0E9D11F8B3;
-	Wed, 15 Jan 2025 12:02:45 +0200 (EET)
-Date: Wed, 15 Jan 2025 10:02:45 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Ricardo Ribalda <ribalda@chromium.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Jacopo Mondi <jacopo@jmondi.org>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: usb: usb-device: Add panel-location
-Message-ID: <Z4eHxTzn1aUyUT7z@kekkonen.localdomain>
-References: <20241217145612.GA1652259-robh@kernel.org>
- <CANiDSCu_mFQQVkDb_gSyXeb1_Tu+DxSeHYvGsGp6XVDuOdPyjQ@mail.gmail.com>
- <20241219122453.GA4008177-robh@kernel.org>
- <CANiDSCt+LAE-LzCDZgrWP_V-Jc-ywTF1-PuQtyDJMfV9v_ZzGA@mail.gmail.com>
- <CAL_JsqLON5xKoYtowKdk49s-YHbk9bq9akZSH1kHdQ_9vxKSQQ@mail.gmail.com>
- <CANiDSCvRfZiMafeJ6==oyduZCzJsv74pg9LbswnjoXFS2nTm=g@mail.gmail.com>
- <Z347NA00DMiyl1VN@kekkonen.localdomain>
- <CANiDSCs37N79MnFZxvBJn2Jw3062EdLRuVP4EkJVfJcfMMuPAg@mail.gmail.com>
- <Z35BnplCOVyboSBs@kekkonen.localdomain>
- <CANiDSCteoJ_Lk_G6KQKyK1MWikEHF36bYaSHwFEhJh0BFxb6Dw@mail.gmail.com>
+	s=arc-20240116; t=1736935588; c=relaxed/simple;
+	bh=7AS/KitQlguNxF7vSxEkrKlJTDNOIY4kAUsu1PfXNd4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ibe0tCT1fT0T4wgXZZZLjo9G9yLYiFvLoCwzhI+IHNN0F5vjKCkyzhpluacsI6VFDa6/EA/VB+kZxqQNq0U/U7N9rRzUxadhgITH4Qc9dN5fMiBJqCL7aTvn/VvT6SZYnuZIAns0760PLV+VJA4jkx0FY+wMg2tzztxcPzf0RFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pVDVvkin; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50F9KsQe022452;
+	Wed, 15 Jan 2025 10:06:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	7AS/KitQlguNxF7vSxEkrKlJTDNOIY4kAUsu1PfXNd4=; b=pVDVvkin6iliRgAn
+	jkp1dszuQc9WpLK1uXiqAKp8PSBl/8InmnNLSSmS8aRDe1sT+cJIpzclBe3fZprQ
+	GoJtfZekr3DpJGekcsdS3xs3PIAPOtve6QkA/hEoXKNwgMYy40u0G0NtPdTvWZ1U
+	Uf2n0gG22sNfTXxaLVmq0LzOjpO6ugbBY3sdpnLtWRtTH5Xmiq3wvaeXERbSpNes
+	+x9rJxKgLazk/ShkVENHRJ0WcICMKtWtI0Bvycw+KXg92A9VcwC3F6PFYIxWdJJd
+	6aGc9XDRZx9oZ8PqLmrroeKbQUqEy3dfDYwInHUNUhkRn9Tto252JhFxZW5bS+ZM
+	BWOEFA==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 446aa9g3xh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 15 Jan 2025 10:06:22 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50FA69Bm031718
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 15 Jan 2025 10:06:09 GMT
+Received: from [10.152.201.37] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 15 Jan
+ 2025 02:06:04 -0800
+Message-ID: <f0a261ff-e9b1-4c65-8f26-e7ffd86251c0@quicinc.com>
+Date: Wed, 15 Jan 2025 15:35:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CANiDSCteoJ_Lk_G6KQKyK1MWikEHF36bYaSHwFEhJh0BFxb6Dw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 7/8] arm64: dts: qcom: ipq9574: add nodes to bring up
+ q6
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        "jassisinghbrar@gmail.com"
+	<jassisinghbrar@gmail.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "conor+dt@kernel.org"
+	<conor+dt@kernel.org>,
+        "andersson@kernel.org" <andersson@kernel.org>,
+        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
+        "konradybcio@kernel.org" <konradybcio@kernel.org>,
+        "Manikanta Mylavarapu
+ (QUIC)" <quic_mmanikan@quicinc.com>,
+        "linux-arm-msm@vger.kernel.org"
+	<linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-remoteproc@vger.kernel.org"
+	<linux-remoteproc@vger.kernel.org>,
+        "dmitry.baryshkov@linaro.org"
+	<dmitry.baryshkov@linaro.org>
+CC: "Vignesh Viswanathan (QUIC)" <quic_viswanat@quicinc.com>,
+        "Sricharan
+ Ramabadhran (QUIC)" <quic_srichara@quicinc.com>
+References: <20250107101647.2087358-1-quic_gokulsri@quicinc.com>
+ <20250107101647.2087358-8-quic_gokulsri@quicinc.com>
+ <20abe9a9-34dc-4712-8fde-b959eb3e22c6@oss.qualcomm.com>
+Content-Language: en-US
+From: Gokul Sriram P <quic_gokulsri@quicinc.com>
+In-Reply-To: <20abe9a9-34dc-4712-8fde-b959eb3e22c6@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 7ruNp92vKOsCPhN3u-lXEEW12-zBawvo
+X-Proofpoint-ORIG-GUID: 7ruNp92vKOsCPhN3u-lXEEW12-zBawvo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-15_04,2025-01-15_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 adultscore=0
+ phishscore=0 mlxscore=0 bulkscore=0 mlxlogscore=610 malwarescore=0
+ impostorscore=0 priorityscore=1501 clxscore=1015 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501150077
 
-Hi Ricardo,
 
-On Wed, Jan 08, 2025 at 10:48:34AM +0100, Ricardo Ribalda wrote:
-> Hi Sakari
-> 
-> On Wed, 8 Jan 2025 at 10:13, Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
-> >
-> > Hi Ricardo,
-> >
-> > On Wed, Jan 08, 2025 at 09:51:34AM +0100, Ricardo Ribalda wrote:
-> > > > > diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml
-> > > > > b/Documentation/devicetree/bindings/usb/usb-device.yaml
-> > > > > index da890ee60ce6..5322772a4470 100644
-> > > > > --- a/Documentation/devicetree/bindings/usb/usb-device.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
-> > > > > @@ -37,6 +37,10 @@ properties:
-> > > > >        but a device adhering to this binding may leave out all except
-> > > > >        for "usbVID,PID".
-> > > > >
-> > > > > +  orientation:
-> > > > > +    description: If present, specifies the orientation of the usb device.
-> > > > > +    $ref: /schemas/media/video-interface-devices.yaml#/properties/orientation
-> > > >
-> > > > Do you need this for a camera or for other kinds of USB devices, too?
-> > > >
-> > > > What about e.g. the rotation property?
-> > >
-> > > I need it for cameras. I do not have a usecase for rotation now, but I
-> > > might have in the future.
-> >
-> > If it's specific for cameras (UVC kind I presume?), wouldn't it be
-> > reasonable to add specific bindings for it?
-> Yes, they are uvc cameras
-> 
-> Do you mean something like this:
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/usb-device.yaml
-> b/Documentation/devicetree/bindings/usb/usb-device.yaml
-> index da890ee60ce6..bc80c1e7360f 100644
-> --- a/Documentation/devicetree/bindings/usb/usb-device.yaml
-> +++ b/Documentation/devicetree/bindings/usb/usb-device.yaml
-> @@ -75,6 +75,12 @@ patternProperties:
->            configuration value.
->          maxItems: 1
-> 
-> +      image-sensor:
-> +        description: Video interface properties associated to USB cameras,
-> +          typically UVC compliant.
-> +        allOf:
-> +          - $ref: /schemas/media/video-interface-devices.yaml#
-> +
+On 1/9/2025 6:42 PM, Konrad Dybcio wrote:
+> On 7.01.2025 11:16 AM, Gokul Sriram Palanisamy wrote:
+>> From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>>
+>> Enable nodes required for q6 remoteproc bring up.
+>>
+>> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+>> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
+>> ---
+> The comments you got on patch 6 apply here and to patch 8 too
 
-I missed earlier the compatible string comes directly from the USB vendor
-and product IDs and this isn't the primary means of identifying a USB
-device anyway, IOW we couldn't have a compatible for UVC webcams for
-instance.
+sure Konrad. Will address.
 
-None of the alternatives here seem exactly great to me but all of them
-would likely just work.
+Regards,
 
-I think I prefer your earlier suggestion, the question I have though is
-whether or not it should be limited to certain VIDs/PIDs.
+Gokul
 
->  required:
->    - reg
-> 
-> @@ -113,6 +119,9 @@ examples:
->              interface@0 {
->                  compatible = "usbif123,abcd.config1.0";
->                  reg = <0 1>;
-> +                image-sensor {
-> +                  orientation: 0;
-> +                };
->              };
-> 
->              interface@0,2 {
-
--- 
-Kind regards,
-
-Sakari Ailus
 
