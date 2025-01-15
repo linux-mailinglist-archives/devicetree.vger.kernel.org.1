@@ -1,122 +1,325 @@
-Return-Path: <devicetree+bounces-138868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D8B2A12B40
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 19:57:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EC6EA12B87
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 20:09:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 238281658B9
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 18:57:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB0881615F9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 19:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91AE01990C5;
-	Wed, 15 Jan 2025 18:57:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 071A51D63C7;
+	Wed, 15 Jan 2025 19:09:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nFcyAqJ2"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AVAS/iep"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 033FA24A7D5;
-	Wed, 15 Jan 2025 18:57:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B551C24A7CC;
+	Wed, 15 Jan 2025 19:09:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736967443; cv=none; b=rlNR5h5D9URdHy4zdYJfZ3dgOmPbzNv+XZ/XmAZeuSEogDJwF0gyPR2Dx3KXE972QpJTh50CQMcHvnxq+BKdaVldwxiRM2EPlIhlk90yPmttsbehHpfT2WP0s8xdQWeF3kTSn6WGbdTlgdwxgTIlKv2Do+dJza+n7In1+8cgnCI=
+	t=1736968177; cv=none; b=QkpQ3fRuk7xPyKJxbNujOldppZpPNaV9rEe0xfnqfjrGl4ThRlLaKdtrvS9d41gkeJ5Dlycq0/0wdhTXR4sE+KeKv1AhdKqduThmSthTPdUcvsKFRn07R98mc+JxKYOIlTJI+ss5qFcSdjU27Ufe4Cu4FAEuTg4bFYj++Ac7634=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736967443; c=relaxed/simple;
-	bh=IR2xwznE+4WYl7pQ3lGz85p+APkypmY6M5Cpe+lrRM8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J880f+hqF7/ZWchjuZDJ0ZPsfe2rzyfxgETS2huZO7st7ALXJogO1BfsqGMYaBovt0ZXPEAEPSL7jxa0I5lS81Kp4Emw2azFENT25bqNgPDXVDhJYXcKLtgnEowSkOxAn39p6FhfmS8hDlGXhjlsJnmpFIESrNTvhA8oAbBdk3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nFcyAqJ2; arc=none smtp.client-ip=209.85.222.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-85b8c94a6b4so16752241.0;
-        Wed, 15 Jan 2025 10:57:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736967441; x=1737572241; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=c3rBHRWcLK//xf8QI8u0SxcahJkLNHxSKfdrX2ub8N8=;
-        b=nFcyAqJ2T+uRK+Wfhw6eUFcmKuxtWpFgduNN0Jp+nfsVDSaW/cPjuAgpEJfSEV+78t
-         /or42rqj2Z7lGPLvdIId5Mh90NabTkzzvFftAvax+teBDS6m4Yy7RS2QeiQbEbG2/Q6n
-         nY7YFOsqIyn79Nqf1rXZ8Bd4Pbei7BL/QTZ5z9mL8Zshk1tXtCnz2+YWAMpp0qH7lVyg
-         yuiRs19y2JLYe/E1mPZQXrRwLlh68tu0Q+YoPleOPsRbjpgIuHXOcwqvwhl0P5/bNdvA
-         C8syvWGDDUAcRFCw1IalJfskV3FsiiCTERDAzyQzBqrs2qMxmtJ7O4Th9CD+zvMjbCFa
-         NWYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736967441; x=1737572241;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c3rBHRWcLK//xf8QI8u0SxcahJkLNHxSKfdrX2ub8N8=;
-        b=jJn/iT7Yqp8QM2FmcFFqyxxxN76LmRDX/l1tHRzBFg33+rCOpj2E48+R/rVqkyQLsT
-         bIJOSsewPadn955HIk43JuKN8fbwPsCcU2em9cgduiBU/oqaZwT76jAxQzfPgo+oQOpa
-         DGbvYiRHGpqPw+W2UyPDWCRfMevZkB/rYH/jAMBwWp02e3VT+UpcKWALx4w5kmLin6Wq
-         S5ZJd6JAKCXoDp2LtPIdqM74vH4Hj3ndavh1O2Hbr+1SBw9XGYNJs83wMlWdww678Nxs
-         vfkhhze4uYsmJJJvL9X1bHXtbsJ/HSqaTV29P3qIInP599/GYIB+LDcRdbEr6JOyY/Pe
-         ASOw==
-X-Forwarded-Encrypted: i=1; AJvYcCUFmOJA6viX/pl4m7vXcj+jy2+Op9/lgy60PnQnE0k5GYX3sTg1b9FX24k/UcNcg/q3vOLOoANW/iQ=@vger.kernel.org, AJvYcCVEecKq03wMR6R7DGSEpaP+k56ny+wWef/U3SQR1RLmEWR+AGVx17EcvVadP/kvuKAlcerRzPyI0R5P@vger.kernel.org, AJvYcCWQzWhiOj7rbV9MTAjLaE86Vo54BeHNIM9qN0n0bolwNQmF/7t68oOGlJpYIfRsaEQsf5aSPvmJCmp47w==@vger.kernel.org, AJvYcCXRAqbwTceK9ZFGT2fq+qr0IeDS/LQLi/NEv3iVKALMerBR0yDnuNOnJ6WhN8lgonFO7hNF5XRy/OsaWpxu@vger.kernel.org, AJvYcCXw/rvpTTZusjWdw4xOybP3GbJvbqD2Cr+qKAjKNOdKZHTpR5R2phaskVOCUNiz2Cj00jVIsxZaUy/sE18=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxwq8ZLGhe3322nZ83hDKOA6WhEjR5Xu7LmZKYAh/p++Jjz7MN2
-	bv8pdVK8C0jM0PDRGgA8olnjnYehJwTpE0dh735Em2nINggu7fgrKR0YwGXFfpKMOGjj1cGDSy8
-	Yueu4mMeaY6PgubvfrybNxbbE4AI=
-X-Gm-Gg: ASbGncttERD0ECZnSQIYKqAUwd1JoFXAHwRDNG+FbexVu65CbUZkcmP+j08Jq/C+hWQ
-	ydpQ862+udrfZUqMhqT6DR0TT0J9S6bTaDE1DEQ==
-X-Google-Smtp-Source: AGHT+IE55Rdnoo5jX5nfajWgoNNwUTnz6FOgcf+XznEOImYy05XNUfoQS5g6zQ6+0C00XjS1svK50Bh5JpBiykBUoAs=
-X-Received: by 2002:a05:6102:578e:b0:4af:eccf:e3ca with SMTP id
- ada2fe7eead31-4b3d0da8a8cmr27249008137.10.1736967440942; Wed, 15 Jan 2025
- 10:57:20 -0800 (PST)
+	s=arc-20240116; t=1736968177; c=relaxed/simple;
+	bh=D4ux0L/wRVzc0uqJED/mlhtMpy/qn4a5eYlmFq/u5qQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=cKD917Biz8SHRPXi1qi5jYaSGRxDNJjZGbNQL88Z+y4SDkJiolhBiiWvm9mpQCKhTw6ljFLaoyEx/JHUDt4h5ywxCndyGPZPmnh3E8yU02KuIC4B55l22DxZZcDVp8I8wkoixn1hRr81V2qWYdfda1CTj+USth6iUG0BPnnbmUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AVAS/iep; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50FGqjDq019418;
+	Wed, 15 Jan 2025 19:09:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0ZZbuurAXSU51+q98A+V16YviXERee+aw2dCYQIXy3g=; b=AVAS/iepagvbPhEV
+	ajG5me1XfNy86oY6lW34/uVOAlAVeFEqGoSl1iC9v2gDvVcmYLqYuFo/cuSlTwGI
+	ezX15zLKSANKzQwODkrXaQcRjITHYPU8rci88yXtI31ZZ5cS3+RKxTW18gG7zO88
+	BqbY3nQB6Lx9lvLOo9KUhikmRdmU6MPot/tXSKqZIWz8zkjQ3cBshkWW/QE/RSC3
+	QFMenU/BTeWMckDn+nCvDo4DYKwSMF9+1r4+JlhiK25UiY/7sOtWs0OwDueTDUqh
+	je1hHPn/bnHeciEV0FxWNheniet+mZmYFaZ1HlSlA3tS/XBENr7xb/4TgSXqso+a
+	GRToYQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 446gx38aq9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 15 Jan 2025 19:09:29 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50FJ9Stq021627
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 15 Jan 2025 19:09:28 GMT
+Received: from [10.216.6.163] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 15 Jan
+ 2025 11:09:25 -0800
+Message-ID: <82f44295-a3c9-487c-98db-916cdc30fc4f@quicinc.com>
+Date: Thu, 16 Jan 2025 00:39:25 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250108-starqltechn_integration_upstream-v14-0-f6e84ec20d96@gmail.com>
- <20250108-starqltechn_integration_upstream-v14-7-f6e84ec20d96@gmail.com> <20250109120158.GH6763@google.com>
-In-Reply-To: <20250109120158.GH6763@google.com>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Wed, 15 Jan 2025 21:57:09 +0300
-X-Gm-Features: AbW1kvaKlV8za9mZKmha3NIhIgfbbIci3s1GldX6Gil1h0TJ6PBMmhbBMhVV-SQ
-Message-ID: <CABTCjFAky55btJz3B=K2kL5gSJD9BYi5t15jaA2ga5asVT=3NQ@mail.gmail.com>
-Subject: Re: [PATCH v14 07/10] mfd: simple-mfd-i2c: Add MAX77705 support
-To: Lee Jones <lee@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
-	Hans de Goede <hdegoede@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-leds@vger.kernel.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sm8650: setup gpu thermal with
+ higher temperatures
+To: <neil.armstrong@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250110-topic-sm8650-thermal-cpu-idle-v2-0-5787ad79abbb@linaro.org>
+ <20250110-topic-sm8650-thermal-cpu-idle-v2-2-5787ad79abbb@linaro.org>
+ <8fc3b958-5c2f-4c79-8dc0-d1eec9f5e47d@quicinc.com>
+ <c09192f4-30ae-4dd8-bc88-2aaf02088374@linaro.org>
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <c09192f4-30ae-4dd8-bc88-2aaf02088374@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 2yotSXbNp0kVI6UDZoNF3NVVXM_bjooh
+X-Proofpoint-ORIG-GUID: 2yotSXbNp0kVI6UDZoNF3NVVXM_bjooh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-15_09,2025-01-15_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ adultscore=0 spamscore=0 malwarescore=0 suspectscore=0 mlxlogscore=999
+ impostorscore=0 priorityscore=1501 bulkscore=0 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501150138
 
-=D1=87=D1=82, 9 =D1=8F=D0=BD=D0=B2. 2025=E2=80=AF=D0=B3. =D0=B2 15:02, Lee =
-Jones <lee@kernel.org>:
->
-> On Wed, 08 Jan 2025, Dzmitry Sankouski wrote:
->
-> > Add MAX77705 support - fuel gauge and hwmon devices.
-> > Hwmon provides charger input and system bus measurements.
-> >
-> > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-(...)
-> >  static const struct of_device_id simple_mfd_i2c_of_match[] =3D {
-> >       { .compatible =3D "kontron,sl28cpld" },
-> >       { .compatible =3D "silergy,sy7636a", .data =3D &silergy_sy7636a},
-> >       { .compatible =3D "maxim,max5970", .data =3D &maxim_max5970},
-> >       { .compatible =3D "maxim,max5978", .data =3D &maxim_max5970},
-> > +     { .compatible =3D "maxim,max77705-battery", .data =3D &maxim_mon_=
-max77705},
->
-> Drop the battery part from the MFD (group) name please.
->
+On 1/13/2025 4:15 PM, Neil Armstrong wrote:
+> Hi,
+> 
+> On 13/01/2025 11:28, Akhil P Oommen wrote:
+>> On 1/10/2025 4:06 PM, Neil Armstrong wrote:
+>>> On the SM8650, the dynamic clock and voltage scaling (DCVS) for the GPU
+>>> is done in an hardware controlled loop by the GPU Management Unit (GMU).
+>>>
+>>> Since the GMU does a better job at maintaining the GPUs temperature
+>>> in an
+>>> acceptable range by taking in account more parameters like the die
+>>> characteristics or other internal sensors, it makes no sense to try
+>>> and reproduce a similar set of constraints with the Linux devfreq
+>>> thermal
+>>> core.
+>>
+>> Just FYI, this description is incorrect. SM8650's GMU doesn't do any
+>> sort of thermal management.
+> 
+> Ok, thx for confirming this, in our tests the temperature steadily stayed
+> at a max trip point when setting them higher. But perhaps it's a side
+> effect
+> of other mitigations.
+> 
+> Are the new trip points still ok ? they are derived from the downstream DT.
 
-It will then conflict with MAX77705 mfd driver compatible.
+I don't have expertise on the thermal side. But in my non-expert
+opinion, it is fine to use a similar configuration from downstream.
 
---=20
-Best regards and thanks for review,
-Dzmitry
+-Akhil.
+
+> 
+> Thanks,
+> Neil
+> 
+>>
+>> -Akhil.
+>>
+>>>
+>>> Instead, set higher temperatures in the GPU trip points corresponding to
+>>> the temperatures provided by Qualcomm in the dowstream source, which
+>>> will
+>>> trigger the devfreq thermal core if the GMU cannot handle the
+>>> temperature
+>>> surge, and try our best to avoid reaching the critical temperature trip
+>>> point which should trigger an inevitable thermal shutdown.
+>>>
+>>> Fixes: 497624ed5506 ("arm64: dts: qcom: sm8650: Throttle the GPU when
+>>> overheating")
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 48 +++++++++++++++++
+>>> +------------------
+>>>   1 file changed, 24 insertions(+), 24 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/
+>>> dts/qcom/sm8650.dtsi
+>>> index
+>>> 95509ce2713d4fcc3dbe0c5cd5827312d5681af4..e9fcf05cb084b7979ecf0f4712fed332e9f4b07a 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>>> @@ -6173,19 +6173,19 @@ map0 {
+>>>                 trips {
+>>>                   gpu0_alert0: trip-point0 {
+>>> -                    temperature = <85000>;
+>>> +                    temperature = <95000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "passive";
+>>>                   };
+>>>                     trip-point1 {
+>>> -                    temperature = <90000>;
+>>> +                    temperature = <115000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "hot";
+>>>                   };
+>>>                     trip-point2 {
+>>> -                    temperature = <110000>;
+>>> +                    temperature = <125000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "critical";
+>>>                   };
+>>> @@ -6206,19 +6206,19 @@ map0 {
+>>>                 trips {
+>>>                   gpu1_alert0: trip-point0 {
+>>> -                    temperature = <85000>;
+>>> +                    temperature = <95000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "passive";
+>>>                   };
+>>>                     trip-point1 {
+>>> -                    temperature = <90000>;
+>>> +                    temperature = <115000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "hot";
+>>>                   };
+>>>                     trip-point2 {
+>>> -                    temperature = <110000>;
+>>> +                    temperature = <125000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "critical";
+>>>                   };
+>>> @@ -6239,19 +6239,19 @@ map0 {
+>>>                 trips {
+>>>                   gpu2_alert0: trip-point0 {
+>>> -                    temperature = <85000>;
+>>> +                    temperature = <95000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "passive";
+>>>                   };
+>>>                     trip-point1 {
+>>> -                    temperature = <90000>;
+>>> +                    temperature = <115000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "hot";
+>>>                   };
+>>>                     trip-point2 {
+>>> -                    temperature = <110000>;
+>>> +                    temperature = <125000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "critical";
+>>>                   };
+>>> @@ -6272,19 +6272,19 @@ map0 {
+>>>                 trips {
+>>>                   gpu3_alert0: trip-point0 {
+>>> -                    temperature = <85000>;
+>>> +                    temperature = <95000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "passive";
+>>>                   };
+>>>                     trip-point1 {
+>>> -                    temperature = <90000>;
+>>> +                    temperature = <115000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "hot";
+>>>                   };
+>>>                     trip-point2 {
+>>> -                    temperature = <110000>;
+>>> +                    temperature = <125000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "critical";
+>>>                   };
+>>> @@ -6305,19 +6305,19 @@ map0 {
+>>>                 trips {
+>>>                   gpu4_alert0: trip-point0 {
+>>> -                    temperature = <85000>;
+>>> +                    temperature = <95000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "passive";
+>>>                   };
+>>>                     trip-point1 {
+>>> -                    temperature = <90000>;
+>>> +                    temperature = <115000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "hot";
+>>>                   };
+>>>                     trip-point2 {
+>>> -                    temperature = <110000>;
+>>> +                    temperature = <125000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "critical";
+>>>                   };
+>>> @@ -6338,19 +6338,19 @@ map0 {
+>>>                 trips {
+>>>                   gpu5_alert0: trip-point0 {
+>>> -                    temperature = <85000>;
+>>> +                    temperature = <95000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "passive";
+>>>                   };
+>>>                     trip-point1 {
+>>> -                    temperature = <90000>;
+>>> +                    temperature = <115000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "hot";
+>>>                   };
+>>>                     trip-point2 {
+>>> -                    temperature = <110000>;
+>>> +                    temperature = <125000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "critical";
+>>>                   };
+>>> @@ -6371,19 +6371,19 @@ map0 {
+>>>                 trips {
+>>>                   gpu6_alert0: trip-point0 {
+>>> -                    temperature = <85000>;
+>>> +                    temperature = <95000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "passive";
+>>>                   };
+>>>                     trip-point1 {
+>>> -                    temperature = <90000>;
+>>> +                    temperature = <115000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "hot";
+>>>                   };
+>>>                     trip-point2 {
+>>> -                    temperature = <110000>;
+>>> +                    temperature = <125000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "critical";
+>>>                   };
+>>> @@ -6404,19 +6404,19 @@ map0 {
+>>>                 trips {
+>>>                   gpu7_alert0: trip-point0 {
+>>> -                    temperature = <85000>;
+>>> +                    temperature = <95000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "passive";
+>>>                   };
+>>>                     trip-point1 {
+>>> -                    temperature = <90000>;
+>>> +                    temperature = <115000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "hot";
+>>>                   };
+>>>                     trip-point2 {
+>>> -                    temperature = <110000>;
+>>> +                    temperature = <125000>;
+>>>                       hysteresis = <1000>;
+>>>                       type = "critical";
+>>>                   };
+>>>
+>>
+> 
+
 
