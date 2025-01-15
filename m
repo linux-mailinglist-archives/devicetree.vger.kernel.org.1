@@ -1,204 +1,212 @@
-Return-Path: <devicetree+bounces-138777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0830A122ED
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 12:43:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A9ACA122F5
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 12:44:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E6E53188E504
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:43:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0F0D7A0637
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:44:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D70623F294;
-	Wed, 15 Jan 2025 11:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1158D23F28F;
+	Wed, 15 Jan 2025 11:44:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="rgGh4Scw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2049.outbound.protection.outlook.com [40.107.94.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0E723F266;
-	Wed, 15 Jan 2025 11:43:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736941384; cv=none; b=LHraWV4TVgXt7xBRnyEbAarJTpDvGiVNKvTo2Rjg5QMZeyJ8zUFdmFRHp1VEQiiLaCozr1M+4JBv9zraubz2gANXI/7nNMCmeb0piKZVYAW09VdrMkHRsi1uqwSTl0fqjAmTvXrDdpi+4uUnzwM3WbkA99MV7WW5OybqQaM1wtk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736941384; c=relaxed/simple;
-	bh=InqappHPXxwAr+7XartCJ+X8hEIz7bXePnlvQCf8JEo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nfDYkL/zqfT33zmVGu1gbgyfrcLWDAdIa+vBhaAQEYZdrLef4Ql9fr9OYrvLCCeEmrsUdw3z2X9MtNrYDaa+a8334ln9q3c7apMz5PpzDCyBAFKmDpSm5Bu8XMjikihsXaRljufh8zS8wwio9ka6MEPCHC3BbSOENulypF24q3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-21644aca3a0so144989395ad.3;
-        Wed, 15 Jan 2025 03:43:02 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736941382; x=1737546182;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aCinpPyq6kUzNoKBfO2/OVSn+RgG9IGx3IVY4KpK3Ug=;
-        b=ra4u6ERPsO8NUo4E2uKt4RyW1d66tH9q7IGaYRHR8IErH0XaQ5VJofWLRyWV69HubG
-         4e9pvMn5OdwZF7NhMqWZB/kqP0KdnI3iQIxrcGy6H5dbLn5CAF/wYfh4wtrTqPyLVC1i
-         rNRwRmec9oPWGF/IJhQ+t1wUvbSjVapoKfjWQqjGw0wN4YglYPT3ASuaVN/aKOuTRE9l
-         6Ahxo2K8ROMm3Aaa6MCAjq8XUkGfn79+OY8DtnzYEIOhAinvD/7wUxt55hjfKKLxoP7b
-         9tpALksRHviZNgZRlE5+f5Tiew4RJ0EyplGqW9EVHkQCvb5ipxp4SEbF1BZQfv7Ko6yP
-         L8pA==
-X-Forwarded-Encrypted: i=1; AJvYcCWN0aZkPzjj/JVmH3+9f62Jsa8ylemHQ4HRdsUBExvpEWkbWCkmUeTmNjm/oYzc0cxhDTceR1F/RpgMrJwo@vger.kernel.org, AJvYcCWfxbwzbjaRl/vip+hAOqOzyE7b6UUkd+yEDXwDpcYHW0nJ14ff2MxVyE6xUD6J94tnhTNt8lkMLty9@vger.kernel.org, AJvYcCXOB8aG7lfbZQKb/WWe+tQWLX6MJFvhcJ0b/Oa1QHMxTF/1tjkqfiWEbjaHHu/8klIEdNoC526/zTDo@vger.kernel.org
-X-Gm-Message-State: AOJu0YwX5Ouyqkp+TDOg2GSrPjcxMxWE5u1WpphF9WCU1rKKrTFhkngQ
-	B+Omf9JTlyxo12hzmeymY32w/MwbbRPuHAy58lrDlePFEDsjQon+
-X-Gm-Gg: ASbGnctbGahR56omOc6WtwIM2bY950Dsk699ekOFWXF6giNtQ7xp21/NVpoT5OW1TTq
-	cbtspOAcJp/lQ9mVVSBIYneBOwMnC/jbfY2p+vOvuXd/wveBUkVDd7XJlnjkDysFK5hoTrRYTjo
-	ElE85ROXMg+c9ezWRu7X2oPQpdFyVrbpyxr9TtS0Td/naCdsMCIgqxb8wSoQ409qNdwpZ2CmxHv
-	8Ya1xn87S3i3qIZ1CeambIwaBrMxzwn+I1kQtv1eLfyqODy0rHbM+1VY/nUv7vl+OaIRav9qxjZ
-	ipKnM07q6oTVyvU=
-X-Google-Smtp-Source: AGHT+IHQawHUCYw2ob/UyXfWjtyHo9HpYp1N2sGEBkA9xtrXsmWo2Qf3wAOlf+UJO53bmKCDDt6eBQ==
-X-Received: by 2002:a17:902:ea03:b0:216:2d42:2e05 with SMTP id d9443c01a7336-21a83f6fa87mr547916735ad.22.1736941381887;
-        Wed, 15 Jan 2025 03:43:01 -0800 (PST)
-Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21a9f21e279sm81344075ad.134.2025.01.15.03.43.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 15 Jan 2025 03:43:01 -0800 (PST)
-Date: Wed, 15 Jan 2025 20:42:59 +0900
-From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v8 0/7] PCI: dwc: opitimaze RC Host/EP pci_fixup_addr()
-Message-ID: <20250115114259.GP4176564@rocinante>
-References: <20241119-pci_fixup_addr-v8-0-c4bfa5193288@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DF2A236EB6;
+	Wed, 15 Jan 2025 11:44:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736941471; cv=fail; b=NLpEJHW3zoTAS1wCL0YG1iPT4kw6daWoin+dvzuU2ybv/7D0U3zjK5IHMQocr20PJOEXkncS5zrvdjPhYaTOYrsSN4M2wYxEKg+xqd5A7u1BTAOY+o5ujG4V8XS0APeguJqe+ufCU76EdCXKBsltWtNw2RcmLjmDZ69ICTwTct0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736941471; c=relaxed/simple;
+	bh=qahgnu0gR7977K/UyQ2iDJZQdBISLxs/jPMXAYiCzuY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=pYvDCtKzRP/WnaUxkEGLXpge0yz3pVfQ+8uSuBWnQMkF4ok9ADxwq69tI/Q8zxbvFeBU7xW7pyaZYyOajBD6kjDFyD7KI7rwygNN/mpjXeD0eAbSJX52TQkg7CidFzEaH26jUMdQW/HBTGGsgldoJqPabqUkIz5HzVp4l/+HJJI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=rgGh4Scw; arc=fail smtp.client-ip=40.107.94.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZBmdDprtjjlsEhkITAGnecgwlThAH+izzqKE2XwpJcqma83rjw+RU0X1Mr3BPsMMoFizdp81a6kcKy9z+J209R2XBxFukaf9iO55Nj3kYwSUvzhB7kCHn3ULwFq68/c/cZ1ITv078BcSaY5NBwHwa1aV+a9IDtxlybHpRA3HGaemlVBMnwqPNO6ydW92PBm/H+vl/IxfO0eud6WJq01HnUq33z0bbQ+sM3vtdeeeWvcLSOmlcf2d2nKc0JvJ7fDx+Nw0Uw9PpmXhszrKwO5pOCPjJ79y3edwPihmgFylhW2e6tWQ5fLbOzcZ2No9JgU5sYK0fC0aYHIwzosbScXq0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qahgnu0gR7977K/UyQ2iDJZQdBISLxs/jPMXAYiCzuY=;
+ b=UNUZ1EjgF0eq2+1kBgvQ5rjehjBLTUMM84L02MefzUUgG6t3ne6IxN0EpIonyWLczZeuTErjXPgowiAA+Sis23ssx26bUPXYiPRDj/ETogtIOUpQnzyKese9WbGo1dvkNzyUKOisaDl8+rCfPQ/5F9S0vbWYO1tLBowf5uQYZxsLQjtyo6R5VDwYnsfh9LArdag9xyVXz+3xKrmWWIrNDADqEu2ISqX0ib4TpLhatZpXAW4em1bnNPvPj19kJLsrxbfnFvC/ZpSTWadNLBM3XqPp7PTRjV7xjJV+C/Tj9H3BZ7mLjCxDaAGB/sRfOyO7uEvCIdFTgfdGuxeRJGXgxQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qahgnu0gR7977K/UyQ2iDJZQdBISLxs/jPMXAYiCzuY=;
+ b=rgGh4Scw2ivUjF9WTxS5Uw6ejqVsv5b4S+W/pV/ikWoSVWWS8bMpjEedFqYnHMXqRbD+fhg/ked0vWLB3CA29vYcAGNgTo53uimgP64hsN045vQ8914TS/xBRCHLJSt5Ywbrxx7r5H3i4Lu92hef1jxWL9n/Z6EOBrPnujfK+rbtel43nVmdwLRanikZxWiVJXGN7Ro7t+1hFx8sC7ZIFrSrx6WnM0+aan+ZnG0dsC3xZxSLhe0OL9xB3UVFDlgUhA73hEq7ylPKgqSHexOWA4pv2WBfVSOSsEBBLk69dgT49d0VUbcW3daOOCQrIsuEiY69FLhdowrr6AUf16LdPw==
+Received: from MN0PR12MB5716.namprd12.prod.outlook.com (2603:10b6:208:373::14)
+ by DS7PR12MB8249.namprd12.prod.outlook.com (2603:10b6:8:ea::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8335.18; Wed, 15 Jan
+ 2025 11:44:26 +0000
+Received: from MN0PR12MB5716.namprd12.prod.outlook.com
+ ([fe80::1770:161a:675f:7861]) by MN0PR12MB5716.namprd12.prod.outlook.com
+ ([fe80::1770:161a:675f:7861%6]) with mapi id 15.20.8335.017; Wed, 15 Jan 2025
+ 11:44:26 +0000
+From: Kartik Rajput <kkartik@nvidia.com>
+To: "thierry.reding@gmail.com" <thierry.reding@gmail.com>
+CC: Laxman Dewangan <ldewangan@nvidia.com>, Jon Hunter <jonathanh@nvidia.com>,
+	Akhil R <akhilrajeev@nvidia.com>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "andi.shyti@kernel.org"
+	<andi.shyti@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>, "digetx@gmail.com"
+	<digetx@gmail.com>, "linux-tegra@vger.kernel.org"
+	<linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH 0/5] Add I2C support for Tegra264
+Thread-Topic: [PATCH 0/5] Add I2C support for Tegra264
+Thread-Index: AQHbYoKAlsSoFa04CkecyhTSF5GhVrMXwJqA
+Date: Wed, 15 Jan 2025 11:44:26 +0000
+Message-ID: <e43b438917144c2896cd5105aa9ccac27c753427.camel@nvidia.com>
+References: <20250108110620.86900-1-kkartik@nvidia.com>
+	 <fbulujgwqziyxxzokrtxzhysybuqep6p5pqt7jbqbclirllzp6@jbslthf3zh5f>
+In-Reply-To: <fbulujgwqziyxxzokrtxzhysybuqep6p5pqt7jbqbclirllzp6@jbslthf3zh5f>
+Reply-To: Kartik Rajput <kkartik@nvidia.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Evolution 3.44.4-0ubuntu2 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN0PR12MB5716:EE_|DS7PR12MB8249:EE_
+x-ms-office365-filtering-correlation-id: 7b4f5882-1465-4722-da7d-08dd3559f6ae
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?TVp0U2tjMm9wNGFXZStrTUgzWlRlVTNBN042UWpZV3FGUWVkN3dsWWd6VVFy?=
+ =?utf-8?B?OEFJQ2NrMTNsdGZQUUZqQ1pwM1drRFF2Zk1MeTR4R1UzWWRHWnRoZExvZjcy?=
+ =?utf-8?B?SjRTS0pRVXhqbW9mem9qZ1VkbWtTWTA0anVnWDhNSHBhRzNORkJsNlZDVXR1?=
+ =?utf-8?B?dEZvaHNQbW5FQ2NKdWgzQTNjdFZjSDQxTldqNHdQWndYL3cxRlczM3AzQTZF?=
+ =?utf-8?B?QXM2S2x6d0lSeWNHL2l5b2JLVW5UeG1WZlZ6aWY3QXI1RzFaWFJEbkF4V243?=
+ =?utf-8?B?bTkwNE9RZmd2bGhUTTFZYWQ4dkpweG9pczNEZEkzeFdJbU9jZXMyc0oya0Y1?=
+ =?utf-8?B?M3BGTVBqV3BJTnZJY1R5TGdqc1pFanAvZ0xPYVVkUnN4aTZmcWMrWmtwbGpx?=
+ =?utf-8?B?ME1ybWRRbzhGZ29XYVRVc1ZIK0F6dGsvMkJiK0FmcHdvTVhLVlNnTDlLeVIx?=
+ =?utf-8?B?K0djY3VlV29BY1M0dWhRSTJIQUpabHc4MWhpSFh4VWJmZDQwK0JqVklQalU5?=
+ =?utf-8?B?R3FZeFJnYlJGNE5EM0xldzlid2UybitQS2hqcndQSW96L3FrMklibDZIVVhq?=
+ =?utf-8?B?eC94MFZ1eCtpU3ZxUVdMQm8vRFNYL0NVU25oTlJnNmFqRkFrcm5KaUllR2gw?=
+ =?utf-8?B?c3B4RUdZQ2FSckhJT1VmVW9kYzltMUt2TzVsVllwSEx5ME5MRlN1NHBxZ2FD?=
+ =?utf-8?B?aUg3dTdBR3ovM25WM3B4KzBmZXVzaktmMVQwdXFYOGZTMDBNV3JYdDM0S1Va?=
+ =?utf-8?B?aE9Bc0pXdTRlc09pQnloWHVNalZ1L296Tkd5cXAyektZaTN3TTNJbjBjTU41?=
+ =?utf-8?B?aTJZS0JROHJTc2N3MWZwWm9KT0tJNTF1UTBYSllGMk9yZ2FkWCtPdU90YkNO?=
+ =?utf-8?B?WHhXT3pqTXp6OUkzSFlUT0hLemc1Tm84clB5b0ZGdFhDTHB3eVhHOFY5SkV4?=
+ =?utf-8?B?cjliNGJUTCt2S2x6YnhYTGxOSm13aTIzbnVDZXlZaDJBeHpCUFhFQ2ZueDlR?=
+ =?utf-8?B?NTVVRmhmNG4vMlRNald4MTZ2R3VmNmJQWk5ESTFNWlRRZnVjZ1ZyalNzVFBu?=
+ =?utf-8?B?eXpyZDhpbTh6dlg4cmhXVjNiNmJvZVc3bXI2Y09OdXl3SkFBSVUyYWlDVE1m?=
+ =?utf-8?B?MlZRSUowOUtBMnNXQkcyL0FBWDdwajZzeTZzb24wMUU1NnJ0ZndXMVJPVE9I?=
+ =?utf-8?B?Q0NVNTFKZ01ZTFY3Nk4va0xSSjR0OFhBK3kxcFNhMWFWZ0x1Q1cvOEZ6elBR?=
+ =?utf-8?B?a2NVcnMxUEJPb2xYQnNRdUhSazVKZ1dZeVByTVlPZUp6Zmd2WHlmdmd5dkU1?=
+ =?utf-8?B?T3YxYktFeGV1Qi9DMHF2NVB0cnJFSkcvcm5WVlJQQ1pKcUZ2c1Z2WEoreTNy?=
+ =?utf-8?B?eVVtcy9IcGhVOEZtNVFxNHhPMHZ4M2FLY1ZBOHJyWlcxa1laUGJZdTdiWXFY?=
+ =?utf-8?B?eHRzUkR4NUVidVJuVWpjZlpRSXFCUkNhWmdadDhDZ3E3L284K3ZqRXR4dGJS?=
+ =?utf-8?B?WXJTY0FBQ2tnaFlLdjZxQjRRRFRIM2d5ZFFYREcxT0RObjg5bFhKRk9meElt?=
+ =?utf-8?B?MmNGekhkaUN5SHB1QnVaTUk1Y1Q5Zmtyc1NObGJ4dE85WThQQ3R4Mmw4WW9s?=
+ =?utf-8?B?ckJSRml1ek8ycEVLa29sdnJBcm1BWkRsVG1SS1Jxejd5OUxrWWd0N2c3U202?=
+ =?utf-8?B?WFlOZDNqMXJNVWpiWHArVUY2Ymd4c0VsS0xkbGpCNDVpR3ZlZ2UxTXB5QW9U?=
+ =?utf-8?B?dzlkZEtlVzVBWEZJYUtYck0zYUlEeGF5UmJoNGRtNXVsQjFLUGFtcncxTTRL?=
+ =?utf-8?B?T2Y0NU1FOEtUZktpWUQvY3JpRlYyWEwyM3QzUERVUmdhcE1pQnFtaVluTUlS?=
+ =?utf-8?B?ZHpYM1ZjOVQ4V2ZQK0twNVZZZnhza09GNmJhNVhiUHRGSlFRNFlCcXI1UzJh?=
+ =?utf-8?Q?oCmIlnwguuZ5rJX/OA7RRKmLEwoNCS2A?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR12MB5716.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?RHE2cW5NZmN3VUw5ZENtZk1MVWtNNWtwekNxdGdUVlBDekluOS84Z1dvRTRS?=
+ =?utf-8?B?N2ZjbGNmUEJTL3p0dmpPZkZiVE9uN0F2cnlKU0FKNEh6ODNjTnFKNTljVXVr?=
+ =?utf-8?B?TTdPSEZERjh4TWh3L3lMQVpmZllyUzZiU2hXa1h3ZXJDU2V5SklSc1JuMUh3?=
+ =?utf-8?B?MnZLVXVsUGd0TlNkcU1weW5UUm9qVFk0b0MyMUpIblNoUWkxcWlMUTRUdU5E?=
+ =?utf-8?B?Z2c0WUg0TUJyODlUdVZpcmZsVXI4Ky9Hbi9qZFlkUlZvSjVJbzcxSTZJK2Nu?=
+ =?utf-8?B?M1gwS21zb3Vsb05DMFBLQzlwUFZUNjZ1UWw2a2NSb3Q3YjQrQ05OZXdlcWpv?=
+ =?utf-8?B?SFQxbndNaHdWL0wzL2ZyU0RsOWFwZkxHOFNSaHJuUGRFaGVJSzhrSzR5UCtX?=
+ =?utf-8?B?T1FoQU1RSUhncTUwSlJVTG1YMXVDVit4ZWp1T1g4QUVkT2JLNDVjNXdxamF5?=
+ =?utf-8?B?Y2hSa2hpVVF0b1NGRHFPakpieC9va1ZOVkQ3K3BUOC82Ym8rMFBmV0NkM1Qy?=
+ =?utf-8?B?QnhkMElSRWJma05qeE5qcERlNm9HZGR0cW1DSThOMnF5TXBlWGpYa0dUUGo0?=
+ =?utf-8?B?VXNLMU93NUJiajBqQzZyc1B6em85bmVsdU9iUnVhY3czMUVwMS9qR3ZUalY2?=
+ =?utf-8?B?a05tYUwzZE50MzJVRWRzYUxYY0xEYXo1aU5DVGtjVUZGM3AyMklVOGdlV0R5?=
+ =?utf-8?B?L1EzR0FHVDRKRHBsK3huZ1F3VnVIcjVwblN0RTlzK2wxWDBPZzNjWFBCRlQ2?=
+ =?utf-8?B?bzYyZDJCb0pSd2VMaUJsaHZDN3FrMFBkTXN5NUE1b3gzRWtOZzFRK3BXYllz?=
+ =?utf-8?B?THRUakZNbDhJTkhxeG1SNXF2UDdGdzQyUDNkNjd4SzlUZjFlMGlqaEY1cllF?=
+ =?utf-8?B?Njhxa3hueXZTODExQ0dBbzRTcWp4VkVFTkMvYk9mclNEVWh0cEN2eWQ0MmRT?=
+ =?utf-8?B?ZUR0VnIxSkZJV0ZEVVo2dUU5RXBtOCsvcFExZGliTFVMSnQ5NmZVWDN1U2Uz?=
+ =?utf-8?B?UGJaTXNMOU5kVkZGT01sRFRUK3pjcGE2RkVTcSt2WVJabkN0d20wOXI0TmRZ?=
+ =?utf-8?B?cHFTSE1aL3ZUanJ0c2JUd1VKbFFUL21JaS9FaUlQWDFJRk1pYy9ZUUU1YWta?=
+ =?utf-8?B?WDdCOUJ6KzVsK0xzUlZQTW41UzJyU3hYN3FLNjZsZk16N3Jla3hNVmNkQVcz?=
+ =?utf-8?B?dklJN0JhbHZGT1BwQmNZcGtHVFN4RjVFdEtlcEFsMzZzVStGOXlrZGRwWlpt?=
+ =?utf-8?B?dFlHZHlsWVBMMlJrQ2l4ZjB0QU00WTN3bC9KRTF4ZUtFMStYQXNPMXk3WldS?=
+ =?utf-8?B?Q2RoTWlLenhWSndSaDl5L2dZcXMzYjZEQ3Vxd0hmYWFqSkxrZm55eUZsaVcy?=
+ =?utf-8?B?em5zZDRYSjZmTWxPZVliWm91UGhSd1pmVUdvWEpuRWdJTWNia0kvUVZpa2Fp?=
+ =?utf-8?B?TGFhQjgvU3NxeDllSmZXYTVlaFB2ZlI5RXZaTlozbXgraFFWeHJDQVp6ZWNl?=
+ =?utf-8?B?YTBKOTBEdDFMU0dxeW53TkozWGRTcVQxSitIMVZXOTByL2tvSWhhc3FpSWNY?=
+ =?utf-8?B?alNyNlcvRllBbUEwTzhZdVZ6c3ViR1oxWjNaV0ZUcEI2TjFYN3hFdVJrZ0w5?=
+ =?utf-8?B?Q00zRHJiM2x6dHNFNmxFZ3VNYllDaGtNaXNQMXFtNHlHelk3M2NqSVVEVlVS?=
+ =?utf-8?B?VHZheVZ1azcvazJDYlJjd3pmRktMSFozREk2UjFIVTNGWTdtVC9CUEV1TUJ3?=
+ =?utf-8?B?MmJ5dlJrNzRONkREeis5ZDgzZlhYbmpRMUNINmN6V1I4SlhzMjRBQythYUNq?=
+ =?utf-8?B?M0Q3dVZndXpuSSsxdUFHOFllQXU2bHBHL2o0TjQrY0ZwZWZrajRuNHhlZWtx?=
+ =?utf-8?B?bm9vVjl0eWNLSDlWR29RdDlWMGw1Q0dPc3FlVm1lYk1UeTJpVW1WSVpYci96?=
+ =?utf-8?B?OGFwdjlOZFNVNzhXUVJvRHNyMmZYbmxyVFU2bHJRdmFvRmZOOFBIdmNJUnJM?=
+ =?utf-8?B?eVA0ZmEwZXRkd2t0RjQvSkdqVjRwVXBFVExtU2pWVGEvdzM2cUt3QURnSzJZ?=
+ =?utf-8?B?ekFYL1ErU3h3RmEyWUFEeStvblNaZ1g2ZjdxUnBzOE9KNENzbGtVKzljUFhH?=
+ =?utf-8?B?M3lXV0tyVWhMVnRLY05EWm1tSmZ3cTFPZEtvOWluaEdzUUMrWFU2MEV3aksz?=
+ =?utf-8?B?Y2c9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <938C5DE01157264F9A18F80F3F2F7CFA@namprd12.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241119-pci_fixup_addr-v8-0-c4bfa5193288@nxp.com>
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR12MB5716.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b4f5882-1465-4722-da7d-08dd3559f6ae
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2025 11:44:26.3229
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: veoDorin3EKzk8+hUAKbki2CyXM1F5aJnrKpFYlAQb5/GiiOSxxw7zUwsBCJqe1HJ0zzStiH6GTVray+IvgxhQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB8249
 
-Hello,
-
-> == RC side:
-> 
->             ┌─────────┐                    ┌────────────┐
->  ┌─────┐    │         │ IA: 0x8ff8_0000    │            │
->  │ CPU ├───►│   ┌────►├─────────────────┐  │ PCI        │
->  └─────┘    │   │     │ IA: 0x8ff0_0000 │  │            │
->   CPU Addr  │   │  ┌─►├─────────────┐   │  │ Controller │
-> 0x7ff8_0000─┼───┘  │  │             │   │  │            │
->             │      │  │             │   │  │            │   PCI Addr
-> 0x7ff0_0000─┼──────┘  │             │   └──► IOSpace   ─┼────────────►
->             │         │             │      │            │    0
-> 0x7000_0000─┼────────►├─────────┐   │      │            │
->             └─────────┘         │   └──────► CfgSpace  ─┼────────────►
->              BUS Fabric         │          │            │    0
->                                 │          │            │
->                                 └──────────► MemSpace  ─┼────────────►
->                         IA: 0x8000_0000    │            │  0x8000_0000
->                                            └────────────┘
-> 
-> Current dwc implimemnt, pci_fixup_addr() call back is needed when bus
-> fabric convert cpu address before send to PCIe controller.
-> 
->     bus@5f000000 {
->             compatible = "simple-bus";
->             #address-cells = <1>;
->             #size-cells = <1>;
->             ranges = <0x80000000 0x0 0x70000000 0x10000000>;
-> 
->             pcie@5f010000 {
->                     compatible = "fsl,imx8q-pcie";
->                     reg = <0x5f010000 0x10000>, <0x8ff00000 0x80000>;
->                     reg-names = "dbi", "config";
->                     #address-cells = <3>;
->                     #size-cells = <2>;
->                     device_type = "pci";
->                     bus-range = <0x00 0xff>;
->                     ranges = <0x81000000 0 0x00000000 0x8ff80000 0 0x00010000>,
->                              <0x82000000 0 0x80000000 0x80000000 0 0x0ff00000>;
->             ...
->             };
->     };
-> 
-> Device tree already can descript all address translate. Some hardware
-> driver implement fixup function by mask some bits of cpu address. Last
-> pci-imx6.c are little bit better by fetch memory resource's offset to do
-> fixup.
-> 
-> static u64 imx_pcie_cpu_addr_fixup(struct dw_pcie *pcie, u64 cpu_addr)
-> {
-> 	...
-> 	entry = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
-> 	return cpu_addr - entry->offset;
-> }
-> 
-> But it is not good by using IORESOURCE_MEM to fix up io/cfg address map
-> although address translate is the same as IORESOURCE_MEM.
-> 
-> This patches to fetch untranslate range information for PCIe controller
-> (pcie@5f010000: ranges). So current config ATU without cpu_fixup_addr().
-> 
-> == EP side:
-> 
->                    Endpoint
->   ┌───────────────────────────────────────────────┐
->   │                             pcie-ep@5f010000  │
->   │                             ┌────────────────┐│
->   │                             │   Endpoint     ││
->   │                             │   PCIe         ││
->   │                             │   Controller   ││
->   │           bus@5f000000      │                ││
->   │           ┌──────────┐      │                ││
->   │           │          │ Outbound Transfer     ││
->   │┌─────┐    │  Bus     ┼─────►│ ATU  ──────────┬┬─────►
->   ││     │    │  Fabric  │Bus   │                ││PCI Addr
->   ││ CPU ├───►│          │Addr  │                ││0xA000_0000
->   ││     │CPU │          │0x8000_0000            ││
->   │└─────┘Addr└──────────┘      │                ││
->   │       0x7000_0000           └────────────────┘│
->   └───────────────────────────────────────────────┘
-> 
-> bus@5f000000 {
->         compatible = "simple-bus";
->         ranges = <0x80000000 0x0 0x70000000 0x10000000>;
-> 
->         pcie-ep@5f010000 {
->                 reg = <0x5f010000 0x00010000>,
->                       <0x80000000 0x10000000>;
->                 reg-names = "dbi", "addr_space";
->                 ...                ^^^^
->         };
->         ...
-> };
-> 
-> Add `bus_addr_base` to configure the outbound window address for CPU write.
-> The BUS fabric generally passes the same address to the PCIe EP controller,
-> but some BUS fabrics convert the address before sending it to the PCIe EP
-> controller.
-> 
-> Above diagram, CPU write data to outbound windows address 0x7000_0000,
-> Bus fabric convert it to 0x8000_0000. ATU should use BUS address
-> 0x8000_0000 as input address and convert to PCI address 0xA000_0000.
-> 
-> Previously, `cpu_addr_fixup()` was used to handle address conversion. Now,
-> the device tree provides this information.
-> 
-> The both pave the road to eliminate ugle cpu_fixup_addr() callback function.
-
-Applied to controller/dwc for v6.14, thank you!
-
-	Krzysztof
+T24gVGh1LCAyMDI1LTAxLTA5IGF0IDExOjM3ICswMTAwLCBUaGllcnJ5IFJlZGluZyB3cm90ZToN
+Cj4gT24gV2VkLCBKYW4gMDgsIDIwMjUgYXQgMDQ6MzY6MTVQTSArMDUzMCwgS2FydGlrIFJhanB1
+dCB3cm90ZToNCj4gPiBGb2xsb3dpbmcgc2VyaWVzIG9mIHBhdGNoZXMgYWRkIHN1cHBvcnQgZm9y
+IFRlZ3JhMjY0IGFuZCBIaWdoIFNwZWVkDQo+ID4gKEhTKQ0KPiA+IE1vZGUgaW4gaTJjLXRlZ3Jh
+LmMgZHJpdmVyLg0KPiA+IA0KPiA+IEFraGlsIFIgKDMpOg0KPiA+IMKgIGkyYzogdGVncmE6IEFk
+ZCBIUyBtb2RlIHN1cHBvcnQNCj4gPiDCoCBpMmM6IHRlZ3JhOiBBZGQgVGVncmEyNjQgc3VwcG9y
+dA0KPiA+IMKgIGkyYzogdGVncmE6IEFkZCBzdXBwb3J0IGZvciBTVyBNdXRleCByZWdpc3Rlcg0K
+PiA+IA0KPiA+IEthcnRpayBSYWpwdXQgKDIpOg0KPiA+IMKgIGR0LWJpbmRpbmdzOiBpMmM6IG52
+aWRpYSx0ZWdyYTIwLWkyYzogRG9jdW1lbnQgVGVncmEyNjQgSTJDDQo+ID4gwqAgaTJjOiB0ZWdy
+YTogRG8gbm90IGNvbmZpZ3VyZSBETUEgaWYgbm90IHN1cHBvcnRlZA0KPiANCj4gSXQnZCBwcm9i
+YWJseSBtYWtlIHNlbnNlIHRvIHJlc3RydWN0dXJlIHRoaXMgc2VyaWVzIGEgbGl0dGxlIGJpdC4N
+Cj4gSXQncw0KPiBjdXN0b21hcnkgdG8gaGF2ZSB0aGUgRFQgcGF0Y2ggZmlyc3QuIEl0IHdvdWxk
+IHRoZW4gbWFrZSBtb3JlIHNlbnNlDQo+IHRvDQo+IGFkZCBwcmVwYXJhdG9yeSBwYXRjaGVzIGFu
+ZCB0aGVuIGZvbGxvdyB0aG9zZSB1cCBieSB0aGUgVGVncmEyNjQNCj4gc3VwcG9ydA0KPiBwYXRj
+aGVzLCBzbyBzb21ldGhpbmcgbGlrZSB0aGlzOg0KPiANCj4gwqDCoMKgwqDCoMKgwqDCoGR0LWJp
+bmRpbmdzOiBpMmM6IG52aWRpYSx0ZWdyYTIwLWkyYzogRG9jdW1lbnQgVGVncmEyNjQgSTJDDQo+
+IMKgwqDCoMKgwqDCoMKgwqBpMmM6IHRlZ3JhOiBEbyBub3QgY29uZmlndXJlIERNQSBpZiBub3Qg
+c3VwcG9ydGVkDQo+IMKgwqDCoMKgwqDCoMKgwqBpMmM6IHRlZ3JhOiBBZGQgSFMgbW9kZSBzdXBw
+b3J0DQo+IMKgwqDCoMKgwqDCoMKgwqBpMmM6IHRlZ3JhOiBBZGQgc3VwcG9ydCBmb3IgU1cgTXV0
+ZXggcmVnaXN0ZXINCj4gwqDCoMKgwqDCoMKgwqDCoGkyYzogdGVncmE6IEFkZCBUZWdyYTI2NCBz
+dXBwb3J0DQo+IA0KPiBUaGllcnJ5DQoNClRoYW5rcyBmb3IgcmV2aWV3aW5nIHRoZSBwYXRjaGVz
+IGluIHRoaXMgc2VyaWVzIFRoaWVycnkhDQpJIHdpbGwgcmUtYXJyYW5nZSB0aGlzIGFuZCBwb3N0
+IGEgbmV3IHBhdGNoIHNldCBmb3IgcmV2aWV3Lg0KDQpUaGFua3MgJiBSZWdhcmRzLA0KS2FydGlr
+DQo=
 
