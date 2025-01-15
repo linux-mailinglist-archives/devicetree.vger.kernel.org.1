@@ -1,113 +1,110 @@
-Return-Path: <devicetree+bounces-138759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 161FFA121F4
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 12:03:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D284A121F9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 12:03:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71B4D3A7937
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:02:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA5A4188E5B4
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:03:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1EB20764C;
-	Wed, 15 Jan 2025 11:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30B7D2063C3;
+	Wed, 15 Jan 2025 11:03:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SJeEdALV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X5QHNYlU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 162D61E98EE;
-	Wed, 15 Jan 2025 11:02:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24071E7C22;
+	Wed, 15 Jan 2025 11:03:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736938926; cv=none; b=LMGGv1Qlp1+DbTvOCfOKOvYA4lDo9SU4NcxUOjngEZIsHTqm8u8BJQ76pcIFt9EL9+l/G1k8Ir9JOJsAnITA5665W4/5bs8jt0MsQpiA4Pn4q41GgKBP9jwsfZCKBHFBtvO5+NRJ2fRCHSULwA5HTuo+UOtRdDykQxUyq9ET5BU=
+	t=1736938992; cv=none; b=PpM/vg13TBoVSrNLrWWLd/R3wXMqVTkeXFwg5l+CYYEmdC3wE5ofiq2jdYXxASlypQl7EMpq7jXWwTEcbCgx/70Xzxnvfh3K5BoNr0wylXu7hOjFx5qtTCEyzEzkAyTIwwBMeNePAXEkXwJjKpW77E64Q09d1PxlnyKY9axjJzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736938926; c=relaxed/simple;
-	bh=CsmESyxROBbqsNTtaC+QBprFbUxxKYYA88zeL3ghUHo=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rUyWTQjB1l/uA8fZ169Na339PkUYSM7aXPd8vZeCwn+nETVBHicQKC8+wPb0Mmk5t339Ns5uEpepnDo9O8vigIByKXulvu9Uow0co+f4SjgvIlgoVSX9Q7KYHPQWD+jJBlatFdGHNBdKIK5B/YojiK4Jj91BxHWDjsdgLVIV2yg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SJeEdALV; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50F8lSFm015786;
-	Wed, 15 Jan 2025 11:02:02 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=HCgZq0+rtEYUV1dT5WIcdx
-	Mrj4bXy1evMCJ9sPUGCN0=; b=SJeEdALVMeu8x0Ui9EhLYvMQda4zYUppewSbf1
-	hcl7UIlFgN1fXab0SNo93/yfK59SgGz4kTP5q45DEyOyXZyzUghrkbJ+PIogRJrl
-	30b+91zSDvbaiRVvph6XGRhW9JKbvcm/YPRCU/3qUp17El52SYNx8rrlgLR3KC5G
-	ubfyDpnT+zPWzdUQAhnLOctOQh8BHxmDrCpU2cAAmHRj4bIkJ0NjM3RUJS0U45sY
-	GLeduNS8yxFR6NK4p5mOvx+8+VgHK7tCKUBi+NGB0JE9FuvZLxG/WU97whVU3hfA
-	I4YWEAZGc1xxgXKup0E2UZxoz0CYIPtY4sZ9oDaIKPJDhcWw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4469tpray7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Jan 2025 11:02:02 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50FB21dr031801
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Jan 2025 11:02:01 GMT
-Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 15 Jan 2025 03:01:58 -0800
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-Subject: [PATCH] arm64: dts: qcom: ipq9574: enable fast mode for i2c3
-Date: Wed, 15 Jan 2025 16:31:42 +0530
-Message-ID: <20250115110142.3501140-1-quic_mmanikan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1736938992; c=relaxed/simple;
+	bh=TgflvuICDFK30ml2cKH2ZgYrUsJrKdWN1Z5vaApfIV0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qgjKlX2SaUoeRwGfi0rzxlrVyfm55bgD6emiFzZCLxdxWeCTJj8RRluqfCYm416AoY91A5by2YyCcEwwgI61gQRw4YP2GghCnEOYiyH8gnOGV4oWUYBhGwZKos7veplg3OhGsTv4HmGptfqME1rQdLVaXd0HYgRbnXho90W/Tp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X5QHNYlU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6A094C4CEDF;
+	Wed, 15 Jan 2025 11:03:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736938991;
+	bh=TgflvuICDFK30ml2cKH2ZgYrUsJrKdWN1Z5vaApfIV0=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=X5QHNYlUGqReKjaVWUWVdwvDy5pdvQ7e8MDHH+346ozx/JuTIbA6U8ulV6QL4AVV3
+	 l8KS0ZTutvINRYdWGxgjrAYkMkA7uhoBj4wmOnuGmC+90e7jx9o8RMBRkPYBj8WuP+
+	 opgKR+QSX6qYfKeH/bMd0Rj4JuJo7xZTD8K/yzxpsPjLbdZeXgJNi1bcVN4iv0CfEB
+	 Ry9jXrZe59sAJKPb9o2/MAN2OSx1PYgDOxoZ0ymzm11BfnIMrgD/ohsrzb0EAY2WwN
+	 c0tCCYm005NfSl6c3PtOE88uBYu/yba4HD/ecPmh1QZuXOAf33cNakbVqoStOom3w2
+	 WwoGGqk9pvUcg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 542A8C02180;
+	Wed, 15 Jan 2025 11:03:11 +0000 (UTC)
+From: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>
+Subject: [PATCH 0/4] Add support for Loongson-1 AC97
+Date: Wed, 15 Jan 2025 19:03:06 +0800
+Message-Id: <20250115-loongson1-ac97-v1-0-2087b04dcd7f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 2nB2iBnjUwkUezpvoeyCQXv_P4JC987n
-X-Proofpoint-ORIG-GUID: 2nB2iBnjUwkUezpvoeyCQXv_P4JC987n
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-15_04,2025-01-15_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 phishscore=0
- adultscore=0 spamscore=0 suspectscore=0 mlxlogscore=742 mlxscore=0
- priorityscore=1501 clxscore=1015 impostorscore=0 lowpriorityscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501150083
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOqVh2cC/x3MTQqAIBBA4avIrBP8QcquEi1EJxsIDYUIxLsnL
+ b/Few0qFsIKK2tQ8KFKOQ3IiYE/XYrIKQyDEsoIKQ2/ck6x5iS583bmerHBIXpjUMOI7oIHvf9
+ w23v/AOFwKkJgAAAA
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, 
+ Takashi Iwai <tiwai@suse.com>
+Cc: linux-mips@vger.kernel.org, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Keguang Zhang <keguang.zhang@gmail.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1736938989; l=1104;
+ i=keguang.zhang@gmail.com; s=20231129; h=from:subject:message-id;
+ bh=TgflvuICDFK30ml2cKH2ZgYrUsJrKdWN1Z5vaApfIV0=;
+ b=RZzN0p9wcJQWMe0rv9jn9Qwuk75gGeQtNyKTe5foyOakzYVylCb9ycE4PdnoPNYaY90YfzF8l
+ k3KR20EVLrKBYHH6ukvdDdfIH6d9UutWHAhGvCu7PQYv2bdX3y5uMet
+X-Developer-Key: i=keguang.zhang@gmail.com; a=ed25519;
+ pk=FMKGj/JgKll/MgClpNZ3frIIogsh5e5r8CeW2mr+WLs=
+X-Endpoint-Received: by B4 Relay for keguang.zhang@gmail.com/20231129 with
+ auth_id=102
+X-Original-From: Keguang Zhang <keguang.zhang@gmail.com>
+Reply-To: keguang.zhang@gmail.com
 
-Configure the blsp1 i2c3 bus to operate at 400 kHz
-for fast mode.
+Add the driver and dt-binding document for Loongson-1 AC97.
+Add the dt-binding document for Realtek ALC203 Codec.
+Add DT support for the AC97 generic codec driver.
 
-Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
 ---
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Keguang Zhang (4):
+      ASoC: dt-bindings: Add Loongson-1 AC97 Controller
+      ASoC: dt-bindings: Add Realtek ALC203 Codec
+      ASoC: loongson: Add Loongson-1 AC97 Driver
+      ASoC: ac97: Add DT support
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 942290028972..b35df590a794 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -621,6 +621,7 @@ blsp1_i2c3: i2c@78b8000 {
- 			clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>,
- 				 <&gcc GCC_BLSP1_AHB_CLK>;
- 			clock-names = "core", "iface";
-+			clock-frequency = <400000>;
- 			assigned-clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>;
- 			assigned-clock-rates = <50000000>;
- 			dmas = <&blsp_dma 18>, <&blsp_dma 19>;
+ .../bindings/sound/loongson,ls1b-ac97.yaml         |  68 ++++
+ .../devicetree/bindings/sound/realtek,alc203.yaml  |  33 ++
+ MAINTAINERS                                        |   1 +
+ sound/soc/codecs/ac97.c                            |  10 +
+ sound/soc/loongson/Kconfig                         |  10 +
+ sound/soc/loongson/Makefile                        |   2 +
+ sound/soc/loongson/loongson1_ac97.c                | 394 +++++++++++++++++++++
+ 7 files changed, 518 insertions(+)
+---
+base-commit: e7bb221a638962d487231ac45a6699fb9bb8f9fa
+change-id: 20250115-loongson1-ac97-389daeec55e3
+
+Best regards,
 -- 
-2.34.1
+Keguang Zhang <keguang.zhang@gmail.com>
+
 
 
