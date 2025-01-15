@@ -1,84 +1,102 @@
-Return-Path: <devicetree+bounces-138752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC745A11FF7
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:40:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BB0FA11FDA
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:39:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 218731889D0F
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:40:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C50131889355
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 10:39:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85D95248BD8;
-	Wed, 15 Jan 2025 10:39:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81543248BBF;
+	Wed, 15 Jan 2025 10:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eZjWphd3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D180B248BCB;
-	Wed, 15 Jan 2025 10:39:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12399248BC5;
+	Wed, 15 Jan 2025 10:39:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736937587; cv=none; b=tF0erR6aUM87h173veaj3TlnW0JqSuvIlpgIWU5IBK3cdZZwyhqaHlFC6eQsklnfKjuPRyWV0RumnFg2O89+/mYnEkVMtri9cdnKZFJJWN1PbLph+KEoNNTaP07FTsQyfJ6P6lz//ccl+jTsdnDtXOhtyC8kNC1t3kMZ0MOPw5o=
+	t=1736937545; cv=none; b=LFRigisOWSFHlN/aVMX9/XTdFxDliUx7/1eZsyvmrsNnHeKv7DhSKKJ1fJjYYPqf8qjIOtM/sYiK9gKe5qLUFqkBRW/RJoP93887cmQbWwt7FsaS5h0XYzIYAEg/np+j+AXkRfk4uxG3ibhgMbhcAgL+ciU6wM5wIQbW6Tds08U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736937587; c=relaxed/simple;
-	bh=TXjc82M0M8WAL/yjXDCh3qK+ze0ZeLG61ujYxiOKuzc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZMkuN6dM6aFAzN52poEiMv2Otr+iwKIrV83DbK7I1usZVsngs6tPF1AHS3bIrvoshD4r/ee9TpUV6eb+jtQjOfMijm6qiBYoh9b2GNCkAshllMkPWtVOpVoGMkglvOMIfch+M79C4Nc5vvG9fUyPL+3NK0ivi8V25o0SkIL0ohg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: SgIw5IGtRlq+WbWnRPv3Ww==
-X-CSE-MsgGUID: ghVA2jI9RnqRVjQYLHt2Qw==
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 15 Jan 2025 19:39:32 +0900
-Received: from localhost.localdomain (unknown [10.226.93.251])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 00E024230278;
-	Wed, 15 Jan 2025 19:39:19 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 5/5] arm64: dts: renesas: r9a09g047e57-smarc: Enable watchdog
-Date: Wed, 15 Jan 2025 10:38:54 +0000
-Message-ID: <20250115103858.104709-6-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250115103858.104709-1-biju.das.jz@bp.renesas.com>
-References: <20250115103858.104709-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1736937545; c=relaxed/simple;
+	bh=BDmmDTMbU/uNszGvP4NUn942q9SEQaBjpANyylyizHo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ia7rGEHlCYhuvFu6gLmo4lYKschQOxQaB6Yhjr0xEPGH61INkD2Dh7rPOMiq8QuGLPAOX8X/irYbrHksl3z+sCvuDQZFgNrcVWrLRFO4FYpnBezCGb7XloLVyf9sOblF6vaWqwkGsTNjoyD08pRNGUyf5q7RjmrZY8uzoT6YTQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eZjWphd3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3E3CC4CEDF;
+	Wed, 15 Jan 2025 10:39:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1736937544;
+	bh=BDmmDTMbU/uNszGvP4NUn942q9SEQaBjpANyylyizHo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eZjWphd3bXTfgjm1TURy21lr2qgovs87kwU2zXZPmElEJ+8UwlTnKv+YAvnhRW7KF
+	 fhKPXxdbmqjtaHTeMAcAilU+093QticrAxJxDyE9qpp9DUDkRaRg+Uq4aKmeBvN1at
+	 45FoSF+kIXtCCCy/6bgcfSffm1Aj4lA6vYVJn4786EDUOfjh9AMSmVz0WTf9/xLWvu
+	 LYW1od9bfNqBk+9jPqHux+Gj96ylmgbvzrDPKL4e8qpM4eUfcur1ZGC6GixZNgA59K
+	 2v8OYgNNGocTpCuxym2hGSJMKHAj4mW13Vcesu6QLUWUD0uV27LVuFfngb/6IDkJNA
+	 5H1k2hKO05S1Q==
+Date: Wed, 15 Jan 2025 11:39:01 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Ricky Cheung <rcheung844@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH RESEND v2 1/3] dt-bindings: vendor-prefixes: Add XiaoXun
+ BiCheng Technology
+Message-ID: <2zoq32mfqekfmksljslapksrj5po3rludllz5bmcuuiggq7trv@ma4luvmtdsm6>
+References: <20250114-xiaoxun-jz0145-v33-v2-0-495e986579ce@gmail.com>
+ <20250114-xiaoxun-jz0145-v33-v2-1-495e986579ce@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250114-xiaoxun-jz0145-v33-v2-1-495e986579ce@gmail.com>
 
-Enable WDT1 watchdog on RZ/G3E SMARC EVK platform.
+On Tue, Jan 14, 2025 at 10:46:48PM +0800, Ricky Cheung wrote:
+> Add a vendor prefix for XiaoXun BiCheng Technology, which was an online
+> store on TaoBao selling 4G LTE WiFi modems.
+> 
+> TaoBao mostly require stores to be operated by companies, so they are
+> a valid vendor. However, this company has ended operations recently.
+> 
+> Signed-off-by: Ricky Cheung <rcheung844@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 ---
- arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index c063d47e2952..33b036b6a93c 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -29,3 +29,7 @@ &scif0 {
- 	pinctrl-0 = <&scif_pins>;
- 	pinctrl-names = "default";
- };
-+
-+&wdt1 {
-+	status = "okay";
-+};
--- 
-2.43.0
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
+
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
+
+Best regards,
+Krzysztof
 
 
