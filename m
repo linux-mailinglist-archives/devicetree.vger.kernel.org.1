@@ -1,210 +1,125 @@
-Return-Path: <devicetree+bounces-138765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67E60A12214
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 12:06:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6710BA1222E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 12:12:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A2101881A32
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:06:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D34487A00A9
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 11:12:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D32F24025B;
-	Wed, 15 Jan 2025 11:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525521E98F0;
+	Wed, 15 Jan 2025 11:12:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W+yU7mZN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Tvx5DCax"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C0E23F292;
-	Wed, 15 Jan 2025 11:05:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CE8B1E9912
+	for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 11:12:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736939134; cv=none; b=HO5s0TvDOAy3pCIkCoKyF0pbE9ZEcIVSUYV+fmE30sGwdnoFJosCU6JdsYJApIdNmaVkWlydn/nFG3R1+DTEhHREHeGXXthGqIHFgN0YSSf5BSM+LnUakZObHdeyQFYmGORBtAfgvRTJVfIctZ1ejGM8Kg/boRwIlFCyIfJyKIw=
+	t=1736939555; cv=none; b=fyuBI6FFPhEbBvKC2adKIKCq6s6RdtiDBMQzngvEF3j+ZBKDyBnQ2zZQLw4Rs3D2pR4RN6klAxQs/UzllAednf7KlgfkO323iNRGv66TFlb1bzWRAN4juTWpPivfbh9EbWFNTJLebBlLvfbW2jpAg+P9J/r3OK1QusS/XTrRc7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736939134; c=relaxed/simple;
-	bh=ICKWw+LQOACiFmhC0CwpTVLD12k+vWO/yjvmuEJXp0Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QdiK13uxvEDz0eQs20UHT7Hy97m9Uruyjh5UR7Ff2Tb1K2Fz6b2eZfxs6Sl3+ZqxDxrN36VGhEpwqpxQdb87tDhqK+7u6ZMM6N7ypAvEnjV3TjitQxBVeVD10eVmFYtD1+m0C3vOmNqhy2wkkaerAvSOH56BR0KoKzmViHYU5ZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W+yU7mZN; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2ee397a82f6so11237189a91.2;
-        Wed, 15 Jan 2025 03:05:32 -0800 (PST)
+	s=arc-20240116; t=1736939555; c=relaxed/simple;
+	bh=vhImzVV58kYyHYIUkFdZkPsDkULuYsk1Gi6Hl4W7mpw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gQxbANVzOlIjmt15VCW7BbmlUzskOW3PAH2pfi/S90JJHCI7UTsWlscBe90OJ+gosk7PPOYXxtIoNFbhLutmEcCL/34lhpkugszxA3ThkVqhtwRhzl93a3JrGYCmrJxn/XyarPfdNOpZbAmx62bSWPgujml7rYf4G2n93uxGu6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Tvx5DCax; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-53e3778bffdso6869079e87.0
+        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 03:12:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1736939132; x=1737543932; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DZhmJVX2Z/1on+VLI7mM1RgJuJ/QDUUV3rq29Mr1CH4=;
-        b=W+yU7mZNaO7kFe4qfYmZaNXUMKM3QLJ80LkRbutMCnVO1TtTISqZ6Nj/ZNBRZ8D8sR
-         rCLytF3pj+TQQX/42oNIv2y8wMYzceMjw1O5LyZtnktHUAjUbUsiMqARO3BbQTpiQxtc
-         RKRqrtHYMEx9lzJbpec4StwC4QgXNQwQAPKixXLxJQJd1kXeCmhz23wTaT8UhFfPS0k1
-         6NrtrnVB32XtaMSsktUqqMa77QtrJHSTZHC9G+aUB+WoeCqWCXwXtf3AWglt8db+SiFP
-         fb4iPr1wcrWaJhjaTnkX8fe9ivCpyr8dNZK/gWsuAaJtnUyE7p1lJdqvLP2yKo5WPQdX
-         70qw==
+        d=linaro.org; s=google; t=1736939551; x=1737544351; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+tHz1lZDZJu/vrJ3APOR11aoNkytAh6ESFiCZtI/0bQ=;
+        b=Tvx5DCaxi9sFYB99VvHE/gSoUoPfRuQQcNWKpka3gX0ljdDTA3c3sIIOwqrwgl9g7E
+         9lXWVVz9fVVae50zqz2xaMCb18CgQcg2KFXqjf/HunhVTNcIZW58VJAWA1nmVL880G0S
+         9uxNdVZ6jgd1Mmj8kICk9omNd5XWbuJyWxigM7xjdUMSeZM+qibTLz6pnn4lnlV75MKd
+         RLM0v829N/RL1RcVHDqEeU0W5uIuF6N2cA/gawQQKAgDqB9mY0GG0aqygPStpLuVb/Hc
+         oCpPQRwH060I4fMQpEtHvNIsiJYqcg5i+M1S8KZsVEaZZ/s8ueF6ZZBZ+jna/aPyY4ZF
+         RRiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1736939132; x=1737543932;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DZhmJVX2Z/1on+VLI7mM1RgJuJ/QDUUV3rq29Mr1CH4=;
-        b=hKSlGd1QMZ/3KpL/gKYxqp5Wb6sXNvk5anQZ+as75GrMXLiHVH3laXZAPl0wuUM8a1
-         PT8CD7gNWjAqU+AWjgm6aYOzz6Y8o/yWhzjawvtx8LhUKe2jzZ3QL/0gBWPYUmbajL0A
-         nbiKAO4xzad85X4p5v9nWI/UiCTerDTKRM352vpPKHmDk3fXZWJUlpvXFKQDFvw6laN7
-         nHQrOYjJgZQUa9WFpL+bG4higiojUSQEXDU4PobNK+9cV49oTgNme66WGE+pYKOnd/nV
-         aUux3tQU1g1x1enop1mXGgnSIEoxYAHGin7SywWyUVjnP7gmQzlaGhRMSF5qoLRt9xSf
-         4vLw==
-X-Forwarded-Encrypted: i=1; AJvYcCWhf/V25bvjSpt5Rx4QxI4P3M7bLWa1Ma8oiLPKPTMIX87t/PKgVWLqxcL6V5WrIAMmSkIoX+E0HU2r@vger.kernel.org, AJvYcCXYeJN/xFBUVBkeDmSiXrM/8MJnNWIDe1FVh5ZOcYNzxotr395A22AQodB9muW+waMpJROLgv/T@vger.kernel.org, AJvYcCXdFAGGVo38FgO11JROTdlBNUHn1kIfWcSX5+/YscRhqfgylbo+x2KPpC+J+xTubCNxqCO4luWhLT9/jWQX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQU00acJ7bjM9Qy3oD3P0UXaBY1dERBDSfmKZxIN9G9Gh3Cf+t
-	mP0Og7lwowhejpZGgzSR/ZpCv1fLaFdOVFt8byEc3pAv37JvY9K4
-X-Gm-Gg: ASbGncsFau68bBxPH2tSx71Oaq4NEn9l6QoG/nFm1ufvB8TMFIF2CWELAZFJ+qRw8vO
-	WLtV6BzFe8UfI8pP7RutPcLyhiLr8rPEwQbmOlFEHgEiPEGA6td+BypTUKN1DPwhP1wTcNqY4Ts
-	PvAmCJVVLKXUS8jbTYfaFntu1WLvnSx09pu3f+V5K6VvAVysFrzMvxbMlUhz7rAuGJBpm6fqF6e
-	fVzUbtlkyB+Gy34ZxBbK5KneN7lzEtyLbIHjxmk48JLes5XHT1pjf1rRtaG0+HMb0xyjcDHUhgJ
-	1m0JBo5XzHFJ4tZDgoFX5R3h81FZeo+B0ug=
-X-Google-Smtp-Source: AGHT+IEIUJ161wQLQ7M7tzPplUbCNDBmqlqWnABZRELuVW2sGY23Vkufmemaywh2bkhh0gVhD2Yq9A==
-X-Received: by 2002:a17:90b:264c:b0:2ee:9b2c:3253 with SMTP id 98e67ed59e1d1-2f5490c20e7mr40326717a91.30.1736939131935;
-        Wed, 15 Jan 2025 03:05:31 -0800 (PST)
-Received: from [192.168.0.100] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f72c22b474sm1111164a91.44.2025.01.15.03.05.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 15 Jan 2025 03:05:31 -0800 (PST)
-Message-ID: <da332a44-8fbe-40c3-8053-c4c9fdfc8746@gmail.com>
-Date: Wed, 15 Jan 2025 19:05:22 +0800
+        d=1e100.net; s=20230601; t=1736939551; x=1737544351;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+tHz1lZDZJu/vrJ3APOR11aoNkytAh6ESFiCZtI/0bQ=;
+        b=D1Y/vTgm3e0fy3/LYBfOFSIKX7w+pJDd5T/3a76Ss54NC2hwZovLBA0zyxj997MCfT
+         DbrV9vcs9yr07YrWxlB8RvWRVqsyQBsMATlEXJgtf7LQyi28i4MrdOyuChflJvsbxwpC
+         fBHf2g1jkK+zTAtNu2jPMJX86FUoOmH04OFwaY9t7WKn1TMApo+wcTU45t9yy5JDTYzU
+         IDO1JkS2YpgSvNSJ5rKotZjhg2klBmCnIpLWYbUaFLWm2Bdb4f1NfFpfUVfznljYyoCy
+         A5sjJHMlgr+KDObDbSPvs9Q2WbubMn+pUAxb1tOo9nWAlS/Gj4UuhQdcR9tkDPxm5z89
+         rYtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW/YW+ONnJDarkaVsPEIuQBOTnFk5E9t/adH8zEyVOM+KVxWrQT4pqTB0TltpyYnSFq3PIEUxymt8N6@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfFNF/2ZCT40UUtMBLEzeoX1fY0AOARiJ61DqOi9gBTRLWbAun
+	pS0uWj5e6YL09/5QMEDq91DpN6EAqFw/dtDPC1iIILa7jOWEOsHj64aPW1Lw6oE=
+X-Gm-Gg: ASbGncuYiOuCA8e+N0NOH9XhAV8RRxigK48fx/Htbi8OMDvrzh0vzi6TT1kWEUmbv3C
+	3x28AGB+k6gVLHS+ahQlTIHdigWQXNOQqzmckBLZ0UedhWtiaaxT3Lke7Do/A+UvL+3qgY21WHE
+	QYjpOBqBbJp7hxUBu5AjSyEkngETdoJe/P7CGDRQr3mI5s4u1u6jbM6ddedZkS/MfYBmkMtaGcw
+	Zv9oJHo5Lpfe7SbZqPPiFsJPvBCVH2FLfkNEsG/Ivsu3Ex9GR5UfLvpsvWtOoIypKY72Zhyh5wx
+	qhBvIoyvbhNE5yEIFWTG8nuZvs+5phiuO1i9
+X-Google-Smtp-Source: AGHT+IGPnv+1mKebX/XJMc+HfyjNtFhAovM40dVLzkyMzoPPf30juxdLxbc2XPEGSlUqvqfQMtNdig==
+X-Received: by 2002:a05:6512:1281:b0:540:5b5c:c18d with SMTP id 2adb3069b0e04-542844f6d6emr8173447e87.7.1736939551222;
+        Wed, 15 Jan 2025 03:12:31 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5428bea6691sm1995380e87.132.2025.01.15.03.12.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jan 2025 03:12:29 -0800 (PST)
+Date: Wed, 15 Jan 2025 13:12:27 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, quic_srichara@quicinc.com, 
+	quic_varada@quicinc.com
+Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: enable fast mode for i2c3
+Message-ID: <qq47sv4wylmwtsx6r46lmyxypv7t2q5jx7wcahv2tzwu4wkd7n@qg76zy26ruco>
+References: <20250115110142.3501140-1-quic_mmanikan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 3/3] net: stmmac: dwmac-nuvoton: Add dwmac
- glue for Nuvoton MA35 family
-To: Paul Menzel <pmenzel@molgen.mpg.de>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, mcoquelin.stm32@gmail.com, richardcochran@gmail.com,
- devicetree@vger.kernel.org, ychuang3@nuvoton.com, netdev@vger.kernel.org,
- openbmc@lists.ozlabs.org, alexandre.torgue@foss.st.com,
- linux-kernel@vger.kernel.org, joabreu@synopsys.com,
- Andrew Lunn <andrew@lunn.ch>, schung@nuvoton.com, peppe.cavallaro@st.com,
- yclu4@nuvoton.com, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org
-References: <20250113055434.3377508-1-a0987203069@gmail.com>
- <20250113055434.3377508-4-a0987203069@gmail.com>
- <a30b338f-0a6f-47e7-922b-c637a6648a6d@molgen.mpg.de>
- <2cf758f2-529e-4ccd-9dc1-18fc29ad5ac0@gmail.com>
- <990a3fc9-7fd6-49b6-8918-d5bf4ae48953@molgen.mpg.de>
-Content-Language: en-US
-From: Joey Lu <a0987203069@gmail.com>
-In-Reply-To: <990a3fc9-7fd6-49b6-8918-d5bf4ae48953@molgen.mpg.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250115110142.3501140-1-quic_mmanikan@quicinc.com>
 
-Dear Paul,
+On Wed, Jan 15, 2025 at 04:31:42PM +0530, Manikanta Mylavarapu wrote:
+> Configure the blsp1 i2c3 bus to operate at 400 kHz
+> for fast mode.
 
-Thank you for your kind reply.
+This is usually a board property rather than an SoC one.
 
-Paul Menzel 於 1/15/2025 5:22 PM 寫道:
-> Dear Joey,
->
->
-> Thank you for your prompt reply.
->
->
-> Am 15.01.25 um 10:03 schrieb Joey Lu:
->
->> Paul Menzel 於 1/14/2025 9:49 AM 寫道:
->
-> […]
->
->>> Am 13.01.25 um 00:54 schrieb Joey Lu:
->>>> Add support for Gigabit Ethernet on Nuvoton MA35 series using dwmac 
->>>> driver.
->
-> […]
->
->>> Also, please document how tested the driver. Maybe even paste new 
->>> log messages.
->>
->> These are the kernel configurations for testing the MA35D1 GMAC 
->> driver: ARCH_MA35, STMMAC_PLATFORM, DWMAC_NUVOTON.
->>
->> I'm not sure if this information is sufficient, so please provide 
->> some guidance on what else I should include to meet your requirements.
->
-> I’d be interested on what hardware you tested it. Probably some 
-> evaluation or customer reference board.
-The driver has been validated on our development boards, 
-NuMaker-IoT-MA35D1-A1 and NuMaker-HMI-MA35D1-S1.
->
->> I will include the log messages at the end of the email.
->
-> Awesome. Thank you. Personally, I also like to see those in the commit 
-> message.
-Understood. I will include in the commit message in the next patch.
->
->>>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
->>>> Signed-off-by: Joey Lu <a0987203069@gmail.com>
->>>
->>> As you use your company email address in the AUTHOR line below, 
->>> please also add that email address to the commit message (and maybe 
->>> even as the author).
->>
->> I will update the AUTHOR to use my personal email address instead of 
->> the company email.
->
-> Understood. (yclu4@nuvoton.com is also personal, but the Gmail address 
-> is private, I guess. ;-)).
-Oops, I meant to say "private" instead.
->
-> For statistics, how companies contribute to the Linux kernel, having 
-> the company address somewhere would be nice though, as you are doing 
-> this as your work at Nuvoton, right?
-I will keep the company information in the driver header as you mentioned.
->
->>>> ---
->>>>   drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 ++
->>>>   drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
->>>>   .../ethernet/stmicro/stmmac/dwmac-nuvoton.c   | 179 
->>>> ++++++++++++++++++
->>>>   3 files changed, 191 insertions(+)
->>>>   create mode 100644 
->>>> drivers/net/ethernet/stmicro/stmmac/dwmac-nuvoton.c
->
-> […]
->
->> log:
->>
->> [    T0] Booting Linux on physical CPU 0x0000000000 [0x411fd040]
->
-> Out of curiosity, how do you get these timestamps T0, T1, …?
->
-> […]
->
->
-> Thank you and kind regards,
->
-> Paul
+> 
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> index 942290028972..b35df590a794 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> @@ -621,6 +621,7 @@ blsp1_i2c3: i2c@78b8000 {
+>  			clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>,
+>  				 <&gcc GCC_BLSP1_AHB_CLK>;
+>  			clock-names = "core", "iface";
+> +			clock-frequency = <400000>;
+>  			assigned-clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>;
+>  			assigned-clock-rates = <50000000>;
+>  			dmas = <&blsp_dma 18>, <&blsp_dma 19>;
+> -- 
+> 2.34.1
+> 
 
-I simply forgot to enable CONFIG_PRINTK_TIME. Here is what the log looks 
-like after enabling it.
-
-[    1.886100] nuvoton-dwmac 40120000.ethernet: TX Checksum insertion 
-supported
-[    1.893104] nuvoton-dwmac 40120000.ethernet: Enhanced/Alternate 
-descriptors
-[    1.900048] nuvoton-dwmac 40120000.ethernet: Enabled extended descriptors
-[    1.906806] nuvoton-dwmac 40120000.ethernet: Ring mode enabled
-[    1.912611] nuvoton-dwmac 40120000.ethernet: Enable RX Mitigation via 
-HW Watchdog Timer
-
-BR,
-
-Joey
-
-
+-- 
+With best wishes
+Dmitry
 
