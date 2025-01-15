@@ -1,177 +1,112 @@
-Return-Path: <devicetree+bounces-138795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB3EDA124DF
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 14:36:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 513F5A1250C
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 14:42:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF83F1687E0
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 13:36:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0FD63A8EF3
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 13:41:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6205243852;
-	Wed, 15 Jan 2025 13:35:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="l0FzLp5D"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E5924A7C6;
+	Wed, 15 Jan 2025 13:40:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28AB0242264;
-	Wed, 15 Jan 2025 13:35:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6003C24A7C5;
+	Wed, 15 Jan 2025 13:40:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736948141; cv=none; b=nXQYiaWnXU3ke69VsbObn0cvhDn3cdTgpoK5TpPfRhMSBKJlZxEpdxU5uhwoJy5BBEzsznZvltjHkwgT1rbhZkgR4GqW0m2AOLJL8hMJIA8F358ZsGXAHE6KW9EaTVBDHfSdkkG6GolbeWGcavn8wf6TUXqNd9j6th/LJmKQyzU=
+	t=1736948448; cv=none; b=KUffXqfaFU6+Ubx3oAYVzqXT1UwDSoeEHVJmZs2yaeebUCCjlkr1IUxg3meFCDJe6daxhKBnkR9x7T81RgthIeETkmzb2xpus1sxWeUeAqS3QV0EHdUWMzhMjGIt61IFWM7dVf+oiJ2Zo0f3QKfKUpufOUDVU1RxAFutVy8e+8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736948141; c=relaxed/simple;
-	bh=CKb3gP3I6xyWDSCtbWc0xKBFHwP9Wt1604HljACdQUs=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=FqiwnpJomRfGKsXPV5m6E8Yx9sPrzTOH+Qzh8Y0FIaNg+CrzGgJ/sHkb7VxojVwSZ/I++zL652Kgky8/u0EydXAUGg7cfxEVST+WqPr9zylkh43FL693aJHAozt/WA1syAQDKyUihZr2QTnYeeK6AER+LO7q6lpisvJG/iJ//QE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=l0FzLp5D; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50FBCjpU023909;
-	Wed, 15 Jan 2025 08:35:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=CKb3g
-	P3I6xyWDSCtbWc0xKBFHwP9Wt1604HljACdQUs=; b=l0FzLp5DiuR4pbfJ4Hx5K
-	GTIbQXJi9gbhFDieowTIqLL8asBV3jOxZqDm3B/mZweM0z4s1CvPI3khRA1ZTLP8
-	ke09h0ObFjVumfv0yAjHAHsoaJHCSOUqeisHPw3uA8KLs2D385ywc1z83QrHgi8G
-	K2AREPEA2UbaLSUtrjLv7Bgj1g9KOVTtw34y1uu/vvq4Ij8LMK0Lw0xxSMD9j5Ez
-	TCPxUILL2yBZ4A26d8EWdP9Xo1FYtKxSp+nqcRvh9Z+RrU9mlty41Ky+SzLVJ/8t
-	Lz9OIl9XQ/hg+Oo5YMdhxGUQ6qbvv0jBfDkgl2iTAK2y0XUFoQFls7TCCfbrhPos
-	w==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 446bxq0jk7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 15 Jan 2025 08:35:24 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 50FDZMfY046718
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 15 Jan 2025 08:35:22 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Wed, 15 Jan
- 2025 08:35:22 -0500
-Received: from ASHBMBX9.ad.analog.com ([fe80::47f5:af96:747a:164e]) by
- ASHBMBX9.ad.analog.com ([fe80::47f5:af96:747a:164e%20]) with mapi id
- 15.02.0986.014; Wed, 15 Jan 2025 08:35:22 -0500
-From: "Budai, Robert" <Robert.Budai@analog.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "Sa, Nuno" <Nuno.Sa@analog.com>,
-        "Gradinariu, Ramona"
-	<Ramona.Gradinariu@analog.com>,
-        "Miclaus, Antoniu"
-	<Antoniu.Miclaus@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        Jonathan Cameron
-	<jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet
-	<corbet@lwn.net>,
-        Alex Lanzano <lanzano.alex@gmail.com>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-Subject: RE: [PATCH v4 4/6] dt-bindings: iio: Add adis16550 bindings
-Thread-Topic: [PATCH v4 4/6] dt-bindings: iio: Add adis16550 bindings
-Thread-Index: AQHbYzNREcgyV+0AFUmPycm4yeoemLMUu+AAgAL/8lA=
-Date: Wed, 15 Jan 2025 13:35:22 +0000
-Message-ID: <6ba74e1ea2a44c7f9a4ea74b2dce1118@analog.com>
-References: <20250110074254.38966-1-robert.budai@analog.com>
- <20250110074254.38966-5-robert.budai@analog.com>
- <y54kfnkbuugvsgfzufhk3mmwmmzbko47fg3jxw36sefzxaxcz6@znigvgdcljeq>
-In-Reply-To: <y54kfnkbuugvsgfzufhk3mmwmmzbko47fg3jxw36sefzxaxcz6@znigvgdcljeq>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-x-dg-ref: =?utf-8?B?UEcxbGRHRStQR0YwSUdGcFBTSXdJaUJ1YlQwaVltOWtlUzUwZUhRaUlIQTlJ?=
- =?utf-8?B?bU02WEhWelpYSnpYSEppZFdSaGFWeGhjSEJrWVhSaFhISnZZVzFwYm1kY01E?=
- =?utf-8?B?bGtPRFE1WWpZdE16SmtNeTAwWVRRd0xUZzFaV1V0Tm1JNE5HSmhNamxsTXpW?=
- =?utf-8?B?aVhHMXpaM05jYlhObkxXTmpPVEJqTldKakxXUXpNelF0TVRGbFppMWlZakF5?=
- =?utf-8?B?TFdSak1XSmhNVGd4TVROalpWeGhiV1V0ZEdWemRGeGpZemt3WXpWaVpTMWtN?=
- =?utf-8?B?ek0wTFRFeFpXWXRZbUl3TWkxa1l6RmlZVEU0TVRFelkyVmliMlI1TG5SNGRD?=
- =?utf-8?B?SWdjM285SWpJNU56UWlJSFE5SWpFek16Z3hOREUwTlRJd05qRTROVEl4TVNJ?=
- =?utf-8?B?Z2FEMGlVWEJqUWtsU2VrWm1kamRLWm0xR0t6aFdVSGxEVUZaRFlXUmpQU0ln?=
- =?utf-8?B?YVdROUlpSWdZbXc5SWpBaUlHSnZQU0l4SWlCamFUMGlZMEZCUVVGRlVraFZN?=
- =?utf-8?B?VkpUVWxWR1RrTm5WVUZCUkdkRVFVRkVOemRQSzA5UlYyWmlRVlJOVVd4UlRp?=
- =?utf-8?B?dHBlR2RXVFhoRFZrRXpOa3hIUWxWRVFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlFVRkJRVUZCUVVoQlFVRkJSR0ZCVVVGQlUyZEpRVUZQTkVGQlFVRkJRVUZC?=
- =?utf-8?B?UVVGQlFVRkJRVVZCUVZGQlFrRkJRVUZtY0hsalYyZEJRVUZCUVVGQlFVRkJR?=
- =?utf-8?B?VUZCUVVGS05FRkJRVUpvUVVkUlFXRlJRbVpCU0UxQldsRkNha0ZJVlVGalow?=
- =?utf-8?B?SnNRVVk0UVdOQlFubEJSemhCWVdkQ2JFRkhUVUZrUVVKNlFVWTRRVnBuUW1o?=
- =?utf-8?B?QlIzZEJZM2RDYkVGR09FRmFaMEoyUVVoTlFXRlJRakJCUjJ0QlpHZENiRUZC?=
- =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
- =?utf-8?B?VUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
- =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJSVUZCUVVG?=
- =?utf-8?B?QlFVRkJRVUZuUVVGQlFVRkJibWRCUVVGSFJVRmFRVUp3UVVZNFFXTjNRbXhC?=
- =?utf-8?B?UjAxQlpGRkNlVUZIVlVGWWQwSjNRVWhKUVdKM1FuRkJSMVZCV1hkQ01FRklU?=
- =?utf-8?B?VUZZZDBJd1FVZHJRVnBSUW5sQlJFVkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
- =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZC?=
- =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
- =?utf-8?B?VUZCUVZGQlFVRkJRVUZCUVVGRFFVRkJRVUZCUTJWQlFVRkJXVkZDYTBGSGEw?=
- =?utf-8?B?RllkMEo2UVVkVlFWbDNRakZCU0VsQldsRkNaa0ZJUVVGalowSjJRVWR2UVZw?=
- =?utf-8?B?UlFtcEJTRkZCWTNkQ1prRklVVUZoVVVKc1FVaEpRVTFuUVVGQlFVRkJRVUZC?=
- =?utf-8?B?UVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJR?=
- =?utf-8?B?VUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFV?=
- =?utf-8?B?RkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVGQlFVRkJRVUZCUVVG?=
- =?utf-8?B?QlFVRkJRVUZCUVVGQlFVSkJRVUZCUVVGQlFVRkJTVUZCUVVGQlFVODBRVUZC?=
- =?utf-8?B?UVVGQlFVRkJRMEZCUVVGQlFVRkJRVUZKUVVGQlFVRkJRVUZCUVdkQlFVRkJR?=
- =?utf-8?B?VUZCUVVGNlowRkJRVUZOUVVGQlFrOUJRVUZCUVVGQlFVRkhSVUZhUVVKd1FV?=
- =?utf-8?Q?Y4QWN3?=
-x-dg-rorf: true
-x-dg-refone: QmxBR01BZFFCeUFHVUFYd0J3QUhJQWJ3QnFBR1VBWXdCMEFITUFYd0JtQUdFQWJBQnpBR1VBWHdCbUFHOEFjd0JwQUhRQWFRQjJBR1VBQUFBOEFBQUFBQUFBQUdFQVpBQnBBRjhBY3dCbEFHTUFkUUJ5QUdVQVh3QndBSElBYndCcUFHVUFZd0IwQUhNQVh3QjBBR2tBWlFCeUFERUFBQUE4QUFBQUFBQUFBR0VBWkFCcEFGOEFjd0JsQUdNQWRRQnlBR1VBWHdCd0FISUFid0JxQUdVQVl3QjBBSE1BWHdCMEFHa0FaUUJ5QURJQUFBQT0iLz48L21ldGE+
-x-adiruleop-newscl: Rule Triggered
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1736948448; c=relaxed/simple;
+	bh=ISRDE4tD8KT2AQ2Zab4eqiKfiW9C+Hfm8FDKxGol9EU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mNgqIs7HVTDZ+P95X0+DicJpsbRCtJOXuoNy378yy3WWjCDKkdA5vuukqV326gqJ77ebU0OkaWQD4g5uCKBC3XiC6hIpxABh3ZUvOnqVoGyC5/23BH39i8BZraDfZIdrlMMYEhe/8YHxMcDh8c8+Cundh8smWNKzxnpel3g5t2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-21644aca3a0so148844275ad.3;
+        Wed, 15 Jan 2025 05:40:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736948446; x=1737553246;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SjRxHp95fgWw/A/HfteiujvMA9qxAfC7IB/XFcENGNQ=;
+        b=MTqPT71CIuSHJbGTvk+8CdZRX4rx1KYzNp8BSPKitpw7H9ysh277f5NHhQjHj/IUYC
+         ILRmHq4ccX/ZgV75dgi+FZKz6Xte7CiVyUemk7m7/7udTnr2DsEwtFi6S85eXJFlnPfl
+         1o0i0UAamEbquqeALJC/k/YA6BUlmLzpra13F35OoCVdvK30LvfpMGNNjhZszjgbHIBI
+         dMdXpMdtJK2ix+Brg3HoWGMgRMpQwT/XS3PAss/Ep23gLoLhTiYtKBs72dVpL1XzM40a
+         8X00N4+CXuFYHtaHtjIYc/36pLi/txBrtoA98Y8AI2+/XQpNoSmHM8ogZ/HtqwjMSmpW
+         Dflw==
+X-Forwarded-Encrypted: i=1; AJvYcCU4IHkahsn681PmVzBaZQUytsPmxnfqmCQtwmX7YrQX4AfPcLD3/2FzDDAvXxXK+uWyUenEdXdIcnjm@vger.kernel.org, AJvYcCUtWbJQerRU9iEp+Sw36pgQgf6MPmlCodjX0Nog3nkznPtGQJWuJD/yt3mDCtzvwwsRvOq4os9A2SHsdgwP@vger.kernel.org, AJvYcCWhevd9DqC3ANtZEIUTfXzl/zPEOdaDg+pFPkWSk3742X2tb77U+tFcH0FIktxtzGheXY1gYOIonXKs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzISucblrBNlCBlLFOJbk3fQLDIBH04qLnDIe9YUDNIV8sbSp9n
+	dhvlGw4QhHXsSLj/VoNOvgiTmQa2EPZi5XiNx/nC95Io8KgbpI+X
+X-Gm-Gg: ASbGnctf1UuFindSlGZiwwnpqmayFwtXPug6nWC5zU9x9yEMAKuSdPTOdhUqnNBYi9I
+	6j1GwhWaxO8UC9QVYTrGl2LMUKMqFbkf7boGkNG0zGU/pJOy8ImYGa3Hqa8CHgb39bkLhtMHoDV
+	/T/K1zBfF+PG1428RP4CQK3xViCwUo6VTyyRh8J5sYt5t6gXRil0MKCF3GKfdpb6joViD11G8P1
+	z5ZaZPPS/Z7+QbsZUWatUR8MWeoLY1nu30y6NpmJgVsBSyptggb9QiRycSeZtSdihzZLuTdohuR
+	dtWOBVnOarnOo2M=
+X-Google-Smtp-Source: AGHT+IFBc9u2m9CIKKe0EemdS8o4PhYCZliHYxexP/9pM9Xw1hjCmQoL6ghLKLnHjOXUvJ+g6cNyvQ==
+X-Received: by 2002:a17:902:cec3:b0:211:ce91:63ea with SMTP id d9443c01a7336-21a83f56f9emr450296855ad.15.1736948446445;
+        Wed, 15 Jan 2025 05:40:46 -0800 (PST)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21a9f12f919sm82767655ad.69.2025.01.15.05.40.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 15 Jan 2025 05:40:45 -0800 (PST)
+Date: Wed, 15 Jan 2025 22:40:43 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: l.stach@pengutronix.de, bhelgaas@google.com, lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	frank.li@nxp.com, s.hauer@pengutronix.de, festevam@gmail.com,
+	imx@lists.linux.dev, kernel@pengutronix.de,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 0/10] A bunch of changes to refine i.MX PCIe driver
+Message-ID: <20250115134043.GA1049031@rocinante>
+References: <20241126075702.4099164-1-hongxing.zhu@nxp.com>
+ <20250115130406.GS4176564@rocinante>
+ <20250115130609.GT4176564@rocinante>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Proofpoint-GUID: FouZGSm6xAwBM4kPB8fY67oudxkgXGZb
-X-Proofpoint-ORIG-GUID: FouZGSm6xAwBM4kPB8fY67oudxkgXGZb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-15_05,2025-01-15_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 suspectscore=0
- phishscore=0 mlxlogscore=999 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 malwarescore=0 spamscore=0 bulkscore=0 adultscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501150103
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250115130609.GT4176564@rocinante>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
-d3NraSA8a3J6a0BrZXJuZWwub3JnPg0KPiBTZW50OiBNb25kYXksIEphbnVhcnkgMTMsIDIwMjUg
-MTA6NDQgQU0NCj4gVG86IEJ1ZGFpLCBSb2JlcnQgPFJvYmVydC5CdWRhaUBhbmFsb2cuY29tPg0K
-PiBDYzogU2EsIE51bm8gPE51bm8uU2FAYW5hbG9nLmNvbT47IEdyYWRpbmFyaXUsIFJhbW9uYQ0K
-PiA8UmFtb25hLkdyYWRpbmFyaXVAYW5hbG9nLmNvbT47IE1pY2xhdXMsIEFudG9uaXUNCj4gPEFu
-dG9uaXUuTWljbGF1c0BhbmFsb2cuY29tPjsgTGFycy1QZXRlciBDbGF1c2VuIDxsYXJzQG1ldGFm
-b28uZGU+Ow0KPiBIZW5uZXJpY2gsIE1pY2hhZWwgPE1pY2hhZWwuSGVubmVyaWNoQGFuYWxvZy5j
-b20+OyBKb25hdGhhbiBDYW1lcm9uDQo+IDxqaWMyM0BrZXJuZWwub3JnPjsgUm9iIEhlcnJpbmcg
-PHJvYmhAa2VybmVsLm9yZz47IEtyenlzenRvZiBLb3psb3dza2kNCj4gPGtyemsrZHRAa2VybmVs
-Lm9yZz47IENvbm9yIERvb2xleSA8Y29ub3IrZHRAa2VybmVsLm9yZz47IEpvbmF0aGFuDQo+IENv
-cmJldCA8Y29yYmV0QGx3bi5uZXQ+OyBBbGV4IExhbnphbm8gPGxhbnphbm8uYWxleEBnbWFpbC5j
-b20+OyBsaW51eC0NCj4gaWlvQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5l
-bC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7DQo+IGxpbnV4LWRvY0B2Z2VyLmtl
-cm5lbC5vcmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2NCA0LzZdIGR0LWJpbmRpbmdzOiBpaW86
-IEFkZCBhZGlzMTY1NTAgYmluZGluZ3MNCj4gDQo+IFtFeHRlcm5hbF0NCj4gDQo+IE9uIEZyaSwg
-SmFuIDEwLCAyMDI1IGF0IDA5OjQyOjUyQU0gKzAyMDAsIFJvYmVydCBCdWRhaSB3cm90ZToNCj4g
-PiArbWFpbnRhaW5lcnM6DQo+ID4gKyAgLSBOdW5vIFNhIDxudW5vLnNhQGFuYWxvZy5jb20+DQo+
-ID4gKyAgLSBSYW1vbmEgR3JhZGluYXJpdSA8cmFtb25hLmdyYWRpbmFyaXVAYW5hbG9nLmNvbT4N
-Cj4gPiArICAtIEFudG9uaXUgTWljbGF1cyA8YW50b25pdS5taWNsYXVzQGFuYWxvZy5jb20+DQo+
-ID4gKw0KPiA+ICtwcm9wZXJ0aWVzOg0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4gKyAgICBlbnVt
-Og0KPiA+ICsgICAgICAtIGFkaSxhZGlzMTY1NTANCj4gPiArICAgICAgLSBhZGksYWRpczE2NTUw
-dw0KPiANCj4gV2hlcmUgaXMgdGhlIGFuc3dlciBmb3IgbXkgcXVlc3Rpb25zIGF0IHYxPyBObyBy
-ZXNwb25zZXMgb24gZW1haWwsDQo+IG5vdGhpbmcgaW1wcm92ZWQgaW4gdGhlIHBhdGNoc2V0LiBH
-byBiYWNrIHRvIG15IGNvbW1lbnRzIGFuZCByZXNwb25kIHRvDQo+IHRoZW0gb3IgaW1wbGVtZW50
-IHRoZW0uDQo+IA0KW1JvYmVydCBCdWRhaQ==
+Hello,
+
+> > > A bunch of changes to refine i.MX PCIe driver.
+> > > - Add ref clock gate for i.MX95 PCIe.
+> > >   The changes of clock part are here [1], and had been applied by Abel.
+> > >   [1] https://lkml.org/lkml/2024/10/15/390
+> > > - Clean i.MX PCIe driver by removing useless codes.
+> > >   Patch #3 depends on dts changes. And the dts changes had been applied
+> > >   by Shawn, there is no dependecy now.
+> > > - Make core reset and enable_ref_clk symmetric for i.MX PCIe driver.
+> > > - Use dwc common suspend resume method, and enable i.MX8MQ, i.MX8Q and
+> > >   i.MX95 PCIe PM supports.
+> > 
+> > Applied to controller/imx6 for v6.14, thank you!
+> 
+> Richard and Frank, please have a look at the code to make sure that
+> everything looks fine to you.  There were some conflicts while I applied
+> the series, and I want to make sure that nothing is broken.
+> 
+> Thank you!
+
+I moved this series to the controller/dwc branch as we have changes there
+on which this series depends.  Hopefully, this will solve the build failure
+we've seen on our next.
+
+	Krzysztof
 
