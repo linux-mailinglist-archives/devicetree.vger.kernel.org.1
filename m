@@ -1,119 +1,159 @@
-Return-Path: <devicetree+bounces-138909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEDC7A12E70
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 23:46:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5120A12E86
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 23:48:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36AC91886DC1
-	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 22:46:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A367188717E
+	for <lists+devicetree@lfdr.de>; Wed, 15 Jan 2025 22:48:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DAAF1DDA0E;
-	Wed, 15 Jan 2025 22:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CBB21DBB19;
+	Wed, 15 Jan 2025 22:48:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uyTzjWpd"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CilVeJai"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D4361DD87D;
-	Wed, 15 Jan 2025 22:46:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C72515D5C5;
+	Wed, 15 Jan 2025 22:48:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736981173; cv=none; b=czSMSO89UGZq3RjhO4R8hM6xoe+dSMQqtdFtELPH7cOLqSOjGH6ja2q7T4CsGSPASNsJkcqvWuLTS9EzO1wkhfBenN/nlbKAoM/ZYvXNzqtPtEas5LztOZHHx2PM/ZP97N6DTycHzbhh6Uc2rBLlO01/FHY86lqbj3GNy47+ouI=
+	t=1736981295; cv=none; b=bDAK71yQKrwQ8meTjTa4QaCjpG7GvJm4OPgRhbrBhp4p+agGxDfmoRk0wBkJ91S7rlI/FMo7IuWP01zdbt9NDNDwdv/C+vdRfOVGSwlBfxiZAH4yw+B3fmtd4xpOE3ZS0/QlbPyx29mfk471XOafIidlPYRKseq1cUljkiYusss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736981173; c=relaxed/simple;
-	bh=mfzps7MrY/bcz2UOrFkJP6HwpcWdEzOi6VXm2UtiSLM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HTWBjIQa35I2SuWh7Jx7a+CZUDSudKcZXcTl4HKna/ggiKPloII4wDEioQWqBc71baYC33A/UtTVVUHri8E8RZQA6ZxwXH84tUXLypkNV0cWUZ0XrHwMtAFVgHFAJtgeBUSeEtf+dB1Fo4Un1usw/VVnheBSq6nNimD73OHCSWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uyTzjWpd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id CB044C4AF0E;
-	Wed, 15 Jan 2025 22:46:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1736981172;
-	bh=mfzps7MrY/bcz2UOrFkJP6HwpcWdEzOi6VXm2UtiSLM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=uyTzjWpdC5SB7jXP4WHm60MmDCUZJyPhf9ctjTPiPuypXzFowfNIPkvyldO5uf6XX
-	 YbFtpz3IE5Dw1UEehGaYecwPPTUPHLC3rGIdlXbwVicjqwo+CwRaiK148EOfeCqXSS
-	 LLS6ofC1OFpJN2Ql1yZtI9VGrgwGmX+vEx0xNQbVXy37aS9HxzvCbqP9XT7DOE6L+A
-	 fxF/l9hnFzhXJ35uAOkgFVUOYPCKJxymiHFVKty6w2mIbsfxgzAjcfmQbS9Zm8p+ZC
-	 pXdSUnV65zbb2Ar59GN+KmMDhzpRVigYNEJv6qNhYrfX0elbVXRrg4x+2Odj7X6Iue
-	 49w5/8UH4AP1A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id B93C4C02185;
-	Wed, 15 Jan 2025 22:46:12 +0000 (UTC)
-From: Sasha Finkelstein via B4 Relay <devnull+fnkl.kernel.gmail.com@kernel.org>
-Date: Wed, 15 Jan 2025 23:46:08 +0100
-Subject: [PATCH v4 4/4] MAINTAINERS: Add entries for Apple Z2 touchscreen
- driver
+	s=arc-20240116; t=1736981295; c=relaxed/simple;
+	bh=Q15U2MNjP3SNKD+EmlNYUumFD8zJjUy20MmW+1L0FvU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ntMRe4mBzrfWjYsh5CIt4vqzOlWPRm/ufRFWhtZccJfnBIUFUKpWjJVqRkvZ1++4u7kcH5zmz9Pztmh5Ta8BCzGppd+j6Wq/2Y9mJRj+YM9AwLynFzIACOGdTRTydrDw1hu42qn1T6F+MufZxGcgzmfYTBnHg9CBMPQfAt1JzLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CilVeJai; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50FGqjPY019418;
+	Wed, 15 Jan 2025 22:48:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Sge5gV1m8ZVq7FMogZstsFA+6YuBxDZu07fiSAwHqOk=; b=CilVeJai0lzcKWPW
+	vxX5lxvT7QrBtdPS5xDFBUOZKrtPF8sT3gnZN07sAHMamEH2/yuj3kQz0Lrt9TxD
+	CE56O8vCqmAi5MfPIblDaA5BrRmFrGJ5+UXNUkQFgK2jKcW/4T46x+oKaY5aARj2
+	x3/Xs78B9Koh6lw8qzwqP82riF91kgBQzig8eMkVetsWmFCFaAcQCI4go/f+2xiP
+	sen9ySODDk7tPW0omSp5SFSgFCMa81kDlWtBN62BqPWsOpmnmHSa52l5rqIJuQbf
+	3o4UIQg9s4h2mk3j/6uKIBD44rvQhf5ekMQW+8FABmF5/AtGiqgjutkNmXYTQhxV
+	TwYFfw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 446gx38qv1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 15 Jan 2025 22:48:09 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50FMm7LJ030991
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 15 Jan 2025 22:48:07 GMT
+Received: from [10.110.66.9] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 15 Jan
+ 2025 14:48:07 -0800
+Message-ID: <a81ca6f2-2f09-4836-b614-b169d5c65bfb@quicinc.com>
+Date: Wed, 15 Jan 2025 14:47:52 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] arm64: dts: qcom: sm8750: Add LLCC node
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Conor Dooley <conor@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Satya Durga Srinivasu Prabhala
+	<quic_satyap@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250113-sm8750_llcc_master-v1-0-5389b92e2d7a@quicinc.com>
+ <20250113-sm8750_llcc_master-v1-4-5389b92e2d7a@quicinc.com>
+ <7jo242e674fsqbia7udid4abq4euofishstmix6m7xqzdgcqiy@3zukruizim4n>
+Content-Language: en-US
+From: Melody Olvera <quic_molvera@quicinc.com>
+In-Reply-To: <7jo242e674fsqbia7udid4abq4euofishstmix6m7xqzdgcqiy@3zukruizim4n>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250115-z2-v4-4-d7361ab16ba0@gmail.com>
-References: <20250115-z2-v4-0-d7361ab16ba0@gmail.com>
-In-Reply-To: <20250115-z2-v4-0-d7361ab16ba0@gmail.com>
-To: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
- Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Henrik Rydberg <rydberg@bitmath.org>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Sasha Finkelstein <fnkl.kernel@gmail.com>, 
- Neal Gompa <neal@gompa.dev>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1736981170; l=1260;
- i=fnkl.kernel@gmail.com; s=20241124; h=from:subject:message-id;
- bh=DolVP44jd1KXaKyL604wEY81MMwwSbO5gUWo7+wphsY=;
- b=XlRk+bLP9zEGiCp9eJLiEMa05qHY5eHk0W5DNCv7FcaOdlW1QLmRgMgO2apg7DUctcOuZtl7p
- i0r0nBjdRVHB2/YAZGEfpwWUhtwBdaNfvKkTTF5+fcAup8RX8Byxn88
-X-Developer-Key: i=fnkl.kernel@gmail.com; a=ed25519;
- pk=aSkp1PdZ+eF4jpMO6oLvz/YfT5XkBUneWwyhQrOgmsU=
-X-Endpoint-Received: by B4 Relay for fnkl.kernel@gmail.com/20241124 with
- auth_id=283
-X-Original-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Reply-To: fnkl.kernel@gmail.com
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ZGf16znHDdHh8JZ4QUnNvv9juI3-AfX-
+X-Proofpoint-ORIG-GUID: ZGf16znHDdHh8JZ4QUnNvv9juI3-AfX-
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-15_09,2025-01-15_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
+ adultscore=0 spamscore=0 malwarescore=0 suspectscore=0 mlxlogscore=813
+ impostorscore=0 priorityscore=1501 bulkscore=0 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501150162
 
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
 
-Add the MAINTAINERS entries for the driver
 
-Reviewed-by: Neal Gompa <neal@gompa.dev>
-Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+On 1/14/2025 2:59 AM, Dmitry Baryshkov wrote:
+> On Mon, Jan 13, 2025 at 01:26:43PM -0800, Melody Olvera wrote:
+>> Add LLCC node for SM8750 SoC.
+>>
+>> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8750.dtsi | 11 +++++++++++
+>>   1 file changed, 11 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> index 3bbd7d18598ee0a3a0d5130c03a3166e1fc14d82..3cd7b40bdde68ac00c3dbe7fb3f20ebb2ba27045 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+>> @@ -2888,6 +2888,17 @@ gem_noc: interconnect@24100000 {
+>>   			#interconnect-cells = <2>;
+>>   		};
+>>   
+>> +		cache-controller@24800000 {
+>> +			compatible = "qcom,sm8750-llcc";
+>> +			reg = <0x0 0x24800000 0x0 0x200000>, <0x0 0x25800000 0x0 0x200000>,
+>> +				<0x0 0x24C00000 0x0 0x200000>, <0x0 0x25C00000 0x0 0x200000>,
+>> +				<0x0 0x26800000 0x0 0x200000>, <0x0 0x26C00000 0x0 0x200000>;
+>> +			reg-names = "llcc0_base", "llcc1_base",
+>> +				"llcc2_base", "llcc3_base",
+>> +				"llcc_broadcast_base", "llcc_broadcast_and_base";
+>> +			interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+>> +		};
+> PLease take a look at sm8650 and change your patch accordingly.
+>
+> NAK
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index a87ddad78e26f28ffd0f3433560d6db1518f9f95..8b3776eb748e128f87c44886b117e0652447fb37 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2191,6 +2191,7 @@ F:	Documentation/devicetree/bindings/clock/apple,nco.yaml
- F:	Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
- F:	Documentation/devicetree/bindings/dma/apple,admac.yaml
- F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
-+F:	Documentation/devicetree/bindings/input/touchscreen/apple,z2-multitouch.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
- F:	Documentation/devicetree/bindings/iommu/apple,dart.yaml
- F:	Documentation/devicetree/bindings/iommu/apple,sart.yaml
-@@ -2211,6 +2212,7 @@ F:	drivers/dma/apple-admac.c
- F:	drivers/pmdomain/apple/
- F:	drivers/i2c/busses/i2c-pasemi-core.c
- F:	drivers/i2c/busses/i2c-pasemi-platform.c
-+F:	drivers/input/touchscreen/apple_z2.c
- F:	drivers/iommu/apple-dart.c
- F:	drivers/iommu/io-pgtable-dart.c
- F:	drivers/irqchip/irq-apple-aic.c
+Apologies; the contents of this patch are very similar to sm8650, just 
+different offsets.
+Only major diffs I see here are the node namde (cache-controller vs 
+system-cache-controller)
+and the formatting (two regs/line vs one reg/line). Is there anything 
+else you mean by
+this comment that I'm missing?
 
--- 
-2.48.0
+Thanks,
+Melody
 
+>
+>> +
+>>   		nsp_noc: interconnect@320c0000 {
+>>   			compatible = "qcom,sm8750-nsp-noc";
+>>   			reg = <0x0 0x320c0000 0x0 0x13080>;
+>>
+>> -- 
+>> 2.46.1
+>>
 
 
