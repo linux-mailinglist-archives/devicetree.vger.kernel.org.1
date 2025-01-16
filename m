@@ -1,193 +1,129 @@
-Return-Path: <devicetree+bounces-138966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2376BA1365A
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:14:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C09A6A13665
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:16:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B4FB167CDB
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:14:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 070403A080E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:16:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04BA1DBB13;
-	Thu, 16 Jan 2025 09:13:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B2271ACED3;
+	Thu, 16 Jan 2025 09:16:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VANNYrxX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JV4TXkrj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A3341DACA7;
-	Thu, 16 Jan 2025 09:13:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08037139566;
+	Thu, 16 Jan 2025 09:16:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737018818; cv=none; b=fFGXZy9+45+qw1Oknj+gVk+p6jwJn+lknVFi4mt0iZtcQn66zDTRQiAtDPuOJFGYMIIHm1LzHyD80nPBGVZimfa9Q2PFzKj6CDtunpy4P4oR4RE8ButP4f2HDqGkW4ZvQmeN38/YdFYT7qCMiYP+ehs00Z41IcEePdj2qZqM9M8=
+	t=1737018968; cv=none; b=tQ4VSXXZ/pJBlBZFXHXxCqib0l7DUy493kDUYbGtHE7FWb6ER0HZt/pNv3XLXy48j5sH41L7ouBkQjucNnYoaEH/idqYSfZWD7qDFm9JwDPfe8GjaUFlEK1U9To8fvnOrvmFjxMbVmFg+zD7sxBQdRLH+t4oE/TqvtLcb8Fd15o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737018818; c=relaxed/simple;
-	bh=kzC/b/O1QqgM1SiUyZc+MEhHQcQ9G5e1OKc/GknHAcg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Z0AYjIRuOXjqfLzSQ1Ccs5LNVd0ZODTVgHkpRCaKELDJeMmxTWKuRXMABxGp6tDYmKOOKsI3siyWVlkK8xk+F+xTZ58txovyJUXcq7hSr2KMizkcCbpQYy84f2AAQVcMnwXRdwfY+siEFLNHb1lmbuH6XqOaakHG7PgoQ2ZMrnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VANNYrxX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50G92c2Z027195;
-	Thu, 16 Jan 2025 09:13:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=g9kDW/UNkqq
-	s/cQQ+ZBmFRtX6kFtjzj3xDryfLRJYdI=; b=VANNYrxXbL0kGtxg2DhV5Rm30MU
-	wIbT+5sUyVSP9bgP/+XhNjYkEluVu7GlagSLUN62Wm5gbHmgdiW7zHU+D/UxTycS
-	RpPaFsT2rB6b+9phhFphJRv7XFxnFVmSUOQkl+wlCplASLTFkk9Vd/PVGZTOFG3A
-	DbPS9tK4mywiQG7a2275udYU5JlZRlGQ/2u0LGkwRdfbNLWlWHFVdzu9yatxszaq
-	/ivo8AyZRxTBAB0q/6JYRyJUmW6QOO7sOH7RXzP5jFxH6jGmxmyMPkfp+wBNQRVV
-	T6ldsOOUvvyqDtzRAOSgSDoAEy54zcQMkdo0ChalI5XctaHhrj6jjI9Ur7A==
-Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 446y4t814p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 09:13:15 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 50G9DDdU022876;
-	Thu, 16 Jan 2025 09:13:13 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 44426qw52j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 09:13:13 +0000
-Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 50G9DCWc022870;
-	Thu, 16 Jan 2025 09:13:12 GMT
-Received: from cbsp-sh-gv.ap.qualcomm.com (CBSP-SH-gv.ap.qualcomm.com [10.231.249.68])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 50G9DCJ9022869
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 09:13:12 +0000
-Received: by cbsp-sh-gv.ap.qualcomm.com (Postfix, from userid 393357)
-	id 9201E40BF9; Thu, 16 Jan 2025 17:13:11 +0800 (CST)
-From: Ziqi Chen <quic_ziqichen@quicinc.com>
-To: quic_cang@quicinc.com, bvanassche@acm.org, mani@kernel.org,
-        beanhuo@micron.com, avri.altman@wdc.com, junwoo80.lee@samsung.com,
-        martin.petersen@oracle.com, quic_ziqichen@quicinc.com,
-        quic_nguyenb@quicinc.com, quic_nitirawa@quicinc.com,
-        quic_rampraka@quicinc.com
-Cc: linux-scsi@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org (open list:ARM/QUALCOMM SUPPORT),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-        linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 8/8] ARM: dts: msm: Use Operation Points V2 for UFS on SM8650
-Date: Thu, 16 Jan 2025 17:11:49 +0800
-Message-Id: <20250116091150.1167739-9-quic_ziqichen@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250116091150.1167739-1-quic_ziqichen@quicinc.com>
-References: <20250116091150.1167739-1-quic_ziqichen@quicinc.com>
+	s=arc-20240116; t=1737018968; c=relaxed/simple;
+	bh=6uD4hemte7JNqodZhzLp3q7ItAzSf4JIf+Tuyq8lFTY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QJFq0Eouz3M85TE8lI5cMVpL3XugKRTkLSSh7b00jocpCa6EDVfV378PysPTEFS5+g8OiGooQWNUC2teom3/t4pScOaj00DTkcXsu392+d1povqk1K8k9e6xDB7MDcpzdw/10jYxPQ9EI0AK1XiUw40IAJadFKZM0wJg1vDgcdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JV4TXkrj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A216DC4CED6;
+	Thu, 16 Jan 2025 09:16:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737018967;
+	bh=6uD4hemte7JNqodZhzLp3q7ItAzSf4JIf+Tuyq8lFTY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JV4TXkrjBlGGn4yZq9kwBAIMDsgyGDeQsUJ99AphGcnG19jJSTfpa9rdTmjbkkaWZ
+	 R27KqtVM7ided1VJbOA1/VdB347Y4GlWVpgi4BFfKE0fb5XtHQhGc2BQeZDyKP9grP
+	 er6jZHfzL0C+LZkO/Q3trV1HJzGTWierdZP4x+rhD610vDSL/DE6+MX9YsVOgI6MXb
+	 sFSkLJ7R4EyxONWFyhVUA4zkCUlsZKDmbPjQdIy8yPes04GPjbMPZGrdpjAL0WjThD
+	 V4g3B2dRYZs/x5YSpiT5vskWDf0KML/LBrhW/3qCsybSX/HVkFJ/wVuPv/1S0xL+vF
+	 Bt7tepBqLDbOw==
+Message-ID: <228a0b1b-68ec-40d2-b379-e9894a34cb57@kernel.org>
+Date: Thu, 16 Jan 2025 10:15:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: oPrL8zVPxjni7RsM2nHafNjXn7RUWybz
-X-Proofpoint-ORIG-GUID: oPrL8zVPxjni7RsM2nHafNjXn7RUWybz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-16_03,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxscore=0
- adultscore=0 priorityscore=1501 phishscore=0 spamscore=0 malwarescore=0
- bulkscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501160067
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: clock: add clock and reset definitions
+ for Ralink SoCs
+To: Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+ linux-clk@vger.kernel.org
+Cc: sboyd@kernel.org, mturquette@baylibre.com, tsbogend@alpha.franken.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+ p.zabel@pengutronix.de, linux-mips@vger.kernel.org,
+ devicetree@vger.kernel.org, yangshiji66@outlook.com,
+ linux-kernel@vger.kernel.org
+References: <20250115153019.407646-1-sergio.paracuellos@gmail.com>
+ <20250115153019.407646-2-sergio.paracuellos@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250115153019.407646-2-sergio.paracuellos@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Use Operation Points V2 for UFS on SM8650 so that multi-level
-clock/gear scaling can be possible.
+On 15/01/2025 16:30, Sergio Paracuellos wrote:
+> Add clock and reset missing definitions for RT2880, RT305X, RT3352, RT3383,
+> RT5350, MT7620 and MT76X8 Ralink SoCs. Update bindings to clarify clock and
+> reset cells depending on these new introduced constants so consumer nodes
+> can easily use the correct one in DTS files.
 
-Co-developed-by: Can Guo <quic_cang@quicinc.com>
-Signed-off-by: Can Guo <quic_cang@quicinc.com>
-Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 51 +++++++++++++++++++++++-----
- 1 file changed, 43 insertions(+), 8 deletions(-)
+I asked to explain why these should be in the bindings. Usage by DTS
+alone, if driver does not use them, is not the reason as I explained
+last time. The reason is that your driver actually depends on these
+specific numbers because how it is written.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 01ac3769ffa6..5466f1217f64 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -2557,18 +2557,11 @@ ufs_mem_hc: ufs@1d84000 {
- 				      "tx_lane0_sync_clk",
- 				      "rx_lane0_sync_clk",
- 				      "rx_lane1_sync_clk";
--			freq-table-hz = <100000000 403000000>,
--					<0 0>,
--					<0 0>,
--					<100000000 403000000>,
--					<100000000 403000000>,
--					<0 0>,
--					<0 0>,
--					<0 0>;
- 
- 			resets = <&gcc GCC_UFS_PHY_BCR>;
- 			reset-names = "rst";
- 
-+			operating-points-v2 = <&ufs_opp_table>;
- 			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-@@ -2590,6 +2583,48 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 			#reset-cells = <1>;
- 
- 			status = "disabled";
-+
-+			ufs_opp_table: opp-table {
-+					   compatible = "operating-points-v2";
-+					   // LOW_SVS
-+					   opp-100000000 {
-+							   opp-hz = /bits/ 64 <100000000>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <100000000>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <0>;
-+							   required-opps = <&rpmhpd_opp_low_svs>;
-+					   };
-+
-+					   // SVS
-+					   opp-201500000 {
-+							   opp-hz = /bits/ 64 <201500000>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <201500000>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <0>;
-+							   required-opps = <&rpmhpd_opp_svs>;
-+					   };
-+
-+					   // NOM/TURBO
-+					   opp-403000000 {
-+							   opp-hz = /bits/ 64 <403000000>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <403000000>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <0>,
-+									   /bits/ 64 <0>;
-+							   required-opps = <&rpmhpd_opp_nom>;
-+					   };
-+			   };
- 		};
- 
- 		ice: crypto@1d88000 {
--- 
-2.34.1
+Or I understood it wrong and this is purely for DTS?
 
+Best regards,
+Krzysztof
 
