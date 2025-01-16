@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-138999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 856DFA138CA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 12:20:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4938DA138CE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 12:21:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0606F3A70A3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 11:20:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8EE93A6BAE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 11:21:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019AA1DE2C1;
-	Thu, 16 Jan 2025 11:20:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B58261D79A9;
+	Thu, 16 Jan 2025 11:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EjHtwlbv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jKROTj9B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD1511A0BF3;
-	Thu, 16 Jan 2025 11:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B8E524A7C2;
+	Thu, 16 Jan 2025 11:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737026410; cv=none; b=gQh1NM3zhoxfwR4IkwYsFriKpio+CBY/pFnm+UqIBpnfbtHUJ+92LwjlDwYqs4LHfFNFp/Vt7st/gCM0yqjjSXsEcf9zNjBKTtqoPAinfwFEGT7ehp3j6PE3DEkaHEWTl9gUnpVzzhMMr6KpW9X47s6MECp0WvAAY0V2Y65Ue5c=
+	t=1737026462; cv=none; b=FFIuDxuwCQNeM5X7kW1490uZ93GYRNnG4eXxlL1mVUKmIxV1HZAqu0dw+VYIXK3aSPF/Wu5icABrIlZo/q3PYQp4SCsuo+iJDnCLGF8p+5aJWY7HYxgwDGnVtGUqEYdDPQ+uwqVFM5q3PyfwGC71s5vv45zlDBAQ/KbIIpjzp6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737026410; c=relaxed/simple;
-	bh=ZqULpiITHqkatACT8fU/K6ikyPgTtkNalwLYN4RqyAw=;
+	s=arc-20240116; t=1737026462; c=relaxed/simple;
+	bh=B9VfjXdPnuWtdN1gOJ/q5/IiAtvGWv5tPMnatRawPyo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=STcspMMxFMlJIt1lIwSBJNC5tBxgKZDan8thTF6eYA83itE71BN09NLRx7UJdlQc3oHPszeGqHa87iJsinujOVFloEhjiZ6b00JwEEd7WUwClGsUvb2bJUaSm4rRC5Rn1YqxQSgeNKOaxB0e7GK3GNSMbg0IvIr4dwbuOULZ+jk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EjHtwlbv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0357CC4CEDF;
-	Thu, 16 Jan 2025 11:20:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eSPIiOqHFkI1rx84JjtSAjJzqdEt2B7gn8M8sTaCWXTiHG54lmFD1YR3URCivwcCYqDhloSnu6mfjLacdYb4fwvNVDedED++CgpnBPDf3KIfS4etCprjE/HuAKqoixLyL3fw2gYKrIqq/8OKOYf2hNdfQ3PmOeYYLLnjiStq2B4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jKROTj9B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7084C4CED6;
+	Thu, 16 Jan 2025 11:20:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737026410;
-	bh=ZqULpiITHqkatACT8fU/K6ikyPgTtkNalwLYN4RqyAw=;
+	s=k20201202; t=1737026462;
+	bh=B9VfjXdPnuWtdN1gOJ/q5/IiAtvGWv5tPMnatRawPyo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EjHtwlbvA1Yjk8jveZAnOU0NL1NejpegusIGXrKYOyVEE+zY4+GemO6gfxk29kwHN
-	 TNibIqxy4YVgD8VVaioI3OP9ALmLejKAeY2TESjc6qQWfsEsL6T24bWEaLUBsmCJTB
-	 D1DX+vCypIcy1jXfl25Y5Hb0cqzHM/p67KDa2N+0j96tUdrQpkWaR2aJjMa9IcVIlI
-	 TdRb6kEAgXODKsd8PAlgx2BNZiUJV8t3xb6lBI02pavbkqymUQS9rjekgkYYryAL4/
-	 ErU09KVwEOkMdFB8BJjSQdI85Ai6DnVU1iTM6l2DpiBmBy08R2+qd5LY8Oh2zVqFyL
-	 FWql5xgyRwvWw==
-Message-ID: <0d152ea2-1512-4b12-a3c8-52715f1f1b94@kernel.org>
-Date: Thu, 16 Jan 2025 12:20:02 +0100
+	b=jKROTj9B2IoK6l09ow4mIfCWqhzO+rab9VakKCirs9MTF/P83OkTlLbF9zZD7GoI4
+	 RhLkDm4Cg/Q1BnsCJOYGYHxxdmFWrzJvzZKoRG4PZfBPP8mKwqakY+0TCGWgN20iOq
+	 w+AdJJae/BmDE7aIPkGKKakyatPFQmt1t5ZbkBKy0YZH1h6lQOq/xIjU/InRZJZE1X
+	 56cpcx1+gIIECj8js5P48wzkhvtWCvnV+AZWDtMKIrZfHwjjk0zcS/l0zlquNQxSgQ
+	 bOmqXDPfF9dDaG2ck9NY0LHJwXx/0dNbATl0IUu/EJyAQoIRdht5O4vI0M7OWujD4V
+	 US6RSsaLv3iUg==
+Message-ID: <b89a7dab-bc36-409e-a989-85a5f0afb832@kernel.org>
+Date: Thu, 16 Jan 2025 12:20:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: gaokun3: Add Embedded Controller
- node
-To: Pengyu Luo <mitltlatltl@gmail.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH] arm64: dts: rockchip: minimal support for Pre-ICT tester
+ adapter for RK3588 Jaguar
+To: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-hwmon@vger.kernel.org
-References: <20250116111559.83641-1-mitltlatltl@gmail.com>
- <20250116111559.83641-4-mitltlatltl@gmail.com>
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Quentin Schulz <quentin.schulz@cherry.de>
+References: <20241206-pre-ict-jaguar-v1-1-7f660bd4b70c@cherry.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,25 +104,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250116111559.83641-4-mitltlatltl@gmail.com>
+In-Reply-To: <20241206-pre-ict-jaguar-v1-1-7f660bd4b70c@cherry.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/01/2025 12:15, Pengyu Luo wrote:
-> The Embedded Controller in the Huawei Matebook E Go is accessible on &i2c15
-> and provides battery and adapter status, port orientation status, as well
-> as HPD event notifications for two USB Type-C port, etc.
-> 
-> Add the EC to the device tree and describe the relationship among
-> the type-c connectors, role switches, orientation switches and the QMP
-> combo PHY.
-> 
-> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+On 06/12/2024 16:46, Quentin Schulz wrote:
 > ---
->  .../boot/dts/qcom/sc8280xp-huawei-gaokun3.dts | 163 ++++++++++++++++++
+>  arch/arm64/boot/dts/rockchip/Makefile              |   1 +
+>  .../dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso | 171 +++++++++++++++++++++
+>  2 files changed, 172 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index 86cc418a2255cdc22f1d503e9519d2d9572d4e9d..60074d21d92b4800bdc555648a9360e13d19febc 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -139,6 +139,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6b-io.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-friendlyelec-cm3588-nas.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-pre-ict-tester.dtbo
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+You miss target applying the DTBO on the actual DTB for verification.
 
 Best regards,
 Krzysztof
