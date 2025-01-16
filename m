@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-139156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6E12A1456B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 00:21:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2248DA14579
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 00:22:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 38B441882C77
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 23:21:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 459477A34FC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 23:22:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67DEF24224B;
-	Thu, 16 Jan 2025 23:21:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99BE8244FA2;
+	Thu, 16 Jan 2025 23:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="uZ29omjN"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="I5ESkJp7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-184.mta1.migadu.com (out-184.mta1.migadu.com [95.215.58.184])
+Received: from out-188.mta1.migadu.com (out-188.mta1.migadu.com [95.215.58.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100CE1DE2A5
-	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 23:21:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B6B2244FA5
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 23:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737069695; cv=none; b=Hmxn8/Dc8qLsELTl+vyTwC+zeWYy9v6VBuqjaRQ5d90nycAgOkB3oV1IBpcoP+obW6dPGzubdTre1yo2aK/CsmcT04BdT+eYDvKzKnQt6GaNLNLO3wZdhMUvZGQPwOoFPno98/S6nCryI9DSBqQQCQccfpatYij9zBgE6Wddi7U=
+	t=1737069707; cv=none; b=aYC71ha/4+XefQIkpFHLaLFzP3c6Ymtu1u4m8ivK7C0qRta0U2DNrGJ5p+ryh/xuSToU65yAXQob2c5IYJqvhjBFt/O96tQc0+WTDF0c+WVbjHkkJ/9zWWl0xRj/m6GjSXaVcQipyXouDPCTTZbItazf/0yp8TtyhPmkrBaW+/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737069695; c=relaxed/simple;
-	bh=GrQ1dOEYG/QwkhK9cDDIQ/lwHCD2HXQ+Be10NTa2QtM=;
+	s=arc-20240116; t=1737069707; c=relaxed/simple;
+	bh=UQpviLb6rFo0Nakm4Q7xmYgcU6KPPAhHi2AiICH1T/g=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=oXqm+71Pv54uYs7q/tfdgvIrCja1XILATuACNHilRjoWQMJZr1gl5TcgITsff18oe4QdosqP4cdX4mU5+o0+Jfgl4BjeRcfbtLyul29zJL9m5XEsEv485RpXcTU/aL9H6fF+V2/cvvtWWk1NBnh6NksdjCP6Rv7Owh0YqbrkCC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=uZ29omjN; arc=none smtp.client-ip=95.215.58.184
+	 MIME-Version; b=Zzvd+hs16bBMPV4GgpP9ehWwyzos8q60tmKvW0byyZIMnXtnupvXbriCzTEdGJX+620IQWNuSBk6FExWA6crIt9Li1Kj7nAnA6sv8R+RedjllaFLYyeZ7VGa9LCFOfOb/fiDxd7vqUC72/0nsfpAoKXEbVHMIBRpNNbEHLhgXwo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=I5ESkJp7; arc=none smtp.client-ip=95.215.58.188
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1737069691;
+	t=1737069703;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=7PJS6kM+DJ2GGwqhWw1shA8+yZPnGkjZF8pz2SUSzfI=;
-	b=uZ29omjNcU4UbYfhIsF0VAP9GJd018ZmYttfHmmZNzR1FIOC3X6U+Ii7BkAzAI1EUTCAJW
-	MCcAyP7yvKL6rQ6AjEcLJNvDpRI0AdQQF4CEnS9BddjgAETgDn5wrADuaE/4/xCo51+h7P
-	nBy/dHyVn8tBKSr5Tgr/U6a/Hru5OxM=
+	bh=6Y9p6ibc/bj3AV8FXwHT1h+AI01HJG79MMwLbgeY3aY=;
+	b=I5ESkJp7jccj+p7MTg/3SaqOFMdzqlC543kNhuKXyIO5ET2tSkUSKe4SclpJmgArTud0qH
+	rVfVlL921C/RGjRtFB+PYcyrGq5sPHZbegg5CffrVDVyF1PVBsKx2d5Zk19i9Sa6UGtjgy
+	8xPc/CE0qvORpLcVkAYDDRHzUhMCkZQ=
 From: Sean Anderson <sean.anderson@linux.dev>
 To: Mark Brown <broonie@kernel.org>,
 	Michal Simek <michal.simek@amd.com>,
@@ -56,9 +56,9 @@ Cc: Jinjie Ruan <ruanjinjie@huawei.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [PATCH 1/7] dt-bindings: spi: zynqmp-qspi: Split the bus
-Date: Thu, 16 Jan 2025 18:21:11 -0500
-Message-Id: <20250116232118.2694169-2-sean.anderson@linux.dev>
+Subject: [PATCH 7/7] ARM64: xilinx: zynqmp: Convert to split QSPI bus
+Date: Thu, 16 Jan 2025 18:21:17 -0500
+Message-Id: <20250116232118.2694169-8-sean.anderson@linux.dev>
 In-Reply-To: <20250116232118.2694169-1-sean.anderson@linux.dev>
 References: <20250116232118.2694169-1-sean.anderson@linux.dev>
 Precedence: bulk
@@ -70,98 +70,316 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-This device supports two separate SPI busses: "lower" (SPI0) and "upper"
-(SPI1). Each SPI bus has separate clock and data lines, as well as a
-hardware-controlled chip select. The current binding does not model this
-situation. It exposes one bus, where CS 0 uses the lower bus and the
-lower chip select, and CS 1 uses the upper bus and the upper chip
-select. It is not possible to use the upper chip select with the lower
-bus (or vice versa). GPIO chip selects are unsupported, and there would
-be no way to specify which bus to use if they were.
-
-Split the "merged" bus into an upper and lower bus, each with their own
-subnodes.
+Convert the ZynqMP devicetrees to use the split QSPI bus binding. This
+is pretty simple, since all boards use only CS0.
 
 Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
 ---
 
- .../bindings/spi/spi-zynqmp-qspi.yaml         | 43 +++++++++++++++++--
- 1 file changed, 40 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts |  5 ++++-
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts |  5 ++++-
+ arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts |  5 ++++-
+ .../boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts   |  5 ++++-
+ .../boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts   |  5 ++++-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts |  5 ++++-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts |  5 ++++-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts |  5 ++++-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts |  5 ++++-
+ arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts |  5 ++++-
+ .../arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts |  5 ++++-
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi            | 15 +++++++++++----
+ 12 files changed, 55 insertions(+), 15 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-index 901e15fcce2d..12c547c4f1ba 100644
---- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-@@ -39,6 +39,18 @@ properties:
-   resets:
-     maxItems: 1
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+index bfa7ea6b9224..64b90de5b4ce 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-sm-k26-revA.dts
+@@ -35,7 +35,7 @@ aliases {
+ 		serial0 = &uart0;
+ 		serial1 = &uart1;
+ 		serial2 = &dcc;
+-		spi0 = &qspi;
++		spi0 = &qspi_lower;
+ 		spi1 = &spi0;
+ 		spi2 = &spi1;
+ 		usb0 = &usb0;
+@@ -129,6 +129,9 @@ mux {
  
-+  spi-lower:
-+    type: object
-+    $ref: spi-controller.yaml#
-+    unevaluatedProperties: false
-+    description: The "lower" bus (SPI0). On the ZynqMP this uses MIO pins 0-5.
+ &qspi { /* MIO 0-5 - U143 */
+ 	status = "okay";
++};
 +
-+  spi-upper:
-+    type: object
-+    $ref: spi-controller.yaml#
-+    unevaluatedProperties: false
-+    description: The "upper" bus (SPI1). On the ZynqMP this uses MIO pins 7-12.
-+
- required:
-   - compatible
-   - reg
-@@ -50,8 +62,6 @@ required:
- unevaluatedProperties: false
++&qspi_lower {
+ 	spi_flash: flash@0 { /* MT25QU512A */
+ 		compatible = "jedec,spi-nor"; /* 64MB */
+ 		reg = <0>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
+index 04079d1704f1..8927e0463cf4 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1232-revA.dts
+@@ -19,7 +19,7 @@ / {
+ 	aliases {
+ 		serial0 = &uart0;
+ 		serial1 = &dcc;
+-		spi0 = &qspi;
++		spi0 = &qspi_lower;
+ 	};
  
- allOf:
--  - $ref: spi-controller.yaml#
--
-   - if:
-       properties:
-         compatible:
-@@ -75,7 +85,7 @@ examples:
-       #address-cells = <2>;
-       #size-cells = <2>;
+ 	chosen {
+@@ -39,6 +39,9 @@ &dcc {
  
--      qspi: spi@ff0f0000 {
-+      qspi: spi-controller@ff0f0000 {
-         compatible = "xlnx,zynqmp-qspi-1.0";
-         clocks = <&zynqmp_clk QSPI_REF>, <&zynqmp_clk LPD_LSBUS>;
-         clock-names = "ref_clk", "pclk";
-@@ -84,5 +94,32 @@ examples:
-         resets = <&zynqmp_reset ZYNQMP_RESET_QSPI>;
-         reg = <0x0 0xff0f0000 0x0 0x1000>,
-               <0x0 0xc0000000 0x0 0x8000000>;
+ &qspi {
+ 	status = "okay";
++};
 +
-+        spi-lower {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+          num-cs = <2>;
-+          cs-gpios = <0>, <&gpio 5>;
++&qspi_lower {
+ 	flash@0 {
+ 		compatible = "m25p80", "jedec,spi-nor"; /* 32MB */
+ 		#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
+index 3dec57cf18be..da07b58706f0 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1254-revA.dts
+@@ -20,7 +20,7 @@ / {
+ 	aliases {
+ 		serial0 = &uart0;
+ 		serial1 = &dcc;
+-		spi0 = &qspi;
++		spi0 = &qspi_lower;
+ 	};
+ 
+ 	chosen {
+@@ -40,6 +40,9 @@ &dcc {
+ 
+ &qspi {
+ 	status = "okay";
++};
 +
-+          flash@0 {
-+            reg = <0>;
-+            compatible = "jedec,spi-nor";
-+          };
++&qspi_lower {
+ 	flash@0 {
+ 		compatible = "m25p80", "jedec,spi-nor"; /* 32MB */
+ 		#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+index 6aff22d43361..ec570d68a4ae 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm015-dc1.dts
+@@ -27,7 +27,7 @@ aliases {
+ 		mmc1 = &sdhci1;
+ 		rtc0 = &rtc;
+ 		serial0 = &uart0;
+-		spi0 = &qspi;
++		spi0 = &qspi_lower;
+ 		usb0 = &usb0;
+ 	};
+ 
+@@ -354,6 +354,9 @@ &psgtr {
+ 
+ &qspi {
+ 	status = "okay";
++};
 +
-+          flash@1 {
-+            reg = <1>;
-+            compatible = "jedec,spi-nor";
-+          };
-+        };
++&qspi_lower {
+ 	flash@0 {
+ 		compatible = "m25p80", "jedec,spi-nor"; /* Micron MT25QU512ABB8ESF */
+ 		#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+index 6ec1d9813973..e1cfdc0db51e 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zc1751-xm018-dc4.dts
+@@ -26,7 +26,7 @@ aliases {
+ 		rtc0 = &rtc;
+ 		serial0 = &uart0;
+ 		serial1 = &uart1;
+-		spi0 = &qspi;
++		spi0 = &qspi_lower;
+ 	};
+ 
+ 	chosen {
+@@ -172,6 +172,9 @@ &i2c1 {
+ 
+ &qspi {
+ 	status = "okay";
++};
 +
-+        spi-upper {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
++&qspi_lower {
+ 	flash@0 {
+ 		compatible = "m25p80", "jedec,spi-nor"; /* 32MB */
+ 		#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+index 7e26489a1539..18e323e2aad7 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu102-revA.dts
+@@ -31,7 +31,7 @@ aliases {
+ 		serial0 = &uart0;
+ 		serial1 = &uart1;
+ 		serial2 = &dcc;
+-		spi0 = &qspi;
++		spi0 = &qspi_lower;
+ 		usb0 = &usb0;
+ 	};
+ 
+@@ -953,6 +953,9 @@ &psgtr {
+ 
+ &qspi {
+ 	status = "okay";
++};
 +
-+          flash@0 {
-+            reg = <0>;
-+            compatible = "jedec,spi-nor";
-+          };
-+        };
-       };
-     };
++&qspi_lower {
+ 	flash@0 {
+ 		compatible = "m25p80", "jedec,spi-nor"; /* 16MB + 16MB */
+ 		#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+index eb2090673ec1..026053c4116a 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revA.dts
+@@ -29,7 +29,7 @@ aliases {
+ 		serial0 = &uart0;
+ 		serial1 = &uart1;
+ 		serial2 = &dcc;
+-		spi0 = &qspi;
++		spi0 = &qspi_lower;
+ 		usb0 = &usb0;
+ 	};
+ 
+@@ -439,6 +439,9 @@ &psgtr {
+ 
+ &qspi {
+ 	status = "okay";
++};
++
++&qspi_lower {
+ 	flash@0 {
+ 		compatible = "m25p80", "jedec,spi-nor"; /* n25q512a 128MiB */
+ 		#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+index 4694d0a841f1..da56e532dc2b 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu104-revC.dts
+@@ -29,7 +29,7 @@ aliases {
+ 		serial0 = &uart0;
+ 		serial1 = &uart1;
+ 		serial2 = &dcc;
+-		spi0 = &qspi;
++		spi0 = &qspi_lower;
+ 		usb0 = &usb0;
+ 	};
+ 
+@@ -451,6 +451,9 @@ &psgtr {
+ 
+ &qspi {
+ 	status = "okay";
++};
++
++&qspi_lower {
+ 	flash@0 {
+ 		compatible = "m25p80", "jedec,spi-nor"; /* n25q512a 128MiB */
+ 		#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+index 7beedd730f94..8dd73b035969 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu106-revA.dts
+@@ -31,7 +31,7 @@ aliases {
+ 		serial0 = &uart0;
+ 		serial1 = &uart1;
+ 		serial2 = &dcc;
+-		spi0 = &qspi;
++		spi0 = &qspi_lower;
+ 		usb0 = &usb0;
+ 	};
+ 
+@@ -959,6 +959,9 @@ &psgtr {
+ 
+ &qspi {
+ 	status = "okay";
++};
++
++&qspi_lower {
+ 	flash@0 {
+ 		compatible = "m25p80", "jedec,spi-nor"; /* 16MB + 16MB */
+ 		#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+index b67ff7ecf3c3..9ed7972c3b4e 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu111-revA.dts
+@@ -30,7 +30,7 @@ aliases {
+ 		rtc0 = &rtc;
+ 		serial0 = &uart0;
+ 		serial1 = &dcc;
+-		spi0 = &qspi;
++		spi0 = &qspi_lower;
+ 		usb0 = &usb0;
+ 	};
+ 
+@@ -789,6 +789,9 @@ &psgtr {
+ 
+ &qspi {
+ 	status = "okay";
++};
++
++&qspi_lower {
+ 	flash@0 {
+ 		compatible = "m25p80", "jedec,spi-nor"; /* 16MB + 16MB */
+ 		#address-cells = <1>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts
+index a38c2baeba6c..99d007b3bfae 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts
++++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu1275-revA.dts
+@@ -20,7 +20,7 @@ / {
+ 	aliases {
+ 		serial0 = &uart0;
+ 		serial1 = &dcc;
+-		spi0 = &qspi;
++		spi0 = &qspi_lower;
+ 	};
+ 
+ 	chosen {
+@@ -44,6 +44,9 @@ &gpio {
+ 
+ &qspi {
+ 	status = "okay";
++};
++
++&qspi_lower {
+ 	flash@0 {
+ 		compatible = "m25p80", "jedec,spi-nor";
+ 		reg = <0x0>;
+diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+index 5dac0542a48d..470e0b90382f 100644
+--- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
++++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
+@@ -972,21 +972,28 @@ pcie_intc: legacy-interrupt-controller {
+ 			};
+ 		};
+ 
+-		qspi: spi@ff0f0000 {
++		qspi: spi-controller@ff0f0000 {
+ 			bootph-all;
+ 			compatible = "xlnx,zynqmp-qspi-1.0";
+ 			status = "disabled";
+ 			clock-names = "ref_clk", "pclk";
+ 			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-parent = <&gic>;
+-			num-cs = <1>;
+ 			reg = <0x0 0xff0f0000 0x0 0x1000>,
+ 			      <0x0 0xc0000000 0x0 0x8000000>;
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+ 			/* iommus = <&smmu 0x873>; */
+ 			power-domains = <&zynqmp_firmware PD_QSPI>;
+ 			resets = <&zynqmp_reset ZYNQMP_RESET_QSPI>;
++
++			qspi_lower: spi-lower {
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
++
++			qspi_upper: spi-upper {
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
+ 		};
+ 
+ 		psgtr: phy@fd400000 {
 -- 
 2.35.1.1320.gc452695387.dirty
 
