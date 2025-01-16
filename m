@@ -1,386 +1,230 @@
-Return-Path: <devicetree+bounces-139025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E075BA13B75
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:59:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8757A13B7A
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:01:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2120816A866
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 13:59:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CD123A97A2
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5095E22A80E;
-	Thu, 16 Jan 2025 13:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0F3122A80D;
+	Thu, 16 Jan 2025 14:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OBYC1E0/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kRs+2MTD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3E91D8A0D;
-	Thu, 16 Jan 2025 13:59:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9723BBC5
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 14:00:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737035978; cv=none; b=et6+YsEFjcZU5+070DnxktlACcvRdR/2hi2HpCUhE3xfIkPfYaoS98CXzs63zNxV/xwUjGh1AlJdv744TTdThvrK1/HTGdbNBO/6gFex4VCLJvwtavRatqMVtziakHoFv5YlIUqJdfDzMG+/FdXrlvxKxKO5jEUtwhCASpnP16c=
+	t=1737036061; cv=none; b=U+bAp1lYAZAEt6B84IgQUqR72Ev6UaLfb6lnCO4sGD+N4vXn50JVZRIJhl/NxAuxjS5WBEbjieb/l5EKLe1/3EGm2bo858vBORSCSNqr6gT2U5ekXstDngcBjopeiJ/iJg+vJeB+iqjxL23Ni6K5Wsf9NAJgntv+Fh+xZSBttu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737035978; c=relaxed/simple;
-	bh=XmQQBBcTMYgWnbkFCf6MCDbIjfIq08+ZWoARWZPj+UA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f6dTvLe6lt/t0YhjTaejt6Bjc/6lO3QTeQABXP9Mg+nX/Zp3fubTq5xaL6kE/rADCmDVRPZQ2k8izr6fetoK0X9mIBT/cwg6u5JhBKhuxAS57dmQ2iTPc7nC+yaCy/IZzTMDrPYRxFInOCva1kMT75cLJcZuQOfxUCU1rlNm1KI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OBYC1E0/; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5d7e3f1fc01so1982490a12.2;
-        Thu, 16 Jan 2025 05:59:35 -0800 (PST)
+	s=arc-20240116; t=1737036061; c=relaxed/simple;
+	bh=LteApP4zcbsVRTQ1/uJvfFgoPA64q2wMDamS3o6c6HQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dvM8j20R1CIBb4BxYnl+VY8hyxyXjAxLNE3MxCiEAewFtiLJQ44ZVUMHkQd1Fp6JLDq4fjFNKzdyMX6QCoqayYpfQoTput50bgL/b13C5Pa2N7omuo1j/oSYaCuYxc654Svd9o6MvwlEvVVAolM46LFj+QSW+Vs93F+IH9fRzs0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kRs+2MTD; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-385e1fcb0e1so522225f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 06:00:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737035974; x=1737640774; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9vxi7kOctVVcyMXDr3GiYAGgEDhCJdQ2s1WVnIEcYQM=;
-        b=OBYC1E0/1EFya1y0HmUQufxXijybUe230aaQCZlUwvjGistxynJUJVWOfecajtpEuj
-         ax4b6o1hWKBhSE9pVy4zKWt1BUgAolPCbY1ZNnZ+m1TvZRdW3sTDKtLE4mCEZQi7kQgE
-         MDBsYesjqcZ0+yM27wXExas5LcL5MuznWpZtdQadm0J01lU5KtktyqH/O1BmtYw41k7N
-         1jjfW0jTRM43GcVBBpnuN8b+WEn/sVw/9GVngt5yqLaYJOgYqJIrUHGaMjseFMatLgxO
-         syo4LTJv8NzYfrrXfJtwue2k8PavtMZXqrRr2I6pJ1slxPt3upBYdXNZW+T+2d20fsyY
-         rSyg==
+        d=linaro.org; s=google; t=1737036058; x=1737640858; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ws4SAtnqVk3JJRFt8cX2ALHU3VzFIfyLR+RfsV5IUkA=;
+        b=kRs+2MTDoQEcxTp0xtQs350At+PbMDzuzKeDt2e2A5neaA2koGQIB09GKhhBXdQRmX
+         cTXUizVAztIE48WMkAOkq78cguYRb6at/pN0BAoYIA5+YUqhqVuwotHsoVYtItRWXkrZ
+         T/j2CD7NJaG05KT0OU41zGZ2Yf2RHTmTPhQd1Gz85SkJyyxtjtQJ90QAMLldqDfb4G8Q
+         Kx5QZkz9O41z5l11e3G7q7/alms/ewBEwTm3B3iYSBNDg94FzPhWg4sXHtTkKUjED4fv
+         gqpKNj4mtXi1BmOVD8XMvbI4+EM0yH1hTpJ2ajJiKY4BxIs/f6aYsGvDwRaYKnsMSxKX
+         8CfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737035974; x=1737640774;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9vxi7kOctVVcyMXDr3GiYAGgEDhCJdQ2s1WVnIEcYQM=;
-        b=Cod0NYlGn7s9CncCSJawflhFhz8/n9bBUh0Kb4rf8EkEn/givHk4CenfbBoCc7y+Nk
-         j3j2xFKuARzpMA4gV0x+Ds91Oa0qB76+WnZYxGxDUiHvdG3+CBaGFpNamkZp3Vvi1acI
-         LN6J+8d+7QqAYeMBtOnkU3C8U5jaP4nvHs5mOsNsaTIYwp5dJfAqITjI6m1tofTMmyMa
-         3KUsmFVITIdefujXf0IRxKrSoM98gnUNyfWLme7SkBibGTpemOjtKpAnFBwvm7RwkPlI
-         IAaqo3jrTQfaEYK8e8knUhBvsskSI3zGOUi3lzUsR1eWaZL81n5Hv5tfd28ADibp+cuy
-         UazQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVzn6V8fNPWBU0olthPQ2ClmEyh9iS6HG00yF4hDuwjFQe39zKsC9XLLUEraPB5KtCu6PBEcBPbmg6t@vger.kernel.org, AJvYcCWosFM6luxW4Neo0216XEE1V+qUbaLkrwdsXWD3H6iTx9E2IkpSpXG9d27og0SudVLaFRuPTNtckThX0QRC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yya1STAJW9BH7KRkFRqgKGjgpa7P99k/A6rAjipM8Qx+EiTPXDP
-	7hfhr53SM5cTmIPmztw5EBmGK2YmYHbGVyhCW70Y8n5M/1mddRIAQVJFyjwztRuGH9UQiIF+lri
-	EJXFP97WQ0i954ua7IxUUy5monVc=
-X-Gm-Gg: ASbGncvkiqSn2LnmFkUCMxclre5f29zRsmirxcJY9bimNLP1o1JbkuDxTZ9iw55QWcL
-	jJi2LJrVGwdwzi8jYy3LWGNwXHB2InXLwwueh2mE=
-X-Google-Smtp-Source: AGHT+IHy0ptsnu2e6RlogPAAJ7l54BvT5YyNsToPY+dFvbttxz8qyeBXoo38j5kBA9ckwZHuatxWeT6X4JGUPkkzFiE=
-X-Received: by 2002:a50:c88a:0:b0:5d9:856c:9a08 with SMTP id
- 4fb4d7f45d1cf-5d9856c9cf3mr23776315a12.18.1737035974045; Thu, 16 Jan 2025
- 05:59:34 -0800 (PST)
+        d=1e100.net; s=20230601; t=1737036058; x=1737640858;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ws4SAtnqVk3JJRFt8cX2ALHU3VzFIfyLR+RfsV5IUkA=;
+        b=CeSYr93eKZ3LyYpsb9urOTzn0huS5Ch7d2wVDAF7c2fIQMZf0f/gEuswFapUS0v+hl
+         m7P22Qwxr8O1HN0Y5KwfmF9mefp2IuQMCZ4/kCIAg4zW2NfYWz6exQFWvBI266/4aRg8
+         DNPJ6h/8qg6Ft4vaVe0rsv69EzOp+jhIhp4mqddLdTP8PochSFECG4ioyztNkGy1kma+
+         9qijQE3JiDrAn5Iyuc+vX/L74bSOzud0hBP/1A+9ZBA/3KsifMBAAIGmRWaz3lNQeGKS
+         mQfV6BAatmRqbPu0g5QcCR11D8NZlM0NSIztEMbwYcHRT5+tEJ5OMUBf68tvVhFal54U
+         871g==
+X-Forwarded-Encrypted: i=1; AJvYcCWYoOHWPRrsOqwH0y2mWlrWdcgKmTftQ3nU7/dx18EIzV32681qjhDIvWIYR1RbwHx5cQ0RNWj1PPRW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMqj/RAMqjrCuLLsS2V/HFO3rdNjnpoz1YOR0lveuB2NoliMJd
+	lEyo86tqZ7W+NLCt8Ywgw8TiiggWLPPTpkTxxcYQVKSS5n+hGy/CoFQ22JH1+52bZyoQCLXXwnw
+	joww=
+X-Gm-Gg: ASbGnctkFD1XuIhmlXWU5jo4tcU5YpLXoyO2/xPQPY1Y+1noacaXVekgD0UxjfP9VTl
+	g/ytJ+MMbX2Ffog2XcZPaayVHPoG0bS/lZp6cK9kLrJc6LWKK7SXc2N/2EjygGn8XgKLnN6Sn/I
+	UjQXuuS4WpNnqp+/u/cgYmjtAY2EvrnIOu+F1uJhfOVv1HSo2qvZu4mdfxilP3nQhZdKERVZ3+w
+	0j8wOX8smpMYgDQHyj06bapc+TzEtjVir4PAIFO5w8mADFTuq6EeF9XKRIi5S8fOBwGoolzRa5j
+	ZuBgZ+RWki1/rZf9IGt0a1k9RDC2bSYpzdvL
+X-Google-Smtp-Source: AGHT+IGvPpadg+sm2kz/lWWsYo0WJDEriL7Nq/FH6l40zZe0/JitnmHWqWE3rExPsJ2BeJZejP/++A==
+X-Received: by 2002:a5d:47c4:0:b0:385:ed16:c8b with SMTP id ffacd0b85a97d-38a87309d21mr13252241f8f.23.1737036057866;
+        Thu, 16 Jan 2025 06:00:57 -0800 (PST)
+Received: from ta2.c.googlers.com (169.178.77.34.bc.googleusercontent.com. [34.77.178.169])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a8e4c1f2esm20608846f8f.98.2025.01.16.06.00.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jan 2025 06:00:57 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v6 0/3] firmware: add Exynos ACPM protocol driver
+Date: Thu, 16 Jan 2025 14:00:46 +0000
+Message-Id: <20250116-gs101-acpm-v6-0-e3a2e1a3007c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250115012628.1035928-1-pgwipeout@gmail.com> <20250115012628.1035928-3-pgwipeout@gmail.com>
- <fe006de3-16eb-4c20-8e8e-da5ff5531c6f@kernel.org> <CAMdYzYoB-wFGcmDNYrOMKTb0XSseBd7btLarKBB5+TUB-11KjA@mail.gmail.com>
-In-Reply-To: <CAMdYzYoB-wFGcmDNYrOMKTb0XSseBd7btLarKBB5+TUB-11KjA@mail.gmail.com>
-From: Peter Geis <pgwipeout@gmail.com>
-Date: Thu, 16 Jan 2025 08:59:20 -0500
-X-Gm-Features: AbW1kvaWCthn0CA3HTWG-smgk2ZaVZDFO0klEe8ZJZC-0X4faHPfG6VS2QsDNEw
-Message-ID: <CAMdYzYqeEFN4B-Q-Sidrfyo6uVRYKW6kApVvvRaH+ciLeWSFww@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 2/6] dt-bindings: phy: rockchip: add rk3328 usb3 phy
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, zyw@rock-chips.com, kever.yang@rock-chips.com, 
-	frank.wang@rock-chips.com, william.wu@rock-chips.com, wulf@rock-chips.com, 
-	linux-rockchip@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA4RiWcC/23MQQ7CIBCF4as0sxYDI9DoynuYLqACnUShAUM0D
+ XcXu3b5v+R9GxSXyRW4DBtkV6lQij30YYB5MTE4RvfegBylQOQsFMEFM/P6ZFyOZ0RjpVYS+mH
+ NztN7x25T74XKK+XPblf1W/8yVTHOpEdtR29PXvnrg6LJ6ZhygKm19gXM/SBZpQAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Jassi Brar <jassisinghbrar@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com, 
+ peter.griffin@linaro.org, daniel.lezcano@linaro.org, 
+ vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1737036056; l=5682;
+ i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
+ bh=LteApP4zcbsVRTQ1/uJvfFgoPA64q2wMDamS3o6c6HQ=;
+ b=mvqtpSWI4vh5OK6pHgJO25ZAAu0w2S2HUM/W7V627Vh/ETlHIteDoj7ATOvHSqSRmwPFJw28K
+ PWxuhzyDwRNBjFz+j6Nq4CybhFiDvppnqWSipBJPXz3cMVzWbvV/HqL
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
+ pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-On Thu, Jan 16, 2025 at 8:32=E2=80=AFAM Peter Geis <pgwipeout@gmail.com> wr=
-ote:
->
-> On Thu, Jan 16, 2025 at 8:08=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.=
-org> wrote:
-> >
-> > On 15/01/2025 02:26, Peter Geis wrote:
-> > > Add documentation for the usb3 phy as implemented on the rk3328 SoC.
-> > >
-> > > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> > > ---
-> > >
-> > >  .../bindings/phy/rockchip,inno-usb3phy.yaml   | 166 ++++++++++++++++=
-++
-> > >  1 file changed, 166 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,in=
-no-usb3phy.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb3=
-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb3phy.yaml
-> > > new file mode 100644
-> > > index 000000000000..cde489ca87ab
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb3phy.yam=
-l
-> > > @@ -0,0 +1,166 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only
-> >
-> > Wrong license.
-> >
-> > Please run scripts/checkpatch.pl and fix reported warnings. After that,
-> > run also `scripts/checkpatch.pl --strict` and (probably) fix more
-> > warnings. Some warnings can be ignored, especially from --strict run,
-> > but the code here looks like it needs a fix. Feel free to get in touch
-> > if the warning is not clear.
->
-> Checkpatch literally told me to change this. Ran against my original
-> dev binding:
-> ./scripts/checkpatch.pl --strict
-> Documentation/devicetree/bindings/phy/rockchip,inno-usb3phy.yaml
-> CHECK: DT binding documents should be licensed (GPL-2.0-only OR BSD-2-Cla=
-use)
-> #1: FILE: Documentation/devicetree/bindings/phy/rockchip,inno-usb3phy.yam=
-l:1:
-> +# SPDX-License-Identifier: GPL-2.0
+Now that the channel identifiers are passed through 'void *mssg' in
+mbox_send_message(), this driver needs to know the message format the
+mailbox controller expects. In order to not introduce a build dependency
+on the mailbox controller message format, I chose to use here a
+temporary 'unsigned int msg[2]' instead of 'struct exynos_mbox_msg'.
+Will switch to the message format struct after both drivers get in
+Linus's tree.
 
-I understand now, thank you. Perhaps checkpatch could put that in
-quotes, instead saying ("GPL-2.0-only OR BSD-2-Clause") to make it
-clear it's one thing.
+Description and change log below. Thanks!
+ta
 
->
-> >
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/phy/rockchip,inno-usb3phy.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Rockchip USB 3.0 phy with Innosilicon IP block
-> >
-> > > +
-> > > +maintainers:
-> > > +  - Heiko Stuebner <heiko@sntech.de>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - rockchip,rk3328-usb3phy
-> >
-> > Why is this binding entirely different than existing usb2 phy? Nothing
-> > in common? This looks like made for driver and both - driver and bindin=
-g
-> > - duplicating a lot.
->
-> Hmm, I hadn't considered merging it into the usb2 binding as it is a
-> unique (and uniquely broken) device. I'd like Heiko's thoughts on
-> this.
->
-> >
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    minItems: 3
-> >
-> > Drop
-> >
-> > > +    maxItems: 3
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: refclk-usb3otg
-> >
-> > ref
-> >
-> > > +      - const: usb3phy-otg
-> >
-> > otg
-> >
-> > > +      - const: usb3phy-pipe
-> >
-> > pipe
-> >
-> > > +
-> > > +  interrupts:
-> > > +    minItems: 4
-> >
-> > You code here randomly. reg has only maxItems, clocks have both and thi=
-s
-> > have only minItems. Does not make sense. If you get it wrong, I would
-> > assume you repeat the same mistake but here it is like randomly chosen
-> > pieces. And this is making me wonder whether this was not sent too fast=
-.
->
-> I admit, I dread writing bindings as even now I'm weak in YAML and it
-> seems to pick and choose what rules it wants to follow.
->
-> >
-> > Anyway: only maxItems.
-> >
-> >
-> > > +
-> > > +  interrupt-names:
-> > > +    items:
-> > > +      - const: bvalid
-> > > +      - const: id
-> > > +      - const: linestate
-> > > +      - const: rxdet
-> > > +
-> > > +  resets:
-> > > +    minItems: 6
-> >
-> > maxItems instead
-> >
-> > > +
-> > > +  reset-names:
-> > > +    items:
-> > > +      - const: usb3phy-u2-por
-> > > +      - const: usb3phy-u3-por
-> > > +      - const: usb3phy-pipe-mac
-> > > +      - const: usb3phy-utmi-mac
-> > > +      - const: usb3phy-utmi-apb
-> > > +      - const: usb3phy-pipe-apb
-> > > +
-> > > +  "#address-cells":
-> > > +    const: 2
-> > > +
-> > > +  "#size-cells":
-> > > +    const: 2
-> > > +
-> > > +  ranges: true
-> > > +
-> > > +patternProperties:
-> > > +
-> >
-> > Drop blank line
-> >
-> > > +  utmi-port@[0-9a-f]+$:
-> >
-> > This wasn't tested. Missing quotes, missing starting anchor.
->
-> make W=3D1 dt_binding_check didn't complain about it, using the
-> dt-schema from pip3 from about a week ago.
->
-> >
-> > > +    type: object
-> >
-> > Explain what are the children here - description.
->
-> Fair, will do.
->
-> >
-> >
-> > > +    additionalProperties: false
-> > > +
-> > > +    properties:
-> > > +      compatible:
-> > > +        enum:
-> > > +          - rockchip,rk3328-usb3phy-utmi
-> > > +
-> > > +      reg:
-> > > +        maxItems: 1
-> > > +
-> > > +      "#phy-cells":
-> > > +        const: 0
-> >
-> > Does not look correct. Your parent device is the phy, not child. Why do
-> > you create children per each type of phy?
->
-> Because that's how it's done elsewhere in Rockchip's phys [1]. How
-> should it be done?
->
-> >
-> > > +
-> > > +      phy-supply:
-> > > +        description:
-> > > +          Phandle to a regulator that provides power to VBUS.
-> > > +          See ./phy-bindings.txt for details.
-> > > +
-> > > +    required:
-> > > +      - compatible
-> > > +      - reg
-> > > +      - "#phy-cells"
-> > > +
-> > > +  pipe-port@[0-9a-f]+$:
-> > > +    type: object
-> > > +    additionalProperties: false
-> > > +
-> > > +    properties:
-> > > +      compatible:
-> > > +        enum:
-> > > +          - rockchip,rk3328-usb3phy-pipe
-> > > +
-> > > +      reg:
-> > > +        maxItems: 1
-> > > +
-> > > +      "#phy-cells":
-> > > +        const: 0
-> > > +
-> > > +      phy-supply:
-> > > +        description:
-> > > +          Phandle to a regulator that provides power to VBUS.
-> > > +          See ./phy-bindings.txt for details.
-> >
-> > Drop "see ....".
->
-> I was tempted to convert phy-bindings.txt over but as above I dread
-> writing bindings. Will drop.
->
-> >
-> > > +
-> > > +    required:
-> > > +      - compatible
-> > > +      - reg
-> > > +      - "#phy-cells"
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - clocks
-> > > +  - clock-names
-> > > +  - interrupts
-> > > +  - interrupt-names
-> > > +  - resets
-> > > +  - reset-names
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/rk3328-cru.h>
-> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +    soc {
-> > > +      #address-cells =3D <2>;
-> > > +      #size-cells =3D <2>;
-> > > +
-> > > +      usb3phy: usb3-phy@ff460000 {
-> > > +        compatible =3D "rockchip,rk3328-usb3phy";
-> > > +        reg =3D <0x0 0xff460000 0x0 0x10000>;
-> > > +        clocks =3D <&cru SCLK_REF_USB3OTG>, <&cru PCLK_USB3PHY_OTG>,=
- <&cru PCLK_USB3PHY_PIPE>;
-> >
-> > That's way over the limit. Wrapping is at 80.
->
-> Will correct.
->
-> >
-> > > +        clock-names =3D "refclk-usb3otg", "usb3phy-otg", "usb3phy-pi=
-pe";
-> > > +        interrupts =3D <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 76=
- IRQ_TYPE_LEVEL_HIGH>,
-> > > +                     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 78 I=
-RQ_TYPE_LEVEL_HIGH>;
-> > > +        interrupt-names =3D "bvalid", "id", "linestate", "rxdet";
-> >
-> >
-> >
->
-> I appreciate all the feedback, I'll incorporate the changes you've recomm=
-ended.
->
-> Very Respectfully,
-> Peter Geis
->
-> >
-> > Best regards,
-> > Krzysztof
->
-> [1] https://elixir.bootlin.com/linux/v6.13-rc3/source/arch/arm64/boot/dts=
-/rockchip/rk3328.dtsi#L887
+Alive Clock and Power Manager (ACPM) Message Protocol is defined for
+the purpose of communication between the ACPM firmware and masters
+(AP, AOC, ...). ACPM firmware operates on the Active Power Management
+(APM) module that handles overall power activities.
+
+This protocol driver provides the interface for all the client drivers
+making use of the features offered by the APM. Add ACPM protocol support.
+
+Changes in v6:
+- Kconfig: s/depends on EXYNOS_MBOX/depends on MAILBOX, build time
+  dependency.
+- exynos-acpm-pmic: constify tx buf, make acpm_chan_id unsigned int,
+  u32 cmd[4] instead of u32 *cmd on function params.
+- exynos-acpm:
+  - drop acpm_memcpy_{from,to}io32 wrappers of __io{read, write}32_copy.
+    Right now unailgned accesses can not happen because the only
+    protocol implemented (PMIC), uses on stack u32 buffers.
+  - constify xfer to make it clear that the caller keeps ownership and
+    must ensure it is valid memory through the entire xfer time.
+  - rework acpm_get_by_phandle() and use try_module_get and device links.
+    With the device links, when acpm is unbind, its consumers are unbind
+    first. Thus the acpm drvdata will be destroyed after there are no
+    consumers alive, there's no need for kref. try_module_get() is used
+    because we'd like to be able to delete the acpm module only when
+    there are no consumers left.
+  - make 'struct acpm_xfer' private (move it in
+    drivers/firmware/samsung/exynos-acpm.h). Get rid of 'struct acpm_msg'
+    and use 'const u32 *txcmd'
+- bindings: add Krzysztof's R-b tag
+- Link to v5: https://lore.kernel.org/r/20241220-gs101-acpm-v5-0-4f26b7fb3f5f@linaro.org
+
+Changes in v5:
+- depends on:
+  - Link: https://lore.kernel.org/all/20241220-acpm-v4-upstream-mbox-v6-0-a6942806e52a@linaro.org/
+  - it uses the newly introduced mbox_request_channel_by_args() API
+- dt-bindings:
+  - drop redundant binding word from the commit subject
+  - remove extra blank line and update example with by complying to
+    #mbox-cells = <0>;
+  - drop Krzysztof's R-b tag as the example was updated.
+- driver:
+  - channel identifiers are discovered at runtime, use
+    mbox_request_channel_by_args() instead of specifying them in DT.
+  - don't call mbox_free_channel() for PTR_ERR or NULL channels.
+  - introduce common method to init xfer
+  - rename guard name from __EXYNOS_ACPM_MFD_H__ to __EXYNOS_ACPM_PMIC_H__
+  - stop exporting devm_acpm_get_by_phandle(). We'll export the symbol
+    once a client is introduced.
+- rebase on top of v6.13-rc3
+- Link to v4: https://lore.kernel.org/r/20241212-b4-acpm-v4-upstream-firmware-v4-0-3f18ca64f1b9@linaro.org
+
+Changes in v4:
+- rename bindings filename based on compatible
+- bindings: drop nodename
+- bindings: drop mboxes description
+- bindings: remove initdata-base prop, and define it based on compatible
+- bindings: move additionalProperties after the required block
+- bindings: drop firmware node from examples
+- bindings: drop unused label in examples
+- bindings: rename node to power-management
+- driver: switch 2 macros to inline functions for readability
+- driver: add checl to avoid shift overflow on these inline functions
+- driver: use ktime_to_ms(ktime_get()) to record ktime
+- driver: use the default non-relaxed IO accessors
+- driver: remove atomic handling
+- driver: remove stray of_match_ptr()
+- driver: move header in include/linux/firmware
+- driver: make sure to, from are 32-bit aligned and count is a 32bit
+  quantity before calling __{ioread, write}32_copy
+- driver: reject IRQ channels (not supported yet_ at the top of do_xfer,
+  instead of when waiting for response.
+
+Changes in v3:
+- decouple the mailbox controller driver from the ACPM protocol driver
+- address Krzysztof's eview comments
+- add ACPM PMIC protocol helpers
+
+v2:
+https://lore.kernel.org/linux-arm-kernel/20241017163649.3007062-1-tudor.ambarus@linaro.org/
+
+v1:
+https://lore.kernel.org/linux-arm-kernel/20241004165301.1979527-1-tudor.ambarus@linaro.org/
+
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+Tudor Ambarus (3):
+      dt-bindings: firmware: add google,gs101-acpm-ipc
+      firmware: add Exynos ACPM protocol driver
+      MAINTAINERS: add entry for the Samsung Exynos ACPM mailbox protocol
+
+ .../bindings/firmware/google,gs101-acpm-ipc.yaml   |  50 ++
+ MAINTAINERS                                        |  10 +
+ drivers/firmware/Kconfig                           |   1 +
+ drivers/firmware/Makefile                          |   1 +
+ drivers/firmware/samsung/Kconfig                   |  14 +
+ drivers/firmware/samsung/Makefile                  |   4 +
+ drivers/firmware/samsung/exynos-acpm-pmic.c        | 229 ++++++
+ drivers/firmware/samsung/exynos-acpm-pmic.h        |  29 +
+ drivers/firmware/samsung/exynos-acpm.c             | 767 +++++++++++++++++++++
+ drivers/firmware/samsung/exynos-acpm.h             |  23 +
+ .../linux/firmware/samsung/exynos-acpm-protocol.h  |  49 ++
+ 11 files changed, 1177 insertions(+)
+---
+base-commit: 5bc55a333a2f7316b58edc7573e8e893f7acb532
+change-id: 20241220-gs101-acpm-047922ab4654
+
+Best regards,
+-- 
+Tudor Ambarus <tudor.ambarus@linaro.org>
+
 
