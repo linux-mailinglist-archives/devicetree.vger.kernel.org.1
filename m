@@ -1,167 +1,184 @@
-Return-Path: <devicetree+bounces-139070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26059A13D7F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:18:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24E7CA13D88
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:19:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B791162AF6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:17:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C12E3A6327
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:19:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17A7922CBF7;
-	Thu, 16 Jan 2025 15:16:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80C4122A805;
+	Thu, 16 Jan 2025 15:19:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="jJKfTCI0"
+	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="DwB/7uzX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2043.outbound.protection.outlook.com [40.107.243.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42FEE22CBE5;
-	Thu, 16 Jan 2025 15:16:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737040614; cv=none; b=nHMWmNCvRqf4C2Sycinv6ZqfcAks3eWbe1t49ZjuT58RyG6BcCBhub8UtF3VuaCghaTr/qLkCEdQl2/6k1skdl3RkmLkbOCpbKmC10PKQjZF8bOEvbA7p1vOeNcEYBjU829pDW6M4RgkoMwHudF6XbX8TsmhjXye2Tjq96GRA68=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737040614; c=relaxed/simple;
-	bh=7X6fnHENJmbB6HRoYyrKO1+00/QYt8wQ+bHckShULek=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cxqR4SIDYb6Vxw5QS6qzTfegyQx2eJX69cRnVvMO0CcpL+OR4PvfJemLU34JuO0Vcm6bH4dF7ICmF2QPKGkTZcmnF+XVdjrs3co05DAJ1ezH92l6mJabbbmsJ6Sb4hoSmimsisnIi0j6c4SZDvJottgEsr7stbcAEyEczmxpOr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=jJKfTCI0; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50G85bZm020393;
-	Thu, 16 Jan 2025 15:16:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=YdlWU5
-	uHCS6BCpki15J5p47gd8bkNXmYAGt43QgM2/c=; b=jJKfTCI0ZUQFfQTMFyBDSo
-	bcKiIqdOoYMz7FZs6J6mIbOTtrvPcx43H3O+GzhgikIFqKEC5xL7UIsM/YGAdw+s
-	rY7RyhbA/bwP29iGd3QQ5nbRwdED32I3/ZzBiTVoMs2DD4EF9BqZdbhO+/tHRZ9Z
-	cwg22N0MEDzJj8t09Asjy6ROnUjvIPI/LbrFQ5VsvjK1uyFfL3IjLcjqaz4NmYxL
-	IkjMbIYG8v8HXz7XcgX/EHyT0BUhf68SOYF40rhsbgnuK1DW5lKLN04O7h5q+pBF
-	C3EqJmnk/LDjv2NdY/AiYXuRGeAPjiTpihsHBRZThGimOuxbVklxgZ/XyzQdqMNQ
-	==
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 446xa3a2dq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 15:16:03 +0000 (GMT)
-Received: from m0360072.ppops.net (m0360072.ppops.net [127.0.0.1])
-	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 50GEu1dE031417;
-	Thu, 16 Jan 2025 15:16:03 GMT
-Received: from ppma23.wdc07v.mail.ibm.com (5d.69.3da9.ip4.static.sl-reverse.com [169.61.105.93])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 446xa3a2dm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 15:16:03 +0000 (GMT)
-Received: from pps.filterd (ppma23.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma23.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 50GDn4kB017359;
-	Thu, 16 Jan 2025 15:16:02 GMT
-Received: from smtprelay05.wdc07v.mail.ibm.com ([172.16.1.72])
-	by ppma23.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4444fkeaky-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 15:16:02 +0000
-Received: from smtpav06.wdc07v.mail.ibm.com (smtpav06.wdc07v.mail.ibm.com [10.39.53.233])
-	by smtprelay05.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 50GFG21F8389282
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 16 Jan 2025 15:16:02 GMT
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 1235B58055;
-	Thu, 16 Jan 2025 15:16:02 +0000 (GMT)
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 04EF75803F;
-	Thu, 16 Jan 2025 15:15:58 +0000 (GMT)
-Received: from [9.61.59.21] (unknown [9.61.59.21])
-	by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Thu, 16 Jan 2025 15:15:57 +0000 (GMT)
-Message-ID: <98c24ee1-3a02-4df9-b181-22f3e6676b85@linux.ibm.com>
-Date: Thu, 16 Jan 2025 09:15:56 -0600
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D61981DD9AC;
+	Thu, 16 Jan 2025 15:19:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737040780; cv=fail; b=pJoFl08fXmzh9boV37u6QfCT0H4AkGDTJPvTbIknbj82vJqhfH5/LTyGLzaj0yzyCWmgkbxjYol0FNwSdTATxQORlTjzv6T9VPYGCl/wp40ae3i6q0gfbXukPtIxRNlNLD51lTV49h38ECKeHVpGWD2KWuPT1Mo7vEODXcDKLLU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737040780; c=relaxed/simple;
+	bh=y30RvptQ9bSwCicNQIa77ovMW91jNYhCGMK4YHuznkg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KmXJ6fXfKNVnD8k5aDF/SDzyf6klFPgbsPxziIrBTN6QcdCTsnqX5mQUKHNg33to08YokFAUd8WeTD9uz7129MHtwFrwmwD3RjTXO+8bhubz0ZU3rfFTiMiq6LRIqG/BK1rnhModPHkRgeIYfmc48rnF6j4Mw7G1gzmdkJhL5HY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=DwB/7uzX; arc=fail smtp.client-ip=40.107.243.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jMo0TK4oOVwUz2nn1oWA3BPOw/MzhqPcY39OAVFi3szj/odEhdHgSWANYM4w2MSlrzzIj+d9lLjNmFKMuku07RXbH3zLAIfTcZA4Zt3vY1PeWfWac7FVkHJUcuCmr36wYnDYuDuxjRJjZtF/ahiF6vZb4KoEEGtuJaF14JzVoHOhqJgZ+6NZfRlQ/rsXU66SARJW1PY+BmBKaboo2OOgbZZPyMDxYYABk3SMwo5SKP/KkLdcaR1FZoFbGVvZrw3ZuqLNQn3/jfkanypkJ78A1NvjAVqHE/ibvuSUoa3lek1ViAQg657KdeSSEDuschrZuhXhFUwtQVCIT66rbOXauQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v56m9RsS2BiaY/+euo+nEp3Qfou1gV+lWjeCouySy10=;
+ b=vDXtiIdFRaabF3GshcvAJXR/ZFzduLDSESfjGivZCrdMpDTNWoZ273l9yjgD4R97yMmytoqAtRUcDkYs5IVxtuQmlDt1f9/d8Gp1UMpJMU/gVFdboVK/qyJgQjTv73k25MykMzEcjbjeEJ1HOsVQp+GIdaKNlduBuR6ZnwY0HcEaXxTJMfOHBT4oUtUREFzACtpOvxEukhajUPOB6kkH6oJtxROAnWJirWfLoFXcx4xGkRl0ABEGBdw2XFDPcUUE8KI7f67JBmJ6ba5ojF8PgKOny5Rte1z3VT164YwN3LP+uuOEd6cBVChdw04zJNhlGX69F1xc7IkfgaXiFUUcbg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v56m9RsS2BiaY/+euo+nEp3Qfou1gV+lWjeCouySy10=;
+ b=DwB/7uzXNvU+M0Kf4eqdBkFhCrlkvTYAVMExC5ZDXjTLJf+BudIG/iJQcfM6VSbQ736LpvHgYPcQvjJqZEtNGjrzznXZxUaWHJQ2SEVAzxJ3sLQwI8KVCl45PpSKQ9uz+pwYWCWTIsrYSUYHxlYVE9pJRktumU4Lg59HGvh4mepZv3P4UBuOe1ATnr/dkvI9dZ3VTqySgPWJzEWe/GZIMv72Edjlqo1zlZi3Ly+Sjz3lUUYkihGUKvMQVaQ300irUuw0i3cIfkn9FE9SQmmpH2cFKIiY8sELCS7sToxvCSLK4dm2e0FyQTxSf1jR3+FD3baKdtRiGlTA1JFEPFxDPw==
+Received: from BN9PR03CA0454.namprd03.prod.outlook.com (2603:10b6:408:139::9)
+ by SN7PR12MB8819.namprd12.prod.outlook.com (2603:10b6:806:32a::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.12; Thu, 16 Jan
+ 2025 15:19:33 +0000
+Received: from BL02EPF0001A0F9.namprd03.prod.outlook.com
+ (2603:10b6:408:139:cafe::11) by BN9PR03CA0454.outlook.office365.com
+ (2603:10b6:408:139::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8356.13 via Frontend Transport; Thu,
+ 16 Jan 2025 15:19:33 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ BL02EPF0001A0F9.mail.protection.outlook.com (10.167.242.100) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8356.11 via Frontend Transport; Thu, 16 Jan 2025 15:19:33 +0000
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 16 Jan
+ 2025 07:19:08 -0800
+Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail205.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Thu, 16 Jan
+ 2025 07:19:07 -0800
+Received: from moonraker.home (10.127.8.9) by mail.nvidia.com (10.129.68.6)
+ with Microsoft SMTP Server id 15.2.1544.4 via Frontend Transport; Thu, 16 Jan
+ 2025 07:19:06 -0800
+From: Jon Hunter <jonathanh@nvidia.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
+CC: <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>, Jon Hunter
+	<jonathanh@nvidia.com>
+Subject: [PATCH] arm64: tegra: Resize aperture for the IGX PCIe C5 slot
+Date: Thu, 16 Jan 2025 15:19:03 +0000
+Message-ID: <20250116151903.476047-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 00/10] DTS updates for system1 BMC
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, openipmi-developer@lists.sourceforge.net,
-        pabeni@redhat.com, krzk+dt@kernel.org, kuba@kernel.org, joel@jms.id.au,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-        davem@davemloft.net, eajames@linux.ibm.com,
-        andrew@codeconstruct.com.au, andrew+netdev@lunn.ch, minyard@acm.org,
-        edumazet@google.com, conor+dt@kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20250114220147.757075-1-ninad@linux.ibm.com>
- <173690506198.2128017.15705512689029125898.robh@kernel.org>
-Content-Language: en-US
-From: Ninad Palsule <ninad@linux.ibm.com>
-In-Reply-To: <173690506198.2128017.15705512689029125898.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: pOwtUgxf4sevROlKDeyLe7g0iyYEuZGT
-X-Proofpoint-ORIG-GUID: O3vTPOgjhkVxMFnsseHc2nuO1G_oFbHE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-16_06,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0 mlxscore=0
- bulkscore=0 clxscore=1015 adultscore=0 mlxlogscore=839 priorityscore=1501
- suspectscore=0 spamscore=0 phishscore=0 impostorscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501160114
+X-NVConfidentiality: public
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NV-OnPremToCloud: AnonymousSubmission
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL02EPF0001A0F9:EE_|SN7PR12MB8819:EE_
+X-MS-Office365-Filtering-Correlation-Id: 20b06f83-b4bd-4c2a-90a1-08dd36412e5d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?v3s73KSMifPNJxjAfxg+vu/90tiAc28bw5Isf5G7IoZyOunHsgRu88Hq9FOe?=
+ =?us-ascii?Q?C6GFAiMJi4UxUD+WhdkSP1hg6OShVdItTuhNYlHIfMIWPYzQyEEDDMz39pAb?=
+ =?us-ascii?Q?317YbfnEy56/Rp2qjiLqjmmvVNi5ZcpmyFOYDQHK2CiRLFZUemn9T+/n3xSp?=
+ =?us-ascii?Q?Tq96fo46oMcMUS4oWPe0xYLGBOzcrX8EmKFXv0unsFKOgnbFJLjEvtxmdGej?=
+ =?us-ascii?Q?QvHTiriALP6FliwpPPmD8YnIJI35nyRslCpdXe725bEsPTH8XJEjRfpg59nn?=
+ =?us-ascii?Q?8RjXAnCbcPeuqa8v60XNTqJ4XT598fdXjhyUt31nyCOu16yJ3XPzApOtwtnN?=
+ =?us-ascii?Q?ChVwbsuVFjg8KXcf55mkpf8kDnS+a1Q1K1c+KzltZNpxvQyzlb0ZZv9igABW?=
+ =?us-ascii?Q?r4X548YvnWDGrhusGFHDrhzC1U4hyoJrIIZCS7WWmrCz4MsFJO0dcIQ5BtJ4?=
+ =?us-ascii?Q?V+3+2uUMs6WFx94nHaVH5OKpNCI2yUGL9SjIXjkSZSZvhb4MxdE/lA1UCThx?=
+ =?us-ascii?Q?2i28heD/ULar7ibXOTtWfqAYvyApuBPEvJtsGKX8cQLFDwbyJKSQTQqN01et?=
+ =?us-ascii?Q?nAyhB1I/cnGHP5+q0a8Nic5iKc8G5ffHo0PXoLodpd1OYkPYobtRcox0+904?=
+ =?us-ascii?Q?9vA6bL6ohYPLxCB4M7mmQoX/SoR87sXsZpGRbefeWLB0LKHWNMG+xGCkw9Bm?=
+ =?us-ascii?Q?QlfOxTG9AX5NOPR4Hbvd+x04cnelWapoOmJmIzMRdHr5kW7dCCuCYrzmQnk0?=
+ =?us-ascii?Q?vOROoIu0vsMf1Fa8Yck4Cgws2sFZlOj70V21l8TMZxndLras6BPFQuJTHZvv?=
+ =?us-ascii?Q?y/WA7bB2f6jA2VG0PnusYb7JSGuam7CLfFvS1Kq0tlGQBB460KDjDyaXi/eB?=
+ =?us-ascii?Q?/7YZrwanTnFkQT6AT71kypdnP8/VJDzd7YdH46wH1Kk4iTxGK+qU0jmCOx18?=
+ =?us-ascii?Q?5V7StqZHshfT3N0o9M1VpunRhj32WGLesGGmf3+V7Y6LQw67lDhQGWDb5lam?=
+ =?us-ascii?Q?+eEwfdOHE4Mw1GDxNriw71zGmCw6DeE3QVcIB70/hvrrHFOalAT1lKh5Ejgu?=
+ =?us-ascii?Q?yWwzDNkzY16aVUujcr1dkf2gTIFcejRSI0s5TNKESQj+hP5z9HiUqiHLiSNH?=
+ =?us-ascii?Q?aIHp4OOV19/kC3aRiqKkjXPH5jq/5TgfVH/2EHDP5rpx6yh9OOjw4yqae3zK?=
+ =?us-ascii?Q?rfabKDKjouMdZIzyL+XQA6i9FvOEkmqVZQgTDLR9Dvt2rfhOLIq7jqDWWSQs?=
+ =?us-ascii?Q?TWiwU+bFJI4uVfgke6+kc659+xofBEq42U8qFC9qVsJYvSkfqpAEdoIoOXTZ?=
+ =?us-ascii?Q?MPGYIsUz1vRvdLiBtfjkoyvnrWag3hRjM9qpKEKU7/prSB9ihBiu/irG+SfZ?=
+ =?us-ascii?Q?0QzunV6YVhXOLYZ251+wl9dvUeFwd7Bj91oR3ghlmX+5qy5rfask8+VhCz1v?=
+ =?us-ascii?Q?O6CtwyBwJp289llJ2DPb2Z/rsgyauG5XOqVRj66bmlD3cL91JtQ9IKxCKahd?=
+ =?us-ascii?Q?SjjGXm+9UocJm9o=3D?=
+X-Forefront-Antispam-Report:
+	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2025 15:19:33.2948
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20b06f83-b4bd-4c2a-90a1-08dd36412e5d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BL02EPF0001A0F9.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8819
 
-Hello Rob,
+Some discrete graphics cards such as the NVIDIA RTX A6000 support
+resizable BARs. When connecting an A6000 card to the NVIDIA IGX Orin
+platform, resizing the BAR1 aperture to 8GB fails because the current
+device-tree configuration for the PCIe C5 slot cannot support this.
+Fix this by updating the device-tree 'reg' and 'ranges' properties for
+the PCIe C5 slot to support this.
 
-On 1/14/25 19:40, Rob Herring (Arm) wrote:
-> make sure dt-schema is up to date:
->
->    pip3 install dtschema --upgrade
->
->
-> New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/aspeed/' for 20250114220147.757075-1-ninad@linux.ibm.com:
->
-> arch/arm/boot/dts/aspeed/aspeed-bmc-opp-palmetto.dtb: gpio@1e780000: 'pin_func_mode0', 'pin_func_mode1', 'pin_func_mode2', 'pin_gpio_a0', 'pin_gpio_a1', 'pin_gpio_b1', 'pin_gpio_b2', 'pin_gpio_b7', 'pin_gpio_d1', 'pin_gpio_f1', 'pin_gpio_f4', 'pin_gpio_f5', 'pin_gpio_f7', 'pin_gpio_g3', 'pin_gpio_g4', 'pin_gpio_g5', 'pin_gpio_h0', 'pin_gpio_h1', 'pin_gpio_h2', 'pin_gpio_h7' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-delta-ahe50dc.dtb: gpio@1e780000: 'doom-guardrail' does not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-opp-romulus.dtb: gpio@1e780000: 'nic_func_mode0', 'nic_func_mode1', 'seq_cont' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-opp-lanyang.dtb: gpio@1e780000: 'pin_gpio_aa6', 'pin_gpio_aa7', 'pin_gpio_ab0', 'pin_gpio_b0', 'pin_gpio_b5', 'pin_gpio_h5', 'pin_gpio_z2' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-bytedance-g220a.dtb: gpio@1e780000: 'pin_gpio_b6', 'pin_gpio_i3' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-everest.dtb: gpio@1e780000: 'usb_power' does not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-e3c246d4i.dtb: gpio@1e780000: 'bmc-ready' does not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier.dtb: gpio@1e780000: 'i2c3_mux_oe_n', 'usb_power' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjade.dtb: gpio@1e780000: 'bmc-ready' does not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-1s4u.dtb: gpio@1e780000: 'i2c3_mux_oe_n', 'usb_power' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-rainier-4u.dtb: gpio@1e780000: 'i2c3_mux_oe_n', 'usb_power' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bonnell.dtb: gpio@1e780000: 'usb_power' does not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-opp-nicole.dtb: gpio@1e780000: 'func_mode0', 'func_mode1', 'func_mode2', 'ncsi_cfg', 'seq_cont' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-lenovo-hr855xg2.dtb: gpio@1e780000: 'pin_gpio_a1', 'pin_gpio_a3', 'pin_gpio_aa0', 'pin_gpio_aa4', 'pin_gpio_ab3', 'pin_gpio_ac6', 'pin_gpio_b5', 'pin_gpio_b7', 'pin_gpio_e0', 'pin_gpio_e2', 'pin_gpio_e5', 'pin_gpio_e6', 'pin_gpio_f0', 'pin_gpio_f1', 'pin_gpio_f2', 'pin_gpio_f3', 'pin_gpio_f4', 'pin_gpio_f6', 'pin_gpio_g7', 'pin_gpio_h6', 'pin_gpio_i3', 'pin_gpio_j1', 'pin_gpio_j2', 'pin_gpio_j3', 'pin_gpio_l0', 'pin_gpio_l1', 'pin_gpio_l4', 'pin_gpio_l5', 'pin_gpio_r6', 'pin_gpio_r7', 'pin_gpio_s1', 'pin_gpio_s2', 'pin_gpio_s6', 'pin_gpio_z3' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-lenovo-hr630.dtb: gpio@1e780000: 'pin_gpio_aa0', 'pin_gpio_aa5', 'pin_gpio_b5', 'pin_gpio_f0', 'pin_gpio_f3', 'pin_gpio_f4', 'pin_gpio_f5', 'pin_gpio_g4', 'pin_gpio_g7', 'pin_gpio_h2', 'pin_gpio_h3', 'pin_gpio_i3', 'pin_gpio_j2', 'pin_gpio_j3', 'pin_gpio_s2', 'pin_gpio_s4', 'pin_gpio_s6', 'pin_gpio_y0', 'pin_gpio_y1', 'pin_gpio_z0', 'pin_gpio_z2', 'pin_gpio_z3', 'pin_gpio_z7' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-opp-zaius.dtb: gpio@1e780000: 'line_bmc_i2c2_sw_rst_n', 'line_bmc_i2c5_sw_rst_n', 'line_iso_u146_en', 'ncsi_mux_en_n' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-arm-stardragon4800-rep2.dtb: gpio@1e780000: 'pin_gpio_c7', 'pin_gpio_d1' do not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
+Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+---
+ .../boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-This patchset fixes this issue. 
-https://lore.kernel.org/linux-kernel/20250116090009.87338-1-krzysztof.kozlowski@linaro.org/
-
-Thanks & Regards,
-
-Ninad
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts
+index 36e888053746..9ce55b4d2de8 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3740-0002+p3701-0008.dts
+@@ -302,6 +302,16 @@ pcie@14160000 {
+ 		};
+ 
+ 		pcie@141a0000 {
++			reg = <0x00 0x141a0000 0x0 0x00020000   /* appl registers (128K)      */
++			       0x00 0x3a000000 0x0 0x00040000   /* configuration space (256K) */
++			       0x00 0x3a040000 0x0 0x00040000   /* iATU_DMA reg space (256K)  */
++			       0x00 0x3a080000 0x0 0x00040000   /* DBI reg space (256K)       */
++			       0x2e 0x20000000 0x0 0x10000000>; /* ECAM (256MB)               */
++
++			ranges = <0x81000000 0x00 0x3a100000 0x00 0x3a100000 0x0 0x00100000      /* downstream I/O (1MB) */
++				  0x82000000 0x00 0x40000000 0x2e 0x30000000 0x0 0x08000000      /* non-prefetchable memory (128MB) */
++				  0xc3000000 0x28 0x00000000 0x28 0x00000000 0x6 0x20000000>;    /* prefetchable memory (25088MB) */
++
+ 			status = "okay";
+ 			vddio-pex-ctl-supply = <&vdd_1v8_ls>;
+ 			phys = <&p2u_nvhs_0>, <&p2u_nvhs_1>, <&p2u_nvhs_2>,
+-- 
+2.43.0
 
 
