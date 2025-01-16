@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-138968-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138969-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79110A13673
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:19:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98CF7A1367C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:23:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44FBD3A1EFA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:19:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 175853A6D4C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:22:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBAFC1DBB19;
-	Thu, 16 Jan 2025 09:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77D91D7E4F;
+	Thu, 16 Jan 2025 09:22:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d3GJHBpc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cCo972y1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6DAD1DB54C;
-	Thu, 16 Jan 2025 09:19:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96882139566;
+	Thu, 16 Jan 2025 09:22:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737019142; cv=none; b=QSjdwvr8drlUP7Kb9H4Kx4eY4C8QQzgHp+x94YI1m0YeqVR9sp/kR6btgFVdBrLGx8ALPRq+H2svi+DcDbyNIaP29rw4iWbyqH1KRRx7KTvq9fgrfOlvBLZXcBmF1lyOftoMVyFjHxUqyK/cVc4FVCNZojnDASIUIZchrJ+ab1Q=
+	t=1737019376; cv=none; b=NoRo3zUyu+yRCTev2M5W+MeAHsEVMovJ7KkTOrjywBuTTkEI2SqTxK8DFypjGBf1TJDU3TOM0CSE6UKIG/nM6TXjJoQIsml9dWhIbGFn3NVTBfQYn4xdwzG/eP69DhTqGAsUtbEeAsx86puER813zIBQ0Wb12dIxlWFoHGKwsZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737019142; c=relaxed/simple;
-	bh=7pk7ut8lAkUHAourc2vOYc0b3mK1S4RBHBd8UWecoFg=;
+	s=arc-20240116; t=1737019376; c=relaxed/simple;
+	bh=v0X3E64VCHaTPugml817BhH2IqWT8FThZLYh6LkYuDQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cPLj9IapXYeDp6mD/FvM4/wVBpthD9DBzy+eqgkrEceILAz1iS1+AntqbxzHMDAXpcfZxAmwhnhungvg2zU6l4uaGrb++39AStMWhl/0ZAxvgZDnn0mVPQTLR8/lwJU9VFsq5dRjjwhE02jYITFFUd2BLPWhzv1OCpfwprOUZog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d3GJHBpc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5F4AC4CEDF;
-	Thu, 16 Jan 2025 09:18:58 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=btza+1p/ujhXlbLUwPULjL6USxyztk7cG780ifDZmFxTyZVzs5WMPem+vm0cU+8521QQ6umURi0GAZoqBuqW+GtE38Xg0LDMLRoz5wEd6hoc3keY7ar7M18tSVrsZrv9mGN0W6O7uyVN+YYzEg2/yqcE1GdXRKFRoE9tFuKM0xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cCo972y1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFA00C4CED6;
+	Thu, 16 Jan 2025 09:22:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737019142;
-	bh=7pk7ut8lAkUHAourc2vOYc0b3mK1S4RBHBd8UWecoFg=;
+	s=k20201202; t=1737019376;
+	bh=v0X3E64VCHaTPugml817BhH2IqWT8FThZLYh6LkYuDQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=d3GJHBpcWIYQO0ZcHJoaYw4ArQ/p/Y1stJABY22IIzlaIkewce62OHwnNodXTU+Bf
-	 vOuxO4FwS7qyrChhzmyEJb4NzaKG6gPjMbHCUe1mjVeLUWLPRwnsPWemvkJ9zzhiq/
-	 IGnIVGWoQqvoQ9Dh5yGDK0T3oMYOIYa23MaFcjmIvCVXMf7uGASVeqX0Ni17owdfJ9
-	 szGO5FKIlQ7rlgRQYWKnORpMsP5PMVK9vXsO4EFtpkHeHtZ5M8Z0SeTxCE1urmq/Lc
-	 RXakyoF4x10neJy7oHRKD0q63XyQUBuTARCG0J+H+3r5ISCSqY6DxXxS4D771SM3qz
-	 rOeINwm8wo0Dg==
-Message-ID: <1d6833ba-3bf5-44a6-a5e3-6bef76fd640b@kernel.org>
-Date: Thu, 16 Jan 2025 10:18:57 +0100
+	b=cCo972y1n+x6rv0uNEhxeCjUmwmc34/EXEzkIfYaCpn8kISz2cUWOHQISkYvJGLS5
+	 xE4X8am2QPPwzpEwotK6W04PYNMxUuIvaC7uosdD2FlQHIMHJA2sNLZtpjwTU+LmNB
+	 eDNqfdYjnZ9AC50vmzm2Oe4Ld47c1GZaz8z7hi5z2H5FKKuLCWQ6VUcwPDx2tyHXKD
+	 rLNtZQ+QoGWYES4LYD37Bix5qff9y0DNG+npoU8HpWbzCr25le/ppjbLyh9WGKxPec
+	 gq0m5eNlpDRk5oMYqvQGEjZouw8az8ElYMuO0+7b9ofCSdXLdsQX6jz/srb82/3e6/
+	 hBFic51i+C2XQ==
+Message-ID: <5b419c6a-ba22-41d3-bd5e-869d422f3c5d@kernel.org>
+Date: Thu, 16 Jan 2025 10:22:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] mips: dts: ralink: rt2880: update system controller
- node and its consumers
-To: Sergio Paracuellos <sergio.paracuellos@gmail.com>,
- linux-clk@vger.kernel.org
-Cc: sboyd@kernel.org, mturquette@baylibre.com, tsbogend@alpha.franken.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
- p.zabel@pengutronix.de, linux-mips@vger.kernel.org,
- devicetree@vger.kernel.org, yangshiji66@outlook.com,
- linux-kernel@vger.kernel.org
-References: <20250115153019.407646-1-sergio.paracuellos@gmail.com>
- <20250115153019.407646-3-sergio.paracuellos@gmail.com>
-Content-Language: en-US
+Subject: Re: [PATCH 8/8] ARM: dts: msm: Use Operation Points V2 for UFS on
+ SM8650
+To: Ziqi Chen <quic_ziqichen@quicinc.com>, quic_cang@quicinc.com,
+ bvanassche@acm.org, mani@kernel.org, beanhuo@micron.com,
+ avri.altman@wdc.com, junwoo80.lee@samsung.com, martin.petersen@oracle.com,
+ quic_nguyenb@quicinc.com, quic_nitirawa@quicinc.com,
+ quic_rampraka@quicinc.com
+Cc: linux-scsi@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20250116091150.1167739-1-quic_ziqichen@quicinc.com>
+ <20250116091150.1167739-9-quic_ziqichen@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -107,66 +111,84 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250115153019.407646-3-sergio.paracuellos@gmail.com>
+In-Reply-To: <20250116091150.1167739-9-quic_ziqichen@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/01/2025 16:30, Sergio Paracuellos wrote:
-> Current RT2880 device tree file is out of date and must be merged with real
-> device tree file used in openWRT project [0]. As a first iteration for this
-
-No, that's not the reason. Whatever forks have, is their problem. The
-reason is that you are improving or adding here missing bits but each
-bit must be justified. Again: whatever is in OpenWRT is not
-justification. Justification is that device is like this, SoC is like
-that or DTS is written not according to bindings.
-
-> changes, align the current file with the needed changes for system controller
-
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-> from '6f3b15586eef ("clk: ralink: add clock and reset driver for MTMIPS SoCs")'.
-
-Use proper commit syntax. '' are wrong, missing commit word.
-
+On 16/01/2025 10:11, Ziqi Chen wrote:
+> Use Operation Points V2 for UFS on SM8650 so that multi-level
+> clock/gear scaling can be possible.
 > 
-> [0]: https://github.com/openwrt/openwrt/blob/main/target/linux/ramips/dts/rt2880.dtsi
-> 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> Co-developed-by: Can Guo <quic_cang@quicinc.com>
+> Signed-off-by: Can Guo <quic_cang@quicinc.com>
+> Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
+
+Please don't send downstream code directly, but fix it first. Actually -
+rework it 100%.
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
 > ---
->  arch/mips/boot/dts/ralink/rt2880.dtsi | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 51 +++++++++++++++++++++++-----
+>  1 file changed, 43 insertions(+), 8 deletions(-)
 > 
-> diff --git a/arch/mips/boot/dts/ralink/rt2880.dtsi b/arch/mips/boot/dts/ralink/rt2880.dtsi
-> index 8fc1987d9063..1f2ea3434324 100644
-> --- a/arch/mips/boot/dts/ralink/rt2880.dtsi
-> +++ b/arch/mips/boot/dts/ralink/rt2880.dtsi
-> @@ -1,4 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0
-> +#include <dt-bindings/clock/mediatek,mtmips-sysc.h>
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 01ac3769ffa6..5466f1217f64 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -2557,18 +2557,11 @@ ufs_mem_hc: ufs@1d84000 {
+>  				      "tx_lane0_sync_clk",
+>  				      "rx_lane0_sync_clk",
+>  				      "rx_lane1_sync_clk";
+> -			freq-table-hz = <100000000 403000000>,
+> -					<0 0>,
+> -					<0 0>,
+> -					<100000000 403000000>,
+> -					<100000000 403000000>,
+> -					<0 0>,
+> -					<0 0>,
+> -					<0 0>;
+>  
+>  			resets = <&gcc GCC_UFS_PHY_BCR>;
+>  			reset-names = "rst";
+>  
+> +			operating-points-v2 = <&ufs_opp_table>;
+>  			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
+>  					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>  					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> @@ -2590,6 +2583,48 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>  			#reset-cells = <1>;
+>  
+>  			status = "disabled";
 > +
->  / {
->  	#address-cells = <1>;
->  	#size-cells = <1>;
-> @@ -25,9 +27,11 @@ palmbus@300000 {
->  		#address-cells = <1>;
->  		#size-cells = <1>;
->  
-> -		sysc@0 {
-> -			compatible = "ralink,rt2880-sysc";
-> +		sysc: syscon@0 {
-> +			compatible = "ralink,rt2880-sysc", "syscon";
->  			reg = <0x0 0x100>;
-> +			#clock-cells = <1>;
-> +			#reset-cells = <1>;
+> +			ufs_opp_table: opp-table {
+> +					   compatible = "operating-points-v2";
 
-Nothing from here is explained in commit msg. Why this is suddenly clock
-and reset controller?
 
->  		};
->  
+Messed indentation.
+
+> +					   // LOW_SVS
+
+
+Drop
+
+> +					   opp-100000000 {
+> +							   opp-hz = /bits/ 64 <100000000>,
+> +									   /bits/ 64 <0>,
+
+Messed alignment.
+
+> +									   /bits/ 64 <0>,
+> +									   /bits/ 64 <100000000>,
+> +									   /bits/ 64 <0>,
+> +									   /bits/ 64 <0>,
+> +									   /bits/ 64 <0>,
+
+
 
 
 Best regards,
