@@ -1,145 +1,114 @@
-Return-Path: <devicetree+bounces-139052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 905CDA13C58
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:35:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D5C3A13C60
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:36:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18C0E3A5A9F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:35:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7550188DAC7
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:36:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010CF22B586;
-	Thu, 16 Jan 2025 14:35:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCDEB22B586;
+	Thu, 16 Jan 2025 14:36:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dyx04FN9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bh5Qpd/F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5285024A7C9;
-	Thu, 16 Jan 2025 14:35:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC26A22A819;
+	Thu, 16 Jan 2025 14:36:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737038127; cv=none; b=WUSN+BK/1EpVBBjr2kFDt5r6pEPCfR9dhxBLGdMcA7K097uBtyhnFhjOjmGCTUVExzjcctLqosfwxLRKZv5ZAlR2TdsA9s28QWbxrPG/mpSytszCM8dcVyuh3RKyy711UIohAUbLIk0PrS0uiVqPu+MHaVxVj8KZNdtKOBnAxYA=
+	t=1737038185; cv=none; b=EgLG/J3KOoibiMnok9lMROSg8zzOxouumiOvD53FyEgoZ5ilRsFQroA0OCKRbbrJwdJb6p4jcy7vwkwuFnlyyVeN64V4Cf8GkjSPgU8q2lEyEstSBwaFh2uY3FVeFsUi3LYeMC/yyvgkQXNfJ/ekLP6zprNCc7c5rqJZDYGZKOQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737038127; c=relaxed/simple;
-	bh=+McQPymEmOdhf0WLe0EFmpoE0UjFeiDotGFY4kS0D0g=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=i6Z8Bqse4dSE1pcASTkbeaYQoo7yQZXAuFqoCeSTtBAG1WKtBF9B4+W4MXvYxaEnxKiC9kEMcVPwq9e/E/tC9v/7U6vSICkoREkbHRfenuk90x6antM9fRmchTSfXyusqVy2rBVHEUhOX2z4YItUocHdDi50DR6FL3Wgc/CffTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dyx04FN9; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5d3e9a88793so1682200a12.1;
-        Thu, 16 Jan 2025 06:35:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737038124; x=1737642924; darn=vger.kernel.org;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+McQPymEmOdhf0WLe0EFmpoE0UjFeiDotGFY4kS0D0g=;
-        b=Dyx04FN9acZ/AWvxBcwMKY5byHZoLjMSwj+H2dXXYduS1wVu4di6WeyJFx2DFT+d7e
-         7AqhyNvNxMmumhitzjCBRktISPZao/SzXnweMXXtR6G9qaLJUKp/6772NUeHtDXHnGUi
-         xb1XanmodUIuxTxwETzd+8XJibo57MeXvp2R+fTqHmsRVhQhL2th7fiRIqiUpBEHvTHm
-         BBR36ZH0qZQnnoh+MFsulgwoweFkgeKbygpsoe60JYhWlY3sG3yXX93KcCN2fj0e+qWK
-         l+hXmP0hnwwrzfq5oZxNbbPL3CLc6L5OHiMFR6vnA1ye/THqwmzFkeKuwAkBEnZ70ww9
-         0aRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737038124; x=1737642924;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+McQPymEmOdhf0WLe0EFmpoE0UjFeiDotGFY4kS0D0g=;
-        b=lPXniafpTXOPGLaQ1rOOuGjAKPGnextA30Qt5uKVetBBu14gGh06eQl3rh6J2WG54h
-         ysa56pzAWGATl94LtliXqClQCxsmOOPDiDvN4PCWM8fMdeQWVz6AXG0mDuGhiK6iAqeA
-         Uke3h0/xHpHSDB49JDiYmp3fLjSQr1wfwyKqqhLz+wn4nqrUxX3ry9eipME9/ZMUDzQR
-         xCwUaUI8YrB3kz5lbSgmBxSBG2L+1+13AmJ7GxIW8iOB51r4amYWgH7EyccrqG44rEXy
-         j1meLJ+XbznWVlwFJtHWMZcq2szwYro/oTtiiLODhHybKy0qT0Hj4h5eh2oPOirstLpv
-         YvwA==
-X-Forwarded-Encrypted: i=1; AJvYcCUOpSNaae/q0J32RIW3frUNP3Jb9ZaPaDhoreJf2SKvFGiMDKfUptkPZp0AYhbydyR7gWPimYc+MtQoqU54@vger.kernel.org, AJvYcCVpks+MBboOWqhFqaQiZgTnZu3+o0rPM8IAtS+Pemgp98m51Poa7oFkqmPwtERxGG5qgvIOxSa5ZGDV@vger.kernel.org, AJvYcCWfaBg0RHvIEBttMC5ipBWN+sCwu5v83poC8IgaAty2+qGEntqCE2ePAoTE9WGsgBVUwL9HqaCjltaB@vger.kernel.org
-X-Gm-Message-State: AOJu0YySaOM1HhGeHqkEQzDxpFcqAbqpGn8LR9cBmNNxQaDxkUw7I3LE
-	S19cOXZH6RInIjkroJnv804zY/p9uXYeX2w+31EZeJXWJblnlaD8
-X-Gm-Gg: ASbGnctTNvn03pp4w0CK0BDaxzeKUkZ+aR5mq/PFr2L8c0n7jK48rQQKE8Sxp9vtuZy
-	VxwOSHiEub2xj6aJUZorHiBLfndsf8nQbvaqauKUvBf42yd2QvwgvQTSATCGPam/8cPZCDnXQqQ
-	m1KYJkDRJeVy/Uc33e+j6suyy48D6UAp0ZYdzrNU1sOXPrs+RMOQJ1HQjiI9xvOTT8kfF2aTsGz
-	qIeq0XFicuZD2xOaj6CgjzedDOe/ybxjdIpEnciItvN1QKIe66a467hHpYBxTf8D+SfUVnK32Gf
-	tEFxwset2ekjVu9UoElMds78JKgYu9hEv+ZciA==
-X-Google-Smtp-Source: AGHT+IF22GYVRQI+1Y1KzRsqCWEDA0Rkne28OZTlDzi7yq1Grymd0Rj0WG4k8w+WrzsYR8ss+QgyYw==
-X-Received: by 2002:a05:6402:2695:b0:5d9:f70a:47ec with SMTP id 4fb4d7f45d1cf-5d9f70a4a74mr10793460a12.15.1737038124352;
-        Thu, 16 Jan 2025 06:35:24 -0800 (PST)
-Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5db7364272esm19585a12.12.2025.01.16.06.35.20
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 16 Jan 2025 06:35:23 -0800 (PST)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1737038185; c=relaxed/simple;
+	bh=FiiklmuVQ48wobf73XaFq2HgoMDJEKBkny1o2AN87mY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ttDqqY6VyOZeTsZZx7+SfUYqdtYahi9d1GUW9KCTrd2a5vLKK1eEim/xuflpqhnBj5Fe8es1DsG4dhGlv5YdNuvnSBlAbmkE6XR8Qr0HlcbZ/qd4kZzL0x8986y569tRvLP+aPyiZHVwC9g8E2Hlhm9pBmsXZsmQqW1svGi5KnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bh5Qpd/F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 857AAC4AF0B;
+	Thu, 16 Jan 2025 14:36:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737038185;
+	bh=FiiklmuVQ48wobf73XaFq2HgoMDJEKBkny1o2AN87mY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=bh5Qpd/FO/trwLTppndIl0ClqLOZKDupI0HfQqr/N+58vQ9Sc+Zq9OKEz1+kjG+ND
+	 08BNvWhn6+QymLP7tgyGj5KlL9VOLB1ruyE1YEY19VC+fw+Ww7r99PTryI83DvFigc
+	 RCswhnZ3SbczwBNodZ8wPdLOUPjljVY8AgG5HFkN94W6m4vnXn/oOJTGHOKq8zYd38
+	 UkcVowwwVBSOsCq875wafqHbLeHVOCH6ETDDkLNviI2yyjxf1SLXKGgAXDtPDv7q2G
+	 1eridOKCDIDoePONQsHmC8quhVEGhPYklEBxOczc65TwoMFL4q2tyrj8brwPKvwbV8
+	 zpimYppYBtRRA==
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-54024aa9febso1134910e87.1;
+        Thu, 16 Jan 2025 06:36:25 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUaV10zX07ejzPUN6wgSsOQXbHF41s5TD7sIDCyGOPqDnJR54NKIg0QOSJ6bBvjb6MgMuECFr7IiP1ep5Ja@vger.kernel.org, AJvYcCUqZRxdOSxhWwRwZ6tuFAqvjQKZHIZaCtfevZFvhW+ZeF21sSi/rgMasH48Gm3lnOuLNTW/2+niAjzi9SoKJg==@vger.kernel.org, AJvYcCX/PB+7kyS1umR1/RKKKRw7vd5ECSlHQ125vkIdeOm6kyc0k7KVlxflgQCm6F7tfIgD1FjIPa4ZT0KK@vger.kernel.org, AJvYcCXPZECs2NR782MEyfRI3ZtMki3n4sfofGZ5C6TrOlBfuKfMd+rN20TuXM5vhR1Z+AjMgyN5JdT3zPFlKZ6Y@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxqb9DJG9YYHUjiIEGbcD8icquQwOG/XQaJ0YgfX4f4F3f5vHxc
+	Czx1iChM3yHZXp/tzpLuvw6OKkiKzGybQEgQmdgZ84OVi/pNbqYovU78yK3TLn/zigfeeYuqS8w
+	KzP11qjHvSrxSdn/3vfq16gfNgw==
+X-Google-Smtp-Source: AGHT+IEFzH2u5Nw9ZXYRK3qBr2cKgPlDigIbcDFb/MZh/WsuuT8v5gUM8CjDCoS/kXKFX5RJ7PzvY64JLC8o2O1CXCg=
+X-Received: by 2002:a05:6512:104f:b0:542:9636:297e with SMTP id
+ 2adb3069b0e04-54296362a66mr5750572e87.25.1737038183921; Thu, 16 Jan 2025
+ 06:36:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.300.87.4.3\))
-Subject: Re: [RFC PATCH v1 0/6] rockchip: add a functional usb3 phy driver for
- rk3328
-From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-In-Reply-To: <CAMdYzYoCj9FsyHdTQAOV4DFpD7OdMDaJ0R=BBxXG-SLguy512Q@mail.gmail.com>
-Date: Thu, 16 Jan 2025 15:35:08 +0100
-Cc: Heiko Stuebner <heiko@sntech.de>,
- Algea Cao <algea.cao@rock-chips.com>,
- Michael Turquette <mturquette@baylibre.com>,
- kever.yang@rock-chips.com,
- linux-phy@lists.infradead.org,
- wulf@rock-chips.com,
- zyw@rock-chips.com,
- Dragan Simic <dsimic@manjaro.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- linux-clk@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Arnd Bergmann <arnd@arndb.de>,
- Jonas Karlman <jonas@kwiboo.se>,
- frank.wang@rock-chips.com,
- Elaine Zhang <zhangqing@rock-chips.com>,
- Alex Bee <knaerzche@gmail.com>,
- william.wu@rock-chips.com,
- Zhang Yubing <yubing.zhang@rock-chips.com>,
- Johan Jonker <jbx6244@gmail.com>,
- linux-arm-kernel@lists.infradead.org,
- Trevor Woerner <twoerner@gmail.com>,
- Stephen Boyd <sboyd@kernel.org>,
- linux-kernel@vger.kernel.org,
- Vinod Koul <vkoul@kernel.org>,
- FUKAUMI Naoki <naoki@radxa.com>,
- Diederik de Haas <didi.debian@cknow.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
+MIME-Version: 1.0
+References: <20241017144500.3968797-1-quic_yrangana@quicinc.com> <20241017144500.3968797-3-quic_yrangana@quicinc.com>
+In-Reply-To: <20241017144500.3968797-3-quic_yrangana@quicinc.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 16 Jan 2025 08:36:11 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJG_w9jyWjVR=QnPuJganG4uj9+9cEXZ__UAiCw2ZYZZA@mail.gmail.com>
+X-Gm-Features: AbW1kvYzoDssOTmlGaP7OaxU7PUBm1fSMtQeaMIHjNtOTnwTDryLuMJ_SwVS4zw
+Message-ID: <CAL_JsqJG_w9jyWjVR=QnPuJganG4uj9+9cEXZ__UAiCw2ZYZZA@mail.gmail.com>
+Subject: Re: [PATCH V1 2/2] arm64: dts: qcom: sa8775p: add QCrypto nodes
+To: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
+Cc: Thara Gopinath <thara.gopinath@gmail.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
+	"David S. Miller" <davem@davemloft.net>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>, 
+	linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	quic_sravank@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <F69CE715-C0E4-4FCD-943C-89CC1D3E848D@gmail.com>
-References: <20250115012628.1035928-1-pgwipeout@gmail.com>
- <2EEA8028-8E4A-4588-A480-E5FF0F7BE82E@gmail.com>
- <CAMdYzYo2W1hLgiH697AdRSUbhBU4rU2uB=N6EMWMD2-0R+VLBA@mail.gmail.com>
- <B1C9DA16-F285-4AD0-AE4E-AF1A5CA20932@gmail.com>
- <CAMdYzYrxX=RsSZja-3+zLZUSpyLoRz8Zm0w0hTfL3RQ9cjqgOw@mail.gmail.com>
- <3536B507-8658-4377-A1AC-2C5D9093BDEB@gmail.com>
- <CAMdYzYoCj9FsyHdTQAOV4DFpD7OdMDaJ0R=BBxXG-SLguy512Q@mail.gmail.com>
-To: Peter Geis <pgwipeout@gmail.com>
-X-Mailer: Apple Mail (2.3826.300.87.4.3)
 
+On Thu, Oct 17, 2024 at 9:45=E2=80=AFAM Yuvaraj Ranganathan
+<quic_yrangana@quicinc.com> wrote:
+>
+> Add the QCE and Crypto BAM DMA nodes.
+>
+> Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 22 ++++++++++++++++++++++
+>  1 file changed, 22 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/=
+qcom/sa8775p.dtsi
+> index e8dbc8d820a6..c1c53f81a555 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> @@ -1912,6 +1912,28 @@ ice: crypto@1d88000 {
+>                         clocks =3D <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+>                 };
+>
+> +               cryptobam: dma-controller@1dc4000 {
+> +                       compatible =3D "qcom,bam-v1.7.4", "qcom,bam-v1.7.=
+0";
+> +                       reg =3D <0x0 0x01dc4000 0x0 0x28000>;
+> +                       interrupts =3D <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+> +                       #dma-cells =3D <1>;
+> +                       qcom,ee =3D <0>;
+> +                       qcom,controlled-remotely;
+> +                       iommus =3D <&apps_smmu 0x480 0x00>,
+> +                                <&apps_smmu 0x481 0x00>;
+> +               };
+> +
+> +               crypto: crypto@1dfa000 {
+> +                       compatible =3D "qcom,sa8775p-qce", "qcom,qce";
 
-
-> Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w =
-dniu 16 sty 2025, o godz. 15:02:
->=20
->>=20
->=20
-> I'm at a loss here, I applied the patches to a clean 6.9 tree and even
->>=20
-
-oh maybe issue is in kernel age?
-6.9 seems a bit quite old.
-i=E2=80=99m on 6.12.9=E2=80=A6.=
+This one also doesn't match the schema...
 
