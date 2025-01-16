@@ -1,142 +1,280 @@
-Return-Path: <devicetree+bounces-138946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DE8BA1355E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:32:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB30BA1356F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:34:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E02933A102E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:32:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 351681884898
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:34:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E5E199E89;
-	Thu, 16 Jan 2025 08:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EAC319D8A0;
+	Thu, 16 Jan 2025 08:33:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Kdvh3vmJ"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Vji4NFQw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE8D197A8B;
-	Thu, 16 Jan 2025 08:32:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA4D01ADC81
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 08:33:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737016365; cv=none; b=VLXTH7pJ3sbOOk2Sw+tNm6rMwK/oHa2bItLarHmQ6zP21k98ufWY3bX69LZt8tCNxQbfD2+q3R3LU8J+OtYweRVN5qtTlDpCGbDYWuMCq62OuiBKMG+jQXuGxIy15Xsx4sxyjxEuPpY1zhNRwj4Ws0c6IAZDgnG782tA00n7NaE=
+	t=1737016432; cv=none; b=G3+l9uLa3A/gnrSlzluYdHpPQ3lc2AUoRk/Ql+oTRRGoDCR/23YjqwL2FBzLlSALDIyr8vjP9Gf3VcWQV4SmwfDPbeZ63aH2UlpxFHy0y5PBwTOP8FmmodCLXW77CNwLpnz+FZuyuuFCJBMwqKI7hZzgnU6JPYdhAvsSJM+xdRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737016365; c=relaxed/simple;
-	bh=lTQszKWp7GEvfUb4Z2q1JNMx+Pr5PyYPE5IiSqPm4w4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=YHINCxIMnw5zKUyKVJBbJsRdsIm3n6eQStEwXBq8zOn2oRX3cLsaCiAW9y3qlIOqj+8tqDOtF0wnh/uBdBw4qR9IXHzxhquJJKMkgknbv5Lzlb7riq4U4o1Ctq6V1dhL3uMRLzy9HG4eZLF5iFCpRNDofKZUIzUrjIxAEN9b8mY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Kdvh3vmJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50G87o6J001541;
-	Thu, 16 Jan 2025 08:32:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=KagrXkCuQ+v5fEytrHLDQh
-	gL0MdV8djw5jkQW1vSdak=; b=Kdvh3vmJpZzo4Csg1tQ/tUfTQfW90JzW6IDElV
-	xyQWdrOzkw2k34ieZ/4fJ0TfcNqRjW507RfB46FuAluMFXzdDN4ddRv97+6oS69k
-	ynUiDRsLLf4N+pVAYBZwu/F7Uk1CCrj09f+lMFs462x1CWHo8g5JjtBzRDhEBRVB
-	m34dH/AhYOHPcNgofFdq6N4GbZds5RroP88VFGU0dqY1H2WoJX9KieuHE6TMUw2C
-	BPJXYaaMrPAYkBOADVs4SVZCO3ZfdJaeyw32hjL/SOwrMkOIn4KOqzUvZi/mJBf2
-	vs0ZZ11X6YjpygUM9DngraDXmBmy+8tDPMepCh9Kdq+KebpA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 446xay8262-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 08:32:40 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50G8WdaM017700
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 08:32:39 GMT
-Received: from cse-cd02-lnx.ap.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 16 Jan 2025 00:32:33 -0800
-From: Tingguo Cheng <quic_tingguoc@quicinc.com>
-Date: Thu, 16 Jan 2025 16:31:48 +0800
-Subject: [PATCH] arm64: dts: qcom: qcs615: Fix kernel test robot issue in
- SPMI
+	s=arc-20240116; t=1737016432; c=relaxed/simple;
+	bh=4db9axtNQI2HjCmazt3tpl/rDaMjtj7W3Rw9uuPcZUc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ysathy6awcHXEgoNXB+fmgvUjBn7v2Yt6uACgB5CNUIdMqCqrHPmSB1ho9nazlhIzHCsfo8ysoqxbJ8CSLj4cFtWuOgvtl8k3qFx5d39E/xskW3fC5SsprXI47gLAMvCcz6kuUVk4TzmOmqmJxEB9GIABD2OWARIppcZGS2/jsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Vji4NFQw; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-53e3778bffdso788591e87.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 00:33:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1737016428; x=1737621228; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xlxhihBzGkG01xdrohL1hg4VaFCb7XcTgs8Zt8fu17I=;
+        b=Vji4NFQwBBa6l041VPY/Zkpc1WUi1DZY9cGxu16ifIRYl2RBdY+pWxKwZ0LIr9fYHL
+         gzTY7aTjIAnpQBmixN8ANySpRNExnYLFMrTh4AWuhzYUxKw1N93EfMQ/5W4ckXOysUP0
+         lxLngcA52AoYNee9XLfLG61P+180UdCDkS2Mg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737016428; x=1737621228;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xlxhihBzGkG01xdrohL1hg4VaFCb7XcTgs8Zt8fu17I=;
+        b=mFAXQc2Qq2SrA/Erg/4KbCLfTh12P0iOkdGGucSvx+2NT0mSUNRaellqZCIb2NiT3C
+         mWcb1ZGYNxLODp2/X4zG5YQe7FEY8x5yh9I5CfsedtJWr+wqBtVDZVSmGdT7epmqyt/E
+         UYPXz/oefhrp2ZtvfWUZLYYN412Ugozbu6J9W1Sb6ukvUz8UZ8I5ASgj0XTWy1QJfEeT
+         Hm/faIeegTgdhkhV4nDY+rNxESqPAqHEmXfgMrFuEV/gjwkxARyqyt7PhfnSuNmiMogq
+         1hUboAZLpnd84MKMn6p25EqOJiXx/8XOhCWLqvwyTy5z/BEDvn73hH9VRFY6KLtSeMqR
+         MWcg==
+X-Forwarded-Encrypted: i=1; AJvYcCXqJsg04hgqzn8HUVpkGN+yQR7TeKg4USwMKWiFujWBNhU0nEvKiu567gNlwmP0j5Nctc3Hsi++pClO@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywjo2LYuZ3NSWYZdCcs1QETCQOlYgM5BVqZnQbllD5wdHwe19NF
+	djcsxt6epTTj8s9AWp6SoHT0QPxjcSy4X1OmJE14FEzz5O9/yCEMmyY2PRnErftFmyz34FpNlRe
+	EdpQfg/3pOrBUvCfbYlDXWR8FE6ykc3Co1+3pLHyD51rWJrrwLA==
+X-Gm-Gg: ASbGnctuT0mWAOXjZPg3ZASGpuYjZRcf6dbYr1h2Naw1TfcrymEiFJpUhvE0BtPsb7V
+	8reAdeV2heBlEVh0O4uj+pr6L/N2sbgdo10FC9NAd8uLHPl/dQ9TxEHFxu5nTqazfTg==
+X-Google-Smtp-Source: AGHT+IETZECUFjA7jsQRc+8IYIKanM9wCL3x+xtLQoHqNUQLICzdo828cgP3eJuzBUp2T/x5z1I1Fp5/61CVwllU37k=
+X-Received: by 2002:a05:6512:3b90:b0:542:218a:343 with SMTP id
+ 2adb3069b0e04-542845bc8c2mr11154462e87.52.1737016428058; Thu, 16 Jan 2025
+ 00:33:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250116-fix-kernel-test-robot-unexpected-property-issue-v1-1-b1f4cc2c52d5@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAPTDiGcC/yWNQQ6CMBQFr0K69ie0tKBcxbCw/Q9tFIptMRrC3
- W10ObOY2URC9EiirzYR8fLJh7mAPFTC3S7zFeS5sFC1MrWUDY3+TXfEGQ/KSJlisCHTOuO9wGU
- wLTEsiPlDPqUVZFkex5a1stqJUl0iSuJ3PA9/jniuZZz/UthLArkwTT73leqM0VAWo+auPmrpN
- KuaT61ru4ZhJNg2pnFi2PcvltM1Ys0AAAA=
-X-Change-ID: 20250113-fix-kernel-test-robot-unexpected-property-issue-bd18f6d42b4c
-To: <quic_fenglinw@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "kernel test
- robot" <lkp@intel.com>,
-        Tingguo Cheng <quic_tingguoc@quicinc.com>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1737016353; l=1068;
- i=quic_tingguoc@quicinc.com; s=20240917; h=from:subject:message-id;
- bh=lTQszKWp7GEvfUb4Z2q1JNMx+Pr5PyYPE5IiSqPm4w4=;
- b=awCjmWcy8wzSsl0S4t1UMCVlcXAn0jjS3FVyvC/bqujJEesfpjrux6ihMCXA1BmsWZ0xRgC9V
- NbCLOn8tmdhCM/01WtBPmGM3z53m+pLm3zDvRCqQnlIqczMwggneFe3
-X-Developer-Key: i=quic_tingguoc@quicinc.com; a=ed25519;
- pk=PiFYQPN5GCP7O6SA43tuKfHAbl9DewSKOuQA/GiHQrI=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mBlDtMnc-zHGxxdGAPJF35uuQcNmPLq4
-X-Proofpoint-ORIG-GUID: mBlDtMnc-zHGxxdGAPJF35uuQcNmPLq4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-16_03,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 bulkscore=0
- adultscore=0 mlxlogscore=817 phishscore=0 malwarescore=0 spamscore=0
- mlxscore=0 suspectscore=0 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501160061
+References: <20250115063555.32492-1-ot_cathy.xu@mediatek.com>
+ <20250115063555.32492-2-ot_cathy.xu@mediatek.com> <nmyxygrya6cpalmirsunvkx32uox3kjxd4l5ggdhjtj7edyizz@yodolm5ktboo>
+ <f7ba63c8afcef1d1925d51e35e4b81f0d0e773ff.camel@mediatek.com>
+ <d04bc250-2104-4e02-9bf8-5785f4444c8d@kernel.org> <d11076d3eb2f92018fd3e26cae665a47f71ca838.camel@mediatek.com>
+In-Reply-To: <d11076d3eb2f92018fd3e26cae665a47f71ca838.camel@mediatek.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Thu, 16 Jan 2025 16:33:37 +0800
+X-Gm-Features: AbW1kvbMlBprboi-YZwzLIStKykzvyz7QyUqIfdBS-y45OdVzJCt_gg7fuK1j1I
+Message-ID: <CAGXv+5FtA7KCPE1FQ1Wp=M_11=20n432zSWTkeBasUa4fdpm8A@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: mediatek: add support for mt8196
+To: =?UTF-8?B?Q2F0aHkgWHUgKOiuuOWNjuWptyk=?= <ot_cathy.xu@mediatek.com>
+Cc: "krzk@kernel.org" <krzk@kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	=?UTF-8?B?TGVpIFh1ZSAo6Jab56OKKQ==?= <Lei.Xue@mediatek.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	=?UTF-8?B?V2VuYmluIE1laSAo5qKF5paH5b2sKQ==?= <Wenbin.Mei@mediatek.com>, 
+	"linus.walleij@linaro.org" <linus.walleij@linaro.org>, 
+	=?UTF-8?B?R3VvZG9uZyBMaXUgKOWImOWbveagiyk=?= <Guodong.Liu@mediatek.com>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"robh@kernel.org" <robh@kernel.org>, "sean.wang@kernel.org" <sean.wang@kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Fix the kernel test robot issue in qcs615-ride.dtb spmi@c440000 by
-removing the unevaluated 'cell-index' property.
+On Thu, Jan 16, 2025 at 4:19=E2=80=AFPM Cathy Xu (=E8=AE=B8=E5=8D=8E=E5=A9=
+=B7) <ot_cathy.xu@mediatek.com> wrote:
+>
+> On Thu, 2025-01-16 at 08:28 +0100, Krzysztof Kozlowski wrote:
+> > External email : Please do not click links or open attachments until
+> > you have verified the sender or the content.
+> >
+> >
+> > On 16/01/2025 03:20, Cathy Xu (=E8=AE=B8=E5=8D=8E=E5=A9=B7) wrote:
+> > > > > +          bias-pull-down:
+> > > > > +            oneOf:
+> > > > > +              - type: boolean
+> > > > > +              - enum: [100, 101, 102, 103]
+> > > > > +                description: mt8196 pull down PUPD/R0/R1 type
+> > > > > define value.
+> > > > > +              - enum: [200, 201, 202, 203, 204, 205, 206, 207]
+> > > > > +                description: mt8196 pull down RSEL type define
+> > > > > value.
+> > > >
+> > > > Not much improved.
+> > >
+> > >   I have removed the content related to 'resistance value', we use
+> > > 'RSEL' instead of 'resistance value'.
+> >
+> > So the value in Ohms was removed? I assume above do not have known
+> > value
+> > in Ohms?
+>
+>   Yes, value in Ohns was removed, no code have knowm value.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/r/202412272210.GpGmqcPC-lkp@intel.com/
-Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs615.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+That's sad. We went through a lot during the MT8195 cycle to get the
+paris driver library to support proper SI unit values [1] to replace
+the RSEL values (200 ~ 207). Why can't this be supported anymore?
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-index fc69abff71270af591ad41f33bf893751cd7d300..7b3de4b8605722c2f24bc3dcbe9471440685745d 100644
---- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-@@ -2964,7 +2964,6 @@ spmi_bus: spmi@c440000 {
- 			#interrupt-cells = <4>;
- 			#address-cells = <2>;
- 			#size-cells = <0>;
--			cell-index = <0>;
- 			qcom,channel = <0>;
- 			qcom,ee = <0>;
- 		};
+Also we never got around to getting rid the PUPD/R0/R1 values (100 ~ 103).
 
----
-base-commit: 27554e2bef4d70841c4d20d96c673de51edb353c
-change-id: 20250113-fix-kernel-test-robot-unexpected-property-issue-bd18f6d42b4c
+> >
+> > >
+> > > >
+> > > >
+> > > > > +            description: |
+> > > > > +              For pull down type is normal, it doesn't need
+> > > > > add
+> > > > > RSEL & R1R0.
+> > > > > +              For pull down type is PUPD/R0/R1 type, it can
+> > > > > add
+> > > > > R1R0 define to
+> > > > > +              set different resistance. It can support
+> > > > > "MTK_PUPD_SET_R1R0_00" &
+> > > > > +              "MTK_PUPD_SET_R1R0_01" & "MTK_PUPD_SET_R1R0_10"
+> > > > > &
+> > > > > +              "MTK_PUPD_SET_R1R0_11" define in mt8196.
+> > > > > +              For pull down type is PD/RSEL, it can add RSEL
+> > > > > define to set
+> > > > > +              different resistance. It can support
+> > > > > +              "MTK_PULL_SET_RSEL_000" &
+> > > > > "MTK_PULL_SET_RSEL_001" &
+> > > > > +              "MTK_PULL_SET_RSEL_010" &
+> > > > > "MTK_PULL_SET_RSEL_011" &
+> > > > > +              "MTK_PULL_SET_RSEL_100" &
+> > > > > "MTK_PULL_SET_RSEL_101" &
+> > > > > +              "MTK_PULL_SET_RSEL_110" &
+> > > > > "MTK_PULL_SET_RSEL_111"
+> > > > > define in
+> > > > > +              mt8196.
+> > > > > diff --git a/include/dt-bindings/pinctrl/mt8196-pinfunc.h
+> > > > > b/include/dt-bindings/pinctrl/mt8196-pinfunc.h
+> > > > > new file mode 100644
+> > > > > index 000000000000..bf0c8374407c
+> > > > > --- /dev/null
+> > > > > +++ b/include/dt-bindings/pinctrl/mt8196-pinfunc.h
+> > > > > @@ -0,0 +1,1572 @@
+> > > > > +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> > > > > +/*
+> > > > > + * Copyright (C) 2025 Mediatek Inc.
+> > > > > + * Author: Guodong Liu <Guodong.Liu@mediatek.com>
+> > > > > + */
+> > > > > +
+> > > > > +#ifndef __MT8196_PINFUNC_H
+> > > > > +#define __MT8196_PINFUNC_H
+> > > > > +
+> > > > > +#include <dt-bindings/pinctrl/mt65xx.h>
+> > > > > +
+> > > > > +#define PINMUX_GPIO0__FUNC_GPIO0 (MTK_PIN_NO(0) | 0)
+> > > > > +#define PINMUX_GPIO0__FUNC_DMIC1_CLK (MTK_PIN_NO(0) | 1)
+> > > > > +#define PINMUX_GPIO0__FUNC_SPI3_A_MO (MTK_PIN_NO(0) | 3)
+> > > > > +#define PINMUX_GPIO0__FUNC_FMI2S_B_LRCK (MTK_PIN_NO(0) | 4)
+> > > > > +#define PINMUX_GPIO0__FUNC_SCP_DMIC1_CLK (MTK_PIN_NO(0) | 5)
+> > > > > +#define PINMUX_GPIO0__FUNC_TP_GPIO14_AO (MTK_PIN_NO(0) | 6)
+> > > >
+> > > > I do not see how you resolved my comment from v1. In v2 I
+> > > > reminded
+> > > > about
+> > > > it, so you responded that yopu will change something, but I do
+> > > > not
+> > > > see
+> > > > any changes.
+> > > >
+> > > > So explain: how did you resolve my comment?
+> > > >
+> > > > These two examples where you claim you will change something, but
+> > > > send
+> > > > the same. I skipped the rest of the patch.
+> > >
+> > >   Thank you for your patient response, here is my explanation for
+> > > you
+> > > question:
+> > >
+> > >   In v1, I undertand that you meant I didn't sent a real binding,
+> > > and
+> >
+> >
+> > The comment is under specific lines, so I said these defines are not
+> > a
+> > real binding. You sent them again, but they are still not bindings,
+> > because they are not used in the driver. Maybe the usage is
+> > convoluted,
+> > so which part of implementation are these connecting with DTS? IOW,
+> > which part of driver relies on the binding?
+>
+>   I got you. This binding define many macros, which will be used for
+> 'pinmux' setting in the DTS. The usage like this:
+>
+>   adsp_uart_pins: adsp-uart-pins {
+>                 pins-tx-rx {
+>                         pinmux =3D <PINMUX_GPIO35__FUNC_O_ADSP_UTXD0>,
+>                                  <PINMUX_GPIO36__FUNC_I1_ADSP_URXD0>;
+>                 };
+>         };
 
-Best regards,
--- 
-Tingguo Cheng <quic_tingguoc@quicinc.com>
+The only binding between the DT and the driver is the structure of
+the value, given as "(MTK_PIN_NO(<N>) | <function mux value>)".
 
+The whole list of "PINMUX_GPIOxxx__FUNC_xyz" macros is just a convenience
+table for developers, and not used by the driver. The driver simply takes
+the values from the two bit fields and uses them directly.
+
+That's why Krzysztof is saying the macros are not used in the driver
+and therefore not a binding.
+
+Please move the header file to under "arch/arm64/boot/dts/mediatek",
+and split it out as a separate commit with a subject like:
+
+    arm64: dts: mediatek: mt8196: Add pinmux macro header file
+
+
+ChenYu
+
+> >
+> >
+> >
+> > > the bindings should be separated from driver. In addition, I should
+> > > run scripts/checkpatch.pl and scripts/get_maintainers.pl. So in v2,
+> > > I
+> > > sent a real binding(mediatek,mt8196-pinctrl.yaml), and sent two
+> > > separate patches, one for driver and one for bindings, also ran
+> > > scripts/get_maintainers.pl get necessary people and sent to them.
+> > >
+> > >   In v2, I understand that I need refer to git history to modify
+> > > the
+> > > commit msgs, so I made the changes in v3. Then you asked me about
+> > > the
+> > > difference between 'RSEL' and 'resistance value'. I replied that
+> > > the
+> > > 'resistance value' method is no longer use, so in v3, I removed all
+> > > content about it(include entire 'rsel-resistance-in-si-unit'
+> > > property
+> > > and the parts mentioned in bias-pull-up/down).
+> >
+> > Yes, thank you this I saw, the comments appear under specific places,
+> > so
+> > only these places are discussed.
+>
+>   ok, thank you, we can discuss if there are any issues.
+>
+> >
+> >
+> >
+> > Best regards,
+> > Krzysztof
 
