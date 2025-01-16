@@ -1,361 +1,538 @@
-Return-Path: <devicetree+bounces-138929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03AFCA13199
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 04:01:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B94DA131CE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 04:50:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31B5918864E0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 03:01:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 385C218875FD
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 03:50:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 150077603F;
-	Thu, 16 Jan 2025 03:01:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A2E586323;
+	Thu, 16 Jan 2025 03:50:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aDmDvqqh"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dSw6u2+I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013027.outbound.protection.outlook.com [40.107.162.27])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16D8417C8B;
-	Thu, 16 Jan 2025 03:01:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736996496; cv=none; b=GQL09w9u03ckNX5mOSUBVYUX7pirErcXG1KX4BXrlY0RCvi+TxcN9vBF8AIFx//T8Ks3YbJmw9rPwiCy1FSPzjEj8utmwufmNjzkcUd2p1Qvk24rwCUGtRDaxsN8FFwVjSazssJ6oem5EuNvHGx0Lwe4FsuMF/Ty2V2TuVPSXd0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736996496; c=relaxed/simple;
-	bh=XH6ZIL8u+2bWhKyWuqOXNM1wkb4KwLzFlvxtbniSuMg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=qIT+GdTlGwsyLiLoJnNWOqQW+//BPJy8Jido4ln9cEHT0NYO1IP2neJccEClSP/W7vBp2W5Cq6gyggnkOkHqpi9SuZgQ6+HCs9D9ChYDSXhCj9QpROwJ7COHYwnl2ZSUfgaSQvkIFo6C1oWj+mrVC1WmmH7XMclCk8+Oc8mmcn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aDmDvqqh; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50FGn9cw010075;
-	Thu, 16 Jan 2025 03:01:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	OVU2+wqfJpVvyTzoCni5wBYdoUjECrob0BiRDU2zfcE=; b=aDmDvqqhPqZQ3Gd5
-	+gESwNAKUWqviaNb59KKbWFJDZHWePqJzQkPFl6XJ78W/YfBIpvwAoTmaHVBCD73
-	NFOs2Pj1sxv2iJ+dFxa9+Ega+HoLMqvzwVkad/ewOBMcx8yVcNhxVBRguzJ1P5bp
-	WAykQV/cH4E21d6ydVMaBH+94WZLQJJjgFdY2q/LyG6zJa/Va/H8mFwTq1/v/f+N
-	6UqjekNEoh7gXJ9iZCwK6lKYaHQcKPOzfwYlP0Kwh3bw+SmzYvUThVxM+grwGIpl
-	0rtmaJBJLstfxHM3fTWVkOUWG0Og5Lx9qVdKVWXN0YmHiT+VWfvWus6Je9Sh8UcM
-	Kf+BPA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 446gjdh7xv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 03:01:12 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50G31Bxk030259
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 03:01:11 GMT
-Received: from [10.64.68.153] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 15 Jan
- 2025 19:01:05 -0800
-Message-ID: <5c0827ce-cf25-43d0-a160-5f99e82f582c@quicinc.com>
-Date: Thu, 16 Jan 2025 11:01:03 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705BD2AEE3;
+	Thu, 16 Jan 2025 03:50:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.27
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1736999412; cv=fail; b=lic1Ozu4vpmHPMxfoYa46SXKObxpxr2xRMr9ZeX3B+bcYVWHc6mlEb8rPHU/b82UkxhjIQN8lqCxvx2lPWxHtzfwYB+o+700n7V+KtHyaPTXuMbMslTmx7kjesrDweFW7VFURPxTAkAJ76wAe2WZKepF2jqBMgvq6sVAAzNME+M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1736999412; c=relaxed/simple;
+	bh=YMI9c8dPc0MwT4hn6eNZ8l1g0PX/D9zYSeJMA1q0rEE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=ry9EOcMMF/AFMNTjLj2BeqsUZedGRNxRfiqulAvU06X062KLgV3WOUui4ft4ecioinqp9MoR5bvNiCqRJEzlFx+9uqOYtyL4wHgTcnSXjrOTgFeQGA4/fVYuiyCAGLHTB8kYM6pUqZ/pJIMJVOj/A+vVTcUXtaAuId7BhpcWMNs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dSw6u2+I; arc=fail smtp.client-ip=40.107.162.27
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H/KssnDUlJut04+MBXEvwQEga5NFRbJTJIVHvxwkc4ReyzO1hylQlMd0sNN6KQFJcdJ30IlxLRPwL5bNqRaY08F32TUTkd18X7pyWWy9Q34sWSW7z/0xf4JhyHF1ryANsJVpWWFVzbM82jOh4+QskeQRCibdkrhvMW0A8hcbp68SNMJ0h0TU5DNLoleveXFAyQTGo64yp1EDmWZ3MIYNxFpPAqItKBujcAkfIHzYtS7mxnMM9MZOuMwviXAhBO4LxbzjDxqXeiqX7WgiYkIA7cffpJe+EcIZvuWsfxHuLRcUP4KqWZ8lPEITXj+djvxx9LyzPLFN3jwrF3XMMj14oQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4vn5lguTBC1B/66JIydbCPUtENqIf/jI/RrzNIwe3lk=;
+ b=HjeoGBfJlmZkCyi8RW5NOc71KhWdK2qh28dU+nLC8WLfLGZofCQcPR+5nU+pQFJXQJQ6tak/2YHBzCXcpuOz+tpoxnfW9ktFqQInxjRi8476D5SJ4zzUFHMIDVtyT6mncJatVI3Xftb3Yh5WgfyUHY87vKYQGmqReGZLREcirwY6ToUtT4jkHv5ryAXd3LrwSZbdoKpGmS7+0/LmjdLmkvIRp4mbFbsyp+AkanN7A5J6CPCcsnlhRxeSggZpFuZs2e7NF6EWGs/SkI4QF6TujmyoSFffNE2RL9hrTyY9sEtfg1RFHKLIvAT8ljyQd9/J4YU1gbB71t+gd+sVCICdDg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4vn5lguTBC1B/66JIydbCPUtENqIf/jI/RrzNIwe3lk=;
+ b=dSw6u2+I7zG0lVBrWKRLfVklVgyC5VVf6PhzKWmJkFz5exKzarqxmDnyT2IybA7XHfag3vt2LeyPWwwZ168xNyaHA0+cUWx5khv31U39bLfozHX8InljnImVpHqCmTUJp5yL/VxFG4YfSV/cro6jrYOPH3Fg2fi5BTGroK/oozDo29aJpd4e9qsUHc+QRc6DEHXcwK7lhWKL9+SUOgzF9U1a+aZM9+c38bHzVwryR5Sn7YVOzM4IFPeOf3HAS4X2XhMIf/jFabWtRCYp1B+O9b7xtZXWCB+B8Ogg4MxGk3hlRxdhCavQrD3GwyPtteJQGpCp0KKbu0i48YdVq6lj4g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB8829.eurprd04.prod.outlook.com (2603:10a6:102:20c::17)
+ by GV1PR04MB10703.eurprd04.prod.outlook.com (2603:10a6:150:202::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.13; Thu, 16 Jan
+ 2025 03:50:05 +0000
+Received: from PAXPR04MB8829.eurprd04.prod.outlook.com
+ ([fe80::cdc5:713a:9592:f7ad]) by PAXPR04MB8829.eurprd04.prod.outlook.com
+ ([fe80::cdc5:713a:9592:f7ad%4]) with mapi id 15.20.8356.010; Thu, 16 Jan 2025
+ 03:50:05 +0000
+Date: Thu, 16 Jan 2025 11:46:23 +0800
+From: Xu Yang <xu.yang_2@nxp.com>
+To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+	gregkh@linuxfoundation.org, jun.li@nxp.com,
+	alexander.stein@ew.tq-group.com
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-usb@vger.kernel.org
+Subject: Re: [PATCH v11 1/3] phy: fsl-imx8mq-usb: add tca function driver for
+ imx95
+Message-ID: <20250116034623.ig44yqxzptujhwql@hippo>
+References: <20241204050907.1081781-1-xu.yang_2@nxp.com>
+ <20250106020303.xrpo2pfv4knqszx7@hippo>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250106020303.xrpo2pfv4knqszx7@hippo>
+X-ClientProxiedBy: AM0PR03CA0083.eurprd03.prod.outlook.com
+ (2603:10a6:208:69::24) To PAXPR04MB8829.eurprd04.prod.outlook.com
+ (2603:10a6:102:20c::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/5] Coresight: Add trace_id function to retrieving the
- trace ID
-To: James Clark <james.clark@linaro.org>
-CC: Jinlong Mao <quic_jinlmao@quicinc.com>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-References: <20241226011022.1477160-1-quic_jiegan@quicinc.com>
- <20241226011022.1477160-3-quic_jiegan@quicinc.com>
- <64731493-4bd1-4707-9452-5ca86744875b@linaro.org>
- <a2d995bc-02ff-4374-968e-2fa6d8f921dd@quicinc.com>
- <02f114b7-8654-4402-b105-7aef41d487f0@linaro.org>
- <e3a29406-075d-41f6-888c-ebe168162134@quicinc.com>
- <b8fd3d5a-fc61-4ab0-8fb1-7cacf4cab9f5@linaro.org>
-Content-Language: en-US
-From: Jie Gan <quic_jiegan@quicinc.com>
-In-Reply-To: <b8fd3d5a-fc61-4ab0-8fb1-7cacf4cab9f5@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: UgPQ2P0JmZwgfCrC4hxlCRJ9vWwiNwgb
-X-Proofpoint-ORIG-GUID: UgPQ2P0JmZwgfCrC4hxlCRJ9vWwiNwgb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-15_11,2025-01-15_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- phishscore=0 malwarescore=0 suspectscore=0 lowpriorityscore=0
- mlxlogscore=999 impostorscore=0 clxscore=1015 spamscore=0 bulkscore=0
- mlxscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501160018
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8829:EE_|GV1PR04MB10703:EE_
+X-MS-Office365-Filtering-Correlation-Id: f387432c-bbdd-4b8e-de87-08dd35e0dcdf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|1800799024|366016|376014|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?7e3osrCNsK3fX9l69tRsmwD7KfYSohcNv3S1IrZMSqdI8m4rAycXCdId8fDN?=
+ =?us-ascii?Q?/m7X0gzXu3rrkbmH071Epx0cRAhGKK5MNHEIshbWbnLrhp4l1mMnUTBb5paJ?=
+ =?us-ascii?Q?AxXRdieWiDKUGduI9yDZDOTEItxR/5hSXLIDP1NUGMpelyVP6t16jE8nYKbc?=
+ =?us-ascii?Q?DJnoH3iDqOtpNSgJ5RUxPoH46BjWeJRKcnWRZzTY71KB0iVhNXL3722my0/i?=
+ =?us-ascii?Q?w3bK0f5vFMAq6VE8pU/i9byk6IfYdyOiNNPVFZPOF3D7XJlgzAVgp+2/V6MW?=
+ =?us-ascii?Q?ebbNdvKFO14NR+VreuUShJ0cY0+Ui6d4dTXxvC8VPui9jLd6HSP7H7P2sRtN?=
+ =?us-ascii?Q?FC65PO44P+Y/3sB239i7+MuKtw7VEi3NLbF9f1lEUch7M0t1TTZl+bLhAjVh?=
+ =?us-ascii?Q?YNTa5qauvW2ZtnPakb+FwhO75f1s3oKEgHJmTHf8cS1lu0mrP8nlS8aFllCA?=
+ =?us-ascii?Q?VVJjOkZSO+vo2KalZ1Pn3nWqbWxdauxVOhkRHoa0y/PBuZkKUGqITAKpsDj5?=
+ =?us-ascii?Q?k+rlKCPnUgPRFVvpyKsb51XduBAaOf4B6c8cGrlEX7OTFnvwUNqYlSD11d85?=
+ =?us-ascii?Q?Zep1g0TThj+1jpDFKD+1sXlLhcVihc4u2PuVXP5+HnHVo8bHKikZ5vC30w/4?=
+ =?us-ascii?Q?C2mxTfnWF7p+th31Vtkq5/9dr7H/XeVALB45q/cX8e/7ZErVSsJ+RghtVsWU?=
+ =?us-ascii?Q?42bztouKqXsx1j/wwF71KcEQu9GvatIvq6oM2J8J5RhBuvmO0i2nWiZkyW34?=
+ =?us-ascii?Q?sY8k6VB7kIlTGTNynPzTSOpMSlWqVEDj9hFiWGI/elZhvvJFAK+oIXW/hjEM?=
+ =?us-ascii?Q?SbTEfaSuHexNRo/PligctEBdcOLUj6Jn8P3cBFFxx8nHcU1/iq2ORtLaoeFQ?=
+ =?us-ascii?Q?rY8XDIcHzb6dIr2pppFwAQbuiOu8GoKqJaqSx05rn9eBEVv2Jw35WONGWIGU?=
+ =?us-ascii?Q?bCNR3qd5U4U9wxcTfaFo6FHRq1s43/cVoGK3BASlEhqhAzBna0oYB03RSc5B?=
+ =?us-ascii?Q?fvyD7m7FQfC6yR3tUvAxk13a1aJ5af9oTahgVZFIR8urDPgORqL6qLNTyiZq?=
+ =?us-ascii?Q?+YNB3coq6mOZ8Gctey/ScFEfEZ/nklNP0LaZV/yNe2pMmewB2wwailllXiOX?=
+ =?us-ascii?Q?6Dk1iYpdQPH66/8KCvdHEKGMRhsXZ+NYFiJ676DnufiKU/F9Pcz8GG1kOXfr?=
+ =?us-ascii?Q?YYi+bfUnOP/q+hXOIEkF2WTKIJ1tX48kOyutQoqnCmh8vSK9GVrH79MnHcyE?=
+ =?us-ascii?Q?rc2XfdrX+XRSJaxcVxRSESovzSZ/TjpOQE7G24aT5VPvpjnECVBodMo/fAEd?=
+ =?us-ascii?Q?UCqXMt6J70Oaraj7i+YU4IkTnH1XL3oGm43Fye92IAcIZvsbDeqcCH37AiwP?=
+ =?us-ascii?Q?5bsWvL1YermaFe63Z9D+XGGHQ558Nkq3B8r5GWXSgkJFD9+nDiVf6PXXJ9y7?=
+ =?us-ascii?Q?dIMfamTVnBv1bwj0/D1Cn75Jf8fNw1YVn/zM3FYdLZPGwk/XXMWAPw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8829.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(1800799024)(366016)(376014)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?PzvEc1aEyj6roZyIIRXZgFhUzJsuAKnazBT8iDQUx5hTavb+nOoBcT+Ttmm/?=
+ =?us-ascii?Q?naI6Z6vgSrqIbHoWfRn4OBARFJMfeJdjFyOpL48sxLRMgIzlKkEyXoLa3Ftt?=
+ =?us-ascii?Q?3uJI0zUpZYGE9RxP0VwZlgM8OisTUulhfnwADFBa9h73FotWYxcYdh5YHARH?=
+ =?us-ascii?Q?7RSsHb8VvuIMD1Fcj3gL+AxGMWmw5YwM7uVoZpuXEe2g6GPaGOxmKt0ke9h7?=
+ =?us-ascii?Q?TZJ/eUGUAGOZxWvC5DurevmgzTG1ij+MLldIGGgL83ZB/RKzSl1pRmTzPNPx?=
+ =?us-ascii?Q?VsxPfrgcWBKwVgoC3qhR9b2yXETf0Ghq7ttymVQFWxSucZAbGh1t9ex9rdyl?=
+ =?us-ascii?Q?Ed1WL5aFEe2xVDG59RVztUluC4cPmMJCFJijKXquH5REuVshDeNHb/ILuhkE?=
+ =?us-ascii?Q?SBeOgl1jTsseXrbMCqw3fVx7ZkSFxStUl93uAQYHTniY2u3CyWAeUGEOyiWk?=
+ =?us-ascii?Q?Sd6pOQYcABt36MwuSPb9Gsj/8ZksUO9iEahscP5eZdMpPcnsAccNIjkymkrH?=
+ =?us-ascii?Q?06SHgOPlCLLYtXVan7Fc7QQ0ZsxE7QOhl3wZhaNHUt3s8wBY3gWC9NqaON78?=
+ =?us-ascii?Q?AOX1EbQhzza/lwqLXQxqamwT3RtbG7qiap8i4RESExi0QKNxTV2NgCWLbJCn?=
+ =?us-ascii?Q?A1xKHnXMiNeddfUeTG4ETin9/oUPyD13KdIuMPdIWvM1AznM9yiGiUhhj6xx?=
+ =?us-ascii?Q?/CVyXgPzKefOq0F284KHseiwIX6MSGbZreIJyNQAtUDC3t5UU6znxkvOM6x/?=
+ =?us-ascii?Q?OKQzqkYybbVWbqDAHi0VBg5e4VhSHy6sXzFoVKQVvFKOk+5h/CTtmyoKjjvr?=
+ =?us-ascii?Q?b/CzjRk/yrPnEYZxof8aGcrR3Kz45UYuv3PgbunFT1ao30QPNXvVl5SBWCug?=
+ =?us-ascii?Q?7EH6EwIA7Svie1bCVrPIq5aJWRPqeFje/41sjQBx8fB8uuN9TCiSoLZIOSEn?=
+ =?us-ascii?Q?YNhudKPUASHtqy+7Y/eOsralmXUX3+FBNC4mWca5r03ZYibtgVMUtzKbagdR?=
+ =?us-ascii?Q?3u8Y51VpWuoNcCZ2q8K40iQGubHTFhl4oiU7UMcrxaAo7dEDoAxTtaR9QcLF?=
+ =?us-ascii?Q?LMcNnfjY8WEcIerDugY2MT3NS39xELsoZJ3SHhbRuR3vP/W/IBzQPZ8PXfHp?=
+ =?us-ascii?Q?wu53tQudRzL3LqbzfTXg8umCUaSCfTHudryi2XaWzawIlagGtiYlNNo5fjhY?=
+ =?us-ascii?Q?mWgVeNdTnoPPtlTO+Tx95VyQXlx6x1dyZlDmlNkx415Z8KOuvBHxjwnPBzW4?=
+ =?us-ascii?Q?oo9pvizb/A3Wat5l7IEPVj0Op5ulrOLJA4BjjUhows7C9rFD7OAhmWI+51v2?=
+ =?us-ascii?Q?ZuPsQ9QA/+BpcGvvvhCjETuCGbk1efTJIvDLrhse3SFGylL/TyCiX6QrGrkd?=
+ =?us-ascii?Q?VgToM8DDdfH04IN+yBo5Iegz2xvX2f3+NEbQWPs29lkiQPLHLfcr9tRVIn8f?=
+ =?us-ascii?Q?Rcwhausywr6jqTyPk42RCDyMymKNsyy3XMEg4DyQJSxtauM9M2iy6GMvOFXT?=
+ =?us-ascii?Q?EqkQQZQm4fKUkTDPz8K3D0wTjBLfJoGR9hT65obkgQNMqmMiHn53rjwV2kgJ?=
+ =?us-ascii?Q?gVuM7rj7LvWgQ4CVWClz7zDRP7tvxHEK1R5UTOz7?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f387432c-bbdd-4b8e-de87-08dd35e0dcdf
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8829.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2025 03:50:05.7489
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: OKoPp91YX8amPwxfZFrBPIXrHvUcrgxi8Pbv7/1l9wsKJP+uLDtSovOyXyg4yvOfD4+kGW1DKHkr7KSvL2lylA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10703
 
+Hi Vinod,
 
-
-On 1/15/2025 8:29 PM, James Clark wrote:
+On Mon, Jan 06, 2025 at 10:03:03AM +0800, Xu Yang wrote:
+> Hi,
 > 
+> On Wed, Dec 04, 2024 at 01:09:05PM +0800, Xu Yang wrote:
+> > The i.MX95 USB3 phy has a Type-C Assist block (TCA). This block consists
+> > two functional blocks (XBar assist and VBus assist) and one system
+> > access interface using APB.
+> > 
+> > The primary functionality of XBar assist is:
+> >  - switching lane for flip
+> >  - moving unused lanes into lower power states.
+> > 
+> > This info can be get from:
+> > i.MX95 RM Chapter 163.3.8 Type-C assist (TCA) block.
+> > 
+> > This will add support for TCA block to achieve lane switching and tca
+> > lower power functionality.
+> > 
+> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> > Reviewed-by: Jun Li <jun.li@nxp.com>
+> > 
+> > ---
+> > Changes in v2:
+> >  - return the value of imx95_usb_phy_get_tca()
+> > Changes in v3:
+> >  - no changes
+> > Changes in v4:
+> >  - remove compatible check for imx95
+> >  - check whether tca register region exist or not, yes means has tca,
+> >    otherwise skip tca setup
+> > Changes in v5:
+> >  - no changes
+> > Changes in v6:
+> >  - no changes
+> > Changes in v7:
+> >  - fix sparse warnings in imx95_usb_phy_get_tca()
+> > Changes in v8:
+> >  - #define TCA_INFO 0xFC -> 0xfc
+> > Changes in v9:
+> >  - no changes
+> > Changes in v10:
+> >  - no changes
+> > Changes in v11:
+> >  - remove some unnecessary readl() as suggested by Amit Singh Tomar
+> > ---
+> >  drivers/phy/freescale/Kconfig              |   1 +
+> >  drivers/phy/freescale/phy-fsl-imx8mq-usb.c | 240 +++++++++++++++++++++
+> >  2 files changed, 241 insertions(+)
+> > 
+> > diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
+> > index dcd9acff6d01..81f53564ee15 100644
+> > --- a/drivers/phy/freescale/Kconfig
+> > +++ b/drivers/phy/freescale/Kconfig
+> > @@ -5,6 +5,7 @@ if (ARCH_MXC && ARM64) || COMPILE_TEST
+> >  config PHY_FSL_IMX8MQ_USB
+> >  	tristate "Freescale i.MX8M USB3 PHY"
+> >  	depends on OF && HAS_IOMEM
+> > +	depends on TYPEC || TYPEC=n
+> >  	select GENERIC_PHY
+> >  	default ARCH_MXC && ARM64
+> >  
+> > diff --git a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> > index adc6394626ce..a974ef94de9a 100644
+> > --- a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> > +++ b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> > @@ -10,6 +10,7 @@
+> >  #include <linux/phy/phy.h>
+> >  #include <linux/platform_device.h>
+> >  #include <linux/regulator/consumer.h>
+> > +#include <linux/usb/typec_mux.h>
+> >  
+> >  #define PHY_CTRL0			0x0
+> >  #define PHY_CTRL0_REF_SSP_EN		BIT(2)
+> > @@ -50,11 +51,66 @@
+> >  
+> >  #define PHY_TUNE_DEFAULT		0xffffffff
+> >  
+> > +#define TCA_CLK_RST			0x00
+> > +#define TCA_CLK_RST_SW			BIT(9)
+> > +#define TCA_CLK_RST_REF_CLK_EN		BIT(1)
+> > +#define TCA_CLK_RST_SUSPEND_CLK_EN	BIT(0)
+> > +
+> > +#define TCA_INTR_EN			0x04
+> > +#define TCA_INTR_STS			0x08
+> > +
+> > +#define TCA_GCFG			0x10
+> > +#define TCA_GCFG_ROLE_HSTDEV		BIT(4)
+> > +#define TCA_GCFG_OP_MODE		GENMASK(1, 0)
+> > +#define TCA_GCFG_OP_MODE_SYSMODE	0
+> > +#define TCA_GCFG_OP_MODE_SYNCMODE	1
+> > +
+> > +#define TCA_TCPC			0x14
+> > +#define TCA_TCPC_VALID			BIT(4)
+> > +#define TCA_TCPC_LOW_POWER_EN		BIT(3)
+> > +#define TCA_TCPC_ORIENTATION_NORMAL	BIT(2)
+> > +#define TCA_TCPC_MUX_CONTRL		GENMASK(1, 0)
+> > +#define TCA_TCPC_MUX_CONTRL_NO_CONN	0
+> > +#define TCA_TCPC_MUX_CONTRL_USB_CONN	1
+> > +
+> > +#define TCA_SYSMODE_CFG			0x18
+> > +#define TCA_SYSMODE_TCPC_DISABLE	BIT(3)
+> > +#define TCA_SYSMODE_TCPC_FLIP		BIT(2)
+> > +
+> > +#define TCA_CTRLSYNCMODE_CFG0		0x20
+> > +#define TCA_CTRLSYNCMODE_CFG1           0x20
+> > +
+> > +#define TCA_PSTATE			0x30
+> > +#define TCA_PSTATE_CM_STS		BIT(4)
+> > +#define TCA_PSTATE_TX_STS		BIT(3)
+> > +#define TCA_PSTATE_RX_PLL_STS		BIT(2)
+> > +#define TCA_PSTATE_PIPE0_POWER_DOWN	GENMASK(1, 0)
+> > +
+> > +#define TCA_GEN_STATUS			0x34
+> > +#define TCA_GEN_DEV_POR			BIT(12)
+> > +#define TCA_GEN_REF_CLK_SEL		BIT(8)
+> > +#define TCA_GEN_TYPEC_FLIP_INVERT	BIT(4)
+> > +#define TCA_GEN_PHY_TYPEC_DISABLE	BIT(3)
+> > +#define TCA_GEN_PHY_TYPEC_FLIP		BIT(2)
+> > +
+> > +#define TCA_VBUS_CTRL			0x40
+> > +#define TCA_VBUS_STATUS			0x44
+> > +
+> > +#define TCA_INFO			0xfc
+> > +
+> > +struct tca_blk {
+> > +	struct typec_switch_dev *sw;
+> > +	void __iomem *base;
+> > +	struct mutex mutex;
+> > +	enum typec_orientation orientation;
+> > +};
+> > +
+> >  struct imx8mq_usb_phy {
+> >  	struct phy *phy;
+> >  	struct clk *clk;
+> >  	void __iomem *base;
+> >  	struct regulator *vbus;
+> > +	struct tca_blk *tca;
+> >  	u32 pcs_tx_swing_full;
+> >  	u32 pcs_tx_deemph_3p5db;
+> >  	u32 tx_vref_tune;
+> > @@ -64,6 +120,172 @@ struct imx8mq_usb_phy {
+> >  	u32 comp_dis_tune;
+> >  };
+> >  
+> > +
+> > +static void tca_blk_orientation_set(struct tca_blk *tca,
+> > +				enum typec_orientation orientation);
+> > +
+> > +#ifdef CONFIG_TYPEC
+> > +
+> > +static int tca_blk_typec_switch_set(struct typec_switch_dev *sw,
+> > +				enum typec_orientation orientation)
+> > +{
+> > +	struct imx8mq_usb_phy *imx_phy = typec_switch_get_drvdata(sw);
+> > +	struct tca_blk *tca = imx_phy->tca;
+> > +	int ret;
+> > +
+> > +	if (tca->orientation == orientation)
+> > +		return 0;
+> > +
+> > +	ret = clk_prepare_enable(imx_phy->clk);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	tca_blk_orientation_set(tca, orientation);
+> > +	clk_disable_unprepare(imx_phy->clk);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static struct typec_switch_dev *tca_blk_get_typec_switch(struct platform_device *pdev,
+> > +					struct imx8mq_usb_phy *imx_phy)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct typec_switch_dev *sw;
+> > +	struct typec_switch_desc sw_desc = { };
+> > +
+> > +	sw_desc.drvdata = imx_phy;
+> > +	sw_desc.fwnode = dev->fwnode;
+> > +	sw_desc.set = tca_blk_typec_switch_set;
+> > +	sw_desc.name = NULL;
+> > +
+> > +	sw = typec_switch_register(dev, &sw_desc);
+> > +	if (IS_ERR(sw)) {
+> > +		dev_err(dev, "Error register tca orientation switch: %ld",
+> > +				PTR_ERR(sw));
+> > +		return NULL;
+> > +	}
+> > +
+> > +	return sw;
+> > +}
+> > +
+> > +static void tca_blk_put_typec_switch(struct typec_switch_dev *sw)
+> > +{
+> > +	typec_switch_unregister(sw);
+> > +}
+> > +
+> > +#else
+> > +
+> > +static struct typec_switch_dev *tca_blk_get_typec_switch(struct platform_device *pdev,
+> > +			struct imx8mq_usb_phy *imx_phy)
+> > +{
+> > +	return NULL;
+> > +}
+> > +
+> > +static void tca_blk_put_typec_switch(struct typec_switch_dev *sw) {}
+> > +
+> > +#endif /* CONFIG_TYPEC */
+> > +
+> > +static void tca_blk_orientation_set(struct tca_blk *tca,
+> > +				enum typec_orientation orientation)
+> > +{
+> > +	u32 val;
+> > +
+> > +	mutex_lock(&tca->mutex);
+> > +
+> > +	if (orientation == TYPEC_ORIENTATION_NONE) {
+> > +		/*
+> > +		 * use Controller Synced Mode for TCA low power enable and
+> > +		 * put PHY to USB safe state.
+> > +		 */
+> > +		val = FIELD_PREP(TCA_GCFG_OP_MODE, TCA_GCFG_OP_MODE_SYNCMODE);
+> > +		writel(val, tca->base + TCA_GCFG);
+> > +
+> > +		val = TCA_TCPC_VALID | TCA_TCPC_LOW_POWER_EN;
+> > +		writel(val, tca->base + TCA_TCPC);
+> > +
+> > +		goto out;
+> > +	}
+> > +
+> > +	/* use System Configuration Mode for TCA mux control. */
+> > +	val = FIELD_PREP(TCA_GCFG_OP_MODE, TCA_GCFG_OP_MODE_SYSMODE);
+> > +	writel(val, tca->base + TCA_GCFG);
+> > +
+> > +	/* Disable TCA module */
+> > +	val = readl(tca->base + TCA_SYSMODE_CFG);
+> > +	val |= TCA_SYSMODE_TCPC_DISABLE;
+> > +	writel(val, tca->base + TCA_SYSMODE_CFG);
+> > +
+> > +	if (orientation == TYPEC_ORIENTATION_REVERSE)
+> > +		val |= TCA_SYSMODE_TCPC_FLIP;
+> > +	else if (orientation == TYPEC_ORIENTATION_NORMAL)
+> > +		val &= ~TCA_SYSMODE_TCPC_FLIP;
+> > +
+> > +	writel(val, tca->base + TCA_SYSMODE_CFG);
+> > +
+> > +	/* Enable TCA module */
+> > +	val &= ~TCA_SYSMODE_TCPC_DISABLE;
+> > +	writel(val, tca->base + TCA_SYSMODE_CFG);
+> > +
+> > +out:
+> > +	tca->orientation = orientation;
+> > +	mutex_unlock(&tca->mutex);
+> > +}
+> > +
+> > +static void tca_blk_init(struct tca_blk *tca)
+> > +{
+> > +	u32 val;
+> > +
+> > +	/* reset XBar block */
+> > +	val = readl(tca->base + TCA_CLK_RST);
+> > +	val &= ~TCA_CLK_RST_SW;
+> > +	writel(val, tca->base + TCA_CLK_RST);
+> > +
+> > +	udelay(100);
+> > +
+> > +	/* clear reset */
+> > +	val |= TCA_CLK_RST_SW;
+> > +	writel(val, tca->base + TCA_CLK_RST);
+> > +
+> > +	tca_blk_orientation_set(tca, tca->orientation);
+> > +}
+> > +
+> > +static struct tca_blk *imx95_usb_phy_get_tca(struct platform_device *pdev,
+> > +				struct imx8mq_usb_phy *imx_phy)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct resource *res;
+> > +	struct tca_blk *tca;
+> > +
+> > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> > +	if (!res)
+> > +		return NULL;
+> > +
+> > +	tca = devm_kzalloc(dev, sizeof(*tca), GFP_KERNEL);
+> > +	if (!tca)
+> > +		return ERR_PTR(-ENOMEM);
+> > +
+> > +	tca->base = devm_ioremap_resource(&pdev->dev, res);
+> > +	if (IS_ERR(tca->base))
+> > +		return ERR_CAST(tca->base);
+> > +
+> > +	mutex_init(&tca->mutex);
+> > +
+> > +	tca->orientation = TYPEC_ORIENTATION_NORMAL;
+> > +	tca->sw = tca_blk_get_typec_switch(pdev, imx_phy);
+> > +
+> > +	return tca;
+> > +}
+> > +
+> > +static void imx95_usb_phy_put_tca(struct imx8mq_usb_phy *imx_phy)
+> > +{
+> > +	struct tca_blk *tca = imx_phy->tca;
+> > +
+> > +	if (!tca)
+> > +		return;
+> > +
+> > +	tca_blk_put_typec_switch(tca->sw);
+> > +}
+> > +
+> >  static u32 phy_tx_vref_tune_from_property(u32 percent)
+> >  {
+> >  	percent = clamp(percent, 94U, 124U);
+> > @@ -315,6 +537,9 @@ static int imx8mp_usb_phy_init(struct phy *phy)
+> >  
+> >  	imx8m_phy_tune(imx_phy);
+> >  
+> > +	if (imx_phy->tca)
+> > +		tca_blk_init(imx_phy->tca);
+> > +
+> >  	return 0;
+> >  }
+> >  
+> > @@ -359,6 +584,8 @@ static const struct of_device_id imx8mq_usb_phy_of_match[] = {
+> >  	 .data = &imx8mq_usb_phy_ops,},
+> >  	{.compatible = "fsl,imx8mp-usb-phy",
+> >  	 .data = &imx8mp_usb_phy_ops,},
+> > +	{.compatible = "fsl,imx95-usb-phy",
+> > +	 .data = &imx8mp_usb_phy_ops,},
+> >  	{ }
+> >  };
+> >  MODULE_DEVICE_TABLE(of, imx8mq_usb_phy_of_match);
+> > @@ -398,6 +625,11 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
+> >  
+> >  	phy_set_drvdata(imx_phy->phy, imx_phy);
+> >  
+> > +	imx_phy->tca = imx95_usb_phy_get_tca(pdev, imx_phy);
+> > +	if (IS_ERR(imx_phy->tca))
+> > +		return dev_err_probe(dev, PTR_ERR(imx_phy->tca),
+> > +					"failed to get tca\n");
+> > +
+> >  	imx8m_get_phy_tuning_data(imx_phy);
+> >  
+> >  	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> > @@ -405,8 +637,16 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
+> >  	return PTR_ERR_OR_ZERO(phy_provider);
+> >  }
+> >  
+> > +static void imx8mq_usb_phy_remove(struct platform_device *pdev)
+> > +{
+> > +	struct imx8mq_usb_phy *imx_phy = platform_get_drvdata(pdev);
+> > +
+> > +	imx95_usb_phy_put_tca(imx_phy);
+> > +}
+> > +
+> >  static struct platform_driver imx8mq_usb_phy_driver = {
+> >  	.probe	= imx8mq_usb_phy_probe,
+> > +	.remove = imx8mq_usb_phy_remove,
+> >  	.driver = {
+> >  		.name	= "imx8mq-usb-phy",
+> >  		.of_match_table	= imx8mq_usb_phy_of_match,
+> > -- 
+> > 2.34.1
+> > 
 > 
-> On 15/01/2025 1:44 am, Jie Gan wrote:
->>
->>
->> On 1/14/2025 6:07 PM, James Clark wrote:
->>>
->>>
->>> On 14/01/2025 2:51 am, Jie Gan wrote:
->>>>
->>>>
->>>> On 1/13/2025 8:02 PM, James Clark wrote:
->>>>>
->>>>>
->>>>> On 26/12/2024 1:10 am, Jie Gan wrote:
->>>>>> Add 'trace_id' function pointer in ops. It's responsible for
->>>>>> retrieving the device's trace ID.
->>>>>>
->>>>>> Add 'struct cs_sink_data' to store the data that is needed by
->>>>>> coresight_enable_path/coresight_disable_path. The structure
->>>>>> will be transmitted to the helper and sink device to enable
->>>>>> related funcationalities.
->>>>>>
->>>>>
->>>>> The new cs_sink_data struct is quite specific to this change. Can 
->>>>> we start passing the path around to enable/disable functions, that 
->>>>> will allow devices to gather anything they want in the future. 
->>>>> Because we already have coresight_get_sink(path), 
->>>>> coresight_get_source(path) etc.
->>>>>
->>>>> And see below, but for this case we can also change the path struct 
->>>>> to contain the trace ID. Then all the new functions, allocations 
->>>>> and searches for the trace ID are unecessary. The CTCU will have 
->>>>> access to the path, and by the time its enable function is called 
->>>>> the trace ID is already assigned.
->>>>>
->>>>> It's also easier to understand at which point a trace ID is 
->>>>> allocated, rather than adding the trace_id() callbacks from 
->>>>> everywhere which could potentially either read or allocate. I 
->>>>> suppose that's "safer" because maybe it's not allocated, but I 
->>>>> can't see what case it would happen in reverse.
->>>>>
->>>> Thank you for comment. I will try this solution.
->>>> The biggest challenge for the patch is how to correctly read 
->>>> trace_id from source device and passthrough it to helper device as 
->>>> the source device always the last one to enable. I believe your 
->>>> proposed solution is better than mine and has minimal impact on the 
->>>> basic framework, but I think we still need read_trace in source_ops 
->>>> and link_ops. Then we can read the trace_id in coresight_build_path 
->>>> function and save it to the coresight_path to avoid redundant 
->>>> searching?
->>>>
->>>>
->>>>>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
->>>>>> ---
->>>>>>   drivers/hwtracing/coresight/coresight-core.c  | 59 +++++++++++++ 
->>>>>> + +----
->>>>>>   drivers/hwtracing/coresight/coresight-etb10.c |  3 +-
->>>>>>   .../hwtracing/coresight/coresight-etm-perf.c  | 37 ++++++++++--
->>>>>>   .../coresight/coresight-etm3x-core.c          | 30 ++++++++++
->>>>>>   .../coresight/coresight-etm4x-core.c          | 29 +++++++++
->>>>>>   drivers/hwtracing/coresight/coresight-priv.h  | 13 +++-
->>>>>>   drivers/hwtracing/coresight/coresight-stm.c   | 22 +++++++
->>>>>>   drivers/hwtracing/coresight/coresight-sysfs.c | 24 +++++++-
->>>>>>   .../hwtracing/coresight/coresight-tmc-etf.c   |  3 +-
->>>>>>   .../hwtracing/coresight/coresight-tmc-etr.c   |  6 +-
->>>>>>   drivers/hwtracing/coresight/coresight-tpda.c  | 20 +++++++
->>>>>>   drivers/hwtracing/coresight/coresight-trbe.c  |  4 +-
->>>>>>   drivers/hwtracing/coresight/ultrasoc-smb.c    |  3 +-
->>>>>>   include/linux/coresight.h                     |  6 ++
->>>>>>   14 files changed, 234 insertions(+), 25 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/ 
->>>>>> drivers/ hwtracing/coresight/coresight-core.c
->>>>>> index 0a9380350fb5..2e560b425fd4 100644
->>>>>> --- a/drivers/hwtracing/coresight/coresight-core.c
->>>>>> +++ b/drivers/hwtracing/coresight/coresight-core.c
->>>>>> @@ -23,6 +23,7 @@
->>>>>>   #include "coresight-etm-perf.h"
->>>>>>   #include "coresight-priv.h"
->>>>>>   #include "coresight-syscfg.h"
->>>>>> +#include "coresight-trace-id.h"
->>>>>>   /*
->>>>>>    * Mutex used to lock all sysfs enable and disable actions and 
->>>>>> loading and
->>>>>> @@ -331,12 +332,12 @@ static int coresight_enable_helper(struct 
->>>>>> coresight_device *csdev,
->>>>>>       return helper_ops(csdev)->enable(csdev, mode, data);
->>>>>>   }
->>>>>> -static void coresight_disable_helper(struct coresight_device *csdev)
->>>>>> +static void coresight_disable_helper(struct coresight_device 
->>>>>> *csdev, void *data)
->>>>>>   {
->>>>>> -    helper_ops(csdev)->disable(csdev, NULL);
->>>>>> +    helper_ops(csdev)->disable(csdev, data);
->>>>>>   }
->>>>>> -static void coresight_disable_helpers(struct coresight_device 
->>>>>> *csdev)
->>>>>> +static void coresight_disable_helpers(struct coresight_device 
->>>>>> *csdev, void *data)
->>>>>>   {
->>>>>>       int i;
->>>>>>       struct coresight_device *helper;
->>>>>> @@ -344,7 +345,7 @@ static void coresight_disable_helpers(struct 
->>>>>> coresight_device *csdev)
->>>>>>       for (i = 0; i < csdev->pdata->nr_outconns; ++i) {
->>>>>>           helper = csdev->pdata->out_conns[i]->dest_dev;
->>>>>>           if (helper && coresight_is_helper(helper))
->>>>>> -            coresight_disable_helper(helper);
->>>>>> +            coresight_disable_helper(helper, data);
->>>>>>       }
->>>>>>   }
->>>>>> @@ -361,7 +362,7 @@ static void coresight_disable_helpers(struct 
->>>>>> coresight_device *csdev)
->>>>>>   void coresight_disable_source(struct coresight_device *csdev, 
->>>>>> void *data)
->>>>>>   {
->>>>>>       source_ops(csdev)->disable(csdev, data);
->>>>>> -    coresight_disable_helpers(csdev);
->>>>>> +    coresight_disable_helpers(csdev, NULL);
->>>>>>   }
->>>>>>   EXPORT_SYMBOL_GPL(coresight_disable_source);
->>>>>> @@ -371,7 +372,8 @@ EXPORT_SYMBOL_GPL(coresight_disable_source);
->>>>>>    * disabled.
->>>>>>    */
->>>>>>   static void coresight_disable_path_from(struct list_head *path,
->>>>>> -                    struct coresight_node *nd)
->>>>>> +                    struct coresight_node *nd,
->>>>>> +                    void *sink_data)
->>>>>>   {
->>>>>>       u32 type;
->>>>>>       struct coresight_device *csdev, *parent, *child;
->>>>>> @@ -417,13 +419,13 @@ static void 
->>>>>> coresight_disable_path_from(struct list_head *path,
->>>>>>           }
->>>>>>           /* Disable all helpers adjacent along the path last */
->>>>>> -        coresight_disable_helpers(csdev);
->>>>>> +        coresight_disable_helpers(csdev, sink_data);
->>>>>>       }
->>>>>>   }
->>>>>> -void coresight_disable_path(struct list_head *path)
->>>>>> +void coresight_disable_path(struct list_head *path, void *sink_data)
->>>>>>   {
->>>>>> -    coresight_disable_path_from(path, NULL);
->>>>>> +    coresight_disable_path_from(path, NULL, sink_data);
->>>>>>   }
->>>>>>   EXPORT_SYMBOL_GPL(coresight_disable_path);
->>>>>> @@ -505,10 +507,47 @@ int coresight_enable_path(struct list_head 
->>>>>> *path, enum cs_mode mode,
->>>>>>   out:
->>>>>>       return ret;
->>>>>>   err:
->>>>>> -    coresight_disable_path_from(path, nd);
->>>>>> +    coresight_disable_path_from(path, nd, sink_data);
->>>>>>       goto out;
->>>>>>   }
->>>>>> +int coresight_read_traceid(struct list_head *path, enum cs_mode 
->>>>>> mode,
->>>>>> +               struct coresight_trace_id_map *id_map)
->>>>>> +{
->>>>>> +    int trace_id, type;
->>>>>> +    struct coresight_device *csdev;
->>>>>> +    struct coresight_node *nd;
->>>>>> +
->>>>>> +    list_for_each_entry(nd, path, link) {
->>>>>
->>>>> What do you think about also changing the path to this:
->>>>>
->>>>>   struct coresight_path {
->>>>>     struct list_head *path,
->>>>>     u8 trace_id
->>>>>   };
->>>>>
->>>> That's better, I can simplify the coresight_read_traceid function 
->>>> without traverse the path.
->>>>
->>>> But we still need to check the type of the coresight device, because 
->>>> the TPDM does not have traceid and we use the trace_id from the TPDA 
->>>> device that the TPDM connected. That's why I added trace_id to 
->>>> link_ops.
->>>>
->>>
->>> But if any device that allocates a trace ID saves it into the path, 
->>> then as long as any other device that needs the ID is enabled after 
->>> that it just reads it from the path directly. Assuming we pass the 
->>> path to every enable and disable function.
->>>
->>> We wouldn't need coresight_read_traceid() if it always happens that 
->>> way around, which I think it currently does?
->>>
->> I got your point here. You are right. If we passed path to the helper 
->> device, just use coresight_get_source to obtain the source device, 
->> then call the source_ops->trace_id to obtain the trace_id. So we 
->> definitely dont need a standalone function, coresight_read_traceid().
->>
->> Besides, I still need a function to retrive the trace_id of the TPDA 
->> device if the source device is TPDM, right?
->>
->>
->> Thanks,
->> Jie
->>
-> 
-> Yes, and that would require a search as the TPDA not always at one end 
-> of the path like coresight_get_source() and coresight_get_sink(). Which 
-> is why I was thinking it might be good to save the trace ID in the path 
-> struct to avoid it.
-> 
-As you proposed, I created coresight_path structure as below:
-struct coresight_path {
-	struct perf_output_handle       *handle;
-	struct list_head                *path;
-	u8				trace_id;
-};
+> Happy New Year!
+> And a gentle ping.
 
-In coresight_enable_path, I modified the parameters that transmitted to 
-helper device:
-struct coresight_path *cs_path;
-
-coresight_enable_helpers(csdev, mode, sink_data) ->
-coresight_enable_helpers(csdev, mode, cs_path)
-
-The cs_path will be constructed and initialized in coresight_build_path 
-function.
-
-For perf mode, the trace_id is collected within etm_setup_aux and stored 
-in cs_path->trace_id to avoid extra cost of retrieving the trace_id;
-
-For sysfs mode, I let the CTCU device to retrieving the trace_id with 
-path. The TPDA device is located close to the TPDM, making the cost of 
-searching for the TPDA device acceptable.
-
-The cs_path will be stored in the same manner as the previous path.
-
-How do you think about this solution?
+A gentle ping!
+If no other concerns, please help pick up them since many users are
+waiting for it. And v6.13 is almost coming.
 
 Thanks,
-Jie
-
-[...]
-
+Xu Yang
 
