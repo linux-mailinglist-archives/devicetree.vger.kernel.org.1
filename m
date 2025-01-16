@@ -1,169 +1,170 @@
-Return-Path: <devicetree+bounces-139032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5371FA13B8C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:03:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBC03A13BC7
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:10:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84D6B188D45B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:03:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69E0316AEB8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 727CA1DE8AC;
-	Thu, 16 Jan 2025 14:03:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2306822B8AC;
+	Thu, 16 Jan 2025 14:09:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UUJT3pay"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aoKgPhtQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D533BBC5;
-	Thu, 16 Jan 2025 14:03:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2BEE22B8A0;
+	Thu, 16 Jan 2025 14:09:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737036191; cv=none; b=UrzZuY30DOsP2McaUmCMYHVOUYcZjEMczuyxzeXzyCrkeF03m4jSve2YdP6ZHxDj5QwaSh4sXlg22hvMdOxLRpqvskJUVfc0HqgX+X2obka9l1TIHQ+1blHr6V3AMfA0icYPcjI+d6sKJHyp2l+PFAGSpgopskq6d0piigeJlR4=
+	t=1737036560; cv=none; b=CBSFQDjVTGADRaiGu2F0FUkVocQfK5QPGWaNN3lEbZef550t0V9uT44P6QMfzEEk7kFjpFIrc2BqYehVSAJoWbshAwiEQ+HLgF8vJenRo13ddOvT6KQyJPXaI9HBOhOQCUUKGNQkEUYy0v+p52vAu/QH3v/OdPL5GUBodLE8HuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737036191; c=relaxed/simple;
-	bh=jXH7ru4LdSjhMnJ/LbXjf50HqamAlIUd+3r1M9E9KAQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kZox6DFnR2LuyXbK+xnFh9gHYsvCZbB/F/vTio0sjf8t/2f+9YCgVjJ+oRzHHDmGearKF89rjqkncafM09F710SRzKaVCrlvJDn1d6ltgi9mY9YKyEDnxswACxT54Ml6VHBBtlSDrJzL3SeXKgRmzD6ZgBDUebB7RCxfoN+PEjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UUJT3pay; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5d3bdccba49so1652722a12.1;
-        Thu, 16 Jan 2025 06:03:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737036188; x=1737640988; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ts0zOL1kfPYuS6zomJ9otxY90fzQ/wFMmbamI+iWdgk=;
-        b=UUJT3paykD694bXhZmUagEAqsRkSvYzRPAVsjpFguXMClLj6EOJX37pottWYnin345
-         cVXq6b2D/Nl/CQ58umWUf1LktgBL266joBfyd256v7lrWdpK21NHCIOna2HbBUU3Wlzv
-         p00FOqUHB2LiqoYMVXhh7QnEixFxRbVaHaWsPmH1PQzxILsp2NLi+NlWoLWUSd09j+SU
-         kQgo7IsHfG+1sfT3LKAnf+kt1RrhwW2bUxkR6eyVd/sH1Due54SOcwNnMyqB9GmS4hHa
-         mP+DPXldYer6hI1aCOpwiElbp/4wL+KhPFhDFsnjy1yvPQGlnALZ4ikPuCrX2CBSzumu
-         6Q6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737036188; x=1737640988;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ts0zOL1kfPYuS6zomJ9otxY90fzQ/wFMmbamI+iWdgk=;
-        b=dLSAgmSPUZhgBZqDNCu23mgEkhHQ0h31kYF+SvMGWuWNH5Jsv9Y89svnPa2so6NtQ6
-         +se9kp7Owhdh6tENrqLH3P+tOehGskQvBgomzkDvDuKXCr4aFbX+dOkhD8GCoXcAHel9
-         jcTQkyq1kVhnh2ELM3hgTBCz2+2io4WxxNaVQYHkyUe4h5grvew9AUYYbSPmZQHdSbbi
-         mamtoQ6RDLvVCs5ul0vpG69/Ela1x8bsXE+NJZd17oEijeggYN987XJfmKnNaDwmSd+s
-         Ing2E1ZxVPgmF4i2l1AT4Tk6FhYtP6p4mm4ClE6WbN1Sd+oJd04HT1ZQyi6bvE9IcwHt
-         dEUw==
-X-Forwarded-Encrypted: i=1; AJvYcCU2mi98RvNiO1JlLbT8cy7kp5BxtboWEX1SBaYyU7VMQF0VUW32zgRDeYRHlT5QvfD1k0nF1vdNksKhuTSu@vger.kernel.org, AJvYcCV6Ol4465mjww8Vxx45/uFJNRHjNZa0PCCAa50rLHxuByMQAclY4PIxzl8XJTFUyvLK/KcwmIp1sxjl@vger.kernel.org, AJvYcCWCWtYS6yQ2HrEr5zEjlKh/rWiBmAWta+9y/KwdNBzLwYqNbMmk3sVDLr2zkZzvqJD6xhRki+ZKuqOD@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAwT5VacBaLnbFboGUM6aHUCg0+xtW4AB6fMhoD4rayjCjO5T4
-	twBbvoRIXxYhlgY5f/IynT8o07URI9jyVAZUcUIqUqbx4rl8oYHeGIrDcLMi5MBjxBTj4+qX2Mm
-	bLdjwQVwkULoKSnTwnSY6USY5cQ0=
-X-Gm-Gg: ASbGnctuvqHE9Y0xSHYptZkcWE8e8uruBF+gi6D7ttzEhplD5GASXfDeVFSqcAdjPXX
-	+VgaeE9g9kwKx4rJpEaUbYu5ylvBhxFEnfUhoeR8=
-X-Google-Smtp-Source: AGHT+IEFBH5rdDRzxNwKshRgTNAcDQcukVnz1qk9b2CQwOqVLB74sIBmizfzmVBpnEI/k3+EDMO9YL89iWmnCUbKvA4=
-X-Received: by 2002:a05:6402:3483:b0:5db:67a7:e742 with SMTP id
- 4fb4d7f45d1cf-5db67a7ec89mr597372a12.8.1737036187661; Thu, 16 Jan 2025
- 06:03:07 -0800 (PST)
+	s=arc-20240116; t=1737036560; c=relaxed/simple;
+	bh=d32Y8ya8jL+ULXXbLr4QB/QI6XLp7Oo0AcqFQN1IDQw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oL+ienSkp2fnUOtStAIBIxG8PXkhbVqtpq66GWd7082F/3Uq4xFM0uGvMphsL695UHT+en7Lhqzry6M7PmNyvbB/CJ7QfjoHOGSYs8VYGOeMeDbAG9C559007NLod34N5DmccVNTjoul/7I8MZldxA847RVN3//F1UFJ35oHcQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aoKgPhtQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 793CCC4CED6;
+	Thu, 16 Jan 2025 14:09:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737036559;
+	bh=d32Y8ya8jL+ULXXbLr4QB/QI6XLp7Oo0AcqFQN1IDQw=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=aoKgPhtQAcJq/C5L121gyCDVgQqboGFbXDPTBvv0WHAkNFErIV4+tXK5IYzdG2VzF
+	 mJQqQQSdO9NtGNAn187f4T7NLDqXjUu2T4FMuQ+vVF5tXgdA728D0BfPyGQcsx9XYd
+	 feFwqqQ3T5ydsc2aPhu9Vhuawp1K6ROCR/daaT2YFTyvVwFO6M7c7cixbMA+beosMS
+	 loXSWlgdHr3gtYKfkunDLH3+dUAUWtBoeThK2MYsbFfLN3KxipE8ZnJB5cxqzJa+lY
+	 wK+jE+eHIbbG19RI6pJCh5lBXddMdJgZyAxAy6ua8ONgR8JcqzEf63Liea7B8hKJig
+	 n9f4o5WyA7esQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 64BD7C02187;
+	Thu, 16 Jan 2025 14:09:19 +0000 (UTC)
+From: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.linaro.org@kernel.org>
+Subject: [PATCH v3 0/5] PCI/pwrctrl: Rework pwrctrl driver integration and
+ add driver for PCI slot
+Date: Thu, 16 Jan 2025 19:39:10 +0530
+Message-Id: <20250116-pci-pwrctrl-slot-v3-0-827473c8fbf4@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250115012628.1035928-1-pgwipeout@gmail.com> <2EEA8028-8E4A-4588-A480-E5FF0F7BE82E@gmail.com>
- <CAMdYzYo2W1hLgiH697AdRSUbhBU4rU2uB=N6EMWMD2-0R+VLBA@mail.gmail.com>
- <B1C9DA16-F285-4AD0-AE4E-AF1A5CA20932@gmail.com> <CAMdYzYrxX=RsSZja-3+zLZUSpyLoRz8Zm0w0hTfL3RQ9cjqgOw@mail.gmail.com>
- <3536B507-8658-4377-A1AC-2C5D9093BDEB@gmail.com>
-In-Reply-To: <3536B507-8658-4377-A1AC-2C5D9093BDEB@gmail.com>
-From: Peter Geis <pgwipeout@gmail.com>
-Date: Thu, 16 Jan 2025 09:02:54 -0500
-X-Gm-Features: AbW1kvZDgqM8jfgzDVevxYgT39_hbUcQ7lTpjdvs9pBBkN8iloIKzhGnQ2-7CDI
-Message-ID: <CAMdYzYoCj9FsyHdTQAOV4DFpD7OdMDaJ0R=BBxXG-SLguy512Q@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 0/6] rockchip: add a functional usb3 phy driver for rk3328
-To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, Algea Cao <algea.cao@rock-chips.com>, 
-	Michael Turquette <mturquette@baylibre.com>, kever.yang@rock-chips.com, 
-	linux-phy@lists.infradead.org, wulf@rock-chips.com, zyw@rock-chips.com, 
-	Dragan Simic <dsimic@manjaro.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, linux-clk@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Arnd Bergmann <arnd@arndb.de>, Jonas Karlman <jonas@kwiboo.se>, frank.wang@rock-chips.com, 
-	Elaine Zhang <zhangqing@rock-chips.com>, Alex Bee <knaerzche@gmail.com>, 
-	william.wu@rock-chips.com, Zhang Yubing <yubing.zhang@rock-chips.com>, 
-	Johan Jonker <jbx6244@gmail.com>, linux-arm-kernel@lists.infradead.org, 
-	Trevor Woerner <twoerner@gmail.com>, Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org, 
-	Vinod Koul <vkoul@kernel.org>, FUKAUMI Naoki <naoki@radxa.com>, 
-	Diederik de Haas <didi.debian@cknow.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAYTiWcC/32NQQ6CMBBFr0Jm7ZhpqUpccQ/DoqkDTEIomZKqI
+ dzdygFcvpf89zdIrMIJ7tUGylmSxLlAfaogjH4eGOVZGCxZZ6whXILg8tKw6oRpiiuSDcThWpu
+ b7aHMFuVe3kfy0RUeJa1RP8dDNj/7J5YNErJnd2HXNOSonWT2Gs9RB+j2ff8CtdsNkrEAAAA=
+To: Bjorn Helgaas <bhelgaas@google.com>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+ Lukas Wunner <lukas@wunner.de>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3486;
+ i=manivannan.sadhasivam@linaro.org; h=from:subject:message-id;
+ bh=d32Y8ya8jL+ULXXbLr4QB/QI6XLp7Oo0AcqFQN1IDQw=;
+ b=owEBbQGS/pANAwAKAVWfEeb+kc71AcsmYgBniRML9/YkDU3ck+xoWOFje58AxDDajMHV6pMrD
+ Jvob5t/DNaJATMEAAEKAB0WIQRnpUMqgUjL2KRYJ5dVnxHm/pHO9QUCZ4kTCwAKCRBVnxHm/pHO
+ 9WFLB/43+VASUO9CgoplbEcO9UQM06la6OubEUHjeuwMQrmK8fJO1mrPtr7adDeHPkmWv1ri6Oj
+ 4Qk/34QC1sVj0PHLFiQttDyyhr2InEdT8sfUS9opkurbNMNnmTW9GoeFHfzc9MT+zLFywbi3i5l
+ dw5VxBLsYTkHwg65Xj4hTW+j6XRXhwP7prXomRwvnSYHo2bDmTFZIDPl8w7e7rA0E9okCuYRRHA
+ fZ2UODNyHnUECFpp5YePR/Ylxi8NdHsd5q9heHfHxNWKVjrt1A8aZZ22ghB2qP5qGDqRNVsqJ9b
+ OVgmNt7S57PqB/cgPgQ4b9ril0eVCTwpmCRJ+x4Wkjp2iPyX
+X-Developer-Key: i=manivannan.sadhasivam@linaro.org; a=openpgp;
+ fpr=C668AEC3C3188E4C611465E7488550E901166008
+X-Endpoint-Received: by B4 Relay for
+ manivannan.sadhasivam@linaro.org/default with auth_id=185
+X-Original-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Reply-To: manivannan.sadhasivam@linaro.org
 
-On Wed, Jan 15, 2025 at 8:25=E2=80=AFAM Piotr Oniszczuk
-<piotr.oniszczuk@gmail.com> wrote:
->
->
->
-> > Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w d=
-niu 15 sty 2025, o godz. 14:15:
-> >
-> >>
-> >>
-> >> pls find:
-> >>
-> >> dtsi: https://gist.github.com/warpme/6af9e2778fb06bfb47b64f98fe79d678
-> >> and dt: https://gist.github.com/warpme/79340c54c87b2b1e52f2a146461d8c9=
-f
-> >>
-> >>
-> >> and compiled .dtb
-> >
-> > It all looks good.
-> > Do you have any CRU errors in the boot log?
-> > Can you check for the presence of clk_ref_usb3otg in
-> > /sys/kernel/debug/clk/clk_summary?
-> >
-> >>
->
-> cru errors in dmesg - seems no any.
-> here is my dmesg: https://gist.github.com/warpme/ecf38482cc88fb68471355d0=
-11ecf974
->
-> For clk_ref_usb3otg i=E2=80=99m getting following:
->
-> root@myth-frontend-e67a8de4c815:~ # cat /sys/kernel/debug/clk/clk_summary=
- | grep usb3
->     clk_usb3otg_suspend              0       0        0        30770     =
-  0          0     50000      N      deviceless                      no_con=
-nection_id
->     clk_usb3otg_ref                  0       0        0        24000000  =
-  0          0     50000      N      deviceless                      no_con=
-nection_id
->     clk_ref_usb3otg                  0       0        0        24000000  =
-  0          0     50000      Y      deviceless                      no_con=
-nection_id
->                    pclk_usb3_grf     0       0        0        75000000  =
-  0          0     50000      Y                     deviceless             =
-         no_connection_id
->                    pclk_usb3phy_pipe 0       0        0        75000000  =
-  0          0     50000      N                     deviceless             =
-         no_connection_id
->                    pclk_usb3phy_otg  0       0        0        75000000  =
-  0          0     50000      N                     deviceless             =
-         no_connection_id
->           clk_ref_usb3otg_src        0       0        0        37500000  =
-  0          0     50000      N            deviceless                      =
-no_connection_id
->                    aclk_usb3otg      0       0        0        150000000 =
-  0          0     50000      N                     deviceless             =
-         no_connection_id
->
+Hi,
 
-I'm at a loss here, I applied the patches to a clean 6.9 tree and even
-built it as a module (thank you for the sentinel). I have no issues.
-I'm wondering if it's your .config or something about your bootloader.
+This series reworks the PCI pwrctrl integration (again) by moving the creation
+and removal of pwrctrl devices to pci_scan_device() and pci_destroy_dev() APIs.
+This is based on the suggestion provided by Lukas Wunner [1][2]. With this
+change, it is now possible to create pwrctrl devices for PCI bridges as well.
+This is required to control the power state of the PCI slots in a system. Since
+the PCI slots are not explicitly defined in devicetree, the agreement is to
+define the supplies for PCI slots in PCI bridge nodes itself [3].
 
->
+Based on this, a pwrctrl driver to control the supplies of PCI slots are also
+added in patch 4. With this driver, it is now possible to control the voltage
+regulators powering the PCI slots defined in PCI bridge nodes as below:
+
+```
+pcie@0 {
+	compatible "pciclass,0604"
+	...
+
+	vpcie12v-supply = <&vpcie12v_reg>;
+	vpcie3v3-supply = <&vpcie3v3_reg>;
+	vpcie3v3aux-supply = <&vpcie3v3aux_reg>;
+};
+```
+
+To make use of this driver, the PCI bridge DT node should also have the
+compatible "pciclass,0604". But adding this compatible triggers the following
+checkpatch warning:
+
+WARNING: DT compatible string vendor "pciclass" appears un-documented --
+check ./Documentation/devicetree/bindings/vendor-prefixes.yaml
+
+For fixing it, I added patch 3. But due to some reason, checkpatch is not
+picking the 'pciclass' vendor prefix alone, and requires adding the full
+compatible 'pciclass,0604' in the vendor-prefixes list. Since my perl skills are
+not great, I'm leaving it in the hands of Rob to fix the checkpatch script.
+
+[1] https://lore.kernel.org/linux-pci/Z0yLDBMAsh0yKWf2@wunner.de
+[2] https://lore.kernel.org/linux-pci/Z0xAdQ2ozspEnV5g@wunner.de
+[3] https://github.com/devicetree-org/dt-schema/issues/145
+
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+Changes in v3:
+- Fixed the Kbuild bot issue with a regulator patch and submitted it separately
+  along with one more regulator patch from this series. Both patches got merged
+  and are in linux-next.
+- Collected tags
+
+Changes in v2:
+- Added new patch to skip the device scan if pwrctrl device is found
+- Added a new patch to fix the build issue
+- Collected tags
+- Link to v1: https://lore.kernel.org/r/20241210-pci-pwrctrl-slot-v1-0-eae45e488040@linaro.org
+
+---
+Manivannan Sadhasivam (5):
+      PCI/pwrctrl: Move creation of pwrctrl devices to pci_scan_device()
+      PCI/pwrctrl: Move pci_pwrctrl_unregister() to pci_destroy_dev()
+      PCI/pwrctrl: Skip scanning for the device further if pwrctrl device is created
+      dt-bindings: vendor-prefixes: Document the 'pciclass' prefix
+      PCI/pwrctrl: Add pwrctrl driver for PCI Slots
+
+ .../devicetree/bindings/vendor-prefixes.yaml       |  2 +-
+ drivers/pci/bus.c                                  | 43 ----------
+ drivers/pci/probe.c                                | 41 ++++++++++
+ drivers/pci/pwrctrl/Kconfig                        | 11 +++
+ drivers/pci/pwrctrl/Makefile                       |  3 +
+ drivers/pci/pwrctrl/core.c                         |  2 +-
+ drivers/pci/pwrctrl/slot.c                         | 93 ++++++++++++++++++++++
+ drivers/pci/remove.c                               |  2 +-
+ 8 files changed, 151 insertions(+), 46 deletions(-)
+---
+base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+change-id: 20241210-pci-pwrctrl-slot-02c0ec63172f
+
+Best regards,
+-- 
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+
 
