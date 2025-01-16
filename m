@@ -1,202 +1,135 @@
-Return-Path: <devicetree+bounces-138950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBB82A1359E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:42:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B1C3A135C6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:46:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F118B1672E1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:42:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EB9B167727
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:46:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5707D1CEEBB;
-	Thu, 16 Jan 2025 08:42:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b="RHpCq7Pr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1007E196C7C;
+	Thu, 16 Jan 2025 08:46:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.systec-electronic.com (mail.systec-electronic.com [77.220.239.22])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C3418E34A;
-	Thu, 16 Jan 2025 08:42:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.220.239.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689061CAA8A
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 08:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737016953; cv=none; b=QOMyBDz/ClPGvi4TgT/afYxho5u/cdi6mvlwkPDYhABYTnIiRi/qHRPtL2qaEdXzXUkakHctr6BIL/rv/sMpo7iMUhl8gyeCt7YeAJX50LTC5cYFib59AYFxpWXZ4QGipKGUYpbsS4hqCTrYSH0MGbLnM/J1Kra56HbRiH/2d6g=
+	t=1737017184; cv=none; b=MCAGwCwqYUhRLzicJAqjuUP2Bn1AL9EXkJjuVEdgRNlpddl4qhU82SPgiQBewzbzGKqcDYgobcLpqqy6aolybtcfSnhrchBbqzdv5tpyqsLHWhOlxvYVzFDjvHNgY7wgDgKJT8rsHjoRgY4rgagr1YY7IWj9VYdT+1hjZICR7NM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737016953; c=relaxed/simple;
-	bh=jpy1gvJ/71eJXN4NHHKgSQ+1qRQlwa4Fpb/y0/Muo9M=;
-	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=S47RzlL/o1KkOwxUKKD3rQqbWbMEIm4hurCowyxzocMf5Cp62ckpJEHQIkzF1n1/i5p0q0lSppXXCPWUcfpMR5/jayCugIavO8/WJyGnWIRY/zrnUEK5RgU2F7DUQj436MxpuFvxBVK0S4rPzOkl8pWmeVEiNWUs3zMfRID1uhM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com; spf=pass smtp.mailfrom=systec-electronic.com; dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b=RHpCq7Pr; arc=none smtp.client-ip=77.220.239.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=systec-electronic.com
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.systec-electronic.com (Postfix) with ESMTP id 9C113941A5C2;
-	Thu, 16 Jan 2025 09:42:28 +0100 (CET)
-Received: from mail.systec-electronic.com ([127.0.0.1])
- by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id 68r6MG7kUYZq; Thu, 16 Jan 2025 09:42:28 +0100 (CET)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.systec-electronic.com (Postfix) with ESMTP id 7516B941A5C4;
-	Thu, 16 Jan 2025 09:42:28 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.systec-electronic.com 7516B941A5C4
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=systec-electronic.com; s=B34D3B04-5DC7-11EE-83E3-4D8CAB78E8CD;
-	t=1737016948; bh=XxFbNSlamFw1Er3F2668QNTDDNRY18Y1SSIPKD43TQU=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=RHpCq7PrUuggmKNzLU2K9RWeB+DNS6pWhTY11bxWJ4jq9QWVK/7nrbiafHcybjWwe
-	 DUC9V7ChIvMHGPAYQK3g3xib8IkMRPlwk1ZvlyMjDriYsTGR7SFIoWgGK2JVghM4yc
-	 a/rf3zzM9OdoBpO90UCqVIznWT9k1+8VCfCWUg0CJHW/K83D7pdkI6TGePBulL/tVe
-	 CX1UXU8tyYXgb1VHI6XyfGB4GqcUS4uDGP7FjzMQJXFyjiHv2VXCl6EX607tKWQaPQ
-	 53zFQEjF6VQxffYMu4qV7CwVdqWoXfhRnM7sN2oxxjM9pKUP8nYhii4PRR9bFkB0G3
-	 6+iiiMVUI64MQ==
-X-Virus-Scanned: amavis at systec-electronic.com
-Received: from mail.systec-electronic.com ([127.0.0.1])
- by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id viwgHERnJYEX; Thu, 16 Jan 2025 09:42:28 +0100 (CET)
-Received: from lt-278851.systec.local (unknown [212.185.67.148])
-	by mail.systec-electronic.com (Postfix) with ESMTPSA id 1AB0A941A5C2;
-	Thu, 16 Jan 2025 09:42:28 +0100 (CET)
-Date: Thu, 16 Jan 2025 09:42:27 +0100 (CET)
-From: Andre Werner <andre.werner@systec-electronic.com>
-Reply-To: Andre Werner <andre.werner@systec-electronic.com>
-To: Andre Werner <andre.werner@systec-electronic.com>
-cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, hvilleneuve@dimonoff.com, 
-    andy@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-    linux-serial@vger.kernel.org, lech.perczak@camlingroup.com, 
-    krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
-Subject: Re: [PATCH v7] serial: sc16is7xx: Add polling mode if no IRQ pin is
- available
-In-Reply-To: <20250116083447.453615-1-andre.werner@systec-electronic.com>
-Message-ID: <58638faa-ddc2-bc64-5467-d62ea6a222cd@systec-electronic.com>
-References: <CAHp75Vc==m3mE1TtxjHnpwL-d8W4rFnKreu7XB7MWspJKCCOGA@mail.gmail.com> <20250116083447.453615-1-andre.werner@systec-electronic.com>
+	s=arc-20240116; t=1737017184; c=relaxed/simple;
+	bh=SMS/WYXiS7wO6WMGkTraT9DMv2PEnR5eKZ+KSZvlOEs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=DJYReYBdyItyI/5ex58j0Kl2GFf35aPE7PW140JxvM/ugGQVj/AcST/bmrGRXTmbEEXFCp++UMaxEVJ2H7QOALoHJEGwnDYl1ZUAU/vuwwNitlD1B4wiPi6tQBWX9FsGD0MpWACvDm0XCCrMVbcmnnWQGN980VxmJd/IVI9KNy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tYLVo-0002fo-Ts; Thu, 16 Jan 2025 09:46:00 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tYLVn-000DtB-0F;
+	Thu, 16 Jan 2025 09:45:59 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tYLVm-00029Z-3C;
+	Thu, 16 Jan 2025 09:45:58 +0100
+Message-ID: <9ea186e39afb4584f12758d2fa6a26a0b12389ec.camel@pengutronix.de>
+Subject: Re: [PATCH 5/7] phy: qcom: Add M31 based eUSB2 PHY driver
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+  Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,  Catalin Marinas
+ <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Bjorn Andersson
+ <andersson@kernel.org>,  Konrad Dybcio <konradybcio@kernel.org>, Satya
+ Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, Trilok Soni
+ <quic_tsoni@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date: Thu, 16 Jan 2025 09:45:58 +0100
+In-Reply-To: <20250113-sm8750_usb_master-v1-5-09afe1dc2524@quicinc.com>
+References: <20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com>
+	 <20250113-sm8750_usb_master-v1-5-09afe1dc2524@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="-1463794929-1558811587-1737016948=:445428"
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
----1463794929-1558811587-1737016948=:445428
-Content-Type: text/plain; charset=ISO-8859-15
-Content-Transfer-Encoding: quoted-printable
-
-Dear Andy,
-
-I hope this is what you expected and is what I have understood so far.
-I performed the rebase to
-git://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git master
-branch. This is a commit that has been created due to the rebase. The
-commit message title is the same as from the previous commit already in
-linux-next and the commit message body differs, because there was a typo
-in the message and the description was still including the "interrupts"
-property from dt to use to select polling mode that is not directly used
-anymore in the latest version of the patch.
-
-Sorry if I still did something wrong, but this is what I thought I had
-to do.
-
-Best regards,
-Andr=E9
-
-
-On Thu, 16 Jan 2025, Andre Werner wrote:
-
-> Fall back to polling mode if no interrupt is configured because there
-> is no possibility to connect the interrupt pin.
->
-> If no interrupt pin is available the driver uses a delayed worker to
-> poll the state of interrupt status registers (IIR).
->
-> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
-> Link: https://lore.kernel.org/r/20250110073104.1029633-2-andre.werner@s=
-ystec-electronic.com
-> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+On Mo, 2025-01-13 at 13:52 -0800, Melody Olvera wrote:
+> From: Wesley Cheng <quic_wcheng@quicinc.com>
+>=20
+> On SM8750, the eUSB2 PHY used is M31 based. Add the initialization
+> sequences to bring it out of reset, and to initialize the associated eUSB=
+2
+> repeater as well.
+>=20
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 > ---
-> V2:
-> - Change warning for polling mode to debug log entry
-> - Correct typo: Resuse -> Reuse
-> - Format define with missing tabs for SC16IS7XX_POLL_PERIOD
-> - Format struct declaration sc16is7xx_one_config with missing tabs for =
-polling and shutdown
-> - Adapt dtbinding with new polling feature
-> V3:
-> - Use suffix with units and drop a comment SC16IS7XX_POLL_PERIOD_MS. So=
-rry for that miss.
-> - Make Kernel lowercase.
-> V4:
-> - Reword commit messages for better understanding.
-> - Remove 'shutdown' property for canceling delayed worker.
-> - Rename worker function: sc16is7xx_transmission_poll -> sc16is7xx_poll=
-_proc
-> - Unify argument for worker functions: kthread_work *work -> kthread_wo=
-rk *ws
-> V5:
-> - Replace of_property check with IRQ number check to set polling
->   property. This will add support for usage without device tree
->   definitions. Thanks for that advice.
-> - Add blank line es requested.
-> V6:
-> - Use polling mode for IRQ numbers <=3D 0 which encounter no valid IRQ
->   were found/defined.
-> V7:
-> - Try to improve and unify comments as requested.
-> - Fix typo in commit message: pull -> poll
-> ---
->  drivers/tty/serial/sc16is7xx.c | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/tty/serial/sc16is7xx.c b/drivers/tty/serial/sc16is=
-7xx.c
-> index 7b51cdc274fd..348ddc3103cd 100644
-> --- a/drivers/tty/serial/sc16is7xx.c
-> +++ b/drivers/tty/serial/sc16is7xx.c
-> @@ -868,10 +868,12 @@ static void sc16is7xx_poll_proc(struct kthread_wo=
-rk *ws)
->  {
->  	struct sc16is7xx_port *s =3D container_of(ws, struct sc16is7xx_port, =
-poll_work.work);
->
-> -	/* Reuse standard IRQ handler. Interrupt ID is unused in this context=
-. */
-> +	/*
-> +	 * Reuse standard IRQ handler. Interrupt ID is unused in this
-> +	 * context and set to zero.
-> +	 */
->  	sc16is7xx_irq(0, s);
->
-> -	/* Setup delay based on SC16IS7XX_POLL_PERIOD_MS */
->  	kthread_queue_delayed_work(&s->kworker, &s->poll_work,
->  				   msecs_to_jiffies(SC16IS7XX_POLL_PERIOD_MS));
->  }
-> @@ -1561,7 +1563,7 @@ int sc16is7xx_probe(struct device *dev, const str=
-uct sc16is7xx_devtype *devtype,
->  	/* Always ask for fixed clock rate from a property. */
->  	device_property_read_u32(dev, "clock-frequency", &uartclk);
->
-> -	s->polling =3D !!irq;
-> +	s->polling =3D (irq <=3D 0);
->  	if (s->polling)
->  		dev_dbg(dev,
->  			"No interrupt pin definition, falling back to polling mode\n");
-> @@ -1694,7 +1696,7 @@ int sc16is7xx_probe(struct device *dev, const str=
-uct sc16is7xx_devtype *devtype,
->  #endif
->
->  	if (s->polling) {
-> -		/* Initialize kernel thread for polling */
-> +		/* Initialize a kthread work struct that is dedicated to polling */
->  		kthread_init_delayed_work(&s->poll_work, sc16is7xx_poll_proc);
->  		return 0;
->  	}
-> --
-> 2.48.0
->
->
----1463794929-1558811587-1737016948=:445428--
+>  drivers/phy/qualcomm/Kconfig              |  12 +-
+>  drivers/phy/qualcomm/Makefile             |   1 +
+>  drivers/phy/qualcomm/phy-qcom-m31-eusb2.c | 269 ++++++++++++++++++++++++=
+++++++
+>  3 files changed, 281 insertions(+), 1 deletion(-)
+>=20
+[...]
+> diff --git a/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c b/drivers/phy/qual=
+comm/phy-qcom-m31-eusb2.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..e15529673e358db914936a60f=
+a605c872cd2511a
+> --- /dev/null
+> +++ b/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c
+> @@ -0,0 +1,269 @@
+[...]
+> +static int m31eusb2_phy_probe(struct platform_device *pdev)
+> +{
+> +	struct phy_provider *phy_provider;
+> +	const struct m31_eusb2_priv_data *data;
+> +	struct device *dev =3D &pdev->dev;
+> +	struct m31eusb2_phy *phy;
+> +
+> +	phy =3D devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
+> +	if (!phy)
+> +		return -ENOMEM;
+> +
+> +	data =3D of_device_get_match_data(dev);
+> +	if (IS_ERR(data))
+> +		return -EINVAL;
+> +	phy->data =3D data;
+> +
+> +	phy->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(phy->base))
+> +		return PTR_ERR(phy->base);
+> +
+> +	phy->reset =3D devm_reset_control_get_exclusive_by_index(dev, 0);
+
+The dt-bindings only specify a single reset, so there is no need to
+request by index. Just use
+	phy->reset =3D devm_reset_control_get_exclusive(dev, NULL);
+
+regards
+Philipp
 
