@@ -1,143 +1,348 @@
-Return-Path: <devicetree+bounces-139085-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C031A13E94
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:59:51 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 280F9A13E8B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:58:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15BF53AF890
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:58:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF957163AFC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:58:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8486C22CBDD;
-	Thu, 16 Jan 2025 15:57:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5475722CBC7;
+	Thu, 16 Jan 2025 15:57:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kZvzRIwx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.skole.hr (mx2.hosting.skole.hr [161.53.165.186])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D517E22C9EC;
-	Thu, 16 Jan 2025 15:57:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.53.165.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D59422C9F9
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 15:57:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737043053; cv=none; b=AwnRv+zWU7nTC2izwt6sWgdjW/xeH0jVKOXxOwjrdVp1XQfTR/kAJwfjar6nflXRS5XqdYBdDATFMDBuqmn6EyZjprX/s+xb1gS/R0vVL7DrHHwt6w5UJi4VDNLi5IxsMYeC8e6WYS52TX45pCZbt6LC4xQoMWbPn6mjIam3N6I=
+	t=1737043036; cv=none; b=sDUD5euYCpNM2u/mpi2hCaOylxjWDWXPdi6ypOvm8EeMAHBWthBthAk2tN5sWKuLw8GHf9nueygyy2wOLG4pFiaadkqBEgJNiQ8AlRsi1ZcSnTi1wAPm9gLJWcyqZ4tref8ObrlTUFmqmj27AVY6HqPJtrzixBsy96mhMMobQwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737043053; c=relaxed/simple;
-	bh=pp53PsG2bW5UFxFqYOwl6ysQE+WIcRtaUgsyKfrRfKU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rtNNv8lee3McU7V94k5aotiHi+96cGpjfpvMB19oZMilJd679kBk+2dDerkoDxfBXrhBChNyssDP9XjmisC1x835DADeo+E8JvIUos66vpGUhuz2D3MvTjjc0jLmvXuh+wUrnPucV3628Gc0Holg069tNL4dJRYFSx46JUmJcq0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr; spf=pass smtp.mailfrom=skole.hr; arc=none smtp.client-ip=161.53.165.186
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=skole.hr
-Received: from mx2.hosting.skole.hr (localhost.localdomain [127.0.0.1])
-	by mx.skole.hr (mx.skole.hr) with ESMTP id 537F18346A;
-	Thu, 16 Jan 2025 16:50:10 +0100 (CET)
-From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <duje.mihanovic@skole.hr>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
- David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject:
- Re: [PATCH v14 4/4] MAINTAINERS: add myself as Marvell PXA1908 maintainer
-Date: Thu, 16 Jan 2025 16:47:29 +0100
-Message-ID: <2969840.e9J7NaK4W3@radijator>
-In-Reply-To: <oapsqjdop3szi7zfwiyy65ty65gz3uid6cc4lfao22o4d6amjd@bmfkt2wnmlom>
-References:
- <20250115-pxa1908-lkml-v14-0-847d24f3665a@skole.hr>
- <20250115-pxa1908-lkml-v14-4-847d24f3665a@skole.hr>
- <oapsqjdop3szi7zfwiyy65ty65gz3uid6cc4lfao22o4d6amjd@bmfkt2wnmlom>
+	s=arc-20240116; t=1737043036; c=relaxed/simple;
+	bh=2mXw9Yg33Bxu+/IP6cHKmDWuh61UksklpzH8rf6S42g=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=o1nMVh1mvcUjjDeXTvrwOEXAy3Mma9HnJajSML368bOPoCekGrrMPYDP6HBvQTgR6pvLhB1RO4eiiHIK9WnG2kIqEwDkDx2kzkCdbENfy6zB3O+BnqbSx0SIIGWQEJ1DRD+lLsxbjCFgL8QE0CkbN/gMVJWJMYPSXDQM3n95EKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kZvzRIwx; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-38637614567so578187f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 07:57:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737043033; x=1737647833; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=usx0ioMicGPHqo0IpMUxQsb9OGcht91JkoYaqB1CvBE=;
+        b=kZvzRIwx/WC/KRhoMJoEhueOy8sP4FUcups5g6Gsh0w7SzbYdroX5WauII7su3pOTx
+         Ju10P+M7YG5Uw8F15V9gfQL7wD79+e30kitHVNGV9esP0UxTjSMsklQwZvHaXYX9VmJw
+         NQLRyzZ2yaC14/W5Jzh8lkMOZ0gEpo/mtfOwkJH0laEMsHom4t/yskSL/HaPWzrdl9e+
+         11ATJJUUx385kK2NgIb28mbXmDFmPfb23+47AkCZeLBe8lskjBbzgbWtvmTNznowvdiB
+         0zj1RVvr3mxXk8sJk/S8kxx6O7QiQLVmdnH63CoSKimKyMhM+WzETWbeX2paMyuTixZY
+         4jBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737043033; x=1737647833;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=usx0ioMicGPHqo0IpMUxQsb9OGcht91JkoYaqB1CvBE=;
+        b=NfqW0JGWSZUKIdutORixps0Uhv6HgabMWQk4y/bXg9k1iRh5qLKkm6vfw8z0zNAwll
+         3QruidiHmjDNoUguBNzuRzkrmK4grj3NEGDqIgrM1KPgWcwUPhq6HkzOEMzrUEPKAEGK
+         zcOiKYVr1Gm+mSuXkuLSbqj4ZkHs0B9cgPDYJqShtduqo/snqwMg9e4z23BrbN7dDDd5
+         0fQX+yXKiY0RhWTcw6zAm1ZshE6gD1Rd/6G/+COfeuuxbG+8r6zEobRRwRNIg8x9MP5o
+         8ThV+S+1zHoDo9Ho83n1o1Sl8MYzUzEO4ii5dqfUbD07w7/neJYUGvKxvwGpPRmbirYT
+         fP5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXoyvOms2cPCjPIa8rtrDnY4hXyKNhSaJU9cA83WJcoKrp3qElgB7qVx+fyS2F8vMo1bgkGbWE4Qga3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWOC2EV5+C0Q1YvIM6f1L8ppw3/yMX4xrRSTNWXG5e+Ypixysr
+	2naYdbwOzJXOQFtZ1gEsPMJNMAdyj1VJbE+4s0owc8rJEp2RMk06wTnMktH49b4=
+X-Gm-Gg: ASbGncthSejTv5HuCIGNP+G7TghNoh6/XBfCSK885dGGSYjV8Gy0I9ZCWh88+6gk4Da
+	Qaw0LTq+lPEP9GuTbOVsvaKlhPpwN+10+zClG/DStnYR9q8uY5cRxskoqGvweUF/C5qygs+Trox
+	UqN5fXxF1sb2FcxUWtNeSHvoM7BSFNeM3gyfYAfD/TTnDdMJ5ScxZiTzSoCZOhjlr3eYzOpBsgY
+	E/FQGSA/CI5CzXbTvA2OAYH1RlKoYg/A+KN/NoNqAzs83XXOzpfBHDYNoOnp5hG8TFsfzIE7imr
+	eysHKZTU/XGT/JeX4kiTRfbyBr0KkNV6fw==
+X-Google-Smtp-Source: AGHT+IGjVdQRjaMidXYivLi/ICO5J6O+Hm6JBzDfpixblm/d3iVHDoW25ShEp0ZgglfZ9u5JKRlcZw==
+X-Received: by 2002:a5d:59ab:0:b0:385:df6b:7ef6 with SMTP id ffacd0b85a97d-38a873579a8mr31664496f8f.51.1737043032663;
+        Thu, 16 Jan 2025 07:57:12 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:4adf:8d3f:1419:e65d? ([2a01:e0a:982:cbb0:4adf:8d3f:1419:e65d])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf32754dcsm190821f8f.77.2025.01.16.07.57.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Jan 2025 07:57:12 -0800 (PST)
+Message-ID: <be7b0acc-495b-4bb6-91e1-5db8e301503d@linaro.org>
+Date: Thu, 16 Jan 2025 16:57:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Autocrypt: addr=duje.mihanovic@skole.hr;
- keydata=
- mDMEZokhzhYJKwYBBAHaRw8BAQdAWJZ0hsI/ytTqHGFV8x6tzd5sB596cTeeDB4CQsTf+wC0KER
- 1amUgTWloYW5vdmnEhyA8ZHVqZUBkdWplbWloYW5vdmljLnh5ej6ImQQTFgoAQRYhBG3/QdYN8x
- S1t2umMK0xk1JFj60DBQJmiSHOAhsDBQkJZgGABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAA
- AoJEK0xk1JFj60D1GABAJVSorZdMOlrp/oQtCSH/G53NE56x/JHA8VX+ZQBd/H3AP4/EcUf6eef
- DUxVMh2bdkmuQKsVZGgOGiXpMksrVntWBrQpRHVqZSBNaWhhbm92acSHIDxkdWplLm1paGFub3Z
- pY0Bza29sZS5ocj6ImQQTFgoAQRYhBG3/QdYN8xS1t2umMK0xk1JFj60DBQJmiSH/AhsDBQkJZg
- GABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAAAoJEK0xk1JFj60Dlw8A/i4lPOL7NaYoYePDq
- l8MaJaR9qoUi+D+HtD3t0Koi7ztAQCdizXbuqP3AVNxy5Gpb1ozgp9Xqh2MRcNmJCHA1YhWAbg4
- BGaJIc4SCisGAQQBl1UBBQEBB0DEc9JeA55OlZfWKgvmRgw6a/EpBQ8mDl6nQTBmnd1XHAMBCAe
- IfgQYFgoAJhYhBG3/QdYN8xS1t2umMK0xk1JFj60DBQJmiSHOAhsMBQkJZgGAAAoJEK0xk1JFj6
- 0DG5MA/iuo4l2GDEZ1Zf+XaS//8FwdXDO9nHkfbV2MHjF4NZXwAQDroMzBdMcqVvc8GABFlTTgG
- j7KrRDz2HwWNyF8ZeprAQ==
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+From: neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v4] arm64: dts: qcom: Add coresight node for SM8650
+To: Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250107-sm8650-cs-dt-v4-1-2113b18754ea@quicinc.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250107-sm8650-cs-dt-v4-1-2113b18754ea@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thursday 16 January 2025 08:56:24 Central European Standard Time Krzyszt=
-of=20
-Kozlowski wrote:
-> On Wed, Jan 15, 2025 at 09:35:57PM +0100, Duje Mihanovi=C4=87 wrote:
-> > Add myself as the maintainer for Marvell PXA1908 SoC support.
-> >=20
-> > Signed-off-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
-> > ---
-> >=20
-> >  MAINTAINERS | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> >=20
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index
-> >=20
-a87ddad78e26f28ffd0f3433560d6db1518f9f95..caa5f6b96251a3da0f3f9d2f760b38288
-> > eb23ab3 100644 --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -2624,6 +2624,15 @@ F:	drivers/irqchip/irq-mvebu-*
-> >=20
-> >  F:	drivers/pinctrl/mvebu/
-> >  F:	drivers/rtc/rtc-armada38x.c
-> >=20
-> > +ARM/Marvell PXA1908 SOC support
-> > +M:	Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
-> > +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-> > +S:	Maintained
-> > +T:	git https://gitlab.com/LegoLivesMatter/linux
->=20
-> Not sure if this was mentioned ever (it is v14, so it is likely) but if
-> that was not clear:
->=20
-> Pull requests from non-kernel.org repos must be signed and your key must
-> be in kernel.org keyring. Please get your key signed
-> (meetups/conferences/keysigning map/video confcalls) and submitted to
-> the keyring.
->=20
-> Patchset should be sent to soc@, as expressed in soc@ maintainer
-> profile.
->=20
-> Unless this is not going to be merged by soc@, but someone from Marvell
-> maintainers, but then please drop the repo. Git repos here are for
-> managing patches.
+Hi,
 
-I didn't know about Git repos being used for patch management, thanks for=20
-letting me know.
+On 07/01/2025 09:48, Yuanfang Zhang wrote:
+> Add coresight components: Funnel, ETE and ETF for SM8650.
+> 
+> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
+> ---
+> Changes in v4:
+> - Re-sort these nodes by address.
+> - Link to v3: https://lore.kernel.org/r/20250103-sm8650-cs-dt-v3-1-759a3f6a3cc8@quicinc.com
+> 
+> Changes in v3:
+> - Move ete0 and funnel-ete to /.
+> - Update coding style.
+> - Link to v2: https://lore.kernel.org/r/20241210-sm8650-cs-dt-v2-1-cf24c6c9bddc@quicinc.com
+> 
+> Changes in v2:
+> - Update compatible for funnel and etf.
+> - remove unnecessary property: reg-names and arm,primecell-periphid.
+> - Link to v1: https://lore.kernel.org/r/20241210-sm8650-cs-dt-v1-1-269693451584@quicinc.com
+> ---
+>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 166 +++++++++++++++++++++++++++++++++++
+>   1 file changed, 166 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 25e47505adcb790d09f1d2726386438487255824..49d6567fbd2e68b66b517d8d9180c7443f8bf611 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -365,6 +365,40 @@ cluster_sleep_1: cluster-sleep-1 {
+>   		};
+>   	};
+>   
+> +	ete0 {
+> +		compatible = "arm,embedded-trace-extension";
+> +
+> +		cpu = <&cpu0>;
+> +
+> +		out-ports {
+> +			port {
+> +				ete0_out_funnel_ete: endpoint {
+> +					remote-endpoint = <&funnel_ete_in_ete0>;
+> +				};
+> +			};
+> +		};
+> +	};
 
-I believe this is best merged by soc@ since it is not mvebu and is the firs=
-t=20
-arm64 MMP to be merged. However, for various reasons I'd prefer not to have=
- my=20
-key signed quite yet, so would it be possible for this to get merged throug=
-h=20
-soc@ if I removed the repo?
+Why only the cpu0 ete has been added ?
 
-Also, I will certainly add soc@ to the Cc list in v15.
+And why are the other components (TPDA, TPDM, STM, CTI...) missing ?
 
-Regards,
-=2D-=20
-Duje
+Neil
 
-
+> +
+> +	funnel-ete {
+> +		compatible = "arm,coresight-static-funnel";
+> +
+> +		in-ports {
+> +			port {
+> +				funnel_ete_in_ete0: endpoint {
+> +					remote-endpoint = <&ete0_out_funnel_ete>;
+> +				};
+> +			};
+> +		};
+> +
+> +		out-ports {
+> +			port {
+> +				funnel_ete_out_funnel_apss: endpoint {
+> +					remote-endpoint = <&funnel_apss_in_funnel_ete>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+>   	firmware {
+>   		scm: scm {
+>   			compatible = "qcom,scm-sm8650", "qcom,scm";
+> @@ -4854,6 +4888,138 @@ data-pins {
+>   			};
+>   		};
+>   
+> +		funnel@10042000 {
+> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +
+> +			reg = <0x0 0x10042000 0x0 0x1000>;
+> +
+> +			clocks = <&aoss_qmp>;
+> +			clock-names = "apb_pclk";
+> +
+> +			in-ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@4 {
+> +					reg = <4>;
+> +
+> +					funnel_in1_in_funnel_apss: endpoint {
+> +						remote-endpoint = <&funnel_apss_out_funnel_in1>;
+> +					};
+> +				};
+> +			};
+> +
+> +			out-ports {
+> +				port {
+> +					funnel_in1_out_funnel_qdss: endpoint {
+> +						remote-endpoint = <&funnel_qdss_in_funnel_in1>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		funnel@10045000 {
+> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +
+> +			reg = <0x0 0x10045000 0x0 0x1000>;
+> +
+> +			clocks = <&aoss_qmp>;
+> +			clock-names = "apb_pclk";
+> +
+> +			in-ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@1 {
+> +					reg = <1>;
+> +
+> +					funnel_qdss_in_funnel_in1: endpoint {
+> +						remote-endpoint = <&funnel_in1_out_funnel_qdss>;
+> +					};
+> +				};
+> +			};
+> +
+> +			out-ports {
+> +				port {
+> +					funnel_qdss_out_funnel_aoss: endpoint {
+> +						remote-endpoint = <&funnel_aoss_in_funnel_qdss>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		funnel@10b04000 {
+> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +
+> +			reg = <0x0 0x10b04000 0x0 0x1000>;
+> +
+> +			clocks = <&aoss_qmp>;
+> +			clock-names = "apb_pclk";
+> +
+> +			in-ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@7 {
+> +					reg = <7>;
+> +
+> +					funnel_aoss_in_funnel_qdss: endpoint {
+> +						remote-endpoint = <&funnel_qdss_out_funnel_aoss>;
+> +					};
+> +				};
+> +			};
+> +
+> +			out-ports {
+> +				port {
+> +					funnel_aoss_out_tmc_etf: endpoint {
+> +						remote-endpoint = <&tmc_etf_in_funnel_aoss>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		tmc@10b05000 {
+> +			compatible = "arm,coresight-tmc", "arm,primecell";
+> +
+> +			reg = <0x0 0x10b05000 0x0 0x1000>;
+> +
+> +			clocks = <&aoss_qmp>;
+> +			clock-names = "apb_pclk";
+> +
+> +			in-ports {
+> +				port {
+> +					tmc_etf_in_funnel_aoss: endpoint {
+> +						remote-endpoint = <&funnel_aoss_out_tmc_etf>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+> +		funnel@13810000 {
+> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
+> +
+> +			reg = <0x0 0x13810000 0x0 0x1000>;
+> +
+> +			clocks = <&aoss_qmp>;
+> +			clock-names = "apb_pclk";
+> +
+> +			in-ports {
+> +				port {
+> +					funnel_apss_in_funnel_ete: endpoint {
+> +						remote-endpoint = <&funnel_ete_out_funnel_apss>;
+> +					};
+> +				};
+> +			};
+> +
+> +			out-ports {
+> +				port {
+> +					funnel_apss_out_funnel_in1: endpoint {
+> +						remote-endpoint = <&funnel_in1_in_funnel_apss>;
+> +					};
+> +				};
+> +			};
+> +		};
+> +
+>   		apps_smmu: iommu@15000000 {
+>   			compatible = "qcom,sm8650-smmu-500", "qcom,smmu-500", "arm,mmu-500";
+>   			reg = <0 0x15000000 0 0x100000>;
+> 
+> ---
+> base-commit: fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
+> change-id: 20241209-sm8650-cs-dt-ad649dcfa5e8
+> 
+> Best regards,
 
 
