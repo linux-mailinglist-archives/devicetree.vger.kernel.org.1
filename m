@@ -1,348 +1,125 @@
-Return-Path: <devicetree+bounces-139084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139086-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 280F9A13E8B
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:58:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2503AA13E9B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 17:00:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF957163AFC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:58:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B17F1612CE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:00:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5475722CBC7;
-	Thu, 16 Jan 2025 15:57:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B74B722BAD4;
+	Thu, 16 Jan 2025 16:00:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kZvzRIwx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aspxbGiO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D59422C9F9
-	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 15:57:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0980422A7E6;
+	Thu, 16 Jan 2025 16:00:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737043036; cv=none; b=sDUD5euYCpNM2u/mpi2hCaOylxjWDWXPdi6ypOvm8EeMAHBWthBthAk2tN5sWKuLw8GHf9nueygyy2wOLG4pFiaadkqBEgJNiQ8AlRsi1ZcSnTi1wAPm9gLJWcyqZ4tref8ObrlTUFmqmj27AVY6HqPJtrzixBsy96mhMMobQwQ=
+	t=1737043223; cv=none; b=mYe+LgYgqIqbLMAW89lFx1Khd+MWuF+WRYZ7cA97EQXfH7BGKk2AeYi5Q0vzKieaXrEkl7ljpbRKZbt3KZBQsYWLr6eSBdQEqv4puD2bwdVIH0KLT69zmKBVjPfy94Moz2OaMgbcyQBwJb3LDfryvFfZkXbMdqKPYfWma3gonEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737043036; c=relaxed/simple;
-	bh=2mXw9Yg33Bxu+/IP6cHKmDWuh61UksklpzH8rf6S42g=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=o1nMVh1mvcUjjDeXTvrwOEXAy3Mma9HnJajSML368bOPoCekGrrMPYDP6HBvQTgR6pvLhB1RO4eiiHIK9WnG2kIqEwDkDx2kzkCdbENfy6zB3O+BnqbSx0SIIGWQEJ1DRD+lLsxbjCFgL8QE0CkbN/gMVJWJMYPSXDQM3n95EKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kZvzRIwx; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-38637614567so578187f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 07:57:14 -0800 (PST)
+	s=arc-20240116; t=1737043223; c=relaxed/simple;
+	bh=03CNHJApFKuIItIyArXaqYORwbEMmfvmo2iXGsI2caQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pyqMAylH72EQdAbN758qEDfA7JK7YC/90V07e7WQdCkrkiPQkc6Ae2ydPWZPVcAVuuHMdUM9xplyPie5XUFNfDa0OzKChYWE6Sw5dXLw5/glMy/I2qinFGeKrlY5M/vzICwt5TPK3q1/H7mlh0Uhjqgapl9MsQ7uu3ft2JuOx4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aspxbGiO; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-5d9f0a6ad83so2264272a12.2;
+        Thu, 16 Jan 2025 08:00:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737043033; x=1737647833; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=usx0ioMicGPHqo0IpMUxQsb9OGcht91JkoYaqB1CvBE=;
-        b=kZvzRIwx/WC/KRhoMJoEhueOy8sP4FUcups5g6Gsh0w7SzbYdroX5WauII7su3pOTx
-         Ju10P+M7YG5Uw8F15V9gfQL7wD79+e30kitHVNGV9esP0UxTjSMsklQwZvHaXYX9VmJw
-         NQLRyzZ2yaC14/W5Jzh8lkMOZ0gEpo/mtfOwkJH0laEMsHom4t/yskSL/HaPWzrdl9e+
-         11ATJJUUx385kK2NgIb28mbXmDFmPfb23+47AkCZeLBe8lskjBbzgbWtvmTNznowvdiB
-         0zj1RVvr3mxXk8sJk/S8kxx6O7QiQLVmdnH63CoSKimKyMhM+WzETWbeX2paMyuTixZY
-         4jBQ==
+        d=gmail.com; s=20230601; t=1737043220; x=1737648020; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=03CNHJApFKuIItIyArXaqYORwbEMmfvmo2iXGsI2caQ=;
+        b=aspxbGiOQrvVt8aMFMUsi9ATP4Hk2HkMHBA8qoWaKEUwYkpbKyR2F2VUVRcNvLe2Sz
+         WOnt96m+zDC/F3YiZMyNOz3ghZJdcRgPXzCBItHyEJhZBBe6MUyAeBpAJUgrIeeR5Ewq
+         RaRIiMCBfPQdWGjd49XaXazjD0dPFX3tuOQERAnC21/nSwgUgdVmxhFJo0dkh/8aoi3V
+         vVU4zvbw1MCDeVZ0FY5IjJ3SibT1E4kB0xCQmox+6ZXlvxUkTYEKAyU+v4s7ix+VQROT
+         CIS9YHTYBYyFhAMSwojK5QMfNXT9jm3608kfslfqZRRcIcm/aJHJRNQFu40fobwO5KF8
+         Ag+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737043033; x=1737647833;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=usx0ioMicGPHqo0IpMUxQsb9OGcht91JkoYaqB1CvBE=;
-        b=NfqW0JGWSZUKIdutORixps0Uhv6HgabMWQk4y/bXg9k1iRh5qLKkm6vfw8z0zNAwll
-         3QruidiHmjDNoUguBNzuRzkrmK4grj3NEGDqIgrM1KPgWcwUPhq6HkzOEMzrUEPKAEGK
-         zcOiKYVr1Gm+mSuXkuLSbqj4ZkHs0B9cgPDYJqShtduqo/snqwMg9e4z23BrbN7dDDd5
-         0fQX+yXKiY0RhWTcw6zAm1ZshE6gD1Rd/6G/+COfeuuxbG+8r6zEobRRwRNIg8x9MP5o
-         8ThV+S+1zHoDo9Ho83n1o1Sl8MYzUzEO4ii5dqfUbD07w7/neJYUGvKxvwGpPRmbirYT
-         fP5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXoyvOms2cPCjPIa8rtrDnY4hXyKNhSaJU9cA83WJcoKrp3qElgB7qVx+fyS2F8vMo1bgkGbWE4Qga3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWOC2EV5+C0Q1YvIM6f1L8ppw3/yMX4xrRSTNWXG5e+Ypixysr
-	2naYdbwOzJXOQFtZ1gEsPMJNMAdyj1VJbE+4s0owc8rJEp2RMk06wTnMktH49b4=
-X-Gm-Gg: ASbGncthSejTv5HuCIGNP+G7TghNoh6/XBfCSK885dGGSYjV8Gy0I9ZCWh88+6gk4Da
-	Qaw0LTq+lPEP9GuTbOVsvaKlhPpwN+10+zClG/DStnYR9q8uY5cRxskoqGvweUF/C5qygs+Trox
-	UqN5fXxF1sb2FcxUWtNeSHvoM7BSFNeM3gyfYAfD/TTnDdMJ5ScxZiTzSoCZOhjlr3eYzOpBsgY
-	E/FQGSA/CI5CzXbTvA2OAYH1RlKoYg/A+KN/NoNqAzs83XXOzpfBHDYNoOnp5hG8TFsfzIE7imr
-	eysHKZTU/XGT/JeX4kiTRfbyBr0KkNV6fw==
-X-Google-Smtp-Source: AGHT+IGjVdQRjaMidXYivLi/ICO5J6O+Hm6JBzDfpixblm/d3iVHDoW25ShEp0ZgglfZ9u5JKRlcZw==
-X-Received: by 2002:a5d:59ab:0:b0:385:df6b:7ef6 with SMTP id ffacd0b85a97d-38a873579a8mr31664496f8f.51.1737043032663;
-        Thu, 16 Jan 2025 07:57:12 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:4adf:8d3f:1419:e65d? ([2a01:e0a:982:cbb0:4adf:8d3f:1419:e65d])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf32754dcsm190821f8f.77.2025.01.16.07.57.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Jan 2025 07:57:12 -0800 (PST)
-Message-ID: <be7b0acc-495b-4bb6-91e1-5db8e301503d@linaro.org>
-Date: Thu, 16 Jan 2025 16:57:11 +0100
+        d=1e100.net; s=20230601; t=1737043220; x=1737648020;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=03CNHJApFKuIItIyArXaqYORwbEMmfvmo2iXGsI2caQ=;
+        b=vzn8LSnOYa7186EAG4tov35iSP4QpLZz6pRnS/2QRR4qQpWH/4nq01C2mJM1KuybiT
+         7mYZ5X8gjJ2BsGJ8iYP739LPKWBTnEEx9enuKOwWOAbv4AX83HZkBUMy2qRJzctPET3L
+         LIHtCVN80ZQa+Wa2YkmjUruyAkM4CIxFeCwiDzWQo7eR6C9iYLG5QJ5R51BUlHkQ/Qaj
+         pCipOtrCPjBwkhTiOUtMaDGXX+ibgCwZTcef9pLFF9uBKgvBP/2c7f+OA3kg9Q+75GjY
+         hHBHIU6a6ghUKuyPw5CRZZQKTqkH3my4zpZoZnWLYQCB4eA+azWGBxIXQgcpbINiR1Ro
+         Fg6g==
+X-Forwarded-Encrypted: i=1; AJvYcCVy8WRkpJGKhnnB36k50wzMKutUS6l/Y0tHzp2SiVTh3xnoRFrFfp92W3GLFLr3DReA8hZTUy2uU5bv@vger.kernel.org, AJvYcCXQ6dapQ3LRex7Mwsqn88gfUQJw6xKxZZn43BPVVSkKoJ2mB1DqhuY74hjwRXHjEexImY0mVVvLRSm8GthU@vger.kernel.org, AJvYcCXhAEjJvLup3FeZLuXwPldVAbfHDRaJYTNYAPTxMDYN+uA/hi6vycUdUS7aZXRKdLqzVl8/7J9N+w5z@vger.kernel.org
+X-Gm-Message-State: AOJu0Yze5boAKJg2zhk8j07cNkBydFrLYPFAk4N0rLb1w+oRfalCuXAp
+	7qlD+HfUgfgQ+fAJ2FKAaAFWkFrnpU4CK8rUt/fpwRumVIxazXFRw1LMNl06V7TMaS6XGYJpKyT
+	WydRKTOP57h+e9mX0vCPmelUbBXs=
+X-Gm-Gg: ASbGncuNjnAz36wBLx361QC0YO8paMtwlF+70E0AaJBYLqzS01vL7xX2L0m6T+Xeoop
+	ku5af1tZvsmA0TU/9e4aRY8yhdGEfMdPFF41NN3c=
+X-Google-Smtp-Source: AGHT+IHuxtD1JvcYemQsyiIws6tdFTgTs+4qivEFZoap/TFlX96ws2N0XRh4Mzzuy/ekqhM6BhFqBHePlBLhuYIk58Y=
+X-Received: by 2002:a05:6402:35c9:b0:5d9:f402:16a0 with SMTP id
+ 4fb4d7f45d1cf-5d9f4021a86mr11833443a12.22.1737043220056; Thu, 16 Jan 2025
+ 08:00:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v4] arm64: dts: qcom: Add coresight node for SM8650
-To: Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250107-sm8650-cs-dt-v4-1-2113b18754ea@quicinc.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250107-sm8650-cs-dt-v4-1-2113b18754ea@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250115012628.1035928-1-pgwipeout@gmail.com> <2EEA8028-8E4A-4588-A480-E5FF0F7BE82E@gmail.com>
+ <CAMdYzYo2W1hLgiH697AdRSUbhBU4rU2uB=N6EMWMD2-0R+VLBA@mail.gmail.com>
+ <B1C9DA16-F285-4AD0-AE4E-AF1A5CA20932@gmail.com> <CAMdYzYrxX=RsSZja-3+zLZUSpyLoRz8Zm0w0hTfL3RQ9cjqgOw@mail.gmail.com>
+ <3536B507-8658-4377-A1AC-2C5D9093BDEB@gmail.com> <CAMdYzYoCj9FsyHdTQAOV4DFpD7OdMDaJ0R=BBxXG-SLguy512Q@mail.gmail.com>
+ <F69CE715-C0E4-4FCD-943C-89CC1D3E848D@gmail.com>
+In-Reply-To: <F69CE715-C0E4-4FCD-943C-89CC1D3E848D@gmail.com>
+From: Peter Geis <pgwipeout@gmail.com>
+Date: Thu, 16 Jan 2025 11:00:08 -0500
+X-Gm-Features: AbW1kva1Q_Tqsgtr00KCSe1Rmn_xPDMkxiMe43I-JtCUAF1Z05Q1Na6dcupVLX8
+Message-ID: <CAMdYzYo2gwJw_HvhS-gsqSMFof+n0dS1LUhVznL8bRZWYp_wHQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 0/6] rockchip: add a functional usb3 phy driver for rk3328
+To: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Algea Cao <algea.cao@rock-chips.com>, 
+	Michael Turquette <mturquette@baylibre.com>, kever.yang@rock-chips.com, 
+	linux-phy@lists.infradead.org, wulf@rock-chips.com, zyw@rock-chips.com, 
+	Dragan Simic <dsimic@manjaro.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, linux-clk@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Arnd Bergmann <arnd@arndb.de>, Jonas Karlman <jonas@kwiboo.se>, frank.wang@rock-chips.com, 
+	Elaine Zhang <zhangqing@rock-chips.com>, Alex Bee <knaerzche@gmail.com>, 
+	william.wu@rock-chips.com, Zhang Yubing <yubing.zhang@rock-chips.com>, 
+	Johan Jonker <jbx6244@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+	Trevor Woerner <twoerner@gmail.com>, Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org, 
+	Vinod Koul <vkoul@kernel.org>, FUKAUMI Naoki <naoki@radxa.com>, 
+	Diederik de Haas <didi.debian@cknow.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Thu, Jan 16, 2025 at 9:35=E2=80=AFAM Piotr Oniszczuk
+<piotr.oniszczuk@gmail.com> wrote:
+>
+>
+>
+> > Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w d=
+niu 16 sty 2025, o godz. 15:02:
+> >
+> >>
+> >
+> > I'm at a loss here, I applied the patches to a clean 6.9 tree and even
+> >>
+>
+> oh maybe issue is in kernel age?
+> 6.9 seems a bit quite old.
+> i=E2=80=99m on 6.12.9=E2=80=A6.
 
-On 07/01/2025 09:48, Yuanfang Zhang wrote:
-> Add coresight components: Funnel, ETE and ETF for SM8650.
-> 
-> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-> ---
-> Changes in v4:
-> - Re-sort these nodes by address.
-> - Link to v3: https://lore.kernel.org/r/20250103-sm8650-cs-dt-v3-1-759a3f6a3cc8@quicinc.com
-> 
-> Changes in v3:
-> - Move ete0 and funnel-ete to /.
-> - Update coding style.
-> - Link to v2: https://lore.kernel.org/r/20241210-sm8650-cs-dt-v2-1-cf24c6c9bddc@quicinc.com
-> 
-> Changes in v2:
-> - Update compatible for funnel and etf.
-> - remove unnecessary property: reg-names and arm,primecell-periphid.
-> - Link to v1: https://lore.kernel.org/r/20241210-sm8650-cs-dt-v1-1-269693451584@quicinc.com
-> ---
->   arch/arm64/boot/dts/qcom/sm8650.dtsi | 166 +++++++++++++++++++++++++++++++++++
->   1 file changed, 166 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index 25e47505adcb790d09f1d2726386438487255824..49d6567fbd2e68b66b517d8d9180c7443f8bf611 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -365,6 +365,40 @@ cluster_sleep_1: cluster-sleep-1 {
->   		};
->   	};
->   
-> +	ete0 {
-> +		compatible = "arm,embedded-trace-extension";
-> +
-> +		cpu = <&cpu0>;
-> +
-> +		out-ports {
-> +			port {
-> +				ete0_out_funnel_ete: endpoint {
-> +					remote-endpoint = <&funnel_ete_in_ete0>;
-> +				};
-> +			};
-> +		};
-> +	};
-
-Why only the cpu0 ete has been added ?
-
-And why are the other components (TPDA, TPDM, STM, CTI...) missing ?
-
-Neil
-
-> +
-> +	funnel-ete {
-> +		compatible = "arm,coresight-static-funnel";
-> +
-> +		in-ports {
-> +			port {
-> +				funnel_ete_in_ete0: endpoint {
-> +					remote-endpoint = <&ete0_out_funnel_ete>;
-> +				};
-> +			};
-> +		};
-> +
-> +		out-ports {
-> +			port {
-> +				funnel_ete_out_funnel_apss: endpoint {
-> +					remote-endpoint = <&funnel_apss_in_funnel_ete>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
->   	firmware {
->   		scm: scm {
->   			compatible = "qcom,scm-sm8650", "qcom,scm";
-> @@ -4854,6 +4888,138 @@ data-pins {
->   			};
->   		};
->   
-> +		funnel@10042000 {
-> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-> +
-> +			reg = <0x0 0x10042000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@4 {
-> +					reg = <4>;
-> +
-> +					funnel_in1_in_funnel_apss: endpoint {
-> +						remote-endpoint = <&funnel_apss_out_funnel_in1>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					funnel_in1_out_funnel_qdss: endpoint {
-> +						remote-endpoint = <&funnel_qdss_in_funnel_in1>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		funnel@10045000 {
-> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-> +
-> +			reg = <0x0 0x10045000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@1 {
-> +					reg = <1>;
-> +
-> +					funnel_qdss_in_funnel_in1: endpoint {
-> +						remote-endpoint = <&funnel_in1_out_funnel_qdss>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					funnel_qdss_out_funnel_aoss: endpoint {
-> +						remote-endpoint = <&funnel_aoss_in_funnel_qdss>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		funnel@10b04000 {
-> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-> +
-> +			reg = <0x0 0x10b04000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +
-> +				port@7 {
-> +					reg = <7>;
-> +
-> +					funnel_aoss_in_funnel_qdss: endpoint {
-> +						remote-endpoint = <&funnel_qdss_out_funnel_aoss>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					funnel_aoss_out_tmc_etf: endpoint {
-> +						remote-endpoint = <&tmc_etf_in_funnel_aoss>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		tmc@10b05000 {
-> +			compatible = "arm,coresight-tmc", "arm,primecell";
-> +
-> +			reg = <0x0 0x10b05000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				port {
-> +					tmc_etf_in_funnel_aoss: endpoint {
-> +						remote-endpoint = <&funnel_aoss_out_tmc_etf>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		funnel@13810000 {
-> +			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-> +
-> +			reg = <0x0 0x13810000 0x0 0x1000>;
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			in-ports {
-> +				port {
-> +					funnel_apss_in_funnel_ete: endpoint {
-> +						remote-endpoint = <&funnel_ete_out_funnel_apss>;
-> +					};
-> +				};
-> +			};
-> +
-> +			out-ports {
-> +				port {
-> +					funnel_apss_out_funnel_in1: endpoint {
-> +						remote-endpoint = <&funnel_in1_in_funnel_apss>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
->   		apps_smmu: iommu@15000000 {
->   			compatible = "qcom,sm8650-smmu-500", "qcom,smmu-500", "arm,mmu-500";
->   			reg = <0 0x15000000 0 0x100000>;
-> 
-> ---
-> base-commit: fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
-> change-id: 20241209-sm8650-cs-dt-ad649dcfa5e8
-> 
-> Best regards,
-
+The patches were prepared and tested against 6.13-rc1, but nothing has
+changed significantly in the kernel in regards to rk3328 clock
+handling in several years. I jumped back to 6.9 due to dyslexia.
 
