@@ -1,175 +1,110 @@
-Return-Path: <devicetree+bounces-139126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85634A14293
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 20:46:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24F42A142A6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 20:57:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A9D27A1704
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 19:46:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9ADB73A5E1C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 19:57:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802A4236EAD;
-	Thu, 16 Jan 2025 19:46:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84263234CEB;
+	Thu, 16 Jan 2025 19:57:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uoV7mDUa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aqj/PJ7J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 424692361DE;
-	Thu, 16 Jan 2025 19:45:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D1A230D15;
+	Thu, 16 Jan 2025 19:57:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737056760; cv=none; b=ESpEUJMKntRsikShYWQa9LN2QLKcL+JiD59P9E4souDBZjMv6evOyX2T78z364vA8tcK19qeP9EOeicloIW9Z9y6lsOkSLINoOPZfdJO5lh57jpUAJWj6oP254Z1QZgWnxf8g7OLRgtvYU5xOBhO2t8S54NvRkZFYwoOgj5KjDI=
+	t=1737057465; cv=none; b=s4Nb8/xaCZo90UzYs9+mkF94acJtImQACn1bBBGdFYgtF+7BPAP24SJlqOln1dagbR34r53qLQHeiNzIlnnXJgFCKGayjOxrcWsN/q+j3sOmiE/oRt0+P41KgC4eeYM0Y+X2BhBOvI931PpkGuCwcgewxzMGAa+3ITK67vpyM+w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737056760; c=relaxed/simple;
-	bh=Z4fTIg6gNmMApeJJjsSAkuq+axk4BmTLC+837MYkmZA=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=m4PWA+0zkuPX0H6taOf7sCj1YVlD6Va6ccKIrD9rcxsX9t5/PsBjhHdnot8VyhegRxPqFK6/eLDtpys5WVJmMMkbZ+Uu6l+mXJmqKkok413pdogd38MGvjDiuPVaLw8pHr47EwgHPc1z+uSckNcxdKayBg6BrtbUonfXfquzc4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uoV7mDUa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E612C4CED6;
-	Thu, 16 Jan 2025 19:45:59 +0000 (UTC)
+	s=arc-20240116; t=1737057465; c=relaxed/simple;
+	bh=BpGbL4CFfsflMGaBvp4j9m1dN/ZGd8uGCM2kddow5H8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DAjW1IV3NYXZd8ICt+P0Cxz2GhyOXwTNA8A4RBJom5FGrTFvAflbLHpQW6UmElDdACZ2rgeTfFZu3BaAMgxpuRBMwAAiAPB6fATXRPPEWYkAvaKlIx1mwPhFxIRcdyLdIOZ9F2sjFWue6rf369CvEWUITkuGuZNloNCDrkxihEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aqj/PJ7J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D391AC4CEE4;
+	Thu, 16 Jan 2025 19:57:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737056759;
-	bh=Z4fTIg6gNmMApeJJjsSAkuq+axk4BmTLC+837MYkmZA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=uoV7mDUaO8Z9fQ26Wjz7CGcfFE60n7XzpxVLPVL80QvFwQD2MVJRuo+jNp9GXmPRE
-	 eBNuhB05yUxnq9M7Iguyr+CJtIknO1LFb2yeBbrbMj5lap/A4TgzQTBc7EjggHsQVe
-	 O8OF7wyRjUDtN9rB3qqwsnl/mD+SEs69u8fW+kP+TcQy1Ivl5LOq23YjBPZf+DXZ+G
-	 UU4JaZ1OsNhluhNQcU8mOBCbPVP2l0BFUevxymztwp4JPpFrDbdZe6AecmwhojKYeo
-	 Cy94X450HJrsI78uEBOsYIL8c2wJ5izJRHuvs1REjUNdBsOWF5qmWhgnvhTYPp3CA2
-	 Jl3xWRqrOeTbQ==
-Date: Thu, 16 Jan 2025 13:45:58 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
-Subject: Re: [PATCH v8 3/7] PCI: dwc: ep: Add bus_addr_base for outbound
- window
-Message-ID: <20250116194558.GA595994@bhelgaas>
+	s=k20201202; t=1737057464;
+	bh=BpGbL4CFfsflMGaBvp4j9m1dN/ZGd8uGCM2kddow5H8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=aqj/PJ7JlbWZi20JPqqhgl4FtKBowEHKrr5py0QJZaT/h7NwbJLKWtfZF5HVJ+f01
+	 eaumhpfu06/SjCfeP4TGZg7LFj0jw5dpOxHBHmnfIZjWAOLq6Gictv0ymZ294BVo+6
+	 wZxDS8gqUVXCZFkkiyPfGqx6r+MImWIilKWs1HvUPklZ8YaFqKl3Gk24rjgg7ys+D2
+	 TpIs5/FNVV7ktyFEOULoBvnjU5NoveD+FaNRhRgWJYYvPlaC2gBzCYDaoTGt87wI8+
+	 WcnzI/xvOoCtspwq+cwpNhM8PyQ0GWcAnShRPgNtAGka16GTj2unoDYSF7vH1jGFbW
+	 mkYRd0WRyzITQ==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-30225b2586cso22797981fa.0;
+        Thu, 16 Jan 2025 11:57:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCW38vvo3stx7Ioar8nLc1MbPGeqpt4aVo7z81FL9fgFP08vGJZwHI2RLusrHINGIk0TCSXJ59IcwZ3x@vger.kernel.org, AJvYcCWPYRJIkDtAGvVQvLYm+QBuFt60rsNME98I3qxLSiZfbZ4aovU0d1DK9emLQyHxSSVAU8jr62T4xwtHo8D4@vger.kernel.org, AJvYcCXNxpFpLHNf2ls7C/lgIDPTX3PE4vVC8I3k7DvpeSRyeRz71MjCyz5HxkFBx4jtp8bUo33sDDdF@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywmz+/M38sM09yJGXf2TWArHNanO2ps6GD1pS7fQ/lV5dlSHYzC
+	z/uPQL1kFUiYMGu5lpcvNTBQ/0QdNnKvfZzVu3LpeN9Ra9YJ8pUHSQURhi8RMf2l23/wR4vFNiy
+	xlvAFmIuapKNAYTtQx6kEurO2Mg==
+X-Google-Smtp-Source: AGHT+IE8PDn7axUoinBnTIfZ0cfMVPVQgH/bj9hTJDusIxJXQXf3Z2wDnrh+6FvWe+I1CQJPWkBXl12skSmq8p7UwQ8=
+X-Received: by 2002:ac2:4e16:0:b0:540:2fe6:6a3c with SMTP id
+ 2adb3069b0e04-542abe955e7mr3496186e87.0.1737057463177; Thu, 16 Jan 2025
+ 11:57:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Z4lKIJ8nDst7rqCs@lizhi-Precision-Tower-5810>
+References: <20250114220147.757075-1-ninad@linux.ibm.com> <20250114220147.757075-4-ninad@linux.ibm.com>
+ <173689907575.1972841.5521973699547085746.robh@kernel.org> <35572405-2dd6-48c9-9113-991196c3f507@linux.ibm.com>
+In-Reply-To: <35572405-2dd6-48c9-9113-991196c3f507@linux.ibm.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 16 Jan 2025 13:57:23 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK1z4w62pGX0NgM7by+QRFcmBadw=CRVrvF2vv-zgAExg@mail.gmail.com>
+X-Gm-Features: AbW1kvaz7cz0JErISAQO978pEbpoqDGvU0yV8aV8M5Xy632yu2go8X9lmt54eW8
+Message-ID: <CAL_JsqK1z4w62pGX0NgM7by+QRFcmBadw=CRVrvF2vv-zgAExg@mail.gmail.com>
+Subject: Re: [PATCH v5 03/10] dt-bindings: gpio: ast2400-gpio: Add hogs parsing
+To: Ninad Palsule <ninad@linux.ibm.com>
+Cc: andrew+netdev@lunn.ch, pabeni@redhat.com, 
+	linux-arm-kernel@lists.infradead.org, edumazet@google.com, joel@jms.id.au, 
+	krzk+dt@kernel.org, linux-kernel@vger.kernel.org, andrew@codeconstruct.com.au, 
+	devicetree@vger.kernel.org, davem@davemloft.net, kuba@kernel.org, 
+	openipmi-developer@lists.sourceforge.net, netdev@vger.kernel.org, 
+	linux-aspeed@lists.ozlabs.org, conor+dt@kernel.org, eajames@linux.ibm.com, 
+	minyard@acm.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 16, 2025 at 01:04:16PM -0500, Frank Li wrote:
-> On Thu, Jan 16, 2025 at 09:32:39AM -0600, Bjorn Helgaas wrote:
-> > On Tue, Nov 19, 2024 at 02:44:21PM -0500, Frank Li wrote:
-> > >                    Endpoint
-> > >   ┌───────────────────────────────────────────────┐
-> > >   │                             pcie-ep@5f010000  │
-> > >   │                             ┌────────────────┐│
-> > >   │                             │   Endpoint     ││
-> > >   │                             │   PCIe         ││
-> > >   │                             │   Controller   ││
-> > >   │           bus@5f000000      │                ││
-> > >   │           ┌──────────┐      │                ││
-> > >   │           │          │ Outbound Transfer     ││
-> > >   │┌─────┐    │  Bus     ┼─────►│ ATU  ──────────┬┬─────►
-> > >   ││     │    │  Fabric  │Bus   │                ││PCI Addr
-> > >   ││ CPU ├───►│          │Addr  │                ││0xA000_0000
-> > >   ││     │CPU │          │0x8000_0000            ││
-> > >   │└─────┘Addr└──────────┘      │                ││
-> > >   │       0x7000_0000           └────────────────┘│
-> > >   └───────────────────────────────────────────────┘
-> > >
-> > > Use 'ranges' property in DT to configure the iATU outbound window address.
-> > > The bus fabric generally passes the same address to the PCIe EP controller,
-> > > but some bus fabrics map the address before sending it to the PCIe EP
-> > > controller.
-> > >
-> > > Above diagram, CPU write data to outbound windows address 0x7000_0000, Bus
-> > > fabric map it to 0x8000_0000. ATU should use bus address 0x8000_0000 as
-> > > input address and map to PCI address 0xA000_0000.
-> > >
-> > > Previously, 'cpu_addr_fixup()' was used to handle address conversion. Now,
-> > > the device tree provides this information, preferring a common method.
-> > >
-> > > bus@5f000000 {
-> > > 	compatible = "simple-bus";
-> > > 	ranges = <0x80000000 0x0 0x70000000 0x10000000>;
-> > >
-> > > 	pcie-ep@5f010000 {
-> > > 		reg = <0x80000000 0x10000000>;
-> > > 		reg-names ="addr_space";
-> > > 		...
-> > > 	};
-> > > 	...
-> > > };
-> > >
-> > > 'ranges' in bus@5f000000 descript how address map from CPU address to bus
-> > > address.
+On Thu, Jan 16, 2025 at 9:04=E2=80=AFAM Ninad Palsule <ninad@linux.ibm.com>=
+ wrote:
+>
+> Hi Rob,
+>
+> On 1/14/25 17:57, Rob Herring (Arm) wrote:
+> > On Tue, 14 Jan 2025 16:01:37 -0600, Ninad Palsule wrote:
+> >> Allow parsing GPIO controller children nodes with GPIO hogs.
+> >>
+> >> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
+> >> ---
+> >>   .../devicetree/bindings/gpio/aspeed,ast2400-gpio.yaml       | 6 ++++=
+++
+> >>   1 file changed, 6 insertions(+)
+> >>
+> > My bot found errors running 'make dt_binding_check' on your patch:
 > >
-> > Shouldn't there also be a pcie-ep@5f010000 'ranges' property to
-> > describe the translation for the window from bus addr 0x8000_0000 to
-> > PCI addr 0xA000_0000?
-> 
-> Needn't 'ranges' under pcie-ep@5f010000 because history reason. DWC use
-> reg-names "addr_space" descript outbound windows space.
-
-If reg-name "addr_space" is used instead of 'ranges' for some
-historical reason, we should mention that in the commit log so people
-don't assume that this difference is the way it's *supposed* to be
-done.
-
-I only see "addr_space" mentioned in
-Documentation/devicetree/bindings/pci/*-ep.yaml, so I assume
-this "addr_space" usage only applies to endpoints?  
-
-> > > Use `of_property_read_reg()` to obtain the bus address and set it to the
-> > > ATU correctly, eliminating the need for vendor-specific cpu_addr_fixup().
+> > yamllint warnings/errors:
 > >
-> > Why is this different from [1], where parent_bus_addr comes from the
-> > 'ranges' property?  Isn't this the same exact kind of address
-> > translation for both RC and EP mode?
-> 
-> The method is the same, but space means is difference.
-> 
-> RC side:
->    regs, 1: controller register, 2: config space, (although it should be
-> in ranges)
->    ranges, (IO range and Memory range).
-> 
-> EP side:
->    regs, 1: controller register, 2: outbound windows space.("addr_space")
-> 
-> All regs need call of_property_read_reg() to get untranslated address.
-> ranges:  use "parent_bus_addr" in [1].
+> > dtschema/dtc warnings/errors:
+> >
+> >
+> > doc reference errors (make refcheckdocs):
+>
+> I am not seeing any error even after upgrading dtschema. Also this mail
+> also doesn't show any warning. Is this false negative?
 
-I think we should at least use the same name ("parent_bus_addr", not
-"bus_addr_base") and probably also figure out a wrapper or similar way
-to use 'ranges' for future endpoint drivers and fall back to
-"addr_space" for DWC.
+I believe this happens when a prior patch in the series has an error.
 
-> > [1] https://lore.kernel.org/r/20241119-pci_fixup_addr-v8-1-c4bfa5193288@nxp.com
-
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> > > @@ -410,6 +410,7 @@ struct dw_pcie_ep {
-> > >  	struct list_head	func_list;
-> > >  	const struct dw_pcie_ep_ops *ops;
-> > >  	phys_addr_t		phys_base;
-> > > +	u64			bus_addr_base;
-> > >  	size_t			addr_size;
-> > >  	size_t			page_size;
-> > >  	u8			bar_to_atu[PCI_STD_NUM_BARS];
+Rob
 
