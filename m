@@ -1,157 +1,128 @@
-Return-Path: <devicetree+bounces-139001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 799F6A13933
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 12:36:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9732EA1394D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 12:41:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1ADF1889A87
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 11:36:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFDF7168BC6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 11:41:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698F61DE2BE;
-	Thu, 16 Jan 2025 11:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC8C1DE3DB;
+	Thu, 16 Jan 2025 11:41:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="OO6KTh89";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ORvpSSI1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Az1JkgPU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a2-smtp.messagingengine.com (fout-a2-smtp.messagingengine.com [103.168.172.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 654951DE2B8;
-	Thu, 16 Jan 2025 11:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.145
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4111B1D86F6
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 11:41:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737027315; cv=none; b=B1Q//eSk//l6Wa57SkUbVu0eelxraCiL6tgWdL/L7gkfhf7UbB4DbACRjOfSL/NTG513YnUGiWX8avj4fbIcrGWqtz49kuLP2kNAchToye1XlA8Qrs/f9aS9t3KFPYi43LgBtTW/jtR+AGdi/5x70WiTd9GqphpwGeGNVmqM+cI=
+	t=1737027707; cv=none; b=umdm6jnTqQe13wYmYskDAAsezAK5Ww5P5t2pOHWKAitrJnaHWNZy7gUgSNd3Z34MgOdQ9XU+wd9VgDeD5aFzJB/LN1UBOS59UHhgU35U3HeuxF71yiKrTSluR5SpWr0525au3UzWB0kz0zCZFypqn+d8PrKudJRuZO+NAs2DeuY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737027315; c=relaxed/simple;
-	bh=jSVtHDP4vkRRHEPHgwEmKSyueXuCauln5j89nd1+i4E=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=UvECbXXJmN2EgBhYIC66gbU+UYvDiBdpZwiRbaP8rK/PtjRXssphd1MMHEzheTbb9R6LYaU+HBp3ZKbz3X3lWI+pO/MJq2mHAgkmPJkkHf20/bR1mmEGsjbJv+2UKlK36EOnLfjAL/9YfOeC043EH5k5fdBDEeJ1g2J7zMmtthQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=OO6KTh89; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ORvpSSI1; arc=none smtp.client-ip=103.168.172.145
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from phl-compute-09.internal (phl-compute-09.phl.internal [10.202.2.49])
-	by mailfout.phl.internal (Postfix) with ESMTP id 7C3E213801E7;
-	Thu, 16 Jan 2025 06:35:12 -0500 (EST)
-Received: from phl-imap-12 ([10.202.2.86])
-  by phl-compute-09.internal (MEProxy); Thu, 16 Jan 2025 06:35:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1737027312;
-	 x=1737113712; bh=z+EFIr23ZJs03pyrwVBBdlciNSMNgKdLlwXususlrf8=; b=
-	OO6KTh89wQBi1r8VN4uihkPC65/ZKZGEW+QHk0XZtTQ05PCI8Y0F+gTBZuDN+Yh2
-	17081nei2Go/8yhHDdCmj43DMnY4A3ig34kbHPzRRgH+l6DtxZhJSRb8XGyvYfV9
-	owdaP7PGzQ2dAcKYWCb4tbQShLuGMpYJtk7U4gHNtbXHMuV1O4I+cpEWUWm+NT6t
-	D0EGzopQTjZhJBdwsZbFgX53WnvxOOi9toR3+Uf7hCuWj1QAnHhAZbLMErL80OST
-	EMCAtUs07DwQXBmniXMrBszKzL8btQkkFadU2gugvWfn29NEgbCtANXg0ZxE3SMe
-	NvW7zUq4/u9qSoVS/pGeOA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1737027312; x=
-	1737113712; bh=z+EFIr23ZJs03pyrwVBBdlciNSMNgKdLlwXususlrf8=; b=O
-	RvpSSI1Gv0uXGeaFWtRBsvzunqeFsPRAbOdCN7GhZlIqeLxE/Rug2WvvBlHzE2mT
-	mgRqMWe8vW0LgUv7mnzbJ3D92x57oUkwckCY60eItehUcElTnBEvwfLWAhgMjRUD
-	wC3GJGpDDanabMMBAmjKuoeGsy3Yzxndt1RDnRhhiIWH2QLvBWg3jNrC7OumzQmh
-	+mWJ4R59/Hql+oaIzFGMYD/K5Hw2aAvxGfwO5ittajQ+asMCD9T78aE94Nt1h1L1
-	Y4RRLOTMSgBigxTr/vG8ifJ1X0GjelFZwt46ZyimYs9wcCozxuwkou7z6KlmvU7K
-	EjiMA3XUd1ZyUCe5LTHVA==
-X-ME-Sender: <xms:7-6IZwg-8eeVTMgDrABKg5heQjv-57phQUS9zAVHFb8MzmAoKw6SyA>
-    <xme:7-6IZ5C1yOYSj9Jo1IhwdzNBEfqs2J9dlgnUrgrypNGUykoRh3ORweIpolEGq7J52
-    NSGgEqSdukvZnhGv2E>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudeiuddgvdekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtqhertdertdej
-    necuhfhrohhmpedflfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfh
-    hlhihgohgrthdrtghomheqnecuggftrfgrthhtvghrnhepjeehfeduvddtgffgvdffkeet
-    hefhlefgvdevvdekuefffeekheehgeevhfevteejnecuvehluhhsthgvrhfuihiivgeptd
-    enucfrrghrrghmpehmrghilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihgohgr
-    thdrtghomhdpnhgspghrtghpthhtohepudefpdhmohguvgepshhmthhpohhuthdprhgtph
-    htthhopehtshgsohhgvghnugesrghlphhhrgdrfhhrrghnkhgvnhdruggvpdhrtghpthht
-    ohepghhrvghgohhrhidrtghlvghmvghnthessghoohhtlhhinhdrtghomhdprhgtphhtth
-    hopehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmpdhrtghpthhtohepthhh
-    ohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoheprg
-    hrihhkrghlohesghhmrghilhdrtghomhdprhgtphhtthhopegtohhnohhrodgutheskhgv
-    rhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpd
-    hrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehtrgiffhhi
-    khdrsggrhihouhhksehmohgsihhlvgihvgdrtghomh
-X-ME-Proxy: <xmx:7-6IZ4EGtc4xvU43c-Dk0OW3AAri7wvT7n6Mpkzj-03kN8Ke7NFdKg>
-    <xmx:7-6IZxQXu8h7vlSEDnKLJT3S405NKpI6i4WqyHymAZr57Fg9Kdq1uQ>
-    <xmx:7-6IZ9yPGGkSxNQej3TdSsOD1MOeEVWi47x9Gj32pQESqp11trNsEg>
-    <xmx:7-6IZ_6Ea7ga--5RlYf4ZtHxExCWU44t5EhPqP8IrZnOKW1os_mvpQ>
-    <xmx:8O6IZwopyr1f3Q_EsAyIUQCpDNi45Nt8SVh32dxZ-0nrdxHmEGkdW3FH>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id BF2501C20066; Thu, 16 Jan 2025 06:35:11 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1737027707; c=relaxed/simple;
+	bh=grVoZNVjcvy9MCcSf9CkrEgnrvso4XYxU656pIV7e5E=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=R34AXmagaA1tpZ3QN8b3s1dIpFiSf7Av/iJfMUz3DhKQN8B5wGiUae9sLnEIe5FNkUsaU/HgpRCaIxtoZD6pobvvpewzqgw6HQp/7VawyglwO5Nk4ZWwtvoytF5MnxywhSE6fxSvxjxhfE9czvk4rmfsxEf8Lq3jK9iyv+j/BhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Az1JkgPU; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-436326dcb1cso4774865e9.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 03:41:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737027704; x=1737632504; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bKtUMEoqDHLTfhHmG3inCWsYClLTJL5ZLVp5zayXN6U=;
+        b=Az1JkgPURBxpMk2FaVwXIK6P2JWoRJf6sXZ39rB3DozZBZxgpBIjvEkVVwB2Kqz0IU
+         I0a1ed9CWyXwdezV9U+7Z/HObjfGYQt8jyWLJ9xyhtRQSAK8vNnXEGzs6ybl0hwE8yM1
+         +F+W51Lw9/Lwko9m6YcADY11v04rUMQ0+GCHiHqsKrQ+myzIWJOhoIPRQw1qeZLA81I2
+         ftcE2CwXtArX9KaEYb1SXkEmrrXg23/fAWHdGs1zuswXAj7fcKRc8CMgswL5S5q28CAK
+         DBgLs7kBMfxwWsft8Okbuhf9anLvYhzlWqF4ENMjhcVUCrF1p6faEcxVhUJgnggymq1U
+         1iDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737027704; x=1737632504;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bKtUMEoqDHLTfhHmG3inCWsYClLTJL5ZLVp5zayXN6U=;
+        b=Z60GMIiWejtnKYC3QvQcxtsgIwVBM7t70XlaaE1tBgn79RgrDP6pCHy9xW2zdXmXTB
+         JHKykmhi77rL8mfczlUA92jeviy5a5qj0gQW+dJhc8wZM+PVpMVcoqZxNsvGbipzLHT1
+         PP0pvpnjLhwji/LS8cPMRkkIvvJ/tRSLbnOzk1v7Vl9VKELfpqfuKpif7ARlW553O91U
+         2cmXMJ8oKL+ayyDBElUWiV0DcO0r5epIZ7b+jUDozZqKeuuUhwz/Oj0gH3HjQV+seA+z
+         p5CDMP7LgGXLaOqfNRUut6ixWIPk+0fLNOvnDv0k1f60zA0t4+uFElilH37qQzm1QwtC
+         pYYA==
+X-Forwarded-Encrypted: i=1; AJvYcCV/69vU3pj+G0zFLV16jNd88/GkUza8UsHhC9XYoHImiFIloeKpkNwVxbb3vhkYOJWusBU79da35MlG@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqdKiHTfTjEtUmW1cueUOTv1HqeQVGtqdkBjrDmYN+KvMXqxia
+	0NUb7LnLU94r3q5PhgJHdYN9oeAbU5R13minyYXOhX+GJTA+5uyv9iJO17KWXFg=
+X-Gm-Gg: ASbGncsn1vcyznL1U9wExXfMQYe8xNGZCZFZvssslVmKnN6dsEAsLeQCYMktH5Czg3y
+	AASskTuz+F7B1n/gGuWZYEUGHmKFXBsToh82xbI6LfYlJzUJm/8DtCn1i0f6fI2KIGFiD8CTdz1
+	6HebgC+ZkYHbAWsotVggQ3RhN4uI0gL7fLEM1vyHT4EyOah7t2dZjfVMBUyXTcZ5r1PDBdxO5U9
+	dkcB8bchlnDfBbJbkkXlsbYBKczD8o5EVcIDl+GUGI/5VwxNMwzmiEdKb60nL1+LA==
+X-Google-Smtp-Source: AGHT+IFueE/gZTYtweq/GR16SLOOq+RSDS7PYuc5QwoykXqiYGNy+orWNKBAzKyMcjXwFzsBcfLt3A==
+X-Received: by 2002:a05:6000:401f:b0:386:3328:6106 with SMTP id ffacd0b85a97d-38a872f6193mr33619540f8f.35.1737027704561;
+        Thu, 16 Jan 2025 03:41:44 -0800 (PST)
+Received: from [192.168.0.14] ([188.26.60.120])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c74aca93sm57515965e9.13.2025.01.16.03.41.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Jan 2025 03:41:44 -0800 (PST)
+Message-ID: <77eeed18-4a48-4407-ae83-7a922045b29a@linaro.org>
+Date: Thu, 16 Jan 2025 11:41:42 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Thu, 16 Jan 2025 11:34:50 +0000
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
- "Aleksandar Rikalo" <arikalo@gmail.com>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>
-Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <8df8ffbe-fcee-4002-afdd-98307324b63a@app.fastmail.com>
-In-Reply-To: <20250116-cluster-hci-broken-v2-5-fc52cfb7a19e@bootlin.com>
-References: <20250116-cluster-hci-broken-v2-0-fc52cfb7a19e@bootlin.com>
- <20250116-cluster-hci-broken-v2-5-fc52cfb7a19e@bootlin.com>
-Subject: Re: [PATCH v2 5/5] MIPS: mobileye: dts: eyeq6h: Enable cluster support
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/3] firmware: add Exynos ACPM protocol driver
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Jassi Brar <jassisinghbrar@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ andre.draszik@linaro.org, kernel-team@android.com, willmcvicker@google.com,
+ peter.griffin@linaro.org, daniel.lezcano@linaro.org,
+ vincent.guittot@linaro.org, ulf.hansson@linaro.org, arnd@arndb.de
+References: <20241220-gs101-acpm-v5-0-4f26b7fb3f5f@linaro.org>
+ <20241220-gs101-acpm-v5-2-4f26b7fb3f5f@linaro.org>
+ <8e6bade0-5184-4bf7-b1f0-103a77d0f98b@kernel.org>
+ <060c7a96-c1ed-4c97-8a3f-f510102466f9@linaro.org>
+Content-Language: en-US
+In-Reply-To: <060c7a96-c1ed-4c97-8a3f-f510102466f9@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
 
 
-=E5=9C=A82025=E5=B9=B41=E6=9C=8816=E6=97=A5=E4=B8=80=E6=9C=88 =E4=B8=8A=E5=
-=8D=8810:59=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
-> The CM3.5 device used in EyeQ6H SoCs incorrectly reports the status
-> for Hardware Cache Initialization (HCI). This commit adds the
-> compatible string for the CM to acknowledge this issue, which enables
-> the use of the second CPU cluster.
->
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->  arch/mips/boot/dts/mobileye/eyeq6h.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/arch/mips/boot/dts/mobileye/eyeq6h.dtsi=20
-> b/arch/mips/boot/dts/mobileye/eyeq6h.dtsi
-> index=20
-> 1db3c3cda2e395025075387bcb66ea0737fd37f6..c6087bd8ca1d47855b8d93aa7e75=
-e1fed219587b=20
-> 100644
-> --- a/arch/mips/boot/dts/mobileye/eyeq6h.dtsi
-> +++ b/arch/mips/boot/dts/mobileye/eyeq6h.dtsi
-> @@ -32,6 +32,10 @@ cpu_intc: interrupt-controller {
->  		#interrupt-cells =3D <1>;
->  	};
->=20
-> +	coherency-manager {
-> +		compatible =3D "mti,eyeq6-cm";
+On 12/31/24 2:32 PM, Tudor Ambarus wrote:
+>>> +config EXYNOS_ACPM_PROTOCOL
+>>> +	tristate "Exynos Alive Clock and Power Manager (ACPM) Message Protocol"
+>>> +	depends on ARCH_EXYNOS || COMPILE_TEST
+>>> +	depends on EXYNOS_MBOX
+>> Is it build time dependency? No || COMPILE_TEST?
+> There's no build time dependency, I'll drop this line.
 
-                ^=20
-                Maybe compatible =3D "mti,eyeq6-cm", "mti,mips-cm";
+There's no build time dependency on EXYNOS_MBOX, but there is on MAILBOX:
 
-Thanks
+ERROR: modpost: "mbox_request_channel"
+[drivers/firmware/samsung/acpm-protocol.ko] undefined!
+ERROR: modpost: "mbox_free_channel"
+[drivers/firmware/samsung/acpm-protocol.ko] undefined!
+ERROR: modpost: "mbox_send_message"
+[drivers/firmware/samsung/acpm-protocol.ko] undefined!
+ERROR: modpost: "mbox_client_txdone"
+[drivers/firmware/samsung/acpm-protocol.ko] undefined!
 
+Will replace the line with "depends on MAILBOX".
 
---=20
-- Jiaxun
+Thanks!
+ta
 
