@@ -1,107 +1,139 @@
-Return-Path: <devicetree+bounces-139017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69B6DA13B14
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:47:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4D65A13B3C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:52:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88AA31651FF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 13:47:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 26FEC188C348
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 13:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C32811DE8BC;
-	Thu, 16 Jan 2025 13:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13BD122A803;
+	Thu, 16 Jan 2025 13:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="vFExuecJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Nj0mcexA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 201FA156F57;
-	Thu, 16 Jan 2025 13:47:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7123C1DED53;
+	Thu, 16 Jan 2025 13:52:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737035227; cv=none; b=dWcRNsE/mr6GHHZSWBjod7LXH/YwEjk9bvJYA3n2VLeQyrsRJgqIpd7PgLPlsLc7MvDSwFUVM9eep+uDDzitEOQlnLBM8oGevXZwA0Z1SSwcCLrArOoYIQfOcxNQ7I7UwEiHCy+yPcSYdXxuVQPUfVqDgI+/I3oz+Xz6szpl58o=
+	t=1737035542; cv=none; b=OjBKiCfFQoRNySVPLqv8Ys3qyz1RylKC3JTV4JwdeeX2qpsx4O9F1BIGdfSqNsortD28TNRo70vDhkDIfxxoTuGKzO7xKiEExVE9JqL2r9mo3Xsl+y6gRG6+EAdw4Jh2f9LQkGKhkdikrD4cg9WEiPZNKUBpEOzkorPTtioN7ZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737035227; c=relaxed/simple;
-	bh=KAQ8G7WlTHX/Nk9uGZR4k6DBlTcFTNqCI1pNTt3zeaA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oFcvO/dU65Oo8bJTs9AQmbBjobrGA1Ch66uY169slvPgjcft0gwTvIpPybwuGRiKG3xXfz1L2Jza7IhIaPwYmFMxwS9SoP3p4/jpK/G7q+sjIRaMuMFWlOpKsPpFTBV8h2VaiiuUmKR58S5r+Q8PorGK1PdJIH3QUgtrmwPJlHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=vFExuecJ; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=rgxuZj06pQ0SDk46r0uUavHNLOkEktuciIBsgcbiaww=; b=vFExuecJmBWoFHCYiLLZH+iI7x
-	2WgzL4KFSni9KdjmZi2A2AeskWrXz9wXXwvWb8PDYAJILVTUyEe8UNl9dMGPv34i19tXjRAGpjjra
-	bdfgVEVfK+FZ73xzcvHfUpdMQ/DZqO82YhzasgXyyif8yxZO9omUh2tnHzdkuDfKmm0s=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tYQD7-0058bx-Si; Thu, 16 Jan 2025 14:47:01 +0100
-Date: Thu, 16 Jan 2025 14:47:01 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-leds@vger.kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, Lukasz Majewski <lukma@denx.de>,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] leds: trigger: netdev: Introduce OF mode
- configuration using netdev-trigger-mode property
-Message-ID: <78e19c21-589f-4a15-8878-d2f5bb3017ef@lunn.ch>
-References: <20250113002346.297481-1-marex@denx.de>
- <20250113002346.297481-2-marex@denx.de>
+	s=arc-20240116; t=1737035542; c=relaxed/simple;
+	bh=oFsxddu5kZO0xWK2yWmbMbJVxyC9VH5e8OAEgQt8uxo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=T2zWYocUhMJu6/yOK9bnPe0CK2/cxdnbAaqUR92GaZ5ea0/sNxJ/P6z1EJjnB6YOKvELwgTGuKaut1dWVUW7Y3T/uZNIj5tw78s+OiNNgYDD23Y7GaaJRFsMPF73tyfXsCoJo5pNkp8DTaS1/c3+LJ5c/ixCr116HNgTyMaSUlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Nj0mcexA; arc=none smtp.client-ip=209.85.160.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-29e5c0c46c3so593699fac.3;
+        Thu, 16 Jan 2025 05:52:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737035538; x=1737640338; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JuO96IWempVkNU1KLyvro2vFbhpa/9E+R+coBfMKMxU=;
+        b=Nj0mcexAXKPE5nlIpfy1Ke4a1IBaqmH1QH9ikfRsIMfe0XLtacIk4ASR1cnbfnii3O
+         Ae73qsToFq6wKlDphX5eVdFk5QE5Tpx4tREhV4GLCNHQmijPDHgAWe6CnXP+NQksf6cR
+         Iat/+ruSPQejP3P+BoXNfiYvkHM7BHUvII+eLzv0pdqVMOwr1cMTJSfFLDBg6gsOVE6A
+         i2ckhxsv3ZeClcUvdfasz+Up1Bdve/SqwXRo8ca8dR5fJQ/33PiUxJKQMs6Jfo8YcPtJ
+         G/htRrYerto/YR65PNazgzlGGFXWAJMxEmWY8I3ch9cKGf4GFKZUgn6uzBtwyshYCkfw
+         cjkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737035538; x=1737640338;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JuO96IWempVkNU1KLyvro2vFbhpa/9E+R+coBfMKMxU=;
+        b=kGPyqDeWLBBMgPou//Dc5MAzmsVALtnb2RC9oxB5TVAkWjWHGgprLfXIl0juRbB5iY
+         USv+EvjuggqC2VWdzdiL54NG80uVBIcM73MWm9vzqTpYo7Qco8B0LVZ1DbRtA7gg9Lk+
+         5kaEEfzlznqMhatPIuG3ex7XcBNi11xjmC+k8e8oXTKFdD78bov5Qt8D0PEuc8diMK7J
+         zCtdfxnQCoVY/TanHvIYXPQHMpriNDEgcpY220cjup8XVgsH60dehBewhEM+Cfm8Jwds
+         KJyK9+7SNH882y2cK1XllyKP270cOgMkE/z5DZWMe+6ubIsqyElufZkBn3GeIG1itNBn
+         9d9w==
+X-Forwarded-Encrypted: i=1; AJvYcCU+/RTgrAEA8ws1y4MbcfPE1U702GfoHYzaaZnbvKbe1Ng3kgRe+H10anPgjnLmG1UA1VKnaDIt17Ef@vger.kernel.org, AJvYcCU/DYTYi1webJKKUYDLTHEqIDayO0Yk8ts756I2Xadtj5OPXWfMkeqvyFZpEWiqi+Oh7tnXWA/2y9xX1HSG@vger.kernel.org, AJvYcCWN+ym36Xawx1DCeCyKhLE9YagR0eEhIhG85hl4iOjknifudxpARxZ71hBufb+jEL6zB50wkPmVg5W1@vger.kernel.org, AJvYcCXjFipQpU8SmVJmq3OpXpLZpV03K0zf1L47/A2yLNmUWyMsGNVYIw7+KRQflynoUSd/e4m0TKu0UqA5iN0=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuVB0/tqXQhyE7sQh4V4paGbvRigNnU+ZV335JadS4ulOn+VCZ
+	oqIf52ryc1iMtfSOnqMb1jybUqAGHwo3VheuyLsyDPSe6nBigURPVDVpwgUqVgei8xYxG8Fzzid
+	T68Us+eDADiQ7M6k9Th/SD+72+vM=
+X-Gm-Gg: ASbGncu+Uc3EEChmwi7VpbHpAca5pfXvMZ5UuflUyCp0Fk36dtKKb4FD4vBKxgp6lu0
+	s/zRwUxdVMQhztJb18o7O32Z0KNgkpMF9Yfa2/gY=
+X-Google-Smtp-Source: AGHT+IE5l0Ts1eqkJ/aNEag10ptSbJFKWLRlqm0WMeaZdvqjpd3aVLCDtoKkCuHKAniNC7LyGAPudsEo0Km9VO/GfpA=
+X-Received: by 2002:a05:6870:fe92:b0:29e:6814:19d with SMTP id
+ 586e51a60fabf-2aa065226a5mr20148132fac.9.1737035538404; Thu, 16 Jan 2025
+ 05:52:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250113002346.297481-2-marex@denx.de>
+References: <20250116085939.1235598-1-leo.yang.sy0@gmail.com>
+ <20250116085939.1235598-2-leo.yang.sy0@gmail.com> <20250116-athletic-prehistoric-worm-36ffcb@krzk-bin>
+In-Reply-To: <20250116-athletic-prehistoric-worm-36ffcb@krzk-bin>
+From: Leo Yang <leo.yang.sy0@gmail.com>
+Date: Thu, 16 Jan 2025 21:52:08 +0800
+X-Gm-Features: AbW1kvYLa7FVsJI-15KZaQE92R4PJe7iEmWZjwDAeLiN4TVHLU8-1qiulGKEdwE
+Message-ID: <CAAfUjZGSgdQYwC24S__EO13-q1HQWVkUP7oDgJm-=AeeXgr1DQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: ti,ina2xx: Add INA233 device
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: jdelvare@suse.com, linux@roeck-us.net, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, Leo-Yang@quantatw.com, corbet@lwn.net, 
+	Delphine_CC_Chiu@wiwynn.com, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-doc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> It is not possible to immediately configure the LED mode, because the
-> interface to which the PHY and the LED is connected to might not be
-> attached to the PHY yet. The netdev_trig_notify() is called when the
-> PHY got attached to interface, extend netdev_trig_notify() to detect
-> the condition where the LED does have netdev trigger configured in DT
-> but the mode was not yet configured and configure the baseline mode
-> from the notifier. This can reuse most of set_device_name() except for
-> the rtnl_lock() which cannot be claimed in the notifier, so split the
-> relevant core code into set_device_name_locked() and call only the core
-> code.
+Hi Krzysztof,
 
-Why cannot it be claimed? Because it has already been claimed? If so,
-please add an ASSERT_RTNL() in the locked function to document
-this. Or is there a lock inversion here?
+On Thu, Jan 16, 2025 at 6:47=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+>
+> > +      This value will be used to calculate the Current_LSB and current=
+/power
+> > +      coefficient for the pmbus and to calibrate the IC.
+> > +    minimum: 32768
+> > +    maximum: 4294967295
+>
+> Uh, are these real values measurable by the device? The last one looks
+> like UINT_MAX.
 
-> -static int set_device_name(struct led_netdev_data *trigger_data,
-> -			   const char *name, size_t size)
-> +static void set_device_name_locked(struct led_netdev_data *trigger_data,
-> +				  const char *name, size_t size)
->  {
-> -	if (size >= IFNAMSIZ)
-> -		return -EINVAL;
-> -
+According to the spec I don't see a definition of the upper limit of the
+current measurement, it all depends on how low the shunt resistance can
+be, so I'll use the upper limit of the u32 as the maximum for now, even
+though it's unlikely that this number will be present in the actual circuit=
+.
 
-The code you cannot see in the context does:
+>
+> > +    default: 32768000
+>
+> Default is 32 A? For what applications is this sensor used?
+>
 
-        memcpy(trigger_data->device_name, name, size);
+According to spec 8.2.2.1 Programming the Calibration Register example,
+a Current_LSB with a maximum expected current of 15A is approximately
+457.7uA.
+The example shows that a Current_LSB of 500 or 1000uA/bit can be used.
+So I choose 1000uA as the default value here, this value corresponds to
+the expected maximum current which is 32A (with some loss of accuracy to
+ have a larger measurement range), and yes maybe the user doesn't
+need such a large current, so the accuracy-sensitive use of the scene
+can be adjusted according to the actual measurement range of the
+expected maximum current, I'm trying to retain some flexibility for the
+user.
 
-If we don't have this size check, is it possible to overrun the
-buffer?
 
-It might be better to split this patch into two, one doing the
-refactoring of this function, and include an explanation of the
-locking and why it is safe not to include this size check.
+Thank you for all your suggestions, they are very useful and
+I have gained a lot from them.
 
-	Andrew
+
+Best Regards,
+
+Leo Yang
 
