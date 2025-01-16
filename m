@@ -1,143 +1,143 @@
-Return-Path: <devicetree+bounces-139074-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DBBCA13DC0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:35:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 897BEA13DA6
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:31:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA45E3A1996
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:35:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAD91188B7C8
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:31:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6408D22B8B2;
-	Thu, 16 Jan 2025 15:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3C6322A809;
+	Thu, 16 Jan 2025 15:31:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="As71ZTqw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.skole.hr (mx1.hosting.skole.hr [161.53.165.185])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3947324A7F6;
-	Thu, 16 Jan 2025 15:35:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=161.53.165.185
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9273581728;
+	Thu, 16 Jan 2025 15:31:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737041722; cv=none; b=AV9Ht9B7chk96rurVGUKHPj10yln7eScQKLtw9MGqFb1MGgdCDSufN1931ysPhXFy9nX2bKpOiAPBiL+4bs0ZyLiNNlf/XI6QPnOVxO/tED3AFLzvulRH+zmZ5d00WLilbWuXXNmCm6SwcfynVku9liVwXNd2AskqoxRptDXtvs=
+	t=1737041472; cv=none; b=Ji0gkvWNp9xO+74zBfgeYxxEnq5LYT8QBTE0UqR2MOGcXhGJ1bYZ1FaC2Z0bXkZ8oPbKrVbPpdkPpzpvX2xXZXYaINyqad0weaLKZS2ovsgpBVETqiMt1lV9SXs//fkiWg15JMN4hOC3L+AvZoD8pdXPVcTlwZvDQNQz+xs5pxA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737041722; c=relaxed/simple;
-	bh=rsInXZsOBmuQayw/szjA6bBIcpvuRkQLjrjIPLqPAjE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=p8zsEuRazoAYvDzEbAnstaXQq3owuHyLCyC51qs/jA/cE1FHHMYeAYn8XMSwOUJFZva8nGMv9/enbpVm/IPiMLmt4stpjJvdMVR1fXFD3o3xua9fiWLYJxEZ/8Jb3QEvG1P/xCJvRidkU66tn8LfwURDzmi6AuqS7tvCxNNFbZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr; spf=pass smtp.mailfrom=skole.hr; arc=none smtp.client-ip=161.53.165.185
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=skole.hr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=skole.hr
-Received: from mx1.hosting.skole.hr (localhost.localdomain [127.0.0.1])
-	by mx.skole.hr (mx.skole.hr) with ESMTP id A2BCD820FB;
-	Thu, 16 Jan 2025 16:29:46 +0100 (CET)
-From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <duje.mihanovic@skole.hr>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
- David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject:
- Re: [PATCH v14 3/4] arm64: dts: Add DTS for Marvell PXA1908 and
- samsung,coreprimevelte
-Date: Thu, 16 Jan 2025 16:26:59 +0100
-Message-ID: <5849160.DvuYhMxLoT@radijator>
-In-Reply-To: <ct7q2eaps2m2ceghiek2pmb7yhd5it6s53moumfncnyq4d4zmw@fmtoyyn3j5t2>
-References:
- <20250115-pxa1908-lkml-v14-0-847d24f3665a@skole.hr>
- <20250115-pxa1908-lkml-v14-3-847d24f3665a@skole.hr>
- <ct7q2eaps2m2ceghiek2pmb7yhd5it6s53moumfncnyq4d4zmw@fmtoyyn3j5t2>
+	s=arc-20240116; t=1737041472; c=relaxed/simple;
+	bh=ZD5LNjJmZ7Q03T+Ep0tSHy+qcNEMCEQbGwgjYVx6Bwg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HrkiU6ZPCFgB76fSXTo8N6zRY0By3iVvX/HuvTmw+pHkUvWbcevLsQmaEB60J80pOR9D6bAHOL6JzZuaUa0hNsMUDZnjJD96UhNScumXT1RH56t2YOF0Dl7SGyOxSZ7ts1f0EiXMxufaEKV1nzMftEUbj85ELarHB8tg3wkkqhk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=As71ZTqw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7874C4CED6;
+	Thu, 16 Jan 2025 15:31:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737041472;
+	bh=ZD5LNjJmZ7Q03T+Ep0tSHy+qcNEMCEQbGwgjYVx6Bwg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=As71ZTqwFlXK7xaq5dY2IrSSL6rwkqRbG/cpm4et2IkcG2FPbUrpeWUfqW+uE8NEY
+	 49Iwgd1NG6+6aLgUlA4FWApX6Fjt1583vsJMbs/XM4jtEB0j+CEbV2RqMpP+llxoOS
+	 snH/jFSwSJA3/ejaW+w88AIru+wQpl7+70ZWevt3I39JjPTtQs/lm2VrsEg44SXwnn
+	 IsN3WbGPyQnIL7jm/TaXtpbbLcThcFd10LMtLyizgfHMHLCSMe09FbfARWfJ63UvSK
+	 aU/jWn4fPcXP2SNxwr9+DLZA/vhHErk6/2Zh3SQ7aPuYuNgDJYqMryVDsQDXolfZYL
+	 TwxsX7UCZz9lw==
+Date: Thu, 16 Jan 2025 09:31:10 -0600
+From: Rob Herring <robh@kernel.org>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Aleksandar Rikalo <arikalo@gmail.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: mips: Document mti,mips-cm
+Message-ID: <20250116153110.GA2495012-robh@kernel.org>
+References: <20250116-cluster-hci-broken-v2-0-fc52cfb7a19e@bootlin.com>
+ <20250116-cluster-hci-broken-v2-1-fc52cfb7a19e@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Autocrypt: addr=duje.mihanovic@skole.hr;
- keydata=
- mDMEZokhzhYJKwYBBAHaRw8BAQdAWJZ0hsI/ytTqHGFV8x6tzd5sB596cTeeDB4CQsTf+wC0KER
- 1amUgTWloYW5vdmnEhyA8ZHVqZUBkdWplbWloYW5vdmljLnh5ej6ImQQTFgoAQRYhBG3/QdYN8x
- S1t2umMK0xk1JFj60DBQJmiSHOAhsDBQkJZgGABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAA
- AoJEK0xk1JFj60D1GABAJVSorZdMOlrp/oQtCSH/G53NE56x/JHA8VX+ZQBd/H3AP4/EcUf6eef
- DUxVMh2bdkmuQKsVZGgOGiXpMksrVntWBrQpRHVqZSBNaWhhbm92acSHIDxkdWplLm1paGFub3Z
- pY0Bza29sZS5ocj6ImQQTFgoAQRYhBG3/QdYN8xS1t2umMK0xk1JFj60DBQJmiSH/AhsDBQkJZg
- GABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAAAoJEK0xk1JFj60Dlw8A/i4lPOL7NaYoYePDq
- l8MaJaR9qoUi+D+HtD3t0Koi7ztAQCdizXbuqP3AVNxy5Gpb1ozgp9Xqh2MRcNmJCHA1YhWAbg4
- BGaJIc4SCisGAQQBl1UBBQEBB0DEc9JeA55OlZfWKgvmRgw6a/EpBQ8mDl6nQTBmnd1XHAMBCAe
- IfgQYFgoAJhYhBG3/QdYN8xS1t2umMK0xk1JFj60DBQJmiSHOAhsMBQkJZgGAAAoJEK0xk1JFj6
- 0DG5MA/iuo4l2GDEZ1Zf+XaS//8FwdXDO9nHkfbV2MHjF4NZXwAQDroMzBdMcqVvc8GABFlTTgG
- j7KrRDz2HwWNyF8ZeprAQ==
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250116-cluster-hci-broken-v2-1-fc52cfb7a19e@bootlin.com>
 
-On Thursday 16 January 2025 09:00:40 Central European Standard Time Krzyszt=
-of=20
-Kozlowski wrote:
-> On Wed, Jan 15, 2025 at 09:35:56PM +0100, Duje Mihanovi=C4=87 wrote:
-> > Add DTS for Marvell PXA1908 SoC and Samsung Galaxy Core Prime Value
-> > Edition LTE, a smartphone based on said SoC.
-> >=20
-> > Signed-off-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
-> > ---
-> >=20
-> >  arch/arm64/boot/dts/marvell/Makefile               |   3 +
-> >  .../dts/marvell/pxa1908-samsung-coreprimevelte.dts | 336
-> >  +++++++++++++++++++++ arch/arm64/boot/dts/marvell/pxa1908.dtsi        =
-  =20
-|
-> >  300 ++++++++++++++++++ 3 files changed, 639 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/marvell/Makefile
-> > b/arch/arm64/boot/dts/marvell/Makefile index
-> > ce751b5028e2628834340b5c50f8992092226eba..
-39c5749e631db33aa8fb0386a951c0a70
-> > 215bc02 100644 --- a/arch/arm64/boot/dts/marvell/Makefile
-> > +++ b/arch/arm64/boot/dts/marvell/Makefile
-> > @@ -32,3 +32,6 @@ dtb-$(CONFIG_ARCH_MVEBU) +=3D cn9130-cf-base.dtb
-> >=20
-> >  dtb-$(CONFIG_ARCH_MVEBU) +=3D cn9130-cf-pro.dtb
-> >  dtb-$(CONFIG_ARCH_MVEBU) +=3D cn9131-cf-solidwan.dtb
-> >  dtb-$(CONFIG_ARCH_MVEBU) +=3D cn9132-clearfog.dtb
-> >=20
-> > +
-> > +# MMP SoC Family
-> > +dtb-$(CONFIG_ARCH_MMP) +=3D pxa1908-samsung-coreprimevelte.dtb
->=20
-> Hm, why separate ARCH if this is part of Marvell Makefile? One ARCH per
-> vendor, so if you think this is different than MVEBU, then should be in
-> a separate subdirectory of marvell.
+On Thu, Jan 16, 2025 at 11:59:19AM +0100, Gregory CLEMENT wrote:
+> From: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> 
+> Add devicetree binding documentation for MIPS Coherence Manager.
+> 
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> ---
+>  .../devicetree/bindings/mips/mti,mips-cm.yaml      | 38 ++++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..9f500804737d23e19f50a9326168686c05d3a54e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+> @@ -0,0 +1,38 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mips/mti,mips-cm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MIPS Coherence Manager
+> +
+> +description: |
 
-I see, for v15 I'll put these in a mmp/ subdir.
+Don't need '|'.
 
-> > +
-> > +		ramoops@8100000 {
-> > +			compatible =3D "ramoops";
-> > +			reg =3D <0 0x8100000 0 0x40000>;
-> > +			record-size =3D <0x8000>;
-> > +			console-size =3D <0x20000>;
-> > +			max-reason =3D <5>;
-> > +		};
-> > +	};
-> > +
-> > +
->=20
-> If there is going to be resend/new version:
-> Just one blank line.
+> +  Defines a location of the MIPS Coherence Manager registers.
 
-Will fix.
+Say what the h/w block does.
 
-Regards,
-=2D-=20
-Duje
+> +
+> +maintainers:
+> +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: mti,mips-cm
 
+Convince me a genericish compatible is okay here.
 
+> +
+> +  reg:
+> +    description:
+> +      Base address and size of an unoccupied region in system's MMIO address
+> +      space, which will be used to map the MIPS CM global control registers
+> +      block. It is conventionally decided by the system integrator.
 
+What is decided? The address? That's not relevant.
+
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    coherency-manager@1fbf8000 {
+> +      compatible = "mti,mips-cm";
+> +      reg = <0x1bde8000 0x8000>;
+> +    };
+> +...
+> 
+> -- 
+> 2.45.2
+> 
 
