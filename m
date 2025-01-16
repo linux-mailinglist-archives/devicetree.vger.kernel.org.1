@@ -1,45 +1,47 @@
-Return-Path: <devicetree+bounces-139152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75F93A144E3
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 23:56:18 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37196A144DB
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 23:55:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30CD4169305
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 22:56:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D7991889D1C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 22:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53B34242273;
-	Thu, 16 Jan 2025 22:55:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 935661CEAD3;
+	Thu, 16 Jan 2025 22:55:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="XIkYNUOn"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="G5ILOaLW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-188.mta0.migadu.com (out-188.mta0.migadu.com [91.218.175.188])
+Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780E7241A1D
-	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 22:55:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.188
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA1251DDC33
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 22:55:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737068146; cv=none; b=h2/J3nlqrbZlXeV9N+k0JsNvfwEoVNVYMbFTMdsgB8sP9lbYgDcj9t+HecQLI5PRnAX/UVal6VqQ+atDQFiKXc5anzqiqpke+aY0B30Zh2Vojd2KshED988oa1CuxGnhIAoU671ATvJKUaJ9bbGLFUKttfOQ0GsJsabTSCpU3FE=
+	t=1737068140; cv=none; b=G7oTZIzaPZkv74D4NlbE289SpzIwbmmM1y71jqvRhHr143yOBSK4fWrgk4Z6Wn7Q2vQnH60jtAvoRX7H3WR5ZDE/dVJO0goznDWEFUj4CftdFKzcXvQlso8lQ/RagK62mhsH81YfH9G9GBHA2u5tnP/6XDN8MrfWz7Ysxy0kmMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737068146; c=relaxed/simple;
-	bh=3SrMr/Jpx8XG9K5YUVmcBrgmtmKZBWkBlblLo/AdIhc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PnDjAcHGDfqT5UVz7STLA0pSA58S2P4CYp6EQAD8F6/rxfFtPKgLV8BZv27/g4ucp7fq8q8/jp6GmYffVIYzLeW98DIjnOLRHQV+pCmSifTSHLwbyE4LVZJ1Nwwm8W6M3S3FXd54HfMKDCAzm2B3I35M3NgfdhBcTyMnJeSE1n8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=XIkYNUOn; arc=none smtp.client-ip=91.218.175.188
+	s=arc-20240116; t=1737068140; c=relaxed/simple;
+	bh=hUXs6LILra9jbW4eVbc1ZvdB/92/mHOgKG067hYliAo=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Q5lhhTmydDiaFRo86SWKA1kbLDnVYldX2A6ImHD/n29K+v4Znjv0kkedQicZvUn2II6ebysOEJRxmON0FE+wgor4kjRlrtVPJsWCPWQU2tOVgT0LABIBlHGarez1reZclj0SCSfeBf7f1bn0MFIYZ+b9mTkS9Vkpajil8mjAbX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=G5ILOaLW; arc=none smtp.client-ip=91.218.175.186
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1737068127;
+	t=1737068134;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=HpB5lB6azzxlrJkYukifNhmmPqI9KsgkZ1X5toy37xk=;
-	b=XIkYNUOnuOMNraYswo1GWPm8iADUy2F3zZ3ceaUdiQFQiTUudbzNs78J2Qnx3AbJneWydC
-	wQcHTwdtvO36b+cXEwGNCXu3UMTtvD6SSrqkCEAnYQjzvGrmh2Hbfs8SpFeExTraRmlaXX
-	I99lNcLrzt3vJjIDZbK6EdCv9Ze8kSg=
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=SzhM/Cr/Vt/YQ+Zr0i1+zKtZFp4IFfQdz9T0ezUL7Xo=;
+	b=G5ILOaLW37eG2x8g9HsqxICmTElAyMnTR2Jl+XD+EYxSkDF9IRY4XsRCMro0vtN8h4NkL7
+	gvlxUfET2ipfpkFMv+0UZ4d+a58V2kHh2k+trC6Y0vz2T3ZNCiQJJFD0mk0+uFNoWELZ7i
+	J+emAHK3hJNGhg5794Hs++Ny7F6Tk04=
 From: Sean Anderson <sean.anderson@linux.dev>
 To: Mark Brown <broonie@kernel.org>,
 	Michal Simek <michal.simek@amd.com>,
@@ -54,9 +56,11 @@ Cc: linux-kernel@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org
-Subject: [PATCH 0/5] spi: zynqmp-gqspi: Improve error recovery by resetting
-Date: Thu, 16 Jan 2025 17:55:16 -0500
-Message-Id: <20250116225521.2688224-1-sean.anderson@linux.dev>
+Subject: [PATCH 1/5] dt-bindings: spi: zynqmp-qspi: Add reset
+Date: Thu, 16 Jan 2025 17:55:17 -0500
+Message-Id: <20250116225521.2688224-2-sean.anderson@linux.dev>
+In-Reply-To: <20250116225521.2688224-1-sean.anderson@linux.dev>
+References: <20250116225521.2688224-1-sean.anderson@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,23 +70,51 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
 
-This series adds support for resetting the QSPI controller if we have a
-timeout. I find this greatly improves the stability of the device, which
-would tend to break after any timeout.
+Add a reset to help recover from cancelled operations.
 
+Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+---
 
-Sean Anderson (5):
-  dt-bindings: spi: zynqmp-qspi: Add reset
-  spi: zynqmp-gqspi: Reset device in probe
-  spi: zynqmp-gqspi: Abort operations on timeout
-  spi: zynqmp-gqspi: Allow interrupting operations
-  ARM64: xilinx: zynqmp: Add QSPI reset
+ Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
- .../bindings/spi/spi-zynqmp-qspi.yaml         |  6 ++
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  1 +
- drivers/spi/spi-zynqmp-gqspi.c                | 64 +++++++++++++++----
- 3 files changed, 59 insertions(+), 12 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+index 04d4d3b4916d..901e15fcce2d 100644
+--- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+@@ -36,12 +36,16 @@ properties:
+   power-domains:
+     maxItems: 1
+ 
++  resets:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+   - interrupts
+   - clock-names
+   - clocks
++  - resets
+ 
+ unevaluatedProperties: false
+ 
+@@ -66,6 +70,7 @@ allOf:
+ examples:
+   - |
+     #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
++    #include <dt-bindings/reset/xlnx-zynqmp-resets.h>
+     soc {
+       #address-cells = <2>;
+       #size-cells = <2>;
+@@ -76,6 +81,7 @@ examples:
+         clock-names = "ref_clk", "pclk";
+         interrupts = <0 15 4>;
+         interrupt-parent = <&gic>;
++        resets = <&zynqmp_reset ZYNQMP_RESET_QSPI>;
+         reg = <0x0 0xff0f0000 0x0 0x1000>,
+               <0x0 0xc0000000 0x0 0x8000000>;
+       };
 -- 
 2.35.1.1320.gc452695387.dirty
 
