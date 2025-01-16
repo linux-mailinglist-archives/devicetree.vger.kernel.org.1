@@ -1,148 +1,79 @@
-Return-Path: <devicetree+bounces-139162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE87EA14585
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 00:23:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2978BA1458F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 00:25:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95A75160A7C
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 23:23:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4ACB716091D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 23:25:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 348691DE2A5;
-	Thu, 16 Jan 2025 23:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4BA322CBDA;
+	Thu, 16 Jan 2025 23:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="fsY2vTPs"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="wqhW0WFx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A34B22BADC
-	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 23:23:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F13B18DF62
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 23:25:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737069797; cv=none; b=j72LsVWIAtDF+QjoRZshPWr6U2Okpk6MYwYN5nSn4LvcXjrX+VCOujM8RHWZtTWnFMaOyv2Mwj3KDbmm+pHEmZMkW6jrJeP0o+8NA8R7W9cyUsC/7y1Am9jHQVnHYY8A7E16FV66pMTwjvtGFO545TOK1ookEBUAmFzNptqZMGA=
+	t=1737069911; cv=none; b=Td2nU7XaZeO+7/eLIw81O/hzIQQ0VasIm/+otpixS5bpcHk0aXn/sW1khIS/mSYqmGCIWAVo2U5Lls3HuzFfTNg8HYyaIq36kYcy//Uv1OCuuNsFY70VeVTWKaQDzvubl+bDfUWHfdmT9Qoz06BZWFgCFS8Z1mwP1uX9M8jRDOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737069797; c=relaxed/simple;
-	bh=ONbSvt/X6XSuRpBg/kxhZca6Mzje0CmqRYDOxvJrZ+M=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=t+l8KeEr70OskVS47+A1WWfpJ9H7jzzI61ajcA+hBo/wUySzIqu5pHREpJJ40gcJnFKQYzkJ6hUYkQkwCtU/f7uvIjew2BpdzZYV9KbLywfEj7A2qA+S3sDyKuQ8MDOQMWENzUrtN2kAEsjj2j3VUVbovxXfMj2kQRHSRMVrxdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=fsY2vTPs; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from thinkpad-p16sg1.corp.microsoft.com (unknown [20.236.10.66])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 00E9220591AB;
-	Thu, 16 Jan 2025 15:23:14 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 00E9220591AB
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1737069795;
-	bh=bH78J9VP5ficnGV2dvBvEUQV0y++qVoeHqjErfV0eHE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=fsY2vTPsopRlT2ivKJccsz24SyonfDNFDTJtw8mQp86qab/2OYgIJv4cfi6g957io
-	 6kNe61Orz/E2fYfbuTokuulXEEB39uGSRqYBGsvA/UiNVIwp3P2tRgIAEJzFSyfSsk
-	 sV7wfkaIeEvMZybLUmt51QezKGMG0Gg4b5gfh++w=
-From: Shyam Saini <shyamsaini@linux.microsoft.com>
-To: iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	virtualization@lists.linux.dev
-Cc: will@kernel.org,
-	jacob.pan@linux.microsoft.com,
-	eric.auger@redhat.com,
-	code@tyhicks.com,
-	eahariha@linux.microsoft.com,
-	vijayb@linux.microsoft.com
-Subject: [PATCH 1/3] dt-bindings: iommu: add "arm,smmu-pci-msi-iova-data" property
-Date: Thu, 16 Jan 2025 15:23:07 -0800
-Message-Id: <20250116232307.1436693-4-shyamsaini@linux.microsoft.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250116232307.1436693-1-shyamsaini@linux.microsoft.com>
-References: <20250116232307.1436693-1-shyamsaini@linux.microsoft.com>
+	s=arc-20240116; t=1737069911; c=relaxed/simple;
+	bh=etZxt/LGaHa3lFvXOIfdHtGrrH6brHAF8kmR9/9k3NE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hr/hD+dtxCejxiW1OWbXaVVNiEX17r/Gotc2F1aoYWJnKEPhk91BLn8s8KKVshiaxiJOdW3F6p6B/vol7SjwpBe2HG0t7nALz5b0QZDnouN2ctnsYeE61XkklZIheKo/O1cXROsFwF8jlOH5oWXC1PkKFIhZPUxCxSS1QdJTVE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=wqhW0WFx; arc=none smtp.client-ip=91.218.175.186
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <70cf86ab-cabf-45fe-90e4-985ce09cc44a@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1737069903;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=etZxt/LGaHa3lFvXOIfdHtGrrH6brHAF8kmR9/9k3NE=;
+	b=wqhW0WFxE2clqe+JZ5jTrHM/9+ehW4FGv8Q0JueOxiTk0aC243y/osY5LR1/0oJapCoPAm
+	F/clJ0P11wJY1c18nc6W6I6VNZOX/4kZrFzdEXril21DzzGPMcwfH+vFP/vXcNL9B0jAbp
+	icu1AzM/BAB5kUQyLxGdiwPcbrlzwM4=
+Date: Thu, 16 Jan 2025 18:24:58 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 0/7] spi: zynqmp-gqspi: Split the bus and add GPIO support
+To: Mark Brown <broonie@kernel.org>, Michal Simek <michal.simek@amd.com>,
+ linux-spi@vger.kernel.org
+Cc: Jinjie Ruan <ruanjinjie@huawei.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
+ linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20250116232118.2694169-1-sean.anderson@linux.dev>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <20250116232118.2694169-1-sean.anderson@linux.dev>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-By default ARM SMMU drivers use MSI_IOVA_BASE macro to reserve
-PCI MSI IOVA memory range, this assumes that all the platforms have
-MSI_IOVA_BASE address available for MSI reservation. However, this
-is not always the case, as some platforms may have the default
-address reserved for some other purposes and as a consequence ARM SMMU
-drivers can't reserve MSI memory for those platforms.
+On 1/16/25 18:21, Sean Anderson wrote:
+> As discussed in patches 1 and FIXME, this device really has two SPI
 
-To address this issue, add a new dts property
-"arm,smmu-pci-msi-iova-data" which can be used to hold custom
-PCI MSI IOVA address and its address length. This property can be passed
-to ARM SMMU drivers via device tree to reserve specified memory range
-for MSI.
+This should be "patches 1 and 5" (oops)
 
-Signed-off-by: Shyam Saini <shyamsaini@linux.microsoft.com>
----
- .../devicetree/bindings/iommu/arm,smmu-v3.yaml       | 12 ++++++++++++
- .../devicetree/bindings/iommu/arm,smmu.yaml          | 12 ++++++++++++
- 2 files changed, 24 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-index 75fcf4cb52d9f..dbad612886604 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu-v3.yaml
-@@ -56,6 +56,17 @@ properties:
-       NOTE: this only applies to the SMMU itself, not masters connected
-       upstream of the SMMU.
- 
-+  arm,smmu-pci-msi-iova-data:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      Specifies a custom PCI MSI base I/O Virtual Address and its memory range
-+      size for ARM SMMU drivers. This allows setting a custom address and
-+      memory size pair if the default MSI_IOVA_BASE_DEFAULT address and
-+      MSI_IOVA_LENGTH_DEFAULT size are not suitable for the intended platform.
-+    items:
-+      - description: MSI IOVA base address
-+      - description: MSI IOVA address length
-+
-   msi-parent: true
- 
-   hisilicon,broken-prefetch-cmd:
-@@ -92,4 +103,5 @@ examples:
-             dma-coherent;
-             #iommu-cells = <1>;
-             msi-parent = <&its 0xff0000>;
-+            arm,smmu-pci-msi-iova-data = <0xa0000000 0x100000>;
-     };
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-index 032fdc27127bf..d080b13765d1f 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
-@@ -207,6 +207,17 @@ properties:
-       NOTE: this only applies to the SMMU itself, not masters connected
-       upstream of the SMMU.
- 
-+  arm,smmu-pci-msi-iova-data:
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    description: |
-+      Specifies a custom PCI MSI base I/O Virtual Address and its memory range
-+      size for ARM SMMU drivers. This allows setting a custom address and
-+      memory size pair if the default MSI_IOVA_BASE_DEFAULT address and
-+      MSI_IOVA_LENGTH_DEFAULT size are not suitable for the intended platform.
-+    items:
-+      - description: MSI IOVA base address
-+      - description: MSI IOVA address length
-+
-   calxeda,smmu-secure-config-access:
-     type: boolean
-     description:
-@@ -679,6 +690,7 @@ examples:
-             #iommu-cells = <1>;
-             /* always ignore appended 5-bit TBU number */
-             stream-match-mask = <0x7c00>;
-+            arm,smmu-pci-msi-iova-data = <0xa0000000 0x100000>;
-     };
- 
-     bus {
--- 
-2.34.1
+> busses. Split the existing "merged" bus in twain, and add support for
+> GPIO chipselects.
 
 
