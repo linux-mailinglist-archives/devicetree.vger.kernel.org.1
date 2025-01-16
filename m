@@ -1,87 +1,91 @@
-Return-Path: <devicetree+bounces-138957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08FD9A135F8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:00:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C236A135FC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:01:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31479167816
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:00:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DF25167731
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:01:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0CA91D90D7;
-	Thu, 16 Jan 2025 09:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 568FD1D63C8;
+	Thu, 16 Jan 2025 09:00:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fcQQEb8h"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s47nF2ov"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA961D8E12
-	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 09:00:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B2CF18E76B
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 09:00:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737018037; cv=none; b=sqh7som2C2TrAO2S0pMGB97m/pCTHYUSIsBzHsLmluwPRzpFcFj/3ODtAFjDmk3Kb9CbK+t5qDIppeYhygeuSstKPA29LViylUTWxz8C+l2qczam8XluIslD3BWjWRZDW+XXEUOhBcVSI7fOVB0l7n12TEl3skcXm9yi5bLJsMI=
+	t=1737018055; cv=none; b=HKn+Unf/8T+O/4GBbXoysDUyUFgESlRx7JLzCP+gjuEtlF3dQfnFitQJYsniSJ2V+bEYvQNsCLiqOGV6rs3eq0QyxWRXF25iLecKP/DPFMByZh6qXD74zClokCmtWT87pLHun+KT1daAacm2pczUC1uNjvZ0GIL9yQTtAaJOF9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737018037; c=relaxed/simple;
-	bh=QYRgIBSeVmtCyuswWsaavDXxZdyGMrfAkCb8VWXRNGU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dOwoGZesalicrYirpKRoUxIMi15ImvoHtzQ/KYAMNFipsC0egWVaF1Ys5UMfUJam3v4bYIW9Les8ZfyWYZPWS/aJj9t7FI3c2D35VVIeRdSseZhg6eISO6SO8MfPpK9DTGPKOXQYbv3mO3WEgniZDF0lALMwUL9V6U+LJETOLFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fcQQEb8h; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1737018055; c=relaxed/simple;
+	bh=OCFYYgPJ6XaZBC7bCVR/RY8PL7azVC4BDIDaVhne5fQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uTpZ4NBJAhkG0IGiH6RhepX4DeCgOJLcnulbO40NnoghNO4R2w8jxu8+YVT9N+/chP+iNpCFtezsp4ZVMsGDRRaKyQrQohBUPNmjcBut97skUoZA7Gruz3GVx/nEzmUMvZmPBL5VY9XnrDZhsTq4FDxgTo3dQeacVx2BSqhUy0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s47nF2ov; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43637977fa4so384775e9.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 01:00:35 -0800 (PST)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43658c452f5so867115e9.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 01:00:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737018034; x=1737622834; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1737018051; x=1737622851; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=fAYBfOUg54M5t/+kaqNBofxYRILpFjbjDYCFpBhx0oA=;
-        b=fcQQEb8hDicAnFMtxOEKPRdwavmEUQupwWSfccI+UymaVIEdQGwDyNaNRLVFWeuQhR
-         7sm0+d/a87Z6VHbgvsnz2TST5+TYZixBYUHdYxstEhcx4qELrsmS7GpdwI0FRGxACsfl
-         /0DtVPt3dAbW6JOXgBeBlH5j0xPMg/ynFQktovqu0KMrrdud/OO62e0qfo9nl8SI1Btr
-         xZ0ytMmZ6SJDBTFc0zJABqMA6ymDGQaycJGwOp54tku/PlP8T9G07BA0lf4sT3QCYEM9
-         MQmpc7tBl6ds9eYUnN6Ilox6Jaeym9mZW+lOmTfI82K0UM+bRQ8DnD8lhFx+eL6nENlO
-         DSpg==
+        bh=8U8PSE+JVRg8hlgWCdgriQWufbxUR96ZGzqA6Q35Ljk=;
+        b=s47nF2ov4d8MNHM/Tihzjj710/l2x68tj+d1aX5lCqOsYAXT+PD9DlfopHNr3/5Rg2
+         37w/gItigMt9Xd7mZAwxB3rSK1pVvSGsgg4wN7/kxLEjeXRcoSsnBjQDEhh0qtPfXuMr
+         6JjO+EzCJLsGs7gJFlMMOZaT1HCrPIR6qA+0HlHJ+AiA64xkRIXEB6+vyp+dCYSZiMN7
+         EwN/rjykwNIo1hrCsRhNyu6WAJYPwQ652gI5SwJhrykCKoA6DdAglwWgdSHaFe2jHuVG
+         qsLCM/J7taDjXVPJ0UNadheH3bMrSoEjHxiQBhu2K7vMOaWCjf3C9AFHZUhbapwDRcNd
+         yk3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737018034; x=1737622834;
+        d=1e100.net; s=20230601; t=1737018051; x=1737622851;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=fAYBfOUg54M5t/+kaqNBofxYRILpFjbjDYCFpBhx0oA=;
-        b=rsI6f/s6qNIFIeIbguEGiAt3cVlSJP2hyeTAQfyuWdMfB8l31ATHZ8O3KVK6YQLenz
-         7QP8dKFFu/OpmLYU0Yr1oNhxarrn+7Ki6jn9uMr6luQQTBDIIM5fSK85vcVvyQ5491hy
-         0i6gXnxiSdrACfGaO1Zd9Ks2+aGMVMhn4zI/yfm1GnVxpXut9CEVRJKEcXwo6tcJAj6f
-         RyN/S0c2RewYVDNOABSx6bL/MHuP7kvJPf2kOIr2TMc/VGx42O25tTyDVLytKmfbzflF
-         zSmdLo2+kiWJzw46YTHflfA5sVHSwITPltAm87z7gcdHyZ8LQVK/1/AyVuHK2/z66Kak
-         0G5g==
-X-Forwarded-Encrypted: i=1; AJvYcCXSVavytMGyBZcdNlUmTo26V+FJlxD8aHtI9zwKBaLHQQVX9LKCjY8oqhDu5yzdSDBPdL/3CDZjhsNW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxwc+7NlrZEk6kTiAn/J+ywkGY30jf6jLpM9BPs72aXe1YQyukJ
-	mMQg00DvSB9ePgsOAZfXNEFBP7xkY2ADerVVP9FRtzWa3mDsVHsq3YyN4LXijzU=
-X-Gm-Gg: ASbGnculgPStipRdD9Rvg70ekxG7cg3bKit8/qNRKQZQwkh545rJqFKUrWslk3dgsVY
-	KqPfJrjVwzRGUDoLY8AR6kHe0+5Ibwd5CrjcawxDP84Fw6YIdczFXdBKpnvXSNtKkawLuwUSfEu
-	MGPKRiHhCrro8GZIuJrcBER8nbnejTz14/6zjgC/4OUnKLHPu4XDfFDSOIYfPyFuUH1cmYChrsN
-	Tyy0pz13v38y2v6s5y6pndBYNHHchaAqqGDADUs3+7Q1+NS4VpbGyFQKkDy/Ka/DKXEP3o=
-X-Google-Smtp-Source: AGHT+IHoE3dr5+IW22/U86RkgkX8O1rrKesuiTRisleXCYyZZhvGeHAZRVoyTntXQXFe+8mX6d1bUw==
-X-Received: by 2002:a05:600c:1d07:b0:434:f335:aa0d with SMTP id 5b1f17b1804b1-436e26924e8mr129454305e9.2.1737018034322;
-        Thu, 16 Jan 2025 01:00:34 -0800 (PST)
+        bh=8U8PSE+JVRg8hlgWCdgriQWufbxUR96ZGzqA6Q35Ljk=;
+        b=YNtUwgMZyZ+axNwBRPzoW2XiZePaocVrpJlhXs1hdLfvgM+KGbdeS1sm5Wa0E4TXU4
+         sSSq/E3mXYX1Hv71rmaHBvhcPdXEeb/dS6BZDIp7MV1vwVE5EOGjNj+IjkmwH4PWMy26
+         e7ZSU5BkBREPj6qt96F3wE+F4Fl2WQLmzdZ/1qfSBFwXHi6wnidCaxDGq8c1YU1sDuF3
+         boW4A7CEUy4CQCfxxlJxpYwUm/hA9nNeIDxZPa3uEONu0/ECeQ2vBpKJjdFWW3udYYs9
+         waVI8GLk9nf5fn5cjzO+6qyJXS+Q3q1xChMild5YakRBK0pnJjMlNAA69cF/+0Sv0QZX
+         gBVQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXjWsN8tKgH+5lGiLDPuhgfDqRvpT0ckx3HYjfbGR+hMWpgzTmYVphWxlyJuvipMOVDjdjjKqujsZa6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxR8vnP5OX/01OiyyblQ4nIxpuqQ1Q225YglWf4jcoGCP+PpBWx
+	xBkvqUU/mkA45dSRQp3MLLRKUMh9UtM6gu9f4787BRxorBtrEME4QU9axg/Mljg=
+X-Gm-Gg: ASbGncsdRjlPCmqo8DTAHqu+QWuKV0JH/tgz843yoFz7HKz9+ATEa0SqmGfhC3Mj9Rt
+	ZqU2Ti8fgl5DE406i7iwrmX0RfKgCoDstecSkkbi9xe+zIqeIrvObraW1cbwSawiqLME6btPO4A
+	SbVWC2ZjZn1QaN3I10T03B7OUzADJMWzfNxk2RDbSsLMuvRPmiKpuQOyP6dIg3aM1NKRMudOdcY
+	+aRc6vyOxOOM5aCt1jAPw81h2tg9Xd3LRXGK27niIGdFqJRmxtX2EN52nwkArYJS4OQX3Y=
+X-Google-Smtp-Source: AGHT+IEFBHk8ldOnEU3jlQqnX7KqsLUeoe2YYBLIHC7UFxoaF/Ly/BxeOBTjPw/aK0Savo2dKVf/GA==
+X-Received: by 2002:adf:e28b:0:b0:38a:87cc:f9bb with SMTP id ffacd0b85a97d-38a87ccfadamr7967183f8f.6.1737018049751;
+        Thu, 16 Jan 2025 01:00:49 -0800 (PST)
 Received: from krzk-bin.. ([178.197.223.165])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c7525ee9sm51180405e9.32.2025.01.16.01.00.33
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c16640bcsm49557995e9.1.2025.01.16.01.00.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jan 2025 01:00:33 -0800 (PST)
+        Thu, 16 Jan 2025 01:00:49 -0800 (PST)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: David Lechner <david@lechnology.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
+To: Avi Fishman <avifishman70@gmail.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Tali Perry <tali.perry1@gmail.com>,
+	Patrick Venture <venture@google.com>,
+	Nancy Yuen <yuenn@google.com>,
+	Benjamin Fair <benjaminfair@google.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
+	openbmc@lists.ozlabs.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] ARM: dts: ti: davinci: Align GPIO hog name with bindings
-Date: Thu, 16 Jan 2025 10:00:30 +0100
-Message-ID: <20250116090030.87452-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2] ARM: dts: nuvoton: Align GPIO hog name with bindings
+Date: Thu, 16 Jan 2025 10:00:47 +0100
+Message-ID: <20250116090047.87499-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -94,57 +98,501 @@ Content-Transfer-Encoding: 8bit
 Bindings expect GPIO hog names to end with 'hog' suffix, so correct it
 to fix dtbs_check warnings like:
 
-  da850-lego-ev3.dtb: batt_volt_en: $nodename:0: 'batt_volt_en' does not match '^.+-hog(-[0-9]+)?$'
+  nuvoton-npcm750-runbmc-olympus.dtb: G1A_P0_0: $nodename:0: 'G1A_P0_0' does not match '^.+-hog(-[0-9]+)?$'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/ti/davinci/da850-lego-ev3.dts | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm/boot/dts/ti/davinci/da850-lego-ev3.dts b/arch/arm/boot/dts/ti/davinci/da850-lego-ev3.dts
-index 4df10379ff22..173401c58d53 100644
---- a/arch/arm/boot/dts/ti/davinci/da850-lego-ev3.dts
-+++ b/arch/arm/boot/dts/ti/davinci/da850-lego-ev3.dts
-@@ -412,14 +412,14 @@ &gpio {
- 	status = "okay";
- 
- 	/* Don't pull down battery voltage adc io channel */
--	batt_volt_en {
-+	batt-volt-en-hog {
- 		gpio-hog;
- 		gpios = <6 GPIO_ACTIVE_HIGH>;
- 		output-high;
+---
+
+Changes in v2:
+1. Rename rest of the nodes I missed.
+---
+ .../boot/dts/nuvoton/nuvoton-npcm730-gbs.dts  |  12 +-
+ .../nuvoton-npcm750-runbmc-olympus.dts        | 120 +++++++++---------
+ 2 files changed, 66 insertions(+), 66 deletions(-)
+
+diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-npcm730-gbs.dts b/arch/arm/boot/dts/nuvoton/nuvoton-npcm730-gbs.dts
+index c3501786d600..231228842e63 100644
+--- a/arch/arm/boot/dts/nuvoton/nuvoton-npcm730-gbs.dts
++++ b/arch/arm/boot/dts/nuvoton/nuvoton-npcm730-gbs.dts
+@@ -1050,19 +1050,19 @@ gpio1: gpio@f0011000 {
+ 		"","","","SIO_POWER_GOOD","","","","";
  	};
- 
- 	/* Don't impede Bluetooth clock signal */
--	bt_clock_en {
-+	bt-clock-en-hog {
- 		gpio-hog;
- 		gpios = <5 GPIO_ACTIVE_HIGH>;
- 		input;
-@@ -433,19 +433,19 @@ bt_clock_en {
- 	 * anything, but they are present in the source code from LEGO.
- 	 */
- 
--	bt_pic_en {
-+	bt-pic-en-hog {
- 		gpio-hog;
- 		gpios = <51 GPIO_ACTIVE_HIGH>;
- 		output-low;
+ 	gpio2: gpio@f0012000 {
+-		bmc_usb_mux_oe_n {
++		bmc-usb-mux-oe-n-hog {
+ 			gpio-hog;
+ 			gpios = <25 GPIO_ACTIVE_HIGH>;
+ 			output-low;
+ 			line-name = "bmc-usb-mux-oe-n";
+ 		};
+-		bmc_usb_mux_sel {
++		bmc-usb-mux-sel-hog {
+ 			gpio-hog;
+ 			gpios = <26 GPIO_ACTIVE_HIGH>;
+ 			output-low;
+ 			line-name = "bmc-usb-mux-sel";
+ 		};
+-		bmc_usb2517_reset_n {
++		bmc-usb2517-reset-n-hog {
+ 			gpio-hog;
+ 			gpios = <27 GPIO_ACTIVE_LOW>;
+ 			output-low;
+@@ -1070,19 +1070,19 @@ bmc_usb2517_reset_n {
+ 		};
  	};
- 
--	bt_pic_rst {
-+	bt-pic-rst-hog {
- 		gpio-hog;
- 		gpios = <78 GPIO_ACTIVE_HIGH>;
- 		output-high;
- 	};
- 
--	bt_pic_cts {
-+	bt-pic-cts-hog {
- 		gpio-hog;
- 		gpios = <87 GPIO_ACTIVE_HIGH>;
- 		input;
+ 	gpio3: gpio@f0013000 {
+-		assert_cpu0_reset {
++		assert-cpu0-reset-hog {
+ 			gpio-hog;
+ 			gpios = <14 GPIO_ACTIVE_HIGH>;
+ 			output-low;
+ 			line-name = "assert-cpu0-reset";
+ 		};
+-		assert_pwrok_cpu0_n {
++		assert-pwrok-cpu0-n-hog {
+ 			gpio-hog;
+ 			gpios = <15 GPIO_ACTIVE_HIGH>;
+ 			output-low;
+ 			line-name = "assert-pwrok-cpu0-n";
+ 		};
+-		assert_cpu0_prochot {
++		assert-cpu0-prochot-hog {
+ 			gpio-hog;
+ 			gpios = <16 GPIO_ACTIVE_HIGH>;
+ 			output-low;
+diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-npcm750-runbmc-olympus.dts b/arch/arm/boot/dts/nuvoton/nuvoton-npcm750-runbmc-olympus.dts
+index f67ede148209..0c94e14d40e8 100644
+--- a/arch/arm/boot/dts/nuvoton/nuvoton-npcm750-runbmc-olympus.dts
++++ b/arch/arm/boot/dts/nuvoton/nuvoton-npcm750-runbmc-olympus.dts
+@@ -427,91 +427,91 @@ pca9539_g1a: pca9539-g1a@74 {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 		reset-gpios = <&gpio7 4 GPIO_ACTIVE_LOW>;
+-		G1A_P0_0 {
++		g1a-p0-0-hog {
+ 			gpio-hog;
+ 			gpios = <0 0>;
+ 			output-high;
+ 			line-name = "TPM_BMC_ALERT_N";
+ 		};
+-		G1A_P0_1 {
++		g1a-p0-1-hog {
+ 			gpio-hog;
+ 			gpios = <1 0>;
+ 			input;
+ 			line-name = "FM_BIOS_TOP_SWAP";
+ 		};
+-		G1A_P0_2 {
++		g1a-p0-2-hog {
+ 			gpio-hog;
+ 			gpios = <2 0>;
+ 			input;
+ 			line-name = "FM_BIOS_PREFRB2_GOOD";
+ 		};
+-		G1A_P0_3 {
++		g1a-p0-3-hog {
+ 			gpio-hog;
+ 			gpios = <3 0>;
+ 			input;
+ 			line-name = "BMC_SATAXPCIE_0TO3_SEL";
+ 		};
+-		G1A_P0_4 {
++		g1a-p0-4-hog {
+ 			gpio-hog;
+ 			gpios = <4 0>;
+ 			input;
+ 			line-name = "BMC_SATAXPCIE_4TO7_SEL";
+ 		};
+-		G1A_P0_5 {
++		g1a-p0-5-hog {
+ 			gpio-hog;
+ 			gpios = <5 0>;
+ 			output-low;
+ 			line-name = "FM_UV_ADR_TRIGGER_EN_N";
+ 		};
+-		G1A_P0_6 {
++		g1a-p0-6-hog {
+ 			gpio-hog;
+ 			gpios = <6 0>;
+ 			input;
+ 			line-name = "RM_THROTTLE_EN_N";
+ 		};
+-		G1A_P1_0 {
++		g1a-p1-0-hog {
+ 			gpio-hog;
+ 			gpios = <8 0>;
+ 			input;
+ 			line-name = "FM_BMC_TPM_PRES_N";
+ 		};
+-		G1A_P1_1 {
++		g1a-p1-1-hog {
+ 			gpio-hog;
+ 			gpios = <9 0>;
+ 			input;
+ 			line-name = "FM_CPU0_SKTOCC_LVT3_N";
+ 		};
+-		G1A_P1_2 {
++		g1a-p1-2-hog {
+ 			gpio-hog;
+ 			gpios = <10 0>;
+ 			input;
+ 			line-name = "FM_CPU1_SKTOCC_LVT3_N";
+ 		};
+-		G1A_P1_3 {
++		g1a-p1-3-hog {
+ 			gpio-hog;
+ 			gpios = <11 0>;
+ 			input;
+ 			line-name = "PSU1_ALERT_N";
+ 		};
+-		G1A_P1_4 {
++		g1a-p1-4-hog {
+ 			gpio-hog;
+ 			gpios = <12 0>;
+ 			input;
+ 			line-name = "PSU2_ALERT_N";
+ 		};
+-		G1A_P1_5 {
++		g1a-p1-5-hog {
+ 			gpio-hog;
+ 			gpios = <13 0>;
+ 			input;
+ 			line-name = "H_CPU0_FAST_WAKE_LVT3_N";
+ 		};
+-		G1A_P1_6 {
++		g1a-p1-6-hog {
+ 			gpio-hog;
+ 			gpios = <14 0>;
+ 			output-high;
+ 			line-name = "I2C_MUX1_RESET_N";
+ 		};
+-		G1A_P1_7 {
++		g1a-p1-7-hog {
+ 			gpio-hog;
+ 			gpios = <15 0>;
+ 			input;
+@@ -524,91 +524,91 @@ pca9539_g1b: pca9539-g1b@75 {
+ 		reg = <0x75>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+-		G1B_P0_0 {
++		g1b-p0-0-hog {
+ 			gpio-hog;
+ 			gpios = <0 0>;
+ 			input;
+ 			line-name = "PVDDQ_ABC_PINALERT_N";
+ 		};
+-		G1B_P0_1 {
++		g1b-p0-1-hog {
+ 			gpio-hog;
+ 			gpios = <1 0>;
+ 			input;
+ 			line-name = "PVDDQ_DEF_PINALERT_N";
+ 		};
+-		G1B_P0_2 {
++		g1b-p0-2-hog {
+ 			gpio-hog;
+ 			gpios = <2 0>;
+ 			input;
+ 			line-name = "PVDDQ_GHJ_PINALERT_N";
+ 		};
+-		G1B_P0_3 {
++		g1b-p0-3-hog {
+ 			gpio-hog;
+ 			gpios = <3 0>;
+ 			input;
+ 			line-name = "PVDDQ_KLM_PINALERT_N";
+ 		};
+-		G1B_P0_5 {
++		g1b-p0-5-hog {
+ 			gpio-hog;
+ 			gpios = <5 0>;
+ 			input;
+ 			line-name = "FM_BOARD_REV_ID0";
+ 		};
+-		G1B_P0_6 {
++		g1b-p0-6-hog {
+ 			gpio-hog;
+ 			gpios = <6 0>;
+ 			input;
+ 			line-name = "FM_BOARD_REV_ID1";
+ 		};
+-		G1B_P0_7 {
++		g1b-p0-7-hog {
+ 			gpio-hog;
+ 			gpios = <7 0>;
+ 			input;
+ 			line-name = "FM_BOARD_REV_ID2";
+ 		};
+-		G1B_P1_0 {
++		g1b-p1-0-hog {
+ 			gpio-hog;
+ 			gpios = <8 0>;
+ 			input;
+ 			line-name = "FM_OC_DETECT_EN_N";
+ 		};
+-		G1B_P1_1 {
++		g1b-p1-1-hog {
+ 			gpio-hog;
+ 			gpios = <9 0>;
+ 			input;
+ 			line-name = "FM_FLASH_DESC_OVERRIDE";
+ 		};
+-		G1B_P1_2 {
++		g1b-p1-2-hog {
+ 			gpio-hog;
+ 			gpios = <10 0>;
+ 			output-low;
+ 			line-name = "FP_PWR_ID_LED_N";
+ 		};
+-		G1B_P1_3 {
++		g1b-p1-3-hog {
+ 			gpio-hog;
+ 			gpios = <11 0>;
+ 			output-low;
+ 			line-name = "BMC_LED_PWR_GRN";
+ 		};
+-		G1B_P1_4 {
++		g1b-p1-4-hog {
+ 			gpio-hog;
+ 			gpios = <12 0>;
+ 			output-low;
+ 			line-name = "BMC_LED_PWR_AMBER";
+ 		};
+-		G1B_P1_5 {
++		g1b-p1-5-hog {
+ 			gpio-hog;
+ 			gpios = <13 0>;
+ 			output-high;
+ 			line-name = "FM_BMC_FAULT_LED_N";
+ 		};
+-		G1B_P1_6 {
++		g1b-p1-6-hog {
+ 			gpio-hog;
+ 			gpios = <14 0>;
+ 			output-high;
+ 			line-name = "FM_CPLD_BMC_PWRDN_N";
+ 		};
+-		G1B_P1_7 {
++		g1b-p1-7-hog {
+ 			gpio-hog;
+ 			gpios = <15 0>;
+ 			output-high;
+@@ -626,91 +626,91 @@ pca9539_g2a: pca9539-g2a@74 {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 		reset-gpios = <&gpio5 28 GPIO_ACTIVE_LOW>;
+-		G2A_P0_0 {
++		g2a-p0-0-hog {
+ 			gpio-hog;
+ 			gpios = <0 0>;
+ 			output-high;
+ 			line-name = "BMC_PON_RST_REQ_N";
+ 		};
+-		G2A_P0_1 {
++		g2a-p0-1-hog {
+ 			gpio-hog;
+ 			gpios = <1 0>;
+ 			output-high;
+ 			line-name = "BMC_RST_IND_REQ_N";
+ 		};
+-		G2A_P0_2 {
++		g2a-p0-2-hog {
+ 			gpio-hog;
+ 			gpios = <2 0>;
+ 			input;
+ 			line-name = "RST_BMC_RTCRST";
+ 		};
+-		G2A_P0_3 {
++		g2a-p0-3-hog {
+ 			gpio-hog;
+ 			gpios = <3 0>;
+ 			output-high;
+ 			line-name = "FM_BMC_PWRBTN_OUT_N";
+ 		};
+-		G2A_P0_4 {
++		g2a-p0-4-hog {
+ 			gpio-hog;
+ 			gpios = <4 0>;
+ 			output-high;
+ 			line-name = "RST_BMC_SYSRST_BTN_OUT_N";
+ 		};
+-		G2A_P0_5 {
++		g2a-p0-5-hog {
+ 			gpio-hog;
+ 			gpios = <5 0>;
+ 			output-high;
+ 			line-name = "FM_BATTERY_SENSE_EN_N";
+ 		};
+-		G2A_P0_6 {
++		g2a-p0-6-hog {
+ 			gpio-hog;
+ 			gpios = <6 0>;
+ 			output-high;
+ 			line-name = "FM_BMC_READY_N";
+ 		};
+-		G2A_P0_7 {
++		g2a-p0-7-hog {
+ 			gpio-hog;
+ 			gpios = <7 0>;
+ 			input;
+ 			line-name = "IRQ_BMC_PCH_SMI_LPC_N";
+ 		};
+-		G2A_P1_0 {
++		g2a-p1-0-hog {
+ 			gpio-hog;
+ 			gpios = <8 0>;
+ 			input;
+ 			line-name = "FM_SLOT4_CFG0";
+ 		};
+-		G2A_P1_1 {
++		g2a-p1-1-hog {
+ 			gpio-hog;
+ 			gpios = <9 0>;
+ 			input;
+ 			line-name = "FM_SLOT4_CFG1";
+ 		};
+-		G2A_P1_2 {
++		g2a-p1-2-hog {
+ 			gpio-hog;
+ 			gpios = <10 0>;
+ 			input;
+ 			line-name = "FM_NVDIMM_EVENT_N";
+ 		};
+-		G2A_P1_3 {
++		g2a-p1-3-hog {
+ 			gpio-hog;
+ 			gpios = <11 0>;
+ 			input;
+ 			line-name = "PSU1_BLADE_EN_N";
+ 		};
+-		G2A_P1_4 {
++		g2a-p1-4-hog {
+ 			gpio-hog;
+ 			gpios = <12 0>;
+ 			input;
+ 			line-name = "BMC_PCH_FNM";
+ 		};
+-		G2A_P1_5 {
++		g2a-p1-5-hog {
+ 			gpio-hog;
+ 			gpios = <13 0>;
+ 			input;
+ 			line-name = "FM_SOL_UART_CH_SEL";
+ 		};
+-		G2A_P1_6 {
++		g2a-p1-6-hog {
+ 			gpio-hog;
+ 			gpios = <14 0>;
+ 			input;
+@@ -723,91 +723,91 @@ pca9539_g2b: pca9539-g2b@75 {
+ 		reg = <0x75>;
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+-		G2B_P0_0 {
++		g2b-p0-0-hog {
+ 			gpio-hog;
+ 			gpios = <0 0>;
+ 			input;
+ 			line-name = "FM_CPU_MSMI_LVT3_N";
+ 		};
+-		G2B_P0_1 {
++		g2b-p0-1-hog {
+ 			gpio-hog;
+ 			gpios = <1 0>;
+ 			input;
+ 			line-name = "FM_BIOS_MRC_DEBUG_MSG_DIS";
+ 		};
+-		G2B_P0_2 {
++		g2b-p0-2-hog {
+ 			gpio-hog;
+ 			gpios = <2 0>;
+ 			input;
+ 			line-name = "FM_CPU1_DISABLE_BMC_N";
+ 		};
+-		G2B_P0_3 {
++		g2b-p0-3-hog {
+ 			gpio-hog;
+ 			gpios = <3 0>;
+ 			output-low;
+ 			line-name = "BMC_JTAG_SELECT";
+ 		};
+-		G2B_P0_4 {
++		g2b-p0-4-hog {
+ 			gpio-hog;
+ 			gpios = <4 0>;
+ 			output-high;
+ 			line-name = "PECI_MUX_SELECT";
+ 		};
+-		G2B_P0_5 {
++		g2b-p0-5-hog {
+ 			gpio-hog;
+ 			gpios = <5 0>;
+ 			output-high;
+ 			line-name = "I2C_MUX2_RESET_N";
+ 		};
+-		G2B_P0_6 {
++		g2b-p0-6-hog {
+ 			gpio-hog;
+ 			gpios = <6 0>;
+ 			input;
+ 			line-name = "FM_BMC_CPLD_PSU2_ON";
+ 		};
+-		G2B_P0_7 {
++		g2b-p0-7-hog {
+ 			gpio-hog;
+ 			gpios = <7 0>;
+ 			output-high;
+ 			line-name = "PSU2_ALERT_EN_N";
+ 		};
+-		G2B_P1_0 {
++		g2b-p1-0-hog {
+ 			gpio-hog;
+ 			gpios = <8 0>;
+ 			output-high;
+ 			line-name = "FM_CPU_BMC_INIT";
+ 		};
+-		G2B_P1_1 {
++		g2b-p1-1-hog {
+ 			gpio-hog;
+ 			gpios = <9 0>;
+ 			output-high;
+ 			line-name = "IRQ_BMC_PCH_SCI_LPC_N";
+ 		};
+-		G2B_P1_2 {
++		g2b-p1-2-hog {
+ 			gpio-hog;
+ 			gpios = <10 0>;
+ 			output-low;
+ 			line-name = "PMB_ALERT_EN_N";
+ 		};
+-		G2B_P1_3 {
++		g2b-p1-3-hog {
+ 			gpio-hog;
+ 			gpios = <11 0>;
+ 			output-high;
+ 			line-name = "FM_FAST_PROCHOT_EN_N";
+ 		};
+-		G2B_P1_4 {
++		g2b-p1-4-hog {
+ 			gpio-hog;
+ 			gpios = <12 0>;
+ 			output-high;
+ 			line-name = "BMC_NVDIMM_PRSNT_N";
+ 		};
+-		G2B_P1_5 {
++		g2b-p1-5-hog {
+ 			gpio-hog;
+ 			gpios = <13 0>;
+ 			output-low;
+ 			line-name = "FM_BACKUP_BIOS_SEL_H_BMC";
+ 		};
+-		G2B_P1_6 {
++		g2b-p1-6-hog {
+ 			gpio-hog;
+ 			gpios = <14 0>;
+ 			output-high;
 -- 
 2.43.0
 
