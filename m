@@ -1,59 +1,64 @@
-Return-Path: <devicetree+bounces-138936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86573A13450
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:52:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B2C3A13457
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:52:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E10991887FBE
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 07:52:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA6C21887E9D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 07:53:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38BF11917D9;
-	Thu, 16 Jan 2025 07:52:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFFA3193402;
+	Thu, 16 Jan 2025 07:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tTf2iHwa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b+S9lQaw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC2D142E83;
-	Thu, 16 Jan 2025 07:52:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CCCE142E83;
+	Thu, 16 Jan 2025 07:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737013925; cv=none; b=ruQCKgUdwdarqHpqlnrWNQfZdv8R5p/JEj5igdlMjeKBdRzS4zCtJtxgw+Pfi42zA+q1jh4qye66gMny9n2LDytUs0uaBR3ZxCM6cgt34EwwhRTsJCwhLpkexMpZ1kl9NZTvvJlPLNY1K6tl/VapXAzatBGfAdN0auTv8GhCvvU=
+	t=1737013973; cv=none; b=uXa0usrShVZ5DnCXYZA6/9ufo+Buzahpno2HrI9U1cbmQyNYOFBzCfHjwvrUn+iftoOTB00bN6Qw6IhhDTIC6znLmw86+ZlEFnxjz9mEhM5Cf5MoCFrFK/JbUP+lRZGEMJ9GaNedfLA+kOnaD+AR5fbFoT3vTe6Si+9aEPd06ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737013925; c=relaxed/simple;
-	bh=JV/ezC4Tbo4xdFbq7pXA+uaT5JltTCvxZIWHU/tVBTI=;
+	s=arc-20240116; t=1737013973; c=relaxed/simple;
+	bh=4X40u6qRvjap3XD5YqCVaB8bLA5Q93cffOs+6tcseV8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GRmAg39aBLiMj4Malhq8nZwBJRb7qQpODAhEuS1NLjdlmQGcx+rRwauhhKYUTUC1uq1e9MtQ5BdbqGdZ0Xocutd83XDOB5MqmYK+4OZuBI+hjlF7TAQip1ptcD/BD4dEplnWTj+mt1GvuX5QROM05nsBb0Prxm5eQNrpU1JEhBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tTf2iHwa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 180BCC4CED6;
-	Thu, 16 Jan 2025 07:52:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QJFuA7D7JKdoyGGjikbCzsntlxRIIzuRAUKM1RRyyIpyeugIXGHuz4zTFiTg3pFbaB++Xp5meXkq5LZ8LIFcVn7a+JhGu0U0BisB7XIYILN68WDilb0WLR69lIj1hnLVVJPp/1w1eZBAawDUsn14Xix3+ZsuOZ1Bi4hfSMs5TB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b+S9lQaw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9DCEC4CED6;
+	Thu, 16 Jan 2025 07:52:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737013924;
-	bh=JV/ezC4Tbo4xdFbq7pXA+uaT5JltTCvxZIWHU/tVBTI=;
+	s=k20201202; t=1737013973;
+	bh=4X40u6qRvjap3XD5YqCVaB8bLA5Q93cffOs+6tcseV8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tTf2iHwaCWfy4g9zxR8QDa+xIFa9yp721J0y5o4p63iTDBukDKR3NUDnXgfRdMkrq
-	 ut9q+FT1JpkeuIzd98WH9vhLL/uewExN/zUt1qYuV+8AgmjsACzdWTgw8m+gMWm7a+
-	 GRP2dRWnPG4b65vYikeyq4HwieqWH6Y53KZyWdkDYtuzTLcAjnYbobJhe7/RROCHki
-	 Jsz46kC+5JiJcGr9IW/8KEcuUX7wj4PavBYNNN7l3tTt0RrZ8iSpFIHyxon3MkeApd
-	 WphaYcRNiUjrIGm5vfskHCH1YrMSlzMJW155KiL/Ot0Wl3n4og7NzSUi2lVfFxTw0r
-	 c6rRt9meWblug==
-Date: Thu, 16 Jan 2025 08:52:01 +0100
+	b=b+S9lQawrZhWMcnVcZOGAHYRA5X481BoVpCXBw6XA9Qbf7V3ijp6JEoeFo2VB4YYq
+	 2h33/OPovyaF/BBn9t7PPMSlti1rPM5p8+xFLaQBBQM9E2iqK9zhhWNbh2Jbhf64h5
+	 MaJy6q0aSIV5idUJPDWvlDMsqGT0f+BiCNbn99gjQQ1EhcillMhGgmaMcYhxgMfg2x
+	 QX0NUTe2vhnjibrRK83QX+ywpDi64b4nW8r6gtg3ZrMrIwJ4gZ9fMBnn5rmq6za9X9
+	 WipK+LHycoxfTTo52NjpbmBT84qwb6yyys9aFTWdtXeov+jo+e8rHTXSq64w3djH/k
+	 OgUGrCeaJf+Tg==
+Date: Thu, 16 Jan 2025 08:52:50 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Antoni Pokusinski <apokusinski01@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, andrej.skvortzov@gmail.com, neil.armstrong@linaro.org, 
-	icenowy@aosc.io, megi@xff.cz, danila@jiaxyga.com, javier.carrasco.cruz@gmail.com, 
-	andy@kernel.org, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: magnetometer: add binding for
- Si7210
-Message-ID: <iszqibm3gbltio5m6vx5w7ty3ug6qpafghfrnic4ulseh2w23e@ycqybypfheoo>
-References: <20250115201622.270130-1-apokusinski01@gmail.com>
- <20250115201622.270130-2-apokusinski01@gmail.com>
+To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Lubomir Rintel <lkundrak@v3.sk>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+	Gregory Clement <gregory.clement@bootlin.com>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
+	Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, David Wronek <david@mainlining.org>, 
+	Karel Balej <balejk@matfyz.cz>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org, 
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v14 2/4] arm64: Kconfig.platforms: Add config for Marvell
+ PXA1908 platform
+Message-ID: <fptozdlnt3yfdvqb44l77qhjn6tmdirhnrb6lkeniec2hrmuoq@yoe2w6g6xi3x>
+References: <20250115-pxa1908-lkml-v14-0-847d24f3665a@skole.hr>
+ <20250115-pxa1908-lkml-v14-2-847d24f3665a@skole.hr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,17 +67,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250115201622.270130-2-apokusinski01@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250115-pxa1908-lkml-v14-2-847d24f3665a@skole.hr>
 
-On Wed, Jan 15, 2025 at 09:16:21PM +0100, Antoni Pokusinski wrote:
-> Silicon Labs Si7210 is an I2C Hall effect magnetic position
-> and temperature sensor.
-> 
-> Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
+On Wed, Jan 15, 2025 at 09:35:55PM +0100, Duje Mihanovi=C4=87 wrote:
+> Add ARCH_MMP configuration option for Marvell PXA1908 SoC.
+>=20
+> Signed-off-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
 > ---
->  .../iio/magnetometer/silabs,si7210.yaml       | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/silabs,si7210.yaml
+>  arch/arm64/Kconfig.platforms | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
