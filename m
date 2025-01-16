@@ -1,253 +1,133 @@
-Return-Path: <devicetree+bounces-139073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C68DCA13DB5
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:32:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05AFEA13DCC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:36:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 251EE3A26B2
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:32:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5945C7A2A81
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:36:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7F5C22B5AD;
-	Thu, 16 Jan 2025 15:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA1FF22B8D2;
+	Thu, 16 Jan 2025 15:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ghZsGw/a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RywjzES5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 782537082B;
-	Thu, 16 Jan 2025 15:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA60722B8CD;
+	Thu, 16 Jan 2025 15:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737041562; cv=none; b=TjkRjBcVwkEKyxYJ6Dn8zIgyOP7aLcZP/GBcTB7ueMzCihE8jOnRpUAUZ4W8Zk/myrkEy3B2NXIn8T8OwUggl7awparYXNt8fXmPTiy8Qe/ThATjA3swZZzwqcKwoIt9jYG32Vv6pbfKNadsHaYmg7KJdaSPbdMHdYyf6HoareM=
+	t=1737041799; cv=none; b=Sa8i5XUk/Q9bb/jaaZW16efRgT1px7zFmqlVwZqKAnwnM/NGgQZC20b7z7rHZ7RzzW9Suzrq0iUo3wHlJDwNEJ1bKcfsGDgM8/fFBOk79oK0lP4MnSE82TSicc2VNIstCHJdfKgGMj6uxsCcpcdULkbQ0oQk7a5wq56Lp+JRnCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737041562; c=relaxed/simple;
-	bh=9SUodvvg1rGYUqIXFOOqwLz+xUmk/vUWLOe/vZPWUjE=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=W6QV/iOUUwmhr736ry7SDGqLZwbcNTKwbEEyV2RmNkUtoUe2ZDKVoBbnQL0Y+Ln7RhKAb9OTiKJT5grSMjyfp6Ovq21wNg2nleXS7pJofWI6Jq1lljfRom7J460CRs4iCYwYx1F1uf/VroAZBN3P/rfl+6tc3zrp8JVywGUEMoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ghZsGw/a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D04DDC4CEE1;
-	Thu, 16 Jan 2025 15:32:41 +0000 (UTC)
+	s=arc-20240116; t=1737041799; c=relaxed/simple;
+	bh=4ccIzb3E0CgJH6Xfmx3OHzv1JbAlmJUp0qoF4Pr9SDY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aM6yoAV/Cvh3FtCOm7AIMVAljGkZ5AA8kkFr2XPEcc4qEECPZIHeWD7M3KlXke2bsqB8gP8+6DdRE+YEO0iJnFOYAn4ptFCpczeTjlHo/r5OGECSb9iolCXzFK8k4JsszubUVBpBtj9Oym3HMY5f6vMTuODOn121NKVSkZao19M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RywjzES5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0CD3C4CEE3;
+	Thu, 16 Jan 2025 15:36:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737041562;
-	bh=9SUodvvg1rGYUqIXFOOqwLz+xUmk/vUWLOe/vZPWUjE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=ghZsGw/aRdpoR6kljKlJeaZeVo3Vc94QQPFpq7jm7p8/L5LlkzigFUX56+Mb9Vq0P
-	 8U0rN3ApGsb5ZZkN4/Lvqap9/VFcr5u62bjBP2E5s3jl6GZa9QS8KiKQuui1rxYxzG
-	 qlc31wRqjgk37E7qPX1/riy9n8XeyY1dzDc0Zy9THmsIg7mn1i3xBEKvdrZ85O39+W
-	 vKIg1TSpoia+kqD+EQp1FsP0Viip4hMsvMdz9VhNrKWdZyQ47+y6FLXGcBNDLXC0md
-	 u5FdFkdQaMYA261Cu3/w2ZMatQDC05PCJady8+6rAoCoU6a4kvfD0FiXUxIfQPSTrD
-	 tQ8gWAokc/FCw==
-Date: Thu, 16 Jan 2025 09:32:39 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
-Subject: Re: [PATCH v8 3/7] PCI: dwc: ep: Add bus_addr_base for outbound
- window
-Message-ID: <20250116153239.GA582080@bhelgaas>
+	s=k20201202; t=1737041799;
+	bh=4ccIzb3E0CgJH6Xfmx3OHzv1JbAlmJUp0qoF4Pr9SDY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RywjzES5BjPH8MApjg98YEqoo93PJMOtQWHmo+9zWQTOAVXgmrQVsPVvG32NXzYJH
+	 VBqetBtRk5fFav5FmMNMCZs6JytxxJjjMeGACaPsQc3hdC12/rFJ/VkyIolAfPhrBk
+	 KAk0QlCVGv5YBr1bgQPUFhtlVBuspLOcCsVky3OX5TdnHmkek40/12vGoB1hVFpycY
+	 jm5qUCpQFrlmZ7v6GdNXizTixoC9Q58Pf1cFwliiRgkUpQu70AXsfi1yjT2UKKG/5s
+	 OPPJ5V9l00QMvkWa2OP2ftNmAxWmU0xWGpXzTtI6j6w/I1MzSP+syVE3jNVL2jRAWu
+	 T9519Ra1feleg==
+Date: Thu, 16 Jan 2025 09:36:37 -0600
+From: Rob Herring <robh@kernel.org>
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Aleksandar Rikalo <arikalo@gmail.com>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] dt-bindings: mips: mips-cm: Add a new compatible
+ string for EyeQ6
+Message-ID: <20250116153637.GA2567996-robh@kernel.org>
+References: <20250116-cluster-hci-broken-v2-0-fc52cfb7a19e@bootlin.com>
+ <20250116-cluster-hci-broken-v2-2-fc52cfb7a19e@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241119-pci_fixup_addr-v8-3-c4bfa5193288@nxp.com>
+In-Reply-To: <20250116-cluster-hci-broken-v2-2-fc52cfb7a19e@bootlin.com>
 
-On Tue, Nov 19, 2024 at 02:44:21PM -0500, Frank Li wrote:
->                    Endpoint
->   ┌───────────────────────────────────────────────┐
->   │                             pcie-ep@5f010000  │
->   │                             ┌────────────────┐│
->   │                             │   Endpoint     ││
->   │                             │   PCIe         ││
->   │                             │   Controller   ││
->   │           bus@5f000000      │                ││
->   │           ┌──────────┐      │                ││
->   │           │          │ Outbound Transfer     ││
->   │┌─────┐    │  Bus     ┼─────►│ ATU  ──────────┬┬─────►
->   ││     │    │  Fabric  │Bus   │                ││PCI Addr
->   ││ CPU ├───►│          │Addr  │                ││0xA000_0000
->   ││     │CPU │          │0x8000_0000            ││
->   │└─────┘Addr└──────────┘      │                ││
->   │       0x7000_0000           └────────────────┘│
->   └───────────────────────────────────────────────┘
+On Thu, Jan 16, 2025 at 11:59:20AM +0100, Gregory CLEMENT wrote:
+> The CM3.5 used on EyeQ6 reports that Hardware Cache Initialization is
+> complete, but in reality it's not the case. It also incorrectly
+> indicates that Hardware Cache Initialization is supported. This new
+> compatible string allows warning about this broken feature that cannot
+> be detected at runtime.
 > 
-> Use 'ranges' property in DT to configure the iATU outbound window address.
-> The bus fabric generally passes the same address to the PCIe EP controller,
-> but some bus fabrics map the address before sending it to the PCIe EP
-> controller.
-> 
-> Above diagram, CPU write data to outbound windows address 0x7000_0000, Bus
-> fabric map it to 0x8000_0000. ATU should use bus address 0x8000_0000 as
-> input address and map to PCI address 0xA000_0000.
-> 
-> Previously, 'cpu_addr_fixup()' was used to handle address conversion. Now,
-> the device tree provides this information, preferring a common method.
-> 
-> bus@5f000000 {
-> 	compatible = "simple-bus";
-> 	ranges = <0x80000000 0x0 0x70000000 0x10000000>;
-> 
-> 	pcie-ep@5f010000 {
-> 		reg = <0x80000000 0x10000000>;
-> 		reg-names ="addr_space";
-> 		...
-> 	};
-> 	...
-> };
-> 
-> 'ranges' in bus@5f000000 descript how address map from CPU address to bus
-> address.
-
-Shouldn't there also be a pcie-ep@5f010000 'ranges' property to
-describe the translation for the window from bus addr 0x8000_0000 to
-PCI addr 0xA000_0000?
-
-I assume the pcie-ep@5f010000 controller also has its own registers in
-the bus addr space, separate from the window to PCI, and its 'reg'
-property would describe those?
-
-The similar patch at [1] includes:
-
-  pcie@5f010000 {
-    reg = <0x5f010000 0x10000>, <0x8ff00000 0x80000>;
-
-I assumed that [bus 0x5f010000-0x5f01ffff] is PCIe controller register
-space and [bus 0x8ff00000-0x8ff7ffff] is ECAM space.
-
-But that can't be right because ECAM requires 1MB per bus, and
-[bus 0x8ff00000-0x8ff7ffff] is only 512KB.
-
-> Use `of_property_read_reg()` to obtain the bus address and set it to the
-> ATU correctly, eliminating the need for vendor-specific cpu_addr_fixup().
-
-Why is this different from [1], where parent_bus_addr comes from the
-'ranges' property?  Isn't this the same exact kind of address
-translation for both RC and EP mode?
-
-> Add 'using_dtbus_info' to indicate device tree reflect correctly bus
-> address translation in case break compatibility.
-
-'using_dtbus_info' doesn't exist; I assume this should be
-'use_parent_dt_ranges'?
-
-Sorry I'm so confused, please help me out :)
-
-[1] https://lore.kernel.org/r/20241119-pci_fixup_addr-v8-1-c4bfa5193288@nxp.com
-
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 > ---
-> Change from v7 to v8
-> - Add Mani's reviewedby tag
-> - s/convert/map in commit message
-> - update comments for of_property_read_reg()
-> - use 'use_parent_dt_ranges'
+>  .../devicetree/bindings/mips/mti,mips-cm.yaml      | 24 ++++++++++++++++++++--
+>  1 file changed, 22 insertions(+), 2 deletions(-)
 > 
-> Change from v6 to v7
-> - none
-> 
-> Change from v5 to v6
-> - update diagram
-> - Add comments for of_property_read_reg()
-> - Remove unrelated 0x5f00_0000 in commit message
-> 
-> Change from v3 to v4
-> - change bus_addr_base to u64 to fix 32bit build error
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202410230328.BTHareG1-lkp@intel.com/
-> 
-> Change from v2 to v3
-> - Add using_dtbus_info to control if use device tree bus ranges
-> information.
-> ---
->  drivers/pci/controller/dwc/pcie-designware-ep.c | 18 +++++++++++++++++-
->  drivers/pci/controller/dwc/pcie-designware.h    |  1 +
->  2 files changed, 18 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index 43ba5c6738df1..42719ad263b11 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -9,6 +9,7 @@
->  #include <linux/align.h>
->  #include <linux/bitfield.h>
->  #include <linux/of.h>
-> +#include <linux/of_address.h>
->  #include <linux/platform_device.h>
+> diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+> index 9f500804737d23e19f50a9326168686c05d3a54e..4713673f0cfc7785bb183917ee382a815ebfe9e1 100644
+> --- a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+> +++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+> @@ -14,7 +14,12 @@ maintainers:
 >  
->  #include "pcie-designware.h"
-> @@ -294,7 +295,7 @@ static int dw_pcie_ep_map_addr(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+>  properties:
+>    compatible:
+> -    const: mti,mips-cm
+> +    oneOf:
+> +      - const: mti,mips-cm
+> +      - const: mti,eyeq6-cm
+
+Being a mobileye device, the vendor prefix should be mobileye.
+
+> +        description:
+> +          On EyeQ6 the HCI (Hardware Cache Initialization) information for
+> +          the L2 cache in multi-cluster configuration is broken.
 >  
->  	atu.func_no = func_no;
->  	atu.type = PCIE_ATU_TYPE_MEM;
-> -	atu.cpu_addr = addr;
-> +	atu.cpu_addr = addr - ep->phys_base + ep->bus_addr_base;
->  	atu.pci_addr = pci_addr;
->  	atu.size = size;
->  	ret = dw_pcie_ep_outbound_atu(ep, &atu);
-> @@ -861,6 +862,7 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  	struct device *dev = pci->dev;
->  	struct platform_device *pdev = to_platform_device(dev);
->  	struct device_node *np = dev->of_node;
-> +	int index;
+>    reg:
+>      description:
+> @@ -25,14 +30,29 @@ properties:
 >  
->  	INIT_LIST_HEAD(&ep->func_list);
+>  required:
+>    - compatible
+> -  - reg
 >  
-> @@ -873,6 +875,20 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  		return -EINVAL;
+>  additionalProperties: false
 >  
->  	ep->phys_base = res->start;
-> +	ep->bus_addr_base = ep->phys_base;
-> +
-> +	if (pci->use_parent_dt_ranges) {
-> +		index = of_property_match_string(np, "reg-names", "addr_space");
-> +		if (index < 0)
-> +			return -EINVAL;
-> +
-> +		/*
-> +		 * Get the untranslated bus address from devicetree to use it
-> +		 * as the iATU CPU address in dw_pcie_ep_map_addr().
-> +		 */
-> +		of_property_read_reg(np, index, &ep->bus_addr_base, NULL);
-> +	}
-> +
->  	ep->addr_size = resource_size(res);
->  
->  	if (ep->ops->pre_init)
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 4f31d4259a0de..5c14ed2cb91ed 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -410,6 +410,7 @@ struct dw_pcie_ep {
->  	struct list_head	func_list;
->  	const struct dw_pcie_ep_ops *ops;
->  	phys_addr_t		phys_base;
-> +	u64			bus_addr_base;
->  	size_t			addr_size;
->  	size_t			page_size;
->  	u8			bar_to_atu[PCI_STD_NUM_BARS];
-> 
-> -- 
-> 2.34.1
-> 
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: mti,eyeq6-cm
+> +then:
+> +  properties:
+> +    reg: false
+> +else:
+> +  required:
+> +    - reg
+
+How does one access this block with no registers? Is this some subset of 
+a larger block? If so, need to define that block first.
+
+These 2 blocks don't look related and the only property shared is 
+'compatible'. This should be a separate doc.
+
+Rob
 
