@@ -1,96 +1,157 @@
-Return-Path: <devicetree+bounces-139153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31C17A144E6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 23:56:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8C5BA1452A
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 00:14:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03615167E24
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 22:56:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 207B73A1366
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 23:14:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0D6F23F287;
-	Thu, 16 Jan 2025 22:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C877241688;
+	Thu, 16 Jan 2025 23:14:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="nhDo6Ujg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nlBbMT1I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-181.mta0.migadu.com (out-181.mta0.migadu.com [91.218.175.181])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 100B2236A81
-	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 22:55:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F050D23F263;
+	Thu, 16 Jan 2025 23:14:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737068152; cv=none; b=SXZOP9sE8h72eJMjD9TvzIxomfIr6tIPYe4qCQexQ4xkps4ttVpHn8bT16f40CLKhBmP9aY3t+WWKVOQqIEcyijPTQasCZkmLh8AysfSmY2Y2JA2d4/S2ajn7Ru8XpEWSNfyF44sbde5kMZwwMlzUXSbhEgdAO1dOOcd2k/6cY4=
+	t=1737069241; cv=none; b=NUT+DN00JrM1HcmBnw70ydYIFDLEP/FaJU4d+zBd7S9OAmY9immTvfhUs6hnoq/y4kOhz1/0bsIT0ZNIuW8Ew07wspH2bDZNNQsQ6ZHM2Q31Ocaa/55JupwdDZyTH8DHcD83VhJmJx4P3KbpTIKp0uehlKFw3n1V0t3bWhZMUXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737068152; c=relaxed/simple;
-	bh=itnHrqNHSm5DpYbOb1UJ0WRFSy/4BZ6dwcLlAkCtKJI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VEieTZ5U8ueUWBkWISsNxJJpLjKnxT9Lpld7crgRbqUqfvNBZ+e7gQQe+DWU+exCC/CAfMGBhHfXOHQ63C810I+GxGSV/vVUOU6Bzmz+DFvY+eD8OLJnu0iLcIlKPmQNbXWhph+QZ55osAe+Pgg9uFguteIGK7gqEJqqdmBhCcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=nhDo6Ujg; arc=none smtp.client-ip=91.218.175.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1737068144;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=w+quEYUkZhidwpAeLqq43u3BemjnbBw7+zBdpWqiraU=;
-	b=nhDo6UjgeIKQmiyR5pQ04UEbN2zDRWdCs5UadY8A98Tt8cMQLdQHTnSjQ4xpH8esmUGDl8
-	5ojOPwtNzMzbw2BhasYfr0heaIa6MfZn2n/NTMPtcTpA1+Fi00g52AYwjBANMjFl0Pkym6
-	F6fwb0zfW4IJREt/5xrt1XB9n9LMuz8=
-From: Sean Anderson <sean.anderson@linux.dev>
-To: Mark Brown <broonie@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	linux-spi@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	Jinjie Ruan <ruanjinjie@huawei.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Sean Anderson <sean.anderson@linux.dev>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH 5/5] ARM64: xilinx: zynqmp: Add QSPI reset
-Date: Thu, 16 Jan 2025 17:55:21 -0500
-Message-Id: <20250116225521.2688224-6-sean.anderson@linux.dev>
-In-Reply-To: <20250116225521.2688224-1-sean.anderson@linux.dev>
-References: <20250116225521.2688224-1-sean.anderson@linux.dev>
+	s=arc-20240116; t=1737069241; c=relaxed/simple;
+	bh=M8EIC7pg0Wzyi0pL5SQg5Thdf/ff+JRgC1JyfSUFHds=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=tTS/2Psjgh2LOlJ/mvRNhoNrGksiN3PaU0g3Z00ztTxp4gbI7oIO24pCNhEn3Ffg6eHPVXjWvQz3SKCcDDDBBJIl/YG2YUmhEAiQJUEo8JhXeLCbxuB3LePKMOMpry5850Bxan655AByt0SiRvacg9p0/Sr2hpZHWksUUVt3VAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nlBbMT1I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36126C4CED6;
+	Thu, 16 Jan 2025 23:14:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737069240;
+	bh=M8EIC7pg0Wzyi0pL5SQg5Thdf/ff+JRgC1JyfSUFHds=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=nlBbMT1Ijt2VrpfQTtch051uILthsjl//w99RARSxLK3YBLv5BvNBb2BYRXTH1TBI
+	 ttnTjtts6lruViF6D4uMZRH3ba6GNopequdvdcWqn+zygPVTCOOmAlSG248KrGiQrF
+	 w4EJcEVl1RePa9HP6TLcgwey3zjOIo6b+o4dzycz7dNTk8QDAqxmqxqR5So3XldrS6
+	 pyIwzVNl5QN2HN9sviZmUfobLrsUD0PMB/SkNu6VcpJRP+BxRowy/sfuxGJxw6w6pK
+	 Q9UmlxFxuR+JqS2Sjn+Qab6IWO+WGGCFI01bfthuPDz4G/6gqjb4N9uMNrAf5Qplae
+	 foqxXHSkyCzKQ==
+Date: Thu, 16 Jan 2025 17:13:58 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
+Subject: Re: [PATCH v8 2/7] PCI: dwc: Use devicetree 'ranges' property to get
+ rid of cpu_addr_fixup() callback
+Message-ID: <20250116231358.GA616783@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+In-Reply-To: <20241119-pci_fixup_addr-v8-2-c4bfa5193288@nxp.com>
 
-Add a reset to the QSPI.
+On Tue, Nov 19, 2024 at 02:44:20PM -0500, Frank Li wrote:
+> parent_bus_addr in struct of_range can indicate address information just
+> ahead of PCIe controller. Most system's bus fabric use 1:1 map between
+> input and output address. but some hardware like i.MX8QXP doesn't use 1:1
+> map. See below diagram:
+> 
+>             ┌─────────┐                    ┌────────────┐
+>  ┌─────┐    │         │ IA: 0x8ff8_0000    │            │
+>  │ CPU ├───►│   ┌────►├─────────────────┐  │ PCI        │
+>  └─────┘    │   │     │ IA: 0x8ff0_0000 │  │            │
+>   CPU Addr  │   │  ┌─►├─────────────┐   │  │ Controller │
+> 0x7ff8_0000─┼───┘  │  │             │   │  │            │
+>             │      │  │             │   │  │            │   PCI Addr
+> 0x7ff0_0000─┼──────┘  │             │   └──► IOSpace   ─┼────────────►
+>             │         │             │      │            │    0
+> 0x7000_0000─┼────────►├─────────┐   │      │            │
+>             └─────────┘         │   └──────► CfgSpace  ─┼────────────►
+>              BUS Fabric         │          │            │    0
+>                                 │          │            │
+>                                 └──────────► MemSpace  ─┼────────────►
+>                         IA: 0x8000_0000    │            │  0x8000_0000
+>                                            └────────────┘
+> 
+> bus@5f000000 {
+> 	compatible = "simple-bus";
+> 	#address-cells = <1>;
+> 	#size-cells = <1>;
+> 	ranges = <0x80000000 0x0 0x70000000 0x10000000>;
+> 
+> 	pcie@5f010000 {
+> 		compatible = "fsl,imx8q-pcie";
+> 		reg = <0x5f010000 0x10000>, <0x8ff00000 0x80000>;
+> 		reg-names = "dbi", "config";
+> 		#address-cells = <3>;
+> 		#size-cells = <2>;
+> 		device_type = "pci";
+> 		bus-range = <0x00 0xff>;
+> 		ranges = <0x81000000 0 0x00000000 0x8ff80000 0 0x00010000>,
+> 			 <0x82000000 0 0x80000000 0x80000000 0 0x0ff00000>;
+> 	...
+> 	};
+> };
+> 
+> Term internal address (IA) here means the address just before PCIe
+> controller. After ATU use this IA instead CPU address, cpu_addr_fixup() can
+> be removed.
 
-Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
----
+> @@ -730,9 +779,15 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
+>  
+>  		atu.index = i;
+>  		atu.type = PCIE_ATU_TYPE_MEM;
+> -		atu.cpu_addr = entry->res->start;
+> +		parent_bus_addr = entry->res->start;
+>  		atu.pci_addr = entry->res->start - entry->offset;
+>  
+> +		ret = dw_pcie_get_parent_addr(pci, entry->res->start, &parent_bus_addr);
+> +		if (ret)
+> +			return ret;
+> +
+> +		atu.cpu_addr = parent_bus_addr;
 
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Here you set atu.cpu_addr to the intermediate bus address instead
+of the CPU physical address before calling
+dw_pcie_prog_outbound_atu().
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 467f084c6469..5dac0542a48d 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -986,6 +986,7 @@ qspi: spi@ff0f0000 {
- 			#size-cells = <0>;
- 			/* iommus = <&smmu 0x873>; */
- 			power-domains = <&zynqmp_firmware PD_QSPI>;
-+			resets = <&zynqmp_reset ZYNQMP_RESET_QSPI>;
- 		};
- 
- 		psgtr: phy@fd400000 {
--- 
-2.35.1.1320.gc452695387.dirty
+But what about other callers of dw_pcie_prog_outbound_atu()?  Don't
+all of them need to use the intermediate bus address?
 
+Maybe struct dw_pcie_ob_atu_cfg.cpu_addr should be renamed since it is
+not necessarily a CPU physical address?
+
+> +	if (pci->ops && pci->ops->cpu_addr_fixup) {
+> +		/*
+> +		 * If the parent 'ranges' property in DT correctly describes
+> +		 * the address translation, cpu_addr_fixup() callback is not
+> +		 * needed.
+> +		 */
+> +		dev_warn_once(pci->dev, "cpu_addr_fixup() usage detected. Please fix DT!\n");
+> +	}
+
+I kinda wish this warning were in a separate patch because it will be
+a little cleaner if we ever want to revert or remove the warning.
 
