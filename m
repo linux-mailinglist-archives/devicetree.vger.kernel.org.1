@@ -1,227 +1,248 @@
-Return-Path: <devicetree+bounces-138970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13AB3A13687
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:24:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D162A136AE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:34:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 874E83A70CF
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:24:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7EDB3A7068
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:34:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753BF1D90B9;
-	Thu, 16 Jan 2025 09:24:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACCA41D95A3;
+	Thu, 16 Jan 2025 09:34:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WBABoPfq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jIZYhpoy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC1EF1946C8
-	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 09:24:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7C51D89FA
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 09:34:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737019480; cv=none; b=SGJHlpu4ykSJtrzPEDuis8Jc6JIBWzVmyqjsMQpW3+3Zosr757Hs2nSAlPO/L2HWiEOT8mlbVuzEa/IalLg2x8nSlZmmkYjsNoprgikGT24XSMV46RE7wWN82Rfqpw8ApefRXNRPZxg6UczAIK8Km9tCWLBQRELT+oxjy1L1+tU=
+	t=1737020081; cv=none; b=Pga37UbK/WrnHfXhKMtR41HZ4MO4GT0PMH082mNhUaHYraeavQupqOLTS1c4BiIUF99GvIwgHMskJfHDgjMipHNpYPoeCdTCUNx6ZqK5QK/lQr+1pOm0urWgimm7bE5eKwVNEwM5iUn109hgBuOi3WQWxN9vKsewwnPRreoMbiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737019480; c=relaxed/simple;
-	bh=wz/6VArm0fm4IK+UCKlCzR1Uz0mgnf9Z2nHw/aBWy9c=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Bzna1F5S/IUU4G57zS4RXhU2H+x2ODlVkJOriY8Z/y2Ny7VLvMdN2o0W5Hnax1HtgkqDtx21QRBZRwbIa83ZIUrrai6YlcPQLZTnVANhk2kd2ufm/+SZ+1m+GdUduQgDNZ6CsmLcr+4ySXnNxFUWlBhgPTMdxsWwEGyfKgYirys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WBABoPfq; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1737020081; c=relaxed/simple;
+	bh=YEFnAUMYl5nnOAtLb2J3ooxYMbpShUopFJE8cj2v+Ew=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=r36UzveYJogBeaQcNNubWLpz96LCWO/meUZOc9dfpXES4saCmN1cfSQ8irqCYkeg0uBXi7qvdqSU8Nnauz1bi2ro19ze5VKyt4fXEA6TfJg9ZHjvWYTDh7txY6SWPqw0dZUts7KjMda5rAAOzaZv7O8d021Z/pCmWuzE97Gq8r0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jIZYhpoy; arc=none smtp.client-ip=209.85.208.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4363ae65100so6048025e9.0
-        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 01:24:37 -0800 (PST)
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-3002c324e7eso6164601fa.3
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 01:34:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737019476; x=1737624276; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3lIaWSI2S+exW7AJdc9gF6v3PkwuGrMgeaYPmVrCZYI=;
-        b=WBABoPfqO5GXPHk4+l212iVmfvolEeqlbvg+E2BIbuj++xJs4P9MzwkS4ZT0TPc0yl
-         xiXhkcDHxk0k7+n88Df7LI4pZOGFZ0PC+W9q3c6yJw5pk7uYoBFryud5pwc1G3s44g+0
-         zWlYhjKrgOqkJCS8gKL8TlCmaMmSvXPKZAAxmtrNYWD8yfEyMjKXzY7PURZpMsjDFd7O
-         RnNyhSelOr3BgWcRoHBRZabvpUxMIswiSOLKUZva7EgCTAyBDROjIPv9AYPZPSNrebLF
-         wp7wmwxcsBUcTcuAe0ROb4KGYYQ9knTqy0NMmyzY95OxtuEZyV3f08sMePhYHIY51XgE
-         YGYg==
+        d=linaro.org; s=google; t=1737020078; x=1737624878; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DDEoo08UzquHfpbAFyPJ/ZCgHJCQZd+B5Sb7kOuUYkM=;
+        b=jIZYhpoy+DFFNrjb8qjYVs9Cq/Z5nA++uPbf2PRbHH1UTllQIBbFbyovyhbCxQ1vD8
+         UaVhfrB/h5cUoHPjA48Bx1d0/nsfaebo9wvdJTOpRcj0Fd3ZPfjHqufSI7oeyXwtJH5n
+         +sWzFiQGsbYnOFbK1TuZTZXEvKWJp5LP99pJRThETQdKOPCmeKHeVXU3h+LnR6wQEUMP
+         /McBASunyEAX5U62MiK9DVzG2paObZF4tRatJ33P2T+Q6AY0XdNokr6MY69BygF9wvA5
+         mSgFCto0REWHJVmzPHRQN2RJ5dYPC17vjU1Mu1uBg2s6eT5jcDLf+Jl+ukj0FyBkXJMH
+         ihAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737019476; x=1737624276;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=3lIaWSI2S+exW7AJdc9gF6v3PkwuGrMgeaYPmVrCZYI=;
-        b=NEoZtDb/3dtBQj/CSHntuWqv/Ntm89J7ia96aYNq5LAC8h5VsycXfqB/KkV4JiBqIF
-         euWfGUEX74iVnbksxIOi9BAr3migVCpGI0Mo5dop7F8nOJ175Q4r1NoNH1A0P8I2L4EI
-         egYUGXqoNfWwnqy76U2vlaCRpKmhabswsPx9lCNCpSIxUDppf0mO4bZhmWcaCXdxs9Ho
-         tsNlsFHHljjFdL0KTIWkRHynW6yb0VEE7u8jHm0sHG8tjOHBNVPbrvzuRlz0YsHJr0In
-         qWXpvXbdgLafUYr2L3T8IhTIPKPCxO96i2hTkEMnPsTBKgIaUfGUxyf1K4NdArQM9jUW
-         v5hg==
-X-Forwarded-Encrypted: i=1; AJvYcCVs2shOiTYT6Cltu2HhVD9HhhMVCQDD1Wb/OqpPdttp6sAKsrkZk9g/LihVEg0Fsk/Bk3RKSqOk/MHB@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYkRbnar2rjWaSGev2jjSQUKLZ3yJkMPYj9OVrrwoHVduFInUl
-	GDGEmz2uiGhrNR+H6XjWXhr7ib+o9/Ww3FCV54OTvavjbvF5/Xyhb6zflfUXisI=
-X-Gm-Gg: ASbGnctw1MAokXP2+uOwxb6FCTbr5x9BjSPa7MLkZPnzl6iAG4d3EqVZ22v+emdW7B/
-	RXH1T3Ou5NI1SErJnH5lPn7jpxAUveMZ6FKGoW8bJ8n9R7kUawWG25bVSDChHteOy3yCTGTTqEZ
-	VnOB/X584hJditYWuyv+XE15YS4H+X3833HWIG6qww64lGNe9EtnUeuU52Knsj5FjfDwCRh53eM
-	ll03uDOzPyWfdNFbarJGaON8yIFS2FAbMNU5kYjJmX9OwqxqUq1kjZZRTeseJrMbIaQBv3wJUr8
-	QCImInaW1aDyVxOfGkCd2TCadfBOitU=
-X-Google-Smtp-Source: AGHT+IFEgF8BZ/mYTGL6mOSmrxd/cLDyZc/Tv7cZxz3UDZhV9tkkfFiLKZQrO9BAMPcCteDuw4L/HA==
-X-Received: by 2002:a05:600c:1987:b0:434:fddf:5c0c with SMTP id 5b1f17b1804b1-436e2679e05mr308050335e9.4.1737019476004;
-        Thu, 16 Jan 2025 01:24:36 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:69b:c51f:3072:d4f5? ([2a01:e0a:982:cbb0:69b:c51f:3072:d4f5])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c753c617sm52784235e9.37.2025.01.16.01.24.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 16 Jan 2025 01:24:35 -0800 (PST)
-Message-ID: <e61d05d3-eb9d-4b58-8a56-43263c58f513@linaro.org>
-Date: Thu, 16 Jan 2025 10:24:33 +0100
+        d=1e100.net; s=20230601; t=1737020078; x=1737624878;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DDEoo08UzquHfpbAFyPJ/ZCgHJCQZd+B5Sb7kOuUYkM=;
+        b=Bhufztea89VyEHQUs5nMIKgc506ji6nUmDVpU4T9XWb6vpAjazuSsT+f/cDuVPq1QY
+         YCIpvavqFPj5F5zfzY9S/mE4gGIm4TJ9w/m4/YLsg+vSao94nv7ssuRSUltlOoc3HSdX
+         iyXMUFKnZ5yPm50xRwvYcXg9prvilzB8Ct7A/VM36qmbZgHOPdKG+XQbGiwYoayPn8xf
+         obxYRW7jlfSIbjhFOrFcAROD+uHGO2e3MtUN8iX68UPLEr6ktkU7FPWgrJABp3zRk2lg
+         E1PxupqTrOng5+19T4iMqq530Mv/tu/y2M7XFwCCGmA/Fft/0VvyOmzu/g0xamWpuGTl
+         5Y6A==
+X-Forwarded-Encrypted: i=1; AJvYcCXlPynpzC/k+lm033G7ysf9zTI7WOJvmePj63mfbJmlwpTqXI2F+tpPU4Z8F6DjlobVVZG2kjGHaX+Z@vger.kernel.org
+X-Gm-Message-State: AOJu0YxyyBpUk4DyRvO2SktQPPlK3JEAChI/nhIef2JZhRX7fHhOu7WQ
+	88JOYlmgMinMGr/L60UceXD6N1O/faEak0gMkE+7AE3eDwuNF7Y/jsa0nTUOSYa3ilAyuue67RW
+	6TOOb2Imi5hWNkyJkJStSXLddsan9dXiL8Ly53A==
+X-Gm-Gg: ASbGncsP5bTx5jsWSxnGWNrw2LpRk1A6p38yF756M5eaWxDKaGmFr5INGDT80qdsIXj
+	f02n87eDIH3UzH7jfbomp9aUMBFXVRFIIm+lz
+X-Google-Smtp-Source: AGHT+IEvxOVujRx8L7nmAm14+W+J9iR9tC3itop2isDuY+VzNKk3E+BY5vasl+NH5yxy4xJbTTxIO6CFjEvK/kGunk4=
+X-Received: by 2002:a05:651c:2222:b0:300:38ff:f8e2 with SMTP id
+ 38308e7fff4ca-305f453f9d5mr108573981fa.10.1737020077607; Thu, 16 Jan 2025
+ 01:34:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 8/8] ARM: dts: msm: Use Operation Points V2 for UFS on
- SM8650
-To: Ziqi Chen <quic_ziqichen@quicinc.com>, quic_cang@quicinc.com,
- bvanassche@acm.org, mani@kernel.org, beanhuo@micron.com,
- avri.altman@wdc.com, junwoo80.lee@samsung.com, martin.petersen@oracle.com,
- quic_nguyenb@quicinc.com, quic_nitirawa@quicinc.com,
- quic_rampraka@quicinc.com
-Cc: linux-scsi@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20250116091150.1167739-1-quic_ziqichen@quicinc.com>
- <20250116091150.1167739-9-quic_ziqichen@quicinc.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250116091150.1167739-9-quic_ziqichen@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250110123923.270626-1-szemzo.andras@gmail.com>
+ <20250110123923.270626-4-szemzo.andras@gmail.com> <20250114141954.2785879a@donnerap.manchester.arm.com>
+ <CACRpkda0nx3SQtdjmXdCEbVJSWM10TM=p-6JbDjbiYcOSF5PxQ@mail.gmail.com> <20250115152635.1b89e7f4@donnerap.manchester.arm.com>
+In-Reply-To: <20250115152635.1b89e7f4@donnerap.manchester.arm.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 16 Jan 2025 10:34:26 +0100
+X-Gm-Features: AbW1kvbBkCN9uFhss2v8p9gI5MNXxz-I4EOdo9aGVELtvFSbQyk_EVu2ddxSQ7s
+Message-ID: <CACRpkdYVTedEon0X-izvaDTGF6yRhD2s=Z6NEM=zBf4vD-T0Pg@mail.gmail.com>
+Subject: Re: [PATCH 03/12] pinctrl: sunxi: add driver for Allwinner V853.
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Andras Szemzo <szemzo.andras@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Andre,
 
-On 16/01/2025 10:11, Ziqi Chen wrote:
-> Use Operation Points V2 for UFS on SM8650 so that multi-level
-> clock/gear scaling can be possible.
+some nice talk here, actually the following is just opinions, I will
+be likely happy with whatever approach is taken eventually.
 
+On Wed, Jan 15, 2025 at 4:26=E2=80=AFPM Andre Przywara <andre.przywara@arm.=
+com> wrote:
 
-I've already sent a similar one at https://lore.kernel.org/all/20250115-topic-sm8x50-upstream-dt-icc-update-v1-10-eaa8b10e2af7@linaro.org/
+> > pio: pinctrl@1c20800 {
+> >                         compatible =3D "allwinner,sun8i-r40-pinctrl";
+> > (...)
+> >                         i2c0_pins: i2c0-pins {
+> >                                 pins =3D "PB0", "PB1";
+> >                                 function =3D "i2c0";
+> >                         };
+> >
+> > abstract, strings, nice. The driver handles the particulars.
+>
+> What bugs me about this it that this has quite some seemingly redundant
+> information (Who would have thought that the i2c0 pins use function
+> "i2c0"?), but misses out on the actual 4 bits(!) of information.
 
-Neil
+the pins in this example are called PB0 and PB1 though. The designation
+on the package. And often pins actually named "i2c0_1" "i2c0_2" are
+for that primary function, but muxable to a few other functions,
+at least GPIO in most cases. So it's just some name for the pin
+really.
 
-> 
-> Co-developed-by: Can Guo <quic_cang@quicinc.com>
-> Signed-off-by: Can Guo <quic_cang@quicinc.com>
-> Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
-> ---
->   arch/arm64/boot/dts/qcom/sm8650.dtsi | 51 +++++++++++++++++++++++-----
->   1 file changed, 43 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index 01ac3769ffa6..5466f1217f64 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -2557,18 +2557,11 @@ ufs_mem_hc: ufs@1d84000 {
->   				      "tx_lane0_sync_clk",
->   				      "rx_lane0_sync_clk",
->   				      "rx_lane1_sync_clk";
-> -			freq-table-hz = <100000000 403000000>,
-> -					<0 0>,
-> -					<0 0>,
-> -					<100000000 403000000>,
-> -					<100000000 403000000>,
-> -					<0 0>,
-> -					<0 0>,
-> -					<0 0>;
->   
->   			resets = <&gcc GCC_UFS_PHY_BCR>;
->   			reset-names = "rst";
->   
-> +			operating-points-v2 = <&ufs_opp_table>;
->   			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
->   					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->   					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-> @@ -2590,6 +2583,48 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->   			#reset-cells = <1>;
->   
->   			status = "disabled";
-> +
-> +			ufs_opp_table: opp-table {
-> +					   compatible = "operating-points-v2";
-> +					   // LOW_SVS
-> +					   opp-100000000 {
-> +							   opp-hz = /bits/ 64 <100000000>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <100000000>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <0>;
-> +							   required-opps = <&rpmhpd_opp_low_svs>;
-> +					   };
-> +
-> +					   // SVS
-> +					   opp-201500000 {
-> +							   opp-hz = /bits/ 64 <201500000>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <201500000>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <0>;
-> +							   required-opps = <&rpmhpd_opp_svs>;
-> +					   };
-> +
-> +					   // NOM/TURBO
-> +					   opp-403000000 {
-> +							   opp-hz = /bits/ 64 <403000000>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <403000000>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <0>,
-> +									   /bits/ 64 <0>;
-> +							   required-opps = <&rpmhpd_opp_nom>;
-> +					   };
-> +			   };
->   		};
->   
->   		ice: crypto@1d88000 {
+> > That is like so because we are designing for users which are
+> > let's say customization engineers. If these engineers jump from
+> > project to project matching function strings to group strings will
+> > be a common way to set up pins, and easy to understand and
+> > grasp, and it makes the DTS very readable.
+>
+> That's an interesting view, and I see the point of it being easy to read,
+> but this is partly because it doesn't convey too much actual information,
+> does it, as it requires another lookup or two.
+> And the pinctrl group nodes are actually in the .dtsi file, which are
+> typically written once during the initial SoC enablement, and new board
+> .dts files normally just reference the existing pingroup nodes. So anyone
+> dealing with just a new board is not bothered by this.
 
+You have a point, and when working with a system the application
+engineer often finds bugs in the pin control driver, and has to go
+and fix the actual driver and then all the information hiding and
+simplification is moot.
+
+This can become an expensive lesson for the current attempts
+to push pin control into firmware where the configuration is
+mostly "dead simple" (and just using strings) - the bugs will be
+in the firmware instead, and impossible or really hard to fix.
+
+> Also in my experience most people have no problems in understanding the
+> concept of pinmuxing and that there is a selector number, also where to
+> find this.
+
+Yeah the ambition with the strings was to avoid forcing application
+engineers to know all about that. If they do, they are then
+developing the driver, not just using it.
+
+> > Mediatek and STM32 made a compromise by using pinmux
+> > and adding some macros to define them so it looks more
+> > pleasant:
+> >
+> >       i2c0_pins_a: i2c0-default {
+> >                 pins-i2c0 {
+> >                         pinmux =3D <MT7623_PIN_75_SDA0_FUNC_SDA0>,
+> >                                  <MT7623_PIN_76_SCL0_FUNC_SCL0>;
+>
+> Well, I don't really get why they don't use the (MTK_PIN_NO(75) | 1)
+> definition directly, seems to be more telling to me?
+
+That's what STM32 does as well and it's usable.
+
+But of course it drives a truck through the initial ambition that pins
+on all systems be configured the same way, with strings. So now
+there are some families of drivers all "necessarily different" which
+is not so nice for people jumping between different SoCs, but
+very compelling for people focusing on just one SoC.
+
+Well, unless this way of doing things becomes so prevalent that
+it's the new black.
+
+> So the plan for sunxi would be: <SUNXI_PINMUX(PORTC, 23, MUX_1)>, ...
+> And this would not be really "opaque", since it has a fixed known mapping=
+:
+>         (port << 16) | (pin << 8) | (mux << 0))
+> I find this both technically elegant, because it combines all the
+> information into just one compact cell, but also readable by outsiders,
+> thanks to the macro.
+
+And a new standard, to add to the other standards, so that
+is my problem as maintainer. It makes sense on its own, and it
+complicates the bigger picture.
+
+> My main arguments against the current (string-based) approach:
+> - They require the mapping table to be in every DT user, so not only the
+>   Linux kernel, but also U-Boot, FreeBSD, you name it...
+
+That's true.
+
+This comes from the DT ambition to describe hardware and config,
+but not *define* hardware, i.e. to stop device tree to turn into
+Verilog or SystemC, which is what will happen if we take the
+1:1 reflection of hardware to device tree too far.
+
+I don't think anyone really knows where to cut the line.
+
+> - The tables are getting quite large, and they pollute the single image
+>   Linux kernel, with tons of very specific information for a number of ve=
+ry
+>   pitiful Allwinner SoCs. At the moment the tally is at 145KB of code+dat=
+a
+>   for the existing arm64 SoCs, with the newer SoCs ever growing (H616 alo=
+ne
+>   is 27KB, A523 would be quite larger even, I guess 40K). The new A523
+>   specific pinctrl support adds 872 Bytes.
+
+This is a generic problem though, look at GPU drivers.
+
+The community (especially Android) seem set on fixing this by using
+modules.
+
+> - Most of the mappings are untested at pinctrl driver commit time, since =
+we
+>   don't have the device drivers ready yet - by a margin. The new approach
+>   would add the pinmux values when we need them and can test them.
+
+I like this argument the best.
+
+However this also reads "upfront firmware to handle pin control is a
+dead end" yet there are people dedicatedly working on exactly that.
+(Not that its' the Allwinner developers' problem...)
+
+> - The comments in the table give away that something is not quite right:
+>                   SUNXI_FUNCTION(0x2, "i2c0")),         /* SDA */
+>   This is just a comment, so has no relevance for the code, but it's not
+>   meant for humans either. Yet we try to make this correct and maintain
+>   it. Odd.
+
+So i2c0 is SDA and i2c1 is SCL or something?
+It seems common, but yeah it can be confusing.
+
+Yours,
+Linus Walleij
 
