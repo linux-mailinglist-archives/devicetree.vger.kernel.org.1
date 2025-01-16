@@ -1,120 +1,194 @@
-Return-Path: <devicetree+bounces-139098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4627DA13FB1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 17:42:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9209AA13FCC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 17:46:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EE6F16A74F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:42:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F39D3188CAFD
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20AE022CF28;
-	Thu, 16 Jan 2025 16:42:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40621DE881;
+	Thu, 16 Jan 2025 16:46:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rOfFT6hz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D1722B8A0;
-	Thu, 16 Jan 2025 16:42:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9748E13959D;
+	Thu, 16 Jan 2025 16:46:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737045741; cv=none; b=YiQyQ3fE+H8sindvgzQmm92waqjwGpJ0ME6g01k03BeBaNOCXyINss8EfR7vZqkOuRWf34DNhayQHUP96KOT6Iz0KquuhAPJWuODDxYa0GuT9FzN+snYhGTMJy+fTkMH3SdaC5dIFuUT3hElphDpVD9Vz5fC9BxqDFAwjGZbwuI=
+	t=1737045984; cv=none; b=qFOBgJvyBjQSOKp7OfvwhOdire1ZGJV3L2GnpyA4ZLipVI81veBa/rk/TrRJAE4Qkc0/3zgBCqJa9IW+JnDryzpSjMzZvbyPQ66GY78oHC8WHElsswbFi6Smv8JJnZrhUFDdnCF5KySJM1HDUJ7eDRf1xFcUnOu03p0SBKjLn2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737045741; c=relaxed/simple;
-	bh=Gabzw77sqMoTj2enTfVlZILY8B3tf3buDe95F1mn3IQ=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VJzRtnNYRYxYGQq9Y5nJQuCtNLdHRs/W6Vw40O+zWhI84T/l3CxQml30d5LGneW+6GT9O2DrkACn3o7AjO05EblXgXe4K8xFjd0DpL/1CuNIOYtu40qi0nkIPHvDkMwO8Xh0iO3D01rm38jgg6NQMFbn+BFDETKG1qdecCU8vRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4YYpWs2lkPz6L5Ct;
-	Fri, 17 Jan 2025 00:40:41 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 0C403140390;
-	Fri, 17 Jan 2025 00:42:15 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Thu, 16 Jan
- 2025 17:42:13 +0100
-Date: Thu, 16 Jan 2025 16:42:11 +0000
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Vasiliy Doylov via B4 Relay <devnull+nekodevelopper.gmail.com@kernel.org>
-CC: <nekodevelopper@gmail.com>, Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, "Krzysztof Kozlowski"
-	<krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RESEND v4 0/5] iio: accel: mc3230: add mount matrix, of
- match and mc3510c support
-Message-ID: <20250116164211.000079d0@huawei.com>
-In-Reply-To: <20250116-mainlining-mc3510c-v4-0-a41308b85ec2@gmail.com>
-References: <20250116-mainlining-mc3510c-v4-0-a41308b85ec2@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1737045984; c=relaxed/simple;
+	bh=L/KZG4Pm9PuHsf+j03WeS+nOje6TuEkm+2ySm7d+8gE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iuCPLy10ohKHOa525NSqDn00NFGgPJOncmKX5OuBnkI7UsRaTZZ7E6qnGGJq/K8a0ciuDvuN3+pybhE/Z94pPN18ElGEGx+VeAAo0qd7QArJv/I520epDamNdBgR8Cbe+CSbd/nXv22DAcWB9aIFOi67elj3auqHos/pdTs6Azc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rOfFT6hz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A581DC4CED6;
+	Thu, 16 Jan 2025 16:46:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737045984;
+	bh=L/KZG4Pm9PuHsf+j03WeS+nOje6TuEkm+2ySm7d+8gE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rOfFT6hzINfBNG2t5Ib7U6Py9ZdRmVfFv4p5E5ARNWl0UfYKz+JM87qYpw114/8v7
+	 +OM7BfMT183k0cdGd6LHwGhxgZmUY+rO/OeOiNM221osCENMeW2mfIwdVCYj235ZEA
+	 CQgCTLnmrB+XOQXQinlOsrRxxWKGN3tEvHL1Er1dnRrycMJ0VcKeqYHL+uwFWXltKC
+	 vXgGHMG9+4GtMN1LqLStiFDs7bYVq1/e/oVp4K9Xt03l/0DyvbEzlBDj2i2gDczd0S
+	 ZhyY/jPEyrdgM6ISRnREe77DVAOIm4CYrKwKFrwi3oA9Pr58m8+9c22zz9C57K78xO
+	 NRdOteiiOwIJA==
+Date: Thu, 16 Jan 2025 16:46:19 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: daire.mcnamara@microchip.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, conor.dooley@microchip.com,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ilpo.jarvinen@linux.intel.com,
+	kevin.xie@starfivetech.com
+Subject: Re: [PATCH v10 1/3] PCI: microchip: Fix outbound address translation
+ tables
+Message-ID: <20250116-debatable-hazelnut-6501986373fa@spud>
+References: <20250115001309.GA508227@bhelgaas>
+ <20250116154253.GA584488@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="dISYL3zSj/IQb+CW"
+Content-Disposition: inline
+In-Reply-To: <20250116154253.GA584488@bhelgaas>
 
-On Thu, 16 Jan 2025 16:52:41 +0300
-Vasiliy Doylov via B4 Relay <devnull+nekodevelopper.gmail.com@kernel.org> wrote:
 
-Always say why you are resending.
+--dISYL3zSj/IQb+CW
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Jonathan
+On Thu, Jan 16, 2025 at 09:42:53AM -0600, Bjorn Helgaas wrote:
+> On Tue, Jan 14, 2025 at 06:13:10PM -0600, Bjorn Helgaas wrote:
+> > On Fri, Oct 11, 2024 at 03:00:41PM +0100, daire.mcnamara@microchip.com =
+wrote:
+> > > From: Daire McNamara <daire.mcnamara@microchip.com>
+> > >=20
+> > > On Microchip PolarFire SoC (MPFS) the PCIe Root Port can be behind on=
+e of
+> > > three general-purpose Fabric Interface Controller (FIC) buses that
+> > > encapsulate an AXI-M interface. That FIC is responsible for managing
+> > > the translations of the upper 32-bits of the AXI-M address. On MPFS,
+> > > the Root Port driver needs to take account of that outbound address
+> > > translation done by the parent FIC bus before setting up its own
+> > > outbound address translation tables.  In all cases on MPFS,
+> > > the remaining outbound address translation tables are 32-bit only.
+> > >=20
+> > > Limit the outbound address translation tables to 32-bit only.
+> >=20
+> > I don't quite understand what this is saying.  It seems like the code
+> > keeps only the low 32 bits of a PCI address and throws away any
+> > address bits above the low 32.
+> >=20
+> > If that's what the FIC does, I wouldn't describe the FIC as
+> > "translating the upper 32 bits" since it sounds like the translation
+> > is just truncation.
+> >=20
+> > I guess it must be more complicated than that?  I assume you can still
+> > reach BARs that have PCI addresses above 4GB using CPU loads/stores?
+> >=20
+> > The apertures through the host bridge for MMIO access are described by
+> > DT ranges properties, so this must be something that can't be
+> > described that way?
+>=20
+> Ping?  I'd really like to understand this before the v6.14 merge
+> window opens on Sunday.
 
-> Changes includes:
-> - Add mount matrix handling
-> - Add match table to work with DT
-> - Add MC3510C support
-> 
-> MC3510C use same registors as MC3230, but different value scale.
-> 
-> Signed-off-by: Vasiliy Doylov <nekodevelopper@gmail.com>
-> ---
-> Changes in v4:
-> - Fixed commit messages
-> - Added const modificator to chip_infos
-> - Return name->chip_id->product_code->scale order
-> - `{}` replaced by `{ }` (with space)
-> - Link to v3: https://lore.kernel.org/r/20250112-mainlining-mc3510c-v3-0-9ee6520ab69d@gmail.com
-> 
-> Changes in v2:
-> - Ordered commits
-> - Fixed comment style
-> - Ordered struct members
-> - Fixed device table
-> - MC5310C commit splitted
-> - Link to v1: https://lore.kernel.org/r/20250111-mainlining-mc3510c-v1-0-57be503addf8@gmail.com
-> 
-> Changes in v3:
-> - Fixed patch (poped stash)
-> - Link to v2: https://lore.kernel.org/all/20250112-mainlining-mc3510c-v2-0-322804a545cf@gmail.com
-> 
-> ---
-> Vasiliy Doylov (5):
->       dt-bindings: iio: accel: mc3230: document mc3510c
->       iio: accel: mc3230: add mount matrix support
->       iio: accel: mc3230: add OF match table
->       iio: accel: mc3230: add multiple devices support
->       iio: accel: mc3230: add mc3510c support
-> 
->  .../devicetree/bindings/trivial-devices.yaml       |  2 +
->  drivers/iio/accel/mc3230.c                         | 95 ++++++++++++++++++----
->  2 files changed, 80 insertions(+), 17 deletions(-)
-> ---
-> base-commit: 2b88851f583d3c4e40bcd40cfe1965241ec229dd
-> change-id: 20250111-mainlining-mc3510c-564702fba487
-> 
-> Best regards,
+Daire's been having some issues getting onto the corporate VPN to send
+his reply, I've pasted it below on his behalf:
 
+There are 3 Fabric Inter Connect (FIC) buses on PolarFire SoC - each of
+these FIC buses contain an AXI master bus and are 64-bits wide. These
+AXI-Masters (each with an individual 64-bit AXI base address =E2=80=93 for =
+example
+FIC1=E2=80=99s AXI Master has a base address of 0x2000000000) are connected=
+ to
+general purpose FPGA logic. This FPGA logic is, in turn, connected to a
+2nd 32-bit AXI master which is attached to the PCIe block in RootPort mode.
+Conceptually, on the other side of this configurable logic, there is a
+32-bit bus to a hard PCIe rootport.  So, again conceptually, outbound addre=
+ss
+translation looks like this:
+
+                 Processor Complex =C3=A0 FIC (64-bit AXI-M) =C3=A0 Configu=
+rable Logic =C3=A0 32-bit AXI-M =C3=A0 PCIe Rootport
+		 (This how it came to me from Daire, I think the =C3=A1 is meant to
+		 be an arrow)
+
+ This allows a designer two broad choices:
+
+    Choice of FIC (effectively choice of AXI bus)
+    Ability to offset the AXI address of any peripherals they add in the
+    Fabric.
+
+=20
+
+So, for the case of an outbound AXI address, from the processors=E2=80=99 p=
+oint
+of view (or Linux=E2=80=99 point of view if you prefer), the processor uses=
+ a
+64-bit AXI address, then =E2=80=93 in a very general way of viewing the pro=
+cess
+and thinking only about accessing the PCIe device =E2=80=93 the FPGA logic =
+can
+be configured to adjust that AXI-M address to any arbitrary =E2=80=9Caddres=
+s=E2=80=9D
+before it passes that new =E2=80=9Caddress=E2=80=9D to the Root Port over a=
+ second 32-bit
+AXI bus (the main constraint is that the FPGA logic can only use a 32-bit
+address on that AXI-M interface to the Root Port).
+
+=20
+
+To manage this complexity, Microchip have design rules for customers
+building their FPGA logic where we strongly recommend that they only
+interact with  the upper 32 bits of the 64-bit address in the FPGA logic
+and pass the lower 32 bits through (unmodified) to the AXI-M side of the
+PCIe Root Port. This allows them to =E2=80=9Cmove=E2=80=9D a 64-bit AXI-M w=
+indow for their
+PCIe Root Port (as viewed by the processor) for their particular design =E2=
+=80=93
+if they need to - so that they can also access any other AXI-M windows
+associated with any other peripherals they might add to their design.
+
+=20
+
+In practise, so far, all customers, and our own internal boards have all
+started by using one of two major reference designs from us (one using FIC1
+where the AXI-M window destined for the PCIe Root Port starts at 0x20000000=
+00
+and one using FIC2 where its AXI-M window, again destined for the PCIe Root
+Port starts at 0x3000000000).
+
+best,
+
+daire
+
+--dISYL3zSj/IQb+CW
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4k32wAKCRB4tDGHoIJi
+0r8aAP9OljF2t/djmQEXjTcwQv5O/kjOlC4cmIz8YFYInFE7uQEAir30agpuqLBv
+IoeWvvIUCLBDbl111pYfb88kL/pz0gY=
+=NBkU
+-----END PGP SIGNATURE-----
+
+--dISYL3zSj/IQb+CW--
 
