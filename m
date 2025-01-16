@@ -1,65 +1,62 @@
-Return-Path: <devicetree+bounces-139041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139043-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38E5DA13C00
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:20:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96BD4A13C10
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:22:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC55F3AA521
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:20:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0213C188D935
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:22:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7DBA22A7EE;
-	Thu, 16 Jan 2025 14:20:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C75722B8C8;
+	Thu, 16 Jan 2025 14:22:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P8WXCM5V"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="fsMfD3dh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12FF1DE2B9;
-	Thu, 16 Jan 2025 14:20:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B337222B8AC;
+	Thu, 16 Jan 2025 14:22:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737037232; cv=none; b=tRub1a8F/59OD3pbHRSKbPJVblxnFn9A7W57c2/GQuDmImk3IzRL4uM7t8/HXpemO4TiDrIQQ15xiYInp3L7VtgLvid+M9NyDamNtoa9ZBytdaVBrBT4UGqsqZ2PI+j/NslYDYBQ1P0dPxiXmuhEyAZut0bxEfDlV5GtnmDNys8=
+	t=1737037344; cv=none; b=sLRAOG+fqBqd+Vtp5WLELlA71cjrd79XEkBL8u9kqOROenboVGtRVYb8KH4eDTNqxrPONiSvwBuNyzfppZyt/bbY6nGG6/t8rA1GzF2Pa6cKt88e3/aJuk6Z7aEXKufTn+E+hQUHJ5cMNtXV+Pl8lhPGRKKH4u2W7JZAyC2Wn3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737037232; c=relaxed/simple;
-	bh=mDgZ8AfPGS/Gs+LJPIvTqHUSiT9ZB3FIVOYyCsFQf/c=;
+	s=arc-20240116; t=1737037344; c=relaxed/simple;
+	bh=KbLGhe00qXtu6APWRN+AlmE5MQuDlad43bWqQDdlOAY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tyiQw+ixs1a++boiIr1BbQbIcV5YOuj2gJ0AGaL2ae+VKh9wlvkB+d69BeLuAhaCdXD5toRI37PqXEuYhs9RHAUm30hR4uxt8DjnC94YGuigS0bR4yOT3yyz1ui+PdN2Lj9ymGngKJeg2QsFqLeW2KTrH5iytAdotCSDLW9kEto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P8WXCM5V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2AC1C4CED6;
-	Thu, 16 Jan 2025 14:20:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737037232;
-	bh=mDgZ8AfPGS/Gs+LJPIvTqHUSiT9ZB3FIVOYyCsFQf/c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P8WXCM5VSC1D1qHHiJ+wdsAWz/tSmPaJWapX/QHXdEqhgQOw3hqpjIq+EWSZAsCG8
-	 zQjp17R9ocukhEgTEDunuYFeib5tUHJAMHv6q2NAEAvAEsPBBtrVIYZMEy7tpzmr3K
-	 LvurV5w7tKzeLXwu3N6ZIlGQL93WVRfpGoaDxX6ZGAwOrFFAG7/gK+darvm2Ik4C8+
-	 wkKvEju4y+r2IfAmyosMhz+HY0FUDeM+0l7qtHLkjvIHOsMEbmCc+3DIvuw4oPBFwA
-	 2VOFZossDJXPXYeeFzKt3Bj3dTWHSiUiMPWhDHPPS5/MDxDWIubAD+JKrKuNZUsoj7
-	 frXMbmrAfEAhw==
-Date: Thu, 16 Jan 2025 08:20:30 -0600
-From: Rob Herring <robh@kernel.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, gregkh@linuxfoundation.org,
-	andersson@kernel.org, konradybcio@kernel.org,
-	dmitry.baryshkov@linaro.org, mantas@8devices.com,
-	manivannan.sadhasivam@linaro.org, abel.vesa@linaro.org,
-	quic_kriskura@quicinc.com, quic_rohiagar@quicinc.com,
-	quic_kbajaj@quicinc.com, quic_wcheng@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v4 5/6] dt-bindings: usb: qcom,dwc3: Add IPQ5424 to USB
- DWC3 bindings
-Message-ID: <20250116142030.GA2159147-robh@kernel.org>
-References: <20241118052839.382431-1-quic_varada@quicinc.com>
- <20241118052839.382431-6-quic_varada@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BVO8picJie5BJATkgPT3gTkz/QRfoSg2pBV2sTF8QyXEiR3eIgVvDWRDrto81VisHDaKAsEx2H9iPiV47pAYUr58i2qcGwhJHjztM2gGkSwVVi+2cE/bTX8vLer3Rbm56w64hlQHy15UeNnkwGNCDAcSfwxZRWUOrPXD/rh5//U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=fsMfD3dh; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=BprE8Zu8fGlRDUuojTDAvRxzNAsDvbqhhULqsp8fer0=; b=fsMfD3dhuunFbYGS3QSVowz9pa
+	16N7kRytn/2fqELQpVr83sBq2Clnl6ufNplaNXY3xlmrx4w4aK/HTEpHnMR86+BVMWk6WKub3WY9F
+	X8t6YDvV+D24aHtEcBqfMX3EWjmt8f20iKorydWe42Louvbh88/7b8mlUn7rJpboEUJQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tYQlC-00597F-Ij; Thu, 16 Jan 2025 15:22:14 +0100
+Date: Thu, 16 Jan 2025 15:22:14 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: marvell: armada: Align GPIO hog name with
+ bindings
+Message-ID: <6bed3249-9905-4949-8031-52217f123f2e@lunn.ch>
+References: <20250116085947.87241-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,20 +65,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241118052839.382431-6-quic_varada@quicinc.com>
+In-Reply-To: <20250116085947.87241-1-krzysztof.kozlowski@linaro.org>
 
-On Mon, Nov 18, 2024 at 10:58:38AM +0530, Varadarajan Narayanan wrote:
-> Update dt-bindings to add IPQ5424 to USB DWC3 controller list.
+On Thu, Jan 16, 2025 at 09:59:47AM +0100, Krzysztof Kozlowski wrote:
+> Bindings expect GPIO hog names to end with 'hog' suffix, so correct it
+> to fix dtbs_check warnings like:
 > 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> v2: Add 'Acked-by: Conor Dooley'
-> ---
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>   armada-385-clearfog-gtr-s4.dtb: wifi-disable: $nodename:0: 'wifi-disable' does not match '^.+-hog(-[0-9]+)?$'
+ 
+Hi Krzysztof
 
-Looks like this was missed. Applied.
+I believe the mvebu pull request for the next merge window has already
+been sent to arm-soc. So please repost after -rc1.
 
-Rob
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
 
