@@ -1,137 +1,130 @@
-Return-Path: <devicetree+bounces-139050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 385F0A13C41
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:30:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB3EFA13C53
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:34:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B53DB3A2AE8
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:30:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27F137A04D1
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:34:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3F00146D40;
-	Thu, 16 Jan 2025 14:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09280198A29;
+	Thu, 16 Jan 2025 14:34:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="tiUus4CQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dDYdyOsX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E13A24A7C9;
-	Thu, 16 Jan 2025 14:30:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF27B24A7C9;
+	Thu, 16 Jan 2025 14:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737037836; cv=none; b=Edir48VTfThuWgceoYQ9q8qLFmI0ET3laZVYqp/88WkKcoCLE8b4QWKXWFlQ4tfJUiNXR3FVvtXqlmbDLWgcH7rwWr2S59R/7hcHLUIQq0wmp+cuPpKHY6RXMC0Fe54RQpCNhPIq5VWFX133SEhf4tzm3teC9OjstXvvnwsM4qs=
+	t=1737038072; cv=none; b=bUMmgQoJnA8eWW0Th7ec5cWn++0pOTEDNpNRwneqpl5tuw3HUjgg2EAZJBUYeehRWYxRKp7VsHyfhcbBdT1dg3OWclHQ/Vy+OiENqC3jMimqY+usYGyA56gS6J26exSLdGhhpDDebj5NxgLhP3IG6F92WaXKbkn2IGCMqeUlDiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737037836; c=relaxed/simple;
-	bh=VyQzi3f8geThEMNjp60ErA8QGcIQGAkPBUlRvjYVFac=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
-	 In-Reply-To:Content-Type; b=RNJvjRi2XfTZ7yWuQH/tr5wn0k8s8SVGceV3kiSgBOkcQVXI5Qg4lztvcpq+Z3ZtHHWXOee9Jv9cAmOtC1TJQhdAqUlxpIA0qUAChrPLrziqcNtqr5HUZItyzvWn2w990crWPam5QJmGucn23j/o8NPzOMvuk/VEWEk2E18wBts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=tiUus4CQ; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50GCMPgY022802;
-	Thu, 16 Jan 2025 14:30:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=pHS0Fn
-	61rhNPulYZt6CO+SM6wBYoyMhn/IvaB4skFsQ=; b=tiUus4CQ5KOVLwSSpt3KQv
-	CGxavg6M6mrjTVc7bcMNJ6tcQrm3z7feowhOwYn6P4awZtD/QgouqNGCW4S8yIUK
-	e3RjO21Kbw87oyye2EoNwS/rcduQQw5ZabENsZo5eMnZTGC7hz9At+f+tbALyUSd
-	CoqjWEyTe5wMgbRqZ4ddrs/7W2MhH/9fMd4xHbzdKV7yF/31NkTTnEgeH304q3sg
-	luEcvJCBPcdo2gbzixy4Svok+huIP3/cBLMebu/GDPbZ0dOV16q3SSOopqZwlydo
-	FEGtNMoOulQRG5x4aua/N+7Xfi7GFRl+tPH8Vknh1kJ2oDw8i0ML3Zff4sEnIreQ
-	==
-Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 446pub3j3w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 14:30:15 +0000 (GMT)
-Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma11.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 50GB4bAl016490;
-	Thu, 16 Jan 2025 14:30:15 GMT
-Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
-	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 4445p1wux1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 14:30:15 +0000
-Received: from smtpav06.wdc07v.mail.ibm.com (smtpav06.wdc07v.mail.ibm.com [10.39.53.233])
-	by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 50GEUEeH29688478
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 16 Jan 2025 14:30:14 GMT
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 8523158062;
-	Thu, 16 Jan 2025 14:30:14 +0000 (GMT)
-Received: from smtpav06.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id D161458055;
-	Thu, 16 Jan 2025 14:30:12 +0000 (GMT)
-Received: from [9.61.59.21] (unknown [9.61.59.21])
-	by smtpav06.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Thu, 16 Jan 2025 14:30:12 +0000 (GMT)
-Message-ID: <ae14daf4-c7fe-4fcc-89cd-5d1d8b320193@linux.ibm.com>
-Date: Thu, 16 Jan 2025 08:30:12 -0600
+	s=arc-20240116; t=1737038072; c=relaxed/simple;
+	bh=0zDNAkgEPmTQ9ijNf/YMlGkQXo8XEzIXRvPAn+NzZ7Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=t/TbxKhqD1weuA5a++hIWpbzHWpnepv0Tjd4gn6UA2OD8IfNZm1GVo6KRcqM75FM0PXnbk8vo7Avskqe1haqBkTqFoUTB+zmcKwlyhWt+rgU/J0uxdyN71MnfT6dZL+QVpuQo6rFuCvPQdPfKa0bqXz4ENo4PrRQwmtgA/xSRnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dDYdyOsX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53D5DC4CEE3;
+	Thu, 16 Jan 2025 14:34:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737038072;
+	bh=0zDNAkgEPmTQ9ijNf/YMlGkQXo8XEzIXRvPAn+NzZ7Y=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=dDYdyOsXGumufp8xsbvbFP+VUYIbby3EyCsdTTEKG0+Wrq0qYHp8D5NY6zrk0Gaym
+	 GdnGKF8uOWh25sALEsU6DdVWtq23vn4xIN3hK5N/CnGpMC08qUHKMMiq40kxtniwye
+	 jE9xVomMBarsrBXjrEvxXl8yIgAr+mosEZQuES8Hxeu4M6eCwnkDzn3bycxWgQjURi
+	 atd2qBCNp1CNugJ7IYeu85NOBEm5xuMsfv+8Oq1JskL2P/FITbSZ496mahz+/L3HhX
+	 6zLO0QKgonBC5xH9JDOswh76WvyhR2S4Y8Q7461Vd3wPtDIOrMAzXq4uqFNAKHhIvE
+	 E3WrOv3gqDG9A==
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5401d3ea5a1so963163e87.3;
+        Thu, 16 Jan 2025 06:34:32 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUDQg/iomDC756r8+jFwve6OzmcZVJfO7/u9rf1q1i3BD89CTY/7KRvhiw26nutkhnZnMKGHacVj/VwDG1Y@vger.kernel.org, AJvYcCUHbxSYAR2lobBxnTdR0U+Rh288z3jnNbyLkZJwV4V7XYLbl2QjX8Aq2AZoQvH//jyLskwywBy/hKfR@vger.kernel.org, AJvYcCVxHfZWeLK1GSawVhNHrzC99YUWYCc2a/2Cd/QZMWuXi9sc9hPK4R7xft1u+qk40ZMHLaGdiULpiboRn7ELZA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKPCe4uZlxCldlIOTp6uj06N69fK2u6M2tQ68opVc73eSE8wpG
+	J3AArwMUrCknjXXAkRqXR/XjfulTBGqL7F1jqa2FpXVwAhK6CVvPGyZsrnwf1/sIij3xTlUthnk
+	jd2lXyzexFyB+E65WwRhpFaLYRA==
+X-Google-Smtp-Source: AGHT+IHzsQ2o/IbQIRRO0hOtZknL9BYsHZ3qoB+Mry/3OEDc6BJkS4IlvpFK8Nl5f5mL5RgNVG8J9jsLX2MmmcfwYwk=
+X-Received: by 2002:a19:911e:0:b0:543:9ab4:2a1f with SMTP id
+ 2adb3069b0e04-5439ab42b45mr85582e87.40.1737038070668; Thu, 16 Jan 2025
+ 06:34:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: aspeed: Align GPIO hog name with bindings
-From: Ninad Palsule <ninad@linux.ibm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@codeconstruct.com.au>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20250116090009.87338-1-krzysztof.kozlowski@linaro.org>
- <cba3c5e0-624b-40a2-8b52-8d07604676a1@linux.ibm.com>
-Content-Language: en-US
-In-Reply-To: <cba3c5e0-624b-40a2-8b52-8d07604676a1@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: rJ3dDbNz14S5BMjlPMGQE_49alAp4k4J
-X-Proofpoint-ORIG-GUID: rJ3dDbNz14S5BMjlPMGQE_49alAp4k4J
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-16_06,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- spamscore=0 malwarescore=0 lowpriorityscore=0 mlxscore=0 suspectscore=0
- priorityscore=1501 bulkscore=0 mlxlogscore=726 clxscore=1015 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501160110
+References: <20241223110936.3428125-1-quic_yrangana@quicinc.com>
+In-Reply-To: <20241223110936.3428125-1-quic_yrangana@quicinc.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 16 Jan 2025 08:34:18 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL0HzzGXnCD+z4GASeXNsBxrdw8-qyfHj8S+C2ucK6EPQ@mail.gmail.com>
+X-Gm-Features: AbW1kvbwJdOzxJB_l8oLrw5jUdQwJWvEPj30j8vf9HC_Kz8qnaUmRNO2-qFCXTM
+Message-ID: <CAL_JsqL0HzzGXnCD+z4GASeXNsBxrdw8-qyfHj8S+C2ucK6EPQ@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: qcom: qcs8300: add QCrypto nodes
+To: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On 1/16/25 08:18, Ninad Palsule wrote:
+On Mon, Dec 23, 2024 at 5:09=E2=80=AFAM Yuvaraj Ranganathan
+<quic_yrangana@quicinc.com> wrote:
 >
-> On 1/16/25 03:00, Krzysztof Kozlowski wrote:
->> Bindings expect GPIO hog names to end with 'hog' suffix, so correct it
->> to fix dtbs_check warnings like:
->>
->>    aspeed-bmc-lenovo-hr630.dtb: pin_gpio_b5: $nodename:0: 
->> 'pin_gpio_b5' does not match '^.+-hog(-[0-9]+)?$'
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>   .../dts/aspeed/aspeed-bmc-ampere-mtjade.dts   |  2 +-
->>   .../aspeed-bmc-arm-stardragon4800-rep2.dts    |  4 +-
->>   .../aspeed/aspeed-bmc-asrock-e3c246d4i.dts    |  2 +-
->>   .../dts/aspeed/aspeed-bmc-bytedance-g220a.dts |  4 +-
->>   .../dts/aspeed/aspeed-bmc-delta-ahe50dc.dts   |  2 +-
->>   .../dts/aspeed/aspeed-bmc-ibm-bonnell.dts     |  2 +-
->>   .../dts/aspeed/aspeed-bmc-ibm-everest.dts     |  2 +-
->>   .../dts/aspeed/aspeed-bmc-ibm-rainier.dts     |  4 +-
->>   .../dts/aspeed/aspeed-bmc-lenovo-hr630.dts    | 46 ++++++-------
->>   .../dts/aspeed/aspeed-bmc-lenovo-hr855xg2.dts | 68 +++++++++----------
->>   .../dts/aspeed/aspeed-bmc-opp-lanyang.dts     | 14 ++--
->>   .../boot/dts/aspeed/aspeed-bmc-opp-nicole.dts | 10 +--
->>   .../dts/aspeed/aspeed-bmc-opp-palmetto.dts    | 40 +++++------
->>   .../dts/aspeed/aspeed-bmc-opp-romulus.dts     |  6 +-
->>   .../boot/dts/aspeed/aspeed-bmc-opp-zaius.dts  |  8 +--
->>   15 files changed, 107 insertions(+), 107 deletions(-)
->>
-Reviewed-by: Ninad Palsule <ninad@linux.ibm.com>
+> Add the QCE and Crypto BAM DMA nodes.
+>
+> Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
+> ---
+> Changes in v3:
+>  - Wrap the lengthy lines
+>  - Reduced the patch series as other patch is merged.
+>  - Link to v2: https://lore.kernel.org/all/20241125111923.2218374-3-quic_=
+yrangana@quicinc.com/
+>
+> Changes in v2:
+>  - Set the interconnect tag to QCOM_ICC_TAG_ALWAYS instead of passing 0(n=
+o TAG).
+>  - Link to v1:  https://lore.kernel.org/all/20241113055830.2918347-1-quic=
+_yrangana@quicinc.com/
+>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 25 +++++++++++++++++++++++++
+>  1 file changed, 25 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/=
+qcom/qcs8300.dtsi
+> index 73abf2ef9c9f..30c1de1c4ad2 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+> @@ -736,6 +736,31 @@ ufs_mem_phy: phy@1d87000 {
+>                         status =3D "disabled";
+>                 };
+>
+> +               cryptobam: dma-controller@1dc4000 {
+> +                       compatible =3D "qcom,bam-v1.7.4", "qcom,bam-v1.7.=
+0";
+> +                       reg =3D <0x0 0x01dc4000 0x0 0x28000>;
+> +                       interrupts =3D <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+> +                       #dma-cells =3D <1>;
+> +                       qcom,ee =3D <0>;
+> +                       qcom,controlled-remotely;
+> +                       num-channels =3D <20>;
+> +                       qcom,num-ees =3D <4>;
+> +                       iommus =3D <&apps_smmu 0x480 0x00>,
+> +                                <&apps_smmu 0x481 0x00>;
+> +               };
+> +
+> +               crypto: crypto@1dfa000 {
+> +                       compatible =3D "qcom,qcs8300-qce", "qcom,qce";
+
+This doesn't match what the schema says.
+
+You didn't test your schema change with this. That's the *whole* point
+of the schemas...
+
+Rob
 
