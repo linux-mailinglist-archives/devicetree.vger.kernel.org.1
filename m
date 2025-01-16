@@ -1,159 +1,169 @@
-Return-Path: <devicetree+bounces-139130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8617EA14325
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 21:25:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE83AA14372
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 21:37:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9430188365F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 20:25:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40BF53A83AA
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 20:37:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02543242267;
-	Thu, 16 Jan 2025 20:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C052442D8;
+	Thu, 16 Jan 2025 20:36:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u8rC1KPC"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="sJwwWoK5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99C3242266;
-	Thu, 16 Jan 2025 20:22:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E874243863;
+	Thu, 16 Jan 2025 20:36:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737058938; cv=none; b=Hhpz9EBY+BYDJ6K3iinOm2AxnG84HHVm1bRFIKdyWgPWQG759YQd498Taqm/aSOzrS8Cp/Jf/A94xRgxmRaPuHx6wxHEU0MjQ0NBSaeRgpgbbo++RsgFjmLM6FlIcnc6V3QpH4leSHzuFq+6DfngzSxHt2jxXD/PCW4QJYdnDSk=
+	t=1737059785; cv=none; b=lC6ygPvCO5LRp2VXvK0325yWEyFnHdolNKWuZs0hOeWG8vfdLaGXoCiSvTg6oV8/+k3OK5jFEWlFkoOPPpPF5D/c/DSzD64cU1SQxg+AJTDIHUkrEE2WtRodu4vN5SwVH5dHRulxrNpBPdXSWDyL5ARDS+1MK9hR2i0vCGkBd5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737058938; c=relaxed/simple;
-	bh=nGJTLwgpB/FlwoIGVV1Okt3gljaY5aC8mYTIJ011MkA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZBpcE5t7B9dcDJ2mrJSyryF29v/VsKw/BZbqeDGRn1Xxv8YkM6Hqm8wCaul+INSLgkI0x41LfHIvE90HnM/c0NJ3qNGqmXGmLsKR9EGCUeGaROCN3tkrJTgVBhnJ7d9SRnejZElTJ9Z4Eux1V0hDWpofUyAdt5U1++zpZ+I7pKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u8rC1KPC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57ADDC4CED6;
-	Thu, 16 Jan 2025 20:22:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737058937;
-	bh=nGJTLwgpB/FlwoIGVV1Okt3gljaY5aC8mYTIJ011MkA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=u8rC1KPCqxyQyhi6buwXRM357Gsl/1QWkhFtqQnOcWKkt1HUp9EWSS9a9M6+QdUq1
-	 L5QCTWY7Q7pGcusC1MiWLKQHikLYOEOngKuKDLDrNEGSJOLLzMb+46DpfcrtgS8GBk
-	 hz7mLOVetSSPVSfCwURYgaywSv5yDZvd/cM7saudqazb6zVi0BAAAPrpfLY2ZgMVfZ
-	 c0+tj/e0fNASpHgDhlM96njxU5cJuPF01zCyFopwqA7DRfIx+QFEG4PIObIO3os0bk
-	 b/cIC9r+DnknUb787mraMHi9/iMU5t7gh+3TU67My+Fwroj9nkNA54rpvFEjmdm0XO
-	 UTbL376vLNP4Q==
-Message-ID: <698cd1aa-6403-44be-9764-fbfa1db7f25e@kernel.org>
-Date: Thu, 16 Jan 2025 21:22:09 +0100
+	s=arc-20240116; t=1737059785; c=relaxed/simple;
+	bh=9u37pliV8JBXKIWrdBx3PdNRS0hBV5DEoyPgK6YVbS4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WOeyNB2jmGU4XrCt3BBfYXZGiLxvdHGFxZG1rp+yYccj9jCzZvwBFT+dJrVEv8i2RDGiJoPcRKpzka9YlnXGgBMMMFgHkf5jkiv0lvQLXja5bJG1YcMBBm739kIY/yqpPg/5q9MvzLGISOTHWz3Vy1lIY08jiUq9bW8UHiWWjrI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=sJwwWoK5; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50GDwjxK007885;
+	Thu, 16 Jan 2025 20:35:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=pp1; bh=4R3FtAvHM1z3aGBmHXQE2uw4E2kuOOOzx0A7CCmEf
+	l4=; b=sJwwWoK5a/D8lInSkJhTt3Jw+IMmQ6I4ShJ/+b3/q0QO6dqNhVoTEmTSO
+	a34twEHrs/W8fuLrnj8Tf8adhhCkmqjsSfkAoREJPLLhW5XEgD2Ba+AbTobnUNyN
+	PEzRgscrpwYm4y7Myoge75qeKonRqp/JrVgFosIz3bFHSFHCS//ZNBJmZBeWN5Fp
+	Lpkiti4XIzJa+DwaYozq3vELeynC4dyzzYcTcnDu13pPwr4utNV88wMp2DYD7NuR
+	8MgcGisGJH7VZEyp1qdFQk6xI9Yu0ho/CljlXpYSu0YpxbXisY9Ltx7U0a7mhvnb
+	6yb00Zivzr5OCu7qrwTXCRvdEFIiA==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 446tkcmnva-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Jan 2025 20:35:35 +0000 (GMT)
+Received: from m0360083.ppops.net (m0360083.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 50GKWY6C010053;
+	Thu, 16 Jan 2025 20:35:34 GMT
+Received: from ppma13.dal12v.mail.ibm.com (dd.9e.1632.ip4.static.sl-reverse.com [50.22.158.221])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 446tkcmnv6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Jan 2025 20:35:34 +0000 (GMT)
+Received: from pps.filterd (ppma13.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma13.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 50GIG9h2001108;
+	Thu, 16 Jan 2025 20:35:33 GMT
+Received: from smtprelay07.dal12v.mail.ibm.com ([172.16.1.9])
+	by ppma13.dal12v.mail.ibm.com (PPS) with ESMTPS id 44456k7chd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Jan 2025 20:35:33 +0000
+Received: from smtpav02.wdc07v.mail.ibm.com (smtpav02.wdc07v.mail.ibm.com [10.39.53.229])
+	by smtprelay07.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 50GKZWVn20578962
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 16 Jan 2025 20:35:32 GMT
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 5223758059;
+	Thu, 16 Jan 2025 20:35:32 +0000 (GMT)
+Received: from smtpav02.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 4575A58058;
+	Thu, 16 Jan 2025 20:35:31 +0000 (GMT)
+Received: from gfwa153.aus.stglabs.ibm.com (unknown [9.3.84.127])
+	by smtpav02.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Thu, 16 Jan 2025 20:35:31 +0000 (GMT)
+From: Ninad Palsule <ninad@linux.ibm.com>
+To: minyard@acm.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com,
+        openipmi-developer@lists.sourceforge.net, netdev@vger.kernel.org,
+        joel@jms.id.au, andrew@codeconstruct.com.au,
+        devicetree@vger.kernel.org, eajames@linux.ibm.com,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+Cc: Ninad Palsule <ninad@linux.ibm.com>
+Subject: [PATCH v6 00/10] DTS updates for system1 BMC
+Date: Thu, 16 Jan 2025 14:35:15 -0600
+Message-ID: <20250116203527.2102742-1-ninad@linux.ibm.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 4/4] MAINTAINERS: add myself as Marvell PXA1908
- maintainer
-To: =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lubomir Rintel <lkundrak@v3.sk>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
- David Wronek <david@mainlining.org>, Karel Balej <balejk@matfyz.cz>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
- phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20250115-pxa1908-lkml-v14-0-847d24f3665a@skole.hr>
- <20250115-pxa1908-lkml-v14-4-847d24f3665a@skole.hr>
- <oapsqjdop3szi7zfwiyy65ty65gz3uid6cc4lfao22o4d6amjd@bmfkt2wnmlom>
- <2969840.e9J7NaK4W3@radijator>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <2969840.e9J7NaK4W3@radijator>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: H3fcMPy_rLFcYr8uUWWV51ogQF4SZeqL
+X-Proofpoint-GUID: 8e5PQYZw1OefpN1qjQB3mSFdR7O9NvFL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-16_09,2025-01-16_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 malwarescore=0
+ impostorscore=0 mlxscore=0 spamscore=0 priorityscore=1501
+ lowpriorityscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ mlxlogscore=635 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2501160151
 
-On 16/01/2025 16:47, Duje Mihanović wrote:
->>>
->>> +ARM/Marvell PXA1908 SOC support
->>> +M:	Duje Mihanović <duje.mihanovic@skole.hr>
->>> +L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
->>> +S:	Maintained
->>> +T:	git https://gitlab.com/LegoLivesMatter/linux
->>
->> Not sure if this was mentioned ever (it is v14, so it is likely) but if
->> that was not clear:
->>
->> Pull requests from non-kernel.org repos must be signed and your key must
->> be in kernel.org keyring. Please get your key signed
->> (meetups/conferences/keysigning map/video confcalls) and submitted to
->> the keyring.
->>
->> Patchset should be sent to soc@, as expressed in soc@ maintainer
->> profile.
->>
->> Unless this is not going to be merged by soc@, but someone from Marvell
->> maintainers, but then please drop the repo. Git repos here are for
->> managing patches.
-> 
-> I didn't know about Git repos being used for patch management, thanks for 
-> letting me know.
-> 
-> I believe this is best merged by soc@ since it is not mvebu and is the first 
-> arm64 MMP to be merged. However, for various reasons I'd prefer not to have my 
-> key signed quite yet, so would it be possible for this to get merged through 
-> soc@ if I removed the repo?
-Merging this now is independent of signed keys, so there is no problem
-in that.
-But after that, if you are maintainer handling patches, then the repo
-url would be useful here. It would be used for picking up patches,
-because it's you who supposed to do that. SoC is not for patches from
-contributors. In general SoC is only for other maintainers.
+Hello,
 
-Best regards,
-Krzysztof
+Please review the patch set version 6.
+
+V6:
+---
+  - Fixed dt_binding_check errors for ipmb-dev.yaml
+  - Changed the hog parsing pattern in ast2400-gpio
+
+V5:
+---
+  - Improved IPBM device documentation.
+  - Added the hog parsing in ast2400-gpio
+
+V4:
+---
+  - Removed "Add RGMII support" patch as it needs some work from the
+    driver side.
+  - Improved IPBM device documentation.
+  - There is a new warning in CHECK_DTBS which are false positive so
+    ignored them.
+    arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dtb: gpio@1e780000: 'hog-0', 'hog-1', 'hog-2', 'hog-3' do not match any of the regexes: 'pinctrl-[0-9]+'
+
+V3:
+---
+  - Fixed dt_binding_check warnings in ipmb-dev.yaml
+  - Updated title and description in ipmb-dev.yaml file.
+  - Updated i2c-protocol description in ipmb-dev.yaml file.
+
+V2:
+---
+  Fixed CHECK_DTBS errors by
+    - Using generic node names
+    - Documenting phy-mode rgmii-rxid in ftgmac100.yaml
+    - Adding binding documentation for IPMB device interface
+
+NINAD PALSULE (6):
+  ARM: dts: aspeed: system1: Add IPMB device
+  ARM: dts: aspeed: system1: Add GPIO line name
+  ARM: dts: aspeed: system1: Reduce sgpio speed
+  ARM: dts: aspeed: system1: Update LED gpio name
+  ARM: dts: aspeed: system1: Remove VRs max8952
+  ARM: dts: aspeed: system1: Mark GPIO line high/low
+
+Ninad Palsule (4):
+  dt-bindings: net: faraday,ftgmac100: Add phys mode
+  bindings: ipmi: Add binding for IPMB device intf
+  dt-bindings: gpio: ast2400-gpio: Add hogs parsing
+  ARM: dts: aspeed: system1: Disable gpio pull down
+
+ .../bindings/gpio/aspeed,ast2400-gpio.yaml    |   6 +
+ .../devicetree/bindings/ipmi/ipmb-dev.yaml    |  56 +++++++
+ .../bindings/net/faraday,ftgmac100.yaml       |   3 +
+ .../dts/aspeed/aspeed-bmc-ibm-system1.dts     | 139 +++++++++++-------
+ 4 files changed, 150 insertions(+), 54 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ipmi/ipmb-dev.yaml
+
+-- 
+2.43.0
+
 
