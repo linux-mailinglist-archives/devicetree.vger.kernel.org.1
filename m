@@ -1,135 +1,191 @@
-Return-Path: <devicetree+bounces-138951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B1C3A135C6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:46:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28E0FA135CC
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:47:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EB9B167727
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:46:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DAD616418E
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:47:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1007E196C7C;
-	Thu, 16 Jan 2025 08:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B77D1CAA8A;
+	Thu, 16 Jan 2025 08:47:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b="XYRYscmD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11011014.outbound.protection.outlook.com [52.101.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 689061CAA8A
-	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 08:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737017184; cv=none; b=MCAGwCwqYUhRLzicJAqjuUP2Bn1AL9EXkJjuVEdgRNlpddl4qhU82SPgiQBewzbzGKqcDYgobcLpqqy6aolybtcfSnhrchBbqzdv5tpyqsLHWhOlxvYVzFDjvHNgY7wgDgKJT8rsHjoRgY4rgagr1YY7IWj9VYdT+1hjZICR7NM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737017184; c=relaxed/simple;
-	bh=SMS/WYXiS7wO6WMGkTraT9DMv2PEnR5eKZ+KSZvlOEs=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=DJYReYBdyItyI/5ex58j0Kl2GFf35aPE7PW140JxvM/ugGQVj/AcST/bmrGRXTmbEEXFCp++UMaxEVJ2H7QOALoHJEGwnDYl1ZUAU/vuwwNitlD1B4wiPi6tQBWX9FsGD0MpWACvDm0XCCrMVbcmnnWQGN980VxmJd/IVI9KNy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tYLVo-0002fo-Ts; Thu, 16 Jan 2025 09:46:00 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tYLVn-000DtB-0F;
-	Thu, 16 Jan 2025 09:45:59 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1tYLVm-00029Z-3C;
-	Thu, 16 Jan 2025 09:45:58 +0100
-Message-ID: <9ea186e39afb4584f12758d2fa6a26a0b12389ec.camel@pengutronix.de>
-Subject: Re: [PATCH 5/7] phy: qcom: Add M31 based eUSB2 PHY driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-  Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>,  Catalin Marinas
- <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Bjorn Andersson
- <andersson@kernel.org>,  Konrad Dybcio <konradybcio@kernel.org>, Satya
- Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, Trilok Soni
- <quic_tsoni@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Date: Thu, 16 Jan 2025 09:45:58 +0100
-In-Reply-To: <20250113-sm8750_usb_master-v1-5-09afe1dc2524@quicinc.com>
-References: <20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com>
-	 <20250113-sm8750_usb_master-v1-5-09afe1dc2524@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0336E15383A;
+	Thu, 16 Jan 2025 08:47:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.14
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737017247; cv=fail; b=I9qYvjGr/Y9McHfA7c7W4i11OzvNNm9bDGvF7+8oSog4XjBgb84Ok5sKLSHh3ttnUWPwPlD+K+cJPG5baEMLLd6Kvzb1QRjdL7Hc6UHByH5sn+IX9S9NlBsXU8EZ2viI0nX5DKln0HHiQoojCf0SdNRLk4IaYSPZJuhBwBXttH8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737017247; c=relaxed/simple;
+	bh=k9DiQ6UNQQEE041mCL9d1+o0oAtJa0dDnCHfifJMwp4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=rX84lbfBoaM8jQZsCODoBoarVA2GoCoI7ag5hGnDoBecM8k87cgNgAXU3Bxxs5ZL7Z8aigS+H50EYywQiABQWB4PcSuwvCPk0I6j798CVCVmZzehk4hBim17fcZYwxTsvZnF9x5U2J1Z1y9ajwgnnvDn3mkrqQXjnAZQVca4VPA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com; spf=fail smtp.mailfrom=leica-geosystems.com; dkim=pass (1024-bit key) header.d=leica-geosystems.com header.i=@leica-geosystems.com header.b=XYRYscmD; arc=fail smtp.client-ip=52.101.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=leica-geosystems.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=leica-geosystems.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GvsCo6Jq2juUtw2qw5kpKwam51mZ+IJ4bz2lzLvz0xCBQ6/5/07Y+gkLIi1xWTc++FnxE69EEvH4IKklGtf5dN2U2RA2GhlL2OPBr+Eae7GlGpbMfc4ZTuzerCo9ILJSZvwSwEnE6bKW4Z75ayPK1/nPl5UPAHZgR23DyDGYr63JgVQVIUYy++8+wu8uFGhjWzXvKi8LnC3RmnTX3kDq11fuUNTyQvt5yp7eZLfPaoyHzMAcD6FBaWci4xbSiDdbKDhZ8wQ+mjkDMTmJi8ugkCbxWcWLv3zqfTen17ATtCeDCBK78xjDAHJJAj54JNAIkU20SN34BE24/XY5q3gzjA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8ueF4qttOMg+T+txesb3Cb/FURkhpKEG79P9RCZIets=;
+ b=LdW3tVgdjSCNlDOf7EhDIg+hzbNvYIBsFRcSEDixJXC4ibia9Bjwt3ks8fHvxfFWRQ4HWcUmDr+bFxm1xC2MC6efPSM47sj+8NznLU01ATdsgpUynFDknsbze74y+oUMStYuSogntqwfHJ4LIJWvGEiTOPn6haZXmF2LWSQ7OLwxAu1BXaPu/w5ylLE6m32XUCttrUYlrjot5tuvTxl3ZOytM8UqjuYOe/H+yn5r0qZC3/JuwE54IrPkCccO5VEPkOb9QrWmJJqoYuEF34P8NavmejedohhmaaqgLJe5RlwX7CFBYWoQ0YTkSHG40v9AvOGeHY16BSZkK3rZKR9Q+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 193.8.40.94) smtp.rcpttodomain=vger.kernel.org
+ smtp.mailfrom=leica-geosystems.com; dmarc=pass (p=reject sp=reject pct=100)
+ action=none header.from=leica-geosystems.com; dkim=none (message not signed);
+ arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=leica-geosystems.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8ueF4qttOMg+T+txesb3Cb/FURkhpKEG79P9RCZIets=;
+ b=XYRYscmDDuHG/BerkkT+7bY33GpW2vpSarUWF3TsWt9vX0WcpPbSkRSHOYbYFgPtcAid9RRC8zyy9Nx+HuPxPsTw1TfCwEvvIkvMS2TsvGDlPL4M97xhNb/bNvZH8na/JVDWef/qwUULbC2MQgiDfOBtg8o1lSaUaR+asAXCiAA=
+Received: from DB9PR01CA0002.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:1d8::7) by AM0PR06MB6497.eurprd06.prod.outlook.com
+ (2603:10a6:208:1a2::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.14; Thu, 16 Jan
+ 2025 08:47:22 +0000
+Received: from DB1PEPF00050A00.eurprd03.prod.outlook.com
+ (2603:10a6:10:1d8:cafe::c4) by DB9PR01CA0002.outlook.office365.com
+ (2603:10a6:10:1d8::7) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8356.13 via Frontend Transport; Thu,
+ 16 Jan 2025 08:47:22 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 193.8.40.94)
+ smtp.mailfrom=leica-geosystems.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=leica-geosystems.com;
+Received-SPF: Pass (protection.outlook.com: domain of leica-geosystems.com
+ designates 193.8.40.94 as permitted sender) receiver=protection.outlook.com;
+ client-ip=193.8.40.94; helo=hexagon.com; pr=C
+Received: from hexagon.com (193.8.40.94) by
+ DB1PEPF00050A00.mail.protection.outlook.com (10.167.242.42) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.8356.11 via Frontend Transport; Thu, 16 Jan 2025 08:47:22 +0000
+Received: from aherlnxbspsrv01.lgs-net.com ([10.60.34.116]) by hexagon.com with Microsoft SMTPSVC(10.0.17763.1697);
+	 Thu, 16 Jan 2025 09:47:21 +0100
+From: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+To: andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	johannes@sipsolutions.net,
+	p.zabel@pengutronix.de
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-wireless@vger.kernel.org,
+	m.felsch@pengutronix.de,
+	bsp-development.geo@leica-geosystems.com,
+	Catalin Popescu <catalin.popescu@leica-geosystems.com>
+Subject: [PATCH net-next v2 1/2] dt-bindings: net: rfkill-gpio: enable booting in blocked state
+Date: Thu, 16 Jan 2025 09:47:01 +0100
+Message-Id: <20250116084702.3473176-1-catalin.popescu@leica-geosystems.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+X-OriginalArrivalTime: 16 Jan 2025 08:47:22.0008 (UTC) FILETIME=[4207C180:01DB67F3]
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB1PEPF00050A00:EE_|AM0PR06MB6497:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 7690af9f-a0f1-434b-08bf-08dd360a64bf
+X-SET-LOWER-SCL-SCANNER: YES
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|82310400026|36860700013|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?4hwhM4h5UlrlYnBIlR0XejAx9PlOZicBnEPExetHExa10MKgxEWwScIJT0W6?=
+ =?us-ascii?Q?ERhobgq+hhTOOyIbXDzGZgb/3GvoVTbRlgDfcDJVPJGYbmSER8+OOhcoDcIy?=
+ =?us-ascii?Q?cYAzILwYVz0FSm80/lTaCVU7hlkKa0LvPhvIy8vH93as9S/78PhhbFmO3fpK?=
+ =?us-ascii?Q?XCihMPrcSiDUJeNvLHJNOwK6pgoOBThVXm2/vpp2saLaSNOU4lVYyChxdecd?=
+ =?us-ascii?Q?IcEwwlLnJ9t7/1lcqn1PkznTkah2yKtYhTME4nF3DJf0IRlfc7IUSHQHwOpD?=
+ =?us-ascii?Q?S3swbgckC6nwrhOC9E/bqecSSFr3z2NEoeAeKXP5FM8TTesZR8oOg3SIUDrE?=
+ =?us-ascii?Q?LL5d5J+h0/V/abvNoCZDr+UMUU8OG03SkZdSY+K3pSKoXlru0yoOwZOiRoWY?=
+ =?us-ascii?Q?nqkMqILW26RDovgtVHx34eifbM6gNbOYQV3tOHBTe/rVHBen29CJ88wKhqew?=
+ =?us-ascii?Q?HY5A3scc7I1nsLirpaqf/Bs5sIdVOONLAOCIhrHCWkGhrLIsAdix8fuYkYrr?=
+ =?us-ascii?Q?vq28nunwtiI4xbaiHhIv8gGelc2VS/lhbmYDz+QRgIV31yhwWoj+I/ZwuKnN?=
+ =?us-ascii?Q?FnYvDijj5k0cS7mRQK3jMQZUrwQpJ4FRrIzXYSXAjUzcITZHoqocQEs0oFns?=
+ =?us-ascii?Q?OhL2e6LOAvCZVdtAvCYkb3eHiJXY5505WxRd9TT3uxPqsIkZW4Koft746xjc?=
+ =?us-ascii?Q?rC7Unwq+ScspCwozq8e4KeYGE8nvv+sMdygdSvOsiA/izb7U1rLvRP6y0iu9?=
+ =?us-ascii?Q?AN+hhgkSepWh/guroq4ie1RaAqvQIRG7kJnTup3ozliIgYaXtOSJIItNZxxO?=
+ =?us-ascii?Q?IoFKukEejp4oVAt3BKJAKbv2jyAz763YGjfY/XvOZLnSD9R10UpXUS80gX66?=
+ =?us-ascii?Q?LUZUowHKyI0f2g3SLrJtp7FMpMDeG+VkEWeMHxJWu3ttjEmIsDF0GAoWTdT0?=
+ =?us-ascii?Q?ySSMhfGHdd7OS9n15PDpg5pauB473IJjHeKHOroAjedMY2HyUMG3PS/4gTG+?=
+ =?us-ascii?Q?Nw7BZkAQCNMJlw7c3l07Xa3ag/Y7kyhgLgRM5ChhW3RbdCbbiy+mF2UOL+I4?=
+ =?us-ascii?Q?DXiAUVSdosKA6hyj8lyizy1ZJLFJeqewcJWF3epcwjQyLDOReYi+VBfK10Sd?=
+ =?us-ascii?Q?NuOw1nE2G+7o4bEcTKohjOoT9dFasU94awvbS4HYqF3Z6znCQnuNG9nsD87f?=
+ =?us-ascii?Q?SwdE7Hir0NNWvijdB40Q1pDzzediI89VkauNeACv+/w/gIRqQ5vy4UJkuIpO?=
+ =?us-ascii?Q?SyASGgB0AGKdfixgKla9C7EYp+zsIbI7JzpYWwOc1Ld6CfQ+pJBbkgzHH1/2?=
+ =?us-ascii?Q?3Ux6aYTHMuMmGsV+4LfB/pMSyk+9nLJISDskwBv/m1ULpw5DFYQnjqsuc84/?=
+ =?us-ascii?Q?nVixZDA+sYP82nH4PgzfQcjV06GhmwoFZzPAvQT4rDpvWszbdMdBAElK4q57?=
+ =?us-ascii?Q?ilydRh2nJREyDsD6CWvIOhR44yXcCTov/tahwTPgF8pBYUm52qvhiw4yD0yZ?=
+ =?us-ascii?Q?XgSFa5VHCUvMWWJZlQ0K0FDXWvuOVxD+nc7L?=
+X-Forefront-Antispam-Report:
+	CIP:193.8.40.94;CTRY:CH;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:hexagon.com;PTR:ahersrvdom50.leica-geosystems.com;CAT:NONE;SFS:(13230040)(1800799024)(376014)(82310400026)(36860700013)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: leica-geosystems.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2025 08:47:22.2730
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7690af9f-a0f1-434b-08bf-08dd360a64bf
+X-MS-Exchange-CrossTenant-Id: 1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=1b16ab3e-b8f6-4fe3-9f3e-2db7fe549f6a;Ip=[193.8.40.94];Helo=[hexagon.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB1PEPF00050A00.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR06MB6497
 
-On Mo, 2025-01-13 at 13:52 -0800, Melody Olvera wrote:
-> From: Wesley Cheng <quic_wcheng@quicinc.com>
->=20
-> On SM8750, the eUSB2 PHY used is M31 based. Add the initialization
-> sequences to bring it out of reset, and to initialize the associated eUSB=
-2
-> repeater as well.
->=20
-> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
-> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
-> ---
->  drivers/phy/qualcomm/Kconfig              |  12 +-
->  drivers/phy/qualcomm/Makefile             |   1 +
->  drivers/phy/qualcomm/phy-qcom-m31-eusb2.c | 269 ++++++++++++++++++++++++=
-++++++
->  3 files changed, 281 insertions(+), 1 deletion(-)
->=20
-[...]
-> diff --git a/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c b/drivers/phy/qual=
-comm/phy-qcom-m31-eusb2.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..e15529673e358db914936a60f=
-a605c872cd2511a
-> --- /dev/null
-> +++ b/drivers/phy/qualcomm/phy-qcom-m31-eusb2.c
-> @@ -0,0 +1,269 @@
-[...]
-> +static int m31eusb2_phy_probe(struct platform_device *pdev)
-> +{
-> +	struct phy_provider *phy_provider;
-> +	const struct m31_eusb2_priv_data *data;
-> +	struct device *dev =3D &pdev->dev;
-> +	struct m31eusb2_phy *phy;
-> +
-> +	phy =3D devm_kzalloc(dev, sizeof(*phy), GFP_KERNEL);
-> +	if (!phy)
-> +		return -ENOMEM;
-> +
-> +	data =3D of_device_get_match_data(dev);
-> +	if (IS_ERR(data))
-> +		return -EINVAL;
-> +	phy->data =3D data;
-> +
-> +	phy->base =3D devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(phy->base))
-> +		return PTR_ERR(phy->base);
-> +
-> +	phy->reset =3D devm_reset_control_get_exclusive_by_index(dev, 0);
+By default, rfkill state is set to unblocked. Sometimes, we want to boot
+in blocked state and let the application unblock the rfkill.
 
-The dt-bindings only specify a single reset, so there is no need to
-request by index. Just use
-	phy->reset =3D devm_reset_control_get_exclusive(dev, NULL);
+Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+---
+Changes in v2:
+ - change "default-blocked" type from boolean to flag
+---
+ Documentation/devicetree/bindings/net/rfkill-gpio.yaml | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-regards
-Philipp
+diff --git a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+index 9630c8466fac..4a706a41ab38 100644
+--- a/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
++++ b/Documentation/devicetree/bindings/net/rfkill-gpio.yaml
+@@ -32,6 +32,10 @@ properties:
+   shutdown-gpios:
+     maxItems: 1
+ 
++  default-blocked:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: configure rfkill state as blocked at boot
++
+ required:
+   - compatible
+   - radio-type
+@@ -48,4 +52,5 @@ examples:
+         label = "rfkill-pcie-wlan";
+         radio-type = "wlan";
+         shutdown-gpios = <&gpio2 25 GPIO_ACTIVE_HIGH>;
++        default-blocked;
+     };
+
+base-commit: 25cc469d6d344f5772e9fb6a5cf9d82a690afe68
+prerequisite-patch-id: 0000000000000000000000000000000000000000
+-- 
+2.34.1
+
 
