@@ -1,538 +1,689 @@
-Return-Path: <devicetree+bounces-138930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B94DA131CE
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 04:50:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B2ECA13290
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 06:26:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 385C218875FD
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 03:50:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDD163A3365
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 05:26:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A2E586323;
-	Thu, 16 Jan 2025 03:50:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D707B158558;
+	Thu, 16 Jan 2025 05:25:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="dSw6u2+I"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="hGhhl8Ea"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013027.outbound.protection.outlook.com [40.107.162.27])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705BD2AEE3;
-	Thu, 16 Jan 2025 03:50:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.27
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1736999412; cv=fail; b=lic1Ozu4vpmHPMxfoYa46SXKObxpxr2xRMr9ZeX3B+bcYVWHc6mlEb8rPHU/b82UkxhjIQN8lqCxvx2lPWxHtzfwYB+o+700n7V+KtHyaPTXuMbMslTmx7kjesrDweFW7VFURPxTAkAJ76wAe2WZKepF2jqBMgvq6sVAAzNME+M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1736999412; c=relaxed/simple;
-	bh=YMI9c8dPc0MwT4hn6eNZ8l1g0PX/D9zYSeJMA1q0rEE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=ry9EOcMMF/AFMNTjLj2BeqsUZedGRNxRfiqulAvU06X062KLgV3WOUui4ft4ecioinqp9MoR5bvNiCqRJEzlFx+9uqOYtyL4wHgTcnSXjrOTgFeQGA4/fVYuiyCAGLHTB8kYM6pUqZ/pJIMJVOj/A+vVTcUXtaAuId7BhpcWMNs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=dSw6u2+I; arc=fail smtp.client-ip=40.107.162.27
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=H/KssnDUlJut04+MBXEvwQEga5NFRbJTJIVHvxwkc4ReyzO1hylQlMd0sNN6KQFJcdJ30IlxLRPwL5bNqRaY08F32TUTkd18X7pyWWy9Q34sWSW7z/0xf4JhyHF1ryANsJVpWWFVzbM82jOh4+QskeQRCibdkrhvMW0A8hcbp68SNMJ0h0TU5DNLoleveXFAyQTGo64yp1EDmWZ3MIYNxFpPAqItKBujcAkfIHzYtS7mxnMM9MZOuMwviXAhBO4LxbzjDxqXeiqX7WgiYkIA7cffpJe+EcIZvuWsfxHuLRcUP4KqWZ8lPEITXj+djvxx9LyzPLFN3jwrF3XMMj14oQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4vn5lguTBC1B/66JIydbCPUtENqIf/jI/RrzNIwe3lk=;
- b=HjeoGBfJlmZkCyi8RW5NOc71KhWdK2qh28dU+nLC8WLfLGZofCQcPR+5nU+pQFJXQJQ6tak/2YHBzCXcpuOz+tpoxnfW9ktFqQInxjRi8476D5SJ4zzUFHMIDVtyT6mncJatVI3Xftb3Yh5WgfyUHY87vKYQGmqReGZLREcirwY6ToUtT4jkHv5ryAXd3LrwSZbdoKpGmS7+0/LmjdLmkvIRp4mbFbsyp+AkanN7A5J6CPCcsnlhRxeSggZpFuZs2e7NF6EWGs/SkI4QF6TujmyoSFffNE2RL9hrTyY9sEtfg1RFHKLIvAT8ljyQd9/J4YU1gbB71t+gd+sVCICdDg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4vn5lguTBC1B/66JIydbCPUtENqIf/jI/RrzNIwe3lk=;
- b=dSw6u2+I7zG0lVBrWKRLfVklVgyC5VVf6PhzKWmJkFz5exKzarqxmDnyT2IybA7XHfag3vt2LeyPWwwZ168xNyaHA0+cUWx5khv31U39bLfozHX8InljnImVpHqCmTUJp5yL/VxFG4YfSV/cro6jrYOPH3Fg2fi5BTGroK/oozDo29aJpd4e9qsUHc+QRc6DEHXcwK7lhWKL9+SUOgzF9U1a+aZM9+c38bHzVwryR5Sn7YVOzM4IFPeOf3HAS4X2XhMIf/jFabWtRCYp1B+O9b7xtZXWCB+B8Ogg4MxGk3hlRxdhCavQrD3GwyPtteJQGpCp0KKbu0i48YdVq6lj4g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB8829.eurprd04.prod.outlook.com (2603:10a6:102:20c::17)
- by GV1PR04MB10703.eurprd04.prod.outlook.com (2603:10a6:150:202::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.13; Thu, 16 Jan
- 2025 03:50:05 +0000
-Received: from PAXPR04MB8829.eurprd04.prod.outlook.com
- ([fe80::cdc5:713a:9592:f7ad]) by PAXPR04MB8829.eurprd04.prod.outlook.com
- ([fe80::cdc5:713a:9592:f7ad%4]) with mapi id 15.20.8356.010; Thu, 16 Jan 2025
- 03:50:05 +0000
-Date: Thu, 16 Jan 2025 11:46:23 +0800
-From: Xu Yang <xu.yang_2@nxp.com>
-To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
-	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-	gregkh@linuxfoundation.org, jun.li@nxp.com,
-	alexander.stein@ew.tq-group.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-usb@vger.kernel.org
-Subject: Re: [PATCH v11 1/3] phy: fsl-imx8mq-usb: add tca function driver for
- imx95
-Message-ID: <20250116034623.ig44yqxzptujhwql@hippo>
-References: <20241204050907.1081781-1-xu.yang_2@nxp.com>
- <20250106020303.xrpo2pfv4knqszx7@hippo>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250106020303.xrpo2pfv4knqszx7@hippo>
-X-ClientProxiedBy: AM0PR03CA0083.eurprd03.prod.outlook.com
- (2603:10a6:208:69::24) To PAXPR04MB8829.eurprd04.prod.outlook.com
- (2603:10a6:102:20c::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34F5A14D428
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 05:25:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737005122; cv=none; b=uNfNiY10fQzEBP+bfn5J6m7B9nUgJYyzDQI1hLxg7uF3G0Bnx047U4PesDrnl7R8KSe6rC6h7YoeUYdgqugKoA/bdO9c/u3BAQXouQ/8d3uTM0ODur26eiqOFcShu48kR3YCLqx5CTvoUHM+wpIcP9EMP3dseYxrsa4MY9hw+RA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737005122; c=relaxed/simple;
+	bh=6GBDe5cGi9RvY+HJNXH3IaCwKqMtRgUMFt8OC8az0xg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T1i0HPmiBuCeEd5X1kIzYSvt6DTlWl/MnL7xTQDVbP0V/lOuUo+lac50cdOsjKK1wgy/6F6DrQaNu+zY9zJjuGuRFTa5eQfq5QM62VjS6K1sxSNrdxMQO/299ntQS1MdR/fCh7FSQ+rq7mEhxuOXcmEkKUuoovCu49GqsS3A938=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=hGhhl8Ea; arc=none smtp.client-ip=209.85.166.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-84cdb6fba9bso45402439f.2
+        for <devicetree@vger.kernel.org>; Wed, 15 Jan 2025 21:25:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1737005118; x=1737609918; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SHjwpw1TEtBR0Ao3hhfwkhXGo+9ZW9Yv4MvmY2IGDeI=;
+        b=hGhhl8EanC8xzS5o2bJ07KlU4rebLhZzdIb1p67NCP5NpA0MIrrLFdhFif4BHJZgq1
+         VXDHho+CqmMqx6gXb828XovfRRxNFA0f98VFP8I0C8B/lJoMIBCH0VradK8+7ki7Axe/
+         txQUivPObj8xWKq7aHqOikPpRVWhqFdP/GA7VZPlzAtBYEg/Z5qKmhYIzA0PKTsoEHu+
+         09qhiUOqg4cHXwdQVvO6FVBVu7j+6dKJZ5+kF6XXEoglSL8VjuhRjUuUpDHhB3t+pprg
+         Lq5ijd95P6ANpYO1z8FeuWQAMwxy8PGkUabL4PmT7u5LICqG4v2ajvK9at3AFJJ7n9F0
+         9Mug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737005118; x=1737609918;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SHjwpw1TEtBR0Ao3hhfwkhXGo+9ZW9Yv4MvmY2IGDeI=;
+        b=VnunfosJRoZZ1/1qfAP6KmHSJQNVeoTx8b+XxgIWYwCu9GNKxcqRS565gt4m5bM6th
+         kQcnFdac9NieffTU67WU7kRnQsyjEHoiY+H69OBo4Vg++Od2mnG69Mp0tAhxZooqiftI
+         jncq5LLSGtkH9FGJhoW7pd4qbSzVok2+EqegcpK5mjD/fPhuL4HKqigptssPHVsXBvYg
+         0yegJr0gI1lH4dIbUFwrfiRUpvsWnhM5vRlG+NZqEVh5x+xTcc2Ao2c4LlDfH7jFGfYT
+         4zg0BT6l2wGHksDEqLEbpqMN32f/Qb7hI6rJpQrCuRsMJemn55Z9cMoTPZIYKEUpo3FB
+         LNTg==
+X-Forwarded-Encrypted: i=1; AJvYcCWWn5PcRP3Rloud49B+Z9/PzNF8Qx4v5hNncxoqzBt5ETAW3B/+Iv6bU0K2PDSmfkFR/HXlV52ChIJ3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQCed+TgrAjXNqgFEkJnoJtQB4Qnonuaq4FE7ZGBvlbU97XktZ
+	H0n/wTCxoQxzkODrwgl9g0sSa4NoPF6Drl7LYvBaUFSUUjwoXQj6JEJHEbaUfYc=
+X-Gm-Gg: ASbGncsXoCrKgxkzfDkQxcINbQRxsc8LW14MwxH+74tNnGlw/VCVF4tXqAJrQzWyIR9
+	ZWl1SBW6BBZkYMdvfwNAagDupGowwcPUFNEFG0LCaXwv1/59DqBosUP5k5D25pUQD9YbYE8DA1h
+	2raohKv/X3ftDsFrV2cu2b082QYh9SyPG0ktDcJT1TndaZuXO6EtHAwBfEv6bLGXKu+MSOtaIWK
+	wB6hp7IvcgGnZaCUoWTSRd5PQBMyivMOvCgJSF+6upIBPpel4DpwWsMVQ9rnl7jm+zFPbgBVPMu
+	rw+Q
+X-Google-Smtp-Source: AGHT+IFirgDSxba7j+PC8mGTTcuPXTjCqjc/SJFUTLxl9hF716wveyTmn/mskV13IA7GjKxNUhSKww==
+X-Received: by 2002:a05:6602:36c6:b0:843:e9c0:8290 with SMTP id ca18e2360f4ac-84ce00bb460mr3221281839f.6.1737005118124;
+        Wed, 15 Jan 2025 21:25:18 -0800 (PST)
+Received: from [100.64.0.1] ([165.188.116.9])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4ea1b717815sm4548745173.91.2025.01.15.21.25.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 15 Jan 2025 21:25:17 -0800 (PST)
+Message-ID: <81bc81b0-9b0e-4e71-b34a-e74730eda44f@sifive.com>
+Date: Wed, 15 Jan 2025 23:25:15 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8829:EE_|GV1PR04MB10703:EE_
-X-MS-Office365-Filtering-Correlation-Id: f387432c-bbdd-4b8e-de87-08dd35e0dcdf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|7416014|1800799024|366016|376014|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?7e3osrCNsK3fX9l69tRsmwD7KfYSohcNv3S1IrZMSqdI8m4rAycXCdId8fDN?=
- =?us-ascii?Q?/m7X0gzXu3rrkbmH071Epx0cRAhGKK5MNHEIshbWbnLrhp4l1mMnUTBb5paJ?=
- =?us-ascii?Q?AxXRdieWiDKUGduI9yDZDOTEItxR/5hSXLIDP1NUGMpelyVP6t16jE8nYKbc?=
- =?us-ascii?Q?DJnoH3iDqOtpNSgJ5RUxPoH46BjWeJRKcnWRZzTY71KB0iVhNXL3722my0/i?=
- =?us-ascii?Q?w3bK0f5vFMAq6VE8pU/i9byk6IfYdyOiNNPVFZPOF3D7XJlgzAVgp+2/V6MW?=
- =?us-ascii?Q?ebbNdvKFO14NR+VreuUShJ0cY0+Ui6d4dTXxvC8VPui9jLd6HSP7H7P2sRtN?=
- =?us-ascii?Q?FC65PO44P+Y/3sB239i7+MuKtw7VEi3NLbF9f1lEUch7M0t1TTZl+bLhAjVh?=
- =?us-ascii?Q?YNTa5qauvW2ZtnPakb+FwhO75f1s3oKEgHJmTHf8cS1lu0mrP8nlS8aFllCA?=
- =?us-ascii?Q?VVJjOkZSO+vo2KalZ1Pn3nWqbWxdauxVOhkRHoa0y/PBuZkKUGqITAKpsDj5?=
- =?us-ascii?Q?k+rlKCPnUgPRFVvpyKsb51XduBAaOf4B6c8cGrlEX7OTFnvwUNqYlSD11d85?=
- =?us-ascii?Q?Zep1g0TThj+1jpDFKD+1sXlLhcVihc4u2PuVXP5+HnHVo8bHKikZ5vC30w/4?=
- =?us-ascii?Q?C2mxTfnWF7p+th31Vtkq5/9dr7H/XeVALB45q/cX8e/7ZErVSsJ+RghtVsWU?=
- =?us-ascii?Q?42bztouKqXsx1j/wwF71KcEQu9GvatIvq6oM2J8J5RhBuvmO0i2nWiZkyW34?=
- =?us-ascii?Q?sY8k6VB7kIlTGTNynPzTSOpMSlWqVEDj9hFiWGI/elZhvvJFAK+oIXW/hjEM?=
- =?us-ascii?Q?SbTEfaSuHexNRo/PligctEBdcOLUj6Jn8P3cBFFxx8nHcU1/iq2ORtLaoeFQ?=
- =?us-ascii?Q?rY8XDIcHzb6dIr2pppFwAQbuiOu8GoKqJaqSx05rn9eBEVv2Jw35WONGWIGU?=
- =?us-ascii?Q?bCNR3qd5U4U9wxcTfaFo6FHRq1s43/cVoGK3BASlEhqhAzBna0oYB03RSc5B?=
- =?us-ascii?Q?fvyD7m7FQfC6yR3tUvAxk13a1aJ5af9oTahgVZFIR8urDPgORqL6qLNTyiZq?=
- =?us-ascii?Q?+YNB3coq6mOZ8Gctey/ScFEfEZ/nklNP0LaZV/yNe2pMmewB2wwailllXiOX?=
- =?us-ascii?Q?6Dk1iYpdQPH66/8KCvdHEKGMRhsXZ+NYFiJ676DnufiKU/F9Pcz8GG1kOXfr?=
- =?us-ascii?Q?YYi+bfUnOP/q+hXOIEkF2WTKIJ1tX48kOyutQoqnCmh8vSK9GVrH79MnHcyE?=
- =?us-ascii?Q?rc2XfdrX+XRSJaxcVxRSESovzSZ/TjpOQE7G24aT5VPvpjnECVBodMo/fAEd?=
- =?us-ascii?Q?UCqXMt6J70Oaraj7i+YU4IkTnH1XL3oGm43Fye92IAcIZvsbDeqcCH37AiwP?=
- =?us-ascii?Q?5bsWvL1YermaFe63Z9D+XGGHQ558Nkq3B8r5GWXSgkJFD9+nDiVf6PXXJ9y7?=
- =?us-ascii?Q?dIMfamTVnBv1bwj0/D1Cn75Jf8fNw1YVn/zM3FYdLZPGwk/XXMWAPw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8829.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(1800799024)(366016)(376014)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?PzvEc1aEyj6roZyIIRXZgFhUzJsuAKnazBT8iDQUx5hTavb+nOoBcT+Ttmm/?=
- =?us-ascii?Q?naI6Z6vgSrqIbHoWfRn4OBARFJMfeJdjFyOpL48sxLRMgIzlKkEyXoLa3Ftt?=
- =?us-ascii?Q?3uJI0zUpZYGE9RxP0VwZlgM8OisTUulhfnwADFBa9h73FotWYxcYdh5YHARH?=
- =?us-ascii?Q?7RSsHb8VvuIMD1Fcj3gL+AxGMWmw5YwM7uVoZpuXEe2g6GPaGOxmKt0ke9h7?=
- =?us-ascii?Q?TZJ/eUGUAGOZxWvC5DurevmgzTG1ij+MLldIGGgL83ZB/RKzSl1pRmTzPNPx?=
- =?us-ascii?Q?VsxPfrgcWBKwVgoC3qhR9b2yXETf0Ghq7ttymVQFWxSucZAbGh1t9ex9rdyl?=
- =?us-ascii?Q?Ed1WL5aFEe2xVDG59RVztUluC4cPmMJCFJijKXquH5REuVshDeNHb/ILuhkE?=
- =?us-ascii?Q?SBeOgl1jTsseXrbMCqw3fVx7ZkSFxStUl93uAQYHTniY2u3CyWAeUGEOyiWk?=
- =?us-ascii?Q?Sd6pOQYcABt36MwuSPb9Gsj/8ZksUO9iEahscP5eZdMpPcnsAccNIjkymkrH?=
- =?us-ascii?Q?06SHgOPlCLLYtXVan7Fc7QQ0ZsxE7QOhl3wZhaNHUt3s8wBY3gWC9NqaON78?=
- =?us-ascii?Q?AOX1EbQhzza/lwqLXQxqamwT3RtbG7qiap8i4RESExi0QKNxTV2NgCWLbJCn?=
- =?us-ascii?Q?A1xKHnXMiNeddfUeTG4ETin9/oUPyD13KdIuMPdIWvM1AznM9yiGiUhhj6xx?=
- =?us-ascii?Q?/CVyXgPzKefOq0F284KHseiwIX6MSGbZreIJyNQAtUDC3t5UU6znxkvOM6x/?=
- =?us-ascii?Q?OKQzqkYybbVWbqDAHi0VBg5e4VhSHy6sXzFoVKQVvFKOk+5h/CTtmyoKjjvr?=
- =?us-ascii?Q?b/CzjRk/yrPnEYZxof8aGcrR3Kz45UYuv3PgbunFT1ao30QPNXvVl5SBWCug?=
- =?us-ascii?Q?7EH6EwIA7Svie1bCVrPIq5aJWRPqeFje/41sjQBx8fB8uuN9TCiSoLZIOSEn?=
- =?us-ascii?Q?YNhudKPUASHtqy+7Y/eOsralmXUX3+FBNC4mWca5r03ZYibtgVMUtzKbagdR?=
- =?us-ascii?Q?3u8Y51VpWuoNcCZ2q8K40iQGubHTFhl4oiU7UMcrxaAo7dEDoAxTtaR9QcLF?=
- =?us-ascii?Q?LMcNnfjY8WEcIerDugY2MT3NS39xELsoZJ3SHhbRuR3vP/W/IBzQPZ8PXfHp?=
- =?us-ascii?Q?wu53tQudRzL3LqbzfTXg8umCUaSCfTHudryi2XaWzawIlagGtiYlNNo5fjhY?=
- =?us-ascii?Q?mWgVeNdTnoPPtlTO+Tx95VyQXlx6x1dyZlDmlNkx415Z8KOuvBHxjwnPBzW4?=
- =?us-ascii?Q?oo9pvizb/A3Wat5l7IEPVj0Op5ulrOLJA4BjjUhows7C9rFD7OAhmWI+51v2?=
- =?us-ascii?Q?ZuPsQ9QA/+BpcGvvvhCjETuCGbk1efTJIvDLrhse3SFGylL/TyCiX6QrGrkd?=
- =?us-ascii?Q?VgToM8DDdfH04IN+yBo5Iegz2xvX2f3+NEbQWPs29lkiQPLHLfcr9tRVIn8f?=
- =?us-ascii?Q?Rcwhausywr6jqTyPk42RCDyMymKNsyy3XMEg4DyQJSxtauM9M2iy6GMvOFXT?=
- =?us-ascii?Q?EqkQQZQm4fKUkTDPz8K3D0wTjBLfJoGR9hT65obkgQNMqmMiHn53rjwV2kgJ?=
- =?us-ascii?Q?gVuM7rj7LvWgQ4CVWClz7zDRP7tvxHEK1R5UTOz7?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f387432c-bbdd-4b8e-de87-08dd35e0dcdf
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8829.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2025 03:50:05.7489
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OKoPp91YX8amPwxfZFrBPIXrHvUcrgxi8Pbv7/1l9wsKJP+uLDtSovOyXyg4yvOfD4+kGW1DKHkr7KSvL2lylA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV1PR04MB10703
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/4] clk: spacemit: Add clock support for Spacemit K1
+ SoC
+To: Haylen Chu <heylenay@4d2.org>, Michael Turquette
+ <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Haylen Chu <heylenay@outlook.com>,
+ Yixun Lan <dlan@gentoo.org>
+Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Inochi Amaoto <inochiama@outlook.com>, Chen Wang <unicornxdotw@foxmail.com>,
+ Jisheng Zhang <jszhang@kernel.org>,
+ Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
+References: <20250103215636.19967-2-heylenay@4d2.org>
+ <20250103215636.19967-5-heylenay@4d2.org>
+From: Samuel Holland <samuel.holland@sifive.com>
+Content-Language: en-US
+In-Reply-To: <20250103215636.19967-5-heylenay@4d2.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Vinod,
+Hi Haylen,
 
-On Mon, Jan 06, 2025 at 10:03:03AM +0800, Xu Yang wrote:
-> Hi,
+On 2025-01-03 3:56 PM, Haylen Chu wrote:
+> The clock tree of K1 SoC contains three main types of clock hardware
+> (PLL/DDN/MIX) and is managed by several independent controllers in
+> different SoC parts (APBC, APBS and etc.), thus different compatible
+> strings are added to distinguish them.
+
+I was surprised that your DT binding didn't describe any clocks produced by one
+of these blocks and consumed by another one of them, so I took a look at the driver.
+
+> Some controllers may share IO region with reset controller and other low
+> speed peripherals like watchdog, so all register operations are done
+> through regmap to avoid competition.
 > 
-> On Wed, Dec 04, 2024 at 01:09:05PM +0800, Xu Yang wrote:
-> > The i.MX95 USB3 phy has a Type-C Assist block (TCA). This block consists
-> > two functional blocks (XBar assist and VBus assist) and one system
-> > access interface using APB.
-> > 
-> > The primary functionality of XBar assist is:
-> >  - switching lane for flip
-> >  - moving unused lanes into lower power states.
-> > 
-> > This info can be get from:
-> > i.MX95 RM Chapter 163.3.8 Type-C assist (TCA) block.
-> > 
-> > This will add support for TCA block to achieve lane switching and tca
-> > lower power functionality.
-> > 
-> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> > Reviewed-by: Jun Li <jun.li@nxp.com>
-> > 
-> > ---
-> > Changes in v2:
-> >  - return the value of imx95_usb_phy_get_tca()
-> > Changes in v3:
-> >  - no changes
-> > Changes in v4:
-> >  - remove compatible check for imx95
-> >  - check whether tca register region exist or not, yes means has tca,
-> >    otherwise skip tca setup
-> > Changes in v5:
-> >  - no changes
-> > Changes in v6:
-> >  - no changes
-> > Changes in v7:
-> >  - fix sparse warnings in imx95_usb_phy_get_tca()
-> > Changes in v8:
-> >  - #define TCA_INFO 0xFC -> 0xfc
-> > Changes in v9:
-> >  - no changes
-> > Changes in v10:
-> >  - no changes
-> > Changes in v11:
-> >  - remove some unnecessary readl() as suggested by Amit Singh Tomar
-> > ---
-> >  drivers/phy/freescale/Kconfig              |   1 +
-> >  drivers/phy/freescale/phy-fsl-imx8mq-usb.c | 240 +++++++++++++++++++++
-> >  2 files changed, 241 insertions(+)
-> > 
-> > diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
-> > index dcd9acff6d01..81f53564ee15 100644
-> > --- a/drivers/phy/freescale/Kconfig
-> > +++ b/drivers/phy/freescale/Kconfig
-> > @@ -5,6 +5,7 @@ if (ARCH_MXC && ARM64) || COMPILE_TEST
-> >  config PHY_FSL_IMX8MQ_USB
-> >  	tristate "Freescale i.MX8M USB3 PHY"
-> >  	depends on OF && HAS_IOMEM
-> > +	depends on TYPEC || TYPEC=n
-> >  	select GENERIC_PHY
-> >  	default ARCH_MXC && ARM64
-> >  
-> > diff --git a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-> > index adc6394626ce..a974ef94de9a 100644
-> > --- a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-> > +++ b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
-> > @@ -10,6 +10,7 @@
-> >  #include <linux/phy/phy.h>
-> >  #include <linux/platform_device.h>
-> >  #include <linux/regulator/consumer.h>
-> > +#include <linux/usb/typec_mux.h>
-> >  
-> >  #define PHY_CTRL0			0x0
-> >  #define PHY_CTRL0_REF_SSP_EN		BIT(2)
-> > @@ -50,11 +51,66 @@
-> >  
-> >  #define PHY_TUNE_DEFAULT		0xffffffff
-> >  
-> > +#define TCA_CLK_RST			0x00
-> > +#define TCA_CLK_RST_SW			BIT(9)
-> > +#define TCA_CLK_RST_REF_CLK_EN		BIT(1)
-> > +#define TCA_CLK_RST_SUSPEND_CLK_EN	BIT(0)
-> > +
-> > +#define TCA_INTR_EN			0x04
-> > +#define TCA_INTR_STS			0x08
-> > +
-> > +#define TCA_GCFG			0x10
-> > +#define TCA_GCFG_ROLE_HSTDEV		BIT(4)
-> > +#define TCA_GCFG_OP_MODE		GENMASK(1, 0)
-> > +#define TCA_GCFG_OP_MODE_SYSMODE	0
-> > +#define TCA_GCFG_OP_MODE_SYNCMODE	1
-> > +
-> > +#define TCA_TCPC			0x14
-> > +#define TCA_TCPC_VALID			BIT(4)
-> > +#define TCA_TCPC_LOW_POWER_EN		BIT(3)
-> > +#define TCA_TCPC_ORIENTATION_NORMAL	BIT(2)
-> > +#define TCA_TCPC_MUX_CONTRL		GENMASK(1, 0)
-> > +#define TCA_TCPC_MUX_CONTRL_NO_CONN	0
-> > +#define TCA_TCPC_MUX_CONTRL_USB_CONN	1
-> > +
-> > +#define TCA_SYSMODE_CFG			0x18
-> > +#define TCA_SYSMODE_TCPC_DISABLE	BIT(3)
-> > +#define TCA_SYSMODE_TCPC_FLIP		BIT(2)
-> > +
-> > +#define TCA_CTRLSYNCMODE_CFG0		0x20
-> > +#define TCA_CTRLSYNCMODE_CFG1           0x20
-> > +
-> > +#define TCA_PSTATE			0x30
-> > +#define TCA_PSTATE_CM_STS		BIT(4)
-> > +#define TCA_PSTATE_TX_STS		BIT(3)
-> > +#define TCA_PSTATE_RX_PLL_STS		BIT(2)
-> > +#define TCA_PSTATE_PIPE0_POWER_DOWN	GENMASK(1, 0)
-> > +
-> > +#define TCA_GEN_STATUS			0x34
-> > +#define TCA_GEN_DEV_POR			BIT(12)
-> > +#define TCA_GEN_REF_CLK_SEL		BIT(8)
-> > +#define TCA_GEN_TYPEC_FLIP_INVERT	BIT(4)
-> > +#define TCA_GEN_PHY_TYPEC_DISABLE	BIT(3)
-> > +#define TCA_GEN_PHY_TYPEC_FLIP		BIT(2)
-> > +
-> > +#define TCA_VBUS_CTRL			0x40
-> > +#define TCA_VBUS_STATUS			0x44
-> > +
-> > +#define TCA_INFO			0xfc
-> > +
-> > +struct tca_blk {
-> > +	struct typec_switch_dev *sw;
-> > +	void __iomem *base;
-> > +	struct mutex mutex;
-> > +	enum typec_orientation orientation;
-> > +};
-> > +
-> >  struct imx8mq_usb_phy {
-> >  	struct phy *phy;
-> >  	struct clk *clk;
-> >  	void __iomem *base;
-> >  	struct regulator *vbus;
-> > +	struct tca_blk *tca;
-> >  	u32 pcs_tx_swing_full;
-> >  	u32 pcs_tx_deemph_3p5db;
-> >  	u32 tx_vref_tune;
-> > @@ -64,6 +120,172 @@ struct imx8mq_usb_phy {
-> >  	u32 comp_dis_tune;
-> >  };
-> >  
-> > +
-> > +static void tca_blk_orientation_set(struct tca_blk *tca,
-> > +				enum typec_orientation orientation);
-> > +
-> > +#ifdef CONFIG_TYPEC
-> > +
-> > +static int tca_blk_typec_switch_set(struct typec_switch_dev *sw,
-> > +				enum typec_orientation orientation)
-> > +{
-> > +	struct imx8mq_usb_phy *imx_phy = typec_switch_get_drvdata(sw);
-> > +	struct tca_blk *tca = imx_phy->tca;
-> > +	int ret;
-> > +
-> > +	if (tca->orientation == orientation)
-> > +		return 0;
-> > +
-> > +	ret = clk_prepare_enable(imx_phy->clk);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	tca_blk_orientation_set(tca, orientation);
-> > +	clk_disable_unprepare(imx_phy->clk);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static struct typec_switch_dev *tca_blk_get_typec_switch(struct platform_device *pdev,
-> > +					struct imx8mq_usb_phy *imx_phy)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct typec_switch_dev *sw;
-> > +	struct typec_switch_desc sw_desc = { };
-> > +
-> > +	sw_desc.drvdata = imx_phy;
-> > +	sw_desc.fwnode = dev->fwnode;
-> > +	sw_desc.set = tca_blk_typec_switch_set;
-> > +	sw_desc.name = NULL;
-> > +
-> > +	sw = typec_switch_register(dev, &sw_desc);
-> > +	if (IS_ERR(sw)) {
-> > +		dev_err(dev, "Error register tca orientation switch: %ld",
-> > +				PTR_ERR(sw));
-> > +		return NULL;
-> > +	}
-> > +
-> > +	return sw;
-> > +}
-> > +
-> > +static void tca_blk_put_typec_switch(struct typec_switch_dev *sw)
-> > +{
-> > +	typec_switch_unregister(sw);
-> > +}
-> > +
-> > +#else
-> > +
-> > +static struct typec_switch_dev *tca_blk_get_typec_switch(struct platform_device *pdev,
-> > +			struct imx8mq_usb_phy *imx_phy)
-> > +{
-> > +	return NULL;
-> > +}
-> > +
-> > +static void tca_blk_put_typec_switch(struct typec_switch_dev *sw) {}
-> > +
-> > +#endif /* CONFIG_TYPEC */
-> > +
-> > +static void tca_blk_orientation_set(struct tca_blk *tca,
-> > +				enum typec_orientation orientation)
-> > +{
-> > +	u32 val;
-> > +
-> > +	mutex_lock(&tca->mutex);
-> > +
-> > +	if (orientation == TYPEC_ORIENTATION_NONE) {
-> > +		/*
-> > +		 * use Controller Synced Mode for TCA low power enable and
-> > +		 * put PHY to USB safe state.
-> > +		 */
-> > +		val = FIELD_PREP(TCA_GCFG_OP_MODE, TCA_GCFG_OP_MODE_SYNCMODE);
-> > +		writel(val, tca->base + TCA_GCFG);
-> > +
-> > +		val = TCA_TCPC_VALID | TCA_TCPC_LOW_POWER_EN;
-> > +		writel(val, tca->base + TCA_TCPC);
-> > +
-> > +		goto out;
-> > +	}
-> > +
-> > +	/* use System Configuration Mode for TCA mux control. */
-> > +	val = FIELD_PREP(TCA_GCFG_OP_MODE, TCA_GCFG_OP_MODE_SYSMODE);
-> > +	writel(val, tca->base + TCA_GCFG);
-> > +
-> > +	/* Disable TCA module */
-> > +	val = readl(tca->base + TCA_SYSMODE_CFG);
-> > +	val |= TCA_SYSMODE_TCPC_DISABLE;
-> > +	writel(val, tca->base + TCA_SYSMODE_CFG);
-> > +
-> > +	if (orientation == TYPEC_ORIENTATION_REVERSE)
-> > +		val |= TCA_SYSMODE_TCPC_FLIP;
-> > +	else if (orientation == TYPEC_ORIENTATION_NORMAL)
-> > +		val &= ~TCA_SYSMODE_TCPC_FLIP;
-> > +
-> > +	writel(val, tca->base + TCA_SYSMODE_CFG);
-> > +
-> > +	/* Enable TCA module */
-> > +	val &= ~TCA_SYSMODE_TCPC_DISABLE;
-> > +	writel(val, tca->base + TCA_SYSMODE_CFG);
-> > +
-> > +out:
-> > +	tca->orientation = orientation;
-> > +	mutex_unlock(&tca->mutex);
-> > +}
-> > +
-> > +static void tca_blk_init(struct tca_blk *tca)
-> > +{
-> > +	u32 val;
-> > +
-> > +	/* reset XBar block */
-> > +	val = readl(tca->base + TCA_CLK_RST);
-> > +	val &= ~TCA_CLK_RST_SW;
-> > +	writel(val, tca->base + TCA_CLK_RST);
-> > +
-> > +	udelay(100);
-> > +
-> > +	/* clear reset */
-> > +	val |= TCA_CLK_RST_SW;
-> > +	writel(val, tca->base + TCA_CLK_RST);
-> > +
-> > +	tca_blk_orientation_set(tca, tca->orientation);
-> > +}
-> > +
-> > +static struct tca_blk *imx95_usb_phy_get_tca(struct platform_device *pdev,
-> > +				struct imx8mq_usb_phy *imx_phy)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct resource *res;
-> > +	struct tca_blk *tca;
-> > +
-> > +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> > +	if (!res)
-> > +		return NULL;
-> > +
-> > +	tca = devm_kzalloc(dev, sizeof(*tca), GFP_KERNEL);
-> > +	if (!tca)
-> > +		return ERR_PTR(-ENOMEM);
-> > +
-> > +	tca->base = devm_ioremap_resource(&pdev->dev, res);
-> > +	if (IS_ERR(tca->base))
-> > +		return ERR_CAST(tca->base);
-> > +
-> > +	mutex_init(&tca->mutex);
-> > +
-> > +	tca->orientation = TYPEC_ORIENTATION_NORMAL;
-> > +	tca->sw = tca_blk_get_typec_switch(pdev, imx_phy);
-> > +
-> > +	return tca;
-> > +}
-> > +
-> > +static void imx95_usb_phy_put_tca(struct imx8mq_usb_phy *imx_phy)
-> > +{
-> > +	struct tca_blk *tca = imx_phy->tca;
-> > +
-> > +	if (!tca)
-> > +		return;
-> > +
-> > +	tca_blk_put_typec_switch(tca->sw);
-> > +}
-> > +
-> >  static u32 phy_tx_vref_tune_from_property(u32 percent)
-> >  {
-> >  	percent = clamp(percent, 94U, 124U);
-> > @@ -315,6 +537,9 @@ static int imx8mp_usb_phy_init(struct phy *phy)
-> >  
-> >  	imx8m_phy_tune(imx_phy);
-> >  
-> > +	if (imx_phy->tca)
-> > +		tca_blk_init(imx_phy->tca);
-> > +
-> >  	return 0;
-> >  }
-> >  
-> > @@ -359,6 +584,8 @@ static const struct of_device_id imx8mq_usb_phy_of_match[] = {
-> >  	 .data = &imx8mq_usb_phy_ops,},
-> >  	{.compatible = "fsl,imx8mp-usb-phy",
-> >  	 .data = &imx8mp_usb_phy_ops,},
-> > +	{.compatible = "fsl,imx95-usb-phy",
-> > +	 .data = &imx8mp_usb_phy_ops,},
-> >  	{ }
-> >  };
-> >  MODULE_DEVICE_TABLE(of, imx8mq_usb_phy_of_match);
-> > @@ -398,6 +625,11 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
-> >  
-> >  	phy_set_drvdata(imx_phy->phy, imx_phy);
-> >  
-> > +	imx_phy->tca = imx95_usb_phy_get_tca(pdev, imx_phy);
-> > +	if (IS_ERR(imx_phy->tca))
-> > +		return dev_err_probe(dev, PTR_ERR(imx_phy->tca),
-> > +					"failed to get tca\n");
-> > +
-> >  	imx8m_get_phy_tuning_data(imx_phy);
-> >  
-> >  	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> > @@ -405,8 +637,16 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
-> >  	return PTR_ERR_OR_ZERO(phy_provider);
-> >  }
-> >  
-> > +static void imx8mq_usb_phy_remove(struct platform_device *pdev)
-> > +{
-> > +	struct imx8mq_usb_phy *imx_phy = platform_get_drvdata(pdev);
-> > +
-> > +	imx95_usb_phy_put_tca(imx_phy);
-> > +}
-> > +
-> >  static struct platform_driver imx8mq_usb_phy_driver = {
-> >  	.probe	= imx8mq_usb_phy_probe,
-> > +	.remove = imx8mq_usb_phy_remove,
-> >  	.driver = {
-> >  		.name	= "imx8mq-usb-phy",
-> >  		.of_match_table	= imx8mq_usb_phy_of_match,
-> > -- 
-> > 2.34.1
-> > 
+> Signed-off-by: Haylen Chu <heylenay@4d2.org>
+> ---
+>  drivers/clk/Kconfig               |    1 +
+>  drivers/clk/Makefile              |    1 +
+>  drivers/clk/spacemit/Kconfig      |   20 +
+>  drivers/clk/spacemit/Makefile     |    5 +
+>  drivers/clk/spacemit/ccu-k1.c     | 1747 +++++++++++++++++++++++++++++
+>  drivers/clk/spacemit/ccu_common.h |   51 +
+>  drivers/clk/spacemit/ccu_ddn.c    |  140 +++
+>  drivers/clk/spacemit/ccu_ddn.h    |   84 ++
+>  drivers/clk/spacemit/ccu_mix.c    |  304 +++++
+>  drivers/clk/spacemit/ccu_mix.h    |  309 +++++
+>  drivers/clk/spacemit/ccu_pll.c    |  189 ++++
+>  drivers/clk/spacemit/ccu_pll.h    |   80 ++
+>  12 files changed, 2931 insertions(+)
+>  create mode 100644 drivers/clk/spacemit/Kconfig
+>  create mode 100644 drivers/clk/spacemit/Makefile
+>  create mode 100644 drivers/clk/spacemit/ccu-k1.c
+>  create mode 100644 drivers/clk/spacemit/ccu_common.h
+>  create mode 100644 drivers/clk/spacemit/ccu_ddn.c
+>  create mode 100644 drivers/clk/spacemit/ccu_ddn.h
+>  create mode 100644 drivers/clk/spacemit/ccu_mix.c
+>  create mode 100644 drivers/clk/spacemit/ccu_mix.h
+>  create mode 100644 drivers/clk/spacemit/ccu_pll.c
+>  create mode 100644 drivers/clk/spacemit/ccu_pll.h
 > 
-> Happy New Year!
-> And a gentle ping.
+> ...
+>
+> +/*	APBS clocks start	*/
+> +
+> +/* Frequency of pll{1,2} should not be updated at runtime */
+> +static const struct ccu_pll_rate_tbl pll1_rate_tbl[] = {
+> +	CCU_PLL_RATE(2457600000UL, 0x64, 0xdd, 0x50, 0x00, 0x33, 0x0ccccd),
+> +};
+> +
+> +static const struct ccu_pll_rate_tbl pll2_rate_tbl[] = {
+> +	CCU_PLL_RATE(3000000000UL, 0x66, 0xdd, 0x50, 0x00, 0x3f, 0xe00000),
+> +};
+> +
+> +static const struct ccu_pll_rate_tbl pll3_rate_tbl[] = {
+> +	CCU_PLL_RATE(3000000000UL, 0x66, 0xdd, 0x50, 0x00, 0x3f, 0xe00000),
+> +	CCU_PLL_RATE(3200000000UL, 0x67, 0xdd, 0x50, 0x00, 0x43, 0xeaaaab),
+> +	CCU_PLL_RATE(2457600000UL, 0x64, 0xdd, 0x50, 0x00, 0x33, 0x0ccccd),
+> +};
+> +
+> +static CCU_PLL_DEFINE(pll1, "pll1", pll1_rate_tbl,
+> +		      APB_SPARE1_REG, APB_SPARE2_REG, APB_SPARE3_REG,
+> +		      MPMU_POSR, POSR_PLL1_LOCK, CLK_SET_RATE_GATE);
+> +static CCU_PLL_DEFINE(pll2, "pll2", pll2_rate_tbl,
+> +		      APB_SPARE7_REG, APB_SPARE8_REG, APB_SPARE9_REG,
+> +		      MPMU_POSR, POSR_PLL2_LOCK, CLK_SET_RATE_GATE);
+> +static CCU_PLL_DEFINE(pll3, "pll3", pll3_rate_tbl,
+> +		      APB_SPARE10_REG, APB_SPARE11_REG, APB_SPARE12_REG,
+> +		      MPMU_POSR, POSR_PLL3_LOCK, 0);
+> +
+> +static CCU_GATE_FACTOR_DEFINE(pll1_d2, "pll1_d2", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(1), BIT(1), 0, 2, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll1_d3, "pll1_d3", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(2), BIT(2), 0, 3, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll1_d4, "pll1_d4", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(3), BIT(3), 0, 4, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll1_d5, "pll1_d5", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(4), BIT(4), 0, 5, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll1_d6, "pll1_d6", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(5), BIT(5), 0, 6, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll1_d7, "pll1_d7", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(6), BIT(6), 0, 7, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll1_d8, "pll1_d8", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(7), BIT(7), 0, 8, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll1_d11_223p4, "pll1_d11_223p4", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(15), BIT(15), 0, 11, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll1_d13_189, "pll1_d13_189", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(16), BIT(16), 0, 13, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll1_d23_106p8, "pll1_d23_106p8", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(20), BIT(20), 0, 23, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll1_d64_38p4, "pll1_d64_38p4", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(0), BIT(0), 0, 64, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll1_aud_245p7, "pll1_aud_245p7", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(10), BIT(10), 0, 10, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll1_aud_24p5, "pll1_aud_24p5", CCU_PARENT_HW(pll1),
+> +			      APB_SPARE2_REG,
+> +			      BIT(11), BIT(11), 0, 100, 1, 0);
+> +
+> +static CCU_GATE_FACTOR_DEFINE(pll2_d1, "pll2_d1", CCU_PARENT_HW(pll2),
+> +			      APB_SPARE8_REG,
+> +			      BIT(0), BIT(0), 0, 1, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll2_d2, "pll2_d2", CCU_PARENT_HW(pll2),
+> +			      APB_SPARE8_REG,
+> +			      BIT(1), BIT(1), 0, 2, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll2_d3, "pll2_d3", CCU_PARENT_HW(pll2),
+> +			      APB_SPARE8_REG,
+> +			      BIT(2), BIT(2), 0, 3, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll2_d4, "pll2_d4", CCU_PARENT_HW(pll2),
+> +			      APB_SPARE8_REG,
+> +			      BIT(3), BIT(3), 0, 4, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll2_d5, "pll2_d5", CCU_PARENT_HW(pll2),
+> +			      APB_SPARE8_REG,
+> +			      BIT(4), BIT(4), 0, 5, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll2_d6, "pll2_d6", CCU_PARENT_HW(pll2),
+> +			      APB_SPARE8_REG,
+> +			      BIT(5), BIT(5), 0, 6, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll2_d7, "pll2_d7", CCU_PARENT_HW(pll2),
+> +			      APB_SPARE8_REG,
+> +			      BIT(6), BIT(6), 0, 7, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll2_d8, "pll2_d8", CCU_PARENT_HW(pll2),
+> +			      APB_SPARE8_REG,
+> +			      BIT(7), BIT(7), 0, 8, 1, 0);
+> +
+> +static CCU_GATE_FACTOR_DEFINE(pll3_d1, "pll3_d1", CCU_PARENT_HW(pll3),
+> +			      APB_SPARE11_REG,
+> +			      BIT(0), BIT(0), 0, 1, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll3_d2, "pll3_d2", CCU_PARENT_HW(pll3),
+> +			      APB_SPARE11_REG,
+> +			      BIT(1), BIT(1), 0, 2, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll3_d3, "pll3_d3", CCU_PARENT_HW(pll3),
+> +			      APB_SPARE11_REG,
+> +			      BIT(2), BIT(2), 0, 3, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll3_d4, "pll3_d4", CCU_PARENT_HW(pll3),
+> +			      APB_SPARE11_REG,
+> +			      BIT(3), BIT(3), 0, 4, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll3_d5, "pll3_d5", CCU_PARENT_HW(pll3),
+> +			      APB_SPARE11_REG,
+> +			      BIT(4), BIT(4), 0, 5, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll3_d6, "pll3_d6", CCU_PARENT_HW(pll3),
+> +			      APB_SPARE11_REG,
+> +			      BIT(5), BIT(5), 0, 6, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll3_d7, "pll3_d7", CCU_PARENT_HW(pll3),
+> +			      APB_SPARE11_REG,
+> +			      BIT(6), BIT(6), 0, 7, 1, 0);
+> +static CCU_GATE_FACTOR_DEFINE(pll3_d8, "pll3_d8", CCU_PARENT_HW(pll3),
+> +			      APB_SPARE11_REG,
+> +			      BIT(7), BIT(7), 0, 8, 1, 0);
+> +
+> +static CCU_FACTOR_DEFINE(pll3_20, "pll3_20", CCU_PARENT_HW(pll3_d8), 20, 1);
+> +static CCU_FACTOR_DEFINE(pll3_40, "pll3_40", CCU_PARENT_HW(pll3_d8), 10, 1);
+> +static CCU_FACTOR_DEFINE(pll3_80, "pll3_80", CCU_PARENT_HW(pll3_d8), 5, 1);
+> +
+> +/*	APBS clocks end		*/
+> +
+> +/*	MPMU clocks start	*/
+> +static CCU_GATE_DEFINE(pll1_d8_307p2, "pll1_d8_307p2", CCU_PARENT_HW(pll1_d8),
+> +		       MPMU_ACGR,
+> +		       BIT(13), BIT(13), 0, 0);
 
-A gentle ping!
-If no other concerns, please help pick up them since many users are
-waiting for it. And v6.13 is almost coming.
+Here you have a clk_hw from one driver instance (pll1_d8_307p2) pointing to a
+clk_hw from another driver instance (pll1_d8). If the consumer instance is
+probed first, pll1_d8 won't have been registered with the clock core, so you are
+quite likely to dereference a null hw->core pointer.
 
-Thanks,
-Xu Yang
+The normal way to handle relationships between clock controller instances is by
+referencing the clocks in the consumer's devicetree node, and using .fw_name in
+the parent_data. Unfortunately, it seems there are quite a lot of clocks that
+would need to be included in the DT binding to do that.
+
+Regards,
+Samuel
+
+> ...
+> +/*	APMU clocks end		*/
+> +
+> +static struct clk_hw_onecell_data k1_ccu_apbs_clks = {
+> +	.hws = {
+> +		[CLK_PLL1]		= &pll1.common.hw,
+> +		[CLK_PLL2]		= &pll2.common.hw,
+> +		[CLK_PLL3]		= &pll3.common.hw,
+> +		[CLK_PLL1_D2]		= &pll1_d2.common.hw,
+> +		[CLK_PLL1_D3]		= &pll1_d3.common.hw,
+> +		[CLK_PLL1_D4]		= &pll1_d4.common.hw,
+> +		[CLK_PLL1_D5]		= &pll1_d5.common.hw,
+> +		[CLK_PLL1_D6]		= &pll1_d6.common.hw,
+> +		[CLK_PLL1_D7]		= &pll1_d7.common.hw,
+> +		[CLK_PLL1_D8]		= &pll1_d8.common.hw,
+
+referring to here ^
+
+> +		[CLK_PLL1_D11]		= &pll1_d11_223p4.common.hw,
+> +		[CLK_PLL1_D13]		= &pll1_d13_189.common.hw,
+> +		[CLK_PLL1_D23]		= &pll1_d23_106p8.common.hw,
+> +		[CLK_PLL1_D64]		= &pll1_d64_38p4.common.hw,
+> +		[CLK_PLL1_D10_AUD]	= &pll1_aud_245p7.common.hw,
+> +		[CLK_PLL1_D100_AUD]	= &pll1_aud_24p5.common.hw,
+> +		[CLK_PLL2_D1]		= &pll2_d1.common.hw,
+> +		[CLK_PLL2_D2]		= &pll2_d2.common.hw,
+> +		[CLK_PLL2_D3]		= &pll2_d3.common.hw,
+> +		[CLK_PLL2_D4]		= &pll2_d4.common.hw,
+> +		[CLK_PLL2_D5]		= &pll2_d5.common.hw,
+> +		[CLK_PLL2_D6]		= &pll2_d6.common.hw,
+> +		[CLK_PLL2_D7]		= &pll2_d7.common.hw,
+> +		[CLK_PLL2_D8]		= &pll2_d8.common.hw,
+> +		[CLK_PLL3_D1]		= &pll3_d1.common.hw,
+> +		[CLK_PLL3_D2]		= &pll3_d2.common.hw,
+> +		[CLK_PLL3_D3]		= &pll3_d3.common.hw,
+> +		[CLK_PLL3_D4]		= &pll3_d4.common.hw,
+> +		[CLK_PLL3_D5]		= &pll3_d5.common.hw,
+> +		[CLK_PLL3_D6]		= &pll3_d6.common.hw,
+> +		[CLK_PLL3_D7]		= &pll3_d7.common.hw,
+> +		[CLK_PLL3_D8]		= &pll3_d8.common.hw,
+> +		[CLK_PLL3_80]		= &pll3_80.common.hw,
+> +		[CLK_PLL3_40]		= &pll3_40.common.hw,
+> +		[CLK_PLL3_20]		= &pll3_20.common.hw,
+> +
+> +	},
+> +	.num = CLK_APBS_NUM,
+> +};
+> +
+> +static struct clk_hw_onecell_data k1_ccu_mpmu_clks = {
+> +	.hws = {
+> +		[CLK_PLL1_307P2]	= &pll1_d8_307p2.common.hw,
+
+from here ^
+
+> +		[CLK_PLL1_76P8]		= &pll1_d32_76p8.common.hw,
+> +		[CLK_PLL1_61P44]	= &pll1_d40_61p44.common.hw,
+> +		[CLK_PLL1_153P6]	= &pll1_d16_153p6.common.hw,
+> +		[CLK_PLL1_102P4]	= &pll1_d24_102p4.common.hw,
+> +		[CLK_PLL1_51P2]		= &pll1_d48_51p2.common.hw,
+> +		[CLK_PLL1_51P2_AP]	= &pll1_d48_51p2_ap.common.hw,
+> +		[CLK_PLL1_57P6]		= &pll1_m3d128_57p6.common.hw,
+> +		[CLK_PLL1_25P6]		= &pll1_d96_25p6.common.hw,
+> +		[CLK_PLL1_12P8]		= &pll1_d192_12p8.common.hw,
+> +		[CLK_PLL1_12P8_WDT]	= &pll1_d192_12p8_wdt.common.hw,
+> +		[CLK_PLL1_6P4]		= &pll1_d384_6p4.common.hw,
+> +		[CLK_PLL1_3P2]		= &pll1_d768_3p2.common.hw,
+> +		[CLK_PLL1_1P6]		= &pll1_d1536_1p6.common.hw,
+> +		[CLK_PLL1_0P8]		= &pll1_d3072_0p8.common.hw,
+> +		[CLK_PLL1_351]		= &pll1_d7_351p08.common.hw,
+> +		[CLK_PLL1_409P6]	= &pll1_d6_409p6.common.hw,
+> +		[CLK_PLL1_204P8]	= &pll1_d12_204p8.common.hw,
+> +		[CLK_PLL1_491]		= &pll1_d5_491p52.common.hw,
+> +		[CLK_PLL1_245P76]	= &pll1_d10_245p76.common.hw,
+> +		[CLK_PLL1_614]		= &pll1_d4_614p4.common.hw,
+> +		[CLK_PLL1_47P26]	= &pll1_d52_47p26.common.hw,
+> +		[CLK_PLL1_31P5]		= &pll1_d78_31p5.common.hw,
+> +		[CLK_PLL1_819]		= &pll1_d3_819p2.common.hw,
+> +		[CLK_PLL1_1228]		= &pll1_d2_1228p8.common.hw,
+> +		[CLK_SLOW_UART]		= &slow_uart.common.hw,
+> +		[CLK_SLOW_UART1]	= &slow_uart1_14p74.common.hw,
+> +		[CLK_SLOW_UART2]	= &slow_uart2_48.common.hw,
+> +		[CLK_WDT]		= &wdt_clk.common.hw,
+> +		[CLK_RIPC]		= &ripc_clk.common.hw,
+> +		[CLK_I2S_SYSCLK]	= &i2s_sysclk.common.hw,
+> +		[CLK_I2S_BCLK]		= &i2s_bclk.common.hw,
+> +		[CLK_APB]		= &apb_clk.common.hw,
+> +		[CLK_WDT_BUS]		= &wdt_bus_clk.common.hw,
+> +	},
+> +	.num = CLK_MPMU_NUM,
+> +};
+> +
+> +static struct clk_hw_onecell_data k1_ccu_apbc_clks = {
+> +	.hws = {
+> +		[CLK_UART0]		= &uart0_clk.common.hw,
+> +		[CLK_UART2]		= &uart2_clk.common.hw,
+> +		[CLK_UART3]		= &uart3_clk.common.hw,
+> +		[CLK_UART4]		= &uart4_clk.common.hw,
+> +		[CLK_UART5]		= &uart5_clk.common.hw,
+> +		[CLK_UART6]		= &uart6_clk.common.hw,
+> +		[CLK_UART7]		= &uart7_clk.common.hw,
+> +		[CLK_UART8]		= &uart8_clk.common.hw,
+> +		[CLK_UART9]		= &uart9_clk.common.hw,
+> +		[CLK_GPIO]		= &gpio_clk.common.hw,
+> +		[CLK_PWM0]		= &pwm0_clk.common.hw,
+> +		[CLK_PWM1]		= &pwm1_clk.common.hw,
+> +		[CLK_PWM2]		= &pwm2_clk.common.hw,
+> +		[CLK_PWM3]		= &pwm3_clk.common.hw,
+> +		[CLK_PWM4]		= &pwm4_clk.common.hw,
+> +		[CLK_PWM5]		= &pwm5_clk.common.hw,
+> +		[CLK_PWM6]		= &pwm6_clk.common.hw,
+> +		[CLK_PWM7]		= &pwm7_clk.common.hw,
+> +		[CLK_PWM8]		= &pwm8_clk.common.hw,
+> +		[CLK_PWM9]		= &pwm9_clk.common.hw,
+> +		[CLK_PWM10]		= &pwm10_clk.common.hw,
+> +		[CLK_PWM11]		= &pwm11_clk.common.hw,
+> +		[CLK_PWM12]		= &pwm12_clk.common.hw,
+> +		[CLK_PWM13]		= &pwm13_clk.common.hw,
+> +		[CLK_PWM14]		= &pwm14_clk.common.hw,
+> +		[CLK_PWM15]		= &pwm15_clk.common.hw,
+> +		[CLK_PWM16]		= &pwm16_clk.common.hw,
+> +		[CLK_PWM17]		= &pwm17_clk.common.hw,
+> +		[CLK_PWM18]		= &pwm18_clk.common.hw,
+> +		[CLK_PWM19]		= &pwm19_clk.common.hw,
+> +		[CLK_SSP3]		= &ssp3_clk.common.hw,
+> +		[CLK_RTC]		= &rtc_clk.common.hw,
+> +		[CLK_TWSI0]		= &twsi0_clk.common.hw,
+> +		[CLK_TWSI1]		= &twsi1_clk.common.hw,
+> +		[CLK_TWSI2]		= &twsi2_clk.common.hw,
+> +		[CLK_TWSI4]		= &twsi4_clk.common.hw,
+> +		[CLK_TWSI5]		= &twsi5_clk.common.hw,
+> +		[CLK_TWSI6]		= &twsi6_clk.common.hw,
+> +		[CLK_TWSI7]		= &twsi7_clk.common.hw,
+> +		[CLK_TWSI8]		= &twsi8_clk.common.hw,
+> +		[CLK_TIMERS1]		= &timers1_clk.common.hw,
+> +		[CLK_TIMERS2]		= &timers2_clk.common.hw,
+> +		[CLK_AIB]		= &aib_clk.common.hw,
+> +		[CLK_ONEWIRE]		= &onewire_clk.common.hw,
+> +		[CLK_SSPA0]		= &sspa0_clk.common.hw,
+> +		[CLK_SSPA1]		= &sspa1_clk.common.hw,
+> +		[CLK_DRO]		= &dro_clk.common.hw,
+> +		[CLK_IR]		= &ir_clk.common.hw,
+> +		[CLK_TSEN]		= &tsen_clk.common.hw,
+> +		[CLK_IPC_AP2AUD]	= &ipc_ap2aud_clk.common.hw,
+> +		[CLK_CAN0]		= &can0_clk.common.hw,
+> +		[CLK_CAN0_BUS]		= &can0_bus_clk.common.hw,
+> +		[CLK_UART0_BUS]		= &uart0_bus_clk.common.hw,
+> +		[CLK_UART2_BUS]		= &uart2_bus_clk.common.hw,
+> +		[CLK_UART3_BUS]		= &uart3_bus_clk.common.hw,
+> +		[CLK_UART4_BUS]		= &uart4_bus_clk.common.hw,
+> +		[CLK_UART5_BUS]		= &uart5_bus_clk.common.hw,
+> +		[CLK_UART6_BUS]		= &uart6_bus_clk.common.hw,
+> +		[CLK_UART7_BUS]		= &uart7_bus_clk.common.hw,
+> +		[CLK_UART8_BUS]		= &uart8_bus_clk.common.hw,
+> +		[CLK_UART9_BUS]		= &uart9_bus_clk.common.hw,
+> +		[CLK_GPIO_BUS]		= &gpio_bus_clk.common.hw,
+> +		[CLK_PWM0_BUS]		= &pwm0_bus_clk.common.hw,
+> +		[CLK_PWM1_BUS]		= &pwm1_bus_clk.common.hw,
+> +		[CLK_PWM2_BUS]		= &pwm2_bus_clk.common.hw,
+> +		[CLK_PWM3_BUS]		= &pwm3_bus_clk.common.hw,
+> +		[CLK_PWM4_BUS]		= &pwm4_bus_clk.common.hw,
+> +		[CLK_PWM5_BUS]		= &pwm5_bus_clk.common.hw,
+> +		[CLK_PWM6_BUS]		= &pwm6_bus_clk.common.hw,
+> +		[CLK_PWM7_BUS]		= &pwm7_bus_clk.common.hw,
+> +		[CLK_PWM8_BUS]		= &pwm8_bus_clk.common.hw,
+> +		[CLK_PWM9_BUS]		= &pwm9_bus_clk.common.hw,
+> +		[CLK_PWM10_BUS]		= &pwm10_bus_clk.common.hw,
+> +		[CLK_PWM11_BUS]		= &pwm11_bus_clk.common.hw,
+> +		[CLK_PWM12_BUS]		= &pwm12_bus_clk.common.hw,
+> +		[CLK_PWM13_BUS]		= &pwm13_bus_clk.common.hw,
+> +		[CLK_PWM14_BUS]		= &pwm14_bus_clk.common.hw,
+> +		[CLK_PWM15_BUS]		= &pwm15_bus_clk.common.hw,
+> +		[CLK_PWM16_BUS]		= &pwm16_bus_clk.common.hw,
+> +		[CLK_PWM17_BUS]		= &pwm17_bus_clk.common.hw,
+> +		[CLK_PWM18_BUS]		= &pwm18_bus_clk.common.hw,
+> +		[CLK_PWM19_BUS]		= &pwm19_bus_clk.common.hw,
+> +		[CLK_SSP3_BUS]		= &ssp3_bus_clk.common.hw,
+> +		[CLK_RTC_BUS]		= &rtc_bus_clk.common.hw,
+> +		[CLK_TWSI0_BUS]		= &twsi0_bus_clk.common.hw,
+> +		[CLK_TWSI1_BUS]		= &twsi1_bus_clk.common.hw,
+> +		[CLK_TWSI2_BUS]		= &twsi2_bus_clk.common.hw,
+> +		[CLK_TWSI4_BUS]		= &twsi4_bus_clk.common.hw,
+> +		[CLK_TWSI5_BUS]		= &twsi5_bus_clk.common.hw,
+> +		[CLK_TWSI6_BUS]		= &twsi6_bus_clk.common.hw,
+> +		[CLK_TWSI7_BUS]		= &twsi7_bus_clk.common.hw,
+> +		[CLK_TWSI8_BUS]		= &twsi8_bus_clk.common.hw,
+> +		[CLK_TIMERS1_BUS]	= &timers1_bus_clk.common.hw,
+> +		[CLK_TIMERS2_BUS]	= &timers2_bus_clk.common.hw,
+> +		[CLK_AIB_BUS]		= &aib_bus_clk.common.hw,
+> +		[CLK_ONEWIRE_BUS]	= &onewire_bus_clk.common.hw,
+> +		[CLK_SSPA0_BUS]		= &sspa0_bus_clk.common.hw,
+> +		[CLK_SSPA1_BUS]		= &sspa1_bus_clk.common.hw,
+> +		[CLK_TSEN_BUS]		= &tsen_bus_clk.common.hw,
+> +		[CLK_IPC_AP2AUD_BUS]	= &ipc_ap2aud_bus_clk.common.hw,
+> +	},
+> +	.num = CLK_APBC_NUM,
+> +};
+> +
+> +static struct clk_hw_onecell_data k1_ccu_apmu_clks = {
+> +	.hws = {
+> +		[CLK_CCI550]		= &cci550_clk.common.hw,
+> +		[CLK_CPU_C0_HI]		= &cpu_c0_hi_clk.common.hw,
+> +		[CLK_CPU_C0_CORE]	= &cpu_c0_core_clk.common.hw,
+> +		[CLK_CPU_C0_ACE]	= &cpu_c0_ace_clk.common.hw,
+> +		[CLK_CPU_C0_TCM]	= &cpu_c0_tcm_clk.common.hw,
+> +		[CLK_CPU_C1_HI]		= &cpu_c1_hi_clk.common.hw,
+> +		[CLK_CPU_C1_CORE]	= &cpu_c1_core_clk.common.hw,
+> +		[CLK_CPU_C1_ACE]	= &cpu_c1_ace_clk.common.hw,
+> +		[CLK_CCIC_4X]		= &ccic_4x_clk.common.hw,
+> +		[CLK_CCIC1PHY]		= &ccic1phy_clk.common.hw,
+> +		[CLK_SDH_AXI]		= &sdh_axi_aclk.common.hw,
+> +		[CLK_SDH0]		= &sdh0_clk.common.hw,
+> +		[CLK_SDH1]		= &sdh1_clk.common.hw,
+> +		[CLK_SDH2]		= &sdh2_clk.common.hw,
+> +		[CLK_USB_P1]		= &usb_p1_aclk.common.hw,
+> +		[CLK_USB_AXI]		= &usb_axi_clk.common.hw,
+> +		[CLK_USB30]		= &usb30_clk.common.hw,
+> +		[CLK_QSPI]		= &qspi_clk.common.hw,
+> +		[CLK_QSPI_BUS]		= &qspi_bus_clk.common.hw,
+> +		[CLK_DMA]		= &dma_clk.common.hw,
+> +		[CLK_AES]		= &aes_clk.common.hw,
+> +		[CLK_VPU]		= &vpu_clk.common.hw,
+> +		[CLK_GPU]		= &gpu_clk.common.hw,
+> +		[CLK_EMMC]		= &emmc_clk.common.hw,
+> +		[CLK_EMMC_X]		= &emmc_x_clk.common.hw,
+> +		[CLK_AUDIO]		= &audio_clk.common.hw,
+> +		[CLK_HDMI]		= &hdmi_mclk.common.hw,
+> +		[CLK_PMUA_ACLK]		= &pmua_aclk.common.hw,
+> +		[CLK_PCIE0]		= &pcie0_clk.common.hw,
+> +		[CLK_PCIE1]		= &pcie1_clk.common.hw,
+> +		[CLK_PCIE2]		= &pcie2_clk.common.hw,
+> +		[CLK_EMAC0_BUS]		= &emac0_bus_clk.common.hw,
+> +		[CLK_EMAC0_PTP]		= &emac0_ptp_clk.common.hw,
+> +		[CLK_EMAC1_BUS]		= &emac1_bus_clk.common.hw,
+> +		[CLK_EMAC1_PTP]		= &emac1_ptp_clk.common.hw,
+> +		[CLK_JPG]		= &jpg_clk.common.hw,
+> +		[CLK_CCIC2PHY]		= &ccic2phy_clk.common.hw,
+> +		[CLK_CCIC3PHY]		= &ccic3phy_clk.common.hw,
+> +		[CLK_CSI]		= &csi_clk.common.hw,
+> +		[CLK_CAMM0]		= &camm0_clk.common.hw,
+> +		[CLK_CAMM1]		= &camm1_clk.common.hw,
+> +		[CLK_CAMM2]		= &camm2_clk.common.hw,
+> +		[CLK_ISP_CPP]		= &isp_cpp_clk.common.hw,
+> +		[CLK_ISP_BUS]		= &isp_bus_clk.common.hw,
+> +		[CLK_ISP]		= &isp_clk.common.hw,
+> +		[CLK_DPU_MCLK]		= &dpu_mclk.common.hw,
+> +		[CLK_DPU_ESC]		= &dpu_esc_clk.common.hw,
+> +		[CLK_DPU_BIT]		= &dpu_bit_clk.common.hw,
+> +		[CLK_DPU_PXCLK]		= &dpu_pxclk.common.hw,
+> +		[CLK_DPU_HCLK]		= &dpu_hclk.common.hw,
+> +		[CLK_DPU_SPI]		= &dpu_spi_clk.common.hw,
+> +		[CLK_DPU_SPI_HBUS]	= &dpu_spi_hbus_clk.common.hw,
+> +		[CLK_DPU_SPIBUS]	= &dpu_spi_bus_clk.common.hw,
+> +		[CLK_DPU_SPI_ACLK]	= &dpu_spi_aclk.common.hw,
+> +		[CLK_V2D]		= &v2d_clk.common.hw,
+> +		[CLK_EMMC_BUS]		= &emmc_bus_clk.common.hw,
+> +	},
+> +	.num = CLK_APMU_NUM
+> +};
+> +
+> +struct spacemit_ccu_data {
+> +	struct clk_hw_onecell_data *hw_clks;
+> +	bool need_pll_lock;
+> +};
+> +
+> +struct spacemit_ccu_priv {
+> +	const struct spacemit_ccu_data *data;
+> +	struct regmap *base;
+> +	struct regmap *lock_base;
+> +};
+> +
+> +static int spacemit_ccu_register(struct device *dev,
+> +				 struct spacemit_ccu_priv *priv)
+> +{
+> +	const struct spacemit_ccu_data *data = priv->data;
+> +	int i, ret;
+> +
+> +	for (i = 0; i < data->hw_clks->num; i++) {
+> +		struct clk_hw *hw = data->hw_clks->hws[i];
+> +		struct ccu_common *common;
+> +		const char *name;
+> +
+> +		if (!hw)
+> +			continue;
+> +
+> +		common = hw_to_ccu_common(hw);
+> +		name = hw->init->name;
+> +
+> +		common->base		= priv->base;
+> +		common->lock_base	= priv->lock_base;
+> +
+> +		ret = devm_clk_hw_register(dev, hw);
+> +		if (ret) {
+> +			dev_err(dev, "Cannot register clock %d - %s\n",
+> +				i, name);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +					   data->hw_clks);
+> +}
+> +
+> +static int k1_ccu_probe(struct platform_device *pdev)
+> +{
+> +	const struct spacemit_ccu_data *data;
+> +	struct regmap *base_map, *lock_map = NULL;
+> +	struct device *dev = &pdev->dev;
+> +	struct spacemit_ccu_priv *priv;
+> +	struct device_node *parent;
+> +	int ret;
+> +
+> +	data = of_device_get_match_data(dev);
+> +	if (WARN_ON(!data))
+> +		return -EINVAL;
+> +
+> +	parent   = of_get_parent(dev->of_node);
+> +	base_map = syscon_node_to_regmap(parent);
+> +	of_node_put(parent);
+> +
+> +	if (IS_ERR(base_map))
+> +		return dev_err_probe(dev, PTR_ERR(base_map),
+> +				     "failed to get regmap\n");
+> +
+> +	if (data->need_pll_lock) {
+> +		lock_map = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +							   "spacemit,mpmu");
+> +		if (IS_ERR(lock_map))
+> +			return dev_err_probe(dev, PTR_ERR(lock_map),
+> +					     "failed to get lock regmap\n");
+> +	}
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->data	= data;
+> +	priv->base	= base_map;
+> +	priv->lock_base	= lock_map;
+> +
+> +	ret = spacemit_ccu_register(dev, priv);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to register clocks\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct spacemit_ccu_data k1_ccu_apbs_data = {
+> +	.need_pll_lock	= true,
+> +	.hw_clks	= &k1_ccu_apbs_clks,
+> +};
+> +
+> +static const struct spacemit_ccu_data k1_ccu_mpmu_data = {
+> +	.need_pll_lock	= false,
+> +	.hw_clks	= &k1_ccu_mpmu_clks,
+> +};
+> +
+> +static const struct spacemit_ccu_data k1_ccu_apbc_data = {
+> +	.need_pll_lock	= false,
+> +	.hw_clks	= &k1_ccu_apbc_clks,
+> +};
+> +
+> +static const struct spacemit_ccu_data k1_ccu_apmu_data = {
+> +	.need_pll_lock	= false,
+> +	.hw_clks	= &k1_ccu_apmu_clks,
+> +};
+> +
+> +static const struct of_device_id of_k1_ccu_match[] = {
+> +	{
+> +		.compatible	= "spacemit,k1-ccu-apbs",
+> +		.data		= &k1_ccu_apbs_data,
+> +	},
+> +	{
+> +		.compatible	= "spacemit,k1-ccu-mpmu",
+> +		.data		= &k1_ccu_mpmu_data,
+> +	},
+> +	{
+> +		.compatible	= "spacemit,k1-ccu-apbc",
+> +		.data		= &k1_ccu_apbc_data,
+> +	},
+> +	{
+> +		.compatible	= "spacemit,k1-ccu-apmu",
+> +		.data		= &k1_ccu_apmu_data,
+> +	},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, of_k1_ccu_match);
+> +
+> +static struct platform_driver k1_ccu_driver = {
+> +	.driver = {
+> +		.name		= "spacemit,k1-ccu",
+> +		.of_match_table = of_k1_ccu_match,
+> +	},
+> +	.probe	= k1_ccu_probe,
+> +};
+> +module_platform_driver(k1_ccu_driver);
+> +
+> +MODULE_DESCRIPTION("Spacemit K1 CCU driver");
+> +MODULE_AUTHOR("Haylen Chu <heylenay@4d2.org>");
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/clk/spacemit/ccu_common.h b/drivers/clk/spacemit/ccu_common.h
+> ...
 
