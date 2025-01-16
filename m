@@ -1,62 +1,70 @@
-Return-Path: <devicetree+bounces-139043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96BD4A13C10
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:22:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C503A13C0B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:22:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0213C188D935
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:22:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ABCE37A407F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:22:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C75722B8C8;
-	Thu, 16 Jan 2025 14:22:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43AB822A7F7;
+	Thu, 16 Jan 2025 14:22:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="fsMfD3dh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="grMrFL8a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B337222B8AC;
-	Thu, 16 Jan 2025 14:22:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113EE1DE2B9;
+	Thu, 16 Jan 2025 14:22:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737037344; cv=none; b=sLRAOG+fqBqd+Vtp5WLELlA71cjrd79XEkBL8u9kqOROenboVGtRVYb8KH4eDTNqxrPONiSvwBuNyzfppZyt/bbY6nGG6/t8rA1GzF2Pa6cKt88e3/aJuk6Z7aEXKufTn+E+hQUHJ5cMNtXV+Pl8lhPGRKKH4u2W7JZAyC2Wn3M=
+	t=1737037340; cv=none; b=iqYXAHASY64HWRczsiyrmmvrHfKAlSDigTeHX4uF+ySd+KeCh1mmzwq5cRIxwLtPAgujGtg8imHpdpPxnOT54CJ9CUNFFdgE+OeBUi7AIAogd/xshgAQiWdXfn+vDKQOyneUeFWOhdQHgCUY0Mg/uAOzZvbC0+d1jU+t4oQ7rRU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737037344; c=relaxed/simple;
-	bh=KbLGhe00qXtu6APWRN+AlmE5MQuDlad43bWqQDdlOAY=;
+	s=arc-20240116; t=1737037340; c=relaxed/simple;
+	bh=pJsxjspJlyLcmmLB+dqam9qL9oikWlt2JRgFOhW2txs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BVO8picJie5BJATkgPT3gTkz/QRfoSg2pBV2sTF8QyXEiR3eIgVvDWRDrto81VisHDaKAsEx2H9iPiV47pAYUr58i2qcGwhJHjztM2gGkSwVVi+2cE/bTX8vLer3Rbm56w64hlQHy15UeNnkwGNCDAcSfwxZRWUOrPXD/rh5//U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=fsMfD3dh; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=BprE8Zu8fGlRDUuojTDAvRxzNAsDvbqhhULqsp8fer0=; b=fsMfD3dhuunFbYGS3QSVowz9pa
-	16N7kRytn/2fqELQpVr83sBq2Clnl6ufNplaNXY3xlmrx4w4aK/HTEpHnMR86+BVMWk6WKub3WY9F
-	X8t6YDvV+D24aHtEcBqfMX3EWjmt8f20iKorydWe42Louvbh88/7b8mlUn7rJpboEUJQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tYQlC-00597F-Ij; Thu, 16 Jan 2025 15:22:14 +0100
-Date: Thu, 16 Jan 2025 15:22:14 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=iV97pR77z2OtU9cKAK7X/SuQsyvVAp9gctSmjHke3u6rSjLbl2ntDmxq12RkqfGLT14Em/w4tGxpDMywgDVJn3L7Gt+T9p3Z1ufG0aheUmnEdLUA7vmFm+7fsXKDtF0B790R4lnru1Crtchtr36hDTocqz2+F0ep+PujviWIF18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=grMrFL8a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67A0CC4CED6;
+	Thu, 16 Jan 2025 14:22:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737037339;
+	bh=pJsxjspJlyLcmmLB+dqam9qL9oikWlt2JRgFOhW2txs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=grMrFL8aJmaqLvYKCBlJB99+CeWOHD/Ig5q8fG/c+00f+Qp2ZUfzLiqRyOSSeJUDj
+	 Dfugujjxs5/XdrfFLP9NgPbEl6RTxMu7kiCISRyQDz6RREF0lHI27BB14l+crs4LM3
+	 s2ZnF0yVOS+l8r9gotY04OPjazx2e28vu/g/0EqBRrzli35kX3dDwSFCLOPFO3hGYp
+	 OPAag/EnKhYqWbuhxd0WxH/z93GG9aw1cYtq5tOjFW0Gsi6emhnTt3emr6+4xSy06K
+	 G0SRzeYRLdINoRYVw9hObUbbjvxcCGk0XRuGB+6E9bFda+ouj/YIh2qEA8DBZkKmdV
+	 8PP3pfZN+TCbQ==
+Date: Thu, 16 Jan 2025 08:22:18 -0600
+From: Rob Herring <robh@kernel.org>
+To: Xin Liu <quic_liuxin@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: marvell: armada: Align GPIO hog name with
- bindings
-Message-ID: <6bed3249-9905-4949-8031-52217f123f2e@lunn.ch>
-References: <20250116085947.87241-1-krzysztof.kozlowski@linaro.org>
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org,
+	quic_jiegan@quicinc.com, quic_aiquny@quicinc.com,
+	quic_tingweiz@quicinc.com, quic_sayalil@quicinc.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v4 1/3] dt-bindings: ufs: qcom: Add UFS Host Controller
+ for QCS615
+Message-ID: <20250116142218.GA2176564-robh@kernel.org>
+References: <20241216095439.531357-1-quic_liuxin@quicinc.com>
+ <20241216095439.531357-2-quic_liuxin@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,22 +73,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250116085947.87241-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20241216095439.531357-2-quic_liuxin@quicinc.com>
 
-On Thu, Jan 16, 2025 at 09:59:47AM +0100, Krzysztof Kozlowski wrote:
-> Bindings expect GPIO hog names to end with 'hog' suffix, so correct it
-> to fix dtbs_check warnings like:
+On Mon, Dec 16, 2024 at 05:54:37PM +0800, Xin Liu wrote:
+> From: Sayali Lokhande <quic_sayalil@quicinc.com>
 > 
->   armada-385-clearfog-gtr-s4.dtb: wifi-disable: $nodename:0: 'wifi-disable' does not match '^.+-hog(-[0-9]+)?$'
- 
-Hi Krzysztof
+> Document the Universal Flash Storage(UFS) Host Controller on the Qualcomm
+> QCS615 Platform.
+> 
+> Signed-off-by: Sayali Lokhande <quic_sayalil@quicinc.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Co-developed-by: Xin Liu <quic_liuxin@quicinc.com>
+> Signed-off-by: Xin Liu <quic_liuxin@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-I believe the mvebu pull request for the next merge window has already
-been sent to arm-soc. So please repost after -rc1.
+Looks like this was missed. Applied.
 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-
-    Andrew
+Rob
 
