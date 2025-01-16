@@ -1,118 +1,82 @@
-Return-Path: <devicetree+bounces-138935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7B83A13416
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:44:37 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86573A13450
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:52:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16F811887CD6
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 07:44:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E10991887FBE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 07:52:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8275C157E88;
-	Thu, 16 Jan 2025 07:44:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38BF11917D9;
+	Thu, 16 Jan 2025 07:52:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jPuZIjHj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tTf2iHwa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E605E33DB;
-	Thu, 16 Jan 2025 07:44:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC2D142E83;
+	Thu, 16 Jan 2025 07:52:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737013472; cv=none; b=d48L2EIGEnwXbYVHYHZrujffhB+E8xz+lhtIaoLc4dUT5iXDhuDTYGyjhK8IW/elM4Vje50eZoLeDQINLM0ThA4Tkvc5We0M9FG4fA34CJ7MAwcbkqFc1J9QoY4mcTw4OaQ8jGkLLM8ZxyFsT8POjGLynnWh/mW4gfgg+RV1yKQ=
+	t=1737013925; cv=none; b=ruQCKgUdwdarqHpqlnrWNQfZdv8R5p/JEj5igdlMjeKBdRzS4zCtJtxgw+Pfi42zA+q1jh4qye66gMny9n2LDytUs0uaBR3ZxCM6cgt34EwwhRTsJCwhLpkexMpZ1kl9NZTvvJlPLNY1K6tl/VapXAzatBGfAdN0auTv8GhCvvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737013472; c=relaxed/simple;
-	bh=u0pEFk5ZbdQv2p4GnQGAJ73STlfusScOVsi4lPw2DGc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Z9gDyPXBJ8Cu+fPnDLKIdso0/5v713Ms8P24QrjRnHr/au4bditIqpPwTSq7zf2B58dF48//BaPQwa7fheaj1nhkF2npweIDF6wKYApnlmZaKTex77Tj9UPivU+RWGg0ZiMV4//9cCbzhB8cMAwfhit0Brz9WcOAwclManGbFJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jPuZIjHj; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50G2ub1g027694;
-	Thu, 16 Jan 2025 07:44:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	SPQSBpTezuTC6GNyTafDqCjSZQOrr8oGrbGpFC8wW7g=; b=jPuZIjHjLoxiqao5
-	HvOebr/pvX61PflQK0B0bEqI86fJHt4bYqAqaOGBupPhDaMuFHexAO92GmB3oFKu
-	ptQ908t3ITrtHufXdAPxGNpxsHAnz74466STPDBX2PMGlSgrPRQIVpgfOPwBmgm5
-	dzEOWKTresfClvN+Cw97l3E9Str2IN/+8iRAHxm1jrntodFmKwXrpiBOi+0ukZBz
-	zZBWzMjk4jQxrLRn4SOlhAAsq3fJJuSNOzxb6GUd/g3G2JDFqR55ZVIpYK3QD7js
-	OKvdr1d6hgt34NYWW2/CjjyDss2nLHdxTo3I4KZxKu0weobMtZCzU035IUqHGelg
-	JEDauA==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 446ss88kxq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 07:44:25 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50G7iO4M030992
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 16 Jan 2025 07:44:24 GMT
-Received: from [10.231.207.28] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 15 Jan
- 2025 23:44:19 -0800
-Message-ID: <4e11416f-8099-45e5-aa1d-881c4d383211@quicinc.com>
-Date: Thu, 16 Jan 2025 15:44:17 +0800
+	s=arc-20240116; t=1737013925; c=relaxed/simple;
+	bh=JV/ezC4Tbo4xdFbq7pXA+uaT5JltTCvxZIWHU/tVBTI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GRmAg39aBLiMj4Malhq8nZwBJRb7qQpODAhEuS1NLjdlmQGcx+rRwauhhKYUTUC1uq1e9MtQ5BdbqGdZ0Xocutd83XDOB5MqmYK+4OZuBI+hjlF7TAQip1ptcD/BD4dEplnWTj+mt1GvuX5QROM05nsBb0Prxm5eQNrpU1JEhBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tTf2iHwa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 180BCC4CED6;
+	Thu, 16 Jan 2025 07:52:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737013924;
+	bh=JV/ezC4Tbo4xdFbq7pXA+uaT5JltTCvxZIWHU/tVBTI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tTf2iHwaCWfy4g9zxR8QDa+xIFa9yp721J0y5o4p63iTDBukDKR3NUDnXgfRdMkrq
+	 ut9q+FT1JpkeuIzd98WH9vhLL/uewExN/zUt1qYuV+8AgmjsACzdWTgw8m+gMWm7a+
+	 GRP2dRWnPG4b65vYikeyq4HwieqWH6Y53KZyWdkDYtuzTLcAjnYbobJhe7/RROCHki
+	 Jsz46kC+5JiJcGr9IW/8KEcuUX7wj4PavBYNNN7l3tTt0RrZ8iSpFIHyxon3MkeApd
+	 WphaYcRNiUjrIGm5vfskHCH1YrMSlzMJW155KiL/Ot0Wl3n4og7NzSUi2lVfFxTw0r
+	 c6rRt9meWblug==
+Date: Thu, 16 Jan 2025 08:52:01 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Antoni Pokusinski <apokusinski01@gmail.com>
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, andrej.skvortzov@gmail.com, neil.armstrong@linaro.org, 
+	icenowy@aosc.io, megi@xff.cz, danila@jiaxyga.com, javier.carrasco.cruz@gmail.com, 
+	andy@kernel.org, linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: magnetometer: add binding for
+ Si7210
+Message-ID: <iszqibm3gbltio5m6vx5w7ty3ug6qpafghfrnic4ulseh2w23e@ycqybypfheoo>
+References: <20250115201622.270130-1-apokusinski01@gmail.com>
+ <20250115201622.270130-2-apokusinski01@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: pmic: enable rtc
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>,
-        <quic_kotarake@quicinc.com>, <quic_kamalw@quicinc.com>,
-        <quic_skakitap@quicinc.com>, <quic_fenglinw@quicinc.com>
-References: <20240902104302.3959670-1-quic_tingguoc@quicinc.com>
- <4gwmrfnzqqlawgkgjd4fj3t4nkpulnxuzsc756v6uxz4dlq6mm@dhv2aqkdx7du>
-Content-Language: en-US
-From: Tingguo Cheng <quic_tingguoc@quicinc.com>
-In-Reply-To: <4gwmrfnzqqlawgkgjd4fj3t4nkpulnxuzsc756v6uxz4dlq6mm@dhv2aqkdx7du>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: s14hZK-egUrg2a7SHJD6Rjf49JJ1W60P
-X-Proofpoint-ORIG-GUID: s14hZK-egUrg2a7SHJD6Rjf49JJ1W60P
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-16_03,2025-01-15_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 lowpriorityscore=0 spamscore=0 impostorscore=0
- mlxlogscore=605 bulkscore=0 malwarescore=0 mlxscore=0 suspectscore=0
- adultscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501160055
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250115201622.270130-2-apokusinski01@gmail.com>
 
-
-
-On 11/22/2024 7:00 PM, Dmitry Baryshkov wrote:
-> On Mon, Sep 02, 2024 at 06:43:02PM +0800, Tingguo Cheng wrote:
->> Add RTC node, the RTC is controlled by PMIC device via spmi bus.
->>
->> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sa8775p-pmics.dtsi | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
+On Wed, Jan 15, 2025 at 09:16:21PM +0100, Antoni Pokusinski wrote:
+> Silicon Labs Si7210 is an I2C Hall effect magnetic position
+> and temperature sensor.
 > 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
-Could you please help apply this patch?
+> Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
+> ---
+>  .../iio/magnetometer/silabs,si7210.yaml       | 48 +++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/silabs,si7210.yaml
 
--- 
-Thank you & BRs
-Tingguo
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
