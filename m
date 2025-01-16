@@ -1,248 +1,426 @@
-Return-Path: <devicetree+bounces-138971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D162A136AE
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:34:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19487A136E5
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:46:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7EDB3A7068
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:34:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3BEF07A1267
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:46:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACCA41D95A3;
-	Thu, 16 Jan 2025 09:34:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 779BD1DB37A;
+	Thu, 16 Jan 2025 09:46:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jIZYhpoy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K9B5m5K0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB7C51D89FA
-	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 09:34:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E2351D9346
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 09:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737020081; cv=none; b=Pga37UbK/WrnHfXhKMtR41HZ4MO4GT0PMH082mNhUaHYraeavQupqOLTS1c4BiIUF99GvIwgHMskJfHDgjMipHNpYPoeCdTCUNx6ZqK5QK/lQr+1pOm0urWgimm7bE5eKwVNEwM5iUn109hgBuOi3WQWxN9vKsewwnPRreoMbiI=
+	t=1737020760; cv=none; b=kFV/C1uDw7cP1v2k/Qrb5dr/dSOoQ1mqbtEFOPtBT1mFRbGTy/SFqZ+idRMLqlj3HG307YyDcKm5BBIke4PyhatQ06mJVuRp61vHqSWVUsb9h8GA0BOmKxdqaw4UAMoj/x8qmTNZoBeB0bdb+nA7YF6wDlFqb1Me7WmYVh1fvL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737020081; c=relaxed/simple;
-	bh=YEFnAUMYl5nnOAtLb2J3ooxYMbpShUopFJE8cj2v+Ew=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=r36UzveYJogBeaQcNNubWLpz96LCWO/meUZOc9dfpXES4saCmN1cfSQ8irqCYkeg0uBXi7qvdqSU8Nnauz1bi2ro19ze5VKyt4fXEA6TfJg9ZHjvWYTDh7txY6SWPqw0dZUts7KjMda5rAAOzaZv7O8d021Z/pCmWuzE97Gq8r0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jIZYhpoy; arc=none smtp.client-ip=209.85.208.177
+	s=arc-20240116; t=1737020760; c=relaxed/simple;
+	bh=W+PtqvEnqNGdO0ufePzfLbmqbe5COkIOiV6eElSEJAo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CW3nsspPXvuhfsE89+w1IP7mrkxLhWEc3VxKgAxc2d6TA8vg38p4xowobgRlAflxEkfy3f3L32uVSjay/jQO4bz+JFhol4C+pqCxzOI5ZO0Hyuea3VHSfzfTrTHID1bbatR8A9rmIFhu9kwh5MBtSVSehdr6wlmfx4PJqYfYY5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K9B5m5K0; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-3002c324e7eso6164601fa.3
-        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 01:34:39 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-43625c4a50dso3959845e9.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 01:45:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737020078; x=1737624878; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DDEoo08UzquHfpbAFyPJ/ZCgHJCQZd+B5Sb7kOuUYkM=;
-        b=jIZYhpoy+DFFNrjb8qjYVs9Cq/Z5nA++uPbf2PRbHH1UTllQIBbFbyovyhbCxQ1vD8
-         UaVhfrB/h5cUoHPjA48Bx1d0/nsfaebo9wvdJTOpRcj0Fd3ZPfjHqufSI7oeyXwtJH5n
-         +sWzFiQGsbYnOFbK1TuZTZXEvKWJp5LP99pJRThETQdKOPCmeKHeVXU3h+LnR6wQEUMP
-         /McBASunyEAX5U62MiK9DVzG2paObZF4tRatJ33P2T+Q6AY0XdNokr6MY69BygF9wvA5
-         mSgFCto0REWHJVmzPHRQN2RJ5dYPC17vjU1Mu1uBg2s6eT5jcDLf+Jl+ukj0FyBkXJMH
-         ihAg==
+        d=linaro.org; s=google; t=1737020756; x=1737625556; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HVmML1vhGK/P1cvXdWT8wcKfCpzmLLfPMRWvQPWNJH8=;
+        b=K9B5m5K0YJU3oR9P9G20Sj20FlHEVFBzHMSmzMEXzNu6tC748zcw4MFIOmOtCoiwoH
+         J/4aSECUwdY3xNCWJyQTexBWA/PWs6GsG/PLYB8YKN6NTjFSqp4B8XI65ANAxEXkpORt
+         QuO4mW/T9P8+Zphdq+Ku/hX9PU/ohU5LCCYYi0/+PichVXCb+9wh8C9vnLqzlVSzaDxr
+         F63+Ejw79C9kT6b/PIbDjWOrO+XVzpkljuiKYfEv18OljNGocBx8zJ6fX36ffWH5TH+S
+         SM288KXhyrUvM6BsYg0O2Gy5sDfDo98l/q8wk8hWTmToW+NW9HejIUNUj3cyjOEndqlZ
+         7JEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737020078; x=1737624878;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DDEoo08UzquHfpbAFyPJ/ZCgHJCQZd+B5Sb7kOuUYkM=;
-        b=Bhufztea89VyEHQUs5nMIKgc506ji6nUmDVpU4T9XWb6vpAjazuSsT+f/cDuVPq1QY
-         YCIpvavqFPj5F5zfzY9S/mE4gGIm4TJ9w/m4/YLsg+vSao94nv7ssuRSUltlOoc3HSdX
-         iyXMUFKnZ5yPm50xRwvYcXg9prvilzB8Ct7A/VM36qmbZgHOPdKG+XQbGiwYoayPn8xf
-         obxYRW7jlfSIbjhFOrFcAROD+uHGO2e3MtUN8iX68UPLEr6ktkU7FPWgrJABp3zRk2lg
-         E1PxupqTrOng5+19T4iMqq530Mv/tu/y2M7XFwCCGmA/Fft/0VvyOmzu/g0xamWpuGTl
-         5Y6A==
-X-Forwarded-Encrypted: i=1; AJvYcCXlPynpzC/k+lm033G7ysf9zTI7WOJvmePj63mfbJmlwpTqXI2F+tpPU4Z8F6DjlobVVZG2kjGHaX+Z@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyyBpUk4DyRvO2SktQPPlK3JEAChI/nhIef2JZhRX7fHhOu7WQ
-	88JOYlmgMinMGr/L60UceXD6N1O/faEak0gMkE+7AE3eDwuNF7Y/jsa0nTUOSYa3ilAyuue67RW
-	6TOOb2Imi5hWNkyJkJStSXLddsan9dXiL8Ly53A==
-X-Gm-Gg: ASbGncsP5bTx5jsWSxnGWNrw2LpRk1A6p38yF756M5eaWxDKaGmFr5INGDT80qdsIXj
-	f02n87eDIH3UzH7jfbomp9aUMBFXVRFIIm+lz
-X-Google-Smtp-Source: AGHT+IEvxOVujRx8L7nmAm14+W+J9iR9tC3itop2isDuY+VzNKk3E+BY5vasl+NH5yxy4xJbTTxIO6CFjEvK/kGunk4=
-X-Received: by 2002:a05:651c:2222:b0:300:38ff:f8e2 with SMTP id
- 38308e7fff4ca-305f453f9d5mr108573981fa.10.1737020077607; Thu, 16 Jan 2025
- 01:34:37 -0800 (PST)
+        d=1e100.net; s=20230601; t=1737020756; x=1737625556;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HVmML1vhGK/P1cvXdWT8wcKfCpzmLLfPMRWvQPWNJH8=;
+        b=gmjJCCQPg+eUbHtOv+RKl95GS/cvwxS0IBeTrroK7IudKg6KQjQXUpsPoYPLEIdYDR
+         G1eywpHgbHVsQAjQmUYc1UWNSW4Gh6t0JicfxCkbYPeKZgXaWQmPmTaQUWy/dnsZ2m0g
+         YsVSGkOe1G3+I4nCQiBZurs3N8nOJxqKfsS58KWdD1/IbS3mCPK54K+/4JuB5sZ+Vi1B
+         b24m70bdYjSzNZgzLNSZ2J+URdQpiupqF/15niHsSqZCwpSpdsHnJN+x6I61Eotmy13k
+         hcTMEv+XJHWvaP9F8I1MgWf6rq+MltHfwyBm3Jjs67AuGFaeWTGXqpKw6XylQtaWJDcG
+         bGCA==
+X-Forwarded-Encrypted: i=1; AJvYcCVDKZY57RLMQG8OapUuJGq1R6e6oCUt3oAYugNvRxsr7j45xF9c2HlQW4TGKlKfaVcLOynV7foPnY+H@vger.kernel.org
+X-Gm-Message-State: AOJu0YweZzC3p3JI1+arwrcl/9Ekc0q86pZwF1WEWvbJ831RB09Xi5K1
+	TNT7Tpu6+OMgCUfENP8HuG+VWwmvnIR8rv/fcjFGLdXwUIlZmwe+pDOGDLHy/t0=
+X-Gm-Gg: ASbGncvzqOeixkYmhOYi4vHEVoxXtgGb2i3mZV3A1k3MluQaIOYGkB9oCi65RoPTV7v
+	acXvizR74KCz6KMmPWMCmQ5hy54zXGg3jdkueYl6yPAnK3kzVlfwlJeMdHNA4hWaxfdBY/K6Lgq
+	0PqnkLO/Lf37RAqR/5G90egeBdBLDo2COqB1f1or3kH12Oe+q6zhW3oUhhvLbvPgZAYqgaDw+Kw
+	HEsLkbC3DDw2AQnf+5x6zxMqUAg5DEgm+au7G+oo8pqPghOzS2z/exCcW6ZWuGz9/UOPw==
+X-Google-Smtp-Source: AGHT+IGEBTUT1coNbo/VeQQ9FMnumyerR53JjbVi/LcTYyOuovXkYmEdJy9qt1ia4UibkUegvdycTQ==
+X-Received: by 2002:a05:6000:156a:b0:38b:e26d:ea0b with SMTP id ffacd0b85a97d-38be26dea6dmr10396884f8f.25.1737020756400;
+        Thu, 16 Jan 2025 01:45:56 -0800 (PST)
+Received: from [192.168.0.35] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38a8e3838a3sm20075403f8f.33.2025.01.16.01.45.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Jan 2025 01:45:56 -0800 (PST)
+Message-ID: <6e35ca51-f224-42d1-a49f-67c6a7015542@linaro.org>
+Date: Thu, 16 Jan 2025 09:45:54 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250110123923.270626-1-szemzo.andras@gmail.com>
- <20250110123923.270626-4-szemzo.andras@gmail.com> <20250114141954.2785879a@donnerap.manchester.arm.com>
- <CACRpkda0nx3SQtdjmXdCEbVJSWM10TM=p-6JbDjbiYcOSF5PxQ@mail.gmail.com> <20250115152635.1b89e7f4@donnerap.manchester.arm.com>
-In-Reply-To: <20250115152635.1b89e7f4@donnerap.manchester.arm.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 16 Jan 2025 10:34:26 +0100
-X-Gm-Features: AbW1kvbBkCN9uFhss2v8p9gI5MNXxz-I4EOdo9aGVELtvFSbQyk_EVu2ddxSQ7s
-Message-ID: <CACRpkdYVTedEon0X-izvaDTGF6yRhD2s=Z6NEM=zBf4vD-T0Pg@mail.gmail.com>
-Subject: Re: [PATCH 03/12] pinctrl: sunxi: add driver for Allwinner V853.
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Andras Szemzo <szemzo.andras@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	Florian Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH v10 27/28] media: iris: enable video driver probe of
+ SM8250 SoC
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>, quic_vgarodia@quicinc.com,
+ quic_abhinavk@quicinc.com, mchehab@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, p.zabel@pengutronix.de
+Cc: hverkuil@xs4all.nl, sebastian.fricke@collabora.com,
+ dmitry.baryshkov@linaro.org, neil.armstrong@linaro.org,
+ nicolas@ndufresne.ca, u.kleine-koenig@baylibre.com,
+ stefan.schmidt@linaro.org, lujianhua000@gmail.com,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ krzysztof.kozlowski@linaro.org, johan@kernel.org
+References: <20250116070234.4027116-1-quic_dikshita@quicinc.com>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20250116070234.4027116-1-quic_dikshita@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Andre,
+On 16/01/2025 07:02, Dikshita Agarwal wrote:
+> Initialize the platform data and enable video driver probe of SM8250
+> SoC. Add a kernel param to select between venus and iris drivers for
+> platforms supported by both drivers, for ex: SM8250.
+> 
+> This is for preview only, and I will post a proper v10,
+> if everyone is OK with this RFC patch.
+> 
+> Tested-by: Stefan Schmidt <stefan.schmidt@linaro.org> # x1e80100 (Dell XPS 13 9345)
+> Reviewed-by: Stefan Schmidt <stefan.schmidt@linaro.org>
+> Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-QRD
+> Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on SM8550-SDK
+> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> ---
+>   drivers/media/platform/qcom/iris/Makefile     |   1 +
+>   drivers/media/platform/qcom/iris/iris_core.h  |   1 +
+>   .../platform/qcom/iris/iris_platform_common.h |   1 +
+>   .../platform/qcom/iris/iris_platform_sm8250.c | 149 ++++++++++++++++++
+>   drivers/media/platform/qcom/iris/iris_probe.c |  48 ++++++
+>   drivers/media/platform/qcom/venus/core.c      |   5 +
+>   drivers/media/platform/qcom/venus/core.h      |   1 +
+>   7 files changed, 206 insertions(+)
+>   create mode 100644 drivers/media/platform/qcom/iris/iris_platform_sm8250.c
+> 
+> diff --git a/drivers/media/platform/qcom/iris/Makefile b/drivers/media/platform/qcom/iris/Makefile
+> index ca31db847273..a746681e03cd 100644
+> --- a/drivers/media/platform/qcom/iris/Makefile
+> +++ b/drivers/media/platform/qcom/iris/Makefile
+> @@ -9,6 +9,7 @@ iris-objs += iris_buffer.o \
+>                iris_hfi_gen2_packet.o \
+>                iris_hfi_gen2_response.o \
+>                iris_hfi_queue.o \
+> +             iris_platform_sm8250.o \
+>                iris_platform_sm8550.o \
+>                iris_power.o \
+>                iris_probe.o \
+> diff --git a/drivers/media/platform/qcom/iris/iris_core.h b/drivers/media/platform/qcom/iris/iris_core.h
+> index 37fb4919fecc..f2e478c25c02 100644
+> --- a/drivers/media/platform/qcom/iris/iris_core.h
+> +++ b/drivers/media/platform/qcom/iris/iris_core.h
+> @@ -107,5 +107,6 @@ struct iris_core {
+>   
+>   int iris_core_init(struct iris_core *core);
+>   void iris_core_deinit(struct iris_core *core);
+> +bool iris_should_not_bind(struct device *dev);
+>   
+>   #endif
+> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
+> index 189dd081ad0a..af24ce4fc417 100644
+> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
+> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
+> @@ -34,6 +34,7 @@ enum pipe_type {
+>   };
+>   
+>   extern struct iris_platform_data sm8550_data;
+> +extern struct iris_platform_data sm8250_data;
+>   
+>   enum platform_clk_type {
+>   	IRIS_AXI_CLK,
+> diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8250.c b/drivers/media/platform/qcom/iris/iris_platform_sm8250.c
+> new file mode 100644
+> index 000000000000..b14b1c5d632c
+> --- /dev/null
+> +++ b/drivers/media/platform/qcom/iris/iris_platform_sm8250.c
+> @@ -0,0 +1,149 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include "iris_core.h"
+> +#include "iris_ctrls.h"
+> +#include "iris_platform_common.h"
+> +#include "iris_resources.h"
+> +#include "iris_hfi_gen1.h"
+> +#include "iris_hfi_gen1_defines.h"
+> +#include "iris_vpu_common.h"
+> +
+> +static struct platform_inst_fw_cap inst_fw_cap_sm8250[] = {
+> +	{
+> +		.cap_id = PIPE,
+> +		.min = PIPE_1,
+> +		.max = PIPE_4,
+> +		.step_or_mask = 1,
+> +		.value = PIPE_4,
+> +		.hfi_id = HFI_PROPERTY_PARAM_WORK_ROUTE,
+> +		.set = iris_set_pipe,
+> +	},
+> +	{
+> +		.cap_id = STAGE,
+> +		.min = STAGE_1,
+> +		.max = STAGE_2,
+> +		.step_or_mask = 1,
+> +		.value = STAGE_2,
+> +		.hfi_id = HFI_PROPERTY_PARAM_WORK_MODE,
+> +		.set = iris_set_stage,
+> +	},
+> +	{
+> +		.cap_id = DEBLOCK,
+> +		.min = 0,
+> +		.max = 1,
+> +		.step_or_mask = 1,
+> +		.value = 0,
+> +		.hfi_id = HFI_PROPERTY_CONFIG_VDEC_POST_LOOP_DEBLOCKER,
+> +		.set = iris_set_u32,
+> +	},
+> +};
+> +
+> +static struct platform_inst_caps platform_inst_cap_sm8250 = {
+> +	.min_frame_width = 128,
+> +	.max_frame_width = 8192,
+> +	.min_frame_height = 128,
+> +	.max_frame_height = 8192,
+> +	.max_mbpf = 138240,
+> +	.mb_cycles_vsp = 25,
+> +	.mb_cycles_vpp = 200,
+> +};
+> +
+> +static void iris_set_sm8250_preset_registers(struct iris_core *core)
+> +{
+> +	writel(0x0, core->reg_base + 0xB0088);
+> +}
+> +
+> +static const struct icc_info sm8250_icc_table[] = {
+> +	{ "cpu-cfg",    1000, 1000     },
+> +	{ "video-mem",  1000, 15000000 },
+> +};
+> +
+> +static const char * const sm8250_clk_reset_table[] = { "bus", "core" };
+> +
+> +static const struct bw_info sm8250_bw_table_dec[] = {
+> +	{ ((4096 * 2160) / 256) * 60, 2403000 },
+> +	{ ((4096 * 2160) / 256) * 30, 1224000 },
+> +	{ ((1920 * 1080) / 256) * 60,  812000 },
+> +	{ ((1920 * 1080) / 256) * 30,  416000 },
+> +};
+> +
+> +static const char * const sm8250_pmdomain_table[] = { "venus", "vcodec0" };
+> +
+> +static const char * const sm8250_opp_pd_table[] = { "mx" };
+> +
+> +static const struct platform_clk_data sm8250_clk_table[] = {
+> +	{IRIS_AXI_CLK,  "iface"        },
+> +	{IRIS_CTRL_CLK, "core"         },
+> +	{IRIS_HW_CLK,   "vcodec0_core" },
+> +};
+> +
+> +static struct tz_cp_config tz_cp_config_sm8250 = {
+> +	.cp_start = 0,
+> +	.cp_size = 0x25800000,
+> +	.cp_nonpixel_start = 0x01000000,
+> +	.cp_nonpixel_size = 0x24800000,
+> +};
+> +
+> +static const u32 sm8250_vdec_input_config_param[] = {
+> +	HFI_PROPERTY_PARAM_FRAME_SIZE,
+> +	HFI_PROPERTY_CONFIG_VIDEOCORES_USAGE,
+> +	HFI_PROPERTY_PARAM_UNCOMPRESSED_FORMAT_SELECT,
+> +	HFI_PROPERTY_PARAM_UNCOMPRESSED_PLANE_ACTUAL_CONSTRAINTS_INFO,
+> +	HFI_PROPERTY_PARAM_BUFFER_COUNT_ACTUAL,
+> +	HFI_PROPERTY_PARAM_VDEC_MULTI_STREAM,
+> +	HFI_PROPERTY_PARAM_BUFFER_SIZE_ACTUAL,
+> +	HFI_PROPERTY_PARAM_BUFFER_ALLOC_MODE,
+> +};
+> +
+> +static const u32 sm8250_dec_ip_int_buf_tbl[] = {
+> +	BUF_BIN,
+> +	BUF_SCRATCH_1,
+> +};
+> +
+> +static const u32 sm8250_dec_op_int_buf_tbl[] = {
+> +	BUF_DPB,
+> +};
+> +
+> +struct iris_platform_data sm8250_data = {
+> +	.get_instance = iris_hfi_gen1_get_instance,
+> +	.init_hfi_command_ops = &iris_hfi_gen1_command_ops_init,
+> +	.init_hfi_response_ops = iris_hfi_gen1_response_ops_init,
+> +	.vpu_ops = &iris_vpu2_ops,
+> +	.set_preset_registers = iris_set_sm8250_preset_registers,
+> +	.icc_tbl = sm8250_icc_table,
+> +	.icc_tbl_size = ARRAY_SIZE(sm8250_icc_table),
+> +	.clk_rst_tbl = sm8250_clk_reset_table,
+> +	.clk_rst_tbl_size = ARRAY_SIZE(sm8250_clk_reset_table),
+> +	.bw_tbl_dec = sm8250_bw_table_dec,
+> +	.bw_tbl_dec_size = ARRAY_SIZE(sm8250_bw_table_dec),
+> +	.pmdomain_tbl = sm8250_pmdomain_table,
+> +	.pmdomain_tbl_size = ARRAY_SIZE(sm8250_pmdomain_table),
+> +	.opp_pd_tbl = sm8250_opp_pd_table,
+> +	.opp_pd_tbl_size = ARRAY_SIZE(sm8250_opp_pd_table),
+> +	.clk_tbl = sm8250_clk_table,
+> +	.clk_tbl_size = ARRAY_SIZE(sm8250_clk_table),
+> +	/* Upper bound of DMA address range */
+> +	.dma_mask = 0xe0000000 - 1,
+> +	.fwname = "qcom/vpu-1.0/venus.mbn",
+> +	.pas_id = IRIS_PAS_ID,
+> +	.inst_caps = &platform_inst_cap_sm8250,
+> +	.inst_fw_caps = inst_fw_cap_sm8250,
+> +	.inst_fw_caps_size = ARRAY_SIZE(inst_fw_cap_sm8250),
+> +	.tz_cp_config_data = &tz_cp_config_sm8250,
+> +	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
+> +	.num_vpp_pipe = 4,
+> +	.max_session_count = 16,
+> +	.max_core_mbpf = (8192 * 4352) / 256,
+> +	.input_config_params =
+> +		sm8250_vdec_input_config_param,
+> +	.input_config_params_size =
+> +		ARRAY_SIZE(sm8250_vdec_input_config_param),
+> +
+> +	.dec_ip_int_buf_tbl = sm8250_dec_ip_int_buf_tbl,
+> +	.dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8250_dec_ip_int_buf_tbl),
+> +	.dec_op_int_buf_tbl = sm8250_dec_op_int_buf_tbl,
+> +	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8250_dec_op_int_buf_tbl),
+> +};
+> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
+> index 954cc7c0cc97..a9cec0d15dcb 100644
+> --- a/drivers/media/platform/qcom/iris/iris_probe.c
+> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
+> @@ -189,6 +189,45 @@ static void iris_sys_error_handler(struct work_struct *work)
+>   	iris_core_init(core);
+>   }
+>   
+> +/* The venus driver supports only hfi gen1 to communicate with the firmware while
+> + * the iris driver supports both hfi gen1 and hfi gen2.
+> + * The support of hfi gen1 is added to the iris driver with the intention that
+> + * it can support old gen1 interface based firmware, while enabling gen2 based future SOCs.
+> + * With this, the plan is to migrate older SOCs from venus to iris.
+> + * As of now, since the iris driver supports only entry level features and doesn't have
+> + * feature parity with the venus driver, a runtime-selection is provided to user via
+> + * module parameter 'prefer_venus' to select the driver.
+> + * This selection is available only for the SoCs which are supported by both venus
+> + * and iris eg: SM8250.
+> + * When the feature parity is achieved, the plan is to switch the default to point to
+> + * the iris driver, then gradually start removing platforms from venus.
+> + * Hardware supported by only venus - 8916, 8996, SDM660, SDM845, SC7180, SC7280
+> + * Hardware supported by only iris - SM8550
+> + * Hardware supported by both venus and iris - SM8250
+> + */
+> +
+> +#if IS_REACHABLE(CONFIG_VIDEO_QCOM_VENUS)
+> +static bool prefer_venus = true;
+> +MODULE_PARM_DESC(prefer_venus, "Select whether venus or iris driver should be preferred");
+> +module_param(prefer_venus, bool, 0444);
+> +
+> +/* list all platforms supported by both venus and iris drivers */
+> +static const char *const venus_to_iris_migration[] = {
+> +	"qcom,sm8250-venus",
+> +	NULL,
+> +};
+> +
+> +bool iris_should_not_bind(struct device *dev)
+> +{
+> +	/* If it is in the migration list, use venus */
+> +	if (of_device_compatible_match(dev->of_node, venus_to_iris_migration))
+> +		return prefer_venus;
+> +
+> +	return false;
+> +}
+> +EXPORT_SYMBOL_GPL(iris_should_not_bind);
+> +#endif
+> +
+>   static int iris_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+> @@ -196,6 +235,11 @@ static int iris_probe(struct platform_device *pdev)
+>   	u64 dma_mask;
+>   	int ret;
+>   
+> +#if IS_REACHABLE(CONFIG_VIDEO_QCOM_VENUS)
+> +	if (iris_should_not_bind(&pdev->dev))
+> +		return -ENODEV;
+> +#endif
+> +
+>   	core = devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
+>   	if (!core)
+>   		return -ENOMEM;
+> @@ -324,6 +368,10 @@ static const struct of_device_id iris_dt_match[] = {
+>   		.compatible = "qcom,sm8550-iris",
+>   		.data = &sm8550_data,
+>   	},
+> +	{
+> +		.compatible = "qcom,sm8250-venus",
+> +		.data = &sm8250_data,
+> +	},
+>   	{ },
+>   };
+>   MODULE_DEVICE_TABLE(of, iris_dt_match);
+> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+> index 77d48578ecd2..9116188bfe74 100644
+> --- a/drivers/media/platform/qcom/venus/core.c
+> +++ b/drivers/media/platform/qcom/venus/core.c
+> @@ -375,6 +375,11 @@ static int venus_probe(struct platform_device *pdev)
+>   	struct venus_core *core;
+>   	int ret;
+>   
+> +#if IS_REACHABLE(CONFIG_VIDEO_QCOM_IRIS)
+> +	if (!iris_should_not_bind(&pdev->dev))
+> +		return -ENODEV;
+> +#endif
+> +
+>   	core = devm_kzalloc(dev, sizeof(*core), GFP_KERNEL);
+>   	if (!core)
+>   		return -ENOMEM;
+> diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
+> index abeeafa86697..e2e7d8ec9807 100644
+> --- a/drivers/media/platform/qcom/venus/core.h
+> +++ b/drivers/media/platform/qcom/venus/core.h
+> @@ -570,4 +570,5 @@ is_fw_rev_or_older(struct venus_core *core, u32 vmajor, u32 vminor, u32 vrev)
+>   }
+>   
+>   void venus_close_common(struct venus_inst *inst);
+> +extern bool iris_should_not_bind(struct device *dev);
+>   #endif
 
-some nice talk here, actually the following is just opinions, I will
-be likely happy with whatever approach is taken eventually.
+Shouldn't this series also include handlign on the venus side so that 
+the binding isn't racy ?
 
-On Wed, Jan 15, 2025 at 4:26=E2=80=AFPM Andre Przywara <andre.przywara@arm.=
-com> wrote:
+https://lore.kernel.org/r/xh5jbf2w7lwqub5f7re7yipsbax5p4svpdpuctgpo2a2efmpah@haqjpch44hzc
 
-> > pio: pinctrl@1c20800 {
-> >                         compatible =3D "allwinner,sun8i-r40-pinctrl";
-> > (...)
-> >                         i2c0_pins: i2c0-pins {
-> >                                 pins =3D "PB0", "PB1";
-> >                                 function =3D "i2c0";
-> >                         };
-> >
-> > abstract, strings, nice. The driver handles the particulars.
->
-> What bugs me about this it that this has quite some seemingly redundant
-> information (Who would have thought that the i2c0 pins use function
-> "i2c0"?), but misses out on the actual 4 bits(!) of information.
+A patch directly before/after this patch in the series for venus 
+including video_drv_should_bind().
 
-the pins in this example are called PB0 and PB1 though. The designation
-on the package. And often pins actually named "i2c0_1" "i2c0_2" are
-for that primary function, but muxable to a few other functions,
-at least GPIO in most cases. So it's just some name for the pin
-really.
-
-> > That is like so because we are designing for users which are
-> > let's say customization engineers. If these engineers jump from
-> > project to project matching function strings to group strings will
-> > be a common way to set up pins, and easy to understand and
-> > grasp, and it makes the DTS very readable.
->
-> That's an interesting view, and I see the point of it being easy to read,
-> but this is partly because it doesn't convey too much actual information,
-> does it, as it requires another lookup or two.
-> And the pinctrl group nodes are actually in the .dtsi file, which are
-> typically written once during the initial SoC enablement, and new board
-> .dts files normally just reference the existing pingroup nodes. So anyone
-> dealing with just a new board is not bothered by this.
-
-You have a point, and when working with a system the application
-engineer often finds bugs in the pin control driver, and has to go
-and fix the actual driver and then all the information hiding and
-simplification is moot.
-
-This can become an expensive lesson for the current attempts
-to push pin control into firmware where the configuration is
-mostly "dead simple" (and just using strings) - the bugs will be
-in the firmware instead, and impossible or really hard to fix.
-
-> Also in my experience most people have no problems in understanding the
-> concept of pinmuxing and that there is a selector number, also where to
-> find this.
-
-Yeah the ambition with the strings was to avoid forcing application
-engineers to know all about that. If they do, they are then
-developing the driver, not just using it.
-
-> > Mediatek and STM32 made a compromise by using pinmux
-> > and adding some macros to define them so it looks more
-> > pleasant:
-> >
-> >       i2c0_pins_a: i2c0-default {
-> >                 pins-i2c0 {
-> >                         pinmux =3D <MT7623_PIN_75_SDA0_FUNC_SDA0>,
-> >                                  <MT7623_PIN_76_SCL0_FUNC_SCL0>;
->
-> Well, I don't really get why they don't use the (MTK_PIN_NO(75) | 1)
-> definition directly, seems to be more telling to me?
-
-That's what STM32 does as well and it's usable.
-
-But of course it drives a truck through the initial ambition that pins
-on all systems be configured the same way, with strings. So now
-there are some families of drivers all "necessarily different" which
-is not so nice for people jumping between different SoCs, but
-very compelling for people focusing on just one SoC.
-
-Well, unless this way of doing things becomes so prevalent that
-it's the new black.
-
-> So the plan for sunxi would be: <SUNXI_PINMUX(PORTC, 23, MUX_1)>, ...
-> And this would not be really "opaque", since it has a fixed known mapping=
-:
->         (port << 16) | (pin << 8) | (mux << 0))
-> I find this both technically elegant, because it combines all the
-> information into just one compact cell, but also readable by outsiders,
-> thanks to the macro.
-
-And a new standard, to add to the other standards, so that
-is my problem as maintainer. It makes sense on its own, and it
-complicates the bigger picture.
-
-> My main arguments against the current (string-based) approach:
-> - They require the mapping table to be in every DT user, so not only the
->   Linux kernel, but also U-Boot, FreeBSD, you name it...
-
-That's true.
-
-This comes from the DT ambition to describe hardware and config,
-but not *define* hardware, i.e. to stop device tree to turn into
-Verilog or SystemC, which is what will happen if we take the
-1:1 reflection of hardware to device tree too far.
-
-I don't think anyone really knows where to cut the line.
-
-> - The tables are getting quite large, and they pollute the single image
->   Linux kernel, with tons of very specific information for a number of ve=
-ry
->   pitiful Allwinner SoCs. At the moment the tally is at 145KB of code+dat=
-a
->   for the existing arm64 SoCs, with the newer SoCs ever growing (H616 alo=
-ne
->   is 27KB, A523 would be quite larger even, I guess 40K). The new A523
->   specific pinctrl support adds 872 Bytes.
-
-This is a generic problem though, look at GPU drivers.
-
-The community (especially Android) seem set on fixing this by using
-modules.
-
-> - Most of the mappings are untested at pinctrl driver commit time, since =
-we
->   don't have the device drivers ready yet - by a margin. The new approach
->   would add the pinmux values when we need them and can test them.
-
-I like this argument the best.
-
-However this also reads "upfront firmware to handle pin control is a
-dead end" yet there are people dedicatedly working on exactly that.
-(Not that its' the Allwinner developers' problem...)
-
-> - The comments in the table give away that something is not quite right:
->                   SUNXI_FUNCTION(0x2, "i2c0")),         /* SDA */
->   This is just a comment, so has no relevance for the code, but it's not
->   meant for humans either. Yet we try to make this correct and maintain
->   it. Odd.
-
-So i2c0 is SDA and i2c1 is SCL or something?
-It seems common, but yeah it can be confusing.
-
-Yours,
-Linus Walleij
+---
+bod
 
