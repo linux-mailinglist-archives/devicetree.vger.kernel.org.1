@@ -1,130 +1,145 @@
-Return-Path: <devicetree+bounces-139051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB3EFA13C53
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:34:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 905CDA13C58
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:35:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27F137A04D1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:34:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18C0E3A5A9F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09280198A29;
-	Thu, 16 Jan 2025 14:34:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010CF22B586;
+	Thu, 16 Jan 2025 14:35:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dDYdyOsX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dyx04FN9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF27B24A7C9;
-	Thu, 16 Jan 2025 14:34:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5285024A7C9;
+	Thu, 16 Jan 2025 14:35:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737038072; cv=none; b=bUMmgQoJnA8eWW0Th7ec5cWn++0pOTEDNpNRwneqpl5tuw3HUjgg2EAZJBUYeehRWYxRKp7VsHyfhcbBdT1dg3OWclHQ/Vy+OiENqC3jMimqY+usYGyA56gS6J26exSLdGhhpDDebj5NxgLhP3IG6F92WaXKbkn2IGCMqeUlDiU=
+	t=1737038127; cv=none; b=WUSN+BK/1EpVBBjr2kFDt5r6pEPCfR9dhxBLGdMcA7K097uBtyhnFhjOjmGCTUVExzjcctLqosfwxLRKZv5ZAlR2TdsA9s28QWbxrPG/mpSytszCM8dcVyuh3RKyy711UIohAUbLIk0PrS0uiVqPu+MHaVxVj8KZNdtKOBnAxYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737038072; c=relaxed/simple;
-	bh=0zDNAkgEPmTQ9ijNf/YMlGkQXo8XEzIXRvPAn+NzZ7Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=t/TbxKhqD1weuA5a++hIWpbzHWpnepv0Tjd4gn6UA2OD8IfNZm1GVo6KRcqM75FM0PXnbk8vo7Avskqe1haqBkTqFoUTB+zmcKwlyhWt+rgU/J0uxdyN71MnfT6dZL+QVpuQo6rFuCvPQdPfKa0bqXz4ENo4PrRQwmtgA/xSRnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dDYdyOsX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53D5DC4CEE3;
-	Thu, 16 Jan 2025 14:34:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737038072;
-	bh=0zDNAkgEPmTQ9ijNf/YMlGkQXo8XEzIXRvPAn+NzZ7Y=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=dDYdyOsXGumufp8xsbvbFP+VUYIbby3EyCsdTTEKG0+Wrq0qYHp8D5NY6zrk0Gaym
-	 GdnGKF8uOWh25sALEsU6DdVWtq23vn4xIN3hK5N/CnGpMC08qUHKMMiq40kxtniwye
-	 jE9xVomMBarsrBXjrEvxXl8yIgAr+mosEZQuES8Hxeu4M6eCwnkDzn3bycxWgQjURi
-	 atd2qBCNp1CNugJ7IYeu85NOBEm5xuMsfv+8Oq1JskL2P/FITbSZ496mahz+/L3HhX
-	 6zLO0QKgonBC5xH9JDOswh76WvyhR2S4Y8Q7461Vd3wPtDIOrMAzXq4uqFNAKHhIvE
-	 E3WrOv3gqDG9A==
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5401d3ea5a1so963163e87.3;
-        Thu, 16 Jan 2025 06:34:32 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUDQg/iomDC756r8+jFwve6OzmcZVJfO7/u9rf1q1i3BD89CTY/7KRvhiw26nutkhnZnMKGHacVj/VwDG1Y@vger.kernel.org, AJvYcCUHbxSYAR2lobBxnTdR0U+Rh288z3jnNbyLkZJwV4V7XYLbl2QjX8Aq2AZoQvH//jyLskwywBy/hKfR@vger.kernel.org, AJvYcCVxHfZWeLK1GSawVhNHrzC99YUWYCc2a/2Cd/QZMWuXi9sc9hPK4R7xft1u+qk40ZMHLaGdiULpiboRn7ELZA==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKPCe4uZlxCldlIOTp6uj06N69fK2u6M2tQ68opVc73eSE8wpG
-	J3AArwMUrCknjXXAkRqXR/XjfulTBGqL7F1jqa2FpXVwAhK6CVvPGyZsrnwf1/sIij3xTlUthnk
-	jd2lXyzexFyB+E65WwRhpFaLYRA==
-X-Google-Smtp-Source: AGHT+IHzsQ2o/IbQIRRO0hOtZknL9BYsHZ3qoB+Mry/3OEDc6BJkS4IlvpFK8Nl5f5mL5RgNVG8J9jsLX2MmmcfwYwk=
-X-Received: by 2002:a19:911e:0:b0:543:9ab4:2a1f with SMTP id
- 2adb3069b0e04-5439ab42b45mr85582e87.40.1737038070668; Thu, 16 Jan 2025
- 06:34:30 -0800 (PST)
+	s=arc-20240116; t=1737038127; c=relaxed/simple;
+	bh=+McQPymEmOdhf0WLe0EFmpoE0UjFeiDotGFY4kS0D0g=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=i6Z8Bqse4dSE1pcASTkbeaYQoo7yQZXAuFqoCeSTtBAG1WKtBF9B4+W4MXvYxaEnxKiC9kEMcVPwq9e/E/tC9v/7U6vSICkoREkbHRfenuk90x6antM9fRmchTSfXyusqVy2rBVHEUhOX2z4YItUocHdDi50DR6FL3Wgc/CffTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dyx04FN9; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5d3e9a88793so1682200a12.1;
+        Thu, 16 Jan 2025 06:35:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737038124; x=1737642924; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+McQPymEmOdhf0WLe0EFmpoE0UjFeiDotGFY4kS0D0g=;
+        b=Dyx04FN9acZ/AWvxBcwMKY5byHZoLjMSwj+H2dXXYduS1wVu4di6WeyJFx2DFT+d7e
+         7AqhyNvNxMmumhitzjCBRktISPZao/SzXnweMXXtR6G9qaLJUKp/6772NUeHtDXHnGUi
+         xb1XanmodUIuxTxwETzd+8XJibo57MeXvp2R+fTqHmsRVhQhL2th7fiRIqiUpBEHvTHm
+         BBR36ZH0qZQnnoh+MFsulgwoweFkgeKbygpsoe60JYhWlY3sG3yXX93KcCN2fj0e+qWK
+         l+hXmP0hnwwrzfq5oZxNbbPL3CLc6L5OHiMFR6vnA1ye/THqwmzFkeKuwAkBEnZ70ww9
+         0aRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737038124; x=1737642924;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+McQPymEmOdhf0WLe0EFmpoE0UjFeiDotGFY4kS0D0g=;
+        b=lPXniafpTXOPGLaQ1rOOuGjAKPGnextA30Qt5uKVetBBu14gGh06eQl3rh6J2WG54h
+         ysa56pzAWGATl94LtliXqClQCxsmOOPDiDvN4PCWM8fMdeQWVz6AXG0mDuGhiK6iAqeA
+         Uke3h0/xHpHSDB49JDiYmp3fLjSQr1wfwyKqqhLz+wn4nqrUxX3ry9eipME9/ZMUDzQR
+         xCwUaUI8YrB3kz5lbSgmBxSBG2L+1+13AmJ7GxIW8iOB51r4amYWgH7EyccrqG44rEXy
+         j1meLJ+XbznWVlwFJtHWMZcq2szwYro/oTtiiLODhHybKy0qT0Hj4h5eh2oPOirstLpv
+         YvwA==
+X-Forwarded-Encrypted: i=1; AJvYcCUOpSNaae/q0J32RIW3frUNP3Jb9ZaPaDhoreJf2SKvFGiMDKfUptkPZp0AYhbydyR7gWPimYc+MtQoqU54@vger.kernel.org, AJvYcCVpks+MBboOWqhFqaQiZgTnZu3+o0rPM8IAtS+Pemgp98m51Poa7oFkqmPwtERxGG5qgvIOxSa5ZGDV@vger.kernel.org, AJvYcCWfaBg0RHvIEBttMC5ipBWN+sCwu5v83poC8IgaAty2+qGEntqCE2ePAoTE9WGsgBVUwL9HqaCjltaB@vger.kernel.org
+X-Gm-Message-State: AOJu0YySaOM1HhGeHqkEQzDxpFcqAbqpGn8LR9cBmNNxQaDxkUw7I3LE
+	S19cOXZH6RInIjkroJnv804zY/p9uXYeX2w+31EZeJXWJblnlaD8
+X-Gm-Gg: ASbGnctTNvn03pp4w0CK0BDaxzeKUkZ+aR5mq/PFr2L8c0n7jK48rQQKE8Sxp9vtuZy
+	VxwOSHiEub2xj6aJUZorHiBLfndsf8nQbvaqauKUvBf42yd2QvwgvQTSATCGPam/8cPZCDnXQqQ
+	m1KYJkDRJeVy/Uc33e+j6suyy48D6UAp0ZYdzrNU1sOXPrs+RMOQJ1HQjiI9xvOTT8kfF2aTsGz
+	qIeq0XFicuZD2xOaj6CgjzedDOe/ybxjdIpEnciItvN1QKIe66a467hHpYBxTf8D+SfUVnK32Gf
+	tEFxwset2ekjVu9UoElMds78JKgYu9hEv+ZciA==
+X-Google-Smtp-Source: AGHT+IF22GYVRQI+1Y1KzRsqCWEDA0Rkne28OZTlDzi7yq1Grymd0Rj0WG4k8w+WrzsYR8ss+QgyYw==
+X-Received: by 2002:a05:6402:2695:b0:5d9:f70a:47ec with SMTP id 4fb4d7f45d1cf-5d9f70a4a74mr10793460a12.15.1737038124352;
+        Thu, 16 Jan 2025 06:35:24 -0800 (PST)
+Received: from smtpclient.apple (89-66-237-154.dynamic.chello.pl. [89.66.237.154])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5db7364272esm19585a12.12.2025.01.16.06.35.20
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 16 Jan 2025 06:35:23 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20241223110936.3428125-1-quic_yrangana@quicinc.com>
-In-Reply-To: <20241223110936.3428125-1-quic_yrangana@quicinc.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 16 Jan 2025 08:34:18 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL0HzzGXnCD+z4GASeXNsBxrdw8-qyfHj8S+C2ucK6EPQ@mail.gmail.com>
-X-Gm-Features: AbW1kvbwJdOzxJB_l8oLrw5jUdQwJWvEPj30j8vf9HC_Kz8qnaUmRNO2-qFCXTM
-Message-ID: <CAL_JsqL0HzzGXnCD+z4GASeXNsBxrdw8-qyfHj8S+C2ucK6EPQ@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: qcom: qcs8300: add QCrypto nodes
-To: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.300.87.4.3\))
+Subject: Re: [RFC PATCH v1 0/6] rockchip: add a functional usb3 phy driver for
+ rk3328
+From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+In-Reply-To: <CAMdYzYoCj9FsyHdTQAOV4DFpD7OdMDaJ0R=BBxXG-SLguy512Q@mail.gmail.com>
+Date: Thu, 16 Jan 2025 15:35:08 +0100
+Cc: Heiko Stuebner <heiko@sntech.de>,
+ Algea Cao <algea.cao@rock-chips.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ kever.yang@rock-chips.com,
+ linux-phy@lists.infradead.org,
+ wulf@rock-chips.com,
+ zyw@rock-chips.com,
+ Dragan Simic <dsimic@manjaro.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ linux-clk@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Arnd Bergmann <arnd@arndb.de>,
+ Jonas Karlman <jonas@kwiboo.se>,
+ frank.wang@rock-chips.com,
+ Elaine Zhang <zhangqing@rock-chips.com>,
+ Alex Bee <knaerzche@gmail.com>,
+ william.wu@rock-chips.com,
+ Zhang Yubing <yubing.zhang@rock-chips.com>,
+ Johan Jonker <jbx6244@gmail.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Trevor Woerner <twoerner@gmail.com>,
+ Stephen Boyd <sboyd@kernel.org>,
+ linux-kernel@vger.kernel.org,
+ Vinod Koul <vkoul@kernel.org>,
+ FUKAUMI Naoki <naoki@radxa.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
 Content-Transfer-Encoding: quoted-printable
+Message-Id: <F69CE715-C0E4-4FCD-943C-89CC1D3E848D@gmail.com>
+References: <20250115012628.1035928-1-pgwipeout@gmail.com>
+ <2EEA8028-8E4A-4588-A480-E5FF0F7BE82E@gmail.com>
+ <CAMdYzYo2W1hLgiH697AdRSUbhBU4rU2uB=N6EMWMD2-0R+VLBA@mail.gmail.com>
+ <B1C9DA16-F285-4AD0-AE4E-AF1A5CA20932@gmail.com>
+ <CAMdYzYrxX=RsSZja-3+zLZUSpyLoRz8Zm0w0hTfL3RQ9cjqgOw@mail.gmail.com>
+ <3536B507-8658-4377-A1AC-2C5D9093BDEB@gmail.com>
+ <CAMdYzYoCj9FsyHdTQAOV4DFpD7OdMDaJ0R=BBxXG-SLguy512Q@mail.gmail.com>
+To: Peter Geis <pgwipeout@gmail.com>
+X-Mailer: Apple Mail (2.3826.300.87.4.3)
 
-On Mon, Dec 23, 2024 at 5:09=E2=80=AFAM Yuvaraj Ranganathan
-<quic_yrangana@quicinc.com> wrote:
->
-> Add the QCE and Crypto BAM DMA nodes.
->
-> Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-> ---
-> Changes in v3:
->  - Wrap the lengthy lines
->  - Reduced the patch series as other patch is merged.
->  - Link to v2: https://lore.kernel.org/all/20241125111923.2218374-3-quic_=
-yrangana@quicinc.com/
->
-> Changes in v2:
->  - Set the interconnect tag to QCOM_ICC_TAG_ALWAYS instead of passing 0(n=
-o TAG).
->  - Link to v1:  https://lore.kernel.org/all/20241113055830.2918347-1-quic=
-_yrangana@quicinc.com/
->
-> ---
->  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/=
-qcom/qcs8300.dtsi
-> index 73abf2ef9c9f..30c1de1c4ad2 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
-> @@ -736,6 +736,31 @@ ufs_mem_phy: phy@1d87000 {
->                         status =3D "disabled";
->                 };
->
-> +               cryptobam: dma-controller@1dc4000 {
-> +                       compatible =3D "qcom,bam-v1.7.4", "qcom,bam-v1.7.=
-0";
-> +                       reg =3D <0x0 0x01dc4000 0x0 0x28000>;
-> +                       interrupts =3D <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-> +                       #dma-cells =3D <1>;
-> +                       qcom,ee =3D <0>;
-> +                       qcom,controlled-remotely;
-> +                       num-channels =3D <20>;
-> +                       qcom,num-ees =3D <4>;
-> +                       iommus =3D <&apps_smmu 0x480 0x00>,
-> +                                <&apps_smmu 0x481 0x00>;
-> +               };
-> +
-> +               crypto: crypto@1dfa000 {
-> +                       compatible =3D "qcom,qcs8300-qce", "qcom,qce";
 
-This doesn't match what the schema says.
 
-You didn't test your schema change with this. That's the *whole* point
-of the schemas...
+> Wiadomo=C5=9B=C4=87 napisana przez Peter Geis <pgwipeout@gmail.com> w =
+dniu 16 sty 2025, o godz. 15:02:
+>=20
+>>=20
+>=20
+> I'm at a loss here, I applied the patches to a clean 6.9 tree and even
+>>=20
 
-Rob
+oh maybe issue is in kernel age?
+6.9 seems a bit quite old.
+i=E2=80=99m on 6.12.9=E2=80=A6.=
 
