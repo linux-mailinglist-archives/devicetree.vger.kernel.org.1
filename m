@@ -1,117 +1,87 @@
-Return-Path: <devicetree+bounces-139087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D05ADA13EA4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 17:01:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4083A13ECD
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 17:07:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30BFB1882FC0
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:01:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AA87188E17F
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB6F622BAA2;
-	Thu, 16 Jan 2025 16:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3221A22BADA;
+	Thu, 16 Jan 2025 16:07:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lo485IKb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gOK88vLd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5961D8A0D;
-	Thu, 16 Jan 2025 16:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02A0522BACD;
+	Thu, 16 Jan 2025 16:07:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737043268; cv=none; b=ihJ9BuD5GwAWRv1DjlnUMpHNw+eWOSW/vSJXqFHw/D8KJAC4fQpFvvECyxnZiyAbk7j2dIwLcu9ad4ncBSg/dVdueg/brexTAZhrBjuvHTyPLADDVMVaXkE3AxOZXjXfWUWoI9c3jtd7XUrYbT/GuwrXDc8vHDiVrN8VPa0Rbg8=
+	t=1737043662; cv=none; b=q5DB9AnMK3dYY2HBf7uBXOkqXV4Et5gi34RaB1RwZX+2QEkKuNmhcXqLxioAsO37Y4e97vlH+FFeMhkLfJVgLZBl6v9FtjSAONY3ZqIH2xaliLU1YWLG6OUNP2ojYIIcPREz33tEc2O7yyryx2acv+0y8B2RLyDKNjKs63H8hpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737043268; c=relaxed/simple;
-	bh=K+O30vGF8jNEYQFXsYQnn3DPQMXPqVS7VsD/r8QKN1c=;
+	s=arc-20240116; t=1737043662; c=relaxed/simple;
+	bh=WEWZ/z1GZjGBKSToMHClV7mXYrm484LHCBKUzcCt5ss=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kV2FbwzOgjBqwoti+e/xIEXY0bO04B3NJSXq+2KA+1Lh1WbzHJ0u70HZWh1e1Y5xUGpTlc6/ZeHDepE4Uc/YQO1Qi+7y4uXzE4KOXfUWl6lDNHPuArphIoyvcGDI6JcCxWmvJeY98ehVSt8ide4V7xRyTQFevJboIwY5O07aStw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lo485IKb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 948C1C4CEE1;
-	Thu, 16 Jan 2025 16:01:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iFHi7Z7Nt1k6VU0fO6AZBnG81etjYqSLifZ6oE8KlQ2sSDf6clsYIx8WHpAoGOn3YUmC0aR5IEPKrd7cADLBhZx8UCfYVjYVCzjXxDsihfyBNKSKNvR7JhzERlNsUbOWrJjM7jiYyJDgTAUqFmpMJueWu4Sl6jqIqI+OJbaXMGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gOK88vLd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 459D8C4CED6;
+	Thu, 16 Jan 2025 16:07:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737043267;
-	bh=K+O30vGF8jNEYQFXsYQnn3DPQMXPqVS7VsD/r8QKN1c=;
+	s=k20201202; t=1737043661;
+	bh=WEWZ/z1GZjGBKSToMHClV7mXYrm484LHCBKUzcCt5ss=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Lo485IKbw+eOWH9CJfq3RxyLfSDwWzOIGOafK7LwYcIRglHUpSCfZvcnHDLvL+bQU
-	 Ctt7NMCC3MWl1glyldYnSoiMv4t2A5+v1ywa1rij0TAywGP9TW6PGyt6PFXQ1KjYov
-	 030Uiod4Z38mycvYsM+gwH9khJD3uis5jLoe2JBuYQc3vEyVuJHAGThUCZ5bKW/o24
-	 5IJfg2Ut+8i75uH4exc7cWhkyoLhA93mTkgg4eALg62ezEVdEFEowc8/nSq4zC6Q6p
-	 c1cnO0D58K2bcWaGGQc3Cwi7NzW1e6+c2NvnQRKad0cWfR0HCQYYR9cyzCXBY3J77k
-	 ceWOp3UOMzPjQ==
-Date: Thu, 16 Jan 2025 17:01:03 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: fnkl.kernel@gmail.com, Hector Martin <marcan@marcan.st>, 
-	Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Alyssa Ross <hi@alyssa.is>, Janne Grunau <j@jannau.net>
-Subject: Re: [PATCH v4 2/5] drm: adp: Add Apple Display Pipe driver
-Message-ID: <20250116-vivacious-congenial-nightingale-cb2f6d@houat>
-References: <20250114-adpdrm-v4-0-e9b5260a39f1@gmail.com>
- <20250114-adpdrm-v4-2-e9b5260a39f1@gmail.com>
- <mu7qiybhj7tu5hauk7izfxqlookc3awpknhjk74zwpkbznei4m@kewap6vivzoa>
+	b=gOK88vLdkX1G5aYNa6OC4glEybHj5NOsUE2uhT270JsyhlMUbG7p9WaRBw8Xp8Hrl
+	 ba8LUQHGkskBurgiS3c27AnnMMSqgSv0KUqkDLrI6zsHx9ZI+ZSF6q7Z/WF75A48ad
+	 sr+JPmW3PIXYHWlVTN9FXAlvRcLQz9TWt0Dk1cdVCZi66XH+E2rSYChqsCVjU7GYhC
+	 MkoXFGkR6Al8cN2rK8xwgjgOrHE4XzlbqXpvbaSPFdtNbi+0mdIRTtr2ns1wG+pnmx
+	 VZUiPMC6HSYtr74os4Lkhg1wRET1rUHNMS8P4BiTHOw1AAkyNiSfMXHqDvGoS8ZX65
+	 /5HFyjnsHvnNQ==
+Date: Thu, 16 Jan 2025 10:07:40 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Melody Olvera <quic_molvera@quicinc.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+	Jishnu Prakash <quic_jprakash@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	Bjorn Andersson <andersson@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: soc: qcom: qcom,pmic-glink: Document
+ SM8750 compatible
+Message-ID: <173704365950.2645134.8017607585171671305.robh@kernel.org>
+References: <20250113-sm8750_gpmic_master-v1-0-ef45cf206979@quicinc.com>
+ <20250113-sm8750_gpmic_master-v1-1-ef45cf206979@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="rgvkyocpvfnurspd"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <mu7qiybhj7tu5hauk7izfxqlookc3awpknhjk74zwpkbznei4m@kewap6vivzoa>
+In-Reply-To: <20250113-sm8750_gpmic_master-v1-1-ef45cf206979@quicinc.com>
 
 
---rgvkyocpvfnurspd
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 2/5] drm: adp: Add Apple Display Pipe driver
-MIME-Version: 1.0
+On Mon, 13 Jan 2025 13:22:22 -0800, Melody Olvera wrote:
+> From: Jishnu Prakash <quic_jprakash@quicinc.com>
+> 
+> Document the SM8750 compatible used to describe the PMIC glink
+> on this platform.
+> 
+> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Hi Dmitry,
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-On Wed, Jan 15, 2025 at 12:21:39PM +0200, Dmitry Baryshkov wrote:
-> On Tue, Jan 14, 2025 at 10:38:53PM +0100, Sasha Finkelstein via B4 Relay =
-wrote:
-> > +static int adp_dsi_host_attach(struct mipi_dsi_host *host,
-> > +			       struct mipi_dsi_device *dev)
-> > +{
-> > +	struct adp_mipi_drv_private *adp =3D mipi_to_adp(host);
-> > +	struct drm_bridge *next;
-> > +
-> > +	next =3D devm_drm_of_get_bridge(adp->dsi.dev, adp->dsi.dev->of_node, =
-1, 0);
->=20
-> select DRM_PANEL_BRIDGE for this API to be available.
-> Also there is an issue of lifetimes. The bridge will be destroyed only
-> when MIPI driver is unbound, however the panel can be attached and
-> detached several times.
-
-Can you expand on that one a bit more? AFAIK, it's always been unsafe
-and we don't have a good mitigation at the moment, so it's unclear to me
-what change you want here.
-
-Maxime
-
---rgvkyocpvfnurspd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ4ktOAAKCRAnX84Zoj2+
-diYEAX9X9nkT02sFf01ulFeGvCcG9S4zbIOBRhh3YUXpaH4JAbu+6x4S7Ioq+nx1
-cybYy0ABf2QLNDKRv+5B3Kyk0nHtU/Qae+ucdanC6Nw7Qqf6R/77ktfolomf8Oc4
-t/GdZdJufA==
-=siI1
------END PGP SIGNATURE-----
-
---rgvkyocpvfnurspd--
 
