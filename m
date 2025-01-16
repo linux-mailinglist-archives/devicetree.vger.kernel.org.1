@@ -1,217 +1,207 @@
-Return-Path: <devicetree+bounces-138975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCE07A1371E
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:56:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51424A13725
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:57:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24DCE18898B7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:56:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2AD0162029
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19D671DD0C7;
-	Thu, 16 Jan 2025 09:56:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 689591DDC00;
+	Thu, 16 Jan 2025 09:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XDjARZru"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="xHHmWMAJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FF711A0731;
-	Thu, 16 Jan 2025 09:56:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75721D63E6
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 09:56:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737021391; cv=none; b=GgWC+34+V61Rcmta2lAK7Yr4voWnLmI67QDRCBclsJr8QRVomyD03ac8ydMbXnDnu+DAumR8oq3cDuLMIbbeMw43BrwETcZRIp0s+zKhpnPqC5u9pRGADYwdAfhthCz46jihoatPs5wjPGU2ZMXOROJz1SyAx3KwtTI7Pr8vDZw=
+	t=1737021418; cv=none; b=nKW3EZEj4RFCkpNa1/8I7nmSC3V188Cu3V6voUocumPjCBrc5y3aVRsOKUNuuZUNic7uK3xvX5DCTaSaViXrlC5vAN7OWtFDpBvNc4SrtJfQOJtj9lHonmx9UmvHiGX3AlNVRajx4r7pQvNAigxpV+DowHTytnY/dcYYWD1N7nI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737021391; c=relaxed/simple;
-	bh=hZHwfCafp/2jaIcxq0xCA2JGNMReouh9aUpppvq7Rnc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qCP9wqQ59giWOZksuB1EvIUXX4AfW07HRpz/svBLCQvqgHUthg9k/vT2KDNgvBaMqH50Rr12ayisqeLR93bY6JML6TVZFzN8Q1lCKOODNGcnfPr2zy3nsCzFK6P6U6NcDPSWp45XQ1K1cF8zvJqKHXhfgNqAj9G7boUAS5aiv3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XDjARZru; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-38a25d4b9d4so397478f8f.0;
-        Thu, 16 Jan 2025 01:56:28 -0800 (PST)
+	s=arc-20240116; t=1737021418; c=relaxed/simple;
+	bh=bSTSw17VRWxk/xy9xUiK8S7/og3Vs5qKzAmU3LPaFJg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=YfToM9O8N9XrBJZnpQ8QUGmLWYfJ1DXaIO6N+Q6sfFgvCZRavJFnq51KbdgrIRAO2XurH9v2VFyZcSpaOWwhiSp2QEDga4RBhnfNf1v+jKgDI/YjuFTRO460bxf7DM250AgmehD7y3ynUMlhJffONulnd/mCLiTu6GYFfDfu/jk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=xHHmWMAJ; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43634b570c1so4142755e9.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 01:56:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737021387; x=1737626187; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jv50vXLyCohKkolh8HL4ExMX3KlgCPYX7TMDlSK4yyQ=;
-        b=XDjARZrus829y+9lDfMDsrHCWkBNLgqeRb0MXH3k/qmVJ3R6s+ANAhUVOWPm8SdemE
-         RljfMMTBAS3wD8NBDLEYTPThzr21PjVcwcdM5iUIyO409YIwFG1dOZNnY5Q+Q0WDUw3T
-         aao3aVEI5+6uI7W0QSu4TzGvArXOJetQfRS3OFxg2Lrj7kgF01DCKuA1TAxaVnHylXLX
-         FdEVl1RQLYDzBEFRYBl/LAn22i2oKc7JGIqz02zWtJQWGOW3pJuRhOmVnfvT3VG718FD
-         9L20uth9C0SZ6uTFPgV0JSdwq8tuqtMUC6taYShl5OQA+gQ4YiuFgZLjFVyQUWJAYJjy
-         IhkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737021387; x=1737626187;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737021414; x=1737626214; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jv50vXLyCohKkolh8HL4ExMX3KlgCPYX7TMDlSK4yyQ=;
-        b=VCYC64CNRaBuYeJwoPU650cHhXG8GwX2CAO2BsbDYYhNQI1/PSAY78N3mtVPjVARP2
-         WkJYYsJnHGI27peR1iiVknWT9TE4IOndQfzedouSsEe2tRD9nZqQkij0cGbsy7uLEJi0
-         cAesOzUQCjfH3XD18wgwnLHXPGvIpdYQHKAR9JH/iELNDmzdLlOrUlZ6UUDKq+h5YVEy
-         hiiUzT0L7TISJ2sN98cZCYGgX/iPhWP2OWqqOBGZ+JdTMLYtDrojnlbRBon6qUCFfd9W
-         yjMsktOrAS+IvTd9Mtk0BQ18yL1/4M35x2bghqTZX/L89172kC2lLIi72Zq1gFfVFwW1
-         b8gw==
-X-Forwarded-Encrypted: i=1; AJvYcCUv6Wl63f239MGbAQhWavBzJUtZFyJaRFkeDsl/tMhe5a8ZUQ4CuKnw59zJxUSNlkJkKmKb2yUn5y1a@vger.kernel.org, AJvYcCW/Dz4eP4BS6vNjDQZ14AGvwsGW3GL08zMf3h7L+XroCpZThhuNDD+XnOMk1C2Qxuil+ui9As/mnL8mIKza@vger.kernel.org, AJvYcCXL+wV8/69ajyy9uVisXKpZzEalAGmtuHidoylZ3ootauMHp7wZVmtAm+cLKUe3BKs9bVa9lR/Y@vger.kernel.org
-X-Gm-Message-State: AOJu0YyE+nF76sySbJn7J4aUOMFz2d8HsG/cP8TVKVRBYvDiXo1f74ee
-	gtarV4QLVtz4QQJ/ZfH0GugFXbAnFWQRXKMhniQEKIQ51RO//PCc
-X-Gm-Gg: ASbGnct8Vd+pwi1Kyb6A2PiQ5g6sW5yGopgMTOc4hMHr+bAHx9qhW+gPdlDtuWs0A4K
-	ASghUHja64tf1IWTXYhw+KidftvPkAaXJqTyWJl/X6CVlZKRbxTSXHfCRlYX8HJZ/wGFWK2tFIs
-	4UHCcqnTcBZiaScC9aIRpGt8GGf4p/k8JAMe3FS4c5HWxT2ywXC7HO7fpByy7SXFP8MHd2heF7c
-	OqcdZJZf3+/2IYlgWf7tmZXij4/if6OipzCUXAKEX5xg4p7jjYn
-X-Google-Smtp-Source: AGHT+IHzH1W8ReHz81xgqmeQjgmWXXdbxuZnQGUcOlWiMkSjs6qBP8f4LT8IkgM6yePzS/DnvD9siw==
-X-Received: by 2002:a5d:64eb:0:b0:386:41bd:53a3 with SMTP id ffacd0b85a97d-38a87310667mr28181865f8f.50.1737021387053;
-        Thu, 16 Jan 2025 01:56:27 -0800 (PST)
-Received: from debian ([2a00:79c0:650:2c00:303:6c5b:4b07:6715])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bdc0d8e4bsm10844258f8f.42.2025.01.16.01.56.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jan 2025 01:56:26 -0800 (PST)
-Date: Thu, 16 Jan 2025 10:56:24 +0100
-From: Dimitri Fedrau <dima.fedrau@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: dimitri.fedrau@liebherr.com, Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next 0/2] net: phy: dp83822: Add support for changing
- the transmit amplitude voltage
-Message-ID: <20250116095624.GA4526@debian>
-References: <20250113-dp83822-tx-swing-v1-0-7ed5a9d80010@liebherr.com>
- <fcffef06-c8d1-4398-bc20-30d252cd2fd2@lunn.ch>
- <20250113141828.GA4250@debian>
- <5118eb9a-ff6e-4e78-8529-d174e09cf52e@lunn.ch>
+        bh=uSHdPWcKmGVbVZP59aw95qXWV3lI61LHVfnVxsl+FKA=;
+        b=xHHmWMAJGVTWl/1NjISnu6Gx3ZoEERkBhguwvjscYlixUlfNj3HmKwNi9WcIiHhZ9B
+         ehcIMC61DYP0hihyrTeOHNInlgFtioNL+g3OIJxcPLkIQ5QYJceGW+bDThOwKZMFb+/y
+         nvygLbzxSpdO7KLBjFY3opzSZEUJahCz9KA3bGws8UMftpuz9BjAp0WgmNNzkizqXn/d
+         XJc+jUdlObyEKxmMjkyVCUaVINIwlW2PP1COrzCfGq/RXjfhd7H3nJBMgy5dsU/d6vce
+         n0CQyrNDLodODqYAciP3S0hY06m/IXoJS0ZjYWh9VcUyd0VFpY2tKxKXnanIA1Z0XCgB
+         yt1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737021414; x=1737626214;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=uSHdPWcKmGVbVZP59aw95qXWV3lI61LHVfnVxsl+FKA=;
+        b=DeIss96LV89t5RK5/rLxo7k5ar9q8aqzJuQHt4pJmdrQmuTZQlx0HhEWOAZwggtIzn
+         v7M8VtlCjkDgj9/4Sbdu7n4py9xLznilzz387FS2So6E7eXmzYlfDMlZcIrgauHs6w8a
+         /g9tAML0AkyNyMQQNK1Eskz96pdpgUoj/CmiOBLXWmwnMu3bJEAKZJEZG52jFhHo1e36
+         R8uIQcvEpnubCMzzR/6lvJO0WpzMmessEKMSOr9LYeLLclQUO8G2avSP74porOL756Kr
+         RLhUznVR6kjREbK+iG8BFDNScbUUhprCHuEffnS0/iR3fThbniyPAfemN1tkPpVnYmzm
+         63yg==
+X-Forwarded-Encrypted: i=1; AJvYcCXhP6SKo7AUZRp3u0DWuz4FOiIhqHiIhfccC3z5RTdUgv1JFq59sKKbORxpSWu8lKAqHRD/WSuYn4gU@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoyuBXKBhcUw97WZMHPf3Wp1UTXCzHR93/4zayJ1lqiQivbFnj
+	5p0qCRFGZqzTA2ks0VJ1OfVOftVLdkPHNJmrbHS9EJl5+CG1ITxHXhbkrSJU5eU=
+X-Gm-Gg: ASbGncsvZosJxYRL9beJOZKX7gTZ4Nsz6xImCAZylA8z3o9OeMaDwysVmTCKr+Hsl6s
+	hbv1FfTGUpGIdVduwflwJEYqXZwM4B03sClo5hWm1IIK63m71UjRBnP8P8WDXNh8Ez3M6tV1zO7
+	AnDIpxsi0ckN4GhTZVIEJm4mOYzvGWK9AjqiJEMa2XoljNszEM3MYHuNzLTMf2HskNh2sp2b5e5
+	2tc3cjyFsRGznIgMYXwJ851SYEg7FLxX6WeYR41kc3t6InsTJkZtX/SQ/7rBxEEWRiy4h+N56uQ
+	xhBblPMiGz3hRIb8fIbNSK98koG3mE6kVAAvUeAThzU=
+X-Google-Smtp-Source: AGHT+IGDFKX1Ve2idO8rktH4XrAM8D4PejdzCkU13Mh4eAnD5iUv/2BgriTku9Ruht6b1WvCpXNR/w==
+X-Received: by 2002:a05:600c:3485:b0:436:fbe0:cebe with SMTP id 5b1f17b1804b1-436fbe0d10cmr156292295e9.30.1737021414316;
+        Thu, 16 Jan 2025 01:56:54 -0800 (PST)
+Received: from localhost (2a02-8440-9206-2584-91c4-ce73-527f-308a.rev.sfr.net. [2a02:8440:9206:2584:91c4:ce73:527f:308a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c74e5e69sm52765865e9.37.2025.01.16.01.56.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 16 Jan 2025 01:56:53 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5118eb9a-ff6e-4e78-8529-d174e09cf52e@lunn.ch>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 16 Jan 2025 10:56:51 +0100
+Message-Id: <D73EP8AHW10K.9JIP74RQOHU4@baylibre.com>
+Cc: "Lars-Peter Clausen" <lars@metafoo.de>, "Michael Hennerich"
+ <Michael.Hennerich@analog.com>, =?utf-8?q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, "Jonathan Cameron" <jic23@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+ <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-doc@vger.kernel.org>
+Subject: Re: [PATCH v2 2/6] iio: adc: ad4030: add driver for ad4030-24
+From: "Esteban Blanc" <eblanc@baylibre.com>
+To: "Marcelo Schmitt" <marcelo.schmitt1@gmail.com>
+X-Mailer: aerc 0.18.2
+References: <20241219-eblanc-ad4630_v1-v2-0-f36e55907bf5@baylibre.com>
+ <20241219-eblanc-ad4630_v1-v2-2-f36e55907bf5@baylibre.com>
+ <Z2eqOSN2Uk8SfTq1@debian-BULLSEYE-live-builder-AMD64>
+In-Reply-To: <Z2eqOSN2Uk8SfTq1@debian-BULLSEYE-live-builder-AMD64>
 
-Hi Andrew,
-
-Am Mon, Jan 13, 2025 at 04:59:38PM +0100 schrieb Andrew Lunn:
-> On Mon, Jan 13, 2025 at 03:18:28PM +0100, Dimitri Fedrau wrote:
-> > Hi Andrew,
-> > 
-> > Am Mon, Jan 13, 2025 at 02:54:28PM +0100 schrieb Andrew Lunn:
-> > > On Mon, Jan 13, 2025 at 06:40:11AM +0100, Dimitri Fedrau via B4 Relay wrote:
-> > > > Add support for changing the transmit amplitude voltage in 100BASE-TX mode.
-> > > > Add support for configuration via DT.
-> > > 
-> > > The commit message is supposed to answer the question "Why?". Isn't
-> > > reducing the voltage going to make the device non conforming? Why
-> > > would i want to break it? I could understand setting it a bit higher
-> > > than required to handle losses on the PCB and connector, so the
-> > > voltages measured on the RJ45 pins are conforming.
-> > >
-> > - Will add the "Why?" to the commit description. You already answered it.
-> > - Yes you are right.
-> > - I don't want to break it, the PHY just provides these settings. And I
-> >   just wanted to reflect this in the code, although it probably doesn't
-> >   make sense.
-> > - In my case I want to set it a bit higher to be conforming.
-> 
-> I have seen use cases for deeply embedded systems where they want to
-> reduce it, to avoid some EMC issues and save some power/heat. They
-> know the cable lengths, so know a lower voltage won't cause an
-> issue. The issue in that case is that the configuration was policy,
-> not a description of the hardware. So i pushed for it to be a PHY
-> tunable, which can be set at runtime. Your use case is however about
-> the hardware, you need a slightly higher voltage because of the
-> hardware design. So for this case, i think DT is O.K. But you will
-> need to make this clear in the commit message, you want to make the
-> device conform by increasing the voltage. And put something in the
-> binding description to indicate this setting should be used to tune
-> the PHY for conformance. It is not our problem if somebody misuses it
-> for EMC/power saving and makes there device non-conform.
-> 
-Thanks for the explanation. Will add the comment in the commit message.
-
-> > > Also, what makes the dp8382 special? I know other PHYs can actually do
-> > > this. So why are we adding some vendor specific property just for
-> > > 100base-tx?
-> > >
-> > I don't think that the dp83822 is special in this case. I just didn't
-> > know better. Would be removing the vendor specific property enough ?
-> > Or is there already a defined property describing this. Didn't found
-> > anything.
-> 
-> If i remember correctly, there might be a property for
-> automotive/safety critical, where there is a choice of two
-> voltages. But it might be just deciding which of the two voltages are
-> used?
-> 
-> There is also:
-> 
->   ti,cfg-dac-minus-one-bp:
->     description: |
->        DP83826 PHY only.
->        Sets the voltage ratio (with respect to the nominal value)
->        of the logical level -1 for the MLT-3 encoded TX data.
->     enum: [5000, 5625, 6250, 6875, 7500, 8125, 8750, 9375, 10000,
->            10625, 11250, 11875, 12500, 13125, 13750, 14375, 15000]
->     default: 10000
-> 
->   ti,cfg-dac-plus-one-bp:
->     description: |
->        DP83826 PHY only.
->        Sets the voltage ratio (with respect to the nominal value)
->        of the logical level +1 for the MLT-3 encoded TX data.
->     enum: [5000, 5625, 6250, 6875, 7500, 8125, 8750, 9375, 10000,
->            10625, 11250, 11875, 12500, 13125, 13750, 14375, 15000]
->     default: 10000
-> 
-> I'm not so much an analogue person, but these don't make too much
-> sense to me. A ratio of 10,000 relative to nominal sounds rather
-> large. I would of expected a ration of 1 as the default? Since this
-> makes little sense to me, i don't think it is a good idea to copy it!
-> 
-
-I think the ratio of 10.000 was chosen to avoid truncation when calculating
-register values. These are in steps of 6,25%. Using gain in DT seems to me
-the more generic way of describing amplitude modification. But converting
-the gain to register values might be more challenging in some cases. And
-I think we also need to scale when we want to represent it as gain. The
-DP83822 allows to modify the amplitude in terms of gain by 1.65% per
-step and for 10BASE-TE gain is 9% per step. I don't have any other PHY that
-allows me to modify the amplitude, so I'm quite biased. Do you know any other
-PHY supporting this ?
-
-> I've not looked at 802.3.... Do we need different settings for
-> different link modes?  Are the losses dependent on the link mode?  Are
-> the voltages different for different link modes? Is voltage actually
-> the best unit, if different link modes have different differential
-> voltages? Would a gain make more sense for a generic binding, and then
-> let the PHY driver convert that into whatever the hardware uses?
-> 
-
-I had a quick look at 802.3, but I don't have much knowledge regarding
-the analogue part:
-
-- Different link modes have different differential voltages.
-- I would prefer gain instead of voltage, should also fit for fiber
-  optics.
-- I would prefer separate settings for the link modes. Specs for the
-  link modes are quite different, not that I could really judge. Maybe
-  someone can help us out ?
-- Maybe something like tx-amplitude-100base-tx-gain-milli or
-  tx-amplitude-100base-tx-gain-micro ?
-
-[...]
+On Sun Dec 22, 2024 at 6:57 AM CET, Marcelo Schmitt wrote:
+> Hello Esteban, some comments inline.
+>
+> On 12/19, Esteban Blanc wrote:
+> > This adds a new driver for the Analog Devices INC. AD4030-24 ADC.
+> >=20
+> > The driver implements basic support for the AD4030-24 1 channel
+> > differential ADC with hardware gain and offset control.
+> >=20
+> > Signed-off-by: Esteban Blanc <eblanc@baylibre.com>
+> > ---
+> [...]
+> > +
+> > +static int ad4030_spi_read(void *context, const void *reg, size_t reg_=
+size,
+> > +			   void *val, size_t val_size)
+> > +{
+> > +	int ret;
+> > +	struct ad4030_state *st =3D context;
+> > +	struct spi_transfer xfer =3D {
+> > +		.tx_buf =3D st->tx_data,
+> > +		.rx_buf =3D st->rx_data.raw,
+> > +		.len =3D reg_size + val_size,
+> > +		.speed_hz =3D AD4030_SPI_MAX_REG_XFER_SPEED,
+> Is speed_hz really needed? What happens if the controller can't clock at =
+80MHz?
+The goal was to reduce the speed when reading/writing to a register with
+a value like 10MHz. The issue I ran into is that with my setup (Zedboard
+with FPGA-based SPI controller) when I chose a speed lower than 80Mhz
+the value read are wrong. The whoami check in `ad4030_detect_chip_info`
+is failling. So for now, I left it at 80Mhz while I'm trying to figure
+out what's going on with the controller
+>
+> > +	};
+> > +
+> > +	if (xfer.len > ARRAY_SIZE(st->tx_data) ||
+> > +	    xfer.len > ARRAY_SIZE(st->rx_data.raw))
+> > +		return  -EINVAL;
+>
+> Would it make sense to bring register configuration mode commands into th=
+e
+> regmap calls?
+> I mean, to do the ad4030_enter_config_mode() transfer here and the
+> ad4030_exit_config_mode() at the end of this function.
+> From datasheet, it looks like both enter/exit config mode are required fo=
+r reg
+> access so why not doing them in the regmap callbacks?
+> With that, I think it won't be needed to call register config mode functi=
+ons
+> in ad4030_single_conversion() and in buffer enable/disable functions.
+> Might need implement regmap_config read and write callbacks to properly h=
+andle
+> regmap_bulk_read/write interface.
+Yes, good idea.
+>
+>
+> > +
+> > +	memset(st->tx_data, 0, ARRAY_SIZE(st->tx_data));
+> > +	memcpy(st->tx_data, reg, reg_size);
+> > +
+> > +	ret =3D spi_sync_transfer(st->spi, &xfer, 1);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	memcpy(val, &st->rx_data.raw[reg_size], val_size);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> [...]
+> > +
+> > +static int ad4030_get_chan_calibscale(struct iio_dev *indio_dev,
+> > +				      struct iio_chan_spec const *chan,
+> > +				      int *val,
+> > +				      int *val2)
+> > +{
+> > +	struct ad4030_state *st =3D iio_priv(indio_dev);
+> > +	u16 gain;
+> > +	int ret;
+> > +
+> > +	ret =3D regmap_bulk_read(st->regmap, AD4030_REG_GAIN_CHAN(chan->addre=
+ss),
+> > +			       st->rx_data.raw, AD4030_REG_GAIN_BYTES_NB);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	gain =3D get_unaligned_be16(st->rx_data.raw);
+> My impression is that it is a bit odd to handle endianness after/before
+> calling regmap_read/write(). Can you try set
+> .val_format_endian_default =3D REGMAP_ENDIAN_BIG, in ad4030_regmap_bus?
+> If that doesn't help, what about doing the get/set_unaligned stuff within
+> the bus read/write calls?
+I've addressed that in another email after Jonathan's comment.
+>
+> > +
+> > +	/* From datasheet: multiplied output =3D input =C3=97 gain word/0x800=
+0 */
+> > +	*val =3D gain / 0x8000;
+> Use a define to give a name to the gain constant?
+Sure.
 
 Best regards,
-Dimitri Fedrau
+
+--=20
+Esteban Blanc
+BayLibre
 
