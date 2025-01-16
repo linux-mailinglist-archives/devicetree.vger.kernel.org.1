@@ -1,136 +1,202 @@
-Return-Path: <devicetree+bounces-139089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45DA5A13EEA
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 17:10:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E34C9A13E2C
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:47:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5696F16282F
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 16:10:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EBC53A3937
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:47:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C310722D4CB;
-	Thu, 16 Jan 2025 16:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A3E22ACEE;
+	Thu, 16 Jan 2025 15:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=lechnology.com header.i=@lechnology.com header.b="D2C/M1/0"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="CbBAYa+W";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="q84Hb1aX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vern.gendns.com (vern.gendns.com [98.142.107.122])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70AD122B8C4;
-	Thu, 16 Jan 2025 16:09:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=98.142.107.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B80C91D8A0D;
+	Thu, 16 Jan 2025 15:47:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737043783; cv=none; b=CzEcty2BQxiFXL7I10nDkx9+1NAB2hogFWYFurqluVKIkYQ7pVMuqZVm1kSTEVwg1m8T2rehncz3OmUDk1CokxmTLjZrhT5CnRNIAfw3SHvTs7+YaKOmV96bS9nH4Sl615PJfqXg1tKMuUr+pUhisEt5GwabKFhyz45PODZguFo=
+	t=1737042444; cv=none; b=lyuGXYlfJbnOedei0nsw5PqKVRpe1U/i6SLlUILvdAFcYn+56L1c1Rp4lF1TWG/3qBd+7jcoc3qe3guyLENxGfzj6mikKHRVdYiuY3o8CH5/BuKRjYSHNlARP4gp9swFy0IYVp/FqXbKnJHbKAiFQys6Wrvzd5cfDbLbLTZrFeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737043783; c=relaxed/simple;
-	bh=KrAx4W9F1JHWs1BiokPAcZ5TtBGXUU1z9eZ5G+jdkDI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=F4vKr4F98b9l8k9Va0xwDvZdsOpieEcztiPy+Up1XLt5RuUoZ5SoHREC7P1mx9wfftJlcilJE07y9LeFlz+j8FRtyTxtJSacgXr+qcK5mPdZiSohXOJpmTT3r6a04w2uWlCdGCJcvpSuSEtNCpet9cuclLdz+dnUl4V/zlrhac4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lechnology.com; spf=pass smtp.mailfrom=lechnology.com; dkim=pass (2048-bit key) header.d=lechnology.com header.i=@lechnology.com header.b=D2C/M1/0; arc=none smtp.client-ip=98.142.107.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lechnology.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lechnology.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-	In-Reply-To:From:References:To:Subject:MIME-Version:Date:Message-ID:Sender:
-	Reply-To:Cc:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-	List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=rHP3H+DXo55aDFvfWrhth+BNDFmsU1/D3D5mS0BL6vk=; b=D2C/M1/0chubfC086kckGY/yxQ
-	3wDPIfN9Vjj9F0cu+4pxewS5sa7uh7Uzpq6WdCJ4AZRyX2rTS8pYafw6UZMIsdFVUQ/efF/+qT/x1
-	F1P7yEUeRtAQBLasv4rUJJbAKmVARyE+v9U2EAjuRtCnZ7GFLQwXjk8txlYJp8YVUCIliKMImjyvy
-	X0Y6km7I1ErlvruWAlVHYsp6vfe49cCsOKPdzAKIlfzWLwChmqVWOwdc75SIAbRMAoS0QOQYH2uf9
-	2dOb6/lPDj11kv3hZdAXYedMrFTlBqWzwBpkj0/qYwCQ56nZ2IsmB419WPNM2weotd5GTs/ZjpB0L
-	RBp9wupQ==;
-Received: from ip98-183-112-25.ok.ok.cox.net ([98.183.112.25]:47804 helo=[192.168.0.142])
-	by vern.gendns.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <david@lechnology.com>)
-	id 1tYS3v-0008EP-03;
-	Thu, 16 Jan 2025 10:45:18 -0500
-Message-ID: <42c5653b-812a-49d2-9bae-c51c19d7b731@lechnology.com>
-Date: Thu, 16 Jan 2025 09:45:17 -0600
+	s=arc-20240116; t=1737042444; c=relaxed/simple;
+	bh=oUMae0uNztkFMRAMHW/PncD10PfK19I9hFA7mAZx5Hw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NmjI4oyHkX6zV2+lWQOxPPKsb+JS7e4xYvIgz7lmfe6mmkAhI4MIYBsJP7v6uAGr0CroTvNxoKaKF6UmapbMMsHAY9lzIVoKs5NRw2q+0Q80FmhsZAct94A85jL3PxaB7M3wj+L3zci5gQQpq9i5/8F4PWoPvhHSpDgB+WplRTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=CbBAYa+W; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=q84Hb1aX reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1737042440; x=1768578440;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=xaChV7cBaPbe1ohg9NpCLfsng9nL3w34aCRLwnxNG4k=;
+  b=CbBAYa+WaSly/B14mFopKDDD/PZyP4ReK2DmzjGVjdroYPIW6xoNY9Yy
+   3240LcBz2f0KBldoLJ+Iews5PgyJEnvIy2D6bpEeyfwdm0wMaPL6edMES
+   RQs1TXND2c3kQ/Ezo44vHs52P+KFqPkHNa1fMwGB83ktBaX5qBs9HFtQv
+   OryBLO8py27i0LrLWiBAY8cL6tJgx+7dgMJCq1IzNLW5zXJAsYIgZ2DpC
+   7CqjamPFclmNXfzT8vBQFRdpaiH9OFgrOU1rPNmLLL8XI6aAW0GY352Uh
+   2U+8OqbVLjqPsqSpRDuyWldQWKNUOBethVclkWUZ3zJB5e3oqc6bY4UBW
+   g==;
+X-CSE-ConnectionGUID: Z8Lhc84ST9Sp3IP0z04cUQ==
+X-CSE-MsgGUID: SEv8VNHrSiOJkb1NNtdBdA==
+X-IronPort-AV: E=Sophos;i="6.13,209,1732575600"; 
+   d="scan'208";a="41125076"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 16 Jan 2025 16:47:12 +0100
+X-CheckPoint: {67892A00-8-9B2B6168-EB6F31C5}
+X-MAIL-CPID: 90A1698403BD0B9F8FB62E6BA9D3AA5C_5
+X-Control-Analysis: str=0001.0A682F2A.67892A00.0070,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6A19716CA7A;
+	Thu, 16 Jan 2025 16:47:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1737042427;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xaChV7cBaPbe1ohg9NpCLfsng9nL3w34aCRLwnxNG4k=;
+	b=q84Hb1aXILJupHME6TrWA2bx9eU/gG8zZ86RGmnwEILXf6dARbwt0meo4wpX/q1uveY+yv
+	TYGVw5m05b2/YHgfexJmxAjFrtp0iTyq20kenibvvS3sOSFKI14GAyyEThGFxBKyHkMy0S
+	8IG2ns828l8rajwcQRpHqNwDWmZb99aRmuN557t58j/9FJyfml7ksD/7l6L130O4mRKuy8
+	Y244VHM0El07B0KfnfRRDdSpSzlGecGWvlx1zJpsq4JpS7iBJeRr6IqbDTO378qZF74Tp5
+	/ziZ2rqZS98Buy/kT7fDqAPJWqisGvJV5bUP61EWCrxpdf3OClvFArbO6c0aQQ==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Peng Fan <peng.fan@nxp.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support accessing controller for i.MX9
+Date: Thu, 16 Jan 2025 16:47:05 +0100
+Message-ID: <2768326.mvXUDI8C0e@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <PAXPR04MB8459EE43FD37732822893343881A2@PAXPR04MB8459.eurprd04.prod.outlook.com>
+References: <20250108-imx-ocotp-v5-0-a6d90e18ebe9@nxp.com> <6018578.MhkbZ0Pkbq@steina-w> <PAXPR04MB8459EE43FD37732822893343881A2@PAXPR04MB8459.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: ti: davinci: Align GPIO hog name with bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250116090030.87452-1-krzysztof.kozlowski@linaro.org>
-From: David Lechner <david@lechnology.com>
-Content-Language: en-US
-Autocrypt: addr=david@lechnology.com; keydata=
- xsFNBFFxkZ8BEADXzbnj9t8XSZYxKJGHdHqYgEBVzRElb3+f11qhDZKzVCMsn1+AN+PlHqC7
- VrCWLsWTSY7WsHB2fW3aXaoidtac5FYoX2IXAun1Sbv15NcBdapImkMv6zxhAyWz6LqPfdCp
- QV+3x6qwUPFeLHdmew8mkSq56qTFgDQr9oQhsrXKHkXFD7aIAf5bM6janQCHgGTVDraRDfEO
- rV9rj7Wu/SfjUCVSCvW/SuWBa3IXTLNgbrNwBfo7Pl/tHuto0jxkVCIJ6J3xa85BKMw1WjA+
- jKzh12S6KWrLUfhEUt64G9WJHiZOnVAjxgCR7TUahVM2OQHcp49ouG/JZsGNniulXH4ErA2O
- Wt6seUEx8XQIm48H96RWgKrwKJ+1WoLEmUcYOJDZUcguMZVc3Astx8aSaRjf6IRBO8XlJSJV
- OorkguvrTQBZJfjoicuFx7VlpdMggMZayv0cqEvzZMSHUt8DCUG74rLhtab9LCg/9wdCwqyE
- JEi/8jaV7JWxwiCmzVpw0mHn1DiUlp5kapZT+Hart0Gc1WW915psA4G6KneisFM5DJe+S5mn
- dUJb5IttTOx37jQQi2igwlSBdSC/M+Zy3sb+DXYJUVjVxK56RGAnlSvjHUx/TkID6Vb6HXvm
- Fgm9vQamTEf+C3XzlY2v1YaMMX8yQjfrzQSoGfB0+9zaD9J/cwARAQABzSREYXZpZCBMZWNo
- bmVyIDxkYXZpZEBsZWNobm9sb2d5LmNvbT7CwXgEEwECACIFAlFxkZ8CGwMGCwkIBwMCBhUI
- AgkKCwQWAgMBAh4BAheAAAoJEB+K+IyC93wDdcMQALkIsjA/nWJZY+Z6AkpL9HfeyYA6D2LK
- LFwWQ5fPok9G5wArvf+yHnbnVvtlZKPEdUAzbBacaATeLGRC0Kzei1asDgb/IR5YXQRMdshj
- 5Bd+DutTbT270p6jrzI3p7r1K7AycFcpfgSpOUQY7Wde7AT7KHCHaDjsy/a4d8EVjEhKZBg1
- wgBr8L+2lVgjQP4x/tuj4KrWKygcCNiombhKW4iz2uR7EspoS18D+9MD8vLVrOqDKBWGswes
- cDblcjMv8FXIc7JR8x6ZbubFODoRzAs4MAlOgGT8FBAK/DUD63gMHTtKJrVghjoDNe77pmW1
- zQK0P0zu9zciPg4h3AE+ENsJxqHoOEwCvJMQbhliFVYL4O0tM648V6K0o1btt4Ps0FEFASfX
- ZDa7uO30YZG+uqevP4wp6bfPpiHEUku32tSKZstbxljprLe0wDwYFSgXvVYUDUD6G3N1e3p0
- xDXo+Oj/8yoZaPrOzMbqL66uSVghVTya7FjgT2aG1HfzH19NfO7SN+BQ4ld94gnDL2wWjA6h
- pddm+me8Aqa/xp0Wfhzs77/tyYd2FhV8RRs/tt1RN/8COblLnFGpNjtHCtpUuPCMTPN04+hg
- fEQVsW03//yRgt4teDogaklG+mYSbpkANMjyMN1LKVWM3YJTQcKIgpT8HvZwdrYBjB8CMHLb
- K2zgzsFNBFFxkZ8BEADSVjyceG8Up24FFXwv5YmV7yX520kM97N11e1RJVMI1RSU+Na3Xo9J
- 1BW6EFMAdibD6hH8PiMmToKxBrfYSLStLh2MbHA2T/3zqicU1nuk376LMyrAuoV/fl8/7Jld
- wh1c9AADaYXNQfZ84R6nyaTRjy4fqcc/dG2kw5ZMln909SMKZc3HdVynmo9pLT2HBOnXu2d3
- bIGmzuDnDXzh1X8+ods4gViuvB31xU1WiANr4TbhaNU+/LmEVfvhS+34Cmz3U5Xs5x7nWdpM
- 6fFfDOSz2sIYXOGAcaV3oJ121Uul2U2bMTsXxiwdbjmZP9jrzEfvhD5KIOutX+0OzdtM9QVB
- 70QQOEh3maW/FwGdL5stYcadsBiEEI6Y2ymVpBgzrPS6HzC+UZLUShOE+aLx+SYBYAuypikM
- PvG9W3MqWHCsXXEfyp2mCeorKb7PafyaBO/E5REjPmYUpkGMNZH1lGV3jegE9WdOBfXW9xvC
- wf0UefoFaVhjsjtzvl8lMQndrDBdKPpJ7zIIG6FGSsUYmCtvE+JAk83tfpUpSZKDSzsqtLTI
- 8GE2fQzEuZcBqm6Yk2V1+u6rjUjmqEBIzunyeUupaUc+p00JiwNE8v/wcx7UbD5m+PGOkNoL
- MLe0ti0O7nFlY8avZzy3eLBQenu4WsJjPVYeQGeGB3oLvCGIhT9/WwARAQABwsFfBBgBAgAJ
- BQJRcZGfAhsMAAoJEB+K+IyC93wDC44P/0bAjHgFUPHl7jG5CrWGwgdTNN8NrjpmIxSk37kI
- uKMzcwP9BWhFF0mx6mCUEaxvGdAQ9Va/uXB2TOyhLCGXhlf8uCwxcIyrOlhi2bK6ZIwwovyj
- jh7GCRnm8cP8ohDCJlDUpHkOpmU4tcapbZiBrFaFAahxPMjwK9GJ3JY0lx63McgCEIwm6txN
- cMnVX5Y3HeW5Wo8DtmeM3XajJLFaBXIhEfoNHMfDON6UGiXFeR8S9W8dpaX8XEwzPUjZyOG2
- LvOMAEPXx+kB9mZPTogong8LekL1HZHSY4OYffzQy5fVE+woHAMADkrmuosGkTRCP4IQHXOa
- goax/Dox01lKTLnlUL1iWWQjfRaFXVKxEc2PF1RZUpoO/IQYFB1twcaF2ibT3TlGolbmb3qU
- YBo/Apl5GJUj/xOWwrbikD+Ci+vx8yuFUlulbS9Ht+3z1dFjBUDbtZ4Bdy/1heNpA9xORiRs
- +M4GyTil33pnBXEZp29nh7ev4VJ96sVvnQFzls3motvG+pq/c37Ms1gYayeCzA2iCDuKx6Zk
- ybHg7IzNEduqZQ4bkaBpnEt+vwE3Gg5l4dAUFWAs9qY13nyBANQ282FNctziEHCUJZ/Map6T
- dzHWO6hU1HuvmlwcJSFCOey8yhkt386E6KfVYzrIhwTtabg+DLyMZK40Rop1VcU7Nx0M
-In-Reply-To: <20250116090030.87452-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 1/16/25 3:00 AM, Krzysztof Kozlowski wrote:
-> Bindings expect GPIO hog names to end with 'hog' suffix, so correct it
-> to fix dtbs_check warnings like:
-> 
->   da850-lego-ev3.dtb: batt_volt_en: $nodename:0: 'batt_volt_en' does not match '^.+-hog(-[0-9]+)?$'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-Acked-by: David Lechner <david@lechnology.com>
+Hi,
+
+Am Donnerstag, 16. Januar 2025, 03:09:02 CET schrieb Peng Fan:
+> > Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support accessing
+> > controller for i.MX9
+> >=20
+> > Hi,
+> >=20
+> > Am Dienstag, 14. Januar 2025, 09:35:41 CET schrieb Peng Fan:
+> > > > Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support
+> > accessing
+> > > > controller for i.MX9
+> > > >
+> > > > Hi,
+> > > >
+> > > > Am Samstag, 11. Januar 2025, 13:41:58 CET schrieb Peng Fan:
+> > > > > > Subject: Re: [PATCH v5 2/2] nvmem: imx-ocotp-ele: Support
+> > > > accessing
+> > > > > > controller for i.MX9
+> > > > > >
+> > > > > > Hi,
+> > > > > >
+> > > > > > Am Donnerstag, 9. Januar 2025, 04:34:18 CET schrieb Peng Fan:
+> > > > > > > On Wed, Jan 08, 2025 at 11:15:40AM +0100, Alexander Stein
+> > > > wrote:
+> > > > > > > >Hi Peng,
+> > > > > > > >
+> > > > > > > >Am Mittwoch, 8. Januar 2025, 08:00:18 CET schrieb Peng
+> > Fan
+> > > > (OSS):
+> > > > > > > >> From: Peng Fan <peng.fan@nxp.com>
+> > > > > > > >>
+> > > > > > > >> i.MX9 OCOTP supports a specific peripheral or function
+> > > > > > > >> being
+> > > > > > fused
+> > > > > > > >> which means disabled, so
+> > > > > > > >>  - Introduce ocotp_access_gates to be container of efuse
+> > > > > > > >> gate info
+> > > > > > > >>  - Iterate all nodes to check accessing permission. If not
+> > > > > > > >>    allowed to be accessed, detach the node
+> > > > > > > >>
+> > > > > > > >> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > > > > > > >> ---
+> > > > > > > >>  drivers/nvmem/imx-ocotp-ele.c | 172
+> > > > > > > >> +++++++++++++++++++++++++++++++++++++++++-
+> > > > > > > >>  1 file changed, 171 insertions(+), 1 deletion(-)
+> > > > > > > >>
+> > > > > > > [....]
+> > > > > > > >> +
+> > > > > > > >> +	return imx_ele_ocotp_access_control(priv);
+> > > > > > > >
+> > > > > > > >In [1] you mentioned devlink should solve the probe order.
+> > > > > > > >How
+> > > > > > does
+> > > > > > > >this play when the driver is compiled in (e.g. ethernet for
+> > > > > > > >NFS
+> > > > > > > >boot) but this OCOTP driver is just a module?
+> > > > > > >
+> > > > > > > OCOTP needs to built in for using devlink. Or the users needs
+> > > > > > > to be built as module.
+> > > > > >
+> > > > > > I don't like this kind of assumption. Would it make more sense
+> > > > > > to make CONFIG_NVMEM_IMX_OCOTP_ELE as bool instead of
+> > tristate?
+> > > > >
+> > > > > No. Users could setup their own system with this driver build in
+> > > > > or built related drivers as modules.
+> > > >
+> > > > Sure, but if the kernel locks/fails/panics while accessing
+> > > > peripherals just because of the kernel config seems at east very
+> > unfortunate to me.
+> > > > How is someone supposed to analyze/debug this?
+> > > >
+> > > > > At least for Android GKI, this driver needs to be as module.
+> > > >
+> > > > Any particular reason this needs to be a module?
+> > >
+> > > Android has a minimal kernel which is controlled by Google.
+> > > Vendors could only built modules based on Google's Image.
+> > >
+> > > Updating this to y in upstream, means we need to change it back to
+> > m
+> > > in NXP downstream android kernel.
+> >=20
+> > Ok, that's an Android thing.
+> >=20
+> > > If you need it built in, you could modify your downstream config,
+> > > right?
+> >=20
+> > I'm not saying I need a built-in. My concern is that a wrong Kconfig wi=
+ll
+> > result in silent errors/lockups.
+>=20
+> You wanna me to put this default y in arm64 defconfig in
+> upstream kernel?
+>=20
+> If yes, this could be separate patch to Shawn if this patchset got
+> merged by Srinivas.
+
+I don't know what others says about adjusting defconfig. But at least
+add a comment to the Kconfig help that if built as modules, any
+other driver relying on this also needs to be a module as well.
+
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
