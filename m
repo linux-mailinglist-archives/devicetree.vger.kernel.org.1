@@ -1,303 +1,212 @@
-Return-Path: <devicetree+bounces-139128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8274A142BC
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 21:04:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 369B0A142C9
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 21:06:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B24C3A45C4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 20:03:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52E3516998D
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 20:06:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D3BD233552;
-	Thu, 16 Jan 2025 20:03:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DC32361D6;
+	Thu, 16 Jan 2025 20:06:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="k7fCzwg3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SFvQuXVQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2068.outbound.protection.outlook.com [40.107.103.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44A623243D;
-	Thu, 16 Jan 2025 20:02:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.68
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737057783; cv=fail; b=tVf7A4lK24LG/8Ligm3p2BZY2yVDEEsWj317hf8kcDlgAOoEf9OTSl6KjFdhJhxyu7FInANTG+I3JC3iWqbJgi4lDFLZDAMO5tWXcSPWlUtisPITyKSEWrLRCXb9XBRwB1u1r1HM3/f0lLeXBkJGu8QLybbYZAHpEv16Qkwt9xE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737057783; c=relaxed/simple;
-	bh=AeFJBql6b994FrnkWGx15dKWOJICgAdVj7j+CX7Uy5I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=oAeljdCnrDimYKXZ9p4bKgTRLGnil/sG1yPrbA0g2Kz8AEC9jt2heE3SUxtx4LeTaZ3UlkKWv5S5b6IPREezq1aDgkwPSYUR79m6fj63eb45qHvIoF3AfjgNoARwC2XT5FjBaerz+WENmLHKIkf73Jj4ZFGo98m0sUtm/2uwyoM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=k7fCzwg3; arc=fail smtp.client-ip=40.107.103.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HgpBkATyCGEFZE4BKqbNrWQHueG4X0BPkvd9fWl2MhIeLaxqpgTN2900Ei3tTDibzhXWmIcRtoecfENNNet4ATiYTxRlEOZtkMthNp+OUbX41ZmrWlRAzZkRydvAg3NSs03Xa98aIO+7lM0rR3G8zkm8k/ncrq0yRiHF8bCvJpBq95z9YjcFPB6uy0XtQrAujkHfiSevjqN2TF8gOPv4Y4D14c/Ng8xNe3JhNPN1GWn6TB/6Wo5un19pnZoUZj6JHfzxvznsqrPepsG8+rzcKTnrzw5y63g/RE4IWrYmsoS71YWgxNDIA1PcaG4iwWwDw88Zx0xJTEVFdzvsqIQI0A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=d+POCXov0p2rdbnBh/rd1SkZU7K9yAXNsvdb4Zamu7k=;
- b=AnJ5jZIC0TIN1gc4WhXdDudoykRnc3q/dQ3fNNCmcMZKLFQvS6vpWGGzaLMrtcp00gRxtHpEfye0OMQRtbmQS94OsHITwke4QDCx7r/5jSoRdwUzzLRCGbChKtxCObYeirVJb46QtV1jsbdSRJD19aPsajpE+GMwbNiNeQfLg3nou852SbdulPe6V+ba+n3UPwjZvAJgNed4VBAcusTXT1cLUrnXEaYwMwWWWZZCszkVeZjRO3qBAQodgDdHkeovZjl6wSl1QeJYHFRnNww4u4NfUG8tk+c2rImETlG3actcgIPI648D6ZO2Kr1Mb25wY16+VYZaEVJxbxQjMoFtmQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d+POCXov0p2rdbnBh/rd1SkZU7K9yAXNsvdb4Zamu7k=;
- b=k7fCzwg3iIL+nxDkP3zvpC/3MPalDYXkYPkDuhkNdpuvIM2bkAchoUXbMHuEDnNQM5xjezkVADRWl0gPw90UNtl72oZUjuQxqKNwKZ17h9G372g2fXpy/XgG+U14MpZyOF+z0M2gX+PYUE4rEhSSIjiWGND9xc5g6mJQCImzZbU9WuEB3ghZvp/KiMrUpb/3wMY5K1D4ONyyS2Fqia/cw4wPa8qlWtpfkDnJAsX9OXMZrFHpYsYymz4RJf8cIOmHrj+C6TairH1Aexgu3ohiCyApitLqKb6zkroaH/rPDCekcZ+HJ/sC5WaVxK9ap94Rs50aayzgGpfxTiunytOQtQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
- by PA1PR04MB10142.eurprd04.prod.outlook.com (2603:10a6:102:464::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.13; Thu, 16 Jan
- 2025 20:02:53 +0000
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::e81:b393:ebc5:bc3d]) by DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::e81:b393:ebc5:bc3d%7]) with mapi id 15.20.8356.010; Thu, 16 Jan 2025
- 20:02:53 +0000
-Date: Thu, 16 Jan 2025 15:02:44 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
-Subject: Re: [PATCH v8 3/7] PCI: dwc: ep: Add bus_addr_base for outbound
- window
-Message-ID: <Z4ll5Ktyh5kmTzsd@lizhi-Precision-Tower-5810>
-References: <Z4lKIJ8nDst7rqCs@lizhi-Precision-Tower-5810>
- <20250116194558.GA595994@bhelgaas>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250116194558.GA595994@bhelgaas>
-X-ClientProxiedBy: SJ0PR05CA0164.namprd05.prod.outlook.com
- (2603:10b6:a03:339::19) To DB9PR04MB9626.eurprd04.prod.outlook.com
- (2603:10a6:10:309::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66AE023243D;
+	Thu, 16 Jan 2025 20:06:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737057981; cv=none; b=o2fAZrT5QVXV2qCY/HYVwhlWzmST28oeXsRI9dbp7vVMf1ltXbC2MMGZPFvOoQD2H17NJ4G9Tw57tlgh4VUd7PhakMAgODj3x+GTkR3Jzo+34k/tqcGp/aMYGtCAdG6ZZItvX/uzTOqZ82pBsS0NjvWxOF4+RFFA5WFjqpmwfrE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737057981; c=relaxed/simple;
+	bh=GLGMKnHT3WJfJKUIeW6Onw/IFAiUQIIsoXJ7IG2GFNE=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L96Lr4KY1QX08HryIutyEwX26ylg/sdqU8AeKexEbNoB7wLnRyfrDHgLR3OvM4bLvlvME8zVrDB/QJkqStXeDJTIdJPE6vZN0sENo+b8IW88Ryb1q6Q1Hma3aE9QZGwQeNVWKH1SowoUGS/k5CdGtZzeR9164b5dAymBUzsFAm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SFvQuXVQ; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-4364a37a1d7so12735725e9.3;
+        Thu, 16 Jan 2025 12:06:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737057977; x=1737662777; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KA64jD3Buukkg5rIZGBFs0alua5iyaC4SBSUtwrxfak=;
+        b=SFvQuXVQhG3g+oGoOcLXuVcnP5iG7boQhF3fGh1VIHYmA1t89ATKJYvfDNJw0AiNfJ
+         /O/U7ys6PGdpHtuCkV/gHFnd74rT16LT8lJP34xeoQNIeuNaUvRnwGcv8UOmLDDjFxOl
+         /DHluoM53PFegWQpZ7UZ4DmsojCTfMSDkYyJpE8pg0vR83RasBK/GStgFkCJvwSqWSGv
+         cxU9uNKIFfCG2x2TGFd/BqYh8tPDOhaeJCsPWLcsa/avTarK9HfWKDTNz6hpO/XOERuw
+         UxJSUNcAFKnnmT4ufBpE16PtSPiwCKJWLBkLFVBnG7pXywAg1Ytm03rLtLisicevv8Bc
+         NEuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737057977; x=1737662777;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KA64jD3Buukkg5rIZGBFs0alua5iyaC4SBSUtwrxfak=;
+        b=BXxHoqntmlzT8ewsqa45XxeqWG6JW79UpKe7Pg5sHD8mdUf/VDOf7Ug4qtA8xndEu4
+         eDvOHSHfFKDt6y8nhJFUiJl9EK0ltargOW3c8oK7NeIl3e3wx8x2tRmwk9QYygkCDEM5
+         H/jqcXM1lngUqODab+d/CmaxlLQXmhpKZ9RpchplRNEoqJ+ZgWVtlq/mjv6huXNCK2s3
+         ehPqfBUbbLazKNWq2bozCHrrzU4MudrJmDL6ZdCT+d3OeaO6t69mpvOyT05r9SB2R0fg
+         IS6YlzcNVoIfsuz9GhiQiMFaRcWx0EkWCRCiOyPOgTOWxQwCL5CMGxHLnZlPmytiXFUy
+         Soyg==
+X-Forwarded-Encrypted: i=1; AJvYcCVW+lAjZcSqt6fUXchfSY8teYn6MvCFc/FHTTITg62xp3wVfOUs+Ai6jrWNZwbH0AxkWDuPiBIHsyf/CYBn@vger.kernel.org, AJvYcCVsmqNtwn/hfUieJ/yXRm5RZAX8bpCWiejtMSHWR0OVn0uJh5wk+jJ8ep5ysFif8cDhCAxjeXWFEUDJ@vger.kernel.org, AJvYcCWCcu+4jiCEG2kgYFnhPMMpKxpB/m+fDeaaCCWZnNCCingjHTbeHruJut+7B7dX/OwqEeRu0hyNUwRJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvE9Ja3JZNNl1JKzt697uz1utmlvs49QpL1Gz2SaVahnlcVYle
+	1y9Wd6ku2lMfuIdBZH0GsBLXuXAFbtkCMwBPlIu2tN2RYGpgNnm9
+X-Gm-Gg: ASbGncuZVJQhK3C+02llGum554lRtguItR6rdMF/vzZP3d1caeqPMmI0y+LUJCPWcUY
+	AnqUpCSornSMiDgCQgRW1mj1JgfbiGdum7KXEkVkKMzJUKp8bOCwQGU7jH2CKP9bYvdjESGSUTl
+	6zy2f8x+Ne+y73FO1u0tbdwovA7QPspXC4DrCkIW+Xat3bSSNMaUp69MMG4WipLFTSGck28tsnf
+	KeuVLrQ8EyBKioLvUiJyp+N77gvXpyhmrk2nYV0tdatIdiv/sQjBkblrimGTzRq7M6N7LUa2RWB
+	dquzKqn1k51gzudmpnD/M+y2
+X-Google-Smtp-Source: AGHT+IH/Nl8ZXLmN+OwqX2FWXpVEfDLGjeAsw6lOyJLbfz4NdXK3jc2a1GLVBxqN+XczGNpYlJqyUg==
+X-Received: by 2002:a05:600c:1ca9:b0:434:f297:8e78 with SMTP id 5b1f17b1804b1-438913cb65fmr567945e9.7.1737057976341;
+        Thu, 16 Jan 2025 12:06:16 -0800 (PST)
+Received: from antoni-VivoBook-ASUSLaptop-X512FAY-K512FA ([37.161.111.60])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c749956fsm70283175e9.4.2025.01.16.12.06.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jan 2025 12:06:15 -0800 (PST)
+Date: Thu, 16 Jan 2025 21:05:58 +0100
+From: Antoni Pokusinski <apokusinski01@gmail.com>
+To: Andy Shevchenko <andy@kernel.org>, jic23@kernel.org, lars@metafoo.de,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	andrej.skvortzov@gmail.com, neil.armstrong@linaro.org,
+	icenowy@aosc.io, megi@xff.cz, danila@jiaxyga.com,
+	javier.carrasco.cruz@gmail.com, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] iio: magnetometer: si7210: add driver for Si7210
+Message-ID: <20250116200558.mr23jxpdpwyu62md@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
+References: <20250115201622.270130-1-apokusinski01@gmail.com>
+ <20250115201622.270130-3-apokusinski01@gmail.com>
+ <Z4jCz1VXVPtEDNqB@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|PA1PR04MB10142:EE_
-X-MS-Office365-Filtering-Correlation-Id: 04424579-e834-4d91-e64b-08dd3668c311
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|52116014|7416014|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Rk14dk5xVFV6eGorOUxVNGZXZkNLQVdBUlN1S0tya0ExTVBsUFFLZXR6dTFO?=
- =?utf-8?B?SGxxSmtRaiswOFJkcWZjMEhlcmw3RmdBUkt4ZENxQmdtbzNnT1JXYkt0ZWE4?=
- =?utf-8?B?TVo4cUFBc0NFaEs3Nk5wZnFRUVU4QytPYnZOWDkzTlV4dEJYcjBnLzU3OEtu?=
- =?utf-8?B?aS96aGZVYkN2T2dwTXpIMjU2N3F0TEZMTks2Uml4RmpqT212TS9OUGEwb2Ni?=
- =?utf-8?B?Ulk5MGtvQis1VW0raTJvNFU3NEFTazFDcmJST2lBbWd2ejFSOWNQbVNyeG5R?=
- =?utf-8?B?WEIzSS9PTHJyczF4bXE1OVIvYUt5ZlZLU3NUc09EdURsWHlJZmk0Yks4REN5?=
- =?utf-8?B?K1IzNVNGeG9sZS9paC9lU2Z1Nks1YzNzMzd5YWdSUnArNTZ0RnNuRkFNSnp1?=
- =?utf-8?B?RitMYVA5cEJKOUJ4Z3Jpa3p2MGdFRTVjQlhnSFgyeElDMTRCYnY3S2NVa1Iz?=
- =?utf-8?B?WTBVK21GcnRHaGFYN29LdDFLRjZpcjBQNlVvckxnUWcwK2RXYUJaSUp3QlVZ?=
- =?utf-8?B?aytydkZOVWpaL1RPWmFiaVVocDlIejd4RjRlY0NjcXVsRGJlRGtnRHF1OHNT?=
- =?utf-8?B?RXB6TlhMUUtIYkI0TU5lcmV6SXNjU0czRGUrS1cvVjFEcTN0RHRXYnUyVDVt?=
- =?utf-8?B?alFMbHFNOVFNYlJJSUNCa0JkT1BlLzZTNmxHcTBqdUh4ellhQ0c1MjZzWHNv?=
- =?utf-8?B?cTh0T3lQbXVKa0txeEFuSjVQRWp4aDJmUXpKeDVGMlowK0NSdTgxNEswUTRH?=
- =?utf-8?B?Qy9CQU80M1ZWSmZpVzE0SVFxT2lMMWRzQnczQngyaUhYY2Rsbjh6eUoyS0pX?=
- =?utf-8?B?QkNGdmY0L1BRZWhaRXJHM1p0WEFvd2d0RXVUOHYrbWNkbEgxUFJtOXRJcWxJ?=
- =?utf-8?B?YjBPRVBrNHgxc1BIL0NRMnVoN0JTK1dadG9nNHhhZDRCdDh5cHEyVGhRM0xz?=
- =?utf-8?B?OUo5eWNFNU1nNlYwdm53Nzd4Nm1kSzRxVVJLeHhlSnVLN1FtM2MyclZKRVVq?=
- =?utf-8?B?MVBxM2pkNWl1bSt0OVU0R1JNZ2g4QTUzaGFmNkgwdHZlNjkvVllzQ2ZLNjRH?=
- =?utf-8?B?M01PanIvbWUyTUdLOVNGMUcxWnlzenJRQ2grdUxUNTh5SUE1a2l5cyt5ZGtB?=
- =?utf-8?B?NmNPeEw3YnhkQ2hDNzZVK3V5ZEt5U05oS0Rpb25sRnY5WlpSOUlrUnlFZWVp?=
- =?utf-8?B?eFE3aEVkRjk0WmN1VWNiM0U5MUxQU244VHRlK2FyNTYxbmMvVE5jUXI1TGFS?=
- =?utf-8?B?d0oydXRUcXUzU1NkZU1iZzFnd1RUODBnRG9mOU8zaVQ2T3NNVVNqUUtwS0dU?=
- =?utf-8?B?dVExMnFxMXlESjF3Z1lQVFlUWkREWkZaeHM5Y1kzUWdtemFRYjIzTlhnY05L?=
- =?utf-8?B?cFJRV1loVDZ3VDVtd1lKMEpsVGpEVEdZWXF6Wk1iaXFQQVA0aThVQ25pME5L?=
- =?utf-8?B?WEtqdzZrS1VRSDQyWi9UUm5VR1E3UWZrUCtPNDBWbEF5QWNJQXg2dnA5M0JM?=
- =?utf-8?B?eUdNS0ZjUk9tU3lieDk2ZXBFN1VFM3J3MVk4bkg3T3Y3WDgxQnc5NE9tU3hE?=
- =?utf-8?B?LzVaMnhybU5vRCtoUW52NmZzbFRJOFQ0Zld5OGN0RmI3aGlTQ25mQjU2RVFq?=
- =?utf-8?B?ZS95RGYzaWt3aE5TTVB5dWdhTWZKTDlIZVprc0txSUdTNWRrbSt0cTRXL2Jv?=
- =?utf-8?B?dnpIU3JUUUhMa3M4emZtb1htRXRWTUdGcHFHb1p6TCsrZ3hHRlRDZjV3aDUr?=
- =?utf-8?B?WWlBOStGYkJ0a2dUMm93aGZtdm1HN0dObFlEc1FPUll4YXNvbk5tdUtjdkZ1?=
- =?utf-8?B?MzFFL0p0QnVETjg3SzJ1WVUvNGRLZzFITHBpM1RFTjRaSCtodHdGNlB2Sy82?=
- =?utf-8?B?Y3FvT3MvbkNCUDBDUWNsZUhkMjlISGpNZWdIRzAyNFlGRFA0UzZ0QVJjN0tH?=
- =?utf-8?Q?Cfdtgg/hnUSHBRj/oMaHySa7NkEF+pG2?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?d043ZE1lbGlHcVdPSjVGV1JRa2o3ZlkvNEZXSkZ4OWJaN28xK1B1anZJZERK?=
- =?utf-8?B?OHBXSUFRUE0ycFNCcVYvanQ1M1ZjOFhpRHVYYXpGU3ZOSHh3M1JxbzRLaWhL?=
- =?utf-8?B?ZytUSlNJdWZvK291M0hvbjJuSUxQOWFvdWlnTHRtTVYzZ2xEb1NEQWpwTnN4?=
- =?utf-8?B?eGxwQTN5Z0k3UFJnM2I0UnQrRkd6T2ttLzdSMGVPa2V1a3UyYnI3b2JyNGpu?=
- =?utf-8?B?QmFKVldOVS9zeXhISW8xTHJGRW9KZVdvaHh0VVlTYWtyTWhldEUwSUlsMnVn?=
- =?utf-8?B?TUdoOEl6amV1YWZFYmJxK2dTN3ljTDNIT2UwZjduSXhCTTVKVjF2Y0s2UW9h?=
- =?utf-8?B?Y0xZcHdIcHROY1E3MUp0VElrTEZWbFdLUEpYWHdCbVU5OWsxZXYydG5FSUcr?=
- =?utf-8?B?NnNGZk9BUFBFQmlJR2ppMGxiZ0Z5ckNPT0s3OXJwTnRZcXFtTksrOHBscWZy?=
- =?utf-8?B?Yk5PcW9LUHg4ZjhnL3FVcmFaaFcyV1ZWUUIxaU9CUkpWRmZoRENLaEcxaWJK?=
- =?utf-8?B?akR6WEsxcVNFblFEZ25pSnhIZGRVeTFVVlVrR1ZDN2RIVEJrc2tFYUd0Q2hT?=
- =?utf-8?B?aXpXY3gvY0VCdnNXWHNleGorSmIvWFk0TnRHcFNYRUJ5R2tiWW55L1RJUmFB?=
- =?utf-8?B?UEF3LzlIWHdPOGxybUF4WHFOU3Irc0F6MysrMG5aZDFVZzB2VzZPWnhsZEFz?=
- =?utf-8?B?TzVnaktxU0w3eW9Geit5YUxQOUtyaGFKTWMvbzdBOXJ0QkdBdithbVlTTkNR?=
- =?utf-8?B?dFpEUk5ycENDNkFuajl5VENmNkdhSEloNi83YzY4TkdqVjZnWVpwUndBUENL?=
- =?utf-8?B?a0FhWU5GTnYxeVQ3M0s4UGdhZkEzY0REcnVrNmh6RjVZb1V3VVMyUDJPdzBU?=
- =?utf-8?B?V0RBOHE2Q1I2SnI5bTgxUWVoQncweXh2Rm9DSi91bXZYRHl5dm4wcFBteEdq?=
- =?utf-8?B?SlhQcGJOY3loYlJIbnQwWEsvUGtwSy9CWVFnQkU3UnBzNStvaVZ2aEhvWUZ3?=
- =?utf-8?B?TEh2VEwySlg0QjVpSm11N1RZQTlYYis3NjJsMVRSbFRDaFk2aVB2RHdtMk9u?=
- =?utf-8?B?YndJUGNkWTlyN2tiZXdEZm9EcDk1VTY0a2pTYWUwTzZ3bVEzamQ0bGt0RVlE?=
- =?utf-8?B?UzlrSW52cFcxMG5Idk5wWEZOdGovN1djV3pUa1FtRjErR09XZmtrenNBUlMx?=
- =?utf-8?B?eXViQVFiRWdCS3RjRkwwT3Y4OXQ0NytEK1BOQzVtNnAvTVg3bGNlc0JmYWp6?=
- =?utf-8?B?NlJVR0tUNjBhVXppUVBBdWxsam90cThqMFJwQ05pdW0yWnU3YTZMUlRhcy9E?=
- =?utf-8?B?M0Y0S0NjVFVyQkZoQ21TNVUzdlNLMnZFOUczemcvdGpLdFRvWmNCUHp1M0Jp?=
- =?utf-8?B?SVNXVzNkOW15VEx4aFZRQ05ZenUybnc2YklyOVNaMkhrOWpWVWU3L1p0b2hi?=
- =?utf-8?B?SGFJSUY4M1FUcW5GVXlMWS9DYU9nSDE3di80ditTeDEvNWZ1S3hQRkNNUzIy?=
- =?utf-8?B?MUNKd2g2YWd1NVBwa25USzJCS2Zoa3AzNVNmKzBxRGdzYjFuWUFXcFVsemx4?=
- =?utf-8?B?WFpJTUVVVzc3Vmp3Q000NDlFMkk5d2RWVm1ESEpNbm9Nc1l1cEZwRUVuZG5y?=
- =?utf-8?B?RFBCT1pJWHZBR3k5dC9kbEtTTi9KRGJrWHZYRVNWT013Yy9EckJPZ0VTb0pP?=
- =?utf-8?B?RjEzNGtwMTB0ellpbkNjT2V2WDg5ckZXMnEzT1dQWUljaTBTNFlJQ084cDJS?=
- =?utf-8?B?V045d21rbERIcVhmQW1aZStQZ09VcnFRWEJSN095MkcvNUVWRFdPVll2cUlh?=
- =?utf-8?B?RGt1aWxpWnVIL0lhRE5XTmdXaVgybjVpQktMUjU2YnI2Q0pnL20veDFlcDcr?=
- =?utf-8?B?RFFGbWxlK1JFV3hZRm4xM0RjOFJSc2lBRHdua3UxeXY0TzhKK1NlVjV4UDR3?=
- =?utf-8?B?WkdDQ0pGSlJtY1VkTHcvMGVVOEpGaVBKRDlMWFdNR1pyaWt6SkZPNnB6dHly?=
- =?utf-8?B?M0NQNGxJaTY2SlZJSUY1N2FDVVFpRy9rQkhCMjFvcm9mcytIOU05aHA4Y0ZB?=
- =?utf-8?B?ajJBNzVoNGxxT3A5K0FHbk5CZnovNTVFcUlDN0FsVW11c0JBTU5kVHVNUC9L?=
- =?utf-8?Q?XoSAdJQa14Ee8tSx83N9klNHd?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 04424579-e834-4d91-e64b-08dd3668c311
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jan 2025 20:02:53.5155
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: h/VQsXitKiOv/tgEiCQIckP8B+AGGTwwCZbnkXXCfVo7d3Mc22578PjWu+NdGRuLgeJOcUaoa1eSP++W/H8gew==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10142
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z4jCz1VXVPtEDNqB@smile.fi.intel.com>
 
-On Thu, Jan 16, 2025 at 01:45:58PM -0600, Bjorn Helgaas wrote:
-> On Thu, Jan 16, 2025 at 01:04:16PM -0500, Frank Li wrote:
-> > On Thu, Jan 16, 2025 at 09:32:39AM -0600, Bjorn Helgaas wrote:
-> > > On Tue, Nov 19, 2024 at 02:44:21PM -0500, Frank Li wrote:
-> > > >                    Endpoint
-> > > >   ┌───────────────────────────────────────────────┐
-> > > >   │                             pcie-ep@5f010000  │
-> > > >   │                             ┌────────────────┐│
-> > > >   │                             │   Endpoint     ││
-> > > >   │                             │   PCIe         ││
-> > > >   │                             │   Controller   ││
-> > > >   │           bus@5f000000      │                ││
-> > > >   │           ┌──────────┐      │                ││
-> > > >   │           │          │ Outbound Transfer     ││
-> > > >   │┌─────┐    │  Bus     ┼─────►│ ATU  ──────────┬┬─────►
-> > > >   ││     │    │  Fabric  │Bus   │                ││PCI Addr
-> > > >   ││ CPU ├───►│          │Addr  │                ││0xA000_0000
-> > > >   ││     │CPU │          │0x8000_0000            ││
-> > > >   │└─────┘Addr└──────────┘      │                ││
-> > > >   │       0x7000_0000           └────────────────┘│
-> > > >   └───────────────────────────────────────────────┘
-> > > >
-> > > > Use 'ranges' property in DT to configure the iATU outbound window address.
-> > > > The bus fabric generally passes the same address to the PCIe EP controller,
-> > > > but some bus fabrics map the address before sending it to the PCIe EP
-> > > > controller.
-> > > >
-> > > > Above diagram, CPU write data to outbound windows address 0x7000_0000, Bus
-> > > > fabric map it to 0x8000_0000. ATU should use bus address 0x8000_0000 as
-> > > > input address and map to PCI address 0xA000_0000.
-> > > >
-> > > > Previously, 'cpu_addr_fixup()' was used to handle address conversion. Now,
-> > > > the device tree provides this information, preferring a common method.
-> > > >
-> > > > bus@5f000000 {
-> > > > 	compatible = "simple-bus";
-> > > > 	ranges = <0x80000000 0x0 0x70000000 0x10000000>;
-> > > >
-> > > > 	pcie-ep@5f010000 {
-> > > > 		reg = <0x80000000 0x10000000>;
-> > > > 		reg-names ="addr_space";
-> > > > 		...
-> > > > 	};
-> > > > 	...
-> > > > };
-> > > >
-> > > > 'ranges' in bus@5f000000 descript how address map from CPU address to bus
-> > > > address.
-> > >
-> > > Shouldn't there also be a pcie-ep@5f010000 'ranges' property to
-> > > describe the translation for the window from bus addr 0x8000_0000 to
-> > > PCI addr 0xA000_0000?
-> >
-> > Needn't 'ranges' under pcie-ep@5f010000 because history reason. DWC use
-> > reg-names "addr_space" descript outbound windows space.
->
-> If reg-name "addr_space" is used instead of 'ranges' for some
-> historical reason, we should mention that in the commit log so people
-> don't assume that this difference is the way it's *supposed* to be
-> done.
+On Thu, Jan 16, 2025 at 10:26:55AM +0200, Andy Shevchenko wrote:
+> On Wed, Jan 15, 2025 at 09:16:22PM +0100, Antoni Pokusinski wrote:
+> > Silicon Labs Si7210 is an I2C Hall effect magnetic position and
+> > temperature sensor. The driver supports the following functionalities:
+> > * reading the temperature measurements
+> > * reading the magnetic field measurements in a single-shot mode
+> > * choosing the magnetic field measurement scale (20 or 200 mT)
+> 
+> ...
+> 
+> > +obj-$(CONFIG_SI7210) 			+= si7210.o
+> 
+> Looks like TAB/space mixture in the middle.
+> 
+> ...
+> 
+> > +#include <asm/byteorder.h>
+> 
+> asm/* usually goes after linux/*
+> 
+> > +#include <linux/array_size.h>
+> > +#include <linux/bitfield.h>
+> > +#include <linux/bits.h>
+> > +#include <linux/cleanup.h>
+> > +#include <linux/err.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/iio/iio.h>
+> > +#include <linux/math64.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/regulator/consumer.h>
+> > +#include <linux/types.h>
+> > +#include <linux/units.h>
+> 
+> ...
+> 
+> Despite a good formatting I would still add a comment with a formula in
+> math-human-readable form.
+> 
+> > +		temp = FIELD_GET(GENMASK(14, 3), dspsig);
+> > +		temp = div_s64(-383 * temp * temp, 100) + 160940 * temp - 279800000;
+> > +		temp *= (1 + (data->temp_gain / 2048));
+> > +		temp += (int)(MICRO / 16) * data->temp_offset;
+> 
+> > +		ret = regulator_get_voltage(data->vdd);
+> > +		if (ret < 0)
+> > +			return ret;
+> > +
+> > +		temp -= 222 * div_s64(ret, MILLI);
+> 
+> Including this piece.
+> 
+> > +		*val = div_s64(temp, MILLI);
+> 
+> ...
+> 
+> > +static int si7210_set_scale(struct si7210_data *data, unsigned int scale)
+> > +{
+> > +	s8 *a_otp_values;
+> > +	int ret;
+> > +
+> > +	if (scale == 20)
+> > +		a_otp_values = data->scale_20_a;
+> > +	else if (scale == 200)
+> > +		a_otp_values = data->scale_200_a;
+> > +	else
+> > +		return -EINVAL;
+> > +
+> > +	guard(mutex)(&data->fetch_lock);
+> > +
+> > +	/* Write the registers 0xCA - 0xCC */
+> > +	ret = regmap_bulk_write(data->regmap, SI7210_REG_A0, a_otp_values, 3);
+> > +	if (ret)
+> > +		return ret;
+> 
+> > +	/* Write the registers 0xCE - 0xD0 */
+> > +	ret = regmap_bulk_write(data->regmap, SI7210_REG_A3, &a_otp_values[3], 3);
+> > +	if (ret)
+> > +		return ret;
+> 
+> Just to be sure I understand the above. There are two of 24-bit values or there are
+> two sets of 3 byte arrays? How does datasheet refers to them? What does common sense
+> tell us here?
+> 
 
-How about add comments after
+It's the second option: we have 2 arrays of 3 elements each (a0, a1, a2
+and a3, a4, a5). In the datasheet the names of the values correspond
+to the names I used in the driver, that is there are 6 values a0, ..., a5.
 
-reg-names ="addr_space"; // Indicate EP outbound windows space instead use
-ranges by histortical reason.
+The point is that the their registers are separated by the 0xCD register.
+Therefore I had to call `regmap_bulk_write()` twice in order to
+write values a0 - a2 to the registers 0xCA - 0xCC and similarly the
+values a3 - a5 to the regs 0xCE - 0xD0.
 
->
-> I only see "addr_space" mentioned in
-> Documentation/devicetree/bindings/pci/*-ep.yaml, so I assume
-> this "addr_space" usage only applies to endpoints?
-
-Yes, "addr_space" usage only applies to endpoints.
-
->
-> > > > Use `of_property_read_reg()` to obtain the bus address and set it to the
-> > > > ATU correctly, eliminating the need for vendor-specific cpu_addr_fixup().
-> > >
-> > > Why is this different from [1], where parent_bus_addr comes from the
-> > > 'ranges' property?  Isn't this the same exact kind of address
-> > > translation for both RC and EP mode?
-> >
-> > The method is the same, but space means is difference.
-> >
-> > RC side:
-> >    regs, 1: controller register, 2: config space, (although it should be
-> > in ranges)
-> >    ranges, (IO range and Memory range).
-> >
-> > EP side:
-> >    regs, 1: controller register, 2: outbound windows space.("addr_space")
-> >
-> > All regs need call of_property_read_reg() to get untranslated address.
-> > ranges:  use "parent_bus_addr" in [1].
->
-> I think we should at least use the same name ("parent_bus_addr", not
-> "bus_addr_base") and probably also figure out a wrapper or similar way
-> to use 'ranges' for future endpoint drivers and fall back to
-> "addr_space" for DWC.
-
-Okay for name parent_bus_addr.
-Do you need me to respin it? Or you change it by yourself?
-
-Frank
-
->
-> > > [1] https://lore.kernel.org/r/20241119-pci_fixup_addr-v8-1-c4bfa5193288@nxp.com
->
-> > > > +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> > > > @@ -410,6 +410,7 @@ struct dw_pcie_ep {
-> > > >  	struct list_head	func_list;
-> > > >  	const struct dw_pcie_ep_ops *ops;
-> > > >  	phys_addr_t		phys_base;
-> > > > +	u64			bus_addr_base;
-> > > >  	size_t			addr_size;
-> > > >  	size_t			page_size;
-> > > >  	u8			bar_to_atu[PCI_STD_NUM_BARS];
+> > +	data->curr_scale = scale;
+> > +
+> > +	return 0;
+> > +}
+> 
+> ...
+> 
+> Overall LGTM, there is no need for resend as I believe the three things above
+> may be tweaked by Jonathan. The last one can go even if there are 2 24-bit
+> values, but ideally in that case we should use those as a such and apply
+> put_unaligned_be24/le24() whichever suits better.
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
+> 
+Kind regards,
+Antoni
 
