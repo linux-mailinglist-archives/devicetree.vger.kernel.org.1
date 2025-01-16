@@ -1,198 +1,167 @@
-Return-Path: <devicetree+bounces-138939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44641A1348D
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:00:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A3B6A134A5
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:06:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 57BA63A6568
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:00:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 62D447A041B
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:05:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C60C19F11F;
-	Thu, 16 Jan 2025 08:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F14D4198850;
+	Thu, 16 Jan 2025 08:05:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oBYqv24m"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NT3wG8zu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AA921991B2;
-	Thu, 16 Jan 2025 08:00:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C7B381AA;
+	Thu, 16 Jan 2025 08:05:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737014444; cv=none; b=l99B2zKnPMemHJ68sAAfbC0/G6738CDfHyRRQgPkR+3+/y5lzj1/ClXdeWXJxtKuxcYmoMKCBzDSP4uqRC6jAuG1P+60REjyfweZa75pbOyazQz4hcyF/UEI73jXNBH5fXKSLlHSoBgKsadcLa7SIcy/SjQIj8EgG8scGwbQH/o=
+	t=1737014756; cv=none; b=EJ44wfY6Qg2DHExQjJCJgDSoL6G9X5uRiiu3ZmbCio8KfQWqCW6LnpBFpYooASxd2ToO8LKPLzJydQRgcSLBahVRoH/9NJZ8N9m/ePfFbWGGkuxlokS27DAxmswF/AAUFv/aYAwMW0JazezJDsB2Nd7bAX5xUAy5Gr/phSn3F/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737014444; c=relaxed/simple;
-	bh=KR6pDDk62q9UaRrK4RmyRNoSNWfVR6Rmaqs4PT1/DAU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eaYs5iC2W4W8IyR/J2Lhf+NnoiPXZG8xxhZjFZH6o6oa6KE/ySM/n7A/EpBReUkt09KoKRWF9DgragXPHPiQSmUj+y4vWUW/bABZ1LOqf425IW6gvRAmUMesdeA0uBM6WsylMsTI8LE5hoRC21cwuAUxFwClWIjX+EVKBW4zh+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oBYqv24m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B29D0C4CED6;
-	Thu, 16 Jan 2025 08:00:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737014443;
-	bh=KR6pDDk62q9UaRrK4RmyRNoSNWfVR6Rmaqs4PT1/DAU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oBYqv24m0tlLBTlBFW24hd/H61Wr/cGmMHYP+bQ+w2WCuktl5qr/B6BJZveAUzv4v
-	 qO1VqvSooL0lt8GXF67x9jllkjaGFVQ26mQlwX1olnl9RKvN9LwgLDiP5YzZE3SEWg
-	 HWL2HVOTDdbXeL55L1/rr4tVC9/TC6PKtPJh2iIDwnbe8PEOZcOmo5fec+fo3X1KA2
-	 rbW/ctzgeL4aafBBAdfCgJ2JBGG/jeL/GSR1A5Z14TsM/CgX0ySsu0UKxm6p3SYO8n
-	 nz2UFzCFo2ckNiHL4HCQZN01+nDZi19gR0SsPToWVU2StsqMhqeyIVJ2iZJZQtPV9E
-	 RUr2fUgDNqgBA==
-Date: Thu, 16 Jan 2025 09:00:40 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Lubomir Rintel <lkundrak@v3.sk>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
-	Gregory Clement <gregory.clement@bootlin.com>, Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, 
-	Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>, 
-	"Guilherme G. Piccoli" <gpiccoli@igalia.com>, David Wronek <david@mainlining.org>, 
-	Karel Balej <balejk@matfyz.cz>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org, phone-devel@vger.kernel.org, 
-	~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH v14 3/4] arm64: dts: Add DTS for Marvell PXA1908 and
- samsung,coreprimevelte
-Message-ID: <ct7q2eaps2m2ceghiek2pmb7yhd5it6s53moumfncnyq4d4zmw@fmtoyyn3j5t2>
-References: <20250115-pxa1908-lkml-v14-0-847d24f3665a@skole.hr>
- <20250115-pxa1908-lkml-v14-3-847d24f3665a@skole.hr>
+	s=arc-20240116; t=1737014756; c=relaxed/simple;
+	bh=5rd12jR+ruZpQr+zcf+f2VHKx265Ozuy8y6gxIm+YW4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=no96MNgo1Qg6O8FmiuJNNsAoyiI5FD2x2U7h5N3mMYVACPwlISzZVvpwj8T7wl/SCFH9ASCATDgKzHgQQ7dc/4FT0RznzKeW97JYQYVKLr+aMMLJk73L7t1/JbxUCoLIqvmImaN/C3/X/ZWligyPnq4/osn4OzFk92sl4q3RGUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NT3wG8zu; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50G4nmO1030734;
+	Thu, 16 Jan 2025 08:05:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5rd12jR+ruZpQr+zcf+f2VHKx265Ozuy8y6gxIm+YW4=; b=NT3wG8zulBWYxQcZ
+	pYTsUIpwcj2Nyb6HsToUyg555KlgNrIs72EIr+UBkmgWUVRvoThly8YU6jGMLGJi
+	3Xzi37Lgr4DzE8xF4cVa81Hd+BwSOkGEE8SHsFL87F2Vb+6wyoosUTcbVW+glPTg
+	9fnbxPJlLf9WXfj8ipXTWUuhtmOqZ1S0qC0+Y8J9JPQNhv/Lbr8oX6ZJQEJTWD5d
+	gHqp0RyYiOuybarTuAeZNLkKN6XfuvDa7Q/l+CVb+WZBXOZhmLQyNOpmHbmf9ryl
+	Z79ocHAJm3DhdCoE+akKXSrTHgYVrF/Sqv4W3tq12eqH7j4GdhVPD1c5QmzN8sEw
+	ADwL+Q==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 446ue8gdsn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Jan 2025 08:05:33 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50G85Wgj004387
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 16 Jan 2025 08:05:32 GMT
+Received: from [10.110.84.216] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 16 Jan
+ 2025 00:05:24 -0800
+Message-ID: <eef55e66-629a-46c4-822b-bce41cff51a2@quicinc.com>
+Date: Thu, 16 Jan 2025 13:35:20 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250115-pxa1908-lkml-v14-3-847d24f3665a@skole.hr>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 3/5] thermal: qcom: Add support for MBG thermal
+ monitoring
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        "Rafael J. Wysocki"
+	<rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Zhang Rui
+	<rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        "Lars-Peter
+ Clausen" <lars@metafoo.de>, Lee Jones <lee@kernel.org>,
+        Stephen Boyd
+	<sboyd@kernel.org>, Amit Kucheria <amitk@kernel.org>,
+        Thara Gopinath
+	<thara.gopinath@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Jagadeesh
+ Kona" <quic_jkona@quicinc.com>, <quic_kamalw@quicinc.com>,
+        <quic_jprakash@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>
+References: <20241212-mbg-v2-support-v2-0-3249a4339b6e@quicinc.com>
+ <20241212-mbg-v2-support-v2-3-3249a4339b6e@quicinc.com>
+ <cf2f2510-9d27-4473-bf50-45b14725f4c5@oss.qualcomm.com>
+ <c5079172-e127-4dfc-826a-b32489d852f8@quicinc.com>
+ <ba764e00-2968-447f-99d1-5925e7782491@oss.qualcomm.com>
+Content-Language: en-US
+From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+In-Reply-To: <ba764e00-2968-447f-99d1-5925e7782491@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: BbVQTR9sHQ_quzWQ50wcNfxnBKqnP-cS
+X-Proofpoint-ORIG-GUID: BbVQTR9sHQ_quzWQ50wcNfxnBKqnP-cS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-16_03,2025-01-16_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ bulkscore=0 malwarescore=0 clxscore=1015 spamscore=0 adultscore=0
+ priorityscore=1501 suspectscore=0 impostorscore=0 phishscore=0 mlxscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501160058
 
-On Wed, Jan 15, 2025 at 09:35:56PM +0100, Duje Mihanovi=C4=87 wrote:
-> Add DTS for Marvell PXA1908 SoC and Samsung Galaxy Core Prime Value
-> Edition LTE, a smartphone based on said SoC.
->=20
-> Signed-off-by: Duje Mihanovi=C4=87 <duje.mihanovic@skole.hr>
-> ---
->  arch/arm64/boot/dts/marvell/Makefile               |   3 +
->  .../dts/marvell/pxa1908-samsung-coreprimevelte.dts | 336 +++++++++++++++=
-++++++
->  arch/arm64/boot/dts/marvell/pxa1908.dtsi           | 300 +++++++++++++++=
-+++
->  3 files changed, 639 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/m=
-arvell/Makefile
-> index ce751b5028e2628834340b5c50f8992092226eba..39c5749e631db33aa8fb0386a=
-951c0a70215bc02 100644
-> --- a/arch/arm64/boot/dts/marvell/Makefile
-> +++ b/arch/arm64/boot/dts/marvell/Makefile
-> @@ -32,3 +32,6 @@ dtb-$(CONFIG_ARCH_MVEBU) +=3D cn9130-cf-base.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) +=3D cn9130-cf-pro.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) +=3D cn9131-cf-solidwan.dtb
->  dtb-$(CONFIG_ARCH_MVEBU) +=3D cn9132-clearfog.dtb
-> +
-> +# MMP SoC Family
-> +dtb-$(CONFIG_ARCH_MMP) +=3D pxa1908-samsung-coreprimevelte.dtb
 
-Hm, why separate ARCH if this is part of Marvell Makefile? One ARCH per
-vendor, so if you think this is different than MVEBU, then should be in
-a separate subdirectory of marvell.
+On 12/30/2024 7:36 PM, Konrad Dybcio wrote:
+> On 30.12.2024 10:45 AM, Satya Priya Kakitapalli wrote:
+>> On 12/13/2024 9:18 PM, Konrad Dybcio wrote:
+>>> On 12.12.2024 5:11 PM, Satya Priya Kakitapalli wrote:
+>>>> Add driver for the MBG thermal monitoring device. It monitors
+>>>> the die temperature, and when there is a level 1 upper threshold
+>>>> violation, it receives an interrupt over spmi. The driver reads
+>>>> the fault status register and notifies thermal accordingly.
+>>>>
+>>>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+>>>> ---
+>>> [...]
+>>>
+>>>> +static const struct mbg_map_table map_table[] = {
+>>> Is this peripheral/pmic-specific?
+>>
+>> Yes, peripheral specific.
+> Okay, I asked a question that I don't recall what I meant by.
+>
+> To be clear, is this table specific to all instances of MBG on
+> different kinds of PMIC7, or does it only apply to PM8775
+> specifically?
 
-> diff --git a/arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.d=
-ts b/arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dts
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..83b789a837d3876bf15ed0d7e=
-10e190eacdfd56f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/marvell/pxa1908-samsung-coreprimevelte.dts
-> @@ -0,0 +1,336 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +#include "pxa1908.dtsi"
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/linux-event-codes.h>
-> +
-> +/ {
-> +	model =3D "Samsung Galaxy Core Prime VE LTE";
-> +	compatible =3D "samsung,coreprimevelte", "marvell,pxa1908";
-> +
-> +	aliases {
-> +		mmc0 =3D &sdh2; /* eMMC */
-> +		mmc1 =3D &sdh0; /* SD card */
-> +		serial0 =3D &uart0;
-> +	};
-> +
-> +	chosen {
-> +		#address-cells =3D <2>;
-> +		#size-cells =3D <2>;
-> +		ranges;
-> +
-> +		stdout-path =3D "serial0:115200n8";
-> +
-> +		/* S-Boot places the initramfs here */
-> +		linux,initrd-start =3D <0x4d70000>;
-> +		linux,initrd-end =3D <0x5000000>;
-> +
-> +		fb0: framebuffer@17177000 {
-> +			compatible =3D "simple-framebuffer";
-> +			reg =3D <0 0x17177000 0 (480 * 800 * 4)>;
-> +			width =3D <480>;
-> +			height =3D <800>;
-> +			stride =3D <(480 * 4)>;
-> +			format =3D "a8r8g8b8";
-> +		};
-> +	};
-> +
-> +	/* Bootloader fills this in */
-> +	memory {
-> +		device_type =3D "memory";
-> +		reg =3D <0 0 0 0>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells =3D <2>;
-> +		#size-cells =3D <2>;
-> +		ranges;
-> +
-> +		framebuffer@17000000 {
-> +			reg =3D <0 0x17000000 0 0x1800000>;
-> +			no-map;
-> +		};
-> +
-> +		gpu@9000000 {
-> +			reg =3D <0 0x9000000 0 0x1000000>;
-> +		};
-> +
-> +		/* Communications processor, aka modem */
-> +		cp@5000000 {
-> +			reg =3D <0 0x5000000 0 0x3000000>;
-> +		};
-> +
-> +		cm3@a000000 {
-> +			reg =3D <0 0xa000000 0 0x80000>;
-> +		};
-> +
-> +		seclog@8000000 {
-> +			reg =3D <0 0x8000000 0 0x100000>;
-> +		};
-> +
-> +		ramoops@8100000 {
-> +			compatible =3D "ramoops";
-> +			reg =3D <0 0x8100000 0 0x40000>;
-> +			record-size =3D <0x8000>;
-> +			console-size =3D <0x20000>;
-> +			max-reason =3D <5>;
-> +		};
-> +	};
-> +
-> +
 
-If there is going to be resend/new version:
-Just one blank line.
+No it is not specific to PM8775 pmic, it is specific to MBG peripheral.
 
-Best regards,
-Krzysztof
 
+>>>> +    /* minT    vtemp0    tc */
+>>>> +    { -60000, 4337, 1967 },
+>>>> +    { -40000, 4731, 1964 },
+>>>> +    { -20000, 5124, 1957  },
+>>>> +    { 0,      5515, 1949 },
+>>>> +    { 20000,  5905, 1940 },
+>>>> +    { 40000,  6293, 1930 },
+>>>> +    { 60000,  6679, 1921 },
+>>>> +    { 80000,  7064, 1910 },
+>>>> +    { 100000, 7446, 1896 },
+>>>> +    { 120000, 7825, 1878 },
+>>>> +    { 140000, 8201, 1859 },
+>>>> +};
+> Konrad
 
