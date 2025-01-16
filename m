@@ -1,280 +1,138 @@
-Return-Path: <devicetree+bounces-139055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8600A13CA4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:48:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C166A13CA5
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:48:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17F9C3A386D
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E44A43A46D7
 	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6DCF22B58E;
-	Thu, 16 Jan 2025 14:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8228522B8AB;
+	Thu, 16 Jan 2025 14:48:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="zNVOCeTk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-190e.mail.infomaniak.ch (smtp-190e.mail.infomaniak.ch [185.125.25.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD8EE22C9E6
-	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 14:48:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ED0822B59B
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 14:48:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737038885; cv=none; b=cWSKw1WrbynOyTxJz+GatJtUHJ971CvriFXhtsuE5rsi9FDdDmGl2RkL0ZCYgCGsqkjweu+cdGIhyBMC0aKKEhbbFL5Lk8W1AQFObRUFKqP2zkQs6PSxHBTKbq+HgWSMIfxLSw+gVeNLdu7vemw2lRBTd62XsBvPTKDE3iZvgRk=
+	t=1737038889; cv=none; b=hdJ7Qpt+5E/Ti0Tkl3kAgvECUP0ax7IGpbZtmmX43qKbDj+xGSe1ACH/zTN3BPIXJuFgZl1FvOiRDK1zrDZCRCzBhW/rpLf6bGGB3qQaUQcCXvlhb2wgqkRWB2eHMotE3s8KaInZ90CxWLgs28Q7mJYTN//BF8+PNzt8B3AElLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737038885; c=relaxed/simple;
-	bh=UcmQPv1JCpwBoBdlfwo737F/Irf0XKTYxAJl1KoBzsU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=c0LWACy4HHNrliSzAz1XqktQJw5nOuBSplA5+xn9dD35C3uP3P0OoepajN6hdvB2bNeOlSmAr/bDc804/RHiv7fi5mHoz3yHLxglTOWb1JgI5RcBU2IZueabAK90lq4fAoLSL0T6fRWT1mR45NOelptCmRCCMfCotjMDy6k1Uy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
-Received: from smtp-3-0001.mail.infomaniak.ch (smtp-3-0001.mail.infomaniak.ch [10.4.36.108])
-	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YYm1m1T7jzBHW;
-	Thu, 16 Jan 2025 15:47:56 +0100 (CET)
-Received: from unknown by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4YYm1k6M7czZGk;
-	Thu, 16 Jan 2025 15:47:54 +0100 (CET)
-From: Quentin Schulz <foss+kernel@0leil.net>
-Date: Thu, 16 Jan 2025 15:47:12 +0100
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: minimal support for Pre-ICT
- tester adapter for RK3588 Jaguar
+	s=arc-20240116; t=1737038889; c=relaxed/simple;
+	bh=lZuH5XuzvhtMW6S5Loq2CfVs2XMtSzvngAT5jOK5ZxE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=uNe1ZbRalUZC6DH4EgA56mxu1IAAxUq7O06FEyMBzMGkuPhF1Gu2KlsSy3IcM8/N1AhwzR7S4rGHXOp7eEBaLq+94rBcvNy3dUq5knWecz7gM357sgjG6flj5yHv7ag3OH+HKhb91SngK9hs8zrPpB49sm/os4ezxjvAw2UQKEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=zNVOCeTk; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2163bd70069so19512225ad.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 06:48:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1737038886; x=1737643686; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9wAvkOrunuNgdOQ0ytQ443cZQu2DUu/TS+lIUMni9JQ=;
+        b=zNVOCeTkIT1odJVR6aDxolOLBNLHE9uOUlOGhmrH+XRiu9945I1Jo0ZL1NwGV76HQ+
+         2+YiYyTZ4tmky2apUESuaVzXcikyrWaTWvFLUTkRmYJBhoVL0TJgVxcCQX14wL2dzYP9
+         6fx07F79oKMuhK7OYBWtOYgOqE0CslvFsuWAB1YfGNiOQ9omQVhFvN+oCz15YMmcnFGu
+         satsz5lkOFCGPo91JqnXDQ4rxa528juFFI6qAz5HHDObqAyUnP1zUR+Tw5AXQRd/IDSN
+         PxWQDJ4vpMko59hxVnY2bRn8TW6LpSSJzm1ImPu0MZxilVyOyvpjvHuZ9aa0dxHb36aC
+         pgZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737038886; x=1737643686;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9wAvkOrunuNgdOQ0ytQ443cZQu2DUu/TS+lIUMni9JQ=;
+        b=TR/LCFSThH04W+gxMXXCdjYBePR7vh8ILmKAt7goGc7cQr3RoDJNyV3I96D3xvYEYd
+         uyBhhsPO3dAaHsgnT//gl+cYc06saoD7mdSZh3T1AAiMGB89MXI4KZjsT5RNrdZSC47m
+         66Vg4rESIBwM2aRdIBtfpvH3ExiGwgFRTkVn8T+/K/JymTdBJ4CXSyF6ZFTtaSLROald
+         Ra+YY4Xz23E3nRwqOAhZsx8xT4jfbk9Sm6o1Gy11zkE8+UdMwgV/3sGwimYJ8KPg9U58
+         IayWmsgcDtdutLw4fewhH+OYDigsfOSRk3YUr4TU5r4dp//1fKIz3eBMRoZxrE+CAor4
+         BXkA==
+X-Forwarded-Encrypted: i=1; AJvYcCVL/5MbHL7eHI88XSnCgRzKFI950nHg0yFMhr1/npd7pVgniE3LAdpOgqRDKUIIbvqJxrNSJQJeS+DX@vger.kernel.org
+X-Gm-Message-State: AOJu0YygPVmcPcZeE4xhjRT7He3ffzh5r0Ukw9WnwH+vwfLsAINrYBsn
+	4JGhJ/irfGD+OSF3dOFPPabva/GEj/Ok4a3UDoDTRJZlwneIgkeu1ndASHBe
+X-Gm-Gg: ASbGncv3t6uSGQIfl3CULi2j/ohAGTFr4gNm09x3vhbhDgJuolwAJNczSDlg5DCuMIh
+	JanTL6/lW1PmgWv+WmFLHdK8rsJeCOfsUKkIeJtKkhyFgI+gReNJQiFP37zou4uaAzXxM7tJ5Tg
+	iV9jH29zkgeIxWGJwoFCXG1ROgO8VU7ylhvnHBkjmZnKWJ0NXFn0wUZZFaYTR47TFcrXW9Rk3N3
+	o581LQbG2lYDliRLJHj2N7PkMP+cQVg9TDEhp4f7DNEp1HoDtwh/CkvsQ==
+X-Google-Smtp-Source: AGHT+IG4dJZ9nXSR75sT4oubBrf6Xb+ut8YWDZmGSLZSGE1QYKnGyA+RwcHj01eCQDMDr1yD1dA4SA==
+X-Received: by 2002:a05:6a00:f04:b0:724:59e0:5d22 with SMTP id d2e1a72fcca58-72d22014b2dmr52524064b3a.20.1737038884977;
+        Thu, 16 Jan 2025 06:48:04 -0800 (PST)
+Received: from localhost ([2405:6581:5360:1800:4323:933a:5975:d650])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72daba48951sm75785b3a.121.2025.01.16.06.48.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jan 2025 06:48:04 -0800 (PST)
+From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Masato Kiuchi <kiuchi_masato@yuridenki.co.jp>,
+	Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Subject: [PATCH v2 0/4] Add support Yuridenki-Shokai Kakip board
+Date: Thu, 16 Jan 2025 23:47:48 +0900
+Message-ID: <20250116144752.1738574-1-iwamatsu@nigauri.org>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250116-pre-ict-jaguar-v2-3-157d319004fc@cherry.de>
-References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
-In-Reply-To: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>
-Cc: Michael Riesch <michael.riesch@wolfvision.net>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Quentin Schulz <quentin.schulz@cherry.de>
-X-Mailer: b4 0.14.2
-X-Infomaniak-Routing: alpha
+Content-Transfer-Encoding: 8bit
 
-From: Quentin Schulz <quentin.schulz@cherry.de>
+Hi all,
 
-The Pre-ICT tester adapter connects to RK3588 Jaguar SBC through its
-proprietary Mezzanine connector.
+This patch series add basic support for Yuridenki-Shokai[0] Kakip board[1] based
+on R9A09G057H48.
+And this series supports the following:
 
-It exposes a PCIe Gen2 1x M.2 connector and two proprietary camera
-connectors. Support for the latter will come once the rest of the camera
-stack is supported.
+  - Memory
+  - Input clocks
+  - Pin Control
+  - SCIF
+  - OSTM0 - OSTM7
+  - SDHI0
 
-Additionally, the adapter loops some GPIOs together as well as route
-some GPIOs to power rails.
+v2:
+  - Fix the rule of binding for boards.
+    kakip board uses r9a09g057h48 only.
+  - Drop bootargs from chosen.
+  - Fix binding name for regulators.
+  - Fix the name style of the regulator.
+  - Use DTS coding style.
 
-This adapter is used for manufacturing RK3588 Jaguar to be able to test
-the Mezzanine connector is properly soldered.
+Best regatrds,
+  Nobuhiro
 
-Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
----
- arch/arm64/boot/dts/rockchip/Makefile              |   2 +
- .../dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso | 171 +++++++++++++++++++++
- 2 files changed, 173 insertions(+)
+[0]: https://www.yuridenki.co.jp/
+[1]: https://www.kakip.ai/
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 72f8666b42400a2f462421f5db6b3cb0cf369611..deeb96609461847d4039e144beb36522333ca398 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -163,9 +163,11 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
- 
- # Overlays
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-jaguar-pre-ict-tester.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtb
- 
- rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb rk3588-edgeble-neu6a-wifi.dtbo
-+rk3588-jaguar-pre-ict-tester-dtbs     := rk3588-jaguar.dtb rk3588-jaguar-pre-ict-tester.dtbo
- rk3588-rock-5b-pcie-ep-dtbs := rk3588-rock-5b.dtb rk3588-rock-5b-pcie-ep.dtbo
- rk3588-rock-5b-pcie-srns-dtbs := rk3588-rock-5b.dtb rk3588-rock-5b-pcie-srns.dtbo
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso b/arch/arm64/boot/dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso
-new file mode 100644
-index 0000000000000000000000000000000000000000..9d44dfe2f30d793accb994a230c58038f0c3daad
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso
-@@ -0,0 +1,171 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
-+/*
-+ * Copyright (c) 2024 Cherry Embedded Solutions GmbH
-+ *
-+ * Device Tree Overlay for the Pre-ICT tester adapter for the Mezzanine
-+ * connector on RK3588 Jaguar.
-+ *
-+ * This adapter has a PCIe Gen2 x1 M.2 M-Key connector and two proprietary
-+ * camera connectors (each their own I2C bus, clock, reset and PWM lines as well
-+ * as 2-lane CSI).
-+ *
-+ * This adapter routes some GPIOs to power rails and loops together some other
-+ * GPIOs.
-+ *
-+ * This adapter is used during manufacturing for validating proper soldering of
-+ * the mezzanine connector.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+
-+&{/} {
-+	pre_ict_tester_vcc_1v2: regulator-pre-ict-tester-vcc-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pre_ict_tester_vcc_1v2";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		vin-supply = <&vcc_3v3_s3>;
-+	};
-+
-+	pre_ict_tester_vcc_2v8: regulator-pre-ict-tester-vcc-2v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pre_ict_tester_vcc_2v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <2800000>;
-+		regulator-max-microvolt = <2800000>;
-+		vin-supply = <&vcc_3v3_s3>;
-+	};
-+};
-+
-+&combphy0_ps {
-+	status = "okay";
-+};
-+
-+&gpio3 {
-+	pinctrl-0 = <&pre_ict_pwr2gpio>;
-+	pinctrl-names = "default";
-+};
-+
-+&pcie2x1l2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie2x1l2_perstn_m0>;
-+	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>; /* PCIE20X1_2_PERSTN_M0 */
-+	vpcie3v3-supply = <&vcc_3v3_s3>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	pcie2x1l2 {
-+		pcie2x1l2_perstn_m0: pcie2x1l2-perstn-m0 {
-+			rockchip,pins = <3 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pre-ict-tester {
-+		pre_ict_pwr2gpio: pre-ict-pwr2gpio-pins {
-+			rockchip,pins =
-+			/*
-+			 * GPIO3_A3 requires two power rails to be properly
-+			 * routed to the mezzanine connector to report a proper
-+			 * value: VCC_1V8_S0_1 and VCC_IN_2. It may report an
-+			 * incorrect value if VCC_1V8_S0_1 isn't properly routed,
-+			 * but GPIO3_C6 would catch this HW soldering issue.
-+			 * If VCC_IN_2 is properly routed, GPIO3_A3 should be
-+			 * LOW. The signal shall not read HIGH in the event
-+			 * GPIO3_A3 isn't properly routed due to soldering
-+			 * issue. Therefore, let's enforce a pull-up (which is
-+			 * the SoC default for this pin).
-+			 */
-+				<3 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>,
-+			/*
-+			 * GPIO3_A4 is directly routed to VCC_1V8_S0_2 power
-+			 * rail. It should be HIGH if all is properly soldered.
-+			 * To guarantee that, a pull-down is enforced (which is
-+			 * the SoC default for this pin) so that LOW is read if
-+			 * the loop doesn't exist on HW (soldering issue on
-+			 * either signals).
-+			 */
-+				<3 RK_PA4 RK_FUNC_GPIO &pcfg_pull_down>,
-+			/*
-+			 * GPIO3_B2 requires two power rails to be properly
-+			 * routed to the mezzanine connector to report a proper
-+			 * value: VCC_1V8_S0_1 and VCC_IN_1. It may report an
-+			 * incorrect value if VCC_1V8_S0_1 isn't properly routed,
-+			 * but GPIO3_C6 would catch this HW soldering issue.
-+			 * If VCC_IN_1 is properly routed, GPIO3_B2 should be
-+			 * LOW. This is an issue if GPIO3_B2 isn't properly
-+			 * routed due to soldering issue, because GPIO3_B2
-+			 * default bias is pull-down therefore being LOW. So
-+			 * the worst case scenario and the pass scenario expect
-+			 * the same value. Make GPIO3_B2 a pull-up so that a
-+			 * soldering issue on GPIO3_B2 reports HIGH but proper
-+			 * soldering reports LOW.
-+			 */
-+				<3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>,
-+			/*
-+			 * GPIO3_C6 is directly routed to VCC_1V8_S0_1 power
-+			 * rail. It should be HIGH if all is properly soldered.
-+			 * This is an issue if GPIO3_C6 or VCC_1V8_S0_1 isn't
-+			 * properly routed due to soldering issue, because
-+			 * GPIO3_C6 default bias is pull-up therefore being HIGH
-+			 * in all cases:
-+			 *  - GPIO3_C6 is floating (so HIGH) if GPIO3_C6 is not
-+			 *    routed properly,
-+			 *  - GPIO3_C6 is floating (so HIGH) if VCC_1V8_S0_1 is
-+			 *    not routed properly,
-+			 *  - GPIO3_C6 is HIGH if everything is proper,
-+			 * Make GPIO3_C6 a pull-down so that a soldering issue
-+			 * on GPIO3_C6 or VCC_1V8_S0_1 reports LOW but proper
-+			 * soldering reports HIGH.
-+			 */
-+				<3 RK_PC6 RK_FUNC_GPIO &pcfg_pull_down>,
-+			/*
-+			 * GPIO3_D2 is routed to VCC_5V0_1 power rail through a
-+			 * voltage divider on the adapter.
-+			 * It should be HIGH if all is properly soldered.
-+			 * To guarantee that, a pull-down is enforced (which is
-+			 * the SoC default for this pin) so that LOW is read if
-+			 * the loop doesn't exist on HW (soldering issue on
-+			 * either signals).
-+			 */
-+				<3 RK_PD2 RK_FUNC_GPIO &pcfg_pull_down>,
-+			/*
-+			 * GPIO3_D3 is routed to VCC_5V0_2 power rail through a
-+			 * voltage divider on the adapter.
-+			 * It should be HIGH if all is properly soldered.
-+			 * To guarantee that, a pull-down is enforced (which is
-+			 * the SoC default for this pin) so that LOW is read if
-+			 * the loop doesn't exist on HW (soldering issue on
-+			 * either signals).
-+			 */
-+				<3 RK_PD3 RK_FUNC_GPIO &pcfg_pull_down>,
-+			/*
-+			 * GPIO3_D4 is routed to VCC_3V3_S3_1 power rail through
-+			 * a voltage divider on the adapter.
-+			 * It should be HIGH if all is properly soldered.
-+			 * To guarantee that, a pull-down is enforced (which is
-+			 * the SoC default for this pin) so that LOW is read if
-+			 * the loop doesn't exist on HW (soldering issue on
-+			 * either signals).
-+			 */
-+				<3 RK_PD4 RK_FUNC_GPIO &pcfg_pull_down>,
-+			/*
-+			 * GPIO3_D5 is routed to VCC_3V3_S3_2 power rail through
-+			 * a voltage divider on the adapter.
-+			 * It should be HIGH if all is properly soldered.
-+			 * To guarantee that, a pull-down is enforced (which is
-+			 * the SoC default for this pin) so that LOW is read if
-+			 * the loop doesn't exist on HW (soldering issue on
-+			 * either signals).
-+			 */
-+				<3 RK_PD5 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+};
+Nobuhiro Iwamatsu (4):
+  dt-bindings: soc: renesas: Document Renesas RZ/V2H SoC variants
+  dt-bindings: vendor-prefixes: Add Yuridenki-Shokai Co. Ltd.
+  dt-bindings: soc: renesas: Document Yuridenki-Shokai Kakip board
+  arm64: dts: renesas: Add initial device tree for Yuridenki-Shokai
+    Kakip board
+
+ .../bindings/soc/renesas/renesas.yaml         |   9 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/renesas/Makefile          |   1 +
+ .../boot/dts/renesas/r9a09g057h48-kakip.dts   | 136 ++++++++++++++++++
+ 4 files changed, 148 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r9a09g057h48-kakip.dts
 
 -- 
-2.48.0
-
+2.47.1
 
