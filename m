@@ -1,133 +1,386 @@
-Return-Path: <devicetree+bounces-139024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E74B8A13B50
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:53:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E075BA13B75
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:59:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FE873A31CD
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 13:53:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2120816A866
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 13:59:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A75022B5A3;
-	Thu, 16 Jan 2025 13:53:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5095E22A80E;
+	Thu, 16 Jan 2025 13:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mblRpUOY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OBYC1E0/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E1022AE75;
-	Thu, 16 Jan 2025 13:53:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3E91D8A0D;
+	Thu, 16 Jan 2025 13:59:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737035613; cv=none; b=ApY3HhK6jIfWTcM2zi0gQMLnD1IsdQrCVbTJPomPZC4Jr5snERwjJHw3TLHeGUJjOWcvIwPOGFGMHwjFbbC5ne4J7qotVNMKL3oYh3hIPYHejS0p7UX8muMHtIPRH7bFAOlU9ZU20fZL9f4hCd8IJD2eO7BDSVE0Rr1u0WIFibA=
+	t=1737035978; cv=none; b=et6+YsEFjcZU5+070DnxktlACcvRdR/2hi2HpCUhE3xfIkPfYaoS98CXzs63zNxV/xwUjGh1AlJdv744TTdThvrK1/HTGdbNBO/6gFex4VCLJvwtavRatqMVtziakHoFv5YlIUqJdfDzMG+/FdXrlvxKxKO5jEUtwhCASpnP16c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737035613; c=relaxed/simple;
-	bh=KZRoP5Cjgcq1f45YrvRYeCZ9m1rJx7lSPGLRnbbpDFo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uun6Pn4ZTJdoT++lM605mjsAVRTCXTQCc5yR7/fvJumMkmE0kNyFfobUzONEhAZ7ZP/qRVnA5Vo/P0yMub0JQV7A2BJOPFsjSbjfaRw3usQG43cUafMN9Ox3s1z80ZwvjwGKUPLYamBAJfeQs82uRxeC4XANfyWsHUzB4J49bWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mblRpUOY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3DFBBC4CEE7;
-	Thu, 16 Jan 2025 13:53:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737035613;
-	bh=KZRoP5Cjgcq1f45YrvRYeCZ9m1rJx7lSPGLRnbbpDFo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=mblRpUOYEOqWYOSnuITNcxI4gut+S4GMtEBPsXPnnfU7UszxI0gowclFRYMXzgknm
-	 HXVy3pOaT0OZtr66SLZ5DUnupSVd5SeMouLxhd6GP6crmzHwppONRCK78WPRVi40OV
-	 UBOSow2mDH++s3WMM5w1mvkd1w+gsAuC9BzV6HU2moxPI5cWCjB6/u/38cnLK+zkPa
-	 eyvq+D5a9F0K2knvmWjEktkfnNF7ZkSlSypJlOJ1o4CtXtFOMtFOubXyPXquRSuU4o
-	 BaLCfjCcN3STT2FN5vUpgz4qF8247NRjMIGdqenzDTo6bTb8+YESnboViY1f+wHOE+
-	 tS7i9oTRnwQ7g==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 36004C02183;
-	Thu, 16 Jan 2025 13:53:33 +0000 (UTC)
-From: Vasiliy Doylov via B4 Relay <devnull+nekodevelopper.gmail.com@kernel.org>
-Date: Thu, 16 Jan 2025 16:52:46 +0300
-Subject: [PATCH RESEND v4 5/5] iio: accel: mc3230: add mc3510c support
+	s=arc-20240116; t=1737035978; c=relaxed/simple;
+	bh=XmQQBBcTMYgWnbkFCf6MCDbIjfIq08+ZWoARWZPj+UA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=f6dTvLe6lt/t0YhjTaejt6Bjc/6lO3QTeQABXP9Mg+nX/Zp3fubTq5xaL6kE/rADCmDVRPZQ2k8izr6fetoK0X9mIBT/cwg6u5JhBKhuxAS57dmQ2iTPc7nC+yaCy/IZzTMDrPYRxFInOCva1kMT75cLJcZuQOfxUCU1rlNm1KI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OBYC1E0/; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5d7e3f1fc01so1982490a12.2;
+        Thu, 16 Jan 2025 05:59:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737035974; x=1737640774; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9vxi7kOctVVcyMXDr3GiYAGgEDhCJdQ2s1WVnIEcYQM=;
+        b=OBYC1E0/1EFya1y0HmUQufxXijybUe230aaQCZlUwvjGistxynJUJVWOfecajtpEuj
+         ax4b6o1hWKBhSE9pVy4zKWt1BUgAolPCbY1ZNnZ+m1TvZRdW3sTDKtLE4mCEZQi7kQgE
+         MDBsYesjqcZ0+yM27wXExas5LcL5MuznWpZtdQadm0J01lU5KtktyqH/O1BmtYw41k7N
+         1jjfW0jTRM43GcVBBpnuN8b+WEn/sVw/9GVngt5yqLaYJOgYqJIrUHGaMjseFMatLgxO
+         syo4LTJv8NzYfrrXfJtwue2k8PavtMZXqrRr2I6pJ1slxPt3upBYdXNZW+T+2d20fsyY
+         rSyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737035974; x=1737640774;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9vxi7kOctVVcyMXDr3GiYAGgEDhCJdQ2s1WVnIEcYQM=;
+        b=Cod0NYlGn7s9CncCSJawflhFhz8/n9bBUh0Kb4rf8EkEn/givHk4CenfbBoCc7y+Nk
+         j3j2xFKuARzpMA4gV0x+Ds91Oa0qB76+WnZYxGxDUiHvdG3+CBaGFpNamkZp3Vvi1acI
+         LN6J+8d+7QqAYeMBtOnkU3C8U5jaP4nvHs5mOsNsaTIYwp5dJfAqITjI6m1tofTMmyMa
+         3KUsmFVITIdefujXf0IRxKrSoM98gnUNyfWLme7SkBibGTpemOjtKpAnFBwvm7RwkPlI
+         IAaqo3jrTQfaEYK8e8knUhBvsskSI3zGOUi3lzUsR1eWaZL81n5Hv5tfd28ADibp+cuy
+         UazQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVzn6V8fNPWBU0olthPQ2ClmEyh9iS6HG00yF4hDuwjFQe39zKsC9XLLUEraPB5KtCu6PBEcBPbmg6t@vger.kernel.org, AJvYcCWosFM6luxW4Neo0216XEE1V+qUbaLkrwdsXWD3H6iTx9E2IkpSpXG9d27og0SudVLaFRuPTNtckThX0QRC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yya1STAJW9BH7KRkFRqgKGjgpa7P99k/A6rAjipM8Qx+EiTPXDP
+	7hfhr53SM5cTmIPmztw5EBmGK2YmYHbGVyhCW70Y8n5M/1mddRIAQVJFyjwztRuGH9UQiIF+lri
+	EJXFP97WQ0i954ua7IxUUy5monVc=
+X-Gm-Gg: ASbGncvkiqSn2LnmFkUCMxclre5f29zRsmirxcJY9bimNLP1o1JbkuDxTZ9iw55QWcL
+	jJi2LJrVGwdwzi8jYy3LWGNwXHB2InXLwwueh2mE=
+X-Google-Smtp-Source: AGHT+IHy0ptsnu2e6RlogPAAJ7l54BvT5YyNsToPY+dFvbttxz8qyeBXoo38j5kBA9ckwZHuatxWeT6X4JGUPkkzFiE=
+X-Received: by 2002:a50:c88a:0:b0:5d9:856c:9a08 with SMTP id
+ 4fb4d7f45d1cf-5d9856c9cf3mr23776315a12.18.1737035974045; Thu, 16 Jan 2025
+ 05:59:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250116-mainlining-mc3510c-v4-5-a41308b85ec2@gmail.com>
-References: <20250116-mainlining-mc3510c-v4-0-a41308b85ec2@gmail.com>
-In-Reply-To: <20250116-mainlining-mc3510c-v4-0-a41308b85ec2@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Vasiliy Doylov <nekodevelopper@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1524;
- i=nekodevelopper@gmail.com; h=from:subject:message-id;
- bh=9Z3q0OsDzL5ZwgOvYT7Efze32gsUcd3XbTfzqI4bFbA=;
- b=owGbwMvMwCW2fZ/SFZeSpU2Mp9WSGNI7+aOn5M9Vtetu2X/nb0/DoXDuDWe/3jxhnbnT3ODbK
- mOu+qupHaUsDGJcDLJiiiw2Gz1mi+WHS06a9lQBZg4rE8gQBi5OAZiIRinDH/6Q44tOh6uIhUkt
- f3//fn/Mc5tXJTbxkkXBf25F+B/SMWb476qVyJ6RcI8r68E9qY9tDJeire4d8/He2Hmo+O8z383
- +jAA=
-X-Developer-Key: i=nekodevelopper@gmail.com; a=openpgp;
- fpr=3CB1489B166F57199296E520B7BE22D44474A582
-X-Endpoint-Received: by B4 Relay for nekodevelopper@gmail.com/default with
- auth_id=314
-X-Original-From: Vasiliy Doylov <nekodevelopper@gmail.com>
-Reply-To: nekodevelopper@gmail.com
+References: <20250115012628.1035928-1-pgwipeout@gmail.com> <20250115012628.1035928-3-pgwipeout@gmail.com>
+ <fe006de3-16eb-4c20-8e8e-da5ff5531c6f@kernel.org> <CAMdYzYoB-wFGcmDNYrOMKTb0XSseBd7btLarKBB5+TUB-11KjA@mail.gmail.com>
+In-Reply-To: <CAMdYzYoB-wFGcmDNYrOMKTb0XSseBd7btLarKBB5+TUB-11KjA@mail.gmail.com>
+From: Peter Geis <pgwipeout@gmail.com>
+Date: Thu, 16 Jan 2025 08:59:20 -0500
+X-Gm-Features: AbW1kvaWCthn0CA3HTWG-smgk2ZaVZDFO0klEe8ZJZC-0X4faHPfG6VS2QsDNEw
+Message-ID: <CAMdYzYqeEFN4B-Q-Sidrfyo6uVRYKW6kApVvvRaH+ciLeWSFww@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 2/6] dt-bindings: phy: rockchip: add rk3328 usb3 phy
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>, zyw@rock-chips.com, kever.yang@rock-chips.com, 
+	frank.wang@rock-chips.com, william.wu@rock-chips.com, wulf@rock-chips.com, 
+	linux-rockchip@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Vasiliy Doylov <nekodevelopper@gmail.com>
+On Thu, Jan 16, 2025 at 8:32=E2=80=AFAM Peter Geis <pgwipeout@gmail.com> wr=
+ote:
+>
+> On Thu, Jan 16, 2025 at 8:08=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.=
+org> wrote:
+> >
+> > On 15/01/2025 02:26, Peter Geis wrote:
+> > > Add documentation for the usb3 phy as implemented on the rk3328 SoC.
+> > >
+> > > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> > > ---
+> > >
+> > >  .../bindings/phy/rockchip,inno-usb3phy.yaml   | 166 ++++++++++++++++=
+++
+> > >  1 file changed, 166 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/phy/rockchip,in=
+no-usb3phy.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb3=
+phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb3phy.yaml
+> > > new file mode 100644
+> > > index 000000000000..cde489ca87ab
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb3phy.yam=
+l
+> > > @@ -0,0 +1,166 @@
+> > > +# SPDX-License-Identifier: GPL-2.0-only
+> >
+> > Wrong license.
+> >
+> > Please run scripts/checkpatch.pl and fix reported warnings. After that,
+> > run also `scripts/checkpatch.pl --strict` and (probably) fix more
+> > warnings. Some warnings can be ignored, especially from --strict run,
+> > but the code here looks like it needs a fix. Feel free to get in touch
+> > if the warning is not clear.
+>
+> Checkpatch literally told me to change this. Ran against my original
+> dev binding:
+> ./scripts/checkpatch.pl --strict
+> Documentation/devicetree/bindings/phy/rockchip,inno-usb3phy.yaml
+> CHECK: DT binding documents should be licensed (GPL-2.0-only OR BSD-2-Cla=
+use)
+> #1: FILE: Documentation/devicetree/bindings/phy/rockchip,inno-usb3phy.yam=
+l:1:
+> +# SPDX-License-Identifier: GPL-2.0
 
-This change integrates mc3510c support into the mc3230 driver.
-MC3510C uses the same registers as MC3230, but a different value scale.
+I understand now, thank you. Perhaps checkpatch could put that in
+quotes, instead saying ("GPL-2.0-only OR BSD-2-Clause") to make it
+clear it's one thing.
 
-Tested on Huawei MediaPad T3 10 (huawei-agassi)
-
-Signed-off-by: Vasiliy Doylov <nekodevelopper@gmail.com>
----
- drivers/iio/accel/mc3230.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/drivers/iio/accel/mc3230.c b/drivers/iio/accel/mc3230.c
-index c8d394c3ecf08fad60f0f2ae7be6fd992327d843..e2853090fa6e15f4dd74e996fae8520b30471d3b 100644
---- a/drivers/iio/accel/mc3230.c
-+++ b/drivers/iio/accel/mc3230.c
-@@ -46,6 +46,14 @@ static const struct mc3230_chip_info mc3230_chip_info = {
- 	.scale = 115411765,
- };
- 
-+static const struct mc3230_chip_info mc3510c_chip_info = {
-+	.name = "mc3510c",
-+	.chip_id = 0x23,
-+	.product_code = 0x10,
-+	/* Was obtained empirically */
-+	.scale = 625000000,
-+};
-+
- #define MC3230_CHANNEL(reg, axis) {	\
- 	.type = IIO_ACCEL,	\
- 	.address = reg,	\
-@@ -225,12 +233,14 @@ static DEFINE_SIMPLE_DEV_PM_OPS(mc3230_pm_ops, mc3230_suspend, mc3230_resume);
- 
- static const struct i2c_device_id mc3230_i2c_id[] = {
- 	{ "mc3230", (kernel_ulong_t)&mc3230_chip_info },
-+	{ "mc3510c", (kernel_ulong_t)&mc3510c_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, mc3230_i2c_id);
- 
- static const struct of_device_id mc3230_of_match[] = {
- 	{ .compatible = "mcube,mc3230", &mc3230_chip_info },
-+	{ .compatible = "mcube,mc3510c", &mc3510c_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, mc3230_of_match);
-
--- 
-2.47.1
-
-
+>
+> >
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/phy/rockchip,inno-usb3phy.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Rockchip USB 3.0 phy with Innosilicon IP block
+> >
+> > > +
+> > > +maintainers:
+> > > +  - Heiko Stuebner <heiko@sntech.de>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - rockchip,rk3328-usb3phy
+> >
+> > Why is this binding entirely different than existing usb2 phy? Nothing
+> > in common? This looks like made for driver and both - driver and bindin=
+g
+> > - duplicating a lot.
+>
+> Hmm, I hadn't considered merging it into the usb2 binding as it is a
+> unique (and uniquely broken) device. I'd like Heiko's thoughts on
+> this.
+>
+> >
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    minItems: 3
+> >
+> > Drop
+> >
+> > > +    maxItems: 3
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: refclk-usb3otg
+> >
+> > ref
+> >
+> > > +      - const: usb3phy-otg
+> >
+> > otg
+> >
+> > > +      - const: usb3phy-pipe
+> >
+> > pipe
+> >
+> > > +
+> > > +  interrupts:
+> > > +    minItems: 4
+> >
+> > You code here randomly. reg has only maxItems, clocks have both and thi=
+s
+> > have only minItems. Does not make sense. If you get it wrong, I would
+> > assume you repeat the same mistake but here it is like randomly chosen
+> > pieces. And this is making me wonder whether this was not sent too fast=
+.
+>
+> I admit, I dread writing bindings as even now I'm weak in YAML and it
+> seems to pick and choose what rules it wants to follow.
+>
+> >
+> > Anyway: only maxItems.
+> >
+> >
+> > > +
+> > > +  interrupt-names:
+> > > +    items:
+> > > +      - const: bvalid
+> > > +      - const: id
+> > > +      - const: linestate
+> > > +      - const: rxdet
+> > > +
+> > > +  resets:
+> > > +    minItems: 6
+> >
+> > maxItems instead
+> >
+> > > +
+> > > +  reset-names:
+> > > +    items:
+> > > +      - const: usb3phy-u2-por
+> > > +      - const: usb3phy-u3-por
+> > > +      - const: usb3phy-pipe-mac
+> > > +      - const: usb3phy-utmi-mac
+> > > +      - const: usb3phy-utmi-apb
+> > > +      - const: usb3phy-pipe-apb
+> > > +
+> > > +  "#address-cells":
+> > > +    const: 2
+> > > +
+> > > +  "#size-cells":
+> > > +    const: 2
+> > > +
+> > > +  ranges: true
+> > > +
+> > > +patternProperties:
+> > > +
+> >
+> > Drop blank line
+> >
+> > > +  utmi-port@[0-9a-f]+$:
+> >
+> > This wasn't tested. Missing quotes, missing starting anchor.
+>
+> make W=3D1 dt_binding_check didn't complain about it, using the
+> dt-schema from pip3 from about a week ago.
+>
+> >
+> > > +    type: object
+> >
+> > Explain what are the children here - description.
+>
+> Fair, will do.
+>
+> >
+> >
+> > > +    additionalProperties: false
+> > > +
+> > > +    properties:
+> > > +      compatible:
+> > > +        enum:
+> > > +          - rockchip,rk3328-usb3phy-utmi
+> > > +
+> > > +      reg:
+> > > +        maxItems: 1
+> > > +
+> > > +      "#phy-cells":
+> > > +        const: 0
+> >
+> > Does not look correct. Your parent device is the phy, not child. Why do
+> > you create children per each type of phy?
+>
+> Because that's how it's done elsewhere in Rockchip's phys [1]. How
+> should it be done?
+>
+> >
+> > > +
+> > > +      phy-supply:
+> > > +        description:
+> > > +          Phandle to a regulator that provides power to VBUS.
+> > > +          See ./phy-bindings.txt for details.
+> > > +
+> > > +    required:
+> > > +      - compatible
+> > > +      - reg
+> > > +      - "#phy-cells"
+> > > +
+> > > +  pipe-port@[0-9a-f]+$:
+> > > +    type: object
+> > > +    additionalProperties: false
+> > > +
+> > > +    properties:
+> > > +      compatible:
+> > > +        enum:
+> > > +          - rockchip,rk3328-usb3phy-pipe
+> > > +
+> > > +      reg:
+> > > +        maxItems: 1
+> > > +
+> > > +      "#phy-cells":
+> > > +        const: 0
+> > > +
+> > > +      phy-supply:
+> > > +        description:
+> > > +          Phandle to a regulator that provides power to VBUS.
+> > > +          See ./phy-bindings.txt for details.
+> >
+> > Drop "see ....".
+>
+> I was tempted to convert phy-bindings.txt over but as above I dread
+> writing bindings. Will drop.
+>
+> >
+> > > +
+> > > +    required:
+> > > +      - compatible
+> > > +      - reg
+> > > +      - "#phy-cells"
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - interrupts
+> > > +  - interrupt-names
+> > > +  - resets
+> > > +  - reset-names
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/clock/rk3328-cru.h>
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +    soc {
+> > > +      #address-cells =3D <2>;
+> > > +      #size-cells =3D <2>;
+> > > +
+> > > +      usb3phy: usb3-phy@ff460000 {
+> > > +        compatible =3D "rockchip,rk3328-usb3phy";
+> > > +        reg =3D <0x0 0xff460000 0x0 0x10000>;
+> > > +        clocks =3D <&cru SCLK_REF_USB3OTG>, <&cru PCLK_USB3PHY_OTG>,=
+ <&cru PCLK_USB3PHY_PIPE>;
+> >
+> > That's way over the limit. Wrapping is at 80.
+>
+> Will correct.
+>
+> >
+> > > +        clock-names =3D "refclk-usb3otg", "usb3phy-otg", "usb3phy-pi=
+pe";
+> > > +        interrupts =3D <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 76=
+ IRQ_TYPE_LEVEL_HIGH>,
+> > > +                     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 78 I=
+RQ_TYPE_LEVEL_HIGH>;
+> > > +        interrupt-names =3D "bvalid", "id", "linestate", "rxdet";
+> >
+> >
+> >
+>
+> I appreciate all the feedback, I'll incorporate the changes you've recomm=
+ended.
+>
+> Very Respectfully,
+> Peter Geis
+>
+> >
+> > Best regards,
+> > Krzysztof
+>
+> [1] https://elixir.bootlin.com/linux/v6.13-rc3/source/arch/arm64/boot/dts=
+/rockchip/rk3328.dtsi#L887
 
