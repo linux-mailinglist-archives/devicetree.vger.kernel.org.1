@@ -1,114 +1,117 @@
-Return-Path: <devicetree+bounces-139053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D5C3A13C60
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:36:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16D97A13D00
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 15:57:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7550188DAC7
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:36:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BF951882388
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 14:57:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCDEB22B586;
-	Thu, 16 Jan 2025 14:36:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bh5Qpd/F"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41FCF22ACC6;
+	Thu, 16 Jan 2025 14:57:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtp-190c.mail.infomaniak.ch (smtp-190c.mail.infomaniak.ch [185.125.25.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC26A22A819;
-	Thu, 16 Jan 2025 14:36:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27BAA1DE2D7
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 14:57:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.25.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737038185; cv=none; b=EgLG/J3KOoibiMnok9lMROSg8zzOxouumiOvD53FyEgoZ5ilRsFQroA0OCKRbbrJwdJb6p4jcy7vwkwuFnlyyVeN64V4Cf8GkjSPgU8q2lEyEstSBwaFh2uY3FVeFsUi3LYeMC/yyvgkQXNfJ/ekLP6zprNCc7c5rqJZDYGZKOQ=
+	t=1737039457; cv=none; b=mVsiCgZMsX/IxyxI32tEyS6Lh6MOzhdbfDV4AHPDvSIRkL+t6x66cKx+ZVo/mdo3n++QDG3YQuSlH+03m24Kc/UmFiH9cMXmDv37vPiFqu+rVsgtu/6RnwrqojBoWVQRdWtgnB3Azqle4hkVsmXJ1MjCzspJ6DRpYp0iVKcSBzM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737038185; c=relaxed/simple;
-	bh=FiiklmuVQ48wobf73XaFq2HgoMDJEKBkny1o2AN87mY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ttDqqY6VyOZeTsZZx7+SfUYqdtYahi9d1GUW9KCTrd2a5vLKK1eEim/xuflpqhnBj5Fe8es1DsG4dhGlv5YdNuvnSBlAbmkE6XR8Qr0HlcbZ/qd4kZzL0x8986y569tRvLP+aPyiZHVwC9g8E2Hlhm9pBmsXZsmQqW1svGi5KnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bh5Qpd/F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 857AAC4AF0B;
-	Thu, 16 Jan 2025 14:36:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737038185;
-	bh=FiiklmuVQ48wobf73XaFq2HgoMDJEKBkny1o2AN87mY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=bh5Qpd/FO/trwLTppndIl0ClqLOZKDupI0HfQqr/N+58vQ9Sc+Zq9OKEz1+kjG+ND
-	 08BNvWhn6+QymLP7tgyGj5KlL9VOLB1ruyE1YEY19VC+fw+Ww7r99PTryI83DvFigc
-	 RCswhnZ3SbczwBNodZ8wPdLOUPjljVY8AgG5HFkN94W6m4vnXn/oOJTGHOKq8zYd38
-	 UkcVowwwVBSOsCq875wafqHbLeHVOCH6ETDDkLNviI2yyjxf1SLXKGgAXDtPDv7q2G
-	 1eridOKCDIDoePONQsHmC8quhVEGhPYklEBxOczc65TwoMFL4q2tyrj8brwPKvwbV8
-	 zpimYppYBtRRA==
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-54024aa9febso1134910e87.1;
-        Thu, 16 Jan 2025 06:36:25 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUaV10zX07ejzPUN6wgSsOQXbHF41s5TD7sIDCyGOPqDnJR54NKIg0QOSJ6bBvjb6MgMuECFr7IiP1ep5Ja@vger.kernel.org, AJvYcCUqZRxdOSxhWwRwZ6tuFAqvjQKZHIZaCtfevZFvhW+ZeF21sSi/rgMasH48Gm3lnOuLNTW/2+niAjzi9SoKJg==@vger.kernel.org, AJvYcCX/PB+7kyS1umR1/RKKKRw7vd5ECSlHQ125vkIdeOm6kyc0k7KVlxflgQCm6F7tfIgD1FjIPa4ZT0KK@vger.kernel.org, AJvYcCXPZECs2NR782MEyfRI3ZtMki3n4sfofGZ5C6TrOlBfuKfMd+rN20TuXM5vhR1Z+AjMgyN5JdT3zPFlKZ6Y@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxqb9DJG9YYHUjiIEGbcD8icquQwOG/XQaJ0YgfX4f4F3f5vHxc
-	Czx1iChM3yHZXp/tzpLuvw6OKkiKzGybQEgQmdgZ84OVi/pNbqYovU78yK3TLn/zigfeeYuqS8w
-	KzP11qjHvSrxSdn/3vfq16gfNgw==
-X-Google-Smtp-Source: AGHT+IEFzH2u5Nw9ZXYRK3qBr2cKgPlDigIbcDFb/MZh/WsuuT8v5gUM8CjDCoS/kXKFX5RJ7PzvY64JLC8o2O1CXCg=
-X-Received: by 2002:a05:6512:104f:b0:542:9636:297e with SMTP id
- 2adb3069b0e04-54296362a66mr5750572e87.25.1737038183921; Thu, 16 Jan 2025
- 06:36:23 -0800 (PST)
+	s=arc-20240116; t=1737039457; c=relaxed/simple;
+	bh=WojC/HfeSAGGX8JYo0Ms0HAFx5OVVt24+Aoilac0NhE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Usm8+C5xB586FxutEG77N+90tOh1j1puegtFG0awKsnI1zfhs029+Th+0w+JkZYEzOMB9KQd/DiK6zo4dDl7BNJD2A0U12cRN4O0PANf/GmWe9pad5gm3CHHw7Cvtu1XSTSdipVcnbO+Ih5LppyiPo9LLHkPBV+3aBLVx5eDZqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=185.125.25.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-3-0001.mail.infomaniak.ch (smtp-3-0001.mail.infomaniak.ch [10.4.36.108])
+	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4YYm1j07dDz91y;
+	Thu, 16 Jan 2025 15:47:53 +0100 (CET)
+Received: from unknown by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4YYm1h1Vhdzbd9;
+	Thu, 16 Jan 2025 15:47:52 +0100 (CET)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Subject: [PATCH v2 0/3] arm64: dts: rockchip: minimal support for Pre-ICT
+ tester adapter for RK3588 Jaguar + add overlay tests
+Date: Thu, 16 Jan 2025 15:47:09 +0100
+Message-Id: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241017144500.3968797-1-quic_yrangana@quicinc.com> <20241017144500.3968797-3-quic_yrangana@quicinc.com>
-In-Reply-To: <20241017144500.3968797-3-quic_yrangana@quicinc.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 16 Jan 2025 08:36:11 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJG_w9jyWjVR=QnPuJganG4uj9+9cEXZ__UAiCw2ZYZZA@mail.gmail.com>
-X-Gm-Features: AbW1kvYzoDssOTmlGaP7OaxU7PUBm1fSMtQeaMIHjNtOTnwTDryLuMJ_SwVS4zw
-Message-ID: <CAL_JsqJG_w9jyWjVR=QnPuJganG4uj9+9cEXZ__UAiCw2ZYZZA@mail.gmail.com>
-Subject: Re: [PATCH V1 2/2] arm64: dts: qcom: sa8775p: add QCrypto nodes
-To: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-Cc: Thara Gopinath <thara.gopinath@gmail.com>, Herbert Xu <herbert@gondor.apana.org.au>, 
-	"David S. Miller" <davem@davemloft.net>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Bhupesh Sharma <bhupesh.sharma@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	quic_sravank@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO0biWcC/3WMOw6DMBAFr4K2zka2hYCkyj0QhT9r7BQQrYkVh
+ Hz3OPQpZ57eHJCIIyW4Nwcw5ZjiulRQlwZs0MtMGF1lUEK1UokOX1yV3fCp57dmNDfhtScajBu
+ gnurs4+cMjlPlENO28n72s/zZv6ksUWLvu04Y15pe2IcNxLxfHcFUSvkC+Q2A5qwAAAA=
+X-Change-ID: 20241206-pre-ict-jaguar-b90fafee8bd8
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+ Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>
+Cc: Michael Riesch <michael.riesch@wolfvision.net>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@cherry.de>
+X-Mailer: b4 0.14.2
+X-Infomaniak-Routing: alpha
 
-On Thu, Oct 17, 2024 at 9:45=E2=80=AFAM Yuvaraj Ranganathan
-<quic_yrangana@quicinc.com> wrote:
->
-> Add the QCE and Crypto BAM DMA nodes.
->
-> Signed-off-by: Yuvaraj Ranganathan <quic_yrangana@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/=
-qcom/sa8775p.dtsi
-> index e8dbc8d820a6..c1c53f81a555 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-> @@ -1912,6 +1912,28 @@ ice: crypto@1d88000 {
->                         clocks =3D <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
->                 };
->
-> +               cryptobam: dma-controller@1dc4000 {
-> +                       compatible =3D "qcom,bam-v1.7.4", "qcom,bam-v1.7.=
-0";
-> +                       reg =3D <0x0 0x01dc4000 0x0 0x28000>;
-> +                       interrupts =3D <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
-> +                       #dma-cells =3D <1>;
-> +                       qcom,ee =3D <0>;
-> +                       qcom,controlled-remotely;
-> +                       iommus =3D <&apps_smmu 0x480 0x00>,
-> +                                <&apps_smmu 0x481 0x00>;
-> +               };
-> +
-> +               crypto: crypto@1dfa000 {
-> +                       compatible =3D "qcom,sa8775p-qce", "qcom,qce";
+This adds minimal support for the Pre-ICT tester adapter for RK3588
+Jaguar.
+GPIO3A3, GPIO3A4, GPIO3B2 and GPIO3D2 to GPIO3D5 are all routed to power
+rails and can only be used as input and their bias are important to be
+able to properly detect soldering issues.
 
-This one also doesn't match the schema...
+Additionally, this adds build-time overlay application tests for (some)
+Rockchip overlays to try to avoid future regressions.
+
+Notably, the Device Trees from Wolfvision PF5 aren't migrated (but
+should) as I do not own the device and couldn't figure out from the
+introducing commit logs what the possible valid combinations are.
++Cc Michael Riesch for awareness
+
+I'm wondering if we shouldn't backport patches 1 and 2 to stable? In
+which case, it would make sense to try to have the Wolfvision PF5
+overlay tests merged before the addition of the Pre-ICT tester adapter
+support for RK3588 Jaguar as that one won't be backported to stable and
+backporting the Wolfvision overlay test would incur an unnecessary
+(though not difficult) git conflict to resolve.
+
+I also do not know what kind of tests we should have when overlay
+combinations are possible (let's say there are A, B and C overlays that
+can all be applied, should we have base + A, base + B, base + C,
+base + A + B, base + A + C, base + B + C and base + A + B + C tests?
+maybe even base + B + A, base + C + B, base A + C + B, base + B + A + C,
+base + B + C + A, base + C + B + A and base + C + A + B tests?).
+
+Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+---
+Changes in v2:
+- add overlay application tests for Edgeble NCM6A WiFi and Rock 5B PCIe
+  Endpoint+SNRS
+- add overlay application test for RK3588 Jaguar + Pre-ICT tester
+  adapter,
+- Link to v1: https://lore.kernel.org/r/20241206-pre-ict-jaguar-v1-1-7f660bd4b70c@cherry.de
+
+---
+Quentin Schulz (3):
+      arm64: dts: rockchip: add overlay test for Edgeble NCM6A
+      arm64: dts: rockchip: add overlay tests for Rock 5B PCIe overlays
+      arm64: dts: rockchip: minimal support for Pre-ICT tester adapter for RK3588 Jaguar
+
+ arch/arm64/boot/dts/rockchip/Makefile              |  14 +-
+ .../dts/rockchip/rk3588-jaguar-pre-ict-tester.dtso | 171 +++++++++++++++++++++
+ 2 files changed, 182 insertions(+), 3 deletions(-)
+---
+base-commit: 619f0b6fad524f08d493a98d55bac9ab8895e3a6
+change-id: 20241206-pre-ict-jaguar-b90fafee8bd8
+
+Best regards,
+-- 
+Quentin Schulz <quentin.schulz@cherry.de>
+
 
