@@ -1,210 +1,304 @@
-Return-Path: <devicetree+bounces-139111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5344A14158
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 19:03:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51C8BA14178
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 19:12:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F43D188C1C1
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 18:03:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6931D16A9EE
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 18:12:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F671DE3DC;
-	Thu, 16 Jan 2025 18:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8858E22CA1C;
+	Thu, 16 Jan 2025 18:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LxFUn4gb"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="FB4JL7P/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-70.smtpout.orange.fr [80.12.242.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C21139CFF;
-	Thu, 16 Jan 2025 18:02:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A48251DE3DC;
+	Thu, 16 Jan 2025 18:12:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737050577; cv=none; b=ivDxSJGFmOTxSQV3TbunCAlouJcw5LaKE4W38VsrENcU3J/GYyUoboKM0rI8BVuxxOMaZPssL4bxU04bcnuV7HPMoKcYB++NDHCsqUt8AyTxugD6INmpnk4vDtYR2PF/gG9sVrG7ModF6lLa8mAns9QGKhyb3HdBp0J66ZGCAdc=
+	t=1737051148; cv=none; b=VaroshiW71kjAev8DdgD1z6hJ53k3Xqh/NLM6rtau1CPAb/D+YdpgHyq6DGMN3o4dHdjYW2102Qhg+ZCb74VBqYx13Z/w2ZNEAKtsSz0MDgBFx7dteXX+GsEzgadjrqRViscI+WxQ3dTUiWB8hRnGjSpqGzhzuCbE4Nz2cyOrKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737050577; c=relaxed/simple;
-	bh=eugSbl6YVyckkhsPnw8vMEXY4d/2zv4a2tp5QGDe/Ao=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=kkjUOmgqjGVBzOiP7s6eAFJrtwGnRxbjTX+zf5aahKnqcZMk/O72PFqG4fndFL2tJSUWObHXK1oI0Xce65aOQ61uxU9PuCe47qC4sRtNUDFjbXhnH8ZiJSPMm38BkHUkkjeowgyQlaOrdVY7cNvSW8Nu2SWAWlLCQ1T4l0i9/Ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LxFUn4gb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01540C4CED6;
-	Thu, 16 Jan 2025 18:02:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737050577;
-	bh=eugSbl6YVyckkhsPnw8vMEXY4d/2zv4a2tp5QGDe/Ao=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=LxFUn4gbUoWDJDFHUbtU+tbnkQu5vCUDtfT2bQhYa49M4uum4DdD4+9woetHBO7Z+
-	 1KNZGDJhJjCK4VYbJMxIRnMrVs0Jrg88qTKcr/0Ow5SLP3p8Xe/ZC+Bf71sIZDfjTD
-	 J764f16ckCZeob5bgE6xvM/LTdqnaSkW6tioBViLB84DHPt8VZKVPdH3VMjbeT380r
-	 3ABJwHSzr7R911oBpqCjS93Z0g48PUwi6kbby5jQiIHU516+pSa2Y0+z8s3NK3pZek
-	 s1h35z7hbD8s+fyFG92TlApYnVgO0j78LK9fKVjwJGNgZt7hR6x2E7MN/aByESCiUz
-	 H0+4kHNlR/uOA==
-Date: Thu, 16 Jan 2025 12:02:55 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: daire.mcnamara@microchip.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, conor.dooley@microchip.com,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ilpo.jarvinen@linux.intel.com,
-	kevin.xie@starfivetech.com, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v10 1/3] PCI: microchip: Fix outbound address translation
- tables
-Message-ID: <20250116180255.GA593378@bhelgaas>
+	s=arc-20240116; t=1737051148; c=relaxed/simple;
+	bh=ppiI+QASY1pr+MjUAQtgT8kc7SF/kerF34kujYaxCkU=;
+	h=Message-ID:Date:MIME-Version:Subject:References:From:To:Cc:
+	 In-Reply-To:Content-Type; b=X1gWYitzmdpM66Rujs3sojW9ny3/SAyt5/C+rXR/v5JZJmKyVoJ3UyCvD8yBwTlHKKNILlUeW92Mp57CgDi1j9rhVDjfp00/4JUT4SULnPlucLpeuCHQqnHYHlaLwJVvHXtdBFYy1TrnTX2fGTXXVuwiqPytWReO890/tZOjTYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=FB4JL7P/; arc=none smtp.client-ip=80.12.242.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id YUD3tq3Ijhk1BYUD6t9tt8; Thu, 16 Jan 2025 19:03:26 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1737050606;
+	bh=C8lyvdil+OAHd9BneEih8vko6Ln4alGLZIq1J3kePtk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To;
+	b=FB4JL7P/BdyTXG7TvkfEKwzz7VWZNzs5aATrG78Z1bEvy2qDJ7Vmi8xiD9/A8YCXR
+	 4G38/XoW3PILjyG2BfmODtiWAX0Rhoos+uaOIskD4FxQK8ktHOfUxoJIz+eDhYhM6S
+	 Oanp0BLTzLNm4zJhPcbKXTs8MT5hO+2bM/m9D+9Sh2EBsnodjCTd1ILjcKlG4I0Kgg
+	 KGyVCR5tHhR3y9I+5qu+wlbtkjYVxEUYX/6PpzVRnRsjjuT6hroFCFG3n6EjT4LFku
+	 4AI3+i6MpBq8orXqR93xIJlGBiXsUtCTRfzaIkLt4qh3z6YD7IWK/E4R8NNfw/WYfv
+	 9+EPrTWXo0rBQ==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Thu, 16 Jan 2025 19:03:26 +0100
+X-ME-IP: 90.11.132.44
+Message-ID: <3991ab78-d1a2-4cae-bea5-fb4dfa58aba3@wanadoo.fr>
+Date: Thu, 16 Jan 2025 19:03:13 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] input: apple_z2: Add a driver for Apple Z2
+ touchscreens
+References: <20250115-z2-v4-0-d7361ab16ba0@gmail.com>
+ <20250115-z2-v4-2-d7361ab16ba0@gmail.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+To: devnull+fnkl.kernel.gmail.com@kernel.org
+Cc: alyssa@rosenzweig.io, asahi@lists.linux.dev, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dmitry.torokhov@gmail.com,
+ fnkl.kernel@gmail.com, j@jannau.net, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, marcan@marcan.st, neal@gompa.dev,
+ robh@kernel.org, rydberg@bitmath.org, sven@svenpeter.dev
+In-Reply-To: <20250115-z2-v4-2-d7361ab16ba0@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250116-removed-evoke-1908811ab92a@spud>
 
-On Thu, Jan 16, 2025 at 05:45:33PM +0000, Conor Dooley wrote:
-> On Thu, Jan 16, 2025 at 11:07:22AM -0600, Bjorn Helgaas wrote:
-> > [+cc Frank, original patch at
-> > https://lore.kernel.org/r/20241011140043.1250030-2-daire.mcnamara@microchip.com]
-> > 
-> > On Thu, Jan 16, 2025 at 04:46:19PM +0000, Conor Dooley wrote:
-> > > On Thu, Jan 16, 2025 at 09:42:53AM -0600, Bjorn Helgaas wrote:
-> > > > On Tue, Jan 14, 2025 at 06:13:10PM -0600, Bjorn Helgaas wrote:
-> > > > > On Fri, Oct 11, 2024 at 03:00:41PM +0100, daire.mcnamara@microchip.com wrote:
-> > > > > > From: Daire McNamara <daire.mcnamara@microchip.com>
-> > > > > > 
-> > > > > > On Microchip PolarFire SoC (MPFS) the PCIe Root Port can be behind one of
-> > > > > > three general-purpose Fabric Interface Controller (FIC) buses that
-> > > > > > encapsulate an AXI-M interface. That FIC is responsible for managing
-> > > > > > the translations of the upper 32-bits of the AXI-M address. On MPFS,
-> > > > > > the Root Port driver needs to take account of that outbound address
-> > > > > > translation done by the parent FIC bus before setting up its own
-> > > > > > outbound address translation tables.  In all cases on MPFS,
-> > > > > > the remaining outbound address translation tables are 32-bit only.
-> > > > > > 
-> > > > > > Limit the outbound address translation tables to 32-bit only.
-> > > > > 
-> > > > > I don't quite understand what this is saying.  It seems like the code
-> > > > > keeps only the low 32 bits of a PCI address and throws away any
-> > > > > address bits above the low 32.
-> > > > > 
-> > > > > If that's what the FIC does, I wouldn't describe the FIC as
-> > > > > "translating the upper 32 bits" since it sounds like the translation
-> > > > > is just truncation.
-> > > > > 
-> > > > > I guess it must be more complicated than that?  I assume you can still
-> > > > > reach BARs that have PCI addresses above 4GB using CPU loads/stores?
-> > > > > 
-> > > > > The apertures through the host bridge for MMIO access are described by
-> > > > > DT ranges properties, so this must be something that can't be
-> > > > > described that way?
-> > > > 
-> > > > Ping?  I'd really like to understand this before the v6.14 merge
-> > > > window opens on Sunday.
-> > > 
-> > > Daire's been having some issues getting onto the corporate VPN to send
-> > > his reply, I've pasted it below on his behalf:
-> > > 
-> > > There are 3 Fabric Inter Connect (FIC) buses on PolarFire SoC - each of
-> > > these FIC buses contain an AXI master bus and are 64-bits wide. These
-> > > AXI-Masters (each with an individual 64-bit AXI base address – for example
-> > > FIC1’s AXI Master has a base address of 0x2000000000) are connected to
-> > > general purpose FPGA logic. This FPGA logic is, in turn, connected to a
-> > > 2nd 32-bit AXI master which is attached to the PCIe block in RootPort mode.
-> > > Conceptually, on the other side of this configurable logic, there is a
-> > > 32-bit bus to a hard PCIe rootport.  So, again conceptually, outbound address
-> > > translation looks like this:
-> > > 
-> > >                  Processor Complex à FIC (64-bit AXI-M) à Configurable Logic à 32-bit AXI-M à PCIe Rootport
-> > > 		 (This how it came to me from Daire, I think the á is meant to
-> > > 		 be an arrow)
-> > > 
-> > >  This allows a designer two broad choices:
-> > > 
-> > >     Choice of FIC (effectively choice of AXI bus)
-> > >     Ability to offset the AXI address of any peripherals they add in the
-> > >     Fabric.
-> > > 
-> > > So, for the case of an outbound AXI address, from the processors’ point
-> > > of view (or Linux’ point of view if you prefer), the processor uses a
-> > > 64-bit AXI address, then – in a very general way of viewing the process
-> > > and thinking only about accessing the PCIe device – the FPGA logic can
-> > > be configured to adjust that AXI-M address to any arbitrary “address”
-> > > before it passes that new “address” to the Root Port over a second 32-bit
-> > > AXI bus (the main constraint is that the FPGA logic can only use a 32-bit
-> > > address on that AXI-M interface to the Root Port).
-> > > 
-> > > To manage this complexity, Microchip have design rules for customers
-> > > building their FPGA logic where we strongly recommend that they only
-> > > interact with  the upper 32 bits of the 64-bit address in the FPGA logic
-> > > and pass the lower 32 bits through (unmodified) to the AXI-M side of the
-> > > PCIe Root Port. This allows them to “move” a 64-bit AXI-M window for their
-> > > PCIe Root Port (as viewed by the processor) for their particular design –
-> > > if they need to - so that they can also access any other AXI-M windows
-> > > associated with any other peripherals they might add to their design.
-> > > 
-> > > In practise, so far, all customers, and our own internal boards have all
-> > > started by using one of two major reference designs from us (one using FIC1
-> > > where the AXI-M window destined for the PCIe Root Port starts at 0x2000000000
-> > > and one using FIC2 where its AXI-M window, again destined for the PCIe Root
-> > > Port starts at 0x3000000000).
-> > 
-> > Is there something special about this that cannot be described by a DT
-> > 'ranges' property?  This sounds conceptually similar to Frank's nice
-> > picture at
-> > https://lore.kernel.org/r/20241119-pci_fixup_addr-v8-2-c4bfa5193288@nxp.com
+Le 15/01/2025 à 23:46, Sasha Finkelstein via B4 Relay a écrit :
+> From: Sasha Finkelstein <fnkl.kernel-Re5JQEeQqe8AvxtiuMwx3w@public.gmane.org>
 > 
-> Aye, it is similar, it is described using ranges properties, will end
-> up looking something like:
-
-So is this patch a symptom that is telling us we're not paying
-attention to 'ranges' correctly?
-
-The whole point of Frank's patches is to get rid of hard-coded masks
-like MC_OUTBOUND_TRANS_TBL_MASK because because 'ranges' should
-already contain that information.
-
-If 'ranges' is sufficent to describe the address spaces and
-translations between them, the driver wouldn't need to be concerned
-with FIC and AXI-M addresses; they would just be described in a
-generic way in the DT 'ranges'.
-
-> 	fabric-pcie-bus@3000000000 {
-> 		compatible = "simple-bus";
-> 		#address-cells = <2>;
-> 		#size-cells = <2>;
-> 		ranges = <0x0 0x40000000 0x0 0x40000000 0x0 0x20000000>,
-> 			 <0x30 0x0 0x30 0x0 0x10 0x0>;
-> 		dma-ranges = <0x0 0x0 0x0 0x80000000 0x0 0x4000000>,
-> 			     <0x0 0x4000000 0x0 0xc4000000 0x0 0x6000000>,
-> 			     <0x0 0xa000000 0x0 0x8a000000 0x0 0x8000000>,
-> 			     <0x0 0x12000000 0x14 0x12000000 0x0 0x10000000>,
-> 			     <0x0 0x22000000 0x10 0x22000000 0x0 0x5e000000>;
+> Adds a driver for Apple touchscreens using the Z2 protocol.
 > 
-> 		pcie: pcie@3000000000 {
-> 			compatible = "microchip,pcie-host-1.0";
-> 			#address-cells = <0x3>;
-> 			#interrupt-cells = <0x1>;
-> 			#size-cells = <0x2>;
-> 			device_type = "pci";
-> 
-> 			dma-noncoherent;
-> 			reg = <0x30 0x0 0x0 0x8000000>, <0x0 0x43008000 0x0 0x2000>, <0x0 0x4300a000 0x0 0x2000>;
-> 
-> 			ranges = <0x43000000 0x0 0x9000000 0x30 0x9000000 0x0 0xf000000>,
-> 				 <0x1000000 0x0 0x8000000 0x30 0x8000000 0x0 0x1000000>,
-> 				 <0x3000000 0x0 0x18000000 0x30 0x18000000 0x0 0x70000000>;
-> 			dma-ranges = <0x3000000 0x0 0x80000000 0x0 0x0 0x0 0x4000000>,
-> 				     <0x3000000 0x0 0x84000000 0x0 0x4000000 0x0 0x6000000>,
-> 				     <0x3000000 0x0 0x8a000000 0x0 0xa000000 0x0 0x8000000>,
-> 				     <0x3000000 0x0 0x92000000 0x0 0x12000000 0x0 0x10000000>,
-> 				     <0x3000000 0x0 0xa2000000 0x0 0x22000000 0x0 0x5e000000>;
-> 
-> 		};
-> 	}
+...
+
+> +static int apple_z2_upload_firmware(struct apple_z2 *z2)
+> +{
+> +	const struct apple_z2_fw_hdr *fw_hdr;
+> +	size_t fw_idx = sizeof(struct apple_z2_fw_hdr);
+> +	int error;
+> +	u32 load_cmd;
+> +	u32 size;
+> +	u32 address;
+> +	char *data;
+> +	bool init;
+> +	size_t cal_size;
+> +
+> +	const struct firmware *fw __free(firmware) = NULL;
+> +	error = request_firmware(&fw, z2->fw_name, &z2->spidev->dev);
+> +	if (error) {
+> +		dev_err(&z2->spidev->dev, "unable to load firmware");
+> +		return error;
+> +	}
+> +
+> +	fw_hdr = (const struct apple_z2_fw_hdr *)fw->data;
+> +	if (le32_to_cpu(fw_hdr->magic) != APPLE_Z2_FW_MAGIC || le32_to_cpu(fw_hdr->version) != 1) {
+> +		dev_err(&z2->spidev->dev, "invalid firmware header");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/*
+> +	 * This will interrupt the upload half-way if the file is malformed
+> +	 * As the device has no non-volatile storage to corrupt, and gets reset
+> +	 * on boot anyway, this is fine.
+> +	 */
+> +	while (fw_idx < fw->size) {
+> +		if (fw->size - fw_idx < 8) {
+> +			dev_err(&z2->spidev->dev, "firmware malformed");
+> +			return -EINVAL;
+> +		}
+> +
+> +		load_cmd = le32_to_cpu(*(__le32 *)(fw->data + fw_idx));
+> +		fw_idx += sizeof(u32);
+> +		if (load_cmd == LOAD_COMMAND_INIT_PAYLOAD || load_cmd == LOAD_COMMAND_SEND_BLOB) {
+> +			size = le32_to_cpu(*(__le32 *)(fw->data + fw_idx));
+> +			fw_idx += sizeof(u32);
+> +			if (fw->size - fw_idx < size) {
+> +				dev_err(&z2->spidev->dev, "firmware malformed");
+> +				return -EINVAL;
+> +			}
+> +			init = load_cmd == LOAD_COMMAND_INIT_PAYLOAD;
+> +			error = apple_z2_send_firmware_blob(z2, fw->data + fw_idx,
+> +							    size, init);
+> +			if (error)
+> +				return error;
+> +			fw_idx += size;
+> +		} else if (load_cmd == LOAD_COMMAND_SEND_CALIBRATION) {
+> +			address = le32_to_cpu(*(u32 *)(fw->data + fw_idx));
+> +			fw_idx += sizeof(u32);
+> +			cal_size = device_property_count_u8(&z2->spidev->dev, CAL_PROP_NAME);
+> +			if (cal_size != 0) {
+> +				size = cal_size + sizeof(struct apple_z2_hbpp_blob_hdr) + 4;
+> +				data = kzalloc(size, GFP_KERNEL);
+> +				error = apple_z2_build_cal_blob(z2, address, cal_size, data);
+> +				if (!error)
+> +					error = apple_z2_send_firmware_blob(z2, data, size, 16);
+> +				kfree(data);
+> +				if (error)
+> +					return error;
+> +			}
+> +		} else {
+> +			dev_err(&z2->spidev->dev, "firmware malformed");
+
+Missing \n.
+
+> +			return -EINVAL;
+> +		}
+> +		if (fw_idx % 4 != 0)
+> +			fw_idx += 4 - (fw_idx % 4);
+> +	}
+> +
+> +
+> +	z2->booted = true;
+> +	apple_z2_read_packet(z2);
+> +	return 0;
+> +}
+
+...
+
+> +static int apple_z2_probe(struct spi_device *spi)
+> +{
+> +	struct device *dev = &spi->dev;
+> +	struct apple_z2 *z2;
+> +	int error;
+> +
+> +	z2 = devm_kzalloc(dev, sizeof(*z2), GFP_KERNEL);
+> +	if (!z2)
+> +		return -ENOMEM;
+> +
+> +	z2->tx_buf = devm_kzalloc(dev, sizeof(struct apple_z2_read_interrupt_cmd), GFP_KERNEL);
+> +	z2->rx_buf = devm_kzalloc(dev, 4096, GFP_KERNEL);
+
+This will allocate 8192 bytes because of the way the allocator works.
+It needs around 40 bytes for the devm stuff + 4096 requested. So 
+rounding rules will allocate 8192 bytes.
+
+So either you could allocate "for free" much more space, or you could 
+allocate (and document...)
+	z2->rx_buf = devm_kzalloc(dev, 4096 - sizeof(struct devres), GFP_KERNEL);
+
+or have an explicit devm_add_action_or_reset() that would require less 
+memory, but would add some LoC.
 
 
+See 
+https://elixir.bootlin.com/linux/v6.13-rc3/source/drivers/base/devres.c#L97
+
+> +	if (!z2->tx_buf || !z2->rx_buf)
+> +		return -ENOMEM;
+> +
+> +	z2->spidev = spi;
+> +	init_completion(&z2->boot_irq);
+> +	spi_set_drvdata(spi, z2);
+> +
+> +	/* Reset the device on boot */
+> +	z2->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(z2->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(z2->reset_gpio), "unable to get reset");
+> +
+> +	error = devm_request_threaded_irq(dev, z2->spidev->irq, NULL,
+> +					apple_z2_irq, IRQF_ONESHOT | IRQF_NO_AUTOEN,
+> +					"apple-z2-irq", spi);
+> +	if (error)
+> +		return dev_err_probe(dev, z2->spidev->irq, "unable to request irq");
+
+Missing \n.
+
+s/z2->spidev->irq/error/ ?
+
+or maybe:
+	return dev_err_probe(dev, error, "unable to request irq %d\n", 
+z2->spidev->irq);
+
+> +
+> +	error = device_property_read_string(dev, "firmware-name", &z2->fw_name);
+> +	if (error)
+> +		return dev_err_probe(dev, error, "unable to get firmware name");
+
+Missing \n.
+
+> +
+> +	z2->input_dev = devm_input_allocate_device(dev);
+> +	if (!z2->input_dev)
+> +		return -ENOMEM;
+> +	z2->input_dev->name = (char *)spi_get_device_id(spi)->driver_data;
+> +	z2->input_dev->phys = "apple_z2";
+> +	z2->input_dev->id.bustype = BUS_SPI;
+> +
+> +	/* Allocate the axes before setting from DT */
+> +	input_set_abs_params(z2->input_dev, ABS_MT_POSITION_X, 0, 0, 0, 0);
+> +	input_set_abs_params(z2->input_dev, ABS_MT_POSITION_Y, 0, 0, 0, 0);
+> +	touchscreen_parse_properties(z2->input_dev, true, &z2->props);
+> +	input_abs_set_res(z2->input_dev, ABS_MT_POSITION_X, 100);
+> +	input_abs_set_res(z2->input_dev, ABS_MT_POSITION_Y, 100);
+> +	input_set_abs_params(z2->input_dev, ABS_MT_WIDTH_MAJOR, 0, 65535, 0, 0);
+> +	input_set_abs_params(z2->input_dev, ABS_MT_WIDTH_MINOR, 0, 65535, 0, 0);
+> +	input_set_abs_params(z2->input_dev, ABS_MT_TOUCH_MAJOR, 0, 65535, 0, 0);
+> +	input_set_abs_params(z2->input_dev, ABS_MT_TOUCH_MINOR, 0, 65535, 0, 0);
+> +	input_set_abs_params(z2->input_dev, ABS_MT_ORIENTATION, -32768, 32767, 0, 0);
+> +
+> +	input_set_drvdata(z2->input_dev, z2);
+
+Is it needed? (there is no input_get_drvdata())
+
+> +
+> +	error = input_mt_init_slots(z2->input_dev, 256, INPUT_MT_DIRECT);
+> +	if (error)
+> +		return dev_err_probe(dev, error, "unable to initialize multitouch slots");
+
+Missing \n.
+
+> +
+> +	error = input_register_device(z2->input_dev);
+> +	if (error)
+> +		return dev_err_probe(dev, error, "unable to register input device");
+
+Missing \n.
+
+> +
+> +	/* Wait for device reset to finish */
+> +	usleep_range(5000, 10000);
+> +	error = apple_z2_boot(z2);
+> +	if (error)
+> +		return error;
+> +	return 0;
+
+Nitpick: These 4 lines could be just:
+	return apple_z2_boot(z2);
+
+> +}
+
+...
+
+> +static DEFINE_SIMPLE_DEV_PM_OPS(apple_z2_pm, apple_z2_suspend, apple_z2_resume);
+> +
+> +static const struct of_device_id apple_z2_of_match[] = {
+> +	{ .compatible = "apple,j293-touchbar" },
+> +	{ .compatible = "apple,j493-touchbar" },
+> +	{},
+
+Nitpick: Ending comma is not needed after a terminator.
+
+> +};
+> +MODULE_DEVICE_TABLE(of, apple_z2_of_match);
+> +
+> +static struct spi_device_id apple_z2_of_id[] = {
+> +	{ .name = "j293-touchbar", .driver_data = (kernel_ulong_t)"MacBookPro17,1 Touch Bar" },
+> +	{ .name = "j493-touchbar", .driver_data = (kernel_ulong_t)"Mac14,7 Touch Bar" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(spi, apple_z2_of_id);
+
+...
+
+CJ
 
