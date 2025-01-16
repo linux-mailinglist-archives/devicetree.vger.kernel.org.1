@@ -1,97 +1,90 @@
-Return-Path: <devicetree+bounces-138960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-138954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1943EA13605
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:02:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39AD5A135EF
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 10:00:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 963543A11B4
-	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 09:02:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 733A33A4F74
+	for <lists+devicetree@lfdr.de>; Thu, 16 Jan 2025 08:59:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B7E41D63C8;
-	Thu, 16 Jan 2025 09:02:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B6401D6DDA;
+	Thu, 16 Jan 2025 08:59:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cc7rXc5H"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sc4LdxeB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12A718E76B;
-	Thu, 16 Jan 2025 09:02:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 372D41D86F1
+	for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 08:59:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737018126; cv=none; b=KzeSBOvQnj6vAfC+05+7C056CmDj7aXMgvASngA8y78DABj7aqu/U4BM5d3IrDGvTEbj6oO8jFSGOCe97FlIt6piCHBAj/NMBgTvqXnB/Y/aWFUck+xdfQU86K7nJxpl72DLq7W8q6MlRqvIWT5MWONDd2+EaXi3HlJ+6xnZX00=
+	t=1737017995; cv=none; b=JFcBylwr6iqGeO/Osw8i7u7qktAqD8Gl66abqPPuqZx52qYSZKorTfc3ehEDF1cmf927WF9ZIgct8gldXUzUgwnao25ApG7iNwBALPR2tGSQ2kiQ40XXGAf+yiuDlKOHNzw5a1Fx0jq6ReTY6xiSb8dk9DgboE8UIf5Z9eSB7BI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737018126; c=relaxed/simple;
-	bh=u44McEvHIU28LB68CA45Rb/64CpIQbT26P7E4Pj1ABg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=UgGhxyqo+bbhARNRQYvbm+vIIhm4G1mSlABLKJfhOZI5PhESyKmS+m/LDMO6kHv0Y9L7Qyko+pbNJDMzdFNqogfpP+yrCwGzLoixQN7OOAmqJTuTTVvox37mns4bSSJ5n+oMHxFkIZS+ke8Ll32IWQaQzCsyv3hC19jlfAb/anY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cc7rXc5H; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2164b1f05caso11080885ad.3;
-        Thu, 16 Jan 2025 01:02:04 -0800 (PST)
+	s=arc-20240116; t=1737017995; c=relaxed/simple;
+	bh=RfMuUoXeJl/FEyLheCqx61LU5UQ5YT9Fqhag252tm9E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=C2P8YtSfyyGmKaVrBw8Agbo2flkGKJ5CDWPuIslVqeFwvc/+Q7u/BWLZLLH0GUGalXp2pNUkFCEccuCbfgmY9m688exrq9HId45trxDjAuEQv6VkuF6kbQsRI3TL0nqSabwyzZZr+f1qBg+aEHs6b/wZqljYQ3hjwLV4SssHCPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sc4LdxeB; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4361e82e3c3so978235e9.0
+        for <devicetree@vger.kernel.org>; Thu, 16 Jan 2025 00:59:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737018124; x=1737622924; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1nIUSFIS0uWBmM3M9vDDeneETAqaQwFl9/J2J4QAztU=;
-        b=Cc7rXc5HVO4FHnm8q2nf5POfXhBt3Zu6YJ7yBMrzCuDlubfAkYSGBmrySln+NRUeLb
-         wRQ/fi5GQOu7h/nMN8Lw8q673hdyFtWEJpoHkJhDQ8J7EeNUiakqZnv7NM0a1BsV+K3T
-         M68M/LUL2ayTcUBH8+Rb3ceZVaYc5JtgNMrwb4/hvulSMxF+orbmt2IIAZZFk1KaxSw6
-         UHikh6isLzBvhjfo/WNy78inOG03y2Ky80uv1C54DP3Zj83XW+axW5xNU4pf6eZpyXGO
-         IV/352L3qrOAUUSlPzmkl28sIb5YNs804IjWf/RLcUfqas45kDZZHwN0cRzZ2UnJNI/j
-         XfGQ==
+        d=linaro.org; s=google; t=1737017991; x=1737622791; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UZ/rmGzncsFVOVpELvTtqMQDv8MILpBfFA/LpGTbzeo=;
+        b=sc4LdxeBK/YF1svngiywJavzsi5g7Ig73K4OwvVNu1kiNJ95S6l6FtdkgFUCNZpMC2
+         vS0q5iXRTKwAqkDoD1oA1YfOnKZW9863SHW3lObLOKIYGzgWdySEGUJYIDR7+ch+IKTb
+         5XWo5unjrT+LPufRmVfSNqhiBLb7h81gC4eZfK2B40A+BLayS8R4JVts9IBmuMHeWZIH
+         vIU3WKKxX2dTn3LvxSlW4GuI9bgfiO9l0K1VZY1SsH7Jyrj9iHkv6tp7uHaGhZzCddoR
+         up+cfr6bGULX2bUdCGNQ/4/8O2CvXf3Sj+IwVCCBs1Vd6NPBlDNVjgzoEWcu+ovYSFXa
+         wAZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737018124; x=1737622924;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1nIUSFIS0uWBmM3M9vDDeneETAqaQwFl9/J2J4QAztU=;
-        b=W3oJEHeKi0Xg0M+yTdwTnA7QGaTAPotgL4bHA7J0URg/u5Jh96ZpGeWDN1RZxVbLg9
-         6xxJyPVVrw1oAoihM1mAr8vPvqKeHRrmvsdU0ylESyESL+4bKnOe+iyWtfHLmfGO47YA
-         MoWTzWgls3Bp3ASZ6HcyFkGPvl/kjyA6MEafdT1oenfU7TlmHHR9cUFZ04bjpyU+Kt83
-         UYvK942dYCuTFibWZu3l5l7wgSOxi2omEKFjWvb2vTq0VW4Ypl7UiD2Q5ftp7mHsJoZP
-         6L1sP86O7vv17DsR+fnIjuSHMgluG/hgQ2kKi8N/UzNNWxrfvkTDRRtnrKIfLFP4FW45
-         LHmw==
-X-Forwarded-Encrypted: i=1; AJvYcCUlIgcu3ZRBSxwoB26NqSlNpnqhedQ1+9plUvUdvY30k31tMUxYg6U31N1RuAjvgPGF65ThJV+IbwRj@vger.kernel.org, AJvYcCVdiuOBP7VTa+9hbge2+sanXx5mOzPYEu+W2Em4nAqrfUuTYL3m4ROaOadcBSh15/jiz5Nu5/iceWYgmmE=@vger.kernel.org, AJvYcCWlcuo+jXAbB8+STB+HaLdJ/j1OGEBuGQz9rYFT6zbPmdfmgqGVq9xAAtd1m7H9eZ9QarxLDIt0wsaAPbuu@vger.kernel.org, AJvYcCXLQNiZKy5yNPl7QpW+awRJ/sFoFs0mbkWi2BxQ/rLO7A47V/zpM/dIRXXDzm+YGaBs/PgnGOcNOXVg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzApWCkYgHYgHeQkZW8Mk0HGxwEy7oOCukYvkySIcwK/67I1ha7
-	ge2YfrzdZJ1V9EWHefDH0mJJqlE4MaibBsPpUA3ccaiTkKra/ADw
-X-Gm-Gg: ASbGnctnaZ0+vLePax56W86gr1MOd/1ZrAegoRJlXscgYw+pxCC6DYQvIy3Jyr0g4zA
-	VKPXEHFRxl+GGTDuij2ww0y1n60ZUDEGRWTVVYXZghu5LzcncI6Zi1k1n3Vh5obPka72I2oThzL
-	PTu2EkU0qvK5SPaVk6izqcL/FrGkxwfWyxP+WZLkBMqUzeikwHQwuUcqWNa/jH3/ZtahYsv9MP8
-	jodMtCQPvAJ9Xrmcx7px0ydLsYV3ACGdy9r2mOpy/m08EpLGVDQ2c3EWyqS2AnQsAb6W0HIYoUE
-	6HZSGWPV8U3sxrsSqfkXy0HOS7WGTtLgcQAFrA==
-X-Google-Smtp-Source: AGHT+IHskLPS4e0S1JFYiKR+8cW1kHMtR1EFcw7JgfsRggS8aq8Dr0rh4fBJ93E7YZsxjklpAEPhzQ==
-X-Received: by 2002:a05:6a00:ac2:b0:725:ea30:ab15 with SMTP id d2e1a72fcca58-72d21f7eba6mr43329177b3a.1.1737018123862;
-        Thu, 16 Jan 2025 01:02:03 -0800 (PST)
-Received: from leo-pc.tail3f5402.ts.net (61-220-246-151.hinet-ip.hinet.net. [61.220.246.151])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72d40594a06sm10395721b3a.80.2025.01.16.01.02.01
+        d=1e100.net; s=20230601; t=1737017991; x=1737622791;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UZ/rmGzncsFVOVpELvTtqMQDv8MILpBfFA/LpGTbzeo=;
+        b=v2JJ2IT4sZBxKVWOy+xBZO0k9kZqEm2ps45SV+f+S/OQYHn9j2ohBX9MkjD4cTzjLy
+         mCa3fypnYeckW+ymYaZ7CSPKz8B/bUMbopcjoyqDln4weP6N918wUech99JSmuC4lqmR
+         cn4WQ/wjXBKn32VIWv8kQIBIp5XlnWsn6zshzP4j+ZbrZeaLFmVL3ADvCLYrE6eoDmQw
+         BIJG6X2HMr0eOYSIWi/y8QWPz4LWjtMyjtapyXL8Uc1bOZ+LgypV3z4eJEKh1NsuTQrn
+         +DMMkxdelB8jYtMOS1ZWOIb3Zag09VDyWnkFlk0DFD9bQieY4JMYv6zMEu8l6dCTyjKJ
+         pm5g==
+X-Forwarded-Encrypted: i=1; AJvYcCXwcHZyI0iOPBkNEUkYI5TCCzD/kF7YCitGolhOoXpETer6caeEZK0F4UZEULc+rmz9z8aOMWCHeU6E@vger.kernel.org
+X-Gm-Message-State: AOJu0YyHWTKnZ/q8+PPStXl2XZnG6z3g9nxv65HzzWO+WrT9U0dp9YkO
+	3rky01SUQJFIBNR096+fDBcBjKsLt1gHFT3AICjSSrqNBKQL0kfpI4BTRa61xOk=
+X-Gm-Gg: ASbGnctyI3TtpaEVCGSas6pm2Zd385eEsY8oYmVksU5wkPXJE1dQn18oiFBOD42T7hx
+	sv3pjLHHa2DpMPsmKs2qhvYxEyomZCT+6illQhL/BdBfO9yHzP/fM4SFt+3sDIPu6VabO1vElnO
+	X8bHT2iH1nFTO81e/Jhw5bOPKVfVI6CRcmJzqSTNFd2+I77Y2/xxxuXNkU7tMvl2alXwNJ9/7gR
+	blhPkhFzEAkI2apUZvUsh+rK858AtrYZW3W4qLt8ySQZzgZxAmDq9qDD6cC/0sXf4E1mvE=
+X-Google-Smtp-Source: AGHT+IFvKV9ktUcjUU8r4rO66150f+sIDyBQzz/zVuwn9bnjqAFlGMUF/fApYPt/cqqbettN3ylbwA==
+X-Received: by 2002:a05:600c:1c1a:b0:42c:bfd6:9d2f with SMTP id 5b1f17b1804b1-436e26867ebmr123456115e9.1.1737017991550;
+        Thu, 16 Jan 2025 00:59:51 -0800 (PST)
+Received: from krzk-bin.. ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c7540ae7sm51144085e9.33.2025.01.16.00.59.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jan 2025 01:02:03 -0800 (PST)
-From: Leo Yang <leo.yang.sy0@gmail.com>
-To: jdelvare@suse.com,
-	linux@roeck-us.net,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Leo-Yang@quantatw.com,
-	corbet@lwn.net,
-	Delphine_CC_Chiu@Wiwynn.com,
-	linux-hwmon@vger.kernel.org,
+        Thu, 16 Jan 2025 00:59:50 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Cc: Leo Yang <leo.yang.sy0@gmail.com>
-Subject: [PATCH v4 2/2] hwmon: Add driver for TI INA233 Current and Power Monitor
-Date: Thu, 16 Jan 2025 16:59:42 +0800
-Message-Id: <20250116085939.1235598-3-leo.yang.sy0@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20250116085939.1235598-1-leo.yang.sy0@gmail.com>
-References: <20250116085939.1235598-1-leo.yang.sy0@gmail.com>
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] ARM: dts: marvell: armada: Align GPIO hog name with bindings
+Date: Thu, 16 Jan 2025 09:59:47 +0100
+Message-ID: <20250116085947.87241-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,349 +93,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Driver for Texas Instruments INA233 Current and Power Monitor
-With I2C-, SMBus-, and PMBus-Compatible Interface
+Bindings expect GPIO hog names to end with 'hog' suffix, so correct it
+to fix dtbs_check warnings like:
 
-Signed-off-by: Leo Yang <leo.yang.sy0@gmail.com>
+  armada-385-clearfog-gtr-s4.dtb: wifi-disable: $nodename:0: 'wifi-disable' does not match '^.+-hog(-[0-9]+)?$'
+
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/hwmon/ina233.rst |  75 +++++++++++++
- MAINTAINERS                    |   7 ++
- drivers/hwmon/pmbus/Kconfig    |   9 ++
- drivers/hwmon/pmbus/Makefile   |   1 +
- drivers/hwmon/pmbus/ina233.c   | 191 +++++++++++++++++++++++++++++++++
- 5 files changed, 283 insertions(+)
- create mode 100644 Documentation/hwmon/ina233.rst
- create mode 100644 drivers/hwmon/pmbus/ina233.c
+ arch/arm/boot/dts/marvell/armada-385-clearfog-gtr.dtsi | 8 ++++----
+ arch/arm/boot/dts/marvell/armada-388-clearfog-base.dts | 2 +-
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/hwmon/ina233.rst b/Documentation/hwmon/ina233.rst
-new file mode 100644
-index 000000000000..42323162e6db
---- /dev/null
-+++ b/Documentation/hwmon/ina233.rst
-@@ -0,0 +1,75 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver ina233
-+====================
-+
-+Supported chips:
-+
-+  * TI INA233
-+
-+    Prefix: 'ina233'
-+
-+  * Datasheet
-+
-+    Publicly available at the TI website : https://www.ti.com/lit/ds/symlink/ina233.pdf
-+
-+Author: Leo Yang <leo.yang.sy0@gmail.com>
-+
-+Usage Notes
-+-----------
-+
-+The shunt resistor value can be configured by a device tree property;
-+see Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml for details.
-+
-+
-+Description
-+-----------
-+
-+This driver supports hardware monitoring for TI INA233.
-+
-+The driver is a client driver to the core PMBus driver. Please see
-+Documentation/hwmon/pmbus.rst for details on PMBus client drivers.
-+
-+The driver provides the following attributes for input voltage:
-+
-+**in1_input**
-+
-+**in1_label**
-+
-+**in1_max**
-+
-+**in1_max_alarm**
-+
-+**in1_min**
-+
-+**in1_min_alarm**
-+
-+The driver provides the following attributes for shunt voltage:
-+
-+**in2_input**
-+
-+**in2_label**
-+
-+The driver provides the following attributes for output voltage:
-+
-+**in3_input**
-+
-+**in3_label**
-+
-+**in3_alarm**
-+
-+The driver provides the following attributes for output current:
-+
-+**curr1_input**
-+
-+**curr1_label**
-+
-+**curr1_max**
-+
-+**curr1_max_alarm**
-+
-+The driver provides the following attributes for input power:
-+
-+**power1_input**
-+
-+**power1_label**
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c575de4903db..ae67eeebd80e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -11226,6 +11226,13 @@ L:	linux-fbdev@vger.kernel.org
- S:	Orphan
- F:	drivers/video/fbdev/imsttfb.c
+diff --git a/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr.dtsi b/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr.dtsi
+index 8208c6a9627a..7aa71a9aa1bb 100644
+--- a/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr.dtsi
++++ b/arch/arm/boot/dts/marvell/armada-385-clearfog-gtr.dtsi
+@@ -453,7 +453,7 @@ &gpio0 {
+ 	pinctrl-0 = <&cf_gtr_fan_pwm &cf_gtr_wifi_disable_pins>;
+ 	pinctrl-names = "default";
  
-+INA233 HARDWARE MONITOR DRIVERS
-+M:	Leo Yang <leo.yang.sy0@gmail.com>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/hwmon/ina233.rst
-+F:	drivers/hwmon/pmbus/ina233.c
-+
- INDEX OF FURTHER KERNEL DOCUMENTATION
- M:	Carlos Bilbao <carlos.bilbao.osdev@gmail.com>
- S:	Maintained
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index f6d352841953..55db0ddc94ed 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -124,6 +124,15 @@ config SENSORS_DPS920AB
- 	  This driver can also be built as a module. If so, the module will
- 	  be called dps920ab.
+-	wifi-disable {
++	wifi-disable-hog {
+ 		gpio-hog;
+ 		gpios = <30 GPIO_ACTIVE_LOW>, <31 GPIO_ACTIVE_LOW>;
+ 		output-low;
+@@ -465,7 +465,7 @@ &gpio1 {
+ 	pinctrl-0 = <&cf_gtr_isolation_pins &cf_gtr_poe_reset_pins &cf_gtr_lte_disable_pins>;
+ 	pinctrl-names = "default";
  
-+config SENSORS_INA233
-+	tristate "Texas Instruments INA233 and compatibles"
-+	help
-+	  If you say yes here you get hardware monitoring support for Texas
-+	  Instruments INA233.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called ina233.
-+
- config SENSORS_INSPUR_IPSPS
- 	tristate "INSPUR Power System Power Supply"
- 	help
-diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-index d00bcc758b97..3c4b06fb939e 100644
---- a/drivers/hwmon/pmbus/Makefile
-+++ b/drivers/hwmon/pmbus/Makefile
-@@ -15,6 +15,7 @@ obj-$(CONFIG_SENSORS_DELTA_AHE50DC_FAN) += delta-ahe50dc-fan.o
- obj-$(CONFIG_SENSORS_FSP_3Y)	+= fsp-3y.o
- obj-$(CONFIG_SENSORS_IBM_CFFPS)	+= ibm-cffps.o
- obj-$(CONFIG_SENSORS_DPS920AB)	+= dps920ab.o
-+obj-$(CONFIG_SENSORS_INA233)	+= ina233.o
- obj-$(CONFIG_SENSORS_INSPUR_IPSPS) += inspur-ipsps.o
- obj-$(CONFIG_SENSORS_IR35221)	+= ir35221.o
- obj-$(CONFIG_SENSORS_IR36021)	+= ir36021.o
-diff --git a/drivers/hwmon/pmbus/ina233.c b/drivers/hwmon/pmbus/ina233.c
-new file mode 100644
-index 000000000000..dde1e1678394
---- /dev/null
-+++ b/drivers/hwmon/pmbus/ina233.c
-@@ -0,0 +1,191 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Hardware monitoring driver for ina233
-+ *
-+ * Copyright (c) 2025 Leo Yang
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include "pmbus.h"
-+
-+#define MFR_READ_VSHUNT 0xd1
-+#define MFR_CALIBRATION 0xd4
-+
-+#define INA233_MAX_CURRENT_DEFAULT	32768000 /* uA */
-+#define INA233_RSHUNT_DEFAULT		2000 /* uOhm */
-+
-+#define MAX_M_VAL 32767
-+
-+static void calculate_coef(int *m, int *R, u32 current_lsb, int power_coef)
-+{
-+	u64 scaled_m;
-+	int scale_factor = 0;
-+	int scale_coef = 1;
-+
-+	/*
-+	 * 1000000 from Current_LSB A->uA .
-+	 * scale_coef is for scaling up to minimize rounding errors,
-+	 * If there is no decimal information, no need to scale.
-+	 */
-+	if (1000000 % current_lsb) {
-+		/* Scaling to keep integer precision */
-+		scale_factor = -3;
-+		scale_coef = 1000;
-+	}
-+
-+	/*
-+	 * Unit Conversion (Current_LSB A->uA) and use scaling(scale_factor)
-+	 * to keep integer precision.
-+	 * Formulae referenced from spec.
-+	 */
-+	scaled_m = div64_u64(1000000 * scale_coef, (u64)current_lsb * power_coef);
-+
-+	/* Maximize while keeping it bounded.*/
-+	while (scaled_m > MAX_M_VAL) {
-+		scaled_m = div_u64(scaled_m, 10);
-+		scale_factor++;
-+	}
-+	/* Scale up only if fractional part exists. */
-+	while (scaled_m * 10 < MAX_M_VAL && scale_coef != 1) {
-+		scaled_m *= 10;
-+		scale_factor--;
-+	}
-+
-+	*m = scaled_m;
-+	*R = scale_factor;
-+}
-+
-+static int ina233_read_word_data(struct i2c_client *client, int page,
-+				 int phase, int reg)
-+{
-+	int ret;
-+
-+	switch (reg) {
-+	case PMBUS_VIRT_READ_VMON:
-+		ret = pmbus_read_word_data(client, 0, 0xff, MFR_READ_VSHUNT);
-+
-+		/* Adjust returned value to match VIN coefficients */
-+		/* VIN: 1.25 mV VSHUNT: 2.5 uV LSB */
-+		ret = DIV_ROUND_CLOSEST(ret * 25, 12500);
-+		break;
-+	default:
-+		ret = -ENODATA;
-+		break;
-+	}
-+	return ret;
-+}
-+
-+static int ina233_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	int ret, m, R;
-+	u32 rshunt;
-+	u32 max_current;
-+	u32 current_lsb;
-+	u16 calibration;
-+	struct pmbus_driver_info *info;
-+
-+	info = devm_kzalloc(dev, sizeof(struct pmbus_driver_info),
-+			    GFP_KERNEL);
-+	if (!info)
-+		return -ENOMEM;
-+
-+	info->pages = 1;
-+	info->format[PSC_VOLTAGE_IN] = direct;
-+	info->format[PSC_VOLTAGE_OUT] = direct;
-+	info->format[PSC_CURRENT_OUT] = direct;
-+	info->format[PSC_POWER] = direct;
-+	info->func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_INPUT
-+		| PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT
-+		| PMBUS_HAVE_POUT
-+		| PMBUS_HAVE_VMON | PMBUS_HAVE_STATUS_VMON;
-+	info->m[PSC_VOLTAGE_IN] = 8;
-+	info->R[PSC_VOLTAGE_IN] = 2;
-+	info->m[PSC_VOLTAGE_OUT] = 8;
-+	info->R[PSC_VOLTAGE_OUT] = 2;
-+	info->read_word_data = ina233_read_word_data;
-+
-+	/* If INA233 skips current/power, shunt-resistor and current-lsb aren't needed.	*/
-+	/* read rshunt value (uOhm) */
-+	ret = device_property_read_u32(dev, "shunt-resistor", &rshunt);
-+	if (ret) {
-+		if (ret != -EINVAL)
-+			return dev_err_probe(dev, ret, "Shunt resistor property read fail.\n");
-+		rshunt = INA233_RSHUNT_DEFAULT;
-+	}
-+	if (!rshunt)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "Shunt resistor cannot be zero.\n");
-+
-+	/* read Maximum expected current value (uA) */
-+	ret = device_property_read_u32(dev, "ti,maximum-expected-current-microamp", &max_current);
-+	if (ret) {
-+		if (ret != -EINVAL)
-+			return dev_err_probe(dev, ret,
-+					     "Maximum expected current property read fail.\n");
-+		max_current = INA233_MAX_CURRENT_DEFAULT;
-+	}
-+	if (max_current < 32768)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "Maximum expected current cannot less then 32768.\n");
-+
-+	/* Calculate Current_LSB according to the spec formula */
-+	current_lsb = max_current / 32768;
-+
-+	/* calculate current coefficient */
-+	calculate_coef(&m, &R, current_lsb, 1);
-+	info->m[PSC_CURRENT_OUT] = m;
-+	info->R[PSC_CURRENT_OUT] = R;
-+
-+	/* calculate power coefficient */
-+	calculate_coef(&m, &R, current_lsb, 25);
-+	info->m[PSC_POWER] = m;
-+	info->R[PSC_POWER] = R;
-+
-+	/* write MFR_CALIBRATION register, Apply formula from spec with unit scaling. */
-+	calibration = div64_u64(5120000000ULL, (u64)rshunt * current_lsb);
-+	if (calibration > 0x7FFF)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "Product of Current_LSB %u and shunt resistor %u too small, MFR_CALIBRATION reg exceeds 0x7FFF.\n",
-+				     current_lsb, rshunt);
-+	ret = i2c_smbus_write_word_data(client, MFR_CALIBRATION, calibration);
-+	if (ret < 0)
-+		return dev_err_probe(dev, ret, "Unable to write calibration.\n");
-+
-+	dev_dbg(dev, "power monitor %s (Rshunt = %u uOhm, Current_LSB = %u uA/bit)\n",
-+		client->name, rshunt, current_lsb);
-+
-+	return pmbus_do_probe(client, info);
-+}
-+
-+static const struct i2c_device_id ina233_id[] = {
-+	{"ina233", 0},
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, ina233_id);
-+
-+static const struct of_device_id __maybe_unused ina233_of_match[] = {
-+	{ .compatible = "ti,ina233" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, ina233_of_match);
-+
-+static struct i2c_driver ina233_driver = {
-+	.driver = {
-+		   .name = "ina233",
-+		   .of_match_table = of_match_ptr(ina233_of_match),
-+	},
-+	.probe = ina233_probe,
-+	.id_table = ina233_id,
-+};
-+
-+module_i2c_driver(ina233_driver);
-+
-+MODULE_AUTHOR("Leo Yang <leo.yang.sy0@gmail.com>");
-+MODULE_DESCRIPTION("PMBus driver for INA233 and compatible chips");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("PMBUS");
+-	lte-disable {
++	lte-disable-hog {
+ 		gpio-hog;
+ 		gpios = <2 GPIO_ACTIVE_LOW>;
+ 		output-low;
+@@ -476,14 +476,14 @@ lte-disable {
+ 	 * This signal, when asserted, isolates Armada 38x sample at reset pins
+ 	 * from control of external devices. Should be de-asserted after reset.
+ 	 */
+-	sar-isolation {
++	sar-isolation-hog {
+ 		gpio-hog;
+ 		gpios = <15 GPIO_ACTIVE_LOW>;
+ 		output-low;
+ 		line-name = "sar-isolation";
+ 	};
+ 
+-	poe-reset {
++	poe-reset-hog {
+ 		gpio-hog;
+ 		gpios = <16 GPIO_ACTIVE_LOW>;
+ 		output-low;
+diff --git a/arch/arm/boot/dts/marvell/armada-388-clearfog-base.dts b/arch/arm/boot/dts/marvell/armada-388-clearfog-base.dts
+index f7daa3bc707e..cf32ba9b4e8e 100644
+--- a/arch/arm/boot/dts/marvell/armada-388-clearfog-base.dts
++++ b/arch/arm/boot/dts/marvell/armada-388-clearfog-base.dts
+@@ -34,7 +34,7 @@ &eth1 {
+ };
+ 
+ &gpio0 {
+-	phy1_reset {
++	phy1-reset-hog {
+ 		gpio-hog;
+ 		gpios = <19 GPIO_ACTIVE_LOW>;
+ 		output-low;
 -- 
-2.39.2
+2.43.0
 
 
