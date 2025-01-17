@@ -1,129 +1,95 @@
-Return-Path: <devicetree+bounces-139276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB54BA14EF8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:06:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2318A14F07
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:09:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0FD31669A8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:06:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE2317A0887
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F42331FE472;
-	Fri, 17 Jan 2025 12:06:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78D7B1FE45E;
+	Fri, 17 Jan 2025 12:09:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Fp9AaJ3R"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JmC0bgxz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07CB11FC7FA;
-	Fri, 17 Jan 2025 12:06:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59B581FC7F4;
+	Fri, 17 Jan 2025 12:09:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737115598; cv=none; b=Mb+L0uUYYsybGpadOItD3sWq2fn29ny1gp9ioIze0AGPLHYPEvvywOkU0c40u3p6MDhniIqIMNvOHt8sawcocNsMJa2AuuEzpPbkqgLimHCW5IINci+bIC1vBScbs//yvZq9Xm1bby2zAN0Xttb+XH815trcz31nGQibDjc2yDs=
+	t=1737115781; cv=none; b=cw8nL2Bi/tfJvu9ymYQnEt4PBm4/7HhhQk1XJ+idvRUtu2eTZfIjMYDwZ07DkBQjX4rj5EnCrthSpSdnZQlfgs0KTdnQbhyfwOn7c6h3izgNmX3m/vknREXvrQpqtQiVLis5wBWfJZfJnRKWSEYmBgIznJeyEligPEjvHVDIDW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737115598; c=relaxed/simple;
-	bh=DLRrKOUp9u7sPT49SGdZaxl1UKYfCm8vrUFE1vSBPIE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qb+7FgWGpL+r3yIAcWQC3bUYW4fr7IunYugnFXRzRV3yz/z3cGgtqMcIXjRE9cl0aYzvZsoYY7xLgqIHlgtKxaI2KwfYBTirLB5EQULCC3upNd9aFuWLMEqbIG+tyoMs3tstGKyTTiSpLOlOMe0jb2kTFbTHTe0to6/isEeORPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Fp9AaJ3R; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737115598; x=1768651598;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=DLRrKOUp9u7sPT49SGdZaxl1UKYfCm8vrUFE1vSBPIE=;
-  b=Fp9AaJ3R/KtddLRgbxWnJ7q00OQloJXzi6gzbAdeps+H9Jq5r14rCvTU
-   BcPAwWz29kPl917qrexGdgqpUdNvnUx6NhEEYB8JiT8FlGDtfWnpFGYnt
-   N3Z2I2HXSHYy1hXOHDajKahmMemClZzTId1bsn7vnnJVIoDJaNkLTlsGi
-   akR0t7IH3znbxbc0aqlU4ptXK7aMdnk6xTAPSGKCHbkXXXGqXnY5DTFQ1
-   hRLmAAs0OIp33EFuQ8fovTsnEduAl2Tf0/vehnStz3/OkubbMYx4p4lbE
-   7IwYNUZgbg5ACHR8n8q38sRUVwtOzR3cHuxWbkz9d85gMETWImb7Be7D8
-   g==;
-X-CSE-ConnectionGUID: UHdmpfoQTiy8JCqlFcTqRg==
-X-CSE-MsgGUID: SjoKY/0uQPqUOQg+AMaHQw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="37567403"
-X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; 
-   d="scan'208";a="37567403"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 04:06:37 -0800
-X-CSE-ConnectionGUID: 4BtuMSxaQoKOP0bxr8WgHQ==
-X-CSE-MsgGUID: a1W/BoZAS6G9ipHiyWRDpA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="106263069"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 17 Jan 2025 04:06:34 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tYl7P-000TAC-15;
-	Fri, 17 Jan 2025 12:06:31 +0000
-Date: Fri, 17 Jan 2025 20:06:17 +0800
-From: kernel test robot <lkp@intel.com>
-To: Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sean Wang <sean.wang@mediatek.com>
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	herbert1_wu@pegatron.corp-partner.google.com,
-	Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
-Subject: Re: [PATCH 2/2] arm64: dts: mt8186: Add MT8186 Krabby platform based
- Skitty
-Message-ID: <202501171915.sG65nBFc-lkp@intel.com>
-References: <20250115-skitty_kernel-v1-2-6ef2086858ba@pegatron.corp-partner.google.com>
+	s=arc-20240116; t=1737115781; c=relaxed/simple;
+	bh=Vnca4a+Ak7OzZ5U8yGynniRcqoiGICGBJW1igzmpixw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mExuDCnJI9LulkeE1u0gSe2Pv5XiN+ARayOc5dD5YbZa8BNPDIp+d/u6GJ7NnUJ96heqXUyIRSCmH2TD3PFpPXIqpxchmotl5eDYk13l78Zn3Kator6cg/ubiwoFKhq9vTgo1xobDBvuyYXZwGEv8buKtbK7adDM6DK9uNhAsSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JmC0bgxz; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 456F6FF804;
+	Fri, 17 Jan 2025 12:09:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1737115777;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Vnca4a+Ak7OzZ5U8yGynniRcqoiGICGBJW1igzmpixw=;
+	b=JmC0bgxzTN5QJZugt4B1LV4szxHahNfrlt7T4F6XDz9JtSh225EYn6sb0zlz8JZffHMWnu
+	TYpBeQci5OHQt/H7yILVgdv93AiRGfioFPClZVh9/pz357ZIO0YxvnowGfFLq1aBtmJLo6
+	MDROJ2vKLjWKr6tncamGe+lw1ETV28cBNr2U/VqxDXtV6mhCSs7QFsi3wwJ7R3ZamQBep0
+	0BRNdZ9j30/vMtZlil9ASvwOZP5XcyMRhtJ3UL1ZOhsWDegjZfjGtGNZnKxLBseNL+hV1Q
+	nJepLfsMc4Heer/BKUVEd44gLBfuhbEF7F5j/GaoI1J+c3uMU/x6Rq7I7cRFOg==
+Date: Fri, 17 Jan 2025 13:09:36 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Oleksij Rempel
+ <o.rempel@pengutronix.de>, kernel@pengutronix.de
+Subject: Re: [PATCH v2 0/2] Add support for power budget
+Message-ID: <20250117130936.5a6b3d3e@kmaincent-XPS-13-7390>
+In-Reply-To: <20250115-feature_regulator_pw_budget-v2-0-0a44b949e6bc@bootlin.com>
+References: <20250115-feature_regulator_pw_budget-v2-0-0a44b949e6bc@bootlin.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250115-skitty_kernel-v1-2-6ef2086858ba@pegatron.corp-partner.google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-Hi Geoffrey,
+On Wed, 15 Jan 2025 15:41:56 +0100
+Kory Maincent <kory.maincent@bootlin.com> wrote:
 
-kernel test robot noticed the following build errors:
+> In preparation for future support of PSE budget evaluation strategy and
+> power management, we need the power budget value of the power supply.
+>=20
+> This addition allows the regulator to track the available power
+> budget, which will be essential for prioritizing ports when
+> making power allocation decisions.
+>=20
+> The related budget evaluation strategy patch series sent:
+> https://lore.kernel.org/netdev/20250104161622.7b82dfdf@kmaincent-XPS-13-7=
+390/T/#t
 
-[auto build test ERROR on 619f0b6fad524f08d493a98d55bac9ab8895e3a6]
+Hello,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Geoffrey-Chien/dt-bindings-arm-mediatek-Add-MT8186-Skitty-Chromebooks/20250115-154648
-base:   619f0b6fad524f08d493a98d55bac9ab8895e3a6
-patch link:    https://lore.kernel.org/r/20250115-skitty_kernel-v1-2-6ef2086858ba%40pegatron.corp-partner.google.com
-patch subject: [PATCH 2/2] arm64: dts: mt8186: Add MT8186 Krabby platform based Skitty
-config: arm64-randconfig-r051-20250116 (https://download.01.org/0day-ci/archive/20250117/202501171915.sG65nBFc-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250117/202501171915.sG65nBFc-lkp@intel.com/reproduce)
+Is there hope this will be merged before the merge window?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501171915.sG65nBFc-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku1.dts:48.1-8 Label or path target not found
->> FATAL ERROR: Syntax error parsing input tree
---
-   Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku2.dts:48.1-8 Label or path target not found
->> FATAL ERROR: Syntax error parsing input tree
---
-   Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku3.dts:49.1-8 Label or path target not found
->> FATAL ERROR: Syntax error parsing input tree
---
-   Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku4.dts:49.1-8 Label or path target not found
->> FATAL ERROR: Syntax error parsing input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
