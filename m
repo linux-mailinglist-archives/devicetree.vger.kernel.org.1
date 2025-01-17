@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-139261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5870A14E05
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:55:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5DC1A14E12
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:00:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5820A3A4834
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 10:54:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1738D16767F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:00:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E766B1FC7F4;
-	Fri, 17 Jan 2025 10:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F21E1F8AEB;
+	Fri, 17 Jan 2025 11:00:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q5fqfWtx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ce8fz37p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1341F9F43;
-	Fri, 17 Jan 2025 10:55:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 752CF1D5CE0;
+	Fri, 17 Jan 2025 11:00:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737111300; cv=none; b=d5qNaABYimZQlXuVjb6QohHPeikx9+kWvVQPAILMIfckPiWqK5Lfcg0TjMbIo3iQs67+wXgdM4ypHoRWLpmuPhLFjrgTYufrKEBBLIoHN4fqMG0C15OAjM8wPIooYBlnncQxsY6jlqRjP3i5o1bV9W4SG/6MFzTAXbxW+AnBcNI=
+	t=1737111632; cv=none; b=OsVbFdEYhupA6D3uxkwYtX2ta+vP2w+c38QuXPQ250kWBMSv4sBfTWtNyXvOxapYn1w2FwVQXZO/OTHwrJWNbOfGbAK46Yp4SqK4Yu6mxNADR2pBeAisSdfYY7yeVJaWSHSmMLMlx3R420zNonf7sWJ1a39JOd2x+CVZuXskHTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737111300; c=relaxed/simple;
-	bh=mznmnvbqPaNzOEOTQeMYHdZ/QQ4aIM9FNbZ5f0Sk/jk=;
+	s=arc-20240116; t=1737111632; c=relaxed/simple;
+	bh=vTQWVenncOu0byGPfgs/rhAj7iiznjI2FJ93MNmTcbA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rTUML7oEiTWg6mBD6ExIo7O2+hCE9SnUuoLwINGMOK47GHMVXGSPSLm/p+4e0ZKOa7/ztP8NxTctSbKpO6B2hjI5tGWTeF+iZmGcvl0aGk+sUF5nMXq7V2XbXx9ZBHcTPcixBb69aqeP/KfrqfYApkMuN+ENbguYZTku+MkYn18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q5fqfWtx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C02B4C4CEDD;
-	Fri, 17 Jan 2025 10:54:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=icoVtrGPdhRyx9zFOt8NUaWgrMSDxmgRwscilc9fTil9rRDcMgn+Iu2N01ogoGpDHXqj08rp6vrnFcVzi2AyU2HpiXsADtOiZcyHwgu844qbVYRUjYTGhNK0H0uyiGmFh05KLYM2OjVIfSe8jM6v5F696k5/rfSjkwWbLkx/E7g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ce8fz37p; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2E58C4CEDD;
+	Fri, 17 Jan 2025 11:00:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737111300;
-	bh=mznmnvbqPaNzOEOTQeMYHdZ/QQ4aIM9FNbZ5f0Sk/jk=;
+	s=k20201202; t=1737111632;
+	bh=vTQWVenncOu0byGPfgs/rhAj7iiznjI2FJ93MNmTcbA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q5fqfWtxk8NkHmnMlthkMG2gItGoTJd1zSdDoLCz6IjQlg9MWwugXDPLcBEp6TNm4
-	 RoyYb8f+1q5cpUrQv2TD4NA3fSe4yd3Le3I5l6DxcNNUcQcTNcAo4QRiosznafyMoL
-	 kqsOZjfigRXJZOuuDAmh9m0FirH6Ip7s7GIOhQKDNFLeY9vCmqDsZgvMKzNNARsn9v
-	 RW1W5+mweyjo9dCgIeM16TlByze+uh6PjkR4B9Sj7XTlWEeeZi2EGMGQBNEmMsR/HN
-	 GixNdIA+yH0BxwdVmB8I6bTEPIhaCCQST8TXMFptU6x1gszoiGpknoovd568WFUpoX
-	 kgWYQKiSkoDpw==
-Date: Fri, 17 Jan 2025 11:54:55 +0100
+	b=ce8fz37pPDP5gDINIBCUOuKjCl205rRiGqED6Pfg5wEGmsWhDn2lffBdaV2lawUel
+	 rxRcOoc9hjikyzet4hyiS+/UxCABYTJo+yuveYvt46WuuOp1MHxaZThtUmf0na89Pn
+	 gumePF/7azZyuU17N9wbVRMAqDDeQkhftLWdxp1sRMVOvZKj9UrfU87CjGhyPr1Vak
+	 StgzXQgi0OlwyDzeYBorKZwgfrKnhbg47nLEM73d4zYYHzXrdTAd7eZpdhK7c8EwtW
+	 7rOhLwi1wIgQ/4urjz1cDdVjJt4pdu7oxA6CAa/fsFQ8SIHHstVBBGyY89m4fSqVvk
+	 ZX2TXdGaoxu3g==
+Date: Fri, 17 Jan 2025 12:00:25 +0100
 From: Niklas Cassel <cassel@kernel.org>
-To: Quentin Schulz <foss+kernel@0leil.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Jagan Teki <jagan@edgeble.ai>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Quentin Schulz <quentin.schulz@cherry.de>
-Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: add overlay tests for Rock
- 5B PCIe overlays
-Message-ID: <Z4o2_0yX-hq-DfCs@ryzen>
-References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
- <20250116-pre-ict-jaguar-v2-2-157d319004fc@cherry.de>
+To: Kever Yang <kever.yang@rock-chips.com>
+Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
+	Simon Xue <xxm@rock-chips.com>, Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	linux-pci@vger.kernel.org,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: PCI: dw: rockchip: Add rk3576 support
+Message-ID: <Z4o4SazNBV6aLdxg@ryzen>
+References: <20250117032742.2990779-1-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,58 +67,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250116-pre-ict-jaguar-v2-2-157d319004fc@cherry.de>
+In-Reply-To: <20250117032742.2990779-1-kever.yang@rock-chips.com>
 
-On Thu, Jan 16, 2025 at 03:47:11PM +0100, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@cherry.de>
+On Fri, Jan 17, 2025 at 11:27:41AM +0800, Kever Yang wrote:
+> rk3576 is using dwc controller, with msi interrupt directly to gic instead
+> of to gic its, so
+> - no its support is required and the 'msi-map' is not need anymore,
+> - a new 'msi' interrupt is needed.
 > 
-> According to commit 40658534756f ("arm64: dts: rockchip: Add rock5b
-> overlays for PCIe endpoint mode"), Rock 5B can operate in PCIe endpoint
-> mode. For that to work, the rk3588-rock-5b-pcie-ep.dtbo overlay needs to
-> be applied on Rock 5B base Device Tree. If that Rock 5B is connected to
-> another Rock 5B, the latter needs to apply the
-> rk3588-rock-5b-pcie-srns.dtbo overlay.
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> ---
 > 
-> In order to make sure the overlays are still valid in the future, let's
-> add a validation test by applying the overlays on top of the main base
-> at build time.
+> Changes in v5:
+> - Add constraints per device for interrupt-names due to the interrupt is
+> different from rk3588.
 > 
-> Fixes: 40658534756f ("arm64: dts: rockchip: Add rock5b overlays for PCIe endpoint mode")
-
-Not sure if I agree with the Fixes-tag.
-I don't think there is anything broken with that commit, but I definitely
-think that it is a good idea make sure that they don't break in the future.
-
-
-> @@ -145,8 +145,6 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-plus.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5-itx.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
-> -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
-> -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtbo
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-turing-rk1.dtb
-> @@ -165,5 +163,9 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
+> Changes in v4:
+> - Fix wrong indentation in dt_binding_check report by Rob
+> 
+> Changes in v3:
+> - Fix dtb check broken on rk3588
+> - Update commit message
+> 
+> Changes in v2:
+> - remove required 'msi-map'
+> - add interrupt name 'msi'
+> 
+>  .../bindings/pci/rockchip-dw-pcie-common.yaml | 53 +++++++++++++++----
+>  .../bindings/pci/rockchip-dw-pcie.yaml        |  4 +-
+>  2 files changed, 44 insertions(+), 13 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
+> index cc9adfc7611c..eef108037184 100644
+> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
+> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
+> @@ -40,6 +40,7 @@ properties:
 >  
->  # Overlays
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtb
+>    interrupts:
+>      minItems: 5
+> +    maxItems: 9
+>      items:
+>        - description:
+>            Combined system interrupt, which is used to signal the following
+> @@ -64,6 +65,10 @@ properties:
+>            interrupts - aer_rc_err, aer_rc_err_msi, rx_cpl_timeout,
+>            tx_cpl_timeout, cor_err_sent, nf_err_sent, f_err_sent, cor_err_rx,
+>            nf_err_rx, f_err_rx, radm_qoverflow
+> +      - description:
+> +          Combinded MSI line interrupt, which is to support MSI interrupts
+> +          output to GIC controller via GIC SPI interrupt instead of GIC its
+> +          interrupt.
 
-You moved these lines further down, but you changed the suffix from
-.dtbo to .dtb, why? It seems a little confusing, is that really needed?
+If you are talking about GIC interrupt translation service here,
+then I think you should:
+s/GIC its/GIC ITS/
 
 
 Kind regards,
 Niklas
-
->  
->  rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb rk3588-edgeble-neu6a-wifi.dtbo
-> +rk3588-rock-5b-pcie-ep-dtbs := rk3588-rock-5b.dtb rk3588-rock-5b-pcie-ep.dtbo
-> +rk3588-rock-5b-pcie-srns-dtbs := rk3588-rock-5b.dtb rk3588-rock-5b-pcie-srns.dtbo
-> 
-> -- 
-> 2.48.0
-> 
 
