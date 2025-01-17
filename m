@@ -1,129 +1,84 @@
-Return-Path: <devicetree+bounces-139273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEEB7A14ED5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:53:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3735BA14EE0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:57:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC8E4162FE0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:53:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BDC63A7A83
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:57:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC5B71FE479;
-	Fri, 17 Jan 2025 11:53:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 632BE1FE46C;
+	Fri, 17 Jan 2025 11:57:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gJTVlowI"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="lSTkrBsz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A3C1FE45F;
-	Fri, 17 Jan 2025 11:53:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25C7B1F790F;
+	Fri, 17 Jan 2025 11:57:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737114834; cv=none; b=NxcJdkIOsy621Tn5Li8GngTDTWiw0C5FUM497NhWJ3gjUkSeQF1tbfAyhQbkhvVfAaStaxYlftctm8MgUlYG+kPYgh8j7Lvg09kslVicsz6Gn4M7+iITq+afz02Q7jc2qqDjo54vnciWmtG9rlBjNkcgYGfAd2QkucL1jSNUpuw=
+	t=1737115071; cv=none; b=oCR1mMvn8ZAdtIMIjln9oxW5FodnrGhK0vSn3o81ewTkwNmMvpQa8lba3eFsjmlUaEMRC5QDI4rXyCz9pZXKzWlKXR3mPif8SKWBjbDLY5BtHzpA9Uno8Nh6cz0IsvAr15pHXMivn7juV77gduyM1XYApHeg+5yCokRf2NLCH+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737114834; c=relaxed/simple;
-	bh=czFmOPqjuV/Og92CfVO759ZUYmPZ1n3XMxdg4+9Hxes=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q0xnQQ20XOY8YhLJ3bthUFsWQwnOT1hIu6quozuDw91grwUo1PtKy8xmHXXVNP48sir9RiN5hwX62rCnBokWTOrtotUWc4acaCOnQjoxnZJblUFVD8miuK2/G2yLAL0KhZanOgt4ZeOWVyt1sm/bMyAYOVwb3lNpY3n5AyLWpis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gJTVlowI; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-86112ab1ad4so479970241.1;
-        Fri, 17 Jan 2025 03:53:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737114832; x=1737719632; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P3DdFeKyKYxzEcK5cCNGdU/vTMq+Ez0rcnFpSG8fnec=;
-        b=gJTVlowIfI2t2VPB+s7ojZZylY2p8Qj6yvqN9lli4tG5AwvMteEj+OMF0x+ha63qxK
-         9U4xfZ/r9hEglHN+cYkeEK1G9RcidE/rhy4I9p+X3VkJo654gnjv9G39qOyO8nnDLEKk
-         OAbMlsAjkhTmDCcKRj0Ozrp+GTp4k23AGJKRXH4oVPOfKXHcEiNoIQf7xThDf5hif6rB
-         YDpYqoD8vhNi5Q1EPpOFv+5S1PmOaIeTCIoz1TiHz0ss3WOugWViQdO2R/hm4ajFhnu1
-         oTxpWfddXPRXZXpqimTCKWt4+nDORk6ANpC3pWVsxd/vOXxVavT9Zmrpv/srMJXJN//g
-         Yang==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737114832; x=1737719632;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=P3DdFeKyKYxzEcK5cCNGdU/vTMq+Ez0rcnFpSG8fnec=;
-        b=j6AYRu7g1AM4xS4cTi6rOPpxnBv4zhuRTFTYeOfQKje9obJPO59F4xKC9vysAgC+Ea
-         p1JfF62tRIR7okafNjjkCl3/NR8xV0rrirmruoR7WRiQgDMkZ3N/PHFW02SIYTtf8RVy
-         p1HsFN1+RmqZU+Poi4OsOAEZRNZ9kS+DeL8rn9w1856OOQm3OvVZjQaxZdkT28fmFmF9
-         8bWZvWxjtkKCySgTgJ/n3KfvMr3HzVYpdW6HQuruaV9mSIc4dqFfIsfrqe2r7lKuHgn8
-         RdTafxTw4NtbeMFUE1tQ30ClZUdJnyIJLx40kLVRkiElCwwPALa53cci1CScHP2yEf6U
-         aRZw==
-X-Forwarded-Encrypted: i=1; AJvYcCUbcmSupAN9C/U45XzG94FfUsytiuXPppiFeFTaU82txDbw0ybPPfPdtu5bq1WrvUGL/xfphhMFr1w2W2ZN@vger.kernel.org, AJvYcCV5qHAjDUwl6qU3vEKxSyBLgV8u0OO2Xc+CjVqthfHRnbH8LF/F8yNroKVCIhNsYfNVJ96kxa3o9K+V@vger.kernel.org, AJvYcCVOwC/OthSQc7HJDLNdiTAjOLxDbicPSlYgFQOTlncMFNLdpb7oYREcV7F0N2vp2qsxxCcKnsJV4vE=@vger.kernel.org, AJvYcCWNKCxYfza+PjVQd14gHqS+aXJxOOSaoVVTAV/8mIzG9Ddbs8lDydC/fEMDIfJiFpv/hZinJYac74HcwA==@vger.kernel.org, AJvYcCXF5zJNpM31ismtleU/nP8Ra/iNFYxDvScx1+nUSMg+qJ561C87mPpigDDrdve7G7LGJzu4UP263hqOFzw=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzl/6Q1JoO6V3aOP9BouJipgUmCS5VfkxnhEKUsJ41SqJtloCzz
-	lFaYmacH02aUqOlwc0YZz7iAE0dj4ZhL0PNw98vd0mQK1IrDu1FhafJQs0EK6oF3uGwuQtAPkpW
-	mX6ZgT9RcISOCNNd9CIx7AvDMT+w=
-X-Gm-Gg: ASbGncvSjlM9U+oOfZns6j6KyVUSmSzqbdW1a1Hs0E+JiAVEHokg0NoWDx8oxlGOZuP
-	o0Ix4qWh4ZNMRx/MaXz51GOOcPWLBvaLx8vBmSA==
-X-Google-Smtp-Source: AGHT+IHsSVdYBma5CPL0yG8zuR6byIgPcePiTTTkobAfruzMqP7IeXaP31/0PFmLWWGFUVQ6PJVK7/wenzEMa0nl0Do=
-X-Received: by 2002:a05:6102:3584:b0:4af:f3bd:51cd with SMTP id
- ada2fe7eead31-4b690cdd7e9mr1189372137.16.1737114832156; Fri, 17 Jan 2025
- 03:53:52 -0800 (PST)
+	s=arc-20240116; t=1737115071; c=relaxed/simple;
+	bh=3G+I0NpOc7Vq8/1XyMl4/GWd+eFIx8HPniSxRr+hYYw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hp2b+ZQBLpt6BFLdGwZ0YTFIUlEbta8hLWdQgHxNh9aJBULxedztXYPccWSnH56BNYV7dDaP5R7NGFXZeJQkZCDWzP2TFb3HJfFPtRNDJq+FkxBOH+vaS5koNEK1kxnO4d/Mky59gpR52A8MJ+1EvBgwB/jhaKSuYvIX/PBYm6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=lSTkrBsz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24A6CC4CEDD;
+	Fri, 17 Jan 2025 11:57:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1737115070;
+	bh=3G+I0NpOc7Vq8/1XyMl4/GWd+eFIx8HPniSxRr+hYYw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lSTkrBszTXecpZduCezA+UwN3IfQLYPM7G0MsMFKAaUg5cYeHvwQ8E3pQ8Z2m0fCd
+	 OjopyfB47AQKgiswvZA+RZ/cFYWELhHOrJpiM0K4G1kcr09shciWDv9UJ5TzUdt7bW
+	 rCacWUEod4/ojOV9WUmMKOc0S2pbfX4uG+6iL8I0=
+Date: Fri, 17 Jan 2025 12:57:47 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Romain Gantois <romain.gantois@bootlin.com>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Kory Maincent <kory.maincent@bootlin.com>,
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v6 9/9] misc: add FPC202 dual port controller driver
+Message-ID: <2025011717-putt-scarring-14f0@gregkh>
+References: <20250115-fpc202-v6-0-d47a34820753@bootlin.com>
+ <20250115-fpc202-v6-9-d47a34820753@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250116-starqltechn_integration_upstream-v15-0-cf229de9f758@gmail.com>
- <20250116-starqltechn_integration_upstream-v15-5-cf229de9f758@gmail.com> <20250117-cordial-hopeful-leopard-4b7ad9@krzk-bin>
-In-Reply-To: <20250117-cordial-hopeful-leopard-4b7ad9@krzk-bin>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Fri, 17 Jan 2025 14:53:41 +0300
-X-Gm-Features: AbW1kvauDMoxHb-HOemALvUFq-vmlIsK81MN7Ookae2wr7GP_eDwoWdHLehW0k0
-Message-ID: <CABTCjFAv7sKkgWvr_Bik3G7-6L0Uh5gnhhTDiar7ecjuqEtvJA@mail.gmail.com>
-Subject: Re: [PATCH v15 5/7] mfd: Add new driver for MAX77705 PMIC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
-	Hans de Goede <hdegoede@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250115-fpc202-v6-9-d47a34820753@bootlin.com>
 
-=D0=BF=D1=82, 17 =D1=8F=D0=BD=D0=B2. 2025=E2=80=AF=D0=B3. =D0=B2 10:55, Krz=
-ysztof Kozlowski <krzk@kernel.org>:
->
-> On Thu, Jan 16, 2025 at 07:26:07PM +0300, Dzmitry Sankouski wrote:
-> >  config MFD_MAX77714
-> >       tristate "Maxim Semiconductor MAX77714 PMIC Support"
-> >       depends on I2C
-> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> > index e057d6d6faef..d981690b5a12 100644
-> > --- a/drivers/mfd/Makefile
-> > +++ b/drivers/mfd/Makefile
-> > @@ -168,6 +168,7 @@ obj-$(CONFIG_MFD_MAX77620)        +=3D max77620.o
-> >  obj-$(CONFIG_MFD_MAX77650)   +=3D max77650.o
-> >  obj-$(CONFIG_MFD_MAX77686)   +=3D max77686.o
-> >  obj-$(CONFIG_MFD_MAX77693)   +=3D max77693.o
-> > +obj-$(CONFIG_MFD_MAX77705)   +=3D max77705.o
-> >  obj-$(CONFIG_MFD_MAX77714)   +=3D max77714.o
-> >  obj-$(CONFIG_MFD_MAX77843)   +=3D max77843.o
-> >  obj-$(CONFIG_MFD_MAX8907)    +=3D max8907.o
-> > @@ -233,6 +234,7 @@ obj-$(CONFIG_MFD_RK8XX_I2C)       +=3D rk8xx-i2c.o
-> >  obj-$(CONFIG_MFD_RK8XX_SPI)  +=3D rk8xx-spi.o
-> >  obj-$(CONFIG_MFD_RN5T618)    +=3D rn5t618.o
-> >  obj-$(CONFIG_MFD_SEC_CORE)   +=3D sec-core.o sec-irq.o
-> > +obj-$(CONFIG_MFD_S2DOS05)    +=3D s2dos05.o
->
-> Hm? How so? And how does it even work?
->
+On Wed, Jan 15, 2025 at 10:25:46AM +0100, Romain Gantois wrote:
+> +	dev_info(&client->dev, "%s FPC202 Dual Port controller found\n", client->name);
 
-My bad, sorry seems like rebase issue.
+When drivers work properly, they are quiet.  Please remove this.  Also,
+the dev ponter should already have the name in it, right?
 
---=20
-Best regards and thanks for review,
-Dzmitry
+thanks,
+
+greg k-h
 
