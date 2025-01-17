@@ -1,150 +1,213 @@
-Return-Path: <devicetree+bounces-139206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64FEDA1487A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 04:25:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93461A148F1
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 05:43:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11D287A035F
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 03:25:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D69DC7A3C80
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 04:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AEB61E1A20;
-	Fri, 17 Jan 2025 03:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC451F667A;
+	Fri, 17 Jan 2025 04:43:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="orA9EgNv"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="SSQIn1G6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail-m3272.qiye.163.com (mail-m3272.qiye.163.com [220.197.32.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6516425A645;
-	Fri, 17 Jan 2025 03:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 143041F63C6;
+	Fri, 17 Jan 2025 04:43:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737084319; cv=none; b=opVkXtD1CHZfsAP01H9lMPq3JPN5T/WQq0xmveD6Q4vJBt818Ikrd9dKU+aa3+nTGeVcpgTCcx/d1NpIVEApDkxJRy21wC8dqIJ7ug2OrIyjH2u5u292RpMuYSaRIeTS3GcLlO1sufVnv2L9eN1zYBQboS4pUS8FmePYv2h9duM=
+	t=1737089017; cv=none; b=JVYk/CnJ36ui0+jFkKKDGuFInngXaBV1hbaz+zfOTsYtkpftKQbgThTGRyHdqaMT07thk1QCKYcCpShJBOHjbOQpa0QAxwS7/6CNQMtmkInTJL5XfnsXIeUT9XdFm3Jtzocf95O7jgc98G3TAZaOVJcbqo3iS/1x0vm9/29hr/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737084319; c=relaxed/simple;
-	bh=zWewJFQARh+onD8k0ILCh3QNHgBv4U0mSe08YICN9O4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=dhAQ8iY5AkPJ5Yno7g4DPoz0vxJPzfDfo/dAJulTqeC9Bj/YgJLyoURs/NMPOJVCTzfIeMiRCEZFopl6vnJJNUoEFCjwwH39sawMH5nxyHtS4F7GLMa18KSAPOR+3OiDA7oEtc+BpL4WQLq51W8eiaOoszfKRFmTEiAeNFxtses=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=orA9EgNv; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50GFpdHL010187;
-	Fri, 17 Jan 2025 03:25:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=KBQQP+zyTT5FVJjUtxijuc
-	jK7qTBH7fBoLCqZxRCiYk=; b=orA9EgNvT2loMYjIvKwuUNrjN2okUd3EGV1ial
-	1vp7RHfo0l78+TRRFvuzW7Z2PU0iJdmL9gLL7Dwh/Yd2UwukosM4Z3Fx8qp1iTbY
-	m+V3D35SuZLwjwdKn3as8HcGrfbuj7v3JG4F6x4QUxo3JXzq2ELfmrMnIltr8a0t
-	mjrFKoxH7o1SPEW+R4e5NO1rSEIvarJJ96dfyHgYNADsZwhS1s2TYpRf2hnD921+
-	12RddyvleTRQ3gguLwgMIF3+F0jwflwYYH87Hi4Km4cZGQG+P/DlIZEHhmv0IMsI
-	/ZGI9+B07q0dNs64YqaD4bPMNIsu0+Ay65SOqbMyLRq/mcsg==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44754g9dmn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Jan 2025 03:25:11 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50H3PBPt012516
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Jan 2025 03:25:11 GMT
-Received: from cse-cd02-lnx.ap.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 16 Jan 2025 19:25:04 -0800
-From: Tingguo Cheng <quic_tingguoc@quicinc.com>
-Date: Fri, 17 Jan 2025 11:24:31 +0800
-Subject: [PATCH v2] arm64: dts: qcom: qcs615: remove disallowed property in
- spmi bus node
+	s=arc-20240116; t=1737089017; c=relaxed/simple;
+	bh=y8RuriOS2ja4SiOfa72cFSdYPjP1BtVBWSYrhVdMUP0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ZkcrAVM28cbMMojidzZEi7059sykwEOf0aFlY+PMOs7ice6fafmXYvqi/dijmazJHk1O74M9a23tmiLjFxWg5LEU7eDFQlr4AsrnSO1INrITFvRgfpbaTPxYMKYUdELowXN/xFn9MB6TFo+Kdi/sLEnatuJHYSGBcvqundnETtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=SSQIn1G6; arc=none smtp.client-ip=220.197.32.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [103.29.142.67])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 8f2239f3;
+	Fri, 17 Jan 2025 11:27:45 +0800 (GMT+08:00)
+From: Kever Yang <kever.yang@rock-chips.com>
+To: heiko@sntech.de
+Cc: linux-rockchip@lists.infradead.org,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	linux-pci@vger.kernel.org,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v5 1/2] dt-bindings: PCI: dw: rockchip: Add rk3576 support
+Date: Fri, 17 Jan 2025 11:27:41 +0800
+Message-Id: <20250117032742.2990779-1-kever.yang@rock-chips.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250117-fix-kernel-test-robot-unexpected-property-issue-v2-1-0b68cf481249@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAG/NiWcC/5WPQU7DMBBFr1J5zaDYsZPCinugLuqZH2pB42A7U
- asqd6+bcgGWbxbvv7mpjBSQ1fvuphKWkEMcK5iXneLTcfwCBamsTGNco3VLQ7jQN9KIHyrIhVL
- 0sdA84jKBC4SmFCekcqWQ8wzyovdDJ9Z4y6pap4Sq2BY/D09O+J3rcHkelT9mEMfzOZQa0jtnY
- TwGK32zt5qtmEbeOu76VuA0xLeuZfVwnUIuMV23Zxa9yf66u393L5o0eT1YZsPOiPuokRxGfq1
- p6rCu6x0OCNDBPAEAAA==
-X-Change-ID: 20250113-fix-kernel-test-robot-unexpected-property-issue-bd18f6d42b4c
-To: <quic_fenglinw@quicinc.com>, <quic_tingweiz@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@oss.qualcomm.com>,
-        kernel test robot <lkp@intel.com>,
-        "Tingguo
- Cheng" <quic_tingguoc@quicinc.com>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1737084304; l=1349;
- i=quic_tingguoc@quicinc.com; s=20240917; h=from:subject:message-id;
- bh=zWewJFQARh+onD8k0ILCh3QNHgBv4U0mSe08YICN9O4=;
- b=YI+j7t9TNm1SFJYBJg9AX0pTQbzRNK0OS/Sg5axLThzkbdX/DkPMhCUUbGEux2jlCsOx5y2BJ
- oOr0pISHJtxBE9YpNZi434GTXzbc6GQEWuNOGwPGYLt7fJaUeR+4sgD
-X-Developer-Key: i=quic_tingguoc@quicinc.com; a=ed25519;
- pk=PiFYQPN5GCP7O6SA43tuKfHAbl9DewSKOuQA/GiHQrI=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fRYn2VDv8yNI2IzfdOqCILJVXviheL0D
-X-Proofpoint-ORIG-GUID: fRYn2VDv8yNI2IzfdOqCILJVXviheL0D
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-16_11,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 adultscore=0 malwarescore=0 mlxscore=0 clxscore=1015
- lowpriorityscore=0 bulkscore=0 spamscore=0 mlxlogscore=891 phishscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501170024
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZH0hIVkxITEpIHkoYTE5OTlYVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKS0hVSUJVSk9JVU1MWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09IVUpLS1
+	VKQktLWQY+
+X-HM-Tid: 0a94724d735c03afkunm8f2239f3
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Nwg6KQw5TTIcOD8jES8sCR9C
+	Fy0wCk9VSlVKTEhMS0NPT01DS01IVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlKS0hVSUJVSk9JVU1MWVdZCAFZQUhDSko3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=SSQIn1G6Ajd3TooJmtM6vPtgaM8iirnAcYMHDd6c5OBEL/va29VvQohMa7+Gf5Ah2nGLqaRbWLLheucTYzF9IznOpv6HYfZ+XLTB79X9ydhtb1ea6kWa+g9zy+2trw0Mgr7RO9LxDcO8X/d6NY1m802k9rH1YjN/dv14kdw0b3E=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=nWUOXgGr1bJtNx1vYM6geNONWF/tpXFfL8Oby3eDDFE=;
+	h=date:mime-version:subject:message-id:from;
 
-Remove the unevaluated 'cell-index' property from qcs615-ride.dtb
-spmi@c440000 to fix the kernel test robot issue.
+rk3576 is using dwc controller, with msi interrupt directly to gic instead
+of to gic its, so
+- no its support is required and the 'msi-map' is not need anymore,
+- a new 'msi' interrupt is needed.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/r/202412272210.GpGmqcPC-lkp@intel.com/
-Fixes: 27554e2bef4d ("arm64: dts: qcom: qcs615: Adds SPMI support")
-Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
+Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
 ---
+
+Changes in v5:
+- Add constraints per device for interrupt-names due to the interrupt is
+different from rk3588.
+
+Changes in v4:
+- Fix wrong indentation in dt_binding_check report by Rob
+
+Changes in v3:
+- Fix dtb check broken on rk3588
+- Update commit message
+
 Changes in v2:
-- Rephrased commit message in a concise way, added Fixes tag.
-- Link to v1: https://lore.kernel.org/r/20250116-fix-kernel-test-robot-unexpected-property-issue-v1-1-b1f4cc2c52d5@quicinc.com
----
- arch/arm64/boot/dts/qcom/qcs615.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+- remove required 'msi-map'
+- add interrupt name 'msi'
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-index fc69abff71270af591ad41f33bf893751cd7d300..7b3de4b8605722c2f24bc3dcbe9471440685745d 100644
---- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
-@@ -2964,7 +2964,6 @@ spmi_bus: spmi@c440000 {
- 			#interrupt-cells = <4>;
- 			#address-cells = <2>;
- 			#size-cells = <0>;
--			cell-index = <0>;
- 			qcom,channel = <0>;
- 			qcom,ee = <0>;
- 		};
+ .../bindings/pci/rockchip-dw-pcie-common.yaml | 53 +++++++++++++++----
+ .../bindings/pci/rockchip-dw-pcie.yaml        |  4 +-
+ 2 files changed, 44 insertions(+), 13 deletions(-)
 
----
-base-commit: 27554e2bef4d70841c4d20d96c673de51edb353c
-change-id: 20250113-fix-kernel-test-robot-unexpected-property-issue-bd18f6d42b4c
-
-Best regards,
+diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
+index cc9adfc7611c..eef108037184 100644
+--- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
++++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie-common.yaml
+@@ -40,6 +40,7 @@ properties:
+ 
+   interrupts:
+     minItems: 5
++    maxItems: 9
+     items:
+       - description:
+           Combined system interrupt, which is used to signal the following
+@@ -64,6 +65,10 @@ properties:
+           interrupts - aer_rc_err, aer_rc_err_msi, rx_cpl_timeout,
+           tx_cpl_timeout, cor_err_sent, nf_err_sent, f_err_sent, cor_err_rx,
+           nf_err_rx, f_err_rx, radm_qoverflow
++      - description:
++          Combinded MSI line interrupt, which is to support MSI interrupts
++          output to GIC controller via GIC SPI interrupt instead of GIC its
++          interrupt.
+       - description:
+           eDMA write channel 0 interrupt
+       - description:
+@@ -75,16 +80,7 @@ properties:
+ 
+   interrupt-names:
+     minItems: 5
+-    items:
+-      - const: sys
+-      - const: pmc
+-      - const: msg
+-      - const: legacy
+-      - const: err
+-      - const: dma0
+-      - const: dma1
+-      - const: dma2
+-      - const: dma3
++    maxItems: 9
+ 
+   num-lanes: true
+ 
+@@ -123,4 +119,41 @@ required:
+ 
+ additionalProperties: true
+ 
++allOf:
++  - if:
++      compatible:
++        contains:
++          enum:
++            - rockchip,rk3568-pcie
++            - rockchip,rk3588-pcie
++    then:
++      properties:
++        interrupts:
++          min-items: 5
++          max-Items: 9
++        interrupt-names:
++          items:
++            - const: sys
++            - const: pmc
++            - const: msg
++            - const: legacy
++            - const: err
++            - const: dma0
++            - const: dma1
++            - const: dma2
++            - const: dma3
++    else:
++      properties:
++        interrupts:
++          min-items: 6
++          max-Items: 6
++        interrupt-names:
++          items:
++            - const: sys
++            - const: pmc
++            - const: msg
++            - const: legacy
++            - const: err
++            - const: msi
++
+ ...
+diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+index 550d8a684af3..9a464731fa4a 100644
+--- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
+@@ -26,6 +26,7 @@ properties:
+       - const: rockchip,rk3568-pcie
+       - items:
+           - enum:
++              - rockchip,rk3576-pcie
+               - rockchip,rk3588-pcie
+           - const: rockchip,rk3568-pcie
+ 
+@@ -71,9 +72,6 @@ properties:
+ 
+   vpcie3v3-supply: true
+ 
+-required:
+-  - msi-map
+-
+ unevaluatedProperties: false
+ 
+ examples:
 -- 
-Tingguo Cheng <quic_tingguoc@quicinc.com>
+2.25.1
 
 
