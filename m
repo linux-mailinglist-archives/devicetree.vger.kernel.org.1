@@ -1,176 +1,200 @@
-Return-Path: <devicetree+bounces-139244-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D7B4A14C4B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 10:46:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06B7DA14CAB
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 10:59:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD360188ACF1
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 09:46:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F40897A114C
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 09:59:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55D41F91F4;
-	Fri, 17 Jan 2025 09:46:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F9F1FBE83;
+	Fri, 17 Jan 2025 09:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bFAPJnyj"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="M9pvO2T0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF73A1F5616;
-	Fri, 17 Jan 2025 09:46:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C2B1FBC96
+	for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 09:59:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737107166; cv=none; b=dc6tU4uHspB4kVPJH5wG6ZusC2A6MvI0zcSW1AqR3o3N4SXKQq1cbY8fLMtw0xlQnxEklbJJeg5S1IPmLQ3yOr5CAcYJrJykwKkN+wrmxY0rshIpbeIFTEwh6QSeOghp+Tx1RrRg6BFwNrM/ET4tmovFyuggcArRjmLsXfLG43w=
+	t=1737107950; cv=none; b=TA9gfwhLqhkjOtX7Kj3e0hFDzgtjJNV5CRBHsHQbjHb/s4mGrfrpTjLHzr5GcZN5ydvesOUp6PDbB/vbsGuN5PEnquTwJp7O7cQyR2ZwbzCmK7JzrQ+qG4jHFXbhpavGh+7EJ64qGmFzDU/Fem6i2/jRfusdmaa4ndm8fcy50YA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737107166; c=relaxed/simple;
-	bh=bAoIxUM0L0RDKibJAm9TGYfT+Las5cv+kN3FsOvGBDg=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=hmqzUJ+3heguEy1VbtnyP9JOe6OX91u94Iekbbw0rWPhneXLx0M4hM9VOVGpjm52wFHL+uKhOV+hXRkFq137K360zUvszVM5HNOONhHeMgXE6Y95EjYNtEBmiPrR7BeM7O02y7fdwPdpKPantymLF+vB4fjuquyzqRPiIjfn1PQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bFAPJnyj; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7398F20003;
-	Fri, 17 Jan 2025 09:46:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1737107161;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=j9Hngjv+3mSnco4Ydj/7waQFXt+nhZaE1ZO+t5GpHgQ=;
-	b=bFAPJnyj6LbipV24+oprgOr1UHyDRUmOTj3eaFEgk4i20QMAhuzfH+p/+1UzD+uY5zigAu
-	nNJsHvpL9fXfs51oaqm2jVi6ae5JVimk026R5eyzjGpLmyccoNPOZ63Hh3bogZr9AlAD4f
-	YznAiPBOb7INxCvYvwvP+OlAU0TyQSSMFSAXsvr+vFDhLIXpScp5Mn/+tE7mPIegUJOU7W
-	JeYOVp8iKKUiyc381oAUqcpknSuBeR9FDQC2B4foPeXkk/VGLfBmlLMmZ19bv6TcqpU9v5
-	YLUEUhv1sCm195mLLDvZo4X5+NeK5ANX4SCnCHAfif+o85ROZeRm0Bg/VmrKWw==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Aleksandar Rikalo <arikalo@gmail.com>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vladimir Kondratiev
- <vladimir.kondratiev@mobileye.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, linux-mips@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: mips: mips-cm: Add a new compatible
- string for EyeQ6
-In-Reply-To: <20250116153637.GA2567996-robh@kernel.org>
-References: <20250116-cluster-hci-broken-v2-0-fc52cfb7a19e@bootlin.com>
- <20250116-cluster-hci-broken-v2-2-fc52cfb7a19e@bootlin.com>
- <20250116153637.GA2567996-robh@kernel.org>
-Date: Fri, 17 Jan 2025 10:46:00 +0100
-Message-ID: <87a5bpwz6v.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1737107950; c=relaxed/simple;
+	bh=ndF2H4ww8cd7NpbZXbox544Y/CoXx8ZUTUoQ2asQg80=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mZ12VxyySckcHXTzJFwvlTYNsS2dc9u7hiFTqRFSPNLTD2kKfVoPen5KoPkXjVv/XHYLZNC8uqWTqxXJp0TVZjLg2jTfJr+acswWb5+fbxf0Uv8a0wsW5WR3QEbLyxtKAeckS4zUyBC6jc6ydupbMdKYIY7zH40sckt4GTDFZNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=M9pvO2T0; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3863703258fso1915559f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 01:59:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737107946; x=1737712746; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=cH3UIuN+JljFJZ5b+G4kQN8IQuOY1u/LydwoVXBQ10U=;
+        b=M9pvO2T0WcI0EuWyOF1EGDUeq51OrmYiy6epfYp6p1Xx3r1lOqIMcpAAHivdvRfxXo
+         mqiMxUDkSyzhr1cCC6uC6cCodkXAXwiHoWCyvUkZSI5qP6XdVoT95kV81rMSOeD4SzBa
+         IF2aFAEZpZPdf0REByFS6E+BjYhou5msLWfFVhDv4hVwd6Ubhg1xTAev309S/eZNQcIv
+         3Gm70B3SmzxcLdvwqbQt6y9jje1RXxO+hozNL1vKKgFl0/7gYZgyvOZZxADjqFJO7fNm
+         GiqlDKu9K2CG7Tcsydwf48UrqXQmPGqc3XCwHsdpR3eiDaSbVtAc+Kp6z3LALK94zJ/W
+         6JXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737107946; x=1737712746;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cH3UIuN+JljFJZ5b+G4kQN8IQuOY1u/LydwoVXBQ10U=;
+        b=lLvtE9laF/Mkuh/GSoINJetIE+BDr6nVPysC1E99p9VaD9GJ4h90wgH6oQ/54ObfdH
+         0YaB+dHI1+3lN+4mqFNUrh/4YVOjdTp0C8GB9J+Ub6m5LGb4OFwNP3n8dAB/2+y6b7UA
+         g7AMrcKrQCK5G+c2BLofLOKCz5bvE3cUwXwZLjV+pWaLvThTwhSDe5Tsw5LA0aG0NQUw
+         5huarcMWCGyNZPwv1kgsByXHIXjpd+me+i6tUVNAcZG2cShRamwGC0Ln1bRvsQ0Mnslq
+         BIfZY9Fdyf/omNj8DoBoRCtgszaBG5fCP6zNjN/gR5+eHLc27R4SWBYm+t1cwuHqVPNK
+         A8xw==
+X-Forwarded-Encrypted: i=1; AJvYcCUrZBR6gLBhmkDbYtAUR/iVsf8kHKKYcdkMsIDxQgK14LOz21HWU+Z7WcnJi5Vlb+gzNNmXdRrf2AWO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwwHSbwzrjSyLmQvDuhPR8qZyOJcrJlNgEAseGO2ZBYqFexfR2z
+	WGbOOl0mmm2sUHMuipAy3kKQxmv7vV3+SD0mwhfaYdGfwZF2vGLXBunlI9aQfPA=
+X-Gm-Gg: ASbGnctJC+vTNfyad14EOZGMKZgJz4+r4BGbW+F+mBb5AS9WMhogPN9jHmP3o5rxvfN
+	d9fThG42AeLoqlGVFYkQuYIAfsy5zroeUwMC2fcvFNTd1E5AgQxqK+D0LfpMF00Z6dWFlQLY0AB
+	XRyK9EsSecH4ByhBRbWxHupYNTdGToLRz6oj3H97/im0Cfw5mrJec/2U3ca3P8R/6RFVJVAygI/
+	g6GCioAM+EsEp4J1/uYt4kklPU6bgrismDpp1u95+Z2rFGGWLmpARmZWRh8khhegJTZauOuS/4c
+	vaPBl3F5gT7L+76B9NRHORs=
+X-Google-Smtp-Source: AGHT+IGSbILvBO7ITTfo7167M1IyTZHJ9g9nnuyhfkGbV3jB+Wi4ZH+q1bt537O93Kd9bGzuPJ1kXw==
+X-Received: by 2002:a5d:64ad:0:b0:38a:5dc4:6dcd with SMTP id ffacd0b85a97d-38bf5b02b35mr1806688f8f.22.1737107946515;
+        Fri, 17 Jan 2025 01:59:06 -0800 (PST)
+Received: from localhost (p200300f65f0afb0400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f0a:fb04::1b9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf3275622sm2100877f8f.69.2025.01.17.01.59.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Jan 2025 01:59:06 -0800 (PST)
+Date: Fri, 17 Jan 2025 10:59:04 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v9 8/8] iio: adc: ad4851: add ad485x driver
+Message-ID: <d4ur7trhknm7jtjvsyms4aewypl75uuvgtccgwc7dfycheh4qo@jqmpv5t3lip6>
+References: <20241220120134.42760-1-antoniu.miclaus@analog.com>
+ <20241220120134.42760-8-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="k325ldattcvx2xxc"
+Content-Disposition: inline
+In-Reply-To: <20241220120134.42760-8-antoniu.miclaus@analog.com>
+
+
+--k325ldattcvx2xxc
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: gregory.clement@bootlin.com
+Subject: Re: [PATCH v9 8/8] iio: adc: ad4851: add ad485x driver
+MIME-Version: 1.0
 
-Hello Rob,
+Hello,
 
-> On Thu, Jan 16, 2025 at 11:59:20AM +0100, Gregory CLEMENT wrote:
->> The CM3.5 used on EyeQ6 reports that Hardware Cache Initialization is
->> complete, but in reality it's not the case. It also incorrectly
->> indicates that Hardware Cache Initialization is supported. This new
->> compatible string allows warning about this broken feature that cannot
->> be detected at runtime.
->>=20
->> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
->> ---
->>  .../devicetree/bindings/mips/mti,mips-cm.yaml      | 24 +++++++++++++++=
-+++++--
->>  1 file changed, 22 insertions(+), 2 deletions(-)
->>=20
->> diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml b/D=
-ocumentation/devicetree/bindings/mips/mti,mips-cm.yaml
->> index 9f500804737d23e19f50a9326168686c05d3a54e..4713673f0cfc7785bb183917=
-ee382a815ebfe9e1 100644
->> --- a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
->> +++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
->> @@ -14,7 +14,12 @@ maintainers:
->>=20=20
->>  properties:
->>    compatible:
->> -    const: mti,mips-cm
->> +    oneOf:
->> +      - const: mti,mips-cm
->> +      - const: mti,eyeq6-cm
->
-> Being a mobileye device, the vendor prefix should be mobileye.
+On Fri, Dec 20, 2024 at 02:01:34PM +0200, Antoniu Miclaus wrote:
+> +static const int ad4851_oversampling_ratios[] =3D {
+> +	1, 2, 4, 8, 16,	32, 64, 128,
+> +	256, 512, 1024, 2048, 4096, 8192, 16384, 32768,
+> +	65536,
+> +};
+> +
+> +static int ad4851_osr_to_regval(unsigned int ratio)
+> +{
+> +	int i;
+> +
+> +	for (i =3D 1; i < ARRAY_SIZE(ad4851_oversampling_ratios); i++)
+> +		if (ratio =3D=3D ad4851_oversampling_ratios[i])
+> +			return i - 1;
+> +
+> +	return -EINVAL;
+> +}
 
-I chose mti because actually this block is part of the I6500 and
-provided as is by MIPS.
+This can be simplified (I guess) using something like:
 
->
->> +        description:
->> +          On EyeQ6 the HCI (Hardware Cache Initialization) information =
-for
->> +          the L2 cache in multi-cluster configuration is broken.
->>=20=20
->>    reg:
->>      description:
->> @@ -25,14 +30,29 @@ properties:
->>=20=20
->>  required:
->>    - compatible
->> -  - reg
->>=20=20
->>  additionalProperties: false
->>=20=20
->> +if:
->> +  properties:
->> +    compatible:
->> +      contains:
->> +        const: mti,eyeq6-cm
->> +then:
->> +  properties:
->> +    reg: false
->> +else:
->> +  required:
->> +    - reg
->
-> How does one access this block with no registers? Is this some subset of=
-=20
-> a larger block? If so, need to define that block first.
+	if (ratio >=3D 2 && ratio <=3D 65536 && is_power_of_2(ratio))
+		return ilog2(ratio) - 1;
 
-CM stands for Coherence Manager. This component is mandatory when you
-want to do SMP across MIPS core. This is part of the MIPS architecture,
-and the address of the CM is provided by the Coprocessor 0.
+	return -EINVAL;
 
-"CP0 is incorporated on the CPU chip and supports the virtual memory
-system and exception handling. CP0 is also referred to as the System
-Control Coprocessor."
+> +static void __ad4851_get_scale(struct iio_dev *indio_dev, int scale_tbl,
+> +			       unsigned int *val, unsigned int *val2)
+> +{
+> [...]
+> +}
+> +
+> +static int ad4851_scale_fill(struct iio_dev *indio_dev)
+> +{
+> [...]
+> +}
+> +
+> +static int ad4851_set_oversampling_ratio(struct iio_dev *indio_dev,
+> +					 const struct iio_chan_spec *chan,
+> +					 unsigned int osr)
+> +{
+> [...]
+> +}
+> +
+> +static int ad4851_get_oversampling_ratio(struct ad4851_state *st, unsign=
+ed int *val)
+> +{
+> +	unsigned int osr;
+> +	int ret;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	ret =3D regmap_read(st->regmap, AD4851_REG_OVERSAMPLE, &osr);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!FIELD_GET(AD4851_OS_EN_MSK, osr))
+> +		*val =3D 1;
+> +	else
+> +		*val =3D ad4851_oversampling_ratios[FIELD_GET(AD4851_OS_RATIO_MSK, osr=
+) + 1];
 
-So to summarize, in a functional system, this information doesn't have
-to be exposed through the device tree, as it is available at runtime
-from any MIPS CPU.
+With the suggestion above this gets:
 
->
-> These 2 blocks don't look related and the only property shared is=20
-> 'compatible'. This should be a separate doc.
+	*val =3D 2 << FIELD_GET(AD4851_OS_RATIO_MSK, osr);
 
-As mentioned in the cover letter, I reused the work from Jiaxun, who
-needed to deal with bogus CM but in a different way. In his use case,
-the issue with the CM was that the address in CP0 was wrong. In my case,
-this address is correct; it is only one piece of information reported by
-the CM that is wrong. I don't mind creating a separate doc if you
-still think it is the right thing to do.
+(or=20
+	*val =3D 1 << (FIELD_GET(AD4851_OS_RATIO_MSK, osr) + 1);
 
-Gregory
+). Then you can drop ad4851_oversampling_ratios[].
 
->
-> Rob
+> +
+> +	st->osr =3D *val;
+> +
+> +	return IIO_VAL_INT;
+> +}
 
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best regards
+Uwe
+
+--k325ldattcvx2xxc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmeKKeYACgkQj4D7WH0S
+/k6qUggAs9bg07mM09Hc7D/AmR9e556OWsgikgHT4fyeZUcszp//GsK1dGk1V7RI
+qRj8he+vk9BuB7GGNR5dic69otw8xstgcLLvIER/EaNf/PoZXURGNoKEXzb5kRiN
+A1jTN5ESjLQOrCyQd26olCEsoCe8dhNbdPXWRTrN1Cu6aiMdhMuw3sa+RPBqUoFd
+HoDXblF6vQeWvtCo2NCAmM/02ccgnq2fKi6W8HgTNuraN+4NXHtMOVNG35rU82hD
+R/QiHmkRH6j9/lvbSTga5qxLjV8Hi6L0kHAwRvW/UZE8+J8s9zcOGNFkpSAXKGHn
+BvTkcGvL13VffFU45WjKl8D/l4Za4w==
+=IltP
+-----END PGP SIGNATURE-----
+
+--k325ldattcvx2xxc--
 
