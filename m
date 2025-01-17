@@ -1,96 +1,125 @@
-Return-Path: <devicetree+bounces-139387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F115A15940
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 22:59:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D748A15949
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 23:01:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 002CB188C7F3
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 21:59:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68415188C913
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 22:01:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 472161ABECA;
-	Fri, 17 Jan 2025 21:59:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2C571D517B;
+	Fri, 17 Jan 2025 22:00:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UAxpRxeF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VUCNC5ne"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D9EE25A643;
-	Fri, 17 Jan 2025 21:59:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F02201AB51B;
+	Fri, 17 Jan 2025 22:00:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737151158; cv=none; b=FLskCY5bEINDOimbgVLEsYsAK/G0MnSJYekHHZhfemlxsegMjuZA05wVJxNaGGG589Hp/78c8D9voIAfwd83U9N2LkusVttZOcqPg2xU9DrjY54NR8BN1pRx+KFGAi729hK8Ke2vEXA8vz7rl4STP+SZncCoShVT8mEngKpkjIU=
+	t=1737151238; cv=none; b=KLObIS9gDpKiLHGZ3XTnXlYguY9YKe4Tm6qGCcnInj7Ox60ZI0IfSV2Bb1v6ixLVuGQc/YB7kZ0HBoYExGt/WfyUB1LlvFlh2p0NigqVNrZMrgN0VPV4PuD1KmM1ABOSAk+p9rsiKGHXbSMVfXvvCrrLhDfAjE0RvW3vNBEP+h4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737151158; c=relaxed/simple;
-	bh=x2iLxCS0gGhMDWAMZNo3w4ianJSwEH9cvWjX+56hWVM=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=HINGt9QKlo0S0qn97dU7DAE6WLwgw6DS5ZdrlzHdYD13EUSdSKfPMvGivzcGpT7TCxpreI04s1l5eN351VN4rye0rOxfqExzYFCyE/bKOiXnU2OHEOVIrTOI36jOTxtn210zHMjltXWWAYZ7OKNovNkCPGao7j3bYknFGaUZbSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UAxpRxeF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60A74C4CEDD;
-	Fri, 17 Jan 2025 21:59:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737151157;
-	bh=x2iLxCS0gGhMDWAMZNo3w4ianJSwEH9cvWjX+56hWVM=;
-	h=Date:From:To:Cc:Subject:From;
-	b=UAxpRxeFsEyoqzS0TzNVjbKj8q2PJAMiuhVKJRIqntVCq/PP6Y/eA+eZRP1P/5CiL
-	 1bo8uy95OFMv3zt3J7KuZpu/x/z6WEOoCNjDQNSvWXqDLIsB1Z0+NrY3GoxnHdK+DR
-	 eZIpMbeMw3KOoHV4l/caPx2QH98Kw2iZTYJdcLcRdR8nd0K7Sl4FGh9Jpr0RH8qiVH
-	 yHwJ1sfeV9GdF8mkaMdyUsLcqcCUAf3JJdJbYZk8Wri1rllwHeiZ8AqjZzvZ/CoZDA
-	 WcRgEo2khcit6kpH5YhQLTFCU0lxBZ979zpUETiwWOXX3nnVIL8HDlVZahCnfqh7xe
-	 ttmIXW5nMoJ3A==
-Date: Fri, 17 Jan 2025 15:59:16 -0600
-From: Rob Herring <robh@kernel.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.13, part 2
-Message-ID: <20250117215916.GA1682842-robh@kernel.org>
+	s=arc-20240116; t=1737151238; c=relaxed/simple;
+	bh=OLpJw+nmoMHAjBQIB5gKtYutr4KSqMHspFULifMH8y8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SCTkgWuR/N0sBWBjZFNDgeFZTVI3kJNqblsLBM2w3y3k4NNHOV0+DovYPrlm2kEXUR5Y1f9JCRqEj66pPnss5QYCvafg1/sFxKmQBPweTbOSt+JWc3clspTFgmZHDl+1IzGAQRCKLJWCy3o5zidKd4YedC/tfmQ5Zson0zbF/i0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VUCNC5ne; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5d96944401dso4602894a12.0;
+        Fri, 17 Jan 2025 14:00:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737151235; x=1737756035; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5WhVZdRTDkwUE2D/s6RcQm6tX0DVpX9GXKevi9aNV+0=;
+        b=VUCNC5ne5l8Go9N4sM1NKPIJaqbpfqys6mVJMySWoyd3ffueWUiQj6qTRYgiAvvUOc
+         7gDjugnGesdwpykJLNpcfGhoZgdz3AijM7xWocperpZvlbqMS5py44OqTdHj0zqo0hPN
+         bZJEnPUmYGNx//rSzAJxTTDCROn73sMIf/c80kGW32/XqxeR7WAu3cbyGstrGOY5rxBP
+         V4pGYKzSqJHArnsq1tqRVHNxhd18v3Ll2ou88c7ULUKop55DmFXa366sWIwjAZ0u0qtn
+         frsn3AiK2NhXGhgK6iHeh6HwT5mwaO22VYt9pPO+jF/SpO24b2LCO7i9NZTnWgXmB4f+
+         pKjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737151235; x=1737756035;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5WhVZdRTDkwUE2D/s6RcQm6tX0DVpX9GXKevi9aNV+0=;
+        b=mcpz7YQFhoTE0/LeUrC6rs4HEu0dnUn6OgWgISvLZf+wuWmPbU5Ji69MlD3wD4fe24
+         2G5uv0uBaZl9FGV54pRYIboy80/GH+s/6UObMW0Guvw6G31kt6mmgAR+MO26a+Knvxvp
+         QxF5C/5V/yQ0a1Pfn28+HobC9+hvbWj/7NJWNg9KS1nicKacEQLPBEx/wsAPFEgyvbNB
+         bnqdbajEbJ9BDZsWHyecVZjOPofoHVA4kqngLRjnsK4pnvFLot7h8RcfHhFAM7Ila7lC
+         ihV1UXXXzb7cU7VVSwpD2N9PAlFqWtEXBaxDONh5EeRUPKuanGxrq5vRggkyuAJMa0hM
+         kXfg==
+X-Forwarded-Encrypted: i=1; AJvYcCUGrLW8R+Jt499Rs9LPAcy4PE76LuOBY6Te53MA8P0fNHDCAzep8vtBFsdfZAcP0/hFX4hUTchuKv067gXU@vger.kernel.org, AJvYcCVS9Dj71a5mK2a43+NuHGD2w/ZOS5PCilWwJ3G3qYVf2IcoCygduTRulGLZYCR/bGR7813roXqGawbz@vger.kernel.org, AJvYcCVlD9w390OAJ8mFWe0eLGLOBoyE8Ja4+9cLFg8tZSe1lUCrWNfN3irV3VFWSTZlGV1JjXtZ5T00U06K@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJr7+C7HXp9s5YI5PVegZhj6ILx8k179/kQFHbbIWS4O3+7bNc
+	34LhnmftBfqiS2XQCbWWHRgRnWOldKi1ehz4Rnpfe0ijLe0vvAlR
+X-Gm-Gg: ASbGncsxFJZh+ANEVUX2qtEc8djzysq1/ACUpZ/ecvrEugYhj6d3fpV17jJ9IEv2Oal
+	zUH2iri7nZt9hredi1t8aaVEtPS3Vo+RUhRrqEd/ZJqj72x0NYMt68c+YvfKG4+AP1J7GPDAdaL
+	HQbT1PD6U9gOn9HMZZA8073Nw070VquFB6dux4YFtcDUDAa+iwCRrE0r3JfMZWEqq5EzDNMjzp0
+	ADKJkoX5aBFc7Exvm61IUKOeHUmp0ks6b4ZDLs/JG9TmV5vL0sMUiBds2u9zkFuvc6BGE3ksMxZ
+	TVxWW/qJ64omtQzoNtsGLKcK4CssLeMhExHq0J8TRMLtd2TlzSoiFyToEoCZb9okvPIs3FfCfB1
+	c6Cen6Sx85H+VmIY=
+X-Google-Smtp-Source: AGHT+IH7JKZn55TFqBMDvufGKFkUhHeC0/7cJePf4smhMMsHf5hncKtii9E+hcMcYjsmqwYjVoBl1w==
+X-Received: by 2002:a05:6402:2815:b0:5d2:7396:b0ca with SMTP id 4fb4d7f45d1cf-5db7d2f873cmr3905207a12.12.1737151234843;
+        Fri, 17 Jan 2025 14:00:34 -0800 (PST)
+Received: from ?IPV6:2a02:a466:68ed:1:20ec:3e8b:2297:e41f? (2a02-a466-68ed-1-20ec-3e8b-2297-e41f.fixed6.kpn.net. [2a02:a466:68ed:1:20ec:3e8b:2297:e41f])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5db736717dbsm2113188a12.30.2025.01.17.14.00.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Jan 2025 14:00:33 -0800 (PST)
+Message-ID: <06851646-7d0b-4b30-9794-5a70a1431cab@gmail.com>
+Date: Fri, 17 Jan 2025 23:00:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/3] usb: dwc3: Avoid using reserved EPs
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Felipe Balbi <balbi@kernel.org>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20250116154117.148915-1-andriy.shevchenko@linux.intel.com>
+Content-Language: en-US
+From: Ferry Toth <fntoth@gmail.com>
+In-Reply-To: <20250116154117.148915-1-andriy.shevchenko@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Linus,
+Op 16-01-2025 om 16:40 schreef Andy Shevchenko:
+> On some platforms (Intel-based and AFAIK ARM-based) the EPs in the gadget
+> (USB Device Controller mode) may be reserved for some special means, such as
+> tracing. This series extends DT schema and driver to avoid using those.
+> Without this the USB gadget mode won't work properly (those devices that
+> "luckily" allocated the reserved EPs).
+> 
+> Ferry already tested the privately sent PoC of this, but I ask him again to
+> re-test this version which is slightly different.
+> 
+> Andy Shevchenko (3):
+>    dt-bindings: usb: dwc3: Add a property to reserve endpoints
+>    usb: dwc3: gadget: Add support for snps,reserved-endpoints property
+>    usb: dwc3: gadget: Skip endpoints ep[18]{in,out} on Intel Merrifield
+> 
+>   .../devicetree/bindings/usb/snps,dwc3.yaml    | 10 +++++
+>   drivers/usb/dwc3/dwc3-pci.c                   |  9 +++++
+>   drivers/usb/dwc3/gadget.c                     | 38 ++++++++++++++++++-
+>   3 files changed, 56 insertions(+), 1 deletion(-)
+> 
+Yes I retested this now on v6.13.0-rc7 Intel Merrifield and found no 
+problems. Skipping the tracing end point has definitely always been 
+needed on this platform. Thanks!
 
-Please pull this one fix for 6.13.
-
-Rob
-
-
-The following changes since commit 8600058ba28a7b07660ddcd150372d72fb3bc895:
-
-  of: Add coreboot firmware to excluded default cells list (2024-12-20 15:39:22 -0600)
-
-are available in the Git repository at:
-
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.13-2
-
-for you to fetch changes up to 6e5773d52f4a2d9c80692245f295069260cff6fc:
-
-  of/address: Fix WARN when attempting translating non-translatable addresses (2025-01-12 15:31:47 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for 6.13, part 2:
-
-Another fix and testcase to avoid the newly added WARN in the case of
-non-translatable addresses.
-
-----------------------------------------------------------------
-Rob Herring (Arm) (2):
-      of/unittest: Add test that of_address_to_resource() fails on non-translatable address
-      of/address: Fix WARN when attempting translating non-translatable addresses
-
- drivers/of/address.c                         | 18 +++++++++++++++---
- drivers/of/unittest-data/tests-platform.dtsi | 13 +++++++++++++
- drivers/of/unittest.c                        | 14 ++++++++++++++
- 3 files changed, 42 insertions(+), 3 deletions(-)
+Tested-by: Ferry Toth <fntoth@gmail.com>
 
