@@ -1,162 +1,475 @@
-Return-Path: <devicetree+bounces-139381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD8DA15880
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 21:27:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B4B2A158D0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 22:09:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 53F177A38EE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 20:27:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 865763A94A4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 21:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1207E1A9B4D;
-	Fri, 17 Jan 2025 20:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7B4D1A9B2B;
+	Fri, 17 Jan 2025 21:09:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WePJh3Pd"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hevc3Kru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0295187550;
-	Fri, 17 Jan 2025 20:27:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFBEB187550;
+	Fri, 17 Jan 2025 21:09:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737145631; cv=none; b=t/UQgskh6Cvet4cxH5FpPbcsVkVV8TMJHEH3/2/m+ZS0GFVToYjKQx78l7ZjNvOGWuzZNIlo1GNCOjpITXbCJo0Oz5IgJm+vMTK/PeTwDYF8ss38fAagJq+2QyhEBNgHGhTv4aZfXmxmYkrOtNtlfb1db1PKTHAOTPFzbcbdn4A=
+	t=1737148166; cv=none; b=Mt/vdGcTFDjmB3e37Nl4OANkjujmRcY7XnNCmsR2VJb/SlAs0VA/hYx5r7339GjA6PC2oOPhXHFmEHJSmlgV3Xk2Ml0ic4InVyI6iuj/Q3w0h2S/Yrth2ArdKPCNX3gB/N9tjWq0UCz+So0N2g8sPs1iCwe9AMYzjKZ+2731cug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737145631; c=relaxed/simple;
-	bh=Ct2YwrpPXaoKNAMpYvMgQTLQEkb+M++rRR9iD27FrGs=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=m+S0dKtkOWJa6FpVeRY/NGLQ5+udBaLxlK4zGM8xoTYfy7MdPDnCkjDywzeiBId8SiR+2AvOFaQDQ4FZmTiRmJ2Oyw1NNnto+6yxiWFGC1ZLGaxKTkcS/Bn4ZHP8NghfFe/pM28CabyK921A89bQnwws38JpUoKjnPYstH3LvRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WePJh3Pd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23304C4CEDD;
-	Fri, 17 Jan 2025 20:27:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737145630;
-	bh=Ct2YwrpPXaoKNAMpYvMgQTLQEkb+M++rRR9iD27FrGs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=WePJh3Pd3VRkENxPcR2AjlfdrFrhh6XiJCNEs5yil1pXBj1r7qSUqyRAAIhUr0tTe
-	 yLw/0awyrdE0kFMpTrQUxFAHKNV6rb8Ld7SwKsxUt+uFTcW2pH5vvZhn3u7a9ZlQuL
-	 E1DiIf54u25Wha4Kcx5n0D2YsLVfey3VtB4rr7wVybECAUi1jWc5IQ8xMvciQsbDW+
-	 fLgcAocAs2EC0a2398UniivYGe/K1iqxkqCzPzhIV8tF7AW9JBL/vS7RIoSWTSvVPq
-	 0ExGWvIVc/F2vO4/QYxNCoCpmiSBVycmx0sYSfTQxlA6ULNVU9ihg+yd52bJtEcQAw
-	 u5f9J7U4tAyCg==
-Date: Fri, 17 Jan 2025 14:27:08 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
-	kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org,
-	p.zabel@pengutronix.de, quic_nsekar@quicinc.com,
-	dmitry.baryshkov@linaro.org, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-	Praveenkumar I <quic_ipkumar@quicinc.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v5 4/5] arm64: dts: qcom: ipq5332: Add PCIe related nodes
-Message-ID: <20250117202708.GA655559@bhelgaas>
+	s=arc-20240116; t=1737148166; c=relaxed/simple;
+	bh=4Is8QelbwFU8d+ZO0MSklxbN2XAMUsDBbZ4pDM87e6w=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=NXBNc3pyhxTEOWdXtUyfeHI0uQxEtpuSE7NzihyYKvISoqwDEzHI+gQWzA+ZmvIWEuRPWNNITZE8H+lcrG5J7bHWaH0j3ZpBhFBkVNN3ti0yBQ4zat23y2eSmhSoIaQZaDu7oSAkf3Q/meQseMLROimDbPLHoyUjAkxsyBaKdqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hevc3Kru; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737148165; x=1768684165;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=4Is8QelbwFU8d+ZO0MSklxbN2XAMUsDBbZ4pDM87e6w=;
+  b=hevc3KruuTiA4G0y5VojefRWM0tUbR41SLEmQ810xstg0J3RSF0oU7Tw
+   QZn/sLiHwgK1DsiyVYKt1Iw0EPbmoi+4XWBa2GnIwC1q5yRDTIXDfwf2y
+   GLUYNLTaQWNge22faskbxTDItWY1r0KbUSF4BMbzYYKRGlZT/7frTw2Ht
+   UzmRHFSa+ItXd9Rs62/qSIF24Uv4+VV94Wd5MsznvoZ+pswBcTtKxdL9k
+   atObm/yKa/fvMa83ij0BlCcI21vrKMAvxjSRbJBfi1MdWct6IGB+H2JZj
+   niFRXyWE64PV0injZOE55ZOXQG/btg0U/NJgK/rxTj2f0/vZQaf1pvVL0
+   A==;
+X-CSE-ConnectionGUID: c2aOfimnTam54Tujz9BXoQ==
+X-CSE-MsgGUID: P0GMW1rkTWGHcvL/L8O+Hw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="25190182"
+X-IronPort-AV: E=Sophos;i="6.13,213,1732608000"; 
+   d="scan'208";a="25190182"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 13:09:24 -0800
+X-CSE-ConnectionGUID: BDeCYmMaQZGXJnjpCzP9ng==
+X-CSE-MsgGUID: V+j/0/fKSHC0V/Pg8ws2ug==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="136797179"
+Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 13:09:24 -0800
+Date: Fri, 17 Jan 2025 13:09:23 -0800 (PST)
+From: matthew.gerlach@linux.intel.com
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com, 
+    krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org, 
+    joyce.ooi@intel.com, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org, matthew.gerlach@altera.com, 
+    "D M, Sharath Kumar" <sharath.kumar.d.m@intel.com>
+Subject: Re: [PATCH v3 5/5] PCI: altera: Add Agilex support
+In-Reply-To: <eaa5dd6b-e9bb-42a1-d249-b4ee1d97613@linux.intel.com>
+Message-ID: <e3d0e811-cc52-ae92-38b0-4082b03c80c9@linux.intel.com>
+References: <20250108165909.3344354-1-matthew.gerlach@linux.intel.com> <20250108165909.3344354-6-matthew.gerlach@linux.intel.com> <20250116170541.sszekk76qhvleay6@thinkpad> <eaa5dd6b-e9bb-42a1-d249-b4ee1d97613@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z4dqnr9+MTue3VbX@hu-varada-blr.qualcomm.com>
+Content-Type: multipart/mixed; boundary="8323329-54476699-1737148164=:1878230"
 
-On Wed, Jan 15, 2025 at 01:28:22PM +0530, Varadarajan Narayanan wrote:
-> On Wed, Jan 08, 2025 at 12:32:35PM -0600, Bjorn Helgaas wrote:
-> > On Thu, Jan 02, 2025 at 05:00:18PM +0530, Varadarajan Narayanan wrote:
-> > > From: Praveenkumar I <quic_ipkumar@quicinc.com>
-> > >
-> > > Add phy and controller nodes for pcie0_x1 and pcie1_x2.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-> > > +		pcie1: pcie@18000000 {
-> > > +			compatible = "qcom,pcie-ipq5332", "qcom,pcie-ipq9574";
-> > > +			reg = <0x00088000 0x3000>,
-> > > +			      <0x18000000 0xf1d>,
-> > > +			      <0x18000f20 0xa8>,
-> > > +			      <0x18001000 0x1000>,
-> > > +			      <0x18100000 0x1000>,
-> > > +			      <0x0008b000 0x1000>;
-> > > +			reg-names = "parf",
-> > > +				    "dbi",
-> > > +				    "elbi",
-> > > +				    "atu",
-> > > +				    "config",
-> > > +				    "mhi";
-> > > +			device_type = "pci";
-> > > +			linux,pci-domain = <1>;
-> > > +			bus-range = <0x00 0xff>;
+--8323329-54476699-1737148164=:1878230
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-> > > +			num-lanes = <2>;
-> > > +			phys = <&pcie1_phy>;
-> > > +			phy-names = "pciephy";
-> >
-> > I think num-lanes and PHY info are per-Root Port properties, not a
-> > host controller properties, aren't they?  Some of the clock and reset
-> > properties might also be per-Root Port.
-> >
-> > Ideally, I think per-Root Port properties should be in a child device
-> > as they are here:
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/pci/mvebu-pci.txt?id=v6.12#n137
-> > but it looks like the num-lanes parsing is done in
-> > dw_pcie_get_resources(), which can only handle a single num-lanes per
-> > DWC controller, so maybe it's impractical to add a child device here.
-> >
-> > But I wonder if it would be useful to at least group the per-Root Port
-> > things together in the binding to help us start thinking about the
-> > difference between the controller and the Root Port(s).
-> 
-> This looks like a big change and might impact the existing
-> SoCs/platforms. To minimize the impact, should we continue
-> supporting the legacy method in addition to the new per-Root port
-> approach. Should we take this up separately? Kindly advice.
 
-I just meant to change the order they're listed in the binding, not
-add any new device stanzas.
 
-E.g., maybe it could be arranged like this, where things that apply to
-the Root Complex as a whole (bus-range, #address-cells, #size-cells,
-ranges, etc) are listed first, and the Root Port-related things
-(num-lanes, phys, etc) are listed later:
+On Fri, 17 Jan 2025, matthew.gerlach@linux.intel.com wrote:
 
-+               pcie1: pcie@18000000 {
-+                       compatible = "qcom,pcie-ipq5332", "qcom,pcie-ipq9574";
-+                       device_type = "pci";
-+                       linux,pci-domain = <1>;
-+                       bus-range = <0x00 0xff>;
-+                       #address-cells = <3>;
-+                       #size-cells = <2>;
-+
-+                       ranges = <0x01000000 0 0x18200000 0x18200000 0 0x00100000>,
-+                                <0x02000000 0 0x18300000 0x18300000 0 0x07d00000>;
-+                       interrupts = <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>, ...
-+                       clocks = <&gcc GCC_PCIE3X2_AXI_M_CLK>, ...
-+                       resets = <&gcc GCC_PCIE3X2_PIPE_ARES>, ...
-+                       interconnects = <&gcc MASTER_SNOC_PCIE3_2_M ...
+>
+>
+> On Thu, 16 Jan 2025, Manivannan Sadhasivam wrote:
+>
+>> On Wed, Jan 08, 2025 at 10:59:09AM -0600, Matthew Gerlach wrote:
+>>> From: "D M, Sharath Kumar" <sharath.kumar.d.m@intel.com>
+>>> 
+>>> Add PCIe root port controller support Agilex family of chips.
+>>> 
+>> 
+>> Please add more info about the PCIe controller in description. Like speed,
+>> lanes, IP revision etc... Also, you are introducing ep_{read/write}_cfg()
+>> callbacks, so they should also be described here.
+>
+> I will add more info about the Agilex PCIe controller and describe 
+> ep_{read/write}_cfg() callbacks.
+>
+>> 
+>>> Signed-off-by: D M, Sharath Kumar <sharath.kumar.d.m@intel.com>
+>>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+>>> ---
+>>> v3:
+>>>  - Remove accepted patches from patch set.
+>>> 
+>>> v2:
+>>>  - Match historical style of subject.
+>>>  - Remove unrelated changes.
+>>>  - Fix indentation.
+>>> ---
+>>>  drivers/pci/controller/pcie-altera.c | 246 ++++++++++++++++++++++++++-
+>>>  1 file changed, 237 insertions(+), 9 deletions(-)
+>>> 
+>>> diff --git a/drivers/pci/controller/pcie-altera.c 
+>>> b/drivers/pci/controller/pcie-altera.c
+>>> index eb55a7f8573a..da4ae21d661d 100644
+>>> --- a/drivers/pci/controller/pcie-altera.c
+>>> +++ b/drivers/pci/controller/pcie-altera.c
+>>> @@ -77,9 +77,19 @@
+>>>  #define S10_TLP_FMTTYPE_CFGWR0		0x45
+>>>  #define S10_TLP_FMTTYPE_CFGWR1		0x44
+>>> 
+>>> +#define AGLX_RP_CFG_ADDR(pcie, reg)	(((pcie)->hip_base) + (reg))
+>>> +#define AGLX_RP_SECONDARY(pcie)		\
+>>> +	readb(AGLX_RP_CFG_ADDR(pcie, PCI_SECONDARY_BUS))
+>>> +
+>>> +#define AGLX_BDF_REG			0x00002004
+>>> +#define AGLX_ROOT_PORT_IRQ_STATUS	0x14c
+>>> +#define AGLX_ROOT_PORT_IRQ_ENABLE	0x150
+>>> +#define CFG_AER				BIT(4)
+>>> +
+>>>  enum altera_pcie_version {
+>>>  	ALTERA_PCIE_V1 = 0,
+>>>  	ALTERA_PCIE_V2,
+>>> +	ALTERA_PCIE_V3,
+>>>  };
+>>>
+>>>  struct altera_pcie {
+>>> @@ -102,6 +112,11 @@ struct altera_pcie_ops {
+>>>  			   int size, u32 *value);
+>>>  	int (*rp_write_cfg)(struct altera_pcie *pcie, u8 busno,
+>>>  			    int where, int size, u32 value);
+>>> +	int (*ep_read_cfg)(struct altera_pcie *pcie, u8 busno,
+>>> +			   unsigned int devfn, int where, int size, u32 
+>>> *value);
+>>> +	int (*ep_write_cfg)(struct altera_pcie *pcie, u8 busno,
+>>> +			    unsigned int devfn, int where, int size, u32 
+>>> value);
+>>> +	void (*rp_isr)(struct irq_desc *desc);
+>>>  };
+>>>
+>>>  struct altera_pcie_data {
+>>> @@ -112,6 +127,9 @@ struct altera_pcie_data {
+>>>  	u32 cfgrd1;
+>>>  	u32 cfgwr0;
+>>>  	u32 cfgwr1;
+>>> +	u32 port_conf_offset;
+>>> +	u32 port_irq_status_offset;
+>>> +	u32 port_irq_enable_offset;
+>>>  };
+>>>
+>>>  struct tlp_rp_regpair_t {
+>>> @@ -131,6 +149,28 @@ static inline u32 cra_readl(struct altera_pcie *pcie, 
+>>> const u32 reg)
+>>>  	return readl_relaxed(pcie->cra_base + reg);
+>>>  }
+>>> 
+>>> +static inline void cra_writew(struct altera_pcie *pcie, const u32 value,
+>>> +			      const u32 reg)
+>> 
+>> No need to add inline keyword to .c files. Compiler will inline the 
+>> function
+>> anyway if needed.
+>
+> Using inline is consistent with existing cra_writel and cra_readl.
+>
+>> 
+>>> +{
+>>> +	writew_relaxed(value, pcie->cra_base + reg);
+>>> +}
+>>> +
+>>> +static inline u32 cra_readw(struct altera_pcie *pcie, const u32 reg)
+>>> +{
+>>> +	return readw_relaxed(pcie->cra_base + reg);
+>>> +}
+>>> +
+>>> +static inline void cra_writeb(struct altera_pcie *pcie, const u32 value,
+>>> +			      const u32 reg)
+>>> +{
+>>> +	writeb_relaxed(value, pcie->cra_base + reg);
+>>> +}
+>>> +
+>>> +static inline u32 cra_readb(struct altera_pcie *pcie, const u32 reg)
+>>> +{
+>>> +	return readb_relaxed(pcie->cra_base + reg);
+>>> +}
+>>> +
+>>>  static bool altera_pcie_link_up(struct altera_pcie *pcie)
+>>>  {
+>>>  	return !!((cra_readl(pcie, RP_LTSSM) & RP_LTSSM_MASK) == LTSSM_L0);
+>>> @@ -145,6 +185,15 @@ static bool s10_altera_pcie_link_up(struct 
+>>> altera_pcie *pcie)
+>>>  	return !!(readw(addr) & PCI_EXP_LNKSTA_DLLLA);
+>>>  }
+>>> 
+>>> +static bool aglx_altera_pcie_link_up(struct altera_pcie *pcie)
+>>> +{
+>>> +	void __iomem *addr = AGLX_RP_CFG_ADDR(pcie,
+>>> +				   pcie->pcie_data->cap_offset +
+>>> +				   PCI_EXP_LNKSTA);
+>>> +
+>>> +	return !!(readw(addr) & PCI_EXP_LNKSTA_DLLLA);
+>> 
+>> Why this can't be readw_relaxed()?
+>
+> This can be changed to readw_relaxed().
+>
+>> 
+>>> +}
+>>> +
+>>>  /*
+>>>   * Altera PCIe port uses BAR0 of RC's configuration space as the 
+>>> translation
+>>>   * from PCI bus to native BUS.  Entire DDR region is mapped into PCIe 
+>>> space
+>>> @@ -425,6 +474,103 @@ static int s10_rp_write_cfg(struct altera_pcie 
+>>> *pcie, u8 busno,
+>>>  	return PCIBIOS_SUCCESSFUL;
+>>>  }
+>>> 
+>>> +static int aglx_rp_read_cfg(struct altera_pcie *pcie, int where,
+>>> +			    int size, u32 *value)
+>>> +{
+>>> +	void __iomem *addr = AGLX_RP_CFG_ADDR(pcie, where);
+>>> +
+>>> +	switch (size) {
+>>> +	case 1:
+>>> +		*value = readb(addr);
+>> 
+>> Same question as above. Why the relaxed variant is not used here?
+>
+> Yes, the relaxed variant can be used here too.
+>
+>> 
+>>> +		break;
+>>> +	case 2:
+>>> +		*value = readw(addr);
+>>> +		break;
+>>> +	default:
+>>> +		*value = readl(addr);
+>>> +		break;
+>>> +	}
+>>> +
+>>> +	/* interrupt pin not programmed in hardware, set to INTA */
+>>> +	if (where == PCI_INTERRUPT_PIN && size == 1 && !(*value))
+>>> +		*value = 0x01;
+>>> +	else if (where == PCI_INTERRUPT_LINE && !(*value & 0xff00))
+>>> +		*value |= 0x0100;
+>>> +
+>>> +	return PCIBIOS_SUCCESSFUL;
+>>> +}
+>>> +
+>>> +static int aglx_rp_write_cfg(struct altera_pcie *pcie, u8 busno,
+>>> +			     int where, int size, u32 value)
+>>> +{
+>>> +	void __iomem *addr = AGLX_RP_CFG_ADDR(pcie, where);
+>>> +
+>>> +	switch (size) {
+>>> +	case 1:
+>>> +		writeb(value, addr);
+>>> +		break;
+>>> +	case 2:
+>>> +		writew(value, addr);
+>>> +		break;
+>>> +	default:
+>>> +		writel(value, addr);
+>>> +		break;
+>>> +	}
+>>> +
+>>> +	/*
+>>> +	 * Monitor changes to PCI_PRIMARY_BUS register on root port
+>>> +	 * and update local copy of root bus number accordingly.
+>>> +	 */
+>>> +	if (busno == pcie->root_bus_nr && where == PCI_PRIMARY_BUS)
+>>> +		pcie->root_bus_nr = value & 0xff;
+>>> +
+>>> +	return PCIBIOS_SUCCESSFUL;
+>>> +}
+>>> +
+>>> +static int aglx_ep_write_cfg(struct altera_pcie *pcie, u8 busno,
+>>> +			     unsigned int devfn, int where, int size, u32 
+>>> value)
+>>> +{
+>>> +	cra_writel(pcie, ((busno << 8) | devfn), AGLX_BDF_REG);
+>>> +	if (busno > AGLX_RP_SECONDARY(pcie))
+>>> +		where |= (1 << 12); /* type 1 */
+>> 
+>> Can you use macro definition for this?
+>
+> Use a macro like BIT(12)?
+>
+>> 
+>>> +
+>>> +	switch (size) {
+>>> +	case 1:
+>>> +		cra_writeb(pcie, value, where);
+>>> +		break;
+>>> +	case 2:
+>>> +		cra_writew(pcie, value, where);
+>>> +		break;
+>>> +	default:
+>>> +		cra_writel(pcie, value, where);
+>>> +			break;
+>>> +	}
+>>> +
+>>> +	return PCIBIOS_SUCCESSFUL;
+>>> +}
+>>> +
+>>> +static int aglx_ep_read_cfg(struct altera_pcie *pcie, u8 busno,
+>>> +			    unsigned int devfn, int where, int size, u32 
+>>> *value)
+>>> +{
+>>> +	cra_writel(pcie, ((busno << 8) | devfn), AGLX_BDF_REG);
+>>> +	if (busno > AGLX_RP_SECONDARY(pcie))
+>>> +		where |= (1 << 12); /* type 1 */
+>> 
+>> Same here.
+>> 
+>>> +
+>>> +	switch (size) {
+>>> +	case 1:
+>>> +		*value = cra_readb(pcie, where);
+>>> +		break;
+>>> +	case 2:
+>>> +		*value = cra_readw(pcie, where);
+>>> +		break;
+>>> +	default:
+>>> +		*value = cra_readl(pcie, where);
+>>> +		break;
+>>> +	}
+>>> +
+>>> +	return PCIBIOS_SUCCESSFUL;
+>>> +}
+>>> +
+>>>  static int _altera_pcie_cfg_read(struct altera_pcie *pcie, u8 busno,
+>>>  				 unsigned int devfn, int where, int size,
+>>>  				 u32 *value)
+>>> @@ -437,6 +583,10 @@ static int _altera_pcie_cfg_read(struct altera_pcie 
+>>> *pcie, u8 busno,
+>>>  		return pcie->pcie_data->ops->rp_read_cfg(pcie, where,
+>>>  							 size, value);
+>>> 
+>>> +	if (pcie->pcie_data->ops->ep_read_cfg)
+>>> +		return pcie->pcie_data->ops->ep_read_cfg(pcie, busno, devfn,
+>>> +							where, size, value);
+>> 
+>> Why do you need to call both rp_read_cfg() and ep_read_cfg()? This looks 
+>> wrong.
 
-Everything above is potentially shared; everything below applies to a
-single (the only one in this case) Root Port.
+I missed this comment in my first reply. The functions, rp_read_cfg() and 
+ep_read_cfg(), are not both being called. The flow is if, else if, else.
 
-+                       num-lanes = <2>;
-+                       phys = <&pcie1_phy>;
-+
-+                       status = "disabled";
-+               };
+If root port and rp_read_cfg exits
+else if eq_read_cfg() exists
+else perform original code path.
 
-I want people to think about which things belong to the Root Port and
-which are shared for the whole Root Complex.
-
-For new drivers, I think we should actually add "pcie@1,0" stanzas for
-each Root Port, even if there is only one.
-
-But for existing drivers that would have to be modified to comprehend
-new stanzas, collecting the Root Port things so they are together in
-the PCI controller stanza would be a good start (unless the order of
-properties in the DT makes a functional difference, of course).
-
-Bjorn
+Matthew
+>> 
+>>> +
+>>>  	switch (size) {
+>>>  	case 1:
+>>>  		byte_en = 1 << (where & 3);
+>>> @@ -481,6 +631,10 @@ static int _altera_pcie_cfg_write(struct altera_pcie 
+>>> *pcie, u8 busno,
+>>>  		return pcie->pcie_data->ops->rp_write_cfg(pcie, busno,
+>>>  						     where, size, value);
+>>> 
+>>> +	if (pcie->pcie_data->ops->ep_write_cfg)
+>>> +		return pcie->pcie_data->ops->ep_write_cfg(pcie, busno, devfn,
+>>> +						     where, size, value);
+>>> +
+>>>  	switch (size) {
+>>>  	case 1:
+>>>  		data32 = (value & 0xff) << shift;
+>>> @@ -659,7 +813,30 @@ static void altera_pcie_isr(struct irq_desc *desc)
+>>>  				dev_err_ratelimited(dev, "unexpected IRQ, 
+>>> INT%d\n", bit);
+>>>  		}
+>>>  	}
+>>> +	chained_irq_exit(chip, desc);
+>>> +}
+>>> +
+>>> +static void aglx_isr(struct irq_desc *desc)
+>>> +{
+>>> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+>>> +	struct altera_pcie *pcie;
+>>> +	struct device *dev;
+>>> +	u32 status;
+>>> +	int ret;
+>>> +
+>>> +	chained_irq_enter(chip, desc);
+>>> +	pcie = irq_desc_get_handler_data(desc);
+>>> +	dev = &pcie->pdev->dev;
+>>> 
+>>> +	status = readl(pcie->hip_base + pcie->pcie_data->port_conf_offset +
+>>> +		       pcie->pcie_data->port_irq_status_offset);
+>>> +	if (status & CFG_AER) {
+>>> +		ret = generic_handle_domain_irq(pcie->irq_domain, 0);
+>>> +		if (ret)
+>>> +			dev_err_ratelimited(dev, "unexpected IRQ\n");
+>> 
+>> It'd be good to print the IRQ number in error log.
+>
+> Adding the IRQ number to the error log would be helpful.
+>
+>> 
+>>> +	}
+>>> +	writel(CFG_AER, (pcie->hip_base + pcie->pcie_data->port_conf_offset +
+>>> +			 pcie->pcie_data->port_irq_status_offset));
+>> 
+>> You should clear the IRQ before handling it.
+>
+> Yes, the IRQ should be cleared before handling it.
+>
+>>
+>>>  	chained_irq_exit(chip, desc);
+>>>  }
+>>> 
+>> 
+>> [...]
+>> 
+>>> -	/* clear all interrupts */
+>>> -	cra_writel(pcie, P2A_INT_STS_ALL, P2A_INT_STATUS);
+>>> -	/* enable all interrupts */
+>>> -	cra_writel(pcie, P2A_INT_ENA_ALL, P2A_INT_ENABLE);
+>>> -	altera_pcie_host_init(pcie);
+>>> +	if (pcie->pcie_data->version == ALTERA_PCIE_V1 ||
+>>> +	    pcie->pcie_data->version == ALTERA_PCIE_V2) {
+>>> +		/* clear all interrupts */
+>>> +		cra_writel(pcie, P2A_INT_STS_ALL, P2A_INT_STATUS);
+>>> +		/* enable all interrupts */
+>>> +		cra_writel(pcie, P2A_INT_ENA_ALL, P2A_INT_ENABLE);
+>>> +		altera_pcie_host_init(pcie);
+>>> +	} else if (pcie->pcie_data->version == ALTERA_PCIE_V3) {
+>>> +		writel(CFG_AER,
+>>> +		       pcie->hip_base + pcie->pcie_data->port_conf_offset +
+>>> +		       pcie->pcie_data->port_irq_enable_offset);
+>> 
+>> Why altera_pcie_host_init() is not called for ALTERA_PCIE_V3?
+>
+> The V3 hardware does not need to perform a link retraining in order to 
+> establish link at higher speeds.
+>
+>> 
+>> - Mani
+>
+> Thank you for your feedback,
+> Matthew Gerlach
+>
+>> 
+>> -- 
+>> மணிவண்ணன் சதாசிவம்
+>
+--8323329-54476699-1737148164=:1878230--
 
