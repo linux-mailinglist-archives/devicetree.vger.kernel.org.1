@@ -1,100 +1,196 @@
-Return-Path: <devicetree+bounces-139307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139308-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5F86A15067
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:22:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53084A15085
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:27:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24C9A188B2BA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:22:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7220E1663E7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:27:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338D91FF1D4;
-	Fri, 17 Jan 2025 13:22:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8B961FF7C1;
+	Fri, 17 Jan 2025 13:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RVAj7slW"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Iofmf2oL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1ED25A627;
-	Fri, 17 Jan 2025 13:22:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0121F9F55;
+	Fri, 17 Jan 2025 13:27:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737120124; cv=none; b=pVDAnLZOGqaeIKBJDKPnvP/U8UtWC5Evcam7eTKzRgozcF0JKnYf3vIrvJ3LNb9DBtMMPu6BhKcAh9oXgsVwa9yY2rSlKnAX1MKUsorvLljT+4PYiMj0wHwpKU8PMrtePrddGLo53bzhljJ6jOthdTzpR+v+zrut8P985jM5ohY=
+	t=1737120427; cv=none; b=CW3Vl29vnPDp4XYZ9HN59ovB+zdlj/istwDWMj7WnC1KJQMqEOaxP3QA3I20zogj7NbVAHdxF/Lp28YyG1os/An+KBf0S8+Wf5jplmkU/SSaRhaeb6CIbhepGT1vpwYRQOT3rw6ua3UbIt2I93iMV3lrn4YrSmq8hanwdNmywIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737120124; c=relaxed/simple;
-	bh=fSFd7Zpved/J9ARzkNxskvv0MDGbMGB15yiCNUdlcSs=;
+	s=arc-20240116; t=1737120427; c=relaxed/simple;
+	bh=pZ8GrfB//8axkZeEjA8SPuZSPROwvtJF41KknQSFIYU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lu7F2XwzwJJ7nnORpKXQALu5lbUuxXLqB3lkx+5F3OXAvUEkTIcKde14IywLykwG2AL5cFn30tOalHshDekmoSbUBLF3xxAaoZ1O/BCCLowRax+Ef/Z7CQZR0spGHEhsr50Zem4VUrvREZ3uIUjwuHi/m1qt9d2/2HnDgmHeazw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RVAj7slW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EFC1BC4CEDD;
-	Fri, 17 Jan 2025 13:22:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737120123;
-	bh=fSFd7Zpved/J9ARzkNxskvv0MDGbMGB15yiCNUdlcSs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RVAj7slWnimgq+K/qg63qK7az4/Vws1Vv8xbnNjPCVvcrp1GVjjJjYpUZaeC6cdbN
-	 t0aTP+pi9UOlSGw0/1Uj9vBlAd9+vezH4C26sGtZmTvfj34KU6rKrMHypAah7uiJAo
-	 ycHcRABpMoxkeMeKch7MRzDilZt08iWYzx6vqir0XKbot3F0eq3Gxkkd5ibemEW1rz
-	 TZBe9m1pdpIHbPMi8Jlkc19JP5Y6glI+jNulChUh7IJmBrdj5hER39rGDFyIxUKV8l
-	 lFnDh7Hn/d52+UhhRghZyxCHa4X7qBsUSRmD2Px5oy9EJSTmNz7nI6qr9/xgl4MHoW
-	 tKkaQ3JNUsilg==
-Date: Fri, 17 Jan 2025 13:21:58 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Jinjie Ruan <ruanjinjie@huawei.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=mfrYhGsDrQNEnFDJf9LH+SyjcrHRM11LIShGxQveXxDfd7Y1Q+Fr6mE+EwKitj7U7pv/zEPGKnOU+mk//KfNF7Zi2IJt720tJcNbUjSL6TuhHAL1B59jxspGU/KpGsoejCYqj0Bo7ZtJKwiAGOmC2L6fOcg/4syYkMKqfnlyfjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Iofmf2oL; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737120425; x=1768656425;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=pZ8GrfB//8axkZeEjA8SPuZSPROwvtJF41KknQSFIYU=;
+  b=Iofmf2oL0jKYxss/Mno3HdASo99QErehEVBgbaSIknR5i1INm4JPdDtG
+   YC5FLViPkDdsGBeNRJUfgIqyo8q63vdTA+P/CWa5+waOdnNIM5ZOS1uK8
+   RNRzPjjn3DZBE1j8RTNwmj0PwmWlMhZrzR5Y81OShow1VCJau1W13TA1r
+   NtQ43rW7N01qcSzeXajs6QaG72XEhB4ce4n4Q3GKCllk33tkKJbkKWWFd
+   YW0gn5ZdyoRysNPHgdS0MC7lCcFgtBYfMPzqUdcAm+bmW6gZL1BsjnHJx
+   rn94NxaXOzKCNv/6ibZSFLYKWuAmQwJjdUzx1DrpOSzEdk2Ewis+S1R3o
+   g==;
+X-CSE-ConnectionGUID: yi+RWNfuQDWkKHh4LknWOQ==
+X-CSE-MsgGUID: xwWI5T+BQuiGQbjb1AiYmw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="36829830"
+X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; 
+   d="scan'208";a="36829830"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 05:22:47 -0800
+X-CSE-ConnectionGUID: s6Wb8N8YR9ay6O3dr+luVA==
+X-CSE-MsgGUID: 0CgC1ijGTBaL4h4uG3coeA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="129063946"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 17 Jan 2025 05:22:42 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tYmJ6-000TFX-1k;
+	Fri, 17 Jan 2025 13:22:40 +0000
+Date: Fri, 17 Jan 2025 21:22:15 +0800
+From: kernel test robot <lkp@intel.com>
+To: Pengyu Luo <mitltlatltl@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/5] spi: zynqmp-gqspi: Improve error recovery by
- resetting
-Message-ID: <5942e111-24ba-4d1b-bd4f-6b81dcc6c5dc@sirena.org.uk>
-References: <20250116225521.2688224-1-sean.anderson@linux.dev>
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, Pengyu Luo <mitltlatltl@gmail.com>
+Subject: Re: [PATCH v4 2/3] platform: arm64: add Huawei Matebook E Go EC
+ driver
+Message-ID: <202501172102.HQ2qqllb-lkp@intel.com>
+References: <20250116111559.83641-3-mitltlatltl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9LaKOexVYp/mUJYS"
-Content-Disposition: inline
-In-Reply-To: <20250116225521.2688224-1-sean.anderson@linux.dev>
-X-Cookie: Q:	Are we not men?
-
-
---9LaKOexVYp/mUJYS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20250116111559.83641-3-mitltlatltl@gmail.com>
 
-On Thu, Jan 16, 2025 at 05:55:16PM -0500, Sean Anderson wrote:
-> This series adds support for resetting the QSPI controller if we have a
-> timeout. I find this greatly improves the stability of the device, which
-> would tend to break after any timeout.
+Hi Pengyu,
 
-If you're hitting a timeout that tends to indicate there's already a
-serious stability problem...
+kernel test robot noticed the following build errors:
 
---9LaKOexVYp/mUJYS
-Content-Type: application/pgp-signature; name="signature.asc"
+[auto build test ERROR on b323d8e7bc03d27dec646bfdccb7d1a92411f189]
 
------BEGIN PGP SIGNATURE-----
+url:    https://github.com/intel-lab-lkp/linux/commits/Pengyu-Luo/dt-bindings-platform-Add-Huawei-Matebook-E-Go-EC/20250116-192206
+base:   b323d8e7bc03d27dec646bfdccb7d1a92411f189
+patch link:    https://lore.kernel.org/r/20250116111559.83641-3-mitltlatltl%40gmail.com
+patch subject: [PATCH v4 2/3] platform: arm64: add Huawei Matebook E Go EC driver
+config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250117/202501172102.HQ2qqllb-lkp@intel.com/config)
+compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250117/202501172102.HQ2qqllb-lkp@intel.com/reproduce)
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmeKWXUACgkQJNaLcl1U
-h9CpZAf/Wk3o1MAlJ9TGR6o+nwTpH4hHPLa3QLO78QLJo5xgPC8mTkGIg/FmONxC
-lPPbIYeRT0sRBmIvct3xfbvWNjpsDa0elpSM4UzX578IEx2i7Hj+rWiLl7NUE/bM
-reFUV23KdVcTYv/CfP0fmC5SpvoY788WnnP60xSbsf2M5H+IAoyWovHE+WvHEJSx
-6Oyh+jLUWTdKkYJqADmTKytyZGHlJFujVq6IBUT4C0bEXYphv8BUmSaC1KvdxWfc
-22h6JtGfKU7jYrALUaTABxweqaJle4lbbpd5WNYxdnD5xh2NlDfOswz5QF4DE4FW
-HuF+P5Nkc9GMGbuJh5uWIwAagvlQ/g==
-=Et2M
------END PGP SIGNATURE-----
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501172102.HQ2qqllb-lkp@intel.com/
 
---9LaKOexVYp/mUJYS--
+All errors (new ones prefixed by >>):
+
+   In file included from drivers/platform/arm64/huawei-gaokun-ec.c:8:
+   In file included from include/linux/auxiliary_bus.h:11:
+   In file included from include/linux/device.h:32:
+   In file included from include/linux/device/driver.h:21:
+   In file included from include/linux/module.h:19:
+   In file included from include/linux/elf.h:6:
+   In file included from arch/s390/include/asm/elf.h:181:
+   In file included from arch/s390/include/asm/mmu_context.h:11:
+   In file included from arch/s390/include/asm/pgalloc.h:18:
+   In file included from include/linux/mm.h:2224:
+   include/linux/vmstat.h:504:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     504 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     505 |                            item];
+         |                            ~~~~
+   include/linux/vmstat.h:511:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     511 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     512 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/vmstat.h:524:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
+     524 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
+     525 |                            NR_VM_NUMA_EVENT_ITEMS +
+         |                            ~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/platform/arm64/huawei-gaokun-ec.c:91:9: error: returning 'const u8 *' (aka 'const unsigned char *') from a function with result type 'void *' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+      91 |         return src + RESP_HDR_SIZE;
+         |                ^~~~~~~~~~~~~~~~~~~
+>> drivers/platform/arm64/huawei-gaokun-ec.c:112:11: error: initializing '__u8 *' (aka 'unsigned char *') with an expression of type 'const u8 *' (aka 'const unsigned char *') discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+     112 |                         .buf = req,
+         |                                ^~~
+   3 warnings and 2 errors generated.
+
+
+vim +91 drivers/platform/arm64/huawei-gaokun-ec.c
+
+    88	
+    89	static inline void *extr_resp_shallow(const u8 *src)
+    90	{
+  > 91		return src + RESP_HDR_SIZE;
+    92	}
+    93	
+    94	struct gaokun_ec {
+    95		struct i2c_client *client;
+    96		struct mutex lock; /* EC transaction lock */
+    97		struct blocking_notifier_head notifier_list;
+    98		struct device *hwmon_dev;
+    99		struct input_dev *idev;
+   100		bool suspended;
+   101	};
+   102	
+   103	static int gaokun_ec_request(struct gaokun_ec *ec, const u8 *req,
+   104				     size_t resp_len, u8 *resp)
+   105	{
+   106		struct i2c_client *client = ec->client;
+   107		struct i2c_msg msgs[2] = {
+   108			{
+   109				.addr = client->addr,
+   110				.flags = client->flags,
+   111				.len = REQ_LEN(req),
+ > 112				.buf = req,
+   113			}, {
+   114				.addr = client->addr,
+   115				.flags = client->flags | I2C_M_RD,
+   116				.len = resp_len,
+   117				.buf = resp,
+   118			},
+   119		};
+   120	
+   121		guard(mutex)(&ec->lock);
+   122		i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
+   123		usleep_range(2000, 2500); /* have a break, ACPI did this */
+   124	
+   125		return *resp ? -EIO : 0;
+   126	}
+   127	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
