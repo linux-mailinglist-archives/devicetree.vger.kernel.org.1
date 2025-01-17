@@ -1,257 +1,297 @@
-Return-Path: <devicetree+bounces-139215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B479A14A03
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 08:15:04 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3973A14A10
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 08:25:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A16713A3880
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 07:14:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A352188750D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 07:25:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 270221F78E7;
-	Fri, 17 Jan 2025 07:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4344B1F76BA;
+	Fri, 17 Jan 2025 07:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="BfjIRx78"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RAokXgxQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2063.outbound.protection.outlook.com [40.107.94.63])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58F7E1F8665;
-	Fri, 17 Jan 2025 07:14:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.63
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737098088; cv=fail; b=nU/a8tBXw955wTcZcvdeRmHavOKJFGGeOSq9U5Hdr+Unep3Ite/kfwswuBie2GOA1TqXZXLRwaVFi8rVDDm9woqFZ0UM2NnJbHkWdX2e219DZlrT39qT0EhBe6LkVivcyYudo9m3W9Y37aryNyO9M+8fdVA6sBm/J7CzN+CekUk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737098088; c=relaxed/simple;
-	bh=N5YpbHoAui7Ax3Z9lHB4pqD9MJMYXtJJ1FSW0ExaHdk=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=FiJ5hF7hsa0dK1uNpUww2E27Re+PJ2A5SZCxIuWVBe9xqlMYeRCcBtRW1uowyThSL3/joByxKMlRGFTQ+iMxzrMX7lNztj/dkFQYe02VKWYVKfeJOP56FCqTWGs6TY6twpsnaYnu8qxH2MA2NnNkVn64ty9ALO4ZzT+/yQPQAc4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=BfjIRx78; arc=fail smtp.client-ip=40.107.94.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Couq83qKWwxDQGhhaSa6SJ9gC94g41vlx/SY4uAgL1XELjyJnSosYDV2r73XwIxPasuoKH/P1goVmzVkLvLF54/JXq6WkMjMNVvLf87CwgFnLn7YxAbqvQWMd8bKpwmcyJJsFBX8n33lc60IHYerjTFriFrXx7LQPTK32AuWKEZp1WRwsGipa/Fns+kcPaznYIURcSEUqJf5Sf/SAwD+ioJBCfTLKD12q3MLxpte1yYbpGyBqdAlf59T4tvR74CFkmpDR8RWnM/VNc0FfvldHHU0tCoANaKKYci6/Dt5RiVlZ3sLBUFgL6oFDpvifxbjeiM5isnANpqdESxcLmzwIw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o9CpeCjd7QJMD2VboOG43N3WTvGtbew2985klMXvdlY=;
- b=cv+EZ2XFIbad23hyTfnBVSbT3Mc6g0sFILYbxcsJL7l/TtyMh40J+kfYRyUIHxFTKDoMAmN2uyaJy8WnnXah67Y7uDtZxsnQtZiJFVZnTRg9ZI0pfUaSRPMN5d+R/7n9VAGsq8NC2VEKrX63Dp2rsRJvzbZREdvq2n6G5AlbDctoQmISEKTKxaeX69oZuEr9ggvM1jpZVfV8wO+mT8jaqMOiQqoB16SET9IVzuyymGMY9tZ4lB/Kws5628EMLyI1Sj0Lo6NumZBr2f31fdk5Kc+9o6DwfG/rfBnuDmKoeIftIE3k7+MavR7P6mvNQkEugyhnPIv+YeW/r0JlFzGSHw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=o9CpeCjd7QJMD2VboOG43N3WTvGtbew2985klMXvdlY=;
- b=BfjIRx78gpCQBcOJyomJ3PmTS83sYr38HBYVfaau8SYiV+veaS2GJEa9OT2/Vd6XYERS1LsHHXdw5HgTw9ZhoC+1N04CHuxrCDaz8+9MrPmkTus2EsUtU78RHOEeTgMm208ILSeNcwRnTnJ5zRW4m6p3NHDL0BpPElJA3ar0O80=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SJ2PR12MB8109.namprd12.prod.outlook.com (2603:10b6:a03:4f5::8)
- by SA1PR12MB7296.namprd12.prod.outlook.com (2603:10b6:806:2ba::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.14; Fri, 17 Jan
- 2025 07:14:44 +0000
-Received: from SJ2PR12MB8109.namprd12.prod.outlook.com
- ([fe80::7f35:efe7:5e82:5e30]) by SJ2PR12MB8109.namprd12.prod.outlook.com
- ([fe80::7f35:efe7:5e82:5e30%6]) with mapi id 15.20.8356.014; Fri, 17 Jan 2025
- 07:14:44 +0000
-Message-ID: <8a0d8789-7a0d-42b7-9aff-e867c14db3c9@amd.com>
-Date: Fri, 17 Jan 2025 08:14:30 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: spi: zynqmp-qspi: Add reset
-To: Sean Anderson <sean.anderson@linux.dev>, Mark Brown <broonie@kernel.org>,
- linux-spi@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org, Jinjie Ruan <ruanjinjie@huawei.com>,
- linux-arm-kernel@lists.infradead.org,
- Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Conor Dooley
- <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-References: <20250116225521.2688224-1-sean.anderson@linux.dev>
- <20250116225521.2688224-2-sean.anderson@linux.dev>
-Content-Language: en-US
-From: Michal Simek <michal.simek@amd.com>
-Autocrypt: addr=michal.simek@amd.com; keydata=
- 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
- 3i3l5DA=
-In-Reply-To: <20250116225521.2688224-2-sean.anderson@linux.dev>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR08CA0275.eurprd08.prod.outlook.com
- (2603:10a6:803:dc::48) To SJ2PR12MB8109.namprd12.prod.outlook.com
- (2603:10b6:a03:4f5::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A13D1F78F3;
+	Fri, 17 Jan 2025 07:25:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737098721; cv=none; b=miS7oR6CbxOuvZM81h9Oe08oG4e1eVBycQj4ysHsYWrY4Sj/yowISlQJKcS1tIWEwuw8hSJaaUbAlIZh4ErMLXKBdy/S0YfW8kyeUcrmsYbVSCpaiDUhZBTxlA58BQiZBCdXWK7fRI9RTLUyAa3Y/kKwD60d3cVYZzQOn/J3z5s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737098721; c=relaxed/simple;
+	bh=cGTuzvyXhhbVdzsVpQHI3NbFsG2cU0VrK5fyS3VgK5Q=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=gTGNMJKDBRvG9x/3HZMPw+dmRNiUc4D575XqctZaBrWB1qDc4vRuOiUYfhtr36sg9kLEBk2ico1ketdKKzm8MT4I9ilXxTIDTyBy7AAh0KLvXM+27fCdiOQU6QS5hhKmwoN091C2O/FqBAfQ5Q7dllDL7/PmoihbRqIoAC4KVCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RAokXgxQ; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aaedd529ba1so245997866b.1;
+        Thu, 16 Jan 2025 23:25:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737098717; x=1737703517; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=acBUeSMeLcUwdvAPh7XnIMxupIQjS7s3gcf5z1wzyRw=;
+        b=RAokXgxQWI8H4i8pqD939KXCLwyZgQ21n/rEWGvfexCOLdOLwUeX26gvnBLFnOavKV
+         dQaAg8AO9Br9t2WkyZxJzi27JUL4QtYJz4qt56ykcUqxMOEokNBHZS2o/LcMOzRzlubP
+         Q6AOLjSOj4A9a2eixrKSjeVAioHtVYBKnMpbMdxa7NhGBRRvTXXmsPl+hV+zk8mGJu8+
+         5sNkRsjnsudQAJLpgdWI+ph9t6ag/IjJlyS4NYBwXBXhnZj/rQU6/EvasnU4ozJ4H8W+
+         dHhY3MuT6xR2nnJPg4fA5wQ8yqK2X3Q0vxy+www1v2+mWHN0Aa7CWOCxn/DoW9zYfM/j
+         Itsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737098717; x=1737703517;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=acBUeSMeLcUwdvAPh7XnIMxupIQjS7s3gcf5z1wzyRw=;
+        b=q+Li1ukWc3HEOTYY11r/jgydcXwVcuxbTTFMmcW8/mRUJBV7d5hTtChu7ZzGKRwQNy
+         UPa0Lf54XnUtrI3bdXM/soBkLnYZxvn4sFC1NP0a22jxt13B0y/t7+tGWtW+IKDqJ8lp
+         rViLLJ7dvzTShC4s4zxfIJZAzihu91NAP+9SxfiknIIlpLvoN8vs8WkD/WNSTjV9TleT
+         sOjc5bjO0vbilqlnp+9ABiTtaMCbxw5bZnDVBuvtWNDBKr49GS/C46vks4s8oeVegzDi
+         pmtwsdIj7e9AKEk3hVOhz2Z1TcmJ0q0R8k/WXSrNAYj8OdycxEjw2GXEWJ0ZwBHL6g3Z
+         Sn4w==
+X-Forwarded-Encrypted: i=1; AJvYcCVKZetnTmanXhYR6p9+oSlWS2iyINsSMcPDdXxcdOorWHkHdWIgguc7pulmdxrbNP6EQt232sX7th3JhQ==@vger.kernel.org, AJvYcCVf1HBKeFE0Tn5Dc8Pw14SAwXBtiWWzQOXCwQNWB3G6iz5bMapCt+RuOF98mBeWry25dIhl83pdWy+F@vger.kernel.org, AJvYcCWYApwnWfriZQ3ivrzzjRnQq9U9g58/rMMD2gjHTAI5jClt1QkfzqLAN0nSycEdE2rZPVSrxg9kRb3ou48A@vger.kernel.org, AJvYcCXniZY09U1Zkix8ownnz8o1OwcplhxJulAUQgQP0Z7a0vAu+2CUQ029P4RIyG3gK0bJRAvxOm6yzLY=@vger.kernel.org, AJvYcCXoSQPtWcRyLFzhRqQFbcHjsVIAYqsScGSWfHkRHdDCM7SZFeJdhVLAobGYFPoADvAFCxWsgrcOYF+7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvaULFaq+JjgFt+04XxUPQ1NBRywOfDf8zYWl3xYbi8bccZRLJ
+	+O47hwd7cXJ/AXZXwTofhVPh1V4Tw0BZ0Mpzujf1xfLMu+FFzjsE
+X-Gm-Gg: ASbGncuOdz5P5kpBGXmJHfxG3XrPm0fBOhDe3cjesDmXEY52W6kLwRH1l829S9USSRw
+	JMCFs+VICDXkjIGBhclvjOHS1YH6haDF8bEaqpJ7LWW0DDWiaSth5ATggWQu+oFMN1vufuX0mMC
+	ljY2FEUjdfouMGBo4bpszrZIpjG1gejBsHBbh+saCmy4uXK4EUYSb7aVDgQvLDfiPGsQV4juJ29
+	K71hxkZtLvN/Tp4sEK2xNSLR+cROM5bQNPCmj+N8s5+tzXbo1E+7K5R1aWyafZsvo00ctuggd7n
+	dxkwDFVw4DRtX6jDclc=
+X-Google-Smtp-Source: AGHT+IGePGJHVWxw4XwLV4zxZAGfulFMMCFa6UxYk4nNAptBEBklprrxVwXwqCG4Gi/JEQo6iRnv6g==
+X-Received: by 2002:a05:6402:2745:b0:5d0:bf5e:eb8 with SMTP id 4fb4d7f45d1cf-5db7db07846mr3557485a12.23.1737098717190;
+        Thu, 16 Jan 2025 23:25:17 -0800 (PST)
+Received: from smtpclient.apple (185.174.17.62.zt.hu. [185.174.17.62])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384ce1a49sm124381366b.46.2025.01.16.23.25.15
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 16 Jan 2025 23:25:16 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8109:EE_|SA1PR12MB7296:EE_
-X-MS-Office365-Filtering-Correlation-Id: 87030254-c3d8-49c5-b4bf-08dd36c69e27
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|366016|7416014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?UWd0TnZkbHJJQ2g0eFAvbzFJb2Mwd0pmT1BQT0V2QkpIZGRUK2JyR0dML2tz?=
- =?utf-8?B?S3pWaEVGa1ZoMS94bVJsdWhHQndXYUcvRllLM29vaW5NZXlWYkJNT3NZTUh3?=
- =?utf-8?B?aXFtNzNKdXREMU5PSzZLT2dwdFRMTFhmREo4aTFsdE5zTHN1OHhheHVGNlBG?=
- =?utf-8?B?cGxZQ21ZNTRyWjJYV3A4T2s5eWszc2Zzanc1WllyRDdRL3lDZUI5WXhRbS90?=
- =?utf-8?B?UXBkR2liWHpBOVVxakcyS21kc0hrTzVBR21VcjV1SU9rYTFkbHVkTlF0VG1m?=
- =?utf-8?B?aVV0blB3MElKbEJjdVBlRHpQb2RvdGM4ekkzWVR4cysvL2M0TnhwOTZ5Szlj?=
- =?utf-8?B?aFZORm5PbkNpeDR3bWcxQlFDUGVZWmZ0YWhDVVl6TElyQzdwekUxbWN2Slpz?=
- =?utf-8?B?bkM1M3dVZHF1UllHU3dVV20vSUtLQWozK3RNbXljbkZzNGpPdVg1MncrcWF4?=
- =?utf-8?B?RkNRWVBldWk4R2ZXNWRZanBlVHc4MkdXcTV3OEJoVWhPbnBLK2JJaFgwR2dP?=
- =?utf-8?B?UmhYUEFEWktzMUJQU2R3RjdKS2piM3FTb2lyMEQvdkxtcmw2S1FFU2RiYUhY?=
- =?utf-8?B?b05XdkxLVlBVWkFWQTlvbmtqelhESlo3MDhLVHZzbEUwOEtNOC9HK0prOXpO?=
- =?utf-8?B?SlFPUFNFTFhOeXJaaUxUdUFoWS9kTlZiRmpCUUVJQXZ0bUxCNmZpd2tyV3BP?=
- =?utf-8?B?SjBBVENyVzdZdlVITkJqakgrR1h5MHV5eFJYbUszRkR1UXpTck4yWW1ZMmJr?=
- =?utf-8?B?dE40cFVsRm8rcHlmbDFKQ3FBcHp1dE52RUo1a2xPZk9TcmFGM0dMSGhnOE5s?=
- =?utf-8?B?REViZ3pFdkg0cS8vS2gxaGwzRnFSSGM5MlVRSk5xYVhxamM4YVhZTGVoU0RU?=
- =?utf-8?B?MmVGanhpazkvMjhvUTBWMElwQzBuK21PRDgwWmJIemJDa1Zpb0pvUUZMTkJ3?=
- =?utf-8?B?dWFISElYZGZ0NlRFRHZOY1hCQllNVnMwbmxtSlgvcFF0eGVRdXA4eHYvS0FL?=
- =?utf-8?B?K2RzcHQxbHZaR0pRUVFONTZKWkQrSGlvOHVZS2lVS0YzLzhJczI1a2h0eTNh?=
- =?utf-8?B?UWxoUndGMUxVSmtOdkk0RGJKSGJFcDRKVlNJZjlNWjhBTUdjVy9TQ0d6T29C?=
- =?utf-8?B?K0NqaUE5S2pNRGtBUlFjRUoxdkJxNjBOeHczRkpQMG5GczBhQzNGRmxDTFZB?=
- =?utf-8?B?YjYrcU5CVlFMZU45ZmM1OXhEU291V1hXYzlLSzlLQ3dteFZXa2pqRXdOZjBH?=
- =?utf-8?B?aERXRnFBcmgyZGVTQ0VzbTgvTk1yVk5SSUU1UVB0Mkkyc29xd3JUSEx1aGRM?=
- =?utf-8?B?SG9UNnRvQ0V4MWRtWGNseWpoK2JHMnQ4UitabkhPMklsSkkyNUgxazhuV3Zk?=
- =?utf-8?B?STdaR2tta05xbDB1bklyRzlTSWFiTnhnWXk1THgzLzZUcGFocWN5Z0JIaXFj?=
- =?utf-8?B?MjlLQk50OTdMMmtOcGpySS93bFhMVG94bzlUdzJxZU9KczhzOFNLU0hudWJn?=
- =?utf-8?B?aGJ1R3Uvd0JGTmdmdmp2bnhYWUNyUHJlY05TQlJHM20wUTluRUJObFZEVHVu?=
- =?utf-8?B?UDU4M1U0cXh0djFocWd2TVZuQU5VcitLOExhUWpDdlJtSjcvTXVhaDgwZHVm?=
- =?utf-8?B?SEZnaElGekNOYU5hY3ZkSCswRGlIUDhIeXlLMEFJZWNjSzczd1BaY3N2WG5h?=
- =?utf-8?B?RFhaSVducjBGWXZ2OE05NFRSMWZlbUtUVU9jQkdFdFBoeGUyRnROUm1MOU5n?=
- =?utf-8?B?bnFlRzB5WFdROFRZb0RlRUdkN0V6Sm83Z1JyNHdiRWpGQVcrQ0hEYlV5aHdt?=
- =?utf-8?B?ZXczNnVERlZFaC9LUFJ2N01YVnprbktPSEtoc0VJZ0NSNHhUNXRNZEJxZjJr?=
- =?utf-8?Q?NV6rp3l5JY9rQ?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(7416014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?MmRTUm1jNW1WSnMvMHFkM1QvY0wwUVB6em5zT2hHeFNwWjE1VVhSM3lkSUZF?=
- =?utf-8?B?Wnh4aWNJWkxranJxYjNMVjcrYlpWSlhjempRbzlaempUWk9kZEpSTTNmc3E0?=
- =?utf-8?B?OG91VmgxSkhyc3FJTUlTN2pxeFk5Q3hJbERZTTJJa0FwWVh2SVhYUnNTQlEx?=
- =?utf-8?B?WXpoR2xJZUtBU1Mva1NFbFI1MGdHcFhuNWlHQklNbExlZFRCaWZPZVFBeWQ5?=
- =?utf-8?B?eWlweXZrRDAwbXVoMklFZmx3R1F5WkxJWjJ4bStySkhMMlVRci9LcythQVNm?=
- =?utf-8?B?WnFFUVFrRUh1cDVHVjBuQmUwQ2J5NlNvdGNEQkJsQzRkcEZWOW10VUlLbWNx?=
- =?utf-8?B?Y2szcDk0UWp5eEFKMFJiMEZXUTQvS3gzLzhOdG5SZ3k0aGFhWVRPU3NXK1BD?=
- =?utf-8?B?dzQrc1VZTDRxOW1XR3JGVVJlbHE3MGNrOG1pMDNvamdVcktYR3o3NE5Idjhz?=
- =?utf-8?B?RmI3WVhZY01mZEVmZksxMUtmc3RRcm56UHp1UkNLaGY2WXBZbzBsNDhHY3Vh?=
- =?utf-8?B?aGdiU0J3bGNuWE9LdXZLcHdWdVYreUMwSUNaWXJDSGJHK2VZNnprTWUyenpQ?=
- =?utf-8?B?SFFkUDA0Z0c0WTIyWTNGVnRnblVUUjJkRXltZW8vVlZkeVVLNFl2aUdZWnF1?=
- =?utf-8?B?ZTFqMlRjMTRmWXc2c3Z4clNwLzZwZEgvcWdFUVF0Z2NOcHFDaFdVbnRZY3Bi?=
- =?utf-8?B?RVlETXRsbUlqSlFwUzhrV3ZDbGtxd1Z1bkx0c21UcGllRi9JOHZlbjNESzlL?=
- =?utf-8?B?aGdOU3pYYnpVUlZsM1ZKWUpRditjNnVvU2ZSdUNyaU1QYzlJd2ljK0dJWm9M?=
- =?utf-8?B?Sk1lWW0xWTVvYVVsZUEyOEZwMUZnd2lPRCt6RU1yZmJmaURPQkxzSXM0bVFw?=
- =?utf-8?B?Z3VSNFZ0SWZyT2pCNEdDVG5mY3J6ZUVlZkZxdXNreUt2akt5dWhLTU43RDJP?=
- =?utf-8?B?clBMWSs2d2lPNkcxU0pYUWNHZmR0WTR4M01qRm9XSHZwOE16SmtQak15RWR4?=
- =?utf-8?B?dnlNMG1wejViV0YxMCt5ejNONXhlQ2pxb3JrcVl1aGVkRjJjdk9KWjdhTTdr?=
- =?utf-8?B?VHdCZ1RtVW95RUVXbXlzRVdiTXM2UXIveXhlQTFyNWFUNVV4UzM3RzlrL2tu?=
- =?utf-8?B?c1VzTDZvSmxBMm02MncycEUrNlIrSVEvSmE3MThpTjNxOStlUWovT2piaVJO?=
- =?utf-8?B?TG8yYlJjTUk4b0c1OFRxRjl0dm9xbTNlQ0RGZEJteGpRcGo1QjZGSkFTWmNZ?=
- =?utf-8?B?R1ZJZE9aQmxQMXVQakNsdDRZanNnVnhHVmNwdDR3NXRQMDliZ25nOW1NWW8w?=
- =?utf-8?B?RmZDUHJ0UzRjOWJYb0piQTNURVlSQ2RsNHVCdHFYOWh6eTNYQ25ENm9QTUpW?=
- =?utf-8?B?MWRGbjhreWwzRElMQURmdys4bVlOcmF3a1hLWi8vOG9oTWYvRGJWa096TnhD?=
- =?utf-8?B?bG11MFM5S212ZGN5K1NYeE1MMXNxMStObHFLV0ZsT2FrUTN6cFdqWkFJWlNx?=
- =?utf-8?B?Rmx5RkRTMWMvT3AzMVRXcm0wQ1hBa00rVmovN3AzN3ZPVDlvWFVmOVVyZnpQ?=
- =?utf-8?B?RGlnZGx1SnE1VFF1WFA2VW4wYVJlSzROQVhqVnp3K0Q0c2dCMDRrcGV6NEVH?=
- =?utf-8?B?MmtGRkJ2MWR2M2dETUxmbVFDQTJaK3BuZHFINnU1dnA3SnJTL3l2R0d2cFBT?=
- =?utf-8?B?RXVnRlh3ODFacVlHSWxNNWh2emJDNUtaSk9WTXFoM1NNSDRkNlQ2NzBBeEEv?=
- =?utf-8?B?ZnBrUE5ycmdqRDdWVTZlKy9vdzhUbm5yRzNGZFZGbkcwbERKTG5xRTV2S0JL?=
- =?utf-8?B?UGkzV1NwdTRlWkdhN1FXSXpjQkNZaTdZZEZVNS82dHFaVXJjMHl3QVhyS3o5?=
- =?utf-8?B?bkRTQlRhcHl0L2gxbWtxNXJ0blhaSFZjQzIzeUhHVU9lQ1RrQUsvdnowT25H?=
- =?utf-8?B?S2JzaUpjTEQ5cXpzVHFvTGlTMVgrVG1oK0dqU0pIOGlDYzM4bXVOWENYdTlS?=
- =?utf-8?B?dm5Gbk5sZGtEUkk1L2ZXdWJLM3RBSVlIT3BiNkFVVVB5REltMUljcDNzVStF?=
- =?utf-8?B?cHJ2eVg2aUhjT1NrRlc3NmFSUDVZYVlGeVhjSUN6Q1hlWDM0akhuZWYxT0J3?=
- =?utf-8?Q?ZIfwzDfBwGR4JW6gD4a7KH93T?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87030254-c3d8-49c5-b4bf-08dd36c69e27
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8109.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2025 07:14:44.3688
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EDaGytexu4m00pVArNDd6rO5Wic4Eqd/e40gJ11a6QNipCDdDKNwcJFE2HDcgB+8
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7296
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3776.700.51\))
+Subject: Re: [PATCH 03/12] pinctrl: sunxi: add driver for Allwinner V853.
+From: =?utf-8?B?QW5kcsOhcyBTemVtesWR?= <szemzo.andras@gmail.com>
+In-Reply-To: <CACRpkdYVTedEon0X-izvaDTGF6yRhD2s=Z6NEM=zBf4vD-T0Pg@mail.gmail.com>
+Date: Fri, 17 Jan 2025 08:25:04 +0100
+Cc: Andre Przywara <andre.przywara@arm.com>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maxime Ripard <mripard@kernel.org>,
+ Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org,
+ linux-gpio@vger.kernel.org,
+ linux-pm@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <686A634E-147F-4D73-A909-29FC0C20472C@gmail.com>
+References: <20250110123923.270626-1-szemzo.andras@gmail.com>
+ <20250110123923.270626-4-szemzo.andras@gmail.com>
+ <20250114141954.2785879a@donnerap.manchester.arm.com>
+ <CACRpkda0nx3SQtdjmXdCEbVJSWM10TM=p-6JbDjbiYcOSF5PxQ@mail.gmail.com>
+ <20250115152635.1b89e7f4@donnerap.manchester.arm.com>
+ <CACRpkdYVTedEon0X-izvaDTGF6yRhD2s=Z6NEM=zBf4vD-T0Pg@mail.gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: Apple Mail (2.3776.700.51)
+
+I=E2=80=99ve actually already converted the pinctrl driver to the new dt =
+based pinmux, as Andre
+suggested. It=E2=80=99s simple, get rid of those huge pinmux tables, and =
+easy to understand to
+add the mux settings to the dtsi.
 
 
+> On 16 Jan 2025, at 10:34, Linus Walleij <linus.walleij@linaro.org> =
+wrote:
+>=20
+> Hi Andre,
+>=20
+> some nice talk here, actually the following is just opinions, I will
+> be likely happy with whatever approach is taken eventually.
+>=20
+> On Wed, Jan 15, 2025 at 4:26=E2=80=AFPM Andre Przywara =
+<andre.przywara@arm.com> wrote:
+>=20
+>>> pio: pinctrl@1c20800 {
+>>>                        compatible =3D "allwinner,sun8i-r40-pinctrl";
+>>> (...)
+>>>                        i2c0_pins: i2c0-pins {
+>>>                                pins =3D "PB0", "PB1";
+>>>                                function =3D "i2c0";
+>>>                        };
+>>>=20
+>>> abstract, strings, nice. The driver handles the particulars.
+>>=20
+>> What bugs me about this it that this has quite some seemingly =
+redundant
+>> information (Who would have thought that the i2c0 pins use function
+>> "i2c0"?), but misses out on the actual 4 bits(!) of information.
+>=20
+> the pins in this example are called PB0 and PB1 though. The =
+designation
+> on the package. And often pins actually named "i2c0_1" "i2c0_2" are
+> for that primary function, but muxable to a few other functions,
+> at least GPIO in most cases. So it's just some name for the pin
+> really.
+>=20
+>>> That is like so because we are designing for users which are
+>>> let's say customization engineers. If these engineers jump from
+>>> project to project matching function strings to group strings will
+>>> be a common way to set up pins, and easy to understand and
+>>> grasp, and it makes the DTS very readable.
+>>=20
+>> That's an interesting view, and I see the point of it being easy to =
+read,
+>> but this is partly because it doesn't convey too much actual =
+information,
+>> does it, as it requires another lookup or two.
+>> And the pinctrl group nodes are actually in the .dtsi file, which are
+>> typically written once during the initial SoC enablement, and new =
+board
+>> .dts files normally just reference the existing pingroup nodes. So =
+anyone
+>> dealing with just a new board is not bothered by this.
+>=20
+> You have a point, and when working with a system the application
+> engineer often finds bugs in the pin control driver, and has to go
+> and fix the actual driver and then all the information hiding and
+> simplification is moot.
+>=20
+> This can become an expensive lesson for the current attempts
+> to push pin control into firmware where the configuration is
+> mostly "dead simple" (and just using strings) - the bugs will be
+> in the firmware instead, and impossible or really hard to fix.
+>=20
+>> Also in my experience most people have no problems in understanding =
+the
+>> concept of pinmuxing and that there is a selector number, also where =
+to
+>> find this.
+>=20
+> Yeah the ambition with the strings was to avoid forcing application
+> engineers to know all about that. If they do, they are then
+> developing the driver, not just using it.
+>=20
+>>> Mediatek and STM32 made a compromise by using pinmux
+>>> and adding some macros to define them so it looks more
+>>> pleasant:
+>>>=20
+>>>      i2c0_pins_a: i2c0-default {
+>>>                pins-i2c0 {
+>>>                        pinmux =3D <MT7623_PIN_75_SDA0_FUNC_SDA0>,
+>>>                                 <MT7623_PIN_76_SCL0_FUNC_SCL0>;
+>>=20
+>> Well, I don't really get why they don't use the (MTK_PIN_NO(75) | 1)
+>> definition directly, seems to be more telling to me?
+>=20
+> That's what STM32 does as well and it's usable.
+>=20
+> But of course it drives a truck through the initial ambition that pins
+> on all systems be configured the same way, with strings. So now
+> there are some families of drivers all "necessarily different" which
+> is not so nice for people jumping between different SoCs, but
+> very compelling for people focusing on just one SoC.
+>=20
+> Well, unless this way of doing things becomes so prevalent that
+> it's the new black.
+>=20
+>> So the plan for sunxi would be: <SUNXI_PINMUX(PORTC, 23, MUX_1)>, ...
+>> And this would not be really "opaque", since it has a fixed known =
+mapping:
+>>        (port << 16) | (pin << 8) | (mux << 0))
+>> I find this both technically elegant, because it combines all the
+>> information into just one compact cell, but also readable by =
+outsiders,
+>> thanks to the macro.
+>=20
+> And a new standard, to add to the other standards, so that
+> is my problem as maintainer. It makes sense on its own, and it
+> complicates the bigger picture.
+>=20
+>> My main arguments against the current (string-based) approach:
+>> - They require the mapping table to be in every DT user, so not only =
+the
+>>  Linux kernel, but also U-Boot, FreeBSD, you name it...
+>=20
+> That's true.
+>=20
+> This comes from the DT ambition to describe hardware and config,
+> but not *define* hardware, i.e. to stop device tree to turn into
+> Verilog or SystemC, which is what will happen if we take the
+> 1:1 reflection of hardware to device tree too far.
+>=20
+> I don't think anyone really knows where to cut the line.
+>=20
+>> - The tables are getting quite large, and they pollute the single =
+image
+>>  Linux kernel, with tons of very specific information for a number of =
+very
+>>  pitiful Allwinner SoCs. At the moment the tally is at 145KB of =
+code+data
+>>  for the existing arm64 SoCs, with the newer SoCs ever growing (H616 =
+alone
+>>  is 27KB, A523 would be quite larger even, I guess 40K). The new A523
+>>  specific pinctrl support adds 872 Bytes.
+>=20
+> This is a generic problem though, look at GPU drivers.
+>=20
+> The community (especially Android) seem set on fixing this by using
+> modules.
+>=20
+>> - Most of the mappings are untested at pinctrl driver commit time, =
+since we
+>>  don't have the device drivers ready yet - by a margin. The new =
+approach
+>>  would add the pinmux values when we need them and can test them.
+>=20
+> I like this argument the best.
+>=20
+> However this also reads "upfront firmware to handle pin control is a
+> dead end" yet there are people dedicatedly working on exactly that.
+> (Not that its' the Allwinner developers' problem...)
+>=20
+>> - The comments in the table give away that something is not quite =
+right:
+>>                  SUNXI_FUNCTION(0x2, "i2c0")),         /* SDA */
+>>  This is just a comment, so has no relevance for the code, but it's =
+not
+>>  meant for humans either. Yet we try to make this correct and =
+maintain
+>>  it. Odd.
+>=20
+> So i2c0 is SDA and i2c1 is SCL or something?
+> It seems common, but yeah it can be confusing.
+>=20
+> Yours,
+> Linus Walleij
 
-On 1/16/25 23:55, Sean Anderson wrote:
-> Add a reset to help recover from cancelled operations.
-> 
-> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
-> ---
-> 
->   Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-> index 04d4d3b4916d..901e15fcce2d 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-> @@ -36,12 +36,16 @@ properties:
->     power-domains:
->       maxItems: 1
->   
-> +  resets:
-> +    maxItems: 1
-> +
->   required:
->     - compatible
->     - reg
->     - interrupts
->     - clock-names
->     - clocks
-> +  - resets
-
-In 2/5 you are calling devm_reset_control_get_optional_exclusive() that's why I 
-expect reset is not really required property.
-
-M
 
