@@ -1,359 +1,165 @@
-Return-Path: <devicetree+bounces-139340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0246FA15332
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 16:51:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C1BAA15360
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 17:00:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43FD11889CF9
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 15:51:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CDA516865D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 16:00:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D242199FC9;
-	Fri, 17 Jan 2025 15:51:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C90EF199249;
+	Fri, 17 Jan 2025 16:00:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="E5gVwnca"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="feKTpmFB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BA2B17FAC2;
-	Fri, 17 Jan 2025 15:51:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E670E15696E;
+	Fri, 17 Jan 2025 16:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737129108; cv=none; b=BY7weL1i8UU6S0kOH0oRZp3PjiwtJnqA1hlOZoik8xj9CqJ3I1MHqNCetRKN7zc4xNtevXIkGzqrJ8/7z3hLj9dt9lR68XAZOPtbCUR0oANgNf5gJekwNIlMrNlb14C2tNuz/XDEYvsfeanMSoTuHPvemTaQJhvwTR212NJZIAo=
+	t=1737129644; cv=none; b=O1/6AttBBegWh5ukppM3wGVqE84yd813894Uc+vYa8Q7uggQ/mi1azN97AaTav1C4Z+bxnI54pZgvHRwgOTNVMN1/Ks7yFjmn7JvP0iK9ZHX9pvUbGaHSzJqA4gkCDVCpI/4B4c759x5WxRhozcdTosQO2voP3jFYs7aqzZa5/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737129108; c=relaxed/simple;
-	bh=B5V+XPr0ozMHNvK105RmAHyS+dhJuEy/yONGrS4GIdQ=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=JLNCZeZMkDs/cJVHedGbURjYuxy6JApweuyDkCb4mFN8GQISBRPgG87j700jML5tSAFTi+9/DHps4ZqM4UTVa9f6rr9veaMxiqywyb6GGB2XFI3R6TiDFvTn1OXaZizSqnpBJRnkC+eqoGgWK8t3fKlsOH5/YPM5+g67dJw72Pw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=E5gVwnca; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737129107; x=1768665107;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=B5V+XPr0ozMHNvK105RmAHyS+dhJuEy/yONGrS4GIdQ=;
-  b=E5gVwnca6t2UL8z51HKIcTWPo7w3MaDepLXetk1Q97uhXG/a7VoP/hO2
-   gHAfXoE8CT+wCDWAbaWdpdl0AuyQyllgGg7/i986LGbALiHfzZeucbs9z
-   GWvRW9yRbOShSZsZhqHBi3dSSVBG+X+LXZ8+TYEg0Tu1HYHYSirTOY5/O
-   xiTh105C816EYCiuKxgC75iZX3KAYgpFNAJ2YRH1xZ6wgDqsksJEdoTU3
-   s95RpuNytZUtxtcoytRoF0yWTgIH9b2VWUFOHXZR9GOFLm02PlBuTajwr
-   NhmkekdfUsYo6wKOka/iM1nw0mr3DZHScRn/FiXCnrFom2TwsYMYLqgj1
-   A==;
-X-CSE-ConnectionGUID: pLxt4DKdTGWvIfmZPWyLgQ==
-X-CSE-MsgGUID: OGy+NBzBQReUayHDPfEBxw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="48055375"
-X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; 
-   d="scan'208";a="48055375"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 07:51:46 -0800
-X-CSE-ConnectionGUID: 29fSSbRRR7KHEGUAnmdTzw==
-X-CSE-MsgGUID: Gh8SpIDbSHud8VA2VAKDDQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; 
-   d="scan'208";a="106389439"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.76])
-  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 07:51:40 -0800
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Fri, 17 Jan 2025 17:51:36 +0200 (EET)
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-cc: Pengyu Luo <mitltlatltl@gmail.com>, andersson@kernel.org, 
-    conor+dt@kernel.org, devicetree@vger.kernel.org, 
-    Hans de Goede <hdegoede@redhat.com>, jdelvare@suse.com, 
-    konradybcio@kernel.org, krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-    linux-hwmon@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>, 
-    linux@roeck-us.net, platform-driver-x86@vger.kernel.org, robh@kernel.org
-Subject: Re: [PATCH v4 2/3] platform: arm64: add Huawei Matebook E Go EC
- driver
-In-Reply-To: <0a6c6586-3dd9-4af9-85f3-376f2788b21a@linaro.org>
-Message-ID: <3a88c45a-5f26-3a14-3ae8-aa09c00b1431@linux.intel.com>
-References: <65dc7d7f-cee5-4eff-9ab7-153b12be4f26@linaro.org> <20250116181532.134250-1-mitltlatltl@gmail.com> <0a6c6586-3dd9-4af9-85f3-376f2788b21a@linaro.org>
+	s=arc-20240116; t=1737129644; c=relaxed/simple;
+	bh=LBFaQTfD5DTAgyjiAdLRHuZ4RflZefRGoM6YNvU/hoQ=;
+	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ROPbMdx8gaQ9vPB0+ZpGkIQ/zOWS9IsLFJ3Wc0FZElHEFRjx0EXpP+2TwvJ3gmIhVtYy48Pj1sRRmaUf8ibUk67p5hzIVG1FJ2OmlKuMyAe7xqZaoLJRY/puBydDF93DCAkQcK5J6/eU9fCQOIusE4oeyzTk5ILHZxw6vEz4bUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=feKTpmFB; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-38be3bfb045so2088013f8f.0;
+        Fri, 17 Jan 2025 08:00:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737129641; x=1737734441; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=g/Y851uQNwHgtptI04bOzErBC0DlLJs+YWGXr5rKylc=;
+        b=feKTpmFBrvQhOZbRmwUi9PxMHeaGqoFRPg+hNhwsUnsHKXSzQiQO3d1WdsFqcS++Qh
+         a0hBGNQ99zFohZG58D6CbWWbMU52V5Yaq6WtHxPyi/fgI9WBAaCS+/NlVyHQD/BQw3Sq
+         Mivo+E1BuulcrIyKNhIVHIWqjT2OHAnGw11IKHmwAY7bQj2PuV/qyaNXU/mqrMlwawmD
+         HyoH1SXm/T2OyhO2k+GV40ARYc5QvAzn6jmR8gt4fAvbYG/II3zPwqmtnujD9UpEV+Z9
+         jvfO6QK/38Qfn9C7L4mtSlGHWgF/J9SHLM4ilpt5NV84X2nOSexeORtn3ucuUkKwphrU
+         eM/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737129641; x=1737734441;
+        h=in-reply-to:content-disposition:mime-version:references:subject:cc
+         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g/Y851uQNwHgtptI04bOzErBC0DlLJs+YWGXr5rKylc=;
+        b=d5FPhC3uSBrC+iT6Rt0WH9e74E57t5eiioYC+hOEagwMniLmPsMePlourfl4Pm2Qud
+         vzdB5PfSQ2NidXfYFi6Yay8h1K2mAPhMAYcNKwJ6OBqFEASU4l0np4OOmw1V/N85qyEA
+         L9x+EbAKvKqqDGpNDr7TG/kYXP4Z02mzQyJbGouBgVylFu2FeSXmVAoFGeqMhJJN1BnR
+         TN5rg2ZVV9nekQGpaZuDovSe5k7Kel9DIUQphvzh3Hk3ltj7/1qbQLAfDz+TfJ1E57gS
+         6z1hdRUIzoqF+j5SFJLAFo7MXMdvQJFfu0IBM4QWx5lALEohJfHOddgJ9JuB4FDXWWKk
+         lh9w==
+X-Forwarded-Encrypted: i=1; AJvYcCUcgKhXodD/voaByhF1/pZpfsAvoYhkFPUIC0V6cYb7V1rwVGC88OHVj+MsksBXtrTMjBA9yguUgFHLWw==@vger.kernel.org, AJvYcCVHIdicgc9mTdpMCHSbfSnPiyeAtcPDw0720+1NdIShIfwQBAiYs37aNLHu15nx0tpzAqgYvv2J4wSF@vger.kernel.org
+X-Gm-Message-State: AOJu0YznoCIYmy/kuUyK3CxESlEXOYoBNyaIILICl7l9esJern432XFE
+	wxDtgd7R/xiZPmoED3UJHzUhuXecBNsxZNmj4Fd5ZRT1heMa8qo3
+X-Gm-Gg: ASbGncueXEexqO0oS7Q9sSE69WjkY7V1xJWiE1qhvW8PUttXwJM1vUS+a69J6FzO5Kq
+	zhQQH9w81nsAQw7BHPyBDDHlXCVCDXc86edX4WMk1mfeXlQZ6ecX/TRXRfSpBiUbMBcHWB/81BI
+	gGoa5U8Y3scU+rD8Cn3bHq8jdOcq4/WobNyJG2EaMmAU+6SzNth7PJEOHxMSLIytDv0nhBgvdh+
+	PmPMd6EPv/gStus0wbtPKBAlGLmY0z68DhBMUBnikUT0aoraDz71asmYf+fBDVriPyHaiCoeJbf
+	eneHXnOKOTi7
+X-Google-Smtp-Source: AGHT+IFJUW7oTwy0Dy0k5noj8V0K33epGo6WV1CyRYagfFJy8bA/GYrcIK5DCCzYImUxwmdK9pLwCg==
+X-Received: by 2002:a05:6000:1acd:b0:38a:8d32:272d with SMTP id ffacd0b85a97d-38bf5b0b894mr2394481f8f.28.1737129640916;
+        Fri, 17 Jan 2025 08:00:40 -0800 (PST)
+Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf322aa40sm2840159f8f.45.2025.01.17.08.00.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Jan 2025 08:00:40 -0800 (PST)
+Message-ID: <678a7ea8.df0a0220.126ab6.dd54@mx.google.com>
+X-Google-Original-Message-ID: <Z4p-peMU7Ujg77_B@Ansuel-XPS.>
+Date: Fri, 17 Jan 2025 17:00:37 +0100
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Marek Vasut <marex@denx.de>, linux-leds@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Lee Jones <lee@kernel.org>, Lukasz Majewski <lukma@denx.de>,
+	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Document netdev trigger
+ netdev-trigger-mode property
+References: <20250113002346.297481-1-marex@denx.de>
+ <ad334b1b-a4e5-426d-a801-3e1d72455304@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-478076918-1737129096=:932"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ad334b1b-a4e5-426d-a801-3e1d72455304@lunn.ch>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Thu, Jan 16, 2025 at 02:32:13PM +0100, Andrew Lunn wrote:
+> On Mon, Jan 13, 2025 at 01:23:37AM +0100, Marek Vasut wrote:
+> > Document netdev trigger specific netdev-trigger-mode property which
+> > is used to configure the netdev trigger mode flags. Those mode flags
+> > define events on which the LED acts upon when the hardware offload is
+> > enabled. This is traditionally configured via sysfs, but that depends
+> > on udev rules which are available either too late or never in case of
+> > non-Linux systems.
+> > 
+> > For each LED with linux,default-trigger = "netdev" described in DT, this
+> > optional netdev-trigger-mode property supplies the default configuration
+> > of the PHY LED mode via DT. This property should be set to a subset of
+> > TRIGGER_NETDEV_* flags.
+> > 
+> > Signed-off-by: Marek Vasut <marex@denx.de>
+> > ---
+> > Cc: Andrew Lunn <andrew@lunn.ch>
+> > Cc: Christian Marangi <ansuelsmth@gmail.com>
+> > Cc: Conor Dooley <conor+dt@kernel.org>
+> > Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> > Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> > Cc: Lee Jones <lee@kernel.org>
+> > Cc: Lukasz Majewski <lukma@denx.de>
+> > Cc: Pavel Machek <pavel@ucw.cz>
+> > Cc: Rob Herring <robh@kernel.org>
+> > Cc: devicetree@vger.kernel.org
+> > Cc: linux-leds@vger.kernel.org
+> > ---
+> >  Documentation/devicetree/bindings/leds/common.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+> > index 3e8319e443392..1f1148fdf20c0 100644
+> > --- a/Documentation/devicetree/bindings/leds/common.yaml
+> > +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> > @@ -233,6 +233,12 @@ properties:
+> >        Maximum timeout in microseconds after which the flash LED is turned off.
+> >        Required for flash LED nodes with configurable timeout.
+> >  
+> > +  # Requires netdev trigger
+> > +  netdev-trigger-mode:
+> > +    description:
+> > +      The netdev LED trigger default mode flags, use TRIGGER_NETDEV_ * flags.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +
+> >  allOf:
+> >    - if:
+> >        required:
+> > -- 
+> 
+> An example would be good.
+> 
+> In order to be able to use TRIGGER_NETDEV_* i assume you are doing an
+> include which is outside of the usual dt-bindings directory. I don't
+> know of the DT Maintainers opinion on that.
+>
 
---8323328-478076918-1737129096=:932
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
+Well I think we can just move those include to dt-bindings or at worst
+define new one (maybe less driver specific) and reference the internal
+one... Should not be a problem in theory.
 
-On Fri, 17 Jan 2025, Bryan O'Donoghue wrote:
-
-> On 16/01/2025 18:15, Pengyu Luo wrote:
-> > On Fri, Jan 17, 2025 at 1:31=E2=80=AFAM Bryan O'Donoghue
-> > <bryan.odonoghue@linaro.org> wrote:
-> > > On 16/01/2025 11:15, Pengyu Luo wrote:
-> > > > +
-> > > > +     guard(mutex)(&ec->lock);
-> > > > +     i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
-> > >=20
-> > > You should trap the result code of i2c_transfer() and push it up the
-> > > call stack.
-> > >=20
-> >=20
-> > This EC uses SMBus Protocol, I guess. Qualcomm I2C driver doesn't suppo=
-rt
-> > this though. The response structure define by SMBus I mentioned them ab=
-ove
-> > (Please also check ACPI specification 13.2.5)
->=20
-> What difference does that make ? The i2c controller itself can return err=
-or
-> codes via i2c_transfer().
->=20
-> You should trap those error codes and take action if they happen.
->=20
-> >=20
-> > +/*
-> > + * For rx, data sequences are arranged as
-> > + * {status, data_len(unreliable), data_seq}
-> > + */
-> >=20
-> > So the first byte is status code.
-> >=20
-> > > > +     usleep_range(2000, 2500); /* have a break, ACPI did this */
-> > > > +
-> > > > +     return *resp ? -EIO : 0;
-> > >=20
-> > > If the value @ *resp is non-zero return -EIO ?
-> > >=20
-> > > Why ?
-> > >=20
-> >=20
-> > Mentioned above.
->=20
-> Right, please try to take the result code of i2c_transfer() and if it
-> indicates error, transmit that error up the call stack.
->=20
->=20
-> >=20
-> > > > +}
-> > > > +
-> > > > +/*
-> > > > -------------------------------------------------------------------=
--------
-> > > > */
-> > > > +/* Common API */
-> > > > +
-> > > > +/**
-> > > > + * gaokun_ec_read - Read from EC
-> > > > + * @ec: The gaokun_ec structure
-> > > > + * @req: The sequence to request
-> > > > + * @resp_len: The size to read
-> > > > + * @resp: The buffer to store response sequence
-> > > > + *
-> > > > + * This function is used to read data after writing a magic sequen=
-ce to
-> > > > EC.
-> > > > + * All EC operations depend on this function.
-> > > > + *
-> > > > + * Huawei uses magic sequences everywhere to complete various
-> > > > functions, all
-> > > > + * these sequences are passed to ECCD(a ACPI method which is quiet
-> > > > similar
-> > > > + * to gaokun_ec_request), there is no good abstraction to generali=
-ze
-> > > > these
-> > > > + * sequences, so just wrap it for now. Almost all magic sequences =
-are
-> > > > kept
-> > > > + * in this file.
-> > > > + *
-> > > > + * Return: 0 on success or negative error code.
-> > > > + */
-> > > > +int gaokun_ec_read(struct gaokun_ec *ec, const u8 *req,
-> > > > +                size_t resp_len, u8 *resp)
-> > > > +{
-> > > > +     return gaokun_ec_request(ec, req, resp_len, resp);
-> > > > +}
-> > > > +EXPORT_SYMBOL_GPL(gaokun_ec_read);
-> > > > +
-> > > > +/**
-> > > > + * gaokun_ec_write - Write to EC
-> > > > + * @ec: The gaokun_ec structure
-> > > > + * @req: The sequence to request
-> > > > + *
-> > > > + * This function has no big difference from gaokun_ec_read. When c=
-aller
-> > > > care
-> > > > + * only write status and no actual data are returned, then use it.
-> > > > + *
-> > > > + * Return: 0 on success or negative error code.
-> > > > + */
-> > > > +int gaokun_ec_write(struct gaokun_ec *ec, const u8 *req)
-> > > > +{
-> > > > +     u8 ec_resp[] =3D MKRESP(0);
-> > > > +
-> > > > +     return gaokun_ec_request(ec, req, sizeof(ec_resp), ec_resp);
-> > > > +}
-> > > > +EXPORT_SYMBOL_GPL(gaokun_ec_write);
-> > > > +
-> > > > +int gaokun_ec_read_byte(struct gaokun_ec *ec, const u8 *req, u8 *b=
-yte)
-> > > > +{
-> > > > +     int ret;
-> > > > +     u8 ec_resp[] =3D MKRESP(sizeof(*byte));
-> > > > +
-> > > > +     ret =3D gaokun_ec_read(ec, req, sizeof(ec_resp), ec_resp);
-> > > > +     extr_resp_byte(byte, ec_resp);
-> > > > +
-> > > > +     return ret;
-> > > > +}
-> > > > +EXPORT_SYMBOL_GPL(gaokun_ec_read_byte);
-> > > > +
-> > > > +/**
-> > > > + * gaokun_ec_register_notify - Register a notifier callback for EC
-> > > > events.
-> > > > + * @ec: The gaokun_ec structure
-> > > > + * @nb: Notifier block pointer to register
-> > > > + *
-> > > > + * Return: 0 on success or negative error code.
-> > > > + */
-> > > > +int gaokun_ec_register_notify(struct gaokun_ec *ec, struct
-> > > > notifier_block *nb)
-> > > > +{
-> > > > +     return blocking_notifier_chain_register(&ec->notifier_list, n=
-b);
-> > > > +}
-> > > > +EXPORT_SYMBOL_GPL(gaokun_ec_register_notify);
-> > > > +
-> > > > +/**
-> > > > + * gaokun_ec_unregister_notify - Unregister notifier callback for =
-EC
-> > > > events.
-> > > > + * @ec: The gaokun_ec structure
-> > > > + * @nb: Notifier block pointer to unregister
-> > > > + *
-> > > > + * Unregister a notifier callback that was previously registered w=
-ith
-> > > > + * gaokun_ec_register_notify().
-> > > > + */
-> > > > +void gaokun_ec_unregister_notify(struct gaokun_ec *ec, struct
-> > > > notifier_block *nb)
-> > > > +{
-> > > > +     blocking_notifier_chain_unregister(&ec->notifier_list, nb);
-> > > > +}
-> > > > +EXPORT_SYMBOL_GPL(gaokun_ec_unregister_notify);
-> > > > +
-> > > > +/*
-> > > > -------------------------------------------------------------------=
--------
-> > > > */
-> > > > +/* API for PSY */
-> > > > +
-> > > > +/**
-> > > > + * gaokun_ec_psy_multi_read - Read contiguous registers
-> > > > + * @ec: The gaokun_ec structure
-> > > > + * @reg: The start register
-> > > > + * @resp_len: The number of registers to be read
-> > > > + * @resp: The buffer to store response sequence
-> > > > + *
-> > > > + * Return: 0 on success or negative error code.
-> > > > + */
-> > > > +int gaokun_ec_psy_multi_read(struct gaokun_ec *ec, u8 reg,
-> > > > +                          size_t resp_len, u8 *resp)
-> > > > +{
-> > > > +     u8 ec_req[] =3D MKREQ(0x02, EC_READ, 1, 0);
-> > > > +     u8 ec_resp[] =3D MKRESP(1);
-> > > > +     int i, ret;
-> > > > +
-> > > > +     for (i =3D 0; i < resp_len; ++i, reg++) {
-> > > > +             refill_req_byte(ec_req, &reg);
-> > > > +             ret =3D gaokun_ec_read(ec, ec_req, sizeof(ec_resp),
-> > > > ec_resp);
-> > > > +             if (ret)
-> > > > +                     return ret;
-> > > > +             extr_resp_byte(&resp[i], ec_resp);
-> > > > +     }
-> > > > +
-> > > > +     return 0;
-> > > > +}
-> > > > +EXPORT_SYMBOL_GPL(gaokun_ec_psy_multi_read);
-> > > > +
-> > > > +/* Smart charge */
-> > > > +
-> > > > +/**
-> > > > + * gaokun_ec_psy_get_smart_charge - Get smart charge data from EC
-> > > > + * @ec: The gaokun_ec structure
-> > > > + * @resp: The buffer to store response sequence (mode, delay, star=
-t,
-> > > > end)
-> > > > + *
-> > > > + * Return: 0 on success or negative error code.
-> > > > + */
-> > > > +int gaokun_ec_psy_get_smart_charge(struct gaokun_ec *ec,
-> > > > +                                u8 resp[GAOKUN_SMART_CHARGE_DATA_S=
-IZE])
-> > > > +{
-> > > > +     /* GBCM */
-> > > > +     u8 ec_req[] =3D MKREQ(0x02, 0xE4, 0);
-> > > > +     u8 ec_resp[] =3D MKRESP(GAOKUN_SMART_CHARGE_DATA_SIZE);
-> > > > +     int ret;
-> > > > +
-> > > > +     ret =3D gaokun_ec_read(ec, ec_req, sizeof(ec_resp), ec_resp);
-> > > > +     if (ret)
-> > > > +             return ret;
-> > > > +
-> > > > +     extr_resp(resp, ec_resp, GAOKUN_SMART_CHARGE_DATA_SIZE);
-> > > > +
-> > > > +     return 0;
-> > > > +}
-> > > > +EXPORT_SYMBOL_GPL(gaokun_ec_psy_get_smart_charge);
-> > > > +
-> > > > +static inline bool are_thresholds_valid(u8 start, u8 end)
-> > > > +{
-> > > > +     return end !=3D 0 && start <=3D end && end <=3D 100;
-> > >=20
-> > > Why 100 ? Still feels like an arbitrary number.
-> > >=20
-> > > Could you add a comment to explain where 100 comes from ?
-> > >=20
-> >=20
-> > You may don't get it. It is just a battery percentage, greater than 100=
- is
-> > invalid.
->=20
-> 100 meaning maximum capacity, good stuff.
->=20
-> Please use a define with a descriptive name. That way the meaning is obvi=
-ous.
->=20
-> In fact if the name of the function related to battery capacity then the
-> meaning of the numbers would be more obvious.
->=20
-> static inline bool validate_battery_threshold_range(u8 start, u8 end) {
-> =09return end !=3D 0 && start <=3D end && end <=3D 100;
-> }
-
-I suggest going with this latter option. 100% tends to be in its literal=20
-form elsewhere too. I suppose we don't even have a generic define for=20
-"100%", at least I don't recall coming across one nor found any with a=20
-quick git grep underneath include/.
-
-But I agree the naming of this function could be improved like you=20
-suggest.
-
---=20
- i.
-
-> >=20
-> > start: The battery percentage at which charging starts (0-100).
-> > stop: The battery percentage at which charging stops (1-100).
->=20
-> Or just add this comment directly above the function.
->=20
-> ---
-> bod
->=20
---8323328-478076918-1737129096=:932--
+-- 
+	Ansuel
 
