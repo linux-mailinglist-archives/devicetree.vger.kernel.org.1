@@ -1,110 +1,155 @@
-Return-Path: <devicetree+bounces-139322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C912A15181
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 15:18:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7643BA151DB
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 15:32:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CEFC3AA626
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:17:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D96DE3A9E41
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0333086AE3;
-	Fri, 17 Jan 2025 14:17:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E0F13C9D4;
+	Fri, 17 Jan 2025 14:32:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gZicw8V7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LFqFrkFE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 648FF35968;
-	Fri, 17 Jan 2025 14:17:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8B1127466;
+	Fri, 17 Jan 2025 14:32:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737123465; cv=none; b=D9F0Wl1eORw50v59ITI748JfUex40BXfXl6khuKN7wm8KrEEZiNDqAULNDhD0q4Xgzb6tmVNZv+YdGSE4e5Fd7oASHQgDtDwxI6FMKtQG7Kt5nrbnXaByy1j5Zx3XuLXAb3NWLmbDrs/P1ULIjX+duhzvwKFah5tgRCHf7QH4bQ=
+	t=1737124333; cv=none; b=YodkcQ4HTPLTqrmEYbU6hzdaWeByIsVactj+PC8tGWWXZNlJMs65ZvgYi9KSG9RNoOgT7PFFGUv0jov/Ci6CDO5sjQGisO1l4N7oo6KJa5loDULdabNZA6ZFB3A9RQXdZjSSlCqKnUTWKEzKCWMFnLbCxiWR8qfHaWDOyCHgs7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737123465; c=relaxed/simple;
-	bh=aGwzPY4c5gn4nEKlnu01wESwyE/Yu3m4vbeoQZY75XA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=M37l7aMRmbLuu/gvMXstSYZD+JMpCbBkAKMPJBMtPWfcxWIJsCZXZOFiiOsuN1+1kgqwBCbfr8A7PEtvWqM3oqbxcnL28frGKaYTj7nuUUESQTZMl/RCYHm7zbmHqXR4Hcj2LpGZyrgClk6sGcDQGuH5Hm+0rUUxom6vnvk6PdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gZicw8V7; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e53ef7462b6so3549217276.3;
-        Fri, 17 Jan 2025 06:17:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737123463; x=1737728263; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=aGwzPY4c5gn4nEKlnu01wESwyE/Yu3m4vbeoQZY75XA=;
-        b=gZicw8V7+L9WgzydhYvCqCDWWUyIaWcF8xDHBPnm6N5oFPLrIQgVk1qM7q7Sejaerd
-         V06Vg764xGCmGA12z2pfDPWqfJc2MHmXJz+hdFYGNPliWzB7WyNa2I9Wu76jj82NOCM2
-         TaBJ7yuYBEYMRvG+ChbEW91nstX5W4CyLqHtCh0ZYRHCUp2lHrjYgc3o3UJD53039/nv
-         LBBcZ1TT3uIS1TpCNr431RiYaBqg9AGXsxzWlFukAFeqRRruLfvEGa051kFCa63eqFuF
-         /IMfkai3yBdRzFmprk6ohnwO5DFyED1Da4RDoAaUPP5O4LxLz3GbnXp1qR83/CedW2dS
-         nTPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737123463; x=1737728263;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aGwzPY4c5gn4nEKlnu01wESwyE/Yu3m4vbeoQZY75XA=;
-        b=Tdrw05DLtuM3AuyO4+kZXWQFGEcmM3ylI6enYrvE3yb7iHFYHix0fMiDAeeSf919Lv
-         zQDpiJ+ST67XsLWxmGP13rZLcf/Ib/ODqCYnIz1N8KiCpR18X+SinXr4uN480diA+aXt
-         a9D8MV4stOm56hE4t7V++onAUDsw1rbA5cFjYiR164O08btETAgtof38d07CBYZT8/Or
-         JhYe1xzciwSqmp3zC/FdATMyrpAuW9c3xvtM134G4SOAjTSd7yJ1urKAUYxByn10716E
-         GRlm795Bfxc+FBXNP3yHChQCFzjZn6NiA15HReSKEAxnznIpFvbHfN02h44EsMuYajKa
-         XELQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUSGvFrl7vchqrQ1Yzb89aOjfdpc8InWvovKaPtigS9mYXiYIOKXrno4rRtbmnEBHU63F0bPjzHrHHjB1zi@vger.kernel.org, AJvYcCUWKdzs0wVgNpk9rRhfz5gcl7aNs4uKwQGy9Zk9pJ6ptg6QwDRyanOgU1Ynp6A9+K0mjqQxMPxUeiLS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6+juCTq1fvqj0lDND7un+cvJgM0czPeVP8tgGfij3oWbm4+BX
-	3XP0msmTQLKtWAfJRQsejydmxth/8TPYEuXjGZL+UJxNXNSuTcxQGM58ybgNp83kw0ZCVmxOp5j
-	QPZ+3en9SAj3xoWb+oQZclCwn8Jk=
-X-Gm-Gg: ASbGncvHktHzZ/PRaop9Xfh3uOC0nYhHWwlvzuDIbVpfJc9pr9VqTwI+ewS7W1xG+Uj
-	dLNsOFngwwDwyRmHCszdRLMYz/B68SGFzevdDOA==
-X-Google-Smtp-Source: AGHT+IEgzT2Y8X/d+HOguRWOezTmCdaDrvMrd0xyuzC2YC1+k0LNDI0M/Oo8/mnNOxO0+kIgTEzO5F/+UdmBoEnNI4E=
-X-Received: by 2002:a05:6902:1b0d:b0:e49:e085:c0b4 with SMTP id
- 3f1490d57ef6-e57b104668amr1782609276.8.1737123463394; Fri, 17 Jan 2025
- 06:17:43 -0800 (PST)
+	s=arc-20240116; t=1737124333; c=relaxed/simple;
+	bh=T8PZajPEts8hiVvPkTDdvWpLe1pkhFePBotfq454ChY=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=CoIc4UdIayt9KVTzv5UdQ8cOZJxnlJWRToSOFKgzor4ryFqoBXjU48KaK8EUbzBg/Kllv9porXzFu+t3TFFaQXNoTYue4r0P93TWev4i1DcNbfuDg0GAjw4j/3XWiWsCatwOIrSqHq/65MM7y7wvzyywHEwxs+h2yVW9ihKuC4M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LFqFrkFE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15454C4CEE2;
+	Fri, 17 Jan 2025 14:32:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737124333;
+	bh=T8PZajPEts8hiVvPkTDdvWpLe1pkhFePBotfq454ChY=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=LFqFrkFEVNscEv0YeH/sYXrvxMdJfFMAieYNA9i6pmPXd5QRzY9yu4XZfaN3AGxs8
+	 G+iNr6qE6o1sRfc5gCjwUPkIwye8trsk/Cs9NUNL9XNCKcb3xzrfdVhF46tOXU3W41
+	 6pLgLP2VN4QJCFsdjup8taPy0yvUFkfC1q7XOIwp2yLqAYCv9kSzg1yWiFos0170cQ
+	 53U/W3W0Wan8pQOT1+o9rtr4NrzsUwCpXNdQ4x7+Esv8Amj3gt2vXRrKfj49xGNJau
+	 jwIZo8tlX2NASe3CQYA6uSF/ohvcX5tz90ixxEhcnZlXXQw+fyXOnMHOOE3abk0ydD
+	 bh+SYtZ9nE+Fw==
+Date: Fri, 17 Jan 2025 08:32:12 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250114-adpdrm-v4-0-e9b5260a39f1@gmail.com> <20250114-adpdrm-v4-2-e9b5260a39f1@gmail.com>
- <mu7qiybhj7tu5hauk7izfxqlookc3awpknhjk74zwpkbznei4m@kewap6vivzoa>
- <20250116-vivacious-congenial-nightingale-cb2f6d@houat> <2alm7gds4k2lnbk36gjdw6yhzhpls3ce5baycdiv7lsigxsbzn@rhwdgnphwwp6>
- <20250117-neon-unicorn-of-plenty-bbe639@houat>
-In-Reply-To: <20250117-neon-unicorn-of-plenty-bbe639@houat>
-From: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Date: Fri, 17 Jan 2025 15:17:32 +0100
-X-Gm-Features: AbW1kvbN_g2HyuopLeZCoB8YJ1kzXFaQ1lvT6Fub5esd6CPjCjqmkvDJ9dDJO2Q
-Message-ID: <CAMT+MTTrvXsYONQj0V5U+dPJtCBOAQ-Lfg7NONMB6onMvJ+3QA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/5] drm: adp: Add Apple Display Pipe driver
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Hector Martin <marcan@marcan.st>, 
-	Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Alyssa Ross <hi@alyssa.is>, Janne Grunau <j@jannau.net>
-Content-Type: text/plain; charset="UTF-8"
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: David Airlie <airlied@gmail.com>, linux-mediatek@lists.infradead.org, 
+ Thomas Zimmermann <tzimmermann@suse.de>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, kernel@collabora.com, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Steven Price <steven.price@arm.com>, 
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+In-Reply-To: <20250116-mt8370-enable-gpu-v1-0-0a6b78e925c8@collabora.com>
+References: <20250116-mt8370-enable-gpu-v1-0-0a6b78e925c8@collabora.com>
+Message-Id: <173712392224.809745.9286641261845067078.robh@kernel.org>
+Subject: Re: [PATCH 0/3] Add Mali GPU support for Mediatek MT8370 SoC
 
-On Fri, 17 Jan 2025 at 11:24, Maxime Ripard <mripard@kernel.org> wrote:
-> >
-> > I was thinking about using drmm_ here, as the DRM device is also created
-> > and destroyed each time. But I might be mistaken here.
->
-> Ah, right, it makes sense then, thanks!
-> Maxime
 
-Not sure i understand. The drm device is created in probe(), and is
-destroyed by devm.
-I do not see a path where it can be created/destroyed without a trip
-via probe/remove,
-and so tying the lifetime of the bridge in question to devm seems correct?
+On Thu, 16 Jan 2025 15:25:56 +0100, Louis-Alexis Eyraud wrote:
+> This patchset adds the support of the ARM Mali G57 MC2 GPU (Valhall-JM,
+> dual core), integrated in the Mediatek MT8370 SoC, to the panfrost driver
+> and to the mt8370.dtsi include file.
+> 
+> I've testing this patchset on a Mediatek Genio 510 EVK board,
+> with a kernel based on linux-next (tag: next-20250113) plus [1] patchset.
+> 
+> The panfrost driver probed with the following messages:
+> ```
+> panfrost 13000000.gpu: clock rate = 390000000
+> panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x0 status 0x0
+> panfrost 13000000.gpu: features: 00000000,000019f7, issues: 00000003,
+>   80000400
+> panfrost 13000000.gpu: Features: L2:0x08130206 Shader:0x00000000
+>   Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
+> panfrost 13000000.gpu: shader_present=0x5 l2_present=0x1
+> [drm] Initialized panfrost 1.3.0 for 13000000.gpu on minor 0
+> ```
+> 
+> [1] https://lore.kernel.org/linux-mediatek/20250115-dts_mt8370-genio-510-v2-0-fc9b01d08834@collabora.com/
+> 
+> Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> ---
+> Louis-Alexis Eyraud (3):
+>       dt-bindings: gpu: mali-bifrost: Add compatible for MT8370 SoC
+>       drm/panfrost: Add support for Mali on the MT8370 SoC
+>       arm64: dts: mediatek: mt8370: Enable gpu support
+> 
+>  Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml |  5 ++++-
+>  arch/arm64/boot/dts/mediatek/mt8370.dtsi                    |  9 +++++++++
+>  drivers/gpu/drm/panfrost/panfrost_drv.c                     | 10 ++++++++++
+>  3 files changed, 23 insertions(+), 1 deletion(-)
+> ---
+> base-commit: 37136bf5c3a6f6b686d74f41837a6406bec6b7bc
+> change-id: 20250115-mt8370-enable-gpu-3b6f595fa63d
+> prerequisite-change-id: 20250113-dts_mt8370-genio-510-3560b8010ba9:v2
+> prerequisite-patch-id: af53ae39240467340ac4c9cdbc8fdd949c5457a2
+> prerequisite-patch-id: ca07485956f81c1a40029b48d2b4bcf00d74fc13
+> prerequisite-patch-id: c34d9870b2c61d87ad8a6facba13d8970682e679
+> prerequisite-patch-id: 48784acdcdd8b886fdec9f21c9cb88abb327e2e1
+> 
+> Best regards,
+> --
+> Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+> 
+> 
+> 
+
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/mediatek/' for 20250116-mt8370-enable-gpu-v1-0-0a6b78e925c8@collabora.com:
+
+arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: pinctrl@10005000: 'pcie-default' does not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt8188-pinctrl.yaml#
+arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: pmic: regulators: 'compatible' is a required property
+	from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6397.yaml#
+arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: pmic: '#sound-dai-cells', 'mt6359codec', 'mt6359rtc' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/mfd/mediatek,mt6397.yaml#
+arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: mailbox@10320000: 'clock-names' is a required property
+	from schema $id: http://devicetree.org/schemas/mailbox/mediatek,gce-mailbox.yaml#
+arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: mailbox@10330000: 'clock-names' is a required property
+	from schema $id: http://devicetree.org/schemas/mailbox/mediatek,gce-mailbox.yaml#
+arch/arm64/boot/dts/mediatek/mt8370-genio-510-evk.dtb: jpeg-decoder@1a040000: iommus: [[123, 685], [123, 686], [123, 690], [123, 691], [123, 692], [123, 693]] is too long
+	from schema $id: http://devicetree.org/schemas/media/mediatek-jpeg-decoder.yaml#
+
+
+
+
+
 
