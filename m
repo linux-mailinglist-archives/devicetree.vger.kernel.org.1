@@ -1,147 +1,246 @@
-Return-Path: <devicetree+bounces-139282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6110A14FB0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:53:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 108B1A14FD9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:01:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFE613A891D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:53:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71F753A05C1
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:01:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C5C1FF7A4;
-	Fri, 17 Jan 2025 12:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92D2E1FF1D9;
+	Fri, 17 Jan 2025 13:01:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IbuI4Loo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QuYXK+Fy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 258451FF618;
-	Fri, 17 Jan 2025 12:53:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D0221FECBA;
+	Fri, 17 Jan 2025 13:01:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737118395; cv=none; b=ct2WcK/zCt9pCX9aoEZG1HYjsOKFvdMve+W6soH/m/mMu8NCL04r2rIROkYaITeAFjoNBGyU1RyV+NYE8oxsJwxLNnhUWt4r0ZdxDhUYIakgncdZ/V36iJBVSt7dFEW4sg+I7ihGT3aNjZY7A6wn/lpMurNotkOqroowd6qmcbw=
+	t=1737118898; cv=none; b=BGMNyHkP70MRmPdWYWQXJ17oLn+repuVHp5XMeDaed+ILdCGxat0Md/gqSEfjHzpRvBFLujpyAUdWbZn8v8Rxo342MA89uHbAhWhFygvRKcrvtYtakS/J19uSIGJXYZOHJPESiTS3bBSyw+rTFpsRO1FaWdPXWwcwZmv8kv1VAY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737118395; c=relaxed/simple;
-	bh=Oba9VdQ/ZnmwCSzX7nXHxQHmuL8VEKyixl6ULuYy0Z8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DvteExeuJLyFIDU84pNiFqXJqvNaZp6rVUll6egvAWX06/KWuhs3jTBPSbE/iiRlgJbqjBrmnRxuxyU0QKZymhdvIDjlREJvT3/6cqtNTw21YDiwi236HiLePm+rryy9PrdUXbQS/ixJkx1twFN9VimOTuFL12NNzMyNQR08Vv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IbuI4Loo; arc=none smtp.client-ip=209.85.128.45
+	s=arc-20240116; t=1737118898; c=relaxed/simple;
+	bh=eML8C6F/kh0+kXWw3zY/UTNhac7WwIgPmyRnkQeHFfU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qmixsA8EeUApOtKnqmNZ7HSs2oUsswlSnHiGyXSyF291Bbe1sK780VEYANnmCiOu8NNaCtfHf2ZNOnem7hS852Qp0vjgbeCL/togV7BTOAt2si3mh65pO4RYRoUbG/L9OqgrLmNJlTPWid2rsrEpmf38LYZrgvPWoICTsIx2RM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QuYXK+Fy; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4362bae4d7dso13714725e9.1;
-        Fri, 17 Jan 2025 04:53:13 -0800 (PST)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-aa68b513abcso390599566b.0;
+        Fri, 17 Jan 2025 05:01:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737118392; x=1737723192; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=AIlIdgFBqGtQOi5E/9RazlOvUdGstb4bLoGfp7PyMbw=;
-        b=IbuI4LooQOyFGwNL/QB5sgo8X3cWAugY4ozWjQfgJgviztcGmUGk8p0jEVf+Q31RZS
-         Mdp9jiXErrZZgl+WlwVL7vX5fnHPHeW1Uq8kujNiCKCldbNxEOIHoX0V09WhzUv82HQt
-         5pYPZM2pKHdFG5fJotczpwEJr5nDyg/0Lddicx5ZK2BpQXHb2c+9jk6QJqqOb8vPCvTa
-         Fl4rtGaDi/2achFoUudts0Bw5cdm3HjXiQmYVUMNFo8/VjojX3g0G87zPOxcaVZ6yRBX
-         xu87j2A8MFDJjE2fkzD2FVvdqXSSD1xHMxtqXeWOulYunH4csFHv82Ji7Q73MltlaZqy
-         8Xng==
+        d=gmail.com; s=20230601; t=1737118895; x=1737723695; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gkyNfohXeoUnLWsbvYEmNcOtAOsYqcZedm8Co8xdVVs=;
+        b=QuYXK+FyRInSO5/vdN6g6X2IEjQY/nvVsdTtGdSElKrbLpdkfE5vG2bmgKblJlCVnP
+         srQRHGi255ZJBSPod66oIGPTawKeQ0+u468xg7UDVlOId28D8cNAEC/s3Wiwi8hGYgM6
+         TQckJnyYcVSfGSUgTwECgoSeYyL5RV21Ey1yZZTZ3uzanw/NwfMUptnJhLj8lY+o0LYO
+         mEAdmSjfBZP11koEnqs3qA41ifNB91V6mfN5M2eqGSm5MO+psXncXJrP8FIkR/2Slf4G
+         91LSoIK4gmlShGghzszg8ay9wpY6+wha8bqVBAV8COuAwa/t+JBdM4LwP3O4VJXnBxEt
+         mohA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737118392; x=1737723192;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AIlIdgFBqGtQOi5E/9RazlOvUdGstb4bLoGfp7PyMbw=;
-        b=SaLdiZIVxmPDZ8XOZnSNiV1Ugh8dGhYnj51LhMsckZVh8vR+OH+E16AyRGhPbMSoRb
-         UwxgJbOs/fExo6BAmkx6oTT4KF+LpcqrvF+47u6N5lGriGw+4x1N3j1dmTBDzLfZfHVa
-         Ot85SFkfvBnvZ9IuVb6X/4Kwdfkkvi/jTZVBrAjGMX19mHNBl/VsOh5v7dp0+sLb56gB
-         EBgnBP5tuIYUqymA8hNiui7PlzECAyYLEZfGJMxB9bTOILB5HTR/2SKO9TAV/iprn5Tv
-         sX7UJHHnbt6aKOMHyHRr2ZLYhAseU8CsAdYO/1OxYIgqbY1OyDOiDYvVSnqnojZqMxbj
-         0vcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUd5TJfSwVoK3cSfbFQXhwhPt5q9oddp5OBWTI5mD276N+icdHLeNVnHZaMaUe7Fx5kkM05NqMZaiyU@vger.kernel.org, AJvYcCVWIlBgRBDSqNC+qdTxnVMhZPvULv3Vc+vL+Rx9EEpGxeHUzhJ35CiI5Bzo5fgyJXppztjB4t/bYwqb4fA=@vger.kernel.org, AJvYcCXw6ro7RF6xt4DubGRGydwWgG1lVuzyJpmz9hAonFbJrBOoVMvkghILVqoVTKhJj/d5v6SQ4wFwDl5R@vger.kernel.org
-X-Gm-Message-State: AOJu0YxRuCK8g2NuczxO3U7RlqvFA5aqy6jVlsJHP/zIxZWbSiZdoAYp
-	k/+X790HFQV5jiIVLestUNDKyVBg7DIlrPk/8WKSuylQBkZ2WkpR
-X-Gm-Gg: ASbGncsgdHkpTySHEcDyLwNyslm7R/dBVKBbpGpYAPK2npRzPQk4dxPiSf1ZygioleS
-	4uPXGGcl/gPYI60gIDr6Df9L6TnridQole2AjiLZUDiOwFC6pkjUt5muKD+GFDRMROsj1zotxOA
-	ILgvJHo2DtAyY8cYDGTAz9CJjSNCENq58Q+oIsBVPZyBEddpzYIv1TEZ+DQEzeKVyWvejt2XD0C
-	M5gYJoLpAlojs1kTop7yGc7PPRAXeGqSSh+5r0GzxtsqrPz4GkoDEQO1TyQMoXWykvgHUXPyMaP
-	Nz/wTYVfEDuL0CV2GVOFsbiz8t1FIMCSAauSGAMc9Gw=
-X-Google-Smtp-Source: AGHT+IEjw9V0vzYzkNNGLmcSqBYGXejmIsuBQT2aArS3ZhfKc2Ox5e2Qp6VaD3trZxwfn84a28r/OQ==
-X-Received: by 2002:adf:fbc3:0:b0:388:da10:ff13 with SMTP id ffacd0b85a97d-38bf56634f6mr2223337f8f.21.1737118392149;
-        Fri, 17 Jan 2025 04:53:12 -0800 (PST)
-Received: from orome (p200300e41f281900f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f28:1900:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf322a73bsm2414721f8f.46.2025.01.17.04.53.10
+        d=1e100.net; s=20230601; t=1737118895; x=1737723695;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gkyNfohXeoUnLWsbvYEmNcOtAOsYqcZedm8Co8xdVVs=;
+        b=ISzebEQPeurwHUDwpjy7/LiaLifoX1kXhyPNmH3S0DOaf/oaWG8lU/QrgYTC7wdCDG
+         5m/7hB9f27bVE32j4h/9KV2zkZxK7S3VUgCpMjH/Zols8tLqVJzfuJzssiOnjNfjYZFa
+         umSS5cESukddmyq+wBXrrWmeqbxXAei7wyoeA+dsN/lkpnh98F3rvQ468iRYJRmtnrfM
+         Qf3mVQ6NLj/nGhDzTQ+V7C+wV/7qsA8Mg06/C/Xa9Q/jv7tgh8u+0wGJ6ANKXT0DZ1bf
+         Rj4IwF2t7vGNAzk7Mt6uFhDBf4cBQ5Kf7FVIAFQ6FXjJgpgBcIpT9hL73wNNfg+IcJgk
+         xx5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUx2ahn/5lpmXflaNR9zGmNbEODkabN3Dg2lhSTgHxAH1JPwsq9ThLOJbNlH1IH83sihKLgT9dWP+bl@vger.kernel.org, AJvYcCV5frgz8LzOkJL+Khva0XsfzDVpCAFyhozmB+7EAD232OkE8QYi362CXf0xHCVft27NiqrJLxA4A2CGAX7f@vger.kernel.org, AJvYcCVooRq7dAZ6U0ff7Gjz1pOLYY+j9RRCaDKC4f4CeZi0F4pxBxOMxRL8vXxFrrhaLrnoEbRPqRwNSu4ojwM=@vger.kernel.org, AJvYcCXyeb3ip4gNvE5QnxSej8L85+nAlPoMNTdyR88ErMTvCj7j7VcIGpq8DIvjQUmqR7QJbDko/D4/wmqvyA==@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy4K2yJfWJ0rIvBfaao1hRDLhEZpe21NUQkNSAFlOrGzUzJrA5a
+	Ji/5sI94mHeQ7VEAwWSH4sXyv3CgtFO/x2v6yQ/6aOvtMGEoMT4v
+X-Gm-Gg: ASbGncsSz7RGpO9hfqTODY95aO2S7509YJk5gX4up8GvjnVp2zyzMXwHGqCCi7kG9MJ
+	eTIdg6QXhYGHyzpCdU/REX1prZ0dwACUDwtIzSXjyzv8IcMuDRU4b3b6IicQiTj8qdzBWNb6fn4
+	PhdHU9nD4A/V8nArtF227ANsbg84XnqrqjU29oVOVBdegTl5pepEyejaGozmaAnXATbNeOb8NMk
+	JpY+WU39r5gxMJ5T/eup2dGA651L4o4B1Lxne/BnZjSUqT5ebDpXeX/47uE6CxTiL/I/MAlhOs4
+	jwDu1PqVWBL5/RHIZxh50/5Q8w==
+X-Google-Smtp-Source: AGHT+IGN5ub7/b3vVgZTZkdC325QVuadaCeOdvgBw3Q5H5tJyhbYyejZJrjnJfi97x9wWVLI8lGkIg==
+X-Received: by 2002:a17:907:7e91:b0:aa6:a572:49fd with SMTP id a640c23a62f3a-ab38b3ce71cmr239874166b.54.1737118894436;
+        Fri, 17 Jan 2025 05:01:34 -0800 (PST)
+Received: from [127.0.1.1] (nat6-minsk-pool-46-53-210-232.telecom.by. [46.53.210.232])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-ab384d2d69fsm166289166b.79.2025.01.17.05.01.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jan 2025 04:53:10 -0800 (PST)
-Date: Fri, 17 Jan 2025 13:53:08 +0100
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Jon Hunter <jonathanh@nvidia.com>
-Cc: Mathias Nyman <mathias.nyman@intel.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH] usb: xhci: tegra: Fix OF boolean read warning
-Message-ID: <nlp2oye4mywrxnv2zebxz2mwd4ulcfifxnkhf52lmpn5fioag4@2j6362nkytcu>
-References: <20250116153829.477360-1-jonathanh@nvidia.com>
+        Fri, 17 Jan 2025 05:01:34 -0800 (PST)
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Subject: [PATCH v16 0/7] Add support for Maxim Integrated MAX77705 PMIC
+Date: Fri, 17 Jan 2025 16:01:27 +0300
+Message-Id: <20250117-starqltechn_integration_upstream-v16-0-11afa877276c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="24lpel3oy4tro7gy"
-Content-Disposition: inline
-In-Reply-To: <20250116153829.477360-1-jonathanh@nvidia.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAKdUimcC/43UzW7bMAwA4FcpfJ4HUv/aae8xDIV+qMRA4rSyY
+ 7Qo8u6ju6314sN0MSAB/khKIt+6iepAU/ft4a2rtAzTcBl5gebLQ5eOYTxQP2Te6AQIBQZtP82
+ hPp9mSsfxcRhnOtQw80+P16dprhTOfUzOOA1RFJIdMzFM1McaxnRkaLyeTrz5VKkML++Bf/zk9
+ XGY5kt9fc9jkevu34ju/xEX2UNPshhjBKAN6fvhHIbT13Q5dyu+qE/Qo2wAFYMiCypZJ+2svQf
+ 1NsOGM1n0miGAlAUVZtyB5gNEgBbQMAhZuqjBQ9I70G5A0VKyZdDHEoIsKmCAe9BtQIkNoFvPs
+ AS+lCSkBLoH/SfInwbQM8iZ5SRjIBHdPYiwFVWDiHyGvc3kNClH2ogdiVvSt5DIZE6gvXPCEeC
+ OFBuy6e2gWB9Pdvx4lSpe7QuXG7LpsnHtmBKTQUgWnNwX/tEyGhBaehDXnimGnKIkIHuzI/WGR
+ NNCrl2TihA+ky9W/1P47fcUqfR85ak1/xklt9svL40SmdMEAAA=
+To: Sebastian Reichel <sre@kernel.org>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
+ Hans de Goede <hdegoede@redhat.com>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, 
+ Purism Kernel Team <kernel@puri.sm>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+ linux-leds@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1737118892; l=6669;
+ i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
+ bh=eML8C6F/kh0+kXWw3zY/UTNhac7WwIgPmyRnkQeHFfU=;
+ b=b+0rFU68U3GKN5vId3OnCsxMSaD/h2NRLJaFikxeQ69uBvFFq0cGrgP13iz4IdCb8in4oU+O6
+ ejppfEYGv5xB5Tj/k1UOHnwQO/nKsyY38W7aesmGM/jv0xNoIS2AZG5
+X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
+ pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
 
+The Maxim MAX77705 is a Companion Power Management and Type-C
+interface IC which includes charger, fuelgauge, LED, haptic motor driver and
+Type-C management IC. It's used in Samsung S series smart phones
+starting from S9 model.
 
---24lpel3oy4tro7gy
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH] usb: xhci: tegra: Fix OF boolean read warning
-MIME-Version: 1.0
+Add features:
+  - charger
+  - fuelgauge
+  - haptic
+  - led
 
-On Thu, Jan 16, 2025 at 03:38:29PM +0000, Jon Hunter wrote:
-> After commit c141ecc3cecd ("of: Warn when of_property_read_bool() is
-> used on non-boolean properties") was added, the following warning is
-> observed for the Tegra XHCI driver ...
->=20
->  OF: /bus@0/usb@3610000: Read of boolean property 'power-domains' with
->      a value.
->=20
-> Previously, of_property_read_bool() was used to determine if a property
-> was present but has now been replaced by of_property_present(). The
-> warning is meant to prevent new users but this user existed before the
-> change was made. Fix this by updating the Tegra XHCI driver to use
-> of_property_present() function to determine if the 'power-domains'
-> property is present.
->=20
-> Fixes: c141ecc3cecd ("of: Warn when of_property_read_bool() is used on no=
-n-boolean properties")
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  drivers/usb/host/xhci-tegra.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+---
+Changes in v16:
+- cleanup review fixes
+- Link to v15: https://lore.kernel.org/r/20250116-starqltechn_integration_upstream-v15-0-cf229de9f758@gmail.com
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+Changes in v15:
+- update copyright year
+- fix mA/mV in charing driver
+- rebase on latest linux-power-supply tree
+- various formatting and optimization review comments fixes
+- Link to v14: https://lore.kernel.org/r/20250108-starqltechn_integration_upstream-v14-0-f6e84ec20d96@gmail.com
 
---24lpel3oy4tro7gy
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v14:
+- binding review fixes
+- add trailers
+- Link to v13: https://lore.kernel.org/r/20241223-starqltechn_integration_upstream-v13-0-fbc610c70832@gmail.com
 
------BEGIN PGP SIGNATURE-----
+Changes in v13:
+- revert: max17042 binding: split in 2 files, so its binding code can be reused
+- include previously removed patch:
+  'dt-bindings: power: supply: max17042: add max77705 support'
+- use same of_node for matching simple-mfd-i2c and setting max17042
+  driver
+- Link to v12: https://lore.kernel.org/r/20241217-starqltechn_integration_upstream-v12-0-ed840944f948@gmail.com
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmeKUrQACgkQ3SOs138+
-s6F3Rg/8DhMPweEMhVLN8/BlW2VbO/nMouVh5OUH0oNSiHKic2RM3wcWcDnIeQde
-2Up7tU3gA0Kqr//XsYk2aPMXNqrI9IyqTfvjQY8wvKU+54Q0lbKH6av8HY/Io+vR
-NLnrttCSEXpr389wkT36TBzbEhxSef+Xsrf91eVGbWOFfa0UYenQ5NikQ+yqaC4B
-ufn1bbSjzKkz40n9z3GtI4nldDMHIz78TGmfiile9GTdQ+6+AkVaK7ra+5mid8ob
-SUZ5MBEwJK/mSHfaWlA/EEdXMADe8mY4vGIlobOe/Y1frMF1yptOy/774u8eYKW5
-l4bmp6dlM9HnR94zDMt0v4l2xlGmouVMFvK7OQLKWEK5rM0zTuXZiKy6p86wXE7s
-gY7eIqVG9avn5dMsJYxSZ0EYU3el9jFGddEYFMOXYNpnrrwfIVRlDwYTFbq1n29Z
-KBTnJ+2eUGc4iTA2tW0a027aV4r7/jv2jCj7VPu/W3smpv/hCd71jg3QDYvZmKqE
-kPIHazzjDY7LTMJlILk4kbtA6QVZ2waVThVnU/qnaiNwbcyS/kCozc/0WitFphXg
-eE0Hs94vgg09qpF9uDmXOEFqccRiVH6HspRr3xWuf59Ps8oqSKqTTh987wAxXgta
-OJoBM7piw3vXk4hGaVFQ+1tTSjwrOic28VrLl0i+qhYMoVFu6NM=
-=v1bG
------END PGP SIGNATURE-----
+Changes in v12:
+- charger: move out of mfd because separate device
+- charger: add it's own binding file
+- fuel gauge: move to simple-mfd-i2c along with additional measurement
+  capabilities, which will be implemented in max77705-hwmon driver
+- fix review comments
+- reorder commits to stick mfd together
+- Link to v11: https://lore.kernel.org/r/20241209-starqltechn_integration_upstream-v11-0-dc0598828e01@gmail.com
 
---24lpel3oy4tro7gy--
+Changes in v11:
+- charger: code review fixes
+- max17042 binding: split in 2 files, so its binding code can be reused
+  in MFD bindings
+- Link to v10: https://lore.kernel.org/r/20241204-starqltechn_integration_upstream-v10-0-7de85e48e562@gmail.com
+
+Changes in v10:
+- drop NACKed 'dt-bindings: power: supply: max17042: remove reg from
+  required' patch
+- review fixes
+- use dev_err_probe for errors in probe functions
+- Link to v9: https://lore.kernel.org/r/20241202-starqltechn_integration_upstream-v9-0-a1adc3bae2b8@gmail.com
+
+Changes in v9:
+- fuel gauge: use max17042 driver instead of separate max77705
+- fix kernel bot error
+- charger: enable interrupt after power supply registration
+- add dependency on max17042 patch series
+- Link to v8: https://lore.kernel.org/r/20241031-starqltechn_integration_upstream-v8-0-2fa666c2330e@gmail.com
+
+Changes in v8:
+- Fix comment style
+- join line where possible to fit in 100 chars
+- Link to v7: https://lore.kernel.org/r/20241023-starqltechn_integration_upstream-v7-0-9bfaa3f4a1a0@gmail.com
+
+Changes in v7:
+- Fix review comments
+- Link to v6: https://lore.kernel.org/r/20241007-starqltechn_integration_upstream-v6-0-0d38b5090c57@gmail.com
+
+Changes in v6:
+- fix binding review comments
+- update trailers
+- Link to v5: https://lore.kernel.org/r/20240617-starqltechn_integration_upstream-v5-0-e0033f141d17@gmail.com
+
+Changes in v5:
+- Split patchset per subsystem
+- Link to v4: https://lore.kernel.org/r/20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com
+
+Changes in v4:
+- Rewrite max77705, max77705_charger, max77705_fuel_gauge from scratch
+- Reorder patches:
+  - squash max77705 subdevice bindings in core file because
+    no resources there
+  - split device tree changes
+- Use _ as space for filenames in power/supply like the majority
+- Link to v3: https://lore.kernel.org/r/20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com
+
+---
+Dzmitry Sankouski (7):
+      dt-bindings: power: supply: add maxim,max77705 charger
+      dt-bindings: mfd: add maxim,max77705
+      power: supply: max77705: Add charger driver for Maxim 77705
+      mfd: simple-mfd-i2c: Add MAX77705 support
+      mfd: Add new driver for MAX77705 PMIC
+      input: max77693: add max77705 haptic support
+      leds: max77705: Add LEDs support
+
+ Documentation/devicetree/bindings/mfd/maxim,max77705.yaml          | 158 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Documentation/devicetree/bindings/power/supply/maxim,max77705.yaml |  50 +++++++++++++++++++++++++++
+ MAINTAINERS                                                        |   4 +++
+ drivers/input/misc/Kconfig                                         |   6 ++--
+ drivers/input/misc/max77693-haptic.c                               |  13 ++++++-
+ drivers/leds/Kconfig                                               |   8 +++++
+ drivers/leds/Makefile                                              |   1 +
+ drivers/leds/leds-max77705.c                                       | 279 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/mfd/Kconfig                                                |  13 +++++++
+ drivers/mfd/Makefile                                               |   1 +
+ drivers/mfd/max77705.c                                             | 182 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ drivers/mfd/simple-mfd-i2c.c                                       |  11 ++++++
+ drivers/power/supply/Kconfig                                       |   6 ++++
+ drivers/power/supply/Makefile                                      |   1 +
+ drivers/power/supply/max77705_charger.c                            | 581 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/mfd/max77693-common.h                                |   4 ++-
+ include/linux/mfd/max77705-private.h                               | 195 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/power/max77705_charger.h                             | 195 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 18 files changed, 1703 insertions(+), 5 deletions(-)
+---
+base-commit: 260d7c5e5392ac41c94152005d416172ba0a906d
+change-id: 20240617-starqltechn_integration_upstream-bc86850b2fe3
+
+Best regards,
+-- 
+Dzmitry Sankouski <dsankouski@gmail.com>
+
 
