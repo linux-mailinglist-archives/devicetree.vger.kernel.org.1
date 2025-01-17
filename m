@@ -1,136 +1,291 @@
-Return-Path: <devicetree+bounces-139268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 762C4A14E54
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:20:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4273A14EB4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:47:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEF497A35A4
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:19:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1ADA188AB46
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:47:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B49BD1FCCE6;
-	Fri, 17 Jan 2025 11:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22D431FE45A;
+	Fri, 17 Jan 2025 11:47:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TCjpvyy4"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="oaCefkbz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ACFE46BF;
-	Fri, 17 Jan 2025 11:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90441FC7F7;
+	Fri, 17 Jan 2025 11:47:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737112795; cv=none; b=MQPNAAeIlwL6lI6q2HdkYAYxYS22NSH5v5yaHnILgvZp9iCstGJJyD6v/BC5Jhxfg26lE8bqY142AG0sDTqfNaWfcF27GBGjx+EuJm5K3iGX+zr5XpbcROOWx9Jcq9Vr8GfBVcBJ5nAD0AvJd+Pxutr5fl7B9UEcPLXu0de7QKw=
+	t=1737114450; cv=none; b=GPAr7qorjzVPpjOZSjbC+Eehi6rS/NtwBVvDwJ+SPA1Y9HTHmDT2v8PCPAlHfkfdJ0HarfSP0c1ebN1DGBTMrdwy6CIUffE+Yfi3mK6SNfSEbRLYtqDDDNNwmcnzq3QsrTGyPiVMCFYbBj7AN7RVrs/gD3Pa4T0pqsgMwAMufrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737112795; c=relaxed/simple;
-	bh=nn/YPbBgxQaLeLKHHiW3VJjyNg35Jodr40EuPpJJ+Ms=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fjSnWZ0kM91mrypmWADnZIYXHs118OtYWmEpmfbBmdffM2dYZh3aVQlHLnQH0xOZIDU9PX/8gevLiuljfhoPdlnxDQZh61zj55jzKxu++qv1fg3R9C9BV/JhrC7LIjeMJDU+IqBOXBDOfEEM2ybeccHx0k5L8mxh9vUYWjQNLE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TCjpvyy4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CED61C4CEDD;
-	Fri, 17 Jan 2025 11:19:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737112795;
-	bh=nn/YPbBgxQaLeLKHHiW3VJjyNg35Jodr40EuPpJJ+Ms=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TCjpvyy40SDa7o7dtQix99N3be6UlOmsxbKi2ZsOsmtnVOB15inyFPrdKs9Fti1ZM
-	 WFjrdtdm/RQeIFzUQl0Q9x57cxRsG2ozoOzJxveCsO2P1yfILjET+Ii25z+QS5Z1f+
-	 SDPIrhevuZyCm8jOtJIu21U2UtMNBisw8IpizOb67VneKvKsMmqJwN5S6yTbuLLHk6
-	 /VBaOoHatP6ehTWGtdgfYXz8NCpDaIKxbxGfZAtzTfJvpTilLvfBmOe5iJXS1OcSMI
-	 u8gBKP0WsCjDpsGeomDZmoeB5qO6b8EkMWg6U2gOcuM1mSNR8etztmXt8X2Vajf8Xy
-	 VY44gmcPA0WLw==
-Message-ID: <7f6dbf14-f4b8-4359-8d6a-c0dd51c5623a@kernel.org>
-Date: Fri, 17 Jan 2025 12:19:49 +0100
+	s=arc-20240116; t=1737114450; c=relaxed/simple;
+	bh=A665CMcg3Zxh17VsKeClwr+Y6LhMtPvxA2CPxYHvMWU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JLogk9D13W5oBP4TGZJ0GfrOqchFODI50+jB6+QKv0qa8NInK7H83THoeZXGVar1LaEKGX7uZvpsaCov8jcdbmVd+1PPVRgJBBoU85TN8RjZ+5fOHuhLA8KMEqJnire10Z/M6tj42FWy8v+rGN6JuYkZ2G12qE7Ci9VeUhwj/80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=oaCefkbz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF024C4CEE2;
+	Fri, 17 Jan 2025 11:47:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1737114449;
+	bh=A665CMcg3Zxh17VsKeClwr+Y6LhMtPvxA2CPxYHvMWU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oaCefkbzwWPYhy7yuiXXOqs3Et2L01FYU55MA6RjbJ0OD2662lWmuNjGc6xlqXKbt
+	 5gezzHkaRy8u647C1bmJqIzwyR1xImhMLa3n56OA/sVfZ63jT0NVFFfpS0VBz0PNLS
+	 re6PrqCYdLLAfrAj1QQUbRKtAp33CRAFZmeYEtrE=
+Date: Fri, 17 Jan 2025 12:47:26 +0100
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v6 08/10] misc: rp1: RaspberryPi RP1 misc driver
+Message-ID: <2025011722-motocross-finally-e664@gregkh>
+References: <cover.1736776658.git.andrea.porta@suse.com>
+ <550590a5a0b80dd8a0c655921ec0aa41a67c8148.1736776658.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: minimal support for Pre-ICT
- tester adapter for RK3588 Jaguar
-To: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>
-Cc: Michael Riesch <michael.riesch@wolfvision.net>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- Quentin Schulz <quentin.schulz@cherry.de>
-References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
- <20250116-pre-ict-jaguar-v2-3-157d319004fc@cherry.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250116-pre-ict-jaguar-v2-3-157d319004fc@cherry.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <550590a5a0b80dd8a0c655921ec0aa41a67c8148.1736776658.git.andrea.porta@suse.com>
 
-On 16/01/2025 15:47, Quentin Schulz wrote:
-> From: Quentin Schulz <quentin.schulz@cherry.de>
+On Mon, Jan 13, 2025 at 03:58:07PM +0100, Andrea della Porta wrote:
+> The RaspberryPi RP1 is a PCI multi function device containing
+> peripherals ranging from Ethernet to USB controller, I2C, SPI
+> and others.
 > 
-> The Pre-ICT tester adapter connects to RK3588 Jaguar SBC through its
-> proprietary Mezzanine connector.
+> Implement a bare minimum driver to operate the RP1, leveraging
+> actual OF based driver implementations for the on-board peripherals
+> by loading a devicetree overlay during driver probe.
 > 
-> It exposes a PCIe Gen2 1x M.2 connector and two proprietary camera
-> connectors. Support for the latter will come once the rest of the camera
-> stack is supported.
+> The peripherals are accessed by mapping MMIO registers starting
+> from PCI BAR1 region.
 > 
-> Additionally, the adapter loops some GPIOs together as well as route
-> some GPIOs to power rails.
+> With the overlay approach we can achieve more generic and agnostic
+> approach to managing this chipset, being that it is a PCI endpoint
+> and could possibly be reused in other hw implementations. The
+> presented approach is also used by Bootlin's Microchip LAN966x
+> patchset (see link) as well, for a similar chipset.
 > 
-> This adapter is used for manufacturing RK3588 Jaguar to be able to test
-> the Mezzanine connector is properly soldered.
-> 
-> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+> For reasons why this driver is contained in drivers/misc, please
+> check the links.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Links aren't always around all the time, please document it here why
+this is needed, and then links can "add to" that summary.
 
-Best regards,
-Krzysztof
+> This driver is heavily based on downstream code from RaspberryPi
+> Foundation, and the original author is Phil Elwell.
+> 
+> Link: https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
+> Link: https://lore.kernel.org/all/20240612140208.GC1504919@google.com/
+> Link: https://lore.kernel.org/all/83f7fa09-d0e6-4f36-a27d-cee08979be2a@app.fastmail.com/
+> Link: https://lore.kernel.org/all/2024081356-mutable-everyday-6f9d@gregkh/
+> Link: https://lore.kernel.org/all/20240808154658.247873-1-herve.codina@bootlin.com/
+> 
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>  MAINTAINERS                   |   1 +
+>  drivers/misc/Kconfig          |   1 +
+>  drivers/misc/Makefile         |   1 +
+>  drivers/misc/rp1/Kconfig      |  21 +++
+>  drivers/misc/rp1/Makefile     |   3 +
+>  drivers/misc/rp1/rp1-pci.dtso |   8 +
+>  drivers/misc/rp1/rp1_pci.c    | 305 ++++++++++++++++++++++++++++++++++
+>  drivers/misc/rp1/rp1_pci.h    |  14 ++
+>  drivers/pci/quirks.c          |   1 +
+>  include/linux/pci_ids.h       |   3 +
+>  10 files changed, 358 insertions(+)
+>  create mode 100644 drivers/misc/rp1/Kconfig
+>  create mode 100644 drivers/misc/rp1/Makefile
+>  create mode 100644 drivers/misc/rp1/rp1-pci.dtso
+>  create mode 100644 drivers/misc/rp1/rp1_pci.c
+>  create mode 100644 drivers/misc/rp1/rp1_pci.h
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index fbdd8594aa7e..d67ba6d10aa8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19583,6 +19583,7 @@ F:	Documentation/devicetree/bindings/misc/pci1de4,1.yaml
+>  F:	Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
+>  F:	Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
+>  F:	drivers/clk/clk-rp1.c
+> +F:	drivers/misc/rp1/
+>  F:	drivers/pinctrl/pinctrl-rp1.c
+>  F:	include/dt-bindings/clock/rp1.h
+>  F:	include/dt-bindings/misc/rp1.h
+> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> index 09cbe3f0ab1e..ffa4d8315c35 100644
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -651,4 +651,5 @@ source "drivers/misc/uacce/Kconfig"
+>  source "drivers/misc/pvpanic/Kconfig"
+>  source "drivers/misc/mchp_pci1xxxx/Kconfig"
+>  source "drivers/misc/keba/Kconfig"
+> +source "drivers/misc/rp1/Kconfig"
+>  endmenu
+> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+> index 40bf953185c7..3b6b07a23aac 100644
+> --- a/drivers/misc/Makefile
+> +++ b/drivers/misc/Makefile
+> @@ -74,3 +74,4 @@ lan966x-pci-objs		:= lan966x_pci.o
+>  lan966x-pci-objs		+= lan966x_pci.dtbo.o
+>  obj-$(CONFIG_MCHP_LAN966X_PCI)	+= lan966x-pci.o
+>  obj-y				+= keba/
+> +obj-$(CONFIG_MISC_RP1)		+= rp1/
+> diff --git a/drivers/misc/rp1/Kconfig b/drivers/misc/rp1/Kconfig
+> new file mode 100644
+> index 000000000000..15c443e13389
+> --- /dev/null
+> +++ b/drivers/misc/rp1/Kconfig
+> @@ -0,0 +1,21 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +#
+> +# RaspberryPi RP1 misc device
+> +#
+> +
+> +config MISC_RP1
+> +	tristate "RaspberryPi RP1 PCIe support"
+> +	depends on OF_IRQ && PCI_MSI && PCI_QUIRKS
+> +	select OF_OVERLAY
+> +	select PCI_DYNAMIC_OF_NODES
+> +	help
+> +	  Support the RP1 peripheral chip found on Raspberry Pi 5 board.
+> +
+> +	  This device supports several sub-devices including e.g. Ethernet
+> +	  controller, USB controller, I2C, SPI and UART.
+> +
+> +	  The driver is responsible for enabling the DT node once the PCIe
+> +	  endpoint has been configured, and handling interrupts.
+> +
+> +	  This driver uses an overlay to load other drivers to support for
+> +	  RP1 internal sub-devices.
+> diff --git a/drivers/misc/rp1/Makefile b/drivers/misc/rp1/Makefile
+> new file mode 100644
+> index 000000000000..508b4cb05627
+> --- /dev/null
+> +++ b/drivers/misc/rp1/Makefile
+> @@ -0,0 +1,3 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +obj-$(CONFIG_MISC_RP1)		+= rp1-pci.o
+> +rp1-pci-objs			:= rp1_pci.o rp1-pci.dtbo.o
+> diff --git a/drivers/misc/rp1/rp1-pci.dtso b/drivers/misc/rp1/rp1-pci.dtso
+> new file mode 100644
+> index 000000000000..0bf2f4bb18e6
+> --- /dev/null
+> +++ b/drivers/misc/rp1/rp1-pci.dtso
+> @@ -0,0 +1,8 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +
+> +/* the dts overlay is included from the dts directory so
+> + * it can be possible to check it with CHECK_DTBS while
+> + * also compile it from the driver source directory.
+> + */
+> +
+> +#include "arm64/broadcom/rp1.dtso"
+> diff --git a/drivers/misc/rp1/rp1_pci.c b/drivers/misc/rp1/rp1_pci.c
+> new file mode 100644
+> index 000000000000..3e8ba3fa7fd5
+> --- /dev/null
+> +++ b/drivers/misc/rp1/rp1_pci.c
+> @@ -0,0 +1,305 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2018-24 Raspberry Pi Ltd.
+> + * All rights reserved.
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irq.h>
+> +#include <linux/irqchip/chained_irq.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/module.h>
+> +#include <linux/msi.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/pci.h>
+> +#include <linux/platform_device.h>
+> +
+> +#include "rp1_pci.h"
+
+Why does a self-contained .c file need a .h file?  Please put it all in
+here.
+
+> +
+> +#define RP1_DRIVER_NAME		"rp1"
+
+KBUILD_MODNAME?
+
+> +
+> +#define RP1_HW_IRQ_MASK		GENMASK(5, 0)
+> +
+> +#define REG_SET			0x800
+> +#define REG_CLR			0xc00
+> +
+> +/* MSI-X CFG registers start at 0x8 */
+> +#define MSIX_CFG(x) (0x8 + (4 * (x)))
+> +
+> +#define MSIX_CFG_IACK_EN        BIT(3)
+> +#define MSIX_CFG_IACK           BIT(2)
+> +#define MSIX_CFG_ENABLE         BIT(0)
+> +
+> +/* Address map */
+> +#define RP1_PCIE_APBS_BASE	0x108000
+> +
+> +/* Interrupts */
+> +#define RP1_INT_END		61
+
+
+
+> +
+> +struct rp1_dev {
+> +	struct pci_dev *pdev;
+> +	struct irq_domain *domain;
+> +	struct irq_data *pcie_irqds[64];
+> +	void __iomem *bar1;
+> +	int ovcs_id;	/* overlay changeset id */
+> +	bool level_triggered_irq[RP1_INT_END];
+> +};
+> +
+> +static void msix_cfg_set(struct rp1_dev *rp1, unsigned int hwirq, u32 value)
+> +{
+> +	iowrite32(value, rp1->bar1 + RP1_PCIE_APBS_BASE + REG_SET + MSIX_CFG(hwirq));
+
+Do your writes need a read to flush them properly?  Or can they handle
+this automatically?
+
+thanks,
+
+greg k-h
 
