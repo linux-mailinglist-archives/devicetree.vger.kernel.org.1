@@ -1,149 +1,110 @@
-Return-Path: <devicetree+bounces-139321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80A5BA15155
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 15:11:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C912A15181
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 15:18:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06037188CB82
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:11:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CEFC3AA626
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:17:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4166201013;
-	Fri, 17 Jan 2025 14:11:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0333086AE3;
+	Fri, 17 Jan 2025 14:17:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="c0FTmAFJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gZicw8V7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE1121FF609;
-	Fri, 17 Jan 2025 14:11:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 648FF35968;
+	Fri, 17 Jan 2025 14:17:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737123095; cv=none; b=mZTE8P1iC3Pc9qQLF+zkza8b3LeAz1z5TA8EHs/NaaNARAKdcMTCBbDemoNsArtccxQdzunNSIg0G38+vTyXZ02Bhlg1+B06+b262LmF2v0vVBKnswcuLyeAo3CdaJPa49P3Qn/JIMYOE6BOeCJMMJYuERDXXA5oCKR64pfNx64=
+	t=1737123465; cv=none; b=D9F0Wl1eORw50v59ITI748JfUex40BXfXl6khuKN7wm8KrEEZiNDqAULNDhD0q4Xgzb6tmVNZv+YdGSE4e5Fd7oASHQgDtDwxI6FMKtQG7Kt5nrbnXaByy1j5Zx3XuLXAb3NWLmbDrs/P1ULIjX+duhzvwKFah5tgRCHf7QH4bQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737123095; c=relaxed/simple;
-	bh=Me246SJL54xrtLrgLYOve0FHhr6a7dzhnL3mtYfwI74=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
-	 References:In-Reply-To; b=h3uVkKTMhWwv+5gXyR2VZ+Bh8fmG7AS6lb4DbDBWiSHiFhRR574NC75RxWsPlbbjaHX/vuh7HxGhQMozXraxGQdJ4oRmKLmU60Hb8dkog+v6/KQlbhM0mZtExTU50HldkOqpOt8mvgVC6u7QyNfStFH7c4Kge6JHKWwXOg4eTgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=c0FTmAFJ; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 553F920004;
-	Fri, 17 Jan 2025 14:11:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1737123091;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yzZDikjR9clIGnmTv+VoIvPOgnUMRodTCnVhk/mabBU=;
-	b=c0FTmAFJBk1PJzrL0vgS1Y0BNK/05UH3P9A0IdreLuGCB2+cYOy455TZAyjTEleeRDCA2E
-	1XvGrX/KERV+3R7j3D62t4b09RJ503YWvq18lh6+LgQX8DSYMy7BHdEYD+eEiMLkdLKu/j
-	5I0pCYj0egriASFgZxo/M9ubZDYMO+6SLmMScOjeD2pguwG8Y8RbhxhGx5uiObGqIe5cEu
-	HYByuO5PdrESQ8+TUc5bOFt8l17cpgsLwSkAV63XULLTwkxgGD7E+OEhYs8Q/oP9BVfAUJ
-	OUtuyWQJOGx+AMvK8uMEW9YPDbD05R2S/ZcFFkpbDeDW2F8aY5bypA5tCmP4dw==
+	s=arc-20240116; t=1737123465; c=relaxed/simple;
+	bh=aGwzPY4c5gn4nEKlnu01wESwyE/Yu3m4vbeoQZY75XA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M37l7aMRmbLuu/gvMXstSYZD+JMpCbBkAKMPJBMtPWfcxWIJsCZXZOFiiOsuN1+1kgqwBCbfr8A7PEtvWqM3oqbxcnL28frGKaYTj7nuUUESQTZMl/RCYHm7zbmHqXR4Hcj2LpGZyrgClk6sGcDQGuH5Hm+0rUUxom6vnvk6PdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gZicw8V7; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e53ef7462b6so3549217276.3;
+        Fri, 17 Jan 2025 06:17:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737123463; x=1737728263; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=aGwzPY4c5gn4nEKlnu01wESwyE/Yu3m4vbeoQZY75XA=;
+        b=gZicw8V7+L9WgzydhYvCqCDWWUyIaWcF8xDHBPnm6N5oFPLrIQgVk1qM7q7Sejaerd
+         V06Vg764xGCmGA12z2pfDPWqfJc2MHmXJz+hdFYGNPliWzB7WyNa2I9Wu76jj82NOCM2
+         TaBJ7yuYBEYMRvG+ChbEW91nstX5W4CyLqHtCh0ZYRHCUp2lHrjYgc3o3UJD53039/nv
+         LBBcZ1TT3uIS1TpCNr431RiYaBqg9AGXsxzWlFukAFeqRRruLfvEGa051kFCa63eqFuF
+         /IMfkai3yBdRzFmprk6ohnwO5DFyED1Da4RDoAaUPP5O4LxLz3GbnXp1qR83/CedW2dS
+         nTPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737123463; x=1737728263;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aGwzPY4c5gn4nEKlnu01wESwyE/Yu3m4vbeoQZY75XA=;
+        b=Tdrw05DLtuM3AuyO4+kZXWQFGEcmM3ylI6enYrvE3yb7iHFYHix0fMiDAeeSf919Lv
+         zQDpiJ+ST67XsLWxmGP13rZLcf/Ib/ODqCYnIz1N8KiCpR18X+SinXr4uN480diA+aXt
+         a9D8MV4stOm56hE4t7V++onAUDsw1rbA5cFjYiR164O08btETAgtof38d07CBYZT8/Or
+         JhYe1xzciwSqmp3zC/FdATMyrpAuW9c3xvtM134G4SOAjTSd7yJ1urKAUYxByn10716E
+         GRlm795Bfxc+FBXNP3yHChQCFzjZn6NiA15HReSKEAxnznIpFvbHfN02h44EsMuYajKa
+         XELQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUSGvFrl7vchqrQ1Yzb89aOjfdpc8InWvovKaPtigS9mYXiYIOKXrno4rRtbmnEBHU63F0bPjzHrHHjB1zi@vger.kernel.org, AJvYcCUWKdzs0wVgNpk9rRhfz5gcl7aNs4uKwQGy9Zk9pJ6ptg6QwDRyanOgU1Ynp6A9+K0mjqQxMPxUeiLS@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6+juCTq1fvqj0lDND7un+cvJgM0czPeVP8tgGfij3oWbm4+BX
+	3XP0msmTQLKtWAfJRQsejydmxth/8TPYEuXjGZL+UJxNXNSuTcxQGM58ybgNp83kw0ZCVmxOp5j
+	QPZ+3en9SAj3xoWb+oQZclCwn8Jk=
+X-Gm-Gg: ASbGncvHktHzZ/PRaop9Xfh3uOC0nYhHWwlvzuDIbVpfJc9pr9VqTwI+ewS7W1xG+Uj
+	dLNsOFngwwDwyRmHCszdRLMYz/B68SGFzevdDOA==
+X-Google-Smtp-Source: AGHT+IEgzT2Y8X/d+HOguRWOezTmCdaDrvMrd0xyuzC2YC1+k0LNDI0M/Oo8/mnNOxO0+kIgTEzO5F/+UdmBoEnNI4E=
+X-Received: by 2002:a05:6902:1b0d:b0:e49:e085:c0b4 with SMTP id
+ 3f1490d57ef6-e57b104668amr1782609276.8.1737123463394; Fri, 17 Jan 2025
+ 06:17:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 17 Jan 2025 15:11:29 +0100
-Message-Id: <D74EQQNADWDP.FQ5XFK8TB5XH@bootlin.com>
-Subject: Re: [PATCH v3 3/7] pwm: max7360: Add MAX7360 PWM support
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
- Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
- "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com>
- <20250113-mdb-max7360-support-v3-3-9519b4acb0b1@bootlin.com>
- <f22l3uqgt65utxehv2zmozqixjkktp4trpr42xr5arvp6o5zcf@g5iriaeskqa5>
-In-Reply-To: <f22l3uqgt65utxehv2zmozqixjkktp4trpr42xr5arvp6o5zcf@g5iriaeskqa5>
-X-GND-Sasl: mathieu.dubois-briand@bootlin.com
+MIME-Version: 1.0
+References: <20250114-adpdrm-v4-0-e9b5260a39f1@gmail.com> <20250114-adpdrm-v4-2-e9b5260a39f1@gmail.com>
+ <mu7qiybhj7tu5hauk7izfxqlookc3awpknhjk74zwpkbznei4m@kewap6vivzoa>
+ <20250116-vivacious-congenial-nightingale-cb2f6d@houat> <2alm7gds4k2lnbk36gjdw6yhzhpls3ce5baycdiv7lsigxsbzn@rhwdgnphwwp6>
+ <20250117-neon-unicorn-of-plenty-bbe639@houat>
+In-Reply-To: <20250117-neon-unicorn-of-plenty-bbe639@houat>
+From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Date: Fri, 17 Jan 2025 15:17:32 +0100
+X-Gm-Features: AbW1kvbN_g2HyuopLeZCoB8YJ1kzXFaQ1lvT6Fub5esd6CPjCjqmkvDJ9dDJO2Q
+Message-ID: <CAMT+MTTrvXsYONQj0V5U+dPJtCBOAQ-Lfg7NONMB6onMvJ+3QA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/5] drm: adp: Add Apple Display Pipe driver
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Hector Martin <marcan@marcan.st>, 
+	Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Alyssa Ross <hi@alyssa.is>, Janne Grunau <j@jannau.net>
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri Jan 17, 2025 at 10:33 AM CET, Uwe Kleine-K=C3=B6nig wrote:
-> Hello Mathieu,
+On Fri, 17 Jan 2025 at 11:24, Maxime Ripard <mripard@kernel.org> wrote:
+> >
+> > I was thinking about using drmm_ here, as the DRM device is also created
+> > and destroyed each time. But I might be mistaken here.
 >
-> On Mon, Jan 13, 2025 at 01:42:27PM +0100, mathieu.dubois-briand@bootlin.c=
-om wrote:
-> > From: Kamel Bouhara <kamel.bouhara@bootlin.com>
-...
-> > +static int max7360_pwm_apply(struct pwm_chip *chip, struct pwm_device =
-*pwm,
-> > +			     const struct pwm_state *state)
-> > +{
-> > +	struct max7360_pwm *max7360_pwm;
-> > +	u64 duty_steps;
-> > +	int ret;
-> > +
-> > +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
-> > +		return -EINVAL;
-> > +
-> > +	if (state->period !=3D MAX7360_PWM_PERIOD_NS) {
-> > +		dev_warn(&chip->dev,
-> > +			 "unsupported pwm period: %llu, should be %u\n",
-> > +			 state->period, MAX7360_PWM_PERIOD_NS);
-> > +		return -EINVAL;
->
-> Please don't emit error messages in .apply(). Also a driver is supposed
-> to round down .period, so any value >=3D MAX7360_PWM_PERIOD_NS should be
-> accepted.
->
-> Also note that you might want to implement the waveform callbacks
-> instead of .apply() and .get_state() for the more modern abstraction
-> (with slightly different rounding rules).
->
+> Ah, right, it makes sense then, thanks!
+> Maxime
 
-Sure, I just switched to the waveform callbacks, it was quite
-straightforward.
-
-> > +static int max7360_pwm_get_state(struct pwm_chip *chip, struct pwm_dev=
-ice *pwm,
-> > +				 struct pwm_state *state)
-> > +{
-...
-> > +	state->duty_cycle =3D mul_u64_u64_div_u64(val, MAX7360_PWM_PERIOD_NS,
-> > +						MAX7360_PWM_MAX_RES);
->
-> You have to round up here. I would expect that the checks in the core
-> (with PWM_DEBUG=3D1) help you catching this type of error. In your case
-> changing the configuration to
->
-> 	.period =3D 2000000,
-> 	.duty_cycle =3D 234379,
->
-> should yield some hint in the kernel log.
->
-
-Thanks for the reproduce steps: I saw the bug and fixed it. Also
-MAX7360_PWM_MAX_RES had to be set to 255 and not 256...
-
-> > +	return 0;
-> > +}
->
-> Best regards
-> Uwe
-
-I also fixed all other points mentioned in your mail. Thanks again for your=
- review.
-
---=20
-Mathieu Dubois-Briand, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Not sure i understand. The drm device is created in probe(), and is
+destroyed by devm.
+I do not see a path where it can be created/destroyed without a trip
+via probe/remove,
+and so tying the lifetime of the bridge in question to devm seems correct?
 
