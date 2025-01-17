@@ -1,107 +1,173 @@
-Return-Path: <devicetree+bounces-139227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B5ECA14B0B
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 09:22:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 82E8DA14B1A
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 09:27:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4A483A51EA
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 08:22:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF77D166D60
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 08:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD0E81F869D;
-	Fri, 17 Jan 2025 08:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C24A41F8905;
+	Fri, 17 Jan 2025 08:27:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="cdPTPMPv"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OwA1i5Wn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483BF1F6687;
-	Fri, 17 Jan 2025 08:22:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F711F6686;
+	Fri, 17 Jan 2025 08:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737102166; cv=none; b=KQszo0BTEBjwBn7hZjas9MLuz4CiTmsH0KC4f5uIaNws2qMJe5M85u2Yp89S1hqcYn2pO8uISbjk60Xmb3K25BWiy9UWAYi5Ei8p2NUwEv9JtXu366Zi0Ha9KDFhP+WjE8nrH5QyU545fF0//5hye1+T/u1k0fNFz3SgkFmXJF4=
+	t=1737102438; cv=none; b=cL5m/OVYt3vN4it16wEtcL7SCWZ6sHhDyIQ/yuHCsWuPQQLKFE44Dh7Ksj/X7R/sQZxqGikhse0VHfxKB2rL0a9QMpWG0eSHJKr78knHnqWRfuCJSs84E6WlRhmiSHshDjSxUr+LboJDEK2rDswbJZUARQj4MEqEaGJNRsgAVwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737102166; c=relaxed/simple;
-	bh=vrM9FCcSabp0iENUkhYWnk5ZCUCWJihsBrxkmgjFOz4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ad56uuEpFmFWWanqMtyWbqy1GMgsZc7pTlHtGFlV392E3sew8TymJQken0xeJkrCAFezHvNfcwaEFrU5EucEKbAvR1EmSSLMuIzr9f9EH5CvX+AHiBumcC9o1BY8L5F/mzi+Z4c9L8hC6dRfw/UTacvZ3v413bx8vPIBGLEPEdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=cdPTPMPv; arc=none smtp.client-ip=117.135.210.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=PPF2T
-	NJs26XvPTra079pkEfMaeRetMCkRx0gBDwYafE=; b=cdPTPMPvcPMYnmOU78ktM
-	TdSBAUO0VWO6DG+MWcKxWDMbjOQY2ZD2ulZoTVJilX5YyPbJ8r+cPmCf77CEyKje
-	XgqXIcF8NLwRhq7tVdilEKolfg866k/B6ncZZk0e7PaWEdbpPW1UT8oVF0sE0Pgi
-	PB7sK7B786zRrmba1q4E+o=
-Received: from silergy-System-Product-Name.silergy.inc (unknown [])
-	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wAn2B4CE4pnaxwRGw--.23797S5;
-	Fri, 17 Jan 2025 16:21:43 +0800 (CST)
-From: Wenliang Yan <wenliang202407@163.com>
-To: linux@roeck-us.net,
-	Jean Delvare <jdelvare@suse.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Wenliang Yan <wenliang202407@163.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/2] dt-bindings:Add SQ52206 to ina2xx devicetree bindings
-Date: Fri, 17 Jan 2025 16:20:16 +0800
-Message-ID: <20250117082017.688212-2-wenliang202407@163.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250117082017.688212-1-wenliang202407@163.com>
-References: <20250117082017.688212-1-wenliang202407@163.com>
+	s=arc-20240116; t=1737102438; c=relaxed/simple;
+	bh=Xk4G2fPvBtHZOC1vN27DUSwpcLs1inWzAcEnMDQfeAo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=J0wPdmCi64KFRqajZdXCwfM2zL7UWNEWTYJJMb2UQgWZhWz3Z+/ajrO+JoVGo9yGQNt1gTRnzAvd4lzJMmme+3vELZ7PyyaVMDKxlkUNtZ9jX7j0TBkHJlJCOm3DYGlrYokayNADcd8/yfyEPy5KgI0UEKKr7Iq8mfrRNLjAv1M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OwA1i5Wn; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5EE0C1C0002;
+	Fri, 17 Jan 2025 08:27:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1737102427;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qaIpPOSpq9MWqlSnlayKk2Pj8EJtBTTEujrFPq0fHoo=;
+	b=OwA1i5Wnz7oO8tgopYa0EmT/rxq6imJN3cSccLTrw9VGbFcpxW6QAlNM0WyZwz3YN99km2
+	6MODIE7dTcslLqAI2ZI+Qd1OQvhv/qj0uN9oOIcFqXrhC5eUSqRS+MDMgW/iB9NxyTeQ3w
+	BXXux/WXprSKMxtg1w2cdkn+V4KBjF0ZSd3IoJEZAAtOQJ0CcSwd4E1e6CdzanltANOsq2
+	IhSd30cNbUTjEuMGLg0NpK18oSVpRbe3dMbZh/iz4Wv6v+7CXQ76NMpdBySmtTF7szmRF4
+	SwRbWIeDU2euRpT1w3MVMQv4L4VEA1GcGulXJCkTqP8LqiExsFnOsGTmQ4n94w==
+Date: Fri, 17 Jan 2025 09:27:04 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>,
+ u.kleine-koenig@baylibre.com
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+ linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 1/1] pwm: Add support for pwm nexus dt bindings
+Message-ID: <20250117092704.2b4a1a1c@bootlin.com>
+In-Reply-To: <20250108161853.431915-1-herve.codina@bootlin.com>
+References: <20250108161853.431915-1-herve.codina@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wAn2B4CE4pnaxwRGw--.23797S5
-X-Coremail-Antispam: 1Uf129KBjvdXoW7XF1DJryxJF43ur4DJr4rAFb_yoWkuFbEgF
-	WxAF4DXrZ8JFyFgr1qyw48Jr1ayws3Cr4kAw1UJFZYy3yavr90ga4kJw4kAF1xJFW3uFyr
-	Zan5Wr45KrsrKjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRM5rcDUUUUU==
-X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/1tbiNQbX02eKDDN-AgABsZ
+X-GND-Sasl: herve.codina@bootlin.com
 
-Add the sq52206 compatible to the ina2xx.yaml
+Hi All,
 
-Signed-off-by: Wenliang Yan <wenliang202407@163.com>
----
+I haven't receive any feedback on this patch neither the v1 nor this v2.
 
-Add the meaning of 'shunt-gain' in SQ52206.
+Maybe an issue with the mail. Add u.kleine-koenig@baylibre.com and hope to
+have a feedback on this patch.
 
- Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+Best regards,
+Hervé
 
-diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-index 05a9cb36cd82..25e0b2f0b28d 100644
---- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
-@@ -20,6 +20,7 @@ description: |
- properties:
-   compatible:
-     enum:
-+      - silergy,sq52206
-       - silergy,sy24655
-       - ti,ina209
-       - ti,ina219
-@@ -58,6 +59,9 @@ properties:
-       shunt voltage, and a value of 4 maps to ADCRANGE=0 such that a wider
-       voltage range is used.
- 
-+      For SQ52206,the shunt gain value 1 mapps to ADCRANGE=10/11, the value 2
-+      mapps to ADCRANGE=01, and the value 4 mapps to ADCRANGE=00.
-+
-       The default value is device dependent, and is defined by the reset value
-       of PGA/ADCRANGE in the respective configuration registers.
-     $ref: /schemas/types.yaml#/definitions/uint32
--- 
-2.43.0
+On Wed,  8 Jan 2025 17:18:53 +0100
+Herve Codina <herve.codina@bootlin.com> wrote:
 
+> Platforms can have a standardized connector/expansion slot that exposes
+> signals like PWMs to expansion boards in an SoC agnostic way.
+> 
+> The support for nexus node [1] has been added to handle those cases in
+> commit bd6f2fd5a1d5 ("of: Support parsing phandle argument lists through
+> a nexus node"). This commit introduced of_parse_phandle_with_args_map()
+> to handle nexus nodes in a generic way and the gpio subsystem adopted
+> the support in commit c11e6f0f04db ("gpio: Support gpio nexus dt
+> bindings").
+> 
+> A nexus node allows to remap a phandle list in a consumer node through a
+> connector node in a generic way. With this remapping supported, the
+> consumer node needs to knwow only about the nexus node. Resources behind
+> the nexus node are decoupled by the nexus node itself.
+> 
+> This is particularly useful when this consumer is described in a
+> device-tree overlay. Indeed, to have the exact same overlay reused with
+> several base systems the overlay needs to known only about the connector
+> is going to be applied to without any knowledge of the SoC (or the
+> component providing the resource) available in the system.
+> 
+> As an example, suppose 3 PWMs connected to a connector. The connector
+> PWM 0 and 2 comes from the PWM 1 and 3 of the pwm-controller1. The
+> connector PWM 1 comes from the PWM 4 of the pwm-controller2. An
+> expansion device is connected to the connector and uses the connector
+> PMW 1.
+> 
+> Nexus node support in PWM allows the following description:
+> 	soc {
+> 		soc_pwm1: pwm-controller1 {
+> 			#pwm-cells = <3>;
+> 		};
+> 
+> 		soc_pwm2: pwm-controller2 {
+> 			#pwm-cells = <3>;
+> 		};
+> 	};
+> 
+> 	connector: connector {
+> 		#pwm-cells = <3>;
+> 		pwm-map = <0 0 0 &soc_pwm1 1 0 0>,
+> 			  <1 0 0 &soc_pwm2 4 0 0>,
+> 			  <2 0 0 &soc_pwm1 3 0 0>,
+> 		pwm-map-mask = <0xffffffff 0x0 0x0>;
+> 		pwm-map-pass-thru = <0x0 0xffffffff 0xffffffff>
+> 	};
+> 
+> 	expansion_device {
+> 		pwms = <&connector 1 57000 0>;
+> 	};
+> 
+> From the expansion device point of view, the PWM requested is the PWM 1
+> available at the connector regardless of the exact PWM wired to this
+> connector PWM 1. Thanks to nexus node remapping described at connector
+> node, this PWM is the PWM 4 of the pwm-controller2.
+> 
+> The nexus node remapping handling consists in handling #*-cells, *-map,
+> *-map-mask and *-map-pass-thru properties. This is already supported
+> by of_parse_phandle_with_args_map().
+> 
+> Add support for nexus node device-tree binding and the related remapping
+> in the PWM subsystem by simply using of_parse_phandle_with_args_map()
+> instead of of_parse_phandle_with_args().
+> 
+> [1] https://github.com/devicetree-org/devicetree-specification/blob/v0.4/source/chapter2-devicetree-basics.rst#nexus-nodes-and-specifier-mapping
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> ---
+> Changes v1 -> v2
+>   - Rework commit log
+> 
+>  drivers/pwm/core.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pwm/core.c b/drivers/pwm/core.c
+> index 9c733877e98e..4a7454841cef 100644
+> --- a/drivers/pwm/core.c
+> +++ b/drivers/pwm/core.c
+> @@ -1707,8 +1707,7 @@ static struct pwm_device *of_pwm_get(struct device *dev, struct device_node *np,
+>  			return ERR_PTR(index);
+>  	}
+>  
+> -	err = of_parse_phandle_with_args(np, "pwms", "#pwm-cells", index,
+> -					 &args);
+> +	err = of_parse_phandle_with_args_map(np, "pwms", "pwm", index, &args);
+>  	if (err) {
+>  		pr_err("%s(): can't parse \"pwms\" property\n", __func__);
+>  		return ERR_PTR(err);
 
