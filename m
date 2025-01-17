@@ -1,166 +1,207 @@
-Return-Path: <devicetree+bounces-139369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B50FA15566
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 18:10:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA9DA155BE
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 18:30:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F2F8188B17D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 17:10:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8E947A3959
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 17:30:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4181A2C0E;
-	Fri, 17 Jan 2025 17:10:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E83B19AD8C;
+	Fri, 17 Jan 2025 17:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wAHE1382"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GC6Srpee"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 189461A071C
-	for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 17:10:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345A8A95C;
+	Fri, 17 Jan 2025 17:30:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737133809; cv=none; b=k2kg7rEU56qBFakolxJzTDuis5SJuFERasttMsGryME150nVTv9a3NGsFqrEarAye5Vh3XuTVbbHyRFjyK+t6RYQfB9Iiw7gEqNRLjr3pjv8wM3JsD1At7XYTnJAny/pMwBVQHjONhFH7cTHKnb/oca0Z5alakCy+KZZQrHWm/w=
+	t=1737135033; cv=none; b=ddUTmK7FyiQyBmkEohqUg3TwLZLHLpHU+7fl5ap1vWxRE3dLednoqxgkRqCZMNi3qN7XSL1CgtyCDNIB4XQqirfH71e4IzwgMKlMipRgLsCCDnpkxLdB99duP9Dx7N749Ba7gUoP9CnGunUHy4vsoA9g1XvIt5EYAg9SEjhaeZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737133809; c=relaxed/simple;
-	bh=QcoBk54ADv3E4qGp07gJ7p7VjTjm6Qq94PMxOHGm3FM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=W4DatjeKkPFAhZxggWtuNfK/N+S0G/gCWdGBSzEX2c0IYc/bykgGS6exPYB5kTTlBZJ4hwMAbcgFSrm34ILLH3VM/difr9eGGVCjInOkOhmmi+71wKmQT4650E8r8BjjVwa+8WyeyU2CPgzK2Ojv7tsWUntn2CZVBvOGDaouBw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wAHE1382; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-aae81f4fdc4so463783666b.0
-        for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 09:10:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737133806; x=1737738606; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=s85R3yVSuNjwngZj8e21pKm72hiISate8KTU7XoNJnM=;
-        b=wAHE1382O6U0c/bain428B5+ZtJlo/ffFxA4na8nGyvS4z0rQ+A4Tt43YyKtIcaI1X
-         wc5ohDoZ5V7096YeWpxMf+n+1rg6BFMmZZillo0GO2vM/axwfnkuSGSIOo6zf9/E70Rp
-         d7Zc1z8LcxO97M0+1CU68/MxGH7P6igXMnG4fJLgFCV6/QVKp+do2OdapgZU3ozOqNKe
-         czvfAoXC9voxgO77/owIAH+DmBZkMvvEYU1B4Ixhlib0Af8eIXkZzJDRxSl4hJVCcwwW
-         B06kTP79btZ8PP4LJMYtnZBQ8rZbhFGlhCsXpLMVs+8KcxGCF7qB8viVNV9qZGQTMnjo
-         UbqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737133806; x=1737738606;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s85R3yVSuNjwngZj8e21pKm72hiISate8KTU7XoNJnM=;
-        b=gaWkqItG1e0fERKPSVPJeR05vfUuTEogjiAEA6m0NNuiOQKbs1TSm6LJ2ofuEvNhvh
-         J4hrmwNRlc96dGLK2iUDcFrO/YVMwR2fSCh/oSv3YgfMwegwvu7njDUK42SCIAcyZaoL
-         m1eK8qSxXeun57YgkU013no5jQKTvrrbbKnuwhrfFGbE8K2GVMrdJ/unL7qMaMKO4oPZ
-         u3qtNDmuO7YkevWeFwshlQiH+ipgE3/ZAzhlu9IKOz+s+uY8w9PPlSSQsl0Ft6IZ18py
-         Q1uT6to3L87aV0UZmL8/TXWMimp5+Cj3XvgF/Vu0WtMgzHfdLEm8QD5fGqX/KxwJL5ky
-         cpcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUsVjbihucZtMAd77qHotVMwLLT2f3E1YRSnc3LA4FaIrW+TwwcSDgUaBr/J7h3pqQZxIDMGfY4sUkr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5rAr1e5OxiMWBnQw7JMSw6IsIQYyAcJyIR5I2qac/aPPnp1ys
-	x+3sNxj1dBvGp6YRzzWFRfgQ7A1xtW1Jr4e9xqfl01s0u+H7SUDK4xYWmtHVO7PADLmlf2F8Nn+
-	pGSc=
-X-Gm-Gg: ASbGncvoSbRNmojvnLvc4upJ9+cz1g7z48lwfGcjAjexEYspUUYUhV6njm4gI/0q8Jf
-	xeFw73NK/3jpdHKhTyUvA6CsVxjyU4LSDf6mP2n/RvaaF/5pHyKRR6b9RysAM8m//NmPMddMvnx
-	6rFAEekOpDeOVwL2wr17dYTkbwEB8ZJprNmmme/1twPE3UG5Hg30irKmqpNubvgKWZ/XHS6IaM9
-	a09czaYE1DK2qBY28P1SimsqLoHPA7SjtoJlz1Y/x1fzZMXQAnKmI+CPNLGy+AGaD6WdypPVmpv
-	vr6o+v81tjYU6vHpAYhJj4I18OF+dF9iuuQ5U4Dv
-X-Google-Smtp-Source: AGHT+IF3lyD6ENeo+kfAD9mp5xyQb07iN5gPpJzGtPJfuC6X1w0JFQBCoLxFgjtL2UXjDVhReGYI4w==
-X-Received: by 2002:a17:907:7fab:b0:ab2:c1e2:1da9 with SMTP id a640c23a62f3a-ab38b4c6ac9mr362313366b.51.1737133806461;
-        Fri, 17 Jan 2025 09:10:06 -0800 (PST)
-Received: from puffmais.c.googlers.com (140.20.91.34.bc.googleusercontent.com. [34.91.20.140])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384f87065sm199197966b.133.2025.01.17.09.10.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jan 2025 09:10:06 -0800 (PST)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Fri, 17 Jan 2025 17:09:57 +0000
-Subject: [PATCH v4 4/4] arm64: dts: exynos: gs101-raven: add new board file
+	s=arc-20240116; t=1737135033; c=relaxed/simple;
+	bh=NwGjIFCOVGOFl9+7A1WEpEUNm8Gy0ODwXSeX7ZV4b0Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=ilHlpSVXQLwcOHnI2C6i1OhlN9RHccZZ4+7aP+45lLEEZ+l31TaQlK/GQXPqsb1F06cdNkIW8rtHNceeT4/4EE4Sfat8gfARM8jET9K8tuk0PFAMDNqEcRvugGiqmjgXRKOoiYzfLABWRDkO0D55rpzEl4PiSxOj7jk1s4zgCg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GC6Srpee; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A801C4CEDD;
+	Fri, 17 Jan 2025 17:30:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737135032;
+	bh=NwGjIFCOVGOFl9+7A1WEpEUNm8Gy0ODwXSeX7ZV4b0Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=GC6SrpeeYdhVCw5M4Tolff+jxWARkXQQMX6zF3nIdU1Db7XkFGodK5kG41/mq6F+P
+	 isEia74xwAal9dsd67usF0gIRBoDTsIHcgA4NxR10BseJRZ5YvOoVKSrzcZm96FEuH
+	 o77MHPoKvjhmxrz1INycVBC3aAePsP+C9xkxi3mVXEWsDT3kMgXcuJcBUX7HgCidll
+	 T+pELHwxcPF86lkI57b1a/LPoum9N5jHZquFnZSO2irhfmrVAsOQn84o8Gr9htrejl
+	 UlGHQtwwYnEI3PM3eyuudTH9NDIeW+0fwnCvfyENC3819oAvpQ5o6QJt1MCHzZqSKn
+	 k8eJEgfwD0lxg==
+Date: Fri, 17 Jan 2025 11:30:31 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: daire.mcnamara@microchip.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, conor.dooley@microchip.com,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ilpo.jarvinen@linux.intel.com,
+	kevin.xie@starfivetech.com, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v10 1/3] PCI: microchip: Fix outbound address translation
+ tables
+Message-ID: <20250117173031.GA644050@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250117-gs101-simplefb-v4-4-a5b90ca2f917@linaro.org>
-References: <20250117-gs101-simplefb-v4-0-a5b90ca2f917@linaro.org>
-In-Reply-To: <20250117-gs101-simplefb-v4-0-a5b90ca2f917@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.13.0
+In-Reply-To: <20250117-curliness-flashback-83519e708b52@spud>
 
-Raven is Google's code name for Pixel 6 Pro. Similar to Pixel 6
-(Oriole), this is also based around its Tensor gs101 SoC.
+On Fri, Jan 17, 2025 at 10:53:01AM +0000, Conor Dooley wrote:
+> On Thu, Jan 16, 2025 at 12:02:55PM -0600, Bjorn Helgaas wrote:
+> > On Thu, Jan 16, 2025 at 05:45:33PM +0000, Conor Dooley wrote:
+> > > On Thu, Jan 16, 2025 at 11:07:22AM -0600, Bjorn Helgaas wrote:
+> > > > [+cc Frank, original patch at
+> > > > https://lore.kernel.org/r/20241011140043.1250030-2-daire.mcnamara@microchip.com]
+> > > > 
+> > > > On Thu, Jan 16, 2025 at 04:46:19PM +0000, Conor Dooley wrote:
+> > > > > On Thu, Jan 16, 2025 at 09:42:53AM -0600, Bjorn Helgaas wrote:
+> > > > > > On Tue, Jan 14, 2025 at 06:13:10PM -0600, Bjorn Helgaas wrote:
+> > > > > > > On Fri, Oct 11, 2024 at 03:00:41PM +0100, daire.mcnamara@microchip.com wrote:
+> > > > > > > > From: Daire McNamara <daire.mcnamara@microchip.com>
+> > > > > > > > 
+> > > > > > > > On Microchip PolarFire SoC (MPFS) the PCIe Root Port can be behind one of
+> > > > > > > > three general-purpose Fabric Interface Controller (FIC) buses that
+> > > > > > > > encapsulate an AXI-M interface. That FIC is responsible for managing
+> > > > > > > > the translations of the upper 32-bits of the AXI-M address. On MPFS,
+> > > > > > > > the Root Port driver needs to take account of that outbound address
+> > > > > > > > translation done by the parent FIC bus before setting up its own
+> > > > > > > > outbound address translation tables.  In all cases on MPFS,
+> > > > > > > > the remaining outbound address translation tables are 32-bit only.
+> > > > > > > > 
+> > > > > > > > Limit the outbound address translation tables to 32-bit only.
+> > > > > > > 
+> > > > > > > I don't quite understand what this is saying.  It seems like the code
+> > > > > > > keeps only the low 32 bits of a PCI address and throws away any
+> > > > > > > address bits above the low 32.
+> > > > > > > 
+> > > > > > > If that's what the FIC does, I wouldn't describe the FIC as
+> > > > > > > "translating the upper 32 bits" since it sounds like the translation
+> > > > > > > is just truncation.
+> > > > > > > 
+> > > > > > > I guess it must be more complicated than that?  I assume you can still
+> > > > > > > reach BARs that have PCI addresses above 4GB using CPU loads/stores?
+> > > > > > > 
+> > > > > > > The apertures through the host bridge for MMIO access are described by
+> > > > > > > DT ranges properties, so this must be something that can't be
+> > > > > > > described that way?
+> > > > > 
+> > > > > Daire's been having some issues getting onto the corporate VPN to send
+> > > > > his reply, I've pasted it below on his behalf:
+> > > > > 
+> > > > > There are 3 Fabric Inter Connect (FIC) buses on PolarFire SoC - each of
+> > > > > these FIC buses contain an AXI master bus and are 64-bits wide. These
+> > > > > AXI-Masters (each with an individual 64-bit AXI base address – for example
+> > > > > FIC1’s AXI Master has a base address of 0x2000000000) are connected to
+> > > > > general purpose FPGA logic. This FPGA logic is, in turn, connected to a
+> > > > > 2nd 32-bit AXI master which is attached to the PCIe block in RootPort mode.
+> > > > > Conceptually, on the other side of this configurable logic, there is a
+> > > > > 32-bit bus to a hard PCIe rootport.  So, again conceptually, outbound address
+> > > > > translation looks like this:
+> > > > > 
+> > > > >                  Processor Complex à FIC (64-bit AXI-M) à Configurable Logic à 32-bit AXI-M à PCIe Rootport
+> > > > > 		 (This how it came to me from Daire, I think the á is meant to
+> > > > > 		 be an arrow)
 
-For now, the relevant difference here is the display resolution:
-1440 x 3120 instead of 1080 x 2400.
+I'm trying to match this up with the DT snippet you included earlier:
 
-Create a new board file to reflect this difference.
+  fabric-pcie-bus@3000000000 {
+    compatible = "simple-bus";
+    #address-cells = <2>;
+    #size-cells = <2>;
+    ranges = <0x00 0x40000000 0x00 0x40000000 0x00 0x20000000>,
+	     <0x30 0x00000000 0x30 0x00000000 0x10 0x00000000>;
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
+IIUC, this describes these regions, so there's no address translation
+at this point:
 
----
-Note: MAINTAINERS doesn't need updating, it covers this whole directory
----
- arch/arm64/boot/dts/exynos/google/Makefile        |  1 +
- arch/arm64/boot/dts/exynos/google/gs101-raven.dts | 29 +++++++++++++++++++++++
- 2 files changed, 30 insertions(+)
+  [parent 0x00_40000000-0x00_5fffffff] -> [child 0x00_40000000-0x00_5fffffff]
+  [parent 0x30_00000000-0x3f_ffffffff] -> [child 0x30_00000000-0x3f_ffffffff]
 
-diff --git a/arch/arm64/boot/dts/exynos/google/Makefile b/arch/arm64/boot/dts/exynos/google/Makefile
-index 0a6d5e1fe4ee..7385f82b03c9 100644
---- a/arch/arm64/boot/dts/exynos/google/Makefile
-+++ b/arch/arm64/boot/dts/exynos/google/Makefile
-@@ -2,3 +2,4 @@
- 
- dtb-$(CONFIG_ARCH_EXYNOS) += \
- 	gs101-oriole.dtb \
-+	gs101-raven.dtb
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101-raven.dts b/arch/arm64/boot/dts/exynos/google/gs101-raven.dts
-new file mode 100644
-index 000000000000..1e7e6b34b864
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/google/gs101-raven.dts
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Raven Device Tree
-+ *
-+ * Copyright 2021-2023 Google LLC
-+ * Copyright 2023-2025 Linaro Ltd
-+ */
-+
-+/dts-v1/;
-+
-+#include "gs101-pixel-common.dtsi"
-+
-+/ {
-+	model = "Raven";
-+	compatible = "google,gs101-raven", "google,gs101";
-+};
-+
-+&cont_splash_mem {
-+	reg = <0x0 0xfac00000 (1440 * 3120 * 4)>;
-+	status = "okay";
-+};
-+
-+&framebuffer0 {
-+	width = <1440>;
-+	height = <3120>;
-+	stride = <(1440 * 4)>;
-+	format = "a8r8g8b8";
-+	status = "okay";
-+};
+Here's the PCI controller:
 
--- 
-2.48.0.rc2.279.g1de40edade-goog
+    pcie: pcie@3000000000 {
+      compatible = "microchip,pcie-host-1.0";
+      #address-cells = <0x3>;
+      #size-cells = <0x2>;
+      device_type = "pci";
 
+      reg = <0x30 0x00000000 0x0 0x08000000>,
+	    <0x00 0x43008000 0x0 0x00002000>,
+	    <0x00 0x4300a000 0x0 0x00002000>;
+
+which has this register space (in the fabric-pcie-bus@3000000000
+address space):
+
+  [0x30_00000000-0x30_07ffffff] (128MB)
+  [0x00_43008000-0x00_43009fff]   (8KB)
+  [0x00_4300a000-0x00_4300bfff]   (8KB)
+
+So if I'm reading this right (and I'm not at all sure I am), the PCI
+controller a couple 8KB register regions below 4GB, and also 128MB of
+register space at [0x30_00000000-0x30_07ffffff] (maybe ECAM?).  I
+don't know how to reconcile this one with the 32-bit AXI-M bus leading
+to it.
+
+And it has these ranges, which *do* look like they translate
+addresses:
+
+      ranges = <0x43000000 0x0 0x09000000 0x30 0x09000000 0x0 0x0f000000>,
+	       <0x01000000 0x0 0x08000000 0x30 0x08000000 0x0 0x01000000>,
+	       <0x03000000 0x0 0x18000000 0x30 0x18000000 0x0 0x70000000>;
+
+  [parent 0x30_09000000-0x30_17ffffff] -> [pci 0x09000000-0x17ffffff pref 64bit mem]
+  [parent 0x30_08000000-0x30_08ffffff] -> [pci 0x08000000-0x08ffffff io]
+  [parent 0x30_18000000-0x30_87ffffff] -> [pci 0x18000000-0x87ffffff 64bit mem]
+
+    };
+  }
+
+These look like three apertures to PCI, all of which are below 4GB on
+PCI (I'm not sure why the space code is 11b, which indicates 64-bit
+memory space).  But all of these are *above* 4GB on the upstream side
+of the PCI controller, so I have the same question about the 32-bit
+AXI-M bus.
+
+Maybe the translation in the pcie@3000000000 'ranges' should be in the 
+fabric-pcie-bus@3000000000 'ranges' instead?
+
+> > So is this patch a symptom that is telling us we're not paying
+> > attention to 'ranges' correctly?
+> 
+> Sounds to me like there's something missing core wise, if you've got
+> several drivers having to figure it out themselves.
+
+Yeah, this doesn't seem like something each driver should have to do
+by itself.
+
+> Daire seems to think what Frank's done should work here, but it'd need
+> to be looked into of course. Devicetree should look the same in both
+> cases, do you want it as a new version or as a follow up?
+
+I'd prefer if we could sort this out before merging this if we can.
+I'm not sure we can squeeze Frank's work in this cycle; it seems like
+we might be able to massage it and figure out some sort of common
+strategy for this situation even if DesignWare, Cadence, Microchip,
+etc need slightly different implementations.
+
+Bjorn
 
