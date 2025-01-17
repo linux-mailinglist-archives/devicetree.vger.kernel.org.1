@@ -1,175 +1,250 @@
-Return-Path: <devicetree+bounces-139259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FCF9A14DE5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:44:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA46AA14E01
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:53:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E28D188B71A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 10:44:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 549893A40FC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 10:53:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E78E11FCF55;
-	Fri, 17 Jan 2025 10:43:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 515801FC7F4;
+	Fri, 17 Jan 2025 10:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="geru5Syq";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="B2oF5WkX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lQ5DSdcE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7340197A92;
-	Fri, 17 Jan 2025 10:43:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 232331F91FF;
+	Fri, 17 Jan 2025 10:53:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737110630; cv=none; b=riAP2fKZYesDqmx670wb4ZRU2Y5oQ4jv0xmgdZBvVL5poUDM7mNy9h4iqTGzW6dvrLepnx83LJVKeVtBns94S/vbC1/v8sQXEPbdugDQqh07xpjXK/WHrKtImxP7msSdJWjTycOeRhTPZXyMzxTD1Js8BtOX/FBufSDlcSdZv6A=
+	t=1737111187; cv=none; b=Utr+oFjXHBIcz+GbaUEL/Fwcnx7WWRnsNQka7Kd2DNTgd9mCMwbVic6E++9ZDFn/iHucfUuCXENdbAPp+yH5Sn/pT73wxoRqwzvo6k/CRfGZqMy6rf3QMsH/6Xi3P2WfOTZzUGf6f60lsBYJKItXvmseD+6gsHg3kmilJ6QgImI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737110630; c=relaxed/simple;
-	bh=5NewX8NHGPfNkZZxy7sp53SgRS6M8CFgWnW7r958JTY=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=oEjF+csaAwK44W4RJxaQs9LRLUwiVWvj9xRg3fOcsQiiLbqJJ+uXzI7aY/GCL2ssgKh/rHpO1ZVkPAiLhUXoRZYWq54CP9V6STjnztCZh2/yRlr9Pe4JtBJe8TsZYbVs2CYgsF1o83JwxxWGr3XIK7V2r//GGY2GwxAKHejTUWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=geru5Syq; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=B2oF5WkX; arc=none smtp.client-ip=103.168.172.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
-Received: from phl-compute-09.internal (phl-compute-09.phl.internal [10.202.2.49])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id B08B91140120;
-	Fri, 17 Jan 2025 05:43:47 -0500 (EST)
-Received: from phl-imap-12 ([10.202.2.86])
-  by phl-compute-09.internal (MEProxy); Fri, 17 Jan 2025 05:43:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm3; t=1737110627;
-	 x=1737197027; bh=5NewX8NHGPfNkZZxy7sp53SgRS6M8CFgWnW7r958JTY=; b=
-	geru5Syqw7GW+AyBxO89327iRiLtoxevD9vie8au27kSQO9xKX3jAaVU+70FbV3L
-	sQqbOGSWn20R6nKGqhh16CcOArulIFXmV2fXpN6WfCTVRbBjwPoKndIBt3+McS21
-	Co8sfhmgrTm2hZnRphF7xPLaK1XEz1nXpzdUAebpNqVRdDUd6eq6sT4erj1tPgEJ
-	TaxTbv5UFDFlsFpo10CaMm8bZGEWcxRJGezsQRLFugJ6trJI2TyYkhHuXPpLI7t7
-	pNecpbHoYc43jYIIhxi2AHkC96KvcpXj4d/n6wDJqQFBVIv8aeDFU22PWoi8FZee
-	SAOHYKqTzz5s9hOVOfURzg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1737110627; x=
-	1737197027; bh=5NewX8NHGPfNkZZxy7sp53SgRS6M8CFgWnW7r958JTY=; b=B
-	2oF5WkXsmKDnChg6TVrQW5YJ6sBVSkm6ek5DY6TTNzEsQUNAC61abGXlpQeZ94xr
-	Qy45woYVPMOUQFhn2Wu+R4sS5NwUBBlAl0cr7dMyqtkwMvmYvQNwFZ65lZ/Qs4Y9
-	jjG8s6PoFJuLwDORPBAnBtWfcdU+SwJ4kZy2rC56yF0pNLHP2X/nQVtMWN/nVXVV
-	ccnKo+K0Tva7Tcjp4Dbk4e+oUce75sf9eQ7GvtzGCcxNXfcCdnTLopgh/tehN94V
-	fPOfXROKZkAfFg1FV5eUetEu0BvHC0uLzCx2Ff0UQvia04qKRSJyNcxKL7A8Y0d9
-	VjWwqaMdapvIWDdit/ONw==
-X-ME-Sender: <xms:YzSKZxfgojj1VPkaYEcn4XQBtMALhZb2dCWWO2LmGVasx1a0d3_e_Q>
-    <xme:YzSKZ_Mv2EEPxCrSHmCbLgw0rKw0g4DkLemALZOJHC7VcGp70s8FOWGliVcSSYpXY
-    gd5jgEhHPzK-Zs_WcU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudeifedgudelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtqhertdertdej
-    necuhfhrohhmpedflfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfh
-    hlhihgohgrthdrtghomheqnecuggftrfgrthhtvghrnheptdehveetudfguedvgeevgfef
-    vedthfffiedtgeeklefhuedugeevuefghfdvudehnecuffhomhgrihhnpegsohhothhlih
-    hnrdgtohhmnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
-    mhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomhdpnhgspghrtghpthhtoh
-    epudefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehtshgsohhgvghnugesrghl
-    phhhrgdrfhhrrghnkhgvnhdruggvpdhrtghpthhtohepghhrvghgohhrhidrtghlvghmvg
-    hnthessghoohhtlhhinhdrtghomhdprhgtphhtthhopehthhgvohdrlhgvsghruhhnsegs
-    ohhothhlihhnrdgtohhmpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhise
-    gsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghrihhkrghlohesghhmrghilhdrtgho
-    mhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
-    epkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghr
-    nhgvlhdrohhrghdprhgtphhtthhopehtrgiffhhikhdrsggrhihouhhksehmohgsihhlvg
-    ihvgdrtghomh
-X-ME-Proxy: <xmx:YzSKZ6gUhSnfSf-hBYKll4y7vbJcwRlnBitq-qW4GIW50Q9RmJ1KaA>
-    <xmx:YzSKZ68n_D2zRfbEeIG4YUW2EFQp0W9geb-LmE4aAgq6cIOhVzqvoQ>
-    <xmx:YzSKZ9vjm4Mh-vcQ4e-ZEo5DCQTpERaCtt0nTlGUbEy8LxINKCxmRQ>
-    <xmx:YzSKZ5Fi4ZBpE6OTsXgcXOysArA5kLUbvGbGVflErpzy7D0GwphpDA>
-    <xmx:YzSKZ2EmKb8b1aixDd10gEeM5dMbliZoRnvGvUvf6x0SkvYHua-EaKA2>
-Feedback-ID: ifd894703:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 228511C20066; Fri, 17 Jan 2025 05:43:47 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1737111187; c=relaxed/simple;
+	bh=clfmPsDnhw+wE0upSIEwc6wMMI+dZgv1+mZMbJmb82g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=COH/9Eviivq5dXpOI/Lc3mRfNBr5Fm7G8tSLhxcy+1gsTT9snLkZfsNbvCKvawpZuH1bfcbCn3lfdhdPILVlAkqH8mRymBPBV1GHoNYhuhlkZJonTnOWZoqBUefAwV94Np76Tuck+/P0cL7j3l86Ldfb4EhbShHAsZAsORtRlE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lQ5DSdcE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC224C4CEE2;
+	Fri, 17 Jan 2025 10:53:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737111186;
+	bh=clfmPsDnhw+wE0upSIEwc6wMMI+dZgv1+mZMbJmb82g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lQ5DSdcEkUPFYvHlXHE2A3iioHbUm8cVXx7u1kaT7Q4abfLBMul8QHLM+H2CrzTwG
+	 CQPn9ykaK3DoxKpj/p3PaPfli9VfxF8SZ8hCXhqRiF4UpKgG2cYbqCn09M7Bz6GQtM
+	 /cycsAhuI07gz5fGKLirnUrQYpvLGkA8DvCgABOSgdSP3/Nf/2T25oXYf49z7FjUUv
+	 HxC5EriEIOsFfPxHXXULyjjGHv6qct9NEQHDayaGFHUn7CiZ5YVuB1/UJBcucq5hoC
+	 oiBTn7cLIxPGBlf6C7e5hi0chkCkNjtUw/3VxSngzPzVJpl/2Vd2gnkj4bpFWyws8O
+	 o8TllyWw8ENAg==
+Date: Fri, 17 Jan 2025 10:53:01 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: daire.mcnamara@microchip.com, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, conor.dooley@microchip.com,
+	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ilpo.jarvinen@linux.intel.com,
+	kevin.xie@starfivetech.com, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v10 1/3] PCI: microchip: Fix outbound address translation
+ tables
+Message-ID: <20250117-curliness-flashback-83519e708b52@spud>
+References: <20250116-removed-evoke-1908811ab92a@spud>
+ <20250116180255.GA593378@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Fri, 17 Jan 2025 10:43:28 +0000
-From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
-To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
- "Rob Herring" <robh@kernel.org>
-Cc: "Aleksandar Rikalo" <arikalo@gmail.com>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
- "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <f9f11958-7c9a-47cb-b9b4-d921a8215ba6@app.fastmail.com>
-In-Reply-To: <87a5bpwz6v.fsf@BLaptop.bootlin.com>
-References: <20250116-cluster-hci-broken-v2-0-fc52cfb7a19e@bootlin.com>
- <20250116-cluster-hci-broken-v2-2-fc52cfb7a19e@bootlin.com>
- <20250116153637.GA2567996-robh@kernel.org>
- <87a5bpwz6v.fsf@BLaptop.bootlin.com>
-Subject: Re: [PATCH v2 2/5] dt-bindings: mips: mips-cm: Add a new compatible string for
- EyeQ6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="naCVrCOd0vJ9L2aC"
+Content-Disposition: inline
+In-Reply-To: <20250116180255.GA593378@bhelgaas>
+
+
+--naCVrCOd0vJ9L2aC
 Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
+On Thu, Jan 16, 2025 at 12:02:55PM -0600, Bjorn Helgaas wrote:
+> On Thu, Jan 16, 2025 at 05:45:33PM +0000, Conor Dooley wrote:
+> > On Thu, Jan 16, 2025 at 11:07:22AM -0600, Bjorn Helgaas wrote:
+> > > [+cc Frank, original patch at
+> > > https://lore.kernel.org/r/20241011140043.1250030-2-daire.mcnamara@mic=
+rochip.com]
+> > >=20
+> > > On Thu, Jan 16, 2025 at 04:46:19PM +0000, Conor Dooley wrote:
+> > > > On Thu, Jan 16, 2025 at 09:42:53AM -0600, Bjorn Helgaas wrote:
+> > > > > On Tue, Jan 14, 2025 at 06:13:10PM -0600, Bjorn Helgaas wrote:
+> > > > > > On Fri, Oct 11, 2024 at 03:00:41PM +0100, daire.mcnamara@microc=
+hip.com wrote:
+> > > > > > > From: Daire McNamara <daire.mcnamara@microchip.com>
+> > > > > > >=20
+> > > > > > > On Microchip PolarFire SoC (MPFS) the PCIe Root Port can be b=
+ehind one of
+> > > > > > > three general-purpose Fabric Interface Controller (FIC) buses=
+ that
+> > > > > > > encapsulate an AXI-M interface. That FIC is responsible for m=
+anaging
+> > > > > > > the translations of the upper 32-bits of the AXI-M address. O=
+n MPFS,
+> > > > > > > the Root Port driver needs to take account of that outbound a=
+ddress
+> > > > > > > translation done by the parent FIC bus before setting up its =
+own
+> > > > > > > outbound address translation tables.  In all cases on MPFS,
+> > > > > > > the remaining outbound address translation tables are 32-bit =
+only.
+> > > > > > >=20
+> > > > > > > Limit the outbound address translation tables to 32-bit only.
+> > > > > >=20
+> > > > > > I don't quite understand what this is saying.  It seems like th=
+e code
+> > > > > > keeps only the low 32 bits of a PCI address and throws away any
+> > > > > > address bits above the low 32.
+> > > > > >=20
+> > > > > > If that's what the FIC does, I wouldn't describe the FIC as
+> > > > > > "translating the upper 32 bits" since it sounds like the transl=
+ation
+> > > > > > is just truncation.
+> > > > > >=20
+> > > > > > I guess it must be more complicated than that?  I assume you ca=
+n still
+> > > > > > reach BARs that have PCI addresses above 4GB using CPU loads/st=
+ores?
+> > > > > >=20
+> > > > > > The apertures through the host bridge for MMIO access are descr=
+ibed by
+> > > > > > DT ranges properties, so this must be something that can't be
+> > > > > > described that way?
+> > > > >=20
+> > > > > Ping?  I'd really like to understand this before the v6.14 merge
+> > > > > window opens on Sunday.
+> > > >=20
+> > > > Daire's been having some issues getting onto the corporate VPN to s=
+end
+> > > > his reply, I've pasted it below on his behalf:
+> > > >=20
+> > > > There are 3 Fabric Inter Connect (FIC) buses on PolarFire SoC - eac=
+h of
+> > > > these FIC buses contain an AXI master bus and are 64-bits wide. The=
+se
+> > > > AXI-Masters (each with an individual 64-bit AXI base address =E2=80=
+=93 for example
+> > > > FIC1=E2=80=99s AXI Master has a base address of 0x2000000000) are c=
+onnected to
+> > > > general purpose FPGA logic. This FPGA logic is, in turn, connected =
+to a
+> > > > 2nd 32-bit AXI master which is attached to the PCIe block in RootPo=
+rt mode.
+> > > > Conceptually, on the other side of this configurable logic, there i=
+s a
+> > > > 32-bit bus to a hard PCIe rootport.  So, again conceptually, outbou=
+nd address
+> > > > translation looks like this:
+> > > >=20
+> > > >                  Processor Complex =C3=A0 FIC (64-bit AXI-M) =C3=A0=
+ Configurable Logic =C3=A0 32-bit AXI-M =C3=A0 PCIe Rootport
+> > > > 		 (This how it came to me from Daire, I think the =C3=A1 is meant =
+to
+> > > > 		 be an arrow)
+> > > >=20
+> > > >  This allows a designer two broad choices:
+> > > >=20
+> > > >     Choice of FIC (effectively choice of AXI bus)
+> > > >     Ability to offset the AXI address of any peripherals they add i=
+n the
+> > > >     Fabric.
+> > > >=20
+> > > > So, for the case of an outbound AXI address, from the processors=E2=
+=80=99 point
+> > > > of view (or Linux=E2=80=99 point of view if you prefer), the proces=
+sor uses a
+> > > > 64-bit AXI address, then =E2=80=93 in a very general way of viewing=
+ the process
+> > > > and thinking only about accessing the PCIe device =E2=80=93 the FPG=
+A logic can
+> > > > be configured to adjust that AXI-M address to any arbitrary =E2=80=
+=9Caddress=E2=80=9D
+> > > > before it passes that new =E2=80=9Caddress=E2=80=9D to the Root Por=
+t over a second 32-bit
+> > > > AXI bus (the main constraint is that the FPGA logic can only use a =
+32-bit
+> > > > address on that AXI-M interface to the Root Port).
+> > > >=20
+> > > > To manage this complexity, Microchip have design rules for customers
+> > > > building their FPGA logic where we strongly recommend that they only
+> > > > interact with  the upper 32 bits of the 64-bit address in the FPGA =
+logic
+> > > > and pass the lower 32 bits through (unmodified) to the AXI-M side o=
+f the
+> > > > PCIe Root Port. This allows them to =E2=80=9Cmove=E2=80=9D a 64-bit=
+ AXI-M window for their
+> > > > PCIe Root Port (as viewed by the processor) for their particular de=
+sign =E2=80=93
+> > > > if they need to - so that they can also access any other AXI-M wind=
+ows
+> > > > associated with any other peripherals they might add to their desig=
+n.
+> > > >=20
+> > > > In practise, so far, all customers, and our own internal boards hav=
+e all
+> > > > started by using one of two major reference designs from us (one us=
+ing FIC1
+> > > > where the AXI-M window destined for the PCIe Root Port starts at 0x=
+2000000000
+> > > > and one using FIC2 where its AXI-M window, again destined for the P=
+CIe Root
+> > > > Port starts at 0x3000000000).
+> > >=20
+> > > Is there something special about this that cannot be described by a DT
+> > > 'ranges' property?  This sounds conceptually similar to Frank's nice
+> > > picture at
+> > > https://lore.kernel.org/r/20241119-pci_fixup_addr-v8-2-c4bfa5193288@n=
+xp.com
+> >=20
+> > Aye, it is similar, it is described using ranges properties, will end
+> > up looking something like:
+>=20
+> So is this patch a symptom that is telling us we're not paying
+> attention to 'ranges' correctly?
 
+Sounds to me like there's something missing core wise, if you've got
+several drivers having to figure it out themselves.
 
-=E5=9C=A82025=E5=B9=B41=E6=9C=8817=E6=97=A5=E4=B8=80=E6=9C=88 =E4=B8=8A=E5=
-=8D=889:46=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
-[...]
+> The whole point of Frank's patches is to get rid of hard-coded masks
+> like MC_OUTBOUND_TRANS_TBL_MASK because because 'ranges' should
+> already contain that information.
+>=20
+> If 'ranges' is sufficent to describe the address spaces and
+> translations between them, the driver wouldn't need to be concerned
+> with FIC and AXI-M addresses; they would just be described in a
+> generic way in the DT 'ranges'.
 
-Hi all,
+Daire seems to think what Frank's done should work here, but it'd need
+to be looked into of course. Devicetree should look the same in both
+cases, do you want it as a new version or as a follow up?
 
->>
->> These 2 blocks don't look related and the only property shared is=20
->> 'compatible'. This should be a separate doc.
->
-> As mentioned in the cover letter, I reused the work from Jiaxun, who
-> needed to deal with bogus CM but in a different way. In his use case,
-> the issue with the CM was that the address in CP0 was wrong. In my cas=
-e,
-> this address is correct; it is only one piece of information reported =
-by
-> the CM that is wrong. I don't mind creating a separate doc if you
-> still think it is the right thing to do.
+Cheers,
+Conor.
 
-Precisely I'm dealing with two kind of systems, the first is systems doe=
-sn't
-come with CP0.CMCGRBase, and thus rely on DeviceTree for probing the CM.=
- The
-second is systems mapping CMGCR at inappropriate locations and we want k=
-ernel
-to remap it.
+--naCVrCOd0vJ9L2aC
+Content-Type: application/pgp-signature; name="signature.asc"
 
-We don't want reg property to be mandatory as we are dealing with a huge=
- amount
-of legacy systems which mapping CM registers at different locations, whi=
-le we
-have to use a uniformed built-in DT and probe mapping at runtime.
+-----BEGIN PGP SIGNATURE-----
 
-Thanks
-- Jiaxun
->
-> Gregory
->
->>
->> Rob
->
-> --=20
-> Gr=C3=A9gory CLEMENT, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4o2jQAKCRB4tDGHoIJi
+0hSSAP0fEWQvc3fUi1kJp3+GUXrZ4y7lgnUcHMqA08pU14t3eQEAnPJd7wB6gOtp
+/WWYI7OeLb1eK2w4ioOJM1NSePWCCgk=
+=ioTQ
+-----END PGP SIGNATURE-----
 
---=20
-- Jiaxun
+--naCVrCOd0vJ9L2aC--
 
