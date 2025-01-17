@@ -1,87 +1,84 @@
-Return-Path: <devicetree+bounces-139308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53084A15085
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:27:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15B2BA15091
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:32:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7220E1663E7
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:27:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71F943A4278
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:32:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8B961FF7C1;
-	Fri, 17 Jan 2025 13:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C04261FECCB;
+	Fri, 17 Jan 2025 13:32:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Iofmf2oL"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kCD/FxpJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0121F9F55;
-	Fri, 17 Jan 2025 13:27:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DA8C1FAC59;
+	Fri, 17 Jan 2025 13:32:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737120427; cv=none; b=CW3Vl29vnPDp4XYZ9HN59ovB+zdlj/istwDWMj7WnC1KJQMqEOaxP3QA3I20zogj7NbVAHdxF/Lp28YyG1os/An+KBf0S8+Wf5jplmkU/SSaRhaeb6CIbhepGT1vpwYRQOT3rw6ua3UbIt2I93iMV3lrn4YrSmq8hanwdNmywIk=
+	t=1737120748; cv=none; b=Fay+h92KOmRp+gLhVI70J7De4Xzogt8AjLilAPaX08OCkpBT8hqhBpC0aWLsBDVl3/Rq2Owspi7A4ZAZ55JpbQRVp/aB8UZAFDV9mT+hMkO0Ke34t/fglfkS02f0zlgbcBkuzXpbzYE3Iej7Cx+PfsZ5oCrBRdq+IxaFsVjT3Pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737120427; c=relaxed/simple;
-	bh=pZ8GrfB//8axkZeEjA8SPuZSPROwvtJF41KknQSFIYU=;
+	s=arc-20240116; t=1737120748; c=relaxed/simple;
+	bh=5dE65PivVkJpnuf6QH3J5aotbJvV6DTN/TNoDicZG7s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mfrYhGsDrQNEnFDJf9LH+SyjcrHRM11LIShGxQveXxDfd7Y1Q+Fr6mE+EwKitj7U7pv/zEPGKnOU+mk//KfNF7Zi2IJt720tJcNbUjSL6TuhHAL1B59jxspGU/KpGsoejCYqj0Bo7ZtJKwiAGOmC2L6fOcg/4syYkMKqfnlyfjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Iofmf2oL; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=pHDzcI6NQ8/AjLZTs0opjXr4KAKn9cfDi7fIyaFgnSOfBE4dcaMSjSck+gFV/XigwDIlja2fQp9ETKXmW/gZdkqlXm3nzECcAWBVomF7KAbcSqoensxxEGmYj8wt3BGrtjZhOY3EJVeWQjqbDbCWK8CT1YXbdmXrq+WKdxWO7FY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kCD/FxpJ; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737120425; x=1768656425;
+  t=1737120747; x=1768656747;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=pZ8GrfB//8axkZeEjA8SPuZSPROwvtJF41KknQSFIYU=;
-  b=Iofmf2oL0jKYxss/Mno3HdASo99QErehEVBgbaSIknR5i1INm4JPdDtG
-   YC5FLViPkDdsGBeNRJUfgIqyo8q63vdTA+P/CWa5+waOdnNIM5ZOS1uK8
-   RNRzPjjn3DZBE1j8RTNwmj0PwmWlMhZrzR5Y81OShow1VCJau1W13TA1r
-   NtQ43rW7N01qcSzeXajs6QaG72XEhB4ce4n4Q3GKCllk33tkKJbkKWWFd
-   YW0gn5ZdyoRysNPHgdS0MC7lCcFgtBYfMPzqUdcAm+bmW6gZL1BsjnHJx
-   rn94NxaXOzKCNv/6ibZSFLYKWuAmQwJjdUzx1DrpOSzEdk2Ewis+S1R3o
-   g==;
-X-CSE-ConnectionGUID: yi+RWNfuQDWkKHh4LknWOQ==
-X-CSE-MsgGUID: xwWI5T+BQuiGQbjb1AiYmw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="36829830"
+  bh=5dE65PivVkJpnuf6QH3J5aotbJvV6DTN/TNoDicZG7s=;
+  b=kCD/FxpJvWd5Thcp3K4/tew9slaSuONiGZdNBtW4QkDTNRg9jQGJo7HD
+   1xpcfGu4P/NV7+V+L/GTdVjvCB/QUWPV6IKXz/dNGXLz0b1mTPX+nu3Lf
+   2kFFbUfG3QnXtEkZnRTvfe5f1YP1N3U4IAywfDwSiP/bd9i4Mm2Nagy4g
+   o4vUVcY/Hld2/nPg/vZjKqPkwG4z9GXQAPCGTga6tFgQJzd6Lgb8tdRJo
+   iEwOvSJ1oOmFBXp4tmeBNBfKFY74NvBTq2fAqMlI7obYrKJovS7ceU2nh
+   ixnrRAZDrvic9VG3t0hHokkl6hT2a5ytjQ/EP5UUHAjIba5H1qX6J1BNC
+   A==;
+X-CSE-ConnectionGUID: /Td14s/AQ46LvYBmP/we1A==
+X-CSE-MsgGUID: uerWyPcHSE2a4CMA3tBqRA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="48214807"
 X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; 
-   d="scan'208";a="36829830"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 05:22:47 -0800
-X-CSE-ConnectionGUID: s6Wb8N8YR9ay6O3dr+luVA==
-X-CSE-MsgGUID: 0CgC1ijGTBaL4h4uG3coeA==
+   d="scan'208";a="48214807"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 05:32:26 -0800
+X-CSE-ConnectionGUID: QCuAczD5Sc6BbvS4vz7lYQ==
+X-CSE-MsgGUID: WuyCBBu8Tm2/xgvCNPmnWw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="129063946"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 17 Jan 2025 05:22:42 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tYmJ6-000TFX-1k;
-	Fri, 17 Jan 2025 13:22:40 +0000
-Date: Fri, 17 Jan 2025 21:22:15 +0800
-From: kernel test robot <lkp@intel.com>
-To: Pengyu Luo <mitltlatltl@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, Pengyu Luo <mitltlatltl@gmail.com>
-Subject: Re: [PATCH v4 2/3] platform: arm64: add Huawei Matebook E Go EC
- driver
-Message-ID: <202501172102.HQ2qqllb-lkp@intel.com>
-References: <20250116111559.83641-3-mitltlatltl@gmail.com>
+X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; 
+   d="scan'208";a="105660113"
+Received: from unknown (HELO smile.fi.intel.com) ([10.237.72.154])
+  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 05:32:24 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tYmST-000000024cA-1bF3;
+	Fri, 17 Jan 2025 15:32:21 +0200
+Date: Fri, 17 Jan 2025 15:32:20 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Felipe Balbi <balbi@kernel.org>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ferry Toth <fntoth@gmail.com>
+Subject: Re: [PATCH v1 2/3] usb: dwc3: gadget: Add support for
+ snps,reserved-endpoints property
+Message-ID: <Z4pb5CTS5n5wtJ7d@smile.fi.intel.com>
+References: <20250116154117.148915-1-andriy.shevchenko@linux.intel.com>
+ <20250116154117.148915-3-andriy.shevchenko@linux.intel.com>
+ <20250116233507.sifqs5u3rixoz4lw@synopsys.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,107 +87,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250116111559.83641-3-mitltlatltl@gmail.com>
+In-Reply-To: <20250116233507.sifqs5u3rixoz4lw@synopsys.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Pengyu,
+On Thu, Jan 16, 2025 at 11:35:19PM +0000, Thinh Nguyen wrote:
+> On Thu, Jan 16, 2025, Andy Shevchenko wrote:
 
-kernel test robot noticed the following build errors:
+...
 
-[auto build test ERROR on b323d8e7bc03d27dec646bfdccb7d1a92411f189]
+> >  	for (epnum = 0; epnum < total; epnum++) {
+> > -		int			ret;
+> > +		for (num = 0; num < count; num++) {
+> > +			if (epnum == eps[num])
+> > +				break;
+> > +		}
+> > +		if (num < count)
+> > +			continue;
+> 
+> You can probably rewrite this logic better.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Pengyu-Luo/dt-bindings-platform-Add-Huawei-Matebook-E-Go-EC/20250116-192206
-base:   b323d8e7bc03d27dec646bfdccb7d1a92411f189
-patch link:    https://lore.kernel.org/r/20250116111559.83641-3-mitltlatltl%40gmail.com
-patch subject: [PATCH v4 2/3] platform: arm64: add Huawei Matebook E Go EC driver
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20250117/202501172102.HQ2qqllb-lkp@intel.com/config)
-compiler: clang version 19.1.3 (https://github.com/llvm/llvm-project ab51eccf88f5321e7c60591c5546b254b6afab99)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250117/202501172102.HQ2qqllb-lkp@intel.com/reproduce)
+Any suggestions?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501172102.HQ2qqllb-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/platform/arm64/huawei-gaokun-ec.c:8:
-   In file included from include/linux/auxiliary_bus.h:11:
-   In file included from include/linux/device.h:32:
-   In file included from include/linux/device/driver.h:21:
-   In file included from include/linux/module.h:19:
-   In file included from include/linux/elf.h:6:
-   In file included from arch/s390/include/asm/elf.h:181:
-   In file included from arch/s390/include/asm/mmu_context.h:11:
-   In file included from arch/s390/include/asm/pgalloc.h:18:
-   In file included from include/linux/mm.h:2224:
-   include/linux/vmstat.h:504:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     504 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     505 |                            item];
-         |                            ~~~~
-   include/linux/vmstat.h:511:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     511 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     512 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/vmstat.h:524:43: warning: arithmetic between different enumeration types ('enum zone_stat_item' and 'enum numa_stat_item') [-Wenum-enum-conversion]
-     524 |         return vmstat_text[NR_VM_ZONE_STAT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~ ^
-     525 |                            NR_VM_NUMA_EVENT_ITEMS +
-         |                            ~~~~~~~~~~~~~~~~~~~~~~
->> drivers/platform/arm64/huawei-gaokun-ec.c:91:9: error: returning 'const u8 *' (aka 'const unsigned char *') from a function with result type 'void *' discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
-      91 |         return src + RESP_HDR_SIZE;
-         |                ^~~~~~~~~~~~~~~~~~~
->> drivers/platform/arm64/huawei-gaokun-ec.c:112:11: error: initializing '__u8 *' (aka 'unsigned char *') with an expression of type 'const u8 *' (aka 'const unsigned char *') discards qualifiers [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
-     112 |                         .buf = req,
-         |                                ^~~
-   3 warnings and 2 errors generated.
-
-
-vim +91 drivers/platform/arm64/huawei-gaokun-ec.c
-
-    88	
-    89	static inline void *extr_resp_shallow(const u8 *src)
-    90	{
-  > 91		return src + RESP_HDR_SIZE;
-    92	}
-    93	
-    94	struct gaokun_ec {
-    95		struct i2c_client *client;
-    96		struct mutex lock; /* EC transaction lock */
-    97		struct blocking_notifier_head notifier_list;
-    98		struct device *hwmon_dev;
-    99		struct input_dev *idev;
-   100		bool suspended;
-   101	};
-   102	
-   103	static int gaokun_ec_request(struct gaokun_ec *ec, const u8 *req,
-   104				     size_t resp_len, u8 *resp)
-   105	{
-   106		struct i2c_client *client = ec->client;
-   107		struct i2c_msg msgs[2] = {
-   108			{
-   109				.addr = client->addr,
-   110				.flags = client->flags,
-   111				.len = REQ_LEN(req),
- > 112				.buf = req,
-   113			}, {
-   114				.addr = client->addr,
-   115				.flags = client->flags | I2C_M_RD,
-   116				.len = resp_len,
-   117				.buf = resp,
-   118			},
-   119		};
-   120	
-   121		guard(mutex)(&ec->lock);
-   122		i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
-   123		usleep_range(2000, 2500); /* have a break, ACPI did this */
-   124	
-   125		return *resp ? -EIO : 0;
-   126	}
-   127	
+Thanks for the review!
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With Best Regards,
+Andy Shevchenko
+
+
 
