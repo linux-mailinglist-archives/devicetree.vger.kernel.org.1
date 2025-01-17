@@ -1,222 +1,191 @@
-Return-Path: <devicetree+bounces-139364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0746BA15550
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 18:09:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5C6DA15554
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 18:10:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 868123A35CE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 17:09:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11599188AF4D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 17:10:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0486C1A00F2;
-	Fri, 17 Jan 2025 17:09:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E6B81A00FA;
+	Fri, 17 Jan 2025 17:10:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="OjjnFUHT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mKCKU4TN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD72F19E99C
-	for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 17:09:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2057C19258B
+	for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 17:09:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737133750; cv=none; b=ba5n+zOPqAogYICv4ORNzEszqSRfEBbFtxwQ4zdiGUQrhESHFtFrj1kMjKUjhXkLRXqJ6tY0ku2d6B/Xet0T+8+JyxJPX1WNbXt8abZBS7/oBA9Bhgem5ZmEuGPuUF1BlRjUpDe5oiUPEcc7Wim4mRd3L42FAiep++E8SX4FL34=
+	t=1737133801; cv=none; b=qtBKMMShXcvHIht8I9+yuyeMJi6zY0Poa5DaMBjg8q6QFNjss6FBpuOPhPfZjJptTufz0wGXgBtHAYnGZwc/RYh67SCwTHQzcNvEsT6KsTOD5yhKyYxpCQuB+ZC1b5HNOK8+DNeon+5gOAi2XB39B1Zx2mJWmy+z1Kww5QQNcv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737133750; c=relaxed/simple;
-	bh=GQsq+F7zA1DuWpXElMWopd8uifYdKlm8EaeJLolsG1Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y5sZWkwjX5h343Wj+/XYN+nPNpval1DdlFHtYPmgiheDENXHCRmP980Y+Bad4TlPFVkBtVYhkNAcr6iY2xM2H5mh2BGdsXg4TqcR3nOacrs0S089uF4asNaZFwnZnpZ6ONrYs+MSrSlvtrut4TlKgSRURFFiX6pv7K1b2d+GTTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=OjjnFUHT; arc=none smtp.client-ip=209.85.167.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3ebb1652729so1249578b6e.3
-        for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 09:09:07 -0800 (PST)
+	s=arc-20240116; t=1737133801; c=relaxed/simple;
+	bh=7ANeKR3v+yRKzyRqPitJHgvF8fJkGhtW2OO51o2J7Ho=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NwGyTj+MuFOKfAZq/E64+TOgUpPZhcm/EkOoMxT8nX23lyA4hnq93oEATF5nF4/PDOJSQEcqWcpXhBddE2snGGcdHPJDjKyqxA+D26nZrg1jcHuZRdRBJ0Iry3c6X0676H2FsDofoUotzYE8c8u2jz8rX3pU9hJugHvRWWIWOUU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mKCKU4TN; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-aaeef97ff02so399966166b.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 09:09:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737133747; x=1737738547; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Pd2mM284nu/1WMfOl9weOh16uftldviBpS/+L7i4W1U=;
-        b=OjjnFUHTAg3o1YXzsp0NiYAPdtB9XWXMz0CJThgoeo3hFF8B8Z4V6b4Sposq2O2ety
-         vjU2GRxWBYC0wPD4hNHUTv3LZuKBzEVD/HCQgzM/NU4w4an+fcQr3Ftut62sf3WCMstz
-         TsGYWjQSmozrjnoUyEbor67GPpp8EneONu/v+KVL9botX0Q7EbfSJIU2N/uL2+XOSONw
-         VWgliiWsK5qWi9JSlhNCbbsvgVCN5eBewoObvxnMbiouC+EXh3hLCC/eOHuX4qYXc848
-         h7xaNqKw053clg6xvsSr8RNkK/XixmoDNpvVOYeRP4H1rHG8NeSIyfQVJpN2fsejA9P2
-         f7QA==
+        d=linaro.org; s=google; t=1737133797; x=1737738597; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VpofVFRqOOEG6qf6RBN58H/+7B1FAaQ0YrVaEqz5D7g=;
+        b=mKCKU4TNYB+1z6wfvIv+Xx+1nYC4LTkZok5bfAIfVlQWLPSVtwpLC8/D9h75JTh43I
+         eoMWNHZGjog7c2CeWYFZ98zWLL0XTgD1wIxq9WioiYkKWi51Xz48kWc/MAOGy8XG9zzn
+         phGjXg6fJa+8QR2hYt5DwosZ8CgvjVPWXpA0AiPZOWHBIImZDJOobgTx8jkuWQ2+yVuZ
+         tUWJSqFyd7Yf/VlCr5gFVfaonbjtQFsHsoIkpUjvYeGztOLsXUzW/XCuR1B3+/t81kqE
+         dmk8gLce2ISdeCTWPY+Ht//lnNSS3efkBtQnp+ZX7TR+kVzYfDDbCcIsMnCvzc9v3oZ/
+         pdIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737133747; x=1737738547;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pd2mM284nu/1WMfOl9weOh16uftldviBpS/+L7i4W1U=;
-        b=Mg7cYrdKz8gKAYEulz8NS/13hPA5FbOEVm8LxwsQrWVb5DONylg9xBFumBJ+EuwVNy
-         zYsT63SiJE85ehXTksrl//kKRbAfbAuNqaQAIbwH5VEEL7LYlpSL9l75yGS9FfLf1COL
-         qDEFmbFuZ/FHtPmBtdXKjSmicOA6/Fwhd/ZM9pvdLIRITwktRXQyZrBjhADUrIVy0dfX
-         rMHbZidDK3XNdKnoB7L8ooznAFuNoKYyGJSO7s1zT1cumQFjvBTMfQlYEkQa22dX8JqV
-         9L8AxB/c93GU3qSMtOHrQAJtOJ6VqJXL0IiAA/hvZNesW+zFnJ87kBzrwH3KMQsb5GZc
-         0GWw==
-X-Forwarded-Encrypted: i=1; AJvYcCUQeWvzV9jl8QSzU1sGEty/djZZi/zCfQJjgUO/A1dZcibwqIpUX+AdlO6vPBKNcrZUGlGrk8FGqk1b@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYvEd7/r0t45BuuwotXfnIW3JgvlLhIEBIPtWJEofyPH4NC6g8
-	fsTFGjtDahJWAjfpLgYjsrER5APQ4PzOr6grQfS6n/csCuFaNj1Xh31yktPt0jg=
-X-Gm-Gg: ASbGncs8oZa+fA+09UmzqMEbvhkJE0770b9OQlqntvbgP0jad8o7JNBG94JWGWhP0UI
-	5nWkA5jdBXPsYrdvm7Q4NjaRJyT50ZKXnQKA0ufQb93WpkSXExMwzw+UFa73LQsskjdUs6xQ9kT
-	hit/Ip8bTnZf/UlA/Ow6ZXa7+AD024frQdL81orN/ZDzfHi5oD2yqAIIPjgfGYGsRrf01C6cnvs
-	2VBaoNf4FaUJz8mAvsRYOBSJdzkWK63vVm57RMCaPhSOj331DwHIBhOotPCAYLTl6g9cmnjMvLe
-	eRRBHLfSvSulwFWVXw==
-X-Google-Smtp-Source: AGHT+IEPSz+mgL97otCibvYhbniO7AQ7rHqR/4jbswbIP8oUN5lgewAOdrBOIyHlAR7qfcfaHwbvmw==
-X-Received: by 2002:a05:6808:2199:b0:3eb:5c3d:35a7 with SMTP id 5614622812f47-3f19fd7b5d6mr2093866b6e.34.1737133746931;
-        Fri, 17 Jan 2025 09:09:06 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f19da6f3casm866483b6e.19.2025.01.17.09.09.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jan 2025 09:09:05 -0800 (PST)
-Message-ID: <67dc52c4-5252-40c3-b89e-8e46e3c2df27@baylibre.com>
-Date: Fri, 17 Jan 2025 11:09:03 -0600
+        d=1e100.net; s=20230601; t=1737133797; x=1737738597;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VpofVFRqOOEG6qf6RBN58H/+7B1FAaQ0YrVaEqz5D7g=;
+        b=Psld9BVQib3y076r9ju2WsjAcXEEihjulA4JG5FLa4EX88TWPYXjKryA2KVfCaynfO
+         q9KmjJrkBDRj6p6m4claCQcXlzw628xf3UUJIJ9XBJgVaz9pTeQXdaHpXzqbG/9N/RK6
+         RFBrsoI9WpfOv7nSZ4+aHUR/rk1Gbntdszs65aD6c2D+v4x9434cEQ2G/aQ1Z3DLF2oH
+         zEKbP1IvseSkQn6deKVXAfleYIQmLlItxuB/gatZSqKD5iLurMmVdVn1NzlwkAkkMy8g
+         s/F8k54H/O0YtzkIYorBTNKEuMYcC9E/M+/LwdK6pOaRRXdjJNMblWRQyUuhfy82YUE0
+         mslg==
+X-Forwarded-Encrypted: i=1; AJvYcCV3miQ7ldeM2tK5U69FowvAmeHbv7J6kSe4EUMkG6h79XHm0C48AMXxkfV8Y32Jp3TIfrXDXY1SfWPs@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsxlDjDpCCzyDH8XIAtfRkAEiS97q135QlZ8CUy+QP7/Dvuti/
+	a1eqH4LJmx9gVAKHPps8UAGsCtRszdwrEmZSSNkCmVVjZ0LqIsYDClMs5hFfg9g=
+X-Gm-Gg: ASbGncsymse547ALikKKV2RC0eMQ8YCiYrjbXAauEBnDndxkC/zFjSI1ymkx1iCl0yy
+	Mo1bhq0dhzhsVdgvdAPo9Ueij9CU8ob/1s4fHCBrg9nn7vI3ro8AwE7XhcflRO1BZCtOo/ubrFW
+	zMIzD3JmJqD2LqOmm1vV5+GfLSPkFDlmu1uHvVx2qRhhZFnCKDjtqJgW6H4XpO2N6KJurv+tKTf
+	RlR/WoQO7IglWPvdRRUxm+Hy32+cIBHuXFH63OkJAaLpOifGjpmM/Foit/o7sAeLzUv8oQJVDAL
+	tOw10VhP7KKHShEIOXwS1nPYcOA0wSEKx0kbBJ06
+X-Google-Smtp-Source: AGHT+IFs8RJ3NO2OT33SRqFUyUB/tvu/B+LNlrcE6krOU8A6UpaUH6OiJazjufKRn27kaO1pthKstw==
+X-Received: by 2002:a17:907:72ce:b0:aa6:7df0:b17a with SMTP id a640c23a62f3a-ab38b29b08dmr459543766b.34.1737133797425;
+        Fri, 17 Jan 2025 09:09:57 -0800 (PST)
+Received: from puffmais.c.googlers.com (140.20.91.34.bc.googleusercontent.com. [34.91.20.140])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384f87065sm199197966b.133.2025.01.17.09.09.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 17 Jan 2025 09:09:56 -0800 (PST)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Subject: [PATCH v4 0/4] Google Pixel 6 (simple) framebuffer support
+Date: Fri, 17 Jan 2025 17:09:53 +0000
+Message-Id: <20250117-gs101-simplefb-v4-0-a5b90ca2f917@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 14/17] iio: adc: ad4695: Add support for SPI offload
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Mark Brown <broonie@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
- <ukleinek@kernel.org>, Michael Hennerich <Michael.Hennerich@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
- Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20250113-dlech-mainline-spi-engine-offload-2-v7-0-e0860c81caae@baylibre.com>
- <20250113-dlech-mainline-spi-engine-offload-2-v7-14-e0860c81caae@baylibre.com>
- <ls32gl5a7nsihmmpfabxhm6ilg7idyxdhyrhbkay6e2fiokoah@o5ujfxlsq3s3>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <ls32gl5a7nsihmmpfabxhm6ilg7idyxdhyrhbkay6e2fiokoah@o5ujfxlsq3s3>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAOKOimcC/3XM0QqCMBTG8VeRXbc456g5u+o9oos5jzowJ1tII
+ b57UwgK6fL74PefRWBvOYhzMgvPkw3WDXFkh0SYTg8tS1vHLQgoQ8KTbAMCymDvY89NJZXWrIA
+ KxXUhIho9N/a5Ba+3uDsbHs6/tv6E6/s3NaEEqYzRNaoUSOGlt4P27uh8K9bWRF+eYOcpeoOgV
+ VNyVkK18+nH54CY73wafU5sdKpzRVXx45dleQNfaq6rLQEAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.13.0
 
-On 1/17/25 9:47 AM, Angelo Dureghello wrote:
-> Hi,
-> 
-> noticed just one possible issue here, see below.
-> 
-> On 13.01.2025 15:00, David Lechner wrote:
->> Add support for SPI offload to the ad4695 driver. SPI offload allows
->> sampling data at the max sample rate (500kSPS or 1MSPS).
->>
->> This is developed and tested against the ADI example FPGA design for
->> this family of ADCs [1].
->>
->> [1]: http://analogdevicesinc.github.io/hdl/projects/ad469x_fmc/index.html
->>
->> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
->> Reviewed-by: Nuno Sa <nuno.sa@analog.com>
->> Signed-off-by: David Lechner <dlechner@baylibre.com>
->> ---
->>
->> v7 changes: none
->>
->> v6 changes:
->> * Fixed use of c++ style comments
->> * Moved static const struct definition out of probe function
->> * Changes bits_per_word to always be 19 for future oversampling
->>   compatibility (Trevor is working on implementing oversampling support
->>   on top of this patch, so we have high confidence this is the correct
->>   thing to do)
->> * Fixed wrong xfer->len
->>
->> v5 changes:
->> * Register SCLK speed handling has been split out into a separate series.
->> * Add sampling_frequency_available attribute.
->> * Limit max allowed sampling frequency based on chip info.
->> * Expand explanations of offload enable/disable ordering requirements.
->> * Finish TODO to use macros for phandle arg values.
->> * Don't use dev_info() when falling back to non-offload operation.
->> * Update to accommodate changes in other patches in this series.
->>
->> v4 changes: new patch in v4
->> ---
->>  drivers/iio/adc/Kconfig  |   1 +
->>  drivers/iio/adc/ad4695.c | 445 +++++++++++++++++++++++++++++++++++++++++++++--
->>  2 files changed, 429 insertions(+), 17 deletions(-)
->>
->> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
->> index 995b9cacbaa964d26424346120c139858f93cdcd..ec60b64c46e187e2be18ab1f8ca9e6f4f03299f9 100644
->> --- a/drivers/iio/adc/Kconfig
->> +++ b/drivers/iio/adc/Kconfig
->> @@ -52,6 +52,7 @@ config AD4695
->>  	tristate "Analog Device AD4695 ADC Driver"
->>  	depends on SPI
->>  	select IIO_BUFFER
->> +	select IIO_BUFFER_DMAENGINE
->>  	select IIO_TRIGGERED_BUFFER
->>  	select REGMAP
->>  	help
->> diff --git a/drivers/iio/adc/ad4695.c b/drivers/iio/adc/ad4695.c
->> index 13cf01d35301be40369571e7dd2aeac1a8148d15..c8cd73d19e869f11999608f61df5724d329b4427 100644
->> --- a/drivers/iio/adc/ad4695.c
->> +++ b/drivers/iio/adc/ad4695.c
->> @@ -19,14 +19,19 @@
->>  #include <linux/device.h>
->>  #include <linux/err.h>
->>  #include <linux/gpio/consumer.h>
->> +#include <linux/iio/buffer-dmaengine.h>
->>  #include <linux/iio/buffer.h>
->>  #include <linux/iio/iio.h>
->>  #include <linux/iio/triggered_buffer.h>
->>  #include <linux/iio/trigger_consumer.h>
->>  #include <linux/minmax.h>
->> +#include <linux/mutex.h>
->>  #include <linux/property.h>
->> +#include <linux/pwm.h>
->>  #include <linux/regmap.h>
->>  #include <linux/regulator/consumer.h>
->> +#include <linux/spi/offload/consumer.h>
->> +#include <linux/spi/offload/provider.h>
->>  #include <linux/spi/spi.h>
->>  #include <linux/units.h>
-> 
-> ...
-> 
->> +static int ad4695_offload_trigger_request(struct spi_offload_trigger *trigger,
->> +					  enum spi_offload_trigger_type type,
->> +					  u64 *args, u32 nargs)
->> +{
->> +	struct ad4695_state *st = spi_offload_trigger_get_priv(trigger);
->> +
->> +	/* Should already be validated by match, but just in case. */
->> +	if (nargs != 2)
->> +		return -EINVAL;
->> +
->> +	/* DT tells us if BUSY event uses GP0 or GP3. */
->> +	if (args[1] == AD4695_TRIGGER_PIN_GP3)
->> +		return regmap_set_bits(st->regmap, AD4695_REG_GP_MODE,
->> +				       AD4695_REG_GP_MODE_BUSY_GP_SEL);
->> +
->> +	return regmap_clear_bits(st->regmap, AD4695_REG_GPIO_CTRL,
->> +				 AD4695_REG_GP_MODE_BUSY_GP_SEL);
-> 
-> This should probably be:
->          
->         return regmap_clear_bits(st->regmap, AD4695_REG_GPIO_MODE,
->                                  AD4695_REG_GP_MODE_BUSY_GP_SEL);
-> 
+Hi,
 
-Indeed, thanks! Hopefully we won't need a v8 and Jonathan can fix while
-applying. :-)
+This series enables simple framebuffer support on Google Pixel 6 and
+Pixel 6 Pro.
 
->> +}
->> +
-> 
-> Regards,
-> angelo
-> 
+Even if simple-framebuffer is deprecated and DRM should be used
+instead, having it available in DT is beneficial for several reasons at
+this point in time (the phone uses an OLED display):
+* energy consumption goes down significantly, as it changes from white
+  (as left by bootloader) to black (linux console), and we generally
+  don't run out of battery anymore when plugged into a USB port
+* less of a burn-in effect I assume
+* phone stays cooler due to reduced energy consumption by display
+
+Since Pixel 6 and Pixel 6 Pro use a different resolution display, this
+is the time to separate them into their respective DTs, and provide one
+for each of them. There are other differences between the two, like
+battery design capacity, but they don't matter at this stage due to
+incomplete upstream support.
+
+* dependency note *
+
+None (anymore) - earlier versions of this series had dependencies, but
+those are all part of linux-next already, so none remain.
+
+* dependency note end *
+
+For those who want to try this out:
+The stock bootloader disables the decon hardware trigger before jumping
+to Linux, preventing framebuffer updates from reaching the display. We
+have added a work-around in our Yocto BSP layer for the time being
+(until a proper display exists upstream). An alternative might be to
+port and use uniLoader from https://github.com/ivoszbg/uniLoader, as
+seems to be done for some other Exynos platforms.
+
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+Changes in v4:
+- fix an unintended whitespace error introduced in patch 4 in v3
+- Link to v3: https://lore.kernel.org/r/20250115-gs101-simplefb-v3-0-52eca3a582b7@linaro.org
+
+Changes in v3:
+- back to using separate DTBs for Pixel 6 and Pixel 6 Pro (Krzysztof)
+- update name of common dtsi file (Krzysztof)
+- use 'memory-region' property from the start in patch 2, don't
+  introduce it as change in patch 3 (Krzysztof)
+- Link to v2: https://lore.kernel.org/r/20241220-gs101-simplefb-v2-0-c10a8f9e490b@linaro.org
+  and https://lore.kernel.org/r/20241220-gs101-simplefb-oriole-v2-1-df60e566932a@linaro.org
+
+Changes in v2:
+- We now have a generic gs101-based Pixel board DT, which can work on
+  any Pixel 6 / 6 Pro / 6a
+- Pixel 6 (Pro) are overlays onto that one.
+  This has the advantage that all boards can be supported without
+  having to have a full copy of the DT for each of them. We still
+  instruct kbuild to create merged DTBs (in addition to the DTBOs) so
+  that existing scripts can keep working while giving the option to
+  just apply the overlay before boot (e.g. by the bootloader).
+- The binding has been updated according to the above points
+- I've changed the simple-framebuffer node to specify the memory via
+  memory-region instead of reg, as that avoids unnecessary duplication
+  (of the size), and it avoids having to specify #address-cells
+  and #size-cells in the chosen node (and duplicating this in the
+  DTSO), which is otherwise necessary to keep dt_binding_check happy
+  and DT validation working in general.
+- sort overriding/extending nodes ordered by label name (Krzysztof)
+- format patches with diff.renames=copies (Krzysztof)
+- dependencies have been updated, see below
+- Link to v1: https://lore.kernel.org/r/20241216-gs101-simplefb-v1-0-8ccad1830281@linaro.org
+
+---
+André Draszik (4):
+      dt-bindings: arm: google: add gs101-raven
+      arm64: dts: exynos: gs101-oriole: configure simple-framebuffer
+      arm64: dts: exynos: gs101-oriole: move common Pixel6 & 6Pro parts into a .dtsi
+      arm64: dts: exynos: gs101-raven: add new board file
+
+ Documentation/devicetree/bindings/arm/google.yaml  |   3 +-
+ arch/arm64/boot/dts/exynos/google/Makefile         |   1 +
+ arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 267 +--------------------
+ .../{gs101-oriole.dts => gs101-pixel-common.dtsi}  |  22 +-
+ arch/arm64/boot/dts/exynos/google/gs101-raven.dts  |  29 +++
+ 5 files changed, 58 insertions(+), 264 deletions(-)
+---
+base-commit: 4e16367cfe0ce395f29d0482b78970cce8e1db73
+change-id: 20241216-gs101-simplefb-8aae80278ed7
+
+Best regards,
+-- 
+André Draszik <andre.draszik@linaro.org>
 
 
