@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-139266-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139267-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65578A14E4E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:18:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E1ADA14E50
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:19:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C86BE3A5E02
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:18:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C50C73A618D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:19:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6761F8EF6;
-	Fri, 17 Jan 2025 11:18:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D38DA1FCCE6;
+	Fri, 17 Jan 2025 11:19:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fbJ37ozr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X1QcsBtM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E850346BF;
-	Fri, 17 Jan 2025 11:18:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA63246BF;
+	Fri, 17 Jan 2025 11:19:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737112730; cv=none; b=YGdafdKxB4XqdK7wJqv7YEXWWHIjhXm8uv1gCJU5sg6RcSfOAhikqc7Sz7YqI5+T4GKGmkbLuegScFbzNpXv4hue3J1kShsfcNiUNxvmHv92Xf1lL8swVdUDwAdPwqR/PCYifCh4FihI4KlYNfx1YKW5lw4gERqlOOlK4PXIGbI=
+	t=1737112755; cv=none; b=J7KUQtfEEafI4MM7it0HrFGaXoUY/Zv6t12lpM25OE4H2zXg983BbFKV2nzOZ2Kt473KUYSog3PIF1eQHxsSPrvJ/RuggcelP1+rPWwKR7lp3NuN7LBzvsY6VqY8dzuRGRlLRDeHfWMqt9CpNbw0+sI4su/bCyLJH28z3GisbKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737112730; c=relaxed/simple;
-	bh=x/g3x6sz2RTUMZnkKe27ZKKqBVRHfX+QxMCABkk110A=;
+	s=arc-20240116; t=1737112755; c=relaxed/simple;
+	bh=GOplDAuqpzB69GzKtUb6aSRYnm72cwIYrA5tNSUiinI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kBZjinqpqJCgkezNiymgQaRKmlgvxcQ+iDn/YW4EsJH26mlaFI+9kAexc8XmqSHjeLfFV5yCNAbt5tuosz3wP99IvJIXcZfwrL5fNYBek/XcUpYMFqHMD4NKbDWcstYfo9EX3r23JtEqYokNmMihUfNYCCbcxtjnoCTj66ppahU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fbJ37ozr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 735F6C4CEDD;
-	Fri, 17 Jan 2025 11:18:45 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=C1i1TU3SApyDpMzPpzOCZQR4WC4yIrrQb0FeRf6eCWh3G1D6Tb2GKelnf3nISV8nhGktv7ZGslzY8rj/YSenNamDSt6z6yoyWBeRW3XFgxBQHQfqYAk3ywXwo1Q57FxeaZ5Pyop9R2pNdX7/YCl31Qbwdw9cbxZFDM5Kn205oXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X1QcsBtM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D99C4C4CEDD;
+	Fri, 17 Jan 2025 11:19:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737112729;
-	bh=x/g3x6sz2RTUMZnkKe27ZKKqBVRHfX+QxMCABkk110A=;
+	s=k20201202; t=1737112755;
+	bh=GOplDAuqpzB69GzKtUb6aSRYnm72cwIYrA5tNSUiinI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fbJ37ozrCxWzD5TxiG+CLVzATOmD/TCA/+R07UEfAyxWtVHa3z3YzbEPNkHM6v/KD
-	 hJpJ9pLNMWJ3Ug17VKnItRtIDjKB9RRLNJqVkTI7Wz0hYop3BfMDdwkwjcc1JRG5pK
-	 EjeFnjuY6JhjkHy2fchGaX3+LUwzcTmFiun+nZ82Kwvwm16RN0ePNBDB+2HQ6n6PLk
-	 /0K4kHgeaenu/lDSTyc1fsisf+hgPBgGlWQV3k+mHPdAV1hQXgTvOuk9MA8rPjammw
-	 CqhJS/fg5s88NfcnLLIgzRguuq5BdBM9ljvf6IWm7D2kdT/897/z/sZYz2ynqIJ0PV
-	 dyEEGLuyZjs2Q==
-Message-ID: <aa551d22-d5f6-47c5-afee-eff97c038881@kernel.org>
-Date: Fri, 17 Jan 2025 12:18:43 +0100
+	b=X1QcsBtMqFsqaleLKoJEY1Xx8tys61T+cwKEh8CvbxwursXJYTe1th7PxK9agKiA8
+	 UIMoT4plTf8k0J2lFc3rkVOMR/oUr45lG2NXY9fFDsnxcN0zS4ce7ydJ30eoIMLFmy
+	 U2FUz7wwP6cujy9QlJMYAHyxASSVTGyy75Vgit9mNpNb57GlKTgMMlYkCFTB40J8OK
+	 LIVKht45rXZUjVUU0S+oyidgMReD8fqY/uKHsrHUgplxf8Waf7H7kLj8GZJqwfO2aZ
+	 lVVHrkMFZ2MqYH2qTs55dcH9Z+MGxccD9s1L9osOVsTPzbf+Nb3tiXXTtrh4SVNVQx
+	 rgSQNG9xpU73Q==
+Message-ID: <2dfd2368-0924-40a2-af6b-53d60fa5254a@kernel.org>
+Date: Fri, 17 Jan 2025 12:19:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] arm64: dts: rockchip: add overlay test for Edgeble
- NCM6A
+Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: add overlay tests for Rock
+ 5B PCIe overlays
 To: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
@@ -61,7 +61,7 @@ Cc: Michael Riesch <michael.riesch@wolfvision.net>,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
  Quentin Schulz <quentin.schulz@cherry.de>
 References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
- <20250116-pre-ict-jaguar-v2-1-157d319004fc@cherry.de>
+ <20250116-pre-ict-jaguar-v2-2-157d319004fc@cherry.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,37 +107,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250116-pre-ict-jaguar-v2-1-157d319004fc@cherry.de>
+In-Reply-To: <20250116-pre-ict-jaguar-v2-2-157d319004fc@cherry.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 16/01/2025 15:47, Quentin Schulz wrote:
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index 86cc418a2255cdc22f1d503e9519d2d9572d4e9d..3f92d1a9d0b6efeee46ad4aff8c2b8ed3cb83d73 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -134,7 +134,6 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-w3.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-evb.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-genbook.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-io.dtb
-> -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtbo
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6b-io.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-friendlyelec-cm3588-nas.dtb
-> @@ -163,3 +162,8 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
-> +
-> +# Overlays
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
-> +
-> +rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb rk3588-edgeble-neu6a-wifi.dtbo
-
-I think usually these two lines are reversed, so first you define what
-is rk3588-edgeble-neu6a-wifi.dtb and then use it in dtb-rockchip.
-
-But that might be just convention, so this is also fine for me:
+> From: Quentin Schulz <quentin.schulz@cherry.de>
+> 
+> According to commit 40658534756f ("arm64: dts: rockchip: Add rock5b
+> overlays for PCIe endpoint mode"), Rock 5B can operate in PCIe endpoint
+> mode. For that to work, the rk3588-rock-5b-pcie-ep.dtbo overlay needs to
+> be applied on Rock 5B base Device Tree. If that Rock 5B is connected to
+> another Rock 5B, the latter needs to apply the
+> rk3588-rock-5b-pcie-srns.dtbo overlay.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
