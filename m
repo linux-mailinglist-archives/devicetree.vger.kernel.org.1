@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-139229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09B14A14B3A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 09:31:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1876FA14B50
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 09:41:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 127EE3A8AF8
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 08:31:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79BA63A1735
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 08:41:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 343AA1F91C3;
-	Fri, 17 Jan 2025 08:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89D91F8910;
+	Fri, 17 Jan 2025 08:41:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q5Hz2aT8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n3Gr3JTF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2AFA82890;
-	Fri, 17 Jan 2025 08:30:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94521F76BD;
+	Fri, 17 Jan 2025 08:41:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737102657; cv=none; b=I2DfeSNCkvMbaYICZXmuOeKchK1P+p1iwuY6sFSh2K0uenCiQUtIxcYX19YHUdkCHVzxzA56gBf6FYp9e299wg4UHZJG948K6t0gHioBvIs7f9jCF3O67Csf2oaCutqVubhOafWgNDtIcyt9T46pY/HbkMtx3au6NatFe1PrHeM=
+	t=1737103271; cv=none; b=KOGmAL7iPVUjnLYl/3wi/auncOMk7hU1JZgEcoArHKmO8vsIr7t6bp7CnLuHitmCxF6Nj2Ioa87VkYDSXHhhYUcBrYqq5vEulFzyoj87KHsgEQUae7Z0C7ggQzMRl/WJCnhBES6FvVko85e1VtiUgGlU1Po21Mt65HWm7G02r8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737102657; c=relaxed/simple;
-	bh=2UtljXZTNljFm0IjmFEyVoIjU7dljBpQ5XDHRVlupyg=;
+	s=arc-20240116; t=1737103271; c=relaxed/simple;
+	bh=kGwC5vFFwzp3w+dyxaz6e/ANo3uETs7cf9+OazoI00A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kIyKAFWPaCzt3CjJ9bVKFVz4fquGAXDQ4Jy4PrFSi1IE0gaGB1G+Yhg6P456/xJef5iOXU4DjHXpgyhas9YoatYtOCOAvV8ufxkCIDkZ8zBNy7ITg2vxSEb/E2wq7067lUlo6ABlNztXkHlZ+U+8U3KPtxQXRnncoRDKHbDnQrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q5Hz2aT8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4D69C4CEDD;
-	Fri, 17 Jan 2025 08:30:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rI4UNq2TDvXcsm/yfIaEoBdYmSZmW5Prhdcake+iXFjvv7wwTv2QNDCvC2VUZAN+YkZYrpxfxFYVmghpNQFOD+aEO8EYY0VzsSDU7XUzrejkERreiYBWPdZ7KEqAjcAAZYW18qp+ptjmTC14CK5Lg03uWhs3HDKb57rNXN6cxwg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n3Gr3JTF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85B44C4CEDD;
+	Fri, 17 Jan 2025 08:41:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737102656;
-	bh=2UtljXZTNljFm0IjmFEyVoIjU7dljBpQ5XDHRVlupyg=;
+	s=k20201202; t=1737103270;
+	bh=kGwC5vFFwzp3w+dyxaz6e/ANo3uETs7cf9+OazoI00A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q5Hz2aT8+iVMXytCA7YlB3wighnXP4RVRo35Ap9zoRsbQ84C4EoAslSG8/KBvznba
-	 LVmlOaN6d66wXJ6Dr2xgSub15vyzXGMMaWPr0Ncj73HOAOqkyrWPKwuM7a0bITl5W6
-	 gyCg8O1JK6+1cjszgYrHR2MooddtG5htNXmJpi4xePWg06oO4GxymQOV56mOcvzvbq
-	 WDaghAMl+4LQiQbtG/htARK0MG6Sg1TQSfXl1RBgP1CpDGQWWS+t0jFDm3sgfHaaId
-	 qsmLc+vuoqoUwH/L2Mr5QXTx8zqRkxKfCjqrEEWE4rn0qYGBd0oU3asgyjllgMpDY7
-	 51WlK3s4U5gnA==
-Date: Fri, 17 Jan 2025 09:30:53 +0100
+	b=n3Gr3JTF8hmWPXIiNSO1Avv80+CZsRG+ZZdaKq+av8p12+FcomDCLDZJnEZ6KOSul
+	 7S7Y4XKsiK9ATHyhow6VsigSFfS2WIOTRVlbuuoAXRxSmTgPr4XJR1J8XuPkkp5nlL
+	 Yiv+1424bVYMLa8qgXrZDlb/ogzSIhEblC4Azmzmh6CohwGAnDRt21jHVHZnMeLqQo
+	 QMqpi7MX+uggyXaGmZ3Y3ODNPv0UGPq4Srh3LlO8P/KKGxlvAD/2qmEU37GSixr8lj
+	 wiclioW1A1FmJ589KM53EHUR7FK/v3c+KnHS5A3wi51R8J1tqrxNPtywdZd05wKUY9
+	 ENIBGMAEE2VeA==
+Date: Fri, 17 Jan 2025 09:41:07 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Leo Yang <leo.yang.sy0@gmail.com>
-Cc: jdelvare@suse.com, linux@roeck-us.net, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, Leo-Yang@quantatw.com, corbet@lwn.net, 
-	Delphine_CC_Chiu@wiwynn.com, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: hwmon: ti,ina2xx: Add INA233 device
-Message-ID: <20250117-kind-poodle-of-economy-c0e7c8@krzk-bin>
-References: <20250116085939.1235598-1-leo.yang.sy0@gmail.com>
- <20250116085939.1235598-2-leo.yang.sy0@gmail.com>
- <20250116-athletic-prehistoric-worm-36ffcb@krzk-bin>
- <CAAfUjZGSgdQYwC24S__EO13-q1HQWVkUP7oDgJm-=AeeXgr1DQ@mail.gmail.com>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v3 4/5] arm64: dts: amlogic: a4: add pinctrl node
+Message-ID: <20250117-fascinating-ape-of-upgrade-0c298b@krzk-bin>
+References: <20250115-amlogic-pinctrl-v3-0-2b8536457aba@amlogic.com>
+ <20250115-amlogic-pinctrl-v3-4-2b8536457aba@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,53 +63,117 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAAfUjZGSgdQYwC24S__EO13-q1HQWVkUP7oDgJm-=AeeXgr1DQ@mail.gmail.com>
+In-Reply-To: <20250115-amlogic-pinctrl-v3-4-2b8536457aba@amlogic.com>
 
-On Thu, Jan 16, 2025 at 09:52:08PM +0800, Leo Yang wrote:
-> Hi Krzysztof,
->=20
-> On Thu, Jan 16, 2025 at 6:47=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.=
-org> wrote:
-> >
-> > > +      This value will be used to calculate the Current_LSB and curre=
-nt/power
-> > > +      coefficient for the pmbus and to calibrate the IC.
-> > > +    minimum: 32768
-> > > +    maximum: 4294967295
-> >
-> > Uh, are these real values measurable by the device? The last one looks
-> > like UINT_MAX.
->=20
-> According to the spec I don't see a definition of the upper limit of the
-> current measurement, it all depends on how low the shunt resistance can
-> be, so I'll use the upper limit of the u32 as the maximum for now, even
-> though it's unlikely that this number will be present in the actual circu=
-it.
->=20
-> >
-> > > +    default: 32768000
-> >
-> > Default is 32 A? For what applications is this sensor used?
-> >
->=20
-> According to spec 8.2.2.1 Programming the Calibration Register example,
-> a Current_LSB with a maximum expected current of 15A is approximately
-> 457.7uA.
-> The example shows that a Current_LSB of 500 or 1000uA/bit can be used.
-> So I choose 1000uA as the default value here, this value corresponds to
-> the expected maximum current which is 32A (with some loss of accuracy to
->  have a larger measurement range), and yes maybe the user doesn't
-> need such a large current, so the accuracy-sensitive use of the scene
-> can be adjusted according to the actual measurement range of the
-> expected maximum current, I'm trying to retain some flexibility for the
-> user.
->
+On Wed, Jan 15, 2025 at 02:42:02PM +0800, Xianwei Zhao wrote:
+> Add pinctrl device to support Amlogic A4 and add uart pinconf.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 133 ++++++++++++++++++++++++++++
+>  1 file changed, 133 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> index de10e7aebf21..8eb95580d64a 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+> @@ -5,6 +5,7 @@
+>  
+>  #include "amlogic-a4-common.dtsi"
+>  #include <dt-bindings/power/amlogic,a4-pwrc.h>
+> +#include <dt-bindings/pinctrl/amlogic,pinctrl.h>
+>  / {
+>  	cpus {
+>  		#address-cells = <2>;
+> @@ -48,3 +49,135 @@ pwrc: power-controller {
+>  		};
+>  	};
+>  };
+> +
+> +&apb {
+> +	periphs_pinctrl: pinctrl {
+> +		compatible = "amlogic,pinctrl-a4";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		gpiox: gpio@4100 {
+> +			reg = <0 0x4100 0 0x40>,
+> +			      <0 0x400c 0 0xc>;
 
-Datasheet indeed does not describe actual limits, expect 5 mA on the
-pin, but that depends on shunt resistor, so fine with me:
+One line
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +			reg-names = "gpio", "mux";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			bank-number = <AMLOGIC_GPIO_X>;
+> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_X<<8) 18>;
+> +		};
+> +
+> +		gpiot: gpio@4140 {
+> +			reg = <0 0x4140 0 0x40>,
+> +			      <0 0x402c 0 0xc>;
+> +			reg-names = "gpio", "mux";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			bank-number = <AMLOGIC_GPIO_T>;
+> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_T<<8) 23>;
+> +		};
+> +
+> +		gpiod: gpio@4180 {
+> +			reg = <0 0x4180 0 0x40>,
+> +			      <0 0x4040 0 0x8>;
+> +			reg-names = "gpio", "mux";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			bank-number = <AMLOGIC_GPIO_D>;
+> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_D<<8) 16>;
+> +		};
+> +
+> +		gpioe: gpio@41c0 {
+> +			reg = <0 0x41c0 0 0x40>,
+> +			      <0 0x4048 0 0x4>;
+> +			reg-names = "gpio", "mux";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			bank-number = <AMLOGIC_GPIO_E>;
+> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_E<<8) 2>;
+> +		};
+> +
+> +		gpiob: gpio@4240 {
+> +			reg = <0 0x4240 0 0x40>,
+> +			      <0 0x4000 0 0x8>;
+> +			reg-names = "gpio", "mux";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			bank-number = <AMLOGIC_GPIO_B>;
+> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_B<<8) 14>;
+> +		};
+> +
+> +		gpioao: gpio@8e704 {
+> +			reg = <0 0x8e704 0 0x16>,
+> +			      <0 0x8e700 0 0x4>;
+> +			reg-names = "gpio", "mux";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			bank-number = <AMLOGIC_GPIO_AO>;
+> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_AO<<8) 7>;
+> +		};
+> +
+> +		test_n: gpio@8e744 {
+> +			reg = <0 0x8e744 0 0x20>;
+> +			reg-names = "gpio";
+> +			gpio-controller;
+> +			#gpio-cells = <2>;
+> +			bank-number = <AMLOGIC_GPIO_TEST_N>;
+> +			gpio-ranges = <&periphs_pinctrl 0 (AMLOGIC_GPIO_TEST_N<<8) 1>;
+> +		};
+> +
+> +		func-uart-a {
+> +			uart_a_default: group-uart-a-pins1 {
+> +				pinmux= <AML_PINMUX(AMLOGIC_GPIO_X, 11, 1)>,
+
+Missing space before '='. Follow DTS coding style.
 
 Best regards,
 Krzysztof
