@@ -1,124 +1,152 @@
-Return-Path: <devicetree+bounces-139326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE743A151F5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 15:38:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D5FDA151FC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 15:40:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88CC8188DC04
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:38:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EFDD18884FC
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:40:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50073156C6F;
-	Fri, 17 Jan 2025 14:37:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C56158858;
+	Fri, 17 Jan 2025 14:40:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GktwO+mt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qA6BXZKL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2189470825;
-	Fri, 17 Jan 2025 14:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFA9470825;
+	Fri, 17 Jan 2025 14:40:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737124673; cv=none; b=ujixG+HAWIWr69AxVBnQWUjfKOq5FN2xalAx6nxqUlWJTZhvmYZ80Hr3K3qd92YzEP4X3sGCSofTth2eQPh237pJNj8bWrnCJ3I/2uHlgbEX2rxk1Tn13s+9pPzjo/3KAbARSIOH8hW9YFrmx+lDT7suknLPNdeJWfupqEamPWY=
+	t=1737124819; cv=none; b=S4qRWp+8Xp0k57GmkUKmguZp8l1T1k8N4qbPm9g0xDfyNFAdoYnb9yUUcCGtVrEAYIlJ4RvoNFStdr3fUAdBelNuURuvFErzFnmZYKf4TgtTMVJjl/oEy6DPcYe2dXcmWVwz1wiFlvXH/qBqy/M64LZtd9nQ6XEUpFzoUoJOh+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737124673; c=relaxed/simple;
-	bh=Tg+SetWFqRed9XCrJetM7sHWQTGMKeHQZW0P/dnItU4=;
+	s=arc-20240116; t=1737124819; c=relaxed/simple;
+	bh=ztDKhBkIzxT+MjV61TU9CzfLHD1NVtR+EdIQ0BKaqNA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V54BDMsapcNYH8pnrMFa3lQcRKPGzogJoLwSQN1vOvPZ3oGbpy9PZcgiy85R74h6in4DwiRkldtLd6HqKWYo/MXwcc4FX80gL8Ty899QhnFjCf2yfstOjR5MrUfbjL63nb/WaFVkGF0MSZlgqAjp6+ijsCjHLrjVdm0kqwoOGJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GktwO+mt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B4BDC4CEDD;
-	Fri, 17 Jan 2025 14:37:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=l5Ot5KotfWiOQoUtV5l/PqnPVBB/TXbi1eIxOzHptcYSsFP87a8vyi9SYjt6k0r3x7TwCci9WHVcLLeu8cv5hQLOvRYqP9GEL02Iz0DKmDOPku78PcjYvBGyA5YkV8dUGxHUfVXx/2/+fgBuhj035/oaPvIwYuftpR0vwcqvy9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qA6BXZKL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A32EDC4CEDD;
+	Fri, 17 Jan 2025 14:40:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737124672;
-	bh=Tg+SetWFqRed9XCrJetM7sHWQTGMKeHQZW0P/dnItU4=;
+	s=k20201202; t=1737124819;
+	bh=ztDKhBkIzxT+MjV61TU9CzfLHD1NVtR+EdIQ0BKaqNA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GktwO+mthOAqo2D/lONvaKSzjp2HcibLrnTszkJtTCBFh43T9V7JepbI088+/jVYr
-	 OnM2q/Amst90vijwQoa+p7SzmVHgyb3bPp/p7QKrJYEl7OZbkfMsVYuVc4xmdrCRiT
-	 VF6B3pdiTsi1RCEu/e64PkU14SN2B9p+qDnTK5njiF6PdT0JSI/xHk27eYzmKtkL0L
-	 0hmTPdZxWr6rO0+eFZBpuY7izGsFRo8jlUfLv49g73cbm0vyczf8cUpdDNJTaejEUp
-	 FiGvW+X5W65UenaEpp4Mtbld+4sHHjMRCKB48E+9uPqPvxBPdK0S5WKAwg94BIs5Jn
-	 vnKzTKi6t8vgw==
-Date: Fri, 17 Jan 2025 15:37:49 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>, 
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	b=qA6BXZKLmI6jhTfunyY7oj61mvuarIenGdaCai7Oo7pki+UECldWFgLN/XJqH+U0j
+	 kwBv/AZBAHZpUGka9Wz1KAhLEcu/g4gtnScO5IZEqJm4Fn1ZzsAT5WDQflXFLAHWaf
+	 w5eIQdZEcNhFeLgVmyHmCXQiNFTzP+GDOLhTuw6BO2DUfvCsYxkHnJii1AuqZNIDdf
+	 47FZ4tnjYar0hmOAc5j8RVwbRkPd6v4K9SWJczFy+Ns93P7QUKsAQ1xnm2wwnb3KfF
+	 HgCaldeaKEfC5l87mvlnVoIck0HiyIBR8IaLutd8jZpYxywm/1TAa51OoVa4aRL7h3
+	 TUiPfyiPVov/w==
+Date: Fri, 17 Jan 2025 15:40:16 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Alyssa Ross <hi@alyssa.is>, Janne Grunau <j@jannau.net>
-Subject: Re: [PATCH v4 2/5] drm: adp: Add Apple Display Pipe driver
-Message-ID: <20250117-bettong-of-radical-prestige-0d81a5@houat>
-References: <20250114-adpdrm-v4-0-e9b5260a39f1@gmail.com>
- <20250114-adpdrm-v4-2-e9b5260a39f1@gmail.com>
- <mu7qiybhj7tu5hauk7izfxqlookc3awpknhjk74zwpkbznei4m@kewap6vivzoa>
- <20250116-vivacious-congenial-nightingale-cb2f6d@houat>
- <2alm7gds4k2lnbk36gjdw6yhzhpls3ce5baycdiv7lsigxsbzn@rhwdgnphwwp6>
- <20250117-neon-unicorn-of-plenty-bbe639@houat>
- <CAMT+MTTrvXsYONQj0V5U+dPJtCBOAQ-Lfg7NONMB6onMvJ+3QA@mail.gmail.com>
+	Kamel Bouhara <kamel.bouhara@bootlin.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	=?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v3 3/7] pwm: max7360: Add MAX7360 PWM support
+Message-ID: <v4bf6bharih6zgz52ya5twfyf47wh3fu56ovic5gjxak2jhufy@q3eudujjwrhm>
+References: <20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com>
+ <20250113-mdb-max7360-support-v3-3-9519b4acb0b1@bootlin.com>
+ <f22l3uqgt65utxehv2zmozqixjkktp4trpr42xr5arvp6o5zcf@g5iriaeskqa5>
+ <D74EQQNADWDP.FQ5XFK8TB5XH@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="dgam3kkeewc5mr2f"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="qts6aw34gcdrduzd"
 Content-Disposition: inline
-In-Reply-To: <CAMT+MTTrvXsYONQj0V5U+dPJtCBOAQ-Lfg7NONMB6onMvJ+3QA@mail.gmail.com>
+In-Reply-To: <D74EQQNADWDP.FQ5XFK8TB5XH@bootlin.com>
 
 
---dgam3kkeewc5mr2f
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+--qts6aw34gcdrduzd
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v4 2/5] drm: adp: Add Apple Display Pipe driver
+Subject: Re: [PATCH v3 3/7] pwm: max7360: Add MAX7360 PWM support
 MIME-Version: 1.0
 
-On Fri, Jan 17, 2025 at 03:17:32PM +0100, Sasha Finkelstein wrote:
-> On Fri, 17 Jan 2025 at 11:24, Maxime Ripard <mripard@kernel.org> wrote:
-> > >
-> > > I was thinking about using drmm_ here, as the DRM device is also crea=
-ted
-> > > and destroyed each time. But I might be mistaken here.
+On Fri, Jan 17, 2025 at 03:11:29PM +0100, Mathieu Dubois-Briand wrote:
+> On Fri Jan 17, 2025 at 10:33 AM CET, Uwe Kleine-K=F6nig wrote:
+> > Hello Mathieu,
 > >
-> > Ah, right, it makes sense then, thanks!
-> > Maxime
+> > On Mon, Jan 13, 2025 at 01:42:27PM +0100, mathieu.dubois-briand@bootlin=
+=2Ecom wrote:
+> > > From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+> ...
+> > > +static int max7360_pwm_apply(struct pwm_chip *chip, struct pwm_devic=
+e *pwm,
+> > > +			     const struct pwm_state *state)
+> > > +{
+> > > +	struct max7360_pwm *max7360_pwm;
+> > > +	u64 duty_steps;
+> > > +	int ret;
+> > > +
+> > > +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+> > > +		return -EINVAL;
+> > > +
+> > > +	if (state->period !=3D MAX7360_PWM_PERIOD_NS) {
+> > > +		dev_warn(&chip->dev,
+> > > +			 "unsupported pwm period: %llu, should be %u\n",
+> > > +			 state->period, MAX7360_PWM_PERIOD_NS);
+> > > +		return -EINVAL;
+> >
+> > Please don't emit error messages in .apply(). Also a driver is supposed
+> > to round down .period, so any value >=3D MAX7360_PWM_PERIOD_NS should be
+> > accepted.
+> >
+> > Also note that you might want to implement the waveform callbacks
+> > instead of .apply() and .get_state() for the more modern abstraction
+> > (with slightly different rounding rules).
+> >
 >=20
-> Not sure i understand. The drm device is created in probe(), and is
-> destroyed by devm.
+> Sure, I just switched to the waveform callbacks, it was quite
+> straightforward.
 
-Not really. The reference your driver has on the drm device is given up
-by devm. It will be destroyed when the last app will close its fd to the
-drm device file.
+sounds great. Note that the detail in rounding that is different for
+waveforms is that a value that cannot be round down to a valid value
+(because it's too small) is round up. This is a bit ugly in the drivers
+but simplifies usage considerably. So you never return -EINVAL because
+the values don't fit.
 
-> I do not see a path where it can be created/destroyed without a trip
-> via probe/remove, and so tying the lifetime of the bridge in question
-> to devm seems correct?
+> Thanks for the reproduce steps: I saw the bug and fixed it. Also
+> MAX7360_PWM_MAX_RES had to be set to 255 and not 256...
 
-And while someone has an opened fd, it can still call into the driver
-through ioctls, so any KMS-facing resources need to be tied to the life
-of the drm device, not its underlying device.
+A good test (for a driver doing .apply/.get_state) is a sequence of
+increasing settings. So something like:
 
-Maxime
+	for p in range(1000, 10000):
+	    pwm_apply(period=3Dp, duty_cycle=3D0, ...)
 
---dgam3kkeewc5mr2f
+and also do the same for duty_cycle and also try decreasing series.
+
+Best regards
+Uwe
+
+--qts6aw34gcdrduzd
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZ4prNQAKCRAnX84Zoj2+
-dhwVAYC1HkBz00di/tl/bhJvyHA0BUGUrSGUL30bpdPjubUR9YoA0357NpDKr6cs
-fzqAUj4BgJUl/fzSkgqnOFLEkHiohz4oKitUhEGMjGdEYPlG4+Z5uN6IG5GN+C35
-9qfOm/2gDw==
-=Z3VM
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmeKa84ACgkQj4D7WH0S
+/k7OrAgAit3HCpMmHe0bRa+mj+PgWFq0h5PoGyeUiXpaxTnD+RHAQF4CRL2ZQs8u
+QkJrJzDL6/WsXHQ+BHbqSZzN5ZQsuP0gQSTDmrYXBI+FSLiBJ4K9ywXPfIMOJ/ui
+PCNuYZHiMPsjkj6K2b8IFg8pREloOXVeI1RzYJzST29dfacfPGCNsv4wb/Mcc0az
+Y3lMW+kwIydAv2IkL+L8C17ve8I8mT4qHJ8YrRyPmuFZlBHilujYtpVbkwOXAwUb
+nmCEqvrwN8EcBD1rrVurECecUzTo5me39AKZk3a4m5vyr4X6yjcSZNtct5yQFLDq
+mgASIK3WEUgllRlsgBrnPctVovtDhQ==
+=JwG4
 -----END PGP SIGNATURE-----
 
---dgam3kkeewc5mr2f--
+--qts6aw34gcdrduzd--
 
