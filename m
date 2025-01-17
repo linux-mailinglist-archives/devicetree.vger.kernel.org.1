@@ -1,322 +1,107 @@
-Return-Path: <devicetree+bounces-139226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7C56A14B01
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 09:20:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B5ECA14B0B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 09:22:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C691A1629B6
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 08:20:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4A483A51EA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 08:22:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A1D31F8690;
-	Fri, 17 Jan 2025 08:20:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD0E81F869D;
+	Fri, 17 Jan 2025 08:22:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j4LDtScQ"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="cdPTPMPv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 387B71F7066;
-	Fri, 17 Jan 2025 08:20:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 483BF1F6687;
+	Fri, 17 Jan 2025 08:22:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737102017; cv=none; b=W73TLCZ8vZXNvYRnJQKNQs/Aj3Gg13CwhZvZcXjVezBErV6X0zydAbl+sHWEdlbkMRwIeP+t/cbGGLTMuv07VFRIrNHKxGCgi4leNrvdP8MlKAvPPq9dcD2nZiUKALX1HFKvLNdxGFcXQHVaUFG5XTBghjoNzJTftdrbGFc94Y0=
+	t=1737102166; cv=none; b=KQszo0BTEBjwBn7hZjas9MLuz4CiTmsH0KC4f5uIaNws2qMJe5M85u2Yp89S1hqcYn2pO8uISbjk60Xmb3K25BWiy9UWAYi5Ei8p2NUwEv9JtXu366Zi0Ha9KDFhP+WjE8nrH5QyU545fF0//5hye1+T/u1k0fNFz3SgkFmXJF4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737102017; c=relaxed/simple;
-	bh=Fzht/0x3CfUwlK4ZIgWLn4V/JPJnQV0tF4I4bN/rX8k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=S7wgFZHVXBvaUjhS0jXYolYWEiyT/TXYbwlR3ohl7Jcq+GcXIK4cYIdfmEVLeGGgggjjH5mX6hQusv3fR9hNsE981YZg39Ee4ERLvWSWI4kNkHyMHdU5ATq7kHQ6GT5jdpkIhQEef/f163Hq2/seF00stUGAOhy82OBMR2xNV4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j4LDtScQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50H65XKY007866;
-	Fri, 17 Jan 2025 08:20:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	dy0vvBC4ojFN8G898giiC+1hPUPkADL1u6rgBTcq6/k=; b=j4LDtScQrKMNX5cg
-	TMFjC6WVGCy4WxFJJhthuYjvAMATLgU+cN3atXejTEnVsKuqTnw4OBXUid4zHmj3
-	y6ezchvHFrvbtsoWSVpz/YpYHClytB6qDJ49PQ0TsPjkmp/inYVHKkOIpMuVYERB
-	iSyHprusArjmhQevmqO/EV4jZQB/BunbV0LeTixGEn0v8SPPSwlKUZf2kOvdwPXL
-	EcBDWXt0baqLYRrTuWdaUBacRXzFU9d8mIAeIqeg/mNvR2jPiV6jdWVeHGumiujr
-	RZXIfghYDirsOnoBk4yABpnyETbHPiJl3dg/8DLfatj0f6WIdEQbNwe7lB8hQzb0
-	C+JYVQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 447hmt8ay6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Jan 2025 08:20:10 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50H8K91H013509
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Jan 2025 08:20:09 GMT
-Received: from [10.239.133.114] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 17 Jan
- 2025 00:20:03 -0800
-Message-ID: <28eec718-2950-40b5-b5b7-b4ecb5699a6b@quicinc.com>
-Date: Fri, 17 Jan 2025 16:20:01 +0800
+	s=arc-20240116; t=1737102166; c=relaxed/simple;
+	bh=vrM9FCcSabp0iENUkhYWnk5ZCUCWJihsBrxkmgjFOz4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ad56uuEpFmFWWanqMtyWbqy1GMgsZc7pTlHtGFlV392E3sew8TymJQken0xeJkrCAFezHvNfcwaEFrU5EucEKbAvR1EmSSLMuIzr9f9EH5CvX+AHiBumcC9o1BY8L5F/mzi+Z4c9L8hC6dRfw/UTacvZ3v413bx8vPIBGLEPEdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=cdPTPMPv; arc=none smtp.client-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=PPF2T
+	NJs26XvPTra079pkEfMaeRetMCkRx0gBDwYafE=; b=cdPTPMPvcPMYnmOU78ktM
+	TdSBAUO0VWO6DG+MWcKxWDMbjOQY2ZD2ulZoTVJilX5YyPbJ8r+cPmCf77CEyKje
+	XgqXIcF8NLwRhq7tVdilEKolfg866k/B6ncZZk0e7PaWEdbpPW1UT8oVF0sE0Pgi
+	PB7sK7B786zRrmba1q4E+o=
+Received: from silergy-System-Product-Name.silergy.inc (unknown [])
+	by gzga-smtp-mtada-g1-1 (Coremail) with SMTP id _____wAn2B4CE4pnaxwRGw--.23797S5;
+	Fri, 17 Jan 2025 16:21:43 +0800 (CST)
+From: Wenliang Yan <wenliang202407@163.com>
+To: linux@roeck-us.net,
+	Jean Delvare <jdelvare@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Wenliang Yan <wenliang202407@163.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings:Add SQ52206 to ina2xx devicetree bindings
+Date: Fri, 17 Jan 2025 16:20:16 +0800
+Message-ID: <20250117082017.688212-2-wenliang202407@163.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250117082017.688212-1-wenliang202407@163.com>
+References: <20250117082017.688212-1-wenliang202407@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] arm64: dts: qcom: Add coresight node for SM8650
-To: <neil.armstrong@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250107-sm8650-cs-dt-v4-1-2113b18754ea@quicinc.com>
- <be7b0acc-495b-4bb6-91e1-5db8e301503d@linaro.org>
-Content-Language: en-US
-From: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-In-Reply-To: <be7b0acc-495b-4bb6-91e1-5db8e301503d@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 72ZIKS53YurFc1HQmGehOR68oCbftYKz
-X-Proofpoint-ORIG-GUID: 72ZIKS53YurFc1HQmGehOR68oCbftYKz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-17_03,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=1
- impostorscore=0 malwarescore=0 spamscore=0 priorityscore=1501 mlxscore=0
- phishscore=0 bulkscore=0 clxscore=1015 lowpriorityscore=0 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501170065
+X-CM-TRANSID:_____wAn2B4CE4pnaxwRGw--.23797S5
+X-Coremail-Antispam: 1Uf129KBjvdXoW7XF1DJryxJF43ur4DJr4rAFb_yoWkuFbEgF
+	WxAF4DXrZ8JFyFgr1qyw48Jr1ayws3Cr4kAw1UJFZYy3yavr90ga4kJw4kAF1xJFW3uFyr
+	Zan5Wr45KrsrKjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7sRM5rcDUUUUU==
+X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/1tbiNQbX02eKDDN-AgABsZ
 
+Add the sq52206 compatible to the ina2xx.yaml
 
+Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+---
 
-On 1/16/2025 11:57 PM, neil.armstrong@linaro.org wrote:
-> Hi,
-> 
-> On 07/01/2025 09:48, Yuanfang Zhang wrote:
->> Add coresight components: Funnel, ETE and ETF for SM8650.
->>
->> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
->> ---
->> Changes in v4:
->> - Re-sort these nodes by address.
->> - Link to v3: https://lore.kernel.org/r/20250103-sm8650-cs-dt-v3-1-759a3f6a3cc8@quicinc.com
->>
->> Changes in v3:
->> - Move ete0 and funnel-ete to /.
->> - Update coding style.
->> - Link to v2: https://lore.kernel.org/r/20241210-sm8650-cs-dt-v2-1-cf24c6c9bddc@quicinc.com
->>
->> Changes in v2:
->> - Update compatible for funnel and etf.
->> - remove unnecessary property: reg-names and arm,primecell-periphid.
->> - Link to v1: https://lore.kernel.org/r/20241210-sm8650-cs-dt-v1-1-269693451584@quicinc.com
->> ---
->>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 166 +++++++++++++++++++++++++++++++++++
->>   1 file changed, 166 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> index 25e47505adcb790d09f1d2726386438487255824..49d6567fbd2e68b66b517d8d9180c7443f8bf611 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> @@ -365,6 +365,40 @@ cluster_sleep_1: cluster-sleep-1 {
->>           };
->>       };
->>   +    ete0 {
->> +        compatible = "arm,embedded-trace-extension";
->> +
->> +        cpu = <&cpu0>;
->> +
->> +        out-ports {
->> +            port {
->> +                ete0_out_funnel_ete: endpoint {
->> +                    remote-endpoint = <&funnel_ete_in_ete0>;
->> +                };
->> +            };
->> +        };
->> +    };
-> 
-> Why only the cpu0 ete has been added ?
-> 
-> And why are the other components (TPDA, TPDM, STM, CTI...) missing ?
-> 
-> Neil
-> 
-At present, only ete0 is used, and other components can be added later if need.
->> +
->> +    funnel-ete {
->> +        compatible = "arm,coresight-static-funnel";
->> +
->> +        in-ports {
->> +            port {
->> +                funnel_ete_in_ete0: endpoint {
->> +                    remote-endpoint = <&ete0_out_funnel_ete>;
->> +                };
->> +            };
->> +        };
->> +
->> +        out-ports {
->> +            port {
->> +                funnel_ete_out_funnel_apss: endpoint {
->> +                    remote-endpoint = <&funnel_apss_in_funnel_ete>;
->> +                };
->> +            };
->> +        };
->> +    };
->> +
->>       firmware {
->>           scm: scm {
->>               compatible = "qcom,scm-sm8650", "qcom,scm";
->> @@ -4854,6 +4888,138 @@ data-pins {
->>               };
->>           };
->>   +        funnel@10042000 {
->> +            compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
->> +
->> +            reg = <0x0 0x10042000 0x0 0x1000>;
->> +
->> +            clocks = <&aoss_qmp>;
->> +            clock-names = "apb_pclk";
->> +
->> +            in-ports {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                port@4 {
->> +                    reg = <4>;
->> +
->> +                    funnel_in1_in_funnel_apss: endpoint {
->> +                        remote-endpoint = <&funnel_apss_out_funnel_in1>;
->> +                    };
->> +                };
->> +            };
->> +
->> +            out-ports {
->> +                port {
->> +                    funnel_in1_out_funnel_qdss: endpoint {
->> +                        remote-endpoint = <&funnel_qdss_in_funnel_in1>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->> +        funnel@10045000 {
->> +            compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
->> +
->> +            reg = <0x0 0x10045000 0x0 0x1000>;
->> +
->> +            clocks = <&aoss_qmp>;
->> +            clock-names = "apb_pclk";
->> +
->> +            in-ports {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                port@1 {
->> +                    reg = <1>;
->> +
->> +                    funnel_qdss_in_funnel_in1: endpoint {
->> +                        remote-endpoint = <&funnel_in1_out_funnel_qdss>;
->> +                    };
->> +                };
->> +            };
->> +
->> +            out-ports {
->> +                port {
->> +                    funnel_qdss_out_funnel_aoss: endpoint {
->> +                        remote-endpoint = <&funnel_aoss_in_funnel_qdss>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->> +        funnel@10b04000 {
->> +            compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
->> +
->> +            reg = <0x0 0x10b04000 0x0 0x1000>;
->> +
->> +            clocks = <&aoss_qmp>;
->> +            clock-names = "apb_pclk";
->> +
->> +            in-ports {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                port@7 {
->> +                    reg = <7>;
->> +
->> +                    funnel_aoss_in_funnel_qdss: endpoint {
->> +                        remote-endpoint = <&funnel_qdss_out_funnel_aoss>;
->> +                    };
->> +                };
->> +            };
->> +
->> +            out-ports {
->> +                port {
->> +                    funnel_aoss_out_tmc_etf: endpoint {
->> +                        remote-endpoint = <&tmc_etf_in_funnel_aoss>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->> +        tmc@10b05000 {
->> +            compatible = "arm,coresight-tmc", "arm,primecell";
->> +
->> +            reg = <0x0 0x10b05000 0x0 0x1000>;
->> +
->> +            clocks = <&aoss_qmp>;
->> +            clock-names = "apb_pclk";
->> +
->> +            in-ports {
->> +                port {
->> +                    tmc_etf_in_funnel_aoss: endpoint {
->> +                        remote-endpoint = <&funnel_aoss_out_tmc_etf>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->> +        funnel@13810000 {
->> +            compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
->> +
->> +            reg = <0x0 0x13810000 0x0 0x1000>;
->> +
->> +            clocks = <&aoss_qmp>;
->> +            clock-names = "apb_pclk";
->> +
->> +            in-ports {
->> +                port {
->> +                    funnel_apss_in_funnel_ete: endpoint {
->> +                        remote-endpoint = <&funnel_ete_out_funnel_apss>;
->> +                    };
->> +                };
->> +            };
->> +
->> +            out-ports {
->> +                port {
->> +                    funnel_apss_out_funnel_in1: endpoint {
->> +                        remote-endpoint = <&funnel_in1_in_funnel_apss>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->>           apps_smmu: iommu@15000000 {
->>               compatible = "qcom,sm8650-smmu-500", "qcom,smmu-500", "arm,mmu-500";
->>               reg = <0 0x15000000 0 0x100000>;
->>
->> ---
->> base-commit: fac04efc5c793dccbd07e2d59af9f90b7fc0dca4
->> change-id: 20241209-sm8650-cs-dt-ad649dcfa5e8
->>
->> Best regards,
-> 
+Add the meaning of 'shunt-gain' in SQ52206.
+
+ Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+index 05a9cb36cd82..25e0b2f0b28d 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+@@ -20,6 +20,7 @@ description: |
+ properties:
+   compatible:
+     enum:
++      - silergy,sq52206
+       - silergy,sy24655
+       - ti,ina209
+       - ti,ina219
+@@ -58,6 +59,9 @@ properties:
+       shunt voltage, and a value of 4 maps to ADCRANGE=0 such that a wider
+       voltage range is used.
+ 
++      For SQ52206,the shunt gain value 1 mapps to ADCRANGE=10/11, the value 2
++      mapps to ADCRANGE=01, and the value 4 mapps to ADCRANGE=00.
++
+       The default value is device dependent, and is defined by the reset value
+       of PGA/ADCRANGE in the respective configuration registers.
+     $ref: /schemas/types.yaml#/definitions/uint32
+-- 
+2.43.0
 
 
