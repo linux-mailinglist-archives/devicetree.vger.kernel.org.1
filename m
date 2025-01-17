@@ -1,167 +1,233 @@
-Return-Path: <devicetree+bounces-139292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5172A15007
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:04:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25B4EA1500F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:06:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 922E73A9135
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:04:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BA863A91D5
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:06:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C2E1FF614;
-	Fri, 17 Jan 2025 13:04:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77F61FF60B;
+	Fri, 17 Jan 2025 13:06:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GKW1A+Nx"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="dFRmjx5M";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="9WBtT9o6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24F2D1FECBA;
-	Fri, 17 Jan 2025 13:04:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEFEE1FE46E;
+	Fri, 17 Jan 2025 13:06:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737119091; cv=none; b=W14zMAF4HfXm7Xw0iSVyZM0yJsS8ocyyGnH9MjX072bi1UCawZIrNfnhwPFJSRWBKHjnjfozWUkJUZanTz+kbaH+hjSlWTXaFcpXAUuqucypLlcY98wiAwepLiDpUwMHE5Kfliw609PNxODYnm2e/in0s0RYUswVVoOQaC6xToE=
+	t=1737119210; cv=none; b=YTwBin+nGYcixmKym24+3l5WgojW5M+AbAUTCfhbUvnvZAvPPixqiUIlvGk5ZSN2zBluJibIHdTAzyRDEgTEtC7HUZ9Y+PbKS+Z6avR9+Azs76fhV2W9LAthoKhJuhFDJy3qpno+ojJgz8YtI+yb2w5J84jnUKJrfaEnw0fZxOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737119091; c=relaxed/simple;
-	bh=pgczHYRbU/w/CTezmt/JjsV7Sd3SXBt7YeWw3V9QlJU=;
+	s=arc-20240116; t=1737119210; c=relaxed/simple;
+	bh=RksVd+etY7p/s3TXteULXYUOUitYD0rUfQ9fDDwgEXs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bl5YZ2ijA4GlvIWQXbOceSTl4lPSl7bJJJVUnNrFT68H+id7apog3YbHdu8cNE/GiT3nBs4BQ0JKWCIZBKMqytCPWM3WhC4FPKi8rWh3ytMWKOt0A1GvR2iYeO+wea2nmKQF6Sko54SwbGreOHdmtnImIZLr+c0S2mJqjHoSC1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GKW1A+Nx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28E16C4CEDD;
-	Fri, 17 Jan 2025 13:04:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737119090;
-	bh=pgczHYRbU/w/CTezmt/JjsV7Sd3SXBt7YeWw3V9QlJU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GKW1A+Nx8NJgaicqTbgcFmzmHcu1nrVCgcsQXKDasEIT7dIsrIbnv/EjBWlPkcBZv
-	 KlmtCKxQRaGGPKfVQc30qbzhHR06bugGFhzBnaYPUZP1krPNo88ZAC9MkAyYJdiDhj
-	 EmgcLQio2czz4XirycF5IK0YPaOHs2HBXkkAtl40PDXFu6iBqpO6O2p0yHA977WiTF
-	 GUD5S0L+mohEfNLArkNntp34lJToZv83TrjmdV2/bzivtWHU+73iDLG9SasogHGs6a
-	 drI67jUwoxFkplv+pHr+/atF5qGHBgN7+kXDIEL8rEB0BBV46OI3UckIirHJNpHTVE
-	 ITDKd5uz7KxeA==
-Date: Fri, 17 Jan 2025 14:04:45 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Jagan Teki <jagan@edgeble.ai>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: add overlay tests for Rock
- 5B PCIe overlays
-Message-ID: <Z4pVbVQKnVkZdysM@ryzen>
-References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
- <20250116-pre-ict-jaguar-v2-2-157d319004fc@cherry.de>
- <Z4o2_0yX-hq-DfCs@ryzen>
- <4985c21b-56b8-45b3-a96d-1427ca905c6c@cherry.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=maTz4/c0/+3ndvmwRbHeu5G86K2qMw2qgq3ufkhk+Y/KkSizfdUxGAb5IBygYVLqcA2/p65YLkPrUXqoHxkaG1Cvt7sfyE3/g29GuU4k1nhEBBvyPz1Inq7StT0ArpezTsdvPOh3tUXJ3v0xqYsMX/dzldW8fTbyf7txf0EIaWc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=dFRmjx5M; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=9WBtT9o6; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+Date: Fri, 17 Jan 2025 14:06:44 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1737119206;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hY4yjRKCRod/AXSrQsJwmxP2ZGQ5suLIGcArrFvDpVc=;
+	b=dFRmjx5M4i6s3ggklbqmIkVzFIrTqF0HonDj4Fv0mkCWGdMMmXs/T4/aSZdlLnp9tDYulp
+	dOrJ1qvFIdpw2j+rkJejTrRhUP3yi/7EnsZbDeWctkLCbFohSfoxlpbacT0aCO9j005tO7
+	4d9QEEA/e6HnhqxBmSV7sxR9p/I1U87l3nRx1D5+AeULcoNr5zi5RNEVIIQkKIlOhRB/Cc
+	T+XyrhUPg9A7kfM+e+Db0MOXf3DfC7cFsra4/3Lyk4VVZ5yvZN/svBgywKGdkfmJiB9/Qp
+	YMWMdYADkR3PP0h1ES+igS/fNEhmgPbZ66rKlMUffachERibFukINTqnKkrhGA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1737119206;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hY4yjRKCRod/AXSrQsJwmxP2ZGQ5suLIGcArrFvDpVc=;
+	b=9WBtT9o6vTQ88sIgTNnDvZ7GnfUlb5LHAN1EezNk61xvUNfyG771NRpLCOCbVUMQmPLw1J
+	4BV1hYPZ5MMWLZDg==
+From: Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+To: Basharath Hussain Khaja <basharath@couthit.com>
+Cc: Rob Herring <robh@kernel.org>, mpe@ellerman.id.au, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
+	saravanak@google.com, danishanwar <danishanwar@ti.com>, krishna <krishna@couthit.com>, 
+	mohan <mohan@couthit.com>, parvathi <parvathi@couthit.com>, pmohan <pmohan@couthit.com>
+Subject: Re: [PATCH] of: address: Unify resource bounds overflow checking
+Message-ID: <20250117134255-bee95a37-250c-437a-a101-938800cba218@linutronix.de>
+References: <87mskbqher.fsf@mail.lhotse>
+ <20250108140414.13530-1-basharath@couthit.com>
+ <CAL_JsqLLGW_o9i6a5wcUj=Z=4nL-GhzHwAQMFtQkb9OSHuSgTA@mail.gmail.com>
+ <2089813158.341858.1737096833060.JavaMail.zimbra@couthit.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <4985c21b-56b8-45b3-a96d-1427ca905c6c@cherry.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2089813158.341858.1737096833060.JavaMail.zimbra@couthit.local>
 
-Hello Quentin,
-
-On Fri, Jan 17, 2025 at 12:50:52PM +0100, Quentin Schulz wrote:
-> Hi Niklas,
-> 
-> On 1/17/25 11:54 AM, Niklas Cassel wrote:
-> > On Thu, Jan 16, 2025 at 03:47:11PM +0100, Quentin Schulz wrote:
-> > > From: Quentin Schulz <quentin.schulz@cherry.de>
-> > > 
-> > > According to commit 40658534756f ("arm64: dts: rockchip: Add rock5b
-> > > overlays for PCIe endpoint mode"), Rock 5B can operate in PCIe endpoint
-> > > mode. For that to work, the rk3588-rock-5b-pcie-ep.dtbo overlay needs to
-> > > be applied on Rock 5B base Device Tree. If that Rock 5B is connected to
-> > > another Rock 5B, the latter needs to apply the
-> > > rk3588-rock-5b-pcie-srns.dtbo overlay.
-> > > 
-> > > In order to make sure the overlays are still valid in the future, let's
-> > > add a validation test by applying the overlays on top of the main base
-> > > at build time.
-> > > 
-> > > Fixes: 40658534756f ("arm64: dts: rockchip: Add rock5b overlays for PCIe endpoint mode")
+On Fri, Jan 17, 2025 at 12:23:53PM +0530, Basharath Hussain Khaja wrote:
+> >> >> Thomas Weiﬂschuh <thomas.weissschuh@linutronix.de> writes:
+> >> >> > The members "start" and "end" of struct resource are of type
+> >> >> > "resource_size_t" which can be 32bit wide.
+> >> >> > Values read from OF however are always 64bit wide.
+> >> >> >
+> >> >> > Refactor the diff overflow checks into a helper function.
+> >> >> > Also extend the checks to validate each calculation step.
+> >> >> >
+> >> >> > Signed-off-by: Thomas Weiﬂschuh <thomas.weissschuh@linutronix.de>
+> >> >> > ---
+> >> >> >  drivers/of/address.c | 45 ++++++++++++++++++++++++++-------------------
+> >> >> >  1 file changed, 26 insertions(+), 19 deletions(-)
+> >> >> >
+> >> >> > diff --git a/drivers/of/address.c b/drivers/of/address.c
+> >> >> > index 7e59283a4472..df854bb427ce 100644
+> >> >> > --- a/drivers/of/address.c
+> >> >> > +++ b/drivers/of/address.c
+> >> >> > @@ -198,6 +198,25 @@ static u64 of_bus_pci_map(__be32 *addr, const __be32
+> >> >> > *range, int na, int ns,
+> >> >> >
+> >> >> >  #endif /* CONFIG_PCI */
+> >> >> >
+> >> >> > +static int __of_address_resource_bounds(struct resource *r, u64 start, u64
+> >> >> > size)
+> >> >> > +{
+> >> >> > +     u64 end = start;
+> >> >> > +
+> >> >> > +     if (overflows_type(start, r->start))
+> >> >> > +             return -EOVERFLOW;
+> >> >> > +     if (size == 0)
+> >> >> > +             return -EOVERFLOW;
+> >> >> > +     if (check_add_overflow(end, size - 1, &end))
+> >> >> > +             return -EOVERFLOW;
+> >> >> > +     if (overflows_type(end, r->end))
+> >> >> > +             return -EOVERFLOW;
+> >> >>
+> >> >> This breaks PCI on powerpc qemu. Part of the PCI probe reads a resource
+> >> >> that's zero sized, which used to succeed but now fails due to the size
+> >> >> check above.
+> >> >>
+> >> >> The diff below fixes it for me.
+> >> >
+> >> > I fixed it up with your change.
+> >>
+> >>
+> >> This commit is breaking Ethernet functionality on the TI AM57xx platform due to
+> >> zero byte SRAM block size allocation during initialization. Prior to this
+> >> patch, zero byte block sizes were handled properly.
 > > 
-> > Not sure if I agree with the Fixes-tag.
-> > I don't think there is anything broken with that commit, but I definitely
-> > think that it is a good idea make sure that they don't break in the future.
-> > 
+> > What driver and where exactly?
 > 
-> That's fair. I actually think it'd be a good idea to backport this to stable
-> releases. It could be possible for stable right now to somehow only backport
-> changes to the base DT without modifying the DTO (or vice-versa) and then
-> break the overlay unknowingly.
+> We found an issue while developing the driver [1] and more
+> specifically in [2] (lines 313-327), but it looks like this is a
+> generic issue which can block 1 byte of memory, when a zero size
+> request has been initiated for the reserved region.
+>
+> static int __of_address_resource_bounds(struct resource *r, u64 start, u64 size)
+> {
+>     u64 end = start;
 > 
-> I added the Fixes to make it a bit simpler to know up to when to backport
-> it, though I still haven't decided if I should have added Cc: stable there.
-
-I know what Greg would have said:
-https://lore.kernel.org/linux-pci/2025011651-stubborn-certified-b22f@gregkh/
-
-
+>     if (overflows_type(start, r->start))
+>         return -EOVERFLOW;
+>     if (size && check_add_overflow(end, size - 1, &end))
+>         return -EOVERFLOW;
+>     if (overflows_type(end, r->end))
+>         return -EOVERFLOW;
 > 
-> So 1) what's your opinion on backporting this to stable
-> 2) if backporting, shouldn't I still remove the Fixes?
-
-My personal opinion is that a lot of companies are way too greedy, just
-taking the work of upstream, but never giving anything back by actually
-employing people working on upstream, all while sometimes having hundreds
-of employees working on downstream.
-
-I wish I could stop marking patches with CC: stable just to not make their
-lives easier. If they want the good stuff, at least they should spend time
-upgrading from their 4.14 kernel... Note that I do still (reluctantly) mark
-my fixes with CC: stable.
-
-
+>     r->start = start;
+>     r->end = end;
 > 
-> > 
-> > > @@ -145,8 +145,6 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-plus.dtb
-> > >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
-> > >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5-itx.dtb
-> > >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
-> > > -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
-> > > -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtbo
-> > >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou.dtb
-> > >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
-> > >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-turing-rk1.dtb
-> > > @@ -165,5 +163,9 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
-> > >   # Overlays
-> > >   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
-> > > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtb
-> > > +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtb
-> > 
-> > You moved these lines further down, but you changed the suffix from
-> > .dtbo to .dtb, why? It seems a little confusing, is that really needed?
-> > 
+>     return 0;
+> }
 > 
-> That was also confusing to me, but that's actually how it works.
+> Though we have the start address handling already in place above, we
+> do see an issue with the end address, because there is an
+> unconditional +1 afterwards in resource_size() API below which is
+> responsible for reserving the extra byte
 > 
-> rk3588-rock-5b-pcie-ep.dtb somehow points at rk3588-rock-5b-pcie-ep-dtbs
-> which is the overlay application test of rk3588-rock-5b-pcie-ep.dtbo onto
-> rk3588-rock-5b.dtb. For that to work, the .dtbo needs to be compiled. The
-> target must be auto-generated somewhere because that still works. You can
-> remove all *.dtb* from the tree, apply this patch and compile with make dtbs
-> and you'll see that the DTBO is generated and the build time test of overlay
-> application done as well (the log line starts with OVL).
-> 
-> Not sure exactly how to make this a bit less confusing in the commit log, as
-> I myself do not really know why that is necessary or how it is working. But
-> "it works" (tm).
-> 
-> This matches what was done for ti/ as well.
+> static inline resource_size_t resource_size(const struct resource *res)
+> {
+>         return res->end - res->start + 1;
+> }
 
-As long as the files still get generated with the .dtbo offset, I'm happy.
+Now the report makes more sense.
 
+> We have 4 ways of fixing it.
+> 
+> Option 1: Modify the function to handle the size zero case
+> 
+> diff --git a/drivers/of/address.c b/drivers/of/address.c
+> index c1f1c810e810..8db6ae9a12b8 100644
+> --- a/drivers/of/address.c
+> +++ b/drivers/of/address.c
+> @@ -204,6 +204,12 @@ static int __of_address_resource_bounds(struct resource *r, u64 start, u64 size)
+>  
+>         if (overflows_type(start, r->start))
+>                 return -EOVERFLOW;
+> +       if (!size) {
+> +               r->start = start;
+> +               r->end = end - 1;
+> +
+> +               return 0;
+> +       }
+>         if (size && check_add_overflow(end, size - 1, &end))
+>                 return -EOVERFLOW;
+>         if (overflows_type(end, r->end))
+> 
+> This seems to be the simplest solution.
 
-Kind regards,
-Niklas
+Fixing it in __of_address_resource_bounds() looks correct to me.
+The proposed solution doesn't look as clean as I'd like though,
+this is highly subjective, though.
+
+What about the following (untested)?
+
+static int __of_address_resource_bounds(struct resource *r, u64 start, u64 size)
+{
+	if (overflows_type(start, r->start))
+		return -EOVERFLOW;
+
+	r->start = start;
+	r->end = start;
+
+	if (!size)
+		r->end -= 1; /* May underflow for empty resources. */
+	else if (check_add_overflow(r->end, size - 1, &r->end))
+		return -EOVERFLOW;
+
+	return 0;
+}
+
+A kunit test looks to be in order in any case, to make sure all the
+edgecases are handled.
+
+> Option 2: Handle in resource_size().
+> static inline resource_size_t resource_size(const struct resource *res)
+> {      
+>           return  (res->end == res->start) ? 0 : (res->end - res->start + 1);
+> }
+> There are plenty of places where we are using this API and there is an assumption that the end address should always be start + size -1. We are a bit unsure about the side effects of this change.
+> 
+> Option 3: Handle in sram_reserve_region().
+> We can avoid calling the resource_size() API and handle size zero as a special case. We are a bit unsure about the side effects of this change as well.
+> 
+> Option 4: Handle this in dts [2] with non zero size. Estimate the approximate size and update that value in dts file with extra buffer. However, as indicated in [2] in lines 313-327, the size is not known apriori and the actual size is only known in runtime. So if we set some size for this buffer, then this will always be blocked and may or may not be used subsequently.
+> 
+> [1] https://lore.kernel.org/all/20250109105600.41297-1-basharath@couthit.com/
+> [2] https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/ti/omap/dra7.dtsi
+> 
+> 
+> Thanks & Best Regards,
+> Basharath
 
