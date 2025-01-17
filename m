@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-139239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03953A14BF9
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 10:17:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68ADDA14BFB
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 10:17:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 849C218888DC
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 09:17:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9CB8C3A23A6
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 09:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB531FBC82;
-	Fri, 17 Jan 2025 09:17:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 479C41F9F58;
+	Fri, 17 Jan 2025 09:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="YImXtnNh"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="W01fPfHM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CD891FAC40
-	for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 09:17:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43B851F91F6
+	for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 09:17:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737105439; cv=none; b=W1tAaZWOocFz4tSHJ3aQPVqE3c10pYoowBWz88viQyDe92pvnnRMEs0bPbxUezeG9Np72xqZi14CboV6HTR9Fgk3HWMoBcPBmjurbGnQoZiXP/VDQbVjy1cUnscGE9sAUhU8rEtBaLKRtiBx25/JcZ2l66yuL3x7lJAAAwUHTRw=
+	t=1737105443; cv=none; b=mxj0fyqgAAa80b5XfP2UkiikkZggQluldxIqjoeUrgDwqoeTabLtgpGVueB1xo/s2MExV9dfpOhpZ0iyweFDstlrWaDeRiW58CXwQCFr3bosmHI/BsW/5aE7fPjkL91X+zqroWYkiG+qTfIG6OvpacumEU5HNST8n8oQcYulxa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737105439; c=relaxed/simple;
-	bh=mBwmE5+8v8FAQku3M7xarj9Gjga7PuWSd6wZIabs1po=;
+	s=arc-20240116; t=1737105443; c=relaxed/simple;
+	bh=l2dISADbIjqO1MCpIrtrCOScc7k0NytqNYf8Xy4uVA0=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=pVr6xWS3U2AG803nF/dv8ptVuyHwJIA9Jirtos+4dNN9mj3iO5hEGR9L2Wc6o40gSxgb0CDEUHhVAkXSas8t/ZdGduMhPVTEZsTzRhCXHB78Z/H723NRLc/xXIt5X35roqVYoEvCsVlXTqD6rGt1u9f9urnBNCx5wXaN4oOnqqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=YImXtnNh; arc=none smtp.client-ip=209.85.214.171
+	 MIME-Version; b=JkmN2mWe2UoLTPE59o0qOjeWfs4IQdpUUItr2at4Tf3G0XeWxtQXsiQLqBKRSng5hcZakM3eUjYiZ0F7bal2q9E4nMH9Y2y/N6CIiFsRhvcaUG7vXiH4Ra6mTwVJ8MbuPUpSz6xJDFfr9RImqj7LBoF+r5BF5KQFaFcr4CfIrNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=W01fPfHM; arc=none smtp.client-ip=209.85.214.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-21636268e43so42887235ad.2
-        for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 01:17:16 -0800 (PST)
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2166360285dso36155875ad.1
+        for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 01:17:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1737105436; x=1737710236; darn=vger.kernel.org;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1737105440; x=1737710240; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1Sf/doY8bC48FwKJYlisYvOWvCn0u3xeZy9vgidWn9o=;
-        b=YImXtnNhJxBjkxNGXg84Na4uGqvbDn2XUgF/drM6YzSiUqUkXaZXUFUxxJJ1hdA+nH
-         he4dsT7GT+JtFkbpIm0CNm3PiXa2lJW2gG7V64fJb2x6l1YcNXKBvMQaQpMPnNJtBjqm
-         yoBxe62WrlriL/wz+bdxKksIE9l57+e/ECtUJvBRa+X+kZ6vNoc7wpd9bMcq+PXQQRWy
-         v8s7ynirnkPO+mAYZd5hQaD+W5zYA5PL4U+YC4pAu8otivcdW1J7R55WF4Uuc9fSARvh
-         /4kyrYEAn+KzsgzUs545btpYyZ5dTcp/206MI+gOpHlQYDL1jKTYxjccFZzW46YFgyog
-         IfnQ==
+        bh=6vsu01DL5YXruSfsNC0w4FgwMrAXarB2x6Q2xxx/MZ8=;
+        b=W01fPfHM6/P9Dqf/JraEEnPabJTpUjA15vBv922yQoe4awFPGZBuywM4A6eoaV2jmP
+         ruv4IjUAp7P4eC6+9XcddgtTTcNdhmqGl2q3uTqEjjPJjpB3vfprSRJlP33KozliwK9K
+         LI2om3YgV3NO4aDTo39o5UD9cCWeRfz277hwWPsIMFQao/fy0NMWXAoWX12npZJv1hl3
+         iKRY04sb7amexwYN3YZTOHgCIHA1Pll1v6Uu4GXlYAsTP+gIqL6qGHsEpr+CpjISWcVF
+         nw8f+Y1zLLzgM/AO10F6oLjMCSLqijw5CnfTYpib4Z6eGbwln4szwHmX4DJKoa4NGecT
+         KesA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737105436; x=1737710236;
+        d=1e100.net; s=20230601; t=1737105440; x=1737710240;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=1Sf/doY8bC48FwKJYlisYvOWvCn0u3xeZy9vgidWn9o=;
-        b=NS19pkORJoomj7m1Cmorkhc+sZdW6urG3KZxL5GubhOhJTfpWqxqmudlkWalgNW0OZ
-         uMi3LNAY3mBoo3yXqIcOKPwuICI7S7r/4SjgRFA3r6vQQx3bR0l6/W+wbJlN0U4TuagZ
-         D23kD8SN1H2uX1+ojubOTJESVQr9prj58qek50XlJHRvvo6B/PBAdNAVmEHZx2uSnmzk
-         +ivFPsK7nuqtYclAU4yay8Qcg6OLxcEs0vWeBlpcfJSTpjobfO6iOCpNlmfKQ8JlBBb3
-         d/ap0vXZz5W1bnXMNll7suvU0338lSSvYpJWVtpQTHhjZwPAncoI/OGWq8jzBLDyUgjw
-         9cig==
-X-Forwarded-Encrypted: i=1; AJvYcCUt3McUq8KP6q2nntzZ41KNfdWi9hjjPSUiMWWqnzRUFXKUeVEtDB6yQzUNWWigeKUxKU8jtDz+dskU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHUFOO8IKbgXiiVkuq9Njv8jWTOO+fDAafz2i0Q/z42HYx8ZON
-	AXCTKRjkQHtPVVvucbmSxqOYNNeWY1iBQBUoxb2v3xrKbuY8SrzpVMjnB6YRj+k=
-X-Gm-Gg: ASbGncvr4LrDsDYGaHkR/Lk+idPm+cnKw7wzCuaUqeksLMaKlKpfidD1sJbIc54cMop
-	D7wqf4nF1929AwS1mwKp/Tlcv7KT7u2msInsWryAb8LO27cdUCz4ZqARqW7JVvdC13pdsJ8ykO3
-	hJnpWgDwaecw8TbRbNBtwZrFwp+3zXfevPr1IpB0HXCXuHRO3yqT7+4BfyPHd8eUMNFcFIOlHJO
-	NbsD+3hGmtNus+K/ca2Nq2gyViobK8qPk89UfkRX7EQsuTjaHVVlzodPnISupNiLTFJzd3U7t8O
-	HxMsODYhK/X1yPll1fT0+PV+C91b
-X-Google-Smtp-Source: AGHT+IHuw0RE4CXeB6LVWB8Z18CH6wAhh/J+fBjQnpOmfLXBGjiAE6rnxBGAMMs9IM1r88fXZE0nEg==
-X-Received: by 2002:a05:6a00:b8b:b0:725:eacf:cfdb with SMTP id d2e1a72fcca58-72dafbd4fd1mr2896073b3a.24.1737105435761;
-        Fri, 17 Jan 2025 01:17:15 -0800 (PST)
+        bh=6vsu01DL5YXruSfsNC0w4FgwMrAXarB2x6Q2xxx/MZ8=;
+        b=JJkktX+SQXOxSoKfqJIU1ypChczmlQ7Em0nXBQjg9PNSmuhKgOE1GqW1ZktF8PinAg
+         UdZoXQGwtSjP2cTmbJlTOFuA0ElrnwkGKiBxPw+4sVS64BJZXNFMWn0wByRaU7ygMrbx
+         ExDMBDXed92FqQ3ztPpXizluvU6kEWPUuKSaC1DW7if4YCNVzzDT4YZI10vy+GzHLd7W
+         RLCSpFi4CwKVLde3/3h1GaY5IHC8LdBjJeybjCTSt1ExhhbQAvGLjepZfFTK3Fr0UV3u
+         EucxdV42B11Suu6Gzsq85s/DUxCt2s/jDqUeK9ZX6ZIKdvXs91Q5xoELca2Rort0NRYz
+         C7UQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXb4pkEqv1OFntKpcOHMXhyOWJ4CL7W2LK21sqr7HpeslhfEZJ/2E5jdzk5DmyLivearrnCglsPS3vD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWEj0sesv65ZNFPdBLu/zhv/R2w7xKBaQvWLILvDM140A19qCc
+	GYp/7/Fb4NDr3CtAr78aZN+TrlFbXgQ4kGntS8l4k0xR2FQr3sr4lADiu8eIsbQ=
+X-Gm-Gg: ASbGncvnPmwWaJfdcWCCLmaLTBd3LZBKuFUuxJEgxlFnRR6f5YibIg+dX/xybRWgoPJ
+	gG7hx5sn8dDafSgQ7eOAG5hspCPr18Nvsl2f9NEe11DUX6vDAhjj9y29b6BAVdFNJQSh0wFeWXy
+	Oi1q75/vygMWxVH8/XB7wgh1xvuNJTB/p4q1B/1saOZRyMdDbEfjSTVwcu1v1sxkbDT9o079EH1
+	SanNxZo8JSWMQoTlHKj3+c6+wezxH+QViCenERjCbKtij/mUsk+Qck8/w2Y1ZEVXr7G11WTrzh3
+	DJXqt56UVG1peeX2lxk7cc2q8SZ6
+X-Google-Smtp-Source: AGHT+IGoUaGk95oUM4yQSaHCkyk3jFE22p1d6MLwz3TYAGKxVg2fcmcmw3Ez/8KhKRUvTsG7JUf3Lg==
+X-Received: by 2002:a05:6a00:2e9e:b0:725:e1de:c0bf with SMTP id d2e1a72fcca58-72daf9483fdmr2743028b3a.9.1737105440509;
+        Fri, 17 Jan 2025 01:17:20 -0800 (PST)
 Received: from dgp100339560-01.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72dab815bccsm1421548b3a.56.2025.01.17.01.17.12
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72dab815bccsm1421548b3a.56.2025.01.17.01.17.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jan 2025 01:17:15 -0800 (PST)
+        Fri, 17 Jan 2025 01:17:19 -0800 (PST)
 From: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
 To: neil.armstrong@linaro.org,
 	quic_jesszhan@quicinc.com,
@@ -89,9 +89,9 @@ To: neil.armstrong@linaro.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
 Cc: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-Subject: [PATCH v3 3/4] drm/panel: boe-tv101wum-nl6: support for kingdisplay-kd110n11-51ie MIPI-DSI panel
-Date: Fri, 17 Jan 2025 17:14:37 +0800
-Message-Id: <20250117091438.1486732-4-yelangyan@huaqin.corp-partner.google.com>
+Subject: [PATCH v3 4/4] drm/panel: boe-tv101wum-nl6: support for starry-2082109qfh040022-50e MIPI-DSI panel
+Date: Fri, 17 Jan 2025 17:14:38 +0800
+Message-Id: <20250117091438.1486732-5-yelangyan@huaqin.corp-partner.google.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250117091438.1486732-1-yelangyan@huaqin.corp-partner.google.com>
 References: <20250117091438.1486732-1-yelangyan@huaqin.corp-partner.google.com>
@@ -103,25 +103,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The kingdisplay-kd110n11-51ie is a 10.95" TFT panel.
+The starry-2082109qfh040022-50e is a 10.95" TFT panel.
 which fits in nicely with the existing panel-boe-tv101wum-nl6 driver.
 From the datasheet, MIPI needs to keep the LP11 state before the
 lcm_reset pin is pulled high, so increase lp11_before_reset flag.
 
 Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
 ---
- .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 122 ++++++++++++++++++
- 1 file changed, 122 insertions(+)
+ .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 148 ++++++++++++++++++
+ 1 file changed, 148 insertions(+)
 
 diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-index 3e5b0d8636d0..72fa0f6a5cb6 100644
+index 72fa0f6a5cb6..d45321cece55 100644
 --- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
 +++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-@@ -1309,6 +1309,97 @@ static int starry_qfh032011_53g_init(struct boe_panel *boe)
+@@ -1400,6 +1400,123 @@ static int kingdisplay_kd110n11_51ie_init(struct boe_panel *boe)
  	return 0;
- };
+ }
  
-+static int kingdisplay_kd110n11_51ie_init(struct boe_panel *boe)
++static int starry_2082109qfh040022_50e_init(struct boe_panel *boe)
 +{
 +	struct mipi_dsi_multi_context ctx = { .dsi = boe->dsi };
 +
@@ -131,19 +131,22 @@ index 3e5b0d8636d0..72fa0f6a5cb6 100644
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xC4);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD9, 0xD1);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0x3F);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB1, 0x2C, 0xB3, 0xB3, 0x31, 0xF1, 0x33, 0xE0, 0x54,
-+		0x36, 0x36, 0x3A, 0x3A, 0x32, 0x8B, 0x11, 0xE5, 0x98);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xD9);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB1, 0x8B, 0x33);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB1, 0x2C, 0xB5, 0xB5, 0x31, 0xF1, 0x33, 0xC3, 0x57,
++		0x36, 0x36, 0x36, 0x36, 0x1A, 0x8B, 0x11, 0x65, 0x00, 0x88, 0xFA, 0xFF, 0xFF,
++		0x8F, 0xFF, 0x08, 0x3C, 0x33);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB2, 0x00, 0x47, 0xB0, 0x80, 0x00, 0x22, 0x70, 0x3C,
++		0xA1, 0x22, 0x00, 0x00, 0x00, 0x88, 0xF4);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB4, 0x14, 0x16, 0x14, 0x50, 0x14, 0x50, 0x0D, 0x6A,
++		0x0D, 0x6A, 0x01, 0x9E);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB6, 0x34, 0x34, 0x03);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB8, 0x40);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xCD);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBA, 0x84);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0x3F);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB2, 0x00, 0x47, 0xB0, 0x80, 0x00, 0x2C, 0x80, 0x3C,
-+		0x9F, 0x22, 0x20, 0x00, 0x00, 0x98, 0x51);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB4, 0x64, 0x64, 0x64, 0x64, 0x64, 0x64, 0x40, 0x84,
-+		0x64, 0x84, 0x01, 0x9D, 0x01, 0x02, 0x01, 0x00, 0x00);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBC, 0x1B, 0x04);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBE, 0x20);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBF, 0xFC, 0xC4, 0x80, 0x9C, 0x36, 0x00, 0x0D, 0x04);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xC0, 0x32, 0x32, 0x22, 0x11, 0x22, 0xA0, 0x31, 0x08,
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBF, 0xFC, 0xC4);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xC0, 0x38, 0x38, 0x22, 0x11, 0x33, 0xA0, 0x61, 0x08,
 +		0xF5, 0x03);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xCC);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xC7, 0x80);
@@ -151,56 +154,79 @@ index 3e5b0d8636d0..72fa0f6a5cb6 100644
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xC6);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xC8, 0x97);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0x3F);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xC9, 0x00, 0x1E, 0x13, 0x88, 0x01);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xCB, 0x08, 0x13, 0x07, 0x00, 0x0F, 0x36);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xC9, 0x00, 0x1E, 0x30, 0xD4, 0x01);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xCB, 0x08, 0x13, 0x07, 0x00, 0x0F, 0x16);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xCC, 0x02, 0x03, 0x44);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD1, 0x07, 0x06, 0x00, 0x02, 0x04, 0x2C, 0xFF);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD3, 0x06, 0x00, 0x00, 0x00, 0x40, 0x04, 0x08, 0x04,
-+		0x08, 0x37, 0x07, 0x44, 0x37, 0x2B, 0x2B, 0x03, 0x03, 0x32,
-+		0x10, 0x22, 0x00, 0x25, 0x32, 0x10, 0x29, 0x00, 0x29, 0x32,
-+		0x10, 0x08, 0x00, 0x08, 0x00, 0x00);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD5, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18,
-+		0x18, 0x18, 0x07, 0x06, 0x07, 0x06, 0x05, 0x04, 0x05, 0x04,
-+		0x03, 0x02, 0x03, 0x02, 0x01, 0x00, 0x01, 0x00, 0x18, 0x18,
-+		0x25, 0x24, 0x25, 0x24, 0x1F, 0x1F, 0x1F, 0x1F, 0x1E, 0x1E,
-+		0x1E, 0x1E, 0x20, 0x20, 0x20, 0x20);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD8, 0x0A, 0x2A, 0xAA, 0x8A, 0xAA, 0xA0, 0x0A, 0x2A,
-+		0xAA, 0x8A, 0xAA, 0xA0);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE7, 0xE0, 0x10, 0x10, 0x0D, 0x1E, 0x9D, 0x02, 0x52,
-+		0x9D, 0x14, 0x14);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xC4);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD0, 0x03);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0x3F);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD1, 0x37, 0x06, 0x00, 0x02, 0x04, 0x2C, 0xFF);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD3, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++		0x00, 0x3B, 0x03, 0x73, 0x3B, 0x21, 0x21, 0x03, 0x03, 0x98, 0x10, 0x1D, 0x00,
++		0x1D, 0x32, 0x17, 0xA1, 0x07, 0xA1, 0x43, 0x17, 0xA6, 0x07, 0xA6, 0x00, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD5, 0x18, 0x18, 0x18, 0x18, 0x18, 0x18, 0x40, 0x40,
++		0x18, 0x18, 0x18, 0x18, 0x2A, 0x2B, 0x1F, 0x1F, 0x1E, 0x1E, 0x24, 0x25, 0x26,
++		0x27, 0x28, 0x29, 0x2A, 0x2B, 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
++		0x08, 0x09, 0x0A, 0x0B, 0x20, 0x21, 0x18, 0x18, 0x18, 0x18);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD8, 0x02, 0xAA, 0xEA, 0xAA, 0xAA, 0x00, 0x02, 0xAA,
++		0xEA, 0xAA, 0xAA, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++		0x00, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE7, 0x07, 0x10, 0x10, 0x2A, 0x32, 0x9F, 0x01, 0x5A,
++		0x91, 0x14, 0x14, 0x00, 0x00, 0x00, 0x00, 0x12, 0x05, 0x02, 0x02, 0x10, 0x33,
++		0x02, 0x04, 0x18, 0x01);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBD, 0x01);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB1, 0x01, 0x7F, 0x11, 0xFD);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xC5);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBA, 0x4F);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0x3F);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xCB, 0x86);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD2, 0x64);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD2, 0x3D);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xC5);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD3, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD3, 0x00, 0x00, 0x00, 0x80, 0x80, 0x0C, 0xA1);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0x3F);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD8, 0x0A, 0x2A, 0xAA, 0x8A, 0xAA, 0xA0, 0x0A, 0x2A,
-+		0xAA, 0x8A, 0xAA, 0xA0, 0x05, 0x15, 0x55, 0x45, 0x55, 0x50,
-+		0x05, 0x15, 0x55, 0x45, 0x55, 0x50);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE7, 0x02, 0x00, 0x24, 0x01, 0x7E, 0x0F, 0x7C, 0x10,
-+		0xA0, 0x00, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD8, 0x03, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x03, 0xFF,
++		0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
++		0x00, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE7, 0x02, 0x00, 0x2D, 0x01, 0x7F, 0x0F, 0x7C, 0x10,
++		0xA0, 0x00, 0x00, 0x77, 0x00, 0x00, 0x00);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBD, 0x02);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xCB, 0x03, 0x07, 0x00, 0x10, 0x7B);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD8, 0x0F, 0x3F, 0xFF, 0xCF, 0xFF, 0xF0, 0x0F, 0x3F,
-+		0xFF, 0xCF, 0xFF, 0xF0);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBF, 0xF2);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xCB, 0x02, 0x00, 0x00, 0x10, 0x58);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD2, 0x0A, 0x0A, 0x05, 0x03, 0x0A, 0x0A, 0x01, 0x03,
++		0x01, 0x01, 0x05, 0x0E);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xCC);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD3, 0x03, 0x1F, 0xE0, 0x11, 0x70);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0x3F);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD8, 0xAB, 0xFF, 0xFF, 0xFF, 0xFF, 0xA0, 0xAB, 0xFF,
++		0xFF, 0xFF, 0xFF, 0xA0);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE7, 0xFE, 0x01, 0xFE, 0x01, 0xFE, 0x01, 0x00, 0x00,
-+		0x00, 0x23, 0x00, 0x23, 0x81, 0x02, 0x40, 0x00, 0x20, 0x9D,
-+		0x02, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00);
++		0x00, 0x03, 0x00, 0x03, 0x81, 0x02, 0x40, 0x00, 0x20, 0x9E, 0x02, 0x01, 0x00,
++		0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBD, 0x03);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB2, 0x66, 0x81);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xC6);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB4, 0x03, 0xFF, 0xF8);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0x3F);
-+	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD8, 0x0A, 0x2A, 0xAA, 0x8A, 0xAA, 0xA0, 0x0A, 0x2A,
-+		0xAA, 0x8A, 0xAA, 0xA0, 0x0F, 0x2A, 0xAA, 0x8A, 0xAA, 0xF0,
-+		0x0F, 0x2A, 0xAA, 0x8A, 0xAA, 0xF0, 0x0A, 0x2A, 0xAA, 0x8A,
-+		0xAA, 0xA0, 0x0A, 0x2A, 0xAA, 0x8A, 0xAA, 0xA0);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xD8, 0xAA, 0xAB, 0xEA, 0xAA, 0xAA, 0xA0, 0xAA, 0xAB,
++		0xEA, 0xAA, 0xAA, 0xA0, 0xAA, 0xBF, 0xFF, 0xFF, 0xFE, 0xA0, 0xAA, 0xBF, 0xFF,
++		0xFF, 0xFE, 0xA0, 0xAA, 0xAA, 0xAA, 0xAA, 0xAA, 0xA0, 0xAA, 0xAA, 0xAA, 0xAA,
++		0xAA, 0xA0);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE1, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBD, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xC4);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBA, 0x96);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0x3F);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBD, 0x01);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xC5);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBA, 0x4F);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0x3F);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBD, 0x02);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0xCC);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBA, 0x84);
++	mipi_dsi_dcs_write_seq_multi(&ctx, 0xE9, 0x3F);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xBD, 0x00);
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xB9, 0x00, 0x00, 0x00, 0x00);
++
++	msleep(110);
++
 +	mipi_dsi_dcs_write_seq_multi(&ctx, 0x11);
 +
 +	mipi_dsi_msleep(&ctx, 120);
@@ -215,25 +241,25 @@ index 3e5b0d8636d0..72fa0f6a5cb6 100644
  static inline struct boe_panel *to_boe_panel(struct drm_panel *panel)
  {
  	return container_of(panel, struct boe_panel, base);
-@@ -1642,6 +1733,34 @@ static const struct panel_desc starry_qfh032011_53g_desc = {
+@@ -1761,6 +1878,34 @@ static const struct panel_desc kingdisplay_kd110n11_51ie_desc = {
  	.lp11_before_reset = true,
  };
  
-+static const struct drm_display_mode kingdisplay_kd110n11_51ie_default_mode = {
-+	.clock = (1200 + 124 + 80 + 80) * (1920 + 88 + 8 + 38) * 60 / 1000,
++static const struct drm_display_mode starry_2082109qfh040022_50e_default_mode = {
++	.clock = (1200 + 160 + 66 + 120) * (1920 + 115 + 8 + 28) * 60 / 1000,
 +	.hdisplay = 1200,
-+	.hsync_start = 1200 + 124,
-+	.hsync_end = 1200 + 124 + 80,
-+	.htotal = 1200 + 124 + 80 + 80,
++	.hsync_start = 1200 + 160,
++	.hsync_end = 1200 + 160 + 66,
++	.htotal = 1200 + 160 + 66 + 120,
 +	.vdisplay = 1920,
-+	.vsync_start = 1920 + 88,
-+	.vsync_end = 1920 + 88 + 8,
-+	.vtotal = 1920 + 88 + 8 + 38,
++	.vsync_start = 1920 + 115,
++	.vsync_end = 1920 + 115 + 8,
++	.vtotal = 1920 + 115 + 8 + 28,
 +	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
 +};
 +
-+static const struct panel_desc kingdisplay_kd110n11_51ie_desc = {
-+	.modes = &kingdisplay_kd110n11_51ie_default_mode,
++static const struct panel_desc starry_2082109qfh040022_50e_desc = {
++	.modes = &starry_2082109qfh040022_50e_default_mode,
 +	.bpc = 8,
 +	.size = {
 +		.width_mm = 147,
@@ -243,19 +269,19 @@ index 3e5b0d8636d0..72fa0f6a5cb6 100644
 +	.format = MIPI_DSI_FMT_RGB888,
 +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
 +		      MIPI_DSI_MODE_LPM,
-+	.init = kingdisplay_kd110n11_51ie_init,
++	.init = starry_2082109qfh040022_50e_init,
 +	.lp11_before_reset = true,
 +};
 +
  static int boe_panel_get_modes(struct drm_panel *panel,
  			       struct drm_connector *connector)
  {
-@@ -1807,6 +1926,9 @@ static const struct of_device_id boe_of_match[] = {
- 	{ .compatible = "starry,2081101qfh032011-53g",
- 	  .data = &starry_qfh032011_53g_desc
+@@ -1929,6 +2074,9 @@ static const struct of_device_id boe_of_match[] = {
+ 	{ .compatible = "kingdisplay,kd110n11-51ie",
+ 	  .data = &kingdisplay_kd110n11_51ie_desc
  	},
-+	{ .compatible = "kingdisplay,kd110n11-51ie",
-+	  .data = &kingdisplay_kd110n11_51ie_desc
++	{ .compatible = "starry,2082109qfh040022-50e",
++	  .data = &starry_2082109qfh040022_50e_desc
 +	},
  	{ /* sentinel */ }
  };
