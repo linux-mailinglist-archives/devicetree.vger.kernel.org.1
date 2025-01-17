@@ -1,103 +1,89 @@
-Return-Path: <devicetree+bounces-139385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0F20A1592C
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 22:46:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1FB7A15939
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 22:53:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B98E169312
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 21:46:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B1953A737B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 21:53:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58F781AA1C9;
-	Fri, 17 Jan 2025 21:46:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2469C1AA1D0;
+	Fri, 17 Jan 2025 21:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="uK1wSFOo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BTeJY7ei"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-177.mta1.migadu.com (out-177.mta1.migadu.com [95.215.58.177])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32089198851
-	for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 21:46:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F064571750;
+	Fri, 17 Jan 2025 21:53:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737150403; cv=none; b=fawgbFooXtp8ydZ1C4HozTn53LJVgwgNw8COVv491v7wLSnY8BpAOzj9j97rGwcO2NR2Wvr5ZgwaeCCl8Fr7k+d2W0euPuBH606lahJgaDRCWdByuMGlqbDrhvDAK/zS3YWTd2fIDIdMb4cguLp4c3Q+Vfer4W5tjyekFoyidRc=
+	t=1737150802; cv=none; b=iswEapauEYzVsX15YK3bhPBjWn445AS2s8bIgnblrfY7ihQX8fJ70hwa0EbD8zkVnwcpbJVZv/CGutTQ1X7IjgnEhS5AatER+7rhnggjKoC3T53uFW9P9/hiptYZrAKQ5UpR6SkA98hW5DMeGcwfwUtTi/4Xu+ZY/sNGuqWAQEc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737150403; c=relaxed/simple;
-	bh=5KSb2aqbLM5tvKNqVDwZd4EtPtJ9QaF/TAK22Rk/27c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WKYdYzH22b9JlHLfE8XLNyAoOtU26YmRKarZbLsGkwb3sW2rGLInkposVhyuEoVSW4o9/5dOHhfg9R40sEfHrH0eSR9jB4joa3J+FzUQDVu0D4DnUYf4MBMjz9XJcn0E+OoElM08Vlas9wpYfMYpYalmg14emvfVuS6A+fFOWI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=uK1wSFOo; arc=none smtp.client-ip=95.215.58.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <8c9e6a12-e64f-4658-94e8-77469f393a0e@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1737150389;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PAf0cQEhbeq9uQn2HgBxJwToemXIDO+RTwUH+VMF7LE=;
-	b=uK1wSFOoJ9c+9g/m/XG1HVsnP6alX8ieCy4PrcuxpIKWs5YnuxnT64mQ2qBUqvi8DkmqyD
-	VK0P2Nl5SczZOcYUF+vTT93a/jtrPPypdcz/ErkE/9hf6uPZpCakuUJWwx2xi6yIDmbM/q
-	zwu8IHvKLes80K/irnBdxtm32rStltU=
-Date: Fri, 17 Jan 2025 16:46:23 -0500
+	s=arc-20240116; t=1737150802; c=relaxed/simple;
+	bh=VW5EyfFdiwwuLumv4qmz2SIBbEEyifpOA4x4vJSJnOI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oH8WlPGdBMaz0K7K5t2AhD9I1kC+8bNlpaOmGKNXsNZ1MVVHbObUGCbm7CVQbxoHoc6l7oQj5OXt93U9fHaoGcYum3KwcL29HPeKfSLIOnv6B61trb9IBI7dQc1GPZlZmA6vEUrGlUf+1pb0U3sn/5LVcQY9Zr6w0KyHujsI9Qg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BTeJY7ei; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53A76C4AF09;
+	Fri, 17 Jan 2025 21:53:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737150801;
+	bh=VW5EyfFdiwwuLumv4qmz2SIBbEEyifpOA4x4vJSJnOI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=BTeJY7eis3QPTHOrIqrCUqPaZKSgRO45l8lvl8bmx7p0FANWbtahXXsot+G64UvXf
+	 yeDzTB6sPrMj/SwvklROwdM88T2IOCoJNmVdbY36TGxs8ljLRZ2u4jt0M9Ip5xb1yY
+	 8R88hqHYhWXRYgC/oW0vXmPw0Dbsy35YvsvFsWWAn+mvQusJznFQwgp7h52ds4A38u
+	 CIAzA6KacWg+q0wH0dJtxULE5o1XQ5YSzLjdMo3Au/1ATL174wgjShlUN0RSJLxoD/
+	 eKlVINLBpnV1tUTW3C7/Awphx3lfLKhuOBZ0NE7tgjT/FWNOhmiV3a6765pNLIwKb/
+	 sl8lr+rbheSCA==
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-54026562221so2518456e87.1;
+        Fri, 17 Jan 2025 13:53:21 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUyKXFQNPm0ihdNn81HyhvBpZlAg3m2s+oAdzKIvnM+VjcqHCCojnefigVKM2tq0NpaV8OWH2l09ual@vger.kernel.org, AJvYcCXgFW2OnAN3Ha9cSs4aPgnXhrowf+dTGWofhaYLEP5UF9Qfmk58paQvC4tBpBC4twc3bddWgxLDr5wTr4xh@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUXsQekR2jbvQnEDwBaqpPLkgEKWAha5YwAT7vqzBT/up4uJvP
+	De7nXj8by3+fzJqZR3Ajxkpzi3X/eA1ucVIrrVZHRnnvHm/ky4ApyhMG7uUuXC711bwZyCa+PJe
+	0T6kHbps5w2RgNZoRUg9S93iOrg==
+X-Google-Smtp-Source: AGHT+IHaU1I94JDdQh3feZHpzfFPRJXXC5A4Hok1wxyjaXGDCJg7IdNzuWujIr7uz1tyy+76i7bsZqcdYD7FJPrR6bs=
+X-Received: by 2002:a05:6512:10c8:b0:542:297f:4f65 with SMTP id
+ 2adb3069b0e04-5439c1be350mr1718121e87.0.1737150799671; Fri, 17 Jan 2025
+ 13:53:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/5] spi: zynqmp-gqspi: Improve error recovery by
- resetting
-To: Mark Brown <broonie@kernel.org>, Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jinjie Ruan <ruanjinjie@huawei.com>,
- linux-arm-kernel@lists.infradead.org,
- Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org
-References: <20250116225521.2688224-1-sean.anderson@linux.dev>
- <5942e111-24ba-4d1b-bd4f-6b81dcc6c5dc@sirena.org.uk>
- <87h65xi977.fsf@bootlin.com>
- <1026d44b-0907-4835-bc95-32f9bbcf4831@sirena.org.uk>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <1026d44b-0907-4835-bc95-32f9bbcf4831@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+References: <875xmizl6a.fsf@igel.home>
+In-Reply-To: <875xmizl6a.fsf@igel.home>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 17 Jan 2025 15:53:07 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJtJTCv7_VcxfXU8sYPgmXGNu7OCbHWJ4t55RFgb1U2sw@mail.gmail.com>
+X-Gm-Features: AbW1kvbNrUoWsyD6xho-P-IFqdqZFIx-qVsYXBVwZXGZEVJ1kqBEIKuqaOXT0rE
+Message-ID: <CAL_JsqJtJTCv7_VcxfXU8sYPgmXGNu7OCbHWJ4t55RFgb1U2sw@mail.gmail.com>
+Subject: Re: [PATCH] powerpc/prom_init: Fixup missing #size-cells on PowerBook6,7
+To: Andreas Schwab <schwab@linux-m68k.org>
+Cc: linuxppc-dev@lists.ozlabs.org, saravanak@google.com, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Michael Ellerman <mpe@ellerman.id.au>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 1/17/25 13:41, Mark Brown wrote:
-> On Fri, Jan 17, 2025 at 07:31:08PM +0100, Miquel Raynal wrote:
->> On 17/01/2025 at 13:21:58 GMT, Mark Brown <broonie@kernel.org> wrote:
-> 
->> > If you're hitting a timeout that tends to indicate there's already a
->> > serious stability problem...
-> 
->> Yes, unless the timeout is reached for "good reasons", ie. you request
->> substantial amounts of data (typically from a memory device) and the
->> timeout is too short compared to the theoretical time spent in the
->> transfer. A loaded machine can also increase the number of false
->> positives I guess.
-> 
-> I'd argue that all of those are bad reasons, I'd only expect us to time
-> out when there's a bug - choosing too low a timeout or doing things in a
-> way that generates timeouts under load is a problem.
+On Mon, Jan 13, 2025 at 11:19=E2=80=AFAM Andreas Schwab <schwab@linux-m68k.=
+org> wrote:
+>
+> Similar to the PowerMac3,1, the PowerBook6,7 is missing the #size-cells
+> property on the i2s node.
+>
+> Depends-on: 045b14ca5c36 ("of: WARN on deprecated #address-cells/#size-ce=
+lls handling")
+> Signed-off-by: Andreas Schwab <schwab@linux-m68k.org>
+> ---
+>  arch/powerpc/kernel/prom_init.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-There's no transmit DMA for this device. So if you are under high load
-and make a long transfer, it's possible to time out. I don't know if
-it's possible to fix that very easily. The timeout calculation assumes
-that data is being transferred at the SPI bus rate.
-
-That said, in the common case (NOR flash) writes don't work like that.
-To write a flash, we make a short transfer (such as an eraseblock) and
-then poll the status register before making another transfer. With short
-transfers there is less probability of timing out because the extra time
-makes up more of the duration.
-
---Sean
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
