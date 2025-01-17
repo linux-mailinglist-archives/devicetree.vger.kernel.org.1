@@ -1,134 +1,149 @@
-Return-Path: <devicetree+bounces-139320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8684CA15153
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 15:11:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80A5BA15155
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 15:11:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B4BEA16955A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:11:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06037188CB82
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:11:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 845341FFC66;
-	Fri, 17 Jan 2025 14:11:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4166201013;
+	Fri, 17 Jan 2025 14:11:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="c0FTmAFJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 387721FF603;
-	Fri, 17 Jan 2025 14:11:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE1121FF609;
+	Fri, 17 Jan 2025 14:11:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737123093; cv=none; b=RTIAKTl7cm2G4Xt2W+fibdyLmkqMFzlcN5OdUrM4dyqETU32XI2PkNpYQXc5thN16+1GIscw2eLDRbVF7uoKfHQAVGyr+LfI/a/nuZIDDo81MaOpY68OWzFfvOsXWgBdrpYmQGH8Koa+byp2I3WobxHVSQLw60pdHfZ6FG7vle4=
+	t=1737123095; cv=none; b=mZTE8P1iC3Pc9qQLF+zkza8b3LeAz1z5TA8EHs/NaaNARAKdcMTCBbDemoNsArtccxQdzunNSIg0G38+vTyXZ02Bhlg1+B06+b262LmF2v0vVBKnswcuLyeAo3CdaJPa49P3Qn/JIMYOE6BOeCJMMJYuERDXXA5oCKR64pfNx64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737123093; c=relaxed/simple;
-	bh=Mm03UUrI+RV31iiXhGlDiAEF5rP+pIz2ld/fYEKGBa8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xw0V+ktcfVf1mZB9ZzutR+bMt40kxCLdzaRZRGw/wlz23EPofx0BnxGE80v8LFR+8jTGSvP/uUlvSbrF5lEKzZb6BeKvN1xK5BjjrivKsuq+OLIkkUnj1+6auWnEGlAER/fnryTwXG2j4lh0qibHIqSZ6EtMZRpBoOFPXNmT5aA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from [IPV6:2605:59c0:20f3:a400:5304:e921:4d34:736a] (unknown [IPv6:2605:59c0:20f3:a400:5304:e921:4d34:736a])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id DDA7BB4B438D;
-	Fri, 17 Jan 2025 15:04:40 +0100 (CET)
-Message-ID: <dd3aefec-0e1a-4025-812b-daa67a53f4ee@freeshell.de>
-Date: Fri, 17 Jan 2025 06:04:38 -0800
+	s=arc-20240116; t=1737123095; c=relaxed/simple;
+	bh=Me246SJL54xrtLrgLYOve0FHhr6a7dzhnL3mtYfwI74=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:From:To:
+	 References:In-Reply-To; b=h3uVkKTMhWwv+5gXyR2VZ+Bh8fmG7AS6lb4DbDBWiSHiFhRR574NC75RxWsPlbbjaHX/vuh7HxGhQMozXraxGQdJ4oRmKLmU60Hb8dkog+v6/KQlbhM0mZtExTU50HldkOqpOt8mvgVC6u7QyNfStFH7c4Kge6JHKWwXOg4eTgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=c0FTmAFJ; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 553F920004;
+	Fri, 17 Jan 2025 14:11:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1737123091;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=yzZDikjR9clIGnmTv+VoIvPOgnUMRodTCnVhk/mabBU=;
+	b=c0FTmAFJBk1PJzrL0vgS1Y0BNK/05UH3P9A0IdreLuGCB2+cYOy455TZAyjTEleeRDCA2E
+	1XvGrX/KERV+3R7j3D62t4b09RJ503YWvq18lh6+LgQX8DSYMy7BHdEYD+eEiMLkdLKu/j
+	5I0pCYj0egriASFgZxo/M9ubZDYMO+6SLmMScOjeD2pguwG8Y8RbhxhGx5uiObGqIe5cEu
+	HYByuO5PdrESQ8+TUc5bOFt8l17cpgsLwSkAV63XULLTwkxgGD7E+OEhYs8Q/oP9BVfAUJ
+	OUtuyWQJOGx+AMvK8uMEW9YPDbD05R2S/ZcFFkpbDeDW2F8aY5bypA5tCmP4dw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] riscv: dts: starfive: jh7110: pciephy0 USB 3.0
- configuration registers
-To: Minda Chen <minda.chen@starfivetech.com>, Conor Dooley <conor@kernel.org>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20250102183746.411526-1-e@freeshell.de>
- <20250102183746.411526-2-e@freeshell.de>
- <20250113-mushiness-snugness-0f55574e3956@spud>
- <SHXPR01MB0863DBF85A9874C9F93ECD25E618A@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
- <20250114-recollect-dictate-104e890d116e@spud>
- <SHXPR01MB08631714C914911D343372ACE619A@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <SHXPR01MB08631714C914911D343372ACE619A@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 17 Jan 2025 15:11:29 +0100
+Message-Id: <D74EQQNADWDP.FQ5XFK8TB5XH@bootlin.com>
+Subject: Re: [PATCH v3 3/7] pwm: max7360: Add MAX7360 PWM support
+Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Kamel Bouhara" <kamel.bouhara@bootlin.com>, "Linus
+ Walleij" <linus.walleij@linaro.org>, "Bartosz Golaszewski" <brgl@bgdev.pl>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-input@vger.kernel.org>,
+ <linux-pwm@vger.kernel.org>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+From: "Mathieu Dubois-Briand" <mathieu.dubois-briand@bootlin.com>
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20250113-mdb-max7360-support-v3-0-9519b4acb0b1@bootlin.com>
+ <20250113-mdb-max7360-support-v3-3-9519b4acb0b1@bootlin.com>
+ <f22l3uqgt65utxehv2zmozqixjkktp4trpr42xr5arvp6o5zcf@g5iriaeskqa5>
+In-Reply-To: <f22l3uqgt65utxehv2zmozqixjkktp4trpr42xr5arvp6o5zcf@g5iriaeskqa5>
+X-GND-Sasl: mathieu.dubois-briand@bootlin.com
 
-Hi Minda,
+On Fri Jan 17, 2025 at 10:33 AM CET, Uwe Kleine-K=C3=B6nig wrote:
+> Hello Mathieu,
+>
+> On Mon, Jan 13, 2025 at 01:42:27PM +0100, mathieu.dubois-briand@bootlin.c=
+om wrote:
+> > From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+...
+> > +static int max7360_pwm_apply(struct pwm_chip *chip, struct pwm_device =
+*pwm,
+> > +			     const struct pwm_state *state)
+> > +{
+> > +	struct max7360_pwm *max7360_pwm;
+> > +	u64 duty_steps;
+> > +	int ret;
+> > +
+> > +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+> > +		return -EINVAL;
+> > +
+> > +	if (state->period !=3D MAX7360_PWM_PERIOD_NS) {
+> > +		dev_warn(&chip->dev,
+> > +			 "unsupported pwm period: %llu, should be %u\n",
+> > +			 state->period, MAX7360_PWM_PERIOD_NS);
+> > +		return -EINVAL;
+>
+> Please don't emit error messages in .apply(). Also a driver is supposed
+> to round down .period, so any value >=3D MAX7360_PWM_PERIOD_NS should be
+> accepted.
+>
+> Also note that you might want to implement the waveform callbacks
+> instead of .apply() and .get_state() for the more modern abstraction
+> (with slightly different rounding rules).
+>
 
-On 1/15/25 02:58, Minda Chen wrote:
-> 
-> 
->>
->> On Tue, Jan 14, 2025 at 05:42:28AM +0000, Minda Chen wrote:
->>>
->>>
->>>>
->>>> On Thu, Jan 02, 2025 at 10:37:36AM -0800, E Shattow wrote:
->>>>> StarFive JH7110 contains a Cadence USB2.0+USB3.0 controller IP
->>>>> block that may exclusively use pciephy0 for USB3.0 connectivity.
->>>>> Add the register offsets for the driver to enable/disable USB3.0 on
->> pciephy0.
->>>>>
->>>>> Signed-off-by: E Shattow <e@freeshell.de>
->>>>> ---
->>>>>   arch/riscv/boot/dts/starfive/jh7110.dtsi | 2 ++
->>>>>   1 file changed, 2 insertions(+)
->>>>>
->>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>>> b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>>> index 0d8339357bad..75ff07303e8b 100644
->>>>> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>>> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
->>>>> @@ -611,6 +611,8 @@ usbphy0: phy@10200000 {
->>>>>   		pciephy0: phy@10210000 {
->>>>>   			compatible = "starfive,jh7110-pcie-phy";
->>>>>   			reg = <0x0 0x10210000 0x0 0x10000>;
->>>>> +			starfive,sys-syscon = <&sys_syscon 0x18>;
->>>>> +			starfive,stg-syscon = <&stg_syscon 0x148 0x1f4>;
->>>>
->>>> Why weren't these added in the first place? Minda, do you know?
->>>>
->>> The driver only require to set syscon register while the PHY attach to
->>> Cadence USB.(star64 board case) The PHY default attach to PCIe0, VF2 board
->> do not set any setting. So I don't set it.
->>
->> Does this mean that the change should be made in files where it will only affect
->> non-VF2 boards, or is it harmless if applied to the VF2 also?
-> Harmless. The PCIe PHY driver still set the PCIe mode syscon setting.
+Sure, I just switched to the waveform callbacks, it was quite
+straightforward.
 
-Sounds good to me. However some tangent topic related to this series:
+> > +static int max7360_pwm_get_state(struct pwm_chip *chip, struct pwm_dev=
+ice *pwm,
+> > +				 struct pwm_state *state)
+> > +{
+...
+> > +	state->duty_cycle =3D mul_u64_u64_div_u64(val, MAX7360_PWM_PERIOD_NS,
+> > +						MAX7360_PWM_MAX_RES);
+>
+> You have to round up here. I would expect that the checks in the core
+> (with PWM_DEBUG=3D1) help you catching this type of error. In your case
+> changing the configuration to
+>
+> 	.period =3D 2000000,
+> 	.duty_cycle =3D 234379,
+>
+> should yield some hint in the kernel log.
+>
 
-Our questions and answers in this discussion are a representation of 
-what is missing from the documentation.
+Thanks for the reproduce steps: I saw the bug and fixed it. Also
+MAX7360_PWM_MAX_RES had to be set to 255 and not 256...
 
-What do I want to know? :  "pdrstn split sw usbpipe plugen" abbreviation.
+> > +	return 0;
+> > +}
+>
+> Best regards
+> Uwe
 
-What are the full words that is from?
+I also fixed all other points mentioned in your mail. Thanks again for your=
+ review.
 
-I will guess the words are:
+--=20
+Mathieu Dubois-Briand, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-"Power domain reset negative? Split... Switch? USB pipeline plug enable?"
-
-When this is explained for me I will send a patch to add information 
-into documentation at dt-bindings/phy/starfive,jh7110-pcie-phy.yaml 
-file. I know that the functionality is already said in discussion;  What 
-I want are the full words to expand the "pdrstn split sw usbpipe plugen" 
-as any abbreviation would also be expanded and explained in documentation.
-
-It would be difficult to improve the documentation before our discussion 
-about this series here. Now it is clear what questions and answers are 
-missing from documentation.
-
--E
 
