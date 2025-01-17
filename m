@@ -1,147 +1,219 @@
-Return-Path: <devicetree+bounces-139264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7D3AA14E2E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:06:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE487A14E6F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:24:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51FDA3A6C28
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:06:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32CC118824B9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CCB21FC7F0;
-	Fri, 17 Jan 2025 11:06:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C9E81FDE09;
+	Fri, 17 Jan 2025 11:24:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jQ1DKQJj"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="HlDcy47P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail-m32123.qiye.163.com (mail-m32123.qiye.163.com [220.197.32.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B4C01F5611;
-	Fri, 17 Jan 2025 11:06:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1E321FBEBF;
+	Fri, 17 Jan 2025 11:24:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737111985; cv=none; b=qAjaWSb2VU9q+iOzdIJ2nyN5v7OyMuP6P0Yn9+gIOaoDsgatV7k+RjcxERsCY2SY0KPbYVD/1YRD3zrn9zHnlhaQLBiN0K6Ihue/8b1VydrSaU5dvRakoh9HvTNewDVrs15dD4TP0u9YVl/Cz5ijLIsxDUniyudTud9PT81c72w=
+	t=1737113063; cv=none; b=dZMknKC5fTa4U0aIi0L+WLbyZf1bo4RBMU8TULf+SNDPHfHTt+8JF+2zgJvQrWhbCbA42AWIsQNzPsfUzuiF9hN+9SazYVfPiYoKWikBERtcbj/EucAtXNlD1zLsH6Jw6gPtRMtDUQz9J6Md9TVw3akM44TyFK/kSaOES4qrVOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737111985; c=relaxed/simple;
-	bh=gWQGzp34YGOJg/WlRDrQfCtX/F5SzNrWF+wHX8uyTy8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=cYyrdM3X9o3BMteCtufI9J3gw+mwc81DYSXWLIqNi9jCjMyDE3gBMh0M1vrw1FrUM+3EDhAsoy75HINX0nLd4VOnls0WPYfxflZYla3R87whSAWyQK6SSUBSxCqkbX6bjOqQ+VcQdZUN/sLPoZ5EFZd0ifLAktVMDpVvokLONo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jQ1DKQJj; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50HAuqoC028702;
-	Fri, 17 Jan 2025 11:06:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=ubPmfS108o+i8bQNtEXM2u
-	XlX05rg12se5tojkJ1MBs=; b=jQ1DKQJj/OWugHZJmLES3OcTUKG+F91SbpxwG1
-	/t/cWji+e7VHOA+0qMCULc5qg/ngebI2BNHDJ/1C6TLiDOP+KUh2x89R4sQlNlMh
-	5onKZQ1xnwBskJ7ctqBNraRSTG/RX5cVi6HGjYF7AtPLRrR1XGVgWrPKZQze/waG
-	wLcequIQXkcwCit/iubruLbTKOSL4O2cI2tlCWS4XQ5vH23NTuuzFz7KxFPfAt8e
-	1LM+MixQGjgAHYJqbwcTUbaUkjJvb9uN1/aIKZbj9BPT20nSqaSZgurtRWNqSUB7
-	JmJe55ERh4E2p6AERxdx4R0A5BZoSqm7mdu0EyMy4CJzfr4A==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 447nw900te-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Jan 2025 11:06:20 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50HB6A7J030588
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Jan 2025 11:06:10 GMT
-Received: from [10.213.98.28] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 17 Jan
- 2025 03:06:06 -0800
-From: Jagadeesh Kona <quic_jkona@quicinc.com>
-Date: Fri, 17 Jan 2025 16:35:54 +0530
-Subject: [PATCH] arm64: dts: qcom: sa8775p: Add LMH interrupts for
- cpufreq_hw node
+	s=arc-20240116; t=1737113063; c=relaxed/simple;
+	bh=EhYAo+DNLfHPSM21GAOArIV6t/INbu9IFzSz4o3l0/U=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=eDV5DImV/Lnwy5p1FFcb/89Ld1zGKy0qmCLjcpJp69ZndhtuNqAwX9ctbxZJYgQ97FKasHFzNNbkzv7OSdzb8SYHdxTs6RQyvoXzsGc1Gy5a27gQchH2m3W0J3Ky3ES+1gxbvz6qiAazHat8WIH0nWaTXxF/3Gj5kqI+hhEg0og=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=HlDcy47P; arc=none smtp.client-ip=220.197.32.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [103.29.142.67])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 8f223a01;
+	Fri, 17 Jan 2025 11:27:48 +0800 (GMT+08:00)
+From: Kever Yang <kever.yang@rock-chips.com>
+To: heiko@sntech.de
+Cc: linux-rockchip@lists.infradead.org,
+	Kever Yang <kever.yang@rock-chips.com>,
+	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Wang <frank.wang@rock-chips.com>,
+	Rob Herring <robh@kernel.org>,
+	Liang Chen <cl@rock-chips.com>,
+	Detlev Casanova <detlev.casanova@collabora.com>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v5 2/2] arm64: dts: rockchip: Add rk3576 pcie nodes
+Date: Fri, 17 Jan 2025 11:27:42 +0800
+Message-Id: <20250117032742.2990779-2-kever.yang@rock-chips.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250117032742.2990779-1-kever.yang@rock-chips.com>
+References: <20250117032742.2990779-1-kever.yang@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250117-sa8775p-lmh-interrupts-v1-1-bae549f0bfe8@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAJE5imcC/x3MQQqEMAxA0atI1gZspbbjVWQWZYwacGpJdBDEu
- 09x+Rb/X6AkTAp9dYHQj5W3VGDqCj5LTDMhj8VgG+saYzxqDN67jOt3QU47iRx5V3RTiJ15daH
- 1FkqchSY+n/Hwvu8/iFF9S2gAAAA=
-X-Change-ID: 20250117-sa8775p-lmh-interrupts-5f8a61968372
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik
-	<quic_imrashai@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Satya Priya
- Kakitapalli" <quic_skakitap@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Jagadeesh Kona
-	<quic_jkona@quicinc.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: s1rV6bG4Ar2MKrJJVxCO9ZDTSFw1Q38j
-X-Proofpoint-ORIG-GUID: s1rV6bG4Ar2MKrJJVxCO9ZDTSFw1Q38j
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-17_04,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- priorityscore=1501 impostorscore=0 suspectscore=0 spamscore=0
- malwarescore=0 adultscore=0 mlxlogscore=782 phishscore=0 mlxscore=0
- bulkscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501170089
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZHRkeVkgYQkhKSUJLS0xIGVYVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKS0hVSUJVSk9JVU1MWVdZFhoPEhUdFFlBWU9LSFVKS0lPT09IVUpLS1
+	VKQktLWQY+
+X-HM-Tid: 0a94724d7c4d03afkunm8f223a01
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PxQ6SCo4SDIRTz8jPy9MCSMJ
+	SzEwCTBVSlVKTEhMS0NPT0xLSkhCVTMWGhIXVRAeDR4JVQIaFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlKS0hVSUJVSk9JVU1MWVdZCAFZQU9CSkg3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=HlDcy47P4XNOi+Vb5t3qZCIfM/lOXS+3+B4jMT0CQX2Yz1qVB160MQmavgVShWC54yq497STggBljOeE0URYofmQwOhNmWMIuGOe4I3e/r7YAfa9aFDuIwWWTFRYTNhm0HaOmQRmTrt2NHJS71X1i8Uk0x45X05TQGvUuYsBUfk=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=K1IuG6+I4mT7BCuPIGO6UgL25sxMzGv7dQJPIqjJ9Jo=;
+	h=date:mime-version:subject:message-id:from;
 
-Add LMH interrupts for cpufreq_hw node to indicate if there is any
-thermal throttle.
+rk3576 has two pcie controllers, both are pcie2x1 work with
+naneng-combphy.
 
-Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
 ---
-This patch was previously included in the below SA8775P DDR & L3 scaling
-series:
 
-https://lore.kernel.org/all/20241112-sa8775p-cpufreq-l3-ddr-scaling-v2-0-53d256b3f2a7@quicinc.com/
+Changes in v5: None
+Changes in v4: None
+Changes in v3:
+- Update the subject
 
-Based on Bjorn's review comments on the above series, included DDR & L3
-scaling patch in it's dependent interconnect series and posting the LMH
-interrupts patch separately here.
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+Changes in v2:
+- Update clock and reset names and sequence to pass DTB check
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 3394ae2d13003417a15e64c9e47833725ec779e6..1408b946dfd589aef49f25d805c5fa63d1e64543 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -4660,6 +4660,10 @@ cpufreq_hw: cpufreq@18591000 {
- 			      <0x0 0x18593000 0x0 0x1000>;
- 			reg-names = "freq-domain0", "freq-domain1";
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi | 109 +++++++++++++++++++++++
+ 1 file changed, 109 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576.dtsi b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+index a147879da501..0486525fe596 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3576.dtsi
+@@ -1016,6 +1016,115 @@ qos_npu_m1ro: qos@27f22100 {
+ 			reg = <0x0 0x27f22100 0x0 0x20>;
+ 		};
  
-+			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "dcvsh-irq-0", "dcvsh-irq-1";
++		pcie0: pcie@2a200000 {
++			compatible = "rockchip,rk3576-pcie", "rockchip,rk3568-pcie";
++			#address-cells = <3>;
++			#size-cells = <2>;
++			bus-range = <0x0 0xf>;
++			clocks = <&cru ACLK_PCIE0_MST>, <&cru ACLK_PCIE0_SLV>,
++				 <&cru ACLK_PCIE0_DBI>, <&cru PCLK_PCIE0>,
++				 <&cru CLK_PCIE0_AUX>;
 +
- 			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GCC_GPLL0>;
- 			clock-names = "xo", "alternate";
- 
-
----
-base-commit: 0907e7fb35756464aa34c35d6abb02998418164b
-change-id: 20250117-sa8775p-lmh-interrupts-5f8a61968372
-
-Best regards,
++			clock-names = "aclk_mst", "aclk_slv",
++				      "aclk_dbi", "pclk",
++				      "aux";
++			device_type = "pci";
++			interrupts = <GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 278 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "sys", "pmc", "msg", "legacy", "err", "msi";
++			#interrupt-cells = <1>;
++			interrupt-map-mask = <0 0 0 7>;
++			interrupt-map = <0 0 0 1 &pcie0_intc 0>,
++					<0 0 0 2 &pcie0_intc 1>,
++					<0 0 0 3 &pcie0_intc 2>,
++					<0 0 0 4 &pcie0_intc 3>;
++			linux,pci-domain = <0>;
++			num-ib-windows = <8>;
++			num-viewport = <8>;
++			num-ob-windows = <2>;
++			max-link-speed = <2>;
++			num-lanes = <1>;
++			phys = <&combphy0_ps PHY_TYPE_PCIE>;
++			phy-names = "pcie-phy";
++			power-domains = <&power RK3576_PD_PHP>;
++			ranges = <0x01000000 0x0 0x20100000 0x0 0x20100000 0x0 0x00100000
++				  0x02000000 0x0 0x20200000 0x0 0x20200000 0x0 0x00e00000
++				  0x03000000 0x9 0x00000000 0x9 0x00000000 0x0 0x80000000>;
++			reg = <0x0 0x22000000 0x0 0x00400000>,
++			      <0x0 0x2a200000 0x0 0x00010000>,
++			      <0x0 0x20000000 0x0 0x00100000>;
++			reg-names = "dbi", "apb", "config";
++			resets = <&cru SRST_PCIE0_POWER_UP>, <&cru SRST_P_PCIE0>;
++			reset-names = "pwr", "pipe";
++			status = "disabled";
++
++			pcie0_intc: legacy-interrupt-controller {
++				interrupt-controller;
++				#address-cells = <0>;
++				#interrupt-cells = <1>;
++				interrupt-parent = <&gic>;
++				interrupts = <GIC_SPI 280 IRQ_TYPE_EDGE_RISING>;
++			};
++		};
++
++		pcie1: pcie@2a210000 {
++			compatible = "rockchip,rk3576-pcie", "rockchip,rk3568-pcie";
++			#address-cells = <3>;
++			#size-cells = <2>;
++			bus-range = <0x20 0x2f>;
++			clocks = <&cru ACLK_PCIE1_MST>, <&cru ACLK_PCIE1_SLV>,
++				 <&cru ACLK_PCIE1_DBI>, <&cru PCLK_PCIE1>,
++				 <&cru CLK_PCIE1_AUX>;
++			clock-names = "aclk_mst", "aclk_slv",
++				      "aclk_dbi", "pclk",
++				      "aux";
++			device_type = "pci";
++			interrupts = <GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "sys", "pmc", "msg", "legacy", "err", "msi";
++			#interrupt-cells = <1>;
++			interrupt-map-mask = <0 0 0 7>;
++			interrupt-map = <0 0 0 1 &pcie1_intc 0>,
++					<0 0 0 2 &pcie1_intc 1>,
++					<0 0 0 3 &pcie1_intc 2>,
++					<0 0 0 4 &pcie1_intc 3>;
++			linux,pci-domain = <0>;
++			num-ib-windows = <8>;
++			num-viewport = <8>;
++			num-ob-windows = <2>;
++			max-link-speed = <2>;
++			num-lanes = <1>;
++			phys = <&combphy1_psu PHY_TYPE_PCIE>;
++			phy-names = "pcie-phy";
++			power-domains = <&power RK3576_PD_SUBPHP>;
++			ranges = <0x01000000 0x0 0x21100000 0x0 0x21100000 0x0 0x00100000
++				  0x02000000 0x0 0x21200000 0x0 0x21200000 0x0 0x00e00000
++				  0x03000000 0x9 0x80000000 0x9 0x80000000 0x0 0x80000000>;
++			reg = <0x0 0x22400000 0x0 0x00400000>,
++			      <0x0 0x2a210000 0x0 0x00010000>,
++			      <0x0 0x21000000 0x0 0x00100000>;
++			reg-names = "dbi", "apb", "config";
++			resets = <&cru SRST_PCIE1_POWER_UP>, <&cru SRST_P_PCIE1>;
++			reset-names = "pwr", "pipe";
++			status = "disabled";
++
++			pcie1_intc: legacy-interrupt-controller {
++				interrupt-controller;
++				#address-cells = <0>;
++				#interrupt-cells = <1>;
++				interrupt-parent = <&gic>;
++				interrupts = <GIC_SPI 266 IRQ_TYPE_EDGE_RISING>;
++			};
++		};
++
+ 		gmac0: ethernet@2a220000 {
+ 			compatible = "rockchip,rk3576-gmac", "snps,dwmac-4.20a";
+ 			reg = <0x0 0x2a220000 0x0 0x10000>;
 -- 
-Jagadeesh Kona <quic_jkona@quicinc.com>
+2.25.1
 
 
