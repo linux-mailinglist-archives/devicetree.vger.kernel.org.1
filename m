@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-139267-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E1ADA14E50
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:19:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 762C4A14E54
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:20:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C50C73A618D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:19:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEF497A35A4
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D38DA1FCCE6;
-	Fri, 17 Jan 2025 11:19:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B49BD1FCCE6;
+	Fri, 17 Jan 2025 11:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X1QcsBtM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TCjpvyy4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA63246BF;
-	Fri, 17 Jan 2025 11:19:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ACFE46BF;
+	Fri, 17 Jan 2025 11:19:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737112755; cv=none; b=J7KUQtfEEafI4MM7it0HrFGaXoUY/Zv6t12lpM25OE4H2zXg983BbFKV2nzOZ2Kt473KUYSog3PIF1eQHxsSPrvJ/RuggcelP1+rPWwKR7lp3NuN7LBzvsY6VqY8dzuRGRlLRDeHfWMqt9CpNbw0+sI4su/bCyLJH28z3GisbKI=
+	t=1737112795; cv=none; b=MQPNAAeIlwL6lI6q2HdkYAYxYS22NSH5v5yaHnILgvZp9iCstGJJyD6v/BC5Jhxfg26lE8bqY142AG0sDTqfNaWfcF27GBGjx+EuJm5K3iGX+zr5XpbcROOWx9Jcq9Vr8GfBVcBJ5nAD0AvJd+Pxutr5fl7B9UEcPLXu0de7QKw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737112755; c=relaxed/simple;
-	bh=GOplDAuqpzB69GzKtUb6aSRYnm72cwIYrA5tNSUiinI=;
+	s=arc-20240116; t=1737112795; c=relaxed/simple;
+	bh=nn/YPbBgxQaLeLKHHiW3VJjyNg35Jodr40EuPpJJ+Ms=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C1i1TU3SApyDpMzPpzOCZQR4WC4yIrrQb0FeRf6eCWh3G1D6Tb2GKelnf3nISV8nhGktv7ZGslzY8rj/YSenNamDSt6z6yoyWBeRW3XFgxBQHQfqYAk3ywXwo1Q57FxeaZ5Pyop9R2pNdX7/YCl31Qbwdw9cbxZFDM5Kn205oXc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X1QcsBtM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D99C4C4CEDD;
-	Fri, 17 Jan 2025 11:19:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=fjSnWZ0kM91mrypmWADnZIYXHs118OtYWmEpmfbBmdffM2dYZh3aVQlHLnQH0xOZIDU9PX/8gevLiuljfhoPdlnxDQZh61zj55jzKxu++qv1fg3R9C9BV/JhrC7LIjeMJDU+IqBOXBDOfEEM2ybeccHx0k5L8mxh9vUYWjQNLE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TCjpvyy4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CED61C4CEDD;
+	Fri, 17 Jan 2025 11:19:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737112755;
-	bh=GOplDAuqpzB69GzKtUb6aSRYnm72cwIYrA5tNSUiinI=;
+	s=k20201202; t=1737112795;
+	bh=nn/YPbBgxQaLeLKHHiW3VJjyNg35Jodr40EuPpJJ+Ms=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=X1QcsBtMqFsqaleLKoJEY1Xx8tys61T+cwKEh8CvbxwursXJYTe1th7PxK9agKiA8
-	 UIMoT4plTf8k0J2lFc3rkVOMR/oUr45lG2NXY9fFDsnxcN0zS4ce7ydJ30eoIMLFmy
-	 U2FUz7wwP6cujy9QlJMYAHyxASSVTGyy75Vgit9mNpNb57GlKTgMMlYkCFTB40J8OK
-	 LIVKht45rXZUjVUU0S+oyidgMReD8fqY/uKHsrHUgplxf8Waf7H7kLj8GZJqwfO2aZ
-	 lVVHrkMFZ2MqYH2qTs55dcH9Z+MGxccD9s1L9osOVsTPzbf+Nb3tiXXTtrh4SVNVQx
-	 rgSQNG9xpU73Q==
-Message-ID: <2dfd2368-0924-40a2-af6b-53d60fa5254a@kernel.org>
-Date: Fri, 17 Jan 2025 12:19:09 +0100
+	b=TCjpvyy40SDa7o7dtQix99N3be6UlOmsxbKi2ZsOsmtnVOB15inyFPrdKs9Fti1ZM
+	 WFjrdtdm/RQeIFzUQl0Q9x57cxRsG2ozoOzJxveCsO2P1yfILjET+Ii25z+QS5Z1f+
+	 SDPIrhevuZyCm8jOtJIu21U2UtMNBisw8IpizOb67VneKvKsMmqJwN5S6yTbuLLHk6
+	 /VBaOoHatP6ehTWGtdgfYXz8NCpDaIKxbxGfZAtzTfJvpTilLvfBmOe5iJXS1OcSMI
+	 u8gBKP0WsCjDpsGeomDZmoeB5qO6b8EkMWg6U2gOcuM1mSNR8etztmXt8X2Vajf8Xy
+	 VY44gmcPA0WLw==
+Message-ID: <7f6dbf14-f4b8-4359-8d6a-c0dd51c5623a@kernel.org>
+Date: Fri, 17 Jan 2025 12:19:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: add overlay tests for Rock
- 5B PCIe overlays
+Subject: Re: [PATCH v2 3/3] arm64: dts: rockchip: minimal support for Pre-ICT
+ tester adapter for RK3588 Jaguar
 To: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
  <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
@@ -61,7 +61,7 @@ Cc: Michael Riesch <michael.riesch@wolfvision.net>,
  linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
  Quentin Schulz <quentin.schulz@cherry.de>
 References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
- <20250116-pre-ict-jaguar-v2-2-157d319004fc@cherry.de>
+ <20250116-pre-ict-jaguar-v2-3-157d319004fc@cherry.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,21 +107,29 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250116-pre-ict-jaguar-v2-2-157d319004fc@cherry.de>
+In-Reply-To: <20250116-pre-ict-jaguar-v2-3-157d319004fc@cherry.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 16/01/2025 15:47, Quentin Schulz wrote:
 > From: Quentin Schulz <quentin.schulz@cherry.de>
 > 
-> According to commit 40658534756f ("arm64: dts: rockchip: Add rock5b
-> overlays for PCIe endpoint mode"), Rock 5B can operate in PCIe endpoint
-> mode. For that to work, the rk3588-rock-5b-pcie-ep.dtbo overlay needs to
-> be applied on Rock 5B base Device Tree. If that Rock 5B is connected to
-> another Rock 5B, the latter needs to apply the
-> rk3588-rock-5b-pcie-srns.dtbo overlay.
+> The Pre-ICT tester adapter connects to RK3588 Jaguar SBC through its
+> proprietary Mezzanine connector.
+> 
+> It exposes a PCIe Gen2 1x M.2 connector and two proprietary camera
+> connectors. Support for the latter will come once the rest of the camera
+> stack is supported.
+> 
+> Additionally, the adapter loops some GPIOs together as well as route
+> some GPIOs to power rails.
+> 
+> This adapter is used for manufacturing RK3588 Jaguar to be able to test
+> the Mezzanine connector is properly soldered.
+> 
+> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
