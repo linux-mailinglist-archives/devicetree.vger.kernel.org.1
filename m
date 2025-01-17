@@ -1,118 +1,176 @@
-Return-Path: <devicetree+bounces-139243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 239B3A14C46
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 10:41:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D7B4A14C4B
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 10:46:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86E24188B353
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 09:42:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD360188ACF1
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 09:46:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A60921F7912;
-	Fri, 17 Jan 2025 09:41:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55D41F91F4;
+	Fri, 17 Jan 2025 09:46:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VPqQkqPZ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bFAPJnyj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 927A48C11;
-	Fri, 17 Jan 2025 09:41:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF73A1F5616;
+	Fri, 17 Jan 2025 09:46:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737106914; cv=none; b=uuScOfa3J7aIvALc63uRIENW/OlWYuGaNC1Aa59RnfkO0TRMOL1SZF3cDav/3t8UXEG1dAABlLiW6FmIJBWQPCS6+v8mPnsaTyO3a+6xgZr0/Zk6LHz//CTrH9KLp6SobPPV29LJ33n7NEh70LCRu/df2pgapn0JcQupmT8sK6M=
+	t=1737107166; cv=none; b=dc6tU4uHspB4kVPJH5wG6ZusC2A6MvI0zcSW1AqR3o3N4SXKQq1cbY8fLMtw0xlQnxEklbJJeg5S1IPmLQ3yOr5CAcYJrJykwKkN+wrmxY0rshIpbeIFTEwh6QSeOghp+Tx1RrRg6BFwNrM/ET4tmovFyuggcArRjmLsXfLG43w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737106914; c=relaxed/simple;
-	bh=zFEz1gM0DnvRPyPhsr2oerwFl7Th82P6SxrHrG3nW1k=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RWB7DB3wUhKKb50Yx9gKqsyvP+Bq/uFVqF4NsDWI/Zyt1dvQq9uUbR/thTYtuNVemsNbsdOzhUu4ivlYFD5Al0KDbwdNfBk45PJ1xBxKCZvBapl0Lac04Shhv4q9zLijzyoLZMwMbb5CJaRfzaYrQmJxx7OieqmhNML57TAOJsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VPqQkqPZ; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737106912; x=1768642912;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=zFEz1gM0DnvRPyPhsr2oerwFl7Th82P6SxrHrG3nW1k=;
-  b=VPqQkqPZObdiGWqC5d4tc6aLU+xp5FRPHmHJlVWVGdv83Y2mBar2rwep
-   w/SvpurEbsq0/9oqGLN4xtnn3PJaycCtpf57ferKOlqvwWFpJxNB1Z5RA
-   f3bjtB5IttcjAHEnDXz5bXbvOV55gQofuh3xZ4ls6SWM8tSf8mnQb6BLO
-   +5ixP1GeSN8GRiV3WkFICGoCFaUxOufzcN8JfvykOEv3F1S45lys7RWnh
-   WuZPtPhuU9zglW3e8tI5ihfNcvnjUY03+SVKdkHhsDHjihgfRhdipttts
-   5IRml8GNtn1T5OPoOoMzQ6lYe7yhLZmud8SluaqjjqbNbFqXg09/U5xb8
-   g==;
-X-CSE-ConnectionGUID: qyzZRW3fRseuatte94rt9w==
-X-CSE-MsgGUID: ERPHg9GKR/+oT3vdF+rGgQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11317"; a="41465366"
-X-IronPort-AV: E=Sophos;i="6.13,211,1732608000"; 
-   d="scan'208";a="41465366"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 01:41:52 -0800
-X-CSE-ConnectionGUID: yJA7x0QIRkiUb/d2KXkM1A==
-X-CSE-MsgGUID: fN0MvJeHTXW4O2tZRQdDXg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,211,1732608000"; 
-   d="scan'208";a="105620763"
-Received: from pg15swiplab1181.png.altera.com ([10.244.232.167])
-  by fmviesa006.fm.intel.com with ESMTP; 17 Jan 2025 01:41:50 -0800
-From: niravkumar.l.rabara@intel.com
-To: Dinh Nguyen <dinguyen@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	niravkumar.l.rabara@intel.com,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: kernel test robot <lkp@intel.com>
-Subject: [PATCH v2] arm64: dts: socfpga: stratix10_swvp: remove invalid sysmgr properties
-Date: Fri, 17 Jan 2025 17:38:27 +0800
-Message-Id: <20250117093827.4063125-1-niravkumar.l.rabara@intel.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1737107166; c=relaxed/simple;
+	bh=bAoIxUM0L0RDKibJAm9TGYfT+Las5cv+kN3FsOvGBDg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=hmqzUJ+3heguEy1VbtnyP9JOe6OX91u94Iekbbw0rWPhneXLx0M4hM9VOVGpjm52wFHL+uKhOV+hXRkFq137K360zUvszVM5HNOONhHeMgXE6Y95EjYNtEBmiPrR7BeM7O02y7fdwPdpKPantymLF+vB4fjuquyzqRPiIjfn1PQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bFAPJnyj; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7398F20003;
+	Fri, 17 Jan 2025 09:46:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1737107161;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=j9Hngjv+3mSnco4Ydj/7waQFXt+nhZaE1ZO+t5GpHgQ=;
+	b=bFAPJnyj6LbipV24+oprgOr1UHyDRUmOTj3eaFEgk4i20QMAhuzfH+p/+1UzD+uY5zigAu
+	nNJsHvpL9fXfs51oaqm2jVi6ae5JVimk026R5eyzjGpLmyccoNPOZ63Hh3bogZr9AlAD4f
+	YznAiPBOb7INxCvYvwvP+OlAU0TyQSSMFSAXsvr+vFDhLIXpScp5Mn/+tE7mPIegUJOU7W
+	JeYOVp8iKKUiyc381oAUqcpknSuBeR9FDQC2B4foPeXkk/VGLfBmlLMmZ19bv6TcqpU9v5
+	YLUEUhv1sCm195mLLDvZo4X5+NeK5ANX4SCnCHAfif+o85ROZeRm0Bg/VmrKWw==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Aleksandar Rikalo <arikalo@gmail.com>, Thomas Bogendoerfer
+ <tsbogend@alpha.franken.de>, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vladimir Kondratiev
+ <vladimir.kondratiev@mobileye.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
+ <theo.lebrun@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, linux-mips@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] dt-bindings: mips: mips-cm: Add a new compatible
+ string for EyeQ6
+In-Reply-To: <20250116153637.GA2567996-robh@kernel.org>
+References: <20250116-cluster-hci-broken-v2-0-fc52cfb7a19e@bootlin.com>
+ <20250116-cluster-hci-broken-v2-2-fc52cfb7a19e@bootlin.com>
+ <20250116153637.GA2567996-robh@kernel.org>
+Date: Fri, 17 Jan 2025 10:46:00 +0100
+Message-ID: <87a5bpwz6v.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: gregory.clement@bootlin.com
 
-From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+Hello Rob,
 
-Remove invalid sys-mgr properties for stratix10 and fixed
-dtbs_check warnings like:
+> On Thu, Jan 16, 2025 at 11:59:20AM +0100, Gregory CLEMENT wrote:
+>> The CM3.5 used on EyeQ6 reports that Hardware Cache Initialization is
+>> complete, but in reality it's not the case. It also incorrectly
+>> indicates that Hardware Cache Initialization is supported. This new
+>> compatible string allows warning about this broken feature that cannot
+>> be detected at runtime.
+>>=20
+>> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>> ---
+>>  .../devicetree/bindings/mips/mti,mips-cm.yaml      | 24 +++++++++++++++=
++++++--
+>>  1 file changed, 22 insertions(+), 2 deletions(-)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml b/D=
+ocumentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>> index 9f500804737d23e19f50a9326168686c05d3a54e..4713673f0cfc7785bb183917=
+ee382a815ebfe9e1 100644
+>> --- a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>> +++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>> @@ -14,7 +14,12 @@ maintainers:
+>>=20=20
+>>  properties:
+>>    compatible:
+>> -    const: mti,mips-cm
+>> +    oneOf:
+>> +      - const: mti,mips-cm
+>> +      - const: mti,eyeq6-cm
+>
+> Being a mobileye device, the vendor prefix should be mobileye.
 
-socfpga_stratix10_swvp.dtb: sysmgr@ffd12000: cpu1-start-addr: False schema does not allow 4291846704
-   from schema $id: http://devicetree.org/schemas/soc/altera/altr,sys-mgr.yaml#
+I chose mti because actually this block is part of the I6500 and
+provided as is by MIPS.
 
-socfpga_stratix10_swvp.dtb: sysmgr@ffd12000: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
-   from schema $id: http://devicetree.org/schemas/soc/altera/altr,sys-mgr.yaml#
+>
+>> +        description:
+>> +          On EyeQ6 the HCI (Hardware Cache Initialization) information =
+for
+>> +          the L2 cache in multi-cluster configuration is broken.
+>>=20=20
+>>    reg:
+>>      description:
+>> @@ -25,14 +30,29 @@ properties:
+>>=20=20
+>>  required:
+>>    - compatible
+>> -  - reg
+>>=20=20
+>>  additionalProperties: false
+>>=20=20
+>> +if:
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        const: mti,eyeq6-cm
+>> +then:
+>> +  properties:
+>> +    reg: false
+>> +else:
+>> +  required:
+>> +    - reg
+>
+> How does one access this block with no registers? Is this some subset of=
+=20
+> a larger block? If so, need to define that block first.
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202501091748.L2W2RwE5-lkp@intel.com/
-Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
----
+CM stands for Coherence Manager. This component is mandatory when you
+want to do SMP across MIPS core. This is part of the MIPS architecture,
+and the address of the CM is provided by the Coprocessor 0.
 
-changes in v2:
-- Use "Remove" instead of "Removed" in the commit message.
-- Warning message without text wrapping in the commit message.  
+"CP0 is incorporated on the CPU chip and supports the virtual memory
+system and exception handling. CP0 is also referred to as the System
+Control Coprocessor."
 
- arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts | 2 --
- 1 file changed, 2 deletions(-)
+So to summarize, in a functional system, this information doesn't have
+to be exposed through the device tree, as it is available at runtime
+from any MIPS CPU.
 
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-index 0d837d3e65a5..fce1dc2ebad0 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_swvp.dts
-@@ -110,6 +110,4 @@ &rst {
- 
- &sysmgr {
- 	reg = <0xffd12000 0x1000>;
--	interrupts = <0x0 0x10 0x4>;
--	cpu1-start-addr = <0xffd06230>;
- };
--- 
-2.25.1
+>
+> These 2 blocks don't look related and the only property shared is=20
+> 'compatible'. This should be a separate doc.
 
+As mentioned in the cover letter, I reused the work from Jiaxun, who
+needed to deal with bogus CM but in a different way. In his use case,
+the issue with the CM was that the address in CP0 was wrong. In my case,
+this address is correct; it is only one piece of information reported by
+the CM that is wrong. I don't mind creating a separate doc if you
+still think it is the right thing to do.
+
+Gregory
+
+>
+> Rob
+
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
