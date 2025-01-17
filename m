@@ -1,207 +1,141 @@
-Return-Path: <devicetree+bounces-139370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA9DA155BE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 18:30:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBCA0A155EA
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 18:45:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E8E947A3959
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 17:30:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5052A3A8FC0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 17:45:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E83B19AD8C;
-	Fri, 17 Jan 2025 17:30:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82835188A18;
+	Fri, 17 Jan 2025 17:45:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GC6Srpee"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CHH+oAAa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 345A8A95C;
-	Fri, 17 Jan 2025 17:30:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AB6946434;
+	Fri, 17 Jan 2025 17:45:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737135033; cv=none; b=ddUTmK7FyiQyBmkEohqUg3TwLZLHLpHU+7fl5ap1vWxRE3dLednoqxgkRqCZMNi3qN7XSL1CgtyCDNIB4XQqirfH71e4IzwgMKlMipRgLsCCDnpkxLdB99duP9Dx7N749Ba7gUoP9CnGunUHy4vsoA9g1XvIt5EYAg9SEjhaeZ0=
+	t=1737135943; cv=none; b=JZZtQ/3pvdUExmcXzjSQUTzPjF86cQhKAz21fKSFjR5QbY1PgWQXNl/MycrvIfBuV43vYao25nBXw7+TrVrbyKnf1hGmpJfBeqtmxLNrHqUCrsOP+EFcrl1Rc0yhzasNCuLo2JeaMNClk8Lv+/qF0cwCNEMROQKmmaaB17+lgog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737135033; c=relaxed/simple;
-	bh=NwGjIFCOVGOFl9+7A1WEpEUNm8Gy0ODwXSeX7ZV4b0Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=ilHlpSVXQLwcOHnI2C6i1OhlN9RHccZZ4+7aP+45lLEEZ+l31TaQlK/GQXPqsb1F06cdNkIW8rtHNceeT4/4EE4Sfat8gfARM8jET9K8tuk0PFAMDNqEcRvugGiqmjgXRKOoiYzfLABWRDkO0D55rpzEl4PiSxOj7jk1s4zgCg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GC6Srpee; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A801C4CEDD;
-	Fri, 17 Jan 2025 17:30:32 +0000 (UTC)
+	s=arc-20240116; t=1737135943; c=relaxed/simple;
+	bh=Mz5NCKx70+uO6/QkNUUZWJUoT4Xs/ZpF384Fs+9kMc4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SBuEqCqawFAcppgKuAtuN6785dsPLeZN/BYNA5ap35XBAD0rodZjwpdBUzXJKvu8AZEOILCwRRdGI47jaORj4QlXLKIhJ8MbTUr/TjEUdfq+niocvpwJEheA2nIDDTgub+I51sVCjxImXoF80MGVti9Bpt9WgzNe8RYA48oCTZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CHH+oAAa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C845EC4CEE0;
+	Fri, 17 Jan 2025 17:45:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737135032;
-	bh=NwGjIFCOVGOFl9+7A1WEpEUNm8Gy0ODwXSeX7ZV4b0Y=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=GC6SrpeeYdhVCw5M4Tolff+jxWARkXQQMX6zF3nIdU1Db7XkFGodK5kG41/mq6F+P
-	 isEia74xwAal9dsd67usF0gIRBoDTsIHcgA4NxR10BseJRZ5YvOoVKSrzcZm96FEuH
-	 o77MHPoKvjhmxrz1INycVBC3aAePsP+C9xkxi3mVXEWsDT3kMgXcuJcBUX7HgCidll
-	 T+pELHwxcPF86lkI57b1a/LPoum9N5jHZquFnZSO2irhfmrVAsOQn84o8Gr9htrejl
-	 UlGHQtwwYnEI3PM3eyuudTH9NDIeW+0fwnCvfyENC3819oAvpQ5o6QJt1MCHzZqSKn
-	 k8eJEgfwD0lxg==
-Date: Fri, 17 Jan 2025 11:30:31 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: daire.mcnamara@microchip.com, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, conor.dooley@microchip.com,
-	lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
-	bhelgaas@google.com, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, ilpo.jarvinen@linux.intel.com,
-	kevin.xie@starfivetech.com, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH v10 1/3] PCI: microchip: Fix outbound address translation
- tables
-Message-ID: <20250117173031.GA644050@bhelgaas>
+	s=k20201202; t=1737135942;
+	bh=Mz5NCKx70+uO6/QkNUUZWJUoT4Xs/ZpF384Fs+9kMc4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CHH+oAAaTF/Diy9dsMYQdLKx/ZTGfWvGyE/W/OBJO18kmpAPjpMwFYP98B8kwPR7H
+	 jnSNm+JgTk/Bll5mHA1C3uQ2hrND4Sq52l1jdTWh9OvXiXvHRiXClLxM56y0PbO/+q
+	 cT4I0UPLcOJL5W9wI3qz8OX2RNODzSW/AtdbFVrbMyZVvkIrDnSMj7kN3AY6+FceoC
+	 CJYRnv1Iyia8mx3Wy2Z5LLL0Tep0fUanyoI5jKWDzlb4ekQUiY7N4wjy3IcPJMoS1/
+	 dJ9VZgt3p5xOGvdWb2pc2TieH5dWt37XeeX/uGvUvXlDDeKjFnvblbWKPQixCdKsge
+	 iJa1erdF8uv8g==
+Date: Fri, 17 Jan 2025 17:45:38 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Minda Chen <minda.chen@starfivetech.com>
+Cc: E Shattow <e@freeshell.de>, Emil Renner Berthing <kernel@esmil.dk>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/2] riscv: dts: starfive: jh7110: pciephy0 USB 3.0
+ configuration registers
+Message-ID: <20250117-crabmeat-bondless-dfafc3947ad5@spud>
+References: <20250102183746.411526-1-e@freeshell.de>
+ <20250102183746.411526-2-e@freeshell.de>
+ <20250113-mushiness-snugness-0f55574e3956@spud>
+ <SHXPR01MB0863DBF85A9874C9F93ECD25E618A@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+ <20250114-recollect-dictate-104e890d116e@spud>
+ <SHXPR01MB08631714C914911D343372ACE619A@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="nZO9jY1X/rK0Hnfa"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250117-curliness-flashback-83519e708b52@spud>
+In-Reply-To: <SHXPR01MB08631714C914911D343372ACE619A@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
 
-On Fri, Jan 17, 2025 at 10:53:01AM +0000, Conor Dooley wrote:
-> On Thu, Jan 16, 2025 at 12:02:55PM -0600, Bjorn Helgaas wrote:
-> > On Thu, Jan 16, 2025 at 05:45:33PM +0000, Conor Dooley wrote:
-> > > On Thu, Jan 16, 2025 at 11:07:22AM -0600, Bjorn Helgaas wrote:
-> > > > [+cc Frank, original patch at
-> > > > https://lore.kernel.org/r/20241011140043.1250030-2-daire.mcnamara@microchip.com]
-> > > > 
-> > > > On Thu, Jan 16, 2025 at 04:46:19PM +0000, Conor Dooley wrote:
-> > > > > On Thu, Jan 16, 2025 at 09:42:53AM -0600, Bjorn Helgaas wrote:
-> > > > > > On Tue, Jan 14, 2025 at 06:13:10PM -0600, Bjorn Helgaas wrote:
-> > > > > > > On Fri, Oct 11, 2024 at 03:00:41PM +0100, daire.mcnamara@microchip.com wrote:
-> > > > > > > > From: Daire McNamara <daire.mcnamara@microchip.com>
-> > > > > > > > 
-> > > > > > > > On Microchip PolarFire SoC (MPFS) the PCIe Root Port can be behind one of
-> > > > > > > > three general-purpose Fabric Interface Controller (FIC) buses that
-> > > > > > > > encapsulate an AXI-M interface. That FIC is responsible for managing
-> > > > > > > > the translations of the upper 32-bits of the AXI-M address. On MPFS,
-> > > > > > > > the Root Port driver needs to take account of that outbound address
-> > > > > > > > translation done by the parent FIC bus before setting up its own
-> > > > > > > > outbound address translation tables.  In all cases on MPFS,
-> > > > > > > > the remaining outbound address translation tables are 32-bit only.
-> > > > > > > > 
-> > > > > > > > Limit the outbound address translation tables to 32-bit only.
-> > > > > > > 
-> > > > > > > I don't quite understand what this is saying.  It seems like the code
-> > > > > > > keeps only the low 32 bits of a PCI address and throws away any
-> > > > > > > address bits above the low 32.
-> > > > > > > 
-> > > > > > > If that's what the FIC does, I wouldn't describe the FIC as
-> > > > > > > "translating the upper 32 bits" since it sounds like the translation
-> > > > > > > is just truncation.
-> > > > > > > 
-> > > > > > > I guess it must be more complicated than that?  I assume you can still
-> > > > > > > reach BARs that have PCI addresses above 4GB using CPU loads/stores?
-> > > > > > > 
-> > > > > > > The apertures through the host bridge for MMIO access are described by
-> > > > > > > DT ranges properties, so this must be something that can't be
-> > > > > > > described that way?
-> > > > > 
-> > > > > Daire's been having some issues getting onto the corporate VPN to send
-> > > > > his reply, I've pasted it below on his behalf:
-> > > > > 
-> > > > > There are 3 Fabric Inter Connect (FIC) buses on PolarFire SoC - each of
-> > > > > these FIC buses contain an AXI master bus and are 64-bits wide. These
-> > > > > AXI-Masters (each with an individual 64-bit AXI base address – for example
-> > > > > FIC1’s AXI Master has a base address of 0x2000000000) are connected to
-> > > > > general purpose FPGA logic. This FPGA logic is, in turn, connected to a
-> > > > > 2nd 32-bit AXI master which is attached to the PCIe block in RootPort mode.
-> > > > > Conceptually, on the other side of this configurable logic, there is a
-> > > > > 32-bit bus to a hard PCIe rootport.  So, again conceptually, outbound address
-> > > > > translation looks like this:
-> > > > > 
-> > > > >                  Processor Complex à FIC (64-bit AXI-M) à Configurable Logic à 32-bit AXI-M à PCIe Rootport
-> > > > > 		 (This how it came to me from Daire, I think the á is meant to
-> > > > > 		 be an arrow)
 
-I'm trying to match this up with the DT snippet you included earlier:
+--nZO9jY1X/rK0Hnfa
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-  fabric-pcie-bus@3000000000 {
-    compatible = "simple-bus";
-    #address-cells = <2>;
-    #size-cells = <2>;
-    ranges = <0x00 0x40000000 0x00 0x40000000 0x00 0x20000000>,
-	     <0x30 0x00000000 0x30 0x00000000 0x10 0x00000000>;
+On Wed, Jan 15, 2025 at 10:58:39AM +0000, Minda Chen wrote:
+>=20
+>=20
+> >=20
+> > On Tue, Jan 14, 2025 at 05:42:28AM +0000, Minda Chen wrote:
+> > >
+> > >
+> > > >
+> > > > On Thu, Jan 02, 2025 at 10:37:36AM -0800, E Shattow wrote:
+> > > > > StarFive JH7110 contains a Cadence USB2.0+USB3.0 controller IP
+> > > > > block that may exclusively use pciephy0 for USB3.0 connectivity.
+> > > > > Add the register offsets for the driver to enable/disable USB3.0 =
+on
+> > pciephy0.
+> > > > >
+> > > > > Signed-off-by: E Shattow <e@freeshell.de>
+> > > > > ---
+> > > > >  arch/riscv/boot/dts/starfive/jh7110.dtsi | 2 ++
+> > > > >  1 file changed, 2 insertions(+)
+> > > > >
+> > > > > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > > > b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > > > index 0d8339357bad..75ff07303e8b 100644
+> > > > > --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > > > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> > > > > @@ -611,6 +611,8 @@ usbphy0: phy@10200000 {
+> > > > >  		pciephy0: phy@10210000 {
+> > > > >  			compatible =3D "starfive,jh7110-pcie-phy";
+> > > > >  			reg =3D <0x0 0x10210000 0x0 0x10000>;
+> > > > > +			starfive,sys-syscon =3D <&sys_syscon 0x18>;
+> > > > > +			starfive,stg-syscon =3D <&stg_syscon 0x148 0x1f4>;
+> > > >
+> > > > Why weren't these added in the first place? Minda, do you know?
+> > > >
+> > > The driver only require to set syscon register while the PHY attach to
+> > > Cadence USB.(star64 board case) The PHY default attach to PCIe0, VF2 =
+board
+> > do not set any setting. So I don't set it.
+> >=20
+> > Does this mean that the change should be made in files where it will on=
+ly affect
+> > non-VF2 boards, or is it harmless if applied to the VF2 also?
+> Harmless. The PCIe PHY driver still set the PCIe mode syscon setting.
 
-IIUC, this describes these regions, so there's no address translation
-at this point:
+Okay, I'll pick this up after the merge window, pending an Ack from
+Emil.
 
-  [parent 0x00_40000000-0x00_5fffffff] -> [child 0x00_40000000-0x00_5fffffff]
-  [parent 0x30_00000000-0x3f_ffffffff] -> [child 0x30_00000000-0x3f_ffffffff]
+--nZO9jY1X/rK0Hnfa
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Here's the PCI controller:
+-----BEGIN PGP SIGNATURE-----
 
-    pcie: pcie@3000000000 {
-      compatible = "microchip,pcie-host-1.0";
-      #address-cells = <0x3>;
-      #size-cells = <0x2>;
-      device_type = "pci";
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4qXQgAKCRB4tDGHoIJi
+0p1QAQDOc97ffM1e/1fJGMOaVC6IUDODv/yYpVo8VpnvC6oErgD/bXYe8nGxPBSh
+OIyx9QhyHlbMqS85fozWlzYbKuBm4wM=
+=QiEe
+-----END PGP SIGNATURE-----
 
-      reg = <0x30 0x00000000 0x0 0x08000000>,
-	    <0x00 0x43008000 0x0 0x00002000>,
-	    <0x00 0x4300a000 0x0 0x00002000>;
-
-which has this register space (in the fabric-pcie-bus@3000000000
-address space):
-
-  [0x30_00000000-0x30_07ffffff] (128MB)
-  [0x00_43008000-0x00_43009fff]   (8KB)
-  [0x00_4300a000-0x00_4300bfff]   (8KB)
-
-So if I'm reading this right (and I'm not at all sure I am), the PCI
-controller a couple 8KB register regions below 4GB, and also 128MB of
-register space at [0x30_00000000-0x30_07ffffff] (maybe ECAM?).  I
-don't know how to reconcile this one with the 32-bit AXI-M bus leading
-to it.
-
-And it has these ranges, which *do* look like they translate
-addresses:
-
-      ranges = <0x43000000 0x0 0x09000000 0x30 0x09000000 0x0 0x0f000000>,
-	       <0x01000000 0x0 0x08000000 0x30 0x08000000 0x0 0x01000000>,
-	       <0x03000000 0x0 0x18000000 0x30 0x18000000 0x0 0x70000000>;
-
-  [parent 0x30_09000000-0x30_17ffffff] -> [pci 0x09000000-0x17ffffff pref 64bit mem]
-  [parent 0x30_08000000-0x30_08ffffff] -> [pci 0x08000000-0x08ffffff io]
-  [parent 0x30_18000000-0x30_87ffffff] -> [pci 0x18000000-0x87ffffff 64bit mem]
-
-    };
-  }
-
-These look like three apertures to PCI, all of which are below 4GB on
-PCI (I'm not sure why the space code is 11b, which indicates 64-bit
-memory space).  But all of these are *above* 4GB on the upstream side
-of the PCI controller, so I have the same question about the 32-bit
-AXI-M bus.
-
-Maybe the translation in the pcie@3000000000 'ranges' should be in the 
-fabric-pcie-bus@3000000000 'ranges' instead?
-
-> > So is this patch a symptom that is telling us we're not paying
-> > attention to 'ranges' correctly?
-> 
-> Sounds to me like there's something missing core wise, if you've got
-> several drivers having to figure it out themselves.
-
-Yeah, this doesn't seem like something each driver should have to do
-by itself.
-
-> Daire seems to think what Frank's done should work here, but it'd need
-> to be looked into of course. Devicetree should look the same in both
-> cases, do you want it as a new version or as a follow up?
-
-I'd prefer if we could sort this out before merging this if we can.
-I'm not sure we can squeeze Frank's work in this cycle; it seems like
-we might be able to massage it and figure out some sort of common
-strategy for this situation even if DesignWare, Cadence, Microchip,
-etc need slightly different implementations.
-
-Bjorn
+--nZO9jY1X/rK0Hnfa--
 
