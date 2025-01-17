@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-139265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C828EA14E3A
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:12:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65578A14E4E
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:18:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00F051681C4
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:12:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C86BE3A5E02
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:18:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BFD61FCFF0;
-	Fri, 17 Jan 2025 11:12:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6761F8EF6;
+	Fri, 17 Jan 2025 11:18:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sVutLIx9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fbJ37ozr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BBBA1FAC55;
-	Fri, 17 Jan 2025 11:12:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E850346BF;
+	Fri, 17 Jan 2025 11:18:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737112336; cv=none; b=OxaBa1NIBcIJ56ATIYgYH0gyJdrStB6LyQi05zEnnbs4BdRdwpz3dohFAAa2z2C8KnmFki6h7Rvw3Y2ny9GXpaXWBTtMKojRKWdGgLA75SkUSLHsd87BG1WxEuipqjoR+TWnGCs5rVi/ZfgoZc6N0M6b8mSAxu2Sl60mAdce1VI=
+	t=1737112730; cv=none; b=YGdafdKxB4XqdK7wJqv7YEXWWHIjhXm8uv1gCJU5sg6RcSfOAhikqc7Sz7YqI5+T4GKGmkbLuegScFbzNpXv4hue3J1kShsfcNiUNxvmHv92Xf1lL8swVdUDwAdPwqR/PCYifCh4FihI4KlYNfx1YKW5lw4gERqlOOlK4PXIGbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737112336; c=relaxed/simple;
-	bh=6zY+rjBHpWc7EJRbuuEd8Rp76/akhrkMZmQE8Dg4Vkg=;
+	s=arc-20240116; t=1737112730; c=relaxed/simple;
+	bh=x/g3x6sz2RTUMZnkKe27ZKKqBVRHfX+QxMCABkk110A=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KHEXiSxYHptRJw+rq5EvH2QrVGILufLqawn6z0BZvrdx9+uTqaXkUBC3smNvCLMLnrV5awUdKFxFhY/AL1iRXSL6h+QsRzoP9nTprO90icWX5TVDWEwHI7ycY15z0M9MuI6M/50c4Dypm20N/+4Zxr4Vb24BOPinLkRJuOnOqzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sVutLIx9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3885C4CEDD;
-	Fri, 17 Jan 2025 11:12:10 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kBZjinqpqJCgkezNiymgQaRKmlgvxcQ+iDn/YW4EsJH26mlaFI+9kAexc8XmqSHjeLfFV5yCNAbt5tuosz3wP99IvJIXcZfwrL5fNYBek/XcUpYMFqHMD4NKbDWcstYfo9EX3r23JtEqYokNmMihUfNYCCbcxtjnoCTj66ppahU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fbJ37ozr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 735F6C4CEDD;
+	Fri, 17 Jan 2025 11:18:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737112334;
-	bh=6zY+rjBHpWc7EJRbuuEd8Rp76/akhrkMZmQE8Dg4Vkg=;
+	s=k20201202; t=1737112729;
+	bh=x/g3x6sz2RTUMZnkKe27ZKKqBVRHfX+QxMCABkk110A=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=sVutLIx9hUz6QyhvIXfG+4jCyzl/O3u2e6JVJ787a5ayJfFZ6Oll3TXr5KvAEpiqT
-	 8g+ze7K1JDCjJyb/nZlTchOaLk6lKqzY2MIs6lddcrnRnl2hXnoLWadqS9m7Y4QhWw
-	 T/r0wn46if5xNNYXqf3LMDuUxQHnN7ecM3f1kKrMhQjOc3hnrLCUXnHKzl70oMDuK6
-	 RTXJXnzLE92jKjDDGbddZH+2WjE8FE0waz6+xPPAR58c2YohW4CFUiU/60wUZF73Og
-	 6BJ0EYdCSTSjnL6QYR904wYHOoNvH+Q28f+aqaQqJX6xmGjLA79CU/eP9BW63XwSrY
-	 33geixpj6+tHA==
-Message-ID: <a48822a3-94c4-42d2-89f5-0f1e8dedd686@kernel.org>
-Date: Fri, 17 Jan 2025 12:12:07 +0100
+	b=fbJ37ozrCxWzD5TxiG+CLVzATOmD/TCA/+R07UEfAyxWtVHa3z3YzbEPNkHM6v/KD
+	 hJpJ9pLNMWJ3Ug17VKnItRtIDjKB9RRLNJqVkTI7Wz0hYop3BfMDdwkwjcc1JRG5pK
+	 EjeFnjuY6JhjkHy2fchGaX3+LUwzcTmFiun+nZ82Kwvwm16RN0ePNBDB+2HQ6n6PLk
+	 /0K4kHgeaenu/lDSTyc1fsisf+hgPBgGlWQV3k+mHPdAV1hQXgTvOuk9MA8rPjammw
+	 CqhJS/fg5s88NfcnLLIgzRguuq5BdBM9ljvf6IWm7D2kdT/897/z/sZYz2ynqIJ0PV
+	 dyEEGLuyZjs2Q==
+Message-ID: <aa551d22-d5f6-47c5-afee-eff97c038881@kernel.org>
+Date: Fri, 17 Jan 2025 12:18:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] arm64: dts: qcom: Add coresight node for SM8650
-To: Yuanfang Zhang <quic_yuanfang@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: kernel@quicinc.com, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250107-sm8650-cs-dt-v4-1-2113b18754ea@quicinc.com>
-Content-Language: en-US
+Subject: Re: [PATCH v2 1/3] arm64: dts: rockchip: add overlay test for Edgeble
+ NCM6A
+To: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>
+Cc: Michael Riesch <michael.riesch@wolfvision.net>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Quentin Schulz <quentin.schulz@cherry.de>
+References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
+ <20250116-pre-ict-jaguar-v2-1-157d319004fc@cherry.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -103,43 +107,39 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250107-sm8650-cs-dt-v4-1-2113b18754ea@quicinc.com>
+In-Reply-To: <20250116-pre-ict-jaguar-v2-1-157d319004fc@cherry.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/01/2025 09:48, Yuanfang Zhang wrote:
-> Add coresight components: Funnel, ETE and ETF for SM8650.
-> 
-> Signed-off-by: Yuanfang Zhang <quic_yuanfang@quicinc.com>
-> ---
-> Changes in v4:
-> - Re-sort these nodes by address.
-> - Link to v3: https://lore.kernel.org/r/20250103-sm8650-cs-dt-v3-1-759a3f6a3cc8@quicinc.com
-> 
-> Changes in v3:
-> - Move ete0 and funnel-ete to /.
-> - Update coding style.
-> - Link to v2: https://lore.kernel.org/r/20241210-sm8650-cs-dt-v2-1-cf24c6c9bddc@quicinc.com
-> 
-> Changes in v2:
-> - Update compatible for funnel and etf.
-> - remove unnecessary property: reg-names and arm,primecell-periphid.
-> - Link to v1: https://lore.kernel.org/r/20241210-sm8650-cs-dt-v1-1-269693451584@quicinc.com
-> ---
->  arch/arm64/boot/dts/qcom/sm8650.dtsi | 166 +++++++++++++++++++++++++++++++++++
->  1 file changed, 166 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index 25e47505adcb790d09f1d2726386438487255824..49d6567fbd2e68b66b517d8d9180c7443f8bf611 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -365,6 +365,40 @@ cluster_sleep_1: cluster-sleep-1 {
->  		};
->  	};
->  
-> +	ete0 {
+On 16/01/2025 15:47, Quentin Schulz wrote:
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index 86cc418a2255cdc22f1d503e9519d2d9572d4e9d..3f92d1a9d0b6efeee46ad4aff8c2b8ed3cb83d73 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -134,7 +134,6 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-w3.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-evb.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-genbook.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-io.dtb
+> -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtbo
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6b-io.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-friendlyelec-cm3588-nas.dtb
+> @@ -163,3 +162,8 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
+> +
+> +# Overlays
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
+> +
+> +rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb rk3588-edgeble-neu6a-wifi.dtbo
 
-Isn't this being changed to ete-[0-9]? I think I saw some patch for this.
+I think usually these two lines are reversed, so first you define what
+is rk3588-edgeble-neu6a-wifi.dtb and then use it in dtb-rockchip.
+
+But that might be just convention, so this is also fine for me:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
