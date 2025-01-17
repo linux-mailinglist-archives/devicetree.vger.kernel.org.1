@@ -1,125 +1,198 @@
-Return-Path: <devicetree+bounces-139388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D748A15949
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 23:01:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0900A15955
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 23:04:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68415188C913
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 22:01:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B926616865D
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 22:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2C571D517B;
-	Fri, 17 Jan 2025 22:00:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E49E19E7D1;
+	Fri, 17 Jan 2025 22:04:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VUCNC5ne"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="I3SwKIvI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F02201AB51B;
-	Fri, 17 Jan 2025 22:00:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36D771514EE;
+	Fri, 17 Jan 2025 22:04:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737151238; cv=none; b=KLObIS9gDpKiLHGZ3XTnXlYguY9YKe4Tm6qGCcnInj7Ox60ZI0IfSV2Bb1v6ixLVuGQc/YB7kZ0HBoYExGt/WfyUB1LlvFlh2p0NigqVNrZMrgN0VPV4PuD1KmM1ABOSAk+p9rsiKGHXbSMVfXvvCrrLhDfAjE0RvW3vNBEP+h4=
+	t=1737151487; cv=none; b=T4tnlJlEzXpJScZOgkkg+aYIKHgY28CC/Dw0NPSUc8661XWywadrM9MR4NgXhHHv8UToEIgtLgW+wtNJUq/SFY9RIDpB+pqbjKcxfu87AMPA9W8ct9nPYkoKbWuflAmxVDCLNTaBZ2k79rZT7Oe1mX4bpjqnSc7ZaasPfV483SM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737151238; c=relaxed/simple;
-	bh=OLpJw+nmoMHAjBQIB5gKtYutr4KSqMHspFULifMH8y8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SCTkgWuR/N0sBWBjZFNDgeFZTVI3kJNqblsLBM2w3y3k4NNHOV0+DovYPrlm2kEXUR5Y1f9JCRqEj66pPnss5QYCvafg1/sFxKmQBPweTbOSt+JWc3clspTFgmZHDl+1IzGAQRCKLJWCy3o5zidKd4YedC/tfmQ5Zson0zbF/i0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VUCNC5ne; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5d96944401dso4602894a12.0;
-        Fri, 17 Jan 2025 14:00:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737151235; x=1737756035; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5WhVZdRTDkwUE2D/s6RcQm6tX0DVpX9GXKevi9aNV+0=;
-        b=VUCNC5ne5l8Go9N4sM1NKPIJaqbpfqys6mVJMySWoyd3ffueWUiQj6qTRYgiAvvUOc
-         7gDjugnGesdwpykJLNpcfGhoZgdz3AijM7xWocperpZvlbqMS5py44OqTdHj0zqo0hPN
-         bZJEnPUmYGNx//rSzAJxTTDCROn73sMIf/c80kGW32/XqxeR7WAu3cbyGstrGOY5rxBP
-         V4pGYKzSqJHArnsq1tqRVHNxhd18v3Ll2ou88c7ULUKop55DmFXa366sWIwjAZ0u0qtn
-         frsn3AiK2NhXGhgK6iHeh6HwT5mwaO22VYt9pPO+jF/SpO24b2LCO7i9NZTnWgXmB4f+
-         pKjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737151235; x=1737756035;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5WhVZdRTDkwUE2D/s6RcQm6tX0DVpX9GXKevi9aNV+0=;
-        b=mcpz7YQFhoTE0/LeUrC6rs4HEu0dnUn6OgWgISvLZf+wuWmPbU5Ji69MlD3wD4fe24
-         2G5uv0uBaZl9FGV54pRYIboy80/GH+s/6UObMW0Guvw6G31kt6mmgAR+MO26a+Knvxvp
-         QxF5C/5V/yQ0a1Pfn28+HobC9+hvbWj/7NJWNg9KS1nicKacEQLPBEx/wsAPFEgyvbNB
-         bnqdbajEbJ9BDZsWHyecVZjOPofoHVA4kqngLRjnsK4pnvFLot7h8RcfHhFAM7Ila7lC
-         ihV1UXXXzb7cU7VVSwpD2N9PAlFqWtEXBaxDONh5EeRUPKuanGxrq5vRggkyuAJMa0hM
-         kXfg==
-X-Forwarded-Encrypted: i=1; AJvYcCUGrLW8R+Jt499Rs9LPAcy4PE76LuOBY6Te53MA8P0fNHDCAzep8vtBFsdfZAcP0/hFX4hUTchuKv067gXU@vger.kernel.org, AJvYcCVS9Dj71a5mK2a43+NuHGD2w/ZOS5PCilWwJ3G3qYVf2IcoCygduTRulGLZYCR/bGR7813roXqGawbz@vger.kernel.org, AJvYcCVlD9w390OAJ8mFWe0eLGLOBoyE8Ja4+9cLFg8tZSe1lUCrWNfN3irV3VFWSTZlGV1JjXtZ5T00U06K@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJr7+C7HXp9s5YI5PVegZhj6ILx8k179/kQFHbbIWS4O3+7bNc
-	34LhnmftBfqiS2XQCbWWHRgRnWOldKi1ehz4Rnpfe0ijLe0vvAlR
-X-Gm-Gg: ASbGncsxFJZh+ANEVUX2qtEc8djzysq1/ACUpZ/ecvrEugYhj6d3fpV17jJ9IEv2Oal
-	zUH2iri7nZt9hredi1t8aaVEtPS3Vo+RUhRrqEd/ZJqj72x0NYMt68c+YvfKG4+AP1J7GPDAdaL
-	HQbT1PD6U9gOn9HMZZA8073Nw070VquFB6dux4YFtcDUDAa+iwCRrE0r3JfMZWEqq5EzDNMjzp0
-	ADKJkoX5aBFc7Exvm61IUKOeHUmp0ks6b4ZDLs/JG9TmV5vL0sMUiBds2u9zkFuvc6BGE3ksMxZ
-	TVxWW/qJ64omtQzoNtsGLKcK4CssLeMhExHq0J8TRMLtd2TlzSoiFyToEoCZb9okvPIs3FfCfB1
-	c6Cen6Sx85H+VmIY=
-X-Google-Smtp-Source: AGHT+IH7JKZn55TFqBMDvufGKFkUhHeC0/7cJePf4smhMMsHf5hncKtii9E+hcMcYjsmqwYjVoBl1w==
-X-Received: by 2002:a05:6402:2815:b0:5d2:7396:b0ca with SMTP id 4fb4d7f45d1cf-5db7d2f873cmr3905207a12.12.1737151234843;
-        Fri, 17 Jan 2025 14:00:34 -0800 (PST)
-Received: from ?IPV6:2a02:a466:68ed:1:20ec:3e8b:2297:e41f? (2a02-a466-68ed-1-20ec-3e8b-2297-e41f.fixed6.kpn.net. [2a02:a466:68ed:1:20ec:3e8b:2297:e41f])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5db736717dbsm2113188a12.30.2025.01.17.14.00.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 17 Jan 2025 14:00:33 -0800 (PST)
-Message-ID: <06851646-7d0b-4b30-9794-5a70a1431cab@gmail.com>
-Date: Fri, 17 Jan 2025 23:00:32 +0100
+	s=arc-20240116; t=1737151487; c=relaxed/simple;
+	bh=0XZfrcqbblf6skoLJGR4rVZli6Qmk9tbEtvNmO1ngbw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b0ryUu2AjJaQVL8IpNGCrF/5/zp3jVgw+ifOjdYlYcCKxNgnXU1bZskCMKSraTWf3cckyuW0o371aEkK1A2hFDryNH0zWuqUML2Zv0/KEE2PowaIqS9ra0GCBFklWhmyfR7Hea3CqmkSLI681YLd9nF10LpIqwb37OvncC5yXS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=I3SwKIvI; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737151486; x=1768687486;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0XZfrcqbblf6skoLJGR4rVZli6Qmk9tbEtvNmO1ngbw=;
+  b=I3SwKIvIY/bUstUlc5KCMSVp/n5F/SYWNY+eL4NYyRNxuA26ZorpLkSp
+   oKKkFZ1DjQbyuPXezH/z2VIQfG2Aq1bNHhVwm4gmi3BRjCjwL6P0rm1+L
+   TtZ/2cItQ0pCLrpDRViY2X7S9nDklu5l0/Xkqo1lfKdq0hkztc6IrUZCq
+   tktDQEP69uO/PXXLhwxKGlHpDkHm61HHZh85KhKeMfb8K8H2VKYieT+1k
+   1lW3IFiyxRx6ik0pRCrqdg3LNtL7NVdJE+IgS+EhC4kb+fSBD4fUS3Efk
+   Fk4qQZMNwe6E1w7BZ51uvggNEqM2jRAF+PtH0oPdQ6uX1r4OUlDy02Alo
+   g==;
+X-CSE-ConnectionGUID: jEnSZEhiTdGmW5PW9Yy6Og==
+X-CSE-MsgGUID: zJm4kBgTQKm8ScrsZlIzPg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="49014979"
+X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
+   d="scan'208";a="49014979"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 14:04:45 -0800
+X-CSE-ConnectionGUID: UbYDsmjDQEOkdHMv79hGow==
+X-CSE-MsgGUID: sMqe5D/qQliPcMUqQsuFKw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,213,1732608000"; 
+   d="scan'208";a="105774286"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 17 Jan 2025 14:04:40 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tYuSD-000Tkx-20;
+	Fri, 17 Jan 2025 22:04:37 +0000
+Date: Sat, 18 Jan 2025 06:04:18 +0800
+From: kernel test robot <lkp@intel.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	chunkuang.hu@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, p.zabel@pengutronix.de,
+	airlied@gmail.com, simona@ffwll.ch,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, ck.hu@mediatek.com,
+	jitao.shi@mediatek.com, jie.qiu@mediatek.com,
+	junzhi.zhao@mediatek.com, dri-devel@lists.freedesktop.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com, dmitry.baryshkov@linaro.org,
+	lewis.liao@mediatek.com, ives.chenjh@mediatek.com,
+	tommyyl.chen@mediatek.com, jason-jh.lin@mediatek.com
+Subject: Re: [PATCH v5 32/34] drm/mediatek: Introduce HDMI/DDC v2 for
+ MT8195/MT8188
+Message-ID: <202501180524.qKnNpITh-lkp@intel.com>
+References: <20250113145232.227674-33-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/3] usb: dwc3: Avoid using reserved EPs
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Felipe Balbi <balbi@kernel.org>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-References: <20250116154117.148915-1-andriy.shevchenko@linux.intel.com>
-Content-Language: en-US
-From: Ferry Toth <fntoth@gmail.com>
-In-Reply-To: <20250116154117.148915-1-andriy.shevchenko@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250113145232.227674-33-angelogioacchino.delregno@collabora.com>
 
-Op 16-01-2025 om 16:40 schreef Andy Shevchenko:
-> On some platforms (Intel-based and AFAIK ARM-based) the EPs in the gadget
-> (USB Device Controller mode) may be reserved for some special means, such as
-> tracing. This series extends DT schema and driver to avoid using those.
-> Without this the USB gadget mode won't work properly (those devices that
-> "luckily" allocated the reserved EPs).
-> 
-> Ferry already tested the privately sent PoC of this, but I ask him again to
-> re-test this version which is slightly different.
-> 
-> Andy Shevchenko (3):
->    dt-bindings: usb: dwc3: Add a property to reserve endpoints
->    usb: dwc3: gadget: Add support for snps,reserved-endpoints property
->    usb: dwc3: gadget: Skip endpoints ep[18]{in,out} on Intel Merrifield
-> 
->   .../devicetree/bindings/usb/snps,dwc3.yaml    | 10 +++++
->   drivers/usb/dwc3/dwc3-pci.c                   |  9 +++++
->   drivers/usb/dwc3/gadget.c                     | 38 ++++++++++++++++++-
->   3 files changed, 56 insertions(+), 1 deletion(-)
-> 
-Yes I retested this now on v6.13.0-rc7 Intel Merrifield and found no 
-problems. Skipping the tracing end point has definitely always been 
-needed on this platform. Thanks!
+Hi AngeloGioacchino,
 
-Tested-by: Ferry Toth <fntoth@gmail.com>
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on next-20250113]
+[cannot apply to robh/for-next pza/reset/next linus/master pza/imx-drm/next drm-misc/drm-misc-next v6.13-rc7 v6.13-rc6 v6.13-rc5 v6.13-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-display-mediatek-dpi-Add-MT8195-and-MT8188-compat/20250113-225554
+base:   next-20250113
+patch link:    https://lore.kernel.org/r/20250113145232.227674-33-angelogioacchino.delregno%40collabora.com
+patch subject: [PATCH v5 32/34] drm/mediatek: Introduce HDMI/DDC v2 for MT8195/MT8188
+config: openrisc-allyesconfig (https://download.01.org/0day-ci/archive/20250118/202501180524.qKnNpITh-lkp@intel.com/config)
+compiler: or1k-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250118/202501180524.qKnNpITh-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501180524.qKnNpITh-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c: In function 'mtk_ddc_check_and_rise_low_bus':
+   drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c:59:36: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
+      59 |                                    FIELD_PREP(DDC_CTRL_CMD, DDC_CMD_CLOCK_SCL));
+         |                                    ^~~~~~~~~~
+   In file included from ./arch/openrisc/include/generated/asm/div64.h:1,
+                    from include/linux/math.h:6,
+                    from include/linux/kernel.h:27,
+                    from include/linux/clk.h:13,
+                    from drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c:11:
+   drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c: In function 'mtk_ddcm_read_hdmi':
+>> include/asm-generic/div64.h:183:35: warning: comparison of distinct pointer types lacks a cast [-Wcompare-distinct-pointer-types]
+     183 |         (void)(((typeof((n)) *)0) == ((uint64_t *)0));  \
+         |                                   ^~
+   drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c:139:23: note: in expansion of macro 'do_div'
+     139 |                 rem = do_div(loop_counter, temp_length);
+         |                       ^~~~~~
+   In file included from include/linux/err.h:5,
+                    from include/linux/clk.h:12:
+>> include/asm-generic/div64.h:195:32: warning: right shift count >= width of type [-Wshift-count-overflow]
+     195 |         } else if (likely(((n) >> 32) == 0)) {          \
+         |                                ^~
+   include/linux/compiler.h:76:45: note: in definition of macro 'likely'
+      76 | # define likely(x)      __builtin_expect(!!(x), 1)
+         |                                             ^
+   drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c:139:23: note: in expansion of macro 'do_div'
+     139 |                 rem = do_div(loop_counter, temp_length);
+         |                       ^~~~~~
+   include/asm-generic/div64.h:199:36: error: passing argument 1 of '__div64_32' from incompatible pointer type [-Wincompatible-pointer-types]
+     199 |                 __rem = __div64_32(&(n), __base);       \
+         |                                    ^~~~
+         |                                    |
+         |                                    u16 * {aka short unsigned int *}
+   drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c:139:23: note: in expansion of macro 'do_div'
+     139 |                 rem = do_div(loop_counter, temp_length);
+         |                       ^~~~~~
+   include/asm-generic/div64.h:174:38: note: expected 'uint64_t *' {aka 'long long unsigned int *'} but argument is of type 'u16 *' {aka 'short unsigned int *'}
+     174 | extern uint32_t __div64_32(uint64_t *dividend, uint32_t divisor);
+         |                            ~~~~~~~~~~^~~~~~~~
+   drivers/gpu/drm/mediatek/mtk_hdmi_ddc_v2.c:207:47: error: implicit declaration of function 'FIELD_GET' [-Wimplicit-function-declaration]
+     207 |                         puc_value[read_idx] = FIELD_GET(DDC_DATA_OUT, val);
+         |                                               ^~~~~~~~~
+
+
+vim +183 include/asm-generic/div64.h
+
+^1da177e4c3f41 Linus Torvalds     2005-04-16  176  
+^1da177e4c3f41 Linus Torvalds     2005-04-16  177  /* The unnecessary pointer compare is there
+^1da177e4c3f41 Linus Torvalds     2005-04-16  178   * to check for type safety (n must be 64bit)
+^1da177e4c3f41 Linus Torvalds     2005-04-16  179   */
+^1da177e4c3f41 Linus Torvalds     2005-04-16  180  # define do_div(n,base) ({				\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  181  	uint32_t __base = (base);			\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  182  	uint32_t __rem;					\
+^1da177e4c3f41 Linus Torvalds     2005-04-16 @183  	(void)(((typeof((n)) *)0) == ((uint64_t *)0));	\
+911918aa7ef6f8 Nicolas Pitre      2015-11-02  184  	if (__builtin_constant_p(__base) &&		\
+911918aa7ef6f8 Nicolas Pitre      2015-11-02  185  	    is_power_of_2(__base)) {			\
+911918aa7ef6f8 Nicolas Pitre      2015-11-02  186  		__rem = (n) & (__base - 1);		\
+911918aa7ef6f8 Nicolas Pitre      2015-11-02  187  		(n) >>= ilog2(__base);			\
+c747ce4706190e Geert Uytterhoeven 2021-08-11  188  	} else if (__builtin_constant_p(__base) &&	\
+461a5e51060c93 Nicolas Pitre      2015-10-30  189  		   __base != 0) {			\
+461a5e51060c93 Nicolas Pitre      2015-10-30  190  		uint32_t __res_lo, __n_lo = (n);	\
+461a5e51060c93 Nicolas Pitre      2015-10-30  191  		(n) = __div64_const32(n, __base);	\
+461a5e51060c93 Nicolas Pitre      2015-10-30  192  		/* the remainder can be computed with 32-bit regs */ \
+461a5e51060c93 Nicolas Pitre      2015-10-30  193  		__res_lo = (n);				\
+461a5e51060c93 Nicolas Pitre      2015-10-30  194  		__rem = __n_lo - __res_lo * __base;	\
+911918aa7ef6f8 Nicolas Pitre      2015-11-02 @195  	} else if (likely(((n) >> 32) == 0)) {		\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  196  		__rem = (uint32_t)(n) % __base;		\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  197  		(n) = (uint32_t)(n) / __base;		\
+c747ce4706190e Geert Uytterhoeven 2021-08-11  198  	} else {					\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  199  		__rem = __div64_32(&(n), __base);	\
+c747ce4706190e Geert Uytterhoeven 2021-08-11  200  	}						\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  201  	__rem;						\
+^1da177e4c3f41 Linus Torvalds     2005-04-16  202   })
+^1da177e4c3f41 Linus Torvalds     2005-04-16  203  
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
