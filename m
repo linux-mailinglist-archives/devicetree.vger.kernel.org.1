@@ -1,164 +1,248 @@
-Return-Path: <devicetree+bounces-139213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EB88A149C0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 07:36:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32D5DA149D6
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 07:54:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 797627A25BE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 06:36:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5086C16AB87
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 06:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 066201F758F;
-	Fri, 17 Jan 2025 06:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5A81F7564;
+	Fri, 17 Jan 2025 06:54:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="f+Gaz+zB"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="uEnMZBrn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C4C3FB3B;
-	Fri, 17 Jan 2025 06:36:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0730A1F668C;
+	Fri, 17 Jan 2025 06:54:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737095806; cv=none; b=MCYTvHnxwFI0AAyFlg6naOeNRDPlWs08WrGDI5mFXbEdSOtYCekXz3XHLnz7DYrFXDZUHFtVG7D/h7X68DekfP1L8Q5FchSgmhIG4JKDXnEt6MEgyrURfYkyZrJQTpX1gty5NCChODJ4go68FJX/bzdN9QHgq6MTlcsQ9Hn2mn8=
+	t=1737096851; cv=none; b=PXmASUQPFpToBE+Tkn0za2UpbYBJQVaj1Um0ChQqIynGhw9PO7sUz0RNhXP65OQCjm54fvZxQwu7M34GvksBmF6bRMl9/GbGwAb/Cy4VEuypFry3d0pq60cVUBdNEkDgDilUW+tN9osofXYQWpRVX3vzbrVW4Eb8xFOYpMwi2rI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737095806; c=relaxed/simple;
-	bh=hF//7dvl18nYbOw/SJrm+TWBs1kAXk/61pxa2tqyDaw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=LsQpBU2ud+OWYdoJP9iWEoOHAFddEHyZPMYbNXJuVx2y5xjEEAiXTr2HX+5i9aFHWOu8xQxRyE0DVz6RdvItCWKOV/gHSpjWBo+OsH58tkJr0tJRYUFEApgcFcX3WqWFN2FZ5J9d9tkr7Qj3GuSxmr3GhicArW6fAB8qzGxPC10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=f+Gaz+zB; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50GKwsgu028844;
-	Fri, 17 Jan 2025 06:36:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XRCdsIRhV24bmNemeHwOVjnXqRXoMU94hjVeWdnzEOk=; b=f+Gaz+zBYzftXYaM
-	rGUxvC4tLzFN9Kgwje5LHtvPJyWCxQ1PXUJmKSrvysRA3zRW1Z0nBMcPLPS2eKd4
-	LO6nqo5DJtL1rgfac47N/LdTidmwtcrR11NQYx0Db34NW5VbNC04pVL6bHGoV2zA
-	1OZTSBsSnWOp6GNeSsxmkbyFUuXe62pLCgdhpJ01F5l/eP7PjwksGNCC34ubt5ww
-	SX6LfA/Ok9c4vasi5i3X78O0eMxrYlJwfOasPquCoJAcBgFScFiRRnT6NkRq+ER6
-	VnWvI0wwF4wjo72AF4VC0uksYTE0+LDLDtir9WFAEDdVUcc3lBK5XynryYuavkfN
-	54qAtg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4479mf913m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Jan 2025 06:36:38 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50H6abpx013629
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 17 Jan 2025 06:36:37 GMT
-Received: from [10.190.163.187] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 16 Jan
- 2025 22:36:32 -0800
-Message-ID: <48cfd337-e691-7f10-71df-f6389e098e67@quicinc.com>
-Date: Fri, 17 Jan 2025 12:06:29 +0530
+	s=arc-20240116; t=1737096851; c=relaxed/simple;
+	bh=C5SAXh+D/SHlnbQC4f73tl/EVLXs/P49DxIhQlSqgOQ=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=mif7X2lFiZ8Qe6J+h9V+nBN3LOWSlN6bppf+c3mmdzdk5t7HX8MmfsahtHqdoYX5pDrK8PtOIPYfeX93+AKERgd/bcPM6TdfqGJCtbXNuRSgApx1QEyVPbYpeQDb5EbRVaccqbjM6nbSX0WcNL2ro0/Ns3GtI/tjBX/5J1pw4dU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=uEnMZBrn; arc=none smtp.client-ip=162.240.238.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
+	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=RvEJx+iUj82UJ08IPqOji8YgVCxkuHaa+9nIn/7Qdso=; b=uEnMZBrnw7gp6XURWLlsVxmjNg
+	im/ra1bEax1xyeeolARUmvEw/g+JudsS7F6NPB6lw2NgPUk85eSU3TyBQPsFv4llX2wo3PF+7UC9X
+	krgk9pSPB1RjdWKaNKu9v3vLoAb+H1NxNC+QoFp8Dhf4dZgC+9QIQsOV/i+djoUdHAlQbzYd6Wgjs
+	vprAHiQb3TxYsxSwQAL4svgn7bO+zWqOZoaCGHHkwcrxryZqhhrNb9Pc3SIKDcUL7ewroQujtq4vc
+	6Nq4jhICh/ZEy9ICsSuXahWpexP4apNOYs1cmKpEt7Oq10cbOKLdygm4nIv2eN5R+1lescOLPmeAH
+	VevxcQ8g==;
+Received: from [122.175.9.182] (port=57873 helo=zimbra.couthit.local)
+	by server.wki.vra.mybluehostin.me with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <basharath@couthit.com>)
+	id 1tYgEx-0006NA-2h;
+	Fri, 17 Jan 2025 12:24:00 +0530
+Received: from zimbra.couthit.local (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTPS id 9BEE1178202C;
+	Fri, 17 Jan 2025 12:23:53 +0530 (IST)
+Received: from localhost (localhost [127.0.0.1])
+	by zimbra.couthit.local (Postfix) with ESMTP id 7A9981783FED;
+	Fri, 17 Jan 2025 12:23:53 +0530 (IST)
+Received: from zimbra.couthit.local ([127.0.0.1])
+	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id ddwyJiRLDEq9; Fri, 17 Jan 2025 12:23:53 +0530 (IST)
+Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
+	by zimbra.couthit.local (Postfix) with ESMTP id 4A00E178202C;
+	Fri, 17 Jan 2025 12:23:53 +0530 (IST)
+Date: Fri, 17 Jan 2025 12:23:53 +0530 (IST)
+From: Basharath Hussain Khaja <basharath@couthit.com>
+To: Rob Herring <robh@kernel.org>
+Cc: basharath <basharath@couthit.com>, mpe@ellerman.id.au, 
+	thomas weissschuh <thomas.weissschuh@linutronix.de>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, saravanak@google.com, 
+	danishanwar <danishanwar@ti.com>, krishna <krishna@couthit.com>, 
+	mohan <mohan@couthit.com>, parvathi <parvathi@couthit.com>, 
+	pmohan <pmohan@couthit.com>
+Message-ID: <2089813158.341858.1737096833060.JavaMail.zimbra@couthit.local>
+In-Reply-To: <CAL_JsqLLGW_o9i6a5wcUj=Z=4nL-GhzHwAQMFtQkb9OSHuSgTA@mail.gmail.com>
+References: <87mskbqher.fsf@mail.lhotse> <20250108140414.13530-1-basharath@couthit.com> <CAL_JsqLLGW_o9i6a5wcUj=Z=4nL-GhzHwAQMFtQkb9OSHuSgTA@mail.gmail.com>
+Subject: Re: [PATCH] of: address: Unify resource bounds overflow checking
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V7 0/2] qcom: x1e80100: Enable CPUFreq
-Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>
-CC: Marc Zyngier <maz@kernel.org>, <sudeep.holla@arm.com>,
-        <cristian.marussi@arm.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <dmitry.baryshkov@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <quic_rgottimu@quicinc.com>,
-        <quic_kshivnan@quicinc.com>, <conor+dt@kernel.org>,
-        <quic_nkela@quicinc.com>, <quic_psodagud@quicinc.com>,
-        <abel.vesa@linaro.org>
-References: <20241030130840.2890904-1-quic_sibis@quicinc.com>
- <ZyTQ9QD1tEkhQ9eu@hovoldconsulting.com> <86plnf11yf.wl-maz@kernel.org>
- <ZyTjiiGc2ApoID9Y@hovoldconsulting.com> <86o72z10b6.wl-maz@kernel.org>
- <ZypOY-NCDN9fdMAR@hovoldconsulting.com> <86ed3p1rdq.wl-maz@kernel.org>
- <0fd14fb1-736d-cf7f-128f-658bda0de583@quicinc.com>
- <Z1HK4qIF9dT3x1OY@hovoldconsulting.com>
- <f504b325-e4a8-c297-a09f-6a2158fa1a1b@quicinc.com>
- <Z4Dt8E7C6upVtEGV@hovoldconsulting.com>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <Z4Dt8E7C6upVtEGV@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mNbzKfEAFkrQ0YSmHZLSxjDsKcD8cpRe
-X-Proofpoint-ORIG-GUID: mNbzKfEAFkrQ0YSmHZLSxjDsKcD8cpRe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-17_02,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- clxscore=1015 suspectscore=0 lowpriorityscore=0 priorityscore=1501
- mlxlogscore=819 mlxscore=0 malwarescore=0 phishscore=0 spamscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501170051
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF133 (Linux)/8.8.15_GA_3968)
+Thread-Topic: address: Unify resource bounds overflow checking
+Thread-Index: j8VwIhKXO53jYYVbH1cgOpEQbMygPw==
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - couthit.com
+X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: smtp@couthit.com
+X-Authenticated-Sender: server.wki.vra.mybluehostin.me: smtp@couthit.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 
 
-
-On 1/10/25 15:22, Johan Hovold wrote:
-> On Mon, Jan 06, 2025 at 05:52:48PM +0530, Sibi Sankar wrote:
->> On 12/5/24 21:16, Johan Hovold wrote:
-> 
->>> As Marc said, it seems you need to come up with a way to detect and work
->>> around the broken firmware.
+>> >> Thomas Wei=C3=9Fschuh <thomas.weissschuh@linutronix.de> writes:
+>> >> > The members "start" and "end" of struct resource are of type
+>> >> > "resource_size_t" which can be 32bit wide.
+>> >> > Values read from OF however are always 64bit wide.
+>> >> >
+>> >> > Refactor the diff overflow checks into a helper function.
+>> >> > Also extend the checks to validate each calculation step.
+>> >> >
+>> >> > Signed-off-by: Thomas Wei=C3=9Fschuh <thomas.weissschuh@linutronix.=
+de>
+>> >> > ---
+>> >> >  drivers/of/address.c | 45 ++++++++++++++++++++++++++--------------=
+-----
+>> >> >  1 file changed, 26 insertions(+), 19 deletions(-)
+>> >> >
+>> >> > diff --git a/drivers/of/address.c b/drivers/of/address.c
+>> >> > index 7e59283a4472..df854bb427ce 100644
+>> >> > --- a/drivers/of/address.c
+>> >> > +++ b/drivers/of/address.c
+>> >> > @@ -198,6 +198,25 @@ static u64 of_bus_pci_map(__be32 *addr, const =
+__be32
+>> >> > *range, int na, int ns,
+>> >> >
+>> >> >  #endif /* CONFIG_PCI */
+>> >> >
+>> >> > +static int __of_address_resource_bounds(struct resource *r, u64 st=
+art, u64
+>> >> > size)
+>> >> > +{
+>> >> > +     u64 end =3D start;
+>> >> > +
+>> >> > +     if (overflows_type(start, r->start))
+>> >> > +             return -EOVERFLOW;
+>> >> > +     if (size =3D=3D 0)
+>> >> > +             return -EOVERFLOW;
+>> >> > +     if (check_add_overflow(end, size - 1, &end))
+>> >> > +             return -EOVERFLOW;
+>> >> > +     if (overflows_type(end, r->end))
+>> >> > +             return -EOVERFLOW;
+>> >>
+>> >> This breaks PCI on powerpc qemu. Part of the PCI probe reads a resour=
+ce
+>> >> that's zero sized, which used to succeed but now fails due to the siz=
+e
+>> >> check above.
+>> >>
+>> >> The diff below fixes it for me.
+>> >
+>> > I fixed it up with your change.
 >>
->> The perf protocol version won't have any changes so detecting
->> it isn't possible :(
-> 
-> But there could be other ways, see below.
-> 
->>> We want to get the fast channel issue fixed, but when we merge that fix
->>> it will trigger these crashes if we also merge cpufreq support for x1e.
->>>
->>> Can you expand the on the PERF_LEVEL_GET issue? Is it possible to
->>> implement some workaround for the buggy firmware? Like returning a dummy
->>> value? How exactly are things working today? Can't that be used a basis
->>> for a quirk?
 >>
->> The main problem is the X1E firmware supports fast channel level get
->> but when queried it says it doesn't support it :|. The PERF_LEVEL_GET
->> regular messaging which gets used as a fallback has a bug which causes
->> the device to crash. So we either enable cpufreq only on platforms
->> that has the fix in place or live with the warning that certain messages
->> don't support fast channel which I don't think will fly. I've also been
->> told the crash wouldn't show up if we have all sleep states disabled.
-> 
-> We certainly want cpufreq enabled also on the current/older firmware
-> which have these bugs.
-> 
-> Based on the above, it sounds like your fix:
-> 
-> 	https://lore.kernel.org/lkml/20241030125512.2884761-2-quic_sibis@quicinc.com/
-> 
-> is correct even if it triggers the crash on machines with buggy firmware.
-> 
-> Why can't you add a quirk for x1e platforms that makes sure that the
-> driver always uses fastchannel level get?
+>> This commit is breaking Ethernet functionality on the TI AM57xx platform=
+ due to
+>> zero byte SRAM block size allocation during initialization. Prior to thi=
+s
+>> patch, zero byte block sizes were handled properly.
+>=20
+> What driver and where exactly?
 
-Makes sense but introducing anything like ^^ needs consensus from
-the scmi maintainers but for obvious they won't comment on this
-thread :| . I'll repeat the same question on another thread.
+We found an issue while developing the driver [1] and more specifically in =
+[2] (lines 313-327), but it looks like this is a generic issue which can bl=
+ock 1 byte of memory, when a zero size request has been initiated for the r=
+eserved region.
 
--Sibi
+static int __of_address_resource_bounds(struct resource *r, u64 start, u64 =
+size)
+{
+    u64 end =3D start;
 
-> 
-> You know it is supported (and as has to be used) even if the buggy
-> firmware says it's not. Just set the corresponding attribute bit
-> unconditionally based on the DT machine compatible (or fall back to the
-> current implementation which theoretically other broken fw
-> implementations may also be relying on), or similar.
-> 
-> Johan
+    if (overflows_type(start, r->start))
+        return -EOVERFLOW;
+    if (size && check_add_overflow(end, size - 1, &end))
+        return -EOVERFLOW;
+    if (overflows_type(end, r->end))
+        return -EOVERFLOW;
+
+    r->start =3D start;
+    r->end =3D end;
+
+    return 0;
+}
+
+Though we have the start address handling already in place above, we do see=
+ an issue with the end address, because there is an unconditional +1 afterw=
+ards in resource_size() API below which is responsible for reserving the ex=
+tra byte
+
+static inline resource_size_t resource_size(const struct resource *res)
+{
+        return res->end - res->start + 1;
+}
+
+
+We have 4 ways of fixing it.
+
+Option 1: Modify the function to handle the size zero case
+
+diff --git a/drivers/of/address.c b/drivers/of/address.c
+index c1f1c810e810..8db6ae9a12b8 100644
+--- a/drivers/of/address.c
++++ b/drivers/of/address.c
+@@ -204,6 +204,12 @@ static int __of_address_resource_bounds(struct resourc=
+e *r, u64 start, u64 size)
+=20
+        if (overflows_type(start, r->start))
+                return -EOVERFLOW;
++       if (!size) {
++               r->start =3D start;
++               r->end =3D end - 1;
++
++               return 0;
++       }
+        if (size && check_add_overflow(end, size - 1, &end))
+                return -EOVERFLOW;
+        if (overflows_type(end, r->end))
+
+This seems to be the simplest solution.
+
+Option 2: Handle in resource_size().
+static inline resource_size_t resource_size(const struct resource *res)
+{     =20
+          return  (res->end =3D=3D res->start) ? 0 : (res->end - res->start=
+ + 1);
+}
+There are plenty of places where we are using this API and there is an assu=
+mption that the end address should always be start + size -1. We are a bit =
+unsure about the side effects of this change.
+
+Option 3: Handle in sram_reserve_region().
+We can avoid calling the resource_size() API and handle size zero as a spec=
+ial case. We are a bit unsure about the side effects of this change as well=
+.
+
+Option 4: Handle this in dts [2] with non zero size. Estimate the approxima=
+te size and update that value in dts file with extra buffer. However, as in=
+dicated in [2] in lines 313-327, the size is not known apriori and the actu=
+al size is only known in runtime. So if we set some size for this buffer, t=
+hen this will always be blocked and may or may not be used subsequently.
+
+[1] https://lore.kernel.org/all/20250109105600.41297-1-basharath@couthit.co=
+m/
+[2] https://github.com/torvalds/linux/blob/master/arch/arm/boot/dts/ti/omap=
+/dra7.dtsi
+
+
+Thanks & Best Regards,
+Basharath
 
