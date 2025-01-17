@@ -1,395 +1,175 @@
-Return-Path: <devicetree+bounces-139258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54BC2A14DD0
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:40:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FCF9A14DE5
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:44:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84DC33A3869
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 10:40:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E28D188B71A
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 10:44:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02DE61FC7F4;
-	Fri, 17 Jan 2025 10:40:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E78E11FCF55;
+	Fri, 17 Jan 2025 10:43:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="UE3Z/4K7";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="HhOb0ymK";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="UE3Z/4K7";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="HhOb0ymK"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="geru5Syq";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="B2oF5WkX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15C841F91FF;
-	Fri, 17 Jan 2025 10:39:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7340197A92;
+	Fri, 17 Jan 2025 10:43:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737110400; cv=none; b=PewlBtewuJrfjO3Coi5FZxp7idcYZvnaOfCCzaHIfGjUm9w6n3oYg/+FX/Jta+Iql4SUVgSlvuVEPZ6P4RwD3dQ1hi5ItpZ5BCu+wY3YdyN3D8pUP6hNHunvWEfODhp+W/M0z5SP+elYT8RarvpNpWN2quRrSyJjBvoDqhaZxAU=
+	t=1737110630; cv=none; b=riAP2fKZYesDqmx670wb4ZRU2Y5oQ4jv0xmgdZBvVL5poUDM7mNy9h4iqTGzW6dvrLepnx83LJVKeVtBns94S/vbC1/v8sQXEPbdugDQqh07xpjXK/WHrKtImxP7msSdJWjTycOeRhTPZXyMzxTD1Js8BtOX/FBufSDlcSdZv6A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737110400; c=relaxed/simple;
-	bh=Bdp2UMrSeg0mFGCn1zDwGNVaSw1O7iBdENzWAvabzEo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dpxv8JabvER4ptoMt2562sXrD8VshVNn1ixNJsgxFYA9LQTIcc8XUqZ3ABnPUR8zTklwm8zKxCXwuRPzcrnenQltUq4k9sSqU550gjthjN+wvSGIPBd5HnI2a3YYF2D78q2U+/8iBejFDxNG3rluvN5wxGNMWnFySzNPusMZBfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=UE3Z/4K7; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=HhOb0ymK; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=UE3Z/4K7; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=HhOb0ymK; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 45F961F37C;
-	Fri, 17 Jan 2025 10:39:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1737110397; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=06aS2Ac6K0MfEQxdFAWcIS6kyt4ZaC+Qa5XpQwP/t6w=;
-	b=UE3Z/4K7bC9R9jxsQBYzuskm//hKGGvrr+TitM4t6PB2Jng2QI77+VWUIP5SNMSnsqW1kY
-	QspSOxaqI1GZEChYbLXM8opMpRg3kvyeMr7kAniallhUyrLdIuUrRQArawl/bNBvPW3Fcg
-	uvtWGS0z7DlcKLh3H70ipp1KotIClBQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1737110397;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=06aS2Ac6K0MfEQxdFAWcIS6kyt4ZaC+Qa5XpQwP/t6w=;
-	b=HhOb0ymK+vIXKyMynBO2s7vFatvZRoKhzP9iQeXvZ9VBmqS76f/4re1ZnMUaWOkXCFKufO
-	GRW/wdbPFhoZIDBw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1737110397; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=06aS2Ac6K0MfEQxdFAWcIS6kyt4ZaC+Qa5XpQwP/t6w=;
-	b=UE3Z/4K7bC9R9jxsQBYzuskm//hKGGvrr+TitM4t6PB2Jng2QI77+VWUIP5SNMSnsqW1kY
-	QspSOxaqI1GZEChYbLXM8opMpRg3kvyeMr7kAniallhUyrLdIuUrRQArawl/bNBvPW3Fcg
-	uvtWGS0z7DlcKLh3H70ipp1KotIClBQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1737110397;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=06aS2Ac6K0MfEQxdFAWcIS6kyt4ZaC+Qa5XpQwP/t6w=;
-	b=HhOb0ymK+vIXKyMynBO2s7vFatvZRoKhzP9iQeXvZ9VBmqS76f/4re1ZnMUaWOkXCFKufO
-	GRW/wdbPFhoZIDBw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C0B0713332;
-	Fri, 17 Jan 2025 10:39:56 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id bzXELXwzimdxCwAAD6G6ig
-	(envelope-from <tzimmermann@suse.de>); Fri, 17 Jan 2025 10:39:56 +0000
-Message-ID: <c4a90873-d209-4c87-8875-9344d533fd9e@suse.de>
-Date: Fri, 17 Jan 2025 11:39:56 +0100
+	s=arc-20240116; t=1737110630; c=relaxed/simple;
+	bh=5NewX8NHGPfNkZZxy7sp53SgRS6M8CFgWnW7r958JTY=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=oEjF+csaAwK44W4RJxaQs9LRLUwiVWvj9xRg3fOcsQiiLbqJJ+uXzI7aY/GCL2ssgKh/rHpO1ZVkPAiLhUXoRZYWq54CP9V6STjnztCZh2/yRlr9Pe4JtBJe8TsZYbVs2CYgsF1o83JwxxWGr3XIK7V2r//GGY2GwxAKHejTUWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=geru5Syq; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=B2oF5WkX; arc=none smtp.client-ip=103.168.172.155
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from phl-compute-09.internal (phl-compute-09.phl.internal [10.202.2.49])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id B08B91140120;
+	Fri, 17 Jan 2025 05:43:47 -0500 (EST)
+Received: from phl-imap-12 ([10.202.2.86])
+  by phl-compute-09.internal (MEProxy); Fri, 17 Jan 2025 05:43:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm3; t=1737110627;
+	 x=1737197027; bh=5NewX8NHGPfNkZZxy7sp53SgRS6M8CFgWnW7r958JTY=; b=
+	geru5Syqw7GW+AyBxO89327iRiLtoxevD9vie8au27kSQO9xKX3jAaVU+70FbV3L
+	sQqbOGSWn20R6nKGqhh16CcOArulIFXmV2fXpN6WfCTVRbBjwPoKndIBt3+McS21
+	Co8sfhmgrTm2hZnRphF7xPLaK1XEz1nXpzdUAebpNqVRdDUd6eq6sT4erj1tPgEJ
+	TaxTbv5UFDFlsFpo10CaMm8bZGEWcxRJGezsQRLFugJ6trJI2TyYkhHuXPpLI7t7
+	pNecpbHoYc43jYIIhxi2AHkC96KvcpXj4d/n6wDJqQFBVIv8aeDFU22PWoi8FZee
+	SAOHYKqTzz5s9hOVOfURzg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1737110627; x=
+	1737197027; bh=5NewX8NHGPfNkZZxy7sp53SgRS6M8CFgWnW7r958JTY=; b=B
+	2oF5WkXsmKDnChg6TVrQW5YJ6sBVSkm6ek5DY6TTNzEsQUNAC61abGXlpQeZ94xr
+	Qy45woYVPMOUQFhn2Wu+R4sS5NwUBBlAl0cr7dMyqtkwMvmYvQNwFZ65lZ/Qs4Y9
+	jjG8s6PoFJuLwDORPBAnBtWfcdU+SwJ4kZy2rC56yF0pNLHP2X/nQVtMWN/nVXVV
+	ccnKo+K0Tva7Tcjp4Dbk4e+oUce75sf9eQ7GvtzGCcxNXfcCdnTLopgh/tehN94V
+	fPOfXROKZkAfFg1FV5eUetEu0BvHC0uLzCx2Ff0UQvia04qKRSJyNcxKL7A8Y0d9
+	VjWwqaMdapvIWDdit/ONw==
+X-ME-Sender: <xms:YzSKZxfgojj1VPkaYEcn4XQBtMALhZb2dCWWO2LmGVasx1a0d3_e_Q>
+    <xme:YzSKZ_Mv2EEPxCrSHmCbLgw0rKw0g4DkLemALZOJHC7VcGp70s8FOWGliVcSSYpXY
+    gd5jgEhHPzK-Zs_WcU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudeifedgudelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtqhertdertdej
+    necuhfhrohhmpedflfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghnghesfh
+    hlhihgohgrthdrtghomheqnecuggftrfgrthhtvghrnheptdehveetudfguedvgeevgfef
+    vedthfffiedtgeeklefhuedugeevuefghfdvudehnecuffhomhgrihhnpegsohhothhlih
+    hnrdgtohhmnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhho
+    mhepjhhirgiguhhnrdihrghnghesfhhlhihgohgrthdrtghomhdpnhgspghrtghpthhtoh
+    epudefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehtshgsohhgvghnugesrghl
+    phhhrgdrfhhrrghnkhgvnhdruggvpdhrtghpthhtohepghhrvghgohhrhidrtghlvghmvg
+    hnthessghoohhtlhhinhdrtghomhdprhgtphhtthhopehthhgvohdrlhgvsghruhhnsegs
+    ohhothhlihhnrdgtohhmpdhrtghpthhtohepthhhohhmrghsrdhpvghtrgiiiihonhhise
+    gsohhothhlihhnrdgtohhmpdhrtghpthhtoheprghrihhkrghlohesghhmrghilhdrtgho
+    mhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoh
+    epkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghr
+    nhgvlhdrohhrghdprhgtphhtthhopehtrgiffhhikhdrsggrhihouhhksehmohgsihhlvg
+    ihvgdrtghomh
+X-ME-Proxy: <xmx:YzSKZ6gUhSnfSf-hBYKll4y7vbJcwRlnBitq-qW4GIW50Q9RmJ1KaA>
+    <xmx:YzSKZ68n_D2zRfbEeIG4YUW2EFQp0W9geb-LmE4aAgq6cIOhVzqvoQ>
+    <xmx:YzSKZ9vjm4Mh-vcQ4e-ZEo5DCQTpERaCtt0nTlGUbEy8LxINKCxmRQ>
+    <xmx:YzSKZ5Fi4ZBpE6OTsXgcXOysArA5kLUbvGbGVflErpzy7D0GwphpDA>
+    <xmx:YzSKZ2EmKb8b1aixDd10gEeM5dMbliZoRnvGvUvf6x0SkvYHua-EaKA2>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 228511C20066; Fri, 17 Jan 2025 05:43:47 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/5] drm: adp: Add Apple Display Pipe driver
-To: fnkl.kernel@gmail.com, Hector Martin <marcan@marcan.st>,
- Sven Peter <sven@svenpeter.dev>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Alyssa Ross <hi@alyssa.is>, Janne Grunau <j@jannau.net>
-References: <20250114-adpdrm-v4-0-e9b5260a39f1@gmail.com>
- <20250114-adpdrm-v4-2-e9b5260a39f1@gmail.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20250114-adpdrm-v4-2-e9b5260a39f1@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Level: 
-X-Spamd-Result: default: False [-2.80 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	FREEMAIL_TO(0.00)[gmail.com,marcan.st,svenpeter.dev,rosenzweig.io,linux.intel.com,kernel.org,ffwll.ch,linaro.org,quicinc.com,lists.linux.dev];
-	TAGGED_RCPT(0.00)[dt];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	ARC_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_ALL(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid]
-X-Spam-Score: -2.80
-X-Spam-Flag: NO
-
-Hi
+Date: Fri, 17 Jan 2025 10:43:28 +0000
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
+ "Rob Herring" <robh@kernel.org>
+Cc: "Aleksandar Rikalo" <arikalo@gmail.com>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-Id: <f9f11958-7c9a-47cb-b9b4-d921a8215ba6@app.fastmail.com>
+In-Reply-To: <87a5bpwz6v.fsf@BLaptop.bootlin.com>
+References: <20250116-cluster-hci-broken-v2-0-fc52cfb7a19e@bootlin.com>
+ <20250116-cluster-hci-broken-v2-2-fc52cfb7a19e@bootlin.com>
+ <20250116153637.GA2567996-robh@kernel.org>
+ <87a5bpwz6v.fsf@BLaptop.bootlin.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: mips: mips-cm: Add a new compatible string for
+ EyeQ6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
-Am 14.01.25 um 22:38 schrieb Sasha Finkelstein via B4 Relay:
+
+=E5=9C=A82025=E5=B9=B41=E6=9C=8817=E6=97=A5=E4=B8=80=E6=9C=88 =E4=B8=8A=E5=
+=8D=889:46=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
 [...]
-> +
-> +static int adp_setup_mode_config(struct adp_drv_private *adp)
-> +{
-> +	struct drm_device *drm = &adp->drm;
-> +	int ret;
-> +	u32 size;
-> +
-> +	ret = drmm_mode_config_init(drm);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Query screen size restrict the frame buffer size to the screen size
-> +	 * aligned to the next multiple of 64. This is not necessary but can be
-> +	 * used as simple check for non-desktop devices.
-> +	 * Xorg's modesetting driver does not care about the connector
-> +	 * "non-desktop" property. The max frame buffer width or height can be
-> +	 * easily checked and a device can be reject if the max width/height is
-> +	 * smaller than 120 for example.
-> +	 * Any touchbar daemon is not limited by this small framebuffer size.
-> +	 */
-> +	size = readl(adp->fe + ADP_SCREEN_SIZE);
-> +
-> +	drm->mode_config.min_width = 32;
-> +	drm->mode_config.min_height = 32;
-> +	drm->mode_config.max_width = ALIGN(FIELD_GET(ADP_SCREEN_HSIZE, size), 64);
-> +	drm->mode_config.max_height = ALIGN(FIELD_GET(ADP_SCREEN_VSIZE, size), 64);
-> +	drm->mode_config.preferred_depth = 24;
-> +	drm->mode_config.prefer_shadow = 0;
-> +	drm->mode_config.funcs = &adp_mode_config_funcs;
-> +
-> +	ret = adp_setup_crtc(adp);
-> +	if (ret) {
-> +		drm_err(drm, "failed to create crtc");
-> +		return ret;
-> +	}
-> +
-> +	adp->encoder.possible_crtcs = ALL_CRTCS;
-> +	ret = drm_simple_encoder_init(drm, &adp->encoder, DRM_MODE_ENCODER_DSI);
 
-Please do not use drm_simple_encoder_init(). It was a bad idea and is 
-deprecated. Open coding it in your driver should resolve the problem.
+Hi all,
 
-Best regards
-Thomas
-
-> +	if (ret) {
-> +		drm_err(drm, "failed to init encoder");
-> +		return ret;
-> +	}
-> +
-> +	ret = drm_bridge_attach(&adp->encoder, adp->next_bridge, NULL,
-> +				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-> +	if (ret) {
-> +		drm_err(drm, "failed to init bridge chain");
-> +		return ret;
-> +	}
-> +
-> +	adp->connector = drm_bridge_connector_init(drm, &adp->encoder);
-> +	if (IS_ERR(adp->connector))
-> +		return PTR_ERR(adp->connector);
-> +
-> +	drm_connector_attach_encoder(adp->connector, &adp->encoder);
-> +
-> +	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
-> +	if (ret < 0) {
-> +		drm_err(drm, "failed to initialize vblank");
-> +		return ret;
-> +	}
-> +
-> +	drm_mode_config_reset(drm);
-> +
-> +	return 0;
-> +}
-> +
-> +static int adp_parse_of(struct platform_device *pdev, struct adp_drv_private *adp)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +
-> +	adp->be = devm_platform_ioremap_resource_byname(pdev, "be");
-> +	if (IS_ERR(adp->be)) {
-> +		dev_err(dev, "failed to map display backend mmio");
-> +		return PTR_ERR(adp->be);
-> +	}
-> +
-> +	adp->fe = devm_platform_ioremap_resource_byname(pdev, "fe");
-> +	if (IS_ERR(adp->fe)) {
-> +		dev_err(dev, "failed to map display pipe mmio");
-> +		return PTR_ERR(adp->fe);
-> +	}
-> +
-> +	adp->be_irq = platform_get_irq_byname(pdev, "be");
-> +	if (adp->be_irq < 0) {
-> +		dev_err(dev, "failed to find be irq");
-> +		return adp->be_irq;
-> +	}
-> +
-> +	adp->fe_irq = platform_get_irq_byname(pdev, "fe");
-> +	if (adp->fe_irq < 0) {
-> +		dev_err(dev, "failed to find fe irq");
-> +		return adp->fe_irq;
-> +	}
-> +
-> +	adp->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 0, 0);
-> +	if (IS_ERR(adp->next_bridge)) {
-> +		if (PTR_ERR(adp->next_bridge) != EPROBE_DEFER)
-> +			dev_err(dev, "failed to find next bridge");
-> +		return PTR_ERR(adp->next_bridge);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t adp_fe_irq(int irq, void *arg)
-> +{
-> +	struct adp_drv_private *adp = (struct adp_drv_private *)arg;
-> +	u32 int_status;
-> +	u32 int_ctl;
-> +
-> +	spin_lock(&adp->irq_lock);
-> +
-> +	int_status = readl(adp->fe + ADP_INT_STATUS);
-> +	if (int_status & ADP_INT_STATUS_VBLANK) {
-> +		drm_crtc_handle_vblank(&adp->crtc);
-> +		spin_lock(&adp->crtc.dev->event_lock);
-> +		if (adp->event) {
-> +			int_ctl = readl(adp->fe + ADP_CTRL);
-> +			if ((int_ctl & 0xF00) == 0x600) {
-> +				drm_crtc_send_vblank_event(&adp->crtc, adp->event);
-> +				adp->event = NULL;
-> +				drm_crtc_vblank_put(&adp->crtc);
-> +			}
-> +		}
-> +		spin_unlock(&adp->crtc.dev->event_lock);
-> +	}
-> +
-> +	writel(int_status, adp->fe + ADP_INT_STATUS);
-> +
-> +	spin_unlock(&adp->irq_lock);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int adp_probe(struct platform_device *pdev)
-> +{
-> +	struct adp_drv_private *adp;
-> +	int err;
-> +
-> +	adp = devm_drm_dev_alloc(&pdev->dev, &adp_driver, struct adp_drv_private, drm);
-> +	if (IS_ERR(adp))
-> +		return PTR_ERR(adp);
-> +
-> +	spin_lock_init(&adp->irq_lock);
-> +
-> +	dev_set_drvdata(&pdev->dev, &adp->drm);
-> +
-> +	err = adp_parse_of(pdev, adp);
-> +	if (err < 0)
-> +		return err;
-> +
-> +	adp_disable_vblank(adp);
-> +	writel(ADP_CTRL_FIFO_ON | ADP_CTRL_VBLANK_ON, adp->fe + ADP_CTRL);
-> +
-> +	err = adp_setup_mode_config(adp);
-> +	if (err < 0)
-> +		return err;
-> +
-> +	err = devm_request_irq(&pdev->dev, adp->fe_irq, adp_fe_irq, 0,
-> +			       "adp-fe", adp);
-> +	if (err)
-> +		return err;
-> +
-> +	err = drm_dev_register(&adp->drm, 0);
-> +	if (err)
-> +		return err;
-> +	return 0;
-> +}
-> +
-> +static void adp_remove(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct drm_device *drm = dev_get_drvdata(dev);
-> +	struct adp_drv_private *adp = to_adp(drm);
-> +
-> +	adp_disable_vblank(adp);
-> +	drm_dev_unregister(drm);
-> +	dev_set_drvdata(dev, NULL);
-> +	drm_atomic_helper_shutdown(drm);
-> +}
-> +
-> +static const struct of_device_id adp_of_match[] = {
-> +	{ .compatible = "apple,h7-display-pipe", },
-> +	{ },
-> +};
-> +MODULE_DEVICE_TABLE(of, adp_of_match);
-> +
-> +static struct platform_driver adp_platform_driver = {
-> +	.driver = {
-> +		.name = "adp",
-> +		.of_match_table = adp_of_match,
-> +	},
-> +	.probe = adp_probe,
-> +	.remove = adp_remove,
-> +};
-> +
-> +module_platform_driver(adp_platform_driver);
-> +
-> +MODULE_DESCRIPTION("Apple Display Pipe DRM driver");
-> +MODULE_LICENSE("GPL");
+>>
+>> These 2 blocks don't look related and the only property shared is=20
+>> 'compatible'. This should be a separate doc.
 >
+> As mentioned in the cover letter, I reused the work from Jiaxun, who
+> needed to deal with bogus CM but in a different way. In his use case,
+> the issue with the CM was that the address in CP0 was wrong. In my cas=
+e,
+> this address is correct; it is only one piece of information reported =
+by
+> the CM that is wrong. I don't mind creating a separate doc if you
+> still think it is the right thing to do.
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstrasse 146, 90461 Nuernberg, Germany
-GF: Ivo Totev, Andrew Myers, Andrew McDonald, Boudien Moerman
-HRB 36809 (AG Nuernberg)
+Precisely I'm dealing with two kind of systems, the first is systems doe=
+sn't
+come with CP0.CMCGRBase, and thus rely on DeviceTree for probing the CM.=
+ The
+second is systems mapping CMGCR at inappropriate locations and we want k=
+ernel
+to remap it.
 
+We don't want reg property to be mandatory as we are dealing with a huge=
+ amount
+of legacy systems which mapping CM registers at different locations, whi=
+le we
+have to use a uniformed built-in DT and probe mapping at runtime.
+
+Thanks
+- Jiaxun
+>
+> Gregory
+>
+>>
+>> Rob
+>
+> --=20
+> Gr=C3=A9gory CLEMENT, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+
+--=20
+- Jiaxun
 
