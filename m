@@ -1,257 +1,129 @@
-Return-Path: <devicetree+bounces-139272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3341DA14EC6
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:51:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEEB7A14ED5
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:53:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DBCD1884E52
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:51:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC8E4162FE0
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:53:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46FDD1FE455;
-	Fri, 17 Jan 2025 11:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC5B71FE479;
+	Fri, 17 Jan 2025 11:53:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="UGOFSEly"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gJTVlowI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011005.outbound.protection.outlook.com [52.101.70.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6FF91FCCE1;
-	Fri, 17 Jan 2025 11:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.5
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737114659; cv=fail; b=PMcBvQDF+X6EaDIuLX3fnvjrwKryr43g5JnadlluJ/ybbaE0/p+qiuXZznoDi8By9ZtHN00WrIaU/Zoe20l6SwvYjS5L083SXvc1t3Jn/GRUxy96446ce7lmVuR4s0OEaxDjvGH2Ie5c5ZHEASYC9y/TTbQKjNZnVu7+aDop0kA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737114659; c=relaxed/simple;
-	bh=vTzRpv5oAJ2Uf5qIy+hrKbXX6/Kq3RYS4c6dZ2Bqzlc=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=cGCw+welBWdqQKSCKNUAEeSzNpZVJsE3GuS2/OCGJB3d8kRDdN29kThILX+AAmDpJb7O8foD2wD4gZaOC2ljH5ZtOh7CH1zKu+wnnbMZs3D4iciW8v/yluUa1v2Y/BrfQ73CCUDWXNGG13z7JsIoAYQGgKekOYVN9PqpOcZsYQ8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=UGOFSEly; arc=fail smtp.client-ip=52.101.70.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=U4FG/P+OKrETInCvthRFOS8N5d0HbSppN91p+SThc1j4sVXeZqPoiXgFYGupxzzfNQ48Yhnu3vewrDgy8cifxcwGai5t5sTbEYLdO9sxhp7Afb3L2bD/V5ORfn4nlN9T4WWvRa7TJadOq7LiYZCAYrlfAEZn1Q99UfMW5eWJS3h4UE4jp4V7Wh42BqNPl3CC0lXvXRY/i2SnqghkyMFG9dcHpB3k4dTXBpwGMxhd/+TUsQsTwUhfeJXdTMOAregr+I1wUoYg5sZSzS0jWyDuOoCcJMMcRQsMyPacaXF8m0rMMZScpduyCTl+pdTV71/rgu6nalYq9oohedYo6CwpkA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RRQnj/lHBFrmYuuU3eby7P399YaM59MHNc6+oTkKOUw=;
- b=I4G8m265EtBc0j37EiH7IxSFTn3YeRemU16nRaxBNqjR2rzpY/Abe7jwE2cyBw0zotOZbFbOHhDURysEPcspD5A475VyEgtoEzKBOnV8s077kju6zoKFAzDYNL3V5oP9k1R9i2CSBjKOTq6mUcOrzCPC5VUZjx5l87UlQUZntyBQHgraOuzK0qotecbuVJH+wvjTqUR6FewIqu46sdwqfZd35Lqo5ngfHobOUrZPskQ7nmkVnCXuivY1MTZ5yH/atJzWiQkzLG91e9IeaaRLif7nGKVTeKloMvu+V2HjrXa1SHBeC95lOmFQ+sAuMcpsLN/kh/gu737/UcEgLiQWaQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RRQnj/lHBFrmYuuU3eby7P399YaM59MHNc6+oTkKOUw=;
- b=UGOFSElyh95w4jL1kZhnJAZMk24f4Tn7PFg9yVBlfPV4GIeNt6rkvI77ruE9ptboLcuSxYKJD5Gm7QEAcPTp2AG7Nio2l1PfxSdrWA+JAbFXjI1lZ6foOUBduOkUVtXrJW+PRAGC2dpLj/Axv8H+639lnjf32k91IUqJq3d2B/A=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by PA4PR04MB9319.eurprd04.prod.outlook.com (2603:10a6:102:2a6::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.16; Fri, 17 Jan
- 2025 11:50:53 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a%3]) with mapi id 15.20.8335.015; Fri, 17 Jan 2025
- 11:50:53 +0000
-Message-ID: <4985c21b-56b8-45b3-a96d-1427ca905c6c@cherry.de>
-Date: Fri, 17 Jan 2025 12:50:52 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: add overlay tests for Rock
- 5B PCIe overlays
-To: Niklas Cassel <cassel@kernel.org>, Quentin Schulz <foss+kernel@0leil.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jagan Teki <jagan@edgeble.ai>, Michael Riesch
- <michael.riesch@wolfvision.net>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
- <20250116-pre-ict-jaguar-v2-2-157d319004fc@cherry.de>
- <Z4o2_0yX-hq-DfCs@ryzen>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <Z4o2_0yX-hq-DfCs@ryzen>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR4P281CA0070.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ce::12) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A3C1FE45F;
+	Fri, 17 Jan 2025 11:53:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737114834; cv=none; b=NxcJdkIOsy621Tn5Li8GngTDTWiw0C5FUM497NhWJ3gjUkSeQF1tbfAyhQbkhvVfAaStaxYlftctm8MgUlYG+kPYgh8j7Lvg09kslVicsz6Gn4M7+iITq+afz02Q7jc2qqDjo54vnciWmtG9rlBjNkcgYGfAd2QkucL1jSNUpuw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737114834; c=relaxed/simple;
+	bh=czFmOPqjuV/Og92CfVO759ZUYmPZ1n3XMxdg4+9Hxes=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=q0xnQQ20XOY8YhLJ3bthUFsWQwnOT1hIu6quozuDw91grwUo1PtKy8xmHXXVNP48sir9RiN5hwX62rCnBokWTOrtotUWc4acaCOnQjoxnZJblUFVD8miuK2/G2yLAL0KhZanOgt4ZeOWVyt1sm/bMyAYOVwb3lNpY3n5AyLWpis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gJTVlowI; arc=none smtp.client-ip=209.85.222.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-86112ab1ad4so479970241.1;
+        Fri, 17 Jan 2025 03:53:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737114832; x=1737719632; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=P3DdFeKyKYxzEcK5cCNGdU/vTMq+Ez0rcnFpSG8fnec=;
+        b=gJTVlowIfI2t2VPB+s7ojZZylY2p8Qj6yvqN9lli4tG5AwvMteEj+OMF0x+ha63qxK
+         9U4xfZ/r9hEglHN+cYkeEK1G9RcidE/rhy4I9p+X3VkJo654gnjv9G39qOyO8nnDLEKk
+         OAbMlsAjkhTmDCcKRj0Ozrp+GTp4k23AGJKRXH4oVPOfKXHcEiNoIQf7xThDf5hif6rB
+         YDpYqoD8vhNi5Q1EPpOFv+5S1PmOaIeTCIoz1TiHz0ss3WOugWViQdO2R/hm4ajFhnu1
+         oTxpWfddXPRXZXpqimTCKWt4+nDORk6ANpC3pWVsxd/vOXxVavT9Zmrpv/srMJXJN//g
+         Yang==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737114832; x=1737719632;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=P3DdFeKyKYxzEcK5cCNGdU/vTMq+Ez0rcnFpSG8fnec=;
+        b=j6AYRu7g1AM4xS4cTi6rOPpxnBv4zhuRTFTYeOfQKje9obJPO59F4xKC9vysAgC+Ea
+         p1JfF62tRIR7okafNjjkCl3/NR8xV0rrirmruoR7WRiQgDMkZ3N/PHFW02SIYTtf8RVy
+         p1HsFN1+RmqZU+Poi4OsOAEZRNZ9kS+DeL8rn9w1856OOQm3OvVZjQaxZdkT28fmFmF9
+         8bWZvWxjtkKCySgTgJ/n3KfvMr3HzVYpdW6HQuruaV9mSIc4dqFfIsfrqe2r7lKuHgn8
+         RdTafxTw4NtbeMFUE1tQ30ClZUdJnyIJLx40kLVRkiElCwwPALa53cci1CScHP2yEf6U
+         aRZw==
+X-Forwarded-Encrypted: i=1; AJvYcCUbcmSupAN9C/U45XzG94FfUsytiuXPppiFeFTaU82txDbw0ybPPfPdtu5bq1WrvUGL/xfphhMFr1w2W2ZN@vger.kernel.org, AJvYcCV5qHAjDUwl6qU3vEKxSyBLgV8u0OO2Xc+CjVqthfHRnbH8LF/F8yNroKVCIhNsYfNVJ96kxa3o9K+V@vger.kernel.org, AJvYcCVOwC/OthSQc7HJDLNdiTAjOLxDbicPSlYgFQOTlncMFNLdpb7oYREcV7F0N2vp2qsxxCcKnsJV4vE=@vger.kernel.org, AJvYcCWNKCxYfza+PjVQd14gHqS+aXJxOOSaoVVTAV/8mIzG9Ddbs8lDydC/fEMDIfJiFpv/hZinJYac74HcwA==@vger.kernel.org, AJvYcCXF5zJNpM31ismtleU/nP8Ra/iNFYxDvScx1+nUSMg+qJ561C87mPpigDDrdve7G7LGJzu4UP263hqOFzw=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzl/6Q1JoO6V3aOP9BouJipgUmCS5VfkxnhEKUsJ41SqJtloCzz
+	lFaYmacH02aUqOlwc0YZz7iAE0dj4ZhL0PNw98vd0mQK1IrDu1FhafJQs0EK6oF3uGwuQtAPkpW
+	mX6ZgT9RcISOCNNd9CIx7AvDMT+w=
+X-Gm-Gg: ASbGncvSjlM9U+oOfZns6j6KyVUSmSzqbdW1a1Hs0E+JiAVEHokg0NoWDx8oxlGOZuP
+	o0Ix4qWh4ZNMRx/MaXz51GOOcPWLBvaLx8vBmSA==
+X-Google-Smtp-Source: AGHT+IHsSVdYBma5CPL0yG8zuR6byIgPcePiTTTkobAfruzMqP7IeXaP31/0PFmLWWGFUVQ6PJVK7/wenzEMa0nl0Do=
+X-Received: by 2002:a05:6102:3584:b0:4af:f3bd:51cd with SMTP id
+ ada2fe7eead31-4b690cdd7e9mr1189372137.16.1737114832156; Fri, 17 Jan 2025
+ 03:53:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|PA4PR04MB9319:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2cc65bf6-3936-4f31-9647-08dd36ed31ee
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Y2RQdHQwZjdSTTBhM0lDSFJBVXE1UFNTVnZZZkNNVmtwb0JOaVdTZzNmTlZU?=
- =?utf-8?B?WDRpU1dhakd5Mzg3alJnR3dGWDBBa1FNVCtCd01ud0VpLzJ6bkkwaDlNTkQ2?=
- =?utf-8?B?Z3F2ZGRONUhlZ0NVYTBlV3h4Ync5TjI2aUpkd2pZVlpvd3pDSlhRekpBT09q?=
- =?utf-8?B?elhVMXJjZlZwWFFwd2lYUEtYZW4veEhWMlVVbTNtOGRQd2JobWFLZFI0aFF1?=
- =?utf-8?B?ank3dUQvN1d4NVJ0ZkZRSVZhY2ZIM3ZwQVFzNCtZKytldWxubFhlcWNJMHVk?=
- =?utf-8?B?S3YyUXBKa3h5cHZpeS81NmkzSzl6cyswNFl0WEdkWHc4ZDliQnBDMThFTWF4?=
- =?utf-8?B?bVJIOG9NWXFjeE5PSHVwYlozMFFCbk5tcUg5REJNTE1MS0lDa1hiZWp0Zmxr?=
- =?utf-8?B?YjhDbDR1Mm1qZjZoWktNVStoNStsdUJObng1VUVPaEtBeDkwa1JDWTVQQUc2?=
- =?utf-8?B?bks0M1FYUTlacnJlcGIyZWVaL0t1QUJwb3J5eHlDWjUySkk3dnkySjZ3eDB5?=
- =?utf-8?B?QXZCdnV2T0FIaGRhL3lRMFpLcFlhU3BxZGViRkRSL01yU2RReU5aeXQvNXNZ?=
- =?utf-8?B?TkRNRzhzUERrMDRVYnpmdjV2dVFSd0JuVVl3Q1g2NktWbGlhSVdreTM2UjhC?=
- =?utf-8?B?Y2Y2YnpBUWZQNUJuQ0dCQWtsSDR4ZXozNXk3Q0dSbWZhVjVBLzFOa21jWDUz?=
- =?utf-8?B?UTVXL2lwSmlLdCtDR0t0eEtzU2JuMFNKZGlQa3gvS3NQZmFwVDV5clZWV05k?=
- =?utf-8?B?SXRqMmZ3aEFZZ0loR1hHcVdTdEIxbFFPenEyV0hlUTh3Vy9raEV6enA3cmtV?=
- =?utf-8?B?L0lNejBxYytBVHVJdWthK2NzU1BZdmo1TUN4dk5pbUVzSDVJNmVMWTlTUEE4?=
- =?utf-8?B?bTBxS242TkRZVVovUTFtSTFvNE1nWjhTQ1RnZzkxWXA1MXJHaXgycWs3TE44?=
- =?utf-8?B?WlV1bm9vQk02aVBpZUVEZTNSOFhKaTErOGNjWDBkRENUcmxvQlVvMktRdDJa?=
- =?utf-8?B?ZHRrNlR0aUFmUGlDVmZQSytmcTdObG1md0NtUUtza0E0TE9sVG9ESStDanEy?=
- =?utf-8?B?K1UxaStRRVpTTkd6MytkRXlGSW14eFpxaXFFb2NmUEE3eFNYNnlIMmNWTmJS?=
- =?utf-8?B?L2ZHTUFka1hWbjQ0d2grQStUWGUwZEpkaVZuWGRITGVzVkhZS1hqd2hDYWxo?=
- =?utf-8?B?bDdUclVPajZLVG5WdXNVMERUN3J4UUxyb0p6VGFsbmtKTkNXOWVNNlRSbE1P?=
- =?utf-8?B?ZkNJR3pJZmIzVHBHRldxOVdTUi9rSGh3UmhVMHBreDlIWWNzMVhsRGYyTlgx?=
- =?utf-8?B?ZUhaeVFKS1E2a3MzZ29LTnpwd0VURUVGUmVCd09KZG5vZDI3RVVRM3hVam9o?=
- =?utf-8?B?NFBSM3kxQS9hOVRHRWJhZjdWdWpQVkZJQnRoMndQZ25oZ29wZnoydEIxZXZY?=
- =?utf-8?B?Z2F2QStUblM3dXdtUXB4TzA5bUgvWVRjRE8xUEdYRjR5RHMrMkVHVDdXQm1Q?=
- =?utf-8?B?ekdMeWJXbldFMmRUY1FVNjZNbzdpS1dkbU5DdXJXRHR3TEFiRWtSdzA3Tk1w?=
- =?utf-8?B?NDFQYms2cEJwZlNKTXNKYTZUYVRETjVjeEdWdVlEZ2ZsZzZzdzJvS1BIVHJW?=
- =?utf-8?B?S2lZT095YkVYOXZLV0RreW9kRWEzOUJPVUxTWWhPayswVHJGWVBXbHVudlVx?=
- =?utf-8?B?QVh0R0tHVEtVVldXa3ZKZ2hSeEVqZ2c0azc2emlXN3ZLcGFPNGMrM1VRa3oz?=
- =?utf-8?B?bzlHZ0NMMlNDTmcyT1hxdVlYdFFxU21jNlpkY3BvYzl0MmhLMGpmNlErMlpx?=
- =?utf-8?B?REY3eFpzRDBQZUs5aFkwTlNDU0N3aktFb3d5RFN2OWJXZnVyZGc1K25KSzly?=
- =?utf-8?Q?xdZ6dnVyxRIwP?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cm9PSFhXUGdsc0dTdDVQWnFFdDJJbFU5NXB0SUhaS1lHYTJjbmpFZXkwRjcx?=
- =?utf-8?B?YnNNY0p4eE9MSk1FM0hiZ1luaTNUOVNCSlJNdWdFTlYvTU1SVjBGRDltbWRx?=
- =?utf-8?B?cVhsVDZVZ0RUOUU1bUlKcmZaNGdNQTFQVjljTVpPalNWVDhXaHR5OVFXSnBQ?=
- =?utf-8?B?OENiWnpuOFg2c3pjWmw2SlkrME1STlp3WUZrYUxVUEVGQ3ZzdWlxT0JJeVlP?=
- =?utf-8?B?bHNQZ01Tb1FxYXpMbEwvVUZTT2wwS0ZMRmdzUWZFVFMxWDFvQVRHYmNaanJ3?=
- =?utf-8?B?aTN3MjU3ZzBrL2FlNW5tNUFRRm9JODlhckRIY1dSbDFWSmFQL3JDbFpRYkdq?=
- =?utf-8?B?RVM2SGdyb3VSM2JKMlhCajBYMXZ4MzZhRUlVRzM1UVVGblhPbXB0dWhvanc4?=
- =?utf-8?B?UGROQzZWOEFtVHk3VEhobkxNYWZPYWxEMDVkbUp1TFdWVzNXNXVSY1NJcU10?=
- =?utf-8?B?c2VJUUg5Z0ttRGhSbGVubXhQYlpaelVpWUFJeW1ibFNyWS80ZXZQZXludXFS?=
- =?utf-8?B?M24xbnBVaUlxVk1GRkY2M2R6TkhEQ3FBZGpNQ2x4aG83S2FWQ0w4RzNnYnZL?=
- =?utf-8?B?T3lWTDYzODVTcDNxRHVGVXJKNG84UXJnQ0cvYkJOZlZEWVhHd1cwUFY1SS80?=
- =?utf-8?B?T3duOU1GaVllNU5rWXR1QVZuZlR0VURuNytLaml3R1JBRDUzc1ZLRmhtYllI?=
- =?utf-8?B?N1cramV3bk80MnJTdkprRTBNWTJ0a2l5L3BleVZLQllWNmdJYVIrZkZ4TjhK?=
- =?utf-8?B?bXludkhjM3hRUUlCU29ocUpjNmJydDZxbFl5THFIeXdQTU00RC9LVTAveHlD?=
- =?utf-8?B?d3lZTlliaVd4bjQyOS92TDk2ZTRCVG1lcFRHd1g3MVBTVWpQbkpHanZFQnJ6?=
- =?utf-8?B?SzdvVXNWRFdpY2JteVJ4YktQRTVORTNsQ0F3OHlYbEs1SU1Vd3RWdFZGcUxD?=
- =?utf-8?B?VHRFZjhYaHFnakJVNldjYXVkWmRWUWVtYTlhdFFLZjBId1hnVmZzaXlWV2Uz?=
- =?utf-8?B?Vmd4OHJSVjVySzFzcjAraUdQaU1YS1ZlWkcybXJ1N2pMVGkvRDVnWkYvb1Ux?=
- =?utf-8?B?K2JSWmdYT2M0ekc5SlhiVEJtQ3BGSnVUSm9pdjFXTjcwblBFVGhsck9KaUJC?=
- =?utf-8?B?TXIxMHRKMjl6WjlXblpKVWJ1SVVFeUhqMXpvUERPT1BVSENrVlhDWDJyamVQ?=
- =?utf-8?B?S05ZVExPckY0WjVYYkFlSVkxZmVEU2RuaWFKbnlDUmpWUWRpR1VlbXpDUDRy?=
- =?utf-8?B?cmxFUEJxL2hmMHh2NE8rQnRObmhtTUFjL0RjS0Z4YW5DK205ZHlXZEJjb1lE?=
- =?utf-8?B?c3NJdnoyVjFJa2NreUVmeWRoWEVIcWd3clNidjZaaEhCVVVZcEw1M05pcTM1?=
- =?utf-8?B?YmVObWxpK0laUmZJUGJLV0M0R1U4VmxvV0orRFp2NW9mbmdFZ2xCMUZJRG5v?=
- =?utf-8?B?WjJKZ0RRUXF6amorazhVZnJVWUZCUEVVTVVzd3JUQmU4YTh5Q2psMlJTWXU4?=
- =?utf-8?B?V3ZFWDVjMUxhWWdwY2kxbjhUWi9mNUFYaGpLZFRET0lVK0lqRmc1NXJDSjJa?=
- =?utf-8?B?bUp5NmU1dDRVT3VJWTBQZk5BcW9mbHhKRm9BTk9WVUtwWnJPWTdueFFzU2xU?=
- =?utf-8?B?ZlhpcG9hNlMxdzE3Y3NybDZwM1RJcE1TQVkrWmFZR0JCNGNKaHVxakZYbUx2?=
- =?utf-8?B?d0lwYmUyc25CSXlnb2NQZkh1ZU1HUzlMSG14Tng1KzVzQkdyWXJReWZqUEo1?=
- =?utf-8?B?NFhvWUxQelpmYU45WjU4dDFvMUs4bFdNb1RCUGtsWVByUWpSTjkvQW1scmlM?=
- =?utf-8?B?NkFXMXQ5N2tFZ25DZkRPK1hHTDJGMEdjZFM4S0V6VlIyZCtXVFhIWkx5VXR4?=
- =?utf-8?B?a1RIVDVONFpmbCt1N0xSV00zczFuZFBUZjN2eUpYdm5XVlIrWjBDWjhydTFT?=
- =?utf-8?B?QktJRnN0S2RHUlN1ejRHOC9ENWVRMitvVEhmVDl3Mlg2d3dkRTNZb251OG1h?=
- =?utf-8?B?YnA2SStXUnhHdkxTeW5IZ09YbWVGa21oeExpeldqNDVFM2pnY25DWm9zcjFK?=
- =?utf-8?B?MWtLUmRGL2wxS3d0M0FGZnRYc09ucndtcXZNSm1ubGpmMXF0Qlk2dWNlcUpp?=
- =?utf-8?B?TUsxNWkzTmFjQ01ORHR3dWZoS083MzhWb0R5NWQyZkpYM2pvYUR1dHdEL0Nr?=
- =?utf-8?B?U1E9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2cc65bf6-3936-4f31-9647-08dd36ed31ee
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jan 2025 11:50:53.0608
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7511EWJw8GnG1923s917IVcvJyPygfija0ehFVddcY6wZAg0Sf1rRMur9sLKwMV/GKkzWesssQSfDP2GYYrgLWGp7X8tpk2I2cU4zbCqPUs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9319
+References: <20250116-starqltechn_integration_upstream-v15-0-cf229de9f758@gmail.com>
+ <20250116-starqltechn_integration_upstream-v15-5-cf229de9f758@gmail.com> <20250117-cordial-hopeful-leopard-4b7ad9@krzk-bin>
+In-Reply-To: <20250117-cordial-hopeful-leopard-4b7ad9@krzk-bin>
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Date: Fri, 17 Jan 2025 14:53:41 +0300
+X-Gm-Features: AbW1kvauDMoxHb-HOemALvUFq-vmlIsK81MN7Ookae2wr7GP_eDwoWdHLehW0k0
+Message-ID: <CABTCjFAv7sKkgWvr_Bik3G7-6L0Uh5gnhhTDiar7ecjuqEtvJA@mail.gmail.com>
+Subject: Re: [PATCH v15 5/7] mfd: Add new driver for MAX77705 PMIC
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
+	Hans de Goede <hdegoede@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Niklas,
+=D0=BF=D1=82, 17 =D1=8F=D0=BD=D0=B2. 2025=E2=80=AF=D0=B3. =D0=B2 10:55, Krz=
+ysztof Kozlowski <krzk@kernel.org>:
+>
+> On Thu, Jan 16, 2025 at 07:26:07PM +0300, Dzmitry Sankouski wrote:
+> >  config MFD_MAX77714
+> >       tristate "Maxim Semiconductor MAX77714 PMIC Support"
+> >       depends on I2C
+> > diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
+> > index e057d6d6faef..d981690b5a12 100644
+> > --- a/drivers/mfd/Makefile
+> > +++ b/drivers/mfd/Makefile
+> > @@ -168,6 +168,7 @@ obj-$(CONFIG_MFD_MAX77620)        +=3D max77620.o
+> >  obj-$(CONFIG_MFD_MAX77650)   +=3D max77650.o
+> >  obj-$(CONFIG_MFD_MAX77686)   +=3D max77686.o
+> >  obj-$(CONFIG_MFD_MAX77693)   +=3D max77693.o
+> > +obj-$(CONFIG_MFD_MAX77705)   +=3D max77705.o
+> >  obj-$(CONFIG_MFD_MAX77714)   +=3D max77714.o
+> >  obj-$(CONFIG_MFD_MAX77843)   +=3D max77843.o
+> >  obj-$(CONFIG_MFD_MAX8907)    +=3D max8907.o
+> > @@ -233,6 +234,7 @@ obj-$(CONFIG_MFD_RK8XX_I2C)       +=3D rk8xx-i2c.o
+> >  obj-$(CONFIG_MFD_RK8XX_SPI)  +=3D rk8xx-spi.o
+> >  obj-$(CONFIG_MFD_RN5T618)    +=3D rn5t618.o
+> >  obj-$(CONFIG_MFD_SEC_CORE)   +=3D sec-core.o sec-irq.o
+> > +obj-$(CONFIG_MFD_S2DOS05)    +=3D s2dos05.o
+>
+> Hm? How so? And how does it even work?
+>
 
-On 1/17/25 11:54 AM, Niklas Cassel wrote:
-> On Thu, Jan 16, 2025 at 03:47:11PM +0100, Quentin Schulz wrote:
->> From: Quentin Schulz <quentin.schulz@cherry.de>
->>
->> According to commit 40658534756f ("arm64: dts: rockchip: Add rock5b
->> overlays for PCIe endpoint mode"), Rock 5B can operate in PCIe endpoint
->> mode. For that to work, the rk3588-rock-5b-pcie-ep.dtbo overlay needs to
->> be applied on Rock 5B base Device Tree. If that Rock 5B is connected to
->> another Rock 5B, the latter needs to apply the
->> rk3588-rock-5b-pcie-srns.dtbo overlay.
->>
->> In order to make sure the overlays are still valid in the future, let's
->> add a validation test by applying the overlays on top of the main base
->> at build time.
->>
->> Fixes: 40658534756f ("arm64: dts: rockchip: Add rock5b overlays for PCIe endpoint mode")
-> 
-> Not sure if I agree with the Fixes-tag.
-> I don't think there is anything broken with that commit, but I definitely
-> think that it is a good idea make sure that they don't break in the future.
-> 
+My bad, sorry seems like rebase issue.
 
-That's fair. I actually think it'd be a good idea to backport this to 
-stable releases. It could be possible for stable right now to somehow 
-only backport changes to the base DT without modifying the DTO (or 
-vice-versa) and then break the overlay unknowingly.
-
-I added the Fixes to make it a bit simpler to know up to when to 
-backport it, though I still haven't decided if I should have added Cc: 
-stable there.
-
-So 1) what's your opinion on backporting this to stable
-2) if backporting, shouldn't I still remove the Fixes?
-
-> 
->> @@ -145,8 +145,6 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-plus.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5-itx.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
->> -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
->> -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtbo
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-toybrick-x0.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-turing-rk1.dtb
->> @@ -165,5 +163,9 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
->>   
->>   # Overlays
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
->> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtb
->> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-srns.dtb
-> 
-> You moved these lines further down, but you changed the suffix from
-> .dtbo to .dtb, why? It seems a little confusing, is that really needed?
-> 
-
-That was also confusing to me, but that's actually how it works.
-
-rk3588-rock-5b-pcie-ep.dtb somehow points at rk3588-rock-5b-pcie-ep-dtbs 
-which is the overlay application test of rk3588-rock-5b-pcie-ep.dtbo 
-onto rk3588-rock-5b.dtb. For that to work, the .dtbo needs to be 
-compiled. The target must be auto-generated somewhere because that still 
-works. You can remove all *.dtb* from the tree, apply this patch and 
-compile with make dtbs and you'll see that the DTBO is generated and the 
-build time test of overlay application done as well (the log line starts 
-with OVL).
-
-Not sure exactly how to make this a bit less confusing in the commit 
-log, as I myself do not really know why that is necessary or how it is 
-working. But "it works" (tm).
-
-This matches what was done for ti/ as well.
-
-Cheers,
-Quentin
+--=20
+Best regards and thanks for review,
+Dzmitry
 
