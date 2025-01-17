@@ -1,82 +1,57 @@
-Return-Path: <devicetree+bounces-139311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E12E8A150A5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:38:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFBB0A150A9
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 14:39:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 094B77A26FC
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:38:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 177023A8F16
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:39:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CD7F1FFC4F;
-	Fri, 17 Jan 2025 13:38:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DB53200119;
+	Fri, 17 Jan 2025 13:38:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DjwxEpsx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kLJOzCZW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1D731FFC4D;
-	Fri, 17 Jan 2025 13:38:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70BFC1FFC55;
+	Fri, 17 Jan 2025 13:38:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737121133; cv=none; b=RTKQYekRan5VpPe/RjeYl7d/EMcNhqRSTpR57CLXONz3B+KiYU4671czp3+L2cmg9kMHYb+ROnHA4rXqikIdh2XUXLieU3ayoduwCQh7GPT1Z9ZwjBXVMka80b6CUSQnIplRlTxB9M+kI9Gflzw5lPvj3Vf0a/RzcHc3PSsFJvw=
+	t=1737121136; cv=none; b=cQl7HI2IvCNY5cj4lQ3bLMF1896+XNr7zlpAOZHS/dGhXB2ZLtLR7xER0gI0cnxxy8foghQBOIPyVc4KhJgqhvnJodIfeVIVQlCuUubog4SkEtLd0IRNmwYNDC8NOP3i8hxsfOQnCqZOReYOreiogjJxJyrLnp+HnmnCAN5GvDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737121133; c=relaxed/simple;
-	bh=jZu+rOMqAniF32F5eyCALjZstDTS2Qrec5VkPQcMxyA=;
+	s=arc-20240116; t=1737121136; c=relaxed/simple;
+	bh=amqRnUq2L/EXSocQI4TBHewoyWIDai3355YmI2WHaIA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k+iR0u2d6CP4qVLWSiB8dBs8m2Q4GIKnNVsDKSwXgrsPBO9aDz/UErhVNfgGJGawBN13K8/CTXBkRqlXHzkRu+R+E5bey8GtixXxqHMKcCIV/EeI3lvsk1xg225FZdMsXKZdwSBtvfS+9XStE+TkUwvRZSoSGcSKnVYTrHmDpts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DjwxEpsx; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737121132; x=1768657132;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jZu+rOMqAniF32F5eyCALjZstDTS2Qrec5VkPQcMxyA=;
-  b=DjwxEpsxlWQcmd6Hdk/QVA8Z9HKDrRlDHmYHV2rjul7Xgj0AE7mVQAJO
-   fWDvhA4X1pzU5a0QQi5hVHnWFcT2QeyyDdCo9unfKyVzry+F8GpQ8Hs5K
-   QuhP0Ve2aM0iuhDkAKILDm3m4ugKOQznfiiyXXYkYg5BVC1W1fAFIOsoB
-   XBxnJdpWOnOJthasYd3mi//2DpapXW62OyIJUA+C7TKkm4bptViRVQcVJ
-   mFbd7bK4jk7NCLEenCWBLYM4Eo+Ixfguf7FRekOrAYVpWUlNKxY9VKlTF
-   05TVI/6b9d1OVN1+uLHv1QXRjZVa+e0VRcNZyWao7QCcnp7MZlxz85cXA
-   g==;
-X-CSE-ConnectionGUID: cbr2gDbBRleWKKv5cR9rVQ==
-X-CSE-MsgGUID: rqPjIk7VQbSou48A6iMfbw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="48215544"
-X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; 
-   d="scan'208";a="48215544"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 05:38:51 -0800
-X-CSE-ConnectionGUID: SHbABSWySIW64toJG76Arw==
-X-CSE-MsgGUID: gEHVnZBNRQSN5JVFNAFYbg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,212,1732608000"; 
-   d="scan'208";a="106364205"
-Received: from unknown (HELO smile.fi.intel.com) ([10.237.72.154])
-  by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 05:38:48 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tYmYg-000000024jJ-0wPm;
-	Fri, 17 Jan 2025 15:38:46 +0200
-Date: Fri, 17 Jan 2025 15:38:45 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Felipe Balbi <balbi@kernel.org>,
-	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Ferry Toth <fntoth@gmail.com>
-Subject: Re: [PATCH v1 0/3] usb: dwc3: Avoid using reserved EPs
-Message-ID: <Z4pdZZhR6m1LB3yk@smile.fi.intel.com>
-References: <20250116154117.148915-1-andriy.shevchenko@linux.intel.com>
- <20250116231835.isbwmq5yz5issy3w@synopsys.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=b0PmcmRzlzAu0pCcsI/IEzFg9AiYhbBsGeiBN4Ys/TAbLbyP1ThWidUWUuL4bCSd4tH8GO21qbW5ZSR5EfeUEhMM6Ow4FLGR34kANSAuL0pEtY6fBiMr7h1XRykUPox4NSdvlMP9EWbpsivebCaxTCnRPIRhvQmUGoGCOIyWr5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kLJOzCZW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 987F9C4CEDD;
+	Fri, 17 Jan 2025 13:38:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737121135;
+	bh=amqRnUq2L/EXSocQI4TBHewoyWIDai3355YmI2WHaIA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kLJOzCZWZeek4eWmUHbub8k0heFZemdZwkFSwRJLRTfCjeKkpRQDr//hFk1QYYPNo
+	 V07wrL5MGMWklOJg+TjiarBA3H4V2VguBal4iXPiNLTWQrOkz1GaAUS4EjkPT2v4tl
+	 FZnHJfWQMbgABVowJHPbDXZ118rZM0ys0/6PseuRBBhIAEGxxy3yp+4KZOx7REwLqG
+	 jcaoBHX3ykJQjeVPHzevtLFNKB/95IO4JCcnOpHtS6+zFJ+1eM6qX/jGLspPXKLjXK
+	 0b8Nr1KtW1bFaWsxS8l3+CmKduQJH2puRXlj23ExX6CeZmqgZyYtwDS5BHsaTaz+rH
+	 xCrkMT+sTEc+w==
+Date: Fri, 17 Jan 2025 07:38:54 -0600
+From: Rob Herring <robh@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Saravana Kannan <saravanak@google.com>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 1/1] pwm: Add support for pwm nexus dt bindings
+Message-ID: <20250117133854.GA500748-robh@kernel.org>
+References: <20250108161853.431915-1-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,40 +60,103 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250116231835.isbwmq5yz5issy3w@synopsys.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20250108161853.431915-1-herve.codina@bootlin.com>
 
-On Thu, Jan 16, 2025 at 11:18:45PM +0000, Thinh Nguyen wrote:
-> On Thu, Jan 16, 2025, Andy Shevchenko wrote:
-> > On some platforms (Intel-based and AFAIK ARM-based) the EPs in the gadget
-> > (USB Device Controller mode) may be reserved for some special means, such as
-> > tracing. This series extends DT schema and driver to avoid using those.
-> > Without this the USB gadget mode won't work properly (those devices that
-> > "luckily" allocated the reserved EPs).
-> > 
-> > Ferry already tested the privately sent PoC of this, but I ask him again to
-> > re-test this version which is slightly different.
-
-...
-
-> I'm not entirely clear on the reason for this change yet.
+On Wed, Jan 08, 2025 at 05:18:53PM +0100, Herve Codina wrote:
+> Platforms can have a standardized connector/expansion slot that exposes
+> signals like PWMs to expansion boards in an SoC agnostic way.
 > 
-> How would this even work without dwc3 managing these endpoints (all the
-> init/teardown/fifo allocation/start/stop flow).
+> The support for nexus node [1] has been added to handle those cases in
+> commit bd6f2fd5a1d5 ("of: Support parsing phandle argument lists through
+> a nexus node"). This commit introduced of_parse_phandle_with_args_map()
+> to handle nexus nodes in a generic way and the gpio subsystem adopted
+> the support in commit c11e6f0f04db ("gpio: Support gpio nexus dt
+> bindings").
+> 
+> A nexus node allows to remap a phandle list in a consumer node through a
+> connector node in a generic way. With this remapping supported, the
+> consumer node needs to knwow only about the nexus node. Resources behind
+> the nexus node are decoupled by the nexus node itself.
+> 
+> This is particularly useful when this consumer is described in a
+> device-tree overlay. Indeed, to have the exact same overlay reused with
+> several base systems the overlay needs to known only about the connector
+> is going to be applied to without any knowledge of the SoC (or the
+> component providing the resource) available in the system.
+> 
+> As an example, suppose 3 PWMs connected to a connector. The connector
+> PWM 0 and 2 comes from the PWM 1 and 3 of the pwm-controller1. The
+> connector PWM 1 comes from the PWM 4 of the pwm-controller2. An
+> expansion device is connected to the connector and uses the connector
+> PMW 1.
+> 
+> Nexus node support in PWM allows the following description:
+> 	soc {
+> 		soc_pwm1: pwm-controller1 {
+> 			#pwm-cells = <3>;
+> 		};
+> 
+> 		soc_pwm2: pwm-controller2 {
+> 			#pwm-cells = <3>;
+> 		};
+> 	};
+> 
+> 	connector: connector {
+> 		#pwm-cells = <3>;
+> 		pwm-map = <0 0 0 &soc_pwm1 1 0 0>,
+> 			  <1 0 0 &soc_pwm2 4 0 0>,
+> 			  <2 0 0 &soc_pwm1 3 0 0>,
+> 		pwm-map-mask = <0xffffffff 0x0 0x0>;
+> 		pwm-map-pass-thru = <0x0 0xffffffff 0xffffffff>
+> 	};
+> 
+> 	expansion_device {
+> 		pwms = <&connector 1 57000 0>;
+> 	};
+> 
+> From the expansion device point of view, the PWM requested is the PWM 1
+> available at the connector regardless of the exact PWM wired to this
+> connector PWM 1. Thanks to nexus node remapping described at connector
+> node, this PWM is the PWM 4 of the pwm-controller2.
+> 
+> The nexus node remapping handling consists in handling #*-cells, *-map,
+> *-map-mask and *-map-pass-thru properties. This is already supported
+> by of_parse_phandle_with_args_map().
 
-You perhaps know much better how it can be done, I have access to a limited
-documentation and in practice if those endpoints are not skipped any gadget
-that allocates them simply won't work, and IIRC the entire USB transfers are
-stuck.
+You need a schema for all these properties (pwm-map, etc.). A wildcard 
+doesn't work because '-map$' is not unique:
 
-> Can you provide more info on this hardware?
+$ dt-extract-props Documentation/devicetree/bindings/ | grep '\-map'
+ 'adi,pdm-clk-map': ['uint32-array'],
+ 'arm,v2m-memory-map': ['string'],
+ 'brcm,ccode-map': ['string-array'],
+ 'brcm,ccode-map-trivial': ['flag'],
+ 'brcm,int-map-mask': ['uint32-array'],
+ 'charge-current-limit-mapping': ['uint32-matrix'],
+ 'dai-tdm-slot-width-map': ['uint32-matrix'],
+ 'data-mapping': ['string-array'],
+ 'fsl,asrc-clk-map': ['uint32'],
+ 'gpio-fan,speed-map': ['uint32-matrix'],
+ 'gpio-map': ['uint32-matrix'],
+ 'gpio-map-mask': ['uint32-array'],
+ 'gpio-map-pass-thru': ['uint32-array'],
+ 'intel,vm-map': ['uint8-array'],
+ 'interrupt-map': ['uint32-matrix'],
+ 'interrupt-map-mask': ['uint32-array'],
+ 'iommu-map': ['uint32-matrix'],
+ 'iommu-map-mask': ['uint32'],
+ 'linux,rc-map-name': ['string'],
+ 'msi-map': ['uint32-matrix'],
+ 'msi-map-mask': ['uint32'],
+ 'mstar,irqs-map-range': ['uint32-matrix'],
+ 'no-map': ['flag'],
+ 'port-mapping-mode': ['flag'],
+ 'qcom,mpm-pin-map': ['uint32-matrix'],
+ 'qcom,port-mapping': ['uint32-array'],
+ 'qcom,rx-port-mapping': ['uint32-array'],
+ 'qcom,tx-port-mapping': ['uint32-array'],
+ 'rockchip,path-map': ['uint32-array'],
+ 'ti,linear-mapping-mode': ['flag'],
 
-I am afraid I can't provide more, sorry. I can look for some specifics,
-but I'm not that guy who know anything about in-SoC tracing.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Rob
 
