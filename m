@@ -1,76 +1,55 @@
-Return-Path: <devicetree+bounces-139270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4273A14EB4
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:47:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0E9CA14EC1
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:50:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1ADA188AB46
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:47:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10CD5168CD7
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 11:50:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22D431FE45A;
-	Fri, 17 Jan 2025 11:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0890A1FDE14;
+	Fri, 17 Jan 2025 11:50:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="oaCefkbz"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="ebPl3v2d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90441FC7F7;
-	Fri, 17 Jan 2025 11:47:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE0B325A658;
+	Fri, 17 Jan 2025 11:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737114450; cv=none; b=GPAr7qorjzVPpjOZSjbC+Eehi6rS/NtwBVvDwJ+SPA1Y9HTHmDT2v8PCPAlHfkfdJ0HarfSP0c1ebN1DGBTMrdwy6CIUffE+Yfi3mK6SNfSEbRLYtqDDDNNwmcnzq3QsrTGyPiVMCFYbBj7AN7RVrs/gD3Pa4T0pqsgMwAMufrg=
+	t=1737114614; cv=none; b=QHt/aHy+iXkc9YoNWyf6Xciu5sGrQCwrvU9AzMCdNSxBGxs8W1+LxRMZcqplEArjgc3ZM5g9cP1ODbaSuT8QPowQ0MzOCqpeMnalvd+13MO1hMmUY/mHQLRhruiW0NztULdUggY2pYdiXrzypoYqtq0ubuwqacZQ0r4QpiQIxhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737114450; c=relaxed/simple;
-	bh=A665CMcg3Zxh17VsKeClwr+Y6LhMtPvxA2CPxYHvMWU=;
+	s=arc-20240116; t=1737114614; c=relaxed/simple;
+	bh=uw0oxL/cdncbSTR7q7slu4yt628ZynwzCFOggcCb/70=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JLogk9D13W5oBP4TGZJ0GfrOqchFODI50+jB6+QKv0qa8NInK7H83THoeZXGVar1LaEKGX7uZvpsaCov8jcdbmVd+1PPVRgJBBoU85TN8RjZ+5fOHuhLA8KMEqJnire10Z/M6tj42FWy8v+rGN6JuYkZ2G12qE7Ci9VeUhwj/80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=oaCefkbz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF024C4CEE2;
-	Fri, 17 Jan 2025 11:47:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=E5fyprzeoefScHZ1H498u24Kz9leQ/5dB4DoISEWRcnRsJvXaTkG5982PdeqhKfNzefdPSJ8CHPZ6/wimzr3U/cWZAV13Tq+iqCivbwBIiLM7ZPFFNOOw2P5hBAbxWKL1dOOACFOdHAWnHDdlwDFg+U9zKWtJGickrrjSpez76k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=ebPl3v2d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC977C4CEDD;
+	Fri, 17 Jan 2025 11:50:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1737114449;
-	bh=A665CMcg3Zxh17VsKeClwr+Y6LhMtPvxA2CPxYHvMWU=;
+	s=korg; t=1737114614;
+	bh=uw0oxL/cdncbSTR7q7slu4yt628ZynwzCFOggcCb/70=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oaCefkbzwWPYhy7yuiXXOqs3Et2L01FYU55MA6RjbJ0OD2662lWmuNjGc6xlqXKbt
-	 5gezzHkaRy8u647C1bmJqIzwyR1xImhMLa3n56OA/sVfZ63jT0NVFFfpS0VBz0PNLS
-	 re6PrqCYdLLAfrAj1QQUbRKtAp33CRAFZmeYEtrE=
-Date: Fri, 17 Jan 2025 12:47:26 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v6 08/10] misc: rp1: RaspberryPi RP1 misc driver
-Message-ID: <2025011722-motocross-finally-e664@gregkh>
-References: <cover.1736776658.git.andrea.porta@suse.com>
- <550590a5a0b80dd8a0c655921ec0aa41a67c8148.1736776658.git.andrea.porta@suse.com>
+	b=ebPl3v2dBh6b/ucMYVZEZyvEqi41Rq1UmYBnZwc7O58d3ihXMq2LsW5NNVruv++EC
+	 6FnFCGfafuPJ/baboHEzKr+CWOwh7idMFwCcDqSwvrjV79XHKNCmqIQvvbmGazs7Hb
+	 9YhjgbThfchPr8ALX7t9oWt0sAdNv2avtdxPyHNU=
+Date: Fri, 17 Jan 2025 12:50:11 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Andre Werner <andre.werner@systec-electronic.com>
+Cc: jirislaby@kernel.org, hvilleneuve@dimonoff.com, andy@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, lech.perczak@camlingroup.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, robh@kernel.org
+Subject: Re: [PATCH v7] serial: sc16is7xx: Add polling mode if no IRQ pin is
+ available
+Message-ID: <2025011739-tavern-carpenter-86c3@gregkh>
+References: <CAHp75Vc==m3mE1TtxjHnpwL-d8W4rFnKreu7XB7MWspJKCCOGA@mail.gmail.com>
+ <20250116083447.453615-1-andre.werner@systec-electronic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,213 +58,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <550590a5a0b80dd8a0c655921ec0aa41a67c8148.1736776658.git.andrea.porta@suse.com>
+In-Reply-To: <20250116083447.453615-1-andre.werner@systec-electronic.com>
 
-On Mon, Jan 13, 2025 at 03:58:07PM +0100, Andrea della Porta wrote:
-> The RaspberryPi RP1 is a PCI multi function device containing
-> peripherals ranging from Ethernet to USB controller, I2C, SPI
-> and others.
+On Thu, Jan 16, 2025 at 09:34:47AM +0100, Andre Werner wrote:
+> Fall back to polling mode if no interrupt is configured because there
+> is no possibility to connect the interrupt pin.
 > 
-> Implement a bare minimum driver to operate the RP1, leveraging
-> actual OF based driver implementations for the on-board peripherals
-> by loading a devicetree overlay during driver probe.
+> If no interrupt pin is available the driver uses a delayed worker to
+> poll the state of interrupt status registers (IIR).
 > 
-> The peripherals are accessed by mapping MMIO registers starting
-> from PCI BAR1 region.
-> 
-> With the overlay approach we can achieve more generic and agnostic
-> approach to managing this chipset, being that it is a PCI endpoint
-> and could possibly be reused in other hw implementations. The
-> presented approach is also used by Bootlin's Microchip LAN966x
-> patchset (see link) as well, for a similar chipset.
-> 
-> For reasons why this driver is contained in drivers/misc, please
-> check the links.
+> Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
+> Link: https://lore.kernel.org/r/20250110073104.1029633-2-andre.werner@systec-electronic.com
+> Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 
-Links aren't always around all the time, please document it here why
-this is needed, and then links can "add to" that summary.
+This whole commit is already in my tree, why is it submitted again?
 
-> This driver is heavily based on downstream code from RaspberryPi
-> Foundation, and the original author is Phil Elwell.
-> 
-> Link: https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
-> Link: https://lore.kernel.org/all/20240612140208.GC1504919@google.com/
-> Link: https://lore.kernel.org/all/83f7fa09-d0e6-4f36-a27d-cee08979be2a@app.fastmail.com/
-> Link: https://lore.kernel.org/all/2024081356-mutable-everyday-6f9d@gregkh/
-> Link: https://lore.kernel.org/all/20240808154658.247873-1-herve.codina@bootlin.com/
-> 
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
->  MAINTAINERS                   |   1 +
->  drivers/misc/Kconfig          |   1 +
->  drivers/misc/Makefile         |   1 +
->  drivers/misc/rp1/Kconfig      |  21 +++
->  drivers/misc/rp1/Makefile     |   3 +
->  drivers/misc/rp1/rp1-pci.dtso |   8 +
->  drivers/misc/rp1/rp1_pci.c    | 305 ++++++++++++++++++++++++++++++++++
->  drivers/misc/rp1/rp1_pci.h    |  14 ++
->  drivers/pci/quirks.c          |   1 +
->  include/linux/pci_ids.h       |   3 +
->  10 files changed, 358 insertions(+)
->  create mode 100644 drivers/misc/rp1/Kconfig
->  create mode 100644 drivers/misc/rp1/Makefile
->  create mode 100644 drivers/misc/rp1/rp1-pci.dtso
->  create mode 100644 drivers/misc/rp1/rp1_pci.c
->  create mode 100644 drivers/misc/rp1/rp1_pci.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index fbdd8594aa7e..d67ba6d10aa8 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -19583,6 +19583,7 @@ F:	Documentation/devicetree/bindings/misc/pci1de4,1.yaml
->  F:	Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
->  F:	Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
->  F:	drivers/clk/clk-rp1.c
-> +F:	drivers/misc/rp1/
->  F:	drivers/pinctrl/pinctrl-rp1.c
->  F:	include/dt-bindings/clock/rp1.h
->  F:	include/dt-bindings/misc/rp1.h
-> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
-> index 09cbe3f0ab1e..ffa4d8315c35 100644
-> --- a/drivers/misc/Kconfig
-> +++ b/drivers/misc/Kconfig
-> @@ -651,4 +651,5 @@ source "drivers/misc/uacce/Kconfig"
->  source "drivers/misc/pvpanic/Kconfig"
->  source "drivers/misc/mchp_pci1xxxx/Kconfig"
->  source "drivers/misc/keba/Kconfig"
-> +source "drivers/misc/rp1/Kconfig"
->  endmenu
-> diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
-> index 40bf953185c7..3b6b07a23aac 100644
-> --- a/drivers/misc/Makefile
-> +++ b/drivers/misc/Makefile
-> @@ -74,3 +74,4 @@ lan966x-pci-objs		:= lan966x_pci.o
->  lan966x-pci-objs		+= lan966x_pci.dtbo.o
->  obj-$(CONFIG_MCHP_LAN966X_PCI)	+= lan966x-pci.o
->  obj-y				+= keba/
-> +obj-$(CONFIG_MISC_RP1)		+= rp1/
-> diff --git a/drivers/misc/rp1/Kconfig b/drivers/misc/rp1/Kconfig
-> new file mode 100644
-> index 000000000000..15c443e13389
-> --- /dev/null
-> +++ b/drivers/misc/rp1/Kconfig
-> @@ -0,0 +1,21 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
-> +# RaspberryPi RP1 misc device
-> +#
-> +
-> +config MISC_RP1
-> +	tristate "RaspberryPi RP1 PCIe support"
-> +	depends on OF_IRQ && PCI_MSI && PCI_QUIRKS
-> +	select OF_OVERLAY
-> +	select PCI_DYNAMIC_OF_NODES
-> +	help
-> +	  Support the RP1 peripheral chip found on Raspberry Pi 5 board.
-> +
-> +	  This device supports several sub-devices including e.g. Ethernet
-> +	  controller, USB controller, I2C, SPI and UART.
-> +
-> +	  The driver is responsible for enabling the DT node once the PCIe
-> +	  endpoint has been configured, and handling interrupts.
-> +
-> +	  This driver uses an overlay to load other drivers to support for
-> +	  RP1 internal sub-devices.
-> diff --git a/drivers/misc/rp1/Makefile b/drivers/misc/rp1/Makefile
-> new file mode 100644
-> index 000000000000..508b4cb05627
-> --- /dev/null
-> +++ b/drivers/misc/rp1/Makefile
-> @@ -0,0 +1,3 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_MISC_RP1)		+= rp1-pci.o
-> +rp1-pci-objs			:= rp1_pci.o rp1-pci.dtbo.o
-> diff --git a/drivers/misc/rp1/rp1-pci.dtso b/drivers/misc/rp1/rp1-pci.dtso
-> new file mode 100644
-> index 000000000000..0bf2f4bb18e6
-> --- /dev/null
-> +++ b/drivers/misc/rp1/rp1-pci.dtso
-> @@ -0,0 +1,8 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +
-> +/* the dts overlay is included from the dts directory so
-> + * it can be possible to check it with CHECK_DTBS while
-> + * also compile it from the driver source directory.
-> + */
-> +
-> +#include "arm64/broadcom/rp1.dtso"
-> diff --git a/drivers/misc/rp1/rp1_pci.c b/drivers/misc/rp1/rp1_pci.c
-> new file mode 100644
-> index 000000000000..3e8ba3fa7fd5
-> --- /dev/null
-> +++ b/drivers/misc/rp1/rp1_pci.c
-> @@ -0,0 +1,305 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2018-24 Raspberry Pi Ltd.
-> + * All rights reserved.
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/irq.h>
-> +#include <linux/irqchip/chained_irq.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/module.h>
-> +#include <linux/msi.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "rp1_pci.h"
-
-Why does a self-contained .c file need a .h file?  Please put it all in
-here.
-
-> +
-> +#define RP1_DRIVER_NAME		"rp1"
-
-KBUILD_MODNAME?
-
-> +
-> +#define RP1_HW_IRQ_MASK		GENMASK(5, 0)
-> +
-> +#define REG_SET			0x800
-> +#define REG_CLR			0xc00
-> +
-> +/* MSI-X CFG registers start at 0x8 */
-> +#define MSIX_CFG(x) (0x8 + (4 * (x)))
-> +
-> +#define MSIX_CFG_IACK_EN        BIT(3)
-> +#define MSIX_CFG_IACK           BIT(2)
-> +#define MSIX_CFG_ENABLE         BIT(0)
-> +
-> +/* Address map */
-> +#define RP1_PCIE_APBS_BASE	0x108000
-> +
-> +/* Interrupts */
-> +#define RP1_INT_END		61
-
-
-
-> +
-> +struct rp1_dev {
-> +	struct pci_dev *pdev;
-> +	struct irq_domain *domain;
-> +	struct irq_data *pcie_irqds[64];
-> +	void __iomem *bar1;
-> +	int ovcs_id;	/* overlay changeset id */
-> +	bool level_triggered_irq[RP1_INT_END];
-> +};
-> +
-> +static void msix_cfg_set(struct rp1_dev *rp1, unsigned int hwirq, u32 value)
-> +{
-> +	iowrite32(value, rp1->bar1 + RP1_PCIE_APBS_BASE + REG_SET + MSIX_CFG(hwirq));
-
-Do your writes need a read to flush them properly?  Or can they handle
-this automatically?
-
-thanks,
+confused,
 
 greg k-h
 
