@@ -1,107 +1,109 @@
-Return-Path: <devicetree+bounces-139356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32512A154C5
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 17:50:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41AA1A154CF
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 17:50:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 603FD188D027
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 16:49:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48CED188BA7A
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 16:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 861C619E97F;
-	Fri, 17 Jan 2025 16:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XFUvNsrq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E3219F42D;
+	Fri, 17 Jan 2025 16:50:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com [209.85.217.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D61119924D;
-	Fri, 17 Jan 2025 16:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5C51991CA;
+	Fri, 17 Jan 2025 16:50:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737132545; cv=none; b=CnjHgAQvJmwpT11VjIW1z2T5xKqgLHulFgVWX1NHdGntqir5Nc25S2Z2kX3H64d5p6FVyhtRdT1k5Gc2RiQ1o22x9Fst6CToC+q/L7FyDlPeUWJFnsO2+u5GvzPHgarntKkc9A/DBJU4h5M0RLj0FdE8zV0IYgtI78Xf64KLC70=
+	t=1737132604; cv=none; b=aZAP7JNPYWZ0fhIBzmqZaeIISF2lUkMB7BCjUBxYVguInPMMvvARRr3kJZcB0mwkSq8gVtUFnfDPo83kMBGlR6MvDSzt1ODlz65prf6VhnKy0Xuno6FNtbz5j2VlvYPhKCb1gh0P1rFCWHpMFRURqEACOrh2Hd97ruixX9MGQaU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737132545; c=relaxed/simple;
-	bh=ND8V5fOcJsROr77aqViHLb97gtgIazDKB9/duPzSvNU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A1IQCKVWDZqdFyOF6fd5XypiWe4gr3TYqHYdtLfu/x5YrShTATJufpTLrCiU57h4NGFCSfnCwXsz6l0qronwryUVSYUjcnqsMXHW2XZrFU/QJ2f3ZGwMxJoCs8BJyzJrOwNepOxmsUsNFWEAUNAGg7NsVO7AlPO+wLLL+iibbdQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XFUvNsrq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65F3FC4CEE0;
-	Fri, 17 Jan 2025 16:49:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737132544;
-	bh=ND8V5fOcJsROr77aqViHLb97gtgIazDKB9/duPzSvNU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XFUvNsrq871Pwk1ddwhuI3sQiWssnu/pg+7uXsKl020HGHAIH+Io/4fVnH6TSBBni
-	 Bkzh8TFYgNuW3+RTeiublp10K1LlVzWNjJbLZGwHagEJorBZRl19sq/tPlrcfWIDUc
-	 slu1U5KoqUZBSjPxxsJkQxMadh389I3tI6y3IUQCf4v+3OEgJrUDwNAQPqNMOkIf0p
-	 I13+bWbXlWnCyLj0xfwtYyvW/4reTTBgDHlBwFQjBPr8+TxeJWnXuXOFZhQjm3NAFi
-	 PAaqYJs8xTiXZetb657AtoxFW6deaNQ3rhq/0boMO7VGeh+C32N114ZmJ14SR2S9D2
-	 5qjYSW5s7bkDg==
-Date: Fri, 17 Jan 2025 16:48:59 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Jinjie Ruan <ruanjinjie@huawei.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/5] spi: zynqmp-gqspi: Improve error recovery by
- resetting
-Message-ID: <f694cd3e-f2be-48e0-8d84-038579cfca7d@sirena.org.uk>
-References: <20250116225521.2688224-1-sean.anderson@linux.dev>
- <5942e111-24ba-4d1b-bd4f-6b81dcc6c5dc@sirena.org.uk>
- <3a38cc06-d052-420d-812e-7f3c0c6ef24c@linux.dev>
+	s=arc-20240116; t=1737132604; c=relaxed/simple;
+	bh=XQc6H9I63GSUIvvaqIkwjNxTXWYGAoKDp6NYz5XwwR4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E5A7ZI69Pkag+SD6TjQ2bOrZ+s6I5dTkzysN9h2irxgUbkm/80k8MmDOy6ETMCEU8gc9GWlsKxxf5eOEHILZZmc35O6KAVfaq03sZJMbvPU0JYhTTtFoZsBoeH5iJ3PLvl8XnrPpt5EqSa2DgeLY4eMtvyDuSmao7MryVpVYBAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-4affbb7ef2dso1573772137.0;
+        Fri, 17 Jan 2025 08:50:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737132601; x=1737737401;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=kkdQhOJEfjMMK9wfH5bIMTpf4A6fxgsD+bAY7mnl/B0=;
+        b=vkWI+D35JHEaba8nWOVY0qyVil/nep1Ilg/to6n64OVpjWhD+iQNCh8s6LvYJtNo67
+         PU1kj3TFw972AH/I7iVK7Hy8VSUtY0EDITrq/I3heUxhT5ByhTvzdobqhqSdw6j7ykt1
+         3sPdum1pnAjNvNZEkQ+5PIm/NXL3+dp3pt6wmOGPY57X9ZeoBMwjcvpocDfrB/RMha7T
+         5Vc5PZkh1xTGK2HwiQ9Q6hICsJAU+cn7WczXgsU8L/qTasS4vXPhHRATXKbTpc1iaaMx
+         SWhnTbscijWRDhgR6Nl3DpWfY4ZDL6fyEFIe8cqSrS5yYz6Fs8e2LEAgl9UyqcfE6CxO
+         XhWw==
+X-Forwarded-Encrypted: i=1; AJvYcCVV7chHetdhyBTfLOKM7JGYaQPy7ZjJ8eeL9EPu+Hy7koLUXfmR/x0gAmM8jEiSeO74ePoL/SmZknQJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy48u+lDVqFgiiG3HXduN5YlmNVLGsCYgAfjKL125rDiScnd0ZE
+	hKzMFFGx9Nr3sVKBwYkrcKhzRhtx2NqjMDmAOU5sOfzZvg55M16EllMd6CUv
+X-Gm-Gg: ASbGnct+Ro0K6XfNTdvolnQyGVfFejZM5chl+6RpilM4WdNDI7cN86VEGe6SZ5ayO8O
+	LOewSGqh/u3UZLsfXdAcAh8gR3NpE5HrIM8g9H7O9lU4y8JyoI4ZrClicqW314eOVkBTECiAH3l
+	D5nt1ZDV2JkMONYWVddAZ6BCZdMSyWTiXYDoZYFTZminZLepEhCQsQUooG4yAI9d3Qj44uBmmt8
+	jOes3+kz4fC8ijb0hJxhI+Gx5FzYm1R6Fz9HCgzHA393/pJejZeCN8jJCrhy2l7AtHgPkC1UzHk
+	W8yvaBuMWh/lohD23ys=
+X-Google-Smtp-Source: AGHT+IE2snPh4oLxulsCWhJJKc+YHKwjhQz6ZMnhX5Y7mdzKW6B3J7/dJ4zbaAsm0SF+QmOX/dMt/g==
+X-Received: by 2002:a05:6102:2923:b0:4b2:adce:bcfe with SMTP id ada2fe7eead31-4b690ce307fmr3142805137.22.1737132601165;
+        Fri, 17 Jan 2025 08:50:01 -0800 (PST)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4b68a20863csm537814137.9.2025.01.17.08.50.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 17 Jan 2025 08:50:01 -0800 (PST)
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4b63d564e13so1264027137.1;
+        Fri, 17 Jan 2025 08:50:01 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWpldciXke5imUZ1APHjCBzUg6yEVL5Zt4568qti4+/58bZdKI406FtmhNIUyD+AUA854q00pnq0PIK@vger.kernel.org
+X-Received: by 2002:a05:6102:2b9c:b0:4b6:3e7e:ee48 with SMTP id
+ ada2fe7eead31-4b690c775e3mr3958440137.18.1737132600834; Fri, 17 Jan 2025
+ 08:50:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="StRUInDXb5Xbsn+o"
-Content-Disposition: inline
-In-Reply-To: <3a38cc06-d052-420d-812e-7f3c0c6ef24c@linux.dev>
-X-Cookie: Q:	Are we not men?
+References: <20250115181050.3728275-1-niklas.soderlund+renesas@ragnatech.se> <20250115181050.3728275-3-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20250115181050.3728275-3-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 17 Jan 2025 17:49:48 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWQD9iGEdsvswy7GeHfSQQdCQ3D9W=aph5FWUeiss5jyQ@mail.gmail.com>
+X-Gm-Features: AbW1kvb3nxhi4SOFqnaAjV3TbYYAl0gajPt9QDx4vB0WkJmQ6XjvTgblAKq5RgA
+Message-ID: <CAMuHMdWQD9iGEdsvswy7GeHfSQQdCQ3D9W=aph5FWUeiss5jyQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a779h0: Add VSPX instance
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Jan 15, 2025 at 7:11=E2=80=AFPM Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Add device node for the VSPX instance on R-Car V4M.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 
---StRUInDXb5Xbsn+o
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.15.
 
-On Fri, Jan 17, 2025 at 11:17:35AM -0500, Sean Anderson wrote:
-> On 1/17/25 08:21, Mark Brown wrote:
+Gr{oetje,eeting}s,
 
-> > If you're hitting a timeout that tends to indicate there's already a
-> > serious stability problem...
+                        Geert
 
-> This was mostly hit when I was hacking on the driver. But of course
-> there are probably still bugs lurking in this driver, so I think it is
-> good to handle the exceptional conditions in a more-robust way.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-I'm not saying it's a bad idea, but your changelog is written in a way
-that makes it sound like timeouts are normal.
-
---StRUInDXb5Xbsn+o
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmeKifoACgkQJNaLcl1U
-h9Bi5Qf/aOOONht9nF1QgH5eqogTXxnhXR3+6g2ErVy6+JnHfwpmvvYzi+ftFvmd
-Mszb2jO07Ux7vvtyNqQlkcZSIwodZL2AQ3lBfo9g416HatBLak0CRnII0GKhRAmK
-2rtW0mSJ0Y3KnzYfK7iHI6lIwDYVYZ3QybmIk5SSPiUZLedsmyE0WIg3VU4LLvyj
-xV9eAV60zPp1sUVVIzCZ3IpYdPzmNsWRT0fXRYQQKtdYKZZ8UHFA2RkB8XPeQMFO
-yYNZOPXwpoFEirKTPcfRUrjnEFe1YL463HAu9OxDoBoyvkMquTsXp2p0ZpoQ1siK
-HUi4GvhqOdv5TBICd7alAaS9Q3YthA==
-=X8IG
------END PGP SIGNATURE-----
-
---StRUInDXb5Xbsn+o--
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
