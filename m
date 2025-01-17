@@ -1,142 +1,122 @@
-Return-Path: <devicetree+bounces-139278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4605A14F2E
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:32:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2D97A14F41
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 13:38:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2706165EDE
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:32:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54353188AD8F
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 12:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE6C1FECA7;
-	Fri, 17 Jan 2025 12:32:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B8151FF1A9;
+	Fri, 17 Jan 2025 12:38:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y0E4lNp3"
+	dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b="UBusCFXR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.systec-electronic.com (mail.systec-electronic.com [77.220.239.22])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 057341FCFD9;
-	Fri, 17 Jan 2025 12:32:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83819155300;
+	Fri, 17 Jan 2025 12:38:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.220.239.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737117156; cv=none; b=VRvqgN+QNo2N/CzWSDj/er5l/FvAcmIbRO2nhF2QR7Zg++ZCfiVy/183LLnSdnfdJrN72W8hzuLIBr11Fr+QZ8kJb62lqNkSWPhXFzMXPomi1t3N96s9umjpUwVXnitVqvYWWdQuqg7XSIF7eeRKkj7yPpjHpboRC6cksOZGQJc=
+	t=1737117487; cv=none; b=R0BvZlYBQRgUQcsNZT2EDbuWlSxI+MnoSq51y9ta1q+S08ugkFWSo+5A7Rq8gmjFBGQTJrRQ77RQnIOIsJHvojKIaso1dj8W5hk2NxcUMpdIty7S6yhZUGEySY7zPWw+wR+Fxi4qa/OIbDpIfz1fuUWQB4AvYl1gYHuhNhOEg0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737117156; c=relaxed/simple;
-	bh=mqz26Fh/x9DyhlccpdqVgdCq6zWu6Wh2lg8PYOD69HU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=F083vP7bCgRAeFCzaottxYa12AjNCnIg5kX/syYCpDYalhg/A1iSykxGNohUjKCVp5OOSlx2TGQKxgS3NFeCkecskq6v4DPYqdLdWbt/cIKj8Y/VgEbByZbAoyqR++riVa3R7EctxbpiuO0HqQ+odM7+zHJ2wBHlW4It2kBpRhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y0E4lNp3; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-46c7855df10so35187471cf.3;
-        Fri, 17 Jan 2025 04:32:34 -0800 (PST)
+	s=arc-20240116; t=1737117487; c=relaxed/simple;
+	bh=PMk6No1F0yK2Ij46s/f+tiYAv1DZnGzeluOn1EKz/Gc=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=PN70XksxFgCChxsubkODI1T8Rqc3jRLPPC7W2YiNmUj1lxtoGUf5S/QvXYm5wImiRqDgpq3W55KsaBZyEtyizCZ2GYHg1HjBQtv8cLDNfJSwcgCGyZw5wOq8fe14nuPVROz9+mPmKzmYOstxRsFrr3qnfAW6EcsyxEy/GIeg854=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com; spf=pass smtp.mailfrom=systec-electronic.com; dkim=pass (2048-bit key) header.d=systec-electronic.com header.i=@systec-electronic.com header.b=UBusCFXR; arc=none smtp.client-ip=77.220.239.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=systec-electronic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=systec-electronic.com
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.systec-electronic.com (Postfix) with ESMTP id 91542940010A;
+	Fri, 17 Jan 2025 13:37:55 +0100 (CET)
+Received: from mail.systec-electronic.com ([127.0.0.1])
+ by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id j8jyv-Q8Gsjk; Fri, 17 Jan 2025 13:37:55 +0100 (CET)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.systec-electronic.com (Postfix) with ESMTP id 66349941A5C4;
+	Fri, 17 Jan 2025 13:37:55 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.systec-electronic.com 66349941A5C4
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737117154; x=1737721954; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wLrKx2+xTF2aOZo6+sc9CokcMkc+Xyh2+/CzbTrJtIM=;
-        b=Y0E4lNp3lofRzKOnvczpXMfXL46BOb9M+uPvfhBsc/7caf6uv/ukyd6T1Min3W5I0/
-         saXxLD2HDHFBpu7X/saxwfiu0kDntcdpCzxqSWF9XRKaUFMjsX5PVGD+63EzVV23bUyr
-         XwyyzeWtLJ/WE9D9aknesmAchlGhtHoYchGKLgxj3uKuXuMUOWBgJQEDpIbUstgK0X9U
-         34IqIc5Fh5qWlXn/Os9DGTiorYtxhR8GVGPvy6/He28J6BI1SxOHs6Io1NlMQZ9Z0reX
-         9CmXUVy3pbltCjWNQ13EQmrfHLLn1F1w5fc6l8R7Y0ldMzUqjYIuR3slQaFyIufKL6bz
-         l/9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737117154; x=1737721954;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wLrKx2+xTF2aOZo6+sc9CokcMkc+Xyh2+/CzbTrJtIM=;
-        b=WwYkOy06lay+qwrUXX0lL+OO99eos7/CrqEhLYIuzQDdPI09mADBKTNg2ya4DooUUR
-         NiHxTM/KplaJI59SqMi3NC01Tvcx52aaZUScYM2cT22dIfQNPO0pzxx33I5hgqVezswp
-         doZIh/IRMUPcVSHswOF7OYZtzey2BZXyhsrum5yuCyctuJvdRRnSo0s1jrIwGdnAUPiJ
-         tEcOIe2TT+zm0dcaxTCcnbvIUAMNqNM6F9Q6GD43T9j5idzvjRgCakw2zvmmsA5U+cC+
-         snXx7iU5I6CO0P+AGDdif4ka/30s4GVLeR5dDsiLMmvDEhrRBS/tuSiNAyNDwJn7TERg
-         gvww==
-X-Forwarded-Encrypted: i=1; AJvYcCVgMhQ5ohETzvBviGkoyNTRzMcCN2j76TPJR9gnw1cpT3gDqh7YIMj6AVVI6WOY5QqK5eHnzh7l3KhBEA==@vger.kernel.org, AJvYcCVraLKF9UWO5q9z13xGiJZGgs1Zs40C/YLVjDu7r3Ifa2M4cd1vxq8LzU6xFxYzhE5g6WYyxXtqG0Lp2NI=@vger.kernel.org, AJvYcCWD6O50Xv6Dx5SrL6DagLHLjiHMqmMVs+SLTdn3Hbx/FE2FYNjosNjqfPvIE2AxwLNmaLgSK/IgiNs=@vger.kernel.org, AJvYcCXDyUFTlbXENLcljS/yWwUOCsiYaVBJD8bzb7w4sePVefadxN6DEamCj62oO2QqX8kA2OKoeAQAc/v20u8t@vger.kernel.org, AJvYcCXFWg9PfKiKLQLxxRhN/W9BGSfWlFsLMTskNGC7ORAp6/E+kHvC5KYDfKjZMpuJ/kIEWeA2WygkcuqA@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywr6HK/OegoHCQ84z4UWY1hI0o6HZRK6MnxqbwHOIJljifZRcQs
-	nUn6Gc/1v6pK98nCI8UtJci/caXYijAa35ytg79zUGF9S5NNXbbBVQNqqmtwLzZs/5kSLo2AOlk
-	msffrW8ckYh0a+HW+jjhM5jEsLjI=
-X-Gm-Gg: ASbGncttV7a5jIIxR7IPf9Rgxju1IP5AgvafVW5oRAkFPiLD/92cLeJ6E6edM5hwi0o
-	N2686Ya6im074HJ046/q644y8mJuM1g624R197g==
-X-Google-Smtp-Source: AGHT+IEasG4GEAwxuDzLs69Bpj/5s6Rpow8aj8W5GZK+iDdDIGfm4eTX2/kOrzCYS7fp5P4fm6nb0+tyWOBNZ6jup48=
-X-Received: by 2002:a05:622a:34c:b0:466:86aa:efd9 with SMTP id
- d75a77b69052e-46e12bddab4mr36304111cf.51.1737117153821; Fri, 17 Jan 2025
- 04:32:33 -0800 (PST)
+	d=systec-electronic.com; s=B34D3B04-5DC7-11EE-83E3-4D8CAB78E8CD;
+	t=1737117475; bh=RQH+LbPn6Wwqo9t4+pldsiS3V/b5Hf8BN99fIAdkB78=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=UBusCFXRJ4Q6nUksxQ/bIcFHA2IM9Kl4WjeBAHdGiYQvBUc7CMb9zH6r3EdR94mha
+	 zGwYW0A57KUEgSOB3hVM8nZhbvSVqeYftllGxBwQht3kXcr2Sd3Z6kvj93KBkdALaW
+	 BRldj7gGnkleLD5mzS9XBDT4N//K0o/vtEi/0N7dfU27pp5EhwJWQR6JUUKxgh0b7w
+	 XN0k/Ay3BD21V2VkJgdLdw0lEo77SKEKRJR9yx9fXX4eBcBHIOjtxBV6v0zmLIkAZz
+	 Vmi+A0mV+AVcksDAPoxmCfrEKmMczhi0DGho6+jJdQCmCoHdyHJXi3VKl7KbVE/bvQ
+	 IapXr6dB3fDlQ==
+X-Virus-Scanned: amavis at systec-electronic.com
+Received: from mail.systec-electronic.com ([127.0.0.1])
+ by localhost (mail.systec-electronic.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id hcyz4HO7SOPN; Fri, 17 Jan 2025 13:37:55 +0100 (CET)
+Received: from lt-278851.systec.local (unknown [212.185.67.148])
+	by mail.systec-electronic.com (Postfix) with ESMTPSA id 0A366940010A;
+	Fri, 17 Jan 2025 13:37:55 +0100 (CET)
+Date: Fri, 17 Jan 2025 13:37:54 +0100 (CET)
+From: Andre Werner <andre.werner@systec-electronic.com>
+Reply-To: Andre Werner <andre.werner@systec-electronic.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+cc: Andre Werner <andre.werner@systec-electronic.com>, jirislaby@kernel.org, 
+    hvilleneuve@dimonoff.com, andy@kernel.org, devicetree@vger.kernel.org, 
+    linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+    lech.perczak@camlingroup.com, krzk+dt@kernel.org, conor+dt@kernel.org, 
+    robh@kernel.org
+Subject: Re: [External Email] Re: [PATCH v7] serial: sc16is7xx: Add polling
+ mode if no IRQ pin is available
+In-Reply-To: <2025011739-tavern-carpenter-86c3@gregkh>
+Message-ID: <b24fba36-48bd-103b-8a6b-386d050ae5f6@systec-electronic.com>
+References: <CAHp75Vc==m3mE1TtxjHnpwL-d8W4rFnKreu7XB7MWspJKCCOGA@mail.gmail.com> <20250116083447.453615-1-andre.werner@systec-electronic.com> <2025011739-tavern-carpenter-86c3@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250116-starqltechn_integration_upstream-v15-0-cf229de9f758@gmail.com>
- <20250116-starqltechn_integration_upstream-v15-6-cf229de9f758@gmail.com> <20250117-chubby-convivial-axolotl-29e2df@krzk-bin>
-In-Reply-To: <20250117-chubby-convivial-axolotl-29e2df@krzk-bin>
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Fri, 17 Jan 2025 15:32:23 +0300
-X-Gm-Features: AbW1kvbLbvefMNqJ340BulwA83dgy5C9sl4tO4GomasdcM4Jj0ng0uJJF-Nt04g
-Message-ID: <CABTCjFBF7C=MOcLgyyQg3FeRF3gVVPASDGBT+ogCTSLs-yQo6w@mail.gmail.com>
-Subject: Re: [PATCH v15 6/7] input: max77693: add max77705 haptic support
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, Lee Jones <lee@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
-	Hans de Goede <hdegoede@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
-	linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/mixed; boundary="-1463794929-1452185776-1737117475=:445428"
+
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
+
+---1463794929-1452185776-1737117475=:445428
+Content-Type: text/plain; charset=ISO-8859-15
 Content-Transfer-Encoding: quoted-printable
 
-=D0=BF=D1=82, 17 =D1=8F=D0=BD=D0=B2. 2025=E2=80=AF=D0=B3. =D0=B2 11:01, Krz=
-ysztof Kozlowski <krzk@kernel.org>:
->
-> On Thu, Jan 16, 2025 at 07:26:08PM +0300, Dzmitry Sankouski wrote:
-> >  #define MAX_MAGNITUDE_SHIFT  16
-> > @@ -115,6 +116,13 @@ static int max77693_haptic_configure(struct max776=
-93_haptic *haptic,
-> >                       MAX77693_HAPTIC_PWM_DIVISOR_128);
-> >               config_reg =3D MAX77693_HAPTIC_REG_CONFIG2;
-> >               break;
-> > +     case TYPE_MAX77705:
-> > +             value =3D ((haptic->type << MAX77693_CONFIG2_MODE) |
-> > +                     (enable << MAX77693_CONFIG2_MEN) |
-> > +                     (haptic->mode << MAX77693_CONFIG2_HTYP) |
-> > +                     MAX77693_HAPTIC_PWM_DIVISOR_128);
->
-> That's the same as previous one, why duplicating?
->
+Dear Greg,
 
-config_reg is different. I don't see any good way to get rid of that duplic=
-ation
-
-> > +             config_reg =3D MAX77705_PMIC_REG_MCONFIG;
-> > +             break;
-> >       case TYPE_MAX77843:
-> >               value =3D (haptic->type << MCONFIG_MODE_SHIFT) |
-> >                       (enable << MCONFIG_MEN_SHIFT) |
-(...)
+> On Thu, Jan 16, 2025 at 09:34:47AM +0100, Andre Werner wrote:
+> > Fall back to polling mode if no interrupt is configured because there
+> > is no possibility to connect the interrupt pin.
 > >
-> >  static const struct platform_device_id max77693_haptic_id[] =3D {
-> >       { "max77693-haptic", },
-> > +     { "max77705-haptic", },
-> >       { "max77843-haptic", },
-> >       {},
-> >  };
-> > @@ -414,6 +426,7 @@ MODULE_DEVICE_TABLE(platform, max77693_haptic_id);
+> > If no interrupt pin is available the driver uses a delayed worker to
+> > poll the state of interrupt status registers (IIR).
 > >
-> >  static const struct of_device_id of_max77693_haptic_dt_match[] =3D {
-> >       { .compatible =3D "maxim,max77693-haptic", },
-> > +     { .compatible =3D "maxim,max77705-haptic", },
+> > Signed-off-by: Andre Werner <andre.werner@systec-electronic.com>
+> > Link: https://lore.kernel.org/r/20250110073104.1029633-2-andre.werner=
+@systec-electronic.com
+> > Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
 >
-> So the device looks fully compatible with max77693. Drop this change and
-> express compatibility with fallback.
+> This whole commit is already in my tree, why is it submitted again?
+
+This is my fault. I misunderstood a comment from a reviewer.
+There is a patch that i still discussed in this thread:
+
+https://lkml.org/lkml/2025/1/16/398
+
+Also the thread has a weird structure. Sorry!
+
+>
+> confused,
+>
+> greg k-h
 >
 
-The only difference is config_reg.
+Regards,
+Andr=E9
+---1463794929-1452185776-1737117475=:445428--
 
