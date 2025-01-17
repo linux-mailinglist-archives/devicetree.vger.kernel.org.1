@@ -1,165 +1,200 @@
-Return-Path: <devicetree+bounces-139341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C1BAA15360
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 17:00:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9E92A153BE
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 17:09:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CDA516865D
-	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 16:00:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3F10163043
+	for <lists+devicetree@lfdr.de>; Fri, 17 Jan 2025 16:08:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C90EF199249;
-	Fri, 17 Jan 2025 16:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81FF3198822;
+	Fri, 17 Jan 2025 16:08:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="feKTpmFB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MAFidhgg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E670E15696E;
-	Fri, 17 Jan 2025 16:00:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EDF13CA81;
+	Fri, 17 Jan 2025 16:08:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737129644; cv=none; b=O1/6AttBBegWh5ukppM3wGVqE84yd813894Uc+vYa8Q7uggQ/mi1azN97AaTav1C4Z+bxnI54pZgvHRwgOTNVMN1/Ks7yFjmn7JvP0iK9ZHX9pvUbGaHSzJqA4gkCDVCpI/4B4c759x5WxRhozcdTosQO2voP3jFYs7aqzZa5/k=
+	t=1737130136; cv=none; b=UXELyu6JFAj3UCQYbeBS6iOofr09dx57JgaGAzoH6/9SeZd1ACyvyNuLokgRSWm0X0G5eTWuSG+H9PSjPKNxK7THTUMMy7P77lZlNziW+SzkmwOlQzJ9Hui35suExFblr+h2EUhJt+mXZd+IAkLL0HG1I466kHhrHJpy6PYKZSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737129644; c=relaxed/simple;
-	bh=LBFaQTfD5DTAgyjiAdLRHuZ4RflZefRGoM6YNvU/hoQ=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ROPbMdx8gaQ9vPB0+ZpGkIQ/zOWS9IsLFJ3Wc0FZElHEFRjx0EXpP+2TwvJ3gmIhVtYy48Pj1sRRmaUf8ibUk67p5hzIVG1FJ2OmlKuMyAe7xqZaoLJRY/puBydDF93DCAkQcK5J6/eU9fCQOIusE4oeyzTk5ILHZxw6vEz4bUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=feKTpmFB; arc=none smtp.client-ip=209.85.221.47
+	s=arc-20240116; t=1737130136; c=relaxed/simple;
+	bh=iYXOI8LCTEd9k99Q7G9VnYpY0LsfofNyX43iB8U11c8=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=IEt/yX2hG/K/jdhmNdvkg+gD4W5J0LTCMEEIxoTAeVMNl5ubrDHxe3kPVPGqIAMvCnDClPy9KO+GT3jeTDESB4zAC+pm4T5eP/YCdgDNcdKdpz3h7zYWMdcpDhpedY1EbSM6H55RwJybW0lcVZdNejNV00g4Ayvfol4QIsyxdrs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MAFidhgg; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-38be3bfb045so2088013f8f.0;
-        Fri, 17 Jan 2025 08:00:42 -0800 (PST)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-43618283dedso22143985e9.3;
+        Fri, 17 Jan 2025 08:08:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737129641; x=1737734441; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=g/Y851uQNwHgtptI04bOzErBC0DlLJs+YWGXr5rKylc=;
-        b=feKTpmFBrvQhOZbRmwUi9PxMHeaGqoFRPg+hNhwsUnsHKXSzQiQO3d1WdsFqcS++Qh
-         a0hBGNQ99zFohZG58D6CbWWbMU52V5Yaq6WtHxPyi/fgI9WBAaCS+/NlVyHQD/BQw3Sq
-         Mivo+E1BuulcrIyKNhIVHIWqjT2OHAnGw11IKHmwAY7bQj2PuV/qyaNXU/mqrMlwawmD
-         HyoH1SXm/T2OyhO2k+GV40ARYc5QvAzn6jmR8gt4fAvbYG/II3zPwqmtnujD9UpEV+Z9
-         jvfO6QK/38Qfn9C7L4mtSlGHWgF/J9SHLM4ilpt5NV84X2nOSexeORtn3ucuUkKwphrU
-         eM/Q==
+        d=gmail.com; s=20230601; t=1737130129; x=1737734929; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=suWVJuvyC59xxmWqpljFSKf02Mcdyv9U3eolhIWM1pM=;
+        b=MAFidhggAeYNUNoNjFSFSpjMVts71QCezM8KHM7103zYprv2mrbG3M3VE2an9H8TU7
+         96vC3NhJE+TxZivdtq95HQLrkK3cXdzbtKWj9Ro4vuxK/aVNNHh80KxSdabBiQrLV5tg
+         6toHbbAD3C0s1YFlREXB7RfOVYVGhRt+5LjMuU6hMKRUxMOfiwgap/qwB9D45IpB0IoW
+         mcvRw1JlQMcJ5MBWtk5069sAzztGLTq5mliVO5EajZyXh+WW54FS2gvSpg6bez5BpI7s
+         VfHnHeAn0zBSpN0O4kOsrIPPiTF7LWWBDVYZTWPBx/UDDPzlf6xjSlbNu4VxLaPyxMvj
+         Sr6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737129641; x=1737734441;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g/Y851uQNwHgtptI04bOzErBC0DlLJs+YWGXr5rKylc=;
-        b=d5FPhC3uSBrC+iT6Rt0WH9e74E57t5eiioYC+hOEagwMniLmPsMePlourfl4Pm2Qud
-         vzdB5PfSQ2NidXfYFi6Yay8h1K2mAPhMAYcNKwJ6OBqFEASU4l0np4OOmw1V/N85qyEA
-         L9x+EbAKvKqqDGpNDr7TG/kYXP4Z02mzQyJbGouBgVylFu2FeSXmVAoFGeqMhJJN1BnR
-         TN5rg2ZVV9nekQGpaZuDovSe5k7Kel9DIUQphvzh3Hk3ltj7/1qbQLAfDz+TfJ1E57gS
-         6z1hdRUIzoqF+j5SFJLAFo7MXMdvQJFfu0IBM4QWx5lALEohJfHOddgJ9JuB4FDXWWKk
-         lh9w==
-X-Forwarded-Encrypted: i=1; AJvYcCUcgKhXodD/voaByhF1/pZpfsAvoYhkFPUIC0V6cYb7V1rwVGC88OHVj+MsksBXtrTMjBA9yguUgFHLWw==@vger.kernel.org, AJvYcCVHIdicgc9mTdpMCHSbfSnPiyeAtcPDw0720+1NdIShIfwQBAiYs37aNLHu15nx0tpzAqgYvv2J4wSF@vger.kernel.org
-X-Gm-Message-State: AOJu0YznoCIYmy/kuUyK3CxESlEXOYoBNyaIILICl7l9esJern432XFE
-	wxDtgd7R/xiZPmoED3UJHzUhuXecBNsxZNmj4Fd5ZRT1heMa8qo3
-X-Gm-Gg: ASbGncueXEexqO0oS7Q9sSE69WjkY7V1xJWiE1qhvW8PUttXwJM1vUS+a69J6FzO5Kq
-	zhQQH9w81nsAQw7BHPyBDDHlXCVCDXc86edX4WMk1mfeXlQZ6ecX/TRXRfSpBiUbMBcHWB/81BI
-	gGoa5U8Y3scU+rD8Cn3bHq8jdOcq4/WobNyJG2EaMmAU+6SzNth7PJEOHxMSLIytDv0nhBgvdh+
-	PmPMd6EPv/gStus0wbtPKBAlGLmY0z68DhBMUBnikUT0aoraDz71asmYf+fBDVriPyHaiCoeJbf
-	eneHXnOKOTi7
-X-Google-Smtp-Source: AGHT+IFJUW7oTwy0Dy0k5noj8V0K33epGo6WV1CyRYagfFJy8bA/GYrcIK5DCCzYImUxwmdK9pLwCg==
-X-Received: by 2002:a05:6000:1acd:b0:38a:8d32:272d with SMTP id ffacd0b85a97d-38bf5b0b894mr2394481f8f.28.1737129640916;
-        Fri, 17 Jan 2025 08:00:40 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf322aa40sm2840159f8f.45.2025.01.17.08.00.39
+        d=1e100.net; s=20230601; t=1737130129; x=1737734929;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=suWVJuvyC59xxmWqpljFSKf02Mcdyv9U3eolhIWM1pM=;
+        b=M8nawXomTP1M1t/grSlFHCZrO174eQRzybMOCPLRJv/j4DZqqjEZ/50L391LE4CfSA
+         Cf7Hq7AOhCtbv2x7Pc+9/TR795jsgpKBnfnWqB7NLIr2zmeRyogA4lCWi2lnHu9UekSc
+         XGZiZp+l+gbYvpznMmU+u6MHTiVmU1uanSFPV76/+/a3cqRErBtQdHbhHRa5nFPN0ppx
+         x2lcHi5N8vthK5W5cYFwTWVSQttV+vMbFrK0tpHGURubsDspqL27cFfzeW1qKjqhBJet
+         j5WsgCwTsfti8eTAeBqFtQE6VbLedUnOXmxbDzNzpYiPG7WKSHNO1fFJIj0RmNi7Ao3Q
+         n81A==
+X-Forwarded-Encrypted: i=1; AJvYcCUw0zxMJWFiJF5pxVtUGLjdLk1yriFfAEn6XXx0XxvpqagRf+MRvesd/TKn/bv3eOTXYNWB+G2draPw@vger.kernel.org, AJvYcCVTgfhQzutU1lhDILBkrn80ZuSYSmD/WEn4OW9lLWY5uqeIVAhoEroFCUjGSANrWI777Yg1RT8K9m4w@vger.kernel.org, AJvYcCVdj3dRch+TsFGlvgpFkWcSuJUq0LpkB9F1VkfUYTIgvLzM5rV7oQ5evyngRCTzOIz+K3k7VbgvUTub@vger.kernel.org, AJvYcCVoqZMezkpSarVISrQoWTF4E9rR2wJpk9VM9b9yKKHfGLtA8Qr6bcK8ejSSY+6FPGJmHQKAv4ZvKmRLkmra@vger.kernel.org
+X-Gm-Message-State: AOJu0YzBWCBLt+XXNFgliNJoT9W+5550kUVyXod0XSi1x5ZSWivz+/cY
+	p9Pd6CHGPZfVQ0Xub4fP0wxegPF9ybuam3M5jCg8BnJkGhTu1K3r
+X-Gm-Gg: ASbGncvoOvtQuyVOY+SgOKeWcj2EXenU7OcH7vnMIpXIuO01RVlFRGTPbyY5OOKoYUM
+	U1th16RI4+YAJuqujzEf/tCe2cuMck1It9Yyi5/xHYoUt+G9G0+oP60xuBttCtLwb/dx5w0X8wZ
+	qOQiTPdGWq6+wYuL7o7Ya7PmsGjFQp5oxdseVnP97P9CcBFu7YO0ENIKNRLTf1DwoTPewgGVF7u
+	X15ecemG1CSZALdulg06JtmNe2A59+43Jx76zc/iJ2taQh7B0WAgW7uEgCk7QHgixcch0Yfc4Lc
+	DZydQtQAM/B1W5Qj4CriLOEgx9ZH
+X-Google-Smtp-Source: AGHT+IH+lU0c3o9sWYufaj0SCswN83+YEHr96aAl0WIL54XimNvkU9ohDDavWF+TcrWgbKoIN5ax+g==
+X-Received: by 2002:a05:600c:1e18:b0:436:8a6f:b6db with SMTP id 5b1f17b1804b1-4389141c12emr30990685e9.22.1737130129135;
+        Fri, 17 Jan 2025 08:08:49 -0800 (PST)
+Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf3275995sm2864100f8f.74.2025.01.17.08.08.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jan 2025 08:00:40 -0800 (PST)
-Message-ID: <678a7ea8.df0a0220.126ab6.dd54@mx.google.com>
-X-Google-Original-Message-ID: <Z4p-peMU7Ujg77_B@Ansuel-XPS.>
-Date: Fri, 17 Jan 2025 17:00:37 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Marek Vasut <marex@denx.de>, linux-leds@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lee Jones <lee@kernel.org>, Lukasz Majewski <lukma@denx.de>,
-	Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: leds: Document netdev trigger
- netdev-trigger-mode property
-References: <20250113002346.297481-1-marex@denx.de>
- <ad334b1b-a4e5-426d-a801-3e1d72455304@lunn.ch>
+        Fri, 17 Jan 2025 08:08:48 -0800 (PST)
+Message-ID: <0d917148509217f3fab95b4cf2e7f14b4c3c0dd1.camel@gmail.com>
+Subject: Re: [PATCH v10 1/8] iio: backend: add API for interface get
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org, 
+	robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pwm@vger.kernel.org
+Cc: David Lechner <dlechner@baylibre.com>
+Date: Fri, 17 Jan 2025 16:08:49 +0000
+In-Reply-To: <20250117130702.22588-2-antoniu.miclaus@analog.com>
+References: <20250117130702.22588-1-antoniu.miclaus@analog.com>
+	 <20250117130702.22588-2-antoniu.miclaus@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ad334b1b-a4e5-426d-a801-3e1d72455304@lunn.ch>
 
-On Thu, Jan 16, 2025 at 02:32:13PM +0100, Andrew Lunn wrote:
-> On Mon, Jan 13, 2025 at 01:23:37AM +0100, Marek Vasut wrote:
-> > Document netdev trigger specific netdev-trigger-mode property which
-> > is used to configure the netdev trigger mode flags. Those mode flags
-> > define events on which the LED acts upon when the hardware offload is
-> > enabled. This is traditionally configured via sysfs, but that depends
-> > on udev rules which are available either too late or never in case of
-> > non-Linux systems.
-> > 
-> > For each LED with linux,default-trigger = "netdev" described in DT, this
-> > optional netdev-trigger-mode property supplies the default configuration
-> > of the PHY LED mode via DT. This property should be set to a subset of
-> > TRIGGER_NETDEV_* flags.
-> > 
-> > Signed-off-by: Marek Vasut <marex@denx.de>
-> > ---
-> > Cc: Andrew Lunn <andrew@lunn.ch>
-> > Cc: Christian Marangi <ansuelsmth@gmail.com>
-> > Cc: Conor Dooley <conor+dt@kernel.org>
-> > Cc: Heiner Kallweit <hkallweit1@gmail.com>
-> > Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-> > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > Cc: Lee Jones <lee@kernel.org>
-> > Cc: Lukasz Majewski <lukma@denx.de>
-> > Cc: Pavel Machek <pavel@ucw.cz>
-> > Cc: Rob Herring <robh@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> > Cc: linux-leds@vger.kernel.org
-> > ---
-> >  Documentation/devicetree/bindings/leds/common.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-> > index 3e8319e443392..1f1148fdf20c0 100644
-> > --- a/Documentation/devicetree/bindings/leds/common.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> > @@ -233,6 +233,12 @@ properties:
-> >        Maximum timeout in microseconds after which the flash LED is turned off.
-> >        Required for flash LED nodes with configurable timeout.
-> >  
-> > +  # Requires netdev trigger
-> > +  netdev-trigger-mode:
-> > +    description:
-> > +      The netdev LED trigger default mode flags, use TRIGGER_NETDEV_ * flags.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> > +
-> >  allOf:
-> >    - if:
-> >        required:
-> > -- 
-> 
-> An example would be good.
-> 
-> In order to be able to use TRIGGER_NETDEV_* i assume you are doing an
-> include which is outside of the usual dt-bindings directory. I don't
-> know of the DT Maintainers opinion on that.
->
+On Fri, 2025-01-17 at 15:06 +0200, Antoniu Miclaus wrote:
+> Add backend support for obtaining the interface type used.
+>=20
+> Reviewed-by: David Lechner <dlechner@baylibre.com>
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
 
-Well I think we can just move those include to dt-bindings or at worst
-define new one (maybe less driver specific) and reference the internal
-one... Should not be a problem in theory.
+Reviewed-by: Nuno Sa <nuno.sa@analog.com>
 
--- 
-	Ansuel
+> no changes in v10.
+> =C2=A0drivers/iio/industrialio-backend.c | 24 ++++++++++++++++++++++++
+> =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 | 11 +++++++++++
+> =C2=A02 files changed, 35 insertions(+)
+>=20
+> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industriali=
+o-
+> backend.c
+> index 363281272035..8bf3d570da1b 100644
+> --- a/drivers/iio/industrialio-backend.c
+> +++ b/drivers/iio/industrialio-backend.c
+> @@ -636,6 +636,30 @@ ssize_t iio_backend_ext_info_set(struct iio_dev
+> *indio_dev, uintptr_t private,
+> =C2=A0}
+> =C2=A0EXPORT_SYMBOL_NS_GPL(iio_backend_ext_info_set, "IIO_BACKEND");
+> =C2=A0
+> +/**
+> + * iio_backend_interface_type_get - get the interface type used.
+> + * @back: Backend device
+> + * @type: Interface type
+> + *
+> + * RETURNS:
+> + * 0 on success, negative error number on failure.
+> + */
+> +int iio_backend_interface_type_get(struct iio_backend *back,
+> +				=C2=A0=C2=A0 enum iio_backend_interface_type *type)
+> +{
+> +	int ret;
+> +
+> +	ret =3D iio_backend_op_call(back, interface_type_get, type);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (*type >=3D IIO_BACKEND_INTERFACE_MAX)
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(iio_backend_interface_type_get, "IIO_BACKEND");
+> +
+> =C2=A0/**
+> =C2=A0 * iio_backend_extend_chan_spec - Extend an IIO channel
+> =C2=A0 * @back: Backend device
+> diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+> index 10be00f3b120..a0ea6c29d7ba 100644
+> --- a/include/linux/iio/backend.h
+> +++ b/include/linux/iio/backend.h
+> @@ -70,6 +70,12 @@ enum iio_backend_sample_trigger {
+> =C2=A0	IIO_BACKEND_SAMPLE_TRIGGER_MAX
+> =C2=A0};
+> =C2=A0
+> +enum iio_backend_interface_type {
+> +	IIO_BACKEND_INTERFACE_SERIAL_LVDS,
+> +	IIO_BACKEND_INTERFACE_SERIAL_CMOS,
+> +	IIO_BACKEND_INTERFACE_MAX
+> +};
+> +
+> =C2=A0/**
+> =C2=A0 * struct iio_backend_ops - operations structure for an iio_backend
+> =C2=A0 * @enable: Enable backend.
+> @@ -88,6 +94,7 @@ enum iio_backend_sample_trigger {
+> =C2=A0 * @extend_chan_spec: Extend an IIO channel.
+> =C2=A0 * @ext_info_set: Extended info setter.
+> =C2=A0 * @ext_info_get: Extended info getter.
+> + * @interface_type_get: Interface type.
+> =C2=A0 * @read_raw: Read a channel attribute from a backend device
+> =C2=A0 * @debugfs_print_chan_status: Print channel status into a buffer.
+> =C2=A0 * @debugfs_reg_access: Read or write register value of backend.
+> @@ -128,6 +135,8 @@ struct iio_backend_ops {
+> =C2=A0			=C2=A0=C2=A0=C2=A0 const char *buf, size_t len);
+> =C2=A0	int (*ext_info_get)(struct iio_backend *back, uintptr_t private,
+> =C2=A0			=C2=A0=C2=A0=C2=A0 const struct iio_chan_spec *chan, char *buf);
+> +	int (*interface_type_get)(struct iio_backend *back,
+> +				=C2=A0 enum iio_backend_interface_type *type);
+> =C2=A0	int (*read_raw)(struct iio_backend *back,
+> =C2=A0			struct iio_chan_spec const *chan, int *val, int
+> *val2,
+> =C2=A0			long mask);
+> @@ -186,6 +195,8 @@ ssize_t iio_backend_ext_info_set(struct iio_dev
+> *indio_dev, uintptr_t private,
+> =C2=A0				 const char *buf, size_t len);
+> =C2=A0ssize_t iio_backend_ext_info_get(struct iio_dev *indio_dev, uintptr=
+_t
+> private,
+> =C2=A0				 const struct iio_chan_spec *chan, char
+> *buf);
+> +int iio_backend_interface_type_get(struct iio_backend *back,
+> +				=C2=A0=C2=A0 enum iio_backend_interface_type *type);
+> =C2=A0int iio_backend_read_raw(struct iio_backend *back,
+> =C2=A0			 struct iio_chan_spec const *chan, int *val, int
+> *val2,
+> =C2=A0			 long mask);
+
 
