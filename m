@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-139407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998A6A15C18
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 10:13:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32A89A15C1C
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 10:20:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95E717A235A
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 09:13:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EE371883A43
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 09:20:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DBCA16FF4E;
-	Sat, 18 Jan 2025 09:13:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DAD1632E6;
+	Sat, 18 Jan 2025 09:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SH+nbyF5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EeXE91Rw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D791632D3;
-	Sat, 18 Jan 2025 09:13:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B80D5789D;
+	Sat, 18 Jan 2025 09:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737191594; cv=none; b=tYYp+iSzghvqxGs9BZTqvodPwsA6VtJTMz+oZ4HMA6TbI0TYeflu8t3hf8/84o0RaMcqSc9dgeR08A9UJ3STNRAu9I5RZ3/nZgD5ojMa4uvowfymlkUiMk2NyVehJ063ODgGBElFJFBfnei7O1/aR14d9MuaTSC+xpBFP2TqB2c=
+	t=1737192001; cv=none; b=snOsK2/alEbLg3fldD6tKsijp62Id3W5o57SsUC85QDf7IiufhO7skhnQA3/wulPb+aRbtyAv4YrhcGr8T53ArOPELQFhlaqNnJ5259xlV1IuKPWrmoUPL56CFP29wmlApz+L4mWS52+nDhdWag2jV5N7XE7Ngvclp70LX9oEUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737191594; c=relaxed/simple;
-	bh=MUQ5voLVemt+kelhaaFIJwaMgdhz0IGii3dF1Sgvl/4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rl5JU914yfDFLo6yhaTJk211yEa/EhdabVkeEp7KxNVIsGKVfvN11aqoiJTOhfzRFeaqxTKd1qNBEvrQkN5f3cHYcbKGvMicT1pcpXaB//yRu2M3anRXi1U7t/pmg3JIxqSD+mw4kWsJrULhQqkxYfNDyore6PPLM2bpCu7dZRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SH+nbyF5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 376C1C4CED1;
-	Sat, 18 Jan 2025 09:13:08 +0000 (UTC)
+	s=arc-20240116; t=1737192001; c=relaxed/simple;
+	bh=JUEliZBo7/CjvZ8kETdFp4BYykF5r5B2KqwI5KLLyqU=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=pWUVpR9z+2MlQNNyf6JvcBvoMjC4AZ6T7JoDGG3POXKqW/1SYaxmO7DRrwso1514ORpNEJOfkMDoBko0fs0YcKXAXDYVRobA1LYFBrv28+ZcEWvOFMO7v7xDfO8pQg5CcN7YLCSRPs04fHf0FARvaWVzfGek0kZXnUIoit6qU6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EeXE91Rw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6033C4CED1;
+	Sat, 18 Jan 2025 09:19:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737191593;
-	bh=MUQ5voLVemt+kelhaaFIJwaMgdhz0IGii3dF1Sgvl/4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SH+nbyF5pfP92lYbAZViosCRfe7m0iFRe41lx1vaCB/jhLDZZfxXCWExWGRjP6Tt1
-	 QjbcNFNuHMQH8PToGCoKQqszn4kDKxXSIrGdSxDMO2fI+EsmLNuBJ76SEILgtc6JHv
-	 0orsSQ7Dqh1vnWe8m+mUaUHyIatpIMWbptRZldVSjhFccFzi+tzM9hhkyFptHrQxaZ
-	 kYaCuZ5Ei0jd5nLt19HaTDQd34JqE9+XCXL1mLQc8Vy0qMBy2XxptrYdmwDOckJkYH
-	 J0L6a1tSil/RDsl9URsnB12IjSI6GwHAFpXvh0nfgqm6dB8atpQ1t2EWlgsxsRRsUD
-	 1F1IclRR/HriA==
-Message-ID: <76ab492e-ae9c-46eb-bf2e-d794863baf8d@kernel.org>
-Date: Sat, 18 Jan 2025 10:13:06 +0100
+	s=k20201202; t=1737192000;
+	bh=JUEliZBo7/CjvZ8kETdFp4BYykF5r5B2KqwI5KLLyqU=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=EeXE91Rw7cDz/o7uoVMY53DBvZLpkgIQKvclt+XnhV3F4BM0HNMlGul16jUAw/gPJ
+	 6hTvdcfndFGDEU3LbMnrniDr4vUXuDagtH4ONG42u3aFaf7zSQU425JFwqSjJPfPz1
+	 TphFNRotExEp0Oor0kyc18ii9mJFyRnznxq+pb5YHFyH8r95g50R7ayUmsAPR+zq9c
+	 1HXP8fsy3nfe9Ajs8OcBrcgVuX0gp2t6a9WmpNd+dZx6yw8ZoVTe7oSkyohYZBRz3r
+	 nJSB1uOkaLgtcCyjjM9pW/SOcNxgvV1D/MqVZN1HOip/uYJKF4JHJRu4oVZssS6L/G
+	 iA9TEWM08WniQ==
+Message-ID: <ea651368-bcfc-4f24-8ed6-1c558707ffda@kernel.org>
+Date: Sat, 18 Jan 2025 10:19:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,23 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: mediatek: add support for
- mt8196
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Cathy Xu <ot_cathy.xu@mediatek.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Sean Wang <sean.wang@kernel.org>, Lei Xue <lei.xue@mediatek.com>,
- wenbin.mei@mediatek.com, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Guodong Liu <guodong.liu@mediatek.com>
-References: <20250110104703.13625-1-ot_cathy.xu@mediatek.com>
- <20250110104703.13625-2-ot_cathy.xu@mediatek.com>
- <dnjtaapqbn6zy55k5ky7zltswkbg7cjh2xwlnrmqdiz7tfm6rc@wbepc5koem6e>
- <66218a3c-04c5-42ea-ba9c-e0fbc72ed16f@collabora.com>
+Subject: Re: [RFC PATCH v1 4/6] arm64: dts: rockchip: add rk3328 usb3 phy node
 From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Diederik de Haas <didi.debian@cknow.org>, Peter Geis
+ <pgwipeout@gmail.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: zyw@rock-chips.com, kever.yang@rock-chips.com, frank.wang@rock-chips.com,
+ william.wu@rock-chips.com, wulf@rock-chips.com,
+ linux-rockchip@lists.infradead.org, Alex Bee <knaerzche@gmail.com>,
+ Conor Dooley <conor+dt@kernel.org>, Dragan Simic <dsimic@manjaro.org>,
+ Johan Jonker <jbx6244@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250115012628.1035928-1-pgwipeout@gmail.com>
+ <20250115012628.1035928-5-pgwipeout@gmail.com>
+ <7c7ce820-8a9b-46df-b143-f77835b7e5a0@kernel.org>
+ <D73NJYSP62XH.28CVZPNUE21H3@cknow.org>
+ <e1097f84-e40f-45ff-8b8d-125f7159ec1e@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -111,43 +111,93 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <66218a3c-04c5-42ea-ba9c-e0fbc72ed16f@collabora.com>
+In-Reply-To: <e1097f84-e40f-45ff-8b8d-125f7159ec1e@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/01/2025 14:20, AngeloGioacchino Del Regno wrote:
->>> +
->>> +        properties:
->>> +          pinmux:
->>> +            description:
->>> +              Integer array, represents gpio pin number and mux setting.
->>> +              Supported pin number and mux varies for different SoCs, and are
->>> +              defined as macros in dt-bindings/pinctrl/mt8196-pinfunc.h
->>> +              directly, for this SoC.
->>> +
->>> +          drive-strength:
->>> +            enum: [2, 4, 6, 8, 10, 12, 14, 16]
->>> +
->>> +          drive-strength-microamp:
->>> +            enum: [125, 250, 500, 1000]
+On 18/01/2025 09:41, Krzysztof Kozlowski wrote:
+> On 16/01/2025 17:53, Diederik de Haas wrote:
+>> On Thu Jan 16, 2025 at 2:01 PM CET, Krzysztof Kozlowski wrote:
+>>> On 15/01/2025 02:26, Peter Geis wrote:
+>>>> Add the node for the rk3328 usb3 phy. This node provides a combined usb2
+>>>> and usb3 phy which are permenantly tied to the dwc3 usb3 controller.
+>>>>
+>>>> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+>>>> ---
+>>>>
+>>>>  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 39 ++++++++++++++++++++++++
+>>>>  1 file changed, 39 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+>>>> index 7d992c3c01ce..181a900d41f9 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+>>>> @@ -903,6 +903,43 @@ u2phy_host: host-port {
+>>>>  		};
+>>>>  	};
+>>>>  
+>>>> +	usb3phy: usb3-phy@ff460000 {
+>>>> +		compatible = "rockchip,rk3328-usb3phy";
+>>>> +		reg = <0x0 0xff460000 0x0 0x10000>;
+>>>> +		clocks = <&cru SCLK_REF_USB3OTG>, <&cru PCLK_USB3PHY_OTG>, <&cru PCLK_USB3PHY_PIPE>;
+>>>
+>>> Please wrap code according to coding style (checkpatch is not a coding
+>>> style description, but only a tool), so at 80.
 >>
->> Why duplicating properties? No, use only one.
+>> I'm confused: is it 80 or 100?
 >>
+>> I always thought it was 80, but then I saw several patches/commits by
 > 
-> The problem here is not entirely about duplicating properties, and I'm not
-> sure that the reason is actually acceptable (but being this a special case
-> the `description` field would be mandatory to have IMO!!).
+> Coding style is clear: it is 80. It also has caveat about code
+> readability and several maintainers have their own preference.
 > 
-> So, the reason for this separation is that the drive-strength-microamp does
-> activate a special feature in the controller called "advanced drive strength
-> mode", which is switching to different shunts that will decrease the power
-> efficiency of the chip (by an ignorable amount, if that's one pin - but if
-> that goes to something like 100 pins, it's not ignorable anymore).
+>> Dragan Simic which deliberately changed code to make use of 100.
+>> Being fed up with my own confusion, I submitted a PR to 
+>> https://github.com/gregkh/kernel-coding-style/ which got accepted:
+>> https://github.com/gregkh/kernel-coding-style/commit/5c21f99dc79883bd0efeba368193180275c9c77a
 > 
-> I'd be happy if we could let them retain both properties after putting a
-> clear description of what's happening and why there are two of them.
-It would be fine then, but please add some sort of description to these
-fields documenting that difference.
+> That's not kernel. That's Greg...
+> 
+>>
+>> So now both the vim plugins code and README say 100.
+>> But as noted in my commit message:
+>>
+>>   Note that the current upstream 'Linux kernel coding style' does NOT
+>>   mention the 100 char limit, but only mentions the preferred max length
+>>   of 80.
+>>
+>> Or is it 100 for code, but 80 for DeviceTree files and bindings?
+> 
+> From where did you get 100? Checkpatch, right? Kernel coding style is
+> clear, there is no discussion, no mentioning 100:
+> 
+> "The preferred limit on the length of a single line is 80 columns. "
+> 
+> So to be clear: all DTS, all DT bindings, all code maintained by me and
+> some maintainers follows above (and further - there is caveat)
+> instruction from coding style. Some maintainers follow other rules and
+> that's fine.
+
+
+Although let me add here caveat, after looking at some other code: DTS
+due to its nature of a lot of parent-child relationships combined with
+long constants ("GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>") has the strongest
+exception or the strongest second part of the coding style:
+"...unless exceeding 80 columns significantly increases readability..."
+
+And again: that's from official coding style document (so something
+which have been for years), no matter what other people tell you they
+think exists since years as coding style.
+
+Splitting line, I commented here in this patch, did not improve readability.
+
+Quite opposite: the line there was less readable in current format thus
+it is not even about coding style anymore, but just readability style.
+Any list with more than two short entries (by number of characters in
+list item) or any list with more than one long entry should be split for
+readability. However actual ITEMS in list should not be split - but
+again coding style is here very precise since years. 80 unless
+significantly increases readability.
 
 Best regards,
 Krzysztof
