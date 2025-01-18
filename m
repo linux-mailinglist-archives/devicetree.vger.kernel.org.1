@@ -1,116 +1,207 @@
-Return-Path: <devicetree+bounces-139452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEC8EA15D2C
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 14:17:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45ADAA15D29
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 14:17:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0378916645D
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 13:17:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D465166430
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 13:17:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6889718DF7C;
-	Sat, 18 Jan 2025 13:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8304118E377;
+	Sat, 18 Jan 2025 13:17:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MKFpKo1I"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O+4117Kc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1E6187561;
-	Sat, 18 Jan 2025 13:17:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2E6C25A63C;
+	Sat, 18 Jan 2025 13:17:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737206265; cv=none; b=J7rQCIGKLQvjig4Yogzu4029iHDrGXVX56te+6cajiR6jAq72oIwdzQlXS5102WsP3qHM2GxXPzZpnC9eVLvrRCQJy9JavAWHvxtIDeQf3hNUk7ctbh3I7mbjQSABRO5/wb/7lYQ1nKK44Tcn00vrp8uzms7Vavyej1H6QVexS4=
+	t=1737206240; cv=none; b=UiZvfpMCFNB6/F1nOG+StJNtHOcrmC8PCS42iZi7sCe+V9GM5rY4099saUlS+l0tMocIqmhpbH4A7rgeMf+GsU2VtGRhB9iWScjouYS7xi1oNDGXalRqHm+f7yy2D5Xf4rMRTYwaZaLzUZChtsH4iAVDNuMzCpY1aegzV8zakLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737206265; c=relaxed/simple;
-	bh=hiOnSt4CDEnLfEOKd8TSh41PVsAYlATlP6ZPgyV9lH0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Q3msB8tfvVjiQfNsd9kFlHLsnEbtqFs/Eui2NY1QrYIOZA/4pNRQPKsBeltf6Y2p+F6s6jneOssYaMyVNLGtD7ZcR+BkDpTn/aCwkXSp8DS82Cw7KhzvsNy7cHg/Q70BoSrDzIie6NK9cn1kazMroHW57oGXEXT5K9Z+gBHpauI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MKFpKo1I; arc=none smtp.client-ip=209.85.208.49
+	s=arc-20240116; t=1737206240; c=relaxed/simple;
+	bh=X3+khsUSCTyl4wSxzBR7SZr94vKYaCCG90q1hhfeq4A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NPTqNWc+Vcmg9gAPRu54czRpquGCf2AirSn/BD2rvVwFjliGqm4nvpYJX76NvTG24XAckZrYZIwWYaZw1rKKqicUHVjF/ryqYzV2ERR4o7cFWhjQOTRXMw68s+W6bP/rVCeP74h5xcvnaOtPnAOQpXHXZikiKOb/ck3OsDEW4uU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O+4117Kc; arc=none smtp.client-ip=209.85.216.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5d3dce16a3dso2685642a12.1;
-        Sat, 18 Jan 2025 05:17:43 -0800 (PST)
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2efb17478adso5293023a91.1;
+        Sat, 18 Jan 2025 05:17:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737206262; x=1737811062; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hiOnSt4CDEnLfEOKd8TSh41PVsAYlATlP6ZPgyV9lH0=;
-        b=MKFpKo1IwGqYudSH7Qd8JGiSzalfoXcRFK4n5YG5iOGjX6i8WJfQV7y1Fxhi/FnsC7
-         9B0VsPkuMn/rhAsImrBCkM5eGC1YbU88o3Wo2i/Z2qRNCfB/mv/Iq3JqWh5HDkeHwZar
-         LZ8MFJvjhid/XqeqNnn/6QRO0PDn8+Q/att+rcjFop7kGUAii+w/uz/S4UtzST5p3PeT
-         vAQmHt5m0l7IckqkoMTSiOY5feUweMxrrkvM7AUW633bRxOVtIDjPr57eXJ5BFtew83b
-         fPM9jSgeuBuBhqevB9s0mn7uSsFljoIigNcEsbzQvtaq9Gi+BRVmj65Gzs/TcyofMwAu
-         YHrQ==
+        d=gmail.com; s=20230601; t=1737206238; x=1737811038; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4P/a3aKlWEPQSK+FO9BjIPaqGVapnLfpv4tajgCrBF4=;
+        b=O+4117KcV390gI5jFKw8dtpWhVmPJHleOX7gPnLIO/BzC83+9FtAyNB/PresRc8UJX
+         J2NyDwR5tkI/QVsJVRInbTc8rv9HOjDjIgGBQHA3FNTaJLBT8BZxb2QimTBT3MFxmenn
+         bwOsiFYwm1E+x0fjOazIUFYNseX1O/VlnOd9jbtDn4N5n4y5iAGP1Iw1BpJETJeqPRwL
+         OSWVYFePkpZq1FM3DDi+izZ4PyQ9BZcVVaNY5ymIRptl98mm6zSgZXc4sn5lMlLS1mLW
+         4Ls00QFjmq9S/QukcLo/Q6MzHekmO99nckyM3xIjnau719fXNGJ2Bvt8Lve1ad0Lzy8F
+         yXvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737206262; x=1737811062;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hiOnSt4CDEnLfEOKd8TSh41PVsAYlATlP6ZPgyV9lH0=;
-        b=wEU7uuPTba63DCfK2/9R+VdCGtIzFK3TKoSP247MN8tstz0Inq9XN9lJ7ZtJmYaC5B
-         4XCUieXWsseQrlK2fj22hq4M2xQ1P/m9VYzNUr3ktWRYutmA2vl88HBVFbtFhtQ48zj1
-         wvH9XNT7iYbQkaSjSCFJw0VSs0blnPZm8qleV0C4tXItraH34C4SIO0iHtMDUI2nr9o6
-         JvDGx9kBYZ77m7sTVFR3Pt0OJ+vbFUR19PY7ALz6A1irxQByQYVTtUjUwgTdcVZDNBNs
-         dpVnIQJTpQOyuE7wbMLXBEspI3Bx2b81GjfY4crLcYDxN/YNKXtm4ms/UKab7MjbJjR/
-         q5zg==
-X-Forwarded-Encrypted: i=1; AJvYcCUy7YxEvBeBkuR1+06amezxepfMcY/d+124FQtgZk/Q+9D+7l03YjA/oESa7ulz8SghhmqqAVSAmSlaNxI=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGAeqO1T4JrIXLzyQ7f4OBYC9SNHEOutnUqTdxLzrAIIn7PNez
-	QVWUVRJS4kC9iHvB1RmDW0txpvabIbe46IKo7NddsDi2OkHknSu5
-X-Gm-Gg: ASbGncu2JCMIrXgobFtbG8pU2XZkjyWVdxtbW4r2NexL0XPgrkZfeNgFNPHQaDXmQE9
-	aRg0NOhnVLuVtXtPRxmW+zS358oix8YEOgz19LnO+MxARrAD+TzIN9zzPJ+OuBhV4iTp5mqMwM+
-	DsfWmAvIplozA2WFl4jIT0mE9CtczuXdcL8Y6rvo3g6sbzKc8XgDoTnRSIpzEy+67gatcSpVQwF
-	3KVrufBHKSQiUVm/k97MwcDgEhged8GulXrz2t1Tfb4SpV1yMKaehHyBtDFfPOezC4EZJBwAJW0
-	ArohLJNsu7Bfd4/MnzqzkkHExg==
-X-Google-Smtp-Source: AGHT+IFFti1/tZj8e1vP90qTGFiWr/GV7Ik5rVsNImRR/WGzUU5tZlbjRu4Ye6eJGZXqi2al2PUGGg==
-X-Received: by 2002:a05:6402:27c9:b0:5d9:3118:d0b8 with SMTP id 4fb4d7f45d1cf-5db7dc6b573mr5022930a12.8.1737206261687;
-        Sat, 18 Jan 2025 05:17:41 -0800 (PST)
-Received: from jernej-laptop.localnet ([188.159.248.16])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5db73683d28sm3167269a12.40.2025.01.18.05.17.39
+        d=1e100.net; s=20230601; t=1737206238; x=1737811038;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4P/a3aKlWEPQSK+FO9BjIPaqGVapnLfpv4tajgCrBF4=;
+        b=vYNmhSBJdNBNK4Lavc+0KIzVw5/RfYnvH4fYWb+3391hcuFdFNT4TXm1JN18DfyC+8
+         K8iTXeIKCfJzO5O6y3pp4Z4y4CXndSUe34bNqm4VF2L2uxD6FXXd1Stb3P+i1NLAp4oj
+         IHmZDtV/AyBQcV6NzxZbwCddwQ4/wIk0Dza+tEnHUjfsOMQajR+/bsp/hRLkXQR+C6ZH
+         7ANkVXef3deFbdbH0O5hhCPza0kMVI6AQw3T7njjSQbfknsbR4quD4EBG4mIx6ULvOes
+         4+B6AdIwxIDCUErORhGvZWgaUCntshff6ajgniIeIws3+UXilCZ2SbGqrpnMjFgTiwrG
+         0AWA==
+X-Forwarded-Encrypted: i=1; AJvYcCVELH4PxY633hsU0H439rI+BarzbIMhIAfrVxwqYP8akU93BoccuRSiV29TGGJ+W7JBtWxMnnJxJ0RL@vger.kernel.org, AJvYcCWpUtm7trjvUT+zylqlO0RCaei/RKwV8evRWt12GtOYRX13oTM3lyRXKVsSmahUYb5PQpLt6H3jeWb5@vger.kernel.org, AJvYcCXJlI0YtH7w9kfdUP/R47S7TLGET22PxhiaSW5kTHmPi+LFIWJbzzVRVzph7i6T8fTPkAl9B7veIVsGWuq/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxpeDGnHT1NINBgXqlllaEqP/LvY7L3uXlOoTkgVIMCqEW1XGPV
+	+a4z7K6JcD8iKCOa2LRto1ZyJ6zAoJeQPjd/73q4sDlo94tnre863b5GUDkH
+X-Gm-Gg: ASbGncudHTqdj/bBA+3Qm/YbgDOJBrGqIxPmyqkYgLEg32Oyh+URh0t1oYq46WAPKk2
+	wI2XmW4P4qlpHj0ORGjqbK+aS3uZq3G077M9jqB/kHO5DuDpCmDtgcfLN3cWFzQW+1H/yePQSm7
+	mG93Pc451njoJkUOZbiauLPdyN+/oT1G3Ek4ANRQOzlDAPmEDNSi99LPYjHsmB/TjQKHUEwLfX9
+	VQyRFGhNOD//uYUawFCkdPve1HUJfSQoK103Hx++svg0UQWqNT1aNmWT2jLpiqUnSnwKp7q6V0N
+	HA==
+X-Google-Smtp-Source: AGHT+IEcrpWEKCLxRllOHhmQcXd7G2kRPglFQmoHOjDJTagBgc0ZFjuwMPLTK11syfCrbz+bkxQ2zQ==
+X-Received: by 2002:a17:90b:3503:b0:2ee:d96a:5831 with SMTP id 98e67ed59e1d1-2f782d7dc10mr9205568a91.30.1737206238027;
+        Sat, 18 Jan 2025 05:17:18 -0800 (PST)
+Received: from localhost ([2804:30c:b30:a800:c057:a90:a425:2f39])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f77614cba8sm4449808a91.15.2025.01.18.05.17.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Jan 2025 05:17:41 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Thomas Gleixner <tglx@linutronix.de>,
- Andre Przywara <andre.przywara@arm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 06/14] dt-bindings: irq: sun7i-nmi: document the Allwinner A523
- NMI controller
-Date: Sat, 18 Jan 2025 14:17:39 +0100
-Message-ID: <2763297.mvXUDI8C0e@jernej-laptop>
-In-Reply-To: <20241111013033.22793-7-andre.przywara@arm.com>
-References:
- <20241111013033.22793-1-andre.przywara@arm.com>
- <20241111013033.22793-7-andre.przywara@arm.com>
+        Sat, 18 Jan 2025 05:17:16 -0800 (PST)
+Date: Sat, 18 Jan 2025 10:17:53 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>,
+	Jonathan Santos <Jonathan.Santos@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, lars@metafoo.de,
+	Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Subject: Re: [PATCH v1 05/15] iio: adc: ad7768-1: set MOSI idle state to high
+Message-ID: <Z4uqAQjDbqs-Eqn1@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1736201898.git.Jonathan.Santos@analog.com>
+ <714ff48341753de0509208e3c553b19c1c43e480.1736201898.git.Jonathan.Santos@analog.com>
+ <4449ec60-08cd-4074-ba0b-95603864a458@baylibre.com>
+ <Z4GXikxVw6mHIYHc@debian-BULLSEYE-live-builder-AMD64>
+ <20250112123023.75dc7750@jic23-huawei>
+ <Z4UE3p6HCsD8PiGh@debian-BULLSEYE-live-builder-AMD64>
+ <20250118120927.08f21fbc@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250118120927.08f21fbc@jic23-huawei>
 
-Dne ponedeljek, 11. november 2024 ob 02:30:25 Srednjeevropski standardni =
-=C4=8Das je Andre Przywara napisal(a):
-> The Allwinner A523 SoC contains an NMI controller compatible to one used
-> in the recent Allwinner SoCs.
->=20
-> Add the A523 specific name to the list of allowed compatible strings.
->=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+On 01/18, Jonathan Cameron wrote:
+> On Mon, 13 Jan 2025 09:19:42 -0300
+> Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
+> 
+> > On 01/12, Jonathan Cameron wrote:
+> > > On Fri, 10 Jan 2025 18:56:26 -0300
+> > > Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
+> > >   
+> > > > On 01/07, David Lechner wrote:  
+> > > > > On 1/7/25 9:25 AM, Jonathan Santos wrote:    
+> > > > > > All supported parts require that the MOSI line stays high
+> > > > > > while in idle.
+> > > > > > 
+> > > > > > Configure SPI controller to set MOSI idle state to high.
+> > > > > > 
+> > > > > > Fixes: a5f8c7da3dbe ("iio: adc: Add AD7768-1 ADC basic support")
+> > > > > > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> > > > > > ---    
+> > > > ...  
+> > > > > > @@ -574,6 +574,15 @@ static int ad7768_probe(struct spi_device *spi)
+> > > > > >  		return -ENOMEM;
+> > > > > >  
+> > > > > >  	st = iio_priv(indio_dev);
+> > > > > > +	/*
+> > > > > > +	 * The ADC SDI line must be kept high when
+> > > > > > +	 * data is not being clocked out of the controller.
+> > > > > > +	 * Request the SPI controller to make MOSI idle high.
+> > > > > > +	 */
+> > > > > > +	spi->mode |= SPI_MOSI_IDLE_HIGH;
+> > > > > > +	ret = spi_setup(spi);
+> > > > > > +	if (ret < 0)
+> > > > > > +		return ret;
+> > > > > >  	st->spi = spi;
+> > > > > >  
+> > > > > >  	st->vref = devm_regulator_get(&spi->dev, "vref");    
+> > > > > 
+> > > > > Very few SPI controllers currently have the SPI_MOSI_IDLE_HIGH capability flag
+> > > > > set in Linux right now (whether they actually support it or not), so this could
+> > > > > break existing users.    
+> > > > 
+> > > > Good point. Maybe only dev_warn() if SPI_MOSI_IDLE_HIGH is not supported?
+> > > >   
+> > > > >     
+> > > > ...  
+> > > > > 
+> > > > > If we ever do implement a data read of more than 64 bits without toggling CS,
+> > > > > then we could just set the TX data to be all 0xFF and have the same effect
+> > > > > without requiring the SPI controller to support SPI_MOSI_IDLE_HIGH.    
+> > > > 
+> > > > One point of having SPI_MOSI_IDLE_HIGH is that the controller may bring MOSI low
+> > > > between data words of a transfer. I think all transfer words are going to be
+> > > > either 16 or 24 with the new patches setting bits_per_word in all transfers but
+> > > > that might still not be enough if eventually the controller is unable to support
+> > > > those word sizes.   
+> > > 
+> > > Can we make the use of SPI_MOSI_IDLE_HIGH only apply if controller doesn't support
+> > > what is required to do the transfers in one go?  
+> > 
+> > I think so, but that would require tweaking spi controller drivers since we
+> > don't know at spi_setup() what transfers will ask for their bits_per_word.
+> > Not excited with this idea but may try something if that makes it easier to
+> > support these unusual SPI devices.
+> 
+> I'm confused. Here it is a client driver question I think. That driver knows what
+> it is asking for.  It can query if that word length is supported, if not query
+> if SPI_MOSI_IDLE_HIGH is possible and if neither fail to probe with suitable
+> error message. 
+> 
+> Jonathan
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+Ah yes, I think that would be a better way to go. I thought your previous
+question was about making SPI_MOSI_IDLE_HIGH support within the SPI subsystem
+only apply if the controller couldn't support all of the bits_per_word an ADC
+driver would want for it's transfers. Sorry for the confusion.
 
-Best regards,
-Jernej
+I'm still a bit skeptical about whether the device really works without
+SPI_MOSI_IDLE_HIGH. Though, if setting proper bits_per_word is enough then
+that's great because it will allow the device to work with a wider range of
+controllers.
 
+Marcelo
 
-
+> 
+> 
+> > 
+> > >   
+> > > > Plus you would have the complication of filling the tx_buf for
+> > > > all transfers.  
+> > > 
+> > > Wrap that up in a regmap, or read and write functions and that should be easy enough.
+> > >   
+> > > > 
+> > > > For the part that instigated the development of SPI_MOSI_IDLE_HIGH, the MOSI line
+> > > > also had to be high in between transfers. The diagrams at AD7768-1 datasheet
+> > > > page 51 suggest the same would be needed for this chip too.  
+> > > 
+> > > Whilst the datasheet indeed draws lines for that, i doubt it notices except on
+> > > clock transitions and between transfers the clock won't do anything.
+> > > If we confirm that the device does notice, then I don't mind limiting the controllers
+> > > to those with that can ensure it doesn't get set wrong.
+> > > 
+> > > Jonathan
+> > > 
+> > >   
+> 
 
