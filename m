@@ -1,138 +1,90 @@
-Return-Path: <devicetree+bounces-139435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E180A15CBC
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 13:28:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD83BA15CC3
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 13:30:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B73F1888B18
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 12:29:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B9EC16754D
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 12:30:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C6B518E756;
-	Sat, 18 Jan 2025 12:28:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05BAB18EFD4;
+	Sat, 18 Jan 2025 12:30:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="PpIhHRwt";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="b16TOA6w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CFAEtDvP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a8-smtp.messagingengine.com (fout-a8-smtp.messagingengine.com [103.168.172.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 729A618C00B;
-	Sat, 18 Jan 2025 12:28:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1063191493;
+	Sat, 18 Jan 2025 12:30:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737203335; cv=none; b=Ax4/RVti6bKAcXKKdLCewpBNzPNIML8/ZI/OQjujFPLSTSUY7Bv00spyildOKlsPmDIrbKBYW9xGE7IcP6hVqv7CfWQ3xOB9AHYWGsAOn/utvdAsInsCEkdxnJamcGO133J+9KfMYKZhIz/Bt8fqdPlKjVs1FMaSLYs8VUN/j20=
+	t=1737203413; cv=none; b=oEhZ68ooqmKwFDZjEesLA7wpQqswkQy4PWrdyKa1HuH3R9UFff+mpnbfu8ra1N+VW6xQ00j8joRHG0y5e2wexQtAkuev0Opu6OC0TZcb+yZWzOzx6a6NTGH6Yg0280/tfjiOGhNsiNjooCpudBmJkAspFzv9bJ7tko+N1HSETT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737203335; c=relaxed/simple;
-	bh=zcU3bh0Td9K939Ujta2kcP5qxUMjJXNGzp+UHMOQHJA=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=owGz7FEW7MDOZaPtkOW4SeyKlM6J7Uc6Vy96wElLSNDHAu9v6bVgzcTtoaXzhiXnDgR74+/QZ9v90zZlwnwr9Ymg2md1AqY3ln9+RnEq50rfWIsiE+xDF0OsDCv4KjrjTJNjzBMx/mET+IA2qBw/ilitFEo0+8upzA5mmGsRSQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=PpIhHRwt; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=b16TOA6w; arc=none smtp.client-ip=103.168.172.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
-Received: from phl-compute-07.internal (phl-compute-07.phl.internal [10.202.2.47])
-	by mailfout.phl.internal (Postfix) with ESMTP id 89C3213801CB;
-	Sat, 18 Jan 2025 07:28:52 -0500 (EST)
-Received: from phl-imap-07 ([10.202.2.97])
-  by phl-compute-07.internal (MEProxy); Sat, 18 Jan 2025 07:28:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm3;
-	 t=1737203332; x=1737289732; bh=zcU3bh0Td9K939Ujta2kcP5qxUMjJXNG
-	zp+UHMOQHJA=; b=PpIhHRwtIV1ldVpeF8k2nEeAWepXyEtSMghRgH/3AU1OLQDS
-	J2dALAs2RCETq0MieEiKQde9YL/rQLqn1q+Uo5KcvVWB5kmrNh+xETf8i5SknumF
-	hGxmDGEHDIp7Er9yCDpbszIaISE5wv7I5hYYAuUIhkFKKWFIhnfaVK0tnpykpVzG
-	xHlCYg6ESrorij6VnZYAXO+6PDocSixOPvKyLRkrW15P/ORmPmr3jKCVYnezFv7M
-	I5vAEL9qOyBr/lEe0K1Cfy8ARdzF7VEVNTGrVOzlGqWhvdzA2TxTyxL0K5PciV3y
-	S4WdbrGLWu9cBM9qLX6cZA/f209wRW8srR4RRQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1737203332; x=
-	1737289732; bh=zcU3bh0Td9K939Ujta2kcP5qxUMjJXNGzp+UHMOQHJA=; b=b
-	16TOA6wuGADPx6lSClZZ/jLEZvKuZiBA4YbxCaFf6RN0eu2EcdPjhX0GhrTBQsFA
-	W7H3ZlanUnBJu0KZkbywJhmLZTsN70LsLndUR2XcLuc5PnQtgQPAltteyZCRbUav
-	Fv7v0Is+34Jm3+cjWStjm06fd6nxS9h/54lylavZc2WEk5otktkoXMrhQBmqgO9T
-	XkiiAz9/w3s8hIcuCVKC2cw1QgPFGna50wmx839MJJ7lHGyAxf1CzsRfb0fRpqah
-	0TtUW8uWtbmEp7enmnhdPC+Uf4+TSnHV4VwZhMR3ab8tREB+XicFX7t+TAF4hVoD
-	Bv15uJB34r3V8KOD+tKbw==
-X-ME-Sender: <xms:g56LZ5cjVxqkHRBfoDR_1g4qyDsveSxMcYOIBLOj0xV656RkWKgeGQ>
-    <xme:g56LZ3PtPYo-eKFJ-b8l2k3yZm5AhBbBsUUOO9e6qKQzWR3fbcqUud1ehXMLI4K4c
-    0tCsXZMTXOgMSpSYG8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudeihedggedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
-    necuhfhrohhmpedfufhvvghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrh
-    druggvvheqnecuggftrfgrthhtvghrnhepleefteeugeduudeuudeuhfefheegveekueef
-    ffdvffektdffffelveffvddvueffnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrg
-    hmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdguvghvpdhnsggprhgt
-    phhtthhopeduledpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohephhhisegrlhihsh
-    hsrgdrihhspdhrtghpthhtohepshhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthho
-    pegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepfhhnkhhlrdhkvghrnh
-    gvlhesghhmrghilhdrtghomhdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghl
-    rdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpth
-    htohepmhhrihhprghrugeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehk
-    vghrnhgvlhdrohhrghdprhgtphhtthhopehnvghilhdrrghrmhhsthhrohhngheslhhinh
-    grrhhordhorhhg
-X-ME-Proxy: <xmx:g56LZyjEFxeZe2qYhJ3oU5wZQHDTDzczvDxfHhrDqDelWHdpdHtrjA>
-    <xmx:g56LZy_hHfl_QLoD6sIrpCAykPiohLmfVEJ0WMJI3vAVAWuQYEGsoQ>
-    <xmx:g56LZ1vfoH9NZQO3DYRZw3nJYO76Aj722dKQ_lkYptShwifUWE7Bbw>
-    <xmx:g56LZxF49TLfXmDKVUZbhDSvCJh2ZyLGiqpNrZ3UkE_f-GdL94P0xA>
-    <xmx:hJ6LZwn0bti_1Z1O7mj0PbM0JyGYdgISjzrqGBIRUkTBxbMhQOe5tvcX>
-Feedback-ID: i51094778:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 8E1AABA0070; Sat, 18 Jan 2025 07:28:51 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1737203413; c=relaxed/simple;
+	bh=SsP8IaUkBEZO4hK6LfQMg1++ehopkVBbwlEFkXSdrGg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rgBxYI8+7C1UDINeO+C9xCQDJ3reSPM0GeT1LPKOzjZMonGSHrW06K1uMYb4z1aYzWEcJw+WXvl4xu0gGsi+soMzmwM+BWWBIdmNuSNj0e5Gtw7n1WPS5Zb2h2cyJIzTy2Jv3RdoxCRwKYelX+yWSM68/b06fZmZKURKyxdOmLo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CFAEtDvP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50CC3C4CED1;
+	Sat, 18 Jan 2025 12:30:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737203413;
+	bh=SsP8IaUkBEZO4hK6LfQMg1++ehopkVBbwlEFkXSdrGg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=CFAEtDvPc2JxsjR78qoCsPkewbts3/1TbSBm4/3T8b3jjr/4fXf9Sd9JLLci5uGgr
+	 11nKBBzHJUkcRfcWNmXD7hTbW7E9xj0LE017dicLuYVUQ0cIYdFEnLb4qLT9f3vTAV
+	 ZqcodkQc3dPLLGYH/qL5I2rC3fLkZTGD/Mf2aBYzLA+1/Jt2YFz2X9BPwi9UD+tff2
+	 sVRkXYORZrYUzKVbS/x7Q9C7QZ/e3RErOAj+0UM2yl5xsocsLOhkZKtzKXJSkEn4wX
+	 DUt7+bttdxk2k1ligY6L6NSyvkvZmnKzOHriE6ujDKW5RNDpQ/F3Fbczlh2PuaM196
+	 ZFTSU71t4CDVA==
+Date: Sat, 18 Jan 2025 12:30:01 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Mark Brown <broonie@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>, Angelo Dureghello
+ <adureghello@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=
+ <ukleinek@kernel.org>, Michael Hennerich <Michael.Hennerich@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>, David Jander <david@protonic.nl>,
+ Martin Sperl <kernel@martin.sperl.org>, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-pwm@vger.kernel.org, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v7 14/17] iio: adc: ad4695: Add support for SPI offload
+Message-ID: <20250118123001.1ae96a0f@jic23-huawei>
+In-Reply-To: <6458a3e4-594a-44bc-9593-94d115013c1d@sirena.org.uk>
+References: <20250113-dlech-mainline-spi-engine-offload-2-v7-0-e0860c81caae@baylibre.com>
+	<20250113-dlech-mainline-spi-engine-offload-2-v7-14-e0860c81caae@baylibre.com>
+	<ls32gl5a7nsihmmpfabxhm6ilg7idyxdhyrhbkay6e2fiokoah@o5ujfxlsq3s3>
+	<67dc52c4-5252-40c3-b89e-8e46e3c2df27@baylibre.com>
+	<6458a3e4-594a-44bc-9593-94d115013c1d@sirena.org.uk>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Sat, 18 Jan 2025 13:28:31 +0100
-From: "Sven Peter" <sven@svenpeter.dev>
-To: "Sasha Finkelstein" <fnkl.kernel@gmail.com>,
- "Hector Martin" <marcan@marcan.st>,
- "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>,
- "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Jessica Zhang" <quic_jesszhan@quicinc.com>, asahi@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- "Alyssa Ross" <hi@alyssa.is>
-Message-Id: <e78f5268-f0a9-44d5-8dbc-7ef7f26278d5@app.fastmail.com>
-In-Reply-To: <20250114-adpdrm-v4-5-e9b5260a39f1@gmail.com>
-References: <20250114-adpdrm-v4-0-e9b5260a39f1@gmail.com>
- <20250114-adpdrm-v4-5-e9b5260a39f1@gmail.com>
-Subject: Re: [PATCH v4 5/5] MAINTAINERS: Add entries for touchbar display driver
-Content-Type: text/plain
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-Hi,
+On Fri, 17 Jan 2025 18:18:14 +0000
+Mark Brown <broonie@kernel.org> wrote:
 
-On Tue, Jan 14, 2025, at 22:38, Sasha Finkelstein via B4 Relay wrote:
-> From: Sasha Finkelstein <fnkl.kernel@gmail.com>
->
-> Add the MAINTAINERS entries for the driver
->
-> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
-> ---
+> On Fri, Jan 17, 2025 at 11:09:03AM -0600, David Lechner wrote:
+> 
+> > Indeed, thanks! Hopefully we won't need a v8 and Jonathan can fix while
+> > applying. :-)  
+> 
+> FWIW I need to do another proper pass through but from a quick scan and
+> my review of previous versions unless anyone else raises something my
+> plan is to apply the SPI bits at -rc1.
 
-Acked-by: Sven Peter <sven@svenpeter.dev>
+Works for me.  Assume as a nice immutable branch I can scoop up ;)
 
-
-Thanks,
-
-Sven
+Jonathan
 
