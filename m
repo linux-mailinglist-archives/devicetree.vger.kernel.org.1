@@ -1,129 +1,74 @@
-Return-Path: <devicetree+bounces-139398-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D5ABA15B56
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 04:51:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAE56A15B50
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 04:51:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D1A4188B119
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 03:51:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D9A13A3EEB
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 03:51:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67298146A69;
-	Sat, 18 Jan 2025 03:51:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92B4D7DA62;
+	Sat, 18 Jan 2025 03:51:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mlVUgQn3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wg4O7nHq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B87B313BADF;
-	Sat, 18 Jan 2025 03:51:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6111C1F95E;
+	Sat, 18 Jan 2025 03:51:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737172281; cv=none; b=khYSHNMCBUyJre70sd6BqC2b9McZzQCtuXvzxg+tpFXPwM4nEJ8PMRYMDv1WqB9DOVt+eMGCUgZM+bQnMiJQKc/G6U3/CsLSu/3/ZE4FfHSZ02A++lzkKnMrCdwQ48slviXnr/iZ4TmEuzGASBBr5ARYxtESgfwrRPpBTebGSIw=
+	t=1737172278; cv=none; b=JLOaYti9k8afRmmSVKohjCqCBCW0rHrTCEck5C9JaNgMqcLvqn7mSTzeKBtXUnRpYK3pj0Ki6xIOF63lMjxBzFfro4R9p+ao/9iljoLmI1QqKG36zxbqxHanSP5W/f9JTz4NKdA47RmL0H/d7sbRz0PSO5E0EX1xfsqXPBhnjSs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737172281; c=relaxed/simple;
-	bh=yeq4IXBcBZnTsUE8pk6nO8SgpaKvxASMp+nrzb3hWhY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WC68lD+pJJIq361lT2s1dLwPDAnhxEXS78Nj/TGEEwfwq6yEde6xjn97lg7yuO80eazbrleCUXdBfb5uEVAqBM6aMfftWcWc6mFtyucCcr1/NKsJY63zaB5ljxDXN9WJmSwcOqVXpuoU3irNu83oJSTUaXndmv8GGGy5Lex6vnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mlVUgQn3; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737172280; x=1768708280;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yeq4IXBcBZnTsUE8pk6nO8SgpaKvxASMp+nrzb3hWhY=;
-  b=mlVUgQn34mY1tj5X0MqRQD0+8GVLhjRKpPCnD9xyH7imTaI1iNtRa06X
-   zVvv38tML3VEJD5Kf0s2Z0jqU39GDemVL4i6NjGKd+/pT0bjJF0m8uo6n
-   ZHdTjUyGCqG2Z8m2NVJmc8A1kA+DxHxoAT+RHOfjF1/23OExZ4f0bzJKM
-   99/sDsPXAwJ2yluDN2xPIE+S+FgA+irQRrQsAq7x8KZBSClEiRYiiwnib
-   HhyR6x4h1rl+KgIRAAk68zh7NUkk0iOlujU40BbzsxqFBTtX7sFw0m4Kv
-   lvdKoBYZZWEe3IcDpzaw4pH5IOHBo9L7fbL9e+oWba9aByel1gi8h6doG
-   w==;
-X-CSE-ConnectionGUID: uWVjHZ5NSAOCE5ClynSCCg==
-X-CSE-MsgGUID: uFbw8bAkTxWvtSsIN+ldGA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="48113105"
-X-IronPort-AV: E=Sophos;i="6.13,214,1732608000"; 
-   d="scan'208";a="48113105"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 19:51:20 -0800
-X-CSE-ConnectionGUID: 8dmvt1VHSwqcx8wVnA9J8A==
-X-CSE-MsgGUID: TP+sh+qYTWCb0l5GsEVfAw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="106444005"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa007.jf.intel.com with ESMTP; 17 Jan 2025 19:51:16 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tYzrd-000U3v-34;
-	Sat, 18 Jan 2025 03:51:13 +0000
-Date: Sat, 18 Jan 2025 11:50:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Sean Wang <sean.wang@mediatek.com>
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	herbert1_wu@pegatron.corp-partner.google.com,
-	Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
-Subject: Re: [PATCH 2/2] arm64: dts: mt8186: Add MT8186 Krabby platform based
- Skitty
-Message-ID: <202501181109.qPUuOK1v-lkp@intel.com>
-References: <20250115-skitty_kernel-v1-2-6ef2086858ba@pegatron.corp-partner.google.com>
+	s=arc-20240116; t=1737172278; c=relaxed/simple;
+	bh=/DyfZWIIA96g0Ckt/iF1SREvxeObReWViBxkd40Wrkw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kq+3y7M4ljpKOxwRqmgH1IBDadtIE2+pqaa8Hn7aG5WuhEehYlnR+99O+x92zzr5pIdpwX+gK5vgzZqAcCEoe3bnUxW7gq+0fPWDszCQBY8epinTSTJFeXkKALa5p3UKFdJBTZKvC20kqSFUMWBr9Vn9sZKOdKk4m6qF9D+o1gk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wg4O7nHq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A859CC4CED1;
+	Sat, 18 Jan 2025 03:51:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737172278;
+	bh=/DyfZWIIA96g0Ckt/iF1SREvxeObReWViBxkd40Wrkw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Wg4O7nHqeAoZVFYyETYyeYu6pLx6d3Q1QDps4UyzGqUKor6alhi/0n71XGBldQ4HW
+	 TZHLh9qrSEZu5RiK1HiCETkuZ1otS4LxtUJY6RwUDnfymgyNy3ZbrOKVDeEBj9q7CU
+	 UXN0fhkBZw7KqeXXZPBMGEXi55Z/M9coD9wv2rMoS8l9qMX42xjPco8QGcWlCVpt7r
+	 gBzDWBu+xgQnyce5DuwaRJ4ubCN1fvudUEEqWXVRWjVTxqmFncxVG0lakKlY4uLFez
+	 v2s8ETIJ+tuqmEYDoo6wEkJkG31MGrlc4fLDXUJLpJQYAa6foQhUuxHZJMAuI2mox+
+	 CQFRLjx1V97pg==
+Date: Fri, 17 Jan 2025 19:51:16 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: andrew+netdev@lunn.ch
+Cc: Ninad Palsule <ninad@linux.ibm.com>, minyard@acm.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, davem@davemloft.net,
+ edumazet@google.com, pabeni@redhat.com,
+ openipmi-developer@lists.sourceforge.net, netdev@vger.kernel.org,
+ joel@jms.id.au, andrew@codeconstruct.com.au, devicetree@vger.kernel.org,
+ eajames@linux.ibm.com, linux-arm-kernel@lists.infradead.org,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 01/10] dt-bindings: net: faraday,ftgmac100: Add phys
+ mode
+Message-ID: <20250117195116.4211ef42@kernel.org>
+In-Reply-To: <20250116203527.2102742-2-ninad@linux.ibm.com>
+References: <20250116203527.2102742-1-ninad@linux.ibm.com>
+	<20250116203527.2102742-2-ninad@linux.ibm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250115-skitty_kernel-v1-2-6ef2086858ba@pegatron.corp-partner.google.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi Geoffrey,
+On Thu, 16 Jan 2025 14:35:16 -0600 Ninad Palsule wrote:
+> Aspeed device supports rgmii, rgmii-id, rgmii-rxid, rgmii-txid so
+> document them.
 
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on 619f0b6fad524f08d493a98d55bac9ab8895e3a6]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Geoffrey-Chien/dt-bindings-arm-mediatek-Add-MT8186-Skitty-Chromebooks/20250115-154648
-base:   619f0b6fad524f08d493a98d55bac9ab8895e3a6
-patch link:    https://lore.kernel.org/r/20250115-skitty_kernel-v1-2-6ef2086858ba%40pegatron.corp-partner.google.com
-patch subject: [PATCH 2/2] arm64: dts: mt8186: Add MT8186 Krabby platform based Skitty
-config: arm64-randconfig-001-20250116 (https://download.01.org/0day-ci/archive/20250118/202501181109.qPUuOK1v-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250118/202501181109.qPUuOK1v-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501181109.qPUuOK1v-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku4.dts:49.1-8 Label or path target not found
-   FATAL ERROR: Syntax error parsing input tree
---
->> Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku1.dts:48.1-8 Label or path target not found
-   FATAL ERROR: Syntax error parsing input tree
---
->> Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku2.dts:48.1-8 Label or path target not found
-   FATAL ERROR: Syntax error parsing input tree
---
->> Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku3.dts:49.1-8 Label or path target not found
-   FATAL ERROR: Syntax error parsing input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Andrew, just to be sure - you're okay with extending the bindings?
 
