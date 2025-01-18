@@ -1,181 +1,133 @@
-Return-Path: <devicetree+bounces-139486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF3E8A15E15
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 17:33:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0BCBA15E1D
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 17:42:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDA611885A45
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 16:33:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE43E166254
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 16:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72CCE199238;
-	Sat, 18 Jan 2025 16:33:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA7DA19ABB6;
+	Sat, 18 Jan 2025 16:42:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fMPQn0dN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J6cfAekf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD9615CD78;
-	Sat, 18 Jan 2025 16:33:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4310273F9;
+	Sat, 18 Jan 2025 16:42:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737218006; cv=none; b=E6XQNviTZh24k3wc5ilbdp5sB/DsdiBLBR/9vwJynTR2x1czmv4gNRtzOPW8PaZ+LKcjkeTnWynCJJYxDkMUK0VxlsNJLtZfykosrTc69Uq9AjNfz2BD5YNuweTkCOmZcpgkRtN22/k39FbKWKs7itKSHkfz+7+GZbF8bSOW7/s=
+	t=1737218542; cv=none; b=kVmpcXxDgVfMndv4K0qGH+pPxFU/wRmMFlJTUqdrDwNT2QWzqyEywT91jLQz68H8NOK/phVKhzNDjKGA7z5xJXtxeLq2T5gj3IJhVF9z/hoN/28XfF7ogJEj/Ikb4UMHCpEQaF3g9mdHvjyBi2vPcLGjGVWvBNn9IB9+OZnLikQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737218006; c=relaxed/simple;
-	bh=N4WKOAPatm/OOVk7jJmgkjomTo8rCT0Ib92cgaZHAIE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OJZFmuv/LBN/1JJ554TfXU/E1xHYZx4bXisempoJt2SHy4eLT3edsDt6DEUQ8yicNgKGiwG+8DM6qbwWaSy5bWvo2w527KY1dHDA7zBwF2RjwfN8hCRLvBn56pET0J3K20eN3CKc1cxVMJQO3lfz2jj0mf5v7uiNJDKsYAf0wRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fMPQn0dN; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2164b662090so58271295ad.1;
-        Sat, 18 Jan 2025 08:33:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737218004; x=1737822804; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w8mEEkakGykScFNyZ0WPlZb8FWyU5Ac0gzQtTbrAz/U=;
-        b=fMPQn0dNfcZPjo1e88Zia4SSJe+oef62ds8fI8k2uaTGabZED3hJxcARRxtaKckqx8
-         Z2opDC7PKPTZvoUhtErI/4yKQETyaKOCwcbqTla+VPETUw0CZCN+0jzDsns066zirP2f
-         ZoAnxh6JJc0h4/iThJBe4n/TRhBzSXD9x56zLfo/qpA26pC3S5hSV6pM6JXGxOWm300M
-         MbH1tq8nSQJeYqHeI0PBSM3W4bgRJB/nWIMP+1B3G1iMaXKutFl6E75vTpxU21H6sSip
-         MB1NMJYQSstDudee+1lnG7qZ1fhxR0O5Ii0YYUpHWT7lmRtCWnp7rjBNSiWDAcKd7Lem
-         JY5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737218004; x=1737822804;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w8mEEkakGykScFNyZ0WPlZb8FWyU5Ac0gzQtTbrAz/U=;
-        b=XRLq4e9wCHk+67lkLn2x1zttNWX3pN7b7LHydbXFhIvInsgTcR0NMyBw1MKBast/9r
-         CK6fvYU7YZFYb64lVEv/gvFnArvVoLksLHiTIE5S+y7rDi7ck9AgxWLCSqrang3HdcMM
-         gf8eEVzETd6ZeUYqR29VS8or8kq/2WB3sY/cerwVSAzxtlEFRv0oIq5ipgstJz9M+mKh
-         mKv00MpI4sIir36kvrKSdrae5rob3fepA3SHtqf27vyjcPM3/HFVmqhAP59zkszPOZ+n
-         oKVeyNZIvKr3so+ZACZEF+6FpYlWSBOyypQqHJU3wPOjpCJ5wKQdZyJtX/WOgrQpkcqy
-         pZ7g==
-X-Forwarded-Encrypted: i=1; AJvYcCUo/Gebds/MqBAarDYiyNtVSaA42k97x16OSbcorYxvShzNPhQhJXjn0iMAcK4RG0xUmUVKAugiTcBwurS7@vger.kernel.org, AJvYcCVWgV5dq2AEBjRv1si9n6NFIhL9S/Ccxwir1I8r0T80C9u51j0IARjrZYpsN4Bc+VYa1Y3K1FmYedDnESI=@vger.kernel.org, AJvYcCWPSD3R+LOVO3Fo1QYO2f1rK9pmPbauXRVp7tYg7D/vAawIT/FW/+h88EffVihLE8iVk/QW2KhmFUw+@vger.kernel.org, AJvYcCXsjKJzMU44AXae7leXk1y0GDY43taf4cswEw5acqqWBS8rw0+q2WLsuWWze60NZhfA0P39SV1bp4e5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxzvx98RKGK71KdXPrqmNBv+oKbCd3Z+t4PsHgBJZt7k+NK3U5z
-	JLQKpQYaSVBqREQz0lbbntlDInAfLPnhwjCspHpMdbg++JriXj0UoVTFVg==
-X-Gm-Gg: ASbGncuBa1pJ1fp0Nrc/WNyOYMRw3JzEX/ZANk7Qa1tThtKZHSeTQ/QcIcTyos4Aq36
-	h6L/299bSrMyRJpD5fLCh1r4uAqRvsl9sX0mjqeH2vJsMfXkHzJjAfovI45lV8k0VdQTd7xPMI1
-	9H4fmWTtvt/Z1vjb0WyL8AfEVJvSlnVVkpnx2kiEjJPkMGluZebQy3eCStl0B5aYAZhHP2eORO/
-	3fE6psm04llevKJV6Q342vZbifbgzjY8au4opKoPho4LpvFPXwr3h5t1aZPkL46r4L+1oHSTAu3
-	Nor7gCI=
-X-Google-Smtp-Source: AGHT+IHEi4wmUrSoEgk5WEe5KpbsQvX76CpDRoF3M4upcFuoYFKc+Mt2Fud5TtYe9vt9uTP+GMo04Q==
-X-Received: by 2002:a05:6a20:3d89:b0:1db:d738:f2ff with SMTP id adf61e73a8af0-1eb2144d6e7mr12815751637.2.1737218003968;
-        Sat, 18 Jan 2025 08:33:23 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72dab9b9ae0sm4040705b3a.93.2025.01.18.08.33.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Jan 2025 08:33:23 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Sat, 18 Jan 2025 08:33:17 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Mohan Kumar D <mkumard@nvidia.com>
-Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org, treding@nvidia.com,
-	jonathanh@nvidia.com, spujar@nvidia.com
-Subject: Re: [PATCH v2 RESEND 2/2] dmaengine: tegra210-adma: Support channel
- page
-Message-ID: <77e9f23a-60e2-442c-9981-319fc650979a@roeck-us.net>
-References: <20241217074358.340180-1-mkumard@nvidia.com>
- <20241217074358.340180-3-mkumard@nvidia.com>
+	s=arc-20240116; t=1737218542; c=relaxed/simple;
+	bh=hajUkETnORPiNah14nSi3XD9Lwy90NfeehmMBydBHDQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YpG2P5lVJNhXLk/ZzQubAlNkQ/bWPoQOqYImaNqSk6KkEMTHkGlSRqKKW3T2RSj58WUox6FeZkjBAh9H0nUgAsiPVHPl0ty79QKKg594mrWFrLN8wcIe4tYsRD4ROcmkrY1//WK7khQQZkl2XMZ1Dg+GBeCRDYuef7dygywb3hE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J6cfAekf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9209C4CEE2;
+	Sat, 18 Jan 2025 16:42:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737218542;
+	bh=hajUkETnORPiNah14nSi3XD9Lwy90NfeehmMBydBHDQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=J6cfAekf3Fs6/bIDD7fGpwS5zPHgIXzrUegE2XvWrwUX4LRdkHA2AJbPUH9QeZ+UC
+	 EP0zv9JFXXDKljHrJINwkG+LjjK/yAuTZ5C7Ua9ZQphS8vWvxWrwmYoXh2m5jDHh/M
+	 CWNOqlywB9VzF5joBN9rufIoFJoQdDcCCfQT4I0qTC/Zb/mC5J2COQ3aIDUjRWE32r
+	 IzH+gnbrC3OVbs2BdkIoHo/Gmo4eIegBXTm68upPEjssWH3xJvCLNhFODN2ADstdB9
+	 xvkHe/ejZF1Lh1K0AmhezitA8vJOdAR3aWp+CUuMhTSjp9rtnChvFl5OHJdi4SH85X
+	 yzJT9wBSyiBJw==
+Date: Sat, 18 Jan 2025 16:42:13 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>, robh@kernel.org,
+ conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, David Lechner
+ <dlechner@baylibre.com>
+Subject: Re: [PATCH v10 3/8] iio: backend: add API for oversampling
+Message-ID: <20250118164213.74a01067@jic23-huawei>
+In-Reply-To: <fb7fe85ad22d778bf462231e693285c7b3d33b98.camel@gmail.com>
+References: <20250117130702.22588-1-antoniu.miclaus@analog.com>
+	<20250117130702.22588-4-antoniu.miclaus@analog.com>
+	<fb7fe85ad22d778bf462231e693285c7b3d33b98.camel@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241217074358.340180-3-mkumard@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Fri, 17 Jan 2025 16:17:13 +0000
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-On Tue, Dec 17, 2024 at 01:13:58PM +0530, Mohan Kumar D wrote:
-> Multiple ADMA Channel page hardware support has been
-> added from TEGRA186 and onwards.
-> 
-> - Add support in the tegra adma driver to handle selective
->   channel page usage
-> - Make global register programming optional
-> 
-> Signed-off-by: Mohan Kumar D <mkumard@nvidia.com>
+> On Fri, 2025-01-17 at 15:06 +0200, Antoniu Miclaus wrote:
+> > Add backend support for setting oversampling ratio.
+> >=20
+> > Reviewed-by: David Lechner <dlechner@baylibre.com>
+> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > ---
+> > no changes in v10.
+> > =C2=A0drivers/iio/industrialio-backend.c | 15 +++++++++++++++
+> > =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 |=C2=A0 5 +++++
+> > =C2=A02 files changed, 20 insertions(+)
+> >=20
+> > diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industria=
+lio-
+> > backend.c
+> > index 2088afa7a55c..d4ad36f54090 100644
+> > --- a/drivers/iio/industrialio-backend.c
+> > +++ b/drivers/iio/industrialio-backend.c
+> > @@ -681,6 +681,21 @@ int iio_backend_data_size_set(struct iio_backend *=
+back,
+> > unsigned int size)
+> > =C2=A0}
+> > =C2=A0EXPORT_SYMBOL_NS_GPL(iio_backend_data_size_set, "IIO_BACKEND");
+> > =C2=A0
+> > +/**
+> > + * iio_backend_oversampling_ratio_set - set the oversampling ratio
+> > + * @back: Backend device
+> > + * @ratio: The oversampling ratio - value 1 corresponds to no oversamp=
+ling.
+> > + *
+> > + * Return:
+> > + * 0 on success, negative error number on failure.
+> > + */
+> > +int iio_backend_oversampling_ratio_set(struct iio_backend *back,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned int ratio)
+> > +{
+> > +	return iio_backend_op_call(back, oversampling_ratio_set, ratio);
+> > +}
+> > +EXPORT_SYMBOL_NS_GPL(iio_backend_oversampling_ratio_set, "IIO_BACKEND"=
+);
+> > + =20
+>=20
+> Hmm, I'm very late to the party so don't bother in sending another revisi=
+on
+> unless you have too. But if you do, I would prefer to have this through a
+> write_raw() interface. Meaning we would only have write_raw() as a backen=
+d op
+> and  then you could add this as a convenient inline helper built on top of
+> write_raw(). So this would be inline with what happens with read_raw(). A=
+nyways,
+> we can clean it up afterwards since we already have a .set_sample_rate() =
+op that
+> could use a similar approach.
+I'm not against this, but just to mention that will run into the question of
+whether to support the more complex value types.  I guess for now perhaps
+pass in val, val2 and the write type and just reject anything that isn't
+supported by a particular backend.
 
-This patch triggers a build failure when trying to build i386:all{yes,mod}config.
+>=20
+> - Nuno S=C3=A1
+>=20
+>=20
 
-x86_64-linux-ld: drivers/dma/tegra210-adma.o: in function `tegra_adma_probe':
-tegra210-adma.c:(.text+0x1322): undefined reference to `__udivdi3'
-
-Bisect log is attached for reference.
-
-Problem is
-
-> +		if (res_base) {
-> +			page_no = (res_page->start - res_base->start) / cdata->ch_base_offset;
-
-->start is phys_addr_t which can be a 64-bit pointer on 32-bit systems,
-making this a 64-bit divide operation.
-
-Bisect log and a possible fix are attached for reference. I am not sure
-though if the suggested fix is correct/complete since page_no might
-overflow on such systems. It should possibly be a phys_addr_t, but that
-is unsigned so the subsequent negative check would not work.
-
-Guenter
-
----
-# bad: [0907e7fb35756464aa34c35d6abb02998418164b] Add linux-next specific files for 20250117
-# good: [5bc55a333a2f7316b58edc7573e8e893f7acb532] Linux 6.13-rc7
-git bisect start 'HEAD' 'v6.13-rc7'
-# good: [195cedf4deacf84167c32b866ceac1cf4a16df15] Merge branch 'main' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
-git bisect good 195cedf4deacf84167c32b866ceac1cf4a16df15
-# good: [01c19ecf34e1713365346f932011facd7d2d2bc6] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git
-git bisect good 01c19ecf34e1713365346f932011facd7d2d2bc6
-# good: [7fac8eef32d7735a3b01d08f2c98d5e6eaf254da] Merge branch 'driver-core-next' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-core.git
-git bisect good 7fac8eef32d7735a3b01d08f2c98d5e6eaf254da
-# bad: [24c55da105e9a641fa77c8d8efbf92472a18bf4e] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git
-git bisect bad 24c55da105e9a641fa77c8d8efbf92472a18bf4e
-# good: [73656a6ab6d428102eb5aaa9599b5fcba4a2501f] intel_th: core: fix kernel-doc warnings
-git bisect good 73656a6ab6d428102eb5aaa9599b5fcba4a2501f
-# good: [b995a104a0aa1d6b90ea4ba3110e657ae9e83213] Merge branch 'tty-next' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git
-git bisect good b995a104a0aa1d6b90ea4ba3110e657ae9e83213
-# good: [002c855847f718e12879808404dc8375207012dd] Merge branch 'next' of git://github.com/awilliam/linux-vfio.git
-git bisect good 002c855847f718e12879808404dc8375207012dd
-# bad: [54e09c8e2d3b0b7d603a64368fa49fe2a8031dd1] dt-bindings: dma: st-stm32-dmamux: Add description for dma-cell values
-git bisect bad 54e09c8e2d3b0b7d603a64368fa49fe2a8031dd1
-# good: [9d880452fb3edc4645e28264381ce35606fb1b19] dmaengine: amd: qdma: make read-only arrays h2c_types and c2h_types static const
-git bisect good 9d880452fb3edc4645e28264381ce35606fb1b19
-# good: [775363772f5e72b984a883e22d510fec5357477a] dt-bindings: dma: ti: k3-bcdma: Add J722S CSI BCDMA
-git bisect good 775363772f5e72b984a883e22d510fec5357477a
-# bad: [36d8cbd661c48f4c18eeb414146ec68a71fd644f] Merge branch 'fixes' into next
-git bisect bad 36d8cbd661c48f4c18eeb414146ec68a71fd644f
-# good: [762b37fc6ae2af0c7ddf36556fe7427575e9c759] dt-bindings: dma: Support channel page to nvidia,tegra210-adma
-git bisect good 762b37fc6ae2af0c7ddf36556fe7427575e9c759
-# bad: [9602a843cb3a16df8930eb9b046aa7aeb769521b] dmaengine: bcm2835-dma: Prevent suspend if DMA channel is busy
-git bisect bad 9602a843cb3a16df8930eb9b046aa7aeb769521b
-# bad: [68811c928f88828f188656dd3c9c184eeec2ce86] dmaengine: tegra210-adma: Support channel page
-git bisect bad 68811c928f88828f188656dd3c9c184eeec2ce86
-# first bad commit: [68811c928f88828f188656dd3c9c184eeec2ce86] dmaengine: tegra210-adma: Support channel page
-
----
-diff --git a/drivers/dma/tegra210-adma.c b/drivers/dma/tegra210-adma.c
-index 6896da8ac7ef..1de3d84d3b7c 100644
---- a/drivers/dma/tegra210-adma.c
-+++ b/drivers/dma/tegra210-adma.c
-@@ -914,7 +914,7 @@ static int tegra_adma_probe(struct platform_device *pdev)
- 
- 		res_base = platform_get_resource_byname(pdev, IORESOURCE_MEM, "global");
- 		if (res_base) {
--			page_no = (res_page->start - res_base->start) / cdata->ch_base_offset;
-+			page_no = div_s64(res_page->start - res_base->start, cdata->ch_base_offset);
- 			if (page_no <= 0)
- 				return -EINVAL;
- 			tdma->ch_page_no = page_no - 1;
 
