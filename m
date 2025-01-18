@@ -1,117 +1,137 @@
-Return-Path: <devicetree+bounces-139478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDF68A15DEB
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 17:08:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97A98A15DEF
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 17:10:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E29918877EE
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 16:08:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B49287A36F1
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 16:09:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB845199239;
-	Sat, 18 Jan 2025 16:08:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD97319CC33;
+	Sat, 18 Jan 2025 16:09:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tEM0q6D7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvUkA6qe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1C63192D97;
-	Sat, 18 Jan 2025 16:08:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A997199EBB;
+	Sat, 18 Jan 2025 16:09:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737216494; cv=none; b=sT6AcS+WRZc2Wp53jRvW99tFzH7F08fXlLclZThr+//n8uP+RkkwF7ekm8YuNQ4jC7R1oowID+TWwtyge6O2hYjxx8zyERE0R0d+KCpgmGWBpyoiFatA9LuigPAbTj8evVe1+PK0IT03GdHspZF3UhVB5HSpOSxxOpbWexRfvjo=
+	t=1737216596; cv=none; b=WUeZIF8N2xSAGjc6VtZymmmsgPeffO6g9MRZOO9Iz1ESRJPpf2ly9pDb9YYw6qwTuHtarJIou2Q9O7Iw+SnLsZD3RwcOaOxC6NfJ8Ho+hkqyaaO0JFakvdaBCQqSodVw2JT2YCv2FURn+WAKwykwm+fkLnIDKI2DnAsZiVqM0R8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737216494; c=relaxed/simple;
-	bh=ibohityZJYJR2vS9My7/wylHqL05Ro2cTshSmwpPaNY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=okqO53iNtD7Dbs0jOmGYo6gTgfELVeAAg8ldnUi0ACMTmvGURfvJfaZnhvlOXmp60+B7mX/Hr/m+5bs63zzx9Ja/aS9YLsujrlDwvaiBQckefzPM9aDt06Fd1H+VjOGeBwQTk+uOEmf+9Rizl8oXhZpQFRbRrFdwDaRS3MnCqc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tEM0q6D7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3238EC4CEE1;
-	Sat, 18 Jan 2025 16:08:13 +0000 (UTC)
+	s=arc-20240116; t=1737216596; c=relaxed/simple;
+	bh=PkZWVCYKrWIX81eX/570ZNz2wyT5Cf3ObdKVrtOiKww=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=enIInfqzumq/ts3racFzK+K14qazwaioWiqOBzRUHqZyGLfEgLnA6tsbW/f2r0UTXjhj3Pbfx4DHWp29HFZopphPHZj43rXN/c42L/ZrXNzF28GdMasqMnOVKkjnxUUlb7/rcZAxnIM5QGp2UBsIvUlCa6o5Bz5UnJ63oYy8N/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XvUkA6qe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39326C4CED1;
+	Sat, 18 Jan 2025 16:09:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737216494;
-	bh=ibohityZJYJR2vS9My7/wylHqL05Ro2cTshSmwpPaNY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tEM0q6D7UIMeyjJ2p05D5o7IZ/kTkuPnNlJwvWVrp4xQU4kDhA2IIgPTnvZlqlmzW
-	 xGRCgsmjVbvPmZk6ypAACPDGY3MOk/nkFseYJwBBbYkXrGf9iWtTvjiE2IoPj4rikh
-	 ita+dNTZ2UrSw2q0Kcv70n0TlwESzDR0x/xWHSVfXw0JXZeumw9Mvv5F9ieLIDMkmc
-	 6IlJF2gaREAFVLVUEiH0aFRpBT4AugWxjXTBZQ2n7LHmOcuw1kzjECBS2Oozw6mhbv
-	 o6vnMkHwwIn3XKwvZkiv0Hs+wgdpASnOVTitnujYJfuaFv46bOeGsS7dY/1j7UN1r5
-	 eVFrSsKhHCcqg==
-Date: Sat, 18 Jan 2025 17:08:10 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Boris Brezillon <boris.brezillon@collabora.com>, 
-	Steven Price <steven.price@arm.com>, kernel@collabora.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/3] drm/panfrost: Add support for Mali on the MT8370 SoC
-Message-ID: <20250118-meticulous-black-caracal-ec7f0d@krzk-bin>
-References: <20250116-mt8370-enable-gpu-v1-0-0a6b78e925c8@collabora.com>
- <20250116-mt8370-enable-gpu-v1-2-0a6b78e925c8@collabora.com>
+	s=k20201202; t=1737216596;
+	bh=PkZWVCYKrWIX81eX/570ZNz2wyT5Cf3ObdKVrtOiKww=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XvUkA6qeiMBmXPQlvhApvRLsLuH8xXOkT4v3YhMZfTxNzRX7NpOUEJ8N7ewhthwgz
+	 sBoXYB2ssGM2xNng9SuBDO6KZ0klTkdw3X23FwYaDJHkRSDjOK34iA9NSjuriRqwLo
+	 4VonKmrgznbqnTaXkPJEZZQGIHqZUm3bk7zvqj/61gl7ROLeIyBI8rkUx7YIPZbD1T
+	 knVWhI+rh9sdKN0nreqtYs+HwYbMQiI684KKkQCaYqAvlEt7x+DEYVTLPNMQ4/xhBm
+	 S/p7mZeb7j3oyUBifySnzKOcExrQoPr1oOWGvc7VUqIXUdneslhpcyEQ8uk2UpC9Mg
+	 skO5AMVL30l9Q==
+Message-ID: <6d364313-d9e9-4831-af2d-df6b806e1ecd@kernel.org>
+Date: Sat, 18 Jan 2025 17:09:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250116-mt8370-enable-gpu-v1-2-0a6b78e925c8@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] dt-bindings: arm: mediatek: add mt8370-evk board
+To: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Sean Wang <sean.wang@mediatek.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com
+References: <20250115-dts_mt8370-genio-510-v2-0-fc9b01d08834@collabora.com>
+ <20250115-dts_mt8370-genio-510-v2-1-fc9b01d08834@collabora.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250115-dts_mt8370-genio-510-v2-1-fc9b01d08834@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 16, 2025 at 03:25:58PM +0100, Louis-Alexis Eyraud wrote:
-> This commit adds a compatible for the MediaTek MT8370 SoC, with an
-> integrated ARM Mali G57 MC2 GPU (Valhall-JM, dual core), and adds
-> platform data using the same supplies and the same power domain lists
-> as MT8186 (one regulator, two power domains).
+On 15/01/2025 11:29, Louis-Alexis Eyraud wrote:
+> 1. Add compatible for MT8370.
+> 2. Add bindings for the MediaTek mt8370-evk board, also known
+> as the "Genio 510-EVK".
+> 
+> The MT8370, MT8390 and MT8188 belong to the same SoC family.
+> It is a less powerful variant of MT8390 SoC and their main
+> differences are:
+>  - Arm Cortex-A55 cores number (4 vs 6)
+>  - Arm Cortex-A78 core speed (2.0 GHz vs 2.2 Ghz)
+>  - Arm Mali-G57 GPU core number (2 vs 3)
+> 
+> Like MT8390, MT8370 hardware register maps are identical to MT8188.
 > 
 > Signed-off-by: Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
 > ---
->  drivers/gpu/drm/panfrost/panfrost_drv.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_drv.c b/drivers/gpu/drm/panfrost/panfrost_drv.c
-> index 0f3935556ac761adcd80197d87e8e478df436fd5..1d51b64ed0f0660cc95263a289d5dad204540cfd 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_drv.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_drv.c
-> @@ -837,6 +837,15 @@ static const struct panfrost_compatible mediatek_mt8192_data = {
->  	.pm_features = BIT(GPU_PM_CLK_DIS) | BIT(GPU_PM_VREG_OFF),
->  };
->  
-> +/* MT8370 uses the same power domains and power supplies as MT8186 */
-> +static const struct panfrost_compatible mediatek_mt8370_data = {
-> +	.num_supplies = ARRAY_SIZE(mediatek_mt8183_b_supplies) - 1,
-> +	.supply_names = mediatek_mt8183_b_supplies,
-> +	.num_pm_domains = ARRAY_SIZE(mediatek_mt8186_pm_domains),
-> +	.pm_domain_names = mediatek_mt8186_pm_domains,
-> +	.pm_features = BIT(GPU_PM_CLK_DIS) | BIT(GPU_PM_VREG_OFF),
-> +};
+>  Documentation/devicetree/bindings/arm/mediatek.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-No, people, stop this nonsense. This is exactly the same as previous.
-Don't duplicate entries just because you want a commit.
-
-> +
->  static const struct of_device_id dt_match[] = {
->  	/* Set first to probe before the generic compatibles */
->  	{ .compatible = "amlogic,meson-gxm-mali",
-> @@ -859,6 +868,7 @@ static const struct of_device_id dt_match[] = {
->  	{ .compatible = "mediatek,mt8186-mali", .data = &mediatek_mt8186_data },
->  	{ .compatible = "mediatek,mt8188-mali", .data = &mediatek_mt8188_data },
->  	{ .compatible = "mediatek,mt8192-mali", .data = &mediatek_mt8192_data },
-> +	{ .compatible = "mediatek,mt8370-mali", .data = &mediatek_mt8370_data },
-
-No, express properly compatibility or say in bindings commit msg why
-devices are not compatible.
+Didn't you receive acks, reviews and so on?
 
 Best regards,
 Krzysztof
-
 
