@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-139406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25207A15C16
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 10:12:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 998A6A15C18
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 10:13:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 754803A7DFE
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 09:11:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95E717A235A
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 09:13:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 749FE16FF4E;
-	Sat, 18 Jan 2025 09:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DBCA16FF4E;
+	Sat, 18 Jan 2025 09:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S9YOIaVk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SH+nbyF5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 409291632D3;
-	Sat, 18 Jan 2025 09:11:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D791632D3;
+	Sat, 18 Jan 2025 09:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737191520; cv=none; b=ExFHVJ90Hq0xkD+f7hetr6Vw+WQpgQEeZ3bgZTGj/G7HhQuU1Q/P5wzfLur+LRbmyfygVLXCGOtOf1/PyZDUKCM7xPT/64eRoY/9BYfeM8WX73G5PtQxeqQK5B9WU8U4wKg2CsbHlTR8YdVe2mjCQUIW0EFm6QZMrgdJgDbWwEg=
+	t=1737191594; cv=none; b=tYYp+iSzghvqxGs9BZTqvodPwsA6VtJTMz+oZ4HMA6TbI0TYeflu8t3hf8/84o0RaMcqSc9dgeR08A9UJ3STNRAu9I5RZ3/nZgD5ojMa4uvowfymlkUiMk2NyVehJ063ODgGBElFJFBfnei7O1/aR14d9MuaTSC+xpBFP2TqB2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737191520; c=relaxed/simple;
-	bh=wSrwL7+zAwTzw2pcRpYszGvXj3TLvyE4g/z421PM3iY=;
+	s=arc-20240116; t=1737191594; c=relaxed/simple;
+	bh=MUQ5voLVemt+kelhaaFIJwaMgdhz0IGii3dF1Sgvl/4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XSEuzUOOHS9FOLKsGef/VLDWNoKSsu0nXH6PTFAYNpxyx9orLDGAhqwefPbaODZdBwkUb1AVvdFlLZDkD0+UJenfgaV3jFdVC8hebx4/TspzqcXAK/Xfjs31cMRslagAXtJD2XXiDC1RJUSmN/j2k3PRrHpkIbZdGlZF2uQfHcg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S9YOIaVk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14A7FC4CED1;
-	Sat, 18 Jan 2025 09:11:54 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rl5JU914yfDFLo6yhaTJk211yEa/EhdabVkeEp7KxNVIsGKVfvN11aqoiJTOhfzRFeaqxTKd1qNBEvrQkN5f3cHYcbKGvMicT1pcpXaB//yRu2M3anRXi1U7t/pmg3JIxqSD+mw4kWsJrULhQqkxYfNDyore6PPLM2bpCu7dZRE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SH+nbyF5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 376C1C4CED1;
+	Sat, 18 Jan 2025 09:13:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737191519;
-	bh=wSrwL7+zAwTzw2pcRpYszGvXj3TLvyE4g/z421PM3iY=;
+	s=k20201202; t=1737191593;
+	bh=MUQ5voLVemt+kelhaaFIJwaMgdhz0IGii3dF1Sgvl/4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S9YOIaVkgyChCiUixaGUbVHjhvm3m2NFP+G7QnaTF1oUXbEKIOhCqH+XA80hmskr6
-	 L3tZ8wHkfpEDovq7r97WoTXfrhDqzyCENkg6O0G59+pxEhE7gDaCdyoee8sJYfxbuy
-	 ftnt5a7BDgptgMV1jfkQle/heSDG3qPXhvbY4jM1kXCbQl3UOtzsZxJuBUbD3omM7q
-	 aVmhzni4ETTBE4P733SuyR7u32ahg0Jq+akHdpL5EG8KowOb9kvGSZXg3Dj/OPa3q0
-	 P7T3Ewk/+mGThkg3V8kQ9pHSs2XQWLvWFREtIaZdod18UqfOEOCaXgmBTbi5H/Zzyf
-	 9j+ANqbKJGYUw==
-Message-ID: <bdaee40d-a033-40c6-b96d-d4c73410b7ee@kernel.org>
-Date: Sat, 18 Jan 2025 10:11:52 +0100
+	b=SH+nbyF5pfP92lYbAZViosCRfe7m0iFRe41lx1vaCB/jhLDZZfxXCWExWGRjP6Tt1
+	 QjbcNFNuHMQH8PToGCoKQqszn4kDKxXSIrGdSxDMO2fI+EsmLNuBJ76SEILgtc6JHv
+	 0orsSQ7Dqh1vnWe8m+mUaUHyIatpIMWbptRZldVSjhFccFzi+tzM9hhkyFptHrQxaZ
+	 kYaCuZ5Ei0jd5nLt19HaTDQd34JqE9+XCXL1mLQc8Vy0qMBy2XxptrYdmwDOckJkYH
+	 J0L6a1tSil/RDsl9URsnB12IjSI6GwHAFpXvh0nfgqm6dB8atpQ1t2EWlgsxsRRsUD
+	 1F1IclRR/HriA==
+Message-ID: <76ab492e-ae9c-46eb-bf2e-d794863baf8d@kernel.org>
+Date: Sat, 18 Jan 2025 10:13:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,19 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: clock: add clock and reset definitions
- for Ralink SoCs
-To: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc: linux-clk@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
- tsbogend@alpha.franken.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com,
- angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de,
- linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
- yangshiji66@outlook.com, linux-kernel@vger.kernel.org
-References: <20250115153019.407646-1-sergio.paracuellos@gmail.com>
- <20250115153019.407646-2-sergio.paracuellos@gmail.com>
- <228a0b1b-68ec-40d2-b379-e9894a34cb57@kernel.org>
- <CAMhs-H-AiYULr8Yd2Cg2qqnvriq3YGrCqnfeKMMGqZyPM3XzeA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: mediatek: add support for
+ mt8196
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Cathy Xu <ot_cathy.xu@mediatek.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Sean Wang <sean.wang@kernel.org>, Lei Xue <lei.xue@mediatek.com>,
+ wenbin.mei@mediatek.com, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Guodong Liu <guodong.liu@mediatek.com>
+References: <20250110104703.13625-1-ot_cathy.xu@mediatek.com>
+ <20250110104703.13625-2-ot_cathy.xu@mediatek.com>
+ <dnjtaapqbn6zy55k5ky7zltswkbg7cjh2xwlnrmqdiz7tfm6rc@wbepc5koem6e>
+ <66218a3c-04c5-42ea-ba9c-e0fbc72ed16f@collabora.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -108,57 +111,43 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAMhs-H-AiYULr8Yd2Cg2qqnvriq3YGrCqnfeKMMGqZyPM3XzeA@mail.gmail.com>
+In-Reply-To: <66218a3c-04c5-42ea-ba9c-e0fbc72ed16f@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 16/01/2025 10:53, Sergio Paracuellos wrote:
-> On Thu, Jan 16, 2025 at 10:16 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 13/01/2025 14:20, AngeloGioacchino Del Regno wrote:
+>>> +
+>>> +        properties:
+>>> +          pinmux:
+>>> +            description:
+>>> +              Integer array, represents gpio pin number and mux setting.
+>>> +              Supported pin number and mux varies for different SoCs, and are
+>>> +              defined as macros in dt-bindings/pinctrl/mt8196-pinfunc.h
+>>> +              directly, for this SoC.
+>>> +
+>>> +          drive-strength:
+>>> +            enum: [2, 4, 6, 8, 10, 12, 14, 16]
+>>> +
+>>> +          drive-strength-microamp:
+>>> +            enum: [125, 250, 500, 1000]
 >>
->> On 15/01/2025 16:30, Sergio Paracuellos wrote:
->>> Add clock and reset missing definitions for RT2880, RT305X, RT3352, RT3383,
->>> RT5350, MT7620 and MT76X8 Ralink SoCs. Update bindings to clarify clock and
->>> reset cells depending on these new introduced constants so consumer nodes
->>> can easily use the correct one in DTS files.
+>> Why duplicating properties? No, use only one.
 >>
->> I asked to explain why these should be in the bindings. Usage by DTS
->> alone, if driver does not use them, is not the reason as I explained
->> last time. The reason is that your driver actually depends on these
->> specific numbers because how it is written.
 > 
-> The driver uses them implicitly since the clock index is registered
-> for any single clock and in a specific order matching these new
-> constants.
-
-Yes and that explanation should be in commit msg, because that's the
-reason for this patch.
-
+> The problem here is not entirely about duplicating properties, and I'm not
+> sure that the reason is actually acceptable (but being this a special case
+> the `description` field would be mandatory to have IMO!!).
 > 
->>
->> Or I understood it wrong and this is purely for DTS?
+> So, the reason for this separation is that the drive-strength-microamp does
+> activate a special feature in the controller called "advanced drive strength
+> mode", which is switching to different shunts that will decrease the power
+> efficiency of the chip (by an ignorable amount, if that's one pin - but if
+> that goes to something like 100 pins, it's not ignorable anymore).
 > 
-> No is not purely DTS but constants are going to be used from DTS since
-> for clocks we are matching already the index registered on clk_hw
-> structs (for example here: [0]) and
-> for reset the cells indicate the bit within the register so BIT macro
-> is used [1] with the stuff passed from consumer nodes.
-> 
-> So if I understand what you are asking me to say in commit "Update
-> bindings to clarify clock and
-> reset cells depending on these new introduced constants so consumer nodes
-> can easily use the correct one in DTS files matching properly what is
-> being used in driver code".
-
-"being used in driver code (clock IDs are implicitly used there)".
-
-> 
-> Would this work for you?
-
-
-Yes, I want to be sure that commit expresses that driver uses these
-indices implicitly, not just passing them to the hardware like IRQ
-numbers or reg addresses.
-
+> I'd be happy if we could let them retain both properties after putting a
+> clear description of what's happening and why there are two of them.
+It would be fine then, but please add some sort of description to these
+fields documenting that difference.
 
 Best regards,
 Krzysztof
