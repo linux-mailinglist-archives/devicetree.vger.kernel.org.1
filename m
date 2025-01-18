@@ -1,137 +1,82 @@
-Return-Path: <devicetree+bounces-139456-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139457-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3980AA15D52
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 15:35:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02113A15D55
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 15:37:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E3293A6041
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 14:35:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1101E1626B3
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 14:37:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9671D188A08;
-	Sat, 18 Jan 2025 14:35:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E7718B470;
+	Sat, 18 Jan 2025 14:37:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nE7/1Ni0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r10ZU+wt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D23752B9A8;
-	Sat, 18 Jan 2025 14:35:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA3B4184;
+	Sat, 18 Jan 2025 14:37:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737210925; cv=none; b=ko36pQ9qA5d7IvojvjGHN4kEujuR2NO3mzoGhiaF7ryozrIQpOGbfU1aeiR6I96YIOSMplhvQ1Pk1taZfYX60A/jJ1SM8C9SguJdMlRGd3XI7FYj92Nhr1GCx4uZuv4rZAP2NQ+7JgyonWE6JdWW9oHvXYlOb3qrzCLoaxeiroI=
+	t=1737211024; cv=none; b=R/ocnjbHyWXRIIj6fQTcs5wGT7q4GcAQ7vlDubqmPqhJ/jqKTlGBySSsZ2k7w21P5yogFkTAZk14gBLMaFIqLWaNfpagk9zD+oGo5D5IBkvqnybWVRO79mPnWiv4y8tJDvTU//LQ3VMIFf/PgGbggi5Dl+lhHqDiy/rv1mbm8oA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737210925; c=relaxed/simple;
-	bh=X8S9ixEcY8abMh6hBNRFz4AKcSH2mJNqJhoZUq3Q+OU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qvpO4dxyXMv0FpemQpKC5F4JWBAObQnNrnGGUsUfZiJvmgI54Z547uTTDz+gWTNOGuuMiWN6QDLlt32dtwVD4RPE1cGSl/2zmIRgk62jel7hhTJRTfEsqWbU/QaxKet8dLYGQsDsugN2l0WL/oEEtrw2RotVfRMJ9Z69R0LrFe4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nE7/1Ni0; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5d0ac27b412so4060508a12.1;
-        Sat, 18 Jan 2025 06:35:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737210922; x=1737815722; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=X8S9ixEcY8abMh6hBNRFz4AKcSH2mJNqJhoZUq3Q+OU=;
-        b=nE7/1Ni0fq6sN2HhBmRSloQ8lhAQZ9ZP5qzqNPBDd0qCn/6DSGQ/ZYcbbWROWrtxX5
-         TlO6T9fNq6yI3qbcvX5my5Aal6mARXCgwldmeEepXhgut6TcjsZ1x+q6jrckapndOhyC
-         5NoHj2FnBGMscN5IhPyZ/PWWMDfc8wo1aAvJujeAowS8BzpVkTLLmSjFhNlBaFhWIdnE
-         MeFCV57B1A70UMecAWe2EMVm9L2xvCLcJJJ9a7cqdSTXyRF/641IPmmEksibGfp2Vhbf
-         jemnEOSNaq+Myw8KMcH19eQaYWD5mndT8xuQrr2AJ9C1tbWIyLkNh6TYxB1RV6gXl2Ds
-         HMFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737210922; x=1737815722;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=X8S9ixEcY8abMh6hBNRFz4AKcSH2mJNqJhoZUq3Q+OU=;
-        b=lMNpE5DUPN5HMXkGuwgfpO3xEXPsXHdwZUE1Vgd/LpDKvf43vd8JlAUgpFA0NHowzg
-         9sScigfAG5n7iKMMy6CNlsze8w5lAwhaOXVSqew8wjfYSrRcAjBs0/BS8TuaHvYsNEv8
-         hG4hXCBQvLNeAfkOivxFRUdyOsIa9Evbao41uMBSfnAPcfXhTVOjKMcZmMzDWUt+katv
-         4GqKDJAIXKECRMPE8PgxGbYjnC6kriK1uyD9lab55wziW6c1nFei8DFFVKvA5JyDt1CT
-         otT+zNxkrZiGoEmiOLcwp+OEqo/bXcZeaUWE9WTYXVz5r2aDKLFsNusvYIfkJMMrGGCj
-         ngvw==
-X-Forwarded-Encrypted: i=1; AJvYcCV9u3lAeKtcsCixn6P8hXGAlC9Tqu1c5lRWMxulGtbvHaywWoe9lZqPaYPWvdSRX88oWiI33dp7yqzjBspy@vger.kernel.org, AJvYcCW8q7pmVQaW8YwoxkgQRuXZRvBDHLcGCUvkwCt5s358fIB5gokH3hTd7XAKbBDxdUGoZ28Z2OUsauXx@vger.kernel.org, AJvYcCXAG8mCoWJjAydaGaT4YVmZAxdFntbcFb36x+T/aancIxzGkrkcIq8Ba3Yl+Nk7JQ+pKdvRoXOzwUvd@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+NUzbcpJR9+LND8IIvAOmciqxpdSbacbK7Mr/8QNo3FQlet9Q
-	jnGp7H5SrxD8rvrcRNPyqUec7G7xgFdpTw5MBXpF8FDiVA4U9FfWcDOnYYmPlp3U+nJbTbsOxnh
-	eUtXkbwgNOM+bDEXlT2CeJLPx8OI=
-X-Gm-Gg: ASbGncu9TV++PFp8iMirBNed5VvDXBdIR4VhNLidhMZsxEusku7wOafLN8D0STDMgT0
-	+CRic27ERZcSeg6qWdToGvW15o0GhQG5MY9l37g2owWF0c3ISxShC
-X-Google-Smtp-Source: AGHT+IFDZpftdKqBFqBjBkAeeMYE15CR2JHURmc/olRPtILwjDfNNssQSQSY8GDDreU8V095+cJIkrJgg1PZfxTj8hY=
-X-Received: by 2002:a50:8d17:0:b0:5d1:22d2:8965 with SMTP id
- 4fb4d7f45d1cf-5db7db2bff6mr5038044a12.30.1737210921703; Sat, 18 Jan 2025
- 06:35:21 -0800 (PST)
+	s=arc-20240116; t=1737211024; c=relaxed/simple;
+	bh=GBc2u0YKf1JZiBfg6Qhrs216BcHR0037QaX16eH5yrA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bwO+t1beYwrwNeovUvh0UMhW8EASk9J3OFIwsctcLiK023yEYpstj5qWeOa6kaVCxLLkWR3nLH5A3l/OE1QmBLZ+9IGY9rNuOniCIq0g1iyMe4bZTzKul3eU0mt6xfeg6IasrYOSVseeGgIt+TnTxzZ7R9/Wum1eND+Fx+Fg/wQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r10ZU+wt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B4D5C4CED1;
+	Sat, 18 Jan 2025 14:37:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737211024;
+	bh=GBc2u0YKf1JZiBfg6Qhrs216BcHR0037QaX16eH5yrA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=r10ZU+wtBXUjXeKdN4hOERu7siMqAM6lVwEElpFG328GF+YvYt7/nb8pjOEx3vaU+
+	 S7Q3DaKAvVdy0Dvnbz3fN6JHvvzQkhCpHazoIo9TaKEsXBYlgc0qz4bxg9XYklw6ZH
+	 8jGjd5AIdyjsn9Pjqkn77CLl/rpeTnwt+X2M2IPQOMeP11X8+lm1yFZzdM1O6E4OEa
+	 BzaxYkfb1e8TxxAWTfakdGcvI05tTo97qGYJdH6nB5nUOKIKdcO1urv8J6rXNAMQHp
+	 89nJnaVpXuD6A3sbJOXVPFHzEo/FpDKf4b8Hg2b93KOhZMwyb4gbc4GN31d/Tr39O4
+	 kQ5ZtiySe98fg==
+Date: Sat, 18 Jan 2025 15:37:00 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Wenliang Yan <wenliang202407@163.com>
+Cc: linux@roeck-us.net, Jean Delvare <jdelvare@suse.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings:Add SQ52206 to ina2xx devicetree
+ bindings
+Message-ID: <20250118-sparkling-spectral-mosquito-a5bc01@krzk-bin>
+References: <20250117082017.688212-1-wenliang202407@163.com>
+ <20250117082017.688212-2-wenliang202407@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250115012628.1035928-1-pgwipeout@gmail.com> <00cbc2a1-b4c1-46a2-8234-f66edc19fac9@kernel.org>
-In-Reply-To: <00cbc2a1-b4c1-46a2-8234-f66edc19fac9@kernel.org>
-From: Peter Geis <pgwipeout@gmail.com>
-Date: Sat, 18 Jan 2025 09:35:08 -0500
-X-Gm-Features: AbW1kva6DFr1RzjQp9KXMYYlhacM2koJu0uBfxOzcSRq7CyYw1cACxFrw_KEa_w
-Message-ID: <CAMdYzYoE54PSdTH9JPBFLggDy9CZsj47N6qFKJFZz4xe3VVbBw@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 0/6] rockchip: add a functional usb3 phy driver for rk3328
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>, zyw@rock-chips.com, kever.yang@rock-chips.com, 
-	frank.wang@rock-chips.com, william.wu@rock-chips.com, wulf@rock-chips.com, 
-	linux-rockchip@lists.infradead.org, Alex Bee <knaerzche@gmail.com>, 
-	Algea Cao <algea.cao@rock-chips.com>, Arnd Bergmann <arnd@arndb.de>, 
-	Conor Dooley <conor+dt@kernel.org>, Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
-	Diederik de Haas <didi.debian@cknow.org>, Dragan Simic <dsimic@manjaro.org>, 
-	Elaine Zhang <zhangqing@rock-chips.com>, FUKAUMI Naoki <naoki@radxa.com>, 
-	Johan Jonker <jbx6244@gmail.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Rob Herring <robh@kernel.org>, Sebastian Reichel <sebastian.reichel@collabora.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Trevor Woerner <twoerner@gmail.com>, Vinod Koul <vkoul@kernel.org>, 
-	Zhang Yubing <yubing.zhang@rock-chips.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250117082017.688212-2-wenliang202407@163.com>
 
-On Sat, Jan 18, 2025 at 4:08=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 15/01/2025 02:26, Peter Geis wrote:
-> >
-> > This is my newly reworked phy driver for the rk3328 usb3 phy. It is
-> > based loosely on my original version, but as of now almost nothing of
-> > the original driver remains. The main fix here is the discovery of
-> > BIT(6) in the interrupt enable grf register fixes the usb3 disconnectio=
-n
-> > detection (mostly). On occasion an unpopulated usb3 hub will take
-> > several seconds to disconnect. However this means all of the hack aroun=
-d
-> > work to reset the usb core manually is no longer required.
-> >
-> BTW, RFC for some maintainers means "do not review, work-in-progress".
-> For some means "review, but low priority" or "review, but for sure I
-> have bugs here". I usually review and then someone responds: "it is not
-> for review, it is just RFC", so to avoid my wasted time please always
-> mention in cover letter why this is RFC. What do you expect here or why
-> this is not ready for review as normal patch.
+On Fri, Jan 17, 2025 at 04:20:16PM +0800, Wenliang Yan wrote:
+> Add the sq52206 compatible to the ina2xx.yaml
+> 
+> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+> ---
+> 
+> Add the meaning of 'shunt-gain' in SQ52206.
+> 
 
-Thank you, that makes sense. I marked it as RFC as I'm aware it isn't
-a perfect solution and there's a lot of undefined values. What I was
-looking for here was:
-- Review for code quality, so if I'm completely off track I can get to
-work fixing it. (Thank you so far)
-- Sanity testing from others struggling with the issues it fixes.
-- Feedback from USB engineers about the issues remaining.
-- Hopefully someone with access to the IP can provide insight into the
-magic registers.
+Didn't you got an Ack from Conor already?
 
->
-> Best regards,
-> Krzysztof
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
