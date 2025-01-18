@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-139404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2FEFA15C0D
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 10:06:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52929A15C0F
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 10:08:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F8DF3A8E8D
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 09:06:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 824BC1889C57
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 09:08:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D71321632D3;
-	Sat, 18 Jan 2025 09:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3601632EF;
+	Sat, 18 Jan 2025 09:08:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="keDSW8LJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MmtRGLPQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAD67149C53;
-	Sat, 18 Jan 2025 09:06:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EACE149C53;
+	Sat, 18 Jan 2025 09:08:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737191189; cv=none; b=pyhswmFK0NWVVvCBh7Sfnpz7l6Fc9nE/NXdIS3eNHxv+uiWZHyw0FVDgQEYaDR8c5jhULxDlCzEKO369GkoRL4RjEz4pF/yUAPkmBphAvEynX+90HBzLWuMvPPmNrbgajo3gs7HFqvHCKSJTlssHHxPLj/unA0uDollC1NZvYBg=
+	t=1737191322; cv=none; b=T8Ga+8DJPNV32ggtZu65v+KGhHfI7H3goeh94prCAkNJbEWOnZTa1JjWzASKYDxrZ0AVpmY90dWXTTeLzJdtxgkVAjH1B4ELxYG7VPZbsT6ZKLK6Q+iMS5MtrbkGSmE1fBkE95TfnOP0azI/tWWzow1NWBYUDkGIvYLrEp2mShk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737191189; c=relaxed/simple;
-	bh=W72n6k6I10kEtr2+MT478ZeK4p5MAuwX/eow0Hqin2A=;
+	s=arc-20240116; t=1737191322; c=relaxed/simple;
+	bh=fnQFZ7OW3e3AUF0ttwPf2f3WYHTq7BE+uUVTG5XL8WI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QQg5pXA9bC1mcrFsfwTxuHEqExVPGlGWYiTW+4XYrNVjJD4V8LV7ZJFbjUpp2OoeTffZHComiJTbxPn42BUvOQ2+hEM/iBJ45dNi1fzw/ZaKH/e1mr58M1NumUwi8+s30XawcLJfSd4ttJ6pGMa/oydE8/yFZ29JLoZU0GqkToE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=keDSW8LJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F922C4CED1;
-	Sat, 18 Jan 2025 09:06:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oV5BwxaDOt/H4Fn6H/bbXr+4fJK/c3v1PnGEKiCB9/ehBR9oF5OY+puHZ0gKSA8gzGD1YeAWz3y7T19+rGFSLM0BZPVLBfGL+iZBfcNA7RYapGRdLEWePtphetjwUXC3XwRrwIJ/pdDno6286f3rAvBtkDSdbgKKiCLqPtl9D5c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MmtRGLPQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C60ABC4CED1;
+	Sat, 18 Jan 2025 09:08:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737191189;
-	bh=W72n6k6I10kEtr2+MT478ZeK4p5MAuwX/eow0Hqin2A=;
+	s=k20201202; t=1737191321;
+	bh=fnQFZ7OW3e3AUF0ttwPf2f3WYHTq7BE+uUVTG5XL8WI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=keDSW8LJ+M3LN4LMEB+CNT2Rq/TEvuY5FVoVfUb8l7sTx3gULvY3cJsaIWYOWwrSB
-	 QodHlBEs3JH4er87ELHu08tfM48aUEW/JGGvQ7fZK7c3yZur0h06Q0hN391h2Zof8Q
-	 7RNSN2fN0mbNx519CEfmkUGVbk234yBfXed5IrCXk334N0SBCwOZMdKTeqXFUARTGp
-	 FIPyppfVq8zpUHkX3A/k1UbjcaRgu7GrMEVWBvztnsbJHd0d6UJlmjWetXmSouEwfL
-	 4jr2r1PjXldA5pq6gyW4hFHxvmJbj2x0YS75ktna9tTcHEU6oAc5kIwiyivX1+jqfi
-	 5wiALGH4QTvHA==
-Message-ID: <6ed39130-4f77-490d-ab28-8b65cb685147@kernel.org>
-Date: Sat, 18 Jan 2025 10:06:21 +0100
+	b=MmtRGLPQEM5RgnSVRclg7ZXw7yokBT3Q3ibM34xXEti6/JZM2kxNXURa2lWH1wnFd
+	 tIQxxeh4A1BoizR28ibVKsLy4SUnfvvXey6tsSYXIT680H/bJKqH6WxL2U1A+5e24L
+	 oNKw9Rtu2JtmJZ4mNu6hRppfo1fC6dV0SrCWYgsq35lCkNxmS40R5tWkFoorojwQlX
+	 v4ZYX2CPPrroNexqQD6ywPyzRyoPPVK1aOnXGJTh0quZBciiYh2ecEXeYTzSRFIJ06
+	 C36UPd/BU/WTeJzYQXCkWbUc6+ZUp3iFz/sBVx8kjiioxUuDq9BDRLpZw3suRgjwij
+	 t633+6zjK12CA==
+Message-ID: <00cbc2a1-b4c1-46a2-8234-f66edc19fac9@kernel.org>
+Date: Sat, 18 Jan 2025 10:08:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v1 2/6] dt-bindings: phy: rockchip: add rk3328 usb3
- phy
-To: Peter Geis <pgwipeout@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, zyw@rock-chips.com,
- kever.yang@rock-chips.com, frank.wang@rock-chips.com,
+Subject: Re: [RFC PATCH v1 0/6] rockchip: add a functional usb3 phy driver for
+ rk3328
+To: Peter Geis <pgwipeout@gmail.com>, Heiko Stuebner <heiko@sntech.de>
+Cc: zyw@rock-chips.com, kever.yang@rock-chips.com, frank.wang@rock-chips.com,
  william.wu@rock-chips.com, wulf@rock-chips.com,
- linux-rockchip@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ linux-rockchip@lists.infradead.org, Alex Bee <knaerzche@gmail.com>,
+ Algea Cao <algea.cao@rock-chips.com>, Arnd Bergmann <arnd@arndb.de>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Diederik de Haas <didi.debian@cknow.org>, Dragan Simic <dsimic@manjaro.org>,
+ Elaine Zhang <zhangqing@rock-chips.com>, FUKAUMI Naoki <naoki@radxa.com>,
+ Johan Jonker <jbx6244@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
  Kishon Vijay Abraham I <kishon@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Stephen Boyd <sboyd@kernel.org>, Trevor Woerner <twoerner@gmail.com>,
+ Vinod Koul <vkoul@kernel.org>, Zhang Yubing <yubing.zhang@rock-chips.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-phy@lists.infradead.org
 References: <20250115012628.1035928-1-pgwipeout@gmail.com>
- <20250115012628.1035928-3-pgwipeout@gmail.com>
- <fe006de3-16eb-4c20-8e8e-da5ff5531c6f@kernel.org>
- <CAMdYzYoB-wFGcmDNYrOMKTb0XSseBd7btLarKBB5+TUB-11KjA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -111,48 +118,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CAMdYzYoB-wFGcmDNYrOMKTb0XSseBd7btLarKBB5+TUB-11KjA@mail.gmail.com>
+In-Reply-To: <20250115012628.1035928-1-pgwipeout@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 16/01/2025 14:32, Peter Geis wrote:
->>
->>
->>> +    additionalProperties: false
->>> +
->>> +    properties:
->>> +      compatible:
->>> +        enum:
->>> +          - rockchip,rk3328-usb3phy-utmi
->>> +
->>> +      reg:
->>> +        maxItems: 1
->>> +
->>> +      "#phy-cells":
->>> +        const: 0
->>
->> Does not look correct. Your parent device is the phy, not child. Why do
->> you create children per each type of phy?
+On 15/01/2025 02:26, Peter Geis wrote:
 > 
-> Because that's how it's done elsewhere in Rockchip's phys [1]. How
-> should it be done?
-
-
-The phys have separate supplies and IO addresses? Then it is reasonable
-to keep them separate and as children. But then more questions appear:
-why resets - which are also per utmi or port - are in top-level node?
-This should be represented in coherent way: either you define the
-properties/nodes per PHY or just everything in one/entire PHY
-controller. Not mixed.
-
-Same concerns about clocks in top-level.
-
-It also might be that everything is a bit mixed, so you have entire phy
-controller handling common resources and still separate phy for USB2 and
-USB3 as children, but that should be conscious choice coming from actual
-hardware. You have entire "description:" in binding to explain the
-hardware and any questions I asked now.
-
+> This is my newly reworked phy driver for the rk3328 usb3 phy. It is
+> based loosely on my original version, but as of now almost nothing of
+> the original driver remains. The main fix here is the discovery of
+> BIT(6) in the interrupt enable grf register fixes the usb3 disconnection
+> detection (mostly). On occasion an unpopulated usb3 hub will take
+> several seconds to disconnect. However this means all of the hack around
+> work to reset the usb core manually is no longer required.
+> 
+BTW, RFC for some maintainers means "do not review, work-in-progress".
+For some means "review, but low priority" or "review, but for sure I
+have bugs here". I usually review and then someone responds: "it is not
+for review, it is just RFC", so to avoid my wasted time please always
+mention in cover letter why this is RFC. What do you expect here or why
+this is not ready for review as normal patch.
 
 Best regards,
 Krzysztof
