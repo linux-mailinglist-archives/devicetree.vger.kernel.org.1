@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-139457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02113A15D55
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 15:37:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42606A15D58
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 15:37:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1101E1626B3
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 14:37:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EF401613A4
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 14:37:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E7718B470;
-	Sat, 18 Jan 2025 14:37:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6858B18DF65;
+	Sat, 18 Jan 2025 14:37:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r10ZU+wt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iHwCdDvN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA3B4184;
-	Sat, 18 Jan 2025 14:37:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E398184;
+	Sat, 18 Jan 2025 14:37:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737211024; cv=none; b=R/ocnjbHyWXRIIj6fQTcs5wGT7q4GcAQ7vlDubqmPqhJ/jqKTlGBySSsZ2k7w21P5yogFkTAZk14gBLMaFIqLWaNfpagk9zD+oGo5D5IBkvqnybWVRO79mPnWiv4y8tJDvTU//LQ3VMIFf/PgGbggi5Dl+lhHqDiy/rv1mbm8oA=
+	t=1737211069; cv=none; b=nnvglD6MCt/EoihYGOlEUUghlMvGaGqR5nRXlc+N889yBMDdnOmX03aunwHm1RqNAfvNhNbbsi6LrcKjOJLIs2r52QnfvCQSZAaEMHG61WgswyUsnzXa7glAuAto12euRjpRQgDBW4Bs2tYtbu5FVg+nBTYL3oa+zFZBzSW+2HE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737211024; c=relaxed/simple;
-	bh=GBc2u0YKf1JZiBfg6Qhrs216BcHR0037QaX16eH5yrA=;
+	s=arc-20240116; t=1737211069; c=relaxed/simple;
+	bh=L72H64JQO+JOMYHDJE3pyxhswNH2Hie+rT2+Zsa0jps=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bwO+t1beYwrwNeovUvh0UMhW8EASk9J3OFIwsctcLiK023yEYpstj5qWeOa6kaVCxLLkWR3nLH5A3l/OE1QmBLZ+9IGY9rNuOniCIq0g1iyMe4bZTzKul3eU0mt6xfeg6IasrYOSVseeGgIt+TnTxzZ7R9/Wum1eND+Fx+Fg/wQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r10ZU+wt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B4D5C4CED1;
-	Sat, 18 Jan 2025 14:37:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=o4sF6SpQwxqptqqowakWH3uuJANDNZjDGfk65slkmSOEez/wE7mNJU+sUbdncKjATj8wGXq+gdohRYp31qjb0HVA2jWxqHKLfUFIpfYM1NLz26mbzFubgxL5ey8euLGyz7QuOfCuUdKIwWNOdCcMwkcf6wGi6ZwNjo2sQJhhBDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iHwCdDvN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEB92C4CED1;
+	Sat, 18 Jan 2025 14:37:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737211024;
-	bh=GBc2u0YKf1JZiBfg6Qhrs216BcHR0037QaX16eH5yrA=;
+	s=k20201202; t=1737211068;
+	bh=L72H64JQO+JOMYHDJE3pyxhswNH2Hie+rT2+Zsa0jps=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r10ZU+wtBXUjXeKdN4hOERu7siMqAM6lVwEElpFG328GF+YvYt7/nb8pjOEx3vaU+
-	 S7Q3DaKAvVdy0Dvnbz3fN6JHvvzQkhCpHazoIo9TaKEsXBYlgc0qz4bxg9XYklw6ZH
-	 8jGjd5AIdyjsn9Pjqkn77CLl/rpeTnwt+X2M2IPQOMeP11X8+lm1yFZzdM1O6E4OEa
-	 BzaxYkfb1e8TxxAWTfakdGcvI05tTo97qGYJdH6nB5nUOKIKdcO1urv8J6rXNAMQHp
-	 89nJnaVpXuD6A3sbJOXVPFHzEo/FpDKf4b8Hg2b93KOhZMwyb4gbc4GN31d/Tr39O4
-	 kQ5ZtiySe98fg==
-Date: Sat, 18 Jan 2025 15:37:00 +0100
+	b=iHwCdDvNDLOF8xkozd0+ZKt0CruK+PLCV+Ix0B0W3rB//W8K2/S/a+/HYg5aDIS0I
+	 TNYqG0AqWVKqapIHPXhAJdLpsqVRc1tKJGh10EbSvLbTcQ9JO2f1TVEzwALMXpWZlu
+	 auBaC6hUpaMCcP1Yhj3BpE7jTtSIkvRLFMpHyPSO6bZgeehxvn9oLHxmC2+i0uITg4
+	 bUk7yY+5yfE0IFhO2voaSM6GycuvkGKxhyQXIkUUZO10MWulrD9wyvYNSAZRPym22D
+	 4plJei9MkpXhUfk0GxfZtw7TVcU2kjAhjUdPN8yq2u5qShmHoJRrK/k45JTbo6iCk7
+	 SAPYKwiDYvgGg==
+Date: Sat, 18 Jan 2025 15:37:45 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Wenliang Yan <wenliang202407@163.com>
-Cc: linux@roeck-us.net, Jean Delvare <jdelvare@suse.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/2] dt-bindings:Add SQ52206 to ina2xx devicetree
- bindings
-Message-ID: <20250118-sparkling-spectral-mosquito-a5bc01@krzk-bin>
-References: <20250117082017.688212-1-wenliang202407@163.com>
- <20250117082017.688212-2-wenliang202407@163.com>
+To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
+	airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, thierry.reding@gmail.com, sam@ravnborg.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: display: panel: Add compatible for
+ KINGDISPLAY KD110N11-51IE
+Message-ID: <20250118-tested-smilodon-of-exercise-65c24d@krzk-bin>
+References: <20250117091438.1486732-1-yelangyan@huaqin.corp-partner.google.com>
+ <20250117091438.1486732-2-yelangyan@huaqin.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,20 +62,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250117082017.688212-2-wenliang202407@163.com>
+In-Reply-To: <20250117091438.1486732-2-yelangyan@huaqin.corp-partner.google.com>
 
-On Fri, Jan 17, 2025 at 04:20:16PM +0800, Wenliang Yan wrote:
-> Add the sq52206 compatible to the ina2xx.yaml
+On Fri, Jan 17, 2025 at 05:14:35PM +0800, Langyan Ye wrote:
+> The KINGDISPLAY KD110N11-51IE is a 10.95" WUXGA TFT LCD panel,
+> which fits in nicely with the existing panel-boe-tv101wum-nl6
+> driver. Hence, we add a new compatible with panel specific config.
 > 
-> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+> Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
 > ---
-> 
-> Add the meaning of 'shunt-gain' in SQ52206.
-> 
 
-Didn't you got an Ack from Conor already?
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Nothing improved. Implement review.
 
 Best regards,
 Krzysztof
