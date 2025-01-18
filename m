@@ -1,99 +1,85 @@
-Return-Path: <devicetree+bounces-139395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14E07A15B3C
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 04:32:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D5ABA15B56
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 04:51:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 176FE166BB3
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 03:32:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D1A4188B119
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 03:51:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE772CCC5;
-	Sat, 18 Jan 2025 03:32:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67298146A69;
+	Sat, 18 Jan 2025 03:51:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pU3UMiqx"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mlVUgQn3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C10032F50
-	for <devicetree@vger.kernel.org>; Sat, 18 Jan 2025 03:32:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B87B313BADF;
+	Sat, 18 Jan 2025 03:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737171127; cv=none; b=ZYbIugXsL+RSFTVEFbQPkNrZ3mKGXND/uoqKnIbtRb34xnnZvZhbATVkrmpAaBXO2ULwqItn7Lq6JgOed+y6pDuom5im/5hUXER0aQat3yDzf0Z0ike2+Z7rgvstt7IoXyMf1bb69hTO0IUX8Rt+EZDhSE0S/T/GHmy6KHf+kxY=
+	t=1737172281; cv=none; b=khYSHNMCBUyJre70sd6BqC2b9McZzQCtuXvzxg+tpFXPwM4nEJ8PMRYMDv1WqB9DOVt+eMGCUgZM+bQnMiJQKc/G6U3/CsLSu/3/ZE4FfHSZ02A++lzkKnMrCdwQ48slviXnr/iZ4TmEuzGASBBr5ARYxtESgfwrRPpBTebGSIw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737171127; c=relaxed/simple;
-	bh=J2Oepqueuxd4ozwv+NPIpvqfgy4TtqZpXa/kQr/v2NU=;
+	s=arc-20240116; t=1737172281; c=relaxed/simple;
+	bh=yeq4IXBcBZnTsUE8pk6nO8SgpaKvxASMp+nrzb3hWhY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZBSO0vnL5IHDAuVIXtfrs3y1Dll5un4AaYjic2Nag+uZ7eypK1o4+Z70dIM5fWh5s88cGUpVkSA23qaD+xSLUTlKc/Gjghd0TG9fTDXcdb3w4z6+n3UL07kHG6Tz1p2hYXnWlFOLWFmezQmvjLZE0YDc64QjwqKsXLUgnqBZ+no=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pU3UMiqx; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53f22fd6832so2908152e87.1
-        for <devicetree@vger.kernel.org>; Fri, 17 Jan 2025 19:32:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737171124; x=1737775924; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=hzhYcQ8TIQfms4jIUonylBO9hpxU9lIyBPmgiVcYCfA=;
-        b=pU3UMiqx9K7JX+1xzYGNnG2ah/qbQg+r96jvuS4rg/bq9oHxA5Jb9gnfn3Qr/thWbp
-         oB3obXEdP2zMtOFoXLArhdzVioZRuTlyUfk83Z7VzmrG5IwLgDGaoQR/3HHB8aTHP+mJ
-         o/pmmWyWEnfn+IaMlZL9h4s1G3Ey9w+phd153kYXbFTyHKwvZ+i/o8oHGvm/eXZD+PqH
-         YflD4yx+mbTcgUED0IKJFr9m1wKDJvF+12m9ZM6QM96cLAFTFw2kxSRMmHFiSIBe+kFG
-         8NFeI5UKt3Rb2uiGDwfu9OVNLz+iqHkDg6aOWZOIhAPILbDYfnRK2MxqxViWGogp+itg
-         TF/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737171124; x=1737775924;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hzhYcQ8TIQfms4jIUonylBO9hpxU9lIyBPmgiVcYCfA=;
-        b=oabRyUCvK13/ifqRqk7Hra56L1GR7NKLSv6I9NNRF0yEkxSCOPWagSrCe9V2Ec0taD
-         Uzd68/tEFdR5HX1PvHLqpBYRib8V5aGW9ad0idrxjrNoux5e3i0SysdKdhKWavL16EBn
-         pwVY9DvDAPdzhTT/4zzJTI7S9XKCnHInqH6wYz6YdfCs0UmvUUY/BcqvIcUJpozrVWSU
-         NuyPpFaE3DvqHv7asK/tiwOjFLt1z/AU+Il6R8n3V5KUL0KJFGJn+tcP547gpYkD+Mex
-         usBSeA0gVmSnz3ZFi4t2znJb3TdsPUJK6xl1de8DXWisDLFuL6fu8ihojij6vc//gwCV
-         sTzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXf3tcGwrz78cSYR/e3OTWVKfw8Ih8+hNbY6V+ngh0E6giiwVSU/YnNaJiEa4RJnPsIhnp7O9+vWF4U@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5ffP8EmkSyU8hGh8SlnyZZ3NX/5XvLEMoG29SZaABYdqJGjvc
-	r4Dg9tepWlc7B8hvADvM40CoT+IHSG4C0O8SFwkPYQ25mmZ2YAKmwdJBgEq8Qqc=
-X-Gm-Gg: ASbGnctyMdp+iK4OjNL/C2qRwDnMy7iQ1ZiAiHPGL5ikfLdxQuvA83dyZ5OHIjFVeFg
-	lNgacVFdZOojBwq6brbBNKbCx+CX5SNP4VQwrDhFNZFEBxOgfExWO9KRGO7TGMCI/fidMEESKqp
-	nUXJL0VAeKmejkB9jiTzp5M4I/zaTssuKIx0jQEZW+eaSHDpAS9ZdERXxL7HWXeBIoNCbBJrU3X
-	NRMyqz7TJ4SLx3O4asHT8ddMSgcn79gcJ7xGeyFy6P0c+07V8UuRntlC+oVNCGwUTGrMzSeKmxD
-	Fvt44H3Z8FYRP2fUnHCBNPafj3hXMLBx5zqtthH5YLADQazkCw==
-X-Google-Smtp-Source: AGHT+IEHCXhnR9Ifz788WfaTw8BC7iP0CpDRy+2jMi6d69znvkXj4Q2lQp7TuxJzYYy15v3Qpf7Fpg==
-X-Received: by 2002:a05:6512:e8d:b0:542:9883:263 with SMTP id 2adb3069b0e04-5439c246370mr1751170e87.14.1737171123682;
-        Fri, 17 Jan 2025 19:32:03 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5439af60970sm574860e87.116.2025.01.17.19.32.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 17 Jan 2025 19:32:02 -0800 (PST)
-Date: Sat, 18 Jan 2025 05:31:59 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Detlev Casanova <detlev.casanova@collabora.com>
-Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Andrzej Hajda <andrzej.hajda@intel.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
-	Alexey Charkov <alchark@gmail.com>, Jianfeng Liu <liujianfeng1994@gmail.com>, 
-	Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Johan Jonker <jbx6244@gmail.com>, 
-	Kever Yang <kever.yang@rock-chips.com>, Sugar Zhang <sugar.zhang@rock-chips.com>, 
-	Algea Cao <algea.cao@rock-chips.com>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org, kernel@collabora.com
-Subject: Re: [PATCH v1 1/2] drm/bridge: synopsys: Add audio support for
- dw-hdmi-qp
-Message-ID: <xtthbgdnyaevtcvjmkqsipje6ksxmbilkacbw5f4m4fvu62ggx@wm34iotb2a6d>
-References: <20250117164815.67253-1-detlev.casanova@collabora.com>
- <20250117164815.67253-2-detlev.casanova@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=WC68lD+pJJIq361lT2s1dLwPDAnhxEXS78Nj/TGEEwfwq6yEde6xjn97lg7yuO80eazbrleCUXdBfb5uEVAqBM6aMfftWcWc6mFtyucCcr1/NKsJY63zaB5ljxDXN9WJmSwcOqVXpuoU3irNu83oJSTUaXndmv8GGGy5Lex6vnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mlVUgQn3; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737172280; x=1768708280;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yeq4IXBcBZnTsUE8pk6nO8SgpaKvxASMp+nrzb3hWhY=;
+  b=mlVUgQn34mY1tj5X0MqRQD0+8GVLhjRKpPCnD9xyH7imTaI1iNtRa06X
+   zVvv38tML3VEJD5Kf0s2Z0jqU39GDemVL4i6NjGKd+/pT0bjJF0m8uo6n
+   ZHdTjUyGCqG2Z8m2NVJmc8A1kA+DxHxoAT+RHOfjF1/23OExZ4f0bzJKM
+   99/sDsPXAwJ2yluDN2xPIE+S+FgA+irQRrQsAq7x8KZBSClEiRYiiwnib
+   HhyR6x4h1rl+KgIRAAk68zh7NUkk0iOlujU40BbzsxqFBTtX7sFw0m4Kv
+   lvdKoBYZZWEe3IcDpzaw4pH5IOHBo9L7fbL9e+oWba9aByel1gi8h6doG
+   w==;
+X-CSE-ConnectionGUID: uWVjHZ5NSAOCE5ClynSCCg==
+X-CSE-MsgGUID: uFbw8bAkTxWvtSsIN+ldGA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11318"; a="48113105"
+X-IronPort-AV: E=Sophos;i="6.13,214,1732608000"; 
+   d="scan'208";a="48113105"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jan 2025 19:51:20 -0800
+X-CSE-ConnectionGUID: 8dmvt1VHSwqcx8wVnA9J8A==
+X-CSE-MsgGUID: TP+sh+qYTWCb0l5GsEVfAw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="106444005"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by orviesa007.jf.intel.com with ESMTP; 17 Jan 2025 19:51:16 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tYzrd-000U3v-34;
+	Sat, 18 Jan 2025 03:51:13 +0000
+Date: Sat, 18 Jan 2025 11:50:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sean Wang <sean.wang@mediatek.com>
+Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	herbert1_wu@pegatron.corp-partner.google.com,
+	Geoffrey Chien <geoffrey_chien@pegatron.corp-partner.google.com>
+Subject: Re: [PATCH 2/2] arm64: dts: mt8186: Add MT8186 Krabby platform based
+ Skitty
+Message-ID: <202501181109.qPUuOK1v-lkp@intel.com>
+References: <20250115-skitty_kernel-v1-2-6ef2086858ba@pegatron.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,197 +88,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250117164815.67253-2-detlev.casanova@collabora.com>
+In-Reply-To: <20250115-skitty_kernel-v1-2-6ef2086858ba@pegatron.corp-partner.google.com>
 
-On Fri, Jan 17, 2025 at 11:46:57AM -0500, Detlev Casanova wrote:
-> From: Sugar Zhang <sugar.zhang@rock-chips.com>
-> 
-> Register the dw-hdmi-qp bridge driver as an HDMI audio codec.
-> 
-> The register values computation functions (for n) are based on the
-> downstream driver, as well as the register writing functions.
-> 
-> The driver uses the generic HDMI Codec framework in order to implement
-> the HDMI audio support.
-> 
-> Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
-> Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
-> ---
->  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 472 +++++++++++++++++++
->  1 file changed, 472 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> index b281cabfe992..55ceeb180bc6 100644
-> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> @@ -36,6 +36,66 @@
->  
->  #define SCRAMB_POLL_DELAY_MS	3000
->  
-> +/*
-> + * Unless otherwise noted, entries in this table are 100% optimization.
-> + * Values can be obtained from hdmi_compute_n() but that function is
-> + * slow so we pre-compute values we expect to see.
-> + *
-> + * All 32k and 48k values are expected to be the same (due to the way
-> + * the math works) for any rate that's an exact kHz.
-> + */
-> +static const struct dw_hdmi_audio_tmds_n {
-> +	unsigned long tmds;
-> +	unsigned int n_32k;
-> +	unsigned int n_44k1;
-> +	unsigned int n_48k;
-> +} common_tmds_n_table[] = {
-> +	{ .tmds = 25175000, .n_32k = 4096, .n_44k1 = 12854, .n_48k = 6144, },
-> +	{ .tmds = 25200000, .n_32k = 4096, .n_44k1 = 5656, .n_48k = 6144, },
-> +	{ .tmds = 27000000, .n_32k = 4096, .n_44k1 = 5488, .n_48k = 6144, },
-> +	{ .tmds = 28320000, .n_32k = 4096, .n_44k1 = 5586, .n_48k = 6144, },
-> +	{ .tmds = 30240000, .n_32k = 4096, .n_44k1 = 5642, .n_48k = 6144, },
-> +	{ .tmds = 31500000, .n_32k = 4096, .n_44k1 = 5600, .n_48k = 6144, },
-> +	{ .tmds = 32000000, .n_32k = 4096, .n_44k1 = 5733, .n_48k = 6144, },
-> +	{ .tmds = 33750000, .n_32k = 4096, .n_44k1 = 6272, .n_48k = 6144, },
-> +	{ .tmds = 36000000, .n_32k = 4096, .n_44k1 = 5684, .n_48k = 6144, },
-> +	{ .tmds = 40000000, .n_32k = 4096, .n_44k1 = 5733, .n_48k = 6144, },
-> +	{ .tmds = 49500000, .n_32k = 4096, .n_44k1 = 5488, .n_48k = 6144, },
-> +	{ .tmds = 50000000, .n_32k = 4096, .n_44k1 = 5292, .n_48k = 6144, },
-> +	{ .tmds = 54000000, .n_32k = 4096, .n_44k1 = 5684, .n_48k = 6144, },
-> +	{ .tmds = 65000000, .n_32k = 4096, .n_44k1 = 7056, .n_48k = 6144, },
-> +	{ .tmds = 68250000, .n_32k = 4096, .n_44k1 = 5376, .n_48k = 6144, },
-> +	{ .tmds = 71000000, .n_32k = 4096, .n_44k1 = 7056, .n_48k = 6144, },
-> +	{ .tmds = 72000000, .n_32k = 4096, .n_44k1 = 5635, .n_48k = 6144, },
-> +	{ .tmds = 73250000, .n_32k = 4096, .n_44k1 = 14112, .n_48k = 6144, },
-> +	{ .tmds = 74250000, .n_32k = 4096, .n_44k1 = 6272, .n_48k = 6144, },
-> +	{ .tmds = 75000000, .n_32k = 4096, .n_44k1 = 5880, .n_48k = 6144, },
-> +	{ .tmds = 78750000, .n_32k = 4096, .n_44k1 = 5600, .n_48k = 6144, },
-> +	{ .tmds = 78800000, .n_32k = 4096, .n_44k1 = 5292, .n_48k = 6144, },
-> +	{ .tmds = 79500000, .n_32k = 4096, .n_44k1 = 4704, .n_48k = 6144, },
-> +	{ .tmds = 83500000, .n_32k = 4096, .n_44k1 = 7056, .n_48k = 6144, },
-> +	{ .tmds = 85500000, .n_32k = 4096, .n_44k1 = 5488, .n_48k = 6144, },
-> +	{ .tmds = 88750000, .n_32k = 4096, .n_44k1 = 14112, .n_48k = 6144, },
-> +	{ .tmds = 97750000, .n_32k = 4096, .n_44k1 = 14112, .n_48k = 6144, },
-> +	{ .tmds = 101000000, .n_32k = 4096, .n_44k1 = 7056, .n_48k = 6144, },
-> +	{ .tmds = 106500000, .n_32k = 4096, .n_44k1 = 4704, .n_48k = 6144, },
-> +	{ .tmds = 108000000, .n_32k = 4096, .n_44k1 = 5684, .n_48k = 6144, },
-> +	{ .tmds = 115500000, .n_32k = 4096, .n_44k1 = 5712, .n_48k = 6144, },
-> +	{ .tmds = 119000000, .n_32k = 4096, .n_44k1 = 5544, .n_48k = 6144, },
-> +	{ .tmds = 135000000, .n_32k = 4096, .n_44k1 = 5488, .n_48k = 6144, },
-> +	{ .tmds = 146250000, .n_32k = 4096, .n_44k1 = 6272, .n_48k = 6144, },
-> +	{ .tmds = 148500000, .n_32k = 4096, .n_44k1 = 5488, .n_48k = 6144, },
-> +	{ .tmds = 154000000, .n_32k = 4096, .n_44k1 = 5544, .n_48k = 6144, },
-> +	{ .tmds = 162000000, .n_32k = 4096, .n_44k1 = 5684, .n_48k = 6144, },
-> +
-> +	/* For 297 MHz+ HDMI spec have some other rule for setting N */
-> +	{ .tmds = 297000000, .n_32k = 3073, .n_44k1 = 4704, .n_48k = 5120, },
-> +	{ .tmds = 594000000, .n_32k = 3073, .n_44k1 = 9408, .n_48k = 10240, },
-> +
-> +	/* End of table */
-> +	{ .tmds = 0,         .n_32k = 0,    .n_44k1 = 0,    .n_48k = 0, },
-> +};
-> +
->  struct dw_hdmi_qp_i2c {
->  	struct i2c_adapter	adap;
->  
-> @@ -59,6 +119,8 @@ struct dw_hdmi_qp {
->  		void *data;
->  	} phy;
->  
-> +	struct mutex audio_mutex;
+Hi Geoffrey,
 
-There should be a comment, what is being protected by this mutex.
+kernel test robot noticed the following build errors:
 
-> +
->  	struct regmap *regm;
->  };
->  
+[auto build test ERROR on 619f0b6fad524f08d493a98d55bac9ab8895e3a6]
 
-[...]
+url:    https://github.com/intel-lab-lkp/linux/commits/Geoffrey-Chien/dt-bindings-arm-mediatek-Add-MT8186-Skitty-Chromebooks/20250115-154648
+base:   619f0b6fad524f08d493a98d55bac9ab8895e3a6
+patch link:    https://lore.kernel.org/r/20250115-skitty_kernel-v1-2-6ef2086858ba%40pegatron.corp-partner.google.com
+patch subject: [PATCH 2/2] arm64: dts: mt8186: Add MT8186 Krabby platform based Skitty
+config: arm64-randconfig-001-20250116 (https://download.01.org/0day-ci/archive/20250118/202501181109.qPUuOK1v-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250118/202501181109.qPUuOK1v-lkp@intel.com/reproduce)
 
-> +static int dw_hdmi_qp_init_audio_infoframe(struct dw_hdmi_qp *hdmi)
-> +{
-> +	struct hdmi_audio_infoframe frame;
-> +	u8 infoframe_buf[HDMI_INFOFRAME_SIZE(AUDIO)];
-> +	int ret = 0;
-> +
-> +	hdmi_audio_infoframe_init(&frame);
-> +
-> +	frame.coding_type = HDMI_AUDIO_CODING_TYPE_STREAM;
-> +	frame.sample_frequency = HDMI_AUDIO_SAMPLE_FREQUENCY_STREAM;
-> +	frame.sample_size = HDMI_AUDIO_SAMPLE_SIZE_STREAM;
-> +	frame.channels = 2;
-> +
-> +	ret = hdmi_audio_infoframe_pack(&frame, infoframe_buf,
-> +					sizeof(infoframe_buf));
-> +	if (ret < 0) {
-> +		dev_err(hdmi->dev, "%s: Failed to pack audio infoframe: %d\n",
-> +			__func__, ret);
-> +		return ret;
-> +	}
-> +
-> +	regmap_bulk_write(hdmi->regm, PKT_AUDI_CONTENTS1, &infoframe_buf[3], 2);
-> +	dw_hdmi_qp_mod(hdmi,
-> +		  PKTSCHED_ACR_TX_EN | PKTSCHED_AUDI_TX_EN,
-> +		  PKTSCHED_ACR_TX_EN | PKTSCHED_AUDI_TX_EN,
-> +		  PKTSCHED_PKT_EN);
-> +
-> +	return 0;
-> +}
-> +
-> +static void dw_hdmi_qp_set_audio_infoframe(struct dw_hdmi_qp *hdmi,
-> +				    struct hdmi_codec_params *hparms)
-> +{
-> +	u8 infoframe_buf[HDMI_INFOFRAME_SIZE(AUDIO)];
-> +	int ret = 0;
-> +
-> +	ret = hdmi_audio_infoframe_pack(&hparms->cea, infoframe_buf,
-> +					sizeof(infoframe_buf));
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501181109.qPUuOK1v-lkp@intel.com/
 
-Please use existing functions,
-drm_atomic_helper_connector_hdmi_update_audio_infoframe() and
-drm_atomic_helper_connector_hdmi_clear_audio_infoframe() to manage the
-infoframe. The drm_atomic_helper_connector_hdmi_update_infoframes()
-function will take care of updating the audio infoframe.
+All errors (new ones prefixed by >>):
 
-> +	if (!ret) {
-> +		dev_err(hdmi->dev, "%s: Failed to pack audio infoframe: %d\n",
-> +			__func__, ret);
-> +		return;
-> +	}
-> +
-> +	/*
-> +	 * AUDI_CONTENTS0: { RSV, HB2, HB1, RSV }
-> +	 * AUDI_CONTENTS1: { PB3, PB2, PB1, PB0 }
-> +	 * AUDI_CONTENTS2: { PB7, PB6, PB5, PB4 }
-> +	 *
-> +	 * PB0: CheckSum
-> +	 * PB1: | CT3    | CT2  | CT1  | CT0  | F13  | CC2 | CC1 | CC0 |
-> +	 * PB2: | F27    | F26  | F25  | SF2  | SF1  | SF0 | SS1 | SS0 |
-> +	 * PB3: | F37    | F36  | F35  | F34  | F33  | F32 | F31 | F30 |
-> +	 * PB4: | CA7    | CA6  | CA5  | CA4  | CA3  | CA2 | CA1 | CA0 |
-> +	 * PB5: | DM_INH | LSV3 | LSV2 | LSV1 | LSV0 | F52 | F51 | F50 |
-> +	 * PB6~PB10: Reserved
-> +	 *
-> +	 * AUDI_CONTENTS0 default value defined by HDMI specification,
-> +	 * and shall only be changed for debug purposes.
-> +	 * So, we only configure payload byte from PB0~PB7(2 word total).
-> +	 */
-> +	regmap_bulk_write(hdmi->regm, PKT_AUDI_CONTENTS1, &infoframe_buf[3], 2);
-
-This should go to your dw_hdmi_qp_bridge_write_infoframe().
-
-> +
-> +	/* Enable ACR, AUDI, AMD */
-> +	dw_hdmi_qp_mod(hdmi,
-> +		  PKTSCHED_ACR_TX_EN | PKTSCHED_AUDI_TX_EN | PKTSCHED_AMD_TX_EN,
-> +		  PKTSCHED_ACR_TX_EN | PKTSCHED_AUDI_TX_EN | PKTSCHED_AMD_TX_EN,
-> +		  PKTSCHED_PKT_EN);
-> +
-> +	/* Enable AUDS */
-> +	dw_hdmi_qp_mod(hdmi, PKTSCHED_AUDS_TX_EN, PKTSCHED_AUDS_TX_EN, PKTSCHED_PKT_EN);
-> +	mutex_unlock(&hdmi->audio_mutex);
-> +}
-> +
+>> Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku4.dts:49.1-8 Label or path target not found
+   FATAL ERROR: Syntax error parsing input tree
+--
+>> Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku1.dts:48.1-8 Label or path target not found
+   FATAL ERROR: Syntax error parsing input tree
+--
+>> Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku2.dts:48.1-8 Label or path target not found
+   FATAL ERROR: Syntax error parsing input tree
+--
+>> Error: arch/arm64/boot/dts/mediatek/mt8186-corsola-skitty-sku3.dts:49.1-8 Label or path target not found
+   FATAL ERROR: Syntax error parsing input tree
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
