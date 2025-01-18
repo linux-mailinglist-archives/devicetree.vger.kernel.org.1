@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-139470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC489A15DCB
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 16:52:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D638A15DCE
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 16:53:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83C803A708C
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 15:51:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95F023A6A58
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 15:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611B519CD0B;
-	Sat, 18 Jan 2025 15:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1187519B5B1;
+	Sat, 18 Jan 2025 15:53:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MmjErNBb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BgCLiJuq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26B3419C560;
-	Sat, 18 Jan 2025 15:51:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5472273F9;
+	Sat, 18 Jan 2025 15:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737215509; cv=none; b=E1EiPxMJpU36OgfG0sSRvnDSrOVk2RGa4L9rY4Y4es1AYCKUumkWFR+2aTumhClSHLuji+wHYPVrTmS04Pgtu0JfhIew6VOItvcUpAaG2zjy4G5cM3I8IAzKQygIuqfQwyjpRZWCjpP21bMD7r3xAUALh95hLnwaciBRLKo1Pi8=
+	t=1737215601; cv=none; b=KDp+lwQIcDbxq1osljBv2KvMHyM1angYspjEtlJf+/3mwce+MeG+0xkcaFF1PEILyrhJxO9WRLE8quNX86rd+sO5IucQwq9kJMZSmdI5fU/zWCZEmhO8LnHWFfBq6iSoioP7nBJcRgJTKEK/oGpsnwgpne+ZyVo+aAL6OxSMmd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737215509; c=relaxed/simple;
-	bh=jXsuF2H5crZlmWog/efpYD6E3o/lAIeMrhBphGh2G90=;
+	s=arc-20240116; t=1737215601; c=relaxed/simple;
+	bh=C/HChh+xDedWrorJWwzQh4N0JeP+N/Ib4HhWl3trnYs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GYRpoeyHiA19UV26/Xnyk3RxQlv9u/jV+FaVtL7B0TBlXihXZX56AmvO2L7kQrn0E6cgifY5GgTf0C4pRxkAj9SzpPz0SklxK5q35NPmN4AY1uHxP+kbZ+P9opOgRu1qhPCSAPlOqzV5zqMXNJmAdYw6GRc2bviJGWVHNcE46m8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MmjErNBb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33077C4CED1;
-	Sat, 18 Jan 2025 15:51:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SJQWWfzQxXvWvdIetWKSP1AaGjUE51aWBLOnTGWIqbiwkk/wr11hzY47xXw7puOu+FHBSmGt4ff/0CUFMEL5MaTikQHkwCwzeSdOCuEpQ73+xPLTKX1j+Ewr8ntW+eO/tjob69cLZOrwqJgKlajdIpgs/XvAakYKpwhrNgjIvuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BgCLiJuq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB58BC4CED1;
+	Sat, 18 Jan 2025 15:53:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737215508;
-	bh=jXsuF2H5crZlmWog/efpYD6E3o/lAIeMrhBphGh2G90=;
+	s=k20201202; t=1737215600;
+	bh=C/HChh+xDedWrorJWwzQh4N0JeP+N/Ib4HhWl3trnYs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MmjErNBb871gdJRMXBY1Ja2MrqZ/YKO9m60yCiXfIJvSei7H4OcHYRKudf46dAfmv
-	 eOsTxs1YEXWNyJrjjfBzend6l6ZGy4G5ajrOcZus2S9XNQmAhjh8DoDkAa8qhREE4X
-	 sD/02Y8R9mdCEeTAKoYUElwpN3Bn688Fds2PTST9WN/OPHUGTuLa7DXvdHmh9tV0Tx
-	 6F2bzPWUPhcFBr9Hux4n/EKPlingdO598jQGGvNrQQmoWGiXOORDThnxviEZJfX+mR
-	 bv0t3SPcKJf56GJNMtZMe4svyWkV7LYJSBGgv27lktKfJso4H7nWTuRRItJvZ6rctE
-	 TMBIWQTb2yKwA==
-Date: Sat, 18 Jan 2025 16:51:45 +0100
+	b=BgCLiJuqioyb83lzj1TfHnGcn7ufgUqMfQY12nBQ5gvEuFS1+3iGlx4ws8JT147T8
+	 Y92mXE1cx89hjhbNwsHsnWgMyXUHprQGFESR9eRZb3ej+u/wBPIYfpb3ZEgE+FydJ9
+	 TFpjCCh97YpusCB4cIpoTzqMs05ZFRzG55DryX9Ns4nRwvSexgE0al7S/lVeD5CzKX
+	 wnkY2DEZYx40ErHlak385lqojV/ZGokffZpQzw1yLR/LxZI+vs57D8ks8AORsv4BAv
+	 gIJmmB+zP/CaFUv+/Tcug7vf4TZM+ehjBNdMdoNd/zpkk62cQhEJpJyyJExlth4D0g
+	 z10IrNWTBOD0A==
+Date: Sat, 18 Jan 2025 16:53:17 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Biju Das <biju.das.au@gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: watchdog: renesas,wdt: Document RZ/G3E
- support
-Message-ID: <20250118-satisfied-magnificent-polecat-ef1f0b@krzk-bin>
-References: <20250115103858.104709-1-biju.das.jz@bp.renesas.com>
- <20250115103858.104709-2-biju.das.jz@bp.renesas.com>
+To: Keguang Zhang <keguang.zhang@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	linux-mips@vger.kernel.org, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] ASoC: dt-bindings: Add Loongson-1 AC97 Controller
+Message-ID: <20250118-maroon-nightingale-of-tranquility-2ae1ce@krzk-bin>
+References: <20250115-loongson1-ac97-v1-0-2087b04dcd7f@gmail.com>
+ <20250115-loongson1-ac97-v1-1-2087b04dcd7f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,19 +61,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250115103858.104709-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20250115-loongson1-ac97-v1-1-2087b04dcd7f@gmail.com>
 
-On Wed, Jan 15, 2025 at 10:38:50AM +0000, Biju Das wrote:
-> Document the support for the watchdog IP available on RZ/G3E SoC. The
-> watchdog IP available on RZ/G3E SoC is identical to the one found on
-> RZ/V2H SoC.
+On Wed, Jan 15, 2025 at 07:03:07PM +0800, Keguang Zhang wrote:
+> Add devicetree binding document for Loongson-1 AC97 controller.
 > 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
 > ---
->  Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../bindings/sound/loongson,ls1b-ac97.yaml         | 68 ++++++++++++++++++++++
+>  1 file changed, 68 insertions(+)
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 Best regards,
 Krzysztof
