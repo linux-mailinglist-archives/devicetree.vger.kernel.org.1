@@ -1,84 +1,183 @@
-Return-Path: <devicetree+bounces-139480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0E35A15DF2
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 17:12:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2021A15DF7
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 17:16:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 09E8D7A391E
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 16:12:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F2151887C64
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 16:16:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5695B19D070;
-	Sat, 18 Jan 2025 16:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B18718E756;
+	Sat, 18 Jan 2025 16:16:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cywys806"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O2za9chk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F9E199E9A;
-	Sat, 18 Jan 2025 16:12:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E4E78F5F;
+	Sat, 18 Jan 2025 16:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737216737; cv=none; b=e1KlbBS03E1RC6YXMe7tKRJGfVIueUfiAwuwTLhfW4JF1RTxNUfs0K0TICQ46xprrwbYoh5z1humtMFnarr1H4LKtCjtXj61nLtaSx0wLB2nBCjnVqZls/9gbmXO/IYguJvN9kgGjQe9gWiO9HJjt4bFUxE7epBu3NvCF+1rZlI=
+	t=1737216996; cv=none; b=Yrl3xhDC0Z8jF+pvyHxzFW4FWm+znPFai9rE7ADDnXg3UVb6EEuORDwmaRHiCUDXTX98q4Mt5L+VxQCF/d9Los9o56N2KpjMq4eJe8xFVH3loKIc+K7gU88OGwgvAyMbMNIdlq/f3gK4tKJJJZsuV8TM66Kn1/u1OuZRIzbX6do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737216737; c=relaxed/simple;
-	bh=wz6R80GCtHE8Pub+JlZqdRoqRWL7RgSMjrqENer31tI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t+KGGRC7cLYHWZLTbOSC7JvBiD8MPfb6TJ38sJfA5HcXyyuHPtpSLg4BKhpd4MaYZOuPEHKLa4ufGq51Wxb31rx54fj8ND8BHgZkK1Td+wjTZJk2cweqYenv6jMpavkp0I986pvMVMGdNs5aXt4843o0dRFn+U/wFQQWaB17Bw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cywys806; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F195C4CED1;
-	Sat, 18 Jan 2025 16:12:16 +0000 (UTC)
+	s=arc-20240116; t=1737216996; c=relaxed/simple;
+	bh=EBwHZ6IrRVM67JhTm9px098OBiKa0SSLNpc44aKV/ls=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=F9oHehcg5lJ35nkBJ+eSFUC/JDDWbVo4TTS3cdA/7DjYn6dHx3FBVMiCdwQb5bU1icuW1GRw+oDLsHYK1/HCa7Md+hPNAl7an3jBDbKPv4FtQQlOHXnAOx6hXyJ0w16jEYm0Xcj/Btaq/eNFtlx2vVPcxB7YTJCpUIheQ75yvLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O2za9chk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C42DFC4CED1;
+	Sat, 18 Jan 2025 16:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737216737;
-	bh=wz6R80GCtHE8Pub+JlZqdRoqRWL7RgSMjrqENer31tI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Cywys806iFznKs1sz/lxDrbd2Vh8/1EkGHH9NWDEC4vVJv2QxztmgBwrSX14wB4+L
-	 HzmiX0+pTh2OteReMNdIhfMx5lkoBxxzPhtqDHRd9VtSm3ZDvOjkQbaG4WfaigBd/T
-	 TUqhXbHH2s3wIoorT4NsyW7dtjtJTiDvSdYZEj8/hCqIOw/yfROcmBdZXi3PDTg1Sp
-	 OcQcQiMgL6yPXY98a7FNm9RCEQaznSoL3l/imyef4vGggy6SL5FcAx6iyTr91ud2iN
-	 5to1fwqAVCZSiOHK7WrGjcXHUayGMWZKEK7M7GTyB9csuWeNZtiYRzZJ7vMCZOJ4cM
-	 FL1j8mIbugZag==
-Date: Sat, 18 Jan 2025 17:12:13 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: linux-kernel@vger.kernel.org, Markus Mayer <mmayer@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:BROADCOM STB AVS TMON DRIVER" <linux-pm@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/2] dt-bindings: thermal: Update for BCM74110
-Message-ID: <20250118-mauve-panther-of-upgrade-1ee500@krzk-bin>
-References: <20250116193842.758788-1-florian.fainelli@broadcom.com>
- <20250116193842.758788-2-florian.fainelli@broadcom.com>
+	s=k20201202; t=1737216994;
+	bh=EBwHZ6IrRVM67JhTm9px098OBiKa0SSLNpc44aKV/ls=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=O2za9chkTzONqnbk8Pg9tnuv8p1EdAV4HfNtfxFcfQ+uc62ouhSQwdxHTwleH3cp0
+	 o7QqvvfJME03ctwBxkM8uCMqTEY99d336V9pLOA0wPU51QR7qOnvviODOY3PDAuuuE
+	 hCdjVaHZcqSWxj9TW/YOGFp2yUnLuxi/ibGMRE6iRRWmZY1NAU9ho+qFuQ4sww47VD
+	 CrXcTBJ7rQNVzFOnllxNKdsR43xecpnQPM5a63NtNB9c/S0VGWE/0NMRctptFmFAV1
+	 JhKVcANKp/scmIg0mHS+bioDUsczNMt2QGFafd5OkyhPJ7ycSbzteJx5a7kKB64Frq
+	 NxykS+OQYWj1A==
+Date: Sat, 18 Jan 2025 16:16:22 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andy@kernel.org>
+Cc: Antoni Pokusinski <apokusinski01@gmail.com>, lars@metafoo.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrej.skvortzov@gmail.com, neil.armstrong@linaro.org, icenowy@aosc.io,
+ megi@xff.cz, danila@jiaxyga.com, javier.carrasco.cruz@gmail.com,
+ linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] iio: magnetometer: si7210: add driver for Si7210
+Message-ID: <20250118161622.6b96f998@jic23-huawei>
+In-Reply-To: <Z4jCz1VXVPtEDNqB@smile.fi.intel.com>
+References: <20250115201622.270130-1-apokusinski01@gmail.com>
+	<20250115201622.270130-3-apokusinski01@gmail.com>
+	<Z4jCz1VXVPtEDNqB@smile.fi.intel.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250116193842.758788-2-florian.fainelli@broadcom.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 16, 2025 at 11:38:41AM -0800, Florian Fainelli wrote:
-> Update the binding with the BCM74110 compatible string which denotes the
-> first device we need to support in a different process node requiring an
-> updated thermal equation.
+On Thu, 16 Jan 2025 10:26:55 +0200
+Andy Shevchenko <andy@kernel.org> wrote:
+
+> On Wed, Jan 15, 2025 at 09:16:22PM +0100, Antoni Pokusinski wrote:
+> > Silicon Labs Si7210 is an I2C Hall effect magnetic position and
+> > temperature sensor. The driver supports the following functionalities:
+> > * reading the temperature measurements
+> > * reading the magnetic field measurements in a single-shot mode
+> > * choosing the magnetic field measurement scale (20 or 200 mT)  
 > 
-> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> ---
->  Documentation/devicetree/bindings/thermal/brcm,avs-tmon.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> ...
+> 
+> > +obj-$(CONFIG_SI7210) 			+= si7210.o  
+> 
+> Looks like TAB/space mixture in the middle.
+> 
+> ...
+> 
+> > +#include <asm/byteorder.h>  
+> 
+> asm/* usually goes after linux/*
+> 
+> > +#include <linux/array_size.h>
+> > +#include <linux/bitfield.h>
+> > +#include <linux/bits.h>
+> > +#include <linux/cleanup.h>
+> > +#include <linux/err.h>
+> > +#include <linux/i2c.h>
+> > +#include <linux/iio/iio.h>
+> > +#include <linux/math64.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/mutex.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/regulator/consumer.h>
+> > +#include <linux/types.h>
+> > +#include <linux/units.h>  
+> 
+> ...
+> 
+> Despite a good formatting I would still add a comment with a formula in
+> math-human-readable form.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The rest of the comments are the sort of thing I might tweak.
+This one not so much as I'll probably get the maths wrong.
 
-Best regards,
-Krzysztof
+Given where we are with the cycle (too late 6.14, too early for 6.15
+beyond me queuing it up in testing for autobuilders to get an early lok)
+we have plenty of time so I'd prefer to pick up a v5 with this comment
+added and the other minor stuff tidied up.
+
+FWIW I took a look at the overall driver and have nothing to add
+in the way of review comments!
+
+Jonathan
+
+> 
+> > +		temp = FIELD_GET(GENMASK(14, 3), dspsig);
+> > +		temp = div_s64(-383 * temp * temp, 100) + 160940 * temp - 279800000;
+> > +		temp *= (1 + (data->temp_gain / 2048));
+> > +		temp += (int)(MICRO / 16) * data->temp_offset;  
+> 
+> > +		ret = regulator_get_voltage(data->vdd);
+> > +		if (ret < 0)
+> > +			return ret;
+> > +
+> > +		temp -= 222 * div_s64(ret, MILLI);  
+> 
+> Including this piece.
+> 
+> > +		*val = div_s64(temp, MILLI);  
+> 
+> ...
+> 
+> > +static int si7210_set_scale(struct si7210_data *data, unsigned int scale)
+> > +{
+> > +	s8 *a_otp_values;
+> > +	int ret;
+> > +
+> > +	if (scale == 20)
+> > +		a_otp_values = data->scale_20_a;
+> > +	else if (scale == 200)
+> > +		a_otp_values = data->scale_200_a;
+> > +	else
+> > +		return -EINVAL;
+> > +
+> > +	guard(mutex)(&data->fetch_lock);
+> > +
+> > +	/* Write the registers 0xCA - 0xCC */
+> > +	ret = regmap_bulk_write(data->regmap, SI7210_REG_A0, a_otp_values, 3);
+> > +	if (ret)
+> > +		return ret;  
+> 
+> > +	/* Write the registers 0xCE - 0xD0 */
+> > +	ret = regmap_bulk_write(data->regmap, SI7210_REG_A3, &a_otp_values[3], 3);
+> > +	if (ret)
+> > +		return ret;  
+> 
+> Just to be sure I understand the above. There are two of 24-bit values or there are
+> two sets of 3 byte arrays? How does datasheet refers to them? What does common sense
+> tell us here?
+> 
+> > +	data->curr_scale = scale;
+> > +
+> > +	return 0;
+> > +}  
+> 
+> ...
+> 
+> Overall LGTM, there is no need for resend as I believe the three things above
+> may be tweaked by Jonathan. The last one can go even if there are 2 24-bit
+> values, but ideally in that case we should use those as a such and apply
+> put_unaligned_be24/le24() whichever suits better.
+> 
 
 
