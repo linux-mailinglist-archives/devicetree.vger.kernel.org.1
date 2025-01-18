@@ -1,163 +1,159 @@
-Return-Path: <devicetree+bounces-139432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9952A15C97
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 13:09:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28B43A15CB4
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 13:27:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE2093A8B24
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 12:09:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7635618891AC
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 12:27:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6917518873E;
-	Sat, 18 Jan 2025 12:09:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7023418CBFB;
+	Sat, 18 Jan 2025 12:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oRErZucm"
+	dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b="mrx4BB+C";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="XyvvM3r+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-a3-smtp.messagingengine.com (fhigh-a3-smtp.messagingengine.com [103.168.172.154])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CF132913;
-	Sat, 18 Jan 2025 12:09:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BB5180B;
+	Sat, 18 Jan 2025 12:27:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737202178; cv=none; b=X2fBQTPqJjrzGVkqC9MC22CL5OKeRvUHIo1H6XXkCAIw3r0qzrTZLRMy4ZmGF3X1O3sQsI1YynuNN7nAKMVCbg99kHtqJT+858BnfdjJmkNO6pJK1NqHbCFITBn7A82TskxECMhvJKbXPq6p6cDLvw3P5/zjhtIUA8lft+49rcI=
+	t=1737203227; cv=none; b=G79jlU6Tm497IA2nOVm+h0kttK4iOvK9VdyqmXaYKfsBIW8Ul/1pQkgY54b+r5K7kFSkG8XQzrPIsGIpFCmygcfUy315hRehjEMVGf9AHND09AEzH3n3OD3I9qQcW59nMQCA75C6brvSwcIi0wcFpu4BzkCkZWjjQ8szLUK5UYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737202178; c=relaxed/simple;
-	bh=+QzY0ffQEFAkjh3zr9/im3TEfOf3Oo48401oAKKLueg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J4Oa0QEcQY1TPqJ5NjhtasZt0t02NmbyJ+FlD2RBaCykanmeXFjxUyDs8+GjV85TD5EOJZmd8rhVOCVq12WQsUOAPZvMISk6ZS+f3WI9tCZmdMCzgVuOF6/DwHmo0e7N5ai5VdBjyv4Fg9muLK6wa2UjqTk++XYM4e/dVXhxuJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oRErZucm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31BF9C4CED1;
-	Sat, 18 Jan 2025 12:09:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737202177;
-	bh=+QzY0ffQEFAkjh3zr9/im3TEfOf3Oo48401oAKKLueg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=oRErZucmbepNNkRMJ3lCvU823NYh0sISFsYueDrMpFtC/n1j3hfqO1ngQwMOcHyH0
-	 oCBsblxVpFe2pClI8KrI0L5LrfuTc+/XnkDAco97DtfZiH6BILply76ldpIKiKWBHv
-	 Q//dLc4Ms4zcxzmuXdVysotal2Hx2qvFQifYEMU7bBuvXZWEvc3JuiPCvPqPo0nNFU
-	 1/C93HVmsien2RfAtFqLOTOzoE+Nc8gMP6MsWW5ir4EZJT0qEiRHRYzbVundqSkZx7
-	 DpVpcsvJ9ALjdsXW1wP4THYpG169ayrg9Bekl3GArheRTiu/sD1ZgpftHmOB+mza3Q
-	 Dc6Bo6w48z3oQ==
-Date: Sat, 18 Jan 2025 12:09:27 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Jonathan Santos
- <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, lars@metafoo.de,
- Michael.Hennerich@analog.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Subject: Re: [PATCH v1 05/15] iio: adc: ad7768-1: set MOSI idle state to
- high
-Message-ID: <20250118120927.08f21fbc@jic23-huawei>
-In-Reply-To: <Z4UE3p6HCsD8PiGh@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1736201898.git.Jonathan.Santos@analog.com>
-	<714ff48341753de0509208e3c553b19c1c43e480.1736201898.git.Jonathan.Santos@analog.com>
-	<4449ec60-08cd-4074-ba0b-95603864a458@baylibre.com>
-	<Z4GXikxVw6mHIYHc@debian-BULLSEYE-live-builder-AMD64>
-	<20250112123023.75dc7750@jic23-huawei>
-	<Z4UE3p6HCsD8PiGh@debian-BULLSEYE-live-builder-AMD64>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1737203227; c=relaxed/simple;
+	bh=mSr5i58I7lXZal9qLTgWg1kcI4A8k5DJ/49qJIGM0RU=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=tVQglySPykYTjMkYlzWMk6Mv1bfoxBLfSsZRBb1SBwH0RXCsqdgv6zIzQcge45xzaGk/yhs4o7PWKkPzk13ftROE1oYykFvuHigPuOmcRt4yEbx65bew1R9DMN30NgadIDMKs2yEzxXtm2j+dfZOKSkp6Dp7I3DJYkYUXGHOQZM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev; spf=pass smtp.mailfrom=svenpeter.dev; dkim=pass (2048-bit key) header.d=svenpeter.dev header.i=@svenpeter.dev header.b=mrx4BB+C; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=XyvvM3r+; arc=none smtp.client-ip=103.168.172.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svenpeter.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svenpeter.dev
+Received: from phl-compute-07.internal (phl-compute-07.phl.internal [10.202.2.47])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 43684114016F;
+	Sat, 18 Jan 2025 07:27:04 -0500 (EST)
+Received: from phl-imap-07 ([10.202.2.97])
+  by phl-compute-07.internal (MEProxy); Sat, 18 Jan 2025 07:27:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+	 h=cc:cc:content-transfer-encoding:content-type:content-type
+	:date:date:from:from:in-reply-to:in-reply-to:message-id
+	:mime-version:references:reply-to:subject:subject:to:to; s=fm3;
+	 t=1737203224; x=1737289624; bh=WoC4A91iFsIqxL2BMCOUmzr7+gQTh3p7
+	d4FX0nmuspQ=; b=mrx4BB+CmssLyUf71Eqo2eu7tVcNAEpzowoyXpw2lk/J8Ir0
+	SXP8TsW1lR0pw0aNz8vnm0tkAD5MU4LICWDR03MNQpiKZBmfwCLoQCBrr5wu6sWo
+	qFlAI555DMqQ1WQ5ofmTftZ+E94V14k/PiUuKulfjTC4o5+okjjiyRnoKlOMe8PY
+	xzA8Y0Ei8xKOJdaQWHI4OV94g/wGucHTV6MRFXfoN6Bqmcg2tPtB/Gic/X28lgnj
+	BOwKnhChtFBCr/wkH0bno8zTVivWuA82sw+Rg26H8ShnKI1HJbJk8Rj3xTYveycJ
+	xLmDrIN4v2qODW1TktrCg02zMENAjF/TDMZdJg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1737203224; x=
+	1737289624; bh=WoC4A91iFsIqxL2BMCOUmzr7+gQTh3p7d4FX0nmuspQ=; b=X
+	yvvM3r+LP6WJF2IziGXYIk1RVmI2BSMaQvU/b8soNFY22sIwlqg+mwlyVM2BVyzK
+	F1Z5PgmTHDakMk2oXos9PNzWH14icbmfQKpE+PYZS5udy9G02dJp9T+Rv5hcnGjR
+	WBJqQitZ99CUQyQFplHJ3wrirdB9Ro36OQmtQ1mm4Jr891n1UR0eidfSCp86qL40
+	aGTsa3UGWrfzX9mwF7SCbxxw9nT86cpvnuQa6/6XLc+r9doASZ7wSg6dqr+r/qKr
+	WUBtu39bAPHex4QBPDEP29BmKqc0RZ4GEWIzUmEAbDNv8ApVO5XxGaHAQtt3tVTP
+	f9Tk88RJZXnZkbhEkYrMg==
+X-ME-Sender: <xms:F56LZyaeWD18yhBu8BgFMPfq6SttXnImRIU6SZkgpIN1Obh5T3g_Ew>
+    <xme:F56LZ1aWz8NDvKFJBjcWxs0MlP-LDVJNldPgkbkBAsGDBXo7R7WrgrF6lmSdhaLGD
+    tMibjXIYThcUpYvR8I>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudeihedgfeelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
+    necuhfhrohhmpedfufhvvghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrh
+    druggvvheqnecuggftrfgrthhtvghrnhepleefteeugeduudeuudeuhfefheegveekueef
+    ffdvffektdffffelveffvddvueffnecuvehluhhsthgvrhfuihiivgepudenucfrrghrrg
+    hmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdguvghvpdhnsggprhgt
+    phhtthhopedugedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheprhihuggsvghrgh
+    essghithhmrghthhdrohhrghdprhgtphhtthhopegumhhithhrhidrthhorhhokhhhohhv
+    sehgmhgrihhlrdgtohhmpdhrtghpthhtohepfhhnkhhlrdhkvghrnhgvlhesghhmrghilh
+    drtghomhdprhgtphhtthhopehnvggrlhesghhomhhprgdruggvvhdprhgtphhtthhopegt
+    ohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskh
+    gvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgt
+    phhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvg
+    grugdrohhrghdprhgtphhtthhopegrshgrhhhisehlihhsthhsrdhlihhnuhigrdguvghv
+X-ME-Proxy: <xmx:F56LZ8-eHAM8JgqrGT7RaXuVjbLzvO960cp8y59-vn1BEAtFLtrHzA>
+    <xmx:F56LZ0oElTd4FZnoPQhCEbOjC7LnSbNyWYMfOOCCwUFq06v-QVjO7g>
+    <xmx:F56LZ9oTyegXG15FuM1mfp8oKr1nzEloMH029wa84NnwFWF9RQklWQ>
+    <xmx:F56LZyTsUZ8mgA33eWZGCYOtD8d_uMi2glQprU5eBq4i1q5WNJLI6Q>
+    <xmx:GJ6LZ-6M08OjXcWgu5OLwA8dh7wltlw7YEAGUFttWUS_TtpOl3PpIDao>
+Feedback-ID: i51094778:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id C9F22BA006F; Sat, 18 Jan 2025 07:27:03 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Date: Sat, 18 Jan 2025 13:26:42 +0100
+From: "Sven Peter" <sven@svenpeter.dev>
+To: "Sasha Finkelstein" <fnkl.kernel@gmail.com>,
+ "Hector Martin" <marcan@marcan.st>,
+ "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+ "Dmitry Torokhov" <dmitry.torokhov@gmail.com>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Henrik Rydberg" <rydberg@bitmath.org>
+Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, "Neal Gompa" <neal@gompa.dev>
+Message-Id: <b1588d48-fa70-46ec-adde-5981b4031005@app.fastmail.com>
+In-Reply-To: <20250115-z2-v4-4-d7361ab16ba0@gmail.com>
+References: <20250115-z2-v4-0-d7361ab16ba0@gmail.com>
+ <20250115-z2-v4-4-d7361ab16ba0@gmail.com>
+Subject: Re: [PATCH v4 4/4] MAINTAINERS: Add entries for Apple Z2 touchscreen driver
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
 
-On Mon, 13 Jan 2025 09:19:42 -0300
-Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
-
-> On 01/12, Jonathan Cameron wrote:
-> > On Fri, 10 Jan 2025 18:56:26 -0300
-> > Marcelo Schmitt <marcelo.schmitt1@gmail.com> wrote:
-> >   
-> > > On 01/07, David Lechner wrote:  
-> > > > On 1/7/25 9:25 AM, Jonathan Santos wrote:    
-> > > > > All supported parts require that the MOSI line stays high
-> > > > > while in idle.
-> > > > > 
-> > > > > Configure SPI controller to set MOSI idle state to high.
-> > > > > 
-> > > > > Fixes: a5f8c7da3dbe ("iio: adc: Add AD7768-1 ADC basic support")
-> > > > > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> > > > > ---    
-> > > ...  
-> > > > > @@ -574,6 +574,15 @@ static int ad7768_probe(struct spi_device *spi)
-> > > > >  		return -ENOMEM;
-> > > > >  
-> > > > >  	st = iio_priv(indio_dev);
-> > > > > +	/*
-> > > > > +	 * The ADC SDI line must be kept high when
-> > > > > +	 * data is not being clocked out of the controller.
-> > > > > +	 * Request the SPI controller to make MOSI idle high.
-> > > > > +	 */
-> > > > > +	spi->mode |= SPI_MOSI_IDLE_HIGH;
-> > > > > +	ret = spi_setup(spi);
-> > > > > +	if (ret < 0)
-> > > > > +		return ret;
-> > > > >  	st->spi = spi;
-> > > > >  
-> > > > >  	st->vref = devm_regulator_get(&spi->dev, "vref");    
-> > > > 
-> > > > Very few SPI controllers currently have the SPI_MOSI_IDLE_HIGH capability flag
-> > > > set in Linux right now (whether they actually support it or not), so this could
-> > > > break existing users.    
-> > > 
-> > > Good point. Maybe only dev_warn() if SPI_MOSI_IDLE_HIGH is not supported?
-> > >   
-> > > >     
-> > > ...  
-> > > > 
-> > > > If we ever do implement a data read of more than 64 bits without toggling CS,
-> > > > then we could just set the TX data to be all 0xFF and have the same effect
-> > > > without requiring the SPI controller to support SPI_MOSI_IDLE_HIGH.    
-> > > 
-> > > One point of having SPI_MOSI_IDLE_HIGH is that the controller may bring MOSI low
-> > > between data words of a transfer. I think all transfer words are going to be
-> > > either 16 or 24 with the new patches setting bits_per_word in all transfers but
-> > > that might still not be enough if eventually the controller is unable to support
-> > > those word sizes.   
-> > 
-> > Can we make the use of SPI_MOSI_IDLE_HIGH only apply if controller doesn't support
-> > what is required to do the transfers in one go?  
-> 
-> I think so, but that would require tweaking spi controller drivers since we
-> don't know at spi_setup() what transfers will ask for their bits_per_word.
-> Not excited with this idea but may try something if that makes it easier to
-> support these unusual SPI devices.
-
-I'm confused. Here it is a client driver question I think. That driver knows what
-it is asking for.  It can query if that word length is supported, if not query
-if SPI_MOSI_IDLE_HIGH is possible and if neither fail to probe with suitable
-error message. 
-
-Jonathan
 
 
-> 
-> >   
-> > > Plus you would have the complication of filling the tx_buf for
-> > > all transfers.  
-> > 
-> > Wrap that up in a regmap, or read and write functions and that should be easy enough.
-> >   
-> > > 
-> > > For the part that instigated the development of SPI_MOSI_IDLE_HIGH, the MOSI line
-> > > also had to be high in between transfers. The diagrams at AD7768-1 datasheet
-> > > page 51 suggest the same would be needed for this chip too.  
-> > 
-> > Whilst the datasheet indeed draws lines for that, i doubt it notices except on
-> > clock transitions and between transfers the clock won't do anything.
-> > If we confirm that the device does notice, then I don't mind limiting the controllers
-> > to those with that can ensure it doesn't get set wrong.
-> > 
-> > Jonathan
-> > 
-> >   
+On Wed, Jan 15, 2025, at 23:46, Sasha Finkelstein via B4 Relay wrote:
+> From: Sasha Finkelstein <fnkl.kernel@gmail.com>
+>
+> Add the MAINTAINERS entries for the driver
+>
+> Reviewed-by: Neal Gompa <neal@gompa.dev>
+> Signed-off-by: Sasha Finkelstein <fnkl.kernel@gmail.com>
+> ---
 
+Acked-by: Sven Peter <sven@svenpeter.dev>
+
+>  MAINTAINERS | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 
+> a87ddad78e26f28ffd0f3433560d6db1518f9f95..8b3776eb748e128f87c44886b117e0652447fb37 
+> 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2191,6 +2191,7 @@ 
+> F:	Documentation/devicetree/bindings/clock/apple,nco.yaml
+>  F:	Documentation/devicetree/bindings/cpufreq/apple,cluster-cpufreq.yaml
+>  F:	Documentation/devicetree/bindings/dma/apple,admac.yaml
+>  F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
+> +F:	Documentation/devicetree/bindings/input/touchscreen/apple,z2-multitouch.yaml
+>  F:	Documentation/devicetree/bindings/interrupt-controller/apple,*
+>  F:	Documentation/devicetree/bindings/iommu/apple,dart.yaml
+>  F:	Documentation/devicetree/bindings/iommu/apple,sart.yaml
+> @@ -2211,6 +2212,7 @@ F:	drivers/dma/apple-admac.c
+>  F:	drivers/pmdomain/apple/
+>  F:	drivers/i2c/busses/i2c-pasemi-core.c
+>  F:	drivers/i2c/busses/i2c-pasemi-platform.c
+> +F:	drivers/input/touchscreen/apple_z2.c
+>  F:	drivers/iommu/apple-dart.c
+>  F:	drivers/iommu/io-pgtable-dart.c
+>  F:	drivers/irqchip/irq-apple-aic.c
+>
+> -- 
+> 2.48.0
 
