@@ -1,133 +1,196 @@
-Return-Path: <devicetree+bounces-139416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 664E6A15C4C
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 11:07:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE915A15C50
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 11:10:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5E8D7A2EBF
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 10:07:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 476BE1889185
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 10:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456C8188010;
-	Sat, 18 Jan 2025 10:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44E16187872;
+	Sat, 18 Jan 2025 10:10:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bnv2OWOH"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="n47w4SEL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8299918660A;
-	Sat, 18 Jan 2025 10:07:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CD2D1632D7;
+	Sat, 18 Jan 2025 10:10:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737194862; cv=none; b=M4wZHQJ6r1Y9BAAcXL/s7JYvdIv+RUMyzrj2pW9rDaFjTkRgqhyzf4Bhw5BcC5xioBR6g+6u4eFLRG1bebDAXXyqVGigT8Uv6UrXLp4cKlxQSa36P+rFr43X3nZ3O4UhYRpNlQz/p23XBgbitqBPeTPGqQN7Z3S3VFsvw3RnGKo=
+	t=1737195027; cv=none; b=fAZqmjYDSHj9PAQjdFFtnifj8HvIGVmK7rlqVO5fyrpmtgrmfTi8vGAD+nBvNEXerpyOX6PZgOdnG0wWysBZP/+XdhbvkIZy4inLO9fjcmK34RiK9iflZTgUShOAJ4WbSV870Zb1OyDT0WWUELcGBmgRBj8hZMbcdvfYdMBl28A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737194862; c=relaxed/simple;
-	bh=9GQ98Yf/YUpW8nUBxuk3MEoc2KzBZ8x8YGwRaJGiAnI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jEz0rkkjq4XUwnbQ12GrbCmFfKPlYYZy/KpQzdvjDwymoTzlhT1TC8i7U9wGsuVzWusoifivbmxm5lDjtr8LQz4Kvu9ZFoQrs4xcS/GFbUtsC55eGAPEJqR8XtugNhgj9I5Kht7gbGzAONZfGk120T/mMvg/WJVl9KNa+C4q8vc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bnv2OWOH; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-aaf0f1adef8so583511966b.3;
-        Sat, 18 Jan 2025 02:07:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737194859; x=1737799659; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9GQ98Yf/YUpW8nUBxuk3MEoc2KzBZ8x8YGwRaJGiAnI=;
-        b=bnv2OWOHJ2rQCnyjc/7Q84uYT/iN8ScMKguoQ9Ii1HBiHOsqUfArRVmjGIuBdyII6+
-         veOxuWtFwVCO68UHZVutUgtX784DN5k1fu9rmiFwy97P9RbHvdcBaQxoGoPAQlKWtLMv
-         LAUYkhF90/v3rGV3/hpLcjADaNpW3YG40CbSJ+4CaeeIhLyvJ9NmfZjRHecIjX/Dc4bG
-         twR9ei9gJuNdFq3XboWBEINool7/8uRU6U33zHaQ6ASlIYhbbedE5Ib/PIzo0JsU4V8m
-         y65QBM9bz037RXNG9QbqIUJVVc/P0fg4uIXFHaYJU1aS/W26DpC5Hc2GqVEKil70UT0S
-         XUoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737194859; x=1737799659;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9GQ98Yf/YUpW8nUBxuk3MEoc2KzBZ8x8YGwRaJGiAnI=;
-        b=mnhrG0mNt9pVbYk+f6Y1UZl2rDKKSqR3+ZgwOMC40GOvCqtw8NreQwyEJav/mD0aHW
-         3Qb66R4qhz+LyLrhEgadQBbtG79LHE+LrDIjCkdwL8ezs96DfT9/tVCjOzgtZ8zCLybC
-         ozrpAfRIPGS04Z6T1UgnkPChi5/2ieERDhHmMFr4KxbCAuBk90VLa02AbDZ4SLxm4nyl
-         H0kaJryzN4kH+zFFfN9HmEQkJ/QGYgGkFpD9TRtUEz0xKbXJ9SlWbYAu4kV/w+GBZ5jX
-         BiREefGXlWOjSWYrbR7+SgwfAjaEv1donSeC5MqaKPFbUE8S7H83xiqEicdPv7Fl594i
-         i5oA==
-X-Forwarded-Encrypted: i=1; AJvYcCVvvHLmc/MZTSgrP0+VL05WUtq0e2sx5dRtNCC7v+OglzvUPXVRE1CR5MIThSRC8/3QeZbVRcpLMbuR@vger.kernel.org, AJvYcCXxvceQU6DYE9d9VfXj3M52KJ/DkE24IEm9J9EVD8t0+DXfuYw1Z4IJMEwlUsISYHnjvVDhdgmKegxuTiyu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6N+ycaPdFALh0+ewIDmzLnFmIehmaVSVdsV1OwX2e/tB/LXzn
-	C2VrfHYwBDG+hxvMLoAxUVU/peBksKlYztMpPuRysiVSt6KQv1xu
-X-Gm-Gg: ASbGncsr4rNSFM7i/xF6XYotdJUkxKfPy4Zd0XpN6H6UDMwOxFzPX/hnV/KXjUVDH76
-	9wjVyhdowy5zmnUAM2Eiav/YM1xTR/PhhnzrbUNQ0aa+78wX+0rcyXUuZ+DWdBvJIltooECVoh4
-	5VZ3Yd1N0KhjYox2L6mEOZr/ODRYNvQ7GMuM+Z3mkeqiuKO4XlrSQckim29n0UMrbAJsdJVVFua
-	C2vPtm2io52a4QSIN9X5pLu3XUBHrDHoF3JogdOF6Yyg1ghfNxWp5mgmOphJWtCF/280OhbVm3X
-	1Xx/7DpXjqVqwcw=
-X-Google-Smtp-Source: AGHT+IFsvrKMrEz8QcePe/YIiTwNkbTjp5GTltW896PPvrsYo1Lns2fM/cz6NBZTJCkAVR68cgnrdA==
-X-Received: by 2002:a17:906:3a87:b0:ab3:a190:6cb2 with SMTP id a640c23a62f3a-ab3a1906e5cmr213892566b.25.1737194858490;
-        Sat, 18 Jan 2025 02:07:38 -0800 (PST)
-Received: from jernej-laptop.localnet ([188.159.248.16])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384d2d3dcsm308908466b.81.2025.01.18.02.07.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Jan 2025 02:07:37 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
- Andre Przywara <andre.przywara@arm.com>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/7] pinctrl: sunxi: refactor pinctrl variants into flags
-Date: Sat, 18 Jan 2025 11:07:36 +0100
-Message-ID: <1881692.atdPhlSkOF@jernej-laptop>
-In-Reply-To: <20241111005750.13071-2-andre.przywara@arm.com>
-References:
- <20241111005750.13071-1-andre.przywara@arm.com>
- <20241111005750.13071-2-andre.przywara@arm.com>
+	s=arc-20240116; t=1737195027; c=relaxed/simple;
+	bh=dpIS2616e0Kids+rMpn22vyBVqg6QfVp8AH5T1C2X60=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=ud2BHgyoUmvEIGFNojdNgPXHYjavs0pZx7y2rZlxlpC+Nd+CR8rVbDQNLmIvuzXBjBpE4awDyEuaPAUOaZXUtKOVlC6Krzw6vxUyXK8oGP0lZuNeB3Wp9cTDYQuY9l+UHXterb8Bm9mW2Rsqjz5lyc2mr763BZgtjw8gBeGok7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=n47w4SEL; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1737195023;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=6ZZx2BEkDx4mW0pQwg2HX+RFPltv1/ykO1ohHF0qpcs=;
+	b=n47w4SEL5hoTEv9QUimAbbvOHXB2hSIap+8T0tpBPE1pkKAzl7r4Cw/6a1/1fxRKFQT6it
+	EpDgzKTAEzg7+tNCetXsdRE5vDHd8Y5O7Zh5A9dyFyNNo6HXSqkKJKOQ98PnXKtIQvbX8W
+	tCWpzKDOSw6Lzq61QqxO1dlVKVlJrivMlU/kEu2Xwl7eUWHuoK35q/D+3PHV5kH97GevNl
+	JBBS/FGOd38HRmaHOPGqxjOSuFKHK1j8alFGuDLn/xil1sONSz3eIvL/r3u7b7jcax2CM7
+	TOdDl39oyi09pGnSb5s7FB4fePyG+WWdRLdyV9NRLSsLujiqJ9RfaxY3NPz6Mw==
+Date: Sat, 18 Jan 2025 11:10:22 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Diederik de Haas <didi.debian@cknow.org>, Peter Geis
+ <pgwipeout@gmail.com>, Heiko Stuebner <heiko@sntech.de>, zyw@rock-chips.com,
+ kever.yang@rock-chips.com, frank.wang@rock-chips.com,
+ william.wu@rock-chips.com, wulf@rock-chips.com,
+ linux-rockchip@lists.infradead.org, Alex Bee <knaerzche@gmail.com>, Conor
+ Dooley <conor+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>, Jonas
+ Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob
+ Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v1 4/6] arm64: dts: rockchip: add rk3328 usb3 phy node
+In-Reply-To: <735d89df-9954-44bd-aca6-4bb165737626@kernel.org>
+References: <20250115012628.1035928-1-pgwipeout@gmail.com>
+ <20250115012628.1035928-5-pgwipeout@gmail.com>
+ <7c7ce820-8a9b-46df-b143-f77835b7e5a0@kernel.org>
+ <D73NJYSP62XH.28CVZPNUE21H3@cknow.org>
+ <1bc91b4214a1099801aaed6b3ef81ef3@manjaro.org>
+ <dcfb46e8-f29a-4eee-b8f8-1ff774f272ce@kernel.org>
+ <60ced7df829e7c10e264627cc0947762@manjaro.org>
+ <20b474be-301e-4dc3-9eb7-77e9ef075191@kernel.org>
+ <3d9ce9fd9b6309553b5669e111bc4200@manjaro.org>
+ <735d89df-9954-44bd-aca6-4bb165737626@kernel.org>
+Message-ID: <7ab853de15e1c183ef184d2700a13d98@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Dne ponedeljek, 11. november 2024 ob 01:57:44 Srednjeevropski standardni =
-=C4=8Das je Andre Przywara napisal(a):
-> For some Allwinner SoCs we have one pinctrl driver caring for multiple
-> very similar chips, and are tagging certain pins with a variant bitmask.
-> The Allwinner D1 introduced a slightly extended register layout, and we
-> were abusing this variant mask to convey this bit of information into
-> the common code part.
-> Now there will be more pinctrl device properties to consider (has PortF
-> voltage switch, for instance), so shoehorning this into the variant
-> bitmask will not fly anymore.
->=20
-> Refactor the "variant" field into a more generic "flags" field. It turns
-> out that we don't need the variant bits to be unique across all SoCs,
-> but only among those SoCs that share one driver (table), of which there
-> are at most three variants at the moment. So the actual variant field can
-> be limited to say 8 bits, and the other bits in the flag register can be
-> re-purposed to hold other information, like this extended register
-> layout.
-> As a side effect we can move the variant definition into the per-SoC
-> pinctrl driver file, which makes it more obvious that this is just a
-> private definition, only relevant for this particular table.
-> This also changes the artificial sun20i-d1 "variant" into the actual
-> flag bit that we are after.
->=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+On 2025-01-18 10:52, Krzysztof Kozlowski wrote:
+> On 18/01/2025 10:43, Dragan Simic wrote:
+>>>> 
+>>>> Please see the commit bdc48fa11e46 (checkpatch/coding-style: 
+>>>> deprecate
+>>>> 80-column warning, 2020-05-29), which clearly shows that the 
+>>>> 80-column
+>>>> rule is still _preferred_, but no longer _mandatory_.
+>>> 
+>>> I brought that commit, but nice that you also found it.
+>>> 
+>>> Still: read the coding style, not checkpatch tool.
+>>> 
+>>>>>> 80 columns is really not much (for the record, I've been around 
+>>>>>> when
+>>>>>> using 80x25 _physical_ CRT screens was the norm).
+>>>>> 
+>>>>> You mistake agreement on dropping strong restriction in 2020 in
+>>>>> checkpatch, which is "not for years" and even read that commit: 
+>>>>> "Yes,
+>>>>> staying withing 80 columns is certainly still _preferred_."
+>>>>> 
+>>>>> Checkpatch is not coding style. Since when it would be? It's just a
+>>>>> tool.
+>>>>> 
+>>>>> And there were more talks and the 80-preference got relaxed yet 
+>>>>> still
+>>>>> "not for years" (last talk was 2022?) and sill kernel coding style 
+>>>>> is
+>>>>> here specific.
+>>>> 
+>>>> It's perhaps again about the semantics, this time about the meaning
+>>>> of "for years".  I don't think there's some strict definition of 
+>>>> that
+>>>> term, so perhaps different people see it differently.
+>>>> 
+>>>> To get back to the above-mentioned commit bdc48fa11e46, the 
+>>>> 80-column
+>>>> limit has obviously been lifted, putting the new 100-column limit as
+>>> 
+>>> "Lifted" on *CHECKPATCH*, not on coding style. Do you see the
+> 
+> Repeating myself about because you are not addressing the actual 
+> difference.
 
-That looks pretty neat cleanup.
+Please see below.
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+>>> difference? One is a helper tool which people were using blindly and
+>>> wrapping lines without thinking, claiming that checkpatch told them 
+>>> to
+>>> do so. Other is the actual coding style.
+>>> 
+>>> You claim that coding style was changed. This never happened.
+>> 
+>> It was obviously changed in the commit bdc48fa11e46, by making the
+>> 80-column width preferred, instead of if being mandatory.  The way
+>> I read the changes to the coding style introduced in that commit,
+>> it's now possible to go over 80 columns, up to 100 columns, _if_
+>> that actually improves the readability of the source code.
+> 
+> The commit is for checkpatch. Point to the change in coding style. You
+> are bringing argument for checkpatch, so only a tool, as argument for
+> coding style. Again, coding style did not change since years.
 
-Best regards,
-Jernej
+Commit bdc48fa11e46 obviously addresses 
+Documentation/process/coding-style.rst
+as well, as visible in the quotation from the commit below:
 
+   -The limit on the length of lines is 80 columns and this is a strongly
+   -preferred limit.
+   -
+   -Statements longer than 80 columns will be broken into sensible 
+chunks, unless
+   -exceeding 80 columns significantly increases readability and does not 
+hide
+   -information. Descendants are always substantially shorter than the 
+parent and
+   -are placed substantially to the right. The same applies to function 
+headers
+   -with a long argument list. However, never break user-visible strings 
+such as
+   -printk messages, because that breaks the ability to grep for them.
+   +The preferred limit on the length of a single line is 80 columns.
+   +
+   +Statements longer than 80 columns should be broken into sensible 
+chunks,
+   +unless exceeding 80 columns significantly increases readability and 
+does
+   +not hide information.
+   +
+   +Descendants are always substantially shorter than the parent and are
+   +are placed substantially to the right.  A very commonly used style
+   +is to align descendants to a function open parenthesis.
+   +
+   +These same rules are applied to function headers with a long argument 
+list.
+   +
+   +However, never break user-visible strings such as printk messages 
+because
+   +that breaks the ability to grep for them.
 
+I think it's obvious that the 80-column width is no longer _strongly_
+preferred, but has been demoted to some kind of a bit weaker preference.
+
+Also, please note that the coding style explicitly says that the 80-
+column rule is to be followed "unless exceeding 80 columns significantly
+increases readability and does not hide information".
+
+This just reinforces my opinion that the readability is what matters
+most when deciding on the column width, instead of following the rules
+blindly, both when deciding whether to wrap some lines at column 50,
+for example, or to wrap them at column 98.
 
