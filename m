@@ -1,152 +1,186 @@
-Return-Path: <devicetree+bounces-139428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30BF2A15C8B
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 12:47:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D842FA15C8D
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 12:49:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FFEE7A14A1
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 11:47:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3048C1888ECF
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 11:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73A69189BAC;
-	Sat, 18 Jan 2025 11:47:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 623EC1891AA;
+	Sat, 18 Jan 2025 11:48:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EC1JPgKQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k770SPkq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC3CC187849;
-	Sat, 18 Jan 2025 11:47:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F568155757;
+	Sat, 18 Jan 2025 11:48:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737200832; cv=none; b=jPaH9/N510Eo5YsvUwCAu6V3htahwBSUv7MBAgXsggDGm1J0WFC7VslWaCHh2LUcfUrsoz6YbIKakF0Isi14BryjjOREVKj+0Sx/8I4YEDIbwBzWTqniB9615IoqNoIJ2omgCfNowMZnBlx4Uu/9ZuCsvfcy5bp7f1B3EH9IEYU=
+	t=1737200938; cv=none; b=Cov9ngVnaLY0L/Co0PtUl3tPKNbodVB6rdvXciP0iBEXGxTy4LbQvmhR+MPk0b8EbTvcBwlYJ9sANKFkoYnzewcQwatLhbUwYwLMGuBg/zab9keU/nQJDdykLk1xBZ+25XJZtXDsBnOV8sGeQPgDVKKQYWsHxvPOSKLZ/yO5OpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737200832; c=relaxed/simple;
-	bh=tQS9mwd/H1zn81rX8U4yBTj/dA+Zv8W0IY5ZRLr3fps=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SOAa6u2vg3x6a2hwNdjwFI7SKVmJnnACBQXxSV6293hRKDFhqLAIW5U3QYTsy/GcNZ35aPkJ+PORjnpZK28R32D8fmuNachdkenREpdFBSm73fr6wpBhnEhsQ/2+FlSG1CS7Qmwk3gMoAuE3wO4x+7GuhkTsTQDTzHGpMQtpm9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EC1JPgKQ; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-ab2b29dfc65so445043966b.1;
-        Sat, 18 Jan 2025 03:47:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737200828; x=1737805628; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dEETbdnKlsxmZe5oB6rAoR/Y3VNUS2QT7unKpMA9HfA=;
-        b=EC1JPgKQwS14Y3y6ABn5gGHimFVSuvd6zmVqn0TvN1tR8TqEMoQBK2Q3rMI3Yy/xt7
-         p8lwty4gPx3lTKCHbGETFdQ8cMJxPmBPjfxzh2/bQVouiYTOCr/kwDpOTX2rJvyPG3WB
-         UmuDL/Ainyjbh2LnhFa35U1gLRrl8rfc3w5T3nbX8PcL4enAnK3K9b7G8DWxJJcXLmqu
-         HNwESAWU7AuBzYnI/4r0HcVST0f9vRFS18fkohThvBb3b02UfYr2pgFdpjyhNM8SrCbe
-         hOfhAeyez7JxdfnOrkxuTshhQXmOhZjKZENsZF/C86f26W6OxXc1lAB7MBaum92biOO3
-         xFaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737200828; x=1737805628;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dEETbdnKlsxmZe5oB6rAoR/Y3VNUS2QT7unKpMA9HfA=;
-        b=qdr67XDrf0FypzgWXx/gZRWk5w7qnGRTaUsazohWwLKt4XCQM2ADBHQjtp+UmcRFnJ
-         BcIO2CKHlD01NGe9I/jYd5Aupd4kKpchP6I5X58agAiFjEV+evVAo723jY1L4PXCOByd
-         3CiYoDxFtDcM1TJjx5Z7he/uRgskja+sKABX1uF74yYI6l97B4+923u86iTx9Fd7SHoe
-         UlQSLEDUeAYF2KDgO7FMlWU5wEewYi4faF9JissUty0bxjS1PolenYOjCFyiSBW1nXyS
-         ojNsuXInOU4+dwiFIh7Y9oFYV4wDvMQz09Ji2szuj8l0BzuVpUiMOoZkzbgIEGq6QJ8d
-         HsyA==
-X-Forwarded-Encrypted: i=1; AJvYcCWdcrOOsnxGInC+acMZHaGKEKqVLJQl2EOmwZL8ng2IhFglfOFkmll0rLJlR5aNivzRGK7WzCSY2dzqlis=@vger.kernel.org, AJvYcCXRFWtjwGWhYiipFtDRcztJh+KmgE1LUwN0/SHqrNw+TgOD5qGzSNxedpSQ2F9H3epJR4nTcPOU4XBP+ZGVnrQ=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/QDHGJUymAILfkWw1uXSKRCfkuF5bt99KJi/eGtOwVVOXm0Zf
-	cUqT8kCV0gy0GPgxj76rsZ/QoaZ6PyzSKAQ90t5n0NjYBbAUKxH6
-X-Gm-Gg: ASbGnctZvsI+u7z9AS8W/mDmWqDHJE+V+tzKIgrcLOvSDkvKynV2+62rqrnexh2+qAG
-	kMjrKK9mqJl78R0l0jTk74e7e7mAMO3oeSoTA7f1T2VhBRweO8TTsUiMZ5Dqdel/D63CWVJ8/Ju
-	uqUvx1siGNhXy3KuonxguwOl2idq3enf+iv1Sc2zg5S+W1+Qr1juuNhfyL3qzb/i3vUJRJDqCZC
-	jK4GfZtD7b/LiqysYyjGK56mUDaYmRW7h3NGiLJsM2XuMpUGyNkIFldVnA4V9jHopkFVqVdalgr
-	xay0R3CQcX8t9eQ=
-X-Google-Smtp-Source: AGHT+IE/jKdo/VLXGSTwqZLRban4tKHtpH41BP/bx4E15bq4lS0FrHpTEehBdX2Yz4BsnqkbLRGFRA==
-X-Received: by 2002:a17:907:7faa:b0:ab3:30c5:f6d3 with SMTP id a640c23a62f3a-ab38b0b7f5amr554823466b.9.1737200827845;
-        Sat, 18 Jan 2025 03:47:07 -0800 (PST)
-Received: from jernej-laptop.localnet ([188.159.248.16])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384ce17f7sm323829966b.40.2025.01.18.03.47.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Jan 2025 03:47:07 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, Andre Przywara <andre.przywara@arm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-watchdog@vger.kernel.org
-Subject:
- Re: [PATCH 03/14] dt-bindings: watchdog: sunxi: add Allwinner A523 compatible
- string
-Date: Sat, 18 Jan 2025 12:47:06 +0100
-Message-ID: <5534097.Sb9uPGUboI@jernej-laptop>
-In-Reply-To: <20241111013033.22793-4-andre.przywara@arm.com>
-References:
- <20241111013033.22793-1-andre.przywara@arm.com>
- <20241111013033.22793-4-andre.przywara@arm.com>
+	s=arc-20240116; t=1737200938; c=relaxed/simple;
+	bh=b3Vwi+XF2Ta2nU9vcSwCYJ9xZaxTn7sxWh2usC3XLjY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Zc0pd0dRvuqbT3oZCcCWFEa+Y8bi74a6gKbSxuA57V9sFZt8LUj9riR3j9nmQDEX+10sRL2P4YSNwkkzN2o/fb6RdL7E+RiCSr8mBk7Vi6dQ3TDpvM8fRxJsDhlDfgHFDPEYWn1t8Az5LZ0Q/jQBwfBFWxTgGGZl7ecyk1OpWGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k770SPkq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F10CC4CED1;
+	Sat, 18 Jan 2025 11:48:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737200937;
+	bh=b3Vwi+XF2Ta2nU9vcSwCYJ9xZaxTn7sxWh2usC3XLjY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=k770SPkqI1tbX9Pwba+mp4XqGWfB+b0ywtSAZkXei5adlA3xYs8bmYN73DWb13IrY
+	 NgTCPc6Y62aNKkad+VNE8kGCQlxwcRodiTo6U5GAPN1PfgSdt+CmIDDzUP6QxeoXxO
+	 V6YIQhraqK8wXlyCjWrYIABBu0VAEYxtce2p1HBqFtfmLutzQcflq7vDEr2SsxbbuI
+	 0S72Omdum54L9Dz4ZJAKYmW2h6fOHLVfABlDyVyH6G1iJM6qbY/3IRiVOUxsCoTnpk
+	 BBvaGSIomTmQLJuw8ojghv8nZydL2xb+zJwoh58TuHzT151I1PmXWjBQihe0x8fQPd
+	 pcr1qpmSXjIGw==
+Date: Sat, 18 Jan 2025 11:48:46 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+Cc: Mikael Gonella-Bolduc via B4 Relay
+ <devnull+mgonellabolduc.dimonoff.com@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nathan Chancellor
+ <nathan@kernel.org>, Nick Desaulniers <ndesaulniers@google.com>, Bill
+ Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>, Mikael
+ Gonella-Bolduc <m.gonella.bolduc@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ llvm@lists.linux.dev, Hugo Villeneuve <hvilleneuve@dimonoff.com>, Matti
+ Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: light: Add APDS9160 binding
+Message-ID: <20250118114846.78ce0b67@jic23-huawei>
+In-Reply-To: <Z4UeCyxgbzCUQtRz@uva.nl>
+References: <20250106-apds9160-driver-v4-0-f88d9fc45d84@dimonoff.com>
+	<20250106-apds9160-driver-v4-1-f88d9fc45d84@dimonoff.com>
+	<20250112111059.677f8708@jic23-huawei>
+	<Z4UeCyxgbzCUQtRz@uva.nl>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Dne ponedeljek, 11. november 2024 ob 02:30:22 Srednjeevropski standardni =
-=C4=8Das je Andre Przywara napisal(a):
-> The Allwinner A523 SoC features a watchdog similar to the one used in
-> previous SoCs, but moves some registers around (by just one word), making
-> it incompatible to existing IPs.
->=20
-> Add the new name to the list of compatible string, and also to the list
-> of IP requiring two clock inputs.
->=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+On Mon, 13 Jan 2025 09:07:07 -0500
+Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com> wrote:
 
+> On Sun, Jan 12, 2025 at 11:10:59AM +0000, Jonathan Cameron wrote:
+> > On Mon, 06 Jan 2025 17:23:01 -0500
+> > Mikael Gonella-Bolduc via B4 Relay <devnull+mgonellabolduc.dimonoff.com@kernel.org> wrote:
+> >   
+> > > From: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+> > > 
+> > > Add device tree bindings for APDS9160
+> > > Note: Using alternate email for maintainer
+> > > 
+> > > Signed-off-by: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+> > > ---
+> > >  .../bindings/iio/light/brcm,apds9160.yaml          | 86 ++++++++++++++++++++++
+> > >  1 file changed, 86 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/iio/light/brcm,apds9160.yaml b/Documentation/devicetree/bindings/iio/light/brcm,apds9160.yaml
+> > > new file mode 100644
+> > > index 0000000000000000000000000000000000000000..756d46c2edb171da840ee49a7339cb781fe84ad2
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/light/brcm,apds9160.yaml
+> > > @@ -0,0 +1,86 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/light/brcm,apds9160.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Broadcom Combined Proximity & Ambient light sensor
+> > > +
+> > > +maintainers:
+> > > +  - Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>
+> > > +
+> > > +description: |
+> > > +  Datasheet: https://docs.broadcom.com/docs/APDS-9160-003-DS
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - brcm,apds9160
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  vdd-supply: true
+> > > +
+> > > +  ps-cancellation-duration:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: |
+> > > +      Proximity sensor cancellation pulse duration in half clock cycles.
+> > > +      This parameter determines a cancellation pulse duration.
+> > > +      The cancellation is applied in the integration phase to cancel out
+> > > +      unwanted reflected light from very near objects such as tempered glass
+> > > +      in front of the sensor.
+> > > +    minimum: 0
+> > > +    maximum: 63
+> > > +    default: 0
+> > > +
+> > > +  ps-cancellation-current-coarse:  
+> > 
+> > I've lost track on what we've discussed previously but I'm curious as to whether
+> > we can end up with a cleaner binding for this.  We may well see other identical
+> > controls in future, so nice to have something more 'generic'.  I'm not suggesting
+> > we don't keep it vendor specific though as not sure it will generalize beyond
+> > different broadcomm parts.
+> > 
+> > It is a multiple of nA, so can we just express the combination of
+> > this and ps-cancellation-current-fine as a single parameter, probably in pA
+> > 
+> > The tricky bit being there seem to be holes, so the allowed list would be complex.
+> > 
+> > Even if we can't do that can we express it as two nA values rather than indexes?  
+> 
+> Hi Jonathan,
+> 
+> These holes just have me puzzled on what to do. There's many of them, and the range in value is very large.
+> I thought about just having a single more generic parameter in pA but like you said but I found it was confusing to 
+> describe the allowed values and confusing as well to just round up or down since the holes are so large.
+> 
+> Having two values as a multiplier is more straightfoward for this chip since it's just based on what's described in the datasheet.
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+I would like them in common standard units even if we go this way.
 
-Best regards,
-Jernej
+> 
+> If you prefer to keep a more generic parameter, I'm open to the idea of going back to just a single one in pA and
+> log a warning in the driver if the value provided ends up in a hole and round to the nearest allowed value.
 
-> ---
->  .../devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml   | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a=
-10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a1=
-0-wdt.yaml
-> index 64c8f73938099..b35ac03d51727 100644
-> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.=
-yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.=
-yaml
-> @@ -32,6 +32,7 @@ properties:
->        - items:
->            - const: allwinner,sun20i-d1-wdt-reset
->            - const: allwinner,sun20i-d1-wdt
-> +      - const: allwinner,sun55i-a523-wdt
-> =20
->    reg:
->      maxItems: 1
-> @@ -60,6 +61,7 @@ if:
->            - allwinner,sun20i-d1-wdt-reset
->            - allwinner,sun50i-r329-wdt
->            - allwinner,sun50i-r329-wdt-reset
-> +          - allwinner,sun55i-a523-wdt
-> =20
->  then:
->    properties:
->=20
+That makes sense to me as the cleanest option.
+Just rely on descriptive text to tell writer of DT binding what values are allowed.
 
+> 
+> Are you confortable with this plan?
+> 
+> If so, there's another problem with the above. I don't see any picoamp suffix in the dt bindings property-units.yaml.
+> How should I handle this?
 
+Add it.  They tend to get added on first requirement.  Here
+nothing above picoamp works for us.
 
+Jonathan.
+
+> 
+> Best regards,
+> Mikael
+> 
+> 
+> 
 
 
