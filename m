@@ -1,180 +1,170 @@
-Return-Path: <devicetree+bounces-139410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 672FDA15C23
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 10:25:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7DB1A15C2B
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 10:28:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0D9C1889854
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 09:25:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5B0F3A9110
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 09:28:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BBB517C224;
-	Sat, 18 Jan 2025 09:25:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BD9B1885BD;
+	Sat, 18 Jan 2025 09:28:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="kiwlxS4g"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="ndIHUSpH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from out-183.mta1.migadu.com (out-183.mta1.migadu.com [95.215.58.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE515789D;
-	Sat, 18 Jan 2025 09:25:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A259917C7CA
+	for <devicetree@vger.kernel.org>; Sat, 18 Jan 2025 09:28:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737192311; cv=none; b=e7S91C47ugrQGhy3dpNLRrLzLmlU6NSQKpr7iw/WYo5nbsnaCJdKIsUwE2pzocXb4q/0qckLZtWKG8asYuZNqbcLwZIHyr7a1ef9pD1Yczzh9+OWqCkhtWGOpvy3WQvNHuPOSbUV71a7XBr6Xw7T8mZmp5/0pVB8bb5E9OszqGQ=
+	t=1737192523; cv=none; b=VZhGZ4RFJzdvn2llnpqFuArwc0l4I9W/I5QYe0UtKIV8YHCvD+ziaDSu0lQEjt3x2iKgCpHhYlLTMhMyVQ/gFLWxCB5vNPO6WzgDh7dOrv/A+U0fI8D91eAsnb/bZj33fNR8K3Ms36Xr6fjrtBLUezFyoBzRobFv+Swr3mevTeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737192311; c=relaxed/simple;
-	bh=vwymbIYCd1KLQ37rlGh0557bBwmIP+9DkmwskhVTzS8=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=CG28g6u7vXumrD7NIFZ7rQhJmtI3RtHoZgTcWiY5D/z9d3UUtGk1+iiUQhssVX7lkYe7dMq1KQYe62sMzKXzPtgcUeACGa+/FotBkmVXCw96w96sA18S2w8xzrq3o3x1yNY+ML311gd+fkJ66/SePslAX/tjr/Nsq4iZqLTXAZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=kiwlxS4g; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1737192523; c=relaxed/simple;
+	bh=P5GI2iZSpqTDBgH8Q/zGDiHzPF423ieipx1C4npwvIc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=izxOqTGKoUMuRRSkFJygJZ3Mq/cp8Y9P8vVJgtUg5Cz1tnJ/7mJqARAEVBOt5w6GaKMCema1V7yKQJ0aypMxGbD0hu6gHbQuAJAcJY5LsclV3nGMdBuNlNST5l5QAKYAADE4MKvw1QCpqtJoZlsTcSIvbyetYRmqzlCuAIfDgqc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=ndIHUSpH; arc=none smtp.client-ip=95.215.58.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <eab600f6-bfc2-489c-b384-5b620164a556@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1737192517;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=eZAGM0NMDbWfCBxoddbD55tPnSUQrLYu0ZHPVeSosg4=;
+	b=ndIHUSpHhj+hgSwqg3Kct5pR/qDgawaxVWtv1+mtJzms4AUjh5ndjFYjNqh/OAf8H+8xmB
+	cVU14t+EuzYAjEtyPdkCpp5heBvZ1yrsnrB6Nx3K/yvw5pvWm4Ptlhcag3zGi+PSbSP9iF
+	o4Mhn2ZfjaY6dSFvBWWXMGFPgXQ583k=
+Date: Sat, 18 Jan 2025 14:57:44 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1737192301;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=f3gaHJhxYmNnOibwoWf6n+HsBORRNWAm1WBlAvkjJ5c=;
-	b=kiwlxS4gR7ebogOG+lpIeJxKepxcvjj1PHy+JhwHYk8NWBxoPtOQM4yqlbIBObWQAOySJJ
-	8ISijcucWY1FzlW0ZgF2/U/agqwkB2PIWlQ2Y3TsVgoeLnT47UNaur+W80q+0xclNHhMni
-	ivpjhRTmJeV8bQmMCmzjaEAt9zFY/oPP2QwkKdHXtXdBdKbv44rR2btiH34bdo+orUR4zI
-	6TFEvtiU5G1OkvCD2HauR/PCyUJiXQyJ36VJGLRa/AMU2YRDq5OTEvzG9X6TUMtYZ/tlCW
-	ypPIdzRUp1COdxMAPmyBtsU96eU21WkwVSv6Vvno27R6AP0YBkOI65dqh7CylA==
-Date: Sat, 18 Jan 2025 10:25:00 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Diederik de Haas <didi.debian@cknow.org>, Peter Geis
- <pgwipeout@gmail.com>, Heiko Stuebner <heiko@sntech.de>, zyw@rock-chips.com,
- kever.yang@rock-chips.com, frank.wang@rock-chips.com,
- william.wu@rock-chips.com, wulf@rock-chips.com,
- linux-rockchip@lists.infradead.org, Alex Bee <knaerzche@gmail.com>, Conor
- Dooley <conor+dt@kernel.org>, Johan Jonker <jbx6244@gmail.com>, Jonas
- Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob
- Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v1 4/6] arm64: dts: rockchip: add rk3328 usb3 phy node
-In-Reply-To: <dcfb46e8-f29a-4eee-b8f8-1ff774f272ce@kernel.org>
-References: <20250115012628.1035928-1-pgwipeout@gmail.com>
- <20250115012628.1035928-5-pgwipeout@gmail.com>
- <7c7ce820-8a9b-46df-b143-f77835b7e5a0@kernel.org>
- <D73NJYSP62XH.28CVZPNUE21H3@cknow.org>
- <1bc91b4214a1099801aaed6b3ef81ef3@manjaro.org>
- <dcfb46e8-f29a-4eee-b8f8-1ff774f272ce@kernel.org>
-Message-ID: <60ced7df829e7c10e264627cc0947762@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Subject: Re: [PATCH 2/2] drm/tidss: Add support for AM62L display subsystem
+To: Devarsh Thakkar <devarsht@ti.com>, jyri.sarha@iki.fi,
+ tomi.valkeinen@ideasonboard.com, airlied@gmail.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ dri-devel@lists.freedesktop.org, simona@ffwll.ch,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: praneeth@ti.com, vigneshr@ti.com, s-jain1@ti.com, r-donadkar@ti.com,
+ j-choudhary@ti.com, h-shenoy@ti.com
+References: <20241231090432.3649158-1-devarsht@ti.com>
+ <20241231090432.3649158-3-devarsht@ti.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Aradhya Bhatia <aradhya.bhatia@linux.dev>
+In-Reply-To: <20241231090432.3649158-3-devarsht@ti.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-Migadu-Flow: FLOW_OUT
 
-Hello Krzysztof,
+Hi Devarsh,
 
-On 2025-01-18 09:46, Krzysztof Kozlowski wrote:
-> On 17/01/2025 05:10, Dragan Simic wrote:
->> On 2025-01-16 17:53, Diederik de Haas wrote:
->>> On Thu Jan 16, 2025 at 2:01 PM CET, Krzysztof Kozlowski wrote:
->>>> On 15/01/2025 02:26, Peter Geis wrote:
->>>>> Add the node for the rk3328 usb3 phy. This node provides a combined 
->>>>> usb2
->>>>> and usb3 phy which are permenantly tied to the dwc3 usb3 
->>>>> controller.
->>>>> 
->>>>> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
->>>>> ---
->>>>> 
->>>>>  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 39 
->>>>> ++++++++++++++++++++++++
->>>>>  1 file changed, 39 insertions(+)
->>>>> 
->>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi 
->>>>> b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->>>>> index 7d992c3c01ce..181a900d41f9 100644
->>>>> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
->>>>> @@ -903,6 +903,43 @@ u2phy_host: host-port {
->>>>>  		};
->>>>>  	};
->>>>> 
->>>>> +	usb3phy: usb3-phy@ff460000 {
->>>>> +		compatible = "rockchip,rk3328-usb3phy";
->>>>> +		reg = <0x0 0xff460000 0x0 0x10000>;
->>>>> +		clocks = <&cru SCLK_REF_USB3OTG>, <&cru PCLK_USB3PHY_OTG>, <&cru 
->>>>> PCLK_USB3PHY_PIPE>;
->>>> 
->>>> Please wrap code according to coding style (checkpatch is not a 
->>>> coding
->>>> style description, but only a tool), so at 80.
->>> 
->>> I'm confused: is it 80 or 100?
->>> 
->>> I always thought it was 80, but then I saw several patches/commits by
->>> Dragan Simic which deliberately changed code to make use of 100.
->>> Being fed up with my own confusion, I submitted a PR to
->>> https://github.com/gregkh/kernel-coding-style/ which got accepted:
->>> https://github.com/gregkh/kernel-coding-style/commit/5c21f99dc79883bd0efeba368193180275c9c77a
->>> 
->>> So now both the vim plugins code and README say 100.
->>> But as noted in my commit message:
->>> 
->>>   Note that the current upstream 'Linux kernel coding style' does NOT
->>>   mention the 100 char limit, but only mentions the preferred max
->>> length
->>>   of 80.
->>> 
->>> Or is it 100 for code, but 80 for DeviceTree files and bindings?
->> 
->> I don't know about the DT files and bindings, but the 100-column limit
->> for the kernel code has been in effect for years.  In this day and 
->> age,
+Thanks for the patches.
+
+On 31/12/24 14:34, Devarsh Thakkar wrote:
+> Enable display for AM62L DSS [1] which supports only a single display
+> pipeline using a single overlay manager, single video port and a single
+> video lite pipeline which does not support scaling.
 > 
-> That's just false. It was never in effect for years. Read kernel coding
-> style document.
-
-Perhaps it's about the semantics.
-
-Please see the commit bdc48fa11e46 (checkpatch/coding-style: deprecate
-80-column warning, 2020-05-29), which clearly shows that the 80-column
-rule is still _preferred_, but no longer _mandatory_.
-
->> 80 columns is really not much (for the record, I've been around when
->> using 80x25 _physical_ CRT screens was the norm).
+> The output of video port is routed to SoC boundary via DPI interface and
+> the DPI signals from the video port are also routed to DSI Tx controller
+> present within the SoC.
 > 
-> You mistake agreement on dropping strong restriction in 2020 in
-> checkpatch, which is "not for years" and even read that commit: "Yes,
-> staying withing 80 columns is certainly still _preferred_."
+> [1]: Section 11.7 (Display Subsystem and Peripherals)
+> Link : https://www.ti.com/lit/pdf/sprujb4
 > 
-> Checkpatch is not coding style. Since when it would be? It's just a 
-> tool.
+> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+> ---
+>  drivers/gpu/drm/tidss/tidss_dispc.c | 34 +++++++++++++++++++++++++++++
+>  drivers/gpu/drm/tidss/tidss_dispc.h |  2 ++
+>  drivers/gpu/drm/tidss/tidss_drv.c   |  1 +
+>  3 files changed, 37 insertions(+)
 > 
-> And there were more talks and the 80-preference got relaxed yet still
-> "not for years" (last talk was 2022?) and sill kernel coding style is
-> here specific.
+> diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
+> index cacb5f3d8085..cd322d60b825 100644
+> --- a/drivers/gpu/drm/tidss/tidss_dispc.c
+> +++ b/drivers/gpu/drm/tidss/tidss_dispc.c
+> @@ -376,6 +376,35 @@ const struct dispc_features dispc_am62a7_feats = {
+>  	.vid_order = { 1, 0 },
+>  };
+>  
+> +const struct dispc_features dispc_am62l_feats = {
+> +	.max_pclk_khz = {
+> +		[DISPC_VP_DPI] = 165000,
 
-It's perhaps again about the semantics, this time about the meaning
-of "for years".  I don't think there's some strict definition of that
-term, so perhaps different people see it differently.
+The TRM mentions that the max the VP PLL can go is 150MHz, so maybe you
+might need to update this.
 
-To get back to the above-mentioned commit bdc48fa11e46, the 80-column
-limit has obviously been lifted, putting the new 100-column limit as
-an option for those who prefer having fewer "artificial" line breaks
-over adhering strictly to the rules.
+That said, as far as I understand, the IP itself can support 165 MHz,
+and I am wondering, what would we do if there comes out a new SoC that
+uses AM62L DSS as is, but just bumps up the PLL capacity to 165MHz.
 
-Thus, as a maintainer, you're obviously free to enforce the 80-column
-limit of you want so.
+It would be odd to have a ditto feats structure with just the frequency
+updated.
 
-If my opinion counts, I'd agree with the 80-column limit when it comes
-to the device trees and bindings.  Keeping those files at the lower
-width usually makes them more readable to me.  However, enforcing the
-80-column limit in C and header files very often leads to having line
-breaks that do nothing but make the code look a bit silly.
+> +	},
+> +
+> +	.subrev = DISPC_AM62L,
+> +
+> +	.common = "common",
+> +	.common_regs = tidss_am65x_common_regs,
+
+Also, I don't think we should utilize this as is.
+
+The AM62L common regions is different, and is, at best, a subset of the
+AM65x/AM62x common register space.
+
+For example, registers VID_IRQ{STATUS, ENABLE}_0 have been dropped,
+along with VP_IRQ{STATUS, ENABLE}_1.
+
+- Which brings to my next concern...
+
+> +
+> +	.num_vps = 1,
+> +	.vp_name = { "vp1" },
+> +	.ovr_name = { "ovr1" },
+> +	.vpclk_name =  { "vp1" },
+> +	.vp_bus_type = { DISPC_VP_DPI },
+> +
+> +	.vp_feat = { .color = {
+> +			.has_ctm = true,
+> +			.gamma_size = 256,
+> +			.gamma_type = TIDSS_GAMMA_8BIT,
+> +		},
+> +	},
+> +
+> +	.num_planes = 1,
+> +	.vid_name = { "vidl1" },
+> +	.vid_lite = { true },
+> +	.vid_order = { 0 },
+
+...
+
+Usually, VID1 is the first video pipeline, while VIDL1 remains the
+second. Which is why vid1 occupies the index 0, and vidl1 occupies 1 -
+even from the hardware perspective.
+
+While AM62L has only one video (lite) pipeline - vidl1, and there is no
+vid1, the hardware still treats vidl1 at index 1.
+
+For example, the TRM has defined DISPC_VID_IRQ{STATUS, ENABLE}_1 (and
+not _0) in the common region.
+
+So, the vid_order here should be 1, not 0.
+
+
+Regards
+Aradhya
+
 
