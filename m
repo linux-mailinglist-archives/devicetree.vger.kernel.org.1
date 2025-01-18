@@ -1,62 +1,64 @@
-Return-Path: <devicetree+bounces-139461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D787EA15D60
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 15:41:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E69F0A15D66
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 15:44:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 01CA9160E09
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 14:41:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BB7D1634C3
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 14:44:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DDDC18E37D;
-	Sat, 18 Jan 2025 14:41:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51A0E18FC9D;
+	Sat, 18 Jan 2025 14:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jy+fX6F6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="scEhG96P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EDFC184;
-	Sat, 18 Jan 2025 14:41:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EA4C18BC20;
+	Sat, 18 Jan 2025 14:44:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737211315; cv=none; b=E8txSuWBqnPZnkfispkQYnTc7GU8Qtx/cOlf0vaIjNcEdvxpuBbnxFHpqgtXVqpElLzzFE27iI6lorgtY4KgWsogWkH1OslBnvpRrwdSccrMBJZ9702eXtu65UNlkWHCcRpkbQcL8oXyVzea8Nyu45V6e7xClnoSo0VWAFzIovQ=
+	t=1737211493; cv=none; b=MWnMqggyWBw2T5STubaH+UvwQmTA7be5salOR2k35dhCnfc/UYCcK3lsYpja0JONE/KM6pzRQHUzaNdtFOEyKlHlxXQKS28NRT3fwbUKBaroZdgsnlDfy0B33thpIKHnQkWek4dnqMnCBcShaPdJf5Z+CKOUycNGhQ/lqXzPikQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737211315; c=relaxed/simple;
-	bh=M7bWewb4ioMWRrmYH3frL7DaC/v7/G7GVzjzmI4GcEs=;
+	s=arc-20240116; t=1737211493; c=relaxed/simple;
+	bh=yzyYeRsnULL3tlm7okdtyouKJWANz7x87jxQKcldjnY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LDLmeRIvMmXOJA3mY2XxHLQzquFnUXf9RvTvH+qWUVt79s+52dB6HCA5ZVFeKbRLuAYvHC/veXU9P4WEsbynCmDeZ+xXZ4kei6BBZKvvndWybGHEhHCihQCn+sZmb+zOUtxVl/LW87SgOmu+l75OgRdSxQ+F8n6TRYonnX7/QII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jy+fX6F6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 299B8C4CEDF;
-	Sat, 18 Jan 2025 14:41:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jYwQgb4zyCOt6hPKVjx3oAlH+Q3Aag+nfbTmUAFfAFCZ+WGBSNgjjoPI86UD+trMR3BT/pj+IcQ/JGEvFub0Lk4qD77vvESDYqKf86ihIjMD7L5D9fh97mLPkBC5x+7EECsWCJSR+ThPVBWmmyzoO/e6dZTCO+eFE1mzR86fCRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=scEhG96P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B04C0C4CED1;
+	Sat, 18 Jan 2025 14:44:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737211314;
-	bh=M7bWewb4ioMWRrmYH3frL7DaC/v7/G7GVzjzmI4GcEs=;
+	s=k20201202; t=1737211492;
+	bh=yzyYeRsnULL3tlm7okdtyouKJWANz7x87jxQKcldjnY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jy+fX6F66HrE+Qo3HVIEt+X0dhCmBAMypvrQW/WoLeqIl4OWqjpD9qkx8bTzx2yLL
-	 KPsl5mT8MLm7Ybq2U5XL59zLdwA6DMO3EhS++yLZ0bHMyhXqntnwqeLg0cH9Ae2dUR
-	 GQKN/+Xj1wo92pCoUIPSCyHK4b3goi4NoSHAnyoZAg5JHUj5YEUog1rlrw9N0iXQR7
-	 BXN26ZkwZ1n/4puqgdOs4NkYNFH44WVRebz2IKzrJnwwt0QBTPfT1U/lGyj+wx9tYS
-	 nZeneOAZdW9o4W8IBw9oRmJ5iRo8q4yT0XGN736Q7MJZiHwIEXmV8KiG5v9aplh0qc
-	 nfLcxZw3dvZIA==
-Date: Sat, 18 Jan 2025 15:41:51 +0100
+	b=scEhG96PAbqb49mM4Y/7uYqd2h3X5wx9lpS03Mw2SpwwZJPeiG9cDTIyK9BE/wU9g
+	 WB7AznEvt4moVwwhcpqbXxCV7a8sGlpLc65OBKN1u2Wb0K01Z06AjLEInfn5TgywtB
+	 Jwjo65AeQIqXA9CEEjEqDydchgMQi0G3KfGq+8c55d6R+wgduDyk6NA4qZRk6axbLk
+	 TuPPgDe/s9G65CagDhOUbS37PVyZ7wmtji0B1H1eF+VLviAsYeG9j1R58RxGkN09LG
+	 FERM5tRctvmm7hIMtPE65Ez45SF7vvwFFYBwiiLi3iYF8TKs2SFkvjRQTu0Q0H4WSG
+	 X8wOBDFVyYdlQ==
+Date: Sat, 18 Jan 2025 15:44:49 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Aleksandar Rikalo <arikalo@gmail.com>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+To: Melody Olvera <quic_molvera@quicinc.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, 
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] dt-bindings: mips: mips-cm: Add a new compatible
- string for EyeQ6
-Message-ID: <20250118-therapeutic-peach-turaco-99b37e@krzk-bin>
-References: <20250116-cluster-hci-broken-v2-0-fc52cfb7a19e@bootlin.com>
- <20250116-cluster-hci-broken-v2-2-fc52cfb7a19e@bootlin.com>
- <20250116153637.GA2567996-robh@kernel.org>
- <87a5bpwz6v.fsf@BLaptop.bootlin.com>
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Andy Gross <agross@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>, 
+	Trilok Soni <quic_tsoni@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-scsi@vger.kernel.org, 
+	Nitin Rawat <quic_nitirawa@quicinc.com>
+Subject: Re: [PATCH 1/5] dt-bindings: phy: qcom,sc8280xp-qmp-ufs-phy:
+ Document the SM8750 QMP UFS PHY
+Message-ID: <20250118-uptight-crocodile-of-music-2becee@krzk-bin>
+References: <20250113-sm8750_ufs_master-v1-0-b3774120eb8c@quicinc.com>
+ <20250113-sm8750_ufs_master-v1-1-b3774120eb8c@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,81 +67,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <87a5bpwz6v.fsf@BLaptop.bootlin.com>
+In-Reply-To: <20250113-sm8750_ufs_master-v1-1-b3774120eb8c@quicinc.com>
 
-On Fri, Jan 17, 2025 at 10:46:00AM +0100, Gregory CLEMENT wrote:
-> >> -    const: mti,mips-cm
-> >> +    oneOf:
-> >> +      - const: mti,mips-cm
-> >> +      - const: mti,eyeq6-cm
-> >
-> > Being a mobileye device, the vendor prefix should be mobileye.
+On Mon, Jan 13, 2025 at 01:46:24PM -0800, Melody Olvera wrote:
+> From: Nitin Rawat <quic_nitirawa@quicinc.com>
 > 
-> I chose mti because actually this block is part of the I6500 and
-> provided as is by MIPS.
+> Document the QMP UFS PHY on the SM8750 Platform.
 
-But MIPS or MTI did not create eyeq6, so then product does not fit
-vendor.
+Pretty obvious commit msg, duplicating subject. Say something useful,
+e.g. why this is not compatible with sm8650.
 
 > 
-> >
-> >> +        description:
-> >> +          On EyeQ6 the HCI (Hardware Cache Initialization) information for
-> >> +          the L2 cache in multi-cluster configuration is broken.
-> >>  
-> >>    reg:
-> >>      description:
-> >> @@ -25,14 +30,29 @@ properties:
-> >>  
-> >>  required:
-> >>    - compatible
-> >> -  - reg
-> >>  
-> >>  additionalProperties: false
-> >>  
-> >> +if:
-> >> +  properties:
-> >> +    compatible:
-> >> +      contains:
-> >> +        const: mti,eyeq6-cm
-> >> +then:
-> >> +  properties:
-> >> +    reg: false
-> >> +else:
-> >> +  required:
-> >> +    - reg
-> >
-> > How does one access this block with no registers? Is this some subset of 
-> > a larger block? If so, need to define that block first.
-> 
-> CM stands for Coherence Manager. This component is mandatory when you
-> want to do SMP across MIPS core. This is part of the MIPS architecture,
-> and the address of the CM is provided by the Coprocessor 0.
-> 
-> "CP0 is incorporated on the CPU chip and supports the virtual memory
-> system and exception handling. CP0 is also referred to as the System
-> Control Coprocessor."
-> 
-> So to summarize, in a functional system, this information doesn't have
-> to be exposed through the device tree, as it is available at runtime
-> from any MIPS CPU.
-> 
-> >
-> > These 2 blocks don't look related and the only property shared is 
-> > 'compatible'. This should be a separate doc.
-> 
-> As mentioned in the cover letter, I reused the work from Jiaxun, who
-> needed to deal with bogus CM but in a different way. In his use case,
-> the issue with the CM was that the address in CP0 was wrong. In my case,
-> this address is correct; it is only one piece of information reported by
-> the CM that is wrong. I don't mind creating a separate doc if you
-> still think it is the right thing to do.
+> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 
-So the programming interface in general is the same, but in one case the
-reg/address detection does not work reliably?
-
-I guess could stay the same doc, but all this should be explained in
-binding description.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
