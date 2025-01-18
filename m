@@ -1,523 +1,181 @@
-Return-Path: <devicetree+bounces-139484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92727A15E0E
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 17:28:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3E8A15E15
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 17:33:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6E07165EDE
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 16:28:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDA611885A45
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 16:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A6D19CC33;
-	Sat, 18 Jan 2025 16:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72CCE199238;
+	Sat, 18 Jan 2025 16:33:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PdMD4SAd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fMPQn0dN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7802189BAC;
-	Sat, 18 Jan 2025 16:28:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD9615CD78;
+	Sat, 18 Jan 2025 16:33:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737217701; cv=none; b=A39kguj0mHFzxHUczs4d+ETZqCOA7E5czIrNqtAVWkoMitRIWB+yrn4lUd8nb1WkeJkVHUJLkyHzfKUv9YEBiZFE1cc05PI6U7QIi3w+wETHJxr90q3TZiv0lzHOPOZQgA3k/KkjPhuLppro5azAT4tMw1CUJVCq/2mcVXIeT0o=
+	t=1737218006; cv=none; b=E6XQNviTZh24k3wc5ilbdp5sB/DsdiBLBR/9vwJynTR2x1czmv4gNRtzOPW8PaZ+LKcjkeTnWynCJJYxDkMUK0VxlsNJLtZfykosrTc69Uq9AjNfz2BD5YNuweTkCOmZcpgkRtN22/k39FbKWKs7itKSHkfz+7+GZbF8bSOW7/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737217701; c=relaxed/simple;
-	bh=WmcNgHTjbftv10a5/348uDI+9wMWuTwBHgkTpMhg6mU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Sc094l7L7SCukXWrRCVJb9CE3G6HI03i+Ahzo+yNxioOL+1VZ1ZzXAYmQa8d57Q2EHztEB5tkme2umXU3dGpWcOU9eNdo1VbqBVkKfY95+kXCnpqiJw55iH0ewmP3Jn6B1jcsqBh+GVDWy2kU8TQL82dfbitodNPDuCarhE9uEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PdMD4SAd; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1737218006; c=relaxed/simple;
+	bh=N4WKOAPatm/OOVk7jJmgkjomTo8rCT0Ib92cgaZHAIE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OJZFmuv/LBN/1JJ554TfXU/E1xHYZx4bXisempoJt2SHy4eLT3edsDt6DEUQ8yicNgKGiwG+8DM6qbwWaSy5bWvo2w527KY1dHDA7zBwF2RjwfN8hCRLvBn56pET0J3K20eN3CKc1cxVMJQO3lfz2jj0mf5v7uiNJDKsYAf0wRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fMPQn0dN; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-5d3d143376dso4672426a12.3;
-        Sat, 18 Jan 2025 08:28:18 -0800 (PST)
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2164b662090so58271295ad.1;
+        Sat, 18 Jan 2025 08:33:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737217697; x=1737822497; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3qK9VGUQLsSV1fviCq5ZDn3IDi9DKDriUQm8bYqt+y0=;
-        b=PdMD4SAdipS62Z3qD5A3y8yZ6boNVjevqIe3XOWdEA1Iz5yKE7prr1FFJpkPC0+Zl/
-         jRDCnA6UKwtrdHqSuubEdIbAjetsNN5W1IkY+AQ3ix/f/Lrg/fFUQgtVJ0JR39by+39i
-         LCl1XNDacPmVdZy6tGuJqKlbgh0mvWR9w5J36888uiYNAiz3lQSrj6+gv7lbB43f5gXK
-         nTHbNeqsPYqkeamcgLage9C7isNZoty1wnEJbqga7GC37mZT80u7hkuZU6bTwoN/5sc2
-         c7D6WHBbrjS8zpyxa4D9yV+MTdevH40PXWAbi9SP8rW/SdSL2iu1CSpguUQw4Q4BQUFD
-         K3AQ==
+        d=gmail.com; s=20230601; t=1737218004; x=1737822804; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w8mEEkakGykScFNyZ0WPlZb8FWyU5Ac0gzQtTbrAz/U=;
+        b=fMPQn0dNfcZPjo1e88Zia4SSJe+oef62ds8fI8k2uaTGabZED3hJxcARRxtaKckqx8
+         Z2opDC7PKPTZvoUhtErI/4yKQETyaKOCwcbqTla+VPETUw0CZCN+0jzDsns066zirP2f
+         ZoAnxh6JJc0h4/iThJBe4n/TRhBzSXD9x56zLfo/qpA26pC3S5hSV6pM6JXGxOWm300M
+         MbH1tq8nSQJeYqHeI0PBSM3W4bgRJB/nWIMP+1B3G1iMaXKutFl6E75vTpxU21H6sSip
+         MB1NMJYQSstDudee+1lnG7qZ1fhxR0O5Ii0YYUpHWT7lmRtCWnp7rjBNSiWDAcKd7Lem
+         JY5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737217697; x=1737822497;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1737218004; x=1737822804;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3qK9VGUQLsSV1fviCq5ZDn3IDi9DKDriUQm8bYqt+y0=;
-        b=OyfGEUmq1GF0Dp3UABA3AWrZCALkeno772lgjoTvu2TodGksbuAjpPf/+ZOWykhDXC
-         U8XJkgYg2PS5mijSLfCbD5RwnyfqeVpRe5qzzbubl8qCJZMlrc3ZOLS674frWXd2j22H
-         /nuRHDMvBw0toNlTbOSsGV40GYDWZesi1Ju3ICsMdl+3jcqWfkZkbAZdwmu+zVr+8Bl9
-         OmG2VF0AL/UXyo902KDv9GiYxtKVIvG8NYDA15qJduX7t4LhJw51b5rLhxGY7YnCePZD
-         bm6Kg+CU9Li39O6zdgDc0DOofO/8IRYmoZxOQMXr1Yt3u/JKxCACib7eRHeQL8C21MjK
-         u0zg==
-X-Forwarded-Encrypted: i=1; AJvYcCUnJWtwBcWGOnPQEjZBvZeYH80OHct+IEhGlw9ZDW+Jq0l8RTdPjyo/ZHkcA7viU++VD1sW4eap7e7xwOg=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyzbV2Y4TlmKY/WogtqRn2JbCkMnHBQmoXvi+uv9iu4n0+Xg+QE
-	dmXa+48lpF/lq40MDKpnWLPHdM8eA56EmXHwXOYvEgY1SmgOPWSi
-X-Gm-Gg: ASbGncv58pEF3eBrhLhh/J/UW82PyQ4/El+swY4lVvuVEe+6mgjk+JHKjfpiBW+7Lc6
-	0lSO4awPkNF1d2sQcSz0Rjwjl8kRRDyTvalqkzxDTwVlJqANP81h8Rx0xjkZqs+DxiBvae2aP0F
-	HVc96Mp0LdPs1TxoQAB+5R84oz60850txf6fj348BaFu1ObZSf9nG7EDYTmkSiY1h9q7LA1xRlQ
-	XtY5DJjXQCKYoD0Y1ZlNKzr6RspJmiJYBr+hHBa8PfF0bztu1LiYPLHc/1RVIMSygEzxjZE2Mh2
-	B/ze7CmBLahItjs=
-X-Google-Smtp-Source: AGHT+IGyjMDuSipg8uqnrp3QQWrF+JEzC7jqNIST1L3PukQeJHqMCiwtLjv7aFSuOtfiLnAgFCiaLA==
-X-Received: by 2002:a17:907:6d17:b0:aab:d8e4:2062 with SMTP id a640c23a62f3a-ab38b3df931mr583281866b.56.1737217696832;
-        Sat, 18 Jan 2025 08:28:16 -0800 (PST)
-Received: from jernej-laptop.localnet ([188.159.248.16])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384f86f7bsm363583766b.149.2025.01.18.08.28.15
+        bh=w8mEEkakGykScFNyZ0WPlZb8FWyU5Ac0gzQtTbrAz/U=;
+        b=XRLq4e9wCHk+67lkLn2x1zttNWX3pN7b7LHydbXFhIvInsgTcR0NMyBw1MKBast/9r
+         CK6fvYU7YZFYb64lVEv/gvFnArvVoLksLHiTIE5S+y7rDi7ck9AgxWLCSqrang3HdcMM
+         gf8eEVzETd6ZeUYqR29VS8or8kq/2WB3sY/cerwVSAzxtlEFRv0oIq5ipgstJz9M+mKh
+         mKv00MpI4sIir36kvrKSdrae5rob3fepA3SHtqf27vyjcPM3/HFVmqhAP59zkszPOZ+n
+         oKVeyNZIvKr3so+ZACZEF+6FpYlWSBOyypQqHJU3wPOjpCJ5wKQdZyJtX/WOgrQpkcqy
+         pZ7g==
+X-Forwarded-Encrypted: i=1; AJvYcCUo/Gebds/MqBAarDYiyNtVSaA42k97x16OSbcorYxvShzNPhQhJXjn0iMAcK4RG0xUmUVKAugiTcBwurS7@vger.kernel.org, AJvYcCVWgV5dq2AEBjRv1si9n6NFIhL9S/Ccxwir1I8r0T80C9u51j0IARjrZYpsN4Bc+VYa1Y3K1FmYedDnESI=@vger.kernel.org, AJvYcCWPSD3R+LOVO3Fo1QYO2f1rK9pmPbauXRVp7tYg7D/vAawIT/FW/+h88EffVihLE8iVk/QW2KhmFUw+@vger.kernel.org, AJvYcCXsjKJzMU44AXae7leXk1y0GDY43taf4cswEw5acqqWBS8rw0+q2WLsuWWze60NZhfA0P39SV1bp4e5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxzvx98RKGK71KdXPrqmNBv+oKbCd3Z+t4PsHgBJZt7k+NK3U5z
+	JLQKpQYaSVBqREQz0lbbntlDInAfLPnhwjCspHpMdbg++JriXj0UoVTFVg==
+X-Gm-Gg: ASbGncuBa1pJ1fp0Nrc/WNyOYMRw3JzEX/ZANk7Qa1tThtKZHSeTQ/QcIcTyos4Aq36
+	h6L/299bSrMyRJpD5fLCh1r4uAqRvsl9sX0mjqeH2vJsMfXkHzJjAfovI45lV8k0VdQTd7xPMI1
+	9H4fmWTtvt/Z1vjb0WyL8AfEVJvSlnVVkpnx2kiEjJPkMGluZebQy3eCStl0B5aYAZhHP2eORO/
+	3fE6psm04llevKJV6Q342vZbifbgzjY8au4opKoPho4LpvFPXwr3h5t1aZPkL46r4L+1oHSTAu3
+	Nor7gCI=
+X-Google-Smtp-Source: AGHT+IHEi4wmUrSoEgk5WEe5KpbsQvX76CpDRoF3M4upcFuoYFKc+Mt2Fud5TtYe9vt9uTP+GMo04Q==
+X-Received: by 2002:a05:6a20:3d89:b0:1db:d738:f2ff with SMTP id adf61e73a8af0-1eb2144d6e7mr12815751637.2.1737218003968;
+        Sat, 18 Jan 2025 08:33:23 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72dab9b9ae0sm4040705b3a.93.2025.01.18.08.33.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Jan 2025 08:28:16 -0800 (PST)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH 11/14] arm64: dts: allwinner: Add Allwinner A523 .dtsi file
-Date: Sat, 18 Jan 2025 17:28:14 +0100
-Message-ID: <2763298.mvXUDI8C0e@jernej-laptop>
-In-Reply-To: <20241111013033.22793-12-andre.przywara@arm.com>
-References:
- <20241111013033.22793-1-andre.przywara@arm.com>
- <20241111013033.22793-12-andre.przywara@arm.com>
+        Sat, 18 Jan 2025 08:33:23 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Sat, 18 Jan 2025 08:33:17 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Mohan Kumar D <mkumard@nvidia.com>
+Cc: vkoul@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org, treding@nvidia.com,
+	jonathanh@nvidia.com, spujar@nvidia.com
+Subject: Re: [PATCH v2 RESEND 2/2] dmaengine: tegra210-adma: Support channel
+ page
+Message-ID: <77e9f23a-60e2-442c-9981-319fc650979a@roeck-us.net>
+References: <20241217074358.340180-1-mkumard@nvidia.com>
+ <20241217074358.340180-3-mkumard@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241217074358.340180-3-mkumard@nvidia.com>
 
-Dne ponedeljek, 11. november 2024 ob 02:30:30 Srednjeevropski standardni =
-=C4=8Das je Andre Przywara napisal(a):
-> The Allwinner A523, and its siblings A527 and T527, which share the same
-> die, are a new family of SoCs introduced in 2023. They features eight
-> Arm Cortex-A55 cores, and, among the other usual peripherals, a PCIe and
-> USB 3.0 controller.
->=20
-> Add the basic SoC devicetree .dtsi for the chip, describing the
-> fundamental peripherals: the cores, GIC, timer, RTC, CCU and pinctrl.
-> Also some other peripherals are fully compatible with previous IP, so
-> add the USB and MMC nodes as well.
-> The other peripherals will be added in the future, once we understand
-> their compatibility and DT requirements.
->=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  .../arm64/boot/dts/allwinner/sun55i-a523.dtsi | 386 ++++++++++++++++++
->  1 file changed, 386 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/=
-boot/dts/allwinner/sun55i-a523.dtsi
-> new file mode 100644
-> index 0000000000000..96072cea10da4
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-> @@ -0,0 +1,386 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-> +// Copyright (C) 2023-2024 Arm Ltd.
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/clock/sun6i-rtc.h>
-> +#include <dt-bindings/clock/sun55i-a523-ccu.h>
-> +#include <dt-bindings/clock/sun55i-a523-r-ccu.h>
-> +#include <dt-bindings/reset/sun55i-a523-ccu.h>
-> +#include <dt-bindings/reset/sun55i-a523-r-ccu.h>
-> +
-> +/ {
-> +	interrupt-parent =3D <&gic>;
-> +	#address-cells =3D <2>;
-> +	#size-cells =3D <2>;
-> +
-> +	cpus {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			compatible =3D "arm,cortex-a55";
-> +			device_type =3D "cpu";
-> +			reg =3D <0x000>;
-> +		};
-> +	};
-> +
-> +	ext_osc32k: ext-osc32k-clk {
-> +		#clock-cells =3D <0>;
-> +		compatible =3D "fixed-clock";
-> +		clock-frequency =3D <32768>;
-> +		clock-output-names =3D "ext_osc32k";
-> +	};
+Hi,
 
-osc32k should be part of the board DT. It's not mandatory, and some boards,
-at least with older generations of SoCs, don't have it.
+On Tue, Dec 17, 2024 at 01:13:58PM +0530, Mohan Kumar D wrote:
+> Multiple ADMA Channel page hardware support has been
+> added from TEGRA186 and onwards.
+> 
+> - Add support in the tegra adma driver to handle selective
+>   channel page usage
+> - Make global register programming optional
+> 
+> Signed-off-by: Mohan Kumar D <mkumard@nvidia.com>
 
-Best regards,
-Jernej
+This patch triggers a build failure when trying to build i386:all{yes,mod}config.
 
-> +
-> +	osc24M: osc24M-clk {
-> +		#clock-cells =3D <0>;
-> +		compatible =3D "fixed-clock";
-> +		clock-frequency =3D <24000000>;
-> +		clock-output-names =3D "osc24M";
-> +	};
-> +
-> +	pmu {
-> +		compatible =3D "arm,cortex-a55-pmu";
-> +		interrupts =3D <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +
-> +	timer {
-> +		compatible =3D "arm,armv8-timer";
-> +		arm,no-tick-in-suspend;
-> +		interrupts =3D <GIC_PPI 13 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +
-> +	soc {
-> +		compatible =3D "simple-bus";
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <1>;
-> +		ranges =3D <0x0 0x0 0x0 0x40000000>;
-> +
-> +		pio: pinctrl@2000000 {
-> +			compatible =3D "allwinner,sun55i-a523-pinctrl";
-> +			reg =3D <0x2000000 0x800>;
-> +			interrupts =3D <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 73 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 75 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&ccu CLK_APB1>, <&osc24M>, <&rtc CLK_OSC32K>;
-> +			clock-names =3D "apb", "hosc", "losc";
-> +			gpio-controller;
-> +			#gpio-cells =3D <3>;
-> +			interrupt-controller;
-> +			#interrupt-cells =3D <3>;
-> +
-> +			mmc0_pins: mmc0-pins {
-> +				pins =3D "PF0" ,"PF1", "PF2", "PF3", "PF4", "PF5";
-> +				allwinner,pinmux =3D <2>;
-> +				function =3D "mmc0";
-> +				drive-strength =3D <30>;
-> +				bias-pull-up;
-> +			};
-> +
-> +			/omit-if-no-ref/
-> +			mmc1_pins: mmc1-pins {
-> +				pins =3D "PG0" ,"PG1", "PG2", "PG3", "PG4", "PG5";
-> +				allwinner,pinmux =3D <2>;
-> +				function =3D "mmc1";
-> +				drive-strength =3D <30>;
-> +				bias-pull-up;
-> +			};
-> +
-> +			mmc2_pins: mmc2-pins {
-> +				pins =3D "PC1" ,"PC5", "PC6", "PC8", "PC9",
-> +				       "PC10", "PC11", "PC13", "PC14", "PC15",
-> +				       "PC16";
-> +				allwinner,pinmux =3D <3>;
-> +				function =3D "mmc2";
-> +				drive-strength =3D <30>;
-> +				bias-pull-up;
-> +			};
-> +
-> +			uart0_pb_pins: uart0-pb-pins {
-> +				pins =3D "PB9", "PB10";
-> +				allwinner,pinmux =3D <2>;
-> +				function =3D "uart0";
-> +			};
-> +		};
-> +
-> +		ccu: clock@2001000 {
-> +			compatible =3D "allwinner,sun55i-a523-ccu";
-> +			reg =3D <0x02001000 0x1000>;
-> +			clocks =3D <&osc24M>, <&rtc CLK_OSC32K>, <&rtc CLK_IOSC>;
-> +			clock-names =3D "hosc", "losc", "iosc";
-> +			#clock-cells =3D <1>;
-> +			#reset-cells =3D <1>;
-> +		};
-> +
-> +		mmc0: mmc@4020000 {
-> +			compatible =3D "allwinner,sun55i-a523-mmc",
-> +				     "allwinner,sun20i-d1-mmc";
-> +			reg =3D <0x04020000 0x1000>;
-> +			clocks =3D <&ccu CLK_BUS_MMC0>, <&ccu CLK_MMC0>;
-> +			clock-names =3D "ahb", "mmc";
-> +			resets =3D <&ccu RST_BUS_MMC0>;
-> +			reset-names =3D "ahb";
-> +			interrupts =3D <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names =3D "default";
-> +			pinctrl-0 =3D <&mmc0_pins>;
-> +			status =3D "disabled";
-> +
-> +			max-frequency =3D <150000000>;
-> +			cap-sd-highspeed;
-> +			cap-mmc-highspeed;
-> +			cap-sdio-irq;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +		};
-> +
-> +		mmc2: mmc@4022000 {
-> +			compatible =3D "allwinner,sun55i-a523-mmc",
-> +				     "allwinner,sun20i-d1-mmc";
-> +			reg =3D <0x04022000 0x1000>;
-> +			clocks =3D <&ccu CLK_BUS_MMC2>, <&ccu CLK_MMC2>;
-> +			clock-names =3D "ahb", "mmc";
-> +			resets =3D <&ccu RST_BUS_MMC2>;
-> +			reset-names =3D "ahb";
-> +			interrupts =3D <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-> +			pinctrl-names =3D "default";
-> +			pinctrl-0 =3D <&mmc2_pins>;
-> +			status =3D "disabled";
-> +
-> +			max-frequency =3D <150000000>;
-> +			cap-sd-highspeed;
-> +			cap-mmc-highspeed;
-> +			cap-sdio-irq;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +		};
-> +
-> +		wdt: watchdog@2050000 {
-> +			compatible =3D "allwinner,sun55i-a523-wdt";
-> +			reg =3D <0x2050000 0x20>;
-> +			interrupts =3D <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&osc24M>, <&rtc CLK_OSC32K>;
-> +			clock-names =3D "hosc", "losc";
-> +			status =3D "okay";
-> +		};
-> +
-> +		uart0: serial@2500000 {
-> +			compatible =3D "snps,dw-apb-uart";
-> +			reg =3D <0x02500000 0x400>;
-> +			interrupts =3D <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>;
-> +			reg-shift =3D <2>;
-> +			reg-io-width =3D <4>;
-> +			clocks =3D <&ccu CLK_BUS_UART0>;
-> +			resets =3D <&ccu RST_BUS_UART0>;
-> +			status =3D "disabled";
-> +		};
-> +
-> +		i2c0: i2c@2502000 {
-> +			compatible =3D "allwinner,sun55i-a523-i2c",
-> +				     "allwinner,sun8i-v536-i2c",
-> +				     "allwinner,sun6i-a31-i2c";
-> +			reg =3D <0x2502000 0x400>;
-> +			interrupts =3D <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&ccu CLK_BUS_I2C0>;
-> +			resets =3D <&ccu RST_BUS_I2C0>;
-> +			status =3D "disabled";
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +		};
-> +
-> +		gic: interrupt-controller@3400000 {
-> +			compatible =3D "arm,gic-v3";
-> +			#address-cells =3D <1>;
-> +			#interrupt-cells =3D <3>;
-> +			#size-cells =3D <1>;
-> +			ranges;
-> +			interrupt-controller;
-> +			reg =3D <0x3400000 0x10000>,
-> +			      <0x3460000 0x100000>;
-> +			interrupts =3D <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +			dma-noncoherent;
-> +
-> +			its: msi-controller@3440000 {
-> +				compatible =3D "arm,gic-v3-its";
-> +				reg =3D <0x3440000 0x20000>;
-> +				msi-controller;
-> +				#msi-cells =3D <1>;
-> +				dma-noncoherent;
-> +			};
-> +		};
-> +
-> +		usb_otg: usb@4100000 {
-> +			compatible =3D "allwinner,sun55i-a523-musb",
-> +				     "allwinner,sun8i-a33-musb";
-> +			reg =3D <0x4100000 0x400>;
-> +			interrupts =3D <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names =3D "mc";
-> +			clocks =3D <&ccu CLK_BUS_OTG>;
-> +			resets =3D <&ccu RST_BUS_OTG>;
-> +			extcon =3D <&usbphy 0>;
-> +			phys =3D <&usbphy 0>;
-> +			phy-names =3D "usb";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		usbphy: phy@4100400 {
-> +			compatible =3D "allwinner,sun55i-a523-usb-phy",
-> +				     "allwinner,sun20i-d1-usb-phy";
-> +			reg =3D <0x4100400 0x100>,
-> +			      <0x4101800 0x100>,
-> +			      <0x4200800 0x100>;
-> +			reg-names =3D "phy_ctrl",
-> +				    "pmu0",
-> +				    "pmu1";
-> +			clocks =3D <&osc24M>,
-> +				 <&osc24M>;
-> +			clock-names =3D "usb0_phy",
-> +				      "usb1_phy";
-> +			resets =3D <&ccu RST_USB_PHY0>,
-> +				 <&ccu RST_USB_PHY1>;
-> +			reset-names =3D "usb0_reset",
-> +				      "usb1_reset";
-> +			status =3D "disabled";
-> +			#phy-cells =3D <1>;
-> +		};
-> +
-> +		ehci0: usb@4101000 {
-> +			compatible =3D "allwinner,sun55i-a523-ehci",
-> +				     "generic-ehci";
-> +			reg =3D <0x4101000 0x100>;
-> +			interrupts =3D <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&ccu CLK_BUS_OHCI0>,
-> +				 <&ccu CLK_BUS_EHCI0>,
-> +				 <&ccu CLK_USB_OHCI0>;
-> +			resets =3D <&ccu RST_BUS_OHCI0>,
-> +				 <&ccu RST_BUS_EHCI0>;
-> +			phys =3D <&usbphy 0>;
-> +			phy-names =3D "usb";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		ohci0: usb@4101400 {
-> +			compatible =3D "allwinner,sun55i-a523-ohci",
-> +				     "generic-ohci";
-> +			reg =3D <0x4101400 0x100>;
-> +			interrupts =3D <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&ccu CLK_BUS_OHCI0>,
-> +				 <&ccu CLK_USB_OHCI0>;
-> +			resets =3D <&ccu RST_BUS_OHCI0>;
-> +			phys =3D <&usbphy 0>;
-> +			phy-names =3D "usb";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		ehci1: usb@4200000 {
-> +			compatible =3D "allwinner,sun55i-a523-ehci",
-> +				     "generic-ehci";
-> +			reg =3D <0x4200000 0x100>;
-> +			interrupts =3D <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&ccu CLK_BUS_OHCI1>,
-> +				 <&ccu CLK_BUS_EHCI1>,
-> +				 <&ccu CLK_USB_OHCI1>;
-> +			resets =3D <&ccu RST_BUS_OHCI1>,
-> +				 <&ccu RST_BUS_EHCI1>;
-> +			phys =3D <&usbphy 1>;
-> +			phy-names =3D "usb";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		ohci1: usb@4200400 {
-> +			compatible =3D "allwinner,sun55i-a523-ohci",
-> +				     "generic-ohci";
-> +			reg =3D <0x4200400 0x100>;
-> +			interrupts =3D <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&ccu CLK_BUS_OHCI1>,
-> +				 <&ccu CLK_USB_OHCI1>;
-> +			resets =3D <&ccu RST_BUS_OHCI1>;
-> +			phys =3D <&usbphy 1>;
-> +			phy-names =3D "usb";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		r_ccu: clock-controller@7010000 {
-> +			compatible =3D "allwinner,sun55i-a523-r-ccu";
-> +			reg =3D <0x7010000 0x250>;
-> +			clocks =3D <&osc24M>,
-> +				 <&rtc CLK_OSC32K>,
-> +				 <&rtc CLK_IOSC>,
-> +				 <&ccu CLK_PLL_PERIPH0_200M>,
-> +				 <&ccu CLK_PLL_AUDIO0_4X>;
-> +			clock-names =3D "hosc",
-> +				      "losc",
-> +				      "iosc",
-> +				      "pll-periph",
-> +				      "pll-audio";
-> +			#clock-cells =3D <1>;
-> +			#reset-cells =3D <1>;
-> +		};
-> +
-> +		nmi_intc: interrupt-controller@7010320 {
-> +			compatible =3D "allwinner,sun55i-a523-nmi",
-> +				     "allwinner,sun9i-a80-nmi";
-> +			reg =3D <0x07010320 0xc>;
-> +			interrupt-controller;
-> +			#interrupt-cells =3D <2>;
-> +			interrupts =3D <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-> +		};
-> +
-> +		r_pio: pinctrl@7022000 {
-> +			compatible =3D "allwinner,sun55i-a523-r-pinctrl";
-> +			reg =3D <0x7022000 0x800>;
-> +			interrupts =3D <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&r_ccu CLK_R_APB0>,
-> +				 <&osc24M>,
-> +				 <&rtc CLK_OSC32K>;
-> +			clock-names =3D "apb", "hosc", "losc";
-> +			gpio-controller;
-> +			#gpio-cells =3D <3>;
-> +			interrupt-controller;
-> +			#interrupt-cells =3D <3>;
-> +
-> +			r_i2c_pins: r-i2c-pins {
-> +				pins =3D "PL0" ,"PL1";
-> +				allwinner,pinmux =3D <2>;
-> +				function =3D "r_i2c0";
-> +			};
-> +		};
-> +
-> +		r_i2c0: i2c@7081400 {
-> +			compatible =3D "allwinner,sun55i-a523-i2c",
-> +				     "allwinner,sun8i-v536-i2c",
-> +				     "allwinner,sun6i-a31-i2c";
-> +			reg =3D <0x07081400 0x400>;
-> +			interrupts =3D <GIC_SPI 164 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&r_ccu CLK_BUS_R_I2C0>;
-> +			resets =3D <&r_ccu RST_BUS_R_I2C0>;
-> +			pinctrl-names =3D "default";
-> +			pinctrl-0 =3D <&r_i2c_pins>;
-> +			status =3D "disabled";
-> +
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +		};
-> +
-> +		rtc: rtc@7090000 {
-> +			compatible =3D "allwinner,sun55i-a523-rtc",
-> +				     "allwinner,sun50i-r329-rtc";
-> +			reg =3D <0x7090000 0x400>;
-> +			interrupts =3D <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&r_ccu CLK_BUS_R_RTC>,
-> +				 <&osc24M>,
-> +				 <&r_ccu CLK_R_AHB>;
-> +			clock-names =3D "bus", "hosc", "ahb";
-> +			#clock-cells =3D <1>;
-> +		};
-> +	};
-> +};
->=20
+x86_64-linux-ld: drivers/dma/tegra210-adma.o: in function `tegra_adma_probe':
+tegra210-adma.c:(.text+0x1322): undefined reference to `__udivdi3'
 
+Bisect log is attached for reference.
 
+Problem is
 
+> +		if (res_base) {
+> +			page_no = (res_page->start - res_base->start) / cdata->ch_base_offset;
 
+->start is phys_addr_t which can be a 64-bit pointer on 32-bit systems,
+making this a 64-bit divide operation.
+
+Bisect log and a possible fix are attached for reference. I am not sure
+though if the suggested fix is correct/complete since page_no might
+overflow on such systems. It should possibly be a phys_addr_t, but that
+is unsigned so the subsequent negative check would not work.
+
+Guenter
+
+---
+# bad: [0907e7fb35756464aa34c35d6abb02998418164b] Add linux-next specific files for 20250117
+# good: [5bc55a333a2f7316b58edc7573e8e893f7acb532] Linux 6.13-rc7
+git bisect start 'HEAD' 'v6.13-rc7'
+# good: [195cedf4deacf84167c32b866ceac1cf4a16df15] Merge branch 'main' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next.git
+git bisect good 195cedf4deacf84167c32b866ceac1cf4a16df15
+# good: [01c19ecf34e1713365346f932011facd7d2d2bc6] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/sre/linux-power-supply.git
+git bisect good 01c19ecf34e1713365346f932011facd7d2d2bc6
+# good: [7fac8eef32d7735a3b01d08f2c98d5e6eaf254da] Merge branch 'driver-core-next' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/driver-core.git
+git bisect good 7fac8eef32d7735a3b01d08f2c98d5e6eaf254da
+# bad: [24c55da105e9a641fa77c8d8efbf92472a18bf4e] Merge branch 'next' of git://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git
+git bisect bad 24c55da105e9a641fa77c8d8efbf92472a18bf4e
+# good: [73656a6ab6d428102eb5aaa9599b5fcba4a2501f] intel_th: core: fix kernel-doc warnings
+git bisect good 73656a6ab6d428102eb5aaa9599b5fcba4a2501f
+# good: [b995a104a0aa1d6b90ea4ba3110e657ae9e83213] Merge branch 'tty-next' of git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git
+git bisect good b995a104a0aa1d6b90ea4ba3110e657ae9e83213
+# good: [002c855847f718e12879808404dc8375207012dd] Merge branch 'next' of git://github.com/awilliam/linux-vfio.git
+git bisect good 002c855847f718e12879808404dc8375207012dd
+# bad: [54e09c8e2d3b0b7d603a64368fa49fe2a8031dd1] dt-bindings: dma: st-stm32-dmamux: Add description for dma-cell values
+git bisect bad 54e09c8e2d3b0b7d603a64368fa49fe2a8031dd1
+# good: [9d880452fb3edc4645e28264381ce35606fb1b19] dmaengine: amd: qdma: make read-only arrays h2c_types and c2h_types static const
+git bisect good 9d880452fb3edc4645e28264381ce35606fb1b19
+# good: [775363772f5e72b984a883e22d510fec5357477a] dt-bindings: dma: ti: k3-bcdma: Add J722S CSI BCDMA
+git bisect good 775363772f5e72b984a883e22d510fec5357477a
+# bad: [36d8cbd661c48f4c18eeb414146ec68a71fd644f] Merge branch 'fixes' into next
+git bisect bad 36d8cbd661c48f4c18eeb414146ec68a71fd644f
+# good: [762b37fc6ae2af0c7ddf36556fe7427575e9c759] dt-bindings: dma: Support channel page to nvidia,tegra210-adma
+git bisect good 762b37fc6ae2af0c7ddf36556fe7427575e9c759
+# bad: [9602a843cb3a16df8930eb9b046aa7aeb769521b] dmaengine: bcm2835-dma: Prevent suspend if DMA channel is busy
+git bisect bad 9602a843cb3a16df8930eb9b046aa7aeb769521b
+# bad: [68811c928f88828f188656dd3c9c184eeec2ce86] dmaengine: tegra210-adma: Support channel page
+git bisect bad 68811c928f88828f188656dd3c9c184eeec2ce86
+# first bad commit: [68811c928f88828f188656dd3c9c184eeec2ce86] dmaengine: tegra210-adma: Support channel page
+
+---
+diff --git a/drivers/dma/tegra210-adma.c b/drivers/dma/tegra210-adma.c
+index 6896da8ac7ef..1de3d84d3b7c 100644
+--- a/drivers/dma/tegra210-adma.c
++++ b/drivers/dma/tegra210-adma.c
+@@ -914,7 +914,7 @@ static int tegra_adma_probe(struct platform_device *pdev)
+ 
+ 		res_base = platform_get_resource_byname(pdev, IORESOURCE_MEM, "global");
+ 		if (res_base) {
+-			page_no = (res_page->start - res_base->start) / cdata->ch_base_offset;
++			page_no = div_s64(res_page->start - res_base->start, cdata->ch_base_offset);
+ 			if (page_no <= 0)
+ 				return -EINVAL;
+ 			tdma->ch_page_no = page_no - 1;
 
