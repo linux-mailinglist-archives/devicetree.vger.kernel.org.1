@@ -1,95 +1,86 @@
-Return-Path: <devicetree+bounces-139418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46E76A15C57
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 11:22:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07B02A15C5B
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 11:23:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED4161889BA6
-	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 10:22:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E2B93A8CA4
+	for <lists+devicetree@lfdr.de>; Sat, 18 Jan 2025 10:23:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE84B18BBB9;
-	Sat, 18 Jan 2025 10:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F8DD18BBB9;
+	Sat, 18 Jan 2025 10:22:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QFIYVtwt"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mOBkEemz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1079F175D5D;
-	Sat, 18 Jan 2025 10:22:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26B5E1898E9
+	for <devicetree@vger.kernel.org>; Sat, 18 Jan 2025 10:22:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737195755; cv=none; b=mSd/zsaFuKQAsxaia7Wd4X9RdYEhmVdRx1J6WPGK1V5ofkM2xAdtfSxhQR0YOE2vCaN+TEI5pi7qMAOU6CglgaIpF8VDxzQaSYcxAXGLOZeRz8u8s5s6sUm7JH37qM7VRWtRNDZ1+QN02qMxnOKiJMimD7Zjs8fGNKQ3Uc5ch3k=
+	t=1737195775; cv=none; b=E9LSb7w0DPPoPLLghtPwZ+JqsgA6rtcbJy8aa7/3EeRH3xW24CkQn5Rc3NfhVv3qphcVpr6w9tIh0X/qGRBVCZz9QuiiUok1geNAQ9hVqDECpeA5ZHtvqCo5MKeZ8lFDlDprBCfFy5XeqLyISFg5Ctwpq10fosb/VFaZdVCXUpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737195755; c=relaxed/simple;
-	bh=0kpmyPDKuYP8/NggsKLM73O6OPX421GcTtnh5Splohc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bgCtg505gazNgKXvJD0zTZwWNvqigJaWxxH+AKgIo7sHLFKLTCl7Y/aUGYnQY8vj7uuJosV95ayDcjd+7RKMl45dc9pT7dQFs6vi2pKXMPEu5WayPW3Q7hUyxpU27yrzsUqwfZXLHTOe4lprN1i1fqNeYzjkjg3J7k0MJsrHeQA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QFIYVtwt; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43618283dedso28443975e9.3;
-        Sat, 18 Jan 2025 02:22:33 -0800 (PST)
+	s=arc-20240116; t=1737195775; c=relaxed/simple;
+	bh=yS7pWviphHy+/VdDE11hkp8/AvafePpNz+xdvm7EzUs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cxZQgteldKcWUvBOWRI0O8KiWDMBZOA9ObretBCk/mhBDHszAfYZidg9GtBa7WhBZMnnA64CGJDbk4YQnUzdOw3+DGmG7ODNyzpRDHT9WNlOyZ+4IFuUcGnqT4vMk851weuO2qpXXqj161VXo5/nfVPzrIaO8pA9Brh7sxJRvgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mOBkEemz; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-436230de7a3so3950985e9.0
+        for <devicetree@vger.kernel.org>; Sat, 18 Jan 2025 02:22:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737195752; x=1737800552; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eiAkN9lM6+KhhfeepI/5N0TsoSs8qSwlei2DZBWENpE=;
-        b=QFIYVtwttoJX2raFQOFjuoxhHw7tp2PCJN1Olw2oQUhjMGJ+4O2Id6ccArycXarlzV
-         XiNTpKEjLt+qoKzvGCXBg+vmAPG7IW30MZ1MM4LmLskhc4Srj3Oy8NMokt7Ls1Z2N/zd
-         w1hW/EIhPH/UqPe2FUX2kcYwJn0+8oOUKvCr2YjkGqt8ztSkoKLn0T4KEUWNBLra5vLR
-         /iVMlx9MpfP0Fv4z+bMcEb6QeRgzee4QtrBNXJvzUd9w8m17Aram7ol8qcJqQLq+wr86
-         4QemauRLe1lDmc9L64e8w4ETJ2/VwU/I14R2VC0He5fnzCMJKBEMnEqKN3fsAm0iuezG
-         QBMA==
+        d=linaro.org; s=google; t=1737195771; x=1737800571; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ai7J+oOwLe4ZK3bYBh9HeL0ebyU1yyHCgDQF+TliBfk=;
+        b=mOBkEemz16UNRUh3ucbJZ8bcoqfn4QD/q8N7lALCltMAZCm568wrT8h4yJGKIJfxT/
+         96PNKxo0ek2XbMpt25k+b80T7SqEc58pa4+4+huHq2orDm13EtVoDsAcs9K37foQRK7+
+         09BE3S3GsJjQcPC3Ljs09RcPxQ6UbcTIqfkR4kpyDJpNal9xk3jb6VIuRFXInuf0bx0T
+         1jgEx5A82Ho/G4xOXIRJIbLIgg0Ack97jszNhmKauPgsawa5MJYsI6Ew95Ky5rNSwTzT
+         s4hB2hfZErks/Wogw+NlMXcSLCDlwA9UTXi2TtjkoOK6NTSNX6toyojsucnCIqVZgTHE
+         2NwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737195752; x=1737800552;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eiAkN9lM6+KhhfeepI/5N0TsoSs8qSwlei2DZBWENpE=;
-        b=PWbkbjHFUtQng6yzuADin26Rqo9rLCwV3RpQAKxjogiQ+EOUOZZVzwL/YOd5iWdfRP
-         drZIfgEU3O3FZHgoUNjgrtOd8xaR0LhrNiH1jbKhzGGUEWFPiz1wcUSn9HuYooe0hp/n
-         AyfhkrzTMibP3Pdwc6zzkFNzn1TacngqgUMSYezUUFBGGJijTmPXXkjqnZz+utjGd/Rz
-         IrFNO5S4SHt24ARvBDRlTfLrn7T6Ap3VDn+NLcMu+DgjcQfAVRlbfJ6JDteFAo48P89V
-         8SgwF9iPOKprlPGHPEfYZWAzZS4rj+JSveXJv2nsuV2XLKEBibbcpikGgY7sbUarU46J
-         cUOg==
-X-Forwarded-Encrypted: i=1; AJvYcCUBD56dKiHqIGF1lpl4PC6262GYWlGT3uOrwn1D4fLhEDksrJO7ZnCjSNkFnM2vLBn2LMFNMypUoLN7kDi0@vger.kernel.org, AJvYcCWh/xBMeMNSLTwBy0m077IpS62cZ5/sE+mw6bgbXP8+clMkm7CKwiW3BIQAnFBG+FBJ1z/VJlB/7hu0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzK3xyJ+LxQ22oZ75gxhacUEHq9aGW+1cOMKXxgBIO+lHgHi5cP
-	uWw6rLc9QztlDmikaleeyBANAwT5G2Z6V9ik6U6+HdlyqQb+tAxQ
-X-Gm-Gg: ASbGnct2T58lTx2CyyfrFHeBf0FaLHF4lfD56a79ctac5x8Swbzk7+9dpCccoU5YRwv
-	cHXdmfDPIpRcKGdybzCiRUDPBDLQeYSGq46/+RYaD7JSGyDxyKe/1R9/IJ+lIqoGG/7ZOOhiF4o
-	Vbi15G4rjaksaeM01TPVlDMa1hjM8lebhKhBMotVNLw1eofwyTqid79F+pqr5pXwlcaJ4LODQyE
-	ReKidVxbqgyGvu31Ic8SEwWbyckWf0/3bODeCkj0yrh2EPvaILnR+k1hQInnIY2KvV2l9pgeAU0
-	jQck+taODcrHSiPXGGNYOCLckYcuKcTH0d+MxPGxwnaqfz2c3vpGv0tv
-X-Google-Smtp-Source: AGHT+IEg75B51PBOkr41mFVL8S0eZZqlWUj0q/2aF0Yoeffu4iW9O1RDKnjkpOJD7XMKrnqAu7NcQg==
-X-Received: by 2002:a05:600c:1c9d:b0:434:ffd7:6fd2 with SMTP id 5b1f17b1804b1-438913ca1ccmr55465325e9.7.1737195752087;
-        Sat, 18 Jan 2025 02:22:32 -0800 (PST)
-Received: from localhost.localdomain (146.10-240-81.adsl-dyn.isp.belgacom.be. [81.240.10.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438904625f5sm64954515e9.28.2025.01.18.02.22.30
+        d=1e100.net; s=20230601; t=1737195771; x=1737800571;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ai7J+oOwLe4ZK3bYBh9HeL0ebyU1yyHCgDQF+TliBfk=;
+        b=OpTn5s1+YH9gK8KPjiVZoM4cJPNgoQkABfjkr3OgMLE3bDDM0QO19tCbzJA007KMrO
+         bdi6MgyEaizl/vpFvmHB5bKYUtdL8bTWbQncdWzVsoQVOm6i/BvrLEZGj84q0EWxUaDY
+         IN/idBpQFKdrWllMGGJjvIgnkA6c+JzjtEqDIFo0J1Bl0JcQfGJC9QoBYKgIJjVpeLq/
+         IUbaZv03ZBz2wgEdXae+tao2JtYYE4mj0xLvbAE0ThE0ko1aYZkqE0VWhzWEhYEOUQhk
+         igBGxz1iV5xuFNVv6XxlRQCphESqw13Bxo+nmythWJWpTnckWHxD0FapMu9O2ovkZxw0
+         Wxgw==
+X-Forwarded-Encrypted: i=1; AJvYcCVU/WY94lFb4b1bpuLns4F0mzxWGv95ZscCRfjBH/AQTnKw+qNR3uChPOibdE+3OmrM+zlhp6XJ/bgU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtHurnGwz2kSiapwjc1PEDI3KsklE2Z2VbReF9JmDsDJRmkNCe
+	NVZpzT7KqHvEqhHoClqi6LzV6C26PKAMFEA0dhm6sswO1THQ4dQkn2TTI2fxkgM=
+X-Gm-Gg: ASbGncsgic7ZrYpSiABHCt4BtBQd93IargF/42KIjPC8lG3d6Wm9wDNe5clmcqMNYHb
+	ZKOv12hNtidN7NtDtgoiC8DvZ538SOBkn5kJJu133LEk+UCtNctozppJszCkj7pq6G+YlQkKpgg
+	oFDTq9fYP68C/Cue6CPjXJ/DYjR3x31FTTxNDhYOLcpzjhoGdtn4D1TVbeWhV58b3dQVlf4wxT1
+	IZR+lou0Vh2iVmBKCeUL+yVu9E6S3dNSrZMAbMsHhK5P4l8XV1BvIK4QHEkYnVKH+8x7IEVn8s6
+	/fb1or4A
+X-Google-Smtp-Source: AGHT+IHm+OZqwXmPFe4WpvilrYJ7teY0b7MKb/c/rNsuT8ZHOqoFtuFSrLMWBJVR6LEQNLntZ0SqBw==
+X-Received: by 2002:a05:600c:4fd6:b0:434:f1d5:144a with SMTP id 5b1f17b1804b1-438912d37d8mr22227515e9.0.1737195771221;
+        Sat, 18 Jan 2025 02:22:51 -0800 (PST)
+Received: from krzk-bin.. ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf3215066sm4911244f8f.11.2025.01.18.02.22.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Jan 2025 02:22:31 -0800 (PST)
-From: Philippe Simons <simons.philippe@gmail.com>
+        Sat, 18 Jan 2025 02:22:50 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Allwinner sunXi SoC support),
-	linux-sunxi@lists.linux.dev (open list:ARM/Allwinner sunXi SoC support),
-	linux-kernel@vger.kernel.org (open list)
-Cc: Philippe Simons <simons.philippe@gmail.com>
-Subject: [RFC PATCH 3/3] arm64: dts: allwinner: h700: Enable USB OTG
-Date: Sat, 18 Jan 2025 11:22:06 +0100
-Message-ID: <20250118102207.9339-3-simons.philippe@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250118102207.9339-1-simons.philippe@gmail.com>
-References: <20250118102207.9339-1-simons.philippe@gmail.com>
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] docs: dt-bindings: Document preferred line wrapping
+Date: Sat, 18 Jan 2025 11:22:47 +0100
+Message-ID: <20250118102247.18257-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,63 +89,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-RG35XX have a GPIO controlled regulator for phy0 vbus, add it.
-Enable HCI0s controllers and otg for dr_mode.
-Add phy0 properties to descrive id_det, external vbus, and internal vbus
+There are some patches with long lines as a result of checkpatch
+enforcing 100, not 80, but checkpatch is only a tool not a coding style.
+The Linux Kernel Coding Style is still clear here on preferred limit.
+Mentioned preferred style of wrapping long lines in DTS, based on Linux
+Kernel Coding Style.
 
-Signed-off-by: Philippe Simons <simons.philippe@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- .../sun50i-h700-anbernic-rg35xx-2024.dts      | 25 +++++++++++++++++--
- 1 file changed, 23 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/dts-coding-style.rst     | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-index 80ccab7b5..5a6ae42de 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h700-anbernic-rg35xx-2024.dts
-@@ -175,6 +175,16 @@ reg_vcc5v: regulator-vcc5v { /* USB-C power input */
- 		regulator-min-microvolt = <5000000>;
- 		regulator-max-microvolt = <5000000>;
+diff --git a/Documentation/devicetree/bindings/dts-coding-style.rst b/Documentation/devicetree/bindings/dts-coding-style.rst
+index 8a68331075a0..4772ded8a987 100644
+--- a/Documentation/devicetree/bindings/dts-coding-style.rst
++++ b/Documentation/devicetree/bindings/dts-coding-style.rst
+@@ -162,14 +162,17 @@ Example::
+ 		status = "okay";
+ 	}
+ 
+-Indentation
+------------
++Indentation and wrapping
++------------------------
+ 
+-1. Use indentation according to Documentation/process/coding-style.rst.
++1. Use indentation and wrap lines according to
++   Documentation/process/coding-style.rst.
+ 2. Each entry in arrays with multiple cells, e.g. "reg" with two IO addresses,
+    shall be enclosed in <>.
+-3. For arrays spanning across lines, it is preferred to align the continued
+-   entries with opening < from the first line.
++3. For arrays spanning across lines, it is preferred to split on item boundary
++   and align the continued entries with opening < from the first line.
++   Usually avoid splitting individual items unless they significantly exceed
++   line wrap limit.
+ 
+ Example::
+ 
+@@ -177,6 +180,9 @@ Example::
+ 		compatible = "qcom,sm8550-tsens", "qcom,tsens-v2";
+ 		reg = <0x0 0x0c271000 0x0 0x1000>,
+ 		      <0x0 0x0c222000 0x0 0x1000>;
++		/* Lines exceeding coding style line wrap limit: */
++		interconnects = <&aggre1_noc MASTER_USB3_0 0 &mc_virt SLAVE_EBI1 0>,
++				<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB3_0 0>;
  	};
-+
-+	reg_usb0_vbus: regulator-usb0-vbus {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&pio 8 16 GPIO_ACTIVE_HIGH>; /* PI16 */
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-name = "usb0-vbus";
-+		vin-supply = <&reg_boost>;
-+	};
- };
  
- &cpu0 {
-@@ -337,12 +347,23 @@ &uart0 {
- 	status = "okay";
- };
- 
--/* the AXP717 has USB type-C role switch functionality, not yet described by the binding */
-+/* the AXP717 has USB type-C role switch functionality */
- &usbotg {
--	dr_mode = "peripheral";   /* USB type-C receptable */
-+	dr_mode = "otg";   /* USB type-C receptable */
-+	status = "okay";
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&ohci0 {
- 	status = "okay";
- };
- 
- &usbphy {
-+	usb0_id_det-gpios = <&pio 8 4 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PI4 */
-+	usb0_vbus_power-supply = <&usb_power>;
-+	usb0_vbus-supply = <&reg_usb0_vbus>;
- 	status = "okay";
- };
+ Organizing DTSI and DTS
 -- 
-2.47.1
+2.43.0
 
 
