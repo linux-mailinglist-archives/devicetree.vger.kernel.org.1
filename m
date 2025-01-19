@@ -1,136 +1,192 @@
-Return-Path: <devicetree+bounces-139499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D32EA15F5F
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 01:37:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0936A15F6C
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 01:55:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 83E3C7A32FF
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 00:37:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E1B23A721E
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 00:55:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEAA6746E;
-	Sun, 19 Jan 2025 00:37:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFDA1F513;
+	Sun, 19 Jan 2025 00:55:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="Dj2IBDBj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZXnssyyG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7839825A636;
-	Sun, 19 Jan 2025 00:37:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E6E6D515
+	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 00:54:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737247031; cv=none; b=JsMZFf3kV9+0aQuS27tS9Zk+mdMpipr3aTeSSD9I01ag++oDaeXLBsKZRx9l2ezUbH/a+x8CGiqDD6XcbJj76HHzMDCnTR7S3XK3MXOFAtDWnAgH7yAu6kxM3b8W3oiO9roePh/xiroWDiALIYCL66ZxomwUa868anbv3Cfu6xk=
+	t=1737248102; cv=none; b=ZIZvgD5UM/192i1NrKfA9j04zMNw34IjsXDlUHTMz7s3k2j+diQYcsHjHdgb9rrmmcjoD5Q5kGFpa8nSJadZwFiNzW9LfUVIDaYY2BeNAsldSRrwTJn80bZinAAIcV24570Yj49ssiSxLxZpyW/I4nxYXVgGH+UurQJjQ+o9zjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737247031; c=relaxed/simple;
-	bh=U8RjLxuQjzc0YdFVSoMX2SGusBZwgPBeV0c5AuJpV2s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j7fTfzPnuNclgJ4geNB4HiluriHHofED8wGWVRZdEDt6fiuQc5wwzh5N2qrh1+57Ge601nNp9cC7tM3z5uB/OpKR0VakNI0+SyBpmKWDXvGRGYDQ2vCtc8sW+sMjbkkatwxU0M7i4M6XmVlKa2HPevlOmsTjoRNQqwBoEaPT/EE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=Dj2IBDBj; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1737247014; x=1737851814; i=wahrenst@gmx.net;
-	bh=QQeOLmt0vKFgnNb5WK93uDhGtWcqwPO2Yivyo/lj/+E=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=Dj2IBDBjpSHo/k6yfDsvYs/lSEz9bbng7of6IyE6bGn0hdEoSFcJpyWFf9+5PpMq
-	 XpBknT5j0qj9KFtdUxLp43Gocig7GcZj12d05EPbuOIqqffrw6VoUehTyDaCbKV1R
-	 Y2r0PRaoBtZuK3WN8+rw0rBWXHF1+KlT5wohEFVGM1VxeBefuEVMlRBe5R1ZGe8ae
-	 +yO6ZZ9dgmtO0iFrKUKmukxA9twv2hdMKcgUPKdMHV8K5XOH/MJm9Udg67Gd3DeQf
-	 CDBHI4u+RHjU6hUJs4MFgGV5ra0al6wchbDz0nK2i/tydaIgtsW7BfheIfqgbtHcV
-	 NGYeoeUW3x5kK64xHg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.107] ([37.4.251.153]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MvsJ5-1tHVlx1QQR-015xDC; Sun, 19
- Jan 2025 01:36:54 +0100
-Message-ID: <808a325f-81bc-4f5d-8c07-fa255ef2d25a@gmx.net>
-Date: Sun, 19 Jan 2025 01:36:52 +0100
+	s=arc-20240116; t=1737248102; c=relaxed/simple;
+	bh=VFtYwX07oZvHGxiVg/5uqQZa1Rz1XByvclsQUprLecg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=umC3nvP5koXJkCuHeiF57u6yNkhc/UPb+kydgi5/a+aKlA2LmRwGhICiYmqKswb9tcUgntilwFl5vSqUK3R0UhjAqtbW3WutTC9m0gNbFFryyWw8mhL7YAPX5Y4Z0MTxXtteKXpYu8JTCAQIXZbd0LfwLUQXZjI36J1j9Z8RvPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZXnssyyG; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-38632b8ae71so2612553f8f.0
+        for <devicetree@vger.kernel.org>; Sat, 18 Jan 2025 16:54:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737248098; x=1737852898; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=sPVy2TZ7nxNOnPzYmR2/3BBjXksk2FPEQABRuEps/hI=;
+        b=ZXnssyyG9sM7nECFu5g+PTqS54/M93wzP/RPV96DF6Gh+KinkDtFeeu9YGnbJ0O2Pu
+         +xxTxeB3LPYfIZycV9Sjf5Ih/ZvfayqkuO1LdCIJJnlR/h8FsG6st2so28xCkQiLzrOV
+         ikqFe1kDd0lq3UrjMbfdood7PCHtHG+ncLuRJwq4hnIDHWSNRZ8BwLTTrKL0itYfELHH
+         ImKkAKqp7IlzBh4QwRhFzE0yIRSmeBXGsYP7Rn4HxhzVMzWGn28l2Tyf6kueZ5gpruo5
+         rY4E2NM1C2zK3QjzSpjAcl8IJcXYfLFrafOBaxalYb04rgWsUpAcaYDDOJTIUBOuqq5h
+         qw8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737248098; x=1737852898;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=sPVy2TZ7nxNOnPzYmR2/3BBjXksk2FPEQABRuEps/hI=;
+        b=UigKwsgB9eDm98OdMSELjmEya1HkTpDDTTPVObhTP7ZMEhWiYaSdgnkQsng3s7M9cQ
+         +npkuIc6CODKNl6R4vETM4qqgq8HSayXWY2vMzX2H8/S1NgyBME4mh4WkFCrAZW8+ZSQ
+         NYbWg0iR5cytB09LwvftVhFLtMpI6FsqkXnxqk0WnrUS5LL5CPay/yiJBaZcuhe6ssRd
+         M7JhPoHOj4CQWIwThlx+MQFYmfzCbA9WHhlLWIN4GjOAhbJXOCdSPgxyxCf05D2/dj+v
+         Zq5p/S8e1wBqr6GKceUX3uWaVyRkGCr1jC57pfzJjhwkn0/MHV6feghsZAQOHVN+Cw8g
+         WpCw==
+X-Forwarded-Encrypted: i=1; AJvYcCUqIkv2j4M1cu0BNmfs6HBbgfFGk3MUXYpB/7f4+NAeXabmprALRjlpMZtTFu/kUOlry8z6cK5LmKGK@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxGBHiRlj3H9UTBMLC0C+yBGSmVCSdx/M75z6hIoAfUQDp+cTi
+	T32hCt9ZTvANwYFBvoC5s/8ygSQptZi0xsYAKkbg2hKLAG1Pp//I1e1jkOtl0MY=
+X-Gm-Gg: ASbGncufhxAAJFgBvZ8SYJYC4ZPPRJb9Tkz3T4OPT72rCipDG9DPgaym7YZUvguS26V
+	+cYmNdKKijwAKxXFYcg9vZZ7MRUvi1VJikxx7DYpM0YVS/ydj7DwaNvTaJWDx1DJeqjSpG6fbOn
+	KDCACK0azdU59dkqfUuQNdiEUYsSPm+iiDnsXRe/XmM8+5DOg3VU8QfactTLp4UwxcXiE8pQkka
+	v96jyJTXlNw5F/nZdKHEkZlO0+2Y/X5cvF1SAIJ4Cvb+jozOvsifi0cUpplLXd2zJ7+KGMV5/Xx
+	FGU=
+X-Google-Smtp-Source: AGHT+IGtOaL5Zt6V5dTGsVlWfUStNwZWdqma2iCttMpY56KqQ7XHBLD+8DWgwoEHOAJDPekrodr5Eg==
+X-Received: by 2002:adf:fec5:0:b0:38a:88d0:18d6 with SMTP id ffacd0b85a97d-38bf58e8fa8mr4691530f8f.42.1737248097750;
+        Sat, 18 Jan 2025 16:54:57 -0800 (PST)
+Received: from [127.0.1.1] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf322aa40sm6339241f8f.45.2025.01.18.16.54.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 18 Jan 2025 16:54:56 -0800 (PST)
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Subject: [PATCH v4 0/4] Add dt-bindings and dtsi changes for CAMSS on
+ x1e80100 silicon
+Date: Sun, 19 Jan 2025 00:54:52 +0000
+Message-Id: <20250119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v4-0-c2964504131c@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] Revert v6.2-rc1 and later "ARM: dts: bcm2835-rpi: Use
- firmware clocks for display"
-To: "H. Nikolaus Schaller" <hns@goldelico.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Florian Fainelli <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>
-Cc: Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
- stable@vger.kernel.org
-References: <cb9e10dfb4f50207e33ddac16794ee6b806744da.1737217627.git.hns@goldelico.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-Autocrypt: addr=wahrenst@gmx.net; keydata=
- xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
- IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
- NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
- JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
- TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
- f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
- V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
- aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
-In-Reply-To: <cb9e10dfb4f50207e33ddac16794ee6b806744da.1737217627.git.hns@goldelico.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:yBn+2i4VZk7CtBetjY0K7FS0g1A6jQXZ+D1aePttNbM3MAP2Zuo
- xCB+bsKZI5fQyenRpy9moR3Wh8XIIIFBWW3ejXsHWzkHHyt8XDzCkg9Rxk+3T+0xpC0QuKH
- O0a5ahA0sHH0HQpa11WLLolGGHNiNJQwKyTYsCC7HDdOZsqdxpyWkNwmGP09VakGVAHsorp
- 6+N5OzWL2qrfhI4TADBmA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:JFu1LOedMYY=;6O0P/bjrcaaOi7pZ1x6JZtHSnun
- kFVmt6fjK+ivRcfhPwlghpZ/A7O/8MjHKOyTwl7GAneGiTYPaQLoz2p9OKqMlt/4p3BU/5to3
- YPUOD06aJ4kmCKyYTOnZMqXbLfHfmLueyXc0VUYAVybp/pIbLIhLDTseaqJ5o9lnSIbg//D7A
- J+tmwMUBMyavVBtdZeT5dMbsEW0E27ejnttGdCQZc+JBHLrTw8lkuF5ILokqJRPs3VZmyTz1z
- 4ZDfAUnG46mnnNG8AnI5atqQgueshehe8mtnacr/TCgJVQNahc5AiaN29B3F/X9O0ZWV+MZhE
- BC3+HCIOzoYSWMQ/BfxrwFrs6yEmZOH11kUekgvfd2QIkIT+vrwN6EpsLCDlpO8q2L1dKkQIz
- cIemr1pm6SLN/Ag9ueqtrdWakrg8SGoBjrFOpi73nbBldoGidmoqOt8CxFA8Asj72mWmdUQq+
- o3Pf4XSVQ4NGyn3MpF2G1gxuaCG/ZqzAJT/jBHfcz+fXmF2+6mR/twjgaSpZZ9l3EHcK04Hzu
- AbPjqyGVA7/ay+f78lBggPXt6Q97Wd1aVXnrdTO1XgdV5zysjMBseiNpxm76LsSKZBkvuA2gO
- Us9Sr8Gles/8SnsFkaX3hFI5TjXsDHJb9FwuywpWfDSR0OAMnGFkGRRbP7T0CsICN4wV7LHhg
- 2fBFW1kd2wY/2cXC8a5L3JS845Rz7j8yWRvHQyYzJjCC7no/buFwDEpu34ByKcsJO+KrK71af
- wOZ5+/WyTaPKj4kCP9vXQObUoad2Tcp61agRvxBjiQNBYIIQAaNkwz6pl1reKQFco3fZjC6ud
- sEUL52zbw2YBhFL3M5TyElPn3P2m4pzX6L1xZKo3QMwVt/eDiwWBgQsyJjw2czcW/lEgXo2my
- NJZfqs0V6xfDhg1Xx12qzd73+fyz74jXOXc6VV/8Fcn1HxYLcFbm6xkoFPscwVS5tUC1r9dbc
- lUZML0pKF5dnDFSDSNKQIYQleTImxxiZ+oFcC8zW2o1NfoycZsQb0rEWnVuSBBjNqrUyeU1mr
- SfN9RGxMF6kaKwBdIMbwbuEj7vlDptkdUYgbHKKVNRobTq/yRnz5Zoi1nSDbgnKADxAlARUCE
- ggbXh+j39Z7IUfkcMWwXSMYxorV64dtmHqToTKV8Y4Ygh/+/JwE3LEtjtbNbpG368fMBW9Y+9
- z1yYHMS1JDu6i0oBVkEVCnzj4ztpyqaM+B7A4Cy8uyg==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFxNjGcC/53NwUrEMBDG8VdZcnZkZppJqiffQzykmXQ3oK0kt
+ VSWvrvZBRHxtB6/gfn9z6amklM1j4ezKWnNNc9TG/buYOIpTMcEWds2jGyJ6AEGC695+thgSts
+ CbIEIqAddaoaNUo+ECDG81Qo9B9f5zil6Ng18L2nM2zX2/NL2KddlLp/X9kqX678yKwGCWPSiX
+ kYn9ql9hjLfz+VoLp2Vf2xmf5PNzUY3qkrwKsPwx+6+bWlvfJPdNTsOzqmIMsb4y973/QuC+Ft
+ InQEAAA==
+X-Change-ID: 20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-82a63736d072
+To: Loic Poulain <loic.poulain@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Jagadeesh Kona <quic_jkona@quicinc.com>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-media@vger.kernel.org, linux-clk@vger.kernel.org, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-33ea6
 
-Hi,
+v4:
+- Applies RB from Konrad
+- Adds the second CCI I2C bus to CCI commit log description.
+  I previously considered leaving out the always on pins but, decided
+  to include them in the end and forgot to align the commit log.
+- Alphabetises the camcc.h included in the dtsi. - Vlad
+- Link to v3: https://lore.kernel.org/r/20250102-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v3-0-cb66d55d20cc@linaro.org
 
-Am 18.01.25 um 17:27 schrieb H. Nikolaus Schaller:
-> This reverts commit 27ab05e1b7e5c5ec9b4f658e1b2464c0908298a6.
->
-> I tried to upgrade a RasPi 3B+ with Waveshare 7inch HDMI LCD
-> from 6.1.y to 6.6.y but found that the display is broken with
-> this log message:
->
-> [   17.776315] vc4-drm soc:gpu: bound 3f400000.hvs (ops vc4_drm_unregist=
-er [vc4])
-> [   17.784034] platform 3f806000.vec: deferred probe pending
->
-> Some tests revealed that while 6.1.y works, 6.2-rc1 is already broken bu=
-t all
-> newer kernels as well. And a bisect did lead me to this patch.
-I=C2=A0successfully tested every Kernel release until Linux 6.13-rc with t=
-he
-Raspberry Pi 3B+, so i prefer to step back and analyze this issue further.
+v3:
+- Fixes ordering of headers in dtsi - Vlad
+- Changes camcc to always on - Vlad
+- Applies RB as indicated - Krzysztof, Konrad
+- Link to v2: https://lore.kernel.org/r/20241227-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v2-0-06fdd5a7d5bb@linaro.org
 
-What kernel config do you use ?
-What is the value of CONFIG_CLK_RASPBERRYPI ?
+v2:
 
-Best regards
+I've gone through each comment and implemented each suggestion since IMO
+they were all good/correct comments.
+
+Detail:
+
+- Moves x1e80100 camcc to its own yaml - Krzysztof
+- csid_wrapper comes first because it is the most relevant
+  register set - configuring all CSID blocks subordinate to it - bod, Krzysztof
+- Fixes missing commit log - Krz
+- Updates to latest format established @ sc7280 - bod
+- Includes CSID lite which I forgot to add @ v1 - Konrad, bod
+- Replaces static ICC parameters with defines - Konrad
+- Drops newlines between x and x-name - Konrad
+- Drops redundant iommu extents - Konrad
+- Leaves CAMERA_AHB_CLK as-is - Kronrad, Dmitry
+  Link: https://lore.kernel.org/r/3f1a960f-062e-4c29-ae7d-126192f35a8b@oss.qualcomm.com
+- Interrupt EDGE_RISING - Vladimir
+- Implements suggested regulator names pending refactor to PHY API - Vladimir
+- Drop slow_ahb_src clock - Vladimir
+
+Link to v1:
+https://lore.kernel.org/r/20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-v1-0-54075d75f654@linaro.org
+
+Working tree:
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/arm-laptop/wip/x1e80100-6.13-rc3
+
+v1:
+
+This series adds dt-bindings and dtsi for CAMSS on x1e80100.
+
+The primary difference between x1e80100 and other platforms is a new VFE
+and CSID pair at version 680.
+
+Some minor driver churn will be required to support outside of the new VFE
+and CSID blocks but nothing too major.
+
+The CAMCC in this silicon requires two, not one power-domain requiring
+either this fix I've proposed here or something similar:
+
+https://lore.kernel.org/linux-arm-msm/bad60452-41b3-42fb-acba-5b7226226d2d@linaro.org/T/#t
+
+That doesn't gate adoption of the binding description though.
+
+A working tree in progress can be found here:
+https://git.codelinaro.org/bryan.odonoghue/kernel/-/tree/x1e80100-6.12-rc7+camss?ref_type=heads
+
+Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+Bryan O'Donoghue (4):
+      dt-bindings: media: Add qcom,x1e80100-camss
+      arm64: dts: qcom: x1e80100: Add CAMCC block definition
+      arm64: dts: qcom: x1e80100: Add CCI definitions
+      arm64: dts: qcom: x1e80100: Add CAMSS block definition
+
+ .../bindings/media/qcom,x1e80100-camss.yaml        | 367 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 351 ++++++++++++++++++++
+ 2 files changed, 718 insertions(+)
+---
+base-commit: 0907e7fb35756464aa34c35d6abb02998418164b
+change-id: 20241119-b4-linux-next-24-11-18-dtsi-x1e80100-camss-82a63736d072
+
+Best regards,
+-- 
+Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
 
