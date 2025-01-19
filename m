@@ -1,316 +1,172 @@
-Return-Path: <devicetree+bounces-139583-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38CE6A1644F
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 23:28:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED700A16450
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 23:43:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60B2E163C31
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 22:27:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21430163DC3
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 22:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF0241DF97E;
-	Sun, 19 Jan 2025 22:27:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7028B1DF73A;
+	Sun, 19 Jan 2025 22:43:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BFjDq2do"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="AMMeADOl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1nam02on2048.outbound.protection.outlook.com [40.107.96.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C6311A260
-	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 22:27:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737325676; cv=none; b=uQVzj/w6eSJjKYm4oE4MJoClh/jhZqv8/vjA/AvYADRLZu03DGwu9qLjOakHdoyuE6uwI/bxWMqyOKFsdoVea3MSsa/1m0TaH/J83oqMRb/83gKT6MgBOkAODdtxvOQNxEUfZ1InFsRh8BlKnpGCroLIF0zZle1JdZxZxRqSmV0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737325676; c=relaxed/simple;
-	bh=m2K9R64KhDMtl3LFgcHFBofAwvyZnwVoUecJwStlLz8=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AeDNH0NL6UQAMufrC1aaQUNH7AXT433AjrOTG2eNofoeUIrSHQcQaTLR91AjZFKQalHAZ/weWVIupA1BX8cNz13aDLl2xw/QE0blfLd1YQTBEo841waERbA0vBIh9Ii8ixiIZ04B7TrRY1PAUADLKPSXtgngHBE248udz0Lx1aI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BFjDq2do; arc=none smtp.client-ip=209.85.222.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7be49f6b331so347486885a.1
-        for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 14:27:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737325674; x=1737930474; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:to:from:date:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B1NEaOvJP6ktRyon1qt65VnsfcXxR9/jvk2LgosJ8u8=;
-        b=BFjDq2dofHtMjI6w6EqUjWNJbvrfZgoU+7DdtA3JW0qK9H/83sSTdQXOl+kmbs17qG
-         WzW9sqwHNfhUz5yXdEbc6jCZPmhmrV7l0gIv4f0aK8x3gDJd5OMXFrIDK58kMYRt8yDz
-         WotSS5xdbLaxeTbbyFCnjL+HQlLLwVf3zGEKRge683MQuPwx3P/6A0RHR2/d5IllFwp5
-         dJqhSqR/AMMWl7+aGWKEjqYUoqvUONji3E9qdp4grT807s/sohOuJ/60RjOTkyemIxj5
-         7SnjiT/tXxW+LAaUc5GVF1ZI+V/2QfRGD8VrVmj4R2JWTmotGbm1WZT99cSEDx55Oh3D
-         WAyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737325674; x=1737930474;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B1NEaOvJP6ktRyon1qt65VnsfcXxR9/jvk2LgosJ8u8=;
-        b=HVs1L3y6knBG3B/wHS/gfWhJs21iSf26P4Rph28ickc8Ij173dnENmfQ+aspXo+nRM
-         wWUnrHEe0f4JHlu5912wqTWldYgt1Y+3yirAxANrz1cJGlySXPt4fJ5weS8C0Ca+yn4W
-         TtR4lGwgR0x2n5YWoWQFq080wa3w3jDSeuio5d4sE2avuX4wV+iq0SCjIfN428Ju+ykH
-         AWW86VTPtKXMovBltF3HpRuX/RjfMDiCU1k3HKT/cZ7TEYIyWWL0r4rXhpFB9T8FKyru
-         VypY1B5MRfCuuPZtO8igalcMhMg6G2C1+5+WU9RhAryWXhcLONMeO+JSxERqX4Jca2qj
-         eoWQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV56iK4L55Rk5eLR72eR8qJrhnKR+U48og+Fm7fduql6Edv8LvLLsfQA9vYr5SJp08S3L7iRxzPpS4t@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUlvaQUKRVFZeQnkKEPlbTinSfe+pJ3Q8w1c5RaXJHz4oXqJPL
-	wvA26UjrOP7jYT4b5WLzM+n2+v2JrAAob6YomcfZlPElQv48fRH1gOCeyw==
-X-Gm-Gg: ASbGncvb+YdUm054WdOcGktsrSNrs7PDNuFe9PQLfPoBWiDF1vOKpKN+lyRGSRQyby6
-	arUpqoU9ENInefwxF+HGpNQH+XtNu3Ct/s4/++x1d2dLFs1f+2GKvlX7EH3gUsEMcvKDNUu9byn
-	DpP+spJc85hMA6mMYa1leXYMS0z0+V9a2CWFEF5IafgqHmsu3HV27TLLOYNZroLYDdjpl5wHRDy
-	uHbw6dR3WEB51cGvJ8JnSSmIFha61Gc53aRAf/kBxTPKQ==
-X-Google-Smtp-Source: AGHT+IEvXRhN3YOjdvwsWeaMRKtp+AaGrFt8Vm/FPxPy/a3iJh+S2H70++OJxxsiqffQ3B4rmvMnqw==
-X-Received: by 2002:a05:620a:44d5:b0:7b6:d1f6:3dc with SMTP id af79cd13be357-7be6321bf8cmr1874388785a.18.1737325673880;
-        Sun, 19 Jan 2025 14:27:53 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id af79cd13be357-7be61487360sm369189485a.57.2025.01.19.14.27.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jan 2025 14:27:53 -0800 (PST)
-Date: Mon, 20 Jan 2025 06:27:07 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Alexander Sverdlin <alexander.sverdlin@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@outlook.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Arnd Bergmann <arnd@arndb.de>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RFC] arm64: dts: sophgo: Add initial SG2000 SoC device
- tree
-Message-ID: <3iz53irwp7u3cvxf53j3ibcqbyojodnbxq7kgr4v6rvj3rx7ng@v3lolzcxh5ev>
-References: <19bb108e93bb58eecc6a53d78ff4e75fc380f072.camel@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE6E197A7E;
+	Sun, 19 Jan 2025 22:43:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.96.48
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737326599; cv=fail; b=Wkto4filRl+I4zZhKBdkoiyEWnUQ7vfWSXHEIY/2wJ4vC1ZemiLYY5w8Xyk955J0llN3LbCpSUkB/Pd7HI6h3m0pAw/FmzjfOE6ZQYqy4fBk+mWiNNWOFU0MNkXjcVanH7FduG7nAW0rOcvmhDjM4CtJFHAsJHYMMCi0J3AsBm8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737326599; c=relaxed/simple;
+	bh=KiB/j3M2WEWA1sQHQKb0ATBILLI3pkDZUq0fWDi7buw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Zd4p00j0j5X/fR3MuMQnskPnZkMhZoaObMPhYwm1Rzxmdl6Q3YPjx6dgZUwIJLeMCvRSvDWMQnSpYQDayFeGtsizH+JjyNEaPV4esOzKc8a/z9xUsIMkrDUKI49SJIlceFNc6mdWPD9Iu2Y4fs1XRozotxQ310uWZIhrOJDAWgA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=AMMeADOl; arc=fail smtp.client-ip=40.107.96.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CoGuuDoYcKGSWHIGexAdC8jAW1B4Jmt01gbH2Z5n8uVwqtjEVYB0lgWY4jZChdCRegUgybHlIgoAM1xv+0NqEXOrJ50q3mOqXDt6O3S999XaAAe+6k8raX5BwU3Ntu7ka2JFrMiiCL5qYDcLYkq3RmaVNHMkJ2iTk9fYwxKFJybEnj+RWDHugAGrHzUUVL//sJPlZTuk9xFrO7z7Hra8jCsR33R2CFDNl/4Fq4vP3BQKK77TI2SXeABtOzxeaKVbrHjxgmR/KOj2UZRINj8BtixzVFR9Fwi8tGsDtcQNjHzvhMvjaAVUGN+9lcWBa+92ElRrNSwHITFt1h2k1SYqbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MoNrreO+cqjozw64fJEKusEmvweoFmPU/m6yrcHA7sw=;
+ b=mlQFuaqF6fPabIdXIrrf5xnjywecI1xdsxGY8MhjMvhvmT/cZDci7P8cwn/WIm1mYuPDfKmnDHXysGQZs7dnf0lvH9dwNesAdfmo6kRaLh+OtlwTTI80/K7nqXbKhGGmBCEd/BHp68bTaHu0a1kemz1xp0KzOhOMsDWzSrHBxl6Xy8NNxpj0XFlGTdjkORswzxqBp2HT+jCGDQeoMh4RynDCWOSmYC7Xn9uDdAa/DetrnggfiCrQmxHn7MdX7t3ofW/5p3Lg8JOxjHilT21eUviAASv+iuREEsuFB0dDDidWTzwdRV2lMmByDsG67a/2Y79l8d1xoyWUdvI/EhPtLg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=google.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MoNrreO+cqjozw64fJEKusEmvweoFmPU/m6yrcHA7sw=;
+ b=AMMeADOlOuq7IWwrXeJL2poDwrKtE4DxkDEISgkS9qj4atiU1JvyDifgQRmwsYjdwTS3NciclvBvB2znQbdEjuODO6fDgjHoWEeVQbdKi6hjfLAD1QfxANgZe6wHuAMEGp88UExwva+ArFYyWzQ/2sCCQ8iGdvx0INqDic8rNFU=
+Received: from DM6PR06CA0086.namprd06.prod.outlook.com (2603:10b6:5:336::19)
+ by SA0PR12MB7003.namprd12.prod.outlook.com (2603:10b6:806:2c0::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.21; Sun, 19 Jan
+ 2025 22:43:14 +0000
+Received: from DS3PEPF000099D6.namprd04.prod.outlook.com
+ (2603:10b6:5:336:cafe::a4) by DM6PR06CA0086.outlook.office365.com
+ (2603:10b6:5:336::19) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.8356.20 via Frontend Transport; Sun,
+ 19 Jan 2025 22:43:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ DS3PEPF000099D6.mail.protection.outlook.com (10.167.17.7) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8377.8 via Frontend Transport; Sun, 19 Jan 2025 22:43:13 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Sun, 19 Jan
+ 2025 16:43:13 -0600
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Sun, 19 Jan
+ 2025 16:43:12 -0600
+Received: from xhdthippesw40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Sun, 19 Jan 2025 16:43:09 -0600
+From: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+	<manivannan.sadhasivam@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <jingoohan1@gmail.com>,
+	<michal.simek@amd.com>, <bharat.kumar.gogada@amd.com>, Thippeswamy Havalige
+	<thippeswamy.havalige@amd.com>
+Subject: [PATCH v7 0/3] Add support for AMD MDB IP as Root Port
+Date: Mon, 20 Jan 2025 04:13:02 +0530
+Message-ID: <20250119224305.4016221-1-thippeswamy.havalige@amd.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <19bb108e93bb58eecc6a53d78ff4e75fc380f072.camel@gmail.com>
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB05.amd.com: thippeswamy.havalige@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS3PEPF000099D6:EE_|SA0PR12MB7003:EE_
+X-MS-Office365-Filtering-Correlation-Id: bb472ee0-c563-402c-9730-08dd38daa886
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|36860700013|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?3hR17bvIEmS2nM3nUIMN1IWdJWLza3FsiUw8xaQEmtV48pZUbHD+heBQNjRq?=
+ =?us-ascii?Q?/qmwtdOgWRmwBksJKa6AQ5IIxwHFiln4XU/aqtXxxj+4DkR3heloC5kMhlDP?=
+ =?us-ascii?Q?K2cPdHttFJH4hPnvwh0m5+XiQO4Oyq1DOMktSc3Oby8yTkF2VTcC6hfyy8d/?=
+ =?us-ascii?Q?xrQExhBLFrFzQvBHnzEWbdhza+fgNNlWV9DKBBGIUgxeO9SIi9ynXolbDDm+?=
+ =?us-ascii?Q?tPS33/vyyNM5XnZX379DwsHDlpF8fn0NzFfEhI08O2OPcYU+RugtjG5zROZr?=
+ =?us-ascii?Q?o7JYhITiiJWR/ZbcEwdxiLtmwdGD5wRX0TuNXcK4YTwrp8zDYs2P+JXi62W8?=
+ =?us-ascii?Q?MkduJ/F+H1FcpbiLLvQP7S39nqUpl+zTQ8SkwoX7MACrTsqsr3fyZrtZngmU?=
+ =?us-ascii?Q?6BonRiavs87q0u8HxpNlPvNQbN14UzAp6TcZ8CBDKn1P3wc+m/ZsEkt7W91z?=
+ =?us-ascii?Q?hNEdX9Y7/RFoZEZfbdP+0OE9GQF0npLNZ8g+wmteu+QZaYiei4FHk4vz1DRl?=
+ =?us-ascii?Q?4l5/0fZJZMP5+feUyxFaTyQDQOyCWfCHo5YBvdbdDNUszGKEIAOcsfM+Vbp3?=
+ =?us-ascii?Q?afxbVx2Jg/BlwyeTG7gAUtywF2sZDfnYJfJLatYWdkz7mluVmU+/v/vzOVUG?=
+ =?us-ascii?Q?d8++T6IxNT03TxlYXFrVhrvvLf5HlTIUBw8KrodNES8l1DaiC8gFhK3DZkcE?=
+ =?us-ascii?Q?nueWSgzpWwqtL6sZeVMfcnnrqiViSbRz6JDohz/Ae7EjphK4J+kCtJaEES5+?=
+ =?us-ascii?Q?G4O25XVnPU/JOwG3OYE+p+23n3NZ9fEMhTHIqixKV0Liljo08xBSH7P/GQOE?=
+ =?us-ascii?Q?/jVLnzOAd9S4fwNc+cTcS4MzbB91uhcdUqgXCYZ/XsTpUow6366xUThAvfsp?=
+ =?us-ascii?Q?LKA5mhAxVKDPIALBmOCu1e//GZjxI4e+6649l5hvN143fcWx5yCBw1lKzPt2?=
+ =?us-ascii?Q?e8hrK47fFHytGifdDDVdzJUJwRbC3sMgke9B9SEDiG5tcaLlTT/OY7k1+Im8?=
+ =?us-ascii?Q?OUyMHjVaKT01N9LumNDBM5ExZSrwoTfuN1q5IetpmjIdngn3NdoDqmt6JrUK?=
+ =?us-ascii?Q?X7YgEDnPeTfgoc1f+71wpiz5TQdHce9FpC32ijlyR9VRxHjMqA4JgLSU8nLN?=
+ =?us-ascii?Q?QBZl9PQylz53xbiebuKwybDBV7/P2ow7cMnhOuYYM9dQ4qxdHkAcWeg+WMni?=
+ =?us-ascii?Q?Sw7FoJV68UZwVb8iJRCiIH2wOFvyFY22Ra5fMBF0jzjCML7zGiL04uGGBzeM?=
+ =?us-ascii?Q?pNN7wbgc9pIyO9R+AZzWNCaUCRyAsfnMFuvasvTQeFqQ8goH7xbMKBPrHnJ9?=
+ =?us-ascii?Q?OkYNBHHRcp6Ia4VOKoZ8qkB6w/uKPytGDiKSuiQFp7j2n9/htgm+DTu4AMwg?=
+ =?us-ascii?Q?tpbs/SYCOiqLQa5p9JdxrsTA1hUWtgTH/aAaJJhj9hEbUWpEqXlY7548+GgL?=
+ =?us-ascii?Q?HJTEuMPcmvAknqh2HLHzC8tKihagIDORzHp08OOjYVHWbYR3IpjkhlprLDn9?=
+ =?us-ascii?Q?XP9SYZ69lAqW9cw=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(36860700013)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jan 2025 22:43:13.6803
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb472ee0-c563-402c-9730-08dd38daa886
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DS3PEPF000099D6.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB7003
 
-On Sun, Jan 12, 2025 at 01:55:05AM +0100, Alexander Sverdlin wrote:
-> Add initial device tree for the SG2000 SoC by SOPHGO (from ARM64 PoV).
-> 
-> ---
-> Dear ARM, RISCV, DT maintainers, I'd like to ask your opinion on the
-> below patch, which I plan as a base for ARM64 BSP for dual-arch (RISCV or
-> ARM64) Cvitek SoC SG2000. The main motivation for ARM64 support is the
-> ARCH support in the upstream gcc, which is not that mature for RISCV.
-> 
-> I believe it's the first time we already have quite some base in the
-> tree for a SoC, so it would be advantageous to re-use it and not
-> duplicate the same SoC structures in two places, especially having
-> in mind that Cvitek/Sophgo are still working on upstreaming and by
-> far not all HW blocks are populated in the SoC DTs. They focus primarely
-> on RISCV, so ARM64 would be dragging behind in this case if it would be
-> forked.
-> 
-> On the other hand, including SoC dtsi from RISCV into ARM64 poses
-> some technical challenges by itself, obviously CPU cores have to be
-> deleted, same is true for interrupt controller. And the interrupt
-> numbers are of course difference for ARM GIC, so they have to be
-> overwritten.
-> 
-> Alternatively I can split existing .dtsi included below into their
-> RISCV-specific and generic parts, so that both ARM64 and RISCV would
-> include generic part and their corresponding ARCH-specific parts
-> bringing CPU cores + interrupt controller + IRQ numbers for each and
-> every device separately.
-> 
-> The below example isactually booting (being included into board-level
-> DT), so it's a real example I'd be ready to submit if there will be
-> no objections of the cross-ARCH include approach in general.
-> 
-> What are your thoughts?
-> 
->  arch/arm64/boot/dts/sophgo/sg2000.dtsi | 164 +++++++++++++++++++++++++
->  1 file changed, 164 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/sophgo/sg2000.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/sophgo/sg2000.dtsi b/arch/arm64/boot/dts/sophgo/sg2000.dtsi
-> new file mode 100644
-> index 000000000000..96afd342bde5
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/sophgo/sg2000.dtsi
-> @@ -0,0 +1,164 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include "../../../../riscv/boot/dts/sophgo/cv18xx.dtsi"
-> +#include "../../../../riscv/boot/dts/sophgo/cv181x.dtsi"
-> +
+This series of patch add support for AMD MDB IP as Root Port.
 
-> +/delete-node/ &cpu0;
-> +/delete-node/ &plic;
-> +/delete-node/ &clint;
+The AMD MDB IP support's 32 bit and 64bit BAR's at Gen5 speed.
+As Root Port it supports MSI and legacy interrupts.
 
-You can split the riscv specific device into a separate file
-so you not need to set delete-node.
+Thippeswamy Havalige (3):
+  dt-bindings: PCI: dwc: Add AMD Versal2 mdb slcr support
+  dt-bindings: PCI: amd-mdb: Add AMD Versal2 MDB PCIe Root Port Bridge
+  PCI: amd-mdb: Add AMD MDB Root Port driver
 
-> +
-> +/ {
-> +	compatible = "sophgo,sg2000";
-> +	interrupt-parent = <&gic>;
-> +
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x80000000 0x20000000>;	/* 512MiB */
-> +	};
-> +
-> +	pmu {
-> +		compatible = "arm,cortex-a53-pmu";
-> +		interrupts = <GIC_SPI 119 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 120 IRQ_TYPE_LEVEL_HIGH>;
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
-> +		always-on;
-> +		clock-frequency = <25000000>;
-> +	};
-> +
-> +	gic: interrupt-controller@1f01000 {
-> +		compatible = "arm,cortex-a15-gic";
-> +		interrupt-controller;
-> +		#interrupt-cells = <3>;
-> +		reg = <0x01f01000 0x1000>,
-> +		      <0x01f02000 0x2000>;
-> +	};
-> +
-> +	soc {
-> +		/delete-property/ interrupt-parent;
-> +
-> +		pinctrl: pinctrl@3001000 {
-> +			compatible = "sophgo,sg2000-pinctrl";
-> +			reg = <0x03001000 0x1000>,
-> +			      <0x05027000 0x1000>;
-> +			reg-names = "sys", "rtc";
-> +		};
-> +	};
-> +};
-> +
-> +&cpus {
-> +	cpu0: cpu@0 {
-> +		compatible = "arm,cortex-a53";
-> +		device_type = "cpu";
-> +		reg = <0>;
-> +		enable-method = "psci";
-> +		next-level-cache = <&l2>;
-> +	};
-> +
-> +	l2: l2-cache {
-> +		compatible = "cache";
-> +	};
-> +};
-> +
-> +&clk {
-> +	compatible = "sophgo,sg2000-clk";
-> +};
-> +
-> +&saradc {
-> +	interrupts = <GIC_SPI 84 IRQ_TYPE_EDGE_RISING>;
-> +};
-> +
-> +&dmac {
-> +	interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&spi0 {
-> +	interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&spi1 {
-> +	interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&spi2 {
-> +	interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&spi3 {
-> +	interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&uart0 {
-> +	interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&uart1 {
-> +	interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&uart2 {
-> +	interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&uart3 {
-> +	interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&uart4 {
-> +	interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&porta {
-> +	interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&portb {
-> +	interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&portc {
-> +	interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&portd {
-> +	interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&i2c0 {
-> +	interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&i2c1 {
-> +	interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&i2c2 {
-> +	interrupts = <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&i2c3 {
-> +	interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&i2c4 {
-> +	interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&emmc {
-> +	interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&sdhci0 {
-> +	interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> +
-> +&sdhci1 {
-> +	interrupts = <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
-> +};
-> 
-> -- 
-> Alexander Sverdlin.
-> 
+ .../bindings/pci/amd,versal2-mdb-host.yaml    | 121 +++++
+ .../devicetree/bindings/pci/snps,dw-pcie.yaml |   2 +
+ drivers/pci/controller/dwc/Kconfig            |  11 +
+ drivers/pci/controller/dwc/Makefile           |   1 +
+ drivers/pci/controller/dwc/pcie-amd-mdb.c     | 436 ++++++++++++++++++
+ 5 files changed, 571 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/amd,versal2-mdb-host.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-amd-mdb.c
+
+-- 
+2.34.1
+
 
