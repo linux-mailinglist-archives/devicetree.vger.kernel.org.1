@@ -1,91 +1,97 @@
-Return-Path: <devicetree+bounces-139581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA51BA1641A
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 22:58:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2E9EA16423
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 23:04:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 059B116408F
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 21:58:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16F4A164112
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 22:04:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93E8C1DFD94;
-	Sun, 19 Jan 2025 21:57:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72C1B1DF97E;
+	Sun, 19 Jan 2025 22:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b="SrbauH6d"
+	dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b="Vw2AklHm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.186])
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F3B19CD1E
-	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 21:57:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.121.94.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4DEA82C60
+	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 22:04:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.67.36.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737323877; cv=none; b=b0MU64VRb7aFhSLCp7Gl5rX2MMfSXC6/D3zIjkywc3JMVAFSVokQYX/sa4d+H8LhgPZhkEiwf7CZCfEXDYnJD0ql5AvOw52u8xhhk8PCHFfIuYCXaaGoXdwt9XrGZQGFok9z1CUGru6Y8ok82q1hAeicxcsX+j4P1TAxL0EBfXA=
+	t=1737324243; cv=none; b=Y9PqaB5kaUgO+c8NxHTpRX0qYcTMsx17oLnth7ZSLn8buBIkxog862DOW5RJYTm1oFgiIJiu6zGPN2BQFHlxi0kxQ1/LredkCWQvYmzmWHV2qlEvXDzmFU7nv/JnJpTtIt1+dnBxnAt2/d6YUNMLD8imsQUvRhiY5EN7tkvAFvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737323877; c=relaxed/simple;
-	bh=8CrqmHp9ZitaUcBzPNF2s2mdIUtbOtRtoJkREQT35vY=;
-	h=Date:Message-Id:From:To:Cc:In-Reply-To:Subject:References; b=nrQOcrFISJ//h7qdhwmrP1Tv/nvRywT2MrjkNT86ttGIR4TLaZhKa+jIlbhgLawiUoh+y2UVRnmyw429Ci5RelSamZiAp2ft0ukOwci9/UkyH+ddjD9i1kpZCbpI0AFrKLSvV9+xmckv56DlnSDk2I7gb/Wad/VFseCLL2LVvN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xs4all.nl; spf=pass smtp.mailfrom=xs4all.nl; dkim=pass (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b=SrbauH6d; arc=none smtp.client-ip=195.121.94.186
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xs4all.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xs4all.nl
-X-KPN-MessageId: 45fab0b8-d6b0-11ef-9de4-00505699b430
-Received: from smtp.kpnmail.nl (unknown [10.31.155.5])
-	by ewsoutbound.so.kpn.org (Halon) with ESMTPS
-	id 45fab0b8-d6b0-11ef-9de4-00505699b430;
-	Sun, 19 Jan 2025 22:56:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=xs4all.nl; s=xs4all01;
-	h=subject:to:from:message-id:date;
-	bh=pI+4rilAlykesgVdG12gxUCHCpLQUgfynPoizmarMIs=;
-	b=SrbauH6d/w7gjjjfrMG3lzm7CvMV8iCzFgp0uMr+YcD6X8wadALUSSBaXqllkVmFB3xJZ2lJBvniq
-	 X+o58Y7hvc+VHiaf4Q68OhQohZsT7QWb++ZzEibhnW82HZUDiiKV9/uDSK3108r9icb1nm3lBgpUsp
-	 EgpEh3vZRhpywC9rVWIUnI9kZoFmBkpUlhSLV9wMtmdU7ggWhFiddiGBTWBtUVwjRMyw2QVswcBJsm
-	 VvVBu31enwzIuJUkK0ywKmE4BCOccRHqWrhwerUhbL25ci/ivZLsU4TL5nG8wcIpvKQKPCDg/sphk6
-	 XQxjnL3PltsZLXoP5LzuSN+zEIIZnHw==
-X-KPN-MID: 33|/Cc+3C40UJVWwfHeO9CsmBKbzgaglW/oQkn2XtYfQajX6BSbR0XfjImW2OegOjC
- HKT+vxd39isJpPItQD/8bAGgpCzBsZWFrGFIXE6V2bBQ=
-X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|8+jds7L8PXQZHjyBBE0YYDpz319HbmuOrri/JD8RTNi/Mj2wukKqBfGZG2C4owh
- u32L0bz24EP8nT7PX+CdTfA==
-Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
-	by smtp.xs4all.nl (Halon) with ESMTPSA
-	id 46f9b42a-d6b0-11ef-b69d-00505699b758;
-	Sun, 19 Jan 2025 22:56:47 +0100 (CET)
-Date: Sun, 19 Jan 2025 22:56:46 +0100
-Message-Id: <87a5bmtqld.fsf@bloch.sibelius.xs4all.nl>
-From: Mark Kettenis <mark.kettenis@xs4all.nl>
-To: Maud Spierings <maud_spierings@hotmail.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, johan@kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, konrad.dybcio@oss.qualcomm.com,
-	maud_spierings@hotmail.com
-In-Reply-To: <20241204-asus_qcom_display-v6-2-91079cd8234e@hotmail.com>
-	(message from Maud Spierings on Wed, 04 Dec 2024 13:26:38 +0100)
-Subject: Re: [PATCH v6 2/3] arm64: dts: qcom: x1e80100-vivobook-s15: Add lid
- switch
-References: <20241204-asus_qcom_display-v6-0-91079cd8234e@hotmail.com> <20241204-asus_qcom_display-v6-2-91079cd8234e@hotmail.com>
+	s=arc-20240116; t=1737324243; c=relaxed/simple;
+	bh=ArPJ+jv3dFD/o+3NmegfZMC45T4/VEy47JZvGQTyNoI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lC2bI8HpsnIhyO4eyMPSk9OqKeLK/kF9ZZo9mgKnijtP0fXnHXJSxF2YO+SxlwZDXqdCjbyeSm/sacF+LYPqrk6Avb0rPsvWqS8Jmi14pDRTn08Txk1NjI50atFCciu1Tf4WLAuNEk/5gndDHCtdk76K7mVY7gGnBVc6DUfodJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net; spf=pass smtp.mailfrom=posteo.net; dkim=pass (2048-bit key) header.d=posteo.net header.i=@posteo.net header.b=Vw2AklHm; arc=none smtp.client-ip=185.67.36.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=posteo.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=posteo.net
+Received: from submission (posteo.de [185.67.36.169]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 42270240029
+	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 23:03:54 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1737324234; bh=ArPJ+jv3dFD/o+3NmegfZMC45T4/VEy47JZvGQTyNoI=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:Content-Transfer-Encoding:From;
+	b=Vw2AklHmzuiw0cZp6msIUW85tSIkfQpdkv3RCpESXOxdgiXPbBkN/XtWfdLqfWIQQ
+	 ot8Hqx64BI6oHDarCL/5/dncvmpAkuIbh9k04DHIwMS8nJ/exnOXZkxKwe9RhF6t4C
+	 PuPlE1le5TWKyDWavOMpKJ/5BnKzRc5QbujifhnRJad27b2zUoMMUmUtxCDuJA25l8
+	 //4fc4D0+r2TH1+l3pkLbErlg1xl1lXVkJCqZo4SyPpbvPkjoT9qTzfB73rw1EYWSx
+	 KVVNCmUz3lrDhwUIAiFp6AOIhm8sVacSMbqDLIz1AL+ZqEO11uLUIzb4oUU27+Tkli
+	 UJ6qkp21emciQ==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 4YbnYL43NWz6ty9;
+	Sun, 19 Jan 2025 23:03:50 +0100 (CET)
+Date: Sun, 19 Jan 2025 22:03:50 +0000
+From: =?utf-8?Q?J=2E_Neusch=C3=A4fer?= <j.ne@posteo.net>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: j.ne@posteo.net, Michael Ellerman <mpe@ellerman.id.au>,
+	Nicholas Piggin <npiggin@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Naveen N Rao <naveen@kernel.org>,
+	Madhavan Srinivasan <maddy@linux.ibm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Frank Li <Frank.Li@nxp.com>,
+	linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 16/19] powerpc: dts: Add LANCOM NWAPP2 board devicetree
+Message-ID: <Z412xoyT7REyAejU@probook>
+References: <20250102-mpc83xx-v1-0-86f78ba2a7af@posteo.net>
+ <20250102-mpc83xx-v1-16-86f78ba2a7af@posteo.net>
+ <b1e0fa68-6f55-4c21-8d61-f8d58d932afc@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b1e0fa68-6f55-4c21-8d61-f8d58d932afc@kernel.org>
 
-> From: Maud Spierings <maud_spierings@hotmail.com>
-> Date: Wed, 04 Dec 2024 13:26:38 +0100
+On Fri, Jan 10, 2025 at 04:24:27PM +0100, Krzysztof Kozlowski wrote:
+> On 02/01/2025 19:31, J. Neuschäfer via B4 Relay wrote:
+[...]
+> > +	compatible = "lancom,nwapp2", "fsl,mpc8314e";
 > 
-> Add the lid switch for the Asus vivobook s15
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
-> ---
->  .../boot/dts/qcom/x1e80100-asus-vivobook-s15.dts    | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
+> Missing bindings. Please run scripts/checkpatch.pl and fix reported
+> warnings. After that, run also `scripts/checkpatch.pl --strict` and
+> (probably) fix more warnings. Some warnings can be ignored, especially
+> from --strict run, but the code here looks like it needs a fix. Feel
+> free to get in touch if the warning is not clear.
 
-Also makes the lid switch work with OpenBSD.
+I'm currently aiming for 5-10 converted/new bindings in YAML format.
+Should I rather put them into a separate series, or include them in this one?
 
-Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
+Best regards,
+J. Neuschäfer
 
