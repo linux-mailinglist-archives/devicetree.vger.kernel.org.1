@@ -1,100 +1,102 @@
-Return-Path: <devicetree+bounces-139567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139574-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D29FA162D3
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 17:06:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92A07A1639C
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 19:44:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F16D3A5869
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 16:06:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC1E6164838
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 18:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEA351DF735;
-	Sun, 19 Jan 2025 16:06:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEA441DFDA1;
+	Sun, 19 Jan 2025 18:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="aHA1jJ79"
+	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="zhSPcrLM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C658AC2ED;
-	Sun, 19 Jan 2025 16:06:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33D401898EA
+	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 18:44:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737302765; cv=none; b=RoIKEfyELjMWzPG2E2IcUcvNaJal92tGFZd52nA3fJmjUk6X0GZI9STCr9JIgJnIy9OyeEG9GVqlk+eXLClmnvKX4LsIonxB6N/5i9OSrR9M4V4ItWT9/fnLPlGodFehfM4r/6nEa/FmREhz4baP7yh4v7pacbGvsOvTJRfYYNg=
+	t=1737312269; cv=none; b=h8wuSfSWh5TFbYIINdTtEVZ/qzvKwsJxvRCjmYtKSjK41v7MZzIPLjMJQYS+/3N6JOaPBSq0tnW463yOm9Gh/E+DC0eMbPUVJygUuC26ek+Sqod1hbo7iMrFeLVSiRNwmXEN/QxLtjJL5FZ+k0ahP4C20dTE3Jd6vWYi7Rpj3jA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737302765; c=relaxed/simple;
-	bh=z4N+A58lblOVQ4yOqbmrYwW0T/rTLlH9V0lt/vjsuo8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dORq28g6QVwrme9yhFI82gAUqV0Yj4do3SLDNHqmaN7kjJae5/SPYdG97xmdAUV+66ObSOw8mo1f9zFPi93NQs/gLMxwNHZWShY1ProVZ7BOgog7sjzWJGc56C/K0R8K5C6JLwtfg+wRgW6TMO9ktUI3uUMbm3XDLImTZQSFelE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=aHA1jJ79; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Giu0ODHWMA2AFv3pUJiCKz05nk6XvcYFDXOiLwnTS5c=; b=aHA1jJ79Gvxky/aJD5M67levLe
-	KTFNETW0FC/OOT2v8vBo5FYAWHuNQioxqs/cu2rnNU9uB4wSGHNOECYudX0uXqqeNIzbjX3dyQ8zM
-	CXz8xt3tiE/VYj00PFHPqL1Oueb0KBCj+IC47TqwRVI2maMHesT+ZGv7FdwI6pDzSXrY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tZXo6-006547-1U; Sun, 19 Jan 2025 17:05:50 +0100
-Date: Sun, 19 Jan 2025 17:05:50 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Tianling Shen <cnsztl@gmail.com>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1737312269; c=relaxed/simple;
+	bh=3Nx1x4rUhn0BOxrHWPI6gpRdJieVXNq6pV5/weJboic=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Sb3JwbWc5A5U4mN/P6//DGPVrxz37i3qVRbyZqYmYzodd3GXuDToIMdW1Qky1K8NaYrVZU2xlz8dZojlqp5r/dJWAnDkxiWGvwwZglCvmE6abi7wsP+f7HedsxdYvj6i1gwPtj7UQn23plR/+OaiW2ro5sX+RfUcdfyEx3idU8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=zhSPcrLM; arc=none smtp.client-ip=84.16.241.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
+Received: from terra.vega.svanheule.net (unknown [94.110.49.146])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sander@svanheule.net)
+	by polaris.svanheule.net (Postfix) with ESMTPSA id 5FCF55A7E4B;
+	Sun, 19 Jan 2025 19:34:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+	s=mail1707; t=1737311689;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=y/knckwelaT8aNo57HPLVZlLUD3WsgqE49L3o3AzMPI=;
+	b=zhSPcrLMYzylIrZkXHSwRWnPUx29u3/+QNcxZ6P1yxpoNPrqMUyLzCuLGfPA6F3x4rqrj+
+	7PJ1RyMM5sC3tykzXqFaEkh2vq8u/EviU1z+UQBZXxhutgUcV6DOAdfKjtzI4fQLB5X0Qs
+	iHRpduGOdBo6OfmOT5c4Cr7uvCHbGJgrc3+BXj/74AzhLOqyyVzOcfmkBTgx55Y+5ojyPn
+	AJiYzC9vq0ueexikpkZcMaATp1RJ5stTZmRkw7HnDkqdfmxL6Z1Rw7zAlqAMH2FcX0m/Hv
+	iYAgv5LMxnXwII17+7Op1aCzC4XJ4aDUsQJD9bJbLQh6crcwiTCWBoIuUENRBQ==
+From: Sander Vanheule <sander@svanheule.net>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, Jonas Karlman <jonas@kwiboo.se>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: change eth phy mode to rgmii-id
- for orangepi r1 plus lts
-Message-ID: <5ce312f4-f496-4a62-bcda-5e6fbefde376@lunn.ch>
-References: <20250119091154.1110762-1-cnsztl@gmail.com>
- <ce15f141688c4c537ac3307b6fbed283@manjaro.org>
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	devicetree@vger.kernel.org,
+	linux-mips@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org,
+	Sander Vanheule <sander@svanheule.net>
+Subject: [PATCH 0/9] mips: dts: Split Realtek devicetrees
+Date: Sun, 19 Jan 2025 19:34:15 +0100
+Message-ID: <20250119183424.259353-1-sander@svanheule.net>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ce15f141688c4c537ac3307b6fbed283@manjaro.org>
+Content-Transfer-Encoding: 8bit
 
-> >  &gmac2io {
-> >  	phy-handle = <&yt8531c>;
-> > -	tx_delay = <0x19>;
-> > -	rx_delay = <0x05>;
-> > +	phy-mode = "rgmii-id";
-> 
-> Shouldn't the "tx_delay" and "rx_delay" DT parameters be converted
-> into the "tx-internal-delay-ps" and "rx-internal-delay-ps" parameters,
-> respectively, so the Motorcomm PHY driver can pick them up and
-> actually configure the internal PHY delays?
+This patch series intends to clean up the base includes, shared between
+hardware devicetrees. To get rid of some dtbs_check warnings, some cpu
+clock prorerties are also modified.
 
-Maybe.
+To indicate why the split-up is required, the series concludes with
+adding some CPU peripherals to rtl838x.dtsi, which are then used to add
+a gpio-restart for the Cisco SG220-26P.
 
-One problem is that tx_delay and rx_delay are really bad DT
-bindings. They are basically values to be poked into a registers, with
-no explanation of what they mean. Maybe 0x19 means 2ns? If so, that is
-exactly what the PHY will do with rgmii-id, and you don't need any
-additional properties.
+Sander Vanheule (9):
+  mips: dts: realtek: Decouple RTL930x base DTSI
+  mips: dts: realtek: Clean up CPU clocks
+  mips: dts: realtek: Add address to SoC node name
+  mips: dts: realtek: Fold rtl83xx into rtl838x
+  mips: dts: realtek: Add SoC IRQ node for RTL838x
+  mips: dts: realtek: Correct uart interrupt-parent
+  mips: dts: realtek: Replace uart clock property
+  mips: dts: realtek: Add RTL838x SoC peripherals
+  mips: dts: realtek: Add restart to Cisco SG220-26P
 
-The fact testing suggests this works does suggest these delay values
-are around 2ns, so there is probably no need for
-{rt}x-internal-delay-ps.
+ arch/mips/boot/dts/realtek/cisco_sg220-26.dts |  10 +-
+ arch/mips/boot/dts/realtek/rtl838x.dtsi       | 111 +++++++++++++-
+ arch/mips/boot/dts/realtek/rtl83xx.dtsi       |  59 --------
+ arch/mips/boot/dts/realtek/rtl930x.dtsi       | 136 +++++++++++-------
+ 4 files changed, 202 insertions(+), 114 deletions(-)
+ delete mode 100644 arch/mips/boot/dts/realtek/rtl83xx.dtsi
 
-In general, i always suggest the PHY does the delay, just so that we
-try to make all boards act in the same way. The fact this also removes
-the use of these terrible tx_delay and rx_delay makes this patch even
-better, if it can be shown to be reliable.
-
-	Andrew
+-- 
+2.48.1
 
 
