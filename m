@@ -1,204 +1,174 @@
-Return-Path: <devicetree+bounces-139509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C60B1A16096
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 07:36:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF62CA160A5
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 08:03:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE90C164D6E
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 06:36:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E0963A6B66
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 07:02:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CD436BB5B;
-	Sun, 19 Jan 2025 06:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5976918C928;
+	Sun, 19 Jan 2025 07:02:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kroah.com header.i=@kroah.com header.b="iZsuGWik";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="L96THMoR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m4xguhQA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from flow-a5-smtp.messagingengine.com (flow-a5-smtp.messagingengine.com [103.168.172.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB75C23BB;
-	Sun, 19 Jan 2025 06:35:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.140
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A60B16BB5B
+	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 07:02:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737268560; cv=none; b=Emg6f55V3pxDfO/5cIECNIuT4CILqKNimShqN+AN1/sPG5uDel39QC+Mk2zjOjS7zHiCuDSHG8t2JF69T9Id8VamHwk3syJqZis50SR5zfcVafgm3Fdm0YttoN/aLSufGvxtw5C2QtTwcJmj1DjQDm9W9cJdr1zB4JJ5mNy72ZA=
+	t=1737270177; cv=none; b=ggmsDmu8d987NMHfnHyEqcS7MYW48SDUI+0CSKpFpopFKeQ4on59/AHUYnlloGOF1PV1IuFmDkpEUD+tyCYiezxK16EQw8jJNSjGe1Y8vbA5Me9yzBHc/Mxrja4m/h1+TdGKQxEse67G4eoLFVH3/vNmG82EgjYWRWRuk+Ntt9k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737268560; c=relaxed/simple;
-	bh=4pc6KlEEP6sBTO1Ba5ZyMq0fkgLKgHY49UAQphPA4vk=;
+	s=arc-20240116; t=1737270177; c=relaxed/simple;
+	bh=9Uyh20Bo/JCrzKWgQJoe3V6rjzekT4NllWMa1CNe8Dc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pkpNdhBjlKhbmEoHPbtevZ4dmAql6x/2fOV1wKjSh9qsrC4fOjXuSzhyeyROKqEC1evZtqjnYGReHgHkLmKiW3oaqwt6r3ao/VRMCVszDjI9/jxPYmcwHkz6iPwicCQfJFa32lii7zgdaGtqJX1Fw5wxewXIpybO2ggTleJ/0TU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kroah.com; spf=pass smtp.mailfrom=kroah.com; dkim=pass (2048-bit key) header.d=kroah.com header.i=@kroah.com header.b=iZsuGWik; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=L96THMoR; arc=none smtp.client-ip=103.168.172.140
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kroah.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kroah.com
-Received: from phl-compute-09.internal (phl-compute-09.phl.internal [10.202.2.49])
-	by mailflow.phl.internal (Postfix) with ESMTP id 8F54B2011E9;
-	Sun, 19 Jan 2025 01:35:56 -0500 (EST)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-09.internal (MEProxy); Sun, 19 Jan 2025 01:35:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm2; t=1737268556; x=1737275756; bh=3/6jZ01/uC
-	CTpSq3Fao8Iix6OttLd5/bSlWLrKSb+fw=; b=iZsuGWik/KyLleI5OKl/f1Cl/b
-	2jXqCMbSiO4TPgJIzueKqFmJ83obVkKo2fZWO3zD0rP7b6BEmFK1YvAvdEbPxVJJ
-	ivV/vUvanl+FEKszvP0ST5VrMhS4nWPZwrrIvwLTFw5RJ/wgync0W+kIcUVshUt0
-	VdnDld+x2X0y4+PXy8bmWr29PFLd6t+K0jXCIgESRcrb260f8FZy83QxTc8hhyHs
-	kmf7bJFls/RGpIhZJFgnACt0DSdJAJHMb1V8HfwCd7rG4b544j9DqdTL3X/SXapp
-	bRQeuhEBCpuH2O1x+oTFRw3yhzDeUQUHK+1L6HA2hbz4TnjHlBObJWwse2MQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=
-	1737268556; x=1737275756; bh=3/6jZ01/uCCTpSq3Fao8Iix6OttLd5/bSlW
-	LrKSb+fw=; b=L96THMoRjo13raPMbwHBAVnHjQnBXFjmtElyB+L2wc9MoZpKq4h
-	EHlgJE7WQiCtyaj7OzLiK96mowCatmyDKgJblhiaGY7y222tIy3M4RUEfJmuPlkX
-	zdhbsh38ESsY9jw4NirnBV7pN7evUFYjimRKQxLa7edE4WtOW/ocQECrY8zt4mal
-	BRl4LrL4nbcPjKfcFayBHNJ6uw/kNL6x6LrxdqttoA2Sg9OP/FuNE8pP0r9aoSu5
-	Dz6STEjj1rNzxNxPXt7fno1b4hGBE68JB+YxKl14nuPIClKJp7bWQ+uVDcK9qwSc
-	Q5/9kJM26zijNKWA3x7iJ01prwcftyTUMuQ==
-X-ME-Sender: <xms:S52MZxchzhOQkRz7tx4eT-aI68rr5TAPb2uDajfkjY_aLDiCV4rauQ>
-    <xme:S52MZ_PcqFu4BT0vI3I1KQMgpUARY_9Uq1eoJ_0BfkJn5W1-Ag5hzzncyC69SWtca
-    timTvB926Bg5Q>
-X-ME-Received: <xmr:S52MZ6i9zB6CBVkRx_1w0TL3xX5kHenQXJYi5QdJwS2hWUxj-sjQeDOUzPtXYUTtbBSBPFn8PQv-VFAD6gQ6RnKoteVkKHlQDcGvwg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudeiiedgleegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggujgesthdtredttddtvden
-    ucfhrhhomhepifhrvghgucfmjfcuoehgrhgvgheskhhrohgrhhdrtghomheqnecuggftrf
-    grthhtvghrnhepheegvdevvdeljeeugfdtudduhfekledtiefhveejkeejuefhtdeufefh
-    gfehkeetnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    epghhrvghgsehkrhhorghhrdgtohhmpdhnsggprhgtphhtthhopedviedpmhhouggvpehs
-    mhhtphhouhhtpdhrtghpthhtohephhhnshesghholhguvghlihgtohdrtghomhdprhgtph
-    htthhopehrohgshhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehkrhiihihs
-    iihtohhfrdhkohiilhhofihskhhiodgutheslhhinhgrrhhordhorhhgpdhrtghpthhtoh
-    epfhdrfhgrihhnvghllhhisehgmhgrihhlrdgtohhmpdhrtghpthhtoheprhhjuhhisegs
-    rhhorggutghomhdrtghomhdprhgtphhtthhopehssghrrghnuggvnhessghrohgruggtoh
-    hmrdgtohhmpdhrtghpthhtohepsggtmhdqkhgvrhhnvghlqdhfvggvuggsrggtkhdqlhhi
-    shhtsegsrhhorggutghomhdrtghomhdprhgtphhtthhopeguvghvihgtvghtrhgvvgesvh
-    hgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhrphhiqdhkvghr
-    nhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrgh
-X-ME-Proxy: <xmx:S52MZ68cVdsDhsSObbEKTAagf9UOnQ5jppeprDSiQGFOvpOUJnVmug>
-    <xmx:S52MZ9s0mkrBiB21dOeQNUf2nWd3fxUcd8u9V8QmcZjCvXjZvyDieg>
-    <xmx:S52MZ5Hf73Ntd_87xVVe1LjQJ2ai6E4QG8zZivP7czIdsUeRPnI1TQ>
-    <xmx:S52MZ0MISCoYZuk50m8Ynqq_y9vGwFlXMZBGOfezybrT-RO5nWQ0dw>
-    <xmx:TJ2MZ2tCFrFEuiaC-kTUUqv6ugK61ddib5_QxSGa-j4ImXLXwWX_7j5X>
-Feedback-ID: i787e41f1:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 19 Jan 2025 01:35:55 -0500 (EST)
-Date: Sun, 19 Jan 2025 07:35:52 +0100
-From: Greg KH <greg@kroah.com>
-To: "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	letux-kernel@openphoenux.org, stable@vger.kernel.org
-Subject: Re: [PATCH v2] Revert v6.2-rc1 and later "ARM: dts: bcm2835-rpi: Use
- firmware clocks for display"
-Message-ID: <2025011942-basket-subsiding-8bd1@gregkh>
-References: <cb9e10dfb4f50207e33ddac16794ee6b806744da.1737217627.git.hns@goldelico.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=GHzEALOIiD110kJAZhk32GrQj2eHcZiVzjYaQwsl3q79tFjV0K3cfz3YeUZzbwjQ6llayccrxU8UfxormtzvABpG9kpjdXHwBq0dDD0OO0MRHlDbbjcXjYQ8B8xWQqy6gmrlhREdJlEmHYEzhjAO5ZcY8QOlD9y8M8XnNEAtD+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m4xguhQA; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2166360285dso66987865ad.1
+        for <devicetree@vger.kernel.org>; Sat, 18 Jan 2025 23:02:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737270174; x=1737874974; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=vMJ3GX6dkOYZdUXVc1wm3huqORVLg1qLuaKka3o+Bqk=;
+        b=m4xguhQA6zslWXCZ5CAn+/vmjYGO3NoYP0VoMkFvompl8Lau2cJ4gmWpTXhMGyVSv7
+         vsBFlgUejqWLwKdhcSrGggJ4XCDC9O1Ng3aci/ZLtqulrOvK7QR6e50ezOxo42hImoTs
+         SirAHKYEEokNYVLadGULUGttsMDvvqCkaV3ul9LBaVVpQsBAHyTkhnQS8Rt1+KfIItB6
+         KnYjpOReHHKbJJd5iQp8EnmxGBibKtExd3pBEk8WUg1zP1lK6HPKc5gtdixOxTOA5oJU
+         II1QaRGhBQLwLztPpob1TMWZd9Y7bBYj6SOIs9shmrEyQ5OkzixGyL1rJ+5WC0O4p5Hq
+         d6LQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737270174; x=1737874974;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vMJ3GX6dkOYZdUXVc1wm3huqORVLg1qLuaKka3o+Bqk=;
+        b=V+gTyn6SuL5A2I8RUDj6Y9injkByCT1VGO7JoQN0aWb+ug1IfnZ8DULSLizPkiwSkw
+         8H7AlC6bhrDm0c8YRZfbqLpu6/WMa1sw+LqrUo1lgR9N3DqPxDBwR/nEgLCtXySkvCUa
+         avoj2cx7w6ofG0hlYA0glBm8OcyXeh9u55N//Gx/iwKSrdYrBz+oCdf2+Ug5zlPD4DQT
+         dg7YSG9zvz8sfRd+vOROUL0fkPlaW7GhxUd3Xg00nqcMy5cPQsA05+WR99TN6hYBsI/h
+         o/GC6Gg/pOfOLBk1hf8AfF42YIXwktSJjW8ExdM+mq9ZSzUILlFkCn4Zk6BhARFSIiBY
+         zQGA==
+X-Forwarded-Encrypted: i=1; AJvYcCU4mdJPLUXEF7/WCicd2LVzXZSW2691d1ea+VCgmuPolz70b43uB3FQcl+fKbiOsQr9bSR3dBdThuH5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+gzgC70oNQ+8saW8qNe9ogfNBGGFD07JtEiHh8V85m5k6x0yC
+	PE1b9e0YUdlOXPQc2kPjwiLtIA9X+wZCeAdaCw92xTJ0EAcb1dj93YbBoA3A8yIiPreUnaiBz9U
+	=
+X-Gm-Gg: ASbGnct6E16LmRwrZWEdzPx4uVVfgSbJziJRvQCXABPALHP+/j0SJgl2fqCpsqiUjzL
+	wdkQ7jbNtBQ6WErna+ocV+pQT5UHrGeUSvM4R3Ku0hSxvD9XL0hxrSTT+/pGBuRNLN5zYl9+cXS
+	isMKy84zXaFdKWJ5Ww+C8GBB9rHfdVaG9kUFOFkjXpZH976JyJxmw1bZcuamq9+c7NLiCcT2Oa3
+	8ENE2vkDGzbKAqvAVvXIjo8nfupwtiuXrxFoU2K5OVPuV/qCqAtUzpGWSQu8VQj15/gFOzW6qUn
+	kQll4Q==
+X-Google-Smtp-Source: AGHT+IEeTs48whwEN7rNg39TN9hpGQKSWq0W/VdR6tyAMeUyYliEEBAyt6ics9gbcWZ/8208wLwfuw==
+X-Received: by 2002:a17:903:22cb:b0:21b:d105:26a5 with SMTP id d9443c01a7336-21c355becd3mr125597245ad.38.1737270173884;
+        Sat, 18 Jan 2025 23:02:53 -0800 (PST)
+Received: from thinkpad ([120.56.195.253])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21c2d3dd93esm40763455ad.164.2025.01.18.23.02.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 18 Jan 2025 23:02:53 -0800 (PST)
+Date: Sun, 19 Jan 2025 12:32:46 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Richard Zhu <hongxing.zhu@nxp.com>
+Cc: l.stach@pengutronix.de, bhelgaas@google.com, lpieralisi@kernel.org,
+	kw@linux.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, frank.li@nxp.com,
+	s.hauer@pengutronix.de, festevam@gmail.com, imx@lists.linux.dev,
+	kernel@pengutronix.de, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 02/10] PCI: imx6: Add ref clock for i.MX95 PCIe
+Message-ID: <20250119070246.yfxogn4vv3jqfvzb@thinkpad>
+References: <20241126075702.4099164-1-hongxing.zhu@nxp.com>
+ <20241126075702.4099164-3-hongxing.zhu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cb9e10dfb4f50207e33ddac16794ee6b806744da.1737217627.git.hns@goldelico.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241126075702.4099164-3-hongxing.zhu@nxp.com>
 
-On Sat, Jan 18, 2025 at 05:27:07PM +0100, H. Nikolaus Schaller wrote:
-> This reverts commit 27ab05e1b7e5c5ec9b4f658e1b2464c0908298a6.
+On Tue, Nov 26, 2024 at 03:56:54PM +0800, Richard Zhu wrote:
+> Add "ref" clock to enable reference clock. To avoid breaking DT
+> backwards compatibility, i.MX95 REF clock might be optional. Use
+> devm_clk_get_optional() to fetch i.MX95 PCIe optional clocks in driver.
 > 
-> I tried to upgrade a RasPi 3B+ with Waveshare 7inch HDMI LCD
-> from 6.1.y to 6.6.y but found that the display is broken with
-> this log message:
+> If use external clock, ref clock should point to external reference.
 > 
-> [   17.776315] vc4-drm soc:gpu: bound 3f400000.hvs (ops vc4_drm_unregister [vc4])
-> [   17.784034] platform 3f806000.vec: deferred probe pending
+> If use internal clock, CREF_EN in LAST_TO_REG controls reference output,
+> which implement in drivers/clk/imx/clk-imx95-blk-ctl.c.
 > 
-> Some tests revealed that while 6.1.y works, 6.2-rc1 is already broken but all
-> newer kernels as well. And a bisect did lead me to this patch.
-> 
-> I could repair several versions up to 6.13-rc7 by doing
-> this revert. Newer kernels have just to take care of
-> 
-> commit f702475b839c ("ARM: dts: bcm2835-rpi: Move duplicate firmware-clocks to bcm2835-rpi.dtsi")
-> 
-> but that is straightforward.
-> 
-> Fixes: 27ab05e1b7e5 ("ARM: dts: bcm2835-rpi: Use firmware clocks for display")
-> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  arch/arm/boot/dts/bcm2835-rpi-common.dtsi | 17 -----------------
->  1 file changed, 17 deletions(-)
+>  drivers/pci/controller/dwc/pci-imx6.c | 16 +++++++++++-----
+>  1 file changed, 11 insertions(+), 5 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/bcm2835-rpi-common.dtsi b/arch/arm/boot/dts/bcm2835-rpi-common.dtsi
-> index 4e7b4a592da7c..8a55b6cded592 100644
-> --- a/arch/arm/boot/dts/bcm2835-rpi-common.dtsi
-> +++ b/arch/arm/boot/dts/bcm2835-rpi-common.dtsi
-> @@ -7,23 +7,6 @@
+> diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
+> index 385f6323e3ca..f7e928e0a018 100644
+> --- a/drivers/pci/controller/dwc/pci-imx6.c
+> +++ b/drivers/pci/controller/dwc/pci-imx6.c
+> @@ -103,6 +103,7 @@ struct imx_pcie_drvdata {
+>  	const char *gpr;
+>  	const char * const *clk_names;
+>  	const u32 clks_cnt;
+> +	const u32 clks_optional_cnt;
+>  	const u32 ltssm_off;
+>  	const u32 ltssm_mask;
+>  	const u32 mode_off[IMX_PCIE_MAX_INSTANCES];
+> @@ -1306,9 +1307,8 @@ static int imx_pcie_probe(struct platform_device *pdev)
+>  	struct device_node *np;
+>  	struct resource *dbi_base;
+>  	struct device_node *node = dev->of_node;
+> -	int ret;
+> +	int i, ret, req_cnt;
+>  	u16 val;
+> -	int i;
 >  
->  #include <dt-bindings/power/raspberrypi-power.h>
+>  	imx_pcie = devm_kzalloc(dev, sizeof(*imx_pcie), GFP_KERNEL);
+>  	if (!imx_pcie)
+> @@ -1358,9 +1358,13 @@ static int imx_pcie_probe(struct platform_device *pdev)
+>  		imx_pcie->clks[i].id = imx_pcie->drvdata->clk_names[i];
 >  
-> -&firmware {
-> -	firmware_clocks: clocks {
-> -		compatible = "raspberrypi,firmware-clocks";
-> -		#clock-cells = <1>;
-> -	};
-> -};
-> -
-> -&hdmi {
-> -	clocks = <&firmware_clocks 9>,
-> -		 <&firmware_clocks 13>;
-> -	clock-names = "pixel", "hdmi";
-> -};
-> -
->  &v3d {
->  	power-domains = <&power RPI_POWER_DOMAIN_V3D>;
->  };
-> -
-> -&vec {
-> -	clocks = <&firmware_clocks 15>;
-> -};
-> -- 
-> 2.47.0
-> 
-> 
+>  	/* Fetch clocks */
+> -	ret = devm_clk_bulk_get(dev, imx_pcie->drvdata->clks_cnt, imx_pcie->clks);
+> +	req_cnt = imx_pcie->drvdata->clks_cnt - imx_pcie->drvdata->clks_optional_cnt;
+> +	ret = devm_clk_bulk_get(dev, req_cnt, imx_pcie->clks);
+>  	if (ret)
+>  		return ret;
+> +	imx_pcie->clks[req_cnt].clk = devm_clk_get_optional(dev, "ref");
+> +	if (IS_ERR(imx_pcie->clks[req_cnt].clk))
+> +		return PTR_ERR(imx_pcie->clks[req_cnt].clk);
 
-Hi,
+I think you should just switch to devm_clk_bulk_get_all() instead of getting the
+clks separately. As I told previously, the DT binding should ensure that correct
+clocks for the platforms are defined in DT and the driver has no business in
+validating it. Driver should trust the DT instead (unless there is a valid
+reason to not do so).
 
-This is the friendly patch-bot of Greg Kroah-Hartman.  You have sent him
-a patch that has triggered this response.  He used to manually respond
-to these common problems, but in order to save his sanity (he kept
-writing the same thing over and over, yet to different people), I was
-created.  Hopefully you will not take offence and will fix the problem
-in your patch and resubmit it so that it can be accepted into the Linux
-kernel tree.
+>  
+>  	if (imx_check_flag(imx_pcie, IMX_PCIE_FLAG_HAS_PHYDRV)) {
+>  		imx_pcie->phy = devm_phy_get(dev, "pcie-phy");
+> @@ -1509,6 +1513,7 @@ static const char * const imx8mm_clks[] = {"pcie_bus", "pcie", "pcie_aux"};
+>  static const char * const imx8mq_clks[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux"};
+>  static const char * const imx6sx_clks[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_inbound_axi"};
+>  static const char * const imx8q_clks[] = {"mstr", "slv", "dbi"};
+> +static const char * const imx95_clks[] = {"pcie_bus", "pcie", "pcie_phy", "pcie_aux", "ref"};
 
-You are receiving this message because of the following common error(s)
-as indicated below:
+And these static clock defines will go away too.
 
-- You have marked a patch with a "Fixes:" tag for a commit that is in an
-  older released kernel, yet you do not have a cc: stable line in the
-  signed-off-by area at all, which means that the patch will not be
-  applied to any older kernel releases.  To properly fix this, please
-  follow the documented rules in the
-  Documentation/process/stable-kernel-rules.rst file for how to resolve
-  this.
+- Mani
 
-If you wish to discuss this problem further, or you have questions about
-how to resolve this issue, please feel free to respond to this email and
-Greg will reply once he has dug out from the pending patches received
-from other developers.
-
-thanks,
-
-greg k-h's patch email bot
+-- 
+மணிவண்ணன் சதாசிவம்
 
