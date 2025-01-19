@@ -1,94 +1,91 @@
-Return-Path: <devicetree+bounces-139541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC080A1619B
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 13:24:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C212CA161A2
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 13:31:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 942B83A5F79
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 12:24:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C589A3A5F79
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 12:31:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 515561DE8A2;
-	Sun, 19 Jan 2025 12:24:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBB891C68BE;
+	Sun, 19 Jan 2025 12:31:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CzVjT1la"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FAM9M0Ad"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 156A81A3BA1
-	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 12:24:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 425BB15FD01
+	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 12:31:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737289447; cv=none; b=HH9AIPJunidqF3VY11pZRw/sj0DFwD4bdOaCw960fnKfY1g5K4/xV9sezkRGt+Dd5GgFwXbwmeaU+T/5+paa4gsv6r8PvQwGioVqPPCvN/KYYYBK+S3UxDDrLbkbb6lVAWD5+fpNX8V3gvfVhmAs9bYB/dE7E/Ju2JKK8VDV/Qo=
+	t=1737289912; cv=none; b=Ii4dRcNftp9WE7/v5SUd8T87EiZI6LkuX6gyxQEx2WDUTLUvUWBDxiicxswgTdnx09anlzUEQlFFs82EArapXNNr7kBSLsZ4S3hIh3N1sDua/wob0vdnfVpeEa5ggIEVwZrH5+TgimhhGBDvprhF6ctY85xSiJ5YGwShf9czG9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737289447; c=relaxed/simple;
-	bh=w13kqS+lBbIiBPGX8yjRSvHt+GUTvV8lmLkerMXfa0Y=;
+	s=arc-20240116; t=1737289912; c=relaxed/simple;
+	bh=b8I3+yxb+holxrODNel2OCMwStoOQEV9Nsh5TTlNYJU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ttRQVSm6jaS421RARnGxNEnoJA6lyAwsxo06f2iNX3gGBQ9uCvxAK4KPlqsxDvF+klzSiwPkKDim2QoYgAf1QsbPONmC1/cdAEkzSDfvAE2zjoApFHNXU34hDd8tD1sUgFTUA4njqV3vH9gcUAjwXRml4v9QFg0+shl5z0Oz0Ic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CzVjT1la; arc=none smtp.client-ip=209.85.216.47
+	 Content-Type:Content-Disposition:In-Reply-To; b=Jzh0b8yOjP5AGZolH33Fwp9sBofN5sN1hb5MdHLq6QiXsX4G9IsTWycv4/JN+PNDdgqSaqnCmmkN2+GVuHvqawlrffD1vumj4udT/VGrnU3FP8NgnVCQApOYqAK44Suusav3SPXjDnQ2sT3wxH1VGDTcgx7OVb6FxDrvvy1OXGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FAM9M0Ad; arc=none smtp.client-ip=209.85.214.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-2ee86a1a92dso4976702a91.1
-        for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 04:24:03 -0800 (PST)
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-21669fd5c7cso63516725ad.3
+        for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 04:31:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737289443; x=1737894243; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1737289910; x=1737894710; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=ZZSuDJrfL4csxPwdTtRVca8OzgYxjKHdWPdCI/f9wuc=;
-        b=CzVjT1la6HN9Go+ayPBfTxgtvK2SnX8gjj9xMp3HdqRVjCyRq45mVNSoxAHfVD71+g
-         Wmn/yFl5eRZ6pQyJRYnncgZ2USm1h+4UcfeRaqO3T+VGsqwB1Nt+uQxBDDLLBHPbCQAF
-         iiNNNuOwyhPKNdEzZAj30hWu6RDLBLUjLDWVqlrPo0J7qrCmKcTF0B2lksylaU5Hj6DZ
-         E1Bqh95+9gM/vV4H5q3fUsNsPIJ12NiIIwFg7DUjF8B1Oadbgl9azpxY6e1VlTtt4U1C
-         giUoRCJfOuZ0hIcKFVCbFCfAVrG/fq2EftHV7rK3HuzTQz4Kr1QE+OvNCizdJ0LFcuPa
-         CWYw==
+        bh=TXDDGdiqxvAdCVCeKQbgEvCD/6x4huy3wzcrmw4YbuM=;
+        b=FAM9M0AdVovvHoWh7qe5bghrtqOM9E7EGLMhddrF/HtKyUnb0MBtXu4Dmq2i2fm04q
+         Ta2PB3mr/SAlTR0kZDYHS+JEC6MlOr/uQlg4mo713E9c9lvw+lX2A/cCalQt/DJ9smBD
+         yvTNMYxZxN5e/GfC7URUxjJ3c8Ujy3s2H2siKSyt9+/go48CQz7a4IkRaTUFoF6TFHy0
+         a5QFTU64wtZALtgBdviwjpRYb2vCNMgrjT0hT+hgqEHxyCN4KX09ck4SBAFCPQdXL3bg
+         zAiha1bpKd+PjKU+7+ECqBXEKv295JKNAPvC9Z0vfbU9vj1yslgfWY8jDr2YmeGtSOcH
+         dPog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737289443; x=1737894243;
+        d=1e100.net; s=20230601; t=1737289910; x=1737894710;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZZSuDJrfL4csxPwdTtRVca8OzgYxjKHdWPdCI/f9wuc=;
-        b=nk/dPoFrXRojHnJ9EcN/hMxong/aJVKNSxtHLIHk4nK12+Ksvxzkdq56KrWFAY1Rnm
-         SC7CYSPEWEvQyAeg/YbdKeMSlyRTPFpYyCit84y8AGcIX6eA8AhMS6sQJXl5fRsZGPp2
-         SH0Uk7MjKJNIBy2BIjJS8N1kEV83errTwlh3Q604oezHckipQ+kSlsim2xcKYhr5YSTB
-         7CyVqnL94q6KANx0Yv1M7HcABIbFvmpZqUxNqCSpqfW3HsfPD7cQw162S0qA8iTEE/Kj
-         tz6AuH11Q1ZChBJsWh9FG+++Qa3Pocma8k0d5+7hR+1LY3bi+BXGUv/0ohjI+ST+/2NJ
-         YUYw==
-X-Forwarded-Encrypted: i=1; AJvYcCXmpaeabkyyKDK97tw/hjTDhI2X/W4sOUwj87LnOzeTv4DN0VQO4aq8VoKA32nPeMjdgxbZy041lvUH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDzrUQUpDVUNMJcYB/IPm/78jI8o2I8wpzGdhklpY98bdhXjFy
-	DD7GEiGJ+btpEvWgUcOZDVjXO4opkGeCICyTlkgRgo+J8RAeGhmNer31zDFOXw==
-X-Gm-Gg: ASbGncuAXfLsFe7WDZM6rHtqv2sqOKnKyl1YRGbpyoUr3elvD3V1pjZeukLZwb7dz3r
-	VZQL1VBap6w8RvwqFPReJVc0Io7ugSN1/DrbKE32b9GwyKbxOzv0GCv+FaY+7OUyD8oQWmd223K
-	8Vj9qqIcf2xAY/Nwckq/M6+4zUAzw4klmn3LxtC0MTuEq/cSNw15a7j6w4l3KNH+ds2x1RD8VnG
-	FFWmH2PP9lDHdw/CEUQ1ll2Ohq9Gn93SvFMzZxLW5zuBYjBnMeZ/PyEvUyu8jY7nWFXPmFsiTNM
-	SP15cQ==
-X-Google-Smtp-Source: AGHT+IFaNI/U2vzipJAr5YyNs2IN3u2D5+L74EF9nC37A9IjbU+RcZd6uAYCl4fwMzd8lJfalGvyUA==
-X-Received: by 2002:a17:90b:534b:b0:2f6:f107:fae6 with SMTP id 98e67ed59e1d1-2f782d32397mr11435071a91.23.1737289443232;
-        Sun, 19 Jan 2025 04:24:03 -0800 (PST)
+        bh=TXDDGdiqxvAdCVCeKQbgEvCD/6x4huy3wzcrmw4YbuM=;
+        b=GwLcm81EHPvbT685c/NyoVWlXtKhg1qy45hfgFEw5CimuZxbY+RVvfh+5VszLbcEWR
+         Sc/cldqEYva76Wvab7Z6bTyjZA3L5zFkJZhmDd5mix93rw05XIm2hLBcDOKdMv9jl580
+         5WQa9Pql6MewguHiM6dE1oqyarnnafLrfZmfM1Agszf1E4uZUIkJXOfaU12sJLa4S8wp
+         j6G46zMjxUS/0F+f8nOujM8m5Ntn3TzQSpev/Uqmo0j22DfhwT+mtKSxklKU8sXiLuXs
+         alM/Q64B/AF7kU0c/vVLqM9aRwvq544E77uE/z3d+YPQb00C0NlaMnwuZ3xToEXIA7wL
+         Ncdg==
+X-Forwarded-Encrypted: i=1; AJvYcCXbVI0HSGiPVzcyD7jwli0nIefqCTuN+cn/QSOWn326S0+xHmA0Dae3nYsazJ1IUkpjUPb8GcrOz4A9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWnFQbOj6UZ8xVB1sPkPgHzVyjEkuBhkqzfKzPCNLGUgydvYLv
+	hmC6tBQkCiB1S/aXzhguRz9IlJCC0kpGJ7NHVuW3FVB37WwRCi6VgkfsFQ4IIA==
+X-Gm-Gg: ASbGncstQIIT6zW/Tlevs6QPmaQyQWUzzwd8hlguIjp5ez3IJp1f5a5eALdLbj77aI4
+	8aIFMTausiF/gdhdcTGmZeoNb86PX9dpbZXn4Mt4fyfOhJvZd63k8OW5lqPPPPqBfeo03il/Oty
+	8f/n2n0ppa+PYQQGCSBzQJX6KcwELtwofS7NABn52mkUGOT+56X/lKEGQSyHP7iW/eCkZYRTmFE
+	DwHGMnRFi9mSijGZpbstGsARwkBylfrKOYxojxPsTnybFe5ii15J8LTF2mICsfr2gD42fjVF6l7
+	A9s61g==
+X-Google-Smtp-Source: AGHT+IESj9hipVsk75yPanv+gXMBaSyDflVAD0+JtKGBpZQwquLiubg2YgW1L86GqvarrBofrNmP9A==
+X-Received: by 2002:a17:902:e952:b0:216:760c:3879 with SMTP id d9443c01a7336-21c355f03cfmr136590925ad.46.1737289910652;
+        Sun, 19 Jan 2025 04:31:50 -0800 (PST)
 Received: from thinkpad ([120.56.195.253])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f77619ed33sm5563566a91.23.2025.01.19.04.23.55
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21c2ceb9d97sm43621115ad.95.2025.01.19.04.31.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jan 2025 04:24:02 -0800 (PST)
-Date: Sun, 19 Jan 2025 17:53:53 +0530
+        Sun, 19 Jan 2025 04:31:50 -0800 (PST)
+Date: Sun, 19 Jan 2025 18:01:45 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: kw@linux.com, u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu,
-	arnd@arndb.de, bhelgaas@google.com, unicorn_wang@outlook.com,
-	conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
-	krzk+dt@kernel.org, lee@kernel.org, lpieralisi@kernel.org,
-	palmer@dabbelt.com, paul.walmsley@sifive.com, pbrobinson@gmail.com,
-	robh@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-riscv@lists.infradead.org, chao.wei@sophgo.com,
-	xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com,
-	helgaas@kernel.org
-Subject: Re: [PATCH v3 2/5] PCI: sg2042: Add Sophgo SG2042 PCIe driver
-Message-ID: <20250119122353.v3tzitthmu5tu3dg@thinkpad>
-References: <cover.1736923025.git.unicorn_wang@outlook.com>
- <ddedd8f76f83fea2c6d3887132d2fe6f2a6a02c1.1736923025.git.unicorn_wang@outlook.com>
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org,
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+	andersson@kernel.org, konradybcio@kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	quic_srichara@quicinc.com, quic_varada@quicinc.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: PCI: qcom: Document the IPQ5424 PCIe
+ controller
+Message-ID: <20250119123145.qzpv65gifayyve66@thinkpad>
+References: <20250115064747.3302912-1-quic_mmanikan@quicinc.com>
+ <20250115064747.3302912-2-quic_mmanikan@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,364 +95,45 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ddedd8f76f83fea2c6d3887132d2fe6f2a6a02c1.1736923025.git.unicorn_wang@outlook.com>
+In-Reply-To: <20250115064747.3302912-2-quic_mmanikan@quicinc.com>
 
-On Wed, Jan 15, 2025 at 03:06:57PM +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+On Wed, Jan 15, 2025 at 12:17:45PM +0530, Manikanta Mylavarapu wrote:
+> Document the PCIe controller on the IPQ5424 platform using the
+> IPQ9574 bindings as a fallback, since the PCIe on the IPQ5424
+> is similar to IPQ9574.
 > 
-> Add support for PCIe controller in SG2042 SoC. The controller
-> uses the Cadence PCIe core programmed by pcie-cadence*.c. The
-> PCIe controller will work in host mode only.
-> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
 
-Please add more info about the IP. Like IP revision, PCIe Gen, lane count,
-etc...
-
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
->  drivers/pci/controller/cadence/Kconfig       |  13 +
->  drivers/pci/controller/cadence/Makefile      |   1 +
->  drivers/pci/controller/cadence/pcie-sg2042.c | 528 +++++++++++++++++++
->  3 files changed, 542 insertions(+)
->  create mode 100644 drivers/pci/controller/cadence/pcie-sg2042.c
-> 
-> diff --git a/drivers/pci/controller/cadence/Kconfig b/drivers/pci/controller/cadence/Kconfig
-> index 8a0044bb3989..292eb2b20e9c 100644
-> --- a/drivers/pci/controller/cadence/Kconfig
-> +++ b/drivers/pci/controller/cadence/Kconfig
-> @@ -42,6 +42,18 @@ config PCIE_CADENCE_PLAT_EP
->  	  endpoint mode. This PCIe controller may be embedded into many
->  	  different vendors SoCs.
->  
-> +config PCIE_SG2042
-> +	bool "Sophgo SG2042 PCIe controller (host mode)"
-> +	depends on ARCH_SOPHGO || COMPILE_TEST
-> +	depends on OF
-> +	select IRQ_MSI_LIB
-> +	select PCI_MSI
-> +	select PCIE_CADENCE_HOST
-> +	help
-> +	  Say Y here if you want to support the Sophgo SG2042 PCIe platform
-> +	  controller in host mode. Sophgo SG2042 PCIe controller uses Cadence
-> +	  PCIe core.
-> +
->  config PCI_J721E
->  	bool
->  
-> @@ -67,4 +79,5 @@ config PCI_J721E_EP
->  	  Say Y here if you want to support the TI J721E PCIe platform
->  	  controller in endpoint mode. TI J721E PCIe controller uses Cadence PCIe
->  	  core.
-> +
-
-Spurious newline.
-
->  endmenu
-> diff --git a/drivers/pci/controller/cadence/Makefile b/drivers/pci/controller/cadence/Makefile
-> index 9bac5fb2f13d..4df4456d9539 100644
-> --- a/drivers/pci/controller/cadence/Makefile
-> +++ b/drivers/pci/controller/cadence/Makefile
-> @@ -4,3 +4,4 @@ obj-$(CONFIG_PCIE_CADENCE_HOST) += pcie-cadence-host.o
->  obj-$(CONFIG_PCIE_CADENCE_EP) += pcie-cadence-ep.o
->  obj-$(CONFIG_PCIE_CADENCE_PLAT) += pcie-cadence-plat.o
->  obj-$(CONFIG_PCI_J721E) += pci-j721e.o
-> +obj-$(CONFIG_PCIE_SG2042) += pcie-sg2042.o
-> diff --git a/drivers/pci/controller/cadence/pcie-sg2042.c b/drivers/pci/controller/cadence/pcie-sg2042.c
-> new file mode 100644
-> index 000000000000..56797c2af755
-> --- /dev/null
-> +++ b/drivers/pci/controller/cadence/pcie-sg2042.c
-> @@ -0,0 +1,528 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * pcie-sg2042 - PCIe controller driver for Sophgo SG2042 SoC
-> + *
-> + * Copyright (C) 2024 Sophgo Technology Inc.
-> + * Copyright (C) 2024 Chen Wang <unicorn_wang@outlook.com>
-> + */
-> +
-> +#include <linux/bits.h>
-> +#include <linux/irq.h>
-> +#include <linux/irqchip/chained_irq.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/msi.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/of_pci.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +
-> +#include "../../../irqchip/irq-msi-lib.h"
-> +
-> +#include "pcie-cadence.h"
-> +
-> +/*
-> + * SG2042 PCIe controller supports two ways to report MSI:
-> + *
-> + * - Method A, the PCIe controller implements an MSI interrupt controller
-> + *   inside, and connect to PLIC upward through one interrupt line.
-> + *   Provides memory-mapped MSI address, and by programming the upper 32
-> + *   bits of the address to zero, it can be compatible with old PCIe devices
-> + *   that only support 32-bit MSI address.
-> + *
-> + * - Method B, the PCIe controller connects to PLIC upward through an
-> + *   independent MSI controller "sophgo,sg2042-msi" on the SOC. The MSI
-> + *   controller provides multiple(up to 32) interrupt sources to PLIC.
-> + *   Compared with the first method, the advantage is that the interrupt
-> + *   source is expanded, but because for SG2042, the MSI address provided by
-> + *   the MSI controller is fixed and only supports 64-bit address(> 2^32),
-> + *   it is not compatible with old PCIe devices that only support 32-bit MSI
-> + *   address.
-> + *
-> + * Method A & B can be configured in DTS, default is Method B.
-
-How to configure them? I can only see "sophgo,sg2042-msi" in the binding.
-
-> + */
-> +
-> +#define MAX_MSI_IRQS		8
-> +#define MAX_MSI_IRQS_PER_CTRL	1
-> +#define MAX_MSI_CTRLS		(MAX_MSI_IRQS / MAX_MSI_IRQS_PER_CTRL)
-> +#define MSI_DEF_NUM_VECTORS	MAX_MSI_IRQS
-> +#define BYTE_NUM_PER_MSI_VEC	4
-> +
-> +#define REG_CLEAR		0x0804
-> +#define REG_STATUS		0x0810
-> +#define REG_LINK0_MSI_ADDR_SIZE	0x085C
-> +#define REG_LINK1_MSI_ADDR_SIZE	0x080C
-> +#define REG_LINK0_MSI_ADDR_LOW	0x0860
-> +#define REG_LINK0_MSI_ADDR_HIGH	0x0864
-> +#define REG_LINK1_MSI_ADDR_LOW	0x0868
-> +#define REG_LINK1_MSI_ADDR_HIGH	0x086C
-> +
-> +#define REG_CLEAR_LINK0_BIT	2
-> +#define REG_CLEAR_LINK1_BIT	3
-> +#define REG_STATUS_LINK0_BIT	2
-> +#define REG_STATUS_LINK1_BIT	3
-> +
-> +#define REG_LINK0_MSI_ADDR_SIZE_MASK	GENMASK(15, 0)
-> +#define REG_LINK1_MSI_ADDR_SIZE_MASK	GENMASK(31, 16)
-> +
-> +struct sg2042_pcie {
-> +	struct cdns_pcie	*cdns_pcie;
-> +
-> +	struct regmap		*syscon;
-> +
-> +	u32			link_id;
-> +
-> +	struct irq_domain	*msi_domain;
-> +
-> +	int			msi_irq;
-> +
-> +	dma_addr_t		msi_phys;
-> +	void			*msi_virt;
-> +
-> +	u32			num_applied_vecs; /* used to speed up ISR */
-> +
-
-Get rid of the newline between struct members, please.
-
-> +	raw_spinlock_t		msi_lock;
-> +	DECLARE_BITMAP(msi_irq_in_use, MAX_MSI_IRQS);
-> +};
-> +
-
-[...]
-
-> +static int sg2042_pcie_setup_msi(struct sg2042_pcie *pcie,
-> +				 struct device_node *msi_node)
-> +{
-> +	struct device *dev = pcie->cdns_pcie->dev;
-> +	struct fwnode_handle *fwnode = of_node_to_fwnode(dev->of_node);
-> +	struct irq_domain *parent_domain;
-> +	int ret = 0;
-> +
-> +	if (!of_property_read_bool(msi_node, "msi-controller"))
-> +		return -ENODEV;
-> +
-> +	ret = of_irq_get_byname(msi_node, "msi");
-> +	if (ret <= 0) {
-> +		dev_err(dev, "%pOF: failed to get MSI irq\n", msi_node);
-> +		return ret;
-> +	}
-> +	pcie->msi_irq = ret;
-> +
-> +	irq_set_chained_handler_and_data(pcie->msi_irq,
-> +					 sg2042_pcie_msi_chained_isr, pcie);
-> +
-> +	parent_domain = irq_domain_create_linear(fwnode, MSI_DEF_NUM_VECTORS,
-> +						 &sg2042_pcie_msi_domain_ops, pcie);
-> +	if (!parent_domain) {
-> +		dev_err(dev, "%pfw: Failed to create IRQ domain\n", fwnode);
-> +		return -ENOMEM;
-> +	}
-> +	irq_domain_update_bus_token(parent_domain, DOMAIN_BUS_NEXUS);
-> +
-
-The MSI controller is wired to PLIC isn't it? If so, why can't you use
-hierarchial MSI domain implementation as like other controller drivers?
-
-> +	parent_domain->flags |= IRQ_DOMAIN_FLAG_MSI_PARENT;
-> +	parent_domain->msi_parent_ops = &sg2042_pcie_msi_parent_ops;
-> +
-> +	pcie->msi_domain = parent_domain;
-> +
-> +	ret = sg2042_pcie_init_msi_data(pcie);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to initialize MSI data!\n");
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void sg2042_pcie_free_msi(struct sg2042_pcie *pcie)
-> +{
-> +	struct device *dev = pcie->cdns_pcie->dev;
-> +
-> +	if (pcie->msi_irq)
-> +		irq_set_chained_handler_and_data(pcie->msi_irq, NULL, NULL);
-> +
-> +	if (pcie->msi_virt)
-> +		dma_free_coherent(dev, BYTE_NUM_PER_MSI_VEC * MAX_MSI_IRQS,
-> +				  pcie->msi_virt, pcie->msi_phys);
-> +}
-> +
-> +/*
-> + * SG2042 only support 4-byte aligned access, so for the rootbus (i.e. to read
-> + * the Root Port itself, read32 is required. For non-rootbus (i.e. to read
-> + * the PCIe peripheral registers, supports 1/2/4 byte aligned access, so
-> + * directly using read should be fine.
-> + *
-> + * The same is true for write.
-> + */
-> +static int sg2042_pcie_config_read(struct pci_bus *bus, unsigned int devfn,
-> +				   int where, int size, u32 *value)
-> +{
-> +	if (pci_is_root_bus(bus))
-> +		return pci_generic_config_read32(bus, devfn, where, size,
-> +						 value);
-> +
-> +	return pci_generic_config_read(bus, devfn, where, size, value);
-> +}
-> +
-> +static int sg2042_pcie_config_write(struct pci_bus *bus, unsigned int devfn,
-> +				    int where, int size, u32 value)
-> +{
-> +	if (pci_is_root_bus(bus))
-> +		return pci_generic_config_write32(bus, devfn, where, size,
-> +						  value);
-> +
-> +	return pci_generic_config_write(bus, devfn, where, size, value);
-> +}
-> +
-> +static struct pci_ops sg2042_pcie_host_ops = {
-> +	.map_bus	= cdns_pci_map_bus,
-> +	.read		= sg2042_pcie_config_read,
-> +	.write		= sg2042_pcie_config_write,
-> +};
-> +
-> +/* Dummy ops which will be assigned to cdns_pcie.ops, which must be !NULL. */
-
-Because cadence code driver doesn't check for !ops? Please fix it instead. And
-the fix is trivial.
-
-> +static const struct cdns_pcie_ops sg2042_cdns_pcie_ops = {};
-> +
-> +static int sg2042_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct pci_host_bridge *bridge;
-> +	struct device_node *np_syscon;
-> +	struct device_node *msi_node;
-> +	struct cdns_pcie *cdns_pcie;
-> +	struct sg2042_pcie *pcie;
-> +	struct cdns_pcie_rc *rc;
-> +	struct regmap *syscon;
-> +	int ret;
-> +
-> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
-> +	if (!pcie)
-> +		return -ENOMEM;
-> +
-> +	bridge = devm_pci_alloc_host_bridge(dev, sizeof(*rc));
-> +	if (!bridge) {
-> +		dev_err(dev, "Failed to alloc host bridge!\n");
-
-Use dev_err_probe() throughout the probe function.
-
-> +		return -ENOMEM;
-> +	}
-> +
-> +	bridge->ops = &sg2042_pcie_host_ops;
-> +
-> +	rc = pci_host_bridge_priv(bridge);
-> +	cdns_pcie = &rc->pcie;
-> +	cdns_pcie->dev = dev;
-> +	cdns_pcie->ops = &sg2042_cdns_pcie_ops;
-> +	pcie->cdns_pcie = cdns_pcie;
-> +
-> +	np_syscon = of_parse_phandle(np, "sophgo,syscon-pcie-ctrl", 0);
-> +	if (!np_syscon) {
-> +		dev_err(dev, "Failed to get syscon node\n");
-> +		return -ENOMEM;
-
--ENODEV
-
-> +	}
-> +	syscon = syscon_node_to_regmap(np_syscon);
-
-You should drop the np reference count once you are done with it.
-
-> +	if (IS_ERR(syscon)) {
-> +		dev_err(dev, "Failed to get regmap for syscon\n");
-> +		return -ENOMEM;
-
-PTR_ERR(syscon)
-
-> +	}
-> +	pcie->syscon = syscon;
-> +
-> +	if (of_property_read_u32(np, "sophgo,link-id", &pcie->link_id)) {
-> +		dev_err(dev, "Unable to parse sophgo,link-id\n");
-
-"Unable to parse \"sophgo,link-id\"\n"
-
-> +		return -EINVAL;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, pcie);
-> +
-> +	pm_runtime_enable(dev);
-> +
-> +	ret = pm_runtime_get_sync(dev);
-
-Use pm_runtime_resume_and_get().
-
-> +	if (ret < 0) {
-> +		dev_err(dev, "pm_runtime_get_sync failed\n");
-> +		goto err_get_sync;
-> +	}
-> +
-> +	msi_node = of_parse_phandle(dev->of_node, "msi-parent", 0);
-> +	if (!msi_node) {
-> +		dev_err(dev, "Failed to get msi-parent!\n");
-> +		return -1;
-
--ENODATA
-
-> +	}
-> +
-> +	if (of_device_is_compatible(msi_node, "sophgo,sg2042-pcie-msi")) {
-> +		ret = sg2042_pcie_setup_msi(pcie, msi_node);
-
-Same as above. np leak here.
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
 - Mani
+
+> ---
+> Changes in V2:
+> 	- Pick up R-b tag 
+> 
+>  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> index bd87f6b49d68..7235d6554cfb 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -31,6 +31,10 @@ properties:
+>            - qcom,pcie-qcs404
+>            - qcom,pcie-sdm845
+>            - qcom,pcie-sdx55
+> +      - items:
+> +          - enum:
+> +              - qcom,pcie-ipq5424
+> +          - const: qcom,pcie-ipq9574
+>        - items:
+>            - const: qcom,pcie-msm8998
+>            - const: qcom,pcie-msm8996
+> -- 
+> 2.34.1
+> 
 
 -- 
 மணிவண்ணன் சதாசிவம்
