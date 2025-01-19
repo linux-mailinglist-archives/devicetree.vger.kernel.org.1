@@ -1,136 +1,181 @@
-Return-Path: <devicetree+bounces-139531-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139532-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A966EA16154
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 12:14:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26DA4A16156
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 12:16:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F3FB1885543
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 11:14:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 242A83A63A7
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 11:16:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4AEE19E967;
-	Sun, 19 Jan 2025 11:14:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7263619E96B;
+	Sun, 19 Jan 2025 11:16:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hDgo9QTK"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g0sfad/e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30CA774BE1
-	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 11:14:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D401C2905;
+	Sun, 19 Jan 2025 11:16:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737285243; cv=none; b=uQkEJUlEDHI/ZOqk8FT+RlG+C3N59RwsOR0ujC9WLbGKM1MgFJ/Q9EeO1ZqoH48MQrOyMsQnt+RO1XNwm4t/eAOqR/HUXh01sUHcGP97nprbPt0bp6WgWh2sBEkb8a5i0gsVpWydaDmjHznLVQIrMpc56Ur/VpTMbVR/9KzK5lE=
+	t=1737285364; cv=none; b=mRtjBH3bGFhOdJ23DYxUUCHWbxirpJ2sC7FimKs8rCR0McqbzbEHhLhSCbZoagT/83F/2unvVXHkQ/eUZu5wnLtpv4R3cXJTMSsTYlwK2TT9d5iDnNWlbhFYCi4zSpSr7K0TNEpCpIk/YxeuQfyEQGXwQL/4V3uWZMXEu0iMtVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737285243; c=relaxed/simple;
-	bh=farCSn9nIwDEYesATkrLZqDi4SS6wrr0tkHz+ajWl3c=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=kWmBslaQ17tO6F4IWxXDsrn5NCwWVh0vFxGx7VTreAhy80i7209ySm02EPKyrKI6iigQ4D1dblDqteFu80JaSJcL7h8nyKuFQdxEaTVK4djDLU5IBwiNA9cT3H4Rau3TRkWYCK3ckM0NMRRIvLQUDYYdE6DuFqcKYHQNsqAIL8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hDgo9QTK; arc=none smtp.client-ip=209.85.218.53
+	s=arc-20240116; t=1737285364; c=relaxed/simple;
+	bh=IDueMa37i4dWX7Tn9RD3kf9FqIjkgnSgpD61uu7O6iM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V+M3BHkjFRPGcmSJio3HvexA/prWqoAxGA67tgmb8SP08F9NsX+/XczdndX2uxjGAXPvZ8hVWRztdQPWgZByp57mQj/1avEJAXP5jFDlHmTHiOVxGnJyYvUd0GiZobDFiPjE5zr1Y31YI3Lu5fwOil+RNnpI3H3l8GOH/i2f5kE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g0sfad/e; arc=none smtp.client-ip=209.85.214.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ab2e308a99bso745491966b.1
-        for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 03:14:01 -0800 (PST)
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-218c8aca5f1so84957195ad.0;
+        Sun, 19 Jan 2025 03:16:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737285240; x=1737890040; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=farCSn9nIwDEYesATkrLZqDi4SS6wrr0tkHz+ajWl3c=;
-        b=hDgo9QTKrAumYf7g3WyHodWpVzbBi8AstsLp3bReW9h3+dyWWfIZujWbBXcQ6hydqB
-         WiBK3vwrJ3GDzFsG8LmjNPlfxbTaQ8ahENPNO0Z6CvSD4qsnutesOiMTIEIG3yPWuZAf
-         wxSxJ21ipQL3/Luu09fEl4BVEYWsTXBD9AUsDQX6zROHwVUOYSfkrbxwxmsi6t0RqmNO
-         +bkA2R6RIX0Fp5kA7saA0WutzDbaLWsL6rKkGb0yVNpl0SgZCfA6oH9+/9PA7Fd4epgA
-         BhlACPvytsTEJ5LB70ZzEueOjPgiwTiuvt5V25FMa92/8YRG43fEJPtARPsbwxOfcjNP
-         4XUA==
+        d=gmail.com; s=20230601; t=1737285362; x=1737890162; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jFwAN4NPK1DZJMX46y1FOD2OnkFuCtYDMQ81C7qA/Ns=;
+        b=g0sfad/eMuB5RZd9AWdHEXl/cdxd2jIy0gLsOsNYbZNb7kTh64hWZaqBI3x/mnE3EQ
+         t4Ws1T4HmULfOqSEGMZiLtSfcE9TiLNtLqRcRM6uB1WtIrstLtzJTd+He8DXUxEMreVP
+         gnOG7CzUOb6Udtpv62Vj+xwuM+GbSesaVeWiZif0ODQl6G9Xy2uz/uyZIECy9b6P+28g
+         XZnnErVbmi78cHuxJr9vus85jaLa8Q77XfzfWl6wHcjAejSt+uNCxjl+WIXnSIrhsy8L
+         juEYvtYONyYmOtrWD3ZItDXL4Tx60owL+23ZJc6x87FTV4idxZi2M/XuZy5Ed7LcjfFG
+         qcTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737285240; x=1737890040;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=farCSn9nIwDEYesATkrLZqDi4SS6wrr0tkHz+ajWl3c=;
-        b=Hk8yRHUdRF1h0yu81Tvat0oVbtkFDCyjEYkGV//OMmQcNx+NzzMhJ1Cf/lIXHOTXvL
-         iqGF2/2E0DRHnCaa1+EjHlk/3387kITbToKOVe0HnT3Q+NIBF8WLoEr/V/3sy+QAP/Nu
-         XPkVts54D+dQRpfUVSmenDVXyHom9bBc/iMnS4NDGQUQtM45QwR6KcpmOxEAQCSEKt/M
-         K/KFIjrE8CsltrTNnW/RKNx8pxmPA4Zh+MtIcVCB3u21k/amygnItHAxqm/5+0TDirCq
-         2X3YgHtpopGpEcgfeDKgV529cV+sGu/ywm+xpwHmjOzlqpYD0qbo+BKlVTElpZHkB0W0
-         O88w==
-X-Forwarded-Encrypted: i=1; AJvYcCVi6HN7e31sVd66JNpvYVYVYpqM1TjrKhY7lL3Ffve+C3LS2lP7Zcjjk27H/1g/FCroAJUwv/C4TrKS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzbYpcNYPdbrqJ/wBagH1FEdaua01Yn4+XyOa9/VDIdI8hvlY3
-	C1Ug3OJ8yqg4isvG0YL8gQ4l26175yjf71SnS4x4HsNiuW1iWQ45
-X-Gm-Gg: ASbGnctqIoYUqh6gyXG+5MWjLBChbLiRB7BcO/PVS5KxtYIX1HT5uCMMwycKF9tV5wv
-	5YoRlCyQY1mJ9cOM9aFrBI/Y8//e9mzO4s6gssNozLHII8qP8NULH1MpRbZUWSVayyadgloGLUX
-	tUCucoiv2P73NJUTLrs0uGONbI7wEi8KElE+g3UgICiwZH8oS0BEvs5+LOc1gIyt54HoyCYdNqp
-	M9XZdPYAROLregj1CK7bC2uaMnivNfCaW1/A6GiXqHEK0nOPs3hgTS+1DUT4Q6niXvjRbTh8XsI
-	/XpyuTvcV9cEHg==
-X-Google-Smtp-Source: AGHT+IEoTFLC8iiNkEfMuvLuAjGsOcPoNsCUGkRVkaCTnkI/9FAsHLtodq8RJ0LSASHuxw87IeFMAg==
-X-Received: by 2002:a17:907:9405:b0:aa5:53d4:8876 with SMTP id a640c23a62f3a-ab36e406c75mr1277119466b.20.1737285240156;
-        Sun, 19 Jan 2025 03:14:00 -0800 (PST)
-Received: from giga-mm-1.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384c63b5fsm475163466b.32.2025.01.19.03.13.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jan 2025 03:13:59 -0800 (PST)
-Message-ID: <acc25734b7d89b04c19ad50981e3a82a7737dac8.camel@gmail.com>
-Subject: Re: [PATCH RFC] arm64: dts: sophgo: Add initial SG2000 SoC device
- tree
-From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto	 <inochiama@outlook.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
- <aou@eecs.berkeley.edu>, Arnd Bergmann <arnd@arndb.de>, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org
-Date: Sun, 19 Jan 2025 12:10:58 +0100
-In-Reply-To: <20250113-aftermost-whole-18401dc54137@spud>
-References: <19bb108e93bb58eecc6a53d78ff4e75fc380f072.camel@gmail.com>
-	 <20250113-aftermost-whole-18401dc54137@spud>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.2 
+        d=1e100.net; s=20230601; t=1737285362; x=1737890162;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=jFwAN4NPK1DZJMX46y1FOD2OnkFuCtYDMQ81C7qA/Ns=;
+        b=sgDzF0+ygCeBql7PwtSBAAxCAfhcnDqSJq5h5IfspluerbjIi6JLnKZo9HgLYz1bVn
+         OrjjTJ8qRr15L88UUNfheUAACuLAcoVRLft2hTGTtyy0Iq/uhU96Nrbz4squ7+mHVApN
+         I2CH28lSyx/MzvLf7xO4X/xjZYF/Zg9pYgQV0qaKY1DWrnpdrArl48J1MeU+qUp8DKW2
+         bcyxtqWw5Bxm8hrfX7zUvqaKCUGiIyqCrJIlFfNO16vi5N40xlQ4NCSBpGW5ZVnZh14Z
+         Cj7b83WwSIhfwqEaRBvpNXJnn8OnR8HPaoaVe6uLnIO5GSv9h4ToA3cb0tF/gge6WwVg
+         J2DA==
+X-Forwarded-Encrypted: i=1; AJvYcCUD/Q92Qu9pICsx/zMkBhvlHlrGXoRWJCG5GRuD+BMxW6Xkqx4mFXpfe031i8xHcVEtjMKW8axfrqa47mEK@vger.kernel.org, AJvYcCURmhFsG7Ke0+61rzBkTkclQ6G+RjI9ao5CmNRDAIyt37FegMu0cjrcDJVtjP+CJxqjxGJ2c/97@vger.kernel.org, AJvYcCWSaNyZyeQis6CchL/fNzPVuxbosiBSa2H8XSM9xH5MxbXleN9I1he6pC8OaPZNXk3RHr9JAyOzPt56@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIi+5t4DeBi6ChEktX09ruQPqLDuuNorW7m3v35668lz25fnyl
+	LVCUi1DDdt1CY/RFrFUtfLx8YV77HGUBTo/DWNV6UjuCOQBGQVdn
+X-Gm-Gg: ASbGncuXhoMWMQ2Gj8A5VqPNOGESdRvCuwczBX7W9UT5zxdMIfEp1ntMiByOMqOMnlo
+	BOUbsQ6MOMQW+QLyEJ/Ms4Lhlq6vQn4EQX5vOPajfLnunWu1GBJKZvApIniBBG1SEV31vnJwshF
+	8S0J5UqaS7p7u0GIQd80dHjtHQ6LaiIsN7DibNC0bOepjfUbi/mQ5kIM/GYvUqNyvg4ftJXX9Jb
+	oF/0MLiG0q3sL/1thj8WB2iy2dX/YlbuuSMiMR/ivXpznfYWhLCDmRp6IRYDAe7DxnxbBu2iERw
+	yTg6uRllvtIx2QmZBGbM/hoqUMS9SI/N9Po+
+X-Google-Smtp-Source: AGHT+IHaTt00aOKIg9mcDnsHrjnAg6faqbxOOHMpsfBN2LwzL1GNhhYFrCUK2KkmLZAv0vVu7zGv+Q==
+X-Received: by 2002:a17:903:186:b0:216:69ca:772a with SMTP id d9443c01a7336-21c3563ee3fmr144590885ad.53.1737285361827;
+        Sun, 19 Jan 2025 03:16:01 -0800 (PST)
+Received: from ?IPV6:2408:8362:245d:4738:bc4b:53ff:fead:2724? ([2401:b60:5:867d:3631:b7db:c3f4:aae2])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21c2d3a87e4sm43606145ad.111.2025.01.19.03.15.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Jan 2025 03:16:01 -0800 (PST)
+Message-ID: <59893a67-18c7-4ab3-9b2a-5a17091d4b6c@gmail.com>
+Date: Sun, 19 Jan 2025 19:15:55 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: rockchip: change eth phy mode to rgmii-id for
+ orangepi r1 plus lts
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Peter Geis <pgwipeout@gmail.com>
+References: <20250119091154.1110762-1-cnsztl@gmail.com>
+ <ce15f141688c4c537ac3307b6fbed283@manjaro.org>
+From: Tianling Shen <cnsztl@gmail.com>
+In-Reply-To: <ce15f141688c4c537ac3307b6fbed283@manjaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Thanks for your hints, Conor!
+Hi Dragan,
 
-On Mon, 2025-01-13 at 17:37 +0000, Conor Dooley wrote:
-> > What are your thoughts?
-> >=20
-> > =C2=A0arch/arm64/boot/dts/sophgo/sg2000.dtsi | 164 ++++++++++++++++++++=
-+++++
-> > =C2=A01 file changed, 164 insertions(+)
-> > =C2=A0create mode 100644 arch/arm64/boot/dts/sophgo/sg2000.dtsi
-> >=20
-> > diff --git a/arch/arm64/boot/dts/sophgo/sg2000.dtsi b/arch/arm64/boot/d=
-ts/sophgo/sg2000.dtsi
-> > new file mode 100644
-> > index 000000000000..96afd342bde5
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/sophgo/sg2000.dtsi
-> > @@ -0,0 +1,164 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +
-> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +#include "../../../../riscv/boot/dts/sophgo/cv18xx.dtsi"
-> > +#include "../../../../riscv/boot/dts/sophgo/cv181x.dtsi"
->=20
-> FWIW, this can just be #include <riscv/sophgo/<whatever>, /should/ be a
-> symlink for that, as there is for arm64. At the very least, I did see a
-> patch adding that link in the past. Check out what the RZ/Five is doing
-> (that's the riscv renesas chip) for an example of how this already has
-> been done - I think it's doing what your "Alternatively I can..."
-> paragraph describes.
+On 2025/1/19 17:54, Dragan Simic wrote:
+> Hello Tianling,
+> 
+> Thanks for the patch.  Please, see a comment below.
+> 
+> On 2025-01-19 10:11, Tianling Shen wrote:
+>> In general the delay should be added by the PHY instead of the MAC,
+>> and this improves network stability on some boards which seem to
+>> need different delay.
+>>
+>> Fixes: 387b3bbac5ea ("arm64: dts: rockchip: Add Xunlong OrangePi R1 
+>> Plus LTS")
+>> Cc: stable@vger.kernel.org # 6.6+
+>> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts | 3 +--
+>>  arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts     | 1 +
+>>  arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi    | 1 -
+>>  3 files changed, 2 insertions(+), 3 deletions(-)
+>>
+>> diff --git
+>> a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
+>> b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
+>> index 67c246ad8b8c..ec2ce894da1f 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
+>> @@ -17,8 +17,7 @@ / {
+>>
+>>  &gmac2io {
+>>      phy-handle = <&yt8531c>;
+>> -    tx_delay = <0x19>;
+>> -    rx_delay = <0x05>;
+>> +    phy-mode = "rgmii-id";
+> 
+> Shouldn't the "tx_delay" and "rx_delay" DT parameters be converted
+> into the "tx-internal-delay-ps" and "rx-internal-delay-ps" parameters,
+> respectively, so the Motorcomm PHY driver can pick them up and
+> actually configure the internal PHY delays?
 
-That's exactly what I needed!
+The documentation[1] says "{t,r}x-internal-delay-ps" default to 1950 and 
+that value already works fine on my board.
 
---=20
-Alexander Sverdlin.
+1. 
+https://www.kernel.org/doc/Documentation/devicetree/bindings/net/motorcomm%2Cyt8xxx.yaml
+
+Thanks,
+Tianling.
+
+> 
+>>      status = "okay";
+>>
+>>      mdio {
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
+>> b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
+>> index 324a8e951f7e..846b931e16d2 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
+>> @@ -15,6 +15,7 @@ / {
+>>
+>>  &gmac2io {
+>>      phy-handle = <&rtl8211e>;
+>> +    phy-mode = "rgmii";
+>>      tx_delay = <0x24>;
+>>      rx_delay = <0x18>;
+>>      status = "okay";
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
+>> b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
+>> index 4f193704e5dc..09508e324a28 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
+>> @@ -109,7 +109,6 @@ &gmac2io {
+>>      assigned-clocks = <&cru SCLK_MAC2IO>, <&cru SCLK_MAC2IO_EXT>;
+>>      assigned-clock-parents = <&gmac_clk>, <&gmac_clk>;
+>>      clock_in_out = "input";
+>> -    phy-mode = "rgmii";
+>>      phy-supply = <&vcc_io>;
+>>      pinctrl-0 = <&rgmiim1_pins>;
+>>      pinctrl-names = "default";
 
 
