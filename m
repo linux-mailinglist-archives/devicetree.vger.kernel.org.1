@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-139579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB258A16415
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 22:53:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04093A16416
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 22:56:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1517B1640FA
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 21:53:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2598B3A2C43
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 21:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4487F1DFD9D;
-	Sun, 19 Jan 2025 21:53:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8365D1DFD8D;
+	Sun, 19 Jan 2025 21:56:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b="H+LE+ewQ"
+	dkim=pass (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b="gKgAISDa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.183])
+Received: from ewsoutbound.kpnmail.nl (ewsoutbound.kpnmail.nl [195.121.94.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230003F9D2
-	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 21:53:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.121.94.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC6C519CD1E
+	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 21:56:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.121.94.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737323611; cv=none; b=PDWcDlh2A6ayFGlPBc8yjVsF9iOMWhyvO+LMKP2CQMMCAlNrKHUzwdcn4n6X8nrDC61qqy1GvcKCutNW8ahXcAUEvB7xHh67QgUPi74Y8lNPLBPronmC/2B+ZjbnkK3EwVNk5y0LxITKZBiO/kIi58/W6g/+bVPHipv7vV7erpg=
+	t=1737323783; cv=none; b=grZJOxMn27vfx9ZkVFt/dfhN7pWcuvCde38T+twjf8EebviSeAsIas929zOUDnN59l26RPch0p6YfGnqSOShcbIXXDH5Ugi9/OrJev6B5rQxHEXLw5uWpj3VnHaVob8QdXwAx5DBV8DKqI9rcH68IsnPB2wBY90l3snN6Gn/Clc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737323611; c=relaxed/simple;
-	bh=AX8K1jReoFWrI0yHFrI1SgJSWnSJF6CMKYxFPSqw/+U=;
-	h=Date:Message-Id:From:To:Cc:In-Reply-To:Subject:References; b=cICvED/z8CgHEZWuQkcoL4UDEKkAJ5/Z878wrR93lhPbfG0P+mCkijMTla6Vdp8D3HtTWanQ+CiDjunxG8/7H1rtLpkJAbaif2kK2R75BRg1ZfgIEqWciSsnisryt7CHiE0M8kVMRf9P+v/xVXwvvlvqGF3UIcLQ7IFPt5m3vA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xs4all.nl; spf=pass smtp.mailfrom=xs4all.nl; dkim=pass (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b=H+LE+ewQ; arc=none smtp.client-ip=195.121.94.183
+	s=arc-20240116; t=1737323783; c=relaxed/simple;
+	bh=qwG1J9GgSTCBG8+oB6MogNboYhdxCPYbZJMCQX3qeMw=;
+	h=Date:Message-Id:From:To:Cc:In-Reply-To:Subject:References; b=OXT5XC+vZNpffeZHvQUVo3UTH3x58Lcn4Nmq8JaUl0XraGp+y89BL1qImdl9/kr+f4GqUrwVPIitgaBdhJStFY6F3OzlsFmj/A3nIwv4yjcxYxfHhy7HFeDEvImCVDOcy8o+Zb1+BAxcYdhB64F9XPuOK6KHn9voxFWDLtHIIKw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xs4all.nl; spf=pass smtp.mailfrom=xs4all.nl; dkim=pass (2048-bit key) header.d=xs4all.nl header.i=@xs4all.nl header.b=gKgAISDa; arc=none smtp.client-ip=195.121.94.184
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xs4all.nl
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xs4all.nl
-X-KPN-MessageId: cfd7d949-d6af-11ef-bc52-005056992ed3
-Received: from smtp.kpnmail.nl (unknown [10.31.155.8])
+X-KPN-MessageId: 622fddcf-d6b0-11ef-9401-005056994fde
+Received: from smtp.kpnmail.nl (unknown [10.31.155.5])
 	by ewsoutbound.so.kpn.org (Halon) with ESMTPS
-	id cfd7d949-d6af-11ef-bc52-005056992ed3;
-	Sun, 19 Jan 2025 22:53:26 +0100 (CET)
+	id 622fddcf-d6b0-11ef-9401-005056994fde;
+	Sun, 19 Jan 2025 22:57:32 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=xs4all.nl; s=xs4all01;
 	h=subject:to:from:message-id:date;
-	bh=/IIyz0YS3Cse1DeJBPcdEXao4RqtlqxFlCw2jjdvxao=;
-	b=H+LE+ewQUAlaaMM2wgbKsAbBcpOuoFmeunoB/cmyhGJRTsSSS3YCet0puTQhjC+BE/3wL3TbLdSWz
-	 I8/h/w+5cZlF5myMvZ5uVNuaCM5d8GYr/BjxJEiTrQH6f7McF8mA09t6J4nvo8k6l3HzbG7WCX+oye
-	 U7YqFYkmo3WBYA19bf9bAe3RSFPXXgJAFEWbZvjjV4cA1xghJ/Rug4kQPpvQvwBsReKwBvticBJBJl
-	 SmRsUSPt88Ez+SVTCl6RprMq7xnMf5LLuFD/ytru47wj3l1N2LKkZpNJEw7Bpik9fKOtGvIKCCRAEC
-	 4BEAg4NE2nRwUciOefxO2OBTBgg29EA==
-X-KPN-MID: 33|PLUa6yKevZGuuON10RfGcZsyMasS+yJddn/oD2PrV+RNIWNc7cX5UwJdovcBiDK
- 0haFKtVol9B9fCNrvjG3kcRk/BUQsev0ru/a92FVoszk=
+	bh=eK8DdGkdqjzJcS/S74b+hWCSLuoRA9DJhomj7bVdk8k=;
+	b=gKgAISDatTI5qcmXlZgoYOkqp1GXmGS6TwdRIzlu/0i3PCjVsM+AGcMCOxjxhTU49TaIH0E+Xmf2X
+	 ihJl5rhW46db2DGaBiKgkrUCK6+/+mhU7aNVt7O3KU+e/Eod+V3yzEDHl6RiF4B+m8s58omaNjBKmJ
+	 YpmlvSxxtXfMaCq/s0nmZojrV34CwkmdbQqvMGtoIrH+hbSRDLxOLhy7OZ+/sEXBJSDP4mWCgkHe5a
+	 7K7kYQZLxFZJd+QiAxFaO+4sOHGj3A0TCbjHhpmeFBh70SlmWzQCxqoinJeClF/k15DrP0Js9tHCln
+	 2ADv1J/lIcxXfjDKQU/9YCcl051R0eg==
+X-KPN-MID: 33|vCpVemgNHsH+JxC3K0DxEwg40i7dNY1LW7WWH322IUe7vrYfoP2ju5dXYMDTydG
+ mC8emdcqPEizBG24HkLzgoKoG6+9HYVDIi73Mm+56I3M=
 X-KPN-VerifiedSender: Yes
-X-CMASSUN: 33|nILbYhy6bX0J58qqr6z9gRWZxNNpU5MsC0bQ/s8sFiY8jPuPFV+i0VFiHaFmvkc
- wYjVJHAT/rOTBdCpWZ42Wog==
+X-CMASSUN: 33|aC2eGKONaVTGJPH+arZDL6TEsme+clKWjYy5cTkz7dtNYPi6e5SYSJzOH3YBjKX
+ fI9irrt6CWZJHDow6OSiO/w==
 Received: from bloch.sibelius.xs4all.nl (80-61-163-207.fixed.kpn.net [80.61.163.207])
 	by smtp.xs4all.nl (Halon) with ESMTPSA
-	id cfd5a934-d6af-11ef-8950-00505699d6e5;
-	Sun, 19 Jan 2025 22:53:27 +0100 (CET)
-Date: Sun, 19 Jan 2025 22:53:26 +0100
-Message-Id: <87cygitqqx.fsf@bloch.sibelius.xs4all.nl>
+	id 0ef2fd0d-d6b0-11ef-b69d-00505699b758;
+	Sun, 19 Jan 2025 22:55:13 +0100 (CET)
+Date: Sun, 19 Jan 2025 22:55:12 +0100
+Message-Id: <87bjw2tqnz.fsf@bloch.sibelius.xs4all.nl>
 From: Mark Kettenis <mark.kettenis@xs4all.nl>
 To: Maud Spierings <maud_spierings@hotmail.com>
 Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
 	krzk+dt@kernel.org, conor+dt@kernel.org,
 	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, maud_spierings@hotmail.com
-In-Reply-To: <20250119-usb_a_micro_sd-v1-0-01eb7502ae05@hotmail.com> (message
-	from Maud Spierings on Sun, 19 Jan 2025 15:50:50 +0100)
-Subject: Re: [PATCH 0/2] arm64: dts: qcom: x1e80100-vivobook-s15: Add usb a and
- sd-card reader
-References: <20250119-usb_a_micro_sd-v1-0-01eb7502ae05@hotmail.com>
+In-Reply-To: <20250119-usb_a_micro_sd-v1-2-01eb7502ae05@hotmail.com> (message
+	from Maud Spierings on Sun, 19 Jan 2025 15:50:52 +0100)
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: x1e80100-vivobook-s15: Enable
+ micro-sd card reader
+References: <20250119-usb_a_micro_sd-v1-0-01eb7502ae05@hotmail.com> <20250119-usb_a_micro_sd-v1-2-01eb7502ae05@hotmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,60 +73,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
 > From: Maud Spierings <maud_spierings@hotmail.com>
-> Date: Sun, 19 Jan 2025 15:50:50 +0100
+> Date: Sun, 19 Jan 2025 15:50:52 +0100
 > 
-> The Asus Vivobook s15 has 2 5gbps usb A ports on the right side which
-> are controlled by the usb_mp controller enable them and the retimers
-> required.
+> The asus vivobook s15 has a micro-sd card reader attached to usb_2.
 > 
-> There is also a micro sd-card reader on the left side below the two
-> usb-c ports, this one is attached to the usb_2 controller. Enable it and
-> the retimer to enable the micro sd-card reader.
-> 
-> The micro sd-card reader seems to have so interesting behaviour, on my
-> machine and someone elses it kind of half works, but not really, the
-> same under windows, unusable. Either we both got unlucky with a hardware
-> defect or there is something else going on, however two other people did
-> succesfully test it, one of which on (free?)bsd instead of linux even.
-
-OpenBSD ;).  And yes, the SD-card reader works just fine for me with
-this series.
-
-> One hypothesis is that this area is where the charging circuitry is,
-> which gets *very* hot while charging and might damage this bit of
-> hardware. However this is very much speculation and not based on
-> anything concrete.
-> 
-> Symptoms of dysfunctional sd-card reader:
-> The sd card will get detected, a usb device will appear as "Genesys Logic
-> STORAGE DEVICE" 05e3:0747
-> 
-> log:
-> [ 2456.648075] usb 1-1: new high-speed USB device number 3 using xhci-hcd
-> [ 2456.792703] usb-storage 1-1:1.0: USB Mass Storage device detected
-> [ 2456.795530] scsi host0: usb-storage 1-1:1.0
-> [ 2457.840518] scsi 0:0:0:0: Direct-Access     Generic  MassStorageClass
-> 2402 PQ: 0 ANSI: 6
-> [ 2458.072281] sd 0:0:0:0: [sda] Media removed, stopped polling
-> [ 2458.073001] sd 0:0:0:0: [sda] Attached SCSI removable disk
-> 
-> /dev/sda will appear, but it will not do anything, fdisk rejects it etc
+> Enable usb_2 to enable this reader.
 > 
 > Signed-off-by: Maud Spierings <maud_spierings@hotmail.com>
 > ---
-> Maud Spierings (2):
->       arm64: dts: qcom: x1e80100-vivobook-s15: Enable USB-A ports
->       arm64: dts: qcom: x1e80100-vivobook-s15: Enable micro-sd card reader
-> 
->  .../boot/dts/qcom/x1e80100-asus-vivobook-s15.dts   | 142 ++++++++++++++++++++-
->  1 file changed, 141 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 0907e7fb35756464aa34c35d6abb02998418164b
-> change-id: 20250119-usb_a_micro_sd-4c476ea769b1
-> 
-> Best regards,
-> -- 
-> Maud Spierings <maud_spierings@hotmail.com>
-> 
-> 
+>  .../boot/dts/qcom/x1e80100-asus-vivobook-s15.dts   | 39 ++++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+
+Reviewed-by: Mark Kettenis <kettenis@openbsd.org>
 
