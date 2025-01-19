@@ -1,147 +1,136 @@
-Return-Path: <devicetree+bounces-139530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D801A16140
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 11:39:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A966EA16154
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 12:14:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 58F331650CD
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 10:39:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3F3FB1885543
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 11:14:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB5801A725C;
-	Sun, 19 Jan 2025 10:39:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4AEE19E967;
+	Sun, 19 Jan 2025 11:14:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jjaHWbI5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hDgo9QTK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8481B13C80E;
-	Sun, 19 Jan 2025 10:39:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30CA774BE1
+	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 11:14:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737283175; cv=none; b=UhDvGFqRRe+oQxOvG2C5Y7Fl/A7KQOnbXtGDLx9GQUu64y6vsXQn6LfCE6SWzrBh8SqcM70+Rfb2Imx9JDW/IrMkSEAfBQVZun4+hkyRl/1NuqI/pdNMAcg1EQaFKFYHAOEe0O4B8gACrS40+ouZF4L/JUlsF12PfHZfWoG8bK8=
+	t=1737285243; cv=none; b=uQkEJUlEDHI/ZOqk8FT+RlG+C3N59RwsOR0ujC9WLbGKM1MgFJ/Q9EeO1ZqoH48MQrOyMsQnt+RO1XNwm4t/eAOqR/HUXh01sUHcGP97nprbPt0bp6WgWh2sBEkb8a5i0gsVpWydaDmjHznLVQIrMpc56Ur/VpTMbVR/9KzK5lE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737283175; c=relaxed/simple;
-	bh=mzrDlSpOX7hBmu9H8RGmn3nPSohypFGJtPAM7XP3U3I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=MBdk4TLLpQsHsU3Ls9mwdX/GKlHCDGMEFMhdRjYq0t69ugpyQrizQhMILl5qZyX7NygJrmkboptVy0kfs6alEJYgftuocGb/RUBD9r+YmIwXjTbWeZSlRj6jTYvaJA93nFRqiBzdgSbqoApwpBY8p9YFApWOYp+l2vGs/bry9MY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jjaHWbI5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50JAOKQf021957;
-	Sun, 19 Jan 2025 10:39:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pX2QuJss18L9a1KpjLAH6oqE2ShPUt8sv7JjepkTB6A=; b=jjaHWbI5q4nrLYO9
-	MSlVbM168Z3+zv730S59I8L2JmqteJ5/H65u0WVTBNjqWzufFxh5u1CMTtHKwudr
-	cEkBMh+T6GQ/+TwTLdP7hIsFWc0+dxriR8V1fkCG8Dle4QgMixwPpiaf7emviQfZ
-	hZnYK5HwTLM4jke26k9ZsjY8Lwet/0FOT0tnI5UNzaNeEitiv+xokU1o/ROrxAiM
-	SWF6mBlswSnQw7Ed2WqIYndS8a9THEX4pgL4E/C3lS1Yvb1VT/Rwe9DjCUHzVhsA
-	LjyD1pcj9RxTR82dWA7NMbGPTHHvFePZMf358AMw+CfQeneI0fUa2ZH/Ri1rM1ge
-	DTDu/g==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4484h19vy5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 19 Jan 2025 10:39:31 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50JAdURA027162
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 19 Jan 2025 10:39:30 GMT
-Received: from [10.216.35.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 19 Jan
- 2025 02:39:26 -0800
-Message-ID: <ee277e4d-04ce-4bcc-942a-4fbb8bf1e092@quicinc.com>
-Date: Sun, 19 Jan 2025 16:09:23 +0530
+	s=arc-20240116; t=1737285243; c=relaxed/simple;
+	bh=farCSn9nIwDEYesATkrLZqDi4SS6wrr0tkHz+ajWl3c=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=kWmBslaQ17tO6F4IWxXDsrn5NCwWVh0vFxGx7VTreAhy80i7209ySm02EPKyrKI6iigQ4D1dblDqteFu80JaSJcL7h8nyKuFQdxEaTVK4djDLU5IBwiNA9cT3H4Rau3TRkWYCK3ckM0NMRRIvLQUDYYdE6DuFqcKYHQNsqAIL8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hDgo9QTK; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-ab2e308a99bso745491966b.1
+        for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 03:14:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737285240; x=1737890040; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=farCSn9nIwDEYesATkrLZqDi4SS6wrr0tkHz+ajWl3c=;
+        b=hDgo9QTKrAumYf7g3WyHodWpVzbBi8AstsLp3bReW9h3+dyWWfIZujWbBXcQ6hydqB
+         WiBK3vwrJ3GDzFsG8LmjNPlfxbTaQ8ahENPNO0Z6CvSD4qsnutesOiMTIEIG3yPWuZAf
+         wxSxJ21ipQL3/Luu09fEl4BVEYWsTXBD9AUsDQX6zROHwVUOYSfkrbxwxmsi6t0RqmNO
+         +bkA2R6RIX0Fp5kA7saA0WutzDbaLWsL6rKkGb0yVNpl0SgZCfA6oH9+/9PA7Fd4epgA
+         BhlACPvytsTEJ5LB70ZzEueOjPgiwTiuvt5V25FMa92/8YRG43fEJPtARPsbwxOfcjNP
+         4XUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737285240; x=1737890040;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=farCSn9nIwDEYesATkrLZqDi4SS6wrr0tkHz+ajWl3c=;
+        b=Hk8yRHUdRF1h0yu81Tvat0oVbtkFDCyjEYkGV//OMmQcNx+NzzMhJ1Cf/lIXHOTXvL
+         iqGF2/2E0DRHnCaa1+EjHlk/3387kITbToKOVe0HnT3Q+NIBF8WLoEr/V/3sy+QAP/Nu
+         XPkVts54D+dQRpfUVSmenDVXyHom9bBc/iMnS4NDGQUQtM45QwR6KcpmOxEAQCSEKt/M
+         K/KFIjrE8CsltrTNnW/RKNx8pxmPA4Zh+MtIcVCB3u21k/amygnItHAxqm/5+0TDirCq
+         2X3YgHtpopGpEcgfeDKgV529cV+sGu/ywm+xpwHmjOzlqpYD0qbo+BKlVTElpZHkB0W0
+         O88w==
+X-Forwarded-Encrypted: i=1; AJvYcCVi6HN7e31sVd66JNpvYVYVYpqM1TjrKhY7lL3Ffve+C3LS2lP7Zcjjk27H/1g/FCroAJUwv/C4TrKS@vger.kernel.org
+X-Gm-Message-State: AOJu0YwzbYpcNYPdbrqJ/wBagH1FEdaua01Yn4+XyOa9/VDIdI8hvlY3
+	C1Ug3OJ8yqg4isvG0YL8gQ4l26175yjf71SnS4x4HsNiuW1iWQ45
+X-Gm-Gg: ASbGnctqIoYUqh6gyXG+5MWjLBChbLiRB7BcO/PVS5KxtYIX1HT5uCMMwycKF9tV5wv
+	5YoRlCyQY1mJ9cOM9aFrBI/Y8//e9mzO4s6gssNozLHII8qP8NULH1MpRbZUWSVayyadgloGLUX
+	tUCucoiv2P73NJUTLrs0uGONbI7wEi8KElE+g3UgICiwZH8oS0BEvs5+LOc1gIyt54HoyCYdNqp
+	M9XZdPYAROLregj1CK7bC2uaMnivNfCaW1/A6GiXqHEK0nOPs3hgTS+1DUT4Q6niXvjRbTh8XsI
+	/XpyuTvcV9cEHg==
+X-Google-Smtp-Source: AGHT+IEoTFLC8iiNkEfMuvLuAjGsOcPoNsCUGkRVkaCTnkI/9FAsHLtodq8RJ0LSASHuxw87IeFMAg==
+X-Received: by 2002:a17:907:9405:b0:aa5:53d4:8876 with SMTP id a640c23a62f3a-ab36e406c75mr1277119466b.20.1737285240156;
+        Sun, 19 Jan 2025 03:14:00 -0800 (PST)
+Received: from giga-mm-1.home ([2a02:1210:861b:6f00:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384c63b5fsm475163466b.32.2025.01.19.03.13.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Jan 2025 03:13:59 -0800 (PST)
+Message-ID: <acc25734b7d89b04c19ad50981e3a82a7737dac8.camel@gmail.com>
+Subject: Re: [PATCH RFC] arm64: dts: sophgo: Add initial SG2000 SoC device
+ tree
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Chen Wang <unicorn_wang@outlook.com>,
+ Inochi Amaoto	 <inochiama@outlook.com>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Arnd Bergmann <arnd@arndb.de>, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org
+Date: Sun, 19 Jan 2025 12:10:58 +0100
+In-Reply-To: <20250113-aftermost-whole-18401dc54137@spud>
+References: <19bb108e93bb58eecc6a53d78ff4e75fc380f072.camel@gmail.com>
+	 <20250113-aftermost-whole-18401dc54137@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add cpu scaling clock node
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com>
- <20241108-qcs615-mm-dt-nodes-v1-2-b2669cac0624@quicinc.com>
- <cgg3s6f555eb4jl5segz7irwx2kkza7w6zucfyo7myrbjhng3v@2qmyrobzakhd>
- <e3dfa3a7-feb1-45d1-8dc3-c403cb92c7c0@oss.qualcomm.com>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <e3dfa3a7-feb1-45d1-8dc3-c403cb92c7c0@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: bOapJbJNe6Dwljr5F0wGAGxwVkWsUdHq
-X-Proofpoint-GUID: bOapJbJNe6Dwljr5F0wGAGxwVkWsUdHq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-18_10,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxlogscore=784
- priorityscore=1501 bulkscore=0 mlxscore=0 clxscore=1015 lowpriorityscore=0
- impostorscore=0 adultscore=0 suspectscore=0 malwarescore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501190086
 
+Thanks for your hints, Conor!
 
+On Mon, 2025-01-13 at 17:37 +0000, Conor Dooley wrote:
+> > What are your thoughts?
+> >=20
+> > =C2=A0arch/arm64/boot/dts/sophgo/sg2000.dtsi | 164 ++++++++++++++++++++=
++++++
+> > =C2=A01 file changed, 164 insertions(+)
+> > =C2=A0create mode 100644 arch/arm64/boot/dts/sophgo/sg2000.dtsi
+> >=20
+> > diff --git a/arch/arm64/boot/dts/sophgo/sg2000.dtsi b/arch/arm64/boot/d=
+ts/sophgo/sg2000.dtsi
+> > new file mode 100644
+> > index 000000000000..96afd342bde5
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/sophgo/sg2000.dtsi
+> > @@ -0,0 +1,164 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> > +
+> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +#include "../../../../riscv/boot/dts/sophgo/cv18xx.dtsi"
+> > +#include "../../../../riscv/boot/dts/sophgo/cv181x.dtsi"
+>=20
+> FWIW, this can just be #include <riscv/sophgo/<whatever>, /should/ be a
+> symlink for that, as there is for arm64. At the very least, I did see a
+> patch adding that link in the past. Check out what the RZ/Five is doing
+> (that's the riscv renesas chip) for an example of how this already has
+> been done - I think it's doing what your "Alternatively I can..."
+> paragraph describes.
 
-On 12/30/2024 10:12 PM, Konrad Dybcio wrote:
-> On 9.11.2024 1:00 AM, Dmitry Baryshkov wrote:
->> On Fri, Nov 08, 2024 at 11:54:05AM +0530, Taniya Das wrote:
->>> Add cpufreq-hw node to support cpu frequency scaling.
->>
->> CPU, not cpu.
->> Also the prefix is incorrect for both patches.
->>
->>>
->>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>> ---
-> 
-> [...]
-> 
->>
->> This doesn't follow the bindings, does it?
->>
->>> +		reg = <0 0x18323000 0 0x1400>,
->>> +		      <0 0x18325800 0 0x1400>;
->>> +		reg-names = "freq-domain0", "freq-domain1";
->>> +
->>> +		clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
->>> +		clock-names = "xo", "alternate";
->>
->> Are the DCVSH interrupts?
-> 
-> 32/33 for silver/gold respectively
-> 
+That's exactly what I needed!
 
-This target does not have interrupts connected to CPUFREQ-HW.
-
-> Konrad
-
--- 
-Thanks & Regards,
-Taniya Das.
+--=20
+Alexander Sverdlin.
 
 
