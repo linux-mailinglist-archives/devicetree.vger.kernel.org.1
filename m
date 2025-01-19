@@ -1,138 +1,156 @@
-Return-Path: <devicetree+bounces-139558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8A38A1629F
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 16:27:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1F55A162B1
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 16:45:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 453A21885C92
-	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 15:27:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5720164583
+	for <lists+devicetree@lfdr.de>; Sun, 19 Jan 2025 15:44:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C2881DF745;
-	Sun, 19 Jan 2025 15:27:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6D81DF748;
+	Sun, 19 Jan 2025 15:44:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NaVBpdMZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WDSo5mAe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3D301DF27D
-	for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 15:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B688D531;
+	Sun, 19 Jan 2025 15:44:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737300425; cv=none; b=of3pkzQbQGVkIICduhYMPoTFe4wlqURTi70YuK+ZGooPiE0uoz3URLMa/6Af4ZSD5xqBGxO4PqEunQwoplqFOV24hYptYZY8DQ3h1RtMcaodQFO7fxF23IKaaoWdTBTQvgm5VzaOp9bNq71MBRumQF0D87rEWNIHW3hqsR4rNoc=
+	t=1737301496; cv=none; b=tMd2r4IGCBxvT3AvASYldBApzdK9T7C6U6jywg9Tv0nqwyVCZuzzViat0PhwUFxPqM48O1e5q2u7Fzgveog3d6tzjmQpi8dp1aHwTagz6fWPRziqBjZAs8DWLvDOokk474Cj9u2G9A9ujD4UtXl2hoOWvQ816nN2H5J+8pTylrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737300425; c=relaxed/simple;
-	bh=PWQpcLhH7Zeo4/EFrlP2gfivfal9zzDPsCLUkRO16zE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OXDrDycT7m7tYQdkDGdPIyw+Wfi+hN4CodgpNUWcK7YY7noFVKty+otfGwsJX3wPBgb9zS1Zzk5H654b4mBA9l63weV+Pd49R5Slce+TFF8/4EQDRsyPr6CnaiKrorNfvyO9lcgIUxTfkcM8ZH3zdFd3vYWF2ICxC4RoTeSqAdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NaVBpdMZ; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2f4448bf96fso4727747a91.0
-        for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 07:27:03 -0800 (PST)
+	s=arc-20240116; t=1737301496; c=relaxed/simple;
+	bh=Qj1Coxsu8hNs91CezBIgio6lHn8v51cfOLgCTu2vnSs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=NJOaJUaMd8I3wszIiCqNxc9ZHz27HPNT3/sUq66+VPmE2vKDF5eVHOQnVdPFK/DGbNYStjk+gHSe15KlLIzOCKecKrSBvaknOilZL7kBJwECV2ZJfKyOACWcqvnZ0OXKeqA0Gg4BIXhgr0QdVM9OGIhzwRvbPL6aJu2UzW4T7G0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WDSo5mAe; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-436202dd7f6so41937545e9.0;
+        Sun, 19 Jan 2025 07:44:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737300423; x=1737905223; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gWLJNtDh2M0LrWGMJ4uX5maH7/SrzMNwJbKx9WRcHPQ=;
-        b=NaVBpdMZI071+K9NmczBY5/PxLIwgGaruZottqEB8NFCgAq8RhXj954FscI2pRExkb
-         p0LSrisa6Mg/UaptV6v3Sgh7rcGu9AEm5ycGJP4ibVVsWolIVH8Z6fByE96OWSvUqTiR
-         +G6ErRdgHBotP7cPXALTm1IjdCusqq9IdvglxWMvw/Ehhh8noMJAQ+Y5VdJoJpgrUuJb
-         zwaQQgwQqff+35EoUXqqZbwUpq9sWOcu0y9QPi1yjt5uxJN9LVYlqnkHwk7mQnFtpTHp
-         ay94PoY4+VX3Zy29LJF7gpyVa9G63ljcrOzXXx+khLrbjQOhcWjOj+lIkE0bgHNTXfm1
-         AIkA==
+        d=gmail.com; s=20230601; t=1737301492; x=1737906292; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=p+MERUIEnot+0yVY7O4MlFPWOC/eemYOetoliqmoGKU=;
+        b=WDSo5mAesoIw1uqThaB+S2qGh2ZOJxqUnSK43Z8Mq2+MeFHGFLsl8uVb42xU1NJFhw
+         q1oD+8AQ31sKztXdwesXsvknqoSWJzGD91D/+J6ccpl3Gb27gXkdSUQXCUre1DBJ2KYE
+         SayNN51cMkJnKHvBOSculkC9E3kWk7gy7HzH7ADqbhYvCuiiTy6CRDCmhZMpeKgqq7Ji
+         PJywngJSWxCr5bLJnDGRDSK+uzKbuA+lalgmpK8wYvwFc5dNztn7VhL1XrYJO0XU3vec
+         eVcSxc62Kz9oS+kFqAzrWfhkGD5GxRqbsUNWrRdI+uXOKpBfsOpbotZfxNk4Ok2akndm
+         xDMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737300423; x=1737905223;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gWLJNtDh2M0LrWGMJ4uX5maH7/SrzMNwJbKx9WRcHPQ=;
-        b=JvOPPCPKlhz0MmblCu0k4I/2pLnR2n56+OujFIh5QcfrBLedXc64E6uWB8nYmQxuKh
-         uniHMRyWxd/AOoVy7eRhTXRjenmuPfbT3MM09sUlgcebODH90DAcM9Qnr0khUDkg64pW
-         lwED4zW87+Aq9egNPfAoUHUpQzbqwnGJrqgS6kaNQgHokBqCMZv1ZHj5Y8K1lt/Mrex6
-         x63zFVbi81am3OmNtQowcpt5RPEz6eE6SEFpHK8AuPXLVGwzkQJIFsVb70cbj5PT7r7r
-         cGPsteeYeEXTGl7tbH5poUWlQwStqmEzXEKXgXtOaeKVNbbqaKUKmHmRIOTyloVYBY5M
-         d1xw==
-X-Forwarded-Encrypted: i=1; AJvYcCXM9aWzKFRT+T4JIh6b4biFC20v0Cm0//gaSDRcWeFMDrv24HSIQ7kQ6kdy/fPf5xoTXP3zAY4m1ZVj@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWUoSTV7URarqZiERczAk232cLX80hM70eywo3K7xDUKRQCcx9
-	3KqAg62bRFFKG3FFs8nRl4BObnoxWscg5ojyENYe/CxAWTE4Eo+pQZOY7qUBJA==
-X-Gm-Gg: ASbGncsF0W5h/7uJR4iQTVQQMVBH8v2NMRuJaD4q50yBOKHPn1whw1Si79ZVUKxToVK
-	bBTqPMMnz4YvFz0mxDNRKdEROvTrGy+NS7KU6OMRuuRKIxasPlNELJw2j0qnaGEd2ayU7FolzTq
-	88VMTcqfm1u0HDZbDtmDD5zF76h77KMUcAzmrNLGqQ8fHM9bISdPXPZpiTc4SngAImrZoPsuYfh
-	HEoapOaFjXqE+KBbCULlr0WHnaBxZpcMgXvPs4uxVxPAg26wJpKIvyPG+MBaTWsBfFPZDxGDR+t
-	GcJBlg==
-X-Google-Smtp-Source: AGHT+IENWqIH7vPK9qo4kAByRAYKRm1YyPEDyBpffvJczNdBlZH+Y7lmOf7IJkBmPUxBttv2OPLC8A==
-X-Received: by 2002:a17:90a:7141:b0:2ee:dd9b:e402 with SMTP id 98e67ed59e1d1-2f782c70237mr16844568a91.12.1737300423171;
-        Sun, 19 Jan 2025 07:27:03 -0800 (PST)
-Received: from thinkpad ([120.56.195.253])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f77611a162sm5861697a91.2.2025.01.19.07.26.57
+        d=1e100.net; s=20230601; t=1737301492; x=1737906292;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=p+MERUIEnot+0yVY7O4MlFPWOC/eemYOetoliqmoGKU=;
+        b=jOlmmpkte5rZz0c5keqsqrGYOKfcEkjUZf7/FLos+NufhMtDoxjeGPIu37qO2+Km36
+         M9bwDOoyTkI+vBdMoaNG7VcjE8qo7O/mzNk0571J2ODt1OZnl6Ehr3oyNlpY1iu5l5ka
+         KJqRUidfCnlOblI8aUfKx01zVu9hO5ui8HtnqBlmudsMHAL/qQ2hbnWpac/eeYuAWUZp
+         vs3o1Wyw5hlKpve0CkzwT0YTryCDVqUu/jWd+kC9iLu+8OdYirXGfEX1cDVQEfMh8F5l
+         n/BhZu1Z7JP/sfbOeeCt5oChjpTabaEjRHoV1ZILwRqGoMC6fXiNFbOSHBQE2Vv1EVJI
+         b4tA==
+X-Forwarded-Encrypted: i=1; AJvYcCUnxOjFzqLGy35Wq/HIbf2LO6UH4ggj222Sg3/3kdvTtMk5QnYzbRszgDFnuvam4HXpAzGm1Ui8avolCHkc@vger.kernel.org, AJvYcCVlAVZ9f50NLSNwiI+tsP1KAXJ/yC67D++5A0Tf/TLE/+V8gmzB+m0AGt/8QowlcyYG+qAWAvWfHngF@vger.kernel.org, AJvYcCVpthN6hAUzNQYJdZbIxZ8+4BgVshUJgVFVU5KcBAsSAMJ9r6FnT4NFgfHX4SdrulUHtCiLzGBp4frOKw==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvIMCHj/r4jw4gMqHBc7e9lek/GKdjGMLPA2eOGB24hcv0qRan
+	QXayQxjQAiUxuWjTrw+o7p2X9TfomrysOPAHwX48MoU7/BV8NzMMXi5zMg==
+X-Gm-Gg: ASbGncsFqSl5dCOlcPIQkq99NlX2vos2Ljx93nlMhroVVcUSC7fW8IX2csFsdOZXLMi
+	PGpRgQSJTTKe4DtsowCiuSSdwIA85Yz0qDQOS0xzSyG5tv6YvH2hpKt9/RBorOpTxfKHTBv6SaR
+	R1yPrw7DXFMJhIR7aPKScjPtOwIEKnOvEs2LtqQJiV66Mvt6mzUriaZnzMBc+A7AE9uDLoWmKPv
+	728tIAbwC1oNWKbMbiTXsvvYFnXV3Cz3e0L5fAOGWtnrNoLaA1K/PfqdvOB2mfI3t5Z7TFw40KC
+	l1wcTqElbu/4Rd/lI2WC0kzqfjdmzUUA4unP6B5o/2c3NnJnpFOWZi+zpulP
+X-Google-Smtp-Source: AGHT+IG15Qvt/5O/PYnGgIxK8+GV2Xgv5LcJKxjXHVtJdvu4J3X5DQ8ZemKh0O+92Et5oYMWOtOIXg==
+X-Received: by 2002:a05:600c:5486:b0:434:f586:753c with SMTP id 5b1f17b1804b1-438913ca694mr91282365e9.7.1737301491524;
+        Sun, 19 Jan 2025 07:44:51 -0800 (PST)
+Received: from localhost.localdomain (249.red-88-10-54.dynamicip.rima-tde.net. [88.10.54.249])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4389046885esm104532655e9.36.2025.01.19.07.44.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jan 2025 07:27:02 -0800 (PST)
-Date: Sun, 19 Jan 2025 20:56:55 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] PCI: qcom-sm8[56]50: document and add 'global'
- interrupt
-Message-ID: <20250119152655.g2w4evteqqastil2@thinkpad>
-References: <20241126-topic-sm8x50-pcie-global-irq-v1-0-4049cfccd073@linaro.org>
+        Sun, 19 Jan 2025 07:44:50 -0800 (PST)
+From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To: linux-clk@vger.kernel.org
+Cc: sboyd@kernel.org,
+	mturquette@baylibre.com,
+	tsbogend@alpha.franken.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	p.zabel@pengutronix.de,
+	linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	yangshiji66@outlook.com,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/6] mips: dts: ralink: update system controller nodes and its consumers
+Date: Sun, 19 Jan 2025 16:44:41 +0100
+Message-Id: <20250119154447.462857-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241126-topic-sm8x50-pcie-global-irq-v1-0-4049cfccd073@linaro.org>
 
-On Tue, Nov 26, 2024 at 11:22:48AM +0100, Neil Armstrong wrote:
-> Following [1], document the global irq for the PCIe RC and
-> add the interrupt for the SM8550 & SM8650 PCIe RC nodes.
-> 
-> Tested on SM8550-QRD, SM8650-QRD and SM8650-HDK.
-> 
-> [1] https://lore.kernel.org/all/20240731-pci-qcom-hotplug-v3-0-a1426afdee3b@linaro.org/
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Hi all!
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Ralinks SoCs have a system controller node which serves as clock and reset
+providers for the rest of the world. This patch series introduces clock and reset
+definitions for these SoCs. The clocks are registered in the driver using
+a bunch of arrays in specific order so these definitions represent the assigned
+identifier that is used when this happens so client nodes can easily use it
+to specify the clock which they consume without the need of checking driver code.
+For the resets the definitions are the reset related bits in reset register of the
+system controller node.
 
-- Mani
+DTS files which are currently on tree are not matching system controller bindings. So
+all of them are updated to properly match them.
 
-> ---
-> Neil Armstrong (3):
->       dt-bindings: PCI: qcom,pcie-sm8550: document 'global' interrupt
->       arm64: dts: qcom: sm8550: Add 'global' interrupt to the PCIe RC nodes
->       arm64: dts: qcom: sm8650: Add 'global' interrupt to the PCIe RC nodes
-> 
->  Documentation/devicetree/bindings/pci/qcom,pcie-sm8550.yaml |  9 ++++++---
->  arch/arm64/boot/dts/qcom/sm8550.dtsi                        | 12 ++++++++----
->  arch/arm64/boot/dts/qcom/sm8650.dtsi                        | 12 ++++++++----
->  3 files changed, 22 insertions(+), 11 deletions(-)
-> ---
-> base-commit: adc218676eef25575469234709c2d87185ca223a
-> change-id: 20241126-topic-sm8x50-pcie-global-irq-712d678b5226
-> 
-> Best regards,
-> -- 
-> Neil Armstrong <neil.armstrong@linaro.org>
-> 
+I'd like this series to go through kernel mips git tree if possible.
+
+Thanks in advance for your time.
+
+Changes in v2:
+- Redo commit messages in all the patches in the series to clarify why the changes
+  are needed asked by Krzysztof in v1.
+  
+v1 of this series:
+- https://lore.kernel.org/linux-clk/20250115153019.407646-1-sergio.paracuellos@gmail.com/T/#t
+
+Best regards,
+    Sergio Paracuellos
+
+Sergio Paracuellos (6):
+  dt-bindings: clock: add clock and reset definitions for Ralink SoCs
+  mips: dts: ralink: rt2880: update system controller node and its
+    consumers
+  mips: dts: ralink: rt3050: update system controller node and its
+    consumers
+  mips: dts: ralink: rt3883: update system controller node and its
+    consumers
+  mips: dts: ralink: mt7620a: update system controller node and its
+    consumers
+  mips: dts: ralink: mt7628a: update system controller node and its
+    consumers
+
+ .../bindings/clock/mediatek,mtmips-sysc.yaml  |  18 ++-
+ arch/mips/boot/dts/ralink/mt7620a.dtsi        |  10 +-
+ arch/mips/boot/dts/ralink/mt7628a.dtsi        |  43 +++--
+ arch/mips/boot/dts/ralink/rt2880.dtsi         |  10 +-
+ arch/mips/boot/dts/ralink/rt3050.dtsi         |  10 +-
+ arch/mips/boot/dts/ralink/rt3883.dtsi         |  10 +-
+ .../dt-bindings/clock/mediatek,mtmips-sysc.h  | 130 +++++++++++++++
+ .../dt-bindings/reset/mediatek,mtmips-sysc.h  | 152 ++++++++++++++++++
+ 8 files changed, 357 insertions(+), 26 deletions(-)
+ create mode 100644 include/dt-bindings/clock/mediatek,mtmips-sysc.h
+ create mode 100644 include/dt-bindings/reset/mediatek,mtmips-sysc.h
 
 -- 
-மணிவண்ணன் சதாசிவம்
+2.25.1
+
 
