@@ -1,153 +1,98 @@
-Return-Path: <devicetree+bounces-139853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D66A17293
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 19:12:23 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58293A172A3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 19:21:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0BAB3A59D3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 18:12:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 532717A20A0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 18:21:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F42B1EE01B;
-	Mon, 20 Jan 2025 18:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C32801EE019;
+	Mon, 20 Jan 2025 18:21:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="mxJXUwlC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I42zZSyn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2D5D1E9B25;
-	Mon, 20 Jan 2025 18:12:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A595192B75;
+	Mon, 20 Jan 2025 18:21:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737396739; cv=none; b=d7n4wUaeTw/ekiwUTaiPs2v4JNwgKFabROGF6Z7G9XebJu6wuu1K6kp4M2H9NRD9Xsh8+i9KsksdBw66qopiG9e2jAIM91BmpmLRidAD0PH5y6tPH74PNC9pYSPPvHUmgz2+ZKGWnHQuZGCZ9A9yms2agjhpR7c+0eT2foIFiRE=
+	t=1737397261; cv=none; b=kK52Kpdpwibwz5nu9INDAbsKokWtvkj6GJaaGLff05CK1AVSckhh0Drt2+kb37WUYcnjPhL8rUeNkzur5TdSORdnGyYRGX4YUe135MAQZC0MV1q68qayPjeY7El4lW8RAUcqJQFwSuAQnxBpFB/CDyBoawGAUhSKukiYyvMfN6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737396739; c=relaxed/simple;
-	bh=owJKCle4OqQVn6FlWGAYuamsFy32fdIeVO7S6JSibvc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a1+58M67LSq2ACPJ0L2QdXkJSZtJut/h/MFxqOKi0PnHWA26ZVLlLW+QPBE/4jnM71G7PJS+aHplITeCa+ZbF2pKVvQRW3AQQGQJDaDLXByhkTZEjfRMxuvYYUDZC5E3Zems40LyYoA7PAF42SkSNERNwbYkFnbQb8bCg+nGO7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=mxJXUwlC; arc=none smtp.client-ip=212.227.126.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=oldschoolsolutions.biz; s=s1-ionos; t=1737396727; x=1738001527;
-	i=jens.glathe@oldschoolsolutions.biz;
-	bh=YEP8Ka7Kbfimz7RVhloCaYpKFMYx1Qs5MiA+dYWzwaU=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=mxJXUwlCl4hVcV3R7GQeflKD331aupkxDo4OveXOWuN5Ts+IDH1iyA43rHjFO3KC
-	 xN3zg1hEIcWSleNFzkKEx8US+Fa8MeU60znpKfJhZbp4UuSbyzOvCP93uhBjt3YeH
-	 dzAtSY1j6dRnGxANgPPgaa6a1CmHbwbMnWJqXQ7BbkPkUElLC++3qh3ZhN/5PAuVY
-	 TBmvPhVqPWPs5jBg0mNPyMN9Bmuf0EZ4OdwURJra5qBz86y9FLKZtwllIkaslqfsI
-	 TXA3AZ+iOzv9oZXCtDec/K3hqDmY5UeVeCeaXT7+Zbp1MB9e42GeYFgxD9yEI2oRy
-	 uwWvab40ziev5Fq9hQ==
-X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
-Received: from [192.168.0.152] ([91.64.229.215]) by mrelayeu.kundenserver.de
- (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MvKTJ-1tIXnL3EJ7-014a1f; Mon, 20 Jan 2025 19:12:06 +0100
-Message-ID: <d6ff6f2e-9280-4fd0-af4c-f50b35652800@oldschoolsolutions.biz>
-Date: Mon, 20 Jan 2025 19:12:05 +0100
+	s=arc-20240116; t=1737397261; c=relaxed/simple;
+	bh=tSR0bjPajNz5uk01AJ7C15FQp5lTvDoxEJKT3Af8bIE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=S5NfElbBM1ZsEFRLgIpb+MaDq76cIRJUMsZlDQjSyzgf70hnz1KPHEReNXPT/GvT5XzqcAQAmNnHbNoPwuXoMRGV1BLSa1jEL8A95lyu1+67c78h1jjpDCoPNGHTMPm2oaLSn/UrVxLtO+j+kO2S6AZjHp/TzBYbWafKs4+AeRU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I42zZSyn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE847C4CEDD;
+	Mon, 20 Jan 2025 18:20:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737397261;
+	bh=tSR0bjPajNz5uk01AJ7C15FQp5lTvDoxEJKT3Af8bIE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=I42zZSynzOQ5mZYn2EFwG2g9PwioHSd5uTIzAMTFKvJS7zmblxtL3DypI758wNUUj
+	 aMhSI2lfXD+MU5flo9mVFIEIw1MbA4QO3OzPqCOfGK3gd0MYgypgL9GrbS2etZnWqQ
+	 u8q/ENS/8smQH1X2mJdF2bIPcqCQCLCX2HEpfrI8xfbgp8TQ9p5tg4znMiFHKLA51Y
+	 1a5xUo3+e/PcmPrVKQQW7LXxHLXHL4pb+FhGabCbztN7QF7P5eA7Du/s6pF/DZWjMB
+	 ASmBkdlG5cT6I10FgHnAxqLbOVrrHaCeYlCmBQ2wa+rHBmzNv6O6SHFZNWTjJznBQ4
+	 kOOVCFkJCFXvQ==
+Date: Mon, 20 Jan 2025 18:20:56 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de
+Subject: Re: [PATCH v2 2/2] regulator: dt-bindings: Add
+ regulator-power-budget-milliwatt property
+Message-ID: <20250120-gents-partner-0fc6c66ac9fd@spud>
+References: <20250115-feature_regulator_pw_budget-v2-0-0a44b949e6bc@bootlin.com>
+ <20250115-feature_regulator_pw_budget-v2-2-0a44b949e6bc@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: x1e80100: enable rtc
-To: Johan Hovold <johan+linaro@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org,
- linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250120144152.11949-1-johan+linaro@kernel.org>
- <20250120144152.11949-8-johan+linaro@kernel.org>
-Content-Language: en-US
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-In-Reply-To: <20250120144152.11949-8-johan+linaro@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="PPgVnGEKZgaBk2qc"
+Content-Disposition: inline
+In-Reply-To: <20250115-feature_regulator_pw_budget-v2-2-0a44b949e6bc@bootlin.com>
+
+
+--PPgVnGEKZgaBk2qc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:1TfkxTgRZJn+MQWuwHQRQSzb/l+QOzHh9WKEkNqAYxUT7C4xgXb
- tvhokOvPJkAu8Dt2DyNGgj2NInP8qhM0ZZSUJh/JLI+0AMpaT/2S9HifqtUESV5pzYpwnP6
- cxcopN5qFNH1P+cgPITShMGDXF0LgwmM39RcDD5pATxUG19MAlCYnkYt9g6zh7M32Z4ehdG
- CGlXdEZUEaDBMkBhyqC0g==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:ThfM0vLkFqA=;HQpAAXiCT3WmRqoafFGYLUyBxyM
- ltBIrG987qqQkxyNJhLreKYwmn9XRWs1JDQE49KxpsiNRP5t1ZGkOKUrasueSSWaiElkVVoCy
- QcrlnsWEo9ji1ZevFw0PlAP85b0qW2/uqUhB5bd9qAV78ydu/gMgFcx6YcGw1noYsGNGHzXC2
- rtPtYIy6LbnkBAyxtySgKSpEPM0M+6qTNQaFMqB4JtrbXyhQU6iKtBuZMGJFEnbXqTsu0YSfk
- zUP33JTs+R1VnKhrM2RigBA7XCB+j0ljPYGZvXO7k944FwUWrtgXZZE9omM4x9Os8AJjmCQ33
- kbDuJL+4/XyWUlo9h9NBtrnjX4eP0Rx3O+Ot57Z5G+P8goMSxNlSLsII6Hv9Q34zZOJZmx1J6
- 21Pb5Fi04Df2qgEzvWFz0HA8rP82Qj3u4Cx+KRJGGCHR+LeDf9GYJkFthg5pAcvmYMe6C9Sdj
- p/72bKr+UinS23B17JZG6arOFhNPcCrlp52MGVH3YOe5weBe8WzCCglLVbwd/+f14Ghn+E9us
- mYYfz1K8aRCA5sdvemh1jJc+it+Afk91gNz623jhV5BsEk7ikFzOJ+sp3XTy9pm0cRnP/aiG5
- +b6i1MzySvJMFtt1RSczdgExrEEuJIYPXjoQZDvzCkLlwtPspCqHlaeBVg2ShJzvZ89GxWTRZ
- OJmRp3Ub9rGE9XSkDkEWknAkwz118hkAq0ITR3PW+jVJ3HYusAVoFk5CGLK7m9jYHM8S7JIuP
- uHzTr9idP2FgpbDD7rFeshfZBPxgNjOJ6KcQTQNTUAPntQgd3WxHVytYRJq+aatp+lET1NgwA
- g7u+lrpKYNijdT78A+ZCmwypGvih6c0tfrSDCF2D5CeZxoOb/VNl3a7pGO3Oyu0iQOgPO9qIg
- 806B50eyj9yXU53Ln3J2fW4U3X4tYz3OBhnk1C+RwiYuacdXt1WU3pylEqdz3xxa/2oR9M5oF
- cCn+rTkh268ssaCSJTM3Auumjk6BGEQJ7o9I55kcVbzwZCo2wMwpUZycqIJ6cZ8DMKidoHsO3
- t8TZcsfZc7JW4omL8bmMefPovtKc9NxkpSgRO1xslqz9yXW9Hsi431X0ZFVt8tx6DNl5Rf7n7
- 94N0qc7Aq8dFUB+MLEaGWofkKMWvEaJBoXxDtf+qfkg0+EsGAunlPk+eJBg3m2JZ0Qy4IY9/A
- =
 
-Hi Johan,
+On Wed, Jan 15, 2025 at 03:41:58PM +0100, Kory Maincent wrote:
+> Introduce a new property to describe the power budget of the regulator.
+> This property will allow power management support for regulator consumers
+> like PSE controllers, enabling them to make decisions based on the
+> available power capacity.
+>=20
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 
-On 20.01.25 15:41, Johan Hovold wrote:
-> On many Qualcomm platforms the PMIC RTC control and time registers are
-> read-only so that the RTC time can not be updated. Instead an offset
-> needs be stored in some machine-specific non-volatile memory, which a
-> driver can take into account.
->
-> On X1E based Windows on Arm machines the offset is stored in a Qualcomm
-> specific UEFI variable.
->
-> Unlike on previous platforms the alarm registers are also unaccessible
-> on X1E as they are owned by the ADSP.
->
-> Assume all X1E machines use similar firmware and enable the RTC in the
-> PMIC dtsi for now.
->
-> Based on a patch by Jonathan Marek. [1]
->
-> Link: https://lore.kernel.org/r/20241015004945.3676-4-jonathan@marek.ca =
-# [1]
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->   arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi b/arch/arm64/b=
-oot/dts/qcom/x1e80100-pmics.dtsi
-> index 5b54ee79f048..051fb3a304b9 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi
-> @@ -223,8 +223,8 @@ pmk8550_rtc: rtc@6100 {
->   			reg =3D <0x6100>, <0x6200>;
->   			reg-names =3D "rtc", "alarm";
->   			interrupts =3D <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
-> -			/* Not yet sure what blocks access */
-> -			status =3D "reserved";
-> +			qcom,no-alarm; /* alarm owned by ADSP */
-> +			qcom,uefi-rtc-info;
->   		};
->
->   		pmk8550_sdam_2: nvram@7100 {
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-works nicely on SnapDragon Dev Kit X1E001DE. Thank you!
+--PPgVnGEKZgaBk2qc
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Tested-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+-----BEGIN PGP SIGNATURE-----
 
-with best regards
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ46UCAAKCRB4tDGHoIJi
+0pXxAQDWS2UPtHU0jv5wt5yqIfcCLZ+mOnAHS7Ulzo7DOEq1/AEAsCNhtlWy3GY4
+4dKcD2g3kt0u5xvhqFjUKAlO2mEthA8=
+=I3Sd
+-----END PGP SIGNATURE-----
 
-Jens Glathe
-
+--PPgVnGEKZgaBk2qc--
 
