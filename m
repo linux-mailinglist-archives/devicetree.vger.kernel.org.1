@@ -1,129 +1,242 @@
-Return-Path: <devicetree+bounces-139822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFED5A1709C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 17:47:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC81EA170A0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 17:47:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C3EF188B074
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 16:47:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E94B6160A4F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 16:47:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94BB31DF989;
-	Mon, 20 Jan 2025 16:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD69B1E9B2E;
+	Mon, 20 Jan 2025 16:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZCvif5tA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eDloANTR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60AD01E9B01;
-	Mon, 20 Jan 2025 16:47:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 374D31B87DB;
+	Mon, 20 Jan 2025 16:47:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737391621; cv=none; b=lT53blrV5hlIFxVBBd3SyXcNOEq8kKFh/aabfnTKhNbwZ8S7cwXqlFYlWGlos/EjmJvFgyNpCEnwclInBr8ekxrvoRCSk3Kwgvl7TYqNxOVePfkRKSL4Xx6yFrNumacP4brtWXjJTrlLVEDYAb/2OMRVxqNrJo0C3ALYFa59daU=
+	t=1737391644; cv=none; b=KgxBE9apB9c0Gz54I5y4xbQelYgFoJYM0FIcArFeI7dbGGhRfaA/QCPSSxm0RFNbHJygYFeoGPQ+nK7/MVmpGhC9dF9V8tLHYWZNPrhaWIhiNPt3dmHCZgNt+v70VGoFkhLl8R+rD1ed8lyCNDnKtVHdqnfzr9gDqpDCtlnPlUs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737391621; c=relaxed/simple;
-	bh=rMXqi3CvQdBhxQuQUtGFMKS1HqKvz1G9dJMq89/Pnt8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GXlHGH/VHqrCNqrDJG7W8LGxaZDkgZHlsWjLAs8SBNGYi+OX2CA2W2rEGX9MwkeEjlKfVc2BIVF2COVZ+KJhfS3iNbsqC3BemcoRY8NSw7JFIJcjcL++Yamf4r0wwXOTHEDJZJcFSxplBALstXBHHzww08MifH+2Nae95TqI2Ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZCvif5tA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57728C4CEDD;
-	Mon, 20 Jan 2025 16:46:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737391621;
-	bh=rMXqi3CvQdBhxQuQUtGFMKS1HqKvz1G9dJMq89/Pnt8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZCvif5tAJe7q+y5YiB16KetQzGE0mTrdsZ9kbM4DnUV18dfvEWok2/zt2AP0FJSRI
-	 VVlhnqM6cVfN4nWUcg9qfeHrLQyfFQpvGbPench7v3pYgM/Az6FWfpasJ8jZVuwLdi
-	 fz73nE68OzYRFa4l82OIavyjrqzCObz0zcdNp07lhFlBsgX+ASEo2P6QWwLW2ApVHZ
-	 kkIGcc9aLCuK9w30cYD1MliIh+Fr6ilsVSQNtCrC81llQfk6b7kc93ZWzaRgi65/Bp
-	 ao8TXqXIGhywtz2BrEm8GZ65PKIimoHXl4SZj4FZY/N7i/1UphBPm5s/9HVU0fZRFm
-	 PA22i7SsqJNXQ==
-Message-ID: <c49aa6ea-8be3-4cfb-a2f0-18c4e635527b@kernel.org>
-Date: Mon, 20 Jan 2025 17:46:54 +0100
+	s=arc-20240116; t=1737391644; c=relaxed/simple;
+	bh=/BRqQQRQVKG6vw0CPMQDoo5DHvOmcsihcx8/9lseyYE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rnA+KbQajMpFSLZn6hw7cApb4y6BLCahTKU16CIgNFp0vsZFEQ0PLlmipkZZeLelSl1TS2Buvs2fuK5v7aPQh8pV0DRUOihezHxSJ8mYcEEB3qPs0KL2c6c/6OGTcVxMNeGsw+DK4htDH9Zn0AHLq02s/+uQey68hcQPQMXDIkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eDloANTR; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-2164b662090so84328395ad.1;
+        Mon, 20 Jan 2025 08:47:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737391642; x=1737996442; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=r/xe7VYeW/MlUkO2Ilz+rV7mCFB6lDVm5giwjRxBd3w=;
+        b=eDloANTRiFYSBqQbRhkEdbz05T/NiUc7qlvDxStOdJVCvWx1lRy2LIGNwWBzntNB7S
+         fBsmGs5l6CZPueCFfoMFdOe28IO4OA7Mc9euPByjXozHUOtpxmNCuhekMDX7HO2IWEWS
+         KTWb9ilLE9GES59+Y2gCiYt7ufyFBjCktppx7bD6hePVdkv1KIVNa2lzNS4i7W511AlT
+         AQnIy9lKoAXowirNWuT9d6oPVNi/PDlNztVDr5rSwRgzh0T9gQbRHFI0qFRzcxEU01Qi
+         U1LtGpye5KqMGLjuvNnxXNGnOXQ82V01odSATbwK+XeYRsKTcEy5SOuYhzKUPHZXWYNs
+         /nuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737391642; x=1737996442;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r/xe7VYeW/MlUkO2Ilz+rV7mCFB6lDVm5giwjRxBd3w=;
+        b=jvTbhsWVty9nkuXyXFXOYo50mVSbR6Lv2AC7YBQNPeG/xjD27UYeHQdy2XqXPlfy2v
+         n7rEQgZ6GDEy5qKAonIXMyFwsw88fSFT/zZRK1vstnlFLWAtkubt73RIU2un++5MA8BS
+         BBQ087FrRp6DydsDQcOP8HKT08Z6Osix8OWIoQO1HnJZqB93lPAjWawxyToLu2x21Jll
+         TE6nFSUH1W1JYma/7h2WtctbhHzAwbwm8fHzyuW5Z2hKoE9G/G8HioobDgCjqWLNMf7Q
+         nnfVIgtzFTe4rMwlWvOp1AVLiDJOtv9OZmFyBDmYSZ7jj8hdyekOt2z45QbpqtZKHxIk
+         e02w==
+X-Forwarded-Encrypted: i=1; AJvYcCUhax+sB6A6p6ltcUTLrB82i/hbRxNO6t0RbLoBaJuOAmo5UCSw+J63lL5bu8MaIGiQRTGp2HGrEM/2slNWt0LzyisT5Q==@vger.kernel.org, AJvYcCUxvQjVOkTnCutcj+ZRSnjNpcmoZ3LIivWFyhkDp9ADlP3ogQDb0/YXbeGeg5oVYFV/HgKy4/Ld/SjDiYs=@vger.kernel.org, AJvYcCVrZyYWWLUqx0oL4XQfUZUE5GdXxj/IFf9uCn/vXqDFJEIXSBFjE1n93Cc505nXB1JrH/B0u+Wo2mxZa1xh@vger.kernel.org, AJvYcCXT5lg6Pv5+sHYEXNEsXISSOCpJEzTTwcjD/igI8VJfhqKkF2zz+/deKp7P3+Sls2O9G4IkvgzmchTjjsv4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUubhb3+EZocp3Uy6sResM/7Xl14WbF4zjY1fAEYPO3qa8dN5q
+	8fvrrmRYJdehhDSSx845DsPogVP05yjEResmQHaWfCMcnqqsBllH
+X-Gm-Gg: ASbGncvxpWozEUFraDll/wMo5ipHNGXWDt+StdC0Qwq6ghp/9nqddMfDe/lL0r//8//
+	vsueSDCGUE0O+H7pgKoFC+sYCBkRjeKhjdE6s6VzBueSxdTNNzD26y1mF6/Caa1RUWpAhvcxWSy
+	r6lYzeXmAB2U6Lnp/rVLQCrcJjXKBUAw3gPh7XXjeqVkll7c7jD/JjXrngLdCj29csB9ZbwvaPc
+	U2R4yuUYMNBmzBwx8Nmsphp/t44sTGBM07xir2U58l3iUKgzZ24QiRrIE4NdOPGBVQ7VTc=
+X-Google-Smtp-Source: AGHT+IFDWawL2sk9cWU6NwA9ckJBDcTLFpiPCr7KNj5da17y7tOkvdi2a1rHKe4eMVASRy5sq8K7MQ==
+X-Received: by 2002:a05:6a20:9149:b0:1e5:ddac:1ed7 with SMTP id adf61e73a8af0-1eb2147ea8dmr20536491637.12.1737391642402;
+        Mon, 20 Jan 2025 08:47:22 -0800 (PST)
+Received: from SC8280XP.. ([144.202.86.13])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a9bcaa3a97dsm6017266a12.9.2025.01.20.08.47.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jan 2025 08:47:21 -0800 (PST)
+From: Pengyu Luo <mitltlatltl@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Hans de Goede <hdegoede@redhat.com>,
+	=?UTF-8?q?Ilpo=20J=C3=83=C2=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	platform-driver-x86@vger.kernel.org,
+	linux-hwmon@vger.kernel.org,
+	Pengyu Luo <mitltlatltl@gmail.com>
+Subject: [PATCH RESEND v5 0/3] platform: arm64: Huawei Matebook E Go embedded controller
+Date: Tue, 21 Jan 2025 00:46:58 +0800
+Message-ID: <20250120164701.7918-1-mitltlatltl@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/6] dt-bindings: clock: add clock definitions for
- Ralink SoCs
-To: Sergio Paracuellos <sergio.paracuellos@gmail.com>,
- linux-clk@vger.kernel.org
-Cc: sboyd@kernel.org, mturquette@baylibre.com, tsbogend@alpha.franken.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
- p.zabel@pengutronix.de, linux-mips@vger.kernel.org,
- devicetree@vger.kernel.org, yangshiji66@outlook.com,
- linux-kernel@vger.kernel.org
-References: <20250120092146.471951-1-sergio.paracuellos@gmail.com>
- <20250120092146.471951-2-sergio.paracuellos@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250120092146.471951-2-sergio.paracuellos@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 20/01/2025 10:21, Sergio Paracuellos wrote:
-> Add clock missing definitions for RT2880, RT305X, RT3352, RT3383, RT5350,
-> MT7620 and MT76X8 Ralink SoCs. Update bindings to clarify clock depending
-> on these new introduced constants so consumer nodes can easily use the
-> correct one in DTS files matching properly what is being used in driver
-> code (clock IDs are implicitly used there).
-> 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> ---
+This adds binding, drivers and the DT support for the Huawei Matebook E Go
+(sc8280xp-based) Embedded Controller which is also found in Huawei Matebook
+E Go LTE (sc8180x-based), but I don't have the sc8180x one to perform
+tests, so this series enable support for sc8280xp variant only, this series
+provides the following features:
 
+- battery and charger information report
+- charging thresholds control
+- FN lock (An alternative method)
+- LID switch detection
+- Temperature sensors
+- USB Type-C altmode
+- USB Type-C PD(high power)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks to the work of Bjorn and Dmitry([1]), the work of Nikita([2]),
+writing a EC driver won't be suffering. This work refers a lot to their
+work, also, many other works. I mentioned them in commit messages.
 
-Best regards,
-Krzysztof
+Depends: https://lore.kernel.org/linux-arm-msm/20241220160530.444864-1-mitltlatltl@gmail.com
+
+[1] https://lore.kernel.org/all/20240614-yoga-ec-driver-v7-0-9f0b9b40ae76@linaro.org/
+[2] https://lore.kernel.org/all/20240315-aspire1-ec-v5-0-f93381deff39@trvn.ru/
+
+base-commit: 1573c8d4cb206a2d1454ff711e79f8df2353290b
+
+Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+---
+Changes in v5 RESEND:
+- Rebased on tag next-20250120
+- Link to v5: https://lore.kernel.org/linux-arm-msm/20250117140348.180681-1-mitltlatltl@gmail.com
+
+Changes in v5:
+- handle return code of i2c_transfer() (Bryan)
+- rename threshold validatition function (Bryan)
+- add enumerates and defines for registers (Bryan)
+- drop extra line in header (Heikki)
+- Link to v4: https://lore.kernel.org/linux-arm-msm/20250116111559.83641-1-mitltlatltl@gmail.com
+
+Changes in v4:
+- use new API to register hwmon device instead of the deprecated one. (Guenter)
+- add Reviewed-by tag for dt-binding (Krzysztof)
+- drop unnecessary header (Ilpo)
+- use guard mutex (Ilpo)
+- improve comments and naming (Ilpo)
+- add a shallow copy version of extr_resp() (Ilpo)
+- add functions to handle resp and req whose size is 1
+- drop PSY and UCSI subdrivers, commit them once the base driver is upstreamed
+- Link to v3: https://lore.kernel.org/linux-arm-msm/20250113175049.590511-1-mitltlatltl@gmail.com
+
+Changes in v3:
+- Link to v2: https://lore.kernel.org/linux-arm-msm/20250105174159.227831-1-mitltlatltl@gmail.com
+
+dt-binding:
+- drop generic compatibles. (Krzysztof)
+- remove '+' to use literal block style. (Krzysztof)
+
+ec:
+- take struct gaokun_ucsi_reg as parameter (Heikki)
+- add almost all kernel doc comments (Krzysztof, Heikki)
+
+ucsi:
+- drop unnecessary ucsi quirks (Dmitry)
+- add UCSI v1.0 to ucsi.h (Heikki)
+- use gaokun_ucsi_read_cci() to read cci directly (Heikki)
+- drop unnecessary gaokun_ucsi_get_port_num (Heikki)
+- rename member port_num => num_ports (Heikki)
+- fix completion, forgot to signal threads in previous version
+
+dt:
+- fix indentation (Konrad)
+- add a link between role switch and connector
+
+Changes in v2:
+- Link to v1: https://lore.kernel.org/linux-arm-msm/20241227171353.404432-1-mitltlatltl@gmail.com
+
+global:
+- drop qcom's products(i.e. sc8180x, sx8280xp) everywhere, use 'product'-based instead(Krzysztof, Bryan)
+- drop Cc Nikita Travkin, we had discussed the device in PM.
+- add myself to MAINTAINERS
+
+dt-binding:
+- fix building (Rob Herring (Arm))
+- remove unnecessary code (Krzysztof)
+- add bugzilla documentation, insights of gaokun(see [1] or patch[1/5]) (Krzysztof, Aiqun(Maria))
+- explain the difference between PMIC GLink and gaokun EC (Aiqun(Maria))
+
+ec:
+- use Linux style comments (Krzysztof)
+- add a comment for mutex lock (Krzysztof)
+- add more kerneldoc for exported functions (Krzysztof)
+- eliminate unnecessary conditions (Bryan)
+- add a macro for check thresholds (Bryan)
+- improve English (Bryan)
+- use existing sysfs interface(hwmon, psy) whenever possible (Krzysztof)
+- use __le16 and related endianess conversion function for temp data (Ilpo)
+- drop alias for packet headers (Ilpo)
+- avoid hardcoding i2c msgs size (Aiqun(Maria))
+- add a comment for the sleep in critial region (Bryan, Aiqun(Maria))
+- use macro to construct packet (Bryan, Aiqun(Maria))
+
+wmi:
+- dropped
+
+ucsi:
+- reorder headers (Bryan)
+- a comment for the orientation map macro (Bryan)
+- make mux mode map more explicit(minus six is very clear now) (Bryan, Dmitry)
+- handle port update exceptions return (Bryan)
+- a comment for the UCSI quirks (Dmitry)
+- use the inline hint for the short register function (Dmitry)
+- use the API with delay to handle register instead of a direct sleep (Bryan)
+- handle unfinished initialization early
+
+psy:
+- add charging related sysfs to here (Krzysztof, Dmitry)
+- document ABI for power_supply sysfs (Krzysztof)
+- drop charging threshold, use smart charging instead
+
+dts:
+- correct indentation, properties' order. (Konrad)
+
+Pengyu Luo (3):
+  dt-bindings: platform: Add Huawei Matebook E Go EC
+  platform: arm64: add Huawei Matebook E Go EC driver
+  arm64: dts: qcom: gaokun3: Add Embedded Controller node
+
+ .../bindings/platform/huawei,gaokun-ec.yaml   | 124 +++
+ MAINTAINERS                                   |   7 +
+ .../boot/dts/qcom/sc8280xp-huawei-gaokun3.dts | 163 ++++
+ drivers/platform/arm64/Kconfig                |  21 +
+ drivers/platform/arm64/Makefile               |   1 +
+ drivers/platform/arm64/huawei-gaokun-ec.c     | 822 ++++++++++++++++++
+ .../linux/platform_data/huawei-gaokun-ec.h    |  79 ++
+ 7 files changed, 1217 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/platform/huawei,gaokun-ec.yaml
+ create mode 100644 drivers/platform/arm64/huawei-gaokun-ec.c
+ create mode 100644 include/linux/platform_data/huawei-gaokun-ec.h
+
+-- 
+2.48.1
+
 
