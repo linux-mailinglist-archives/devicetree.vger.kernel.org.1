@@ -1,247 +1,157 @@
-Return-Path: <devicetree+bounces-139596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6C11A164D7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 02:23:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 747E1A16535
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 02:50:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C50D43A7020
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 01:23:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 189661884966
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 01:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B2174C70;
-	Mon, 20 Jan 2025 01:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56113199B8;
+	Mon, 20 Jan 2025 01:50:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="Gx28zaYH"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="XurDVzNQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65048BE46
-	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 01:23:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5507228FF;
+	Mon, 20 Jan 2025 01:50:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737336210; cv=none; b=rnzJ0tsktKA/yK97qIrzZiEIU08oQ/WozP4ynzckE6nuO8KArquGh46Ww1F+c/crwTpSHKrVZtR6Z/YvGIplI7vy9lxgysUrLqU07+f9eDVoH18ZjJ5lwM9bY0cos2G09h+KqlBzBZvyq9+ElKQr6RmwB6pHR5C7R7iT/tdRoM4=
+	t=1737337806; cv=none; b=sJNa3JZwEB4lKxj4CreSzGgLzqHUjvrIyRvIGzJxNQEayinMbRFdfnFCPxoI0h7K32snvzMCsKRy2taSdD2wyL3Tw8fVPmu1kIkkQvAvIT04Sc/pyqkJCBz+JL1RB6BbnH/1u8BaPiL4ej5biF3+34GyW4g/XOSFUvcBKB5tOhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737336210; c=relaxed/simple;
-	bh=w/9+R+A3dZZMP8Ji0q53XjiaUgkcMHKaAaHjnHwWw+s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hp7XJVih1HBK3GsBfsoY2Xkn60Mexybzdt9rIOaBmP3r8nNVQvISIlE6J4WO+t5UaPhntfPJkpzM7XatnBJAOF56jfo67mrRtHT8hijWsiYdZfqb9k04jQK/Nyg6mU4H7qPPiMcCYT1n+ct/0ndZinDkdX17tuFUL/J7glpCBuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=Gx28zaYH; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 8E52D2C00BF;
-	Mon, 20 Jan 2025 14:23:26 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1737336206;
-	bh=dT7vK7vCH84/4+7kyAUtI6jLTq44qYXOy01AAXA415k=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Gx28zaYHjAcwNjfBt3Fo972zq5zl7ow7rIRIPgTTHsMtcrRi8PSroMmViwAVXZkEg
-	 aT71TntISABh1B+g1P0GwF+BUfLEIfdnQ3MGEex2cPZhZdlxFRGlI4xSGhnU0QkyZo
-	 aQBfoQlOnLGfQozsDuCSWS3xFOvqny0+BXrH2YZrH00rkhoi88Pdq2OQSjCHYO8wm+
-	 uLyzYc/X+jnjaqK0P9Bszj1aE+avD6BghW2f2uZx4Zct9sqZ26cAbzRFFzr6jGc1KU
-	 Z/m479gvh4Kn5ulsKsJOFOG3+F0pqLsfNlRO4Zu2zjkNUEtGmh3xrPShujVyXRWnz9
-	 xe1BM1n5AUkdA==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B678da58e0000>; Mon, 20 Jan 2025 14:23:26 +1300
-Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 316B913ED5A;
-	Mon, 20 Jan 2025 14:23:26 +1300 (NZDT)
-Message-ID: <8d5f5d4b-4b70-405f-9111-edcd28ee0395@alliedtelesis.co.nz>
-Date: Mon, 20 Jan 2025 14:23:26 +1300
+	s=arc-20240116; t=1737337806; c=relaxed/simple;
+	bh=tIAQ+WRbfhU71qAT4rI0eOeXoWqyEBTmMuq6XzgTKq4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JZ4T5pq5mJmjTULMPVOeocqv4/OFgWYEwXCAgFAN/uaUz8tJYYjstCvhBSYhiPLdVb5T/Lmevng8GIyZkJs2w5pslnczQVSq9U+aec40NEHPmCUO5J2pgW9/cH+JeO674Kmaom8AW1Q55CdlL95wR/YbVuU5k3sEgJ0NVnQeqDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=XurDVzNQ; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BCE2D6AF;
+	Mon, 20 Jan 2025 02:49:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1737337740;
+	bh=tIAQ+WRbfhU71qAT4rI0eOeXoWqyEBTmMuq6XzgTKq4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XurDVzNQ6diC1DxM7pYySIUNihycapGqGbCqYjMhHcpIKIZ0jpvXt59E783r6tEJz
+	 sYddA3HHapyXFgBFqfXQoL1n3TMBnuKQpLEIFFEnxuZEjNYCrUiPCnQuwizuUeubOY
+	 H61JaureXxgQMdxDgX/tPEA4b2yzKYX/dZdgpLCw=
+Date: Mon, 20 Jan 2025 03:49:55 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: yuji2.ishikawa@toshiba.co.jp
+Cc: mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, sakari.ailus@linux.intel.com,
+	hverkuil-cisco@xs4all.nl, nobuhiro1.iwamatsu@toshiba.co.jp,
+	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v12 3/8] media: uapi: add visconti viif meta buffer format
+Message-ID: <20250120014955.GC2467@pendragon.ideasonboard.com>
+References: <20241125092146.1561901-1-yuji2.ishikawa@toshiba.co.jp>
+ <20241125092146.1561901-4-yuji2.ishikawa@toshiba.co.jp>
+ <20250102131021.GG554@pendragon.ideasonboard.com>
+ <TYWPR01MB9986F8A0AC34DCE0C1F35F2692E72@TYWPR01MB9986.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH 4/9] mips: dts: realtek: Fold rtl83xx into rtl838x
-To: Sander Vanheule <sander@svanheule.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- devicetree@vger.kernel.org, linux-mips@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-References: <20250119183424.259353-1-sander@svanheule.net>
- <20250119183424.259353-5-sander@svanheule.net>
-Content-Language: en-US
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20250119183424.259353-5-sander@svanheule.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=678da58e a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=VdSt8ZQiCzkA:10 a=jU52IrjdAAAA:8 a=LxuNzVeYt8EW_ZCwuS8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=udjdHy_fWrGJRxLc5KTh:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <TYWPR01MB9986F8A0AC34DCE0C1F35F2692E72@TYWPR01MB9986.jpnprd01.prod.outlook.com>
 
+On Mon, Jan 20, 2025 at 12:15:43AM +0000, yuji2.ishikawa@toshiba.co.jp wrote:
+> On Thursday, January 2, 2025 10:10 PM, Laurent Pinchart wrote:
+> > On Mon, Nov 25, 2024 at 06:21:41PM +0900, Yuji Ishikawa wrote:
+> > > Adds the Toshiba Visconti VIIF specific metadata format
+> > 
+> > s/Adds/Add/
+> > s/format/formats./
+> 
+> I'll fix the commit message.
+> 
+> > > - V4L2_META_FMT_VISCONTI_VIIF_PARAMS for ISP parameters
+> > > - V4L2_META_FMT_VISCONTI_VIIF_STATS for ISP statistics
+> > >
+> > > Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> > 
+> > Assuming the documentation of the formats in subsequent patches is fine,
+> > 
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > 
+> > > ---
+> > > Changelog v10:
+> > > - add entry for V4L2_META_FMT_VISCONTI_VIIF_PARAMS
+> > > - add entry for V4L2_META_FMT_VISCONTI_VIIF_STATS
+> > >
+> > > Changelog v11:
+> > > - no change
+> > >
+> > > Changelog v12:
+> > > - add description for meta formats at v4l2-ioctl.c
+> > >
+> > >  drivers/media/v4l2-core/v4l2-ioctl.c | 2 ++
+> > >  include/uapi/linux/videodev2.h       | 4 ++++
+> > >  2 files changed, 6 insertions(+)
+> > >
+> > > diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c
+> > > b/drivers/media/v4l2-core/v4l2-ioctl.c
+> > > index 0304daa8471d..f7facb63b8ea 100644
+> > > --- a/drivers/media/v4l2-core/v4l2-ioctl.c
+> > > +++ b/drivers/media/v4l2-core/v4l2-ioctl.c
+> > > @@ -1470,6 +1470,8 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
+> > >  	case V4L2_META_FMT_RPI_BE_CFG:	descr = "RPi PiSP BE Config format"; break;
+> > >  	case V4L2_META_FMT_RPI_FE_CFG:  descr = "RPi PiSP FE Config format"; break;
+> > >  	case V4L2_META_FMT_RPI_FE_STATS: descr = "RPi PiSP FE Statistics format"; break;
+> > > +	case V4L2_META_FMT_VISCONTI_VIIF_PARAMS: descr = "Visconti ISP Parameters"; break;
+> > > +	case V4L2_META_FMT_VISCONTI_VIIF_STATS: descr = "Visconti ISP Statistics"; break;
+> 
+> The media-ci has reported the following errors.
+> Is it all right to leave these errors unfixed and keep the lines with
+> the same style as other entries?
 
-On 20/01/2025 07:34, Sander Vanheule wrote:
-> rtl83xx.dtsi was once (presumably) created as a base for both RTL838x
-> and RTL839x SoCs. Both SoCs have a different CPU and the peripherals
-> require different compatibles. Fold rtl83xx.dtsi into rtl838x.dtsi,
-> currently only supporting RTL838x SoCs, and create the RTL839x base
-> include later when required.
->
-> Signed-off-by: Sander Vanheule <sander@svanheule.net>
-Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
->   arch/mips/boot/dts/realtek/cisco_sg220-26.dts |  1 -
->   arch/mips/boot/dts/realtek/rtl838x.dtsi       | 56 ++++++++++++++++++
->   arch/mips/boot/dts/realtek/rtl83xx.dtsi       | 59 -------------------
->   3 files changed, 56 insertions(+), 60 deletions(-)
->   delete mode 100644 arch/mips/boot/dts/realtek/rtl83xx.dtsi
->
-> diff --git a/arch/mips/boot/dts/realtek/cisco_sg220-26.dts b/arch/mips/boot/dts/realtek/cisco_sg220-26.dts
-> index 1cdbb09297ef..cb85d172a1d3 100644
-> --- a/arch/mips/boot/dts/realtek/cisco_sg220-26.dts
-> +++ b/arch/mips/boot/dts/realtek/cisco_sg220-26.dts
-> @@ -2,7 +2,6 @@
->   
->   /dts-v1/;
->   
-> -#include "rtl83xx.dtsi"
->   #include "rtl838x.dtsi"
->   
->   / {
-> diff --git a/arch/mips/boot/dts/realtek/rtl838x.dtsi b/arch/mips/boot/dts/realtek/rtl838x.dtsi
-> index d2c6baabb38c..907449094536 100644
-> --- a/arch/mips/boot/dts/realtek/rtl838x.dtsi
-> +++ b/arch/mips/boot/dts/realtek/rtl838x.dtsi
-> @@ -1,6 +1,14 @@
->   // SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
->   
->   / {
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +	};
-> +
->   	cpus {
->   		#address-cells = <1>;
->   		#size-cells = <0>;
-> @@ -18,4 +26,52 @@ baseclk: baseclk {
->   		#clock-cells = <0>;
->   		clock-frequency = <500000000>;
->   	};
-> +
-> +	cpuintc: cpuintc {
-> +		compatible = "mti,cpu-interrupt-controller";
-> +		#address-cells = <0>;
-> +		#interrupt-cells = <1>;
-> +		interrupt-controller;
-> +	};
-> +
-> +	soc@18000000 {
-> +		compatible = "simple-bus";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x0 0x18000000 0x10000>;
-> +
-> +		uart0: serial@2000 {
-> +			compatible = "ns16550a";
-> +			reg = <0x2000 0x100>;
-> +
-> +			clock-frequency = <200000000>;
-> +
-> +			interrupt-parent = <&cpuintc>;
-> +			interrupts = <31>;
-> +
-> +			reg-io-width = <1>;
-> +			reg-shift = <2>;
-> +			fifo-size = <1>;
-> +			no-loopback-test;
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		uart1: serial@2100 {
-> +			compatible = "ns16550a";
-> +			reg = <0x2100 0x100>;
-> +
-> +			clock-frequency = <200000000>;
-> +
-> +			interrupt-parent = <&cpuintc>;
-> +			interrupts = <30>;
-> +
-> +			reg-io-width = <1>;
-> +			reg-shift = <2>;
-> +			fifo-size = <1>;
-> +			no-loopback-test;
-> +
-> +			status = "disabled";
-> +		};
-> +	};
->   };
-> diff --git a/arch/mips/boot/dts/realtek/rtl83xx.dtsi b/arch/mips/boot/dts/realtek/rtl83xx.dtsi
-> deleted file mode 100644
-> index 1039cb50c7da..000000000000
-> --- a/arch/mips/boot/dts/realtek/rtl83xx.dtsi
-> +++ /dev/null
-> @@ -1,59 +0,0 @@
-> -// SPDX-License-Identifier: GPL-2.0-or-later OR BSD-2-Clause
-> -
-> -/ {
-> -	#address-cells = <1>;
-> -	#size-cells = <1>;
-> -
-> -	aliases {
-> -		serial0 = &uart0;
-> -		serial1 = &uart1;
-> -	};
-> -
-> -	cpuintc: cpuintc {
-> -		compatible = "mti,cpu-interrupt-controller";
-> -		#address-cells = <0>;
-> -		#interrupt-cells = <1>;
-> -		interrupt-controller;
-> -	};
-> -
-> -	soc@18000000 {
-> -		compatible = "simple-bus";
-> -		#address-cells = <1>;
-> -		#size-cells = <1>;
-> -		ranges = <0x0 0x18000000 0x10000>;
-> -
-> -		uart0: serial@2000 {
-> -			compatible = "ns16550a";
-> -			reg = <0x2000 0x100>;
-> -
-> -			clock-frequency = <200000000>;
-> -
-> -			interrupt-parent = <&cpuintc>;
-> -			interrupts = <31>;
-> -
-> -			reg-io-width = <1>;
-> -			reg-shift = <2>;
-> -			fifo-size = <1>;
-> -			no-loopback-test;
-> -
-> -			status = "disabled";
-> -		};
-> -
-> -		uart1: serial@2100 {
-> -			compatible = "ns16550a";
-> -			reg = <0x2100 0x100>;
-> -
-> -			clock-frequency = <200000000>;
-> -
-> -			interrupt-parent = <&cpuintc>;
-> -			interrupts = <30>;
-> -
-> -			reg-io-width = <1>;
-> -			reg-shift = <2>;
-> -			fifo-size = <1>;
-> -			no-loopback-test;
-> -
-> -			status = "disabled";
-> -		};
-> -	};
-> -};
+Yes, you can ignore those issues.
+
+> # Test checkpatch:./0003-media-uapi-add-visconti-viif-meta-buffer-format.patch
+> ERROR: trailing statements should be on next line
+> #26: FILE: drivers/media/v4l2-core/v4l2-ioctl.c:1473:
+> +case V4L2_META_FMT_VISCONTI_VIIF_PARAMS: descr = "Visconti ISP 
+> +Parameters"; break;
+> 
+> ERROR: trailing statements should be on next line
+> #27: FILE: drivers/media/v4l2-core/v4l2-ioctl.c:1474:
+> +case V4L2_META_FMT_VISCONTI_VIIF_STATS: descr = "Visconti ISP 
+> +Statistics"; break;
+> 
+> total: 2 errors, 0 warnings, 0 checks, 18 lines checked
+> 
+> > >  	case V4L2_META_FMT_GENERIC_8:	descr = "8-bit Generic Metadata"; break;
+> > >  	case V4L2_META_FMT_GENERIC_CSI2_10:	descr = "8-bit Generic Meta, 10b CSI-2"; break;
+> > >  	case V4L2_META_FMT_GENERIC_CSI2_12:	descr = "8-bit Generic Meta, 12b CSI-2"; break;
+> > > diff --git a/include/uapi/linux/videodev2.h
+> > > b/include/uapi/linux/videodev2.h index a5418759e2ba..9e1f66fdf038
+> > > 100644
+> > > --- a/include/uapi/linux/videodev2.h
+> > > +++ b/include/uapi/linux/videodev2.h
+> > > @@ -863,6 +863,10 @@ struct v4l2_pix_format {
+> > >  #define V4L2_META_FMT_RPI_FE_CFG	v4l2_fourcc('R', 'P', 'F', 'C') /* PiSP FE configuration */
+> > >  #define V4L2_META_FMT_RPI_FE_STATS	v4l2_fourcc('R', 'P', 'F', 'S') /* PiSP FE stats */
+> > >
+> > > +/* Vendor specific - used for Visconti VIIF sub-system */
+> > > +#define V4L2_META_FMT_VISCONTI_VIIF_PARAMS	v4l2_fourcc('V', 'I', 'F', 'P') /* ISP Params */
+> > > +#define V4L2_META_FMT_VISCONTI_VIIF_STATS	v4l2_fourcc('V', 'I', 'F', 'S') /* ISP Stats */
+> > > +
+> > >  #ifdef __KERNEL__
+> > >  /*
+> > >   * Line-based metadata formats. Remember to update v4l_fill_fmtdesc() when
+
+-- 
+Regards,
+
+Laurent Pinchart
 
