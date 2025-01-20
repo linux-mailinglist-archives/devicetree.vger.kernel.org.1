@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-139771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4986A16D57
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 14:25:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A724A16D5A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 14:25:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68BD81885DAA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:25:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C60CC1885E92
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:25:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5264F1E1C07;
-	Mon, 20 Jan 2025 13:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 116F21E0E0A;
+	Mon, 20 Jan 2025 13:25:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="jBmluDth";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="R/vecpW2"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="iOblOpD/";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="rZYcPdHn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECF321E0DDC;
-	Mon, 20 Jan 2025 13:25:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC78A1E0DD1;
+	Mon, 20 Jan 2025 13:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737379519; cv=none; b=YcDgZabMcClL6s5/N4oF2mRkdohK69o4fE/nBpKMarRrex92vJOm9mJe9YasXOFjHvnZvdeHYNClM93m33c9w/2Dw5IRpmP+Z0SWYQOcqkCngVwF8Xf+8elt4SZsVa3U0908RQfgWA5iiz1x4UuM7Gw/8DXMFmBGBUHh9Age//E=
+	t=1737379526; cv=none; b=hZrc85cGeSLWWfj1w//y6moYg67/ZsAxYrCyYt3uEe0mrWICmlSNE14bu0McEMT1Iq9y06N8K16RgP9DVx1sZazLU3XTMr5LjETXBncRUnbkxW5mTR3Lp0NZ5BDP95ANM1rh7b6M6MujBLbw8yP/xkuSHFIpgmeYyQbplKoT580=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737379519; c=relaxed/simple;
-	bh=n1qwl7C0ByvsQlnPhHFTb9SInGSndT0GZ9wp9tDDH1E=;
+	s=arc-20240116; t=1737379526; c=relaxed/simple;
+	bh=+23Fs0WesRqDuGcnrMnfTV5bDcQLqVN2H8O/W1siJHg=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=J3cQwaOFgWzmFbLck6cL0dAElnJcndETX8R2hJ0iA0mGgyvXbnWaZuAs5glITIZTD8NJ/A5E4gMURTwIza7JyJYyHfQ32CitinP8nVTQAsUb4UCD1zkKM9Y3QvAzpHvtHPpdlZob8orma3iRs2r9aiGU3S1o8oyiTaYERVNdyTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=jBmluDth; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=R/vecpW2 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+	 MIME-Version; b=MMhuHGat6tkeOQV42frmKEFiBCwdAx4x+JwJbf+eqGJhTBEBctWKLRCt4XyLtBHp0AEIYYIF59krfZdnReDVQIDJ91xZ6g4FhhHJ1OQ1xSJD8Mux+MLcR1OScYHk4jyh9luXa0usXdr0YguVWDz+1BDeOvYUGeGjLVFfHZSv+bM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=iOblOpD/; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=rZYcPdHn reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1737379517; x=1768915517;
+  t=1737379524; x=1768915524;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=62kg7EpBQjINxHjvuuwUC/l4ka3K2AOXJOa+OBonMKw=;
-  b=jBmluDth/Rjc9mDE9Y4SD5uYbVfh0gbqIDua1FGr4D1zWOjIyzTTvnPM
-   EtOz/Ygr+B2/b+XVlRv4Z6TrbH7FBFlDMG7CLH1S0K4G6+3LrNGdTVtwr
-   WzjtLN6sU5GO0WNpEXMfZMqEmdFJqpboEwSX6Wr2rGyWVfE0+U91P/pQz
-   fvS90P71nQ+oXVNTQWExDbEdZIbxwbKYqEBtZWlU4vYI8HZEp3nrARVOm
-   dc0UonGsxCdrSPcxAMU5X515uI+f/VJkzb4NYM3QxwMUpjvU2ndYhWWaH
-   bng3bUBOppW1vAIuKJbasMJH69456IvwBbilbHeR3J+cqQlmrR35B9nwz
+  bh=78hFLxJMZ5BSxXaEi6N8mTluP6Y4p1HUHn9cC/6qaBc=;
+  b=iOblOpD/n2wWs2bcQS/B4WBHAWBxbqixZNI6ENOzYP1I9ekR87/r0EE2
+   sBDdXNvuJfmKr61xr8lcolyr24SGNXQeOLueaWn4v8PsMrRFaPtrajeJb
+   JnQXXHrnOKtXiHzlZUrcsHfyThxMvT50tB30DXZCoLHVb63ZfkgoZwdjg
+   Ce7gYuLsKMXv2Gbk00D/N94rUmNp92kWkvsdqFDU1iH0l7vcwngJKy+EJ
+   FIeud/CU09ew68/CwDMg4qfAwOW0YGSDGLp6VE8jfWsphQUrjl1aSaEQJ
+   y3glRsfzJzoRyBKCeAust8QQg4ZeVOfp/A6BN9CUcXN3UB16tm5O8RrUR
    g==;
-X-CSE-ConnectionGUID: vJKdMvUmQZ+I1OIzU1z5+w==
-X-CSE-MsgGUID: tNHpwoO0QrqNYrhfcuCJXg==
+X-CSE-ConnectionGUID: ugZyBFbCQE2JwcyEpI2/Pw==
+X-CSE-MsgGUID: m/aPMDTATjWPvYTZZlizbg==
 X-IronPort-AV: E=Sophos;i="6.13,219,1732575600"; 
-   d="scan'208";a="41177840"
+   d="scan'208";a="41177844"
 Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 20 Jan 2025 14:25:16 +0100
-X-CheckPoint: {678E4EBC-E-31397509-E321C4C4}
-X-MAIL-CPID: 20ECB963B1329CA933C8A2EE1026F022_0
-X-Control-Analysis: str=0001.0A682F1F.678E4EBC.003E,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 3EAE4161460;
-	Mon, 20 Jan 2025 14:25:11 +0100 (CET)
+  by mx1.tq-group.com with ESMTP; 20 Jan 2025 14:25:21 +0100
+X-CheckPoint: {678E4EC1-1C-C6D8D88D-F91F9E6B}
+X-MAIL-CPID: C69335771B147E5FE6CECFDD8A1952C8_2
+X-Control-Analysis: str=0001.0A682F1F.678E4EC1.0075,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 8DC141611A2;
+	Mon, 20 Jan 2025 14:25:16 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1737379511;
+	s=dkim; t=1737379517;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=62kg7EpBQjINxHjvuuwUC/l4ka3K2AOXJOa+OBonMKw=;
-	b=R/vecpW2z8/EyRmq+gjB7rIc72cV0QLajZMZjAv9QfaL9/JKTzkyM4jUtiKHSgwYE1YkZe
-	8KvF33mRpc6Axyxy4Hk/VzimE/hb4QbDDXgQKF9sHHCLDMqFv5kaVHgq6oTZDwKKWBH/nB
-	CqbcoSCYSem30EDt8sLKaYB/16PWxNB/9CddKXCbR/e9gJ/Lp369aJnT0YTxvJQYz5D3Lh
-	E4PvJi9sA/m78+PLJyx8DlU4+yKaLyzuHLNo3PTqT93mpwz8AYgt4k1lTlyM2XQVt27dTG
-	/QuGNRy9Paz84Gzpp7FuBSHWWdwd2kBE2T1y+yomO1CTObEVdr92Xsl+WaBLvg==
+	bh=78hFLxJMZ5BSxXaEi6N8mTluP6Y4p1HUHn9cC/6qaBc=;
+	b=rZYcPdHn7lTNtJqYHuROVodoq9CyzHhZeP2H1vbEYsNgfhQcb4t4af9YRM0XN52tUB6ePb
+	JHSLaeci3MlufGBPuSstyVXgGbXn2lE9/ceIqohLsclwp+BoBYTDNUk2hG9n9LABZpYvPS
+	kr8OsGqWbpTtt/Mqfn9yVgb1+q0f7jp8qXK5TiG2sv5p4TpFftDARdMHU0b+jBJb9A+xp6
+	XZgEnTOVPkaQcdq5GImVh9Bd+oK3Vz8Stwwy05QsQPOlcviGoLYjSQS3f4DgixEiW3V1nI
+	rpQJ1/4g5UqQLBuvnP4cbAi09jr9O+v9Gd5YUslKL1w8Ak2/UINiXuQkFjkvtA==
 From: Alexander Stein <alexander.stein@ew.tq-group.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -83,9 +83,9 @@ Cc: Markus Niebel <Markus.Niebel@ew.tq-group.com>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: [PATCH 2/5] arm: dts: imx7-mba7: change sound card model name
-Date: Mon, 20 Jan 2025 14:24:59 +0100
-Message-Id: <20250120132503.556547-2-alexander.stein@ew.tq-group.com>
+Subject: [PATCH 3/5] arm: dts: mba6ul: change sound card model name
+Date: Mon, 20 Jan 2025 14:25:00 +0100
+Message-Id: <20250120132503.556547-3-alexander.stein@ew.tq-group.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250120132503.556547-1-alexander.stein@ew.tq-group.com>
 References: <20250120132503.556547-1-alexander.stein@ew.tq-group.com>
@@ -112,14 +112,14 @@ asound.conf in BSP over all the kits.
 Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
 Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 ---
- arch/arm/boot/dts/nxp/imx/imx7-mba7.dtsi | 2 +-
+ arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx7-mba7.dtsi b/arch/arm/boot/dts/nxp/imx/imx7-mba7.dtsi
-index 98956d78c9a18..954739f82d86b 100644
---- a/arch/arm/boot/dts/nxp/imx/imx7-mba7.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx7-mba7.dtsi
-@@ -238,7 +238,7 @@ reg_audio_3v3: regulator-audio-3v3 {
+diff --git a/arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi b/arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi
+index 941d9860218e9..67a3d484bc9f1 100644
+--- a/arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi
++++ b/arch/arm/boot/dts/nxp/imx/mba6ulx.dtsi
+@@ -142,7 +142,7 @@ linux,cma {
  
  	sound {
  		compatible = "fsl,imx-audio-tlv320aic32x4";
@@ -127,7 +127,7 @@ index 98956d78c9a18..954739f82d86b 100644
 +		model = "tqm-tlv320aic32";
  		ssi-controller = <&sai1>;
  		audio-codec = <&tlv320aic32x4>;
- 		audio-routing =
+ 		audio-asrc = <&asrc>;
 -- 
 2.34.1
 
