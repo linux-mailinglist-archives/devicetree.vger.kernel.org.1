@@ -1,414 +1,221 @@
-Return-Path: <devicetree+bounces-139624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D652CA166C2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:46:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93CA1A166D4
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:00:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61E641889764
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 06:46:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B022F1688EC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:00:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A084E17CA17;
-	Mon, 20 Jan 2025 06:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C8C2189916;
+	Mon, 20 Jan 2025 07:00:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="IA6Xv0r/"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="gqg4t7jE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2132.outbound.protection.outlook.com [40.107.255.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 681023209
-	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 06:46:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737355601; cv=none; b=VHvZ13ulDXkl4CO0SA7nayINQ3K7qqc8h+vBD51kzpjlMpg5Xk07GbrLJ8ZOzzf5QNbVNsOqoDxMP3OhI/KoD/TVgfDnfWmtOhFmzMkDFcpK/JIwGMP3BK4xlhqa4LkCjiaRQJAcUR1kpEEHnWJg52KaWY8NdX3hepVSbuwTxck=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737355601; c=relaxed/simple;
-	bh=L+IVoW5bUe0xL+DWzqklSB07CXsaJDJ5yqDfu87OFgM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Pa/eZ+MExewrxh4Sd0EtkkiYSlUQQ6m/couim8eS2AP2dKJ/4s2FgyYF2nZBgpukv1FmkA5oNXwHAbU3FJs7K05Nf+g9T4OfXT6m/eJmtuZhTlIchfsQKOd28TVCHxLn5YlsRnzCa3/IYcBfYGDC4mfbytZ7Arg7f6tYUZV9r+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=IA6Xv0r/; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-53f22fd6832so4336542e87.1
-        for <devicetree@vger.kernel.org>; Sun, 19 Jan 2025 22:46:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1737355597; x=1737960397; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sNXo4WaOxS///tBpR9StPLUAZBNZkjfmled10g42wXE=;
-        b=IA6Xv0r/UDAajq9U6lEP96/4PrlxdBu1ElnPP8x/ahh4IQR+gl4PhNiVD8n+l9kOiW
-         51Z12nKGDOtLApGyqtdGwTxVZJZa03M3rNUqfJNbPdALbFUf1KM38XyhQzRN+lWZbxHd
-         53B7zb+JX5tcZdWc5tNn9zj8PJOIY/XzhdsNE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737355597; x=1737960397;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sNXo4WaOxS///tBpR9StPLUAZBNZkjfmled10g42wXE=;
-        b=kTAIX3wzdQZ0cB/KsBgJtQirpk0XaHZhE/OJAvyaLNoynhZNAKxUHja9YJMHJBwxUl
-         oxkNTLu4vkgsn4BRzGTnco5r6K03l8JHzM9pIdpXn40c7mTE2MEtzk7Jq1+nT7jos0RB
-         pomKSEo+SBoSjXp46TsK5oUsF8JB8j/jTcvSgygPKOF+I5vgY8Xc7A6qwCUmczN+KtM/
-         Gj6Ki4dfz8xeUVXVDXB7u8I+lF6QBCmc3HtPJLeYqZowhBcicSHjfA7FhDmZxp17m3Ow
-         Dw2EyTvF027rv9ulHBN2crA/M8Auctbzk4yFOIi+OCywuciZ6FNRU4pAV20F0TYtO4Dv
-         mBFA==
-X-Forwarded-Encrypted: i=1; AJvYcCVDqbzmTVCMnPonO2x4dGqK6vnkPNh3RklMo3YobKODlnebBYfoBLZ9ce2EEjTRIc5HKWo4BM66a+8D@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAVuSKXiyqiPB43QolsO4WWj5R7dEKEepUPVGST11OKyVe/ogo
-	p4qLvopV2wuqPHzDFlBLv0NBeYQ+xP+CymyJ1lfrNnJNHr2DU4ovMWNDZoEtQWXQTffnKXC8+z+
-	1UOE+X2wx3w+6RYqEosxrDA1v7ZL/CmRH49G9
-X-Gm-Gg: ASbGnct3GQjOIqvL2xOKqMg2XVH2JM8O4H7Iu0d62dosQ5Zq2ERDuOXbsdbTopP/F5w
-	PT3+c/HTICfA2inuxIa4EZ5N0HQWVolel/MQSRfdxkLI16Z6USqtnkUV9rKW+lqFWLM8ksPIkb6
-	YgVeE=
-X-Google-Smtp-Source: AGHT+IGe4S6TYf+4ulYMixEZAJCcy5WdGlwRlwQfzdR0+wuoegjONvE0lGUgeRF49B9dTczKUXEO+792vM5swITbus4=
-X-Received: by 2002:a05:6512:b23:b0:53e:fa8b:822e with SMTP id
- 2adb3069b0e04-5439c28258dmr3579236e87.37.1737355597391; Sun, 19 Jan 2025
- 22:46:37 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43FD6188A3B;
+	Mon, 20 Jan 2025 07:00:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.132
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737356410; cv=fail; b=Y8f8oZNCglusu14wMjpVEHZcqMgdrfqWO4QsasY8Loj+NPai+5jWULwyQOOY8C3NRwh9Kth23pZzplr0qLsuJ3sh/7G0FOEUVAtA9B03Kbis61buLzXEmXBptJzoTZkONVha+Osye1/OihpfUCRgKkzvc/SztkXIUV69ey7QKNw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737356410; c=relaxed/simple;
+	bh=UnfK/4+Z2e/eD3cT7ENU2d/f6IDImEgfx6YwBH4mNZg=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=kHEg/k/qx56eM+c7Ptlf+QmYnoVIKWt8kWJppkcAh240iVnmv5zrH6W6281WfOoLYN3N1Y3eX+0Za7R6ki649RRRCHm1qs3uxOBfdhGuqxUhxxxmBZz27g9faFcrKo8EY/GaJOKdeEv/kQQTfF450ibThGdNfHADDBPEWuos+go=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=gqg4t7jE; arc=fail smtp.client-ip=40.107.255.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UXkCNS9lcuUVfOWn9ZWPvOM/2X7kdT6Hlu84Z8sNN12pdsDlHEWM6HMdnOy1kEkd8uMdXOEz4ho6wz9nxT1YC03jRJeLrbOt7gvgb+bsCR1mcWNOaRP/j6SlgBxKSy8e7g8d24ZnDHtOlSYcEaaESOIIeQrifGDXiJENZnTzRJxXJ+EdrZTL4DMkNn9y5ZU+lE41LFa2Oji+r82J6a7jjpRGl87YPBifao7/kRQ53RQ1eWmqzlmRBiOhWmsqjOp3CaW6o1YC26IKd5zBXCIKVMuahqn4uVKNcgHD7ENQQb01Ehuqu0gwq6CBTCjAXR4HiL8X3Z+y1wMbhen0TeI8wA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UnfK/4+Z2e/eD3cT7ENU2d/f6IDImEgfx6YwBH4mNZg=;
+ b=w3QN6rRj3SU9lA43BVnmYlrnaguixPz/L8luNzHg6XnrPFwDD0jLc+cUz0o9h9jOzsF6IYKKm2cHNQhj8+Mg1fabyLY/3srqEgvqjXfpUzt1fc36K+2Vy/4ajjldnU7YMvUem2xpjTiaEsCR4z8+bZwWKR4qyOu72pJ3A3IzbN8jHwkvDJgjOjCsf1CAnd5gzf6v2qo99E5AExcnVX/cmpZquivqemkyW/cliHlKWY42LOe9jI0+kmb4FK4wW8MwXwxrStdP7tuR5F6ngf0HPdlU3ducBEpnmVM3CIj5DOylWs+FmxYPo64Mi18PXz9iPuCyqt5iMPhRByjl16Uxjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UnfK/4+Z2e/eD3cT7ENU2d/f6IDImEgfx6YwBH4mNZg=;
+ b=gqg4t7jE5+vav+Qp6niEdaTOn5FWwJVGd4wVYQwcMih6POEzHDf8BneCo+ZpHdK/fYeojkwgEQPDipq2Xu4sDyp3BRUWA9KrksN50pJbpeTBtPw8JNBoTXDMAiY90L0cjPXr+q4QzMLy8tJjx3oj6sQG1oDCRj7DmD1IzMyJ+gS5+LaYbET4t1lErFks680LvBvkASGea5uZXeBfuG05cGO41s0V1tA8o+Zf+A1ngZL4hfgIMOVFAvKP74ZOk3ZBD56VY+QTsYjarmrLxr97xgvd/9R9V0+/LPWqkS7dEqKJEEIG4uaU9yBj9NoQ4eyiLwx37fbMOcvskVLG6Rz/qA==
+Received: from SEYPR06MB5134.apcprd06.prod.outlook.com (2603:1096:101:5a::12)
+ by SEYPR06MB5229.apcprd06.prod.outlook.com (2603:1096:101:88::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.12; Mon, 20 Jan
+ 2025 06:59:59 +0000
+Received: from SEYPR06MB5134.apcprd06.prod.outlook.com
+ ([fe80::6b58:6014:be6e:2f28]) by SEYPR06MB5134.apcprd06.prod.outlook.com
+ ([fe80::6b58:6014:be6e:2f28%6]) with mapi id 15.20.8377.004; Mon, 20 Jan 2025
+ 06:59:59 +0000
+From: Jacky Chou <jacky_chou@aspeedtech.com>
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Ninad Palsule <ninad@linux.ibm.com>, "andrew+netdev@lunn.ch"
+	<andrew+netdev@lunn.ch>, "andrew@codeconstruct.com.au"
+	<andrew@codeconstruct.com.au>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"davem@davemloft.net" <davem@davemloft.net>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "eajames@linux.ibm.com"
+	<eajames@linux.ibm.com>, "edumazet@google.com" <edumazet@google.com>,
+	"joel@jms.id.au" <joel@jms.id.au>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"kuba@kernel.org" <kuba@kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "minyard@acm.org" <minyard@acm.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"openipmi-developer@lists.sourceforge.net"
+	<openipmi-developer@lists.sourceforge.net>, "pabeni@redhat.com"
+	<pabeni@redhat.com>, "ratbert@faraday-tech.com" <ratbert@faraday-tech.com>,
+	"robh@kernel.org" <robh@kernel.org>
+Subject:
+ =?big5?B?pl7C0Dogpl7C0Dogpl7C0Dogpl7C0Dogpl7C0Dogpl7C0DogW1BBVENIIHYyIDA1?=
+ =?big5?Q?/10]_ARM:_dts:_aspeed:_system1:_Add_RGMII_support?=
+Thread-Topic:
+ =?big5?B?pl7C0Dogpl7C0Dogpl7C0Dogpl7C0Dogpl7C0DogW1BBVENIIHYyIDA1LzEwXSBB?=
+ =?big5?Q?RM:_dts:_aspeed:_system1:_Add_RGMII_support?=
+Thread-Index:
+ AQHbYX4ZqwUnoFUOykuCVX4SkD1z27MNKUAAgABN4QCAAApFgIAAvO3AgAAxcoCAABHnAIAAB/+AgAEsnXCAAFgBAIAENTRQgACHsgCAAAOEgIACXbCwgAAFSQCAAAD+YIAArYUAgAdtdVA=
+Date: Mon, 20 Jan 2025 06:59:59 +0000
+Message-ID:
+ <SEYPR06MB51347BB3F94A09B89BD313269DE72@SEYPR06MB5134.apcprd06.prod.outlook.com>
+References: <c0b653ea-3fe0-4bdb-9681-bf4e3ef1364a@linux.ibm.com>
+ <c05c0476-c8bd-42f4-81da-7fe96e8e503b@lunn.ch>
+ <SEYPR06MB5134A63DBE28AA1305967A0C9D1C2@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <d80f5916-4918-4849-bf4e-2ef608ece09d@linux.ibm.com>
+ <SEYPR06MB51340579A53502150F67ADEC9D1F2@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <bcebe5ed-6080-4642-b6a5-5007d97fac71@linux.ibm.com>
+ <26dec4b7-0c6d-4e8e-9df6-d644191e767f@lunn.ch>
+ <SEYPR06MB5134DD6F514225EA8607DC979D192@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <e5178acd-0b6f-4580-9892-0cca48b6898a@lunn.ch>
+ <SEYPR06MB513402FD4735C602C5531F499D192@SEYPR06MB5134.apcprd06.prod.outlook.com>
+ <f28736b5-f4e4-488e-8c9b-55afc7316c5e@lunn.ch>
+In-Reply-To: <f28736b5-f4e4-488e-8c9b-55afc7316c5e@lunn.ch>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEYPR06MB5134:EE_|SEYPR06MB5229:EE_
+x-ms-office365-filtering-correlation-id: 8ae2e6a9-2629-4aaa-42e9-08dd39200dea
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?big5?B?M3BYQ0dtU0FJOTBxbnFiQ0ljMUZwTnUzUmNqOUQ0WVc1Q25mVXlKb2FaOTBONzZz?=
+ =?big5?B?NGQydmg2OHgxTEFXK0I3cERkaUVVUlAxakZJWFJGanVWTUt6aXBSZitvVHFsOGE5?=
+ =?big5?B?enF4OEZWb2RxUkFUa2xvbnZjbmdWMFovak1RUVRnWk5PSjJ0R2MybEJOSG9HMEhh?=
+ =?big5?B?RlIrVm8zSzc2dkVRZUtidmpUYTAzODFKRW5XOE1wdGRJNDlOZmM4b3VrcnBycG96?=
+ =?big5?B?dm1yWUJpR0hjTERaMElVdGhGWWREY0Y2OFZsckFuNW5LcWx2VUpyNVV2Qk1wOTRL?=
+ =?big5?B?WFJCNG54bDltUjBzOEFmWjhtL1lPWTNQQmhUREhIa1U2WHdCb0N6YlZzNDNUUlFl?=
+ =?big5?B?aFpSeCtVWEpFQmhZaW1RdW84M3UwRFhUU2EwTUVRTkFDanNOQkI4VlQ4TkNDcnVq?=
+ =?big5?B?MmRYaGVhNjRWRlBGYXBYMlRxVGFjbS9Wb0pjTy9yYTlKV1JUeXJSd2ZKVlFVNTNo?=
+ =?big5?B?NnJBMGx3SUpFVHg1MDFLVTdwRDY4eEVSMHprVE5KWmUrTE9xY04wSkFkZ0dFTWxM?=
+ =?big5?B?dEVuNFVzNFdIMlYraXNwZkpCS1UwbS9ybGdkVzh4TjBBV1VHdTV1UFVFSGNnMTcr?=
+ =?big5?B?VUtVVUNPOGc3bnhsTTlFUjlNenFnMHZxQ2YxMDNITkVBLzJQdlZQRlRYbnhZVU9C?=
+ =?big5?B?c2w0K0dGUUs5dDBoaHJtakxYT2hpRUd2UStTMElrU0RzV1N6RE0zOUhIR1BNdEwy?=
+ =?big5?B?M2FkRXZVc29teWd3UFIvZldJOEFCMTdpdUtkR040djNKd2orNkhsZXc4NjBVVVln?=
+ =?big5?B?enZFY1VuVm5aSGhERTQ5MUhJdG5zcGFaUmtjeFN2UzVFM2xMRFo0U2NMQndXMGhU?=
+ =?big5?B?N01pN2poMHFMdHJTdEJibTB6MUM1NmxjVi9BT0owR2Nhb0xhUEdBOE1xUElPK1N0?=
+ =?big5?B?a2k0enlpK2UvUUlGeStueDFvY2lxSVNYZFUwdFVhOW1mVVlDMGxNTnhLMi9DaXlW?=
+ =?big5?B?RGNFSVdRYUV4a2t6UTBrNlJVam5aekY3VEJrTEIyTlJuYlBhVERVU3BDTDZWZWp4?=
+ =?big5?B?dWo0YS9ibG5xYUR2V2FhNElJUGJuMWJjbm1ORk9kSllRMURydkpqanVXQnZ2L3Mv?=
+ =?big5?B?R1NycEE1N0hIVGJnNm94SGVUZkZyejZMUXB1Q0htb1Q2cUZJamhkSlAvK0NpU0pM?=
+ =?big5?B?NXhEZDJmU3lZb3oySmdEZUZ3a1hPM3BJZDYvLzRpcHcvbWs4TVArNndCMm1ncXF3?=
+ =?big5?B?Qm12REhTQjJJeFRqYXZIcENQZE9GWEJ2Y041QmNLUUlPcXhieTdCVVR5M3NLZWZK?=
+ =?big5?B?M045RVV5ZkdqNW0wZ0NxN09XZE4yQzRENXl3MlJWQk9XUTFIZHNDZldKQ1lDcDVJ?=
+ =?big5?B?MVM5dTBBd01rcEkxeEoreHh0Q2V0ck13dEt0K2pqbjJlMUIxRWVjMzVLdUxETjNE?=
+ =?big5?B?eHJuR3EwZXZSbHg5SmJKMkhSSHk4NmFlRlh1a2x1VlB3NlBOUnJqNWRlNDd0TDkv?=
+ =?big5?B?VG1GeEdkSDNMV1lja0QzVnJ4V01nK2trYVlXVHJEWURQUjhWaFdnb3lhbEwzN3JZ?=
+ =?big5?B?ZmdvSjF0RTVkN0JGUy9uOE9Ud3RKR1dOdkNQZDRJeng0RjJ1UzlxU0ZuQW5mY0VK?=
+ =?big5?B?TzZVQmhhQ2Q5ZDlod090VUkvM3R2Tk5NR1pmSThwdC82RnpaSHpNWGZISCtHSXNX?=
+ =?big5?B?Wk5qa3lmWFVEY0tOTUxHbHh2YkJUTWNFTDJiRGcrdVdCRDU5eDV3RGhwY25zMHdt?=
+ =?big5?B?dmJwaUI3VGV2R0NKb2d2ZkV0OTNmeStFUkttVjZWOVBLODluWXY0enRKZ3RLSFRG?=
+ =?big5?B?RERFc3dNdzZuSFpjWkJIbWVlSEU2VjJXWGRTU0wrWVY1TmtHUlVmZWh0Z1ZIOWEz?=
+ =?big5?Q?cHQam6RkgvG4ltgPVRxCjhXP+3efH8Jp?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR06MB5134.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?big5?B?eHJIWTZYYmtXWHVTZ1gwcWMxNnA1Wm9nV0MrWTRkTFhUVElZTkF6Q3VXVkVFM3Az?=
+ =?big5?B?S1dWZ1Bnais0NHpvcjZ1UWNxNmpPamtPcDVmeTgyZFFzdjZqT0ZMM2tQaXIwcndE?=
+ =?big5?B?S3RVQ21XWnA4Tk5NeTFGS0hpS1p4SHkrUUtRMERWQTBoZkRjemtJeG5UaU5vZ08w?=
+ =?big5?B?Zy9RQjM1MEY4SkxQbStWd2trVGYyZHZZdk96VVl1MWRCdE5DdXY4TFpxTU9nQ00x?=
+ =?big5?B?Q0tpZnp0Z0FUSmVwQTNLMitINnJ1VnU1NlBleWwycmREcUgyOTF0dUhtbUlpVEZs?=
+ =?big5?B?ZnBHaEZtYkJqZ0xSdFovQ1FmbnorejZJbjVYSU80TktzSGl1elZuVlpDZ3Q1ZTdq?=
+ =?big5?B?OXdqTnpxbzA2aW1jdnM4dUhSa0RIUi90RmErZTNObS9kWkFGZVBLaVNmUzBxN29O?=
+ =?big5?B?VWoyR1NKc3RIQjZYT0JJQkFSTHEvRzVrYy81eTNtSHhVcEMvTGRKNXlIWVlLdjdV?=
+ =?big5?B?aS9hYWQwMXgybDdzclMwMXZPQzh2bGJVZllEbFRCL1hhdWlhQTgzMWlwQ1loTVdI?=
+ =?big5?B?cGZMZDZmV1RQb0t1R3llS3pZRmtPM2RZcFViQ21zcmpIT2gvRDNlZzBPVHBHNzZJ?=
+ =?big5?B?OTIzVXYrd2hJSXZXaVNJSnpmeHhDbEJtN0U2V1ZQUDZXTC8zMlVFNVYzTGYwSDBz?=
+ =?big5?B?UW54K2pJU2dSVEZIdUhXZVQrOU53VTZtUkF3cWRMaGtmaURSbmRSUnNXM2RUd0lw?=
+ =?big5?B?WGlKc3U1RjZvM0psclFKUGlLVWhTbEg2MVlhUlo3YXRlenhHbmpvVW9ndjNwSFRQ?=
+ =?big5?B?cGJKMFBnQkdrdHZxNVpkd1E4dTYrcWpPSUg2cnNUMUZScGFJM21kSkMzMFdONE1M?=
+ =?big5?B?YzU0RVF4b3k2cGZFNDdjV0NaNGhmZzFJbW4xaFNRQlZFU3cvczNtRWthOGtvTzJs?=
+ =?big5?B?V0J4YWhLVENlWkdvS0FqWUovQzFnNW1wcVF2VW9iZUoxWklpU29EenZEQTg4Y2s2?=
+ =?big5?B?bWJ2Um1XRTAvUDFsYW1BMWtJcFJmMUFGWkwzSVl0U2ZUbUR1UGxiN3crZ3I2MUtl?=
+ =?big5?B?ZmhVck9hT3lwMTNsbzJGTnk0TWlKdnoxV0YyTXU3LzJ4dG9UNy82QnFRbm9ORDlI?=
+ =?big5?B?VWpRakd2dGIrenhSQ3pBcENkN0Jlb0FDdTNHMnQ0a1F0SDdaSmdZTVdzQklIRUNK?=
+ =?big5?B?Qld3ZU02NFdCUWxrVUFqZXRnQ2ZjM0MyV09KazFKSm9UWGlSZU41eXZibWpCbzFB?=
+ =?big5?B?YzliRFFsSUh5cis0eW9CTk1mbFhHb0l1Wm55TlNoS3VnS1MvejVpVEdPbVIwdits?=
+ =?big5?B?V2h0N0hqVXFIRWxHOUFrNmJPaFp0L3dpL1R4bXB3Rm1mNWlWS3ZPSnJRNWlOL0lN?=
+ =?big5?B?NkxSQmZkdkl0Rm1GZzZrcXNZOHFaZU16T2ZPaHZnUUhEL2hycmoxSVV1YzVtRm1B?=
+ =?big5?B?bkxpclE5VDNqSk5OaENsdTNnaUQwZHdWcm43OXpRU3FEckt5b2I1b3Z1cDJrdmxN?=
+ =?big5?B?TFA4MFJVY1NzbFZYSnc4Y3ZkdVJiSVpORitjKzRTenBWbzBlZDF6Nm9PSFpXREQ4?=
+ =?big5?B?ZFJpRmpmNDhVVytYK0hidVd4TnNmME9IQmptckRXRlRmOWFlR0xvbXBUL2J6Rzlz?=
+ =?big5?B?eldoL09heGdsZ2tnYzdzc0VOejBJREo5bXJuMWxlMGhDU2EwYU9WOGdBWmFMaHhv?=
+ =?big5?B?TDV1MmtnMUx2dnpwck9kUFIyUDAza2J0bmZiNE1OU3VwQi9SbzZoWS9uMzQ0WlZE?=
+ =?big5?B?Z1dVSnI1aHFIeFYvMWs3ckF2TzZ0eS9lKzZXZDRaTGYvdHlWQXZ2d2Z5dUJGRkx1?=
+ =?big5?B?UGJQYlFYZjFJUFFsUElzSjRmOGd4NnZza2g0dEJnckNBK1VpUVU5Y2VPSkpjSE5Z?=
+ =?big5?B?TEliS1REZFJLNGR0RGxtUHdxNUYycmdTYXdVRTdPYzF6VlVmem1ySjN3WHZ3b3lZ?=
+ =?big5?B?a2lvc3Vyb2FrdG5TZGtmSVgydlVET25Oakh0VEFxYmxUUUc3dzE0VXpoNk1pSkk2?=
+ =?big5?B?bDk3R0VDVnFUM2tvd0UvSjJaL1p4T2NGYWRXTHZwQmV3dno4UlRZUGEvSXBqem1R?=
+ =?big5?Q?ggxotnJhX5sAtCB4?=
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241219170800.2957-1-jason-jh.lin@mediatek.com>
- <20241219170800.2957-2-jason-jh.lin@mediatek.com> <CABb+yY2t7rBnoBEf3Pog0eRW_zvb0YggbgKBspnZOS1bsyQBPQ@mail.gmail.com>
-In-Reply-To: <CABb+yY2t7rBnoBEf3Pog0eRW_zvb0YggbgKBspnZOS1bsyQBPQ@mail.gmail.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 20 Jan 2025 14:46:26 +0800
-X-Gm-Features: AbW1kvYbC_aCNW0ewDsvXV7P02TnnXE-2bnIKZ2gq8f_DneY-FzYQmVy3vGEru8
-Message-ID: <CAGXv+5Eg_5CFiCYPk29wvjPq03wO9js5nQNhF8A_kB9+K452uw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/7] dt-bindings: mailbox: mediatek: Add MT8196 support
- for gce-mailbox
-To: Jassi Brar <jassisinghbrar@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	linux-media@vger.kernel.org, Singo Chang <singo.chang@mediatek.com>, 
-	Nancy Lin <nancy.lin@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>, 
-	Xavier Chang <xavier.chang@mediatek.com>, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR06MB5134.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ae2e6a9-2629-4aaa-42e9-08dd39200dea
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jan 2025 06:59:59.1199
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fuwVMqLIMxOKRZhF/ws+v3sPnJ3rjkqzolvMp87XbCm8UV0qDqsT58veGmXMMUZSdpRQSYGMtrVtR5XjYTyluXPs/1z2OK8qRJyEhYBpmdk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR06MB5229
 
-On Sun, Jan 19, 2025 at 5:24=E2=80=AFAM Jassi Brar <jassisinghbrar@gmail.co=
-m> wrote:
->
-> On Thu, Dec 19, 2024 at 11:08=E2=80=AFAM Jason-JH.Lin <jason-jh.lin@media=
-tek.com> wrote:
-> >
-> > 1. Add compatible name and iommus property to mediatek,gce-mailbox.yaml
-> >    for MT8196.
-> >
-> >    - The compatible name "mediatek,mt8196-gce-mailbox" is added to
-> >      ensure that the device tree can correctly identify and configure
-> >      the GCE mailbox for the MT8196 SoC.
-> >
-> >    - The iommus property is added to specify the IOMMU configuration
-> >      for the GCE mailbox, ensuring proper memory management and access
-> >      control.
-> >
-> > 2. Add the Global Command Engine (GCE) binding header to define the
-> >    abstrct symbol binding to the GCE hardware settings of GCE Thread
-> >    Priority, GCE Subsys ID and GCE Event for MT8196.
-> >
-> >    - GCE Thread Priority: Defined to configure the priority level for
-> >      each GCE hardware thread. This is necessary for proper scheduling
-> >      and execution of commands in the GCE.
-> >
-> >    - GCE Subsys ID: Defined to specify the subsystem ID for GCE clients=
-.
-> >      This is used to correctly address and access different subsystems
-> >      within the GCE.
-> >
-> >    - GCE Event: Defined to specify the events that the GCE can handle.
-> >      These events are used by the driver to synchronize and manage
-> >      hardware operations.
-> >
-> >    Examples of the binding usage in the driver code:
-> >    1) GCE Thread Priority:
-> >    - Defined in the header file: `#define CMDQ_THR_PRIO_4 4`
-> >    - Used in the Device Tree: `mboxes =3D <&gce0 0 CMDQ_THR_PRIO_4>;`
-> >    - Parsed and used in the driver to set thread priority:
-> >      ```c
-> >      static struct mbox_chan *cmdq_xlate(struct mbox_controller *mbox,i
-> >                                          const struct of_phandle_args *=
-sp)
-> >      {
-> >         thread->priority =3D sp->args[1];
-> >      }
-> >      // set GCE thread priority to the priority level 4 for GCE thread =
-0
-> >      writel(thread->priority, thread->base + CMDQ_THR_PRIORITY);
-> >      ```
-> >
-> >    2) GCE Subsys ID:
-> >    - Defined in the header file: `#define SUBSYS_1c00XXXX 3`
-> >    - Used in the Device Tree:
-> >         `mediatek,gce-client-reg =3D <&gce SUBSYS_1c00XXXX 0x0000 0x100=
-0>;`
-> >    - Parsed and used in the driver to configure subsys ID:
-> >      ```c
-> >      int cmdq_dev_get_client_reg(struct device *dev,
-> >                                  struct cmdq_client_reg *client_reg,
-> >                                  int idx)
-> >      {
-> >         client_reg->subsys =3D (u8)spec.args[0];
-> >         client_reg->offset =3D (u16)spec.args[1];
-> >      }
-> >      // GCE write the value to the register 0x1c000000 + 0x0000 + offse=
-t
-> >      cmdq_pkt_write(cmdq_handle, client_reg->subsys,
-> >                     client_reg->offset + offset, value);
-> >      ```
-> >
-> >    3) GCE Event:
-> >    - Defined in the header file:
-> >         `#define CMDQ_EVENT_VDO0_DISP_STREAM_DONE_0 574`
-> >    - Used in the Device Tree:
-> >         `mediatek,gce-events =3D <CMDQ_EVENT_VDO0_DISP_STREAM_DONE_0>;`
-> >    - Parsed and used in the driver to handle events:
-> >      ```c
-> >      int mtk_crtc_create(struct drm_device *drm_dev,
-> >                          const unsigned int *path,
-> >                          unsigned int path_len, int priv_data_index,
-> >                          const struct mtk_drm_route *conn_routes,
-> >                          unsigned int num_conn_routes)
-> >      {
-> >         of_property_read_u32_index(priv->mutex_node,
-> >                                    "mediatek,gce-events", i,
-> >                                    &mtk_crtc->cmdq_event);
-> >      }
-> >      // GCE clear the STREAM_DONE event sent from DISP_MUTEX hardware
-> >      cmdq_pkt_clear_event(cmdq_handle, mtk_crtc->cmdq_event);
-> >      ```
-> >
-> > Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
-> > ---
-> >  .../mailbox/mediatek,gce-mailbox.yaml         |    4 +
-> >  .../dt-bindings/mailbox/mediatek,mt8196-gce.h | 1415 +++++++++++++++++
-> >  2 files changed, 1419 insertions(+)
-> >  create mode 100644 include/dt-bindings/mailbox/mediatek,mt8196-gce.h
-> >
-> > diff --git a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mai=
-lbox.yaml b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.=
-yaml
-> > index cef9d7601398..73d6db34d64a 100644
-> > --- a/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.ya=
-ml
-> > +++ b/Documentation/devicetree/bindings/mailbox/mediatek,gce-mailbox.ya=
-ml
-> > @@ -25,6 +25,7 @@ properties:
-> >            - mediatek,mt8188-gce
-> >            - mediatek,mt8192-gce
-> >            - mediatek,mt8195-gce
-> > +          - mediatek,mt8196-gce
-> >        - items:
-> >            - const: mediatek,mt6795-gce
-> >            - const: mediatek,mt8173-gce
-> > @@ -49,6 +50,9 @@ properties:
-> >      items:
-> >        - const: gce
-> >
-> > +  iommus:
-> > +    maxItems: 1
-> > +
-> >  required:
-> >    - compatible
-> >    - "#mbox-cells"
-> > diff --git a/include/dt-bindings/mailbox/mediatek,mt8196-gce.h b/includ=
-e/dt-bindings/mailbox/mediatek,mt8196-gce.h
-> > new file mode 100644
-> > index 000000000000..9e0700236033
-> > --- /dev/null
-> > +++ b/include/dt-bindings/mailbox/mediatek,mt8196-gce.h
-> > @@ -0,0 +1,1415 @@
->
-> 1415 ?  90% seem unnecessary.
->
-> > +
-> > +/* GCE thread priority */
-> > +#define CMDQ_THR_PRIO_LOWEST   0
-> > +#define CMDQ_THR_PRIO_1                1
-> > +#define CMDQ_THR_PRIO_2                2
-> > +#define CMDQ_THR_PRIO_3                3
-> > +#define CMDQ_THR_PRIO_4                4
-> > +#define CMDQ_THR_PRIO_5                5
-> > +#define CMDQ_THR_PRIO_6                6
-> > +#define CMDQ_THR_PRIO_HIGHEST  7
-> >
->  Only need to HIGHEST maybe
-
-Or maybe we could just get rid of them and describe the valid values
-and ordering in the YAML part?
-
-> > +
-> > +/* GCE subsys table */
-> > +#define SUBSYS_1300XXXX                0
-> > +#define SUBSYS_1400XXXX                1
-> > +#define SUBSYS_1401XXXX                2
-> > +#define SUBSYS_1402XXXX                3
-> > +#define SUBSYS_1502XXXX                4
-> > +#define SUBSYS_1880XXXX                5
-> > +#define SUBSYS_1881XXXX                6
-> > +#define SUBSYS_1882XXXX                7
-> > +#define SUBSYS_1883XXXX                8
-> > +#define SUBSYS_1884XXXX                9
-> > +#define SUBSYS_1000XXXX                10
-> > +#define SUBSYS_1001XXXX                11
-> > +#define SUBSYS_1002XXXX                12
-> > +#define SUBSYS_1003XXXX                13
-> > +#define SUBSYS_1004XXXX                14
-> > +#define SUBSYS_1005XXXX                15
-> > +#define SUBSYS_1020XXXX                16
-> > +#define SUBSYS_1028XXXX                17
-> > +#define SUBSYS_1700XXXX                18
-> > +#define SUBSYS_1701XXXX                19
-> > +#define SUBSYS_1702XXXX                20
-> > +#define SUBSYS_1703XXXX                21
-> > +#define SUBSYS_1800XXXX                22
-> > +#define SUBSYS_1801XXXX                23
-> > +#define SUBSYS_1802XXXX                24
-> > +#define SUBSYS_1804XXXX                25
-> > +#define SUBSYS_1805XXXX                26
-> > +#define SUBSYS_1808XXXX                27
-> > +#define SUBSYS_180aXXXX                28
-> > +#define SUBSYS_180bXXXX                29
-> > +#define SUBSYS_NO_SUPPORT      99
-> > +
-> Keep only that you use now or plan in  the near future. But ok.
->
-> > +/* GCE-D hardware events */
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF0                                  =
-         0
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF1                                  =
-         1
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF2                                  =
-         2
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF3                                  =
-         3
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF4                                  =
-         4
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF5                                  =
-         5
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF6                                  =
-         6
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF7                                  =
-         7
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF8                                  =
-         8
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF9                                  =
-         9
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF10                                 =
-         10
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF11                                 =
-         11
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF12                                 =
-         12
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF13                                 =
-         13
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF14                                 =
-         14
-> > +#define CMDQ_EVENT_DISP0_STREAM_SOF15                                 =
-         15
-> >
->  you mean
->   #define CMDQ_EVENT_DISP0_STREAM_SOF(n)  n
->
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL0                              =
-         16
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL1                              =
-         17
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL2                              =
-         18
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL3                              =
-         19
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL4                              =
-         20
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL5                              =
-         21
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL6                              =
-         22
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL7                              =
-         23
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL8                              =
-         24
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL9                              =
-         25
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL10                             =
-         26
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL11                             =
-         27
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL12                             =
-         28
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL13                             =
-         29
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL14                             =
-         30
-> > +#define CMDQ_EVENT_DISP0_FRAME_DONE_SEL15                             =
-         31
->
->    #define CMDQ_EVENT_DISP0_FRAME_DONE_SEL(n)
->             (16 + n)
->
-> > +#define CMDQ_EVENT_DISP0_DISP_WDMA0_TARGET_LINE_END_ENG_EVENT         =
-         32
-> > +#define CMDQ_EVENT_DISP0_DISP_WDMA0_SW_RST_DONE_ENG_EVENT             =
-         33
-> > +#define CMDQ_EVENT_DISP0_DISP_POSTMASK1_RST_DONE_ENG_EVENT            =
-         34
-> > +#define CMDQ_EVENT_DISP0_DISP_POSTMASK0_RST_DONE_ENG_EVENT            =
-         35
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_TIMEOUT_ENG_EVENT                =
-         36
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT0            =
-         37
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT1            =
-         38
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT2            =
-         39
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT3            =
-         40
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT4            =
-         41
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT5            =
-         42
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT6            =
-         43
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT7            =
-         44
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT8            =
-         45
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT9            =
-         46
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT10           =
-         47
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT11           =
-         48
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT12           =
-         49
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT13           =
-         50
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT14           =
-         51
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_REG_UPDATE_ENG_EVENT15           =
-         52
-> > +#define CMDQ_EVENT_DISP0_DISP_MUTEX0_GET_RELEASE_ENG_EVENT            =
-         53
-> > +#define CMDQ_EVENT_DISP0_DISP_MDP_RDMA0_SW_RST_DONE_ENG_EVENT         =
-         54
-> > +
->  keep only the used ones and use
-
-This is the only publicly available table of the numbers. Having
-the complete table somewhere would be nice. OOTH the numbers being
-like IRQ or DRQ numbers, don't actually get used in the driver.
-So maybe we could keep the full list but move it under the dts directory?
-
-
-ChenYu
+SGkgQW5kcmV3DQoNClRoYW5rIHlvdSBmb3IgeW91ciByZXBseS4NCg0KPiA+DQo+ID4gWWVzLiBJ
+IGhhdmUgcmVhZCB0aGVzZSBtYWlscy4NCj4gPg0KPiA+IEkgdW5kZXJzdGFuZCB3aGF0IHlvdSBt
+ZWFuLg0KPiA+ICJyZ21paSI6IGRlbGF5IG9uIFBDQiwgbm90IE1BQyBvciBQSFkuDQo+ID4gInJn
+bWlpLWlkIjogZGVsYXkgb24gTUFDIG9yIFBIWSwgbm90IFBDQi4NCj4gPg0KPiA+IGZ0Z21hYzEw
+MCBkcml2ZXIgZ2V0cyBwaHkgZHJpdmVyIGhhbmRsZSBmcm9tIG9mX3BoeV9nZXRfYW5kX2Nvbm5l
+Y3QoKSwNCj4gPiBpdCB3aWxsIHBhc3MgdGhlIHBoeS1tb2RlIHRvIHBoeSBkcml2ZXIgZnJvbSB0
+aGUgbm9kZSBvZiBtYWMgZHRzLg0KPiA+IFRoZXJlZm9yZSwgSSB1c2UgInJnbWlpLWlkIiBhbmQg
+dGhlIHBoeSB3aWxsIGVuYWJsZSB0eC9yeCBpbnRlcm5hbCBkZWxheS4NCj4gPiBJZiBJIHVzZSAi
+cmdtaWktaWQiIGFuZCBjb25maWd1cmUgdGhlIFJHTUlJIGRlbGF5IGluIGZ0Z21hYzEwMCBkcml2
+ZXIsDQo+ID4gSSBjYW5ub3QgcGFzcyB0aGUgcGh5LW1vZGUgdG8gcGh5IGRyaXZlci4NCj4gDQo+
+IFF1b3RpbmcgbXlzZWxmLCB5ZXQgYWdhaW46DQo+IA0KPiA+ID4gTUFDIGNhbiBhcHBseSB0aGUg
+ZGVsYXlzLCBidXQgaXQgbXVzdCBtYXNrIHRoZSBwaHktbW9kZSBpdCBwYXNzZXMgdG8gdGhlDQo+
+IFBIWS4NCj4gDQo+IElmIHlvdSBkZWNpZGUgdGhlIE1BQyBkb2VzIHRoZSBSWCBjbG9jayBkZWxh
+eSwgaXQgbmVlZHMgdG8gbWFzayB0aGF0IGZyb20gdGhlDQo+IHBoeS1tb2RlLCBvdGhlcndpc2Ug
+dGhlIFBIWSB3aWxsIGFsc28gZG8gaXQuIElmIHlvdSBkZWNpZGUgdGhlIE1BQyBkb2VzIHRoZSBU
+WA0KPiBjbG9jayBkZWxheSwgaXRzIG5lZWRzIHRvIG1hc2sgdGhhdCBmcm9tIHRoZSBwaHktbW9k
+ZS4NCg0KV2UgbmVlZCB0byBjb25maXJtIHRoZSBNQUMgYW5kIFJHTUlJIGRlc2lnbiBpbiBBU1Qy
+NjAwLA0KQW5kIHdlIHdpbGwgcmVwbGFuIHRoZSBwaHktbW9kZSBjb25maWd1cmF0aW9uIGluIGZ0
+Z21hYzEwMCBkcml2ZXIgYW5kIGRldmljZSB0cmVlLg0KDQpUaGFua3MsDQpKYWNreQ0KDQo=
 
