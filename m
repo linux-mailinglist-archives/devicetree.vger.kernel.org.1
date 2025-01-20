@@ -1,97 +1,139 @@
-Return-Path: <devicetree+bounces-139749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F8EBA16C8E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:54:27 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83E4EA16C96
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:55:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD3381888AAA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 12:54:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17BD37A2267
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 12:54:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C1281DF989;
-	Mon, 20 Jan 2025 12:54:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 810A21E0DD6;
+	Mon, 20 Jan 2025 12:54:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="jt6q+SaC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KC4zcVWz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E1C11FC8;
-	Mon, 20 Jan 2025 12:54:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FDE21E0DBB;
+	Mon, 20 Jan 2025 12:54:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737377662; cv=none; b=U4CJxXg9PQzeosmyjM0tH0VWieThROD2sPw41CqSrmICAXJEqx+MK8SbOZzZ1WE5UHUWjWZrb7HjsUqml0/OrUkxsoXM2pc6wW4d/WeKap+f0QxX/rnP2LCu341ZYUopGn/T7uZ6fqAmmST2V06Y/QzSF45JU+Sjy2f52/JyGf0=
+	t=1737377686; cv=none; b=tVUmKBBlVAe29J5es+urs9dNv8ODGEGCYcN6FQiw0V3E+en0Mh18YBxjqXNQtaZ7ctuBQFgLtH7zdovlcRNcCvMo7oodd8WjmL5ow6w4BEbsYuZFkC+bLz9jzu/nqW46e976YA9INrU8Xl+8rQf7K9lckSor+/xsOLhCWyLisB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737377662; c=relaxed/simple;
-	bh=MH8LDLWN99P3e8Hr0MV2OdmaCW2GNmA8x3rgPJ+E3ts=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=YxFe50Ek4vQJOYDYCd9qYo03ZtHPAKVS9H0orNPMKtnqokq/txWZIhyoXhEENd8UFsBnbnAOCe5eQtx/RPFCGJeRMq/NJ+OM8/5JBRnS+5tDnuu7CqZCHMYhrTWKChv/OZHYScWd9/zRsUDyZOaSSFPrruyDtL+cLFgDDsZQ/JA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=jt6q+SaC; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 453CF24000D;
-	Mon, 20 Jan 2025 12:54:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1737377658;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=niS8yhjGEG7kTaHhimkQuAQuleYT6pZ/DZpG8RfuVdU=;
-	b=jt6q+SaCOTvrT+n2U+bULG2DgFvhhLJUSnbw6D/ah24y3TJ40gyafJRRX/P7MvyubzNnxC
-	/8c8cGz6C5xuuv7fL89VAry/h6FP0t2D8kUrjULsOOfu+iW16JThT1njQJE4ohW5tWXNv8
-	AneSNuHJGUsFi9tdDw0iVzBwKMDdo0rLdNgPh32gmFCd5IKqkeR/49O57WqagYiMiO2a/S
-	Mtwoebd1PeQ4j3Cf8GcBVMttOXhMVKWSYa8if3k9RIuc0qyhqO8iyGxihh7rRO7a0ykD56
-	nwkusuGupXRw9RkKG2Oq0k3q1Ysf5DNxWldKC7apL6Sgrbtdu2BshIxPI8FZIg==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Keguang Zhang <keguang.zhang@gmail.com>
-Cc: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>,
-  Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
- <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
-  linux-mtd@lists.infradead.org,  linux-kernel@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-media@vger.kernel.org
-Subject: Re: [PATCH v11 2/2] mtd: rawnand: Add Loongson-1 NAND Controller
- Driver
-In-Reply-To: <CAJhJPsU1eFJ_R1-emENs8T5rrKXUKjvk-cQx9RT2ztTvmOTZug@mail.gmail.com>
-	(Keguang Zhang's message of "Mon, 20 Jan 2025 19:08:55 +0800")
-References: <20241217-loongson1-nand-v11-0-b692c58988bb@gmail.com>
-	<20241217-loongson1-nand-v11-2-b692c58988bb@gmail.com>
-	<87v7ufnc0w.fsf@bootlin.com>
-	<CAJhJPsWe+maw+zK6uiwvObTd_Ew73yjH=KddkgxwY7Zp0Y7ZYw@mail.gmail.com>
-	<87plkli9fj.fsf@bootlin.com>
-	<CAJhJPsVhH=8dKmUgmTSHnG8H1_9G3zvovX9hDv_VM6fSUR5oQw@mail.gmail.com>
-	<874j1tykgz.fsf@bootlin.com>
-	<CAJhJPsU1eFJ_R1-emENs8T5rrKXUKjvk-cQx9RT2ztTvmOTZug@mail.gmail.com>
-User-Agent: mu4e 1.12.7; emacs 29.4
-Date: Mon, 20 Jan 2025 13:54:17 +0100
-Message-ID: <8734hdsl1i.fsf@bootlin.com>
+	s=arc-20240116; t=1737377686; c=relaxed/simple;
+	bh=B2N1SFwVsEQYatPuKELn1U8mVUiNoyniinMvW+x3hug=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uh5iROfcEeAEu3+UEooHPOGAg8g38w1GzmlooFS3dQFHieVINZRCoXbpu3GhZxHoQ8Oyzw9OlGujDBP+iXZoLLaIhA1d+VtGbq5CsbDML7kTNrTGD97AODKuJGk6B81GaM/tJR8d0B0OeaWXHcuXLLs4oaNPJjrt1ebvZr1/50w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KC4zcVWz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BE3BC4CEDD;
+	Mon, 20 Jan 2025 12:54:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737377685;
+	bh=B2N1SFwVsEQYatPuKELn1U8mVUiNoyniinMvW+x3hug=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KC4zcVWzCkcet8ukVMFl5FCSZWYhPzxuDYOySL4ini71VGGjUCBb3JbzvyLj4c4GB
+	 WSnNAJ7Xjc9pW0V2EJGaHLGPdIpVMmfnO9j/fTVCf0N2pvdRwC0jkldUc5o7tS/fJb
+	 TUaKeP4sX8Oa4nd5Vj/IFvpFZWDz0ZKwzjeuJG9icYV4Xa7A4wL1TmdswCMcnsJ6vI
+	 F7zMx8JuJ/x3am8PqEFhFfML7Cn6yTp7IGZG0ehTr9CfOxPkJAXmGM2Muw5Smu3cYN
+	 pE6QSyf8c3tqqA5Z+puQzlUKT1Ziizw3xuWSzynMe5mcSe2H8vW1UX4NzCLS5dtIBQ
+	 gtuSDDBuEQiQA==
+Message-ID: <1fef097c-d2d8-4d98-ab83-09ad5ae0b2e1@kernel.org>
+Date: Mon, 20 Jan 2025 13:54:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-GND-Sasl: miquel.raynal@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 07/16] rust: add `io::{Io, IoRaw}` base types
+To: Fiona Behrens <me@kloenk.dev>
+Cc: gregkh@linuxfoundation.org, rafael@kernel.org, bhelgaas@google.com,
+ ojeda@kernel.org, alex.gaynor@gmail.com, boqun.feng@gmail.com,
+ gary@garyguo.net, bjorn3_gh@protonmail.com, benno.lossin@proton.me,
+ tmgross@umich.edu, a.hindborg@samsung.com, aliceryhl@google.com,
+ airlied@gmail.com, fujita.tomonori@gmail.com, lina@asahilina.net,
+ pstanner@redhat.com, ajanulgu@redhat.com, lyude@redhat.com, robh@kernel.org,
+ daniel.almeida@collabora.com, saravanak@google.com, dirk.behme@de.bosch.com,
+ j@jannau.net, fabien.parent@linaro.org, chrisi.schrefl@gmail.com,
+ paulmck@kernel.org, rust-for-linux@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ devicetree@vger.kernel.org, rcu@vger.kernel.org
+References: <20241219170425.12036-1-dakr@kernel.org>
+ <20241219170425.12036-8-dakr@kernel.org>
+ <723737D3-3102-440F-99E7-6CA78692CC7F@kloenk.dev>
+From: Danilo Krummrich <dakr@kernel.org>
+Content-Language: en-US
+In-Reply-To: <723737D3-3102-440F-99E7-6CA78692CC7F@kloenk.dev>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+On 1/16/25 11:31 AM, Fiona Behrens wrote:
+> On 19 Dec 2024, at 18:04, Danilo Krummrich wrote:
 
->> IIUC, yes and no. It is the remapped address of the physical address you
->> want to reach, not the physical address itself. The type is dma_addr_t
->> and not phys_addr_t and you can get a dma address out of a physical
->> address with a call to dma_map_resource(). The numerical value might be
->> the same if there is no IO-MMU involved, but the good practice is to
->> remap anyway.
->
-> Got it. I will keep dma_map_resource() as it is, which is called in
-> ls1x_nand_probe().
->
-> +       res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "nand-dma");
-> +       host->dma_base = dma_map_resource(dev, res->start, resource_size(res),
-> +                                         DMA_BIDIRECTIONAL, 0);
-> +       if (dma_mapping_error(dev, host->dma_base))
-> +               return -ENXIO;
+>> +impl<const SIZE: usize> Io<SIZE> {
+>> +    /// Converts an `IoRaw` into an `Io` instance, providing the accessors to the MMIO mapping.
+>> +    ///
+>> +    /// # Safety
+>> +    ///
+>> +    /// Callers must ensure that `addr` is the start of a valid I/O mapped memory region of size
+>> +    /// `maxsize`.
+>> +    pub unsafe fn from_raw(raw: &IoRaw<SIZE>) -> &Self {
+>> +        // SAFETY: `Io` is a transparent wrapper around `IoRaw`.
+>> +        unsafe { &*core::ptr::from_ref(raw).cast() }
+>> +    }
+>> +
+>> +    /// Returns the base address of this mapping.
+>> +    #[inline]
+>> +    pub fn addr(&self) -> usize {
+>> +        self.0.addr()
+>> +    }
+>> +
+>> +    /// Returns the maximum size of this mapping.
+>> +    #[inline]
+>> +    pub fn maxsize(&self) -> usize {
+>> +        self.0.maxsize()
+>> +    }
+>> +
+>> +    #[inline]
+>> +    const fn offset_valid<U>(offset: usize, size: usize) -> bool {
+>> +        let type_size = core::mem::size_of::<U>();
+>> +        if let Some(end) = offset.checked_add(type_size) {
+>> +            end <= size && offset % type_size == 0
+>> +        } else {
+>> +            false
+>> +        }
+>> +    }
+>> +
+>> +    #[inline]
+>> +    fn io_addr<U>(&self, offset: usize) -> Result<usize> {
+>> +        if !Self::offset_valid::<U>(offset, self.maxsize()) {
+>> +            return Err(EINVAL);
+>> +        }
+>> +
+>> +        // Probably no need to check, since the safety requirements of `Self::new` guarantee that
+>> +        // this can't overflow.
+>> +        self.addr().checked_add(offset).ok_or(EINVAL)
+>> +    }
+>> +
+>> +    #[inline]
+>> +    fn io_addr_assert<U>(&self, offset: usize) -> usize {
+>> +        build_assert!(Self::offset_valid::<U>(offset, SIZE));
+>> +
+>> +        self.addr() + offset
+>> +    }
+> 
+> Currently reworking the portmem abstractions I wrote for the LED/SE10 driver.
+> Right now I’m wondering if it would make sense to move the 3 functions above (`offset_valid`, `io_addr` and `io_addr_assert` into IoRaw),
+> as I’m considering reusing the IoRaw in the portmem and then just offer the outb/outw/outl functions on a wraping type around IoRaw.
+> For this I would also use the same functions to check bounds.
 
-Looks correct.
+Sure, feel free to move them. I think I should have moved those functions to
+IoRaw from the get-go.
+
+- Danilo
 
