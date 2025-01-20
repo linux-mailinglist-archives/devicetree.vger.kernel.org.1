@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-139739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 636B2A16C18
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:12:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07EBDA16C22
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:13:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A07A1881E5B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 12:12:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27951163DC0
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 12:13:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEF451DF992;
-	Mon, 20 Jan 2025 12:11:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82EF91DFE06;
+	Mon, 20 Jan 2025 12:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jgL0gfc9"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="k94ZWkm0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95AD41B87EE;
-	Mon, 20 Jan 2025 12:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5E3F1B87EE;
+	Mon, 20 Jan 2025 12:13:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737375115; cv=none; b=s716QmW/F8vmd1PdEbwlAN97d4i5S47jc3Hl5WZpBS7f2Ey15M59thNJwvD1au59NMlRAlOp+KQjfK5qgaqINoV2k6jzo6TZNDuxbTzJ8BJU2FQG7TKiVj+fg6xhmGruUnTdv2RLJkoU2JpuVr6FrDSHIR7PJRdjcWxvYkj7L+M=
+	t=1737375194; cv=none; b=KRiHHF82uPHb92DVv4w8n7frmVyz6ybVT8TQ9iSvS24jCf1z5QsCtZr6S+PgKGPOkKe5J0X98WP9In1L9dzyfDI1NlBUz0ojPo2KzuReSsJr4GrxwxmJ9L9rz/SPG4sW0NekZBrmtadKSMN+mRmFKN5ObL2eyMZedCGuJ7aVpkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737375115; c=relaxed/simple;
-	bh=2d5KQE0gBmmuHj8ZO3Kd2vSJ/xLvCvZoaI8AOHlA3Ws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XwiH7T6K7VCMJfxzJCYz7QhTa2/BAm/gAVNk9F19lgUZfRMkPNpJrQ6aF16nCbUxNT+4iKDdUQmOoHK6djHbUydscq6GVuZ8iHSzFg7Niqbli4NRkNLI3S8x8W8W8AoZpii8BanX6FJAA+YDhQOFAuBNHDs5I3zJn7wstlNNVo4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jgL0gfc9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1E7AC4CEDD;
-	Mon, 20 Jan 2025 12:11:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737375114;
-	bh=2d5KQE0gBmmuHj8ZO3Kd2vSJ/xLvCvZoaI8AOHlA3Ws=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jgL0gfc9N9yniX9QiOKt3qqokRUTwKrqnaBFn36y43l2uLe/+WknsBZiFpXESFKx6
-	 RLbz0jxgkm1ZEvzbRkdXg0E95FylA4niYVF51ggQAmxNOSPmqA6iUbHIA/VucrRd/O
-	 MUlNIady22xqK7gInl7lWhxIRaYMKRrcK1spXKb2EsY9b1Uq8fza2Gyvv4/DD6bf9Y
-	 97zjNrsrPZthRD8eMe3jpfZmAUPomlc06rTIcu16FQ4H+4Ii5CFWRNs3Lu9akuyDVT
-	 xqErv6/nSFc9oFRT4tTJ7K7IZTJ/J60p4exFlp8hOdFnAlxBJ/FL4WRZDHYbiJKZav
-	 gYioot4NmuY+w==
-Message-ID: <1f7a3d91-3b5b-4706-8857-7bb71beecb3a@kernel.org>
-Date: Mon, 20 Jan 2025 14:11:47 +0200
+	s=arc-20240116; t=1737375194; c=relaxed/simple;
+	bh=MOjqNx/Ozrd8CYtQH7UDGAAOAZCJ7irHGJFvcfvJ7uQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=jFpdZI7Jvk/hT1LoLus1BFN9d63h8I7mM1rF+2uxnmPFOyJS2unKsq+1gpcBKfTFrhMeSm6OUhBdiNtjjtU1SChaPDFUuNk+Z5CQSDHMRUxLIGnD6JH0FikEbiUexV0ddFdZ53+Tcdm1DjvPavdfs4hp5VNlTAr0DxZjN08loN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=k94ZWkm0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50K9o4Hg026699;
+	Mon, 20 Jan 2025 12:12:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	nbjnbT1XkiC4pIMy8Anvr34pscIZsdJtPm/NdQYaTlQ=; b=k94ZWkm0QVCSe+8Q
+	hrc+htIo3wzKZCZt3/kkOSqTcjDjABeL5hu+oEiKmm/lqJxp+1H/wnjJx4S1ECC9
+	7p02ESS0D9KS4x7Ia75NiE+HftcY7TXtdCyq3v3t96mv32NzXgo7BVIUYtWaTN8u
+	yBWn8MwuIEf0QxTkRENXW1Bo8mnCZdxfI5PsXOLWuJVlVLEjCC+0ZXnb+Q/UI7eD
+	wXTRGbFjhwzVSrZh5xxImekaF1PzXhCTKaxkLv58gQ9KXkNxg7olfYzN9nq0HLDk
+	TYOgx7fYPgliC+StELaq2Zu/cKGxHeOQNkzcE+z9haYTqPDufTdIjtWpqyBlGYkc
+	h8/xrQ==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 449m72gavk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 Jan 2025 12:12:49 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50KCCm5e006797
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 20 Jan 2025 12:12:48 GMT
+Received: from [10.239.155.136] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 20 Jan
+ 2025 04:12:43 -0800
+Message-ID: <9aab1765-224e-4f84-9366-a1b46e5260b7@quicinc.com>
+Date: Mon, 20 Jan 2025 20:12:39 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,39 +65,132 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: k3-j722s-evm: Fix USB2.0_MUX_SEL to
- select Type-C
-To: Hrushikesh Salunke <h-salunke@ti.com>, nm@ti.com, vigneshr@ti.com,
- kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- r-gunasekaran@ti.com, s-vadapalli@ti.com
-Cc: srk@ti.com, danishanwar@ti.com, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250116125726.2549489-1-h-salunke@ti.com>
+Subject: Re: [PATCH 8/8] ARM: dts: msm: Use Operation Points V2 for UFS on
+ SM8650
+To: Krzysztof Kozlowski <krzk@kernel.org>, <quic_cang@quicinc.com>,
+        <bvanassche@acm.org>, <mani@kernel.org>, <beanhuo@micron.com>,
+        <avri.altman@wdc.com>, <junwoo80.lee@samsung.com>,
+        <martin.petersen@oracle.com>, <quic_nguyenb@quicinc.com>,
+        <quic_nitirawa@quicinc.com>, <quic_rampraka@quicinc.com>
+CC: <linux-scsi@vger.kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+        "open
+ list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+	<devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+References: <20250116091150.1167739-1-quic_ziqichen@quicinc.com>
+ <20250116091150.1167739-9-quic_ziqichen@quicinc.com>
+ <5b419c6a-ba22-41d3-bd5e-869d422f3c5d@kernel.org>
 Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20250116125726.2549489-1-h-salunke@ti.com>
-Content-Type: text/plain; charset=UTF-8
+From: Ziqi Chen <quic_ziqichen@quicinc.com>
+In-Reply-To: <5b419c6a-ba22-41d3-bd5e-869d422f3c5d@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: eLu7vWzDkpWVCfPRGrIgu4LQey7OUqIK
+X-Proofpoint-GUID: eLu7vWzDkpWVCfPRGrIgu4LQey7OUqIK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-20_02,2025-01-20_03,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
+ suspectscore=0 bulkscore=0 mlxscore=0 lowpriorityscore=0 malwarescore=0
+ phishscore=0 priorityscore=1501 clxscore=1011 spamscore=0 mlxlogscore=999
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501200102
 
+Hi Krzysztof,
 
+Thanks for review and comments~
 
-On 16/01/2025 14:57, Hrushikesh Salunke wrote:
-> J722S SOC has two usb controllers USB0 and USB1. USB0 is brought out on
-> the EVM as a stacked USB connector which has one Type-A and one Type-C
-> port. These Type-A and Type-C ports are connected to MUX so only
-> one of them can be enabled at a time.
+As Neil has submitted a similar patch:
+https://lore.kernel.org/all/20250115-topic-sm8x50-upstream-dt-icc-update-v1-10-eaa8b10e2af7@linaro.org/ 
+
+I will withdraw this patch in next version.
+
+-Ziqi
+
+On 1/16/2025 5:22 PM, Krzysztof Kozlowski wrote:
+> On 16/01/2025 10:11, Ziqi Chen wrote:
+>> Use Operation Points V2 for UFS on SM8650 so that multi-level
+>> clock/gear scaling can be possible.
+>>
+>> Co-developed-by: Can Guo <quic_cang@quicinc.com>
+>> Signed-off-by: Can Guo <quic_cang@quicinc.com>
+>> Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
 > 
-> Commit under Fixes, tries to enable the USB0 instance of USB to
-> interface with the Type-C port via the USB hub, by configuring the
-> USB2.0_MUX_SEL to GPIO_ACTIVE_HIGH. But it is observed on J722S-EVM
-> that Type-A port is enabled instead of Type-C port.
+> Please don't send downstream code directly, but fix it first. Actually -
+> rework it 100%.
 > 
-> Fix this by setting USB2.0_MUX_SEL to GPIO_ACTIVE_LOW to enable Type-C
-> port.
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching. For bindings, the preferred subjects are
+> explained here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+> >> ---
+>>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 51 +++++++++++++++++++++++-----
+>>   1 file changed, 43 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> index 01ac3769ffa6..5466f1217f64 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+>> @@ -2557,18 +2557,11 @@ ufs_mem_hc: ufs@1d84000 {
+>>   				      "tx_lane0_sync_clk",
+>>   				      "rx_lane0_sync_clk",
+>>   				      "rx_lane1_sync_clk";
+>> -			freq-table-hz = <100000000 403000000>,
+>> -					<0 0>,
+>> -					<0 0>,
+>> -					<100000000 403000000>,
+>> -					<100000000 403000000>,
+>> -					<0 0>,
+>> -					<0 0>,
+>> -					<0 0>;
+>>   
+>>   			resets = <&gcc GCC_UFS_PHY_BCR>;
+>>   			reset-names = "rst";
+>>   
+>> +			operating-points-v2 = <&ufs_opp_table>;
+>>   			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
+>>   					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>>   					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+>> @@ -2590,6 +2583,48 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>>   			#reset-cells = <1>;
+>>   
+>>   			status = "disabled";
+>> +
+>> +			ufs_opp_table: opp-table {
+>> +					   compatible = "operating-points-v2";
 > 
-> Fixes: 485705df5d5f ("arm64: dts: ti: k3-j722s: Enable PCIe and USB support on J722S-EVM")
-> Signed-off-by: Hrushikesh Salunke <h-salunke@ti.com>
-
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
-
+> 
+> Messed indentation.
+> 
+>> +					   // LOW_SVS
+> 
+> 
+> Drop
+> 
+>> +					   opp-100000000 {
+>> +							   opp-hz = /bits/ 64 <100000000>,
+>> +									   /bits/ 64 <0>,
+> 
+> Messed alignment.
+> 
+>> +									   /bits/ 64 <0>,
+>> +									   /bits/ 64 <100000000>,
+>> +									   /bits/ 64 <0>,
+>> +									   /bits/ 64 <0>,
+>> +									   /bits/ 64 <0>,
+> 
+> 
+> 
+> 
+> Best regards,
+> Krzysztof
 
