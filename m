@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-139821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FC12A17095
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 17:46:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFED5A1709C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 17:47:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39D5316B0C0
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 16:46:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C3EF188B074
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 16:47:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC3F91EBFFA;
-	Mon, 20 Jan 2025 16:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94BB31DF989;
+	Mon, 20 Jan 2025 16:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q/2ZxDuk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZCvif5tA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6841E9B2D;
-	Mon, 20 Jan 2025 16:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60AD01E9B01;
+	Mon, 20 Jan 2025 16:47:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737391492; cv=none; b=axhkjN7G30GkAtf8J07h4jQaM6vi/TKIkjfQCZ6BPju4XZJZTn+ABadIiijoce1Ov8cTTuVJ564Q5PJKsfNepW2TQrwuLRjK10bZxkKUkkGVVxRIRZrd4lvPpomDOeBfEQ/I4qezbdobyfSpj0dfnbbMST6oOValCADn72erNTw=
+	t=1737391621; cv=none; b=lT53blrV5hlIFxVBBd3SyXcNOEq8kKFh/aabfnTKhNbwZ8S7cwXqlFYlWGlos/EjmJvFgyNpCEnwclInBr8ekxrvoRCSk3Kwgvl7TYqNxOVePfkRKSL4Xx6yFrNumacP4brtWXjJTrlLVEDYAb/2OMRVxqNrJo0C3ALYFa59daU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737391492; c=relaxed/simple;
-	bh=trwLC4zNIFIC/P4kSySFiG1aFbXzs74eozLhDvJO9fE=;
+	s=arc-20240116; t=1737391621; c=relaxed/simple;
+	bh=rMXqi3CvQdBhxQuQUtGFMKS1HqKvz1G9dJMq89/Pnt8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a9SRmsfgw2YW9fQrnfbNHAQE+efVdam1BH+qXkMOZkniUd7ou2TPW7uKZ1m0KBFrws1jzWkz4wzpU1GyuduwW+vgpDvKaw5cvkesc/MhhHqbtHK2AotIIjfya8RQRaK5Q25u84pD6aWD61f6JS7Mqfvq/QU8It3Ql7ZHI3RLO5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q/2ZxDuk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29574C4CEDD;
-	Mon, 20 Jan 2025 16:44:48 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GXlHGH/VHqrCNqrDJG7W8LGxaZDkgZHlsWjLAs8SBNGYi+OX2CA2W2rEGX9MwkeEjlKfVc2BIVF2COVZ+KJhfS3iNbsqC3BemcoRY8NSw7JFIJcjcL++Yamf4r0wwXOTHEDJZJcFSxplBALstXBHHzww08MifH+2Nae95TqI2Ug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZCvif5tA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57728C4CEDD;
+	Mon, 20 Jan 2025 16:46:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737391492;
-	bh=trwLC4zNIFIC/P4kSySFiG1aFbXzs74eozLhDvJO9fE=;
+	s=k20201202; t=1737391621;
+	bh=rMXqi3CvQdBhxQuQUtGFMKS1HqKvz1G9dJMq89/Pnt8=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q/2ZxDukAcGdufXEYcJ4ej70SNhuxXUoeBUC3/jRNHIaHjyAibmbJoB1Qjb2DBY1t
-	 c+T6aOrG47U6HVEsxVNZJt5fNR7sE0LGbcrguml/nutfAAJt8gZ6hGtcOkV6m4DsA4
-	 BFxmhRY7+RT3mlytAiB8fj7rQagf+uZyyg8WMNRh8NHSPmSPLn4gAuMxPo44JH2O8Y
-	 TDydX8GHIJ1Vxsg5C73or2RDwKav0ApDT9Jiy9OT5wvTRLagSBKLBIG7Vr6scmDLTn
-	 cVcYIuSVTSETyD+WsdEo+gIaSlIjsKIFOdgvBctImkzIg2Vso7MnEfvamCT7K/4mNj
-	 ibRBEd7HSV1eA==
-Message-ID: <2d515426-78d0-445a-aaad-a08ef7e36c86@kernel.org>
-Date: Mon, 20 Jan 2025 17:44:46 +0100
+	b=ZCvif5tAJe7q+y5YiB16KetQzGE0mTrdsZ9kbM4DnUV18dfvEWok2/zt2AP0FJSRI
+	 VVlhnqM6cVfN4nWUcg9qfeHrLQyfFQpvGbPench7v3pYgM/Az6FWfpasJ8jZVuwLdi
+	 fz73nE68OzYRFa4l82OIavyjrqzCObz0zcdNp07lhFlBsgX+ASEo2P6QWwLW2ApVHZ
+	 kkIGcc9aLCuK9w30cYD1MliIh+Fr6ilsVSQNtCrC81llQfk6b7kc93ZWzaRgi65/Bp
+	 ao8TXqXIGhywtz2BrEm8GZ65PKIimoHXl4SZj4FZY/N7i/1UphBPm5s/9HVU0fZRFm
+	 PA22i7SsqJNXQ==
+Message-ID: <c49aa6ea-8be3-4cfb-a2f0-18c4e635527b@kernel.org>
+Date: Mon, 20 Jan 2025 17:46:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: serial: 8250: Add Airoha compatibles
-To: Benjamin Larsson <benjamin.larsson@genexis.eu>
-Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
- ansuelsmth@gmail.com, lorenzo@kernel.org, krzk+dt@kernel.org,
- gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org
-References: <20250119130105.2833517-1-benjamin.larsson@genexis.eu>
- <20250119130105.2833517-2-benjamin.larsson@genexis.eu>
- <20250120-flashy-nice-tody-afa2ae@krzk-bin>
- <ba4b0ad4-e8ad-4420-be10-520efeba0c84@genexis.eu>
- <b3dd5f39-357e-4714-80af-f5c6b5e8ba68@kernel.org>
- <5d1d83b8-e3b6-4719-862f-3606d1783e73@genexis.eu>
+Subject: Re: [PATCH v3 1/6] dt-bindings: clock: add clock definitions for
+ Ralink SoCs
+To: Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+ linux-clk@vger.kernel.org
+Cc: sboyd@kernel.org, mturquette@baylibre.com, tsbogend@alpha.franken.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
+ p.zabel@pengutronix.de, linux-mips@vger.kernel.org,
+ devicetree@vger.kernel.org, yangshiji66@outlook.com,
+ linux-kernel@vger.kernel.org
+References: <20250120092146.471951-1-sergio.paracuellos@gmail.com>
+ <20250120092146.471951-2-sergio.paracuellos@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,39 +107,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <5d1d83b8-e3b6-4719-862f-3606d1783e73@genexis.eu>
+In-Reply-To: <20250120092146.471951-2-sergio.paracuellos@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 20/01/2025 16:46, Benjamin Larsson wrote:
->>>>> diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
->>>>> index 692aa05500fd..2fbb972e5460 100644
->>>>> --- a/Documentation/devicetree/bindings/serial/8250.yaml
->>>>> +++ b/Documentation/devicetree/bindings/serial/8250.yaml
->>>>> @@ -63,6 +63,8 @@ properties:
->>>>>          - const: mrvl,pxa-uart
->>>>>          - const: nuvoton,wpcm450-uart
->>>>>          - const: nuvoton,npcm750-uart
->>>>> +      - const: airoha,airoha-uart
->>>>> +      - const: airoha,airoha-hsuart
->>>> I assume you placed it matching existing order (kind of alphabetical for
->>>> compatibles with vendors)?
->>>>
->>>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>> Hi, I placed it after nuvoton that was the most recent addition to the
->>> serial8250_config uart_config[] table that was also added to the
->> But wasn't nuvoton placed in specific, ordered place?
+On 20/01/2025 10:21, Sergio Paracuellos wrote:
+> Add clock missing definitions for RT2880, RT305X, RT3352, RT3383, RT5350,
+> MT7620 and MT76X8 Ralink SoCs. Update bindings to clarify clock depending
+> on these new introduced constants so consumer nodes can easily use the
+> correct one in DTS files matching properly what is being used in driver
+> code (clock IDs are implicitly used there).
 > 
-> Well not really as wpcm450-uart is placed before npcm750-uart in 
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> ---
 
-Uh, indeed. :/
 
-> 8250.yaml. But I will move the entries to below ns16850 in the next 
-> revision to keep the vendor list in alphabetical order.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
