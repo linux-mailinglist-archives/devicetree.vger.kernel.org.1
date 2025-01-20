@@ -1,99 +1,103 @@
-Return-Path: <devicetree+bounces-139655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AB5CA167EB
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:07:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 432FFA167EC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:10:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 27B883A4A62
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:07:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58E723A5284
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:10:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BFB118F2DF;
-	Mon, 20 Jan 2025 08:07:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1A4D191F6A;
+	Mon, 20 Jan 2025 08:10:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bttfJ4cz"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OnvprkhI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4600847F4A
-	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 08:07:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A370A189B8B;
+	Mon, 20 Jan 2025 08:10:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737360442; cv=none; b=sFxFqgFMOYHhejHjBoDvVYjMqiDv4dr0zO5hSKytC6peMvhdpyBwD/A1dGFGPdyeUsmDmXY9zefG7Nr6vHUU5LquLtrfQrJrUY87sS8bERE2EKWxim4lP3FXQZxIKKYTdTW7BeUspKkHpzezN02Ifb6oIIQmxlSMCk4360E6oUQ=
+	t=1737360609; cv=none; b=BjAp9mkh3huWI2I3Ofr+8e2dxcZjZLgkEiaItUtSP0BRBm5nHBUsKhy5GU50yPUxX0/xdOMx6MeZSNpjJkovSQqG/B5DFeNYhQN1JjltGK1AafjMbsR9lDfoIg9zU+wNG/ECXtJBUEScspPwSMe86KZ1Bf9Y6FEtNVVGwTUijkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737360442; c=relaxed/simple;
-	bh=U68od//1LO/4ATuOmeZS2F5sneQ0/aAN98kSZDck3e8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DydtQn6V4ObmF0e4hegCzYxp17wwQ+PmKmpnIMDyXTGutfAZJBPUWJfkfnZdECL5YPI/XG+ikpLlJB8sBvdkYaNiQfFMdbnyDZsbNpn2g5Xb9cxt/x3KhnRvSCHIjG8LyfAwdwzdEt+GJ8xxPlwBnDWi11S/oysHiCv5l9NR6mY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bttfJ4cz; arc=none smtp.client-ip=217.70.183.193
+	s=arc-20240116; t=1737360609; c=relaxed/simple;
+	bh=H4+cy6US/uZAjZmugxgIPG09WzOslaSKe4LUtckj+9w=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=QiYaCDPw0haGqg+Iydf4YFqt7UQqCy0h/h6BbpurRPwiEqFuyRUkuWLGBx/KIStk5Fms6KOUz2yBIXD5+vfQ/0/PYgjGbs9iHjuIZwSJgGLgkCvTlA6/uGo6nl58xvbe1w/h4/82/AfD7oJhj2GgNenilKpJx+8jz6LoOTDtF0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OnvprkhI; arc=none smtp.client-ip=217.70.183.193
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 694E4240009;
-	Mon, 20 Jan 2025 08:07:17 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4C5DB24000A;
+	Mon, 20 Jan 2025 08:10:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1737360438;
+	t=1737360605;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ptkfwg23V8TkYPQTz2RcJGgC0dOsHD+3NlCAwB6LHkk=;
-	b=bttfJ4czgZA1NYg38M4oPgFndjx08cw2M2mjp3qI6Am61iZJAgpAkuF6j76yuxPVKhm9E8
-	5femF4hP3a4byMYneeAsjparcXLToMAQh/95osx4BRNm2o6njn3CXms3JheWZ1sO60LXOy
-	E8bEgEDk/3RwMQjEdzW9KvXyjh8YjB++AEXiHO9coAUzqR3SHkDYTJcR+YI+xeEoI8BKej
-	apdARZ1mMc9SlH0PQCaVmRGIC/dE0y25wijFj8PbaR30vIrktvEKhxOCnGThjZOr4RtRrt
-	2b2w9cyEHnvvs8eAUabb3NkIIFjzsqaJnWyc9xO8sHvFupP4QfYEL0I1BGrxeQ==
-Date: Mon, 20 Jan 2025 09:07:15 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham
- I <kishon@kernel.org>, devicetree@vger.kernel.org,
- linux-phy@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] phy: PHY_LAN966X_SERDES should depend on
- SOC_LAN966 || MCHP_LAN966X_PCI
-Message-ID: <20250120090715.17473c2d@bootlin.com>
-In-Reply-To: <0c7116ca03997fff04faf59fdcd4c97820685b64.1737118595.git.geert+renesas@glider.be>
-References: <cover.1737118595.git.geert+renesas@glider.be>
-	<0c7116ca03997fff04faf59fdcd4c97820685b64.1737118595.git.geert+renesas@glider.be>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	bh=H4+cy6US/uZAjZmugxgIPG09WzOslaSKe4LUtckj+9w=;
+	b=OnvprkhIw7yOUZO1XyyC2I5wZ2cCxTJv7kjHrd0itixN6Q2mDOz6pzI4c98f8Dl8hQrkeM
+	DNFQMnXhiLPVc+KThh0RKrNEOGfapOzeNySQqdphA44+0HG7T6j3zl2SSp6UCRicQn6lP0
+	rJh3mG/4c4AdZRz+Ayiv5WFkVHV/nEejPpkXha9TaZPOzBl9h9JjWJcIZx8JouIB5DP7Hl
+	hb32Xf/eSeaaBMlAkNIlX4eNrVbsKOOqF7upJkh0b3XbWQjQVZAV82KuGTtqSOCr36y3MO
+	/C60C3WdnPj8ogR0Ash4b7QrPapaB03l/GAV8cLkrv2UZSkJyHKmrrefRyzEyw==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Keguang Zhang <keguang.zhang@gmail.com>
+Cc: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>,
+  Richard Weinberger <richard@nod.at>,  Vignesh Raghavendra
+ <vigneshr@ti.com>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,
+  linux-mtd@lists.infradead.org,  linux-kernel@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-media@vger.kernel.org
+Subject: Re: [PATCH v11 2/2] mtd: rawnand: Add Loongson-1 NAND Controller
+ Driver
+In-Reply-To: <CAJhJPsVhH=8dKmUgmTSHnG8H1_9G3zvovX9hDv_VM6fSUR5oQw@mail.gmail.com>
+	(Keguang Zhang's message of "Sat, 18 Jan 2025 16:01:19 +0800")
+References: <20241217-loongson1-nand-v11-0-b692c58988bb@gmail.com>
+	<20241217-loongson1-nand-v11-2-b692c58988bb@gmail.com>
+	<87v7ufnc0w.fsf@bootlin.com>
+	<CAJhJPsWe+maw+zK6uiwvObTd_Ew73yjH=KddkgxwY7Zp0Y7ZYw@mail.gmail.com>
+	<87plkli9fj.fsf@bootlin.com>
+	<CAJhJPsVhH=8dKmUgmTSHnG8H1_9G3zvovX9hDv_VM6fSUR5oQw@mail.gmail.com>
+User-Agent: mu4e 1.12.7; emacs 29.4
+Date: Mon, 20 Jan 2025 09:10:04 +0100
+Message-ID: <874j1tykgz.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hi Geert,
 
-On Fri, 17 Jan 2025 14:04:38 +0100
-Geert Uytterhoeven <geert+renesas@glider.be> wrote:
+>> >> Don't you need a dma_addr_t here instead? You shall remap the resourc=
+e.
+>> >>
+>> > Sorry, I don't quite understand.
+>> > 'dma_base' is already of type dma_addr_t.
+>>
+>> I didn't identify where the dma_base was remapped, but if that's already
+>> done then we're good.
+>
+> Perhaps I misunderstand the usage of dma_map_resource(). dma_base is
+> the physical address and will be written to the DMA controller
+> register at last.
 
-> The Microchip LAN966X SerDes PHY is only present on Microchip LAN966x
-> SoCs.  However, when used as a PCI endpoint, all peripherals of the
-> LAN966x SoC can be accessed by the PCI host.  Hence add dependencies on
-                                              ^^ Two spaces
+IIUC, yes and no. It is the remapped address of the physical address you
+want to reach, not the physical address itself. The type is dma_addr_t
+and not phys_addr_t and you can get a dma address out of a physical
+address with a call to dma_map_resource(). The numerical value might be
+the same if there is no IO-MMU involved, but the good practice is to
+remap anyway.
 
-> SOC_LAN966 and MFD_LAN966X_PCI, to prevent asking the user about this
+Thanks,
+Miqu=C3=A8l
 
-s/MFD_LAN966X_PCI/MCHP_LAN966X_PCI/
-
-> driver when configuring a kernel without Microchip LAN966x SoC and PCIe
-> support.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-With those minor things fixed,
-
-Acked-by: Herve Codina <herve.codina@bootlin.com>
-
-Best regards,
-Hervé
 
