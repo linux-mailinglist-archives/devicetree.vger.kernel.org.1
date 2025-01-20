@@ -1,755 +1,175 @@
-Return-Path: <devicetree+bounces-139712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B4B4A16A05
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:54:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA4AEA16A10
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:57:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABDD91887BC7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:55:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BB011887BE8
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:57:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 589951AD403;
-	Mon, 20 Jan 2025 09:54:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69E3D19DF4A;
+	Mon, 20 Jan 2025 09:57:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="BIaw6xKQ"
+	dkim=pass (1024-bit key) header.d=mobileye.com header.i=@mobileye.com header.b="o6F3YJnE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11013049.outbound.protection.outlook.com [52.101.67.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B9AF19DF4A
-	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 09:54:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737366893; cv=none; b=TKvLbIMd81I+PHQHrlz41YgZFSLP2mLIR/X7+XZiyf4KXbFrOFVASocwuuaxdLl2Lx7ROqwySaiLSmXXhn0e4yvfha6zupzWv2CjYNZkVyTlX0yYg9kSnUnGOri5kXS0JNBEp1c6QBIGmNBjALMyhCz0X5eCiZqdGE2c2kOqlKM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737366893; c=relaxed/simple;
-	bh=XdwhWyyCx2P2teT4vMKy1dtzRns1KkTkMc204rJE9pg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iRoyKIMWIPWghqBp7th75gMTKGVUAsyk1Ljs+UqzDmBnKCOuseKtW5Jf9A145ZmRa0D1OBOQfpeSlHrnlCe9rDsj3AGABbFCgSNLBSmoneMIPNUsuVmogjv70ypf9xbKL3W/BG783R9/r6IsI77VNR2uxmCKK1j4H/FBYYkvabY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=BIaw6xKQ; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5401c68b89eso4064466e87.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 01:54:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1737366887; x=1737971687; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d/LmGO0uMCCQbrdM8obLw78UCz1V+sHrN5cegjwW44Y=;
-        b=BIaw6xKQ5Es+U0JbMnWe6UV0I8Dtui1FdlPMxVYj1YtUu3/ncGMuUxEOcKm+F2NhGs
-         vbbMy0jGf3uX89AY87W3ZmDPOHUvXtJKk/mSw/lf0+azM3HeNeKekQkzezqAaRjv++d+
-         kVJoXtvlVxudzLvWYek+2ozwIo5aWVYGtWckE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737366887; x=1737971687;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=d/LmGO0uMCCQbrdM8obLw78UCz1V+sHrN5cegjwW44Y=;
-        b=vzKX2X+xMwcXn286+Hw5CBft9rzzMUSo7g9DyqNFria/IFxKacTL15r26oZ6VCACNy
-         nzIiDatU+BhUFHVKK2ZBOl0DrLZjwJPnil2r7eZdeoCakicXbJP19r6STrHHguc4Pq24
-         SybXUxf/ICxD8uEEZvE1WrO/lrCpz/SGbbYj6GxnDkxKRv6PwkyYg4vDtGKeiWjAnlQZ
-         vAdCPoQAxaoA4G/OUs7oX+oZ1+Hte/r/13HzKMTDwwgMs0Ze7oomVaJfqG6Dq+jYLeeu
-         /zn3nx0neVi5wUlYxT0bb612J7z3uaFR4iF03qvUnw1C3SPybTHIoElRvWMcPl7dYGhn
-         GgJA==
-X-Forwarded-Encrypted: i=1; AJvYcCXnk/gcEP6KfMQ68IEytsPMXdsDIUSTdQ1xGwt6qqyVR/C9NSiPkP3KlToPlu8xTmnTaVohOi6oXloY@vger.kernel.org
-X-Gm-Message-State: AOJu0YydwrikGPtfbMtPKAy8TZW1WpEaovzZkvhoROphPdmyWY/8sg/H
-	LDbSdde8dYVWKeC1K4UtYkM1kAgaJXhFRdjzYUgSzPJ0QczUWskN3h4gjiggmDbwI3n4Wrfd2fG
-	FinYnuWsfAzJtZIIWRy73gVFQ0f4n/gdoPXV6
-X-Gm-Gg: ASbGncujWF/D2f8G0QhM4gOiqNDkgTSDCt9mLHr5h2NMFne+LSKYx5qIFE2LMO3woE+
-	9//o7ezdnQDNzA3pT+ItDwy20DAdf6NoCKm0XPsDqCERUuHfJ3dKfwteZ8qt6w+Lh8B9Bopa861
-	9snLY=
-X-Google-Smtp-Source: AGHT+IGQoewlbCJQDZtee8s7nMjo+zp5MngWaDQ3I/b2FWHHTM5vPICra5sdbQKRRIHJjCnPDnTY0R/PI9w1sL3OXWk=
-X-Received: by 2002:a05:6512:10ce:b0:542:8386:e5bf with SMTP id
- 2adb3069b0e04-542abf5d6aamr6738672e87.6.1737366887413; Mon, 20 Jan 2025
- 01:54:47 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBF6B18801A;
+	Mon, 20 Jan 2025 09:57:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.67.49
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737367062; cv=fail; b=d7IXJacpykfUs/oMPtefqEpCcx5eEVtjlT5oaGQrVQlBMAkgz8u7RVzwzVw5q0w8jJDng4LUyiWth2J9Tw4fW6nIQmUA9WJolqbWpmN3Tu+EuLsWvA0VMPRN+b2BB4s1McX+m2E4PJ1/u38vjzCX376Nc/sHt/+h6o+2aLMAX7M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737367062; c=relaxed/simple;
+	bh=Wk2nJUqkoOXVpMgdz4vQkoi6HOVnYQGulAmCAceNZoM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=p4VaQTaQzjGVsL0njG3l2mmAynnoPTaSNyw54LFABT6k7cVA+0AKQOjjW8Utds4cLB+LpCVo+HLyPQ4p5UbwDNi81RWmnnVHR5gh7fqlNq9HzYpA4L26Z1108dHpq6q3ZNKg7YeU7ByxD4n++eX967peQyYk2uWCxX8KuxNIcaA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com; spf=pass smtp.mailfrom=mobileye.com; dkim=pass (1024-bit key) header.d=mobileye.com header.i=@mobileye.com header.b=o6F3YJnE; arc=fail smtp.client-ip=52.101.67.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mobileye.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=SL0PTSgciZZ0mTp67ECIJUj3cW0OowXwnAm23xRqDKOfekKNrazxS9YACDsh52hpOpe12ErYlZZE6NbN9hBxyX58XnDVnxXFoS3ynpDjU0uwTMJRwebMEcAADyGnvafjRWVYpoh1c+k47DiEfNqhsfXhYuKySXxZQ6r6hwMmvU12+JrY2QHF8jBh9+4RcZr6GeKwj8NbM6H2uy+PyfDpKEY9sfs3YVMhaTuhcbbDnmf4+hDLebCAo13P1JduVmu86+ndHK/DfC457XI2nj2cN8Eisd/p9W4gaemgVDbz8Ytwdp6ta8i9/1RUuKkCllErk1BOZFDwje83iiRW+xJANA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Wk2nJUqkoOXVpMgdz4vQkoi6HOVnYQGulAmCAceNZoM=;
+ b=y+ZirpG54eO+N/dlOQ2cDmCLsEJVBic+cqWSPRMW7Xd8baZDPKhzMHFfOwfG34r1riHBiORJo0ZJfBVCh/ZD8HxRzNVcoEVMW8ZtsTd3PnkgxhSUO91U286OmiMR3SuV0HYmOpUYPRnFXJkDyTRqOZRLPmJqiQnl/T+Uxe3BpUX5a2Pkk8biqkys4no59romchQ+K7zOEhI/HhCIlHmrhbeP+bbFBp9c68PxdWrCsQBCRGKQ9kOPULkGpXOrO4g+0ygo+movSlTmJSOwcSEFJOMz6eh23+sEQk6Kky8JbdBXWPhImGh++30L+4tnyB2Q64LF8nPs6BKpnmSBryinJg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mobileye.com; dmarc=pass action=none header.from=mobileye.com;
+ dkim=pass header.d=mobileye.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mobileye.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Wk2nJUqkoOXVpMgdz4vQkoi6HOVnYQGulAmCAceNZoM=;
+ b=o6F3YJnEeEWvekF+ma6DeWojzN0BMCouF48fkU5DPZ6fFmAbdwy4tamCf0OQeMtRp78iBg289uy/bwrZlyzeiWg0tQQM2X7gfgkszY76G9AFbHCBGIlWwhngRumgeXZUmIFQXz5aSxveoYP6KwvS7I6dT5K0sG2p1wQHFjqoigc=
+Received: from VI1PR09MB2333.eurprd09.prod.outlook.com (2603:10a6:803:82::16)
+ by GV2PR09MB5913.eurprd09.prod.outlook.com (2603:10a6:150:75::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.19; Mon, 20 Jan
+ 2025 09:57:34 +0000
+Received: from VI1PR09MB2333.eurprd09.prod.outlook.com
+ ([fe80::fef9:cf7b:cbc2:d3b7]) by VI1PR09MB2333.eurprd09.prod.outlook.com
+ ([fe80::fef9:cf7b:cbc2:d3b7%3]) with mapi id 15.20.8356.010; Mon, 20 Jan 2025
+ 09:57:34 +0000
+From: Vladimir Kondratiev <Vladimir.Kondratiev@mobileye.com>
+To: Anup Patel <anup@brainfault.org>, Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+CC: "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 0/2] riscv,aplic: support for hart indexes
+Thread-Topic: [PATCH v4 0/2] riscv,aplic: support for hart indexes
+Thread-Index: AQHbYosFYyla6ruZ50C+jmEaFG+rqrMffL//
+Date: Mon, 20 Jan 2025 09:57:34 +0000
+Message-ID:
+ <VI1PR09MB2333B79BC237FB5BB03893D394E72@VI1PR09MB2333.eurprd09.prod.outlook.com>
+References: <20250109113814.3254448-1-vladimir.kondratiev@mobileye.com>
+In-Reply-To: <20250109113814.3254448-1-vladimir.kondratiev@mobileye.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mobileye.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: VI1PR09MB2333:EE_|GV2PR09MB5913:EE_
+x-ms-office365-filtering-correlation-id: d8cb3c72-4273-4851-dc90-08dd3938dcce
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|7416014|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?d9mGSDK1q23TNjPz+PcVPDb/2IYehNwy+XEuamzBYGQzsJSjO1QZ9G5qEI?=
+ =?iso-8859-1?Q?I8hsNhFOSqcm+Hd+LDQalSXN7xfmb2I13lnbUEzqeBuKgT+bLRSWEgZR62?=
+ =?iso-8859-1?Q?pKcFH5tQCDQRHlbUkDZ3E45+Z5wea4qIqciC5eEsyHG3n1D7yi/fV5bpdP?=
+ =?iso-8859-1?Q?HEpI/PBer6GhvucjrixaujrM/Bnr5nrv6BPbh+aYkHSjGCz3FccSXCofbC?=
+ =?iso-8859-1?Q?zXvZeEaYDwojrtrWAC6wQU632NgJyhU6bVHAoXlr10kTaghU/3khPq1d5i?=
+ =?iso-8859-1?Q?9znFCBKpoZBjuiKGopYrGs6xBycLaRUpEUWPpP5FtWWxuQB6uZFmea1ZX9?=
+ =?iso-8859-1?Q?oXs/V/pIlkwi5GvTFl7AIRtjneSE/YWYHBYH7wsvkOfT/Qkxs9EJg11DDs?=
+ =?iso-8859-1?Q?F2MiurvRzLsFxYdsbQNcIxc53GotnLtki5P4J7RQZhxa/FUsHSj3gPFwT4?=
+ =?iso-8859-1?Q?waEM7Sd80U0u9tJfR8A6v8OUtRnsHzv95kWKy3SH7PT/bvCqFSpxGSORc1?=
+ =?iso-8859-1?Q?5OmSrtA0X8s+xMarG2WzSZXGGKPnhHCoNkiDsEIaCXN77aAMYqthx5u2kL?=
+ =?iso-8859-1?Q?ba9ZrbO9PMRtPUjVDnZmZ8JkNizlBntJ6aWwg4CKTxIMfN5NEKBYsy2Bk4?=
+ =?iso-8859-1?Q?OVAhx2caVp9Rki4ngkJJoBCGP54JL7GRNnQpJDic8vq7xOP0W1oyUeT5CS?=
+ =?iso-8859-1?Q?WyZFd5IRYCkM+kubIosqVpXmGdB+KophGNJ41Dcy+td6DuvbVWwMcjQgRd?=
+ =?iso-8859-1?Q?UsSYUtrwP0bXW3eSDHpD7BzXp/m1I8efjdYDDwBDSHJjVuYBFciv25XAl5?=
+ =?iso-8859-1?Q?K8rqn72Sm0gr5RhVa/4U2kRZ6cEEOmCyJqkqpyqndLYgqqtrycOH1nRjqr?=
+ =?iso-8859-1?Q?jbAe1OWPkzGv17XcCITkcx8/pYbycRWEPxAYkkkFrqy0tqETOHc+DKdel6?=
+ =?iso-8859-1?Q?40XtxUD415hBe1wZ0y7SopYGOuREHVqOrtnJcuhwQ/RopHwXz+/sgWfc0d?=
+ =?iso-8859-1?Q?VYYbuO9+8KaH3Ri2x1bnOuyYQ6k7o0BipY7ioYv5AjgdTq6KXZqy2AkGbV?=
+ =?iso-8859-1?Q?wwg+gfjaILi/pPM7WXRrXsKG+CB1/4HzuS91hQE5m5oHSUm8qI7FY25322?=
+ =?iso-8859-1?Q?AaGvh49iuaIosUZ7fNW2QcXt1dU+q8/3MKKwtfJC3QD/AVmT7gLuNKirvN?=
+ =?iso-8859-1?Q?U2ssu/4J1NssVAOwNTKWOGwpV1Oh2dLVVPpNSLKVhN8FMixrDkmAZs4/2+?=
+ =?iso-8859-1?Q?OdSxAZ95eu4BbBAeLAVpEnvWUOWzj1bqSWYtT8r39kUxC+y9GuHn4nUQG1?=
+ =?iso-8859-1?Q?894hvZPoWERy9i+kb4GCRYeZyg1K543RT+uxtWw8RHyf55s1osbl4U2l7c?=
+ =?iso-8859-1?Q?vHeGWUYgwc4JFq5Mvl0I1p4n2N+EKfsToe6AURg/xwNq7tQpzSF0gOr20n?=
+ =?iso-8859-1?Q?zm/OL9ryRZbE7AWGQe90OMfXwXD1/BDwXP9E458FcUS8/mpO6nnIZD++LF?=
+ =?iso-8859-1?Q?GMW0Ky+r+g7MY8F7xYVtE6?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR09MB2333.eurprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?DyHV4Bj6IssX7N8k3U6b1fTRylnk1ZdhYIi4k3RkkCmH5zR/p0K4CyJKMH?=
+ =?iso-8859-1?Q?yDzde4fQruqS+dC7v74nTwvgzo9HyBWyQ6chHIryM24NSCXvkbGhhAq/gg?=
+ =?iso-8859-1?Q?Ce4CecDlIrBLIeJgAkb5mIgtFQVQ1iPSk38JbNG4bCUEUXZIkd5dMjmM/J?=
+ =?iso-8859-1?Q?V9MjTwbwJZLyUMxsd64nXSA35QIKf1RNuEdT+ShZU6ZTFYl2hJwbiWe/VP?=
+ =?iso-8859-1?Q?9mPJ/UafXAfodYUNqOcNNYNgqGFY+5QGIRkvVUUXNW0lYhwNqxcdt1f9/1?=
+ =?iso-8859-1?Q?1fm5nN9VFoRYxq7gH0wFzKODDPUlqSW1QVxdOekDaGOi8MM1bpfrEIfI8l?=
+ =?iso-8859-1?Q?cmgbESHYu2H7QMdgW8om7lnLZFjcDg9/P3MwTSdyKPQP8NJ2CghEVoYOwZ?=
+ =?iso-8859-1?Q?uv0edPhkrDUAC9IcC5/cZ6FD/j/uU6tCyI+pWzThSxlFTGkS6vgi/vw7/W?=
+ =?iso-8859-1?Q?7/0a5GJNzuVqxWZzEZMTWrNBw8wjYIhBPDkFPyRupJmm9FCYCd7z9mhT9q?=
+ =?iso-8859-1?Q?c/bk0zzsiZlpkghw20EOr/qyFJMU8ce/0Rck/3eXbsdN131jRIM5jnIBLH?=
+ =?iso-8859-1?Q?FHBKTKjn2Q6fyF1s6gsOH/KMPKvw5qh1QIDSO0jskUpzFsszEVdaS4yQ4i?=
+ =?iso-8859-1?Q?HKNn42K2aaOOeF0ubiROuKUhQ2n/3FOG/1XpTOkjP5p3/9J2v6dYZIlISu?=
+ =?iso-8859-1?Q?X0EVB1XDXyYilQLNIGEQ/jxMfbiAL+MftBr3U1RAs4Oif9lXtOPubEB9q/?=
+ =?iso-8859-1?Q?8yMIsR9c+J38HBONbj2aeN4h4zH+beCP3RpPXDTrF9g9fbYHf2gEBsURmB?=
+ =?iso-8859-1?Q?X55fhZOLP7TOh/ZjLhsHrQtK1vDnCFEY5Qd7MQALsgy80EzTnJXVqIRas6?=
+ =?iso-8859-1?Q?RkGIEtSP5zG5DReydx6ewV/0vC3IoAvaUkHQa8pRRUwNses64Od5XJ7vdT?=
+ =?iso-8859-1?Q?1jDaPxCa/53Y8KyDslCIvNXv9N06WfA2NqBeizmZXa1tKff80vJDbotU/2?=
+ =?iso-8859-1?Q?rgcw03etiKddbSRJpPVzq6TUpPuDMdEubqJOxZfpGPOrG050eAGLRxiHFi?=
+ =?iso-8859-1?Q?7iy264m4RhKCyGjZNaOMaMYmYfZouz0pTZmRIkyZhm/N4BW4iFOh8DA6Gi?=
+ =?iso-8859-1?Q?LmxOhSluKGq8Vy1FtOHwIMWZVF4ZTkgMLjKZBszTRXodx7A0kfOrZqCllK?=
+ =?iso-8859-1?Q?exz1orKCyo4hOZHqMBI6RpQocYZOaULpewvQYlyl01RNCvDM3oqkGEIDGQ?=
+ =?iso-8859-1?Q?WY1XwVZ1k/Kc4kT8Dpk0dIKZtuuPHn9qzyRvn7VtsrbJe1ydye4dcaoogV?=
+ =?iso-8859-1?Q?wXivdp8QmJWGkuDZUHT3dl8v6BkUD8iBmtD1ZO6Y4irumu9hB9RozjR0Lk?=
+ =?iso-8859-1?Q?DD7rqZJ6i/Aw/X9GoJe40cvvdPCQrZovE5zWtKkc0YJeaRpCpg070sYq+l?=
+ =?iso-8859-1?Q?ZJx+GLS3Dh1/nxUF8ZpKpH2R7khKCcMQZvGBL9j+0mblG6p4cKjuFK8o3d?=
+ =?iso-8859-1?Q?PARrMnC43whakvZey6kRkjzLLsJKiNZSK0o3OTSvO3hJCcdEfOni5Q3/ER?=
+ =?iso-8859-1?Q?GM0MKtJbKHkjE6Yn4jba4eq1i729ickgAacN63kgZvHkxIEzQVhI1NYv8x?=
+ =?iso-8859-1?Q?9ZEY7T+1N2TCFf8WHtrDk8eIENFPSCQboD?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com> <20250110123835.2719824-10-paul-pl.chen@mediatek.com>
-In-Reply-To: <20250110123835.2719824-10-paul-pl.chen@mediatek.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 20 Jan 2025 17:54:36 +0800
-X-Gm-Features: AbW1kvYECeFZbAVeFROWrq6joCBMVSvC3lUXYydU3T7wIZxiMamIOyQqtneBkkQ
-Message-ID: <CAGXv+5HALthvPSsN0sFYWQ7R6QEYf=cb7ZRa2CLJ1ZuNHJy3vQ@mail.gmail.com>
-Subject: Re: [PATCH 08/12] drm/mediatek: add EXDMA support for MT8196
-To: "paul-pl.chen" <paul-pl.chen@mediatek.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	chunkuang.hu@kernel.org, angelogioacchino.delregno@collabora.com, 
-	devicetree@vger.kernel.org, xiandong.wang@mediatek.com, 
-	jason-jh.lin@mediatek.com, singo.chang@mediatek.com, treapking@chromium.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com, nancy.lin@mediatek.com, 
-	linux-mediatek@lists.infradead.org, sunny.shen@mediatek.com, 
-	p.zabel@pengutronix.de, sirius.wang@mediatek.com, matthias.bgg@gmail.com, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: mobileye.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR09MB2333.eurprd09.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8cb3c72-4273-4851-dc90-08dd3938dcce
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jan 2025 09:57:34.1839
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 4f85ba13-6953-46a6-9c5b-7599fd80e9aa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: QYOmxEgKxZ70MrKUq4Q3ipaMY859FArnfHw4yoRcRuVtO2nbbWf/uj/AVSyczZjIX0uv8S+yUuiDYOVYXd3SFA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR09MB5913
 
-On Fri, Jan 10, 2025 at 8:54=E2=80=AFPM paul-pl.chen <paul-pl.chen@mediatek=
-.com> wrote:
->
-> From: "Nancy.Lin" <nancy.lin@mediatek.com>
->
-> EXDMA is a DMA engine for reading data from DRAM with
-> various DRAM footprints and data formats. For input
-> sources in certain color formats and color domains,
-> EXDMA also includes a color transfer function to
-> process pixels into a consistent color domain.
->
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> Signed-off-by: Paul-pl.Chen <paul-pl.chen@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/Makefile         |   1 +
->  drivers/gpu/drm/mediatek/mtk_ddp_comp.c   |   1 +
->  drivers/gpu/drm/mediatek/mtk_ddp_comp.h   |   1 +
->  drivers/gpu/drm/mediatek/mtk_disp_drv.h   |   9 +
->  drivers/gpu/drm/mediatek/mtk_disp_exdma.c | 447 ++++++++++++++++++++++
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c    |   1 +
->  drivers/gpu/drm/mediatek/mtk_drm_drv.h    |   1 +
->  7 files changed, 461 insertions(+)
->  create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_exdma.c
->
-> diff --git a/drivers/gpu/drm/mediatek/Makefile b/drivers/gpu/drm/mediatek=
-/Makefile
-> index 32a2ed6c0cfe..db92f4fb353d 100644
-> --- a/drivers/gpu/drm/mediatek/Makefile
-> +++ b/drivers/gpu/drm/mediatek/Makefile
-> @@ -5,6 +5,7 @@ mediatek-drm-y :=3D mtk_crtc.o \
->                   mtk_disp_aal.o \
->                   mtk_disp_ccorr.o \
->                   mtk_disp_color.o \
-> +                 mtk_disp_exdma.o \
->                   mtk_disp_gamma.o \
->                   mtk_disp_merge.o \
->                   mtk_disp_ovl.o \
-> diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c b/drivers/gpu/drm/me=
-diatek/mtk_ddp_comp.c
-> index edc6417639e6..3e0739d8e6f1 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.c
-> @@ -445,6 +445,7 @@ static const char * const mtk_ddp_comp_stem[MTK_DDP_C=
-OMP_TYPE_MAX] =3D {
->         [MTK_DP_INTF] =3D "dp-intf",
->         [MTK_DPI] =3D "dpi",
->         [MTK_DSI] =3D "dsi",
-> +       [MTK_OVL_EXDMA] =3D "exdma",
->  };
->
->  struct mtk_ddp_comp_match {
-> diff --git a/drivers/gpu/drm/mediatek/mtk_ddp_comp.h b/drivers/gpu/drm/me=
-diatek/mtk_ddp_comp.h
-> index 39720b27f4e9..86dc0ee3924c 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_ddp_comp.h
-> @@ -43,6 +43,7 @@ enum mtk_ddp_comp_type {
->         MTK_DPI,
->         MTK_DP_INTF,
->         MTK_DSI,
-> +       MTK_OVL_EXDMA,
->         MTK_DDP_COMP_TYPE_MAX,
->  };
->
-> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h b/drivers/gpu/drm/me=
-diatek/mtk_disp_drv.h
-> index 04217a36939c..f8291651dc80 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-> @@ -39,6 +39,15 @@ void mtk_color_config(struct device *dev, unsigned int=
- w,
->                       unsigned int bpc, struct cmdq_pkt *cmdq_pkt);
->  void mtk_color_start(struct device *dev);
->
-> +int mtk_disp_exdma_clk_enable(struct device *dev);
-> +void mtk_disp_exdma_clk_disable(struct device *dev);
-> +void mtk_disp_exdma_start(struct device *dev, struct cmdq_pkt *cmdq_pkt)=
-;
-> +void mtk_disp_exdma_stop(struct device *dev, struct cmdq_pkt *cmdq_pkt);
-> +void mtk_disp_exdma_config(struct device *dev, struct mtk_plane_state *s=
-tate,
-> +                          struct cmdq_pkt *cmdq_pkt);
-> +const u32 *mtk_disp_exdma_get_formats(struct device *dev);
-> +size_t mtk_disp_exdma_get_num_formats(struct device *dev);
-> +
->  void mtk_dither_set_common(void __iomem *regs, struct cmdq_client_reg *c=
-mdq_reg,
->                            unsigned int bpc, unsigned int cfg,
->                            unsigned int dither_en, struct cmdq_pkt *cmdq_=
-pkt);
-> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_exdma.c b/drivers/gpu/drm/=
-mediatek/mtk_disp_exdma.c
-> new file mode 100644
-> index 000000000000..e1d7bda22972
-> --- /dev/null
-> +++ b/drivers/gpu/drm/mediatek/mtk_disp_exdma.c
-> @@ -0,0 +1,447 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2021 MediaTek Inc.
-> + */
-> +
-> +#include <drm/drm_fourcc.h>
-> +#include <drm/drm_blend.h>
-> +#include <drm/drm_framebuffer.h>
-> +#include <linux/clk.h>
-> +#include <linux/component.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/soc/mediatek/mtk-cmdq.h>
-> +
-> +#include "mtk_disp_drv.h"
-> +#include "mtk_drm_drv.h"
-> +
-> +#define DISP_REG_OVL_EN_CON                    0xc
-> +#define OVL_OP_8BIT_MODE                               BIT(4)
-> +#define OVL_HG_FOVL_CK_ON                              BIT(8)
-> +#define OVL_HF_FOVL_CK_ON                              BIT(10)
-> +#define DISP_REG_OVL_DATAPATH_CON              0x014
-> +#define DATAPATH_CON_LAYER_SMI_ID_EN                   BIT(0)
-> +#define DATAPATH_CON_GCLAST_EN                         BIT(24)
-> +#define DATAPATH_CON_HDR_GCLAST_EN                     BIT(25)
-> +#define DISP_REG_OVL_EN                                0x020
-> +#define DISP_OVL_EN                                    BIT(0)
-> +#define DISP_REG_OVL_RST                       0x024
-> +#define DISP_OVL_RST                                   BIT(0)
-> +#define DISP_REG_OVL_ROI_SIZE                  0x030
-> +#define DISP_REG_OVL_L0_EN                     0x040
-> +#define DISP_OVL_L0_EN                                 BIT(0)
-> +#define DISP_REG_OVL_OFFSET                    0x044
-> +#define DISP_REG_OVL_SRC_SIZE                  0x048
-> +#define DISP_REG_OVL_L0_CLRFMT                 0x050
-> +#define OVL_CON_FLD_CLRFMT                             GENMASK(3, 0)
-> +#define OVL_CON_CLRFMT_MAN                             BIT(4)
-> +#define OVL_CON_FLD_CLRFMT_NB                          GENMASK(9, 8)
-> +#define OVL_CON_CLRFMT_NB_10_BIT                       BIT(8)
-> +#define OVL_CON_BYTE_SWAP                              BIT(16)
-> +#define OVL_CON_RGB_SWAP                               BIT(17)
-> +#define OVL_CON_CLRFMT_RGB565                          0x000
-> +#define OVL_CON_CLRFMT_BGR888                          0x001
-> +#define OVL_CON_CLRFMT_BGRA8888                                0x002
-> +#define OVL_CON_CLRFMT_ABGRB8888                       0x003
-
-Typo? Should probably be OVL_CON_CLRFMT_ABGR8888.
-
-> +#define OVL_CON_CLRFMT_UYVY                            0x004
-> +#define OVL_CON_CLRFMT_YUYV                            0x005
-
-> +#define OVL_CON_CLRFMT_BGR565                          (0x000 | OVL_CON_=
-BYTE_SWAP)
-> +#define OVL_CON_CLRFMT_RGB888                          (0x001 | OVL_CON_=
-BYTE_SWAP)
-> +#define OVL_CON_CLRFMT_RGBA8888                                (0x002 | =
-OVL_CON_BYTE_SWAP)
-> +#define OVL_CON_CLRFMT_ARGB8888                                (0x003 | =
-OVL_CON_BYTE_SWAP)
-> +#define OVL_CON_CLRFMT_VYUY                            (0x004 | OVL_CON_=
-BYTE_SWAP)
-> +#define OVL_CON_CLRFMT_YVYU                            (0x005 | OVL_CON_=
-BYTE_SWAP)
-
-Please use the OVL_CON_CLRFMT_* macros from above in place of the raw 0x???
-values. This helps contrast what the byte swap is.
-
-> +#define OVL_CON_CLRFMT_PBGRA8888                       (0x003 | OVL_CON_=
-CLRFMT_MAN)
-> +#define OVL_CON_CLRFMT_PARGB8888                       (OVL_CON_CLRFMT_P=
-BGRA8888 | \
-> +                                                       OVL_CON_BYTE_SWAP=
-)
-> +#define OVL_CON_CLRFMT_PRGBA8888                       (OVL_CON_CLRFMT_P=
-BGRA8888 | \
-> +                                                       OVL_CON_RGB_SWAP)
-> +#define OVL_CON_CLRFMT_PABGR8888                       (OVL_CON_CLRFMT_P=
-BGRA8888 | \
-> +                                                       OVL_CON_RGB_SWAP =
-| \
-> +                                                       OVL_CON_BYTE_SWAP=
-)
-
-Can you stick to using one existing macro plus OR-ing just one flag?
-Existing code in drivers/gpu/drm/mediatek/mtk_disp_ovl.c does that.
-
-> +#define DISP_REG_OVL_RDMA0_CTRL                        0x100
-> +#define DISP_RDMA0_EN                                  BIT(0)
-> +#define DISP_REG_OVL_RDMA_BURST_CON1           0x1f4
-> +#define DISP_RDMA_BURST_CON1_BURST16_EN                        BIT(28)
-> +#define DISP_RDMA_BURST_CON1_DDR_EN                    BIT(30)
-> +#define DISP_RDMA_BURST_CON1_DDR_ACK_EN                        BIT(31)
-> +#define DISP_REG_OVL_DUMMY_REG                 0x200
-> +#define DISP_OVL_EXT_DDR_EN_OPT                                BIT(2)
-> +#define DISP_OVL_FORCE_EXT_DDR_EN                      BIT(3)
-> +#define DISP_REG_OVL_GDRDY_PRD                 0x208
-> +#define DISP_REG_OVL_PITCH_MSB                 0x2f0
-> +#define DISP_REG_OVL_PITCH                     0x2f4
-> +#define OVL_L0_SRC_PITCH                               GENMASK(15, 0)
-> +#define OVL_L0_CONST_BLD                               BIT(28)
-> +#define OVL_L0_SRC_PITCH_MASK                          GENMASK(15, 0)
-> +#define DISP_REG_OVL_L0_GUSER_EXT              0x2fc
-> +#define OVL_RDMA0_L0_VCSEL                             BIT(5)
-> +#define OVL_RDMA0_HDR_L0_VCSEL                         BIT(21)
-> +#define DISP_REG_OVL_CON                       0x300
-> +#define DISP_OVL_CON_FLD_INT_MTX_SEL                   GENMASK(19, 16)
-> +#define DISP_OVL_CON_INT_MTX_BT601_TO_RGB              (6 << 16)
-> +#define DISP_OVL_CON_INT_MTX_BT709_TO_RGB              (7 << 16)
-> +#define DISP_OVL_CON_INT_MTX_EN                                BIT(27)
-> +#define DISP_REG_OVL_ADDR                      0xf40
-> +#define DISP_REG_OVL_MOUT                      0xff0
-> +#define OVL_MOUT_OUT_DATA                              BIT(0)
-> +#define OVL_MOUT_BGCLR_OUT                             BIT(1)
-> +
-> +static const u32 formats[] =3D {
-> +       DRM_FORMAT_XRGB8888,
-> +       DRM_FORMAT_ARGB8888,
-> +       DRM_FORMAT_BGRX8888,
-> +       DRM_FORMAT_BGRA8888,
-> +       DRM_FORMAT_ABGR8888,
-> +       DRM_FORMAT_XBGR8888,
-> +       DRM_FORMAT_RGBX8888,
-> +       DRM_FORMAT_RGBA8888,
-> +       DRM_FORMAT_RGB888,
-> +       DRM_FORMAT_BGR888,
-> +       DRM_FORMAT_RGB565,
-> +       DRM_FORMAT_UYVY,
-> +       DRM_FORMAT_YUYV,
-> +       DRM_FORMAT_XRGB2101010,
-> +       DRM_FORMAT_ARGB2101010,
-> +       DRM_FORMAT_RGBX1010102,
-> +       DRM_FORMAT_RGBA1010102,
-> +       DRM_FORMAT_XBGR2101010,
-> +       DRM_FORMAT_ABGR2101010,
-> +       DRM_FORMAT_BGRX1010102,
-> +       DRM_FORMAT_BGRA1010102,
-> +};
-> +
-> +struct mtk_disp_exdma {
-> +       void __iomem            *regs;
-> +       struct clk              *clk;
-> +       struct cmdq_client_reg  cmdq_reg;
-> +       struct device           *larb;
-> +};
-> +
-> +static inline bool is_10bit_rgb(u32 fmt)
-> +{
-> +       switch (fmt) {
-> +       case DRM_FORMAT_XRGB2101010:
-> +       case DRM_FORMAT_ARGB2101010:
-> +       case DRM_FORMAT_RGBX1010102:
-> +       case DRM_FORMAT_RGBA1010102:
-> +       case DRM_FORMAT_XBGR2101010:
-> +       case DRM_FORMAT_ABGR2101010:
-> +       case DRM_FORMAT_BGRX1010102:
-> +       case DRM_FORMAT_BGRA1010102:
-> +               return true;
-> +       }
-> +       return false;
-> +}
-> +
-> +static unsigned int mtk_disp_exdma_fmt_convert(unsigned int fmt, unsigne=
-d int blend_mode)
-
-The function only differentiates pre-multiplied vs non-pre-multiplied
-alpha. Maybe change the second parameter to "bool is_alpha_premultiplied"
-to make it clear.
-
-> +{
-> +       /*
-> +        * DRM_FORMAT: bit 32->0, OVL_FMT: bit 0->32,
-> +        * so DRM_FORMAT_RGB888 =3D OVL_CON_CLRFMT_BGR888
-> +        */
-> +       switch (fmt) {
-> +       default:
-> +       case DRM_FORMAT_BGR565:
-> +               return OVL_CON_CLRFMT_RGB565;
-> +       case DRM_FORMAT_RGB565:
-> +               return OVL_CON_CLRFMT_BGR565;
-> +       case DRM_FORMAT_RGB888:
-> +               return OVL_CON_CLRFMT_BGR888;
-> +       case DRM_FORMAT_BGR888:
-> +               return OVL_CON_CLRFMT_RGB888;
-> +       case DRM_FORMAT_RGBX8888:
-> +       case DRM_FORMAT_RGBA8888:
-> +       case DRM_FORMAT_RGBA1010102:
-> +       case DRM_FORMAT_RGBX1010102:
-> +               return ((blend_mode =3D=3D DRM_MODE_BLEND_PREMULTI) ?
-> +                       OVL_CON_CLRFMT_PABGR8888 : OVL_CON_CLRFMT_ABGRB88=
-88) |
-> +                       (is_10bit_rgb(fmt) ? OVL_CON_CLRFMT_NB_10_BIT : 0=
-);
-> +       case DRM_FORMAT_BGRX8888:
-> +       case DRM_FORMAT_BGRA8888:
-> +       case DRM_FORMAT_BGRA1010102:
-> +       case DRM_FORMAT_BGRX1010102:
-> +               return ((blend_mode =3D=3D DRM_MODE_BLEND_PREMULTI) ?
-> +                       OVL_CON_CLRFMT_PARGB8888 : OVL_CON_CLRFMT_ARGB888=
-8) |
-> +                       (is_10bit_rgb(fmt) ? OVL_CON_CLRFMT_NB_10_BIT : 0=
-);
-> +       case DRM_FORMAT_XRGB8888:
-> +       case DRM_FORMAT_ARGB8888:
-> +       case DRM_FORMAT_ARGB2101010:
-> +       case DRM_FORMAT_XRGB2101010:
-> +               return ((blend_mode =3D=3D DRM_MODE_BLEND_PREMULTI) ?
-> +                       OVL_CON_CLRFMT_PBGRA8888 : OVL_CON_CLRFMT_BGRA888=
-8) |
-> +                       (is_10bit_rgb(fmt) ? OVL_CON_CLRFMT_NB_10_BIT : 0=
-);
-> +       case DRM_FORMAT_XBGR8888:
-> +       case DRM_FORMAT_ABGR8888:
-> +       case DRM_FORMAT_ABGR2101010:
-> +       case DRM_FORMAT_XBGR2101010:
-> +               return ((blend_mode =3D=3D DRM_MODE_BLEND_PREMULTI) ?
-> +                       OVL_CON_CLRFMT_PRGBA8888 : OVL_CON_CLRFMT_RGBA888=
-8) |
-> +                       (is_10bit_rgb(fmt) ? OVL_CON_CLRFMT_NB_10_BIT : 0=
-);
-> +       case DRM_FORMAT_UYVY:
-> +               return OVL_CON_CLRFMT_UYVY;
-> +       case DRM_FORMAT_YUYV:
-> +               return OVL_CON_CLRFMT_YUYV;
-> +       }
-> +}
-> +
-> +static unsigned int exdma_color_convert(unsigned int color_encoding)
-> +{
-> +       switch (color_encoding) {
-> +       default:
-> +       case DRM_COLOR_YCBCR_BT709:
-> +               return DISP_OVL_CON_INT_MTX_BT709_TO_RGB;
-> +       case DRM_COLOR_YCBCR_BT601:
-> +               return DISP_OVL_CON_INT_MTX_BT601_TO_RGB;
-> +       }
-> +}
-> +
-> +void mtk_disp_exdma_start(struct device *dev, struct cmdq_pkt *cmdq_pkt)
-> +{
-> +       struct mtk_disp_exdma *priv =3D dev_get_drvdata(dev);
-> +       unsigned int value =3D 0, mask =3D 0;
-> +
-> +       value =3D DISP_RDMA_BURST_CON1_BURST16_EN | DISP_RDMA_BURST_CON1_=
-DDR_ACK_EN;
-> +       mask =3D DISP_RDMA_BURST_CON1_BURST16_EN | DISP_RDMA_BURST_CON1_D=
-DR_EN |
-> +              DISP_RDMA_BURST_CON1_DDR_ACK_EN;
-> +       mtk_ddp_write_mask(cmdq_pkt, value, &priv->cmdq_reg, priv->regs,
-> +                          DISP_REG_OVL_RDMA_BURST_CON1, mask);
-> +       /*
-> +        * The dummy register is used in the configuration of the EXDMA e=
-ngine to
-> +        * write commands to DRAM, ensuring that data transfers occur nor=
-mally.
-> +        */
-> +       value =3D DISP_OVL_EXT_DDR_EN_OPT | DISP_OVL_FORCE_EXT_DDR_EN;
-> +       mask =3D DISP_OVL_EXT_DDR_EN_OPT | DISP_OVL_FORCE_EXT_DDR_EN;
-> +       mtk_ddp_write_mask(cmdq_pkt, value, &priv->cmdq_reg, priv->regs,
-> +                          DISP_REG_OVL_DUMMY_REG, mask);
-> +
-> +       value =3D DATAPATH_CON_LAYER_SMI_ID_EN | DATAPATH_CON_HDR_GCLAST_=
-EN | DATAPATH_CON_GCLAST_EN;
-> +       mask =3D DATAPATH_CON_LAYER_SMI_ID_EN | DATAPATH_CON_HDR_GCLAST_E=
-N | DATAPATH_CON_GCLAST_EN;
-> +       mtk_ddp_write_mask(cmdq_pkt, value, &priv->cmdq_reg, priv->regs,
-> +                          DISP_REG_OVL_DATAPATH_CON, mask);
-> +
-> +       mtk_ddp_write_mask(cmdq_pkt, OVL_MOUT_BGCLR_OUT, &priv->cmdq_reg,=
- priv->regs,
-> +                          DISP_REG_OVL_MOUT, OVL_MOUT_BGCLR_OUT | OVL_MO=
-UT_OUT_DATA);
-> +
-> +       mtk_ddp_write(cmdq_pkt, ~0, &priv->cmdq_reg, priv->regs, DISP_REG=
-_OVL_GDRDY_PRD);
-> +
-> +       mtk_ddp_write_mask(cmdq_pkt, DISP_RDMA0_EN, &priv->cmdq_reg, priv=
-->regs,
-> +                          DISP_REG_OVL_RDMA0_CTRL, DISP_RDMA0_EN);
-> +       mtk_ddp_write_mask(cmdq_pkt, DISP_OVL_L0_EN, &priv->cmdq_reg, pri=
-v->regs,
-> +                          DISP_REG_OVL_L0_EN, DISP_OVL_L0_EN);
-> +
-> +       mtk_ddp_write_mask(cmdq_pkt, DISP_OVL_EN, &priv->cmdq_reg, priv->=
-regs,
-> +                          DISP_REG_OVL_EN, DISP_OVL_EN);
-> +}
-> +
-> +void mtk_disp_exdma_stop(struct device *dev, struct cmdq_pkt *cmdq_pkt)
-> +{
-> +       struct mtk_disp_exdma *priv =3D dev_get_drvdata(dev);
-> +
-> +       mtk_ddp_write_mask(cmdq_pkt, 0, &priv->cmdq_reg, priv->regs, DISP=
-_REG_OVL_EN, DISP_OVL_EN);
-> +       mtk_ddp_write_mask(cmdq_pkt, 0, &priv->cmdq_reg, priv->regs,
-> +                          DISP_REG_OVL_RDMA0_CTRL, DISP_RDMA0_EN);
-> +       mtk_ddp_write_mask(cmdq_pkt, 0, &priv->cmdq_reg, priv->regs,
-> +                          DISP_REG_OVL_DATAPATH_CON, DATAPATH_CON_LAYER_=
-SMI_ID_EN);
-> +       mtk_ddp_write_mask(cmdq_pkt, 0, &priv->cmdq_reg, priv->regs,
-> +                          DISP_REG_OVL_L0_EN, DISP_OVL_L0_EN);
-> +       mtk_ddp_write_mask(cmdq_pkt, DISP_OVL_RST, &priv->cmdq_reg, priv-=
->regs,
-> +                          DISP_REG_OVL_RST, DISP_OVL_RST);
-> +       mtk_ddp_write_mask(cmdq_pkt, 0, &priv->cmdq_reg, priv->regs,
-> +                          DISP_REG_OVL_RST, DISP_OVL_RST);
-> +}
-> +
-> +void mtk_disp_exdma_config(struct device *dev, struct mtk_plane_state *s=
-tate,
-> +                          struct cmdq_pkt *cmdq_pkt)
-> +{
-> +       struct mtk_disp_exdma *priv =3D dev_get_drvdata(dev);
-> +       struct mtk_plane_pending_state *pending =3D &state->pending;
-> +       const struct drm_format_info *fmt_info =3D drm_format_info(pendin=
-g->format);
-> +       unsigned int align_width =3D 0;
-> +       bool csc_enable =3D fmt_info->is_yuv ? true : false;
-> +       unsigned int blend_mode =3D DRM_MODE_BLEND_PIXEL_NONE;
-> +       unsigned int clrfmt =3D 0;
-> +       unsigned int clrfmt_mask =3D OVL_CON_RGB_SWAP |
-> +                                  OVL_CON_BYTE_SWAP |
-> +                                  OVL_CON_CLRFMT_MAN |
-> +                                  OVL_CON_FLD_CLRFMT |
-> +                                  OVL_CON_FLD_CLRFMT_NB;
-> +
-> +       /* OVLSYS is in 1T2P domain, width needs to be 2 pixels align */
-> +       align_width =3D ALIGN_DOWN(pending->width, 2);
-> +
-> +       mtk_ddp_write(cmdq_pkt, pending->height << 16 | align_width, &pri=
-v->cmdq_reg,
-> +                     priv->regs, DISP_REG_OVL_ROI_SIZE);
-> +
-> +       mtk_ddp_write(cmdq_pkt, pending->height << 16 | align_width, &pri=
-v->cmdq_reg,
-> +                     priv->regs, DISP_REG_OVL_SRC_SIZE);
-> +       mtk_ddp_write(cmdq_pkt, pending->height << 16 | align_width, &pri=
-v->cmdq_reg,
-> +                     priv->regs, DISP_REG_OVL_SRC_SIZE);
-> +       mtk_ddp_write(cmdq_pkt, pending->addr, &priv->cmdq_reg,
-> +                     priv->regs, DISP_REG_OVL_ADDR);
-> +       mtk_ddp_write_mask(cmdq_pkt, pending->pitch, &priv->cmdq_reg, pri=
-v->regs, OVL_L0_SRC_PITCH,
-> +                          OVL_L0_SRC_PITCH_MASK);
-> +       mtk_ddp_write_mask(cmdq_pkt, pending->pitch >> 16, &priv->cmdq_re=
-g, priv->regs,
-> +                          DISP_REG_OVL_PITCH_MSB, 0xf);
-> +
-> +       if (csc_enable)
-> +               mtk_ddp_write_mask(cmdq_pkt, exdma_color_convert(pending-=
->color_encoding) |
-> +                                  DISP_OVL_CON_INT_MTX_EN, &priv->cmdq_r=
-eg, priv->regs,
-> +                                  DISP_REG_OVL_CON, DISP_OVL_CON_FLD_INT=
-_MTX_SEL |
-> +                                  DISP_OVL_CON_INT_MTX_EN);
-> +       else
-> +               mtk_ddp_write_mask(cmdq_pkt, 0, &priv->cmdq_reg, priv->re=
-gs, DISP_REG_OVL_CON,
-> +                                  DISP_OVL_CON_INT_MTX_EN);
-> +
-> +       /* alpha blend setting */
-> +       if (state->base.fb && state->base.fb->format->has_alpha)
-> +               blend_mode =3D state->base.pixel_blend_mode;
-> +
-> +       clrfmt =3D mtk_disp_exdma_fmt_convert(pending->format, blend_mode=
-);
-
-And here you would pass `blend_mode =3D=3D DRM_MODE_BLEND_PREMULTI` in.
-
-> +
-> +       mtk_ddp_write_mask(cmdq_pkt, clrfmt, &priv->cmdq_reg, priv->regs,
-> +                          DISP_REG_OVL_L0_CLRFMT, clrfmt_mask);
-> +
-> +       mtk_ddp_write_mask(cmdq_pkt, OVL_OP_8BIT_MODE | OVL_HG_FOVL_CK_ON=
- | OVL_HF_FOVL_CK_ON,
-> +                          &priv->cmdq_reg, priv->regs, DISP_REG_OVL_EN_C=
-ON,
-> +                          OVL_OP_8BIT_MODE | OVL_HG_FOVL_CK_ON | OVL_HF_=
-FOVL_CK_ON);
-> +
-> +       mtk_ddp_write_mask(cmdq_pkt, OVL_RDMA0_L0_VCSEL | OVL_RDMA0_HDR_L=
-0_VCSEL,
-> +                          &priv->cmdq_reg, priv->regs, DISP_REG_OVL_L0_G=
-USER_EXT,
-> +                          OVL_RDMA0_L0_VCSEL | OVL_RDMA0_HDR_L0_VCSEL);
-> +
-> +       if (blend_mode =3D=3D DRM_MODE_BLEND_PIXEL_NONE) {
-> +               mtk_ddp_write_mask(cmdq_pkt, OVL_L0_CONST_BLD | pending->=
-pitch,
-> +                                  &priv->cmdq_reg, priv->regs,
-> +                                  DISP_REG_OVL_PITCH, OVL_L0_CONST_BLD |=
- OVL_L0_SRC_PITCH);
-> +       } else {
-> +               mtk_ddp_write_mask(cmdq_pkt, pending->pitch, &priv->cmdq_=
-reg, priv->regs,
-> +                                  DISP_REG_OVL_PITCH, OVL_L0_CONST_BLD |=
- OVL_L0_SRC_PITCH);
-> +       }
-> +}
-> +
-> +const u32 *mtk_disp_exdma_get_formats(struct device *dev)
-> +{
-> +       return formats;
-> +}
-> +
-> +size_t mtk_disp_exdma_get_num_formats(struct device *dev)
-> +{
-> +       return ARRAY_SIZE(formats);
-> +}
-> +
-> +int mtk_disp_exdma_clk_enable(struct device *dev)
-> +{
-> +       struct mtk_disp_exdma *exdma =3D dev_get_drvdata(dev);
-> +
-> +       return clk_prepare_enable(exdma->clk);
-> +}
-> +
-> +void mtk_disp_exdma_clk_disable(struct device *dev)
-> +{
-> +       struct mtk_disp_exdma *exdma =3D dev_get_drvdata(dev);
-> +
-> +       clk_disable_unprepare(exdma->clk);
-> +}
-> +
-> +static int mtk_disp_exdma_bind(struct device *dev, struct device *master=
-,
-> +                              void *data)
-> +{
-> +       return 0;
-> +}
-> +
-> +static void mtk_disp_exdma_unbind(struct device *dev, struct device *mas=
-ter,
-> +                                 void *data)
-> +{
-> +}
-> +
-> +static const struct component_ops mtk_disp_exdma_component_ops =3D {
-> +       .bind   =3D mtk_disp_exdma_bind,
-> +       .unbind =3D mtk_disp_exdma_unbind,
-> +};
-> +
-> +static int mtk_disp_exdma_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev =3D &pdev->dev;
-> +       struct platform_device *larb_pdev =3D NULL;
-> +       struct device_node *larb_node =3D NULL;
-> +       struct resource *res;
-> +       struct mtk_disp_exdma *priv;
-> +       int ret =3D 0;
-> +
-> +       priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +       if (!priv)
-> +               return -ENOMEM;
-> +
-
-
-> +       res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       priv->regs =3D devm_ioremap_resource(dev, res);
-
-priv->regs =3D devm_platform_ioremap_resource(pdev, 0);
-
-> +       if (IS_ERR(priv->regs)) {
-> +               dev_err(dev, "failed to ioremap exdma\n");
-> +               return PTR_ERR(priv->regs);
-> +       }
-> +
-> +       priv->clk =3D devm_clk_get(dev, NULL);
-> +       if (IS_ERR(priv->clk)) {
-> +               dev_err(dev, "failed to get exdma clk\n");
-> +               return PTR_ERR(priv->clk);
-> +       }
-> +
-> +       larb_node =3D of_parse_phandle(dev->of_node, "mediatek,larb", 0);
-> +       if (larb_node) {
-> +               larb_pdev =3D of_find_device_by_node(larb_node);
-> +               if (larb_pdev)
-> +                       priv->larb =3D &larb_pdev->dev;
-> +               of_node_put(larb_node);
-> +       }
-> +
-> +       if (!priv->larb) {
-> +               dev_dbg(dev, "not find larb dev");
-> +               return -EPROBE_DEFER;
-> +       }
-> +       device_link_add(dev, priv->larb, DL_FLAG_PM_RUNTIME | DL_FLAG_STA=
-TELESS);
-> +
-> +#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-> +       ret =3D cmdq_dev_get_client_reg(dev, &priv->cmdq_reg, 0);
-> +       if (ret)
-> +               dev_dbg(dev, "No mediatek,gce-client-reg\n");
-> +#endif
-> +       platform_set_drvdata(pdev, priv);
-> +
-> +       pm_runtime_enable(dev);
-> +
-> +       ret =3D component_add(dev, &mtk_disp_exdma_component_ops);
-> +       if (ret !=3D 0) {
-> +               pm_runtime_disable(dev);
-> +               dev_err(dev, "Failed to add component: %d\n", ret);
-> +       }
-> +       return ret;
-> +}
-> +
-> +static void mtk_disp_exdma_remove(struct platform_device *pdev)
-> +{
-> +       component_del(&pdev->dev, &mtk_disp_exdma_component_ops);
-> +       pm_runtime_disable(&pdev->dev);
-> +}
-> +
-> +static const struct of_device_id mtk_disp_exdma_driver_dt_match[] =3D {
-> +       { .compatible =3D "mediatek,mt8196-exdma", },
-> +       {},
-> +};
-> +MODULE_DEVICE_TABLE(of, mtk_disp_exdma_driver_dt_match);
-> +
-> +struct platform_driver mtk_disp_exdma_driver =3D {
-> +       .probe =3D mtk_disp_exdma_probe,
-> +       .remove =3D mtk_disp_exdma_remove,
-> +       .driver =3D {
-> +               .name =3D "mediatek-disp-exdma",
-> +               .owner =3D THIS_MODULE,
-> +               .of_match_table =3D mtk_disp_exdma_driver_dt_match,
-> +       },
-> +};
-> +
-> +MODULE_AUTHOR("Nancy Lin <nancy.lin@mediatek.com>");
-> +MODULE_DESCRIPTION("MediaTek Exdma Driver");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/med=
-iatek/mtk_drm_drv.c
-> index 8c8da188df09..ccbf46d0707a 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-> @@ -1261,6 +1261,7 @@ static struct platform_driver * const mtk_drm_drive=
-rs[] =3D {
->         &mtk_disp_aal_driver,
->         &mtk_disp_ccorr_driver,
->         &mtk_disp_color_driver,
-> +       &mtk_disp_exdma_driver,
->         &mtk_disp_gamma_driver,
->         &mtk_disp_merge_driver,
->         &mtk_disp_ovl_adaptor_driver,
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.h b/drivers/gpu/drm/med=
-iatek/mtk_drm_drv.h
-> index 675cdc90a440..898a75898775 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-> @@ -72,6 +72,7 @@ struct mtk_drm_private {
->  extern struct platform_driver mtk_disp_aal_driver;
->  extern struct platform_driver mtk_disp_ccorr_driver;
->  extern struct platform_driver mtk_disp_color_driver;
-> +extern struct platform_driver mtk_disp_exdma_driver;
->  extern struct platform_driver mtk_disp_gamma_driver;
->  extern struct platform_driver mtk_disp_merge_driver;
->  extern struct platform_driver mtk_disp_ovl_adaptor_driver;
-> --
-> 2.34.1
->
->
+Hi,=0A=
+I want to complete with this patches, and trying to figure out where it sta=
+nds.=0A=
+I think I answered all questions asked about this patch set.=0A=
+Any other questions/concerns?=0A=
+Shall I do any changes?=0A=
+=0A=
+Thanks, Vladimir=0A=
 
