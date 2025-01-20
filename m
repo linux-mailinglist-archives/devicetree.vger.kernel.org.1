@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-139646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB547A1678E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:45:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6609A16797
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:48:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E788A3A7746
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:45:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 476CA1883E07
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:49:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F6B61632F2;
-	Mon, 20 Jan 2025 07:45:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D74718FDBE;
+	Mon, 20 Jan 2025 07:48:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YhTrJiiw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ty5YJTLi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CE5B257D;
-	Mon, 20 Jan 2025 07:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54EF140E3C;
+	Mon, 20 Jan 2025 07:48:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737359151; cv=none; b=hdgntPOmzdiUmxQ2SMHBHMkjYIDrzhOLVaTSOlbTZJaVrxMGEEwfX5WETN6S4QtlAn9A/OhJB6sQqE80CE+/S5lXvDTRmMSWmYVrWD7Z4XUgVw1o2zJ4bTuat3CllefRXJIp0fPvbl35Am90GFoYoJe9I6e1dslmWZAy9jdAlmc=
+	t=1737359335; cv=none; b=ffhlFlZTPUBkC+tCKEoOCaDvNj5R4VgxSGrO42AVGJAnnCz1r/qXS/PXfv+cwMqAWVJwWzDI3k/6oX6C8vqDddbQevE4CbKZa3YjjruA1hSr4GlCvmxFt/JIDkFrU1HotQ507+MtvFNVhDM+6wqgJoepvHvonBpz/dkN7tcVbPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737359151; c=relaxed/simple;
-	bh=SLyPkcqPR2Tw5C72SJaWnOo8jl9wu0NKblFOeOHCt4U=;
+	s=arc-20240116; t=1737359335; c=relaxed/simple;
+	bh=AVe0TpUsodNDUwpn/VFfru4zZGcQsfzhz2oRw5R/tos=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=F0q7rjzdX9t8DPxXxFVuofZFpg0pJTCqMXO5xV25IwCWRDzgDQoX8HSAVi4NAZe2ZV+Fmie9cy4ghknBbi2MSiD3nn6fGKCKvyOGcB2BTJkDRUVlclpcyqPFtbSvEecRhTUek+Dfc1CKIZuaAn3/AVKXKyzDWIIN4apScSItkbg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YhTrJiiw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A4EAC4CEDD;
-	Mon, 20 Jan 2025 07:45:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=P0p8J1OE6gklHaeya1O6AzmlEBcygN2g8TFoZ7r4QOJlTTpUU+1KYAX8qhXx3/2tRroRCVb0nr4Stm6l2m2tYY74aJaE8wJMKTwrpbF+EJtAPP8ZCiA7A/l5qUvivz4aUWwSpO5XvQnrIXJz+KBcB25qVg/k0vowAT2xWwtB4cc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ty5YJTLi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0BF7C4CEDD;
+	Mon, 20 Jan 2025 07:48:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737359150;
-	bh=SLyPkcqPR2Tw5C72SJaWnOo8jl9wu0NKblFOeOHCt4U=;
+	s=k20201202; t=1737359334;
+	bh=AVe0TpUsodNDUwpn/VFfru4zZGcQsfzhz2oRw5R/tos=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YhTrJiiwu4uCfcSwmNzAWzEjnL/3C8SHE5GWzLFP2KK+Hbo0DXeqe0XJgfDheXfJG
-	 rVx+PnGRpHy//caa/610+aBon6CjU/9kzlEkXpgjVcgso9An03p3YTViyAZImuAts8
-	 nHp7WwE3+yURkmWsu4jg9/rERsdQtFgoL89NkQbnBwyT0p+38nJ3KDIUV2xk9er7vX
-	 asYdqqxg31ZBmo3BwuYMgdYvFXSxqs9w+BF7QoG2RV9goINZgBcaAn1PpNreeKqn/0
-	 gDR5k7KAhXmM0tOlImuBDHCTg5ei329L4VsVKN+edgVVn69pKGzvQBVw0aFvwJUGy8
-	 yxYibTXzZPK9g==
-Date: Mon, 20 Jan 2025 08:45:47 +0100
+	b=ty5YJTLiwFuQpFvJ2BNhKTsda9rOhQm2uRBUmUBv7d4IO/EhN4+39f7uJNMPaMetW
+	 4PXwq1tidj/spyUWQEMns9fcO8jkpAyfnaY1LjhtzS92Uvio8KvkHwJ+Ep3mXXY33j
+	 ylhiPsXjxxBLZEk0sGuYhSHru6+oT8EqWND+Ab5uZock/F5Crna7j/s2NbAlqb08FK
+	 8HG5SB4/BbfD+iJDJ2RTYM0dHdwOnWNHM614fdFAqACv/ipqPec1V2y5OTI8VHhWhl
+	 mZmHOfZ8YI2X+2ACj3J0svYT02JCQTqKBSksDiL4FKphTWnn/r2/5V/qm8rwmCfALm
+	 nA4oCEWq4IsoQ==
+Date: Mon, 20 Jan 2025 08:48:51 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc: linux-clk@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com, 
-	tsbogend@alpha.franken.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org, yangshiji66@outlook.com, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: clock: add clock and reset
- definitions for Ralink SoCs
-Message-ID: <20250120-expert-fox-of-argument-c4dcde@krzk-bin>
-References: <20250119154447.462857-1-sergio.paracuellos@gmail.com>
- <20250119154447.462857-2-sergio.paracuellos@gmail.com>
+To: Wenhua Lin <Wenhua.Lin@unisoc.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
+	Chunyan Zhang <zhang.lyra@gmail.com>, Cixi Geng <cixi.geng@linux.dev>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	wenhua lin <wenhua.lin1994@gmail.com>, Xiongpeng Wu <xiongpeng.wu@unisoc.com>, 
+	Zhaochen Su <Zhaochen.Su@unisoc.com>, Zhirong Qiu <Zhirong.Qiu@unisoc.com>
+Subject: Re: [PATCH V2] dt-bindings: serial: Add a new compatible string for
+ UMS9632
+Message-ID: <20250120-talented-octopus-of-serendipity-aa8a58@krzk-bin>
+References: <20250120032212.3579184-1-Wenhua.Lin@unisoc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,37 +64,65 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250119154447.462857-2-sergio.paracuellos@gmail.com>
+In-Reply-To: <20250120032212.3579184-1-Wenhua.Lin@unisoc.com>
 
-On Sun, Jan 19, 2025 at 04:44:42PM +0100, Sergio Paracuellos wrote:
-> +#endif /* _DT_BINDINGS_CLK_MTMIPS_H */
-> diff --git a/include/dt-bindings/reset/mediatek,mtmips-sysc.h b/include/dt-bindings/reset/mediatek,mtmips-sysc.h
-> new file mode 100644
-> index 000000000000..1bc6024b1f22
-> --- /dev/null
-> +++ b/include/dt-bindings/reset/mediatek,mtmips-sysc.h
-> @@ -0,0 +1,152 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Author: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_RST_MTMIPS_H
-> +#define _DT_BINDINGS_RST_MTMIPS_H
-> +
-> +/* Ralink RT-2880 resets */
-> +
-> +#define RT2880_RST_SYS		0
-> +#define RT2880_RST_I2C		9
-> +#define RT2880_RST_FE		18
+On Mon, Jan 20, 2025 at 11:22:12AM +0800, Wenhua Lin wrote:
+> The sc9632-uart is incompatible
+> with sc9836-uart, Add sc9632-uart dedicated compatible
 
-These do not look correct. I understood from previous discussions that
-driver relies on these for its internal operation. It looks true for
-clocks, but does not look true here at all. This is register bit passed
-to the hardware (and I explicitly mentioned last time: that I expect
-these not being register bits passed to hardware).
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
 
-None of the resets are bindings - these are just hardware constants.
+Missing full stop.
+
+Your commit msg should explain briefly why sc9632-uart is incompatible
+with sc9836-uart.
+
+> for representing uart of the new project UMS9632 SoC.
+> 
+> Change in V2:
+> -Change commit message in PATCH 2/2.
+> -Modify the compatible string of enum in PATCH 2/2.
+
+Changelog goes to changelog place, under ---.
+
+> 
+> Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
+> ---
+>  Documentation/devicetree/bindings/serial/sprd-uart.yaml | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/sprd-uart.yaml b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
+> index a2a5056eba04..83582aa6c750 100644
+> --- a/Documentation/devicetree/bindings/serial/sprd-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
+> @@ -17,13 +17,17 @@ properties:
+>      oneOf:
+>        - items:
+>            - enum:
+> -              - sprd,sc9632-uart
+>                - sprd,sc9860-uart
+>                - sprd,sc9863a-uart
+>                - sprd,ums512-uart
+>                - sprd,ums9620-uart
+>            - const: sprd,sc9836-uart
+>        - const: sprd,sc9836-uart
+> +      - items:
+> +          - enum:
+> +              - sprd,ums9632-uart
+> +          - const: sprd,sc9632-uart
+
+Lists are ordered by fallback, so this goes before list ending
+sprd,sc9836-uart. Do not break orders by putting everything always at
+the end.
+
+> +      - const: sprd,sc9632-uart
+
+Combine two such const items into enum:
+  - enum
+      - sprd,sc9632-uart
+      - sprd,sc9836-uart
 
 Best regards,
 Krzysztof
