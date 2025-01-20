@@ -1,142 +1,234 @@
-Return-Path: <devicetree+bounces-139659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BA5FA1685A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:46:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7A5A16861
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:47:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7897D3A2ECC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:46:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2452E7A3C1B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:47:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CFEB1917F0;
-	Mon, 20 Jan 2025 08:46:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 340FA19924E;
+	Mon, 20 Jan 2025 08:47:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HgAITaHj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NZS0gk1a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 885EF7E1;
-	Mon, 20 Jan 2025 08:46:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B452B19AD8D
+	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 08:47:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737362787; cv=none; b=d91ioWN824CJQ4yO+qNomhNESqrDgILT4lpnoaP7SxUYZjyNqymh0vuaGzAF83go2/jkUez3rLTNOursNfJvF229hcX+stBQ33hTytfJ7eb7ZPOG/fC/W6dd9SQm1gQ0ev8UeqBy1+3Gp8ze+lQ1i/PKjKbRedJqjFjXyS6KGcw=
+	t=1737362826; cv=none; b=RVm0yEUjqQTDo8t9HTj/od9EWeVOb2l8yb5BxBc+45G2srA89CEQLR+TxIdlPUVw6sDQcWQ3VOk7TlIp4yld+mDvjPbyMrCnSRA2vKTjoiVr8ulJRip/kvTUKtYDm2AaBXHt+8nmDKQ9wCakTzRCbndW/ZsTOKtfr06sz6HO8lw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737362787; c=relaxed/simple;
-	bh=I6VYdCkvVp6Id+7Z9kSbDZ31aJ/qnRE1whPBf1zCdqk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fLbYxmN9kXmQls16Z8P8jtdcyYkcgDYF3yWS7RYiOaqtGCxdet1N8BpgAmxf6094RVN4Av6x6YlrrZAYXpkrUZTIMYhL4dZJayy4EsI6kkpDcdEEj2gpHhbtysEFjA+/PMG16UDq6Fq+s6yAFQZB9BK1l6ffIC4LQZpBMdV6eQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HgAITaHj; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2ee9a780de4so5345588a91.3;
-        Mon, 20 Jan 2025 00:46:26 -0800 (PST)
+	s=arc-20240116; t=1737362826; c=relaxed/simple;
+	bh=9LcO7s1LFjPgAtWAv39R0xXxN+qC/uSMB3PyfFJTWf0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=imEFgv56J8J3kPNBraG2an670pEZRXXSKkjHSRrS5QLo8tNbN9FHlZatbdZoO3aIH71Y97yr9+EL6XM5wQ0Q1BY3V+ZIs0OQ09FFS0vJezrFmkowkePyMjb6v3F8HJPnGEAUXhx1fGloAoawVWEuhpps3pKO52Tul2e9aD/ijyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NZS0gk1a; arc=none smtp.client-ip=209.85.208.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-30613802a59so45125731fa.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 00:47:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737362786; x=1737967586; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xYv+axPnGZz6oNqmw8V96Dy3RmKP9Ehg7MAl9Q2i8GU=;
-        b=HgAITaHjeLc8/BHH1rEBW6b9m8gY3DRXAn01INAVBHyjNJcJ+bfUbp+ula462GeB5N
-         MvN4cLF/qCHk8V0FB2ZgDInOYQ+Yrs9tbIYKRaEGYTU/bFP2RHox0wfatA8TbR3ITMmM
-         JBPrZm6fk5fMWAgxlSyQFNx/5bGyegZW7ltuigUxplQ2ciwn+dHYDvd2YVvu6SErIXLM
-         p5lxelRrWJHn22a8YUqLafw9hqmXj03bCuQeCnhiKNGjjZBkKyY2HXQENDZTPD/thG5p
-         il2BTvvVSJMwKo5+E8jU8A+mx5d9l6j416Yr96OPMzyVlucanHfTLkATByo239v2Oywd
-         B8rA==
+        d=linaro.org; s=google; t=1737362821; x=1737967621; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=rT/AIsIzZmWZmFkt/0ZfkjfdTGDusUnjQWHoi1TGJrA=;
+        b=NZS0gk1agnss0qL7k13gHvcrraKrIy9WWA4xoaZEXYbEo9GKGUdkef6uC6wYgz25vB
+         +AP6eqAmlV9v1Dvl1DOWaxe98okOb8EaNAa27QYiZj3+8f3gqpeWCi2SPJuPeuhB2XsY
+         0kmT2vUZDiG8yPGvfYZIKGF1CoBvrNgGZOeNaHRuFIXZbpRMkRuGt/O60GYTdJP/hIZW
+         JeorhNUfqjPBlfIIDjTptTxB/876/XiamX+/icgxHuwfJ2NDRu0t7ejRU0CuSZxowbp2
+         1JzSsTMtYmKgVN65i0XA8lTStlsyLR9absu2v6aCgj18ihMapTPZOOTBv+sd5MseHKGm
+         hRIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737362786; x=1737967586;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xYv+axPnGZz6oNqmw8V96Dy3RmKP9Ehg7MAl9Q2i8GU=;
-        b=ryuaNjn7YVsBRTuLP5fQc/821/RCyBvqtgpHUPWKAQIJcp+at9aHbAKVcB7+/02Z5q
-         /YMTLMEVpKdq/UD5jsGqjstKfFtaBSixbRduQjlFU9H8lK+pBCBncFsnU4D2Nyb3ajnm
-         T+TpAgz3a4TUCt2D4KV3p3zGLychtWtYDhQDX66zbyjkuINwZyCjAP1NBlk0UDZriEUr
-         jmEleLtM9wuJS0aPRDffvTtSvJYGZCC0UZs+5+gzRetm7O+lAQFtcUeHaoZPtQ2BOsB0
-         uN8SiNk2s45TxdnmMgyceta0Gi0Hq0tr7higOEmOMcwPfsl+LYMJXMdT0UzD/+9gOfBK
-         UtIg==
-X-Forwarded-Encrypted: i=1; AJvYcCVQWfUk+aszxxTBr2Ix5cQZjRdgLcGwTOA/Cy+L+WjgZK1XcUKvsQqmZTny7KWSGndIclpuXufMzcTT@vger.kernel.org, AJvYcCVowQBAK4NAflvZAt5WFd0k2BKQruuj4hwDx/7pjGNRV1WEjHGdqHH72n53DajvsNrCjwQYWUUqtNEWTpGX@vger.kernel.org, AJvYcCXpadowP4IyeGW1Rbcrp9B+bL82BDdz+EuYIs60AqZsFEylkdixB8mUuVVfcZKW7jYb8JYOoKbkXg9gUQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5Pjdoww+hOziuKtOOw77iH6ul+SWzMRfg5lFp6grKQfy76Ba3
-	CAd94oyQ04tbMAEASjObjfvKzeoM6ZAv6nH5V/oCjcGkD6ilRKu4DvDpjKQEBvWn2bCV99GTtN1
-	wpZe5DHt11Q8/gpnrxsARKob5NUU=
-X-Gm-Gg: ASbGncvOaMoNF3tn6BsULYGqO3Ds92OxjwdWGO/kelQ257t4HeQIzKjGYeW5Uj5y0vM
-	qcA2MiHe0m5Zl/W1UfNjFVcfcVg29aCNOscXrCing93OOd8X15g==
-X-Google-Smtp-Source: AGHT+IHa03UWz7nHbos0urTgmAQdrgNRVid/T8tle2nvKN9JHJg3fUXyCQgMmnGueIGf2++IxvNLDV6fYAz1TfWZS/o=
-X-Received: by 2002:a17:90b:1f8b:b0:2f6:539:3cd8 with SMTP id
- 98e67ed59e1d1-2f782ca2291mr19433543a91.18.1737362785664; Mon, 20 Jan 2025
- 00:46:25 -0800 (PST)
+        d=1e100.net; s=20230601; t=1737362821; x=1737967621;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rT/AIsIzZmWZmFkt/0ZfkjfdTGDusUnjQWHoi1TGJrA=;
+        b=KV8HkD8ahLSHgrZF1Goq30FBfsSs9RdmPxHzxrzbCZ55TivaHm7gELoIxc9CepQjvd
+         ru2Q4L6HFUbnfHvM1wbNws29UwpsxKVaAdoW0qXtw+ZzKf73Zj0QWIXEHD6i/YG38UBF
+         MYMZaWSaATunobpJ1/6ZwF4K7vZT/0tPMY0lfOCaWotVZ98MJRiTvmGqesrdsVTxhEVx
+         ptD/7gwyhhnAUKZpeY4V7l1QJlLZxKhRft6kE4+thvhjM0qrMWVzCQnLUPYo7AetrmwQ
+         RPUR0gokqrwIcaYBtbLOtMnt7CWSxF/buWXOtp7Slzf3u3hy8tuXx1tmToo4ZrxFc/LK
+         wCAg==
+X-Forwarded-Encrypted: i=1; AJvYcCUVWw4+pLzlCiCrjZ+eYngpXDG6W8qv2B3fR6sQY5HfRKgfQGXRvu9AR4yZ8CziJgDhpdpnoi7mdp3p@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCL5gU274yaEEu4OJdNCY86q4bmVMqteresURSyhGgSvOfiRdG
+	Bjl9L5/LO4ZeUQeJggS4VY+etW0p9dIx+hX6OR+JTVaz1HlZLK7264rABv7KCw8=
+X-Gm-Gg: ASbGncs7w3kbLfMkTajjqeIKa1rwjHoadljCS3V+qbjGQKC5vP/xrYMOrosOzyFjr7M
+	oowNZAsdCQBVvYrYcr+uEXrg9858tIvrSWIxmd+f1VN2Cz5RMedAElpsKgHX7omBykM9IxSymAb
+	Q7usNkOsgaMLE8H0qIZ7Gs66Uxe9K00EHu7frI3e+Y1nlTdVKTjUAheKzQ5KLNEgG1aNuQRaqjy
+	yjOtE7/eBzIX11NhcdRihohz+ZFyPqowFFBfA3dnj+7u/7b2QCNFz9TDHAuCdEQTxSOiWDUNR19
+	z6BHzyWNZ22HaDfpJOoOJIfSpfV2LYAfwqrxzlridB/UwgxzoA==
+X-Google-Smtp-Source: AGHT+IGv1OA7N2Pccs82cOm1MpDroFDWPgmqD1jqgQWfbkWvR2MNnIRNXjYm+ELjoydLUhrsjf+eew==
+X-Received: by 2002:a2e:bd84:0:b0:300:3a15:8f23 with SMTP id 38308e7fff4ca-3072ca5b61dmr39256741fa.7.1737362820729;
+        Mon, 20 Jan 2025 00:47:00 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3072a330175sm15004111fa.5.2025.01.20.00.46.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jan 2025 00:46:59 -0800 (PST)
+Date: Mon, 20 Jan 2025 10:46:57 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add cpu scaling clock node
+Message-ID: <scfoxmstfqgvqmxovb7h5gulh6bjhgexs6yxe2n75izc7sawby@djphyr2ilei3>
+References: <20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com>
+ <20241108-qcs615-mm-dt-nodes-v1-2-b2669cac0624@quicinc.com>
+ <cgg3s6f555eb4jl5segz7irwx2kkza7w6zucfyo7myrbjhng3v@2qmyrobzakhd>
+ <71635b71-71e4-4c17-add1-bf41ce770632@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250119154447.462857-1-sergio.paracuellos@gmail.com>
- <20250119154447.462857-2-sergio.paracuellos@gmail.com> <20250120-expert-fox-of-argument-c4dcde@krzk-bin>
-In-Reply-To: <20250120-expert-fox-of-argument-c4dcde@krzk-bin>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Mon, 20 Jan 2025 09:46:12 +0100
-X-Gm-Features: AbW1kvZLmY07mSomBZjLQ_sAy4yq2w_CVWCU0vSF7ZMxwjulnJJB74-pKIRVauU
-Message-ID: <CAMhs-H9bFka-U5F4qX-FsJtnKcZ3eYf_ZPy=READa=HqrzoOQA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: clock: add clock and reset
- definitions for Ralink SoCs
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-clk@vger.kernel.org, sboyd@kernel.org, mturquette@baylibre.com, 
-	tsbogend@alpha.franken.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, matthias.bgg@gmail.com, 
-	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
-	yangshiji66@outlook.com, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <71635b71-71e4-4c17-add1-bf41ce770632@quicinc.com>
 
-On Mon, Jan 20, 2025 at 8:45=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Sun, Jan 19, 2025 at 04:44:42PM +0100, Sergio Paracuellos wrote:
-> > +#endif /* _DT_BINDINGS_CLK_MTMIPS_H */
-> > diff --git a/include/dt-bindings/reset/mediatek,mtmips-sysc.h b/include=
-/dt-bindings/reset/mediatek,mtmips-sysc.h
-> > new file mode 100644
-> > index 000000000000..1bc6024b1f22
-> > --- /dev/null
-> > +++ b/include/dt-bindings/reset/mediatek,mtmips-sysc.h
-> > @@ -0,0 +1,152 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +/*
-> > + * Author: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_RST_MTMIPS_H
-> > +#define _DT_BINDINGS_RST_MTMIPS_H
-> > +
-> > +/* Ralink RT-2880 resets */
-> > +
-> > +#define RT2880_RST_SYS               0
-> > +#define RT2880_RST_I2C               9
-> > +#define RT2880_RST_FE                18
->
-> These do not look correct. I understood from previous discussions that
-> driver relies on these for its internal operation. It looks true for
-> clocks, but does not look true here at all. This is register bit passed
-> to the hardware (and I explicitly mentioned last time: that I expect
-> these not being register bits passed to hardware).
+On Sun, Jan 19, 2025 at 04:08:20PM +0530, Taniya Das wrote:
+> 
+> 
+> On 11/9/2024 5:30 AM, Dmitry Baryshkov wrote:
+> > On Fri, Nov 08, 2024 at 11:54:05AM +0530, Taniya Das wrote:
+> > > Add cpufreq-hw node to support cpu frequency scaling.
+> > 
+> > CPU, not cpu.
+> > Also the prefix is incorrect for both patches.
+> > 
+> 
+> Will update to CPU.
+> 
+> > > 
+> > > Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> > > ---
+> > >   arch/arm64/boot/dts/qcom/qcs615.dtsi | 29 +++++++++++++++++++++++++++++
+> > >   1 file changed, 29 insertions(+)
+> > > 
+> > > diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> > > index 8c98ac77dc5c665ef296e65ac76c1b59be485abb..2c61da790e78b131e454991c968ece40dd5ca56d 100644
+> > > --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> > > @@ -33,6 +33,8 @@ cpu0: cpu@0 {
+> > >   			power-domains = <&cpu_pd0>;
+> > >   			power-domain-names = "psci";
+> > >   			next-level-cache = <&l2_0>;
+> > > +			clocks = <&cpufreq_hw 0>;
+> > > +			qcom,freq-domain = <&cpufreq_hw 0>;
+> > >   			#cooling-cells = <2>;
+> > >   			l2_0: l2-cache {
+> > > @@ -51,6 +53,8 @@ cpu1: cpu@100 {
+> > >   			power-domains = <&cpu_pd1>;
+> > >   			power-domain-names = "psci";
+> > >   			next-level-cache = <&l2_100>;
+> > > +			clocks = <&cpufreq_hw 0>;
+> > > +			qcom,freq-domain = <&cpufreq_hw 0>;
+> > >   			l2_100: l2-cache {
+> > >   			      compatible = "cache";
+> > > @@ -68,6 +72,8 @@ cpu2: cpu@200 {
+> > >   			power-domains = <&cpu_pd2>;
+> > >   			power-domain-names = "psci";
+> > >   			next-level-cache = <&l2_200>;
+> > > +			clocks = <&cpufreq_hw 0>;
+> > > +			qcom,freq-domain = <&cpufreq_hw 0>;
+> > >   			l2_200: l2-cache {
+> > >   			      compatible = "cache";
+> > > @@ -85,6 +91,8 @@ cpu3: cpu@300 {
+> > >   			power-domains = <&cpu_pd3>;
+> > >   			power-domain-names = "psci";
+> > >   			next-level-cache = <&l2_300>;
+> > > +			clocks = <&cpufreq_hw 0>;
+> > > +			qcom,freq-domain = <&cpufreq_hw 0>;
+> > >   			l2_300: l2-cache {
+> > >   			      compatible = "cache";
+> > > @@ -102,6 +110,8 @@ cpu4: cpu@400 {
+> > >   			power-domains = <&cpu_pd4>;
+> > >   			power-domain-names = "psci";
+> > >   			next-level-cache = <&l2_400>;
+> > > +			clocks = <&cpufreq_hw 0>;
+> > > +			qcom,freq-domain = <&cpufreq_hw 0>;
+> > >   			l2_400: l2-cache {
+> > >   			      compatible = "cache";
+> > > @@ -119,6 +129,8 @@ cpu5: cpu@500 {
+> > >   			power-domains = <&cpu_pd5>;
+> > >   			power-domain-names = "psci";
+> > >   			next-level-cache = <&l2_500>;
+> > > +			clocks = <&cpufreq_hw 0>;
+> > > +			qcom,freq-domain = <&cpufreq_hw 0>;
+> > >   			l2_500: l2-cache {
+> > >   			      compatible = "cache";
+> > > @@ -136,6 +148,8 @@ cpu6: cpu@600 {
+> > >   			power-domains = <&cpu_pd6>;
+> > >   			power-domain-names = "psci";
+> > >   			next-level-cache = <&l2_600>;
+> > > +			clocks = <&cpufreq_hw 1>;
+> > > +			qcom,freq-domain = <&cpufreq_hw 1>;
+> > >   			#cooling-cells = <2>;
+> > >   			l2_600: l2-cache {
+> > > @@ -154,6 +168,8 @@ cpu7: cpu@700 {
+> > >   			power-domains = <&cpu_pd7>;
+> > >   			power-domain-names = "psci";
+> > >   			next-level-cache = <&l2_700>;
+> > > +			clocks = <&cpufreq_hw 1>;
+> > > +			qcom,freq-domain = <&cpufreq_hw 1>;
+> > >   			l2_700: l2-cache {
+> > >   			      compatible = "cache";
+> > > @@ -729,6 +745,19 @@ rpmhpd_opp_turbo_l1: opp-9 {
+> > >   		};
+> > >   	};
+> > > +	cpufreq_hw: cpufreq@18323000 {
+> > > +		compatible = "qcom,cpufreq-hw";
+> > 
+> > This doesn't follow the bindings, does it?
+> 
+> I will add and re-use the closest target compatible.
+> 
+> > 
+> > > +		reg = <0 0x18323000 0 0x1400>,
+> > > +		      <0 0x18325800 0 0x1400>;
+> > > +		reg-names = "freq-domain0", "freq-domain1";
+> > > +
+> > > +		clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
+> > > +		clock-names = "xo", "alternate";
+> > 
+> > Are the DCVSH interrupts?
+> > 
+> This target does not have DCVSH interrupts directly connected to the
+> CPUFREQ-HW.
 
-I thought you were referring to reg addresses and interrupts since
-there was no comment in the reset part in v1. Anyway, it is clear now,
-thanks.
+So, does it require a separate LMH driver, like the one used for sdm845?
 
->
-> None of the resets are bindings - these are just hardware constants.
+> 
+> > > +
+> > > +		#freq-domain-cells = <1>;
+> > > +		#clock-cells = <1>;
+> > > +	};
+> > > +
+> > >   	arch_timer: timer {
+> > >   		compatible = "arm,armv8-timer";
+> > >   		interrupts = <GIC_PPI 1 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+> > > 
+> > > -- 
+> > > 2.45.2
+> > > 
+> > 
+> 
+> -- 
+> Thanks & Regards,
+> Taniya Das.
+> 
 
-Understood. Will drop this file and update dts.
-
->
-> Best regards,
-> Krzysztof
-
-Thanks,
-    Sergio Paracuellos
+-- 
+With best wishes
+Dmitry
 
