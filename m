@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-139741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B78A16C26
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:14:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7974FA16C35
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:16:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36E25188456D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 12:14:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 860463A4F10
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 12:16:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6887D1DF993;
-	Mon, 20 Jan 2025 12:14:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9D191DFD87;
+	Mon, 20 Jan 2025 12:16:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AeS3BQW9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CZ1Dh+i4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96E591DFD85;
-	Mon, 20 Jan 2025 12:14:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DEC21DF252;
+	Mon, 20 Jan 2025 12:16:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737375264; cv=none; b=TN0Vfc5fTPnRZf8bw9Df1RduHsjkS37CC8bjxY5mKlDR45TDrXSjuMBZX+Q5AXbp9u+WhRqv71d+1l0wdhRJOZ88XhJdHJVcwkGYsQJxt3adhxMV3xtb2OIwvmTGTA+Rr0Se3VWysWpS0vSPQXFasxp16AAiyUM4XGMrPtkTZ/w=
+	t=1737375397; cv=none; b=rxx81wvjoJ2eYVXiZO6G1vlLjwcoOiHbCBuWKrSpQ95CbkJNJWyKd1F5HhfZr33Pr2ww6aEU5lI5zcKXqNRG8ygutnFzBFChNjtrOU7UtSjdWPN+sW1sxD2uxEX0msqayftrdbV/OSvSvErF9+gQlmwHd8coTQZivZNniSCuSU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737375264; c=relaxed/simple;
-	bh=BHeJn3raiuG0W/dL2c8Dln16JNDQHSZU6dQqdGU7Kq4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bX612jlBnGsQGsY53chzaa+A5H9r2zsvCx7Dl20xF+XQvs7ppvFAH+uPhF9QJzbpi0v7qIFpUYMjymn4VkQkosjXSq6ltt+t+o++rBMGpH5M4U/LM6sMWOxwN5+nRuPG7hhyQSumjS/5x+U5CvgseUhUrEyeWtgLLaFILiu2sLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AeS3BQW9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50K6gwT5007181;
-	Mon, 20 Jan 2025 12:13:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XqOcLXFNyxbatMhbygLBGDAfknLwFIGZHDdPOoF02RU=; b=AeS3BQW9FIa8P4UH
-	vKbZz54NIWmSTQgt1FeL6MEO//UlIkMrrupc13mUMOcs7O+N6PgpcIaXt9nFLDAY
-	d8CioXmwENwCo8qOS2GHQrhFWYwi/y+XTGXt/dSU4bhSfNv/D2r9U6UvvO+k0gsw
-	SpLyK5oW6JTHGygjUqNwUeXRcFWuqhrH8cE6aXBYfKmBpZup0eraEaPKlHwneP4V
-	JVGcqvNE2OH/WPYSsLl/51F6+Y6Z/wLdjg44mqpgW0doQxlL0ASp0M1tMrJMh+FX
-	sLjnGeXyud18ImLVX+po0zkOZxZuwXbIBWcF17Vce/tDdQx2SayPNCsRsCccVEb+
-	13IbpA==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 449hfb0sp4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Jan 2025 12:13:23 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50KCDMQk004489
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Jan 2025 12:13:22 GMT
-Received: from [10.239.155.136] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 20 Jan
- 2025 04:13:18 -0800
-Message-ID: <872d2183-b255-4d4d-b7e6-acdaa2737172@quicinc.com>
-Date: Mon, 20 Jan 2025 20:13:15 +0800
+	s=arc-20240116; t=1737375397; c=relaxed/simple;
+	bh=gO4ldAVOW/sVFmZkbzx708ib8vYFhu8keryGUWXVycU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j0rhx4jZYrm0tj7/ekLxcs4rfGu6LmFb72aFMoxFPy7cVB8hWOdig6mJhmncLNQm9hLemAKnP86Ea/AgSXPHXVZmflEanrwVOREA2+JwQjUZkfInIDq+UIlge5eeNAU7mhXsgf7iEgdrfMTnufvHZe7lCEF7om7AV6UDJsJCLC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CZ1Dh+i4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8087FC4CEDD;
+	Mon, 20 Jan 2025 12:16:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737375396;
+	bh=gO4ldAVOW/sVFmZkbzx708ib8vYFhu8keryGUWXVycU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CZ1Dh+i4/kZbFs9R+Qxlpc22tiOhiwENSDEnOswAQ65PGnDi/AVVOTFpr+V3rcOje
+	 KRMlinTwayZIzNyAYiLNb6wNjd61qqMV2hQY+SWClT+K+9KYsI7txqAumviIpHie8x
+	 H0WbCQHEUPTL9ZlapTrtIxXUc6JRN6w+/UfHGsbp4v+gCyALn0WDM1qsLzJhnFJV94
+	 /z6gk4gMgDquAF0Lp3wssUYTUwVnpN7AiE0TQ8BcLfpKflcRzvIVlijdPJVCSmZx1G
+	 j5vJS2crj2uCDNytK/HAhqVgrXrP0WT9H20IZfEGjDLzrvHtnWtCCnca4LA4cz1Z3T
+	 MrjuRLzTgTlrA==
+Message-ID: <6110fd00-c050-4bcf-8971-674bc8c0bfc7@kernel.org>
+Date: Mon, 20 Jan 2025 13:16:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,144 +50,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/8] ARM: dts: msm: Use Operation Points V2 for UFS on
- SM8650
-To: <neil.armstrong@linaro.org>, <quic_cang@quicinc.com>, <bvanassche@acm.org>,
-        <mani@kernel.org>, <beanhuo@micron.com>, <avri.altman@wdc.com>,
-        <junwoo80.lee@samsung.com>, <martin.petersen@oracle.com>,
-        <quic_nguyenb@quicinc.com>, <quic_nitirawa@quicinc.com>,
-        <quic_rampraka@quicinc.com>
-CC: <linux-scsi@vger.kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
-        "open
- list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
-	<devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20250116091150.1167739-1-quic_ziqichen@quicinc.com>
- <20250116091150.1167739-9-quic_ziqichen@quicinc.com>
- <e61d05d3-eb9d-4b58-8a56-43263c58f513@linaro.org>
+Subject: Re: [PATCH v12 2/5] dt-bindings: arm: fsl: add imx-se-fw binding doc
+To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, Conor Dooley <conor@kernel.org>
+References: <20250120-imx-se-if-v12-0-c5ec9754570c@nxp.com>
+ <20250120-imx-se-if-v12-2-c5ec9754570c@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Ziqi Chen <quic_ziqichen@quicinc.com>
-In-Reply-To: <e61d05d3-eb9d-4b58-8a56-43263c58f513@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jlIZSnZDJJzSsoLowBa7tyTVKTzTn2wJ
-X-Proofpoint-ORIG-GUID: jlIZSnZDJJzSsoLowBa7tyTVKTzTn2wJ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-20_02,2025-01-20_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
- lowpriorityscore=0 mlxscore=0 suspectscore=0 priorityscore=1501
- malwarescore=0 adultscore=0 mlxlogscore=999 bulkscore=0 spamscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501200101
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20250120-imx-se-if-v12-2-c5ec9754570c@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 20/01/2025 17:52, Pankaj Gupta wrote:
+> The NXP security hardware IP(s) like: i.MX EdgeLock Enclave, V2X etc.,
+> creates an embedded secure enclave within the SoC boundary to enable
+> features like:
+> - HSM
+> - SHE
+> - V2X
+> 
+> Secure-Enclave(s) communication interface are typically via message
+> unit, i.e., based on mailbox linux kernel driver. This driver enables
+> communication ensuring well defined message sequence protocol between
+> Application Core and enclave's firmware.
+> 
+> Driver configures multiple misc-device on the MU, for multiple
+> user-space applications, to be able to communicate over single MU.
+> 
+> It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
+> 
+> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Reviewed-by: Conor Dooley <conor@kernel.org>
 
-On 1/16/2025 5:24 PM, neil.armstrong@linaro.org wrote:
-> Hi,
-> 
-> On 16/01/2025 10:11, Ziqi Chen wrote:
->> Use Operation Points V2 for UFS on SM8650 so that multi-level
->> clock/gear scaling can be possible.
-> 
-> 
-> I've already sent a similar one at 
-> https://lore.kernel.org/all/20250115-topic-sm8x50-upstream-dt-icc-update-v1-10-eaa8b10e2af7@linaro.org/
-> 
-> Neil
-> 
+Where Conor's review tag was actually given?
 
-Hi Neil,
+I don't see any hints in the changelog.
 
-Thank you for reminder , I will withdraw this patch in next version.
-
-- Ziqi
-
->>
->> Co-developed-by: Can Guo <quic_cang@quicinc.com>
->> Signed-off-by: Can Guo <quic_cang@quicinc.com>
->> Signed-off-by: Ziqi Chen <quic_ziqichen@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 51 +++++++++++++++++++++++-----
->>   1 file changed, 43 insertions(+), 8 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi 
->> b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> index 01ac3769ffa6..5466f1217f64 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> @@ -2557,18 +2557,11 @@ ufs_mem_hc: ufs@1d84000 {
->>                         "tx_lane0_sync_clk",
->>                         "rx_lane0_sync_clk",
->>                         "rx_lane1_sync_clk";
->> -            freq-table-hz = <100000000 403000000>,
->> -                    <0 0>,
->> -                    <0 0>,
->> -                    <100000000 403000000>,
->> -                    <100000000 403000000>,
->> -                    <0 0>,
->> -                    <0 0>,
->> -                    <0 0>;
->>               resets = <&gcc GCC_UFS_PHY_BCR>;
->>               reset-names = "rst";
->> +            operating-points-v2 = <&ufs_opp_table>;
->>               interconnects = <&aggre1_noc MASTER_UFS_MEM 
->> QCOM_ICC_TAG_ALWAYS
->>                        &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->>                       <&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
->> @@ -2590,6 +2583,48 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
->>               #reset-cells = <1>;
->>               status = "disabled";
->> +
->> +            ufs_opp_table: opp-table {
->> +                       compatible = "operating-points-v2";
->> +                       // LOW_SVS
->> +                       opp-100000000 {
->> +                               opp-hz = /bits/ 64 <100000000>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <100000000>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <0>;
->> +                               required-opps = <&rpmhpd_opp_low_svs>;
->> +                       };
->> +
->> +                       // SVS
->> +                       opp-201500000 {
->> +                               opp-hz = /bits/ 64 <201500000>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <201500000>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <0>;
->> +                               required-opps = <&rpmhpd_opp_svs>;
->> +                       };
->> +
->> +                       // NOM/TURBO
->> +                       opp-403000000 {
->> +                               opp-hz = /bits/ 64 <403000000>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <403000000>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <0>,
->> +                                       /bits/ 64 <0>;
->> +                               required-opps = <&rpmhpd_opp_nom>;
->> +                       };
->> +               };
->>           };
->>           ice: crypto@1d88000 {
-> 
+Best regards,
+Krzysztof
 
