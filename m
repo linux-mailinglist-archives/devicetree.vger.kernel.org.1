@@ -1,322 +1,355 @@
-Return-Path: <devicetree+bounces-139715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139716-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2C0FA16AB4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:28:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E297A16AB7
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:29:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F9D33A37BC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:28:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1478D1884FD9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B9C41B424E;
-	Mon, 20 Jan 2025 10:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CE5F1B423E;
+	Mon, 20 Jan 2025 10:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="fIK4sVR4"
+	dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b="Y1ci6FWv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2117.outbound.protection.outlook.com [40.107.103.117])
+Received: from polaris.svanheule.net (polaris.svanheule.net [84.16.241.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 050F018FDC8;
-	Mon, 20 Jan 2025 10:28:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.117
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737368888; cv=fail; b=ADOkmkzfLMzL/9d+3d/jE2EeznVK2iykxX+Q15NlLEAl+u2H7+MFw2Hul+hscZSbep8OMwiVTWCqHljEposwpPRPdt1FUCXQ5HyKwHCBwoIc2GtEYXdb9oLjOEvNh1XD8sYtbGV3ouLRIpM4sn02iXxSHlMx6OpYvm32Qzfibmw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737368888; c=relaxed/simple;
-	bh=jdbo+BZK7mhYBL7OPrC9r+D1ACxjojfKJtVOLEKL19o=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=RQ2IxWQweHUYmbSjmFGOc755LzvWdEQ7V9JhYp51CtlzElxBY1m5WjLP3l5MXO/wa7/c4MFyYUfzZKPpz0zPKuxL82s5Obcs1NuHAv5MeMYRasyzUl3Z4LKmLTIGQeTeOQhzHzd3HUq3yyNPoSXTsS4L9INaFxxvzh/mNgxHodo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=fIK4sVR4; arc=fail smtp.client-ip=40.107.103.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=imXmTg+gOLMaHnalV+UeFRVp+0wQ6Bbitms/hGHwTB90TK4gp5CVjjSsdHMoFk42uYAXrgn3l2uke3Jt5QvmFEfGHTz06QX3aeQRgdzYrNLeAYXzBWplFHTpTKP+TEIvFtHEargi7/YWOtUGn69jxmTbaiT/smXWEXtSYVdUGnEmZvWtWpNizq0mzDIpUwPmyb3bRdvfbLDdEmpen2ObJyJGupSbN+XmP8P7FwmK0vjPcH6tLh9oEENZYXGfP9ww5M5OXJZ8DBR6/bXqaTQqj0tcTnhJaJsm032TiX6bF/AmxiUGjoaaw+ESWC3290tePgez1YJtSGZqzF633KyO2A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=81DyW/fUuvbnGkHHrDBXWJzmbfUZiB7EB+C6hxPtOQk=;
- b=dn0SUwDBsPOj1nLKhtkMYcs7RaOuUlvwBgwCY7yXEbNKB/UAaNPlFDPF+XZUkPkmIJhTQx3K1vHReS4EDEMoRSH+DMtWjJRXjCCZE/45R7xbdoTnketihuqVBGCgQtI/6UhLBeK5x7HsRlNgL6bdAJp9gSiTEOeGgqEKR8V43MsoqqszlwFN3Do1XZm03r+tE4YBStGxjvKRHNPhrKa0XKldLOveKoyMdP58YoWywFR5evzzYS239X+izpDQq31Di/Ni+b6vxBrNqHmiGnpiKrGbsFKrj7EroE8Y97zSVWYJnyCFBkc98x9oQXL/PUJYTrDavRx/vnbsVbvUJJOsYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=81DyW/fUuvbnGkHHrDBXWJzmbfUZiB7EB+C6hxPtOQk=;
- b=fIK4sVR4SqBch6dGYX7o+xVwfkOhZWE2Hweh1ndV3Le2uA5rLKSG6zp5b0m0gLNnYvRrGBQd6QvZykTuN7b81KAzUHmBBzSBPV+7E4QfI6dLRdb01Ika/od4LF3JO4xWzMeA1iqUNMexR/aRajT+cVzQxvSZqvOE5hrMx+xSNEw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
- by PA6PR08MB10595.eurprd08.prod.outlook.com (2603:10a6:102:3d1::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.21; Mon, 20 Jan
- 2025 10:28:02 +0000
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::4e72:c5d4:488e:f16d]) by DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::4e72:c5d4:488e:f16d%5]) with mapi id 15.20.8356.020; Mon, 20 Jan 2025
- 10:28:01 +0000
-Message-ID: <46072287-4124-43b1-996c-fdca41f967e4@wolfvision.net>
-Date: Mon, 20 Jan 2025 11:27:58 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] arm64: dts: rockchip: minimal support for Pre-ICT
- tester adapter for RK3588 Jaguar + add overlay tests
-To: Quentin Schulz <quentin.schulz@cherry.de>,
- Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
- <49bfb4c5-12b5-447b-b08a-af0bb9fc304b@wolfvision.net>
- <82e64b27-d254-4fff-aa25-5b848f147ca2@cherry.de>
-Content-Language: en-US
-From: Michael Riesch <michael.riesch@wolfvision.net>
-Organization: WolfVision GmbH
-In-Reply-To: <82e64b27-d254-4fff-aa25-5b848f147ca2@cherry.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR04CA0107.eurprd04.prod.outlook.com
- (2603:10a6:803:64::42) To DU0PR08MB9155.eurprd08.prod.outlook.com
- (2603:10a6:10:416::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F17781B413E
+	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 10:29:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=84.16.241.116
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737368952; cv=none; b=d31I41SuShNQLGZs3XJAov3eEPHBw4LUTt1NhbxBWS3DqeGijm1tc2hkqncnJMaJFc2B2pLPj+AtYxb41djOdvVhfwNs2fbkk7zqqn5WOi+pNHkTnnzvb6iMMzrUgvUQ6lFkh0jGsMDQ2FjVKUY5wE54beTClQDkTi7yQZ689rU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737368952; c=relaxed/simple;
+	bh=pzXPx9tFLkGyZxuUHk3rwrFmRMCwAhLKeu65smPL7rc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ppi+Ir0C4HU/jwWK2DXo5Gu8tQLytAalrzv8I0njk+2xyk8BNbSNd2HyNrAXGvbvANv0B5yIQKXd6bMWwcZfHKg+zDkHqOydKwGUG7eOcEFhBp+TTnaxS7kBN/prPItjvf7gx1l6Ni1nNGhPH5qa6aFSgsNfqo150ILajhHUEWE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net; spf=pass smtp.mailfrom=svanheule.net; dkim=pass (2048-bit key) header.d=svanheule.net header.i=@svanheule.net header.b=Y1ci6FWv; arc=none smtp.client-ip=84.16.241.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=svanheule.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=svanheule.net
+Received: from [192.168.90.237] (unknown [94.110.49.146])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sander@svanheule.net)
+	by polaris.svanheule.net (Postfix) with ESMTPSA id 9C71C5A8555;
+	Mon, 20 Jan 2025 11:29:06 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+	s=mail1707; t=1737368947;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9IYvDYWDDz8bQtTYvekPdCA3x3++SHn4tXjMEWG1df0=;
+	b=Y1ci6FWvrrOPzkfGjIJEoeUQ+7wsfRr1Zlylddl1RwzPujxT8it1Db9jgp19LR2RcDOksr
+	6HXa8npzc+dVgF9fZclK1PI6gOhpJvsfMtXo/c5pST4+nd9e+5sFDtm9xJktrp74Pt09Bh
+	6l9PBiRqlYs/yfVtNmmZGOc1pKJA+n8+gLIez0pc1EPhb9Xlz7KerQR3G+gxL/SiIkAr5e
+	qPzfg9VjGM3J3ljYirr2IIx0wuf6gbKegg94kCjtm2CbFWQDfvWjxXNR7UsKkeiyY2uYWQ
+	LiKCqNzY1wkDx1ceFFmBGo59LOpSESwYTis/jRXqX48ja/joEZ1c/oWM5XkrhA==
+Message-ID: <d4194a1560ff297e5ab3e6eae6d51b7c9d469381.camel@svanheule.net>
+Subject: Re: [PATCH v4 4/4] net: mdio: Add RTL9300 MDIO driver
+From: Sander Vanheule <sander@svanheule.net>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>, lee@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andrew+netdev@lunn.ch, 	davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, 	tsbogend@alpha.franken.de,
+ hkallweit1@gmail.com, linux@armlinux.org.uk, 	markus.stockhausen@gmx.de
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	netdev@vger.kernel.org, linux-mips@vger.kernel.org
+Date: Mon, 20 Jan 2025 11:28:44 +0100
+In-Reply-To: <20250120040214.2538839-5-chris.packham@alliedtelesis.co.nz>
+References: <20250120040214.2538839-1-chris.packham@alliedtelesis.co.nz>
+	 <20250120040214.2538839-5-chris.packham@alliedtelesis.co.nz>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.3 (3.54.3-1.fc41) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|PA6PR08MB10595:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b3c129a-e0d2-411f-2ba8-08dd393d1e1c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?YjZkL05CZ01DcmFyT29SSXZlMHlWN2tWSzRUK3lrSUQwT3lWdFIydDU3aU9x?=
- =?utf-8?B?c2NwenNvaHJXampwNm95OGk4bzB3UU8rUlBTdEJvOHlWbTRpbXg4Q1JIMmNj?=
- =?utf-8?B?aHZiNTBBWVBvMHlBcytTT0NlK1BvYnJxNzQ1MkFDZk5yY2o4cnpPV2VKUnpy?=
- =?utf-8?B?eEhhZHBpSURMSE55QTZYek5DaHJMYnljSlo5UFZ4bzZDZEVzYjd0R01mVTA1?=
- =?utf-8?B?RmcvbXNNOVk3NHovTWw3MTJ4aWpEOXpVYzBvV3AxTThPUjdzbzB5MVZPSUVo?=
- =?utf-8?B?SVphUGhMM3dvMklPaStVcC9PQjNnRU05bUl4d1B3VlI4MVBqWUlLQ1RrS2Ni?=
- =?utf-8?B?Ylp3RDFjNzVYOU5RT2JzendIR0xLaldiSTRnU3ZpS1VNTndFbGNJQWQzUUpO?=
- =?utf-8?B?YU9icTZSUkhFUGlScHdObUhMUWRZeElyV3JyeHNxZ3VRdUlPcnFTS1EyQkFL?=
- =?utf-8?B?c09CNFVHdGhzUDRxcDRCd3RmOUNhMmV6S0sydFFWSFhnQXFBTU00ZFJ1elJa?=
- =?utf-8?B?UTNFRTExYTJoNERFSWpaeWc4My9Sd0RicTB1VWJrM045UlRrbE4yaUtjaTR2?=
- =?utf-8?B?a3hKYkJ0L3NFMlVaazkydmpLQVM4WXJQOWoxaHVPdTRuQ3FuMDFTOUVyZnZU?=
- =?utf-8?B?ZzFzSEtGK3pxOUpPeGpkdGV5RmVzdStGQmpELy90R3RFR0xBNU53VEFQQ1dS?=
- =?utf-8?B?RmVBWnBjS3lFYTJRRmhuU09TLzRlSWRyaEJEbFVFcjNlcEh2UGh6bVdJdms2?=
- =?utf-8?B?alBGR2tVOXl1VnFrbWJER1AycktyVWU5QlpnSmk5STQzNHlHdVcyL0FId0Zt?=
- =?utf-8?B?MW9NQWZzd3RaMDJTdEQ0MjhPZUtjcy9XcytpWHN5ZWFoa3RabnR2YU1kWjVD?=
- =?utf-8?B?b0poaFhlME11TmlDMUdJY0ZQNE85QlVvUkdvaDM5U1Z4SnR6N0lDTWUyanpZ?=
- =?utf-8?B?ZXB3UDJoZk9hOVNxSTZiRTFqejdoVXpCTW51bUF5NUQwWEREL1lENWp5ZVpz?=
- =?utf-8?B?UzVMdWFXNVdTYVdUVDgySEFBZC85WUc1L3dqakpLOTZ4cG56c0lGSFhzdkxX?=
- =?utf-8?B?VysyeDlKek90ZEYxaEdZaXVCOWxrbGVyaVZSUVJwWWlTSFVwNy9rbHoxUk82?=
- =?utf-8?B?eURRbmJkVGVTKzNWZFJUQ2R1d1AyWUU4NG1TRlNlVTBTUlM2Y3lnTEN4SXJQ?=
- =?utf-8?B?akJFNGJ0UWJURHFUcTJDOFp6Y0JPaVhiWm5yZHpiVlJKRUtpeUZZam8wQnhC?=
- =?utf-8?B?K0VPNTl1SnViaU9wTEpDK2N5eHY3aCsxampybFpLeW1YMVdySFh0cEgxZlJY?=
- =?utf-8?B?WWlneldONlRadHJJckZnSEN2WVNZb2pncVFMbnJVME94TW9URlZHT2UyaFdN?=
- =?utf-8?B?bVZhS09hU1dibXB4UmJXZFlVWUQzdE01MytGWDA3clpVb0NxZFNuNzA2MTJR?=
- =?utf-8?B?Nmh1R3YyYUhvaTQ0OTUzTXVQbW1FdVBJd1k0WWpNMDdQemNRdDFFdm9yLzV3?=
- =?utf-8?B?aGVXNHNCcTFxT1lUWmZyODVXK3lYS0J0WkdzcURrcTlyckNTNmdYTHAxWmtQ?=
- =?utf-8?B?dmJHQVRyd0c0dHFhOE9Vb2hrUUpaMW9GcU9BTE0zc3JWUzFYSFBjRGhZL2xk?=
- =?utf-8?B?OTZwd2wyMm41SS9Lei9FS254a3BYSnRTNzBLKzhsWXk4K3h2WklzUFB4MFU2?=
- =?utf-8?B?MXhYMEExTDdxUWlGS2dMeHZEWGo3UlViZm12WDh2ZEczTFh2bDdhTFVjbzBL?=
- =?utf-8?B?L3lnQTVhUFF6Q0FKdHpHYWVMVE12RXd4bE9MenU0T0VWeWlRNjlNOUU0YlJS?=
- =?utf-8?B?YW42TW5TczhxY3JLdU1XSVI1aFlDV2NRdWZiWjRIeS9jdkFJQXM4b1o2MXd5?=
- =?utf-8?Q?en/fIyoLxDBZT?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?Z3hTREJ2WlFBdG9DUEUvb2ZobDVlb2VEVnltaGllYmtBOG5kKysrdjBsMHQw?=
- =?utf-8?B?dmlUMEJ3akRBVE45d2t1cUJyMlk3c3FWYVBGUkV5ZmhFUTdHNUt6VlZtUG42?=
- =?utf-8?B?bkpWMUdDVlBreDZEZVBNZnlIVk9XcjkrZmRLVjFZUWtJcFpqWWVIMVVJOEcv?=
- =?utf-8?B?bFo2WXdZQnljelBRM3M2Zmt0K3haQk1POWNMVjVYcGsrQlp5a3MwZHF0SzRL?=
- =?utf-8?B?bFY3YzYxa0lpQjFWV2I1Y3E2TVdzcjUrQVlhT29MTFpxcjFBN0YwVnlYY1dO?=
- =?utf-8?B?RGVuMU9qTVlYSjZ0NXR1ZnBBcnoza3FhSGJUa2VJRFZTaDFUdFUxSnM1aHhJ?=
- =?utf-8?B?VUVaMUczMWdaRlhXcFZBVDZXT3gwWXJ4UDdsYzNJU2hKVHI3TFY3WjV0cnpN?=
- =?utf-8?B?Sm9uM0M5VmNJVXFqZEdOdm5hNlNWNHdrSS83UVJKcUhibG1kTkdXQVVFWTY0?=
- =?utf-8?B?SEYxNlpzNlprUTlUWWJYM2I3QzhqcjdqSXRiQjFodmJwYktEeGZyeXd4NHFW?=
- =?utf-8?B?QnpycEZhc0Y0dUw2VmRPR21ZWjFQamNmUlpGZGNQeXU5eFdmSk9ib0J1b21t?=
- =?utf-8?B?bmMzRFl3aGZDU0c4SWVHYytFMnBLOTdCZXdKWWhhVHdXOUhtOFZXTDJmZkNz?=
- =?utf-8?B?L3NUcURXL0V3SDMwczBsM3VQQnhQWDFUOEZoY25aMEtpUXdNWFU0NmZxMEV6?=
- =?utf-8?B?QUR1TDRlWjI5bTljS2xVUTMyTEVZbGNpUFJHeXZEUzRwOTg0ZUxyTnJETXM5?=
- =?utf-8?B?QnpIMFYwNjhwc0Y4RmJMTGxGYkVBYmR6TXlVT1ZJWUF1VWlKME83MFdtY0RM?=
- =?utf-8?B?RW1wdXZDRm5KalNyekR1cGt1UHN6WnI3ckxzMnVJM2ZHV2lRTkl3WnBxdXFQ?=
- =?utf-8?B?MjYvb0N1TzBaYU9HM3l2cmdBaC9pRDdNWkhiTWJqaldyRXhLWUZUSHliTWRS?=
- =?utf-8?B?SmVneDVpcWcxK05ZbkNod0tsNUJuejFNT0Vkd25aYzNhdGxybWFabkNvaW05?=
- =?utf-8?B?dm9udlRvME5WNFFMWDNsUHJXcWRiQXc5WmJyT0FSL0VaL1h0emIvSjlMQmtm?=
- =?utf-8?B?NlA0ZVJwWjZzVmE4U3pSYUR5WWtHQVhCYU9OM2k0L2FnQng2OUx0aVlXUGQy?=
- =?utf-8?B?SGlGZG8vSGxjTk9mTlRpODFUSXh0VDhHeU0wZFBOMHM4TzRvOTFSNVR4RWY5?=
- =?utf-8?B?UzFJbk5EWitCQ2xBd0NxMkxwU1VXWUlaOUhNa042ZW11c0ErV0lDdFVXK29z?=
- =?utf-8?B?RXBTem4yd1cvY2hvN1dacjZaZGRSbUFBNmZFT1U5LzA1M2hTRmRvUXM1MmY0?=
- =?utf-8?B?Q0xjbjJzT29IZGw4Ni8reGV1Wlp5KzB1UzNxL2xvek5CWXpPTGlMcmtBeHlp?=
- =?utf-8?B?SFFhRFZOaW0yYU9nUWhiRHYzTjhkYVlydVhWZ3RhbE9tajZGOGtkQXJYTElL?=
- =?utf-8?B?bHR1NS9XWVlaVG13TGpJQ3dvTkZxaDIxTzR1ck9rREVxUVA2amQ3U0paNngr?=
- =?utf-8?B?V0ZJZG0yNGlvOVA4RVdTYlU2aHVjbkdHb1lQV3YzUWhwRjE1QndKV1FBTnFi?=
- =?utf-8?B?V0FiZ1g4Y1orb1BFeWEzZU9vdkZ6UFUwOUQrRVNhZU8zVk45RTcwM0tOSHlO?=
- =?utf-8?B?Y0QwMlE3R283cjdrVUZpQ3BISjRZZW1mVkl5WmQra1VicWxuNDlWdXBWUFVT?=
- =?utf-8?B?SnJEVUNYaEpseDQxOHdOWEkraGNISmROUHduOHVsbXl1cmpObFA4REhqVE1l?=
- =?utf-8?B?TkVWRnJIeDdQbFJpbWxIUjhDNEd5MUdEcUxLdlRBNWt0cVJwcUhkWXNpaldD?=
- =?utf-8?B?Zkc3OXNudGZFMElHMXlkczJsSHlHTDZoUXhwZlRHZGZpemFKbnU1aWw2ZUJ4?=
- =?utf-8?B?YWk2dU1hMW1wMDlvNGZ2OVduS1ZsVksycFNKckJrWGgyOTVKanFMeXFhRThF?=
- =?utf-8?B?R2c1aVlmeGpyMkVKaXlpK2RFMUJ3UFphZS9HY0NLQ29rbUh6a0hVaGdVRUxu?=
- =?utf-8?B?ekl6TUdzZmZVc3NCQzFRdGJCc0lyaHE1TFJ3b1gxcXNTN2ZnOUVxbENxMWFZ?=
- =?utf-8?B?ZUpNdVVBUFVlWU15TlZnZFhlMVN6SXVEdjdCUTVEZERQcVY3a3RUMzAwR1hh?=
- =?utf-8?B?ZHY3cWh0d2IyRGtKVmVsNEJrMWcvRUsvWTV5Y3VoTjJqazk3NW5MNDBiajAv?=
- =?utf-8?B?L2c9PQ==?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b3c129a-e0d2-411f-2ba8-08dd393d1e1c
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2025 10:28:01.9052
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YKjWIc8WBBKm/a5AvomZFnLOa8smCcdRC8gsVfYpBA0GzSBO5HyNG/o9Gs8agOVdlICPCpsK3iDSv2g8rc1Py/KIz4M7CpBcFk7lxRigN8A=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA6PR08MB10595
 
-Hi Quentin,
+Hi Chris,
 
-On 1/20/25 10:20, Quentin Schulz wrote:
-> Hi Michael,
-> 
-> On 1/20/25 10:06 AM, Michael Riesch wrote:
->> Hi Quentin,
->>
->> On 1/16/25 15:47, Quentin Schulz wrote:
->>> This adds minimal support for the Pre-ICT tester adapter for RK3588
->>> Jaguar.
->>> GPIO3A3, GPIO3A4, GPIO3B2 and GPIO3D2 to GPIO3D5 are all routed to power
->>> rails and can only be used as input and their bias are important to be
->>> able to properly detect soldering issues.
->>>
->>> Additionally, this adds build-time overlay application tests for (some)
->>> Rockchip overlays to try to avoid future regressions.
->>>
->>> Notably, the Device Trees from Wolfvision PF5 aren't migrated (but
->>> should) as I do not own the device and couldn't figure out from the
->>> introducing commit logs what the possible valid combinations are.
->>> +Cc Michael Riesch for awareness
->>
->> Thanks for the heads up!
->>
->> Just to make sure I understood correctly: By migrated you mean that the
->> overlay entries are moved to a separate section in the Makefile and
->> there are explicit combinations of base DTS and overlays for
->> compile-time testing purposes? If so, I don't consider the PF5 migration
->> as *that* urgent. I don't think you can break anything on our side. Or
->> am I missing something?
->>
-> 
-> I think it makes sense to backport the patches in this series (except
-> the one adding support for the Pre-ICT tester adapter on RK3588 Jaguar).
-> Because we cannot backport the patch for Pre-ICT tester adapter (it's an
-> addition, not a bug fix), any patch that is applied after that one will
-> result in a git conflict when backporting to stable releases.
-> 
-> I believe it makes sense to backport build time overlay application tests.
-> 
-> The git conflict will likely be no big deal but if we can avoid it,
-> better avoid it :)
+On Mon, 2025-01-20 at 17:02 +1300, Chris Packham wrote:
+> Add a driver for the MDIO controller on the RTL9300 family of Ethernet
+> switches with integrated SoC. There are 4 physical SMI interfaces on the
+> RTL9300 however access is done using the switch ports. The driver takes
+> the MDIO bus hierarchy from the DTS and uses this to configure the
+> switch ports so they are associated with the correct PHY. This mapping
+> is also used when dealing with software requests from phylib.
+>=20
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
 
-OK.
+[...]
 
-> 
->> Maybe you can move the lines
->>
->>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-display-vz.dtbo
->>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
->>
->> to the overlay section as well? This should not cause any functional
->> changes.
->>
-> 
-> The overlay section would only support the syntax which allows build
-> time testing. I would like to avoid confusion around what to do when
-> adding a new overlay. Specifically note the missing o in the extension
-> with the build time tests.
-> 
->>> I'm wondering if we shouldn't backport patches 1 and 2 to stable? In
->>> which case, it would make sense to try to have the Wolfvision PF5
->>> overlay tests merged before the addition of the Pre-ICT tester adapter
->>> support for RK3588 Jaguar as that one won't be backported to stable and
->>> backporting the Wolfvision overlay test would incur an unnecessary
->>> (though not difficult) git conflict to resolve.
->>>
->>> I also do not know what kind of tests we should have when overlay
->>> combinations are possible (let's say there are A, B and C overlays that
->>> can all be applied, should we have base + A, base + B, base + C,
->>> base + A + B, base + A + C, base + B + C and base + A + B + C tests?
->>> maybe even base + B + A, base + C + B, base A + C + B, base + B + A + C,
->>> base + B + C + A, base + C + B + A and base + C + A + B tests?).
->>
->> I have never been good at combinatorics, but I feel this has the
->> potential to explode :-) My two cents: The overlays *should* be
->> orthogonal to each other, i.e., no dependencies between them in the
->> sense that overlay A creates a node that is used by overlay B and that
->> sort of thing. Then
-> 
-> I disagree. I can already tell you the following usecase:
-> 
-> our Pre-ICT tester adapter for RK3588 Jaguar has two proprietary camera
-> connectors. We already have two camera modules working with it, so the
-> following would make sense:
-> 
-> pre-ict-tester.dtbo
-> pre-ict-tester-con1-camX.dtbo
-> pre-ict-tester-con1-camY.dtbo
-> pre-ict-tester-con2-camX.dtbo
-> pre-ict-tester-con2-camY.dtbo
-> 
-> You would then apply pre-ict-tester.dtbo followed by one or two cam
-> dtbos. The pre-ict-tester can be used without the camera modules (c.f.
-> this patch :) ).
 
-Most probably there is no general answer. In the end the use cases
-decide what tests do make sense.
+> diff --git a/drivers/net/mdio/mdio-realtek-rtl9300.c b/drivers/net/mdio/m=
+dio-realtek-rtl9300.c
+> new file mode 100644
+> index 000000000000..a9b894eff407
+> --- /dev/null
+> +++ b/drivers/net/mdio/mdio-realtek-rtl9300.c
+> @@ -0,0 +1,417 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * MDIO controller for RTL9300 switches with integrated SoC.
+> + *
+> + * The MDIO communication is abstracted by the switch. At the software l=
+evel
+> + * communication uses the switch port to address the PHY with the actual=
+ MDIO
+> + * bus and address having been setup via the realtek,smi-address propert=
+y.
 
-> 
->>   - Permutation can be ignored. (base + A + C = base + C + A)
-> 
-> I think that's fair. It would anyway be an issue with dtso which are
-> using /delete-node/ or /delete-property/.
-> 
->>   - Composition (base + A + B + C) may be ignored in favor of individual
->>     tests.
-> 
-> Not sure this is ideal either.
-> 
-> Our RK3588 Jaguar main PCBA also has two proprietary camera connectors.
-> It would make sense to test that applying a dtso for main PCBA is not
-> messing with applying a dtso for the camera module on the adapter.
-> 
-> This is a bit theoretical at the moment though since there's no camera
-> stack available for RK3588.
-> 
->>   - Individual tests may be ignored in favor of (a) composition(s) that
->>     cover(s) all individual tests.
->>
->> But of course this is likely to vary from case to case. In our case, in
->> the composition
->>
->>    rk3568-wolfvision-pf5-vz-2-uhd := rk3568-wolfvision-pf5.dtb \
->>      rk3568-wolfvision-pf5-io-expander.dtbo \
->>      rk3568-wolfvision-pf5-display-vz.dtbo
->>
->> would do the trick.
->>
-> 
-> Thanks, will send a patch for that in v3.
+realtek,smi-address is a leftover from a previous spin?
 
-That'd be great, thanks!
+> + */
+> +
+> +#include <linux/cleanup.h>
+> +#include <linux/mdio.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of_mdio.h>
+> +#include <linux/phy.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/regmap.h>
+> +
+> +#define SMI_GLB_CTRL			0xca00
+> +#define=C2=A0=C2=A0 GLB_CTRL_INTF_SEL(intf)	BIT(16 + (intf))
+> +#define SMI_PORT0_15_POLLING_SEL	0xca08
+> +#define SMI_ACCESS_PHY_CTRL_0		0xcb70
+> +#define SMI_ACCESS_PHY_CTRL_1		0xcb74
+> +#define=C2=A0=C2=A0 PHY_CTRL_RWOP			BIT(2)
 
-Regards, Michael
+With
 
-> 
-> Cheers,
-> Quentin
+#define PHY_CTRL_WRITE		BIT(2)
+#define PHY_CTRL_READ		0
+
+you could use both macros in the write/read functions. Now I have to go and=
+ parse the write/read
+functions to see what it means when this bit is set.
+
+> +#define=C2=A0=C2=A0 PHY_CTRL_TYPE			BIT(1)
+
+Similar here:
+#define	PHY_CTRL_TYPE_C22	0
+#define PHY_CTRL_TYPE_C45	BIT(1)
+
+> +#define=C2=A0=C2=A0 PHY_CTRL_CMD			BIT(0)
+> +#define=C2=A0=C2=A0 PHY_CTRL_FAIL			BIT(25)
+> +#define SMI_ACCESS_PHY_CTRL_2		0xcb78
+> +#define SMI_ACCESS_PHY_CTRL_3		0xcb7c
+> +#define SMI_PORT0_5_ADDR_CTRL		0xcb80
+> +
+> +#define MAX_PORTS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 28
+> +#define MAX_SMI_BUSSES=C2=A0 4
+> +#define MAX_SMI_ADDR	0x1f
+> +
+> +struct rtl9300_mdio_priv;
+> +
+> +struct rtl9300_mdio_chan {
+> +	struct rtl9300_mdio_priv *priv;
+> +	u8 smi_bus;
+> +};
+> +
+> +struct rtl9300_mdio_priv {
+> +	struct regmap *regmap;
+> +	struct mutex lock; /* protect HW access */
+> +	u8 smi_bus[MAX_PORTS];
+> +	u8 smi_addr[MAX_PORTS];
+> +	bool smi_bus_isc45[MAX_SMI_BUSSES];
+Nit: add an underscore: smi_bus_is_c45
+
+> +	struct mii_bus *bus[MAX_SMI_BUSSES];
+> +};
+> +
+> +static int rtl9300_mdio_phy_to_port(struct mii_bus *bus, int phy_id)
+> +{
+> +	struct rtl9300_mdio_chan *chan =3D bus->priv;
+> +	struct rtl9300_mdio_priv *priv =3D chan->priv;
+> +	int i;
+> +
+> +	for (i =3D 0; i < MAX_PORTS; i++)
+> +		if (priv->smi_bus[i] =3D=3D chan->smi_bus &&
+> +		=C2=A0=C2=A0=C2=A0 priv->smi_addr[i] =3D=3D phy_id)
+> +			return i;
+
+This may break if some lower port numbers are not configured by the user, e=
+.g. phy 0-7 on bus 0 are
+mapped to ports 8-15 and ports 0-7 are unused.
+When looking up the port number of phy 0 on bus 0, you would get a match on=
+ an unconfigured port
+(port 0) since smi_bus/smi_addr are zero-initialized. This could be fixed b=
+y adding a bitmap
+indicating which ports are actually configured.
+
+> +
+> +	return -ENOENT;
+> +}
+
+[...]
+
+> +static int rtl9300_mdio_read_c22(struct mii_bus *bus, int phy_id, int re=
+gnum)
+> +{
+
+[...]
+
+> +	err =3D regmap_write(regmap, SMI_ACCESS_PHY_CTRL_1,
+> +			=C2=A0=C2=A0 regnum << 20 |=C2=A0 0x1f << 15 | 0xfff << 3 | PHY_CTRL_=
+CMD);
+
+You could use FIELD_PREP() to pack the bitfields.
+
+> +	if (err)
+> +		return err;
+> +
+> +	err =3D rtl9300_mdio_wait_ready(priv);
+> +	if (err)
+> +		return err;
+> +
+> +	err =3D regmap_read(regmap, SMI_ACCESS_PHY_CTRL_2, &val);
+> +	if (err)
+> +		return err;
+> +
+> +	return val & 0xffff;
+
+... and FIELD_GET() to unpack.
+
+> +}
+> +
+
+[...]
+
+> +
+> +static int rtl9300_mdiobus_init(struct rtl9300_mdio_priv *priv)
+> +{
+> +	u32 glb_ctrl_mask =3D 0, glb_ctrl_val =3D 0;
+> +	struct regmap *regmap =3D priv->regmap;
+> +	u32 port_addr[5] =3D { 0 };
+> +	u32 poll_sel[2] =3D { 0 };
+> +	int i, err;
+> +
+> +	/* Associate the port with the SMI interface and PHY */
+> +	for (i =3D 0; i < MAX_PORTS; i++) {
+> +		int pos;
+> +
+> +		if (priv->smi_bus[i] > 3)
+> +			continue;
+> +
+> +		pos =3D (i % 6) * 5;
+> +		port_addr[i / 6] |=3D priv->smi_addr[i] << pos;
+> +
+> +		pos =3D (i % 16) * 2;
+> +		poll_sel[i / 16] |=3D priv->smi_bus[i] << pos;
+
+I've read the discussion on v1-v3 and had a quick look at the available doc=
+umentation. Thinking out
+loud here, so you can correct me if I'm making any false assumptions.
+
+As I understand, the SoC has four physical MDIO/MDC pin pairs. Using the DT=
+ description, phy-s are
+matched with to specific MDIO bus. PORT_ADDR tells the switch which phy add=
+ress a port maps to.
+POLL_SEL then tells the MDIO controller which bus this port (phy) is assign=
+ed to. I have the
+impression this [port] <-> [bus, phy] mapping is completely arbitrary. If c=
+onfigured correctly, it
+can probably serve as a convenience to match a front panel port number to a=
+ specific phy.
+
+If the port numbers are in fact arbitrary, I think they could be hidden fro=
+m the user, removing the
+need for a custom DT property. You could probably populate the port numbers=
+ one by one as phy-s are
+enumerated, as you are already storing the assigned port number in the MDIO=
+ controller's private
+data.
+
+One complication this might have, is that I suspect these port numbers are =
+not used exclusively by
+the MDIO controller, but also by the switch itself. So then there may have =
+to be a way to resolve
+(auto-assigned) port numbers outside of this driver too.
+
+> +	}
+> +
+> +	/* Put the interfaces into C45 mode if required */
+> +	for (i =3D 0; i < MAX_SMI_BUSSES; i++) {
+> +		if (priv->smi_bus_isc45[i]) {
+> +			glb_ctrl_mask |=3D GLB_CTRL_INTF_SEL(i);
+
+Can't glb_ctrl_mask be fixed to GENMASK(19, 16)?
+
+> +			glb_ctrl_val |=3D GLB_CTRL_INTF_SEL(i);
+> +		}
+> +	}
+
+[...]
+
+> +static int rtl9300_mdiobus_probe_one(struct device *dev, struct rtl9300_=
+mdio_priv *priv,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0 struct fwnode_handle *node)
+> +{
+> +	struct rtl9300_mdio_chan *chan;
+> +	struct fwnode_handle *child;
+> +	struct mii_bus *bus;
+> +	u32 smi_bus;
+> +	int err;
+> +
+> +	err =3D fwnode_property_read_u32(node, "reg", &smi_bus);
+> +	if (err)
+> +		return err;
+> +
+> +	if (smi_bus >=3D MAX_SMI_BUSSES)
+> +		return dev_err_probe(dev, -EINVAL, "illegal smi bus number %d\n", smi_=
+bus);
+> +
+> +	fwnode_for_each_child_node(node, child) {
+> +		u32 smi_addr;
+> +		u32 pn;
+> +
+> +		err =3D fwnode_property_read_u32(child, "reg", &smi_addr);
+> +		if (err)
+> +			return err;
+
+[...]
+
+> +
+> +		priv->smi_bus[pn] =3D smi_bus;
+> +		priv->smi_addr[pn] =3D smi_addr;
+
+Nitpicking a bit here, but perhaps the code might be a tad bit easier to re=
+ad for the non-Realtek
+initiated by renaming:
+  - smi_bus -> mdio_bus or just bus_id (matching the mii_bus *bus member)
+  - smi_addr -> phy_addr
+
+> +	}
+
+[...]
+
+> +static int rtl9300_mdiobus_probe(struct platform_device *pdev)
+> +{
+
+[...]
+
+> +
+> +	if (device_get_child_node_count(dev) >=3D MAX_SMI_BUSSES)
+> +		return dev_err_probe(dev, -EINVAL, "Too many SMI busses\n");
+
+This seems redundant with the MAX_SMI_BUSSES comparison in probe_one().
+
+Best,
+Sander
 
