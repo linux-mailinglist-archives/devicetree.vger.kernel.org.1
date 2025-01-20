@@ -1,306 +1,161 @@
-Return-Path: <devicetree+bounces-139679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 786A8A16925
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:21:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16A08A16930
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:22:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F2313A4BA7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:21:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 49E74169359
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:22:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE33B199EA2;
-	Mon, 20 Jan 2025 09:21:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2F001A01D4;
+	Mon, 20 Jan 2025 09:21:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="S+MZzFAE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B71/Z0fv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012009.outbound.protection.outlook.com [52.101.66.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 073191885A1;
-	Mon, 20 Jan 2025 09:21:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.9
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737364865; cv=fail; b=KfKQte7K5KurLRNoeCBhnYXrKSA8Hugx1TzwRB0UHfYaJgWQlwXzu8IpkvAqrJrUHHOyUxttV15j3JCbeQTbG/391fkVA9ZGj6Ovd9atubncAced00xqNJsjPLRlabctbCY6L3XsrbkxyK4xfUlbVjQ/oh9LE88BvNhrDBFprx4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737364865; c=relaxed/simple;
-	bh=91/4SAEA14WIumkGs7fCxHifYvb/pd+qTQum0vAQJpw=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=oG5lgZ7KJAbY94ABHdJVeTadj3vwWkzCbaoaYtInTjJdGdIZDyqksvP9UKvtOlkhxkxcDf7SPbYh2D3uQeU3Q1HXMC+sIu039f58peSCueL60DnxwI5B/NZugj/w0GqQqdae8Fhx6GtExoxVG7+UUwr3LK9ti6aL04RPLjDEn0E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=S+MZzFAE; arc=fail smtp.client-ip=52.101.66.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZYaqA6S2hZhvhIoOf0O63LfFJMDLDjhEK8iZInFTm3i+qR0aBHprkXfQf+6tLvtU3aq0aKdSL55tNKJxydaSdNoRZhfRmCX94H3vk5k+JO2POU00hzg1m4mC2R9dTVD5RHF2f8JbHiuLhOy4t+R+X0GHb05IoMmlf61ERXghT4LIrs2/c1muJkRvs8k5sBxxxNmisQ+lfmEnOQkfDCWtXt/ztY/EDy/bogvlmY7kanaiu5ADQOYQO0QeykFCbcd+lLRLnvdOfmgxjncRwbCzWbnClD+GG0CLK4RTK+ok67rUb773p3OZf80SlKe3zPj2Q4PU6XT+d/0F+zHvNVma3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZFKbgHc4ZKww6L/QeoCSs0/aF+bGwme6OsoQAK98FK8=;
- b=BzcY4O6mC4bsPHSxtEZQKCQ4Elk3O2q82knYKWRXULhxTQIaMJFDCbZHZvrVTui9b35cSZ+uNaNvN2R0SAnRRTQr5dn1fXaA/pHt2SIjYnnfam+EXdvzmHrFtItWM81cHc0OZjHzmGsddSBXco/OdncRC5VzLnUC22SYmxYs/drlAtBNk5hFedmGU150/gD5a7xdWhPrIWad+x98ChBxPnzMAnNHgkdnq4yr4DWXrYRlfrw7Y75OigqPBNh6Yz+zghr7VJVTf7tif+YoY8aLuy+ZLagQMP6a5ZXU96oJGMU5ZbAZD32NvRp8BMHFIgSfNnCu8fNae8JCUozvx9pwHA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ZFKbgHc4ZKww6L/QeoCSs0/aF+bGwme6OsoQAK98FK8=;
- b=S+MZzFAEYH1N6OyrmWjLdKFZHC4bU3LCJz8eZPsF6bc2JWtmcqwtzCBfhtNsvd98qCcEixYPYyHaeXF7XYMxKLWbYZrcl7EmFin8MEFFv3BBD3O9S3764ZVS3il05cptH3eo9ryJxD2w8+7wNcQoqLWaA7WFVCfFZRZ3f0KEkIo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by AM0PR04MB7011.eurprd04.prod.outlook.com (2603:10a6:208:193::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.21; Mon, 20 Jan
- 2025 09:20:57 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::35f6:bc7d:633:369a%3]) with mapi id 15.20.8356.020; Mon, 20 Jan 2025
- 09:20:56 +0000
-Message-ID: <82e64b27-d254-4fff-aa25-5b848f147ca2@cherry.de>
-Date: Mon, 20 Jan 2025 10:20:55 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] arm64: dts: rockchip: minimal support for Pre-ICT
- tester adapter for RK3588 Jaguar + add overlay tests
-To: Michael Riesch <michael.riesch@wolfvision.net>,
- Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
- <49bfb4c5-12b5-447b-b08a-af0bb9fc304b@wolfvision.net>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <49bfb4c5-12b5-447b-b08a-af0bb9fc304b@wolfvision.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR07CA0301.eurprd07.prod.outlook.com
- (2603:10a6:800:130::29) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57871885A1;
+	Mon, 20 Jan 2025 09:21:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737364913; cv=none; b=d1KQ7VlopHEQz/+Ltf/Tpkv5aLIsFm1T6RewmTlHWmxktRYAHflVT4hyKd2GY5Zm2J0XPMZuyGvVzdXEAH/rcnUu4BPHjRUDjDDS96cW/LWOXXarXFR46o3ibcb6LK2Ra3PQI/Fs2S0oeGE7XW5MMszNuYJFbdSujqUCQ3nNBDo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737364913; c=relaxed/simple;
+	bh=IWwgl6VMXJu7yraH76C5LIm9Vk9IG6t0KaiISs/faYE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=U9SG4zMRyDdbS+UUQK0fddQnRyq730GcJ1Uf+AXnCyyRs/0Vs2TzLD2WDv6BUEKeZHdmo+jynR2V2Kx8QRb9VFiLTCLl2b2/dfl2izvuAgeDj2DWgjdN24p6Jfod7T2A8dHJ7Upu9yoqbRMDPhCuXAgtAvKZ1vmmTQW8wv8R38k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B71/Z0fv; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4363dc916ceso32133595e9.0;
+        Mon, 20 Jan 2025 01:21:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737364910; x=1737969710; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=hzka/3o1r/eZ9YDCKi8zcYXbaHUSqQQBefdYfgn1zq8=;
+        b=B71/Z0fvy0Lmjg2ysNyQYiPSF/t2GdoVhNvLDqoAfKfh1tpK+lwKRHxJ5uXFjQRVFH
+         v+jVbWjACSj6Wp0JVaLwZ+qRmBY6bBNES+Vqk6jV6bpSOqaGl/DF21ID8vnJttYp1GPE
+         f+rTNH89GlCh3OZ2aQ+g0aT1TjCzdAyNCxhEhfUMXdDIadRuYFoWet6sTJDHzK1ujjC1
+         w1nRBJU23qxmfi8TQNqkWSAeBcUwE6jNNqSRnKJa6Ck+tBnqUOrkz6dNRq4W8UZdtap6
+         s4XsYwjXzRFVgnXGv6sn9htVaNO7sa5a+D/UbnexhOgo8QePW0xetWAYEXEOB68WiRKj
+         9z+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737364910; x=1737969710;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hzka/3o1r/eZ9YDCKi8zcYXbaHUSqQQBefdYfgn1zq8=;
+        b=f8pHC7/tJS0F3ZLx5JSBTl4frXcq2QwEKq3X7T7jattiwre42vhRHMiWzM1TBfyVRW
+         D3sK5bfySjfbCED9ErlQwHVb/6Dck0LUS9jj2avyu+jMAO3fZWye4exIzFxBprVPv8Q3
+         zHHbPMeziRBQRFwxO/KxcHlFVi7BVjfbx0vBH/06ipUUe3DFE7Cr48JRkA3uMsksILdE
+         p/7WQgWYesdrh2Dh4b14oQe0Shk2IfWbdQRtjLAnmpx15aqBQ9lWiq0iZjcKu0pFauyb
+         szdwhYnfvm7WOOIqX8/O5LQ6QHlr3pmYWpnE8NcWC1W9Qfs2pggTR6KvNKHprYLYq4cb
+         RKEw==
+X-Forwarded-Encrypted: i=1; AJvYcCUs0oNLpj1fGyZ2i0Phe0PfZhm+CDsk6FX5zX3c2EqcXv5T3xMdOW1t4G92Gj78QcCnQd5nurSG9cZA@vger.kernel.org, AJvYcCVXSM+9fYl/ByZHTENcBBSr4i4RV5PRTUUP99YP7xNAZ3KZjayGas17dUSqezJYAS7rIcXW2tlKrNZqlK6w@vger.kernel.org, AJvYcCWOeLFRq2hkteTk/IbgRjfMqa04YhaDbE36i2Rcz4Y+l+8tqosvoRvDU+VrgyJsvVsjwik70HQbDHVYsA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOJ4ulmpVH5XZtKPprz/t2w6LR+sPEpkkj8BGy0nAqxAiC2q8V
+	t/0IuwZF7v1FOMUllSImmNr1imxuDqoc6SXGtckLdKnuTDQC3HV5I2pGqQ==
+X-Gm-Gg: ASbGncvW+uX3HNN2moQXj/0OmYsO2SN/fYcSQRI+rKVq8R9JfiEiaz9G13AtTcH7mro
+	7JTe2rmOmU485VXVLVsXwxwtwjn6FJ9SYpKUe9AjbbJDpyrjcA6FPWplj99CbxZoSEKZ4JSsDd4
+	XTCJFqFy0uF3L37KXJJSzedEDsWKdo7hOe9MlmFiCf9Brw9beSN2gQvCnhDVcsIcPJQr+bkb+oO
+	nFcbp15kEKCq5i7DSoCiO3VTF4q5pnLhoe49I5E4CAsVW7Atl5uOK9tW2tNMlqhCmVsA4VK27GN
+	HKywehOyfizZSfo1eKxx8VY2E09lnoHZfHU92ZxMBNXW+02aRQbBsfQQ98jU
+X-Google-Smtp-Source: AGHT+IH6C8G8MqRz9ppPw9iU2FlYj3hyMtKwz8pjQQF5w961y9AYKRYK5mjPzG63IsOB3lohoD5Y1w==
+X-Received: by 2002:a05:600c:5692:b0:436:76bf:51cc with SMTP id 5b1f17b1804b1-437c6b2dcf4mr162408705e9.12.1737364909431;
+        Mon, 20 Jan 2025 01:21:49 -0800 (PST)
+Received: from localhost.localdomain (249.red-88-10-54.dynamicip.rima-tde.net. [88.10.54.249])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438a1ec39a3sm80680175e9.16.2025.01.20.01.21.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jan 2025 01:21:48 -0800 (PST)
+From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+To: linux-clk@vger.kernel.org
+Cc: sboyd@kernel.org,
+	mturquette@baylibre.com,
+	tsbogend@alpha.franken.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	p.zabel@pengutronix.de,
+	linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	yangshiji66@outlook.com,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/6] mips: dts: ralink: update system controller nodes and its consumers
+Date: Mon, 20 Jan 2025 10:21:40 +0100
+Message-Id: <20250120092146.471951-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|AM0PR04MB7011:EE_
-X-MS-Office365-Filtering-Correlation-Id: 20a27b51-6e6a-48bd-7f85-08dd3933beee
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|7416014|366016|10070799003;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?a1c4aHZjRWZhc01uMmVabVFkb1A0V1NXbVA0YXNDN2hnbVdsU2U1aTBCNSt1?=
- =?utf-8?B?eFZBQ2N1YTlabDQ1NmZGdjRPblVrZHZJL3QvOE44T3RrL0xVTzhhTHRpL3cv?=
- =?utf-8?B?STk0VWhjeTRSdVNMdThYSTRJUkg5SDJNSFpMNThELzRjbUhpbnNMNmcvV3RQ?=
- =?utf-8?B?MDlZWlh3VElMVDhOblBlcmJ3cmtOYi9NcWdCOVdmbzNDdEtkeTREMDArd0U1?=
- =?utf-8?B?QUNFQWxRZU9QaXZVZUVWMG80di9mQzNZazIySHFmMmFjb29oR2ZFdHpwS1NT?=
- =?utf-8?B?blRaQmRUNkd6UElyRTdSR2FSWGJIVzR5QS93WnptRVhvY3JQWFo1cDZnc21p?=
- =?utf-8?B?cnRqL0h0b1R5NHAzb3VQMEZPbWZWVGJvVnBUTWJWNXJvV1ZuVVBxWFBIMTV6?=
- =?utf-8?B?SUlkdFZNdllsVERURGQxSjhrNTlrVG8waWpJck9lRzk5b2ZRdThxcndKTFdF?=
- =?utf-8?B?NytJaXgvNkdSOU9mcENZaVlTYkZXK2s3ZEgrZFUyMXFVU2t1YkE0b2pPNFIr?=
- =?utf-8?B?dkxEYTh2NzltTENEbnUwWE1oY1pENkU2UHZtNFNhQldnTy9uVDNTb2c4Q0hB?=
- =?utf-8?B?bjZyUDhyR1p4N2JnV1FZVkUvOXlQd3liRWcrUlozWWp3cGJmcDkwUGk2MkV2?=
- =?utf-8?B?blhLOTNxRmI1dGpwZlFBM0FjNENyOEY2N1N2WGVPS1JGa2FlaVErS2ZRQWIz?=
- =?utf-8?B?WXYrUlBQQmZYVGVESDlOOVA0Z1ZQNWNNYXFmZnNWeXcrSzRHL1ZRMHJnTjEr?=
- =?utf-8?B?SzRUYm8vZDhTamxLeGJZbVFHay9CbEREQi9seEs2NDBRa2E3K0tUZ0NmZ2pC?=
- =?utf-8?B?YnNaMzByUzl1R0pHVXQwV2ZTcXZDYkRXd3lUbXNYWnNQbjBZMVlDdFQ3YUZu?=
- =?utf-8?B?N1JMWml4UzBLNU5GdnJHYXFXUWl2dUZ5RDB4RVI3NjhiakxVaytMNklYWDQ2?=
- =?utf-8?B?Ymx4Sk55eDZtOHNPS2hJenNYSTkwT2s3Qy9laE41dkNMTGpNbGhhTmowR2ZB?=
- =?utf-8?B?UlZIZVV5T21XbkNtQzlXSEplbnRXeGlZak4wV1l1RVZrMi9WNE5pMkNHVFh1?=
- =?utf-8?B?dFlwdFkzeStNdHoyeXlTWVA5cjE2NjBkaXEra2xDYlpuc2dlRlFnaUdPM0dT?=
- =?utf-8?B?ZllseUYxSkY1SkRuNEdrYnlta2I5SXl3THlSbzVxbzZmbHhTTDdwYUdta2dF?=
- =?utf-8?B?QmJUbUd3aXJIb2I3dWlRdEh1K2dWWW1FRkw0dVdvV3o3V2c4MWh6U3M3NU1G?=
- =?utf-8?B?V3FoK0s0cytGMlNQRk13dkR4eVBpdzlCVTYwMkVQTXBuUENhQVFvRGFxRXN4?=
- =?utf-8?B?Z09GSDVtOUVUOUIrcTE5VWhqK1JMQmpUZ05VM2dSajJ5NHN5eG9HQkpuQzdR?=
- =?utf-8?B?UzhVWGVvR2tQL3VlbURkckZNTDNqQmxESG9pZXRXdzQ3NXBVc1VQclhSOG13?=
- =?utf-8?B?Y2cwSjdKbHRhMXMzaUMwSlhLZy9FZUxxbm9SQkNhL0xJSE9BZlYyQWxiUllu?=
- =?utf-8?B?MVIyZWpDa3pGRElOZXNPNXhBSEgvWmhqNElCNDVNM1ZIcFNWTzJlWmVvSlAy?=
- =?utf-8?B?SGp0RU5kWUJFbHYvK3I3bEM1d0dNRkVVN1BoSkk2VGpUQXY1TkVsa1R3OWRE?=
- =?utf-8?B?YTJ1Nis3T0pZYTNLVHJRMGc5OE9oZG1QM2cyVlpOWHRRN2NqYkJpcUx4N1Qr?=
- =?utf-8?B?KytjdGYzVVR0Z1V4elFMMUVqNnRuSTg3ejZLYmxEQ3lRalJDMWhRMFlnMFow?=
- =?utf-8?B?OVE3Zi85ekpxb3hWdGkwdHdmNmVKVWNBUmhiRjRWNTJUajRoaTJPS2tGWFZW?=
- =?utf-8?B?d0kyUVhuUERlSkRQQ0p3QytmZXk4L1lpL1A3Q3dTYzhRTFY5MGFlRkd1S3BP?=
- =?utf-8?Q?ODaXI/eM9mBv4?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(10070799003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?YUcxMFdhSEtkSEhMUUJCZSt2OEJGU3pQNC9GSXpxbzY3a0MyNlorR3FPdkR1?=
- =?utf-8?B?cjcyS1RHN1RmV0VPZzNaM2hJbmNEV3k0djFCa3NJTFo5OWZBOGNxSVFiWHhT?=
- =?utf-8?B?L0k4U28rM3UySHJDNDEwckZYY0g2M3ZXQ3IzNmgzM2EybXlFSjBPSFB2Rmdu?=
- =?utf-8?B?cWp1QndZcUkwZGt0V2VCVThuSlY5Nnh0enYwU3hMa0piaGYxZWN0dno3cmVn?=
- =?utf-8?B?UG5wSWphOXQzU2IrZG9YSXAxTFZLcXZlM0NnVkttWGZqOEZPU0R3aVI0RkhQ?=
- =?utf-8?B?U21zcHFrdUd4b3lqbDhjWnhsTlN2YnVmMFR0eXhpKzN3SEZrYkNTUkRuZ2Ja?=
- =?utf-8?B?b2NxR0NvYWMvdlFZNmFZSEJwK2lyQU9IbEs0dUZ0cHNUMEFETURLN0x2WW82?=
- =?utf-8?B?UFkxR3Zxa2E5NlpsUnFZSFlnTVA4dGprR3V5NjQ1V2Y0c3hPV3RsTjZVeEht?=
- =?utf-8?B?ZlJQNWM4SWtDeHE3T0oyeE1Yby9WMDBOUFdJbGpQWkhTUHVHVjU1ZFRYcFMw?=
- =?utf-8?B?RkZCUEVCY3IxK3ZaTVl3d2crT2hCNC9RSGw0OHlRYzJOUGErMlpBTUNhN1N3?=
- =?utf-8?B?RDdZYnY2K2cwUytxckFHblZUenJKSnM1bm92cWpzb1d2R1BuK3VZK3k3Q1c4?=
- =?utf-8?B?amFEOXpiZFYxZ0cvYUF5MWd2VDN4WmhySlVZSHcyN1JMeXZPUEpqdXlrUjJl?=
- =?utf-8?B?NTdmUEpueHJ1ZmNkNFBsaERJaTJJVWMvTkcxVjhZcndDUmRJK0RHOEU1dU01?=
- =?utf-8?B?T2xkK0NKbVhqY1ZOOE9VaTV1SUxPaDNVQVRwVEs0bXAwTGpaVTVmSURITGs0?=
- =?utf-8?B?ZGFoc1l2NHMxTWIyNmZGa3ltNkdFR3IzSUhHZE5mMURTdHlyQ2QrZUtyVWI3?=
- =?utf-8?B?YVdBS0YyMEU0ZUpuUTNSdFJtQVRHeStOMnpHN3ZDUEtZbGlGUkZHejJtYklp?=
- =?utf-8?B?YkhiSUdjSU5aekIwSUFja0VhTFRpcmNKbDB1VGNQN2JpbEozbzlMNUdZc29Z?=
- =?utf-8?B?dksvU1VXcE54a0c1a0JaUGNkeHRkQ3VGeVdHeitTd040bnRPbVFsWHZJVE50?=
- =?utf-8?B?aGhKa1NnSUlhSWlwVHFaNGg0OFJIcER0ZmhuTzJmNUtUYTdpaUFRV25meUkx?=
- =?utf-8?B?OTVEcExod3NDMFFWQzB1UTdPdjF5ZGkrZzhsTzFSQ21TeFBtMy9VbXJSakJD?=
- =?utf-8?B?bVNvNUlxV0U2aEZGeEp6Y3NFa3ZadUZHTzRKVVQ4bnBPbGsrRWZEWEcxOEJp?=
- =?utf-8?B?NWRpa2EvRHpXVDMwM2cvM2hLblVkcWUrMGp2ZWRBSHBGMGx1blFTWFNHQkZ3?=
- =?utf-8?B?NHRLWWU1L0ZkVjFNNGhIaHRnRGRLRmFXempGUjdraXU4MldYK2poRVQ2S2xM?=
- =?utf-8?B?UTB5MUc2eEk1dWRNcTZuUnR2enljekZQekRyMzlYZmZjZlJPa1lZVHo2NFFK?=
- =?utf-8?B?a0JVR0NKSnNjZ0dyS2xVQ2hkWXhSNFJJUHh0L1JKZVIxYW9lRGtnZ0VTcWhW?=
- =?utf-8?B?UkxKLzFrSDR3Q1JRRmpvMUFPMFE2cmxDTXFaSmcycWhtVXQwZElNMDlheHc2?=
- =?utf-8?B?ZDhqcHJDeU5wRDI5NGxjQjFRblBRakRoZGRIWTMzL2dWNmljZTJwcWJHQlJh?=
- =?utf-8?B?d1VsT3RyczVWVmxSUXdQS21YQkRnMlIzQUxkdTJiL2JueHMwazJwc3N1aFFq?=
- =?utf-8?B?eHIzVldZMzMzVEU2emhsU2gyTll5SnBDU09PZDRDdThwcGpya3VKelRDcllP?=
- =?utf-8?B?ZUJtTVc5bHJFUEsxOWJIWERJa2hZY0lDRHZnaTFpbkxkcURlSHdMbmgzVGlJ?=
- =?utf-8?B?Qm1yeVd3WWtMdVRUYjl0WGlVQVVCSXY4ZU9RQloxb2RneDV0eHJ0bi85ZCtU?=
- =?utf-8?B?c2lyd1JkbDBNZHBFTlppR2V1RW9uclc4TWc4MHpMMGdaUWh0eGVRTmVLRWpY?=
- =?utf-8?B?S1hFTjJndFI2bkJDZEhwbGNaWVphajhmaTRpTkxOZmhUN0hYT1p6OGQvT0FU?=
- =?utf-8?B?SjRaMVZubktsMGxZV05uMmJXSHY4TThNMFZsZS9TV0hzUkhzTlhrRDNHZnF0?=
- =?utf-8?B?Z1lLSG1qV2JzS1ZnWWdLWnlBSHYvTHc0U2hXeGFMeGFRM050S1RERjhYTnVX?=
- =?utf-8?B?UDErU1MxMExVdEIrcHRCRnB6UEZQcG9abVB5T2tFRzBOVUdCbDYxTEFHSG9u?=
- =?utf-8?Q?wue/N8sDjjyMh/NbUxlMKAQ=3D?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20a27b51-6e6a-48bd-7f85-08dd3933beee
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2025 09:20:56.8101
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AbE82UZosQbrlLsIWd8iARnrUI+WJtkYSNPnRiuqSM7xd8DzKRj0vOWHeKCueZGVuMQKZGzCRFWiDdy2dXh0Tjsx+2lwtHDtXCNw7lTXopI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB7011
+Content-Transfer-Encoding: 8bit
 
-Hi Michael,
+Hi all!
 
-On 1/20/25 10:06 AM, Michael Riesch wrote:
-> Hi Quentin,
-> 
-> On 1/16/25 15:47, Quentin Schulz wrote:
->> This adds minimal support for the Pre-ICT tester adapter for RK3588
->> Jaguar.
->> GPIO3A3, GPIO3A4, GPIO3B2 and GPIO3D2 to GPIO3D5 are all routed to power
->> rails and can only be used as input and their bias are important to be
->> able to properly detect soldering issues.
->>
->> Additionally, this adds build-time overlay application tests for (some)
->> Rockchip overlays to try to avoid future regressions.
->>
->> Notably, the Device Trees from Wolfvision PF5 aren't migrated (but
->> should) as I do not own the device and couldn't figure out from the
->> introducing commit logs what the possible valid combinations are.
->> +Cc Michael Riesch for awareness
-> 
-> Thanks for the heads up!
-> 
-> Just to make sure I understood correctly: By migrated you mean that the
-> overlay entries are moved to a separate section in the Makefile and
-> there are explicit combinations of base DTS and overlays for
-> compile-time testing purposes? If so, I don't consider the PF5 migration
-> as *that* urgent. I don't think you can break anything on our side. Or
-> am I missing something?
-> 
+Ralinks SoCs have a system controller node which serves as clock and reset
+providers for the rest of the world. This patch series introduces clock
+definitions for these SoCs. The clocks are registered in the driver using
+a bunch of arrays in specific order so these definitions represent the assigned
+identifier that is used when this happens so client nodes can easily use it
+to specify the clock which they consume without the need of checking driver code.
 
-I think it makes sense to backport the patches in this series (except 
-the one adding support for the Pre-ICT tester adapter on RK3588 Jaguar). 
-Because we cannot backport the patch for Pre-ICT tester adapter (it's an 
-addition, not a bug fix), any patch that is applied after that one will 
-result in a git conflict when backporting to stable releases.
+DTS files which are currently on tree are not matching system controller
+bindings. So all of them are updated to properly match them.
 
-I believe it makes sense to backport build time overlay application tests.
+I'd like this series to go through kernel mips git tree if possible.
 
-The git conflict will likely be no big deal but if we can avoid it, 
-better avoid it :)
+Thanks in advance for your time.
 
-> Maybe you can move the lines
-> 
->    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-display-vz.dtbo
->    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
-> 
-> to the overlay section as well? This should not cause any functional
-> changes.
-> 
+Changes in v3:
+- Address Krzysztof comments in v2 (Thanks!):
+  + Drop reset include file since what it was defined there were hardware
+    constants and no binding related indexes at all.
+  + Update patches for not referring to this reset removed file.
 
-The overlay section would only support the syntax which allows build 
-time testing. I would like to avoid confusion around what to do when 
-adding a new overlay. Specifically note the missing o in the extension 
-with the build time tests.
+Changes in v2:
+- Redo commit messages in all the patches in the series to clarify why the changes
+  are needed asked by Krzysztof in v1.
+  
+v2 of this series:
+- https://lore.kernel.org/linux-clk/20250119154447.462857-1-sergio.paracuellos@gmail.com/T/#t 
 
->> I'm wondering if we shouldn't backport patches 1 and 2 to stable? In
->> which case, it would make sense to try to have the Wolfvision PF5
->> overlay tests merged before the addition of the Pre-ICT tester adapter
->> support for RK3588 Jaguar as that one won't be backported to stable and
->> backporting the Wolfvision overlay test would incur an unnecessary
->> (though not difficult) git conflict to resolve.
->>
->> I also do not know what kind of tests we should have when overlay
->> combinations are possible (let's say there are A, B and C overlays that
->> can all be applied, should we have base + A, base + B, base + C,
->> base + A + B, base + A + C, base + B + C and base + A + B + C tests?
->> maybe even base + B + A, base + C + B, base A + C + B, base + B + A + C,
->> base + B + C + A, base + C + B + A and base + C + A + B tests?).
-> 
-> I have never been good at combinatorics, but I feel this has the
-> potential to explode :-) My two cents: The overlays *should* be
-> orthogonal to each other, i.e., no dependencies between them in the
-> sense that overlay A creates a node that is used by overlay B and that
-> sort of thing. Then
+v1 of this series:
+- https://lore.kernel.org/linux-clk/20250115153019.407646-1-sergio.paracuellos@gmail.com/T/#t
 
-I disagree. I can already tell you the following usecase:
+Best regards,
+    Sergio Paracuellos
 
-our Pre-ICT tester adapter for RK3588 Jaguar has two proprietary camera 
-connectors. We already have two camera modules working with it, so the 
-following would make sense:
+Sergio Paracuellos (6):
+  dt-bindings: clock: add clock definitions for Ralink SoCs
+  mips: dts: ralink: rt2880: update system controller node and its
+    consumers
+  mips: dts: ralink: rt3050: update system controller node and its
+    consumers
+  mips: dts: ralink: rt3883: update system controller node and its
+    consumers
+  mips: dts: ralink: mt7620a: update system controller node and its
+    consumers
+  mips: dts: ralink: mt7628a: update system controller node and its
+    consumers
 
-pre-ict-tester.dtbo
-pre-ict-tester-con1-camX.dtbo
-pre-ict-tester-con1-camY.dtbo
-pre-ict-tester-con2-camX.dtbo
-pre-ict-tester-con2-camY.dtbo
+ .../bindings/clock/mediatek,mtmips-sysc.yaml  |  11 +-
+ arch/mips/boot/dts/ralink/mt7620a.dtsi        |  10 +-
+ arch/mips/boot/dts/ralink/mt7628a.dtsi        |  38 +++--
+ arch/mips/boot/dts/ralink/rt2880.dtsi         |  10 +-
+ arch/mips/boot/dts/ralink/rt3050.dtsi         |  10 +-
+ arch/mips/boot/dts/ralink/rt3883.dtsi         |  10 +-
+ .../dt-bindings/clock/mediatek,mtmips-sysc.h  | 130 ++++++++++++++++++
+ 7 files changed, 196 insertions(+), 23 deletions(-)
+ create mode 100644 include/dt-bindings/clock/mediatek,mtmips-sysc.h
 
-You would then apply pre-ict-tester.dtbo followed by one or two cam 
-dtbos. The pre-ict-tester can be used without the camera modules (c.f. 
-this patch :) ).
+-- 
+2.25.1
 
->   - Permutation can be ignored. (base + A + C = base + C + A)
-
-I think that's fair. It would anyway be an issue with dtso which are 
-using /delete-node/ or /delete-property/.
-
->   - Composition (base + A + B + C) may be ignored in favor of individual
->     tests.
-
-Not sure this is ideal either.
-
-Our RK3588 Jaguar main PCBA also has two proprietary camera connectors. 
-It would make sense to test that applying a dtso for main PCBA is not 
-messing with applying a dtso for the camera module on the adapter.
-
-This is a bit theoretical at the moment though since there's no camera 
-stack available for RK3588.
-
->   - Individual tests may be ignored in favor of (a) composition(s) that
->     cover(s) all individual tests.
-> 
-> But of course this is likely to vary from case to case. In our case, in
-> the composition
-> 
->    rk3568-wolfvision-pf5-vz-2-uhd := rk3568-wolfvision-pf5.dtb \
->      rk3568-wolfvision-pf5-io-expander.dtbo \
->      rk3568-wolfvision-pf5-display-vz.dtbo
-> 
-> would do the trick.
-> 
-
-Thanks, will send a patch for that in v3.
-
-Cheers,
-Quentin
 
