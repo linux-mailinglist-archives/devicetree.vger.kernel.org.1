@@ -1,193 +1,174 @@
-Return-Path: <devicetree+bounces-139866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09E28A1740B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 22:20:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B545EA17462
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 22:56:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3822816AA69
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 21:19:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4563E188ACF1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 21:56:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EFCD1F03EF;
-	Mon, 20 Jan 2025 21:19:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 750CD1F0E21;
+	Mon, 20 Jan 2025 21:56:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b="L0ji2OCp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J60H2TdW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C1331E9B00
-	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 21:19:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 952ED23A9;
+	Mon, 20 Jan 2025 21:56:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737407988; cv=none; b=b0s6WcU4i1zX5VQKbXpIkbpiUR0Dx/goQknfEZEu1I+9up9X6kvqW9ckjf6WJ8kv/ZW+TO+r3bxoPm4ocq7gfd3Oq7OUvWvTjxw915UHXtrIozNBtp908ZwmMwekmcLIOUSvGcXH/XRuissUIAXetdGdQJkxRKTTR8Koi4+NWfU=
+	t=1737410205; cv=none; b=SAypALKeoKEZ9bkfHRMmePV7RvDjrgwtew7tsUNRK/tovvWgmXhqLjpMdEu0b6mD1A5N4ETCAtGjUFWwwL2cZGR+fYBWgxZsD+yaxTHYgji3sY3SCerdChOvYFfNBYAtKgICch3yXkTHOkdN9mj1X3k9fQdk2po1yQ+KnbGaiSY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737407988; c=relaxed/simple;
-	bh=Vh0uo3++5QP3EBzz/t2XwqmWwVWPTuEQ5w6IKvetKck=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=i/fE+IqAR+l9D5cOl0/McMV2Fcy46+GGSbAzajOqKYPJ5zso2iMRX/rhMbglqIs6fLXQrtyWKniELXULLt5o9D47VsLsk6IRbZVePUxRXVkTN3t5Dj9AvnXrqvXkb0q+gf8ad2B5JCLB5oGn7rB0EHHI6UZ0obeny2H4mA8axQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org; spf=pass smtp.mailfrom=kali.org; dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b=L0ji2OCp; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kali.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aa6b4cc7270so767651366b.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 13:19:46 -0800 (PST)
+	s=arc-20240116; t=1737410205; c=relaxed/simple;
+	bh=cfZatKSOwb4pRrTvfqqmxov6qxiGqxrxQE80O61kZQU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=KfNPV0XUcRYRBctZC/UmpmzrgiK1QCGW0J66YzuAl+/51m9Q0TmZhPG8wjWuXJTPswhRCxtLwcVHsSBfI/fSan79pOP4uxgYH/xWNXZgZNPessBhNlmCgPTlklzd9eN0fFE5Gkelh+9SSCmrNuMc8Grc2Cn2WsQ1F7WMIZPzGqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J60H2TdW; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4363dc916ceso37129235e9.0;
+        Mon, 20 Jan 2025 13:56:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google; t=1737407985; x=1738012785; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xA6291ZXdac8vRUCwssYg9YOrgMEuOkZxM4d7CqIjqE=;
-        b=L0ji2OCpt0f1r6G+IwtimIkYl38IyG76XLQdF1OHl1ns9RhiM0ti2ShsRBmmwF7WiA
-         HqBN9B/yyIperqmwYaylYPUIrDpFxLRt/mLfojzejRT7lz81etH5fQtbCa7Cty1mis9u
-         jV7KS7Tt2qR6va5XLc2FTH7k9L792Au/9Fvo57yMqJapisBzWUBHc4lpiMA+nA3HYPjS
-         DdtRtGf4Slj65XYhiyIOf3VJgYuZykTVW2tZYLmgUVZ8nBz9d0MCjWFR+Vx5y27tEvsR
-         BWgkUIlS/ZmqTt5Mg3re/EDGxdjYNkcTmoqYAhwxOu3CPYFkANskTQlU+vaPuADV3xjs
-         A/+g==
+        d=gmail.com; s=20230601; t=1737410202; x=1738015002; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gy+qLl8gGznrzLuj2uSpvMqnS9BDhuVxamnKKVaP/AA=;
+        b=J60H2TdWJABh6V6pfFR8w6yFPaRPPaI/J4KoKIlCHsqCbrLqLqeyx8nQYjEQSvhEcI
+         6JYRLlmvgykLAdU+By3emyPMBvUMjQHXti3ZaYI5yosb4G3EKRU5TSvHz0ep0U44lbsg
+         eoYA2Kl35H4K3LkaxxaIuTR5/UpJcBD4Fh/BhV06jerldZJR+xh+Oj7Thm9mOVdc9GBO
+         kZtTlsZ9+2mNUiQzxahLzKEpIKCmORf4W/Dr0sRRxIuEnkiCXxVJ5vPdrKsHUcCI6DQH
+         pV+ejhHzFiGTqCgUtHXYC1VpOMIi6x1KPrdcfV6ntEl5kN4EvvC1ANEobkyBMKXlR9dN
+         /ZJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737407985; x=1738012785;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xA6291ZXdac8vRUCwssYg9YOrgMEuOkZxM4d7CqIjqE=;
-        b=HJ2uJvv7eGWLDJ7T9J8JkBVG+tmcEFuvRKmC/0nR89Ma+ajXcAnjJ97ivQUy2VziEH
-         6ieRd9fE8iGG0T8Hqmtuda2NRzCtRqgl/EmPgxzNPFkoVAlDp1hPsRdFxKKwqmrLNrr4
-         0ikcU56H26s6ZPtY/yeRfpx7FgOkWzdxJfuFmo8pwSOc7p6bfhbZ6BBbWf4FjpPSIF9r
-         8Hhhr5ehuxNXY3pN5CsAKisqe1M0UKtFjZ+krsyllbGb+h1lclveyVAVOPguZSnBPHih
-         wqfnpNKZEbnKOOrUv5uzbBRy4XQl3wQFeKsVkbRDslcEKdcni18fUX93MeY24WYpFMg4
-         81Bw==
-X-Forwarded-Encrypted: i=1; AJvYcCUBRj6TrSuKbwBHxLFX2UUF4caShuOoX2mmHnSiIDlF06GmjM3b+Fe5RI7YU4SV1OMJaHikEXRIWqB5@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUIotc4vWEwFXAwLi2h81qb0h9Pp/ED2G1879OlYcHfnURM4+e
-	FsuM+p6iV6Kl0cZyOF1l8AjJTk6C+VZHUswHSx0JheNr6kQnfLoV8tzIq+9GvzNqrcBqrM/0VPF
-	xvhGb39hzsDvAULFV22OvcR5SukdUUVl7HSSfsQ==
-X-Gm-Gg: ASbGncs05dvrxaVfLTp8kQHVL53wPUBZEMYWAqGqTX8hKgSBMKtRb4XdGKqlnYX+hrU
-	PRtgoQQOz7i32qkfDzVMk9EiRtTFH/DnkfKNvL90PZw3anNzFcU7W
-X-Google-Smtp-Source: AGHT+IHc0RPbhZfwtvndyJ4zIg+YQ8UVHDIXIsBwLqHby4Ix3W/JRyz4+JjwjPuaa8KZKDLV2B9ECoKwhLlQY9BPU3U=
-X-Received: by 2002:a05:6402:5246:b0:5d9:ad1:dafc with SMTP id
- 4fb4d7f45d1cf-5db7db073f1mr33624336a12.25.1737407984546; Mon, 20 Jan 2025
- 13:19:44 -0800 (PST)
+        d=1e100.net; s=20230601; t=1737410202; x=1738015002;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gy+qLl8gGznrzLuj2uSpvMqnS9BDhuVxamnKKVaP/AA=;
+        b=T2Elvz5KwUv9FKYC99FwUTMuzJZ2eDaZBz1oGID3C67+6+p5VRFi4yNHCztCwcd6K+
+         6LhulIhgYdUGfG4vZC//2W0UwVyXxcHFutYf02cdnPHw8L5IPQ//NXklSGlNzVpWYCmi
+         RC8MS6EIa58jmyc/8W//ToPTs1r8lbQWhkY65usMLUq6x0uNdg4ga82JTXm3XqPYfDxq
+         saudmaOk04RIfkjTTfEg+cMDMvXN+K48Qd095DDaW65f0Z5+scTsRKD1msz/I9PKImHZ
+         LflG9jHASt1GnaMQqF3pN2LrXIvgWdCkAgFHLdu/zPgR1V8zSNdkVbK0GRvrX54bLpiw
+         KO4w==
+X-Forwarded-Encrypted: i=1; AJvYcCUhO9+5AOOWGh/wxeuBM+oVupAox0VF/Q1MVDdhXRJyuUUfxhHfIRhTqZk7+/eu3eyRgjYQib9kQ1eg@vger.kernel.org, AJvYcCUoYYVcRgffyCwjybeyQSch8PglF70KVcvnt1iOoboRfkPQr65JLy3akr71WR1qSu/BVrbZgSNWegxf@vger.kernel.org, AJvYcCV5H/RBi231Ueyl4vxelznIvomsqZ5Hn8vRATBOaswSp1mOhFW6QHCLG9UlL+FyjkG1mJZlEgNMeaDKkmS4@vger.kernel.org
+X-Gm-Message-State: AOJu0YziTDHCunBHsSneNrs+BOTtIor43mUrUmPyTbad0HcEVQFtapKE
+	H9NjxPYcnkf+txCdU01nNf0RLPW9avMrmVIWVgDODkanfx99rOGv
+X-Gm-Gg: ASbGnct6D4kTsxi+hdCAPHjCVq0M/szYfbZzBJI9Il2q7AaoiM1uWZJJF28fgocVQ8o
+	vV7bOKS/czlLNPFj3+qVtIWHo5Ahm0AQeBs9LZCtJF7W0vMkyOSpVlR/G8FGZ3YWHLYbpKHrlNA
+	ZS3em2UzFUUQOqydc7KyD+ADec4X8aM44H4cGR4sqECeWExY8AJ3jw/hkxOYjr+AVS1F/4KnDV5
+	JlH52w0e7AeZjuujbwIK2fsO3jglqkmT8HMoCfHFn+bf/xg2JzQQeSRZpvIXfMENEyy/H7T0kdD
+	kJHVWsKLPw==
+X-Google-Smtp-Source: AGHT+IGHClq2XeoJ6TqmBnz/xzk2mEU0lDVEtFDHKPW6e6a4lLz/Wf0PPseArn8wV9z+doY3tFt+Uw==
+X-Received: by 2002:adf:9cc4:0:b0:386:3afc:14a7 with SMTP id ffacd0b85a97d-38bec4fb4ecmr11750249f8f.7.1737410201562;
+        Mon, 20 Jan 2025 13:56:41 -0800 (PST)
+Received: from localhost.localdomain ([37.161.88.41])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf327dd34sm11374345f8f.83.2025.01.20.13.56.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jan 2025 13:56:40 -0800 (PST)
+From: Antoni Pokusinski <apokusinski01@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrej.skvortzov@gmail.com,
+	neil.armstrong@linaro.org,
+	icenowy@aosc.io,
+	megi@xff.cz,
+	danila@jiaxyga.com,
+	javier.carrasco.cruz@gmail.com,
+	andy@kernel.org
+Cc: apokusinski01@gmail.com,
+	linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v5 0/2] iio: magnetometer: add support for Si7210
+Date: Mon, 20 Jan 2025 22:56:18 +0100
+Message-Id: <20250120215620.39766-1-apokusinski01@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250120144152.11949-1-johan+linaro@kernel.org>
-In-Reply-To: <20250120144152.11949-1-johan+linaro@kernel.org>
-From: Steev Klimaszewski <steev@kali.org>
-Date: Mon, 20 Jan 2025 15:19:33 -0600
-X-Gm-Features: AbW1kvY5jMIUKN1EO4Z8z1FKCHGpDSW9Rthw8kq1Lxb5fCHphJX04MTxERkZW2Y
-Message-ID: <CAKXuJqhttfPg7JV_n85bb5v6VKye0F4rYTfWdDYMowdgo83oug@mail.gmail.com>
-Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100: enable rtc
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Jonathan Marek <jonathan@marek.ca>, 
-	linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi Johan,
+This patch series adds support for the Si7210 Hall effect I2C sensor.
+The driver currently supports the basic functionalities (i.e. making
+temperature and magnetic field measurements and changing the
+measurements scale) but I plan to add support for some other features in
+the future as well (e.g. the digital output interrupt).
 
-On Mon, Jan 20, 2025 at 8:43=E2=80=AFAM Johan Hovold <johan+linaro@kernel.o=
-rg> wrote:
->
-> This series adds support for utilising the UEFI firmware RTC offset to
-> the Qualcomm PMIC RTC driver and uses that to enable the RTC on all X
-> Elite machines.
->
-> Included is also a patch to switch the Lenovo ThinkPad X13s over to
-> using the UEFI offset.
->
-> The RTCs in many Qualcomm devices are effectively broken due to the time
-> registers being read-only. Instead some other non-volatile memory can be
-> used to store an offset which a driver can take into account. On Windows
-> on Arm laptops, the UEFI firmware (and Windows) use a UEFI variable for
-> storing such an offset.
->
-> When RTC support for the X13s was added two years ago we did not yet
-> have UEFI variable support for these machines in mainline and there were
-> also some concerns regarding flash wear. [1] As not all Qualcomm
-> platforms have UEFI firmware anyway, we instead opted to use a PMIC
-> scratch register for storing the offset. [2]
->
-> On the UEFI machines in question this is however arguable not correct
-> as it means that the RTC time can differ between the UEFI firmware (and
-> Windows) and Linux.
->
-> Now that the (reverse engineered) UEFI variable implementation has been
-> merged and thoroughly tested, let's switch to using that to store the
-> RTC offset also on Linux. The flash wear concerns can be mitigated by
-> deferring writes due to clock drift until shutdown.
->
-> Note that this also avoids having to wait for months for Qualcomm to
-> provide a free PMIC SDAM scratch register for X1E and future platforms,
-> and specifically allows us to enable the RTC on X1E laptops today.
->
-> Rob had some concerns about adding a DT property for indicating that a
-> machine uses UEFI for storing the offset and suggested that the driver
-> should probe for this instead. Unfortunately, this is easier said than
-> done given that UEFI variable support itself is probed for and may not
-> be available until after the RTC driver probes.
->
-> Hopefully this all goes away (for future platforms) once Qualcomm fix
-> their UEFI implementation so that the UEFI time (and variable) services
-> can be used directly.
->
-> Johan
->
->
-> Changes since UEFI offset RFC [1]:
->  - clarify that UEFI variable format is not arbitrary (Alexandre)
->  - add missing use_uefi kernel doc
->  - use dev_dbg() instead of dev_err() (Alexandre)
->  - rename epoch define RTC_TIMESTAMP_EPOCH_GPS (Alexandre)
->  - mitigate flash wear by deferring writes due to clock drift until
->    shutdown
->
-> Changes since Jonathan's X1E series v3 [3]:
->  - tweak qcom,no-alarm binding update (and drop Krystzof's Reviewed-by ta=
-g)
->  - drop no-alarm flag and restructure probe() to clear feature flag befor=
-e
->    registering RTC
->  - use UEFI variable offset on X1E
->
-> [1] https://lore.kernel.org/lkml/20230126142057.25715-1-johan+linaro@kern=
-el.org/
-> [2] https://lore.kernel.org/lkml/20230202155448.6715-1-johan+linaro@kerne=
-l.org/
-> [3] https://lore.kernel.org/lkml/20241015004945.3676-1-jonathan@marek.ca/
->
->
-> Johan Hovold (5):
->   dt-bindings: rtc: qcom-pm8xxx: add uefi-variable offset
->   rtc: pm8xxx: add support for uefi offset
->   rtc: pm8xxx: mitigate flash wear
->   arm64: dts: qcom: sc8280xp-x13s: switch to uefi rtc offset
->   arm64: dts: qcom: x1e80100: enable rtc
->
-> Jonathan Marek (2):
->   dt-bindings: rtc: qcom-pm8xxx: document qcom,no-alarm flag
->   rtc: pm8xxx: implement qcom,no-alarm flag for non-HLOS owned alarm
->
->  .../bindings/rtc/qcom-pm8xxx-rtc.yaml         |  11 +
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  11 +-
->  arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi  |   4 +-
->  drivers/rtc/rtc-pm8xxx.c                      | 194 +++++++++++++++---
->  include/linux/rtc.h                           |   1 +
->  5 files changed, 185 insertions(+), 36 deletions(-)
->
-> --
-> 2.45.2
->
->
+---
+Hi all,
+In this version I add only some minor tweaks and comments (for the
+temperature calculation) according to the latest review.
+Everything else was left intact.
 
-Tested this on the Thinkpad X13s, as well as booting it into Windows
-and verifying that it has the correct clock both ways, which it does.
-Thank you!
+Kind regards,
+Antoni
 
-Tested-by: Steev Klimaszewski <steev@kali.org>
+
+Changes since v4:
+* Makefile: replace spaces/tabs mixture with tabs only
+* si7210: includes: move asm/byteorder.h to the end
+* si7210: read_raw: add comments for temperature calculation
+
+Changes since v3:
+* si7210: fetch_measurement/read_raw: fix issue with endianess
+* si7210: replace `if (ret < 0)` with `if (ret)` wherever possible
+* si7210: read_raw: use SI metric prefixes (MICRO, MILLI)
+* si7210: si7210_data: swap i2c_client with regmap
+* si7210: read_otpreg_val: remove unnecessary cast
+* si7210: minor formatting updates
+(add missing trailing commas, spaces etc)
+* si7210: probe: use devm_mutex_init
+* si7210: add missing includes
+
+Changes since v2:
+* Makefile: fix alignment
+* si7210: fetch_measurement: use temporary variable to read the
+measurement instead of reading directly to `buf`
+* si7210: read_raw: change `tmp` to `temp`
+* si7210: read_raw: adjust temperature computation to match the spec better
+* si7210: device_wake: do not init `ret` to 0
+* si7210: MODULE_LICENSE: change license type to GPL
+* si7210: minor improvements in comments
+
+Changes since v1:
+* dt-binding: add `vdd-supply`
+* si7210: reorder includes in alphabetic order
+* si7210: add comment for `fetch_lock`
+* si7210: remove `otp_lock`
+* si7210: fetch_measurement: change result type to __be16
+* si7210: use guard(mutex) instead of scoped_guard
+* si7210: read_raw: use FIELD_GET to get raw temperature value
+* si7210: read_raw: return temperature in milli-celsius
+* si7210: use regulator for getting the voltage
+* si7210: si7210_device_wake: remove unnecessary cast
+* si7210: si7210_device_init: use fsleep instead of usleep_range
+* si7210: si7210_probe: remove i2c_set_clientdata()
+* si7210: minor alignment and formatting fixes
+
+Antoni Pokusinski (2):
+  dt-bindings: iio: magnetometer: add binding for Si7210
+  iio: magnetometer: si7210: add driver for Si7210
+
+ .../iio/magnetometer/silabs,si7210.yaml       |  48 ++
+ drivers/iio/magnetometer/Kconfig              |  11 +
+ drivers/iio/magnetometer/Makefile             |   2 +
+ drivers/iio/magnetometer/si7210.c             | 446 ++++++++++++++++++
+ 4 files changed, 507 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/magnetometer/silabs,si7210.yaml
+ create mode 100644 drivers/iio/magnetometer/si7210.c
+
+-- 
+2.25.1
+
 
