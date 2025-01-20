@@ -1,117 +1,230 @@
-Return-Path: <devicetree+bounces-139720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE2DA16B0A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:52:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E00AA16B0B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:54:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AF9A18805AF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:52:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6677916938F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:54:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 007E21991CD;
-	Mon, 20 Jan 2025 10:52:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DFB61B043A;
+	Mon, 20 Jan 2025 10:54:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="myAYez3B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B7B0187872
-	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 10:52:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705DB187872;
+	Mon, 20 Jan 2025 10:54:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737370337; cv=none; b=jOuSpJRqf2DTb7PLezaHKH87nYPmw5xTwt0MkSSqj4IHLWmbyTkynz5yFeRdfQ5sAf4nDEjOrZqPnw1pBRm3TTaAeAXk6JdrLuwfLeq/T2cBqbYRZtjPEXFVA9YbIPO/lh1u+29W9z9ceA2np+9OxydLRUi99Y9MTpPQwEFAZzk=
+	t=1737370488; cv=none; b=Xp64jEBOBr5JTsjgv3ytZrWh2qwpgjWTrL3mIdNbN4taZRcv7BRzFdp22jTo17s3eJe894Wbx3rlQiksAE9+DC2Kfssg95C518kcyG07oF7a9ne5HutsVryDc8bfPplOZ4eR0XnQLykWIGHwoOFK4vUcAahd3bnnSIBycfbxTEY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737370337; c=relaxed/simple;
-	bh=l4NZOoyPjn6KEZ9uTzrHtFXzQhDwwnVvUC4Kvdbod24=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ita3xP5o429e8oqQLAPowYfEmK5KQmOUFinz/IQeEpBUqKwhKJcNluAo7rdlmWzaGdfgwjINk0LnGHXHUxJSv/xfxnTrQz2HSKTeXd1/6IPLnNpOHJfNip5DAqijrT4bx/juozC2prLaAasEWs+rwroUldPI+9Y/7mlchgZVx/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1737370488; c=relaxed/simple;
+	bh=NnMvYOF3JLr4MV9bxzclHulHO40ErNKUGvG/q0bZVn0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EkLGG4wPHAgGMYPNioa+3/QrGnzb0Za5bRvvE5Be+M6lWR6zreBUD7tx2UUuGrs7Dtp1aZgE0XVD+Vz4PKDFU/tU9VgvFna5Lz6sbdZ8brjnUvbPdtf1wvfHpM/mQESJVkQ6hayTNAME0jwOuPiLpi8n7lu189TXEPM5KHEiAMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=myAYez3B; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4afdf8520c2so1194845137.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 02:52:15 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4361815b96cso29342185e9.1;
+        Mon, 20 Jan 2025 02:54:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737370485; x=1737975285; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IpwHR+jTEkOihBQGXcwVdD8ptWqMifoht0tZ1GdpMfs=;
+        b=myAYez3BTbaPxGaEk8ac+bMSikSOWzuisbc0cRtibuf/xs4F4vHD+LAb0xfi6yyvNg
+         ssIQEkpLKd6qF4+3YwirgYUoZoSLFucBF2stpi0XEMWtoWTxqm/S0o5DQIIQiUXMRPxs
+         XzmP4gVfUyzw9I88g/6YzaN/HRzMWf+hIwG6YONZ6XFTKttr0nkSqvTxd5s7oYzsk5WV
+         c1DaF+nlA63v6/f2AwJAqHPukf42Uj1s81gL1B3tGDF/sL39CMJRmU8qxHrC0PPey3Up
+         JghyD7PI1Lj/zKjT/+JEps2jD+Sm3rFaxJZRlPjh2L3ArfuUKIpd+AOyvM8lH4PMC3aU
+         bVGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737370334; x=1737975134;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1737370485; x=1737975285;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=nUfDCIfdbaWdrkZkEs1WBIzMBZMPC5SuqVxZEuwtdC8=;
-        b=DX7ZnjggdXr6Pp5pxAgWwQQq3bbSrmL0zcZ6spICGTHPd8FoeZfDUL2STwCZWF2dHC
-         e3Y+plMFb6kkPtg6Q8FvtozzhFGsOLNW2hGn7EjJP21Ggo9LZ8FQO3J4DYk0qgsNGiHj
-         r+ihuLogYfETeVJuXlhkcnPCxDLEseMyNzFRw/6kxt6zR0ciBRyZVqf89A+RS25n0qaz
-         /hcNa6kXFOVomo/g47N8UBRHlGnByrbquPjeZmbfpanWM4QMiJEz7YfVUH595xSfczfR
-         1fgiIpx93GO+qzVa6gVjcqK+WTk6aEJjcVvtK0RJ1XM6U8KFme7dv+VXooAR7c4BLaLF
-         b/Ew==
-X-Forwarded-Encrypted: i=1; AJvYcCUTQRL4VeAPTtJu/Md4Jvjad9HZarlc173Nmnxksa37X9IV8m3i05uSo9ApZF9rIYGtSNezA2kcwyE4@vger.kernel.org
-X-Gm-Message-State: AOJu0YwND8c2DssJFklmDTTljSJu8FFimw+fgq+hL6FPHHvKYFJCeQrF
-	7DhL1K2sCJzvzDFpyMQ0/SmvlSymX6sTfJQsLJl89lhiy24OA9BXOsyQ5LwD
-X-Gm-Gg: ASbGncurhTpPdmYh2JTryZPki/Cux9YDLks3fXJiK5jSazaLC3CCyZxHXq8JAo5k0bI
-	fNa9pJ8dJVFlfKbUQ6FbJ0LCBRMk8qXlAcjUZAySfkE72gowYMiihLov9hwZlvPJY2wntXzJkuv
-	FYTQuxi5zaSu8wQEP5QRimTIv23hcQpBfZTjuz14FCZJNj5Ip/RhECA700f5xersv/N93vu4QPS
-	0eFlffQYx1tq/Y8Yik9ez7s9LPRki/glGWORrGRMBTXuw7nbQx8pLuEm8F57+4+B0Ra6vyXBPU2
-	+CVYMwRP8LUagMT7h1FgUyJuZ5/ngBSI
-X-Google-Smtp-Source: AGHT+IFz1zH+tQSxIsDp4i874gCMOFkEJ5N3SPpFOWvetaC6vRig4F7Aw/qCSy+ndByEawHmYLGGNA==
-X-Received: by 2002:a05:6102:4413:b0:4af:f740:c1b8 with SMTP id ada2fe7eead31-4b690ce3f9cmr7340129137.24.1737370334147;
-        Mon, 20 Jan 2025 02:52:14 -0800 (PST)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8642cab2d48sm1798986241.1.2025.01.20.02.52.13
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jan 2025 02:52:13 -0800 (PST)
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4afdf8520c2so1194839137.2
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 02:52:13 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV6zJM8IyyyjeAN+82a5guzXCrYz+TIZ1xsvBfglSZKyteJJAH64L85zEBvSXOIsKHLytoMboSAKjJH@vger.kernel.org
-X-Received: by 2002:a05:6102:41a6:b0:4b1:1a11:fe3 with SMTP id
- ada2fe7eead31-4b690bbf701mr9052702137.8.1737370333645; Mon, 20 Jan 2025
- 02:52:13 -0800 (PST)
+        bh=IpwHR+jTEkOihBQGXcwVdD8ptWqMifoht0tZ1GdpMfs=;
+        b=Qdj23F1Dv8tDy/zAksx26ug3baqscuTBmQx5pQgostzGPCxygx8zqI90iT/duP+Gev
+         0OFtE2RL9y4cRJ/Zpq+CPdyIfxXbTX3q2/N/shXvMwj3BZr/CJ77ZbeAd4Age/rr1NJW
+         cV6vUM1L1IvZ954V8+vMRRnVwZDf8dLUmeUwq1o0r23OOrfXyioXjlPFWZo3iAm3bzm6
+         /VLMdPbOySw4wHo5ui+mDkf01rwnTxjYm8EXty0olCZgJGXQ4wxsHOI6sqZrBayUybAQ
+         k8JGoX9Y34/uxk3ADYtRaypCaMrDSa+VWE6tKsfO2TdFuVf0oQ5S4EDkLms017HEGdr4
+         i7Kw==
+X-Forwarded-Encrypted: i=1; AJvYcCU5qZGf7m4Lo3NpswavqRZIHQ6Vkt9u5heyLU2GuPv0vlEZjrAh17RxKcaHBy8ht3VC+NhINoKPYdg7uA==@vger.kernel.org, AJvYcCVeuq1BMph4BntnRrqg8acVItewvOGL4WTh8ZJ5FF/Zy/4KEDYa0tFKJpWdGZsjMZeaDXCcSg2Vz2rQBJ7W@vger.kernel.org, AJvYcCWUkfgWBJXiJMsq/zcfJBq8Gt/yhT+j/X6wa55rAawv3JDPPk8Aelx1W15W19mxPlgrRsGP74ANnWfv@vger.kernel.org, AJvYcCX3j1EPluzo+6vujvC1EFpvJWNUrn4IOitrE+yYW0kGSfnboQpuQCya9X16PIYQGY9h/H2fzfN8tLh3@vger.kernel.org
+X-Gm-Message-State: AOJu0YwiAYyWlfW35JoE7X/V6I46c3bJqRVbNgavjtWsc+Za79gSF7Um
+	1LTP1Q+eyf6VadAdPXYKMw1F0VrQp8d7szbQGPjZxPgDBo4OHf5pWixpqw==
+X-Gm-Gg: ASbGncs1f/XEjVM6G+XLjveOHe5M2L1URijpxsriRLcaI4Mz7qPU58J6jviNyMPb6JG
+	ne9dXbb4n/jBk1x+NBbvSwAUHxjZd8xy6W02SGJ6MCta99CkxZYSRA/pu4vE9gkCSC+ypLXkbNa
+	2kctfsG3SEk9RszmjI2ShxLy2JCszmUibhHx2XBr9eBINfH3fwI67Rin+fysE3Bsdw9+JHEBqhN
+	z4wRzL6q9haM0ch/3lYmEqATU1knameG5V4vhc/qXdfEj3V3gIygCF2M/FF1M6rEBxaIHGT64rJ
+	NTUECw==
+X-Google-Smtp-Source: AGHT+IF8ZG5TPPQK00mQUY7XfxEgCiDcyTtDrGq9i0kkjbdhbzw9TleO3gk9skl8mHshEktkZQW0KQ==
+X-Received: by 2002:a05:600c:4fd6:b0:434:feb1:adcf with SMTP id 5b1f17b1804b1-43891436690mr95144905e9.25.1737370484444;
+        Mon, 20 Jan 2025 02:54:44 -0800 (PST)
+Received: from demon-pc.localdomain ([86.121.79.71])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf321537dsm10222411f8f.13.2025.01.20.02.54.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jan 2025 02:54:44 -0800 (PST)
+From: Cosmin Tanislav <demonsingur@gmail.com>
+To: 
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Cosmin Tanislav <cosmin.tanislav@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Cosmin Tanislav <demonsingur@gmail.com>
+Subject: [PATCH 1/2] dt-bindings: iio: amplifiers: add ADA4255
+Date: Mon, 20 Jan 2025 12:54:24 +0200
+Message-ID: <20250120105429.183004-1-demonsingur@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1737118595.git.geert+renesas@glider.be> <84393e59efa7a76b89d4164fd64ca85b8739f6ee.1737118595.git.geert+renesas@glider.be>
-In-Reply-To: <84393e59efa7a76b89d4164fd64ca85b8739f6ee.1737118595.git.geert+renesas@glider.be>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 20 Jan 2025 11:52:01 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUrrDTvMeRPCMNc36fkJLRszcSoqPZMG8J9fuXO3P6ObA@mail.gmail.com>
-X-Gm-Features: AbW1kvaIn2URdiaybkdWDK2SpQfOiSAmt9-fIQqujHK7eDp6C49TllFDHpTnPOo
-Message-ID: <CAMuHMdUrrDTvMeRPCMNc36fkJLRszcSoqPZMG8J9fuXO3P6ObA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] irqchip: LAN966X_OIC should depend on MFD_LAN966X_PCI
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, devicetree@vger.kernel.org, 
-	linux-phy@lists.infradead.org, Geert Uytterhoeven <geert+renesas@glider.be>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Fri, 17 Jan 2025 at 14:04, Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
-> The Microchip LAN966x outband interrupt controller is only present on
-> Microchip LAN966x SoCs, and only used in PCI endpoint mode.  Hence add a
-> dependency on MCHP_LAN966X_PCI, to prevent asking the user about this
-> driver when configuring a kernel without Microchip LAN966x PCIe support.
->
-> Fixes: 3e3a7b35332924c8 ("irqchip: Add support for LAN966x OIC")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> v2:
->   - Drop dependency on SOC_LAN966, as the OIC is used only in LAN966x
->     PCI endpoint mode,
->   - Replace MFD_LAN966X_PCI by MCHP_LAN966X_PCI, as the latter is the
->     symbol that ended upstream.
+The ADA4255 is a  precision programmable gain instrumentation amplifier
+(PGIA) with integrated bipolar charge pumps.
 
-Bummer, I messed up the subject here as well...
+With its integrated charge pumps, the ADA4255 internally produces the
+high voltage bipolar supplies needed to achieve a wide input voltage
+range (38V typical with VDDCP = 5V) without lowering input impedance.
 
-Gr{oetje,eeting}s,
+The charge pump topology of the ADA4255 allows channels to be isolated
+with only low voltage components, reducing complexity, size, and
+implementation time in industrial and process control systems.
 
-                        Geert
+Signed-off-by: Cosmin Tanislav <demonsingur@gmail.com>
+---
+ .../bindings/iio/amplifiers/adi,ada4255.yaml  | 83 +++++++++++++++++++
+ MAINTAINERS                                   |  7 ++
+ 2 files changed, 90 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/amplifiers/adi,ada4255.yaml
 
+diff --git a/Documentation/devicetree/bindings/iio/amplifiers/adi,ada4255.yaml b/Documentation/devicetree/bindings/iio/amplifiers/adi,ada4255.yaml
+new file mode 100644
+index 0000000000000..7ae752a63b111
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/amplifiers/adi,ada4255.yaml
+@@ -0,0 +1,83 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/amplifiers/adi,ada4255.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ADA4255 Programmable Gain Instrumentation Amplifier
++
++maintainers:
++  - Cosmin Tanislav <cosmin.tanislav@analog.com>
++
++description: |
++  Zero Drift, High Voltage, Programmable Gain Instrumentation Amplifiers.
++
++  ADA4254
++    https://www.analog.com/media/en/technical-documentation/data-sheets/ada4254.pdf
++
++  ADA4255
++    https://www.analog.com/media/en/technical-documentation/data-sheets/ada4255.pdf
++
++properties:
++  compatible:
++    enum:
++      - adi,ada4254
++      - adi,ada4255
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: mclk
++
++  clock-output-names:
++    maxItems: 1
++
++  '#clock-cells':
++    const: 1
++
++  avdd-supply: true
++  dvdd-supply: true
++  vddcp-supply: true
++  vocm-supply: true
++
++  adi,excitation-current-microamp:
++    description: Excitation current to apply to IOUT.
++    enum: [0, 100, 200, 300, 400, 500, 600, 700, 800,
++           900, 1000, 1100, 1200, 1300, 1400, 1500]
++    default: 0
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: adi,ada4255
++    then:
++      properties:
++        adi,charge-pump-freq-hz:
++          description: Frequency at which to run the charge pumps.
++          enum: [8000000, 16000000]
++          default: 16000000
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      amplifier@0{
++        compatible = "adi,ada4255";
++        reg = <0>;
++      };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index e8e67cd31961e..be46db0866011 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1405,6 +1405,13 @@ W:	https://ez.analog.com/linux-software-drivers
+ F:	Documentation/devicetree/bindings/iio/amplifiers/adi,ada4250.yaml
+ F:	drivers/iio/amplifiers/ada4250.c
+ 
++ANALOG DEVICES INC ADA4255 DRIVER
++M:	Cosmin Tanislav <cosmin.tanislav@analog.com>
++L:	linux-iio@vger.kernel.org
++S:	Supported
++W:	https://ez.analog.com/linux-software-drivers
++F:	Documentation/devicetree/bindings/iio/amplifiers/adi,ada4255.yaml
++
+ ANALOG DEVICES INC ADF4377 DRIVER
+ M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
+ L:	linux-iio@vger.kernel.org
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.48.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
