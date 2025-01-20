@@ -1,129 +1,104 @@
-Return-Path: <devicetree+bounces-139788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FEF9A16E15
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 15:06:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB7B4A16E1F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 15:10:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB69118894CA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 14:06:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CABBC7A049C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 14:09:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946BA1E25F4;
-	Mon, 20 Jan 2025 14:06:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA5A31E284B;
+	Mon, 20 Jan 2025 14:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="D9J5ISfQ"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="DDTPnIkW";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="M+hRZsH4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8CC818BBAE;
-	Mon, 20 Jan 2025 14:06:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3964C1E1C36;
+	Mon, 20 Jan 2025 14:09:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737381992; cv=none; b=R2nAELLPWYIC+GzyIg+toVw1grwHx5I2Pdbb1WlBZTOOH87ijZgwxZry1kVAEXIdFAkI6b3FJ8PliFjAOG2fktEJFd619PEaYoz3Txjm4rP1ytTVepO5MDzKF/PWEfGxRlVdcIdusco9K1Yp1gPn78137GpG/iwOhxkJO6Arl4s=
+	t=1737382193; cv=none; b=KkeREmZ6ocaWw1tSf3qehM0YJpH5RNSPMPV6hK+519QtyfYUAKVwoHeczgxV2FuD6iH6jJ/+UADfcLkbpWNcgDBZwXZ7dxXS+BOnGLI/99ZjJt/559myWColEBYGY7RMvflhkPMv3qhI/ArhpMMLmMC6HfZ7zeFVgtNo51bMDWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737381992; c=relaxed/simple;
-	bh=1uS4z3qSW4B3HL0w5ziOk7BdN1z2O3FF9kgKHr+m/4k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OVyagtFgEFXH32us7Zm+bO9kH/X6pxWuwSNyXPfg0F3emNpItFxLwIWsqFaab7DFqZMIsL1HQof/La1gYdMBeasV4NGUkSUM+Dc8kftkuZW7XcGgJZCKG0ZjLIlDJy9lwAtGe61QovXNYfN/lM5TAIDsaJveBATiAM/oBNCLK0c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=D9J5ISfQ; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737381990; x=1768917990;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1uS4z3qSW4B3HL0w5ziOk7BdN1z2O3FF9kgKHr+m/4k=;
-  b=D9J5ISfQEeP9bTaaFkxsYGcHYAsyJr9x7D11F6n+lXwyqDPdTlM+TSlw
-   b65HPlDleT0KV2Abm76A9e4xK3PqRV8T1CnHe3706/i20Fpkry6l8amRi
-   4mlLEh3W8ap0wQynsbBIriq9ojyOiUYXO6n86z0lL/3kw15Dzwm+mAUiq
-   KHAK6G+mRYUQIYYKbrBeGFt2DXzVBgbyi95oy5a7Upg4Cd7fTr4jhXzUk
-   VbZlqRCSAOVJdH4/skjSXccb1oDR1lNtK5tni4/91oi9xjCG8szUD5LFE
-   TxJN5y2TncYCey4Q29OVN4/WbbJdzPww6c5MUkOrxs1slspuklW3D6F5Q
-   w==;
-X-CSE-ConnectionGUID: 7YWAAOWmRquehg5HuEez8Q==
-X-CSE-MsgGUID: Dagr0fzWQWC2zoft+/RV5g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11314"; a="37890061"
-X-IronPort-AV: E=Sophos;i="6.12,310,1728975600"; 
-   d="scan'208";a="37890061"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2025 06:06:30 -0800
-X-CSE-ConnectionGUID: BltcJRoiQXyKctIw3LJ4Dg==
-X-CSE-MsgGUID: /biOkYpVQ+iV2JxF+iZWTA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="111154052"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 20 Jan 2025 06:06:24 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tZsQ2-000WcZ-1a;
-	Mon, 20 Jan 2025 14:06:22 +0000
-Date: Mon, 20 Jan 2025 22:05:59 +0800
-From: kernel test robot <lkp@intel.com>
-To: Taniya Das <quic_tdas@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev,
-	Ajit Pandey <quic_ajipan@quicinc.com>,
-	Imran Shaik <quic_imrashai@quicinc.com>,
-	Jagadeesh Kona <quic_jkona@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v4 09/10] clk: qcom: videocc-qcs615: Add QCS615 video
- clock controller driver
-Message-ID: <202501202157.Aasnvf5L-lkp@intel.com>
-References: <20250119-qcs615-mm-v4-clockcontroller-v4-9-5d1bdb5a140c@quicinc.com>
+	s=arc-20240116; t=1737382193; c=relaxed/simple;
+	bh=4TowvkvRbiAVPOGCLQc0sKWKWqyCjGB3/SgIaCCaVWE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kBJWEu/3dTraXOW++gBW7eGeV+Am4n4eg9eXTYdHwI+MNfDJqPjg0g5H426Z1IxJ/cwlLcvtM4Q7QHnTGJrByEfJuqCki8gJlYiBpHOU23QrNZyQN2GQmQCF+8NULcRV/oe1JDG5YZvBpcC+CTZyFfhBl+sZ98AQeAo1+I6cRi8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=DDTPnIkW; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=M+hRZsH4; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1737382190;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=kX2meOgTl/wMtGRVI7UGFPvrYs0QkRT7wU2WjRlK8hA=;
+	b=DDTPnIkWMhYNr2Ba3OsgbWc25un2TjPhsnWLmGtAOPOQK50yEZi57Ov0phDLJd9xMTrKMv
+	FIBK4/sSH6JVXiyqLi1SvFttJDYMnrBtn9ill7kO+jit5jE6AqLY+/8m5uLSvzbfW6bk/l
+	0yZXFHwgsg+woQoeWg7V75oYOz7e2vYI4ULkYE8iMWqtD037tUwSOLwcVJjBhTFYuET6bw
+	4W9sVkBjY7TvCgybTstlVzYHGjUZR9ACiXc12uuF7g+Pf+yt3k6gj6f/xguTUJ5qJx3/pr
+	n9P4IaJ67AOglnpQf4TU2YtN3x+Gaqfe3xESreUReeOd7VQwtC3BSlAR8q9iuA==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1737382190;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=kX2meOgTl/wMtGRVI7UGFPvrYs0QkRT7wU2WjRlK8hA=;
+	b=M+hRZsH4asI5/f3+/HwBO5Jpm2m5OcXjQDFnMQHypqZ7g5WoPQBLgmmKef91KvWdlZdYFL
+	boBLMRp2KtV4IABg==
+Subject: [PATCH 0/2] of: address: Fix empty resource handling in
+ __of_address_resource_bounds()
+Date: Mon, 20 Jan 2025 15:09:39 +0100
+Message-Id: <20250120-of-address-overflow-v1-0-dd68dbf47bce@linutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250119-qcs615-mm-v4-clockcontroller-v4-9-5d1bdb5a140c@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIACNZjmcC/x3MQQqEMAxA0atI1gZqtY56FXFRbKqBwUoCKoh3t
+ 7h8i/9vUBImhaG4Qehg5bRlVGUB8+q3hZBDNlhjnamswRTRhyCkiukgif90ond982vr1nadg1z
+ uQpGv7zpOz/MCkS68U2UAAAA=
+X-Change-ID: 20250120-of-address-overflow-a59476362885
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+Cc: Basharath Hussain Khaja <basharath@couthit.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>, 
+ stable@vger.kernel.org
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1737382189; l=760;
+ i=thomas.weissschuh@linutronix.de; s=20240209; h=from:subject:message-id;
+ bh=4TowvkvRbiAVPOGCLQc0sKWKWqyCjGB3/SgIaCCaVWE=;
+ b=tNYeKxTbCBOyzeaWF8WRjLD71N1SQBKO5vDfA9ODvrUDfQxlOu0oEwTIauxRLm7dv6WuYZzQL
+ pcGSCi5C9L5DljKKVbLRt+TZbL3vFjKcq9u6/QnrVTi8JJxopGg17Qo
+X-Developer-Key: i=thomas.weissschuh@linutronix.de; a=ed25519;
+ pk=pfvxvpFUDJV2h2nY0FidLUml22uGLSjByFbM6aqQQws=
 
-Hi Taniya,
+Also add a kunit testcase to make sure the function works correctly now
+and doesn't regress in the future.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Thomas Weißschuh <thomas.weissschuh@linutronix.de>
+---
+Thomas Weißschuh (2):
+      of: address: Fix empty resource handling in __of_address_resource_bounds()
+      of: address: Add kunit test for __of_address_resource_bounds()
 
-[auto build test WARNING on 0907e7fb35756464aa34c35d6abb02998418164b]
+ drivers/of/address.c    |  17 +++----
+ drivers/of/of_private.h |   4 ++
+ drivers/of/of_test.c    | 120 +++++++++++++++++++++++++++++++++++++++++++++++-
+ 3 files changed, 132 insertions(+), 9 deletions(-)
+---
+base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
+change-id: 20250120-of-address-overflow-a59476362885
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Taniya-Das/clk-qcom-clk-alpha-pll-Add-support-for-dynamic-update-for-slewing-PLLs/20250119-182754
-base:   0907e7fb35756464aa34c35d6abb02998418164b
-patch link:    https://lore.kernel.org/r/20250119-qcs615-mm-v4-clockcontroller-v4-9-5d1bdb5a140c%40quicinc.com
-patch subject: [PATCH v4 09/10] clk: qcom: videocc-qcs615: Add QCS615 video clock controller driver
-config: arm-kismet-CONFIG_QCS_GCC_615-CONFIG_QCS_VIDEOCC_615-0-0 (https://download.01.org/0day-ci/archive/20250120/202501202157.Aasnvf5L-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20250120/202501202157.Aasnvf5L-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501202157.Aasnvf5L-lkp@intel.com/
-
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for QCS_GCC_615 when selected by QCS_VIDEOCC_615
-   WARNING: unmet direct dependencies detected for QCS_GCC_615
-     Depends on [n]: COMMON_CLK [=y] && COMMON_CLK_QCOM [=y] && (ARM64 || COMPILE_TEST [=n])
-     Selected by [y]:
-     - QCS_VIDEOCC_615 [=y] && COMMON_CLK [=y] && COMMON_CLK_QCOM [=y]
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thomas Weißschuh <thomas.weissschuh@linutronix.de>
+
 
