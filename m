@@ -1,56 +1,41 @@
-Return-Path: <devicetree+bounces-139653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAE01A167CF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:00:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 139D6A16725
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:13:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C31E63A39BD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:00:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2B9BB3A4A26
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 492F71922D4;
-	Mon, 20 Jan 2025 08:00:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 564E318E75A;
+	Mon, 20 Jan 2025 07:13:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="UUKnneBu"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="hvLcnqb6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
+Received: from mail-m49240.qiye.163.com (mail-m49240.qiye.163.com [45.254.49.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 150791922DD;
-	Mon, 20 Jan 2025 08:00:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.9.99
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2418313D51E;
+	Mon, 20 Jan 2025 07:13:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.240
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737360006; cv=none; b=Ma+PWCiAMOeBswZC5F+WSkOwvJoF4ncIkg1YY3Tebm7vKs7YTFXsHLJQDNdPztZ3pOlcTP7+w/05WArT/fr8N9e6fGZtJvFyFwFnA6zd2VnLFjNznFBctCGJ+zmbHYbRNxvPqloKgBU951p9odyyyw/Nv8N6aBRdCQKnPvT2+9E=
+	t=1737357209; cv=none; b=VvEU9zeB2mEJne9AsohORluiI4whiyfF6cU0C4WuG1LoCMKu3qyqedAD4bGyd10LS80FRmYWcOEYISWjCKae3Yq3mE0Q6BitJbuL3iaa9twZ9Ljv9CCICksPkZlNthALc+QPbNYcv52zkBTctIkW+D8E9aedrYjXJYngTsXiLJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737360006; c=relaxed/simple;
-	bh=FOXOsUjR7gvwdK8ldDgZaWaiaUUbUav8J6+aq+oYVe0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=aG1UG6sDkUYExUza6aQIN1xCAgTD8Ur7hivTJRLUqdCedorMqkmf+nkpF97cx32o10xwkmYchNqirKav5Y3wjqXAy84YS2E/hlsNDH+o82reGBPcBQEqDnEnKWGAGkox+q7IldD/cNUw2NyUwiFmbbTZyQC3zMQ/bL0gaRjxTmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=UUKnneBu; arc=none smtp.client-ip=46.19.9.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:Cc
-	:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=opwsPCXQn2dl1A894h/TzouZKT6y1266fbtoD7Nmf0I=; b=UUKnneBuOGLaVE4DE9jKD5m7Ep
-	BzPBy4eDSFnCTRkIdgejrkLmxhRG3rNAKEi0TJG+Agulcu469iERSdDcmSPYq+VczU9cChkosXiAE
-	1zzVq8e2Gx9L36zJyf16bu9hCL54jNxXU/ccvO36cN3ia2oRqwRNPZvq7FeP3QaY/2jawh+b7Oo+6
-	5aye7q8TqDt/bhjCjENmlWM1AeivWtrkA85QN4ZqKcAjMtcntk4yDbBSVO/AnoMU6UB73aeI2mz8C
-	w3ANFFk738Leu+QlN2GmLJtG0qrnQHjKcLrWLp7hfRbCNSFBUffwbg6XwjE4qnle1GUFFiNy+y2PO
-	ZIGH2gEg==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:33680 helo=[192.168.69.52])
-	by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.96.2)
-	(envelope-from <andrej.picej@norik.com>)
-	id 1tZlmy-00DgMu-1L;
-	Mon, 20 Jan 2025 08:01:35 +0100
-Message-ID: <80d6e493-dd79-42e3-b064-d1feeabd7180@norik.com>
-Date: Mon, 20 Jan 2025 08:01:33 +0100
+	s=arc-20240116; t=1737357209; c=relaxed/simple;
+	bh=Nnen72gHZLhFvUX5mJ8im62AAuRs5GECOUUy2wMiBHc=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=IZ1BegX+2J2+6gTU39tyr4Hjdu/HDnIvzrgdje1jDD3qIhNC+2cxX0pMCBnliAV0h2hvZUCP5ZTR+NZwxY1yjGXGQz+Vj3BsjgaMoKjdfwEw14xulr/y7quasUNZyxhK+X2RRn8zRlqZFGs89clQXkn+8qa0QxoLRxzszAP1Pjk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=hvLcnqb6; arc=none smtp.client-ip=45.254.49.240
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.26] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 92ac8289;
+	Mon, 20 Jan 2025 15:08:08 +0800 (GMT+08:00)
+Message-ID: <d6211c5e-a38d-46aa-8d33-6dba2a71e018@rock-chips.com>
+Date: Mon, 20 Jan 2025 15:08:06 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,227 +43,143 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [Upstream] Re: [PATCH v2 13/15] arm64: dts: imx8mm-phycore-som:
- Add overlay for rproc
-From: Andrej Picej <andrej.picej@norik.com>
-To: Shawn Guo <shawnguo2@yeah.net>, shawnguo@kernel.org
-Cc: s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- upstream@lists.phytec.de
-References: <20241202072052.2195283-1-andrej.picej@norik.com>
- <20241202072052.2195283-14-andrej.picej@norik.com> <Z3Ie8GO/GtoSkIr3@dragon>
- <221c8216-ce71-4ba2-9981-8612ff33ec2a@norik.com>
+From: Damon Ding <damon.ding@rock-chips.com>
+Subject: Re: [PATCH v5 13/20] dt-bindings: display: rockchip: analogix-dp: Add
+ support for RK3588
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org,
+ sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com,
+ l.stach@pengutronix.de, dmitry.baryshkov@linaro.org,
+ andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
+ kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org
+References: <20250109032725.1102465-1-damon.ding@rock-chips.com>
+ <20250109032725.1102465-14-damon.ding@rock-chips.com>
+ <gmwmnjc4pzyzzstyozlfcdaw2ntfxg6ixofio2j746hmixhblc@sjbcvwcgitmy>
 Content-Language: en-US
-Autocrypt: addr=andrej.picej@norik.com; keydata=
- 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
- xtT/8OxBOVSHvA==
-In-Reply-To: <221c8216-ce71-4ba2-9981-8612ff33ec2a@norik.com>
+In-Reply-To: <gmwmnjc4pzyzzstyozlfcdaw2ntfxg6ixofio2j746hmixhblc@sjbcvwcgitmy>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkhCHlYaHhkfTRlOQ0gaHU5WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a94828a484603a3kunm92ac8289
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PTI6Hgw*ITIVSzcfAx8VFAgj
+	OD5PChBVSlVKTEhMSE5NQ0NCQ0xNVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFIT0tPNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=hvLcnqb6GgruYOfRwgMuBJZ5apTXhXgbcphlrkpMcxbPR5AkNTHTqVs27FdGFp2qS4UbOwsMJtceiuvVU3BYIcVm87yzf0e7mntk7p3YiHcAdCM+LrQ54/L6zU9oFUg93nqycd1I8fukZYoTuqCY5ssqkZGmSlzKRMo0UPBECpc=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=d9x5PVUE1JktG04GVLVpq/qvvHEgshZnb4IAcFz1hy0=;
+	h=date:mime-version:subject:message-id:from;
 
-Gentle ping.
+Hi Krzysztof,
 
-Best regards,
-Andrej
+On 2025/1/9 16:54, Krzysztof Kozlowski wrote:
+> On Thu, Jan 09, 2025 at 11:27:18AM +0800, Damon Ding wrote:
+>> Compared with RK3288/RK3399, the HBR2 link rate support is the main
+>> improvement of RK3588 eDP TX controller, and there are also two
+>> independent eDP display interfaces on RK3588 Soc.
+>>
+>> The newly added 'apb' reset is to ensure the APB bus of eDP controller
+>> works well on the RK3588 SoC.
+>>
+>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>>
+>> ---
+>>
+>> Changes in v2:
+>> - Add the main defferences of the RK3588 eDP and the previous versions
+>>    in commit message
+>>
+>> Changes in v3:
+>> - Expand the property clock-names, resets and reset-names
+>>
+>> Changes in v4:
+>> - Remove 'spdif' clock which added in v3
+>> - Add the comment of newly added 'apb' reset in commit message
+>>
+>> Changes in v5:
+>> - Put the differences between RK3288/RK3399 and RK3588 into 'allOf'
+>> ---
+>>   .../rockchip/rockchip,analogix-dp.yaml        | 37 ++++++++++++++++---
+>>   1 file changed, 31 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> index eaf4e67e232e..3cdea9e63522 100644
+>> --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+>> @@ -15,6 +15,7 @@ properties:
+>>       enum:
+>>         - rockchip,rk3288-dp
+>>         - rockchip,rk3399-edp
+>> +      - rockchip,rk3588-edp
+>>   
+>>     clocks:
+>>       minItems: 2
+>> @@ -30,12 +31,6 @@ properties:
+>>     power-domains:
+>>       maxItems: 1
+>>   
+>> -  resets:
+>> -    maxItems: 1
+>> -
+>> -  reset-names:
+>> -    const: dp
+> 
+> Widest constraints are always here. You only needed to add allOf.
+> 
+> https://elixir.bootlin.com/linux/v6.11-rc6/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> 
+> 
 
-On 31. 12. 24 08:34, Andrej Picej wrote:
-> Hi Shawn,
-> 
-> On 30. 12. 24 05:17, Shawn Guo wrote:
->> On Mon, Dec 02, 2024 at 08:20:50AM +0100, Andrej Picej wrote:
->>> From: Dominik Haller <d.haller@phytec.de>
->>>
->>> Adds a devicetree overlay containing reserved memory regions used
->>> for intercore communication between A53 and M4 cores.
->>>
->>> Signed-off-by: Dominik Haller <d.haller@phytec.de>
->>> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
->>> ---
->>> Changes in v2:
->>>   - no change.
->>> ---
->>>   arch/arm64/boot/dts/freescale/Makefile        |  2 +
->>>   .../dts/freescale/imx8mm-phycore-rpmsg.dtso   | 55 +++++++++++++++++++
->>>   2 files changed, 57 insertions(+)
->>>   create mode 100644 
->>> arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso
->>>
->>> diff --git a/arch/arm64/boot/dts/freescale/Makefile 
->>> b/arch/arm64/boot/dts/freescale/Makefile
->>> index 99be36a04db9..5bc083a7b778 100644
->>> --- a/arch/arm64/boot/dts/freescale/Makefile
->>> +++ b/arch/arm64/boot/dts/freescale/Makefile
->>> @@ -125,9 +125,11 @@ dtb-$(CONFIG_ARCH_MXC) += 
->>> imx8mm-phyboard-polis-rdk.dtb
->>>   imx8mm-phyboard-polis-peb-av-10-dtbs += 
->>> imx8mm-phyboard-polis-rdk.dtb imx8mm-phyboard-polis-peb-av-10.dtbo
->>>   imx8mm-phyboard-polis-peb-eval-01-dtbs += 
->>> imx8mm-phyboard-polis-rdk.dtb imx8mm-phyboard-polis-peb-eval-01.dtbo
->>> +imx8mm-phycore-rpmsg-dtbs += imx8mm-phyboard-polis-rdk.dtb 
->>> imx8mm-phycore-rpmsg.dtbo
->>>   dtb-$(CONFIG_ARCH_MXC) += imx8mm-phyboard-polis-peb-av-10.dtb
->>>   dtb-$(CONFIG_ARCH_MXC) += imx8mm-phyboard-polis-peb-eval-01.dtb
->>> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-phycore-rpmsg.dtb
->>>   dtb-$(CONFIG_ARCH_MXC) += imx8mm-phygate-tauri-l.dtb
->>>   dtb-$(CONFIG_ARCH_MXC) += imx8mm-prt8mm.dtb
->>> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso 
->>> b/arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso
->>> new file mode 100644
->>> index 000000000000..0c61946f0cf8
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso
->>> @@ -0,0 +1,55 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (C) 2024 PHYTEC Messtechnik GmbH
->>> + * Author: Dominik Haller <d.haller@phytec.de>
->>> + */
->>> +
->>> +/dts-v1/;
->>> +/plugin/;
->>> +
->>> +#include <dt-bindings/clock/imx8mm-clock.h>
->>> +
->>> +&{/} {
->>> +    reserved-memory {
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +        ranges;
->>
->> I'm getting this:
->>
->> arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso:16.3-10: 
->> Warning (ranges_format): 
->> /fragment@0/__overlay__/reserved-memory:ranges: empty "ranges" 
->> property but its #size-cells (2) differs from /fragment@0/__overlay__ (1)
->> arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso:13.18-43.4: 
->> Warning (avoid_default_addr_size): 
->> /fragment@0/__overlay__/reserved-memory: Relying on default 
->> #address-cells value
->> arch/arm64/boot/dts/freescale/imx8mm-phycore-rpmsg.dtso:13.18-43.4: 
->> Warning (avoid_default_addr_size): 
->> /fragment@0/__overlay__/reserved-memory: Relying on default 
->> #size-cells value
->>
-> 
-> I see, missed this before, sorry. But I have some problems fixing it.
-> I think the problem is that this is overlay, the same node put in the 
-> imx8mm-phycore-som.dtsi doesn't trigger a warning.
-> The only solution that I found is that I specify the default 
-> address-cells and size-cells in root node:
-> 
-> 
-> &{/} {
->      #address-cells = <2>;
->      #size-cells = <2>;
-> 
->      reserved-memory {
->          #address-cells = <2>;
->          #size-cells = <2>;
->          ranges;
->      ...
->      };
-> };
-> 
-> The same values are used in imx8mm.dtsi, but the checker fails to find 
-> these default values.
-> Not sure if this is the right solution, though. Your input would be 
-> helpful, thanks.
-> 
-> Best regards,
-> Andrej
-> 
-> 
->> Shawn
->>
->>> +
->>> +        m4_reserved: m4@80000000 {
->>> +            reg = <0 0x80000000 0 0x1000000>;
->>> +            no-map;
->>> +        };
->>> +
->>> +        vdev0vring0: vdev0vring0@b8000000 {
->>> +            reg = <0 0xb8000000 0 0x8000>;
->>> +            no-map;
->>> +        };
->>> +
->>> +        vdev0vring1: vdev0vring1@b8008000 {
->>> +            reg = <0 0xb8008000 0 0x8000>;
->>> +            no-map;
->>> +        };
->>> +
->>> +        rsc_table: rsc_table@b80ff000 {
->>> +            reg = <0 0xb80ff000 0 0x1000>;
->>> +            no-map;
->>> +        };
->>> +
->>> +        vdevbuffer: vdevbuffer@b8400000 {
->>> +            compatible = "shared-dma-pool";
->>> +            reg = <0 0xb8400000 0 0x100000>;
->>> +            no-map;
->>> +        };
->>> +    };
->>> +
->>> +    core-m4 {
->>> +        compatible = "fsl,imx8mm-cm4";
->>> +        clocks = <&clk IMX8MM_CLK_M4_DIV>;
->>> +        mboxes = <&mu 0 1
->>> +            &mu 1 1
->>> +            &mu 3 1>;
->>> +        mbox-names = "tx", "rx", "rxdb";
->>> +        memory-region = <&vdevbuffer>, <&vdev0vring0>, 
->>> <&vdev0vring1>, <&rsc_table>;
->>> +        syscon = <&src>;
->>> +    };
->>> +};
->>> -- 
->>> 2.34.1
->>>
->>
-> _______________________________________________
-> upstream mailing list -- upstream@lists.phytec.de
-> To unsubscribe send an email to upstream-leave@lists.phytec.de
+I see. I will keep the widest constraints of 'resets' and 'reset-names', 
+and only add RK3588 related constraints in allOf.
+
+And I may also need to add the 'minItems' and 'maxItems' for 'resets' 
+and 'reset-names' like the 'qcom,ufs.yaml':
+
+diff --git 
+a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml 
+b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+index a4c0c3a5de5a..baee021314e7 100644
+--- 
+a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
++++ 
+b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+@@ -32,9 +32,12 @@ properties:
+      maxItems: 1
+
+    resets:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 2
+
+    reset-names:
++    minItems: 1
++    maxItems: 2
+      const: dp
+
+    rockchip,grf:
+
+If not, the CHECK_DTBS will failed with the logs:
+
+/linux/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb: edp@fdec0000: 
+resets: [[31, 469], [31, 468]] is too long
+         from schema $id: 
+http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+/linux/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dtb: edp@fdec0000: 
+reset-names: ['dp', 'apb'] is too long
+         from schema $id: 
+http://devicetree.org/schemas/display/rockchip/rockchip,analogix-dp.yaml#
+
+
+Best regards
+Damon
+
+
 
