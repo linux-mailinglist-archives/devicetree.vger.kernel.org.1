@@ -1,234 +1,238 @@
-Return-Path: <devicetree+bounces-139686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EDF3A1694D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:23:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DA44A16950
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:23:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 93D711699B0
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:23:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE364164056
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF8521BCA0A;
-	Mon, 20 Jan 2025 09:22:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9326919E819;
+	Mon, 20 Jan 2025 09:23:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aJ+HzOp3"
+	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="jggOGnJM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2061.outbound.protection.outlook.com [40.107.103.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD8441B87D5;
-	Mon, 20 Jan 2025 09:22:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737364924; cv=none; b=mSEBkT5thv5ceF2+jzEFFmUXAeIO/NTurGFeg6xmQy1pMMm0XM8JRbvYJ8LFoY830FQHzNRl1H01/Ug5pL3FUiver+CSeY2V/NxC7Q+dowWcCt/h2XA7K1BO0X4OhvfdD8E0TVGBZuuNpFD4uvTfgLh1P/WwvaOJ5NTj3WrkHYw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737364924; c=relaxed/simple;
-	bh=0Ib6CCZCXGLLnxvNMqthiY5L7ImeJqbIkZLt8Kg4k+8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rygq/FNDL9ET9brmoljv1wDvTX5w+rdNQZ9wUDRbYKBJVEb3C3nHNNP5NDifTTyEhEz0kPGUGXDAp0gCaMWrgLl7coPY8sH/wfjR1kdPCKc3e4xKSlDhPEQ/9T3y1hHsVDBDPGpUyCjQjGDolmFMO2UkiOryoMx0w4Lpv9C/r+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aJ+HzOp3; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4361e89b6daso28618025e9.3;
-        Mon, 20 Jan 2025 01:22:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737364920; x=1737969720; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7SYOrmjXULZWrV3aYpbPZPuiNow+yUL2z22OQoOzio8=;
-        b=aJ+HzOp3CFwDNKkMfO2d78qzEMg8pU2hzQiTEYMTEGW2ZLKJp3nSTbIZpS0gEhrZBk
-         hn73Y5Qr//QpkqX6/YLmJey0wpqIW7AqSzhVyj3a2UeAWNobhjL/goWNQUg66w8f3ik2
-         lKwfAmJbPe60HrnXogAFi7Unol9QM3SkoasanYshmJ8VYC7WAip1dOihoX2TwTz2NcIU
-         PWmdKKeB+CPmzSnMOzncF7PLCsrdGSStlTlPdQtaPgJ61LWWHP9lfifBXA4GsdSyVEFO
-         NVDFOlL3nxhv4Z1JU5Dw9LKG4k7mq+9lMtmzD+KhhH3llEfyM1eCehCkp9DR/dbjdgfV
-         Vh+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737364920; x=1737969720;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7SYOrmjXULZWrV3aYpbPZPuiNow+yUL2z22OQoOzio8=;
-        b=GRiAdApbNYYQEMBMvJkoMHR2FThBPaLHKENymggMuCpQeRzVvB0PlY1ddfX1Yw2AON
-         6xoN0N9gvWO+++TR5qGro0Z2+ZydMhwgOdtkp/EaNdo8o351QnLFdSMsKUd9i7Y8M/ML
-         7MbZ3sKWFa18XLDWxu6nV635wXY8xqizAdPyu4JUuyKLoAgo4NHsTSJphQmTbeFDgFUw
-         ZYvC9CwXtdTtC/SpIDyZTFIrMEKS3FeRX/utUxfVw5pbhgOe5tnQg8SJ0W0oZ3Cdrde5
-         +8Elf6fusg5Jv/yCxvYZ0N0xhy/dNJ8Ti1fr41Lo4leMN+Y1antDxRoHwXfSee8Q+msH
-         OnCg==
-X-Forwarded-Encrypted: i=1; AJvYcCV1bC0U/54yugQU2oa454XWgRykgKd7F7vcL0A7vI3NIyZm5y3FckteezomkA6aG5rIqbiqPA2Vc9TJ7FvR@vger.kernel.org, AJvYcCVgLxgT6QsczGET7Y9djr8NsCJhP1LCVMkVVr+d9IAhISz5ue9mCNsk8zCSiv+unC46npcGSpgHc8lG@vger.kernel.org, AJvYcCX0QW3htkDZ18KC4vZMURC7ndSZ41lDXOwnEFHgIbduwt59XkfQ/vEQ2t3lt7YItvRjpbTSiaHx4gdcqQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywqxevh/i66oNaxMPIOwy42ZKMA5ciLY//z7v0iCqzSn60KnfkT
-	FXSlvPW06rEzq8kND2MDferqBkVIrDVGovclKqpLY+v2uAtKG90DD3TRtA==
-X-Gm-Gg: ASbGncvoK+j5ALb2ZcdzNO2fd7zV6Gfv/Wa/EDtyq+O2HXENni7u0xrFACDP26Pc+/o
-	df0r5CUbN2iFEFxdMs6Pzp2fWeZgrBgR368mdY8waVzlbF+AuyOyJIH3/XPPUz8sU3+luWU/Ye7
-	WH6F3kBzawSkMUyDzgznWaJY+aLIMGEouccuJakqyN1L7SOwpx5miDAe6n4ca/NZh0nLxnaWXW0
-	sSRTOBnDFaAl/B72IvwjvL0QZFNJY5pQpDQiCnn3Vl1f1T1uqg667hGSEZJbYTW4tovse09Yiec
-	/SoCjPaxE5/awcmp/MahoJV1JWRkcYXYI4S8pUmwFTJhce2Zk0MmfbtMVW3C
-X-Google-Smtp-Source: AGHT+IHesuI++LiyfBLPMict7L94Ay4gDQBJEaEzfY+4QdPcPx0zi/sAUAqEQhwYiVXRVfds4GFb3g==
-X-Received: by 2002:a05:600c:46cb:b0:434:f1e9:afb3 with SMTP id 5b1f17b1804b1-438913bea88mr108869335e9.3.1737364920277;
-        Mon, 20 Jan 2025 01:22:00 -0800 (PST)
-Received: from localhost.localdomain (249.red-88-10-54.dynamicip.rima-tde.net. [88.10.54.249])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438a1ec39a3sm80680175e9.16.2025.01.20.01.21.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2025 01:21:59 -0800 (PST)
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To: linux-clk@vger.kernel.org
-Cc: sboyd@kernel.org,
-	mturquette@baylibre.com,
-	tsbogend@alpha.franken.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com,
-	p.zabel@pengutronix.de,
-	linux-mips@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	yangshiji66@outlook.com,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 6/6] mips: dts: ralink: mt7628a: update system controller node and its consumers
-Date: Mon, 20 Jan 2025 10:21:46 +0100
-Message-Id: <20250120092146.471951-7-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250120092146.471951-1-sergio.paracuellos@gmail.com>
-References: <20250120092146.471951-1-sergio.paracuellos@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33A9F1B042F;
+	Mon, 20 Jan 2025 09:23:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.61
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737365028; cv=fail; b=aUi4ajN115vDE9R2a7gEh7DlJYbU29BWm8Mb5d1BTxg8AN9N4TcdLCeaoGyC/+n+49npgiDzHg+KogFIu/M2wgsKgvn+aq+2hKmXqMUXuxGa8FA1UjUzRISNX6uPjr+yjmB7N0pAsoixYO235Pt9XfBk4Rg4M/iA6/+Fsnib8Is=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737365028; c=relaxed/simple;
+	bh=aK0IcDLqNdWhpRl00R6C2AQDrz32D0hx/mRnVlkyCxg=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=LfvaBMStefdAeGDLs+2x+pB/l9QmWn7zvVUc3ISmanWMCk1kEgH5BKtdlgD0pVX+rkODqrkTMaOFgOKIBHibxcyHEqTsgEd9fBp7K975Cc36yGI75ArroqMZh3nacfs+ePwdAlLBZ+tHXD730wQP1I4hl9FQIm6J9uPd739aWaE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=jggOGnJM; arc=fail smtp.client-ip=40.107.103.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rdmBSquZZNg6cIGz8l2VBCVJM93s+5pub3qzujXyRrP8eW7UREBef5EcWVaBcq68eI1mODppJNnATNZDgNNfOJYVVxnwPT3G133p3ODF/IcnU67oM7j6Z71zD5p2b03q//uaHT3XkwKIi4hQf/6JpewUCyF+HZT1X7O5nLqPdWNtlbGPB1+HrebOz+GiWUc/47jtBbLAY46wxdpDHA5Q59LWeJvf+in3CU0fJhYg2IY66c5FlNnvcOeQNGUW6qRuNZ0F+WFv0AgD/Sk9pCt9MyE7cs5ww8SrJV8hOwci05GvnIazvKDTIKSoF4AArhR89BF4D9OgZpfjat042pIgJQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+NospZOcVJ2/yJud+ueEvQZUMTjedffhkHcp3SIA+A8=;
+ b=gNwnD0iug68GpNgn/VnaSb4vM0/mAo1gvHSQanWrePo1PwcaJpjrWT0cMoMwkmTxRUiWpqWSUV2SpMMROdafIXUuiXKYSs1DgiPO2pqmTJl+5i5FFVF4T7DlX+yOqxjhI7hBJj24oE19nXo6k/l0TDa6s62kT+RRXNnrRaIDAmuZPgH9koe8xPxhVkRNT0RxxtPrFMZttHds6+aMdjPMPZ0YYzhh18oZLLuVLT6gN0kNVUXhZRj8qZHtZp2IKNWkEyQQY1OfmkQJvJI4n7MPWfV4HOKzVD1bKCV0/jYItYxx6RhIIYTjKswpJSJjInzYBHi7osoDvfVfD0KL9gjdFw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
+ dkim=pass header.d=cherry.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+NospZOcVJ2/yJud+ueEvQZUMTjedffhkHcp3SIA+A8=;
+ b=jggOGnJMaWi0tWrD9MpxNltY5FjrjICJxLPPPB9mtFjzySe1wPQ+JVEE70NRlYIaU4aOIwH29+9Xb29viflUL4DkGCtRGaWdox7sKyFs4ubSHewrbprN/OyvKGNXDGfg/Xdh1qLjMEJbWV/lgTKHZm7HNtCbNRoqBwF7h3X92/8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=cherry.de;
+Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
+ by AM9PR04MB7521.eurprd04.prod.outlook.com (2603:10a6:20b:2df::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.21; Mon, 20 Jan
+ 2025 09:23:43 +0000
+Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
+ ([fe80::35f6:bc7d:633:369a]) by AS8PR04MB8897.eurprd04.prod.outlook.com
+ ([fe80::35f6:bc7d:633:369a%3]) with mapi id 15.20.8356.020; Mon, 20 Jan 2025
+ 09:23:43 +0000
+Message-ID: <433a8050-98b5-409b-97b5-00fe0e719a52@cherry.de>
+Date: Mon, 20 Jan 2025 10:23:41 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] arm64: dts: rockchip: add overlay test for Edgeble
+ NCM6A
+To: Michael Riesch <michael.riesch@wolfvision.net>,
+ Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
+ <20250116-pre-ict-jaguar-v2-1-157d319004fc@cherry.de>
+ <e492812f-11cb-42e3-ad0d-ae6df37c346b@wolfvision.net>
+Content-Language: en-US
+From: Quentin Schulz <quentin.schulz@cherry.de>
+In-Reply-To: <e492812f-11cb-42e3-ad0d-ae6df37c346b@wolfvision.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR06CA0106.eurprd06.prod.outlook.com
+ (2603:10a6:803:8c::35) To AS8PR04MB8897.eurprd04.prod.outlook.com
+ (2603:10a6:20b:42c::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|AM9PR04MB7521:EE_
+X-MS-Office365-Filtering-Correlation-Id: 130c7b1c-9b15-4cc4-7f7f-08dd39342203
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|10070799003|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?K1RCS29CcVN0VjM4UWJDcWh2RC8wWjdhSXlVYlR3SExwN0R5YmtLYXVmQTBH?=
+ =?utf-8?B?TTZ2YTJFN2U0ak96TGdPaUZuSHJrOUQ5WHhwV21NUk0vSldGMXR2RXNmbkk4?=
+ =?utf-8?B?VUhPclNRbDlJTWwxaENmV2lPcE9kUDUrN0x4OFRnbzNLN2dHenowWlVLY2NV?=
+ =?utf-8?B?eTA5Q1VZYXZzZUszenlyZE1OQXp5WlFmcTlMMUlGTEtDbzMwd3dBSi94RDZi?=
+ =?utf-8?B?b2xScmdKRnJsKzVicXBmeUEvTWdJVHNKQ3Qvc2dydnVLM0gyUG1EWi9rRERr?=
+ =?utf-8?B?K0RPQXZBSFJQaTg5ZksraUZ2TEJxK1NLM3EyZ3VFamRSSkloQlZlN2VPN01F?=
+ =?utf-8?B?R1BXKzk1UkVPMnlDVEh1TFNiSnVWSmhqN1luVk5BbVBNby9XUUhXTDc2M01m?=
+ =?utf-8?B?MWpxTis0R2UwR0NpVnFIR3JxcXJ0NGJVWWY5S0dZNHJiSkcvb3ZrYjZoM3pJ?=
+ =?utf-8?B?YzltRGJ1NWxzK211Mk1za0szTTcvckQzeW5WVFJDSGdUeHpIemtyR3NpKzR4?=
+ =?utf-8?B?RWhpaXN3TUZFMnduS2k2djhPZnpid0V0N081TnNMdGp5a3hZZTJPcVpZc1Ur?=
+ =?utf-8?B?anA5ZXQ2V3FIM0N0L2Flalo5c3Z1UlhHMXdWb2ZNd0NsM3RNbStuRDJCSGhC?=
+ =?utf-8?B?UnBMeVlTc01mOUxlMDJXbytNMTE4aUNUQnpRWVhzWENyUGpGcUZDOE0xMHQ3?=
+ =?utf-8?B?anc2TDhVS25PQ3BDRjJkK3RQVVBTbHU4ZnBVbFNlcnZJejJadHdaQ0JGRE1a?=
+ =?utf-8?B?WEVpZlUxazdkcDVQRFdRcDBHRHlManh4V2I3Uy96eVl4cS8zcnJxR1NSSE5J?=
+ =?utf-8?B?ZVJqdUpHb0xNRnEwemJVQVM0QXlxZnZwR1FzRjZSY1JTNXJIcmVTMStjcjlL?=
+ =?utf-8?B?ekIrWXEySzh6RThVRHN6ZXpsTkVRQWdYRVNpTldrZm94eFNLem9UeVlSSkpH?=
+ =?utf-8?B?bzVPMVhlMGpFeFFoa3I1cUlEby9sekdKcmNMQjVBaFFYcnZkcFhPRnBTczh4?=
+ =?utf-8?B?VnlnK1VlbDhPNGY4OHI1akd2Yit6dkZGSWxKeWQyT1hQN2NhbUFKTUJDWnk2?=
+ =?utf-8?B?SEhQaEZITUhoYlVWWXhzRVM1V2JXVy85SXdKeFRkVkltc0YzUWpXS2RsalE3?=
+ =?utf-8?B?alNicTdjRU5BMjQwYWx3UTJWREFzbUY5Ylo4UzZrN2VBVWRWNG54MHduaFBJ?=
+ =?utf-8?B?YjFHSXNTMEVFS2loM2pYY29Cd05OL0FlUmVTM0k4L2lvRWlCVG15ZUVMYk9n?=
+ =?utf-8?B?SndWTkxUcWt0QVptQVZKVXZ1VUoyTTFUcUUyeDJaUzdrL3Z3VmZKRGJKOGNS?=
+ =?utf-8?B?QkhjZURIMHBZUklEZU9HM01tc0lKZ01waWRKSFI1ckFBbWI2RTFlUjRmZ0FQ?=
+ =?utf-8?B?ZUV1UG9YYzQ0ZmJaZjdOdnAyZGd3VzhQQnQ4c3dVU1dOU2FQTlF4RGFjWVFB?=
+ =?utf-8?B?ZjJjUEgrQzJ6OGQwZVlsVzRvSnJyVkNRdm5ma0k2Vnk3VVk2bzBLcWJBV29R?=
+ =?utf-8?B?dThwdlJReVBpRUhkQlVFTU9NRlNCMGJOY2NDKy9mYXVCUmpiajV5MlkrQW1m?=
+ =?utf-8?B?eFN3dGZXZUtyQldTMlNsb0x4cU5vNG9KY0tzeUNDWnRaZ05NSkZia3BIUjA3?=
+ =?utf-8?B?UEJKa09tUlF5M05FMjUvTjNnSjNKQXZBZlh4MTBRV01jQUFSMWNsSmRETDRH?=
+ =?utf-8?B?R2VmNStIbzd1c0RKcENvL2hvR2hHbG5weWVxWDFjYjVvVHRkVnp5SnlOdXN0?=
+ =?utf-8?B?WkNpQThMRWdxcHZrKzdDamIwQmkwcHRRWXFsVU8zOGlUWEpzRHVFMUd0Nncv?=
+ =?utf-8?B?NXVDNHNvcHdJdFppTi9QQTNKYS9TbEcwQngwcWtDQ0NGTDNUUWFxUXZqSk96?=
+ =?utf-8?Q?0MQTz+EbF6A5f?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(10070799003)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Z2dSMWxPc0FUNDdiMDhmdUQxd1RCT3dmakpWWExpbkF3OVBZSGg0aHVMbXlI?=
+ =?utf-8?B?Z0RaK1RLVXY1VTB3LytjeTNwZEVEZSs0T3QwV0hFUjJHSGVFMk5iTjFqV1pB?=
+ =?utf-8?B?OFFQN1ZHK0xKcGxuUG5LOElJRGU0ZlA2UmpVNUlaNUVGYVFNd0l1Z1o5YkF4?=
+ =?utf-8?B?Wkx1YWNDSkNla1VySUlUL0VHT3hxYXJ3UUZ6YnVLS09OVVVYaDV3SXNYTFdB?=
+ =?utf-8?B?U1grRTE1NFlzQnRSQkxpYnQxa1grbEk3NE1ZT0dXa1B3RWZROXorcnZ0USti?=
+ =?utf-8?B?SG0vR1JOR2x0dFF0Z2k2L2ZHRnNDWmwwTWVwV21IWHZBRXZWeHN5QnBjSnVH?=
+ =?utf-8?B?RU5lWCtnYXFNcTB3eVFHekNMMUhhUTdHRDlxWlpncC85c2pKb052VXBxUXRw?=
+ =?utf-8?B?c0lJdGI2UTJVdXN0TkJtbHZQOXcrUEpORThndFExVWNOSFlCWDBZcnQ1TW5q?=
+ =?utf-8?B?MFk5U2grTnJEdHNrWC83a3VGaU44ejdrNWVPelg4S29ySFFWY3VONStqbWZV?=
+ =?utf-8?B?RjNrR3VZMTlJY29KSUtRSkNHVlVvY1BNendNNndpS2t1dUk5RW1Gc3EyNE1T?=
+ =?utf-8?B?a1ZQRzVjeDdXaUVqTTBuTG1RV3U4NHMzM1E0Nm1nUTk2anNCUlU4OHdEeUlu?=
+ =?utf-8?B?cjdqUnNVbTNGbVh4MENBY3lnRHYxZ3FyM2dNdXl0VVJRaGRQY0w2YUE2eWFs?=
+ =?utf-8?B?WUYzelVkMjhYZ2UxeEQ1cjl4VUtvTS83QnlMaDBISEZoZHpRNkxiQjc2cU5T?=
+ =?utf-8?B?S1hxUklaVHpmQ3BwcDZtN2ZSK2kvOVJkdXlQZStZR0JCRHlqKzhPOUlhNmFl?=
+ =?utf-8?B?bjZTZDhid1NWeEdSaXFXQ01kbVM4TVVMNWtYUzRHNXlTN0F5bVdsZlo5Z1Iw?=
+ =?utf-8?B?L1pFOWpScVo5dEZ6aHRuUzFGelduN3RyVWtBdmlTR1ZEZEZBcGkvZDF6Uytv?=
+ =?utf-8?B?VzdYNTI1YlBQbWNUT0h3c0UxejVjbDdPL3dQeWNRSjJVR05VR3JKajhIV1Bv?=
+ =?utf-8?B?ak81QnJicHlXL1lNU0R4RTJENTNTTGZDNXNaNzJsUXB3QWkrSUs2NHVVTzNq?=
+ =?utf-8?B?ZWpZV000L1N2M3FWZ2NxNlhxSWUwV09NL3VrczBqN2FmWUNVVnBOcXkyUUlK?=
+ =?utf-8?B?REppSldSeWpSb1dlTmkyWXpvS1NjamJacGZqd3B0YlI0ajZseElaNy90eitk?=
+ =?utf-8?B?U3lCZVFLcjM0aGEyU0xGeHNZN1YxVFd3QUd0WFhIZkdnMTJTU0pDcHhoVDdk?=
+ =?utf-8?B?Q1Y0dzNJVU5BSTdXWU5lVmQvWHhRZ3BvY204ZGNsRXJRYTRrbnByRUoybS9S?=
+ =?utf-8?B?RGtkN1pHamdyVE1vY25EZERFbkpzR01TUzIwQ21pbFhVZ3JsVEJDS28yMnhj?=
+ =?utf-8?B?TXpMeEw2MTB3NExnaDRuR2dBcThNUFNaZzM0OStOSFp3WjlZWUFvL05EeHNI?=
+ =?utf-8?B?ZTV4eEs1MTN2RkJreDdWVUEvV0VrRzZ2b2tQVGplR2wrWlBaUURJQ082N29o?=
+ =?utf-8?B?dDRFNVhHd1lRSU1aenlhaVpKSlFKaEdZQjhFMWhwenFYWVYweEVEbFJhWlZP?=
+ =?utf-8?B?T1h4Q2ZYZlpJR3pJRzhuQ3pyOFdXSlNxK2wvSkFYcGs0Q04xNE13RktmUFVZ?=
+ =?utf-8?B?NVdtVWFsMUR6TmlsR2pZQWk3bUF0ZVVaaFRJYzdSTk1Qa1A5ZXoybjBmQUox?=
+ =?utf-8?B?YzM2Vm4vb0R6RnRYS1hFOW82RklNKy9hSnc1VnphRHNFMTAzNVo1MGVWNnZ0?=
+ =?utf-8?B?Z1hHdkdNT2pFSTJScVpLTzFsdi84VHRQMndkN3VyRENKKytMckt3NXJlMFVY?=
+ =?utf-8?B?WFBGejR1ZGFwVmluNThGU004U2FaUTQ4eUo3Q09pUVRnMFVQckkzak1iaGhH?=
+ =?utf-8?B?Sy9SRkRZZyt1ZFJDOU1qeUptY1lPMFcrSGRHMWxnejlyemdxZzFRVWxvMnh1?=
+ =?utf-8?B?REpjTkVWTXliOHdkUW94bjI3dllJQS9tQ0ZzOUFuMkM2aWR3bllUc1dJMUdJ?=
+ =?utf-8?B?U1M4SU16cCtPY244WEplRzNaVW1mSGZHQ3RmU01LZ1oyRHUvUlJkMURQT1Jx?=
+ =?utf-8?B?NjFQVUltejA2S0txUFB2M1pDWXE5SEtuVWFKZUpOWEhHbUZmVFdOemNoVk1w?=
+ =?utf-8?B?NG50a25LWkhJSlFlMUVnekxMUUViQ1B1V3J5akVsTDF0SzZCMWlmY0FVMEtC?=
+ =?utf-8?Q?UVR2dINiaIt574263C6CkNw=3D?=
+X-OriginatorOrg: cherry.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 130c7b1c-9b15-4cc4-7f7f-08dd39342203
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2025 09:23:42.9320
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: u5Xdq+4AJPhTeJgUygB54VZMoahYv/ReTrftg1KL5p/RcvMgiZZcQYI4nLQVn//k7MojefJ8/nV4KK3KrbYoWOOP3Q2+DBWubF/ol5ycPo0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7521
 
-Current MT7628A device tree file system controller node is wrong since it is
-not matching bindings. Hence, update it to match current bindings updating
-it also to use new introduced clock constants.
+Hi Michael,
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
- arch/mips/boot/dts/ralink/mt7628a.dtsi | 38 ++++++++++++++++----------
- 1 file changed, 24 insertions(+), 14 deletions(-)
+On 1/20/25 10:07 AM, Michael Riesch wrote:
+> Hi Quentin,
+> 
+> On 1/16/25 15:47, Quentin Schulz wrote:
+>> From: Quentin Schulz <quentin.schulz@cherry.de>
+>>
+>> The Edgeble NCM6A can have WiFi modules connected and this is handled
+>> via an overlay (commit 951d6aaa37fe ("arm64: dts: rockchip: Add Edgeble
+>> NCM6A WiFi6 Overlay")).
+>>
+>> In order to make sure the overlay is still valid in the future, let's
+>> add a validation test by applying the overlay on top of the main base
+>> at build time.
+>>
+>> Fixes: 951d6aaa37fe ("arm64: dts: rockchip: Add Edgeble NCM6A WiFi6 Overlay")
+>> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
+>> ---
+>>   arch/arm64/boot/dts/rockchip/Makefile | 6 +++++-
+>>   1 file changed, 5 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+>> index 86cc418a2255cdc22f1d503e9519d2d9572d4e9d..3f92d1a9d0b6efeee46ad4aff8c2b8ed3cb83d73 100644
+>> --- a/arch/arm64/boot/dts/rockchip/Makefile
+>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+>> @@ -134,7 +134,6 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-w3.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-evb.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-genbook.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-io.dtb
+>> -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtbo
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6b-io.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-friendlyelec-cm3588-nas.dtb
+>> @@ -163,3 +162,8 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
+>> +
+>> +# Overlays
+>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
+>> +
+> 
+> Maybe open a new section "# Compile time tests" or something like that?
+> 
 
-diff --git a/arch/mips/boot/dts/ralink/mt7628a.dtsi b/arch/mips/boot/dts/ralink/mt7628a.dtsi
-index 45a15e005cc4..309966049c56 100644
---- a/arch/mips/boot/dts/ralink/mt7628a.dtsi
-+++ b/arch/mips/boot/dts/ralink/mt7628a.dtsi
-@@ -1,4 +1,5 @@
- // SPDX-License-Identifier: GPL-2.0
-+#include <dt-bindings/clock/mediatek,mtmips-sysc.h>
- 
- / {
- 	#address-cells = <1>;
-@@ -16,11 +17,6 @@ cpu@0 {
- 		};
- 	};
- 
--	resetc: reset-controller {
--		compatible = "ralink,rt2880-reset";
--		#reset-cells = <1>;
--	};
--
- 	cpuintc: interrupt-controller {
- 		#address-cells = <0>;
- 		#interrupt-cells = <1>;
-@@ -36,9 +32,11 @@ palmbus@10000000 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 
--		sysc: system-controller@0 {
--			compatible = "ralink,mt7620a-sysc", "syscon";
-+		sysc: syscon@0 {
-+			compatible = "ralink,mt7628-sysc", "syscon";
- 			reg = <0x0 0x60>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
- 		};
- 
- 		pinmux: pinmux@60 {
-@@ -138,7 +136,7 @@ watchdog: watchdog@100 {
- 			compatible = "mediatek,mt7621-wdt";
- 			reg = <0x100 0x30>;
- 
--			resets = <&resetc 8>;
-+			resets = <&sysc 8>;
- 			reset-names = "wdt";
- 
- 			interrupt-parent = <&intc>;
-@@ -154,7 +152,7 @@ intc: interrupt-controller@200 {
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
- 
--			resets = <&resetc 9>;
-+			resets = <&sysc 9>;
- 			reset-names = "intc";
- 
- 			interrupt-parent = <&cpuintc>;
-@@ -190,7 +188,9 @@ spi: spi@b00 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinmux_spi_spi>;
- 
--			resets = <&resetc 18>;
-+			clocks = <&sysc MT76X8_CLK_SPI1>;
-+
-+			resets = <&sysc 18>;
- 			reset-names = "spi";
- 
- 			#address-cells = <1>;
-@@ -206,7 +206,9 @@ i2c: i2c@900 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinmux_i2c_i2c>;
- 
--			resets = <&resetc 16>;
-+			clocks = <&sysc MT76X8_CLK_I2C>;
-+
-+			resets = <&sysc 16>;
- 			reset-names = "i2c";
- 
- 			#address-cells = <1>;
-@@ -222,7 +224,9 @@ uart0: uartlite@c00 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinmux_uart0_uart>;
- 
--			resets = <&resetc 12>;
-+			clocks = <&sysc MT76X8_CLK_UART0>;
-+
-+			resets = <&sysc 12>;
- 			reset-names = "uart0";
- 
- 			interrupt-parent = <&intc>;
-@@ -238,7 +242,9 @@ uart1: uart1@d00 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinmux_uart1_uart>;
- 
--			resets = <&resetc 19>;
-+			clocks = <&sysc MT76X8_CLK_UART1>;
-+
-+			resets = <&sysc 19>;
- 			reset-names = "uart1";
- 
- 			interrupt-parent = <&intc>;
-@@ -254,7 +260,9 @@ uart2: uart2@e00 {
- 			pinctrl-names = "default";
- 			pinctrl-0 = <&pinmux_uart2_uart>;
- 
--			resets = <&resetc 20>;
-+			clocks = <&sysc MT76X8_CLK_UART2>;
-+
-+			resets = <&sysc 20>;
- 			reset-names = "uart2";
- 
- 			interrupt-parent = <&intc>;
-@@ -290,6 +298,8 @@ wmac: wmac@10300000 {
- 		compatible = "mediatek,mt7628-wmac";
- 		reg = <0x10300000 0x100000>;
- 
-+		clocks = <&sysc MT76X8_CLK_WMAC>;
-+
- 		interrupt-parent = <&cpuintc>;
- 		interrupts = <6>;
- 
--- 
-2.25.1
+The above line is to compile the build-time test of overlay application 
+(notice the missing o in the extension). This points at the target below 
+(which ends with -dtbs), which does require the dtbo to exist. So 
+essentially, they are both for the build-time test of applying (and 
+generating) DTBO. I feel like this comment/section would add to the 
+confusion? I may have misunderstood what you are suggesting, can you 
+provide an example?
 
+Cheers,
+Quentin
 
