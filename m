@@ -1,130 +1,103 @@
-Return-Path: <devicetree+bounces-139647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6609A16797
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:48:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9D30A167C1
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:55:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 476CA1883E07
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:49:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC7F67A1052
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:55:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D74718FDBE;
-	Mon, 20 Jan 2025 07:48:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D4D419046E;
+	Mon, 20 Jan 2025 07:55:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ty5YJTLi"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rhqpwzp0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E54EF140E3C;
-	Mon, 20 Jan 2025 07:48:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8AA5140E3C;
+	Mon, 20 Jan 2025 07:55:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737359335; cv=none; b=ffhlFlZTPUBkC+tCKEoOCaDvNj5R4VgxSGrO42AVGJAnnCz1r/qXS/PXfv+cwMqAWVJwWzDI3k/6oX6C8vqDddbQevE4CbKZa3YjjruA1hSr4GlCvmxFt/JIDkFrU1HotQ507+MtvFNVhDM+6wqgJoepvHvonBpz/dkN7tcVbPM=
+	t=1737359737; cv=none; b=ptjGYNtel1nP5JBBinIf6HjofWBpHrlB2te7UCn248ktaAsUTQysAoKtMGuSSvDt6j4YISMOiqZS4vbKIVnz00qhE+fOi5VxVgy4UUdKxzHGdwKtE7rS64fT1TEEPMJZ9L+O1R0b4QvYK5Xwffs20x6n+sGqbppCN1QQF0RzbWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737359335; c=relaxed/simple;
-	bh=AVe0TpUsodNDUwpn/VFfru4zZGcQsfzhz2oRw5R/tos=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P0p8J1OE6gklHaeya1O6AzmlEBcygN2g8TFoZ7r4QOJlTTpUU+1KYAX8qhXx3/2tRroRCVb0nr4Stm6l2m2tYY74aJaE8wJMKTwrpbF+EJtAPP8ZCiA7A/l5qUvivz4aUWwSpO5XvQnrIXJz+KBcB25qVg/k0vowAT2xWwtB4cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ty5YJTLi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0BF7C4CEDD;
-	Mon, 20 Jan 2025 07:48:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737359334;
-	bh=AVe0TpUsodNDUwpn/VFfru4zZGcQsfzhz2oRw5R/tos=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ty5YJTLiwFuQpFvJ2BNhKTsda9rOhQm2uRBUmUBv7d4IO/EhN4+39f7uJNMPaMetW
-	 4PXwq1tidj/spyUWQEMns9fcO8jkpAyfnaY1LjhtzS92Uvio8KvkHwJ+Ep3mXXY33j
-	 ylhiPsXjxxBLZEk0sGuYhSHru6+oT8EqWND+Ab5uZock/F5Crna7j/s2NbAlqb08FK
-	 8HG5SB4/BbfD+iJDJ2RTYM0dHdwOnWNHM614fdFAqACv/ipqPec1V2y5OTI8VHhWhl
-	 mZmHOfZ8YI2X+2ACj3J0svYT02JCQTqKBSksDiL4FKphTWnn/r2/5V/qm8rwmCfALm
-	 nA4oCEWq4IsoQ==
-Date: Mon, 20 Jan 2025 08:48:51 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Wenhua Lin <Wenhua.Lin@unisoc.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	Chunyan Zhang <zhang.lyra@gmail.com>, Cixi Geng <cixi.geng@linux.dev>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	wenhua lin <wenhua.lin1994@gmail.com>, Xiongpeng Wu <xiongpeng.wu@unisoc.com>, 
-	Zhaochen Su <Zhaochen.Su@unisoc.com>, Zhirong Qiu <Zhirong.Qiu@unisoc.com>
-Subject: Re: [PATCH V2] dt-bindings: serial: Add a new compatible string for
- UMS9632
-Message-ID: <20250120-talented-octopus-of-serendipity-aa8a58@krzk-bin>
-References: <20250120032212.3579184-1-Wenhua.Lin@unisoc.com>
+	s=arc-20240116; t=1737359737; c=relaxed/simple;
+	bh=14AM3i6WtkPw8uVXWf2dyrxE+02kTGvO4Yahi8XOO0U=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hXxCpD3nD+Tb5wUOIDwgyu3cq9PZ6Bsb04J0GZtuHRvqOsaQb213V1fXFXWCoQjIuoWp/ITCA7+tL8ckTPYBQpFUMyfKfNURcDNJSOb43bNp/Fcfa8lPCYAAsKt/pEvEsxImXEj7s3TpImju+zHlfVr9pho4ERnjOc56c9uUUhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rhqpwzp0; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50K7tDkC599415
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Mon, 20 Jan 2025 01:55:13 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1737359713;
+	bh=J8hAzpqhK+r7FJNtEnXIvhOhfkNchLyGSgqsngobflg=;
+	h=From:To:Subject:Date;
+	b=rhqpwzp0OynM4Vy13jMidlULjWtm039wwYrf65z/4SS42EPAuhcI0+1e3hr9XR+qo
+	 7r4v5Z8XtKMH5+F0zpAsrdUT061q9je57nNeJW+7Su31LmHTX4O8M30jp70phjCTnQ
+	 B3B/KqQn3ZrJRsXuS4vCA5F74AbztbbxMKDCMTjk=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50K7tD73038264;
+	Mon, 20 Jan 2025 01:55:13 -0600
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 20
+ Jan 2025 01:55:09 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 20 Jan 2025 01:55:09 -0600
+Received: from uda0498651.dhcp.ti.com (uda0498651.dhcp.ti.com [172.24.227.7])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50K7t6hY036694;
+	Mon, 20 Jan 2025 01:55:06 -0600
+From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: ti: k3-am62a-mcu: enable mcu domain pinmux
+Date: Mon, 20 Jan 2025 13:24:42 +0530
+Message-ID: <20250120075442.181191-1-s-adivi@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250120032212.3579184-1-Wenhua.Lin@unisoc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Jan 20, 2025 at 11:22:12AM +0800, Wenhua Lin wrote:
-> The sc9632-uart is incompatible
-> with sc9836-uart, Add sc9632-uart dedicated compatible
+Enable mcu domain pinmux by default to be able to access mcu domain
+peripherals from main domain.
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+This also makes it consistent with the rest of the k3 platforms where
+mcu domain pinmux is enabled by default.
 
-Missing full stop.
+Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-Your commit msg should explain briefly why sc9632-uart is incompatible
-with sc9836-uart.
-
-> for representing uart of the new project UMS9632 SoC.
-> 
-> Change in V2:
-> -Change commit message in PATCH 2/2.
-> -Modify the compatible string of enum in PATCH 2/2.
-
-Changelog goes to changelog place, under ---.
-
-> 
-> Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
-> ---
->  Documentation/devicetree/bindings/serial/sprd-uart.yaml | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/sprd-uart.yaml b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-> index a2a5056eba04..83582aa6c750 100644
-> --- a/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-> +++ b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-> @@ -17,13 +17,17 @@ properties:
->      oneOf:
->        - items:
->            - enum:
-> -              - sprd,sc9632-uart
->                - sprd,sc9860-uart
->                - sprd,sc9863a-uart
->                - sprd,ums512-uart
->                - sprd,ums9620-uart
->            - const: sprd,sc9836-uart
->        - const: sprd,sc9836-uart
-> +      - items:
-> +          - enum:
-> +              - sprd,ums9632-uart
-> +          - const: sprd,sc9632-uart
-
-Lists are ordered by fallback, so this goes before list ending
-sprd,sc9836-uart. Do not break orders by putting everything always at
-the end.
-
-> +      - const: sprd,sc9632-uart
-
-Combine two such const items into enum:
-  - enum
-      - sprd,sc9632-uart
-      - sprd,sc9836-uart
-
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
+index 0469c766b769e..9ed9d703ff24d 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
+@@ -12,7 +12,6 @@ mcu_pmx0: pinctrl@4084000 {
+ 		#pinctrl-cells = <1>;
+ 		pinctrl-single,register-width = <32>;
+ 		pinctrl-single,function-mask = <0xffffffff>;
+-		status = "disabled";
+ 	};
+ 
+ 	mcu_esm: esm@4100000 {
+-- 
+2.34.1
 
 
