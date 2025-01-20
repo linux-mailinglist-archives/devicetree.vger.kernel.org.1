@@ -1,380 +1,193 @@
-Return-Path: <devicetree+bounces-139865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85D38A1739D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 21:33:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09E28A1740B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 22:20:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 287D71887D65
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 20:33:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3822816AA69
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 21:19:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC71C1EE7DA;
-	Mon, 20 Jan 2025 20:32:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EFCD1F03EF;
+	Mon, 20 Jan 2025 21:19:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="dDtws+AF"
+	dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b="L0ji2OCp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B191E1494D9
-	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 20:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C1331E9B00
+	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 21:19:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737405178; cv=none; b=W0pFcL6mfVyfQ/xfLxI84h0TeRGOGKmv2ddICAEwctuI64RJHuXGQnUcuJdwBfpReW8A1cti6g7eyx6pcysVJkVNaVpMKGLdqwkfi8niVELYRMuqfVigWJ/GSeo9U4H/17+xJSqu7gmlpozW7NBEXnPgBsOFwoQgs67RxUHUajE=
+	t=1737407988; cv=none; b=b0s6WcU4i1zX5VQKbXpIkbpiUR0Dx/goQknfEZEu1I+9up9X6kvqW9ckjf6WJ8kv/ZW+TO+r3bxoPm4ocq7gfd3Oq7OUvWvTjxw915UHXtrIozNBtp908ZwmMwekmcLIOUSvGcXH/XRuissUIAXetdGdQJkxRKTTR8Koi4+NWfU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737405178; c=relaxed/simple;
-	bh=Zpj2CdyVyqMf1gVb7P5vBImdXKV7/Ew2GDFQVG9P2lI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Xkvr+erUYlT6wxl0y8GQgLktPZ9280P2+bCL+y41BOPZkf0uyDfT1HKCv0Elaohl/c1aUnoOW4La3Keb0GP/L63GpFniuJc/+ErpAeJayzMr0vWtpUm2B4Qc1hvDExJseqsH2UN0zmkbhPWLn3mK+js4AdLR1avTGj0kL5h48fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=dDtws+AF; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id C32322C07F0;
-	Tue, 21 Jan 2025 09:32:52 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1737405172;
-	bh=6zSTHSq/ip2zqYKCXvQnCas8dazsMfptN5G2+a+INsA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=dDtws+AFtqvdTcdQnygCn5NfoHe4/hmkYyeoHII1hwe0ucVJlOwX8oroD8BVWbFIU
-	 G3PbH1JHwaRHkaYeygRnbcdG4XDgXwjkghRV/R5o+ttDxYuIKDM6GBlFQMvdlKBE2f
-	 YCkC2orEzkQp+WJvWQjhg9MrGiYoM7hbtW1LOM981qlUvWRLS+FqMmePrdBEajUSWl
-	 AXdJXO/cJBM9ZzE0mMAYw2Zh5fnv249Gtw1t2ukV3TyfpWDLodIRj/l8Ayo+gQctS9
-	 HFdHskH3ir8jZ0G2ri2aYBQ+KMzUpumhmonBQeyV/Yi6AUGmvqyynNw2jRjDwPy4mD
-	 65Bg+XBXF0eNQ==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B678eb2f40000>; Tue, 21 Jan 2025 09:32:52 +1300
-Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 9C03313ED2A;
-	Tue, 21 Jan 2025 09:32:52 +1300 (NZDT)
-Message-ID: <63d6cf16-9581-4736-8592-bc5836fa51af@alliedtelesis.co.nz>
-Date: Tue, 21 Jan 2025 09:32:52 +1300
+	s=arc-20240116; t=1737407988; c=relaxed/simple;
+	bh=Vh0uo3++5QP3EBzz/t2XwqmWwVWPTuEQ5w6IKvetKck=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=i/fE+IqAR+l9D5cOl0/McMV2Fcy46+GGSbAzajOqKYPJ5zso2iMRX/rhMbglqIs6fLXQrtyWKniELXULLt5o9D47VsLsk6IRbZVePUxRXVkTN3t5Dj9AvnXrqvXkb0q+gf8ad2B5JCLB5oGn7rB0EHHI6UZ0obeny2H4mA8axQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org; spf=pass smtp.mailfrom=kali.org; dkim=pass (2048-bit key) header.d=kali.org header.i=@kali.org header.b=L0ji2OCp; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kali.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kali.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aa6b4cc7270so767651366b.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 13:19:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kali.org; s=google; t=1737407985; x=1738012785; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xA6291ZXdac8vRUCwssYg9YOrgMEuOkZxM4d7CqIjqE=;
+        b=L0ji2OCpt0f1r6G+IwtimIkYl38IyG76XLQdF1OHl1ns9RhiM0ti2ShsRBmmwF7WiA
+         HqBN9B/yyIperqmwYaylYPUIrDpFxLRt/mLfojzejRT7lz81etH5fQtbCa7Cty1mis9u
+         jV7KS7Tt2qR6va5XLc2FTH7k9L792Au/9Fvo57yMqJapisBzWUBHc4lpiMA+nA3HYPjS
+         DdtRtGf4Slj65XYhiyIOf3VJgYuZykTVW2tZYLmgUVZ8nBz9d0MCjWFR+Vx5y27tEvsR
+         BWgkUIlS/ZmqTt5Mg3re/EDGxdjYNkcTmoqYAhwxOu3CPYFkANskTQlU+vaPuADV3xjs
+         A/+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737407985; x=1738012785;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xA6291ZXdac8vRUCwssYg9YOrgMEuOkZxM4d7CqIjqE=;
+        b=HJ2uJvv7eGWLDJ7T9J8JkBVG+tmcEFuvRKmC/0nR89Ma+ajXcAnjJ97ivQUy2VziEH
+         6ieRd9fE8iGG0T8Hqmtuda2NRzCtRqgl/EmPgxzNPFkoVAlDp1hPsRdFxKKwqmrLNrr4
+         0ikcU56H26s6ZPtY/yeRfpx7FgOkWzdxJfuFmo8pwSOc7p6bfhbZ6BBbWf4FjpPSIF9r
+         8Hhhr5ehuxNXY3pN5CsAKisqe1M0UKtFjZ+krsyllbGb+h1lclveyVAVOPguZSnBPHih
+         wqfnpNKZEbnKOOrUv5uzbBRy4XQl3wQFeKsVkbRDslcEKdcni18fUX93MeY24WYpFMg4
+         81Bw==
+X-Forwarded-Encrypted: i=1; AJvYcCUBRj6TrSuKbwBHxLFX2UUF4caShuOoX2mmHnSiIDlF06GmjM3b+Fe5RI7YU4SV1OMJaHikEXRIWqB5@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUIotc4vWEwFXAwLi2h81qb0h9Pp/ED2G1879OlYcHfnURM4+e
+	FsuM+p6iV6Kl0cZyOF1l8AjJTk6C+VZHUswHSx0JheNr6kQnfLoV8tzIq+9GvzNqrcBqrM/0VPF
+	xvhGb39hzsDvAULFV22OvcR5SukdUUVl7HSSfsQ==
+X-Gm-Gg: ASbGncs05dvrxaVfLTp8kQHVL53wPUBZEMYWAqGqTX8hKgSBMKtRb4XdGKqlnYX+hrU
+	PRtgoQQOz7i32qkfDzVMk9EiRtTFH/DnkfKNvL90PZw3anNzFcU7W
+X-Google-Smtp-Source: AGHT+IHc0RPbhZfwtvndyJ4zIg+YQ8UVHDIXIsBwLqHby4Ix3W/JRyz4+JjwjPuaa8KZKDLV2B9ECoKwhLlQY9BPU3U=
+X-Received: by 2002:a05:6402:5246:b0:5d9:ad1:dafc with SMTP id
+ 4fb4d7f45d1cf-5db7db073f1mr33624336a12.25.1737407984546; Mon, 20 Jan 2025
+ 13:19:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v4 4/4] net: mdio: Add RTL9300 MDIO driver
-To: Sander Vanheule <sander@svanheule.net>, lee@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, tsbogend@alpha.franken.de, hkallweit1@gmail.com,
- linux@armlinux.org.uk, markus.stockhausen@gmx.de
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-mips@vger.kernel.org
-References: <20250120040214.2538839-1-chris.packham@alliedtelesis.co.nz>
- <20250120040214.2538839-5-chris.packham@alliedtelesis.co.nz>
- <d4194a1560ff297e5ab3e6eae6d51b7c9d469381.camel@svanheule.net>
-Content-Language: en-US
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <d4194a1560ff297e5ab3e6eae6d51b7c9d469381.camel@svanheule.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+References: <20250120144152.11949-1-johan+linaro@kernel.org>
+In-Reply-To: <20250120144152.11949-1-johan+linaro@kernel.org>
+From: Steev Klimaszewski <steev@kali.org>
+Date: Mon, 20 Jan 2025 15:19:33 -0600
+X-Gm-Features: AbW1kvY5jMIUKN1EO4Z8z1FKCHGpDSW9Rthw8kq1Lxb5fCHphJX04MTxERkZW2Y
+Message-ID: <CAKXuJqhttfPg7JV_n85bb5v6VKye0F4rYTfWdDYMowdgo83oug@mail.gmail.com>
+Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100: enable rtc
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Jonathan Marek <jonathan@marek.ca>, 
+	linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=678eb2f4 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=VdSt8ZQiCzkA:10 a=xIr6icN_5bCk336sUXQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
 
-Hi Sander,
+Hi Johan,
 
-On 20/01/2025 23:28, Sander Vanheule wrote:
-> Hi Chris,
+On Mon, Jan 20, 2025 at 8:43=E2=80=AFAM Johan Hovold <johan+linaro@kernel.o=
+rg> wrote:
 >
-> On Mon, 2025-01-20 at 17:02 +1300, Chris Packham wrote:
->> Add a driver for the MDIO controller on the RTL9300 family of Ethernet
->> switches with integrated SoC. There are 4 physical SMI interfaces on t=
-he
->> RTL9300 however access is done using the switch ports. The driver take=
-s
->> the MDIO bus hierarchy from the DTS and uses this to configure the
->> switch ports so they are associated with the correct PHY. This mapping
->> is also used when dealing with software requests from phylib.
->>
->> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->> ---
-> [...]
+> This series adds support for utilising the UEFI firmware RTC offset to
+> the Qualcomm PMIC RTC driver and uses that to enable the RTC on all X
+> Elite machines.
+>
+> Included is also a patch to switch the Lenovo ThinkPad X13s over to
+> using the UEFI offset.
+>
+> The RTCs in many Qualcomm devices are effectively broken due to the time
+> registers being read-only. Instead some other non-volatile memory can be
+> used to store an offset which a driver can take into account. On Windows
+> on Arm laptops, the UEFI firmware (and Windows) use a UEFI variable for
+> storing such an offset.
+>
+> When RTC support for the X13s was added two years ago we did not yet
+> have UEFI variable support for these machines in mainline and there were
+> also some concerns regarding flash wear. [1] As not all Qualcomm
+> platforms have UEFI firmware anyway, we instead opted to use a PMIC
+> scratch register for storing the offset. [2]
+>
+> On the UEFI machines in question this is however arguable not correct
+> as it means that the RTC time can differ between the UEFI firmware (and
+> Windows) and Linux.
+>
+> Now that the (reverse engineered) UEFI variable implementation has been
+> merged and thoroughly tested, let's switch to using that to store the
+> RTC offset also on Linux. The flash wear concerns can be mitigated by
+> deferring writes due to clock drift until shutdown.
+>
+> Note that this also avoids having to wait for months for Qualcomm to
+> provide a free PMIC SDAM scratch register for X1E and future platforms,
+> and specifically allows us to enable the RTC on X1E laptops today.
+>
+> Rob had some concerns about adding a DT property for indicating that a
+> machine uses UEFI for storing the offset and suggested that the driver
+> should probe for this instead. Unfortunately, this is easier said than
+> done given that UEFI variable support itself is probed for and may not
+> be available until after the RTC driver probes.
+>
+> Hopefully this all goes away (for future platforms) once Qualcomm fix
+> their UEFI implementation so that the UEFI time (and variable) services
+> can be used directly.
+>
+> Johan
 >
 >
->> diff --git a/drivers/net/mdio/mdio-realtek-rtl9300.c b/drivers/net/mdi=
-o/mdio-realtek-rtl9300.c
->> new file mode 100644
->> index 000000000000..a9b894eff407
->> --- /dev/null
->> +++ b/drivers/net/mdio/mdio-realtek-rtl9300.c
->> @@ -0,0 +1,417 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * MDIO controller for RTL9300 switches with integrated SoC.
->> + *
->> + * The MDIO communication is abstracted by the switch. At the softwar=
-e level
->> + * communication uses the switch port to address the PHY with the act=
-ual MDIO
->> + * bus and address having been setup via the realtek,smi-address prop=
-erty.
-> realtek,smi-address is a leftover from a previous spin?
-Oops, will fix
+> Changes since UEFI offset RFC [1]:
+>  - clarify that UEFI variable format is not arbitrary (Alexandre)
+>  - add missing use_uefi kernel doc
+>  - use dev_dbg() instead of dev_err() (Alexandre)
+>  - rename epoch define RTC_TIMESTAMP_EPOCH_GPS (Alexandre)
+>  - mitigate flash wear by deferring writes due to clock drift until
+>    shutdown
 >
->> + */
->> +
->> +#include <linux/cleanup.h>
->> +#include <linux/mdio.h>
->> +#include <linux/mfd/syscon.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/mutex.h>
->> +#include <linux/of_mdio.h>
->> +#include <linux/phy.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/property.h>
->> +#include <linux/regmap.h>
->> +
->> +#define SMI_GLB_CTRL			0xca00
->> +#define=C2=A0=C2=A0 GLB_CTRL_INTF_SEL(intf)	BIT(16 + (intf))
->> +#define SMI_PORT0_15_POLLING_SEL	0xca08
->> +#define SMI_ACCESS_PHY_CTRL_0		0xcb70
->> +#define SMI_ACCESS_PHY_CTRL_1		0xcb74
->> +#define=C2=A0=C2=A0 PHY_CTRL_RWOP			BIT(2)
-> With
+> Changes since Jonathan's X1E series v3 [3]:
+>  - tweak qcom,no-alarm binding update (and drop Krystzof's Reviewed-by ta=
+g)
+>  - drop no-alarm flag and restructure probe() to clear feature flag befor=
+e
+>    registering RTC
+>  - use UEFI variable offset on X1E
 >
-> #define PHY_CTRL_WRITE		BIT(2)
-> #define PHY_CTRL_READ		0
+> [1] https://lore.kernel.org/lkml/20230126142057.25715-1-johan+linaro@kern=
+el.org/
+> [2] https://lore.kernel.org/lkml/20230202155448.6715-1-johan+linaro@kerne=
+l.org/
+> [3] https://lore.kernel.org/lkml/20241015004945.3676-1-jonathan@marek.ca/
 >
-> you could use both macros in the write/read functions. Now I have to go=
- and parse the write/read
-> functions to see what it means when this bit is set.
-Ack.
->> +#define=C2=A0=C2=A0 PHY_CTRL_TYPE			BIT(1)
-> Similar here:
-> #define	PHY_CTRL_TYPE_C22	0
-> #define PHY_CTRL_TYPE_C45	BIT(1)
+>
+> Johan Hovold (5):
+>   dt-bindings: rtc: qcom-pm8xxx: add uefi-variable offset
+>   rtc: pm8xxx: add support for uefi offset
+>   rtc: pm8xxx: mitigate flash wear
+>   arm64: dts: qcom: sc8280xp-x13s: switch to uefi rtc offset
+>   arm64: dts: qcom: x1e80100: enable rtc
+>
+> Jonathan Marek (2):
+>   dt-bindings: rtc: qcom-pm8xxx: document qcom,no-alarm flag
+>   rtc: pm8xxx: implement qcom,no-alarm flag for non-HLOS owned alarm
+>
+>  .../bindings/rtc/qcom-pm8xxx-rtc.yaml         |  11 +
+>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  11 +-
+>  arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi  |   4 +-
+>  drivers/rtc/rtc-pm8xxx.c                      | 194 +++++++++++++++---
+>  include/linux/rtc.h                           |   1 +
+>  5 files changed, 185 insertions(+), 36 deletions(-)
+>
+> --
+> 2.45.2
+>
+>
 
-Ack
+Tested this on the Thinkpad X13s, as well as booting it into Windows
+and verifying that it has the correct clock both ways, which it does.
+Thank you!
 
->> +#define=C2=A0=C2=A0 PHY_CTRL_CMD			BIT(0)
->> +#define=C2=A0=C2=A0 PHY_CTRL_FAIL			BIT(25)
->> +#define SMI_ACCESS_PHY_CTRL_2		0xcb78
->> +#define SMI_ACCESS_PHY_CTRL_3		0xcb7c
->> +#define SMI_PORT0_5_ADDR_CTRL		0xcb80
->> +
->> +#define MAX_PORTS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 28
->> +#define MAX_SMI_BUSSES=C2=A0 4
->> +#define MAX_SMI_ADDR	0x1f
->> +
->> +struct rtl9300_mdio_priv;
->> +
->> +struct rtl9300_mdio_chan {
->> +	struct rtl9300_mdio_priv *priv;
->> +	u8 smi_bus;
->> +};
->> +
->> +struct rtl9300_mdio_priv {
->> +	struct regmap *regmap;
->> +	struct mutex lock; /* protect HW access */
->> +	u8 smi_bus[MAX_PORTS];
->> +	u8 smi_addr[MAX_PORTS];
->> +	bool smi_bus_isc45[MAX_SMI_BUSSES];
-> Nit: add an underscore: smi_bus_is_c45
-
-Ack
-
->
->> +	struct mii_bus *bus[MAX_SMI_BUSSES];
->> +};
->> +
->> +static int rtl9300_mdio_phy_to_port(struct mii_bus *bus, int phy_id)
->> +{
->> +	struct rtl9300_mdio_chan *chan =3D bus->priv;
->> +	struct rtl9300_mdio_priv *priv =3D chan->priv;
->> +	int i;
->> +
->> +	for (i =3D 0; i < MAX_PORTS; i++)
->> +		if (priv->smi_bus[i] =3D=3D chan->smi_bus &&
->> +		=C2=A0=C2=A0=C2=A0 priv->smi_addr[i] =3D=3D phy_id)
->> +			return i;
-> This may break if some lower port numbers are not configured by the use=
-r, e.g. phy 0-7 on bus 0 are
-> mapped to ports 8-15 and ports 0-7 are unused.
-> When looking up the port number of phy 0 on bus 0, you would get a matc=
-h on an unconfigured port
-> (port 0) since smi_bus/smi_addr are zero-initialized. This could be fix=
-ed by adding a bitmap
-> indicating which ports are actually configured.
-Yes that makes sense.
->
->> +
->> +	return -ENOENT;
->> +}
-> [...]
->
->> +static int rtl9300_mdio_read_c22(struct mii_bus *bus, int phy_id, int=
- regnum)
->> +{
-> [...]
->
->> +	err =3D regmap_write(regmap, SMI_ACCESS_PHY_CTRL_1,
->> +			=C2=A0=C2=A0 regnum << 20 |=C2=A0 0x1f << 15 | 0xfff << 3 | PHY_CT=
-RL_CMD);
-> You could use FIELD_PREP() to pack the bitfields.
-Ack.
->
->> +	if (err)
->> +		return err;
->> +
->> +	err =3D rtl9300_mdio_wait_ready(priv);
->> +	if (err)
->> +		return err;
->> +
->> +	err =3D regmap_read(regmap, SMI_ACCESS_PHY_CTRL_2, &val);
->> +	if (err)
->> +		return err;
->> +
->> +	return val & 0xffff;
-> ... and FIELD_GET() to unpack.
-Not sure it buys us much in this case since it's just the lower 16 bits=20
-but for symmetry and a little extra type checking may as well.
->
->> +}
->> +
-> [...]
->
->> +
->> +static int rtl9300_mdiobus_init(struct rtl9300_mdio_priv *priv)
->> +{
->> +	u32 glb_ctrl_mask =3D 0, glb_ctrl_val =3D 0;
->> +	struct regmap *regmap =3D priv->regmap;
->> +	u32 port_addr[5] =3D { 0 };
->> +	u32 poll_sel[2] =3D { 0 };
->> +	int i, err;
->> +
->> +	/* Associate the port with the SMI interface and PHY */
->> +	for (i =3D 0; i < MAX_PORTS; i++) {
->> +		int pos;
->> +
->> +		if (priv->smi_bus[i] > 3)
->> +			continue;
->> +
->> +		pos =3D (i % 6) * 5;
->> +		port_addr[i / 6] |=3D priv->smi_addr[i] << pos;
->> +
->> +		pos =3D (i % 16) * 2;
->> +		poll_sel[i / 16] |=3D priv->smi_bus[i] << pos;
-> I've read the discussion on v1-v3 and had a quick look at the available=
- documentation. Thinking out
-> loud here, so you can correct me if I'm making any false assumptions.
->
-> As I understand, the SoC has four physical MDIO/MDC pin pairs. Using th=
-e DT description, phy-s are
-> matched with to specific MDIO bus. PORT_ADDR tells the switch which phy=
- address a port maps to.
-> POLL_SEL then tells the MDIO controller which bus this port (phy) is as=
-signed to. I have the
-> impression this [port] <-> [bus, phy] mapping is completely arbitrary. =
-If configured correctly, it
-> can probably serve as a convenience to match a front panel port number =
-to a specific phy.
->
-> If the port numbers are in fact arbitrary, I think they could be hidden=
- from the user, removing the
-> need for a custom DT property. You could probably populate the port num=
-bers one by one as phy-s are
-> enumerated, as you are already storing the assigned port number in the =
-MDIO controller's private
-> data.
->
-> One complication this might have, is that I suspect these port numbers =
-are not used exclusively by
-> the MDIO controller, but also by the switch itself. So then there may h=
-ave to be a way to resolve
-> (auto-assigned) port numbers outside of this driver too.
-
-I believe the POLL_SEL configuration actually affects an internal port=20
-polling unit. From the datasheets I have it seems pretty configurable,=20
-you can tell it which phy registers to poll and what values indicate=20
-link up/down (the defaults are conveniently setup to match the Realtek=20
-PHYs). So I don't think they are arbitrary and I don't think it would be=20
-a good idea to change them on the fly. I did consider at one point=20
-finding an unused port and re-mapping that to the desired bus/addr on=20
-the fly but I'm not sure what that'd do to the PPU and there's no=20
-guarantee that there will be a unused port.
-
->> +	}
->> +
->> +	/* Put the interfaces into C45 mode if required */
->> +	for (i =3D 0; i < MAX_SMI_BUSSES; i++) {
->> +		if (priv->smi_bus_isc45[i]) {
->> +			glb_ctrl_mask |=3D GLB_CTRL_INTF_SEL(i);
-> Can't glb_ctrl_mask be fixed to GENMASK(19, 16)?
-I guess it could be. Doing it this way avoids undoing things that may=20
-have been set by an earlier boot stage but even as I type that I don't=20
-find it a good argument against GENMASK(19, 16).
->
->> +			glb_ctrl_val |=3D GLB_CTRL_INTF_SEL(i);
->> +		}
->> +	}
-> [...]
->
->> +static int rtl9300_mdiobus_probe_one(struct device *dev, struct rtl93=
-00_mdio_priv *priv,
->> +				=C2=A0=C2=A0=C2=A0=C2=A0 struct fwnode_handle *node)
->> +{
->> +	struct rtl9300_mdio_chan *chan;
->> +	struct fwnode_handle *child;
->> +	struct mii_bus *bus;
->> +	u32 smi_bus;
->> +	int err;
->> +
->> +	err =3D fwnode_property_read_u32(node, "reg", &smi_bus);
->> +	if (err)
->> +		return err;
->> +
->> +	if (smi_bus >=3D MAX_SMI_BUSSES)
->> +		return dev_err_probe(dev, -EINVAL, "illegal smi bus number %d\n", s=
-mi_bus);
->> +
->> +	fwnode_for_each_child_node(node, child) {
->> +		u32 smi_addr;
->> +		u32 pn;
->> +
->> +		err =3D fwnode_property_read_u32(child, "reg", &smi_addr);
->> +		if (err)
->> +			return err;
-> [...]
->
->> +
->> +		priv->smi_bus[pn] =3D smi_bus;
->> +		priv->smi_addr[pn] =3D smi_addr;
-> Nitpicking a bit here, but perhaps the code might be a tad bit easier t=
-o read for the non-Realtek
-> initiated by renaming:
->    - smi_bus -> mdio_bus or just bus_id (matching the mii_bus *bus memb=
-er)
->    - smi_addr -> phy_addr
-I'll consider that. Certainly `u32 smi_bus` and `u32 smi_addr` can be=20
-renamed to match their usage from the dts. Not so sure about=20
-priv->smi_bus/priv->smi_addr as I am trying to match the usage in the=20
-datasheet. I guess technically they should be smi_set and port_addr but=20
-I find "port" here particularly confusing.
->> +	}
-> [...]
->
->> +static int rtl9300_mdiobus_probe(struct platform_device *pdev)
->> +{
-> [...]
->
->> +
->> +	if (device_get_child_node_count(dev) >=3D MAX_SMI_BUSSES)
->> +		return dev_err_probe(dev, -EINVAL, "Too many SMI busses\n");
-> This seems redundant with the MAX_SMI_BUSSES comparison in probe_one().
-The check in probe_one() checks that the mdio bus number is valid=20
-whereas this checks that there are at most 4. So not totally redundant=20
-but could probably be removed without doing any harm.
->
-> Best,
-> Sander
+Tested-by: Steev Klimaszewski <steev@kali.org>
 
