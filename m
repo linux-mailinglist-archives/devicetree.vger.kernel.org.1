@@ -1,119 +1,380 @@
-Return-Path: <devicetree+bounces-139864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BB60A17395
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 21:29:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85D38A1739D
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 21:33:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1677C7A0477
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 20:29:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 287D71887D65
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 20:33:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDFE01EE7A7;
-	Mon, 20 Jan 2025 20:29:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC71C1EE7DA;
+	Mon, 20 Jan 2025 20:32:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bv9KogGj"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="dDtws+AF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1AD3155A52;
-	Mon, 20 Jan 2025 20:29:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B191E1494D9
+	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 20:32:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737404972; cv=none; b=jjMz6lUctokKgQyi2U6gBlIKQhe0aarikvw2G+HAOcSpqx+ZQVfKz2fjkF3IPnVctYxJr//x4L5lJSEg/kuKhyAErpNbEWz5H7QJnGZ+awNLgnypZWeikGnBFHV4+dDEQkjJfDVbTBpnlvvV9ormpTmJDbBXPsBbhFW9BxHgRI0=
+	t=1737405178; cv=none; b=W0pFcL6mfVyfQ/xfLxI84h0TeRGOGKmv2ddICAEwctuI64RJHuXGQnUcuJdwBfpReW8A1cti6g7eyx6pcysVJkVNaVpMKGLdqwkfi8niVELYRMuqfVigWJ/GSeo9U4H/17+xJSqu7gmlpozW7NBEXnPgBsOFwoQgs67RxUHUajE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737404972; c=relaxed/simple;
-	bh=WDoCCA3w5eEl8wS9Gz8iLhDSYRHG+YTayG/JhkEBJGc=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=CRLbmYwVoJapKjsliRrK/+bQwPwvqQVgShQUlgX6Ila+gWWNecx4xkAVzGQcsM5MTINR/eUjlO8af9aD9Y07YqN31QmAsS46C7ZTHtoeDw9qjvUogQ2MQfu19SPjJTYrGsUTrvyB7niUokICw/YiEKnhMDZ4pXmpBbzA2iMZjh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bv9KogGj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9D0CC4CEDD;
-	Mon, 20 Jan 2025 20:29:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737404972;
-	bh=WDoCCA3w5eEl8wS9Gz8iLhDSYRHG+YTayG/JhkEBJGc=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=bv9KogGjcVzMKThShlLVPH5bcRAthWi7voKuzUEu9kqWn7lLzjXhryTk0BqcA/Ez/
-	 nq+4DHUN7cf1LExDN2+tfvEKmt+gaZUxSJpbfYFNKLrCi7R6EDWHzIFBa027H6Z84n
-	 rSPXd191pPpIWvXVCME8S9xMY109URyY6+ie6X9jdkfXCPK8e3AEGAiZ8cna48xnYA
-	 Gas3i4kt9YuhwZ3LZGUgfQDq0atH4FU3c+zdjvqSIphmXTAQor/z4A/kgx4QEdUpMP
-	 6jsVGaxOLq880rmSRQ2geYQRYnRs9Uff7M1Pw58Cc2xgcz/Pwohs3QBofd1ippPaiA
-	 zfI91BacpRp7Q==
-Date: Mon, 20 Jan 2025 14:29:30 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1737405178; c=relaxed/simple;
+	bh=Zpj2CdyVyqMf1gVb7P5vBImdXKV7/Ew2GDFQVG9P2lI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Xkvr+erUYlT6wxl0y8GQgLktPZ9280P2+bCL+y41BOPZkf0uyDfT1HKCv0Elaohl/c1aUnoOW4La3Keb0GP/L63GpFniuJc/+ErpAeJayzMr0vWtpUm2B4Qc1hvDExJseqsH2UN0zmkbhPWLn3mK+js4AdLR1avTGj0kL5h48fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=dDtws+AF; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id C32322C07F0;
+	Tue, 21 Jan 2025 09:32:52 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1737405172;
+	bh=6zSTHSq/ip2zqYKCXvQnCas8dazsMfptN5G2+a+INsA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dDtws+AFtqvdTcdQnygCn5NfoHe4/hmkYyeoHII1hwe0ucVJlOwX8oroD8BVWbFIU
+	 G3PbH1JHwaRHkaYeygRnbcdG4XDgXwjkghRV/R5o+ttDxYuIKDM6GBlFQMvdlKBE2f
+	 YCkC2orEzkQp+WJvWQjhg9MrGiYoM7hbtW1LOM981qlUvWRLS+FqMmePrdBEajUSWl
+	 AXdJXO/cJBM9ZzE0mMAYw2Zh5fnv249Gtw1t2ukV3TyfpWDLodIRj/l8Ayo+gQctS9
+	 HFdHskH3ir8jZ0G2ri2aYBQ+KMzUpumhmonBQeyV/Yi6AUGmvqyynNw2jRjDwPy4mD
+	 65Bg+XBXF0eNQ==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B678eb2f40000>; Tue, 21 Jan 2025 09:32:52 +1300
+Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 9C03313ED2A;
+	Tue, 21 Jan 2025 09:32:52 +1300 (NZDT)
+Message-ID: <63d6cf16-9581-4736-8592-bc5836fa51af@alliedtelesis.co.nz>
+Date: Tue, 21 Jan 2025 09:32:52 +1300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-mediatek@lists.infradead.org, 
- Chaotian Jing <chaotian.jing@mediatek.com>, 
- Wenbin Mei <wenbin.mei@mediatek.com>, linux-kernel@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Ulf Hansson <ulf.hansson@linaro.org>, linux-mmc@vger.kernel.org, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- upstream@airoha.com, linux-arm-kernel@lists.infradead.org, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-In-Reply-To: <20250120184728.18325-1-ansuelsmth@gmail.com>
-References: <20250120184728.18325-1-ansuelsmth@gmail.com>
-Message-Id: <173740497060.601130.3509016769870545640.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add eMMC for AN7581
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v4 4/4] net: mdio: Add RTL9300 MDIO driver
+To: Sander Vanheule <sander@svanheule.net>, lee@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andrew+netdev@lunn.ch,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, tsbogend@alpha.franken.de, hkallweit1@gmail.com,
+ linux@armlinux.org.uk, markus.stockhausen@gmx.de
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-mips@vger.kernel.org
+References: <20250120040214.2538839-1-chris.packham@alliedtelesis.co.nz>
+ <20250120040214.2538839-5-chris.packham@alliedtelesis.co.nz>
+ <d4194a1560ff297e5ab3e6eae6d51b7c9d469381.camel@svanheule.net>
+Content-Language: en-US
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <d4194a1560ff297e5ab3e6eae6d51b7c9d469381.camel@svanheule.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=678eb2f4 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=VdSt8ZQiCzkA:10 a=xIr6icN_5bCk336sUXQA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
+Hi Sander,
 
-On Mon, 20 Jan 2025 19:47:01 +0100, Christian Marangi wrote:
-> Document eMMC compatible for AN7581. This eMMC controller doesn't have
-> regulator exposed to the system and have a single clock only for source
-> clock and only default pintctrl.
-> 
-> Rework the schema to permit these new requirements and make supply
-> optional only for airoha,an7581-mmc compatible.
-> 
-> Also provide an example for airoha,an7581-mmc.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
-> Changes v2:
-> - Drop else condition
-> - Move Required and pinctrl property to dedicated if condition
-> 
->  .../devicetree/bindings/mmc/mtk-sd.yaml       | 116 +++++++++++++++++-
->  1 file changed, 110 insertions(+), 6 deletions(-)
-> 
+On 20/01/2025 23:28, Sander Vanheule wrote:
+> Hi Chris,
+>
+> On Mon, 2025-01-20 at 17:02 +1300, Chris Packham wrote:
+>> Add a driver for the MDIO controller on the RTL9300 family of Ethernet
+>> switches with integrated SoC. There are 4 physical SMI interfaces on t=
+he
+>> RTL9300 however access is done using the switch ports. The driver take=
+s
+>> the MDIO bus hierarchy from the DTS and uses this to configure the
+>> switch ports so they are associated with the correct PHY. This mapping
+>> is also used when dealing with software requests from phylib.
+>>
+>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>> ---
+> [...]
+>
+>
+>> diff --git a/drivers/net/mdio/mdio-realtek-rtl9300.c b/drivers/net/mdi=
+o/mdio-realtek-rtl9300.c
+>> new file mode 100644
+>> index 000000000000..a9b894eff407
+>> --- /dev/null
+>> +++ b/drivers/net/mdio/mdio-realtek-rtl9300.c
+>> @@ -0,0 +1,417 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * MDIO controller for RTL9300 switches with integrated SoC.
+>> + *
+>> + * The MDIO communication is abstracted by the switch. At the softwar=
+e level
+>> + * communication uses the switch port to address the PHY with the act=
+ual MDIO
+>> + * bus and address having been setup via the realtek,smi-address prop=
+erty.
+> realtek,smi-address is a leftover from a previous spin?
+Oops, will fix
+>
+>> + */
+>> +
+>> +#include <linux/cleanup.h>
+>> +#include <linux/mdio.h>
+>> +#include <linux/mfd/syscon.h>
+>> +#include <linux/mod_devicetable.h>
+>> +#include <linux/mutex.h>
+>> +#include <linux/of_mdio.h>
+>> +#include <linux/phy.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/property.h>
+>> +#include <linux/regmap.h>
+>> +
+>> +#define SMI_GLB_CTRL			0xca00
+>> +#define=C2=A0=C2=A0 GLB_CTRL_INTF_SEL(intf)	BIT(16 + (intf))
+>> +#define SMI_PORT0_15_POLLING_SEL	0xca08
+>> +#define SMI_ACCESS_PHY_CTRL_0		0xcb70
+>> +#define SMI_ACCESS_PHY_CTRL_1		0xcb74
+>> +#define=C2=A0=C2=A0 PHY_CTRL_RWOP			BIT(2)
+> With
+>
+> #define PHY_CTRL_WRITE		BIT(2)
+> #define PHY_CTRL_READ		0
+>
+> you could use both macros in the write/read functions. Now I have to go=
+ and parse the write/read
+> functions to see what it means when this bit is set.
+Ack.
+>> +#define=C2=A0=C2=A0 PHY_CTRL_TYPE			BIT(1)
+> Similar here:
+> #define	PHY_CTRL_TYPE_C22	0
+> #define PHY_CTRL_TYPE_C45	BIT(1)
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Ack
 
-yamllint warnings/errors:
+>> +#define=C2=A0=C2=A0 PHY_CTRL_CMD			BIT(0)
+>> +#define=C2=A0=C2=A0 PHY_CTRL_FAIL			BIT(25)
+>> +#define SMI_ACCESS_PHY_CTRL_2		0xcb78
+>> +#define SMI_ACCESS_PHY_CTRL_3		0xcb7c
+>> +#define SMI_PORT0_5_ADDR_CTRL		0xcb80
+>> +
+>> +#define MAX_PORTS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 28
+>> +#define MAX_SMI_BUSSES=C2=A0 4
+>> +#define MAX_SMI_ADDR	0x1f
+>> +
+>> +struct rtl9300_mdio_priv;
+>> +
+>> +struct rtl9300_mdio_chan {
+>> +	struct rtl9300_mdio_priv *priv;
+>> +	u8 smi_bus;
+>> +};
+>> +
+>> +struct rtl9300_mdio_priv {
+>> +	struct regmap *regmap;
+>> +	struct mutex lock; /* protect HW access */
+>> +	u8 smi_bus[MAX_PORTS];
+>> +	u8 smi_addr[MAX_PORTS];
+>> +	bool smi_bus_isc45[MAX_SMI_BUSSES];
+> Nit: add an underscore: smi_bus_is_c45
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/mmc/mtk-sd.example.dts:104.31-32 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/mmc/mtk-sd.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
+Ack
 
-doc reference errors (make refcheckdocs):
+>
+>> +	struct mii_bus *bus[MAX_SMI_BUSSES];
+>> +};
+>> +
+>> +static int rtl9300_mdio_phy_to_port(struct mii_bus *bus, int phy_id)
+>> +{
+>> +	struct rtl9300_mdio_chan *chan =3D bus->priv;
+>> +	struct rtl9300_mdio_priv *priv =3D chan->priv;
+>> +	int i;
+>> +
+>> +	for (i =3D 0; i < MAX_PORTS; i++)
+>> +		if (priv->smi_bus[i] =3D=3D chan->smi_bus &&
+>> +		=C2=A0=C2=A0=C2=A0 priv->smi_addr[i] =3D=3D phy_id)
+>> +			return i;
+> This may break if some lower port numbers are not configured by the use=
+r, e.g. phy 0-7 on bus 0 are
+> mapped to ports 8-15 and ports 0-7 are unused.
+> When looking up the port number of phy 0 on bus 0, you would get a matc=
+h on an unconfigured port
+> (port 0) since smi_bus/smi_addr are zero-initialized. This could be fix=
+ed by adding a bitmap
+> indicating which ports are actually configured.
+Yes that makes sense.
+>
+>> +
+>> +	return -ENOENT;
+>> +}
+> [...]
+>
+>> +static int rtl9300_mdio_read_c22(struct mii_bus *bus, int phy_id, int=
+ regnum)
+>> +{
+> [...]
+>
+>> +	err =3D regmap_write(regmap, SMI_ACCESS_PHY_CTRL_1,
+>> +			=C2=A0=C2=A0 regnum << 20 |=C2=A0 0x1f << 15 | 0xfff << 3 | PHY_CT=
+RL_CMD);
+> You could use FIELD_PREP() to pack the bitfields.
+Ack.
+>
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	err =3D rtl9300_mdio_wait_ready(priv);
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	err =3D regmap_read(regmap, SMI_ACCESS_PHY_CTRL_2, &val);
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	return val & 0xffff;
+> ... and FIELD_GET() to unpack.
+Not sure it buys us much in this case since it's just the lower 16 bits=20
+but for symmetry and a little extra type checking may as well.
+>
+>> +}
+>> +
+> [...]
+>
+>> +
+>> +static int rtl9300_mdiobus_init(struct rtl9300_mdio_priv *priv)
+>> +{
+>> +	u32 glb_ctrl_mask =3D 0, glb_ctrl_val =3D 0;
+>> +	struct regmap *regmap =3D priv->regmap;
+>> +	u32 port_addr[5] =3D { 0 };
+>> +	u32 poll_sel[2] =3D { 0 };
+>> +	int i, err;
+>> +
+>> +	/* Associate the port with the SMI interface and PHY */
+>> +	for (i =3D 0; i < MAX_PORTS; i++) {
+>> +		int pos;
+>> +
+>> +		if (priv->smi_bus[i] > 3)
+>> +			continue;
+>> +
+>> +		pos =3D (i % 6) * 5;
+>> +		port_addr[i / 6] |=3D priv->smi_addr[i] << pos;
+>> +
+>> +		pos =3D (i % 16) * 2;
+>> +		poll_sel[i / 16] |=3D priv->smi_bus[i] << pos;
+> I've read the discussion on v1-v3 and had a quick look at the available=
+ documentation. Thinking out
+> loud here, so you can correct me if I'm making any false assumptions.
+>
+> As I understand, the SoC has four physical MDIO/MDC pin pairs. Using th=
+e DT description, phy-s are
+> matched with to specific MDIO bus. PORT_ADDR tells the switch which phy=
+ address a port maps to.
+> POLL_SEL then tells the MDIO controller which bus this port (phy) is as=
+signed to. I have the
+> impression this [port] <-> [bus, phy] mapping is completely arbitrary. =
+If configured correctly, it
+> can probably serve as a convenience to match a front panel port number =
+to a specific phy.
+>
+> If the port numbers are in fact arbitrary, I think they could be hidden=
+ from the user, removing the
+> need for a custom DT property. You could probably populate the port num=
+bers one by one as phy-s are
+> enumerated, as you are already storing the assigned port number in the =
+MDIO controller's private
+> data.
+>
+> One complication this might have, is that I suspect these port numbers =
+are not used exclusively by
+> the MDIO controller, but also by the switch itself. So then there may h=
+ave to be a way to resolve
+> (auto-assigned) port numbers outside of this driver too.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250120184728.18325-1-ansuelsmth@gmail.com
+I believe the POLL_SEL configuration actually affects an internal port=20
+polling unit. From the datasheets I have it seems pretty configurable,=20
+you can tell it which phy registers to poll and what values indicate=20
+link up/down (the defaults are conveniently setup to match the Realtek=20
+PHYs). So I don't think they are arbitrary and I don't think it would be=20
+a good idea to change them on the fly. I did consider at one point=20
+finding an unused port and re-mapping that to the desired bus/addr on=20
+the fly but I'm not sure what that'd do to the PPU and there's no=20
+guarantee that there will be a unused port.
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+>> +	}
+>> +
+>> +	/* Put the interfaces into C45 mode if required */
+>> +	for (i =3D 0; i < MAX_SMI_BUSSES; i++) {
+>> +		if (priv->smi_bus_isc45[i]) {
+>> +			glb_ctrl_mask |=3D GLB_CTRL_INTF_SEL(i);
+> Can't glb_ctrl_mask be fixed to GENMASK(19, 16)?
+I guess it could be. Doing it this way avoids undoing things that may=20
+have been set by an earlier boot stage but even as I type that I don't=20
+find it a good argument against GENMASK(19, 16).
+>
+>> +			glb_ctrl_val |=3D GLB_CTRL_INTF_SEL(i);
+>> +		}
+>> +	}
+> [...]
+>
+>> +static int rtl9300_mdiobus_probe_one(struct device *dev, struct rtl93=
+00_mdio_priv *priv,
+>> +				=C2=A0=C2=A0=C2=A0=C2=A0 struct fwnode_handle *node)
+>> +{
+>> +	struct rtl9300_mdio_chan *chan;
+>> +	struct fwnode_handle *child;
+>> +	struct mii_bus *bus;
+>> +	u32 smi_bus;
+>> +	int err;
+>> +
+>> +	err =3D fwnode_property_read_u32(node, "reg", &smi_bus);
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	if (smi_bus >=3D MAX_SMI_BUSSES)
+>> +		return dev_err_probe(dev, -EINVAL, "illegal smi bus number %d\n", s=
+mi_bus);
+>> +
+>> +	fwnode_for_each_child_node(node, child) {
+>> +		u32 smi_addr;
+>> +		u32 pn;
+>> +
+>> +		err =3D fwnode_property_read_u32(child, "reg", &smi_addr);
+>> +		if (err)
+>> +			return err;
+> [...]
+>
+>> +
+>> +		priv->smi_bus[pn] =3D smi_bus;
+>> +		priv->smi_addr[pn] =3D smi_addr;
+> Nitpicking a bit here, but perhaps the code might be a tad bit easier t=
+o read for the non-Realtek
+> initiated by renaming:
+>    - smi_bus -> mdio_bus or just bus_id (matching the mii_bus *bus memb=
+er)
+>    - smi_addr -> phy_addr
+I'll consider that. Certainly `u32 smi_bus` and `u32 smi_addr` can be=20
+renamed to match their usage from the dts. Not so sure about=20
+priv->smi_bus/priv->smi_addr as I am trying to match the usage in the=20
+datasheet. I guess technically they should be smi_set and port_addr but=20
+I find "port" here particularly confusing.
+>> +	}
+> [...]
+>
+>> +static int rtl9300_mdiobus_probe(struct platform_device *pdev)
+>> +{
+> [...]
+>
+>> +
+>> +	if (device_get_child_node_count(dev) >=3D MAX_SMI_BUSSES)
+>> +		return dev_err_probe(dev, -EINVAL, "Too many SMI busses\n");
+> This seems redundant with the MAX_SMI_BUSSES comparison in probe_one().
+The check in probe_one() checks that the mdio bus number is valid=20
+whereas this checks that there are at most 4. So not totally redundant=20
+but could probably be removed without doing any harm.
+>
+> Best,
+> Sander
 
