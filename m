@@ -1,128 +1,88 @@
-Return-Path: <devicetree+bounces-139738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F979A16BDF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 12:58:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 636B2A16C18
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:12:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D4EC1885DBF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:58:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A07A1881E5B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 12:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB0281DF97C;
-	Mon, 20 Jan 2025 11:58:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEF451DF992;
+	Mon, 20 Jan 2025 12:11:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XLb23EsP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jgL0gfc9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06761B87EE;
-	Mon, 20 Jan 2025 11:58:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95AD41B87EE;
+	Mon, 20 Jan 2025 12:11:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737374315; cv=none; b=Rb0PWVXzYtil9V3UDFznwNFMErqLltHAK+P4SdnRJjUs+5raDePtv//aCdGNwHkDzIhjPn6YvPF7qSAyae9Tf1QptFnXMGv9bzlwbuX9aQlO/5H0JC0gAJITPWaJPZpn63gMnB9WBA+13dOMQunxCRXQgA3TZ6AIi4Ugjn4M/Co=
+	t=1737375115; cv=none; b=s716QmW/F8vmd1PdEbwlAN97d4i5S47jc3Hl5WZpBS7f2Ey15M59thNJwvD1au59NMlRAlOp+KQjfK5qgaqINoV2k6jzo6TZNDuxbTzJ8BJU2FQG7TKiVj+fg6xhmGruUnTdv2RLJkoU2JpuVr6FrDSHIR7PJRdjcWxvYkj7L+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737374315; c=relaxed/simple;
-	bh=Ud8mjZa0Vr1kKKXuf/VAUY7cuf1qu22Xddl85PI8jtU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LS/nQ8O31xUpFt78NBV1b7eW6rd2gJhEASh3m+IPHgormXREr4P6VB9acDbGgpjFb7/M+O3pilnrb7gUkObDi4OdfSLjZujtv1wUMxQd2wQ5qY+e9y1ZhWrA1Kg/FFd+aHLpTpQUTTr0HAM7+M9u/xY0DMJAh6d+7z8YMjOKjEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XLb23EsP; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737374314; x=1768910314;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Ud8mjZa0Vr1kKKXuf/VAUY7cuf1qu22Xddl85PI8jtU=;
-  b=XLb23EsPIJKqxep0huRhvShZ/6Lbk6fct5FZMRayLUPRjBGTNMybmL2D
-   xqYkQzv1bGVhOePdNG1aMaK21kSGW7bJuWB3/TDWSODnCiuCxBrHC3rG/
-   9IkWcXIcagx4HnC5Umrl8EQkmpJMPeptmGzcuAf1tJ6H0Ov2h258Q90CP
-   7eDfxtgml8268C40DdJ3c7w4YxXGWe2PYu7+BvpAvZk+1cdN+JCcSPzF4
-   ouu/swkiFHHnXmXvGlNl4WMH1qFrC+EzYMH6fp2MPAnIPc2DXUmd4S/N4
-   TIRV7b14rqNiZJ4Tm8OYTpkaOW6s5Mp1k8kE6aVLhz9jO9v7R/ImsKwk4
-   Q==;
-X-CSE-ConnectionGUID: T5WaS9uLRaiOXKTENXjvCg==
-X-CSE-MsgGUID: aTUNNDd2RCSWUtgmjnkSnw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11320"; a="48254397"
-X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; 
-   d="scan'208";a="48254397"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2025 03:58:33 -0800
-X-CSE-ConnectionGUID: IoA75u+HT/Cl169pA8qaCQ==
-X-CSE-MsgGUID: PE1bLa0GSDKvSWyIDztPNA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="111580540"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 20 Jan 2025 03:58:28 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tZqQD-000WVn-1E;
-	Mon, 20 Jan 2025 11:58:25 +0000
-Date: Mon, 20 Jan 2025 19:57:22 +0800
-From: kernel test robot <lkp@intel.com>
-To: Taniya Das <quic_tdas@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev,
-	Ajit Pandey <quic_ajipan@quicinc.com>,
-	Imran Shaik <quic_imrashai@quicinc.com>,
-	Jagadeesh Kona <quic_jkona@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v4 07/10] clk: qcom: gpucc-qcs615: Add QCS615 graphics
- clock controller driver
-Message-ID: <202501201928.ZrWmF3Kl-lkp@intel.com>
-References: <20250119-qcs615-mm-v4-clockcontroller-v4-7-5d1bdb5a140c@quicinc.com>
+	s=arc-20240116; t=1737375115; c=relaxed/simple;
+	bh=2d5KQE0gBmmuHj8ZO3Kd2vSJ/xLvCvZoaI8AOHlA3Ws=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XwiH7T6K7VCMJfxzJCYz7QhTa2/BAm/gAVNk9F19lgUZfRMkPNpJrQ6aF16nCbUxNT+4iKDdUQmOoHK6djHbUydscq6GVuZ8iHSzFg7Niqbli4NRkNLI3S8x8W8W8AoZpii8BanX6FJAA+YDhQOFAuBNHDs5I3zJn7wstlNNVo4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jgL0gfc9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1E7AC4CEDD;
+	Mon, 20 Jan 2025 12:11:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737375114;
+	bh=2d5KQE0gBmmuHj8ZO3Kd2vSJ/xLvCvZoaI8AOHlA3Ws=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jgL0gfc9N9yniX9QiOKt3qqokRUTwKrqnaBFn36y43l2uLe/+WknsBZiFpXESFKx6
+	 RLbz0jxgkm1ZEvzbRkdXg0E95FylA4niYVF51ggQAmxNOSPmqA6iUbHIA/VucrRd/O
+	 MUlNIady22xqK7gInl7lWhxIRaYMKRrcK1spXKb2EsY9b1Uq8fza2Gyvv4/DD6bf9Y
+	 97zjNrsrPZthRD8eMe3jpfZmAUPomlc06rTIcu16FQ4H+4Ii5CFWRNs3Lu9akuyDVT
+	 xqErv6/nSFc9oFRT4tTJ7K7IZTJ/J60p4exFlp8hOdFnAlxBJ/FL4WRZDHYbiJKZav
+	 gYioot4NmuY+w==
+Message-ID: <1f7a3d91-3b5b-4706-8857-7bb71beecb3a@kernel.org>
+Date: Mon, 20 Jan 2025 14:11:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250119-qcs615-mm-v4-clockcontroller-v4-7-5d1bdb5a140c@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-j722s-evm: Fix USB2.0_MUX_SEL to
+ select Type-C
+To: Hrushikesh Salunke <h-salunke@ti.com>, nm@ti.com, vigneshr@ti.com,
+ kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ r-gunasekaran@ti.com, s-vadapalli@ti.com
+Cc: srk@ti.com, danishanwar@ti.com, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250116125726.2549489-1-h-salunke@ti.com>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20250116125726.2549489-1-h-salunke@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Taniya,
 
-kernel test robot noticed the following build warnings:
 
-[auto build test WARNING on 0907e7fb35756464aa34c35d6abb02998418164b]
+On 16/01/2025 14:57, Hrushikesh Salunke wrote:
+> J722S SOC has two usb controllers USB0 and USB1. USB0 is brought out on
+> the EVM as a stacked USB connector which has one Type-A and one Type-C
+> port. These Type-A and Type-C ports are connected to MUX so only
+> one of them can be enabled at a time.
+> 
+> Commit under Fixes, tries to enable the USB0 instance of USB to
+> interface with the Type-C port via the USB hub, by configuring the
+> USB2.0_MUX_SEL to GPIO_ACTIVE_HIGH. But it is observed on J722S-EVM
+> that Type-A port is enabled instead of Type-C port.
+> 
+> Fix this by setting USB2.0_MUX_SEL to GPIO_ACTIVE_LOW to enable Type-C
+> port.
+> 
+> Fixes: 485705df5d5f ("arm64: dts: ti: k3-j722s: Enable PCIe and USB support on J722S-EVM")
+> Signed-off-by: Hrushikesh Salunke <h-salunke@ti.com>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Taniya-Das/clk-qcom-clk-alpha-pll-Add-support-for-dynamic-update-for-slewing-PLLs/20250119-182754
-base:   0907e7fb35756464aa34c35d6abb02998418164b
-patch link:    https://lore.kernel.org/r/20250119-qcs615-mm-v4-clockcontroller-v4-7-5d1bdb5a140c%40quicinc.com
-patch subject: [PATCH v4 07/10] clk: qcom: gpucc-qcs615: Add QCS615 graphics clock controller driver
-config: arm-kismet-CONFIG_QCS_GCC_615-CONFIG_QCS_GPUCC_615-0-0 (https://download.01.org/0day-ci/archive/20250120/202501201928.ZrWmF3Kl-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20250120/202501201928.ZrWmF3Kl-lkp@intel.com/reproduce)
+Reviewed-by: Roger Quadros <rogerq@kernel.org>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501201928.ZrWmF3Kl-lkp@intel.com/
-
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for QCS_GCC_615 when selected by QCS_GPUCC_615
-   WARNING: unmet direct dependencies detected for QCS_GCC_615
-     Depends on [n]: COMMON_CLK [=y] && COMMON_CLK_QCOM [=y] && (ARM64 || COMPILE_TEST [=n])
-     Selected by [y]:
-     - QCS_GPUCC_615 [=y] && COMMON_CLK [=y] && COMMON_CLK_QCOM [=y]
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
