@@ -1,237 +1,122 @@
-Return-Path: <devicetree+bounces-139856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E631A172C7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 19:48:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB8C3A17315
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 20:23:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA1EF188A118
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 18:48:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DDDBE7A2408
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 19:23:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E53181EEA5F;
-	Mon, 20 Jan 2025 18:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E48D1E5738;
+	Mon, 20 Jan 2025 19:23:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jKVn2taf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SksLpgGp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12F8416130C;
-	Mon, 20 Jan 2025 18:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA90D8479;
+	Mon, 20 Jan 2025 19:23:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737398899; cv=none; b=OSKqNnNpCIyJSxq1/KJoJHee94i0zymVjblYxyKbR6pCGH2K/PIWnuwrjJX8s0lJhrXi1yMhatX7/yI36gh/nwoeLHiYYB6HoKLmE14cSQPDsliyPPaqHImS2eRvKI+bLqHVoqXjFXluLJln3svuaM3Wnus6x0I0vKf6Xf6N28I=
+	t=1737400986; cv=none; b=V0Xt8b8F0xtxI7vYKWF+KqO07KqZcdTdoJWL1yIGc7yZw83KEInHloRPO7kIoeOykA9uDF0Rm6agbNVZDRnFtdJyV67bwPyzCVPNAUFbrbw1M8ZguMgyqQs8UZaXD6Y8ZkmWIY+4fjMDOfkj9q9KWE50L2bzPdiSA2sxOrglBhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737398899; c=relaxed/simple;
-	bh=CmSCIagW08VnZ4CU/uxmB1qIbYYaSiSUpO3PfTPBVqY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=J3L6oKPRPz+WPTYNp84j5WzqDyWVMuyFtEJOAoGoRQWOq3dowYhvl6DW0Ic3zUyLxmuUx8LlfOQTKHiGJ6iKeTuWeLH17xXWEl2JrsbeiOOUKErVPBeEnCT2KnnQ3lvNpbeRgn27EhxvaTPqArto7TygMAEZP9EdqbhHhI0088o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jKVn2taf; arc=none smtp.client-ip=209.85.128.43
+	s=arc-20240116; t=1737400986; c=relaxed/simple;
+	bh=UQf76tNPeFw670A+FDlUpizi4uK712nfyrh8vXWuH1k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=gtMkKu1L02/oqJGwyxlBT8wBwR9FpHu/WS6dKSEp7wxG0P0Eyhh+NlggStV1jX0SHL4mq6a0mUtyUta2/JCgQz46gw8P+gumZkNXE0zzZZ/9zaNPFtaDrJmh/xKZFOiKIEN9EhJb8wtT7+LIPW/FDwYkSrCHWp1z4JxKz5/pc2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SksLpgGp; arc=none smtp.client-ip=209.85.167.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4361dc6322fso33446975e9.3;
-        Mon, 20 Jan 2025 10:48:17 -0800 (PST)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-540201cfedbso4482014e87.3;
+        Mon, 20 Jan 2025 11:23:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737398896; x=1738003696; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DqV/FjhJj9DUjcirvqGcRVZyK8YP06tY6pUQMoRMhuw=;
-        b=jKVn2tafc1yMOBKbBHBSWReBihoRfYNKfZB5TpeH5otPaK3LeXvUeqMUKXyb7jEx5y
-         ohK63r6EpAbj2k9yoB2TIg7tBORW8m1NmObkCVtSLgeXHmHMe54l2yTI99/F7hcvjoxk
-         gtrkje4FLMimhioxPPZuvGnCv43TOLO/o9Go3VqNTWw4PGWraYZSDisu8ZOjEsADNfvz
-         Zco2AWyuTftbp9Gb3vFPOLjjsOTwWdo7WSE+kxboGipWvgVGVN2en117OlUHaQnullpO
-         EIlP0pkof6fsO71wXFBNQnpIE/IE7h0763Tn4EsEqJdauLVdb9BeRFTQ+4nEgGhQP6FA
-         VjSg==
+        d=gmail.com; s=20230601; t=1737400983; x=1738005783; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=TbNRXkcRyF0tlmC6FGx5LqgTK6hjgJWXGfuNeKftOQ0=;
+        b=SksLpgGpelSeFSZ6NYvNHDvn//KJI5qU9gnB3f47m5cMn5BVQL1miv91cS+f4FTuIM
+         AMsqY61AKHMJMWNna8bmgliJwTzvW2LQOZo9FmOzJhdcAeI/ef/+waLXGwUabGV5w5zz
+         uuAYx+3mEbVy8n2iyKMQKMLHOcKOvaERC8b9appKe9uWCScg7t7A2LTNfLZp5OiSC7V1
+         MSqXwtoKmEiGE100RjBEGxDpYIa0Mm/l9jKRZhN6vd7waHmHpelg23pLbW+hQ7fiKUR2
+         JM7h5u+UubZfgo5NvuRq9kVwwTbdgU1/rOUoajeE0HzxV4RPjumvo86UGshJgqUkGHiv
+         qeYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737398896; x=1738003696;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DqV/FjhJj9DUjcirvqGcRVZyK8YP06tY6pUQMoRMhuw=;
-        b=ZCah7N16FHsbYp12OkxuC58QP9QxkjvgYnObXwzCazhmW4JxzCsb6NmoX5rZxbN32S
-         JymkNrCMaDauBv5ESVsPzOin2m0QrMPVT2s5IA3SipWrmN2RKEsnw8VqUgwPkh/y5C2P
-         CZpKF7Oveuo3PcocSE3gG7Kzph03hBXFATkLI/mOvGF2kLjLP8gAt5yeXwqboVUNQuaD
-         FqByUwugJKWKxvls4jbC9lu7bBJ8KrCIhilufQ8eKouXfNsRwK4MWf3tCrKIwxXAsU1p
-         9czv/5cF4tKzLrAOmGe7uyakqJRGaLkbTMiKAllX1CFdd0h6TZ58mzNttDWETwiLREuB
-         CVaA==
-X-Forwarded-Encrypted: i=1; AJvYcCVZ+jNu9C7mbLVlBPGOrOxQ8kkZU7tZ0yCcRSOa8lAMJmy1WVBd+sJ7nNgEpXKKnykpqy+hUhE5ppR5@vger.kernel.org, AJvYcCWCOX07lUm3Ah7D6iMGUW0VP63rK66pb15s/Zqs26OUL4HbrBJi5rzL1bfHAEK1Uos/gtM41qXaLtBI@vger.kernel.org, AJvYcCWdHvlnVZlwsVyV0A4sQdYCtd5Wt6kOXifpbIEzdq2EtYDa3XHsXN3QQFHQhAQCEUfUCXDoacOTPzFi46bV@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyNwmcYma6ZXXjWJ1Jp36zyF+1bEVEUX1cKHsosxbXh0ddRdKk
-	d4MifRnKHsCARhRdhHWtRx++w+/0wp5m22jTZNGHjt3WemaevOuO
-X-Gm-Gg: ASbGncuMvv+vmioFNDzHPve9IphkVZN045OczUb73NNNq9zutUFKb70pBqvZpIhOjEa
-	yrNkcJOST3jBcNd58ySYXNb8u3z5LlbbTqmx5tI2AATyOhieSI4yp2mj0QK9zJR8UGLwiPpSUgE
-	mVaoUFSSSaoPd/Z+9rQ5CKLQrpHbOJNbEecPfgnKBfGrMQLu+ihpSQE/Hyd4o1AtgkWT5ZXcCwL
-	r7zQIman53ReQZyRggZ8zHTFDvoB+cKsddo8eqaLBpBwUMvSAy9S3exDSAKTGqCRLdWMBvS5v7K
-	KaSVu2LdqK+TZNL7dA5z00AmUDXOIm46R2l2CZ8=
-X-Google-Smtp-Source: AGHT+IH9PM2GibsFcQmyWQQGrxcXpJ+kncPmt3vY8dQwqwdzD60YCwZnKsd2BQmHXXaTAhz6p7SP5A==
-X-Received: by 2002:a05:6000:1f85:b0:38b:e32a:109d with SMTP id ffacd0b85a97d-38bf59e1d83mr11668430f8f.34.1737398896238;
-        Mon, 20 Jan 2025 10:48:16 -0800 (PST)
-Received: from localhost.localdomain (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38bf3215023sm11095390f8f.9.2025.01.20.10.48.15
+        d=1e100.net; s=20230601; t=1737400983; x=1738005783;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TbNRXkcRyF0tlmC6FGx5LqgTK6hjgJWXGfuNeKftOQ0=;
+        b=cP4gNciVzkLxyiVxTYAl1XVXA5nMcobOyfgtEgTdzs8/7/9gu0PiW37SfW/RWVclbi
+         B2PHrbyCo5HfnEAQEWw44YBi/UoAvSWLKlcZFKugdv9uqK7FZvDu08i3p76SUjbzWPtH
+         F/scNAxeJwHrscyiMFntq48Y4WBE4I/SumA+nLRrhJq6lxlcX18T/lOpehhgOeNuztdO
+         42iYZl+rym+L2FgXriyfumEzsoP4KUPjrP6mKXUC73R9cgsxRPhs+7G5UCcXDNqRYFte
+         zTCODyrpl3GS1Do2pHtAtb8Lw2FN495qkQeBR5TRuVAsIWcmfQfSJcgTmD7qcW7RdpBv
+         zQUA==
+X-Forwarded-Encrypted: i=1; AJvYcCWd/nVq6OEdj6xd2LeD4lbLKMkVhmWhl1FLMJvHLT7JBx2R1AgXgdoEjt94DUE3Wz/gK+pP0uIqUzhkaF0=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUGJDafyX1+csQ/SNZECAJrcMoWlRXqSisLQDAbagKStt0kkn/
+	oTBkhweYaTRyHKxFU1eY2QcO21gXlyiMNxacjX6tkAIvpT5b+0KO
+X-Gm-Gg: ASbGnct9nDl0YlUIVTcqGjUzD8jjK8s+cIB0iR9qeAKMc3RcZ14vXsbpuiw4DycMQ2V
+	ZhItq2FIu/K6R+JKMPTNqrLnCP2RvJzVXonSHVV+oVYx/1ltTgCspSVRRFpEjJXi371/5Oh06qN
+	9BXjZ4sz0rrpltk7Jet22XoDVQiOU6JxvTycMuWdODjY1ILNzhfGcVPz3cV8FRmqv36YxCH8L0h
+	Jlzp+n9LAx9BhcsnGKraGd60+CoXDzj4yew6yCLYnWjYpwtWHxF+5+aKKGbCdDdHkCmEXQ=
+X-Google-Smtp-Source: AGHT+IGr49WU9BhdIDFszJomy7IZC0MsVfpvVAJ7VOlKiHTdCZ06Qn8peWJsF+uAk6nP3W4Y1Yz8hg==
+X-Received: by 2002:a05:6512:aca:b0:53e:37e4:1457 with SMTP id 2adb3069b0e04-5439c280723mr5124215e87.33.1737400982537;
+        Mon, 20 Jan 2025 11:23:02 -0800 (PST)
+Received: from [172.30.32.150] ([185.204.1.212])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5439af78fb0sm1460156e87.247.2025.01.20.11.22.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2025 10:48:15 -0800 (PST)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Chaotian Jing <chaotian.jing@mediatek.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wenbin Mei <wenbin.mei@mediatek.com>,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	upstream@airoha.com
-Cc: Christian Marangi <ansuelsmth@gmail.com>
-Subject: [PATCH v2 2/2] mmc: mtk-sd: add support for AN7581 MMC Host
-Date: Mon, 20 Jan 2025 19:47:02 +0100
-Message-ID: <20250120184728.18325-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250120184728.18325-1-ansuelsmth@gmail.com>
-References: <20250120184728.18325-1-ansuelsmth@gmail.com>
+        Mon, 20 Jan 2025 11:23:00 -0800 (PST)
+From: Alexey Charkov <alchark@gmail.com>
+Subject: [PATCH 0/2] arm64: dts: rockchip: Fan updates for Radxa Rock 5C
+Date: Mon, 20 Jan 2025 23:22:45 +0400
+Message-Id: <20250120-rock-5c-fan-v1-0-5fb8446c981b@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIaijmcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDQyMD3aL85Gxd02TdtMQ8XUOzFAvTJOPEpKRkcyWgjoKi1LTMCrBp0bG
+ 1tQAm5U7vXQAAAA==
+X-Change-ID: 20250120-rock-5c-fan-16d85b3abbc7
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1737400976; l=714;
+ i=alchark@gmail.com; s=20240125; h=from:subject:message-id;
+ bh=UQf76tNPeFw670A+FDlUpizi4uK712nfyrh8vXWuH1k=;
+ b=TMyVo8vcwj2r4jcUALxh9vVoMsAPW3huM7SQAfS8P1HFA9A0nKAuIvCN78QKCOm9g3y22jqaE
+ eNRUxXEEAavBTNWy2VZkXXnPNhtcO7Fa2knTgzHr8o6ubnAbWXHtAq1
+X-Developer-Key: i=alchark@gmail.com; a=ed25519;
+ pk=xRO8VeD3J5jhwe0za0aHt2LDumQr8cm0Ls7Jz3YGimk=
 
-Add support for AN7581 MMC Host. The MMC Host controller is based on
-mt7622 with the difference of not having regulator supply and state_uhs
-pins and hclk clock.
+Couple of small additions to the recently added Radxa Rock 5C device tree
+to improve cooling control using the onboard PWM fan, similar to other
+Radxa boards already in mainline
 
-Some minor fixes are applied to check if the state_uhs pins are defined
-and make hclk optional for the new airoha compatible.
-
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
 ---
-Changes v2:
-- Drop redundant if condition where regulator is not supported
-- Correctly set pin in msdc_ops_switch_volt
+Alexey Charkov (2):
+      arm64: dts: rockchip: Add finer-grained PWM states for the fan on Rock 5C
+      arm64: dts: rockchip: Enable automatic fan control on Radxa Rock 5C
 
- drivers/mmc/host/mtk-sd.c | 59 +++++++++++++++++++++++++++++----------
- 1 file changed, 45 insertions(+), 14 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts | 34 ++++++++++++++++++++++--
+ 1 file changed, 32 insertions(+), 2 deletions(-)
+---
+base-commit: 4ec376748558ba132a2a49513acd3b08774384e3
+change-id: 20250120-rock-5c-fan-16d85b3abbc7
 
-diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-index efb0d2d5716b..f76f20502409 100644
---- a/drivers/mmc/host/mtk-sd.c
-+++ b/drivers/mmc/host/mtk-sd.c
-@@ -666,6 +666,20 @@ static const struct mtk_mmc_compatible mt8196_compat = {
- 	.support_new_rx = true,
- };
- 
-+static const struct mtk_mmc_compatible an7581_compat = {
-+	.clk_div_bits = 12,
-+	.recheck_sdio_irq = true,
-+	.hs400_tune = false,
-+	.pad_tune_reg = MSDC_PAD_TUNE0,
-+	.async_fifo = true,
-+	.data_tune = true,
-+	.busy_check = true,
-+	.stop_clk_fix = true,
-+	.stop_dly_sel = 3,
-+	.enhance_rx = true,
-+	.support_64g = false,
-+};
-+
- static const struct of_device_id msdc_of_ids[] = {
- 	{ .compatible = "mediatek,mt2701-mmc", .data = &mt2701_compat},
- 	{ .compatible = "mediatek,mt2712-mmc", .data = &mt2712_compat},
-@@ -680,7 +694,7 @@ static const struct of_device_id msdc_of_ids[] = {
- 	{ .compatible = "mediatek,mt8183-mmc", .data = &mt8183_compat},
- 	{ .compatible = "mediatek,mt8196-mmc", .data = &mt8196_compat},
- 	{ .compatible = "mediatek,mt8516-mmc", .data = &mt8516_compat},
--
-+	{ .compatible = "airoha,an7581-mmc", .data = &an7581_compat},
- 	{}
- };
- MODULE_DEVICE_TABLE(of, msdc_of_ids);
-@@ -1614,12 +1628,15 @@ static int msdc_ops_switch_volt(struct mmc_host *mmc, struct mmc_ios *ios)
- 			return ret;
- 		}
- 
--		/* Apply different pinctrl settings for different signal voltage */
--		if (ios->signal_voltage == MMC_SIGNAL_VOLTAGE_180)
--			pinctrl_select_state(host->pinctrl, host->pins_uhs);
--		else
--			pinctrl_select_state(host->pinctrl, host->pins_default);
- 	}
-+
-+	/* Apply different pinctrl settings for different signal voltage */
-+	if (!IS_ERR(mmc->supply.vqmmc) &&
-+	    ios->signal_voltage == MMC_SIGNAL_VOLTAGE_180)
-+		pinctrl_select_state(host->pinctrl, host->pins_uhs);
-+	else
-+		pinctrl_select_state(host->pinctrl, host->pins_default);
-+
- 	return 0;
- }
- 
-@@ -1699,7 +1716,9 @@ static void msdc_enable_sdio_irq(struct mmc_host *mmc, int enb)
- 				dev_dbg(host->dev, "SDIO eint irq: %d!\n", host->eint_irq);
- 			}
- 
--			pinctrl_select_state(host->pinctrl, host->pins_uhs);
-+			/* Skip setting uhs pins if not supported */
-+			if (host->pins_uhs)
-+				pinctrl_select_state(host->pinctrl, host->pins_uhs);
- 		} else {
- 			dev_pm_clear_wake_irq(host->dev);
- 		}
-@@ -2816,9 +2835,12 @@ static int msdc_of_clock_parse(struct platform_device *pdev,
- 	if (IS_ERR(host->src_clk))
- 		return PTR_ERR(host->src_clk);
- 
--	host->h_clk = devm_clk_get(&pdev->dev, "hclk");
--	if (IS_ERR(host->h_clk))
--		return PTR_ERR(host->h_clk);
-+	/* AN7581 SoC doesn't have hclk */
-+	if (!device_is_compatible(&pdev->dev, "airoha,an7581-mmc")) {
-+		host->h_clk = devm_clk_get(&pdev->dev, "hclk");
-+		if (IS_ERR(host->h_clk))
-+			return PTR_ERR(host->h_clk);
-+	}
- 
- 	host->bus_clk = devm_clk_get_optional(&pdev->dev, "bus_clk");
- 	if (IS_ERR(host->bus_clk))
-@@ -2926,10 +2948,13 @@ static int msdc_drv_probe(struct platform_device *pdev)
- 		return PTR_ERR(host->pins_default);
- 	}
- 
--	host->pins_uhs = pinctrl_lookup_state(host->pinctrl, "state_uhs");
--	if (IS_ERR(host->pins_uhs)) {
--		dev_err(&pdev->dev, "Cannot find pinctrl uhs!\n");
--		return PTR_ERR(host->pins_uhs);
-+	/* AN7581 doesn't have state_uhs pins */
-+	if (!device_is_compatible(&pdev->dev, "airoha,an7581-mmc")) {
-+		host->pins_uhs = pinctrl_lookup_state(host->pinctrl, "state_uhs");
-+		if (IS_ERR(host->pins_uhs)) {
-+			dev_err(&pdev->dev, "Cannot find pinctrl uhs!\n");
-+			return PTR_ERR(host->pins_uhs);
-+		}
- 	}
- 
- 	/* Support for SDIO eint irq ? */
-@@ -3010,6 +3035,12 @@ static int msdc_drv_probe(struct platform_device *pdev)
- 		dev_err(&pdev->dev, "Cannot ungate clocks!\n");
- 		goto release_clk;
- 	}
-+
-+	/* AN7581 without regulator require tune to OCR values */
-+	if (device_is_compatible(&pdev->dev, "airoha,an7581-mmc") &&
-+	    !mmc->ocr_avail)
-+		mmc->ocr_avail = MMC_VDD_32_33 | MMC_VDD_33_34;
-+
- 	msdc_init_hw(host);
- 
- 	if (mmc->caps2 & MMC_CAP2_CQE) {
+Best regards,
 -- 
-2.47.1
+Alexey Charkov <alchark@gmail.com>
 
 
