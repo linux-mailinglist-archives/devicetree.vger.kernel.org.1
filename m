@@ -1,103 +1,93 @@
-Return-Path: <devicetree+bounces-139648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9D30A167C1
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:55:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C22F8A167C6
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:57:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC7F67A1052
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:55:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D3937A3ECB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D4D419046E;
-	Mon, 20 Jan 2025 07:55:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6AB21917CD;
+	Mon, 20 Jan 2025 07:57:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rhqpwzp0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WTMpAcsr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8AA5140E3C;
-	Mon, 20 Jan 2025 07:55:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88E20140E3C;
+	Mon, 20 Jan 2025 07:57:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737359737; cv=none; b=ptjGYNtel1nP5JBBinIf6HjofWBpHrlB2te7UCn248ktaAsUTQysAoKtMGuSSvDt6j4YISMOiqZS4vbKIVnz00qhE+fOi5VxVgy4UUdKxzHGdwKtE7rS64fT1TEEPMJZ9L+O1R0b4QvYK5Xwffs20x6n+sGqbppCN1QQF0RzbWM=
+	t=1737359834; cv=none; b=OgBvu3k7cUxKl3iYiBLGxRdBdhc3rZ+9UQpAWphaU8TikQSk+xZBTjNbi5j4kMG18psNl+iC6lg72aufeEHT3kvas7kNGvKwaXaURcZrmNOtyCw4j6VvCKntQmCzri0k149ipw0eWbu9EYtyJQaTFl9T38u5sB6VeW0S1CxlERU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737359737; c=relaxed/simple;
-	bh=14AM3i6WtkPw8uVXWf2dyrxE+02kTGvO4Yahi8XOO0U=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hXxCpD3nD+Tb5wUOIDwgyu3cq9PZ6Bsb04J0GZtuHRvqOsaQb213V1fXFXWCoQjIuoWp/ITCA7+tL8ckTPYBQpFUMyfKfNURcDNJSOb43bNp/Fcfa8lPCYAAsKt/pEvEsxImXEj7s3TpImju+zHlfVr9pho4ERnjOc56c9uUUhQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rhqpwzp0; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50K7tDkC599415
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Mon, 20 Jan 2025 01:55:13 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1737359713;
-	bh=J8hAzpqhK+r7FJNtEnXIvhOhfkNchLyGSgqsngobflg=;
-	h=From:To:Subject:Date;
-	b=rhqpwzp0OynM4Vy13jMidlULjWtm039wwYrf65z/4SS42EPAuhcI0+1e3hr9XR+qo
-	 7r4v5Z8XtKMH5+F0zpAsrdUT061q9je57nNeJW+7Su31LmHTX4O8M30jp70phjCTnQ
-	 B3B/KqQn3ZrJRsXuS4vCA5F74AbztbbxMKDCMTjk=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50K7tD73038264;
-	Mon, 20 Jan 2025 01:55:13 -0600
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 20
- Jan 2025 01:55:09 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 20 Jan 2025 01:55:09 -0600
-Received: from uda0498651.dhcp.ti.com (uda0498651.dhcp.ti.com [172.24.227.7])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50K7t6hY036694;
-	Mon, 20 Jan 2025 01:55:06 -0600
-From: Sai Sree Kartheek Adivi <s-adivi@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH] arm64: dts: ti: k3-am62a-mcu: enable mcu domain pinmux
-Date: Mon, 20 Jan 2025 13:24:42 +0530
-Message-ID: <20250120075442.181191-1-s-adivi@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1737359834; c=relaxed/simple;
+	bh=AbRtKskymy7iFFe/UNt6tgcNZXamzrBYtEFb+oQESJk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KlPz5+gfPo6ViEP9N7G23+mHGhvl+QUAvcxoMJehFD/x3yffkHmY4YvLwt5ymjvqYXkZKGitQOS2YUPPxXs5WmAIhD0gtVL+OBgyBizJqOt/sQ7DFqqsTDq6Yq5A2wgJLtD4vVEI2mphW71lsxukzuXnhA3AzoPbP0p4F5fcEcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WTMpAcsr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52703C4CEDD;
+	Mon, 20 Jan 2025 07:57:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737359834;
+	bh=AbRtKskymy7iFFe/UNt6tgcNZXamzrBYtEFb+oQESJk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WTMpAcsrDFMYn9ppui6qqsyCbl7jkoz5lf7y9Fg6rG7PQrmiZollfRqitEvFsuFHa
+	 asKmtlK7H//BLXSBA3nxc3OA3OMlBe9zB7yCWAMQem70qOCHF+cSAeeIK2NFD2oYDg
+	 cyRm7Uyrp0GnDREgXPbR9NxvsmgR0JCffmfcjFA1iG3PkE0cTarMF9NtDJHVkA/IiK
+	 OXL8JLxDuGOy6rcikU5+HP+Y2vbdTnnDFVr97KIZa9RT6hw6EBMIQcoq4q9EnX2V0i
+	 mois0GOfYxH91zR52eNiFeL0M/vhl8xg2Eka/Uap2/Pf26QRoQAkk9ksK1igjXsCYO
+	 pP+elXQ4nG4nA==
+Date: Mon, 20 Jan 2025 08:57:10 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Benjamin Larsson <benjamin.larsson@genexis.eu>
+Cc: linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	ansuelsmth@gmail.com, lorenzo@kernel.org, krzk+dt@kernel.org, 
+	gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: serial: 8250: Add Airoha compatibles
+Message-ID: <20250120-flashy-nice-tody-afa2ae@krzk-bin>
+References: <20250119130105.2833517-1-benjamin.larsson@genexis.eu>
+ <20250119130105.2833517-2-benjamin.larsson@genexis.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250119130105.2833517-2-benjamin.larsson@genexis.eu>
 
-Enable mcu domain pinmux by default to be able to access mcu domain
-peripherals from main domain.
+On Sun, Jan 19, 2025 at 02:01:04PM +0100, Benjamin Larsson wrote:
+> The Airoha SoC family have a mostly 16550-compatible UART
+> and High-Speed UART hardware with the exception of custom
+> baud rate settings register.
+> 
+> Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
+> ---
+>  Documentation/devicetree/bindings/serial/8250.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/8250.yaml b/Documentation/devicetree/bindings/serial/8250.yaml
+> index 692aa05500fd..2fbb972e5460 100644
+> --- a/Documentation/devicetree/bindings/serial/8250.yaml
+> +++ b/Documentation/devicetree/bindings/serial/8250.yaml
+> @@ -63,6 +63,8 @@ properties:
+>        - const: mrvl,pxa-uart
+>        - const: nuvoton,wpcm450-uart
+>        - const: nuvoton,npcm750-uart
+> +      - const: airoha,airoha-uart
+> +      - const: airoha,airoha-hsuart
 
-This also makes it consistent with the rest of the k3 platforms where
-mcu domain pinmux is enabled by default.
+I assume you placed it matching existing order (kind of alphabetical for
+compatibles with vendors)?
 
-Signed-off-by: Sai Sree Kartheek Adivi <s-adivi@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
-index 0469c766b769e..9ed9d703ff24d 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi
-@@ -12,7 +12,6 @@ mcu_pmx0: pinctrl@4084000 {
- 		#pinctrl-cells = <1>;
- 		pinctrl-single,register-width = <32>;
- 		pinctrl-single,function-mask = <0xffffffff>;
--		status = "disabled";
- 	};
- 
- 	mcu_esm: esm@4100000 {
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
