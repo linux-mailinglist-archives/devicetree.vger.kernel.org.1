@@ -1,137 +1,147 @@
-Return-Path: <devicetree+bounces-139808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8C48A16EEC
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 16:02:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90964A16EEE
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 16:02:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E2C2188805C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 15:02:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AFEC83A5208
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 15:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 745B81E5016;
-	Mon, 20 Jan 2025 15:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82CF21E32B6;
+	Mon, 20 Jan 2025 15:02:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gMjpF11i"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cd2uqgMd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4135C1B982E;
-	Mon, 20 Jan 2025 15:01:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE9ED188587;
+	Mon, 20 Jan 2025 15:02:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737385307; cv=none; b=oEZtHL7ipt3IivutduQur0BsEUhifLxY12iDvCNZDb4i9uUt4jLoAd32PlripvzdAGXlGrFobWcp+dodGk+W6FnnokT80Ty5jOgTxTxQtjsLxRflPyMGm5bg2DDwP6rggHglbE1Q+T65G0Sxy9nQjtdgDByoaJ1Qmae6hOF3uVk=
+	t=1737385364; cv=none; b=ia3qQTCBvg78/3LsSuY/SZA/DPemmth/bMfICoD71xlMxvIneygxWHuRE1Lo+OztQ+WDZEq9H8AUHEKCCX6xv8PrpGZg2cQ91eWrUKcLuh2TXcpIHoLSL5qRu/nRHivu64IX8LPzpMmLCG+DlEPTqLyVPlGEIa/Qz0/wxn63yVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737385307; c=relaxed/simple;
-	bh=t9cJzzM752GAraX+bd6RMMK5H5I0NUGxSd1HtsC0j9o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KDBWbVdJ1rzCnkwylefmWopNZO7q/w88iNVB6Or20eLlV2sjy7LMYxe4/Myrnje/qbxLZzyt2wYUD3palUelkjbuslrlflL0d8gKyeOWRbt0CIdtQru7QS3O5O3W8vYOp8ejn45aa1ce76mquBdh7ObTtC+zowKNr50uCyGG0V0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gMjpF11i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5B81C4CEE1;
-	Mon, 20 Jan 2025 15:01:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737385306;
-	bh=t9cJzzM752GAraX+bd6RMMK5H5I0NUGxSd1HtsC0j9o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gMjpF11i/xZToGsyanYZs/X4nF2TcRC8xBtQPFaJJGx/IKfwLLWMJQiIkIhUh5Hwk
-	 V56zuiuYsNDKSCQtWwDOppyM3u9mYgWojhlCXLrgqwklTMAlHC8ent/pxquZf6ahQZ
-	 TSuhCOgtagkuahppizse3RV6jY/ZzXaBfkrCOgRPCUx6FgVBwyR3jXZn7dscI2I3u8
-	 5ljmjiEkRH8V7PpP5l2Q/dIHIcy23T2BJK7vQN45OkIMNgE/IaK3x9383gVpN2cYuE
-	 LmSwucPTEmIRjB0JGkpNZHW04hJaPJ8ewObFLa7vFB14egXUcXc08RylfPKp7DQFPG
-	 RAXI4E+0OrVEQ==
-Message-ID: <000e44f1-839e-4f43-9bb1-ae53d6826ff7@kernel.org>
-Date: Mon, 20 Jan 2025 16:01:40 +0100
+	s=arc-20240116; t=1737385364; c=relaxed/simple;
+	bh=a1aUSj/QSLwPzl0cM/RFD3ogYP9qRhvddXPluYSzcCA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s3IDnbMT3TDgVaItoLAlKFMtNAk+J8UmdX0jiq85tAVymUhwek2wfX6r/m2L9T81AybH8ZsGb9P3Qk8KkBn5ouNQv1TiO8DhtoB+2NYy4+o8RW7z4JSe/Vb1dVUieL//9/v9XGDvIy5tE8U9W8EsK4Sekp04TnFOwk8xYU7j0eI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cd2uqgMd; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737385363; x=1768921363;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=a1aUSj/QSLwPzl0cM/RFD3ogYP9qRhvddXPluYSzcCA=;
+  b=cd2uqgMdqqUbsi4pTxxfO6GOoM70p5E4LeYead8WakKN8k+rEpY4gNAB
+   3Y5E43IMpq/FSRd6REJg/w9XBGjvFs9Q8yQ4yDSzkVyofUq6W6Dg+h4m/
+   N2nDLf57N24tT0UZaMG7Nm7czxluMjIalWx0ZE4JZyaPBPXe0cyZvJtcp
+   ctPZnk4h+UEzxu06B4kLLteKeCzy9CcSICi9iUj94llTIMm9aOhe4OZdF
+   QHmN0EQnDe/w1PaMWOfgwehZCPz7OU9vgR1OKzfSeqcdC1vFs91fRGC5o
+   fXt+XX0oJaFPfpBZ2S5BIU6bFqT4VG21YdRdLYx4KjTgB4hAw2QmByM//
+   g==;
+X-CSE-ConnectionGUID: 9b3Rj5XaS6qwVaqU5Gifjw==
+X-CSE-MsgGUID: ic78s9uVQP6HE+4n8fT/Xw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="25384401"
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; 
+   d="scan'208";a="25384401"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2025 07:02:42 -0800
+X-CSE-ConnectionGUID: 1TtviDLhTu+SgbySrR+p+A==
+X-CSE-MsgGUID: Sh/dUyHmTc6uRzF4AZPOwQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; 
+   d="scan'208";a="106664839"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2025 07:02:39 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tZtIT-00000003RUE-119i;
+	Mon, 20 Jan 2025 17:02:37 +0200
+Date: Mon, 20 Jan 2025 17:02:37 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Felipe Balbi <balbi@kernel.org>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ferry Toth <fntoth@gmail.com>
+Subject: Re: [PATCH v1 0/3] usb: dwc3: Avoid using reserved EPs
+Message-ID: <Z45lja5InqAXs3CQ@smile.fi.intel.com>
+References: <20250116154117.148915-1-andriy.shevchenko@linux.intel.com>
+ <20250116231835.isbwmq5yz5issy3w@synopsys.com>
+ <Z4pdZZhR6m1LB3yk@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXT] Re: [PATCH v12 2/5] dt-bindings: arm: fsl: add imx-se-fw
- binding doc
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>, Conor Dooley <conor@kernel.org>
-References: <20250120-imx-se-if-v12-0-c5ec9754570c@nxp.com>
- <20250120-imx-se-if-v12-2-c5ec9754570c@nxp.com>
- <6110fd00-c050-4bcf-8971-674bc8c0bfc7@kernel.org>
- <AM9PR04MB86049239156AC82F0AA4BCCA95E72@AM9PR04MB8604.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <AM9PR04MB86049239156AC82F0AA4BCCA95E72@AM9PR04MB8604.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Z4pdZZhR6m1LB3yk@smile.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 20/01/2025 14:07, Pankaj Gupta wrote:
->> Driver configures multiple misc-device on the MU, for multiple
->> user-space applications, to be able to communicate over single MU.
->>
->> It exists on some i.MX processors. e.g. i.MX8ULP, i.MX93 etc.
->>
->> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
->> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->> Reviewed-by: Conor Dooley <conor@kernel.org>
+On Fri, Jan 17, 2025 at 03:38:46PM +0200, Andy Shevchenko wrote:
+> On Thu, Jan 16, 2025 at 11:18:45PM +0000, Thinh Nguyen wrote:
+> > On Thu, Jan 16, 2025, Andy Shevchenko wrote:
+> > > On some platforms (Intel-based and AFAIK ARM-based) the EPs in the gadget
+> > > (USB Device Controller mode) may be reserved for some special means, such as
+> > > tracing. This series extends DT schema and driver to avoid using those.
+> > > Without this the USB gadget mode won't work properly (those devices that
+> > > "luckily" allocated the reserved EPs).
+> > > 
+> > > Ferry already tested the privately sent PoC of this, but I ask him again to
+> > > re-test this version which is slightly different.
+
+...
+
+> > I'm not entirely clear on the reason for this change yet.
+> > 
+> > How would this even work without dwc3 managing these endpoints (all the
+> > init/teardown/fifo allocation/start/stop flow).
 > 
->> Where Conor's review tag was actually given?
-> On v6.
+> You perhaps know much better how it can be done, I have access to a limited
+> documentation and in practice if those endpoints are not skipped any gadget
+> that allocates them simply won't work, and IIRC the entire USB transfers are
+> stuck.
+> 
+> > Can you provide more info on this hardware?
+> 
+> I am afraid I can't provide more, sorry. I can look for some specifics,
+> but I'm not that guy who know anything about in-SoC tracing.
 
-I already looked there. No trace for tag. Please point to the message.
+So, here is what I found:
 
-Best regards,
-Krzysztof
+---8<---
+
+However the endpoints allocated for STM and EXI debug traffic cannot be re-allocated
+if being used because the sideband flow control signals are hard wired to certain
+endpoints:
+• 1 High BW Bulk IN (IN#1) (RTIT)
+• 1 1KB BW Bulk IN (IN#8) + 1 1KB BW Bulk OUT (Run Control) (OUT#8)
+
+In device mode, since RTIT (EP#1) and EXI/RunControl (EP#8) uses External Buffer
+Control (EBC) mode, these endpoints are to be mapped to EBC mode (to be done by
+EXI target driver). Additionally TRB for RTIT and EXI are maintained in STM (System
+Trace Module) unit and the EXI target driver will as well configure the TRB location for
+EP #1 IN and EP#8 (IN and OUT). Since STM/PTI and EXI hardware blocks manage
+these endpoints and interface to OTG3 controller through EBC interface, there is no
+need to enable any events (such as XferComplete etc) for these end points.
+
+Does it help you to understand the required quirk better?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
