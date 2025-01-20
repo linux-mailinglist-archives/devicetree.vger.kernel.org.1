@@ -1,285 +1,322 @@
-Return-Path: <devicetree+bounces-139714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39B4DA16A79
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:09:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2C0FA16AB4
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:28:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66E7D160361
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:09:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F9D33A37BC
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:28:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B13A11AF0B0;
-	Mon, 20 Jan 2025 10:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B9C41B424E;
+	Mon, 20 Jan 2025 10:28:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="Cktqd/df"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="fIK4sVR4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
+Received: from EUR03-VI1-obe.outbound.protection.outlook.com (mail-vi1eur03on2117.outbound.protection.outlook.com [40.107.103.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB48A3398B;
-	Mon, 20 Jan 2025 10:09:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737367790; cv=none; b=HDKYqw2xaDo0g8BPq5UdYYI7w5SgeKjj9sIz/bFO0jvqJz/2ZPF0JhNlUafCo7Jkh1gt0WQuBqlaicEIgcjPkOY4h1gdhncCexe60rpfc/EkFOqGUFpBxgFdFUlgybuFAPMYUbKEs5PlIvv/KR716HniGWS6rkZGXPrkmcvQ3nQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737367790; c=relaxed/simple;
-	bh=XKCWjo1u5cpNMYVdrbyC5C1Ela86X3EE7AwTWa/sUD8=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=Q0f9UGz8uT0ucfydReZYK56OVPtcQmsbltIypEU4Znt0jzIDFxT57dmGGScU7OiOFMpN0IJWbj7I7TGn341GVYEZm+lDho1ZT3NcZniILuq6IO0ZqEc00suW9Qki0m/lomo6WOg+djf0sZGYREvKq9xwlLbaTnydi+xkNhFcjh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=Cktqd/df; arc=none smtp.client-ip=162.240.238.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=2iwlxkHCLjw7pnyg/Gmn0XOtcQ5sJydvHz4YYonPATw=; b=Cktqd/dfFLUryNsIF+Rkz5csyz
-	eO8knNj2/XM689eUpVZO4KyBj4hGHmgigvxqmtJ/yVe1XfGdCelreZRL7CxUlP1ik9XcTs2ZBm3gx
-	ChcWbxvq8t/SVWXVGgWQxrXU/5xemW7BUc/VEFGBTogmudlOW48eMVY/AuPwpQ5f1u0VUDZKI43un
-	3WKbyJVwUUwzeEJ6bjHDkfzJ8Yo5/GNjuIo+k6WicIJrG9B5zMX0MGrdpjct3xVV6wR2ZilY3/Q0s
-	kfspUHqQrfl8yoNzK5UwPU1TXQD+mWHyuaCOfVM3Zk4ZQvWuDjrmiyxthEQ65tr4IiswfyT2UAdrN
-	Hm4Ci7uA==;
-Received: from [122.175.9.182] (port=6930 helo=zimbra.couthit.local)
-	by server.wki.vra.mybluehostin.me with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <basharath@couthit.com>)
-	id 1tZoix-0002AD-0z;
-	Mon, 20 Jan 2025 15:39:39 +0530
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id 9812C17821F2;
-	Mon, 20 Jan 2025 15:39:34 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 7D14217825C6;
-	Mon, 20 Jan 2025 15:39:34 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id l5Op1yfdr7Lr; Mon, 20 Jan 2025 15:39:34 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 302BE17821F2;
-	Mon, 20 Jan 2025 15:39:34 +0530 (IST)
-Date: Mon, 20 Jan 2025 15:39:33 +0530 (IST)
-From: Basharath Hussain Khaja <basharath@couthit.com>
-To: thomas weissschuh <thomas.weissschuh@linutronix.de>
-Cc: basharath <basharath@couthit.com>, Rob Herring <robh@kernel.org>, 
-	mpe <mpe@ellerman.id.au>, devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	linuxppc-dev <linuxppc-dev@lists.ozlabs.org>, 
-	saravanak <saravanak@google.com>, danishanwar <danishanwar@ti.com>, 
-	krishna <krishna@couthit.com>, mohan <mohan@couthit.com>, 
-	parvathi <parvathi@couthit.com>, pmohan <pmohan@couthit.com>
-Message-ID: <165808392.352842.1737367773938.JavaMail.zimbra@couthit.local>
-In-Reply-To: <20250117134255-bee95a37-250c-437a-a101-938800cba218@linutronix.de>
-References: <87mskbqher.fsf@mail.lhotse> <20250108140414.13530-1-basharath@couthit.com> <CAL_JsqLLGW_o9i6a5wcUj=Z=4nL-GhzHwAQMFtQkb9OSHuSgTA@mail.gmail.com> <2089813158.341858.1737096833060.JavaMail.zimbra@couthit.local> <20250117134255-bee95a37-250c-437a-a101-938800cba218@linutronix.de>
-Subject: Re: [PATCH] of: address: Unify resource bounds overflow checking
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 050F018FDC8;
+	Mon, 20 Jan 2025 10:28:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.103.117
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737368888; cv=fail; b=ADOkmkzfLMzL/9d+3d/jE2EeznVK2iykxX+Q15NlLEAl+u2H7+MFw2Hul+hscZSbep8OMwiVTWCqHljEposwpPRPdt1FUCXQ5HyKwHCBwoIc2GtEYXdb9oLjOEvNh1XD8sYtbGV3ouLRIpM4sn02iXxSHlMx6OpYvm32Qzfibmw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737368888; c=relaxed/simple;
+	bh=jdbo+BZK7mhYBL7OPrC9r+D1ACxjojfKJtVOLEKL19o=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=RQ2IxWQweHUYmbSjmFGOc755LzvWdEQ7V9JhYp51CtlzElxBY1m5WjLP3l5MXO/wa7/c4MFyYUfzZKPpz0zPKuxL82s5Obcs1NuHAv5MeMYRasyzUl3Z4LKmLTIGQeTeOQhzHzd3HUq3yyNPoSXTsS4L9INaFxxvzh/mNgxHodo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=fIK4sVR4; arc=fail smtp.client-ip=40.107.103.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=imXmTg+gOLMaHnalV+UeFRVp+0wQ6Bbitms/hGHwTB90TK4gp5CVjjSsdHMoFk42uYAXrgn3l2uke3Jt5QvmFEfGHTz06QX3aeQRgdzYrNLeAYXzBWplFHTpTKP+TEIvFtHEargi7/YWOtUGn69jxmTbaiT/smXWEXtSYVdUGnEmZvWtWpNizq0mzDIpUwPmyb3bRdvfbLDdEmpen2ObJyJGupSbN+XmP8P7FwmK0vjPcH6tLh9oEENZYXGfP9ww5M5OXJZ8DBR6/bXqaTQqj0tcTnhJaJsm032TiX6bF/AmxiUGjoaaw+ESWC3290tePgez1YJtSGZqzF633KyO2A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=81DyW/fUuvbnGkHHrDBXWJzmbfUZiB7EB+C6hxPtOQk=;
+ b=dn0SUwDBsPOj1nLKhtkMYcs7RaOuUlvwBgwCY7yXEbNKB/UAaNPlFDPF+XZUkPkmIJhTQx3K1vHReS4EDEMoRSH+DMtWjJRXjCCZE/45R7xbdoTnketihuqVBGCgQtI/6UhLBeK5x7HsRlNgL6bdAJp9gSiTEOeGgqEKR8V43MsoqqszlwFN3Do1XZm03r+tE4YBStGxjvKRHNPhrKa0XKldLOveKoyMdP58YoWywFR5evzzYS239X+izpDQq31Di/Ni+b6vxBrNqHmiGnpiKrGbsFKrj7EroE8Y97zSVWYJnyCFBkc98x9oQXL/PUJYTrDavRx/vnbsVbvUJJOsYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=81DyW/fUuvbnGkHHrDBXWJzmbfUZiB7EB+C6hxPtOQk=;
+ b=fIK4sVR4SqBch6dGYX7o+xVwfkOhZWE2Hweh1ndV3Le2uA5rLKSG6zp5b0m0gLNnYvRrGBQd6QvZykTuN7b81KAzUHmBBzSBPV+7E4QfI6dLRdb01Ika/od4LF3JO4xWzMeA1iqUNMexR/aRajT+cVzQxvSZqvOE5hrMx+xSNEw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by PA6PR08MB10595.eurprd08.prod.outlook.com (2603:10a6:102:3d1::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.21; Mon, 20 Jan
+ 2025 10:28:02 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4e72:c5d4:488e:f16d]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4e72:c5d4:488e:f16d%5]) with mapi id 15.20.8356.020; Mon, 20 Jan 2025
+ 10:28:01 +0000
+Message-ID: <46072287-4124-43b1-996c-fdca41f967e4@wolfvision.net>
+Date: Mon, 20 Jan 2025 11:27:58 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/3] arm64: dts: rockchip: minimal support for Pre-ICT
+ tester adapter for RK3588 Jaguar + add overlay tests
+To: Quentin Schulz <quentin.schulz@cherry.de>,
+ Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
+ <49bfb4c5-12b5-447b-b08a-af0bb9fc304b@wolfvision.net>
+ <82e64b27-d254-4fff-aa25-5b848f147ca2@cherry.de>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@wolfvision.net>
+Organization: WolfVision GmbH
+In-Reply-To: <82e64b27-d254-4fff-aa25-5b848f147ca2@cherry.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1PR04CA0107.eurprd04.prod.outlook.com
+ (2603:10a6:803:64::42) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF133 (Linux)/8.8.15_GA_3968)
-Thread-Topic: address: Unify resource bounds overflow checking
-Thread-Index: r1Fx9DjhxRAnmh6XhWLvfeEJyFQshg==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.wki.vra.mybluehostin.me: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|PA6PR08MB10595:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6b3c129a-e0d2-411f-2ba8-08dd393d1e1c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?YjZkL05CZ01DcmFyT29SSXZlMHlWN2tWSzRUK3lrSUQwT3lWdFIydDU3aU9x?=
+ =?utf-8?B?c2NwenNvaHJXampwNm95OGk4bzB3UU8rUlBTdEJvOHlWbTRpbXg4Q1JIMmNj?=
+ =?utf-8?B?aHZiNTBBWVBvMHlBcytTT0NlK1BvYnJxNzQ1MkFDZk5yY2o4cnpPV2VKUnpy?=
+ =?utf-8?B?eEhhZHBpSURMSE55QTZYek5DaHJMYnljSlo5UFZ4bzZDZEVzYjd0R01mVTA1?=
+ =?utf-8?B?RmcvbXNNOVk3NHovTWw3MTJ4aWpEOXpVYzBvV3AxTThPUjdzbzB5MVZPSUVo?=
+ =?utf-8?B?SVphUGhMM3dvMklPaStVcC9PQjNnRU05bUl4d1B3VlI4MVBqWUlLQ1RrS2Ni?=
+ =?utf-8?B?Ylp3RDFjNzVYOU5RT2JzendIR0xLaldiSTRnU3ZpS1VNTndFbGNJQWQzUUpO?=
+ =?utf-8?B?YU9icTZSUkhFUGlScHdObUhMUWRZeElyV3JyeHNxZ3VRdUlPcnFTS1EyQkFL?=
+ =?utf-8?B?c09CNFVHdGhzUDRxcDRCd3RmOUNhMmV6S0sydFFWSFhnQXFBTU00ZFJ1elJa?=
+ =?utf-8?B?UTNFRTExYTJoNERFSWpaeWc4My9Sd0RicTB1VWJrM045UlRrbE4yaUtjaTR2?=
+ =?utf-8?B?a3hKYkJ0L3NFMlVaazkydmpLQVM4WXJQOWoxaHVPdTRuQ3FuMDFTOUVyZnZU?=
+ =?utf-8?B?ZzFzSEtGK3pxOUpPeGpkdGV5RmVzdStGQmpELy90R3RFR0xBNU53VEFQQ1dS?=
+ =?utf-8?B?RmVBWnBjS3lFYTJRRmhuU09TLzRlSWRyaEJEbFVFcjNlcEh2UGh6bVdJdms2?=
+ =?utf-8?B?alBGR2tVOXl1VnFrbWJER1AycktyVWU5QlpnSmk5STQzNHlHdVcyL0FId0Zt?=
+ =?utf-8?B?MW9NQWZzd3RaMDJTdEQ0MjhPZUtjcy9XcytpWHN5ZWFoa3RabnR2YU1kWjVD?=
+ =?utf-8?B?b0poaFhlME11TmlDMUdJY0ZQNE85QlVvUkdvaDM5U1Z4SnR6N0lDTWUyanpZ?=
+ =?utf-8?B?ZXB3UDJoZk9hOVNxSTZiRTFqejdoVXpCTW51bUF5NUQwWEREL1lENWp5ZVpz?=
+ =?utf-8?B?UzVMdWFXNVdTYVdUVDgySEFBZC85WUc1L3dqakpLOTZ4cG56c0lGSFhzdkxX?=
+ =?utf-8?B?VysyeDlKek90ZEYxaEdZaXVCOWxrbGVyaVZSUVJwWWlTSFVwNy9rbHoxUk82?=
+ =?utf-8?B?eURRbmJkVGVTKzNWZFJUQ2R1d1AyWUU4NG1TRlNlVTBTUlM2Y3lnTEN4SXJQ?=
+ =?utf-8?B?akJFNGJ0UWJURHFUcTJDOFp6Y0JPaVhiWm5yZHpiVlJKRUtpeUZZam8wQnhC?=
+ =?utf-8?B?K0VPNTl1SnViaU9wTEpDK2N5eHY3aCsxampybFpLeW1YMVdySFh0cEgxZlJY?=
+ =?utf-8?B?WWlneldONlRadHJJckZnSEN2WVNZb2pncVFMbnJVME94TW9URlZHT2UyaFdN?=
+ =?utf-8?B?bVZhS09hU1dibXB4UmJXZFlVWUQzdE01MytGWDA3clpVb0NxZFNuNzA2MTJR?=
+ =?utf-8?B?Nmh1R3YyYUhvaTQ0OTUzTXVQbW1FdVBJd1k0WWpNMDdQemNRdDFFdm9yLzV3?=
+ =?utf-8?B?aGVXNHNCcTFxT1lUWmZyODVXK3lYS0J0WkdzcURrcTlyckNTNmdYTHAxWmtQ?=
+ =?utf-8?B?dmJHQVRyd0c0dHFhOE9Vb2hrUUpaMW9GcU9BTE0zc3JWUzFYSFBjRGhZL2xk?=
+ =?utf-8?B?OTZwd2wyMm41SS9Lei9FS254a3BYSnRTNzBLKzhsWXk4K3h2WklzUFB4MFU2?=
+ =?utf-8?B?MXhYMEExTDdxUWlGS2dMeHZEWGo3UlViZm12WDh2ZEczTFh2bDdhTFVjbzBL?=
+ =?utf-8?B?L3lnQTVhUFF6Q0FKdHpHYWVMVE12RXd4bE9MenU0T0VWeWlRNjlNOUU0YlJS?=
+ =?utf-8?B?YW42TW5TczhxY3JLdU1XSVI1aFlDV2NRdWZiWjRIeS9jdkFJQXM4b1o2MXd5?=
+ =?utf-8?Q?en/fIyoLxDBZT?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?Z3hTREJ2WlFBdG9DUEUvb2ZobDVlb2VEVnltaGllYmtBOG5kKysrdjBsMHQw?=
+ =?utf-8?B?dmlUMEJ3akRBVE45d2t1cUJyMlk3c3FWYVBGUkV5ZmhFUTdHNUt6VlZtUG42?=
+ =?utf-8?B?bkpWMUdDVlBreDZEZVBNZnlIVk9XcjkrZmRLVjFZUWtJcFpqWWVIMVVJOEcv?=
+ =?utf-8?B?bFo2WXdZQnljelBRM3M2Zmt0K3haQk1POWNMVjVYcGsrQlp5a3MwZHF0SzRL?=
+ =?utf-8?B?bFY3YzYxa0lpQjFWV2I1Y3E2TVdzcjUrQVlhT29MTFpxcjFBN0YwVnlYY1dO?=
+ =?utf-8?B?RGVuMU9qTVlYSjZ0NXR1ZnBBcnoza3FhSGJUa2VJRFZTaDFUdFUxSnM1aHhJ?=
+ =?utf-8?B?VUVaMUczMWdaRlhXcFZBVDZXT3gwWXJ4UDdsYzNJU2hKVHI3TFY3WjV0cnpN?=
+ =?utf-8?B?Sm9uM0M5VmNJVXFqZEdOdm5hNlNWNHdrSS83UVJKcUhibG1kTkdXQVVFWTY0?=
+ =?utf-8?B?SEYxNlpzNlprUTlUWWJYM2I3QzhqcjdqSXRiQjFodmJwYktEeGZyeXd4NHFW?=
+ =?utf-8?B?QnpycEZhc0Y0dUw2VmRPR21ZWjFQamNmUlpGZGNQeXU5eFdmSk9ib0J1b21t?=
+ =?utf-8?B?bmMzRFl3aGZDU0c4SWVHYytFMnBLOTdCZXdKWWhhVHdXOUhtOFZXTDJmZkNz?=
+ =?utf-8?B?L3NUcURXL0V3SDMwczBsM3VQQnhQWDFUOEZoY25aMEtpUXdNWFU0NmZxMEV6?=
+ =?utf-8?B?QUR1TDRlWjI5bTljS2xVUTMyTEVZbGNpUFJHeXZEUzRwOTg0ZUxyTnJETXM5?=
+ =?utf-8?B?QnpIMFYwNjhwc0Y4RmJMTGxGYkVBYmR6TXlVT1ZJWUF1VWlKME83MFdtY0RM?=
+ =?utf-8?B?RW1wdXZDRm5KalNyekR1cGt1UHN6WnI3ckxzMnVJM2ZHV2lRTkl3WnBxdXFQ?=
+ =?utf-8?B?MjYvb0N1TzBaYU9HM3l2cmdBaC9pRDdNWkhiTWJqaldyRXhLWUZUSHliTWRS?=
+ =?utf-8?B?SmVneDVpcWcxK05ZbkNod0tsNUJuejFNT0Vkd25aYzNhdGxybWFabkNvaW05?=
+ =?utf-8?B?dm9udlRvME5WNFFMWDNsUHJXcWRiQXc5WmJyT0FSL0VaL1h0emIvSjlMQmtm?=
+ =?utf-8?B?NlA0ZVJwWjZzVmE4U3pSYUR5WWtHQVhCYU9OM2k0L2FnQng2OUx0aVlXUGQy?=
+ =?utf-8?B?SGlGZG8vSGxjTk9mTlRpODFUSXh0VDhHeU0wZFBOMHM4TzRvOTFSNVR4RWY5?=
+ =?utf-8?B?UzFJbk5EWitCQ2xBd0NxMkxwU1VXWUlaOUhNa042ZW11c0ErV0lDdFVXK29z?=
+ =?utf-8?B?RXBTem4yd1cvY2hvN1dacjZaZGRSbUFBNmZFT1U5LzA1M2hTRmRvUXM1MmY0?=
+ =?utf-8?B?Q0xjbjJzT29IZGw4Ni8reGV1Wlp5KzB1UzNxL2xvek5CWXpPTGlMcmtBeHlp?=
+ =?utf-8?B?SFFhRFZOaW0yYU9nUWhiRHYzTjhkYVlydVhWZ3RhbE9tajZGOGtkQXJYTElL?=
+ =?utf-8?B?bHR1NS9XWVlaVG13TGpJQ3dvTkZxaDIxTzR1ck9rREVxUVA2amQ3U0paNngr?=
+ =?utf-8?B?V0ZJZG0yNGlvOVA4RVdTYlU2aHVjbkdHb1lQV3YzUWhwRjE1QndKV1FBTnFi?=
+ =?utf-8?B?V0FiZ1g4Y1orb1BFeWEzZU9vdkZ6UFUwOUQrRVNhZU8zVk45RTcwM0tOSHlO?=
+ =?utf-8?B?Y0QwMlE3R283cjdrVUZpQ3BISjRZZW1mVkl5WmQra1VicWxuNDlWdXBWUFVT?=
+ =?utf-8?B?SnJEVUNYaEpseDQxOHdOWEkraGNISmROUHduOHVsbXl1cmpObFA4REhqVE1l?=
+ =?utf-8?B?TkVWRnJIeDdQbFJpbWxIUjhDNEd5MUdEcUxLdlRBNWt0cVJwcUhkWXNpaldD?=
+ =?utf-8?B?Zkc3OXNudGZFMElHMXlkczJsSHlHTDZoUXhwZlRHZGZpemFKbnU1aWw2ZUJ4?=
+ =?utf-8?B?YWk2dU1hMW1wMDlvNGZ2OVduS1ZsVksycFNKckJrWGgyOTVKanFMeXFhRThF?=
+ =?utf-8?B?R2c1aVlmeGpyMkVKaXlpK2RFMUJ3UFphZS9HY0NLQ29rbUh6a0hVaGdVRUxu?=
+ =?utf-8?B?ekl6TUdzZmZVc3NCQzFRdGJCc0lyaHE1TFJ3b1gxcXNTN2ZnOUVxbENxMWFZ?=
+ =?utf-8?B?ZUpNdVVBUFVlWU15TlZnZFhlMVN6SXVEdjdCUTVEZERQcVY3a3RUMzAwR1hh?=
+ =?utf-8?B?ZHY3cWh0d2IyRGtKVmVsNEJrMWcvRUsvWTV5Y3VoTjJqazk3NW5MNDBiajAv?=
+ =?utf-8?B?L2c9PQ==?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6b3c129a-e0d2-411f-2ba8-08dd393d1e1c
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2025 10:28:01.9052
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YKjWIc8WBBKm/a5AvomZFnLOa8smCcdRC8gsVfYpBA0GzSBO5HyNG/o9Gs8agOVdlICPCpsK3iDSv2g8rc1Py/KIz4M7CpBcFk7lxRigN8A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA6PR08MB10595
 
+Hi Quentin,
 
-> On Fri, Jan 17, 2025 at 12:23:53PM +0530, Basharath Hussain Khaja wrote:
->> >> >> Thomas Wei=C3=9Fschuh <thomas.weissschuh@linutronix.de> writes:
->> >> >> > The members "start" and "end" of struct resource are of type
->> >> >> > "resource_size_t" which can be 32bit wide.
->> >> >> > Values read from OF however are always 64bit wide.
->> >> >> >
->> >> >> > Refactor the diff overflow checks into a helper function.
->> >> >> > Also extend the checks to validate each calculation step.
->> >> >> >
->> >> >> > Signed-off-by: Thomas Wei=C3=9Fschuh <thomas.weissschuh@linutron=
-ix.de>
->> >> >> > ---
->> >> >> >  drivers/of/address.c | 45 ++++++++++++++++++++++++++-----------=
---------
->> >> >> >  1 file changed, 26 insertions(+), 19 deletions(-)
->> >> >> >
->> >> >> > diff --git a/drivers/of/address.c b/drivers/of/address.c
->> >> >> > index 7e59283a4472..df854bb427ce 100644
->> >> >> > --- a/drivers/of/address.c
->> >> >> > +++ b/drivers/of/address.c
->> >> >> > @@ -198,6 +198,25 @@ static u64 of_bus_pci_map(__be32 *addr, con=
-st __be32
->> >> >> > *range, int na, int ns,
->> >> >> >
->> >> >> >  #endif /* CONFIG_PCI */
->> >> >> >
->> >> >> > +static int __of_address_resource_bounds(struct resource *r, u64=
- start, u64
->> >> >> > size)
->> >> >> > +{
->> >> >> > +     u64 end =3D start;
->> >> >> > +
->> >> >> > +     if (overflows_type(start, r->start))
->> >> >> > +             return -EOVERFLOW;
->> >> >> > +     if (size =3D=3D 0)
->> >> >> > +             return -EOVERFLOW;
->> >> >> > +     if (check_add_overflow(end, size - 1, &end))
->> >> >> > +             return -EOVERFLOW;
->> >> >> > +     if (overflows_type(end, r->end))
->> >> >> > +             return -EOVERFLOW;
->> >> >>
->> >> >> This breaks PCI on powerpc qemu. Part of the PCI probe reads a res=
-ource
->> >> >> that's zero sized, which used to succeed but now fails due to the =
-size
->> >> >> check above.
->> >> >>
->> >> >> The diff below fixes it for me.
->> >> >
->> >> > I fixed it up with your change.
->> >>
->> >>
->> >> This commit is breaking Ethernet functionality on the TI AM57xx platf=
-orm due to
->> >> zero byte SRAM block size allocation during initialization. Prior to =
-this
->> >> patch, zero byte block sizes were handled properly.
->> >=20
->> > What driver and where exactly?
->>=20
->> We found an issue while developing the driver [1] and more
->> specifically in [2] (lines 313-327), but it looks like this is a
->> generic issue which can block 1 byte of memory, when a zero size
->> request has been initiated for the reserved region.
+On 1/20/25 10:20, Quentin Schulz wrote:
+> Hi Michael,
+> 
+> On 1/20/25 10:06 AM, Michael Riesch wrote:
+>> Hi Quentin,
 >>
->> static int __of_address_resource_bounds(struct resource *r, u64 start, u=
-64 size)
->> {
->>     u64 end =3D start;
->>=20
->>     if (overflows_type(start, r->start))
->>         return -EOVERFLOW;
->>     if (size && check_add_overflow(end, size - 1, &end))
->>         return -EOVERFLOW;
->>     if (overflows_type(end, r->end))
->>         return -EOVERFLOW;
->>=20
->>     r->start =3D start;
->>     r->end =3D end;
->>=20
->>     return 0;
->> }
->>=20
->> Though we have the start address handling already in place above, we
->> do see an issue with the end address, because there is an
->> unconditional +1 afterwards in resource_size() API below which is
->> responsible for reserving the extra byte
->>=20
->> static inline resource_size_t resource_size(const struct resource *res)
->> {
->>         return res->end - res->start + 1;
->> }
->=20
-> Now the report makes more sense.
->=20
->> We have 4 ways of fixing it.
->>=20
->> Option 1: Modify the function to handle the size zero case
->>=20
->> diff --git a/drivers/of/address.c b/drivers/of/address.c
->> index c1f1c810e810..8db6ae9a12b8 100644
->> --- a/drivers/of/address.c
->> +++ b/drivers/of/address.c
->> @@ -204,6 +204,12 @@ static int __of_address_resource_bounds(struct reso=
-urce *r,
->> u64 start, u64 size)
->> =20
->>         if (overflows_type(start, r->start))
->>                 return -EOVERFLOW;
->> +       if (!size) {
->> +               r->start =3D start;
->> +               r->end =3D end - 1;
->> +
->> +               return 0;
->> +       }
->>         if (size && check_add_overflow(end, size - 1, &end))
->>                 return -EOVERFLOW;
->>         if (overflows_type(end, r->end))
->>=20
->> This seems to be the simplest solution.
->=20
-> Fixing it in __of_address_resource_bounds() looks correct to me.
-> The proposed solution doesn't look as clean as I'd like though,
-> this is highly subjective, though.
->=20
-> What about the following (untested)?
->=20
-> static int __of_address_resource_bounds(struct resource *r, u64 start, u6=
-4 size)
-> {
->=09if (overflows_type(start, r->start))
->=09=09return -EOVERFLOW;
->=20
->=09r->start =3D start;
->=09r->end =3D start;
->=20
->=09if (!size)
->=09=09r->end -=3D 1; /* May underflow for empty resources. */
->=09else if (check_add_overflow(r->end, size - 1, &r->end))
->=09=09return -EOVERFLOW;
->=20
->=09return 0;
-> }
->=20
-> A kunit test looks to be in order in any case, to make sure all the
-> edgecases are handled.
->=20
-We have tested with your suggested changes as below for our functionality i=
-t is working as expected. To be on safe side we ran through patch verificat=
-ion tools, we found no issues.
+>> On 1/16/25 15:47, Quentin Schulz wrote:
+>>> This adds minimal support for the Pre-ICT tester adapter for RK3588
+>>> Jaguar.
+>>> GPIO3A3, GPIO3A4, GPIO3B2 and GPIO3D2 to GPIO3D5 are all routed to power
+>>> rails and can only be used as input and their bias are important to be
+>>> able to properly detect soldering issues.
+>>>
+>>> Additionally, this adds build-time overlay application tests for (some)
+>>> Rockchip overlays to try to avoid future regressions.
+>>>
+>>> Notably, the Device Trees from Wolfvision PF5 aren't migrated (but
+>>> should) as I do not own the device and couldn't figure out from the
+>>> introducing commit logs what the possible valid combinations are.
+>>> +Cc Michael Riesch for awareness
+>>
+>> Thanks for the heads up!
+>>
+>> Just to make sure I understood correctly: By migrated you mean that the
+>> overlay entries are moved to a separate section in the Makefile and
+>> there are explicit combinations of base DTS and overlays for
+>> compile-time testing purposes? If so, I don't consider the PF5 migration
+>> as *that* urgent. I don't think you can break anything on our side. Or
+>> am I missing something?
+>>
+> 
+> I think it makes sense to backport the patches in this series (except
+> the one adding support for the Pre-ICT tester adapter on RK3588 Jaguar).
+> Because we cannot backport the patch for Pre-ICT tester adapter (it's an
+> addition, not a bug fix), any patch that is applied after that one will
+> result in a git conflict when backporting to stable releases.
+> 
+> I believe it makes sense to backport build time overlay application tests.
+> 
+> The git conflict will likely be no big deal but if we can avoid it,
+> better avoid it :)
 
-diff --git a/drivers/of/address.c b/drivers/of/address.c
-index c1f1c810e810..6e581187c122 100644
---- a/drivers/of/address.c
-+++ b/drivers/of/address.c
-@@ -200,17 +200,16 @@ static u64 of_bus_pci_map(__be32 *addr, const __be32 =
-*range, int na, int ns,
-=20
- static int __of_address_resource_bounds(struct resource *r, u64 start, u64=
- size)
- {
--       u64 end =3D start;
--
-        if (overflows_type(start, r->start))
-                return -EOVERFLOW;
--       if (size && check_add_overflow(end, size - 1, &end))
--               return -EOVERFLOW;
--       if (overflows_type(end, r->end))
--               return -EOVERFLOW;
-=20
-        r->start =3D start;
--       r->end =3D end;
-+       r->end =3D start;
-+
-+       if (!size)
-+               r->end -=3D 1; /* May underflow for empty resources. */
-+       else if (check_add_overflow(r->end, size - 1, &r->end))
-+               return -EOVERFLOW;
-=20
-        return 0;
- }
+OK.
 
-Thanks & Best Regards,
-Basharath
+> 
+>> Maybe you can move the lines
+>>
+>>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-display-vz.dtbo
+>>    dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-wolfvision-pf5-io-expander.dtbo
+>>
+>> to the overlay section as well? This should not cause any functional
+>> changes.
+>>
+> 
+> The overlay section would only support the syntax which allows build
+> time testing. I would like to avoid confusion around what to do when
+> adding a new overlay. Specifically note the missing o in the extension
+> with the build time tests.
+> 
+>>> I'm wondering if we shouldn't backport patches 1 and 2 to stable? In
+>>> which case, it would make sense to try to have the Wolfvision PF5
+>>> overlay tests merged before the addition of the Pre-ICT tester adapter
+>>> support for RK3588 Jaguar as that one won't be backported to stable and
+>>> backporting the Wolfvision overlay test would incur an unnecessary
+>>> (though not difficult) git conflict to resolve.
+>>>
+>>> I also do not know what kind of tests we should have when overlay
+>>> combinations are possible (let's say there are A, B and C overlays that
+>>> can all be applied, should we have base + A, base + B, base + C,
+>>> base + A + B, base + A + C, base + B + C and base + A + B + C tests?
+>>> maybe even base + B + A, base + C + B, base A + C + B, base + B + A + C,
+>>> base + B + C + A, base + C + B + A and base + C + A + B tests?).
+>>
+>> I have never been good at combinatorics, but I feel this has the
+>> potential to explode :-) My two cents: The overlays *should* be
+>> orthogonal to each other, i.e., no dependencies between them in the
+>> sense that overlay A creates a node that is used by overlay B and that
+>> sort of thing. Then
+> 
+> I disagree. I can already tell you the following usecase:
+> 
+> our Pre-ICT tester adapter for RK3588 Jaguar has two proprietary camera
+> connectors. We already have two camera modules working with it, so the
+> following would make sense:
+> 
+> pre-ict-tester.dtbo
+> pre-ict-tester-con1-camX.dtbo
+> pre-ict-tester-con1-camY.dtbo
+> pre-ict-tester-con2-camX.dtbo
+> pre-ict-tester-con2-camY.dtbo
+> 
+> You would then apply pre-ict-tester.dtbo followed by one or two cam
+> dtbos. The pre-ict-tester can be used without the camera modules (c.f.
+> this patch :) ).
+
+Most probably there is no general answer. In the end the use cases
+decide what tests do make sense.
+
+> 
+>>   - Permutation can be ignored. (base + A + C = base + C + A)
+> 
+> I think that's fair. It would anyway be an issue with dtso which are
+> using /delete-node/ or /delete-property/.
+> 
+>>   - Composition (base + A + B + C) may be ignored in favor of individual
+>>     tests.
+> 
+> Not sure this is ideal either.
+> 
+> Our RK3588 Jaguar main PCBA also has two proprietary camera connectors.
+> It would make sense to test that applying a dtso for main PCBA is not
+> messing with applying a dtso for the camera module on the adapter.
+> 
+> This is a bit theoretical at the moment though since there's no camera
+> stack available for RK3588.
+> 
+>>   - Individual tests may be ignored in favor of (a) composition(s) that
+>>     cover(s) all individual tests.
+>>
+>> But of course this is likely to vary from case to case. In our case, in
+>> the composition
+>>
+>>    rk3568-wolfvision-pf5-vz-2-uhd := rk3568-wolfvision-pf5.dtb \
+>>      rk3568-wolfvision-pf5-io-expander.dtbo \
+>>      rk3568-wolfvision-pf5-display-vz.dtbo
+>>
+>> would do the trick.
+>>
+> 
+> Thanks, will send a patch for that in v3.
+
+That'd be great, thanks!
+
+Regards, Michael
+
+> 
+> Cheers,
+> Quentin
 
