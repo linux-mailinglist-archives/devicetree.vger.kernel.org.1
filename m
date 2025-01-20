@@ -1,98 +1,313 @@
-Return-Path: <devicetree+bounces-139854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58293A172A3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 19:21:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 034AFA172C4
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 19:48:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 532717A20A0
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 18:21:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 913751889B96
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 18:48:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C32801EE019;
-	Mon, 20 Jan 2025 18:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122D3188724;
+	Mon, 20 Jan 2025 18:48:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I42zZSyn"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EYlAEDmo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A595192B75;
-	Mon, 20 Jan 2025 18:21:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D373156678;
+	Mon, 20 Jan 2025 18:48:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737397261; cv=none; b=kK52Kpdpwibwz5nu9INDAbsKokWtvkj6GJaaGLff05CK1AVSckhh0Drt2+kb37WUYcnjPhL8rUeNkzur5TdSORdnGyYRGX4YUe135MAQZC0MV1q68qayPjeY7El4lW8RAUcqJQFwSuAQnxBpFB/CDyBoawGAUhSKukiYyvMfN6g=
+	t=1737398899; cv=none; b=FoB+Dx2NJ284qNFyVGpN2bmKU7lxo9/H3AaXjEFVTnDvGHLOd63ofN4p9a7UMOgrpS8hfqGwxM2N1nuNXJH0QkVlf8NVnsHVWxYWQCnPG+gjISA4W+ikWmJBEXxZ8VSy216JvMf+1ZBXJbfP57jtNBKJysr4zKhOE/+ea0tR9FE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737397261; c=relaxed/simple;
-	bh=tSR0bjPajNz5uk01AJ7C15FQp5lTvDoxEJKT3Af8bIE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S5NfElbBM1ZsEFRLgIpb+MaDq76cIRJUMsZlDQjSyzgf70hnz1KPHEReNXPT/GvT5XzqcAQAmNnHbNoPwuXoMRGV1BLSa1jEL8A95lyu1+67c78h1jjpDCoPNGHTMPm2oaLSn/UrVxLtO+j+kO2S6AZjHp/TzBYbWafKs4+AeRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I42zZSyn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE847C4CEDD;
-	Mon, 20 Jan 2025 18:20:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737397261;
-	bh=tSR0bjPajNz5uk01AJ7C15FQp5lTvDoxEJKT3Af8bIE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=I42zZSynzOQ5mZYn2EFwG2g9PwioHSd5uTIzAMTFKvJS7zmblxtL3DypI758wNUUj
-	 aMhSI2lfXD+MU5flo9mVFIEIw1MbA4QO3OzPqCOfGK3gd0MYgypgL9GrbS2etZnWqQ
-	 u8q/ENS/8smQH1X2mJdF2bIPcqCQCLCX2HEpfrI8xfbgp8TQ9p5tg4znMiFHKLA51Y
-	 1a5xUo3+e/PcmPrVKQQW7LXxHLXHL4pb+FhGabCbztN7QF7P5eA7Du/s6pF/DZWjMB
-	 ASmBkdlG5cT6I10FgHnAxqLbOVrrHaCeYlCmBQ2wa+rHBmzNv6O6SHFZNWTjJznBQ4
-	 kOOVCFkJCFXvQ==
-Date: Mon, 20 Jan 2025 18:20:56 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	s=arc-20240116; t=1737398899; c=relaxed/simple;
+	bh=t5j6/xb9wRBJfV3KlTzoDsRE6qny8nT6MBzGBHuo0rg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jzT/H6rzuCWaAvHbPWJQQWxkR5yXqpRdfZGvsYDaJWgzuKgMXTHxQyzpGkJr+obUzG5P8vcM/lx303vr646ELDg87nVUGzZqCP+JWnWvo5rahfuM1yG1mpAcoKmEptK7Dh/C77vOxwjY+82XbJHoZ0lCX7A4TXHC7DzqfRzobBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EYlAEDmo; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-385de9f789cso3707894f8f.2;
+        Mon, 20 Jan 2025 10:48:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737398895; x=1738003695; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=S8Seydpbd7RN4//dau0WHbnEJIo9MdsVN3XRt1Twru0=;
+        b=EYlAEDmohaGuMT+TX8jdC/mEfXfXeN5hAlT49IF4GppNOPm3lbDBAztaA34ovTQJPC
+         NrvMX64Gpf/7Dr6l3UXTsH+qKRtYJUdS2fDcL/FYEi+Ot0Hj3nPoLaShZFk/7p4Oa5HK
+         jlnnZR3wTR5uJ7G4RlK9r2Js15BHmSqt7vlTvuUj9LpD1+scaa6SuOdWlnHEWU8ikHS1
+         dqBznMShPXt51L9aCil/Av12DsQbrq+Iv0XNW0x3dHFKzMjovHDHMdP1pI8MwKbZnX9v
+         OVUyNLpWt+OCgAvflin3n6lDL8r77R9/aTUW+quiOWaQIyev5mv2TqkDMdQEsT5iMkcm
+         ObTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737398895; x=1738003695;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S8Seydpbd7RN4//dau0WHbnEJIo9MdsVN3XRt1Twru0=;
+        b=eWV2GrTWI/JNxcchr8Az2fDZzikBlo5j8DQgV6LQlI/Ark+oqC6cC8CoxRHcfEEcHe
+         R2wFJTtCbyKL5WL6Pf61rEv8Uf3bqJTJ8yQSDW6VfTymORj8rsNbLnu3xeKHpH3gR7XR
+         A8ftMIAmB5p6NPXbOMvz54zSxWdWZDzsjoWCNCOFhFRdzYdFmVDTvc0OzosKiTziMHE/
+         BUme5c1rRwhr5AN3go7ZZGWz8OwigpjXFs+iM4RuD9L578lQR64njF8Eb5enmV/85q6H
+         12bmiTLwY/Z8D38x07B8TTI6B6wgZFrSzA6CaPU4E+t+PMaWPNJTDib6CNSfdjogokvh
+         QwxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVpL662Ukxr2OBpUPkkvnkidZH7bbvN7scvNfG+uMo/8sxMLCX05mFEUhq58QjuoEvDbpofBLZIWsztjGkG@vger.kernel.org, AJvYcCWWRUaneiJ18JSKJtHSCkV/qPeMUil0WaFDScAqOYQaC7g5h0pPyfGjMWyjfeHlogvg7rffwj+A28VR@vger.kernel.org, AJvYcCXzJlGHNAnoAEMp3r07+4kW7QBTyR41DHtwiZnxKgxG8Un1nwrPO9XoWfCzQLj/I2JP5kU/7zM1GGme@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9vs+ZH3GT/f/xyK06kttKxOX+2ucbE7cj+QLBQo4plNYInJUM
+	hDyeFYwWayZ0JJCg6AiIgmAMX3NXrn3zD1DtLE4g7yh8WxI1r4UcLqNOyA==
+X-Gm-Gg: ASbGnctKbsenRuJI03bdB3p8OaEkkN7buCT4K8kFuJJw+JI+ndmCHkeS16hhj0e+pkJ
+	Pmf6S48ZCDqoxIHrrnwi6vP3RFS9y+XRd2DbNshk3B3Inkt+s8vdPOGxeapeV4dngKiRiAAw1J9
+	Le/t9ZrVgLeVv2uvGAUAn5FQTmqTYDTso00U/e1Fo0Q6WnmWguHRs+kHFAnK505jSZUOxlZx+Zc
+	m2zHbBHPiM0OhqDAb6lwl40rMva+LJun3GDMKLsJDoSbcbKU0VxPWLy826Ts/1hMKELUaNm3BND
+	EGCYZmZQ3j/nX55wDNPzZo7t8jyHWT+8dywNSbg=
+X-Google-Smtp-Source: AGHT+IHdc8xiYtH4eGE52ikJIMkZ5teueIyjohP596cdY4yzLLgnrH7k/sLT0W0Fb/5CsCENj4sPrw==
+X-Received: by 2002:a05:6000:1788:b0:382:3c7b:9ae with SMTP id ffacd0b85a97d-38bf56633damr14023832f8f.16.1737398895134;
+        Mon, 20 Jan 2025 10:48:15 -0800 (PST)
+Received: from localhost.localdomain (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-38bf3215023sm11095390f8f.9.2025.01.20.10.48.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jan 2025 10:48:14 -0800 (PST)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Chaotian Jing <chaotian.jing@mediatek.com>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de
-Subject: Re: [PATCH v2 2/2] regulator: dt-bindings: Add
- regulator-power-budget-milliwatt property
-Message-ID: <20250120-gents-partner-0fc6c66ac9fd@spud>
-References: <20250115-feature_regulator_pw_budget-v2-0-0a44b949e6bc@bootlin.com>
- <20250115-feature_regulator_pw_budget-v2-2-0a44b949e6bc@bootlin.com>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wenbin Mei <wenbin.mei@mediatek.com>,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	upstream@airoha.com
+Cc: Christian Marangi <ansuelsmth@gmail.com>
+Subject: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add eMMC for AN7581
+Date: Mon, 20 Jan 2025 19:47:01 +0100
+Message-ID: <20250120184728.18325-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="PPgVnGEKZgaBk2qc"
-Content-Disposition: inline
-In-Reply-To: <20250115-feature_regulator_pw_budget-v2-2-0a44b949e6bc@bootlin.com>
+Content-Transfer-Encoding: 8bit
 
+Document eMMC compatible for AN7581. This eMMC controller doesn't have
+regulator exposed to the system and have a single clock only for source
+clock and only default pintctrl.
 
---PPgVnGEKZgaBk2qc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Rework the schema to permit these new requirements and make supply
+optional only for airoha,an7581-mmc compatible.
 
-On Wed, Jan 15, 2025 at 03:41:58PM +0100, Kory Maincent wrote:
-> Introduce a new property to describe the power budget of the regulator.
-> This property will allow power management support for regulator consumers
-> like PSE controllers, enabling them to make decisions based on the
-> available power capacity.
->=20
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+Also provide an example for airoha,an7581-mmc.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+Changes v2:
+- Drop else condition
+- Move Required and pinctrl property to dedicated if condition
 
---PPgVnGEKZgaBk2qc
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../devicetree/bindings/mmc/mtk-sd.yaml       | 116 +++++++++++++++++-
+ 1 file changed, 110 insertions(+), 6 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+index f86ebd81f5a5..4c1da48aaa1b 100644
+--- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
++++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+@@ -14,6 +14,7 @@ properties:
+   compatible:
+     oneOf:
+       - enum:
++          - airoha,an7581-mmc
+           - mediatek,mt2701-mmc
+           - mediatek,mt2712-mmc
+           - mediatek,mt6779-mmc
+@@ -48,11 +49,11 @@ properties:
+   clocks:
+     description:
+       Should contain phandle for the clock feeding the MMC controller.
+-    minItems: 2
++    minItems: 1
+     maxItems: 7
+ 
+   clock-names:
+-    minItems: 2
++    minItems: 1
+     maxItems: 7
+ 
+   interrupts:
+@@ -72,7 +73,7 @@ properties:
+       Should at least contain default and state_uhs. To support SDIO in-band wakeup, dat1 pin
+       will be switched between GPIO mode and SDIO DAT1 mode, state_eint is mandatory in this
+       scenario.
+-    minItems: 2
++    minItems: 1
+     items:
+       - const: default
+       - const: state_uhs
+@@ -170,9 +171,6 @@ required:
+   - clock-names
+   - pinctrl-names
+   - pinctrl-0
+-  - pinctrl-1
+-  - vmmc-supply
+-  - vqmmc-supply
+ 
+ allOf:
+   - $ref: mmc-controller.yaml#
+@@ -275,12 +273,14 @@ allOf:
+     then:
+       properties:
+         clocks:
++          minItems: 2
+           items:
+             - description: source clock
+             - description: HCLK which used for host
+             - description: Advanced eXtensible Interface
+             - description: Advanced High-performance Bus clock
+         clock-names:
++          minItems: 2
+           items:
+             - const: source
+             - const: hclk
+@@ -317,6 +317,7 @@ allOf:
+     then:
+       properties:
+         clocks:
++          minItems: 2
+           items:
+             - description: source clock
+             - description: HCLK which used for host
+@@ -326,6 +327,7 @@ allOf:
+             - description: AXI bus clock gate
+             - description: AHB bus clock gate
+         clock-names:
++          minItems: 2
+           items:
+             - const: source
+             - const: hclk
+@@ -335,6 +337,89 @@ allOf:
+             - const: axi_cg
+             - const: ahb_cg
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: airoha,an7581-mmc
++    then:
++      properties:
++        clocks:
++          items:
++            - description: source clock
++
++        clock-names:
++          items:
++            - const: source
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - mediatek,mt2701-mmc
++            - mediatek,mt2712-mmc
++            - mediatek,mt6779-mmc
++            - mediatek,mt6795-mmc
++            - mediatek,mt7620-mmc
++            - mediatek,mt7622-mmc
++            - mediatek,mt7623-mmc
++            - mediatek,mt7986-mmc
++            - mediatek,mt7988-mmc
++            - mediatek,mt8135-mmc
++            - mediatek,mt8173-mmc
++            - mediatek,mt8183-mmc
++            - mediatek,mt8186-mmc
++            - mediatek,mt8188-mmc
++            - mediatek,mt8192-mmc
++            - mediatek,mt8195-mmc
++            - mediatek,mt8196-mmc
++            - mediatek,mt8365-mmc
++            - mediatek,mt8516-mmc
++    then:
++      properties:
++        pinctrl-names:
++          minItems: 2
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: airoha,an7581-mmc
++    then:
++      properties:
++        pinctrl-names:
++          items:
++            - const: default
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - mediatek,mt2701-mmc
++            - mediatek,mt2712-mmc
++            - mediatek,mt6779-mmc
++            - mediatek,mt6795-mmc
++            - mediatek,mt7620-mmc
++            - mediatek,mt7622-mmc
++            - mediatek,mt7623-mmc
++            - mediatek,mt7986-mmc
++            - mediatek,mt7988-mmc
++            - mediatek,mt8135-mmc
++            - mediatek,mt8173-mmc
++            - mediatek,mt8183-mmc
++            - mediatek,mt8186-mmc
++            - mediatek,mt8188-mmc
++            - mediatek,mt8192-mmc
++            - mediatek,mt8195-mmc
++            - mediatek,mt8196-mmc
++            - mediatek,mt8365-mmc
++            - mediatek,mt8516-mmc
++    then:
++      required:
++        - pinctrl-1
++        - vmmc-supply
++        - vqmmc-supply
++
+ unevaluatedProperties: false
+ 
+ examples:
+@@ -389,5 +474,24 @@ examples:
+         vqmmc-supply = <&mt6397_vgp3_reg>;
+         mmc-pwrseq = <&wifi_pwrseq>;
+     };
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/en7523-clk.h>
++    mmc@1fa0e000 {
++        compatible = "airoha,an7581-mmc";
++        reg = <0x1fa0e000 0x1000>,
++              <0x1fa0c000 0x60>;
++        clocks = <&scuclk EN7581_CLK_EMMC>;
++        clock-names = "source";
++        interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
++        pinctrl-names = "default";
++        pinctrl-0 = <&mmc_pins>;
++        bus-width = <4>;
++        max-frequency = <52000000>;
++        disable-wp;
++        cap-mmc-highspeed;
++        non-removable;
++    };
+ 
+ ...
+-- 
+2.47.1
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ46UCAAKCRB4tDGHoIJi
-0pXxAQDWS2UPtHU0jv5wt5yqIfcCLZ+mOnAHS7Ulzo7DOEq1/AEAsCNhtlWy3GY4
-4dKcD2g3kt0u5xvhqFjUKAlO2mEthA8=
-=I3Sd
------END PGP SIGNATURE-----
-
---PPgVnGEKZgaBk2qc--
 
