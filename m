@@ -1,408 +1,292 @@
-Return-Path: <devicetree+bounces-139744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85729A16C46
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:23:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B353BA16C57
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:28:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F8681888E72
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 12:23:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 441DF18834AA
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 12:28:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FF791DF743;
-	Mon, 20 Jan 2025 12:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0003E1DFD87;
+	Mon, 20 Jan 2025 12:28:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pWSbIlvT"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="jYvunCzR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F9881917F9;
-	Mon, 20 Jan 2025 12:23:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F03BE1B0F18
+	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 12:28:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737375821; cv=none; b=LElsL7+GorNX8JuBMJh38h2Ru5a7eXHoCk/cPfslLzGC3ojTrd1z4GjaMIwg0LHEfy/PbZs5QeuGiJI1N+VCbkW2EURFJ7SHKy2QP+Q/PgDHbv/uU4nebN0gbUyWTEQNsscnARZSZGndsaMDvLqJlctt/mqqsG2ZW62k+O/3pzE=
+	t=1737376106; cv=none; b=iu3+dqBo5eeFlmMMMsmbH9uf91KE4KgpJ/VJyM1k6nsLqLkDjTKLSwSupPxGHNnYRDMERz3vbBfDj32Qqhbz9YlHm6ox4N9X5DTgGc/kTcsm0YwfxghWpyAlFOvfXJs4QZn+dQ+P5xBIgM4lUCUN5jNIBv246dpXuNb4FLRDdOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737375821; c=relaxed/simple;
-	bh=zu9vsVvhED70f/LPHYWIlfe+I4fG057OYGUfoVCiomk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sE78vIdcfpk7Ww9i/oz9B75yXWieY246MlYqrtc4P2e4xzM8QmxWIBbHJlcov5z2zBrb48h3XdRJKd4PDyXKtYChPcmIv+xx9AnShdxWn86Ha0+pBoR0IftsHS9jr/uVRc+NDdg2odRg2Fks/S1YgUlm79YiH0/hp2hMMTQJ10k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pWSbIlvT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C66AEC4CEDD;
-	Mon, 20 Jan 2025 12:23:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737375820;
-	bh=zu9vsVvhED70f/LPHYWIlfe+I4fG057OYGUfoVCiomk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=pWSbIlvTyL8kNVCT1Lkho4J9zn/bcsSpN4rMT9NYfAaccbGPwBoCSA5Cd7vqNCxHN
-	 f6ANrFOPYEkgRkMw+LPmrAP2pO5MSK0NsRPyJ/K+y2+alum2mrqivcQGFw9UVTy0XO
-	 dTlyGnQI2UTp8hE4e+xxCqDxYqDevJk206NVERAZv2m6LqurqgSkv92wGBS926Gm6U
-	 He8vD5I4SrW9qZWdQEK/81446UOQeNRb3ZPuXLn4q7tMqyi66gKTwiaIxHfNHaTiEd
-	 xHbFAfiqFaAWgEJf1wiUHwm6DsADc+dS7L59YQCBCQTXH158u66drooQcv5o5HI3K9
-	 dRV5VwJ8YgSdQ==
-Message-ID: <2fb2db33-9d45-442a-bfb9-55173751f20f@kernel.org>
-Date: Mon, 20 Jan 2025 13:23:33 +0100
+	s=arc-20240116; t=1737376106; c=relaxed/simple;
+	bh=CK3xPvQnCokeTskE75DijI6ZmLLDOJM1rjdUxpcDxnc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M7fr3JBAfbjUbIPn/QcoV57qMKgwAYgV8Vu3HzryfBiiwWYfv2IHQhKS0/ilb6dhzsyHe1yjUNnaWCA5UnbvWBXrIH4fGn17BpvOqIOFCtDuxET/NafDxZwDoHozmFOgpLeNpstN7afNVtwq0dvE/LNf/EFpuypvrU254xox2xM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=jYvunCzR; arc=none smtp.client-ip=209.85.219.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e399e904940so6543439276.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 04:28:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1737376104; x=1737980904; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lV70bDDXqQSLTw4jmAF3p1crqVCV8bGnlVi82KemcAo=;
+        b=jYvunCzRUFPRE9VhbBlPh0Vuny2H7Ce9cG+zFR2KNDH33BcW/h/10wQh4EQ4P3pMXu
+         yi6O/X5Ag0eCC1y3KflnpXwwsHZ1FnLrTveZ19c3wYrBj0q/cg35mfGsTHl4vbE2hm4m
+         BcJMrroy5v4flCMuv0LopwuJJWM4AwKmFuZQsf0zh4wIe262iq4BCPApiCPIUP0vZsza
+         ibJuZRDmNae5tzCSuflhk/uq4U/5kcv0keA9tkxzmKHDWO69ih9UThTYN+aqCmMaYQWF
+         FZ3ES2HoJehOcWkgtCCwAZdNEPynVibLDEuqXMZonarXtCD3sWDqtgqZgsptQoBXDi+L
+         Kvsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737376104; x=1737980904;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lV70bDDXqQSLTw4jmAF3p1crqVCV8bGnlVi82KemcAo=;
+        b=BqwHDUJI/1Qm96mED96iQ67gLGKaQugsAddgFpejrxmjAgYPgHrvAQd8ppv7EhKjY1
+         KPhjOPIlHO6u3222hPfJhLSQ80vmSnBxRo+Ur9IBOnD5C8VMqSOyOEXn02nThEGy9ZZg
+         HMk3eImhzGu10qiXDlQp+moDWvlBvuqYrF+biE/1oTRthLuG+gwxifr3bZaLCnJ5LFYV
+         RrtheuWQlYg21CxI/XkXYg47CnHDMmvbaf81pL0m1RBfUvuyMZkgjQufTTR4t55WnRLF
+         GAgdk3QutBnb9cE/aiMhig9bkcuUFbY6EN4nzo1vWVdTGRtQvrQVN5jroY6R7focGEjj
+         jTSw==
+X-Forwarded-Encrypted: i=1; AJvYcCVRqNfAzu2mJSPPFDdnRyI7k2kMZtCh3RJB2CjfkXo4DmojqQC/fNdvycDplCDr6VDmKbMagwqx1HUe@vger.kernel.org
+X-Gm-Message-State: AOJu0YxajkvWHm27FXqcvU99V6IkFWjcAO4CcD6s33S3oVq0BwauB9E4
+	py5C5jjyrdHwEsxSSP4O6SsRILALuHA5xeySDYgtBFUgR1GB3BlMWygiRXPOSPpvil2XTePhC/B
+	0LFEmkhaW9OnIX0WLf9d54UR3Ob2rSL/IS5kz5Q==
+X-Gm-Gg: ASbGncv+57KpkLIg1wDspAKfbRvkwCfqdNY7CfUKN/s6ox0nTeAjN0K9r21BGmXUb/b
+	19vTOnKCI/xcdaE01BAwQdvt0w+PSRs2xZ6tZKFxj4M1I6S8ZRPM=
+X-Google-Smtp-Source: AGHT+IEhfd+/gGOPLvTpociBdpXw2s58VpFJSOGSJCUMcfxjlEAS0gGRWbnet6vzaQc6nMmbQQiuNydoXMF+3Vju6ak=
+X-Received: by 2002:a05:6902:2387:b0:e57:3bef:e083 with SMTP id
+ 3f1490d57ef6-e57b135201fmr9723975276.43.1737376103848; Mon, 20 Jan 2025
+ 04:28:23 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 4/5] firmware: imx: add driver for NXP EdgeLock
- Enclave
-To: Pankaj Gupta <pankaj.gupta@nxp.com>, Jonathan Corbet <corbet@lwn.net>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20250120-imx-se-if-v12-0-c5ec9754570c@nxp.com>
- <20250120-imx-se-if-v12-4-c5ec9754570c@nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250120-imx-se-if-v12-4-c5ec9754570c@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20200110200915.22575-1-andrey.konovalov@linaro.org>
+ <20200110200915.22575-3-andrey.konovalov@linaro.org> <Z44soIWngnmCjoe6@kekkonen.localdomain>
+In-Reply-To: <Z44soIWngnmCjoe6@kekkonen.localdomain>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Mon, 20 Jan 2025 12:28:04 +0000
+X-Gm-Features: AbW1kvaiuOZQSNGomDp4EsawWoPbCa79FN43ZoZFckeOa6XV8JIiDtpsNJu29Ow
+Message-ID: <CAPY8ntBXwUmjSgb2z65mUZ1GSEUT8oczQMN+dewaevz9HemYag@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] media: i2c: Add driver for Sony IMX219 sensor
+To: Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: robh+dt@kernel.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, peter.griffin@linaro.org, ezequiel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
 
-On 20/01/2025 17:52, Pankaj Gupta wrote:
-> NXP hardware IP(s) for secure-enclaves like Edgelock Enclave(ELE),
-> are embedded in the SoC to support the features like HSM, SHE & V2X,
-> using message based communication interface.
+Hi Sakari
 
-Fix your machine so this is not a "future" work.
+On Mon, 20 Jan 2025 at 10:59, Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
+>
+> Hi Dave,
+>
+> On Fri, Jan 10, 2020 at 11:09:15PM +0300, Andrey Konovalov wrote:
+> > +/* Power/clock management functions */
+> > +static int imx219_power_on(struct device *dev)
+> > +{
+> > +     struct i2c_client *client = to_i2c_client(dev);
+> > +     struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> > +     struct imx219 *imx219 = to_imx219(sd);
+> > +     int ret;
+> > +
+> > +     ret = regulator_bulk_enable(IMX219_NUM_SUPPLIES,
+> > +                                 imx219->supplies);
+> > +     if (ret) {
+> > +             dev_err(&client->dev, "%s: failed to enable regulators\n",
+> > +                     __func__);
+> > +             return ret;
+> > +     }
+> > +
+> > +     ret = clk_prepare_enable(imx219->xclk);
+> > +     if (ret) {
+> > +             dev_err(&client->dev, "%s: failed to enable clock\n",
+> > +                     __func__);
+> > +             goto reg_off;
+> > +     }
+> > +
+> > +     gpiod_set_value_cansleep(imx219->reset_gpio, 1);
+> > +     msleep(IMX219_XCLR_DELAY_MS);
+> > +
+> > +     return 0;
+> > +reg_off:
+> > +     regulator_bulk_disable(IMX219_NUM_SUPPLIES, imx219->supplies);
+> > +     return ret;
+> > +}
+> > +
+> > +static int imx219_power_off(struct device *dev)
+> > +{
+> > +     struct i2c_client *client = to_i2c_client(dev);
+> > +     struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> > +     struct imx219 *imx219 = to_imx219(sd);
+> > +
+> > +     gpiod_set_value_cansleep(imx219->reset_gpio, 0);
+>
+> The polarity of the reset GPIO appears to be wrong above. Given it works
+> somewhere (arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso), the
+> existing DTS files have it wrong, too. The bindings still appear to
+> document it correctly.
 
-> 
-> The secure enclave FW communicates on a dedicated messaging unit(MU)
-> based interface(s) with application core, where kernel is running.
-> It exists on specific i.MX processors. e.g. i.MX8ULP, i.MX93.
-> 
-> This patch adds the driver for communication interface to secure-enclave,
+Why do you say it is wrong?
+I don't recall why this got called reset-gpio - the signal on the
+sensor is XCLR, and that is documented in the binding.
+The datasheet says low is standby and high is active, which matches
+what the driver does.
 
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+> Laurent confirmed xcrl isn't controllable in the RPi imx219 camera module.
+>
+> How about fixing this? Currently correctly written DTBs including imx219
+> won't work.
 
+Seeing as the DTB is ABI, the only improvement I can see is to rename
+"imx219->reset_gpio" to "imx219->xclr_gpio".
+What else would you be proposing?
 
-> for exchanging messages with NXP secure enclave HW IP(s) like EdgeLock
-> Enclave (ELE) from Kernel-space, used by kernel management layers like
-> - DM-Crypt.
-> 
-> Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
-> ---
+  Dave
 
-
-
-> +int ele_fetch_soc_info(struct se_if_priv *priv, void *data)
-> +{
-> +	int err;
-> +
-> +	err = ele_get_info(priv, data);
-> +	if (err < 0)
-> +		return err;
-> +
-> +	return err;
-> +}
-> +
-> +int ele_ping(struct se_if_priv *priv)
-> +{
-> +	struct se_api_msg *tx_msg __free(kfree) = NULL;
-> +	struct se_api_msg *rx_msg __free(kfree) = NULL;
-> +	int ret = 0;
-> +
-> +	if (!priv) {
-> +		ret = -EINVAL;
-> +		goto exit;
-
-This does not make sense. return.... but is this even possible?
-
-
-> +	}
-> +
-> +	tx_msg = kzalloc(ELE_PING_REQ_SZ, GFP_KERNEL);
-> +	if (!tx_msg) {
-> +		ret = -ENOMEM;
-
-return -ENOMEM.
-
-> +		goto exit;
-
-Please read in coding style how gotos are supposed to be used.
-
-> +	}
-> +
-> +	rx_msg = kzalloc(ELE_PING_RSP_SZ, GFP_KERNEL);
-> +	if (!rx_msg) {
-> +		ret = -ENOMEM;
-> +		goto exit;
-> +	}
-> +
-> +	ret = se_fill_cmd_msg_hdr(priv,
-> +				      (struct se_msg_hdr *)&tx_msg->header,
-> +				      ELE_PING_REQ, ELE_PING_REQ_SZ, true);
-
-
-Fix your coding style - run checkpatch strict on this.
-
-> +	if (ret) {
-> +		dev_err(priv->dev, "Error: se_fill_cmd_msg_hdr failed.\n");
-> +		goto exit;
-> +	}
-> +
-
-
-...
-
-> +int ele_get_info(struct se_if_priv *priv, struct ele_dev_info *s_info);
-> +int ele_fetch_soc_info(struct se_if_priv *priv, void *data);
-> +int ele_ping(struct se_if_priv *priv);
-> +int ele_service_swap(struct se_if_priv *priv,
-> +		     phys_addr_t addr,
-> +		     u32 addr_size, u16 flag);
-> +int ele_fw_authenticate(struct se_if_priv *priv, phys_addr_t addr);
-> +#endif
-> diff --git a/drivers/firmware/imx/ele_common.c b/drivers/firmware/imx/ele_common.c
-> new file mode 100644
-> index 000000000000..67d1fa761172
-> --- /dev/null
-> +++ b/drivers/firmware/imx/ele_common.c
-> @@ -0,0 +1,324 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2024 NXP
-> + */
-> +
-> +#include "ele_base_msg.h"
-> +#include "ele_common.h"
-> +
-> +u32 se_add_msg_crc(u32 *msg, u32 msg_len)
-> +{
-> +	u32 nb_words = msg_len / (u32)sizeof(u32);
-> +	u32 crc = 0;
-> +	u32 i;
-> +
-> +	for (i = 0; i < nb_words - 1; i++)
-> +		crc ^= *(msg + i);
-> +
-> +	return crc;
-> +}
-> +
-> +int ele_msg_rcv(struct se_if_priv *priv,
-> +		struct se_clbk_handle *se_clbk_hdl)
-> +{
-> +	int err = 0;
-> +
-> +	do {
-> +		/* If callback is executed before entrying to wait state,
-
-It is not a networking device. Use Linux coding style.
-
-You already got such comment long time ago and not much improved.
-
-
-> +
-> +static int se_if_probe(struct platform_device *pdev)
-> +{
-> +	const struct se_if_node_info_list *info_list;
-> +	const struct se_if_node_info *info;
-> +	struct device *dev = &pdev->dev;
-> +	struct se_fw_load_info *load_fw;
-> +	struct se_if_priv *priv;
-> +	u32 idx;
-> +	int ret;
-> +
-> +	idx = GET_IDX_FROM_DEV_NODE_NAME(dev->of_node);
-
-
-NAK. Node can be called firmware and your entire driver collapes.
-
-> +	info_list = device_get_match_data(dev);
-> +	if (idx >= info_list->num_mu) {
-> +		dev_err(dev,
-> +			"Incorrect node name :%s\n",
-> +			dev->of_node->full_name);
-
-Nope. "firmware" or "secure" are correct node names. Where did you
-document this ABI?
-
-> +		dev_err(dev,
-> +			"%s-<index>, acceptable index range is 0..%d\n",
-> +			dev->of_node->name,
-> +			info_list->num_mu - 1);
-> +		ret = -EINVAL;
-> +		return ret;
-> +	}
-> +
-> +	info = &info_list->info[idx];
-> +	if (!info) {
-> +		ret = -EINVAL;
-> +		goto exit;
-> +	}
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv) {
-> +		ret = -ENOMEM;
-> +		goto exit;
-
-Nope, You don't get how common exit works. You are supposed to clean up
-in comon exit paths, not print error paths, especially ones which are
-not welcomed - like here.
-
-> +	}
-> +
-> +	priv->dev = dev;
-> +	priv->if_defs = &info->if_defs;
-> +	dev_set_drvdata(dev, priv);
-> +
-> +	ret = devm_add_action(dev, se_if_probe_cleanup, pdev);
-> +	if (ret)
-> +		goto exit;
-> +
-> +
-> +	/* Mailbox client configuration */
-> +	priv->se_mb_cl.dev		= dev;
-> +	priv->se_mb_cl.tx_block		= false;
-> +	priv->se_mb_cl.knows_txdone	= true;
-> +	priv->se_mb_cl.rx_callback	= se_if_rx_callback;
-> +
-> +	ret = se_if_request_channel(dev, &priv->tx_chan,
-> +			&priv->se_mb_cl, MBOX_TX_NAME);
-> +	if (ret)
-> +		goto exit;
-> +
-> +	ret = se_if_request_channel(dev, &priv->rx_chan,
-> +			&priv->se_mb_cl, MBOX_RX_NAME);
-> +	if (ret)
-> +		goto exit;
-> +
-> +	mutex_init(&priv->se_if_cmd_lock);
-> +
-> +	init_completion(&priv->waiting_rsp_clbk_hdl.done);
-> +	init_completion(&priv->cmd_receiver_clbk_hdl.done);
-> +
-> +	if (info->pool_name) {
-> +		priv->mem_pool = of_gen_pool_get(dev->of_node,
-> +							 info->pool_name, 0);
-> +		if (!priv->mem_pool) {
-> +			dev_err(dev,
-> +				"Unable to get sram pool = %s\n",
-> +				info->pool_name);
-> +			goto exit;
-
-Why do you print erros twice?
-
-> +		}
-> +	}
-> +
-> +	if (info->reserved_dma_ranges) {
-> +		ret = of_reserved_mem_device_init(dev);
-> +		if (ret) {
-> +			dev_err(dev,
-> +				"failed to init reserved memory region %d\n",
-> +				ret);
-> +			goto exit;
-> +		}
-> +	}
-> +
-> +	if (info->if_defs.se_if_type == SE_TYPE_ID_HSM) {
-> +		ret = se_soc_info(priv);
-> +		if (ret) {
-> +			dev_err(dev,
-> +				"failed[%pe] to fetch SoC Info\n", ERR_PTR(ret));
-> +			goto exit;
-> +		}
-> +	}
-> +
-> +	/* By default, there is no pending FW to be loaded.*/
-> +	if (info_list->se_fw_img_nm.prim_fw_nm_in_rfs ||
-> +			info_list->se_fw_img_nm.seco_fw_nm_in_rfs) {
-> +		load_fw = get_load_fw_instance(priv);
-> +		load_fw->se_fw_img_nm = &info_list->se_fw_img_nm;
-> +		load_fw->is_fw_loaded = false;
-> +
-> +		if (info_list->se_fw_img_nm.prim_fw_nm_in_rfs) {
-> +			/* allocate buffer where SE store encrypted IMEM */
-> +			load_fw->imem.buf = dmam_alloc_coherent(priv->dev, ELE_IMEM_SIZE,
-> +								&load_fw->imem.phyaddr,
-> +								GFP_KERNEL);
-> +			if (!load_fw->imem.buf) {
-> +				dev_err(priv->dev,
-> +					"dmam-alloc-failed: To store encr-IMEM.\n");
-> +				ret = -ENOMEM;
-> +				goto exit;
-> +			}
-> +			load_fw->imem_mgmt = true;
-> +		}
-> +	}
-> +	dev_info(dev, "i.MX secure-enclave: %s%d interface to firmware, configured.\n",
-> +			SE_TYPE_STR_HSM,
-> +			priv->if_defs->se_instance_id);
-
-Drop probe success. Useless.
-
-> +	return ret;
-> +
-> +exit:
-> +	/* if execution control reaches here, if probe fails.
-> +	 */
-
-Obvious comment.
-
-> +	return dev_err_probe(dev, ret, "%s: Probe failed.", __func__);
-
-Drop. I think I asked already long time - like 10 revisiosn ago - to
-drop simple function debug messages. Look at other drivers how exit
-paths are handled.
-
-
-
-Best regards,
-Krzysztof
+> I noticed this while fixing the power sequences in this and a few other
+> drivers.
+>
+> > +     regulator_bulk_disable(IMX219_NUM_SUPPLIES, imx219->supplies);
+> > +     clk_disable_unprepare(imx219->xclk);
+> > +
+> > +     return 0;
+> > +}
+>
+> ...
+>
+> > +static int imx219_probe(struct i2c_client *client,
+> > +                     const struct i2c_device_id *id)
+> > +{
+> > +     struct device *dev = &client->dev;
+> > +     struct fwnode_handle *endpoint;
+> > +     struct imx219 *imx219;
+> > +     int ret;
+> > +
+> > +     imx219 = devm_kzalloc(&client->dev, sizeof(*imx219), GFP_KERNEL);
+> > +     if (!imx219)
+> > +             return -ENOMEM;
+> > +
+> > +     imx219->dev = dev;
+> > +
+> > +     v4l2_i2c_subdev_init(&imx219->sd, client, &imx219_subdev_ops);
+> > +
+> > +     /* Get CSI2 bus config */
+> > +     endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(&client->dev),
+> > +                                               NULL);
+> > +     if (!endpoint) {
+> > +             dev_err(dev, "endpoint node not found\n");
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     ret = v4l2_fwnode_endpoint_parse(endpoint, &imx219->ep);
+> > +     fwnode_handle_put(endpoint);
+> > +     if (ret) {
+> > +             dev_err(dev, "could not parse endpoint\n");
+> > +             return ret;
+> > +     }
+> > +
+> > +     /* Check the number of MIPI CSI2 data lanes */
+> > +     if (imx219->ep.bus_type != V4L2_MBUS_CSI2_DPHY ||
+> > +         imx219->ep.bus.mipi_csi2.num_data_lanes != 2) {
+> > +             dev_err(dev, "only 2 data lanes are currently supported\n");
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     /* Get system clock (xclk) */
+> > +     imx219->xclk = devm_clk_get(dev, NULL);
+> > +     if (IS_ERR(imx219->xclk)) {
+> > +             dev_err(dev, "failed to get xclk\n");
+> > +             return PTR_ERR(imx219->xclk);
+> > +     }
+> > +
+> > +     imx219->xclk_freq = clk_get_rate(imx219->xclk);
+> > +     if (imx219->xclk_freq != IMX219_XCLK_FREQ) {
+> > +             dev_err(dev, "xclk frequency not supported: %d Hz\n",
+> > +                     imx219->xclk_freq);
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     ret = imx219_get_regulators(imx219);
+> > +     if (ret) {
+> > +             dev_err(dev, "failed to get regulators\n");
+> > +             return ret;
+> > +     }
+> > +
+> > +     /* Request optional enable pin */
+> > +     imx219->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> > +                                                   GPIOD_OUT_HIGH);
+> > +
+> > +     /*
+> > +      * The sensor must be powered for imx219_identify_module()
+> > +      * to be able to read the CHIP_ID register
+> > +      */
+> > +     ret = imx219_power_on(dev);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret = imx219_identify_module(imx219);
+> > +     if (ret)
+> > +             goto error_power_off;
+> > +
+> > +     /* Set default mode to max resolution */
+> > +     imx219->mode = &supported_modes[0];
+> > +
+> > +     ret = imx219_init_controls(imx219);
+> > +     if (ret)
+> > +             goto error_power_off;
+> > +
+> > +     /* Initialize subdev */
+> > +     imx219->sd.internal_ops = &imx219_internal_ops;
+> > +     imx219->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> > +     imx219->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
+> > +
+> > +     /* Initialize source pad */
+> > +     imx219->pad.flags = MEDIA_PAD_FL_SOURCE;
+> > +
+> > +     ret = media_entity_pads_init(&imx219->sd.entity, 1, &imx219->pad);
+> > +     if (ret) {
+> > +             dev_err(dev, "failed to init entity pads: %d\n", ret);
+> > +             goto error_handler_free;
+> > +     }
+> > +
+> > +     ret = v4l2_async_register_subdev_sensor_common(&imx219->sd);
+> > +     if (ret < 0) {
+> > +             dev_err(dev, "failed to register sensor sub-device: %d\n", ret);
+> > +             goto error_media_entity;
+> > +     }
+> > +
+> > +     /* Enable runtime PM and turn off the device */
+> > +     pm_runtime_set_active(dev);
+> > +     pm_runtime_enable(dev);
+> > +     pm_runtime_idle(dev);
+> > +
+> > +     return 0;
+> > +
+> > +error_media_entity:
+> > +     media_entity_cleanup(&imx219->sd.entity);
+> > +
+> > +error_handler_free:
+> > +     imx219_free_controls(imx219);
+> > +
+> > +error_power_off:
+> > +     imx219_power_off(dev);
+> > +
+> > +     return ret;
+> > +}
+>
+> --
+> Kind regards,
+>
+> Sakari Ailus
 
