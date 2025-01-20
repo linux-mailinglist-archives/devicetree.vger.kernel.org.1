@@ -1,124 +1,117 @@
-Return-Path: <devicetree+bounces-139719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09A0FA16ADD
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:37:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDE2DA16B0A
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:52:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EC5D1885BB3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:37:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AF9A18805AF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:52:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126911B4F15;
-	Mon, 20 Jan 2025 10:37:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dooBRSTW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 007E21991CD;
+	Mon, 20 Jan 2025 10:52:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8C31B413E
-	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 10:37:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B7B0187872
+	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 10:52:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737369423; cv=none; b=a3wFh6UYcR0T6/6pgLQvcZPRT1ZQfq/MvpGnAwNf/bTdJLUlItjNBvcT1vOdhlgMr/6tCWTCQsalZq2k0P6cqhslpV1Cc5IfDVEe365krM/895XJi19VVS8Dm5FHHdrDIvEOVR87cPHSSBL7gXbxBhouV2DuCFUbGxbYcXZ7ad0=
+	t=1737370337; cv=none; b=jOuSpJRqf2DTb7PLezaHKH87nYPmw5xTwt0MkSSqj4IHLWmbyTkynz5yFeRdfQ5sAf4nDEjOrZqPnw1pBRm3TTaAeAXk6JdrLuwfLeq/T2cBqbYRZtjPEXFVA9YbIPO/lh1u+29W9z9ceA2np+9OxydLRUi99Y9MTpPQwEFAZzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737369423; c=relaxed/simple;
-	bh=cGFMswoitNfqWi4DCybe65q9S8zd6SKRugROMu9Z7iI=;
+	s=arc-20240116; t=1737370337; c=relaxed/simple;
+	bh=l4NZOoyPjn6KEZ9uTzrHtFXzQhDwwnVvUC4Kvdbod24=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dCBrAxirkueBEpnSXlGRWAwC9zBFlkxcGVd9+fA/W03gim8JisRtH20YF/p5I3xJTBJHnTN5yFhSj6TXC1brweR9iKnXNNhdaqr4zqLOO5dxbEtfLCBXtmfzZ3njOFeP88YYtnKB3/VsQWkBPDp4GQfFgwTFePZ68kRGP+BsRVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dooBRSTW; arc=none smtp.client-ip=209.85.219.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e46ebe19368so6199152276.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 02:37:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737369420; x=1737974220; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=yFMrrqx1Qoj4jKMtWUIzCNPzlSldcF1l8F6opL+IAIw=;
-        b=dooBRSTW+SswPghO2yDrLisFda15AuH0fzbvW1JH5OrykVSv3HVKZMSjrmAXZxzhYL
-         DBxKF4olbLhGvg+ue6ktrUaFH6iw5Mkb665Hx3jwr44sqNCMDJQlHY75Zd2+NyItDJJw
-         YdpwMUuL+j4H2ck1LMrxl1edSngGvJvD1gcFJ77Fetwq2OBLL685i0dwGZx4nw/yljJw
-         1ugZ4DCMkyDWiFOQemk32i4v8aqRkIajkJrG3oTx08citS0xRiixrtbODSxq1ZsMdK+T
-         vuhJMyDUYla2Tynb03+Afe7b8wn3Z/WSbj+v7JQFvMh0reYkDE6I29Up0Zd5VQR6Pzty
-         iwqQ==
+	 To:Cc:Content-Type; b=ita3xP5o429e8oqQLAPowYfEmK5KQmOUFinz/IQeEpBUqKwhKJcNluAo7rdlmWzaGdfgwjINk0LnGHXHUxJSv/xfxnTrQz2HSKTeXd1/6IPLnNpOHJfNip5DAqijrT4bx/juozC2prLaAasEWs+rwroUldPI+9Y/7mlchgZVx/g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-4afdf8520c2so1194845137.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 02:52:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737369420; x=1737974220;
+        d=1e100.net; s=20230601; t=1737370334; x=1737975134;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yFMrrqx1Qoj4jKMtWUIzCNPzlSldcF1l8F6opL+IAIw=;
-        b=aU/Pg3jXV68jlTB6/PmUv2JdEhH0C4WNMI5rZAXeVCYrmMqf534aT6x3IIw3diLizS
-         y7Ol/IUJ1HDEQxPAHIDuG46sCmYgpptaSldOy8NWSZwapoU11bYLojh5mNH/Br3t8aJ4
-         Oipll2HLJQxWL2xMG/vU5xjjK1T/WJ6Xuugk9xhM3Oevptl9akxRU3/KWRfl1lrvuts9
-         WJZeTE/o33o8aYwfR78V75DTF6YD+o7+zue+EXX4bQfqvt+1X99YwbhdSvMID0Ki9dF1
-         5CqIiZHdcaqSE062BQ3rAAdgEfEYBZNZjOfPlPsK6pj1StWcD+IwRnLctCAcCRZSUxSo
-         agTA==
-X-Forwarded-Encrypted: i=1; AJvYcCUTkPHNAo493kbCXtrW8dxmitpnWbNTsoE+EaA9eWrI7o8vcycejrPXHoqdtBuc5Wv8ZnTW51+yQrIc@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqavWdD2I3atj0GIX/9+0Ve5ckgcqScNklPhjNjKZ/KZOCpn54
-	bIe+9JmT2uczjvnAWAN2meTMMoQlw7c5qgh2GxLmxkh2d11yPXdV613ckzSlAY2nFOFmQtqf6Xp
-	51EiOpmWL9KC+qSuWjvrwZOOg9GKvAOQAgnrxyGawKZYXkffo7yk=
-X-Gm-Gg: ASbGnculyJIQBf/m2wrXYMWE9YVYrB+IlOPr/CMkRdnxCYtXqAhuo81vFAk/M9UVLPJ
-	DcKRB7bRweQJWAVyPebsc5Qgu5RKBl13m558orxyf8XN508l3nWU1DKL2mrkhtfqX05jgMg0vBR
-	PQwET8AA==
-X-Google-Smtp-Source: AGHT+IEDFCAj6TxNDA1GeMvnXyrXJYIlHEdBB7VN2ZztntxUp7ZfarbFRwu3Cdl/7oTaC1y81QjFGWBmbL1x3HoYYnI=
-X-Received: by 2002:a05:690c:3809:b0:6f6:c924:befa with SMTP id
- 00721157ae682-6f6eb671b22mr92127387b3.14.1737369420253; Mon, 20 Jan 2025
- 02:37:00 -0800 (PST)
+        bh=nUfDCIfdbaWdrkZkEs1WBIzMBZMPC5SuqVxZEuwtdC8=;
+        b=DX7ZnjggdXr6Pp5pxAgWwQQq3bbSrmL0zcZ6spICGTHPd8FoeZfDUL2STwCZWF2dHC
+         e3Y+plMFb6kkPtg6Q8FvtozzhFGsOLNW2hGn7EjJP21Ggo9LZ8FQO3J4DYk0qgsNGiHj
+         r+ihuLogYfETeVJuXlhkcnPCxDLEseMyNzFRw/6kxt6zR0ciBRyZVqf89A+RS25n0qaz
+         /hcNa6kXFOVomo/g47N8UBRHlGnByrbquPjeZmbfpanWM4QMiJEz7YfVUH595xSfczfR
+         1fgiIpx93GO+qzVa6gVjcqK+WTk6aEJjcVvtK0RJ1XM6U8KFme7dv+VXooAR7c4BLaLF
+         b/Ew==
+X-Forwarded-Encrypted: i=1; AJvYcCUTQRL4VeAPTtJu/Md4Jvjad9HZarlc173Nmnxksa37X9IV8m3i05uSo9ApZF9rIYGtSNezA2kcwyE4@vger.kernel.org
+X-Gm-Message-State: AOJu0YwND8c2DssJFklmDTTljSJu8FFimw+fgq+hL6FPHHvKYFJCeQrF
+	7DhL1K2sCJzvzDFpyMQ0/SmvlSymX6sTfJQsLJl89lhiy24OA9BXOsyQ5LwD
+X-Gm-Gg: ASbGncurhTpPdmYh2JTryZPki/Cux9YDLks3fXJiK5jSazaLC3CCyZxHXq8JAo5k0bI
+	fNa9pJ8dJVFlfKbUQ6FbJ0LCBRMk8qXlAcjUZAySfkE72gowYMiihLov9hwZlvPJY2wntXzJkuv
+	FYTQuxi5zaSu8wQEP5QRimTIv23hcQpBfZTjuz14FCZJNj5Ip/RhECA700f5xersv/N93vu4QPS
+	0eFlffQYx1tq/Y8Yik9ez7s9LPRki/glGWORrGRMBTXuw7nbQx8pLuEm8F57+4+B0Ra6vyXBPU2
+	+CVYMwRP8LUagMT7h1FgUyJuZ5/ngBSI
+X-Google-Smtp-Source: AGHT+IFz1zH+tQSxIsDp4i874gCMOFkEJ5N3SPpFOWvetaC6vRig4F7Aw/qCSy+ndByEawHmYLGGNA==
+X-Received: by 2002:a05:6102:4413:b0:4af:f740:c1b8 with SMTP id ada2fe7eead31-4b690ce3f9cmr7340129137.24.1737370334147;
+        Mon, 20 Jan 2025 02:52:14 -0800 (PST)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8642cab2d48sm1798986241.1.2025.01.20.02.52.13
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Jan 2025 02:52:13 -0800 (PST)
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4afdf8520c2so1194839137.2
+        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 02:52:13 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV6zJM8IyyyjeAN+82a5guzXCrYz+TIZ1xsvBfglSZKyteJJAH64L85zEBvSXOIsKHLytoMboSAKjJH@vger.kernel.org
+X-Received: by 2002:a05:6102:41a6:b0:4b1:1a11:fe3 with SMTP id
+ ada2fe7eead31-4b690bbf701mr9052702137.8.1737370333645; Mon, 20 Jan 2025
+ 02:52:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com>
- <20241108-qcs615-mm-dt-nodes-v1-2-b2669cac0624@quicinc.com>
- <cgg3s6f555eb4jl5segz7irwx2kkza7w6zucfyo7myrbjhng3v@2qmyrobzakhd>
- <71635b71-71e4-4c17-add1-bf41ce770632@quicinc.com> <scfoxmstfqgvqmxovb7h5gulh6bjhgexs6yxe2n75izc7sawby@djphyr2ilei3>
- <97f5f5b1-b4f9-4d0d-88fb-4c7a0f1c26ac@quicinc.com>
-In-Reply-To: <97f5f5b1-b4f9-4d0d-88fb-4c7a0f1c26ac@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 20 Jan 2025 12:36:49 +0200
-X-Gm-Features: AbW1kvalUCoaK3fdSfJjJnzJOeramfJ4qP389PafQbuwuKgJociukqEgg9MZhIs
-Message-ID: <CAA8EJppOHw5u_dMW=uXgyp3NSJmv9fwNvEL63NCqOpXUKPz5vA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add cpu scaling clock node
-To: Taniya Das <quic_tdas@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1737118595.git.geert+renesas@glider.be> <84393e59efa7a76b89d4164fd64ca85b8739f6ee.1737118595.git.geert+renesas@glider.be>
+In-Reply-To: <84393e59efa7a76b89d4164fd64ca85b8739f6ee.1737118595.git.geert+renesas@glider.be>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 20 Jan 2025 11:52:01 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUrrDTvMeRPCMNc36fkJLRszcSoqPZMG8J9fuXO3P6ObA@mail.gmail.com>
+X-Gm-Features: AbW1kvaIn2URdiaybkdWDK2SpQfOiSAmt9-fIQqujHK7eDp6C49TllFDHpTnPOo
+Message-ID: <CAMuHMdUrrDTvMeRPCMNc36fkJLRszcSoqPZMG8J9fuXO3P6ObA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] irqchip: LAN966X_OIC should depend on MFD_LAN966X_PCI
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, devicetree@vger.kernel.org, 
+	linux-phy@lists.infradead.org, Geert Uytterhoeven <geert+renesas@glider.be>
 Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 20 Jan 2025 at 12:34, Taniya Das <quic_tdas@quicinc.com> wrote:
+On Fri, 17 Jan 2025 at 14:04, Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+> The Microchip LAN966x outband interrupt controller is only present on
+> Microchip LAN966x SoCs, and only used in PCI endpoint mode.  Hence add a
+> dependency on MCHP_LAN966X_PCI, to prevent asking the user about this
+> driver when configuring a kernel without Microchip LAN966x PCIe support.
 >
->
->
-> On 1/20/2025 2:16 PM, Dmitry Baryshkov wrote:
-> >>> This doesn't follow the bindings, does it?
-> >> I will add and re-use the closest target compatible.
-> >>
-> >>>> +          reg = <0 0x18323000 0 0x1400>,
-> >>>> +                <0 0x18325800 0 0x1400>;
-> >>>> +          reg-names = "freq-domain0", "freq-domain1";
-> >>>> +
-> >>>> +          clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
-> >>>> +          clock-names = "xo", "alternate";
-> >>> Are the DCVSH interrupts?
-> >>>
-> >> This target does not have DCVSH interrupts directly connected to the
-> >> CPUFREQ-HW.
-> > So, does it require a separate LMH driver, like the one used for sdm845?
->
-> I will check how it is handled on QCS615 as it is closer to SC7180 and I
-> didn't see any LMH handling there as well.
+> Fixes: 3e3a7b35332924c8 ("irqchip: Add support for LAN966x OIC")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v2:
+>   - Drop dependency on SOC_LAN966, as the OIC is used only in LAN966x
+>     PCI endpoint mode,
+>   - Replace MFD_LAN966X_PCI by MCHP_LAN966X_PCI, as the latter is the
+>     symbol that ended upstream.
 
-At least sm6150-thermal.dtsi declares two LMH blocks.
+Bummer, I messed up the subject here as well...
 
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-With best wishes
-Dmitry
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
