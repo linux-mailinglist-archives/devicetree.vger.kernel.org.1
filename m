@@ -1,79 +1,57 @@
-Return-Path: <devicetree+bounces-139851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EB79A1720B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 18:37:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF9CCA17289
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 19:08:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BF9016440C
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 17:37:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1A403A5CD4
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 18:08:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B7B1DFE16;
-	Mon, 20 Jan 2025 17:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA3B1EE00C;
+	Mon, 20 Jan 2025 18:08:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="1iviO6H5"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="lZNI/+Ul"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.134])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701AC16F841
-	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 17:37:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740F9186E58;
+	Mon, 20 Jan 2025 18:08:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.134
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737394638; cv=none; b=E1JfUlwbbAgNnL1vTaHTgJxJvcd6nBdxj/z9gUGQScuvV07nJ3zVHDZymc/1r66xrNZhhyehYTpy5jZtzwrgaIFrEc++sV+S1If+KrGAvVBXHqFRaVeb4bkOjHTsR+XTzB32Z5uz5m/P/CuYpVGIRliZIlTHtrQovfWebW9C12o=
+	t=1737396510; cv=none; b=m8XsbK9ehG1cKTnZIPSgICJl+dLoJW78q+U9+7jO68c9xLpW/DfcRR46VBeFf0oIgJTGccFnJKGbCBHh0IeBGHMMw57owx4aZqs52Qi+t46VqEKH73DjvJwdpPq7/4Hb/vnIy01Hs0zKoS2zMCdSDqWTUi/2IZkypKy9E4U/CPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737394638; c=relaxed/simple;
-	bh=QpwTrKzQBAEvGMXPO40eDha01s8ELCbnbLBDZ4sjGdk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=o8eizcK0EjyMUScmOEkOUhu9mJXZmYOgMCJ+ecWzyVaH6JRT3kDx/MP+BDYNL2Hqs8sClN9p6UAw5IKJDpiqEa29WMqKMN7LXO/B9kkY+UNIgp8ll5VK1XXWr67iwRhfMipMZRFEojj6z1rORv+RcyOszuWBTip+aIF9UQdvrIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=1iviO6H5; arc=none smtp.client-ip=209.85.167.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3eb9bbcc936so2909372b6e.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 09:37:16 -0800 (PST)
+	s=arc-20240116; t=1737396510; c=relaxed/simple;
+	bh=pB6jznMG0ovYaYW0CBLRUZ0Ehep+P+37cwCpLX/hslo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PlTLmMZ+R62s6PV+GQNoGP4xv9xX7EAP63CgpafyITlbSJJf/qbX8+//vJMaIgM/3ikEhGYTj9BnKV5unYFjZqLkuymuc0aUp7zupwV1uBkQddrS4Qa3ticgu4j4osL87IHg18sokHM4YWJIvBkUHwyIBc0w/TgNrvoGWnJCZ/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=lZNI/+Ul; arc=none smtp.client-ip=212.227.126.134
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737394635; x=1737999435; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=lfT4rN6OvTBsIG9x5a9+mxXs/tzHh45iRbVAfdvcFm4=;
-        b=1iviO6H5QwLpL79Hxdys4VBTR/ppu9p+1kccXpmkMRA0CdxmxK2t5H7Gad7M8XqjNG
-         0h4bJMuEFsSF93J7HNyuT2ouwSelRI7HxkLMnBI4cCj8DTJI3xQf3NqIyJuvDPAU/LSg
-         3TvbUx/0cZURseHOmhZaD0H4CL8SsLkV5yTjzGvFa6DVb9O6jkKoawn2E+XhE+/0+O3G
-         uF5G0svJm8zWRSBisTqLfaOIv/MlBzjddyCuRN9cr4BU3gRNm5xfbgUWDtVigcl8NvRm
-         hfsbGrhVeAB8TJnZLOxIWynouGLdvhs0BdnWr2xdwxsKpSqQjraSfEAN6UT6PBflnHbM
-         7/Vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737394635; x=1737999435;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lfT4rN6OvTBsIG9x5a9+mxXs/tzHh45iRbVAfdvcFm4=;
-        b=YTPQu7p1kHwBegrgm4P7MUDUTiapr2G4BE1MUP82o03jmDrJ0uyfhNSeeUtE2ZSHQa
-         703ZHMAXzFtvtfUXE37hkjN4BqBhnSarewz3BCmRM5tAgeP3SrRtoaCuezvpNLSXUpt9
-         zuC4ct3xGaK052IAIPLZ5OsElpH82+q+UhTpU07S0sIIeIl2Zt8vm/hiQb0GI/JxwWKC
-         CtA01SysnlXXJYoqZyFjvkLVhY/FH+qJBcZ6+Oxn4yruG/NldexmwWvZPccK46DufUhS
-         QWTL961Up5tvZlLFFmHyDTiLoGH7/IASCTISQrx6pjuTgG751ZRVWXAdBaMw4bFv8nKB
-         7fWA==
-X-Forwarded-Encrypted: i=1; AJvYcCWiPQjB14c3NhI+WhtX1cHpbVarDfMAS+2ZcyPvA84UOUz9Q5hE0mfnZ7AA2awQSjBiIuiE4JJ2X072@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYGo2ofYjRE6/b9mTAtHoPBCurOFdioN86cudy/QwfMfVa8+Xt
-	jfiMSJgdpB02R9fK/QwPFr5uW82a+M7bC12676XHa2zQLwv6CFdXAI75P77MuVw=
-X-Gm-Gg: ASbGncs2KCgZ2AsNubf/jika56KPDtsnjJ34DIp0jyjq4HSJ+1Nv87/rKvt9jaPDdym
-	aAD6rBFenU0s1d3R+cHWJZzyENvA4PzNnBqpdaDbXdL0XZYoKL4vyl16nW0tEZFCsFlRSc3fOFt
-	zJ0hFcYVT2fVgf6/C4OxSISiSxcRcr4FpnXrsnHLWPHfHdN25vWIQcY2gvsIv2tUx+FgngI7irf
-	O0ge1Hjdq5ql97f9ebdKBsnFZ5F2EI4J+2NWfgEdsC5xViOziMbcpHZn2hmw2NlxD7I/obXnO1c
-	YxnjlmMNuAM0U5vugq+zHgZbVPQepss=
-X-Google-Smtp-Source: AGHT+IH1nrkzxGSioxg3Pk04SSKoUCKqQj95yrTm9nW9uBQqIvSRaw18pxDZP0Ip0yKAj1frniReXA==
-X-Received: by 2002:a05:6808:8515:b0:3ea:404b:34ec with SMTP id 5614622812f47-3f19fdd1e61mr7056489b6e.28.1737394635489;
-        Mon, 20 Jan 2025 09:37:15 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f19da85a80sm2498563b6e.28.2025.01.20.09.37.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 20 Jan 2025 09:37:13 -0800 (PST)
-Message-ID: <c424cedb-5b45-43c0-897b-dec83918d658@baylibre.com>
-Date: Mon, 20 Jan 2025 11:37:12 -0600
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1737396495; x=1738001295;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=CKWFzIyoZoHN+IebNnLgynWS9gdYeIcO+wqNlnB7ML4=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=lZNI/+UlnMIu1nzuK3kKqa0N72gV+Kaxpl3/JpumvwsCL8gViyKmzFdTJeGSmmjF
+	 V47V4zX1ReSWjUcoZ+z8cBQcZFqlfN07z6069Sb8Ii8IoYSCNT0RCuEZ+KJt98Fxm
+	 BAPbYKWHYMyTPedJLZdd+lFLzQE5IZktUuEdE4eV49fteWp9UQhPMYCPHCxXFxgIS
+	 /KiTl30PXxoAO+33/22Oy2/JkcjoTaklgbURCTKE2Hjio8KjWr1I2F3ibVsL75n+v
+	 Eqamjwpy7eW624GZY9qqTyvYOltRZmPaLTa8Le6sWPh4BbQ5KuSA/Vs+R+AYbpYn0
+	 5WBX6QIdDC1S3kI4Tw==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.152] ([91.64.229.215]) by mrelayeu.kundenserver.de
+ (mreue010 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1Mxlio-1tIooj1dPy-0129oR; Mon, 20 Jan 2025 19:08:15 +0100
+Message-ID: <0abde047-7f9b-470b-8b16-74e6230a541b@oldschoolsolutions.biz>
+Date: Mon, 20 Jan 2025 19:08:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,78 +59,104 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 8/8] iio: adc: ad4851: add ad485x driver
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
- "jic23@kernel.org" <jic23@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-References: <20250117130702.22588-1-antoniu.miclaus@analog.com>
- <20250117130702.22588-9-antoniu.miclaus@analog.com>
- <d4b9d6e9-745c-4c35-a62d-18e0a36f30c4@baylibre.com>
- <BN6PR03MB33953EC70A02D0031373C2BD9BE72@BN6PR03MB3395.namprd03.prod.outlook.com>
-From: David Lechner <dlechner@baylibre.com>
+Subject: Re: [PATCH 6/7] arm64: dts: qcom: sc8280xp-x13s: switch to uefi rtc
+ offset
+To: Johan Hovold <johan+linaro@kernel.org>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org,
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250120144152.11949-1-johan+linaro@kernel.org>
+ <20250120144152.11949-7-johan+linaro@kernel.org>
 Content-Language: en-US
-In-Reply-To: <BN6PR03MB33953EC70A02D0031373C2BD9BE72@BN6PR03MB3395.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <20250120144152.11949-7-johan+linaro@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:jlX3qOxhisU1giQRAaE/kOYQOTcwb0mFPk195YinYjqD58psWzl
+ IvgGMZyIF8A22SDxENrMjsqLjDjbq2WEQUJIkNYvgL+bSHKsfVzC4Jazpp0+sv6uWrBUJik
+ EGazRmHjkegAfj34sl+CGXBCeqEAPqYAxFH7DslVorA6L9TyjH1uiQXVPH1Itekh6qysk/+
+ NPSy6V0gVTNNWjtYTIzfA==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:mPcmZq2eW1Q=;Xs+hBq8FcvdE5YFUvAp5/361Z3u
+ HcB1P6hxZgYXVVyISklKLT0Vb14Gvzxxs4oWTsmPZz94DnWbCbfZ69hFxLofSP0DqbXOuJb61
+ BNQasC/8eZR9HAqdYQf8w5fpmZxIeXzILWaYlSOysjldGFo7FiMThSpfNompA/5vnVEq9KJvU
+ S8RhDJuLPkk06FlCNE3yLTl+1ZcOGn7q6yxXf/qZnYwVKLwoE/tKBQZfFVtJ7zjpuyR0KgJcC
+ dPRoPz4t9OunNvy0LwMDcS2jF+WLp/JfRjlKtC+enRXLENCDJSmfsA7PO23OoLm41xFcJlWXX
+ LqwtYT+yIM7BVBeFwlOHr62nRU0evtCfC+hqyQHMl71G6/fkl8uUOA30mihGDiNx3cXcYqmnD
+ nyklSdd8jVF8EfMJZ1YKbA+R/EkDyUDjO91s7yW+6Db3RG2wMLIUk+TaUvOh5MYsBvcJZjVGO
+ jSnSFKTVdCsWzsvu+Z17oj+iQKSjtixd9YoOMLCNtqezMf12IIxCFUuL5aeEpDftkI6i2iT/1
+ V0OlKmaxWvuaZyEd1vket3VnMQBl21XXWlyTligUgWgvgE68Y01z4xtUsxJnn3QHHZKaolrOC
+ +FeKOMWJTL0erWTEBII/SPcSnAFqC/17+ojA6FNEuN68ER+IMXLYnVrVH67FE4ZxVeZSaafdS
+ X+rVVef/IzT9O1VyTGH8N6nCBTDhrTyTKpYcQJ8DlEFnU24GXe/4i7EAzbPhyMdsbhin5pOHW
+ uDG0jW8T/eiWiE/5YqokJkoU3GSj0GCWmQnBIabv5vcLaNf8w4fK4shbXypSkVdGamfOF5XQs
+ qMFQE1lg4MAP0JW4bCyPaAEFd/a7Pmm8sqK3sazsGdoSb+qLhgW2F5eGtVtUS3xsfaQewLqd5
+ 4bCLJukWpi7NsL7rexW8p7J7acYhe/a3MLJCJW1yaU/2XixVJt6DKv7BJu8WyLE6qM8K8NDuK
+ e29wSpFaetMvV/WoxMDoDRWmii7gwKO0gxj2wBX/AeNkoo9tO9YuzXla8X4MlCSqoTtg+0F2M
+ JtI6yKpFBd0f6AG8Qa3rRUehJrZ2cMHSWifXrURCFvL3ua9Xr/KN0U1KRQb8Kze0OoC/ltggl
+ 1vOz6mDgKzvyapPnaziXfl6L+5nsC7k9umZIIaXwM+HQVOC006+xKRDxQBHcoDRVQrPDNUDAs
+ =
 
-On 1/20/25 6:37 AM, Miclaus, Antoniu wrote:
->>> +		}
->>> +		channels++;
->>> +
->>> +		st->bipolar_ch[reg] = fwnode_property_read_bool(child,
->> "bipolar");
->>> +
->>> +		if (st->bipolar_ch[reg]) {
->>> +			channels->scan_type.sign = 's';
->>> +		} else {
->>> +			ret = regmap_write(st->regmap,
->> AD4851_REG_CHX_SOFTSPAN(reg),
->>> +					   AD4851_SOFTSPAN_0V_40V);
->>> +			if (ret)
->>> +				return ret;
->>> +		}
->>> +	}
->>> +
->>> +	*ad4851_channels = channels;
->>
->> At this point, channels is pointing to memory we didn't allocate (because of
->> channels++). As in the previous review, I suggest we just get rid of the output
->> parameter since indio_dev->channels already has the correct pointer.
->>
->> It's less chance for mistakes like this and avoids needing to provide an unused
->> arg in ad4857_parse_channels().
-> 
-> Hmm, how can I then do the assignments in `ad4858_parse_channels` ?
-> 
-> drivers/iio/adc/ad4851.c:1055:42: error: assignment of member ‘has_ext_scan_type’ in read-only object
->  1055 |   indio_dev->channels->has_ext_scan_type = 1;
->       |                                          ^
-> drivers/iio/adc/ad4851.c:1057:39: error: assignment of member ‘ext_scan_type’ in read-only object
->  1057 |    indio_dev->channels->ext_scan_type = ad4851_scan_type_20_b;
->       |                                       ^
-> drivers/iio/adc/ad4851.c:1058:43: error: assignment of member ‘num_ext_scan_type’ in read-only object
->  1058 |    indio_dev->channels->num_ext_scan_type = ARRAY_SIZE(ad4851_scan_type_20_b);
->       |                                           ^
-> drivers/iio/adc/ad4851.c:1061:39: error: assignment of member ‘ext_scan_type’ in read-only object
->  1061 |    indio_dev->channels->ext_scan_type = ad4851_scan_type_20_u;
->       |                                       ^
-> drivers/iio/adc/ad4851.c:1062:43: error: assignment of member ‘num_ext_scan_type’ in read-only object
->  1062 |    indio_dev->channels->num_ext_scan_type = ARRAY_SIZE(ad4851_scan_type_20_u);
->       |                                           ^
+Hi Johan,
 
-I would be tempted to just not have a second loop of
+On 20.01.25 15:41, Johan Hovold wrote:
+> On many Qualcomm platforms the PMIC RTC control and time registers are
+> read-only so that the RTC time can not be updated. Instead an offset
+> needs be stored in some machine-specific non-volatile memory, which a
+> driver can take into account.
+>
+> Switch to using the Qualcomm specific UEFI variable that is used by the
+> UEFI firmware (and Windows) to store the RTC offset.
+>
+> This specifically means that the RTC time will be synchronised between
+> the UEFI firmware setup (or UEFI shell), Windows and Linux.
+>
+> Note however that Windows stores the RTC time in local time by default,
+> while Linux typically uses UTC (i.e. as on X86).
+>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>   .../boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts   | 11 +----------
+>   1 file changed, 1 insertion(+), 10 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts =
+b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> index 38d911992475..66c39765225f 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> @@ -1090,20 +1090,11 @@ &pmk8280_pon_resin {
+>   };
+>
+>   &pmk8280_rtc {
+> -	nvmem-cells =3D <&rtc_offset>;
+> -	nvmem-cell-names =3D "offset";
+> +	qcom,uefi-rtc-info;
+>
+>   	status =3D "okay";
+>   };
+>
+> -&pmk8280_sdam_6 {
+> -	status =3D "okay";
+> -
+> -	rtc_offset: rtc-offset@bc {
+> -		reg =3D <0xbc 0x4>;
+> -	};
+> -};
+> -
+>   &pmk8280_vadc {
+>   	channel@144 {
+>   		reg =3D <PM8350_ADC7_AMUX_THM1_100K_PU(1)>;
 
-	device_for_each_child_node_scoped(dev, child)
+Nice. I have it running on my X13s now, looks to work fine. Also ported
+to Windows Dev Kit 2023, patch will follow soon after testing it. Thanks!
 
-in ad4858_parse_channels() and instead do everything in ad4851_parse_channels()
-and just pass a boolean parameter to conditionally handle the difference
-between the two types of chips.
+Tested-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
 
-Or you use a cast to remove the const qualifier.
+with best regards
 
-	ad4851_channels = (struct iio_chan_spec *)indio_dev->channels;
+Jens
+
 
