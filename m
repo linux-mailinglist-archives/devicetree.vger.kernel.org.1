@@ -1,216 +1,95 @@
-Return-Path: <devicetree+bounces-139650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B645FA167C7
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:57:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A403A167CB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:58:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43EDA1885414
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:57:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 549D91681C7
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:58:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5935191F62;
-	Mon, 20 Jan 2025 07:57:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FCA51917D7;
+	Mon, 20 Jan 2025 07:58:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="OZoSdQMk"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KVZFjaB7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 795ED190679;
-	Mon, 20 Jan 2025 07:57:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 623FA190679
+	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 07:58:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737359860; cv=none; b=nPaXCoew8I5c3llow1Qwl/iW9hkSt9Iylntad/kyJeEZvyH6S4P2+A4cC8azFaFMdUly3oLyU+A+XnrZ1SWOa/HOu3BBA0yJY2NnYE3azMqJeGydoFkZ9BtZAH1K+hS3P+CIfq2vlqN1hf9LZYuHb7wbWsFVhXp7uLUmMxl82DE=
+	t=1737359935; cv=none; b=S3zONn53nZdKDuBudI7YzjjaAQ5bXqarvdrqtdRzbQ5wapDp1z6p02/aAQQKhouRF5h3pa1BArYp6J8pm/IkSn8S986dcEj6wu/H6rDE8nsUUj6OhA1vvjpYXNsq7ytcZK+oUjCpJY3QWIrUGKjjXA9xrY088ftUuSSnqWx8ykY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737359860; c=relaxed/simple;
-	bh=J7UvSKXQMl3xObnrQ1b4h99nWk2kPVRXb3e86+L/MKQ=;
+	s=arc-20240116; t=1737359935; c=relaxed/simple;
+	bh=glsKMXgLOVIXu1QQ8t3G7ymK+2F/DR/Ky0LVg9UEF5w=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=n2ihxuxTrIozRjsE08oEC9Tnm+T8R2Lx7dWzMdrf4GwUDJs1k9zxFmrc/6snTpCLv3/dX7I68Cuy+F613DHpxdSISWH3mOsDhCTZ86CdGxjeLSOJs+gdWtk5q0RDak+QX+MeQKq2z49PIUadSWyaV2pzBj+fhNK0fCxlXeDqaZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=OZoSdQMk; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A72D31040DBF6;
-	Mon, 20 Jan 2025 08:57:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1737359849;
+	 MIME-Version:Content-Type; b=lebvIKRT/aJBYE2FhqbFsoniGGl5uNZYFT0y0vDMLFgbpnXmwKxqyyXjCzgtc79pn0aBJGHCEBGoN1tJbBEhxZac5uuWnUB4dDX92wZD3+ZJ357dBWgBrS9ZtIUWwihbUWeCatMf5l3iqctT/NYPVOfM24uQx6WXMnQ6nFSbWUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KVZFjaB7; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 80F8840007;
+	Mon, 20 Jan 2025 07:58:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1737359923;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=8NaISGLJR03FYklXMebGcqoa5Dp1o8Ttfq525ZbxkqY=;
-	b=OZoSdQMkRQTNc7qfmGcxxT31s0/qJ6e9W8kxfx7WZ5Brj372WMEN9lvKS07sJ+i/ePX6bs
-	i/TtJerWU0ZvITtW3iP8equwf2uKDCKgSTS7kjbG2eUc3sshbgqaamk6aQ49bH8zBSvDzj
-	faWJmgJAUfqoWNiFkDmr90eiJn/9ydKjsr1wGBEdDLx3ErvxnW3NluYnVyRZKu1g+Sg8V7
-	rZwcR1/xZGERYTwJs7fk/7roNdAyvs3sync4t+kNP85jbMX+mQSb3jyzidrgTKRG1nhx1r
-	UToMciDqcyYvT19aaQ2+ATN3NDtHPba6DNkWL6PISkisRlaCgZinFAmeq9/+pA==
-Date: Mon, 20 Jan 2025 08:57:24 +0100
-From: Lukasz Majewski <lukma@denx.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
- <festevam@gmail.com>, devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Stefan
- Wahren <wahrenst@gmx.net>
-Subject: Re: [RESEND PATCH v11 1/3] dt-bindings: display: Add
- powertip,{st7272|hx8238a} as DT Schema description
-Message-ID: <20250120085724.5caf80af@wsk>
-In-Reply-To: <20250109154149.1212631-1-lukma@denx.de>
-References: <20250109154149.1212631-1-lukma@denx.de>
-Organization: denx.de
-X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+	bh=IrfXUXKx65Be1ucE9yzPUsyx/j7smslYJp+VGyQ1BFs=;
+	b=KVZFjaB7rQHERQv+bTv9y2JtGtb1xo/5MBvIik7JQprzL7zUSKovTS3abKnWxwDYiAGM6m
+	8kEeTLAvU6swsp1VmJTzuVASq92FZpCaC/cuBhDb/Un/vCxokrMomochZ25ZCvEwdwZB6M
+	XzRNH+iq7qjiiN2lLN1mNfIZmxEfjeFs5Jlk+Xis2tkuLx8rqmv7vpU+37harhzaWXyMH2
+	BifnI5ivue1FBgFEeJqEiZoKpEi9ISvwJtkVU9+uA8kFDc+Dl4PMJU4OYLAAcdL/i8786z
+	ihzygLWEoDgXZNyTwbquGtmIJvGPyFhjppYZTds+8eejGFE5WytOhRwM8c0Ylg==
+Date: Mon, 20 Jan 2025 08:58:39 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham
+ I <kishon@kernel.org>, devicetree@vger.kernel.org,
+ linux-phy@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: interrupt-controller:
+ microchip,lan966x-oic: Clarify endpoint use
+Message-ID: <20250120085839.3982743c@bootlin.com>
+In-Reply-To: <0f2d1bcb431827b65b2c0ba6619d9126ec97da72.1737118595.git.geert+renesas@glider.be>
+References: <cover.1737118595.git.geert+renesas@glider.be>
+	<0f2d1bcb431827b65b2c0ba6619d9126ec97da72.1737118595.git.geert+renesas@glider.be>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/U/yll50iKgE5KldfaI.Ejar";
- protocol="application/pgp-signature"; micalg=pgp-sha512
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
---Sig_/U/yll50iKgE5KldfaI.Ejar
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Hi Geert,
 
-Dear Community,
+On Fri, 17 Jan 2025 14:04:36 +0100
+Geert Uytterhoeven <geert+renesas@glider.be> wrote:
 
-> This patch provides the DT Schema description of:
-> - powertip,st7272  320 x 240 LCD display
-> - powertip,hx8238a 320 x 240 LCD display
->=20
-> Used with the different HW revisions of btt3 devices.
->=20
-
-Gentle ping on this patch...
-
-> Signed-off-by: Lukasz Majewski <lukma@denx.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reword the description, to make it clear that the LAN966x Outbound
+> Interrupt Controller is used only in PCI endpoint mode.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->=20
-> Changes for v9:
-> - New patch
->=20
-> Changes for v10:
-> - None
->=20
-> Changes for v11:
-> - Combine both separate dt-bindings patches for powertip,st7272 and
->   powertip,hx8238a into one
-> - Drop the quotes for in "title" entry of powertip*.yaml files
+> v2:
+>   - New.
 > ---
->  .../display/panel/powertip,hx8238a.yaml       | 29
-> +++++++++++++++++++ .../display/panel/powertip,st7272.yaml        |
-> 29 +++++++++++++++++++ 2 files changed, 58 insertions(+)
->  create mode 100644
-> Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
-> create mode 100644
-> Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
->=20
-> diff --git
-> a/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
-> b/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
-> new file mode 100644 index 000000000000..b7d74faeb5d5 --- /dev/null
-> +++
-> b/Documentation/devicetree/bindings/display/panel/powertip,hx8238a.yaml
-> @@ -0,0 +1,29 @@ +# SPDX-License-Identifier: GPL-2.0-only OR
-> BSD-2-Clause +%YAML 1.2
-> +---
-> +$id:
-> http://devicetree.org/schemas/display/panel/powertip,hx8238a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml# +
-> +title: Powertip Electronic Technology Co. 320 x 240 LCD panel
-> +
-> +maintainers:
-> +  - Lukasz Majewski <lukma@denx.de>
-> +
-> +allOf:
-> +  - $ref: panel-dpi.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: powertip,hx8238a
-> +      - {} # panel-dpi, but not listed here to avoid false select
-> +
-> +  height-mm: true
-> +  panel-timing: true
-> +  port: true
-> +  power-supply: true
-> +  width-mm: true
-> +
-> +additionalProperties: false
-> +
-> +...
-> diff --git
-> a/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
-> b/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
-> new file mode 100644 index 000000000000..f3622800f13f --- /dev/null
-> +++
-> b/Documentation/devicetree/bindings/display/panel/powertip,st7272.yaml
-> @@ -0,0 +1,29 @@ +# SPDX-License-Identifier: GPL-2.0-only OR
-> BSD-2-Clause +%YAML 1.2
-> +---
-> +$id:
-> http://devicetree.org/schemas/display/panel/powertip,st7272.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml# +
-> +title: Powertip Electronic Technology Co. 320 x 240 LCD panel
-> +
-> +maintainers:
-> +  - Lukasz Majewski <lukma@denx.de>
-> +
-> +allOf:
-> +  - $ref: panel-dpi.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: powertip,st7272
-> +      - {} # panel-dpi, but not listed here to avoid false select
-> +
-> +  height-mm: true
-> +  panel-timing: true
-> +  port: true
-> +  power-supply: true
-> +  width-mm: true
-> +
-> +additionalProperties: false
-> +
-> +...
+>  .../bindings/interrupt-controller/microchip,lan966x-oic.yaml | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
+> 
 
-
-
+Acked-by: Herve Codina <herve.codina@bootlin.com>
 
 Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Erika Unter
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/U/yll50iKgE5KldfaI.Ejar
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmeOAeQACgkQAR8vZIA0
-zr0jbAf9GiMn13F0dhmGWZLn3VDJ643cS78yCNzck9CuQgS5unj84y7aiawwzcWB
-O/zrorxzpuNnpxQpXYZN2+Ayu7q9B99J8/WwNvi1nM2m4ffoF7HsqE1mSd8TWxkC
-6yKehoD74CdSYcKGZEh0anPDFV331lN8L6opnm70kvMM0ar+7QhQwy62eLiX7qOW
-jyHytccvg9c+ATLThSeET87I2Ke4oAJpE/QJGHEdCIk6ZBvINEK5L8vgNJUU4Wkh
-QD+dMaQAfU+G2ncwk1T2dlyJmtl01dWriR/mHQEQSaR90gTleuRsxycQvUL9ljix
-F8YQnQzI1VSwxIHqUW8q5zPtV8YDZw==
-=oVKs
------END PGP SIGNATURE-----
-
---Sig_/U/yll50iKgE5KldfaI.Ejar--
+Hervé
 
