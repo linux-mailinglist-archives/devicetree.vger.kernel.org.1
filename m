@@ -1,145 +1,272 @@
-Return-Path: <devicetree+bounces-139723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04360A16B1A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:58:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C58EAA16B20
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:59:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C2D1188747D
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:58:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8715168F26
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:59:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C55D31B6CFD;
-	Mon, 20 Jan 2025 10:58:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B5D01B6D10;
+	Mon, 20 Jan 2025 10:59:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nReI8Hkk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ms0j49jh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4939B187872;
-	Mon, 20 Jan 2025 10:58:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 633121B6CFD;
+	Mon, 20 Jan 2025 10:59:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737370693; cv=none; b=YXNF5ZbFs/7B5UzmgvQjc9kSkWF7ZMljT1GJctAeABRtM4YnSBiTZX9fDrThUyVj4IUEMl7ZHc/TfjdIOBvikT5CxwL2Y6PDALPWJOBIIPpksLlc4oeSjK7h9FOKZ4tziUQc2uIWGJtJ5+QCr+vkr7ypL6p6XB8Xsq95oB/JTwU=
+	t=1737370791; cv=none; b=AxJpMZ+kVj/Ph0WJIB5NvFy5M1B1fll7SUkopxp7CTbXFEHmPsW3rmT490IjHqreoNDKUqjzTfLGQsb98ab5pnxniefZEVR/wpSczW9F+YTTwdzqOWueXbaC9GdgYLtwarFUJqE2hyT8LExda6uxuLhk6HNyR14/bvfC0pFXsjE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737370693; c=relaxed/simple;
-	bh=fCPB+Mktn1Ud/OMdyJqeeOy0uaUVM040DG+fMN7ptcs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=iAuQgPjP1KnxnIABh6I+3BZ6jn7UUZIdBwz03RQnsvemC2fdpl5e7O8arQ+I4OHGOrToxyec3x7NYnqhb/+lgjXriGXsY6I/o0QD3BYQwPAZOO9EaX/wGf6jPqeRiSM/qvjaqNtpmojv8/UZLmyeEPDi2NSlZ+stwM0nUhaXI6I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nReI8Hkk; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50KANsSr005145;
-	Mon, 20 Jan 2025 10:58:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	w5qQrWej8RvvwzJuRhHfB+d4wZAfsn37XDaEUTeP/SA=; b=nReI8HkkJrfXmYg9
-	C9EpEaNj7uCL6KwLlRlcxlwTFzgYRcWjQGv2HStGLUUbe/wYTaEMZ1aCZzY89k3M
-	n1BWwzKHzUtPafCveJxpixMrlx1QyAEUuPTEbXENu5ZqMMsFlk5x4CEvUvoQt0EC
-	YOBhQfCDXeTzxYeREO1PRj85XcZZfU3GwoP9E5kuaqBWiHx66YnPWLXUp1uQjy5X
-	uHZaBtNpOMRsU0U7lvtP79ybqAmqgA3I5Z5aGWLiK6FVRjf9ASVfEQZnwlIrK+hr
-	YusafN2PLpNCaVNlbAy5Uu/fE8BppHIb/Nw8sHJwWNvPElTDyOBamE9l1G7nv2Sg
-	ao35ug==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 449mpsr2mm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Jan 2025 10:58:08 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50KAw7mg010050
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Jan 2025 10:58:07 GMT
-Received: from [10.217.217.81] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 20 Jan
- 2025 02:58:03 -0800
-Message-ID: <608afa23-ca4e-48dd-b929-4466560a7e61@quicinc.com>
-Date: Mon, 20 Jan 2025 16:27:59 +0530
+	s=arc-20240116; t=1737370791; c=relaxed/simple;
+	bh=czZOrmuFCfN+t9SlxQpEPbuxvYuKqXh2/X4yUYN7MIk=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cdfwzsfPunHRrKb8oWslcMRcWGkNvdNNDqw3UdY8Vt52bTsOrQukkFSHGZtTFySdj1A1BZntYSM3MEo9E//PUU0ys9TOidsaY4ZjoeeD5WFkyTGF44A/+xPLcCvxf0Wbrlg+gpcCpftNycndnz/ghCNsrjY8Za4xLZKdtngwM80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ms0j49jh; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737370790; x=1768906790;
+  h=date:from:to:subject:message-id:references:mime-version:
+   in-reply-to;
+  bh=czZOrmuFCfN+t9SlxQpEPbuxvYuKqXh2/X4yUYN7MIk=;
+  b=ms0j49jhyJ3uMQqIhe6KlqwDif7p4AJGaqehA1SiBe0vSBL0vYiQ4dFa
+   ZiR3ZiRjZ+fxSmoZnmn9AWgl+5bbH4Q811Ic6jxeRcLTL0J/hxkIPRfL3
+   w+p0jLzakKsoM/2Ltdjl3aIK6K7WJex1m0Xow+51zEyUtXdgLqapnQZQg
+   jN10An1FNA1M1uBqUdhTUwpaLMrwbr9Fa46jQE+QFEAXGL3j6iny3K6YX
+   1pBW6242klZldu7fvzW7A6tWd7KiPArhl2K5yf1MVsDmewJFP1ECkMyBH
+   TGUqqkApF+cdSQLeDjBDATDGy420gTUAUkceYYtam1bsmXbdQ31GRu5xm
+   Q==;
+X-CSE-ConnectionGUID: luYI4LvVRA+xambZqOymOQ==
+X-CSE-MsgGUID: LvALCHcrQLi15d5uiZHsdw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11320"; a="37444185"
+X-IronPort-AV: E=Sophos;i="6.13,218,1732608000"; 
+   d="scan'208";a="37444185"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2025 02:59:49 -0800
+X-CSE-ConnectionGUID: ltWkhw8wTG+PPy7GAEkTUw==
+X-CSE-MsgGUID: bnuFSv+LTjipjBu0K6wJXg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="106919588"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2025 02:59:47 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 8F69711F94F;
+	Mon, 20 Jan 2025 12:59:44 +0200 (EET)
+Date: Mon, 20 Jan 2025 10:59:44 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: robh+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, peter.griffin@linaro.org,
+	dave.stevenson@raspberrypi.com, ezequiel@collabora.com
+Subject: Re: [PATCH v3 2/2] media: i2c: Add driver for Sony IMX219 sensor
+Message-ID: <Z44soIWngnmCjoe6@kekkonen.localdomain>
+References: <20200110200915.22575-1-andrey.konovalov@linaro.org>
+ <20200110200915.22575-3-andrey.konovalov@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add cpu scaling clock node
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ajit Pandey
-	<quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        "Jagadeesh Kona" <quic_jkona@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_manafm@quicinc.com>
-References: <20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com>
- <20241108-qcs615-mm-dt-nodes-v1-2-b2669cac0624@quicinc.com>
- <cgg3s6f555eb4jl5segz7irwx2kkza7w6zucfyo7myrbjhng3v@2qmyrobzakhd>
- <71635b71-71e4-4c17-add1-bf41ce770632@quicinc.com>
- <scfoxmstfqgvqmxovb7h5gulh6bjhgexs6yxe2n75izc7sawby@djphyr2ilei3>
- <97f5f5b1-b4f9-4d0d-88fb-4c7a0f1c26ac@quicinc.com>
- <CAA8EJppOHw5u_dMW=uXgyp3NSJmv9fwNvEL63NCqOpXUKPz5vA@mail.gmail.com>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <CAA8EJppOHw5u_dMW=uXgyp3NSJmv9fwNvEL63NCqOpXUKPz5vA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: IjIjC_4c4SZLBXqYN2FkF6KAWVZs2YGP
-X-Proofpoint-ORIG-GUID: IjIjC_4c4SZLBXqYN2FkF6KAWVZs2YGP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-20_02,2025-01-20_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
- bulkscore=0 malwarescore=0 mlxscore=0 clxscore=1015 mlxlogscore=949
- lowpriorityscore=0 impostorscore=0 spamscore=0 priorityscore=1501
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501200091
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200110200915.22575-3-andrey.konovalov@linaro.org>
 
+Hi Dave,
 
+On Fri, Jan 10, 2020 at 11:09:15PM +0300, Andrey Konovalov wrote:
+> +/* Power/clock management functions */
+> +static int imx219_power_on(struct device *dev)
+> +{
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct imx219 *imx219 = to_imx219(sd);
+> +	int ret;
+> +
+> +	ret = regulator_bulk_enable(IMX219_NUM_SUPPLIES,
+> +				    imx219->supplies);
+> +	if (ret) {
+> +		dev_err(&client->dev, "%s: failed to enable regulators\n",
+> +			__func__);
+> +		return ret;
+> +	}
+> +
+> +	ret = clk_prepare_enable(imx219->xclk);
+> +	if (ret) {
+> +		dev_err(&client->dev, "%s: failed to enable clock\n",
+> +			__func__);
+> +		goto reg_off;
+> +	}
+> +
+> +	gpiod_set_value_cansleep(imx219->reset_gpio, 1);
+> +	msleep(IMX219_XCLR_DELAY_MS);
+> +
+> +	return 0;
+> +reg_off:
+> +	regulator_bulk_disable(IMX219_NUM_SUPPLIES, imx219->supplies);
+> +	return ret;
+> +}
+> +
+> +static int imx219_power_off(struct device *dev)
+> +{
+> +	struct i2c_client *client = to_i2c_client(dev);
+> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> +	struct imx219 *imx219 = to_imx219(sd);
+> +
+> +	gpiod_set_value_cansleep(imx219->reset_gpio, 0);
 
-On 1/20/2025 4:06 PM, Dmitry Baryshkov wrote:
-> On Mon, 20 Jan 2025 at 12:34, Taniya Das <quic_tdas@quicinc.com> wrote:
->>
->>
->>
->> On 1/20/2025 2:16 PM, Dmitry Baryshkov wrote:
->>>>> This doesn't follow the bindings, does it?
->>>> I will add and re-use the closest target compatible.
->>>>
->>>>>> +          reg = <0 0x18323000 0 0x1400>,
->>>>>> +                <0 0x18325800 0 0x1400>;
->>>>>> +          reg-names = "freq-domain0", "freq-domain1";
->>>>>> +
->>>>>> +          clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
->>>>>> +          clock-names = "xo", "alternate";
->>>>> Are the DCVSH interrupts?
->>>>>
->>>> This target does not have DCVSH interrupts directly connected to the
->>>> CPUFREQ-HW.
->>> So, does it require a separate LMH driver, like the one used for sdm845?
->>
->> I will check how it is handled on QCS615 as it is closer to SC7180 and I
->> didn't see any LMH handling there as well.
-> 
-> At least sm6150-thermal.dtsi declares two LMH blocks.
+The polarity of the reset GPIO appears to be wrong above. Given it works
+somewhere (arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso), the
+existing DTS files have it wrong, too. The bindings still appear to
+document it correctly.
 
-QCS615 also has 2 LMH blocks, but the handling of interrupts will be 
-done from the LMH driver, integration with CPUFREQ-HW driver is still 
-under evaluation.
+Laurent confirmed xcrl isn't controllable in the RPi imx219 camera module.
+
+How about fixing this? Currently correctly written DTBs including imx219
+won't work.
+
+I noticed this while fixing the power sequences in this and a few other
+drivers.
+
+> +	regulator_bulk_disable(IMX219_NUM_SUPPLIES, imx219->supplies);
+> +	clk_disable_unprepare(imx219->xclk);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int imx219_probe(struct i2c_client *client,
+> +			const struct i2c_device_id *id)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct fwnode_handle *endpoint;
+> +	struct imx219 *imx219;
+> +	int ret;
+> +
+> +	imx219 = devm_kzalloc(&client->dev, sizeof(*imx219), GFP_KERNEL);
+> +	if (!imx219)
+> +		return -ENOMEM;
+> +
+> +	imx219->dev = dev;
+> +
+> +	v4l2_i2c_subdev_init(&imx219->sd, client, &imx219_subdev_ops);
+> +
+> +	/* Get CSI2 bus config */
+> +	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(&client->dev),
+> +						  NULL);
+> +	if (!endpoint) {
+> +		dev_err(dev, "endpoint node not found\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = v4l2_fwnode_endpoint_parse(endpoint, &imx219->ep);
+> +	fwnode_handle_put(endpoint);
+> +	if (ret) {
+> +		dev_err(dev, "could not parse endpoint\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Check the number of MIPI CSI2 data lanes */
+> +	if (imx219->ep.bus_type != V4L2_MBUS_CSI2_DPHY ||
+> +	    imx219->ep.bus.mipi_csi2.num_data_lanes != 2) {
+> +		dev_err(dev, "only 2 data lanes are currently supported\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Get system clock (xclk) */
+> +	imx219->xclk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(imx219->xclk)) {
+> +		dev_err(dev, "failed to get xclk\n");
+> +		return PTR_ERR(imx219->xclk);
+> +	}
+> +
+> +	imx219->xclk_freq = clk_get_rate(imx219->xclk);
+> +	if (imx219->xclk_freq != IMX219_XCLK_FREQ) {
+> +		dev_err(dev, "xclk frequency not supported: %d Hz\n",
+> +			imx219->xclk_freq);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = imx219_get_regulators(imx219);
+> +	if (ret) {
+> +		dev_err(dev, "failed to get regulators\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Request optional enable pin */
+> +	imx219->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> +						      GPIOD_OUT_HIGH);
+> +
+> +	/*
+> +	 * The sensor must be powered for imx219_identify_module()
+> +	 * to be able to read the CHIP_ID register
+> +	 */
+> +	ret = imx219_power_on(dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = imx219_identify_module(imx219);
+> +	if (ret)
+> +		goto error_power_off;
+> +
+> +	/* Set default mode to max resolution */
+> +	imx219->mode = &supported_modes[0];
+> +
+> +	ret = imx219_init_controls(imx219);
+> +	if (ret)
+> +		goto error_power_off;
+> +
+> +	/* Initialize subdev */
+> +	imx219->sd.internal_ops = &imx219_internal_ops;
+> +	imx219->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +	imx219->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
+> +
+> +	/* Initialize source pad */
+> +	imx219->pad.flags = MEDIA_PAD_FL_SOURCE;
+> +
+> +	ret = media_entity_pads_init(&imx219->sd.entity, 1, &imx219->pad);
+> +	if (ret) {
+> +		dev_err(dev, "failed to init entity pads: %d\n", ret);
+> +		goto error_handler_free;
+> +	}
+> +
+> +	ret = v4l2_async_register_subdev_sensor_common(&imx219->sd);
+> +	if (ret < 0) {
+> +		dev_err(dev, "failed to register sensor sub-device: %d\n", ret);
+> +		goto error_media_entity;
+> +	}
+> +
+> +	/* Enable runtime PM and turn off the device */
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_enable(dev);
+> +	pm_runtime_idle(dev);
+> +
+> +	return 0;
+> +
+> +error_media_entity:
+> +	media_entity_cleanup(&imx219->sd.entity);
+> +
+> +error_handler_free:
+> +	imx219_free_controls(imx219);
+> +
+> +error_power_off:
+> +	imx219_power_off(dev);
+> +
+> +	return ret;
+> +}
 
 -- 
-Thanks & Regards,
-Taniya Das.
+Kind regards,
 
+Sakari Ailus
 
