@@ -1,134 +1,332 @@
-Return-Path: <devicetree+bounces-139774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60D3EA16D63
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 14:26:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B301CA16D72
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 14:36:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 922693A1D7B
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:26:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 411247A00AE
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 13:35:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 255211E32CF;
-	Mon, 20 Jan 2025 13:25:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9640E1E103B;
+	Mon, 20 Jan 2025 13:35:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="W/4ver2D";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="lrDuZYiG"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iYsBb2ur"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE3351E32BB;
-	Mon, 20 Jan 2025 13:25:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFF4D1E0DD1;
+	Mon, 20 Jan 2025 13:35:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737379535; cv=none; b=rJueoCjfBaWWYJG/LvjvaAWvOmweMOE5eymllEpqxB4eBOAIhNfxAJiMEgcxbRL20ylnT1wn7Qrh9osW2Yd91PaWri20h6y41UNwixm0x4BhFV9lrYfIv9kpZHrVaLFmGqT3DKSD+9MOsvUgEKeQh9RHd9fc3ojw0Dhlz4eu4tQ=
+	t=1737380157; cv=none; b=rRVB3EyREAV+J6Kipo425CqIXqSKsADUYpORGr/tWg+LtMSbEQuqueBYF3pT2FpHn+xMYuaJm1Z1ZTq2BAecYqjhHNGHvU4B7yRNtMKop/2/fzYArkIA2nuy5G3hQM/aypwDpscqwHk9va1l2TZXeJIrSrMBH8LZa+fHgqgUQpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737379535; c=relaxed/simple;
-	bh=CDoJCZYfXtvsOYlJjgOQo3X29b6AM6JhGYKu2siHjsY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=aXhmukD+vcRzSQD/db4qf2RUQMCNRiaQ+iBFhIIoeGnRkFO6q0zhQ6GAUCmoBLgCT2FXyDpDsgP1rtizD6EgbSNTh4ALvlUrDO/zOkreepIuwBxWxAkNNi8Df1WBQ3saNf768yL9fv4EXsoPYp7b3Fb7lJv2TVM1n5r69r+pzFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=W/4ver2D; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=lrDuZYiG reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1737379533; x=1768915533;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=mRcssIy0D3wBhtQcXILEIWDG0AtdDcnDWd1hDsno3wA=;
-  b=W/4ver2DcFh3+G1s1ZsuvQw0pt9b5SrlJZ604AD2sVfJ58bc8SAPA+6Z
-   B5wFZzRNHU7SveO+OlS0l0x6jbhh5+Uj3XjgaQ2XDEF0M4RnmLycAQaw8
-   FuCN7e8bIKC344YKJ5b8HsJbSanCh9Mhd/SEbfxcAufiL5KQnVrmAuRZo
-   b65lQjYqmXR7Ishxy+e3/J2uCZtdsWy6uHUMEBqtCJWhYA9EPxQacOb39
-   Uvi/PaSr1JYjG4Ejl8Oe7CbhHezc9sF/GgSG6h4f3M5xWEkMSgDy1X/mX
-   bryzRNy3zGCBY+q2Uo+78DfzX0zjeOSrZA2V6oOeGq5bDU+Ljy3KqQrEt
+	s=arc-20240116; t=1737380157; c=relaxed/simple;
+	bh=7ZdI6t4IK7dfNc6DKpH64lVUQY//O/FFxIeW6PD5Fa0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K5Uok4P57j47Wraqy95/b41hthlpl3UQtuC+FjIDyP8fX/YSUfnh4M+Clv1E7K8gXk5XjIw+YnMJfzmqYXNHvXnStKPpmLtPurLB5QgZ6F9/bll8hIBIHafINcVR9eokVC9FSukNA1Z/weYHQ03waNVM20+SxCapVLhbcWb3PPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iYsBb2ur; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737380155; x=1768916155;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=7ZdI6t4IK7dfNc6DKpH64lVUQY//O/FFxIeW6PD5Fa0=;
+  b=iYsBb2urDTfWvKMoDbcjn+UPz3n1uFsaWFaYSTPp1wqpS9mXEYzjaexh
+   KUH3EXOZh1n0x9DFNiRwreS9P+EFxxVkN6cAy5k8OMnCYhg5GiNeh2HTO
+   OTwVxkcgw+KItRh1PBptlQfaiDyMou0heoJfVYtBDX4P9vjmGBZyHphmS
+   OrWuGgOpX9CQGZ5PCWDfpuiDCG08KSTMTWWU90HXF0Hyk0w4yrkicrQuZ
+   OR2adGeVUUg2JZt67zLMtJpXZG4xtaLFllzRYoEFsbwXOwKp6APXSndT/
+   p2DnUJLt7WGpGEAIDCC7NMAf8hbP/ah301edixdlFCsL0ZfdFH3OvWEWY
    w==;
-X-CSE-ConnectionGUID: iTqurQXYSkyRWVle7byU4w==
-X-CSE-MsgGUID: WwKgWIhZTQu0ioHIIgfXMw==
-X-IronPort-AV: E=Sophos;i="6.13,219,1732575600"; 
-   d="scan'208";a="41177850"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 20 Jan 2025 14:25:32 +0100
-X-CheckPoint: {678E4ECC-11-9B2B6168-EB6F31C5}
-X-MAIL-CPID: DC5E2AAD34FE55F2E840A13270981609_5
-X-Control-Analysis: str=0001.0A682F15.678E4ECC.003B,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 4FAAC16F538;
-	Mon, 20 Jan 2025 14:25:27 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1737379527;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mRcssIy0D3wBhtQcXILEIWDG0AtdDcnDWd1hDsno3wA=;
-	b=lrDuZYiGY7PNHdU/Y0+ppDaxqp3+Z0x36gCZF1AOMNwkxQfeMqTJSLnCxSgnYYPCI3trWq
-	kU3phdcTfxZPsVLczcKpWcpJ/nf7eCgGdxhHKXzAzS8vV9cmZpveD7UscTD9zgxogGf0Rm
-	camcUTANG6OynMqUbtsYHNBBR/4M9Z1c1soSilnxM7uav1WVcYREVreKKT4CA0OF/jYG2I
-	qyDtXfEkSznvGSrDms8Y6gvOdZvkAf9rQLKrzGuQcsKjLU4oJYvzBI3/eU6UYhX6S8LHhG
-	G5oLQ/pJ4hK+xGB42yflhx8NQbPao5jQQERE0zMzXC0tgL8Bf0ToMAyWPCJ1iA==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-	linux@ew.tq-group.com,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: [PATCH 5/5] arm64: dts: mba8mx: change sound card model name
-Date: Mon, 20 Jan 2025 14:25:02 +0100
-Message-Id: <20250120132503.556547-5-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250120132503.556547-1-alexander.stein@ew.tq-group.com>
-References: <20250120132503.556547-1-alexander.stein@ew.tq-group.com>
+X-CSE-ConnectionGUID: 9/st6586TJSpjswxj3Xo2Q==
+X-CSE-MsgGUID: V7ysOx8+QPaYMbAVk1uNvw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="55179249"
+X-IronPort-AV: E=Sophos;i="6.13,219,1732608000"; 
+   d="scan'208";a="55179249"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2025 05:35:55 -0800
+X-CSE-ConnectionGUID: wSdVuZc/TOSUZSrwMiFrBg==
+X-CSE-MsgGUID: s/hN1pVsRr6ayyTg/dYObg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="143797479"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2025 05:35:53 -0800
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 6485111F94F;
+	Mon, 20 Jan 2025 15:35:50 +0200 (EET)
+Date: Mon, 20 Jan 2025 13:35:50 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: robh+dt@kernel.org, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, peter.griffin@linaro.org,
+	ezequiel@collabora.com, laurent.pinchart@ideasonboard.com
+Subject: Re: [PATCH v3 2/2] media: i2c: Add driver for Sony IMX219 sensor
+Message-ID: <Z45RNl5bV-MruxNZ@kekkonen.localdomain>
+References: <20200110200915.22575-1-andrey.konovalov@linaro.org>
+ <20200110200915.22575-3-andrey.konovalov@linaro.org>
+ <Z44soIWngnmCjoe6@kekkonen.localdomain>
+ <CAPY8ntBXwUmjSgb2z65mUZ1GSEUT8oczQMN+dewaevz9HemYag@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPY8ntBXwUmjSgb2z65mUZ1GSEUT8oczQMN+dewaevz9HemYag@mail.gmail.com>
 
-From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+Hi Dave,
 
-The card name for ALSA is generated from the model name string and
-is limited to 16 characters. Use a shorter name to prevent cutting the
-name.
+On Mon, Jan 20, 2025 at 12:28:04PM +0000, Dave Stevenson wrote:
+> Hi Sakari
+> 
+> On Mon, 20 Jan 2025 at 10:59, Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
+> >
+> > Hi Dave,
+> >
+> > On Fri, Jan 10, 2020 at 11:09:15PM +0300, Andrey Konovalov wrote:
+> > > +/* Power/clock management functions */
+> > > +static int imx219_power_on(struct device *dev)
+> > > +{
+> > > +     struct i2c_client *client = to_i2c_client(dev);
+> > > +     struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> > > +     struct imx219 *imx219 = to_imx219(sd);
+> > > +     int ret;
+> > > +
+> > > +     ret = regulator_bulk_enable(IMX219_NUM_SUPPLIES,
+> > > +                                 imx219->supplies);
+> > > +     if (ret) {
+> > > +             dev_err(&client->dev, "%s: failed to enable regulators\n",
+> > > +                     __func__);
+> > > +             return ret;
+> > > +     }
+> > > +
+> > > +     ret = clk_prepare_enable(imx219->xclk);
+> > > +     if (ret) {
+> > > +             dev_err(&client->dev, "%s: failed to enable clock\n",
+> > > +                     __func__);
+> > > +             goto reg_off;
+> > > +     }
+> > > +
+> > > +     gpiod_set_value_cansleep(imx219->reset_gpio, 1);
+> > > +     msleep(IMX219_XCLR_DELAY_MS);
+> > > +
+> > > +     return 0;
+> > > +reg_off:
+> > > +     regulator_bulk_disable(IMX219_NUM_SUPPLIES, imx219->supplies);
+> > > +     return ret;
+> > > +}
+> > > +
+> > > +static int imx219_power_off(struct device *dev)
+> > > +{
+> > > +     struct i2c_client *client = to_i2c_client(dev);
+> > > +     struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> > > +     struct imx219 *imx219 = to_imx219(sd);
+> > > +
+> > > +     gpiod_set_value_cansleep(imx219->reset_gpio, 0);
+> >
+> > The polarity of the reset GPIO appears to be wrong above. Given it works
+> > somewhere (arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso), the
+> > existing DTS files have it wrong, too. The bindings still appear to
+> > document it correctly.
+> 
+> Why do you say it is wrong?
+> I don't recall why this got called reset-gpio - the signal on the
+> sensor is XCLR, and that is documented in the binding.
+> The datasheet says low is standby and high is active, which matches
+> what the driver does.
 
-Since nearly all starter kit mainboards for i.MX based SoM by TQ-Systems
-use the same codec with the same routing on board it is a good idea to
-use the same mode name for the sound card. This allows sharing a default
-asound.conf in BSP over all the kits.
+Documentation/driver-api/gpio/consumer.rst:
 
-Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
- arch/arm64/boot/dts/freescale/mba8mx.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+	As a consumer should not have to care about the physical line
+	level, all of the gpiod_set_value_xxx() or
+	gpiod_set_array_value_xxx() functions operate with the *logical*
+	value. With this they take the active low property into account.
+	This means that they check whether the GPIO is configured to be
+	active low, and if so, they manipulate the passed value before the
+	physical line level is driven.
 
-diff --git a/arch/arm64/boot/dts/freescale/mba8mx.dtsi b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-index 124a2544826c9..0931f680e6875 100644
---- a/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/mba8mx.dtsi
-@@ -158,7 +158,7 @@ reg_vcc_5v0: regulator-5v0 {
- 
- 	sound: sound {
- 		compatible = "fsl,imx-audio-tlv320aic32x4";
--		model = "imx-audio-tlv320aic32x4";
-+		model = "tqm-tlv320aic32";
- 		ssi-controller = <&sai3>;
- 		audio-codec = <&tlv320aic3x04>;
- 	};
+In other words, if the driver calls gpiod_set_value_cansleep(, 0), it
+enables reset signal on the device, bringing the device to hard reset. This
+is the opposite of what the driver does in its resume callback.
+
+So in order to function, the DT must have wrong polarity as well.
+Similarly, if someone writes a correct DT for a board connecting the reset
+GPIO, the imx219 driver simply won't work.
+
+Looking at the arch/arm64/boot/dts/ti/k3-am62x-sk-csi2-imx219.dtso overlay,
+it is for the RPi IMX219 module that does not connect the reset GPIO at
+all. In other words, there doesn't seem to be a upstream user of the reset
+GPIO in IMX219.
+
+> 
+> > Laurent confirmed xcrl isn't controllable in the RPi imx219 camera module.
+> >
+> > How about fixing this? Currently correctly written DTBs including imx219
+> > won't work.
+> 
+> Seeing as the DTB is ABI, the only improvement I can see is to rename
+> "imx219->reset_gpio" to "imx219->xclr_gpio".
+> What else would you be proposing?
+
+If there's a concern this could break existing DTs, the driver could try
+inverting the polarity of the GPIO if the sensor isn't immediately
+accessible.
+
+I wonder what others think.
+
+Cc Laurent.
+
+> 
+>   Dave
+> 
+> > I noticed this while fixing the power sequences in this and a few other
+> > drivers.
+> >
+> > > +     regulator_bulk_disable(IMX219_NUM_SUPPLIES, imx219->supplies);
+> > > +     clk_disable_unprepare(imx219->xclk);
+> > > +
+> > > +     return 0;
+> > > +}
+> >
+> > ...
+> >
+> > > +static int imx219_probe(struct i2c_client *client,
+> > > +                     const struct i2c_device_id *id)
+> > > +{
+> > > +     struct device *dev = &client->dev;
+> > > +     struct fwnode_handle *endpoint;
+> > > +     struct imx219 *imx219;
+> > > +     int ret;
+> > > +
+> > > +     imx219 = devm_kzalloc(&client->dev, sizeof(*imx219), GFP_KERNEL);
+> > > +     if (!imx219)
+> > > +             return -ENOMEM;
+> > > +
+> > > +     imx219->dev = dev;
+> > > +
+> > > +     v4l2_i2c_subdev_init(&imx219->sd, client, &imx219_subdev_ops);
+> > > +
+> > > +     /* Get CSI2 bus config */
+> > > +     endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(&client->dev),
+> > > +                                               NULL);
+> > > +     if (!endpoint) {
+> > > +             dev_err(dev, "endpoint node not found\n");
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     ret = v4l2_fwnode_endpoint_parse(endpoint, &imx219->ep);
+> > > +     fwnode_handle_put(endpoint);
+> > > +     if (ret) {
+> > > +             dev_err(dev, "could not parse endpoint\n");
+> > > +             return ret;
+> > > +     }
+> > > +
+> > > +     /* Check the number of MIPI CSI2 data lanes */
+> > > +     if (imx219->ep.bus_type != V4L2_MBUS_CSI2_DPHY ||
+> > > +         imx219->ep.bus.mipi_csi2.num_data_lanes != 2) {
+> > > +             dev_err(dev, "only 2 data lanes are currently supported\n");
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     /* Get system clock (xclk) */
+> > > +     imx219->xclk = devm_clk_get(dev, NULL);
+> > > +     if (IS_ERR(imx219->xclk)) {
+> > > +             dev_err(dev, "failed to get xclk\n");
+> > > +             return PTR_ERR(imx219->xclk);
+> > > +     }
+> > > +
+> > > +     imx219->xclk_freq = clk_get_rate(imx219->xclk);
+> > > +     if (imx219->xclk_freq != IMX219_XCLK_FREQ) {
+> > > +             dev_err(dev, "xclk frequency not supported: %d Hz\n",
+> > > +                     imx219->xclk_freq);
+> > > +             return -EINVAL;
+> > > +     }
+> > > +
+> > > +     ret = imx219_get_regulators(imx219);
+> > > +     if (ret) {
+> > > +             dev_err(dev, "failed to get regulators\n");
+> > > +             return ret;
+> > > +     }
+> > > +
+> > > +     /* Request optional enable pin */
+> > > +     imx219->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+> > > +                                                   GPIOD_OUT_HIGH);
+> > > +
+> > > +     /*
+> > > +      * The sensor must be powered for imx219_identify_module()
+> > > +      * to be able to read the CHIP_ID register
+> > > +      */
+> > > +     ret = imx219_power_on(dev);
+> > > +     if (ret)
+> > > +             return ret;
+> > > +
+> > > +     ret = imx219_identify_module(imx219);
+> > > +     if (ret)
+> > > +             goto error_power_off;
+> > > +
+> > > +     /* Set default mode to max resolution */
+> > > +     imx219->mode = &supported_modes[0];
+> > > +
+> > > +     ret = imx219_init_controls(imx219);
+> > > +     if (ret)
+> > > +             goto error_power_off;
+> > > +
+> > > +     /* Initialize subdev */
+> > > +     imx219->sd.internal_ops = &imx219_internal_ops;
+> > > +     imx219->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> > > +     imx219->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
+> > > +
+> > > +     /* Initialize source pad */
+> > > +     imx219->pad.flags = MEDIA_PAD_FL_SOURCE;
+> > > +
+> > > +     ret = media_entity_pads_init(&imx219->sd.entity, 1, &imx219->pad);
+> > > +     if (ret) {
+> > > +             dev_err(dev, "failed to init entity pads: %d\n", ret);
+> > > +             goto error_handler_free;
+> > > +     }
+> > > +
+> > > +     ret = v4l2_async_register_subdev_sensor_common(&imx219->sd);
+> > > +     if (ret < 0) {
+> > > +             dev_err(dev, "failed to register sensor sub-device: %d\n", ret);
+> > > +             goto error_media_entity;
+> > > +     }
+> > > +
+> > > +     /* Enable runtime PM and turn off the device */
+> > > +     pm_runtime_set_active(dev);
+> > > +     pm_runtime_enable(dev);
+> > > +     pm_runtime_idle(dev);
+> > > +
+> > > +     return 0;
+> > > +
+> > > +error_media_entity:
+> > > +     media_entity_cleanup(&imx219->sd.entity);
+> > > +
+> > > +error_handler_free:
+> > > +     imx219_free_controls(imx219);
+> > > +
+> > > +error_power_off:
+> > > +     imx219_power_off(dev);
+> > > +
+> > > +     return ret;
+> > > +}
+> >
+> > --
+> > Kind regards,
+> >
+> > Sakari Ailus
+
 -- 
-2.34.1
+Kind regards,
 
+Sakari Ailus
 
