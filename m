@@ -1,48 +1,41 @@
-Return-Path: <devicetree+bounces-139639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3961BA16736
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:18:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F8A6A16748
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:23:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2452C7A10F4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:18:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 327911888FBF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0DAB1865F0;
-	Mon, 20 Jan 2025 07:18:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9595D18F2DD;
+	Mon, 20 Jan 2025 07:23:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hK7k6X8F"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="YlMVqCem"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m15586.qiye.163.com (mail-m15586.qiye.163.com [101.71.155.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CAEA4A1E;
-	Mon, 20 Jan 2025 07:18:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7717918FC65;
+	Mon, 20 Jan 2025 07:23:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737357482; cv=none; b=JZJwqGem7jsp91P1w7NpRgonsoUpX842vENR21LNP5BBP5XXUSL9MXz1k9YyhSDSaWLRZB8oMcwj0ba7lhnVTIOy/xzrHAB4OlXX6A+22wAWgu8CYahg8WgBdiexX1kkUB6c2dgtAo97dpz0waNRb0Ct/Ei0rMv/ce04si2bHBI=
+	t=1737357811; cv=none; b=qM0e7ApPebUeCNrT89uwRV/RUUxojkI/Lc+kycLefh9yeSx3t2AkJJwQG2l9N0HmcsELTC+Y90S8nnu4CNUqtdk9VPiwgXEVBj3HTIN1dRCmQDbiq67n6MeajVlHiKTmX8mCwsRrh70fcWry4xc3fHaY21V8YHrsysLzG0o7qiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737357482; c=relaxed/simple;
-	bh=V8tRj4wxF6WY5P5NGz3HaOq0ntuT+G45qoGbh62cfug=;
+	s=arc-20240116; t=1737357811; c=relaxed/simple;
+	bh=OvVM5YN2JckGl2VUHFTILVusLOgtsr0RTULV4L+JAWM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=m1ov2m2dcfvLgIyrU4uIQ4wgQsHMhcLtMeMSsEXoQiEyaFxwfbDUNq9I3WFuFPSsSn5l2VKHYJNQ6rpg6vSfnX+AtrbQEXDGhug24CTEGo6faW0kwmpDj1p+6SeECS2C8WPgm/fgI3CUoHwhKhMencAYdQnMm6YU0kVKnbYs8qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hK7k6X8F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABE20C4CEDD;
-	Mon, 20 Jan 2025 07:17:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737357482;
-	bh=V8tRj4wxF6WY5P5NGz3HaOq0ntuT+G45qoGbh62cfug=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hK7k6X8F2vKT0kUpUdomr7aacwvQMR9NrEfDqFN9nn84o2ytKGh+0V0eQpH+fNvbR
-	 VS1t07G3OYUzqwoqSG5ePH7jmxNPYu6I3NdTlEE+2syk34/28kxTgHRsrD+YPKnEMY
-	 OGMfJ9MLT0g82XoRFamscO3ED22qEC2NGl2xA3X5zdsSjhgGGgqIhLVwVhsLH/J3TN
-	 n0YfEF7iv3PLBKfrNJ6zlDeGJLZXzcwffUNkv3GmvsdF8Ie6sRXn/ATUBPFe/fOaV0
-	 xyssnCC+np6b6ovIalmAIxpGqC0/trB5SwKNlY90gVG5HhvLC1QUrx227vpkABZEOu
-	 xRh4bwmzB+ANQ==
-Message-ID: <f0101c5b-e8c2-408e-9d4b-0ed7d9b7bad6@kernel.org>
-Date: Mon, 20 Jan 2025 08:17:55 +0100
+	 In-Reply-To:Content-Type; b=i6/GKsEZ4mwCQVodvGoBAq0NOfmSspu6nKOLiOz2NXF08MlX3iTC5rcrlaSFVrmTklUK+vZHGMhEWy2J9BQuFFAoqLZPVpr20CLOcfrbLnqf9PQ1L/rX7+i3hm+AjT6QaKjSjaqLWRZ2z4l32xTn0Oqz2L9RrcClN0oJRmyzvp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=YlMVqCem; arc=none smtp.client-ip=101.71.155.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.26] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 92b0fd19;
+	Mon, 20 Jan 2025 15:18:15 +0800 (GMT+08:00)
+Message-ID: <938a27aa-74dd-4fe2-8cdb-35e70aeba7f9@rock-chips.com>
+Date: Mon, 20 Jan 2025 15:18:13 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,99 +43,94 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 04/10] dt-bindings: clock: Add Qualcomm QCS615 Display
- clock controller
-To: Taniya Das <quic_tdas@quicinc.com>, "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Will Deacon <will@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
- linux-arm-kernel@lists.infradead.org,
- Catalin Marinas <catalin.marinas@arm.com>, Stephen Boyd <sboyd@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Imran Shaik <quic_imrashai@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>
-References: <20250119-qcs615-mm-v4-clockcontroller-v4-0-5d1bdb5a140c@quicinc.com>
- <20250119-qcs615-mm-v4-clockcontroller-v4-4-5d1bdb5a140c@quicinc.com>
- <173728731976.808036.168078560019330137.robh@kernel.org>
- <a646b3af-9957-4720-893e-9013b2dca43a@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v1 0/6] Add eDP mode support for Rockchip Samsung HDPTX
+ PHY
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org,
+ sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com,
+ l.stach@pengutronix.de, andy.yan@rock-chips.com, hjc@rock-chips.com,
+ algea.cao@rock-chips.com, kever.yang@rock-chips.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20250112090714.1564158-1-damon.ding@rock-chips.com>
+ <ezoduel3qz5ihlhekry26cb7ace3bm4xmzsfrsqvbodtcl3gjq@xxo75h7uozei>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <a646b3af-9957-4720-893e-9013b2dca43a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <ezoduel3qz5ihlhekry26cb7ace3bm4xmzsfrsqvbodtcl3gjq@xxo75h7uozei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQhofSVZIQ0tIHx1IQkpMGBhWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a9482938cc103a3kunm92b0fd19
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MRQ6CTo*QjILGjc0Ei1KIQtW
+	T0pPCzlVSlVKTEhMSE5MT0JMSE5OVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJSEhLNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=YlMVqCemoJ5IuGFcjnoZpmTM+woLwFi2wcAc4vBGThor+N1qtfA0YzV3z3iB62D4/0lEir2z/RSlG6qZu78nUvKHmCE7MY1tLK3ql+K4BzVU5YzuM9SKIlIYPOimiJMYFRsZ8FfrfjRSPfKNVynCqgXMukhM4D8CSqMl+w3Snhg=; c=relaxed/relaxed; s=default; d=rock-chips.com; v=1;
+	bh=LGzVX7k2FmqUfYRLqS7vwiYQh14m9/YvFN4qiCwdhQg=;
+	h=date:mime-version:subject:message-id:from;
 
-On 20/01/2025 05:40, Taniya Das wrote:
+Hi Dmitry,
+
+On 2025/1/13 17:10, Dmitry Baryshkov wrote:
+> On Sun, Jan 12, 2025 at 05:07:08PM +0800, Damon Ding wrote:
+>> Picked from:
+>> https://patchwork.kernel.org/project/linux-rockchip/list/?series=923593
 > 
+> Then it should have been v6, not v1.
 > 
-> On 1/19/2025 5:23 PM, Rob Herring (Arm) wrote:
->> y bot found errors running 'make dt_binding_check' on your patch:
+
+I will update a patch series to fix it.
+
 >>
->> yamllint warnings/errors:
+>> These patchs have been tested with a 1536x2048p60 eDP panel on
+>> RK3588S EVB1 board, and HDMI 1080P/4K display also has been verified
+>> on RK3588 EVB1 board.
 >>
->> dtschema/dtc warnings/errors:
->> Documentation/devicetree/bindings/clock/qcom,qcs615-dispcc.example.dts:19:18: fatal error: dt-bindings/clock/qcom,qcs615-gcc.h: No such file or directory
->>     19 |         #include <dt-bindings/clock/qcom,qcs615-gcc.h>
->>        |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> compilation terminated.
->> make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/clock/qcom,qcs615-dispcc.example.dtb] Error 1
->> make[2]: *** Waiting for unfinished jobs....
->> make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
->> make: *** [Makefile:251: __sub-make] Error 2
+>> Damon Ding (6):
+>>    phy: phy-rockchip-samsung-hdptx: Swap the definitions of LCPLL_REF and
+>>      ROPLL_REF
+>>    phy: phy-rockchip-samsung-hdptx: Supplement some register names with
+>>      their full version
+>>    phy: phy-rockchip-samsung-hdptx: Add the '_MASK' suffix to all
+>>      registers
+>>    phy: phy-rockchip-samsung-hdptx: Add eDP mode support for RK3588
+>>    dt-bindings: display: rockchip: Fix label name of hdptxphy for RK3588
+>>      HDMI TX Controller
+>>    arm64: dts: rockchip: Fix label name of hdptxphy for RK3588
+>>
+>>   .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml  |   2 +-
+>>   arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |   4 +-
+>>   .../dts/rockchip/rk3588-coolpi-cm5-evb.dts    |   2 +-
+>>   .../rockchip/rk3588-coolpi-cm5-genbook.dts    |   2 +-
+>>   .../boot/dts/rockchip/rk3588-evb1-v10.dts     |   2 +-
+>>   .../rk3588-friendlyelec-cm3588-nas.dts        |   2 +-
+>>   .../arm64/boot/dts/rockchip/rk3588-jaguar.dts |   2 +-
+>>   .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   |   2 +-
+>>   .../dts/rockchip/rk3588-orangepi-5-plus.dts   |   2 +-
+>>   .../boot/dts/rockchip/rk3588-rock-5b.dts      |   2 +-
+>>   .../boot/dts/rockchip/rk3588-tiger-haikou.dts |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   |   2 +-
+>>   .../dts/rockchip/rk3588s-indiedroid-nova.dts  |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-nanopi-r6.dtsi  |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-odroid-m2.dts   |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-orangepi-5.dtsi |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   2 +-
+>>   .../boot/dts/rockchip/rk3588s-rock-5c.dts     |   2 +-
+>>   .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 971 +++++++++++++++++-
+>>   19 files changed, 934 insertions(+), 75 deletions(-)
+>>
+>> -- 
+>> 2.34.1
+>>
 > 
-> The code 
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/include/dt-bindings/clock/qcom,qcs615-gcc.h
-> 
-> The cover letter also has the series mentioned.
 
+Best regards
+Damon
 
-Rather read entire message...
-
-Best regards,
-Krzysztof
 
