@@ -1,428 +1,266 @@
-Return-Path: <devicetree+bounces-139601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 527DBA1657F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 03:44:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B549BA16585
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 03:49:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B174518840FB
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 02:44:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C64CE1661F4
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 02:49:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46A391BC20;
-	Mon, 20 Jan 2025 02:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8120D2A1D8;
+	Mon, 20 Jan 2025 02:49:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gmnTxz9x"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="gYdYQ5xP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2084.outbound.protection.outlook.com [40.107.247.84])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A25B14F9D9;
-	Mon, 20 Jan 2025 02:44:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737341071; cv=none; b=MMTPayWj3eU4z14Nsk+/FEjt7Pzm6ovHYgQs1jo1xMA99q8UIzhm3d1vKjS75OEMTUTS4NTNPrg0ropIj/jPeDU4pyHcuhvTsWXYvigdp3GaALs9/bvwKPSbiL8+MNq5nuMIvDqliP5H+4RHSLJA8/qMErZrGSu1kIjS4SfqiPQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737341071; c=relaxed/simple;
-	bh=YxTMbqEO4UKPfg3ZvsE5HzpRThXAIxnJsdMU5G2S1pU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Posk2w8q1ZhPHBda+aDfgCyhBP9XoW3mz0BfQ+ptzxGPY6re35ydgIFK/daCeoZO5RWwMF3HIE6UhGnKR/rqAo+QAj6BsKY4uoJZAdrP9RiKQWAZb0xBP1bSvdwNE0IEm4NzVV3DIX5oNurxYA4nOaraRvtcSUew2H62fQNjkys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gmnTxz9x; arc=none smtp.client-ip=209.85.160.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-46c8474d8daso32296131cf.3;
-        Sun, 19 Jan 2025 18:44:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737341068; x=1737945868; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sl9nu3Qof0PszksDLNRZJf1Z528uEntwflNxxKMJjDU=;
-        b=gmnTxz9x3YZfiFbk4qHETCXqV8yTyMVxItC9wfX6Onw676LkKSMqGGNqgRVNTFLmd2
-         kqU1L4qhIzOQAYN+fle3NdxrFJsuyoFk/L11rEKNlSMN3Mq/xEyQWxFXu0bDFgWUqPO/
-         l4jokmDT1mM0rbKDNk+9ZT6sYUQgzLEj6T+K5JhjJrZtcMwQutJX/mJWzhHKLBfG99Vs
-         xGsSjZuGEBPS9VAjO/1gvOq2v4mo2JU+JC87nwmTlil57N9LUifrDu/rrpm/VH9070Ky
-         yvQENY6qhcW/HwssWNgtUz0DXmRpSLoBW2wF9+z5xJPKWtnqC9mbjYkU7x3KeheX/knQ
-         7UmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737341068; x=1737945868;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Sl9nu3Qof0PszksDLNRZJf1Z528uEntwflNxxKMJjDU=;
-        b=i/va/MfI+McCxTvHliv4swmqjA20ZEgXEhigC+YAp2cUpGsR1TyqAtqAij84XZFEix
-         xYbE1nLt2ozpmVs1MKKSy46hF+RvL3UC0Nh5Hw4K2N+QtcxunjdOdq/LLSbzsPPmxRR/
-         AkoT43VKUiI1jLu3S1DNsO56H4nrWMx9Ql0UaAoG5FdrmS53UECdnA2579Tbr/Oy08VK
-         FHxGC9fmilX5nHAatE1dpihWrmYDg3aU1aav/ZhRxwcoOdOV9JYRl2qwDh1LffIotVLv
-         vZiG2ls/jVJNW2FtxGMVIsHTfWchekIPLv3ahoQeOC13fen0oo/WkKmWbaBlXCUZtIZF
-         ra7g==
-X-Forwarded-Encrypted: i=1; AJvYcCVghcCPYdD9HsXPjAbXfI2zWnWTkxxT1QQV40V6KkZG7Jht2T2frrQ4VwxqmYHW66V2fTNklAylR39Qazw2@vger.kernel.org, AJvYcCVhVsUuF9h6y5sBbWBHyeKsZ4y4CWHBft+jPCWPFrgPIk6v5A805l+8K5K1/qEMklBHScmoTRO10rVR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMnnisT/oIHyRHWSvVSOld+GRXx5XpHvMI7AFhS0GBH8sr+Hna
-	/3dgOyvjD9JXqx09Ut0ERgdZ2eMYmAhmBJNXmFgAdwxNNv4++hGO
-X-Gm-Gg: ASbGncsVf4UVRW4HtLzJ4bZw05DrN+n44RoJgel6dpwn9vXgWi//02Zqftrhhnz/+FD
-	YDvnmA8vOF7EpjFELxC5hO7A9OSrHhyt0kvxrBxYEMxE4/B1172e0ErI1TsQRQX35UgO9bVeo1U
-	3LOOPie6vNVLH2yxSXEKPTVvH2nmUy1eb7zKX+RzDOjDG+GToPtlQV4K0pnLdJfir2ijJSbVs7G
-	77XZ/0xXTxMbGvGGQFH4PkiEbZv/YeKlxlgS3wzUG4P3w==
-X-Google-Smtp-Source: AGHT+IHkBEqg8JvBQvC+YkoGK3v8otfkaorCKJlA1539WBUvUougLTSjSNTwIZwfkaT5JegkwqXmYA==
-X-Received: by 2002:a05:622a:1922:b0:467:8342:d0d5 with SMTP id d75a77b69052e-46e12a0c255mr203518851cf.2.1737341068100;
-        Sun, 19 Jan 2025 18:44:28 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id d75a77b69052e-46e1030daadsm37752521cf.39.2025.01.19.18.44.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 19 Jan 2025 18:44:27 -0800 (PST)
-Date: Mon, 20 Jan 2025 10:43:40 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen Wang <unicornxw@gmail.com>, u.kleine-koenig@baylibre.com, 
-	aou@eecs.berkeley.edu, arnd@arndb.de, unicorn_wang@outlook.com, conor+dt@kernel.org, 
-	guoren@kernel.org, inochiama@outlook.com, krzk+dt@kernel.org, palmer@dabbelt.com, 
-	paul.walmsley@sifive.com, robh@kernel.org, tglx@linutronix.de, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, chao.wei@sophgo.com, 
-	xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com, samuel.holland@sifive.com, 
-	christophe.jaillet@wanadoo.fr
-Cc: Inochi Amaoto <inochiama@gmail.com>
-Subject: Re: [PATCH v3 2/3] irqchip: Add the Sophgo SG2042 MSI interrupt
- controller
-Message-ID: <6b4n7jbflkaparryguq2kjdg4bpfy4vgpzucd456awbhl362po@zytqbodpm2wc>
-References: <cover.1736921549.git.unicorn_wang@outlook.com>
- <b5c2f13aa94f68c3415a1292678e16db33f291cd.1736921549.git.unicorn_wang@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35884182BC;
+	Mon, 20 Jan 2025 02:49:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.84
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737341357; cv=fail; b=qqOc7brVe4guwXdB2GxDZ0LqTJ8oH1SfJ55ea059lEMRqfkk04aYRaAl2Nih2S8d0tTZeH2Wogjo1uBPe1Tsqy5i1nnCUiYlTIIyrFBdhLJ6QaDCRWL2Zm/6zEthdAVPak16ZusGXIuXhTD/jNUxkiYqhXgMR+CBkhlH7NCAgnk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737341357; c=relaxed/simple;
+	bh=mdL6mCamH1C/w5sijg36x/GKyawbagvFHZ2UbeNJfx8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=AR5HsoHlobgu//j8QGDW1oBtFN4NwUW67zvPbpv8kc8LlxyJ241VFtBxMD+TN8RQQ6hlCDSp/cxPkLu873tRHzEBtIZKS67itpaRaui3vt9ncBfk+CGoWR6JRtw/g5+OtdAUFMOjOx3i27gNRXZND6jLVWcqkAzGP7I8V4BpweE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=gYdYQ5xP; arc=fail smtp.client-ip=40.107.247.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=onFCMIanQZVqdGD4YKaX11EQwYh5vB2MvMDdu8Ccc7yGkqqYILtUT/jgoUMHj9J+LsQNzh7I82ShhItRiLRbKkamgGmgtFCVPG0nhe78inzSYzACYRufuU/vjDZUQQLbyg29BaLAPCjW2oUN3h5+9kn62UAvqK2YT66MnglUAZhbOzIdAxBy9gT+CK03/gi+NEwlFFGrWJk5RkfPFT/Ejz7TgaX79wYJj5Hy091sndPG8qGhmt9UcbfBiRG6F7pgumqa6HnhQBZoJaD2nS5SUlEygdykOXu8xmlmq5j6d7OUBAiea+GmKqOHaJZ+IclPiSAGMYJDLOvSGVrYRg6ysg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mdL6mCamH1C/w5sijg36x/GKyawbagvFHZ2UbeNJfx8=;
+ b=hC5gkdATEoku9Vc/lGCQK/+vRVFhprUBR+vvmFBLt3qLC5Np2ZNGAafA0LYd5stmEvD3qETwjjknEXalSbkOdv624rtY7V132SLy2xBvCzbsXQbRfcM38ZUWDVY7hMGwOj3E2wghfDRb1ny0uJRzFIqIZP5klBaqMqC9/9zpShLbQPak1h6wSF6MvzVCNLi+p7nGdsh7CNknrKFk4r3tf+VelZ2Ln/BZc8t7irm8rPQCEA72D8mcdRuS4T+hdEddYwLzE/7BUhpvgOsZ2Ik3jKqHrtoFz7BDQDFEYiIdUt93qirK6jGigBx9JxfcmuPQYPResFa4Y/Equr9qijXI5g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mdL6mCamH1C/w5sijg36x/GKyawbagvFHZ2UbeNJfx8=;
+ b=gYdYQ5xPmvc8bL1W5Yj5tGDOd5d5mFA7rcxMDw0l+EVI4nJsnmVS3h5b51Z1eOTm46fcNj02nLC7YySDuheExS+kV+nRv90st06Tz7MsPTAKYZisYjMYe5T1NEcPIfKo6YQlwU70cy8BwhmEpIc9/ZBcsUeciVKs1qwq/TxS0cQJcpbafwPnZKRP4MijNvvhkV346OClbbN7cn3GKy5uJd94ZJDN3BiCi2Eb7rPVhEVaCPFql4fVFo2YwmWQaTVlUTgwX/0NwDsAQeaD5wlVgS1xE9C4nWQZa/NGeU/M4KSPbSQr9nUP5SaKuw1/QGrbs3DOsFLgyHZVnY/iTvs8Qg==
+Received: from AS8PR04MB8676.eurprd04.prod.outlook.com (2603:10a6:20b:42b::10)
+ by DU0PR04MB9250.eurprd04.prod.outlook.com (2603:10a6:10:351::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.21; Mon, 20 Jan
+ 2025 02:49:10 +0000
+Received: from AS8PR04MB8676.eurprd04.prod.outlook.com
+ ([fe80::28b2:de72:ad25:5d93]) by AS8PR04MB8676.eurprd04.prod.outlook.com
+ ([fe80::28b2:de72:ad25:5d93%7]) with mapi id 15.20.8356.020; Mon, 20 Jan 2025
+ 02:49:09 +0000
+From: Hongxing Zhu <hongxing.zhu@nxp.com>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+CC: "l.stach@pengutronix.de" <l.stach@pengutronix.de>, "bhelgaas@google.com"
+	<bhelgaas@google.com>, "lpieralisi@kernel.org" <lpieralisi@kernel.org>,
+	"kw@linux.com" <kw@linux.com>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>, Frank Li
+	<frank.li@nxp.com>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>, "kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH v7 02/10] PCI: imx6: Add ref clock for i.MX95 PCIe
+Thread-Topic: [PATCH v7 02/10] PCI: imx6: Add ref clock for i.MX95 PCIe
+Thread-Index: AQHbP9jhejkwCulgPEarYoQ8WDwaHbMeAJcAgAE/fGA=
+Date: Mon, 20 Jan 2025 02:49:09 +0000
+Message-ID:
+ <AS8PR04MB86762EA8219F8FE76CB48F358CE72@AS8PR04MB8676.eurprd04.prod.outlook.com>
+References: <20241126075702.4099164-1-hongxing.zhu@nxp.com>
+ <20241126075702.4099164-3-hongxing.zhu@nxp.com>
+ <20250119070246.yfxogn4vv3jqfvzb@thinkpad>
+In-Reply-To: <20250119070246.yfxogn4vv3jqfvzb@thinkpad>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AS8PR04MB8676:EE_|DU0PR04MB9250:EE_
+x-ms-office365-filtering-correlation-id: f90c178d-8677-4138-7da8-08dd38fd0389
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?YzhBU1h5YldSTlRmN3RkUkd4b2kxc0wxdVFXZkZoR2pmS05XK1BodTZrUzBm?=
+ =?utf-8?B?YzZnTy9oU2MybFhvbkUvV2czM29XM1NmRnhoNnJUZXY1ZlJ1cTJkQUxNTThP?=
+ =?utf-8?B?WDBENlBld0UrMFREYytLQ1NxMkVMbk5aaWNIeW9hMDMrYlo3K1NHVWE3ZFlW?=
+ =?utf-8?B?YS9EVDlJYnBHSjZIWTBOaWJ2Zlk5RVBHU0pobWtMZytqV2NEaFdueVdrVkdy?=
+ =?utf-8?B?SllIaXhRQW1kSEs1NW1SYTNHRDMwa0VpR2V6VGp5L0JKREZtTmJ3QzJQTzJK?=
+ =?utf-8?B?dHZFZmkzSjBPYlZ3MlZGQUoyS3JLWjY2TmZIMTJIS2szcnhkOWoreDF3Rnhk?=
+ =?utf-8?B?K0llRFo4ZFlyRUQyZFkvSUdwcERSVUtnUENRcTA2cGxxWEVRdzlyaHlHRXdI?=
+ =?utf-8?B?YUxTUTdWNENjRXJ3MTQ5ZENXbGdMR1pjNkVCMzNZc3c2SGQ5dnoyZnVaTXZ3?=
+ =?utf-8?B?dW9Vd3dtUnkwYnFCenpkMnRicXVMNks5MXhUM010TmhHbURhRmhnWUFOZFZo?=
+ =?utf-8?B?QVhXVThjd25aVFpzS1pyWEFNV1JRS3krU2ZmOTd4YTN3VjRGaDlhNVRDYm1T?=
+ =?utf-8?B?VG82cmxKcHBuZWZQYzJtbUg5bC9IbFdZSzdQRE5UMzNvZ092TmZRSHY5Y0xu?=
+ =?utf-8?B?dWx1WVJ1b2hkNWppVjZYTFljRDZkTmwya1ovTG12djRHMU9aRTBOSUt3c1g3?=
+ =?utf-8?B?ZTNnVkk2ZkR0aUhJNGcyOVRxMUVwK0ZmbGgzWU1sT1RsSGp2ZVZYSXVVWHJO?=
+ =?utf-8?B?cGdQWHdsWWROeGJRZVhnUWxiNzM1ZklSMHUwcUpZY0Y3NGQ4RFdHSHhidWZR?=
+ =?utf-8?B?eGxxdzZFbDgyYStoK1hQMzJIdjM1ak9hOTArUld0amc1OEZqQ3VWazl5dGhs?=
+ =?utf-8?B?a1YyUkhBOURyVHFTMlBtdjA2ZTFUSGdMTVREK2hvZXBVaVBhWWw5cnFZdDND?=
+ =?utf-8?B?czJBLy8vZWQwQ25vc3dDOXFzeDJrUU5KZVdPQVdyNk8xMG5FRlkrcjZUcmU3?=
+ =?utf-8?B?STlhSXJuRTV5VWFZWnlwNzdzWStMUlRrVzBQOWluQTl1ajY4RzNMb3FvdWY1?=
+ =?utf-8?B?NHA5bHVROGh4bE42ZWVZVzFQTnZRTG5rTnRzbGVIS0pwUUJPQkVxMUg3bVJZ?=
+ =?utf-8?B?OHVia3Z3UEw2citPUkF1aEZ6U0drL1MrOUU0KzhkZVpRTHl4VlFDTHdMQkxx?=
+ =?utf-8?B?Y2xoUkhVUHFLREFSamNMZFdEZGZCS05zdkc1dERMQ3dWWTQ1WmNsTmR0MktX?=
+ =?utf-8?B?OWRZUVc5eUhXZTRzcFFlUnNMclhmZmVrcUJlUUMwNkFEQVB5SytyOXJ6ZlB0?=
+ =?utf-8?B?M25iSm1FREluN3Y1Z2VzKzBQS1dOdFU5MlgraTZGMFBjUlYwY1lESzd2Rm05?=
+ =?utf-8?B?Vi80MGxXMzRvVUU0REVQQjJkcmgyT3haWHRKNVhKOUZlRWhuMUhsM210a21H?=
+ =?utf-8?B?OVlNcGJEMzFKaTg5MUVpaXFhcmlKN3JlV3VqaksxaE00VWtFMnZIOXhoWmZL?=
+ =?utf-8?B?amRjN0lEdTlDK2dMeks3VnVmSDE2TVBwbWZUWXBnUDlVZ0lqdzBWV3VZSUYr?=
+ =?utf-8?B?UFF6VWZSSDNvN0U1K0J3QXpTQlErRnh0dnBOckwrVEJ5dGNCU1o3VndveXBX?=
+ =?utf-8?B?a20vSlVkOUczNTVIS0dzRmZFbnljRVlyS2R6aWZOeHZJWGpyVWpjRHFZRTl6?=
+ =?utf-8?B?OExNRlZ3bDZVVnBpbC8xelgwVlplUjJmcWVsakx5R0NqditYZ0xwSlg0ME44?=
+ =?utf-8?B?bktmcWduK2gyWDhiZzZLdi90SUgxS0tJK3FZb3JqS29ZTzZ3eWlldHpnM0lN?=
+ =?utf-8?B?YTg2d0htSmZwSnJCRVMvNUZUTG81Sk1sZUN5eFdxbWZjcFJURittN1hvVGps?=
+ =?utf-8?B?WjBldlI4MkpCRXZYNTh1ODdHSXFoKzJ0UWN1OStOL29kUzUwZkRYSUJjY0Za?=
+ =?utf-8?Q?38oKck2gnQ6JxpKT5D5/BzXARiOdZ46B?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8676.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?c244MHhGRDlsa29XUUc4a01uaWtoUjUxbVdwNWZra1l1SmRzTDN1OFJTeHND?=
+ =?utf-8?B?RC9udGNvQmZvRHI0b2szVTdFRnFGZkJ3T0s1QVl6YVVhYURpL2JscDVnOW1G?=
+ =?utf-8?B?Qi81V0tTdHlVQlJyalR2Nkp3RHJrUWRKMml3ckJQU05BTHRxTUZuS1daRUc5?=
+ =?utf-8?B?cU5RSEtTWk1Wc2F6NVZOZld3bGk1L1NyTzFIQVlFSm12eDRiSFQvS3ZkV3Qx?=
+ =?utf-8?B?WDhjSFBwanhGQVFkbjVON2huOSt3M2FnRDljOVVDcWpKd2pqS0RDOHpZV1h5?=
+ =?utf-8?B?dEhYQ081bUkrT1MxQ1J0bmZoeC9NaS9haGtGZ2xpU0lHWXh4WCttbFlYUmVR?=
+ =?utf-8?B?VDVVS1Q4TkZKU3NvYk40anZzN2F0aVh4UjVXWEFwbmRuTmt2OFVrdG84ZmlD?=
+ =?utf-8?B?S3RRcG9kREVVN1VPRzAraWRVR2Vzai92ajlCY2JGRElwb3dUbkFzSS9ZWVZD?=
+ =?utf-8?B?OVJidVlYdnNBYk5PSDlnem0yVFJXdE1EWFhqL2dEVmc2bVBnYk5FakhQaEVU?=
+ =?utf-8?B?OEtnZmN4TGpCQXJDUDlvYTJNU2tZRnFjK0NXMXAwdmwra3YvWkg1Ni9RTU9u?=
+ =?utf-8?B?VTgzaCtoeXNhNjloZnlZd3dhRHkzQjk4NGxmU0RrYWxGdWJOVUs4cjZXOTlk?=
+ =?utf-8?B?NU1ocldFWHJ2MHpNY2xZc2pzTUEzd1hMWjQwOFpXQTE1N0JJVXVpMDZwOFln?=
+ =?utf-8?B?OXdQTUt5eHNKL0dmaDFqd2VHNVhMR0wzaGpVQmtYZWpEOWhyMzdBYUhYbjFG?=
+ =?utf-8?B?dzFSaCtHcjEwM1cyYmJHS3EwMmliVW84WFduY1B0NzFnV2JlN0JFelpkNjY4?=
+ =?utf-8?B?TkszMUZDNVAvNW5BdUJrNTJEem9aTzdTSkJ0SnVnbE53UDFvUi9jMml4dURP?=
+ =?utf-8?B?VzNMMnB4aUZjTnMwZ2ZJTStES1JvamthM1MvemduVERtWEpmMVRjT1FqQWY0?=
+ =?utf-8?B?T0RPckNPNnZBWVArUmR6blpLbEtXcFRqM0pXZHdRaGZjQ3ZnVkFiYkZ3UHEy?=
+ =?utf-8?B?S2V5enZUQVphdll5cmdES1dwL0MwU2NsYndSc1VCNXcrUDRMZnJNU3hKQ1pO?=
+ =?utf-8?B?Ylp6RUR2dHFoVURWZzhwNWtWdFFreDE3NXR0T3h4RGpMK0Z6Zm1LcUNjd1Vn?=
+ =?utf-8?B?T3o5ZkpFMzdvZUlyOFI3YmtSbk5TVXlwWEh0clFtNW81WE51SnozNHFVMHB5?=
+ =?utf-8?B?V3dzSXdBeWhKRkgwTnFKVGd4NXFpUklhbytsOEUwb0RObFVJSVlpR0lCZW5w?=
+ =?utf-8?B?NWpkTHhjRkQ1dDdWSkZUaDRoL1p2eUNQcnYzajBPNDVkRVUvUllKVXhiWnk3?=
+ =?utf-8?B?S2tBeUJuRnpwbS80RXZCSFpVbkZCQklUMUVUSjJFUHlXcklFTzE2V3RWYVVu?=
+ =?utf-8?B?RThqd2ZWR2p5Y3o4RVVpQzdSWElsMU9TQkxMVVpmZzRzSzNKTExxQ002Undp?=
+ =?utf-8?B?c0kwdy92OVV0SW9mNVJrS0gyYmNYalZ5Und2SUh5M3h2amhVVDJTWFBQb1Zy?=
+ =?utf-8?B?eVAvY3phQ09BWTVRUnRvTk5tMWRoN21yYWJQeCtmNWJLYi96M25Zb1RYczFU?=
+ =?utf-8?B?UzhpZURhdzM2M05QUjI1cDBIaFdRdjBqUmVIUSt4OGlVd1ExU0lEY1g2dllV?=
+ =?utf-8?B?Ymkra2lGcVJCanlYWkczWExtNkxxVENIZCszbXFIcDNlT0pIMmE0VVBhc2VE?=
+ =?utf-8?B?bzJFZnVsbFQ2YlhrdTdWMFc3b2NNSVRBT1RlSFpaa2xKMFkwbGl1VjVkNEZR?=
+ =?utf-8?B?RjhwNXVMQnQ0ZGN1QUdPS05wYm43U01TUlk2YmtVMHh3S2NmUy9TNUpXYjR0?=
+ =?utf-8?B?elNYZW9CenRjNzI0bFlyM2JYMFcxMlhWYVJhWFhRQlk1b0dULzA0WTY0bEk2?=
+ =?utf-8?B?YUVDTEFEc0c2WDB5ckVZQUZMVkQ4THNVd2xERHEwejhSemlicnp0T3g0THRM?=
+ =?utf-8?B?RldMZEQ1RDJWc3VsdXJxbmdjZ2wrdGdQYVN3R0QxamZDMDcydGFnSTI2b01h?=
+ =?utf-8?B?U3RjL01OTUFNV3FOeEFwQXNnQkphRnN4RGNUYnFyUk9WMC9ub2VWbEZMd1Bh?=
+ =?utf-8?B?UnFOL040dlpKV3RVZy9obVFqVXRCYXRrdHp5blFxb1FxZ3pCQ2p4WGtKL3hT?=
+ =?utf-8?Q?KpjdVFYhUiu93FIsT84DHUHZX?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b5c2f13aa94f68c3415a1292678e16db33f291cd.1736921549.git.unicorn_wang@outlook.com>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8676.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f90c178d-8677-4138-7da8-08dd38fd0389
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Jan 2025 02:49:09.3488
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZwfrbK+7JLZu6DmvsVR+xtv4bMW1FTtdbyMDybWgZqBwhOMghF4o4hf83kXSTfs/YZcnGMnLKZfqEkoNqjpAuQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR04MB9250
 
-On Wed, Jan 15, 2025 at 02:33:45PM +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
-> 
-> Add driver for Sophgo SG2042 MSI interrupt controller.
-> 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> ---
->  drivers/irqchip/Kconfig          |  12 ++
->  drivers/irqchip/Makefile         |   1 +
->  drivers/irqchip/irq-sg2042-msi.c | 268 +++++++++++++++++++++++++++++++
->  3 files changed, 281 insertions(+)
->  create mode 100644 drivers/irqchip/irq-sg2042-msi.c
-> 
-> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-> index 9bee02db1643..161fb5df857f 100644
-> --- a/drivers/irqchip/Kconfig
-> +++ b/drivers/irqchip/Kconfig
-> @@ -749,6 +749,18 @@ config MCHP_EIC
->  	help
->  	  Support for Microchip External Interrupt Controller.
->  
-> +config SOPHGO_SG2042_MSI
-> +	bool "Sophgo SG2042 MSI Controller"
-> +	depends on ARCH_SOPHGO || COMPILE_TEST
-> +	depends on PCI
-> +	select IRQ_DOMAIN_HIERARCHY
-> +	select IRQ_MSI_LIB
-> +	select PCI_MSI
-> +	help
-> +	  Support for the Sophgo SG2042 MSI Controller.
-> +	  This on-chip interrupt controller enables MSI sources to be
-> +	  routed to the primary PLIC controller on SoC.
-> +
->  config SUNPLUS_SP7021_INTC
->  	bool "Sunplus SP7021 interrupt controller" if COMPILE_TEST
->  	default SOC_SP7021
-> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-> index 25e9ad29b8c4..dd60e597491d 100644
-> --- a/drivers/irqchip/Makefile
-> +++ b/drivers/irqchip/Makefile
-> @@ -128,4 +128,5 @@ obj-$(CONFIG_WPCM450_AIC)		+= irq-wpcm450-aic.o
->  obj-$(CONFIG_IRQ_IDT3243X)		+= irq-idt3243x.o
->  obj-$(CONFIG_APPLE_AIC)			+= irq-apple-aic.o
->  obj-$(CONFIG_MCHP_EIC)			+= irq-mchp-eic.o
-> +obj-$(CONFIG_SOPHGO_SG2042_MSI)		+= irq-sg2042-msi.o
->  obj-$(CONFIG_SUNPLUS_SP7021_INTC)	+= irq-sp7021-intc.o
-> diff --git a/drivers/irqchip/irq-sg2042-msi.c b/drivers/irqchip/irq-sg2042-msi.c
-> new file mode 100644
-> index 000000000000..1f88e1671e5c
-> --- /dev/null
-> +++ b/drivers/irqchip/irq-sg2042-msi.c
-> @@ -0,0 +1,268 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * SG2042 MSI Controller
-> + *
-> + * Copyright (C) 2024 Sophgo Technology Inc.
-> + * Copyright (C) 2024 Chen Wang <unicorn_wang@outlook.com>
-> + */
-> +
-> +#include <linux/cleanup.h>
-> +#include <linux/io.h>
-> +#include <linux/irq.h>
-> +#include <linux/irqdomain.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/msi.h>
-> +#include <linux/of.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/of_pci.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +
-> +#include "irq-msi-lib.h"
-> +
-> +#define SG2042_MAX_MSI_VECTOR	32
-> +
-> +struct sg2042_msi_chipdata {
-> +	void __iomem	*reg_clr;	// clear reg, see TRM, 10.1.33, GP_INTR0_CLR
-> +
-> +	phys_addr_t	doorbell_addr;	// see TRM, 10.1.32, GP_INTR0_SET
-> +
-> +	u32		irq_first;	// The vector number that MSIs starts
-> +	u32		num_irqs;	// The number of vectors for MSIs
-> +
-> +	DECLARE_BITMAP(msi_map, SG2042_MAX_MSI_VECTOR);
-> +	struct mutex	msi_map_lock;	// lock for msi_map
-> +};
-> +
-> +static int sg2042_msi_allocate_hwirq(struct sg2042_msi_chipdata *data, int num_req)
-> +{
-> +	int first;
-> +
-> +	guard(mutex)(&data->msi_map_lock);
-> +	first = bitmap_find_free_region(data->msi_map, data->num_irqs,
-> +					get_count_order(num_req));
-> +	return first >= 0 ? first : -ENOSPC;
-> +}
-> +
-> +static void sg2042_msi_free_hwirq(struct sg2042_msi_chipdata *data,
-> +				  int hwirq, int num_req)
-> +{
-> +	guard(mutex)(&data->msi_map_lock);
-> +	bitmap_release_region(data->msi_map, hwirq, get_count_order(num_req));
-> +}
-> +
-> +static void sg2042_msi_irq_ack(struct irq_data *d)
-> +{
-> +	struct sg2042_msi_chipdata *data  = irq_data_get_irq_chip_data(d);
-> +	int bit_off = d->hwirq;
-> +
-> +	writel(1 << bit_off, data->reg_clr);
-> +
-> +	irq_chip_ack_parent(d);
-> +}
-> +
-> +static void sg2042_msi_irq_compose_msi_msg(struct irq_data *d,
-> +					   struct msi_msg *msg)
-> +{
-> +	struct sg2042_msi_chipdata *data = irq_data_get_irq_chip_data(d);
-> +
-> +	msg->address_hi = upper_32_bits(data->doorbell_addr);
-> +	msg->address_lo = lower_32_bits(data->doorbell_addr);
-> +	msg->data = 1 << d->hwirq;
-> +}
-> +
-> +static const struct irq_chip sg2042_msi_middle_irq_chip = {
-> +	.name			= "SG2042 MSI",
-> +	.irq_ack		= sg2042_msi_irq_ack,
-> +	.irq_mask		= irq_chip_mask_parent,
-> +	.irq_unmask		= irq_chip_unmask_parent,
-> +#ifdef CONFIG_SMP
-> +	.irq_set_affinity	= irq_chip_set_affinity_parent,
-> +#endif
-> +	.irq_compose_msi_msg	= sg2042_msi_irq_compose_msi_msg,
-> +};
-> +
-> +static int sg2042_msi_parent_domain_alloc(struct irq_domain *domain,
-> +					  unsigned int virq, int hwirq)
-> +{
-> +	struct sg2042_msi_chipdata *data = domain->host_data;
-> +	struct irq_fwspec fwspec;
-> +	struct irq_data *d;
-> +	int ret;
-> +
-> +	fwspec.fwnode = domain->parent->fwnode;
-> +	fwspec.param_count = 2;
-> +	fwspec.param[0] = data->irq_first + hwirq;
-> +	fwspec.param[1] = IRQ_TYPE_EDGE_RISING;
-> +
-> +	ret = irq_domain_alloc_irqs_parent(domain, virq, 1, &fwspec);
-> +	if (ret)
-> +		return ret;
-> +
-> +	d = irq_domain_get_irq_data(domain->parent, virq);
-> +	return d->chip->irq_set_type(d, IRQ_TYPE_EDGE_RISING);
-> +}
-> +
-> +static int sg2042_msi_middle_domain_alloc(struct irq_domain *domain,
-> +					  unsigned int virq,
-> +					  unsigned int nr_irqs, void *args)
-> +{
-> +	struct sg2042_msi_chipdata *data = domain->host_data;
-> +	int hwirq, err, i;
-> +
-> +	hwirq = sg2042_msi_allocate_hwirq(data, nr_irqs);
-> +	if (hwirq < 0)
-> +		return hwirq;
-> +
-> +	for (i = 0; i < nr_irqs; i++) {
-> +		err = sg2042_msi_parent_domain_alloc(domain, virq + i, hwirq + i);
-> +		if (err)
-> +			goto err_hwirq;
-> +
-> +		irq_domain_set_hwirq_and_chip(domain, virq + i, hwirq + i,
-> +					      &sg2042_msi_middle_irq_chip, data);
-> +	}
-> +
-> +	return 0;
-> +
-> +err_hwirq:
-> +	sg2042_msi_free_hwirq(data, hwirq, nr_irqs);
-> +	irq_domain_free_irqs_parent(domain, virq, i);
-> +
-> +	return err;
-> +}
-> +
-> +static void sg2042_msi_middle_domain_free(struct irq_domain *domain,
-> +					  unsigned int virq,
-> +					  unsigned int nr_irqs)
-> +{
-> +	struct irq_data *d = irq_domain_get_irq_data(domain, virq);
-> +	struct sg2042_msi_chipdata *data = irq_data_get_irq_chip_data(d);
-> +
-> +	irq_domain_free_irqs_parent(domain, virq, nr_irqs);
-> +	sg2042_msi_free_hwirq(data, d->hwirq, nr_irqs);
-> +}
-> +
-> +static const struct irq_domain_ops sg2042_msi_middle_domain_ops = {
-> +	.alloc	= sg2042_msi_middle_domain_alloc,
-> +	.free	= sg2042_msi_middle_domain_free,
-> +	.select	= msi_lib_irq_domain_select,
-> +};
-> +
-
-> +#define SG2042_MSI_FLAGS_REQUIRED (MSI_FLAG_USE_DEF_DOM_OPS |	\
-> +				   MSI_FLAG_USE_DEF_CHIP_OPS)
-> +
-> +#define SG2042_MSI_FLAGS_SUPPORTED MSI_GENERIC_FLAGS_MASK
-> +
-
-I think it is just OK to set the flag directly in the msi_parent_ops.
-
-> +static struct msi_parent_ops sg2042_msi_parent_ops = {
-> +	.required_flags		= SG2042_MSI_FLAGS_REQUIRED,
-> +	.supported_flags	= SG2042_MSI_FLAGS_SUPPORTED,
-> +	.bus_select_mask	= MATCH_PCI_MSI,
-> +	.bus_select_token	= DOMAIN_BUS_NEXUS,
-> +	.prefix			= "SG2042-",
-> +	.init_dev_msi_info	= msi_lib_init_dev_msi_info,
-> +};
-
-This struct should be const.
-
-> +
-> +static int sg2042_msi_init_domains(struct sg2042_msi_chipdata *data,
-> +				   struct device_node *node)
-> +{
-> +	struct fwnode_handle *fwnode = of_node_to_fwnode(node);
-> +	struct irq_domain *plic_domain, *middle_domain;
-> +	struct device_node *plic_node;
-> +
-> +	if (!of_find_property(node, "interrupt-parent", NULL)) {
-> +		pr_err("Can't find interrupt-parent!\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	plic_node = of_irq_find_parent(node);
-> +	if (!plic_node) {
-> +		pr_err("Failed to find the PLIC node!\n");
-> +		return -ENXIO;
-> +	}
-> +
-> +	plic_domain = irq_find_host(plic_node);
-> +	of_node_put(plic_node);
-> +	if (!plic_domain) {
-> +		pr_err("Failed to find the PLIC domain\n");
-> +		return -ENXIO;
-> +	}
-> +
-> +	middle_domain = irq_domain_create_hierarchy(plic_domain, 0, data->num_irqs,
-> +						    fwnode,
-> +						    &sg2042_msi_middle_domain_ops,
-> +						    data);
-> +	if (!middle_domain) {
-> +		pr_err("Failed to create the MSI middle domain\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	irq_domain_update_bus_token(middle_domain, DOMAIN_BUS_NEXUS);
-> +
-> +	middle_domain->flags |= IRQ_DOMAIN_FLAG_MSI_PARENT;
-> +	middle_domain->msi_parent_ops = &sg2042_msi_parent_ops;
-> +
-> +	return 0;
-> +}
-> +
-> +static int sg2042_msi_probe(struct platform_device *pdev)
-> +{
-> +	struct sg2042_msi_chipdata *data;
-> +	struct of_phandle_args args = {};
-> +	struct resource *res;
-> +	int ret;
-> +
-> +	data = devm_kzalloc(&pdev->dev, sizeof(struct sg2042_msi_chipdata), GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	data->reg_clr = devm_platform_ioremap_resource_byname(pdev, "clr");
-> +	if (IS_ERR(data->reg_clr)) {
-> +		dev_err(&pdev->dev, "Failed to map clear register\n");
-> +		return PTR_ERR(data->reg_clr);
-> +	}
-> +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "doorbell");
-> +	if (!res) {
-> +		dev_err(&pdev->dev, "Failed get resource from set\n");
-> +		return -EINVAL;
-> +	}
-> +	data->doorbell_addr = res->start;
-> +
-> +	ret = of_parse_phandle_with_args(pdev->dev.of_node, "msi-ranges",
-> +					 "#interrupt-cells", 0, &args);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Unable to parse MSI vec base\n");
-> +		return ret;
-> +	}
-> +	data->irq_first = (u32)args.args[0];
-> +
-> +	ret = of_property_read_u32_index(pdev->dev.of_node, "msi-ranges",
-> +					 args.args_count + 1, &data->num_irqs);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Unable to parse MSI vec number\n");
-> +		of_node_put(args.np);
-> +		return ret;
-> +	}
-> +	of_node_put(args.np);
-> +
-> +	mutex_init(&data->msi_map_lock);
-> +
-> +	return sg2042_msi_init_domains(data, pdev->dev.of_node);
-> +}
-> +
-> +static const struct of_device_id sg2042_msi_of_match[] = {
-> +	{ .compatible	= "sophgo,sg2042-msi" },
-> +	{}
-> +};
-> +
-> +static struct platform_driver sg2042_msi_driver = {
-> +	.driver = {
-> +		.name		= "sg2042-msi",
-> +		.of_match_table	= sg2042_msi_of_match,
-> +	},
-> +	.probe = sg2042_msi_probe,
-> +};
-> +builtin_platform_driver(sg2042_msi_driver);
-> -- 
-> 2.34.1
-> 
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBNYW5pdmFubmFuIFNhZGhhc2l2
+YW0gPG1hbml2YW5uYW4uc2FkaGFzaXZhbUBsaW5hcm8ub3JnPg0KPiBTZW50OiAyMDI15bm0Meac
+iDE55pelIDE1OjAzDQo+IFRvOiBIb25neGluZyBaaHUgPGhvbmd4aW5nLnpodUBueHAuY29tPg0K
+PiBDYzogbC5zdGFjaEBwZW5ndXRyb25peC5kZTsgYmhlbGdhYXNAZ29vZ2xlLmNvbTsgbHBpZXJh
+bGlzaUBrZXJuZWwub3JnOw0KPiBrd0BsaW51eC5jb207IHJvYmhAa2VybmVsLm9yZzsga3J6aytk
+dEBrZXJuZWwub3JnOyBjb25vcitkdEBrZXJuZWwub3JnOw0KPiBzaGF3bmd1b0BrZXJuZWwub3Jn
+OyBGcmFuayBMaSA8ZnJhbmsubGlAbnhwLmNvbT47IHMuaGF1ZXJAcGVuZ3V0cm9uaXguZGU7DQo+
+IGZlc3RldmFtQGdtYWlsLmNvbTsgaW14QGxpc3RzLmxpbnV4LmRldjsga2VybmVsQHBlbmd1dHJv
+bml4LmRlOw0KPiBsaW51eC1wY2lAdmdlci5rZXJuZWwub3JnOyBsaW51eC1hcm0ta2VybmVsQGxp
+c3RzLmluZnJhZGVhZC5vcmc7DQo+IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOyBsaW51eC1r
+ZXJuZWxAdmdlci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjcgMDIvMTBdIFBD
+STogaW14NjogQWRkIHJlZiBjbG9jayBmb3IgaS5NWDk1IFBDSWUNCj4gDQo+IE9uIFR1ZSwgTm92
+IDI2LCAyMDI0IGF0IDAzOjU2OjU0UE0gKzA4MDAsIFJpY2hhcmQgWmh1IHdyb3RlOg0KPiA+IEFk
+ZCAicmVmIiBjbG9jayB0byBlbmFibGUgcmVmZXJlbmNlIGNsb2NrLiBUbyBhdm9pZCBicmVha2lu
+ZyBEVA0KPiA+IGJhY2t3YXJkcyBjb21wYXRpYmlsaXR5LCBpLk1YOTUgUkVGIGNsb2NrIG1pZ2h0
+IGJlIG9wdGlvbmFsLiBVc2UNCj4gPiBkZXZtX2Nsa19nZXRfb3B0aW9uYWwoKSB0byBmZXRjaCBp
+Lk1YOTUgUENJZSBvcHRpb25hbCBjbG9ja3MgaW4gZHJpdmVyLg0KPiA+DQo+ID4gSWYgdXNlIGV4
+dGVybmFsIGNsb2NrLCByZWYgY2xvY2sgc2hvdWxkIHBvaW50IHRvIGV4dGVybmFsIHJlZmVyZW5j
+ZS4NCj4gPg0KPiA+IElmIHVzZSBpbnRlcm5hbCBjbG9jaywgQ1JFRl9FTiBpbiBMQVNUX1RPX1JF
+RyBjb250cm9scyByZWZlcmVuY2UNCj4gPiBvdXRwdXQsIHdoaWNoIGltcGxlbWVudCBpbiBkcml2
+ZXJzL2Nsay9pbXgvY2xrLWlteDk1LWJsay1jdGwuYy4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6
+IFJpY2hhcmQgWmh1IDxob25neGluZy56aHVAbnhwLmNvbT4NCj4gPiBSZXZpZXdlZC1ieTogRnJh
+bmsgTGkgPEZyYW5rLkxpQG54cC5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvcGNpL2NvbnRy
+b2xsZXIvZHdjL3BjaS1pbXg2LmMgfCAxNiArKysrKysrKysrKy0tLS0tDQo+ID4gIDEgZmlsZSBj
+aGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspLCA1IGRlbGV0aW9ucygtKQ0KPiA+DQo+ID4gZGlmZiAt
+LWdpdCBhL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaS1pbXg2LmMNCj4gPiBiL2RyaXZl
+cnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaS1pbXg2LmMNCj4gPiBpbmRleCAzODVmNjMyM2UzY2Eu
+LmY3ZTkyOGUwYTAxOCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3
+Yy9wY2ktaW14Ni5jDQo+ID4gKysrIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpLWlt
+eDYuYw0KPiA+IEBAIC0xMDMsNiArMTAzLDcgQEAgc3RydWN0IGlteF9wY2llX2RydmRhdGEgew0K
+PiA+ICAJY29uc3QgY2hhciAqZ3ByOw0KPiA+ICAJY29uc3QgY2hhciAqIGNvbnN0ICpjbGtfbmFt
+ZXM7DQo+ID4gIAljb25zdCB1MzIgY2xrc19jbnQ7DQo+ID4gKwljb25zdCB1MzIgY2xrc19vcHRp
+b25hbF9jbnQ7DQo+ID4gIAljb25zdCB1MzIgbHRzc21fb2ZmOw0KPiA+ICAJY29uc3QgdTMyIGx0
+c3NtX21hc2s7DQo+ID4gIAljb25zdCB1MzIgbW9kZV9vZmZbSU1YX1BDSUVfTUFYX0lOU1RBTkNF
+U107IEBAIC0xMzA2LDkgKzEzMDcsOA0KPiBAQA0KPiA+IHN0YXRpYyBpbnQgaW14X3BjaWVfcHJv
+YmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldikNCj4gPiAgCXN0cnVjdCBkZXZpY2Vfbm9k
+ZSAqbnA7DQo+ID4gIAlzdHJ1Y3QgcmVzb3VyY2UgKmRiaV9iYXNlOw0KPiA+ICAJc3RydWN0IGRl
+dmljZV9ub2RlICpub2RlID0gZGV2LT5vZl9ub2RlOw0KPiA+IC0JaW50IHJldDsNCj4gPiArCWlu
+dCBpLCByZXQsIHJlcV9jbnQ7DQo+ID4gIAl1MTYgdmFsOw0KPiA+IC0JaW50IGk7DQo+ID4NCj4g
+PiAgCWlteF9wY2llID0gZGV2bV9remFsbG9jKGRldiwgc2l6ZW9mKCppbXhfcGNpZSksIEdGUF9L
+RVJORUwpOw0KPiA+ICAJaWYgKCFpbXhfcGNpZSkNCj4gPiBAQCAtMTM1OCw5ICsxMzU4LDEzIEBA
+IHN0YXRpYyBpbnQgaW14X3BjaWVfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZQ0KPiAqcGRl
+dikNCj4gPiAgCQlpbXhfcGNpZS0+Y2xrc1tpXS5pZCA9IGlteF9wY2llLT5kcnZkYXRhLT5jbGtf
+bmFtZXNbaV07DQo+ID4NCj4gPiAgCS8qIEZldGNoIGNsb2NrcyAqLw0KPiA+IC0JcmV0ID0gZGV2
+bV9jbGtfYnVsa19nZXQoZGV2LCBpbXhfcGNpZS0+ZHJ2ZGF0YS0+Y2xrc19jbnQsIGlteF9wY2ll
+LT5jbGtzKTsNCj4gPiArCXJlcV9jbnQgPSBpbXhfcGNpZS0+ZHJ2ZGF0YS0+Y2xrc19jbnQgLQ0K
+PiBpbXhfcGNpZS0+ZHJ2ZGF0YS0+Y2xrc19vcHRpb25hbF9jbnQ7DQo+ID4gKwlyZXQgPSBkZXZt
+X2Nsa19idWxrX2dldChkZXYsIHJlcV9jbnQsIGlteF9wY2llLT5jbGtzKTsNCj4gPiAgCWlmIChy
+ZXQpDQo+ID4gIAkJcmV0dXJuIHJldDsNCj4gPiArCWlteF9wY2llLT5jbGtzW3JlcV9jbnRdLmNs
+ayA9IGRldm1fY2xrX2dldF9vcHRpb25hbChkZXYsICJyZWYiKTsNCj4gPiArCWlmIChJU19FUlIo
+aW14X3BjaWUtPmNsa3NbcmVxX2NudF0uY2xrKSkNCj4gPiArCQlyZXR1cm4gUFRSX0VSUihpbXhf
+cGNpZS0+Y2xrc1tyZXFfY250XS5jbGspOw0KPiANCj4gSSB0aGluayB5b3Ugc2hvdWxkIGp1c3Qg
+c3dpdGNoIHRvIGRldm1fY2xrX2J1bGtfZ2V0X2FsbCgpIGluc3RlYWQgb2YgZ2V0dGluZyB0aGUN
+Cj4gY2xrcyBzZXBhcmF0ZWx5LiBBcyBJIHRvbGQgcHJldmlvdXNseSwgdGhlIERUIGJpbmRpbmcg
+c2hvdWxkIGVuc3VyZSB0aGF0IGNvcnJlY3QNCj4gY2xvY2tzIGZvciB0aGUgcGxhdGZvcm1zIGFy
+ZSBkZWZpbmVkIGluIERUIGFuZCB0aGUgZHJpdmVyIGhhcyBubyBidXNpbmVzcyBpbg0KPiB2YWxp
+ZGF0aW5nIGl0LiBEcml2ZXIgc2hvdWxkIHRydXN0IHRoZSBEVCBpbnN0ZWFkICh1bmxlc3MgdGhl
+cmUgaXMgYSB2YWxpZCByZWFzb24gdG8gbm90DQo+IGRvIHNvKS4NCj4gDQo+ID4NCj4gPiAgCWlm
+IChpbXhfY2hlY2tfZmxhZyhpbXhfcGNpZSwgSU1YX1BDSUVfRkxBR19IQVNfUEhZRFJWKSkgew0K
+PiA+ICAJCWlteF9wY2llLT5waHkgPSBkZXZtX3BoeV9nZXQoZGV2LCAicGNpZS1waHkiKTsgQEAg
+LTE1MDksNiArMTUxMyw3DQo+ID4gQEAgc3RhdGljIGNvbnN0IGNoYXIgKiBjb25zdCBpbXg4bW1f
+Y2xrc1tdID0geyJwY2llX2J1cyIsICJwY2llIiwNCj4gPiAicGNpZV9hdXgifTsgIHN0YXRpYyBj
+b25zdCBjaGFyICogY29uc3QgaW14OG1xX2Nsa3NbXSA9IHsicGNpZV9idXMiLA0KPiA+ICJwY2ll
+IiwgInBjaWVfcGh5IiwgInBjaWVfYXV4In07ICBzdGF0aWMgY29uc3QgY2hhciAqIGNvbnN0DQo+
+ID4gaW14NnN4X2Nsa3NbXSA9IHsicGNpZV9idXMiLCAicGNpZSIsICJwY2llX3BoeSIsICJwY2ll
+X2luYm91bmRfYXhpIn07DQo+ID4gc3RhdGljIGNvbnN0IGNoYXIgKiBjb25zdCBpbXg4cV9jbGtz
+W10gPSB7Im1zdHIiLCAic2x2IiwgImRiaSJ9Ow0KPiA+ICtzdGF0aWMgY29uc3QgY2hhciAqIGNv
+bnN0IGlteDk1X2Nsa3NbXSA9IHsicGNpZV9idXMiLCAicGNpZSIsDQo+ID4gKyJwY2llX3BoeSIs
+ICJwY2llX2F1eCIsICJyZWYifTsNCj4gDQo+IEFuZCB0aGVzZSBzdGF0aWMgY2xvY2sgZGVmaW5l
+cyB3aWxsIGdvIGF3YXkgdG9vLg0KPiANCkhpIE1hbmk6DQpUaGFua3MgZm9yIHlvdXIgY29tbWVu
+dHMuDQpUaGUgc3VnZ2VzdGlvbnMgYXJlIHZlcnkgbmljZS4gSG93IGFib3V0IGtpY2sgb2ZmIGZ1
+cnRoZXIgb3B0aW1pemF0aW9uIGxhdGVyPw0KIFNpbmNlIHRoZSBjaGFuZ2VzIHdvdWxkIGltcGFj
+dCBhbGwgaS5NWCBQQ0llcy4NCk1lYW53aGlsZSwgSSdtIGEgbGl0dGxlIHdvcnJ5IGFib3V0IHRo
+YXQgdGhlcmUgaXMgbm8gY29uc2Vuc3VzIHlldCBvbiByZWx5aW5nDQogZW50aXJlbHkgb24gdGhl
+IGR0IGJpbmRpbmcgY2hlY2suDQoNCkJlc3QgUmVnYXJkcw0KUmljaGFyZCBaaHUNCj4gLSBNYW5p
+DQo+IA0KPiAtLQ0KPiDgrq7grqPgrr/grrXgrqPgr43grqPgrqngr40g4K6a4K6k4K6+4K6a4K6/
+4K614K6u4K+NDQo=
 
