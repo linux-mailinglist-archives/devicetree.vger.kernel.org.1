@@ -1,55 +1,53 @@
-Return-Path: <devicetree+bounces-139709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84995A169D3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:47:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15870A169DF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:47:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A10083A15A2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:47:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E8C31671CB
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 09:47:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C8AC1ABEDF;
-	Mon, 20 Jan 2025 09:47:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B7291B042F;
+	Mon, 20 Jan 2025 09:47:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 488B019995A;
-	Mon, 20 Jan 2025 09:47:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6437B1AF0B0;
+	Mon, 20 Jan 2025 09:47:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737366458; cv=none; b=jalcOMmcwBDbfAX1LKdjNtIEcYb9isNqd08/upBC6eHJobYBMLOOeCm5cIREi67dZUgyGC9hS1cwzDhd2glJOljkGLPm908LoCcd8Y3sqa5wTnpHbyO/VGurDEh+pcXSMsU9zQYAgJis1WBkDk/rrMzKrxSZFOduVQ3CvV5dSHg=
+	t=1737366474; cv=none; b=AuRnblRELSQY27FIV4+ayMQ3LzBaEKwxx7HcMSLUmaeBiyM7eUyetd946TOReoOX5E+dUjySqnAGipRT1ON/MC4pL7PBTsRMPnEsvV/NWi2feCaH+9R4p+W5cfhfnS8KDfd7YVARBqIQvO6g6MQiBcf3c8NMxfUJv3XoU7s2tI4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737366458; c=relaxed/simple;
-	bh=lCUbHBO7d3Iw4cq9xZiUoS5/7vmV1porHfB2d2Bz+ig=;
+	s=arc-20240116; t=1737366474; c=relaxed/simple;
+	bh=/XHkEIQJnwHkkkuaC14utEhUSKISy8uMGWEQa4/+AS4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=c7J8pdzt4plWTv+PeqyWPgr+wugLVNGWgniHzcUvKswNR4bf7J9yScEWKv1wO5phqtDVVhqKd10jjx9eXtdUp8mGj76lQBEQIkqnAZ40lz2f2RnVaL626WJ4vKR4Zc/RV8YKY8T2TG+Usm+NqpyuAm+yzi7S4xElfimRZ5nFagg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+	 MIME-Version; b=bGtIxLaWms8puoq91GJwRVC80OOwyRp5qjSc57UnRKv6zzoufEyRXBnDdJN7O47yIue3mN/2MdypVOlF2R97MSxBjG9iiyIxC61Qp4QvgQUH+KRcAA2DHQU5ZV1DiFD3sKtl4SWtnRQWEsqfIAY0Ehb5GFg2W0MIla3naXBLy+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-CSE-ConnectionGUID: dvKULJ3pSYS7rUED4Ltrmg==
-X-CSE-MsgGUID: B4TUQoTuQvagLa2Zm4d3vg==
+X-CSE-ConnectionGUID: DciW5PrJTqWbf9BbZhHHZg==
+X-CSE-MsgGUID: ohcz8RuSTR+R7dmmzqN7Kg==
 Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 20 Jan 2025 18:47:29 +0900
+  by relmlie6.idc.renesas.com with ESMTP; 20 Jan 2025 18:47:52 +0900
 Received: from localhost.localdomain (unknown [10.226.92.210])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id E75164019C5E;
-	Mon, 20 Jan 2025 18:47:21 +0900 (JST)
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 24A304001968;
+	Mon, 20 Jan 2025 18:47:48 +0900 (JST)
 From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>
 Cc: Biju Das <biju.das.jz@bp.renesas.com>,
 	Geert Uytterhoeven <geert+renesas@glider.be>,
 	Magnus Damm <magnus.damm@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	devicetree@vger.kernel.org,
 	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
 	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 01/11] dt-bindings: interrupt-controller: renesas,rzv2h-icu: Document RZ/G3E SoC
-Date: Mon, 20 Jan 2025 09:46:57 +0000
-Message-ID: <20250120094715.25802-2-biju.das.jz@bp.renesas.com>
+Subject: [PATCH 11/11] arm64: dts: renesas: r9a09g047: Add icu node
+Date: Mon, 20 Jan 2025 09:47:07 +0000
+Message-ID: <20250120094715.25802-12-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250120094715.25802-1-biju.das.jz@bp.renesas.com>
 References: <20250120094715.25802-1-biju.das.jz@bp.renesas.com>
@@ -61,48 +59,149 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Document RZ/G3E (R9A09G047) ICU bindings. The ICU block on the RZ/G3E
-SoC is almost identical to the one found on the RZ/V2H SoC, with the
-following differences:
- - The TINT register offset is 0x830 compared to ox30 on RZ/V2H.
- - The number of supported GPIO interrupts for TINT selection is 141
-   instead of 86.
- - The pin index and TINT selection index are not in the 1:1 map
- - The number of TSSR registers is 15 instead of 8
- - Each TSSR register can program 2 TINTs instead of 4 TINTs
+Add interrupt control node to RZ/G3E ("R9A09G047") SoC DTSI
+and add icu as interrupt-parent of pincontrol.
 
-Hence new compatible string "renesas,r9a09g047-icu" is added for RZ/G3E
-SoC.
+Also, define the ICU IRQs for board DT users.
 
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
- .../bindings/interrupt-controller/renesas,rzv2h-icu.yaml    | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 108 +++++++++++++++++++++
+ 1 file changed, 108 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzv2h-icu.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzv2h-icu.yaml
-index d7ef4f1323a7..3f99c8645767 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzv2h-icu.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzv2h-icu.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/interrupt-controller/renesas,rzv2h-icu.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+index 133aa3272d3a..0beac052f208 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+@@ -8,6 +8,24 @@
+ #include <dt-bindings/clock/renesas,r9a09g047-cpg.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
  
--title: Renesas RZ/V2H(P) Interrupt Control Unit
-+title: Renesas RZ/{G3E,V2H(P)} Interrupt Control Unit
++#define RZG3E_NMI	0
++#define RZG3E_IRQ0	1
++#define RZG3E_IRQ1	2
++#define RZG3E_IRQ2	3
++#define RZG3E_IRQ3	4
++#define RZG3E_IRQ4	5
++#define RZG3E_IRQ5	6
++#define RZG3E_IRQ6	7
++#define RZG3E_IRQ7	8
++#define RZG3E_IRQ8	9
++#define RZG3E_IRQ9	10
++#define RZG3E_IRQ10	11
++#define RZG3E_IRQ11	12
++#define RZG3E_IRQ12	13
++#define RZG3E_IRQ13	14
++#define RZG3E_IRQ14	15
++#define RZG3E_IRQ15	16
++
+ / {
+ 	compatible = "renesas,r9a09g047";
+ 	#address-cells = <2>;
+@@ -131,6 +149,95 @@ soc: soc {
+ 		#size-cells = <2>;
+ 		ranges;
  
- maintainers:
-   - Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-@@ -20,7 +20,9 @@ description:
- 
- properties:
-   compatible:
--    const: renesas,r9a09g057-icu # RZ/V2H(P)
-+    enum:
-+      - renesas,r9a09g047-icu # RZ/G3E
-+      - renesas,r9a09g057-icu # RZ/V2H(P)
- 
-   '#interrupt-cells':
-     description: The first cell is the SPI number of the NMI or the
++		icu: interrupt-controller@10400000 {
++			compatible = "renesas,r9a09g047-icu";
++			reg = <0 0x10400000 0 0x10000>;
++			#interrupt-cells = <2>;
++			#address-cells = <0>;
++			interrupt-controller;
++			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 428 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 433 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 436 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 437 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 440 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 441 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 262 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 263 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 265 IRQ_TYPE_EDGE_RISING>,
++				     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "nmi",
++					  "port_irq0", "port_irq1", "port_irq2",
++					  "port_irq3", "port_irq4", "port_irq5",
++					  "port_irq6", "port_irq7", "port_irq8",
++					  "port_irq9", "port_irq10", "port_irq11",
++					  "port_irq12", "port_irq13", "port_irq14",
++					  "port_irq15",
++					  "tint0", "tint1", "tint2", "tint3",
++					  "tint4", "tint5", "tint6", "tint7",
++					  "tint8", "tint9", "tint10", "tint11",
++					  "tint12", "tint13", "tint14", "tint15",
++					  "tint16", "tint17", "tint18", "tint19",
++					  "tint20", "tint21", "tint22", "tint23",
++					  "tint24", "tint25", "tint26", "tint27",
++					  "tint28", "tint29", "tint30", "tint31",
++					  "int-ca55-0", "int-ca55-1",
++					  "int-ca55-2", "int-ca55-3",
++					  "icu-error-ca55",
++					  "gpt-u0-gtciada", "gpt-u0-gtciadb",
++					  "gpt-u1-gtciada", "gpt-u1-gtciadb";
++			clocks = <&cpg CPG_MOD 0x5>;
++			power-domains = <&cpg>;
++			resets = <&cpg 0x36>;
++		};
++
+ 		pinctrl: pinctrl@10410000 {
+ 			compatible = "renesas,r9a09g047-pinctrl";
+ 			reg = <0 0x10410000 0 0x10000>;
+@@ -140,6 +247,7 @@ pinctrl: pinctrl@10410000 {
+ 			gpio-ranges = <&pinctrl 0 0 232>;
+ 			#interrupt-cells = <2>;
+ 			interrupt-controller;
++			interrupt-parent = <&icu>;
+ 			power-domains = <&cpg>;
+ 			resets = <&cpg 0xa5>, <&cpg 0xa6>;
+ 		};
 -- 
 2.43.0
 
