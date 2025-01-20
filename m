@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-139640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DBD3A1673E
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:22:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41CA9A16745
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:23:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 196327A13EF
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:21:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56F7A3A3629
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:23:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EBAE18F2EA;
-	Mon, 20 Jan 2025 07:21:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4650E18E76F;
+	Mon, 20 Jan 2025 07:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M1N4OIoz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gUF2btHU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B301189520;
-	Mon, 20 Jan 2025 07:21:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AC3518FC65;
+	Mon, 20 Jan 2025 07:23:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737357716; cv=none; b=gm9cqwn3CjZduG+BR/6wxPMFSSSdW5gOeNrJd9IOwkxT4rBxIi+5HyfEeuZgOQX2bRVrcDJHbIKaZuJKMaOjLApb2OVtXYpfXgQ17wlNBmGjdXk4fHZR8V5g/5Z3NjUr4Rc3owzswaMuy0cyDFHjSqoETg6ULZ6CF9QgFbauIes=
+	t=1737357803; cv=none; b=gzqotFY//6HqBzu51dWxIf7Y7OPTpckJML3aNhc6T8qz3uJWud2oyjL3HALaFcO5Q0fJe7Q5SqluZ24SNWFsuk4S1Wxkvd7Ke8/OLd7zSW+Pl78Ag8q+74wgBqMKJ/gO2BYFG5hAChue+XDfYPLh+Avwa/DUwbT776ROfRSUY1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737357716; c=relaxed/simple;
-	bh=pjqMLlfqyg8zcx6+WPm5XC91WISB3E6+EacWxK+mNIg=;
+	s=arc-20240116; t=1737357803; c=relaxed/simple;
+	bh=qklDhaw5jdeFE0YYMUMY8WRs5Xb0MXgkYAdE0P3QAyQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Eab6+V6e523vmZ5MtpxTxEewdnJT0Br2o5xMVu0PDmIIXVZ799L4CGxIuhUJ6Js6oPc1Pbhx5BJzKbwBhLntbNaLg+WI/w0eR1X7dcaA6zxUAD0i47ep1BV64l658JsuqoRYZstYajanFtDB4sLHau4GDPSaLxjq5ETlExL4KDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M1N4OIoz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AB89C4CEDD;
-	Mon, 20 Jan 2025 07:21:51 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=lwLwHxGE5qW3v7lLNvGwKrfkKrE+SOY45YdnpZ0X0w8pxcW5IVPp7yXtblfGGinBtmoZJHurhkiy2tnzrScB52P/NgfyJGm1L0ASA7/QyQ2Pd/puQRts/7XID8SuTflVGcHcEBjfflhihtphEuzB4EIMSQdIlhkixdsNOvLrPCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gUF2btHU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67AAEC4CEDD;
+	Mon, 20 Jan 2025 07:23:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737357715;
-	bh=pjqMLlfqyg8zcx6+WPm5XC91WISB3E6+EacWxK+mNIg=;
+	s=k20201202; t=1737357802;
+	bh=qklDhaw5jdeFE0YYMUMY8WRs5Xb0MXgkYAdE0P3QAyQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=M1N4OIozFq8mlhMeFXOlqmgiZ1HUHvNEenHpJ1bLVc0tH6NuM3l0Wvm4Ofupd4SRW
-	 jW7bEFQolcvYWaUlZr70qC5x7w3qsCnr2rTh9iJ8BRMFeYpdRMcKiDNcbZp6xb4oGf
-	 icOMlmS0hwUi5TMGozKDon0mMJOg+j30HZUSvCb1doW3kd3jbuk9gFY5DOM38CR0WV
-	 gJ7G9Ry3JY9gCSa0mBWB//SGrGEeCF/t+7alNG+c5AwgrGXy2kaC2kYuh7Lky+YTBn
-	 D+LZ7KZ3QVWhLtmVRyVK2VeBytg1+Bv+6d07Yso/MeR3XkzGECXAz81KW+Ia5axLH/
-	 ONFxbFYGMkKbg==
-Message-ID: <d08136ac-e08f-4e5d-b562-78529f34d86f@kernel.org>
-Date: Mon, 20 Jan 2025 08:21:49 +0100
+	b=gUF2btHUgdmShg14IykCH2DWbXrrUp/PXk5Ml31KrkUS795LxKaLrl6Qjy5us0+aj
+	 KzlUCylpuYR2O07oI2YjoH+PKFaSscEAAoiKXc38JTRJbAvtfQR8RRG5se6dEDpb1g
+	 ztkA+8MKFKxRrBgJN4/JG7LY//QKzf0aEzLDuYF/9GReiqNFJILWYdv1fHu6VwvmY+
+	 n0kNAE/zoQSqrhRMQOb3RiphtNwSIqoDfSnuV81KvcJF9hjSjvK0VSAI0iPYLOy19T
+	 qbfm/9OjZiAh4AqUkianrKB3HWiZxh6G7YFslYOoQYSVGcmgtdIomEnLFcPzp5CaYA
+	 /N41GzudZOAzA==
+Message-ID: <fe92e7a3-faa4-4b4d-b8f8-85ea779ab792@kernel.org>
+Date: Mon, 20 Jan 2025 08:23:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] dt-bindings: pinctrl: Add support for Amlogic SoCs
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH] dt-bindings: serial: Add a new compatible string for
+ UMS9632
+To: wenhua lin <wenhua.lin1994@gmail.com>
+Cc: Wenhua Lin <Wenhua.Lin@unisoc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20250115-amlogic-pinctrl-v3-0-2b8536457aba@amlogic.com>
- <20250115-amlogic-pinctrl-v3-1-2b8536457aba@amlogic.com>
- <20250117-intrepid-nano-horse-98e817@krzk-bin>
- <012cfaca-e8f5-4614-9393-a4a46a797adb@amlogic.com>
+ <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Cixi Geng <cixi.geng@linux.dev>,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, Xiongpeng Wu <xiongpeng.wu@unisoc.com>,
+ Zhaochen Su <Zhaochen.Su@unisoc.com>, Zhirong Qiu <Zhirong.Qiu@unisoc.com>
+References: <20250114054553.3376837-1-Wenhua.Lin@unisoc.com>
+ <4591ac0a-80fc-4922-b463-79395c9f41d1@kernel.org>
+ <CAB9BWhfvbY9-_0tbpFOpGjzG8U9wwiZhdKnSVfx-GGx-Mis1jA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,40 +111,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <012cfaca-e8f5-4614-9393-a4a46a797adb@amlogic.com>
+In-Reply-To: <CAB9BWhfvbY9-_0tbpFOpGjzG8U9wwiZhdKnSVfx-GGx-Mis1jA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 20/01/2025 06:57, Xianwei Zhao wrote:
-> Hi Krzysztof,
->     Thanks for reply.
+On 20/01/2025 04:21, wenhua lin wrote:
+> On Tue, Jan 14, 2025 at 3:38 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 14/01/2025 06:45, Wenhua Lin wrote:
+>>> Due to the platform's new project uart ip upgrade,
+>>> the new project's timeout interrupt needs to use bit17
+>>> while other projects' timeout interrupt needs to use
+>>> bit13, using private data to adapt and be compatible
+>>
+>> Where is private data in this patch?
 > 
-> On 2025/1/17 16:48, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On Wed, Jan 15, 2025 at 02:41:59PM +0800, Xianwei Zhao wrote:
->>> +properties:
->>> +  compatible:
->>> +    const: amlogic,pinctrl-a4
->>> +
->>> +  "#address-cells":
->>> +    const: 2
->>> +
->>> +  "#size-cells":
->>> +    const: 2
->>
->> Why this moved to '2'? 32-bit was not enough?
->>
-> Previously only represented a register address offset value, now 
-> directly represents a register, through 'ranges" which to represent. 
-> 32-bit is enough, but since APB bus is defined as 64-bit, here is 
+> Hi Krzysztof:
+>    This private data is a modification of the serial driver.
+>    Due to the modification of the driver, the new project ums9632 SoC
+>    needs to use SC9632 to be compatible.
 
-Changelog was silent on this.
+This patch is about bindings, so your driver implementation usually does
+not matter. Explain the hardware.
 
-> following. I increase support for 32-bit. Like the following values:
-
-No, just keep one of these.
-
+> Thanks
 
 
 Best regards,
