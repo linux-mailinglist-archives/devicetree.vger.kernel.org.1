@@ -1,167 +1,118 @@
-Return-Path: <devicetree+bounces-139613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BEC6A165E4
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 04:52:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A175A165F9
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 05:03:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF7F31887D2F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 03:52:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 002FF3A880E
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 04:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE7A1531F0;
-	Mon, 20 Jan 2025 03:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B111632FE;
+	Mon, 20 Jan 2025 04:02:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="db1U/bOL"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="Wx2zn+bp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6215114BF8F;
-	Mon, 20 Jan 2025 03:51:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 749D014A4F9
+	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 04:02:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737345116; cv=none; b=khrwaQlHZPJMcghzLCS9rIWLBGSAQiTOEmlwrfzUdWeYISc4hsyfycfryiHtuqjv6xWUg5RwgUBOiHHw3X/Uze4kcNEUNBozreb50Qvd7SmM3t2D5LpPkelUIvxw49JNVpxmZW/jrtMaCXJOHlXdEhGjXFPjx87/mLPD/EIoh3U=
+	t=1737345751; cv=none; b=pSGzbi4VhU6w/oHmoQ0fnWJirlsnMy4hj87vCL9t3vDHll5tnRTt+RE9j+H+HHKLkdT+VgTdhvFO+FQLzpG5iL5LvEfR0q/gKZthRjLX3e3Ssu80xFwEnwkdWOMVIvvep7KFQwiSMZsBMl+TY1uqU7IZJcUTt+Q7vQQMfM8Bq+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737345116; c=relaxed/simple;
-	bh=T1quEqzzRYSTMr7FDeES364YwjAI1nS3gNRFG9z4HNk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=VgB98MXOKNfAfAdHTkG1MZxolyjcSCas78VKtcLt/QtROccci4gPzy+pXiQlISvN1u5CLt93HZ9oI4wQ9NvF6wK8vSTO1BZg8bX5VcuE/7d23mhBzrBiHJSGab8ssHLkJm1CU12JnMZ4Atz3EsFeshknZuy85WAR0xjXQ12uIJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=db1U/bOL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50K3ftnK002567;
-	Mon, 20 Jan 2025 03:51:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	l9D0iGf5gfsI47OTyHusqADcAsJb13cd95a9Ia17SRI=; b=db1U/bOLE5YS9mAK
-	1l0ov+EwYdbb25OiYZoSG+aoDK2ewQOLZHgJnqzmLkkp2KA3sTpDdi9v8ml65hMY
-	RazpirOKNW1i2AKjyUZZdAN01T8xNHFPZ6LVEvpMfU7TfRQcJ/t6yY86ERsCyvQX
-	NiiFXQA/jdF00tZcAPAFkB/zaZ55YIa580NUDCI67KJ0Tl+SqzTEr0mmuFJCSOLO
-	Hz75qNYiTkPkeN9TzSqW52EIHLFE7sTpCJhAZKOh5zVU59HLvB8/VGMDy3UxRhLS
-	STA6uYc8zVHEMJH7YFLJr1cZmlui8x3DqnnWMzR5P/K/WDapfzWVKUFhiEbqlzUL
-	RF6IPA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 449eteg0hj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Jan 2025 03:51:41 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50K3pekl002066
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Jan 2025 03:51:40 GMT
-Received: from cse-cd01-lnx.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 19 Jan 2025 19:51:34 -0800
-From: Yongxing Mou <quic_yongmou@quicinc.com>
-Date: Mon, 20 Jan 2025 11:49:21 +0800
-Subject: [PATCH v4 4/4] drm/msm: mdss: Add QCS8300 support
+	s=arc-20240116; t=1737345751; c=relaxed/simple;
+	bh=p30xOcwbUqTNEpk/GcEcICQIbqxPdZ9uChSunNiYWyQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=sWjfeSuJlcMFOl+kZq01Yk2uOQCr7bmWqAEfR0Qy/N13DDHlCJvF+fhD6OjopoIiGM/+3zgFlK2iDIK9bqjlovyhCMSO4ZDYfiPMFjJX0O3/TAqVhPIhNLxBqMGhLkr3bD9s9qfvIteLFRt0nhFhPd+LY3ne9rl6WsWmrDG+lS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=Wx2zn+bp; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id D3D7B2C0A6D;
+	Mon, 20 Jan 2025 17:02:27 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1737345747;
+	bh=xkBe5AqvbWT6u6iZBh4mVX7gBu9uKHTpwHDeYPmXMtA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Wx2zn+bpn6B6Vxj/wz7GfV6YjnbEUoYblWf8jBLdCa9RfNliZJvsRVbOaXj1WRtRq
+	 ZLuCjTiwnGSwp94W0YEUpVQ1D3bV6mKPWFEXOd75RTffGxQ5t6Y2Wwcp5N6ya6ptVX
+	 PVOTC0A8Jysr6xqTxZReAoyBvs5aMn0SM+JKtyf+I2KV/7kkmwqe666vcDC9+n7ep5
+	 dBt7WDG6gqZeiGMV6CJ6cCVTcgPKxiT6j9UXRmmwdHGts8hg3pVZ5Z+g9aZRht8GAV
+	 LC6ySkgPeAr+iq7RMa60gS5CTyMfBGZCxmbztCVDBzxPF/N6ONMd0rSRkPerQMt7hX
+	 IOgdw/W88CSyA==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B678dcac80004>; Mon, 20 Jan 2025 17:02:16 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 8302313EE2B;
+	Mon, 20 Jan 2025 17:02:16 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id 7F3632801C2; Mon, 20 Jan 2025 17:02:16 +1300 (NZDT)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: lee@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	tsbogend@alpha.franken.de,
+	hkallweit1@gmail.com,
+	linux@armlinux.org.uk,
+	sander@svanheule.net,
+	markus.stockhausen@gmx.de
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v4 0/4] RTL9300 MDIO driver
+Date: Mon, 20 Jan 2025 17:02:10 +1300
+Message-ID: <20250120040214.2538839-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250120-mdssdt_qcs8300-v4-4-1687e7842125@quicinc.com>
-References: <20250120-mdssdt_qcs8300-v4-0-1687e7842125@quicinc.com>
-In-Reply-To: <20250120-mdssdt_qcs8300-v4-0-1687e7842125@quicinc.com>
-To: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        "Kuogee
- Hsieh" <quic_khsieh@quicinc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Kishon
- Vijay Abraham I" <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>
-CC: Yongxing Mou <quic_yongmou@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1737345066; l=1622;
- i=quic_yongmou@quicinc.com; s=20241121; h=from:subject:message-id;
- bh=T1quEqzzRYSTMr7FDeES364YwjAI1nS3gNRFG9z4HNk=;
- b=BOXhQ4xG/Uh+vxlU762NfIBfEaG/FlDDCDmVnsczhIjvXCij9ru2Foo7ss1uetRSLXHKqFNF/
- jMXesluT9r2CtKB0d3rJOsS2Qg0c+fzntXDR0knUY+UnwqnisMLRsRa
-X-Developer-Key: i=quic_yongmou@quicinc.com; a=ed25519;
- pk=zeCnFRUqtOQMeFvdwex2M5o0Yf67UHYfwCyBRQ3kFbU=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: IB8NowB8TNPXRNBQiy6Rototq8zTgaFR
-X-Proofpoint-GUID: IB8NowB8TNPXRNBQiy6Rototq8zTgaFR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-20_01,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 malwarescore=0
- phishscore=0 mlxlogscore=999 lowpriorityscore=0 bulkscore=0
- impostorscore=0 mlxscore=0 suspectscore=0 spamscore=0 adultscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501200028
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=678dcac8 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=VdSt8ZQiCzkA:10 a=1Opl5N7dmqp52ZJA_ycA:9 a=3ZKOabzyN94A:10
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-Add Mobile Display Subsystem (MDSS) support for the QCS8300 platform.
-Due to different memory type, it use different mdss_data with SA8775P
-although using the same dpu.
+This series adds a driver for the MDIO controller on the RTL9300 family
+of devices. The controller is a little unique in that we can't access the=
+ SMI
+interfaces directly. This means we need to use the hardware description f=
+rom
+the DTS to compute a mapping of switch port to mdio bus/address.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Yongxing Mou <quic_yongmou@quicinc.com>
----
- drivers/gpu/drm/msm/msm_mdss.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Chris Packham (4):
+  dt-bindings: net: Add Realtek MDIO controller
+  dt-bindings: mfd: Add MDIO interface to rtl9301-switch
+  mips: dts: realtek: Add MDIO controller
+  net: mdio: Add RTL9300 MDIO driver
 
-diff --git a/drivers/gpu/drm/msm/msm_mdss.c b/drivers/gpu/drm/msm/msm_mdss.c
-index dcb49fd30402b80edd2cb5971f95a78eaad6081f..40c8b476763b8c39434b1448008cfa8ffac7a8ea 100644
---- a/drivers/gpu/drm/msm/msm_mdss.c
-+++ b/drivers/gpu/drm/msm/msm_mdss.c
-@@ -582,6 +582,16 @@ static const struct msm_mdss_data qcm2290_data = {
- 	.reg_bus_bw = 76800,
- };
- 
-+static const struct msm_mdss_data qcs8300_data = {
-+	.ubwc_enc_version = UBWC_4_0,
-+	.ubwc_dec_version = UBWC_4_0,
-+	.ubwc_swizzle = 6,
-+	.ubwc_bank_spread = true,
-+	.highest_bank_bit = 3,
-+	.macrotile_mode = true,
-+	.reg_bus_bw = 74000,
-+};
-+
- static const struct msm_mdss_data sa8775p_data = {
- 	.ubwc_enc_version = UBWC_4_0,
- 	.ubwc_dec_version = UBWC_4_0,
-@@ -737,6 +747,7 @@ static const struct of_device_id mdss_dt_match[] = {
- 	{ .compatible = "qcom,mdss" },
- 	{ .compatible = "qcom,msm8998-mdss", .data = &msm8998_data },
- 	{ .compatible = "qcom,qcm2290-mdss", .data = &qcm2290_data },
-+	{ .compatible = "qcom,qcs8300-mdss", .data = &qcs8300_data },
- 	{ .compatible = "qcom,sa8775p-mdss", .data = &sa8775p_data },
- 	{ .compatible = "qcom,sdm670-mdss", .data = &sdm670_data },
- 	{ .compatible = "qcom,sdm845-mdss", .data = &sdm845_data },
+ .../bindings/mfd/realtek,rtl9301-switch.yaml  |  24 +
+ .../bindings/net/realtek,rtl9301-mdio.yaml    |  93 ++++
+ arch/mips/boot/dts/realtek/rtl930x.dtsi       |  32 ++
+ drivers/net/mdio/Kconfig                      |   7 +
+ drivers/net/mdio/Makefile                     |   1 +
+ drivers/net/mdio/mdio-realtek-rtl9300.c       | 417 ++++++++++++++++++
+ 6 files changed, 574 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/realtek,rtl9301=
+-mdio.yaml
+ create mode 100644 drivers/net/mdio/mdio-realtek-rtl9300.c
 
--- 
-2.34.1
+--=20
+2.47.1
 
 
