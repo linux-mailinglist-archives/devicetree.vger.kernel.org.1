@@ -1,166 +1,114 @@
-Return-Path: <devicetree+bounces-139859-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139860-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C27AEA17319
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 20:23:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A843AA17324
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 20:32:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAE583A6E90
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 19:23:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AA3B163D6F
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 19:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59EDA1EE7C2;
-	Mon, 20 Jan 2025 19:23:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DC01EBFE3;
+	Mon, 20 Jan 2025 19:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YP6Fifft"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JHFpVo9G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797031EF0B2;
-	Mon, 20 Jan 2025 19:23:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 341571EF0A3;
+	Mon, 20 Jan 2025 19:32:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737400996; cv=none; b=TgtsLSC8q3+5ngA4LbL86+6Y292Gc6Qc6Zxge/QioWhwc4FoJQ6n2x9hEZ0JQQCAjgJgZSjXwu7M45HVvG6ZinxMH5f81tn4Yn1R3kbRgUwbgF2LwRhe+TAlbQzfuN5RQR8vSV1WaQ13DUv12+kEw5T+cJOqZgmaoQQi6jshloY=
+	t=1737401528; cv=none; b=WbV5HKhwjrcAWzb8GJuNfrw2RMexmZ7Zh5230ljz3Orna2TVdWDHma3QnsOSTUq/dAfucjX+c79lBrbqu3bYf5B14Q3X7/C1TxbKDNKpvLezj9RqU7JPlTY92FqNMDVFjnMrSK6RNZVIAJwvKkuWlPRPRwfWXqk/s+bdRvZI1Ng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737400996; c=relaxed/simple;
-	bh=//LokAOrRA/EeaT7c38MIMn9xv0OF0OdXdgFumo2L3E=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=LFoXmBELQrOl94Ibl76/vDkEszQG6kr5Af2A10RJftHjDJiyIKUWUPzlzN7sEUIHyJRSl9DdKB15mJYIxcpBeK3b/gGUJAxNH1px5eBpyJaaGcE+ldj5Fuacr1mHVBLvInKp4M0fxJLT+uf24M2t0Dco4BpedM5ahl1l2gOBj8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YP6Fifft; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-53ff1f7caaeso5278731e87.0;
-        Mon, 20 Jan 2025 11:23:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737400992; x=1738005792; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=CerU6xvl9lcXiaDqDUt8ZKpDTAlJGqkJkLTkeLu13Uk=;
-        b=YP6Fifft375XRY2SZnBMTvIkxFENTvbTVYUlMu7YAZG/Vm9mYOOxRUtC9H0iRZOBMe
-         UdB2RrFtcQCRBOtABcLl/HFaKODj09JLV8TNtDxzpRbz1LL5NaBs+ik8nUyw2rA/vl/R
-         N54cv5CncvwU49k5Aw5Anv8tLRShSHNXSNTU7YXb/p2fr2sTDQm1cWrLnsNgjYWNtpyR
-         BKQ4jElhSjSirg30IeoHuhizpIx3TgJNbhrZ8w6Pk9jo8NMRXeYHkZcpcAaHUU88dJpR
-         dVDd52iczdwewI2UQuhaFAbbTzqFwB05JzIGe9lJeMJ3zvtcz/WD1njcv9K4g9Z3eTyw
-         n8UQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737400992; x=1738005792;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CerU6xvl9lcXiaDqDUt8ZKpDTAlJGqkJkLTkeLu13Uk=;
-        b=pde9tci+UEbgBq1dZBJYLkcE2wuEPxZZeY0lM6BPoXZx8BJdo8rNPBmvG3HcpjhVav
-         Y29NzcF7LHa5PHb1CaeTdan4t8IykC8gOQzSVL3rIfyS7szVH+bVMa0FwrvEELEkbgpx
-         yPg6lWOy0Wrzk0J/PVBaZYT2rSi/ZL0lNzSo4RW9F1+XlBFNVYd5UIS68kYBJ/G+pLCr
-         bfVV0LWmtqyQeap5nq8Q9voAF6ueHwWm4Srw8oxMgmCgxWg/vde0k8bGDOudmOPuKIP9
-         tvcKlK1UQVzBm2eZuIkJh7yjLRrMfIozoZo1QuXDJteFt629X3cUtcrBJOSXeH5T9yJb
-         sVNg==
-X-Forwarded-Encrypted: i=1; AJvYcCUKEdZKHIHWgHqr8/LrWAXIoc/ZPVKZOke4fQrznHtZX2RD7AQB9Q9y35iVcJmMZH5rxylB+m6wGUiCi+k=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbLOrZj6G0ADEji483zDKxHrVMPfCJL8qXxtZUv6zeZ8lQ9U3s
-	4v2plu2j/eziVyPpmH1WNIG3em4CszoxuWIl2fEuxP6NvXEgO01b
-X-Gm-Gg: ASbGnctiqvJSS3axQtQBnIhXXY1H/hbjTiyV1oOnb3DrfRJYVJYDndwD9mx2Qz9xFl5
-	PnH4Z8OjAluW9UNDdv1gZUc56ZPYjlWtljArRL9vXPSGgctXU5qAL6jIL4bl/sr6IQdTlQMSude
-	yHnTyyvYjTaiIgIZbrDmq4tieCIstV7iHCVPwU6EcaUJOOuVcgu8ceyYj5TDwXX5sDB93n+Rqkr
-	iAnMTP+GGGm1ABrDF83LWMh5Hd/bUR4bUOGD4XH2Kd0R7T9txpF62/5uai9zRGL+9AxNhQ=
-X-Google-Smtp-Source: AGHT+IHf2PZbpFBhm6xQF3fctlNvkttb0vgzfqpVAIWgHcDB65Se341pGvnkDgcpLLDfHvKr17lOlA==
-X-Received: by 2002:ac2:511e:0:b0:542:98bb:5678 with SMTP id 2adb3069b0e04-5439c248293mr3381366e87.25.1737400992347;
-        Mon, 20 Jan 2025 11:23:12 -0800 (PST)
-Received: from [172.30.32.150] ([185.204.1.212])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5439af78fb0sm1460156e87.247.2025.01.20.11.23.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2025 11:23:11 -0800 (PST)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Mon, 20 Jan 2025 23:22:47 +0400
-Subject: [PATCH 2/2] arm64: dts: rockchip: Enable automatic fan control on
- Radxa Rock 5C
+	s=arc-20240116; t=1737401528; c=relaxed/simple;
+	bh=CAxPr5M8N/ZTfcix1noCY8UNurLPMN7QWi7q0cqgFwA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=I+bP+aR1qIHrL3vrx9XMnb7JbBXPc8AQR0ED4UjgRiTxtKQzG1W+sIj1psoo6BGRCaQ9DWDiVguEm8M9zZh9oD4XUAh7L99goQOEBhScDuefMieCeyPxq0YbrvE2GZazZMpLzdkAVdEQLRGoIDmbMF+oBLMvUpSoXqx61QwZYec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JHFpVo9G; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737401526; x=1768937526;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CAxPr5M8N/ZTfcix1noCY8UNurLPMN7QWi7q0cqgFwA=;
+  b=JHFpVo9GVdkNGLAsBB3y1U3y96oMCDBcBAMAHrKvu/xqGn6EOqfLZdQl
+   PJyvqMqek9ET2Bsbtq+rhY3PM8Agk/idxteSFhZBT2muBtZWnLr8UsHXC
+   1qezatxGC+fCJpZr07SL50UpfMQgWsiaKV6HZIDvecVWKDRVzK5WuLAbX
+   uBgPGHMMyML3NuZETtd8rxnwL3QZ7w9YbFdApWr+YgP2PWOIBw29ZPWeq
+   zrKoG+fLg0/rJQYh8XHYqgY3EOSXdTjwnXJJNwScV3qHUrkK2SH5aw6ef
+   1owE5B3V6WTsmL6me8o4LHEyRWrhlHZMppAU2zTvo3ROiZRM4cYox6VQ7
+   w==;
+X-CSE-ConnectionGUID: 7n+mEug+T8SZsQtseDCBKg==
+X-CSE-MsgGUID: FSiqFRXdRkyEJ9C2ukCERA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="48470748"
+X-IronPort-AV: E=Sophos;i="6.13,220,1732608000"; 
+   d="scan'208";a="48470748"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2025 11:31:50 -0800
+X-CSE-ConnectionGUID: GW9rxCSCQymdSpGu0PpnSQ==
+X-CSE-MsgGUID: yb41CL23SiWXDAzXSFbdvQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="111230762"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by fmviesa005.fm.intel.com with ESMTP; 20 Jan 2025 11:31:48 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tZxUw-000WvH-11;
+	Mon, 20 Jan 2025 19:31:46 +0000
+Date: Tue, 21 Jan 2025 03:31:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Basharath Hussain Khaja <basharath@couthit.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>
+Subject: Re: [PATCH 2/2] of: address: Add kunit test for
+ __of_address_resource_bounds()
+Message-ID: <202501210330.aqouOniZ-lkp@intel.com>
+References: <20250120-of-address-overflow-v1-2-dd68dbf47bce@linutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250120-rock-5c-fan-v1-2-5fb8446c981b@gmail.com>
-References: <20250120-rock-5c-fan-v1-0-5fb8446c981b@gmail.com>
-In-Reply-To: <20250120-rock-5c-fan-v1-0-5fb8446c981b@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Alexey Charkov <alchark@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1737400976; l=1557;
- i=alchark@gmail.com; s=20240125; h=from:subject:message-id;
- bh=//LokAOrRA/EeaT7c38MIMn9xv0OF0OdXdgFumo2L3E=;
- b=b//UblCwgSfsCubs+uRP/+gxXObDUfoo+IKG9h27aNXw/OVa7YQkqZJFdMFxG4gh+/RMZt7JV
- trcFo0mQya+A1AmnYJ1eIpQ3nvSieGqS7QJX7s7iuErEwIhD6cuvSeQ
-X-Developer-Key: i=alchark@gmail.com; a=ed25519;
- pk=xRO8VeD3J5jhwe0za0aHt2LDumQr8cm0Ls7Jz3YGimk=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250120-of-address-overflow-v1-2-dd68dbf47bce@linutronix.de>
 
-Add the necessary cooling map to enable the kernel's thermal subsystem
-to manage the fan speed automatically depending on the overall SoC
-package temperature on Radxa Rock 5C
+Hi Thomas,
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts | 32 +++++++++++++++++++++++-
- 1 file changed, 31 insertions(+), 1 deletion(-)
+kernel test robot noticed the following build errors:
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-index 1b66a69cf0f8795d7305852fa7fef3d0672ada7f..6e56d7704cbe0dc06242cb39df56b2fc9d6bc774 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-@@ -68,7 +68,7 @@ led-1 {
- 		};
- 	};
- 
--	fan {
-+	fan: fan {
- 		compatible = "pwm-fan";
- 		#cooling-cells = <2>;
- 		cooling-levels = <0 24 44 64 128 192 255>;
-@@ -417,6 +417,36 @@ rgmii_phy1: ethernet-phy@1 {
- 	};
- };
- 
-+&package_thermal {
-+	polling-delay = <1000>;
-+
-+	trips {
-+		package_fan0: package-fan0 {
-+			temperature = <55000>;
-+			hysteresis = <2000>;
-+			type = "active";
-+		};
-+
-+		package_fan1: package-fan1 {
-+			temperature = <65000>;
-+			hysteresis = <2000>;
-+			type = "active";
-+		};
-+	};
-+
-+	cooling-maps {
-+		map0 {
-+			trip = <&package_fan0>;
-+			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
-+		};
-+
-+		map1 {
-+			trip = <&package_fan1>;
-+			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
-+		};
-+	};
-+};
-+
- &pcie2x1l2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie20x1_2_perstn_m0>;
+[auto build test ERROR on ffd294d346d185b70e28b1a28abe367bbfe53c04]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Wei-schuh/of-address-Fix-empty-resource-handling-in-__of_address_resource_bounds/20250120-221141
+base:   ffd294d346d185b70e28b1a28abe367bbfe53c04
+patch link:    https://lore.kernel.org/r/20250120-of-address-overflow-v1-2-dd68dbf47bce%40linutronix.de
+patch subject: [PATCH 2/2] of: address: Add kunit test for __of_address_resource_bounds()
+config: riscv-randconfig-002-20250121 (https://download.01.org/0day-ci/archive/20250121/202501210330.aqouOniZ-lkp@intel.com/config)
+compiler: riscv64-linux-gcc (GCC) 14.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250121/202501210330.aqouOniZ-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501210330.aqouOniZ-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> ERROR: modpost: module of_test uses symbol __of_address_resource_bounds from namespace EXPORTED_FOR_KUNIT_TESTING, but does not import it.
 
 -- 
-2.48.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
