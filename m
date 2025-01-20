@@ -1,264 +1,124 @@
-Return-Path: <devicetree+bounces-139718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E4BAA16AD2
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:34:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09A0FA16ADD
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 11:37:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D91A7A202F
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:34:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EC5D1885BB3
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 10:37:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A265D1B87CC;
-	Mon, 20 Jan 2025 10:34:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126911B4F15;
+	Mon, 20 Jan 2025 10:37:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="vOaHruCe"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dooBRSTW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2100.outbound.protection.outlook.com [40.107.104.100])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5A7A1B85D6;
-	Mon, 20 Jan 2025 10:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.104.100
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737369276; cv=fail; b=fevuZfRIJw3iLe444AI03BIKhxWylKfNBxZZaYTkzy2eyWCs2eAer6Z0KC+gQ9qJwf1hIxM5Kzkz4kXh/qOtNOBqhbIn57A3kRIzuoAcNuNNCcyyDcYojRY8xsQdZ4F8NDZqM7nqM6qLT11JaTO8XEmbiydTZ/T9y8U7EhgzFDk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737369276; c=relaxed/simple;
-	bh=nrPcjzSHkfiWFw1+K5IHymDu8HX293PPn3kh0yBN8WE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=LR4HHZ/CYM41DIluIP9IUxQ1eDXAUBTM4pEJcfVfLR6V37XjbfGup4Ey0H24SmblWrMTEYaEaDEiisHHfz+g3nuzzoOHtFNTFfXtYz4r4sF3WPcd01RlF4OeLt2lwXDvGamfiDcTLS8u6Gy50RHXiMxyZqahgzUbjLzOq7em7ik=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=vOaHruCe; arc=fail smtp.client-ip=40.107.104.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=T3WOV2PJzjrLCteWH/qCz05JaOeQnoNXrADr6GlhVoj6soe1el8JpCnBcghIwbWJlGgCY7lSCkEnrsd0ER/Q1bssty98yaJRsFe2yiPzXpuM8TJEWoUakmxB/tJonMvcNy79Wv2WvZJ+TwwFKScs6ZThZyRy9DFN4BFVcJ4LdtMNCBi1hMozMjFvKHsjYU3VjiW6Bus3pajWjE1dj4nBHTxakl4WUjGQJeLnkN5WyEfrKjY1LW3NTa251hcPpSN3UqV15ugqX9Gfyg/LCOmQ7RZytiXSDccdISDh7RK5x0C8MabkWQOdlnXWKRuVBTC1Qr+2kEOFwPefwp5dkBH08A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bDyyEx8cYOA/l0TvcFZvtt2l9+pp4mDpubDlzKeS7e0=;
- b=ZIYN8mrly1fDSs7AlfJUqJ2XqZYQyc2y59xRh33N2bKu/B4qpWBRR/tKaLXKySDZdNOlyGa4jKsozyCa0bQqw4JK/K20dAz0xl/iZU7XpC2mBzL1+4wS4Qo+yLkeYbSZ0CdLqKFzaw4a570iUIIzGlnlUj5HnF+fVmDbUuHwaa2PWARlK0J7ATeBXBjk2P9vDeLd6v7Mh1PPk7cPwOW4f1OeRw+XoaLvIV6z1AOBXXvfvGKXzVAFd881h8KzWiN9OoKlVQJnk5+t/IsIQFs8ES3PaL8TO8LCpZyZirUP8JFPeUH6uA86sj8a9jZ99di1EA/xpIHvO2plTMDo4yTb3g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bDyyEx8cYOA/l0TvcFZvtt2l9+pp4mDpubDlzKeS7e0=;
- b=vOaHruCeRim3JzAkU/ps5HiQkjXjTVy2I8gx9JnsQ06GFGkWzMlqThppYKz9/tM3zK3EmjtQZ5UjcPSGFFCyOHRZeRcqGiTrjrPjSKXvFc21/663bjOIkDdSOh2eiuy+uvv4Kwl0gJHmjt7GrTfdVrMkpdEZggAFq8QpzCBSNdU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
- by AS2PR08MB8781.eurprd08.prod.outlook.com (2603:10a6:20b:5f1::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.20; Mon, 20 Jan
- 2025 10:34:29 +0000
-Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::4e72:c5d4:488e:f16d]) by DU0PR08MB9155.eurprd08.prod.outlook.com
- ([fe80::4e72:c5d4:488e:f16d%5]) with mapi id 15.20.8356.020; Mon, 20 Jan 2025
- 10:34:29 +0000
-Message-ID: <bbf47543-6fe3-409e-a988-35be63d47cfa@wolfvision.net>
-Date: Mon, 20 Jan 2025 11:34:25 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] arm64: dts: rockchip: add overlay test for Edgeble
- NCM6A
-To: Quentin Schulz <quentin.schulz@cherry.de>,
- Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
- <20250116-pre-ict-jaguar-v2-1-157d319004fc@cherry.de>
- <e492812f-11cb-42e3-ad0d-ae6df37c346b@wolfvision.net>
- <433a8050-98b5-409b-97b5-00fe0e719a52@cherry.de>
-Content-Language: en-US
-From: Michael Riesch <michael.riesch@wolfvision.net>
-Organization: WolfVision GmbH
-In-Reply-To: <433a8050-98b5-409b-97b5-00fe0e719a52@cherry.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR08CA0245.eurprd08.prod.outlook.com
- (2603:10a6:803:dc::18) To DU0PR08MB9155.eurprd08.prod.outlook.com
- (2603:10a6:10:416::5)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8C31B413E
+	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 10:37:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737369423; cv=none; b=a3wFh6UYcR0T6/6pgLQvcZPRT1ZQfq/MvpGnAwNf/bTdJLUlItjNBvcT1vOdhlgMr/6tCWTCQsalZq2k0P6cqhslpV1Cc5IfDVEe365krM/895XJi19VVS8Dm5FHHdrDIvEOVR87cPHSSBL7gXbxBhouV2DuCFUbGxbYcXZ7ad0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737369423; c=relaxed/simple;
+	bh=cGFMswoitNfqWi4DCybe65q9S8zd6SKRugROMu9Z7iI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dCBrAxirkueBEpnSXlGRWAwC9zBFlkxcGVd9+fA/W03gim8JisRtH20YF/p5I3xJTBJHnTN5yFhSj6TXC1brweR9iKnXNNhdaqr4zqLOO5dxbEtfLCBXtmfzZ3njOFeP88YYtnKB3/VsQWkBPDp4GQfFgwTFePZ68kRGP+BsRVQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dooBRSTW; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-e46ebe19368so6199152276.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 02:37:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737369420; x=1737974220; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=yFMrrqx1Qoj4jKMtWUIzCNPzlSldcF1l8F6opL+IAIw=;
+        b=dooBRSTW+SswPghO2yDrLisFda15AuH0fzbvW1JH5OrykVSv3HVKZMSjrmAXZxzhYL
+         DBxKF4olbLhGvg+ue6ktrUaFH6iw5Mkb665Hx3jwr44sqNCMDJQlHY75Zd2+NyItDJJw
+         YdpwMUuL+j4H2ck1LMrxl1edSngGvJvD1gcFJ77Fetwq2OBLL685i0dwGZx4nw/yljJw
+         1ugZ4DCMkyDWiFOQemk32i4v8aqRkIajkJrG3oTx08citS0xRiixrtbODSxq1ZsMdK+T
+         vuhJMyDUYla2Tynb03+Afe7b8wn3Z/WSbj+v7JQFvMh0reYkDE6I29Up0Zd5VQR6Pzty
+         iwqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737369420; x=1737974220;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yFMrrqx1Qoj4jKMtWUIzCNPzlSldcF1l8F6opL+IAIw=;
+        b=aU/Pg3jXV68jlTB6/PmUv2JdEhH0C4WNMI5rZAXeVCYrmMqf534aT6x3IIw3diLizS
+         y7Ol/IUJ1HDEQxPAHIDuG46sCmYgpptaSldOy8NWSZwapoU11bYLojh5mNH/Br3t8aJ4
+         Oipll2HLJQxWL2xMG/vU5xjjK1T/WJ6Xuugk9xhM3Oevptl9akxRU3/KWRfl1lrvuts9
+         WJZeTE/o33o8aYwfR78V75DTF6YD+o7+zue+EXX4bQfqvt+1X99YwbhdSvMID0Ki9dF1
+         5CqIiZHdcaqSE062BQ3rAAdgEfEYBZNZjOfPlPsK6pj1StWcD+IwRnLctCAcCRZSUxSo
+         agTA==
+X-Forwarded-Encrypted: i=1; AJvYcCUTkPHNAo493kbCXtrW8dxmitpnWbNTsoE+EaA9eWrI7o8vcycejrPXHoqdtBuc5Wv8ZnTW51+yQrIc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqavWdD2I3atj0GIX/9+0Ve5ckgcqScNklPhjNjKZ/KZOCpn54
+	bIe+9JmT2uczjvnAWAN2meTMMoQlw7c5qgh2GxLmxkh2d11yPXdV613ckzSlAY2nFOFmQtqf6Xp
+	51EiOpmWL9KC+qSuWjvrwZOOg9GKvAOQAgnrxyGawKZYXkffo7yk=
+X-Gm-Gg: ASbGnculyJIQBf/m2wrXYMWE9YVYrB+IlOPr/CMkRdnxCYtXqAhuo81vFAk/M9UVLPJ
+	DcKRB7bRweQJWAVyPebsc5Qgu5RKBl13m558orxyf8XN508l3nWU1DKL2mrkhtfqX05jgMg0vBR
+	PQwET8AA==
+X-Google-Smtp-Source: AGHT+IEDFCAj6TxNDA1GeMvnXyrXJYIlHEdBB7VN2ZztntxUp7ZfarbFRwu3Cdl/7oTaC1y81QjFGWBmbL1x3HoYYnI=
+X-Received: by 2002:a05:690c:3809:b0:6f6:c924:befa with SMTP id
+ 00721157ae682-6f6eb671b22mr92127387b3.14.1737369420253; Mon, 20 Jan 2025
+ 02:37:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|AS2PR08MB8781:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1ac0b911-cf6b-4723-e489-08dd393e04f8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|376014|1800799024|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?UWhTc1BDelZuNmdraTIvTU9WS2t6RWJiYlFneXlDbUtyM3Myc0NmdmJEY3Qy?=
- =?utf-8?B?SXl4bmVpdTFhaVRKT05BZ3hwN0czK0pzRHJWWU4zWjRKWm42R3E1dk1rZy9Z?=
- =?utf-8?B?a2xoR1VlM3Y1dEQwN1J5YWkrem96U2FrQWI4dDFySkl0Z05HZlNWM2owejls?=
- =?utf-8?B?MERlUHp3THJyaUFwRFg0bnh4VDVkb2dKeEQ5NmJFU1RuSkFSLzh4emkweGhi?=
- =?utf-8?B?Y1k4ZWlaaHgwZ0xkdDA5ZFNxT3prejkzbjNzRTNLenM3L1FTd2FPSWlORXM2?=
- =?utf-8?B?L1Y2cGZpcnlHYjJNL2hoenVKaGd0SEFWZ044VkpHVUhXeVRJMUxTTGJ3MGQ4?=
- =?utf-8?B?V3RLVnNKRXNQUWtxa0dYRHFSbFJ3VmNWTEYxRXBGR3FGTVo3Z2ltdUJtOVdi?=
- =?utf-8?B?eHFTaW01WTl0U2RGZ2Nsbkw0bk0rQ2kzWHhncnYvNDhIdEFzZXFveUpZM2JD?=
- =?utf-8?B?MUtLaG9jRXlzTDdtb3lWR2tNK1REcHFERTdKdU41VVlHZ2J1azRpUXVZNm9G?=
- =?utf-8?B?S2JCNGJjRlZOTGIybDdMV0V1RVlVZlNMYjVZZjlxbFcrV0RsYkVnZXJMOEw5?=
- =?utf-8?B?YUtuRUU0ZVFmMUFpRC92ZXNheEJERG1pOUk2Rld1NXpUNVRYOURYM09uTjlZ?=
- =?utf-8?B?dUVVZDg4T0k2bU5VNU5NTllyZ04zZmcxUzZNc0dxLzN4VVM5eGZNZnUvR3A3?=
- =?utf-8?B?aFhiNlFaUWQ3OUk5b1Z3aEZkVGJVUVZQQmtGWGI0ZGJiMEhmZkQ1NjdwZ0F6?=
- =?utf-8?B?STNHdDBwazVxemZhOTVqV2VyejJFaG0zWTBsVnFPU0tyZzluejg1NnJmOEpF?=
- =?utf-8?B?Z2dqWE5PRVdIc3RHbk5FSlZuQS85TlVMTVJqV2RFTm16UU83MWl4OURPbmM2?=
- =?utf-8?B?Nnd5dzB2a0dSNUtPaCs2bk90ZVIwV3NwTnF5YUliRUZxNmNncTE4NzM0ZGFT?=
- =?utf-8?B?V0NKZ251QWZSZURmTXdGMCtkbng1OUExWFRLelE1b0gyN3UvdWNyYnovZ3pW?=
- =?utf-8?B?TnNxNUtUREIxbDNocUcxNCs3S0F5OGhtMXRKa0RhQ0JaWWZrK1pVdHh1NXNF?=
- =?utf-8?B?bU8rR21IdTEwVWtSSmJ3ZzBaZ2NTK0pYL2podkZQQUhUOEdpZStjZUVsdXh4?=
- =?utf-8?B?L0ExSjJqMnN2d0FWcENWcFozOVdrQ05POHZKanc2OGo3WGhhMzkzMXBHQm5u?=
- =?utf-8?B?c3IrdFcvOWdrems4MkllNjI2U1JTUU9sTDc3V0crUEFXZjl2aXhPYWQvU0ha?=
- =?utf-8?B?aXd3dXNPZjRTNUxEUVlMSXEyZmlySjFxT2FJSlNiZW44a1hGZU13WVFqTno4?=
- =?utf-8?B?dk5RUkt4S2VoVHFtVjJMa2ladWNaVzFZNFRKZkczcXQzdDJVL3d2K3FXeHVI?=
- =?utf-8?B?Uzk5NnArT1B0dzJVa1g4MXF5ekpRYllGMTVqNzVaTVJGU3E3RUFjRXZJWStM?=
- =?utf-8?B?bnlFRGtjS0tiQUQ2ejlGb255RytHbmc0R2JabEFwZWpGS1pndERBaXBsZFAv?=
- =?utf-8?B?b2tZcm5GR2VmL2dhem9oMWZJUGN4VUxtbit2UDk5RW8zL2dnb01XeEVyR2pI?=
- =?utf-8?B?bXd1aHBCZVRodlNha2s3OVVhK2Z6dlV6ZWR6S0ljK0J0aWF4dnpKNHRqNzVZ?=
- =?utf-8?B?VTlZcENhREl5QjUyNkllSXRjTDZ3VHQ2RmRPeENLWi9FdW1wTU9UeXp5eXgw?=
- =?utf-8?B?YXZUS1kwZmlmdC9LQ2VqSm9NaXdIaG9xVFlNaE9YdE94NC82eWJrb09EL3Ar?=
- =?utf-8?B?eVVYZDB0aTBaN3lqVU15OWlVcjJ5VUdqckcvdWdTYnpPOHFoSWhQbW13ZlMx?=
- =?utf-8?B?RjIrZWZXK2o1TGlNbFhOSEtpTXNiOS94RmRWcE15ekxKMXY1VGI5cW9oUnVw?=
- =?utf-8?Q?ggU6wmATHu3cO?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(7053199007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?eVNTU0VSL3V4TlJSVnRMc25mT0lyZm5JMFBGT3ZwaTlxeU1JOEk2YnhsV3Q4?=
- =?utf-8?B?YkJpL0NUQ3FaTXRycUgzNGFpZkk2UWYwSUR2UGp5ZGFDSEg0akVkSWRmQjBu?=
- =?utf-8?B?MEgwaXNiRVNPcGJkRmZVUHNTYzBWYlNyREZ5NS9GRFZja0YyK3FuWFNNUWJt?=
- =?utf-8?B?a2laQnBSamZQU1Qrek92MGcrY1loOWV2UmRQZ0dyclRvZFpZREJLSytWRTg4?=
- =?utf-8?B?aFZKa2FZaTNVbzhxaXA0dVhCdHIraGRoNzBHa2k0cjNLeWxHZ2pLckJqOEky?=
- =?utf-8?B?SDdMaWFTcW40czlFeURkSnZkOFhFZGZiT3FvYlNoRUNZTnhwYmFHVW9lYk9s?=
- =?utf-8?B?akoxVUVsTGZCblRvMGJEdXZydkliQ1lDSUY5ODJQNE03VEh0R04yRFVwQlFR?=
- =?utf-8?B?aG5EdnFQRlQ2eEtVUm5jejFRUE04L0VvTGtHTlVlZ3VrMzhTbkhrc3dURkxw?=
- =?utf-8?B?ZnkvdHJnUThzaFBsbU9pclljQkM4N29ZbFd6OUZTTmhRVU0yL2pEanAwTzQy?=
- =?utf-8?B?bDI4V0lIWFN2WTZvSFdjcEFRaW1Ydy9YRm9sNDBmVS9xZTQ3U2xQZytwbXE0?=
- =?utf-8?B?aUJKYXhFRDNSN09XeFNKWE9QOVp3cHZaZjBhT1RhaVlWYnRrWi83UllEajNL?=
- =?utf-8?B?Y0xQMW5Ca09XbFlEaHRHNXpXTFlkQzIrZ09zYW9PUFVmMGJDdDJNdEJnRFFU?=
- =?utf-8?B?NFhpVnBWeVlwK2ROMVNxU2RQdGVlMklvVjJVQUZMdzk5b2c2akkyYmE0Vnpv?=
- =?utf-8?B?SDZxS0d3MEZKNnd0Y2ZDUFhFWE9kZ2U5YTZOVTlPRDJkcXE1SFpsQU9oazNq?=
- =?utf-8?B?eXFLWXJqeXRkM2htV3JIOFJvWUJnUXpsNVVza29IWmRlUEZIcmhQQVpMWlJl?=
- =?utf-8?B?M2MvMGJFUzgzeW0zQVZwN25HcWdPdlpJSDZFT2RobUViMkFxSUtSSGYvdjBv?=
- =?utf-8?B?NFlENHlyZHkvTFJrU2RDa3RuSFNHS24xTzl3MVJaYVZabm1aSldIRmRNSDJO?=
- =?utf-8?B?S2xVZTJHa2o4RjlULzBPMm0rV1pLRFYzbWJSd3M3eDJHTHVWSU9PcEZoMDVw?=
- =?utf-8?B?YUVya1p0cGhvVHA5RjU5VitVU0pFR2xXMUdVSVJNNHpSNkdFNlFLdWpUM1hh?=
- =?utf-8?B?cDdYZ0t6cVZvMEE0czlRbENYNjdMclNZVXdBSzZaZ2FpeUEyM05iV2Frb2tY?=
- =?utf-8?B?ZThsMmRieEJUL0sxT1Q2SDg3ak5XQjgvTUdkTWhXMU9zcENoVHdTeEJ2RXBS?=
- =?utf-8?B?SU5GeU52d1d0Z3R5VkdqN0dSTnF3dUpCc3prNlBhU3hkUTZXWG90YXhiZmJR?=
- =?utf-8?B?WU8vc1N1YmY4b3NSNUI2bEZ4dFdzeU01dm1XMXp3RElsWEh4WURqKytJSjY3?=
- =?utf-8?B?NndDTVJ0Z3V4NnBIaFMxbmE0VTkwS3RUVXlDZ3Y4MXJWcHp5VE4wRnN4WGFG?=
- =?utf-8?B?aGZDMDJwWWRYa3lRZ1ppbiswV3Q0bmhjRTg4TnZRUG0xQnVERHdLTlRZMXd5?=
- =?utf-8?B?UUxYM2hHTmhZQVlSVVVNSTFXRnZpZ0NLS3VwOHpQUXJ2bjUvWkk0a25kSUsy?=
- =?utf-8?B?ZkpwSVIyS3o0TjliZEFwd2ozcGVONGc2TlozQzhTbkJwMXN4LzFjeHI2SjdM?=
- =?utf-8?B?bzNVcG9IS3NPdU9nSWhocDJWOWIrUWtyVnZEL0RyVklrNnBrSlZIdDhlK3ly?=
- =?utf-8?B?WjRSSGh1SGtWZkRmeGNIZC81MWNucElCU2NZczJvRmh5T0FhMWNLMWxiaWRW?=
- =?utf-8?B?Y3VpaUxsbUQxUG9NL3A5YU5QMUwxL3BTL3EvNWFBWFNlYlQ2a1ZzbitVY2Nk?=
- =?utf-8?B?TDRmblRBaVZpUWlieGRqOXFsNmdDbUNTdXdMSDlURHRkeXNQQ2dBYVp6bDF0?=
- =?utf-8?B?dG41Ty9qZkxKb0VHcG82NktTMlFEMnVhLzIyOGZic3plQXZyaEJIQWF3NTlC?=
- =?utf-8?B?T0dONy84VzRRMy9FSGpWQWdUTS9ybDZXd285aXEwZ05HU0xKaE1NT2RXUzlU?=
- =?utf-8?B?ZkhpZnJJUmQvejRZUlczMFhxeStqYnZ5NkZaMUR0VW03RkY5b3RQcXhzaVMv?=
- =?utf-8?B?d1h4T2tJcDZnWlFhZjBsL0NJbVhXdTNGdzNxOFhwOEpTZVd3QzNSVTVzUm01?=
- =?utf-8?B?RWJpNkt2OXRYUW4xbG02cTBwM0tuZkRHVFI5ajY1MFhqajY2R1EvRjRMYVcr?=
- =?utf-8?B?Z1E9PQ==?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ac0b911-cf6b-4723-e489-08dd393e04f8
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jan 2025 10:34:29.2026
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0MO3wxFjzqGbq8fMNs5Hx2Fa0D1IdtZ3+WLZ+e4DUsMo5U4UVp0KRS8Bf0M4SR3MHK/qvZ2871v2HT0ucvzEBBFBjs0yi3G4+DrC7FJrG9w=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS2PR08MB8781
+References: <20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com>
+ <20241108-qcs615-mm-dt-nodes-v1-2-b2669cac0624@quicinc.com>
+ <cgg3s6f555eb4jl5segz7irwx2kkza7w6zucfyo7myrbjhng3v@2qmyrobzakhd>
+ <71635b71-71e4-4c17-add1-bf41ce770632@quicinc.com> <scfoxmstfqgvqmxovb7h5gulh6bjhgexs6yxe2n75izc7sawby@djphyr2ilei3>
+ <97f5f5b1-b4f9-4d0d-88fb-4c7a0f1c26ac@quicinc.com>
+In-Reply-To: <97f5f5b1-b4f9-4d0d-88fb-4c7a0f1c26ac@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 20 Jan 2025 12:36:49 +0200
+X-Gm-Features: AbW1kvalUCoaK3fdSfJjJnzJOeramfJ4qP389PafQbuwuKgJociukqEgg9MZhIs
+Message-ID: <CAA8EJppOHw5u_dMW=uXgyp3NSJmv9fwNvEL63NCqOpXUKPz5vA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add cpu scaling clock node
+To: Taniya Das <quic_tdas@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Quentin,
+On Mon, 20 Jan 2025 at 12:34, Taniya Das <quic_tdas@quicinc.com> wrote:
+>
+>
+>
+> On 1/20/2025 2:16 PM, Dmitry Baryshkov wrote:
+> >>> This doesn't follow the bindings, does it?
+> >> I will add and re-use the closest target compatible.
+> >>
+> >>>> +          reg = <0 0x18323000 0 0x1400>,
+> >>>> +                <0 0x18325800 0 0x1400>;
+> >>>> +          reg-names = "freq-domain0", "freq-domain1";
+> >>>> +
+> >>>> +          clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
+> >>>> +          clock-names = "xo", "alternate";
+> >>> Are the DCVSH interrupts?
+> >>>
+> >> This target does not have DCVSH interrupts directly connected to the
+> >> CPUFREQ-HW.
+> > So, does it require a separate LMH driver, like the one used for sdm845?
+>
+> I will check how it is handled on QCS615 as it is closer to SC7180 and I
+> didn't see any LMH handling there as well.
 
-On 1/20/25 10:23, Quentin Schulz wrote:
-> Hi Michael,
-> 
-> On 1/20/25 10:07 AM, Michael Riesch wrote:
->> Hi Quentin,
->>
->> On 1/16/25 15:47, Quentin Schulz wrote:
->>> From: Quentin Schulz <quentin.schulz@cherry.de>
->>>
->>> The Edgeble NCM6A can have WiFi modules connected and this is handled
->>> via an overlay (commit 951d6aaa37fe ("arm64: dts: rockchip: Add Edgeble
->>> NCM6A WiFi6 Overlay")).
->>>
->>> In order to make sure the overlay is still valid in the future, let's
->>> add a validation test by applying the overlay on top of the main base
->>> at build time.
->>>
->>> Fixes: 951d6aaa37fe ("arm64: dts: rockchip: Add Edgeble NCM6A WiFi6
->>> Overlay")
->>> Signed-off-by: Quentin Schulz <quentin.schulz@cherry.de>
->>> ---
->>>   arch/arm64/boot/dts/rockchip/Makefile | 6 +++++-
->>>   1 file changed, 5 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile
->>> b/arch/arm64/boot/dts/rockchip/Makefile
->>> index
->>> 86cc418a2255cdc22f1d503e9519d2d9572d4e9d..3f92d1a9d0b6efeee46ad4aff8c2b8ed3cb83d73 100644
->>> --- a/arch/arm64/boot/dts/rockchip/Makefile
->>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
->>> @@ -134,7 +134,6 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-armsom-w3.dtb
->>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-evb.dtb
->>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-coolpi-cm5-genbook.dtb
->>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-io.dtb
->>> -dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtbo
->>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6b-io.dtb
->>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-evb1-v10.dtb
->>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-friendlyelec-cm3588-nas.dtb
->>> @@ -163,3 +162,8 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=
->>> rk3588s-orangepi-5.dtb
->>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
->>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
->>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5c.dtb
->>> +
->>> +# Overlays
->>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
->>> +
->>
->> Maybe open a new section "# Compile time tests" or something like that?
->>
-> 
-> The above line is to compile the build-time test of overlay application
-> (notice the missing o in the extension). This points at the target below
-> (which ends with -dtbs), which does require the dtbo to exist. So
-> essentially, they are both for the build-time test of applying (and
-> generating) DTBO. I feel like this comment/section would add to the
-> confusion? I may have misunderstood what you are suggesting, can you
-> provide an example?
+At least sm6150-thermal.dtsi declares two LMH blocks.
 
-Thanks for the explanation. At the beginning I was wondering what the
-point of this line was, and thought that a comment that explains the
-purpose of it would be beneficial.
 
-Maybe it makes sense to provide a section so that other contributors
-know where to sort in their tests, so maybe
-
-# Overlays
-dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
-[...]
-
-# Compile-time tests for overlays (and combinations thereof)
-rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb
-rk3588-edgeble-neu6a-wifi.dtbo
-[...]
-
-But this is simply a recommendation.
-
-Regards, Michael
+-- 
+With best wishes
+Dmitry
 
