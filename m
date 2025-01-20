@@ -1,306 +1,158 @@
-Return-Path: <devicetree+bounces-139850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7709EA171EB
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 18:32:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EB79A1720B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 18:37:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C20BB16B553
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 17:31:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BF9016440C
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 17:37:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18B961EE7AB;
-	Mon, 20 Jan 2025 17:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B7B1DFE16;
+	Mon, 20 Jan 2025 17:37:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="drtoTYxQ"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="1iviO6H5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 007B81E9B20;
-	Mon, 20 Jan 2025 17:30:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 701AC16F841
+	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 17:37:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737394203; cv=none; b=Qpuhlt2k4v2Q175kZ4KKQc8z3098uspdfWIJVKXKKpOoaYlwRgp0hb2q4z01XHMKDU+203BBILgk+h+ZzK9hVmKp5WqVsDcvmHVIch/DrKNIVAy4PAVQY4RnIlIKWdaIniC+qtxFlHHGb7/P8GTBB2PEk4+BBLxvt+698TUb0bE=
+	t=1737394638; cv=none; b=E1JfUlwbbAgNnL1vTaHTgJxJvcd6nBdxj/z9gUGQScuvV07nJ3zVHDZymc/1r66xrNZhhyehYTpy5jZtzwrgaIFrEc++sV+S1If+KrGAvVBXHqFRaVeb4bkOjHTsR+XTzB32Z5uz5m/P/CuYpVGIRliZIlTHtrQovfWebW9C12o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737394203; c=relaxed/simple;
-	bh=eouAKjbdwV0lWunpOfjckMljjwF5cb9Kx5eqdqL2gCk=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CSJ4H4FqFhmzHd+wojZ8SZtyEUvdcAr7BxXtOpUapGNXwxbbwOzX+SFNl7J7x9hmar5bPNKXKpX0ujTYTu2FAZQzDhYCl9+1tI2k9YruItOobfqGM+Kb9zjwukzq5co4sbMAE6uw5MeT6SjaXJ+pxbAelPIiX2KWJQQgpBZPHSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=drtoTYxQ; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-438a3216fc2so19973615e9.1;
-        Mon, 20 Jan 2025 09:30:00 -0800 (PST)
+	s=arc-20240116; t=1737394638; c=relaxed/simple;
+	bh=QpwTrKzQBAEvGMXPO40eDha01s8ELCbnbLBDZ4sjGdk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=o8eizcK0EjyMUScmOEkOUhu9mJXZmYOgMCJ+ecWzyVaH6JRT3kDx/MP+BDYNL2Hqs8sClN9p6UAw5IKJDpiqEa29WMqKMN7LXO/B9kkY+UNIgp8ll5VK1XXWr67iwRhfMipMZRFEojj6z1rORv+RcyOszuWBTip+aIF9UQdvrIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=1iviO6H5; arc=none smtp.client-ip=209.85.167.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f178.google.com with SMTP id 5614622812f47-3eb9bbcc936so2909372b6e.0
+        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 09:37:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737394199; x=1737998999; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0B3gemxUmaJrs7DfKycRLMmy76Q0qp/FE8e2Q2hM4To=;
-        b=drtoTYxQ/Am6ee5eeO0tRWBpYoD0NRSOV+QrTxkntnt8C7zyficqo0UiFNAx9AyV+s
-         TvdeaP/2AZP+UZE6gF/rxw9GENpSheh4r73Va53jRNU72je1r438EGFUdJzOk2IpNOBw
-         ldGGif8Oy5JlAW6ly8KQGxO7TbPaBBumqI8JMrXw4/VDQvkZDVN3XiY+Zxw4DTDIGvVt
-         KjFsvTPZBTsaXMMlhnOhB2PO9pSdioQPUR6Fq/6Bw+0SFCwAlAx9OxX3tPHKad/+Nek7
-         h7e9Oy89WnHlqzMNwk3TAyTM7Dt9inxY1m3pLkSNGVRmjfNOQGbtK6qDWKRwwAMOF+0F
-         qncQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737394635; x=1737999435; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=lfT4rN6OvTBsIG9x5a9+mxXs/tzHh45iRbVAfdvcFm4=;
+        b=1iviO6H5QwLpL79Hxdys4VBTR/ppu9p+1kccXpmkMRA0CdxmxK2t5H7Gad7M8XqjNG
+         0h4bJMuEFsSF93J7HNyuT2ouwSelRI7HxkLMnBI4cCj8DTJI3xQf3NqIyJuvDPAU/LSg
+         3TvbUx/0cZURseHOmhZaD0H4CL8SsLkV5yTjzGvFa6DVb9O6jkKoawn2E+XhE+/0+O3G
+         uF5G0svJm8zWRSBisTqLfaOIv/MlBzjddyCuRN9cr4BU3gRNm5xfbgUWDtVigcl8NvRm
+         hfsbGrhVeAB8TJnZLOxIWynouGLdvhs0BdnWr2xdwxsKpSqQjraSfEAN6UT6PBflnHbM
+         7/Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737394199; x=1737998999;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id
+        d=1e100.net; s=20230601; t=1737394635; x=1737999435;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0B3gemxUmaJrs7DfKycRLMmy76Q0qp/FE8e2Q2hM4To=;
-        b=Ioex5DhVlAsdD2UCaFb4T51i8g4rC9pvZi4FfcI3daJuvi3d6S3YJPCnM1jiJZwUke
-         IScf/VfYGdvyuNM4eX3l9JALH/tLrH0c+otNvjkZTq1LI5Z0TRRBScuLL5LjtRWme2Wa
-         GqRX7WC2Wll+g0ljNc3GgMS2CfM/pyrWsyBqslTEV6233ha84Hqo/Hv07i+ORNPr2ZLw
-         27SE99Qcu0dN+7CQVH0Rs2eBa6sJDbntjuJOYz+mmkH70kEJKJcs7VX2Iy2fuxF5RqyS
-         1mme37bill5drnJfZbxLwJ3YrzL9YwUd61pgkWJAavYY0hX/c5NHFTZIHeb1aB4G2fNp
-         cjew==
-X-Forwarded-Encrypted: i=1; AJvYcCUWSWSNJIa+IAetAdwpg9m2NVQV2nURnaAQKr2PyIhGmouVkMRdrmR/2WxtVvIV4rddeR2kqZtM7eFG@vger.kernel.org, AJvYcCW2MfZOvkyaxIN00is/mEiK0ot8X97GQ76BoJ798hG4+NiC9XLw7f7BZiPeoBPnLGdV6JcfP4lzRgQq@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQALYCYD5ycTGY8kOwrVeaXU/xfLe+y/PKxk9wp4OXKFLM6E36
-	mK59t/FiqvWwTNB8/KlooZTlidmn6W8LsO27nnZcPA0xktCRtfZJ
-X-Gm-Gg: ASbGnctJcPveUu0CmqNbApIkiMSVUL/3bcRB4APFqA0njQEu+5o+PkQADbby9wFQpc7
-	xZ/wqdpZVt2yISK+g3JxKrqZBal9xiLXbKHnDCuqeelsvHdEassGJWoQb/Jrd2W/sEIOclu/PgQ
-	G5qgkqu7eSVthJL6ImA5iMjwKisj1RaE7eYBrK/AtiPBLjqqcxEcZ6kzGYW2eY6AQilCAIkGZwj
-	fMLG+qwuxIq6HmJQpG4tfI41i3U++nV4P9uUOvd0uQptuTp0KKlmpG55WSDE241LeVRJBPy6aHW
-	PHe1PqxnbklbjOEjKgXLQz41FA==
-X-Google-Smtp-Source: AGHT+IF1Ls2ZGh8+noLN6wNSkCbP/7nO9y+DgQ3y6uIFFRbvHCZR1LGZjFHMdzf8bf1nnMgw+5jwqA==
-X-Received: by 2002:a05:600c:6a94:b0:434:f753:600f with SMTP id 5b1f17b1804b1-438914376b1mr117703705e9.19.1737394198893;
-        Mon, 20 Jan 2025 09:29:58 -0800 (PST)
-Received: from Ansuel-XPS. (93-34-91-161.ip49.fastwebnet.it. [93.34.91.161])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c0efccf7sm137517235e9.0.2025.01.20.09.29.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2025 09:29:58 -0800 (PST)
-Message-ID: <678e8816.050a0220.b6bb9.f588@mx.google.com>
-X-Google-Original-Message-ID: <Z46IEs6HyZJd3eHV@Ansuel-XPS.>
-Date: Mon, 20 Jan 2025 18:29:54 +0100
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Andy-ld Lu =?utf-8?B?KOWNouS4nCk=?= <Andy-ld.Lu@mediatek.com>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	Wenbin Mei =?utf-8?B?KOaiheaWh+W9rCk=?= <Wenbin.Mei@mediatek.com>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	Chaotian Jing =?utf-8?B?KOS6leacneWkqSk=?= <Chaotian.Jing@mediatek.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-	"ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	upstream <upstream@airoha.com>
-Subject: Re: [PATCH 2/2] mmc: mtk-sd: add support for AN7581 MMC Host
-References: <20250115073026.31552-1-ansuelsmth@gmail.com>
- <20250115073026.31552-2-ansuelsmth@gmail.com>
- <9e022bf13354f544962491cf8061ff3edb878c30.camel@mediatek.com>
+        bh=lfT4rN6OvTBsIG9x5a9+mxXs/tzHh45iRbVAfdvcFm4=;
+        b=YTPQu7p1kHwBegrgm4P7MUDUTiapr2G4BE1MUP82o03jmDrJ0uyfhNSeeUtE2ZSHQa
+         703ZHMAXzFtvtfUXE37hkjN4BqBhnSarewz3BCmRM5tAgeP3SrRtoaCuezvpNLSXUpt9
+         zuC4ct3xGaK052IAIPLZ5OsElpH82+q+UhTpU07S0sIIeIl2Zt8vm/hiQb0GI/JxwWKC
+         CtA01SysnlXXJYoqZyFjvkLVhY/FH+qJBcZ6+Oxn4yruG/NldexmwWvZPccK46DufUhS
+         QWTL961Up5tvZlLFFmHyDTiLoGH7/IASCTISQrx6pjuTgG751ZRVWXAdBaMw4bFv8nKB
+         7fWA==
+X-Forwarded-Encrypted: i=1; AJvYcCWiPQjB14c3NhI+WhtX1cHpbVarDfMAS+2ZcyPvA84UOUz9Q5hE0mfnZ7AA2awQSjBiIuiE4JJ2X072@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYGo2ofYjRE6/b9mTAtHoPBCurOFdioN86cudy/QwfMfVa8+Xt
+	jfiMSJgdpB02R9fK/QwPFr5uW82a+M7bC12676XHa2zQLwv6CFdXAI75P77MuVw=
+X-Gm-Gg: ASbGncs2KCgZ2AsNubf/jika56KPDtsnjJ34DIp0jyjq4HSJ+1Nv87/rKvt9jaPDdym
+	aAD6rBFenU0s1d3R+cHWJZzyENvA4PzNnBqpdaDbXdL0XZYoKL4vyl16nW0tEZFCsFlRSc3fOFt
+	zJ0hFcYVT2fVgf6/C4OxSISiSxcRcr4FpnXrsnHLWPHfHdN25vWIQcY2gvsIv2tUx+FgngI7irf
+	O0ge1Hjdq5ql97f9ebdKBsnFZ5F2EI4J+2NWfgEdsC5xViOziMbcpHZn2hmw2NlxD7I/obXnO1c
+	YxnjlmMNuAM0U5vugq+zHgZbVPQepss=
+X-Google-Smtp-Source: AGHT+IH1nrkzxGSioxg3Pk04SSKoUCKqQj95yrTm9nW9uBQqIvSRaw18pxDZP0Ip0yKAj1frniReXA==
+X-Received: by 2002:a05:6808:8515:b0:3ea:404b:34ec with SMTP id 5614622812f47-3f19fdd1e61mr7056489b6e.28.1737394635489;
+        Mon, 20 Jan 2025 09:37:15 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f19da85a80sm2498563b6e.28.2025.01.20.09.37.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 20 Jan 2025 09:37:13 -0800 (PST)
+Message-ID: <c424cedb-5b45-43c0-897b-dec83918d658@baylibre.com>
+Date: Mon, 20 Jan 2025 11:37:12 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 8/8] iio: adc: ad4851: add ad485x driver
+To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
+ "jic23@kernel.org" <jic23@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
+References: <20250117130702.22588-1-antoniu.miclaus@analog.com>
+ <20250117130702.22588-9-antoniu.miclaus@analog.com>
+ <d4b9d6e9-745c-4c35-a62d-18e0a36f30c4@baylibre.com>
+ <BN6PR03MB33953EC70A02D0031373C2BD9BE72@BN6PR03MB3395.namprd03.prod.outlook.com>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <BN6PR03MB33953EC70A02D0031373C2BD9BE72@BN6PR03MB3395.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9e022bf13354f544962491cf8061ff3edb878c30.camel@mediatek.com>
 
-On Thu, Jan 16, 2025 at 07:01:13AM +0000, Andy-ld Lu (卢东) wrote:
-> On Wed, 2025-01-15 at 08:29 +0100, Christian Marangi wrote:
-> > Add support for AN7581 MMC Host. The MMC Host controller is based on
-> > mt7622 with the difference of not having regulator supply and
-> > state_uhs
-> > pins and hclk clock.
-> > 
-> > Some minor fixes are applied to check if the state_uhs pins are
-> > defined
-> > and make hclk optional for the new airoha compatible.
-> > 
-> > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > ---
-> >  drivers/mmc/host/mtk-sd.c | 55 ++++++++++++++++++++++++++++++++-----
-> > --
-> >  1 file changed, 46 insertions(+), 9 deletions(-)
-> > 
-> > diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-> > index efb0d2d5716b..9d6868883c91 100644
-> > --- a/drivers/mmc/host/mtk-sd.c
-> > +++ b/drivers/mmc/host/mtk-sd.c
-> > @@ -666,6 +666,20 @@ static const struct mtk_mmc_compatible
-> > mt8196_compat = {
-> >  	.support_new_rx = true,
-> >  };
-> >  
-> > +static const struct mtk_mmc_compatible an7581_compat = {
-> > +	.clk_div_bits = 12,
-> > +	.recheck_sdio_irq = true,
-> > +	.hs400_tune = false,
-> > +	.pad_tune_reg = MSDC_PAD_TUNE0,
-> > +	.async_fifo = true,
-> > +	.data_tune = true,
-> > +	.busy_check = true,
-> > +	.stop_clk_fix = true,
-> > +	.stop_dly_sel = 3,
-> > +	.enhance_rx = true,
-> > +	.support_64g = false,
-> > +};
-> > +
-> >  static const struct of_device_id msdc_of_ids[] = {
-> >  	{ .compatible = "mediatek,mt2701-mmc", .data = &mt2701_compat},
-> >  	{ .compatible = "mediatek,mt2712-mmc", .data = &mt2712_compat},
-> > @@ -680,7 +694,7 @@ static const struct of_device_id msdc_of_ids[] =
-> > {
-> >  	{ .compatible = "mediatek,mt8183-mmc", .data = &mt8183_compat},
-> >  	{ .compatible = "mediatek,mt8196-mmc", .data = &mt8196_compat},
-> >  	{ .compatible = "mediatek,mt8516-mmc", .data = &mt8516_compat},
-> > -
-> > +	{ .compatible = "airoha,an7581-mmc", .data = &an7581_compat},
-> >  	{}
-> >  };
-> >  MODULE_DEVICE_TABLE(of, msdc_of_ids);
-> > @@ -1600,6 +1614,10 @@ static int msdc_ops_switch_volt(struct
-> > mmc_host *mmc, struct mmc_ios *ios)
-> >  	struct msdc_host *host = mmc_priv(mmc);
-> >  	int ret;
-> >  
-> > +	/* Skip setting supply if not supported */
-> > +	if (!mmc->supply.vqmmc)
-> > +		return 0;
-> > +
-> Hi Christian,
+On 1/20/25 6:37 AM, Miclaus, Antoniu wrote:
+>>> +		}
+>>> +		channels++;
+>>> +
+>>> +		st->bipolar_ch[reg] = fwnode_property_read_bool(child,
+>> "bipolar");
+>>> +
+>>> +		if (st->bipolar_ch[reg]) {
+>>> +			channels->scan_type.sign = 's';
+>>> +		} else {
+>>> +			ret = regmap_write(st->regmap,
+>> AD4851_REG_CHX_SOFTSPAN(reg),
+>>> +					   AD4851_SOFTSPAN_0V_40V);
+>>> +			if (ret)
+>>> +				return ret;
+>>> +		}
+>>> +	}
+>>> +
+>>> +	*ad4851_channels = channels;
+>>
+>> At this point, channels is pointing to memory we didn't allocate (because of
+>> channels++). As in the previous review, I suggest we just get rid of the output
+>> parameter since indio_dev->channels already has the correct pointer.
+>>
+>> It's less chance for mistakes like this and avoids needing to provide an unused
+>> arg in ad4857_parse_channels().
 > 
-> I think here is no need. If you have not 'vqmmc' in the
-> dts, IS_ERR(mmc->supply.vqmmc) would be -ENODEV and the corresponding
-> flow would not be executed.
+> Hmm, how can I then do the assignments in `ad4858_parse_channels` ?
 > 
-> And another question, host->pins_default is just selected here, that
-> would be lost.
->  
-> >  	if (!IS_ERR(mmc->supply.vqmmc)) {
-> >  		if (ios->signal_voltage != MMC_SIGNAL_VOLTAGE_330 &&
-> >  		    ios->signal_voltage != MMC_SIGNAL_VOLTAGE_180) {
-> > @@ -1699,7 +1717,9 @@ static void msdc_enable_sdio_irq(struct
-> > mmc_host *mmc, int enb)
-> >  				dev_dbg(host->dev, "SDIO eint irq:
-> > %d!\n", host->eint_irq);
-> >  			}
-> >  
-> > -			pinctrl_select_state(host->pinctrl, host-
-> > >pins_uhs);
-> > +			/* Skip setting uhs pins if not supported */
-> > +			if (host->pins_uhs)
-> > +				pinctrl_select_state(host->pinctrl,
-> > host->pins_uhs);
-> >  		} else {
-> >  			dev_pm_clear_wake_irq(host->dev);
-> >  		}
-> > @@ -2036,6 +2056,10 @@ static void msdc_ops_set_ios(struct mmc_host
-> > *mmc, struct mmc_ios *ios)
-> >  
-> >  	msdc_set_buswidth(host, ios->bus_width);
-> >  
-> > +	/* Skip regulator if not supported */
-> > +	if (!mmc->supply.vmmc)
-> > +		goto skip_regulator;
-> > +
-> No need too.
-> 
-> >  	/* Suspend/Resume will do power off/on */
-> >  	switch (ios->power_mode) {
-> >  	case MMC_POWER_UP:
-> > @@ -2071,6 +2095,7 @@ static void msdc_ops_set_ios(struct mmc_host
-> > *mmc, struct mmc_ios *ios)
-> >  		break;
-> >  	}
-> >  
-> > +skip_regulator:
-> >  	if (host->mclk != ios->clock || host->timing != ios->timing)
-> >  		msdc_set_mclk(host, ios->timing, ios->clock);
-> >  }
-> > @@ -2816,9 +2841,12 @@ static int msdc_of_clock_parse(struct
-> > platform_device *pdev,
-> >  	if (IS_ERR(host->src_clk))
-> >  		return PTR_ERR(host->src_clk);
-> >  
-> > -	host->h_clk = devm_clk_get(&pdev->dev, "hclk");
-> > -	if (IS_ERR(host->h_clk))
-> > -		return PTR_ERR(host->h_clk);
-> > +	/* AN7581 SoC doesn't have hclk */
-> > +	if (!device_is_compatible(&pdev->dev, "airoha,an7581-mmc")) {
-> > +		host->h_clk = devm_clk_get(&pdev->dev, "hclk");
-> > +		if (IS_ERR(host->h_clk))
-> > +			return PTR_ERR(host->h_clk);
-> > +	}
-> devm_clk_get_optional could be used to instead here, no need to use
-> compatible to distinguish.
->
+> drivers/iio/adc/ad4851.c:1055:42: error: assignment of member ‘has_ext_scan_type’ in read-only object
+>  1055 |   indio_dev->channels->has_ext_scan_type = 1;
+>       |                                          ^
+> drivers/iio/adc/ad4851.c:1057:39: error: assignment of member ‘ext_scan_type’ in read-only object
+>  1057 |    indio_dev->channels->ext_scan_type = ad4851_scan_type_20_b;
+>       |                                       ^
+> drivers/iio/adc/ad4851.c:1058:43: error: assignment of member ‘num_ext_scan_type’ in read-only object
+>  1058 |    indio_dev->channels->num_ext_scan_type = ARRAY_SIZE(ad4851_scan_type_20_b);
+>       |                                           ^
+> drivers/iio/adc/ad4851.c:1061:39: error: assignment of member ‘ext_scan_type’ in read-only object
+>  1061 |    indio_dev->channels->ext_scan_type = ad4851_scan_type_20_u;
+>       |                                       ^
+> drivers/iio/adc/ad4851.c:1062:43: error: assignment of member ‘num_ext_scan_type’ in read-only object
+>  1062 |    indio_dev->channels->num_ext_scan_type = ARRAY_SIZE(ad4851_scan_type_20_u);
+>       |                                           ^
 
-I can make the hclk optional but I think this would affect also every
-other compatible by hiding broken clock configuration.
+I would be tempted to just not have a second loop of
 
-> >  	host->bus_clk = devm_clk_get_optional(&pdev->dev, "bus_clk");
-> >  	if (IS_ERR(host->bus_clk))
-> > @@ -2926,10 +2954,13 @@ static int msdc_drv_probe(struct
-> > platform_device *pdev)
-> >  		return PTR_ERR(host->pins_default);
-> >  	}
-> >  
-> > -	host->pins_uhs = pinctrl_lookup_state(host->pinctrl,
-> > "state_uhs");
-> > -	if (IS_ERR(host->pins_uhs)) {
-> > -		dev_err(&pdev->dev, "Cannot find pinctrl uhs!\n");
-> > -		return PTR_ERR(host->pins_uhs);
-> > +	/* AN7581 doesn't have state_uhs pins */
-> > +	if (!device_is_compatible(&pdev->dev, "airoha,an7581-mmc")) {
-> > +		host->pins_uhs = pinctrl_lookup_state(host->pinctrl,
-> > "state_uhs");
-> > +		if (IS_ERR(host->pins_uhs)) {
-> > +			dev_err(&pdev->dev, "Cannot find pinctrl
-> > uhs!\n");
-> > +			return PTR_ERR(host->pins_uhs);
-> > +		}
-> >  	}
-> Could you consider to set a dummy 'state_uhs' same as 'state_default'
-> in the dts, that you could not use compatible to distinguish here.
-> 
+	device_for_each_child_node_scoped(dev, child)
 
-This is problematic, correct me if I'm wrong, you are suggesting to
-assign the emmc pins to both default and uhs? This is problematic as the
-pinctrl driver would complain that such pins are already assigned to
-something. Also I don't think it's possible to assign these pins to a
-dummy pin.
+in ad4858_parse_channels() and instead do everything in ad4851_parse_channels()
+and just pass a boolean parameter to conditionally handle the difference
+between the two types of chips.
 
-> >  
-> >  	/* Support for SDIO eint irq ? */
-> > @@ -3010,6 +3041,12 @@ static int msdc_drv_probe(struct
-> > platform_device *pdev)
-> >  		dev_err(&pdev->dev, "Cannot ungate clocks!\n");
-> >  		goto release_clk;
-> >  	}
-> > +
-> > +	/* AN7581 without regulator require tune to OCR values */
-> > +	if (device_is_compatible(&pdev->dev, "airoha,an7581-mmc") &&
-> > +	    !mmc->ocr_avail)
-> > +		mmc->ocr_avail = MMC_VDD_32_33 | MMC_VDD_33_34;
-> > +
-> Maybe you could use regulator-fixed in the dts and configure min/max
-> voltage to get ocr_avail, no need to set hard code here. 
-> 
+Or you use a cast to remove the const qualifier.
 
-Also suggested by Wenbin Mei (梅文彬) and I just tried this.
-
-This can't be done, fixed-regulator needs to have the same min and max
-voltage or they fail to probe sooo fixed-regulator saddly can't be used
-:(
-
-I will send a new version of this with the other point corrected but I
-think a compatible and these additional if is a must :(
-
-> >  	msdc_init_hw(host);
-> >  
-> >  	if (mmc->caps2 & MMC_CAP2_CQE) {
-
--- 
-	Ansuel
+	ad4851_channels = (struct iio_chan_spec *)indio_dev->channels;
 
