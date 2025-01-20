@@ -1,64 +1,66 @@
-Return-Path: <devicetree+bounces-139794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2273CA16E7A
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 15:35:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F367A16E93
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 15:43:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C70C51884A53
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 14:35:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5533816475B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 14:42:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72ECA1E32B7;
-	Mon, 20 Jan 2025 14:35:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D2AD1E3DEB;
+	Mon, 20 Jan 2025 14:42:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b44zenXk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from albert.telenet-ops.be (albert.telenet-ops.be [195.130.137.90])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBDC21B4F02
-	for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 14:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.90
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DFE71E3DD1;
+	Mon, 20 Jan 2025 14:42:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737383715; cv=none; b=uiXzksQz4ZnZbI3z/2jvBZX8YIPiSdn1k4Puu9LhErqrAda+FE01Or6891FeAxukHWOVymQQj1Ubla+BYEV9a1+NfS8SNMhtgmsUlBKLO3DLmw6FlxmqtLc1IMww4X8NpvNjGJSZd0pQdpych8vVWi67rihkYJaX84EIsQVTP+w=
+	t=1737384168; cv=none; b=AMA+ssazgMVdL08ZWrRfAIlHFQuL8fuW54tLmXqqS8MEcv4F8o32FgP08HVl3k5zrU+yhPd/4kf9jNo3Hf0odRTHP6PuI/Y12qHW+xxhfl4oM3h93xiuF9CJVNnoNS94aVGvadNWF1Li6LKl6OwswbMllJaAwKbVGGHGc0mOOW0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737383715; c=relaxed/simple;
-	bh=B2UT981Fu3HSVTKAqwf0SNcrfr/ndTZprIGo6/oHasE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FFAvGmlblHseSHETsmO/8tq4bZGSpDHDzFJM3c6lNKT1pRTBOykvSt/o6kor4tkN0AhTbOjXoa7Gurht2KmD15pQiA5N4SiophdjtLPa72Hh7t+W6eKRT82zB8/F6eI4B60knEYdghPQWv/Lk84itGjr6TNpf8+5KGSaIfQrCNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.90
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:30c9:4dcf:fe21:4b10])
-	by albert.telenet-ops.be with cmsmtp
-	id 3Sb42E00H0raqVW06Sb41D; Mon, 20 Jan 2025 15:35:05 +0100
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.97)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1tZsrh-0000000DhTa-3YKN;
-	Mon, 20 Jan 2025 15:35:04 +0100
-Received: from geert by rox.of.borg with local (Exim 4.97)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1tZsro-0000000DTZZ-1bBT;
-	Mon, 20 Jan 2025 15:35:04 +0100
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: =?UTF-8?q?Herv=C3=A9=20Codina?= <herve.codina@bootlin.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1737384168; c=relaxed/simple;
+	bh=LDSCxrJ3sEs97UkYuOGchEHijm9NPMDhmIJiAVmfn+Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hBiXEG6wu65Su+JHF5hU48snpRuDpCZd6KV32LjA4m6riVB1eAa6+sq06NuG2iL/nh6VE7jJqKluaVgKjY0uz4Uh7pb75e8RgGCmVoWf5bJkob5VwKmUSK/x8Rlh+VBiAMgWb5l65tqAxlo95CiidAGtVzI3ehTAOiMhrSXH5fI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b44zenXk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57C2BC4CEDD;
+	Mon, 20 Jan 2025 14:42:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737384167;
+	bh=LDSCxrJ3sEs97UkYuOGchEHijm9NPMDhmIJiAVmfn+Q=;
+	h=From:To:Cc:Subject:Date:From;
+	b=b44zenXk/QYs726WU9W9BHOqoZLbK4jl+FhPIh2UaWK8odSsoI0uzU+jdtX95Lzi2
+	 R3x1lKl1PtaI85mk7KVR7lfxeHwDs7T33OEL0aqW26tWKtEBTqBpw/ocYliGQ3Z7wa
+	 7MncJV7RBiV1DbvzJfTJtOq0Vwz5a6SLSF9X29M0Xmp8rn65wNWnJufZz+RP+VZvV2
+	 4/yK8B8UEvn3cHV3BZfBRyoNmSkIiaHVhO2PWbmKNp/n/Y/OVko8Md1o36UoOGJEOZ
+	 tzSMWCOHpKZK44PrFOg67LAZCH2066DqxS8d/CiAH7N77uyYCRWQOtr6HfntvQzn5x
+	 VoTHt+dtPczTw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1tZszK-0000000037w-27J7;
+	Mon, 20 Jan 2025 15:42:51 +0100
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Bjorn Andersson <andersson@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-phy@lists.infradead.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Jonathan Marek <jonathan@marek.ca>,
+	linux-arm-msm@vger.kernel.org,
+	linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v3 3/3] phy: PHY_LAN966X_SERDES should depend on SOC_LAN966 || MCHP_LAN966X_PCI
-Date: Mon, 20 Jan 2025 15:35:03 +0100
-Message-ID: <369233dfded88ff6fb342e03794fe31985d84d82.1737383314.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1737383314.git.geert+renesas@glider.be>
-References: <cover.1737383314.git.geert+renesas@glider.be>
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 0/7] arm64: dts: qcom: x1e80100: enable rtc
+Date: Mon, 20 Jan 2025 15:41:45 +0100
+Message-ID: <20250120144152.11949-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,39 +69,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The Microchip LAN966X SerDes PHY is only present on Microchip LAN966x
-SoCs.  However, when used as a PCI endpoint, all peripherals of the
-LAN966x SoC can be accessed by the PCI host.  Hence add dependencies on
-SOC_LAN966 and MCHP_LAN966X_PCI, to prevent asking the user about this
-driver when configuring a kernel without Microchip LAN966x SoC and PCIe
-support.
+This series adds support for utilising the UEFI firmware RTC offset to
+the Qualcomm PMIC RTC driver and uses that to enable the RTC on all X
+Elite machines.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Acked-by: Herve Codina <herve.codina@bootlin.com>
----
-v3:
-  - Fix symbol name in description,
-  - Add Acked-by,
+Included is also a patch to switch the Lenovo ThinkPad X13s over to
+using the UEFI offset.
 
-v2:
-  - New.
----
- drivers/phy/microchip/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+The RTCs in many Qualcomm devices are effectively broken due to the time
+registers being read-only. Instead some other non-volatile memory can be
+used to store an offset which a driver can take into account. On Windows
+on Arm laptops, the UEFI firmware (and Windows) use a UEFI variable for
+storing such an offset.
 
-diff --git a/drivers/phy/microchip/Kconfig b/drivers/phy/microchip/Kconfig
-index 38039ed0754c6548..2f0045e874ac81ad 100644
---- a/drivers/phy/microchip/Kconfig
-+++ b/drivers/phy/microchip/Kconfig
-@@ -15,6 +15,7 @@ config PHY_SPARX5_SERDES
- config PHY_LAN966X_SERDES
- 	tristate "SerDes PHY driver for Microchip LAN966X"
- 	select GENERIC_PHY
-+	depends on SOC_LAN966 || MCHP_LAN966X_PCI || COMPILE_TEST
- 	depends on OF
- 	depends on MFD_SYSCON
- 	help
+When RTC support for the X13s was added two years ago we did not yet
+have UEFI variable support for these machines in mainline and there were
+also some concerns regarding flash wear. [1] As not all Qualcomm
+platforms have UEFI firmware anyway, we instead opted to use a PMIC
+scratch register for storing the offset. [2]
+
+On the UEFI machines in question this is however arguable not correct
+as it means that the RTC time can differ between the UEFI firmware (and
+Windows) and Linux.
+
+Now that the (reverse engineered) UEFI variable implementation has been
+merged and thoroughly tested, let's switch to using that to store the
+RTC offset also on Linux. The flash wear concerns can be mitigated by
+deferring writes due to clock drift until shutdown.
+
+Note that this also avoids having to wait for months for Qualcomm to
+provide a free PMIC SDAM scratch register for X1E and future platforms,
+and specifically allows us to enable the RTC on X1E laptops today.
+
+Rob had some concerns about adding a DT property for indicating that a
+machine uses UEFI for storing the offset and suggested that the driver
+should probe for this instead. Unfortunately, this is easier said than
+done given that UEFI variable support itself is probed for and may not
+be available until after the RTC driver probes.
+
+Hopefully this all goes away (for future platforms) once Qualcomm fix
+their UEFI implementation so that the UEFI time (and variable) services
+can be used directly.
+
+Johan
+
+
+Changes since UEFI offset RFC [1]:
+ - clarify that UEFI variable format is not arbitrary (Alexandre)
+ - add missing use_uefi kernel doc
+ - use dev_dbg() instead of dev_err() (Alexandre)
+ - rename epoch define RTC_TIMESTAMP_EPOCH_GPS (Alexandre)
+ - mitigate flash wear by deferring writes due to clock drift until
+   shutdown
+
+Changes since Jonathan's X1E series v3 [3]:
+ - tweak qcom,no-alarm binding update (and drop Krystzof's Reviewed-by tag)
+ - drop no-alarm flag and restructure probe() to clear feature flag before
+   registering RTC
+ - use UEFI variable offset on X1E
+
+[1] https://lore.kernel.org/lkml/20230126142057.25715-1-johan+linaro@kernel.org/
+[2] https://lore.kernel.org/lkml/20230202155448.6715-1-johan+linaro@kernel.org/
+[3] https://lore.kernel.org/lkml/20241015004945.3676-1-jonathan@marek.ca/
+
+
+Johan Hovold (5):
+  dt-bindings: rtc: qcom-pm8xxx: add uefi-variable offset
+  rtc: pm8xxx: add support for uefi offset
+  rtc: pm8xxx: mitigate flash wear
+  arm64: dts: qcom: sc8280xp-x13s: switch to uefi rtc offset
+  arm64: dts: qcom: x1e80100: enable rtc
+
+Jonathan Marek (2):
+  dt-bindings: rtc: qcom-pm8xxx: document qcom,no-alarm flag
+  rtc: pm8xxx: implement qcom,no-alarm flag for non-HLOS owned alarm
+
+ .../bindings/rtc/qcom-pm8xxx-rtc.yaml         |  11 +
+ .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  11 +-
+ arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi  |   4 +-
+ drivers/rtc/rtc-pm8xxx.c                      | 194 +++++++++++++++---
+ include/linux/rtc.h                           |   1 +
+ 5 files changed, 185 insertions(+), 36 deletions(-)
+
 -- 
-2.43.0
+2.45.2
 
 
