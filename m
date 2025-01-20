@@ -1,59 +1,47 @@
-Return-Path: <devicetree+bounces-139644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0E33A16762
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:32:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBAD4A16767
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:37:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1DFB7A14F6
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:32:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 097F41618D7
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 387AE1898EA;
-	Mon, 20 Jan 2025 07:32:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OCHphDUy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B5D918FDAA;
+	Mon, 20 Jan 2025 07:37:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D4B481CD;
-	Mon, 20 Jan 2025 07:32:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4351E481CD;
+	Mon, 20 Jan 2025 07:37:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737358357; cv=none; b=j/117rcGByU0NDqFX8dHqYWOahnxJLO7+nqxaqtIq11ndZlVogFIntvMBz824iHKmLnZ2J6gG3g5AB2CCY1LgqIIhbVmQA4UQG2XPUfGqOY7TordihtEnl3j9cJUOJDIeTOJ1tHWXvi4UyJ8zLwgAwstC0UXf9P9aYPGJBJ+rHo=
+	t=1737358624; cv=none; b=IKMow12uaj2N7jLZiydOF8GDFdTrOqrV8K4LZoSM8wd8QuVIu4Q0J7Tp9Ob1JP/cV4WQVyI2SOL926x9T/pb3NLn9Jx3hIXO3AX033AD1RNy6xrpU60TNTHFstgHO826S52GKmlDlx3KeQT4uORw//BMhVEnI8xmQaoCacXFX7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737358357; c=relaxed/simple;
-	bh=4Q8EfOGic5vi435uo4DRNMXt5k/K2VG8jjRF5niVnAM=;
+	s=arc-20240116; t=1737358624; c=relaxed/simple;
+	bh=gYhUzyz8zAQ6BxXBkdFPV2xAx8nj/FfFfr3eRiwaoSs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xx+P8v6ABzlSC9PxBe/+QuX8UAy7c+N5Upw3BP4YS2C8mzrKeDhwd+bY4Vl0vDiwIbwQ1kqzfNpOrf3W+QUL3bvrU2CH1Ncsvdtm1slObPmGj08t1zwNTBzjwlE2mV0kBB2mnrgMnVsw5X3v8YVtb6e6jvJo293O702LvFAta/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OCHphDUy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8418CC4CEDD;
-	Mon, 20 Jan 2025 07:32:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737358356;
-	bh=4Q8EfOGic5vi435uo4DRNMXt5k/K2VG8jjRF5niVnAM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OCHphDUytn9JfvwCGHgTWQTP1DxVIH61r8IcPNTeABFvtYnKY1qlo3hV7QlpZb/IL
-	 BRexW2DCDJMrqZSiiAnLjx7BXhWtkTuAuHHEDxlpLSvbccYYLg9KB3oAVTwHp1Xt6a
-	 xHeCSyGoQuWpMQWtIMg+ruA+g6tO0BuG/T6LI2JGRpmbDkBXOyfK3WkwyfgReE5sS6
-	 0c0hIsm0RvHBxFO4+l6Q1penf1PhZu07dwRB5M2VeSKqRwu1f75hT8WS2BJpJFHadG
-	 0ZvkqUnO/TjeEys7QZTbnw/06EdKNT3YTT6v0m8e/g9SDu9eFOKYL1494RoGB2zijV
-	 OluzIRIKuGC5w==
-Date: Mon, 20 Jan 2025 08:32:32 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: PavithraUdayakumar-adi <pavithra.u@analog.com>
-Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>, 
-	Alexandre Belloni <alexandre.belloni@bootlin.com>, Rob Herring <robh@kernel.org>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=UZ9Imf7KKuCpP0J9QbFYkbk0+H9yrGX40b2JZ7TR/ndWYFVNLncZTu9L8PvQ4pFDEc5MvzT+4J1x+XJl3Kdhs4+mIEg2PeY8zo8g3RwlC90NwNxeFAGOfTpHLtm1wOlHPVEBKWuvUFhxVE/69kTGA3eyCBUkl6wOzYHc0KOHAKQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB87BC4CEDD;
+	Mon, 20 Jan 2025 07:37:02 +0000 (UTC)
+Date: Mon, 20 Jan 2025 08:37:00 +0100
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Yijie Yang <quic_yijiyang@quicinc.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
-	Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: rtc: max31335: Add max31331 support
-Message-ID: <20250120-honest-daffy-porpoise-fb384e@krzk-bin>
-References: <20250119-add_support_max31331_fix_5-v1-0-73f7be59f022@analog.com>
- <20250119-add_support_max31331_fix_5-v1-1-73f7be59f022@analog.com>
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, netdev@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: net: qcom,ethqos: Correct fallback
+ compatible for qcom,qcs615-ethqos
+Message-ID: <20250120-melodic-unselfish-toucanet-a556df@krzk-bin>
+References: <20250120-schema_qcs615-v4-1-d9d122f89e64@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,15 +50,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250119-add_support_max31331_fix_5-v1-1-73f7be59f022@analog.com>
+In-Reply-To: <20250120-schema_qcs615-v4-1-d9d122f89e64@quicinc.com>
 
-On Sun, Jan 19, 2025 at 01:17:38PM +0530, PavithraUdayakumar-adi wrote:
-> Added DT compatible string for MAX31331. MAX31331 is
-> compatible with MAX31335 without any additional features.
+On Mon, Jan 20, 2025 at 03:08:28PM +0800, Yijie Yang wrote:
+> The qcs615-ride utilizes the same EMAC as the qcs404, rather than the
+> sm8150. The current incorrect fallback could result in packet loss.
+> The Ethernet on qcs615-ride is currently not utilized by anyone. Therefore,
+> there is no need to worry about any ABI impact.
+> 
+> Fixes: 32535b9410b8 ("dt-bindings: net: qcom,ethqos: add description for qcs615")
+> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
 
-Your driver patch suggests these are not compatible, but anyway if you
-claim these are compatible, then express it with fallback (see
-example-schema and many other bindings).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
