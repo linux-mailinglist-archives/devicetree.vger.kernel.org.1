@@ -1,164 +1,111 @@
-Return-Path: <devicetree+bounces-139626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BC07A166EA
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:09:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FAB2A166EF
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 08:10:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A1CC18897B3
-	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:09:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D11917A3A1B
+	for <lists+devicetree@lfdr.de>; Mon, 20 Jan 2025 07:10:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65BC318FC72;
-	Mon, 20 Jan 2025 07:09:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A450189B94;
+	Mon, 20 Jan 2025 07:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SrivZyOB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gn+lGuxF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFEFF35968;
-	Mon, 20 Jan 2025 07:09:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC33C13D531;
+	Mon, 20 Jan 2025 07:10:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737356960; cv=none; b=VMu85ZSxN8kjV86TTQ5Q5hRD5yWLx7bzdEsKqoEMZc86khi0vA7U10WHwSXVksj2shlaXhoRRLGAlSV+TUCSbXt9Rf8VmfVgykpl33Xu+uVgUVWKAj7HAn0NdCk7mrmasPoqNaOXtplBYtKgfo7eXsIaesOu3M3UQqOaSz1pBG0=
+	t=1737357035; cv=none; b=TNms7Bu5Rj9ODrEBKHGKwpQV+kfEBHoOfK/sI3pln/TnyyKbX6hjjms2OD2qvJgZ7Wu61xalyKEzFla3qSBabrqDiHTVORaOjDlspl8xqrdNutUFyJIZJFNQoczBRWF4UGMiTKy7Gvidzg2shlEHFAigXaZEnp0aQiHmzywpKm0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737356960; c=relaxed/simple;
-	bh=iTiU+sR8Q5ot0sGS+V/cSaGPgjcmwcVWfWk9+3LioY0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=ownWiANuK/o6lGXDqkbMKkxIt0mNqieUWitIUohnliJIVXn+OfgEkNbPziaI8DnSGNqZMLCo1lIuTTvQ+3GrFUeOM2sMHp1t8h4cKB+VhtClCnrghBlPV4lUJQNhZmJnSY8qNeFyNZZ87h1xKtMCNG5lblGcvI0+GB9yulqoIgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SrivZyOB; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50K3CE9N032476;
-	Mon, 20 Jan 2025 07:09:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=0RsIGrCbgvaSePTwM6ujYK
-	ggcuA52rwAq3bp/VilRXA=; b=SrivZyOBWLklj+Z8XG19LqC5UsqDsshjw8W0db
-	GxzUOR2ieUAwKPHR4gMyyJT6hk3d0lCZrL3ZUmFXJhWVYzPM3WvX/tEfVhG+15mb
-	vkHwAywZuvy4d/Vh8kqH2j9lueHN802ZKmUmYfUn3vP8Y1EeM+umh51A98i4hp9x
-	dXOCKxvvR3vKsWb1qc/4cvs1yUvvN8QsGdSuadRzbBg47ztdR2e8Hn+yMMpqh2TH
-	XVV3IojM++py3rY89wpajahII70SJ/VnpAO/auB2BhVe9rJlKAF0QVwTbRhvBWOA
-	RnptpIrZph8LCS7eE3x7P054LsrwrbAP56vXe03mmWix+IOQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 449ecb0hd3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Jan 2025 07:09:04 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50K793Ih003439
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 20 Jan 2025 07:09:03 GMT
-Received: from yijiyang-gv.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Sun, 19 Jan 2025 23:08:59 -0800
-From: Yijie Yang <quic_yijiyang@quicinc.com>
-Date: Mon, 20 Jan 2025 15:08:28 +0800
-Subject: [PATCH v4] dt-bindings: net: qcom,ethqos: Correct fallback
- compatible for qcom,qcs615-ethqos
+	s=arc-20240116; t=1737357035; c=relaxed/simple;
+	bh=hhiIowDDPlKiniZiubya6fCr04S5es+7qxmNrFX3e3s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rTBA7QsG5Z3BM8BwPzT75ekqRIFClKIhfQdwr3tLRDAEaM/F/iiU6wNjru8EochlMp0WDeTxw7KnrCpsqEQaQSb6rUvRWSGHybiaKIWwUQ6lExpFA04IKwYQkEmX1D15UKJW+2c7aRarf0JOyxeBi7qcI1G/gtOtAXSHgdX++tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gn+lGuxF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D25A1C4CEDD;
+	Mon, 20 Jan 2025 07:10:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737357035;
+	bh=hhiIowDDPlKiniZiubya6fCr04S5es+7qxmNrFX3e3s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gn+lGuxFY2FGoDwKruU5Ne3KVPiRvv5hBu5t1P/hqGYkJwBwjBYY21D1eeaiGNveA
+	 sEd+0LX2e5z9YmJhr+NZeRdI16bCcPVhJsngLJJOKjGX7wAWrHWzkGWL5qreaEOWfg
+	 atMrpDwLBBXsw07FSOjqxOwxK3IOSs8ESvgRj4f1cBhPUoLrrK0YgN9FP8cYxI1CqI
+	 XC8q1iNsDLpOgfvtyGrwvd5zDAXV79MOWjdM1TTndT5SrTS6oALQXrk3dDKu2+Qj3N
+	 bn+QwUrDJfbuXOEILXLcVbw4b+h7+/WUoBIRXaERch22SrpVp3Css63cc3wERxjxKc
+	 xDzkdM8lI5sbg==
+Date: Mon, 20 Jan 2025 07:10:28 +0000
+From: Tzung-Bi Shih <tzungbi@kernel.org>
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Fabio Estevam <festevam@denx.de>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Jonathan Corbet <corbet@lwn.net>, Serge Hallyn <serge@hallyn.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-security-module@vger.kernel.org,
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+	kernel@pengutronix.de
+Subject: Re: [PATCH v2 01/12] reboot: replace __hw_protection_shutdown bool
+ action parameter with an enum
+Message-ID: <Z4325IopvxTN_34R@google.com>
+References: <20250113-hw_protection-reboot-v2-0-161d3fc734f0@pengutronix.de>
+ <20250113-hw_protection-reboot-v2-1-161d3fc734f0@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250120-schema_qcs615-v4-1-d9d122f89e64@quicinc.com>
-X-B4-Tracking: v=1; b=H4sIAGz2jWcC/22PwU7DMBBEfyXyGaO145CmJ/4DIWSv12QPcagdo
- qKq/46dFBCC4+zOm9FcRKbElMWxuYhEK2eeYxHmrhE42vhKkn3RQoPuQKlWZhxpsi8nzA+qk87
- 3rvUHjTpYUZi3RIHPW97Tc9HOZpIu2YhjTdnhahw5L3P62HpXVe21wijQw61Crq1UMjhPnRrIB
- oDH0zsjR7zHeRI1fdU/oNbmG9QSJACQHcAYNMNfsP0C/xu1FfvOuQBEB3T9b/6670xUrpmXfey
- +tPwnXo5NpPMib+l9Ia6fPdZrY2gBAAA=
-X-Change-ID: 20250113-schema_qcs615-bd7b3d82c2fa
-To: Vinod Koul <vkoul@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David
- S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <netdev@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Yijie Yang
-	<quic_yijiyang@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1737356938; l=1797;
- i=quic_yijiyang@quicinc.com; s=20240408; h=from:subject:message-id;
- bh=iTiU+sR8Q5ot0sGS+V/cSaGPgjcmwcVWfWk9+3LioY0=;
- b=JjV75oFv47b+arzPWf+UnQlVFPQyi5BhLkSTdXMSA/zb78ronnFcLrUV4GLSThystNbmyM8+O
- NadYCJqemVKDgUVUWFMmQJqgbWW60tvktRst+kKSSo8Oo4xDAqTXhsB
-X-Developer-Key: i=quic_yijiyang@quicinc.com; a=ed25519;
- pk=XvMv0rxjrXLYFdBXoFjTdOdAwDT5SPbQ5uAKGESDihk=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: oSsUS-bdSA2PNpAOOhf3LOg6bI9dVyk2
-X-Proofpoint-GUID: oSsUS-bdSA2PNpAOOhf3LOg6bI9dVyk2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-20_01,2025-01-16_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxlogscore=921
- mlxscore=0 suspectscore=0 bulkscore=0 phishscore=0 adultscore=0
- spamscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501200058
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250113-hw_protection-reboot-v2-1-161d3fc734f0@pengutronix.de>
 
-The qcs615-ride utilizes the same EMAC as the qcs404, rather than the
-sm8150. The current incorrect fallback could result in packet loss.
-The Ethernet on qcs615-ride is currently not utilized by anyone. Therefore,
-there is no need to worry about any ABI impact.
+On Mon, Jan 13, 2025 at 05:25:26PM +0100, Ahmad Fatoum wrote:
+> Currently __hw_protection_shutdown() either reboots or shuts down the
+> system according to its shutdown argument.
+> 
+> To make the logic easier to follow, both inside __hw_protection_shutdown
+> and at caller sites, lets replace the bool parameter with an enum.
+> 
+> This will be extra useful, when in a later commit, a third action is
+> added to the enumeration.
+> 
+> No functional change.
+> 
+> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
 
-Fixes: 32535b9410b8 ("dt-bindings: net: qcom,ethqos: add description for qcs615")
-Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
----
-Changes in v4:
-- Update the base commit to next-20250117.
-- Update the commit description for better clarity and understanding.
-- Link to v3: https://lore.kernel.org/r/20250113-schema_qcs615-v3-1-d5bbf0ee8cb7@quicinc.com
----
- Documentation/devicetree/bindings/net/qcom,ethqos.yaml | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+With a minor question,
+Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
 
-diff --git a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-index f117471fb06fb3b507df811d55d41d0b610ac15f..e7ee0d9efed8330f5cf62e6c0ea41066572415aa 100644
---- a/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-+++ b/Documentation/devicetree/bindings/net/qcom,ethqos.yaml
-@@ -22,12 +22,12 @@ properties:
-     oneOf:
-       - items:
-           - enum:
--              - qcom,qcs8300-ethqos
--          - const: qcom,sa8775p-ethqos
-+              - qcom,qcs615-ethqos
-+          - const: qcom,qcs404-ethqos
-       - items:
-           - enum:
--              - qcom,qcs615-ethqos
--          - const: qcom,sm8150-ethqos
-+              - qcom,qcs8300-ethqos
-+          - const: qcom,sa8775p-ethqos
-       - enum:
-           - qcom,qcs404-ethqos
-           - qcom,sa8775p-ethqos
+> @@ -1009,10 +1007,10 @@ void __hw_protection_shutdown(const char *reason, int ms_until_forced, bool shut
+>  	 * orderly_poweroff failure
+>  	 */
+>  	hw_failure_emergency_poweroff(ms_until_forced);
+> -	if (shutdown)
+> -		orderly_poweroff(true);
+> -	else
+> +	if (action == HWPROT_ACT_REBOOT)
+>  		orderly_reboot();
+> +	else
+> +		orderly_poweroff(true);
 
----
-base-commit: 29ef83bb05764c31613d839f62474aa54b39e7d4
-change-id: 20250113-schema_qcs615-bd7b3d82c2fa
-
-Best regards,
--- 
-Yijie Yang <quic_yijiyang@quicinc.com>
-
+It probably doesn't really matter.  Does it intend to change the branch
+order?  As s/shutdown/action == HWPROT_ACT_SHUTDOWN/ should be more
+intuitive for the hunk to me.
 
