@@ -1,115 +1,128 @@
-Return-Path: <devicetree+bounces-140029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8009A17D6E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 13:01:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE962A17D86
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 13:09:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 482083A33BC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:01:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDCAE3A82DF
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:09:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A44AB1F1900;
-	Tue, 21 Jan 2025 12:00:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A46C31F1914;
+	Tue, 21 Jan 2025 12:09:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A0qkCmXd"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jYWBEdns"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC561C1F21
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 12:00:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 144E91BEF70;
+	Tue, 21 Jan 2025 12:09:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737460857; cv=none; b=nIjUmod9zh9pmcO/L6JwjuGSV1wQ1fxCprCogr2WJjOkqgdeu1Am3RaIZbpeVrGsc2+YVYG6u+VGXsLP2H0un4ZzDSZybCBC8tPmUMsfoMEZzV4X4QUM1dCO7TZxH/lR11jsk82ts2A6Fj/1FTFaL8e9fC8H13zhcGeKZMFz4zg=
+	t=1737461383; cv=none; b=WXMa6ajH7YLAefYW+fSpLtLeSs96VEp/T+l1LebO/p5T+oMJmkWP9yOWn3yHvYSsPVhgVWn792JNvYkh/83BSj/qEOQp5AjcMoRdtEdBzqZd92JdaRfeXIMDaCDIW6Tdp+kWbHr2d8mCnQb8+ZcVEG6Aa+za1G3T29V8m1d6V/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737460857; c=relaxed/simple;
-	bh=sFjvkQQSSVZqQAZ1B5Mafi0pc8cfGt8+Eq6BluaI1dU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KojQdm2oB+cYPQOaT1TXDlvnh6EBXNMWNtDSH6bWch7HjtsHA0GHFIuQYBC1ljCwBzdKX5ggMlmbq7juaUFxi5ZnO58bEbK3/FzlDwyPPlc/9O37WX7Z8h+D44LBtQ4LqQkft6Up/JmDyR7iEXTWIiXfhnj1F1GQW4KsDDpdijc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A0qkCmXd; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-53e3a227b82so5079120e87.0
-        for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 04:00:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737460852; x=1738065652; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=m2pc8cCMiKqFOr0JFM8XgX6fpE3iGh6b7fVondyVxQk=;
-        b=A0qkCmXdOM39gnw6FMeIzHBUSAcwaTjIqbck2Qym5sFIxyrwJuKIfdOoaqyNajCsjk
-         9lRfEsp96/JIxRxm3N/PCUQuvRojTXdITP4C8DyS5ZsgeTRxZX3HCI/BQpVP2jfTfJZJ
-         AGe8AN6eyIG62PyMfYSkFUirv+ggqR9Fb7xIhma3Mgq2xfsVd35sugX8p/n2j8PyrIJw
-         KlFHuvknt9jqk389pVYXEhJweio5ABkNQZqdS1PARQ3BwOhpruU9DdpJDbdNq5WBxxeP
-         J6iTJMVDLzW6cVHAJET/TFhw9XYSAg10bCf0CdJIxxF6W3kQFeRB2ZAu8PfUPlNWz6Ar
-         cUug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737460852; x=1738065652;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m2pc8cCMiKqFOr0JFM8XgX6fpE3iGh6b7fVondyVxQk=;
-        b=a3ZnngXoGrk30iuQz/cItR5M+VtQUS5HOMzPuTlZPQLlejuWXsfMrhKkDJTotCHMEG
-         p5o+nWd6xFyOYFFsPztBeyjLFVsMj6MaFJQSz2ue+6qHz7UUqxvB37URbp0lKRhCaKzg
-         Rg/X5fV81gwfxng1b7GGCm8qzYbLzgTg2LTipbSAZZEyAiJKrVM12NM52vjoGMfvZzds
-         tw3SzXrpTEAu+kCaQDU60cmT/82niUYmDEvaW8fW+yb+PfzwvVSdlmXqFbLCxlzhp9VF
-         hnvS3eTyiBUQbUZjK7lTFcfNWLv3BunBjz5RcYmlDdJxR5merTlLL5Rw0DteVz089NmR
-         Bx5w==
-X-Forwarded-Encrypted: i=1; AJvYcCWO90BIQywDustXIZ+0Gpks3MSXuDW23Cy2Wa4NjJGqcaroUAFaXcb/c6T4TzVEDYfo4GoS1EMw18/d@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGgvYxJI4F1+d8QY1uv0pH3hxcb0LtwKKscxko9+0rVs+sfLDQ
-	Z3iRbWpG2lLHiAakTLI4/UM+8//GdSZceX0bKOBpvGvivmqatyMd4YA42O1Gl8Y=
-X-Gm-Gg: ASbGncuxY2z05FrWeojSK2heeaR4CWcZjOLCLuCuC+5Spdgsy5FCna0rOx8y0sYMFY+
-	aXr7G8xl++N7hvpNASfjaNOgXdPi4FnCbyrrM7cuRZJvRhDksE+B+C1OJO2R8pCyyBEMyX0QX5p
-	eEnDwFFIBATQ1x2+t4zrJRTrySSilhIQ2zOyVGgLtMDOIMPAbBWkTyb1tFBfeRsni+nyQKR6pVv
-	kxlgmXP0TM5Ynos6hf/EVYFh5vQQwMGq6uyR40F7tBnouff1fcv6WfywEeJe7ClJugumslLggg6
-	TuZEMHCKjeryKqNY0Q88kh0x7vmDOoPRifRK3BTIxIMnhIi0jw==
-X-Google-Smtp-Source: AGHT+IFdqe5e6EMUv/Ie41SruL0GimNnvf/5eE4TfSZWZolpGPfJ/1kAzDPw4MLYce1WGYSj5rK48g==
-X-Received: by 2002:a05:6512:3c99:b0:540:75d3:95c0 with SMTP id 2adb3069b0e04-5439c28080cmr5399153e87.47.1737460852376;
-        Tue, 21 Jan 2025 04:00:52 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5439af7390dsm1808917e87.200.2025.01.21.04.00.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jan 2025 04:00:51 -0800 (PST)
-Date: Tue, 21 Jan 2025 14:00:47 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Ling Xu <quic_lxu5@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, quic_kuiw@quicinc.com, 
-	quic_ekangupt@quicinc.com, quic_kartsana@quicinc.com, kernel@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Modify sa8775p.dtsi
-Message-ID: <olipbuuyxttdfzrzsznkpwcjse6x3t5hanbdrez2qj57i4iupk@ynicem7cng7i>
-References: <cover.1737459414.git.quic_lxu5@quicinc.com>
+	s=arc-20240116; t=1737461383; c=relaxed/simple;
+	bh=m49ShRPBxss7htGJ+rrxLv215Sp1PVh5qMIqzM38WDw=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cxqRXvHnHp+SaJ9//VKWvJIGspErzXw6a8lFWm60saHNeHitJHmH8iGs/4UzcPugrnhtKYsWGklPot8dIFWeep4vTv2XhLd/m5En7IpM5BQJF/myXMCDeQJtN90CTYcr5Ze31EQAo47/XxCwolMxEuGE1gOHF7E2cn88puF3GB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jYWBEdns; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50L8YsKd018009;
+	Tue, 21 Jan 2025 12:09:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=A2rjxWclf+WPEXBHSO1PTi
+	J94UtgJfvYGJjqmycRMCQ=; b=jYWBEdns2p3qGhvX5rFqZFbUxDuXamJ7lM5F4i
+	m+51ZCgqkUMlBORRJh1WmynbtwvzfioobXu3tuG6EmUCUzV8MQQJVEyoMcrOKxCH
+	n7gy6lzp7c3YgTqCV98AsUVy9N7IsgjqfwpgJS8TVAyz0URkE8gzp4hDvRZiepKt
+	48lMT/cMnFuNxQq5BxLoLpBtsRRpa+3h1gs5ZjJeHiWbHNENa2rqVBQxlyEw3yG6
+	USW9Wng3FXTiIHQPX0JE2bTHbUWq5WDSus85QjHV4ohcArRL0eBTS5d22aNkJ7HH
+	tdSpRR2b6IvSK43/9h7b0ENqdvgSpSwKH58LXdGmaUgRHBDQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44a85r8sed-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Jan 2025 12:09:26 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50LC9Pwd015782
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Jan 2025 12:09:25 GMT
+Received: from hu-vikramsa-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 21 Jan 2025 04:09:16 -0800
+From: Vikram Sharma <quic_vikramsa@quicinc.com>
+To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
+        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <akapatra@quicinc.com>, <hariramp@quicinc.com>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <cros-qcom-dts-watchers@chromium.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <quic_vikramsa@quicinc.com>,
+        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+Subject: [PATCH v1 0/2] Update clocks for sc7280-camss 
+Date: Tue, 21 Jan 2025 17:38:59 +0530
+Message-ID: <20250121120901.1841142-1-quic_vikramsa@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1737459414.git.quic_lxu5@quicinc.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: iLj2eIVwCmQD8f6xHerIgWtpfvpRjaOq
+X-Proofpoint-ORIG-GUID: iLj2eIVwCmQD8f6xHerIgWtpfvpRjaOq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-21_05,2025-01-21_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=889
+ clxscore=1015 impostorscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0
+ suspectscore=0 malwarescore=0 priorityscore=1501 spamscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501210100
 
-On Tue, Jan 21, 2025 at 05:24:02PM +0530, Ling Xu wrote:
-> Delete duplicate fastrpc nodes and remove cdsp compute-cb@10.
+This one is a follow-up change for series.
+https://lore.kernel.org/linux-arm-msm/20241206191900.2545069-1-quic_vikramsa@quicinc.com/
+We have got comments on our dtsi change to update clock names as
+- GCC_CAMERA_AHB_CLK is always enabled clock so it can be removed.
+- Change clock name from gcc_cam_hf_axi to `gcc_axi_hf` for consistency.
+- Add gcc_axi_sf as missing to enable it can have undefined hw behaviour.
 
-- This is useless and incorrect
-- Please use correponding prefix for the cover letter too.
+So to handle these comments in our base series we need to update
+documentaion and driver (already merged) to work with dtsi.
 
-> 
-> Ling Xu (2):
->   arm64: dts: qcom: sa8775p: Delete duplicate fastrpc nodes
->   arm64: dts: qcom: sa8775p: Remove cdsp compute-cb@10
-> 
->  arch/arm64/boot/dts/qcom/sa8775p.dtsi | 246 +++-----------------------
->  1 file changed, 23 insertions(+), 223 deletions(-)
-> 
-> -- 
-> 2.34.1
-> 
+We are not breaking ABI here because the ABI hasn't been cemented yet as the dtsi changes are
+not merged yet also there are no users for this driver as of now. 
+
+Used following tools for the sanity check of these changes.
+- make CHECK_DTBS=y W=1 DT_SCHEMA_FILES=media/qcom,sc7280-camss.yaml
+- make DT_CHECKER_FLAGS=-m W=1
+DT_SCHEMA_FILES=media/qcom,sc7280-camss.yaml dt_binding_check
+- make -j32 W=1
+- ./scripts/checkpatch.pl
+
+Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+
+Vikram Sharma (2):
+  media: dt-bindings: update clocks for sc7280-camss
+  media: qcom: camss: update clock names for sc7280
+
+ .../bindings/media/qcom,sc7280-camss.yaml         | 10 +++++-----
+ drivers/media/platform/qcom/camss/camss.c         | 15 ++++++++++-----
+ 2 files changed, 15 insertions(+), 10 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.25.1
+
 
