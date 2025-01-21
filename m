@@ -1,256 +1,227 @@
-Return-Path: <devicetree+bounces-139904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56966A1778B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:51:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A30ADA17793
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:55:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CF303AA668
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 06:51:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1D9816A5E5
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 06:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9F11B21A8;
-	Tue, 21 Jan 2025 06:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB50A1ABEC7;
+	Tue, 21 Jan 2025 06:55:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="PGmKEFta"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jpXFYLMN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C9621B0415;
-	Tue, 21 Jan 2025 06:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30DBA1AF0A7;
+	Tue, 21 Jan 2025 06:55:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737442258; cv=none; b=AtXN83+y4Bw5TmBPOfbQrVD8vYwS6n4eElVtVPM+rSAFCXfRMTjGXIunj5PSv2Lvt5JGNBC6usgoLms/K4AdPdPLuvMFJ7Wlx/E1blR8dGz8vcuEKuutXzlvd4u01QmUcHnbM98gRCoRRzI0ndT69b4LYCJtM+GHR7JNak7A2NY=
+	t=1737442520; cv=none; b=bMXhE1HzG+oCHwGmZxBTqUyi3NokE/jaT0Ceh+T5tgcwkHUd2rvbAgvQ84JOo46Vj+x/szRfejd0gbcwBhw42Pi1K4+PwliP6aEADjos5JEZSia5h5syVWSYB8NmJBUeKU6igXwzf8vHqu4e+78y77wqAojC7mecRyeMTJcEXD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737442258; c=relaxed/simple;
-	bh=crT3UkNHDMmrmJ0xIMFGb/sJp8PxdYIxrjak1NcHUbA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FCQeZvNR1fBWDQAPv6or3RGnqgQaLTHrniskfiDpckrbGpVLbURoNiVFfPJI72cMqtcvKfW8hQlMJCnI5Z9/K1u76tzbb0vl0Aer7XwsnrwITx3Zk2CQgZqAiUWNQZOrxqYP7EhbiwWq8WycLzogPhuhEiVW64qIHr2ezYbRjRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=PGmKEFta; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 0d7c300ed7c411efbd192953cf12861f-20250121
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=JYPAX7LoVN1/JdJmBbS2hnQMHCw7Autq/Ry7rigjYjU=;
-	b=PGmKEFtaO94yD+kI6vRoN8lDW00uBqL6XQk5eza4HZVu6RAdRuhMVNc0h6SQwocaeOq7V1sBgRsDwhJq2YClrfzzVX3Klf9xp+WpVg11G+nnckQfti8PiCsSab5ZtGmMujLRpWEiqN6bnykEWF5QeoX/HRQbAZ7m34wvI6jCtGs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.46,REQID:89c066e6-f059-4668-ac97-b2af5c773802,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTI
-	ON:release,TS:0
-X-CID-META: VersionHash:60aa074,CLOUDID:30c3380f-078a-483b-8929-714244d25c49,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:81|82|102,TC:nil,Content:0|50,EDM:5,
-	IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:
-	0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 0d7c300ed7c411efbd192953cf12861f-20250121
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
-	(envelope-from <friday.yang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1009262644; Tue, 21 Jan 2025 14:50:51 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.28; Tue, 21 Jan 2025 14:50:49 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.28 via Frontend Transport; Tue, 21 Jan 2025 14:50:48 +0800
-From: Friday Yang <friday.yang@mediatek.com>
-To: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
-	<sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Garmin Chang
-	<garmin.chang@mediatek.com>, Yong Wu <yong.wu@mediatek.com>
-CC: Friday Yang <friday.yang@mediatek.com>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v3 2/2] clk: mediatek: Add SMI LARBs reset for MT8188
-Date: Tue, 21 Jan 2025 14:50:41 +0800
-Message-ID: <20250121065045.13514-3-friday.yang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20250121065045.13514-1-friday.yang@mediatek.com>
-References: <20250121065045.13514-1-friday.yang@mediatek.com>
+	s=arc-20240116; t=1737442520; c=relaxed/simple;
+	bh=pkm8XGAE9tgDnBm+3SLaqQ3Ut6liX6OdENqYFA4t+OA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bOxygVs9qgEUyiICG/OOdYpKXT4DF7WpzpV6MT60tNvGRxdc266fv4I4TxbjIUusvwTg/7KjzWKmX8Tcek1+n1YUIMx2PNtgcXN2eyO10KvyLZcNj7FtmwrM5yxxllV1Nupw3zr288Jdxjmg0aT0ExMNbAuhRVbeSD7srEWqzZ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jpXFYLMN; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50L1t5aa005855;
+	Tue, 21 Jan 2025 06:55:11 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6Ogw/b8W6GWVghoCfvFWx9TFai7WFTa13iUYA0aGUl4=; b=jpXFYLMNc/oRS1bZ
+	UtaaqxFevPVdQ1w1PYFKNp6E3hOIXruqJpwr5YRZKinbd2MxtnzNahH6BpierdEM
+	5c/l7b11NdCmMh43MsYEFYkfwT6G0/1haqDfiOFB28ChYRgID3xK1LXlrzApcZFe
+	cEjWspQCe+NqM6ehZU6LwOL1q4XKU3beOVa2HA6JyCzH+rT4pHnenb5J5cCiXPpg
+	2DpOGDwoxyxEtscNfyZmxQXeKpZN79/mOXgMSZG5zhvpgpFBwCwLGeJD2V3Pt4Bv
+	vMf2cz9pqgDAXSM0wo0w+wsU8mrk0AC9FPEcLQgigtN0L6NIKs5ur2CqiQlw7/ky
+	RPB+jQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44a2b80kdt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Jan 2025 06:55:11 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50L6tALO016455
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Jan 2025 06:55:10 GMT
+Received: from [10.219.0.139] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 20 Jan
+ 2025 22:55:04 -0800
+Message-ID: <7dedc018-b705-44c3-a1d4-e1414cc91b10@quicinc.com>
+Date: Tue, 21 Jan 2025 12:25:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/4] Enable Bluetooth on qcs6490-rb3gen2 board
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        "Rob Herring (Arm)"
+	<robh@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-bluetooth@vger.kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <quic_anubhavg@quicinc.com>,
+        Mark Brown <broonie@kernel.org>,
+        "Bartosz
+ Golaszewski" <bartosz.golaszewski@linaro.org>,
+        <linux-pm@vger.kernel.org>, <quic_mohamull@quicinc.com>,
+        <quic_hbandi@quicinc.com>, <devicetree@vger.kernel.org>,
+        Marcel Holtmann <marcel@holtmann.org>,
+        "Luiz
+ Augusto von Dentz" <luiz.dentz@gmail.com>,
+        Liam Girdwood
+	<lgirdwood@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+References: <20241209103455.9675-1-quic_janathot@quicinc.com>
+ <173386568587.497565.1413799827375300987.robh@kernel.org>
+ <3c313557-ca99-4e6f-9d71-641e8c256126@quicinc.com>
+ <efab0b18-f1f0-457a-b1d5-8734f178141d@oss.qualcomm.com>
+Content-Language: en-US
+From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
+In-Reply-To: <efab0b18-f1f0-457a-b1d5-8734f178141d@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 7lYv6jjFdR3G11e4kPHn4ELiuyg33dax
+X-Proofpoint-ORIG-GUID: 7lYv6jjFdR3G11e4kPHn4ELiuyg33dax
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-21_03,2025-01-21_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ suspectscore=0 malwarescore=0 mlxlogscore=999 bulkscore=0
+ priorityscore=1501 lowpriorityscore=0 adultscore=0 phishscore=0
+ clxscore=1011 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501210055
 
-SMI LARBs require reset functions when applying clamp operations.
-Add reset platform data for SMI LARBs in the image, camera and IPE
-subsystems.
 
-Signed-off-by: Friday Yang <friday.yang@mediatek.com>
----
- drivers/clk/mediatek/clk-mt8188-cam.c | 17 +++++++++++++++++
- drivers/clk/mediatek/clk-mt8188-img.c | 18 ++++++++++++++++++
- drivers/clk/mediatek/clk-mt8188-ipe.c | 14 ++++++++++++++
- 3 files changed, 49 insertions(+)
 
-diff --git a/drivers/clk/mediatek/clk-mt8188-cam.c b/drivers/clk/mediatek/clk-mt8188-cam.c
-index 7500bd25387f..9b029fdd584e 100644
---- a/drivers/clk/mediatek/clk-mt8188-cam.c
-+++ b/drivers/clk/mediatek/clk-mt8188-cam.c
-@@ -20,6 +20,8 @@ static const struct mtk_gate_regs cam_cg_regs = {
- #define GATE_CAM(_id, _name, _parent, _shift)			\
- 	GATE_MTK(_id, _name, _parent, &cam_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
+On 12/12/2024 11:12 PM, Konrad Dybcio wrote:
+> On 12.12.2024 11:46 AM, Janaki Ramaiah Thota wrote:
+>>
+>>
+>> On 12/11/2024 3:12 AM, Rob Herring (Arm) wrote:
+>>>
+>>> On Mon, 09 Dec 2024 16:04:51 +0530, Janaki Ramaiah Thota wrote:
+>>>> - Patch 1/4 Add description of the PMU of the WCN6750 module.
+>>>> - Patch 2/4 add and enable BT node for qcs6490-rb3gen board.
+>>>> - Patch 3/4 use the power sequencer for wcn6750.
+>>>> - Patch 4/4 add support for the WCN6750 PMU.
+>>>>
+>>>> ----
+>>>> Changes from v4:
+>>>> * Added reviewed tag by Krzysztof in p1
+>>>> * Updated the p2 commit message with sw_ctrl and wifi-enable are
+>>>>     handled in wifi FW.
+>>>> * Added blank line between the nodes in p2
+>>>> * Placed the structures in proper order in p4
+>>>> * Link to v4: https://lore.kernel.org/all/20241204131706.20791-1-quic_janathot@quicinc.com/
+>>>>
+>>>> Changes from v3:
+>>>> * Defined the PMU node and used the its output to power up BT
+>>>> * Used power sequencer for wcn wcn6750 module
+>>>> * Split the patch to multiple as per subtree
+>>>> * Add description of the PMU of the WCN6750 module
+>>>> * Include separate UART state node for sleep pin configuarion
+>>>> * Link to v3: https://lore.kernel.org/linux-arm-msm/20241022104600.3228-1-quic_janathot@quicinc.com/
+>>>>
+>>>> Changes from v2:
+>>>> * Sorted nodes alphabetically
+>>>> * Link to v2: https://lore.kernel.org/linux-arm-msm/20241010105107.30118-1-quic_janathot@quicinc.com/
+>>>>
+>>>> Changes from v1:
+>>>> * Corrected the board name in subject
+>>>> * Link to v1: https://lore.kernel.org/linux-arm-msm/20241009111436.23473-1-quic_janathot@quicinc.com/
+>>>>
+>>>> Janaki Ramaiah Thota (4):
+>>>>     regulator:·dt-bindings:·qcom,qca6390-pmu:·document wcn6750-pmu
+>>>>     arm64: dts: qcom: qcs6490-rb3gen: add and enable BT node
+>>>>     Bluetooth: hci_qca: use the power sequencer for wcn6750
+>>>>     power: sequencing: qcom-wcn: add support for the WCN6750 PMU
+>>>>
+>>>>    .../bindings/regulator/qcom,qca6390-pmu.yaml  |  27 +++
+>>>>    arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts  | 168 +++++++++++++++++-
+>>>>    drivers/bluetooth/hci_qca.c                   |   2 +-
+>>>>    drivers/power/sequencing/pwrseq-qcom-wcn.c    |  22 +++
+>>>>    4 files changed, 217 insertions(+), 2 deletions(-)
+>>>>
+>>>> -- 
+>>>>
+>>>>
+>>>>
+>>>
+>>>
+>>> My bot found new DTB warnings on the .dts files added or changed in this
+>>> series.
+>>>
+>>> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+>>> are fixed by another series. Ultimately, it is up to the platform
+>>> maintainer whether these warnings are acceptable or not. No need to reply
+>>> unless the platform maintainer has comments.
+>>>
+>>> If you already ran DT checks and didn't see these error(s), then
+>>> make sure dt-schema is up to date:
+>>>
+>>>     pip3 install dtschema --upgrade
+>>>
+>>>
+>>> New warnings running 'make CHECK_DTBS=y qcom/qcs6490-rb3gen2.dtb' for 20241209103455.9675-1-quic_janathot@quicinc.com:
+>>>
+>>> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: bluetooth: 'enable-gpios' is a required property
+>>>      from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+>>> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: bluetooth: 'swctrl-gpios' is a required property
+>>>      from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+>>> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: bluetooth: 'vddio-supply' is a required property
+>>>      from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+>>> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: bluetooth: 'vddbtcxmx-supply' is a required property
+>>>      from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+>>> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: bluetooth: 'vddasd-supply' is a required property
+>>>      from schema $id: http://devicetree.org/schemas/net/bluetooth/qualcomm-bluetooth.yaml#
+>>> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pinctrl@f100000: Unevaluated properties are not allowed ('qup_uart7_sleep' was unexpected)
+>>>      from schema $id: http://devicetree.org/schemas/pinctrl/qcom,sc7280-pinctrl.yaml#
+>>>
+>>
+>> Since the DTS files for all boards using the WCN6750 BT chip are not updated according to the PMU node, updating the bluetooth/qualcomm-bluetooth.yaml file will result in similar warnings for other boards.
+> 
+> Oh I didn't forsee this.. You must fix up any bindings errors that
+> result from your changes (i.e. binding errors are the same as compilation
+> errors).
+> 
+> That means patch 2 can't be merged unless the bluetooth dt-bindings
+> are adjusted. And for the bindings to be adjusted, you'll have to also
+> add the PMU node to all boards implementing wcn6750.
+> 
+> Fortunately, they are all based on some variants of the same SoC, so
+> they should all have the same power plumbing.
+> 
+> Konrad
 
-+#define CAM_SYS_SMI_LARB_RST_OFF	(0xA0)
-+
- static const struct mtk_gate cam_main_clks[] = {
- 	GATE_CAM(CLK_CAM_MAIN_LARB13, "cam_main_larb13", "top_cam", 0),
- 	GATE_CAM(CLK_CAM_MAIN_LARB14, "cam_main_larb14", "top_cam", 1),
-@@ -72,6 +74,17 @@ static const struct mtk_gate cam_yuvb_clks[] = {
- 	GATE_CAM(CLK_CAM_YUVB_CAMTG, "cam_yuvb_camtg", "top_cam", 2),
- };
+We adjusted the dt-bindings to fix the bindings errors and it is merged 
+to 
+https://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git/commit/?id=cca4fe34979a77d9df5c0acf935e9cc939fe5cd6
 
-+/* Reset for SMI larb 16a/16b/17a/17b */
-+static u16 cam_sys_rst_ofs[] = {
-+	CAM_SYS_SMI_LARB_RST_OFF,
-+};
-+
-+static const struct mtk_clk_rst_desc cam_sys_rst_desc = {
-+	.version = MTK_RST_SIMPLE,
-+	.rst_bank_ofs = cam_sys_rst_ofs,
-+	.rst_bank_nr = ARRAY_SIZE(cam_sys_rst_ofs),
-+};
-+
- static const struct mtk_clk_desc cam_main_desc = {
- 	.clks = cam_main_clks,
- 	.num_clks = ARRAY_SIZE(cam_main_clks),
-@@ -80,21 +93,25 @@ static const struct mtk_clk_desc cam_main_desc = {
- static const struct mtk_clk_desc cam_rawa_desc = {
- 	.clks = cam_rawa_clks,
- 	.num_clks = ARRAY_SIZE(cam_rawa_clks),
-+	.rst_desc = &cam_sys_rst_desc,
- };
+Please merge below pending patches:
+  - Patch 2/4 add and enable BT node for qcs6490-rb3gen board.
+  - Patch 3/4 use the power sequencer for wcn6750.
 
- static const struct mtk_clk_desc cam_rawb_desc = {
- 	.clks = cam_rawb_clks,
- 	.num_clks = ARRAY_SIZE(cam_rawb_clks),
-+	.rst_desc = &cam_sys_rst_desc,
- };
 
- static const struct mtk_clk_desc cam_yuva_desc = {
- 	.clks = cam_yuva_clks,
- 	.num_clks = ARRAY_SIZE(cam_yuva_clks),
-+	.rst_desc = &cam_sys_rst_desc,
- };
-
- static const struct mtk_clk_desc cam_yuvb_desc = {
- 	.clks = cam_yuvb_clks,
- 	.num_clks = ARRAY_SIZE(cam_yuvb_clks),
-+	.rst_desc = &cam_sys_rst_desc,
- };
-
- static const struct of_device_id of_match_clk_mt8188_cam[] = {
-diff --git a/drivers/clk/mediatek/clk-mt8188-img.c b/drivers/clk/mediatek/clk-mt8188-img.c
-index cb2fbd4136b9..d44bfbd8308a 100644
---- a/drivers/clk/mediatek/clk-mt8188-img.c
-+++ b/drivers/clk/mediatek/clk-mt8188-img.c
-@@ -20,6 +20,8 @@ static const struct mtk_gate_regs imgsys_cg_regs = {
- #define GATE_IMGSYS(_id, _name, _parent, _shift)			\
- 	GATE_MTK(_id, _name, _parent, &imgsys_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
-
-+#define IMG_SYS_SMI_LARB_RST_OFF	(0xC)
-+
- static const struct mtk_gate imgsys_main_clks[] = {
- 	GATE_IMGSYS(CLK_IMGSYS_MAIN_LARB9, "imgsys_main_larb9", "top_img", 0),
- 	GATE_IMGSYS(CLK_IMGSYS_MAIN_TRAW0, "imgsys_main_traw0", "top_img", 1),
-@@ -58,6 +60,17 @@ static const struct mtk_gate imgsys1_dip_nr_clks[] = {
- 	GATE_IMGSYS(CLK_IMGSYS1_DIP_NR_DIP_NR, "imgsys1_dip_nr_dip_nr", "top_img", 1),
- };
-
-+/* Reset for SMI larb 10/11a/11b/11c/15 */
-+static u16 img_sys_rst_ofs[] = {
-+	IMG_SYS_SMI_LARB_RST_OFF,
-+};
-+
-+static const struct mtk_clk_rst_desc img_sys_rst_desc = {
-+	.version = MTK_RST_SIMPLE,
-+	.rst_bank_ofs = img_sys_rst_ofs,
-+	.rst_bank_nr = ARRAY_SIZE(img_sys_rst_ofs),
-+};
-+
- static const struct mtk_clk_desc imgsys_main_desc = {
- 	.clks = imgsys_main_clks,
- 	.num_clks = ARRAY_SIZE(imgsys_main_clks),
-@@ -66,26 +79,31 @@ static const struct mtk_clk_desc imgsys_main_desc = {
- static const struct mtk_clk_desc imgsys_wpe1_desc = {
- 	.clks = imgsys_wpe1_clks,
- 	.num_clks = ARRAY_SIZE(imgsys_wpe1_clks),
-+	.rst_desc = &img_sys_rst_desc,
- };
-
- static const struct mtk_clk_desc imgsys_wpe2_desc = {
- 	.clks = imgsys_wpe2_clks,
- 	.num_clks = ARRAY_SIZE(imgsys_wpe2_clks),
-+	.rst_desc = &img_sys_rst_desc,
- };
-
- static const struct mtk_clk_desc imgsys_wpe3_desc = {
- 	.clks = imgsys_wpe3_clks,
- 	.num_clks = ARRAY_SIZE(imgsys_wpe3_clks),
-+	.rst_desc = &img_sys_rst_desc,
- };
-
- static const struct mtk_clk_desc imgsys1_dip_top_desc = {
- 	.clks = imgsys1_dip_top_clks,
- 	.num_clks = ARRAY_SIZE(imgsys1_dip_top_clks),
-+	.rst_desc = &img_sys_rst_desc,
- };
-
- static const struct mtk_clk_desc imgsys1_dip_nr_desc = {
- 	.clks = imgsys1_dip_nr_clks,
- 	.num_clks = ARRAY_SIZE(imgsys1_dip_nr_clks),
-+	.rst_desc = &img_sys_rst_desc,
- };
-
- static const struct of_device_id of_match_clk_mt8188_imgsys_main[] = {
-diff --git a/drivers/clk/mediatek/clk-mt8188-ipe.c b/drivers/clk/mediatek/clk-mt8188-ipe.c
-index 8f1933b71e28..70a011c1f9ce 100644
---- a/drivers/clk/mediatek/clk-mt8188-ipe.c
-+++ b/drivers/clk/mediatek/clk-mt8188-ipe.c
-@@ -20,6 +20,8 @@ static const struct mtk_gate_regs ipe_cg_regs = {
- #define GATE_IPE(_id, _name, _parent, _shift)			\
- 	GATE_MTK(_id, _name, _parent, &ipe_cg_regs, _shift, &mtk_clk_gate_ops_setclr)
-
-+#define IPE_SYS_SMI_LARB_RST_OFF	(0xC)
-+
- static const struct mtk_gate ipe_clks[] = {
- 	GATE_IPE(CLK_IPE_DPE, "ipe_dpe", "top_ipe", 0),
- 	GATE_IPE(CLK_IPE_FDVT, "ipe_fdvt", "top_ipe", 1),
-@@ -28,9 +30,21 @@ static const struct mtk_gate ipe_clks[] = {
- 	GATE_IPE(CLK_IPE_SMI_LARB12, "ipe_smi_larb12", "top_ipe", 4),
- };
-
-+/* Reset for SMI larb 12 */
-+static u16 ipe_sys_rst_ofs[] = {
-+	IPE_SYS_SMI_LARB_RST_OFF,
-+};
-+
-+static const struct mtk_clk_rst_desc ipe_sys_rst_desc = {
-+	.version = MTK_RST_SIMPLE,
-+	.rst_bank_ofs = ipe_sys_rst_ofs,
-+	.rst_bank_nr = ARRAY_SIZE(ipe_sys_rst_ofs),
-+};
-+
- static const struct mtk_clk_desc ipe_desc = {
- 	.clks = ipe_clks,
- 	.num_clks = ARRAY_SIZE(ipe_clks),
-+	.rst_desc = &ipe_sys_rst_desc,
- };
-
- static const struct of_device_id of_match_clk_mt8188_ipe[] = {
---
-2.46.0
+Thanks,
+Janakiram
 
 
