@@ -1,112 +1,208 @@
-Return-Path: <devicetree+bounces-139910-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F443A17840
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 08:06:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AAE3A17868
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 08:13:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDAEA16E01F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:06:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FB59169545
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:13:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7DF71B87F3;
-	Tue, 21 Jan 2025 06:59:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F1A19D06E;
+	Tue, 21 Jan 2025 07:13:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="V91iRjYE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IoJjSj3z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973189.qiye.163.com (mail-m1973189.qiye.163.com [220.197.31.89])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC6DD1B0415;
-	Tue, 21 Jan 2025 06:59:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.89
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91D42166307;
+	Tue, 21 Jan 2025 07:13:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737442769; cv=none; b=nWjusGGTcv6hGpfGk4qcckYuXjmzPmtHKRZmwwAYOIdROOzh6XJLXhOveztHi88uORPyLByFQn1wb90r42MWIwTpcjGYUkq+2FcThLpsbjLWhm3D+0YdPFznBozavOnIZPO+k7HZ3aJaNgVbk6LbVgBsJOYNG5FxTb7uxEzEODc=
+	t=1737443629; cv=none; b=ji+xHdRssWUlpOOFtNQtbduDqOutgjNOI1IuRrPJv4iAMj8dB6TPmaP2dL4aOvgkC6vaJCu/vgNOZmle3ZmEkPRiw4JCU/X0Sz1pnDbtknyaSdkTkM2vjggXl1QGKQ4Rm3IBSKfUPu7eyhKRo+eAl1TS40jvhyhllHa1FXpC/aE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737442769; c=relaxed/simple;
-	bh=gpPAqqBmjRC1v7achzvazt4UU3KoDdfWysgY310xIgI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kfMsFsO8haGst9lTyd+VxxBOVwvWeA42YeXAyIJG1c68JSQ1ShGIZ0bfPe7sUBwbQD5Izie0Wupa7/NYqL1samOuqCg16wEObkJzfFFfjFb6uNP8h+VXo8/luwWH6QKXJgi9iuIN0qGwq+HhmDM2Kwia36L+0M3rfH62roC3mTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=V91iRjYE; arc=none smtp.client-ip=220.197.31.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 9456a33e;
-	Tue, 21 Jan 2025 14:23:51 +0800 (GMT+08:00)
-From: Damon Ding <damon.ding@rock-chips.com>
-To: heiko@sntech.de
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	rfoss@kernel.org,
-	vkoul@kernel.org,
-	sebastian.reichel@collabora.com,
-	cristian.ciocaltea@collabora.com,
-	l.stach@pengutronix.de,
-	dmitry.baryshkov@linaro.org,
-	andy.yan@rock-chips.com,
-	hjc@rock-chips.com,
-	algea.cao@rock-chips.com,
-	kever.yang@rock-chips.com,
-	dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org,
-	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v6 5/6] dt-bindings: display: rockchip: Fix label name of hdptxphy for RK3588 HDMI TX Controller
-Date: Tue, 21 Jan 2025 14:23:23 +0800
-Message-Id: <20250121062324.309592-6-damon.ding@rock-chips.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250121062324.309592-1-damon.ding@rock-chips.com>
-References: <20250121062324.309592-1-damon.ding@rock-chips.com>
+	s=arc-20240116; t=1737443629; c=relaxed/simple;
+	bh=mA94EdZ03v/4HtT0ZOl7yem04cyRmWUPj4XhtYRU6jA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ILFNMSlnWjwcITzyhPxbsxTxTclK1uCj0cnAH7tD7OvHxjVTMs4idjNklFTfXoiiC/ZhTdlXzp2fpjvRbCmXZN6VFnJA2iT2c0ffzKsF0roC0kgEi1wb3YI7zt3J+1yErCQzRmqKVOFUu4ZDRoLsJXmfnv/bitRDuKAFRDSR2LY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IoJjSj3z; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50L2JZXI017914;
+	Tue, 21 Jan 2025 07:13:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	h+Vn0Ug9JU6+clTGINvG6sBhseUNjSaHZCPTnYRIKIw=; b=IoJjSj3zrOU02YeI
+	dSNgmNDsNogNAMS/SojlXXaRsMw0X5DSNXiFTSSWojA7F9EcbpYRMO9JhO1mSemE
+	dg8loPFmstJmsoDOoAlYlOeWv4NUc6CEk8hR1j2EwSm2Ey7RztNSP47CDrZzxPIR
+	+xUigfFBqIBP4Fy8BxfxiNzLDP2m9gN2xLDl1OqHE0Fnc2+UIKYMnmzp+BCiFyqV
+	dygKDyhZyArXiH2fyFO4flZCSMnAA7SYBOIljC5C7TiVAsQM54vTLRz+E6hN5ftv
+	a0IxHuHurJqdGBLBGsV/zSsmeKJSTy6Wc7tEQE/8TooM/S89XLgeqZrwg2Bvq9T3
+	BIK2Rw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44a2pugkjg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Jan 2025 07:13:21 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50L7DKPc031133
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Jan 2025 07:13:20 GMT
+Received: from [10.253.35.93] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 20 Jan
+ 2025 23:13:14 -0800
+Message-ID: <89d4df79-a202-407a-bcfd-6af5315c403c@quicinc.com>
+Date: Tue, 21 Jan 2025 15:13:11 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkIeGlZLHkIYGUJPHh0aHh1WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a9487881cc303a3kunm9456a33e
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PAw6HCo6ITIUTzQPCRI0DjE6
-	PjEwFCpVSlVKTEhMT09LTUhIQ0tLVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKSEtPNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=V91iRjYEYNTsG5+EeisCMvsya1hW2cc02HeQ2hAlYYpdef6wbOM/6n+B8jJaa/SHNynn8E8jvpZpZP3on455Dwtcge2cE4Cfkff7GtNpF+Hq7UwrqSpdqBIXbUEE4WzB/4ZGvTHSZrfsYOipJpwyU3ht4tS3s48LH83boOLxYaY=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=DsE1WkVNoF+Jwn/u5/eTYNhUxfmsWFSRl9E2p5GwmYk=;
-	h=date:mime-version:subject:message-id:from;
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] net: stmmac: qcom-ethqos: Enable RX programmable swap
+ on qcs615
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo
+ Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>, <netdev@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20241225-support_10m100m-v1-0-4b52ef48b488@quicinc.com>
+ <20241225-support_10m100m-v1-2-4b52ef48b488@quicinc.com>
+ <4b4ef1c1-a20b-4b65-ad37-b9aabe074ae1@kernel.org>
+ <278de6e8-de8f-458a-a4b9-92b3eb81fa77@quicinc.com>
+ <e47f3b5c-9efa-4b71-b854-3a5124af06d7@lunn.ch>
+ <87a7729d-ccdd-46f0-bcfd-3915452344fd@quicinc.com>
+ <7e046761-7787-4f01-b47b-9374402489ac@lunn.ch>
+ <5bc3f4e0-6c3f-412c-a825-54707c70f779@quicinc.com>
+ <0fe23cfd-9326-4664-9c94-cf010aec882c@lunn.ch>
+Content-Language: en-US
+From: Yijie Yang <quic_yijiyang@quicinc.com>
+In-Reply-To: <0fe23cfd-9326-4664-9c94-cf010aec882c@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GvL8wDOpkugmdU1D06R9_Tiw5YRakzH9
+X-Proofpoint-GUID: GvL8wDOpkugmdU1D06R9_Tiw5YRakzH9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-21_03,2025-01-21_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=886 clxscore=1015
+ lowpriorityscore=0 malwarescore=0 phishscore=0 impostorscore=0
+ priorityscore=1501 suspectscore=0 adultscore=0 spamscore=0 mlxscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501210058
 
-The hdptxphy is a combo transmit-PHY for HDMI2.1 TMDS Link, FRL Link, DP
-and eDP Link. Therefore, it is better to name it hdptxphy0 other than
-hdptxphy_hdmi0, which will be referenced by both hdmi0 and edp0 nodes.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
----
- .../bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml   | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
-index d8e761865f27..7a1ae31cc535 100644
---- a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
-+++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
-@@ -156,7 +156,7 @@ examples:
-                      <GIC_SPI 172 IRQ_TYPE_LEVEL_HIGH 0>,
-                      <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH 0>;
-         interrupt-names = "avp", "cec", "earc", "main", "hpd";
--        phys = <&hdptxphy_hdmi0>;
-+        phys = <&hdptxphy0>;
-         power-domains = <&power RK3588_PD_VO1>;
-         resets = <&cru SRST_HDMITX0_REF>, <&cru SRST_HDMIHDP0>;
-         reset-names = "ref", "hdp";
+On 2025-01-21 00:49, Andrew Lunn wrote:
+>>> So this indicates any board might need this feature, not just this one
+>>> board. Putting the board name in the driver then does not scale.
+>>>
+>>
+>> Should I ignore this if I choose to use the following standard properties?
+> 
+> You should always follow standard properties unless they don't
+> work. And if they don't work, your commit message needs to explain why
+> they don't work forcing your to do something special.
+> 
+>>>> This means the time
+>>>> delay introduced by the PC board may not be zero. Therefore, it's necessary
+>>>> for software developers to tune both the RX programming swap bit and the
+>>>> delay to ensure correct sampling.
+>>>
+>>> O.K. Now look at how other boards tune their delays. There are
+>>> standard properties for this:
+>>>
+>>>           rx-internal-delay-ps:
+>>>             description:
+>>>               RGMII Receive Clock Delay defined in pico seconds. This is used for
+>>>               controllers that have configurable RX internal delays. If this
+>>>               property is present then the MAC applies the RX delay.
+>>>           tx-internal-delay-ps:
+>>>             description:
+>>>               RGMII Transmit Clock Delay defined in pico seconds. This is used for
+>>>               controllers that have configurable TX internal delays. If this
+>>>               property is present then the MAC applies the TX delay.
+>>>
+>>> I think you can use these properties, maybe with an additional comment
+>>> in the binding. RGMII running at 1G has a clock of 125MHz. That is a
+>>> period of 8ns. So a half clock cycle delay is then 4ns.
+>>>
+>>> So an rx-internal-delay-ps of 0-2000 means this clock invert should be
+>>> disabled. A rx-internal-delay-ps of 4000-6000 means the clock invert
+>>> should be enabled.
+>>
+>> This board was designed to operate at different speed rates, not a fixed
+>> speed, and the clock rate varies for each speed. Thus, the delay introduced
+>> by inverting the clock is not fixed. Additionally, I noticed that some
+>> vendors apply the same routine for this property across all speeds in their
+>> driver code. Can this property be used just as a flag, regardless of its
+>> actual value?
+> 
+> Maybe you should go read the RGMII standard, and then think about how
+> your hardware actually works.
+> 
+> RGMII always has a variable clock, with different clock speeds for
+> 10/100/1G. So your board design is just plain normal, not
+> special. Does the standard talk about different delays for different
+> speeds? As you say, other drivers apply the same delay for all
+> speeds. Why should your hardware be special?
+> 
+> RGMII has been around for 25 years. Do you really think your RGMII
+> implementation needs something special which no other implementation
+> has needed in the last 25 years?
+
+I do not intend to violate the regulations of the RGMII standard and aim 
+to maintain the same delay across all speeds. But the RX programming 
+swap bit can only introduce a delay of 180 degrees. Should I assume the 
+1G speed clock to calculate and determine if this bit should be enabled 
+for all speeds?
+
+> 
+>>> Now, ideally, you want the PHY to add the RGMII delays, that is what i
+>>> request all MAC/PHY pairs do, so we have a uniform setup across all
+>>> boards. So unless the PHY does not support RGMII delays, you would
+>>> expect rx-internal-delay-ps to be either just a small number of
+>>> picoseconds for fine tuning, or a small number of picoseconds + 4ns
+>>> for fine tuning.
+>>
+>> The delay for both TX and RX sides is added by the MAC in the Qualcomm
+>> driver, which was introduced by the initial patch. I believe there may be a
+>> refactor in the future to ensure it follows the requirements.
+>   
+> You can do it in the MAC. But you probably want to clearly document
+> this, that your design is different to > 95% of systems in Linux which
+> have the PHY do the delays.
+> 
+> 	Andrew
+
 -- 
-2.34.1
+Best Regards,
+Yijie
 
 
