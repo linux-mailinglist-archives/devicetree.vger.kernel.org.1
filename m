@@ -1,209 +1,151 @@
-Return-Path: <devicetree+bounces-139918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AF7CA178C0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 08:48:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7B2AA178C3
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 08:49:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BE0BF166EF1
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:47:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D78293A2F63
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:49:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A1491B3725;
-	Tue, 21 Jan 2025 07:47:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91D021B3725;
+	Tue, 21 Jan 2025 07:49:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="fT2W7N8r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UjImRUYp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C05482913
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 07:47:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65B561AF4C1;
+	Tue, 21 Jan 2025 07:49:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737445669; cv=none; b=jxf68SFSa1Z350If9k2sZPUCJyDHPt6iImU/N1d6QDq+lI9dxzdu5pkEeWx68aDBLs+88GEOE8uH0BEKZci+V7ovlK3h+KuJEoy32qY3hyLrLzbzVcGDeGfoqRnSPUTrhDLZF2f9nbjyaH2WwuZ2LBfBv7vq6l1X9rRc7KI3grY=
+	t=1737445776; cv=none; b=mJUuyV/8GUfmyGKGJQpr64ef44GuVgTSjdVZzZdOh7jPgZPjTYHUR7CDr0kIeOGWADkCASQ0Bs4MT4RtWNNbsokpmgBOQLD+aWLnDInA0+rTgPdX2g/jC8SaoGYpHQU6GTSmhjz7Gkt6jkXbFGoHvbTtjN6L57miAjtTHWRz1IQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737445669; c=relaxed/simple;
-	bh=VcQP7IhFUg1F06BKfBvCsjUbQu7XjAEJGPRo6Jfrc9o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U4taI1xAsoVxWa+/EZX4Ne74lu/0ncpc46Ps5CtYc3+mxLbYVOCCf6hL5RYsXIc2cczDiLccosXr+cPiBxaEe7vPUlW7qA8FZ8batgt7gOJzQZok6vndlOeJPUKVnU0SM6ZbdAbuNi4wRj80ibNZvs6dbx0npgKjKIKplB/OTPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=fT2W7N8r; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-aaef00ab172so809800666b.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 23:47:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737445665; x=1738050465; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=kHmkI/T2A61pfMW4kkHpuFAyeZJfqURmpjk9vDwC6vA=;
-        b=fT2W7N8rwOYWVwKfqxBU1GBxCfpSfIzKg5cfkX8tRPz8Zf2U+wOSeAPV/ozWxVwxw6
-         93yTfs5JfSYLlrNqGakfQVReUkxTB7gDoqoENV2Dw7S8whhSKSU84Ne4HPcFMAj2qOrN
-         lZLGGK6lveQdwIii55NEry3o1/6ntFKh1kC/AznhnpZGaUvyGGUKCr+xvJDKBCesTdGh
-         IDCJ6hqdP37sh+GFeDfFUu7GvdUAf7idLwnO2y9WWgcBkZOSvkQ1c5v/CUNXaUzT3ENC
-         xPkSoWZs6WldmCbQoMF8eV07MeKGautZ3dy3pqdjx+mFnpMU8UpB5Xy7YRPrEqcyPAcO
-         S5pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737445665; x=1738050465;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kHmkI/T2A61pfMW4kkHpuFAyeZJfqURmpjk9vDwC6vA=;
-        b=lCJKv2i50/ig6qw+3vtJj0ojEjmgr+ViRq19G+Ey70Fxyo1I8HydvcecInxHsQL8Mr
-         iNDv2Vgq5ZezhUO2ox1Ra0H7CYQYNCDfaefIp92VTtMay5c2HRgqhn/Ut0kWy5e7wv3/
-         pIPD5nsmXDwcfi+3EqXr133sgnzUuW0/5HK5r9PT9t0j3yChqfmuMIkYuwnQdx0ddJWU
-         n+YaGzx4QaptNogWwjjDVs1Zm2WdQ+99CGQ3z/HIPN5P2fJT38SFCiFNqWgfyFddbzoh
-         q2iE6RuACr8O3VCt6v2pi94Rw0thdIc0dt1lnBa9rpxkaFvCRZlZFU7iPy/EEtu/816+
-         HlxA==
-X-Forwarded-Encrypted: i=1; AJvYcCVs8uH9xxs46UU/PoAUgokmw1B7X2s8CoLgJd4FwCD93Sh9xuNad0i+pmA2GfjX3ciRl/NpubU19P48@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywd30A35Q1phZOmdxjgsXOyGr9JqoAtYu0LUIxU5o7PbFGpvuGL
-	m0FkCEMjxR2sp5GGFc66COD6JBf+vsnHPsytmIghp9RbjWnjblF1jQEsIDBjs1c=
-X-Gm-Gg: ASbGncvX+yOvt92HZL3af/pgvV9l7J4cQHmnQ92fqKRspKsDrqf72pgJBVwCle26vbV
-	o89r5ppMuH6nnKECyvMPFA4XT3V4wJiRMRVshCkU0kKd0BzzbxW4W90atZBR8yM7Uz93xG5Ol4R
-	1G76Q8pN/qBJBng2h3BEHbxJJs58wX8drZVXuGnjbx9M7winPMWPy92xE1dEplhlkUJAaxvUAiJ
-	F1RDxSJdenVi3yDIju8lKDL8e7ekZJkMlTs+jsL48Xz52Jur7iy6QnkVyDB1p280+RxEk5/4dA=
-X-Google-Smtp-Source: AGHT+IEUBI4P116ENXHw5hP8hTyNuBlon7g16FyxICqd0dia9ly16Gi5SE6Z2QYr/PYvdKeGO8w7jQ==
-X-Received: by 2002:a05:6402:3487:b0:5d0:fb56:3f with SMTP id 4fb4d7f45d1cf-5db7d2f5b5cmr33434489a12.12.1737445665056;
-        Mon, 20 Jan 2025 23:47:45 -0800 (PST)
-Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384f86fa4sm717866666b.143.2025.01.20.23.47.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2025 23:47:44 -0800 (PST)
-Date: Tue, 21 Jan 2025 08:47:42 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Nylon Chen <nylon.chen@sifive.com>
-Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
-	devicetree@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Samuel Holland <samuel.holland@sifive.com>, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v10 0/3] Change PWM-controlled LED pin active mode and
- algorithm
-Message-ID: <zneb3qwgf52zitcbq4wz76shnmhwfkabbsts3sussjpc5s5tsz@uneaxdfp4m2f>
-References: <20241224093902.1632627-1-nylon.chen@sifive.com>
- <zqkx7cx5nalslfmxeoxdnsjbvrvzajrjybsmsyeyc65a64sntr@gpc5qp6aoyp7>
- <CAHh=Yk-_0rKB=FG6Voif2MDjtRxzUA5vXDP2J-o5=8ru1ewt0w@mail.gmail.com>
- <CAHh=Yk-TosOmwEughfK9mMx-=DgzWK5H_bf6H641SGh1ue8BrA@mail.gmail.com>
+	s=arc-20240116; t=1737445776; c=relaxed/simple;
+	bh=PtYFv6xJPvEdq+20Z/QErDiJWyNyw2+ZZfpycjJ/DT0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KEyfauyPWjWr6zrqyD0ItAwv8GuwU86Zo6HOrlCAgZd8YEma9ZKblVcFWKWnuEez0nAZPy7mzsyi/y/ornLIf3xkgdA6ERlcfs7U9FJj+WvulG6j0hYjY83MvgZqD1d/cx2oplVn1boehjNvaqPmqbRTgq3rIZmabPaaMu6GG9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UjImRUYp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CE37C4CEDF;
+	Tue, 21 Jan 2025 07:49:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737445775;
+	bh=PtYFv6xJPvEdq+20Z/QErDiJWyNyw2+ZZfpycjJ/DT0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UjImRUYpdM1dD6wJOiBFszEkMJQk9zUbkIZaf5YCnVUbbf1HzCm7N/ewuhFCkRMqI
+	 3G9C/cdzNPqFSVbAYR2Pk/j8RVgQsv3Wj+HFLJNkgstiWbGOI56vZO7seDWcQlvkL6
+	 c1e04kSzKlV6B16WZ4g8OOVTl4RGlGTbd2fK07QNp+NnU80Zv5R8nLtFmfjLKSDhfO
+	 awP85bsb6outZAe0HSv7AnA82POmuGK7eUxh/9J0hOTHXE+5UdNJI/eNhT6ZfOOWzo
+	 xFoApPX0z1+dawLgcL0ZqHCvLmrbxcef55rPhRbBiViePO78b1f8FrZcBXr/QhRWrf
+	 e17S5XT23vxwQ==
+Message-ID: <870da365-bb18-47a7-ab78-62ce8a663559@kernel.org>
+Date: Tue, 21 Jan 2025 08:49:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dyaujgonqzvowikd"
-Content-Disposition: inline
-In-Reply-To: <CAHh=Yk-TosOmwEughfK9mMx-=DgzWK5H_bf6H641SGh1ue8BrA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/5] arm64: dts: imx93: Add labels for the references
+ easier
+To: Joy Zou <joy.zou@nxp.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+ catalin.marinas@arm.com, will@kernel.org, kernel@pengutronix.de,
+ festevam@gmail.com
+Cc: joao.goncalves@toradex.com, marex@denx.de, hvilleneuve@dimonoff.com,
+ hiago.franco@toradex.com, peng.fan@nxp.com, frieder.schrempf@kontron.de,
+ alexander.stein@ew.tq-group.com, m.othacehe@gmail.com, mwalle@kernel.org,
+ Max.Merchel@ew.tq-group.com, quic_bjorande@quicinc.com,
+ geert+renesas@glider.be, dmitry.baryshkov@linaro.org,
+ neil.armstrong@linaro.org, arnd@arndb.de, nfraprado@collabora.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, ping.bai@nxp.com,
+ ye.li@nxp.com, aisheng.dong@nxp.com, frank.li@nxp.com, carlos.song@nxp.com
+References: <20250121074017.2819285-1-joy.zou@nxp.com>
+ <20250121074017.2819285-6-joy.zou@nxp.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250121074017.2819285-6-joy.zou@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 21/01/2025 08:40, Joy Zou wrote:
+> Making the references easier, so add labels.
+> 
+> Signed-off-by: Joy Zou <joy.zou@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx93.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx93.dtsi b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> index 56766fdb0b1e..4739e7cb7e9b 100644
+> --- a/arch/arm64/boot/dts/freescale/imx93.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx93.dtsi
+> @@ -206,7 +206,7 @@ cpu_crit: cpu-crit {
+>  			};
+>  
+>  			cooling-maps {
+> -				map0 {
+> +				map0: map0 {
+>  					trip = <&cpu_alert>;
+>  					cooling-device =
+>  						<&A55_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> @@ -1334,7 +1334,7 @@ usbmisc2: usbmisc@4c200200 {
+>  			#index-cells = <1>;
+>  		};
+>  
+> -		ddr-pmu@4e300dc0 {
+> +		ddr_pmu: ddr-pmu@4e300dc0 {
 
---dyaujgonqzvowikd
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v10 0/3] Change PWM-controlled LED pin active mode and
- algorithm
-MIME-Version: 1.0
+Useless commit - there are no users.
 
-Hello,
-
-On Sun, Jan 19, 2025 at 03:03:16PM +0800, Nylon Chen wrote:
-> I ran some basic tests by changing the period and duty cycle in both
-> decreasing and increasing sequences (see the script below).
-
-What is clk_get_rate(ddata->clk) for you?
-
-> # Backward testing for period (decreasing)
-> echo "Testing period backward..."
->=20
-> seq 15000 -1 5000 | while read p; do
->=20
->    echo $p > /sys/class/pwm/pwmchip1/pwm0/period
->=20
->    echo "Testing period: $p"
->=20
-> done
->=20
->=20
-> # Forward testing for period (increasing)
-> echo "Testing period forward..."
->=20
-> seq 5000 1 15000 | while read p; do
->=20
->    echo $p > /sys/class/pwm/pwmchip1/pwm0/period
->=20
->    echo "Testing period: $p"
->=20
-> done
->=20
->=20
-> # Backward testing for duty cycle (decreasing)
-> echo "Testing duty cycle backward..."
->=20
-> for duty in $(seq 10000 -1 0); do
->=20
->    echo $duty > /sys/class/pwm/pwmchip1/pwm0/duty_cycle
->=20
->    echo "Testing duty cycle: $duty"
->=20
-> done
->=20
->=20
-> # Forward testing for duty cycle (increasing)
->=20
-> echo "Testing duty cycle forward..."
->=20
-> for duty in $(seq 0 1 10000); do
->=20
->    echo $duty > /sys/class/pwm/pwmchip1/pwm0/duty_cycle
->=20
->    echo "Testing duty cycle: $duty"
->=20
-> done
->=20
->=20
->=20
-> In these particular tests, I didn=E2=80=99t see any functional difference=
- or
-> unexpected behavior whether I used DIV64_U64_ROUND_CLOSEST() or
-> DIV64_U64_ROUND_UP.
-> Of course, there=E2=80=99s a chance my tests haven=E2=80=99t covered ever=
-y scenario,
-> so there could still be edge cases I missed.
-
-Just to be sure: You have PWM_DEBUG enabled?
-
-> From what I understand, your main concern is to ensure we never end up
-> with a duty cycle that=E2=80=99s smaller than what the user requested, wh=
-ich a
-> round-up approach would help guarantee. If you still recommend making
-> that change to achieve the desired behavior, I=E2=80=99m happy to update =
-the
-> code accordingly(CLOSEST->UP).
-
-No, .apply should round down and so to ensure that
-
-	pwm_get_state(mypwm, &state);
-	pwm_apply(mypwm, &state);
-
-doesn't modify the hardware setting, .get_state has to round up.
-
-Best regards
-Uwe
-
---dyaujgonqzvowikd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmePURwACgkQj4D7WH0S
-/k4KHwgAksGlvkYerZMMatVBQBOBykMcM1jl46uNHrfephJDzn4WlDzbMVC1a2DO
-15zT2WHJv5YKFuS3jSnB3xuq8cHdUze+weVYVvcKgroXGNhkuRwVARYajV847z/o
-zWKaTl+rBY2tf5GMlnclyKZpxw/IvAKujAIgadlLC/Ui/l4GmZTNqTWzBORY1Xs6
-57bSKt+b2LoOOS1s+I1xVHtwr+wvm8IGc8QG7zOMOBdnhNhV51urb4AYW4rEFjaI
-OlaiLo65Q3dWDyzhRFI70Xqj8wZzGWdD9jrRIOLa7KpILC2D2R9j0QPh29nWiOVN
-McjvrtGwuuEYx2N15HJvEx891ujqJw==
-=DgUB
------END PGP SIGNATURE-----
-
---dyaujgonqzvowikd--
+Best regards,
+Krzysztof
 
