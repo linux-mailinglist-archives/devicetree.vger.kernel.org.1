@@ -1,251 +1,203 @@
-Return-Path: <devicetree+bounces-139941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13EEBA1795F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 09:42:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84FF3A1797B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 09:48:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91B99188948E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 08:42:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82A663AACB2
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 08:47:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A473A1B87CA;
-	Tue, 21 Jan 2025 08:42:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2731A1B85C2;
+	Tue, 21 Jan 2025 08:48:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="HF5znpdU"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="lLYsa0Dw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com [209.85.208.66])
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF411B6CF1
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 08:42:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62CFF1B4237
+	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 08:47:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737448969; cv=none; b=uC4ow4BVevu3bivjL/wb5Tizjed1TqPX2Ev5TgSm+APy+j2ViLIYclWNvEoZw1ErR/Zv9BPGywTwI/6jvCO8DH7WZjMUbtO4fkh+yqlkxidAZDTFYN63LWNolT/ed7Hb5RjtQW5LUc1rEHtWnFJx1LJ1mbYSTL0sUuRte0lL3ZE=
+	t=1737449280; cv=none; b=PeOLQ42FLTRKqr4u84ln+MyZtIU40EX0LleU0qLeSraBc/aBC1mABMUQfdN9yGKCn3Ow+xW5W4Rcxe2g+GZ51jbLWBg5U9+9ZPBY+5R1atS6WYdETi97YkULYFXCR1Km9XXvpN3ctR1NJxFdKubF+EkO7EskwumBamXQwha9EU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737448969; c=relaxed/simple;
-	bh=btTsSgCbAPnhnTrI4HdjrpnhkhsKx37tGtdBNk94yms=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tKWdWDtgLFa+qUjuxn9tf9uOjoE5F/OpChkvXCRmkbaiMRBOzH+anrDUqCwEP/+wNkowTbVc9yZFXEVIwW83+CDzksGiSNRfyQVDs8bWCodbW5cWKcc6GLmsx8tNaQsChO8rEnSXmt7hwqr1AW5NUe/8UEdO63mrarNCLDNwbko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=HF5znpdU; arc=none smtp.client-ip=209.85.208.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f66.google.com with SMTP id 4fb4d7f45d1cf-5d3d0205bd5so8566796a12.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 00:42:46 -0800 (PST)
+	s=arc-20240116; t=1737449280; c=relaxed/simple;
+	bh=W0gV58YMdVAgUpJ7DgzgpwUIMKPDw9p1SpbYXncdnBw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eH5LYKMHuCf4YOWOu4WP63MXAWxg8BFoAeYhZIo7TEU6TnnHTvbPbWnHoANT0+82ojedP7yL61CU7Pp09rKsXRW49i7IowAXce+pjyBYbOszw8eYG1XQV3mVDvzcthjpA+7TRCqpaNJgr+CC+gTrwTPD+M8i69c9WmU6StVv0y4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=lLYsa0Dw; arc=none smtp.client-ip=209.85.217.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4aff78a39e1so1319424137.1
+        for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 00:47:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1737448965; x=1738053765; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WfyBwrVAKcG2iSXqbe+KfTaCoLpZROxE8VUSqF7vM6w=;
-        b=HF5znpdUsdaV6qLC9lBW25Mt4f8DohDD1Hv7Xil8TqKPGDeyrYwnuiHERZ9qsA7RFj
-         hzcjMIBllI4/HO1rhtP3NvR0q8s9VIEnk2B7BENXK4O2lkUH2zSeg9C4VRCmZYR+gCL8
-         eEOenBONGYMFWHn6QpvSJxeRafK7EEfASUC5nVZQyNLQkJz+Uj22VO3xI97fzlH45H5U
-         Wyxv0Qtca0MP8clcOQZK4qUVxSOKnuJBEHlSrhdpQEyf+3/rZRxKSQeVMOwYHjPxzgqE
-         uskuEfRKQTTd8/ZnfIQxJZXJ5pPnLZQBVqdg0jmA2dFEwb/YSTCqTqWzDTdtQXFD+BTx
-         FKbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737448965; x=1738053765;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+        d=sifive.com; s=google; t=1737449277; x=1738054077; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=WfyBwrVAKcG2iSXqbe+KfTaCoLpZROxE8VUSqF7vM6w=;
-        b=GVcjqJAVMp8QGV6KKn4ekMaOlscOVmMgNXB0Usc7XfxEtq19lirrDKvNm5bTpmj/Ae
-         499Nh7LT8ID3mo/Lw+QWHbtU0GDBVdw+VQXMYGylgg5UIuBvLsoL3R9LJOO/js1SA2Vt
-         szXl5zOdV02mgvO6922LOe0O4q46kuGYun1jQEE9rKAe4UE6AXhFjVA/Tv+MHbE2TH+B
-         LLOutKxQn9S815hrBCOz8YFV2zjsjUu27Y9XTqrcUUtCkwrkLvepPX/p9vUalq5bGfrs
-         mSKb2fl4e+53XzqeaalUyiJK9SXMP3+03BZbxX4Kctj20gektAYfVygJGoShZI3ETLlH
-         ppww==
-X-Forwarded-Encrypted: i=1; AJvYcCViuhuFBun67HSW2JqF+nDXW+4kNM6BL2CF6Hly2gAQRYckDySk4ARz1XOpxxN1p33fEyt/Thf/IMeN@vger.kernel.org
-X-Gm-Message-State: AOJu0YytM4ji2v4KpyFHo7dI47qy7BBlurcMwXthd9fR4H3YtZUIVqix
-	T3X5awKd3yNicxghcr0bwdyHnyavVUHOQQm5zi0PAJJhtinJiO+PQqvfcYNW8sg=
-X-Gm-Gg: ASbGncsaLGhLSBzCtj07NY2uvGIsVitEfY3aqevfA7v9j+1zIsAIoBxzR088jEvzDQm
-	WDcYRL5V0YW6H+K3zLvrV2KJF55k62438IoENyYg90Gk4uspzfgx/N7vnRPyCUAmQ4j4FFvCDPo
-	pXXIAlirHb8lRr10W4v9kA9DHVkXeRa8qtn5TYWJN1hRtqoKmyKkB6t46nacRTykDZKytY8T9G1
-	OzwUp3JIdlSKHAgTTupHIDBrS3Lm8vvXVcEfM64ECg04x/wrRE3bVsrOYdvXs53MSaYbQAmIVvC
-	kOMIFZjhgC22yzGmRmG+TcPXaLnhjp4FSs048hiZ
-X-Google-Smtp-Source: AGHT+IHJoMEfBlMLvkr8KlEq8oWlxXFcL1m1dYtTgkFptyAjoAjldlyHkpeVawKUvQ8QmvdxpOWQWw==
-X-Received: by 2002:a17:906:5617:b0:ab2:b8c3:be3c with SMTP id a640c23a62f3a-ab38b3fb0dcmr1352712066b.51.1737448964785;
-        Tue, 21 Jan 2025 00:42:44 -0800 (PST)
-Received: from localhost (host-87-14-236-197.retail.telecomitalia.it. [87.14.236.197])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384c75baesm719449966b.1.2025.01.21.00.42.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jan 2025 00:42:44 -0800 (PST)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Tue, 21 Jan 2025 09:43:37 +0100
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v6 08/10] misc: rp1: RaspberryPi RP1 misc driver
-Message-ID: <Z49eOdVvwknOoD3E@apocalypse>
-References: <cover.1736776658.git.andrea.porta@suse.com>
- <550590a5a0b80dd8a0c655921ec0aa41a67c8148.1736776658.git.andrea.porta@suse.com>
- <2025011722-motocross-finally-e664@gregkh>
+        bh=ylm0SQb6Ef9jjirSI4sl+IsEvfZdYeaZm3dNfDBGQWQ=;
+        b=lLYsa0DwvH1le/p8zCBdetzYw6za0RUFLTGxiZRZY9Hjy+5FK81+/oGsCBhyBswHCO
+         r/FHUeJarRCoq8uHBqOIg/DKRs6tkDAOa/1YkW5ovKPz1+AVB2c20oJsnDp+DQtGE/7N
+         xHgK+334QX4kPh3McH/6qImftLXI7HZe611ghF7Td4Zh8nVN3XGLui8B/diiwwEIcA0G
+         JMXfbeOD+CgbXQGsu2dTTqKUkpoH2iQRlU0aaOuy5b5X0rUakcsuo3ZgUH4Y228+YNTE
+         G6mrSISeK881JSJulbLNbWFbNKsS+CKYRLNlVGsRac8fyfmA+FhuAyjvtUa7xqfzU6nA
+         O4Pg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737449277; x=1738054077;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ylm0SQb6Ef9jjirSI4sl+IsEvfZdYeaZm3dNfDBGQWQ=;
+        b=lLVbVfuj4rZeYggNy5uw0S0jSckAekkie0SVlsNRDt2ZP117ASYG1PVon+kwfEwcAX
+         YRhHITTHkBDnTuhGsil9V7w5a+Gy9fns29uYIFK9nGByORbWIipJypYAJryeJlH5iyf+
+         0Ku83W/dCN1+Jc/TnaeR8Oj/JrY+ZxoGzZ1rHtYPC/Xews/fPwtsj4DAV9l+kLn3QPUa
+         Nspk/fCHCTlye0HmACCn75U6VP8wa2BmghGvjZkFgJb4YWfoojqs3KaPw3fArs9chFEU
+         HuxI2r2UD/U/IoUBeWMwmSBib0Q+1cq/Hnybnmf3eV0mcUc+gNTJWeN+kpkG7vfV+jsU
+         TUuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUy6RIQnGMLLUUuqFF0G1gbNhnyEfynQ/NOX2RUvK9lbYfx8JtBGVxJk4dLcPRCwD3M8UNrd/DI5Ax/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJdpWNWwvUEJFWHjarhxwZT3JxaTFJ2nXVfJnv+dqxfOVINaMq
+	DePFWRWzWYPJx/KcUz6Xsn6n4IFFqQ+Mvf5jtA/35zfgtLHM3HKkgJI/Nsi+z6KEdOkPULcC9oU
+	Qt6aLQp0aAt/vIhXVONeZIpY97qRuP8OHw/gleQ==
+X-Gm-Gg: ASbGncv5kqZ9rMLhvK3krCREer9EMZGx45UMLYLSKDR5UZRxI1MeOgMN7oewnJfCff4
+	9+SoJJfc+pVgrAx82ErhPwOhA5kEATo6Df112ejAN0XyCLGvtPYRhrA==
+X-Google-Smtp-Source: AGHT+IHq4KMBokiyD5WugWcwEvEj0WpVyisepAYzvkq3Q3ow3rYydwBTKGAk6ok+pF9C8Pda6DGP35aW3y6LsiGm1r0=
+X-Received: by 2002:a05:6102:161e:b0:4b2:cc94:1879 with SMTP id
+ ada2fe7eead31-4b690d1e374mr11844622137.22.1737449277184; Tue, 21 Jan 2025
+ 00:47:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2025011722-motocross-finally-e664@gregkh>
+References: <20241224093902.1632627-1-nylon.chen@sifive.com>
+ <zqkx7cx5nalslfmxeoxdnsjbvrvzajrjybsmsyeyc65a64sntr@gpc5qp6aoyp7>
+ <CAHh=Yk-_0rKB=FG6Voif2MDjtRxzUA5vXDP2J-o5=8ru1ewt0w@mail.gmail.com>
+ <CAHh=Yk-TosOmwEughfK9mMx-=DgzWK5H_bf6H641SGh1ue8BrA@mail.gmail.com> <zneb3qwgf52zitcbq4wz76shnmhwfkabbsts3sussjpc5s5tsz@uneaxdfp4m2f>
+In-Reply-To: <zneb3qwgf52zitcbq4wz76shnmhwfkabbsts3sussjpc5s5tsz@uneaxdfp4m2f>
+From: Nylon Chen <nylon.chen@sifive.com>
+Date: Tue, 21 Jan 2025 16:47:46 +0800
+X-Gm-Features: AbW1kvb1k96mTed4V1SVNr18MrzJpI0GDeXCbwcceOVDYQeW1YSiE4o1vNYPLLY
+Message-ID: <CAHh=Yk_oTdURhkna_saF6mrA9gDY=+v_j5NoY_7jTDLuZ=EXtg@mail.gmail.com>
+Subject: Re: [PATCH v10 0/3] Change PWM-controlled LED pin active mode and algorithm
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Samuel Holland <samuel.holland@sifive.com>, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Greg,
-
-On 12:47 Fri 17 Jan     , Greg Kroah-Hartman wrote:
-> On Mon, Jan 13, 2025 at 03:58:07PM +0100, Andrea della Porta wrote:
-> > The RaspberryPi RP1 is a PCI multi function device containing
-> > peripherals ranging from Ethernet to USB controller, I2C, SPI
-> > and others.
-> > 
-> > Implement a bare minimum driver to operate the RP1, leveraging
-> > actual OF based driver implementations for the on-board peripherals
-> > by loading a devicetree overlay during driver probe.
-> > 
-> > The peripherals are accessed by mapping MMIO registers starting
-> > from PCI BAR1 region.
-> > 
-> > With the overlay approach we can achieve more generic and agnostic
-> > approach to managing this chipset, being that it is a PCI endpoint
-> > and could possibly be reused in other hw implementations. The
-> > presented approach is also used by Bootlin's Microchip LAN966x
-> > patchset (see link) as well, for a similar chipset.
-> > 
-> > For reasons why this driver is contained in drivers/misc, please
-> > check the links.
-> 
-> Links aren't always around all the time, please document it here why
-> this is needed, and then links can "add to" that summary.
-
-Ack.
-
-> 
-> > This driver is heavily based on downstream code from RaspberryPi
-> > Foundation, and the original author is Phil Elwell.
-> > 
-> > Link: https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
-
-...
-
-> > diff --git a/drivers/misc/rp1/rp1_pci.c b/drivers/misc/rp1/rp1_pci.c
-> > new file mode 100644
-> > index 000000000000..3e8ba3fa7fd5
-> > --- /dev/null
-> > +++ b/drivers/misc/rp1/rp1_pci.c
-> > @@ -0,0 +1,305 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (c) 2018-24 Raspberry Pi Ltd.
-> > + * All rights reserved.
-> > + */
-> > +
-> > +#include <linux/err.h>
-> > +#include <linux/interrupt.h>
-> > +#include <linux/irq.h>
-> > +#include <linux/irqchip/chained_irq.h>
-> > +#include <linux/irqdomain.h>
-> > +#include <linux/module.h>
-> > +#include <linux/msi.h>
-> > +#include <linux/of_platform.h>
-> > +#include <linux/pci.h>
-> > +#include <linux/platform_device.h>
-> > +
-> > +#include "rp1_pci.h"
-> 
-> Why does a self-contained .c file need a .h file?  Please put it all in
-> here.
-
-I agree with you. Indeed, the very first version of this patch had the header
-file placed inside the .c, but I received concerns about it and some advice to
-do it differently, as you can see here:
-https://lore.kernel.org/all/ZtWDpaqUG9d9yPPf@apocalypse/
-so I've changed it accordingly in V2. So right now I'm not sure what the
-acceptable behaviour should be ...
-
-> 
-> > +
-> > +#define RP1_DRIVER_NAME		"rp1"
-> 
-> KBUILD_MODNAME?
-
-Right. Thanks for pointing that out.
-
-> 
-> > +
-> > +#define RP1_HW_IRQ_MASK		GENMASK(5, 0)
-> > +
-> > +#define REG_SET			0x800
-> > +#define REG_CLR			0xc00
-> > +
-> > +/* MSI-X CFG registers start at 0x8 */
-> > +#define MSIX_CFG(x) (0x8 + (4 * (x)))
-> > +
-> > +#define MSIX_CFG_IACK_EN        BIT(3)
-> > +#define MSIX_CFG_IACK           BIT(2)
-> > +#define MSIX_CFG_ENABLE         BIT(0)
-> > +
-> > +/* Address map */
-> > +#define RP1_PCIE_APBS_BASE	0x108000
-> > +
-> > +/* Interrupts */
-> > +#define RP1_INT_END		61
-> 
-> 
-> 
-> > +
-> > +struct rp1_dev {
-> > +	struct pci_dev *pdev;
-> > +	struct irq_domain *domain;
-> > +	struct irq_data *pcie_irqds[64];
-> > +	void __iomem *bar1;
-> > +	int ovcs_id;	/* overlay changeset id */
-> > +	bool level_triggered_irq[RP1_INT_END];
-> > +};
-> > +
-> > +static void msix_cfg_set(struct rp1_dev *rp1, unsigned int hwirq, u32 value)
-> > +{
-> > +	iowrite32(value, rp1->bar1 + RP1_PCIE_APBS_BASE + REG_SET + MSIX_CFG(hwirq));
-> 
-> Do your writes need a read to flush them properly?  Or can they handle
-> this automatically?
+Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> =E6=96=BC 2025=E5=B9=
+=B41=E6=9C=8821=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=883:47=E5=AF=AB=
+=E9=81=93=EF=BC=9A
 >
+> Hello,
+>
+> On Sun, Jan 19, 2025 at 03:03:16PM +0800, Nylon Chen wrote:
+> > I ran some basic tests by changing the period and duty cycle in both
+> > decreasing and increasing sequences (see the script below).
+>
+> What is clk_get_rate(ddata->clk) for you?
+130 MHz
+>
+> > # Backward testing for period (decreasing)
+> > echo "Testing period backward..."
+> >
+> > seq 15000 -1 5000 | while read p; do
+> >
+> >    echo $p > /sys/class/pwm/pwmchip1/pwm0/period
+> >
+> >    echo "Testing period: $p"
+> >
+> > done
+> >
+> >
+> > # Forward testing for period (increasing)
+> > echo "Testing period forward..."
+> >
+> > seq 5000 1 15000 | while read p; do
+> >
+> >    echo $p > /sys/class/pwm/pwmchip1/pwm0/period
+> >
+> >    echo "Testing period: $p"
+> >
+> > done
+> >
+> >
+> > # Backward testing for duty cycle (decreasing)
+> > echo "Testing duty cycle backward..."
+> >
+> > for duty in $(seq 10000 -1 0); do
+> >
+> >    echo $duty > /sys/class/pwm/pwmchip1/pwm0/duty_cycle
+> >
+> >    echo "Testing duty cycle: $duty"
+> >
+> > done
+> >
+> >
+> > # Forward testing for duty cycle (increasing)
+> >
+> > echo "Testing duty cycle forward..."
+> >
+> > for duty in $(seq 0 1 10000); do
+> >
+> >    echo $duty > /sys/class/pwm/pwmchip1/pwm0/duty_cycle
+> >
+> >    echo "Testing duty cycle: $duty"
+> >
+> > done
+> >
+> >
+> >
+> > In these particular tests, I didn=E2=80=99t see any functional differen=
+ce or
+> > unexpected behavior whether I used DIV64_U64_ROUND_CLOSEST() or
+> > DIV64_U64_ROUND_UP.
+> > Of course, there=E2=80=99s a chance my tests haven=E2=80=99t covered ev=
+ery scenario,
+> > so there could still be edge cases I missed.
+>
+> Just to be sure: You have PWM_DEBUG enabled?
+Yes, to verify my patch, I always enable it by default.
 
-I had some thoughts with RaspberryPi foundation folks to double check it, and it
-seems that there should be no need to readback the value (unless we want to go
-really paranoid), so I would avoid that since in case of level handled interrupt
-we would end up reading the register on every triggering interrupts.
+>
+> > From what I understand, your main concern is to ensure we never end up
+> > with a duty cycle that=E2=80=99s smaller than what the user requested, =
+which a
+> > round-up approach would help guarantee. If you still recommend making
+> > that change to achieve the desired behavior, I=E2=80=99m happy to updat=
+e the
+> > code accordingly(CLOSEST->UP).
+>
+> No, .apply should round down and so to ensure that
+>
+>         pwm_get_state(mypwm, &state);
+>         pwm_apply(mypwm, &state);
+>
+> doesn't modify the hardware setting, .get_state has to round up.
+I have some questions that I'd like to further confirm, to ensure I
+understand correctly and can adjust the patch accordingly
 
-Many thanks,
-Andrea
- 
-> thanks,
-> 
-> greg k-h
+your earlier suggestions were as follows:
+"Round-closest is usually wrong in an .apply() callback. I didn't do
+the detailed math, but I think you need to round up here."
+
+The more recent suggestions are as follows:
+"No, .apply should round down and so to ensure that....."
+
+I speculate that the latter suggestion is to ensure idempotency
+between .apply and .get_state, avoiding unnecessary hardware setting
+modifications during repeated reading and applying processes. However,
+the earlier suggestions seem to conflict with this.
+
+If needed, I can provide more test results or make further adjustments.
+Thank you again for your patient guidance.
+>
+> Best regards
+> Uwe
 
