@@ -1,59 +1,67 @@
-Return-Path: <devicetree+bounces-139985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A67A17B24
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:14:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 019AFA17B2B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:16:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 883583A1F05
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 10:14:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C170E1884021
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 10:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 191AE1E9B10;
-	Tue, 21 Jan 2025 10:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4F81E7C07;
+	Tue, 21 Jan 2025 10:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aMAHmT0t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oVLeeITk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4A191B6D14;
-	Tue, 21 Jan 2025 10:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66721BEF67;
+	Tue, 21 Jan 2025 10:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737454489; cv=none; b=gfzO3KMHvlY80/aVoO1Lwj/tY31hU0iht/Be4eRRCkLlc67RwGTSYixNoMBb6QqSUAg423Pnwq1KoK6Sr4efE+0x/JCG3XwrRD+qR59IefJ23OJgJtGrxZjY705zqpt34amRm9cV8CVLESCOhJLLgp2Y4yEJNoFf57PO5QiJHiY=
+	t=1737454538; cv=none; b=XcehwKPLWC/Iqy8w23o1w/n+U9oDI0nbx6n0Q/wPRQcT8mBEoQJ0RASV5+nfvWQ3g+5uEP+mw0o/6oeB5e8oOLFj148bTOwttopKvrdYN4wGYleRdO5AvNWaFeVeE/rvK7WMQituaETrprY80XDM6oT9k2Hhw5jlwdUi3uxSsMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737454489; c=relaxed/simple;
-	bh=04qTz7CSMOIP18CaQqgrluBBwkB/rAJoEuXBAFg3YkQ=;
+	s=arc-20240116; t=1737454538; c=relaxed/simple;
+	bh=2f6NguNRm7CAVpx5BaUGtLCj2Ck4g9QdKcKsfodhByo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=THovPFe14eRsHTnjqMdN3I2k0laVZ9k5jxioMboRAxMSrQqoG6mK0XnosFAX87YMKDkcUsGqL4MsL1Eb495lqwOfhFwsFmA/8eBVlyPVzxW79jXH8Z6tDgsRazcRRXpJcP47HNw5e/+/sw9YbFSLVNfF8NIzkRBVJuqTpubypx4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aMAHmT0t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2341C4CEDF;
-	Tue, 21 Jan 2025 10:14:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AKnCYBHOmWee3Dl9dwTEzsKZcxYymKrwkPp+xIwFts4Bpu7wFSJobi/5uLtfh8dfActC2+DBwRNyUgpJIICZnFIzcC9+E1fMhvr7rpbd6xCUDZrAy66uvVUCUCPxEsetqrVQNmhiyJCwxojmY3xRfld/5EjKJVKM69lyTxdfbIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oVLeeITk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD92CC4CEDF;
+	Tue, 21 Jan 2025 10:15:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737454488;
-	bh=04qTz7CSMOIP18CaQqgrluBBwkB/rAJoEuXBAFg3YkQ=;
+	s=k20201202; t=1737454538;
+	bh=2f6NguNRm7CAVpx5BaUGtLCj2Ck4g9QdKcKsfodhByo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aMAHmT0tgdndgvuTud9TuSW3+uFYlpGuODPBCtIS8u9ApjfzfavBgDzjSPUeg6ESJ
-	 m6WiIiPzW6pvcuu73g5lke6rPMHAbcPSHjNcQeIO5s16aXUpInT67WYsbN1SJ0rq1z
-	 e0uxKxZYydAgI86Ii/q35px09lpL+TXBG7XwTuImfxmPsR6VM1aMjxj7Mk9hNxRZfZ
-	 4Qytrko49EMYDe/4HNOx8jj6doCEYzY622iU6pSXMfBdiNya74jZp41FOQL72mavBC
-	 alT0z8BKbLAeftH8CP/FsN5srb2oO8xiyIc1wwSIfQtVoDyNuiQLGvBN1StGn+scv4
-	 RIY14/Qu/5skg==
-Date: Tue, 21 Jan 2025 11:14:45 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Friday Yang <friday.yang@mediatek.com>
-Cc: Yong Wu <yong.wu@mediatek.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v3 1/2] dt-bindings: memory: mediatek: Add SMI reset and
- clamp for MT8188
-Message-ID: <20250121-alluring-fractal-toucanet-c3b1ab@krzk-bin>
-References: <20250121064934.13482-1-friday.yang@mediatek.com>
- <20250121064934.13482-2-friday.yang@mediatek.com>
+	b=oVLeeITkQtBHF5j2p2QD9jfjXv50PVv3ipgtKNNKClIucUZAI00RVdbj6MyzW2ANP
+	 +NgySnE1xuORfSy8kqOhpHElpHoYjlNYhOUn5mR+poTSJ+NElVXQuyqzrBxxwWMwUD
+	 8FAHIVJJXS2CudyJpmRfoCJqv6LBjBKfBaYsfT9WBe/PQyvzV8dDiDuJIiH1cp7QGC
+	 2R/Xepbu6fTGcJs5JP0h9UfPububx/m2THbEh3UgbPKu+GtlPEq4bOe1tcmRNqYI9f
+	 zNWrQKeMYjEi8KSLLfy3nXTetS7LLUT7VIF6j07IZ0S2lidmCyq+g6rZkZwJ1s1By2
+	 HHD41xmUo5QlA==
+Date: Tue, 21 Jan 2025 10:15:31 +0000
+From: Lee Jones <lee@kernel.org>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Sebastian Reichel <sre@kernel.org>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>, Hans de Goede <hdegoede@redhat.com>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+	Purism Kernel Team <kernel@puri.sm>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
+Subject: Re: [PATCH v14 07/10] mfd: simple-mfd-i2c: Add MAX77705 support
+Message-ID: <20250121101531.GA1045870@google.com>
+References: <20250108-starqltechn_integration_upstream-v14-0-f6e84ec20d96@gmail.com>
+ <20250108-starqltechn_integration_upstream-v14-7-f6e84ec20d96@gmail.com>
+ <20250109120158.GH6763@google.com>
+ <CABTCjFAky55btJz3B=K2kL5gSJD9BYi5t15jaA2ga5asVT=3NQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,41 +70,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250121064934.13482-2-friday.yang@mediatek.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CABTCjFAky55btJz3B=K2kL5gSJD9BYi5t15jaA2ga5asVT=3NQ@mail.gmail.com>
 
-On Tue, Jan 21, 2025 at 02:49:26PM +0800, Friday Yang wrote:
-> From: "friday.yang" <friday.yang@mediatek.com>
+On Wed, 15 Jan 2025, Dzmitry Sankouski wrote:
+
+> чт, 9 янв. 2025 г. в 15:02, Lee Jones <lee@kernel.org>:
+> >
+> > On Wed, 08 Jan 2025, Dzmitry Sankouski wrote:
+> >
+> > > Add MAX77705 support - fuel gauge and hwmon devices.
+> > > Hwmon provides charger input and system bus measurements.
+> > >
+> > > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> (...)
+> > >  static const struct of_device_id simple_mfd_i2c_of_match[] = {
+> > >       { .compatible = "kontron,sl28cpld" },
+> > >       { .compatible = "silergy,sy7636a", .data = &silergy_sy7636a},
+> > >       { .compatible = "maxim,max5970", .data = &maxim_max5970},
+> > >       { .compatible = "maxim,max5978", .data = &maxim_max5970},
+> > > +     { .compatible = "maxim,max77705-battery", .data = &maxim_mon_max77705},
+> >
+> > Drop the battery part from the MFD (group) name please.
+> >
 > 
-> Add 'resets' and 'reset-names' properties for SMI LARBs to support
-> SMI reset operations.
-> On the MediaTek platform, some SMI LARBs are directly connected to
-> the SMI Common, while others are connected to the SMI Sub-Common,
-> which in turn is connected to the SMI Common. The hardware block
-> diagram can be described as follows.
-> 
->              SMI-Common(Smart Multimedia Interface Common)
->                  |
->          +----------------+------------------+
->          |                |                  |
->          |                |                  |
->          |                |                  |
->          |                |                  |
->          |                |                  |
->        larb0       SMI-Sub-Common0     SMI-Sub-Common1
->                    |      |     |      |             |
->                   larb1  larb2 larb3  larb7       larb9
-> 
-> Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+> It will then conflict with MAX77705 mfd driver compatible.
 
-SoB/From mismatch.
+Where is that used?
 
-Please run scripts/checkpatch.pl and fix reported warnings. After that,
-run also 'scripts/checkpatch.pl --strict' and (probably) fix more
-warnings. Some warnings can be ignored, especially from --strict run,
-but the code here looks like it needs a fix. Feel free to get in touch
-if the warning is not clear.
-
-Best regards,
-Krzysztof
-
+-- 
+Lee Jones [李琼斯]
 
