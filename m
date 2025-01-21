@@ -1,148 +1,118 @@
-Return-Path: <devicetree+bounces-139989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5569DA17BAC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:29:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C820A17BB8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:31:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 747383A6A89
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 10:29:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F32F160D03
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 10:30:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D4A11F03DA;
-	Tue, 21 Jan 2025 10:28:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FBB1C1F05;
+	Tue, 21 Jan 2025 10:30:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b="TodriPTU"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="IY1UV6ws";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="sx0RZGSj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449831F03C6
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 10:28:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7633D1C173C;
+	Tue, 21 Jan 2025 10:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737455336; cv=none; b=HVF16Js7Hyhp4+N1B/yblPkqNexV7iOSw7fNjPiwZwGS+gvi4frrOo7Bd14m7LJl3SNfKnGvsNRVQ9mQDxwwZkoXSHSGG9m2tJXx92d8MLeY+h/5M2TG73pdH9TaW7AMZI8/e01vcsaAvOCTrqrXrnmmupP3Hc0EXEawpuC0um0=
+	t=1737455448; cv=none; b=s66NeAv/xCb0Oh6ARZq7dd3VPsImjVOeiJUlwx5H8JTA3xfxYIZ3AeJWTHZNBJ7JHM3LYW3cOCcF8prsFot6N0IWP8MK2UjxbQqGs23nO1e50S57WnLZDjNwuCFJhBS4Ls5fSH1z6qi1PSvuXSuq2hjzBCC0PxQQEYDOKnC9IxI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737455336; c=relaxed/simple;
-	bh=Sr0sCOcX7uHKMssv62r3hF336fh80SYkMIuY/VEN81w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VIsxGhlfT5X7Ad3U0mR+d56z2LmhCj4WIeoMug1U/2BDovmnFWTjjsTzvumY/EgppsU6Q8ny20ON6eB+sBQRqQUXXfeyYpYSo0LofV4x/ErQ89GkGkXBIrQaNK9rTUf/N5I2K8EigYF07tcjoHAOjYSucdtkmPoi6cHA9h4NAE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com; spf=pass smtp.mailfrom=thaumatec.com; dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b=TodriPTU; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thaumatec.com
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-ab633d9582aso208842966b.1
-        for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 02:28:53 -0800 (PST)
+	s=arc-20240116; t=1737455448; c=relaxed/simple;
+	bh=y/9WtCwjY1asJUaJ7F6fIYTYTnnFPQ7VO65IbB+pg0Q=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ujEKbid3S9WuLu8fnlbd/cPEq+qPHLvpo5bZVWPGp9x3abKcbKuo+vrc8eJfmlWp51pv4k33BQLw9y4b44YPq9wif/DiAGOFBTAA+4+1TOtFIBRlwVEECkXr+3QDiOp4VEBNCZtSQ7vEA0kDZIdARgae5/r2TBdGNni++zw0I2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=IY1UV6ws; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=sx0RZGSj reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thaumatec-com.20230601.gappssmtp.com; s=20230601; t=1737455332; x=1738060132; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Sr0sCOcX7uHKMssv62r3hF336fh80SYkMIuY/VEN81w=;
-        b=TodriPTU/M+VUDtY2/6Ud9eTJS0MRwBgry5/kr/7NdcI8NJDB8nEurDZWqMT9yn3zp
-         scgalJ4Wp/IIira6hyO61pKeHsHz3qb5aRoUundSh6fQJYz+Y0CsE/t4fW3bGxpM2rkC
-         fIgqNfJuX+Pf+HgFyMjyIS5ArGq9mrag5v/Kp1p5sYBBwjLKs/MEHzOgSxQbQC5kl8J+
-         mvyzEg1XvxV7hxdGVpIAAUjfsoFafUcfJK2Yu6mrfT1W2id8DK6hOPI+GMP/wx4Wwzcg
-         K06DBzDt1zQeaeX0JVNQYrWHoDzhnXCBhyYLx997WI2uElrKeg/DRR0fzQFDDObC+LGP
-         ivIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737455332; x=1738060132;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Sr0sCOcX7uHKMssv62r3hF336fh80SYkMIuY/VEN81w=;
-        b=d6jMKHxmdLS+Ij3H5N++7HD+GycNgVIhop0AuoBGcHaO+JePHtC4pUbu8BjquBarrD
-         YL+HtBMsWKmWwbX8KnEinpq2lEnONbWf7u8Kf/WBhxIsNudxHG6GGjrDtuWhRym0GZJN
-         oJgDw5nFZ9Tz698vv+z4vkq3sTMFwrjrjnurYfXZkMX0VXGJG95LHhgK1FfEFJsuMdRz
-         4enNX5s8Aaet2qy9JNQPPS/ZZKVXwZCsqxohFJP0BR5NKRGUvZ7JtrJ9s6z3Nm8qi0m9
-         fgHISfP2xWzruBe5G4rPY4jn4adm4NdzOCnddF7+zezSPtx+5MWDE+cQYhwpGoYCcYkK
-         4wEw==
-X-Forwarded-Encrypted: i=1; AJvYcCWJzQrf5U7JG+EDr47q6YT/C3JBWLrU99hONtWqdbKT9iryuIs6IfteorWRv+hjtzNImz01CYlg30v3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxb1zhiUS6+Ein1sBwfipV34vauHiUWLgbyAO1CQun3sfWIDxP+
-	u42ovx4MSSP+gCJYq+MrvyOWi0r+8IXh24v2ImsYZ9SpbJaNogBKIapVlxbLrd6C3AsSMZCxFsI
-	+Hx+H43Tyj/iYofOigVDHstYWLGC1hoCJcPTDpE6lPsbsHmqeGGM=
-X-Gm-Gg: ASbGncuERjiu34bXFs126Jwt8TsxlOr3emVqec+WSLzh4IY3g/LuXTdo71Ds/IQ7Z+U
-	HZxx++lCSconCO9jbvysmzY76yIntudN5+4ThXscISi2Flws=
-X-Google-Smtp-Source: AGHT+IEcsLPaoNoghItPAJ5Bi0M9AGwAezLgRPxEZ2srqEeLZMEDrHzM4WtrrsNk9nSAiLHw2juwxr/qVGZCXKm8D4Q=
-X-Received: by 2002:a17:906:7953:b0:aa6:6885:e2fa with SMTP id
- a640c23a62f3a-ab38b26f4acmr1382334866b.14.1737455332458; Tue, 21 Jan 2025
- 02:28:52 -0800 (PST)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1737455445; x=1768991445;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=vlr5cUwPRRPdmdrxfHfnoxx2HdPSWBufIchZ2vqklZk=;
+  b=IY1UV6wsdBSQDvBmGfMVJ1hT9uCDNUjM/d4AeLN8Jycw/uT4UsqJzk3I
+   25igdxJ4mv/dheHH2hHXkVWR96gRU4ggTj4yYKxpnD2rCzkJb2xuBEoeR
+   NCIUvuiSSqRDFkMZ+k3Qv21BzULRVoFuq4dV1+NsgKNXfg0pZt15HMzNJ
+   aASuRJpRKtt0+Zi/LxGhDvYXiXR8ZDKPf3dlXTXn7h6bxYlZNjgji3MSp
+   xDc671G1SxBYYZziyobGoY8GXg0lMkSZzwapcmoInuqQhYNZVu9fpioz8
+   8DlcfHwKSH0IyOqVIHMXqjHPR9W6Sa30IxS1sEgPaS1cgK3lMo664Gli5
+   g==;
+X-CSE-ConnectionGUID: VLxxD6TwSP2QjGRQNpkVoQ==
+X-CSE-MsgGUID: NOYYOwoHRY+NVxiinLL4Tg==
+X-IronPort-AV: E=Sophos;i="6.13,221,1732575600"; 
+   d="scan'208";a="41196365"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 21 Jan 2025 11:30:41 +0100
+X-CheckPoint: {678F7751-A-31397509-E321C4C4}
+X-MAIL-CPID: EA44B9009F17B461DEBA4D0C8EEB203A_0
+X-Control-Analysis: str=0001.0A682F25.678F7751.0071,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 433D2163631;
+	Tue, 21 Jan 2025 11:30:35 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1737455436;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=vlr5cUwPRRPdmdrxfHfnoxx2HdPSWBufIchZ2vqklZk=;
+	b=sx0RZGSjlZosl5kPDCZiO1SYdeThTPbiGYy06XUhzZuko/HoS5jbx6IVui/+0/PDbomMPn
+	W7Jgcx46OPYHN8x2l3T1oBKXM8FH6cOllWOn57YZgwCXE+ieTukBtb6dWyl35bnZSPZ2K3
+	n1fbLZ0miOhXbvZPdB+aK8THlLt+Aqvx5s4G3ZyDE+iHdE7clkKbBC36+BM7aieEK8RW55
+	w48q7gZ0jmJCSiGwW+CbEV8di4kZrE+x/mHFXVzuiBDdpCTugw3qIijpgB766Z00DBM0i9
+	EpaSADrkj2NMx2zS3/k0mT2/13CLSZGvI7rPG/qgWK4I0njjVzJAjUUl2YFXOA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	linux@ew.tq-group.com,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] arm64: dts: freescale: tqma8mpql: Add vcc-supply for spi-nor
+Date: Tue, 21 Jan 2025 11:30:22 +0100
+Message-Id: <20250121103026.1404856-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250121092255.3108495-1-lukasz.czechowski@thaumatec.com>
- <20250121092255.3108495-3-lukasz.czechowski@thaumatec.com> <2be46f44-6c81-417b-b0b9-7325cb0f7c10@cherry.de>
-In-Reply-To: <2be46f44-6c81-417b-b0b9-7325cb0f7c10@cherry.de>
-From: =?UTF-8?Q?=C5=81ukasz_Czechowski?= <lukasz.czechowski@thaumatec.com>
-Date: Tue, 21 Jan 2025 11:28:41 +0100
-X-Gm-Features: AbW1kvbBRHTdZcGUKzENwwtfueprpEt6a9kFTwxCgS9D6yxja5shI7FMHmjn2FI
-Message-ID: <CABd623tHh07Nb7KVjS_GJ5OqfjF4kOUKsSKNKA_HcJbLG=WBiw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Disable DMA for uart5 on px30-ringneck
-To: Quentin Schulz <quentin.schulz@cherry.de>
-Cc: linux-arm-kernel@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, heiko@sntech.de, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Quentin,
+(Q)SPI NOR flash is supplied by 1.8V. Add the corresponding supply.
 
-> On 1/21/25 10:41 AM, Quentin Schulz <quentin.schulz@cherry.de> wrote:
->
-> Hi Lukasz,
->
-> On 1/21/25 10:22 AM, Lukasz Czechowski wrote:
-> > UART controllers without flow control seem to behave unstable
-> > in case DMA is enabled. The issues were indicated in the message:
-> > https://lore.kernel.org/linux-arm-kernel/CAMdYzYpXtMocCtCpZLU_xuWmOp2Ja_v0Aj0e6YFNRA-yV7u14g@mail.gmail.com/
-> > In case of PX30-uQ7 Ringneck SoM, it was noticed that after couple
-> > of hours of UART communication, the CPU stall was occurring,
-> > leading to the system becoming unresponsive.
-> > After disabling the DMA, extensive UART communication tests for
-> > up to two weeks were performed, and no issues were further
-> > observed.
-> > The flow control pins for uart5 are not available on PX30-uQ7
-> > Ringneck, as configured by pinctrl-0, so the DMA nodes were
-> > removed on SoM dtsi.
-> >
->
-> Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
->
-> We should backport this to stable releases too, so please follow the
-> instructions from here:
-> https://www.kernel.org/doc/html/latest/process/submitting-patches.html#select-the-recipients-for-your-patch
->
-> Essentially:
->
-> Cc: stable@vger.kernel.org
->
-> in the commit log and we'll need a
->
-> Fixes: <commit hash>
->
-> trailer as well with the commit hash of the commit introducing the issue
-> (likely the one defining uart5 for Ringneck for us).
->
-> Considering that UART0 CTS and RTS are routed to Q7 header but only
-> usable when Haikou exposes UART0 on the DB9 connector (via the SW2
-> switch), which is NOT the default state (and in any case not supported
-> by our current device tree), I believe we should make the same change to
-> the uart0 node in haikou dts for Ringneck. What do you think? Can you
-> send another patch for that one?
+Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-It seems that in case of uart0, that is configured as kernel console, the DMA
-is not used by the kernel:
-https://lore.kernel.org/linux-serial/20200217114016.49856-7-andriy.shevchenko@linux.intel.com/
-Which is likely why the issue was not observed so far. However it might be
-good to do the same change to be on the safe side.
-Should I extend this patch series with the fix for the Haikou device tree then,
-or create a new one?
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
+index 2ca87d2f0b590..f00730ba4e1c0 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mp-tqma8mpql.dtsi
+@@ -50,6 +50,7 @@ flash0: flash@0 {
+ 		spi-max-frequency = <80000000>;
+ 		spi-tx-bus-width = <1>;
+ 		spi-rx-bus-width = <4>;
++		vcc-supply = <&buck5_reg>;
+ 
+ 		partitions {
+ 			compatible = "fixed-partitions";
+-- 
+2.34.1
 
->
-> Thanks!
-> Quentin
-
-Best Regards,
-Lukasz
 
