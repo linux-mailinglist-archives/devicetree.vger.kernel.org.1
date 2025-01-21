@@ -1,72 +1,79 @@
-Return-Path: <devicetree+bounces-140135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 155BBA1878E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 22:58:43 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DAEBA187C1
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 23:33:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B82B4188A7E3
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 21:58:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3055D7A1EE0
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 22:33:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A09301F8913;
-	Tue, 21 Jan 2025 21:58:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A350A1F7064;
+	Tue, 21 Jan 2025 22:33:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="FPlpSjTb"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Bbkspk9v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D1E1F869F
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 21:58:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66622187FE4
+	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 22:33:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737496717; cv=none; b=UmeL0R/3QwpQBKO1vcyjwRpz6Tqd3x6BV9LDl1tY4xcVJ6wfXcIARBmfsnCYI6H01aXYEOWRGzzKnmCRyk4aoXw9sfpSQd2HWG62Tse6WSMB7ZBs/bJEfmMULtN2SP4kKq2HF4Un2NOzSsn18q80063CwFUUCRKxor3lK/tyFMw=
+	t=1737498782; cv=none; b=QWO4Sot5kJ86oB+BOo2KHggvrEuMOuZiOfAL6H1ZY+j4uKnQKQFD2g5xgZ/m/b+5omKxTbG0VRCGABIAs67n/by5i+9Y1wRKKuoElbXplFhR5UXlT4JKNlnkSGXUR6nEbd8qPWbPA6Miv1TkozFDYCXfVwOptYK0GvtPY/WXfKs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737496717; c=relaxed/simple;
-	bh=PQ8HmImznIqveMgGViJdb3JBkPUFSZC1K3t5wsnSATE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=MUk2eCKLv0WZqkT3JVIlkg53D6QoapENv2hHGics1+HmF8x8bFzlPKRUG6q++Ig5ZUfdZuPpx0nafuWpxW1oYV/tqO4dnV1YepmrS+nK0LOGKo3Pl+JFrWkiYuyjejwzWwvAvVZNNBhg0u7AhvIn9xd15mURiQGQ/6T3zqDSCf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=FPlpSjTb; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250121215833euoutp029165fda74dbeb9c9f864c7a657340060~c1A4TvUWF3137831378euoutp02a
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 21:58:33 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250121215833euoutp029165fda74dbeb9c9f864c7a657340060~c1A4TvUWF3137831378euoutp02a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1737496713;
-	bh=dhS9VK6lKtJDwB/Wh8WM7ke0tY8Fdq91p1GikVh8Noc=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=FPlpSjTb/LH/VDkNSL+s7N1Zr9LdQaKqXOZIRml7leQkVU6MyBsUCQXx+1lth2DDM
-	 iHENB757SBH0dOCHKJAF3wZHtXHg395o1iKq3x2ym+jdcwfPzJLaGYnc9Ywwh4lrEG
-	 wRiMZIvYqwIyhDQtfvVwG0Jgq+SI0AKZJPnOgqGc=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20250121215832eucas1p2853bd0813e860f5e8bb602baf341efe9~c1A3v2gpS1285912859eucas1p2t;
-	Tue, 21 Jan 2025 21:58:32 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-	eusmges3new.samsung.com (EUCPMTA) with SMTP id 81.63.20397.88810976; Tue, 21
-	Jan 2025 21:58:32 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250121215831eucas1p128aaca6fb6e57b29dabac1b7f914d20d~c1A2d3S-l1222312223eucas1p1d;
-	Tue, 21 Jan 2025 21:58:31 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250121215831eusmtrp171478958438ff0ec982029abb41b0548~c1A2bXl923058630586eusmtrp1P;
-	Tue, 21 Jan 2025 21:58:31 +0000 (GMT)
-X-AuditID: cbfec7f5-ed1d670000004fad-fe-67901888090b
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id AD.74.19654.68810976; Tue, 21
-	Jan 2025 21:58:31 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250121215829eusmtip27335b394e4a3e5f85167ea3b5fec4752~c1A1JlHHx1353513535eusmtip2X;
-	Tue, 21 Jan 2025 21:58:29 +0000 (GMT)
-Message-ID: <ff53263d-813f-43c3-9090-e73dc0031949@samsung.com>
-Date: Tue, 21 Jan 2025 22:58:29 +0100
+	s=arc-20240116; t=1737498782; c=relaxed/simple;
+	bh=lKxghfTz/YPh4EPK64WgQmiUjxXi2fqZG57xnjL1o0M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sUWRVvouryO5kZDm7FvHCAaLCJDodW70AIGNnmgfivCg2xeqC30LYz8BRLOa+HdO12HDQmA21HTbpzwKj2UEzOjs+hkkxlbXbJeGrbtTkZHgk7NbLhRukpDVEAtr1ofj92kRKSy4Mp6OZmkFqG1ZcAUMwK4PLBSnsvr080X12uA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Bbkspk9v; arc=none smtp.client-ip=209.85.167.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f177.google.com with SMTP id 5614622812f47-3eb6b16f1a0so1853615b6e.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 14:33:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737498779; x=1738103579; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=69ilqU5SYOEcpJzCx+ZI0LKQxRNsBfyKsxd3wREPYAM=;
+        b=Bbkspk9v6KW0WCBnvCKGpLK/KVmNuSzUhxddMkYKK9bhQIlEgfvfkNJaG4jb9jsEgQ
+         Hg1463tVxOCsA9To2H1US8p3sKFn2py5RZik65USa7nSCyz/LCVV7pVEv/kXqjrfep0R
+         RzfCQGJMAlWcUkJ64OZiXiGUVUtSYGY5Gu2jLKVkoRXP2mjD0UpbjsF6vn2ZLXaCGlOi
+         vYYVvYkT1lD8aiv4fKKz/vuIB2p3Tbmo1T5UoCd8Pw5Z2DMHy6Pbg5vwMjbC4p7Q+qg8
+         SiGdZiXYK+TqDcMzJk0zRa+2Is4wVzdtQh65jkOYn/BzDLqRICNIV0PW60Qo93sZWHQZ
+         uU2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737498779; x=1738103579;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=69ilqU5SYOEcpJzCx+ZI0LKQxRNsBfyKsxd3wREPYAM=;
+        b=rG7IAiQ1uq1WxExxOZVm/f0zu29XXKE7uMArxdNbn5ltHc8v8iw3hzvJX5aBiOcwUw
+         XxfnWvhw31ghn4hyKqtvSV6grI9cDqNr0XHL+2BK8lDvWHmb0GxaHwupskAKM/h213pc
+         aU2f+OFIxIu6H5yDDKeLXrH278DBzhJWw8l7GTOw1UzItj1dml3IhhjsCF4i1WrBhQJL
+         hONGrPXKdfoQVWmIq6eim/7MxnmgbcHdjpmuLyFDoluFJLS4QPorVLoGMxinNXeWcghG
+         6vaPirdKolHjxRIWQFaJbsmbaE6bVrnGXc8duneikFpBH8nnJkOwZnrZNJ2ks2KXfTpw
+         DJpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVeoMPraPrkxqeXxtIqd7uIBB2iKkQ1A9DMPrT0akSpsFtdtFX4F6M7xggoT2YrXTy3Ik95QDKdans9@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsqmlZ6g5DTurW4cvB0ovtMgq2PTKwpKDk0HQxmD9oWCKiFPmB
+	1G3fhCQR8Anzel8nYteBWfBH2hK4NZl11axvPO5SFwZdlf9WlwGJBBP78JMK7Y8=
+X-Gm-Gg: ASbGncsm4mFJYe2APa54nQ2NUovp7D+Qa+qBfbJQq/zLv9hZcTBMH4SWJ9ky21/bqdz
+	ZTkEmZc4PudppeQ6p1fTBhnOAbRPQv6qIDRLrUDS90NnHSmkrRxlOShgFJoHH3Q0PfGnU7NnSq4
+	JTaeaGzeVexPqveQWaJsBRNc6hVNODrOQu+qiofw289E1QGgdIGeOp8ZmqOsIPbmBT2N0wgFl2s
+	l1+Y7U7RImlyyEbEytyPUdvE6tTUoZNSStpvgQuiAxgwboSMgcKdFTFvyw3ITYD4MMjYazXzizr
+	kQ+1+XBlQ6PpFDyLjZJwUrGIHAc0N6s=
+X-Google-Smtp-Source: AGHT+IFoow9TxlSsxOuMbPztuGLd5sJk699UhXP5MDEwZ+jS0Rj2BXHTczQCzf+U/O+It/Rj3hS+bQ==
+X-Received: by 2002:a05:6808:4d08:b0:3eb:66a1:9d8f with SMTP id 5614622812f47-3f19fd4c7a0mr8840441b6e.25.1737498779414;
+        Tue, 21 Jan 2025 14:32:59 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f19db7828esm3308482b6e.34.2025.01.21.14.32.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jan 2025 14:32:57 -0800 (PST)
+Message-ID: <d9828b7b-facb-4b42-aec2-427e68352a94@baylibre.com>
+Date: Tue, 21 Jan 2025 16:32:56 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,141 +81,140 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v3 07/18] dt-bindings: reset: Add T-HEAD TH1520 SoC Reset
- Controller
-To: Philipp Zabel <p.zabel@pengutronix.de>, mturquette@baylibre.com,
-	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	drew@pdp7.com, guoren@kernel.org, wefu@redhat.com, jassisinghbrar@gmail.com,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	frank.binns@imgtec.com, matt.coster@imgtec.com,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
-	airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org,
-	jszhang@kernel.org, m.szyprowski@samsung.com
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v1 1/3] iio: adc: ad_sigma_delta: Add CS assert function
+To: Alisa-Dariana Roman <alisadariana@gmail.com>,
+ Jonathan Cameron <jic23@kernel.org>
+Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20241221155926.81954-1-alisa.roman@analog.com>
+ <20241221155926.81954-2-alisa.roman@analog.com>
+ <20241222180713.64f27040@jic23-huawei> <Z49qgvy0ZVKJ0h0W@spiri>
 Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <6018a750dcbb46fe1bd9f653f469d54928c23610.camel@pengutronix.de>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <Z49qgvy0ZVKJ0h0W@spiri>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0xTVxzHd25v722bFS4FxhljUTB76DZEGMsJGjbRzbtkJnMLGcwFbMZd
-	QXmthTEUHAzoaFeZPDqwIq8YRTIkQMGWgUQebVXssDgQhEIibINZoAWZQMBZL2789/l9f9/f
-	+T1yeBxRG+HNi0tMYaSJ4ng/QoC3GpbNb+XD05KAX7XeyDRUg6GWVQ2JfukwY6iyx8xFVosW
-	Q3cezhHo8lQ/if7qyMbRYO05EuUYGgg0rbESyK6yctFAWzmBFk71ANS6kEug+p4xElXbW3B0
-	XtcGkFxxgYtu33gfjVlNOJoeUHGQXOOKHrfrSLQ+2Iijs7OdJNI+KOQiY/1nKLezBH/vZXru
-	bh5JP5iexunu/EWS7liqwmm9ZoykVfo+QDfVKQh6dLCdoCuuH6LHfzRidPP57+jcegNG/7QW
-	QM9d/Z2gC7R1gLbkDJEfiz4X7Ilh4uO+YaQ7Q48IYsvUt7jJNvdvB4syskAjpQR8HqTehr1r
-	fbgSCHgiqhbAe2OXMDZYBLCwpYpggwUAqxvXsWcl99u7uUrAe5K4COA5X9ZjA9CR/zPH6RFS
-	oXBWV0I4GadegUvt1g3dDV4/M4k72ZPaAsdHykgnu1MRUFGqBs6HPCg1Dosrpp8mONQVAE19
-	Qpa94Mhk5dMhCCoQTlys5DqZT30E9Tl3Nvxb4BVbOYcd9LYAlgyGsbwfmhq6cZbd4YxRS7Ls
-	A28Wqzb0JDjR4tiozYB6lXGDd8NR8wrhXJhDbYcNbTtZeS+8qlWTThlSLvCuzY2dwAUWtZZy
-	WFkI8+Ui1v0qVKtO/dfUXNuKnQZ+mk1H0WzaUbNpF83/fasAXge8mFRZgoSRBSUyaf4ycYIs
-	NVHi/2VSQhN48r1vrhsf6kDtjN2/C2A80AUgj+PnIfScV0lEwhhx+nFGmhQtTY1nZF3gJR7u
-	5yWs6cyTiCiJOIU5xjDJjPRZFuPxvbOwiJRLdltShvRPqUMcNbVeGROuCI19dD8sGAi+AGVB
-	uk+KDKprmR+83nKmNG13tuTopzXy8KFhB3gxvWHi8ejfq8rx7/knLHz8zcyKAaapb1towdc1
-	YX/MhvRXKA+/k7a1eTzS7VaIT7NBr97aOxPOfFVcvbw3/EKMwvb8apFvQWDJtgMN8SsvDCtn
-	In47GOvhM28OODK6/VhwVu+hk0dPhvWrCu3BNfP3rnnAfdXJUz8c8CddXToWxfr97wY51kKG
-	yvZZ+jJXPgycHK+MokO0TZGvHfaNyy6vWt5lHF4iho5b/vEuTJcnT0bmuc5GN3lGmYat9Sce
-	vbHjxsSe6MsjjrWU5/xwWax41w6OVCb+Fwrxck5NBAAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrAKsWRmVeSWpSXmKPExsVy+t/xe7rtEhPSDabfYLI4cX0Rk8XW37PY
-	LdbsPcdkMf/IOVaLe5e2MFlc+fqezWLd0wvsFi/2NrJYXFsxl92i+dh6NouXs+6xWXzsucdq
-	cXnXHDaLz71HGC22fW5hs1h75C67xcKPW1ksluzYxWjR1rmM1eLiKVeLu/dOsFi8vNzDbNE2
-	i9/i/54d7Bb/rm1ksZj9bj+7xZY3E1ktjq8Nt2jZP4XFQdbj/Y1Wdo83L1+yeBzu+MLusffb
-	AhaPnbPusnv07DzD6LFpVSebx51re9g85p0M9LjffZzJY/OSeo+WtceYPPr/Gni833eVzaNv
-	yypGj0vN19kDhKL0bIryS0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLL
-	Uov07RL0MmZMPcta8Fa44tqkmgbGjQJdjJwcEgImEo/3HGbtYuTiEBJYyiix9fhjZoiEjMS1
-	7pcsELawxJ9rXWwQRa8ZJR7+ecYIkuAVsJN4t2MKG4jNIqAq8W3PPWaIuKDEyZlPwJpFBeQl
-	7t+awQ5iCwtESHROn8oIMkhEYCqLxJGrf8FWMwtsZ5TYMBMiIyTQzSRx8eldsBZmAXGJW0/m
-	M4HYbAJGEg+Wz2cFsTkFfCR2Nl8BquEAqlGXWD9PCKJcXmL72znMExiFZiE5ZBaSSbMQOmYh
-	6VjAyLKKUSS1tDg3PbfYSK84Mbe4NC9dLzk/dxMjMGltO/Zzyw7Gla8+6h1iZOJgPMQowcGs
-	JMIr+qEnXYg3JbGyKrUoP76oNCe1+BCjKTAwJjJLiSbnA9NmXkm8oZmBqaGJmaWBqaWZsZI4
-	L9uV82lCAumJJanZqakFqUUwfUwcnFINTHaqizJUOB7PC+sRCjc+cvGV9PVfXwXy0mrOfWry
-	bd9VwXgleNKXVQmvQhuk2Bn0mlforlpZsdxN699um7kbizez/IvxyV/ZHXJO7eaDLw9fPvXN
-	4O3J+2IR8CJYzkLbI3Zm0bHeNTP3sFYHaDxysKl+cHHHOhWth8LbF73qdtHcsTJNrWluR0VU
-	86zuM7Pt9Jl1Vz34Nfcaw8xLzcZhteJu8d/k9W55vn/35k9SzvGWP5NSns7x4/bxPaWz9/7/
-	6INv3x28O1ViovHdzpR5d1TMjnQnJ7RffvufYW3XuqTgJbJ/xP7WTjrioHv2pMEK8YvXH4d/
-	bjofl7y3g6+QeWfWJQ7DmiPGE8Octsncd1ZiKc5INNRiLipOBAC406E84wMAAA==
-X-CMS-MailID: 20250121215831eucas1p128aaca6fb6e57b29dabac1b7f914d20d
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250120172128eucas1p2847f0863524b53d2d5029e5e9d238298
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250120172128eucas1p2847f0863524b53d2d5029e5e9d238298
-References: <20250120172111.3492708-1-m.wilczynski@samsung.com>
-	<CGME20250120172128eucas1p2847f0863524b53d2d5029e5e9d238298@eucas1p2.samsung.com>
-	<20250120172111.3492708-8-m.wilczynski@samsung.com>
-	<6018a750dcbb46fe1bd9f653f469d54928c23610.camel@pengutronix.de>
 
-
-
-On 1/21/25 09:35, Philipp Zabel wrote:
-> On Mo, 2025-01-20 at 18:21 +0100, Michal Wilczynski wrote:
->> Add a YAML schema for the T-HEAD TH1520 SoC reset controller. This
->> controller manages resets for subsystems such as the GPU within the
->> TH1520 SoC.
-> 
-> This mentions "resets", plural, but the #reset-cells = <0> below and
-> the driver implementation look like there only is a single reset
-> control (for the GPU).
-> 
+On 1/21/25 3:36 AM, Alisa-Dariana Roman wrote:
+> On Sun, Dec 22, 2024 at 06:07:13PM +0000, Jonathan Cameron wrote:
+>> On Sat, 21 Dec 2024 17:56:00 +0200
+>> Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
 >>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->> ---
->>  .../bindings/reset/thead,th1520-reset.yaml    | 44 +++++++++++++++++++
->>  MAINTAINERS                                   |  1 +
->>  2 files changed, 45 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+>>> Some sigma-delta ADCs, such as AD7191 and AD7780, have no registers and
+>>> start conversion when CS is asserted. Add helper function to support
+>>> this use case by allowing devices to assert CS without performing
+>>> register operations.
+>> Hi Alisa-Dariana,
 >>
->> diff --git a/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml b/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
->> new file mode 100644
->> index 000000000000..c15a80e00935
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
->> @@ -0,0 +1,44 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: https://protect2.fireeye.com/v1/url?k=9a1e91c0-fb9584d9-9a1f1a8f-74fe485cbfec-4ac5a7f48f7ed305&q=1&e=57e2ad34-940c-48d4-b365-a5719457bd20&u=http%3A%2F%2Fdevicetree.org%2Fschemas%2Freset%2Fthead%2Cth1520-reset.yaml%23
->> +$schema: https://protect2.fireeye.com/v1/url?k=40dd1447-2156015e-40dc9f08-74fe485cbfec-5ae5fe2734d49263&q=1&e=57e2ad34-940c-48d4-b365-a5719457bd20&u=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
->> +
->> +title: T-HEAD TH1520 SoC Reset Controller
->> +
->> +description:
->> +  The T-HEAD TH1520 reset controller is a hardware block that asserts/deasserts
->> +  resets for SoC subsystems.
+>> I had a look at the ad7191 datasheet. Given this description,
+>> I was expecting to see it do a pre pulse of the chip select to trigger
+>> the acquisition.  However, what I see is a power down line (which is more
+>> or less a chip select) but it just has a specified t1 delay before the
+>> DOUT will change to the state for the first bit and the host
+>> can start driving the clock.
+>>
+>> That can be done by setting spi_device->cs_setup to whatever delay is
+>> needed.  The text is spi_device docs are a little vague,
+>> but I'd take it as t1 + t2 (maybe t3 to be safe).
+>>
+>> That is going to be more reliable than trying to hold the cs across
+>> messages / spi_sync() calls, particularly if the bus might not be
+>> locked (which the code below suggests).
+>>
+>> Jonathan
+>>
+>>
 > 
-> Again, plural.
+> Hello Jonathan! I am grateful for your and everyone's feedback, as
+> always!
+> 
+> I got a bit stuck on this part. The motivation for adding this function
+> is as following:
+> 
+> int ad_sigma_delta_single_conversion(struct iio_dev *indio_dev,
+> 	const struct iio_chan_spec *chan, int *val)
+> {
+> 
+> ...
+> 	ad_sigma_delta_set_mode(sigma_delta, AD_SD_MODE_SINGLE);
+> 
+> 	ad_sd_enable_irq(sigma_delta);
+> 	ret = wait_for_completion_interruptible_timeout(
+> 			&sigma_delta->completion, HZ);
+> ...
+> }
+> 
+> I noticed that adc drivers need to call the ad_sd_write_reg function in
+> their callback set_mode function, in order to keep the cs line pulled
+> down before waiting for the interrupt (if I understand correctly). But
+> since this component and AD7780 have no register I just copied the
+> functionality of ad_sd_write_reg without actually writing anything.
+> 
+> Should I change the description/name to more accurately present the
+> functionality? Or would it be a better idea to not use the single
+> conversion function and write something from scratch leveraging the
+> cs_setup?
 
-Yeah should be singular sorry.
+If the RDY interrupt handling wasn't so tricky, I would suggest to just
+make a separate function. But to avoid duplicating that tricky code I
+think using the existing function would be best. I think you have mostly
+the right idea here. Here is how I would try to do it...
 
-> 
->> +
->> +maintainers:
->> +  - Michal Wilczynski <m.wilczynski@samsung.com>
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - thead,th1520-reset
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  "#reset-cells":
->> +    const: 0
-> 
-> Should this be "const: 1" instead?
+1)
 
-Right now I'm not planning to extend by more resets, I've thought about
-this during the discussion on v2 of this patchset. At this point I just
-can't see more interesting resets to have. Vendor kernel implements WDT
-and NPU. I don't think NPU driver will be upstream anytime soon. That
-would leave WDT reset potentially.
+	ad_sigma_delta_set_mode(sigma_delta, AD_SD_MODE_SINGLE);
 
-> 
-> regards
-> Philipp
-> 
-> 
+In the implementation of this callback, call spi_bus_lock(), then do
+the SPI xfer with no data that has cs_change set so that CS does not
+deassert (using spi_sync_locked() since we manually control the lock).
+
+2)
+
+This is the main part of your question, I think. In this part of the
+function...
+
+	if (sigma_delta->info->data_reg != 0)
+		data_reg = sigma_delta->info->data_reg;
+	else
+		data_reg = AD_SD_REG_DATA;
+
+	ret = ad_sd_read_reg(sigma_delta, data_reg,
+		DIV_ROUND_UP(chan->scan_type.realbits + chan->scan_type.shift, 8),
+		&raw_sample);
+
+I would add a new flag or create a sentinel value for sigma_delta->info->data_reg
+(e.g. #define AD_SD_NO_REG ~0U) that indicates that this chip doesn't have registers.
+
+Then modify the if statement a bit so that if the chip has registers, call the
+existing ad_sd_read_reg() function or if the chip doesn't have registers, call
+a new function that reads one sample and has cs_change set on the last SPI xfer
+so that CS still does not deassert.
+
+This way, we don't have to mess with modifying ad_sd_read_reg() to not read
+a register and avoid the naming issue. :-)
+
+3)
+
+	ad_sigma_delta_set_mode(sigma_delta, AD_SD_MODE_IDLE);
+
+In the callback for this function, do an empty SPI xfer so that CS finally
+deasserts. Then call spi_bus_unlock() to release the lock that was taken
+earlier.
+
+
+---
+
+Also, thinking outside the box, could we use a GPIO instead of connecting
+SPI CS to the powerdown pin? The DT bindings already have a powerdown-gpios
+binding for that. The could simplify things a bit.
+
+With this, the set_mode callback would just be poking the GPIO instead of
+dealing with the SPI CS line. But otherwise would be the same as above.
+
 
