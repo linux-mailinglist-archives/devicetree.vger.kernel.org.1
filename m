@@ -1,248 +1,251 @@
-Return-Path: <devicetree+bounces-139940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAEF6A1795B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 09:40:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13EEBA1795F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 09:42:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EC87161F40
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 08:40:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91B99188948E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 08:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 144381B85CB;
-	Tue, 21 Jan 2025 08:40:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A473A1B87CA;
+	Tue, 21 Jan 2025 08:42:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="HF5znpdU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com [209.85.208.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB4819D06E
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 08:40:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF411B6CF1
+	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 08:42:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.66
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737448851; cv=none; b=l61sgUnnwNeTSlIZRXUavJeKQarvMDQLbOKbjTQcV5n6mZ4jjSeOnCKBLSh8nmPWMtCxTrzAG8gw1suavnuicTHw9R/FwRDq+PcZ7arnmfXOcJNPaccb0nb+eGIt8u9K4UWU1fbTojm6/BXqC3TPb8BHDMFkp3Gup0lPj5xoKWA=
+	t=1737448969; cv=none; b=uC4ow4BVevu3bivjL/wb5Tizjed1TqPX2Ev5TgSm+APy+j2ViLIYclWNvEoZw1ErR/Zv9BPGywTwI/6jvCO8DH7WZjMUbtO4fkh+yqlkxidAZDTFYN63LWNolT/ed7Hb5RjtQW5LUc1rEHtWnFJx1LJ1mbYSTL0sUuRte0lL3ZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737448851; c=relaxed/simple;
-	bh=36O2BN9nelhepzdN+0Xvr+eVYf2IRYBwSs2OD5GML8c=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=R4s70QsH2/3X95GWA03LNTfP/mU0U2ix7OIRZESWqNK31NxyRcddSiE3LtsdLH2p2/ZUlUZ0741G23PpbHSBF7OG3TZjuGPHnL7fF+Cy9fwpZBBNcTFFyC8db583kmNOTWvQYB9A4n1OsGnM+EvXmCyDQsfco8P0JeJU0LDSqxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1ta9o8-0002nl-E3; Tue, 21 Jan 2025 09:40:24 +0100
-Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1ta9o6-0014s0-2e;
-	Tue, 21 Jan 2025 09:40:22 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1ta9o6-0001o9-2I;
-	Tue, 21 Jan 2025 09:40:22 +0100
-Message-ID: <8f231c35fbb7304ee781d9c8d1eaeaf5753374de.camel@pengutronix.de>
-Subject: Re: [RFC v3 08/18] reset: thead: Add TH1520 reset controller driver
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: Michal Wilczynski <m.wilczynski@samsung.com>, mturquette@baylibre.com, 
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-  drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
- jassisinghbrar@gmail.com,  paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu,  frank.binns@imgtec.com, matt.coster@imgtec.com, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
-  airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org,
- jszhang@kernel.org,  m.szyprowski@samsung.com
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
-Date: Tue, 21 Jan 2025 09:40:22 +0100
-In-Reply-To: <20250120172111.3492708-9-m.wilczynski@samsung.com>
-References: <20250120172111.3492708-1-m.wilczynski@samsung.com>
-	 <CGME20250120172129eucas1p236f71df4e30f821f7682263ee8ecec06@eucas1p2.samsung.com>
-	 <20250120172111.3492708-9-m.wilczynski@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1737448969; c=relaxed/simple;
+	bh=btTsSgCbAPnhnTrI4HdjrpnhkhsKx37tGtdBNk94yms=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tKWdWDtgLFa+qUjuxn9tf9uOjoE5F/OpChkvXCRmkbaiMRBOzH+anrDUqCwEP/+wNkowTbVc9yZFXEVIwW83+CDzksGiSNRfyQVDs8bWCodbW5cWKcc6GLmsx8tNaQsChO8rEnSXmt7hwqr1AW5NUe/8UEdO63mrarNCLDNwbko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=HF5znpdU; arc=none smtp.client-ip=209.85.208.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f66.google.com with SMTP id 4fb4d7f45d1cf-5d3d0205bd5so8566796a12.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 00:42:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1737448965; x=1738053765; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WfyBwrVAKcG2iSXqbe+KfTaCoLpZROxE8VUSqF7vM6w=;
+        b=HF5znpdUsdaV6qLC9lBW25Mt4f8DohDD1Hv7Xil8TqKPGDeyrYwnuiHERZ9qsA7RFj
+         hzcjMIBllI4/HO1rhtP3NvR0q8s9VIEnk2B7BENXK4O2lkUH2zSeg9C4VRCmZYR+gCL8
+         eEOenBONGYMFWHn6QpvSJxeRafK7EEfASUC5nVZQyNLQkJz+Uj22VO3xI97fzlH45H5U
+         Wyxv0Qtca0MP8clcOQZK4qUVxSOKnuJBEHlSrhdpQEyf+3/rZRxKSQeVMOwYHjPxzgqE
+         uskuEfRKQTTd8/ZnfIQxJZXJ5pPnLZQBVqdg0jmA2dFEwb/YSTCqTqWzDTdtQXFD+BTx
+         FKbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737448965; x=1738053765;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WfyBwrVAKcG2iSXqbe+KfTaCoLpZROxE8VUSqF7vM6w=;
+        b=GVcjqJAVMp8QGV6KKn4ekMaOlscOVmMgNXB0Usc7XfxEtq19lirrDKvNm5bTpmj/Ae
+         499Nh7LT8ID3mo/Lw+QWHbtU0GDBVdw+VQXMYGylgg5UIuBvLsoL3R9LJOO/js1SA2Vt
+         szXl5zOdV02mgvO6922LOe0O4q46kuGYun1jQEE9rKAe4UE6AXhFjVA/Tv+MHbE2TH+B
+         LLOutKxQn9S815hrBCOz8YFV2zjsjUu27Y9XTqrcUUtCkwrkLvepPX/p9vUalq5bGfrs
+         mSKb2fl4e+53XzqeaalUyiJK9SXMP3+03BZbxX4Kctj20gektAYfVygJGoShZI3ETLlH
+         ppww==
+X-Forwarded-Encrypted: i=1; AJvYcCViuhuFBun67HSW2JqF+nDXW+4kNM6BL2CF6Hly2gAQRYckDySk4ARz1XOpxxN1p33fEyt/Thf/IMeN@vger.kernel.org
+X-Gm-Message-State: AOJu0YytM4ji2v4KpyFHo7dI47qy7BBlurcMwXthd9fR4H3YtZUIVqix
+	T3X5awKd3yNicxghcr0bwdyHnyavVUHOQQm5zi0PAJJhtinJiO+PQqvfcYNW8sg=
+X-Gm-Gg: ASbGncsaLGhLSBzCtj07NY2uvGIsVitEfY3aqevfA7v9j+1zIsAIoBxzR088jEvzDQm
+	WDcYRL5V0YW6H+K3zLvrV2KJF55k62438IoENyYg90Gk4uspzfgx/N7vnRPyCUAmQ4j4FFvCDPo
+	pXXIAlirHb8lRr10W4v9kA9DHVkXeRa8qtn5TYWJN1hRtqoKmyKkB6t46nacRTykDZKytY8T9G1
+	OzwUp3JIdlSKHAgTTupHIDBrS3Lm8vvXVcEfM64ECg04x/wrRE3bVsrOYdvXs53MSaYbQAmIVvC
+	kOMIFZjhgC22yzGmRmG+TcPXaLnhjp4FSs048hiZ
+X-Google-Smtp-Source: AGHT+IHJoMEfBlMLvkr8KlEq8oWlxXFcL1m1dYtTgkFptyAjoAjldlyHkpeVawKUvQ8QmvdxpOWQWw==
+X-Received: by 2002:a17:906:5617:b0:ab2:b8c3:be3c with SMTP id a640c23a62f3a-ab38b3fb0dcmr1352712066b.51.1737448964785;
+        Tue, 21 Jan 2025 00:42:44 -0800 (PST)
+Received: from localhost (host-87-14-236-197.retail.telecomitalia.it. [87.14.236.197])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384c75baesm719449966b.1.2025.01.21.00.42.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jan 2025 00:42:44 -0800 (PST)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Tue, 21 Jan 2025 09:43:37 +0100
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Wilczynski <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v6 08/10] misc: rp1: RaspberryPi RP1 misc driver
+Message-ID: <Z49eOdVvwknOoD3E@apocalypse>
+References: <cover.1736776658.git.andrea.porta@suse.com>
+ <550590a5a0b80dd8a0c655921ec0aa41a67c8148.1736776658.git.andrea.porta@suse.com>
+ <2025011722-motocross-finally-e664@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2025011722-motocross-finally-e664@gregkh>
 
-On Mo, 2025-01-20 at 18:21 +0100, Michal Wilczynski wrote:
-> Introduce reset controller driver for the T-HEAD TH1520 SoC. The
-> controller manages hardware reset lines for various SoC subsystems, such
-> as the GPU.
+Hi Greg,
 
-This statement is confusing, given the implementation only handles a
-single (GPU) reset control.
+On 12:47 Fri 17 Jan     , Greg Kroah-Hartman wrote:
+> On Mon, Jan 13, 2025 at 03:58:07PM +0100, Andrea della Porta wrote:
+> > The RaspberryPi RP1 is a PCI multi function device containing
+> > peripherals ranging from Ethernet to USB controller, I2C, SPI
+> > and others.
+> > 
+> > Implement a bare minimum driver to operate the RP1, leveraging
+> > actual OF based driver implementations for the on-board peripherals
+> > by loading a devicetree overlay during driver probe.
+> > 
+> > The peripherals are accessed by mapping MMIO registers starting
+> > from PCI BAR1 region.
+> > 
+> > With the overlay approach we can achieve more generic and agnostic
+> > approach to managing this chipset, being that it is a PCI endpoint
+> > and could possibly be reused in other hw implementations. The
+> > presented approach is also used by Bootlin's Microchip LAN966x
+> > patchset (see link) as well, for a similar chipset.
+> > 
+> > For reasons why this driver is contained in drivers/misc, please
+> > check the links.
+> 
+> Links aren't always around all the time, please document it here why
+> this is needed, and then links can "add to" that summary.
 
-> By exposing these resets via the Linux reset subsystem,
-> drivers can request and control hardware resets to reliably initialize
-> or recover key components.
->=20
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  MAINTAINERS                  |   1 +
->  drivers/reset/Kconfig        |  10 +++
->  drivers/reset/Makefile       |   1 +
->  drivers/reset/reset-th1520.c | 144 +++++++++++++++++++++++++++++++++++
->  4 files changed, 156 insertions(+)
->  create mode 100644 drivers/reset/reset-th1520.c
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 1b6e894500ef..18382a356b12 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20197,6 +20197,7 @@ F:	drivers/mailbox/mailbox-th1520.c
->  F:	drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
->  F:	drivers/pinctrl/pinctrl-th1520.c
->  F:	drivers/pmdomain/thead/
-> +F:	drivers/reset/reset-th1520.c
->  F:	include/dt-bindings/clock/thead,th1520-clk-ap.h
->  F:	include/dt-bindings/firmware/thead,th1520-aon.h
->  F:	include/linux/firmware/thead/thead,th1520-aon.h
-> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-> index 5b3abb6db248..fa0943c3d1de 100644
-> --- a/drivers/reset/Kconfig
-> +++ b/drivers/reset/Kconfig
-> @@ -272,6 +272,16 @@ config RESET_SUNXI
->  	help
->  	  This enables the reset driver for Allwinner SoCs.
-> =20
-> +config RESET_TH1520
-> +	tristate "T-HEAD 1520 reset controller"
-> +	depends on ARCH_THEAD || COMPILE_TEST
-> +	select REGMAP_MMIO
-> +	help
-> +	  This driver provides support for the T-HEAD TH1520 SoC reset controll=
-er,
-> +	  which manages hardware reset lines for SoC components such as the GPU=
-.
-> +	  Enable this option if you need to control hardware resets on TH1520-b=
-ased
-> +	  systems.
-> +
->  config RESET_TI_SCI
->  	tristate "TI System Control Interface (TI-SCI) reset driver"
->  	depends on TI_SCI_PROTOCOL || (COMPILE_TEST && TI_SCI_PROTOCOL=3Dn)
-> diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-> index 677c4d1e2632..d6c2774407ae 100644
-> --- a/drivers/reset/Makefile
-> +++ b/drivers/reset/Makefile
-> @@ -35,6 +35,7 @@ obj-$(CONFIG_RESET_SIMPLE) +=3D reset-simple.o
->  obj-$(CONFIG_RESET_SOCFPGA) +=3D reset-socfpga.o
->  obj-$(CONFIG_RESET_SUNPLUS) +=3D reset-sunplus.o
->  obj-$(CONFIG_RESET_SUNXI) +=3D reset-sunxi.o
-> +obj-$(CONFIG_RESET_TH1520) +=3D reset-th1520.o
->  obj-$(CONFIG_RESET_TI_SCI) +=3D reset-ti-sci.o
->  obj-$(CONFIG_RESET_TI_SYSCON) +=3D reset-ti-syscon.o
->  obj-$(CONFIG_RESET_TI_TPS380X) +=3D reset-tps380x.o
-> diff --git a/drivers/reset/reset-th1520.c b/drivers/reset/reset-th1520.c
-> new file mode 100644
-> index 000000000000..e4278f49c62f
-> --- /dev/null
-> +++ b/drivers/reset/reset-th1520.c
-> @@ -0,0 +1,144 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2024 Samsung Electronics Co., Ltd.
-> + * Author: Michal Wilczynski <m.wilczynski@samsung.com>
-> + */
-> +
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reset-controller.h>
-> +#include <linux/regmap.h>
-> +
-> + /* register offset in VOSYS_REGMAP */
-> +#define TH1520_GPU_RST_CFG		0x0
-> +#define TH1520_GPU_RST_CFG_MASK		GENMASK(2, 0)
-> +
-> +/* register values */
-> +#define TH1520_GPU_SW_GPU_RST		BIT(0)
-> +#define TH1520_GPU_SW_CLKGEN_RST	BIT(1)
-> +
-> +struct th1520_reset_priv {
-> +	struct reset_controller_dev rcdev;
-> +	struct regmap *map;
-> +};
-> +
-> +static inline struct th1520_reset_priv *
-> +to_th1520_reset(struct reset_controller_dev *rcdev)
-> +{
-> +	return container_of(rcdev, struct th1520_reset_priv, rcdev);
-> +}
-> +
-> +static void th1520_rst_gpu_enable(struct regmap *reg)
-> +{
-> +	int val;
-> +
-> +	/* if the GPU is not in a reset state it, put it into one */
-> +	regmap_read(reg, TH1520_GPU_RST_CFG, &val);
-> +	if (val)
-> +		regmap_update_bits(reg, TH1520_GPU_RST_CFG,
-> +				   TH1520_GPU_RST_CFG_MASK, 0x0);
-> +
-> +	/* rst gpu clkgen */
-> +	regmap_set_bits(reg, TH1520_GPU_RST_CFG, TH1520_GPU_SW_CLKGEN_RST);
-> +
-> +	/*
-> +	 * According to the hardware manual, a delay of at least 32 clock
-> +	 * cycles is required between de-asserting the clkgen reset and
-> +	 * de-asserting the GPU reset. Assuming a worst-case scenario with
-> +	 * a very high GPU clock frequency, a delay of 1 microsecond is
-> +	 * sufficient to ensure this requirement is met across all
-> +	 * feasible GPU clock speeds.
-> +	 */
-> +	udelay(1);
-> +
-> +	/* rst gpu */
-> +	regmap_set_bits(reg, TH1520_GPU_RST_CFG, TH1520_GPU_SW_GPU_RST);
+Ack.
 
-This sequence of TH1520_GPU_RST_CFG register accesses should be
-protected by a lock.
+> 
+> > This driver is heavily based on downstream code from RaspberryPi
+> > Foundation, and the original author is Phil Elwell.
+> > 
+> > Link: https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
 
-[...]
-> +static int th1520_reset_assert(struct reset_controller_dev *rcdev, unsig=
-ned long id)
-> +{
-> +	struct th1520_reset_priv *priv =3D to_th1520_reset(rcdev);
-> +
-> +	th1520_rst_gpu_disable(priv->map);
-> +
-> +	return 0;
-> +}
-> +
-> +static int th1520_reset_deassert(struct reset_controller_dev *rcdev, uns=
-igned long id)
-> +{
-> +	struct th1520_reset_priv *priv =3D to_th1520_reset(rcdev);
-> +
-> +	th1520_rst_gpu_enable(priv->map);
-> +
-> +	return 0;
-> +}
-> +
-> +static int th1520_reset_xlate(struct reset_controller_dev *rcdev,
-> +			      const struct of_phandle_args *reset_spec)
-> +{
-> +	return 0;
-> +}
+...
 
-These all explicitly handle only a single reset control, which is in
-conflict with the commit message of this patch and the dt-binding
-patch. Will more reset controls be added to this driver in the future?
+> > diff --git a/drivers/misc/rp1/rp1_pci.c b/drivers/misc/rp1/rp1_pci.c
+> > new file mode 100644
+> > index 000000000000..3e8ba3fa7fd5
+> > --- /dev/null
+> > +++ b/drivers/misc/rp1/rp1_pci.c
+> > @@ -0,0 +1,305 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (c) 2018-24 Raspberry Pi Ltd.
+> > + * All rights reserved.
+> > + */
+> > +
+> > +#include <linux/err.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/irq.h>
+> > +#include <linux/irqchip/chained_irq.h>
+> > +#include <linux/irqdomain.h>
+> > +#include <linux/module.h>
+> > +#include <linux/msi.h>
+> > +#include <linux/of_platform.h>
+> > +#include <linux/pci.h>
+> > +#include <linux/platform_device.h>
+> > +
+> > +#include "rp1_pci.h"
+> 
+> Why does a self-contained .c file need a .h file?  Please put it all in
+> here.
 
+I agree with you. Indeed, the very first version of this patch had the header
+file placed inside the .c, but I received concerns about it and some advice to
+do it differently, as you can see here:
+https://lore.kernel.org/all/ZtWDpaqUG9d9yPPf@apocalypse/
+so I've changed it accordingly in V2. So right now I'm not sure what the
+acceptable behaviour should be ...
 
-regards
-Philipp
+> 
+> > +
+> > +#define RP1_DRIVER_NAME		"rp1"
+> 
+> KBUILD_MODNAME?
+
+Right. Thanks for pointing that out.
+
+> 
+> > +
+> > +#define RP1_HW_IRQ_MASK		GENMASK(5, 0)
+> > +
+> > +#define REG_SET			0x800
+> > +#define REG_CLR			0xc00
+> > +
+> > +/* MSI-X CFG registers start at 0x8 */
+> > +#define MSIX_CFG(x) (0x8 + (4 * (x)))
+> > +
+> > +#define MSIX_CFG_IACK_EN        BIT(3)
+> > +#define MSIX_CFG_IACK           BIT(2)
+> > +#define MSIX_CFG_ENABLE         BIT(0)
+> > +
+> > +/* Address map */
+> > +#define RP1_PCIE_APBS_BASE	0x108000
+> > +
+> > +/* Interrupts */
+> > +#define RP1_INT_END		61
+> 
+> 
+> 
+> > +
+> > +struct rp1_dev {
+> > +	struct pci_dev *pdev;
+> > +	struct irq_domain *domain;
+> > +	struct irq_data *pcie_irqds[64];
+> > +	void __iomem *bar1;
+> > +	int ovcs_id;	/* overlay changeset id */
+> > +	bool level_triggered_irq[RP1_INT_END];
+> > +};
+> > +
+> > +static void msix_cfg_set(struct rp1_dev *rp1, unsigned int hwirq, u32 value)
+> > +{
+> > +	iowrite32(value, rp1->bar1 + RP1_PCIE_APBS_BASE + REG_SET + MSIX_CFG(hwirq));
+> 
+> Do your writes need a read to flush them properly?  Or can they handle
+> this automatically?
+>
+
+I had some thoughts with RaspberryPi foundation folks to double check it, and it
+seems that there should be no need to readback the value (unless we want to go
+really paranoid), so I would avoid that since in case of level handled interrupt
+we would end up reading the register on every triggering interrupts.
+
+Many thanks,
+Andrea
+ 
+> thanks,
+> 
+> greg k-h
 
