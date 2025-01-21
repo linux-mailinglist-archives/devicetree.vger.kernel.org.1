@@ -1,166 +1,134 @@
-Return-Path: <devicetree+bounces-140021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3544AA17D1F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:35:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E933A17D76
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 13:03:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E35918868B7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:35:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4856188BCE9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:03:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A890F1F0E3F;
-	Tue, 21 Jan 2025 11:35:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B22131F1928;
+	Tue, 21 Jan 2025 12:03:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hW2XDlMV"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="azlEFBnp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com [209.85.214.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 022B826AFA;
-	Tue, 21 Jan 2025 11:35:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E33D01F190E;
+	Tue, 21 Jan 2025 12:03:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737459318; cv=none; b=cB1cEljBpouWsinq+Vo+fzRqPxgYSuJ7EA4Td55BCQfasaZYInlC2aj32ttTC8ZLxfzsqvP62M84LvxYHFKih0RVXA88FxZ6KCTjtsLOJx9t0mbiR25WfYavoIyupTyfKvXkQqr9xR0wwenPp6CntGufPNtr6TBoHnZkLtn2yE4=
+	t=1737460984; cv=none; b=b2T7wOs1p5VM7BxxJV+ILmTFihqnKX8k0mmPIB5PjRtoaLtWSFHtEDAor6RuIfC/yQ+xo6+gLtFvkloLHqLexqIBCKh0lM2KNXaTfATz85JNoa+2w8KN1Mkp9kxRJNjKB6gbhqgH3+pLSqPwVR7qzXF48fDU5B53gQ2r0bh6YwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737459318; c=relaxed/simple;
-	bh=kAipTy+8FddX1uIJ7V80DD/M+1JnUHzua06fRqQAdgM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hBCMMyBSFN9S4Tvyat6URQxxemIW/vA1699DofVcpv6iuVBhy4fp5AXeowybQkw/gxmcQ0TSPjEkXSi+wOR1EEEbTF1UIMGQmaS8w+wq026lMyIeAjLPmmqi9CG265OkDfDsolvuclcOQWGsPi/3Bynoyz4eK7uhgCmQ6ZzeAIo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hW2XDlMV; arc=none smtp.client-ip=209.85.214.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f194.google.com with SMTP id d9443c01a7336-2166f1e589cso131697905ad.3;
-        Tue, 21 Jan 2025 03:35:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737459316; x=1738064116; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yGLkX+J1Jlxf1URXI5Jk4oBm02w4k+T980MVqvE2nhA=;
-        b=hW2XDlMV3syR3cWK3SdESs+1ErtqCVjCKhw9lmNKVoHHD9KSJKQALessJcXWuapr5s
-         1U5gUDgBk52nRgAvFUaF4eP9yEwOdw7QUKsV9Wba2bRcG8Baa5hUggVEInTtYxyvKNre
-         lC7X/pd7nClpx1aHp9j4yvEWsv1thDHj1kTxqySOsvOpJy62iXi/zv+z3SnVtEZiUmOT
-         Y6VmS2h+J9ANbmrmHteTM0pDP2OxtIlwzDkB9ZVmzougHXpMhCMUmdE+1bv/P9xQ/Jpo
-         oOeRBzLTURwzaSVOQUt8Tv6FnXmEDS4+HNGSS8BTT4Y4tdIzUKJkQ1/JyTKaX7DzxPXB
-         cYRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737459316; x=1738064116;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yGLkX+J1Jlxf1URXI5Jk4oBm02w4k+T980MVqvE2nhA=;
-        b=DsOjKuj7ibJUSeUjenvILmaRMYIfMVyaX8Xo728MEvRU+ltbEvYP8h3WFDla/zPLl9
-         p4BT2j9Nd4hw2yG8KHweNN4bb+j+LL2I2nqObCMlkCFLUnB6qMXOHCzmwoGl+KckI0+Q
-         oEquHkknXGSd5bFIF2cArclx3SGNMsb1PCLppkcKSEts3Ttu+/jXl1nrhjt4HhfBN765
-         UcAsx45quG3gL0zWInoaHYOLFEkUkcJZ2LpWsu33RNPLXEQKd6rxNf4hJL17uQGS3WnX
-         9h5CfUOWsLLcbDyzol2lnjSPecXX0l527piHhgtDZWuUi4MOYzkaxx94s6TwBYbToVXi
-         xzhg==
-X-Forwarded-Encrypted: i=1; AJvYcCUbqqemL+tH9oZWp2HRFcglKU6kD7BVPWzo3sAsXe5RnSjt/aYD9SvVGIGfVX5YpM/7FqfHFTX9xOysgyK9@vger.kernel.org, AJvYcCV1Zx4cAUe7jFrYdRZtZPC6P1+UagouJyZqm0Wsm7uCgMWXxp56OEo3IYQ5SJLBhyuFdAxyCwZpE6LVQ8H0@vger.kernel.org, AJvYcCW2gSnp6ADZdTaGKbyCwUXOjlkSMSn1iC4l0PuRnMv/125h2wcbdyGt1FyDcFBl/rTaQh2vcWE62uU0@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLzChtkfek36pjngUVhikQ/aK72ednEQmPKg3Cp9Cwn37ebu+c
-	yS0m6xk9iAUWjrt8Hm/2tovsY+YsvTaMmY68kmDDRCZZLlMhcwlu8EHl/Z6KW7fXecEWX4mauPq
-	ZY++UQB5/uhF/DtFDB4gf0jRu8cY=
-X-Gm-Gg: ASbGncuL+0Mjqn8SNFB3mZnrqP/gbzdqYzIWQhGRNAnHdf6dArVS9KG9pzy27zpR8cd
-	KXPSy/phwTWrHD0iRjsb77j5sKgRLW9DDrn9yR3A/WL+lvX6lLWY2
-X-Google-Smtp-Source: AGHT+IHCd8of8d500DJCLyn0QNmigh6e4Mp6+DiDF4V3UwwZh+zePgc4APmTo04fumB0lBzTXgd/H5xNDX5LXGU/cOk=
-X-Received: by 2002:a05:6a20:9149:b0:1e6:5323:58d1 with SMTP id
- adf61e73a8af0-1eb2159018bmr25259926637.26.1737459316158; Tue, 21 Jan 2025
- 03:35:16 -0800 (PST)
+	s=arc-20240116; t=1737460984; c=relaxed/simple;
+	bh=SSKcj+ZCYXAP4XCyRJVat3KbUG53wj7IgRB6pc1Za/Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=noW/n21EzgZb+OUvLnKG0YniXfgAC/Y2Owp7DBvZkPVZwJDzTbxsO1NLnAs302ui1ubL3MPnAVOCHuTXmPdgPBFseYaEBVn0ybtjUFK0OPEyMg6yEI3XavCJphQg+RWtMQ+8J/U8w5Ki/Qi3kQpb93/OWhPM2LNJlH/k9DqnVN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=azlEFBnp; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 68501108ECC22;
+	Tue, 21 Jan 2025 13:02:53 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1737460974;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=AWLTnshKJss0C5hixpOZt9oVL4A4PlDNq+o3owNK/5A=;
+	b=azlEFBnpnC34/WvcJE3D09uOanxdxBzy3PvSqriuytwoPI6630ywtrz5kpNAJfDUFNMdgg
+	M6Vo72c8lKQ2mAmtVxiWLspRpP6h1ZV30AW8DXDw2DUmuB01k2vdrYcsN/xPCttMVLpuMS
+	FguPtvQfYMwUcLLg3Vl+Ot5YIswADhqmJ8eDHz1L5MpaQtZxPyI9pwvF+Hq5L8HHMJzD9s
+	ZxSo6LCW5ZkOhSiqi/LPmJen9liyaobANgteY5a22WWsq6hOunFlF9O3R8AQyD1qe6bxhX
+	I3Wz1bwMt8TSs4KqScBjpDUY67/kAyjdzW71f5emRG3ngSLAfZDVPARAszjOeQ==
+Message-ID: <30c39bb9-2b45-43a6-b5f1-f7957ce5a666@denx.de>
+Date: Tue, 21 Jan 2025 12:37:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250120032212.3579184-1-Wenhua.Lin@unisoc.com> <20250120-talented-octopus-of-serendipity-aa8a58@krzk-bin>
-In-Reply-To: <20250120-talented-octopus-of-serendipity-aa8a58@krzk-bin>
-From: wenhua lin <wenhua.lin1994@gmail.com>
-Date: Tue, 21 Jan 2025 19:35:04 +0800
-X-Gm-Features: AbW1kvZZo2-OIjZzTV11iCycQGKzEWbrDVJmWFy8J3an7-wGQ87-POankXsm3Uk
-Message-ID: <CAB9BWhcGdDADkHtX+YTCQekzUghaW_cN6s=-BkuxwWnNN-5-Fg@mail.gmail.com>
-Subject: Re: [PATCH V2] dt-bindings: serial: Add a new compatible string for UMS9632
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Wenhua Lin <Wenhua.Lin@unisoc.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Orson Zhai <orsonzhai@gmail.com>, Baolin Wang <baolin.wang@linux.alibaba.com>, 
-	Chunyan Zhang <zhang.lyra@gmail.com>, Cixi Geng <cixi.geng@linux.dev>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	Xiongpeng Wu <xiongpeng.wu@unisoc.com>, Zhaochen Su <Zhaochen.Su@unisoc.com>, 
-	Zhirong Qiu <Zhirong.Qiu@unisoc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: leds: Document netdev trigger
+ netdev-trigger-mode property
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: linux-leds@vger.kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
+ Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Lukasz Majewski <lukma@denx.de>, Pavel Machek <pavel@ucw.cz>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+References: <20250113002346.297481-1-marex@denx.de>
+ <ad334b1b-a4e5-426d-a801-3e1d72455304@lunn.ch>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <ad334b1b-a4e5-426d-a801-3e1d72455304@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Jan 20, 2025 at 3:48=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On Mon, Jan 20, 2025 at 11:22:12AM +0800, Wenhua Lin wrote:
-> > The sc9632-uart is incompatible
-> > with sc9836-uart, Add sc9632-uart dedicated compatible
->
-> Please wrap commit message according to Linux coding style / submission
-> process (neither too early nor over the limit):
-> https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/su=
-bmitting-patches.rst#L597
->
-> Missing full stop.
->
-> Your commit msg should explain briefly why sc9632-uart is incompatible
-> with sc9836-uart.
->
-> > for representing uart of the new project UMS9632 SoC.
-> >
-> > Change in V2:
-> > -Change commit message in PATCH 2/2.
-> > -Modify the compatible string of enum in PATCH 2/2.
->
-> Changelog goes to changelog place, under ---.
->
-> >
-> > Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
-> > ---
-> >  Documentation/devicetree/bindings/serial/sprd-uart.yaml | 6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/serial/sprd-uart.yaml b/=
-Documentation/devicetree/bindings/serial/sprd-uart.yaml
-> > index a2a5056eba04..83582aa6c750 100644
-> > --- a/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-> > +++ b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-> > @@ -17,13 +17,17 @@ properties:
-> >      oneOf:
-> >        - items:
-> >            - enum:
-> > -              - sprd,sc9632-uart
-> >                - sprd,sc9860-uart
-> >                - sprd,sc9863a-uart
-> >                - sprd,ums512-uart
-> >                - sprd,ums9620-uart
-> >            - const: sprd,sc9836-uart
-> >        - const: sprd,sc9836-uart
-> > +      - items:
-> > +          - enum:
-> > +              - sprd,ums9632-uart
-> > +          - const: sprd,sc9632-uart
->
-> Lists are ordered by fallback, so this goes before list ending
-> sprd,sc9836-uart. Do not break orders by putting everything always at
-> the end.
->
-> > +      - const: sprd,sc9632-uart
->
-> Combine two such const items into enum:
->   - enum
->       - sprd,sc9632-uart
->       - sprd,sc9836-uart
->
-
-Hi Krzysztof:
-   Thank you very much for your review, we will correct it in patch v3.
-Thanks
-
-> Best regards,
-> Krzysztof
->
+On 1/16/25 2:32 PM, Andrew Lunn wrote:
+> On Mon, Jan 13, 2025 at 01:23:37AM +0100, Marek Vasut wrote:
+>> Document netdev trigger specific netdev-trigger-mode property which
+>> is used to configure the netdev trigger mode flags. Those mode flags
+>> define events on which the LED acts upon when the hardware offload is
+>> enabled. This is traditionally configured via sysfs, but that depends
+>> on udev rules which are available either too late or never in case of
+>> non-Linux systems.
+>>
+>> For each LED with linux,default-trigger = "netdev" described in DT, this
+>> optional netdev-trigger-mode property supplies the default configuration
+>> of the PHY LED mode via DT. This property should be set to a subset of
+>> TRIGGER_NETDEV_* flags.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> ---
+>> Cc: Andrew Lunn <andrew@lunn.ch>
+>> Cc: Christian Marangi <ansuelsmth@gmail.com>
+>> Cc: Conor Dooley <conor+dt@kernel.org>
+>> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+>> Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>> Cc: Lee Jones <lee@kernel.org>
+>> Cc: Lukasz Majewski <lukma@denx.de>
+>> Cc: Pavel Machek <pavel@ucw.cz>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: linux-leds@vger.kernel.org
+>> ---
+>>   Documentation/devicetree/bindings/leds/common.yaml | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+>> index 3e8319e443392..1f1148fdf20c0 100644
+>> --- a/Documentation/devicetree/bindings/leds/common.yaml
+>> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+>> @@ -233,6 +233,12 @@ properties:
+>>         Maximum timeout in microseconds after which the flash LED is turned off.
+>>         Required for flash LED nodes with configurable timeout.
+>>   
+>> +  # Requires netdev trigger
+>> +  netdev-trigger-mode:
+>> +    description:
+>> +      The netdev LED trigger default mode flags, use TRIGGER_NETDEV_ * flags.
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +
+>>   allOf:
+>>     - if:
+>>         required:
+>> -- 
+> 
+> An example would be good.
+> 
+> In order to be able to use TRIGGER_NETDEV_* i assume you are doing an
+> include which is outside of the usual dt-bindings directory. I don't
+> know of the DT Maintainers opinion on that.
+I think the question here is more ... shall I introduce new set of 
+LED_NETDEV_nnn flags in e.g. include/dt-bindings/leds/common.h , so the 
+flags won't be Linux netdev trigger specific ?
 
