@@ -1,148 +1,107 @@
-Return-Path: <devicetree+bounces-140072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30EF2A181AA
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 17:05:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F259A1824B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 17:51:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 218C13A22F4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 16:05:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60ECB188B57F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 16:51:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D37D41F4E40;
-	Tue, 21 Jan 2025 16:05:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 637FA1F4293;
+	Tue, 21 Jan 2025 16:51:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fedwas1B"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="BF0W4vLB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-175.mta1.migadu.com (out-175.mta1.migadu.com [95.215.58.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3F991C36;
-	Tue, 21 Jan 2025 16:05:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92859192D70;
+	Tue, 21 Jan 2025 16:51:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737475520; cv=none; b=hKMPHdDJLdffsFwwcJaT5NM+XOZF37cZxsDle8ZZJ30AZJgwBm1JQ/N+2ouBZ0S+hQtoWXk48ZAW0c25QVshd0ORWYN8en4tT5xU4kB+4OYwLTibvj891YQWDGjB0XN/d+No+WUXg+f6jTIhp5Qgi7zROZkBJQpzIAo9LTfqouc=
+	t=1737478287; cv=none; b=mAQSckWiUOcSJpLZmky0HR0cBcEO3UFh6dLCEXKtZZNSLbAQFa75elqRSHizgz2M9vHs/LfxPl6Ql2YjI7ahCMLbczGczOliO0D/JD1VXcYIPlwET2ZycgIWsIh9XDLwiPjUJB0IlAzrjRp4lc/hOP1IGeCkToep6K4RpwwM2iw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737475520; c=relaxed/simple;
-	bh=MHI+vof2GyyV6YhpRlrmHssVZYdwMvNV8ot1Fz55+l8=;
+	s=arc-20240116; t=1737478287; c=relaxed/simple;
+	bh=0kqvsuGInuXJkXCmuCX04lAcWyzOGssMeO6D6xEQy+E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fdio3/I2q53ETwzE8e/VyJJEoHEf86+E8Ih+rtyORBpIabrrriQ6mqJ1ah2bSlIvBFVs0N1yGWxecsu8K9G/LjomTzuioRd1N2/nc3qbpScbB1aG6QHhq0r1Euce9ohXmzU11qWBzmx3mxeX+wdhUx+PJPHebA19uNU0bKOBWJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fedwas1B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07ACEC4CEDF;
-	Tue, 21 Jan 2025 16:05:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737475520;
-	bh=MHI+vof2GyyV6YhpRlrmHssVZYdwMvNV8ot1Fz55+l8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fedwas1BBT2yW1T1L+B9DGHc1z0iKrlKLAgUPhk6yLFwWI5iTJiVLglXrRsf9EaDT
-	 Kf26guZ5tvSIBsy5itqj1+tV03bw2fuJywNZ925wBqv0C6ZMBcxldBi1iBD43ls2ur
-	 iTSjWq1Nv7CJbe1o2Ettvk68w54skYBRyb0f6FKt8eV8wnIWwEnmIzmS5V1PIsEgrd
-	 Lhw4+/rGAt3gH6qenPD4HySYiBDBXIUI5W5LUcESYOxyi2X6hrlzs1AgPZDYCNAUEl
-	 af8rRwquE7cXHzjvHFOWJZTSTXZSz74OqtIExDEZR+0rltPwEqBE/HQ54XKiI5uFkI
-	 BIDdvAWlkL0lQ==
-Message-ID: <901ede5f-c5a1-42c4-ad87-b02e3ab332e4@kernel.org>
-Date: Tue, 21 Jan 2025 17:05:01 +0100
+	 In-Reply-To:Content-Type; b=Y+Ub8Q+LSoYzjlOYuN14QnwuYYagRRP7IvsXJ/A2D/5qs/QpuQIXsBDy+qN0J7qx5VYmUQmEEZoMxBuWWemKSMpZt9Nn3DLqfuLbTFRcjhE4UJuSFvMbeTcsla87eCGR0pnsJbooUEeyUWWH/YRzWI4L6N9DkEJzni+dgEo1hsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=BF0W4vLB; arc=none smtp.client-ip=95.215.58.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <39ad89bf-880e-4ae9-bbdb-4d388dd14a7d@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1737478283;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=DrH1RqYlZPnCONVlyYdJjbHopCl+UukhIId4ykP7g4I=;
+	b=BF0W4vLBBIhkOrkCGaWLvh1V9EBK5k05jB3Q5mlXWZUPzl7dB780k3OMzrc6xPWJnhYBAG
+	hoTFfqwOgkhlX6rAjDM9FXJCLYK6iNfCkptx52WTh07TvNxurSEqJ5t9unx2zbAPpz3H06
+	Za1T6Scpqg2MiECbO3yTeJY6jxTY3kk=
+Date: Tue, 21 Jan 2025 11:51:18 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] media: dt-bindings: update clocks for sc7280-camss
-To: Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- akapatra@quicinc.com, hariramp@quicinc.com, andersson@kernel.org,
- konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
- cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20250121120901.1841142-1-quic_vikramsa@quicinc.com>
- <20250121120901.1841142-2-quic_vikramsa@quicinc.com>
- <c985b741-35db-4e3b-8fe4-8d2085371033@kernel.org>
- <1f509ab0-dd4a-4a93-90df-292bd4e6989e@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 0/5] spi: zynqmp-gqspi: Improve error recovery by
+ resetting
+To: Mark Brown <broonie@kernel.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jinjie Ruan <ruanjinjie@huawei.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20250116225521.2688224-1-sean.anderson@linux.dev>
+ <5942e111-24ba-4d1b-bd4f-6b81dcc6c5dc@sirena.org.uk>
+ <87h65xi977.fsf@bootlin.com>
+ <1026d44b-0907-4835-bc95-32f9bbcf4831@sirena.org.uk>
+ <8c9e6a12-e64f-4658-94e8-77469f393a0e@linux.dev>
+ <c1a3f172-700e-4079-a501-b3f3f08b41aa@sirena.org.uk>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <1f509ab0-dd4a-4a93-90df-292bd4e6989e@quicinc.com>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <c1a3f172-700e-4079-a501-b3f3f08b41aa@sirena.org.uk>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On 21/01/2025 17:02, Vikram Sharma wrote:
+On 1/20/25 08:49, Mark Brown wrote:
+> On Fri, Jan 17, 2025 at 04:46:23PM -0500, Sean Anderson wrote:
+>> On 1/17/25 13:41, Mark Brown wrote:
+>> > On Fri, Jan 17, 2025 at 07:31:08PM +0100, Miquel Raynal wrote:
 > 
-> On 1/21/2025 6:25 PM, Krzysztof Kozlowski wrote:
->> On 21/01/2025 13:09, Vikram Sharma wrote:
->>> This patch change clock names to make it consistent with
->>
->> Please do not use "This commit/patch/change", but imperative mood. See
->> longer explanation here:
->> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
-> Hi Krzysztof,
-> Thanks for your response.
-> Will update commit text.
->>> existing platforms as gcc_cam_hf_axi -> gcc_axi_hf.
->> Which ones? sm8250 uses different.
-> qcom,sc8280xp-camss.yaml uses 'gcc_axi_hf'
-
-
-Then mention with which binding you align it.
-
->>
->>> This also adds gcc_axi_sf and remove gcc_camera_ahb.
->> Why?
+>> >> Yes, unless the timeout is reached for "good reasons", ie. you request
+>> >> substantial amounts of data (typically from a memory device) and the
+>> >> timeout is too short compared to the theoretical time spent in the
+>> >> transfer. A loaded machine can also increase the number of false
+>> >> positives I guess.
 > 
-> 'gcc_camera_ahb' is always 'on' and we don't need to enable it explicitly.
-> 'gcc_axi_sf' basic use case works even without this clock but our 'Hardware programing guide' suggest to enable this one too to avoid unexpected behaviors.
-> Konrad pointed these points in V8 of the series.
+>> > I'd argue that all of those are bad reasons, I'd only expect us to time
+>> > out when there's a bug - choosing too low a timeout or doing things in a
+>> > way that generates timeouts under load is a problem.
+> 
+>> There's no transmit DMA for this device. So if you are under high load
+>> and make a long transfer, it's possible to time out. I don't know if
+>> it's possible to fix that very easily. The timeout calculation assumes
+>> that data is being transferred at the SPI bus rate.
+> 
+> In that case I wouldn't expect the timeout to apply to the whole
+> operation, or I'd expect a timeout applied waiting for something
+> interrupt driven to not to be fired unless we stop making forward
+> progress.  
 
-That's what the commit msg is for.
+I don't know if there are any helpers we can use for this. To implement
+this we'd need something like schedule_timeout() but where the interrupt
+handler calls mod_timer() whenever it does work.
 
-
-Best regards,
-Krzysztof
+--Sean
 
