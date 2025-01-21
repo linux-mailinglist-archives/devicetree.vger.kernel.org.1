@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-139891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1210DA1774B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:24:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FFD4A1775C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:29:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4703016B066
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 06:23:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D83E7A121A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 06:28:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58FDC1AAE0B;
-	Tue, 21 Jan 2025 06:23:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 367C91AA791;
+	Tue, 21 Jan 2025 06:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="hYurvvgz"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="JqxhPtSv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m32118.qiye.163.com (mail-m32118.qiye.163.com [220.197.32.118])
+Received: from mail-m49233.qiye.163.com (mail-m49233.qiye.163.com [45.254.49.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6601F19E999;
-	Tue, 21 Jan 2025 06:23:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.118
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8735285931;
+	Tue, 21 Jan 2025 06:28:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737440635; cv=none; b=RD+a0xSI6FJbL6x51KtxEosNcwHPkrrB6/ZA4TpByMl4BPkxvkcXvDRBDuwAWonYuByJJCgj1eo6E7FPRbdFBaW2cqfnJEO+G6aL4T9HDcu+ibkgz87nYM7MifaXmRJeLHuj9sPNyE1CwLNkQF5fE8sap+8ksAwI+SeATRn2JCw=
+	t=1737440942; cv=none; b=vBcERW8B0OUgNdvoOJ4BSnK2iSiHY0LSxrZqe/Ych+f9ZpARiMoh4brGfIEq53Lu4Mm0gFRFDQyYCaCbeJc/xiWkTdT0O+yeObSkJMIb8HsuKbY04iEgjV2jTrn7mHVVEvMEx9pOHTNPPFvJsRCWCRvUzRC0MvzUCmFSdRAa3g8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737440635; c=relaxed/simple;
-	bh=uYVX31WQvKbJf5Vv9FAqP25Z+20t/h4HS7NDrI4cczE=;
+	s=arc-20240116; t=1737440942; c=relaxed/simple;
+	bh=+VqEnKqaZS3H9vOnzs8oitINpODNNQDHWgw+gW5pHqA=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rldiraHthODluM77BMlk8CXc+NtFyCjjqhEn+gVnVT4veyy2F59MHAh83XrhKvkMWFK7va42op/eBDvT8vsWiavFXoCQ+TZDnWSm+rsavHD8AWSgEezR2jtC4bdzv3q3pG7RtTTR2TiEoWYGxIzWe8bRmtR9C6RYq8F5EFSmMno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=hYurvvgz; arc=none smtp.client-ip=220.197.32.118
+	 MIME-Version; b=eIEtYhXH8ldJbC7ON/3BRk8mU9kxxxdDc1GP8K9dykJWObfKExglPPLj9PngJ9CRpAOA3gbwg+/fxHjYCuc1BBD5p1eji/Sb/oa5CcIV27iy3QcrLaYTxtmsIELPnRrnKmsJ09UTy6Huck25IA6pEAA++ofbAcipK+Z4aol2Zyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=JqxhPtSv; arc=none smtp.client-ip=45.254.49.233
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 9456a2f1;
-	Tue, 21 Jan 2025 14:23:41 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 9456a313;
+	Tue, 21 Jan 2025 14:23:46 +0800 (GMT+08:00)
 From: Damon Ding <damon.ding@rock-chips.com>
 To: heiko@sntech.de
 Cc: robh@kernel.org,
@@ -56,9 +56,9 @@ Cc: robh@kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-phy@lists.infradead.org,
 	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v6 1/6] phy: phy-rockchip-samsung-hdptx: Swap the definitions of LCPLL_REF and ROPLL_REF
-Date: Tue, 21 Jan 2025 14:23:19 +0800
-Message-Id: <20250121062324.309592-2-damon.ding@rock-chips.com>
+Subject: [PATCH v6 3/6] phy: phy-rockchip-samsung-hdptx: Add the '_MASK' suffix to all registers
+Date: Tue, 21 Jan 2025 14:23:21 +0800
+Message-Id: <20250121062324.309592-4-damon.ding@rock-chips.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250121062324.309592-1-damon.ding@rock-chips.com>
 References: <20250121062324.309592-1-damon.ding@rock-chips.com>
@@ -70,44 +70,189 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh9OQ1YeTEkYSk4dSkhOGB9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a948787f40603a3kunm9456a2f1
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQhlDHlZNQ0IdTkodSUhKSUtWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a948788084503a3kunm9456a313
 X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NQg6KAw6HjIUTzQBGREDDwkz
-	SD0wFAtVSlVKTEhMT09LTUlISEtIVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFCQkw3Bg++
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ohg6Nww5KjIcPDQ9ThIeD1Y1
+	KxkKCQ9VSlVKTEhMT09LTUlDTktMVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFNSkNMNwY+
 DKIM-Signature:a=rsa-sha256;
-	b=hYurvvgzS4CbFQquNWuUFbScZmrKeIM1uhOxG73RGBUFBFZSVYTuWqCrUpYmNt91F+aR4wYZ3xFoWq3NLnmGejUe6Y86J1BAQ9a7X4fEYKi/nR+kIYX0yt1Zru4zSaxzihjGX/k8KmjpBSuODKJ5D2MYKBde1W2UqHUVbWjF1Nc=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=nhjzsZ5DuSkGPzq8vUSDqW2fpa7f+NUoENjEMTPrzW0=;
+	b=JqxhPtSvPk3gqXqT/G36MSQoj8DfY7e2TTmxzZUouKmdzjZgU0wYIIPHB6V0lyfMg4NQOtq6tgBkjRGhfKD77JLce3GnV5h93RDq+JYkDMvjDUGON0MyRLnfEkl00WiD7eK+PO6lLIIjIUNR8aKWOPEu2t0HIuIhN45KvMWluF0=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=uK63oZ4i0F32jSJA2To/0D+4/gNLK+p7bUQFW8Uf4/I=;
 	h=date:mime-version:subject:message-id:from;
 
-According to the datasheet, setting the dig_clk_sel bit of CMN_REG(0097)
-to 1'b1 selects LCPLL as the reference clock, while setting it to 1'b0
-selects the ROPLL.
+Adding the '_MASK' suffix to all registers in order to ensures consistency
+in the naming convention for register macros throughout the file.
 
 Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 ---
- drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+
+Changes in v4:
+- Split the older patch related to the renaming of registers into three
+  different commits
+---
+ .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 88 +++++++++----------
+ 1 file changed, 44 insertions(+), 44 deletions(-)
 
 diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-index 0965b9d4f9cf..efbea5b67c89 100644
+index 423c61b7469f..5aec854c74b5 100644
 --- a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
 +++ b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-@@ -94,8 +94,8 @@
- #define LCPLL_ALONE_MODE		BIT(1)
+@@ -50,60 +50,60 @@
+ #define LCPLL_PI_EN_MASK		BIT(5)
+ #define LCPLL_100M_CLK_EN_MASK		BIT(0)
+ /* CMN_REG(0025) */
+-#define LCPLL_PMS_IQDIV_RSTN		BIT(4)
++#define LCPLL_PMS_IQDIV_RSTN_MASK	BIT(4)
+ /* CMN_REG(0028) */
+-#define LCPLL_SDC_FRAC_EN		BIT(2)
+-#define LCPLL_SDC_FRAC_RSTN		BIT(0)
++#define LCPLL_SDC_FRAC_EN_MASK		BIT(2)
++#define LCPLL_SDC_FRAC_RSTN_MASK	BIT(0)
+ /* CMN_REG(002d) */
+ #define LCPLL_SDC_N_MASK		GENMASK(3, 1)
+ /* CMN_REG(002e) */
+ #define LCPLL_SDC_NUMBERATOR_MASK	GENMASK(5, 0)
+ /* CMN_REG(002f) */
+ #define LCPLL_SDC_DENOMINATOR_MASK	GENMASK(7, 2)
+-#define LCPLL_SDC_NDIV_RSTN		BIT(0)
++#define LCPLL_SDC_NDIV_RSTN_MASK	BIT(0)
+ /* CMN_REG(003d) */
+-#define ROPLL_LCVCO_EN			BIT(4)
++#define ROPLL_LCVCO_EN_MASK		BIT(4)
+ /* CMN_REG(004e) */
+-#define ROPLL_PI_EN			BIT(5)
++#define ROPLL_PI_EN_MASK		BIT(5)
+ /* CMN_REG(005c) */
+-#define ROPLL_PMS_IQDIV_RSTN		BIT(5)
++#define ROPLL_PMS_IQDIV_RSTN_MASK	BIT(5)
+ /* CMN_REG(005e) */
+ #define ROPLL_SDM_EN_MASK		BIT(6)
+-#define ROPLL_SDM_FRAC_EN_RBR		BIT(3)
+-#define ROPLL_SDM_FRAC_EN_HBR		BIT(2)
+-#define ROPLL_SDM_FRAC_EN_HBR2		BIT(1)
+-#define ROPLL_SDM_FRAC_EN_HBR3		BIT(0)
++#define ROPLL_SDC_FRAC_EN_RBR_MASK	BIT(3)
++#define ROPLL_SDC_FRAC_EN_HBR_MASK	BIT(2)
++#define ROPLL_SDC_FRAC_EN_HBR2_MASK	BIT(1)
++#define ROPLL_SDM_FRAC_EN_HBR3_MASK	BIT(0)
+ /* CMN_REG(0064) */
+ #define ROPLL_SDM_NUM_SIGN_RBR_MASK	BIT(3)
+ /* CMN_REG(0069) */
+ #define ROPLL_SDC_N_RBR_MASK		GENMASK(2, 0)
+ /* CMN_REG(0074) */
+-#define ROPLL_SDC_NDIV_RSTN		BIT(2)
+-#define ROPLL_SSC_EN			BIT(0)
++#define ROPLL_SDC_NDIV_RSTN_MASK	BIT(2)
++#define ROPLL_SSC_EN_MASK		BIT(0)
+ /* CMN_REG(0081) */
+-#define OVRD_PLL_CD_CLK_EN		BIT(8)
+-#define ANA_PLL_CD_HSCLK_EAST_EN	BIT(0)
++#define OVRD_PLL_CD_CLK_EN_MASK		BIT(8)
++#define ANA_PLL_CD_HSCLK_EAST_EN_MASK	BIT(0)
+ /* CMN_REG(0086) */
+ #define PLL_PCG_POSTDIV_SEL_MASK	GENMASK(7, 4)
+ #define PLL_PCG_CLK_SEL_MASK		GENMASK(3, 1)
+-#define PLL_PCG_CLK_EN			BIT(0)
++#define PLL_PCG_CLK_EN_MASK		BIT(0)
+ /* CMN_REG(0087) */
+-#define ANA_PLL_FRL_MODE_EN		BIT(3)
+-#define ANA_PLL_TX_HS_CLK_EN		BIT(2)
++#define ANA_PLL_FRL_MODE_EN_MASK	BIT(3)
++#define ANA_PLL_TX_HS_CLK_EN_MASK	BIT(2)
+ /* CMN_REG(0089) */
+-#define LCPLL_ALONE_MODE		BIT(1)
++#define LCPLL_ALONE_MODE_MASK		BIT(1)
  /* CMN_REG(0097) */
- #define DIG_CLK_SEL			BIT(1)
--#define ROPLL_REF			BIT(1)
--#define LCPLL_REF			0
-+#define LCPLL_REF			BIT(1)
-+#define ROPLL_REF			0
+-#define DIG_CLK_SEL			BIT(1)
++#define DIG_CLK_SEL_MASK		BIT(1)
+ #define LCPLL_REF			BIT(1)
+ #define ROPLL_REF			0
  /* CMN_REG(0099) */
- #define CMN_ROPLL_ALONE_MODE		BIT(2)
+-#define CMN_ROPLL_ALONE_MODE		BIT(2)
++#define CMN_ROPLL_ALONE_MODE_MASK	BIT(2)
  #define ROPLL_ALONE_MODE		BIT(2)
+ /* CMN_REG(009a) */
+-#define HS_SPEED_SEL			BIT(0)
++#define HS_SPEED_SEL_MASK		BIT(0)
+ #define DIV_10_CLOCK			BIT(0)
+ /* CMN_REG(009b) */
+-#define IS_SPEED_SEL			BIT(4)
++#define LS_SPEED_SEL_MASK		BIT(4)
+ #define LINK_SYMBOL_CLOCK		BIT(4)
+ #define LINK_SYMBOL_CLOCK1_2		0
+ 
+@@ -161,36 +161,36 @@
+ #define SB_READY_MASK			BIT(4)
+ 
+ /* LNTOP_REG(0200) */
+-#define PROTOCOL_SEL			BIT(2)
++#define PROTOCOL_SEL_MASK		BIT(2)
+ #define HDMI_MODE			BIT(2)
+ #define HDMI_TMDS_FRL_SEL		BIT(1)
+ /* LNTOP_REG(0206) */
+-#define DATA_BUS_SEL			BIT(0)
++#define DATA_BUS_WIDTH_SEL_MASK		BIT(0)
+ #define DATA_BUS_36_40			BIT(0)
+ /* LNTOP_REG(0207) */
+-#define LANE_EN				0xf
++#define LANE_EN_MASK			0xf
+ #define ALL_LANE_EN			0xf
+ 
+ /* LANE_REG(0312) */
+-#define LN0_TX_SER_RATE_SEL_RBR		BIT(5)
+-#define LN0_TX_SER_RATE_SEL_HBR		BIT(4)
+-#define LN0_TX_SER_RATE_SEL_HBR2	BIT(3)
+-#define LN0_TX_SER_RATE_SEL_HBR3	BIT(2)
++#define LN0_TX_SER_RATE_SEL_RBR_MASK	BIT(5)
++#define LN0_TX_SER_RATE_SEL_HBR_MASK	BIT(4)
++#define LN0_TX_SER_RATE_SEL_HBR2_MASK	BIT(3)
++#define LN0_TX_SER_RATE_SEL_HBR3_MASK	BIT(2)
+ /* LANE_REG(0412) */
+-#define LN1_TX_SER_RATE_SEL_RBR		BIT(5)
+-#define LN1_TX_SER_RATE_SEL_HBR		BIT(4)
+-#define LN1_TX_SER_RATE_SEL_HBR2	BIT(3)
+-#define LN1_TX_SER_RATE_SEL_HBR3	BIT(2)
++#define LN1_TX_SER_RATE_SEL_RBR_MASK	BIT(5)
++#define LN1_TX_SER_RATE_SEL_HBR_MASK	BIT(4)
++#define LN1_TX_SER_RATE_SEL_HBR2_MASK	BIT(3)
++#define LN1_TX_SER_RATE_SEL_HBR3_MASK	BIT(2)
+ /* LANE_REG(0512) */
+-#define LN2_TX_SER_RATE_SEL_RBR		BIT(5)
+-#define LN2_TX_SER_RATE_SEL_HBR		BIT(4)
+-#define LN2_TX_SER_RATE_SEL_HBR2	BIT(3)
+-#define LN2_TX_SER_RATE_SEL_HBR3	BIT(2)
++#define LN2_TX_SER_RATE_SEL_RBR_MASK	BIT(5)
++#define LN2_TX_SER_RATE_SEL_HBR_MASK	BIT(4)
++#define LN2_TX_SER_RATE_SEL_HBR2_MASK	BIT(3)
++#define LN2_TX_SER_RATE_SEL_HBR3_MASK	BIT(2)
+ /* LANE_REG(0612) */
+-#define LN3_TX_SER_RATE_SEL_RBR		BIT(5)
+-#define LN3_TX_SER_RATE_SEL_HBR		BIT(4)
+-#define LN3_TX_SER_RATE_SEL_HBR2	BIT(3)
+-#define LN3_TX_SER_RATE_SEL_HBR3	BIT(2)
++#define LN3_TX_SER_RATE_SEL_RBR_MASK	BIT(5)
++#define LN3_TX_SER_RATE_SEL_HBR_MASK	BIT(4)
++#define LN3_TX_SER_RATE_SEL_HBR2_MASK	BIT(3)
++#define LN3_TX_SER_RATE_SEL_HBR3_MASK	BIT(2)
+ 
+ #define HDMI20_MAX_RATE			600000000
+ 
+@@ -813,8 +813,8 @@ static int rk_hdptx_ropll_tmds_cmn_config(struct rk_hdptx_phy *hdptx,
+ 	regmap_update_bits(hdptx->regmap, CMN_REG(0086), PLL_PCG_POSTDIV_SEL_MASK,
+ 			   FIELD_PREP(PLL_PCG_POSTDIV_SEL_MASK, cfg->pms_sdiv));
+ 
+-	regmap_update_bits(hdptx->regmap, CMN_REG(0086), PLL_PCG_CLK_EN,
+-			   PLL_PCG_CLK_EN);
++	regmap_update_bits(hdptx->regmap, CMN_REG(0086), PLL_PCG_CLK_EN_MASK,
++			   FIELD_PREP(PLL_PCG_CLK_EN_MASK, 0x1));
+ 
+ 	return rk_hdptx_post_enable_pll(hdptx);
+ }
 -- 
 2.34.1
 
