@@ -1,187 +1,197 @@
-Return-Path: <devicetree+bounces-140090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F416A184AA
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 19:10:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F0B3A184FA
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 19:13:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 799481886115
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 18:09:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01E603A4504
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 18:12:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 549ED1F76C7;
-	Tue, 21 Jan 2025 18:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D51701F76B7;
+	Tue, 21 Jan 2025 18:12:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kZRj1vUW"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="X+tf+EK3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64F8F1F55E3;
-	Tue, 21 Jan 2025 18:08:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A15F1F542F
+	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 18:12:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737482918; cv=none; b=AZn+Rb+fAtv0TcKMY+MHzKUi1ozNlFYrhIecBSSC07cfjhQWCIvi1Taj5b46oCg1wWQAzHtP5rWJw7Sjf8xVBykUSAM//TljDpY24hBFOhu7UfVGa8pB4lQn3x27KJ4SU5pZCeLHYi9BBJ0CvJmdJbWLmJiP0BCmJsJJYaqeKx8=
+	t=1737483136; cv=none; b=F/A9S+tBpwZLMhcAyxvnD18esK4yzRD4Hu2Gs4Y7HPxwhE5ekgMYUWOrqZsujq7t4uy3JY1YUx+/pV2z+LShiO530NLEapuLdBuTT1B1YppkfkQ4jS3SSzHgft9HbYQBAjyauLkvLfzlqx/Mpn6wx4PbtNC4L+C7VTspZKr90uM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737482918; c=relaxed/simple;
-	bh=hBvl3Xo2tB+oR6CbUigAuion/QAYF5O+whhkj9xJuhQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YxrHd88YkV3nHB8XUh0yMDU4a1SNHS5yMnrzrOIQ7Rnnm8VbtMfDTb6GW0jy8RtgUvKlVTrAcr40tjPfYa27cIrqdZCzTLM7bYehFv5DGc5flnEmKUg2bAu24uwtTynDAGp7iKph0PERM24kR9mw7ip9tQxzSJqCG2SWvSCdrWE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kZRj1vUW; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50LHQeLv002281;
-	Tue, 21 Jan 2025 18:08:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vIvKIBkT5H5B3pj83VWUXBvXrVOzL7W789I2WkPrpQg=; b=kZRj1vUWXTw9Biom
-	0H7oLx70/eyktDUSKx8tprUlPwxKKfZrh4ue8nzHj3EeM66vD8uY9WZ9h/IBbcn/
-	aJ/xkvPt7TZxuJ5V5T3VVL/tHENrJw8nbCJxGHYsvvw4zhlfOCZAo9p5y9jFzPtT
-	P0xYsn43d6cFVFe4TFaHfE94cd/neC/gLvDV8MYGvKodenrocS7NyDA2QAl18EEf
-	I0J3PGmEQHStjwT35FwXX5MIlZA7+DDmrHWc+QPxrP476bh4qDkjCd3mnY2TnBFf
-	bpBorOlJ1CJ974dZ5olJpV77edWzgOEa7DmJg2H+AfaJL1ge0Dmb8QHbHyd8VT9c
-	BFeMGw==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44ag01g3q8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 21 Jan 2025 18:08:25 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50LI8OYJ010956
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 21 Jan 2025 18:08:24 GMT
-Received: from hu-vikramsa-hyd.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Tue, 21 Jan 2025 10:08:15 -0800
-From: Vikram Sharma <quic_vikramsa@quicinc.com>
-To: <rfoss@kernel.org>, <todor.too@gmail.com>, <bryan.odonoghue@linaro.org>,
-        <mchehab@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <akapatra@quicinc.com>, <hariramp@quicinc.com>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <hverkuil-cisco@xs4all.nl>, <cros-qcom-dts-watchers@chromium.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <quic_vikramsa@quicinc.com>,
-        <linux-media@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>
-Subject: [PATCH v2 2/2] media: qcom: camss: update clock names for sc7280
-Date: Tue, 21 Jan 2025 23:37:46 +0530
-Message-ID: <20250121180746.1989996-3-quic_vikramsa@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250121180746.1989996-1-quic_vikramsa@quicinc.com>
-References: <20250121180746.1989996-1-quic_vikramsa@quicinc.com>
+	s=arc-20240116; t=1737483136; c=relaxed/simple;
+	bh=PX4CTXKAk+6wuzMo9LV9c/ouzv9PEXO3gBah07BHcio=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qzpNGiOIo+O2s5SM8PXi0FCzG0ELBjRxPgysJw/phbKklug1hwOJZ6PCqQCwrKHzjhaKBjQ8GAX8W92CeTI8cemKj+1F305vovPVXDnqVK1yis6gWO9WikSg4MqNjlVAXZ0VgRaPmlvehIBSsN4CEqU0Gjr/swkrNesZMmSdZdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=X+tf+EK3; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-38a25d4b9d4so3279985f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 10:12:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737483132; x=1738087932; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2ATWl2w60Z+sGkeI0mcnx/4T0KHdRkIjZ8D4tZCsI0Y=;
+        b=X+tf+EK3knJ5p60Neoj7nNQ/3szr5Mj537nBOUF5Ij8Q9F/doWtzQgE8xfd8vaqxJ2
+         7n3Mkz9T0eobQMhD/vq+lqcWp6sQ3pxtvnQoACmEx22K5gWP26iPKwZ3taYrLo4cJ+gt
+         UNi+RYt9j2yDUK+Psy03ajprNoeStIKEJ2wdsYO+QVvGwwEyVqSJxvyZVYa62zgoMuIi
+         OI650S1L5tz9Q0IdVoogtiOJc3C2cd2J7f46DqHRZu5JD+4lTXDY8wg+X5nWmRe4IvjR
+         XkI4KH6sRPwWrgtxT3U7IEkOyli6EVb6YvASPQr1R8wG5mgOVt0IfjW/TgysFXIWn0PU
+         SC1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737483132; x=1738087932;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2ATWl2w60Z+sGkeI0mcnx/4T0KHdRkIjZ8D4tZCsI0Y=;
+        b=OwFAw+lIffQp+0gjfW2r1lglptgfm/hENfaUBuF66MDzIvOPtPR7ZxI6c5RWAHj7oH
+         +dYnNAXV0tMqUdQvLaiNlKus0EV/NbgbLlbZ3lpw9G8Wxt4rgVcgX+g4N/QF6vs9/4JW
+         hvlgZKI1QVzCxJuBu2vG+KZq8ZFmrIVVJ45m5pZpkQ9lotgUOaf5eCzH0CYDkvsfKP9A
+         K41ub5KzGzUPXWoX33iSflpL0ofdKSpeG37pTdRjqKSbpERprZGAh0U7K9IM8j8yQhma
+         xioYAbP494YOXcyxYNPrafrizvXBD7xkWNtN5sq7ESNyouJbFUYzyehI1S4QoyQum9sk
+         aHug==
+X-Forwarded-Encrypted: i=1; AJvYcCWvAtvDrtr1d/lMUA+bGWlcJRagdnhxPorhM9kPJigZM1SSPBxiHFFcmsM71qhi5ylebXeD8bVJz3V5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKDOY9JFtT/OCdWdiYs0QiHZ3u71F7f6bL9ap/SzW1+Uw7eE64
+	EQMYDe0tpdOHfA4eMgOXNtaVTdilVhLd/5eBae2j90gttaa1Cl5EK/eW78gdsDg=
+X-Gm-Gg: ASbGncvLEWaayGnOhJy3YHsTB6Pc30A1eCAgeix3VEgCXPilxQSrXTZC/6WKunQtRdY
+	y9EPf8BXNAt8eqAkoJjiCDaKR90sAkM0zYQ/A1oVcCkeziU+lJ3D4Aqma7JhUvpsG/vSgkcCw/v
+	g+FUJJhGJmsy+8vd0x+HQKmVi0RMg9eV/fTU98b7/rSkcWt2vm/cZ/hy2JvM+s3NoBso5ziv9aT
+	zqzEJWX+DFqepTd2Bcj+ejVDH0z9ZgcGeIL/XiWcbgGQnNm070yOcwcWp+LC6cuIu7XTkLmnnyV
+	O/MX5ONj2PWzG5NWj1YU+W2TLtm9e1iJyySc
+X-Google-Smtp-Source: AGHT+IEjt4N7MJCEhKaZiHurWidGu495CgMG2Na/7KPIXm7oitJAqBfxZ0jP9XuVkrg802ep53//rQ==
+X-Received: by 2002:a5d:6c6f:0:b0:385:f3fb:46aa with SMTP id ffacd0b85a97d-38bf57a91acmr17612253f8f.43.1737483132532;
+        Tue, 21 Jan 2025 10:12:12 -0800 (PST)
+Received: from localhost (p200300f65f0afb0400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f0a:fb04::1b9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf321537dsm14275228f8f.13.2025.01.21.10.12.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jan 2025 10:12:12 -0800 (PST)
+Date: Tue, 21 Jan 2025 19:12:10 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Nylon Chen <nylon.chen@sifive.com>
+Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Samuel Holland <samuel.holland@sifive.com>, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v10 0/3] Change PWM-controlled LED pin active mode and
+ algorithm
+Message-ID: <7bcnckef23w6g47ll5l3bktygedrcfvr7fk3qjuq2swtoffhec@zs4w4tuh6qvm>
+References: <20241224093902.1632627-1-nylon.chen@sifive.com>
+ <zqkx7cx5nalslfmxeoxdnsjbvrvzajrjybsmsyeyc65a64sntr@gpc5qp6aoyp7>
+ <CAHh=Yk-_0rKB=FG6Voif2MDjtRxzUA5vXDP2J-o5=8ru1ewt0w@mail.gmail.com>
+ <CAHh=Yk-TosOmwEughfK9mMx-=DgzWK5H_bf6H641SGh1ue8BrA@mail.gmail.com>
+ <zneb3qwgf52zitcbq4wz76shnmhwfkabbsts3sussjpc5s5tsz@uneaxdfp4m2f>
+ <CAHh=Yk_oTdURhkna_saF6mrA9gDY=+v_j5NoY_7jTDLuZ=EXtg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: PY2JqTgTQFAf3aWiZomDb5HpQDGiVqRC
-X-Proofpoint-GUID: PY2JqTgTQFAf3aWiZomDb5HpQDGiVqRC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-21_07,2025-01-21_03,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 clxscore=1015 mlxscore=0 spamscore=0 phishscore=0
- priorityscore=1501 impostorscore=0 adultscore=0 bulkscore=0
- mlxlogscore=999 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2501210145
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="5j2h6qzt3k55kxw2"
+Content-Disposition: inline
+In-Reply-To: <CAHh=Yk_oTdURhkna_saF6mrA9gDY=+v_j5NoY_7jTDLuZ=EXtg@mail.gmail.com>
 
-Update clock names to make them consistent with existing platform i.e
-sc8280xp. Rename gcc_cam_hf_axi to gcc_axi_hf and add gcc_axi_sf.
 
-Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
----
- drivers/media/platform/qcom/camss/camss.c | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+--5j2h6qzt3k55kxw2
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v10 0/3] Change PWM-controlled LED pin active mode and
+ algorithm
+MIME-Version: 1.0
 
-diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-index a85e9df0f301..b1358457c66e 100644
---- a/drivers/media/platform/qcom/camss/camss.c
-+++ b/drivers/media/platform/qcom/camss/camss.c
-@@ -1443,12 +1443,13 @@ static const struct camss_subdev_resources vfe_res_7280[] = {
- 		.regulators = {},
- 
- 		.clock = { "camnoc_axi", "cpas_ahb", "icp_ahb", "vfe0",
--			   "vfe0_axi", "gcc_cam_hf_axi" },
-+			   "vfe0_axi", "gcc_axi_hf", "gcc_axi_sf" },
- 		.clock_rate = { { 150000000, 240000000, 320000000, 400000000, 480000000 },
- 				{ 80000000 },
- 				{ 0 },
- 				{ 380000000, 510000000, 637000000, 760000000 },
- 				{ 0 },
-+				{ 0 },
- 				{ 0 } },
- 
- 		.reg = { "vfe0" },
-@@ -1468,12 +1469,13 @@ static const struct camss_subdev_resources vfe_res_7280[] = {
- 		.regulators = {},
- 
- 		.clock = { "camnoc_axi", "cpas_ahb", "icp_ahb", "vfe1",
--			   "vfe1_axi", "gcc_cam_hf_axi" },
-+			   "vfe1_axi", "gcc_axi_hf", "gcc_axi_sf" },
- 		.clock_rate = { { 150000000, 240000000, 320000000, 400000000, 480000000 },
- 				{ 80000000 },
- 				{ 0 },
- 				{ 380000000, 510000000, 637000000, 760000000 },
- 				{ 0 },
-+				{ 0 },
- 				{ 0 } },
- 
- 		.reg = { "vfe1" },
-@@ -1493,12 +1495,13 @@ static const struct camss_subdev_resources vfe_res_7280[] = {
- 		.regulators = {},
- 
- 		.clock = { "camnoc_axi", "cpas_ahb", "icp_ahb", "vfe2",
--			   "vfe2_axi", "gcc_cam_hf_axi" },
-+			   "vfe2_axi", "gcc_axi_hf", "gcc_axi_sf" },
- 		.clock_rate = { { 150000000, 240000000, 320000000, 400000000, 480000000 },
- 				{ 80000000 },
- 				{ 0 },
- 				{ 380000000, 510000000, 637000000, 760000000 },
- 				{ 0 },
-+				{ 0 },
- 				{ 0 } },
- 
- 		.reg = { "vfe2" },
-@@ -1516,11 +1519,12 @@ static const struct camss_subdev_resources vfe_res_7280[] = {
- 	/* VFE3 (lite) */
- 	{
- 		.clock = { "camnoc_axi", "cpas_ahb", "icp_ahb",
--			   "vfe_lite0", "gcc_cam_hf_axi" },
-+			   "vfe_lite0", "gcc_axi_hf", "gcc_axi_sf" },
- 		.clock_rate = { { 150000000, 240000000, 320000000, 400000000, 480000000 },
- 				{ 80000000 },
- 				{ 0 },
- 				{ 320000000, 400000000, 480000000, 600000000 },
-+				{ 0 },
- 				{ 0 } },
- 
- 		.regulators = {},
-@@ -1537,11 +1541,12 @@ static const struct camss_subdev_resources vfe_res_7280[] = {
- 	/* VFE4 (lite) */
- 	{
- 		.clock = { "camnoc_axi", "cpas_ahb", "icp_ahb",
--			   "vfe_lite1", "gcc_cam_hf_axi" },
-+			   "vfe_lite1", "gcc_axi_hf", "gcc_axi_sf" },
- 		.clock_rate = { { 150000000, 240000000, 320000000, 400000000, 480000000 },
- 				{ 80000000 },
- 				{ 0 },
- 				{ 320000000, 400000000, 480000000, 600000000 },
-+				{ 0 },
- 				{ 0 } },
- 
- 		.regulators = {},
--- 
-2.25.1
+On Tue, Jan 21, 2025 at 04:47:46PM +0800, Nylon Chen wrote:
+> Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> =E6=96=BC 2025=E5=B9=
+=B41=E6=9C=8821=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=883:47=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+> >
+> > Hello,
+> >
+> > On Sun, Jan 19, 2025 at 03:03:16PM +0800, Nylon Chen wrote:
+> > > I ran some basic tests by changing the period and duty cycle in both
+> > > decreasing and increasing sequences (see the script below).
+> >
+> > What is clk_get_rate(ddata->clk) for you?
+> 130 MHz
 
+OK, so the possible period lengths are
+
+	(1 << (16 + scale)) / (130 MHz)
+
+for scale in [0, .. 15], right? That's
+
+	2^scale * 504123.07692307694 ns
+
+So testing period in the range between 5000 ns and 15000 ns isn't
+sensible? Did I get something wrong? If the above is right, switching
+between period=3D1008246 ns and 1008247 ns is likely to trigger a
+warning.
+
+Maybe also something like
+
+diff --git a/drivers/pwm/core.c b/drivers/pwm/core.c
+index 7e863c2cd44b..6c82aca84472 100644
+--- a/drivers/pwm/core.c
++++ b/drivers/pwm/core.c
+@@ -2247,9 +2247,10 @@ static void pwm_dbg_show(struct pwm_chip *chip, stru=
+ct seq_file *s)
+=20
+ 	for (i =3D 0; i < chip->npwm; i++) {
+ 		struct pwm_device *pwm =3D &chip->pwms[i];
+-		struct pwm_state state;
++		struct pwm_state state, hwstate;
+=20
+ 		pwm_get_state(pwm, &state);
++		pwm_get_state_hw(pwm, &hwstate);
+=20
+ 		seq_printf(s, " pwm-%-3d (%-20.20s):", i, pwm->label);
+=20
+@@ -2259,8 +2260,8 @@ static void pwm_dbg_show(struct pwm_chip *chip, struc=
+t seq_file *s)
+ 		if (state.enabled)
+ 			seq_puts(s, " enabled");
+=20
+-		seq_printf(s, " period: %llu ns", state.period);
+-		seq_printf(s, " duty: %llu ns", state.duty_cycle);
++		seq_printf(s, " period: %llu (%llu) ns", state.period, hwstate.period);
++		seq_printf(s, " duty: %llu (%llu) ns", state.duty_cycle, hwstate.duty_cy=
+cle);
+ 		seq_printf(s, " polarity: %s",
+ 			   state.polarity ? "inverse" : "normal");
+=20
+
+is useful for debugging to see what is actually implemented for a given
+request.
+
+Having said that, I don't like struct pwm_sifive_ddata::real_period and
+pwm_sifive_ddata::approx_period. These complicate the calculation and
+=2Eget_state should better calculate the period instead of just sticking
+to ddata->real_period.
+
+Best regards
+Uwe
+
+--5j2h6qzt3k55kxw2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmeP43gACgkQj4D7WH0S
+/k5jDwf/Z8ZyPbdZfE5yI1ZGDLTJiKlqXt2/IGKvjygXoU5XWSqpR+NzbQOOBVOG
+shlMIS3QeyzfpmSnM+/sSIoFViagCMioQjmkSIBzr2Eg/vsaHGzm3YhuLL9UQNC7
+Cz7N1NgR77RWyRYmVXBnrYpOhJ6TZkGo0cyFOANh5geMBJmT+MBCnzTSRLqux0rf
+Yqe8N4Xpg3KEpzbM9W0QflCOlvmpL+cgy9a/omhpb4hdn407p52Ce9UYHs+V9OfK
+Fy9PKP7KzcwKPOBH2eXosK6ifpAOAxmCQrWSkKsyO8oqZDR89jancE7VMKEvqeNd
+uYSjdmRNxlJgFtRL2P/w7KCoRysVoA==
+=hiTK
+-----END PGP SIGNATURE-----
+
+--5j2h6qzt3k55kxw2--
 
