@@ -1,117 +1,172 @@
-Return-Path: <devicetree+bounces-139872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49BCCA175DD
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 02:58:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C96EA1761C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 04:06:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CE13168ED5
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 01:58:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 166A03A75BF
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 03:06:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10A471448E4;
-	Tue, 21 Jan 2025 01:58:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A247515382E;
+	Tue, 21 Jan 2025 03:06:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PF33qMqV"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Gvh5oBvA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+Received: from mail-m1973190.qiye.163.com (mail-m1973190.qiye.163.com [220.197.31.90])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38C1F135A53;
-	Tue, 21 Jan 2025 01:58:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B6934689;
+	Tue, 21 Jan 2025 03:05:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.90
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737424730; cv=none; b=jNBDJhIXlhEovA0sf/EfdX/KBK3OHTpE0AX0bsW2s6wLbx+qMZ/9Bam6zpO4IEZs4hVRGAd7OucdEaZlqAEq18gibYFAkyy6xA3KoO+fMiPp3a1mWhAcqi0i0QZpEXXlzQ6hkDKBWYp0iraD4H44KaGmzkMUiV/lEH2Ent9yLYc=
+	t=1737428762; cv=none; b=g12OFOjuXUi9/h7Q96Kg/uD7+3DByFs7sT2+DMbCWL4TC/3lBTkhLn/RRPeKcO/5QcEj35lKE/TPUHAnV4xeKAGFTqnQvnBE5wXLbWh19cwkInvFTNNe6evI761ciVKNbQy4t+XXkVeAMrdkMWLuJyhEDlBMhRbR6a/QekCS6qA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737424730; c=relaxed/simple;
-	bh=raUKQDAysB8UV6QvG6k5sxNodocoD71iLSB6wRtr70k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=onfqh2VzICMAxI09ksYeNv6sgKO7aatM4khsnQ7m5VUMg6D6cVROc6XTA0IhdhilG69FHIwOIqwTeVUJJBMZfQyyDMr/17FQIYoHmE9KzSl6untxttnrOlvvqN1DrSlS8umIcI1VY1S8YCcTNs8RPBOqZJc+VI7YxrZvZ4yjAOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PF33qMqV; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737424728; x=1768960728;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=raUKQDAysB8UV6QvG6k5sxNodocoD71iLSB6wRtr70k=;
-  b=PF33qMqVmVMQEJyQieD7ZrORJ7SY7QHhpIJ1biAdsxBMGYNyXfCyW2Rn
-   SUr703iZAPyz9WNw5JPgTM4UjljAy8KQhiPw8IhejycBRThhenJIZtITf
-   Wp1YWAl4uuXloLkCMqEueUj6ficrvbRuwGsu10K12h1CYGijOuEsSFadi
-   SOQ1yUcW4OVp9JK9/dyRpa/2B0MNY5u4/9HBO/HrCdAbzk1ntNI7vkltC
-   zoAMBqXEmSJUgfPBImmAa5oujnpWoz+3P6w4Tarbg+av5F3/kCXQbOU+K
-   LnX83PEO37VjW9gnbeyCIVKNbqWRK5caXrQPAZ8pfpWO1lQyeDFw90Zr+
-   Q==;
-X-CSE-ConnectionGUID: fRdW+kPPTJy2bM/bAVbpVQ==
-X-CSE-MsgGUID: oTnLr5ZLSIWFm2z97JV4cA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11321"; a="25425231"
-X-IronPort-AV: E=Sophos;i="6.13,220,1732608000"; 
-   d="scan'208";a="25425231"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jan 2025 17:58:47 -0800
-X-CSE-ConnectionGUID: JhXlER2rQUGYG7miP5JBow==
-X-CSE-MsgGUID: 7eqw6VScS0iNql5ZnzO5Ww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="111634959"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa003.jf.intel.com with ESMTP; 20 Jan 2025 17:58:46 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1ta3XP-000XTz-06;
-	Tue, 21 Jan 2025 01:58:43 +0000
-Date: Tue, 21 Jan 2025 09:57:50 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Basharath Hussain Khaja <basharath@couthit.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>
-Subject: Re: [PATCH 2/2] of: address: Add kunit test for
- __of_address_resource_bounds()
-Message-ID: <202501210916.KXb12BAV-lkp@intel.com>
-References: <20250120-of-address-overflow-v1-2-dd68dbf47bce@linutronix.de>
+	s=arc-20240116; t=1737428762; c=relaxed/simple;
+	bh=pRUewvpusrXxYpn3RJSTwNGYU4QZAbcZLjQLju0Y8Dk=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=enG7cFbEnPndd0jfORpyaoXt8qsOsX/QogaOcQ09zf/0Jb4rKPsh0UwRqHvmv2xDywTZ8tc/HZf9dNjQbMqQyud9URhtFiG4RH57fdAEsw2RXHQe5GnL7NOV0RJEJo9M+cCJUTqFTSf0TLtLtdmhi97KmjlEUJEjM5Pyox6yaRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Gvh5oBvA; arc=none smtp.client-ip=220.197.31.90
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 93fdce2d;
+	Tue, 21 Jan 2025 11:00:41 +0800 (GMT+08:00)
+From: Shawn Lin <shawn.lin@rock-chips.com>
+To: Rob Herring <robh+dt@kernel.org>,
+	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
+	"Martin K . Petersen" <martin.petersen@oracle.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	"Rafael J . Wysocki" <rafael@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Avri Altman <avri.altman@wdc.com>,
+	Bart Van Assche <bvanassche@acm.org>,
+	YiFeng Zhao <zyf@rock-chips.com>,
+	Liang Chen <cl@rock-chips.com>,
+	linux-scsi@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-pm@vger.kernel.org,
+	Shawn Lin <shawn.lin@rock-chips.com>
+Subject: [PATCH v6 0/7] Initial support for RK3576 UFS controller
+Date: Tue, 21 Jan 2025 11:00:20 +0800
+Message-Id: <1737428427-32393-1-git-send-email-shawn.lin@rock-chips.com>
+X-Mailer: git-send-email 2.7.4
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGR0ZH1YeHkhNGE0aTk5DQhhWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a9486ce196e09cckunm93fdce2d
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Ngg6PAw6OTIVPDULDhcQOUko
+	CQ0aCzBVSlVKTEhMT0lDT09ISkxLVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUhNSEo3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=Gvh5oBvAo2dEaj4m6Wyc7BHdyd3s9/JSuGx7UtA+I7Bk3WhN3/Sv/aPlA1hhCX3ssyT6sqSCW1yhEAm2M4SOaMvYoNQTR//dMjzy7YXNYh1eUvvLDRPX41XuUa1YIwQjRGi4PNh3SVCk7ZtROWlquqx2+Vv9jWVC+gaDRe58yIA=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=qsTW96WiGE4VUwg9HWhzzwlQ4H/BodYfL5T/GO8IzPA=;
+	h=date:mime-version:subject:message-id:from;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250120-of-address-overflow-v1-2-dd68dbf47bce@linutronix.de>
 
-Hi Thomas,
 
-kernel test robot noticed the following build warnings:
+This patchset adds initial UFS controller supprt for RK3576 SoC.
+Patch 1 is the dt-bindings. Patch 2-4 deal with rpm and spm support
+in advanced suggested by Ulf. Patch 5 exports two new APIs for host
+driver. Patch 6 and 7 are the host driver and dtsi support.
 
-[auto build test WARNING on ffd294d346d185b70e28b1a28abe367bbfe53c04]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Wei-schuh/of-address-Fix-empty-resource-handling-in-__of_address_resource_bounds/20250120-221141
-base:   ffd294d346d185b70e28b1a28abe367bbfe53c04
-patch link:    https://lore.kernel.org/r/20250120-of-address-overflow-v1-2-dd68dbf47bce%40linutronix.de
-patch subject: [PATCH 2/2] of: address: Add kunit test for __of_address_resource_bounds()
-config: powerpc-randconfig-001-20250121 (https://download.01.org/0day-ci/archive/20250121/202501210916.KXb12BAV-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project c23f2417dc5f6dc371afb07af5627ec2a9d373a0)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250121/202501210916.KXb12BAV-lkp@intel.com/reproduce)
+Changes in v6:
+- export dev_pm_genpd_rpm_always_on()
+- replace host drivers with glue drivers suggested by Mani
+- add Main's review tag
+- remove UFS_MAX_CLKS
+- improve err log
+- remove hardcoded clocks
+- remove comment from ufs_rockchip_device_reset()
+- remove pm_runtime_* from ufs_rockchip_remove()
+- rebase to scsi/next
+- move ufs_rockchip_set_pm_lvl to ufs_rockchip_rk3576_init()
+- add comments about device_set_awake_path()
+- remove comments suggested by Mani
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501210916.KXb12BAV-lkp@intel.com/
+Changes in v5:
+- fix indentation to 4 spaces suggested by Krzysztof
+- use ufshc for devicetree example suggested by Mani
+- fix a compile warning
+- use device_set_awake_path() and disable ref_out_clk in suspend
+- remove pd_id from header
+- reconstruct ufs_rockchip_hce_enable_notify() to workaround hce enable
+  without using new quirk
 
-All warnings (new ones prefixed by >>, old ones prefixed by <<):
+Changes in v4:
+- properly describe reset-gpios
+- deal with power domain of rpm and spm suggested by Ulf
+- Fix typo and disable clks in ufs_rockchip_remove
+- remove clk_disable_unprepare(host->ref_out_clk) from
+  ufs_rockchip_remove
 
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-mgr-test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-bridge-test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/fpga/tests/fpga-region-test.o
->> WARNING: modpost: module of_test uses symbol __of_address_resource_bounds from namespace EXPORTED_FOR_KUNIT_TESTING, but does not import it.
+Changes in v3:
+- rename the file to rockchip,rk3576-ufshc.yaml
+- add description for reset-gpios
+- use rockchip,rk3576-ufshc as compatible
+- reword Kconfig description
+- elaborate more about controller in commit msg
+- use rockchip,rk3576-ufshc for compatible
+- remove useless header file
+- remove inline for ufshcd_is_device_present
+- use usleep_range instead
+- remove initialization, reverse Xmas order
+- remove useless varibles
+- check vops for null
+- other small fixes for err path
+- remove pm_runtime_set_active
+- fix the active and inactive reset-gpios logic
+- fix rpm_lvl and spm_lvl to 5 and move to end of probe path
+- remove unnecessary system PM callbacks
+- use UFSHCI_QUIRK_DME_RESET_ENABLE_AFTER_HCE instead
+  of UFSHCI_QUIRK_BROKEN_HCE
+
+Changes in v2:
+- rename the file
+- add reset-gpios
+
+Shawn Lin (6):
+  dt-bindings: ufs: Document Rockchip UFS host controller
+  soc: rockchip: add header for suspend mode SIP interface
+  pmdomain: rockchip: Add smc call to inform firmware
+  scsi: ufs: core: Export ufshcd_dme_reset() and ufshcd_dme_enable()
+  scsi: ufs: rockchip: initial support for UFS
+  arm64: dts: rockchip: Add UFS support for RK3576 SoC
+
+Ulf Hansson (1):
+  pmdomain: core: Introduce dev_pm_genpd_rpm_always_on()
+
+ .../bindings/ufs/rockchip,rk3576-ufshc.yaml        | 105 ++++++
+ arch/arm64/boot/dts/rockchip/rk3576.dtsi           |  24 ++
+ drivers/pmdomain/core.c                            |  35 ++
+ drivers/pmdomain/rockchip/pm-domains.c             |   8 +
+ drivers/ufs/core/ufshcd.c                          |   6 +-
+ drivers/ufs/host/Kconfig                           |  12 +
+ drivers/ufs/host/Makefile                          |   1 +
+ drivers/ufs/host/ufs-rockchip.c                    | 363 +++++++++++++++++++++
+ drivers/ufs/host/ufs-rockchip.h                    |  46 +++
+ include/linux/pm_domain.h                          |   7 +
+ include/soc/rockchip/rockchip_sip.h                |   3 +
+ include/ufs/ufshcd.h                               |   2 +
+ 12 files changed, 610 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ufs/rockchip,rk3576-ufshc.yaml
+ create mode 100644 drivers/ufs/host/ufs-rockchip.c
+ create mode 100644 drivers/ufs/host/ufs-rockchip.h
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.7.4
+
 
