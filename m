@@ -1,802 +1,413 @@
-Return-Path: <devicetree+bounces-140018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2D9AA17CC3
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:14:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5BADA17CC8
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:15:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70B4C3A8E92
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:14:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 270B97A4463
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:15:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 508B81F1528;
-	Tue, 21 Jan 2025 11:14:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C43A41F1313;
+	Tue, 21 Jan 2025 11:14:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ndOOpZGW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F18041F0E5C
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 11:14:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 947B31F12FB;
+	Tue, 21 Jan 2025 11:14:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737458066; cv=none; b=MGVEyk1Ig0LZxKSxulxvF8TD0Yj/IjM7vomqWws2JE+ysphmQiigMRG6deD/MzjGD8y7X3oIKEbnj294oDge7RRJR4VX6TyW3midlysHLxSFVMUPYs02NaBrADHKl8VwpeKRycqjg/V4ouaVXn3uJieJtvz3Ju6KU8VlKqXmLQA=
+	t=1737458074; cv=none; b=WK9hJdVWPwraDD/QEM3JTQJrA5XqUdWJ60j+vB+YhfBXeKhS/9dQ2bDxgKL2QtPCOAqBe2b9nkXxh5bl7z87OmY5omFsu+HiggylFHhxZ1wNzEHbQk5YkvYdr/NrKXN820EUMR6+afSzCP5vkPNKoKYp7A5q7wByO4VGXA48rI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737458066; c=relaxed/simple;
-	bh=bjeNWfKbwxZPxL0v8LDyy7X3pflGF3qmWLlAdVEbZ8A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=R4sHKdp/C6zgxILduYx1Hr+sJcWjFaRE1ijxYRlfEFS72hh+p73DD2yhO0LENa35YKCQeKWtSOx3OraV0X7NVXBNOtGu9sVUMFkiBW8k+mIS7+nFPFMUMuD4vlJtUjQYTY8F40DwJNVHVzbOSkkxfrrJmBM9tSuQUY3amImOfIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1taCD8-0000Yr-9p
-	for devicetree@vger.kernel.org; Tue, 21 Jan 2025 12:14:22 +0100
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mkl@pengutronix.de>)
-	id 1taCD7-00169m-2Q
-	for devicetree@vger.kernel.org;
-	Tue, 21 Jan 2025 12:14:21 +0100
-Received: from dspam.blackshift.org (localhost [127.0.0.1])
-	by bjornoya.blackshift.org (Postfix) with SMTP id 6BB863AD9C9
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 11:14:21 +0000 (UTC)
-Received: from hardanger.blackshift.org (unknown [172.20.34.65])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by bjornoya.blackshift.org (Postfix) with ESMTPS id A4B593AD9A9;
-	Tue, 21 Jan 2025 11:14:18 +0000 (UTC)
-Received: from [172.20.34.65] (localhost [::1])
-	by hardanger.blackshift.org (OpenSMTPD) with ESMTP id 5356d6f1;
-	Tue, 21 Jan 2025 11:14:17 +0000 (UTC)
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-Date: Tue, 21 Jan 2025 12:14:06 +0100
-Subject: [PATCH stm32-next v3 2/2] ARM: dts: stm32: lxa-fairytux2: add
- Linux Automation GmbH FairyTux 2
+	s=arc-20240116; t=1737458074; c=relaxed/simple;
+	bh=5/YCTSHK2CJDfikWF0It1IwBABtFMXUjR9+mLjH7RtI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uNOfkmxQMPvzNazLQCB5Arn4f0uaLRmiypMCWPGQXn1UAKxWir7++VCzZ6Hc4G5DpVJ0+NAorhrqNQRU/zN8ONQgMZvKosHDMCLCYHU3pQYVGm0Fx4WQnLCTMmd3e0mxzMkLNwVH6kbQ2A67KEKCwL8lwmxKAAuq9b7Z7+ChoPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ndOOpZGW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51113C4CEDF;
+	Tue, 21 Jan 2025 11:14:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737458074;
+	bh=5/YCTSHK2CJDfikWF0It1IwBABtFMXUjR9+mLjH7RtI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ndOOpZGWB6nYeAhqVRCP12Zx3iC2HSgWO0u5HLz+UpW9cctjQBhL3HYR/aCKi0/c6
+	 T20fV70O7taLR33PX2egNoR+qUuoHtJy1jFObFI5a/anTLlPX2laXNXHPWU8J8ZFl8
+	 Cxpcdwrom+X2UcT/NKLnsA9eJzXLeQykQzN4PGTEIcOpS2k1FVT+47C5MPZk1TgkyD
+	 Bfvo3CgxqGZYvuvIvelHwNWcq+Wbb7T+b/fKaCgZWhTFbfBhw9p69NPwDmuOz2JXvE
+	 Z3LNRaQI2FBlrPzBt1PsMhe0LR0kDGTK0l7jZUo9wtCccUfygalG6oV4/L5IWOPmv/
+	 s7o3ICT2wNNSA==
+Date: Tue, 21 Jan 2025 12:14:30 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+To: Chen Wang <unicornxw@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	unicorn_wang@outlook.com, inochiama@outlook.com, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, 
+	chunzhi.lin@sophgo.com, Sean Young <sean@mess.org>
+Subject: Re: [PATCH v6 2/3] pwm: sophgo: add driver for Sophgo SG2042 PWM
+Message-ID: <e2we4klv7w234zyc4vnbcydieyhcte63sdwcp43vmolmlasv5f@scsiepnnw3db>
+References: <cover.1733281657.git.unicorn_wang@outlook.com>
+ <4a7db3ecac9ac2b00c063360334834d6656672e3.1733281657.git.unicorn_wang@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250121-lxa-fairytux-v3-2-8d42d7d232fb@pengutronix.de>
-References: <20250121-lxa-fairytux-v3-0-8d42d7d232fb@pengutronix.de>
-In-Reply-To: <20250121-lxa-fairytux-v3-0-8d42d7d232fb@pengutronix.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: kernel@pengutronix.de, devicetree@vger.kernel.org, 
- linux-stm32@st-md-mailman.stormreply.com, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Marc Kleine-Budde <mkl@pengutronix.de>, 
- =?utf-8?q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>
-X-Mailer: b4 0.15-dev-1b0d6
-X-Developer-Signature: v=1; a=openpgp-sha256; l=17124; i=mkl@pengutronix.de;
- h=from:subject:message-id; bh=dUCzv5PVr4PmVJJzkU+YnBMaJFg7OzMRk3sRxR1WXPc=;
- b=owEBbQGS/pANAwAKASg4oj56LbxvAcsmYgBnj4GGlG4ZYsScJk1Tji55p7PRqpQdcDyVDdlGt
- 63s9jULmpGJATMEAAEKAB0WIQRQQLqG4LYE3Sm8Pl8oOKI+ei28bwUCZ4+BhgAKCRAoOKI+ei28
- byq4B/40TePa1AON2UPyGWT7IAGrO3Vp/2Q3lv/RznYJ4d5F2GLOcbaAjBiSXq7fQjFMWSs2EVX
- jON2oHfZwbGes8za7mVEy7buU/tj9mwHCG1xpsSqDoJAH2qf9LYI1/bp0nxCSyYs8EXEzWWbjQX
- 2fwb29bWy85pE1um1rmSeWl6jcyS9BPauHPi1JacdMSpt9F/+OpTb9x/EcjwpQht1evVW25l7Gj
- v9sh6zEK67VSucEY8pXcSIjSL6xlf9obX3lCy74soZBLnZSF8JuL4CAacNTgXlSk6j8oU6YXx6U
- SaxNRTy9CG9biKSiia6l5Awa0MeRAv0d1oiUljorUXMsw2sQ
-X-Developer-Key: i=mkl@pengutronix.de; a=openpgp;
- fpr=C1400BA0B3989E6FBC7D5B5C2B5EE211C58AEA54
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-
-From: Leonard Göhrs <l.goehrs@pengutronix.de>
-
-The Linux Automation GmbH FairyTux2 is a small Linux device based on
-an Octavo Systems OSD32MP153c SiP, that occupies just two slots on a
-DIN rail.
-
-The device contains an eMMC for storage, a gigabit Ethernet
-connection, a CAN bus and a RS485 transceiver.
-
-Add support for the lxa-fairytux2 generation 1 and 2 boards based on
-the STM32MP153c.
-
-Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
-Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
----
- arch/arm/boot/dts/st/Makefile                      |   2 +
- .../boot/dts/st/stm32mp153c-lxa-fairytux2-gen1.dts | 103 ++++++
- .../boot/dts/st/stm32mp153c-lxa-fairytux2-gen2.dts | 147 ++++++++
- .../arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi | 397 +++++++++++++++++++++
- 4 files changed, 649 insertions(+)
-
-diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefile
-index b7d5d305cbbeb78cfae9fab05271992959f6fa56..f68da19d7cbf33fc5424e4900d301b2706d03e5e 100644
---- a/arch/arm/boot/dts/st/Makefile
-+++ b/arch/arm/boot/dts/st/Makefile
-@@ -39,6 +39,8 @@ dtb-$(CONFIG_ARCH_STM32) += \
- 	stm32mp151c-mect1s.dtb \
- 	stm32mp153c-dhcom-drc02.dtb \
- 	stm32mp153c-dhcor-drc-compact.dtb \
-+	stm32mp153c-lxa-fairytux2-gen1.dtb \
-+	stm32mp153c-lxa-fairytux2-gen2.dtb \
- 	stm32mp153c-lxa-tac-gen3.dtb \
- 	stm32mp153c-mecio1r1.dtb \
- 	stm32mp157a-avenger96.dtb \
-diff --git a/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2-gen1.dts b/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2-gen1.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..3a0e84262424313ab102c907d22695b8f8eb758b
---- /dev/null
-+++ b/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2-gen1.dts
-@@ -0,0 +1,103 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
-+/*
-+ * Copyright (C) 2024 Leonard Göhrs, Pengutronix
-+ */
-+
-+/dts-v1/;
-+
-+#include "stm32mp153c-lxa-fairytux2.dtsi"
-+
-+/ {
-+	model = "Linux Automation GmbH FairyTux 2 Gen 1";
-+	compatible = "lxa,stm32mp153c-fairytux2-gen1", "oct,stm32mp153x-osd32", "st,stm32mp153";
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button-left {
-+			label = "USER_BTN1";
-+			linux,code = <KEY_ESC>;
-+			gpios = <&gpioi 11 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+		};
-+
-+		button-right {
-+			label = "USER_BTN2";
-+			linux,code = <KEY_HOME>;
-+			gpios = <&gpioe 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+		};
-+	};
-+};
-+
-+&gpiof {
-+	gpio-line-names = "GPIO1", "GPIO2", "", "", "",			/*  0 */
-+			  "", "", "", "", "",				/*  5 */
-+			  "", "", "", "", "",				/* 10 */
-+			  "";						/* 15 */
-+};
-+
-+&gpioh {
-+	gpio-line-names = "", "", "", "", "LCD_RESET",			/*  0 */
-+			  "", "", "", "", "",				/*  5 */
-+			  "", "", "", "GPIO3", "",			/* 10 */
-+			  "";						/* 15 */
-+};
-+
-+&gpioi {
-+	gpio-line-names = "", "", "", "", "",				/*  0 */
-+			  "", "", "", "ETH_", "",			/*  5 */
-+			  "", "USER_BTN1";				/* 10 */
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c1_pins_b>;
-+	pinctrl-1 = <&i2c1_sleep_pins_b>;
-+	status = "okay";
-+
-+	io_board_gpio: gpio@20 {
-+		compatible = "ti,tca6408";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		vcc-supply = <&v3v3_hdmi>;
-+		gpio-line-names = "LED1_GA_YK", "LED2_GA_YK", "LED1_GK_YA", "LED2_GK_YA",
-+				  "RS485_EN", "RS485_120R", "", "CAN_120R";
-+	};
-+};
-+
-+&led_controller_io {
-+	/*
-+	 * led-2 and led-3 are internally connected antiparallel to one
-+	 * another inside the ethernet jack like this:
-+	 * GPIO1 ---+---|led-2|>--+--- GPIO3
-+	 *          +--<|led-3|---+
-+	 * E.g. only one of the LEDs can be illuminated at a time while
-+	 * the other output must be driven low.
-+	 * This should likely be implemented using a multi color LED
-+	 * driver for antiparallel LEDs.
-+	 */
-+	led-2 {
-+		color = <LED_COLOR_ID_GREEN>;
-+		function = LED_FUNCTION_ACTIVITY;
-+		gpios = <&io_board_gpio 1 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	led-3 {
-+		color = <LED_COLOR_ID_ORANGE>;
-+		function = LED_FUNCTION_ACTIVITY;
-+		gpios = <&io_board_gpio 3 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&usart3 {
-+	/*
-+	 * On Gen 1 FairyTux 2 only RTS can be used and not CTS as well,
-+	 * Because pins PD11 (CTS) and PI11 (USER_BTN1) share the same
-+	 * interrupt and only one of them can be used at a time.
-+	 */
-+	rts-gpios = <&gpiod 12 GPIO_ACTIVE_LOW>;
-+};
-+
-+&usbotg_hs {
-+	dr_mode = "peripheral";
-+};
-diff --git a/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2-gen2.dts b/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2-gen2.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..66e6da912508cd9d16298e75d1eb0704ea12d247
---- /dev/null
-+++ b/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2-gen2.dts
-@@ -0,0 +1,147 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
-+/*
-+ * Copyright (C) 2024 Leonard Göhrs, Pengutronix
-+ */
-+
-+/dts-v1/;
-+
-+#include "stm32mp153c-lxa-fairytux2.dtsi"
-+
-+/ {
-+	model = "Linux Automation GmbH FairyTux 2 Gen 2";
-+	compatible = "lxa,stm32mp153c-fairytux2-gen2", "oct,stm32mp153x-osd32", "st,stm32mp153";
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		button-left {
-+			label = "USER_BTN1";
-+			linux,code = <KEY_ESC>;
-+			gpios = <&gpioi 10 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+		};
-+
-+		button-right {
-+			label = "USER_BTN2";
-+			linux,code = <KEY_HOME>;
-+			gpios = <&gpioe 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+		};
-+	};
-+};
-+
-+&gpiof {
-+	gpio-line-names = "", "", "", "", "",				/*  0 */
-+			  "", "", "", "", "",				/*  5 */
-+			  "", "", "", "", "",				/* 10 */
-+			  "";						/* 15 */
-+};
-+
-+&gpioh {
-+	gpio-line-names = "", "", "", "", "LCD_RESET",			/*  0 */
-+			  "", "", "", "", "",				/*  5 */
-+			  "", "", "GPIO1", "GPIO_INT", "",		/* 10 */
-+			  "";						/* 15 */
-+};
-+
-+&gpioi {
-+	gpio-line-names = "GPIO2", "", "", "", "",			/*  0 */
-+			  "", "", "", "ETH_", "",			/*  5 */
-+			  "", "USER_BTN1";				/* 10 */
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c1_pins_b>;
-+	pinctrl-1 = <&i2c1_sleep_pins_b>;
-+	status = "okay";
-+
-+	io_board_gpio: gpio@20 {
-+		compatible = "ti,tca6408";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-parent = <&gpioh>;
-+		interrupts = <13 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&board_tca6408_pins>;
-+		#interrupt-cells = <2>;
-+		vcc-supply = <&v3v3_hdmi>;
-+		gpio-line-names = "LED1_GA_YK", "LED2_GA_YK", "LED1_GK_YA", "USB_CC_ALERT",
-+				  "RS485_EN", "RS485_120R", "USB_CC_RESET", "CAN_120R";
-+	};
-+
-+	usb_c: typec@28 {
-+		compatible = "st,stusb1600";
-+		reg = <0x28>;
-+		interrupt-parent = <&io_board_gpio>;
-+		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-+		vdd-supply = <&reg_5v>;
-+		vsys-supply = <&v3v3_hdmi>;
-+
-+		connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			typec-power-opmode = "default";
-+
-+			port {
-+				con_usbotg_hs_ep: endpoint {
-+					remote-endpoint = <&usbotg_hs_ep>;
-+				};
-+			};
-+		};
-+	};
-+
-+	temperature-sensor@48 {
-+		compatible = "national,lm75a";
-+		reg = <0x48>;
-+		/*
-+		 * The sensor itself is powered by a voltage divider from the
-+		 * always-on 5V supply.
-+		 * The required pull-up resistors however are on v3v3_hdmi.
-+		 */
-+		vs-supply = <&v3v3_hdmi>;
-+	};
-+
-+	io_board_eeprom: eeprom@56 {
-+		compatible = "atmel,24c04";
-+		reg = <0x56>;
-+		vcc-supply = <&v3v3_hdmi>;
-+	};
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&led_controller_io {
-+	led-2 {
-+		color = <LED_COLOR_ID_ORANGE>;
-+		function = LED_FUNCTION_ACTIVITY;
-+		gpios = <&io_board_gpio 1 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&usart3 {
-+	rts-gpios = <&gpiod 12 GPIO_ACTIVE_LOW>;
-+	cts-gpios = <&gpiod 11 GPIO_ACTIVE_LOW>;
-+};
-+
-+&usbotg_hs {
-+	usb-role-switch;
-+
-+	port {
-+		usbotg_hs_ep: endpoint {
-+			remote-endpoint = <&con_usbotg_hs_ep>;
-+		};
-+	};
-+};
-+
-+&pinctrl {
-+	board_tca6408_pins: stusb1600-0 {
-+		pins {
-+			pinmux = <STM32_PINMUX('H', 13, GPIO)>;
-+			bias-pull-up;
-+		};
-+	};
-+};
-diff --git a/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi b/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi
-new file mode 100644
-index 0000000000000000000000000000000000000000..9eeb9d6b5eb0ed35d4a83b743e8007f19422e2ed
---- /dev/null
-+++ b/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi
-@@ -0,0 +1,397 @@
-+// SPDX-License-Identifier: (GPL-2.0-or-later OR BSD-3-Clause)
-+/*
-+ * Copyright (C) 2020 STMicroelectronics - All Rights Reserved
-+ * Copyright (C) 2021 Rouven Czerwinski, Pengutronix
-+ * Copyright (C) 2023, 2024 Leonard Göhrs, Pengutronix
-+ */
-+
-+#include "stm32mp153.dtsi"
-+#include "stm32mp15xc.dtsi"
-+#include "stm32mp15xx-osd32.dtsi"
-+#include "stm32mp15xxac-pinctrl.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pwm/pwm.h>
-+
-+/ {
-+	aliases {
-+		can0 = &m_can1;
-+		ethernet0 = &ethernet0;
-+		i2c0 = &i2c1;
-+		i2c1 = &i2c4;
-+		mmc1 = &sdmmc2;
-+		serial0 = &uart4;
-+		serial1 = &usart3;
-+		spi0 = &spi4;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart4;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		power-supply = <&v3v3>;
-+
-+		brightness-levels = <0 31 63 95 127 159 191 223 255>;
-+		default-brightness-level = <7>;
-+		pwms = <&led_pwm 3 1000000 0>;
-+	};
-+
-+	led-controller-cpu {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			gpios = <&gpioa 13 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	led_controller_io: led-controller-io {
-+		compatible = "gpio-leds";
-+
-+		/*
-+		 * led-0 and led-1 are internally connected antiparallel to one
-+		 * another inside the ethernet jack like this:
-+		 * GPIO0 ---+---|led-0|>--+--- GPIO2
-+		 *          +--<|led-1|---+
-+		 * E.g. only one of the LEDs can be illuminated at a time while
-+		 * the other output must be driven low.
-+		 * This should likely be implemented using a multi color LED
-+		 * driver for antiparallel LEDs.
-+		 */
-+		led-0 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_LAN;
-+			gpios = <&io_board_gpio 0 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_ORANGE>;
-+			function = LED_FUNCTION_LAN;
-+			gpios = <&io_board_gpio 2 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
-+	reg_5v: regulator-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_1v2: regulator-1v2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "1V2";
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+		regulator-always-on;
-+		vin-supply = <&reg_5v>;
-+	};
-+};
-+
-+baseboard_eeprom: &sip_eeprom {
-+};
-+
-+&crc1 {
-+	status = "okay";
-+};
-+
-+&cryp1 {
-+	status = "okay";
-+};
-+
-+&dts {
-+	status = "okay";
-+};
-+
-+&ethernet0 {
-+	assigned-clocks = <&rcc ETHCK_K>, <&rcc PLL4_P>;
-+	assigned-clock-parents = <&rcc PLL4_P>;
-+	assigned-clock-rates = <125000000>; /* Clock PLL4 to 750Mhz in ATF */
-+
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&ethernet0_rgmii_pins_b>;
-+	pinctrl-1 = <&ethernet0_rgmii_sleep_pins_b>;
-+
-+	st,eth-clk-sel;
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ethphy>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy: ethernet-phy@3 { /* KSZ9031RN */
-+			reg = <3>;
-+			reset-gpios = <&gpioe 11 GPIO_ACTIVE_LOW>; /* ETH_RST# */
-+			interrupt-parent = <&gpioa>;
-+			interrupts = <6 IRQ_TYPE_EDGE_FALLING>; /* ETH_MDINT# */
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <300>;
-+			micrel,force-master;
-+		};
-+	};
-+};
-+
-+&gpioa {
-+	gpio-line-names = "", "", "", "", "",				/*  0 */
-+			  "", "ETH_INT", "", "", "",			/*  5 */
-+			  "", "", "", "BOOTROM_LED", "",		/* 10 */
-+			  "";						/* 15 */
-+};
-+
-+&gpiob {
-+	gpio-line-names = "", "", "", "", "",				/*  0 */
-+			  "", "", "", "", "",				/*  5 */
-+			  "", "", "", "", "",				/* 10 */
-+			  "";						/* 15 */
-+};
-+
-+&gpioc {
-+	gpio-line-names = "", "", "", "", "",				/*  0 */
-+			  "", "", "", "", "",				/*  5 */
-+			  "", "";					/* 10 */
-+};
-+
-+&gpiod {
-+	gpio-line-names = "", "", "", "", "",				/*  0 */
-+			  "", "", "LCD_TE", "", "",			/*  5 */
-+			  "LCD_DC", "", "", "", "",			/* 10 */
-+			  "";						/* 15 */
-+};
-+
-+&gpioe {
-+	gpio-line-names = "LCD_CS", "", "", "", "",			/*  0 */
-+			  "", "", "", "", "",				/*  5 */
-+			  "", "", "", "", "",				/* 10 */
-+			  "";						/* 15 */
-+};
-+
-+&gpiof {
-+	gpio-line-names = "GPIO1", "GPIO2", "", "", "",			/*  0 */
-+			  "", "", "", "", "",				/*  5 */
-+			  "", "", "", "", "",				/* 10 */
-+			  "";						/* 15 */
-+};
-+
-+&gpiog {
-+	gpio-line-names = "", "", "", "", "",				/*  0 */
-+			  "", "", "", "", "",				/*  5 */
-+			  "", "", "", "", "",				/* 10 */
-+			  "";						/* 15 */
-+};
-+
-+&gpioz {
-+	gpio-line-names = "HWID0", "HWID1", "HWID2", "HWID3", "",	/*  0 */
-+			  "", "HWID4", "HWID5";				/*  5 */
-+};
-+
-+&hash1 {
-+	status = "okay";
-+};
-+
-+&iwdg2 {
-+	timeout-sec = <8>;
-+	status = "okay";
-+};
-+
-+&m_can1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&m_can1_pins_b>;
-+	pinctrl-1 = <&m_can1_sleep_pins_b>;
-+	status = "okay";
-+	termination-gpios = <&io_board_gpio 7 GPIO_ACTIVE_HIGH>;
-+	termination-ohms = <120>;
-+};
-+
-+&pmic {
-+	regulators {
-+		buck1-supply = <&reg_5v>;	/* VIN */
-+		buck2-supply = <&reg_5v>;	/* VIN */
-+		buck3-supply = <&reg_5v>;	/* VIN */
-+		buck4-supply = <&reg_5v>;	/* VIN */
-+		ldo2-supply = <&reg_5v>;	/* PMIC_LDO25IN */
-+		ldo4-supply = <&reg_5v>;	/* VIN */
-+		ldo5-supply = <&reg_5v>;	/* PMIC_LDO25IN */
-+		vref_ddr-supply = <&reg_5v>;	/* VIN */
-+		boost-supply = <&reg_5v>;	/* PMIC_BSTIN */
-+		pwr_sw2-supply = <&bst_out>;	/* PMIC_SWIN */
-+	};
-+};
-+
-+&pwr_regulators {
-+	vdd-supply = <&vdd>;
-+	vdd_3v3_usbfs-supply = <&vdd_usb>;
-+};
-+
-+&sdmmc2 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_b>;
-+	pinctrl-1 = <&sdmmc2_b4_od_pins_a &sdmmc2_d47_pins_b>;
-+	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_b>;
-+	vmmc-supply = <&v3v3>;
-+
-+	bus-width = <8>;
-+	mmc-ddr-3_3v;
-+	no-1-8-v;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	st,neg-edge;
-+
-+	status = "okay";
-+};
-+
-+&spi4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&spi4_pins_a>;
-+	cs-gpios = <&gpioe 0 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+
-+	lcd: display@0 {
-+		compatible = "shineworld,lh133k", "panel-mipi-dbi-spi";
-+		reg = <0>;
-+		power-supply = <&v3v3>;
-+		io-supply = <&v3v3>;
-+		backlight = <&backlight>;
-+		dc-gpios = <&gpiod 10 GPIO_ACTIVE_HIGH>;
-+		reset-gpios = <&gpioh 4 GPIO_ACTIVE_HIGH>;
-+		spi-3wire;
-+		spi-max-frequency = <32000000>;
-+
-+		width-mm = <23>;
-+		height-mm = <23>;
-+		rotation = <180>;
-+
-+		panel-timing {
-+			hactive = <240>;
-+			vactive = <240>;
-+			hback-porch = <0>;
-+			vback-porch = <0>;
-+
-+			clock-frequency = <0>;
-+			hfront-porch = <0>;
-+			hsync-len = <0>;
-+			vfront-porch = <0>;
-+			vsync-len = <0>;
-+		};
-+	};
-+};
-+
-+&timers2 {
-+	/* spare dmas for other usage */
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	status = "okay";
-+
-+	timer@1 {
-+		status = "okay";
-+	};
-+};
-+
-+&timers3 {
-+	/* spare dmas for other usage */
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	status = "okay";
-+
-+	timer@2 {
-+		status = "okay";
-+	};
-+};
-+
-+&timers4 {
-+	/* spare dmas for other usage */
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	status = "okay";
-+
-+	timer@3 {
-+		status = "okay";
-+	};
-+};
-+
-+&timers8 {
-+	/* spare dmas for other usage */
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	status = "okay";
-+
-+	led_pwm: pwm {
-+		pinctrl-names = "default", "sleep";
-+		pinctrl-0 = <&pwm8_pins_b>;
-+		pinctrl-1 = <&pwm8_sleep_pins_b>;
-+		status = "okay";
-+	};
-+};
-+
-+&uart4 {
-+	label = "debug";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart4_pins_a>;
-+
-+	/* spare dmas for other usage */
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	status = "okay";
-+};
-+
-+&usart3 {
-+	label = "external";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&usart3_pins_a>;
-+
-+	/* spare dmas for other usage */
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	status = "okay";
-+};
-+
-+&usbh_ehci {
-+	phys = <&usbphyc_port0>;
-+	phy-names = "usb";
-+
-+	status = "okay";
-+};
-+
-+&usbotg_hs {
-+	phys = <&usbphyc_port1 0>;
-+	phy-names = "usb2-phy";
-+
-+	vusb_d-supply = <&vdd_usb>;
-+	vusb_a-supply = <&reg18>;
-+
-+	status = "okay";
-+};
-+
-+&usbphyc {
-+	status = "okay";
-+};
-+
-+&usbphyc_port0 {
-+	phy-supply = <&vdd_usb>;
-+};
-+
-+&usbphyc_port1 {
-+	phy-supply = <&vdd_usb>;
-+};
-+
-+&v3v3_hdmi {
-+	regulator-enable-ramp-delay = <1000>;
-+};
-
--- 
-2.45.2
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="keq26qvpnouvfvzg"
+Content-Disposition: inline
+In-Reply-To: <4a7db3ecac9ac2b00c063360334834d6656672e3.1733281657.git.unicorn_wang@outlook.com>
 
 
+--keq26qvpnouvfvzg
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 2/3] pwm: sophgo: add driver for Sophgo SG2042 PWM
+MIME-Version: 1.0
+
+On Wed, Dec 04, 2024 at 11:17:18AM +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
+>=20
+> Add a PWM driver for PWM controller in Sophgo SG2042 SoC.
+>=20
+> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+> Signed-off-by: Sean Young <sean@mess.org>
+> ---
+>  drivers/pwm/Kconfig             |  10 ++
+>  drivers/pwm/Makefile            |   1 +
+>  drivers/pwm/pwm-sophgo-sg2042.c | 194 ++++++++++++++++++++++++++++++++
+>  3 files changed, 205 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-sophgo-sg2042.c
+>=20
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 0915c1e7df16..ec85f3895936 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -584,6 +584,16 @@ config PWM_SL28CPLD
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-sl28cpld.
+> =20
+> +config PWM_SOPHGO_SG2042
+> +	tristate "Sophgo SG2042 PWM support"
+> +	depends on ARCH_SOPHGO || COMPILE_TEST
+> +	help
+> +	  PWM driver for the PWM controller on Sophgo SG2042 SoC. The PWM
+> +	  controller supports outputing 4 channels of PWM waveforms.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm_sophgo_sg2042.
+> +
+>  config PWM_SPEAR
+>  	tristate "STMicroelectronics SPEAr PWM support"
+>  	depends on PLAT_SPEAR || COMPILE_TEST
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 9081e0c0e9e0..539e0def3f82 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -53,6 +53,7 @@ obj-$(CONFIG_PWM_RZ_MTU3)	+=3D pwm-rz-mtu3.o
+>  obj-$(CONFIG_PWM_SAMSUNG)	+=3D pwm-samsung.o
+>  obj-$(CONFIG_PWM_SIFIVE)	+=3D pwm-sifive.o
+>  obj-$(CONFIG_PWM_SL28CPLD)	+=3D pwm-sl28cpld.o
+> +obj-$(CONFIG_PWM_SOPHGO_SG2042)	+=3D pwm-sophgo-sg2042.o
+>  obj-$(CONFIG_PWM_SPEAR)		+=3D pwm-spear.o
+>  obj-$(CONFIG_PWM_SPRD)		+=3D pwm-sprd.o
+>  obj-$(CONFIG_PWM_STI)		+=3D pwm-sti.o
+> diff --git a/drivers/pwm/pwm-sophgo-sg2042.c b/drivers/pwm/pwm-sophgo-sg2=
+042.c
+> new file mode 100644
+> index 000000000000..a3d12505e4aa
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-sophgo-sg2042.c
+> @@ -0,0 +1,194 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Sophgo SG2042 PWM Controller Driver
+> + *
+> + * Copyright (C) 2024 Sophgo Technology Inc.
+> + * Copyright (C) 2024 Chen Wang <unicorn_wang@outlook.com>
+> + *
+> + * Limitations:
+> + * - After reset, the output of the PWM channel is always high.
+> + *   The value of HLPERIOD/PERIOD is 0.
+> + * - When HLPERIOD or PERIOD is reconfigured, PWM will start to
+> + *   output waveforms with the new configuration after completing
+> + *   the running period.
+> + * - When PERIOD and HLPERIOD is set to 0, the PWM wave output will
+> + *   be stopped and the output is pulled to high.
+
+Maybe I already asked: If there is a public manual for this chip, please
+add a link to it here.
+
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/reset.h>
+> +
+> +#include <asm/div64.h>
+
+The canonical include for that is <linux/math64.h>. This is also the
+header that defines mul_u64_u64_div_u64(). Your driver seems to compile
+only because clk.h includes math64.h via <linux/notifier.h> ->
+<linux/srcu.h> -> <linux/workqueue.h> -> <linux/timer.h> ->
+<linux/ktime.h> -> <linux/jiffies.h> -> <linux/math64.h>.
+
+> +/*
+> + * Offset RegisterName
+> + * 0x0000 HLPERIOD0
+> + * 0x0004 PERIOD0
+> + * 0x0008 HLPERIOD1
+> + * 0x000C PERIOD1
+> + * 0x0010 HLPERIOD2
+> + * 0x0014 PERIOD2
+> + * 0x0018 HLPERIOD3
+> + * 0x001C PERIOD3
+> + * Four groups and every group is composed of HLPERIOD & PERIOD
+> + */
+> +#define SG2042_HLPERIOD(chan) ((chan) * 8 + 0)
+> +#define SG2042_PERIOD(chan) ((chan) * 8 + 4)
+
+s/SG2042_/SG2042_PWM_/ to match the function prefix and driver name?
+
+> +
+> +#define SG2042_PWM_CHANNELNUM	4
+> +
+> +/**
+> + * struct sg2042_pwm_ddata - private driver data
+> + * @base:		base address of mapped PWM registers
+> + * @clk_rate_hz:	rate of base clock in HZ
+> + */
+> +struct sg2042_pwm_ddata {
+> +	void __iomem *base;
+> +	unsigned long clk_rate_hz;
+> +};
+> +
+> +static void pwm_sg2042_config(void __iomem *base, unsigned int chan, u32=
+ period, u32 hlperiod)
+
+Maybe pass ddata here instead of base and add
+
+	void __iomem *base =3D ddata->base;
+
+to the function body. Then the calls simplify from
+
+	pwm_sg2042_config(ddata->base, pwm->hwpwm, period, hlperiod);
+
+to
+
+	pwm_sg2042_config(ddata, pwm->hwpwm, period, hlperiod);
+
+=2E
+
+> +{
+> +	writel(period, base + SG2042_PERIOD(chan));
+> +	writel(hlperiod, base + SG2042_HLPERIOD(chan));
+> +}
+> +
+> +static int pwm_sg2042_apply(struct pwm_chip *chip, struct pwm_device *pw=
+m,
+> +			    const struct pwm_state *state)
+> +{
+> +	struct sg2042_pwm_ddata *ddata =3D pwmchip_get_drvdata(chip);
+> +	u32 hlperiod;
+> +	u32 period;
+
+state->period is measured in ns, the local variable period however
+holds a value measured in clock ticks. To make this still clearer than
+it already is, I suggest to rename the variable to period_ticks. Ditto
+for hlperiod.
+
+> +	if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
+> +		return -EINVAL;
+> +
+> +	if (!state->enabled) {
+> +		pwm_sg2042_config(ddata->base, pwm->hwpwm, 0, 0);
+> +		return 0;
+> +	}
+> +
+> +	/*
+> +	 * Period of High level (duty_cycle) =3D HLPERIOD x Period_clk
+> +	 * Period of One Cycle (period) =3D PERIOD x Period_clk
+
+s/Period/Duration/ ? What is Period_clk?
+
+> +	 */
+> +	period =3D min(mul_u64_u64_div_u64(ddata->clk_rate_hz, state->period, N=
+SEC_PER_SEC), U32_MAX);
+> +	hlperiod =3D min(mul_u64_u64_div_u64(ddata->clk_rate_hz, state->duty_cy=
+cle, NSEC_PER_SEC), U32_MAX);
+> +
+> +	if (hlperiod > period) {
+> +		dev_err(pwmchip_parent(chip), "period < hlperiod, failed to apply curr=
+ent setting\n");
+> +		return -EINVAL;
+
+No need to check for that, .apply() is only called with
+state->duty_cycle <=3D state->period.
+
+> +	}
+> +
+> +	dev_dbg(pwmchip_parent(chip), "chan[%u]: period=3D%u, hlperiod=3D%u\n",
+> +		pwm->hwpwm, period, hlperiod);
+> +
+> +	pwm_sg2042_config(ddata->base, pwm->hwpwm, period, hlperiod);
+> +
+> +	return 0;
+> +}
+> +
+> +static int pwm_sg2042_get_state(struct pwm_chip *chip, struct pwm_device=
+ *pwm,
+> +				struct pwm_state *state)
+> +{
+> +	struct sg2042_pwm_ddata *ddata =3D pwmchip_get_drvdata(chip);
+> +	unsigned int chan =3D pwm->hwpwm;
+> +	u32 hlperiod;
+> +	u32 period;
+> +
+> +	period =3D readl(ddata->base + SG2042_PERIOD(chan));
+> +	hlperiod =3D readl(ddata->base + SG2042_HLPERIOD(chan));
+> +
+> +	if (!period && !hlperiod)
+> +		state->enabled =3D false;
+> +	else
+> +		state->enabled =3D true;
+
+What happens if hlperiod > period? Isn't period=3D=3D0 enough for
+state->enabled =3D false? Also if period=3D=3D0 there is no use in determin=
+ing
+state->period and state->duty_cycle.
+
+So I would expect here:
+
+	period_ticks =3D readl(ddata->base + SG2042_PERIOD(chan));
+	hlperiod_ticks =3D readl(ddata->base + SG2042_HLPERIOD(chan));
+
+	if (!period_ticks) {
+		state->enabled =3D false;
+		return 0;
+	}
+
+	if (hlperiod_ticks > period_ticks)
+		hlperiod_ticks =3D period_ticks;
+
+	state->enabled =3D true;
+	state->period =3D DIV_ROUND_UP_ULL((u64)period_ticks * NSEC_PER_SEC, ddata=
+->clk_rate_hz);
+	state->duty_cycle =3D DIV_ROUND_UP_ULL((u64)hlperiod_ticks * NSEC_PER_SEC,=
+ ddata->clk_rate_hz);
+	state->polarity =3D PWM_POLARITY_NORMAL;
+
+> +	state->period =3D DIV_ROUND_UP_ULL((u64)period * NSEC_PER_SEC, ddata->c=
+lk_rate_hz);
+> +	state->duty_cycle =3D DIV_ROUND_UP_ULL((u64)hlperiod * NSEC_PER_SEC, dd=
+ata->clk_rate_hz);
+> +
+> +	state->polarity =3D PWM_POLARITY_NORMAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops pwm_sg2042_ops =3D {
+> +	.apply =3D pwm_sg2042_apply,
+> +	.get_state =3D pwm_sg2042_get_state,
+> +};
+> +
+> +static const struct of_device_id sg2042_pwm_ids[] =3D {
+> +	{ .compatible =3D "sophgo,sg2042-pwm" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, sg2042_pwm_ids);
+> +
+> +static int pwm_sg2042_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct sg2042_pwm_ddata *ddata;
+> +	struct reset_control *rst;
+> +	struct pwm_chip *chip;
+> +	struct clk *clk;
+> +	int ret;
+> +
+> +	chip =3D devm_pwmchip_alloc(dev, SG2042_PWM_CHANNELNUM, sizeof(*ddata));
+> +	if (IS_ERR(chip))
+> +		return PTR_ERR(chip);
+> +	ddata =3D pwmchip_get_drvdata(chip);
+> +
+> +	ddata->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(ddata->base))
+> +		return PTR_ERR(ddata->base);
+> +
+> +	clk =3D devm_clk_get_enabled(dev, "apb");
+> +	if (IS_ERR(clk))
+> +		return dev_err_probe(dev, PTR_ERR(clk), "failed to get base clk\n");
+
+I like error messages to start consistently with a capital letter.
+
+> +	ret =3D devm_clk_rate_exclusive_get(dev, clk);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to get exclusive rate\n");
+> +
+> +	ddata->clk_rate_hz =3D clk_get_rate(clk);
+> +	if (!ddata->clk_rate_hz || ddata->clk_rate_hz > NSEC_PER_SEC)
+
+Please add a comment about why you check for > NSEC_PER_SEC.
+
+> +		return dev_err_probe(dev, -EINVAL,
+> +				     "Invalid clock rate: %lu\n", ddata->clk_rate_hz);
+> +
+> +	rst =3D devm_reset_control_get_optional_shared(dev, NULL);
+> +	if (IS_ERR(rst))
+> +		return dev_err_probe(dev, PTR_ERR(rst), "failed to get reset\n");
+> +
+> +	/* Deassert reset */
+> +	ret =3D reset_control_deassert(rst);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "failed to deassert\n");
+
+There is devm_reset_control_get_optional_shared_deasserted() that does
+the two calls devm_reset_control_get_optional_shared() and
+reset_control_deassert() together and also cares for reasserting the
+reset at remove time.
+
+> +	chip->ops =3D &pwm_sg2042_ops;
+> +	chip->atomic =3D true;
+> +
+> +	ret =3D devm_pwmchip_add(dev, chip);
+> +	if (ret < 0) {
+> +		reset_control_assert(rst);
+> +		return dev_err_probe(dev, ret, "failed to register PWM chip\n");
+> +	}
+> +
+> +	return 0;
+> +}
+
+Best regards
+Uwe
+
+--keq26qvpnouvfvzg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmePgZQACgkQj4D7WH0S
+/k5eqAgAr3xkmwsD66/DdJwayu+mz1FRtzDgSgIF1iJ5aUygTLg7fPBpk3lnHuDu
+7Tg0uYKl8a3SO+8vHeTYXbqw6zZoxmBTmOM7O3FG+AHifrXcb6KCV02VJnh646mC
+2yQ3zZ9RKSFpiQMTFp9fHJnk1XyjkQpnBAnJJY9pec4yM7W4LhoB+iGvKby1HriW
+lIqs4l2Te7G0pO0iXOuzagMPKqqubLQ/JLPgnaTqC80T430gtjBOyggWve7oFrYu
+uEQxZC2x5CvXMqNcwV5u5CzG/qu66xfiXiG1Kktt2xD05cQy7OUDoT/sM5FeCZdz
+b2VoieJWLWhscZSSdS94e9ITqs/Kuw==
+=KCo3
+-----END PGP SIGNATURE-----
+
+--keq26qvpnouvfvzg--
 
