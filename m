@@ -1,126 +1,214 @@
-Return-Path: <devicetree+bounces-140134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB171A1877D
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 22:49:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 155BBA1878E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 22:58:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B28DB1885106
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 21:49:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B82B4188A7E3
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 21:58:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B644F1E3784;
-	Tue, 21 Jan 2025 21:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A09301F8913;
+	Tue, 21 Jan 2025 21:58:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="AnhMTBG5"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="FPlpSjTb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA92188CAE
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 21:49:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67D1E1F869F
+	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 21:58:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737496159; cv=none; b=U6WSLQdjtVsn9EHEtw1EjHH8k/jqKYqeZpfcdIdXRxqOvJldEpkJWTywhEYFK8VI0Am6uyXf8xCoDYeGba2E/1N+nXeIwrJwwR0lRE1OHiue9VABaeVn+uJDDu9VQOo39pn5U/85UyQJ+N5t5OYr/VZKHU4DTD9seukFg5IYSNg=
+	t=1737496717; cv=none; b=UmeL0R/3QwpQBKO1vcyjwRpz6Tqd3x6BV9LDl1tY4xcVJ6wfXcIARBmfsnCYI6H01aXYEOWRGzzKnmCRyk4aoXw9sfpSQd2HWG62Tse6WSMB7ZBs/bJEfmMULtN2SP4kKq2HF4Un2NOzSsn18q80063CwFUUCRKxor3lK/tyFMw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737496159; c=relaxed/simple;
-	bh=/CxD3M7Lbs0okD8Rf4npomzQ6l6xnlT+owgsJ2n+7I8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iHmEoeKrvuCiT6Isc9oIjWVnH9bxChdZ9gzVnJm+9i7BQgtM4pOP60gebmsBxp1PD3hQqP/EwA6VFa2bn951TsKH8tfrJc9QjjaXLtrvCV7XPnS0792/JGkLx/VwYrwG3YumxnpUM9TWNRw9YzsQO9fpfLZcxTXmxEs3uz/vt+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=AnhMTBG5; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from DESKTOP-0403QTC. (unknown [20.236.11.185])
-	by linux.microsoft.com (Postfix) with ESMTPSA id 5D406205A9EC;
-	Tue, 21 Jan 2025 13:49:12 -0800 (PST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 5D406205A9EC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1737496152;
-	bh=CRKKcyPjoabyj6UhYawNm7cMg5b+yHqOJ+jXOfGN160=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Reply-To:From;
-	b=AnhMTBG5w0v57AHdyDrH4rfPMLpZGLXbxSxM/kulCk1lIzsyrkv2JKeRXmYR7oW/p
-	 uiXeHo2ayumznqIIaVwHPWld1D4Ep4fJEXar+ZvMO7uvNCQEG0aKLI+e0g1YQexhZR
-	 xSem6n7ei8EIEw2f0J3o8+6OA/3FR7fFnMikja4s=
-Date: Tue, 21 Jan 2025 13:49:10 -0800
-From: Jacob Pan <jacob.pan@linux.microsoft.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Shyam Saini <shyamsaini@linux.microsoft.com>, iommu@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- virtualization@lists.linux.dev, will@kernel.org, eric.auger@redhat.com,
- code@tyhicks.com, eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
- jacob.pan@linux.microsoft.com
-Subject: Re: [PATCH 0/3] make MSI IOVA base address and its length
- configurable
-Message-ID: <20250121134910.11797062@DESKTOP-0403QTC.>
-In-Reply-To: <20250120142643.GM674319@ziepe.ca>
-References: <20250116232307.1436693-1-shyamsaini@linux.microsoft.com>
-	<20250120142643.GM674319@ziepe.ca>
-Reply-To: jacob.pan@linux.microsoft.com
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1737496717; c=relaxed/simple;
+	bh=PQ8HmImznIqveMgGViJdb3JBkPUFSZC1K3t5wsnSATE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=MUk2eCKLv0WZqkT3JVIlkg53D6QoapENv2hHGics1+HmF8x8bFzlPKRUG6q++Ig5ZUfdZuPpx0nafuWpxW1oYV/tqO4dnV1YepmrS+nK0LOGKo3Pl+JFrWkiYuyjejwzWwvAvVZNNBhg0u7AhvIn9xd15mURiQGQ/6T3zqDSCf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=FPlpSjTb; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250121215833euoutp029165fda74dbeb9c9f864c7a657340060~c1A4TvUWF3137831378euoutp02a
+	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 21:58:33 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250121215833euoutp029165fda74dbeb9c9f864c7a657340060~c1A4TvUWF3137831378euoutp02a
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1737496713;
+	bh=dhS9VK6lKtJDwB/Wh8WM7ke0tY8Fdq91p1GikVh8Noc=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=FPlpSjTb/LH/VDkNSL+s7N1Zr9LdQaKqXOZIRml7leQkVU6MyBsUCQXx+1lth2DDM
+	 iHENB757SBH0dOCHKJAF3wZHtXHg395o1iKq3x2ym+jdcwfPzJLaGYnc9Ywwh4lrEG
+	 wRiMZIvYqwIyhDQtfvVwG0Jgq+SI0AKZJPnOgqGc=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250121215832eucas1p2853bd0813e860f5e8bb602baf341efe9~c1A3v2gpS1285912859eucas1p2t;
+	Tue, 21 Jan 2025 21:58:32 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges3new.samsung.com (EUCPMTA) with SMTP id 81.63.20397.88810976; Tue, 21
+	Jan 2025 21:58:32 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250121215831eucas1p128aaca6fb6e57b29dabac1b7f914d20d~c1A2d3S-l1222312223eucas1p1d;
+	Tue, 21 Jan 2025 21:58:31 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250121215831eusmtrp171478958438ff0ec982029abb41b0548~c1A2bXl923058630586eusmtrp1P;
+	Tue, 21 Jan 2025 21:58:31 +0000 (GMT)
+X-AuditID: cbfec7f5-ed1d670000004fad-fe-67901888090b
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id AD.74.19654.68810976; Tue, 21
+	Jan 2025 21:58:31 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250121215829eusmtip27335b394e4a3e5f85167ea3b5fec4752~c1A1JlHHx1353513535eusmtip2X;
+	Tue, 21 Jan 2025 21:58:29 +0000 (GMT)
+Message-ID: <ff53263d-813f-43c3-9090-e73dc0031949@samsung.com>
+Date: Tue, 21 Jan 2025 22:58:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC v3 07/18] dt-bindings: reset: Add T-HEAD TH1520 SoC Reset
+ Controller
+To: Philipp Zabel <p.zabel@pengutronix.de>, mturquette@baylibre.com,
+	sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	drew@pdp7.com, guoren@kernel.org, wefu@redhat.com, jassisinghbrar@gmail.com,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	frank.binns@imgtec.com, matt.coster@imgtec.com,
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+	airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org,
+	jszhang@kernel.org, m.szyprowski@samsung.com
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <6018a750dcbb46fe1bd9f653f469d54928c23610.camel@pengutronix.de>
 Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0xTVxzHd25v722bFS4FxhljUTB76DZEGMsJGjbRzbtkJnMLGcwFbMZd
+	QXmthTEUHAzoaFeZPDqwIq8YRTIkQMGWgUQebVXssDgQhEIibINZoAWZQMBZL2789/l9f9/f
+	+T1yeBxRG+HNi0tMYaSJ4ng/QoC3GpbNb+XD05KAX7XeyDRUg6GWVQ2JfukwY6iyx8xFVosW
+	Q3cezhHo8lQ/if7qyMbRYO05EuUYGgg0rbESyK6yctFAWzmBFk71ANS6kEug+p4xElXbW3B0
+	XtcGkFxxgYtu33gfjVlNOJoeUHGQXOOKHrfrSLQ+2Iijs7OdJNI+KOQiY/1nKLezBH/vZXru
+	bh5JP5iexunu/EWS7liqwmm9ZoykVfo+QDfVKQh6dLCdoCuuH6LHfzRidPP57+jcegNG/7QW
+	QM9d/Z2gC7R1gLbkDJEfiz4X7Ilh4uO+YaQ7Q48IYsvUt7jJNvdvB4syskAjpQR8HqTehr1r
+	fbgSCHgiqhbAe2OXMDZYBLCwpYpggwUAqxvXsWcl99u7uUrAe5K4COA5X9ZjA9CR/zPH6RFS
+	oXBWV0I4GadegUvt1g3dDV4/M4k72ZPaAsdHykgnu1MRUFGqBs6HPCg1Dosrpp8mONQVAE19
+	Qpa94Mhk5dMhCCoQTlys5DqZT30E9Tl3Nvxb4BVbOYcd9LYAlgyGsbwfmhq6cZbd4YxRS7Ls
+	A28Wqzb0JDjR4tiozYB6lXGDd8NR8wrhXJhDbYcNbTtZeS+8qlWTThlSLvCuzY2dwAUWtZZy
+	WFkI8+Ui1v0qVKtO/dfUXNuKnQZ+mk1H0WzaUbNpF83/fasAXge8mFRZgoSRBSUyaf4ycYIs
+	NVHi/2VSQhN48r1vrhsf6kDtjN2/C2A80AUgj+PnIfScV0lEwhhx+nFGmhQtTY1nZF3gJR7u
+	5yWs6cyTiCiJOIU5xjDJjPRZFuPxvbOwiJRLdltShvRPqUMcNbVeGROuCI19dD8sGAi+AGVB
+	uk+KDKprmR+83nKmNG13tuTopzXy8KFhB3gxvWHi8ejfq8rx7/knLHz8zcyKAaapb1towdc1
+	YX/MhvRXKA+/k7a1eTzS7VaIT7NBr97aOxPOfFVcvbw3/EKMwvb8apFvQWDJtgMN8SsvDCtn
+	In47GOvhM28OODK6/VhwVu+hk0dPhvWrCu3BNfP3rnnAfdXJUz8c8CddXToWxfr97wY51kKG
+	yvZZ+jJXPgycHK+MokO0TZGvHfaNyy6vWt5lHF4iho5b/vEuTJcnT0bmuc5GN3lGmYat9Sce
+	vbHjxsSe6MsjjrWU5/xwWax41w6OVCb+Fwrxck5NBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrAKsWRmVeSWpSXmKPExsVy+t/xe7rtEhPSDabfYLI4cX0Rk8XW37PY
+	LdbsPcdkMf/IOVaLe5e2MFlc+fqezWLd0wvsFi/2NrJYXFsxl92i+dh6NouXs+6xWXzsucdq
+	cXnXHDaLz71HGC22fW5hs1h75C67xcKPW1ksluzYxWjR1rmM1eLiKVeLu/dOsFi8vNzDbNE2
+	i9/i/54d7Bb/rm1ksZj9bj+7xZY3E1ktjq8Nt2jZP4XFQdbj/Y1Wdo83L1+yeBzu+MLusffb
+	AhaPnbPusnv07DzD6LFpVSebx51re9g85p0M9LjffZzJY/OSeo+WtceYPPr/Gni833eVzaNv
+	yypGj0vN19kDhKL0bIryS0tSFTLyi0tslaINLYz0DC0t9IxMLPUMjc1jrYxMlfTtbFJSczLL
+	Uov07RL0MmZMPcta8Fa44tqkmgbGjQJdjJwcEgImEo/3HGbtYuTiEBJYyiix9fhjZoiEjMS1
+	7pcsELawxJ9rXWwQRa8ZJR7+ecYIkuAVsJN4t2MKG4jNIqAq8W3PPWaIuKDEyZlPwJpFBeQl
+	7t+awQ5iCwtESHROn8oIMkhEYCqLxJGrf8FWMwtsZ5TYMBMiIyTQzSRx8eldsBZmAXGJW0/m
+	M4HYbAJGEg+Wz2cFsTkFfCR2Nl8BquEAqlGXWD9PCKJcXmL72znMExiFZiE5ZBaSSbMQOmYh
+	6VjAyLKKUSS1tDg3PbfYSK84Mbe4NC9dLzk/dxMjMGltO/Zzyw7Gla8+6h1iZOJgPMQowcGs
+	JMIr+qEnXYg3JbGyKrUoP76oNCe1+BCjKTAwJjJLiSbnA9NmXkm8oZmBqaGJmaWBqaWZsZI4
+	L9uV82lCAumJJanZqakFqUUwfUwcnFINTHaqizJUOB7PC+sRCjc+cvGV9PVfXwXy0mrOfWry
+	bd9VwXgleNKXVQmvQhuk2Bn0mlforlpZsdxN699um7kbizez/IvxyV/ZHXJO7eaDLw9fPvXN
+	4O3J+2IR8CJYzkLbI3Zm0bHeNTP3sFYHaDxysKl+cHHHOhWth8LbF73qdtHcsTJNrWluR0VU
+	86zuM7Pt9Jl1Vz34Nfcaw8xLzcZhteJu8d/k9W55vn/35k9SzvGWP5NSns7x4/bxPaWz9/7/
+	6INv3x28O1ViovHdzpR5d1TMjnQnJ7RffvufYW3XuqTgJbJ/xP7WTjrioHv2pMEK8YvXH4d/
+	bjofl7y3g6+QeWfWJQ7DmiPGE8Octsncd1ZiKc5INNRiLipOBAC406E84wMAAA==
+X-CMS-MailID: 20250121215831eucas1p128aaca6fb6e57b29dabac1b7f914d20d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250120172128eucas1p2847f0863524b53d2d5029e5e9d238298
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250120172128eucas1p2847f0863524b53d2d5029e5e9d238298
+References: <20250120172111.3492708-1-m.wilczynski@samsung.com>
+	<CGME20250120172128eucas1p2847f0863524b53d2d5029e5e9d238298@eucas1p2.samsung.com>
+	<20250120172111.3492708-8-m.wilczynski@samsung.com>
+	<6018a750dcbb46fe1bd9f653f469d54928c23610.camel@pengutronix.de>
 
-Hi Jason,
 
-On Mon, 20 Jan 2025 10:26:43 -0400
-Jason Gunthorpe <jgg@ziepe.ca> wrote:
 
-> On Thu, Jan 16, 2025 at 03:23:04PM -0800, Shyam Saini wrote:
-> > Hi,
-> > 
-> > Currently, the MSI_IOVA_BASE address is hard-coded to 0x80000000,
-> > assuming that all platforms have this address available for MSI IOVA
-> > reservation. However, this is not always the case, as some platforms
-> > reserve this address for other purposes.  
+On 1/21/25 09:35, Philipp Zabel wrote:
+> On Mo, 2025-01-20 at 18:21 +0100, Michal Wilczynski wrote:
+>> Add a YAML schema for the T-HEAD TH1520 SoC reset controller. This
+>> controller manages resets for subsystems such as the GPU within the
+>> TH1520 SoC.
 > 
-> Can you explain this some more? This address is in the kernel
-> controlled IOVA space, there are few ways a platform can impact this.
+> This mentions "resets", plural, but the #reset-cells = <0> below and
+> the driver implementation look like there only is a single reset
+> control (for the GPU).
 > 
-> How is the platform impacting it? Is the non-functional IOVA always
-> reflected in the iommu_get_resv_regions()?
+>>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+>> ---
+>>  .../bindings/reset/thead,th1520-reset.yaml    | 44 +++++++++++++++++++
+>>  MAINTAINERS                                   |  1 +
+>>  2 files changed, 45 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml b/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+>> new file mode 100644
+>> index 000000000000..c15a80e00935
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/reset/thead,th1520-reset.yaml
+>> @@ -0,0 +1,44 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: https://protect2.fireeye.com/v1/url?k=9a1e91c0-fb9584d9-9a1f1a8f-74fe485cbfec-4ac5a7f48f7ed305&q=1&e=57e2ad34-940c-48d4-b365-a5719457bd20&u=http%3A%2F%2Fdevicetree.org%2Fschemas%2Freset%2Fthead%2Cth1520-reset.yaml%23
+>> +$schema: https://protect2.fireeye.com/v1/url?k=40dd1447-2156015e-40dc9f08-74fe485cbfec-5ae5fe2734d49263&q=1&e=57e2ad34-940c-48d4-b365-a5719457bd20&u=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
+>> +
+>> +title: T-HEAD TH1520 SoC Reset Controller
+>> +
+>> +description:
+>> +  The T-HEAD TH1520 reset controller is a hardware block that asserts/deasserts
+>> +  resets for SoC subsystems.
+> 
+> Again, plural.
 
-I don't know the platform impact but just to clarify, are you asking
-whether this non-functional IOVA is also under IORT RMR or other FW
-tables? I don't think it is.
+Yeah should be singular sorry.
 
-But this special IOVA is reflected in iommu_get_resv_regions() the same
-way as the hardcoded MSI_IOVA_BASE. So each iommu group's
-reserved_regions should show.
+> 
+>> +
+>> +maintainers:
+>> +  - Michal Wilczynski <m.wilczynski@samsung.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - thead,th1520-reset
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  "#reset-cells":
+>> +    const: 0
+> 
+> Should this be "const: 1" instead?
 
-> Why not avoid this conflict in your platform software?
-I had the same question but it seems there is not enough difference
-(than the standard smmu) to justify a platform code. i.e. platform
-specific iommu_get_resv_regions(), is that what you are suggesting?
+Right now I'm not planning to extend by more resets, I've thought about
+this during the discussion on v2 of this patchset. At this point I just
+can't see more interesting resets to have. Vendor kernel implements WDT
+and NPU. I don't think NPU driver will be upstream anytime soon. That
+would leave WDT reset potentially.
 
-> > There was an [1] attempt to fix this problem by passing the MSI IOVA
-> > base as a kernel command line parameter.   
 > 
-> Yuk
+> regards
+> Philipp
 > 
-> > In the previous attempt,
-> > Will suggested reserving the MSI IOVA at runtime whenever there is a
-> > conflict with the default MSI_IOVA_BASE. However, dynamically
-> > reserving this address has debuggability concerns, as it becomes
-> > difficult to track IOMMU mapping failures.  
 > 
-> Still, this approach seems like the best to me..
-> 
-> > This patch series aims to address the issue by introducing a new DTS
-> > property, "arm,smmu-pci-msi-iova-data". This property allows the
-> > configuration of MSI IOVA with a custom MSI base address and a
-> > custom length for IOMMU/SMMU drivers. It accommodates platforms
-> > that do not have the default MSI base address available for MSI
-> > reservation.  
-> 
-> My understand was using DT to set kernel configurables was frowned
-> upon? Ultimately MSI_IOVA_BASE is an arbitary choice by kernel
-> software.
-> 
-> Jason
-
 
