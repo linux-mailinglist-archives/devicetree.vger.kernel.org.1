@@ -1,143 +1,114 @@
-Return-Path: <devicetree+bounces-139890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E34E3A176AC
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 05:49:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1210DA1774B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:24:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CDA6F7A3CD4
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 04:49:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4703016B066
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 06:23:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B7B2185955;
-	Tue, 21 Jan 2025 04:49:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58FDC1AAE0B;
+	Tue, 21 Jan 2025 06:23:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tZZi6saO"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="hYurvvgz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m32118.qiye.163.com (mail-m32118.qiye.163.com [220.197.32.118])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 844DC145B27
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 04:49:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6601F19E999;
+	Tue, 21 Jan 2025 06:23:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.118
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737434992; cv=none; b=XGAUNp4gVhYEr+ka/qChNkTvPlgF1p0v43WhWd/qAj6hJ6BK12YE7VzRbSm1CDcTVlHzb0+PsdFgZcceAC8dN6T78dsTM9PFSXneGrrFmO7oM1UlHN6gjocxOXSwXJqV4vkAUlbu6wDKep+JDtsljxhmHJDOi54ACih/VeYFFK4=
+	t=1737440635; cv=none; b=RD+a0xSI6FJbL6x51KtxEosNcwHPkrrB6/ZA4TpByMl4BPkxvkcXvDRBDuwAWonYuByJJCgj1eo6E7FPRbdFBaW2cqfnJEO+G6aL4T9HDcu+ibkgz87nYM7MifaXmRJeLHuj9sPNyE1CwLNkQF5fE8sap+8ksAwI+SeATRn2JCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737434992; c=relaxed/simple;
-	bh=N0tPs7ETfruUGNs2tLxE5jkCWSY6gqmP7OLpp7v/ulk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YgnnOBiliO+Mt7iiC/+aPIwUilu2VnoS+W+sRS5HriMxRjDgajFZDW73vNioMs9UqyB6FBup0fp2sz1dRBygrNtgqebfCjOv0Yeze/JHMNbXMpmiXuxqo62zmwQipAgmh6b0hHdbEL6Km+vrLCujNywui2qmqOTn/Ghgf0cH6gg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tZZi6saO; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-216728b1836so87014025ad.0
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 20:49:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737434990; x=1738039790; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=CjRB5FGtCoUKj/Qn6JPgmzvgrR86ptoUBtvodY+wTzk=;
-        b=tZZi6saOaRqCp7Ehyo7IJZ/CqkR++V13v0Sd0/eO6N9tZ6I4RgxCLBtqUQ4ObCuDWh
-         tVL+GooSsXQ1ZD4fe0XDca++y1G8w7j64EuPXd1jj4+SOPA29cTjPTuAzyRZVPQneM3M
-         E34fYLTMX0VHsB/fJZEUilWbjOz4Z/8wacjCUwGlyi8HLYa6b9e8DKM+oKMm0ToroXlS
-         aqqgAEcSK6y9FASbTE8NzdzsJnmsgXqR6IFqyUOZ0JHibmuR2w6Uh1XJmJTweRUfAuZY
-         ENeuPFYuGiqbjIsaCQEtOxV5M25gEyODRoFWen1NgnTdHz+zDXm+F6v9Cq1Z9stdpl6/
-         xXSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737434990; x=1738039790;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CjRB5FGtCoUKj/Qn6JPgmzvgrR86ptoUBtvodY+wTzk=;
-        b=bNjLQnytYogRtMbE1v3fkEx6VTzoS0/aq6P/5tqWcTrlPxae0YXaLwfFi6hBZc3suF
-         etLKuZwILWGVZRlSo31KOFU4f+grcCw1d9zH4+4dEDvvAKUXSPy1/vQ3GtFM1q4bdXX2
-         imL8hr6/pxNfjxJ2eZQXv5VhxjO4kRBqxqf0hMVXmyDOWydmNC9iikeETkKMiKRf4jeo
-         HqL13LmO8VOvBlekbShZicFwfrL8QTvu/P+S8IszkF6hlKgbI6D+NJD+f2R7p7t+/6gF
-         bMx8vpPAHdf8dJLM8gSR/wAR/b3zbqTsZzLar6cnOjkvoa9s7sL/e4vPr24BHWpILBRa
-         +naw==
-X-Forwarded-Encrypted: i=1; AJvYcCWoRTYHaBd3mCAs12eciNKTDo/2zr5vuak7kYDLSjIn3OS8D78sVaRK9CB8SndJDl0t3ff7yIFANrG0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOFc06lwDqK5siEOAfZXXGYepbTIq6phVhVFerty5oj+2USJXS
-	7VeqbWVOSuqOQFW+CFJFYqW+pmbKQQZLXNi64xbReC1Q0KFyZWF6sr3Ah365CQ==
-X-Gm-Gg: ASbGncsoatA5BQ7Yj3mV5a2AUbqq2+kJmS4+yMtjxLUBDY2wN9RdHpsgmxpDEavh17A
-	jiS+iPU40BsRogp9fY7vLambmt2w4nQFC0g29J0nNUvrrSxVPppfwZGyy1lgHyOMyweegaPM4es
-	V4Vg+R0VChWWmRf9ezQDCreYatJpnWtTzto8l0ctMY+iBv+GPNlujagsITo0y97RU6tMNtpYXsK
-	I94ld3gDSdYh/e692oMEiKt67T9rmDoSgjukiYRW0ULt5wgOp4T5kCspC97Y3kvzepGGaHVwitC
-	+D0RYR8=
-X-Google-Smtp-Source: AGHT+IF67FzpL0/ep2wKr2SKX0WCmGAGc0SaMaYBS0rHLyEsUVb25qF3JlcE+li6la80AjHfaAh+xA==
-X-Received: by 2002:a05:6a21:998a:b0:1e1:b329:3cd with SMTP id adf61e73a8af0-1eb214daa70mr22113794637.20.1737434989787;
-        Mon, 20 Jan 2025 20:49:49 -0800 (PST)
-Received: from thinkpad ([117.213.102.234])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72dab81737asm8294159b3a.57.2025.01.20.20.49.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2025 20:49:49 -0800 (PST)
-Date: Tue, 21 Jan 2025 10:19:41 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, jingoohan1@gmail.com,
-	michal.simek@amd.com, bharat.kumar.gogada@amd.com
-Subject: Re: [PATCH v7 1/3] dt-bindings: PCI: dwc: Add AMD Versal2 mdb slcr
- support
-Message-ID: <20250121044941.coayhpkyrh7zhfnq@thinkpad>
-References: <20250119224305.4016221-1-thippeswamy.havalige@amd.com>
- <20250119224305.4016221-2-thippeswamy.havalige@amd.com>
+	s=arc-20240116; t=1737440635; c=relaxed/simple;
+	bh=uYVX31WQvKbJf5Vv9FAqP25Z+20t/h4HS7NDrI4cczE=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=rldiraHthODluM77BMlk8CXc+NtFyCjjqhEn+gVnVT4veyy2F59MHAh83XrhKvkMWFK7va42op/eBDvT8vsWiavFXoCQ+TZDnWSm+rsavHD8AWSgEezR2jtC4bdzv3q3pG7RtTTR2TiEoWYGxIzWe8bRmtR9C6RYq8F5EFSmMno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=hYurvvgz; arc=none smtp.client-ip=220.197.32.118
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 9456a2f1;
+	Tue, 21 Jan 2025 14:23:41 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	rfoss@kernel.org,
+	vkoul@kernel.org,
+	sebastian.reichel@collabora.com,
+	cristian.ciocaltea@collabora.com,
+	l.stach@pengutronix.de,
+	dmitry.baryshkov@linaro.org,
+	andy.yan@rock-chips.com,
+	hjc@rock-chips.com,
+	algea.cao@rock-chips.com,
+	kever.yang@rock-chips.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v6 1/6] phy: phy-rockchip-samsung-hdptx: Swap the definitions of LCPLL_REF and ROPLL_REF
+Date: Tue, 21 Jan 2025 14:23:19 +0800
+Message-Id: <20250121062324.309592-2-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250121062324.309592-1-damon.ding@rock-chips.com>
+References: <20250121062324.309592-1-damon.ding@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250119224305.4016221-2-thippeswamy.havalige@amd.com>
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGh9OQ1YeTEkYSk4dSkhOGB9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a948787f40603a3kunm9456a2f1
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NQg6KAw6HjIUTzQBGREDDwkz
+	SD0wFAtVSlVKTEhMT09LTUlISEtIVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFCQkw3Bg++
+DKIM-Signature:a=rsa-sha256;
+	b=hYurvvgzS4CbFQquNWuUFbScZmrKeIM1uhOxG73RGBUFBFZSVYTuWqCrUpYmNt91F+aR4wYZ3xFoWq3NLnmGejUe6Y86J1BAQ9a7X4fEYKi/nR+kIYX0yt1Zru4zSaxzihjGX/k8KmjpBSuODKJ5D2MYKBde1W2UqHUVbWjF1Nc=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=nhjzsZ5DuSkGPzq8vUSDqW2fpa7f+NUoENjEMTPrzW0=;
+	h=date:mime-version:subject:message-id:from;
 
-On Mon, Jan 20, 2025 at 04:13:03AM +0530, Thippeswamy Havalige wrote:
-> Add support for mdb slcr aperture that is only supported for AMD Versal2
-> devices.
-> 
-> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+According to the datasheet, setting the dig_clk_sel bit of CMN_REG(0097)
+to 1'b1 selects LCPLL as the reference clock, while setting it to 1'b0
+selects the ROPLL.
 
-Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-- Mani
-
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> Changes in v3:
-> -------------
-> - Introduced below changes in dwc yaml schema.
-> Changes in v5:
-> -------------
-> - Modify mdb_pcie_slcr as constant.
-> Changes in v6:
-> -------------
-> -Modify slcr constant
-> ---
->  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> index 205326fb2d75..fdecfe6ad5f1 100644
-> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> @@ -113,6 +113,8 @@ properties:
->                enum: [ smu, mpu ]
->              - description: Tegra234 aperture
->                enum: [ ecam ]
-> +            - description: AMD MDB PCIe slcr region
-> +              const: slcr
->      allOf:
->        - contains:
->            const: dbi
-> -- 
-> 2.34.1
-> 
-
+diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
+index 0965b9d4f9cf..efbea5b67c89 100644
+--- a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
++++ b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
+@@ -94,8 +94,8 @@
+ #define LCPLL_ALONE_MODE		BIT(1)
+ /* CMN_REG(0097) */
+ #define DIG_CLK_SEL			BIT(1)
+-#define ROPLL_REF			BIT(1)
+-#define LCPLL_REF			0
++#define LCPLL_REF			BIT(1)
++#define ROPLL_REF			0
+ /* CMN_REG(0099) */
+ #define CMN_ROPLL_ALONE_MODE		BIT(2)
+ #define ROPLL_ALONE_MODE		BIT(2)
 -- 
-மணிவண்ணன் சதாசிவம்
+2.34.1
+
 
