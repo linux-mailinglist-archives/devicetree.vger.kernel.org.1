@@ -1,107 +1,126 @@
-Return-Path: <devicetree+bounces-140073-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140074-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F259A1824B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 17:51:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FCE9A18275
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 18:01:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60ECB188B57F
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 16:51:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA7F6188BAF9
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 17:01:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 637FA1F4293;
-	Tue, 21 Jan 2025 16:51:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9F71F4724;
+	Tue, 21 Jan 2025 17:01:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="BF0W4vLB"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="qu9hGiLE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-175.mta1.migadu.com (out-175.mta1.migadu.com [95.215.58.175])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92859192D70;
-	Tue, 21 Jan 2025 16:51:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D410B1B394B;
+	Tue, 21 Jan 2025 17:01:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737478287; cv=none; b=mAQSckWiUOcSJpLZmky0HR0cBcEO3UFh6dLCEXKtZZNSLbAQFa75elqRSHizgz2M9vHs/LfxPl6Ql2YjI7ahCMLbczGczOliO0D/JD1VXcYIPlwET2ZycgIWsIh9XDLwiPjUJB0IlAzrjRp4lc/hOP1IGeCkToep6K4RpwwM2iw=
+	t=1737478882; cv=none; b=J8E/5GlT/QZdD4AmH3CVn4/C5VQF4Ovhg+LvpbxcnkDj1fJ2uliwa4uOFqlYjpYWOUu+PrQAZ52UgUiY/4KdGhsTnfzIJXaTjKCdbAmQWtKMnn/sK72838IjV6+5eneV9Sg2ol46K4/aQnZt6uaOFD0snnJr5UegtHhJ8Hp5ahY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737478287; c=relaxed/simple;
-	bh=0kqvsuGInuXJkXCmuCX04lAcWyzOGssMeO6D6xEQy+E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y+Ub8Q+LSoYzjlOYuN14QnwuYYagRRP7IvsXJ/A2D/5qs/QpuQIXsBDy+qN0J7qx5VYmUQmEEZoMxBuWWemKSMpZt9Nn3DLqfuLbTFRcjhE4UJuSFvMbeTcsla87eCGR0pnsJbooUEeyUWWH/YRzWI4L6N9DkEJzni+dgEo1hsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=BF0W4vLB; arc=none smtp.client-ip=95.215.58.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <39ad89bf-880e-4ae9-bbdb-4d388dd14a7d@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1737478283;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=DrH1RqYlZPnCONVlyYdJjbHopCl+UukhIId4ykP7g4I=;
-	b=BF0W4vLBBIhkOrkCGaWLvh1V9EBK5k05jB3Q5mlXWZUPzl7dB780k3OMzrc6xPWJnhYBAG
-	hoTFfqwOgkhlX6rAjDM9FXJCLYK6iNfCkptx52WTh07TvNxurSEqJ5t9unx2zbAPpz3H06
-	Za1T6Scpqg2MiECbO3yTeJY6jxTY3kk=
-Date: Tue, 21 Jan 2025 11:51:18 -0500
+	s=arc-20240116; t=1737478882; c=relaxed/simple;
+	bh=wV7QW7JOBrrj65ggqIu0mtbf36kyZMzyV2RvgHR4ZcY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pcWKr65vY6RxzTPqB41873LHR6eK/J2Y7fhXsNprvW6YTPasqOanTx8RIY6fcopgxKaRrq2Y15xBuH9ST1pMu22SeiNBEUlEeKByjBt3vESQiY2rCLalcl99SfCV4iTfCUTyFsyWw8EStNzbJH6MBAyjifbluVnnn+cRB/tKeAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=qu9hGiLE; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=7Pnocolf/+FMPBsjA4XKBOck60bqAiKE6Tl4dgyzfRI=; b=qu9hGiLEi/SYW6d2f1eyaAFdCs
+	1qp0YPhycK5jWI/BYvXgioC80c/Q4WXVxCidQ7YVf1kQrT7B3cdzujhe1g7BNEjoZb0oQxDhzuxw+
+	dn0VRXrCxykMPy7+z+08vb44I4S9nuAzxCpnkjyPfaKSN75ZWLb8i2LpNQE6FrwbtW/Y=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1taHcX-006hE0-M8; Tue, 21 Jan 2025 18:00:57 +0100
+Date: Tue, 21 Jan 2025 18:00:57 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: Yijie Yang <quic_yijiyang@quicinc.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: net: ethernet-controller: Correct
+ the definition of phy-mode
+Message-ID: <69954039-96bf-42d9-850d-48676a530ec6@lunn.ch>
+References: <20250121-dts_qcs615-v3-0-fa4496950d8a@quicinc.com>
+ <20250121-dts_qcs615-v3-1-fa4496950d8a@quicinc.com>
+ <20250121140840.18f85323@device-291.home>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/5] spi: zynqmp-gqspi: Improve error recovery by
- resetting
-To: Mark Brown <broonie@kernel.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
- Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org,
- linux-kernel@vger.kernel.org, Jinjie Ruan <ruanjinjie@huawei.com>,
- linux-arm-kernel@lists.infradead.org,
- Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org
-References: <20250116225521.2688224-1-sean.anderson@linux.dev>
- <5942e111-24ba-4d1b-bd4f-6b81dcc6c5dc@sirena.org.uk>
- <87h65xi977.fsf@bootlin.com>
- <1026d44b-0907-4835-bc95-32f9bbcf4831@sirena.org.uk>
- <8c9e6a12-e64f-4658-94e8-77469f393a0e@linux.dev>
- <c1a3f172-700e-4079-a501-b3f3f08b41aa@sirena.org.uk>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <c1a3f172-700e-4079-a501-b3f3f08b41aa@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250121140840.18f85323@device-291.home>
 
-On 1/20/25 08:49, Mark Brown wrote:
-> On Fri, Jan 17, 2025 at 04:46:23PM -0500, Sean Anderson wrote:
->> On 1/17/25 13:41, Mark Brown wrote:
->> > On Fri, Jan 17, 2025 at 07:31:08PM +0100, Miquel Raynal wrote:
+On Tue, Jan 21, 2025 at 02:08:40PM +0100, Maxime Chevallier wrote:
+> On Tue, 21 Jan 2025 15:54:53 +0800
+> Yijie Yang <quic_yijiyang@quicinc.com> wrote:
 > 
->> >> Yes, unless the timeout is reached for "good reasons", ie. you request
->> >> substantial amounts of data (typically from a memory device) and the
->> >> timeout is too short compared to the theoretical time spent in the
->> >> transfer. A loaded machine can also increase the number of false
->> >> positives I guess.
+> > Correct the definition of 'phy-mode' to reflect that RX and TX delays are
+> > added by the board, not the MAC, to prevent confusion and ensure accurate
+> > documentation.
 > 
->> > I'd argue that all of those are bad reasons, I'd only expect us to time
->> > out when there's a bug - choosing too low a timeout or doing things in a
->> > way that generates timeouts under load is a problem.
+> That's not entirely correct though. The purpose of the RGMII variants
+> (TXID, RXID, ID) are mostly to know whether or not the PHY must add
+> internal delays. That would be when the MAC can't AND there's no PCB
+> delay traces. Some MAC can insert delays.
 > 
->> There's no transmit DMA for this device. So if you are under high load
->> and make a long transfer, it's possible to time out. I don't know if
->> it's possible to fix that very easily. The timeout calculation assumes
->> that data is being transferred at the SPI bus rate.
+> There's documentation here as well on that point :
 > 
-> In that case I wouldn't expect the timeout to apply to the whole
-> operation, or I'd expect a timeout applied waiting for something
-> interrupt driven to not to be fired unless we stop making forward
-> progress.  
+> https://elixir.bootlin.com/linux/v6.13-rc3/source/Documentation/networking/phy.rst#L82
 
-I don't know if there are any helpers we can use for this. To implement
-this we'd need something like schedule_timeout() but where the interrupt
-handler calls mod_timer() whenever it does work.
+This is part of the problem. This describes
+PHY_INTERFACE_MODE_RGMII_*, and the value passed to phylib. The
+documentation even says:
 
---Sean
+   The values of phy_interface_t must be understood from the
+   perspective of the PHY device itself,
+
+But the value in DT is about the board as a whole, it describes the
+hardware. Software gets to decide if the MAC or the PHY adds the
+delays, if the board does not provide the delay.
+
+> So, MACs may insert delays. A modification for the doc, if needed,
+> would rather be :
+> 
+> -      # RX and TX delays are added by the MAC when required
+> +      # RX and TX delays are added by the MAC or PCB traces when required
+
+From the perspective of the board, this is wrong. 'rgmii' means the
+board provides the delays.
+
+There is a parallel discussion going on, about how aspeed have also
+got there implementation wrong. See:
+
+https://lore.kernel.org/netdev/0ee94fd3-d099-4d82-9ba8-eb1939450cc3@lunn.ch/
+
+and the test of that thread.
+
+	Andrew
 
