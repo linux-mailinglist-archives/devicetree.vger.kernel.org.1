@@ -1,171 +1,126 @@
-Return-Path: <devicetree+bounces-140020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1316AA17CD6
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:16:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F522A17D73
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 13:03:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF1BE165975
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:16:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF81D166015
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:03:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27D51F1503;
-	Tue, 21 Jan 2025 11:16:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA2001F1520;
+	Tue, 21 Jan 2025 12:03:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tj1QAG+L"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="IUsfFBn3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C48C81F12FD;
-	Tue, 21 Jan 2025 11:16:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0361F03D5;
+	Tue, 21 Jan 2025 12:02:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737458186; cv=none; b=k/xnqTl2IqQDMICwr8vN+VfjZNQIU4sNg38jrKtTMEFB9yjGRTyXGTOD8qZmDut7yARfPmdTMfGe6uOgKBvy/e4loQeUufdczqxaTKfMpSCQS6/99y4WCRS02mvX/Vy+Ti9ZexK/lkns3BaZbNuK+6TXtNeJeWzlVqURrrb/Wds=
+	t=1737460981; cv=none; b=HUSIAiXZGxeGssUMV/gB0yRfNmhLJqb+suVeqLQq7V9FQlDpmbvHAXnsHqVniVfoHPncDIrztkqFeQEQ8YkqZZ0Ym/I7/QYhiidrQ5u3xOCalXJlXEjyTnXxtQiROx8Uey6STS2nZfjTRCm+b0K0V4g8FRh/f/HHlI9j631cPyw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737458186; c=relaxed/simple;
-	bh=Yul0dY1W7TJ0im0cLifhL477CvUbR0lwcyOhbO9oTRQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=roUnzGAxdxgS2oESZqWn3g1kokaaqkQf8ahsqjx3obLW3NvrIIGRULu7E8IKF4PY4uCtQxTNPIbVgK2tkdAxSQb49Cgm/hP2z57npAM9U8JoTJwYBv2ISdnPxp5XCrpGgP5sNyva176Kg+4NkryTrMpNhHS2GJBAxnQ9QV2HpqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tj1QAG+L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CCCBC4CEE2;
-	Tue, 21 Jan 2025 11:16:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737458186;
-	bh=Yul0dY1W7TJ0im0cLifhL477CvUbR0lwcyOhbO9oTRQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tj1QAG+Lp9mTno6/VicWbthUXpIn9zxXN0HpvL8Bqy7RsEZFnRpoWcev8XTvvLzje
-	 ji9jtmkhzI2w0eF0Z2nKnKEzlz7/L0TsYEUYGWgPQshOuFa+YmziZm1ZeB4/mqzeEp
-	 6RFvH4CiX3IyNF33DrOwl9Q6N7NL3L7DqRyTNks7zjyuDN1vuXCEJjE1K2tLzYfng6
-	 Ts24kPif9FUADKJSojOOGL4IjapslzRIti2v5kvOWf8q9g7GdAoj+zaApyduasGhb+
-	 SWBucR1vfzROWjWL73QnJnpQf7IHZX9uMVgKaQL1OihLzRgIjls+nqL8C89xflGAEY
-	 5k3Q4TEFuFiyA==
-Date: Tue, 21 Jan 2025 12:16:23 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	unicorn_wang@outlook.com, inochiama@outlook.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, 
-	chunzhi.lin@sophgo.com, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v6 1/3] dt-bindings: pwm: sophgo: add PWM controller for
- SG2042
-Message-ID: <dvjnhptep4fa3iqxzsau5fdp7qrno4nhnpdecvvyb55h6sxjpl@ohnvvbldwtpj>
-References: <cover.1733281657.git.unicorn_wang@outlook.com>
- <673f314d78ab467399afc02b96ac730149f19587.1733281657.git.unicorn_wang@outlook.com>
+	s=arc-20240116; t=1737460981; c=relaxed/simple;
+	bh=RWqNh0FamzGZLZTrMHa0koysLbnh/1JyBwU2rc2rJ4Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VAJq+zQT5os7QpEs12zZ9Wb/OgAc7ytFk/zNYkF91GW2h/1Z/sFh4YtEhdRJf1ow6X49f1gjnF7fhPypR8WfCSCtx8FGAPOKc0eYx8PgvvVrF8b4ovB0k0OrOp4n6apvC3TK2fw3Zjjsmdope61BBMxJO7t26EqcvurxbVpeI0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=IUsfFBn3; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 56F8C104811E2;
+	Tue, 21 Jan 2025 13:02:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1737460972;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=4EjOg4GooGB9zfQoDLzHhDxxaxOQHP4+q8cuOcut4HE=;
+	b=IUsfFBn3hZDx3M6UTDgqVE06MDOQUu9IuRkxsiIVGGJV2eiPe+KWGvz/YpXZe4AcQMOS6J
+	49Q5+gQ8L+oOJNhVE276yktsvO3sAkob2LDYH6FMMNnZOiWL/QfT5hl7GwvwEoScYgq1qR
+	nHLl7Bup9hRemUisXKv9rbaKtguzp7Oeu3a9nOq/iBgcWLCSU4sgrQfhlDgaKHsPsirY+u
+	wXyXAB9FEQOyGvs9a65OAf0oYtBCIZmeAR8e54qssINDx5NmkBxG3y3XMewiMi92wIE+Bu
+	jc5VA4fLZm8HBYFHkaskmiNyikXmGRiwCp9iFLUHNdtrX5R/ZffFHOnZVvuoNg==
+Message-ID: <c794c87e-30df-4993-86d9-35be35878e44@denx.de>
+Date: Tue, 21 Jan 2025 12:27:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="huec3nvjneppu6k6"
-Content-Disposition: inline
-In-Reply-To: <673f314d78ab467399afc02b96ac730149f19587.1733281657.git.unicorn_wang@outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] leds: trigger: netdev: Introduce OF mode
+ configuration using netdev-trigger-mode property
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: linux-leds@vger.kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
+ Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+ Lukasz Majewski <lukma@denx.de>, Pavel Machek <pavel@ucw.cz>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+References: <20250113002346.297481-1-marex@denx.de>
+ <20250113002346.297481-2-marex@denx.de>
+ <78e19c21-589f-4a15-8878-d2f5bb3017ef@lunn.ch>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <78e19c21-589f-4a15-8878-d2f5bb3017ef@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
+On 1/16/25 2:47 PM, Andrew Lunn wrote:
+>> It is not possible to immediately configure the LED mode, because the
+>> interface to which the PHY and the LED is connected to might not be
+>> attached to the PHY yet. The netdev_trig_notify() is called when the
+>> PHY got attached to interface, extend netdev_trig_notify() to detect
+>> the condition where the LED does have netdev trigger configured in DT
+>> but the mode was not yet configured and configure the baseline mode
+>> from the notifier. This can reuse most of set_device_name() except for
+>> the rtnl_lock() which cannot be claimed in the notifier, so split the
+>> relevant core code into set_device_name_locked() and call only the core
+>> code.
+> 
+> Why cannot it be claimed? Because it has already been claimed?
 
---huec3nvjneppu6k6
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 1/3] dt-bindings: pwm: sophgo: add PWM controller for
- SG2042
-MIME-Version: 1.0
+Yes
 
-Hello,
+> If so,
+> please add an ASSERT_RTNL() in the locked function to document
+> this.
 
-On Wed, Dec 04, 2024 at 11:16:22AM +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
->=20
-> Sophgo SG2042 contains a PWM controller, which has 4 channels and
-> can generate PWM waveforms output.
->=20
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Added
 
-Nitpick: Put your S-o-b last.
+> Or is there a lock inversion here?
 
-> ---
->  .../bindings/pwm/sophgo,sg2042-pwm.yaml       | 58 +++++++++++++++++++
->  1 file changed, 58 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,sg2042-p=
-wm.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml=
- b/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
-> new file mode 100644
-> index 000000000000..5dea41fa4c44
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/sophgo,sg2042-pwm.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/sophgo,sg2042-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sophgo SG2042 PWM controller
-> +
-> +maintainers:
-> +  - Chen Wang <unicorn_wang@outlook.com>
-> +
-> +description:
-> +  This controller contains 4 channels which can generate PWM waveforms.
-> +
-> +allOf:
-> +  - $ref: pwm.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: sophgo,sg2042-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 2
+Not to my knowledge, the rtnl lock should always be locked first and the 
+trigger_data->lock mutex second.
 
-Please use 3 here.
+>> -static int set_device_name(struct led_netdev_data *trigger_data,
+>> -			   const char *name, size_t size)
+>> +static void set_device_name_locked(struct led_netdev_data *trigger_data,
+>> +				  const char *name, size_t size)
+>>   {
+>> -	if (size >= IFNAMSIZ)
+>> -		return -EINVAL;
+>> -
+> 
+> The code you cannot see in the context does:
+> 
+>          memcpy(trigger_data->device_name, name, size);
+> 
+> If we don't have this size check, is it possible to overrun the
+> buffer?
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +
-> +unevaluatedProperties: false
+Yes, good point, added.
 
-Best regards
-Uwe
-
---huec3nvjneppu6k6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmePggUACgkQj4D7WH0S
-/k5JIQgAlxVeCOpps3Aki/zCI/ccjfWrmWRKg7iuCZ0woJgM7spcEL3XFnczHG9i
-Zc9+LCG42ERSL5mlJ2HAw5jHde3JqrVgkJZFbGWQIDNMR1ni0MH2vsHAykE/Nprc
-cZIMIbqh9AQ+BUythNR026bYYBBA0OrleoljbDDsStC2JBOKDsCsmq51qgKlqWxy
-zaYPLxtCwIbgUkQmXWMC2VOlGakZFB/lNlngQq1nYRyTawCaLLyzGYg5uPTWfkSX
-oQtPBjlcDi1qfkObHzFZGc+rdi/aW/3xwjcRNWxWJ/Cmz+ylGlDErrZ5QglwHl/9
-+qNNVMMZULpWG9c2KZao+uyJOAAIhQ==
-=0J6r
------END PGP SIGNATURE-----
-
---huec3nvjneppu6k6--
+> It might be better to split this patch into two, one doing the
+> refactoring of this function, and include an explanation of the
+> locking and why it is safe not to include this size check.
+Does this still apply with the ASSERT_RTNL() in place and the check in 
+the _locked() function reinstated ?
 
