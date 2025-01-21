@@ -1,713 +1,279 @@
-Return-Path: <devicetree+bounces-140075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF340A1827A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 18:02:14 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FBEDA1828B
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 18:07:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6D373A5AA8
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 17:01:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09F3218881AB
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 17:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5DF1F4727;
-	Tue, 21 Jan 2025 17:01:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 644461F473A;
+	Tue, 21 Jan 2025 17:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="btm1jgg+";
-	dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b="2C28ssWd"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="aiIVmiGW";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="mD8cxfra"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bayard.4d2.org (bayard.4d2.org [5.78.89.93])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC9BF1F428A;
-	Tue, 21 Jan 2025 17:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.78.89.93
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737478893; cv=none; b=cTa3hx37agXHIM5333wB1c/EgNwwjoiXAYI18uEN1g9+FNB7nLAL6Tub/OgawNqhPXUPjtQ5VDM8bTLhpcdmaxel0GaNw0eMbn0jM0JyybKe8qowR+LE5BVsgV4vwCa24LuL5msKc9yjrMhpYGf3iYaYJ7V0549vsc85ZhRSGMU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737478893; c=relaxed/simple;
-	bh=7CSf6dLaH8VILX0EoYfv/LTfKH5Yoo3KoCqLXPP7k0M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qZkn+PljS5sSLJ4AMRkRdj8WGmXmCzwmtmL0znEzue77FXRnO0LSBrOhw0UvXxu2hy8q4/ocuJBLLKP3bwBXp7sf+b9PBT004r/MGmnzy57mlJya92z9sROZq2sNt86zviVi1hSyH376MOXVXBO2QQziihGRMloLCtIB6ryaWNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org; spf=pass smtp.mailfrom=4d2.org; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=btm1jgg+; dkim=pass (2048-bit key) header.d=4d2.org header.i=@4d2.org header.b=2C28ssWd; arc=none smtp.client-ip=5.78.89.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=4d2.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=4d2.org
-Received: from bayard.4d2.org (bayard.4d2.org [127.0.0.1])
-	by bayard.4d2.org (Postfix) with ESMTP id D5181122FE25;
-	Tue, 21 Jan 2025 09:01:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1737478881; bh=7CSf6dLaH8VILX0EoYfv/LTfKH5Yoo3KoCqLXPP7k0M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=btm1jgg+/4iSVe75FCDShwPZWhquIW4c76Rz9wjWs74KCVmzrddP87MG4//yHY6gQ
-	 CnxfiUs2Nbq7lrzjcLrb2eTndCzN8xdKfiIetjYeNT5UWnuDlTxD1r8uGMh22H11Lg
-	 bgvMZgvIpE2/esmmrmuXb/dgpftgwbGZh5e6swYFBueHqS4pjaUT+OoSJnNz7VEHwo
-	 doJ/IlsN2wLNR1dmw1Ardwy7m6SKXU7/RhpsiQ15UsyUHVttyOJvhedrdTUslKb1BD
-	 E29CMGzDGRtfzrWtgCwBk2IxAcPpFz+cBNLF9ADpuZ3H81CGiFQ7pyobsYRp2L/Xz/
-	 0L05l6P7y0ZKg==
-X-Virus-Scanned: amavisd-new at 4d2.org
-Received: from bayard.4d2.org ([127.0.0.1])
- by bayard.4d2.org (bayard.4d2.org [127.0.0.1]) (amavisd-new, port 10024)
- with ESMTP id vj9yeAEfATGS; Tue, 21 Jan 2025 09:01:20 -0800 (PST)
-Received: from ketchup (unknown [183.217.82.153])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: heylenay@4d2.org)
-	by bayard.4d2.org (Postfix) with ESMTPSA id 5AE3B122FE21;
-	Tue, 21 Jan 2025 09:01:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=4d2.org; s=mail;
-	t=1737478880; bh=7CSf6dLaH8VILX0EoYfv/LTfKH5Yoo3KoCqLXPP7k0M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=2C28ssWdvFSaaBULlzF4dwI7Km3aQCJOI5t6DkwXnjuTCYoe4LT3noZBGf5W/nKgh
-	 Diu6iwOjFOO0kfgyXiuUAy3QABxpxRm3IHQj2TvWHfIdWcSDloU4abVwynFjw7vlwV
-	 GE7WCjcKnyofRNDxXi1sr8WMUfJ3R8XdCevBQdSlDkhCvlhxlkq2Inm/6x2Q+qNTZ4
-	 gkm36Kq7aewYSuw/qR6cM94AoNLOquQypVn0wkAuCthmntB2IsCdXgp7EUZEnVEld5
-	 UThFmCObs4mZLcEt9DSxUvw8hUAMXx/790I7Mz2/v/6ydmTf/W6mNMBrFiuTF3jh4I
-	 wt1ZqiUsWRuvQ==
-Date: Tue, 21 Jan 2025 17:01:03 +0000
-From: Haylen Chu <heylenay@4d2.org>
-To: Samuel Holland <samuel.holland@sifive.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Haylen Chu <heylenay@outlook.com>, Yixun Lan <dlan@gentoo.org>
-Cc: linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Chen Wang <unicornxdotw@foxmail.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>
-Subject: Re: [PATCH v4 3/4] clk: spacemit: Add clock support for Spacemit K1
- SoC
-Message-ID: <Z4_Sz7xj03AQPJ1G@ketchup>
-References: <20250103215636.19967-2-heylenay@4d2.org>
- <20250103215636.19967-5-heylenay@4d2.org>
- <81bc81b0-9b0e-4e71-b34a-e74730eda44f@sifive.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4272D1B394B;
+	Tue, 21 Jan 2025 17:07:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737479249; cv=fail; b=Q8XvjT0tluu8kV3gCJugFZPOJxbS1Vgy9yrl014fkvSCJKi05HXUJlGmec9CZ8Q0ZbJ/JngSphq0loQqbJENgz+MsjSTu7dTbWs3IsPaXxDhgzbT9Bubk0cWmkX+C9IoROvsYPFdE5aHGJgbz7g1Efu2R/lQTSeMVCfSINAPCHI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737479249; c=relaxed/simple;
+	bh=fV9QgzRFHqyStXbAnIlnPr1NlDmEDP9fmt4RD9o/uI8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=d4A9/m2qXSK8IagNZUfP/YjFPOqiymv/baRu68DohfQVcv9aBe+wV/mbDwBlddG+cZNHRjmxSx1/u+ytKYuptFBJMd4SaIdOy9RtwW+YgWB2JyUCKpoYHH9nyo8Jfe036jM/MmyoxpidP7bFmSisddzk2o/65ABafioSj/jjtcQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=aiIVmiGW; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=mD8cxfra; arc=fail smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 2ae1d74cd81a11ef99858b75a2457dd9-20250122
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=fV9QgzRFHqyStXbAnIlnPr1NlDmEDP9fmt4RD9o/uI8=;
+	b=aiIVmiGW4VP2RicDB/lT4uzxIUDfu4j+rX2JrXzUclMJCsjxeYJsR2utEEYR/SBjg16iY68K7D2+oLLzLd+zZCvPhcE/4qlfewzKGYtO4SpAIg0YLAQm9EQ6hXaQ/KecEzE3Qm80KDjV6aeNyp7elL37UnI08kIF2C+33mEkjEc=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.46,REQID:9fab62a7-af18-49d5-b8f0-be9b1a6b58be,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:60aa074,CLOUDID:99653d38-e11c-4c1a-89f7-e7a032832c40,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|50,
+	EDM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OS
+	A:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 2ae1d74cd81a11ef99858b75a2457dd9-20250122
+Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
+	(envelope-from <paul-pl.chen@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 449572847; Wed, 22 Jan 2025 01:07:17 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Wed, 22 Jan 2025 01:07:15 +0800
+Received: from HK3PR03CU002.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.1258.28 via Frontend Transport; Wed, 22 Jan 2025 01:07:15 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fUj2PxIcDCas3UdMdWp2C7Fofquu3UXAuj8zPY6X06S4gy+jk4Inun8Q02xxq94Q7YEyuOvpBnQd9yxKE5SkecZ8ymkJFc3VhjHAkZIKAPEBVCfum5fj9B5f5d9bTOnCFfHjskk2IyYOQxP0jQx2TrpkdMjH1ZRtzUB1ZmZW5JyvhTcqZZtUcOI0sfCIfQYRFXH5E4dIGkWFxWthU5vjOjbbM8ohNAi9WKdZHdGnIlVwC5ZBBlRw1ltC6y5+pxdYkrB5rGveMI87DgTtdrtQWDj2dBJwIO6nY6IPaKtls951AvtuojIOCZMqmI7QKIbc/UNL/C+J8k3XO6/HU6KzHg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fV9QgzRFHqyStXbAnIlnPr1NlDmEDP9fmt4RD9o/uI8=;
+ b=cXpHLJJEcMSWyL+Bn60kXS12Lzn870TFirp0woYG69rFZybLy1VBP3Zh4NAvzxGvgq8lWIcNaetojGEi/neg8+4OlkBxcWqMg9bJerfcNM2eEOQIEl/PSi0m6eJ1JWRKqtvXzp0yHzQvUQqXEJ+/NzSeYMQkm1wITN1gbUyiANSj2ODAPdnrFClEgab6VS97lhCZu9fx3DRjqtoYFTybWYv6v/IiRRZDVs7+OVOe6X7+nzVDKFmRRK47Q98KhG9uQfK1s94RE4hzZXYN+Fvhv1tMq75l2HpwwZ3VVLJIDhWMvsg4XbB9HtVg19gfwNyfSDxltIreTEbkAuIma4yLqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fV9QgzRFHqyStXbAnIlnPr1NlDmEDP9fmt4RD9o/uI8=;
+ b=mD8cxfral1SHuciY4a/4eYkui+WAcR5kBBHiMW38DkAiSPvQQg75feNDGNoZXBVy9l8Io1ObRlEofgHktjVO9f5YtrwPQll786mfEW9REz4rBfFRT1d14pZ+T1AKF70grbqZ1E2+4ivGpbH5e8mIB0zPAa0gfYwI8+rVTRxeCRQ=
+Received: from SG2PR03MB6636.apcprd03.prod.outlook.com (2603:1096:4:1b8::6) by
+ SEYPR03MB8792.apcprd03.prod.outlook.com (2603:1096:101:206::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.21; Tue, 21 Jan
+ 2025 17:07:08 +0000
+Received: from SG2PR03MB6636.apcprd03.prod.outlook.com
+ ([fe80::98e8:d61:f404:4052]) by SG2PR03MB6636.apcprd03.prod.outlook.com
+ ([fe80::98e8:d61:f404:4052%3]) with mapi id 15.20.8356.020; Tue, 21 Jan 2025
+ 17:07:08 +0000
+From: =?utf-8?B?UGF1bC1wbCBDaGVuICjpmbPmn4/pnJYp?= <Paul-pl.Chen@mediatek.com>
+To: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, "AngeloGioacchino Del
+ Regno" <angelogioacchino.delregno@collabora.com>, "krzk@kernel.org"
+	<krzk@kernel.org>
+CC: =?utf-8?B?U3VubnkgU2hlbiAo5rKI5aeN5aeNKQ==?= <Sunny.Shen@mediatek.com>,
+	=?utf-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
+	=?utf-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+	=?utf-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
+	<Xiandong.Wang@mediatek.com>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, Project_Global_Chrome_Upstream_Group
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	=?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"fshao@chromium.org" <fshao@chromium.org>, "p.zabel@pengutronix.de"
+	<p.zabel@pengutronix.de>, =?utf-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?=
+	<Singo.Chang@mediatek.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
+	<matthias.bgg@gmail.com>, "treapking@chromium.org" <treapking@chromium.org>
+Subject: Re: [PATCH 03/12] dt-bindings: display: mediatek: add EXDMA yaml for
+ MT8196
+Thread-Topic: [PATCH 03/12] dt-bindings: display: mediatek: add EXDMA yaml for
+ MT8196
+Thread-Index: AQHbY1yrF5tAYKZENUWonbDbyeckJbMP+LiAgArXxYCAAXEmgIAFRXCA
+Date: Tue, 21 Jan 2025 17:07:08 +0000
+Message-ID: <6265ffc5f94b03fbd45985d867e38c9e308074a4.camel@mediatek.com>
+References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
+	 <20250110123835.2719824-4-paul-pl.chen@mediatek.com>
+	 <abadfae8-56f7-499c-83ff-7d79e3fe1f52@kernel.org>
+	 <c1440608060e4b2fabf07ff5ac0a7fe49201ba9d.camel@mediatek.com>
+	 <cc043dcd-b46e-4b4b-9b80-0450efde86eb@kernel.org>
+In-Reply-To: <cc043dcd-b46e-4b4b-9b80-0450efde86eb@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SG2PR03MB6636:EE_|SEYPR03MB8792:EE_
+x-ms-office365-filtering-correlation-id: 04275c67-469c-4c2a-e3ba-08dd3a3e09b2
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?YU8xOUxzVWtDZWIwMzNrUFhkcTlhMzFiZUN0SmV4UlRBRjFQYmVYM3JJZGEz?=
+ =?utf-8?B?MWg0cTdSdEQxelpzUVlKSkV0bW1Ya1ZOZ0s1QUozMFdnd0ZzNVV4blRvOE15?=
+ =?utf-8?B?dEFnSWlQL1NPVU9GUzNHRjdnWW81elplNEw5OW1jbS8wWGNTb3NUMERLQ3RN?=
+ =?utf-8?B?Wk05QkFlNFJYV21TQ1J4WDNjTXJ1clZqcm9FYkYydERaVWx3dVZvTW5Wa2cv?=
+ =?utf-8?B?MytXS0dYRXV5Ym9vajBxclZWV2hZNlpFOWdkenkwdmRsOFVIQURzbi9uVCtZ?=
+ =?utf-8?B?Wk9jN1E5cVQ2NzZaaXJyVnNwTE02aCtLNzE4Y1RhZzJURUNZRUhReUh1d0Js?=
+ =?utf-8?B?Nk01QkJpSzFjN0djWWxHUU9MaFY5WUlzLzhURmk0ektkTXRROWxTMXB2em9M?=
+ =?utf-8?B?OXhpRzZiL2lOakpENVZYNXdZeXA5ZTZtcEQ0bEhWbkJWUU5TeWZpOVh0K1ND?=
+ =?utf-8?B?OElBeDFuaTJsRWhzTHlIRGFqdDNZNWhPVHkrUlRCVXBLclo1QVk5U3grTXVU?=
+ =?utf-8?B?VTRmaHJ2YkJvRDh0cVd1V1N3WndXNE5ibElWMklxUFB0UjkrdWMzSnA2L09l?=
+ =?utf-8?B?amh3NmFlbDU4RDd4Y0FaSUI0WFJ5RkNBenZaOVVKRDQyWi9zQ2djYUVjMmtl?=
+ =?utf-8?B?cUdHK3dMaVdDYTZZdzRUL2h2aUZkUG9uakVLVUZvRTQ1MnlZc21XMERUbU81?=
+ =?utf-8?B?R0dZTjhLaTJZcU9Wc0hPTTMwdmpUMFU1TklMandsNW1PcldONWxObDdRTGwz?=
+ =?utf-8?B?ZkZadk0vYk5XQTU3L0wyN1pWNGtEK1VkQ2lvV3l5WUtqcjlIemlOaGVRazRz?=
+ =?utf-8?B?a1lpcWxVVng1Y0hOK2FJd2ZxSUd1bEQyVndja2p1SFFVcnB6Q29VdysyTkg5?=
+ =?utf-8?B?bFhZZHd5YzNrS1dlYUhtU2lOVjdBQ0gzMzVFSXp5L0wwcytvVnQyV2hQRVdV?=
+ =?utf-8?B?VWF1VmJOc1VtL1lSaURKdVgrZ3ZRYWMxVW9uUzA2MU1FYjFCZ2daT1VKSzZE?=
+ =?utf-8?B?d0srclpSY042d3AvdWhaYVVQOTlJYjlBWUtWbzc3eGRuQTNCR1JkSkwrYUl2?=
+ =?utf-8?B?M0JmVGNCNVU2ZFRjT2p3WDE0U1pYakI2bzI5VXlQL2hZcmd0dVpxd2dCQXpH?=
+ =?utf-8?B?RnpaY3g5b2JhV1U2ZDhJcm1RK2g4ejhjMHlFdFR4N2RZWEtQZDVvKzFEV0Ra?=
+ =?utf-8?B?c0gxaFlxMSsrbWtvUkxhRlNPQXR3Tmw4ODk2TlNQUFdSNWd6S1AzelVGY1Fs?=
+ =?utf-8?B?WWVSUFlEdkIzaWxtc2YxbExNOXh5ZWJnQ3Z4NFNYYnRDVXpxMkUvNE1leGcv?=
+ =?utf-8?B?dEkvOWtSVnExQVJTWmlFWlZnL2llTnh5YmoySjhMTnpNdTlzRzZwVE1EVnZU?=
+ =?utf-8?B?dXNJMjNZUFR2djVPT29yQmFWQm1sY2crbytXdlE2L3VGdjlEOEI4OWFlZFBw?=
+ =?utf-8?B?ZXovSjZhZUJvOU5SS2E4NVdYS2p5c0JjbldLa2RFTmVkaVpLdy9CQmtsMzk1?=
+ =?utf-8?B?OHhWSnRIYUxRbGxzM0lmQnF4WU91Y1BCRUhjZ044bENxUXQ2QzQxSlhseXhH?=
+ =?utf-8?B?Y1pzOW5xNkM5bW9DeWZmamdpeFBzYWFwSnhNWklQdE5Kb2drQ1hLSi9saGhh?=
+ =?utf-8?B?L09IM25NRmxDQitxbytFSHJwRVRUS3V4elRjWVVJeTR3d0ZQbHVmcEw3d2dM?=
+ =?utf-8?B?VjhJc2QrdWRnRGJIMTlsREFxSFc1KytwOGxzaFR1dGVzL0xTNXEyL05GSVBh?=
+ =?utf-8?B?VmJEOTgyQUwrTEN2aHJXNnhNVGFrT21ISmpPdHdySnJMZHJLdjl4Umdqbytx?=
+ =?utf-8?B?NWovcWtDMTRodUh1dXkzZ3BEazZHK3JUNGorSXBCeExGR0w2ZCtwRU16dkJK?=
+ =?utf-8?B?a3dHUFdjWWQ5cllxTFdFKzdQY3RzOVBZR1VjWU1jMEZ4cUgzY2RQY1pUOWlh?=
+ =?utf-8?Q?JWjeLBG4UTK4qQtM4ZjTX3LJKfK54W9Y?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SG2PR03MB6636.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(7416014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?djRjMVBCY09NT3VDVk13ZVd3S1BLazVKUE91d29NaHgvTGg5QXlTdnp4V0M3?=
+ =?utf-8?B?RkNabFlwanpodDNSYWt4dWVmK0FkZmNhaWRCMHE4WGZqSGtaZVZrSnJkblZs?=
+ =?utf-8?B?S1I3TmxwRnFBQS9vdHNwSkxuT1Y2V2s1cjdKdm9Mb2RzTzhCQmpIU21idjZx?=
+ =?utf-8?B?RVlTWHNWb3pWZHdkREd2eEtzSEdNVlI5RmV0U2thQjNsRlF1MXFlczQ3Tk5U?=
+ =?utf-8?B?eUtYSmdycTBjcFhmUEE4ZkxyQm5WSmVIUGZzL3FaL0hiRm43Nld6aEVISWdV?=
+ =?utf-8?B?NDZLb0pXVy9Jd0lYcEFoWmViM2tVTm4zbEIxa0xvVVdOOTQxNkk0elN4L2Rl?=
+ =?utf-8?B?cDFjZFRobitSc09iRTg5VlJJVEdUV2xEdEhzNTNTSjIyTlJ0dDgwU28xRTVk?=
+ =?utf-8?B?UUcvTzFOWmZsUFVoZEcxMjNYMGxBUjRpVUZvY2xVTFpmTTJOdlpTbFg2MWEx?=
+ =?utf-8?B?L25zQlp1cFc5NEROeHQyZXZSM3NKOTlpZUZrNjllOWE0SW51cm8xZnRzc2N5?=
+ =?utf-8?B?bm5hdVJGamhqeFVUTVZ4dlRwOU8vWWNPYkVvQ1Q2QUd1a09YRkFpdXNEQkhH?=
+ =?utf-8?B?eWdEQmE4dEJONW1uM3ZJWjV6V3E2RXAwRFo4MGNPRzYrVElxTFpaRzNMYlZH?=
+ =?utf-8?B?a0ZjaDZUREFnZEx6REh1Nkw2dkFDOUVwMXlYWDI4dVh2VHhmWE5tYm1XcSt1?=
+ =?utf-8?B?SWlKN3pBR2NtMGJOREhMT01qYWtqVFBJTU50QnF6eGFxRHB3VE1sUlV5S0JP?=
+ =?utf-8?B?ZnJKazBEV0ZZeXB2TXVac3VWbTBwc3JYa25GR2RxcWNVUlEwcFBXWGxGY21y?=
+ =?utf-8?B?ZzVORGpvTVJZYkpDVWlZWWIvRVB0bUZGWnRqTlpVbmlpTWVYNGtPS2dicEhP?=
+ =?utf-8?B?TjJkQzZNNDdmYW9rZUpUa2YrV2t2Nm4zTDB1TUpIK2xEUUZlNTRQQkJ4NGdm?=
+ =?utf-8?B?MElvN21GQ2o0SFN2cEJ1TUVzSUZNekp4T2RQSVc5QXNBMks1Z3lMZmdCVUl4?=
+ =?utf-8?B?UXRFMXQveERQT1lzRXpYKzVZcVhXdGtUYWhxdVRieUJZU3g1K2FrZms1UEtX?=
+ =?utf-8?B?MFlUcnJlMDVjSGVpRjYvWkxCRUtyeWkzb0RQeE00elNDVlNTN0U0eThRMDly?=
+ =?utf-8?B?MVk5L0ZvTFpybGNTcWMvUXNLVjdOMDZxNXFCejFVQnY3L3dhUzNZbDM2aS91?=
+ =?utf-8?B?SnExSWQ5NlY5N05zZXprNVRocDlTUWt5bUlPdXBkU1J6blBsOU12K1pEbFk0?=
+ =?utf-8?B?MGs0YXFUQXpvbjBXdm9ZSzNpYkNIRStTODNCUzh6ZVBxN3hxUnB6WWJ3ODhi?=
+ =?utf-8?B?TzMzZzB4b2lWSFhrcWRiT1RUL0w0YVpDcGxtUWU1ZTR2SjhEVlNsUUFaR2ZF?=
+ =?utf-8?B?cCtEb0NQWjQ0M0dpd2sybUpDblFqY0N2WlFqZ25SWDlnNFp1b0ZXUzVoaTlj?=
+ =?utf-8?B?WHdOeGQyWHlmTEhHeklDaENPcHNPczNPTDh3Vm51c3RVZUt3ZkEwbnluY3RP?=
+ =?utf-8?B?REhkZkxlQk1PTi9seVV5aUI3NnVNRWZKUEZrbGtiUW52aTdkUWx0SmEveFBV?=
+ =?utf-8?B?Z0YvcU84V2RnM1ZrNEpoei9OYVIrSWFOVkk3MGVNR0RTVnVpMlBtdXNRTWYr?=
+ =?utf-8?B?bTFSQTJlL2VmUFJoQ3hRdjM5UTE5dUpsMTE2YVFsZHNCSHR6dzZSWTQyM08w?=
+ =?utf-8?B?NTdyYyt1Tko1eUtxOEhkUGNBVFR0NzVoeWJEVWVGTU1OZTZBQnZUMkc2dkZk?=
+ =?utf-8?B?VWpUdDNKL0RYbG9Nemh3NUkxVkFhSy9xOVdlS2o3cFlBUTN1TjgwQno5M2Jz?=
+ =?utf-8?B?ZElDMnVZYXAwNk9xWmtFREVHVTUxTUc0SFp6aTFpZ3RMVmdEZ1NRQ0o4em43?=
+ =?utf-8?B?ZDJsQ1RSSTRQaXZORmtJSXBtKzBrc2lndWdXSU55dUw0VWJpMjQ5S3YwK0RH?=
+ =?utf-8?B?OUU2bWt5UVNVZVNVTU1xZXg4c28zU25nTmlzZFAyNmZ1QStRTWEyZ05NNlBr?=
+ =?utf-8?B?TFQ3UmdTTmNlbWdyOGNPdklMWitFNDNmbXYrNGdhR0RtSEJkMnJ4N0xjWG5o?=
+ =?utf-8?B?eXhnbUNDdHliU0Z5Kzk3ZGlCbXpaaTY1ekpwTEJ2cVZnWFpzdS9nRlpyYnll?=
+ =?utf-8?B?dUk3WDUycGdCRXAwV2hkSUcvKytSV2NOdURjQmh3ZmRCQ2VGWmVxM0k4RUlI?=
+ =?utf-8?B?UVE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <00EB71C59F4CFB44AAE2C8695AA7E7B7@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <81bc81b0-9b0e-4e71-b34a-e74730eda44f@sifive.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SG2PR03MB6636.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04275c67-469c-4c2a-e3ba-08dd3a3e09b2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Jan 2025 17:07:08.0938
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: j42nxGIR7SrkwDZznUHE2j+R3jdXSz7BY9H99m7tBeUfQw4ntsqnazgNVIJwdHeqpSy/D37YAjU5NMwwQOJwRDGGxKWhH1N7uq6vYjG9FCA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR03MB8792
 
-On Wed, Jan 15, 2025 at 11:25:15PM -0600, Samuel Holland wrote:
-> Hi Haylen,
-> 
-> On 2025-01-03 3:56 PM, Haylen Chu wrote:
-> > The clock tree of K1 SoC contains three main types of clock hardware
-> > (PLL/DDN/MIX) and is managed by several independent controllers in
-> > different SoC parts (APBC, APBS and etc.), thus different compatible
-> > strings are added to distinguish them.
-> 
-> I was surprised that your DT binding didn't describe any clocks produced by one
-> of these blocks and consumed by another one of them, so I took a look at the driver.
-> 
-> > Some controllers may share IO region with reset controller and other low
-> > speed peripherals like watchdog, so all register operations are done
-> > through regmap to avoid competition.
-> > 
-> > Signed-off-by: Haylen Chu <heylenay@4d2.org>
-> > ---
-> >  drivers/clk/Kconfig               |    1 +
-> >  drivers/clk/Makefile              |    1 +
-> >  drivers/clk/spacemit/Kconfig      |   20 +
-> >  drivers/clk/spacemit/Makefile     |    5 +
-> >  drivers/clk/spacemit/ccu-k1.c     | 1747 +++++++++++++++++++++++++++++
-> >  drivers/clk/spacemit/ccu_common.h |   51 +
-> >  drivers/clk/spacemit/ccu_ddn.c    |  140 +++
-> >  drivers/clk/spacemit/ccu_ddn.h    |   84 ++
-> >  drivers/clk/spacemit/ccu_mix.c    |  304 +++++
-> >  drivers/clk/spacemit/ccu_mix.h    |  309 +++++
-> >  drivers/clk/spacemit/ccu_pll.c    |  189 ++++
-> >  drivers/clk/spacemit/ccu_pll.h    |   80 ++
-> >  12 files changed, 2931 insertions(+)
-> >  create mode 100644 drivers/clk/spacemit/Kconfig
-> >  create mode 100644 drivers/clk/spacemit/Makefile
-> >  create mode 100644 drivers/clk/spacemit/ccu-k1.c
-> >  create mode 100644 drivers/clk/spacemit/ccu_common.h
-> >  create mode 100644 drivers/clk/spacemit/ccu_ddn.c
-> >  create mode 100644 drivers/clk/spacemit/ccu_ddn.h
-> >  create mode 100644 drivers/clk/spacemit/ccu_mix.c
-> >  create mode 100644 drivers/clk/spacemit/ccu_mix.h
-> >  create mode 100644 drivers/clk/spacemit/ccu_pll.c
-> >  create mode 100644 drivers/clk/spacemit/ccu_pll.h
-> > 
-> > ...
-> >
-> > +/*	APBS clocks start	*/
-> > +
-> > +/* Frequency of pll{1,2} should not be updated at runtime */
-> > +static const struct ccu_pll_rate_tbl pll1_rate_tbl[] = {
-> > +	CCU_PLL_RATE(2457600000UL, 0x64, 0xdd, 0x50, 0x00, 0x33, 0x0ccccd),
-> > +};
-> > +
-> > +static const struct ccu_pll_rate_tbl pll2_rate_tbl[] = {
-> > +	CCU_PLL_RATE(3000000000UL, 0x66, 0xdd, 0x50, 0x00, 0x3f, 0xe00000),
-> > +};
-> > +
-> > +static const struct ccu_pll_rate_tbl pll3_rate_tbl[] = {
-> > +	CCU_PLL_RATE(3000000000UL, 0x66, 0xdd, 0x50, 0x00, 0x3f, 0xe00000),
-> > +	CCU_PLL_RATE(3200000000UL, 0x67, 0xdd, 0x50, 0x00, 0x43, 0xeaaaab),
-> > +	CCU_PLL_RATE(2457600000UL, 0x64, 0xdd, 0x50, 0x00, 0x33, 0x0ccccd),
-> > +};
-> > +
-> > +static CCU_PLL_DEFINE(pll1, "pll1", pll1_rate_tbl,
-> > +		      APB_SPARE1_REG, APB_SPARE2_REG, APB_SPARE3_REG,
-> > +		      MPMU_POSR, POSR_PLL1_LOCK, CLK_SET_RATE_GATE);
-> > +static CCU_PLL_DEFINE(pll2, "pll2", pll2_rate_tbl,
-> > +		      APB_SPARE7_REG, APB_SPARE8_REG, APB_SPARE9_REG,
-> > +		      MPMU_POSR, POSR_PLL2_LOCK, CLK_SET_RATE_GATE);
-> > +static CCU_PLL_DEFINE(pll3, "pll3", pll3_rate_tbl,
-> > +		      APB_SPARE10_REG, APB_SPARE11_REG, APB_SPARE12_REG,
-> > +		      MPMU_POSR, POSR_PLL3_LOCK, 0);
-> > +
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_d2, "pll1_d2", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(1), BIT(1), 0, 2, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_d3, "pll1_d3", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(2), BIT(2), 0, 3, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_d4, "pll1_d4", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(3), BIT(3), 0, 4, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_d5, "pll1_d5", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(4), BIT(4), 0, 5, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_d6, "pll1_d6", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(5), BIT(5), 0, 6, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_d7, "pll1_d7", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(6), BIT(6), 0, 7, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_d8, "pll1_d8", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(7), BIT(7), 0, 8, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_d11_223p4, "pll1_d11_223p4", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(15), BIT(15), 0, 11, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_d13_189, "pll1_d13_189", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(16), BIT(16), 0, 13, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_d23_106p8, "pll1_d23_106p8", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(20), BIT(20), 0, 23, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_d64_38p4, "pll1_d64_38p4", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(0), BIT(0), 0, 64, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_aud_245p7, "pll1_aud_245p7", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(10), BIT(10), 0, 10, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll1_aud_24p5, "pll1_aud_24p5", CCU_PARENT_HW(pll1),
-> > +			      APB_SPARE2_REG,
-> > +			      BIT(11), BIT(11), 0, 100, 1, 0);
-> > +
-> > +static CCU_GATE_FACTOR_DEFINE(pll2_d1, "pll2_d1", CCU_PARENT_HW(pll2),
-> > +			      APB_SPARE8_REG,
-> > +			      BIT(0), BIT(0), 0, 1, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll2_d2, "pll2_d2", CCU_PARENT_HW(pll2),
-> > +			      APB_SPARE8_REG,
-> > +			      BIT(1), BIT(1), 0, 2, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll2_d3, "pll2_d3", CCU_PARENT_HW(pll2),
-> > +			      APB_SPARE8_REG,
-> > +			      BIT(2), BIT(2), 0, 3, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll2_d4, "pll2_d4", CCU_PARENT_HW(pll2),
-> > +			      APB_SPARE8_REG,
-> > +			      BIT(3), BIT(3), 0, 4, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll2_d5, "pll2_d5", CCU_PARENT_HW(pll2),
-> > +			      APB_SPARE8_REG,
-> > +			      BIT(4), BIT(4), 0, 5, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll2_d6, "pll2_d6", CCU_PARENT_HW(pll2),
-> > +			      APB_SPARE8_REG,
-> > +			      BIT(5), BIT(5), 0, 6, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll2_d7, "pll2_d7", CCU_PARENT_HW(pll2),
-> > +			      APB_SPARE8_REG,
-> > +			      BIT(6), BIT(6), 0, 7, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll2_d8, "pll2_d8", CCU_PARENT_HW(pll2),
-> > +			      APB_SPARE8_REG,
-> > +			      BIT(7), BIT(7), 0, 8, 1, 0);
-> > +
-> > +static CCU_GATE_FACTOR_DEFINE(pll3_d1, "pll3_d1", CCU_PARENT_HW(pll3),
-> > +			      APB_SPARE11_REG,
-> > +			      BIT(0), BIT(0), 0, 1, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll3_d2, "pll3_d2", CCU_PARENT_HW(pll3),
-> > +			      APB_SPARE11_REG,
-> > +			      BIT(1), BIT(1), 0, 2, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll3_d3, "pll3_d3", CCU_PARENT_HW(pll3),
-> > +			      APB_SPARE11_REG,
-> > +			      BIT(2), BIT(2), 0, 3, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll3_d4, "pll3_d4", CCU_PARENT_HW(pll3),
-> > +			      APB_SPARE11_REG,
-> > +			      BIT(3), BIT(3), 0, 4, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll3_d5, "pll3_d5", CCU_PARENT_HW(pll3),
-> > +			      APB_SPARE11_REG,
-> > +			      BIT(4), BIT(4), 0, 5, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll3_d6, "pll3_d6", CCU_PARENT_HW(pll3),
-> > +			      APB_SPARE11_REG,
-> > +			      BIT(5), BIT(5), 0, 6, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll3_d7, "pll3_d7", CCU_PARENT_HW(pll3),
-> > +			      APB_SPARE11_REG,
-> > +			      BIT(6), BIT(6), 0, 7, 1, 0);
-> > +static CCU_GATE_FACTOR_DEFINE(pll3_d8, "pll3_d8", CCU_PARENT_HW(pll3),
-> > +			      APB_SPARE11_REG,
-> > +			      BIT(7), BIT(7), 0, 8, 1, 0);
-> > +
-> > +static CCU_FACTOR_DEFINE(pll3_20, "pll3_20", CCU_PARENT_HW(pll3_d8), 20, 1);
-> > +static CCU_FACTOR_DEFINE(pll3_40, "pll3_40", CCU_PARENT_HW(pll3_d8), 10, 1);
-> > +static CCU_FACTOR_DEFINE(pll3_80, "pll3_80", CCU_PARENT_HW(pll3_d8), 5, 1);
-> > +
-> > +/*	APBS clocks end		*/
-> > +
-> > +/*	MPMU clocks start	*/
-> > +static CCU_GATE_DEFINE(pll1_d8_307p2, "pll1_d8_307p2", CCU_PARENT_HW(pll1_d8),
-> > +		       MPMU_ACGR,
-> > +		       BIT(13), BIT(13), 0, 0);
-> 
-> Here you have a clk_hw from one driver instance (pll1_d8_307p2) pointing to a
-> clk_hw from another driver instance (pll1_d8).
-
-Yes, there're cross references between different controllers, indexed
-with struct clk_hw. I have to admit that it isn't a common design
-pattern among clock drivers.
-
-> If the consumer instance is
-> probed first, pll1_d8 won't have been registered with the clock core, so you are
-> quite likely to dereference a null hw->core pointer.
-
-But I don't think null pointer dereferencing would happen.
-
-When a struct clk_hw gets registered through devm_clk_hw_register(),
-the real parenting work is done in __clk_init_parent() called by
-__clk_core_init(): the former'll find struct clk_core of the parent
-isn't initialized, thus invoke clk_core_fill_parent_index() to try a
-search.
-
-In this case, the search will always fail since the parent hasn't been
-registered as struct clk_core. So __clk_core_init() will mark it as an
-orphan and afaik CCF won't touch the core field of its parent at all. As
-far as we keep in mind that stuff like clk_hw_get_parent_by_index() may
-fail when writing the driver, everything should work.
-
-> The normal way to handle relationships between clock controller instances is by
-> referencing the clocks in the consumer's devicetree node, and using .fw_name in
-> the parent_data. Unfortunately, it seems there are quite a lot of clocks that
-> would need to be included in the DT binding to do that.
-
-Yeah. As Krzysztof has concerns on splitting multiple clock controllers
-as well, it's necessary to discuss possibility of merging them together
-(then we're more likely to make the driver bug-free).
-
-Thanks for your time and review!
-
-> Regards,
-> Samuel
-> 
-
-Best regards,
-Haylen Chu
-
-> > ...
-> > +/*	APMU clocks end		*/
-> > +
-> > +static struct clk_hw_onecell_data k1_ccu_apbs_clks = {
-> > +	.hws = {
-> > +		[CLK_PLL1]		= &pll1.common.hw,
-> > +		[CLK_PLL2]		= &pll2.common.hw,
-> > +		[CLK_PLL3]		= &pll3.common.hw,
-> > +		[CLK_PLL1_D2]		= &pll1_d2.common.hw,
-> > +		[CLK_PLL1_D3]		= &pll1_d3.common.hw,
-> > +		[CLK_PLL1_D4]		= &pll1_d4.common.hw,
-> > +		[CLK_PLL1_D5]		= &pll1_d5.common.hw,
-> > +		[CLK_PLL1_D6]		= &pll1_d6.common.hw,
-> > +		[CLK_PLL1_D7]		= &pll1_d7.common.hw,
-> > +		[CLK_PLL1_D8]		= &pll1_d8.common.hw,
-> 
-> referring to here ^
-> 
-> > +		[CLK_PLL1_D11]		= &pll1_d11_223p4.common.hw,
-> > +		[CLK_PLL1_D13]		= &pll1_d13_189.common.hw,
-> > +		[CLK_PLL1_D23]		= &pll1_d23_106p8.common.hw,
-> > +		[CLK_PLL1_D64]		= &pll1_d64_38p4.common.hw,
-> > +		[CLK_PLL1_D10_AUD]	= &pll1_aud_245p7.common.hw,
-> > +		[CLK_PLL1_D100_AUD]	= &pll1_aud_24p5.common.hw,
-> > +		[CLK_PLL2_D1]		= &pll2_d1.common.hw,
-> > +		[CLK_PLL2_D2]		= &pll2_d2.common.hw,
-> > +		[CLK_PLL2_D3]		= &pll2_d3.common.hw,
-> > +		[CLK_PLL2_D4]		= &pll2_d4.common.hw,
-> > +		[CLK_PLL2_D5]		= &pll2_d5.common.hw,
-> > +		[CLK_PLL2_D6]		= &pll2_d6.common.hw,
-> > +		[CLK_PLL2_D7]		= &pll2_d7.common.hw,
-> > +		[CLK_PLL2_D8]		= &pll2_d8.common.hw,
-> > +		[CLK_PLL3_D1]		= &pll3_d1.common.hw,
-> > +		[CLK_PLL3_D2]		= &pll3_d2.common.hw,
-> > +		[CLK_PLL3_D3]		= &pll3_d3.common.hw,
-> > +		[CLK_PLL3_D4]		= &pll3_d4.common.hw,
-> > +		[CLK_PLL3_D5]		= &pll3_d5.common.hw,
-> > +		[CLK_PLL3_D6]		= &pll3_d6.common.hw,
-> > +		[CLK_PLL3_D7]		= &pll3_d7.common.hw,
-> > +		[CLK_PLL3_D8]		= &pll3_d8.common.hw,
-> > +		[CLK_PLL3_80]		= &pll3_80.common.hw,
-> > +		[CLK_PLL3_40]		= &pll3_40.common.hw,
-> > +		[CLK_PLL3_20]		= &pll3_20.common.hw,
-> > +
-> > +	},
-> > +	.num = CLK_APBS_NUM,
-> > +};
-> > +
-> > +static struct clk_hw_onecell_data k1_ccu_mpmu_clks = {
-> > +	.hws = {
-> > +		[CLK_PLL1_307P2]	= &pll1_d8_307p2.common.hw,
-> 
-> from here ^
-> 
-> > +		[CLK_PLL1_76P8]		= &pll1_d32_76p8.common.hw,
-> > +		[CLK_PLL1_61P44]	= &pll1_d40_61p44.common.hw,
-> > +		[CLK_PLL1_153P6]	= &pll1_d16_153p6.common.hw,
-> > +		[CLK_PLL1_102P4]	= &pll1_d24_102p4.common.hw,
-> > +		[CLK_PLL1_51P2]		= &pll1_d48_51p2.common.hw,
-> > +		[CLK_PLL1_51P2_AP]	= &pll1_d48_51p2_ap.common.hw,
-> > +		[CLK_PLL1_57P6]		= &pll1_m3d128_57p6.common.hw,
-> > +		[CLK_PLL1_25P6]		= &pll1_d96_25p6.common.hw,
-> > +		[CLK_PLL1_12P8]		= &pll1_d192_12p8.common.hw,
-> > +		[CLK_PLL1_12P8_WDT]	= &pll1_d192_12p8_wdt.common.hw,
-> > +		[CLK_PLL1_6P4]		= &pll1_d384_6p4.common.hw,
-> > +		[CLK_PLL1_3P2]		= &pll1_d768_3p2.common.hw,
-> > +		[CLK_PLL1_1P6]		= &pll1_d1536_1p6.common.hw,
-> > +		[CLK_PLL1_0P8]		= &pll1_d3072_0p8.common.hw,
-> > +		[CLK_PLL1_351]		= &pll1_d7_351p08.common.hw,
-> > +		[CLK_PLL1_409P6]	= &pll1_d6_409p6.common.hw,
-> > +		[CLK_PLL1_204P8]	= &pll1_d12_204p8.common.hw,
-> > +		[CLK_PLL1_491]		= &pll1_d5_491p52.common.hw,
-> > +		[CLK_PLL1_245P76]	= &pll1_d10_245p76.common.hw,
-> > +		[CLK_PLL1_614]		= &pll1_d4_614p4.common.hw,
-> > +		[CLK_PLL1_47P26]	= &pll1_d52_47p26.common.hw,
-> > +		[CLK_PLL1_31P5]		= &pll1_d78_31p5.common.hw,
-> > +		[CLK_PLL1_819]		= &pll1_d3_819p2.common.hw,
-> > +		[CLK_PLL1_1228]		= &pll1_d2_1228p8.common.hw,
-> > +		[CLK_SLOW_UART]		= &slow_uart.common.hw,
-> > +		[CLK_SLOW_UART1]	= &slow_uart1_14p74.common.hw,
-> > +		[CLK_SLOW_UART2]	= &slow_uart2_48.common.hw,
-> > +		[CLK_WDT]		= &wdt_clk.common.hw,
-> > +		[CLK_RIPC]		= &ripc_clk.common.hw,
-> > +		[CLK_I2S_SYSCLK]	= &i2s_sysclk.common.hw,
-> > +		[CLK_I2S_BCLK]		= &i2s_bclk.common.hw,
-> > +		[CLK_APB]		= &apb_clk.common.hw,
-> > +		[CLK_WDT_BUS]		= &wdt_bus_clk.common.hw,
-> > +	},
-> > +	.num = CLK_MPMU_NUM,
-> > +};
-> > +
-> > +static struct clk_hw_onecell_data k1_ccu_apbc_clks = {
-> > +	.hws = {
-> > +		[CLK_UART0]		= &uart0_clk.common.hw,
-> > +		[CLK_UART2]		= &uart2_clk.common.hw,
-> > +		[CLK_UART3]		= &uart3_clk.common.hw,
-> > +		[CLK_UART4]		= &uart4_clk.common.hw,
-> > +		[CLK_UART5]		= &uart5_clk.common.hw,
-> > +		[CLK_UART6]		= &uart6_clk.common.hw,
-> > +		[CLK_UART7]		= &uart7_clk.common.hw,
-> > +		[CLK_UART8]		= &uart8_clk.common.hw,
-> > +		[CLK_UART9]		= &uart9_clk.common.hw,
-> > +		[CLK_GPIO]		= &gpio_clk.common.hw,
-> > +		[CLK_PWM0]		= &pwm0_clk.common.hw,
-> > +		[CLK_PWM1]		= &pwm1_clk.common.hw,
-> > +		[CLK_PWM2]		= &pwm2_clk.common.hw,
-> > +		[CLK_PWM3]		= &pwm3_clk.common.hw,
-> > +		[CLK_PWM4]		= &pwm4_clk.common.hw,
-> > +		[CLK_PWM5]		= &pwm5_clk.common.hw,
-> > +		[CLK_PWM6]		= &pwm6_clk.common.hw,
-> > +		[CLK_PWM7]		= &pwm7_clk.common.hw,
-> > +		[CLK_PWM8]		= &pwm8_clk.common.hw,
-> > +		[CLK_PWM9]		= &pwm9_clk.common.hw,
-> > +		[CLK_PWM10]		= &pwm10_clk.common.hw,
-> > +		[CLK_PWM11]		= &pwm11_clk.common.hw,
-> > +		[CLK_PWM12]		= &pwm12_clk.common.hw,
-> > +		[CLK_PWM13]		= &pwm13_clk.common.hw,
-> > +		[CLK_PWM14]		= &pwm14_clk.common.hw,
-> > +		[CLK_PWM15]		= &pwm15_clk.common.hw,
-> > +		[CLK_PWM16]		= &pwm16_clk.common.hw,
-> > +		[CLK_PWM17]		= &pwm17_clk.common.hw,
-> > +		[CLK_PWM18]		= &pwm18_clk.common.hw,
-> > +		[CLK_PWM19]		= &pwm19_clk.common.hw,
-> > +		[CLK_SSP3]		= &ssp3_clk.common.hw,
-> > +		[CLK_RTC]		= &rtc_clk.common.hw,
-> > +		[CLK_TWSI0]		= &twsi0_clk.common.hw,
-> > +		[CLK_TWSI1]		= &twsi1_clk.common.hw,
-> > +		[CLK_TWSI2]		= &twsi2_clk.common.hw,
-> > +		[CLK_TWSI4]		= &twsi4_clk.common.hw,
-> > +		[CLK_TWSI5]		= &twsi5_clk.common.hw,
-> > +		[CLK_TWSI6]		= &twsi6_clk.common.hw,
-> > +		[CLK_TWSI7]		= &twsi7_clk.common.hw,
-> > +		[CLK_TWSI8]		= &twsi8_clk.common.hw,
-> > +		[CLK_TIMERS1]		= &timers1_clk.common.hw,
-> > +		[CLK_TIMERS2]		= &timers2_clk.common.hw,
-> > +		[CLK_AIB]		= &aib_clk.common.hw,
-> > +		[CLK_ONEWIRE]		= &onewire_clk.common.hw,
-> > +		[CLK_SSPA0]		= &sspa0_clk.common.hw,
-> > +		[CLK_SSPA1]		= &sspa1_clk.common.hw,
-> > +		[CLK_DRO]		= &dro_clk.common.hw,
-> > +		[CLK_IR]		= &ir_clk.common.hw,
-> > +		[CLK_TSEN]		= &tsen_clk.common.hw,
-> > +		[CLK_IPC_AP2AUD]	= &ipc_ap2aud_clk.common.hw,
-> > +		[CLK_CAN0]		= &can0_clk.common.hw,
-> > +		[CLK_CAN0_BUS]		= &can0_bus_clk.common.hw,
-> > +		[CLK_UART0_BUS]		= &uart0_bus_clk.common.hw,
-> > +		[CLK_UART2_BUS]		= &uart2_bus_clk.common.hw,
-> > +		[CLK_UART3_BUS]		= &uart3_bus_clk.common.hw,
-> > +		[CLK_UART4_BUS]		= &uart4_bus_clk.common.hw,
-> > +		[CLK_UART5_BUS]		= &uart5_bus_clk.common.hw,
-> > +		[CLK_UART6_BUS]		= &uart6_bus_clk.common.hw,
-> > +		[CLK_UART7_BUS]		= &uart7_bus_clk.common.hw,
-> > +		[CLK_UART8_BUS]		= &uart8_bus_clk.common.hw,
-> > +		[CLK_UART9_BUS]		= &uart9_bus_clk.common.hw,
-> > +		[CLK_GPIO_BUS]		= &gpio_bus_clk.common.hw,
-> > +		[CLK_PWM0_BUS]		= &pwm0_bus_clk.common.hw,
-> > +		[CLK_PWM1_BUS]		= &pwm1_bus_clk.common.hw,
-> > +		[CLK_PWM2_BUS]		= &pwm2_bus_clk.common.hw,
-> > +		[CLK_PWM3_BUS]		= &pwm3_bus_clk.common.hw,
-> > +		[CLK_PWM4_BUS]		= &pwm4_bus_clk.common.hw,
-> > +		[CLK_PWM5_BUS]		= &pwm5_bus_clk.common.hw,
-> > +		[CLK_PWM6_BUS]		= &pwm6_bus_clk.common.hw,
-> > +		[CLK_PWM7_BUS]		= &pwm7_bus_clk.common.hw,
-> > +		[CLK_PWM8_BUS]		= &pwm8_bus_clk.common.hw,
-> > +		[CLK_PWM9_BUS]		= &pwm9_bus_clk.common.hw,
-> > +		[CLK_PWM10_BUS]		= &pwm10_bus_clk.common.hw,
-> > +		[CLK_PWM11_BUS]		= &pwm11_bus_clk.common.hw,
-> > +		[CLK_PWM12_BUS]		= &pwm12_bus_clk.common.hw,
-> > +		[CLK_PWM13_BUS]		= &pwm13_bus_clk.common.hw,
-> > +		[CLK_PWM14_BUS]		= &pwm14_bus_clk.common.hw,
-> > +		[CLK_PWM15_BUS]		= &pwm15_bus_clk.common.hw,
-> > +		[CLK_PWM16_BUS]		= &pwm16_bus_clk.common.hw,
-> > +		[CLK_PWM17_BUS]		= &pwm17_bus_clk.common.hw,
-> > +		[CLK_PWM18_BUS]		= &pwm18_bus_clk.common.hw,
-> > +		[CLK_PWM19_BUS]		= &pwm19_bus_clk.common.hw,
-> > +		[CLK_SSP3_BUS]		= &ssp3_bus_clk.common.hw,
-> > +		[CLK_RTC_BUS]		= &rtc_bus_clk.common.hw,
-> > +		[CLK_TWSI0_BUS]		= &twsi0_bus_clk.common.hw,
-> > +		[CLK_TWSI1_BUS]		= &twsi1_bus_clk.common.hw,
-> > +		[CLK_TWSI2_BUS]		= &twsi2_bus_clk.common.hw,
-> > +		[CLK_TWSI4_BUS]		= &twsi4_bus_clk.common.hw,
-> > +		[CLK_TWSI5_BUS]		= &twsi5_bus_clk.common.hw,
-> > +		[CLK_TWSI6_BUS]		= &twsi6_bus_clk.common.hw,
-> > +		[CLK_TWSI7_BUS]		= &twsi7_bus_clk.common.hw,
-> > +		[CLK_TWSI8_BUS]		= &twsi8_bus_clk.common.hw,
-> > +		[CLK_TIMERS1_BUS]	= &timers1_bus_clk.common.hw,
-> > +		[CLK_TIMERS2_BUS]	= &timers2_bus_clk.common.hw,
-> > +		[CLK_AIB_BUS]		= &aib_bus_clk.common.hw,
-> > +		[CLK_ONEWIRE_BUS]	= &onewire_bus_clk.common.hw,
-> > +		[CLK_SSPA0_BUS]		= &sspa0_bus_clk.common.hw,
-> > +		[CLK_SSPA1_BUS]		= &sspa1_bus_clk.common.hw,
-> > +		[CLK_TSEN_BUS]		= &tsen_bus_clk.common.hw,
-> > +		[CLK_IPC_AP2AUD_BUS]	= &ipc_ap2aud_bus_clk.common.hw,
-> > +	},
-> > +	.num = CLK_APBC_NUM,
-> > +};
-> > +
-> > +static struct clk_hw_onecell_data k1_ccu_apmu_clks = {
-> > +	.hws = {
-> > +		[CLK_CCI550]		= &cci550_clk.common.hw,
-> > +		[CLK_CPU_C0_HI]		= &cpu_c0_hi_clk.common.hw,
-> > +		[CLK_CPU_C0_CORE]	= &cpu_c0_core_clk.common.hw,
-> > +		[CLK_CPU_C0_ACE]	= &cpu_c0_ace_clk.common.hw,
-> > +		[CLK_CPU_C0_TCM]	= &cpu_c0_tcm_clk.common.hw,
-> > +		[CLK_CPU_C1_HI]		= &cpu_c1_hi_clk.common.hw,
-> > +		[CLK_CPU_C1_CORE]	= &cpu_c1_core_clk.common.hw,
-> > +		[CLK_CPU_C1_ACE]	= &cpu_c1_ace_clk.common.hw,
-> > +		[CLK_CCIC_4X]		= &ccic_4x_clk.common.hw,
-> > +		[CLK_CCIC1PHY]		= &ccic1phy_clk.common.hw,
-> > +		[CLK_SDH_AXI]		= &sdh_axi_aclk.common.hw,
-> > +		[CLK_SDH0]		= &sdh0_clk.common.hw,
-> > +		[CLK_SDH1]		= &sdh1_clk.common.hw,
-> > +		[CLK_SDH2]		= &sdh2_clk.common.hw,
-> > +		[CLK_USB_P1]		= &usb_p1_aclk.common.hw,
-> > +		[CLK_USB_AXI]		= &usb_axi_clk.common.hw,
-> > +		[CLK_USB30]		= &usb30_clk.common.hw,
-> > +		[CLK_QSPI]		= &qspi_clk.common.hw,
-> > +		[CLK_QSPI_BUS]		= &qspi_bus_clk.common.hw,
-> > +		[CLK_DMA]		= &dma_clk.common.hw,
-> > +		[CLK_AES]		= &aes_clk.common.hw,
-> > +		[CLK_VPU]		= &vpu_clk.common.hw,
-> > +		[CLK_GPU]		= &gpu_clk.common.hw,
-> > +		[CLK_EMMC]		= &emmc_clk.common.hw,
-> > +		[CLK_EMMC_X]		= &emmc_x_clk.common.hw,
-> > +		[CLK_AUDIO]		= &audio_clk.common.hw,
-> > +		[CLK_HDMI]		= &hdmi_mclk.common.hw,
-> > +		[CLK_PMUA_ACLK]		= &pmua_aclk.common.hw,
-> > +		[CLK_PCIE0]		= &pcie0_clk.common.hw,
-> > +		[CLK_PCIE1]		= &pcie1_clk.common.hw,
-> > +		[CLK_PCIE2]		= &pcie2_clk.common.hw,
-> > +		[CLK_EMAC0_BUS]		= &emac0_bus_clk.common.hw,
-> > +		[CLK_EMAC0_PTP]		= &emac0_ptp_clk.common.hw,
-> > +		[CLK_EMAC1_BUS]		= &emac1_bus_clk.common.hw,
-> > +		[CLK_EMAC1_PTP]		= &emac1_ptp_clk.common.hw,
-> > +		[CLK_JPG]		= &jpg_clk.common.hw,
-> > +		[CLK_CCIC2PHY]		= &ccic2phy_clk.common.hw,
-> > +		[CLK_CCIC3PHY]		= &ccic3phy_clk.common.hw,
-> > +		[CLK_CSI]		= &csi_clk.common.hw,
-> > +		[CLK_CAMM0]		= &camm0_clk.common.hw,
-> > +		[CLK_CAMM1]		= &camm1_clk.common.hw,
-> > +		[CLK_CAMM2]		= &camm2_clk.common.hw,
-> > +		[CLK_ISP_CPP]		= &isp_cpp_clk.common.hw,
-> > +		[CLK_ISP_BUS]		= &isp_bus_clk.common.hw,
-> > +		[CLK_ISP]		= &isp_clk.common.hw,
-> > +		[CLK_DPU_MCLK]		= &dpu_mclk.common.hw,
-> > +		[CLK_DPU_ESC]		= &dpu_esc_clk.common.hw,
-> > +		[CLK_DPU_BIT]		= &dpu_bit_clk.common.hw,
-> > +		[CLK_DPU_PXCLK]		= &dpu_pxclk.common.hw,
-> > +		[CLK_DPU_HCLK]		= &dpu_hclk.common.hw,
-> > +		[CLK_DPU_SPI]		= &dpu_spi_clk.common.hw,
-> > +		[CLK_DPU_SPI_HBUS]	= &dpu_spi_hbus_clk.common.hw,
-> > +		[CLK_DPU_SPIBUS]	= &dpu_spi_bus_clk.common.hw,
-> > +		[CLK_DPU_SPI_ACLK]	= &dpu_spi_aclk.common.hw,
-> > +		[CLK_V2D]		= &v2d_clk.common.hw,
-> > +		[CLK_EMMC_BUS]		= &emmc_bus_clk.common.hw,
-> > +	},
-> > +	.num = CLK_APMU_NUM
-> > +};
-> > +
-> > +struct spacemit_ccu_data {
-> > +	struct clk_hw_onecell_data *hw_clks;
-> > +	bool need_pll_lock;
-> > +};
-> > +
-> > +struct spacemit_ccu_priv {
-> > +	const struct spacemit_ccu_data *data;
-> > +	struct regmap *base;
-> > +	struct regmap *lock_base;
-> > +};
-> > +
-> > +static int spacemit_ccu_register(struct device *dev,
-> > +				 struct spacemit_ccu_priv *priv)
-> > +{
-> > +	const struct spacemit_ccu_data *data = priv->data;
-> > +	int i, ret;
-> > +
-> > +	for (i = 0; i < data->hw_clks->num; i++) {
-> > +		struct clk_hw *hw = data->hw_clks->hws[i];
-> > +		struct ccu_common *common;
-> > +		const char *name;
-> > +
-> > +		if (!hw)
-> > +			continue;
-> > +
-> > +		common = hw_to_ccu_common(hw);
-> > +		name = hw->init->name;
-> > +
-> > +		common->base		= priv->base;
-> > +		common->lock_base	= priv->lock_base;
-> > +
-> > +		ret = devm_clk_hw_register(dev, hw);
-> > +		if (ret) {
-> > +			dev_err(dev, "Cannot register clock %d - %s\n",
-> > +				i, name);
-> > +			return ret;
-> > +		}
-> > +	}
-> > +
-> > +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-> > +					   data->hw_clks);
-> > +}
-> > +
-> > +static int k1_ccu_probe(struct platform_device *pdev)
-> > +{
-> > +	const struct spacemit_ccu_data *data;
-> > +	struct regmap *base_map, *lock_map = NULL;
-> > +	struct device *dev = &pdev->dev;
-> > +	struct spacemit_ccu_priv *priv;
-> > +	struct device_node *parent;
-> > +	int ret;
-> > +
-> > +	data = of_device_get_match_data(dev);
-> > +	if (WARN_ON(!data))
-> > +		return -EINVAL;
-> > +
-> > +	parent   = of_get_parent(dev->of_node);
-> > +	base_map = syscon_node_to_regmap(parent);
-> > +	of_node_put(parent);
-> > +
-> > +	if (IS_ERR(base_map))
-> > +		return dev_err_probe(dev, PTR_ERR(base_map),
-> > +				     "failed to get regmap\n");
-> > +
-> > +	if (data->need_pll_lock) {
-> > +		lock_map = syscon_regmap_lookup_by_phandle(dev->of_node,
-> > +							   "spacemit,mpmu");
-> > +		if (IS_ERR(lock_map))
-> > +			return dev_err_probe(dev, PTR_ERR(lock_map),
-> > +					     "failed to get lock regmap\n");
-> > +	}
-> > +
-> > +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> > +	if (!priv)
-> > +		return -ENOMEM;
-> > +
-> > +	priv->data	= data;
-> > +	priv->base	= base_map;
-> > +	priv->lock_base	= lock_map;
-> > +
-> > +	ret = spacemit_ccu_register(dev, priv);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret, "failed to register clocks\n");
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static const struct spacemit_ccu_data k1_ccu_apbs_data = {
-> > +	.need_pll_lock	= true,
-> > +	.hw_clks	= &k1_ccu_apbs_clks,
-> > +};
-> > +
-> > +static const struct spacemit_ccu_data k1_ccu_mpmu_data = {
-> > +	.need_pll_lock	= false,
-> > +	.hw_clks	= &k1_ccu_mpmu_clks,
-> > +};
-> > +
-> > +static const struct spacemit_ccu_data k1_ccu_apbc_data = {
-> > +	.need_pll_lock	= false,
-> > +	.hw_clks	= &k1_ccu_apbc_clks,
-> > +};
-> > +
-> > +static const struct spacemit_ccu_data k1_ccu_apmu_data = {
-> > +	.need_pll_lock	= false,
-> > +	.hw_clks	= &k1_ccu_apmu_clks,
-> > +};
-> > +
-> > +static const struct of_device_id of_k1_ccu_match[] = {
-> > +	{
-> > +		.compatible	= "spacemit,k1-ccu-apbs",
-> > +		.data		= &k1_ccu_apbs_data,
-> > +	},
-> > +	{
-> > +		.compatible	= "spacemit,k1-ccu-mpmu",
-> > +		.data		= &k1_ccu_mpmu_data,
-> > +	},
-> > +	{
-> > +		.compatible	= "spacemit,k1-ccu-apbc",
-> > +		.data		= &k1_ccu_apbc_data,
-> > +	},
-> > +	{
-> > +		.compatible	= "spacemit,k1-ccu-apmu",
-> > +		.data		= &k1_ccu_apmu_data,
-> > +	},
-> > +	{ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, of_k1_ccu_match);
-> > +
-> > +static struct platform_driver k1_ccu_driver = {
-> > +	.driver = {
-> > +		.name		= "spacemit,k1-ccu",
-> > +		.of_match_table = of_k1_ccu_match,
-> > +	},
-> > +	.probe	= k1_ccu_probe,
-> > +};
-> > +module_platform_driver(k1_ccu_driver);
-> > +
-> > +MODULE_DESCRIPTION("Spacemit K1 CCU driver");
-> > +MODULE_AUTHOR("Haylen Chu <heylenay@4d2.org>");
-> > +MODULE_LICENSE("GPL");
-> > diff --git a/drivers/clk/spacemit/ccu_common.h b/drivers/clk/spacemit/ccu_common.h
-> > ...
+T24gU2F0LCAyMDI1LTAxLTE4IGF0IDA5OjM3ICswMTAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOg0KPiAvL3NuaXANCg0KPiBJIGRpZCBub3QgdGFsayBhYm91dCBkcml2ZXIuIEkgdGFsa2Vk
+IGFib3V0IHRoaXMgcGF0Y2guIExvb2sgYXQgcGF0Y2gNCj4gdGl0bGUgLSBpdCBzdGFydHMgd2l0
+aCBkdC1iaW5kaW5ncy4gSXMgaGVyZSBhbnl0aGluZyBhYm91dCBkcml2ZXI/DQo+IE5vLg0KPiBX
+aHkgZG8gd2UgdGFsayBhYm91dCBkcml2ZXI/DQo+IA0KPiA+IGRpZmZlcmVudGx5IGZyb20gdHlw
+aWNhbCBETUEgZHJpdmVycywgYW5kIHRoZXJlZm9yZSB3ZSBiZWxpZXZlIHRoYXQNCj4gPiB0aGUN
+Cj4gPiBFWERNQSBkcml2ZXIgbWF5IG5vdCBiZSBzdWl0YWJsZSB0byBiZSBwbGFjZWQgdW5kZXIg
+dGhlDQo+ID4gZHJpdmVyL21lZGlhdGVrL2RybSBkaXJlY3RvcnkuIFRoZSBtYWluIHJlYXNvbnMg
+YXJlIGFzIGZvbGxvd3M6DQo+ID4gDQo+ID4gKDEpTm8gTWVtb3J5IEFsbG9jYXRpb24gd2l0aGlu
+IEVYRE1BIEVuZ2luZToNCj4gPiBUaGUgRVhETUEgZW5naW5lIGRvZXMgbm90IHBlcmZvcm0gbWVt
+b3J5IGFsbG9jYXRpb24gb3BlcmF0aW9ucw0KPiA+IGl0c2VsZi4NCj4gPiBJbnN0ZWFkLCBpdCBy
+ZWxpZXMgb24gR0VNIChHcmFwaGljcyBFeGVjdXRpb24gTWFuYWdlcikgdG8gYWxsb2NhdGUNCj4g
+PiBtZW1vcnkuVHJhZGl0aW9uYWwgRE1BIGRyaXZlcnMgb2Z0ZW4gaGFuZGxlIHRoZWlyIG93biBt
+ZW1vcnkNCj4gPiBhbGxvY2F0aW9ucywgYnV0IGluIHRoZSBjYXNlIG9mIEVYRE1BLCBtZW1vcnkg
+bWFuYWdlbWVudCBpcw0KPiA+IGRlbGVnYXRlZA0KPiA+IHRvIEdFTS4NCj4gPiANCj4gPiAoMilQ
+cmltYXJ5IFRhc2sgb2YgRVhETUE6DQo+ID4gVGhlIG1haW4gZnVuY3Rpb24gb2YgRVhETUEgaXMg
+dG8gdHJhbnNmZXIgYnVmZmVycyBhbGxvY2F0ZWQgYnkgR0VNDQo+ID4gdG8NCj4gPiB0aGUgc3Vi
+c2VxdWVudCBkaXNwbGF5IHBpcGVsaW5lLg0KPiA+IEVYRE1BIHNlcnZlcyBhcyBhIGJyaWRnZSBi
+ZXR3ZWVuIG1lbW9yeSBhbGxvY2F0ZWQgYnkgR0VNIGFuZCB0aGUNCj4gPiBkaXNwbGF5IGNvbXBv
+bmVudHMsIHJhdGhlciB0aGFuIGFjdGluZyBhcyBhIGdlbmVyYWwtcHVycG9zZSBETUENCj4gPiBl
+bmdpbmUuDQo+ID4gQmFzZWQgb24gdGhlIHBvaW50cyBhYm92ZSwgd2UgaGF2ZSBkZWNpZGVkIHRv
+IHBsYWNlIHRoZSBFWERNQQ0KPiA+IGRyaXZlcg0KPiA+IHVuZGVyIHRoZSBEUk0gZGlzcGxheSBz
+dWJzeXN0ZW0gcmF0aGVyIHRoYW4gdW5kZXIgdGhlIERNQQ0KPiA+IHN1YnN5c3RlbS4NCj4gDQo+
+IA0KPiBJIGRvbid0IGNhcmUgaWYgaXQgdXNlcyBHRU0gb3Iga2VybmVsIGFsbG9jYXRvciBvciBl
+dmVuIDNyZCBwYXJ0eQ0KPiBhbGxvY2F0b3IuIFRoZSBxdWVzdGlvbiBpczogd2hhdCBpcyB0aGlz
+IGRldmljZT8gSWYgaXQgaXMgcGVyZm9ybWluZw0KPiBETUEsIHRoZW4gaXQgc2hvdWxkIGJlIHBs
+YWNlZCBpbiAiZG1hIiBkaXJlY3RvcnkuIFRoZSByZG1hIHdhcyBwbGFjZWQNCj4gZGlmZmVyZW50
+bHkgYnV0IGFzIHlvdSBjYW4gZWFzaWx5IGNoZWNrOiBpdCB3YXMgbmV2ZXIgYWNrZWQvcmV2aWV3
+ZWQsDQo+IHNvDQo+IGRvbid0IHVzZSBpdCBhcyBhbiBleGFtcGxlLg0KPiANCj4gT2YgY291cnNl
+IGlmIGl0IGRvZXMgbm90IHBlcmZvcm0gRE1BLCB0aGVuIGl0IHNob3VsZCBub3QgYmUgaW4gZG1h
+LA0KPiBidXQNCj4gdGhlbiBJIGRvbid0IGFncmVlIG9uIHVzaW5nIGRtYS1jZWxscyBoZXJlIGFu
+ZCBhbnl0aGluZyBsaWtlIHRoYXQgaW4NCj4gdGhlDQo+IGRyaXZlci4NCj4gDQo+IEJlc3QgcmVn
+YXJkcywNCj4gS3J6eXN6dG9mDQo+IA0KDQoNCkhpIEtyenlzenRvZiwNCg0KDQpUaGUgY3VycmVu
+dCBwbGFjZW1lbnQgb2YgRVhETUEgdW5kZXIgdGhlIGRpc3BsYXkgc3Vic3lzdGVtIGluDQpNZWRp
+YXRlaydzIGFyY2hpdGVjdHVyZSBpcyBwcmltYXJpbHkgZHVlIHRvIGl0cyBmdW5jdGlvbmFsIHJv
+bGUgYXMgYQ0Kc3ViLWRldmljZSB3aXRoaW4gdGhlIGRpc3BsYXkgcGlwZWxpbmUuDQogDQpJbiBN
+VDgxOTYgaGFyZHdhcmUgZGVzaWduLCB0aGUgc3ViLWRldmljZXMgaW4gZGlzcGxheSBwaXBlbGlu
+ZSBmb2xsb3cgYQ0Kc2VxdWVuY2Ugb2Y6IEVYRE1BIC0+IEJMRU5ERVIgLT4gT1VUUFJPQyAtPiBQ
+USAtPiBEVk8uDQogDQpJbiBNVDgxOTUgaGFyZHdhcmUgZGVzaWduLCB0aGUgc3ViLWRldmljZXMg
+aW4gZGlzcGxheSBwaXBlbGluZSBmb2xsb3cgYQ0Kc2VxdWVuY2Ugb2Y6IE9WTCAtPiBQUSAtPkRT
+SS4NCiANCkFzIHdlIHNlZSwgT1ZMIGhhcyBiZWVuIGRpdmlkZWQgaW50byB0aHJlZSBuZXcgaGFy
+ZHdhcmUgSVBzIGluIE1UODE5Ni4NCk9WTCBhbmQgRVhETUEgYm90aCBoYXZlIHRoZSBhYmlsaXR5
+IHRvIGZldGNoIGRhdGEgZGlyZWN0bHkgZnJvbSBEUkFNDQphbmQgY2FuIGJlIHJlZ2FyZGVkIGFz
+IERNQSBjb250cm9sbGVyLg0KIA0KSSBhbHNvIGhhdmUgY29uZmlybWVkIHdpdGggdGhlIGhhcmR3
+YXJlIGRlc2lnbmVyIHRoYXQgRVhETUEgaXMgYSBraW5kDQpvZiBETUEsIGJ1dCBpdCBpcyBzcGVj
+aWFsbHkgZGVzaWduZWQgdG8gaGFuZGxlIHRoZSBncmFwaGljYWwgbGF5ZXIsIGFuZA0KaGFzIGJl
+dHRlciBwZXJmb3JtYW5jZSB0aGFuIG9yZGluYXJ5IERNQS4NCiANClRoZXJlZm9yZSwgSSB0aGlu
+ayB0aGF0IG1vdmluZyBFWERNQSBhbmQgT1ZMIGZyb20gdGhlIGRpc3BsYXkgZm9sZGVyIHRvDQp0
+aGUgRE1BIGZvbGRlciwgb3Igb25seSBrZXBwaW5nIHRoZW0gaW4gdGhlIGRpc3BsYXkgZm9sZGVy
+IGlzIGRlY2lkZWQNCmJ5IHRoZSB0d28gZGlmZmVyZW50IHZpZXdzIG9mIERNQSBhYmlsaXR5IG9y
+IGRpc3BsYXkgc3ViLWRldmljZS4NCiANCldlIHdpbGwgZm9sbG93IHlvdXIgaW5zdHJ1Y3Rpb25z
+IHRvIHB1dCBFWERNQSBvbiB0aGUgcGxhY2UgeW91IGRlY2lkZWQuDQoNCkJlc3QgcmVnYXJkcywN
+ClBhdWwgQ2hlbg0K
 
