@@ -1,125 +1,137 @@
-Return-Path: <devicetree+bounces-140025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 516E0A17D5A
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:56:53 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BF9DA17D5D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:56:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8B5818898C2
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:56:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E171B1888309
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:56:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A29A1F1914;
-	Tue, 21 Jan 2025 11:56:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CADC81F151B;
+	Tue, 21 Jan 2025 11:56:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from SHSQR01.spreadtrum.com (mx1.unisoc.com [222.66.158.135])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F1E91F152B;
-	Tue, 21 Jan 2025 11:56:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=222.66.158.135
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0E561F1516;
+	Tue, 21 Jan 2025 11:56:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737460590; cv=none; b=sEKda5dk7jfbt22UdyMsdmpmtfcIKUJKLSdqKYDoF2ilp9GVdsSqSv9VhAfkIsoQsN8EkAJL51ktHk8YRhpoNyym2JRBgmZ4+OzQVoGwhCHtZ7Lt7erJF4IhG0LaGoYo6+hAL6biEcXPY23wuHrc6n9xtxNWHjUT0TuPTloFU8s=
+	t=1737460608; cv=none; b=OFeO5FAF7RDrJa16PS1r4FWw37jm9eVMNyJsFUNWtNwJP4iCMBlSXoehF5P9K/SQaz7K76VnFTqNWUGiTOTZWbGzq2hFhUfQTIWkH9mdWtrb7FBY43NB85qILbVakHUvD15qdAfk/Ipck764F4RcQcl3fCv3wQN045ITkDp8uog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737460590; c=relaxed/simple;
-	bh=A16fXmKsvA2ofqtFTJOBTIZqs1/jrwbOmz8ZCsbdAHQ=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=B3gwKLIi2oz5vIK7G2F+UDkRnDXwb/ppENrAuOyqqR5KiTXAoPR6RlVlb2jRFna2kHuRsCG5BCRpmSyQLpfPFSmfI0gef/lm0mZkCOyGd3koT+HxRxQ+7jliUpgWz16e3tDwy3SAJG2OT63kkQSt3N5UfLsVaOEcXOoUsQCJszU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=unisoc.com; spf=pass smtp.mailfrom=unisoc.com; arc=none smtp.client-ip=222.66.158.135
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=unisoc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=unisoc.com
-Received: from dlp.unisoc.com ([10.29.3.86])
-	by SHSQR01.spreadtrum.com with ESMTP id 50LBs60p068522;
-	Tue, 21 Jan 2025 19:54:06 +0800 (+08)
-	(envelope-from Wenhua.Lin@unisoc.com)
-Received: from SHDLP.spreadtrum.com (shmbx06.spreadtrum.com [10.0.1.11])
-	by dlp.unisoc.com (SkyGuard) with ESMTPS id 4Yclrz1DfFz2QdbSk;
-	Tue, 21 Jan 2025 19:50:43 +0800 (CST)
-Received: from zeshkernups01.spreadtrum.com (10.29.55.99) by
- shmbx06.spreadtrum.com (10.0.1.11) with Microsoft SMTP Server (TLS) id
- 15.0.1497.23; Tue, 21 Jan 2025 19:54:05 +0800
-From: Wenhua Lin <Wenhua.Lin@unisoc.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby
-	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang
-	<baolin.wang@linux.alibaba.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>, Cixi
- Geng <cixi.geng@linux.dev>,
-        <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, wenhua lin
-	<wenhua.lin1994@gmail.com>,
-        Wenhua Lin <Wenhua.Lin@unisoc.com>,
-        Xiongpeng Wu
-	<xiongpeng.wu@unisoc.com>,
-        Zhaochen Su <Zhaochen.Su@unisoc.com>,
-        Zhirong Qiu
-	<Zhirong.Qiu@unisoc.com>
-Subject: [PATCH V3] dt-bindings: serial: Add a new compatible string for UMS9632
-Date: Tue, 21 Jan 2025 19:54:04 +0800
-Message-ID: <20250121115404.3612588-1-Wenhua.Lin@unisoc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1737460608; c=relaxed/simple;
+	bh=K0/AjDFGBBdMW11wkHaFw7h814RS+ZCwNh/M/FIL7xU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hqi3BDeNf49k0E+mWpQ28IH+aJn/J1lGQmJ7J/uAOxttmaQsaZLN9p9miHLVz3hnjuyl3K+agnBUO/NmXPSKAJtpX1xBDLdRaq1Mvj/Eo6Jii+gcMYlaIrckzVY0q3z8Dq64GNzYJ9yP4J1H4AZf2Mkau485e4+Zym1rJ7qQVp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-860f0e91121so3511121241.0;
+        Tue, 21 Jan 2025 03:56:46 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737460605; x=1738065405;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TqtHU/R3kSgV3SxrlRx5UmzaTSmbxvnJE3LFzs/ekRI=;
+        b=Hkd30H7utjGSe540vu3BDm5TJbwjvuJ+jPX3gXVNyvienaGi4HjiRjH8OTcNEUUMYm
+         Jts9nTxgI4QxUvO06z1VCN23fS9Zy7wrS4Jrb6s4vE0h3/+TT5yelsbafdL4QsTAxmB+
+         tWP7IXg+fPE19oQwggSQI4oOMwnsO1UWdQM0pax/MGXlePNypAsc1vRV74JUSEbA2Vlt
+         G4PaACOugUAUHQLRkKH9HO17sYK+0VIoJXi8MXe6gacbJ/4RwTV7uMPtKWQffC9J394p
+         ICv6iyhXVtPAX7f/Ri9oyFAevCC6LGELN4ZmDIk19w9jioGaGlQd1k5jWJ5AgNd2MIjU
+         Wd4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU1XQh/kVnqdB2d38D71vUtdS3MgZ78BnrloyWf8XAECHPUgN1h7tHBQN/uTy2QpZut0UabEYnnhHjq@vger.kernel.org, AJvYcCUmfiivoxtGlDpJ92jGdZgReNzO5JqALs+fRR37nwiZ0x7PQQPWQ1hYrTHV62Q3tdzds0Rh2t1xNQWVTq31@vger.kernel.org, AJvYcCWFxkPEllPOrYbdzMVexKiRs18EJSeL3QudasYcpAyDJ6lZqHAjGr8LuplXWfSI6S0VX8dnAYdSAxOa@vger.kernel.org, AJvYcCXsW0m1kQEZho7A8e0HNmvGgwTeEG+xQZzCjGMGIcUwVjWTz0LplMBifWP4cKMqjenv4oD9hBI4z050hA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzaUvjS37oSTgWmRVovz5cGQcjxTukyiZJsvCX/jSRZIJKF2ErF
+	m3bq5FTxwCniuKuwH6kQsquaIVq3pwIAPFVm4PHT3tXKAqcahL+fgUKkFp7H
+X-Gm-Gg: ASbGnctAmKD3EOL9GNW6aulMYsOG72XUYwmRRNCvZgMV2TzlluP+dnVEwDDfX7CpOHq
+	BQHTyawEyUzDI1rbXRUZ1sp89K5zKOSLZpk0wBQwrEmRr/jLHJuDlu3k+g/wPmwr48HLM2imwtD
+	acoLf76+I5ahFVztvb1psnkQvvMfi+8zRbJ9JZR3l/Ka5a4eKjQNV6cfTnc6/GX0UrU1b3H72Cw
+	CmRSnZWWxGbHpgs/wA3fCP/98+FqbBtCIxzAhKeWs5CavU89bWVE6O2zOZHwyu7MYm87vFK/833
+	fJrhE9JQFOMMQ3V973NkI7O55U/LXX4iOk4M
+X-Google-Smtp-Source: AGHT+IGCXf/J3iOtXAmeT6F4XIyPxbsqx+SfQR/pYvUe9iuyc2N0P559UVUGE8BoCLeJqyPm772lxw==
+X-Received: by 2002:a05:6122:4f96:b0:518:7bc4:fcc0 with SMTP id 71dfb90a1353d-51d763559admr12398492e0c.2.1737460604927;
+        Tue, 21 Jan 2025 03:56:44 -0800 (PST)
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com. [209.85.221.182])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-51cf55775aasm1719455e0c.1.2025.01.21.03.56.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 21 Jan 2025 03:56:44 -0800 (PST)
+Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-5174db4e34eso3810904e0c.0;
+        Tue, 21 Jan 2025 03:56:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUpbn20QGozAvwnCFTdl8hmY3s7S/CC+CwPsNwuw1BYufNsYkAYuielkx+apiTUr9dNr+kmjge65gjw@vger.kernel.org, AJvYcCVC4sWeoYCxQsuqB4phPiMmWSLBONxF6DrUaAtWV/84rSCwP3PTlc5eCpF/XW5jF3BdkHYn//4eiQ1UFQ==@vger.kernel.org, AJvYcCVKDkcjd01U0jvAmaoqpmsyw4AgccLZJpXCOqkAhicK+MKYQ1X6Ruldy6J++UwR3VAmQlDaUNxD+VqafiUz@vger.kernel.org, AJvYcCWjc9FM089huu/QzohvUNwsgaS9T9f2EplqcTZHOMGnJre0eIoqwfFE1qBF148w99zPaQFbFYzvnJZt@vger.kernel.org
+X-Received: by 2002:a05:6122:918:b0:516:dc0f:c925 with SMTP id
+ 71dfb90a1353d-51cd983a309mr19736115e0c.6.1737460604451; Tue, 21 Jan 2025
+ 03:56:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHCAS01.spreadtrum.com (10.0.1.201) To
- shmbx06.spreadtrum.com (10.0.1.11)
-X-MAIL:SHSQR01.spreadtrum.com 50LBs60p068522
+References: <20241218183401.41687-1-vicentiu.galanopulo@remote-tech.co.uk>
+ <20241218183401.41687-4-vicentiu.galanopulo@remote-tech.co.uk> <173641864745.2570436.6359371577917683428.b4-ty@kernel.org>
+In-Reply-To: <173641864745.2570436.6359371577917683428.b4-ty@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 21 Jan 2025 12:56:32 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXNOEXuEADeSGGHw88Tse+QjSkknKYGH-kk02jSpiuNiQ@mail.gmail.com>
+X-Gm-Features: AbW1kvbP8VBj9TGhqL-IeQM6ZcZK-ooOHR3y80pnUD5QE8N4oMpIvwl3ey59IxQ
+Message-ID: <CAMuHMdXNOEXuEADeSGGHw88Tse+QjSkknKYGH-kk02jSpiuNiQ@mail.gmail.com>
+Subject: Re: (subset) [PATCH v11 3/3] leds: Add LED1202 I2C driver
+To: Lee Jones <lee@kernel.org>
+Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Vicentiu Galanopulo <vicentiu.galanopulo@remote-tech.co.uk>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The UART IP version of the ums9632 SoC project has been upgraded.
-UART controller registers have added valid bits to support new features.
-In order to distinguish different UART IP versions, we use sc9632-uart
-to represent upgraded IP and sc9836-uart to represent old IP.
+Hi Lee,
 
-Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
----
-V2->V3 changes:
-* Lists are ordered by fallback.
-* Combine two const items into enum.
-* Change commit message.
+On Thu, Jan 9, 2025 at 11:31=E2=80=AFAM Lee Jones <lee@kernel.org> wrote:
+> On Wed, 18 Dec 2024 18:33:59 +0000, Vicentiu Galanopulo wrote:
+> > The output current can be adjusted separately for each channel by 8-bit
+> > analog (current sink input) and 12-bit digital (PWM) dimming control. T=
+he
+> > LED1202 implements 12 low-side current generators with independent dimm=
+ing
+> > control.
+> > Internal volatile memory allows the user to store up to 8 different pat=
+terns,
+> > each pattern is a particular output configuration in terms of PWM
+> > duty-cycle (on 4096 steps). Analog dimming (on 256 steps) is per channe=
+l but
+> > common to all patterns. Each device tree LED node will have a correspon=
+ding
+> > entry in /sys/class/leds with the label name. The brightness property
+> > corresponds to the per channel analog dimming, while the patterns[1-8] =
+to the
+> > PWM dimming control.
+> >
+> > [...]
+>
+> Applied, thanks!
+>
+> [3/3] leds: Add LED1202 I2C driver
+>       commit: 939757aafeb9c266dda37657ee5f7a73ffd35ae2
 
-V1->V2 changes:
-* Modify the compatible string of enum.
-* Change commit message.
----
- Documentation/devicetree/bindings/serial/sprd-uart.yaml | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+You also have commit 259230378c65ebb6 ("leds: Add LED1202 I2C driver")
+in mfd/for-mfd-next, which dropped the change to drivers/leds/Makefile,
+and changed the Link:-tag to point to the older version v10?
 
-diff --git a/Documentation/devicetree/bindings/serial/sprd-uart.yaml b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-index a2a5056eba04..ad968fc2493b 100644
---- a/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
-@@ -17,13 +17,18 @@ properties:
-     oneOf:
-       - items:
-           - enum:
--              - sprd,sc9632-uart
-+              - sprd,ums9632-uart
-+          - const: sprd,sc9632-uart
-+      - items:
-+          - enum:
-               - sprd,sc9860-uart
-               - sprd,sc9863a-uart
-               - sprd,ums512-uart
-               - sprd,ums9620-uart
-           - const: sprd,sc9836-uart
--      - const: sprd,sc9836-uart
-+      - enum:
-+         - sprd,sc9632-uart
-+         - sprd,sc9836-uart
- 
-   reg:
-     maxItems: 1
--- 
-2.34.1
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
