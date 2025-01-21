@@ -1,159 +1,196 @@
-Return-Path: <devicetree+bounces-139988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F4CBA17B90
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:27:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D472A17BAD
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:29:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56ED41658B3
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 10:26:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37C893A1F0E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 10:29:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611561F151B;
-	Tue, 21 Jan 2025 10:24:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFCD1F0E51;
+	Tue, 21 Jan 2025 10:29:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GoBG6TbF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oJaGVCbL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82CDD1F150C;
-	Tue, 21 Jan 2025 10:24:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8363F1F03CC;
+	Tue, 21 Jan 2025 10:29:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737455077; cv=none; b=gI5fgNHjElVVO3nM30ZJsUsJ4yLTcylITZuI1htwzCKGoV/GkM8B3SwHUKPK0DuoqCV7A225SdIjfkbCafwo5VTifxdbCpQtTjCtUB2OfqX6Shl9hz4O24h0YbohGN+rRocD5EMztqVhHO4VvRCPY6/J2sPrl1v0oCxIhAzt3Ic=
+	t=1737455342; cv=none; b=bWS5oqA4kDIC3uNX5kpSc1ZOxB/ZFYuVCy65405cnhoCE0AWtMhGENxVMDI8T2MXZ9AAnFfBzKarWsR+16VpRdngBuSqQ//WlZt/3LUkRDJ4x4hLSVLnAozC2VQsBMkhEGK51etgzOYVPQb2oFb11Ew+UYG+SHposK3WgSK4hjY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737455077; c=relaxed/simple;
-	bh=DblO9dbXP7fC+XLwoXb0zU0r2lydqX+uGvHQ1oAGfu8=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=gZf+RE7HXJrKtT551OKp4CBILJSDUGmhZYnPIaGsmwXAlXAPXikM6xzslK8RUeThLXa6Zad7iOFpHIsPlY00wgS/gCXTmufbKs3uf5yPhDqLJ9MDvgs1sFfrW/xvyeDst2GQd24Qn9vua+VNHZ5M6PmhUueJTxUElcRxhXM8H4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GoBG6TbF; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4361f65ca01so55703635e9.1;
-        Tue, 21 Jan 2025 02:24:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737455074; x=1738059874; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DblO9dbXP7fC+XLwoXb0zU0r2lydqX+uGvHQ1oAGfu8=;
-        b=GoBG6TbFRvFeZGWCLTsIn3LDUbfEfiBO9+7xamUZA8kmvyvznRp3NInRsNQh+5qxuL
-         andShiFPkYf52m04M8I07ITh4K57dtF3xyE1uGXX2Q9rA9rsUQDJ67WF543CwyeqMGrs
-         2MBxtyNhlscXUSvYWI6mQ2ersuR+yXRtLeVnz/E5JNyR7hmWFKWNNhh5cxStFLBiPUIo
-         ViECMnZw0PVRZr2gsKULXmusGMF8S74i7rcHVYrCWCfzS2rcODHk54OOIOC7a0dXYP5c
-         OI5/mZL5JfmHTRgvcuDr7nWgKjEHw0qvs4fnMy4AenO1BI9vlkScoseqqGKTr9CZZ+4V
-         hjqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737455074; x=1738059874;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:to:from:subject:message-id:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=DblO9dbXP7fC+XLwoXb0zU0r2lydqX+uGvHQ1oAGfu8=;
-        b=wAiw3IreTcl/Jib657YQvUNJlTNwnTLRXpEPnSZYZp3uUIMDpIVmYVbh0fxEaW0JyV
-         GDKCa8+Cnl2Pn82J2ZnEkOHDi5rktfawIIpOelURUU9Oc4Ky1tEhLwaX0DRf7wT2NLcx
-         t4qgIuwkfaJSxmf2tqQm/UFDRQYqrwM7JyaXD4ZeqzUKR4IC+FV5FU/Ch3gP18Eml/cj
-         uBxMslCjcYB3ALt1d7N9c8Koeh2zMrsoJH5Z/2xW8kW0+LQjFZZnmiUs7efdp0Z6H1uy
-         FcekQd8mK5XF1rZVzNCyeXZ6lVxcqH8PPHxAIFGDTyBV1t5IQi4aKI8SgNual5nOSOGj
-         tytg==
-X-Forwarded-Encrypted: i=1; AJvYcCUb3HQ8NBDnI6m7shWFlCsBGuMKphEPGHS+t5uI/cOjBuWh4TN3gh0Q2OCdHr7zFpu4QYAi8w4RrfQu@vger.kernel.org, AJvYcCVE7ZaTByHLI5soQySrhyDvtPeMS7sAjv/baTJOcqaj36NABebYMQelTXljgpRPgAP3wAtcPGCz/ESW@vger.kernel.org, AJvYcCW/ystdEQwd0552/chYehATRtWU7r/Hb/4F8zLYKeEzhA/Atx35H3pVDV6MBOJR/JxIoPy72KdNJgFE@vger.kernel.org, AJvYcCXHnpNqq7tPSqwQOLfa4ew4gIp0TJtUbISK2FHc8AL4oHEEKjDGri6jwsxaD928LCM2C5bB0tTdniO1Fu6e@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywje/ze/8ELiKf9jUM76fdk+CqSUSd6eNU1Y7Xv7lY2f0gnyIIa
-	5L4wy9mCiQAWMTeTf/XvlnDvVhaz9r6K0AAH2KkzyH7Hg4jQFWUV
-X-Gm-Gg: ASbGncsckN52VxzaKzcnfPg65/gAOi/QvXdYjYdAECvcWvbRMDa+0tWZwbyTkljgLjb
-	OUc3eNGmTVatLHecg20CcPGurowWyokc5r39fXuVjiSOIYJY5RljQHRKbLhJCbk5PLlPqER16Y5
-	T8Nf33j3lDA0Uz2Rb+mURvvJnki1CR34F5Qf9weVmAEeW2zEzCJ3drCgO9KZUXXd7MTILWAz/yp
-	O66jvO9kvPEMhORet6+G9NO63c2PkgtRloSG6jlwB3+0EufIEWNNTKEzlWDahoIfoMcsNBIBcM9
-	cKmQbJZD7jD6JOPucYdgLcnLJJeOpaaSiMVAg6gfag==
-X-Google-Smtp-Source: AGHT+IFnjiMeCtiY/aot+h7dHkwkd/S76quoKt+0+U7SjRu4RdTb8J91aLuqLQnIGlEUMXYKQ/oTUQ==
-X-Received: by 2002:a05:600c:c0f:b0:42c:c28c:e477 with SMTP id 5b1f17b1804b1-4389141c0a9mr142689915e9.23.1737455073360;
-        Tue, 21 Jan 2025 02:24:33 -0800 (PST)
-Received: from ?IPv6:2001:818:ea8e:7f00:2575:914:eedd:620e? ([2001:818:ea8e:7f00:2575:914:eedd:620e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-437c7527fd1sm236234245e9.31.2025.01.21.02.24.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jan 2025 02:24:33 -0800 (PST)
-Message-ID: <70975c6682e4eed4ede3d751830813290e6fee80.camel@gmail.com>
-Subject: Re: [PATCH v10 8/8] iio: adc: ad4851: add ad485x driver
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, "Miclaus, Antoniu"
-	 <Antoniu.Miclaus@analog.com>, "jic23@kernel.org" <jic23@kernel.org>, 
- "robh@kernel.org"
-	 <robh@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
- "linux-iio@vger.kernel.org"
-	 <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
-	 <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	 <linux-kernel@vger.kernel.org>, "linux-pwm@vger.kernel.org"
-	 <linux-pwm@vger.kernel.org>
-Date: Tue, 21 Jan 2025 10:24:33 +0000
-In-Reply-To: <c424cedb-5b45-43c0-897b-dec83918d658@baylibre.com>
-References: <20250117130702.22588-1-antoniu.miclaus@analog.com>
-	 <20250117130702.22588-9-antoniu.miclaus@analog.com>
-	 <d4b9d6e9-745c-4c35-a62d-18e0a36f30c4@baylibre.com>
-	 <BN6PR03MB33953EC70A02D0031373C2BD9BE72@BN6PR03MB3395.namprd03.prod.outlook.com>
-	 <c424cedb-5b45-43c0-897b-dec83918d658@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.54.3 
+	s=arc-20240116; t=1737455342; c=relaxed/simple;
+	bh=oivwy9+4kGQkax+o5jgP32thBf0RIS9UWK8V65d5szY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jGkBpxM3Z5MLAB5wid7hu5F1HExOkjSDlzL9Qb065bwSeT12HJW2rHRCm1nLeWFZuUw2M3P7d8aCxyUXPPQsqV34nMFr2XBj8Cv7WyCz+uzdiJjpaZDHqrtQkPSBcPeeCqbQwuajbn8ynaZeWGYfVJjiSCpmGddo9rxYY/IbEEY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oJaGVCbL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 06E20C4CEDF;
+	Tue, 21 Jan 2025 10:29:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737455342;
+	bh=oivwy9+4kGQkax+o5jgP32thBf0RIS9UWK8V65d5szY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=oJaGVCbLtUjlfF1//SG67/GLR2zmP9kVigrkfGzgqUDSkH3staRGnXOI4AZBACcjy
+	 rjsFqAam8xMaNEFkBFV4Kb7op0JuzcRv+Y+vZPp2iaS5dfaA6uTHemN5mmcLWtT1w7
+	 VwAgjwDeW1n7jy91Lw7Bs4puEV8K/k+6V/KSOPULbKekk4lz6aFyBBXZ/1A2cp088S
+	 ozKySWoNjawlJocJB6sUNFRRWuznMeIDinGwzlbJ7gkThCbiEbiE/8ujkK1zjSS5XR
+	 O0Egru2Xxrg9uo6q50iPfGII3GglaCJx+OM0qNtZgw1EPtM/7yJzitfdBk/fnB90rf
+	 CJOYQEoV4S3/w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id E9AA1C02182;
+	Tue, 21 Jan 2025 10:29:01 +0000 (UTC)
+From: Keguang Zhang via B4 Relay <devnull+keguang.zhang.gmail.com@kernel.org>
+Subject: [PATCH v12 0/2] Add support for Loongson-1 NAND
+Date: Tue, 21 Jan 2025 18:27:32 +0800
+Message-Id: <20250121-loongson1-nand-v12-0-53507999de39@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJR2j2cC/2XQwW7DIAyA4Vepch6VbQiGnvYe0w6EQIrWhinpo
+ m1V332k2pYquSCB9P22uFZjGFIYq8PuWg1hSmPKfbkgPe0qf3R9F0Rqy0NFQAokanHKue/G3KP
+ oXd8KayRxyxwg6qqg9yHE9HkvvryWexzyWVyOQ3B/GYS6nKQI5Z4tsEDxFrqPMmv/PU987s4un
+ fY+n+feMY2XPHzdF5z0XP1dhXi9yqQFCI5WIvoQgeChNK8y8cKVhA3nwjWwYS9RRafW3CzcgNl
+ wU7i3ug1OoWkUrrlduKXtdFu49Z4bK1XtQK45wr9HANp4hBJARk0hRgOBNgFcAoTb30MsgUZb8
+ rWxxjTNY+B2u/0A1DkVaywCAAA=
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-media@vger.kernel.org, 
+ Keguang Zhang <keguang.zhang@gmail.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1737455340; l=4993;
+ i=keguang.zhang@gmail.com; s=20231129; h=from:subject:message-id;
+ bh=oivwy9+4kGQkax+o5jgP32thBf0RIS9UWK8V65d5szY=;
+ b=MsUPB4i4S7yu8Uk5FlADyWlCzsWLQoj5ZaysLkj0GIJQnHLTYXdTynJDkLRJGUTS9DIt+unm+
+ og82OQVl91zCJrecL5qg2jEB3C+TVvN3gkicUA67x5xaQfPZKwZGshB
+X-Developer-Key: i=keguang.zhang@gmail.com; a=ed25519;
+ pk=FMKGj/JgKll/MgClpNZ3frIIogsh5e5r8CeW2mr+WLs=
+X-Endpoint-Received: by B4 Relay for keguang.zhang@gmail.com/20231129 with
+ auth_id=102
+X-Original-From: Keguang Zhang <keguang.zhang@gmail.com>
+Reply-To: keguang.zhang@gmail.com
 
-T24gTW9uLCAyMDI1LTAxLTIwIGF0IDExOjM3IC0wNjAwLCBEYXZpZCBMZWNobmVyIHdyb3RlOgo+
-IE9uIDEvMjAvMjUgNjozNyBBTSwgTWljbGF1cywgQW50b25pdSB3cm90ZToKPiA+ID4gPiArCQl9
-Cj4gPiA+ID4gKwkJY2hhbm5lbHMrKzsKPiA+ID4gPiArCj4gPiA+ID4gKwkJc3QtPmJpcG9sYXJf
-Y2hbcmVnXSA9IGZ3bm9kZV9wcm9wZXJ0eV9yZWFkX2Jvb2woY2hpbGQsCj4gPiA+ICJiaXBvbGFy
-Iik7Cj4gPiA+ID4gKwo+ID4gPiA+ICsJCWlmIChzdC0+Ymlwb2xhcl9jaFtyZWddKSB7Cj4gPiA+
-ID4gKwkJCWNoYW5uZWxzLT5zY2FuX3R5cGUuc2lnbiA9ICdzJzsKPiA+ID4gPiArCQl9IGVsc2Ug
-ewo+ID4gPiA+ICsJCQlyZXQgPSByZWdtYXBfd3JpdGUoc3QtPnJlZ21hcCwKPiA+ID4gQUQ0ODUx
-X1JFR19DSFhfU09GVFNQQU4ocmVnKSwKPiA+ID4gPiArCQkJCQnCoMKgIEFENDg1MV9TT0ZUU1BB
-Tl8wVl80MFYpOwo+ID4gPiA+ICsJCQlpZiAocmV0KQo+ID4gPiA+ICsJCQkJcmV0dXJuIHJldDsK
-PiA+ID4gPiArCQl9Cj4gPiA+ID4gKwl9Cj4gPiA+ID4gKwo+ID4gPiA+ICsJKmFkNDg1MV9jaGFu
-bmVscyA9IGNoYW5uZWxzOwo+ID4gPiAKPiA+ID4gQXQgdGhpcyBwb2ludCwgY2hhbm5lbHMgaXMg
-cG9pbnRpbmcgdG8gbWVtb3J5IHdlIGRpZG4ndCBhbGxvY2F0ZSAoYmVjYXVzZQo+ID4gPiBvZgo+
-ID4gPiBjaGFubmVscysrKS4gQXMgaW4gdGhlIHByZXZpb3VzIHJldmlldywgSSBzdWdnZXN0IHdl
-IGp1c3QgZ2V0IHJpZCBvZiB0aGUKPiA+ID4gb3V0cHV0Cj4gPiA+IHBhcmFtZXRlciBzaW5jZSBp
-bmRpb19kZXYtPmNoYW5uZWxzIGFscmVhZHkgaGFzIHRoZSBjb3JyZWN0IHBvaW50ZXIuCj4gPiA+
-IAo+ID4gPiBJdCdzIGxlc3MgY2hhbmNlIGZvciBtaXN0YWtlcyBsaWtlIHRoaXMgYW5kIGF2b2lk
-cyBuZWVkaW5nIHRvIHByb3ZpZGUgYW4KPiA+ID4gdW51c2VkCj4gPiA+IGFyZyBpbiBhZDQ4NTdf
-cGFyc2VfY2hhbm5lbHMoKS4KPiA+IAo+ID4gSG1tLCBob3cgY2FuIEkgdGhlbiBkbyB0aGUgYXNz
-aWdubWVudHMgaW4gYGFkNDg1OF9wYXJzZV9jaGFubmVsc2AgPwo+ID4gCj4gPiBkcml2ZXJzL2lp
-by9hZGMvYWQ0ODUxLmM6MTA1NTo0MjogZXJyb3I6IGFzc2lnbm1lbnQgb2YgbWVtYmVyCj4gPiDi
-gJhoYXNfZXh0X3NjYW5fdHlwZeKAmSBpbiByZWFkLW9ubHkgb2JqZWN0Cj4gPiDCoDEwNTUgfMKg
-wqAgaW5kaW9fZGV2LT5jaGFubmVscy0+aGFzX2V4dF9zY2FuX3R5cGUgPSAxOwo+ID4gwqDCoMKg
-wqDCoCB8wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBeCj4gPiBkcml2ZXJzL2lpby9hZGMvYWQ0
-ODUxLmM6MTA1NzozOTogZXJyb3I6IGFzc2lnbm1lbnQgb2YgbWVtYmVyCj4gPiDigJhleHRfc2Nh
-bl90eXBl4oCZIGluIHJlYWQtb25seSBvYmplY3QKPiA+IMKgMTA1NyB8wqDCoMKgIGluZGlvX2Rl
-di0+Y2hhbm5lbHMtPmV4dF9zY2FuX3R5cGUgPSBhZDQ4NTFfc2Nhbl90eXBlXzIwX2I7Cj4gPiDC
-oMKgwqDCoMKgIHzCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIF4KPiA+IGRyaXZlcnMvaWlvL2FkYy9hZDQ4
-NTEuYzoxMDU4OjQzOiBlcnJvcjogYXNzaWdubWVudCBvZiBtZW1iZXIKPiA+IOKAmG51bV9leHRf
-c2Nhbl90eXBl4oCZIGluIHJlYWQtb25seSBvYmplY3QKPiA+IMKgMTA1OCB8wqDCoMKgIGluZGlv
-X2Rldi0+Y2hhbm5lbHMtPm51bV9leHRfc2Nhbl90eXBlID0KPiA+IEFSUkFZX1NJWkUoYWQ0ODUx
-X3NjYW5fdHlwZV8yMF9iKTsKPiA+IMKgwqDCoMKgwqAgfMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCBeCj4gPiBkcml2ZXJzL2lpby9hZGMvYWQ0ODUxLmM6MTA2MTozOTogZXJyb3I6IGFzc2ln
-bm1lbnQgb2YgbWVtYmVyCj4gPiDigJhleHRfc2Nhbl90eXBl4oCZIGluIHJlYWQtb25seSBvYmpl
-Y3QKPiA+IMKgMTA2MSB8wqDCoMKgIGluZGlvX2Rldi0+Y2hhbm5lbHMtPmV4dF9zY2FuX3R5cGUg
-PSBhZDQ4NTFfc2Nhbl90eXBlXzIwX3U7Cj4gPiDCoMKgwqDCoMKgIHzCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIF4KPiA+IGRyaXZlcnMvaWlvL2FkYy9hZDQ4NTEuYzoxMDYyOjQzOiBlcnJvcjogYXNzaWdu
-bWVudCBvZiBtZW1iZXIKPiA+IOKAmG51bV9leHRfc2Nhbl90eXBl4oCZIGluIHJlYWQtb25seSBv
-YmplY3QKPiA+IMKgMTA2MiB8wqDCoMKgIGluZGlvX2Rldi0+Y2hhbm5lbHMtPm51bV9leHRfc2Nh
-bl90eXBlID0KPiA+IEFSUkFZX1NJWkUoYWQ0ODUxX3NjYW5fdHlwZV8yMF91KTsKPiA+IMKgwqDC
-oMKgwqAgfMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBeCj4gCj4gSSB3b3VsZCBiZSB0ZW1w
-dGVkIHRvIGp1c3Qgbm90IGhhdmUgYSBzZWNvbmQgbG9vcCBvZgo+IAo+IAlkZXZpY2VfZm9yX2Vh
-Y2hfY2hpbGRfbm9kZV9zY29wZWQoZGV2LCBjaGlsZCkKPiAKPiBpbiBhZDQ4NThfcGFyc2VfY2hh
-bm5lbHMoKSBhbmQgaW5zdGVhZCBkbyBldmVyeXRoaW5nIGluCj4gYWQ0ODUxX3BhcnNlX2NoYW5u
-ZWxzKCkKPiBhbmQganVzdCBwYXNzIGEgYm9vbGVhbiBwYXJhbWV0ZXIgdG8gY29uZGl0aW9uYWxs
-eSBoYW5kbGUgdGhlIGRpZmZlcmVuY2UKPiBiZXR3ZWVuIHRoZSB0d28gdHlwZXMgb2YgY2hpcHMu
-Cj4gCj4gT3IgeW91IHVzZSBhIGNhc3QgdG8gcmVtb3ZlIHRoZSBjb25zdCBxdWFsaWZpZXIuCj4g
-Cj4gCWFkNDg1MV9jaGFubmVscyA9IChzdHJ1Y3QgaWlvX2NoYW5fc3BlYyAqKWluZGlvX2Rldi0+
-Y2hhbm5lbHM7CgpIbW0gYSBiaXQgbmFzdHkgSU1PIDopLgoKQnV0IHVwIHRvIHlvdSBib3RoIGFu
-eXdheXMuLi4KCi0gTnVubyBTw6EgCg==
+Add the driver and dt-binding document for Loongson-1 NAND.
+
+Changes in v12:
+- Add MTD label in the example.
+- Use MTD label for mtd->name instead of hardcoded assignment.                                                                                               
+- Removed redundant fields addr1_reg and addr2_reg from struct ls1x_nand_op.
+- Introduced .set_addr in struct ls1x_nand_host to replace the previous .parse_address,
+  and improve its logic using regmap_update_bits() to avoid restoring the row address.
+- Improve the logic of ls1x_nand_check_op() to eliminate repetitive checks.
+- Add ECC engine type check in ls1x_nand_attach_chip().
+- Some minor improvements.
+- Link to v11: https://lore.kernel.org/r/20241217-loongson1-nand-v11-0-b692c58988bb@gmail.com
+
+Changes in v11:
+- Remove the requirement for 'nand-use-soft-ecc-engine' and 'nand-ecc-algo'.
+- Add 'reg-names' to support DMA address.
+- Move the DMA address to DT.
+- Rename the source file to 'loongson1-nand-controller.c'.
+- Improve the logic of ls1x_nand_op_cmd_mapping().
+- Improve the logic of ls1x_nand_check_op() to exclude unsupported cases.
+- Substitute 'host' for the improper term 'nfc'.
+- Some minor fixes and adjustments.
+- Link to v10: https://lore.kernel.org/r/20241002-loongson1-nand-v10-0-17162eff80e2@gmail.com
+
+Changes in v10:                                                                                                                                              
+- Fix the build error reported by kernel test robot.
+  Link: https://lore.kernel.org/oe-kbuild-all/202409220010.vctkHddZ-lkp@intel.com
+- Link to v9: https://lore.kernel.org/r/20240920-loongson1-nand-v9-0-9cc7b9345a03@gmail.com
+
+Changes in v9:
+- Change the compatible to 'loongson,ls1*-nand-controller'.
+- Rename the dt-binding file to loongson,ls1b-nand-controller.yaml.
+- Update MAINTAINERS file accordingly.
+- Some minor adjustments.
+- Rebasing due to recent upstream changes.
+- Link to v8: https://lore.kernel.org/r/20240808-loongson1-nand-v8-0-c96dea418b41@gmail.com
+
+Changes in v8:
+- Add a description part.
+- Adjust the compatible because the match data for ls1c-nfc differs from ls1b-nfc.
+- Mark 'nand-use-soft-ecc-engine' and 'nand-ecc-algo' as mandatory.
+- Delete the superfluous blank lines.
+- Drop NAND_MONOLITHIC_READ and add support for real subpage read instead.
+- Simplify the logic of ls1b_nand_parse_address() and ls1c_nand_parse_address().
+- Split ls1x_nand_set_controller() into ls1x_nand_parse_instructions()
+  and ls1x_nand_trigger_op().
+- Implement ls1x_nand_op_cmd_mapping() to convert the opcodes instead of forcing them.
+- Add ls1x_nand_check_op().
+- Remove struct ls1x_nand after moving its members to struct ls1x_nfc.
+- Add the prefix 'LS1X_' for all registers and their bits.
+- Drop the macros: nand_readl() and nand_writel().
+- Some minor fixes and improvements.
+- Link to v7: https://lore.kernel.org/r/20240430-loongson1-nand-v7-0-60787c314fa4@gmail.com
+
+Changes in v7:
+- Rename the file to loongson,ls1b-nfc.yaml
+- Rename the Kconfig dependency to LOONGSON1_APB_DMA
+- Link to v6: https://lore.kernel.org/r/20240327-loongson1-nand-v6-0-7f9311cef020@gmail.com
+
+Changes in v6:
+- Amend Kconfig
+- Add the dt-binding document
+- Modify nand_read_subpage() to allow subpage read by a single operation
+- Add DT support for driver
+- Use DT data instead of platform data
+- Remove MAX_ID_SIZE
+- Remove case NAND_OP_CMD_INSTR in ls1x_nand_set_controller()
+- Move ECC configuration to ls1x_nand_attach_chip()
+- Rename variable "nand" to "ls1x"
+- Rename variable "nc" to "nfc"
+- Some minor fixes
+- Link to v5: https://lore.kernel.org/all/20210520224213.7907-1-keguang.zhang@gmail.com
+
+Changes in v5:
+- Update the driver to fit the raw NAND framework.
+- Implement exec_op() instead of legacy cmdfunc().
+- Use dma_request_chan() instead of dma_request_channel().
+- Some minor fixes and cleanups.
+
+Changes in v4:
+- Retrieve the controller from nand_hw_control.
+
+Changes in v3:
+- Replace __raw_readl/__raw_writel with readl/writel.
+- Split ls1x_nand into two structures:
+ls1x_nand_chip and ls1x_nand_controller.
+
+Changes in v2:
+- Modify the dependency in Kconfig due to the changes of DMA module.
+
+Signed-off-by: Keguang Zhang <keguang.zhang@gmail.com>
+---
+Keguang Zhang (2):
+      dt-bindings: mtd: Add Loongson-1 NAND Controller
+      mtd: rawnand: Add Loongson-1 NAND Controller Driver
+
+ .../mtd/loongson,ls1b-nand-controller.yaml         |  72 ++
+ MAINTAINERS                                        |   1 +
+ drivers/mtd/nand/raw/Kconfig                       |   7 +
+ drivers/mtd/nand/raw/Makefile                      |   1 +
+ drivers/mtd/nand/raw/loongson1-nand-controller.c   | 852 +++++++++++++++++++++
+ 5 files changed, 933 insertions(+)
+---
+base-commit: 1573c8d4cb206a2d1454ff711e79f8df2353290b
+change-id: 20240316-loongson1-nand-98327d77e0f6
+
+Best regards,
+-- 
+Keguang Zhang <keguang.zhang@gmail.com>
+
 
 
