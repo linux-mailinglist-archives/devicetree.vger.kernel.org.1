@@ -1,67 +1,62 @@
-Return-Path: <devicetree+bounces-139986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019AFA17B2B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:16:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58D9FA17B3F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:17:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C170E1884021
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 10:16:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C4E03A2033
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 10:17:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED4F81E7C07;
-	Tue, 21 Jan 2025 10:15:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEC8F1BEF67;
+	Tue, 21 Jan 2025 10:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oVLeeITk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q+Ffryq/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B66721BEF67;
-	Tue, 21 Jan 2025 10:15:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3940219E0;
+	Tue, 21 Jan 2025 10:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737454538; cv=none; b=XcehwKPLWC/Iqy8w23o1w/n+U9oDI0nbx6n0Q/wPRQcT8mBEoQJ0RASV5+nfvWQ3g+5uEP+mw0o/6oeB5e8oOLFj148bTOwttopKvrdYN4wGYleRdO5AvNWaFeVeE/rvK7WMQituaETrprY80XDM6oT9k2Hhw5jlwdUi3uxSsMU=
+	t=1737454657; cv=none; b=FhUEBDpuwo6tCNpUUaT5tz7AcKrcmzjCYuWk+1ljGt5NLyjNuu6oNaD0UwCybjjIdwmQXBlBc3Vq3gN3FFyozIasL2rLMbE5Ax8rsV6hgPxAxYWl6cbv6cVt+2sBSrvJXqxBU8h2KHjOU0SIDx0asTpMsQBcckUr0WdZH5UgPIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737454538; c=relaxed/simple;
-	bh=2f6NguNRm7CAVpx5BaUGtLCj2Ck4g9QdKcKsfodhByo=;
+	s=arc-20240116; t=1737454657; c=relaxed/simple;
+	bh=6mXqJe6B8alS7DCJy1K/TAUwfPmG26n8CKqlEqTvj9U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AKnCYBHOmWee3Dl9dwTEzsKZcxYymKrwkPp+xIwFts4Bpu7wFSJobi/5uLtfh8dfActC2+DBwRNyUgpJIICZnFIzcC9+E1fMhvr7rpbd6xCUDZrAy66uvVUCUCPxEsetqrVQNmhiyJCwxojmY3xRfld/5EjKJVKM69lyTxdfbIQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oVLeeITk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD92CC4CEDF;
-	Tue, 21 Jan 2025 10:15:34 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZyuIhA7ct7qknHr+OKpyu4WWHR9npYToZFlMl0N3lcKhco1wRzbXIx7TO6q4OzuKt074sQ9GULgkUOfpZo+B8oPQiix2POawtUoBLAfmiJ4f/m1fbSmKEwUKiB6qubQwdR0J4ItAhnH5ahljgJd3SUUP8nMWA+luC6W9NS6vDfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q+Ffryq/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83F5AC4CEDF;
+	Tue, 21 Jan 2025 10:17:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737454538;
-	bh=2f6NguNRm7CAVpx5BaUGtLCj2Ck4g9QdKcKsfodhByo=;
+	s=k20201202; t=1737454657;
+	bh=6mXqJe6B8alS7DCJy1K/TAUwfPmG26n8CKqlEqTvj9U=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oVLeeITkQtBHF5j2p2QD9jfjXv50PVv3ipgtKNNKClIucUZAI00RVdbj6MyzW2ANP
-	 +NgySnE1xuORfSy8kqOhpHElpHoYjlNYhOUn5mR+poTSJ+NElVXQuyqzrBxxwWMwUD
-	 8FAHIVJJXS2CudyJpmRfoCJqv6LBjBKfBaYsfT9WBe/PQyvzV8dDiDuJIiH1cp7QGC
-	 2R/Xepbu6fTGcJs5JP0h9UfPububx/m2THbEh3UgbPKu+GtlPEq4bOe1tcmRNqYI9f
-	 zNWrQKeMYjEi8KSLLfy3nXTetS7LLUT7VIF6j07IZ0S2lidmCyq+g6rZkZwJ1s1By2
-	 HHD41xmUo5QlA==
-Date: Tue, 21 Jan 2025 10:15:31 +0000
-From: Lee Jones <lee@kernel.org>
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Sebastian Reichel <sre@kernel.org>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Pavel Machek <pavel@ucw.cz>, Hans de Goede <hdegoede@redhat.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH v14 07/10] mfd: simple-mfd-i2c: Add MAX77705 support
-Message-ID: <20250121101531.GA1045870@google.com>
-References: <20250108-starqltechn_integration_upstream-v14-0-f6e84ec20d96@gmail.com>
- <20250108-starqltechn_integration_upstream-v14-7-f6e84ec20d96@gmail.com>
- <20250109120158.GH6763@google.com>
- <CABTCjFAky55btJz3B=K2kL5gSJD9BYi5t15jaA2ga5asVT=3NQ@mail.gmail.com>
+	b=q+Ffryq/DmXIf93TuLspRCgUD/wiZWWnVWDhaulCRcQSyQnP4nXE0bfGgTjwpKsiM
+	 W+FbiHoCkF5RhjBUx+AtE/hL+Bpp26kn+yFpNGuAa/yP/muT2dHfNa6UZVQIK9ppHe
+	 3eYMCbvFRULwd2KMAe91dv839SKtRnjXxak1T5ay1iZkWEx+1I69yjWN8snmbjuPow
+	 E3EcWXPr3RfLGqfa5IkLW/SGoQHFm/+npgJ6yJl+acaCNIsgUklAW+Op78G4gL34DU
+	 TSGv/PR0oBeZGxxMR54vzFHzvwr/0C72gre0yer+7o7+xWleWFCpZzG5loJWPD8zlk
+	 4NrToOAsR4bXQ==
+Date: Tue, 21 Jan 2025 11:17:34 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>, 
+	Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+	Russell King <linux@armlinux.org.uk>, Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Dimitri Fedrau <dima.fedrau@gmail.com>
+Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: ethernet-phy: add
+ property tx-amplitude-100base-tx-gain-milli
+Message-ID: <20250121-augmented-coati-of-correction-1f30db@krzk-bin>
+References: <20250120-dp83822-tx-swing-v2-0-07c99dc42627@liebherr.com>
+ <20250120-dp83822-tx-swing-v2-1-07c99dc42627@liebherr.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,34 +65,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABTCjFAky55btJz3B=K2kL5gSJD9BYi5t15jaA2ga5asVT=3NQ@mail.gmail.com>
+In-Reply-To: <20250120-dp83822-tx-swing-v2-1-07c99dc42627@liebherr.com>
 
-On Wed, 15 Jan 2025, Dzmitry Sankouski wrote:
-
-> чт, 9 янв. 2025 г. в 15:02, Lee Jones <lee@kernel.org>:
-> >
-> > On Wed, 08 Jan 2025, Dzmitry Sankouski wrote:
-> >
-> > > Add MAX77705 support - fuel gauge and hwmon devices.
-> > > Hwmon provides charger input and system bus measurements.
-> > >
-> > > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> (...)
-> > >  static const struct of_device_id simple_mfd_i2c_of_match[] = {
-> > >       { .compatible = "kontron,sl28cpld" },
-> > >       { .compatible = "silergy,sy7636a", .data = &silergy_sy7636a},
-> > >       { .compatible = "maxim,max5970", .data = &maxim_max5970},
-> > >       { .compatible = "maxim,max5978", .data = &maxim_max5970},
-> > > +     { .compatible = "maxim,max77705-battery", .data = &maxim_mon_max77705},
-> >
-> > Drop the battery part from the MFD (group) name please.
-> >
+On Mon, Jan 20, 2025 at 02:50:21PM +0100, Dimitri Fedrau wrote:
+> Add property tx-amplitude-100base-tx-gain-milli in the device tree bindings
+> for configuring the tx amplitude of 100BASE-TX PHYs. Modifying it can be
+> necessary to compensate losses on the PCB and connector, so the voltages
+> measured on the RJ45 pins are conforming.
 > 
-> It will then conflict with MAX77705 mfd driver compatible.
+> Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> ---
+>  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> index 2c71454ae8e362e7032e44712949e12da6826070..ce65413410c2343a3525e746e72b6c6c8bb120d0 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> @@ -232,6 +232,14 @@ properties:
+>        PHY's that have configurable TX internal delays. If this property is
+>        present then the PHY applies the TX delay.
+>  
+> +  tx-amplitude-100base-tx-gain-milli:
+> +    description: |
+> +      Transmit amplitude gain applied (in milli units) for 100BASE-TX. When
 
-Where is that used?
+milli is unit prefix, not the unit. What is the unit? percentage? basis
+point?
 
--- 
-Lee Jones [李琼斯]
+> +      omitted, the PHYs default will be left as is. If not present, default to
+> +      1000 (no actual gain applied).
+
+Don't repeat constraints in free form text.
+
+Best regards,
+Krzysztof
+
 
