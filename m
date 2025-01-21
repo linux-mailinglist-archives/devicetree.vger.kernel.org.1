@@ -1,93 +1,140 @@
-Return-Path: <devicetree+bounces-139981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BEB2A17B03
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:07:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF784A17B0A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:08:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 781C57A48F0
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 10:07:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0ACC3161841
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 10:08:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93A3B1E766E;
-	Tue, 21 Jan 2025 10:07:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4781E8840;
+	Tue, 21 Jan 2025 10:08:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JsFfJO1e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JCRBH20s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6350A1E0DCF;
-	Tue, 21 Jan 2025 10:07:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DBFF1B87C2;
+	Tue, 21 Jan 2025 10:08:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737454049; cv=none; b=dp3c5AkOVWD4vGS2UbS/zAohbII3TMpNC6OGQv4BDvPCi7C2dAHDKh4yUauKeiSivISRmOkNUYkwmS8Ioj18gyij+J83ZM2KQs3C6z+hQgiSe7JAgQ9or1I1Y93jkFbJ5v09udgasK0pCERKCQ8cCsmFqZvCDnAq2994NPphXx4=
+	t=1737454121; cv=none; b=XdwrmmEzm/4eUqJR4KXmeDkl97scKryLxYEro8B13go4P/VsqkS5NEEplYE8wV7yskp7x5uuSvN1A5mtj5o8uOZ/XbvbzBFqSo/V6B/5pq7YVZbXg6wuoOvSe39Jnxyt3vCmDV6CwUz7PRUvyJkRnaHKx5Z94B0JEvI7Sr9zeoc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737454049; c=relaxed/simple;
-	bh=8h5oqgodori/zlYAZT+1BLm24JpkoQ/d2YWvLyyz9Fg=;
+	s=arc-20240116; t=1737454121; c=relaxed/simple;
+	bh=ENLFzy2bE8WWpAn62FWGklWq2J5NXPzsV7mwFUV66PY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AXJXK/a/7+ufSWeenl8fcYWOqlLvhTa0Pq8xJI+t4clOkkqCJLTIzwDHtvm9Z/1Q4N1W9FzOEosFK7rnKlLaGvfUcwJ9lszswoh3IayCVZeaNvBpUb5oyEFoUzinXVFtQLaEJrkdtfEWchp/VJZ185P8dHPZ8R6iwmifpTdznYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JsFfJO1e; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C44C9C4CEDF;
-	Tue, 21 Jan 2025 10:07:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bWK3MA2pE12ZvUy8hlgZeXcU3tZP99+AZMh1iQXFh8+Luiv3gzMmgjuO/6Fj8kbq7kv724k8CRlPsmjAteL/ARVE3wa0uXtYSTjprFtgtXZp4aAIcKylzBb3am2lKVv7w/68dJ/Onu1xxG7JNWrKFzvqJOCNtCa800QgKKebIVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JCRBH20s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CB28C4CEDF;
+	Tue, 21 Jan 2025 10:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737454048;
-	bh=8h5oqgodori/zlYAZT+1BLm24JpkoQ/d2YWvLyyz9Fg=;
+	s=k20201202; t=1737454120;
+	bh=ENLFzy2bE8WWpAn62FWGklWq2J5NXPzsV7mwFUV66PY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JsFfJO1eIPsO4uxZSHpbii2fMYAg8cFzENomjYRCTu4FpP0l4QWyeafYyGTn0IWCR
-	 uWMJUyk5s1YO3j9hz06V0msZ44A6VWqRiQUz4bTagk/sOiuYk6hQW6nz4h7p30z5rs
-	 hE0F/IWrwdY0ntCOZdWylfXzcNU/vqLlcOvAHNo7ZcSA8J3lYpl/gL66/g46ItQvFy
-	 qWFlfsoWxYt/U+fQ4V7amY2Hm5AeOXVRN+8ceoVVkqxocDisLH6EGpnPswSsyYtlGf
-	 u1kh34lAElnYAtUpmGu9hLXmPtYlklDZx9tav9hqXiZCINVShlBxsm2lSNq8RO54a1
-	 gZpe0mjkreAmg==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1taBAS-000000008GH-34Ce;
-	Tue, 21 Jan 2025 11:07:32 +0100
-Date: Tue, 21 Jan 2025 11:07:32 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Joel Stanley <joel@jms.id.au>
-Cc: Johan Hovold <johan+linaro@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100: enable rtc
-Message-ID: <Z49x5ElsDn3Fnovj@hovoldconsulting.com>
-References: <20250120144152.11949-1-johan+linaro@kernel.org>
- <CACPK8XftgBDoy1echN7VKx9Te0o37PvdqCUiJN7YGpkdK-3fJQ@mail.gmail.com>
+	b=JCRBH20svciWwvTa1Did37XrBO0s064B/DTFoypK1t6MGJT27w12BeFGtHmYxV/as
+	 Odlu0WA8tRCdm7psEPen+TsZFqLn0UeVZYRUxEio7Yk6Kq1cjB0Vtx80OibDX0Y4wE
+	 AaRb+IxQGAJYbrccGynrYdSQLoKxXr6U2MoveJsF/FpyAcclzvOvwegFdDJmPtLOrc
+	 XmWBTm9SghFul+y1OV88u+wVxBQ7i2HdSjwhPpkDwOcI6FrfIcW2EKdhIIkQU7V/4U
+	 DLy0MOxumGpT8ESf4cG1G+R+BJqMIcOWJsah9f6MrNTdT/CVR7kSBZ/EGBVRxBZaTx
+	 l1CsnM4qWBSZg==
+Date: Tue, 21 Jan 2025 11:08:38 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Michal Wilczynski <m.wilczynski@samsung.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org, 
+	wefu@redhat.com, jassisinghbrar@gmail.com, paul.walmsley@sifive.com, 
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, frank.binns@imgtec.com, 
+	matt.coster@imgtec.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org, 
+	jszhang@kernel.org, p.zabel@pengutronix.de, m.szyprowski@samsung.com, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
+Subject: Re: [RFC v3 11/18] dt-bindings: gpu: Add compatibles for T-HEAD
+ TH1520 GPU
+Message-ID: <20250121-tiny-crazy-goshawk-dce1dc@krzk-bin>
+References: <20250120172111.3492708-1-m.wilczynski@samsung.com>
+ <CGME20250120172134eucas1p18cbf29a4ade281df10efce210cc8893e@eucas1p1.samsung.com>
+ <20250120172111.3492708-12-m.wilczynski@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CACPK8XftgBDoy1echN7VKx9Te0o37PvdqCUiJN7YGpkdK-3fJQ@mail.gmail.com>
+In-Reply-To: <20250120172111.3492708-12-m.wilczynski@samsung.com>
 
-On Tue, Jan 21, 2025 at 02:18:21PM +1030, Joel Stanley wrote:
-> On Tue, 21 Jan 2025 at 01:14, Johan Hovold <johan+linaro@kernel.org> wrote:
-> >
-> > This series adds support for utilising the UEFI firmware RTC offset to
-> > the Qualcomm PMIC RTC driver and uses that to enable the RTC on all X
-> > Elite machines.
-> 
-> Looks good on a Surface Laptop 7 / romulus:
-> 
-> Tested-by: Joel Stanley <joel@jms.id.au>
-> 
-> [    0.407844] rtc-pm8xxx c42d000.spmi:pmic@0:rtc@6100: registered as rtc0
-> [    0.407876] rtc-pm8xxx c42d000.spmi:pmic@0:rtc@6100: setting system
-> clock to 2025-01-21T03:34:06 UTC (1737430446)
+On Mon, Jan 20, 2025 at 06:21:04PM +0100, Michal Wilczynski wrote:
+>    reg:
+>      maxItems: 1
+> @@ -25,11 +30,8 @@ properties:
+>      maxItems: 3
+>  
+>    clock-names:
+> -    items:
+> -      - const: core
+> -      - const: mem
+> -      - const: sys
+>      minItems: 1
+> +    maxItems: 3
 
-Thanks for testing.
+So what is the third item? It cannot be anything, but must be
+constrained.
 
-Johan
+I understand that you clean it up and maybe the cleaning is correct, but
+it should be separate commit with its own explanation.
+
+>  
+>    interrupts:
+>      maxItems: 1
+> @@ -47,8 +49,6 @@ required:
+>    - clock-names
+>    - interrupts
+>  
+> -additionalProperties: false
+> -
+>  allOf:
+>    - if:
+>        properties:
+> @@ -58,7 +58,28 @@ allOf:
+>      then:
+>        properties:
+>          clocks:
+> +          minItems: 1
+
+Drop minItems here.
+
+>            maxItems: 1
+> +        clock-names:
+> +          items:
+> +            - const: core
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: thead,th1520-gpu
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 2
+> +          maxItems: 2
+> +        clock-names:
+> +          items:
+> +            - const: core
+> +            - const: sys
+> +
+> +unevaluatedProperties: false
+
+That's not explained. Does not look correct, either, unless you fix some
+issue, but then again: separate commit.
+
+Best regards,
+Krzysztof
+
 
