@@ -1,200 +1,122 @@
-Return-Path: <devicetree+bounces-140053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38661A18057
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 15:49:11 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 110BEA1807A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 15:52:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 650B0163CA8
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 14:49:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77D9C7A43F5
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 14:51:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B15841F3FCB;
-	Tue, 21 Jan 2025 14:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1F681F4E21;
+	Tue, 21 Jan 2025 14:50:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="m5bSzT3L"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="aG9mkTjb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73DC11F3D44;
-	Tue, 21 Jan 2025 14:49:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28C3A1F37D1;
+	Tue, 21 Jan 2025 14:50:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737470947; cv=none; b=dmOUsKtqknP2ENsABXLnlBR6O5oIevhrPJ/nshCC8OvpYPv6K1Op2j/WiwCU6H+aI2gfltPYvkKQJyjXbJh86vbOEAtkBX+Mv4/d1qfCSzrBrPa+zlcdAMdPmIyVcRJtxysiPx+vS4CN7KI+0N1I6SDpfFA5Wz66fvd5KUeVL1o=
+	t=1737471032; cv=none; b=Rdf9fy4Om8bBV1l34/A8H8n6X0B9H+T4/lyKSWMGI2csAnmmGq60raNDzT/zKOATHH2MKHlsj9CCKNpPJYFpfMEx/NmnBjqa+61s13pIcgIq1CA+nl0UJDGVt5AtGk764aMHwNZFGIDNaRvfGW+EVmsFEd27OeaetrteBGETNP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737470947; c=relaxed/simple;
-	bh=JaVOHlnuKUu3Jtd9M7MfS455HzeaXiu9v2fTq47w+5o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KhGGYunyvFkh88fb0al+WV7gW6aHwKRChE5WO7wztTPc9vOkvTuf4gQ5zb14CdvmptFMZtsW0+QoUG4UrDAyXhOIre7w7PV6rrnXnowZfhbZAB/ZO9+d+UGangVYXWHAMJk1xsZCSQZtxc5drEYlzP+7Znn0vEtK6ODmQU0xb5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=m5bSzT3L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFA0FC4CEDF;
-	Tue, 21 Jan 2025 14:49:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1737470947;
-	bh=JaVOHlnuKUu3Jtd9M7MfS455HzeaXiu9v2fTq47w+5o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m5bSzT3LEINGO/bt7wArei2Pz4uI8jrMy4yPmmRyuLyCcP2RTA6+UVqB/oB+jyUoL
-	 6K9NSBEmVCt5IanxxENFx2NSs75rwF2zKJekXqCFfWR976qcAm2+n21b9mwcS9FCFe
-	 Flsz5OEiW+giJ2PkIUdyNX91Rl0TCTtPkNfvcFgw=
-Date: Tue, 21 Jan 2025 15:49:04 +0100
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Wilczynski <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v6 08/10] misc: rp1: RaspberryPi RP1 misc driver
-Message-ID: <2025012148-unused-winking-7d51@gregkh>
-References: <cover.1736776658.git.andrea.porta@suse.com>
- <550590a5a0b80dd8a0c655921ec0aa41a67c8148.1736776658.git.andrea.porta@suse.com>
- <2025011722-motocross-finally-e664@gregkh>
- <Z49eOdVvwknOoD3E@apocalypse>
- <2025012143-rippling-rehydrate-581b@gregkh>
- <Z4-oORWO4BgOqibB@apocalypse>
- <2025012157-bonsai-caddie-19b2@gregkh>
- <Z4-xcjov0HLivfVX@apocalypse>
+	s=arc-20240116; t=1737471032; c=relaxed/simple;
+	bh=ZLnMpdUl8NcY5kgzTuqtk8Z491b642rZj8JClq7C37k=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Et9klYzFDXfcX1Xn6ipw0kVrnchT7sjwx+yv9PZMlZe+siXnvFzZiJg6ffTcKiiWQnVaO4FjlEOjj3Dq34TKw8E6IlrGR3ZxGqBl0AuGVwuaevhRCM4OxVGoR3CprTdMbt30xGqSW4OdDsCgvAN6GJn5+vh6SEGQfdbPaxjQKgg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=aG9mkTjb; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 09c1eb64d80711efbd192953cf12861f-20250121
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=ddRp4IKh0ObprFE1vqoDa9K2zIlik7OZ3G9EpYAp4ek=;
+	b=aG9mkTjbKrxDaaYIHW1tn5+BP1UszMbBuVMakXb16mMx7u/zx+JRGVX4sxLNnf2ZFlyMnuBiV/89ZQpvR7vQ2XnogAV5EqTtHEm82joE4UnupuxR3dF1pZ43LUJdo1rI+eEKJGoIraT3knRNpj4tlt5+D2ZwCr2eH9KhRbHyZhY=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.46,REQID:075a14ad-94d3-4264-9bef-a6a5051c8c30,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:60aa074,CLOUDID:af543e0f-078a-483b-8929-714244d25c49,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|50,EDM:-3,IP:ni
+	l,URL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,
+	LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: 09c1eb64d80711efbd192953cf12861f-20250121
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+	(envelope-from <chunfeng.yun@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 909434500; Tue, 21 Jan 2025 22:50:21 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Tue, 21 Jan 2025 22:50:19 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1258.28 via Frontend Transport; Tue, 21 Jan 2025 22:50:19 +0800
+From: Chunfeng Yun <chunfeng.yun@mediatek.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring
+	<robh@kernel.org>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: Chunfeng Yun <chunfeng.yun@mediatek.com>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, Mathias Nyman <mathias.nyman@intel.com>,
+	<linux-usb@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 1/4] dt-bindings: usb: mtk-xhci: add support mt8196
+Date: Tue, 21 Jan 2025 22:50:05 +0800
+Message-ID: <20250121145008.22936-1-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z4-xcjov0HLivfVX@apocalypse>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-On Tue, Jan 21, 2025 at 03:38:42PM +0100, Andrea della Porta wrote:
-> Hi Greg,
-> 
-> On 15:18 Tue 21 Jan     , Greg Kroah-Hartman wrote:
-> > On Tue, Jan 21, 2025 at 02:59:21PM +0100, Andrea della Porta wrote:
-> > > Hi Greg,
-> > > 
-> > > On 09:48 Tue 21 Jan     , Greg Kroah-Hartman wrote:
-> > > > On Tue, Jan 21, 2025 at 09:43:37AM +0100, Andrea della Porta wrote:
-> > > > > Hi Greg,
-> > > > > 
-> > > > > On 12:47 Fri 17 Jan     , Greg Kroah-Hartman wrote:
-> > > > > > On Mon, Jan 13, 2025 at 03:58:07PM +0100, Andrea della Porta wrote:
-> > > > > > > The RaspberryPi RP1 is a PCI multi function device containing
-> > > > > > > peripherals ranging from Ethernet to USB controller, I2C, SPI
-> > > > > > > and others.
-> > > > > > > 
-> > > > > > > Implement a bare minimum driver to operate the RP1, leveraging
-> > > > > > > actual OF based driver implementations for the on-board peripherals
-> > > > > > > by loading a devicetree overlay during driver probe.
-> > > > > > > 
-> > > > > > > The peripherals are accessed by mapping MMIO registers starting
-> > > > > > > from PCI BAR1 region.
-> > > > > > > 
-> > > > > > > With the overlay approach we can achieve more generic and agnostic
-> > > > > > > approach to managing this chipset, being that it is a PCI endpoint
-> > > > > > > and could possibly be reused in other hw implementations. The
-> > > > > > > presented approach is also used by Bootlin's Microchip LAN966x
-> > > > > > > patchset (see link) as well, for a similar chipset.
-> > > > > > > 
-> > > > > > > For reasons why this driver is contained in drivers/misc, please
-> > > > > > > check the links.
-> > > > > > 
-> > > > > > Links aren't always around all the time, please document it here why
-> > > > > > this is needed, and then links can "add to" that summary.
-> > > > > 
-> > > > > Ack.
-> > > > > 
-> > > > > > 
-> > > > > > > This driver is heavily based on downstream code from RaspberryPi
-> > > > > > > Foundation, and the original author is Phil Elwell.
-> > > > > > > 
-> > > > > > > Link: https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
-> > > > > 
-> > > > > ...
-> > > > > 
-> > > > > > > diff --git a/drivers/misc/rp1/rp1_pci.c b/drivers/misc/rp1/rp1_pci.c
-> > > > > > > new file mode 100644
-> > > > > > > index 000000000000..3e8ba3fa7fd5
-> > > > > > > --- /dev/null
-> > > > > > > +++ b/drivers/misc/rp1/rp1_pci.c
-> > > > > > > @@ -0,0 +1,305 @@
-> > > > > > > +// SPDX-License-Identifier: GPL-2.0
-> > > > > > > +/*
-> > > > > > > + * Copyright (c) 2018-24 Raspberry Pi Ltd.
-> > > > > > > + * All rights reserved.
-> > > > > > > + */
-> > > > > > > +
-> > > > > > > +#include <linux/err.h>
-> > > > > > > +#include <linux/interrupt.h>
-> > > > > > > +#include <linux/irq.h>
-> > > > > > > +#include <linux/irqchip/chained_irq.h>
-> > > > > > > +#include <linux/irqdomain.h>
-> > > > > > > +#include <linux/module.h>
-> > > > > > > +#include <linux/msi.h>
-> > > > > > > +#include <linux/of_platform.h>
-> > > > > > > +#include <linux/pci.h>
-> > > > > > > +#include <linux/platform_device.h>
-> > > > > > > +
-> > > > > > > +#include "rp1_pci.h"
-> > > > > > 
-> > > > > > Why does a self-contained .c file need a .h file?  Please put it all in
-> > > > > > here.
-> > > > > 
-> > > > > I agree with you. Indeed, the very first version of this patch had the header
-> > > > > file placed inside the .c, but I received concerns about it and some advice to
-> > > > > do it differently, as you can see here:
-> > > > > https://lore.kernel.org/all/ZtWDpaqUG9d9yPPf@apocalypse/
-> > > > > so I've changed it accordingly in V2. So right now I'm not sure what the
-> > > > > acceptable behaviour should be ...
-> > > > 
-> > > > It's a pretty simple rule:
-> > > > 	Only use a .h file if multiple .c files need to see the symbol.
-> > > > 
-> > > > So no .h file is needed here.
-> > > 
-> > > Perfect, I'll revert back that two lines to V1 then. Please be aware
-> > > though that this will trigger the following checkpatch warning:
-> > > 
-> > > WARNING: externs should be avoided in .c files
-> > 
-> > Well where are those externs defined at?  Shouldn't there be a .h file
-> > for them somewhere in the tree if they really are global?
-> 
-> Those symbols are deined in drivers/misc/rp1/rp1-pci.dtbo.S (added by
-> this patchset) and created by cmd_wrap_S_dtb in scripts/Makefile.lib.
-> They are just placeholders that contains rp1-pci.dtbo as
-> a binary blob, in order for the driver (rp1_pci.c) to be able to use
-> the binary buffer representing the overlay and address it from the
-> driver probe function.
-> So there's no other reference from outside rp1_pci.c to those two symbols.
-> In comparison, this is the very same approach used by a recently accepted
-> patch involving drivers/misc/lan966x_pci.c, which also has the two externs
-> in it and triggers the same checkpatch warning.
+There are three USB controllers on mt8196, each controller's wakeup
+control is different, add some specific versions for them, and add
+a new compatilbe for mt8196.
 
-Ok, that's fine, checkpatch is just a hint, not a hard-and-fast-rule.
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+v2: no changes
+---
+ .../devicetree/bindings/usb/mediatek,mtk-xhci.yaml          | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-thanks,
+diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+index ef3143f4b794..cacb3d3dc4ac 100644
+--- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
++++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml
+@@ -36,6 +36,7 @@ properties:
+           - mediatek,mt8188-xhci
+           - mediatek,mt8192-xhci
+           - mediatek,mt8195-xhci
++          - mediatek,mt8196-xhci
+           - mediatek,mt8365-xhci
+       - const: mediatek,mtk-xhci
+ 
+@@ -164,7 +165,10 @@ properties:
+             104 - used by mt8195, IP1, specific 1.04;
+             105 - used by mt8195, IP2, specific 1.05;
+             106 - used by mt8195, IP3, specific 1.06;
+-          enum: [1, 2, 101, 102, 103, 104, 105, 106]
++            107 - used by mt8196, IP0, specific 1.07;
++            108 - used by mt8196, IP1, specific 1.08;
++            109 - used by mt8196, IP2, specific 1.09;
++          enum: [1, 2, 101, 102, 103, 104, 105, 106, 107, 108, 109]
+ 
+   mediatek,u3p-dis-msk:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-- 
+2.46.0
 
-greg k-h
 
