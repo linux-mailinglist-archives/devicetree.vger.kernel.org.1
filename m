@@ -1,147 +1,119 @@
-Return-Path: <devicetree+bounces-140039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5EA1A17E18
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 13:55:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50BF6A17E1D
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 13:56:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85CB1188A40B
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:55:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D30923A2DBC
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:56:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C06C81F2374;
-	Tue, 21 Jan 2025 12:55:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 617BE1F238B;
+	Tue, 21 Jan 2025 12:56:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ck210Lyc"
+	dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b="B+g/uppj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B9961F1503;
-	Tue, 21 Jan 2025 12:55:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 684071F2374
+	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 12:56:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737464112; cv=none; b=WLYH2XE6hRxsnYAppYhm3a/1G4Y+vmvI3ecSwX0ZB5SgBjGJMqszogxDzTUuISyf3BSEZA2bDgFDTyC1ji7V3Xk7W6B7bLHn1AabhtTQLWoJ8BrUbWGrn2YsqIGt6NLbQy7ePRTuYsRES3piUAdStf6W6vBHiro3a5rWN23N73k=
+	t=1737464181; cv=none; b=G6WxgrGIf/L5a399vQwA+iR4KYIU4eblfhCqQOk17j3Pl7osfQOyhLQUv9CqhgWEakqtIOjI2KhqBesCMFxNNZ4i6o6My48pnHUOJsgrM6695rHW7DxbMnZDZb5me1ZKmBzrKH7hn2bV9sQidINxxATWoUzhueTzU0Nsf0U7KRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737464112; c=relaxed/simple;
-	bh=2QTP5vZI0WIec9j9DFzXQ4+LctdoFs1ad3x+levD6qA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J7yL6Dwn6hHC3EIXeqEFcv4FI7tA9dOvswNEnAQfUrbVEfrn1uBOPKINZh5DeHKoQZ+9mwimZ4/GdbhpQDXIjKQy1md434aDwiU8pMbfvmozTfqnpTbiVAvIINIw6TKLmGLzJOuEbXnzhkokELx23wpYA6F37krKqrST/gj0LiA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ck210Lyc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33CECC4CEDF;
-	Tue, 21 Jan 2025 12:55:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737464111;
-	bh=2QTP5vZI0WIec9j9DFzXQ4+LctdoFs1ad3x+levD6qA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ck210LyclgH8uoCSDasWSxH4hpuhhzB6hzZqqRjQqTTOLJ8wBeUz1wsUG1+IFROxa
-	 ktJPOQ2+oPRvJlq5C2ptOcyO7mUDXa5PugDp0H+Lyiz7qydp2s2/OIQs1sjmZ5hsEV
-	 IVzIvDNZaZo6ZUeS9sV24+eaE7z9Vvh1wSOvnOs0YRcyiKiDsnZeCzK+9tjmhT4EPY
-	 O55dtqPEsgmo3Qwe/xj4NJpTgKUt6JQA7qD4EmpILE3ZO8UtDofPh42wT+eeuLl8S2
-	 mTcIrgxi4x6AqKGhVxx4r9elawWPGPNurX0C9gWEeOn9AVCeKpP5hty/4uqnTT+cD0
-	 gIFMopTEY+XZw==
-Message-ID: <c985b741-35db-4e3b-8fe4-8d2085371033@kernel.org>
-Date: Tue, 21 Jan 2025 13:55:02 +0100
+	s=arc-20240116; t=1737464181; c=relaxed/simple;
+	bh=KM7rRQg9FRTtIHSC3uykL15GVvhQMMaufjE4QwFczwA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZW3uSA4/BXX8ERCWu3xgKDZxlcpFneRpAAcNy+nHwY+82KNz+3XWU9aGCXNm0MZa7RvEZGR0q/r/+XNGTAcrNRdgjmuSx0yVWOk5aFXGAjXMqgkdItdGHHmvOjwKfr9SOlbQAc5UCtNtp5CecwDp2n9ZnJzbj/hR5hgHSCucoZI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com; spf=pass smtp.mailfrom=thaumatec.com; dkim=pass (2048-bit key) header.d=thaumatec-com.20230601.gappssmtp.com header.i=@thaumatec-com.20230601.gappssmtp.com header.b=B+g/uppj; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thaumatec.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thaumatec.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-ab322ecd75dso983771066b.0
+        for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 04:56:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=thaumatec-com.20230601.gappssmtp.com; s=20230601; t=1737464175; x=1738068975; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2tKEcOHUOoj6M1N+AbaF6ST0bT5lNvPCmN4NWW4SFdg=;
+        b=B+g/uppjILe9sgdMYwgazahChzNHR7GndvYtx5KcDrxMHFyBOo9WA2iwXFHG5PVbTb
+         GRwypvvOavDzWRGcyBXnJ5BLQHwDnWlpfwHQBJvCo17DEID0pIVNUOSf6c8ZWT1dy08c
+         R0h+zpRQAk8ru8PqAQRz/HttumKggXs+QzZXqklr3JCzHhfulmG7Vx+OHWK3Mx8+8kG4
+         VwD0yJmfTkBGBUJRekfN81mrTpzAnQjW0YQHWUaMpHfGh+dySFVF4Gmp3LkGD27qDyFn
+         ZRDhQ6gWFgUJ8+K0m1Jp9ND+BRv+W/H8ggdrh7wXaSZS/+3Ff241JD2+g/G2WmIK+ARI
+         ujOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737464175; x=1738068975;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2tKEcOHUOoj6M1N+AbaF6ST0bT5lNvPCmN4NWW4SFdg=;
+        b=Esg2ceEWpwo7NFro7/Jh5CU8QraphwniogVJ5LUibSb7ZI61jgZdRvRN3wzE9TNIJC
+         v3jC7KJVsxeKzSnolkayjDEn+EbPpIGG2BQjw6iz26SlE98+DQZW96DYo6C6gaku3gcr
+         qkJyjwhZIySBkjpbrUaWYXYvjV+HfJNBTVDK6uIfUV1jqdYUorHMMpPJVQVxfr85SJGz
+         0z2eXVP4k5Y8WqVxYnKm8mDgmnMK+UQT8fSkcbx+FiTaOQNci5GaprKjMXP3FL1y6crZ
+         1YTlV9CvkzCjtQIZq+4sjEFCr/FuruPMOa1zocIzfD8YCczImL+oln7ymchuQa881Rf+
+         vmjw==
+X-Forwarded-Encrypted: i=1; AJvYcCUgRXPWIyCV9bWmXCAWeEhw/I9mfsx0FrcP7EvsWRwtoYXNMvqaE3EjoeDUvuYl+ctQ/IWztbYsalKF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwlBN0HmHuSOmR+KTqpQvcNzTgujIqL9g5F2UcaXJsYfEW4pfTc
+	5sncYxnBBdrLnt6QqyJTwrkbZrbXmGmaHkdzkSLD7pEjx7qJHPNfvJbtfBY9KRXCijUfzcmwEsn
+	g
+X-Gm-Gg: ASbGncsD9VEldFdXcBl61eA1d4KeNiUYyQDlRSufgJrHKxlBcu0dP4xR7zp3uaOmssW
+	Hw6AJu+wICIKrA62E/Gad1Z6GQ8S/ILPTGUmMa5dZ3H5uzTbXhU8pKrPmL/a1VuB2pciflyMPem
+	l98gprUG3wWH5uakLQoud+M23CFqI2wIoxew92zF9fHGczF9xivyg1BbTFZ+/GlJRkyulU8i189
+	T7xAaImMQ3dGh6LOJpO7DxZQQV6IkpI5BwFn60duqhBdSxKsWAOOk8ck0YSnRv5fGrzcjfeRpiq
+	quCc1iC0Me4VK3BnWe0L6S+fhQ==
+X-Google-Smtp-Source: AGHT+IHR/cBAroTUZCaiEdxwuMtCTe0EdEvbyOMLExycVSHdkWsyOdkdL4afo+lVY6hdc2SpvD4elg==
+X-Received: by 2002:a17:907:97ce:b0:ab2:f255:59f5 with SMTP id a640c23a62f3a-ab38cc9056cmr1524096566b.16.1737464175468;
+        Tue, 21 Jan 2025 04:56:15 -0800 (PST)
+Received: from lczechowski-Latitude-5440.. ([78.9.4.190])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384ce0529sm740943866b.43.2025.01.21.04.56.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 21 Jan 2025 04:56:14 -0800 (PST)
+From: Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
+To: linux-arm-kernel@lists.infradead.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: quentin.schulz@cherry.de,
+	Lukasz Czechowski <lukasz.czechowski@thaumatec.com>
+Subject: [PATCH v2 0/2] Disable DMA on secondary UART on PX30 Ringneck
+Date: Tue, 21 Jan 2025 13:56:02 +0100
+Message-ID: <20250121125604.3115235-1-lukasz.czechowski@thaumatec.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] media: dt-bindings: update clocks for sc7280-camss
-To: Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- akapatra@quicinc.com, hariramp@quicinc.com, andersson@kernel.org,
- konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
- cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20250121120901.1841142-1-quic_vikramsa@quicinc.com>
- <20250121120901.1841142-2-quic_vikramsa@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250121120901.1841142-2-quic_vikramsa@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 21/01/2025 13:09, Vikram Sharma wrote:
-> This patch change clock names to make it consistent with
+The PX30-uQ7 (Ringneck) SoM has two external UARTs, connected to
+uart0 and uart5 controllers on the PX30 SoC. The uart5 does not
+expose RTS/CTS pins on the Q7 connector, as they are used for
+different purposes. It was observed that UART controllers without
+hardware flow controller behave unstable if the DMA is enabled.
+This patch series moves the pinctrl-0 to SoM dtsi file and uses
+/delete-property/ to remove DMA from this UART controller.
+----
+Changes v2:
+ - Update commit message of patch 1/2
+ - Add Cc: stable@vger.kernel.org
 
+Lukasz Czechowski (2):
+  arm64: dts: rockchip: Move uart5 pin configuration to SoM dtsi
+  arm64: dts: rockchip: Disable DMA for uart5 on px30-ringneck
 
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+ arch/arm64/boot/dts/rockchip/px30-ringneck-haikou.dts | 1 -
+ arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi       | 6 ++++++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
+-- 
+2.43.0
 
-> existing platforms as gcc_cam_hf_axi -> gcc_axi_hf.
-
-Which ones? sm8250 uses different.
-
-> This also adds gcc_axi_sf and remove gcc_camera_ahb.
-
-Why?
-
-> 
-> This change will not break ABI because the ABI hasn't
-> been cemented yet as the dtsi changes are not merged
-> yet and there are no users for this driver as of now.
-
-So why did you wait till it gets to this merge window? Or is there some
-sort of history here which you hid? The user was merged to media tree
-and it is going to be merged for RC1.
-
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-
-Best regards,
-Krzysztof
 
