@@ -1,93 +1,64 @@
-Return-Path: <devicetree+bounces-139907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B37DAA17833
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 08:05:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD4BAA17845
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 08:07:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E46C016DFFD
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:05:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 422467A1200
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:06:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044DD1F8662;
-	Tue, 21 Jan 2025 06:58:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B9681B4220;
+	Tue, 21 Jan 2025 06:59:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RdMMRvsD"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="N1x5Mtem"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m21470.qiye.163.com (mail-m21470.qiye.163.com [117.135.214.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85D121B4237
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 06:58:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FD411B4157;
+	Tue, 21 Jan 2025 06:59:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.214.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737442690; cv=none; b=umTve3PedA4SDpf9EYtRYxb+Yp1VyxvcGzgwfX47PRl2Vlfx/5s0/D8pUYZwe+iems//AzS8CpVophILgaB/NID7/VHY3F8hTzFJ2LPUDbHtovARz0ZMoUeF8tM6ECooAqyR4sXoTH/1rgDndtRFGZMjesv5Z71ELcA3c+5uyCg=
+	t=1737442753; cv=none; b=l3nMXunMBGtSj4ObCnmO4DXfTrvX25jRUKBaxQkyR4YXZJoQnKMfM+KGSPYPmMdeP/C8gnZyPHzBsHcMY0IJZt6ChNOsOpKtG/5L3pyKWG9pzkBGSHso3yIEl3yL3x/3nOWmoh2KBVF2Mw35nswnH+t+ja3hifgVBwqCk+yoUqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737442690; c=relaxed/simple;
-	bh=djsCwHBeiUOwF/Yd8BMUBqFrBmr86DPuyw8Pm87LhvQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=riRMFxoYA9Pylr/VoqIR+kIWGRgXa33RCE8k5zhrAopypCXCmCSIvA+NXdtdufNhp/S58NuzHg47HGtvGhp45Ub96QkJJ07xSPj9zpFKnXevwULVwmp3kU6ZYv5Z3XnopHkcq4BM8pm5QC6Qww1aH1RLWvPWK9swMZlG4EKHszo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RdMMRvsD; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2ef72924e53so8976027a91.3
-        for <devicetree@vger.kernel.org>; Mon, 20 Jan 2025 22:58:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737442688; x=1738047488; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QCx1SvldvWoqbxgFpon2TvezEPjA28Rr/LhgNlRp79Q=;
-        b=RdMMRvsDhWjbVMl63l+RssiXW6Bln9hYnhgN5N3D022tzes4EX2NEqLR3ME6bewh/b
-         ewGNnTF4vSOUOztvap6kimj5Pcjnk+cymJp+ukDpBGUsi+tu0Sq8YR/dxOYCd8BGEdD4
-         DWPEVE1PJpvnRp3tma5mKXRq8HK31XhVBruhfL+msRhDWjnJ/ma28uwES8Xunddv181c
-         b2RfHAp+rqfEhxVcXH6Fu4JG3TP2eSoYScAI+x/FmBsYDEjS0jYkXgkt1za7iZZbFz7O
-         n5M7gix9rOwW8CvuPbzQSmbVLbWiHFv5c667McK0le2LJ+dfRexZzNWqNyHJUjskYW5M
-         2Hbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737442688; x=1738047488;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QCx1SvldvWoqbxgFpon2TvezEPjA28Rr/LhgNlRp79Q=;
-        b=rp5xXEjyXZt0X342qpwuEYC1mm/DFgQVExO5rAB1yEpMUsBbhMebpVjRhYEN3R7EfW
-         KBKrIvoZsli+tKkiJceUDfROKlyk0nFpwXyWfyavEyUH7UjDH0JZaARWb4/q3TXNTl6q
-         7k2Vxz9CbN5Q0m4u2gLnOGM7Zs9I7S1VEBH1jB0cWpiiKdtCd+7FOwLECL1SCEJrKKuh
-         rIDviGcvy1UeegrpSF9jQZNg5Be1SsEYj0V6514loR6cfvrNEal7z6Lb58XN969EG7aO
-         EP2OKv/mlREKh8m4xS8MPtygVw0qfl/jHK77izN1NMfMzbVSflEJ4q8NPh2YcNz4L1YH
-         +2jA==
-X-Forwarded-Encrypted: i=1; AJvYcCXJvZGed5+i2xHd3F9QMR4rEO8QDJbquH3IfCdIHN5U7mt7jJ9Tk/yH2JC2gv2mC19p8WUxMy60zvat@vger.kernel.org
-X-Gm-Message-State: AOJu0YzA0/OSWl8zdKZIbrsVey6GmWAkpxOFfBDC87/yS6NoJ2LVN98k
-	vv+LI/YmyOmuw+SFtJMwO9HoL4Ndz9xtSdqdecbSh/Dmk7cQs8+a3VPLO7gWHEU=
-X-Gm-Gg: ASbGncs2kxrN544Y6+WkD/6BLf5vk7NBbP4S4qe5T8SAhtzgBn1NN++KxKdeF7j0zc4
-	axC567qBU7jbPLixNNTFHIVxqaM64ZyzdWCL8vkTz6eCMZvrea6v+HGF3xJakxHH16A433hSpHH
-	4JQENJOB6jwRQo19AG4ZsAwbpsLQcLIjeYlBMJoL1+UKW9M+Y8RdmfyWzw8TZegWIMeoqkOdafR
-	aWDviCF7ST86WjB/E+kk3B6dNSnqWBdNrsgTNDT+8vzXrJ/0StAmMYzfAhlQR4y1pOqLwXmU29N
-	8k/W9i8=
-X-Google-Smtp-Source: AGHT+IGTDgpQAVNZjtI+Oozrv4Z3daBIVHvUM9SOBabufsgddCoyXMampLgmx/TFMSSuDp+9U6Vdbw==
-X-Received: by 2002:a05:6a00:4c18:b0:72d:8d98:c250 with SMTP id d2e1a72fcca58-72daf9a5535mr23615446b3a.4.1737442687760;
-        Mon, 20 Jan 2025 22:58:07 -0800 (PST)
-Received: from localhost ([122.172.84.139])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72dabaa2388sm8294524b3a.157.2025.01.20.22.58.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2025 22:58:07 -0800 (PST)
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Vincent Guittot <vincent.guittot@linaro.org>,
-	=?UTF-8?q?Alex=20Benn=C3=A9e?= <alex.bennee@linaro.org>,
-	Bill Mills <bill.mills@linaro.org>,
+	s=arc-20240116; t=1737442753; c=relaxed/simple;
+	bh=sNPYPg03NDb/dgWYVkNZpyJtayOlj6QBgLMD+v9znH8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Mhbz5S4dwZwCuoqrWXvKgF2+e+8EB3w8rOxIRez+fLuyQISBYxz0HgxMZyRg1rqPnCfk2FnxGmwUHkk+LuXq+AQ9VUTZxMu1Vz96OxkAD+jk5XKtFnkEIP49JVQbh1uwNrzR/dzp1RrbalaxwHs0l7GcI2e3Y0A/eb1NtgdWd1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=N1x5Mtem; arc=none smtp.client-ip=117.135.214.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 9456a2e0;
+	Tue, 21 Jan 2025 14:23:38 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	rfoss@kernel.org,
+	vkoul@kernel.org,
+	sebastian.reichel@collabora.com,
+	cristian.ciocaltea@collabora.com,
+	l.stach@pengutronix.de,
+	dmitry.baryshkov@linaro.org,
+	andy.yan@rock-chips.com,
+	hjc@rock-chips.com,
+	algea.cao@rock-chips.com,
+	kever.yang@rock-chips.com,
+	dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: firmware: Add bindings for ARM FFA
-Date: Tue, 21 Jan 2025 12:26:38 +0530
-Message-Id: <505bb9d66e8d4d8e505201eced6751b6fd6b1dcf.1737441631.git.viresh.kumar@linaro.org>
-X-Mailer: git-send-email 2.31.1.272.g89b43f80a514
-In-Reply-To: <cover.1737441631.git.viresh.kumar@linaro.org>
-References: <cover.1737441631.git.viresh.kumar@linaro.org>
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	Damon Ding <damon.ding@rock-chips.com>
+Subject: [PATCH v6 0/6] Add eDP mode support for Rockchip Samsung HDPTX PHY
+Date: Tue, 21 Jan 2025 14:23:18 +0800
+Message-Id: <20250121062324.309592-1-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,98 +66,61 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGU9DGVYeQhpMShhLT01KS01WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a948787e7ee03a3kunm9456a2e0
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Nj46MDo5SzIOAjQhGRwhDxYZ
+	PiswCRlVSlVKTEhMT09LTUlLSU9MVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKQkhJNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=N1x5MtemQdxJ2HfGG87IWYNxOoehV9ZFXWi7ddv0pQSHTdOmcdKxAefzuTPnT8nf9hETUkhkRMTZpGtfbHAmoc+b3ndvbcz7q869h3LT60u7Cw/w1GLd4HZP4P6VMDfcndXjQIYyUWOX494EFq2KthJnfLE0WdLjQCgL/vTd/ZU=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=TejvzfV3E3bwIKDx62w3f3JYivHUtIsr/IuSQftkJIs=;
+	h=date:mime-version:subject:message-id:from;
 
-This adds DT bindings for ARM's FFA framework. The bindings are used to
-provide a reserved memory region per FFA device.
+Picked from:
+https://patchwork.kernel.org/project/linux-rockchip/list/?series=923593
 
-Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
----
- .../devicetree/bindings/firmware/arm,ffa.yaml | 75 +++++++++++++++++++
- 1 file changed, 75 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/firmware/arm,ffa.yaml
+These patchs have been tested with a 1536x2048p60 eDP panel on
+RK3588S EVB1 board, and HDMI 1080P/4K display also has been verified
+on RK3588 EVB1 board.
 
-diff --git a/Documentation/devicetree/bindings/firmware/arm,ffa.yaml b/Documentation/devicetree/bindings/firmware/arm,ffa.yaml
-new file mode 100644
-index 000000000000..b88d6cec7e16
---- /dev/null
-+++ b/Documentation/devicetree/bindings/firmware/arm,ffa.yaml
-@@ -0,0 +1,75 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2021 ARM Ltd.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/firmware/arm,ffa.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Arm Firmware Framework for A-class
-+
-+maintainers:
-+  - Viresh Kumar <viresh.kumar@linaro.org>
-+
-+description: |
-+  ARM FFA (Arm Firmware Framework for A-class) is a framework designed to
-+  facilitate communication and resource sharing between various software
-+  components in an Arm system, such as operating systems, hypervisors, and
-+  trusted execution environments (TEEs). It's particularly used in systems
-+  leveraging the Armv8-A architecture and later.
-+
-+  This binding is intended to define the interface the firmware implementing the
-+  FFA provide in the device tree.
-+
-+  https://developer.arm.com/documentation/den0077/
-+
-+properties:
-+  $nodename:
-+    pattern: '^ffa(-[a-z0-9]+)?$'
-+
-+  compatible:
-+    const: arm,ffa
-+
-+  vm-id:
-+    description: Virtual machine identifier.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+
-+  uuid:
-+    description: Universally Unique Identifier.
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    minItems: 4
-+    maxItems: 4
-+
-+  memory-region:
-+    maxItems: 1
-+    description:
-+      Reserved memory allocated for sharing with other software components.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - vm-id
-+  - uuid
-+
-+examples:
-+  - |
-+    reserved-memory {
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges;
-+
-+        ffa_2_mem: ffamem@81000000 {
-+            compatible = "restricted-dma-pool";
-+            reg = <0x81000000 0x00800000>;
-+        };
-+    };
-+
-+    firmware {
-+        ffa {
-+            compatible = "arm,ffa";
-+            vm-id = <2>;
-+            uuid = <0xc5b82091 0x48bbd4fe 0x244de7b7 0xbe28bb6e>;
-+            memory-region = <&ffa_2_mem>;
-+        };
-+    };
-+...
+Damon Ding (6):
+  phy: phy-rockchip-samsung-hdptx: Swap the definitions of LCPLL_REF and
+    ROPLL_REF
+  phy: phy-rockchip-samsung-hdptx: Supplement some register names with
+    their full version
+  phy: phy-rockchip-samsung-hdptx: Add the '_MASK' suffix to all
+    registers
+  phy: phy-rockchip-samsung-hdptx: Add eDP mode support for RK3588
+  dt-bindings: display: rockchip: Fix label name of hdptxphy for RK3588
+    HDMI TX Controller
+  arm64: dts: rockchip: Fix label name of hdptxphy for RK3588
+
+ .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml  |   2 +-
+ arch/arm64/boot/dts/rockchip/rk3588-base.dtsi |   4 +-
+ .../dts/rockchip/rk3588-coolpi-cm5-evb.dts    |   2 +-
+ .../rockchip/rk3588-coolpi-cm5-genbook.dts    |   2 +-
+ .../boot/dts/rockchip/rk3588-evb1-v10.dts     |   2 +-
+ .../rk3588-friendlyelec-cm3588-nas.dts        |   2 +-
+ .../arm64/boot/dts/rockchip/rk3588-jaguar.dts |   2 +-
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi   |   2 +-
+ .../dts/rockchip/rk3588-orangepi-5-plus.dts   |   2 +-
+ .../boot/dts/rockchip/rk3588-rock-5b.dts      |   2 +-
+ .../boot/dts/rockchip/rk3588-tiger-haikou.dts |   2 +-
+ .../boot/dts/rockchip/rk3588s-coolpi-4b.dts   |   2 +-
+ .../dts/rockchip/rk3588s-indiedroid-nova.dts  |   2 +-
+ .../boot/dts/rockchip/rk3588s-nanopi-r6.dtsi  |   2 +-
+ .../boot/dts/rockchip/rk3588s-odroid-m2.dts   |   2 +-
+ .../boot/dts/rockchip/rk3588s-orangepi-5.dtsi |   2 +-
+ .../boot/dts/rockchip/rk3588s-rock-5a.dts     |   2 +-
+ .../boot/dts/rockchip/rk3588s-rock-5c.dts     |   2 +-
+ .../phy/rockchip/phy-rockchip-samsung-hdptx.c | 971 +++++++++++++++++-
+ 19 files changed, 934 insertions(+), 75 deletions(-)
+
 -- 
-2.31.1.272.g89b43f80a514
+2.34.1
 
 
