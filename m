@@ -1,291 +1,147 @@
-Return-Path: <devicetree+bounces-140069-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140070-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9333EA18113
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 16:23:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBF2DA1818E
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 16:59:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4FE8A7A1E47
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 15:21:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6EC5B3A9B16
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 15:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62BBB1F4285;
-	Tue, 21 Jan 2025 15:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0854F1F4E35;
+	Tue, 21 Jan 2025 15:58:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="JWdacD4d";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="rYLGUiTT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aZ179q7O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 896621F4268;
-	Tue, 21 Jan 2025 15:21:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC1841F426F;
+	Tue, 21 Jan 2025 15:58:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737472903; cv=none; b=mcbPOELRwwiMKnkrez4evuHMdp/CQosMkG3FsbuBCbZWMlVN5MmWqAZYjWETZ7+FzslQ1wVF/spHtqHWfh38xConHa4qnHFqZvBxMW5HjpF63YXGyQEOkcdbzXOdYXUVVfjw+tM+p71zyzkil0WyOLJ/ItbzbSSsucyDNrWgQIA=
+	t=1737475136; cv=none; b=WPjHQZRILPzkaxxEVX50av/3+9FhK3v5nr5q4UvmQ5rqvtkMJ9m/DAZwVxlIL3is8Lx2EGf5U9rga7VbPCo6cr4/2Ks+oMtoBfuToQJGXJy0dwQmz+uFcqZhfY8fJEu2EkPTBvw1JLdg1MC69ft3OcJvo+4Wn8+pCfMAiMQH3nE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737472903; c=relaxed/simple;
-	bh=Bmn+V8U4QXfbsM+cp71lUo+mrbLtMiv71iUgeGIc6xg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NNRSziPPfaBn4DP7kMMMpwiI//7EkvdLi6eaFus39xy27hbEF4RbihIhxmX8wLBF2fT+rPF61YT1xTK/6lKmzeoS4L1RMWpVQTt8QDVFgyzz2qq0zdOp9iLnVCxZYtAoiEgoFqxWE5EXXbx4SLnCyDx46xI2dcHDVD9Goc2vQJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=JWdacD4d; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=rYLGUiTT reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1737472900; x=1769008900;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=l4hYFP3h1arKjsKD8T0roDJ/zeXY7qh2kU6N067sKV4=;
-  b=JWdacD4dbP1oPyDhxt/v0BFYKvfhIJXJjSLAd4aRaFk1W8U4s6YslLRH
-   4zb8h8p6MEVdxMHguc4NvV/9WreEmktdtqZdU7qjVWxejcqC+kVAPzTlk
-   jQTbL52ijc+Jj6neZNul3h1pOXVF/6CI/O5F7Oq682XDWFn8jlLu1pdlF
-   myvVTveXN3+HEcoNDXLFtSAfjnLs1FQGJr0LyXbaUhjTo80xAK1kUEQ6b
-   MVSZjQ0jQK4JlqiwndQf2JiV2I8/IEEKnm/JDV4Mm8EHmDbGNvHDU/PBp
-   YHKP3Ptj5W4h6gwz9YgF2pul+yNt20rFtIwOoi1f9l3cA7nMFqKO6ZDrf
-   Q==;
-X-CSE-ConnectionGUID: idrnqf/XQxSG0q2Y7GGVLQ==
-X-CSE-MsgGUID: 8avWz3ObTRGrv5U6kV+0JQ==
-X-IronPort-AV: E=Sophos;i="6.13,222,1732575600"; 
-   d="scan'208";a="41203460"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 21 Jan 2025 16:21:32 +0100
-X-CheckPoint: {678FBB7C-3-3C670366-E45AD810}
-X-MAIL-CPID: 6F83F60AB13049F24B231DC59BAA06AE_4
-X-Control-Analysis: str=0001.0A682F28.678FBB7C.0049,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 665BA1636A2;
-	Tue, 21 Jan 2025 16:21:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1737472887;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=l4hYFP3h1arKjsKD8T0roDJ/zeXY7qh2kU6N067sKV4=;
-	b=rYLGUiTTKR4sqmzLaX1K1ImmcDKWQlwAgG//JEbok+dvVDPU5MrjCwzeUzM7C7WouN4G3l
-	AhWVZPipJWRYoNXuPBU0zwROLSHrERRX7QJ+MK67R5hw0x35W3kOOHG42V6xcLpybnG7nX
-	Imiy2HnPS7aWX0whI1n1knBaMNy15/xL2bAqhKdv80TKbfdntsfJh3e6pG/JsRozY41NP1
-	i7qMBILzhFxTvxALT5rlJQJlf8sry8UXzSBHktpreutj+0OUXnMYf/QrizeNB0abmeG1Lw
-	rKSHWpY3qor5OJmQYf5oct3Pkfb67ROmGcsaHrj5he880XWdfjfNJQgykphX8Q==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v6 2/2] nvmem: imx-ocotp-ele: Support accessing controller for i.MX9
-Date: Tue, 21 Jan 2025 16:21:25 +0100
-Message-ID: <8513553.T7Z3S40VBb@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20250121-imx-ocotp-v6-2-76dab40e13db@nxp.com>
-References: <20250121-imx-ocotp-v6-0-76dab40e13db@nxp.com> <20250121-imx-ocotp-v6-2-76dab40e13db@nxp.com>
+	s=arc-20240116; t=1737475136; c=relaxed/simple;
+	bh=Nr/cFdqIBHyAlyIs6ZJvWVt79pmgQo7I8Gxuo6f4M4c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WmrDxw+4NpxTlOm+B9a3kbUS9gg7ePVxXwHiKjPiajC3ybH8/yv43O0MwXxGb3nFp0DlCDragU1tiRXPmbgnO8WtcqnxWILnNVzBOjFn8B08r/ZawhM918Sv1APmIRZm8dC9vo6EYoaN5GA3b5VbdOFeZzYx6ksKfO7Aiiyuh74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aZ179q7O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF3D5C4CEE6;
+	Tue, 21 Jan 2025 15:58:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737475136;
+	bh=Nr/cFdqIBHyAlyIs6ZJvWVt79pmgQo7I8Gxuo6f4M4c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aZ179q7OyKGfHMb+HVVUQmA+sMDlGJOt+ozyOHnNQKXcVoPCrmU1jrM8QkHOk8DAW
+	 ksg5wi5h3wlc7xjw3vv2O+kqP5f+sJbGt4rk/yiofb72RbwKKpoh3yGYM5Rm+5vjMe
+	 F+QKcldc8HVj6PRYn8v1JmhU+tTW98YLbCE0T52aUrcYNqOmdS15T4JR7qZTBVSzVs
+	 owRd/FVAUvFn5r09IQGigBYeAbWF0nXMRYYeoJ1I8UngrKHFETIKh1XjMCHITfENcw
+	 m/I75j/fbJCT0ZwEMM7WuBocCPO1dYMBMuCmYa91Rl+AOILR8wu48e4vZXlS/eWAYi
+	 Bf8BDWxCoyE+g==
+Message-ID: <ed26d9e1-e0a8-4678-9f0a-011bc0d5a0c7@kernel.org>
+Date: Tue, 21 Jan 2025 16:58:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: arm: fsl: Add VAR-SOM-MX6UL SoM and
+ Concerto board
+To: Antonin Godard <antonin.godard@bootlin.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+References: <20250121-varsom6ul-concerto-dts-v1-0-eb349acf0ac6@bootlin.com>
+ <20250121-varsom6ul-concerto-dts-v1-1-eb349acf0ac6@bootlin.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250121-varsom6ul-concerto-dts-v1-1-eb349acf0ac6@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-Am Dienstag, 21. Januar 2025, 16:05:32 CET schrieb Peng Fan (OSS):
-> From: Peng Fan <peng.fan@nxp.com>
->=20
-> i.MX9 OCOTP supports a specific peripheral or function being fused
-> which means disabled, so
->  - Introduce ocotp_access_gates to be container of efuse gate info
->  - Iterate all nodes to check accessing permission. If not
->    allowed to be accessed, detach the node
->=20
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+On 21/01/2025 10:33, Antonin Godard wrote:
+> Add support for the Variscite i.MX6UL VAR-SOM-MX6UL and the Variscite
+> Concerto carrier board.
+> 
+> Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
 > ---
->  drivers/nvmem/Kconfig         |   3 +
->  drivers/nvmem/imx-ocotp-ele.c | 172 ++++++++++++++++++++++++++++++++++++=
-+++++-
->  2 files changed, 174 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> index 8671b7c974b933e147154bb40b5d41b5730518d2..77cc496fd5e0e1afd753534b5=
-6fe1f5ef3e3ec55 100644
-> --- a/drivers/nvmem/Kconfig
-> +++ b/drivers/nvmem/Kconfig
-> @@ -93,6 +93,9 @@ config NVMEM_IMX_OCOTP_ELE
->  	  This is a driver for the On-Chip OTP Controller (OCOTP)
->  	  available on i.MX SoCs which has ELE.
-> =20
-> +	  If built as modules, any other driver relying on this working
-> +	  as access controller also needs to be a module as well.
-> +
->  config NVMEM_IMX_OCOTP_SCU
->  	tristate "i.MX8 SCU On-Chip OTP Controller support"
->  	depends on IMX_SCU
-> diff --git a/drivers/nvmem/imx-ocotp-ele.c b/drivers/nvmem/imx-ocotp-ele.c
-> index ca6dd71d8a2e29888c6e556aaea116c1a967cb5f..5ea6d959ce38760eeed44a989=
-992fb35c462c0b4 100644
-> --- a/drivers/nvmem/imx-ocotp-ele.c
-> +++ b/drivers/nvmem/imx-ocotp-ele.c
-> @@ -5,6 +5,8 @@
->   * Copyright 2023 NXP
->   */
-> =20
-> +#include <dt-bindings/nvmem/fsl,imx93-ocotp.h>
-> +#include <dt-bindings/nvmem/fsl,imx95-ocotp.h>
->  #include <linux/device.h>
->  #include <linux/io.h>
->  #include <linux/module.h>
-> @@ -27,6 +29,7 @@ struct ocotp_map_entry {
->  };
-> =20
->  struct ocotp_devtype_data {
-> +	const struct ocotp_access_gates *access_gates;
->  	u32 reg_off;
->  	char *name;
->  	u32 size;
-> @@ -36,6 +39,20 @@ struct ocotp_devtype_data {
->  	struct ocotp_map_entry entry[];
->  };
-> =20
-> +#define OCOTP_MAX_NUM_GATE_WORDS 4
-> +
-> +struct access_gate {
-> +	u32 word;
-> +	u32 mask;
-> +};
-> +
-> +struct ocotp_access_gates {
-> +	u32 num_words;
-> +	u32 words[OCOTP_MAX_NUM_GATE_WORDS];
-> +	u32 num_gates;
-> +	struct access_gate *gates;
-> +};
-> +
->  struct imx_ocotp_priv {
->  	struct device *dev;
->  	void __iomem *base;
-> @@ -131,6 +148,82 @@ static void imx_ocotp_fixup_dt_cell_info(struct nvme=
-m_device *nvmem,
->  	cell->read_post_process =3D imx_ocotp_cell_pp;
->  }
-> =20
-> +static int imx_ele_ocotp_check_access(struct imx_ocotp_priv *priv, u32 i=
-d)
-> +{
-> +	const struct ocotp_access_gates *access_gates =3D priv->data->access_ga=
-tes;
-> +	void __iomem *reg =3D priv->base + priv->data->reg_off;
-> +	u32 word, mask, val;
-> +
-> +	if (id >=3D access_gates->num_gates) {
-> +		dev_err(priv->config.dev, "Index %d too large\n", id);
-> +		return -EACCES;
-> +	}
-> +
-> +	word =3D access_gates->gates[id].word;
-> +	mask =3D access_gates->gates[id].mask;
-> +
-> +	reg =3D priv->base + priv->data->reg_off + (word << 2);
-> +	val =3D readl(reg);
-> +
-> +	dev_dbg(priv->config.dev, "id:%d word:%d mask:0x%08x\n", id, word, mask=
-);
-> +	/* true means not allow access */
-> +	if (val & mask)
-> +		return -EACCES;
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_ele_ocotp_grant_access(struct imx_ocotp_priv *priv, struc=
-t device_node *parent)
-> +{
-> +	struct device *dev =3D priv->config.dev;
-> +
-> +	for_each_available_child_of_node_scoped(parent, child) {
-> +		struct of_phandle_args args;
-> +		u32 id, idx =3D 0;
-> +
-> +		while (!of_parse_phandle_with_args(child, "access-controllers",
-> +						   "#access-controller-cells",
-> +						   idx++, &args)) {
-> +			of_node_put(args.np);
-> +			if (args.np !=3D dev->of_node)
-> +				continue;
-> +
-> +			/* Only support one cell */
-> +			if (args.args_count !=3D 1) {
-> +				dev_err(dev, "wrong args count\n");
-> +				continue;
-> +			}
-> +
-> +			id =3D args.args[0];
-> +
-> +			dev_dbg(dev, "Checking node: %pOF gate: %d\n", child, id);
-> +
-> +			if (imx_ele_ocotp_check_access(priv, id)) {
-> +				of_detach_node(child);
-> +				dev_info(dev, "%pOF: Not granted, device driver will not be probed\n=
-",
-> +					 child);
-> +			}
-> +		}
-> +
-> +		imx_ele_ocotp_grant_access(priv, child);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx_ele_ocotp_access_control(struct imx_ocotp_priv *priv)
-> +{
-> +	struct device_node *root __free(device_node) =3D of_find_node_by_path("=
-/");
-> +
-> +	if (!priv->data->access_gates)
-> +		return 0;
-> +
-> +	/* This should never happen */
-> +	WARN_ON(!root);
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 6e0dcf4307f10040dafd96b8e12079813e414c08..5c1a27884f0d7ab0c7adc307ff502e179f85523f 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -402,6 +402,12 @@ properties:
+>            - const: variscite,var-som-imx6q
+>            - const: fsl,imx6q
+>  
+> +      - description: i.MX6UL Variscite VAR-SOM-MX6 Boards
+> +        items:
+> +          - const: variscite,mx6concerto
+> +          - const: variscite,var-som-imx6ul
+> +          - const: fsl,imx6ul
 
-Even if you warning something is wrong, aka root =3D=3D NULL, you are still
-using it on imx_ele_ocotp_grant_access(). Just return early.
-
-if (WARN_ON(!))
-	return -EINVAL;
-
-Best regards
-Alexander
+You placed this just between two imx6q entries, so no, keep the order
+instead of inserting randomly.
 
 > +
-> +	return imx_ele_ocotp_grant_access(priv, root);
-> +}
-> +
->  static int imx_ele_ocotp_probe(struct platform_device *pdev)
->  {
->  	struct device *dev =3D &pdev->dev;
-> @@ -161,14 +254,45 @@ static int imx_ele_ocotp_probe(struct platform_devi=
-ce *pdev)
->  	priv->config.fixup_dt_cell_info =3D imx_ocotp_fixup_dt_cell_info;
->  	mutex_init(&priv->lock);
-> =20
-> +	platform_set_drvdata(pdev, priv);
-> +
->  	nvmem =3D devm_nvmem_register(dev, &priv->config);
->  	if (IS_ERR(nvmem))
->  		return PTR_ERR(nvmem);
-> =20
-> -	return 0;
-> +
-> +	return imx_ele_ocotp_access_control(priv);
->  }
-
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+>        - description: TQ-Systems TQMa6Q SoM (variant A) on MBa6x
+>          items:
+>            - const: tq,imx6q-mba6x-a
+Best regards,
+Krzysztof
 
