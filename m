@@ -1,39 +1,39 @@
-Return-Path: <devicetree+bounces-139909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05A97A17847
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 08:07:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F443A17840
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 08:06:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB7407A4932
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:06:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DDAEA16E01F
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 07:06:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF251B86DC;
-	Tue, 21 Jan 2025 06:59:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7DF71B87F3;
+	Tue, 21 Jan 2025 06:59:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="FkFHmyvd"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="V91iRjYE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3274.qiye.163.com (mail-m3274.qiye.163.com [220.197.32.74])
+Received: from mail-m1973189.qiye.163.com (mail-m1973189.qiye.163.com [220.197.31.89])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 250BF1B6D15;
-	Tue, 21 Jan 2025 06:59:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.74
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC6DD1B0415;
+	Tue, 21 Jan 2025 06:59:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.89
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737442761; cv=none; b=HqNuNRDYAjXQ5NM3lSMXYTWnVybzbWJ5cuVsoBwZ8JBKts3nrHs44X9g9E0iUHgCY92dAKBpVdz+O44fLda7r7+8BVYS0lHIZzgTeMbRFGBkrDpfVYswmzgyg9e0ui0P4i5DyjdK3yVW9NoS2N+4d9R15YCXhbBMosDu3nagLGM=
+	t=1737442769; cv=none; b=nWjusGGTcv6hGpfGk4qcckYuXjmzPmtHKRZmwwAYOIdROOzh6XJLXhOveztHi88uORPyLByFQn1wb90r42MWIwTpcjGYUkq+2FcThLpsbjLWhm3D+0YdPFznBozavOnIZPO+k7HZ3aJaNgVbk6LbVgBsJOYNG5FxTb7uxEzEODc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737442761; c=relaxed/simple;
-	bh=xzMYKRIrmJrGhaWjfxw3Y/3PpqrQP69M16M/10uTILM=;
+	s=arc-20240116; t=1737442769; c=relaxed/simple;
+	bh=gpPAqqBmjRC1v7achzvazt4UU3KoDdfWysgY310xIgI=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Wg/wX8ZqQxEkJOtz/Tthy8celfHKjNGvycXDaA/WeNc1AnT1ly219oRTHezLM4JnE3Vay3UAfqENA6NBVetrRti3Achpx6g/PUgONnLkIQtfkaO7zqT0IvPNIQrqTbr7bh4E+lu5weAIR0h1D8KEawRELnLAgoVXplI66pJbNsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=FkFHmyvd; arc=none smtp.client-ip=220.197.32.74
+	 MIME-Version; b=kfMsFsO8haGst9lTyd+VxxBOVwvWeA42YeXAyIJG1c68JSQ1ShGIZ0bfPe7sUBwbQD5Izie0Wupa7/NYqL1samOuqCg16wEObkJzfFFfjFb6uNP8h+VXo8/luwWH6QKXJgi9iuIN0qGwq+HhmDM2Kwia36L+0M3rfH62roC3mTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=V91iRjYE; arc=none smtp.client-ip=220.197.31.89
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
 Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 9456a302;
-	Tue, 21 Jan 2025 14:23:44 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 9456a33e;
+	Tue, 21 Jan 2025 14:23:51 +0800 (GMT+08:00)
 From: Damon Ding <damon.ding@rock-chips.com>
 To: heiko@sntech.de
 Cc: robh@kernel.org,
@@ -56,9 +56,9 @@ Cc: robh@kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-phy@lists.infradead.org,
 	Damon Ding <damon.ding@rock-chips.com>
-Subject: [PATCH v6 2/6] phy: phy-rockchip-samsung-hdptx: Supplement some register names with their full version
-Date: Tue, 21 Jan 2025 14:23:20 +0800
-Message-Id: <20250121062324.309592-3-damon.ding@rock-chips.com>
+Subject: [PATCH v6 5/6] dt-bindings: display: rockchip: Fix label name of hdptxphy for RK3588 HDMI TX Controller
+Date: Tue, 21 Jan 2025 14:23:23 +0800
+Message-Id: <20250121062324.309592-6-damon.ding@rock-chips.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250121062324.309592-1-damon.ding@rock-chips.com>
 References: <20250121062324.309592-1-damon.ding@rock-chips.com>
@@ -70,50 +70,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGRpNSFYYSUxLSUwdHUNKSEJWFRQJFh
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkIeGlZLHkIYGUJPHh0aHh1WFRQJFh
 	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
 	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a948787fe0603a3kunm9456a302
+X-HM-Tid: 0a9487881cc303a3kunm9456a33e
 X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Kz46DTo5NTIQPDQIGRIrD0xJ
-	GS0KCwNVSlVKTEhMT09LTUlNS0hOVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKSU5KNwY+
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PAw6HCo6ITIUTzQPCRI0DjE6
+	PjEwFCpVSlVKTEhMT09LTUhIQ0tLVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKSEtPNwY+
 DKIM-Signature:a=rsa-sha256;
-	b=FkFHmyvdaS6TTl6rbJgujA3txHqy/pyV1jeixwGdnqKffV0zGdXpSwIA5cOQyM5xZ8J4hKB5rC3P6JiN+mdImCNjrsUsFUHMm+ohD/vrVFXzyDaUyKXPWLb1uzNebeGvbyToK/9vL5xZRwASP5veiyGfo/4aj90nB7Xw3xY0zy8=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=tywO7xGB2da8iEsHnvmYHdfB6wpe6ItXRYSerKfpSzc=;
+	b=V91iRjYEYNTsG5+EeisCMvsya1hW2cc02HeQ2hAlYYpdef6wbOM/6n+B8jJaa/SHNynn8E8jvpZpZP3on455Dwtcge2cE4Cfkff7GtNpF+Hq7UwrqSpdqBIXbUEE4WzB/4ZGvTHSZrfsYOipJpwyU3ht4tS3s48LH83boOLxYaY=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=DsE1WkVNoF+Jwn/u5/eTYNhUxfmsWFSRl9E2p5GwmYk=;
 	h=date:mime-version:subject:message-id:from;
 
-Complete the register names of CMN_REG(0081) and CMN_REG(0087) to their
-full version, and it can help to better match the datasheet.
+The hdptxphy is a combo transmit-PHY for HDMI2.1 TMDS Link, FRL Link, DP
+and eDP Link. Therefore, it is better to name it hdptxphy0 other than
+hdptxphy_hdmi0, which will be referenced by both hdmi0 and edp0 nodes.
 
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ .../bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml   | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-index efbea5b67c89..423c61b7469f 100644
---- a/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-+++ b/drivers/phy/rockchip/phy-rockchip-samsung-hdptx.c
-@@ -82,14 +82,14 @@
- #define ROPLL_SSC_EN			BIT(0)
- /* CMN_REG(0081) */
- #define OVRD_PLL_CD_CLK_EN		BIT(8)
--#define PLL_CD_HSCLK_EAST_EN		BIT(0)
-+#define ANA_PLL_CD_HSCLK_EAST_EN	BIT(0)
- /* CMN_REG(0086) */
- #define PLL_PCG_POSTDIV_SEL_MASK	GENMASK(7, 4)
- #define PLL_PCG_CLK_SEL_MASK		GENMASK(3, 1)
- #define PLL_PCG_CLK_EN			BIT(0)
- /* CMN_REG(0087) */
--#define PLL_FRL_MODE_EN			BIT(3)
--#define PLL_TX_HS_CLK_EN		BIT(2)
-+#define ANA_PLL_FRL_MODE_EN		BIT(3)
-+#define ANA_PLL_TX_HS_CLK_EN		BIT(2)
- /* CMN_REG(0089) */
- #define LCPLL_ALONE_MODE		BIT(1)
- /* CMN_REG(0097) */
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
+index d8e761865f27..7a1ae31cc535 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,rk3588-dw-hdmi-qp.yaml
+@@ -156,7 +156,7 @@ examples:
+                      <GIC_SPI 172 IRQ_TYPE_LEVEL_HIGH 0>,
+                      <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH 0>;
+         interrupt-names = "avp", "cec", "earc", "main", "hpd";
+-        phys = <&hdptxphy_hdmi0>;
++        phys = <&hdptxphy0>;
+         power-domains = <&power RK3588_PD_VO1>;
+         resets = <&cru SRST_HDMITX0_REF>, <&cru SRST_HDMIHDP0>;
+         reset-names = "ref", "hdp";
 -- 
 2.34.1
 
