@@ -1,61 +1,82 @@
-Return-Path: <devicetree+bounces-140086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE09CA18315
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 18:38:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 279E9A18317
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 18:39:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08CB316383E
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 17:38:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE22E1887735
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 17:39:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B72331F7060;
-	Tue, 21 Jan 2025 17:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CF031F5427;
+	Tue, 21 Jan 2025 17:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BiqjL346"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ajfIfNQB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 894C41F667E;
-	Tue, 21 Jan 2025 17:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4166D1F238E;
+	Tue, 21 Jan 2025 17:38:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737481082; cv=none; b=Z4KABOKNPJEeyIx99VkXO5XLkzEIoWra2Z29+EkW6QxN7tkiijUmcIlbzG1V+/BngzoQBQSnTbLAtQHx4sQjCWRFp+35FhJBT4l0jpNTeQ3XbaUlcVN3xYfBR/MAw4HyV1ayCfsA/6Kx4SRf+3DTPmUwhznhJAdgb5MlHwGRWmo=
+	t=1737481140; cv=none; b=R7jlEZbMtjTT/f2qN3/3XXfXaw4wRzXytvQ7mxaT+N3V2UAqXjC7x7lhC7zcjYAgBzZyBsCv0AUUNJ12xUUIEdHNi8YHa64b9k6NFDU/AxAONV3IIC19u8qn4jzHM00lCPyNmM4mgpRzow2I/I0ToD9HnBzl2SpqtZLIgv1I8+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737481082; c=relaxed/simple;
-	bh=qxYcUeEcM4f/WwaTldAjO3e7nkHtWW2voiysZRTuWyY=;
+	s=arc-20240116; t=1737481140; c=relaxed/simple;
+	bh=t1rkrWpngB8qu0qIipVwW9LLPcWHKJVK6COBi/J1BpY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=POV7/oWzN43ik3sqzOmIP+/hPDoo08EOBDhf6dp07+QPLSBGCOtj+bbpxBa3fEnIrHNkVE7+I7IQgkOenGgCH1UHvf5KlVwogjgzlb3enGf3l8r9EHngleLlherSkj7GPOPXFc2O/Wc1nprbby/fiuAl9bAsR4n51A3Rz8EVHs0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BiqjL346; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4C7DC4CEE8;
-	Tue, 21 Jan 2025 17:37:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=b9Yh4rnex4izsp4Zithlj3SPk1xfd4SVwXA6hd9046MFab4GUOCO+2w/KXQ0+wE2CrOePas1g0xXH26c+AvBEoa2IWeKkAr2xuNmGszBUJdU+C4S4KpNEX8qluW13Vw4whLocKrYrzFbbKHqKpav/3MzgUvEaYtdYFREBVcxNWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ajfIfNQB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F280C4CEE0;
+	Tue, 21 Jan 2025 17:38:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737481082;
-	bh=qxYcUeEcM4f/WwaTldAjO3e7nkHtWW2voiysZRTuWyY=;
+	s=k20201202; t=1737481139;
+	bh=t1rkrWpngB8qu0qIipVwW9LLPcWHKJVK6COBi/J1BpY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BiqjL3468L/rV/VZWgzE7fFNVBAVmWixEgFEJuO/qHnWZz3k4gsJuoEJ5jKlM0Nmk
-	 5Lh4CPGnLppqeV3VxmOw3KGIfUtAGyiaUy2LGc/L9bIgsEQjvaPOo85ytwGEvSLwcR
-	 kMsroyU5/dJ7glmsEddr0q5Uiz5tiuNOT3Ux4lMkZT6/wjB8Pq/j+YtggxAFBPG2EA
-	 e6IQrHuiwYm7m2dmkipd/v8DUVpyIro7xQtpkcMkd7zPuux5Y0AViGthL3U+axMgT9
-	 +raz44MfTfWjRn2d8urRnVgfJ7oGhupX403TL+DzTLbZAEhhl68hpU0K3nJeR2IrU0
-	 5Oqp8/mF5j5OA==
-Date: Tue, 21 Jan 2025 17:37:57 +0000
+	b=ajfIfNQBvTue6CtD5VhVhF9/E2qk9jDjJhV0NzExcP2VkUx2aLsxcK11UR6pvlP0H
+	 olSn3FNnAN5QhBbvmrZ5pv6E+g7+a4dn9oacfDi6HGdT4S+Pz465IlabRPZzfAcr7m
+	 qsGjvYwD2qgU01EskQgB7xLgQzliLJEQaxRcBPhzrmaI9Er1z7M0zCEoZwLX0OGrT4
+	 QvCItcV3iN9LCLnrJ4CpMGluKkBd9Pc1VNM2PDVY2QVnZjjb0aH+sayIqrrxEsSZNN
+	 T/3MGzsyw+zHg9V3egoPLxPyR821zp63YIGFy422sATrTQznzlmwmEgVk9J0K1Tf5T
+	 amnyGMfni45hw==
+Date: Tue, 21 Jan 2025 17:38:53 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	linux-kernel@vger.kernel.org,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	pierre-henry.moussay@microchip.com,
+	valentina.fernandezalanis@microchip.com,
+	Michael Turquette <mturquette@baylibre.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: ASoC: rockchip: Add compatible for
- RK3588 SPDIF
-Message-ID: <20250121-spruce-lushness-28295dd0c1ed@spud>
-References: <20250120-rk3588-spdif-v1-0-1415f5871dc7@gmail.com>
- <20250120-rk3588-spdif-v1-1-1415f5871dc7@gmail.com>
+	Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-riscv@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 08/11] clk: move meson clk-regmap implementation to
+ common code
+Message-ID: <20250121-cheddar-kissing-bea27c6f2726@spud>
+References: <20241002-private-unequal-33cfa6101338@spud>
+ <20241002-hula-unwashed-1c4ddbadbec2@spud>
+ <2b49c4df-a34a-42c5-8d44-9e47da630fe8@linaro.org>
+ <1jwmiqsks3.fsf@starbuckisacylon.baylibre.com>
+ <20241003-tacking-ladylike-dfe2b633e647@spud>
+ <20241106-freefall-slider-db379b05821e@spud>
+ <430bde3b35382e640843e32a9f351326.sboyd@kernel.org>
+ <20241128-monstrous-embargo-a665d921410d@wendy>
+ <e53adbf9fdf6e3f142083b0d40d074ca.sboyd@kernel.org>
+ <20241206-threaten-showing-1214491f3899@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,34 +84,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7Eg+/63bRy/+Kd9J"
+	protocol="application/pgp-signature"; boundary="0nzZXl//t82IHPg6"
 Content-Disposition: inline
-In-Reply-To: <20250120-rk3588-spdif-v1-1-1415f5871dc7@gmail.com>
+In-Reply-To: <20241206-threaten-showing-1214491f3899@spud>
 
 
---7Eg+/63bRy/+Kd9J
+--0nzZXl//t82IHPg6
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 20, 2025 at 01:01:27PM +0400, Alexey Charkov wrote:
-> Add a compatible string for SPDIF on RK3588, which is similar to the
-> one on RK3568.
+Hey Stephen,
+
+Any thoughts on the example I gave below?
+
+On Fri, Dec 06, 2024 at 01:56:08PM +0000, Conor Dooley wrote:
+> On Tue, Dec 03, 2024 at 02:50:31PM -0800, Stephen Boyd wrote:
+> > Quoting Conor Dooley (2024-11-28 02:36:16)
+> > > On Thu, Nov 14, 2024 at 05:29:54PM -0800, Stephen Boyd wrote:
+> > > > Quoting Conor Dooley (2024-11-06 04:56:25)
+> > > > > My use case doesn't
+> > > > > actually need the registration code changes either as, currently,=
+ only reg
+> > > > > gets set at runtime, but leaving that out is a level of incomplet=
+e I'd not
+> > > > > let myself away with.
+> > > > > Obviously shoving the extra members into the clk structs has the =
+downside
+> > > > > of taking up a pointer and a offset worth of memory for each cloc=
+k of
+> > > > > that type registered, but it is substantially easier to support d=
+evices
+> > > > > with multiple regmaps that way. Probably moot though since the ap=
+proach you
+> > > > > suggested in the thread linked above that implements a clk_hw_get=
+_regmap()
+> > > > > has to store a pointer to the regmap's identifier which would tak=
+e up an
+> > > > > identical amount of memory.
+> > > >=20
+> > > > We don't need to store the regmap identifier in the struct clk. We =
+can
+> > > > store it in the 'struct clk_init_data' with some new field, and onl=
+y do
+> > > > that when/if we actually need to. We would need to pass the init da=
+ta to
+> > > > the clk_ops::init() callback though. We currently knock that out du=
+ring
+> > > > registration so that clk_hw->init is NULL. Probably we can just set=
+ that
+> > > > to NULL after the init routine runs in __clk_core_init().
+> > > >=20
+> > > > Long story short, don't add something to 'struct clk_core', 'struct
+> > > > clk', or 'struct clk_hw' for these details. We can have a 'struct
+> > > > clk_regmap_hw' that everyone else can build upon:
+> > > >=20
+> > > >   struct clk_regmap_hw {
+> > > >         struct regmap *regmap;
+> > > >         struct clk_hw hw;
+> > > >   };
+> > >=20
+> > > What's the point of this? I don't understand why you want to do this =
+over
+> > > what clk_divider et al already do, where clk_hw and the iomem pointer
+> > > are in the struct itself.
+> >=20
+> > Can you give an example? I don't understand what you're suggesting. I
+> > prefer a struct clk_regmap_hw like above so that the existing struct
+> > clk_hw in the kernel aren't increased by a pointer. SoC drivers can use
+> > the same struct as a replacement for their struct clk_hw member today.
 >=20
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> Best example I guess is to link what I did? This one is the core
+> changes:
+> https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
+=3Dsyscon-rework-2&id=3D35904222355e971c24b3eb9b9fad3dd0c38d1393
+> clk-gate has my original hack that I did while trying to figure out
+> what you wanted, clk-divider-regmap is a 99% copy of clk-divider with
+> the types, function names and readl()/writel() implementations modified.
+> Before your last set of comments I was doing something identical to the
+> clk-gate change for clk-divider also.
+> Here's the changes required to my driver to make it work with the
+> updated:
+> https://git.kernel.org/pub/scm/linux/kernel/git/conor/linux.git/commit/?h=
+=3Dsyscon-rework-2&id=3Dea40211fe20f8bc6ef0320b93e1baa5b3f244601
+> It's pretty much a drop in replacement, other than the additional
+> complexity in probe.
+>=20
+> Hopefully that either gets my point across or lets you spot why I don't
+> understand the benefit of a wrapper around clk_hw.
+>=20
+> Cheers,
+> Conor.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---7Eg+/63bRy/+Kd9J
+
+--0nzZXl//t82IHPg6
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4/bdQAKCRB4tDGHoIJi
-0v6dAQCdiL5ocP5h6iXJYNUPS5M6hVgkmbV3X0Xq5KqJOTTDFgD/WlsZAd3l0r8A
-u92LxGktYcLWsvIVxY2tyw5bxiafAQ0=
-=MnTB
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4/brQAKCRB4tDGHoIJi
+0nEMAP9cytqQKQB1hDGGUuuWB8kfRUG6ZyWTRYsNGzXuc2Ue7gEA8dAE6AfxgRC9
+ekDfb4tyAyN/mrt6sVTLQWKZX1CKqwg=
+=UWpp
 -----END PGP SIGNATURE-----
 
---7Eg+/63bRy/+Kd9J--
+--0nzZXl//t82IHPg6--
 
