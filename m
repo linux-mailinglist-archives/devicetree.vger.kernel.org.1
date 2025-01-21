@@ -1,89 +1,88 @@
-Return-Path: <devicetree+bounces-139951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B32CBA179C6
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 10:04:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3F63A179CA
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 10:04:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F151D7A43F8
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 09:03:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7E5147A483C
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 09:03:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E29621DF26F;
-	Tue, 21 Jan 2025 09:03:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFEF31BEF9D;
+	Tue, 21 Jan 2025 09:03:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OUZuLFpt"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="B3mJAkWt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F9221C3C04
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 09:03:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289991BEF82
+	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 09:03:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737450182; cv=none; b=QeHdqSVf9XWPonBSHbalpyVUspocLkMwR0zChf+Kjaczh1XDS5pjEobIQiKPebRM35FyGXFl5APZXBjVNdN/MqYJvNOjah0Jp6fT2D7CLPLY5uCvTvgh/h/Hqbhoy1ClXlYpTOC61QB+HKxhbGnv1eEf0mJ0kgmDrzuuYR1cYIM=
+	t=1737450188; cv=none; b=RAgNzhwE8SPiFEJFiJaQ78OBhFNkviOFYSx7/r5jBJZaovoHPadFPro6JKxn3J0Lkuf/8y4ASPrAOY+bbrwOutviX3K4IFSN3gtO3XremFmmDdK6+AxgRDEQ25joPa1yqK0nwW7U/Zta0VzMJHMiQaALxxHIt30lv4KWZIEtaW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737450182; c=relaxed/simple;
-	bh=Xw+VZv7plVVf84QWlAJzJ9vukaGc2f7dJdnQd/hTs+A=;
+	s=arc-20240116; t=1737450188; c=relaxed/simple;
+	bh=SYsZuISEFecO0dItPGcTh+FGUKWuxe8fmZZ5miNptNM=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BT7Eoai3UMCXuWlPbVSu+BjVYASHQygmFpx6vsKSIYeqaD73W8sKfeAt/ler2Ej/UK94Rn213hWIahqI0BZIg5qLq9rZLOkMVSG3WFVUBzl1i7ubU5wf2Sbl7C2RoJWchv5aSa/EzISGVgwQCQv35cogfAhtJ5PiJL3d9yJ/BW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OUZuLFpt; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:To:Cc; b=szXU83SotBGEYvcSFoRdLpOYmGc0lHIKjYti8H1W/JhWn383AdzjXW56fvRG7lJixpuWEj9vWNfIEjDWAJzkzAtUA3+vApcTpzkVTkPgL7Fx9Jrxh7gBxUN51l93jOsrSxJ1kD2AVNlaJz0csWI1I8VYothqVS9kUPnY/OYBhL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=B3mJAkWt; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50L8YjLH008407
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 09:03:00 GMT
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50L8YmQj021077
+	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 09:03:06 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	pV6pt4qdah3z0/Eheyvwkytw3y4c48rjsQ8GwVxVNIw=; b=OUZuLFpt76FkWi/0
-	lSTaobfuSfQGNbR1yx/86ir2vMSIAZbizyFrRk5gfxDkt3sBmoEsiM7WYEZ1DzHQ
-	z5cEXhMVIc4LsTbRlEwuSs+duG2THsc/8c65nxy+5Ra2yYDnwhlcxSx0nZyb76e1
-	/KkS/gIV5O473obCMofyR34m+LyRPyxdXTDzsrr/z1UVOpbXUSGW12WfqUho/Wxl
-	Jytx3LbZ8RT/FnmnJewa6Ht4XOfk4nsxCTfTLZrariKILjaABtk5AMa3974J6dm7
-	6uR/IGSqsq2leZyHQzUaoq3FE62G+bBXQ6kuU16Vc6kgA0vqJ/4uufHhmBpPrF7h
-	soyllg==
+	eOZ3Plf/84AprWUsku4OuoK1THEyxuBI7O10NByDcg8=; b=B3mJAkWtzM/x8hWW
+	TBNthaXJfnHpjPsJAQ52EhX2vOljdLRT/5ng6O0Ved3v5zU4Fy7Wf3RRcemTM13K
+	IB2LFHHLklMgq+BMwEritJ4f6UrUL+iVCz+SzeWtf62SuR1GPSHKSe9E/YnV5AOQ
+	CZ/Pg5IBEa1AarBDHyc0fayTpuYW+zdxQsY+BNeSb/SwCJDIHVUXZc55MShPFT6X
+	fCWYlt58EvBUwH8p/V7Vm4rTwGU/pTVSPUEpHfBFxaJ3xUgynwyT0gkqCyjjCdX5
+	WdQ0JBHzwoHgzztayW5oScwYhacXAvHp6FZxuPWFFUbOIyscRFRW0hMsY5oorisR
+	azvtNg==
 Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44a71nr87w-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44a7nt8598-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 09:03:00 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-21648c8601cso96126905ad.2
-        for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 01:03:00 -0800 (PST)
+	for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 09:03:06 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-216387ddda8so115450615ad.3
+        for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 01:03:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737450180; x=1738054980;
+        d=1e100.net; s=20230601; t=1737450185; x=1738054985;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=pV6pt4qdah3z0/Eheyvwkytw3y4c48rjsQ8GwVxVNIw=;
-        b=Rwr30D9JEkHbePp+G3kX5rR9mjELpyMfydNtk/CpEviN9Rfi2a20IyciX7UT2xUtI0
-         ulQSyBq1yIuqxCjo13mSCkBcQz4VuLqTxFkafNgg9wN6Jky8QIFcl5QV5TK5GKtKulQ0
-         aSk5AU575FGbDK4HzoB0m5KpVlhyxdIDnvRyCKNq7fd8Uz/QiSHCJ3h7wNotMlv9KjZW
-         4qX+p5d915xULCK7n2/KwZVnmqISi2kAQCutRuWB8sr8PCUqnFrzH8B5Uff14F0AdQ9J
-         TJfUJmjvEjZiwu4L2uibTaTO7NL2KyZjtjCJUoBb2fKaSezQiaR/R2VeQUsKVdvNv9gu
-         Fd3A==
-X-Forwarded-Encrypted: i=1; AJvYcCWBtUba/yE3rVvRtBxk9/5d1+BbgO73yozchogVpXkFzdbkfFuJ0aa6ZzXose9nPsfOBLMKt0vtaOX8@vger.kernel.org
-X-Gm-Message-State: AOJu0YwzMLbisiZjHqPr7j1b6Ce0Oln1w7FlFLfJ06iRc48akLlH+TFf
-	pm6JdOR47FRnIOwxXp+25gBn5d1G2nNjBex5IWke+God2xqGJxBSofubTMy3FocwM+PgMguQfCW
-	rrlHeliRGk460GiPGdzcDaXkUdI0HjyA1v84wu/fCGoYOkiOjGlnVkGRT7Afa
-X-Gm-Gg: ASbGncvmW9Od5HdynbZBmeRqMC2SYRcjuTrF50zXvgpftAIpM/JWCmzpHV7kuFDmrco
-	ZkYmGJgG/teERH4D3PC3vlAKlGVdULT5bKZu9g1+y8qa+sLJ2NDJ5spu9WSu7Lwj+/YgVZsWn+b
-	ZCIexx5iAQII+LDnOfawq3TD+iZQXEYglN1O//G23OYPViwqjKFEuW3Oh3pxss4i4Fx0EjH24Gy
-	PYjKT5bRmeBTfUm2jiInFzlPvkjHG/jZXps9xHZrWl/i8zct9DLBU6tUZiQ48b89N/AbFppUTRK
-	pH0NZ5ubS8Mx34a9zdEzenGlX5HHkQ==
-X-Received: by 2002:a05:6a20:9191:b0:1e6:8f10:8ba2 with SMTP id adf61e73a8af0-1eb2145eab3mr25538937637.9.1737450179684;
-        Tue, 21 Jan 2025 01:02:59 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFq4jA9iR+HQ4wqUBhnk2hj9HKSSdv87TbMdbKCo1JdvY3ee12qSYfiZQ6ZnHPzRacDwHWITw==
-X-Received: by 2002:a05:6a20:9191:b0:1e6:8f10:8ba2 with SMTP id adf61e73a8af0-1eb2145eab3mr25538906637.9.1737450179330;
-        Tue, 21 Jan 2025 01:02:59 -0800 (PST)
+        bh=eOZ3Plf/84AprWUsku4OuoK1THEyxuBI7O10NByDcg8=;
+        b=PJaug+/lvl8kdaBoVRcRXimR8LrDDi+OE05xIVGDYcEfjT5HIAV2jfze0HVBaAtX8c
+         ORyHzmtESkSjo3etoDzuUHV6qFdgO1us/6eTDGWy5C5WjmwuuxZTry02yM6RwK5Za5aN
+         2ij6iUsW9TFtL1Oy5Na2k89qB2/EZNbxUUiZptUccSZxzkrPF/dZh1mn0lOuslv0td2P
+         faWiEefOf88mMJOiuNMquRmL2mZQrgzDLaZ6xgbpqHImMmjIsFeY7pwWy6n9CZAqo91c
+         +mNwDpA4SKuXX9CLqofp32dK9LjRruyaRj3WgbcLS1zLanPuurtA1SeLIYR3I/SgGcsE
+         F4LQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUMpbuPWpn2MVn52jDr7+fi3XgdCa7HPeV2KcDjk5qBm2loscN/10ugmdUDuTo+97+l70ZGqgZtlPjU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSYfaPLvHC4uQ7HfbtAxZg+OtAcQp1SrCIftxnuAZR9/i/jdJn
+	cVtEiSoXgh9o0lF/IOoIFsIuSNCVB0zEA6iaULwmEQBgTxj0rfTETUmE3Q37jZW0xa5tFKsJPWZ
+	ot3ynCPja4E9Mf/MAau7xYlqaIudRhL09NjdUcC4pEbaeMMyS+RECbcdaHXV4
+X-Gm-Gg: ASbGncuVz15BIcqFjxVT5t+efXfZMeDs1WbKamCBTGiDdHpzczekLvXqsxMAm3bmBWQ
+	L8VCWzVgi350naDlvGL/2yneieFuOyrnPkgQNPrF8NDH+k0v6fKwBtFXXmcE1g9D9gtHjhDk9Ry
+	gD0gciVXWccgOQKu0trcHdh4P9PLuVUFxakuy7QfI2BsoKqKlTsi/ilUayOg6VVoQeV3HixuqPi
+	DFjTGZmsOVgFSJZRueNeTLJzyjVe0758jQufVE32QSZZoqmMLZymHA6+p/oa7kHMZP0HrrZt49W
+	ZEJDpVW6iqqXFTFgUsZb/SM/DqgHlg==
+X-Received: by 2002:a05:6a20:8411:b0:1e7:6f82:3217 with SMTP id adf61e73a8af0-1eb21465271mr27970422637.3.1737450185307;
+        Tue, 21 Jan 2025 01:03:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG5nSAM5QzodXybMi2iaVHKZxs+l70Dc/9p0XVegeXDrRJqIZpS5gvWGKnoipjrpUg4LEYJyw==
+X-Received: by 2002:a05:6a20:8411:b0:1e7:6f82:3217 with SMTP id adf61e73a8af0-1eb21465271mr27970361637.3.1737450184797;
+        Tue, 21 Jan 2025 01:03:04 -0800 (PST)
 Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72dabaa6407sm8528378b3a.163.2025.01.21.01.02.54
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72dabaa6407sm8528378b3a.163.2025.01.21.01.02.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 21 Jan 2025 01:02:59 -0800 (PST)
+        Tue, 21 Jan 2025 01:03:04 -0800 (PST)
 From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Date: Tue, 21 Jan 2025 14:32:21 +0530
-Subject: [PATCH v3 3/4] PCI: dwc: Reduce DT reads by allocating host bridge
- via DWC glue driver
+Date: Tue, 21 Jan 2025 14:32:22 +0530
+Subject: [PATCH v3 4/4] PCI: qcom: Enable ECAM feature
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,7 +91,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250121-enable_ecam-v3-3-cd84d3b2a7ba@oss.qualcomm.com>
+Message-Id: <20250121-enable_ecam-v3-4-cd84d3b2a7ba@oss.qualcomm.com>
 References: <20250121-enable_ecam-v3-0-cd84d3b2a7ba@oss.qualcomm.com>
 In-Reply-To: <20250121-enable_ecam-v3-0-cd84d3b2a7ba@oss.qualcomm.com>
 To: cros-qcom-dts-watchers@chromium.org,
@@ -111,64 +110,190 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Krishna chaitanya chundru <quic_krichai@quicinc.com>,
         Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1737450158; l=1397;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1737450158; l=6085;
  i=krishna.chundru@oss.qualcomm.com; s=20230907; h=from:subject:message-id;
- bh=Xw+VZv7plVVf84QWlAJzJ9vukaGc2f7dJdnQd/hTs+A=;
- b=BElUgXGJQRQdQipipRbIH+0DLZUc3m6PjRIiLH0rOcHdwbcrpRc0dEZIRLCA5fC48k37qSi6U
- QNiCP3PX6iaAkfHHSwQxX2AI5jh6fIOLDqxaRJxGkP82UxiQ0DWPlDV
+ bh=SYsZuISEFecO0dItPGcTh+FGUKWuxe8fmZZ5miNptNM=;
+ b=p9XGrDGYA4obTxWFaM73hglJIADgYJyxj/Nbw8xvcyDFQ+Hx+KvqJiKtK1EaTov8mEMduaNQQ
+ WqIMKO9lEopDP05rP5U++OYA5rbS8Dnt1mteEhUq/+wrFV7/S9BfY0S
 X-Developer-Key: i=krishna.chundru@oss.qualcomm.com; a=ed25519;
  pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-Proofpoint-GUID: 8oeF4CWU2_Deol4Fw55VMCkQcCNmZxYw
-X-Proofpoint-ORIG-GUID: 8oeF4CWU2_Deol4Fw55VMCkQcCNmZxYw
+X-Proofpoint-ORIG-GUID: udiWcm7uTKOmEIy17FSHj0Jpu67iVrd1
+X-Proofpoint-GUID: udiWcm7uTKOmEIy17FSHj0Jpu67iVrd1
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-01-21_04,2025-01-21_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- mlxscore=0 clxscore=1015 phishscore=0 mlxlogscore=863 malwarescore=0
- impostorscore=0 lowpriorityscore=0 spamscore=0 priorityscore=1501
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ suspectscore=0 malwarescore=0 spamscore=0 adultscore=0 priorityscore=1501
+ impostorscore=0 lowpriorityscore=0 bulkscore=0 mlxlogscore=999
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.19.0-2411120000 definitions=main-2501210074
 
-Allow DWC glue drivers to allocate the host bridge, avoiding redundant
-device tree reads primarily in dw_pcie_ecam_supported().
+The ELBI registers falls after the DBI space, PARF_SLV_DBI_ELBI register
+gives us the offset from which ELBI starts. so use this offset and cfg
+win to map these regions instead of doing the ioremap again.
+
+On root bus, we have only the root port. Any access other than that
+should not go out of the link and should return all F's. Since the iATU
+is configured for the buses which starts after root bus, block the
+transactions starting from function 1 of the root bus to the end of
+the root bus (i.e from dbi_base + 4kb to dbi_base + 1MB) from going
+outside the link through ECAM blocker through PARF registers.
 
 Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 ---
- drivers/pci/controller/dwc/pcie-designware-host.c | 13 +++++++------
- 1 file changed, 7 insertions(+), 6 deletions(-)
+ drivers/pci/controller/dwc/pcie-qcom.c | 81 ++++++++++++++++++++++++++++++++--
+ 1 file changed, 77 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-index 3888f9fe5af1..0acf9db44f2c 100644
---- a/drivers/pci/controller/dwc/pcie-designware-host.c
-+++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-@@ -484,8 +484,8 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
- 	struct device *dev = pci->dev;
- 	struct device_node *np = dev->of_node;
- 	struct platform_device *pdev = to_platform_device(dev);
-+	struct pci_host_bridge *bridge = pp->bridge;
- 	struct resource_entry *win;
--	struct pci_host_bridge *bridge;
- 	struct resource *res;
- 	int ret;
+diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+index dc102d8bd58c..cf94718d3059 100644
+--- a/drivers/pci/controller/dwc/pcie-qcom.c
++++ b/drivers/pci/controller/dwc/pcie-qcom.c
+@@ -52,6 +52,7 @@
+ #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
+ #define PARF_Q2A_FLUSH				0x1ac
+ #define PARF_LTSSM				0x1b0
++#define PARF_SLV_DBI_ELBI			0x1b4
+ #define PARF_INT_ALL_STATUS			0x224
+ #define PARF_INT_ALL_CLEAR			0x228
+ #define PARF_INT_ALL_MASK			0x22c
+@@ -61,6 +62,17 @@
+ #define PARF_DBI_BASE_ADDR_V2_HI		0x354
+ #define PARF_SLV_ADDR_SPACE_SIZE_V2		0x358
+ #define PARF_SLV_ADDR_SPACE_SIZE_V2_HI		0x35c
++#define PARF_BLOCK_SLV_AXI_WR_BASE		0x360
++#define PARF_BLOCK_SLV_AXI_WR_BASE_HI		0x364
++#define PARF_BLOCK_SLV_AXI_WR_LIMIT		0x368
++#define PARF_BLOCK_SLV_AXI_WR_LIMIT_HI		0x36c
++#define PARF_BLOCK_SLV_AXI_RD_BASE		0x370
++#define PARF_BLOCK_SLV_AXI_RD_BASE_HI		0x374
++#define PARF_BLOCK_SLV_AXI_RD_LIMIT		0x378
++#define PARF_BLOCK_SLV_AXI_RD_LIMIT_HI		0x37c
++#define PARF_ECAM_BASE				0x380
++#define PARF_ECAM_BASE_HI			0x384
++
+ #define PARF_NO_SNOOP_OVERIDE			0x3d4
+ #define PARF_ATU_BASE_ADDR			0x634
+ #define PARF_ATU_BASE_ADDR_HI			0x638
+@@ -84,6 +96,7 @@
  
-@@ -497,11 +497,12 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
- 		return -ENODEV;
+ /* PARF_SYS_CTRL register fields */
+ #define MAC_PHY_POWERDOWN_IN_P2_D_MUX_EN	BIT(29)
++#define PCIE_ECAM_BLOCKER_EN			BIT(26)
+ #define MST_WAKEUP_EN				BIT(13)
+ #define SLV_WAKEUP_EN				BIT(12)
+ #define MSTR_ACLK_CGC_DIS			BIT(10)
+@@ -294,15 +307,60 @@ static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
+ 	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
+ }
+ 
++static int qcom_pci_config_ecam(struct dw_pcie_rp *pp)
++{
++	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
++	struct qcom_pcie *pcie = to_qcom_pcie(pci);
++	u64 addr, addr_end;
++	u32 val;
++
++	/* Set the ECAM base */
++	writel(lower_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE);
++	writel(upper_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE_HI);
++
++	/*
++	 * The only device on root bus is the Root Port. Any access other than that
++	 * should not go out of the link and should return all F's. Since the iATU
++	 * is configured for the buses which starts after root bus, block the transactions
++	 * starting from function 1 of the root bus to the end of the root bus (i.e from
++	 * dbi_base + 4kb to dbi_base + 1MB) from going outside the link.
++	 */
++	addr = pci->dbi_phys_addr + SZ_4K;
++	writel(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE);
++	writel(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE_HI);
++
++	writel(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE);
++	writel(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE_HI);
++
++	addr_end = pci->dbi_phys_addr + SZ_1M - 1;
++
++	writel(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT);
++	writel(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT_HI);
++
++	writel(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT);
++	writel(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT_HI);
++
++	val = readl(pcie->parf + PARF_SYS_CTRL);
++	val |= PCIE_ECAM_BLOCKER_EN;
++	writel(val, pcie->parf + PARF_SYS_CTRL);
++	return 0;
++}
++
+ static int qcom_pcie_start_link(struct dw_pcie *pci)
+ {
+ 	struct qcom_pcie *pcie = to_qcom_pcie(pci);
++	int ret;
+ 
+ 	if (pcie_link_speed[pci->max_link_speed] == PCIE_SPEED_16_0GT) {
+ 		qcom_pcie_common_set_16gt_equalization(pci);
+ 		qcom_pcie_common_set_16gt_lane_margining(pci);
  	}
  
--	bridge = devm_pci_alloc_host_bridge(dev, 0);
--	if (!bridge)
--		return -ENOMEM;
--
--	pp->bridge = bridge;
-+	if (!pp->bridge) {
-+		bridge = devm_pci_alloc_host_bridge(dev, 0);
-+		if (!bridge)
-+			return -ENOMEM;
-+		pp->bridge = bridge;
++	if (pci->pp.ecam_mode) {
++		ret = qcom_pci_config_ecam(&pci->pp);
++		if (ret)
++			return ret;
 +	}
+ 	/* Enable Link Training state machine */
+ 	if (pcie->cfg->ops->ltssm_enable)
+ 		pcie->cfg->ops->ltssm_enable(pcie);
+@@ -1233,6 +1291,7 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+ {
+ 	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+ 	struct qcom_pcie *pcie = to_qcom_pcie(pci);
++	u16 offset;
+ 	int ret;
  
- 	pp->cfg0_size = resource_size(res);
- 	pp->cfg0_base = res->start;
+ 	qcom_ep_reset_assert(pcie);
+@@ -1241,6 +1300,11 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+ 	if (ret)
+ 		return ret;
+ 
++	if (pp->ecam_mode) {
++		offset = readl(pcie->parf + PARF_SLV_DBI_ELBI);
++		pcie->elbi = pci->dbi_base + offset;
++	}
++
+ 	ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
+ 	if (ret)
+ 		goto err_deinit;
+@@ -1613,6 +1677,13 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+ 	pci->ops = &dw_pcie_ops;
+ 	pp = &pci->pp;
+ 
++	pp->bridge = devm_pci_alloc_host_bridge(dev, 0);
++	if (!pp->bridge) {
++		ret = -ENOMEM;
++		goto err_pm_runtime_put;
++	}
++
++	pci->pp.ecam_mode = dw_pcie_ecam_supported(pp);
+ 	pcie->pci = pci;
+ 
+ 	pcie->cfg = pcie_cfg;
+@@ -1629,10 +1700,12 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+ 		goto err_pm_runtime_put;
+ 	}
+ 
+-	pcie->elbi = devm_platform_ioremap_resource_byname(pdev, "elbi");
+-	if (IS_ERR(pcie->elbi)) {
+-		ret = PTR_ERR(pcie->elbi);
+-		goto err_pm_runtime_put;
++	if (!pp->ecam_mode) {
++		pcie->elbi = devm_platform_ioremap_resource_byname(pdev, "elbi");
++		if (IS_ERR(pcie->elbi)) {
++			ret = PTR_ERR(pcie->elbi);
++			goto err_pm_runtime_put;
++		}
+ 	}
+ 
+ 	/* MHI region is optional */
 
 -- 
 2.34.1
