@@ -1,113 +1,99 @@
-Return-Path: <devicetree+bounces-140079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 019DDA182C7
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 18:21:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D51E1A182D2
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 18:25:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C6C416B747
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 17:20:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 109441608F4
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 17:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F21081EE02F;
-	Tue, 21 Jan 2025 17:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1413C1F4E43;
+	Tue, 21 Jan 2025 17:25:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GRXxJQ4L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="deGKfUGw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 001371F4727;
-	Tue, 21 Jan 2025 17:20:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9981187FE4;
+	Tue, 21 Jan 2025 17:25:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737480054; cv=none; b=iaTKwdgS7o4HXuc4nyq8GvD6wIneXpi8ex3rpUM4LX5KhSLhySVoEtfsSIWQIq/qFDai5OQOHxTqAyfxl+QeUVvGf7ZtkDrBcSlYURiS6lLfForYRnywPmMPzevUg43YO3Y4Wozdv8ms+7Vt63+HUAd53FNRWJ8NzMLVrjQ+dNI=
+	t=1737480309; cv=none; b=H8rjHudL60d6i8bk3szUGBUV9A6/2LaNebZdncYHhSLyivExcUH+zhX/ZOAfMiNIxU3YDDVAlC3uu2t1kv++ooP+JBPAE6pAeDJfQeXVdTpR0JinruXor5rLm+PwcK2aN3THoWy4yH0FnAMpIjO3Fx6czk/ag8nnsCuBvvgM0uM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737480054; c=relaxed/simple;
-	bh=awQsp/zga7f9a/85M78VuqjOd6AVQILOYmdeMCjgkoI=;
+	s=arc-20240116; t=1737480309; c=relaxed/simple;
+	bh=S3W7a9VUjLLF7r1+nzcT41cJzX0iut4Kv6V0hvau/Ok=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lj6envgAArS/ls1hqry5nPDsA4xjNrhXeaG6O3Zd6EtBBVR21W+L11vTsVgXb2rpIXR3uRBvoKCGO42tcTuBZduyj0eObhHRnkUKio1ic9sS4BaaShq4ngKQOPB5r4EdMTBVESgj5n+2rOMVQtvwh/Goj3mN0UckBg32Vb/WJfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GRXxJQ4L; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=cfxHIP2j1h5TjSDYNb52YqchEUxPxLg0EzNjEnekIY0=; b=GRXxJQ4LdAcU77S49gb/McXylm
-	wGu48QsKPDJ8A3s6VtzXXKTgxQbxucgXzN7JzcOtUs9RE17Yn75khm2QFbQAAry5YXLmqLYV+PIKk
-	QdT4sOMZxW0v83+CJcFsiLPxF55e1E/elrHpvCHmimZjErMJ9ymcDd+SCNi9NSmNw1r4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1taHvZ-006hXW-Kq; Tue, 21 Jan 2025 18:20:37 +0100
-Date: Tue, 21 Jan 2025 18:20:37 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Yijie Yang <quic_yijiyang@quicinc.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=sUtqPX1wK73lRTm/Y0BF7CEnDRcHV4rQ73dX03S3zWWOKOrMd4GYqKZB0Ig3+lpcWeHpDFfTiUDBPIOVrK8cU3yyd/usXUTbfNpGu462wQxGpFK24dwtGbQ6U/3LjMsCGmisZBInhkhMNm6tj0boiAEeKUlUwpq4bBEFi4rnEzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=deGKfUGw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D646DC4CEDF;
+	Tue, 21 Jan 2025 17:25:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737480308;
+	bh=S3W7a9VUjLLF7r1+nzcT41cJzX0iut4Kv6V0hvau/Ok=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=deGKfUGw/ZU86f8kQ56115ihAYlfj/xC/2OsTd60Tf9VQse+n7Qh8lA6w//xdYtPI
+	 7TeARxhNzyiB3tXaP+hHCeXxlaw037M4XIvJ1pUl0CPaZQGaMjAr7Arsd1HjBg5byU
+	 YoCqRv0vM6+Mo186lfv/AsHSIXQEgtKfCwzFpTion+WbRx5YajmcMPrWZWMw1jO+H6
+	 G4IUXmyCDHu6InHsWlfA9i7vlI4aKxguy+rrUsVXNIS17DfrdmWBW0S0BZrDv8Vomd
+	 gXbHy5f6qM2Pv76spGxPOyn1ri9n69ul84Fr5+tp9IGttFQxkkqkyeRys7LW/KVIJc
+	 FFXQ6UwI2Y1gA==
+Date: Tue, 21 Jan 2025 17:25:03 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	Rob Herring <robh@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/4] net: stmmac: dwmac-qcom-ethqos: Mask PHY mode if
- configured with rgmii-id
-Message-ID: <717d77d1-43a4-4914-8d7d-a70c89cb1822@lunn.ch>
-References: <20250121-dts_qcs615-v3-0-fa4496950d8a@quicinc.com>
- <20250121-dts_qcs615-v3-2-fa4496950d8a@quicinc.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Mathias Nyman <mathias.nyman@intel.com>, linux-usb@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: usb: mtu3: add support mt8196
+Message-ID: <20250121-monotone-almost-6783e9b84c79@spud>
+References: <20250121145008.22936-1-chunfeng.yun@mediatek.com>
+ <20250121145008.22936-2-chunfeng.yun@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="JmWqviSEfWIjwwOl"
+Content-Disposition: inline
+In-Reply-To: <20250121145008.22936-2-chunfeng.yun@mediatek.com>
+
+
+--JmWqviSEfWIjwwOl
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250121-dts_qcs615-v3-2-fa4496950d8a@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 21, 2025 at 03:54:54PM +0800, Yijie Yang wrote:
-> The Qualcomm board always chooses the MAC to provide the delay instead of
-> the PHY, which is completely opposite to the suggestion of the Linux
-> kernel. The usage of phy-mode in legacy DTS was also incorrect. Change the
-> phy_mode passed from the DTS to the driver from PHY_INTERFACE_MODE_RGMII_ID
-> to PHY_INTERFACE_MODE_RGMII to ensure correct operation and adherence to
-> the definition.
-> To address the ABI compatibility issue between the kernel and DTS caused by
-> this change, handle the compatible string 'qcom,qcs404-evb-4000' in the
-> code, as it is the only legacy board that mistakenly uses the 'rgmii'
-> phy-mode.
-> 
-> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
-> ---
->  .../net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c    | 18 +++++++++++++-----
->  1 file changed, 13 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> index 2a5b38723635b5ef9233ca4709e99dd5ddf06b77..e228a62723e221d58d8c4f104109e0dcf682d06d 100644
-> --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> @@ -401,14 +401,11 @@ static int ethqos_dll_configure(struct qcom_ethqos *ethqos)
->  static int ethqos_rgmii_macro_init(struct qcom_ethqos *ethqos)
->  {
->  	struct device *dev = &ethqos->pdev->dev;
-> -	int phase_shift;
-> +	int phase_shift = 0;
->  	int loopback;
->  
->  	/* Determine if the PHY adds a 2 ns TX delay or the MAC handles it */
+On Tue, Jan 21, 2025 at 10:50:06PM +0800, Chunfeng Yun wrote:
+> There are three USB controllers on mt8196, each controller's wakeup
+> control is different, add some specific versions for them, and add
+> compatilbe for mt8196.
+>=20
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 
-Please think about this comment.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-       Andrew
+--JmWqviSEfWIjwwOl
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ4/YbwAKCRB4tDGHoIJi
+0i7jAQCavjjyh+Qpp+QoqcLU0QVGsL9cjBas1QZbQvg6DipQEwEA+jjel9pmIqcl
+5rxZsQgBc1z2KT8MvA2RTt9FTHXj0gc=
+=yG5o
+-----END PGP SIGNATURE-----
+
+--JmWqviSEfWIjwwOl--
 
