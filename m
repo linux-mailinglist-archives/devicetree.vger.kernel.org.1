@@ -1,114 +1,154 @@
-Return-Path: <devicetree+bounces-139880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-139881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 294AFA17648
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 04:36:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE523A1764A
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 04:39:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39D0C3A4256
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 03:36:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B10116A5D0
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 03:39:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 503D9153BD7;
-	Tue, 21 Jan 2025 03:36:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="ZntfaLit"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05C71154C00;
+	Tue, 21 Jan 2025 03:39:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731103.qiye.163.com (mail-m19731103.qiye.163.com [220.197.31.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC6948F58;
-	Tue, 21 Jan 2025 03:36:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.103
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FE548F58;
+	Tue, 21 Jan 2025 03:39:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737430610; cv=none; b=ns8aPxslWylFKb8pkegUmfBilI0/3ygdZExHnZIjYk0QPMSre4h2csVXpFhMU41DjRfgtZ3zRvEJvHXYdFt5l+epVlBVAGnW2MewzNrLkZkg2i+YiOuVVh+MRdAdAKxH4qzcBKwQGQRPOa2KuQWEV1rXlhd43Jyce+r8XBZhsRo=
+	t=1737430744; cv=none; b=tAWvKxtYCCToo2iC/ELJCRQfqk5RJh0eN8VefSkO0mZ3huOIoGJhlwbX+NbrOQZX2lG5xF2jp6rhtHBeThObov0MIhZCG5B5BZ7uzf57g6llQgAX3vZWJMK3rDNTBrzuuek0oV5qfFVKNnWQP5Ekp/u8SyqbIOMcX/kdP2nDnUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737430610; c=relaxed/simple;
-	bh=N2A3lf9fkpBeWFLhv8dlYUWCGEJ0ylvivEzzwB5kZAA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=ZekPyTB4QABSRJDJFwm8vDJ71dc4SXsP3pClhy4I7uj2NHesNNlHdXTS4p1yjizfog4+eBcFLYe0abSvbsDyBzNGAVvfPEcIUhrlzy+AXeC3EvCdSMnAWqcIVaPhDyOmJcXX6M/Pqv57/oFWJhEPOft4vpuW3haYfJktytZWGCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=ZntfaLit; arc=none smtp.client-ip=220.197.31.103
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 93fdceb3;
-	Tue, 21 Jan 2025 11:01:11 +0800 (GMT+08:00)
-From: Shawn Lin <shawn.lin@rock-chips.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	"James E . J . Bottomley" <James.Bottomley@HansenPartnership.com>,
-	"Martin K . Petersen" <martin.petersen@oracle.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	"Rafael J . Wysocki" <rafael@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Avri Altman <avri.altman@wdc.com>,
-	Bart Van Assche <bvanassche@acm.org>,
-	YiFeng Zhao <zyf@rock-chips.com>,
-	Liang Chen <cl@rock-chips.com>,
-	linux-scsi@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-pm@vger.kernel.org,
-	Shawn Lin <shawn.lin@rock-chips.com>
-Subject: [PATCH v6 2/7] soc: rockchip: add header for suspend mode SIP interface
-Date: Tue, 21 Jan 2025 11:00:22 +0800
-Message-Id: <1737428427-32393-3-git-send-email-shawn.lin@rock-chips.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1737428427-32393-1-git-send-email-shawn.lin@rock-chips.com>
-References: <1737428427-32393-1-git-send-email-shawn.lin@rock-chips.com>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkhIS1YYSktMGU9OTEoYGElWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a9486ce901309cckunm93fdceb3
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mj46Iio4DjILDjURDhQJE0Mv
-	MBAaCUpVSlVKTEhMT0lDT0xIT0lOVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUJCTTcG
-DKIM-Signature:a=rsa-sha256;
-	b=ZntfaLit/Ng3eN3IHMuaijfJr4+Y/fb2vJe79da64JdeUDHg5kAXyVht4HliOqMuBbhs4EEMsszswEYVnfWt2MUmurOE6IMPtHuXkRWpdsp6MjL+eIYTxwWHkJGdo3oQh7ad9/zfv31Xji/K18aTpQTOI7ePOkC/hoHSYxbaVX0=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=8+W942VRkD9KzsoBrCz1dgz/NW1wjNVf0le2KbBegUg=;
-	h=date:mime-version:subject:message-id:from;
+	s=arc-20240116; t=1737430744; c=relaxed/simple;
+	bh=cW9ltewJeTOGIc+huI01BZ5b49aReSytJfBf7xeiGMU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=bC1a9+RW695zSvTYz63kojWTBFzWjIhjCQLLEnSjLzIlc2MCoStKzi2LJ+JbC89+oRICdeW4rNO4xJ/jny12xNVoJPEmHQErDbGBDWPFIEUCLcS/0UTsHO84WmTHXCV1jtpASLQQwBL9s6Pk9t0MIAKLH0dIFz/IyJJDvDklWY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from [127.0.0.1] (unknown [116.227.99.159])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id 0EA35342F65;
+	Tue, 21 Jan 2025 03:38:56 +0000 (UTC)
+From: Yixun Lan <dlan@gentoo.org>
+Subject: [PATCH v4 0/4] riscv: spacemit: add gpio support for K1 SoC
+Date: Tue, 21 Jan 2025 11:38:10 +0800
+Message-Id: <20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKIWj2cC/2XOQWrDMBCF4asErasyM5IlK6veo3RhWSNHlFiJ7
+ JqW4LtXcaDEdPkGvp+5iYlL4kkcDzdReElTymMd+uUg+lM3DixTqFsQkIaWWglKfqIcLilLgz4
+ 6ig4U9aKCS+GYvrfY+8djF75+1eb8OArfTSz7fD6n+XhQwVIwoLrYWartBpAdWMMcDDI0CpVyH
+ Ftxb53SNOfys/254BbbXnKgn19aUII0YIk9c98xvA08zjm/5jJsnYX+LBK6naVqqdVax0CEffh
+ n1ZOlZmfV3Vrvrdcag6GdXdf1F5nB+6ZpAQAA
+X-Change-ID: 20240828-03-k1-gpio-61bf92f9032c
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>
+Cc: Yangyu Chen <cyy@cyyself.name>, Jisheng Zhang <jszhang@kernel.org>, 
+ Jesse Taube <mr.bossman075@gmail.com>, 
+ Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
+ Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, Yixun Lan <dlan@gentoo.org>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2853; i=dlan@gentoo.org;
+ h=from:subject:message-id; bh=cW9ltewJeTOGIc+huI01BZ5b49aReSytJfBf7xeiGMU=;
+ b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBnjxbARUufveWx5vLgRnoT4kGy+jV68rvs26ofq
+ IOn5h+eMk+JApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCZ48WwF8UgAAAAAAuAChp
+ c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
+ CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277UjrD/wNliGIyE9tgkWm+i
+ bSR18VfQyitKEGYo6EAFDDrTkYoPXjrMeUBvyaDwBKpwaPqvrCnhbiJ7VwYpUSMB6jZHKLQPmdS
+ dNly9r2wSLUAJGrqW9A9aqmqnF6rcIWJ6wjejDCfgZtRZO0u0YQMxq24qaM96eQ+X68zMIi6avJ
+ yLMtrXwC+3cqpXeF3hPNCHM7qvny61oLxV1PGts1NWA3DFiggyUAJBBxlJw5HGbghB/N+6AHfrh
+ 9QUM8d/ggZ2mRCYvh1aZiB600LEGJLZBw8b098tKw4ds4wIJB23IBnaiyghS5eQcaMnLpyRjHL0
+ f9DUclC30pA56j0+GZcSdViXkS6/T0mA5NvupVnRR5qnvwFO3AA41Nm3J5zH++fcvI2udelMCUp
+ bV/1oqeS8fZ5H439CI85uZCEwja4MfDZHV9Xebo/O28YdsGpBXCnMz+8vE0Ir50lnBT7axPLJaK
+ hlrHCpYqxjmCIy9CeIteoyGfrL93cVPrUd7sKl1Kop+kKY/4d2csR6bVschN34L9YsmxpHGLIkt
+ Tkdva81Ov2XNLJXLxx7K08A6SwZye0/tJ293bUfMOI7MPbZ8pl4UP191yPhB63vNrzm/mIO6i9O
+ HwwrtiyvPOvvR4lpgIgfNFOAPE39FtVSMxf1AJdlnEVGe/qJFTA95Tq4CPktDG0k0BGA==
+X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
+ fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 
-Add ROCKCHIP_SIP_SUSPEND_MODE to pass down parameters to Trusted Firmware
-in order to decide suspend mode. Currently only add ROCKCHIP_SLEEP_PD_CONFIG
-which teaches firmware to power down controllers or not.
+The gpio controller of K1 support basic GPIO functions,
+which capable of enabling as input, output. It can also be used
+as GPIO interrupt which able to detect rising edge, falling edge,
+or both. There are four GPIO ports, each consisting of 32 pins and
+has indepedent register sets, while still sharing IRQ line and clocks.
 
-Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+The GPIO controller request the clock source from APBC block,
+In this series, I haven't added the clock support, but plan
+to fix it after clock driver is merged.
+
+Due to first three GPIO ports has interleave register settings, some
+resources (IRQ, clock) are shared by all pins, so all GPIO ports have
+been organized as sub nodes in the device tree.
+
+The GPIO docs of K1 SoC can be found here, chapter 16.4 GPIO [1]
+
+Note, this patch is based on 'for-next' branch of SpacemiT's SoC tree [4],
+due to there is DT dependency.
+
+This patch series has been tested on Bananapi-F3 board,
+with following GPIO cases passed:
+ 1) gpio input
+ 2) gpio output - set to high, low
+ 3) gpio interrupt - rising trigger, falling trigger, both edge trigger
+
+Link: https://developer.spacemit.com/documentation?token=Rn9Kw3iFHirAMgkIpTAcV2Arnkf [1]
+Link: https://lore.kernel.org/all/20240730-k1-01-basic-dt-v5-0-98263aae83be@gentoo.org [2]
+Link: https://lore.kernel.org/all/20241016-02-k1-pinctrl-v5-0-03d395222e4f@gentoo.org/ [3]
+Link: https://github.com/spacemit-com/linux [4]
+Signed-off-by: Yixun Lan <dlan@gentoo.org>
 ---
+Changes in v4:
+- gpio: re-construct gpio as four independent ports, also leverage gpio mmio API
+- gpio interrupt: convert to generic gpio irqchip
+- Link to v3: https://lore.kernel.org/r/20241225-03-k1-gpio-v3-0-27bb7b441d62@gentoo.org
 
-Changes in v6: None
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
-Changes in v2: None
+Changes in v3:
+- dt: drop ranges, interrupt-names property
+- Link to v2: https://lore.kernel.org/r/20241219-03-k1-gpio-v2-0-28444fd221cd@gentoo.org
 
- include/soc/rockchip/rockchip_sip.h | 3 +++
- 1 file changed, 3 insertions(+)
+Changes in v2:
+- address dt-bindings comments, simplify example
+- rebase to 6.13-rc3 
+- Link to v1: https://lore.kernel.org/r/20240904-03-k1-gpio-v1-0-6072ebeecae0@gentoo.org
 
-diff --git a/include/soc/rockchip/rockchip_sip.h b/include/soc/rockchip/rockchip_sip.h
-index c46a9ae..501ad1f 100644
---- a/include/soc/rockchip/rockchip_sip.h
-+++ b/include/soc/rockchip/rockchip_sip.h
-@@ -6,6 +6,9 @@
- #ifndef __SOC_ROCKCHIP_SIP_H
- #define __SOC_ROCKCHIP_SIP_H
- 
-+#define ROCKCHIP_SIP_SUSPEND_MODE		0x82000003
-+#define ROCKCHIP_SLEEP_PD_CONFIG		0xff
-+
- #define ROCKCHIP_SIP_DRAM_FREQ			0x82000008
- #define ROCKCHIP_SIP_CONFIG_DRAM_INIT		0x00
- #define ROCKCHIP_SIP_CONFIG_DRAM_SET_RATE	0x01
+---
+Yixun Lan (4):
+      dt-bindings: gpio: spacemit: add support for K1 SoC
+      gpio: spacemit: add support for K1 SoC
+      riscv: dts: spacemit: add gpio support for K1 SoC
+      riscv: dts: spacemit: add gpio LED for system heartbeat
+
+ .../devicetree/bindings/gpio/spacemit,k1-gpio.yaml | 116 ++++++++
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |  11 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi               |  55 ++++
+ drivers/gpio/Kconfig                               |   7 +
+ drivers/gpio/Makefile                              |   1 +
+ drivers/gpio/gpio-spacemit-k1.c                    | 295 +++++++++++++++++++++
+ 6 files changed, 485 insertions(+)
+---
+base-commit: 3d72d603afa72082501e9076eed61e0531339ef8
+change-id: 20240828-03-k1-gpio-61bf92f9032c
+
+Best regards,
 -- 
-2.7.4
+Yixun Lan
 
 
