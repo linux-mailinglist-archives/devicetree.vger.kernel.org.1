@@ -1,134 +1,103 @@
-Return-Path: <devicetree+bounces-140031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140022-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E933A17D76
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 13:03:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA6C5A17D43
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:54:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4856188BCE9
-	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 12:03:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75D901885537
+	for <lists+devicetree@lfdr.de>; Tue, 21 Jan 2025 11:54:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B22131F1928;
-	Tue, 21 Jan 2025 12:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F06781F151B;
+	Tue, 21 Jan 2025 11:54:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="azlEFBnp"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="DnX5ZfI+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E33D01F190E;
-	Tue, 21 Jan 2025 12:03:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43A061F130D;
+	Tue, 21 Jan 2025 11:54:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737460984; cv=none; b=b2T7wOs1p5VM7BxxJV+ILmTFihqnKX8k0mmPIB5PjRtoaLtWSFHtEDAor6RuIfC/yQ+xo6+gLtFvkloLHqLexqIBCKh0lM2KNXaTfATz85JNoa+2w8KN1Mkp9kxRJNjKB6gbhqgH3+pLSqPwVR7qzXF48fDU5B53gQ2r0bh6YwA=
+	t=1737460482; cv=none; b=d9eBUkmVmRMpUmfrR7yAeeGCJQJioPZAfeyC3MdH528LiLDWvanpIjtbqUPiXFqRxVbIG0oJidf3ab+pRbsrTFI4OPm7Q2LcfLbCwsvJmkVSzJUnAqaTgaKlNHsB23XEeGscu5n8kk/jNjjSoe2BuV1/f4RHCcH/fUF2brK8eP8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737460984; c=relaxed/simple;
-	bh=SSKcj+ZCYXAP4XCyRJVat3KbUG53wj7IgRB6pc1Za/Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=noW/n21EzgZb+OUvLnKG0YniXfgAC/Y2Owp7DBvZkPVZwJDzTbxsO1NLnAs302ui1ubL3MPnAVOCHuTXmPdgPBFseYaEBVn0ybtjUFK0OPEyMg6yEI3XavCJphQg+RWtMQ+8J/U8w5Ki/Qi3kQpb93/OWhPM2LNJlH/k9DqnVN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=azlEFBnp; arc=none smtp.client-ip=89.58.32.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 68501108ECC22;
-	Tue, 21 Jan 2025 13:02:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
-	t=1737460974;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=AWLTnshKJss0C5hixpOZt9oVL4A4PlDNq+o3owNK/5A=;
-	b=azlEFBnpnC34/WvcJE3D09uOanxdxBzy3PvSqriuytwoPI6630ywtrz5kpNAJfDUFNMdgg
-	M6Vo72c8lKQ2mAmtVxiWLspRpP6h1ZV30AW8DXDw2DUmuB01k2vdrYcsN/xPCttMVLpuMS
-	FguPtvQfYMwUcLLg3Vl+Ot5YIswADhqmJ8eDHz1L5MpaQtZxPyI9pwvF+Hq5L8HHMJzD9s
-	ZxSo6LCW5ZkOhSiqi/LPmJen9liyaobANgteY5a22WWsq6hOunFlF9O3R8AQyD1qe6bxhX
-	I3Wz1bwMt8TSs4KqScBjpDUY67/kAyjdzW71f5emRG3ngSLAfZDVPARAszjOeQ==
-Message-ID: <30c39bb9-2b45-43a6-b5f1-f7957ce5a666@denx.de>
-Date: Tue, 21 Jan 2025 12:37:34 +0100
+	s=arc-20240116; t=1737460482; c=relaxed/simple;
+	bh=CV1GcmcnGyKfN177gDtlWHZb3NqMA/e2b8heyjSfe1g=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=nhKJMhZAZhjKPXL46c1RKCgHSPab9ZbESdw3Bpc7ccLfJN8nyLeRYvbv3ElrMMCRkr+dW4NrYBrZLfEMFzIbVuzV5Nk6ZXDGsMpEH5//Vj6bamry6yTzPSzH2Kj6yr9ccWcAWPhNiBjpxr1faRYBS0cJ4qQOxcqbsFHiM+F05vw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=DnX5ZfI+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50L8Z6Il018358;
+	Tue, 21 Jan 2025 11:54:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=ecVhcQ00wiaRmeFl/3cxNH
+	GxmuiejrXFLyvHS3G58bc=; b=DnX5ZfI+RTghEX1YoKlZwN4zV56mOsHuKDDdpl
+	Mqayha+ZwukDDk+eu9aykeyeFia6D5iIQyhrbOtbKR8JP3tmJtYqeHUbZq5wjC9F
+	WG2d77XX0oalluyaT0YHRlYqddVEk17ERe9kGJOGtXmxUOdchvrdhj1uVOe23b8Y
+	SZGiHk8e5B4a1UJUNVfjJx4e/C3aqJ1QiqqxkhlelMADxSdED1g/Ba5rHozPuwpb
+	R/2Qi6FNJjN9VObH1grlKCM9Y7vDbPonH+1JtwRVZjzbAaMfGFAtV/lBpZGpZaG/
+	GKCz5RNPIQi0f1O5qELw/dzT/40JaROR8fK0nlyh5aL6TOCg==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44a85r8qvn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Jan 2025 11:54:36 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50LBsZQ0002535
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 21 Jan 2025 11:54:35 GMT
+Received: from hu-lxu5-sha.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 21 Jan 2025 03:54:30 -0800
+From: Ling Xu <quic_lxu5@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <quic_kuiw@quicinc.com>, <quic_ekangupt@quicinc.com>,
+        <quic_kartsana@quicinc.com>, <kernel@quicinc.com>,
+        <quic_lxu5@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] Modify sa8775p.dtsi
+Date: Tue, 21 Jan 2025 17:24:02 +0530
+Message-ID: <cover.1737459414.git.quic_lxu5@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: leds: Document netdev trigger
- netdev-trigger-mode property
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: linux-leds@vger.kernel.org, Christian Marangi <ansuelsmth@gmail.com>,
- Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Lukasz Majewski <lukma@denx.de>, Pavel Machek <pavel@ucw.cz>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-References: <20250113002346.297481-1-marex@denx.de>
- <ad334b1b-a4e5-426d-a801-3e1d72455304@lunn.ch>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <ad334b1b-a4e5-426d-a801-3e1d72455304@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: DiziX7AehUNVtkF9BdsWNI3qkxlKY1oU
+X-Proofpoint-ORIG-GUID: DiziX7AehUNVtkF9BdsWNI3qkxlKY1oU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-21_05,2025-01-21_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=402
+ clxscore=1015 impostorscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0
+ suspectscore=0 malwarescore=0 priorityscore=1501 spamscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501210098
 
-On 1/16/25 2:32 PM, Andrew Lunn wrote:
-> On Mon, Jan 13, 2025 at 01:23:37AM +0100, Marek Vasut wrote:
->> Document netdev trigger specific netdev-trigger-mode property which
->> is used to configure the netdev trigger mode flags. Those mode flags
->> define events on which the LED acts upon when the hardware offload is
->> enabled. This is traditionally configured via sysfs, but that depends
->> on udev rules which are available either too late or never in case of
->> non-Linux systems.
->>
->> For each LED with linux,default-trigger = "netdev" described in DT, this
->> optional netdev-trigger-mode property supplies the default configuration
->> of the PHY LED mode via DT. This property should be set to a subset of
->> TRIGGER_NETDEV_* flags.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> ---
->> Cc: Andrew Lunn <andrew@lunn.ch>
->> Cc: Christian Marangi <ansuelsmth@gmail.com>
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: Heiner Kallweit <hkallweit1@gmail.com>
->> Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
->> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->> Cc: Lee Jones <lee@kernel.org>
->> Cc: Lukasz Majewski <lukma@denx.de>
->> Cc: Pavel Machek <pavel@ucw.cz>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> Cc: linux-leds@vger.kernel.org
->> ---
->>   Documentation/devicetree/bindings/leds/common.yaml | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
->> index 3e8319e443392..1f1148fdf20c0 100644
->> --- a/Documentation/devicetree/bindings/leds/common.yaml
->> +++ b/Documentation/devicetree/bindings/leds/common.yaml
->> @@ -233,6 +233,12 @@ properties:
->>         Maximum timeout in microseconds after which the flash LED is turned off.
->>         Required for flash LED nodes with configurable timeout.
->>   
->> +  # Requires netdev trigger
->> +  netdev-trigger-mode:
->> +    description:
->> +      The netdev LED trigger default mode flags, use TRIGGER_NETDEV_ * flags.
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +
->>   allOf:
->>     - if:
->>         required:
->> -- 
-> 
-> An example would be good.
-> 
-> In order to be able to use TRIGGER_NETDEV_* i assume you are doing an
-> include which is outside of the usual dt-bindings directory. I don't
-> know of the DT Maintainers opinion on that.
-I think the question here is more ... shall I introduce new set of 
-LED_NETDEV_nnn flags in e.g. include/dt-bindings/leds/common.h , so the 
-flags won't be Linux netdev trigger specific ?
+Delete duplicate fastrpc nodes and remove cdsp compute-cb@10.
+
+Ling Xu (2):
+  arm64: dts: qcom: sa8775p: Delete duplicate fastrpc nodes
+  arm64: dts: qcom: sa8775p: Remove cdsp compute-cb@10
+
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 246 +++-----------------------
+ 1 file changed, 23 insertions(+), 223 deletions(-)
+
+-- 
+2.34.1
+
 
