@@ -1,143 +1,128 @@
-Return-Path: <devicetree+bounces-140417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD1BA19A04
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 21:53:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF130A19A0A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 21:56:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D8547A4B54
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 20:53:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B68B03A8B15
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 20:56:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39BC41C462D;
-	Wed, 22 Jan 2025 20:53:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C7361BD9DC;
+	Wed, 22 Jan 2025 20:56:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="QM7fOA/M"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DeOGJ1HV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0842F1B21B9
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 20:53:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E5711EB2F;
+	Wed, 22 Jan 2025 20:56:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737579200; cv=none; b=nc8hreqAxMjZhm9c6JSh0mCQdGJCiReYxAEWwL4dxq6cSvlCtsTdA+9UFIgV2MGrVbOcR2eQbx50RfXAN8MqqrgNgx6jKXwQ0km9b0C1xjYPUkCeDRWzg3kLaDBheAljfKXCblxqFa/mu5HDNuzlMB/+X2wSw38KDH3vq6h/mjI=
+	t=1737579408; cv=none; b=naU75wZrN9N+AX6ecZbAyclhIE6HcoElHYgL4NiYmtdGMcrZ1duEYoxaBs3jflbZv+Gwyx6e0lTHg2JRwtaCBWmjg9bpyXNXu0okbK/cxEG3+dCZZgO4aqFxu/FR96BZMZVOV5/ZVR0SXUbsn6tbQub42ucPx+Cbx3/enSp8bvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737579200; c=relaxed/simple;
-	bh=iCxCAx6ohnaH68e+Tgm1pRg7x5ZdMVCV9KhGCrGWUIk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=KYxXdA3HQId6BE3WLNjI1uiyIkjLz81rIQKKmAdCoed+wZtnz3DoexK+BNmYy6jnngNBL+Afg8SOHlqGLx29S89S9cUBlH8+HaOjkWUXAAblhUCFt2S7wi731YUhawAeLukffw1LFJhxySSaK4239CTj3DQxTZ74INQVDJK8mso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=QM7fOA/M; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id E21172C0B9B;
-	Thu, 23 Jan 2025 09:53:08 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1737579188;
-	bh=iCxCAx6ohnaH68e+Tgm1pRg7x5ZdMVCV9KhGCrGWUIk=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=QM7fOA/M9b5OQEFRDAj7DWSKC0oyjDg1vDpNyp6okhhxP4BIE3ePuHIVBMB3j6Z4L
-	 ePHn1pVW+6GdXMYwsvQtKgWA5irYhrOpzAXmygZyGZtKuPrx+kGUD38nhgfGha1T0u
-	 Kh/zyiMRNnxubbKb2FkIPyBU7m3QiBfXAQ6tIK7uMF9HMri3QCdnc0tuYDdRj0sm53
-	 vG5ynwng3F2jrgjwAme655kRnnDebtqcS0YWvqZdnHsfIRLk8kJV3WUylstxonpjRw
-	 9duS6uM8klwQmwgOiSCKlYnQlUlWNnNv9JgSi0F+EpiR8XNQzObh7YXa1mP9FrfQYi
-	 4edx3qKl7/6VA==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B67915ab40001>; Thu, 23 Jan 2025 09:53:08 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Thu, 23 Jan 2025 09:53:08 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1544.014; Thu, 23 Jan 2025 09:53:08 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "lee@kernel.org" <lee@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
-	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>, "tsbogend@alpha.franken.de"
-	<tsbogend@alpha.franken.de>, "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-	"linux@armlinux.org.uk" <linux@armlinux.org.uk>, "sander@svanheule.net"
-	<sander@svanheule.net>, "markus.stockhausen@gmx.de"
-	<markus.stockhausen@gmx.de>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, "linux-mips@vger.kernel.org"
-	<linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: Add MDIO interface to
- rtl9301-switch
-Thread-Topic: [PATCH v4 2/4] dt-bindings: mfd: Add MDIO interface to
- rtl9301-switch
-Thread-Index: AQHbavAdfrwa1e98nEWkvQh+G18FzLMhm3mAgADUAAA=
-Date: Wed, 22 Jan 2025 20:53:08 +0000
-Message-ID: <db76d5ab-3eda-439d-8b92-c0423d1e39c8@alliedtelesis.co.nz>
-References: <20250120040214.2538839-1-chris.packham@alliedtelesis.co.nz>
- <20250120040214.2538839-3-chris.packham@alliedtelesis.co.nz>
- <20250122-macho-flat-sawfly-7ca93d@krzk-bin>
-In-Reply-To: <20250122-macho-flat-sawfly-7ca93d@krzk-bin>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2FD9D3F406CDB94D91BF870C48475349@alliedtelesis.co.nz>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1737579408; c=relaxed/simple;
+	bh=ADIjjEdWwJRxc+fhduGqjYA3ehL/T4TU2NRAkwIk+Jc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MMVn+chfLlCsPlUwAnByxzSVi2U+bFZnvT1Fjdbov+DbUAT+zmA4c/Fd85XvYrscejy1r9jFsnpDH/u/MqhW856jIsjhWWgiOas9vMimfksRZZjZbi3XzLj+zmFxtYRVnFqWc6N0aRdE2NpUGZyKHTx801ui0+61VDBtnkB5HvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DeOGJ1HV; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-e4930eca0d4so270702276.3;
+        Wed, 22 Jan 2025 12:56:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737579405; x=1738184205; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ADIjjEdWwJRxc+fhduGqjYA3ehL/T4TU2NRAkwIk+Jc=;
+        b=DeOGJ1HVDP3CJeNkPkosv/GU6TzStb3JzT0vxIRAjsvJVSVPkiqqRh7JwER7/D1BQ1
+         BRloYr+iBP1KJ4iJxgN9eDc6MUOCxZ9suKTRa+suqYPJ4kTwNCnIRltiFoyN7lbb3VDD
+         pUkFQe+MiowYlagZb6Wo0etk9EZJQFsiforVQzuf0/twQQvwifqoE/7xbC4QWb0uXONX
+         olUOy/9nIK9zMeqkBM8ou++tjIY8WmUXpsJy6cMrUDHWt80gVfzQ+VCpNNrgbK6bjJXY
+         +jO9O1DzjUM1XdXM13S3SvBHvqIWgzW3QOfh78RFO6fRAcqOuHNvQZj/rXIDnW2xsZuO
+         yyEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737579405; x=1738184205;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ADIjjEdWwJRxc+fhduGqjYA3ehL/T4TU2NRAkwIk+Jc=;
+        b=Tb7FnAkzOyRlad+lyhCEyo4Q3iIvIJQB3FqvLXD7XVxolpp6aI9jXrhkx/txwZia7t
+         XcX17jBUXxjXk8bJu2tSVKgwcnoD9yuUIZ0TMKIA6RX0LxqXYIbIE7GX7LdJY46/XgmI
+         5506Jn5s8Xe5VANol7ys/h/r31XarEdckKamXxGi4sbg7cx5YPLbLBwLxx3rdLqephVj
+         yBDwOIVYAQ8TSjAa0YDs9jydsnja+f3h1kZ77zrP03B0jtUqbSNqbg7c1C5mOoRwayOn
+         ZT4Y1ZB90y4xKZ5tMrZ0/FPBkDLRbwMK/dhHkmVltB8DPX+WVXL8yK2Ft5JujnZ+4Q3r
+         CO3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUo4+74DJgY9egbve89u2i9SSWZw136cHt8bxQCUWMWy67JsNaogjSxhbEaL2gvrWPvJLQHGNKadtHtRPWx@vger.kernel.org, AJvYcCVOlEFZwJI+LQZi4VmhOSdRVt88phwUqEjxEaHPRLkBPMn4TyXcuhnJr1see6bUx5Sq9Xj0Kg47Ibheog==@vger.kernel.org, AJvYcCWaXP+3aSuQFp0/J8GgBSgRN9u8N7Sr+BcyPCMTRPdE5XFXQi0yU9qidqfsLKhZBuLzmwEBsvn82gI4@vger.kernel.org
+X-Gm-Message-State: AOJu0YzvgZO8Aw1oU7jmxius+rMNVG4C12gM1qQW8198Xf/mDO2iojk4
+	bAX6Rrp4oQ5Z9eQ4HoHyHoR5CK9l0b+ipe7vTxe5YpngfIJVOohqTdPGZ4XgiWY5a/7BicvNxPg
+	1ob+d5Vryha2ybanERZS+w1d2LH4=
+X-Gm-Gg: ASbGncs9FxxpLn9Yzs7+6zSNmbWuYX2cu7+HFMcm7BZ7rAQkAbXY9wrugtqtyh797Gy
+	ETLRcU9QC/e46TTSyvcy23iQfoS3zzkLR0C4O+hkX5bB3L0pAqy+J
+X-Google-Smtp-Source: AGHT+IGnmx6aTHIOGq5vYhfK057jeF1y7iuldLvp+qQ37D0M4b6pdComdhO8F8tFXq+wBVrk4laFTPQFfX0P/N1YZK8=
+X-Received: by 2002:a05:690c:c8f:b0:6ef:aae1:ac51 with SMTP id
+ 00721157ae682-6f6eb92ef79mr196333997b3.27.1737579405438; Wed, 22 Jan 2025
+ 12:56:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=67915ab4 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=VdSt8ZQiCzkA:10 a=SNri9qoxPTwurTm3CgAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+References: <20250121200749.4131923-1-trini@konsulko.com> <7hmsfjn5mm.fsf@baylibre.com>
+ <20250122000824.GJ3476@bill-the-cat> <20250122214604.79e1e829@akair>
+In-Reply-To: <20250122214604.79e1e829@akair>
+From: Robert Nelson <robertcnelson@gmail.com>
+Date: Wed, 22 Jan 2025 14:56:19 -0600
+X-Gm-Features: AWEUYZlHAw_1O6NCzi8X7G_aVVuo0ADL86UBA7NvIsY_nHKv-h927H8zq4mKnc8
+Message-ID: <CAOCHtYj3LumO4pViSOyTwjNxvG1E-DX=JA0-m4Usi1qL+jw21g@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: omap4-panda-a4: Add missing model and
+ compatible properties
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: Tom Rini <trini@konsulko.com>, Kevin Hilman <khilman@kernel.org>, linux-kernel@vger.kernel.org, 
+	Nishanth Menon <nm@ti.com>, Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-DQpPbiAyMi8wMS8yMDI1IDIxOjE0LCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOg0KPiBPbiBN
-b24sIEphbiAyMCwgMjAyNSBhdCAwNTowMjoxMlBNICsxMzAwLCBDaHJpcyBQYWNraGFtIHdyb3Rl
-Og0KPj4gVGhlIE1ESU8gY29udHJvbGxlciBpcyBwYXJ0IG9mIHRoZSBzd2l0Y2ggb24gdGhlIFJU
-TDkzMDAgZmFtaWx5IG9mDQo+PiBkZXZpY2VzLiBBZGQgYSAkcmVmIHRvIHRoZSBtZmQgYmluZGlu
-ZyBmb3IgdGhlc2UgZGV2aWNlcy4NCj4+DQo+PiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBQYWNraGFt
-IDxjaHJpcy5wYWNraGFtQGFsbGllZHRlbGVzaXMuY28ubno+DQo+PiAtLS0NCj4+DQo+IFlvdSBu
-ZWVkIHRvIGV4cGxhaW4gbWVyZ2luZyBkZXBlbmRlbmNpZXMuIE5vdGhpbmcgaW4gY292ZXIgbGV0
-dGVyLA0KPiBub3RoaW5nIGhlcmUsIGJ1dCB0aGlzICpDQU5OT1QqIGJlIG1lcmdlZCBpbmRlcGVu
-ZGVudGx5Lg0KT0suIEknbGwgbWFrZSBzdXJlIHRvIGFkZCBhIG5vdGUgaGVyZSBhbmQgdG8gdGhl
-IHNlcmllcyBjb3ZlciBsZXR0ZXIuDQo+PiBOb3RlczoNCj4+ICAgICAgQ2hhbmdlcyBpbiB2NDoN
-Cj4+ICAgICAgLSBUaGVyZSBpcyBhIHNpbmdsZSBNRElPIGNvbnRyb2xsZXIgdGhhdCBoYXMgTURJ
-TyBidXNlcyBhcyBjaGlsZHJlbg0KPj4gICAgICBDaGFuZ2VzIGluIHYzOg0KPj4gICAgICAtIE5v
-bmUNCj4+ICAgICAgQ2hhbmdlcyBpbiB2MjoNCj4+ICAgICAgLSBOb25lDQo+Pg0KPj4gICAuLi4v
-YmluZGluZ3MvbWZkL3JlYWx0ZWsscnRsOTMwMS1zd2l0Y2gueWFtbCAgfCAyNCArKysrKysrKysr
-KysrKysrKysrDQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCAyNCBpbnNlcnRpb25zKCspDQo+Pg0KPj4g
-ZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvcmVhbHRl
-ayxydGw5MzAxLXN3aXRjaC55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L21mZC9yZWFsdGVrLHJ0bDkzMDEtc3dpdGNoLnlhbWwNCj4+IGluZGV4IGYwNTMzMDNhYjFlNi4u
-YzE5ZDJjMjA5NDM0IDEwMDY0NA0KPj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
-bmRpbmdzL21mZC9yZWFsdGVrLHJ0bDkzMDEtc3dpdGNoLnlhbWwNCj4+ICsrKyBiL0RvY3VtZW50
-YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvcmVhbHRlayxydGw5MzAxLXN3aXRjaC55YW1s
-DQo+PiBAQCAtMjgsNiArMjgsOSBAQCBwcm9wZXJ0aWVzOg0KPj4gICAgIHJlZzoNCj4+ICAgICAg
-IG1heEl0ZW1zOiAxDQo+PiAgIA0KPj4gKyAgbWRpby1jb250cm9sbGVyOg0KPj4gKyAgICAkcmVm
-OiAvc2NoZW1hcy9uZXQvcmVhbHRlayxydGw5MzAxLW1kaW8ueWFtbCMNCj4+ICsNCj4+ICAgICAn
-I2FkZHJlc3MtY2VsbHMnOg0KPj4gICAgICAgY29uc3Q6IDENCj4+ICAgDQo+PiBAQCAtMTEwLDUg
-KzExMywyNiBAQCBleGFtcGxlczoNCj4+ICAgICAgICAgICAgIH07DQo+PiAgICAgICAgICAgfTsN
-Cj4+ICAgICAgICAgfTsNCj4+ICsNCj4+ICsgICAgICBtZGlvLWNvbnRyb2xsZXIgew0KPiBObywg
-bm8gcmVzb3VyY2VzIGhlcmUsIG5vIHVuaXQgYWRkcmVzcy4gTG9vayBhdCBvdGhlciBub2RlcyAt
-IHRoZXkgaGF2ZQ0KPiB0aGUgcmVzb3VyY2UsIHRoZSBhZGRyZXNzLiBNaXhpbmcgc3VjaCBub2Rl
-cyBpcyBjbGVhciBpbmRpY2F0aW9uIHRoaXMgaXMNCj4gbm90IGNvcnJlY3QgaGFyZHdhcmUgZGVz
-Y3JpcHRpb24gYW5kIHlvdSBkbyB0aGlzIG9ubHkgZm9yIExpbnV4Lg0KPg0KPiBGb2xkIGNoaWxk
-IGRldmljZSBpbnRvIHBhcmVudC4NCg0KSW4gdGhpcyBwYXJ0aWN1bGFyIGNhc2UgYWxsIHRoZSBt
-ZGlvIHN0dWZmIGlzIGFjdHVhbGx5IGNvbnRhaW5lZCB0byBhIA0KcmFuZ2Ugc3RhcnRpbmcgYXQg
-b2Zmc2V0IDB4Y2EwMC4gSSBkcm9wcGVkIGl0IGJlY2F1c2UgaXQgd2FzIHNpbXBsZXIgaW4gDQp0
-aGUgZHJpdmVyIHRvIHVzZSB0aGUgZnVsbCAxNi1iaXQgYWRkcmVzcyByYXRoZXIgdGhhbiB0cnlp
-bmcgdG8gdXNlIA0Kb2Zmc2V0cyBmcm9tIHRoZSBiYXNlIGFkZHJlc3MgdGhhdCBkaWRuJ3QgY29y
-cmVzcG9uZCB0byB0aGUgZGF0YXNoZWV0LiANCkFzIHlvdSd2ZSBoaWdobGlnaHRlZCB0aGF0J3Mg
-bWFraW5nIHRoZSBkdC1iaW5kaW5nIGltcG9zZSBkcml2ZXIgDQpzcGVjaWZpY3Mgc28gd291bGQg
-YWRkaW5nIGJhY2sgYG1kaW8tY29udHJvbGxlckBjYTAwYCBhbmQgYHJlZyA9IDwweGNhMDAgDQow
-eDIwMD47YCBiZSBPSyBldmVuIGlmIHRoZSBkcml2ZXIgZG9lc24ndCBhY3R1YWxseSB1c2UgdGhl
-bT8NCg0KPg0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KPg==
+On Wed, Jan 22, 2025 at 2:46=E2=80=AFPM Andreas Kemnade <andreas@kemnade.in=
+fo> wrote:
+>
+> Hi,
+>
+> Am Tue, 21 Jan 2025 18:08:24 -0600
+> schrieb Tom Rini <trini@konsulko.com>:
+>
+> > > If keeping it is just this binding update, then I'd say we keep it, b=
+ut
+> > > if it gets any more paninful to maintain, I'm also not going to argue
+> > > very hard to keep it.
+> >
+> > I'm not in the position to see if any of the Pandaboards work at this
+> > point, so I don't know if they're otherwise functional or a huge pile o=
+f
+> > problems.
+>
+> I am still testing stuff with pandaboards. But I do not have the a4
+> one. So yes they are functional. Compared with other devices still in
+> use using the same SoC, here you can play around with everything, know
+> the device. so it is a reference for keeping the really interesting
+> devices working.
+>
+> Regarding the a4: I think it is better to keep that one in, just that
+> nobody gets confused if he/she digs out his panda board for some
+> comparison test and uses a wrong board revision.
+
+Do you want an a4? I could dig one or two out! ;)
+
+Regards,
+
+--=20
+Robert Nelson
+https://rcn-ee.com/
 
