@@ -1,97 +1,102 @@
-Return-Path: <devicetree+bounces-140189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96D95A18D28
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:55:03 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2140A18D30
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:57:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72A3018845BA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 07:55:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A18E97A4A4A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 07:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979351C1F23;
-	Wed, 22 Jan 2025 07:54:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PulrbTE6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF411C3034;
+	Wed, 22 Jan 2025 07:57:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA7533E4;
-	Wed, 22 Jan 2025 07:54:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4688F1C1F23
+	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 07:56:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737532498; cv=none; b=s2CK0KQ4rwF2wDMFLDinbZABG6+1qpZh1awaTz9fCsoDd94SQT6VclFiVBYP26Py5n8FdntuxGdUZ4LSipbl92SLEmM+X2zTtSJTw11N1AdkgACLgBQN3m6EHi3BlWAFToUtu2d90kee9yhuJztx2m4OKC8qzhPEvBzrjiKWvqk=
+	t=1737532622; cv=none; b=TwNYbbY70Ohyp4LyAqIdO0tkRqzqD3VNS6ITmzIUlDdbQ5otYitJGXlxnLi8Mk3XJ1lEIY0JUK4lOsPs3sYDKO9x9axF1KeaSf/d+pgrt+QUbrTyx3huEAMQyFfMWGCQIKxf/PKrihsjxLi9L23e3Dr3hYA1Ausxi2bJ7xI9K9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737532498; c=relaxed/simple;
-	bh=DS6LctAEbb86wdU+xIObFSbsxNIQXD0zFVuUopbBhSU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W8sLQuedkHJvU4D5eoJmbH9xtvOnhP4w5MkiXtSn3YPlRkKnY9fNYsduOYt9TA7P9SfQwDXkaB4LRccTMXwO95d0QVOvCks3mDxEdMpn5Mew2wCK3C0WRg87Xy4H1yAuUBK2Kxu9c7Lfsz6LZHGKXRQF1eypa0l2L0C7Hz519yw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PulrbTE6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CEB8C4CED6;
-	Wed, 22 Jan 2025 07:54:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737532497;
-	bh=DS6LctAEbb86wdU+xIObFSbsxNIQXD0zFVuUopbBhSU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PulrbTE6g2iDQO3tZkVzV6r9hofz+rdLvtPZoXz/HqrSx8WreicvBiya25B2KD2XV
-	 8QjKtbeqVyF8EuKFyjQzlqP3OflmIEuBWBi1a2zXerqtfstshGa63g5XsGxlKpI5bA
-	 4JX3y6Zc5vTD6tGYRchqvSCMRMa3KwbFSdoEQwIBSgb1CG00rWRAL0LmZbfTzLqL5Z
-	 gTnwg4R5Iya1CoOYWCz5pvBxsA0T4OzdlMw0L7kkHekJS+wsJIjN0hIxyGak2PZ7Tu
-	 wQ783czlWRQ7c+CG614lqSxuX4uP8X9+DLeGG7tl/lxeO+XTEcP+GXbCVwu2dcbgc7
-	 cS8OB41qVUQYQ==
-Date: Wed, 22 Jan 2025 08:54:54 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	kernel@pengutronix.de, devicetree@vger.kernel.org, 
-	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Leonard =?utf-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>
-Subject: Re: [PATCH stm32-next v3 2/2] ARM: dts: stm32: lxa-fairytux2: add
- Linux Automation GmbH FairyTux 2
-Message-ID: <20250122-thoughtful-starfish-of-grandeur-ee7919@krzk-bin>
-References: <20250121-lxa-fairytux-v3-0-8d42d7d232fb@pengutronix.de>
- <20250121-lxa-fairytux-v3-2-8d42d7d232fb@pengutronix.de>
+	s=arc-20240116; t=1737532622; c=relaxed/simple;
+	bh=EMBl9U46SdnSsOJvQ3xYrR+oeLUPmYIi552M+zLEwFI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jZVCq2sHrC1Ugd7pqSbpoaXubZsCO9JJVwoj+IZHIkhfF9x7gvXSmCQ6WuMmJor5wmV9sSkAtq+I6em/w6uqJxA83eCEuhzLYQ4rys9ZFdcEzdzuJsaNWePyE13KmaoyYJhVEIZqB/4+C6kjPe7UY7MqYNT9pvtv1p2VVq0O3Uc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:5400:5628:9df0:d4b4])
+	by michel.telenet-ops.be with cmsmtp
+	id 47ws2E0013QiWAT067wsGt; Wed, 22 Jan 2025 08:56:52 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.97)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1taVbP-0000000E09l-2zFC;
+	Wed, 22 Jan 2025 08:56:51 +0100
+Received: from geert by rox.of.borg with local (Exim 4.97)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1taVbX-00000005Dfc-3Rxq;
+	Wed, 22 Jan 2025 08:56:51 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Nishanth Menon <nm@ti.com>,
+	Santosh Shilimkar <ssantosh@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>
+Cc: linux-pm@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] pmdomain: ti: Use of_property_present() for non-boolean properties
+Date: Wed, 22 Jan 2025 08:56:50 +0100
+Message-ID: <accb12bd6d048d95bd1feea07dd1a799ad3f8b31.1737532423.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250121-lxa-fairytux-v3-2-8d42d7d232fb@pengutronix.de>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Jan 21, 2025 at 12:14:06PM +0100, Marc Kleine-Budde wrote:
-> From: Leonard G=C3=B6hrs <l.goehrs@pengutronix.de>
->=20
-> The Linux Automation GmbH FairyTux2 is a small Linux device based on
-> an Octavo Systems OSD32MP153c SiP, that occupies just two slots on a
-> DIN rail.
->=20
-> The device contains an eMMC for storage, a gigabit Ethernet
-> connection, a CAN bus and a RS485 transceiver.
->=20
-> Add support for the lxa-fairytux2 generation 1 and 2 boards based on
-> the STM32MP153c.
->=20
-> Signed-off-by: Leonard G=C3=B6hrs <l.goehrs@pengutronix.de>
-> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> ---
->  arch/arm/boot/dts/st/Makefile                      |   2 +
->  .../boot/dts/st/stm32mp153c-lxa-fairytux2-gen1.dts | 103 ++++++
->  .../boot/dts/st/stm32mp153c-lxa-fairytux2-gen2.dts | 147 ++++++++
->  .../arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi | 397 +++++++++++++++=
-++++++
->  4 files changed, 649 insertions(+)
+On BeagleBone Black:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+    OF: /ocp: Read of boolean property 'clocks' with a value.
+    OF: /ocp/interconnect@44c00000: Read of boolean property 'clocks' with a value.
+    OF: /ocp/interconnect@48000000: Read of boolean property 'clocks' with a value.
+    OF: /ocp/interconnect@4a000000: Read of boolean property 'clocks' with a value.
 
-Best regards,
-Krzysztof
+The use of of_property_read_bool() for non-boolean properties is
+deprecated in favor of of_property_present() when testing for property
+presence.
+
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+Seen since commit c141ecc3cecd7647 ("of: Warn when
+of_property_read_bool() is used on non-boolean properties") in
+dt-rh/for-next.
+---
+ drivers/pmdomain/ti/omap_prm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/pmdomain/ti/omap_prm.c b/drivers/pmdomain/ti/omap_prm.c
+index b8ceb3c2b81c2510..79d165331d8c6379 100644
+--- a/drivers/pmdomain/ti/omap_prm.c
++++ b/drivers/pmdomain/ti/omap_prm.c
+@@ -613,7 +613,7 @@ static int omap_prm_domain_attach_clock(struct device *dev,
+ 	if (!of_device_is_compatible(np, "simple-pm-bus"))
+ 		return 0;
+ 
+-	if (!of_property_read_bool(np, "clocks"))
++	if (!of_property_present(np, "clocks"))
+ 		return 0;
+ 
+ 	error = pm_clk_create(dev);
+-- 
+2.43.0
 
 
