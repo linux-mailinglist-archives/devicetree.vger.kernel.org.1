@@ -1,121 +1,176 @@
-Return-Path: <devicetree+bounces-140240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48482A18F75
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:14:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F898A18F7D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:14:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C4303AB21C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:13:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47BA63A05C7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:14:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD4D7211272;
-	Wed, 22 Jan 2025 10:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9454921128D;
+	Wed, 22 Jan 2025 10:14:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="B98Q3GTM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7E281A8419;
-	Wed, 22 Jan 2025 10:12:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09AB016BE3A;
+	Wed, 22 Jan 2025 10:14:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737540765; cv=none; b=S8kFIEzyNpi7alxXBzvjG/BsLjk6CF6uo9mBoI5wPQFhKFQgR4oA211t6L1KWsWDxXVaVQ6yv8yfT4sItSMcEW3OCGuLlNXvM2Z0pnznEdRbK7zb7H6Vm9q71TJuT+T2iWAqCdHF86nVa6mMFn0Yx2CHyDFAOle3HOy7Ik+PAag=
+	t=1737540895; cv=none; b=IWHuLIbvnK5FXPR6a5kaDFy7XpEo0T4otQmJxJpchFPsUg/pIVIUzxgM566fLgzTdFNCZ+7xgWoajwUptCKddIkhHKuDV9OPk5DwvZi0zuSgvqA8kFHSZhpV6AChmLZsHkasJE9lYeufBY4NBQlCrmFo3Pd+xZD99MfUrqVZXHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737540765; c=relaxed/simple;
-	bh=9u/+N1+qoNp5jbIi+sNll5CoJD7MHDOXvXMQ90h3bzw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BaCjn5Mcygj1Fhd345TCoQgkEYA3vExGAsvCBbTUkOTzEfMywxwnj4L/BTXCUxIP9mj+kAhTne+ca66CauT+fFHCw4eyqMFs2TbKLuiRVLwjaB3m+I9vpflsPX0t5nIRCdOcZiqnlff3K+3IeLYhHSVWUQqz5znPOErSLQRmCLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4afe70b41a8so1877008137.3;
-        Wed, 22 Jan 2025 02:12:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737540761; x=1738145561;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7FjAh7Ei78ytRX43ARrF1IGLCoNkOCTH/fahyOjt2Co=;
-        b=pQKul9lNUwFjASO3StnA1AmCQ5b/d0/j4bJGPl9htUHQo1npxXsxjTTzayRkftsdmG
-         xFynnS40NEEGTpYAuAu/UPHnEqW9yjZ+tm9R1ggU5ZWuUB5be3d9/B7p9raUW2OJEkMO
-         PsVcUkJVVRcSz+dNv0qKT3K/tpeMQ61D0BTI9VxIeaUm0FWcBsex/DsIBsIZV3X1bRBf
-         qrcfWkj2kbYLhDHgk3haCtunzN3aVmLMRHLdBtlyO4QzZlABzLE0xAVnnF8i3f3tL/Bk
-         tOKvIsYEvTEdGdIGEzf1rsbFU2OdFB587HrdCri1hx9aMQp0c127eQ8OsohDNpGraLCF
-         whuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUUz/TbR0UwNg8EqPA/7Qf/n9GVAdlCELco6t6LjFM1kXQL7Gk5BWaITgv1oL4sGNjpchPr+ohvqGs=@vger.kernel.org, AJvYcCUgg4zzsCAMKm3dh25LWJSPO7ceBUUWvcv6dpiImIMDCkMejdV0kz+n7tpPtwnHnqNnu6L4dy/ZUoJZgjr3@vger.kernel.org, AJvYcCV4pnBIYDFZAeV9+yyQbkKqPQSNYCNiy0aYkn9DtYRGPMifYzqXvctYnNE/XaHuF/0USchEgzXff8Mu@vger.kernel.org, AJvYcCWXJU4AO0v0LX4zWRflNS3LZjVpeccDrf2r3ieuSuFYvoZOdUsJGFIoIbHike4LIghYo9HzvGEcyweGxQljaZxXnAE=@vger.kernel.org, AJvYcCXmdEEiLEyXbjjX8yt64+xxeYBERKvA57D6sYBrLebmSlJVWn73wz81SrrY2eLidaQzXIGWXRZubIx9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5gRpye1q4I/kRToeDKMi3o6AnXWpgFU0WW62tyED6jHWyoXFl
-	NrE4VIwxXVyPKUT7Udz5VUK2jaoY5njKfZzxlGFmCGPnGnAPfjnUE97wh3qQ
-X-Gm-Gg: ASbGncshfs4I8kMF15VjFB69QNPhGZYQ3ai12uZVaEpo0YqrNgBXbV+3vCTffvcJ34g
-	tpfIA3ut0/u/6+ndn1chfB0JeBBp/PwckM/1Li+/BPBjPLZn147rH83hHyEYVKNBAnXpdPn97KI
-	7R1Mtdz8CsmC4dXtGXj+K92kFBLBj2iOof/s0A0+5FDkCb01bTFBHIuX5rAH+NCaEZBkj0i8rhc
-	r1kCR+kp2yYEkn4K9j+0xfNo5Emg28xIXxuzFJrNreJGilsPZUEte+sNUehD+bfKwlIe4d5y/IQ
-	HxAPSOQ0uLAZubqYOLvOQZxBXTWmsZQ2
-X-Google-Smtp-Source: AGHT+IFpPcDjNxOxeyrHztEUN+y6gD1EP7coZlsspPsu5ucUBMOGJwKnQuMk2TBcGnFTD5tsj3RV+w==
-X-Received: by 2002:a05:6102:162c:b0:4b2:48cc:74f3 with SMTP id ada2fe7eead31-4b690bdc67emr16350885137.12.1737540760936;
-        Wed, 22 Jan 2025 02:12:40 -0800 (PST)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8642cc7f49bsm2830788241.27.2025.01.22.02.12.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jan 2025 02:12:40 -0800 (PST)
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-8641c7574a5so1704639241.1;
-        Wed, 22 Jan 2025 02:12:40 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU2CCDbU5vTVMjISpuG+qbj/BApW1XcHRjkVGsfMNc+5ayRcIkQvyofD88dCbOmGppouE91pRemnSkP@vger.kernel.org, AJvYcCUqUJauD/j1GbpZPuLJa/b6xKbPBVwmmuF7xlRm2a9yvAnhpiz3dbSG4rHY9Ginq/RCujK6LQOLfIN+0YkFLiOUobE=@vger.kernel.org, AJvYcCV4x86sD1hGtjsddx9FfhxWI1NnnorZO++nh85qt2vHUtBpPlcYfhTf1dTyVN4vYvkspW8KUqP0oXE=@vger.kernel.org, AJvYcCVIo1wpIKWuufNBot5WOnuxBT31ZAX8Ce4VnZxvBIVU6bGLLHFNeNE6kjsHJohg4vvkApsvPs4kqZw+xxMS@vger.kernel.org, AJvYcCW7Exg5V0f6o/SJhLiN7rd74CbFl0uu/eT0tdWpbSe5ysFBHyesbpV0g/fcUqicvez716fJH5GfcNP/@vger.kernel.org
-X-Received: by 2002:a05:6102:3f03:b0:4b2:5ce4:2b4f with SMTP id
- ada2fe7eead31-4b690b5d82dmr18149923137.2.1737540760048; Wed, 22 Jan 2025
- 02:12:40 -0800 (PST)
+	s=arc-20240116; t=1737540895; c=relaxed/simple;
+	bh=4+4uZLHD6kNhJLuhB6neOeSmgmIQjvXBjGYBADEbMR8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LCX9ozmsEwFPQGYj0ZCNyNDUs2xxD53y5+FsocUZTN6oqfrODtmqyt5Q3u3+x/zO/pnjQOUBZZzO7uqALgBlvNkxgia77JXcCYiWWznXt2jrOWg5/vVub2G9TriSR0KINuq7DDtb1AmnGm8GJkh2WIGrCYNz8e7lQJQny3eZKLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=B98Q3GTM; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50M9Cdmf011076;
+	Wed, 22 Jan 2025 10:14:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=kPC3bLg7DLGY4q7UzKY3aj
+	FKd1DNq/1qZHyavJM0vC8=; b=B98Q3GTMF2SakYI3avwch4yGgUHEMdxf+vl9Dp
+	ymdIGPk3ZQ+e1hKu+fiZYaxCs3qw1KEJykdIj8TfemmFvBcEyVGX2J8F05cX8fnd
+	4DLEDiHJGTRvL6orjAZKu4Ur1KLOztqhYVRyMAtbP93EQ6rSQo8N6SQlNXVQuqoU
+	6ZL0/ONUkj7fQUTvzRPrdrADrIZbJJo7qUKqP842FfXH1jzNeaFOlj1nkWBqyvTM
+	CSsdKNIJUZfwRXSOo43TZFpfd19eW25BSsZGZL3EimR4RHRN5Qru+EiLLwSqFElJ
+	nO0xYqwdf+4dKBhprvTWRKT43DFM/A4yefWk96wTgESx+cfw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44awuh0563-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Jan 2025 10:14:50 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50MAEn00025022
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Jan 2025 10:14:49 GMT
+Received: from hu-nkumarsi-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 22 Jan 2025 02:14:42 -0800
+From: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
+To: <kernel@quicinc.com>, <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_akdwived@quicinc.com>, <quic_uchheda@quicinc.com>
+CC: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>,
+        Sahil Chandna
+	<quic_chandna@quicinc.com>
+Subject: [PATCH v3] arm64: dts: qcom: Add industrial mezzanine support for qcs6490-rb3gen2
+Date: Wed, 22 Jan 2025 15:44:24 +0530
+Message-ID: <20250122101424.1810844-1-quic_nkumarsi@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com> <20250103163805.1775705-4-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20250103163805.1775705-4-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 22 Jan 2025 11:12:28 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUrU=wEORsTYA01nJKGDYyfGcbYUQ0PVbztWK89wAh6og@mail.gmail.com>
-X-Gm-Features: AWEUYZnWOoKJ3RBtL6Pi7s9iVWaQT9ZdiOxnl5ZN6Xov2Ob1CcY6b31swX2Vhsk
-Message-ID: <CAMuHMdUrU=wEORsTYA01nJKGDYyfGcbYUQ0PVbztWK89wAh6og@mail.gmail.com>
-Subject: Re: [PATCH 3/6] dt-bindings: thermal: r9a08g045-tsu: Document the TSU unit
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com, 
-	lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
-	p.zabel@pengutronix.de, ulf.hansson@linaro.org, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: rv-3ILK6IKEDRQerkZ-EZ9dTJPF9W3iD
+X-Proofpoint-ORIG-GUID: rv-3ILK6IKEDRQerkZ-EZ9dTJPF9W3iD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-22_04,2025-01-22_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
+ suspectscore=0 phishscore=0 lowpriorityscore=0 mlxscore=0
+ priorityscore=1501 spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501220074
 
-On Fri, Jan 3, 2025 at 5:38=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> w=
-rote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> The Renesas RZ/G3S SoC includes a Thermal Sensor Unit (TSU) block designe=
-d
-> to measure the junction temperature. The temperature is measured using
-> the RZ/G3S ADC, with a dedicated ADC channel directly connected to the TS=
-U.
-> Add documentation for it.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Add DTS support for Qualcomm qcs6490-rb3gen2 industrial mezzanine board.
 
-LGTM from the hardware-description point of view, do
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Sahil Chandna <quic_chandna@quicinc.com>
+Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
 
-Gr{oetje,eeting}s,
+---
+Changes in v3:
+- Fixed tpm pinctrl node label.
+- Addressed comments by Dmitry.
+- Improved indentation/formatting.
+- Link to V2: https://lore.kernel.org/all/20250102190155.2593453-1-quic_nkumarsi@quicinc.com/
 
-                        Geert
+Changes in V2:
+- Addressed comment by Konrad.
+- Validated dts bindings with dtb_checks suggested by Krzysztof.
+- Improved indentation/formatting.
+- Fixed bug encountered during testing.
+- Added dtb entry in makefile.
+- Link to V1: https://lore.kernel.org/all/20241206065156.2573-1-quic_chandna@quicinc.com/
+---
+ arch/arm64/boot/dts/qcom/Makefile             |  4 +++
+ .../qcs6490-rb3gen2-industrial-mezzanine.dtso | 35 +++++++++++++++++++
+ 2 files changed, 39 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 6ca8db4b8afe..16ac008c58d2 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -111,6 +111,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
++
++qcs6490-rb3gen2-industrial-mezzanine-dtbs	:= qcs6490-rb3gen2.dtb qcs6490-rb3gen2-industrial-mezzanine.dtbo
++
++dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-industrial-mezzanine.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+new file mode 100644
+index 000000000000..1498f32bd069
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
+@@ -0,0 +1,35 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
++*/
++
++/dts-v1/;
++/plugin/;
++#include <dt-bindings/clock/qcom,gcc-sc7280.h>
++#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
++
++&pm7250b_gpios {
++	tpm_spi_reset: tpm-spi-reset-state {
++		pins = "gpio5";
++		function = "normal";
++		power-source = <1>;
++		output-high;
++		input-disable;
++		bias-pull-up;
++		qcom,drive-strength = <3>;
++	};
++};
++
++&spi11 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	status = "okay";
++
++	st33htpm0: tpm@0 {
++		compatible = "st,st33htpm-spi", "tcg,tpm_tis-spi";
++		reg = <0>;
++		spi-max-frequency = <20000000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&tpm_spi_reset>;
++	};
++};
+-- 
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
