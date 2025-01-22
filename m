@@ -1,195 +1,136 @@
-Return-Path: <devicetree+bounces-140355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12EB1A19553
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 16:33:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30C6EA19556
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 16:35:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E786188216F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 15:33:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E01667A3EA0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 15:35:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69349213E9C;
-	Wed, 22 Jan 2025 15:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C22B214227;
+	Wed, 22 Jan 2025 15:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="o4+FE6/m"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JaYGVMFl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6462EED8;
-	Wed, 22 Jan 2025 15:33:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 679BF2135C4
+	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 15:35:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737560026; cv=none; b=ERWghemM3udAnqZhx/paOhE8ATGIkpp0hPwf9K0Ty7iXWE2K3uNKLIOgSqXUL5DU9TPUP3oWbloCiNSxDEFvRNai76cW1gauGSj4aClLeJRc2jrM6svjSUDWtHxV1szJ9lGRp/Lua27dTRkfItElkVtTEZojcbJKfs/nHWRyAOc=
+	t=1737560105; cv=none; b=ayP2zEvD7PivpBi2Th48Y3aJ/ulBRRbIRfiue9Be5CW4k/AVzlGq8SB9oqLma5tSFsBaiMtNgwKGY1HjRhURzXNT9qVqxr/OVsxXkUVZdCV7uX3diJ8HaiX8Y+zjVx5VZayuFY3YDCTSatTsfBzbUR/lyW7fxcAroNILsmFcbCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737560026; c=relaxed/simple;
-	bh=cQLDiiAEoU77DSQMpPh/IDlK0jdGJdYEkSEtNLZljDM=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=tZTkK/HBzWraqXkvoGzoCvKCZZMUW4CK1ska3PFAy5UNuloWYdKzvp1jeUDEWX3qowhCtdQW1jKbDC74H3NpaHtbL/N7/DOqngafS0ZSFIvSajoXU5CrkIjESEsa2bsPRdWCv+XGTFuOu9K1Z43NVUb010esQaKC2lKEqHc07N0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=o4+FE6/m; arc=none smtp.client-ip=162.240.238.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=tX83hHT4aZ7+gZo2IS7Yjnxf8cn0wc/eSWvE6GZiFho=; b=o4+FE6/m1K7CzW34Ld9Pe+upII
-	14KCJI+i2yY2KIvO5Pt+a91b2lZif2kTIUYyFQ0iDusVsSEt8VYSd7ilkwlpkMCUdiN/zzMJczAOy
-	tcT+ocR563+WvKhHujTi/C8HTBgVrDezKTCYHRA7TIFv0qi7c+Z5TnmBY9In7ROCv4I4Anp63lDv6
-	vJehhQcY+U8VHT0qx3QsPZQ2S5wyg7447Ns/njpFiOg9CHTNQViEGiRiJ1WyBEVeih+zKnpf0ZnxY
-	EncZ5eKP5FW4HrvJPnYBh5PB6eSpT/dL98V/A6dWIfbok8XS+pVknGPD4LLGWBxEoQ2U5zm8rBHtu
-	El5fMB9g==;
-Received: from [122.175.9.182] (port=42840 helo=zimbra.couthit.local)
-	by server.wki.vra.mybluehostin.me with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <basharath@couthit.com>)
-	id 1tacjb-0007OL-17;
-	Wed, 22 Jan 2025 21:03:39 +0530
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id E84911781F6A;
-	Wed, 22 Jan 2025 21:03:28 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id B66E01783FED;
-	Wed, 22 Jan 2025 21:03:28 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id BnQLNzz2-_tk; Wed, 22 Jan 2025 21:03:28 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 28DF11781F6A;
-	Wed, 22 Jan 2025 21:03:28 +0530 (IST)
-Date: Wed, 22 Jan 2025 21:03:26 +0530 (IST)
-From: Basharath Hussain Khaja <basharath@couthit.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: basharath <basharath@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
-	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
-	kuba <kuba@kernel.org>, pabeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
-	conor+dt <conor+dt@kernel.org>, nm <nm@ti.com>, 
-	ssantosh <ssantosh@kernel.org>, tony <tony@atomide.com>, 
-	richardcochran <richardcochran@gmail.com>, 
-	parvathi <parvathi@couthit.com>, schnelle <schnelle@linux.ibm.com>, 
-	rdunlap <rdunlap@infradead.org>, diogo ivo <diogo.ivo@siemens.com>, 
-	m-karicheri2 <m-karicheri2@ti.com>, horms <horms@kernel.org>, 
-	jacob e keller <jacob.e.keller@intel.com>, 
-	m-malladi <m-malladi@ti.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	afd <afd@ti.com>, s-anna <s-anna@ti.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	linux-omap <linux-omap@vger.kernel.org>, 
-	pratheesh <pratheesh@ti.com>, prajith <prajith@ti.com>, 
-	vigneshr <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <984041835.384768.1737560006836.JavaMail.zimbra@couthit.local>
-In-Reply-To: <5ba6bbf2-52e4-49d0-b6e2-134fb25ebe4c@lunn.ch>
-References: <20250109105600.41297-1-basharath@couthit.com> <20250109105600.41297-3-basharath@couthit.com> <5ba6bbf2-52e4-49d0-b6e2-134fb25ebe4c@lunn.ch>
-Subject: Re: [RFC PATCH 02/10] net: ti: prueth: Adds ICSSM Ethernet driver
+	s=arc-20240116; t=1737560105; c=relaxed/simple;
+	bh=eQCIbiUut0TfzwczAQ/N0WWUfux5+s7N56bK9CS3YDY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oPucy8wrvq1IYopStv+c3zMg3aeby1Uw/K6ptnyUShS58LpIQNwH8K8FjrkekOwQQMZCddFs5DlADxrgZfsZHlfj5tBsQoPRw0uML289ABSoWFxyb9u+4Is6O8qCjPpHqEYhk3exXNjMpHcKLagtmPRQZz8y+erua+/HdDmaywo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JaYGVMFl; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-aaedd529ba1so938143366b.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 07:35:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737560102; x=1738164902; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=KETFZDAQGSQnbUovzFtFDRDwmiXXoDslrFU0Gb7YR+E=;
+        b=JaYGVMFl3Raj2zlK4D/gQf8zaHAZpkyfGYBmiLtX/NowETOSwWHKkIUODPK7x//HpK
+         VqJhtrXY1kW5xYtVIw9DoDdEchevfTVTdQRbtFjscATm6Buv92zF5uRK+7V9XXzL23Z6
+         frbIC2cf1LqQxLeL7fBLNgEUKF86ZNnHrmJi0D07KJJUfsGTlfIg63Lt9lkglci9wNR1
+         6bUTs355QZmMzlXUaxkboemvDxPvWF6KPHWOOmzw37MZLhse5c8gRioB3l1eXkZmqxiK
+         N4A4CyN6IhWDbKJFo8ETVlWpPbM9LaYVvU3veYcLLZjb4BerrpMhVzv3wZSwF6jY+zhm
+         8jgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737560102; x=1738164902;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KETFZDAQGSQnbUovzFtFDRDwmiXXoDslrFU0Gb7YR+E=;
+        b=rUNyUj6D1lhuuv3j1Uk7EnCtR6DyPqZcYwyi3mHHzySUhSCMUcZ7UXbJC+lpjSTPnl
+         4dl2fOxx+G9mkhZcmeGBS0b9iXTGEXG+vfHs8K4BnsLPqlywsGUne17eNL4STVxhAqOR
+         eOTGmQcITOOblihd+Rv+hT5O1iQfKwMwj5zn/46Tmyc0sVEw2mv8Ls3EHW+ld6ZnIbgJ
+         tWAvxLcqVGLeNRoIk3eTMN7gUcti8LVCXvTLKnxVwV/VyW9qjAAXA8pjZxZdeuaCnmKr
+         C5dNIzPBNXOWXNT2RYkRwxDvbhIop8c0s8KW/Rc8VqohR87+7nF2J5W52wCcJTF5sFpL
+         i7rA==
+X-Forwarded-Encrypted: i=1; AJvYcCXtjhSs/nbvWPtPH4juioNZiwN7UP7JbzucteZcOBS4I3ASTfq8n3uvnMh35bwuCW5UxD3WfahuLmAn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxqELKA0sUi0/lJUI+vToaD7rzX8bbEYlvDW0XNk6NaWIs8nZy6
+	KaGn3x1Tx26wLjdr+Vrkn7AkIsTmE7kUBPyJHKGp/FU8/JOeyyC2k8YVkpslQS3gdFo/IjNIR6R
+	8BoucQ5U3TYMYJKS/sKNAGck2WHlsYMR59zTizg==
+X-Gm-Gg: ASbGncsogoVh5NGeynaY1hObtU1z1vTzcCGvetwpYhTVwNHBGnHVsev/UB+6ceENote
+	5C6/wAe5AV5rf4Jh//94DK5sJoiiHFfSucnCi2nDEuI3XeJDsuMA=
+X-Google-Smtp-Source: AGHT+IGwSGuRD/aYqinEdtmQdp5BYDDbTOHN78QHSVfvtiNxdim4SnzdsQEwNiTQuEpXwt9E6iAQqX3BOkNBBgLF7Ec=
+X-Received: by 2002:a05:6402:1ed4:b0:5d0:c697:1f02 with SMTP id
+ 4fb4d7f45d1cf-5db7d30092amr46020089a12.17.1737560101630; Wed, 22 Jan 2025
+ 07:35:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF113 (Linux)/8.8.15_GA_3968)
-Thread-Topic: prueth: Adds ICSSM Ethernet driver
-Thread-Index: QkPWDvzL1WYog89bH3HrmHjQ8Nti1A==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.wki.vra.mybluehostin.me: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+References: <20241212-qcom-video-iris-v9-0-e8c2c6bd4041@quicinc.com> <Z3_kLJ6Oy6m9D_wU@hovoldconsulting.com>
+In-Reply-To: <Z3_kLJ6Oy6m9D_wU@hovoldconsulting.com>
+From: Stefan Schmidt <stefan.schmidt@linaro.org>
+Date: Wed, 22 Jan 2025 16:34:51 +0100
+X-Gm-Features: AbW1kvag4BbczVkSjBV2npFACGiC0vGJEK4WnN3ayf4-upXO4df24_T52EvWn98
+Message-ID: <CAEvtbuvHUF6tEiFOUUtqLh5hHf_Us+yA6TwtcmokM26v+QBLgg@mail.gmail.com>
+Subject: Re: [PATCH v9 00/28] Qualcomm iris video decoder driver
+To: Johan Hovold <johan@kernel.org>
+Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>, Vikash Garodia <quic_vgarodia@quicinc.com>, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sebastian Fricke <sebastian.fricke@collabora.com>, 
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Nicolas Dufresne <nicolas@ndufresne.ca>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Jianhua Lu <lujianhua000@gmail.com>, linux-media@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Vedang Nagar <quic_vnagar@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
+Hello Johan,
 
->> +	emac->phy_node = of_parse_phandle(eth_node, "phy-handle", 0);
->> +	if (!emac->phy_node) {
->> +		dev_err(prueth->dev, "couldn't find phy-handle\n");
->> +		ret = -ENODEV;
->> +		goto free;
->> +	}
->> +
->> +	ret = of_get_phy_mode(eth_node, &emac->phy_if);
->> +	if (ret) {
->> +		dev_err(prueth->dev, "could not get phy-mode property err %d\n",
->> +			ret);
->> +		goto free;
->> +	}
->> +
->> +	/* connect PHY */
->> +	emac->phydev = of_phy_connect(ndev, emac->phy_node,
->> +				      &icssm_emac_adjust_link, 0, emac->phy_if);
->> +	if (!emac->phydev) {
->> +		dev_dbg(prueth->dev, "couldn't connect to phy %s\n",
->> +			emac->phy_node->full_name);
->> +		ret = -EPROBE_DEFER;
->> +		goto free;
->> +	}
-> 
-> of_phy_get_and_connect() will simplify this.
-> 
-
-Yes. This API does same functionality, we will replace three APIs with single 
-API in the next version.
-
->> +	/* remove unsupported modes */
->> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_10baseT_Half_BIT);
->> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_10baseT_Full_BIT);
-> 
-> It only does 100Mbps?
-> 
-
-It is capable of both 100M/10M full/half-duplex modes. In this patch series we are 
-adding support for 100M full duplex operation. Support for other modes will be added 
-subsequently.
-
->> +	if (of_property_read_bool(eth_node, "ti,no-half-duplex")) {
-> 
-> Is this becasue 100baseT_Half is broken in some versions of the
-> hardware?
-> 
-
-No.This property will be removed as we have added support only for 100M full duplex.
- 
->> +		phy_remove_link_mode(emac->phydev,
->> +				     ETHTOOL_LINK_MODE_100baseT_Half_BIT);
->> +	}
->> +
->> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_Pause_BIT);
->> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_Asym_Pause_BIT);
-> 
-> Is this really needed? I've not checked, but if you don't call
-> phy_support_sym_pause() or phy_support_asym_pause(), i would of
-> expected phylib to default to no pause?
+On Thu, 9 Jan 2025 at 15:58, Johan Hovold <johan@kernel.org> wrote:
 >
- 
-Though TI PHY default state is clear(ASM_DIR - 0 & PAUSE - 0 as Default
-state in ANAR register), this bits are cleared again to handle if in case 
-of change in PHY.
-
->> +static const struct of_device_id prueth_dt_match[];
-> 
-> Please avoid forward references. If you need the match table, define
-> it here.
+> [ +CC: Bjorn ]
 >
- 
-Sure. This got escaped while cleanup. We will address this in the next version.
+> On Thu, Dec 12, 2024 at 05:21:22PM +0530, Dikshita Agarwal wrote:
+> > Introduce support for Qualcomm new video acceleration hardware i.e.
+> > iris, used for video stream decoding.
+>
+> > Note: A harmless onetime error log "Lucid PLL latch failed. Output may
+> > be unstable!" is seen during bootup.  It doesn't impact any video
+> > usecase and is currently under discussion.
+>
+> This could be an indication that some resources are not described
+> correctly and could potentially require both binding and driver changes
+> to address.
+>
+> This is also something which could cause trouble later (e.g. during
+> suspend) even if you manage to get the clock running after boot.
+>
+> Generally, you should not be introducing any new warnings; they are
+> there to let you know that something is wrong.
+>
+> Where is this issue being discussed?
+>
+> I think we at least need a public analysis and understanding of the
+> problem before merging this.
 
-Thanks & Best Regards,
-Basharath
+Taniya Das proposed a patchset to reconfigure PLL in the clk-alpha-pll
+which allows the videocc-sm8550 driver to configure it correctly.
+https://lore.kernel.org/linux-arm-msm/20250113-support-pll-reconfigure-v1-0-1fae6bc1062d@quicinc.com/T/
 
+I tested the Iris driver with this patchset and I am no longer seeing
+the Lucid PLL latch failed warning.
+
+regards
+Stefan Schmidt
 
