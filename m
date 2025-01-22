@@ -1,144 +1,134 @@
-Return-Path: <devicetree+bounces-140431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB767A19B06
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 23:41:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 986C0A19B0A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 23:43:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AD6A3A5368
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 22:41:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BDB03A4DEA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 22:43:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25EB11C5F2D;
-	Wed, 22 Jan 2025 22:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2562B1C9EAA;
+	Wed, 22 Jan 2025 22:43:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="e/FShezb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LOEDhM79"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 831EA1C5D4F;
-	Wed, 22 Jan 2025 22:41:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD421C5D4F;
+	Wed, 22 Jan 2025 22:43:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737585698; cv=none; b=FjZEy8p663DbTGvHky8DI6Tr60WqhifNUwld5hTGDCxGhw4IQigrDafQTCTklozgAcE51hlT9PL3GYlLlfVc4gzimVLMEp+8ViutJuGfMB1tTZoKVI9TYeItXBUgiYqLSncak0lX65lsHEfM9r7UkVrsekq0MoCN6YcnJ5e9jac=
+	t=1737585795; cv=none; b=KoGdaga9XXzaeuARF7mcaa5OKzXEYT6/Zn4n4lZi3iXnecf70pa+/Qdu43GErgyJLyOmiybXf5zRLlMbYeem9Nic3bysKKKW1BXcnNij+iMTp3L5MMB0+NhwfqCE6ivogIGwwAKU14pWXWbUvH/ZWW099aSeMUhNMR+2dal8EKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737585698; c=relaxed/simple;
-	bh=LEazAn8h2c22eV9409j3Y07wkvhWsDwiSa7rhEF223Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bIv9rVXycLJ0Inm5zMtevdOKykLNvZpEKrdy+ETTOYtG2FyJhbL67yWptm9b51uimU50sqSqYGVfW8UsJcNkONDZKLoLfcBKq+51RtmybAYgfMEiKD8HQMlhRZ2cQRUXq9tW9L+vJKPBj/0C1oAa0dSelkmm/VJdsmSb6bbMlAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=e/FShezb; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=WYiygwqQsDUI+mRLPh/otnMV55e+vZS9FcV06LU2G7I=; b=e/FShezbPwoYBaIpkDQhhhaeae
-	HSA/gfwRB7EwMgMiZDW5y7UPBbCTMHWWKGiMz9UyfwGFr0xE8XcegJ/ihsl4rObF9egm2GYeiaz6J
-	3RBUGjCQRlVgTOiR/RWRhWM7pXMUCl5pS5oSolY15AjFHDYppJPs6Afg2ywfeqewiKwI43zpCy1AC
-	5i0T3WC+w3zu089IDp5s4izYawLMNczYk9n7f/p7/lhUe4ugebD8ipEuK05giYj+FrehXyqR2vq5C
-	hjdGKShhbILuZYfH7fFDtLMPUDLHsXdw40nVNBCqZz52uK9OiLXfOkkYBZ6wiRCP6xCFQ31jZOyak
-	OormG4AA==;
-Date: Wed, 22 Jan 2025 23:41:19 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Tom Rini <trini@konsulko.com>
-Cc: Robert Nelson <robertcnelson@gmail.com>, Kevin Hilman
- <khilman@kernel.org>, linux-kernel@vger.kernel.org, Nishanth Menon
- <nm@ti.com>, Tony Lindgren <tony@atomide.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: omap4-panda-a4: Add missing model and
- compatible properties
-Message-ID: <20250122234119.0913cb4f@akair>
-In-Reply-To: <20250122221843.GE60249@bill-the-cat>
-References: <20250121200749.4131923-1-trini@konsulko.com>
-	<7hmsfjn5mm.fsf@baylibre.com>
-	<20250122000824.GJ3476@bill-the-cat>
-	<20250122214604.79e1e829@akair>
-	<CAOCHtYj3LumO4pViSOyTwjNxvG1E-DX=JA0-m4Usi1qL+jw21g@mail.gmail.com>
-	<20250122211014.GB60249@bill-the-cat>
-	<CAOCHtYjQtPvun-YTf6KT3Pw+jn3PS0tKM5uz1to3C6+Usjcq5Q@mail.gmail.com>
-	<20250122221843.GE60249@bill-the-cat>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1737585795; c=relaxed/simple;
+	bh=KLtJ5UuBThEDvv2fmVOifgtc8X1xfwVeYV1LWyFnU9s=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CQIV5N7jswebu4Gbz+TWDIeroW+jesvoiNTMIGcIQWVM5gl/0s/VImSdXuU/x1KZrMc9Po47YfgA8YOdi6yxdi3hQU3papZP4V9bdcSRQHcIVdUUoXUX0dIwwnI51RlGaa1cn9TsSqFwe/bMqq8Cv1s1Oi7I9rWwYyp6E2bX8ZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LOEDhM79; arc=none smtp.client-ip=209.85.219.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-6d8f75b31bfso4173186d6.3;
+        Wed, 22 Jan 2025 14:43:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737585792; x=1738190592; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=E6OZqE7iIZIdCEqIDoZhlJdC19YJ2tsXKOstsn7nEBM=;
+        b=LOEDhM797+iHmcVAf9PDHpZ2oS/Io8Wn+6cRfGNbaMCtWDIJM2xDOjwhaRhDEYN5DI
+         Jb35cdkSeLRM0D/9XcEDxMib9UJK2g5FvGzaoMgrNthkRUTg/FMXIleNRV4ssuP/RG/5
+         /Ifdapwtshs7xPLufoJql5OdC1VRTyYvumEpQglpMxzJwljHgw5Hgd8691wnM1g1u7vo
+         97lIz0/RuikruF4/yDz8cidw5BNnTTnugQ9MpE5x9MmL21W0umXOISIHCHMKMR2qSBnU
+         AfvZ1AfKVctt47aleUvVeZHyCo6Kvvovfmy1zjzykDOwkttBssuCG1iLm49AA9VvRJJY
+         4pFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737585792; x=1738190592;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=E6OZqE7iIZIdCEqIDoZhlJdC19YJ2tsXKOstsn7nEBM=;
+        b=umu4KV/ChxgkFxJd0cCYysbpc27FNBhGzQtLf81ZM3nZ6ofRU8i75c9Vtvn0LbuC+u
+         oi/qhL0hzDFUqgoTf52RLFPmjL2UEOstqBfGA1FfREGfNgbwpJXTh9H/TsxGzE1rSu0h
+         LnM8ebmojNdC5VS5+hwpkXFCY02ebPtZG4Zf1Rzcz3jIsG7N0bMTCi4QwhtXzoMDF91h
+         6ltxNsQx5AW1relJdz7zR4P8oh9LTVlVAt+gZPzp4UAIbijRt1acsLan9RcI+fQYN9y2
+         BREit/tKjgeXnKD8aFV896wmKOs5Dp/F2UcdSkNfEAiLhhWKIixzkCSSdzkXf6yv3d//
+         j3kQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUzFo7P/iKQXLfTW1cT0Wiv3NhR3M1QZ/VKa2vXgNQlBRTSZ3WkaJCkYz0N3ihnmvsCoY1bSG/18i6DaGDR@vger.kernel.org, AJvYcCWMysiW2FyKPCb/mk77uXZrwTP1wzjaO8AtWrninJJnrCAh2yp0vuaNY2tTTtxwMlBCGRyJciHWncp/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxQbFkRlucFNe3bRikfrBZEGuBZwKJRcExGmA0kxOI6zQJuUOm0
+	3FWJGwJ0t8Y364a1Nw18gmEcbPlWMxQGl0kJTQ70jNccEZoybAFC
+X-Gm-Gg: ASbGncv2OOKDs3oVduxsi4GYrEr/RjlWbv33b6otjSlTO+gQHkmV2w6n+kNwqHMTSPz
+	q9Hi6aMP/JtsuVWuF4mQcl+j5DQ4KtxQKxGG/yhrwwWbVRzECxp+SWVlWT/DURoQ7630FP//Vsl
+	FPYO3lzpxSIRFkRQD/sbyrXe5AhxKvLfSU0OMUz3RipvBykdzPjumAFTC22f+NIcD9vmLWXITta
+	EkYrSD5Zj/sTqzgIgDidD7Oh/k+8o21QuMGda/h+rSktw==
+X-Google-Smtp-Source: AGHT+IFoyWf4t/CIJ0HKL6Xnq/hJ7/kW4C818cLFawa82wfPl4faqNL1VWj3EHe1I2PuOVEWgcSkAQ==
+X-Received: by 2002:a05:6214:240b:b0:6df:97a3:5e76 with SMTP id 6a1803df08f44-6e1b21d13e5mr384406186d6.27.1737585792443;
+        Wed, 22 Jan 2025 14:43:12 -0800 (PST)
+Received: from localhost ([2001:da8:7001:11::cb])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6e1e0a39f89sm24469386d6.19.2025.01.22.14.43.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Jan 2025 14:43:12 -0800 (PST)
+Date: Thu, 23 Jan 2025 06:42:23 +0800
+From: Inochi Amaoto <inochiama@gmail.com>
+To: Chen Wang <unicorn_wang@outlook.com>, 
+	Inochi Amaoto <inochiama@gmail.com>, Chen Wang <unicornxw@gmail.com>, u.kleine-koenig@baylibre.com, 
+	aou@eecs.berkeley.edu, arnd@arndb.de, conor+dt@kernel.org, guoren@kernel.org, 
+	inochiama@outlook.com, krzk+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com, 
+	robh@kernel.org, tglx@linutronix.de, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, chao.wei@sophgo.com, 
+	xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com, samuel.holland@sifive.com, 
+	christophe.jaillet@wanadoo.fr
+Subject: Re: [PATCH v3 1/3] dt-bindings: interrupt-controller: Add Sophgo
+ SG2042 MSI
+Message-ID: <wwgb5kx7o3s53tzpjcizrw7ftkxze4ynrwvgxshk6cl3crslx2@erbjvg44h7cb>
+References: <cover.1736921549.git.unicorn_wang@outlook.com>
+ <c9dd12c3ad77b13dcdfbf4accd51e92e6ea2a4a9.1736921549.git.unicorn_wang@outlook.com>
+ <gyf6cdqjnvom3adf3cr7l72e7xevewhrsv4koelpnfm5cd22ge@t4ru6avsihzd>
+ <BM1PR01MB254564DCF4004C3E60177331FEE12@BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <BM1PR01MB254564DCF4004C3E60177331FEE12@BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM>
 
-Am Wed, 22 Jan 2025 16:18:43 -0600
-schrieb Tom Rini <trini@konsulko.com>:
+On Wed, Jan 22, 2025 at 09:51:05PM +0800, Chen Wang wrote:
+> 
+> On 2025/1/20 10:42, Inochi Amaoto wrote:
+> > On Wed, Jan 15, 2025 at 02:33:23PM +0800, Chen Wang wrote:
+> [......]
+> > > +  reg:
+> > > +    items:
+> > > +      - description: msi doorbell address
+> > > +      - description: clear register
+> > > +
+> > > +  reg-names:
+> > > +    items:
+> > > +      - const: doorbell
+> > > +      - const: clr
+> > please reverse the items order, the clr addr is more suitable
+> > as the MMIO device address when writing device node. doorbeel
+> > address is just a IO address and can not be seen from CPU.
+> 
+> I find dtbcheck will report error if order is switched.
+> 
 
-> On Wed, Jan 22, 2025 at 03:52:47PM -0600, Robert Nelson wrote:
-> > On Wed, Jan 22, 2025 at 3:10=E2=80=AFPM Tom Rini <trini@konsulko.com> w=
-rote: =20
-> > >
-> > > On Wed, Jan 22, 2025 at 02:56:19PM -0600, Robert Nelson wrote: =20
-> > > > On Wed, Jan 22, 2025 at 2:46=E2=80=AFPM Andreas Kemnade <andreas@ke=
-mnade.info> wrote: =20
-> > > > >
-> > > > > Hi,
-> > > > >
-> > > > > Am Tue, 21 Jan 2025 18:08:24 -0600
-> > > > > schrieb Tom Rini <trini@konsulko.com>:
-> > > > > =20
-> > > > > > > If keeping it is just this binding update, then I'd say we ke=
-ep it, but
-> > > > > > > if it gets any more paninful to maintain, I'm also not going =
-to argue
-> > > > > > > very hard to keep it. =20
-> > > > > >
-> > > > > > I'm not in the position to see if any of the Pandaboards work a=
-t this
-> > > > > > point, so I don't know if they're otherwise functional or a hug=
-e pile of
-> > > > > > problems. =20
-> > > > >
-> > > > > I am still testing stuff with pandaboards. But I do not have the =
-a4
-> > > > > one. So yes they are functional. Compared with other devices stil=
-l in
-> > > > > use using the same SoC, here you can play around with everything,=
- know
-> > > > > the device. so it is a reference for keeping the really interesti=
-ng
-> > > > > devices working.
-> > > > >
-> > > > > Regarding the a4: I think it is better to keep that one in, just =
-that
-> > > > > nobody gets confused if he/she digs out his panda board for some
-> > > > > comparison test and uses a wrong board revision. =20
-> > > >
-> > > > Do you want an a4? I could dig one or two out! ;) =20
-> > >
-> > > Unless I'm missing something, the a4 hasn't been bootable by upstream=
- in
-> > > about 10 years now... There's no top-level compatible, so there's no
-> > > match in the generic board code. I can't recall if the A4 versions we=
-re
-> > > available to anyone other than maintainers and beagleboard.org folks
-> > > themselves as part of bring-up/testing. I know I had one and ewasted =
-it
-> > > a while ago. =20
-> >=20
-> > PandaBoard EA1->A3  =3D omap4-panda.dtb
-> > PandaBoard A4->+ (non ES) =3D omap4-panda-a4.dtb
-> >=20
-> > A4 was the final production version of the non ES Panda.. =20
->=20
-> Oh! My memory sucks here, sorry for the confusion. But it's also still
-> the case that omap4-panda-a4.dtb hasn't had a top-level compatible
-> string, so can it even be functionally used?
->=20
-maybe people just revert to omap4-panda.dtb, it should not hurt having
-internal and external pullups. I have the A2.
+You should also change the unit address to avoid error.
+I think you forgot it.
+
+> On SG2042, address of doorbell is ahead of clr.
+> 
+
+It is the same on SG2044, but there is a problem that the
+doorbell addr is a IO address and it is not suitable to
+represent the device addr in the dtb. It also lead to a
+weird unit address on SG2044 which is hard to understand.
 
 Regards,
-Andreas
+Inochi
 
