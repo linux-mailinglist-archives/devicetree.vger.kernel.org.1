@@ -1,134 +1,121 @@
-Return-Path: <devicetree+bounces-140298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 438DAA1922F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 14:17:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52810A19232
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 14:18:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23C03188C8EB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 13:17:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2ECA53A2E2E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 13:17:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86B50212F90;
-	Wed, 22 Jan 2025 13:17:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C81212F90;
+	Wed, 22 Jan 2025 13:17:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="020ODiv6"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="hDGA3cWk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9BA618E25;
-	Wed, 22 Jan 2025 13:17:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6D0818E25;
+	Wed, 22 Jan 2025 13:17:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737551857; cv=none; b=FobT7zcm1BzOliTv91FnbXUZshEITTKeM6hMJZ6RbexKHXJJnest0ifzF9bCwedU3Me3k0HwgIAmmVEzTD3pqxjdxrHs3GPQArrAh9ggDwGVqv4JnokJJSwBL398zUgaaHeVDqk8Bq9Ayy/YrojkxL8c5L4rvncZFjF7DO7aF4c=
+	t=1737551874; cv=none; b=SHKPW8Au1WvajwvgHLnplpgi7foqfsJ71B/VqLWoiqaDI08fjw8KbTnzLszC0OCwR0gbu8JCV8dtfV+DZFBGYKza1iHG0YJuyvL+UPPUTo1CWPCWILiEjJcHgOFebF8qgbPF+u1+9o7C99uz+IsgmrzrjMMDoimhJmv7sMM7x/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737551857; c=relaxed/simple;
-	bh=JrOlnJHY8waOSXoOKwereWaAiPqVw6fyu1ZDgT7dG4M=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=NNwS8ElzDH9pI1E3wPC5F/4kqpYRqAC5vDYOyXEZ6qkVccp354s1Dk9CVk4Ghz/pvq2fpRu4vCxgaoVjweNa+2mkmTjvmkzJdT6Py1tHSdfoqQ9nxyzhFvfHZzeStElvsnnygLEyU+jul/50kVDjDVPKCbujlzcTkHTIbCu9VF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=020ODiv6; arc=none smtp.client-ip=162.240.238.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=x+h5UKHT1Q5bzoTA6GUz4qAnjvALfXCiYgl3lpRkiHg=; b=020ODiv6NZmR5jKyjatCV+aT9l
-	XwsyQq5QeSfFww0eq7iCKH5STKe4k8I2vM+NYwAw0ImtWWjY1PT2+Y4pcziVDc/53Uc0gfq8KpZkn
-	MG1rcmgVHiNO5KQQ4U7UUakx9f/qJYid7PNIafIqK7kI/ZRrivCKnIJaW3ztvFeByhQE3w+MEbhhU
-	izl2DQVVLghyx/3TBcjEDCOVTWSNV5fmUzAtEMiwVGXUBUep8gg8HnoBu10UeegIM6OQTqFNVTuF9
-	pLcF3lgayjtI7oFul62InLuEoqzUo1qJ6dz93VPg1p1yZM9xFOl432DZVDAwtMNuZLqnZ/JEkwztr
-	SFTc3riQ==;
-Received: from [122.175.9.182] (port=10149 helo=zimbra.couthit.local)
-	by server.wki.vra.mybluehostin.me with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <basharath@couthit.com>)
-	id 1taabe-0004sa-0I;
-	Wed, 22 Jan 2025 18:47:18 +0530
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id 443A31781C74;
-	Wed, 22 Jan 2025 18:47:03 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 1AEA01783FED;
-	Wed, 22 Jan 2025 18:47:03 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id U5j_t1xDCAcK; Wed, 22 Jan 2025 18:47:02 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 9C91B1781C74;
-	Wed, 22 Jan 2025 18:47:02 +0530 (IST)
-Date: Wed, 22 Jan 2025 18:47:02 +0530 (IST)
-From: Basharath Hussain Khaja <basharath@couthit.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: basharath <basharath@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, 
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
-	Rob Herring <robh@kernel.org>, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, nm@ti.com, ssantosh@kernel.org, 
-	tony@atomide.com, richardcochran@gmail.com, 
-	parvathi <parvathi@couthit.com>, schnelle@linux.ibm.com, 
-	rdunlap@infradead.org, diogo ivo <diogo.ivo@siemens.com>, 
-	m-karicheri2@ti.com, horms@kernel.org, 
-	jacob e keller <jacob.e.keller@intel.com>, m-malladi@ti.com, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, afd@ti.com, 
-	s-anna@ti.com, linux-arm-kernel@lists.infradead.org, 
-	netdev@vger.kernel.org, devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	linux-omap@vger.kernel.org, pratheesh <pratheesh@ti.com>, 
-	prajith <prajith@ti.com>, vigneshr <vigneshr@ti.com>, 
-	praneeth <praneeth@ti.com>, srk <srk@ti.com>, rogerq@ti.com, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <835897001.382468.1737551822290.JavaMail.zimbra@couthit.local>
-In-Reply-To: <2e82fb20-c6f9-4cc3-a700-fce049295f58@lunn.ch>
-References: <20250109105600.41297-1-basharath@couthit.com> <2e82fb20-c6f9-4cc3-a700-fce049295f58@lunn.ch>
-Subject: Re: [RFC PATCH 00/10] PRU-ICSSM Ethernet Driver
+	s=arc-20240116; t=1737551874; c=relaxed/simple;
+	bh=7J8JYUJiLeE4gG8/YlACxnWVvHr1kH67n1Ss2dPnkxQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JiG84bGIN2RSgvgoJ8KOatFkgj9Df1d/EDIWTHDz7iQrCtxB1Cf/uPiMGvg9OZdtHu5kZz7/SUwOhdO5Z803hpXdjyyBga+wOvgUP+8Ev5NZrNAiV0zJGIOGrp/qjZClptGhl1AEzTNo8CD5n8j28sWjjLkaRVfTsSuIlV+SM0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=hDGA3cWk; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=mQUPGxoaH8FA59cOm8IpluUIIZocGZ7cJ6+fjnFb0aw=; b=hDGA3cWkUIjckV8IEpqdEy2BJ2
+	SgI2YPnxfeW+EhMoGELAoVeMIQQEC48m5RGhHktUd4o6xJ6W5DbSNnhOUKBbTOvZRtXuY9ITVNEVP
+	NoBbLrmhH/h7RwgwGb5SIdr/rK60OO5V5v70Tt+AI8nHTANqupQw4gHiD5++N5/miFehZaDUJoNFx
+	x7M74XOo97mJ/8sii2d8/cJF0akRn4K3LnkTF6+Jiklr1MqjC1hS3AXjI0792P+Mu7Mf4KVYSO4OT
+	vAs4SLdi2yVuyh4FhK5SF8os7jka2Qq03ZuXOald3Rnqdk65NhQifqjN9xzuPiwd+u/6GvXY7nw4U
+	6r1yyxGg==;
+Received: from i53875b5c.versanet.de ([83.135.91.92] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1taabs-0003Kc-Ss; Wed, 22 Jan 2025 14:17:32 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Quentin Schulz <quentin.schulz@cherry.de>,
+ Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jagan Teki <jagan@edgeble.ai>, Niklas Cassel <cassel@kernel.org>,
+ Michael Riesch <michael.riesch@wolfvision.net>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v2 1/3] arm64: dts: rockchip: add overlay test for Edgeble NCM6A
+Date: Wed, 22 Jan 2025 14:17:30 +0100
+Message-ID: <39523024.10thIPus4b@diego>
+In-Reply-To: <bbf47543-6fe3-409e-a988-35be63d47cfa@wolfvision.net>
+References:
+ <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
+ <433a8050-98b5-409b-97b5-00fe0e719a52@cherry.de>
+ <bbf47543-6fe3-409e-a988-35be63d47cfa@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF113 (Linux)/8.8.15_GA_3968)
-Thread-Topic: PRU-ICSSM Ethernet Driver
-Thread-Index: /F7uLdjpxFr3AOTU/2VXYpfIDw8vRA==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.wki.vra.mybluehostin.me: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-> On Thu, Jan 09, 2025 at 04:25:50PM +0530, Basharath Hussain Khaja wrote:
->> Hi,
->> 
->> The Programmable Real-Time Unit Industrial Communication Sub-system (PRU-ICSS)
->> is available on the TI SOCs in two flavors: Gigabit ICSS (ICSSG) and the older
->> Megabit ICSS (ICSSM).
->> 
->> Support for ICSSG Dual-EMAC mode has already been mainlined [1] and the
->> fundamental components/drivers such as PRUSS driver, Remoteproc driver,
->> PRU-ICSS INTC, and PRU-ICSS IEP drivers are already available in the mainline
->> Linux kernel. The current RFC patch series builds on top of these components
->> and introduces changes to support the Dual-EMAC mode on ICSSM, especially on
->> the TI AM57xx devices.
+Am Montag, 20. Januar 2025, 11:34:25 CET schrieb Michael Riesch:
+> >> Maybe open a new section "# Compile time tests" or something like that?
+> >>
+> > 
+> > The above line is to compile the build-time test of overlay application
+> > (notice the missing o in the extension). This points at the target below
+> > (which ends with -dtbs), which does require the dtbo to exist. So
+> > essentially, they are both for the build-time test of applying (and
+> > generating) DTBO. I feel like this comment/section would add to the
+> > confusion? I may have misunderstood what you are suggesting, can you
+> > provide an example?
 > 
-> I guess this version also has the horrible architecture of multiple
-> firmware's you need to swap between at runtime?
+> Thanks for the explanation. At the beginning I was wondering what the
+> point of this line was, and thought that a comment that explains the
+> purpose of it would be beneficial.
+> 
+> Maybe it makes sense to provide a section so that other contributors
+> know where to sort in their tests, so maybe
+> 
+> # Overlays
+> dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
+> [...]
+> 
+> # Compile-time tests for overlays (and combinations thereof)
+> rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb
+> rk3588-edgeble-neu6a-wifi.dtbo
+> [...]
 
-This series has support for a single protocol. Yes, swapping of firmwares will be required upon adding support for other protocols similar to ICSSG. 
+I do feel that both parts belong to each other, and we're reading from
+top, so personally I'd go with Krzysztof's suggestion.
 
-Thanks & Best Regards,
-Basharath
+# Overlays
+rk3588-edgeble-neu6a-wifi-dtbs := rk3588-edgeble-neu6a-io.dtb rk3588-edgeble-neu6a-wifi.dtbo
+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-edgeble-neu6a-wifi.dtb
+
+
+Having separate blocks for overlays and the description of the building
+blocks just causes the reader to jump up and down between sections,
+especially once those parts become larger, so please keep things together.
+
+
+Heiko
+
 
 
