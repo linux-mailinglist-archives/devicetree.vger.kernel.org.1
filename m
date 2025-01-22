@@ -1,113 +1,131 @@
-Return-Path: <devicetree+bounces-140269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06575A1903A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 12:02:03 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E044A19047
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 12:05:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7760F7A3D93
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:01:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21713188C302
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:05:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1196B2116F0;
-	Wed, 22 Jan 2025 11:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1C021129D;
+	Wed, 22 Jan 2025 11:05:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YrSuY77B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tzBiLuhI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 860FD18AE2;
-	Wed, 22 Jan 2025 11:01:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D431A4F22;
+	Wed, 22 Jan 2025 11:05:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737543718; cv=none; b=XLO3CKzodMUhBGTGkhARX+ypexEbCtS2dR0wgIv9EiMVyjxau1ZQEjCsrd7igqTTMxXuGeZEd5qkDCynGd7EiXOCuVYdzkDisA8tjFtl1pCO3/IPycLIoDKCN8ZRh05WMq7hkmDN+hADJldG87RZceXeepd6L6Ghi/ShpjOCO2U=
+	t=1737543911; cv=none; b=fPhq6drcemGrRePwcUHGvql1WGPZjdSJ3u1xl3aagZXg3x6+lZQ53CfY2PykL1UCTpjIN/oHfIs/lWTtjb9HSzcdcFVIbc8McYvybB+zx2q1Gi2hTBQBqTMHUdXPyYV4TaR2xcbx38XJUsus5u3s6jam0vkKG/kGUggwuw5EaHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737543718; c=relaxed/simple;
-	bh=ahegWa745mU+Vmqnh+ev9dNyAQR5ZkIBYktO62Z+AZk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DkMfbtby0hgu459TIMvkDdltqGtcrio56v4a6zbVZec+BfAq9wiePAtX5CuOh6brBRYMwkFRYXWlTzxyo4G4iuWGLPD868l0qIvd4oR9QzPiTSA+DI3Kfems5VS/cIJYN5eLZ6jXRGi7g74bqPn1eSigir9EVgVPkYVAOpIlf+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YrSuY77B; arc=none smtp.client-ip=209.85.216.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2ee86a1a92dso9411138a91.1;
-        Wed, 22 Jan 2025 03:01:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737543716; x=1738148516; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ahegWa745mU+Vmqnh+ev9dNyAQR5ZkIBYktO62Z+AZk=;
-        b=YrSuY77BnW3QDwR9zcwmSmMGluhh6OMreBy7HkGefmNATHT5ZKVxqCSVULmvczO5b5
-         sRzPvvA6AthtbLmh4atg4actrdM2msb+sPqiWRLq6D5obJszrmF5C4eHaJM2Efi0k+LH
-         GuD4BNX29lETDdqgwzhhrSNMEnU13AsWG8it+siCbGE1HI6MqNRmG/pZR+djdi1I0VFu
-         5zgU5gAFU2My9nQp55Fi2byDRBXYx6WivQT/nBIp8gVsrQaC3jbhvnPo+lbbL6xzgZvY
-         Xy/FcMahvzL8aQgJCJdKOcu93m9O+3WsG08st2/1gydfvZTlxNyMKDq+hwTq1jT0oEtW
-         wWAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737543716; x=1738148516;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ahegWa745mU+Vmqnh+ev9dNyAQR5ZkIBYktO62Z+AZk=;
-        b=ist9xM3497sDkxSimX24inew40lU1pjYHIWpYePCJa4xoYjhZ4mR0cbJBdYdY0qo6x
-         fCHdfRQKT30o7gJBhKr5Lr2Qjz260lyXGnasLFZVsrrKV96nyMLPQFjHgPxPcCnrGCy2
-         hlpZbPBlzSOSyp5vgKrGNmBBv/V4IfIwm7I6fWFAvzF9GsaYaHNyzpj5Qlu2SYuezt2m
-         HGN3SbLBez9HI8mol/W/dj2134BCI+bPCA4cw/qABsbDMZ20BqDwcCWNEI2msHUxuXh2
-         UECJmcZph5i7YQTyH6UCp1+VOJQ7HHX56a8EVGSfhDNtYO8xNtZccKgLKwfbzGYlyxQz
-         4IqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUABSXFkwXsCcasZQ7eBygM8FXvTha9YSE2do+ckZP2PVHlB/M0aqwyosoOKTdJ61voMtMQ6M4dBiwK@vger.kernel.org, AJvYcCUZkM1b8gxmYdBczYqQcljuO4t6A/WuSzQFRKmsNlVP5I26nnmhh8Gcpxie5ADtvTLVso6WXaeauMom4Ci74e0IotmeBvsM@vger.kernel.org, AJvYcCV3mvi7CeaT0C/tzyZkoPqJaKJ0AFn2fdbTDNK5FsegZLkGqJ4V8qScVINbmjNeBXJNd4IZG1HmHWiT@vger.kernel.org, AJvYcCVOYfcu7PpCQUnfn2WMBxvF2O11hYFV9wFtmlDMJvuQWY7QCha/J/y6ObRnqpD8yGeCt40uLA1XZeY=@vger.kernel.org, AJvYcCVtovPxB/Z/8zyxsL/TFXbJ446LNxppNwKDoktyOGBcqlP7cMeFsZXls/3LQEyYFAC9JUgLG1P14t/TOcbb@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZgpwnF75CqtHa8W15BUv2E2s/oDjVjZyOXqB+9hgMIJQRQ/7P
-	K6uMOinxHI4wndyihBAvRRvhmRMclxzhSvpkvruYkTOTkyzFw/d+VDwTsmZJ0PQCknZlY8UBfSo
-	jD7SqRkeYuIIE0X7cAzLF6h7WwF4=
-X-Gm-Gg: ASbGncuH42sTPIZpvHNKhh2r3qn2ev5sRzKP8u1sFugFy9fDcmg8rv0kLhCu0Y59Zoz
-	6LadhdNpLj/3Tc40wwEiw7FJtu+KQFqDsQFcH+wOv/KvpI4h2xLrL
-X-Google-Smtp-Source: AGHT+IFPgblVHaEjnM6nhcreTldchYyIJTpY55eKVObaVzFagqAwIyDjIvNPwSyVAwhYwCsUN6FF7RqNwMBujjZOwbw=
-X-Received: by 2002:a17:90b:51ca:b0:2ee:5bc9:75c7 with SMTP id
- 98e67ed59e1d1-2f782c4bdc3mr26294095a91.5.1737543715747; Wed, 22 Jan 2025
- 03:01:55 -0800 (PST)
+	s=arc-20240116; t=1737543911; c=relaxed/simple;
+	bh=7wl9ZC+5XNC+S5f/V5jj+VpKM3ZD/Z3IT9mwMfZTgOs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NlXeL6aSs/NNVFz0g1i+FiRbJaZbz06MYBU1VwdvOaEoAP6wdHPnOtk200ps2oeI2jzuuWrthp4pHoKTKedkZG4E34yF0MeHuHs+Fb6IrlzVbsaNGBhwKeM1Jg7qDD2txtxGSXWDab70421x9MYEGM0WRRJACUUgZlg/cZNu4xc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tzBiLuhI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CBEFC4CED6;
+	Wed, 22 Jan 2025 11:05:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737543910;
+	bh=7wl9ZC+5XNC+S5f/V5jj+VpKM3ZD/Z3IT9mwMfZTgOs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=tzBiLuhI/At41YIq2Fi1OUdPjycIguoDCN5QqOO7B8cRk/e6vbuWpMUTvP6YrroY5
+	 vMoSFnJ+z+pJlLck6PGI38dxeFAv82/6/9qCwTlT1D8TDviUNJEttGp+dJZND//XwS
+	 2zz+vQWkB5FLxcqc3qwsqKd8jUjqRvm+WqwpyG/uRrdz8iO75coPA7hmfrefctDA26
+	 gH8onnIBSiu6ULzv7mjAH6dS2XRnI5ice8VbrnFCdDo4j32TI45Njlf/46bOcpET4Q
+	 MegjHUbCY1er95nPZU79fszq5C9UoaH+5/BCWLQawgCtjH/uRWr7PWxQ0xHzRaXxIT
+	 9Emu/xwiE4UtQ==
+Message-ID: <9a8f1dbb-ffcc-4ca5-96c2-ad37d86059cc@kernel.org>
+Date: Wed, 22 Jan 2025 12:05:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250113-hw_protection-reboot-v2-0-161d3fc734f0@pengutronix.de> <20250113-hw_protection-reboot-v2-3-161d3fc734f0@pengutronix.de>
-In-Reply-To: <20250113-hw_protection-reboot-v2-3-161d3fc734f0@pengutronix.de>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-Date: Wed, 22 Jan 2025 13:01:43 +0200
-X-Gm-Features: AbW1kvYA1CSvpEvQV0avkVcXZAcP3BsGSp9Mve19t_aSvzY4TVkLSF5gkliB-RI
-Message-ID: <CANhJrGM=DHmXxKrfwQ80-6wqZqMLx7Yv=jC0ZV0B9D92FAcd6A@mail.gmail.com>
-Subject: Re: [PATCH v2 03/12] docs: thermal: sync hardware protection doc with code
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc: Andrew Morton <akpm@linux-foundation.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Fabio Estevam <festevam@denx.de>, "Rafael J. Wysocki" <rafael@kernel.org>, Zhang Rui <rui.zhang@intel.com>, 
-	Lukasz Luba <lukasz.luba@arm.com>, Jonathan Corbet <corbet@lwn.net>, Serge Hallyn <serge@hallyn.com>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	Guenter Roeck <groeck@chromium.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-security-module@vger.kernel.org, chrome-platform@lists.linux.dev, 
-	devicetree@vger.kernel.org, kernel@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V4] dt-bindings: serial: Add a new compatible string for
+ UMS9632
+To: Wenhua Lin <Wenhua.Lin@unisoc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Cixi Geng <cixi.geng@linux.dev>,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, wenhua lin <wenhua.lin1994@gmail.com>,
+ Xiongpeng Wu <xiongpeng.wu@unisoc.com>, Zhaochen Su
+ <Zhaochen.Su@unisoc.com>, Zhirong Qiu <Zhirong.Qiu@unisoc.com>
+References: <20250122072352.3663653-1-Wenhua.Lin@unisoc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250122072352.3663653-1-Wenhua.Lin@unisoc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-ma 13.1.2025 klo 18.26 Ahmad Fatoum (a.fatoum@pengutronix.de) kirjoitti:
->
-> Originally, the thermal framework's only hardware protection action was
-> to trigger a shutdown. This has been changed a little over a year ago to
-> also support rebooting as alternative hardware protection action.
->
-> Update the documentation to reflect this.
->
-> Fixes: 62e79e38b257 ("thermal/thermal_of: Allow rebooting after critical temp")
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+On 22/01/2025 08:23, Wenhua Lin wrote:
+> The UART IP version of the ums9632 SoC project has been upgraded.
+> UART controller registers have added valid bits to support new features.
+> In order to distinguish different UART IP versions, we use sc9632-uart
+> to represent upgraded IP and sc9836-uart to represent old IP.
+> 
+> Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
+> ---
+> V3->V4 changes:
 
-Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-~~ When things go utterly wrong vim users can always type :help! ~~
+Best regards,
+Krzysztof
 
