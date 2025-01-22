@@ -1,136 +1,134 @@
-Return-Path: <devicetree+bounces-140403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D04DA19875
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 19:32:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43ED8A19879
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 19:33:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B30413AAEBB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 18:32:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29355188B0B1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 18:33:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD884215789;
-	Wed, 22 Jan 2025 18:32:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92A72213255;
+	Wed, 22 Jan 2025 18:33:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gK+7ow7r"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f+IjRY6u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 798F4215777;
-	Wed, 22 Jan 2025 18:32:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FBD0215171;
+	Wed, 22 Jan 2025 18:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737570759; cv=none; b=XfK2QmooaJ8616Wt7S/1i3PXpRQVSF77STdOg7p8uo0tJc0IFTS+IbxllsDhpAjDXxLAFSZQeogeiF8fNkLu2KNnGa9ZL0+/BNVCoze2mmXT+2RCS7Zosa0rzEnNPwIO1efqo44w2VWhHXZwXMeBXrnR7KePvFVbpLt4T/2Hhiw=
+	t=1737570791; cv=none; b=B66CoNzevJfvgxec68q6HnC7s+bkebeML63u0jCGFUvl69oOBPSV0AJui+GxisGkOm6PgRhwhi6rBSLYXs5KDpL9xkbQ/HWDwaE/M8PdqodiffVKxQ6ivjiDTkGkvkzkxkKyx6xW0QZdziL0XWcGqTrZLz1AzvK1nJKaAjKg6vY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737570759; c=relaxed/simple;
-	bh=Iis+QU1tjZAJEHmlk0WnMQoa/BLWtdN140rjfcxdt14=;
+	s=arc-20240116; t=1737570791; c=relaxed/simple;
+	bh=JGbcoN7cGb3jh+qZ8vvEgIReoX/pFz2JclEC553QMIA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n4oHJ/lkc12CUpL2xUgAgtYnGDieViwl+O0cB2fwxLk4aUDqJuy5xG0EtTuHXTIkWDUuQ8ijE7782cx9f9CbHlM3MpUbwt9X4VCEOAGZF+jGmiKItxz5oX61PeqW9ibgDtJ83d6HeXBCODwlAnh7yjfoTJ1ixScW2s4T5gmarsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gK+7ow7r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D1CC6C4CED2;
-	Wed, 22 Jan 2025 18:32:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737570758;
-	bh=Iis+QU1tjZAJEHmlk0WnMQoa/BLWtdN140rjfcxdt14=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gK+7ow7ruuizrO8T11TJcO7Ay3+QJe5i+3QPNghJVS2wooa2QnTAh5XvpwCuGBFh+
-	 LZ2cdeq+XuJXxBLDqwKVGnWGQew6Y8Sglm97+m/Y5GD6hklG1L3hmx+hwXPtJZQmBA
-	 WbQi6VrrPGcSuQk6ZBfTXzZLSZLyK9RSTfncpSxF2moZ8B6t9C0d3Zfx7FxMFxMURL
-	 dvYfVfk2DLVBaUy4EBVDIpJ4N0z6qID/i0xQg6trDVXW1WcS0CTEEnAUbnLndm244+
-	 4noqvIz1jNSqw4q2d54UXBd4W42NNNMyEIJiwjs243EVlzv6xWiFvct0YVvn1AOhCC
-	 a7u916y10GK7g==
-Date: Wed, 22 Jan 2025 18:32:33 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: Alisa-Dariana Roman <alisa.roman@analog.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=BS8SZoV1j7UuhjcUUcCtJWVNdwFvdMefaA8sJbdK+tzJIpfG8QgzmeBS0p1zYvkroAwPAUr6PMkjQo1aAITLbpb3qHgVwM3U+iln2b7OpWPOE+VOChNhzu6S/1wXXWMfctg1XJpOTvXl0+e7QMTrx3YZEo8huxVVIu5XpSBe7k4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f+IjRY6u; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2f42992f608so217569a91.0;
+        Wed, 22 Jan 2025 10:33:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737570789; x=1738175589; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XGxAfr1RErIaTjlH3ywSl69/Jh18iaYDydnvNAEir6k=;
+        b=f+IjRY6uOQ2lm5cHdHXyTJfqHbavbOEDvpW5clj/EphpHMh6T0SBzLW6B/YvGOJJ4H
+         HvzKraPzLM4eVVBSYrBu0zM2KdHC2gaWoKWq9mt1qY2PJhqSI7Qu0CyX2ybp3Y+IzTv3
+         VNQI1IeNBPtu6+CBowMZ9r2lx9xNIVRmDE782sVmGNi+umRm63ne+EfqVeoUYfNtMgZ0
+         LnTRZwRp2hbmU+HtNzhwKbrbFGbo4JqyX+HmPD60rNeCDmrRCXtb7OYydrxEpOuLLCWx
+         gdTamjQAngRRzO0aQaKcbm22gvUBi04YRtbRPOZwF/rvY7ZkhDE+528nGNXi1zRDEoqQ
+         zj0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737570789; x=1738175589;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XGxAfr1RErIaTjlH3ywSl69/Jh18iaYDydnvNAEir6k=;
+        b=oi5TR5EKpCTpQYG1h7p5ugEFr+vzoFkNB16hTPvrlb/PKdfTrMRkrJSOQDi8U3bZYN
+         18PUpWkVl4BjdYkdiXRBNHt9HQCdoHaebFvlavEgQelaruatGiaw748w1PxgVUDHPlWh
+         5ZvvUbjLJ55B3J38gnh/neUrHlrIZAMWTQA6QmlwM0rycGDRev+QhjoVBPvfSSLeVbGA
+         APsipcxyUWgAYLJ4pjimBjcVwIy5yC0I0K9aiOXhGgTCWrzGDSsPXSDjAY8zE1l95rPp
+         2b5PlVkx3gyRILGGCjlfP8Ng5L/dClPxabVG1xeMo+u2dClZF9oAhpMMOe/pAklEu9eP
+         ttOw==
+X-Forwarded-Encrypted: i=1; AJvYcCVjBijGX6qq+UYvB+g4k2DUaEmbXspe3DOKUlo3iCCcSanti348Q40sxuBiMVHJlm3zkZyzAumE8lvTfvg=@vger.kernel.org, AJvYcCVokjQ5gEvOStuySVksFs0wydW93bU57nAK/4zm/IJJkgm+Z5csoOs4Ih+9Ep+lBglLQzTLlk/GoxKj@vger.kernel.org, AJvYcCXfu79KytxiQHEkAewRy5CfLf/3KSZxYiuxtTcH+7M+3GnXpjm7NW31rrvZjmOHj1ov5nOoZJNbwY7YvP4y@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZq8Y9z4DJTCuqLC0rj4CJsy2Mbj3tcZs4Gwab+S2pvRUE4uNW
+	zLbe5NF1XqHobNXABGB0pSeDC70R+EZMxaIlVsBO+JuL7T3QdR3P4zkv2A==
+X-Gm-Gg: ASbGncvUEiOWSPhZ856PJ7H675fH/fCmqCC0wlF6NKxVqlTgSdMhRqs4LnaU6orjYgN
+	hya5KKMRSajWOi8/mR9ZKCWvV8tHu8YdQnSOjadFNESx1Lf64OgNPnzqMEX9xXkOWz1OjbGvFlj
+	6bMH+WWawfJJg91CbHoAv5vnFZqhDSeEto0nb02s8VqjasqLT/m6uvnMsP2rtxDEhDyK7MGaLTe
+	lyHg9gXfmz8Q7/US/B79EjTgkkfJUVViUjVR5qDZMcuuoyw00nKilohrpLTEIgH8MxYQw==
+X-Google-Smtp-Source: AGHT+IH7KCx6ZerR7Y/ysqk3oOOXRwJAIgtVJJs/HwWggKSL+QPKg6M5ZcOSafU6EcNPqL9uv2Ogdg==
+X-Received: by 2002:a17:90b:51ca:b0:2ee:5bc9:75c7 with SMTP id 98e67ed59e1d1-2f782c4bdc3mr28221471a91.5.1737570789085;
+        Wed, 22 Jan 2025 10:33:09 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:824e:c27f:8742:e4e])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f7e6aaca04sm2015449a91.27.2025.01.22.10.33.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Jan 2025 10:33:08 -0800 (PST)
+Date: Wed, 22 Jan 2025 10:33:05 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Sasha Finkelstein <fnkl.kernel@gmail.com>
+Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add AD7191
-Message-ID: <20250122-gravel-angelfish-495977611060@spud>
-References: <20250122132821.126600-1-alisa.roman@analog.com>
- <20250122132821.126600-2-alisa.roman@analog.com>
+	Henrik Rydberg <rydberg@bitmath.org>, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>
+Subject: Re: [PATCH v5 2/4] input: apple_z2: Add a driver for Apple Z2
+ touchscreens
+Message-ID: <Z5E54dQQl9LE2znf@google.com>
+References: <20250118-z2-v5-0-6d38b2582169@gmail.com>
+ <20250118-z2-v5-2-6d38b2582169@gmail.com>
+ <Z5CNx9natNYmJ5il@google.com>
+ <CAMT+MTRKpgHBVVHoeWGmOqpF9vzZV3CTUdg4d0oOnutubeTFaQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="tTB+zRNEZ6Rhy9nc"
-Content-Disposition: inline
-In-Reply-To: <20250122132821.126600-2-alisa.roman@analog.com>
-
-
---tTB+zRNEZ6Rhy9nc
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <CAMT+MTRKpgHBVVHoeWGmOqpF9vzZV3CTUdg4d0oOnutubeTFaQ@mail.gmail.com>
 
-On Wed, Jan 22, 2025 at 03:20:39PM +0200, Alisa-Dariana Roman wrote:
+On Wed, Jan 22, 2025 at 06:40:50PM +0100, Sasha Finkelstein wrote:
+> On Wed, 22 Jan 2025 at 07:18, Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
+> > > +     z2->input_dev->phys = "apple_z2";
+> >
+> > Phys is supposed to be unique, however my understanding there could be 2
+> > devices in the system?
+> 
+> All existing devices have at most one z2 device, and while i do not
+> have visibility
+> into future apple product decisions, judging by the current stack, it seems
+> unlikely for them to make one that needs two of them.
+> 
+> > -static int apple_z2_build_cal_blob(struct apple_z2 *z2, u32 address, size_t cal_size, char *data)
+> > +/* Build calibration blob, caller is responsible for freeing the blob data. */
+> 
+> A comment on a previous version of this patch requested to not have functions
+> that require the caller to free the return value
+> https://lore.kernel.org/all/ZAlM2DzMmwzWIZEF@nixie71/
 
-> +  adi,odr-state:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Should be present if ODR pins are pin-strapped. Value corresponds to:
-> +      0: 120 Hz (ODR1=0, ODR2=0)
-> +      1: 60 Hz (ODR1=0, ODR2=1)
-> +      2: 50 Hz (ODR1=1, ODR2=0)
-> +      3: 10 Hz (ODR1=1, ODR2=1)
-> +      If defined, odr-gpios must be absent.
-> +    enum: [0, 1, 2, 3]
+You have to pick your poison. Either the caller has to inspect the
+property to figure out the size of the allocation, handle errors, and
+provide diagnostic, and then have apple_z2_build_cal_blob() re-parse the
+property and fill the provided buffer, or you can hide it all in
+apple_z2_build_cal_blob() and task the caller with freeing the blob when
+they're done with it. Similar to request_firmware() and put_firmware().
 
-This should be a property in hertz
+I think the latter works better in this particular case.
 
-> +  pga-gpios:
-> +    description: |
-> +      PGA1 and PGA2 pins for gain selection. Should be defined if adi,pga-state
-> +      is absent.
-> +    maxItems: 2
-> +
-> +  adi,pga-state:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Should be present if PGA pins are pin-strapped. Value corresponds to:
-> +      0: Gain 1 (PGA1=0, PGA2=0)
-> +      1: Gain 8 (PGA1=0, PGA2=1)
-> +      2: Gain 64 (PGA1=1, PGA2=0)
-> +      3: Gain 128 (PGA1=1, PGA2=1)
-> +      If defined, pga-gpios must be absent.
-> +    enum: [0, 1, 2, 3]
+Thanks.
 
-And I think this one should be in units of "gain".
-
-
-> +  adi,clksel-state:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Should be present if CLKSEL is pin-strapped. 0 selects an external clock,
-> +      1 selects the internal clock. If defined, clksel-gpios must be absent.
-> +    enum: [0, 1]
-
-IMO this one should be a string, options of "external" and "internal". 0
-& 1 means nothing to a dts reader/author and needs to be cross checked
-with the binding to obtain the meanings.
-
---tTB+zRNEZ6Rhy9nc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5E5wQAKCRB4tDGHoIJi
-0iBWAP9cunN3VZiL/VMCctFYc0GGl32jDAmBgTtgCfqjwBieqQD+OruD3WW4BaQm
-IMdxGlmH2ViKldDq+l4neEa7erwlJQ0=
-=JpYZ
------END PGP SIGNATURE-----
-
---tTB+zRNEZ6Rhy9nc--
+-- 
+Dmitry
 
