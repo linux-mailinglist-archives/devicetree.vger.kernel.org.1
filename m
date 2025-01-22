@@ -1,120 +1,146 @@
-Return-Path: <devicetree+bounces-140197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA980A18D76
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:14:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F83A18D7D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:17:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B439162549
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:14:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 922303A53BB
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:17:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 513911C3C05;
-	Wed, 22 Jan 2025 08:14:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C17BD1B3948;
+	Wed, 22 Jan 2025 08:17:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ddgU4ZR7"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="h0BffGDB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m49201.qiye.163.com (mail-m49201.qiye.163.com [45.254.49.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 200FE196;
-	Wed, 22 Jan 2025 08:14:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 732E217BB6;
+	Wed, 22 Jan 2025 08:17:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737533666; cv=none; b=KyWBcu5GgUmza7tOatPryH5zIUjpGV4/y/V5dj71rWSNZxjIrDVfrDK92plrfo2z3RNg1/m8/a9IgEIHz7/KjZreOtcjvav7kRxZcNkwsXuqS1pecB+597+bcI71TM3biTvLGuYT9CmybIzHhQfDbC7UmprGsYTxUldqDF2Gbv0=
+	t=1737533837; cv=none; b=CjbQ8hr6BFwXxJoz5PTvJNfyEKd9UTfcZifiHcItA1dccOBCyF65BdSRCR/L4hpUHOy54wW2a9SiOKp3jQvtQ/fH0OyEginf5xgGwy0oGoQL5/KhSWbP4cDJadK+Lw0mGQ0NG26wvunyuVGxdI7NfeacWIOMpke80bNCH9fsHcM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737533666; c=relaxed/simple;
-	bh=uqq4XjpWOJLJlKj11MwPE8w4neu4toSKao0wV6l7vlM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U9nrU7fWg/Wdk39ptNRnaqr6BRDMKWxp7ggARuFwQdVPft3MsOgSrOQV80z2vwevskD6z0PtZRhO9NB9WPFvMLe/faXbgyoCGIolk66Sfm4jKR8LyPjK/m+MgoUPSolLXnfYCd8xQKzTyjRp1EilAuy7CZ3xvVL1MkJxpZLCM+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ddgU4ZR7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3C5BC4CED6;
-	Wed, 22 Jan 2025 08:14:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737533665;
-	bh=uqq4XjpWOJLJlKj11MwPE8w4neu4toSKao0wV6l7vlM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ddgU4ZR7ztPgvA7UkozItyZ95c1ocP9C/FHhbW+fiSPlp0G6ywQOXjw/XmFLv2a+N
-	 wJdVahvIWYH+78nU2bD0dsrpSObLI46yVWhb36F6sAsqVp84SnteFJvA5zUNl2KxIY
-	 unjPB9dSSG+ZW/xcyz4rNnKzIhhzYJVb9mHU8J9f+n3MoVe2hcPknD613jGwdeQ8vz
-	 1C8y8ncn/viJLp3hfVRsFMncMJoTFnH3+yXzXNXjADNBTexEF8/AbB+1zCyu2kXeMg
-	 06o4atmE2HLNxdgR74cEglgWzNXF6CQBUk9gooJ+eKdqnxId7/pOdO/fJ7RpBHWxQg
-	 +dV1KXsOl0UmA==
-Date: Wed, 22 Jan 2025 09:14:21 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com, 
-	kuba@kernel.org, pabeni@redhat.com, tsbogend@alpha.franken.de, 
-	hkallweit1@gmail.com, linux@armlinux.org.uk, sander@svanheule.net, 
-	markus.stockhausen@gmx.de, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: Add MDIO interface to
- rtl9301-switch
-Message-ID: <20250122-macho-flat-sawfly-7ca93d@krzk-bin>
-References: <20250120040214.2538839-1-chris.packham@alliedtelesis.co.nz>
- <20250120040214.2538839-3-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1737533837; c=relaxed/simple;
+	bh=wS0iJPcyRSRmJ7Rsem6YrrR4OrhJuNJ99iiAGfhE0k8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YNCo03feyDwDQLGhB/hBHLuQpAZ416fo3RDsMWVaARCkZvCjIfLLpofjs8hdK1QECXalm3Cq2HisyDs+PqiLQ7SkF1KmA4nAyqxQyqFitXimnNcS4Z9uY9f/SO4qkEhHVyPc2NoMuShp9dY6338d16EwwuH3T6elK30uXooKjqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=h0BffGDB; arc=none smtp.client-ip=45.254.49.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.26] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 964943b6;
+	Wed, 22 Jan 2025 16:17:04 +0800 (GMT+08:00)
+Message-ID: <330041c4-aaee-4b41-8ccd-e2807415c709@rock-chips.com>
+Date: Wed, 22 Jan 2025 16:17:03 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250120040214.2538839-3-chris.packham@alliedtelesis.co.nz>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 12/20] drm/rockchip: analogix_dp: Add support to get
+ panel from the DP AUX bus
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org,
+ sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com,
+ l.stach@pengutronix.de, andy.yan@rock-chips.com, hjc@rock-chips.com,
+ algea.cao@rock-chips.com, kever.yang@rock-chips.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20250109032725.1102465-1-damon.ding@rock-chips.com>
+ <20250109032725.1102465-13-damon.ding@rock-chips.com>
+ <d7zpv6qt52mhny54dejw4yqlp2k2c437op7qmepqe27pufplqk@64xvohrz7h2q>
+Content-Language: en-US
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <d7zpv6qt52mhny54dejw4yqlp2k2c437op7qmepqe27pufplqk@64xvohrz7h2q>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQhlDSVZLSB1LHkgYTkgaHU1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a948d161e8403a3kunm964943b6
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PDo6ERw6TTIJQy8BDB0QKUgQ
+	CChPCgFVSlVKTEhMTkhIQ0lNSUJIVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJT05PNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=h0BffGDBOH6ng9qbVn7Hx1mEclB/bytYNe7bHhleXXMVBiLrhiFs/2vIWNDx3nH3ajzpNCFmPtsU6g6qeBJUZEG8a508OpaoL5bOjo5xmETAocJwRQrxDRI1H0OHYdKtOINkPugtQVvcySFrnSiWSV1mvYmQhG69JnvEKoECHTw=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=0dJqsA0isVay8dpsPnxyQHy2JrvwJVceSD2lUsDULE4=;
+	h=date:mime-version:subject:message-id:from;
 
-On Mon, Jan 20, 2025 at 05:02:12PM +1300, Chris Packham wrote:
-> The MDIO controller is part of the switch on the RTL9300 family of
-> devices. Add a $ref to the mfd binding for these devices.
+Hi Dmitry,
+
+On 2025/1/9 20:48, Dmitry Baryshkov wrote:
+> On Thu, Jan 09, 2025 at 11:27:17AM +0800, Damon Ding wrote:
+>> Move drm_of_find_panel_or_bridge() a little later and combine it with
+>> component_add() into a new function rockchip_dp_link_panel(). The function
+>> will serve as done_probing() callback of devm_of_dp_aux_populate_bus(),
+>> aiding to support for obtaining the eDP panel via the DP AUX bus.
+>>
+>> If failed to get the panel from the DP AUX bus, it will then try the other
+>> way to get panel information through the platform bus.
+>>
+>> In addition, use dev_err() instead of drm_err() in rockchip_dp_poweron()
+>> , which will be called before rockchip_dp_bind().
+>>
+>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>>
+>> ---
+>>
+>> Changes in v4:
+>> - Use done_probing() to call drm_of_find_panel_or_bridge() and
+>>    component_add() when getting panel from the DP AUX bus
+>>
+>> Changes in v5:
+>> - Use the functions exported by the Analogix side to get the pointers of
+>>    struct analogix_dp_plat_data and struct drm_dp_aux.
+>> - Use dev_err() instead of drm_err() in rockchip_dp_poweron().
+>>
+>> ---
+>>   .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 41 ++++++++++++++-----
+>>   1 file changed, 30 insertions(+), 11 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+>> index 0957d3c5d31d..3ae01b870f49 100644
+>> --- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+>> +++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+>> @@ -124,13 +124,13 @@ static int rockchip_dp_poweron(struct analogix_dp_plat_data *plat_data)
+>>   
+>>   	ret = clk_prepare_enable(dp->pclk);
+>>   	if (ret < 0) {
+>> -		drm_err(dp->drm_dev, "failed to enable pclk %d\n", ret);
+>> +		dev_err(dp->dev, "failed to enable pclk %d\n", ret);
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
+> 
+> why?
 > 
 
-You need to explain merging dependencies. Nothing in cover letter,
-nothing here, but this *CANNOT* be merged independently.
+The &rockchip_dp_device.drm_dev will be assigned in rockchip_dp_bind(), 
+which is called after probing process. The PM operations have been 
+advanced to the probing for the AUX transmission, so the dev_err() may 
+be better than drm_err().
 
-> Notes:
->     Changes in v4:
->     - There is a single MDIO controller that has MDIO buses as children
->     Changes in v3:
->     - None
->     Changes in v2:
->     - None
+>>   		return ret;
+>>   	}
+>>   
+>>   	ret = rockchip_dp_pre_init(dp);
+>>   	if (ret < 0) {
+>> -		drm_err(dp->drm_dev, "failed to dp pre init %d\n", ret);
+>> +		dev_err(dp->dev, "failed to dp pre init %d\n", ret);
+>>   		clk_disable_unprepare(dp->pclk);
+>>   		return ret;
+>>   	}
 > 
->  .../bindings/mfd/realtek,rtl9301-switch.yaml  | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml b/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
-> index f053303ab1e6..c19d2c209434 100644
-> --- a/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/realtek,rtl9301-switch.yaml
-> @@ -28,6 +28,9 @@ properties:
->    reg:
->      maxItems: 1
->  
-> +  mdio-controller:
-> +    $ref: /schemas/net/realtek,rtl9301-mdio.yaml#
-> +
->    '#address-cells':
->      const: 1
->  
-> @@ -110,5 +113,26 @@ examples:
->            };
->          };
->        };
-> +
-> +      mdio-controller {
 
-No, no resources here, no unit address. Look at other nodes - they have
-the resource, the address. Mixing such nodes is clear indication this is
-not correct hardware description and you do this only for Linux.
-
-Fold child device into parent.
-
-Best regards,
-Krzysztof
+Best regards
+Damon
 
 
