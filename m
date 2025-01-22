@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-140201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C898A18D8B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:22:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 434F4A18DA3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:36:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B1427A318B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:22:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69432165BCF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:36:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 971BE1C3C14;
-	Wed, 22 Jan 2025 08:22:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1474120F099;
+	Wed, 22 Jan 2025 08:36:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OYXHd5WF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gu6k9d+T"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6328C17BB6;
-	Wed, 22 Jan 2025 08:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB3041CEE8D;
+	Wed, 22 Jan 2025 08:36:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737534165; cv=none; b=OOfoVY1qHEzHCCH5FUdaKJSO9SYpD2zS8zs5Zzqji5K03IMC1mXsqBw2HvjmOrnY9ID1bO29KdvdFTn0YbxoNkyPNIPjX5/CTl6CUOGHtjNWpoIoXxqALhbDKotFptDtqRuDDiYEEkioiy+kfuNuAOOwUJ70CFdwxV29PlRvTu8=
+	t=1737534997; cv=none; b=HPAuF+DDgeABXnMgLbACn7k//KV+DYfSdxgOOHmOJ8T+QvgVlt/Bjg4a1j4CZ/Wt5QzyZdh/lSuQROLUmSQIt7IMPyWXhCeKFAtdHijqwmf4QnFFXRdF3hHf4r8BH0mCuPR8LM99gMSjj4nRkHJABxl9mHp5ibqKRmJPJNW2TBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737534165; c=relaxed/simple;
-	bh=+L0LCy9nENdCNACnCQyr3V9VXLR21yhtkYUpPtZ4BXg=;
+	s=arc-20240116; t=1737534997; c=relaxed/simple;
+	bh=yTRd5s0d1l8s3Y+7CksqiSleX26CMI3TETOGZtq5sCg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j18ZYUFdWcN4vCHh4wblmgMwAt2UQVYQinaqB6q6Ij2mOCVvjOuC5bVgPu5u35XayYMnGOe/OIhw/zQW/oFDgbUE4Sy0vNSWc7b0WRoNSGhjtQaWH0oluDAJ4aTGnQdKVugo4XI+v79sJ7DRAWv45KuZ7nkOsJEPg/LNArqiUcc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OYXHd5WF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F3C4C4CED6;
-	Wed, 22 Jan 2025 08:22:29 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=rkkSo0+xGY4Qx9+s3lYG4bOyAmEcbwBF3LHv9odNc0Q8rYlO5f9R3u8R+GzzCXIeVM2mgt9/+ykyHLDGRsFQXVpa+FAHRGXGex8NqM+F0sYUSv1iMAuDxIZf5X5VDZcwJMSIgPXEl9sgzgOZHZp6WXyCS3aVwswKiId28PPg40s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gu6k9d+T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03200C4CED6;
+	Wed, 22 Jan 2025 08:36:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737534162;
-	bh=+L0LCy9nENdCNACnCQyr3V9VXLR21yhtkYUpPtZ4BXg=;
+	s=k20201202; t=1737534996;
+	bh=yTRd5s0d1l8s3Y+7CksqiSleX26CMI3TETOGZtq5sCg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=OYXHd5WFRn/X3nVAjqajR4R8RtVTe0GC4gEtGnJCJTEXqmwYL5758s5sEgc+1fiRS
-	 3qK8Gj9rrf1NWgLrQFFKhc0OC48qyuVvqSlz9aKQzBdUjlF3snA5e0CTx7XrPzCsTS
-	 3uyWk9fVoH2VIqKgVfspflZsYuN3rlZ5dRItjcDplG+uXHYPMZuupDEFjFZ3GJhVcS
-	 8KlXWBdcieRdp8vdRgmHs/loXPkyB3xIAJhrawW8LKnQ/fAxaqJwsdYqgcjKgqop1i
-	 jgqoqsAtJKoTIdnZH4ukpCwYf8SPfYw+LTKtYOEVgYtRFugyo98G8Ckmco/FJ86/Af
-	 bnlAV6ff9dZng==
-Message-ID: <05b8ae46-f8af-413f-8870-ab1997c8f5b9@kernel.org>
-Date: Wed, 22 Jan 2025 09:22:24 +0100
+	b=Gu6k9d+TOeeTkE6538caSrWcDthIjohP4RuOhMv+37Ka+6+wxmNA4gUS4F848BiDN
+	 uH4yO5+betXpTyQFbDzvM8xJGOqSsHP5xnFXYY+y0JZ0UIzIWo8U0sRDoMWRkq6u7b
+	 Iv7sOZEi8N4RQU+OmIcUWKAY17AnEZ9WzBFnkPDSwx6ozaTwRWz8/XxQF0mHCJg/WO
+	 GH0wcsJPxU2YglRM4YM4FHRZ9g6yRdlGzb7v4KhflLXe6EMBlZOzew0XCXsQgHHM5l
+	 aRT23S+EHTI2ynIVC140M7B+1DYL0qd4aI90puaRNaV31EfiYvJCAE9dk0Ku7eugVV
+	 cY1Acl8sxnP7g==
+Message-ID: <760d6e6c-ee51-405d-88aa-0def89084778@kernel.org>
+Date: Wed, 22 Jan 2025 09:36:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v3 07/18] dt-bindings: reset: Add T-HEAD TH1520 SoC Reset
- Controller
-To: Michal Wilczynski <m.wilczynski@samsung.com>,
- Philipp Zabel <p.zabel@pengutronix.de>, mturquette@baylibre.com,
- sboyd@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- drew@pdp7.com, guoren@kernel.org, wefu@redhat.com, jassisinghbrar@gmail.com,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- frank.binns@imgtec.com, matt.coster@imgtec.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- airlied@gmail.com, simona@ffwll.ch, ulf.hansson@linaro.org,
- jszhang@kernel.org, m.szyprowski@samsung.com
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
-References: <20250120172111.3492708-1-m.wilczynski@samsung.com>
- <CGME20250120172128eucas1p2847f0863524b53d2d5029e5e9d238298@eucas1p2.samsung.com>
- <20250120172111.3492708-8-m.wilczynski@samsung.com>
- <6018a750dcbb46fe1bd9f653f469d54928c23610.camel@pengutronix.de>
- <ff53263d-813f-43c3-9090-e73dc0031949@samsung.com>
+Subject: Re: [PATCH] dt-bindings: omap: Add TI Pandaboard A4 variant
+To: Tom Rini <trini@konsulko.com>, linux-kernel@vger.kernel.org
+Cc: Aaro Koskinen <aaro.koskinen@iki.fi>,
+ Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>,
+ Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250122001240.4166460-1-trini@konsulko.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,35 +104,17 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ff53263d-813f-43c3-9090-e73dc0031949@samsung.com>
+In-Reply-To: <20250122001240.4166460-1-trini@konsulko.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/01/2025 22:58, Michal Wilczynski wrote:
->>> +maintainers:
->>> +  - Michal Wilczynski <m.wilczynski@samsung.com>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - thead,th1520-reset
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  "#reset-cells":
->>> +    const: 0
->>
->> Should this be "const: 1" instead?
-> 
-> Right now I'm not planning to extend by more resets, I've thought about
-> this during the discussion on v2 of this patchset. At this point I just
-> can't see more interesting resets to have. Vendor kernel implements WDT
-> and NPU. I don't think NPU driver will be upstream anytime soon. That
-> would leave WDT reset potentially.
+On 22/01/2025 01:12, Tom Rini wrote:
+> Document the ti,omap4-panda-a4 compatible string in the appropriate
+> place within the omap family binding file.
 
-Bindings should be complete, regardless whether you implement reset
-consumer driver or not.
+Why? Where is any user of this? Your commit msg should explain this,
+because it's not obvious. Obvious is to send binding with the user, but
+the second patch is missing.
 
 Best regards,
 Krzysztof
