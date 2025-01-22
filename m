@@ -1,146 +1,128 @@
-Return-Path: <devicetree+bounces-140179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A61A18C38
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 07:42:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71608A18CBD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:26:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6E3D188B5C5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 06:42:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 591B43A75D3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 07:26:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CC0514F115;
-	Wed, 22 Jan 2025 06:41:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KcVa3c2y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90F51BB6BA;
+	Wed, 22 Jan 2025 07:26:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from SHSQR01.spreadtrum.com (unknown [222.66.158.135])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46DD9F9FE;
-	Wed, 22 Jan 2025 06:41:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5668126AF5;
+	Wed, 22 Jan 2025 07:26:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=222.66.158.135
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737528118; cv=none; b=BDRIOnJFAFLImIkb+1m/VQolfueiMAH4SsvEqdYYq1m2+ZlRWKG5Tjtfpbq7lnWMh+mG1x0+YMzTtWv3LyNVj5fC3NuN/cPUXT/gzKYa6zjeyirX1Ud1V6DEoPk5GycddJsbe/UT4FVyVyQDn5hlXTcDIk0J2+u75c3V6S4MDNs=
+	t=1737530774; cv=none; b=TIlqj/dDSc9XoSn4ocUGwuhkaIPgNSVofX3t8nCBRtIPpH0h0eJRTP5eR1m9k7+NPK8mKfhSq5PVH9FqjLUoatd6hSZ/04U33r+XqnHIzNr5lveZF1lwj6G68LUl7DbRUbn7ZsMwm169wteOMKu1J3pI3HxnL41CmRTuDEK3Rxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737528118; c=relaxed/simple;
-	bh=o2Ds8W/m2InNF3M1j5TAYTwXIjtOUpiFdJKz7QS6PlQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=LOPm4q8nW9JqmfzO9pDuv/unColnZTo0VEbKaNqIM7ulFM08rHtLmKLmBvpQc/5i10PAvWp9oIG9yf46BZFvOPvWheDzTzx2lsTxRware93isbVEqK/Lna80TLHmpv24ceQHvvCEOZ7oUNxhBluROqWF87VuHJCxuYXwaXbQ7BM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KcVa3c2y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B2C66C4CED6;
-	Wed, 22 Jan 2025 06:41:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737528117;
-	bh=o2Ds8W/m2InNF3M1j5TAYTwXIjtOUpiFdJKz7QS6PlQ=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=KcVa3c2yGSKQDbe+yEjuw76b45wqFurRz7gXOCAGFHn/Sj1HlrcaxrEcytgy11VFn
-	 2OWMd3Ug6i6rtonFsaChHJBGrLIqZOXbZQzYR8qg04Z6lFL6NsiLtZJeRtVFR3oG8c
-	 bGo/o2K8X03CTsZ2zCiJr/vI+s4T/B8hQaBvp2fYBTBSrC7sd7CVxjL+wienDS1arW
-	 l45G2ABtejeFdZia20h/AhDYb4JcnZ3aKkqwCyRiJ4TAFidWxpetpFEGjmOTcC1MfB
-	 RhZWvM0l//yhPa2EBw8uuYGeeUkCuNDVv964L5CaY0OGV/V0m6DYtMCo5FOx/wE62R
-	 dzCWvYXXZ+LVg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9E657C02181;
-	Wed, 22 Jan 2025 06:41:57 +0000 (UTC)
-From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
-Date: Wed, 22 Jan 2025 07:41:56 +0100
-Subject: [PATCH] arm64: dts: qcom: sc8280xp-blackrock: switch to uefi rtc
- offset
+	s=arc-20240116; t=1737530774; c=relaxed/simple;
+	bh=hfcNAiD9g/aP7gdeEuIhgjBBOWOVP5DQrr2POSIZT3Y=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DL2imSVgsVpcNAn2AsSLCAnYS5I4Cc8Ua1ZiyftvCxmJQRggwNbXhaJEVOotB7Fj21USocN4ulEGlMHg8y+G1wRbiha9lQNF4bW4SbiArxuV2EAMD+SfmlCb/81oaEIMTkklitCoFJGsUCq40Ifq/meloGWS9mKze1RssTguqyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=unisoc.com; spf=pass smtp.mailfrom=unisoc.com; arc=none smtp.client-ip=222.66.158.135
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=unisoc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=unisoc.com
+Received: from dlp.unisoc.com ([10.29.3.86])
+	by SHSQR01.spreadtrum.com with ESMTP id 50M7NtiS031161;
+	Wed, 22 Jan 2025 15:23:55 +0800 (+08)
+	(envelope-from Wenhua.Lin@unisoc.com)
+Received: from SHDLP.spreadtrum.com (shmbx06.spreadtrum.com [10.0.1.11])
+	by dlp.unisoc.com (SkyGuard) with ESMTPS id 4YdFpk0BR1z2PKC2R;
+	Wed, 22 Jan 2025 15:20:30 +0800 (CST)
+Received: from zeshkernups01.spreadtrum.com (10.29.55.99) by
+ shmbx06.spreadtrum.com (10.0.1.11) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.23; Wed, 22 Jan 2025 15:23:53 +0800
+From: Wenhua Lin <Wenhua.Lin@unisoc.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby
+	<jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang
+	<baolin.wang@linux.alibaba.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>, Cixi
+ Geng <cixi.geng@linux.dev>,
+        <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, wenhua lin
+	<wenhua.lin1994@gmail.com>,
+        Wenhua Lin <Wenhua.Lin@unisoc.com>,
+        Xiongpeng Wu
+	<xiongpeng.wu@unisoc.com>,
+        Zhaochen Su <Zhaochen.Su@unisoc.com>,
+        Zhirong Qiu
+	<Zhirong.Qiu@unisoc.com>
+Subject: [PATCH V4] dt-bindings: serial: Add a new compatible string for UMS9632
+Date: Wed, 22 Jan 2025 15:23:52 +0800
+Message-ID: <20250122072352.3663653-1-Wenhua.Lin@unisoc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250122-jg-blackrock-rtc-v1-1-3b05cd85bdfa@oldschoolsolutions.biz>
-X-B4-Tracking: v=1; b=H4sIADOTkGcC/x3M3QpAQBBA4VfRXJva3fzEq8iFHYNBaFZS8u42l
- 9/FOQ8EVuEAdfKA8iVB9i3CpgnQ1G0jo/TR4IzLjXUG5xH92tGiOy2oJ6HPKlty4YmrDGJ2KA9
- y/8umfd8PgwYjlWIAAAA=
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
- Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1737528116; l=1921;
- i=jens.glathe@oldschoolsolutions.biz; s=20240919;
- h=from:subject:message-id;
- bh=4fIfQMa3HqpPjSmfIw1qUNksE48aZP+ZpYp1h1ftNbI=;
- b=5uy6wYE1C3rG3cAXw5pTu1FPBjpNikCW0xrJ5P6YbdxkwJh8AxZZy2TMeo9WLBW8OOfSYOgCn
- +AFQlqZvYe5AOARybBO1c+h/mfAwyx0Ud0ZF6xd2g1H2D0x9aaEMnYf
-X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
- pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
-X-Endpoint-Received: by B4 Relay for
- jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
-X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-Reply-To: jens.glathe@oldschoolsolutions.biz
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SHCAS01.spreadtrum.com (10.0.1.201) To
+ shmbx06.spreadtrum.com (10.0.1.11)
+X-MAIL:SHSQR01.spreadtrum.com 50M7NtiS031161
 
-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+The UART IP version of the ums9632 SoC project has been upgraded.
+UART controller registers have added valid bits to support new features.
+In order to distinguish different UART IP versions, we use sc9632-uart
+to represent upgraded IP and sc9836-uart to represent old IP.
 
-On many Qualcomm platforms the PMIC RTC control and time registers are
-read-only so that the RTC time can not be updated. Instead an offset
-needs be stored in some machine-specific non-volatile memory, which a
-driver can take into account.
-
-Switch to using the Qualcomm specific UEFI variable that is used by the
-UEFI firmware (and Windows) to store the RTC offset.
-
-This specifically means that the RTC time will be synchronised between
-the UEFI firmware setup (or UEFI shell), Windows and Linux.
-
-Note however that Windows stores the RTC time in local time by default,
-while Linux typically uses UTC (i.e. as on X86).
-
-Based on a patch by Johan Hovold. [1]
-
-Link: https://lore.kernel.org/all/20250120144152.11949-7-johan+linaro@kernel.org/ # [1]
-Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
 ---
-This is a patch to switch the Windows Dev Kit 2023 over to
-using the UEFI offset.
+V3->V4 changes:
+* Modify the indentation format.
+
+V2->V3 changes:
+* Lists are ordered by fallback.
+* Combine two const items into enum.
+* Change commit message.
+
+V1->V2 changes:
+* Modify the compatible string of enum.
+* Change commit message.
 ---
- arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts | 11 +----------
- 1 file changed, 1 insertion(+), 10 deletions(-)
+ Documentation/devicetree/bindings/serial/sprd-uart.yaml | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts
-index fa9d941050522..aaea2fa3c6c0a 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-microsoft-blackrock.dts
-@@ -762,20 +762,11 @@ &pmk8280_pon_resin {
- };
+diff --git a/Documentation/devicetree/bindings/serial/sprd-uart.yaml b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
+index a2a5056eba04..5bf2656afcfd 100644
+--- a/Documentation/devicetree/bindings/serial/sprd-uart.yaml
++++ b/Documentation/devicetree/bindings/serial/sprd-uart.yaml
+@@ -17,13 +17,18 @@ properties:
+     oneOf:
+       - items:
+           - enum:
+-              - sprd,sc9632-uart
++              - sprd,ums9632-uart
++          - const: sprd,sc9632-uart
++      - items:
++          - enum:
+               - sprd,sc9860-uart
+               - sprd,sc9863a-uart
+               - sprd,ums512-uart
+               - sprd,ums9620-uart
+           - const: sprd,sc9836-uart
+-      - const: sprd,sc9836-uart
++      - enum:
++          - sprd,sc9632-uart
++          - sprd,sc9836-uart
  
- &pmk8280_rtc {
--	nvmem-cells = <&rtc_offset>;
--	nvmem-cell-names = "offset";
-+	qcom,uefi-rtc-info;
- 
- 	status = "okay";
- };
- 
--&pmk8280_sdam_6 {
--	status = "okay";
--
--	rtc_offset: rtc-offset@bc {
--		reg = <0xbc 0x4>;
--	};
--};
--
- &pmk8280_vadc {
- 	channel@144 {
- 		reg = <PM8350_ADC7_AMUX_THM1_100K_PU(1)>;
-
----
-base-commit: 232f121837ad8b1c21cc80f2c8842a4090c5a2a0
-change-id: 20250120-jg-blackrock-rtc-b4917e6bce94
-
-Best regards,
+   reg:
+     maxItems: 1
 -- 
-Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-
+2.34.1
 
 
