@@ -1,134 +1,186 @@
-Return-Path: <devicetree+bounces-140404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43ED8A19879
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 19:33:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A66E4A19882
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 19:36:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29355188B0B1
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 18:33:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8897166A80
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 18:36:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92A72213255;
-	Wed, 22 Jan 2025 18:33:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC5542153D9;
+	Wed, 22 Jan 2025 18:35:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f+IjRY6u"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FBuhmhCv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FBD0215171;
-	Wed, 22 Jan 2025 18:33:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACF03215171;
+	Wed, 22 Jan 2025 18:35:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737570791; cv=none; b=B66CoNzevJfvgxec68q6HnC7s+bkebeML63u0jCGFUvl69oOBPSV0AJui+GxisGkOm6PgRhwhi6rBSLYXs5KDpL9xkbQ/HWDwaE/M8PdqodiffVKxQ6ivjiDTkGkvkzkxkKyx6xW0QZdziL0XWcGqTrZLz1AzvK1nJKaAjKg6vY=
+	t=1737570957; cv=none; b=BvPCHe9fBKGBK54an4mtHP+MBxktKjW+nD4WhYhXx+40VSaBI4aA2iezp5BQKBj3ryaHeuKSUsKGfgeN4NlV8TH/z0ny/Af0SohKFe81Cv6+OiNSMdDvsAIB3VBxjHjFhm/X/QKKo9MVHKsUj3Xjvep99zCvxt6UlRrht0Roa5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737570791; c=relaxed/simple;
-	bh=JGbcoN7cGb3jh+qZ8vvEgIReoX/pFz2JclEC553QMIA=;
+	s=arc-20240116; t=1737570957; c=relaxed/simple;
+	bh=c1J8bJOEiPDkh9bk4mNnlqtGjfQZBaKuFFZm1Y6i5dY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BS8SZoV1j7UuhjcUUcCtJWVNdwFvdMefaA8sJbdK+tzJIpfG8QgzmeBS0p1zYvkroAwPAUr6PMkjQo1aAITLbpb3qHgVwM3U+iln2b7OpWPOE+VOChNhzu6S/1wXXWMfctg1XJpOTvXl0+e7QMTrx3YZEo8huxVVIu5XpSBe7k4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f+IjRY6u; arc=none smtp.client-ip=209.85.216.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2f42992f608so217569a91.0;
-        Wed, 22 Jan 2025 10:33:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737570789; x=1738175589; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XGxAfr1RErIaTjlH3ywSl69/Jh18iaYDydnvNAEir6k=;
-        b=f+IjRY6uOQ2lm5cHdHXyTJfqHbavbOEDvpW5clj/EphpHMh6T0SBzLW6B/YvGOJJ4H
-         HvzKraPzLM4eVVBSYrBu0zM2KdHC2gaWoKWq9mt1qY2PJhqSI7Qu0CyX2ybp3Y+IzTv3
-         VNQI1IeNBPtu6+CBowMZ9r2lx9xNIVRmDE782sVmGNi+umRm63ne+EfqVeoUYfNtMgZ0
-         LnTRZwRp2hbmU+HtNzhwKbrbFGbo4JqyX+HmPD60rNeCDmrRCXtb7OYydrxEpOuLLCWx
-         gdTamjQAngRRzO0aQaKcbm22gvUBi04YRtbRPOZwF/rvY7ZkhDE+528nGNXi1zRDEoqQ
-         zj0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737570789; x=1738175589;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XGxAfr1RErIaTjlH3ywSl69/Jh18iaYDydnvNAEir6k=;
-        b=oi5TR5EKpCTpQYG1h7p5ugEFr+vzoFkNB16hTPvrlb/PKdfTrMRkrJSOQDi8U3bZYN
-         18PUpWkVl4BjdYkdiXRBNHt9HQCdoHaebFvlavEgQelaruatGiaw748w1PxgVUDHPlWh
-         5ZvvUbjLJ55B3J38gnh/neUrHlrIZAMWTQA6QmlwM0rycGDRev+QhjoVBPvfSSLeVbGA
-         APsipcxyUWgAYLJ4pjimBjcVwIy5yC0I0K9aiOXhGgTCWrzGDSsPXSDjAY8zE1l95rPp
-         2b5PlVkx3gyRILGGCjlfP8Ng5L/dClPxabVG1xeMo+u2dClZF9oAhpMMOe/pAklEu9eP
-         ttOw==
-X-Forwarded-Encrypted: i=1; AJvYcCVjBijGX6qq+UYvB+g4k2DUaEmbXspe3DOKUlo3iCCcSanti348Q40sxuBiMVHJlm3zkZyzAumE8lvTfvg=@vger.kernel.org, AJvYcCVokjQ5gEvOStuySVksFs0wydW93bU57nAK/4zm/IJJkgm+Z5csoOs4Ih+9Ep+lBglLQzTLlk/GoxKj@vger.kernel.org, AJvYcCXfu79KytxiQHEkAewRy5CfLf/3KSZxYiuxtTcH+7M+3GnXpjm7NW31rrvZjmOHj1ov5nOoZJNbwY7YvP4y@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZq8Y9z4DJTCuqLC0rj4CJsy2Mbj3tcZs4Gwab+S2pvRUE4uNW
-	zLbe5NF1XqHobNXABGB0pSeDC70R+EZMxaIlVsBO+JuL7T3QdR3P4zkv2A==
-X-Gm-Gg: ASbGncvUEiOWSPhZ856PJ7H675fH/fCmqCC0wlF6NKxVqlTgSdMhRqs4LnaU6orjYgN
-	hya5KKMRSajWOi8/mR9ZKCWvV8tHu8YdQnSOjadFNESx1Lf64OgNPnzqMEX9xXkOWz1OjbGvFlj
-	6bMH+WWawfJJg91CbHoAv5vnFZqhDSeEto0nb02s8VqjasqLT/m6uvnMsP2rtxDEhDyK7MGaLTe
-	lyHg9gXfmz8Q7/US/B79EjTgkkfJUVViUjVR5qDZMcuuoyw00nKilohrpLTEIgH8MxYQw==
-X-Google-Smtp-Source: AGHT+IH7KCx6ZerR7Y/ysqk3oOOXRwJAIgtVJJs/HwWggKSL+QPKg6M5ZcOSafU6EcNPqL9uv2Ogdg==
-X-Received: by 2002:a17:90b:51ca:b0:2ee:5bc9:75c7 with SMTP id 98e67ed59e1d1-2f782c4bdc3mr28221471a91.5.1737570789085;
-        Wed, 22 Jan 2025 10:33:09 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:824e:c27f:8742:e4e])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2f7e6aaca04sm2015449a91.27.2025.01.22.10.33.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jan 2025 10:33:08 -0800 (PST)
-Date: Wed, 22 Jan 2025 10:33:05 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Sasha Finkelstein <fnkl.kernel@gmail.com>
-Cc: Hector Martin <marcan@marcan.st>, Sven Peter <sven@svenpeter.dev>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=M3D2zH4MpBq/XAfy8iA+6Moz2al+BRg3FSn9NbspnpNL3mN9vJC3bQaOAocwU8q/NQcNuXYK8kC8D+cq8OF7ti99vhNjHh7T+W7UoxVXx4m1Dr+vQP5vE/MKdWHwWevBLPcAaFl3/L4rqeNKagkAkONyI2DTkQrp9CNOzgY2eGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FBuhmhCv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CD7AC4CED2;
+	Wed, 22 Jan 2025 18:35:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737570956;
+	bh=c1J8bJOEiPDkh9bk4mNnlqtGjfQZBaKuFFZm1Y6i5dY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FBuhmhCviwqu6jYXMLkx/bZO77rGQtnPJk93neANgQDGA9EoLV8Bz/4J+3ugdE/5q
+	 3MImh+aFYJZltiBKc2GVE7zE5liePvmC/fW0fG1TTXUH494TbcakXS8NO3ijKjt/ef
+	 0fdGOCZiVI7J3j0DVsEIX9bTZcrlmJ+xuyhjJAaiUyyUS4PWaukbR06FegsSPh7fsf
+	 j38OZ965ktqTXIFdcCszPSLbi41XAxbkpupFTBvOG9GLSUsoiOdHFHSq0cqXLTmzrl
+	 HktOCepS7tF9i6nuqVKSegAU3ihByNlV6m8W7m1OQdZubnQvrTodcVt596TAmFAdVX
+	 jQl1HXWUthbHw==
+Date: Wed, 22 Jan 2025 18:35:51 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Mahesh Rao <mahesh.rao@intel.com>
+Cc: Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>
-Subject: Re: [PATCH v5 2/4] input: apple_z2: Add a driver for Apple Z2
- touchscreens
-Message-ID: <Z5E54dQQl9LE2znf@google.com>
-References: <20250118-z2-v5-0-6d38b2582169@gmail.com>
- <20250118-z2-v5-2-6d38b2582169@gmail.com>
- <Z5CNx9natNYmJ5il@google.com>
- <CAMT+MTRKpgHBVVHoeWGmOqpF9vzZV3CTUdg4d0oOnutubeTFaQ@mail.gmail.com>
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Mahesh Rao <mahesh.rao@altera.com>
+Subject: Re: [PATCH 1/3] dt-bindings: fpga: stratix10: Convert to json-schema
+Message-ID: <20250122-duller-headwear-33d84e15a764@spud>
+References: <20250122-socfpga_sip_svc_misc-v1-0-cbdcd034ae34@intel.com>
+ <20250122-socfpga_sip_svc_misc-v1-1-cbdcd034ae34@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="oVUJm0vf/HV9ITUZ"
+Content-Disposition: inline
+In-Reply-To: <20250122-socfpga_sip_svc_misc-v1-1-cbdcd034ae34@intel.com>
+
+
+--oVUJm0vf/HV9ITUZ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMT+MTRKpgHBVVHoeWGmOqpF9vzZV3CTUdg4d0oOnutubeTFaQ@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 22, 2025 at 06:40:50PM +0100, Sasha Finkelstein wrote:
-> On Wed, 22 Jan 2025 at 07:18, Dmitry Torokhov <dmitry.torokhov@gmail.com> wrote:
-> > > +     z2->input_dev->phys = "apple_z2";
-> >
-> > Phys is supposed to be unique, however my understanding there could be 2
-> > devices in the system?
-> 
-> All existing devices have at most one z2 device, and while i do not
-> have visibility
-> into future apple product decisions, judging by the current stack, it seems
-> unlikely for them to make one that needs two of them.
-> 
-> > -static int apple_z2_build_cal_blob(struct apple_z2 *z2, u32 address, size_t cal_size, char *data)
-> > +/* Build calibration blob, caller is responsible for freeing the blob data. */
-> 
-> A comment on a previous version of this patch requested to not have functions
-> that require the caller to free the return value
-> https://lore.kernel.org/all/ZAlM2DzMmwzWIZEF@nixie71/
+On Wed, Jan 22, 2025 at 01:58:43PM +0800, Mahesh Rao wrote:
+> Convert intel,stratix10-soc fpga manager devicetree
+> binding file from freeform format to json-schema.
+>=20
+> Signed-off-by: Mahesh Rao <mahesh.rao@intel.com>
+> ---
+>  .../fpga/intel,stratix10-soc-fpga-mgr.yaml         | 32 ++++++++++++++++=
+++++++
+>  .../bindings/fpga/intel-stratix10-soc-fpga-mgr.txt | 18 ------------
+>  2 files changed, 32 insertions(+), 18 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-f=
+pga-mgr.yaml b/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-f=
+pga-mgr.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..34e1bc2359672210ab69e1d5a=
+f73c4c637b7f584
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/fpga/intel,stratix10-soc-fpga-mgr=
+=2Eyaml
+> @@ -0,0 +1,32 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/fpga/intel,stratix10-soc-fpga-mgr.yam=
+l#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Intel Stratix10 SoC FPGA Manager
+> +
+> +maintainers:
+> +  - Moritz Fischer <mdf@kernel.org>
 
-You have to pick your poison. Either the caller has to inspect the
-property to figure out the size of the allocation, handle errors, and
-provide diagnostic, and then have apple_z2_build_cal_blob() re-parse the
-property and fill the provided buffer, or you can hide it all in
-apple_z2_build_cal_blob() and task the caller with freeing the blob when
-they're done with it. Similar to request_firmware() and put_firmware().
+Are these maintainers actually correct? Does Moritz work on Altera
+stuff, or did you just add him cos he is a subsystem maintainer? Really
+what's here should be people that understand the hardware.
 
-I think the latter works better in this particular case.
+> +  - Wu Hao <hao.wu@intel.com>
+> +  - Xu Yilun <yilun.xu@intel.com>
+> +
+> +description: |
 
-Thanks.
+The | here isn't needed, nor is point out that this is a binding in the
+line below. Please describe what the hardware is here instead.
 
--- 
-Dmitry
+> +  Bindings for the Intel Stratix10 SoC FPGA Manager.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - intel,stratix10-soc-fpga-mgr
+> +      - intel,agilex-soc-fpga-mgr
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    fpga-mgr {
+> +      compatible =3D "intel,stratix10-soc-fpga-mgr";
+> +    };
+> diff --git a/Documentation/devicetree/bindings/fpga/intel-stratix10-soc-f=
+pga-mgr.txt b/Documentation/devicetree/bindings/fpga/intel-stratix10-soc-fp=
+ga-mgr.txt
+> deleted file mode 100644
+> index 0f874137ca4697820341b23eddb882634bb131d1..0000000000000000000000000=
+000000000000000
+> --- a/Documentation/devicetree/bindings/fpga/intel-stratix10-soc-fpga-mgr=
+=2Etxt
+> +++ /dev/null
+> @@ -1,18 +0,0 @@
+> -Intel Stratix10 SoC FPGA Manager
+> -
+> -Required properties:
+> -The fpga_mgr node has the following mandatory property, must be located =
+under
+> -firmware/svc node.
+> -
+> -- compatible : should contain "intel,stratix10-soc-fpga-mgr" or
+> -	       "intel,agilex-soc-fpga-mgr"
+> -
+> -Example:
+> -
+> -	firmware {
+> -		svc {
+> -			fpga_mgr: fpga-mgr {
+> -				compatible =3D "intel,stratix10-soc-fpga-mgr";
+> -			};
+> -		};
+> -	};
+>=20
+> --=20
+> 2.35.3
+>=20
+
+--oVUJm0vf/HV9ITUZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5E6hwAKCRB4tDGHoIJi
+0l3HAQDoi6G1tswS1AOVQI9KLvJ4sAjVylklDL9EHYzQdTKEHwEAoxNl67QzF0dJ
+QqYt/Ow3+MeLIZilACprwNBeY031AwQ=
+=AU2L
+-----END PGP SIGNATURE-----
+
+--oVUJm0vf/HV9ITUZ--
 
