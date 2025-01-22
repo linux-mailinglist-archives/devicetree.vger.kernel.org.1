@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-140284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 718F7A19193
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 13:42:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E9D3EA19196
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 13:42:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46C0518811FF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 12:42:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 911DB1881F87
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 12:43:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3E0212D74;
-	Wed, 22 Jan 2025 12:42:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC114212D81;
+	Wed, 22 Jan 2025 12:42:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="avQeXlvD"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dtI3npWW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE4A212B0F;
-	Wed, 22 Jan 2025 12:41:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1261E1F8F16;
+	Wed, 22 Jan 2025 12:42:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737549724; cv=none; b=Pqy9vdzVOiEd2BggZzkf0iPBDN70JqEn7uZbNG+84viDVsIazsRTQtais4KJ2FYOjC4Zq1q5RhJcrYNYlu6ugRpKdHCD8eEhQrhdVycOaluLkPDBOOE+ar+be1ve0XHhLENIv7xfDUf30pajPUonHHWhsjLWg2A0Zq4o3q1ba64=
+	t=1737549756; cv=none; b=gJqhdO75rJip5aWV1miqwzVwtoe0/i5pb8o6QjCnEhNCfGLUt3EVRQlD/+BK/NcMfzQrinDd1PnmDod7W3VVGC+jPD0YU6Dds8PgRp85NjXdbZG4PyDZHPhElAAZjFm1jBblhfgaIFUvJrZztSvTNwaIFADav0FhqYoSnlg6+lw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737549724; c=relaxed/simple;
-	bh=g3yZ+nt990iVpKGd+guiyGorA0WqjyYUcxb0w0TSLT8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=quWicbOy+gFkcyzc5Fx5CwHkvCtlLd6jTq5lhRGMGR26PLOJyFS8O7lNSmBndgC08ZwoFEAUVlmTW05ERCMtiaLnexvsa+GukHGYeAJSOx2xCVfsFa5Ci+PwMa+9LLU9xEzHU6sUTtzM0aggaXr9hQOB9/vu4v9dhJR5YzeZANg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=avQeXlvD; arc=none smtp.client-ip=37.18.73.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id C866810000F;
-	Wed, 22 Jan 2025 15:41:45 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C866810000F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1737549705;
-	bh=YTtwLlBe37BdCgnBuy1MLWGgT5Jb4n0isj9w5Ot2fmw=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-	b=avQeXlvD0X76BKyLAQbtpU0G3qYpQ3zlmE3dI99AX943Xfct8cW7NJvm9cGfOjrdc
-	 s/HQN1xG/Jb5rcHHGMz4UkoXcyVbj85l5FNQbJsB58oJO5ecLOmARNbj+Pd7+EEuAT
-	 BHivPC0jbb25+xuKVki+2UaTOsinFp2B61IyZ/9Ps0RnzoHHl57QMEYDBdt91KRr1h
-	 JCfW7rMzEghqyABkc5rrb1LZyVUVTzh23wYkqvfvDgwpuI2pFmkef+WZ2OsfBYLFDB
-	 2q31eADmH1Jm1F2H/EzfcHW2Dp7Tt89tmuzSiglcufKcm5P8HfbRWXDcI45npON9xz
-	 SxjmCWLErLEJQ==
-Received: from smtp.sberdevices.ru (p-exch-cas-a-m1.sberdevices.ru [172.24.201.216])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 22 Jan 2025 15:41:45 +0300 (MSK)
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: <herbert@gondor.apana.org.au>
-CC: <avromanov@salutedevices.com>, <clabbe@baylibre.com>,
-	<conor+dt@kernel.org>, <davem@davemloft.net>, <devicetree@vger.kernel.org>,
-	<jbrunet@baylibre.com>, <kernel@salutedevices.com>, <khilman@baylibre.com>,
-	<krzk+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<martin.blumenstingl@googlemail.com>, <neil.armstrong@linaro.org>,
-	<robh+dt@kernel.org>, <vadim.fedorenko@linux.dev>
-Subject: Re: [PATCH v11 11/22] crypto: amlogic - Introduce hasher
-Date: Wed, 22 Jan 2025 15:41:29 +0300
-Message-ID: <Z2aokzSrAHpJE_PG@gondor.apana.org.au> (raw)
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241213140755.1298323-12-avromanov@salutedevices.com>
-References: <Z2aokzSrAHpJE_PG@gondor.apana.org.au>
+	s=arc-20240116; t=1737549756; c=relaxed/simple;
+	bh=DROAJhltjVfucBBUFtCChWFe6BGuqtxEMCApytfPOJE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Fybp7eTn62sgRG8FE8JvRU00uzRMbw37HH692UBbiQnfk+ibH8SKcSVgnem1xRs7QqpLX1vteQkXeEhTObcBBjnGN1Ha1jAKKqUyzC+MTyw0qUX4BJI6Bwp13Eqg2Mo7HJPtcBqRbaC9U8u1QnJkH5irMkUiyQPm7bW6QaCQhkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dtI3npWW; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50MCgROE990400
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 22 Jan 2025 06:42:27 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1737549747;
+	bh=Z8BxS1ovMFK/OAlihLVLKauzGGuhuJxVTnxHmVbPyG0=;
+	h=From:To:CC:Subject:Date;
+	b=dtI3npWW01XycrGuIRsJ6/OuPd0r8HkyIZ24AFBimN4sTkRnubHSV2iTKkPmAyTMo
+	 tcuJHjBOGxTTsUcUTNISlg2MJXE1Apr+goZCkK2Md/ibTwSSJP1OJUR0dQX6cSWRrG
+	 1N31jNtVtdYj4XLNhfDquKdDyWrkBWYtjXRNUmy8=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50MCgR6v020940
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Wed, 22 Jan 2025 06:42:27 -0600
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 22
+ Jan 2025 06:42:27 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 22 Jan 2025 06:42:27 -0600
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.104])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50MCgN23007253;
+	Wed, 22 Jan 2025 06:42:24 -0600
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH 0/2] Add boot phase tag to USB0 on AM62A7-SK and AM62P5-SK
+Date: Wed, 22 Jan 2025 18:11:47 +0530
+Message-ID: <20250122124223.1118789-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,31 +74,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
- p-exch-cas-a-m1.sberdevices.ru (172.24.201.216)
-X-KSMG-Rule-ID: 1
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 190505 [Jan 22 2025]
-X-KSMG-AntiSpam-Version: 6.1.1.7
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 50 0.3.50 df4aeb250ed63fd3baa80a493fa6caee5dd9e10f, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;elixir.bootlin.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2025/01/22 11:41:00
-X-KSMG-LinksScanning: Clean, bases: 2025/01/22 11:41:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2025/01/22 10:19:00 #27099507
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-> You cannot sleep in the digest function.
+Hello,
 
-Why? I couldn't find this explanation anywhere.
-In addition, I found an example of one of the digest functions that is sleeping [1].
+This series adds the boot phase tag "bootph-all" to the device-tree node
+for USB0 on AM62A7-SK and AM62P5-SK boards. USB0 instance of USB on the
+AM62Ax and AM62Px SoCs which the aforementioned boards are based on, can
+be used for USB DFU boot. Since USB0 has to be enabled at all stages of
+the boot process when booting via USB DFU, the "bootph-all" tag is added
+in the USB0 node of the respective board files.
 
-Links:
+Series is based on linux-next tagged next-20250122.
 
-  - [1] https://elixir.bootlin.com/linux/v6.12.6/source/drivers/crypto/mxs-dcp.c#L804
+Regards,
+Siddharth.
+
+Siddharth Vadapalli (2):
+  arm64: dts: ti: k3-am62a7-sk: Add boot phase tag for USB0
+  arm64: dts: ti: k3-am62p5-sk: Add boot phase tag for USB0
+
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 1 +
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 1 +
+ 2 files changed, 2 insertions(+)
+
+-- 
+2.43.0
+
 
