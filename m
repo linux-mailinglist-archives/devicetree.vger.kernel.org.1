@@ -1,228 +1,237 @@
-Return-Path: <devicetree+bounces-140400-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140401-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15007A19816
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 18:53:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3A23A19826
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 19:00:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD78C1881284
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 17:53:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EA781668A1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 18:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C66FA2147F0;
-	Wed, 22 Jan 2025 17:53:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C9292153E9;
+	Wed, 22 Jan 2025 18:00:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hDpEz7MQ"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="CAcqfjGe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2051.outbound.protection.outlook.com [40.107.241.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED47B212D65;
-	Wed, 22 Jan 2025 17:53:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737568399; cv=none; b=ZpdU0AAiD+0rSJ3XaFGbZ16a7MRq3dsg/ZHj2BwkkoOFdzrXrn0w9oajTBaL9i/mSa02S7LKOQnUkwZUJuiMl95T/46595VuVz1VWFzIHv2Nqu9wczNu9j5pJru3/nLT/Te3cBRdWKqqjhw+1mv85jkmCsqRqH2/SFbn8Bt+3Dk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737568399; c=relaxed/simple;
-	bh=Z+5gZtne44q0YMTpC2u70HuVtYm8sZKPXO3aVOZnLKg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=iecWMMuQhb9z2OvjKE1/3olI+uPRQecKI7/g5lR2VV3qrdqWekBE+UOaF3zzhC0AKcIUb1avsRtdKCN/hjRMO2D2F6BdXPJssRUOYX5vaH6SBcg9oAAAMlKBrU4ureCgw/tOauJeOKREhink7nXbLPShFlTwOxT19f6y2BMvdys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hDpEz7MQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50MABm5W024635;
-	Wed, 22 Jan 2025 17:53:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LmLs7WybEVpW/PC2uDnZrzP0C9ObxBpW7g22hCyhug8=; b=hDpEz7MQlsdqqgiD
-	4WA1XqUmL1tAU3QFx3ASblkp/z+eP0fGOHVRFBxdaDcynwdTUDI/Z+kxvTZycUT/
-	In2LXIXqqVuTvLylStUopFhR1nu49iO3MxmQbNNSN5a6cvI0ONUc9oPP29mj6wUR
-	x29gVEdqAE/fCzJPhaXFdRizQ3Ve+6rw59i0dHsyvYAZCXHrEzcZ3/0yxKlpR56h
-	hPJlIcPtEHiy0g2KwZcpCTwbJFHHcQHoEbQd92Pjf+50JUkn8qq0Wt7J3WFPWffI
-	AZ0tdt9lMYTxaMuxwp5NvUcQiZe8Qg2zsjVxs/kjzSn5Pb8zouKMVZMJ3W1k0X9T
-	+3aVww==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44axq6h3sc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Jan 2025 17:53:09 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50MHr8De000636
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Jan 2025 17:53:08 GMT
-Received: from [10.216.26.78] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 22 Jan
- 2025 09:53:00 -0800
-Message-ID: <04bee338-2828-44e2-9ee8-8a94b4433ca9@quicinc.com>
-Date: Wed, 22 Jan 2025 23:22:57 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A53492153D6;
+	Wed, 22 Jan 2025 18:00:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737568809; cv=fail; b=LwCH9F2xZLba/zrZFRQf1b8LcB/1g3zvQKNRE0AjnZQ6L8ZavrsXHSdsdhOeLhYwuGh3smByANize2M+uQbbPTC1K3rVXxFj2MCTCYfG+ZGdvx2poMg8JkIJgWEWsogbTUQVldjZCy5VCv7GoqNU+m/UwMfOUZGzCI2C3ULi8fQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737568809; c=relaxed/simple;
+	bh=V31ksGrbR3BVzJi3KtkHdXLIyuoBMIyIpw9F/Oewg6g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=Df4a+FwAYPRBdmAFTzXAdsTQWibIGHyfHlDOIPSAkySMRjM5od4kiJtvzyetZHZ6xfqsp7agf+sc9H8at6gOeRZLH+E/BCujBK8/mRvKg2m5Um1cmTFViZctW3wi4DDdFsxRJp6XtfmFQhbE/Jx3GzCFeeAPot+QJ1X5zw5kBwk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=CAcqfjGe; arc=fail smtp.client-ip=40.107.241.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=R9CRXvPCBUF0axpExIPiioYbnhCnBTrpKCF9R0yA0+CUucJ8Ubm0bTwVUkpjKbkSSzntyG42GS+DuNAETI7p2nUlblxsvdSix/UbS+LYVJTSgYkAWCoJTgiiyWDepkMq5B3Ss87vwXfwJE8jnIYu9wNtkddQTfXxxTVIyGpF+f3AMzgpFqA/KQ+HN/erm7Al4Qnv+ueyHUV/xTDdn+2QMGv8lncqdNDHyvFL3KQa4hhT5USu8DbwH+TSAz3536taeh0Ae6VjjOmfkgycJNLMfCVDy7e+Vm6MW9UCjOn1R3dAO4vsDuHZAogX7vA/rxGy6z6egdDVm8upZ9zrK+V0aA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=huBkoIUw/u/Khws61ncIncFVaNCii9Ts7qZuOrXvjA4=;
+ b=yKLYvFYmxJcpz+uWmxlE8QuidHG6PK7XzHRBVEn80AfTVJCjszEueAsOGAqI6f31siVcUlSMeUweL5qHhgO4Zo8VdZbXAEd3L5tdsGnW6cfhDTumjqDvzkFmXKqS+adNGR0g25w0Poh4GFL5ucFve2VLDo7REh5C2Q++qqRYh1M3aaJDSpRCrEEKK4cqxmdJte3nsHhrbB3C0LI30AHIDZiOTXMnyN/oE9es2ez5sd3rWQmFnBx5QklioXIOS/FCnkIs17E4U8oxsvnlVDMTfeetaYV8eLCGj+hvOLPDL3dB8693lICK/zWAJmBluptlYl7dyqKqi/BAfzGL0U04rA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=huBkoIUw/u/Khws61ncIncFVaNCii9Ts7qZuOrXvjA4=;
+ b=CAcqfjGeMhw2CIomDDHJnBv/TnhaRNfFKO2HxQGRSr/LmXS/4rxSPFA0rdZEwgQh5ojicdqFufQK+0v8YJSAbcX/ojLl52Qd9n/7PYQvBambrFgO8itfA94udE2Abnwen6gF1TcXeGm8LbFGziLiEX4nKnWp8bCUM71kJ9CW7nvqqhtqde8fEYdvYDTtvgi/tiWpi27Iy9tibcX1Dnnx+JQtjwxghTPbJbojC+wqznMFsnHIPn6lUy5yskSFLXWGE2gYm0zmPCvyJElKd72anBIQvVdiTbGeyWXZLrPrDknWS6IWFHUtsJCaRLVxX0pDBm0sw+cXCZnyp02DoneNfg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM9PR04MB8716.eurprd04.prod.outlook.com (2603:10a6:20b:43f::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.22; Wed, 22 Jan
+ 2025 18:00:03 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%5]) with mapi id 15.20.8356.017; Wed, 22 Jan 2025
+ 18:00:03 +0000
+Date: Wed, 22 Jan 2025 12:59:53 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengfei Li <pengfei.li_1@nxp.com>,
+	Marco Felsch <m.felsch@pengutronix.de>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v4 0/2] thermal: imx91: Add support for i.MX91 thermal
+ monitoring unit
+Message-ID: <Z5EyGZubxc2OpyT7@lizhi-Precision-Tower-5810>
+References: <20241216-imx91tmu-v4-0-75caef7481b8@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241216-imx91tmu-v4-0-75caef7481b8@nxp.com>
+X-ClientProxiedBy: SJ0PR03CA0099.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::14) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/7] Add support to load QUP SE firmware from
-To: Caleb Connolly <caleb.connolly@linaro.org>,
-        Viken Dadhaniya
-	<quic_vdadhani@quicinc.com>, <andi.shyti@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
-        <broonie@kernel.or>, <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <johan+linaro@kernel.org>, <dianders@chromium.org>,
-        <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>
-CC: <quic_anupkulk@quicinc.com>
-References: <20241204150326.1470749-1-quic_vdadhani@quicinc.com>
- <66fb0c6d-472c-4131-bd25-83266cf497e4@linaro.org>
- <17138798-b72b-4e78-8fad-419e1a63fa5b@quicinc.com>
- <56ef1276-9d58-4a94-ae89-5faf5870c10c@linaro.org>
-Content-Language: en-US
-From: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-In-Reply-To: <56ef1276-9d58-4a94-ae89-5faf5870c10c@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ra9ZqRO8hX-60US13JsBtFzDJEaPRYtW
-X-Proofpoint-ORIG-GUID: ra9ZqRO8hX-60US13JsBtFzDJEaPRYtW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-22_08,2025-01-22_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 suspectscore=0
- mlxlogscore=999 lowpriorityscore=0 mlxscore=0 spamscore=0
- priorityscore=1501 phishscore=0 bulkscore=0 clxscore=1015 impostorscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501220131
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8716:EE_
+X-MS-Office365-Filtering-Correlation-Id: b7ae1f42-1a66-444d-3008-08dd3b0e98a9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|1800799024|7416014|366016|376014|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Hl666xLP4BaPBqLV4yAMNq6u7LMn6nDpVfdDB8YGPvHO2/OZTRca2NnXma1F?=
+ =?us-ascii?Q?jOxi6PPjiYG73Ric3cJpEwNlLVWDxHBkYMvn1tY+yrncnNTauIrFf3h9wUrr?=
+ =?us-ascii?Q?LcTuGLaPpfrIMvXENYExrf1qYQlxH8pf9/hx0Xa0SUWMwKO6/WHYgVu+kdPO?=
+ =?us-ascii?Q?qkpqeBiz5+yFD3BR8g24+4RjO7ais3gcya0kZAyQF20uQqv4oQ+t8s/FnH6Z?=
+ =?us-ascii?Q?MqY3o2IUQHoZIvPLfuv+I2tJGx4ah0A78ZlViAW17NRXLZGPCjcf1SIUOEsB?=
+ =?us-ascii?Q?xBtDaZf6ku6GEqcSwpc9p1ZSSlzhFm12tf/7FgQbyxAce/FTQ4mlR7JgcUTQ?=
+ =?us-ascii?Q?KG/efbDEk9EQznA1on2KT6v2xCxPmi0q5cbBtjW+7erMI/VChuTNa37nTlGL?=
+ =?us-ascii?Q?YtwgqKczEVpmTcvVsiqzL3kkqGU0sQ/F3BYuPtFD6OuEJRPPHyYpomyN2qVC?=
+ =?us-ascii?Q?UkAx6amP3rt45NSppJ1vYG3wBtS7THsyUsx+5vpkXhlSIIGn3qKumq/lBgeV?=
+ =?us-ascii?Q?m4Tk/m0o7OtKTox8Zt2PJB108QIDg9UM9paF7Pu4rWhl3XRb7Gi18p3fcFO8?=
+ =?us-ascii?Q?wrDn/Pg763rLo61j9b2NXWasescFVrwBNCekdf37PA+2oha9YrPTt7HfWfxw?=
+ =?us-ascii?Q?ES8tTk4tuwtb7nqdZVhxx8aPsjXKrEVjjRBYVkMhsNqTL1H7o1AN94uwhlH0?=
+ =?us-ascii?Q?trN5xgJ8xgaJlYT6nDjbcg8qThrYxeWkpO6w3UD8RW/6+DDaV6zK/Ox8BXRu?=
+ =?us-ascii?Q?NVXxwMf2Sm/WbKNgNnQzt6IFNDNQj0Tur76+i/32tAetMtdtNPMViw+UfZQk?=
+ =?us-ascii?Q?z/u4vQT1C/BljoiqXtXNu0/AUuG551VxIRUS1d/xGOU4GyvA93SmYhCDh6qw?=
+ =?us-ascii?Q?6pzVgh3jlj/r7c3C9nQWvw9qJRNH1QJj+Zkps4m0zM2Vew482ammyxyRL5+I?=
+ =?us-ascii?Q?idxtF0O7rzUJKkUOBaUlXl916fKy5rw4lg0YCpA6Qndwh9j6wH3W/E4U+Jrk?=
+ =?us-ascii?Q?i6p2y7tndgvaL7M057P47lhcFs22ziTmvhK/Id75ndNajlmjkAKvk7uPXSYo?=
+ =?us-ascii?Q?wcjiza99/abwV0RKnX2XwpjH8hpujtRGnVMB7rqNrttFRR8IvxdBueKM1CkR?=
+ =?us-ascii?Q?Qxbu00E3fhEQUu4ezjyFuUeSYRTZOq2Oq+vyeWBYFTtX74kXnpF6afLatMYk?=
+ =?us-ascii?Q?jcD7H0qnPs/k/xArLmJfZh/VtZ9d+XJiSwTOvU4+tdXkTy7CNAD3j0Ht+iJU?=
+ =?us-ascii?Q?BbzEJrxuxwu4poahfs04gJS5YKnC389rTeLHr3ppKj5nCSnICw0OAPkfNIyQ?=
+ =?us-ascii?Q?5KbVi9yftlGIzY5RBmnHlOgWMIrpYzNlhSV+95A/vTQD4YkbY6vU87jr+5Km?=
+ =?us-ascii?Q?MWqKUvnALmQtMG7dp7aoQOyCITt/3yo5CDc3/Mq7/869GDpNyeNT/kW0Ps71?=
+ =?us-ascii?Q?hOF3baF8yL//IQ+hzvgIMYWKdS04nroM98mEV8FShSAaUto1m13W0Q=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(1800799024)(7416014)(366016)(376014)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?l4QnuaI6EiUD0WfBu7Nugir8eukHFiTE7vof8TuFRs8H2Pxi2rJcMkcbfpVW?=
+ =?us-ascii?Q?5jS54LDS6cHWskSFBKJhUl9Ig0lYk6z68INM0PJoh8LITcjSdw2abHFOPNAl?=
+ =?us-ascii?Q?lwMdpaU2XTA13BwEt9dHBJTFfvsuSBxMHuvl4fSWCwe/Fh7tjgEpHSwlXo1t?=
+ =?us-ascii?Q?0qtrhvHfzBvCRgTmB68bYn1YCB7WDwHnsgnBZZY7nxAR7us2DX05I+hTuS6B?=
+ =?us-ascii?Q?ieXFY7aMDmdWKnaUskYdbmSQioywxRGwSM3D0+P2uUj1/6HKy5Gh830UZw4U?=
+ =?us-ascii?Q?1ZPX+viN2BIEjFc24zeuOzXyxEpxpqbRH8GoSg5ju1r3XH6ywn1flDNvAcUl?=
+ =?us-ascii?Q?Nt6K+50InyE8DUa06eIEdC/4X59RY75wNfFTKT0ydsgBrsrcJoHxempGFjTF?=
+ =?us-ascii?Q?VFtiZzWtIQJnH8Fom6GKQrqtkkQN6vnmlAerxnZtojQOE1CbCJRdU9Xot7fz?=
+ =?us-ascii?Q?eSrnkE1wBJMG9j475WxqNwEw/ipaTudznJa1NA3Yrv8qGGuLu6AsLXegGBSE?=
+ =?us-ascii?Q?Pbsje0Up30fJX5iXRJasUjK3rHvPr91FdwLbFS/rzsRbLvaLZHhcuHjL3089?=
+ =?us-ascii?Q?X8J/DY5oAyjsg+Hmk2PfXQA+xWfyCNRsDrn3ZBMIYSaZEVdljeRS0UPalZGF?=
+ =?us-ascii?Q?2r1QB9GpS4CRw6sWWIZAJNtMcCiv5SwUyGLhAkHT5RWSkxSyrQCYzbZn4men?=
+ =?us-ascii?Q?/L/KdZ4rPOMLlD4XcBAcz9JFeSokj/SExWQLfBx6n70LEa3tAOb0GVRni6E9?=
+ =?us-ascii?Q?w51tGB0124w0h3vd+a8T0wIMYAZhxytGOYLVoj8wVVt1TpzpERpNAhpbUcza?=
+ =?us-ascii?Q?T8s7KlAEtR/Nzm3a59HttVjA+9eO+/Yg/AZBuN024yh/fWfOe28Q+IOvftT5?=
+ =?us-ascii?Q?BK/m7EST967+tJLl1xwxmMUxjCaFLiNLX8mBdxaQxqHJB4cCMPtAvt1hcSAU?=
+ =?us-ascii?Q?5lGYDN2cr63G9CM6Ue3a88vZRijWlZKVtwJ+t+lqkhYsFeJ8zxTGMLJbGCme?=
+ =?us-ascii?Q?vtCy0Vv66kQh7cpXsdj51GURboByfhyOEzc9FP5zx4/BCc/XJf15BzSErCHx?=
+ =?us-ascii?Q?Z3V9XH0ohx6vg4azf4ltK24GVP6k7DCFf7OQ5K4c0gkwKLWr127cFPswROeK?=
+ =?us-ascii?Q?tVb7Tb8utLphPZuXiPOk+BXQy26PpiXAu43uyFyUFX6dQV0Nef5AiGWMyj27?=
+ =?us-ascii?Q?Dgshk6NV8GQFDPbtU1+fMhDben7T0Ac0Y0MVQZFq4GAEKewZtnUmFu4e0fye?=
+ =?us-ascii?Q?6xRGY0ZdGNK1OOUQTpeR4i1545Q7bYkqMFeY7H6Dz3nLWb30u0c+k6ZDOvL9?=
+ =?us-ascii?Q?k30o4PpdrZZjPLPiaZHnhfNL2yjK0X8soYn6vCb2Y3111FXl2bbbZMM39n/e?=
+ =?us-ascii?Q?nw17WB6WYAHyM2kUUke00SFJRFHAQBI6mVVpSDQYCf4TGdCmiNJJ7OHfvooy?=
+ =?us-ascii?Q?/JQw8EzAf7xdm3mamoQRJa5O0ofuQnFQiebtwgB1esMRWI+8cFnFDM6XFTI9?=
+ =?us-ascii?Q?4dywxmIy1I/bcuFbu8//jkfzWstOxFIFF685kbCH4mdF9CjaVImgAtitRsO0?=
+ =?us-ascii?Q?ianHiG9UKcNY/ByXuUw=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b7ae1f42-1a66-444d-3008-08dd3b0e98a9
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2025 18:00:03.5395
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: aHwGqnrUgmbE7R6GI2LVNGp0h7oPMccjR3SoL7wD6JgaO3rkKNuSnvTOvfaJ8j8jzZVjfE1sYQS+bKD9hpnQzQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8716
 
-Hi Caleb, we shall update for latest ask and will check how to enable 
-validation on required board.
+On Mon, Dec 16, 2024 at 02:25:13PM -0500, Frank Li wrote:
+> - Add binding doc
+> - Add imx91 thermal driver
+> - dts part wait for https://lore.kernel.org/imx/Z04W5chGq5TitB9f@lizhi-Precision-Tower-5810/
+> merged, so not in this serial.
+>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-On 1/22/2025 8:53 PM, Caleb Connolly wrote:
-> Hi Mukesh,
-> 
-> On 10/01/2025 07:56, Mukesh Kumar Savaliya wrote:
->> Thanks Caleb for your testing and sharing results. Since Viken is on
->> leave, i am following on this.
->>
->> On 1/7/2025 4:55 PM, Caleb Connolly wrote:
->>> Hi Viken,
->>>
->>> On 04/12/2024 16:03, Viken Dadhaniya wrote:
->>>> In Qualcomm SoCs, firmware loading for Serial Engines (SE) in the QUP
->>>> hardware has traditionally been managed by TrustZone (TZ). This setup
->>>> handled Serial Engines(SE) assignments and access control permissions,
->>>> ensuring a high level of security but limiting flexibility and
->>>> accessibility.
->>>>    This limitation poses a significant challenge for developers who
->>>> need more
->>>> flexibility to enable any protocol on any of the SEs within the QUP
->>>> hardware.
->>>>    To address this, we are introducing a change that opens the firmware
->>>> loading mechanism to the Linux environment. This enhancement increases
->>>> flexibility and allows for more streamlined and efficient management. We
->>>> can now handle SE assignments and access control permissions directly
->>>> within Linux, eliminating the dependency on TZ.
->>>>    We propose an alternative method for firmware loading and SE
->>>> ownership/transfer mode configuration based on device tree
->>>> configuration.
->>>> This method does not rely on other execution environments, making it
->>>> accessible to all developers.
->>>>    For SEs used prior to the kernel, their firmware will be loaded by the
->>>> respective image drivers (e.g., Debug UART, Secure or trusted SE).
->>>> Additionally, the GSI firmware, which is common to all SEs per QUPV3
->>>> core,
->>>> will not be loaded by Linux driver but TZ only. At the kernel level,
->>>> only
->>>> the SE protocol driver should load the respective protocol firmware.
->>>
->>> I gave this series a spin on the RB3 Gen 2 with U-Boot.
->>>
->> Is it possible to try on RB8 board ? Because that's where this support
->> is enabled. It also needs respective TZ configuration to allow FW
->> loading from Linux.
-> 
-> I don't have access to RB8, so no... This support will also be useful on
-> RB3 Gen 2 for U-Boot support, can the next tz release for this platform
-> include the necessary changes?
-Let us evaluate and review TZ configs and changes. This was meant for 
-only development boards. I will check internally and review for RB3 Gen2 
-and update.
->>
->>
->>> After fixing the compilation errors, it seems like there is a consistent
->>> hard crash (the board freezes and resets) at some point during i2c
->>> controller init with this series.
->>>
->> Can you please share exact repro steps ? We can try locally and check
->> what's wrong and also review in future how we make it working for U-boot
->> combination.
-> 
-> If it's true that tz changes are needed that would certainly explain the
-> crash.
-> 
-yes
-> Unfortunately it isn't currently possible to boot QC Linux via U-Boot
-> since the ESP uses a 512 byte sector size on 4k block size UFS which is
-> not supported.
-> 
-> If you build an image with a correct ESP (mkfs.vfat -S 4096) then you
-> can boot U-Boot from upstream by following the RB3 Gen 2 documentation
-> 
-We need to check this and update back.
-> https://docs.u-boot.org/en/latest/board/qualcomm/rb3gen2.html
-> 
-> You'll also need to apply this patch to fix a boot regression
-> https://lore.kernel.org/u-boot/20250122-qcom-parse-memory-updates-v2-0-98dfcac821d7@samcday.com/
-> 
-> On the Linux/DTS side, apply this series, add the appropriate properties
-> to enable fw loading as-per the dt-bindings added by this series and
-> place the qupv3fw.elf file.
-> 
-Sure, got it.
-> Kind regards,
->>> I noticed a similar issue with this same logic implemented in U-Boot.
->>>
->>> Could you clarify which xfer mode is appropriate for the i2c controllers
->>> on the RB3 Gen 2 and maybe give this a try yourself, or let me know what
->>> other info you'd need to debug this.
->>>
->> Yes, please share the procedure , we will try internally.
->> is there any DTSI change done as part of your testing ?
->>> Thanks and kind regards,
->>>>
->>>> Viken Dadhaniya (7):
->>>>     dt-bindings: i2c: qcom,i2c-geni: Document DT properties for QUP
->>>>       firmware loading
->>>>     spi: dt-bindings: Document DT properties for QUP firmware loading
->>>>     dt-bindings: serial: Document DT properties for QUP firmware loading
->>>>     soc: qcom: geni-se:: Add support to load QUP SE Firmware via Linux
->>>>       subsystem
->>>>     i2c: qcom-geni: Load i2c qup Firmware from linux side
->>>>     spi: geni-qcom: Load spi qup Firmware from linux side
->>>>     serial: qcom-geni: Load UART qup Firmware from linux side
->>>>
->>>>    .../bindings/i2c/qcom,i2c-geni-qcom.yaml      |  11 +
->>>>    .../serial/qcom,serial-geni-qcom.yaml         |  12 +
->>>>    .../bindings/spi/qcom,spi-geni-qcom.yaml      |  11 +
->>>>    drivers/i2c/busses/i2c-qcom-geni.c            |  11 +-
->>>>    drivers/soc/qcom/qcom-geni-se.c               | 445 ++++++++++++++++++
->>>>    drivers/spi/spi-geni-qcom.c                   |   7 +-
->>>>    drivers/tty/serial/qcom_geni_serial.c         |   7 +-
->>>>    include/linux/soc/qcom/geni-se.h              |  17 +
->>>>    include/linux/soc/qcom/qup-fw-load.h          | 179 +++++++
->>>>    9 files changed, 692 insertions(+), 8 deletions(-)
->>>>    create mode 100644 include/linux/soc/qcom/qup-fw-load.h
->>>>
->>>
->>
-> 
+Rafael J. Wysocki and Daniel Lezcano
 
+	Do you have chance to check this patches?
+
+Frank
+
+> ---
+> Changes in v4:
+> - Add Kryz's review tag for binding
+> - Add Marco's review tag for driver
+> - Use devm_add_action()
+> - Move pm_runtim_put before thermal_of_zone_register()
+> - Link to v3: https://lore.kernel.org/r/20241212-imx91tmu-v3-0-85e756b29437@nxp.com
+>
+> Changes in v3:
+> - add ref thermal-sensor
+> - restrict #thermal-sensor-cells to 0 only
+> - Change to unevaluatedProperties
+>
+> - add IMX91_TMU_ prefix for register define
+> - remove unused register define
+> - fix missed pm_runtime_put() at error path in imx91_tmu_get_temp()
+> - use dev variable in probe function
+> - use pm_runtime_set_active() in probe
+> - move START to imx91_tmu_get_temp()
+> - use DEFINE_RUNTIME_DEV_PM_OPS()
+> - keep set reset value because there are not sw "reset" bit in controller,
+>   uboot may change and enable tmu.
+>
+> - Link to v2: https://lore.kernel.org/r/20241210-imx91tmu-v2-0-5032aad4d88e@nxp.com
+>
+> Changes in v2:
+> - use low case for hexvalue
+> - combine struct imx91_tmu and tmu_sensor
+> - simplify imx91_tmu_start() and imx91_tmu_enable()
+> - use s16 for imx91_tmu_get_temp(), which may negative value
+> - use reverse christmas tree style
+> - use run time pm
+> - use oneshot to sample temp
+> - register thermal zone after hardware init
+> - Link to v1: https://lore.kernel.org/r/20241209-imx91tmu-v1-0-7859c5387f31@nxp.com
+>
+> ---
+> Pengfei Li (2):
+>       dt-bindings: thermal: fsl,imx91-tmu: add bindings for NXP i.MX91 thermal module
+>       thermal: imx91: Add support for i.MX91 thermal monitoring unit
+>
+>  .../devicetree/bindings/thermal/fsl,imx91-tmu.yaml |  67 ++++++
+>  drivers/thermal/Kconfig                            |  10 +
+>  drivers/thermal/Makefile                           |   1 +
+>  drivers/thermal/imx91_thermal.c                    | 263 +++++++++++++++++++++
+>  4 files changed, 341 insertions(+)
+> ---
+> base-commit: d07c576946b2bc440d6d2073998023e8a0bd7568
+> change-id: 20241209-imx91tmu-af2a7c042d8d
+>
+> Best regards,
+> ---
+> Frank Li <Frank.Li@nxp.com>
+>
 
