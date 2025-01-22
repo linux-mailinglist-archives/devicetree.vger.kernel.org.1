@@ -1,48 +1,41 @@
-Return-Path: <devicetree+bounces-140202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 434F4A18DA3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:36:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A39F8A18E01
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:01:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69432165BCF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:36:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4EA587A2CD2
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:01:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1474120F099;
-	Wed, 22 Jan 2025 08:36:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 969AE1A76D0;
+	Wed, 22 Jan 2025 09:01:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gu6k9d+T"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="CdOlo6lm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m15595.qiye.163.com (mail-m15595.qiye.163.com [101.71.155.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB3041CEE8D;
-	Wed, 22 Jan 2025 08:36:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C234C1FAA;
+	Wed, 22 Jan 2025 09:01:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737534997; cv=none; b=HPAuF+DDgeABXnMgLbACn7k//KV+DYfSdxgOOHmOJ8T+QvgVlt/Bjg4a1j4CZ/Wt5QzyZdh/lSuQROLUmSQIt7IMPyWXhCeKFAtdHijqwmf4QnFFXRdF3hHf4r8BH0mCuPR8LM99gMSjj4nRkHJABxl9mHp5ibqKRmJPJNW2TBk=
+	t=1737536505; cv=none; b=T5SfnIMXgLcFphcJOFmTbXowi6O46TT9n96scFWS9cwyAMDr1w1MUAcZpRbUC0Gr84NR/KFi6yCIj8ORYvux6OBvo/+T2/CmcCXCZlz28agt0gTMNCTXqrJy1jsUBDKrbQks6AGzGuaDDLtYLpLC3Oba6pCepuKN2k8SvLoM3pk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737534997; c=relaxed/simple;
-	bh=yTRd5s0d1l8s3Y+7CksqiSleX26CMI3TETOGZtq5sCg=;
+	s=arc-20240116; t=1737536505; c=relaxed/simple;
+	bh=KKA9W+wl9Jjpf4jnQWr7vbL5t54b5rQGsBkCq+0B6rs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rkkSo0+xGY4Qx9+s3lYG4bOyAmEcbwBF3LHv9odNc0Q8rYlO5f9R3u8R+GzzCXIeVM2mgt9/+ykyHLDGRsFQXVpa+FAHRGXGex8NqM+F0sYUSv1iMAuDxIZf5X5VDZcwJMSIgPXEl9sgzgOZHZp6WXyCS3aVwswKiId28PPg40s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gu6k9d+T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03200C4CED6;
-	Wed, 22 Jan 2025 08:36:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737534996;
-	bh=yTRd5s0d1l8s3Y+7CksqiSleX26CMI3TETOGZtq5sCg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Gu6k9d+TOeeTkE6538caSrWcDthIjohP4RuOhMv+37Ka+6+wxmNA4gUS4F848BiDN
-	 uH4yO5+betXpTyQFbDzvM8xJGOqSsHP5xnFXYY+y0JZ0UIzIWo8U0sRDoMWRkq6u7b
-	 Iv7sOZEi8N4RQU+OmIcUWKAY17AnEZ9WzBFnkPDSwx6ozaTwRWz8/XxQF0mHCJg/WO
-	 GH0wcsJPxU2YglRM4YM4FHRZ9g6yRdlGzb7v4KhflLXe6EMBlZOzew0XCXsQgHHM5l
-	 aRT23S+EHTI2ynIVC140M7B+1DYL0qd4aI90puaRNaV31EfiYvJCAE9dk0Ku7eugVV
-	 cY1Acl8sxnP7g==
-Message-ID: <760d6e6c-ee51-405d-88aa-0def89084778@kernel.org>
-Date: Wed, 22 Jan 2025 09:36:29 +0100
+	 In-Reply-To:Content-Type; b=MYjRLEUGTMfeBORMiTnTYnZ2IR3+0y6EpAVT19NDBHynwAI/st2gcyEDHFnShHqgq/Klm7DwCdLXv9PyRO2EFsxd5KLZk8zubOdJ9fidpU7X+NS+f0ONSoHJLQ3zTqQoSYMtZjQaVpnSCpDhIJjQaSDCdI41Gi8jisTLsxM/ty4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=CdOlo6lm; arc=none smtp.client-ip=101.71.155.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.26] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 965a3ba9;
+	Wed, 22 Jan 2025 16:46:13 +0800 (GMT+08:00)
+Message-ID: <a8bee693-cbde-469d-abcf-363311cfd904@rock-chips.com>
+Date: Wed, 22 Jan 2025 16:46:12 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,72 +43,193 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: omap: Add TI Pandaboard A4 variant
-To: Tom Rini <trini@konsulko.com>, linux-kernel@vger.kernel.org
-Cc: Aaro Koskinen <aaro.koskinen@iki.fi>,
- Andreas Kemnade <andreas@kemnade.info>, Kevin Hilman <khilman@baylibre.com>,
- Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250122001240.4166460-1-trini@konsulko.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v5 05/20] drm/rockchip: analogix_dp: Replace DRM_...()
+ functions with drm_...() or dev_...()
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org,
+ sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com,
+ l.stach@pengutronix.de, dmitry.baryshkov@linaro.org,
+ andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
+ kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org
+References: <20250109032725.1102465-1-damon.ding@rock-chips.com>
+ <20250109032725.1102465-6-damon.ding@rock-chips.com>
+ <40b09942.533e.19449c023a1.Coremail.andyshrk@163.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250122001240.4166460-1-trini@konsulko.com>
-Content-Type: text/plain; charset=UTF-8
+From: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <40b09942.533e.19449c023a1.Coremail.andyshrk@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQxlKTFYfSElJQh9CTU4eQ01WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a948d30cfa903a3kunm965a3ba9
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6K006Lhw6SjIVEi8SKE4XShUf
+	HEMaFBJVSlVKTEhMTkhOTkxOTEhIVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFOQkpPNwY+
+DKIM-Signature:a=rsa-sha256;
+	b=CdOlo6lmDRB4B2FOT82IxbLbIyXMAxBKKopGXCJ2EzehgX1Cl05tmxy0Ma0cDy0A9sn1y4xgW1WMUgIw1T8zrJovXdz668XXGBCK9+ee9XMAsGo5n2i2fN+zmnJs4sLvXMi528J8v5akDjJ8Ho8EjAVfK7sqEdneI6gW6SYe7/Q=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=SGeWmn+7dN7qVlWb70UZTMoFGv6yi5gXMUKkERJ9lEc=;
+	h=date:mime-version:subject:message-id:from;
 
-On 22/01/2025 01:12, Tom Rini wrote:
-> Document the ti,omap4-panda-a4 compatible string in the appropriate
-> place within the omap family binding file.
+Hi Andy,
 
-Why? Where is any user of this? Your commit msg should explain this,
-because it's not obvious. Obvious is to send binding with the user, but
-the second patch is missing.
+On 2025/1/9 14:28, Andy Yan wrote:
+> 
+> Hi Damon,
+> 
+> At 2025-01-09 11:27:10, "Damon Ding" <damon.ding@rock-chips.com> wrote:
+>> According to the comments in include/drm/drm_print.h, the DRM_...()
+>> functions are deprecated in favor of drm_...() or dev_...() functions.
+>>
+>> Use drm_err()/drm_dbg_core()/drm_dbg_kms() instead of
+>> DRM_DEV_ERROR()/DRM_ERROR()/DRM_DEV_DEBUG()/DRM_DEBUG_KMS() after
+>> rockchip_dp_bind() is called, and replace DRM_DEV_ERROR() with dev_err()
+>> before calling it.
+>>
+>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>> ---
+>> .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 29 ++++++++++---------
+>> 1 file changed, 15 insertions(+), 14 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+>> index 546d13f19f9b..8114c3238609 100644
+>> --- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+>> +++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+>> @@ -100,13 +100,13 @@ static int rockchip_dp_poweron(struct analogix_dp_plat_data *plat_data)
+>>
+>> 	ret = clk_prepare_enable(dp->pclk);
+>> 	if (ret < 0) {
+>> -		DRM_DEV_ERROR(dp->dev, "failed to enable pclk %d\n", ret);
+>> +		drm_err(dp->drm_dev, "failed to enable pclk %d\n", ret);
+> 
+>                 You just need to pass dp here:
+>                  drm_err(dp, "failed to enable pclk %d\n", ret);
+> 
+
+I see. It is really better to pass dp instead of dp->drm_dev. I will 
+update all relevant logs in the next version.
+
+>> 		return ret;
+>> 	}
+>>
+>> 	ret = rockchip_dp_pre_init(dp);
+>> 	if (ret < 0) {
+>> -		DRM_DEV_ERROR(dp->dev, "failed to dp pre init %d\n", ret);
+>> +		drm_err(dp->drm_dev, "failed to dp pre init %d\n", ret);
+>> 		clk_disable_unprepare(dp->pclk);
+>> 		return ret;
+>> 	}
+>> @@ -126,12 +126,13 @@ static int rockchip_dp_powerdown(struct analogix_dp_plat_data *plat_data)
+>> static int rockchip_dp_get_modes(struct analogix_dp_plat_data *plat_data,
+>> 				 struct drm_connector *connector)
+>> {
+>> +	struct rockchip_dp_device *dp = pdata_encoder_to_dp(plat_data);
+>> 	struct drm_display_info *di = &connector->display_info;
+>> 	/* VOP couldn't output YUV video format for eDP rightly */
+>> 	u32 mask = DRM_COLOR_FORMAT_YCBCR444 | DRM_COLOR_FORMAT_YCBCR422;
+>>
+>> 	if ((di->color_formats & mask)) {
+>> -		DRM_DEBUG_KMS("Swapping display color format from YUV to RGB\n");
+>> +		drm_dbg_kms(dp->drm_dev, "Swapping display color format from YUV to RGB\n");
+>> 		di->color_formats &= ~mask;
+>> 		di->color_formats |= DRM_COLOR_FORMAT_RGB444;
+>> 		di->bpc = 8;
+>> @@ -201,17 +202,17 @@ static void rockchip_dp_drm_encoder_enable(struct drm_encoder *encoder,
+>> 	else
+>> 		val = dp->data->lcdsel_big;
+>>
+>> -	DRM_DEV_DEBUG(dp->dev, "vop %s output to dp\n", (ret) ? "LIT" : "BIG");
+>> +	drm_dbg_core(dp->drm_dev, "vop %s output to dp\n", (ret) ? "LIT" : "BIG");
+>>
+>> 	ret = clk_prepare_enable(dp->grfclk);
+>> 	if (ret < 0) {
+>> -		DRM_DEV_ERROR(dp->dev, "failed to enable grfclk %d\n", ret);
+>> +		drm_err(dp->drm_dev, "failed to enable grfclk %d\n", ret);
+>> 		return;
+>> 	}
+>>
+>> 	ret = regmap_write(dp->grf, dp->data->lcdsel_grf_reg, val);
+>> 	if (ret != 0)
+>> -		DRM_DEV_ERROR(dp->dev, "Could not write to GRF: %d\n", ret);
+>> +		drm_err(dp->drm_dev, "Could not write to GRF: %d\n", ret);
+>>
+>> 	clk_disable_unprepare(dp->grfclk);
+>> }
+>> @@ -236,7 +237,7 @@ static void rockchip_dp_drm_encoder_disable(struct drm_encoder *encoder,
+>>
+>> 	ret = rockchip_drm_wait_vact_end(crtc, PSR_WAIT_LINE_FLAG_TIMEOUT_MS);
+>> 	if (ret)
+>> -		DRM_DEV_ERROR(dp->dev, "line flag irq timed out\n");
+>> +		drm_err(dp->drm_dev, "line flag irq timed out\n");
+>> }
+>>
+>> static int
+>> @@ -277,7 +278,7 @@ static int rockchip_dp_of_probe(struct rockchip_dp_device *dp)
+>>
+>> 	dp->grf = syscon_regmap_lookup_by_phandle(np, "rockchip,grf");
+>> 	if (IS_ERR(dp->grf)) {
+>> -		DRM_DEV_ERROR(dev, "failed to get rockchip,grf property\n");
+>> +		dev_err(dev, "failed to get rockchip,grf property\n");
+>> 		return PTR_ERR(dp->grf);
+>> 	}
+>>
+>> @@ -287,19 +288,19 @@ static int rockchip_dp_of_probe(struct rockchip_dp_device *dp)
+>> 	} else if (PTR_ERR(dp->grfclk) == -EPROBE_DEFER) {
+>> 		return -EPROBE_DEFER;
+>> 	} else if (IS_ERR(dp->grfclk)) {
+>> -		DRM_DEV_ERROR(dev, "failed to get grf clock\n");
+>> +		dev_err(dev, "failed to get grf clock\n");
+>> 		return PTR_ERR(dp->grfclk);
+>> 	}
+>>
+>> 	dp->pclk = devm_clk_get(dev, "pclk");
+>> 	if (IS_ERR(dp->pclk)) {
+>> -		DRM_DEV_ERROR(dev, "failed to get pclk property\n");
+>> +		dev_err(dev, "failed to get pclk property\n");
+>> 		return PTR_ERR(dp->pclk);
+>> 	}
+>>
+>> 	dp->rst = devm_reset_control_get(dev, "dp");
+>> 	if (IS_ERR(dp->rst)) {
+>> -		DRM_DEV_ERROR(dev, "failed to get dp reset control\n");
+>> +		dev_err(dev, "failed to get dp reset control\n");
+>> 		return PTR_ERR(dp->rst);
+>> 	}
+>>
+>> @@ -315,12 +316,12 @@ static int rockchip_dp_drm_create_encoder(struct rockchip_dp_device *dp)
+>>
+>> 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm_dev,
+>> 							     dev->of_node);
+>> -	DRM_DEBUG_KMS("possible_crtcs = 0x%x\n", encoder->possible_crtcs);
+>> +	drm_dbg_kms(drm_dev, "possible_crtcs = 0x%x\n", encoder->possible_crtcs);
+>>
+>> 	ret = drm_simple_encoder_init(drm_dev, encoder,
+>> 				      DRM_MODE_ENCODER_TMDS);
+>> 	if (ret) {
+>> -		DRM_ERROR("failed to initialize encoder with drm\n");
+>> +		drm_err(drm_dev, "failed to initialize encoder with drm\n");
+>> 		return ret;
+>> 	}
+>>
+>> @@ -340,7 +341,7 @@ static int rockchip_dp_bind(struct device *dev, struct device *master,
+>>
+>> 	ret = rockchip_dp_drm_create_encoder(dp);
+>> 	if (ret) {
+>> -		DRM_ERROR("failed to create drm encoder\n");
+>> +		drm_err(drm_dev, "failed to create drm encoder\n");
+>> 		return ret;
+>> 	}
+>>
+>> -- 
+>> 2.34.1
+>>
 
 Best regards,
-Krzysztof
+Damon
 
