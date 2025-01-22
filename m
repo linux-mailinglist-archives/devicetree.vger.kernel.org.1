@@ -1,87 +1,85 @@
-Return-Path: <devicetree+bounces-140407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65D41A198C3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 19:46:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92A00A198D9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 19:55:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91890163839
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 18:46:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69F9C3ACDE5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 18:55:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10299215173;
-	Wed, 22 Jan 2025 18:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205BC2153FB;
+	Wed, 22 Jan 2025 18:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gCwI+/MM"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="wbw8FXVS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F261B2180
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 18:46:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 106A0215166;
+	Wed, 22 Jan 2025 18:55:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737571612; cv=none; b=DnF6v8lLH/8QcW9PPNgeQNcrF0aIvFu1D+2+0C5pjPCZqyMxQG/wkB5nv2e3qmFY5uFNinp4RJsr28JRAVimQZBkkt0lv5Pz8DWM91Kj9JdSednRxo8gQogxzS3x6BiLn70Dxdv1xLTQEWOihIFBrycr1mLimlEmGVQEGcuZB2k=
+	t=1737572138; cv=none; b=oiyND39lx36jEdzIqtii6p87gbX9eQv5o40orW6qOpTVv5b07DIsg+tGw9gK/BEif/f2UlMpDnwRL9PxDkhsJz8IxQkn3U98+IU4gl0ADb22aQ7EOVqF8vcRZgATCqX/LBD64378P5nWljWPIGKz+lMeOCx2aiukWkDl1EFesqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737571612; c=relaxed/simple;
-	bh=bp+kY2lHES9zGU+rJW0QRSDksZk6b9haSCgYekgmxlg=;
+	s=arc-20240116; t=1737572138; c=relaxed/simple;
+	bh=GqH+cjixCHm6pFPgJISgiNmXiquyMt+xgoCU9S/YstQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lJMGNEx7yQ+26WD3nYFrEfT5ab6mnBmzyHFIdhzKhg9fg2tLCGEB1J9QYM6RQPiAlfYU5ME4lzuUJi5+YMf6K8V0mjtXYaYTawI6gjxDPU0PpynzRFR4138/DQ7XqEXe2wFV9+JdmaGayxP0fPe4/F0YUDp+2IcHEY9EI019xjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gCwI+/MM; arc=none smtp.client-ip=209.85.208.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-3022484d4e4so162291fa.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 10:46:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737571608; x=1738176408; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=5ZEFbpSbAUkiwmQ8uyrBoj/KNvRbRy6SOSsvlQTYgI4=;
-        b=gCwI+/MM1m7nHmFOTWAAKi0pJzvfu1hlbkL6/cRowaqFcA0zXjo46RfIxfQQpVbjt2
-         9QdXzgzwtNp0RQDvnhBbmadhU180YM5udjl3eoB4bi4VO3r9SXtDnWRmlWrnx11wyA/M
-         eSoiDJSBK65sd6NQ4s9oflEhibjcNbvPjW9speaAsMjbp4MJuXmaxP6unu7X0iwp5asu
-         cHe2Thd15lYFskSe8OFMnA9btNb4utKHNXOCbvtvPZrqXTBlaubVGWuGHRHu7o6vwnCZ
-         tvLG2vY1C7KxVLzlszrMLhMZXp2XEyzLrxOM+2gfOidbDu8kAI4b87odOXS0R1GF3wBS
-         HQaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737571608; x=1738176408;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5ZEFbpSbAUkiwmQ8uyrBoj/KNvRbRy6SOSsvlQTYgI4=;
-        b=rRZKxit4ejI20ytJRlMLX7vdL1QXbaJm6zSuxXdmYDCWS4mBcV51ae+qF+lWaYg1Vd
-         9mhqHm2P4CWQ7ZbXkswXIDspI5fXenZic7Ga2gaaIHVoqmpKxNHoDLZO0QvHLUSc/Lg5
-         f12CtsRYV921nnlr8l2zx+u/B5BxZ8+typBllRdRixhh1EOiERkQEncqjXe1+oNUklfG
-         vhIXQuu3Hmn9nb7LwLC99VG7vTxLOsAvBKiZG1K8877898EJoCs3Ei+7T4FJqv1MpeMU
-         msTMqdj/pjwPSN4shopd9rQPMeUCkHFCAW9IGl4F06WeVVLEwz6BKSHT0vcsuh7RGspu
-         JkBg==
-X-Forwarded-Encrypted: i=1; AJvYcCUXFhkMzspt/hJqZ7M12dqOqNjWMTMn+MiMwUjAhjZKzqll87Ys7Sv4bvRYagDKgI0hpWN7U531QQwI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxjof+JA+fBrEhargzIHOwISeiHg5wzH4WRHaxSySNV6PWg0Fxm
-	63YBuavKo7stibLWeZ1UCTQ5JBtSVXrHZxX7PJPzSFdlXx941QlSPpkybJEURWo=
-X-Gm-Gg: ASbGncu0pBJ8IyC6eRneFUWyvb/A2QOc9vcCzZqkLd0AIwKox9tJxB6RTuZ5RT8/fnJ
-	qd+ktpEzsjLESO6WDELFGtu2KcrEeikCy5OwDnoO2TTRtrzdYhwgrMKNV8pv7gdczKRtX9YN36m
-	AQ3kdFYxPw+PI0leW3cj4Vv/BvxQqG980vyE5c2OOsC+wL26CXj1pbw1nXADx+D7jbzHZ9W8dPb
-	soqv/F8e+uNTCzVBhBjijgsNkguc6KGZpzQFajP2WLtQMnRZVKJOrpVapjxxzMV1OEo38ZcAxeg
-	kReOiNZVc/s8aDmX6MOFyvtI6E0TMnAkjGvlXBVtwA8q427u5w==
-X-Google-Smtp-Source: AGHT+IFys+iq/WjKPfLfUq0HQEutCO3s0upHIgjZZRoyH2OwhbXUd1xD4y0RlzcBd/5HaMHbhHocJg==
-X-Received: by 2002:a05:651c:150b:b0:302:5391:3faf with SMTP id 38308e7fff4ca-3072caa0d1fmr79559321fa.17.1737571607991;
-        Wed, 22 Jan 2025 10:46:47 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3072a330cb8sm26717371fa.22.2025.01.22.10.46.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jan 2025 10:46:46 -0800 (PST)
-Date: Wed, 22 Jan 2025 20:46:44 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
-Cc: kernel@quicinc.com, andersson@kernel.org, konradybcio@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, quic_akdwived@quicinc.com, 
-	quic_uchheda@quicinc.com, Sahil Chandna <quic_chandna@quicinc.com>
-Subject: Re: [PATCH v3] arm64: dts: qcom: Add industrial mezzanine support
- for qcs6490-rb3gen2
-Message-ID: <f4xffmfwkwrenulklmwzjjmdfdhcf5cwundyfen54e2codrmlj@htzjpvk5vopp>
-References: <20250122101424.1810844-1-quic_nkumarsi@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=QHsmbAlTnQpor+tWrCWPqwUprtqMQ2X41XVT4D9zyLgoZd1r8cEZ9QXyvQGuPDpntjVjBh72SjlggOyRUwZBteTT565/wfidlyy+LJgYjP0y/jlVJ/6JzUjO4Q/vlAwOo++4gp2ronw1fSNW8SXTqMsluN9c0S/UBq+R3BYGKig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=wbw8FXVS; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=hCpKDdKg4rdX1fCkNUFQGWyQg+xKmQk23jdejo83T+A=; b=wbw8FXVSTVYJs6N8NQRDei+kf6
+	WhboiXTxBHYWqR43xrZcxr76M1+HrYgItDRbn7sdkVbRhzuGIjvZfG9UWajqYcyVnjIxGPVPzRAzg
+	e1c1qx2eV5Wp822RD8Qq03WJFckWovLhpZVWwKwE2FpyNILvpIjqgZA+3ziUYuMNKsA/T6N6hnEwi
+	ElC4MioxwSWGsODlYGMPJg+8msO2fkUvf36hQ923+6RXdVwx/U6wZ7ycldajzITiFhwW+wmgqxIkO
+	jDQN1Ut68J4I76GTic1c9RFytpUQ6BKVfW41d56RqwKgzGbQWR1HU+ta3tz2wpLUbuG0WJIweeMZd
+	YrjstVLA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:53750)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tafso-0000Ax-17;
+	Wed, 22 Jan 2025 18:55:22 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tafsj-00058Q-3C;
+	Wed, 22 Jan 2025 18:55:18 +0000
+Date: Wed, 22 Jan 2025 18:55:17 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH net-next RFC v2 1/6] net: ethtool: common: Make BaseT a
+ 4-lanes mode
+Message-ID: <Z5E_FUxSZJWRWVAq@shell.armlinux.org.uk>
+References: <20250122174252.82730-1-maxime.chevallier@bootlin.com>
+ <20250122174252.82730-2-maxime.chevallier@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,102 +88,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250122101424.1810844-1-quic_nkumarsi@quicinc.com>
+In-Reply-To: <20250122174252.82730-2-maxime.chevallier@bootlin.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Wed, Jan 22, 2025 at 03:44:24PM +0530, Nirmesh Kumar Singh wrote:
-> Add DTS support for Qualcomm qcs6490-rb3gen2 industrial mezzanine board.
+On Wed, Jan 22, 2025 at 06:42:46PM +0100, Maxime Chevallier wrote:
+> When referring to BaseT ethernet, we are most of the time thinking of
+> BaseT4 ethernet on Cat5/6/7 cables. This is therefore BaseT4, although
+> BaseT4 is also possible for 100BaseTX. This is even more true now that
+> we have a special __LINK_MODE_LANES_T1 mode especially for Single Pair
+> ethernet.
 > 
-> Signed-off-by: Sahil Chandna <quic_chandna@quicinc.com>
-> Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
-> 
-> ---
-> Changes in v3:
-> - Fixed tpm pinctrl node label.
-> - Addressed comments by Dmitry.
+> Mark BaseT as being a 4-lanes mode.
 
-Which ones? Pleas be more specific in changelogs.
+This is a problem:
 
-> - Improved indentation/formatting.
-> - Link to V2: https://lore.kernel.org/all/20250102190155.2593453-1-quic_nkumarsi@quicinc.com/
-> 
-> Changes in V2:
-> - Addressed comment by Konrad.
-> - Validated dts bindings with dtb_checks suggested by Krzysztof.
-> - Improved indentation/formatting.
-> - Fixed bug encountered during testing.
-> - Added dtb entry in makefile.
-> - Link to V1: https://lore.kernel.org/all/20241206065156.2573-1-quic_chandna@quicinc.com/
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |  4 +++
->  .../qcs6490-rb3gen2-industrial-mezzanine.dtso | 35 +++++++++++++++++++
->  2 files changed, 39 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 6ca8db4b8afe..16ac008c58d2 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -111,6 +111,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
-> +
-> +qcs6490-rb3gen2-industrial-mezzanine-dtbs	:= qcs6490-rb3gen2.dtb qcs6490-rb3gen2-industrial-mezzanine.dtbo
-> +
-> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-industrial-mezzanine.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-> new file mode 100644
-> index 000000000000..1498f32bd069
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-> @@ -0,0 +1,35 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
-> +*/
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +#include <dt-bindings/clock/qcom,gcc-sc7280.h>
-> +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> +
-> +&pm7250b_gpios {
-> +	tpm_spi_reset: tpm-spi-reset-state {
-> +		pins = "gpio5";
-> +		function = "normal";
-> +		power-source = <1>;
-> +		output-high;
-> +		input-disable;
-> +		bias-pull-up;
-> +		qcom,drive-strength = <3>;
-> +	};
-> +};
-> +
-> +&spi11 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	status = "okay";
-> +
-> +	st33htpm0: tpm@0 {
-> +		compatible = "st,st33htpm-spi", "tcg,tpm_tis-spi";
-> +		reg = <0>;
-> +		spi-max-frequency = <20000000>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&tpm_spi_reset>;
+1.4.50 10BASE-T: IEEE 802.3 Physical Layer specification for a 10 Mb/s
+CSMA/CD local area network over two pairs of twisted-pair telephone
+wire. (See IEEE Std 802.3, Clause 14.)
 
-Missing reset-gpios property. Otherwise there is no point in specifying
-the pinctrl.
+Then we have the 100BASE-T* family, which can be T1, T2, T4 or TX.
+T1 is over a single balanced twisted pair. T2 is over two pairs of
+Cat 3 or better. T4 is over four pairs of Cat3/4/5.
 
-> +	};
-> +};
-> -- 
-> 2.34.1
-> 
+The common 100BASE-T* type is TX, which is over two pairs of Cat5.
+This is sadly what the ethtool 100baseT link modes are used to refer
+to.
+
+We do have a separate link mode for 100baseT1, but not 100baseT4.
+
+So, these ethtool modes that are of the form baseT so far are
+describing generally two pairs, one pair in each direction. (T1 is
+a single pair that is bidirectional.)
+
+It's only once we get to 1000BASE-T (1000baseT) that we get to an
+ethtool link mode that has four lanes in a bidirectional fashion.
+
+So, simply redefining this ends up changing 10baseT and 100baseT from
+a single lane in each direction to four lanes (and is a "lane" here
+defined as the total number of pairs used for communication in both
+directions, or the total number of lanes used in either direction.
+
+Hence, I'm not sure this makes sense.
 
 -- 
-With best wishes
-Dmitry
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
