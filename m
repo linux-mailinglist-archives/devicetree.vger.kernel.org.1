@@ -1,231 +1,288 @@
-Return-Path: <devicetree+bounces-140420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A922A19A2B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 22:11:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CBB5A19A6C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 22:33:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 305DD188C8C6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 21:11:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66068163A36
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 21:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C951C5D6D;
-	Wed, 22 Jan 2025 21:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2B31C2309;
+	Wed, 22 Jan 2025 21:33:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="DZZFIy7Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G/oDyyl2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4E91AF4EA
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 21:11:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C7228F7D;
+	Wed, 22 Jan 2025 21:33:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737580291; cv=none; b=Io33mKG0cTx0bvMxhJwnVmkzi569AX8lfBGUd+TC45RqP8h0jRkGNb0ngFgOZwS2ooJCScLEfjnsmamKNQKrbRNLYxIrSZWeJEhvT8KUSbrVIXM+4hMoBevPZvgebIpi1RsbLBepsIaIY/gCB5sZfU8hrhvLHb7Z5550QxprFTU=
+	t=1737581586; cv=none; b=Dyzsw10uSKGYo/1tf8EB4qM5pBuDd8PA2kgykRyqxwUAJDZCAw4fwcKUdeTEne27J1/PBl595rrRhPkBG+wcV4oGudOdbhFN9iBRsGFv8pnytmCDo/u7naNeJRDUw+eArXIgNA5t02p7gJ0mViPLvlNrhzDDUtTZS2iEcHLb8YY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737580291; c=relaxed/simple;
-	bh=VIKGBgYoWMbg6XR3TPiepo8cZRgH/PGwl7uhQNXVrsE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VJfilmFwRRCCIxr46jRFNADZtf6d7/y9JpQWEXis9wuF9xhLglRg1y0MkXimxCjfWInm6Oebb9w7gchAJPtgvFh3o5HIsWtfTGvOa2R8qJ/vwa4Ad0yvK5ukedbOfvuB5faSBnSwSNoVKLWe1JAgRRxmQe3bfJBr+a5qAyzN/Ys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=DZZFIy7Q; arc=none smtp.client-ip=209.85.210.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-71e1b1767b3so123224a34.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 13:11:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737580288; x=1738185088; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8xM3yjtdAmtHlD0j2bHym2nn3LqAJkbUkAXtpadigko=;
-        b=DZZFIy7Q0F1jbx70wJdpCvswEeXm2xPfZlTbcjTjLwdglY92/nnO3dNbWk0pcEa0Xk
-         Hn3BsO48jUyMsDdjHlP91acwWoRfiuYOq8NJssaTvUzRE6NdYMTk5SDSBrJmuqa0w22S
-         Zz+v0BERFkCokMjuZRjJyJBrGhc/GNJSa5rOke8tpDFIILAqvWHRQ1q+eyup6jnA3vfc
-         BsHv70M2RfX17iIdPmjJHGHB+bysF1YEwXtgPoHd9R8fgteqzNDRZrayOFp1hMQ9SbhF
-         DvxwRLG1qhSZeNxm1ny2m8vtqelZJ/rOxxHx3X7kxUZQQoZkz6nNKvlZ3NgxrZ+X6Cp0
-         mOCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737580288; x=1738185088;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8xM3yjtdAmtHlD0j2bHym2nn3LqAJkbUkAXtpadigko=;
-        b=fCB/RBlKaRJPLRLhAbHkHeq6PuWpGVdgXYQrN/gl+ZE+b8+X76b9k4yyHPNdF+D5mT
-         6Q892dVdqkvnj1RbQYouH3eoIlJyGpD8xGMStQ4hXOHNDV2PMVfXGk9/Ly5+DdrzVX6d
-         y4x8nUOMJ9habTBmMyTewbZ+WjQby5/mNFvmUIcox5MadiPVMgkS+25hWn8yvbkiYuBJ
-         zLpMo93jP29aXo0TnfogokYb9LEezu7S7KTkp2x9nbxIwnMu3q7FEqDp/iXpOfFyYXW+
-         3xSJiWyovubr3K7xnhK4pmcwAwumc6cPY5/ip8XS8PIXETie0pf/k9yvd9LlxPYoAGNx
-         /JYA==
-X-Forwarded-Encrypted: i=1; AJvYcCUWLSjWkKj1QUx7tdTd+skQY92/k6v3vc+4xzYoUoEjJiJ1+aGUavCOnTPJRgStGlIT0Pzj9dND4z3y@vger.kernel.org
-X-Gm-Message-State: AOJu0YwEJAlHcAlpxNgEo2d+CB4RtfcyeQKEDF5cAebL6yJh7QiCi8KR
-	e/Z3tiFkxQWsVEb9XkuFGbk/QDOCMJFDZWW/YbJstqW+/+L8DRjzWag3kihE76I=
-X-Gm-Gg: ASbGncvFcWH381zkNHYICZMnqv75eyBjU5muw8GJ6f55F8Z4REbcfMoR8bqHGTJkenF
-	FJF9WJANRVTFlK8Iqib6hhs5U9Oo5fgPR7VWkFGkX99vgcAHRyNEHemY1A2xchLFwKtjilF+8bV
-	VZAGoRCzOhh2jt5GWfigYQJImFk7VTsfK/DXi17BHJJGBK2QNT0DhXIr7fCMOomSzGZWRegm/JO
-	J6zbZzrOqf7SlYs4dLwzynNTOZ5uMjnACfbEgi8dTbYD2Upv68ic4aCtCHlm9lSYnByFVT2Nrse
-	vLbduwbbPWQ3B8UNkXmiOgND0nZKigA=
-X-Google-Smtp-Source: AGHT+IFGNbR+WVq028/i7Oy/AZ6q4XePR6wJNe4vSufGR4OWlYCRrH/Gj87ouiEDbxwINJYblZM8mA==
-X-Received: by 2002:a05:6830:388f:b0:71d:445a:80b9 with SMTP id 46e09a7af769-7249da8f75dmr15985167a34.16.1737580288176;
-        Wed, 22 Jan 2025 13:11:28 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7249b3be2e2sm4133618a34.31.2025.01.22.13.11.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jan 2025 13:11:27 -0800 (PST)
-Message-ID: <d9e258cc-fa3a-4c6b-a58a-193711d1d9ec@baylibre.com>
-Date: Wed, 22 Jan 2025 15:11:25 -0600
+	s=arc-20240116; t=1737581586; c=relaxed/simple;
+	bh=t/PUmyDqQjOM3NJQYXmc2AiphKcUaKRy63lOZHv1bSU=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=KUEQzV3FdlezwRdqppfKyDVtgZUwdgxBvc2gFDpxZzUhnqw2Sv03b0GPYF+y1a0rQfiyIvHxCrvXoNO8ecP8v2H6Tm31loYC4Wcmhv4XQir3e+fCYZfjzEzSrJXs+sWFzTO+EvSn1/bb1g+sZm8EuA5KckbQV99+JhA41qY7cMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G/oDyyl2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 427FFC4CED2;
+	Wed, 22 Jan 2025 21:33:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737581585;
+	bh=t/PUmyDqQjOM3NJQYXmc2AiphKcUaKRy63lOZHv1bSU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=G/oDyyl26vQOZBi7lsPKiHRP0D40odETzwNTgA6oJHXbngjSg31rCQ6ZuwYOK/dsp
+	 LfF7TcTdD+gh3/+tZFl6I9Tfb+S+fxhTgLhzNCXVMGF54RfDUOpdpt3M39nhX62n2e
+	 f7ujshMhbre7llf62XCeRxlVOY1pD+wDw3Y3ZbmM1zjZTckDCrDi0gnQAJ08hexBT6
+	 eAKVCaS5ejWE/gIn34C1LNIVmpSwMY3+j5tJxAQBn2QrENICUY7rqdQvGn/vx0VpOz
+	 bEDFi3jKn1N5/5Ms+ZLqyK1Do7/XmoBE/XClY3MlQVCxlJL1ujKQxVXGgBY1RX0X+y
+	 VuUDgjokNUMSQ==
+Date: Wed, 22 Jan 2025 15:33:03 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Chen Wang <unicornxw@gmail.com>
+Cc: kw@linux.com, u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu,
+	arnd@arndb.de, bhelgaas@google.com, unicorn_wang@outlook.com,
+	conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
+	krzk+dt@kernel.org, lee@kernel.org, lpieralisi@kernel.org,
+	manivannan.sadhasivam@linaro.org, palmer@dabbelt.com,
+	paul.walmsley@sifive.com, pbrobinson@gmail.com, robh@kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com, xiaoguang.xing@sophgo.com,
+	fengchun.li@sophgo.com
+Subject: Re: [PATCH v3 2/5] PCI: sg2042: Add Sophgo SG2042 PCIe driver
+Message-ID: <20250122213303.GA1102149@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: add AD7191
-To: Alisa-Dariana Roman <alisadariana@gmail.com>,
- Alisa-Dariana Roman <alisa.roman@analog.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-References: <20250122132821.126600-1-alisa.roman@analog.com>
- <20250122132821.126600-2-alisa.roman@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <20250122132821.126600-2-alisa.roman@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ddedd8f76f83fea2c6d3887132d2fe6f2a6a02c1.1736923025.git.unicorn_wang@outlook.com>
 
-On 1/22/25 7:20 AM, Alisa-Dariana Roman wrote:
-> AD7191 is a pin-programmable, ultralow noise 24-bit sigma-delta ADC
-> designed for precision bridge sensor measurements. It features two
-> differential analog input channels, selectable output rates,
-> programmable gain, internal temperature sensor and simultaneous
-> 50Hz/60Hz rejection.
+On Wed, Jan 15, 2025 at 03:06:57PM +0800, Chen Wang wrote:
+> From: Chen Wang <unicorn_wang@outlook.com>
 > 
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-> ---
->  .../bindings/iio/adc/adi,ad7191.yaml          | 175 ++++++++++++++++++
->  MAINTAINERS                                   |   7 +
->  2 files changed, 182 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml
-> new file mode 100644
-> index 000000000000..c0a6bed7a9cb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml
-> @@ -0,0 +1,175 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2025 Analog Devices Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7191.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> Add support for PCIe controller in SG2042 SoC. The controller
+> uses the Cadence PCIe core programmed by pcie-cadence*.c. The
+> PCIe controller will work in host mode only.
+
+> + * pcie-sg2042 - PCIe controller driver for Sophgo SG2042 SoC
+
+I'm guessing this is the first of a *family* of Sophgo SoCs, so
+"sg2042" looks like it might be a little too specific if there will be
+things like "sg3042" etc added in the future.
+
+> +#include "../../../irqchip/irq-msi-lib.h"
+
+I know you're using this path because you're relying on Marc's
+work in progress [1].
+
+But I don't want to carry around an #include like this in drivers/pci
+while we're waiting for that, so I think you should use the existing
+published MSI model until after Marc's update is merged.  Otherwise we
+might end up with this ugly path here and no real path to migrate to
+the published, supported one.
+
+[1] https://lore.kernel.org/linux-riscv/20241204124549.607054-2-maz@kernel.org/
+
+> + * SG2042 PCIe controller supports two ways to report MSI:
+> + *
+> + * - Method A, the PCIe controller implements an MSI interrupt controller
+> + *   inside, and connect to PLIC upward through one interrupt line.
+> + *   Provides memory-mapped MSI address, and by programming the upper 32
+> + *   bits of the address to zero, it can be compatible with old PCIe devices
+> + *   that only support 32-bit MSI address.
+> + *
+> + * - Method B, the PCIe controller connects to PLIC upward through an
+> + *   independent MSI controller "sophgo,sg2042-msi" on the SOC. The MSI
+> + *   controller provides multiple(up to 32) interrupt sources to PLIC.
+
+Maybe expand "PLIC" the first time?
+
+s/SOC/SoC/ to match previous uses, e.g., in commit log
+s/multiple(up to 32)/up to 32/
+
+> + *   Compared with the first method, the advantage is that the interrupt
+> + *   source is expanded, but because for SG2042, the MSI address provided by
+> + *   the MSI controller is fixed and only supports 64-bit address(> 2^32),
+> + *   it is not compatible with old PCIe devices that only support 32-bit MSI
+> + *   address.
+
+"Supporting 64-bit address" means supporting any address from 0 to
+2^64 - 1, but I don't think that's what you mean here.
+
+I think what you mean here is that with Method B, the MSI address is
+fixed and it can only be above 4GB.
+
+> +#define REG_CLEAR_LINK0_BIT	2
+> +#define REG_CLEAR_LINK1_BIT	3
+> +#define REG_STATUS_LINK0_BIT	2
+> +#define REG_STATUS_LINK1_BIT	3
+
+> +static void sg2042_pcie_msi_clear_status(struct sg2042_pcie *pcie)
+> +{
+> +	u32 status, clr_msi_in_bit;
 > +
-> +title: Analog Devices AD7191 ADC device driver
+> +	if (pcie->link_id == 1)
+> +		clr_msi_in_bit = BIT(REG_CLEAR_LINK1_BIT);
+> +	else
+> +		clr_msi_in_bit = BIT(REG_CLEAR_LINK0_BIT);
+
+Why not put the BIT() in the #defines for REG_CLEAR_LINK0_BIT,
+REG_STATUS_LINK0_BIT, ...?  Then this code is slightly simpler, and
+you can use similar style in sg2042_pcie_msi_chained_isr() instead of
+shifting there.
+
+> +	regmap_read(pcie->syscon, REG_CLEAR, &status);
+> +	status |= clr_msi_in_bit;
+> +	regmap_write(pcie->syscon, REG_CLEAR, status);
+
+> +static void sg2042_pcie_msi_irq_compose_msi_msg(struct irq_data *d,
+> +						struct msi_msg *msg)
+> +{
+> +	struct sg2042_pcie *pcie = irq_data_get_irq_chip_data(d);
+> +	struct device *dev = pcie->cdns_pcie->dev;
 > +
-> +maintainers:
-> +  - Alisa-Dariana Roman <alisa.roman@analog.com>
+> +	msg->address_lo = lower_32_bits(pcie->msi_phys) + BYTE_NUM_PER_MSI_VEC * d->hwirq;
+> +	msg->address_hi = upper_32_bits(pcie->msi_phys);
+
+This seems a little suspect because adding "BYTE_NUM_PER_MSI_VEC *
+d->hwirq" could cause overflow into the upper 32 bits.  I think you
+should add first, then take the lower/upper 32 bits of the 64-bit
+result.
+
+> +	if (d->hwirq > pcie->num_applied_vecs)
+> +		pcie->num_applied_vecs = d->hwirq;
+
+"num_applied_vecs" is a bit of a misnomer; it's actually the *max*
+hwirq.
+
+> +static const struct irq_domain_ops sg2042_pcie_msi_domain_ops = {
+> +	.alloc	= sg2042_pcie_irq_domain_alloc,
+> +	.free	= sg2042_pcie_irq_domain_free,
+
+Mention "msi" in these function names, e.g.,
+sg2042_pcie_msi_domain_alloc().
+
+> +static int sg2042_pcie_init_msi_data(struct sg2042_pcie *pcie)
+> +{
+> ...
+> +	/* Program the MSI address and size */
+> +	if (pcie->link_id == 1) {
+> +		regmap_write(pcie->syscon, REG_LINK1_MSI_ADDR_LOW,
+> +			     lower_32_bits(pcie->msi_phys));
+> +		regmap_write(pcie->syscon, REG_LINK1_MSI_ADDR_HIGH,
+> +			     upper_32_bits(pcie->msi_phys));
 > +
-> +description: |
-> +  Bindings for the Analog Devices AD7191 ADC device. Datasheet can be
-> +  found here:
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD7191.pdf
+> +		regmap_read(pcie->syscon, REG_LINK1_MSI_ADDR_SIZE, &value);
+> +		value = (value & REG_LINK1_MSI_ADDR_SIZE_MASK) | MAX_MSI_IRQS;
+> +		regmap_write(pcie->syscon, REG_LINK1_MSI_ADDR_SIZE, value);
+> +	} else {
+> +		regmap_write(pcie->syscon, REG_LINK0_MSI_ADDR_LOW,
+> +			     lower_32_bits(pcie->msi_phys));
+> +		regmap_write(pcie->syscon, REG_LINK0_MSI_ADDR_HIGH,
+> +			     upper_32_bits(pcie->msi_phys));
+> +
+> +		regmap_read(pcie->syscon, REG_LINK0_MSI_ADDR_SIZE, &value);
+> +		value = (value & REG_LINK0_MSI_ADDR_SIZE_MASK) | (MAX_MSI_IRQS << 16);
+> +		regmap_write(pcie->syscon, REG_LINK0_MSI_ADDR_SIZE, value);
+> +	}
 
-If we are not going to have a powerdown-gpios, I think we should mention in the
-description that it is expected that the PDOWN pin is connected to the SPI
-controller chip select.
+Would be nicer to set temporaries to the link_id-dependent values (as
+you did elsewhere) so it's obvious that the code is identical, e.g.,
+
+  if (pcie->link_id == 1) {
+    msi_addr = REG_LINK1_MSI_ADDR_LOW;
+    msi_addr_size = REG_LINK1_MSI_ADDR_SIZE;
+    msi_addr_size_mask = REG_LINK1_MSI_ADDR_SIZE;
+  } else {
+    ...
+  }
+
+  regmap_write(pcie->syscon, msi_addr, lower_32_bits(pcie->msi_phys));
+  regmap_write(pcie->syscon, msi_addr + 4, upper_32_bits(pcie->msi_phys));
+  ...
 
 > +
-> +properties:
-
-...
-
+> +	return 0;
+> +}
 > +
-> +  clksel-gpios:
+> +static irqreturn_t sg2042_pcie_msi_handle_irq(struct sg2042_pcie *pcie)
 
-Do we really need this one? I don't think we have a chip yet that wants to
-change the clock at runtime. We don't have this for any of the other similar
-ADI sigma delta chips that have already been upstreamed.
+Which driver are you using as a template for function names and code
+structure?  There are probably a dozen different names for functions
+that iterate like this around a call to generic_handle_domain_irq(),
+but you've managed to come up with a new one.  If you can pick a
+similar name to copy, it makes it easier to compare drivers and find
+and fix defects across them.
 
-If there is an evaluation board where the pin is wired to a GPIO, we can just
-use gpio-hog to select the correct state.
-
-> +    description: |
-> +      Clock source selection pin (internal or external). Should be defined if
-> +      clksel-config is absent.
-> +    maxItems: 1
+> +{
+> +	u32 i, pos;
+> +	unsigned long val;
+> +	u32 status, num_vectors;
+> +	irqreturn_t ret = IRQ_NONE;
 > +
-> +  adi,clksel-state:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      Should be present if CLKSEL is pin-strapped. 0 selects an external clock,
-> +      1 selects the internal clock. If defined, clksel-gpios must be absent.
-> +    enum: [0, 1]
-
-I don't think we need this one either. If the clocks property is present, then
-we can assume that CLKSEL is going to be hardwired to indicate an external
-clock and if the clocks property is absent, then we know it must be hardwired
-to select the internal clock.
-
+> +	num_vectors = pcie->num_applied_vecs;
+> +	for (i = 0; i <= num_vectors; i++) {
+> +		status = readl((void *)(pcie->msi_virt + i * BYTE_NUM_PER_MSI_VEC));
+> +		if (!status)
+> +			continue;
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - avdd-supply
-> +  - dvdd-supply
-> +  - vref-supply
-> +  - spi-cpol
-> +  - spi-cpha
-> +  - temp-gpios
-> +  - chan-gpios
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +  - if:
-> +      required:
-> +        - adi,odr-state
-> +    then:
-> +      properties:
-> +        odr-gpios: false
-> +    else:
-> +      required:
-> +        - odr-gpios
+> +		ret = IRQ_HANDLED;
+> +		val = status;
 
-I think we could simplify these with:
+I don't think you need both val and status.
 
-- oneOf:
-  - required:
-     - adi,odr-state
-  - required:
-     - odr-gpios
+> +		pos = 0;
+> +		while ((pos = find_next_bit(&val, MAX_MSI_IRQS_PER_CTRL,
+> +					    pos)) != MAX_MSI_IRQS_PER_CTRL) {
 
-> +  - if:
-> +      required:
-> +        - adi,pga-state
-> +    then:
-> +      properties:
-> +        pga-gpios: false
-> +    else:
-> +      required:
-> +        - pga-gpios
-> +  - if:
-> +      required:
-> +        - adi,clksel-state
-> +    then:
-> +      properties:
-> +        clksel-gpios: false
-> +    else:
-> +      required:
-> +        - clksel-gpios
+Most drivers use for_each_set_bit() here.
+
+> +			generic_handle_domain_irq(pcie->msi_domain,
+> +						  (i * MAX_MSI_IRQS_PER_CTRL) +
+> +						  pos);
+> +			pos++;
+> +		}
+> +		writel(0, ((void *)(pcie->msi_virt) + i * BYTE_NUM_PER_MSI_VEC));
+> +	}
+> +	return ret;
+> +}
+
+> +static int sg2042_pcie_setup_msi(struct sg2042_pcie *pcie,
+> +				 struct device_node *msi_node)
+> +{
+> +	struct device *dev = pcie->cdns_pcie->dev;
+> +	struct fwnode_handle *fwnode = of_node_to_fwnode(dev->of_node);
+> +	struct irq_domain *parent_domain;
+> +	int ret = 0;
+
+Pointless initialization of "ret".
+
+> +	if (!of_property_read_bool(msi_node, "msi-controller"))
+> +		return -ENODEV;
 > +
-> +unevaluatedProperties: false
+> +	ret = of_irq_get_byname(msi_node, "msi");
+> +	if (ret <= 0) {
+> +		dev_err(dev, "%pOF: failed to get MSI irq\n", msi_node);
+> +		return ret;
+> +	}
+> +	pcie->msi_irq = ret;
 > +
+> +	irq_set_chained_handler_and_data(pcie->msi_irq,
+> +					 sg2042_pcie_msi_chained_isr, pcie);
+> +
+> +	parent_domain = irq_domain_create_linear(fwnode, MSI_DEF_NUM_VECTORS,
+> +						 &sg2042_pcie_msi_domain_ops, pcie);
+
+Wrap to fit in 80 columns like 99% of the rest of this file.
+
+Bjorn
 
