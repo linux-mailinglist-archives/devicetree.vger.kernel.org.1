@@ -1,193 +1,111 @@
-Return-Path: <devicetree+bounces-140340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AACF0A1939B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 15:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 731F6A193B0
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 15:17:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E3FE16BD39
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 14:16:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1160A16BB8A
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 14:17:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DE7D2139CF;
-	Wed, 22 Jan 2025 14:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC9FB2139CF;
+	Wed, 22 Jan 2025 14:17:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PN2Yn84o"
+	dkim=pass (1024-bit key) header.d=konsulko.com header.i=@konsulko.com header.b="jS/LJSZ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB7B320F990;
-	Wed, 22 Jan 2025 14:16:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BDB3322E
+	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 14:17:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737555374; cv=none; b=k7fulU/YmT1MsnETNfT/KPfiAjr8uKkA0UVcN1EzQIjk2Kvkdd/Q4QLlRTGnOVex2Ust0Cg2HCk9T9OeRCzdi6fcpRHWyqa+Hi+KXMK/ba08XbFOWj8Pqm+8gAj6cNTFKYg8P2MD3AILdffHyanHNxFtDXeztd+RY78Ebk2KRhs=
+	t=1737555434; cv=none; b=D0DjiJNBsY4S7qAWpAOfVUXXGA0NoOP11+eyGhEYtxnvRGb/cAxE1xrdV2qp4OF7l9kNh9K+Ew07NIHceTvDsoczXgxEXNbqCs54kptx7e1sMTLXYZiATyjQJATef7CcvAs0YPJhbJ01xZljmFsW9h5JLF3XN+0r4HEJSYzhaTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737555374; c=relaxed/simple;
-	bh=4KkbLzhkHfNF1fOtjvYpV4UmlSNqfHsgpuFv0o7PWck=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PkJgSbv/ixERGq9LqswWkw1B0aWJx/XTMBPeAt45zIWnp3QyxJ5i/+UGTVKPrhTdH3Ko9sdMgGkh1HFgN11H5MgSML0qWkI2NRQfRwPZxFv6m1BEnlOfsYsIO43RFX2xPXZvyaoL0sgLGpheXRUmfk42jN4jP3YmsgIgqVrMfOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PN2Yn84o; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50M9Cvma011311;
-	Wed, 22 Jan 2025 14:16:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FxpycnGiOKcb85KJozhboOxee91eN0EktSJZ5g0+8uk=; b=PN2Yn84ojv7eDPzf
-	XMtg/h5YZI+GUzrmMhSb/smXi10hSpYCoPGTzGImcN34o7ektUjNbNjPxPblxKI+
-	ZLql7WzGuzIvEH+Qx3Jgc3qrXg2SqLfGMsPPhB4Huk4KMs8uIQyrLIAgRyDYkEZk
-	88RllnLITfODwE1pVAsUb+txkfYsmpVtW4MZuTc0uefztKcsDe3BRfY9BzVmffZS
-	QK+oixyVVg252qzMNqeaboiayZzbxZMC5s5lCqXJe1VmBOuEr+fNnnigtKgf0S9N
-	bFvng/kzMPkXKpkrWlxaE+Y4tqgER1GKCHdub1e8CNGKLRIBouCYR6G9s1V6gsJ8
-	PtwSug==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44awuh0qc3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Jan 2025 14:16:00 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50MEFxu6004199
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Jan 2025 14:15:59 GMT
-Received: from [10.216.29.72] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 22 Jan
- 2025 06:15:52 -0800
-Message-ID: <f7b637d6-6afc-4102-aabd-aded710bd87f@quicinc.com>
-Date: Wed, 22 Jan 2025 19:45:49 +0530
+	s=arc-20240116; t=1737555434; c=relaxed/simple;
+	bh=ZGcHNO8h4fcYLSQYLfz4V4927wk/Lcqvn0PKkrB/IN0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LWD3BonNgHfdWek+CQaoN11rYFQoZQtnFVvxzIGSSJcI6jdyjpIM1u6h6Sh6Y4867QQteE5Gw5vGbSDjUA0cP/HaoPkJ8u/Hpa7nPU44bFIjdM5vy8yicrKpqrotcggFWm487alg4JlQlTZxTBqoYycfsv23KuRvLUWzW7IbIlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=konsulko.com; spf=pass smtp.mailfrom=konsulko.com; dkim=pass (1024-bit key) header.d=konsulko.com header.i=@konsulko.com header.b=jS/LJSZ7; arc=none smtp.client-ip=209.85.160.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=konsulko.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=konsulko.com
+Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-467a6781bc8so56117701cf.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 06:17:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=konsulko.com; s=google; t=1737555432; x=1738160232; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lMtMLZ2nvyYkt9t5Vkv/yDKNS7U8kHDtRG57kLV9VKM=;
+        b=jS/LJSZ7TZa/cDHxDg/1K0Yj1DZMxxejRKk0W9uCJz9pSU/YtZZVEnkc4k96YFCGa9
+         04jwlROg27Rp4JN8T6ZqIbO2SeiiE1posOtHmzDdtor/eWVDe6/b28HjfwmAJJ1LV+cz
+         nJeavIFrN6J+2R3bp+h6Aeczp/5gxIRKYF5dY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737555432; x=1738160232;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lMtMLZ2nvyYkt9t5Vkv/yDKNS7U8kHDtRG57kLV9VKM=;
+        b=IFy8AaJ65Dt+IXhnubFSKCPgPBybmcM+Ka4xcC1F5+XvVHH+Ya++zuwgqbIfd1zGV1
+         Ov+8ydG/h5ASXwmfh8eugFVAeki9aNtAgHM6s9SC4JeeTGENNlFNVzIVJVK+axSlQaBe
+         F9gpXIK1RMYnkad3+TvfEPrxMTLHdUDHw5ixr/C3DlLf8L2a4z0AccxehYiL2xRVUhVX
+         3lSQDd8LHJLULwkujvwInZ59G7/SBYCHgXvaVu9+eyGsA8Oq0S61+t5cAvwQ46nv318P
+         sQzmljaofnKLqCsBk8CSEun3mpojeO9Dsydq5EEzKQz9WaOWOu+4S58bBNL3PkBrEQgp
+         J4Kg==
+X-Forwarded-Encrypted: i=1; AJvYcCWNOCM7SoAoiFfK8jbVikm4bJTJLnbPoYQs3Mj3Inhw5FsQ9lAMwHH13Pmv1VxJUm8VuXAEhDEBbZ3L@vger.kernel.org
+X-Gm-Message-State: AOJu0YzctRSXXxDuHTTWM2KIPEMBMtpU/lLscLnJXr7wR8hkpb4oWBfc
+	4u1ghObWMw1rkoP2tyfcU73qvM8+dApOlCSVcWhiTl4RHUPAFNblDTyVqX3y4Yr7YeiPPill672
+	y
+X-Gm-Gg: ASbGnct4munZ6OQjNjMD1VSdCXNBW0fEKYJlpwAV7YXGjhrjilQKmjSPGy1zsnU0+JS
+	RKa3ydDisOwAOtIclHhWmgoJ7shcNdqcnH+KeF95S/+//ipU3LdXnpC46xLmEtz0EpxemcIxaxq
+	XJYBcSfPtLIOSBMNRwIIJDqHObnCRHKEPZoW2ZCbWPGAWYKNQCFg25hWWInf7PGpps9ybfi+kjc
+	qko547/Zly9TZOdqjb8iG3OkMKO9lxKgyjYY3hNWnJk5RvveEzVfc4vEmK7GbLdMK4=
+X-Google-Smtp-Source: AGHT+IH5iXg3YPhekYSmqGXvbIittDl0Q416rHmmEtFZeyZr2q2cSF/gNZJUf6t/tpzQWNm6KYy6bA==
+X-Received: by 2002:a05:622a:14e:b0:462:e827:c11a with SMTP id d75a77b69052e-46e12b266a7mr342615101cf.19.1737555432030;
+        Wed, 22 Jan 2025 06:17:12 -0800 (PST)
+Received: from bill-the-cat ([187.144.16.9])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-46e104337cfsm64267121cf.74.2025.01.22.06.17.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Jan 2025 06:17:11 -0800 (PST)
+Date: Wed, 22 Jan 2025 08:17:08 -0600
+From: Tom Rini <trini@konsulko.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Andreas Kemnade <andreas@kemnade.info>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: omap: Add TI Pandaboard A4 variant
+Message-ID: <20250122141708.GL3476@bill-the-cat>
+References: <20250122001240.4166460-1-trini@konsulko.com>
+ <760d6e6c-ee51-405d-88aa-0def89084778@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 1/4] drm/msm/adreno: Add speedbin support for X1-85
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dmitry Baryshkov
-	<dmitry.baryshkov@linaro.org>
-CC: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie
-	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Srinivas
- Kandagatla" <srinivas.kandagatla@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20250109-x1e-speedbin-b4-v1-0-009e812b7f2a@quicinc.com>
- <20250109-x1e-speedbin-b4-v1-1-009e812b7f2a@quicinc.com>
- <356986fa-e66c-4e78-ab92-2593b037ab9a@oss.qualcomm.com>
- <837602a7-bbd5-4436-ab9f-2b101bdcaac2@quicinc.com>
- <enykcipequ4xjykcjbkpnmtlclrbbmkhncj7fx3zy4sgmo3h4n@y3k7xgjscpfc>
- <404e8b7d-30ef-47f2-8a44-927b201d60ec@oss.qualcomm.com>
-From: Akhil P Oommen <quic_akhilpo@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <404e8b7d-30ef-47f2-8a44-927b201d60ec@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: vnkDtxbsuQtDV0LuUdaqp5SakJoqaOzO
-X-Proofpoint-ORIG-GUID: vnkDtxbsuQtDV0LuUdaqp5SakJoqaOzO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-22_06,2025-01-22_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
- suspectscore=0 phishscore=0 lowpriorityscore=0 mlxscore=0
- priorityscore=1501 spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501220105
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <760d6e6c-ee51-405d-88aa-0def89084778@kernel.org>
+X-Clacks-Overhead: GNU Terry Pratchett
 
-On 1/17/2025 2:46 AM, Konrad Dybcio wrote:
-> On 15.01.2025 8:59 PM, Dmitry Baryshkov wrote:
->> On Thu, Jan 16, 2025 at 01:07:17AM +0530, Akhil P Oommen wrote:
->>> On 1/9/2025 7:27 PM, Konrad Dybcio wrote:
->>>> On 8.01.2025 11:42 PM, Akhil P Oommen wrote:
->>>>> Adreno X1-85 has an additional bit which is at a non-contiguous
->>>>> location in qfprom. Add support for this new "hi" bit along with
->>>>> the speedbin mappings.
->>>>> ---
->>>>>  drivers/gpu/drm/msm/adreno/a6xx_catalog.c |  5 +++++
->>>>>  drivers/gpu/drm/msm/adreno/adreno_gpu.c   | 15 ++++++++++++++-
->>>>>  2 files changed, 19 insertions(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
->>>>> index 0c560e84ad5a53bb4e8a49ba4e153ce9cf33f7ae..e2261f50aabc6a2f931d810f3637dfdba5695f43 100644
->>>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
->>>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_catalog.c
->>>>> @@ -1412,6 +1412,11 @@ static const struct adreno_info a7xx_gpus[] = {
->>>>>  			.gmu_cgc_mode = 0x00020202,
->>>>>  		},
->>>>>  		.address_space_size = SZ_256G,
->>>>> +		.speedbins = ADRENO_SPEEDBINS(
->>>>> +			{ 0,   0 },
->>>>> +			{ 263, 1 },
->>>>> +			{ 315, 0 },
->>>>> +		),
->>>>>  		.preempt_record_size = 4192 * SZ_1K,
->>>>>  	}, {
->>>>>  		.chip_ids = ADRENO_CHIP_IDS(0x43051401), /* "C520v2" */
->>>>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
->>>>> index 75f5367e73caace4648491b041f80b7c4d26bf89..7b31379eff444cf3f8ed0dcfd23c14920c13ee9d 100644
->>>>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
->>>>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
->>>>> @@ -1078,7 +1078,20 @@ void adreno_gpu_ocmem_cleanup(struct adreno_ocmem *adreno_ocmem)
->>>>>  
->>>>>  int adreno_read_speedbin(struct device *dev, u32 *speedbin)
->>>>>  {
->>>>> -	return nvmem_cell_read_variable_le_u32(dev, "speed_bin", speedbin);
->>>>> +	u32 hi_bits = 0;
->>>>> +	int ret;
->>>>> +
->>>>> +	ret = nvmem_cell_read_variable_le_u32(dev, "speed_bin", speedbin);
->>>>> +	if (ret)
->>>>> +		return ret;
->>>>> +
->>>>> +	/* Some chipsets have MSB bits (BIT(8) and above) at a non-contiguous location */
->>>>> +	ret = nvmem_cell_read_variable_le_u32(dev, "speed_bin_hi", &hi_bits);
->>>>> +	if (ret != -ENOENT)
->>>>> +		return ret;
->>>>> +
->>>>> +	*speedbin |= (hi_bits << 8);
->>>>
->>>> Now that we're overwriting speedbin, we should probably have some checks in
->>>> order to make sure somebody passing a too-wide cell to one of these won't
->>>> result in cripplingly-untraceable value corruption
->>>>
->>>> I guess we could just introduce nvmem_cell_read_variable_le_u8() and call it
->>>> a day?
->>>
->>> X1E is an outlier here, because this was fixed from the next chipset
->>> onward. For newer chipsets, we can use just the "speed_bin" node, which
->>> represents a contiguous 9 bits. So, just do a "WARN_ON(fls(speedbin) >
->>> 8)" here?
->>
->> Or extend nvmem core to support non-contiguous fields.
+On Wed, Jan 22, 2025 at 09:36:29AM +0100, Krzysztof Kozlowski wrote:
+> On 22/01/2025 01:12, Tom Rini wrote:
+> > Document the ti,omap4-panda-a4 compatible string in the appropriate
+> > place within the omap family binding file.
 > 
-> This sounds more desirable, as we surely aren't the only ones with
-> such a "feature"..
+> Why? Where is any user of this? Your commit msg should explain this,
+> because it's not obvious. Obvious is to send binding with the user, but
+> the second patch is missing.
 
-Sounds good. I can explore that when I am back from vacation early next
-month.
+You were cc'd on
+https://lore.kernel.org/all/20250121200749.4131923-1-trini@konsulko.com/
 
--Akhil.
-
-> 
-> Konrad
-
+-- 
+Tom
 
