@@ -1,189 +1,145 @@
-Return-Path: <devicetree+bounces-140409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 155EBA198DF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 19:56:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2695A19926
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 20:25:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DA1216BFC3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 18:56:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CE5D161DB7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 19:25:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D522153EA;
-	Wed, 22 Jan 2025 18:56:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F1FA2153ED;
+	Wed, 22 Jan 2025 19:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nUDHc35M"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="zgM0Rouz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3ECF2B9A4
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 18:56:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92D1FAD4B;
+	Wed, 22 Jan 2025 19:25:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737572182; cv=none; b=s5unh7+/iLzpqrHJ4O1ApAA+Xpys+Q5FTMIhN+sbAgckxEvhL23Evc+QzzgW5OSdp7OfLS1CiMLCeCW6KIfoK9Ptsu8LJ2iIi3ujgZU7eoylZUkhksphW67bq5N5YqSQLR9EUlQbSfvV/GZmbE3S4RzqVq9y8Sp437MQsNb4JKk=
+	t=1737573951; cv=none; b=Qhj0x54gjNCUjsGq3z/L0CQhHeh5PbAqajy8v8k4BW34043qWOnruXaBp8U9Iq6nX/rkEZpjtqXRMhjiNZTb4XpVLtsSAtFG8omLkCr1IBinR1JTbGoJ+8HZd69sE69vKZ8aFijIefSKEFp3/sEEJNB0hS3qiu4Ng+9UPU+Wmzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737572182; c=relaxed/simple;
-	bh=CLhA9atvXYKzLIGW5SofpnqG6mJ00hcX6McbFLTcDBY=;
+	s=arc-20240116; t=1737573951; c=relaxed/simple;
+	bh=F1IaxwlgzkyWXV7TDksnuXP1Jqz1CBh4zTlin+l5Hk8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iuo+uyf7nlck81DxlHRjRkLqqGHy6Zi7VhpQfz6XxK42Gq595zMSz2Vhxc1+1pmG0KqQfyZlPI4sQBfBSIfO3nsjzbTIHtVmGo7g9+ULA9IzOORiQs9p/RQtCy06uc2zij9H1oYBmaXh5aYf3tWzeHlfLyIKF0XJm5avj5U+IaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nUDHc35M; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-30167f4c1e3so267581fa.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 10:56:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737572179; x=1738176979; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=ucEtL2vpaDXIcOOJNCX2jaEjGKELSNePIN/Dbu21H78=;
-        b=nUDHc35MTJbpu6ztziZWLqtL7NrY4Bl0VZYTuWq0Xsarfdt7dlb75nCyffMlqBKRbt
-         6gn6UNSdk3v/ExpFUql7arEfOKZiIeQSmwV6SRl+XACLPhlunamnQze2rqHmlZcVogQ8
-         oYX5UsDhqtyF50OELAF7+u6Z03JTlZiBQ9fDvV+4g8pQc00vV/t/D6vwTJ3K5DCZPYpy
-         xUNzEBrK9KQHlEed90jidTi3oPRu/LEY4pTNGYRxUf2Nk1nASJjMGdJ1RL/EzQQnWZEO
-         e48um7SEJ/jurIgl8/lRCNa3nzfAeEuUuRYzr9UrfKi3zx2N8+IcRhQZdT2Z7XbDEMST
-         mK4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737572179; x=1738176979;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ucEtL2vpaDXIcOOJNCX2jaEjGKELSNePIN/Dbu21H78=;
-        b=DfPzxybZMHSecUQLwRoeoWwj34QUYRcKS7YEH+0J9UqXHXRXohAdMXsRQ0qHai2gLI
-         amkSN5TyYCXpJandhHKVX92dzf77+MS3l9VLamXtsiTnv91ZTepaYeKlz8EBiX0GnpWh
-         DFZ+CtQTGAoSqOi2iZDY4i+6aLGV74xT0bALWS2i0bOVoG5awavATiwxqQmN4DBIvZJ3
-         mn4oNkN0nqvTsYk0XR42BZ+UkNeNTHs3+rlNu0Eyuhvd+dviAAnVE+k4Zx7qBKc4YWCi
-         4pkTksHzw35P2oyXIbhiEohf26EFf0SxkHXv1mVl/xRpC8Rj5JQi2Qfs6mnBmOfEBk6w
-         b6uA==
-X-Forwarded-Encrypted: i=1; AJvYcCV7YML5QQwdd5heLisIzQr3TE43pUTPMI0h4rKBUaFjAz8O6BjQqxzGZ4gTbQKMkeBRmEr+FIJi/n08@vger.kernel.org
-X-Gm-Message-State: AOJu0YwqVGw7u5C8GNw/r5mYqswSy3XPKvNsNHApGNeojuK2qeiAX+yc
-	HGC/9w1hZ11kbpv4Vaa0fF4xU+VgqGrXVLpYmyqeoVfJD3YxYhTB0oS4+7OC5/s=
-X-Gm-Gg: ASbGncso79c+eAi7ISsojw/qnjw5m4rXs60lJ5uiVe8sf5bwoCl2MKvt8SBLOempEUH
-	ZG9EkVKPcgk/um2iVGNqbsVHHxzhLfEwDvj+05lXeqMnReKgALH5pTWDzpJJRnsFS/aYMTTfvCS
-	zwo1dN/onen2S2rNo0OkAPXEVxnEmagqjIsIdOMN8s+i7lv6N5zlyvgo5/hoQTfqrEfa2cWvEYc
-	oBNnBbiSjmNHN6UptGZriKWKhNU4WreAFXs8aVNgKtgwSBlecAS0dhdzjnd20fBC02cUUTqDJe4
-	O/OL5SqP6RKTDbrOOJw3R/kHhIcLlAiBa1Dz+Vk0nVjQ/bHixQ==
-X-Google-Smtp-Source: AGHT+IH1Num8sybuVWGX6lQCu41xk40pAQuzRF+kjqRrF1p7We/fl/ksVQE0dG+SV6CSYwqD02NYlQ==
-X-Received: by 2002:a05:651c:1713:b0:300:7f87:a6a with SMTP id 38308e7fff4ca-3072cab0c95mr63866951fa.7.1737572178788;
-        Wed, 22 Jan 2025 10:56:18 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3072a35acb6sm26558281fa.62.2025.01.22.10.56.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jan 2025 10:56:17 -0800 (PST)
-Date: Wed, 22 Jan 2025 20:56:15 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Damon Ding <damon.ding@rock-chips.com>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org, 
-	sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com, l.stach@pengutronix.de, 
-	andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com, 
-	kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v5 12/20] drm/rockchip: analogix_dp: Add support to get
- panel from the DP AUX bus
-Message-ID: <qrtcanwfokvc5x6xtgxhi2fs6fcibhnnhenegrdialx7cgy7u3@ea4v3woh5gki>
-References: <20250109032725.1102465-1-damon.ding@rock-chips.com>
- <20250109032725.1102465-13-damon.ding@rock-chips.com>
- <d7zpv6qt52mhny54dejw4yqlp2k2c437op7qmepqe27pufplqk@64xvohrz7h2q>
- <330041c4-aaee-4b41-8ccd-e2807415c709@rock-chips.com>
- <ba369b98-9a2a-421a-9251-4db3c1dcedd9@rock-chips.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=UwifCzE/gtVJqNXo5fo4nrwx0gcDhibdz1YXGskqXCmw22hWIH91DnpNfHAydPvYZ1boDmbpieM4VF519r6q2fz/SpPb+GxDLHWLP71F5RsjqL+XT/Yi6aSZT5/JXu6fjH7ipo1tKHSdbKk/2NAzKJRsnW+BGZ0kE7o8o4YXRQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=zgM0Rouz; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=2W+qfsEAUclS3rHGg1rqVyLJ0A2NtvBKn6a5gu/HE+Q=; b=zgM0RouzKSxSBhQv/D2XkgVoiw
+	e8l+KkrofWnaCxW/VswXEPsvHyftp4soRON+mPixqjvrT2AITkMnzKN1rWqrs/Wxp2ezmVGKPkNdu
+	cRnsRKEQEhOTsibHhZJqu0ckUkvOO94eOz1ecA+lN7FeJdsyhLkM8gfh64JDVS5eaN6h8D0yD3yEA
+	cEFQnGMnIFZFu72GgIkctg9T67YAGC7LJr/Z891SSGX4Od3ZvoVqdBEJuQ0hCFTDxyZSzAvHl0BrE
+	Nb1rs8od0pCKYzRUa6KI4B+cqA/Z762ewtE+2piYAXY/y4P7AaVEqDBqM6V7/8yoCfbVhxu3lK+1M
+	wVmuLDGQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44086)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tagMA-0000Cl-1U;
+	Wed, 22 Jan 2025 19:25:44 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tagM6-00059x-00;
+	Wed, 22 Jan 2025 19:25:38 +0000
+Date: Wed, 22 Jan 2025 19:25:37 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH net-next RFC v2 1/6] net: ethtool: common: Make BaseT a
+ 4-lanes mode
+Message-ID: <Z5FGMfF1ox-KhFAg@shell.armlinux.org.uk>
+References: <20250122174252.82730-1-maxime.chevallier@bootlin.com>
+ <20250122174252.82730-2-maxime.chevallier@bootlin.com>
+ <Z5E_FUxSZJWRWVAq@shell.armlinux.org.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ba369b98-9a2a-421a-9251-4db3c1dcedd9@rock-chips.com>
+In-Reply-To: <Z5E_FUxSZJWRWVAq@shell.armlinux.org.uk>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Wed, Jan 22, 2025 at 05:37:53PM +0800, Damon Ding wrote:
-> Hi Dmitry,
+On Wed, Jan 22, 2025 at 06:55:17PM +0000, Russell King (Oracle) wrote:
+> On Wed, Jan 22, 2025 at 06:42:46PM +0100, Maxime Chevallier wrote:
+> > When referring to BaseT ethernet, we are most of the time thinking of
+> > BaseT4 ethernet on Cat5/6/7 cables. This is therefore BaseT4, although
+> > BaseT4 is also possible for 100BaseTX. This is even more true now that
+> > we have a special __LINK_MODE_LANES_T1 mode especially for Single Pair
+> > ethernet.
+> > 
+> > Mark BaseT as being a 4-lanes mode.
 > 
-> On 2025/1/22 16:17, Damon Ding wrote:
-> > Hi Dmitry,
-> > 
-> > On 2025/1/9 20:48, Dmitry Baryshkov wrote:
-> > > On Thu, Jan 09, 2025 at 11:27:17AM +0800, Damon Ding wrote:
-> > > > Move drm_of_find_panel_or_bridge() a little later and combine it with
-> > > > component_add() into a new function rockchip_dp_link_panel().
-> > > > The function
-> > > > will serve as done_probing() callback of devm_of_dp_aux_populate_bus(),
-> > > > aiding to support for obtaining the eDP panel via the DP AUX bus.
-> > > > 
-> > > > If failed to get the panel from the DP AUX bus, it will then try
-> > > > the other
-> > > > way to get panel information through the platform bus.
-> > > > 
-> > > > In addition, use dev_err() instead of drm_err() in rockchip_dp_poweron()
-> > > > , which will be called before rockchip_dp_bind().
-> > > > 
-> > > > Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
-> > > > 
-> > > > ---
-> > > > 
-> > > > Changes in v4:
-> > > > - Use done_probing() to call drm_of_find_panel_or_bridge() and
-> > > >    component_add() when getting panel from the DP AUX bus
-> > > > 
-> > > > Changes in v5:
-> > > > - Use the functions exported by the Analogix side to get the pointers of
-> > > >    struct analogix_dp_plat_data and struct drm_dp_aux.
-> > > > - Use dev_err() instead of drm_err() in rockchip_dp_poweron().
-> > > > 
-> > > > ---
-> > > >   .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 41 ++++++++++++++-----
-> > > >   1 file changed, 30 insertions(+), 11 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/
-> > > > drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
-> > > > index 0957d3c5d31d..3ae01b870f49 100644
-> > > > --- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
-> > > > +++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
-> > > > @@ -124,13 +124,13 @@ static int rockchip_dp_poweron(struct
-> > > > analogix_dp_plat_data *plat_data)
-> > > >       ret = clk_prepare_enable(dp->pclk);
-> > > >       if (ret < 0) {
-> > > > -        drm_err(dp->drm_dev, "failed to enable pclk %d\n", ret);
-> > > > +        dev_err(dp->dev, "failed to enable pclk %d\n", ret);
-> > > 
-> > > 
-> > > why?
-> > > 
-> > 
-> > The &rockchip_dp_device.drm_dev will be assigned in rockchip_dp_bind(),
-> > which is called after probing process. The PM operations have been
-> > advanced to the probing for the AUX transmission, so the dev_err() may
-> > be better than drm_err().
-> > 
+> This is a problem:
 > 
-> Using drm_...() uniformly may be better [0].
+> 1.4.50 10BASE-T: IEEE 802.3 Physical Layer specification for a 10 Mb/s
+> CSMA/CD local area network over two pairs of twisted-pair telephone
+> wire. (See IEEE Std 802.3, Clause 14.)
+> 
+> Then we have the 100BASE-T* family, which can be T1, T2, T4 or TX.
+> T1 is over a single balanced twisted pair. T2 is over two pairs of
+> Cat 3 or better. T4 is over four pairs of Cat3/4/5.
+> 
+> The common 100BASE-T* type is TX, which is over two pairs of Cat5.
+> This is sadly what the ethtool 100baseT link modes are used to refer
+> to.
+> 
+> We do have a separate link mode for 100baseT1, but not 100baseT4.
+> 
+> So, these ethtool modes that are of the form baseT so far are
+> describing generally two pairs, one pair in each direction. (T1 is
+> a single pair that is bidirectional.)
+> 
+> It's only once we get to 1000BASE-T (1000baseT) that we get to an
+> ethtool link mode that has four lanes in a bidirectional fashion.
+> 
+> So, simply redefining this ends up changing 10baseT and 100baseT from
+> a single lane in each direction to four lanes (and is a "lane" here
+> defined as the total number of pairs used for communication in both
+> directions, or the total number of lanes used in either direction.
+> 
+> Hence, I'm not sure this makes sense.
 
-Yes
+Looking at patch 2, I don't see why you need patch 1. It's not really
+improving the situation. Before the patch, the number of lanes for
+some BASE-T is wrong. After the patch, the number of lanes for some
+BASE-T is also wrong - just a different subset.
 
-> 
-> > > >           return ret;
-> > > >       }
-> > > >       ret = rockchip_dp_pre_init(dp);
-> > > >       if (ret < 0) {
-> > > > -        drm_err(dp->drm_dev, "failed to dp pre init %d\n", ret);
-> > > > +        dev_err(dp->dev, "failed to dp pre init %d\n", ret);
-> > > >           clk_disable_unprepare(dp->pclk);
-> > > >           return ret;
-> > > >       }
-> > > 
-> 
-> Best regards,
-> Damon
-> 
-> [0]https://patchwork.kernel.org/project/linux-rockchip/patch/20250109032725.1102465-6-damon.ding@rock-chips.com/#26209891
-> 
+I think you should drop this patch and just have patch 2.
 
 -- 
-With best wishes
-Dmitry
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
