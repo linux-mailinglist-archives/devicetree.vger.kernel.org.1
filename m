@@ -1,97 +1,84 @@
-Return-Path: <devicetree+bounces-140414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15937A19975
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 21:04:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D656A19994
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 21:16:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D9D416A917
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 20:04:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA225188D657
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 20:16:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C2581B4F25;
-	Wed, 22 Jan 2025 20:03:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A342153D4;
+	Wed, 22 Jan 2025 20:16:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lixom-net.20230601.gappssmtp.com header.i=@lixom-net.20230601.gappssmtp.com header.b="0k8Z7zXV"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="ECvxqBxO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C1281BD9C1
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 20:03:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5283C17DE36;
+	Wed, 22 Jan 2025 20:16:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737576237; cv=none; b=RNdV8LLRGiJRqOH3DMSAOjt98yZUrFrboGRzoAhrnLGwoeruB1Vc4Q1lVfo1Vwok9gd+2HD8rfqncSbTFCcyNx4rS7sgaZY4AG8rZvY8llLw/vANztNa6WPETYwD734CPpW92a5szRPGJNfP2n90twyEMmbl0VF+PMhP+nUoQ1g=
+	t=1737576981; cv=none; b=ExrMOo9YxIsY9bPWheGU+IFMwiO94bjoHA/BuFfR2WIS462d3Hq3NcXUMhq6ktRWd7asRkiLE4NDIxnfgTz/L66RLo9FP8zzRGhchPVOROuXr3/ULYwfCkIpPKynADR1NCkPQF2R8+rAZ4q4/ORnNPSCqYYp6gZ91GtCHUAVACs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737576237; c=relaxed/simple;
-	bh=8U268FgoJKxZogEEdz0oyMP0jcmVuayKjJmoFoGKt6I=;
+	s=arc-20240116; t=1737576981; c=relaxed/simple;
+	bh=PUJ84auehYsRgfdxYZQxDKopanyz3Xlzr2nu8NzgkLE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b++5a+F0uYk956OyvY4yeRGcdvgxu1qG0VlCB3yw4qPXWmt7mQquMwLAu2yK6ErKmzHpix17ODu9uZIRUPmNbJIzZi5rnBSNB+w8i/AB7GWQNPgZMlAt6mIYaJWzHSA4QJeLp3eKWBxW2b2+wI/4e4j06ra6SmPhHLfPj2RtL8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lixom.net; spf=none smtp.mailfrom=lixom.net; dkim=pass (2048-bit key) header.d=lixom-net.20230601.gappssmtp.com header.i=@lixom-net.20230601.gappssmtp.com header.b=0k8Z7zXV; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lixom.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=lixom.net
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-216728b1836so1431965ad.0
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 12:03:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lixom-net.20230601.gappssmtp.com; s=20230601; t=1737576235; x=1738181035; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=u1bgavdzA6vjKZxygqub9VCVMgsHYIiDDbEG48FTIeM=;
-        b=0k8Z7zXVfpn/2JEp2xY99HSC+XwQnIeoPgWnD+osDjMJsEuoZAfO/JcCLJgQ0cb1x7
-         R7ZQ1722a8Txw0lu+Wa1TJ231CPOiWReTAKvNs21/cjKJ2eGEgIuHtETdUEnx6jEoBaF
-         rJkXZXYm4gZTTGNUMUTQauy0OmDLCNHWFxQwnDOfyPrQqAR3xZbfjj/M7z9vWLXR57ms
-         gGi6RurAvP9Zs2u1TJD74BtSOx8ZHA8XT/meg9kxF/8iKlZYS5rBL5eJ9+FLmPq36Cy0
-         WaM5M7HplEAsLvD/GUwm1GHXarfYdLWxihH9My/uhHfVvqbX/ga0vawUJQeb1bttFDxM
-         9eow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737576235; x=1738181035;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u1bgavdzA6vjKZxygqub9VCVMgsHYIiDDbEG48FTIeM=;
-        b=F9BpC1JhwSK+b04DxgGM2/mTsMBKdh10h/FmNIVN+dDvbHaEGTQnFhyp+HM4xxS8xz
-         kvu8pCpFlPxMsybUFqtHB+J466J6df561JEaPwRbiq9biT66q7OZOaPvoJb/+DArQP7i
-         zjZU6jkTaqdGD9rlvlVZv9raKPZ4D8bkgAIKzZtfk9tbYvya4oFvxRY7kKUIA0yHSFxG
-         h4pIllE1OKo+q/f+lGadUHcOB/0/8eh3su2aEppi/n/CnugP+AVBnoPyUp9UDgC6dmPE
-         1cZXSnxXN4g4vvqDAXLR7/pEwLUdtnMde6284t3lGLxHKPHPgSTgCZoMhbWzA71PVvZ8
-         SFew==
-X-Forwarded-Encrypted: i=1; AJvYcCUkriitPU6DINzDBqJxdivy1DtnX/kK2IB76ElDVv/fLf9h3iuP1PWSosOS5QZanZa5oPPfuIL4qvg1@vger.kernel.org
-X-Gm-Message-State: AOJu0YySfu9M09/9GcT5cjMxdYI8maPoJ+H9ka/dI18hgV/Ff8fdfXEC
-	pv4+L7HYogjLBUAr41nAFcpGy4WcVK1jYoacljmwnAfBVAnzfCFa14sOWYKB1kg=
-X-Gm-Gg: ASbGnct2wQdngMKYqzPSmWEWwQI8Q1OWnK3cfPmBHhnCmtRmhKSCqSD9KmqssUHvlBn
-	MxLHxX1Av24LWJSheLSDkO7poJsmY7wyDUnH4Xmt0Fng/DYdS+0ouLAoPZ+UJMG0HmGvjmcYjlB
-	cdLPAEsSWcbcWFAJ5d7IiaNnxLYLjGd4j21TQBWdV64As/sSk2UzNOXSDhl85hyKpS0eObdpyza
-	KZ55NbI84p9xskzWs5hY+UF3EKbtRqV5JzDrVcrzfTMzQHlrGxdao4H4irtmRqCbjXwX5jbz5Ry
-	/MVZwp/jdnBRYCJEhpE1e/iLnUNz9+Tleyo=
-X-Google-Smtp-Source: AGHT+IGYQoN/4V8moHcEtxB7o+Ard05IbWUKGDVqlmDureSsrLAV5hr6LIlCLWp033igRwLyKLj1LA==
-X-Received: by 2002:a05:6a21:3388:b0:1e1:a8b7:b45d with SMTP id adf61e73a8af0-1eb2145ffc2mr35115554637.4.1737576234673;
-        Wed, 22 Jan 2025 12:03:54 -0800 (PST)
-Received: from localhost (99-152-116-91.lightspeed.sntcca.sbcglobal.net. [99.152.116.91])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a9bcc322a55sm11089789a12.27.2025.01.22.12.03.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jan 2025 12:03:54 -0800 (PST)
-Date: Wed, 22 Jan 2025 12:03:48 -0800
-From: Olof Johansson <olof@lixom.net>
-To: Yixun Lan <dlan@gentoo.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=NagHOvOyBXFSzwZP75LgOEC7cRO798ztm3ONHOEz3U/uXyBz0MlWJpNJUuXovZ6GYFeRUXpYyMvaTk5bwVEqK2TKM367A2Aw31iEn5WNktjABS1f9MKHwPRE3zaWLRpvbZmSYHvTsbsVbo1ZNxJhI5y7hUqRzCQVCv2CzWmosA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=ECvxqBxO; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Uvex5e6pxn9WjTg+8tgFaEeT8EWGYbla2zLRi8ei0vU=; b=ECvxqBxOD0UQYqU745zOkC8kqV
+	GU0uaQ/iOnKqSb4C4pQUiYXZGrrxl7aGurYPqTCNxR8I3pShWNVaRYOb/fd+e6rpmLU5E2mst0iIu
+	BQjVKs75+8Hu0eS3tp7PzMVa8Fob84KRUqjCaBXNOPbX73+TaE1grEzZszt52cqKiirkcszyVkMKa
+	XJGnHHC52zQmZy+d77rcM6cmPpR6u6qzLlv4oUEs0UROkz+OXRI0SJoFAdacBex0w/dpxU0hQZGnc
+	KpeSF5lQ6gdA3YdJDym3HxgvwGK67Umcmb5qqVha0UdO87GAi2+dxrK7ZCjwVXhB5UHrhBCPahTrH
+	UjKJd24A==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:48414)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1tah92-0000G3-1x;
+	Wed, 22 Jan 2025 20:16:12 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1tah8y-0005CZ-11;
+	Wed, 22 Jan 2025 20:16:08 +0000
+Date: Wed, 22 Jan 2025 20:16:08 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	=?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	Oleksij Rempel <o.rempel@pengutronix.de>,
+	=?iso-8859-1?Q?Nicol=F2?= Veronese <nicveronese@gmail.com>,
+	Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+	Antoine Tenart <atenart@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Jesse Taube <mr.bossman075@gmail.com>,
-	Inochi Amaoto <inochiama@outlook.com>,
-	Icenowy Zheng <uwu@icenowy.me>,
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: spacemit: add support for K1
- SoC
-Message-ID: <Z5FPJLzAEVXGWJnE@chonkvm.lixom.net>
-References: <20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org>
- <20250121-03-k1-gpio-v4-1-4641c95c0194@gentoo.org>
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH net-next RFC v2 0/6] net: phy: Introduce a port
+ representation
+Message-ID: <Z5FSCF7u5a7r-ssD@shell.armlinux.org.uk>
+References: <20250122174252.82730-1-maxime.chevallier@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,105 +87,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250121-03-k1-gpio-v4-1-4641c95c0194@gentoo.org>
+In-Reply-To: <20250122174252.82730-1-maxime.chevallier@bootlin.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Hi,
-
-On Tue, Jan 21, 2025 at 11:38:11AM +0800, Yixun Lan wrote:
-> The GPIO controller of K1 support basic functions as input/output,
-> all pins can be used as interrupt which route to one IRQ line,
-> trigger type can be select between rising edge, failing edge, or both.
-> There are four GPIO ports, each consisting of 32 pins.
+On Wed, Jan 22, 2025 at 06:42:45PM +0100, Maxime Chevallier wrote:
+> First, a short disclaimer. This series is RFC, and there are quite a lot of
+> shortcomings :
 > 
-> Signed-off-by: Yixun Lan <dlan@gentoo.org>
-> ---
->  .../devicetree/bindings/gpio/spacemit,k1-gpio.yaml | 116 +++++++++++++++++++++
->  1 file changed, 116 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml b/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..dd9459061aecfcba84e6a3c5052fbcddf6c61150
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
-> @@ -0,0 +1,116 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gpio/spacemit,k1-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SpacemiT K1 GPIO controller
-> +
-> +maintainers:
-> +  - Yixun Lan <dlan@gentoo.org>
-> +
-> +description:
-> +  The controller's registers are organized as sets of eight 32-bit
-> +  registers with each set of port controlling 32 pins.  A single
-> +  interrupt line is shared for all of the pins by the controller.
-> +  Each port will be represented as child nodes with the generic
-> +  GPIO-controller properties in this bindings file.
+>  - The port representation is in a minimal form
+>  - No SFP support is included, but it will be required for that series to come
+>    out of RFC as we can't gracefully handle multi-port interfaces without it.
 
-There's only one interrupt line for all ports, but you have a binding that
-duplicates them for every set of ports. That seems overly complicated,
-doesn't it? They'd all bind the same handler, so there's no benefit in
-providing the flexibility,.
+Agreed - because I think SFP brings with it a whole host of issues that
+describing the media facing port would be error prone - and to do it
+accurately, we'd need a table of quirks to fix lots of broken modules.
 
-> +properties:
-> +  $nodename:
-> +    pattern: "^gpio@[0-9a-f]+$"
-> +
-> +  compatible:
-> +    const: spacemit,k1-gpio
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^gpio-port@[0-9a-f]+$":
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        const: spacemit,k1-gpio-port
-> +
-> +      reg:
-> +        maxItems: 1
-> +
-> +      gpio-controller: true
-> +
-> +      "#gpio-cells":
-> +        const: 2
-> +
-> +      gpio-ranges: true
-> +
-> +      interrupts:
-> +        maxItems: 1
-> +
-> +      interrupt-controller: true
-> +
-> +      "#interrupt-cells":
-> +        const: 2
-> +        description:
-> +          The first cell is the GPIO number, the second should specify interrupt
-> +          flag. The controller does not support level interrupts, so flags of
-> +          IRQ_TYPE_LEVEL_HIGH, IRQ_TYPE_LEVEL_LOW should not be used.
-> +          Refer <dt-bindings/interrupt-controller/irq.h> for valid flags.
+For example, many SFP modules with RJ45 connectors describe themselves
+as having a LC connector!
 
-Same here, since there's no real flexibility between the banks, it might
-make sense to consider a 3-cell GPIO specifier instead, and having
-the first cell indicate bank. I could see this argument go in either
-direction, but I'm not sure I understand why to provide a gpio-controller
-per bank.
-
-Comparing to say Rockchip, where each bank has a separate interrupt line
--- so there the granularity makes sense.
-
-
--Olof
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
