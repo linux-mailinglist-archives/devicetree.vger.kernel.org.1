@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-140187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 506D9A18CFF
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:47:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B694A18D24
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:53:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06DF018878B2
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 07:47:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 458A8169E79
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 07:53:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D40AA1C1AC7;
-	Wed, 22 Jan 2025 07:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6411B1C3038;
+	Wed, 22 Jan 2025 07:53:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bymbqyUj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="koOheFef"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43C528EC;
-	Wed, 22 Jan 2025 07:47:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35FA7E57D;
+	Wed, 22 Jan 2025 07:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737532030; cv=none; b=eWQj+kFMEjFZvTkZtFvqIhMxQhVm0tgdpNSMKvMvwFLZ5I4WxiBBMTGJlLaCUUZUEoD9is3QapBZYTl+gNJUflEVL9mxvul8FjQzUDRv0VzCFwza13DVAqoJYU+VUh3oDGzoIgmpiq1E9dMVDn40ITSvQCom9I6VVgNlKuEBIJ0=
+	t=1737532422; cv=none; b=Hlp8tNW61VEY11DwmrRdek4cc1Le/536xZexJuNNRqR1rLh+ig2E+Ee8QbktjQGYPA3ePXbopGr/vFdcNLM4nB3lgpPCU1uJWpMPz4eLoyrA8FuBr1FlUVxVDX1Y3fd261NF8MrHQ06I2JoTeLmC3hFBorMocdDueEWu7i5vI2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737532030; c=relaxed/simple;
-	bh=IcJL7yEhgm8bDZ/wZh8pao68jVu2AZ38Uox2cispOiU=;
+	s=arc-20240116; t=1737532422; c=relaxed/simple;
+	bh=vgbm+RI9Qd/70aIbY4cCmLhisKKFu/BgevTzmL3cnRc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZnwqFUnnVGAqpEsNapfu/6DwfpBcj3HnfNshIAwK281Orcv+YxuEWvuCYmUN+YixeHzp63F4WBzSXu1wuEavUgOjTZMEZrZZd1mIbWr+/5HsRDENOAkp2jFlNQ57UPgVCbZPCja+lmXSs4dWCVimAB5cMmxL1SjEkh8Nf+5YbSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bymbqyUj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89E25C4CED6;
-	Wed, 22 Jan 2025 07:47:01 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cmnQzFwHKnxJRXKFxTldMImngzIO1SJk5rY8UXXi4MIzQUDnBOE3BBiW64UQmcqyFKBzfE5uwBYdjUsutGP7OFQG6DAX1FgeVbgIpFWJD2aH738C1dO0AC8Rlt7y0BRlbIBRBKl6oOBHWAjoDdBjIr4G1Eh34JfDMw+fwjhuydY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=koOheFef; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEFE5C4CED6;
+	Wed, 22 Jan 2025 07:53:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737532029;
-	bh=IcJL7yEhgm8bDZ/wZh8pao68jVu2AZ38Uox2cispOiU=;
+	s=k20201202; t=1737532420;
+	bh=vgbm+RI9Qd/70aIbY4cCmLhisKKFu/BgevTzmL3cnRc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bymbqyUjslOFEZ78TvAJ7aFWrQcQTFlw/WU2mcXONUywpmg3hmW5MGtAorqsR9q5K
-	 rkhpIxaMzbW/TE3/IpDGcw2AS28vbl4wUGX0pzoXZTxwGRsOvEInV8d9akQGPDZY9w
-	 JGZSvJhlDwii1Y3ABWbBxofT1esRkkmaYpv0FhE/HGUMe8Lo2D/9JIycYv7Gy0Tt4s
-	 YlhIINHFSaw7fQSMJ5i/AigNlELjD/U58z7Hl8gZWcpei3y8AmpFNJGI0fZazqQyLX
-	 JV7/8XjWOC9oRHTMEfwmgCKJFHVmusyhmL/XIIkcl9seYgoQnZ++D6/Z/szbHCBr3z
-	 A7zjfC9KKkzAQ==
-Message-ID: <508d6120-53df-4db1-ab62-5f4c49358cbf@kernel.org>
-Date: Wed, 22 Jan 2025 08:46:59 +0100
+	b=koOheFefefWr9Gghr99pyX8ixUjwd1xykayPxvBRTZ0LE/YAHDIy6SqbQ2+8x+QUd
+	 0U3BuGeVf+W1kWDj2QtpY5YugGAcV8qriW9oz3grb983lzGtE7umStEGWgkPSnVzj8
+	 +fPSjv6hNTalsecZO6A98HPcJ9LMfoz7v4hnZNfXpo7KlDfQ3HczviLGGL9jHE+zw5
+	 7md7iLoId1NH5pbpPUCINp2/CSOxHyTEkWpfsPFjwL4V/Wctk65WssGQEb9KdXxBBa
+	 5pzNe1lUss4qhtXB1OkwMENU6DKT3a3vHCVTrqThdln4uz/NWeHrugpjfcfDSFWlZI
+	 9b9ucchsJQhqw==
+Message-ID: <482f89f5-3989-4bd6-b11e-2df0833117d7@kernel.org>
+Date: Wed, 22 Jan 2025 08:53:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v3 05/18] pmdomain: thead: Add power-domain driver for
- TH1520
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
- wefu@redhat.com, jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
- palmer@dabbelt.com, aou@eecs.berkeley.edu, frank.binns@imgtec.com,
- matt.coster@imgtec.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- ulf.hansson@linaro.org, jszhang@kernel.org, p.zabel@pengutronix.de,
- m.szyprowski@samsung.com, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org,
- linux-pm@vger.kernel.org
-References: <20250120172111.3492708-1-m.wilczynski@samsung.com>
- <CGME20250120172125eucas1p141540607f423eea4c55b2bd22ff5adf0@eucas1p1.samsung.com>
- <20250120172111.3492708-6-m.wilczynski@samsung.com>
- <20250121-mature-marigold-ammonite-b379d2@krzk-bin>
- <ce69a49d-6221-458d-b0e5-0f3507f1aeac@samsung.com>
+Subject: Re: [PATCH V4] dt-bindings: serial: Add a new compatible string for
+ UMS9632
+To: Wenhua Lin <Wenhua.Lin@unisoc.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Orson Zhai <orsonzhai@gmail.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Chunyan Zhang <zhang.lyra@gmail.com>, Cixi Geng <cixi.geng@linux.dev>,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ devicetree@vger.kernel.org, wenhua lin <wenhua.lin1994@gmail.com>,
+ Xiongpeng Wu <xiongpeng.wu@unisoc.com>, Zhaochen Su
+ <Zhaochen.Su@unisoc.com>, Zhirong Qiu <Zhirong.Qiu@unisoc.com>
+References: <20250122072352.3663653-1-Wenhua.Lin@unisoc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,98 +109,22 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ce69a49d-6221-458d-b0e5-0f3507f1aeac@samsung.com>
+In-Reply-To: <20250122072352.3663653-1-Wenhua.Lin@unisoc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 21/01/2025 22:42, Michal Wilczynski wrote:
+On 22/01/2025 08:23, Wenhua Lin wrote:
+> The UART IP version of the ums9632 SoC project has been upgraded.
+> UART controller registers have added valid bits to support new features.
+> In order to distinguish different UART IP versions, we use sc9632-uart
+> to represent upgraded IP and sc9836-uart to represent old IP.
 > 
-> 
-> On 1/21/25 11:02, Krzysztof Kozlowski wrote:
->> On Mon, Jan 20, 2025 at 06:20:58PM +0100, Michal Wilczynski wrote:
->>> The T-Head TH1520 SoC contains multiple power islands that can be
->>> programmatically turned on and off using the AON (Always-On) protocol
->>> and a hardware mailbox [1]. The relevant mailbox driver has already been
->>> merged into the mainline kernel in commit 5d4d263e1c6b ("mailbox:
->>> Introduce support for T-head TH1520 Mailbox driver");
->>>
->>> This commit introduces a power-domain driver for the TH1520 SoC, which
->>
->> Please do not use "This commit/patch/change", but imperative mood. See
->> longer explanation here:
->> https://protect2.fireeye.com/v1/url?k=2123f702-40a8e22d-21227c4d-74fe485cbfe7-afb876722bdc8fc5&q=1&e=e5dabc89-5f0c-4819-9008-76faafc3c1bc&u=https%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv5.17.1%2Fsource%2FDocumentation%2Fprocess%2Fsubmitting-patches.rst%23L95
->>
->>> is using AON firmware protocol to communicate with E902 core through the
->>> hardware mailbox. This way it can send power on/off commands to the E902
->>> core.
->>
->> ...
->>
->>> diff --git a/drivers/pmdomain/thead/Makefile b/drivers/pmdomain/thead/Makefile
->>> new file mode 100644
->>> index 000000000000..adfdf5479c68
->>> --- /dev/null
->>> +++ b/drivers/pmdomain/thead/Makefile
->>> @@ -0,0 +1,2 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only
->>> +obj-$(CONFIG_TH1520_PM_DOMAINS)		+= th1520-pm-domains.o
->>> diff --git a/drivers/pmdomain/thead/th1520-pm-domains.c b/drivers/pmdomain/thead/th1520-pm-domains.c
->>> new file mode 100644
->>> index 000000000000..d913ad40fb76
->>> --- /dev/null
->>> +++ b/drivers/pmdomain/thead/th1520-pm-domains.c
->>> @@ -0,0 +1,174 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (C) 2021 Alibaba Group Holding Limited.
->>> + * Copyright (c) 2024 Samsung Electronics Co., Ltd.
->>> + * Author: Michal Wilczynski <m.wilczynski@samsung.com>
->>> + */
->>> +
->>> +#include <linux/firmware/thead/thead,th1520-aon.h>
->>> +#include <linux/slab.h>
->>> +#include <linux/platform_device.h>
->>> +#include <linux/pm_domain.h>
->>> +
->>> +#include <dt-bindings/firmware/thead,th1520-aon.h>
->>
->> So here it is used... I don't understand why power domain is under
->> firmware. Please move it to proper directory and name the file exactly
->> the same as bindings doc which this belongs to.
-> 
-> The power-domain driver has no bindings doc. It's a child driver of the AON
-> node.
+> Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
+> ---
+> V3->V4 changes:
+> * Modify the indentation format.
 
-OK, not changing my comment, though.
-
-> 
->>
->>
->>> +
->>> +struct th1520_power_domain {
->>> +	struct th1520_aon_chan *aon_chan;
->>> +	struct generic_pm_domain genpd;
->>> +	u32 rsrc;
->>> +};
->>> +
->>> +struct th1520_power_info {
->>> +	const char *name;
->>> +	u32 rsrc;
->>> +};
->>> +
->>> +static const struct th1520_power_info th1520_pd_ranges[] = {
->>> +	{ "vdec", TH1520_AON_VDEC_PD },
->>
->> Why TH1520_AON_XXX aren't the indices?
-> 
-> These power-domain constants are defined by the AON firmware protocol,
-> which dictates the exact IDs (e.g., 1 for NPU). They are not just array
-> indices; we must use these specific values to communicate with the
-> firmware correctly. Using array indices starting with 1 would be
-> unusual.
-
-Then that's a no. Binding constants do not represent values used by your
-hardware. The binding constant should start from 0.
+Did you test your patch before sending this time?
 
 Best regards,
 Krzysztof
