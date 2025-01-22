@@ -1,196 +1,148 @@
-Return-Path: <devicetree+bounces-140369-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140370-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00C10A1965F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 17:21:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AECABA19668
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 17:24:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3FED3A44A5
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 16:20:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 00E08169E44
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 16:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1444E214814;
-	Wed, 22 Jan 2025 16:20:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20FF5215048;
+	Wed, 22 Jan 2025 16:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="SDhspgNc";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="mfVXxY3G";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="SDhspgNc";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="mfVXxY3G"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KQEhsnk/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D92F212B31;
-	Wed, 22 Jan 2025 16:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60E65212D84;
+	Wed, 22 Jan 2025 16:24:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737562848; cv=none; b=jypVVTfZjiEGnYRZ6VsoL3D8AcSzOE0Gc3YCUQoTGQC1T00bsqb9nM6rHmJBLg5JhYhEqz7eCsLhgtTJQgYGECIIkNOv/bvXE3ccluzlK11Vv7EsreVJOcCS0yEjLZcmEblg48B/faKRKDZNRwZO4KME1dSSHqJat89vwpKXX88=
+	t=1737563044; cv=none; b=SB0P1Vy5XAQsThT0vIp2gqhYyexpprGLGKk1kqzLVeMvXekqHn3rqFT7tvfaHTJ6yFC9bJpQQw71qcFp+f2Eli7tYXEq7QxT68NVnEIq3XwMQHgg6I0GNasGy7rd4SE6x6LkV9Jx75Iwyb45TYxf3aqJcjH7s14tTbwkoep7oDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737562848; c=relaxed/simple;
-	bh=8kM1WT3JNMGSU/cpmSYMoaF35HG8obeAnI8FcsETn5U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=i2avY38tbkUp/PlWvPl+DuqhB6TwMH5D7XZTJWKq1bKScssbgSbZbHdftQFSdAjsOh2hRHY3C2Remjdb97bmTNAdtHs2muFI8wBiL+aYi1cfiMl7DalEQRJPgGeumaj5XdlE2vgYVa2dZyfrxb1GXIipbzgVKqyrMGr8fo7lKMA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=SDhspgNc; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=mfVXxY3G; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=SDhspgNc; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=mfVXxY3G; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id 49CF82190B;
-	Wed, 22 Jan 2025 16:20:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1737562844; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nT+3HrKcZdya7PD/09X6ml+wR0vuTCRq8jZf0/rfslA=;
-	b=SDhspgNc7hac5Pfg4OaVGvMwWVz4pD9JP45vdS1rNrueqTsfn5MG13bTpsCjQuq/91Ehi2
-	XBpuiWWz6n8VTAXfHCntT1UAVZY0x10M4n9v/s3Aqobp4g/JaCUDqqJiUd0yxS4/HdZbOx
-	htz2Ai6adwmXfHI5nisC7H+KkcpNeSY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1737562844;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nT+3HrKcZdya7PD/09X6ml+wR0vuTCRq8jZf0/rfslA=;
-	b=mfVXxY3GXJjQJ0ox3IMljoELLK445aGMa2UoEAxVkDlispsSjgekkQJx5Mat4Mq0nEt/fF
-	t4NZXvP2oVrWxgCw==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1737562844; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nT+3HrKcZdya7PD/09X6ml+wR0vuTCRq8jZf0/rfslA=;
-	b=SDhspgNc7hac5Pfg4OaVGvMwWVz4pD9JP45vdS1rNrueqTsfn5MG13bTpsCjQuq/91Ehi2
-	XBpuiWWz6n8VTAXfHCntT1UAVZY0x10M4n9v/s3Aqobp4g/JaCUDqqJiUd0yxS4/HdZbOx
-	htz2Ai6adwmXfHI5nisC7H+KkcpNeSY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1737562844;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=nT+3HrKcZdya7PD/09X6ml+wR0vuTCRq8jZf0/rfslA=;
-	b=mfVXxY3GXJjQJ0ox3IMljoELLK445aGMa2UoEAxVkDlispsSjgekkQJx5Mat4Mq0nEt/fF
-	t4NZXvP2oVrWxgCw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3CF7A136A1;
-	Wed, 22 Jan 2025 16:20:43 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id Lwp/DNsakWexcQAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Wed, 22 Jan 2025 16:20:43 +0000
-Message-ID: <d8c0f79f-1896-4afa-86e3-bd330218f362@suse.de>
-Date: Wed, 22 Jan 2025 18:20:38 +0200
+	s=arc-20240116; t=1737563044; c=relaxed/simple;
+	bh=fwt5oT5Y8QgZRUd1lnPC4GWL3eMUTEEXbR17gFncewA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=htKtqMNjS7T5qz0O5lIrhYwxrQ9bj/ZqGT9ihuVikM1Oool+crkyMxQFm6fXbeTeuMdJP/2ubfsLa3z2w5EZ75Rr7Gv0x6R9UyzWLQleB/EuXahZ/w/gdkK5s5TXa/JR0JmakDd2LnZXfnl4WmMGyVo/vpgaK4++Yphma0onHhA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KQEhsnk/; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737563043; x=1769099043;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=fwt5oT5Y8QgZRUd1lnPC4GWL3eMUTEEXbR17gFncewA=;
+  b=KQEhsnk/lWBvYEn3EkJzQfbtpIz9VfyLyE0klvjimAv3aae3Ow418LKJ
+   ZeY0OLr35ppfYt5TZGshTPf/PisgtAHBSQ69tVpJApdpQzsAnIaX0MyAG
+   Glin2wnPB/RyW/vXN7VR7FDrrT2T33TNq+pOGRaNz5GzaLHURL+aEsFv7
+   qxvCQzLtoMaPTw3uHDU3dPCYujuX5AzsRwSNVCYIxoCMG0UfWcMDgSiCH
+   ixTJ6ya9GOZjyjCJrO4bVwjDqwkgoqrYwgp54Kt2OpsS5FV7o88JphHLG
+   UOU9xv5qNVN+4/mvl6OSPOOUwENIikOyKxjdIbx9qzUDKqgQIWVhf9Vzt
+   g==;
+X-CSE-ConnectionGUID: 7VwdFOI5Sc+kU2eXthosog==
+X-CSE-MsgGUID: cyLVJIXkSi24eeZ8KHVzQA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11323"; a="49424364"
+X-IronPort-AV: E=Sophos;i="6.13,225,1732608000"; 
+   d="scan'208";a="49424364"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2025 08:24:03 -0800
+X-CSE-ConnectionGUID: gL1Ev5D9TZmYQuS/pu5PgA==
+X-CSE-MsgGUID: tKTL8cEET9etTp5y8yMPqA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,225,1732608000"; 
+   d="scan'208";a="107720414"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jan 2025 08:24:00 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tadWI-000000048VN-0GAy;
+	Wed, 22 Jan 2025 18:23:58 +0200
+Date: Wed, 22 Jan 2025 18:23:57 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Felipe Balbi <balbi@kernel.org>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ferry Toth <fntoth@gmail.com>
+Subject: Re: [PATCH v1 3/3] usb: dwc3: gadget: Skip endpoints ep[18]{in,out}
+ on Intel Merrifield
+Message-ID: <Z5EbnXy-BRmgFpVh@smile.fi.intel.com>
+References: <20250116154117.148915-1-andriy.shevchenko@linux.intel.com>
+ <20250116154117.148915-4-andriy.shevchenko@linux.intel.com>
+ <20250116233937.s7mv5mu4tfuaexy2@synopsys.com>
+ <Z4pcMUDsFZ8-deW_@smile.fi.intel.com>
+ <20250121234616.eomj7r73o6ce3u2r@synopsys.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 -next 09/11] PCI: brcmstb: Fix for missing of_node_put
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
- Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Andrea della Porta <andrea.porta@suse.com>,
- Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
- <jonathan@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
- stable@vger.kernel.org
-References: <20250120130119.671119-1-svarbanov@suse.de>
- <20250120130119.671119-10-svarbanov@suse.de>
- <1abdd175-280a-442a-a27a-9bc01c0a04c0@broadcom.com>
-Content-Language: en-US
-From: Stanimir Varbanov <svarbanov@suse.de>
-In-Reply-To: <1abdd175-280a-442a-a27a-9bc01c0a04c0@broadcom.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Level: 
-X-Spamd-Result: default: False [-6.80 / 50.00];
-	REPLY(-4.00)[];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	FREEMAIL_CC(0.00)[linutronix.de,kernel.org,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com,vger.kernel.org];
-	RCVD_TLS_ALL(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TAGGED_RCPT(0.00)[dt];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:email,suse.de:mid]
-X-Spam-Score: -6.80
-X-Spam-Flag: NO
+In-Reply-To: <20250121234616.eomj7r73o6ce3u2r@synopsys.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Florian,
+On Tue, Jan 21, 2025 at 11:46:17PM +0000, Thinh Nguyen wrote:
+> On Fri, Jan 17, 2025, Andy Shevchenko wrote:
+> > On Thu, Jan 16, 2025 at 11:39:42PM +0000, Thinh Nguyen wrote:
+> > > On Thu, Jan 16, 2025, Andy Shevchenko wrote:
 
-On 1/21/25 8:32 PM, Florian Fainelli wrote:
-> On 1/20/25 05:01, Stanimir Varbanov wrote:
->> A call to of_parse_phandle() increments refcount, of_node_put must be
->> called when done the work on it. Fix missing of_node_put() on the
->> msi_np device node by using scope based of_node_put() cleanups.
->>
->> Cc: stable@vger.kernel.org # v5.10+
->> Fixes: 40ca1bf580ef ("PCI: brcmstb: Add MSI support")
->> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
->> ---
->> v4 -> v5:
->>   - New patch in the series.
->>
->>   drivers/pci/controller/pcie-brcmstb.c | 3 ++-
->>   1 file changed, 2 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/pci/controller/pcie-brcmstb.c b/drivers/pci/
->> controller/pcie-brcmstb.c
->> index 744fe1a4cf9c..546056f7f0d3 100644
->> --- a/drivers/pci/controller/pcie-brcmstb.c
->> +++ b/drivers/pci/controller/pcie-brcmstb.c
->> @@ -1844,7 +1844,8 @@ static struct pci_ops brcm7425_pcie_ops = {
->>     static int brcm_pcie_probe(struct platform_device *pdev)
->>   {
->> -    struct device_node *np = pdev->dev.of_node, *msi_np;
->> +    struct device_node *msi_np __free(device_node) = NULL;
+...
+
+> > > > + * Intel Merrifield uses these endpoints for tracing and they shouldn't be used
+> > > > + * for normal transfers, we need to skip them.
+> > > > + * • 1 High BW Bulk IN (IN#1) (RTIT)
+> > > > + * • 1 1KB BW Bulk IN (IN#8) + 1 1KB BW Bulk OUT (Run Control) (OUT#8)
+> > > 
+> > > Please use regular bullet character and list the endpoint per line.
+> > 
+> > Which is...?
+> > 
+> > To my curiosity, what's wrong with the above?
 > 
-> In the interest of making this a straight back port to 5.10 that does
-> not have all of the __free() goodies, I would just add the missing
-> of_node_put() where necessary.
+> Please use a character that we can find on the keyboard (- or * for
+> example).
 
-Good point. Thank you.
+Hmm... We can find all characters on keyboard by using standard approach of
+typing Unicode ones. I'm not sure why this is a problem. Linux kernel is UTF-8
+ready project (from source tree point of view), at least I haven't found any
+limitations in the documentation.
 
+Note, this is _not_ a kernel-doc style to which you may refer when pointing out
+to the how lists should be represented.
+
+But it's not big deal for me to change the • character.
+
+> And why would you want to list them like this:
 > 
-> Also, since this is a bug fix, you should probably make it appear
-> earlier in the patch series, or even sent it as a separate fix entirely.
+> 	* Endpoint A
+> 	* Endpoint B + Endpoint C
 
-OK, will send it as a standalone patch (as v2 with your comment addressed).
+Because:
+1) they are logically connected;
+2) the above is the exact citation from the specification and I would like to
+keep it that way.
 
-~Stan
+> As oppose to:
+> 
+> 	* Endpoint A
+> 	* Endpoint B
+> 	* Endpoint C
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
