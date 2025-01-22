@@ -1,130 +1,132 @@
-Return-Path: <devicetree+bounces-140437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7573EA19B46
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 00:02:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05674A19B6C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 00:24:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A5EA3A30C7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 23:02:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3604188D5AE
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 23:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78C011CAA99;
-	Wed, 22 Jan 2025 23:02:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAC951CAA67;
+	Wed, 22 Jan 2025 23:23:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="vlih1fPw"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Um2U5XD6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8581CAA66
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 23:02:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4314F1C3C1A;
+	Wed, 22 Jan 2025 23:23:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737586939; cv=none; b=vBWZ4rnN4puVABMlurbN9q2n0riO9hP4cpBhP49Mgpfkhzwz6OSz5kU89xvAOJ8c6vs7zp3ImXC9QWO7jKxgQbqKKpJw9O+e9KPat+/oEieOGYluNQ98etFI38NDg4Y+VZU1Jd7we/3qRqhr2CqwPPbbret2Ir43jZJpqcNaj/o=
+	t=1737588237; cv=none; b=GBk8Yxvs86GJ/I/x9Ag3c6U8/PKjYZ1nJG98gR/dBQJ0YqfF4VRA+6ZNjU37AA8HL8mzFkvwv6f3Dl/KLcCUHyOK/FnymjCAlXfb3oEy8fdlz33px67+7UuqzxHDi9aMMrIDXXAC0/3VebWg9Sv8sAwUp5aDxKJFxOXKk4SUJy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737586939; c=relaxed/simple;
-	bh=XMwm023H0sIBdpzqUJNYM4k4Mu+ELgEDanDBBQmExDk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=shvCWyl8h/7POSzzSY4UkGf/v0MprQhZXO8ThPRc1P2yXvLDD7ZK1fXuwa5biypVWtZfWkeQRpaVgfg7skXJjCWQEcuW50aYr6xKEEo5N1mCSNqKJtwPbkJnPLkX4KWmQRN53xTv65Lx50IGnixo3TmQL0GnMWORJBok7/mMT0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=vlih1fPw; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 8017B2C0C39;
-	Thu, 23 Jan 2025 12:02:14 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1737586934;
-	bh=XMwm023H0sIBdpzqUJNYM4k4Mu+ELgEDanDBBQmExDk=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=vlih1fPwY/6VyD/DKpjBNvw4DRNwAgK65Vxsm+U7PNCQWq3TNL7MN6m/29I79C1Zu
-	 KNVgahx0QlitIsLx/HQTQPmshBs7WDUgO5hIgOajJKIfmA0iT/O6vYxj7Vsf0/o0d9
-	 ZtUd8L+37Lb/J9SJsVbLIarOIOTl3qGmIQ9ngTo1MzJR9OBhNnui93f1thRXF2sLDn
-	 vzobQg94nGXvAxDa3s0Oo5uTuI4oogrlF6W5d3KDXAguMPdmrJKyWgiK0Ppcsn5K14
-	 ZZxZ72iDb1RogyuxHxg/XAfEQ6vzan7QLQ5TGP7s+7F4f1zUXfmi69x/JvJJlTd/bW
-	 rago5//toshSg==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B679178f60001>; Thu, 23 Jan 2025 12:02:14 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Thu, 23 Jan 2025 12:02:14 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1544.014; Thu, 23 Jan 2025 12:02:14 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Sander Vanheule <sander@svanheule.net>, "lee@kernel.org" <lee@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "davem@davemloft.net"
-	<davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"tsbogend@alpha.franken.de" <tsbogend@alpha.franken.de>,
-	"hkallweit1@gmail.com" <hkallweit1@gmail.com>, "linux@armlinux.org.uk"
-	<linux@armlinux.org.uk>, "markus.stockhausen@gmx.de"
-	<markus.stockhausen@gmx.de>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, "linux-mips@vger.kernel.org"
-	<linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v4 4/4] net: mdio: Add RTL9300 MDIO driver
-Thread-Topic: [PATCH v4 4/4] net: mdio: Add RTL9300 MDIO driver
-Thread-Index: AQHbavAahUdhqEy5FEu2vKOQZxZljLMenFsAgACoywCAAzmNAIAAFNeA
-Date: Wed, 22 Jan 2025 23:02:14 +0000
-Message-ID: <09bd2f04-96d6-4dba-92ee-22ccbd7f584f@alliedtelesis.co.nz>
-References: <20250120040214.2538839-1-chris.packham@alliedtelesis.co.nz>
- <20250120040214.2538839-5-chris.packham@alliedtelesis.co.nz>
- <d4194a1560ff297e5ab3e6eae6d51b7c9d469381.camel@svanheule.net>
- <63d6cf16-9581-4736-8592-bc5836fa51af@alliedtelesis.co.nz>
- <faa4cf6e-40eb-4509-b3f0-198a9a45ccbd@lunn.ch>
-In-Reply-To: <faa4cf6e-40eb-4509-b3f0-198a9a45ccbd@lunn.ch>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <0C9CD53DCDF4DB4987A75CD73F667264@alliedtelesis.co.nz>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1737588237; c=relaxed/simple;
+	bh=PQ9ID+y+HYqvdGcyA/HuZ8MXuYAda/StiIy444/tIYw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=YPa6+N4v+RkyiQFYFc8CL9Muj4EolAqUyca3q/SKqQQ5DBdHh+lSUSMF/UqNFuN1XLqi4g6t5VQ7/EGH8BvS/R/ycvdzdEVv1T5IfwMvmCXw7VQPcemc+cdaDQM4ZQMAfDxUqjxVuGkA8IZrz0A0PX08AV6+smjDW7+5w3iXNHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Um2U5XD6; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50MGpaE4004030;
+	Wed, 22 Jan 2025 23:23:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PQ9ID+y+HYqvdGcyA/HuZ8MXuYAda/StiIy444/tIYw=; b=Um2U5XD6HENLY6Va
+	PQ/7Zee4uMIm2K5uJ68ivcvwIAnr6h5XRGJgLLX0Eaq1Gf8IukTMAwtOBZm6toFO
+	v1a2UA/4CC7w5k5tylnhPm9o7HhtkmI9wIXDz/9mGZUCYFXqlaKNlN3nz/pWNaIm
+	uBBy8YvJmR0FycamItBe9an9EGQdYSfVrywjY+260lxhYhS6JAqE8ohBtQ6SkiQU
+	ZbnK91SybUy2Lns4g9E6JexZtlTUoVY4ucMlWg48hvnzo0HrLDafyWh+BBBbR5x3
+	8TRJDH7js2jdCzQd1oZlCG6/iaAeKSkrcIECGY98iVQ0AOZn41z/KqDpdd/d45aA
+	Bgts9g==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44b4jm0s1t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Jan 2025 23:23:33 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50MNNWJQ007045
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Jan 2025 23:23:32 GMT
+Received: from [10.81.24.74] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 22 Jan
+ 2025 15:23:32 -0800
+Message-ID: <36af1162-cd43-4045-bb43-b8bbf44f9788@quicinc.com>
+Date: Wed, 22 Jan 2025 15:23:29 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=679178f6 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=VdSt8ZQiCzkA:10 a=yb9UF-SkSRlBYHEdGwAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 05/12] clk: sunxi-ng: add CCU drivers for V853
+To: Andras Szemzo <szemzo.andras@gmail.com>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec
+	<jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Linus
+ Walleij <linus.walleij@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Maxime Ripard <mripard@kernel.org>
+CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Paul Walmsley
+	<paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou
+	<aou@eecs.berkeley.edu>,
+        =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+	<u.kleine-koenig@baylibre.com>,
+        Florian Fainelli
+	<florian.fainelli@broadcom.com>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-gpio@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>
+References: <20250110123923.270626-1-szemzo.andras@gmail.com>
+ <20250110123923.270626-6-szemzo.andras@gmail.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20250110123923.270626-6-szemzo.andras@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 0rtJg0pCT2kcaINT24J2xEvyArlsT86f
+X-Proofpoint-GUID: 0rtJg0pCT2kcaINT24J2xEvyArlsT86f
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-22_10,2025-01-22_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 impostorscore=0
+ spamscore=0 mlxlogscore=922 priorityscore=1501 phishscore=0 mlxscore=0
+ suspectscore=0 lowpriorityscore=0 adultscore=0 bulkscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501220170
 
-SGkgQW5kcmV3LA0KDQpPbiAyMy8wMS8yMDI1IDEwOjQ3LCBBbmRyZXcgTHVubiB3cm90ZToNCj4+
-IEkgYmVsaWV2ZSB0aGUgUE9MTF9TRUwgY29uZmlndXJhdGlvbiBhY3R1YWxseSBhZmZlY3RzIGFu
-IGludGVybmFsIHBvcnQNCj4+IHBvbGxpbmcgdW5pdC4gRnJvbSB0aGUgZGF0YXNoZWV0cyBJIGhh
-dmUgaXQgc2VlbXMgcHJldHR5IGNvbmZpZ3VyYWJsZSwgeW91DQo+PiBjYW4gdGVsbCBpdCB3aGlj
-aCBwaHkgcmVnaXN0ZXJzIHRvIHBvbGwgYW5kIHdoYXQgdmFsdWVzIGluZGljYXRlIGxpbmsNCj4+
-IHVwL2Rvd24gKHRoZSBkZWZhdWx0cyBhcmUgY29udmVuaWVudGx5IHNldHVwIHRvIG1hdGNoIHRo
-ZSBSZWFsdGVrIFBIWXMpLg0KPiBZb3UgbmVlZCB0byBkaXNhYmxlIHRoaXMuIFRoZSBsaW51eCBQ
-SFkgZHJpdmVyIGlzIGRyaXZpbmcgdGhlIFBIWSwgYW5kDQo+IHRoZSBoYXJkd2FyZSBoYXMgbm8g
-aWRlYSB3aGF0IExpbnV4IGlzIGRvaW5nLiBTYXkgdGhlIGRyaXZlciBoYXMNCj4gY2hhbmdlZCB0
-aGUgcGFnZSB0byByZWFkIGEgdGVtcGVyYXR1cmUgc2Vuc29yLCB3aGVuIHRoZSBzd2l0Y2ggZG9l
-cyBhDQo+IHBvbGwuIFJhdGhlciB0aGFuIHJlYWRpbmcgdGhlIGxpbmsgc3RhdHVzLCBpdCBnZXRz
-IHNvbWUgcmFuZG9tIHZhbHVlDQo+IGZyb20gdGhlIHBhZ2UgY29udGFpbmluZyB0aGUgdGVtcGVy
-YXR1cmUgc2Vuc29yLg0KDQpUaGVyZSdzIGEgbWFzayB0aGF0IGNhbiBiZSBzZXQgdmlhIGEgcmVn
-aXN0ZXIgdGhhdCBjYW4gZGlzYWJsZSBwb2xsaW5nIA0KZm9yIGEgcG9ydC4gVGhlIHRyaWNrIHdp
-bGwgYmUgZGVjaWRpbmcgd2hlbiB0byBkbyBzby4NCg0KRm9yIEM0NSBQSFlzIEkgdGhpbmsgaXQn
-cyBmaW5lIGFzIHRoZSByZWdpc3RlciBzcGFjZSBpcyBzbyBsYXJnZSB0aGF0IA0KcGFnaW5nIGlz
-bid0IHJlYWxseSB1c2VkICh0aGUgb25seSB0aW1lIEkndmUgc2VlbiBpdCBpcyBpbiB0aGUgdmVu
-ZG9yIA0KTU1EKS4gVGhlIFBQVSBkb2VzIHNlZW0gdG8gaGF2ZSBzb21lIGtub3dsZWRnZSBvZiBw
-YWdpbmcgZm9yIEMyMiBidXQgYXMgDQpmYXIgYXMgSSB1bmRlcnN0YW5kIHRoZSBwYWdlIHNlbGVj
-dCByZWdpc3RlciB2YXJpZXMgdmVuZG9yIHRvIHZlbmRvciBhbmQgDQpJIGNhbid0IHNlZSBhbnkg
-d2F5IG9mIHRlbGxpbmcgaXQgc28gaXQgcHJvYmFibHkganVzdCB1c2VzIHdoYXRldmVyIHBhZ2Ug
-DQpzZWxlY3QgcmVnaXN0ZXIgdGhhdCByZWFsdGVrIHVzZSBpbiB0aGVpciBQSFlzLg0KDQpTbyBJ
-IF90aGlua18gdGhlIFBQVSBpcyBPSy4gV2hhdCBtaWdodCBiZSBhIGJpdCBtb3JlIHRyaWNreSBp
-cyB0aGUgb3RoZXIgDQp3YXkgcm91bmQgd2hlcmUgTGludXggaXMgZG9pbmcgc29tZXRoaW5nIGlu
-dm9sdmluZyBjaGFuZ2luZyBwYWdlcyBhbmQgDQpyZWFkaW5nIHJlZ2lzdGVycywgdGhlcmUgd291
-bGQgbmVlZCB0byBiZSBzb21lIGtpbmQgbWVjaGFuaXNtIHRoYXQgbWFza3MgDQp0aGUgcG9ydCBv
-dXQgb2YgdGhlIFBQVSBmb3IgdGhlIGR1cmF0aW9uIG9mIHRoZSB3aG9sZSB0cmFuc2FjdGlvbi4N
-Cg0KDQo+DQo+IAlBbmRyZXc=
+On 1/10/25 04:39, Andras Szemzo wrote:> +module_platform_driver(sun8i_v853_r_ccu_driver);
+> +
+> +MODULE_IMPORT_NS("SUNXI_CCU");
+> +MODULE_LICENSE("GPL");
+
+Since commit 1fffe7a34c89 ("script: modpost: emit a warning when the
+description is missing"), a module without a MODULE_DESCRIPTION() will
+result in a warning with make W=1. Please add a MODULE_DESCRIPTION()
+to avoid this warning in all of your new modules.
+
 
