@@ -1,146 +1,162 @@
-Return-Path: <devicetree+bounces-140198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0F83A18D7D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:17:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48B0BA18D83
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:21:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 922303A53BB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:17:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0912F188C2A9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C17BD1B3948;
-	Wed, 22 Jan 2025 08:17:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="h0BffGDB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EDBF1C3C14;
+	Wed, 22 Jan 2025 08:21:44 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49201.qiye.163.com (mail-m49201.qiye.163.com [45.254.49.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [195.130.132.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 732E217BB6;
-	Wed, 22 Jan 2025 08:17:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E39219F49E
+	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 08:21:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737533837; cv=none; b=CjbQ8hr6BFwXxJoz5PTvJNfyEKd9UTfcZifiHcItA1dccOBCyF65BdSRCR/L4hpUHOy54wW2a9SiOKp3jQvtQ/fH0OyEginf5xgGwy0oGoQL5/KhSWbP4cDJadK+Lw0mGQ0NG26wvunyuVGxdI7NfeacWIOMpke80bNCH9fsHcM=
+	t=1737534104; cv=none; b=e/FHNWM/t7NTX5n7HfImjRhwfsBdNpMsPfuFSwrmnfyME0YwXCFsaJ2moH4C4dz7O1OQjDAgTne4sk5V/cM0R3fMMBcNq6WPAQbqOGGMwSe+2iYIsN24ciZNFcmRGDuW1zDIi55HtPg/SaIB5u9y7Qh7LVpCSboIZgdfaP+5P1Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737533837; c=relaxed/simple;
-	bh=wS0iJPcyRSRmJ7Rsem6YrrR4OrhJuNJ99iiAGfhE0k8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YNCo03feyDwDQLGhB/hBHLuQpAZ416fo3RDsMWVaARCkZvCjIfLLpofjs8hdK1QECXalm3Cq2HisyDs+PqiLQ7SkF1KmA4nAyqxQyqFitXimnNcS4Z9uY9f/SO4qkEhHVyPc2NoMuShp9dY6338d16EwwuH3T6elK30uXooKjqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=h0BffGDB; arc=none smtp.client-ip=45.254.49.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.26] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 964943b6;
-	Wed, 22 Jan 2025 16:17:04 +0800 (GMT+08:00)
-Message-ID: <330041c4-aaee-4b41-8ccd-e2807415c709@rock-chips.com>
-Date: Wed, 22 Jan 2025 16:17:03 +0800
+	s=arc-20240116; t=1737534104; c=relaxed/simple;
+	bh=BR5h2JUnR5PUm/non386vdaKgp9+sq3jAzzmOs5WjhE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iWZG8+5iO57E8IsAqW4fxWHjabz3BNNvA/d5D72MwKMGsA5Tn2aUQmOD7PjdnLfgt0ql/hIuYNWdCc+G/AQK5NuebeB5QQO4DVC6aBqUY17AYWKK1DChCJl1tRcGa5I3VIi8qVSj3LlVosW0GDGkxbX0gwo/EAivNcM9cFXVY3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:6949:ff:ad3a:db44])
+	by baptiste.telenet-ops.be with cmsmtp
+	id 48MZ2E00a4mXrYp018MZlq; Wed, 22 Jan 2025 09:21:35 +0100
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.97)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1taVzJ-0000000E28f-2ZOd;
+	Wed, 22 Jan 2025 09:21:33 +0100
+Received: from geert by rox.of.borg with local (Exim 4.97)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1taVzR-00000005E0S-1TOh;
+	Wed, 22 Jan 2025 09:21:33 +0100
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Rob Herring <robh@kernel.org>
+Cc: linux-sound@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] ASoC: soc-core: Stop using of_property_read_bool() for non-boolean properties
+Date: Wed, 22 Jan 2025 09:21:27 +0100
+Message-ID: <db10e96fbda121e7456d70e97a013cbfc9755f4d.1737533954.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 12/20] drm/rockchip: analogix_dp: Add support to get
- panel from the DP AUX bus
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org,
- sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com,
- l.stach@pengutronix.de, andy.yan@rock-chips.com, hjc@rock-chips.com,
- algea.cao@rock-chips.com, kever.yang@rock-chips.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20250109032725.1102465-1-damon.ding@rock-chips.com>
- <20250109032725.1102465-13-damon.ding@rock-chips.com>
- <d7zpv6qt52mhny54dejw4yqlp2k2c437op7qmepqe27pufplqk@64xvohrz7h2q>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <d7zpv6qt52mhny54dejw4yqlp2k2c437op7qmepqe27pufplqk@64xvohrz7h2q>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQhlDSVZLSB1LHkgYTkgaHU1WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a948d161e8403a3kunm964943b6
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PDo6ERw6TTIJQy8BDB0QKUgQ
-	CChPCgFVSlVKTEhMTkhIQ0lNSUJIVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJT05PNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=h0BffGDBOH6ng9qbVn7Hx1mEclB/bytYNe7bHhleXXMVBiLrhiFs/2vIWNDx3nH3ajzpNCFmPtsU6g6qeBJUZEG8a508OpaoL5bOjo5xmETAocJwRQrxDRI1H0OHYdKtOINkPugtQVvcySFrnSiWSV1mvYmQhG69JnvEKoECHTw=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=0dJqsA0isVay8dpsPnxyQHy2JrvwJVceSD2lUsDULE4=;
-	h=date:mime-version:subject:message-id:from;
+Content-Transfer-Encoding: 8bit
 
-Hi Dmitry,
+On R-Car:
 
-On 2025/1/9 20:48, Dmitry Baryshkov wrote:
-> On Thu, Jan 09, 2025 at 11:27:17AM +0800, Damon Ding wrote:
->> Move drm_of_find_panel_or_bridge() a little later and combine it with
->> component_add() into a new function rockchip_dp_link_panel(). The function
->> will serve as done_probing() callback of devm_of_dp_aux_populate_bus(),
->> aiding to support for obtaining the eDP panel via the DP AUX bus.
->>
->> If failed to get the panel from the DP AUX bus, it will then try the other
->> way to get panel information through the platform bus.
->>
->> In addition, use dev_err() instead of drm_err() in rockchip_dp_poweron()
->> , which will be called before rockchip_dp_bind().
->>
->> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
->>
->> ---
->>
->> Changes in v4:
->> - Use done_probing() to call drm_of_find_panel_or_bridge() and
->>    component_add() when getting panel from the DP AUX bus
->>
->> Changes in v5:
->> - Use the functions exported by the Analogix side to get the pointers of
->>    struct analogix_dp_plat_data and struct drm_dp_aux.
->> - Use dev_err() instead of drm_err() in rockchip_dp_poweron().
->>
->> ---
->>   .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 41 ++++++++++++++-----
->>   1 file changed, 30 insertions(+), 11 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
->> index 0957d3c5d31d..3ae01b870f49 100644
->> --- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
->> +++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
->> @@ -124,13 +124,13 @@ static int rockchip_dp_poweron(struct analogix_dp_plat_data *plat_data)
->>   
->>   	ret = clk_prepare_enable(dp->pclk);
->>   	if (ret < 0) {
->> -		drm_err(dp->drm_dev, "failed to enable pclk %d\n", ret);
->> +		dev_err(dp->dev, "failed to enable pclk %d\n", ret);
-> 
-> 
-> why?
-> 
+    OF: /sound: Read of boolean property 'simple-audio-card,bitclock-master' with a value.
+    OF: /sound: Read of boolean property 'simple-audio-card,frame-master' with a value.
 
-The &rockchip_dp_device.drm_dev will be assigned in rockchip_dp_bind(), 
-which is called after probing process. The PM operations have been 
-advanced to the probing for the AUX transmission, so the dev_err() may 
-be better than drm_err().
+or:
 
->>   		return ret;
->>   	}
->>   
->>   	ret = rockchip_dp_pre_init(dp);
->>   	if (ret < 0) {
->> -		drm_err(dp->drm_dev, "failed to dp pre init %d\n", ret);
->> +		dev_err(dp->dev, "failed to dp pre init %d\n", ret);
->>   		clk_disable_unprepare(dp->pclk);
->>   		return ret;
->>   	}
-> 
+    OF: /soc/sound@ec500000/ports/port@0/endpoint: Read of boolean property 'bitclock-master' with a value.
+    OF: /soc/sound@ec500000/ports/port@0/endpoint: Read of boolean property 'frame-master' with a value.
 
-Best regards
-Damon
+The use of of_property_read_bool() for non-boolean properties is
+deprecated in favor of of_property_present() when testing for property
+presence.
+
+Replace testing for presence before calling of_property_read_u32() by
+testing for an -EINVAL return value from the latter, to simplify the
+code.
+
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+Seen since commit c141ecc3cecd7647 ("of: Warn when
+of_property_read_bool() is used on non-boolean properties") in
+dt-rh/for-next.
+
+I could not exercise all code paths, so review/testing would be
+appreciated. Thanks!
+---
+ sound/soc/soc-core.c | 32 +++++++++++++-------------------
+ 1 file changed, 13 insertions(+), 19 deletions(-)
+
+diff --git a/sound/soc/soc-core.c b/sound/soc/soc-core.c
+index 3c6d8aef4130901c..26b34b6885083908 100644
+--- a/sound/soc/soc-core.c
++++ b/sound/soc/soc-core.c
+@@ -3046,7 +3046,7 @@ int snd_soc_of_parse_pin_switches(struct snd_soc_card *card, const char *prop)
+ 	unsigned int i, nb_controls;
+ 	int ret;
+ 
+-	if (!of_property_read_bool(dev->of_node, prop))
++	if (!of_property_present(dev->of_node, prop))
+ 		return 0;
+ 
+ 	strings = devm_kcalloc(dev, nb_controls_max,
+@@ -3120,23 +3120,17 @@ int snd_soc_of_parse_tdm_slot(struct device_node *np,
+ 	if (rx_mask)
+ 		snd_soc_of_get_slot_mask(np, "dai-tdm-slot-rx-mask", rx_mask);
+ 
+-	if (of_property_read_bool(np, "dai-tdm-slot-num")) {
+-		ret = of_property_read_u32(np, "dai-tdm-slot-num", &val);
+-		if (ret)
+-			return ret;
+-
+-		if (slots)
+-			*slots = val;
+-	}
+-
+-	if (of_property_read_bool(np, "dai-tdm-slot-width")) {
+-		ret = of_property_read_u32(np, "dai-tdm-slot-width", &val);
+-		if (ret)
+-			return ret;
++	ret = of_property_read_u32(np, "dai-tdm-slot-num", &val);
++	if (ret && ret != -EINVAL)
++		return ret;
++	if (!ret && slots)
++		*slots = val;
+ 
+-		if (slot_width)
+-			*slot_width = val;
+-	}
++	ret = of_property_read_u32(np, "dai-tdm-slot-width", &val);
++	if (ret && ret != -EINVAL)
++		return ret;
++	if (!ret && slot_width)
++		*slot_width = val;
+ 
+ 	return 0;
+ }
+@@ -3403,12 +3397,12 @@ unsigned int snd_soc_daifmt_parse_clock_provider_raw(struct device_node *np,
+ 	 * check "[prefix]frame-master"
+ 	 */
+ 	snprintf(prop, sizeof(prop), "%sbitclock-master", prefix);
+-	bit = of_property_read_bool(np, prop);
++	bit = of_property_present(np, prop);
+ 	if (bit && bitclkmaster)
+ 		*bitclkmaster = of_parse_phandle(np, prop, 0);
+ 
+ 	snprintf(prop, sizeof(prop), "%sframe-master", prefix);
+-	frame = of_property_read_bool(np, prop);
++	frame = of_property_present(np, prop);
+ 	if (frame && framemaster)
+ 		*framemaster = of_parse_phandle(np, prop, 0);
+ 
+-- 
+2.43.0
 
 
