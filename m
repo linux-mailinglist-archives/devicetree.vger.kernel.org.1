@@ -1,282 +1,206 @@
-Return-Path: <devicetree+bounces-140170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45B3EA18C0A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 07:28:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94C3AA18C18
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 07:34:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E83601882C40
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 06:28:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0D471670B7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 06:34:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5F771B85E8;
-	Wed, 22 Jan 2025 06:26:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C110318A6CF;
+	Wed, 22 Jan 2025 06:34:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="ZuurH44s";
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="ABum1UYu"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y3/h29DF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D242F1B85EC;
-	Wed, 22 Jan 2025 06:26:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05832F9FE;
+	Wed, 22 Jan 2025 06:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737527188; cv=none; b=tA3GIx5dMPJNG8KsIlZU9++gV7dPuqQ57bshIQicxXGg50v3puTtwoSjS0ob93LsaFps5KZ2kJ0e9VpQqgzZH0CtTQt781JOGW9OYSgwBvxq00AIJzHrzP88EYFsgOX2t15M9MQDJP3uoKhAVeKcM6xJeRUSqpFKVdQmVjZGqFs=
+	t=1737527689; cv=none; b=Y5VdeLku7gyw4shBAg9ontt7o8cu10wSMjzqr2TdSX/5n6BEsAL5vyi/xR6VnBLL//QCt9HoRQjFYNxnAwg3ikyHpuIxjhTN9/IuIajR0AD/FY/9c7WLlmwKBh9zS1dnYgCjhTUoo0D99boqhx+7BK3MdNllKvb2FrxIYutud1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737527188; c=relaxed/simple;
-	bh=LvZtbOx23oXuxvcPLSjMli7ul6QBlUchqGsOEat8bDI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pX9fvYTdBhu1GzOsCWgrxSsoIgBZzlhMmSXCYSlOu8oOhERmLrXqgnM9OMZIKKPSusEduZV4nAMyOjtXbcxEGN2ff9SpMczPTE/k45/Bd6xNPsqDhRRJw7jtl1amGOWN76HSeTqxZM8aiYincgLO3khrvFT4AEHaqOS6GHcLkvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=ZuurH44s; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=ABum1UYu reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1737527186; x=1769063186;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=9u/crJESfYgfLnXAEoVjLnp6VMMTVpiHqislLKaWtYY=;
-  b=ZuurH44sbOp3QjTIYR5WeCc5CLpJDSw3qYSfKmDJhZ9+lbbr32/QfRcj
-   8dzK4juyGr59VbTAuJizucPcibaNuYrvrf2v+gI28MXIVtP3ZM8Vl+ncO
-   gXeCEecMryEv40IJASX94/LCVgxYEZGY2vRpI3zxzk3ZkFD4tq2BOzPgP
-   cx4eol39a214Y6dSDrDleOX6KNmPzfuyC1URIsYOPazWLaU/LTvKblbtG
-   a8wkS2IJ52yM87hxshI1x5Tfh2/1e7vnjnfeBkbi0r3zWhT/rHU56Iteq
-   9JuPNOO/Qnnclu2KP97sP/UCl1XddzKZs9UWSKLdXJHiYGWAQZ0j0O0s/
-   Q==;
-X-CSE-ConnectionGUID: n49MubZSTLyQQ9kP5gNPIg==
-X-CSE-MsgGUID: JsBfTRQJSNi3llUWQOwZQg==
-X-IronPort-AV: E=Sophos;i="6.13,224,1732575600"; 
-   d="scan'208";a="41212545"
-Received: from vmailcow01.tq-net.de ([10.150.86.48])
-  by mx1.tq-group.com with ESMTP; 22 Jan 2025 07:26:23 +0100
-X-CheckPoint: {67908F8F-A-C6D8D88D-F91F9E6B}
-X-MAIL-CPID: 2403587D2B52F075A1AD542859DADCF7_2
-X-Control-Analysis: str=0001.0A682F22.67908F8F.0099,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D9A411645A8;
-	Wed, 22 Jan 2025 07:26:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
-	s=dkim; t=1737527179;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9u/crJESfYgfLnXAEoVjLnp6VMMTVpiHqislLKaWtYY=;
-	b=ABum1UYuNNuF22azowes+x3IreIIxCHVRoi51q/OUa9Vb36cGigulimz8DMtZdHJwz5g+2
-	HGJbagJvbN+5ByCTqhQnwwaO7THduL5oIkVPm0u70XaiTr2ZTHubTiInfeszzh1yQ85v6M
-	SuNe/HbjZls8ypN7B84X66xx0FuPOQOHRMHnqAoTWL+/tNZ3+UkIYMqrwGuyZlyrby9aMh
-	TMqfUetaLtlOaIuc0GmY+P+mYt6GGvT8SWeeBCbz/6NAx8eJRkbVIFhGVH2mqS7+tRtwYj
-	c50OVyMrIOPmTxDPCQIr9nyAZJ0hy/YN2qTEOd+mFMImpqJK1yF7s1KqQjuBJQ==
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Peng Fan <peng.fan@nxp.com>
-Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v6 2/2] nvmem: imx-ocotp-ele: Support accessing controller for i.MX9
-Date: Wed, 22 Jan 2025 07:26:16 +0100
-Message-ID: <3890686.kQq0lBPeGt@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <PAXPR04MB8459845E7D949680044E203188E12@PAXPR04MB8459.eurprd04.prod.outlook.com>
-References: <20250121-imx-ocotp-v6-0-76dab40e13db@nxp.com> <8513553.T7Z3S40VBb@steina-w> <PAXPR04MB8459845E7D949680044E203188E12@PAXPR04MB8459.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1737527689; c=relaxed/simple;
+	bh=3DB9otIDmjGh5EklP4A4aNAs/hSS3NxacKHqjEWR630=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VosWUK5FtpS7d3TK97uLNMA3J30ZCkX1lSKIqKR/F0ciHddqLZNRm6upvjFDiPNzDkeCLO26sl1AfmIIwuLiN4WwR9FY+PGyFAsAaCIZtT0SWHgUiEBGMQHfKChTuDwSJV3KcMZIn0MlN2NJGH7x28uAdbZm55Iz4ASjBLqCqHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y3/h29DF; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50M1seb0014528;
+	Wed, 22 Jan 2025 06:34:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=SSQE8uI+/soHl0eCOg2k0i
+	rQMFbAY36Liz7TIMh9kAQ=; b=Y3/h29DF75uv1tRr96c5NZ5QEiUr+hibJnQ5sy
+	jmJLMO/Y4BQSNjwoqEeu9Mldv8dTzWYpv+lRAjCSTmc8J5jGp4gpbmdFWcob9Iai
+	5CeaqIEuak6iZJFdT7vkpu3xrxAHzLvhlaz1mgF+vCzhi8PPu5JewtJoSOOfLowm
+	w8eg3mzVB3vZGgkg5Ks5c2ZcGcB2Gwx51T7RAKKqDvV6iBfajeL6tb9Gavhyfn6s
+	FdkE2/ymksZVcWzYLYsH/EcFscrQhsj4D+Qo/wMi4mBNSNQBO4YhbPNcqwZm/0od
+	8TdU0s06RyWHvxV9VT8T2WL0h8SmIn5e8mDs1Tbu/B2yNz/w==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44aqe70jjy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Jan 2025 06:34:31 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50M6YUuB027976
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Jan 2025 06:34:30 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Tue, 21 Jan 2025 22:34:24 -0800
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: <bhelgaas@google.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <andersson@kernel.org>, <konradybcio@kernel.org>,
+        <p.zabel@pengutronix.de>, <dmitry.baryshkov@linaro.org>,
+        <quic_nsekar@quicinc.com>, <quic_varada@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>
+Subject: [PATCH v7 0/7] Add PCIe support for Qualcomm IPQ5332
+Date: Wed, 22 Jan 2025 12:04:04 +0530
+Message-ID: <20250122063411.3503097-1-quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: MIYGVZMXeA1JC5NCSENcteaaPLRzJFH0
+X-Proofpoint-GUID: MIYGVZMXeA1JC5NCSENcteaaPLRzJFH0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-22_02,2025-01-22_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
+ spamscore=0 phishscore=0 lowpriorityscore=0 priorityscore=1501
+ malwarescore=0 mlxscore=0 adultscore=0 impostorscore=0 mlxlogscore=999
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501220046
 
-Am Mittwoch, 22. Januar 2025, 04:36:33 CET schrieb Peng Fan:
-> > Subject: Re: [PATCH v6 2/2] nvmem: imx-ocotp-ele: Support accessing
-> > controller for i.MX9
-> >=20
-> > Hi,
-> >=20
-> > Am Dienstag, 21. Januar 2025, 16:05:32 CET schrieb Peng Fan (OSS):
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > i.MX9 OCOTP supports a specific peripheral or function being fused
-> > > which means disabled, so
-> > >  - Introduce ocotp_access_gates to be container of efuse gate info
-> > >  - Iterate all nodes to check accessing permission. If not
-> > >    allowed to be accessed, detach the node
-> > >
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >  drivers/nvmem/Kconfig         |   3 +
-> > >  drivers/nvmem/imx-ocotp-ele.c | 172
-> > > +++++++++++++++++++++++++++++++++++++++++-
-> > >  2 files changed, 174 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig index
-> > >
-> > 8671b7c974b933e147154bb40b5d41b5730518d2..77cc496fd5e0e1af
-> > d753534b56fe
-> > > 1f5ef3e3ec55 100644
-> > > --- a/drivers/nvmem/Kconfig
-> > > +++ b/drivers/nvmem/Kconfig
-> > > @@ -93,6 +93,9 @@ config NVMEM_IMX_OCOTP_ELE
-> > >  	  This is a driver for the On-Chip OTP Controller (OCOTP)
-> > >  	  available on i.MX SoCs which has ELE.
-> > >
-> > > +	  If built as modules, any other driver relying on this working
-> > > +	  as access controller also needs to be a module as well.
-> > > +
-> > >  config NVMEM_IMX_OCOTP_SCU
-> > >  	tristate "i.MX8 SCU On-Chip OTP Controller support"
-> > >  	depends on IMX_SCU
-> > > diff --git a/drivers/nvmem/imx-ocotp-ele.c
-> > > b/drivers/nvmem/imx-ocotp-ele.c index
-> > >
-> > ca6dd71d8a2e29888c6e556aaea116c1a967cb5f..5ea6d959ce38760ee
-> > ed44a989992
-> > > fb35c462c0b4 100644
-> > > --- a/drivers/nvmem/imx-ocotp-ele.c
-> > > +++ b/drivers/nvmem/imx-ocotp-ele.c
-> > > @@ -5,6 +5,8 @@
-> > >   * Copyright 2023 NXP
-> > >   */
-> > >
-> > > +#include <dt-bindings/nvmem/fsl,imx93-ocotp.h>
-> > > +#include <dt-bindings/nvmem/fsl,imx95-ocotp.h>
-> > >  #include <linux/device.h>
-> > >  #include <linux/io.h>
-> > >  #include <linux/module.h>
-> > > @@ -27,6 +29,7 @@ struct ocotp_map_entry {  };
-> > >
-> > >  struct ocotp_devtype_data {
-> > > +	const struct ocotp_access_gates *access_gates;
-> > >  	u32 reg_off;
-> > >  	char *name;
-> > >  	u32 size;
-> > > @@ -36,6 +39,20 @@ struct ocotp_devtype_data {
-> > >  	struct ocotp_map_entry entry[];
-> > >  };
-> > >
-> > > +#define OCOTP_MAX_NUM_GATE_WORDS 4
-> > > +
-> > > +struct access_gate {
-> > > +	u32 word;
-> > > +	u32 mask;
-> > > +};
-> > > +
-> > > +struct ocotp_access_gates {
-> > > +	u32 num_words;
-> > > +	u32 words[OCOTP_MAX_NUM_GATE_WORDS];
-> > > +	u32 num_gates;
-> > > +	struct access_gate *gates;
-> > > +};
-> > > +
-> > >  struct imx_ocotp_priv {
-> > >  	struct device *dev;
-> > >  	void __iomem *base;
-> > > @@ -131,6 +148,82 @@ static void
-> > imx_ocotp_fixup_dt_cell_info(struct nvmem_device *nvmem,
-> > >  	cell->read_post_process =3D imx_ocotp_cell_pp;  }
-> > >
-> > > +static int imx_ele_ocotp_check_access(struct imx_ocotp_priv *priv,
-> > > +u32 id) {
-> > > +	const struct ocotp_access_gates *access_gates =3D priv->data-
-> > >access_gates;
-> > > +	void __iomem *reg =3D priv->base + priv->data->reg_off;
-> > > +	u32 word, mask, val;
-> > > +
-> > > +	if (id >=3D access_gates->num_gates) {
-> > > +		dev_err(priv->config.dev, "Index %d too large\n", id);
-> > > +		return -EACCES;
-> > > +	}
-> > > +
-> > > +	word =3D access_gates->gates[id].word;
-> > > +	mask =3D access_gates->gates[id].mask;
-> > > +
-> > > +	reg =3D priv->base + priv->data->reg_off + (word << 2);
-> > > +	val =3D readl(reg);
-> > > +
-> > > +	dev_dbg(priv->config.dev, "id:%d word:%d mask:0x%08x\n",
-> > id, word, mask);
-> > > +	/* true means not allow access */
-> > > +	if (val & mask)
-> > > +		return -EACCES;
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int imx_ele_ocotp_grant_access(struct imx_ocotp_priv *priv,
-> > > +struct device_node *parent) {
-> > > +	struct device *dev =3D priv->config.dev;
-> > > +
-> > > +	for_each_available_child_of_node_scoped(parent, child) {
-> > > +		struct of_phandle_args args;
-> > > +		u32 id, idx =3D 0;
-> > > +
-> > > +		while (!of_parse_phandle_with_args(child, "access-
-> > controllers",
-> > > +						   "#access-
-> > controller-cells",
-> > > +						   idx++, &args)) {
-> > > +			of_node_put(args.np);
-> > > +			if (args.np !=3D dev->of_node)
-> > > +				continue;
-> > > +
-> > > +			/* Only support one cell */
-> > > +			if (args.args_count !=3D 1) {
-> > > +				dev_err(dev, "wrong args count\n");
-> > > +				continue;
-> > > +			}
-> > > +
-> > > +			id =3D args.args[0];
-> > > +
-> > > +			dev_dbg(dev, "Checking node: %pOF
-> > gate: %d\n", child, id);
-> > > +
-> > > +			if (imx_ele_ocotp_check_access(priv, id)) {
-> > > +				of_detach_node(child);
-> > > +				dev_info(dev, "%pOF: Not granted,
-> > device driver will not be probed\n",
-> > > +					 child);
-> > > +			}
-> > > +		}
-> > > +
-> > > +		imx_ele_ocotp_grant_access(priv, child);
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static int imx_ele_ocotp_access_control(struct imx_ocotp_priv *priv)
-> > > +{
-> > > +	struct device_node *root __free(device_node) =3D
-> > > +of_find_node_by_path("/");
-> > > +
-> > > +	if (!priv->data->access_gates)
-> > > +		return 0;
-> > > +
-> > > +	/* This should never happen */
-> > > +	WARN_ON(!root);
-> >=20
-> > Even if you warning something is wrong, aka root =3D=3D NULL, you are s=
-till
-> > using it on imx_ele_ocotp_grant_access(). Just return early.
-> >=20
-> > if (WARN_ON(!))
-> > 	return -EINVAL;
->=20
-> Hmm, If this really happens, return early or not does not make much sense.
-> Does it really matter here?
+Patch series adds support for enabling the PCIe controller and
+UNIPHY found on Qualcomm IPQ5332 platform. PCIe0 is Gen3 X1 and
+PCIe1 is Gen3 X2 are added.
 
-Why does it not make much sense? You already know something is wrong, aka
-you have a NULL pointer, so it makes even less sense to continue.
-I've skipped through the sources and looked for 'WARN_ON(!<pointer>)',
-most of the times it is actually checked for early returns.
+This series combines [1] and [2]. [1] introduces IPQ5018 PCIe
+support and [2] depends on [1] to introduce IPQ5332 PCIe support.
+Since the community was interested in [2] (please see [3]), tried
+to revive IPQ5332's PCIe support with v2 of this patch series.
 
-Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+v2 of this series pulled in the phy driver from [1] tried to
+address comments/feedback given in both [1] and [2].
 
+1. Enable IPQ5018 PCI support (Nitheesh Sekar) - https://lore.kernel.org/all/20231003120846.28626-1-quic_nsekar@quicinc.com/
+2. Add PCIe support for Qualcomm IPQ5332 (Praveenkumar I) - https://lore.kernel.org/linux-arm-msm/20231214062847.2215542-1-quic_ipkumar@quicinc.com/
+3. Community interest - https://lore.kernel.org/linux-arm-msm/20240310132915.GE3390@thinkpad/
+
+v7: phy bindings:
+    * Include data type definition to 'num-lanes'
+
+    controller bindings:
+    * Split the ipq9574 and ipq5332 changes into separate patches
+
+    dtsi:
+    * Add root port definitions
+
+v6: phy bindings:
+    * Fix num-lanes definition
+
+    phy driver:
+    * Fix num-lanes handling in probe to use generally followed pattern
+
+    controller bindings:
+    * Give more info in commit log
+
+    dtsi:
+    * Add assigned-clocks & assigned-clock-rates to controller nodes
+    * Add num-lanes to pcie0_phy
+
+v5: phy bindings:
+    * Drop '3x1' & '3x2' from compatible string
+    * Use 'num-lanes' to differentiate instead of '3x1' or '3x2'
+      in compatible string
+    * Describe clocks and resets instead of just maxItems
+
+    phy driver:
+    * Get num-lanes from DTS
+    * Drop compatible specific init data as there is only one
+      compatible string
+
+    controller bindings:
+    * Re-arrange 5332 and 9574 compatibles to handle fallback usage in dts
+
+    dtsi:
+    * Add 'num-lanes' to "pcie1_phy: phy@4b1000"
+    * Make ipq5332 as main and ipq9574 as fallback compatible
+    * Sort controller nodes per address
+
+    misc:
+    Add R-B tag from Konrad to dts and dtsi patches
+
+v4: * phy bindings - Create ipq5332 compatible instead of reusing ipq9574 for bindings
+    * phy bindings - Remove reset-names as the resets are handled with bulk APIs
+    * phy bindings - Fix order in the 'required' section
+    * phy bindings - Remove clock-output-names
+    * dtsi - Add missing reset for pcie1_phy
+    * dtsi - Convert 'reg-names' to a vertical list
+    * dts - Fix nodes sort order
+    * dts - Use property-n followed by property-names
+
+v3: * Update the cover letter with the sources of the patches
+    * Rename the dt-bindings yaml file similar to other phys
+    * Drop ipq5332 specific pcie controllor bindings and reuse
+      ipq9574 pcie controller bindings for ipq5332
+    * Please see patches for specific changes
+    * Set GPL license for phy-qcom-uniphy-pcie-28lp.c
+
+v2: Address review comments from V1
+    Drop the 'required clocks' change that would break ABI (in dt-binding, dts, gcc-ipq5332.c)
+    Include phy driver from the dependent series
+
+v1: https://lore.kernel.org/linux-arm-msm/20231214062847.2215542-1-quic_ipkumar@quicinc.com/
+
+Nitheesh Sekar (2):
+  dt-bindings: phy: qcom,uniphy-pcie: Document PCIe uniphy
+  phy: qcom: Introduce PCIe UNIPHY 28LP driver
+
+Praveenkumar I (2):
+  arm64: dts: qcom: ipq5332: Add PCIe related nodes
+  arm64: dts: qcom: ipq5332-rdp441: Enable PCIe phys and controllers
+
+Varadarajan Narayanan (3):
+  dt-bindings: PCI: qcom: Use sdx55 reg description for ipq9574
+  arm64: dts: qcom: ipq9574: Reorder reg and reg-names
+  dt-bindings: PCI: qcom: Document the IPQ5332 PCIe controller
+
+ .../devicetree/bindings/pci/qcom,pcie.yaml    |  15 +-
+ .../phy/qcom,ipq5332-uniphy-pcie-phy.yaml     |  76 +++++
+ arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts   |  76 +++++
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         | 268 +++++++++++++++-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |  52 ++--
+ drivers/phy/qualcomm/Kconfig                  |  12 +
+ drivers/phy/qualcomm/Makefile                 |   1 +
+ .../phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c  | 286 ++++++++++++++++++
+ 8 files changed, 763 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq5332-uniphy-pcie-phy.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-uniphy-pcie-28lp.c
+
+
+base-commit: 37136bf5c3a6f6b686d74f41837a6406bec6b7bc
+-- 
+2.34.1
 
 
