@@ -1,146 +1,200 @@
-Return-Path: <devicetree+bounces-140229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0021A18EED
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:56:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABC4DA18EEE
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:56:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 957B93A4E25
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:56:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FED51884BCC
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:56:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C39672116E4;
-	Wed, 22 Jan 2025 09:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB2C21128A;
+	Wed, 22 Jan 2025 09:55:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mZ65s2Fn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NfEpP8H/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AADD6210F56
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 09:55:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530DC211283;
+	Wed, 22 Jan 2025 09:55:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737539738; cv=none; b=ZRIGli/td2WHzrLSOrFnVATO+dFb02gnV50mG/TsLz6Mk1ZN4JDOqIifxS6ZSAILAiT2yPN5tdTLDxZp2jkDgYPTw7xmqp3XIVhRiYidHLj6K0djJWy4qxPu5QjQz+7yd4fAq11Bk0Rk202WJ59HEwPp2eC9ZwvrnNnzvmbml7s=
+	t=1737539744; cv=none; b=DDFRSBhqUZB1zZmG99kJXDSCoGguLaGD0TWeoTQ1TNXTOoAEW3tU/7lY8Mf/WHLSnNqQ3x6fpIZIRTDqnNTGGCcaSIoqX3EG2eoM8TSptVS2DiWaaB/zpxya97ZRv4mTARtmblv0H5UAUyytsTkGyHLxcKwYqNEZ8mTQ+0dtMms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737539738; c=relaxed/simple;
-	bh=A7skF+DaxCykLOeAdbWIBEemfXQfKaF/hi2Lg/ra9b8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cXE3bdSIQ6nkZO8D7EwGHru+LLqfdeuuTcG+ChkvO8WQd1G2/Ou3RPRhVM8IG0g+1CoYyvNb3so1Pe4xYBx4eqhHx1GK4p4TOyEIVD21DPInLbxxcYW+2qk+5x/QKJoR8qnA8uSlmcYKeUZSrcOvwUi0mV78U7FKXFBoBwBmzJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mZ65s2Fn; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-303548a933aso59599181fa.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 01:55:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737539734; x=1738144534; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=scV0mTsOi7ZzfUvIFazmqCl77AdAA0xM0waC6G2ecgo=;
-        b=mZ65s2FnOLQS37AXtF5gwU9InMa9kgOJzws6pSdQt5jc77Ah0J8jq7DmAsbdTlRrIs
-         wn+L1Ve8xc1aIymUv+ZOsfsN59h1FmIYfZQMOcegvxJJCzjXFF7718RUcTryHKXK9SIV
-         9mbeo1MleUOnutEO5TgK+hiMOdPY1JaftpWtOEr1q8e4r/Z0ZXr2psEgvOd/BHQR+AsT
-         7iEWY7+TMaSPIMVXPAHyV4ZRKcGRYiwzxVkG65JvjksIrnSZ+1SfyUH9ynwNF21W2RI5
-         mX4CAGYdSVsWTGjVOJR62csqHV91/FStO5pqLz7IYJyW8Eb9/Lqh+nWWeGCU/hWI5IvF
-         FaLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737539734; x=1738144534;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=scV0mTsOi7ZzfUvIFazmqCl77AdAA0xM0waC6G2ecgo=;
-        b=gzyRHb8ImHyA/cbH2dpO+1h3Htx9ZaYSFEjHIIZG/1uizPrC3jFsQ6ydZNsb49I08w
-         /OSuxHsu2+n6RjwnO7sKW+A2URpxVwxV7bwoppg+UgJcRLM/gXQAU+5ADf9PsUUu9uv/
-         xtcz1WyXXxZIqSEJOeUeY5s85RJrUTuiMJkbmvJ7g3JpkIhMYosYIsP5mNBDKuvyGzVF
-         lEDCju3F653ntX2oersdgIKhYcV5J9VEsw+IcakvLFsXuhtubWPjbxTghRDRihgwlYM+
-         zBsaucNoGe/E/Ys7ZAl7I9qtFbL8pLjJukwcVcwyFEVh69w4AhGka6kwCaVd4Ded5MOO
-         3EPw==
-X-Forwarded-Encrypted: i=1; AJvYcCVp1HMlr2l9yywdNhnDs6qMTqJCx5sB9YVtgTvbkPOa1+4Huja1qao+KFnhB8LO4o8/ni2lBWSqBslO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSqagNZdI1LqpePtOEo9m0Y4kaZ4L0dmI6tr/QxjiT1mzPDNC9
-	5cCOGOc4XD6fIB0KmwaVMhjILDAXa0WiWS8p3FQp9ek23q+Syf3wtwQ9m5KikD0=
-X-Gm-Gg: ASbGncupbkiZGKQ6PpmcJZiB5QwYThOYkZjmA3Bh9+UG60NZjYPXULpiFy/MLUWWRmV
-	JbcJmuVw4MSncNGpvBq5uQfmLqK4aAFG++Kl4+gCFzRCE/c5XmAyBtvAlsRlcBpA5ij7Pixo5nt
-	NTScf3QGrEYiwCLyW2kJQK3lmUVxbaHzeQZoBk8OIKLazRlgiPOdw6DWc9YaGmqxXv+gXdIRfOe
-	2VXa0ehYoAbayN7Eb06Qph+tSmDFsft0ZxrsD+b++F0vEqxLSX/PyXFyeqLXDapgXImiYhyN/2g
-	xLtwjG81pO7e5CwdTyzqJd/QmJS8gwzR/uKjrOIgrZd/cftBwA==
-X-Google-Smtp-Source: AGHT+IEyVRLyus5hXslfncouru7d589DBCXm5XQ6Y4wWqmqqzrIjL4zImkrlqZfNjmApRZhoecA7yw==
-X-Received: by 2002:a2e:bd89:0:b0:307:2bc6:5eae with SMTP id 38308e7fff4ca-3072c990274mr76013791fa.0.1737539733757;
-        Wed, 22 Jan 2025 01:55:33 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3072a5013aesm25703591fa.89.2025.01.22.01.55.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jan 2025 01:55:33 -0800 (PST)
-Date: Wed, 22 Jan 2025 11:55:31 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sachin Gupta <quic_sachgupt@quicinc.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Adrian Hunter <adrian.hunter@intel.com>, Bhupesh Sharma <bhupesh.sharma@linaro.org>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, quic_cang@quicinc.com, quic_nguyenb@quicinc.com, 
-	quic_bhaskarv@quicinc.com, quic_mapa@quicinc.com, quic_narepall@quicinc.com, 
-	quic_nitirawa@quicinc.com, quic_rampraka@quicinc.com, quic_sartgarg@quicinc.com
-Subject: Re: [PATCH V3 2/4] mmc: sdhci-msm: Add core_major, minor to msm_host
- structure
-Message-ID: <rvu75rn2m32eyjr4ogwz5tmns2bkv3mp4gaz562gjmxztnejsl@deslghsvjhmi>
-References: <20250122094707.24859-1-quic_sachgupt@quicinc.com>
- <20250122094707.24859-3-quic_sachgupt@quicinc.com>
+	s=arc-20240116; t=1737539744; c=relaxed/simple;
+	bh=oTek1JRLg1nABvU7rxwqx97/p8svej4w5YzkvNSofVM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gANBZfTxZd2Jwn0+ZWyftcQ0I90Ya0L4tc8O3CFI2ogS/pHXFnd3fre/pfBq0E+2Ff5nIZaF3py56STF8SdU3652BhgrV0Hsi6sduRS/y393lXwmpObnbSdEQ7ORZ/i17Q/i70v0kNziT8KXbkWcIl+ejBuekCrlsmo6aBIHC+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NfEpP8H/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 990A2C4CEE2;
+	Wed, 22 Jan 2025 09:55:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737539741;
+	bh=oTek1JRLg1nABvU7rxwqx97/p8svej4w5YzkvNSofVM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NfEpP8H/5XTmmcZM7/Cd5HS0PZkfFZrX0bx2m/biDCf9WAieo928GjZM+jb7bfPOj
+	 NQoNDxN+DITenk9l2NF9vg1HcCYzaeWGNnbPpJQOmirG1fwXHTMqQMCuj2Nod9gFhO
+	 2Vyt0W62gA4arrEmNjbGCV+bCPoeUUyOWhOsmTkJIrTbb5HPJI2D+HvYMNNuibBjOM
+	 v0g3ybgwxPL80vY11fyiiqQJzQzsafHHEnl0lgVM7YDMuFrvxUY4u707pL8XBiAF82
+	 a+RREuSPSfa6o4FC1VPkTGgg2LXdfnyrfES6NT9xNypMM9G4p4Qppjq543WoIiB44R
+	 +Np3L9/uqYrEQ==
+Message-ID: <77ea5067-deb2-41d4-ab82-ce19ac018ba3@kernel.org>
+Date: Wed, 22 Jan 2025 10:55:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250122094707.24859-3-quic_sachgupt@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 12/13] dt-bindings: display: vop2: Add rk3576 support
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, derek.foreman@collabora.com,
+ detlev.casanova@collabora.com, daniel@fooishbar.org, robh@kernel.org,
+ sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>
+References: <20250121103254.2528004-1-andyshrk@163.com>
+ <20250121103500.2528258-1-andyshrk@163.com>
+ <20250122-amber-moth-of-upgrade-fa8331@krzk-bin>
+ <5eb4acaa.6df6.1948d68332d.Coremail.andyshrk@163.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <5eb4acaa.6df6.1948d68332d.Coremail.andyshrk@163.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jan 22, 2025 at 03:17:05PM +0530, Sachin Gupta wrote:
-> This change adds the core_major and core_minor variables to
-
-Please see Documentation/process/submitting-patches.rst, look for "[This
-patch] makes xyzzy do frotz", then update your internal documentation so
-that other engineers stop making the same mistake.
-
-> the msm_host structure, allowing these variables to be
-> accessed more easily throughout the msm_host context.
-> This update is necessary for an upcoming follow-up patch.
+On 22/01/2025 10:46, Andy Yan wrote:
+>>> -      The VOP interrupt is shared by several interrupt sources, such as
+>>> -      frame start (VSYNC), line flag and other status interrupts.
+>>> +      For VOP version under rk3576, the interrupt is shared by several interrupt
+>>> +      sources, such as frame start (VSYNC), line flag and other interrupt status.
+>>> +      For VOP version from rk3576 there is a system interrupt for bus error, and
+>>> +      every video port has it's independent interrupts for vsync and other video
+>>> +      port related error interrupts.
+>>> +
+>>> +  interrupt-names:
+>>> +    items:
+>>> +      - const: sys
+>>> +      - const: vp0
+>>> +      - const: vp1
+>>> +      - const: vp2
+>>>  
+>>>    # See compatible-specific constraints below.
+>>>    clocks:
+>>> @@ -135,6 +147,8 @@ allOf:
+>>>          interrupts:
+>>>            maxItems: 1
+>>
+>> So this change moves to this patch.
+>>
+>>>  
+>>> +        interrupt-names: false
+>>> +
+>>>          ports:
+>>>            required:
+>>>              - port@0
+>>> @@ -148,6 +162,39 @@ allOf:
+>>>        required:
+>>>          - rockchip,grf
+>>>  
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - rockchip,rk3576-vop
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 5
+>>
+>> No. You did not implement my comment at all.
+>>
+>> So again:
+>> "Why minItems? Nothing in this patch makes sense for me. Neither changing
+>> existing binding nor new binding for rk3576."
 > 
-> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
-> ---
->  drivers/mmc/host/sdhci-msm.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
-> index e00208535bd1..2a5e588779fc 100644
-> --- a/drivers/mmc/host/sdhci-msm.c
-> +++ b/drivers/mmc/host/sdhci-msm.c
-> @@ -273,6 +273,8 @@ struct sdhci_msm_host {
->  	bool tuning_done;
->  	bool calibration_done;
->  	u8 saved_tuning_phase;
-> +	u8 core_major;
-> +	u16 core_minor;
->  	bool use_cdclp533;
->  	u32 curr_pwr_state;
->  	u32 curr_io_level;
-> @@ -2557,6 +2559,10 @@ static int sdhci_msm_probe(struct platform_device *pdev)
->  	core_major = (core_version & CORE_VERSION_MAJOR_MASK) >>
->  		      CORE_VERSION_MAJOR_SHIFT;
->  	core_minor = core_version & CORE_VERSION_MINOR_MASK;
-> +
-> +	msm_host->core_major = core_major;
-> +	msm_host->core_minor = core_minor;
-> +
->  	dev_dbg(&pdev->dev, "MCI Version: 0x%08x, major: 0x%04x, minor: 0x%02x\n",
->  		core_version, core_major, core_minor);
->  
-> -- 
-> 2.17.1
-> 
+> Do you mean because I already defined minItems of clocks is 5 on the top, so 
+> there is no need to redefine the same minItems here ?
 
--- 
-With best wishes
-Dmitry
+Lists must be constrained. This is not constrained from the max items
+and you repeat existing constrain.
+
+For every variable list you need to provide min and maxItems, except the
+edge cases when dimension matches top level dimension.
+
+Standard example is:
+
+https://elixir.bootlin.com/linux/v6.11-rc6/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L127
+
+which I mention on mailing lists multiple times. Also described this
+case exactly on my two talks...
+
+> 
+>>
+>> To address such comment, come with reasonable answer to "why". Not just
+>> send the same. It's a waste of my time to keep reviewing the same.
+> 
+> Before sending this patch, I asked you what the next step should be, but you didn't respond.
+
+You asked whether splitting is correct and I did not object that. I
+already said: " You need to split reorganizing", then you asked if you
+can split, so sorry, I am not going to keep repeating the same multiple
+times.
+
+But anyway this is not about the split, so you did not question last
+time how to do it. You just skipped my paragraph asking for "Why?".
+
+
+
+Best regards,
+Krzysztof
 
