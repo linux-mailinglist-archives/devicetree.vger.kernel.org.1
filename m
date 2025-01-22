@@ -1,181 +1,95 @@
-Return-Path: <devicetree+bounces-140366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4873A1962D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 17:11:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32909A19632
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 17:12:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63186188C932
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 16:11:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78D1916584E
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 16:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB31C214A83;
-	Wed, 22 Jan 2025 16:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91E5E214A83;
+	Wed, 22 Jan 2025 16:12:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="Y5UbnKq0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eAkyegvA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30A8F211475;
-	Wed, 22 Jan 2025 16:11:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6773D2135B9;
+	Wed, 22 Jan 2025 16:12:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737562299; cv=none; b=NXTLhTgW4HtRP1yhvX/+BidvfFp7REpMS9J1UnD6I/Z41C49bg2iysUO4DLjMMgPj25CmxCLkuaV2w0M31Wy4KriGsms/a0aBmXLWPLVGzvGV4wHdRCZorEqFFk2AxTbxixhw2VBSNntlVusMcScoydZ31e5fX5DaIEc/PLvHmQ=
+	t=1737562352; cv=none; b=tLn37lYtzfdITAU+zEm0GxxeKp0EsLlhmk64YNYc3KdaGscQ3xNQA/8Z1tBwy7pmL1PCB/ZN7v6W73whVLtMDa0/xR6zKtf93FwctHGfJjYZ4AQXd2b9FINUp67lWVzeeKwT4FwOpoRUZ2axdYxBBa4U0wYV+TKQ3YdHFkvRHtc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737562299; c=relaxed/simple;
-	bh=1h5CvTCnATVeGrnRRSKC+cqlhkQiPlNOQ2MnV9wzQj4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=unkOsMmyO2fHIF0uMFDVhcWxr7TaewZZnrOTtORa1pn476ZHaJJZxK/7UAWP8Pqc7oNU2fDFz1IJTYOO/6vWso7jV+Aa7bsUUz89SnZoN4ppX6AZKdNjGWJuYTHw0h24lS9XE//g8SgG/GDhVWasdsKIH56XTZ5p/0rYHJYfkxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=Y5UbnKq0; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0360072.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50M7XQCM013738;
-	Wed, 22 Jan 2025 16:11:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=pp1; bh=PztkFg
-	57upQfl9uFVIH43wRTzPCQzZPmgJS1hWIsUPw=; b=Y5UbnKq09lf5xMnyzODXzE
-	F1VGboZ3m+Y7XTJqgIt5Lef6SVz+4J4hYOZ1HJHoObXAUT8CVL4idNdr4L5HCE7P
-	9yDTlPs+4v/UEFcU1T3v1XXzv1+MVcxN4KJ0rx/IKxl3IqM/GGbYvZYP9yb4coU+
-	ZYdnyKel7B2V42WHsyOFMOglrXpAABUjxK+NWR0XLxcZ2Qf6Mbr+FMuTbNJ1PuEz
-	88FTiZJCKdYrOr6ZePMe2CfJXJU2xwRLsUWF1FZXzbZgCV8PMhhztlsXfTYjSZFe
-	BXm7nZIJ5dwXDlQ78EjI469vVF2Raq8CGuNWYk7AHvkSpUQ+fSH/ZJDaH9XD0G/A
-	==
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 44avcp2bjv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Jan 2025 16:11:07 +0000 (GMT)
-Received: from m0360072.ppops.net (m0360072.ppops.net [127.0.0.1])
-	by pps.reinject (8.18.0.8/8.18.0.8) with ESMTP id 50MFqPue027924;
-	Wed, 22 Jan 2025 16:11:06 GMT
-Received: from ppma22.wdc07v.mail.ibm.com (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 44avcp2bjr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Jan 2025 16:11:06 +0000 (GMT)
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
-	by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 50MD2vpu024241;
-	Wed, 22 Jan 2025 16:11:05 GMT
-Received: from smtprelay01.wdc07v.mail.ibm.com ([172.16.1.68])
-	by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 448q0y9awu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Jan 2025 16:11:05 +0000
-Received: from smtpav04.wdc07v.mail.ibm.com (smtpav04.wdc07v.mail.ibm.com [10.39.53.231])
-	by smtprelay01.wdc07v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 50MGB5IV9634130
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 22 Jan 2025 16:11:05 GMT
-Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 66C1158045;
-	Wed, 22 Jan 2025 16:11:05 +0000 (GMT)
-Received: from smtpav04.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 804CE58050;
-	Wed, 22 Jan 2025 16:11:04 +0000 (GMT)
-Received: from [9.61.66.14] (unknown [9.61.66.14])
-	by smtpav04.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Wed, 22 Jan 2025 16:11:04 +0000 (GMT)
-Message-ID: <804bffdf-a029-4bed-a6f1-42cf4c129f2a@linux.ibm.com>
-Date: Wed, 22 Jan 2025 10:11:02 -0600
+	s=arc-20240116; t=1737562352; c=relaxed/simple;
+	bh=0QimwBK0cgXjaimRuuz1Y9NRWVe3Ak2Ys2b42kdgL50=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jgajxBd3+2ovAqp8rpqTKUpx9jalxDJAfHD9tEU1rtEiDsQM2qFkYGUUowU6Ef5xHMOwlqOV4y8YesHcX771VULdC1V4xIoiF4t4/vgahOO4LUFtG5JjsycGz26FOy15eZ+fdwleP9bOC+QHgyu8dlO/SOr2A7lC3hNW/N2uE1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eAkyegvA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45AEDC4CED2;
+	Wed, 22 Jan 2025 16:12:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737562351;
+	bh=0QimwBK0cgXjaimRuuz1Y9NRWVe3Ak2Ys2b42kdgL50=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eAkyegvAokUwR3nsoFLgsH1aCXyo/6LYy2MXL6qpKG3JT8SFPCfkovFZLGbDEdzqN
+	 4Q60r+Epz91fxYVYEYtdebaXcq+dsy1tRh2dRLECJkykB7Rbqw33y1d4t6vzOgSNMt
+	 2DBjjDWE1x/PTNv0lMyHYf3J2e9LxJhR/ox3DdkOWn2VS09J/K4Sp5fAEBJhJ3rNNZ
+	 ihwPzcgVWyQ2aA7zdGlUWtH24Tqtutj74PV4NvPLgr20C0Jish1IbxbAiE/vUJDK6e
+	 WSKcuG+BMJM5Ap2XbZnWFAB6oK4JRYq6KCS769eMk7QmCxnWkUJQH3mTrE463aOekg
+	 Ep0Nq3WeRi6ow==
+Date: Wed, 22 Jan 2025 17:12:26 +0100
+From: Niklas Cassel <cassel@kernel.org>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Jagan Teki <jagan@edgeble.ai>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/3] arm64: dts: rockchip: minimal support for Pre-ICT
+ tester adapter for RK3588 Jaguar + add overlay tests
+Message-ID: <Z5EY6uMmDCgfOzGO@ryzen>
+References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
+ <6dd64754-fe72-4288-9724-b3cdaf193b3b@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 08/10] ARM: dts: aspeed: system1: Remove VRs max8952
-To: Ninad Palsule <ninad@linux.ibm.com>, minyard@acm.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, andrew+netdev@lunn.ch,
-        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, openipmi-developer@lists.sourceforge.net,
-        netdev@vger.kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-References: <20250116203527.2102742-1-ninad@linux.ibm.com>
- <20250116203527.2102742-9-ninad@linux.ibm.com>
-Content-Language: en-US
-From: Eddie James <eajames@linux.ibm.com>
-In-Reply-To: <20250116203527.2102742-9-ninad@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: ZcgzZU75w_qF0eNW3_16-1LnugWQ9ohb
-X-Proofpoint-GUID: Rx_zD-AK266kWu98eA7hPXtTKYAqCPtP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-22_07,2025-01-22_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- bulkscore=0 mlxlogscore=999 spamscore=0 phishscore=0 mlxscore=0
- suspectscore=0 lowpriorityscore=0 priorityscore=1501 clxscore=1015
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501220118
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <6dd64754-fe72-4288-9724-b3cdaf193b3b@cherry.de>
+
+On Wed, Jan 22, 2025 at 04:38:16PM +0100, Quentin Schulz wrote:
+> So essentially, if SPL_ATF_NO_PLATFORM_PARAM is selected (the default for
+> RK356x, RK3588, forced on on RK3308, enabled for the majority of RK3399
+> boards, enabled for all RK3328 boards) the DT won't be passed to TF-A so no
+> issue in terms of size on that side.
+> If it is not selected, for TF-A < 2.4 (released 20201117, 4 years ago), a
+> DTB bigger than 64KiB will crash TF-A.
+> If it is not selected, for TF-A >= 2.4, a DTB bigger than 128KiB will result
+> in TF-A not being able to read the DTB (for Rockchip, that means not being
+> able to derive the UART settings (controller and baudrate) to use, and will
+> use the compile-time default instead).
+
+Not everyone is using binary blobs from Rockchip.
+On my rock5b (rk3588), I'm building the bootloader using buildroot,
+which is using upstream TrustedFirmware-A (v2.12).
 
 
-On 1/16/25 14:35, Ninad Palsule wrote:
-> Removing voltage regulators max8952 from device tree. Those are fully
-> controlled by hardware and firmware should not touch them.
+> In short, I don't know where to go with that additional piece of
+> information, but this is a bit bigger than simply moving things around and
+> adding compile-time tests for overlay application.
+
+This is significant information indeed.
 
 
-Reviewed-by: Eddie James <eajames@linux.ibm.com>
-
-
->
-> Signed-off-by: Ninad Palsule <ninad@linux.ibm.com>
-> ---
->   .../dts/aspeed/aspeed-bmc-ibm-system1.dts     | 34 -------------------
->   1 file changed, 34 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-> index 1e0b1111ea9a..089a8315753a 100644
-> --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-system1.dts
-> @@ -486,23 +486,6 @@ eeprom@50 {
->   		compatible = "atmel,24c64";
->   		reg = <0x50>;
->   	};
-> -
-> -	regulator@60 {
-> -		compatible = "maxim,max8952";
-> -		reg = <0x60>;
-> -
-> -		max8952,default-mode = <0>;
-> -		max8952,dvs-mode-microvolt = <1250000>, <1200000>,
-> -						<1050000>, <950000>;
-> -		max8952,sync-freq = <0>;
-> -		max8952,ramp-speed = <0>;
-> -
-> -		regulator-name = "VR_v77_1v4";
-> -		regulator-min-microvolt = <770000>;
-> -		regulator-max-microvolt = <1400000>;
-> -		regulator-always-on;
-> -		regulator-boot-on;
-> -	};
->   };
->   
->   &i2c1 {
-> @@ -1198,23 +1181,6 @@ eeprom@50 {
->   		compatible = "atmel,24c64";
->   		reg = <0x50>;
->   	};
-> -
-> -	regulator@60 {
-> -		compatible = "maxim,max8952";
-> -		reg = <0x60>;
-> -
-> -		max8952,default-mode = <0>;
-> -		max8952,dvs-mode-microvolt = <1250000>, <1200000>,
-> -						<1050000>, <950000>;
-> -		max8952,sync-freq = <0>;
-> -		max8952,ramp-speed = <0>;
-> -
-> -		regulator-name = "VR_v77_1v4";
-> -		regulator-min-microvolt = <770000>;
-> -		regulator-max-microvolt = <1400000>;
-> -		regulator-always-on;
-> -		regulator-boot-on;
-> -	};
->   };
->   
->   &i2c11 {
+Kind regards,
+Niklas
 
