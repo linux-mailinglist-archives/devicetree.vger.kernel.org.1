@@ -1,102 +1,83 @@
-Return-Path: <devicetree+bounces-140190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2140A18D30
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:57:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D6F6A18D35
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:59:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A18E97A4A4A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 07:57:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D8B38162CA3
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 07:59:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDF411C3034;
-	Wed, 22 Jan 2025 07:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C20A11C3054;
+	Wed, 22 Jan 2025 07:59:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oYukINsR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [195.130.137.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4688F1C1F23
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 07:56:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929FA33E4;
+	Wed, 22 Jan 2025 07:59:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737532622; cv=none; b=TwNYbbY70Ohyp4LyAqIdO0tkRqzqD3VNS6ITmzIUlDdbQ5otYitJGXlxnLi8Mk3XJ1lEIY0JUK4lOsPs3sYDKO9x9axF1KeaSf/d+pgrt+QUbrTyx3huEAMQyFfMWGCQIKxf/PKrihsjxLi9L23e3Dr3hYA1Ausxi2bJ7xI9K9s=
+	t=1737532746; cv=none; b=omlQANAAE3if6/hT11cKA9LLzrvaOnbKtsZQQUJ3JyDqgXhPpyq2iCtW6DYWXaGInCuh/EmVdP0VyM4NivAnfn3G6qTBSx6xgzsBWdk0wA4VMlBaaZpI7KJg9G4NGOvcEzPXLczi1vkFjhiFT+rlHIqtiEayAW3kKrgIXePV/Is=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737532622; c=relaxed/simple;
-	bh=EMBl9U46SdnSsOJvQ3xYrR+oeLUPmYIi552M+zLEwFI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jZVCq2sHrC1Ugd7pqSbpoaXubZsCO9JJVwoj+IZHIkhfF9x7gvXSmCQ6WuMmJor5wmV9sSkAtq+I6em/w6uqJxA83eCEuhzLYQ4rys9ZFdcEzdzuJsaNWePyE13KmaoyYJhVEIZqB/4+C6kjPe7UY7MqYNT9pvtv1p2VVq0O3Uc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:5400:5628:9df0:d4b4])
-	by michel.telenet-ops.be with cmsmtp
-	id 47ws2E0013QiWAT067wsGt; Wed, 22 Jan 2025 08:56:52 +0100
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.97)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1taVbP-0000000E09l-2zFC;
-	Wed, 22 Jan 2025 08:56:51 +0100
-Received: from geert by rox.of.borg with local (Exim 4.97)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1taVbX-00000005Dfc-3Rxq;
-	Wed, 22 Jan 2025 08:56:51 +0100
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Nishanth Menon <nm@ti.com>,
-	Santosh Shilimkar <ssantosh@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>
-Cc: linux-pm@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] pmdomain: ti: Use of_property_present() for non-boolean properties
-Date: Wed, 22 Jan 2025 08:56:50 +0100
-Message-ID: <accb12bd6d048d95bd1feea07dd1a799ad3f8b31.1737532423.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1737532746; c=relaxed/simple;
+	bh=ic/DEbSSonrmba7cuPGHN7m64fWkmPBtjGhdLLuTwOE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dKjd5kpua0MsZEks3nOdiw+heTzLqHaAc95Z34Tj1dvQg/wIS8MuMzgyYq6V+dIXxHK3xWWDh2KB4fZZsyysiYKTYPqc1NQ7J1JvQO5U+cqvZhrxe+H0WQfohjJhzYMwsAo+yQNGVNpGc5js28faoGjwx8DLz4xUkg8Chas+Vxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oYukINsR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25F8AC4CED6;
+	Wed, 22 Jan 2025 07:59:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737532746;
+	bh=ic/DEbSSonrmba7cuPGHN7m64fWkmPBtjGhdLLuTwOE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oYukINsRDTeN6wJAZGD+Ax9Z0Ja7omeH3KZF+H4tgaExPt0kWmqqxnUE4phhn5glr
+	 msqquGL+DGKk79Qf7Pzr6A3p0GzpGLIlL36CNiIEm9yj4pns95z9EiwBCdcanuWayf
+	 9Lm0Ru+HhATEFGitxyKwpwDPSncON5itwxEyFxWx+8gwB3n22Jm+26O91DIY0sbu6h
+	 1gwOciPUB4MNy3N+7lmS4QB9PwIvZepx5CqzLgY6aKfUyzZxjQ/karF8mrkg+Wh0dq
+	 hJqmULVn/texoYomf/p+Xl8NeTNfteiNGJt8T6Re9KgHDKJ0eZZj5WBZYoHZxBPiVj
+	 xRvlfbGtosrbQ==
+Date: Wed, 22 Jan 2025 08:59:02 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Wenliang Yan <wenliang202407@163.com>
+Cc: linux@roeck-us.net, Jean Delvare <jdelvare@suse.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings:Add SQ52206 to ina2xx devicetree
+ bindings
+Message-ID: <20250122-funky-beryl-whale-a8bcbb@krzk-bin>
+References: <20250122012940.1005571-1-wenliang202407@163.com>
+ <20250122012940.1005571-2-wenliang202407@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250122012940.1005571-2-wenliang202407@163.com>
 
-On BeagleBone Black:
+On Wed, Jan 22, 2025 at 09:29:39AM +0800, Wenliang Yan wrote:
+> Add the sq52206 compatible to the ina2xx.yaml
+> 
+> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+> ---
+> 
+> Add the meaning of 'shunt-gain' in SQ52206.
 
-    OF: /ocp: Read of boolean property 'clocks' with a value.
-    OF: /ocp/interconnect@44c00000: Read of boolean property 'clocks' with a value.
-    OF: /ocp/interconnect@48000000: Read of boolean property 'clocks' with a value.
-    OF: /ocp/interconnect@4a000000: Read of boolean property 'clocks' with a value.
+You already sent v3... and you got comment from me. You ignored both
+Conor and me, so me doing third time the same and expecting different
+results would be definition of insanity.
 
-The use of of_property_read_bool() for non-boolean properties is
-deprecated in favor of of_property_present() when testing for property
-presence.
+Please read carefully submitting patches before posting new version.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-Seen since commit c141ecc3cecd7647 ("of: Warn when
-of_property_read_bool() is used on non-boolean properties") in
-dt-rh/for-next.
----
- drivers/pmdomain/ti/omap_prm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/pmdomain/ti/omap_prm.c b/drivers/pmdomain/ti/omap_prm.c
-index b8ceb3c2b81c2510..79d165331d8c6379 100644
---- a/drivers/pmdomain/ti/omap_prm.c
-+++ b/drivers/pmdomain/ti/omap_prm.c
-@@ -613,7 +613,7 @@ static int omap_prm_domain_attach_clock(struct device *dev,
- 	if (!of_device_is_compatible(np, "simple-pm-bus"))
- 		return 0;
- 
--	if (!of_property_read_bool(np, "clocks"))
-+	if (!of_property_present(np, "clocks"))
- 		return 0;
- 
- 	error = pm_clk_create(dev);
--- 
-2.43.0
+Best regards,
+Krzysztof
 
 
