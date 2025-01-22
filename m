@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-140270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140271-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E044A19047
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 12:05:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07E3CA1904F
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 12:10:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21713188C302
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:05:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFE9E1884CB8
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:10:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A1C021129D;
-	Wed, 22 Jan 2025 11:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9706211703;
+	Wed, 22 Jan 2025 11:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tzBiLuhI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZtB885qZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D431A4F22;
-	Wed, 22 Jan 2025 11:05:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7FEB18AE2;
+	Wed, 22 Jan 2025 11:10:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737543911; cv=none; b=fPhq6drcemGrRePwcUHGvql1WGPZjdSJ3u1xl3aagZXg3x6+lZQ53CfY2PykL1UCTpjIN/oHfIs/lWTtjb9HSzcdcFVIbc8McYvybB+zx2q1Gi2hTBQBqTMHUdXPyYV4TaR2xcbx38XJUsus5u3s6jam0vkKG/kGUggwuw5EaHs=
+	t=1737544241; cv=none; b=HoD8pzlkBdYNxsErnPNCM30Dk/N7zh73ahI0K3XCn9W9M3uS1FwAVdPD2i/Eb0ST9wMc6NFNeOvBEVt3qmbAR1ZOqziKtem9JtRWf0t61IEkvOXFYsxyeHT7pc8LLMbA1Ki/pmnHNdRSY+UZLn/eveS4bgHbt+u/+/iyf5iXlUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737543911; c=relaxed/simple;
-	bh=7wl9ZC+5XNC+S5f/V5jj+VpKM3ZD/Z3IT9mwMfZTgOs=;
+	s=arc-20240116; t=1737544241; c=relaxed/simple;
+	bh=sha+GUGBFXllFMGCqTKwYG2vdQHzbAGAeu0MdskknyQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NlXeL6aSs/NNVFz0g1i+FiRbJaZbz06MYBU1VwdvOaEoAP6wdHPnOtk200ps2oeI2jzuuWrthp4pHoKTKedkZG4E34yF0MeHuHs+Fb6IrlzVbsaNGBhwKeM1Jg7qDD2txtxGSXWDab70421x9MYEGM0WRRJACUUgZlg/cZNu4xc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tzBiLuhI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7CBEFC4CED6;
-	Wed, 22 Jan 2025 11:05:05 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=GIL6OvCnWqvrSONIpFxhJgB4cqLEjzekMuQHLPyqlegHxA+9u0QZ27HGjINbCU4BM5KtfLyu9ShSeIdRdRPcVHecO1PDXCihrGqoD5FipWiyEoC/90EfluMUtBqexsOduO0ajbgwiYoeF2N1q5dq2cIv7JnNyR1+7uXub5uduhM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZtB885qZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0095C4CED6;
+	Wed, 22 Jan 2025 11:10:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737543910;
-	bh=7wl9ZC+5XNC+S5f/V5jj+VpKM3ZD/Z3IT9mwMfZTgOs=;
+	s=k20201202; t=1737544240;
+	bh=sha+GUGBFXllFMGCqTKwYG2vdQHzbAGAeu0MdskknyQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tzBiLuhI/At41YIq2Fi1OUdPjycIguoDCN5QqOO7B8cRk/e6vbuWpMUTvP6YrroY5
-	 vMoSFnJ+z+pJlLck6PGI38dxeFAv82/6/9qCwTlT1D8TDviUNJEttGp+dJZND//XwS
-	 2zz+vQWkB5FLxcqc3qwsqKd8jUjqRvm+WqwpyG/uRrdz8iO75coPA7hmfrefctDA26
-	 gH8onnIBSiu6ULzv7mjAH6dS2XRnI5ice8VbrnFCdDo4j32TI45Njlf/46bOcpET4Q
-	 MegjHUbCY1er95nPZU79fszq5C9UoaH+5/BCWLQawgCtjH/uRWr7PWxQ0xHzRaXxIT
-	 9Emu/xwiE4UtQ==
-Message-ID: <9a8f1dbb-ffcc-4ca5-96c2-ad37d86059cc@kernel.org>
-Date: Wed, 22 Jan 2025 12:05:02 +0100
+	b=ZtB885qZNpe0KOpS9U19t/JUWuLXhoY+DCIA+xxfJSQz3V8THQvmvLNVqz32lj3RO
+	 dLuDOIuqKk4F3Bj3ut8GuQ9DRMHtMQExoVYC2T/K2AqLpKffI3QVYhRYALjtjWdvym
+	 sZcWku9QMXdnZUu3/OMxM+Ys9ARqpRO2bnD9oFWLEcKtn7fgQsQaCaTiLAO2h/1nxm
+	 tpAVRiosbPWsQ+4FInO/wyXH1sNFFkJgvOVVaXC9QgUmrA2hvABgbccmlc02Cf1uCK
+	 kxp0MkV813MnxcUi9mQgbdF9y5yScg9Lfsv27k4WzI2ptrbr2cw+QklkkULcp2ESPP
+	 ioVqq5UbyBb8w==
+Message-ID: <2a443cb2-45a9-4524-aaad-0adca5f39977@kernel.org>
+Date: Wed, 22 Jan 2025 12:10:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4] dt-bindings: serial: Add a new compatible string for
- UMS9632
-To: Wenhua Lin <Wenhua.Lin@unisoc.com>,
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8750: Add USB support to SM8750
+ platforms
+To: Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>,
  Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Cixi Geng <cixi.geng@linux.dev>,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, wenhua lin <wenhua.lin1994@gmail.com>,
- Xiongpeng Wu <xiongpeng.wu@unisoc.com>, Zhaochen Su
- <Zhaochen.Su@unisoc.com>, Zhirong Qiu <Zhirong.Qiu@unisoc.com>
-References: <20250122072352.3663653-1-Wenhua.Lin@unisoc.com>
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+ Trilok Soni <quic_tsoni@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20250113-sm8750_usb_master-v1-0-09afe1dc2524@quicinc.com>
+ <20250113-sm8750_usb_master-v1-7-09afe1dc2524@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,22 +113,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250122072352.3663653-1-Wenhua.Lin@unisoc.com>
+In-Reply-To: <20250113-sm8750_usb_master-v1-7-09afe1dc2524@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/01/2025 08:23, Wenhua Lin wrote:
-> The UART IP version of the ums9632 SoC project has been upgraded.
-> UART controller registers have added valid bits to support new features.
-> In order to distinguish different UART IP versions, we use sc9632-uart
-> to represent upgraded IP and sc9836-uart to represent old IP.
+On 13/01/2025 22:52, Melody Olvera wrote:
+> From: Wesley Cheng <quic_wcheng@quicinc.com>
 > 
-> Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
-> ---
-> V3->V4 changes:
+> Enable USB support on SM8750 MTP and QRD variants. SM8750 has a QMP combo
+> PHY for the SSUSB path, and a M31 eUSB2 PHY for the HSUSB path.
+> 
+> Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This does not apply on next. Way you combine series and split DTS into 5
+different patchsets is not making it easier. I say it makes it close to
+impossible to actually test your patches, especially considering no
+cross references at all.
 
 Best regards,
 Krzysztof
