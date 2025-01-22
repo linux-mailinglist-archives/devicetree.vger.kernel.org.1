@@ -1,134 +1,162 @@
-Return-Path: <devicetree+bounces-140432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 986C0A19B0A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 23:43:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14F9EA19B1C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 23:59:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BDB03A4DEA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 22:43:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F21F9188D4A5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 22:59:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2562B1C9EAA;
-	Wed, 22 Jan 2025 22:43:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF72C1CB51B;
+	Wed, 22 Jan 2025 22:59:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LOEDhM79"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XoTx1s3z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com [209.85.219.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD421C5D4F;
-	Wed, 22 Jan 2025 22:43:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE3B31CAA6C;
+	Wed, 22 Jan 2025 22:59:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737585795; cv=none; b=KoGdaga9XXzaeuARF7mcaa5OKzXEYT6/Zn4n4lZi3iXnecf70pa+/Qdu43GErgyJLyOmiybXf5zRLlMbYeem9Nic3bysKKKW1BXcnNij+iMTp3L5MMB0+NhwfqCE6ivogIGwwAKU14pWXWbUvH/ZWW099aSeMUhNMR+2dal8EKI=
+	t=1737586781; cv=none; b=PAw05s3sMqi4lqbhEzPXt/KD1OazTZ1AvaC7HCKULushrHLLMQO4rAc4OfsBWwbZodB9XdHuk1PIl43s+eSZnrxT1SacY7KR/PUIuNI5sOwdL/4BYFIpO2VptPco9kPn8scckV6eVA0roiQWhX4bXSk9mvQQfJAvtlMYuc1p8W4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737585795; c=relaxed/simple;
-	bh=KLtJ5UuBThEDvv2fmVOifgtc8X1xfwVeYV1LWyFnU9s=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CQIV5N7jswebu4Gbz+TWDIeroW+jesvoiNTMIGcIQWVM5gl/0s/VImSdXuU/x1KZrMc9Po47YfgA8YOdi6yxdi3hQU3papZP4V9bdcSRQHcIVdUUoXUX0dIwwnI51RlGaa1cn9TsSqFwe/bMqq8Cv1s1Oi7I9rWwYyp6E2bX8ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LOEDhM79; arc=none smtp.client-ip=209.85.219.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f50.google.com with SMTP id 6a1803df08f44-6d8f75b31bfso4173186d6.3;
-        Wed, 22 Jan 2025 14:43:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737585792; x=1738190592; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=E6OZqE7iIZIdCEqIDoZhlJdC19YJ2tsXKOstsn7nEBM=;
-        b=LOEDhM797+iHmcVAf9PDHpZ2oS/Io8Wn+6cRfGNbaMCtWDIJM2xDOjwhaRhDEYN5DI
-         Jb35cdkSeLRM0D/9XcEDxMib9UJK2g5FvGzaoMgrNthkRUTg/FMXIleNRV4ssuP/RG/5
-         /Ifdapwtshs7xPLufoJql5OdC1VRTyYvumEpQglpMxzJwljHgw5Hgd8691wnM1g1u7vo
-         97lIz0/RuikruF4/yDz8cidw5BNnTTnugQ9MpE5x9MmL21W0umXOISIHCHMKMR2qSBnU
-         AfvZ1AfKVctt47aleUvVeZHyCo6Kvvovfmy1zjzykDOwkttBssuCG1iLm49AA9VvRJJY
-         4pFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737585792; x=1738190592;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E6OZqE7iIZIdCEqIDoZhlJdC19YJ2tsXKOstsn7nEBM=;
-        b=umu4KV/ChxgkFxJd0cCYysbpc27FNBhGzQtLf81ZM3nZ6ofRU8i75c9Vtvn0LbuC+u
-         oi/qhL0hzDFUqgoTf52RLFPmjL2UEOstqBfGA1FfREGfNgbwpJXTh9H/TsxGzE1rSu0h
-         LnM8ebmojNdC5VS5+hwpkXFCY02ebPtZG4Zf1Rzcz3jIsG7N0bMTCi4QwhtXzoMDF91h
-         6ltxNsQx5AW1relJdz7zR4P8oh9LTVlVAt+gZPzp4UAIbijRt1acsLan9RcI+fQYN9y2
-         BREit/tKjgeXnKD8aFV896wmKOs5Dp/F2UcdSkNfEAiLhhWKIixzkCSSdzkXf6yv3d//
-         j3kQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUzFo7P/iKQXLfTW1cT0Wiv3NhR3M1QZ/VKa2vXgNQlBRTSZ3WkaJCkYz0N3ihnmvsCoY1bSG/18i6DaGDR@vger.kernel.org, AJvYcCWMysiW2FyKPCb/mk77uXZrwTP1wzjaO8AtWrninJJnrCAh2yp0vuaNY2tTTtxwMlBCGRyJciHWncp/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxQbFkRlucFNe3bRikfrBZEGuBZwKJRcExGmA0kxOI6zQJuUOm0
-	3FWJGwJ0t8Y364a1Nw18gmEcbPlWMxQGl0kJTQ70jNccEZoybAFC
-X-Gm-Gg: ASbGncv2OOKDs3oVduxsi4GYrEr/RjlWbv33b6otjSlTO+gQHkmV2w6n+kNwqHMTSPz
-	q9Hi6aMP/JtsuVWuF4mQcl+j5DQ4KtxQKxGG/yhrwwWbVRzECxp+SWVlWT/DURoQ7630FP//Vsl
-	FPYO3lzpxSIRFkRQD/sbyrXe5AhxKvLfSU0OMUz3RipvBykdzPjumAFTC22f+NIcD9vmLWXITta
-	EkYrSD5Zj/sTqzgIgDidD7Oh/k+8o21QuMGda/h+rSktw==
-X-Google-Smtp-Source: AGHT+IFoyWf4t/CIJ0HKL6Xnq/hJ7/kW4C818cLFawa82wfPl4faqNL1VWj3EHe1I2PuOVEWgcSkAQ==
-X-Received: by 2002:a05:6214:240b:b0:6df:97a3:5e76 with SMTP id 6a1803df08f44-6e1b21d13e5mr384406186d6.27.1737585792443;
-        Wed, 22 Jan 2025 14:43:12 -0800 (PST)
-Received: from localhost ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-6e1e0a39f89sm24469386d6.19.2025.01.22.14.43.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jan 2025 14:43:12 -0800 (PST)
-Date: Thu, 23 Jan 2025 06:42:23 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen Wang <unicorn_wang@outlook.com>, 
-	Inochi Amaoto <inochiama@gmail.com>, Chen Wang <unicornxw@gmail.com>, u.kleine-koenig@baylibre.com, 
-	aou@eecs.berkeley.edu, arnd@arndb.de, conor+dt@kernel.org, guoren@kernel.org, 
-	inochiama@outlook.com, krzk+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com, 
-	robh@kernel.org, tglx@linutronix.de, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, chao.wei@sophgo.com, 
-	xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com, samuel.holland@sifive.com, 
-	christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v3 1/3] dt-bindings: interrupt-controller: Add Sophgo
- SG2042 MSI
-Message-ID: <wwgb5kx7o3s53tzpjcizrw7ftkxze4ynrwvgxshk6cl3crslx2@erbjvg44h7cb>
-References: <cover.1736921549.git.unicorn_wang@outlook.com>
- <c9dd12c3ad77b13dcdfbf4accd51e92e6ea2a4a9.1736921549.git.unicorn_wang@outlook.com>
- <gyf6cdqjnvom3adf3cr7l72e7xevewhrsv4koelpnfm5cd22ge@t4ru6avsihzd>
- <BM1PR01MB254564DCF4004C3E60177331FEE12@BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1737586781; c=relaxed/simple;
+	bh=8uqoflCjXKKdp0P7r0EJGrV8SwpmYb2NJr/xhdDj5Kk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=rAiKAnks9pab3MbWM691oJd1rb+aW2/7r6xXOrxkfQXO7TKI9HKNUR+GP9Mesf3GBR8gVPQAj1bOPIarQuQAYLG+bKYYzlbaMiT2tMYDm8MEbXyEfDxReBniBP936AmA6AEG/Zvss0bGzvShMv3iVqMcoeIQHaR7JOWUbudzt7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XoTx1s3z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3BF36C4CEE1;
+	Wed, 22 Jan 2025 22:59:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737586781;
+	bh=8uqoflCjXKKdp0P7r0EJGrV8SwpmYb2NJr/xhdDj5Kk=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=XoTx1s3z3Hm0j4s2VY9FBHJbZGbo1Q/bqwUZAEKzJMVa4qmt7SlT6c2xFjTgQHKun
+	 Cf8CzBPpmWKv7R7yJ8Ic9yV4yr4Y60v9+k9PuoDnCsGIIbRoEG4A4nptmk7lT+d75F
+	 sQTKV6ZXfDqruepqWWqOnGVx1SgFv7oREkEfdX1DgB0CQcqBd6dv6GAjrAFB2vN6hK
+	 pS2FWManUbB7j714mybky8Zds7m8Zxzv3O9FEK7XXUzxaXjwKYmQhFlGRZSvAtpwn2
+	 RAI3VRw6A1BFc8uR8Puaji887qzNIJSdApO0ECa6mmVX9O2eaM0a3orkNp+huVJGZg
+	 45KGqSRGm6w0A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2FE4DC02181;
+	Wed, 22 Jan 2025 22:59:41 +0000 (UTC)
+From: Mikael Gonella-Bolduc via B4 Relay <devnull+mgonellabolduc.dimonoff.com@kernel.org>
+Subject: [PATCH v5 0/2] Add support for Avago/Broadcom APDS9160
+Date: Wed, 22 Jan 2025 17:59:32 -0500
+Message-Id: <20250122-apds9160-driver-v5-0-5393be10279a@dimonoff.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BM1PR01MB254564DCF4004C3E60177331FEE12@BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFR4kWcC/3XPQQ7CIBAF0KsY1mKAAqWuvIdxUWBGWVgaMERje
+ nepidFoXf5J5s2fO8mQAmSyXd1JghJyiEMNar0i7tQPR6DB10wEE5Jz3tF+9LnjmlGfQoFEjXa
+ owGgPjSJ1a0yA4foU94eaTyFfYro9DxQ+T/9bhVNGsWdMt8pK6OXOh3McIuLGxTOZuSLehGD6l
+ xCVsCCcbQWgwSWi+SD4AtFUwokOtdMts94uEPJFKMaXWsj5EWN8h04qb75bTNP0ALdAtyx6AQA
+ A
+X-Change-ID: 20241119-apds9160-driver-86cf5e86de35
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nathan Chancellor <nathan@kernel.org>, 
+ Nick Desaulniers <ndesaulniers@google.com>, 
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>
+Cc: Mikael Gonella-Bolduc <m.gonella.bolduc@gmail.com>, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, llvm@lists.linux.dev, 
+ Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>, 
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>, 
+ Matti Vaittinen <mazziesaccount@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1737586780; l=3221;
+ i=mgonellabolduc@dimonoff.com; s=20241119; h=from:subject:message-id;
+ bh=8uqoflCjXKKdp0P7r0EJGrV8SwpmYb2NJr/xhdDj5Kk=;
+ b=MDxKkeA1OxLo9R2bUnaYI08tUHwpl0NSVt5Pu/YIQeVoLw2+bhFfDq8KjuRUTHfCscjVB9JiG
+ KAlg7RqbO2hA29E+IISf0VHTr6sXR5Ti5aS1wcwREVjS0fRW5H2OrQ0
+X-Developer-Key: i=mgonellabolduc@dimonoff.com; a=ed25519;
+ pk=p4tvPfGPfXRyChsgHc6s7HwB6YBl2JqqcP3BXtoDitE=
+X-Endpoint-Received: by B4 Relay for mgonellabolduc@dimonoff.com/20241119
+ with auth_id=279
+X-Original-From: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+Reply-To: mgonellabolduc@dimonoff.com
 
-On Wed, Jan 22, 2025 at 09:51:05PM +0800, Chen Wang wrote:
-> 
-> On 2025/1/20 10:42, Inochi Amaoto wrote:
-> > On Wed, Jan 15, 2025 at 02:33:23PM +0800, Chen Wang wrote:
-> [......]
-> > > +  reg:
-> > > +    items:
-> > > +      - description: msi doorbell address
-> > > +      - description: clear register
-> > > +
-> > > +  reg-names:
-> > > +    items:
-> > > +      - const: doorbell
-> > > +      - const: clr
-> > please reverse the items order, the clr addr is more suitable
-> > as the MMIO device address when writing device node. doorbeel
-> > address is just a IO address and can not be seen from CPU.
-> 
-> I find dtbcheck will report error if order is switched.
-> 
+APDS9160 is an ALS and proximity sensor.
+https://www.broadcom.com/products/optical-sensors/integrated-ambient-light-and-proximity-sensors/apds-9160-003
 
-You should also change the unit address to avoid error.
-I think you forgot it.
+Signed-off-by: Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+---
+Changes in v5:
+- dt-bindings: Use new picoamp unit suffix instead of index for
+  cancellation current property
+- driver: Use new picoamp unit to calculate cancellation level coarse
+  and fine
+- driver: Add a warning if requested cancellation level is not supported
+- driver: Minor additional changes
+- Link to v4: https://lore.kernel.org/r/20250106-apds9160-driver-v4-0-f88d9fc45d84@dimonoff.com
 
-> On SG2042, address of doorbell is ahead of clr.
-> 
+Changes in v4:
+- dt-bindings: Add additional analog cancellation properties
+- driver: Using analog cancellation properties from device tree
+- driver: Changed proximity channel type calibscale to calibbias
+- driver: Fixed some comments format
+- Link to v3: https://lore.kernel.org/r/20241216-apds9160-driver-v3-0-c29f6c670bdb@dimonoff.com
 
-It is the same on SG2044, but there is a problem that the
-doorbell addr is a IO address and it is not suitable to
-represent the device addr in the dtb. It also lead to a
-weird unit address on SG2044 which is hard to understand.
+Changes in v3:
+- Updated maintainers file email and vendor
+- Corrected documentation file reference
+- dt-bindings: Changed commit message
+- driver: Added event and channel table when irq is not used
+- driver: Using int time instead of sampling freq for proximity channel
+- driver: Using scale instead of hardwaregain for proximity channel
+- driver: Dropped unused static variables
+- driver: Fixed switch fall-through
+- driver: Dropped explicit void pointer cast
+- driver: Dropped some less relevant comments
+- driver: Various code style related fix
+- Link to v2: https://lore.kernel.org/r/20241206-apds9160-driver-v2-0-be2cb72ef8f4@dimonoff.com
 
-Regards,
-Inochi
+Changes in v2:
+- Rebased on linux-iio 20fd1383
+- dt-bindings: Dropped the old Avago name and use the brcm vendor prefix
+- dt-bindings: Updated example node name with a generic name
+- dt-bindings: Updated example indentation to 4 spaces
+- dt-bindings: Fixed element ordering
+- KConfig: Dropped unsure sentences
+- KConfig: Dropped unused Kfifo buffer selection
+- driver: Use a more recent iio light driver as template
+- driver: Remove buffer declaration
+- driver: Use avail functions instead of custom iio attributes
+- driver: Use scale instead of hardware gain
+- driver: Removed unused members and unreachable statements
+- driver: Removed unnecessary info and debug prints
+- driver: Fix some coding style and line wrapping issues
+- driver: Reordering of functions
+- Link to v1: https://lore.kernel.org/r/20241119-apds9160-driver-v1-0-fa00675b4ea4@dimonoff.com
+
+---
+Mikael Gonella-Bolduc (2):
+      dt-bindings: iio: light: Add APDS9160 binding
+      iio: light: Add APDS9160 ALS & Proximity sensor driver
+
+ .../bindings/iio/light/brcm,apds9160.yaml          |   78 +
+ MAINTAINERS                                        |    7 +
+ drivers/iio/light/Kconfig                          |   11 +
+ drivers/iio/light/Makefile                         |    1 +
+ drivers/iio/light/apds9160.c                       | 1597 ++++++++++++++++++++
+ 5 files changed, 1694 insertions(+)
+---
+base-commit: 5de07b8a24cf44cdb78adeab790704bf577c2c1d
+change-id: 20241119-apds9160-driver-86cf5e86de35
+
+Best regards,
+-- 
+Mikael Gonella-Bolduc <mgonellabolduc@dimonoff.com>
+
+
 
