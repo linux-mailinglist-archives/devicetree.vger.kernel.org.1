@@ -1,105 +1,104 @@
-Return-Path: <devicetree+bounces-140283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F21A7A19179
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 13:41:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 718F7A19193
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 13:42:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4331C1615D4
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 12:40:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46C0518811FF
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 12:42:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21B97212B25;
-	Wed, 22 Jan 2025 12:40:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3E0212D74;
+	Wed, 22 Jan 2025 12:42:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ipyjz1tn"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="avQeXlvD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B7881B6D15
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 12:40:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE4A212B0F;
+	Wed, 22 Jan 2025 12:41:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737549657; cv=none; b=UnRG+Kvm3uIqCJxfoViaVtQ8+ciAotSvMYHbHlGNK1Jv0ZaPYF/YkW5ctomUIp1koft4xZJet+uHe5GEl/s5ovYNQehsnvKyCs0dKtRExybkWy/qw6pq400/88RQMbfQSjITgadx2IrL4dMPjfFqCbVmjCKYCcE7fQWpPe1UTMw=
+	t=1737549724; cv=none; b=Pqy9vdzVOiEd2BggZzkf0iPBDN70JqEn7uZbNG+84viDVsIazsRTQtais4KJ2FYOjC4Zq1q5RhJcrYNYlu6ugRpKdHCD8eEhQrhdVycOaluLkPDBOOE+ar+be1ve0XHhLENIv7xfDUf30pajPUonHHWhsjLWg2A0Zq4o3q1ba64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737549657; c=relaxed/simple;
-	bh=hOWLqioRq5JucWHA8yspNPXe2ERjRF9nxoWgy+IfVbM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JaeHlHA4Xu8d9Z/OSRkFtWvsmvrCQRv9VtJCa+LLBjHcN7e2X1ipIbto2fh2Uy0Rb3RZhJnsUbeXecwR8qmDvYgjM5+Y2C+LCUNUIxJy1e/R3jqg90TrlQ5BgN1RiYoIz0271CRE/O1cmh5UHUVKR6ijOk5MOc4DdooFF5tJzzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ipyjz1tn; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-540201cfedbso6483520e87.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 04:40:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737549653; x=1738154453; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WJFfe/ReS+bB0SKEoehh4uNo6Rwt0UXw3v3zOYh0SCg=;
-        b=ipyjz1tnnAp/yNJjWUSp1yyMKrYO1JKCxnsdl4jO37oGbghxwkAAEg8SUomyCt4UE7
-         tZK+coeFcVtFc71vPURbh5RZo4RSYVxnUAkQM9O0yUtUWQCHJDFxXttAYpQELu09cdsk
-         cuX8ww1tY/i+jUhkq2xShVG+w+3YF9rEou2jDKE7DPTeBlYiTdjb/GnjRQu0GxDncDdg
-         dX7++PNU8QHYiaA4Tix/E+CEdx9kbKVabFOLbgnBekXgNiiDXf+pVyWqkJmcDt8+zq6g
-         zkpP7Klgeqv+8cn6Km5l/ZuwJFtm2RAbD33nMA4CLrFB0yG8veHa/FkbLbbakcRKxqGn
-         zMhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737549653; x=1738154453;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WJFfe/ReS+bB0SKEoehh4uNo6Rwt0UXw3v3zOYh0SCg=;
-        b=MXNEAmZLF0pK4wTu/Nkhx8bh9vqlVcVPxdE/ObsxYq/1CIra6SPTcL3VEQQlAwETM0
-         dwRYkq9E+b7kkt+jV2oHKAilg4+Er0I9Tem2aLSpp36/5XWHU+BvTe7EGxAif3Z7287i
-         JSAVJzcSR3o26JcuPmQ1MuH3tz9taGM/KZGJ8TQdzRrnjKMXJjndxHMatqKJOK2DMuVn
-         2y+6YTyE98+D5eMHb3bNdmsjjRsW+UscPoLtgFyvUbxEtmqW4kQhLPHyc3DnJgAB177x
-         DirZQImybO4ylrHkNI3oVp/ZnbRd8eZZVFr7/Ob0Gxzu6dnGFeJW4yq1w92CaSElj6sE
-         qasA==
-X-Forwarded-Encrypted: i=1; AJvYcCWmVo2tfvvPfVNq1Wkc12tTFXsVaZCQtofaUYeBsZA8c48GovrGq9KyKAGF6t78VydPVni9kc/IVLFK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1qRJ/FG8p47cECXM1YrO3PIhBivCUWZtV3BvDr5z3F1ADhgg6
-	vRXmhXNDlFbi2JJUNTXxc3lLTdFeMQcQtDf7q+YofVAa0b2irW14SecZGCYsNDX7wuHNyiq7frm
-	05x7qPfIYzK76LOFHTOczQL9EXeSQ/C8unZi2/Q==
-X-Gm-Gg: ASbGncuop23wRvz3U2NxdioafpUy3k7NZ65v71FCznHZOajBy3o/6EHHyJ/JHzYOh+e
-	JMeW1lHILU1w43HeUPOcupl/ckCJnPUch17lhV3t72w7Myi9K/A==
-X-Google-Smtp-Source: AGHT+IG8x91swQ1/TCs2bNY81sSJWW2iCRubETASwyNlneW1MiOKNQOm+h1c21oPbkA4UckTqWfjL3th8Is1ivCtTMo=
-X-Received: by 2002:ac2:59dd:0:b0:542:8cb0:88a8 with SMTP id
- 2adb3069b0e04-5439c285ec4mr5563483e87.52.1737549653306; Wed, 22 Jan 2025
- 04:40:53 -0800 (PST)
+	s=arc-20240116; t=1737549724; c=relaxed/simple;
+	bh=g3yZ+nt990iVpKGd+guiyGorA0WqjyYUcxb0w0TSLT8=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=quWicbOy+gFkcyzc5Fx5CwHkvCtlLd6jTq5lhRGMGR26PLOJyFS8O7lNSmBndgC08ZwoFEAUVlmTW05ERCMtiaLnexvsa+GukHGYeAJSOx2xCVfsFa5Ci+PwMa+9LLU9xEzHU6sUTtzM0aggaXr9hQOB9/vu4v9dhJR5YzeZANg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=avQeXlvD; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01.sberdevices.ru (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id C866810000F;
+	Wed, 22 Jan 2025 15:41:45 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru C866810000F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1737549705;
+	bh=YTtwLlBe37BdCgnBuy1MLWGgT5Jb4n0isj9w5Ot2fmw=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=avQeXlvD0X76BKyLAQbtpU0G3qYpQ3zlmE3dI99AX943Xfct8cW7NJvm9cGfOjrdc
+	 s/HQN1xG/Jb5rcHHGMz4UkoXcyVbj85l5FNQbJsB58oJO5ecLOmARNbj+Pd7+EEuAT
+	 BHivPC0jbb25+xuKVki+2UaTOsinFp2B61IyZ/9Ps0RnzoHHl57QMEYDBdt91KRr1h
+	 JCfW7rMzEghqyABkc5rrb1LZyVUVTzh23wYkqvfvDgwpuI2pFmkef+WZ2OsfBYLFDB
+	 2q31eADmH1Jm1F2H/EzfcHW2Dp7Tt89tmuzSiglcufKcm5P8HfbRWXDcI45npON9xz
+	 SxjmCWLErLEJQ==
+Received: from smtp.sberdevices.ru (p-exch-cas-a-m1.sberdevices.ru [172.24.201.216])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 22 Jan 2025 15:41:45 +0300 (MSK)
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: <herbert@gondor.apana.org.au>
+CC: <avromanov@salutedevices.com>, <clabbe@baylibre.com>,
+	<conor+dt@kernel.org>, <davem@davemloft.net>, <devicetree@vger.kernel.org>,
+	<jbrunet@baylibre.com>, <kernel@salutedevices.com>, <khilman@baylibre.com>,
+	<krzk+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<linux-amlogic@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-crypto@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<martin.blumenstingl@googlemail.com>, <neil.armstrong@linaro.org>,
+	<robh+dt@kernel.org>, <vadim.fedorenko@linux.dev>
+Subject: Re: [PATCH v11 11/22] crypto: amlogic - Introduce hasher
+Date: Wed, 22 Jan 2025 15:41:29 +0300
+Message-ID: <Z2aokzSrAHpJE_PG@gondor.apana.org.au> (raw)
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241213140755.1298323-12-avromanov@salutedevices.com>
+References: <Z2aokzSrAHpJE_PG@gondor.apana.org.au>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250115211627.193961-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250115211627.193961-1-krzysztof.kozlowski@linaro.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 22 Jan 2025 13:40:42 +0100
-X-Gm-Features: AbW1kvawWKhH0X1YIWMRn8P4MqzemM3g4CZwqQRFd_gIgX8aGMtS5oZnnXo-N6g
-Message-ID: <CACRpkdYTXk+U5n2qjBiaWmRPNAbeTR_CO1N+7-7XqjvSU57Byw@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: st: ste-nomadik: Align GPIO hog name with bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-a-m1.sberdevices.ru (172.24.196.116) To
+ p-exch-cas-a-m1.sberdevices.ru (172.24.201.216)
+X-KSMG-Rule-ID: 1
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 190505 [Jan 22 2025]
+X-KSMG-AntiSpam-Version: 6.1.1.7
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 50 0.3.50 df4aeb250ed63fd3baa80a493fa6caee5dd9e10f, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;elixir.bootlin.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2025/01/22 11:41:00
+X-KSMG-LinksScanning: Clean, bases: 2025/01/22 11:41:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2025/01/22 10:19:00 #27099507
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On Wed, Jan 15, 2025 at 10:16=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+> You cannot sleep in the digest function.
 
-> Bindings expect GPIO hog names to end with 'hog' suffix, so correct it
-> to fix dtbs_check warning:
->
->   ste-nomadik-s8815.dtb: mmcsd-gpio: $nodename:0: 'mmcsd-gpio' does not m=
-atch '^.+-hog(-[0-9]+)?$'
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Why? I couldn't find this explanation anywhere.
+In addition, I found an example of one of the digest functions that is sleeping [1].
 
-Patch applied!
+Links:
 
-Yours,
-Linus Walleij
+  - [1] https://elixir.bootlin.com/linux/v6.12.6/source/drivers/crypto/mxs-dcp.c#L804
 
