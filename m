@@ -1,131 +1,97 @@
-Return-Path: <devicetree+bounces-140188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B694A18D24
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:53:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96D95A18D28
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 08:55:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 458A8169E79
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 07:53:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72A3018845BA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 07:55:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6411B1C3038;
-	Wed, 22 Jan 2025 07:53:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 979351C1F23;
+	Wed, 22 Jan 2025 07:54:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="koOheFef"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PulrbTE6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35FA7E57D;
-	Wed, 22 Jan 2025 07:53:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA7533E4;
+	Wed, 22 Jan 2025 07:54:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737532422; cv=none; b=Hlp8tNW61VEY11DwmrRdek4cc1Le/536xZexJuNNRqR1rLh+ig2E+Ee8QbktjQGYPA3ePXbopGr/vFdcNLM4nB3lgpPCU1uJWpMPz4eLoyrA8FuBr1FlUVxVDX1Y3fd261NF8MrHQ06I2JoTeLmC3hFBorMocdDueEWu7i5vI2k=
+	t=1737532498; cv=none; b=s2CK0KQ4rwF2wDMFLDinbZABG6+1qpZh1awaTz9fCsoDd94SQT6VclFiVBYP26Py5n8FdntuxGdUZ4LSipbl92SLEmM+X2zTtSJTw11N1AdkgACLgBQN3m6EHi3BlWAFToUtu2d90kee9yhuJztx2m4OKC8qzhPEvBzrjiKWvqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737532422; c=relaxed/simple;
-	bh=vgbm+RI9Qd/70aIbY4cCmLhisKKFu/BgevTzmL3cnRc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cmnQzFwHKnxJRXKFxTldMImngzIO1SJk5rY8UXXi4MIzQUDnBOE3BBiW64UQmcqyFKBzfE5uwBYdjUsutGP7OFQG6DAX1FgeVbgIpFWJD2aH738C1dO0AC8Rlt7y0BRlbIBRBKl6oOBHWAjoDdBjIr4G1Eh34JfDMw+fwjhuydY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=koOheFef; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEFE5C4CED6;
-	Wed, 22 Jan 2025 07:53:35 +0000 (UTC)
+	s=arc-20240116; t=1737532498; c=relaxed/simple;
+	bh=DS6LctAEbb86wdU+xIObFSbsxNIQXD0zFVuUopbBhSU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W8sLQuedkHJvU4D5eoJmbH9xtvOnhP4w5MkiXtSn3YPlRkKnY9fNYsduOYt9TA7P9SfQwDXkaB4LRccTMXwO95d0QVOvCks3mDxEdMpn5Mew2wCK3C0WRg87Xy4H1yAuUBK2Kxu9c7Lfsz6LZHGKXRQF1eypa0l2L0C7Hz519yw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PulrbTE6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CEB8C4CED6;
+	Wed, 22 Jan 2025 07:54:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737532420;
-	bh=vgbm+RI9Qd/70aIbY4cCmLhisKKFu/BgevTzmL3cnRc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=koOheFefefWr9Gghr99pyX8ixUjwd1xykayPxvBRTZ0LE/YAHDIy6SqbQ2+8x+QUd
-	 0U3BuGeVf+W1kWDj2QtpY5YugGAcV8qriW9oz3grb983lzGtE7umStEGWgkPSnVzj8
-	 +fPSjv6hNTalsecZO6A98HPcJ9LMfoz7v4hnZNfXpo7KlDfQ3HczviLGGL9jHE+zw5
-	 7md7iLoId1NH5pbpPUCINp2/CSOxHyTEkWpfsPFjwL4V/Wctk65WssGQEb9KdXxBBa
-	 5pzNe1lUss4qhtXB1OkwMENU6DKT3a3vHCVTrqThdln4uz/NWeHrugpjfcfDSFWlZI
-	 9b9ucchsJQhqw==
-Message-ID: <482f89f5-3989-4bd6-b11e-2df0833117d7@kernel.org>
-Date: Wed, 22 Jan 2025 08:53:33 +0100
+	s=k20201202; t=1737532497;
+	bh=DS6LctAEbb86wdU+xIObFSbsxNIQXD0zFVuUopbBhSU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PulrbTE6g2iDQO3tZkVzV6r9hofz+rdLvtPZoXz/HqrSx8WreicvBiya25B2KD2XV
+	 8QjKtbeqVyF8EuKFyjQzlqP3OflmIEuBWBi1a2zXerqtfstshGa63g5XsGxlKpI5bA
+	 4JX3y6Zc5vTD6tGYRchqvSCMRMa3KwbFSdoEQwIBSgb1CG00rWRAL0LmZbfTzLqL5Z
+	 gTnwg4R5Iya1CoOYWCz5pvBxsA0T4OzdlMw0L7kkHekJS+wsJIjN0hIxyGak2PZ7Tu
+	 wQ783czlWRQ7c+CG614lqSxuX4uP8X9+DLeGG7tl/lxeO+XTEcP+GXbCVwu2dcbgc7
+	 cS8OB41qVUQYQ==
+Date: Wed, 22 Jan 2025 08:54:54 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Marc Kleine-Budde <mkl@pengutronix.de>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+	kernel@pengutronix.de, devicetree@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Leonard =?utf-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>
+Subject: Re: [PATCH stm32-next v3 2/2] ARM: dts: stm32: lxa-fairytux2: add
+ Linux Automation GmbH FairyTux 2
+Message-ID: <20250122-thoughtful-starfish-of-grandeur-ee7919@krzk-bin>
+References: <20250121-lxa-fairytux-v3-0-8d42d7d232fb@pengutronix.de>
+ <20250121-lxa-fairytux-v3-2-8d42d7d232fb@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4] dt-bindings: serial: Add a new compatible string for
- UMS9632
-To: Wenhua Lin <Wenhua.Lin@unisoc.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Orson Zhai <orsonzhai@gmail.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Chunyan Zhang <zhang.lyra@gmail.com>, Cixi Geng <cixi.geng@linux.dev>,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, wenhua lin <wenhua.lin1994@gmail.com>,
- Xiongpeng Wu <xiongpeng.wu@unisoc.com>, Zhaochen Su
- <Zhaochen.Su@unisoc.com>, Zhirong Qiu <Zhirong.Qiu@unisoc.com>
-References: <20250122072352.3663653-1-Wenhua.Lin@unisoc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250122072352.3663653-1-Wenhua.Lin@unisoc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250121-lxa-fairytux-v3-2-8d42d7d232fb@pengutronix.de>
 
-On 22/01/2025 08:23, Wenhua Lin wrote:
-> The UART IP version of the ums9632 SoC project has been upgraded.
-> UART controller registers have added valid bits to support new features.
-> In order to distinguish different UART IP versions, we use sc9632-uart
-> to represent upgraded IP and sc9836-uart to represent old IP.
-> 
-> Signed-off-by: Wenhua Lin <Wenhua.Lin@unisoc.com>
+On Tue, Jan 21, 2025 at 12:14:06PM +0100, Marc Kleine-Budde wrote:
+> From: Leonard G=C3=B6hrs <l.goehrs@pengutronix.de>
+>=20
+> The Linux Automation GmbH FairyTux2 is a small Linux device based on
+> an Octavo Systems OSD32MP153c SiP, that occupies just two slots on a
+> DIN rail.
+>=20
+> The device contains an eMMC for storage, a gigabit Ethernet
+> connection, a CAN bus and a RS485 transceiver.
+>=20
+> Add support for the lxa-fairytux2 generation 1 and 2 boards based on
+> the STM32MP153c.
+>=20
+> Signed-off-by: Leonard G=C3=B6hrs <l.goehrs@pengutronix.de>
+> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
 > ---
-> V3->V4 changes:
-> * Modify the indentation format.
+>  arch/arm/boot/dts/st/Makefile                      |   2 +
+>  .../boot/dts/st/stm32mp153c-lxa-fairytux2-gen1.dts | 103 ++++++
+>  .../boot/dts/st/stm32mp153c-lxa-fairytux2-gen2.dts | 147 ++++++++
+>  .../arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi | 397 +++++++++++++++=
+++++++
+>  4 files changed, 649 insertions(+)
 
-Did you test your patch before sending this time?
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
+
 
