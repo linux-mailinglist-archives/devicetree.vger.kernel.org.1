@@ -1,201 +1,278 @@
-Return-Path: <devicetree+bounces-140318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 925CDA19311
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 14:54:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50275A19327
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 14:59:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 495553A0681
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 13:54:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 938D13AC811
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 13:59:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEEEA213237;
-	Wed, 22 Jan 2025 13:54:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B24921420A;
+	Wed, 22 Jan 2025 13:59:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="uP1I2+O3"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PwVCmiJB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MA0PR01CU009.outbound.protection.outlook.com (mail-southindiaazolkn19010005.outbound.protection.outlook.com [52.103.67.5])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BEFF211A11;
-	Wed, 22 Jan 2025 13:54:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.5
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737554073; cv=fail; b=RusbboVi10Gsk5w2c05LdFyZ0xxi7qklroDp/peecLOJ46/ywnM5eFBk6JuTuQV3OWyDP2Vp9BJE+yH8PjYy24rEtcljT5L3/bb38hf3eiWPC9YiJ207ThGVlR3Cqhy2eijOq1Vnh1YSuHz/kxooXqb/CvtdXr1yizIrDNCiWSE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737554073; c=relaxed/simple;
-	bh=E4qrCnP375fREk+0ngJG1OxvvUwumbwaof32ts0BXpY=;
-	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=iuEJHyUi7GBDib8kPQLsjm8jS1uBTq/zsIRu+z/+VXTR2dfwjCb/jME497EMuDyDY7oWH5ytv4jcCQVA6d6qDzmpKOvdDI8yOT3n+HysJ5qOzRGY3/r/1lO4D/WWX3WT4a8VyMam4PnVVSdZVNGYoLGaAPdV1feYHAzySLdKA3A=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=uP1I2+O3; arc=fail smtp.client-ip=52.103.67.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JWohJEk05KTmx3m5Iu0WaXOVfw1EJLxvKFWsIz4kuABSuzPOOwpmfFTpTf5d63uXsNX1RUhiHKz/Rbrmoki0EgPMMI64qPvaavZDXpHOEF660txHUJ2piqnaQJndxM6fxjTXEwKERU3SX8tezrawoUFIGvyaUxvnC7j7mZcZDPYJ7ktnldyIotSUKtpt4fv0tzidRcRcIvm8S3IhrlBiJU1hTkZAk6MRv+RI3EahDcteDUCjdwvCDwvsd5KdR85hBaUd0cevDfd7KssgjFk8kkMQxjsKH9o9LdHuot74Ra3HOR97YUBXpLHW/Go1xOGXUK16fjkhDEpzGwY7zARz7Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0Y9TQTYj0zwJnYJ7dI+kc5h5IcmmalPCVSBZPDtiU5A=;
- b=RMZ4EDWTeHWJWgM1d3qIaWXsdf7aWZee0dLlZbqD7PsvFFCnK1jFdE3Z7JSnfFl8YYCv7VNfWnrH46uACKOWX6WzDHrTrw29lKxM+xwUHsRDtpx7YS2IvM5Kz9IQXBcMGZ7kMX9N3BDKWQuTZZYFcRjP/jYTB6xQ6zdrPAfXGDtekosl/dzquzy3jn5yP5xMcW7CDFuZ2AODi5A4RTV/QOx6VDseMkqjKJuPCCX15jb9ch2FEWYPgrc4N2ILE7sPW/t/IEkoGiunwLl56srIh7nNNM/RHCpnkKyeP9MYr6ZkbWuYVokGUI3vqyOzre+E5JIOsqeFljK419SnuOQm/w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0Y9TQTYj0zwJnYJ7dI+kc5h5IcmmalPCVSBZPDtiU5A=;
- b=uP1I2+O3XPw60vHgaIhaK4EsDiv33mxdOmwNadbK8ZNlio6c/dRt93Cqfi8LSkXP7nxshGjqvkfAkAH4O+QCnLndiv7iPDUJsQEmJ2+XaeETvqIoc7jZWNFJOL3EzoXlIRLYMgFIQ6eVgQxlutsRmbBYAHZkXmP+nbKzOe70JsMQWRUwwnS9YOhG/opLbS7wR0R+PmHd3PLEO3gGbxFhuUqqhOcpBM0WLBW0AIess/c7oGVCqC9A8m+mLIn15j0W/5GqLKSOAGBjigfYPQUKb/zTukIkbTZzPQge/7Z6XdTxLNxxgDuyQ2srAp9ZkWyNXHZZ/zuFqZuVLNIutdVy+A==
-Received: from BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:44::15)
- by MAYPR01MB10617.INDPRD01.PROD.OUTLOOK.COM (2603:1096:a01:152::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.22; Wed, 22 Jan
- 2025 13:54:23 +0000
-Received: from BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::954a:952d:8108:b869]) by BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::954a:952d:8108:b869%3]) with mapi id 15.20.8356.020; Wed, 22 Jan 2025
- 13:54:23 +0000
-Message-ID:
- <BM1PR01MB2545B1CE7F4B917E9015F4ABFEE12@BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM>
-Date: Wed, 22 Jan 2025 21:54:16 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] irqchip: Add the Sophgo SG2042 MSI interrupt
- controller
-To: Inochi Amaoto <inochiama@gmail.com>, Chen Wang <unicornxw@gmail.com>,
- u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, arnd@arndb.de,
- conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com,
- krzk+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
- robh@kernel.org, tglx@linutronix.de, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com,
- samuel.holland@sifive.com, christophe.jaillet@wanadoo.fr
-References: <cover.1736921549.git.unicorn_wang@outlook.com>
- <b5c2f13aa94f68c3415a1292678e16db33f291cd.1736921549.git.unicorn_wang@outlook.com>
- <6b4n7jbflkaparryguq2kjdg4bpfy4vgpzucd456awbhl362po@zytqbodpm2wc>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <6b4n7jbflkaparryguq2kjdg4bpfy4vgpzucd456awbhl362po@zytqbodpm2wc>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: TYAPR01CA0104.jpnprd01.prod.outlook.com
- (2603:1096:404:2a::20) To BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:44::15)
-X-Microsoft-Original-Message-ID:
- <591bbc7a-7ca9-4916-b3a5-a7fded14be22@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88DF6213E76
+	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 13:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737554358; cv=none; b=L/4y8eVaAy18bCAh1bEB5IJ53gFZzDpJ3wcGmVp9LKo2KboT53eDVIc60cWccSHUEsqv1kmI+EgJceViGooTRilnMX0Os9IzfrcvIGJh5mI2NfZH2iOry1QX789xGpkRlOo2MZma45s58dEO3bF5ku52xv19nOuxcvXlCV1ZlqA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737554358; c=relaxed/simple;
+	bh=ob4HxZ0bC3ayi8oRbNy5QXvP29My3cf/b3Pb9js8qIY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=oxgTmYpLBFc7DXVVh1wTc+NCKt6WqDXj1cQ1YbuTRDg7ODVJ2/zwV4R1DrPjdRDRmAG6cTJnhNklmdsDCV6vutGSRnp4j2fQ8sQW2Na4XVAaTciB/H2V8d1o7MYm3dPID9SwJon6qEEgxgzkN/Si3XuxIEtQG5qeILNe63Kj4YA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=PwVCmiJB; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-385f06d0c8eso3702783f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 05:59:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737554352; x=1738159152; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GCK1JKe2ZK0bAyJjP9ZoAIohmsbMcH2iCBmdiLRqWmo=;
+        b=PwVCmiJBnuiGVcM0b43mlCtsFd8YjMo9F+Yk7IOH0OpEtvLZ5B1Rn1FM4siDz19gNo
+         6h2QGEj+sVtm38UEjDzAE3MUJJwPPsPnoohFSw8Cw3XxCxb5v0C6RHdoy7lu1gqrcX5J
+         xXh62TnQaq2pKWMCryRmk1V+Hdt84RHqmNRXHJKuEVEHWdyeHUwRMITua9z4RuCNncbB
+         dp/2OmmtrjFezsxwJzZPi1rO/51zZi8Kpy2AT2B8SvdihSBjnAHU+PXbbJhhZakdETaa
+         vTfE7ssPzfah4bCVZoB5rWhKh0dS0f0eTQdmfsFh960u4MbDDQfxAcNYdBpFn0JTxAW5
+         RQrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737554352; x=1738159152;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GCK1JKe2ZK0bAyJjP9ZoAIohmsbMcH2iCBmdiLRqWmo=;
+        b=vo3u8yktNtxOTW7PIkQNVrP0V/yZrl+O6YhwPji9iEoD1TamYBSBVX37+i4ty2uO77
+         dCRob8gQRlHVYmz2eiqE2CJtBd2OcBWA1sxsnL6CkVBN89E+F5unpmFXEFSkIpwuIwMM
+         Shae9d6kD1RR9MT6kHy/6oSVBJWmpThDVjL8K+KUkrooDwFzGAuuUcr9GtXkT/Wr7HVI
+         eRVTGaVKHNF/ekww+Jytiv5dy9u9ntj959vFIjQnBboD2uFpnQPOIweNzH9+menhTy0+
+         MzBUCzXSyeYCgtapaNSxtEG/SEL14/FXdXVYr8Fcwu2U+xfUJJqt/ECMTuePTHXKDoVH
+         nv2A==
+X-Forwarded-Encrypted: i=1; AJvYcCVCZVNfOIFi0WmaBcBSSvbnVso6gbcTuqXX4IAT8i3RM3Qb+yBtGQzabgdhUgMIezw65MXtBD9tGAAR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLJLNxf2ETrd1Z2pNAVbAjUmMDBDb2aRGav/2zUgUXVIs4jbPA
+	8pjnV8khelSEub0WvpRiIq9ktQCs1upsJ0Z/oaiiJ88htRFHZM4z0SrRJWhpZMpUsR922eJvSiR
+	kqaE=
+X-Gm-Gg: ASbGncuw8XMjwg9zPkMVeGnsCFHwjrPnw0fJYNoWMvoOsjTdGN+JG07ES9HOl/J5HH/
+	vVwZfKtY4Cns+1yr8/EMtXqNYN/MX6bUGvim9H8WJ7CgsHWlAemOgg5+PCc2HYhnsqQ5c2Neyxj
+	/uyg4MZ+NZGHWFx06o95PKi34CeXojwyAHQ3eYBVIO0uidFQA/netxxhxV0ZQB68x3SUej87rr6
+	oIb8cRozXaWJF4b2QVUSrb+IeRl0LNJI8tbZV7we3fyCmhdYqeKRf+xO8tY/Bx57rS7w++3MpYa
+	tFZA/B+S3U6dtIPqhbDzOmowLRgS/N6oyVEuGQerg6fhoqgE/30iQZHrWCTnHSz+KVtdIU8iJq4
+	=
+X-Google-Smtp-Source: AGHT+IHWF3nO5p5fYa1wUcc11MSGstbqFgrOBJA9XIo/6RP2eDA4+qf2JAiaGGM9QBwZIAEKJMGZEg==
+X-Received: by 2002:a5d:5f4e:0:b0:38a:9f27:82f2 with SMTP id ffacd0b85a97d-38bf59eff10mr21554379f8f.49.1737554352559;
+        Wed, 22 Jan 2025 05:59:12 -0800 (PST)
+Received: from [192.168.42.0] (2a02-8428-e55b-1101-1e41-304e-170b-482f.rev.sfr.net. [2a02:8428:e55b:1101:1e41:304e:170b:482f])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf3278f06sm16418985f8f.70.2025.01.22.05.59.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Jan 2025 05:59:12 -0800 (PST)
+From: Julien Stephan <jstephan@baylibre.com>
+Subject: [PATCH v8 0/5] Add Mediatek ISP3.0
+Date: Wed, 22 Jan 2025 14:59:09 +0100
+Message-Id: <20250122-add-mtk-isp-3-0-support-v8-0-a3d3731eef45@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BM1PR01MB2545:EE_|MAYPR01MB10617:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5f974768-8855-4ff3-b19a-08dd3aec46ce
-X-MS-Exchange-SLBlob-MailProps:
-	rYPt1fhvLTXc97ntej+WqDiQNM+UKxVkq+cgCOpkQkTxxp6p2HuVYm1I65FTo4zkjxO7mmH+jbcGdI7U+GvJdD/l62xKSRXR2YTcU3QnMcqcKHAbbKT+DFj7Kl23fjinB/Fbj0Q1+uqKwcg6a5OvYY+uLJGcqj+VkX3Zn63dolUx7NTixZ4M0uHrYvLOvSCzW0i6sNyAv5nliytiKOR+k2rfe8hzJOIAfC2yg5D6grfOWNhVw+rFr0nFZyzCDp1k2snMxDq8JnAlia+Bv0q7KJGPHMHh0lLR7nZEOiD23jQAoW2b/H6rJyJsb6m+0IQCzop1kpGr7kEAmdrxe+ciQ7ER5Zim3rCDqCDG4SHrP9j92e3Z4w7kZ+lil/rebWTLH0Inx9eRfaRrAR92PYUjGWQ1voPMHSDmHbjuHmw311Dpy8ZrHB+3+iDVF7d5E5aTT9zsr68rj06/3A1WH29EaqM9eCe/LrWa22Eo5AQC58dXnjU3MBqX/PnWPt+p6ICyodQTbKfVLRrAric/wUEYyWW5CBdStHRmftQPmmY3ySbNtbzawtVckrDb6GvMsWvGU0slvafMcWYAF62dxODNGfALiTBKCpZS5EgdU1g+XLsLvWUSSJ4tctMmmBsFptEviZIxpcZ85MIo8Rlubzd0A0BJiFe881PXj4i/x1RnFJjtpWCbIuVpZSlQgrl/VLTIZxOK379sPerFgjG78/g+vA==
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|19110799003|7092599003|5072599009|8060799006|461199028|15080799006|6090799003|440099028|3412199025|19111999003;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?bzhMQ2VGdnc0MjF0eEE0eW5XT0NHbnVMMVNVSHoyY2Z4Q2JDVmlOeEJYaWJS?=
- =?utf-8?B?THF6OHBiblU5cHVJWUZIdzBDN3lrUnAzQUgrOXZtZzRrWW5YWDd2eHBJMjU2?=
- =?utf-8?B?SUVodEpmLzZGeXhFZk1aVUxDTXg0d2xQVEtzL0d0WFA2eStCTmxLU0hOYzly?=
- =?utf-8?B?eHc2N3RpYUxCaFp5ekp6Q0pRSTFPTE9ueFBLSW90QTNBMmdrU0xmMjhacXJy?=
- =?utf-8?B?TVphVm51dGFyUDNZY0FTVjNTTmVBWEp1RlQ3aWYzOTlCRlQ5aytFMWtlUnRT?=
- =?utf-8?B?WUt1eSs5NW9FMWNvMlVETVppY2pld2pnWGRIVys2cjM3eU1yUjdjeFlrNEkz?=
- =?utf-8?B?cExRZ1Z1MmxldFRaWStIKzZWOSt3WDdaMmpDNTI5Uks4cmlVaXhUV3pUelZ0?=
- =?utf-8?B?bUJvTW5tS3UwdGdCbytQcTdTNHUvS011ZEdTQk1pNmt4SjlyKzlZUUpZZzZC?=
- =?utf-8?B?eUwrVUFzelBSZmRDaSs0N0FxQ0xQaDJiOTcvUFpndzlLQXFKdlRSeGEyRk0y?=
- =?utf-8?B?YkJtMWVBRnNqbU5Bdm10TWlWR3JpaFpMQUs1K0duaUNtV1ZURUk0cms3TVlh?=
- =?utf-8?B?UW5peWRXZDhYTVRmNm04cytNamNnUzRBYUgyTXFGdUZkZW96b0VDK2tDQ0Nh?=
- =?utf-8?B?Rmxwb3h4QWIwUXZPQkxHK3RERzM0UERUUzdsNTFuTHlWR3RSeXlHdVQwYVNa?=
- =?utf-8?B?cVlZZC8rbTJxYURrMmplMUFwZFlueTk3L2kwcm04TGJ0Q2pibm1rWG5VeWJI?=
- =?utf-8?B?U1RZSm1lZkNPQW13MlJDSjA5QW9DTkhrQi95MG5rblU4UXJqeERCZS9HN3JU?=
- =?utf-8?B?aDNrSlNZcXpoQ05QcmFYRmNZbUZ1eXkyTHB4NnExYW9PNUczczJqRmRUaEFx?=
- =?utf-8?B?R1k1UGQ0a2dZUW5JQy9YNWRlNTB3eDNVRUVibGtlZDVOKzl2TktaVlJUV1RU?=
- =?utf-8?B?VVpCaGcxRFloYktLYmJFZFJlYUpIUnMvdEc1eXQyRkFkZXBzM1dGSHRBU3ZY?=
- =?utf-8?B?dkNDdHJmK0NZNXJyZHo2OGtVSFk3empvOHVWWG10RFBBU0pZenlxalI2d3Jl?=
- =?utf-8?B?dWoyZkFiVFdZWlJwbVQyQnhHQ2dGYXBXRE5iYlh6d2tsQmdBejZUSjNONEhB?=
- =?utf-8?B?VXlLeFQ5Rmh3YWNMcWR2UVZJbTFIMCtxR0UvZTZiQW5RT3VvOHpvcEZLbktx?=
- =?utf-8?B?cnBReFFGTVBGeW1INWtrYitJUGJ6UTRwVEFRbFFvMHNPYzE2SUp3QVhkVGZo?=
- =?utf-8?B?Z2VBVXBueGFOcXdjUm5vNzdZMTdxNUl6MGFXVjk2N3hGd0VJR2Jrd3RQaWxI?=
- =?utf-8?B?T0tpRXI4dU1lRUtXeUtGRVk2TzUyWUlUYVEyMm5VSytJcm9JSzNpK0NOOU9r?=
- =?utf-8?B?dXJOYkZwMVRvMlBtek1USmdCZjVSamVraFNXN1Z4d254NWNjbzBjbUs1bDNl?=
- =?utf-8?B?Z3FyR3pyaHlCNlk3aGhOWFdyd2h0SS9qU2NlZjNOUmo1WDJLajJiblpGUzZN?=
- =?utf-8?Q?2wmSP7bOFkb3yIt1qaFdCG/HoGc?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?c3NxN2R3Sk41UE5BMjFXWXJ1ZnNtc3NXRjV5Sy9QTk50TENJbElTTitveU91?=
- =?utf-8?B?MWEyREpHZ1JLMGhib0V6TnFTaVh5QjlOY1hRNmZsQ21oR1VtZlhNL0pmcHN1?=
- =?utf-8?B?RUo0ek1DdGQ1anNnMWhnejlTbjlwMG5SWGE1VEc0bUV1NkM5YU5rcmlaa2xq?=
- =?utf-8?B?bThuR2V6aGJ3VStvcXJKenZOcnNOdFVHR1RkN2x5UW1ZZ0hkVTk4YzVrZk9I?=
- =?utf-8?B?NVJINUU1eGpVQjZBdysvOCs2SXBjWGlUNzNzU1lyWFZPa1VsVktKUVIvMTlH?=
- =?utf-8?B?bWxPdjQ5NVE4YTlacW1YRk9JSDF5VjJwVVcrUFJmVnRqUVFVUUpGc1Zhd3JM?=
- =?utf-8?B?Z0xnV3FFUmhVLzhJT1BNVmsxWXIyVE4zSzl4alRMSDRDa1RVaXdub1UwZ3NP?=
- =?utf-8?B?VURLcGJyN3dLS1hCQVdnSVExT3RaeFFuRjNzT2NxMVI4VjV4Y0NOMkN4aUNw?=
- =?utf-8?B?dE1RTWw1eE1wU0NSOEZMRi9nKytkdVJadGxxeHVqNmExOTZuc2hKNHY0VzhL?=
- =?utf-8?B?Nm84Wi85Q3c0cTlzSC83M2RWOHM3ZU84OEl3VkpZOFdpZXBZNm9ZcEs5RHJG?=
- =?utf-8?B?a3BhNHVPSnNLSnFhY2VZUnc3MFp6WjAvVXdVVUNpbUFwY0V6NFBWeHB4b2k1?=
- =?utf-8?B?K0dKYjJYWHNoOElhZlFqUXhUWUZsakFseHVKYUJVRldxdWlzdXNrajdNQ3kx?=
- =?utf-8?B?RkxlUXlNZDBIS29tSFYyYTE2c0pZRnkvdDBKcWhkeW4wb1VMa2c4d1pQRzVP?=
- =?utf-8?B?WEVMbmkzTjZGYjEwajJnejlZb1RYOGRRRG5GcURXaVl1bGRJT1RIdEZKZ0dv?=
- =?utf-8?B?R1dVeTJSVUNSdXM0eCtiVFpHK0l6V3dHa21odmIwdlIwWEgvVWVEczMzdkxV?=
- =?utf-8?B?VnVHWVRMOVMrdk1oYlBVMlRrRmZXMGluOVpTNWJYWjRkNVBESnZTbzVZWWtS?=
- =?utf-8?B?TUJ6Q3E5YmEwSHhTWXZ4eXQ4MzlocENTTzhrNW1KcE1WNUFqNFlwdnRSQXg4?=
- =?utf-8?B?Zll2QlZXR2l6N0tpRExBV0hlV3RSanRaTEhnV3RVRXUrTkJBN09KZEpFOFRH?=
- =?utf-8?B?K1N0RHpuOHgvOWVINVJXaDBBTDIwWlo3YW1YcUZyMnBpaThwY2xiTk9jUDc0?=
- =?utf-8?B?cWpYbmlucGVUekdEd1Q1TUZaRzhha3NMWkVHQ0s2NGR6T2UrOHB5TjhXcE1n?=
- =?utf-8?B?dkUzM3hncGgvNFJMWDFBeGxsVWxEMHVCUmFkeDZvYVRwRVA0UDdHcGl6UjlB?=
- =?utf-8?B?bjlRMlNhYitTT0NWUk5xYnBsdEw5cEpMN09ncURxU1JFSSswUlZWVWhJQXgx?=
- =?utf-8?B?eU5sbld2TVNQMVBCRjBPckpXTHNVUEJoUm9WUHNtTjd2N0piZXh3VGo0c0RL?=
- =?utf-8?B?SUZxYkZYaWM0cDhWc2ZqM1QvRzlkSUN5cU56M05hV1FJSVFNUWJmWkw3Qzlh?=
- =?utf-8?B?VnFnOEdIMDFua0RNa202Mk9xUmdTbHF1SytTdzhaTW1CRUhtMGR2a2dpbk5Y?=
- =?utf-8?B?RERrWThnTkp1WXNBWUw1NUlEWlViVmIxbDNPak5JNkNmeVJzZ3R6a0c3VERr?=
- =?utf-8?B?cDZQeGJ1ZzNlWlFieW5QM2RYdXNtV3dxU044YnJuV1NPblQzcWttWXNZeTZu?=
- =?utf-8?B?TzR6ZHdKVTVjcHN2WXc5dXN0djNkU0JMdnIxVEQzSW1VTkJta0txL1d0NXVu?=
- =?utf-8?B?LzJsd0dOR29XdGVRMXpqcGpiWVFiRWZFKy9wNEpBc0hFTGxza2ZFcGJIaVJK?=
- =?utf-8?Q?rkD2NiuE1Y3O9yT5ZRKsMo8apm48Q/dlBOA66sa?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5f974768-8855-4ff3-b19a-08dd3aec46ce
-X-MS-Exchange-CrossTenant-AuthSource: BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2025 13:54:23.3508
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MAYPR01MB10617
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAK35kGcC/4XO0Q6CIBSA4VdxXEcDRJCueo/WBR4wWaUOzOWc7
+ x540VrLxd1/tvMdZhSsdzagQzYjb0cXXNfGKHcZgka3F4udiY0YYZxIwrE2Bt+HK3ahxzkmODz
+ 6vvMD1qTUSpagIRcobvfe1u65yqdz7MaFofPTemgs0vS/ORYxqhrSKywweqz0dHOVt3vo7iixo
+ /igmNqmRAzIJQdlCQjJflDyTVHK6DYl068IN6AEJYKqL2pZlhe+U5X4VwEAAA==
+X-Change-ID: 20240704-add-mtk-isp-3-0-support-a08a978cac36
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Andy Hsieh <andy.hsieh@mediatek.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, Julien Stephan <jstephan@baylibre.com>, 
+ Louis Kuo <louis.kuo@mediatek.com>, Phi-Bang Nguyen <pnguyen@baylibre.com>, 
+ Florian Sylvestre <fsylvestre@baylibre.com>, 
+ Paul Elder <paul.elder@ideasonboard.com>
+X-Mailer: b4 0.14.2
 
+This series adds the support of the Mediatek ISP3.0 found on some
+Mediatek SoCs such as the mt8365. The driver is divided into 2 parts:
 
-On 2025/1/20 10:43, Inochi Amaoto wrote:
-> On Wed, Jan 15, 2025 at 02:33:45PM +0800, Chen Wang wrote:
+* SENINF: the sensor interface
+* CAMSV: this driver provides a path to bypass the SoC ISP so that image
+  data coming from the SENINF can go directly into memory without any
+  image processing. This allows the use of an external ISP or camera
+  sensor directly.
 
-[......]
+The SENINF driver is based on previous work done by Louis Kuo available
+as an RFC here: https://lore.kernel.org/all/20200708104023.3225-1-louis.kuo@mediatek.com/
 
->> +#define SG2042_MSI_FLAGS_REQUIRED (MSI_FLAG_USE_DEF_DOM_OPS |	\
->> +				   MSI_FLAG_USE_DEF_CHIP_OPS)
->> +
->> +#define SG2042_MSI_FLAGS_SUPPORTED MSI_GENERIC_FLAGS_MASK
->> +
-> I think it is just OK to set the flag directly in the msi_parent_ops.
-This shouldn't be a big problem, maybe it will be convenient for future 
-expansion.
->> +static struct msi_parent_ops sg2042_msi_parent_ops = {
->> +	.required_flags		= SG2042_MSI_FLAGS_REQUIRED,
->> +	.supported_flags	= SG2042_MSI_FLAGS_SUPPORTED,
->> +	.bus_select_mask	= MATCH_PCI_MSI,
->> +	.bus_select_token	= DOMAIN_BUS_NEXUS,
->> +	.prefix			= "SG2042-",
->> +	.init_dev_msi_info	= msi_lib_init_dev_msi_info,
->> +};
-> This struct should be const.
+Changes in v8:
+For the whole series:
+- rebase  on v6.13-rc1 --> drop iommu_present and use device_iommu_mapped instead
+- apply new trailers
+- fix several coding style issues reported by Laurent and CK
+- fix warnings and errors reported by media-ci:
+  https://linux-media.pages.freedesktop.org/-/users/patchwork/-/jobs/66966282/artifacts/report.htm
 
-Yes, will fix this in next version.
+Camsv bindings:
+- sort header alphabetically
 
-Thanks,
+Seninf driver:
+- remove test pattern generator, as it was legacy untested code
+- use v4l2_subdev_enable_streams/v4l2_subdev_disable_streams instead of
+  v4l2_subdev_call(s_stream)
+- simplify mtk_seninf_v4l2_register: correctly split the media device
+  and seninf subdev initialization. Create an seninf_subdev_init
+function and drop mtk_seninf_media_init which was confusing
+- Fix several style issues
 
-Chen
+Camsv driver:
+- remove the "30" suffix: renaming camsv30 to camsv (file name and
+  function name)
+- add comment to properly describe the fbc mechanism
+- reduce spin_lock region in isp_irq_camsv function
+- remove pm operation from mtk_camsv_fbc_inc
+- call mtk_camsv_fbc_inc at the beginning of streaming or only when
+  streaming: buf_queue touch the hw only if streaming
+- remove op_lock and rely on the video device lock
+- implement .link_validate() and drop mtk_cam_verify_format
+- use video_device_pipeline_start instead of media_pipeline_start
+- remove useless stream_count counter
+- add various defines for constants
+- merge content of mtk_camsv.c into mtk_camsv_video.c as suggested by CK
+- merge mtk_cam_mbus_formats and mtk_cam_format_info intpo a single
+  struct, and extend it with fields to remove the fmt_to_sparams() function.
 
-[......]
+- Link to v7: https://lore.kernel.org/r/20241121-add-mtk-isp-3-0-support-v7-0-b04dc9610619@baylibre.com
 
+Changes in v7:
+- fix several comments from Laurent Pinchart and CK about style issues,
+  such as: sort Kconfig and Makefile alphabetically, remove unneeded headers,
+  use 80 char limits ...
+- add back I/O accessors around readl/writel
+- use enable_streams/disable_streams instead of s_stream
+- use v4l2_subdev_init_finalize and don't store active format
+- remove mtk_camsv30_regs.h file to merge it inside mtk_camsv30_hw.c
+- adding reviewed-by tag from robh and angelo
+- implement .has_pad_interdep callback to fix multistream error
+- fix mtk_seninf_get_clk_divider to give the correct pad number. This
+  caused an issue for multi camera
+- use hardware FBC (framce buffer control) instead of dummy buffer to
+  deal with underrruns
+- simplify directory architecture and remove isp_30, camsv and seninf
+  directories
+
+- Link to v6: https://lore.kernel.org/r/20240729-add-mtk-isp-3-0-support-v6-0-c374c9e0c672@baylibre.com
+
+Changes in v6:
+- remove unneeded "link" tag from commits
+
+bindings:
+- remove labels from example node
+- remove complexity for phy and phy-name properties
+
+driver:
+- fix some comments from CK :
+  - remove unneeded variables
+  - rename irqlock to buf_list_lock for clarity
+  - remove unneeded lock/unlock around hw_enable/hw_disable
+
+- Link to v5: https://lore.kernel.org/r/20240704-add-mtk-isp-3-0-support-v5-0-bfccccc5ec21@baylibre.com
+
+Changes on v5:
+drivers:
+- rebase on 6.10-rc1
+- fix various comments from all reviews (mostly style issues and minor
+  code refactor)
+- add a function to calculate the clock divider for the master sensor
+  clock: NOTE: setting this register seems to have no effect at all,
+  currently checking with mediatek apps engineer (OOO until 17/04)
+
+bindings:
+- camsv: update description
+- seninf: fix phy definition and example indentation
+- use generic name for node example
+
+dts:
+- sort nodes by addresses
+- use lower case for hexadecimal
+
+Changes in v4:
+- fix suspend/resume deadlock
+- fix various locking issues reported by Laurent Pinchart on v3
+- run LOCKDEP
+- add missing include reported by kernel-test-robot for non mediatek arch and COMPILE_TEST=y
+- use atomic poll inside mtk_camsv30_setup
+- drop second lane support as it was not used
+- remove useless members in structs
+- fix media entity initialization
+- initialize correct pad for camsv video device
+- add isp support in mt8365.dtsi
+- rebase on 6.7
+
+Changes in v3:
+- fix a lot of formatting issues/coding style issues found in camsv/seninf reported by Angelo on v2
+- fix camsv/seninf binding file error reported by Rob
+
+Changes in v2:
+- renamed clock `cam_seninf` to `camsys`
+- renamed clock `top_mux_seninf` to `top_mux`
+- moved phy properties from port nodes to top level
+- remove patternProperties
+- specify power management dependency in the cover letter description to fix
+  missing include in dt-binding example
+- change '$ref' properties on some endpoint nodes from
+  '$ref: video-interfaces.yaml#' to '$ref: /schemas/graph.yaml#/$defs/endpoint-base'
+ where applicable
+
+Best
+Julien Stephan
+
+Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+---
+Julien Stephan (1):
+      arm64: dts: mediatek: mt8365: Add support for camera
+
+Louis Kuo (2):
+      dt-bindings: media: add mediatek ISP3.0 sensor interface
+      media: platform: mediatek: isp: add mediatek ISP3.0 sensor interface
+
+Phi-bang Nguyen (2):
+      dt-bindings: media: add mediatek ISP3.0 camsv
+      media: platform: mediatek: isp: add mediatek ISP3.0 camsv
+
+ .../bindings/media/mediatek,mt8365-camsv.yaml      |  109 ++
+ .../bindings/media/mediatek,mt8365-seninf.yaml     |  259 ++++
+ MAINTAINERS                                        |    9 +
+ arch/arm64/boot/dts/mediatek/mt8365.dtsi           |  125 ++
+ drivers/media/platform/mediatek/Kconfig            |    1 +
+ drivers/media/platform/mediatek/Makefile           |    1 +
+ drivers/media/platform/mediatek/isp/Kconfig        |   36 +
+ drivers/media/platform/mediatek/isp/Makefile       |    8 +
+ drivers/media/platform/mediatek/isp/mtk_camsv.h    |  152 ++
+ drivers/media/platform/mediatek/isp/mtk_camsv_hw.c |  440 ++++++
+ drivers/media/platform/mediatek/isp/mtk_camsv_hw.h |   19 +
+ .../media/platform/mediatek/isp/mtk_camsv_reg.h    |   90 ++
+ .../media/platform/mediatek/isp/mtk_camsv_video.c  | 1017 ++++++++++++++
+ drivers/media/platform/mediatek/isp/mtk_seninf.c   | 1454 ++++++++++++++++++++
+ .../media/platform/mediatek/isp/mtk_seninf_reg.h   |  114 ++
+ 15 files changed, 3834 insertions(+)
+---
+base-commit: 414788dae5ac03f80234629c6d140a38fb1fbf9d
+change-id: 20240704-add-mtk-isp-3-0-support-a08a978cac36
+
+Best regards,
+-- 
+Julien Stephan <jstephan@baylibre.com>
 
 
