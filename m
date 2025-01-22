@@ -1,182 +1,256 @@
-Return-Path: <devicetree+bounces-140280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E61F0A19100
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 12:54:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42C54A1915D
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 13:26:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FE8D18879D8
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:54:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97E387A44D1
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 12:26:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A835C211A35;
-	Wed, 22 Jan 2025 11:54:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89E64212B2D;
+	Wed, 22 Jan 2025 12:26:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="pc1qFeu9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KI5DTmod"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MA0PR01CU012.outbound.protection.outlook.com (mail-southindiaazolkn19011034.outbound.protection.outlook.com [52.103.67.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C56B321148E;
-	Wed, 22 Jan 2025 11:54:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.67.34
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737546881; cv=fail; b=CGlnstVCg35rHqiu4tQvf8ilgrVpVS2Mk72Q0woiwHu7fko/z+RDlRY9DVr8lnbX/ez9gN8pylr/X3ySxiWmvvgoK2ErfWUze/ANZAH4IPeyknmGabCucosdRUHNeAUA7yFl57vhkpmq7NDjqt4yntL7UYc7OsKTG8GEHsCb0N4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737546881; c=relaxed/simple;
-	bh=DaWGJwJk89vPdYGH2uAGrRZH+7a8VMLcIBYCS9U6h9c=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=FM00FkrktBaYVAvanUFsMPcsrEQ+lUUYgcikAz5gCKrfvHX80R+jRb8jXgxMBE/CFjUGwumaXAMJM3NLS4hqkKBCQEXcPUEFuYHWrPh8aLgfWakwcycK6CJRXNxIRfG6S9Q76/0zGT4lhWY2pFnUv0YUySHA06gy5O1dNvSuU78=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=pc1qFeu9; arc=fail smtp.client-ip=52.103.67.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QjgVxHKKcTRUWP+Ee4IYh1jMtkeIqOX7uIeBiZh4LPVQxXpTXXpwfQSy4RIUW2Lu6auN4P6STUglxIn4Qjet1OfVdcQLns0EBUzB/bCBgw5RJbpCDiQK11VopTdgff1vGqDhsOqB5Zh4mO3E7ylLS2VH+oHOxabT/GqUddolRrrMs6pj42EPT7Ylv6j9lW8LVYA7jmsKsDCVkLAdWVa4zKvPjqGCT/fSVdamLjAzJuSm4BZIziuzvLGDcRktrAMM9RdZFrtFz0wIisart5YdSQPYa4S58DvJYyEKah7SfyUeTta0XIhTa3n3lwNcQs9nyhJ86TqR+FkGt+43pj+xbw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bM6OGmD1HQtdBW3KLIqL1m0iPbrjo9MCMSvwY6w8Ofs=;
- b=wbBVPd+/Bb8smAXZwykxG7Cdtq+2Nza4yMLpydg/rj2BntIoND5a1VejyzCNsqz7OgSYrldpQbrnpu2ef0WZp+T1K7BB/QSUdBqH1Oa6baaIz5avyyFnmSQ2KYHFKUmx+zVXCPPuLYeTlGpDKRzQ95Av6q2JFjru21LyqbzFM8Jdm2lb7U2518mYtfw9BBvzzyLOsQI0Zrh0alXeyDncM0BWsam3wCn9LRGgmAfS6qDr7zOeWwTRjdRDPfDtOEYhxk0dAa4ygt3yw/a772yFODfkdXO7rb3WgZg+MjN1WnCB7E0WKG14KNhU58ix9MqgAP0xJEXPWtPZxHyi1AuRww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bM6OGmD1HQtdBW3KLIqL1m0iPbrjo9MCMSvwY6w8Ofs=;
- b=pc1qFeu95TwQKSC5BA58+VjlokX4dp4hKby4ijk8jh7P9ZmDb6eQRu0fipQ3AtbCns34zqR+YxtRiu/Oxi3M6N4GIruc4ODC/YunlzfJXYlsZXqBpHkHitsDzkLCyfLJb9vByHXK6GJR3gBXaQPia70A+oeS7md5ncBvV707AJbdNSkB4/iZTNDEe27Fzmeb35MfywTi5dClETPWBLzXzQEtAChXPV3zPZ/gHChQkDBGUb+CvRjYQR2rpOpW0cBPjCDiiRqjeveLiCSqwiIBybXidvg1iNbmya3v0/oCPKUM9qCaxGhsFJCPIbX0tbstjMRU+G9fPNZSCuE5zczM7A==
-Received: from BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:44::15)
- by PN2PR01MB9672.INDPRD01.PROD.OUTLOOK.COM (2603:1096:c01:152::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.17; Wed, 22 Jan
- 2025 11:54:31 +0000
-Received: from BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::954a:952d:8108:b869]) by BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM
- ([fe80::954a:952d:8108:b869%3]) with mapi id 15.20.8356.020; Wed, 22 Jan 2025
- 11:54:31 +0000
-Message-ID:
- <BM1PR01MB254554818778F4EC9449EC68FEE12@BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM>
-Date: Wed, 22 Jan 2025 19:54:26 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/3] pwm: sophgo: add driver for Sophgo SG2042 PWM
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Chen Wang <unicornxw@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, inochiama@outlook.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-riscv@lists.infradead.org, chao.wei@sophgo.com,
- haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, chunzhi.lin@sophgo.com,
- Sean Young <sean@mess.org>
-References: <cover.1733281657.git.unicorn_wang@outlook.com>
- <4a7db3ecac9ac2b00c063360334834d6656672e3.1733281657.git.unicorn_wang@outlook.com>
- <e2we4klv7w234zyc4vnbcydieyhcte63sdwcp43vmolmlasv5f@scsiepnnw3db>
- <BM1PR01MB2545319120D9B3932C8C8806FEE12@BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM>
- <dlnfivdhol7faotaqygpvdi2zbgpwrvcruppbkgfleoa6msxib@voe7dhqvfmy6>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <dlnfivdhol7faotaqygpvdi2zbgpwrvcruppbkgfleoa6msxib@voe7dhqvfmy6>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI2PR01CA0042.apcprd01.prod.exchangelabs.com
- (2603:1096:4:193::23) To BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:44::15)
-X-Microsoft-Original-Message-ID:
- <ff003ea8-e668-4278-bf0f-1b73b0c4df2f@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84C81B4236;
+	Wed, 22 Jan 2025 12:26:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737548801; cv=none; b=tlA6picIlRqj+Ax9gjaDlKrmtvDJzvf5ORBFWtQ0SfcmnnuPKYddVdw61GMq3TGB2h8CLUgnMWL9U//xHdLXV7LoOU44HU6ms888kQkbVZbfSoEIOXFUdiax49yD5hfijouQsda04TVfS0iDwI0TlVMU6BBn5VEZKHKQ0PH6GoA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737548801; c=relaxed/simple;
+	bh=iKnQL9RTOnngz0SMm/tnOumQudKJ8f4AEQgbPrAmeV0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aLarnBbF5NPTb+peGdghA7UnNAZ7JZrHgHz0HiixzX2aPLmy9W4nHM7SxHV4fIrJtb6D5Mn/11eyct3QkaqXvEY1n6OElwHIzVpzW4E5dGkaesL5dz4zE7spo2eaq1xpYnJ1RjWeWeOiBLuCvvQiapzm7T/fA0jmQtrbdMVe0aA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KI5DTmod; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-38be3bfb045so538763f8f.0;
+        Wed, 22 Jan 2025 04:26:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737548798; x=1738153598; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=gXeLILa28168MOtKXkW5zQ7hgk+QivJpytOZsjgGYMU=;
+        b=KI5DTmodaWGX5oqf0FGtNNiIfx9CsIrBprtGQC2TVHgP++O3y3Si+tueVf1m63XOd3
+         gCVTeis8yKMTDen/g80FlUBDfXmxREOJ358JYa57QGTRyKWjtVmeILHdr9AXC1/n27Vx
+         ZWSvNGixyq3iWkrhSTA7vgVNx1TBS2ooXGNW8CdyH9bYhiw+lRKo7HlGh2zhPtUlk+b+
+         RyIKlsDyZ4dPFx5Dy9TZSahH1xWzgQ6QgMLGqI6rRJvbmxLIP8MHj5opLTJh0GWuWLFs
+         HMRHESPTU4KCVKxPU7AK2yiLVWZNb/RqeLb7uqryQGwVcwdDNvscRUaEBfdIPV/+hk9m
+         TWEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737548798; x=1738153598;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gXeLILa28168MOtKXkW5zQ7hgk+QivJpytOZsjgGYMU=;
+        b=lPVnagVvjWKMwkRxFHDwVuXRYScVV+LzVIZiuvAlrF/46xB+/Nvp2G0KV9gUTFSR4X
+         q3iV6UzMvYpeHv8g2uXIr869pgX29EVJtVzLEhy9stLaUOoBc6vOguzUTCKeMY6yShuC
+         TaWFsSXl4XlV3UQuO1XmaeTseHaiOOVXW1mkWRdDQhFFD0K6AZXQSIVgYcEZ4LCYVUmO
+         /iiT917Jv7VIeB8Oh6gtS5OfKQcfRafXIbtdEsAHeeIlib4lvWSbjGglk4jFRdADSz1n
+         epIAKcFeGIEih2ckmJfF1D2A0C2MLQMYrDEkFuTIuskKGD1VafAVYnLiHEG2wd/KtmjO
+         xBKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUwlefaJZdY4J8H2PZdsMfpWaGypsGxMMjOYRFwyLxjggev+pNRdWz1i9EuIBlf7hGnSwZJBNz82M3u@vger.kernel.org, AJvYcCVoZnPXn+mzOzk28k+2Frsi/IXdA++ePtApPK0LaA0dgSHKm6ReM11Bh/5lbG63LYHk6FirIoVLWQIag114@vger.kernel.org, AJvYcCXv+EmN+7vtIg/dNV52sEyXTIpptjbAl3AVN5gZo5nmByUQpNMhg4hFB5Xz+zI9yHKdhJHMVx+/7iZW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYqKXgfoKQDhEfq11g0utd8AGKSPa7XJIFoY/9WeRIUp8o2xhN
+	w2GthJ7YRcKdnZq/M4qkUZMw5wRPj/p4++IHsdv5ujeI9LHaSFS1
+X-Gm-Gg: ASbGncuB7vX9HS3R2bCjAJXrg60HcUAxGmee09yGispoCe2i9LdZxv/Pc5eblF/t89M
+	zbeg0KS7s1XgP8A1AnFEI061b24X1JDYILfFJTpOJ49OjdPJABdrqgHLjIRorF5QbZLA+px1lya
+	/1r9qzQ/rRZTRJ++vjCkpHOyUkNz1ek1lyflqmqqfZLXCVnAM6KJjDln1vasyGulBRwJVnIQmqp
+	zJQ2YsaWv7ttUf0obt/jtGzGW03JTt1Ip6vjJovJKLshkWc6WnTRlSOqSpp5Q==
+X-Google-Smtp-Source: AGHT+IFBm6umciYWXfrLBy/c5j/Ooxh0Z7aohIdgPsyRX2QXlNlXa886fspf+BIaC1/+BRtYTE8SpQ==
+X-Received: by 2002:a05:6000:188e:b0:38b:f4dc:4494 with SMTP id ffacd0b85a97d-38bf5b0b89fmr19411156f8f.26.1737548797592;
+        Wed, 22 Jan 2025 04:26:37 -0800 (PST)
+Received: from spiri ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf3288f79sm16042697f8f.100.2025.01.22.04.26.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Jan 2025 04:26:37 -0800 (PST)
+Date: Wed, 22 Jan 2025 14:26:34 +0200
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Alisa-Dariana Roman <alisa.roman@analog.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v1 1/3] iio: adc: ad_sigma_delta: Add CS assert function
+Message-ID: <Z5Dj-jiLuuBp8KhN@spiri>
+References: <20241221155926.81954-1-alisa.roman@analog.com>
+ <20241221155926.81954-2-alisa.roman@analog.com>
+ <20241222180713.64f27040@jic23-huawei>
+ <Z49qgvy0ZVKJ0h0W@spiri>
+ <d9828b7b-facb-4b42-aec2-427e68352a94@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BM1PR01MB2545:EE_|PN2PR01MB9672:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6cb60b58-9c36-46f5-8a24-08dd3adb8807
-X-Microsoft-Antispam:
-	BCL:0;ARA:14566002|8060799006|7092599003|461199028|5072599009|19110799003|15080799006|6090799003|3412199025|440099028;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?VkFxQzhxVkFaNndxWEZtTnhrY3pyQXowa25lNFpIQ0s1OURZREo1TS8vTEZa?=
- =?utf-8?B?QUNTdUZEdXFXRy9OWVlTcFVKSWpSamJjcWhxZ1d3ajRFM2t0ODEyZmRvRVpD?=
- =?utf-8?B?dlplR3U4UUpoN003UFUvSFY4eElKRGw1SGQxRFplNk4vOS9DUExrVE9FMFZV?=
- =?utf-8?B?cHVpbXFWTWlUQ3lkL0xvUlNWUnl2bUJjRnE3M1k2STQzUGppOEc0RVBEbDFL?=
- =?utf-8?B?dDh2eGt1TkE2WTA0TjVWcHUzK0FKbUdjY1pUZnZUelo4eElLZDhjOXhOS2M5?=
- =?utf-8?B?WVEzeThKNSs5a2F6QXVZR2xRRjJqTy9HTTJWbjEzeVVvRk0vV045VTk1czdp?=
- =?utf-8?B?OHpDQWFtaENkTmo3VFMxS3RZeElqZldadWpxQXNkaW0vb25aNlZqWjBBUERW?=
- =?utf-8?B?RGcrZGR0a0tnZlg3SUwxTmpOd1BCWG0zQzJOazMzS2hickYrTlhxTWhZa0wv?=
- =?utf-8?B?cFhiQ3hTaFNQMFUxdW92U3p5bkxUOXQ4TUYyRnU5N0I0MkVWRVZ1dW96bDFw?=
- =?utf-8?B?cUlvaS9iRk9ES0F2UUttZkdBRUVTMWxGRWpZZ0VpazNGSEZJcm9LVWRmcFlh?=
- =?utf-8?B?TDduZFJpQjE0OWF2cTdLZEg0NWVhVWlvUHVLbVhVSWx6K1FROFRuT2JOcVky?=
- =?utf-8?B?WTVmWkZ2ZkQ1TTVoRzBqMEJnR082Z0Z6YVBTbDRwZUxJTDhxU2I1OVNRbW12?=
- =?utf-8?B?VmtCZWZVT2ExdDAzRFd1WjZIZW5JNk1Sb0RIbmFsVTlYK2VJaGZvR3dQNEl3?=
- =?utf-8?B?Z203TlQzeUt3dWZnSyt5WkhneGIrQlNSbDdvSnZHZzgrQlpHUm1ENVF4Y1ZN?=
- =?utf-8?B?OUZubTQ3MHJlakdwV1RZZHdHUW01VSsvV29XbDhMUW9ySmJxVTJFRzlaQXpS?=
- =?utf-8?B?UzFWSmVMc0tqejZtZ3hobDdzSkpRcGR4UUtsVzQwaTZCUHhuUGVhUTk4NmdR?=
- =?utf-8?B?WnFROEZ6RG85WThmM3FYR2dpS05FNExuYkphdm4rbEJBTGtNdDRpUkpIVjRN?=
- =?utf-8?B?SkhBNFV3R1NKajhObjZpZWRSZVV2WlJtQnNpM1hQK1RleUs4RkpFRDhGd3Vv?=
- =?utf-8?B?VUxYdlluS0V5MkZvaTBiNGFHdXZBWm5URzhWVWNCaE0zdWRubkdLY2g0Ym83?=
- =?utf-8?B?ZkZPTzVWN3ZTSXgzZW5uaUhJYU1jVC9kYS9Nb2ZSdllTdGxtRkJ3SE43akFY?=
- =?utf-8?B?Zmk4OXZlMDRYME9ET2JUNG1BMzc2VjVuNm83MmRaRzFhR1M2YXNuSU5UejJj?=
- =?utf-8?B?SVgxOEMrS1FUWjVVU01WV1RmSEtPb01vbjlrdkF4RHNEdXRpZUtndmpTcE9r?=
- =?utf-8?B?OWs0YlU3RjF3NWphcGZkVWJyd2ZFdmZMTi9XaUpGcElYbklnTGpmMXgzQURa?=
- =?utf-8?B?N2xHZlB1ZFcyRUJJOEovUTJWeGFSSkpUeHFqU3BNYTJCRVVWcTBjTlhVK2Rm?=
- =?utf-8?B?T1cxVjNtS0Z2WmU2aGx0cnpkUmJ3S0szbTV6SFVaaC90UDdaVE50YzNrWGhz?=
- =?utf-8?Q?y/0IKE=3D?=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WVFkNzhvU2M2d3hCMTJuamZFdkJURXZzV0VranpydXhqR2YvbHhReGwvU3lY?=
- =?utf-8?B?cHVnTmVacTRPQWZYZmVSdmpSSU5MQW9zQmtWdUs4c1FQT3hlT01qMDNyYzRF?=
- =?utf-8?B?eEZOLzBkSnZaZFo2ODRSR2J0NTNhQVRGMnIyYVpEQ0ZmRjBGMFd1TFZSSCsv?=
- =?utf-8?B?R3Joanl6Z21kQ0tOTThoWXFRQW1SeHJTS3dXa2xGcmNINWhxTmhtK0dualp1?=
- =?utf-8?B?SXE0enlXNTVhMEU0NVpwN1VtN2JiaFphK2xWRWtPMlRUdWRUaDhXc3Jhazc3?=
- =?utf-8?B?K3V4elJNVG50TERmYW55eXcxK3NzbDJoOTBLNEtPckZ0eUxKZTI5ZE9zYUVp?=
- =?utf-8?B?TUFFVzBEMmNtWGgyN0hBY05WeVN5K0Y1TGlaOEdhV0VMZDBkbzV0ZTVTZVpE?=
- =?utf-8?B?a1J5ZEpPbFd1d1FGRmZlYUhjQmVkZ0IvTzNuV2hxZ2tvL0dFVjRQdnFpeHpn?=
- =?utf-8?B?djdQZ2NuT1Q2SVN4OGhxNitHQUV3WXJwalRVZjhoRHV6ZkZZQ3F1N1k0TnVT?=
- =?utf-8?B?OUJPRkREcHpKUnRhVEhiR3FqY2UyZ3N5WUdsdUJCQmQ1Ui9LdGUvMnd2dVdJ?=
- =?utf-8?B?YjB6TUpyM0JxaDZyY2M3VXhpWnVRY0UrS0xtN0xsSjFRRGx0QmxxZ2JGcWZZ?=
- =?utf-8?B?dEgyb0gvcm0xUWxQT3V6WGVtcVpLS3NvR2lnaVdGRWhzUlp6b3o3SldhdFNZ?=
- =?utf-8?B?dmZlU1lWVlgwcVdqRVNlTTNXdkg4MlVoV3QyNjU5LzhhYVk3a08wWDF0V3Zm?=
- =?utf-8?B?am53ZjNKY2dRRmhFRzFZcXVIYXpuSXZSeVNEUFNZZ2FIRkZCQlNRRnFCdkZ5?=
- =?utf-8?B?NVVjeVhyMGNtME54UmhPeDJhMjhGWlBZelhZT2dwekc1dkFqRDlxaXZNNFhO?=
- =?utf-8?B?WGl4ZmRYNjkwa3RDaXd0bndZemVlYU1tclN6MU92U1lnOTlDaHA4SUFzaXEw?=
- =?utf-8?B?MTZmUmxYejNPZE9nbGtkUjIzU1ZBYm1yVDVHbEZmamZwc3haaTFiaHNrOG5L?=
- =?utf-8?B?WWJqRHFiSUlyaDJzdGhUK253R0NaSHZRN1A4WVl2V3JPWnZmVzd2ek92cVM3?=
- =?utf-8?B?R3Y1Z0xPMklyM0tZVnZjOGE3eTZyRStydzZWOHZuNXdudzlKdU5UUWZIaStV?=
- =?utf-8?B?RXRmdnlzNm9tS3lVRllmc1M3S1UwY0VMVzRiYllBaHg1MmkxczVOSFBmMHMx?=
- =?utf-8?B?NWVZcm5qaHFmSWJBU1NpZGJ6NzV5WUNlZG5zSXNHNVFpVTJDU00ycmJyMUVQ?=
- =?utf-8?B?eWlMS2pIZG1MU0hGS2ZFVmNJY3V3c2lITFk0N3I1QnEyaU54c2NVbXdnZjMr?=
- =?utf-8?B?eDRZVHpENnBJVTRkWHRiRXA4V3NleWI5bDQ3c21OWFJUSFppTmdPNXg4SDRv?=
- =?utf-8?B?VU9GdXpOVU5heDRUNERsdW5BU1RGcU9meXBibVlxUERXWVYzUE5HNHJha0FD?=
- =?utf-8?B?VFdxczM0VHhKTnZvdVFvVzRzL1BHOGYwdjdORFpaZ2hoM1BGaVJMZC9BYk00?=
- =?utf-8?B?M25pQTF3eWZTdzBiUFFOMmhRRThvOHBnZnhTVFdvYzRaMVprRmNMY09PVW4z?=
- =?utf-8?B?SXM5Y0N3RTQ5UVFCZUl5YnNEQnBjajJNR1JhZEcybHE4R3Y3QmRWM0diTjln?=
- =?utf-8?B?ZkNGbWZPMUFCbFN1di9ER3UxbXowdTJReEF5c1F5M09DTndORWNUVzlQaG1v?=
- =?utf-8?B?bTFQZzhKM29DQ1hxa2lEc3ZxNVlNR0V4QUxJUGZGbk9LcUNmcnl5MDk2VUFS?=
- =?utf-8?Q?w9xcbIyaMxhUl9N9Iwu8P9IYbt0SC6qUDS0uHbm?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6cb60b58-9c36-46f5-8a24-08dd3adb8807
-X-MS-Exchange-CrossTenant-AuthSource: BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2025 11:54:31.4729
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2PR01MB9672
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d9828b7b-facb-4b42-aec2-427e68352a94@baylibre.com>
 
+On Tue, Jan 21, 2025 at 04:32:56PM -0600, David Lechner wrote:
+> On 1/21/25 3:36 AM, Alisa-Dariana Roman wrote:
+> > On Sun, Dec 22, 2024 at 06:07:13PM +0000, Jonathan Cameron wrote:
+> >> On Sat, 21 Dec 2024 17:56:00 +0200
+> >> Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
+> >>
+> >>> Some sigma-delta ADCs, such as AD7191 and AD7780, have no registers and
+> >>> start conversion when CS is asserted. Add helper function to support
+> >>> this use case by allowing devices to assert CS without performing
+> >>> register operations.
+> >> Hi Alisa-Dariana,
+> >>
+> >> I had a look at the ad7191 datasheet. Given this description,
+> >> I was expecting to see it do a pre pulse of the chip select to trigger
+> >> the acquisition.  However, what I see is a power down line (which is more
+> >> or less a chip select) but it just has a specified t1 delay before the
+> >> DOUT will change to the state for the first bit and the host
+> >> can start driving the clock.
+> >>
+> >> That can be done by setting spi_device->cs_setup to whatever delay is
+> >> needed.  The text is spi_device docs are a little vague,
+> >> but I'd take it as t1 + t2 (maybe t3 to be safe).
+> >>
+> >> That is going to be more reliable than trying to hold the cs across
+> >> messages / spi_sync() calls, particularly if the bus might not be
+> >> locked (which the code below suggests).
+> >>
+> >> Jonathan
+> >>
+> >>
+> > 
+> > Hello Jonathan! I am grateful for your and everyone's feedback, as
+> > always!
+> > 
+> > I got a bit stuck on this part. The motivation for adding this function
+> > is as following:
+> > 
+> > int ad_sigma_delta_single_conversion(struct iio_dev *indio_dev,
+> > 	const struct iio_chan_spec *chan, int *val)
+> > {
+> > 
+> > ...
+> > 	ad_sigma_delta_set_mode(sigma_delta, AD_SD_MODE_SINGLE);
+> > 
+> > 	ad_sd_enable_irq(sigma_delta);
+> > 	ret = wait_for_completion_interruptible_timeout(
+> > 			&sigma_delta->completion, HZ);
+> > ...
+> > }
+> > 
+> > I noticed that adc drivers need to call the ad_sd_write_reg function in
+> > their callback set_mode function, in order to keep the cs line pulled
+> > down before waiting for the interrupt (if I understand correctly). But
+> > since this component and AD7780 have no register I just copied the
+> > functionality of ad_sd_write_reg without actually writing anything.
+> > 
+> > Should I change the description/name to more accurately present the
+> > functionality? Or would it be a better idea to not use the single
+> > conversion function and write something from scratch leveraging the
+> > cs_setup?
+> 
+> If the RDY interrupt handling wasn't so tricky, I would suggest to just
+> make a separate function. But to avoid duplicating that tricky code I
+> think using the existing function would be best. I think you have mostly
+> the right idea here. Here is how I would try to do it...
+> 
+> 1)
+> 
+> 	ad_sigma_delta_set_mode(sigma_delta, AD_SD_MODE_SINGLE);
+> 
+> In the implementation of this callback, call spi_bus_lock(), then do
+> the SPI xfer with no data that has cs_change set so that CS does not
+> deassert (using spi_sync_locked() since we manually control the lock).
+> 
+> 2)
+> 
+> This is the main part of your question, I think. In this part of the
+> function...
+> 
+> 	if (sigma_delta->info->data_reg != 0)
+> 		data_reg = sigma_delta->info->data_reg;
+> 	else
+> 		data_reg = AD_SD_REG_DATA;
+> 
+> 	ret = ad_sd_read_reg(sigma_delta, data_reg,
+> 		DIV_ROUND_UP(chan->scan_type.realbits + chan->scan_type.shift, 8),
+> 		&raw_sample);
+> 
+> I would add a new flag or create a sentinel value for sigma_delta->info->data_reg
+> (e.g. #define AD_SD_NO_REG ~0U) that indicates that this chip doesn't have registers.
+> 
+> Then modify the if statement a bit so that if the chip has registers, call the
+> existing ad_sd_read_reg() function or if the chip doesn't have registers, call
+> a new function that reads one sample and has cs_change set on the last SPI xfer
+> so that CS still does not deassert.
+> 
+> This way, we don't have to mess with modifying ad_sd_read_reg() to not read
+> a register and avoid the naming issue. :-)
+> 
+> 3)
+> 
+> 	ad_sigma_delta_set_mode(sigma_delta, AD_SD_MODE_IDLE);
+> 
+> In the callback for this function, do an empty SPI xfer so that CS finally
+> deasserts. Then call spi_bus_unlock() to release the lock that was taken
+> earlier.
+> 
+> 
+> ---
+> 
+> Also, thinking outside the box, could we use a GPIO instead of connecting
+> SPI CS to the powerdown pin? The DT bindings already have a powerdown-gpios
+> binding for that. The could simplify things a bit.
+> 
+> With this, the set_mode callback would just be poking the GPIO instead of
+> dealing with the SPI CS line. But otherwise would be the same as above.
+> 
 
-On 2025/1/22 18:03, Uwe Kleine-König wrote:
-> The rational is usually that
->
-> 	mul_u64_u64_div_u64(ddata->clk_rate_hz, state->period, NSEC_PER_SEC)
->
-> cannot overflow. Your driver relies on that, too. (Which somewhat
-> proves that a comment is indeed necessary 🙂
+Hello, David! I really appreciate your suggestions! Things look a lot
+clearer.
 
-Oh, thanks for pointing that out, I almost forgot about that. Will check 
-this out in the next version.
+Regarding point 2) I looked a bit further into the read function and the
+ad_sd_read_reg_raw() function seems to handle no register components as
+you suggested:
 
-Regards,
+...
+			.cs_change = sigma_delta->bus_locked,
+...
+	if (sigma_delta->info->has_registers) {
+		data[0] = reg << sigma_delta->info->addr_shift;
+		data[0] |= sigma_delta->info->read_mask;
+		data[0] |= sigma_delta->comm;
+		spi_message_add_tail(&t[0], &m);
+	}
+	spi_message_add_tail(&t[1], &m);
+...
 
-Chen
+So I will handle the AD_SD_MODE_SINGLE and AD_SD_MODE_IDLE cases in the
+callback function by doing empty SPI xfers as you said. The bus seems to
+be already locked before all the ad_sigma_delta_set_mode() and unlocked
+after, so I think I can skip this part.
+
+I will follow with the second version as soon as possible if this setup
+looks alright!
+
+---
+
+I initially used a GPIO for the powerdown pin, but the first interrupt
+was somehow always getting lost.
+
+Kind regards,
+Alisa-Dariana Roman.
 
 
