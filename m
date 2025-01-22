@@ -1,120 +1,144 @@
-Return-Path: <devicetree+bounces-140237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29E13A18F1A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:03:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C801A18F37
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:06:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 626A1161E6B
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:03:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3CDD1886430
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:06:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55B501B4F3E;
-	Wed, 22 Jan 2025 10:03:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2903421148E;
+	Wed, 22 Jan 2025 10:05:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ji74LSfJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NnMwcwut"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28E18136A;
-	Wed, 22 Jan 2025 10:03:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A999020FA8A;
+	Wed, 22 Jan 2025 10:05:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737540206; cv=none; b=RoKdl6mdbJb0KcdSHcrDGCWyeA5KnZZ4yUh1lJ5LLsFAra4kVKKMpugMeQfpzsTybPyJm76aJpmJkX+Wc7FDP9CG6xHW+4k9xUGQA/iqgcCjuodgL1koUJA8fSF8JuEr7hfEPnMW4DXWedBiDtPHRS/boxtZGBcOdXWe9UgEGEs=
+	t=1737540315; cv=none; b=DgHC8WdomHragYrbhXkMfqasWONDoXiZv1bdGoUC5TxLO94ugeXvCdEck0dvWza/BWAzxLyp6WR9BA8lG6XVV/HkSoC4pNJe0iGTghBgEVJog0Gt3Hc82j7+ZcFfFrsXArVH0hfpkGOu+O0u3nIye9aZy6h8+9cpPiQ8N7zycGk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737540206; c=relaxed/simple;
-	bh=Dtna4X4kUOTIn/2TE5vGjCOO4vkwDc6jwkfCRfVrpKA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lcbqlNZs0x2dSg/NKMGh3QimcE/J9KPcW1FrmATtbb8yHNGSkMnMBKNzzR9iGNBlzdG5cyA45ClfvcIrjWYtT/Bt4+RMwZcQ47JFsYQ2QgODc9P03oBCm0vHS0CMu/mbq2+vimRjUCGpRnHzmzDqv71u+VLP3NDguHw/D7lFmns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ji74LSfJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26600C4CED6;
-	Wed, 22 Jan 2025 10:03:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737540205;
-	bh=Dtna4X4kUOTIn/2TE5vGjCOO4vkwDc6jwkfCRfVrpKA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ji74LSfJVkRnyAqWpsATfujRQZH0P4tlRY+6ea3/hknDY3aO0WaocKjlcmU8P3kES
-	 zkyBt1CjiQIK72ZjLTnmdh7UAK6t8iK2OjxGiRNleasyfcnNC2w78IhHYWYJ8eUzYS
-	 15UcMapTO/b9tXWUgdIZ9Jxus/GeARMkhbUNhLOPkEM9E4d1bDTOqtO9H9bA5jCN8m
-	 zV9WYXmrpdquWrr0SlMoE3x2faSRe/od2/h9V8wgojFA8EP/1XtETu1KJ6OB4iEvi/
-	 7/gVMKdYGfcoGZtL73MRl4iorRI+yu9yUER62a5l/dvCN37GdVvzk+T7TmlLunr2r8
-	 M+pxM6F1iflEQ==
-Date: Wed, 22 Jan 2025 11:03:22 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Chen Wang <unicorn_wang@outlook.com>
-Cc: Chen Wang <unicornxw@gmail.com>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, inochiama@outlook.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, 
-	chunzhi.lin@sophgo.com, Sean Young <sean@mess.org>
-Subject: Re: [PATCH v6 2/3] pwm: sophgo: add driver for Sophgo SG2042 PWM
-Message-ID: <dlnfivdhol7faotaqygpvdi2zbgpwrvcruppbkgfleoa6msxib@voe7dhqvfmy6>
-References: <cover.1733281657.git.unicorn_wang@outlook.com>
- <4a7db3ecac9ac2b00c063360334834d6656672e3.1733281657.git.unicorn_wang@outlook.com>
- <e2we4klv7w234zyc4vnbcydieyhcte63sdwcp43vmolmlasv5f@scsiepnnw3db>
- <BM1PR01MB2545319120D9B3932C8C8806FEE12@BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1737540315; c=relaxed/simple;
+	bh=1/GuKaxEhwOAKgFiGB5TJk1TBjQaQ1frM+7ZuBKqiW0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mkhEZgwUlFTdv+DBoiVxYyC5RVHhp0SaT7wbwp0xoVbNhgcLR5gaX6if2DyoRYWGAMzStTgPUCYXntLB0V2zmt3+DlgWQsKvMTntkvpYbKI3JUYE8bRMbyLhH0CI3lVju1exzg8pLugnFsJkAEmtdHTLnK7PGOhWbjDRlqQW9XU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NnMwcwut; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50M9Qml5030077;
+	Wed, 22 Jan 2025 10:04:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zFmj7zj/Lq0aydtI5Gp746tMc3UoW0yD2aMedlR5Jng=; b=NnMwcwutVfIdifgQ
+	drCmbTCZm+mM+1nGU24aAw7TJAb6OO1fJolXxfqq9cty5jAvoyergGx/DxRCM5Ek
+	acY2oBAyGlpkpBInkkvbnddd8s+DxlUEPiZZmLFnfjuCEhmaHPVMDKreyaHolD2L
+	gyKLFnNqdebpDl/kMrUIV1TZmIAkmq83Jxui5HU7askqXE72Zi3Y5iXpInyvo27A
+	OkMW45ydqMlkdWidY+NxHKV8r7BNO8zwWpaohWqEoCkHFEWSh3sbQTVtLmseWmup
+	smWWiVwUhJ1Vlsao1rOaiTvsmrFZGQvtimrpGK9/0kqnUOBROsHxxLIVosMUkzTm
+	yxrNAA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44ax1yr38p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Jan 2025 10:04:47 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50MA4lCa010810
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 22 Jan 2025 10:04:47 GMT
+Received: from [10.253.35.93] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 22 Jan
+ 2025 02:04:40 -0800
+Message-ID: <23a9f6cf-3921-48c1-9c28-aeede639cf40@quicinc.com>
+Date: Wed, 22 Jan 2025 18:04:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5rqt2gca63irfwgt"
-Content-Disposition: inline
-In-Reply-To: <BM1PR01MB2545319120D9B3932C8C8806FEE12@BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] net: stmmac: dwmac-qcom-ethqos: Mask PHY mode if
+ configured with rgmii-id
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20250121-dts_qcs615-v3-0-fa4496950d8a@quicinc.com>
+ <20250121-dts_qcs615-v3-2-fa4496950d8a@quicinc.com>
+ <bf45ec15-d430-499a-ba30-825611369402@lunn.ch>
+Content-Language: en-US
+From: Yijie Yang <quic_yijiyang@quicinc.com>
+In-Reply-To: <bf45ec15-d430-499a-ba30-825611369402@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: tYKueVtLj5-_nOleRcVBv1tEtZKa-_lh
+X-Proofpoint-GUID: tYKueVtLj5-_nOleRcVBv1tEtZKa-_lh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-22_04,2025-01-22_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 malwarescore=0 adultscore=0 mlxlogscore=951 clxscore=1015
+ lowpriorityscore=0 spamscore=0 mlxscore=0 suspectscore=0 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501220073
 
 
---5rqt2gca63irfwgt
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v6 2/3] pwm: sophgo: add driver for Sophgo SG2042 PWM
-MIME-Version: 1.0
 
-Hello,
+On 2025-01-22 01:10, Andrew Lunn wrote:
+>> To address the ABI compatibility issue between the kernel and DTS caused by
+>> this change, handle the compatible string 'qcom,qcs404-evb-4000' in the
+>> code, as it is the only legacy board that mistakenly uses the 'rgmii'
+>> phy-mode.
+> 
+> Are you saying every other board DT got this correct? How do you know
+> that? Was this SoC never shipped to anybody, so the only possible
+> board is the QCOM RDK which never left the lab?
+> 
+> I doubt this is true, so you are probably breaking out of tree
+> boards. We care less about out of tree boards, but we also don't
+> needlessly break them.
 
-On Wed, Jan 22, 2025 at 04:58:26PM +0800, Chen Wang wrote:
-> On 2025/1/21 19:14, Uwe Kleine-K=F6nig wrote:
-> > On Wed, Dec 04, 2024 at 11:17:18AM +0800, Chen Wang wrote:
-> > > +	ret =3D devm_clk_rate_exclusive_get(dev, clk);
-> > > +	if (ret)
-> > > +		return dev_err_probe(dev, ret, "failed to get exclusive rate\n");
-> > > +
-> > > +	ddata->clk_rate_hz =3D clk_get_rate(clk);
-> > > +	if (!ddata->clk_rate_hz || ddata->clk_rate_hz > NSEC_PER_SEC)
-> >
-> > Please add a comment about why you check for > NSEC_PER_SEC.
->=20
-> Seems no need to check this (> NSEC_PER_SEC ), I will remove it in next
-> version.
+You're right. My conclusion was based solely on browsing all RGMII-type 
+Qualcomm boards under the source tree, and I didn't take the scenario 
+you mentioned into account. I will work on coming up with a new 
+solution. If you have any suggestions, I will gladly take them as a 
+reference.
 
-The rational is usually that
+> 
+> 	Andrew
 
-	mul_u64_u64_div_u64(ddata->clk_rate_hz, state->period, NSEC_PER_SEC)
+-- 
+Best Regards,
+Yijie
 
-cannot overflow. Your driver relies on that, too. (Which somewhat
-proves that a comment is indeed necessary :-)
-
-Best regards
-Uwe
-
---5rqt2gca63irfwgt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmeQwmgACgkQj4D7WH0S
-/k6shAf/fIa202RMQ1Kz8jovEjXgT90JjSA2u7S9Tm5/BH9nwdVWhEKmGiUDt+PW
-x2wPFGiwq08fsW3RVGuXA1sZMQmYnAm3K0gsNh9XNr557m5jW/u+yGw4WI16VDLk
-GACo6JbF1yQ/C5FJqmi+m9+5cx5fRR1/ISVo27hQegVxl0g7M673FLOLTwv2frMQ
-KwYqvRUzgL3A3GW0IPiUuDYclqCI9kWi2E3lr6acoYwI9s3RvewJ27M9EtO1tKCk
-YDpyhU/0WeZQB49lv1oc0RmXDaT70v1Asv0HMX8QN4jS4EIVUPTF3Nsl/wxXPe0y
-Kg3T05a+4P4pB6gHuDMTdUVgqpGvwA==
-=/wBO
------END PGP SIGNATURE-----
-
---5rqt2gca63irfwgt--
 
