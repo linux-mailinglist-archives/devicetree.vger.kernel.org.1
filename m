@@ -1,142 +1,146 @@
-Return-Path: <devicetree+bounces-140228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F15CA18EE6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:55:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0021A18EED
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:56:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B660C3A791A
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:55:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 957B93A4E25
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:56:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2661421146B;
-	Wed, 22 Jan 2025 09:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C39672116E4;
+	Wed, 22 Jan 2025 09:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="SNcJNGVs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mZ65s2Fn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DB8A211279
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 09:55:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AADD6210F56
+	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 09:55:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737539729; cv=none; b=JwpOJccqJik2iOs+EjXS3lkqz4e84KKAiwMHdT/jHTy5DuM1of4tJ+IxGjqstthmEJDLIX6/ieCCASJ5wEb0DIF5nopLwZfinI8jkeNJfJv0DO7l/vHME/RDA1QADgXvnFpiHqHCsmF8a+mQNXuT+cm6XowPMDz7yd3FcLDi510=
+	t=1737539738; cv=none; b=ZRIGli/td2WHzrLSOrFnVATO+dFb02gnV50mG/TsLz6Mk1ZN4JDOqIifxS6ZSAILAiT2yPN5tdTLDxZp2jkDgYPTw7xmqp3XIVhRiYidHLj6K0djJWy4qxPu5QjQz+7yd4fAq11Bk0Rk202WJ59HEwPp2eC9ZwvrnNnzvmbml7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737539729; c=relaxed/simple;
-	bh=foP128Q0vaml+DKn9OpvbU52LDZNwWhrXWTRZEdqdvY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=jBbW/3TUBJOsLApQPbIiNgv88CzF51Ok4zX1OWIbjmQ57qP+lYEFDC6T2RGMlEC9KeZNSO8uZ6hm2tzpndnWxSAs9y5CFoC1EGzlGoRwv6oRhcBIER3pBeiaV8ImFHvSh0lAFhhT1Je27cwo5fDzewHgIgq86p5jTemIbs/jiTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=SNcJNGVs; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-385e1fcb0e1so3555513f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 01:55:26 -0800 (PST)
+	s=arc-20240116; t=1737539738; c=relaxed/simple;
+	bh=A7skF+DaxCykLOeAdbWIBEemfXQfKaF/hi2Lg/ra9b8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cXE3bdSIQ6nkZO8D7EwGHru+LLqfdeuuTcG+ChkvO8WQd1G2/Ou3RPRhVM8IG0g+1CoYyvNb3so1Pe4xYBx4eqhHx1GK4p4TOyEIVD21DPInLbxxcYW+2qk+5x/QKJoR8qnA8uSlmcYKeUZSrcOvwUi0mV78U7FKXFBoBwBmzJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mZ65s2Fn; arc=none smtp.client-ip=209.85.208.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-303548a933aso59599181fa.3
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 01:55:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737539725; x=1738144525; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bkXU/mbXgXy1UAlTcrbRMbMvk4S34h1r27crXRO7sVE=;
-        b=SNcJNGVsIhVK7xtdopK2M6L2tM1D0SK5rfWnst8O9MwrA9daG0hAAdrfuaWADMNswp
-         x4f1EblSttHIwIRsfa1JZLteK5n5t1nUzic0gO04uk0oKrXNjRBzRKQopZJWsXZkMrJq
-         kycpvssjQqhEj11ZKAjcI8IT+9HDFvKpGODFWEQAXRyjr3p4EHcVkXTuOaUNioQTc5JK
-         dPVFsc8LNI+3fV+5spnpTFxcAMYTNKv1nkiwLoBNyXN2Qtu59P2urj0j/Z8hQQPHaKSX
-         dPCVcoPzC3gtma9ThsHB+AYpRE0RMSCj/0V3OwZ/wILcCVXSFHrT1EM4FqHf0IbxaZJw
-         b4aQ==
+        d=linaro.org; s=google; t=1737539734; x=1738144534; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=scV0mTsOi7ZzfUvIFazmqCl77AdAA0xM0waC6G2ecgo=;
+        b=mZ65s2FnOLQS37AXtF5gwU9InMa9kgOJzws6pSdQt5jc77Ah0J8jq7DmAsbdTlRrIs
+         wn+L1Ve8xc1aIymUv+ZOsfsN59h1FmIYfZQMOcegvxJJCzjXFF7718RUcTryHKXK9SIV
+         9mbeo1MleUOnutEO5TgK+hiMOdPY1JaftpWtOEr1q8e4r/Z0ZXr2psEgvOd/BHQR+AsT
+         7iEWY7+TMaSPIMVXPAHyV4ZRKcGRYiwzxVkG65JvjksIrnSZ+1SfyUH9ynwNF21W2RI5
+         mX4CAGYdSVsWTGjVOJR62csqHV91/FStO5pqLz7IYJyW8Eb9/Lqh+nWWeGCU/hWI5IvF
+         FaLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737539725; x=1738144525;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bkXU/mbXgXy1UAlTcrbRMbMvk4S34h1r27crXRO7sVE=;
-        b=rKc3SzTZeUmLjxLzR3vHDJRTeVu8WeJfJwR9ThPme4OhyNvYhh0H5sTRhM+DIQ/7u6
-         kwb5AHjbkfGf95weIRRT9xV4l7kaqgcfvYSojs+PSLv7CbktGH6kkUv5u6XsWVYuKp71
-         lGEjp8X8p3LMu+J5joiDaHCW7CyKd0T9hn7bWWk3MUVu4Ch05RoXnhTLJsZSg7UtpMfx
-         73SyL1pVTG07zCQ+LN+QMXHGMcOnw/MMpysM+4/c2kensLzggUZ8jbfj9N849N3YvlUU
-         MNH0G3zQEPBm4lywm+3gXyfyn+4yDoGc0/qRsJGyuBemrK74VnmhPenuig9JtSnZ8m54
-         axZA==
-X-Forwarded-Encrypted: i=1; AJvYcCVqeBh5DCGbXbWMeiHO7rlYyYUB2PRggTJBiy52CzAyNbc6H/E5yt0uK5WYxbYHvPyip+sZAXH0rn3E@vger.kernel.org
-X-Gm-Message-State: AOJu0YwK8zQ97mo1LFPNUQziVXPs6LwGoZk15HhT4aTMfAWDYZrUeVbt
-	rlJPxTQHiURcqNdG1dHKoGbts2xhC4cE8R20CbdWaf7WqqTDCO5m/Mi6Nu+dQvg=
-X-Gm-Gg: ASbGncs+PCvxUe7Y/8OF77fMC9GiXSHl8gsfrdNbueTJpkMG5Eqewf+8UkFXRDUCJYb
-	xx0M8Ua4o27f7zizZS/7PQe21dBNjWXNjr6VCPeJJWbwj9++3rQqKMp/R+AO+mJzg2s7LZaxAZx
-	QsXzgnN9qs1HzGpl6uJIBUQHM5umW9yQsWjik2R3uyo1A5sLjjDe5DtuJQKEu3JJOTQP//ct8D6
-	YzOanlEOkFDVZLSWNzNPmzLn/HL71Jj+pq1QzxQ6h3CmbAukl74znUnivl9EJg8218=
-X-Google-Smtp-Source: AGHT+IHi8wKxfGNlGgCMFVgEtLd+Q2y6RmCAks4ExEZmtnW1E5RNCntEk7piIjBdAlsaTXqPWamYWA==
-X-Received: by 2002:adf:a113:0:b0:38a:8d4c:aad3 with SMTP id ffacd0b85a97d-38bf5664d6bmr14540191f8f.18.1737539725527;
-        Wed, 22 Jan 2025 01:55:25 -0800 (PST)
-Received: from localhost ([2001:4090:a245:80cb:f705:a3ac:14fe:4e1b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438b1cc8151sm16554205e9.1.2025.01.22.01.55.25
+        d=1e100.net; s=20230601; t=1737539734; x=1738144534;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=scV0mTsOi7ZzfUvIFazmqCl77AdAA0xM0waC6G2ecgo=;
+        b=gzyRHb8ImHyA/cbH2dpO+1h3Htx9ZaYSFEjHIIZG/1uizPrC3jFsQ6ydZNsb49I08w
+         /OSuxHsu2+n6RjwnO7sKW+A2URpxVwxV7bwoppg+UgJcRLM/gXQAU+5ADf9PsUUu9uv/
+         xtcz1WyXXxZIqSEJOeUeY5s85RJrUTuiMJkbmvJ7g3JpkIhMYosYIsP5mNBDKuvyGzVF
+         lEDCju3F653ntX2oersdgIKhYcV5J9VEsw+IcakvLFsXuhtubWPjbxTghRDRihgwlYM+
+         zBsaucNoGe/E/Ys7ZAl7I9qtFbL8pLjJukwcVcwyFEVh69w4AhGka6kwCaVd4Ded5MOO
+         3EPw==
+X-Forwarded-Encrypted: i=1; AJvYcCVp1HMlr2l9yywdNhnDs6qMTqJCx5sB9YVtgTvbkPOa1+4Huja1qao+KFnhB8LO4o8/ni2lBWSqBslO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSqagNZdI1LqpePtOEo9m0Y4kaZ4L0dmI6tr/QxjiT1mzPDNC9
+	5cCOGOc4XD6fIB0KmwaVMhjILDAXa0WiWS8p3FQp9ek23q+Syf3wtwQ9m5KikD0=
+X-Gm-Gg: ASbGncupbkiZGKQ6PpmcJZiB5QwYThOYkZjmA3Bh9+UG60NZjYPXULpiFy/MLUWWRmV
+	JbcJmuVw4MSncNGpvBq5uQfmLqK4aAFG++Kl4+gCFzRCE/c5XmAyBtvAlsRlcBpA5ij7Pixo5nt
+	NTScf3QGrEYiwCLyW2kJQK3lmUVxbaHzeQZoBk8OIKLazRlgiPOdw6DWc9YaGmqxXv+gXdIRfOe
+	2VXa0ehYoAbayN7Eb06Qph+tSmDFsft0ZxrsD+b++F0vEqxLSX/PyXFyeqLXDapgXImiYhyN/2g
+	xLtwjG81pO7e5CwdTyzqJd/QmJS8gwzR/uKjrOIgrZd/cftBwA==
+X-Google-Smtp-Source: AGHT+IEyVRLyus5hXslfncouru7d589DBCXm5XQ6Y4wWqmqqzrIjL4zImkrlqZfNjmApRZhoecA7yw==
+X-Received: by 2002:a2e:bd89:0:b0:307:2bc6:5eae with SMTP id 38308e7fff4ca-3072c990274mr76013791fa.0.1737539733757;
+        Wed, 22 Jan 2025 01:55:33 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3072a5013aesm25703591fa.89.2025.01.22.01.55.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jan 2025 01:55:25 -0800 (PST)
-From: Markus Schneider-Pargmann <msp@baylibre.com>
-Date: Wed, 22 Jan 2025 10:54:51 +0100
-Subject: [PATCH 3/3] arm64: dts: ti: k3-am62p5-sk: Add r5fss memory region
+        Wed, 22 Jan 2025 01:55:33 -0800 (PST)
+Date: Wed, 22 Jan 2025 11:55:31 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Sachin Gupta <quic_sachgupt@quicinc.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Bhupesh Sharma <bhupesh.sharma@linaro.org>, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, quic_cang@quicinc.com, quic_nguyenb@quicinc.com, 
+	quic_bhaskarv@quicinc.com, quic_mapa@quicinc.com, quic_narepall@quicinc.com, 
+	quic_nitirawa@quicinc.com, quic_rampraka@quicinc.com, quic_sartgarg@quicinc.com
+Subject: Re: [PATCH V3 2/4] mmc: sdhci-msm: Add core_major, minor to msm_host
+ structure
+Message-ID: <rvu75rn2m32eyjr4ogwz5tmns2bkv3mp4gaz562gjmxztnejsl@deslghsvjhmi>
+References: <20250122094707.24859-1-quic_sachgupt@quicinc.com>
+ <20250122094707.24859-3-quic_sachgupt@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250122-topic-dt-updates-am62-wkup-v6-13-v1-3-f74835b91da9@baylibre.com>
-References: <20250122-topic-dt-updates-am62-wkup-v6-13-v1-0-f74835b91da9@baylibre.com>
-In-Reply-To: <20250122-topic-dt-updates-am62-wkup-v6-13-v1-0-f74835b91da9@baylibre.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Markus Schneider-Pargmann <msp@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1215; i=msp@baylibre.com;
- h=from:subject:message-id; bh=foP128Q0vaml+DKn9OpvbU52LDZNwWhrXWTRZEdqdvY=;
- b=kA0DAAgWJIy04tQVrj8ByyZiAGeQwIOg92yavyDfmN5jBj9NeidWAh9N6a221QeWlhy66MbzW
- 4h1BAAWCAAdFiEE3fCh7n4e16BYruJBJIy04tQVrj8FAmeQwIMACgkQJIy04tQVrj9VYQEA8SoU
- V8IaIsZt1Mmz6nO9GOWRwd8gFaSembrqKQYowmgA/2jOBz8u7ih/J2T1iVQqe7465hlN8aZTD56
- KZnia46MK
-X-Developer-Key: i=msp@baylibre.com; a=openpgp;
- fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250122094707.24859-3-quic_sachgupt@quicinc.com>
 
-Add the dma memory region for r5fss and list it in the wkup_r5fss0_core0
-as memory-region together with the other already present memory region.
+On Wed, Jan 22, 2025 at 03:17:05PM +0530, Sachin Gupta wrote:
+> This change adds the core_major and core_minor variables to
 
-Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
----
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Please see Documentation/process/submitting-patches.rst, look for "[This
+patch] makes xyzzy do frotz", then update your internal documentation so
+that other engineers stop making the same mistake.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index 7f3dc39e12bc9ca4a746ff092f946b84a36404b3..cc695c9d662e6f2c41b73ddf4afe0e95888676e4 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -58,6 +58,12 @@ secure_ddr: optee@9e800000 {
- 			no-map;
- 		};
- 
-+		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0x9c800000 0x00 0x100000>;
-+			no-map;
-+		};
-+
- 		wkup_r5fss0_core0_memory_region: r5f-dma-memory@9c900000 {
- 			compatible = "shared-dma-pool";
- 			reg = <0x00 0x9c900000 0x00 0x01e00000>;
-@@ -677,3 +683,8 @@ &mcu_gpio0 {
- &mcu_gpio_intr {
- 	status = "reserved";
- };
-+
-+&wkup_r5fss0_core0 {
-+	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
-+			<&wkup_r5fss0_core0_memory_region>;
-+};
+> the msm_host structure, allowing these variables to be
+> accessed more easily throughout the msm_host context.
+> This update is necessary for an upcoming follow-up patch.
+> 
+> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
+> ---
+>  drivers/mmc/host/sdhci-msm.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
+> index e00208535bd1..2a5e588779fc 100644
+> --- a/drivers/mmc/host/sdhci-msm.c
+> +++ b/drivers/mmc/host/sdhci-msm.c
+> @@ -273,6 +273,8 @@ struct sdhci_msm_host {
+>  	bool tuning_done;
+>  	bool calibration_done;
+>  	u8 saved_tuning_phase;
+> +	u8 core_major;
+> +	u16 core_minor;
+>  	bool use_cdclp533;
+>  	u32 curr_pwr_state;
+>  	u32 curr_io_level;
+> @@ -2557,6 +2559,10 @@ static int sdhci_msm_probe(struct platform_device *pdev)
+>  	core_major = (core_version & CORE_VERSION_MAJOR_MASK) >>
+>  		      CORE_VERSION_MAJOR_SHIFT;
+>  	core_minor = core_version & CORE_VERSION_MINOR_MASK;
+> +
+> +	msm_host->core_major = core_major;
+> +	msm_host->core_minor = core_minor;
+> +
+>  	dev_dbg(&pdev->dev, "MCI Version: 0x%08x, major: 0x%04x, minor: 0x%02x\n",
+>  		core_version, core_major, core_minor);
+>  
+> -- 
+> 2.17.1
+> 
 
 -- 
-2.47.1
-
+With best wishes
+Dmitry
 
