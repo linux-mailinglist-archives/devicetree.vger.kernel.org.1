@@ -1,143 +1,195 @@
-Return-Path: <devicetree+bounces-140250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CF73A18FB7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:29:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAAAFA18FBB
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:29:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15FC47A118C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:29:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 835513A4D00
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865D621129C;
-	Wed, 22 Jan 2025 10:29:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bOPvj/5F"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37DC3211492;
+	Wed, 22 Jan 2025 10:29:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5E721128A;
-	Wed, 22 Jan 2025 10:29:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BBD121129B;
+	Wed, 22 Jan 2025 10:29:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737541762; cv=none; b=WGdTH70XIrZviezCSFYONXt2n9exxuTXRBlO67XukPF55DfqLmLx6PzvZqbOZU8vdXmTS4IsJueY/Lsp8rzWiDV+P9sigByDYS7dYyy1NPzSBKMxwoxusir/fnut4evxPugtyqfk0A1e8Tom83qF/+HwRHcqcHINTSlQxezZhD4=
+	t=1737541775; cv=none; b=pjePbeRiU462UVTeK+XGkRmFcABurBEOcql9s0P9ebjausvdcfAL3+XA02IKLd9d9n7vBBldACMek3puvRadioThbQFp3BZDcBp3XxRKQFJ5TC+hG/z4ojsdEkBNUO/RDbLSZxXYRWhEpS+EqEnR9hXiwrvGwJm7UAjdAvJQpJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737541762; c=relaxed/simple;
-	bh=um0lS4DsGQyE4fkosuc7MC9GnEa206XsxZ4NA+YNoZI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hX4d/+jDXGx2AVe39Wk7QzVJVKbkSJiSCL+ygQ81BH/oO6XLQ/JRRXMN8TGt/Or1jdId2LqxzRnD1Btd/GMEiiYWTEK39hALq7md7yBehhkdCsXU0KbGCU29KF+ah/d2W1DqpPSAx6ekOM20x7L4XSDUEajWLuWtImACydW8LL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bOPvj/5F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66B26C4CED6;
-	Wed, 22 Jan 2025 10:29:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737541761;
-	bh=um0lS4DsGQyE4fkosuc7MC9GnEa206XsxZ4NA+YNoZI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bOPvj/5FP7wJfcrNKqQaqUMuKUqRBgDrxM3mUrAAxQAc27DFuNzrUlTdVEcSdo8Nz
-	 RhMddUCj78+ct1xb/urJoGncjVYV4n/srB6KTUVxhUcpeUYRlOpNLybzv4HJ3FYwIV
-	 wc58hrgfeKkXGuUS9wI/Fj43JrludUVqdut4cPbK0aYRTgXT31AKNY8/t+l9cTZuBJ
-	 9vfMXQCQdVgI47dYJGPI3kCJRTMpizwZtwpVqNq22nOPx/PtNqyDgV1omcOY+cmAjp
-	 IQxF/JaXAONyW8Hn+iCSaRsDWY6ryYSxUqOtBbausdurK1vZqum+Ju0kzMe5imLQto
-	 1qLKYFdX0bafw==
-Message-ID: <09b3089b-bd44-4993-8377-f191c4a669c4@kernel.org>
-Date: Wed, 22 Jan 2025 11:29:14 +0100
+	s=arc-20240116; t=1737541775; c=relaxed/simple;
+	bh=TXOwZazcEhIFM7pPZJa/kJoekfsRA/+vx6rpt9Apmjo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SNCuuDkIRLNkhRVMiYLSkEnCz/8TJUJdYXnqOPvWJBJqGxj1Uf+aho9c8g5itG7z98epUthNFsR/IDECIXGkYjRZ/Rp4ImBK7KPU6VTFCVKw4V/0ikeX3+6oTkantt1/Ptgd3sZ2gO6oa48EPH3KIkDEjptaaWgFvRM/FOBZudY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4affab62589so1902446137.1;
+        Wed, 22 Jan 2025 02:29:33 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737541771; x=1738146571;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cVxMUkk0amVJCc0EMm757pTzTOt048b6a2IjjsuaC3w=;
+        b=ZvxrO/uEaNbiGqlLDiotEN98T5no/M6soa7SRs+EAgow9g8fo5UCKbgAskmkM1cdX4
+         /DI73P0I/GvLcPoqZUmjLUTNw7yEtQ9RInnkLViQLxssj9MUvhfnhrfxRLgvu2TheTM6
+         hJ4qo2I6cKDEyD7TLWEzmqipaLn9zG6h5Kcu+ypN0dS63HM0LDaHdncTArihRrBifn80
+         YH+S8CyBVdtqyCiYF70U/g2+ccKhKKM7nZ+6poFliF3AqUXpeRqbM3bBlcIqCgM592Rs
+         KP3OQGh3e7IBR5U3GbgCI+PqUFhL8TSrmYmitxjk1KiJiHrcTeev2KnJQpLNm45q87WC
+         edZA==
+X-Forwarded-Encrypted: i=1; AJvYcCV3gQBOoFZF/ctBq82vxO3nFK/W/4vt62Tis0tGhhmNiuSj/SwEXF+AwZ7s5a5c0OP5gus7+Vaizz8d06uMaYViZk0=@vger.kernel.org, AJvYcCWDYAu2emc4rNw46gvYpd5c0e9+uBnrdh6anoo5+x9+ww17xGbf98EKiTkcDWJ110rSQ0eMcG3Ai5mS@vger.kernel.org, AJvYcCWdA9wh7a+UBU6Gud2NUauziwJD4MXGsebTGptA7nyqa3LRh/0WGT+M8NamuRp5gNMZJ1sVDrRmnsB4@vger.kernel.org, AJvYcCWjSLvQB3twXIhMh8wLxyS+PCj9Ky/RY/shBISaPh+BhDwCxl9qXcKPWiWA/XyAz0v+k8qvyTkt9RnZ5MIY@vger.kernel.org, AJvYcCX0bULNRTrpNqNYAzAdsscXA4dt9O6JenoUbMJS+CHFDPzHpsA5CsqJ++1Se9dEucs7u7+wH2Zg3ao=@vger.kernel.org, AJvYcCXf2B+638g1gBOT+IbFPaR6p7Ihhq8srdQj2H8xA1NqurHGKICkAQVhkPOxJxke8aLK5NuRMEslf+iA@vger.kernel.org
+X-Gm-Message-State: AOJu0YykC5VzXOeBcX6C5umMpyMNEIVMgu8U1AT1MGwU9aW026+tDusI
+	/AhVOCA5oBslpBOx2tPex9Q8PQk9fao9zAozVBHwSDP8y1q0NFsLTcJNQk2h
+X-Gm-Gg: ASbGncs3EsehvLhJWwBob4/LEOrHQaMC3va52lR+KAYhsSh3Aqfdq/U0RIadgkLbyWS
+	FCu9a4aYxBFWOP+ig2P14rJhuomeQc4pi+pjKvQ/U/vQoaq0kHHUWXP46XwUQ6cnwwkVoFaT2zl
+	mEERrsTG0Hc/63MFGAr4KwMkE/ftcChdeRzxqOmb7U/ravFxCiMok7sxLOC+Vfp02hbOoBj3heU
+	SKyKwCPHAj6qMipKdW0quyYMN2IHTfm8e/jUILZzWmrmQALz+zsp5QLujP/2ynYZrNyNVol3Z1n
+	lDk6rgr1dhFAyUW1iaU75XyKBrdujxnN
+X-Google-Smtp-Source: AGHT+IEIzvbV18Y9GvDdc3JwF3ybkJJI1npsZ00wLAADbIN8fOFgE+2139WVGpI03nh9GryI194M6w==
+X-Received: by 2002:a05:6102:c52:b0:4b4:27dc:ffef with SMTP id ada2fe7eead31-4b690be5835mr14951156137.14.1737541771590;
+        Wed, 22 Jan 2025 02:29:31 -0800 (PST)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8642cb09838sm2976478241.16.2025.01.22.02.29.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jan 2025 02:29:31 -0800 (PST)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4afed7b7d1bso1938117137.2;
+        Wed, 22 Jan 2025 02:29:31 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCV9XF61tl96hwJB6wgofh0B2m9dgctd9v2Lg/E6wTv6dRgpaGnfTNo2x07z0oYVHLLbJ/iGFbHf/MDw@vger.kernel.org, AJvYcCVxIt3aeLEqBYxgK6yH6rDznVKAyWbKad2e65rIThIEC7UMls4Zwa8xfwYVHg9DrpcsTmRhlGbSni6NHuEu8V/y7+Y=@vger.kernel.org, AJvYcCWK18gDDD06Bkgh4CnXUNMfX/TckgH+O+suK3Z9lvjPCICr9JPM7fE8XizlXjcDozFDhLzUO1MuWPItI8eH@vger.kernel.org, AJvYcCWNYmUPgqbx8SnwLAjMHshmGKiOxBUPthVdNXmHyY+L3yBDhb2SOJSgqMdcOaFmH2igpkxalMElSB0=@vger.kernel.org, AJvYcCWRjEzonJlyxZyGQQ6HagiWxPZ+6cjL8GHwvPV3pYUkfsKl1/PE0GNDEMWlOopBiiup36ERcf6GOl7+@vger.kernel.org, AJvYcCX4lGrF4hY80EQn7gLmF9t19/WtXHsdiCTgZ+vyqBPZrxXpkU0aMqXaeQ+AaMRDTSY5WIvV675Qk7IX@vger.kernel.org
+X-Received: by 2002:a05:6102:50a7:b0:4b2:af6e:5fef with SMTP id
+ ada2fe7eead31-4b690babad2mr16700673137.9.1737541770986; Wed, 22 Jan 2025
+ 02:29:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 12/13] dt-bindings: display: vop2: Add rk3576 support
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, derek.foreman@collabora.com,
- detlev.casanova@collabora.com, daniel@fooishbar.org, robh@kernel.org,
- sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>
-References: <20250121103254.2528004-1-andyshrk@163.com>
- <20250121103500.2528258-1-andyshrk@163.com>
- <20250122-amber-moth-of-upgrade-fa8331@krzk-bin>
- <76fe64e1.7132.1948d81c1f4.Coremail.andyshrk@163.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <76fe64e1.7132.1948d81c1f4.Coremail.andyshrk@163.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250103163805.1775705-1-claudiu.beznea.uj@bp.renesas.com> <20250103163805.1775705-5-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20250103163805.1775705-5-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 22 Jan 2025 11:29:19 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUDKFRsZWsZG9DY4PHdxQEDoPqzfeRx8MNTreOpxdLvpw@mail.gmail.com>
+X-Gm-Features: AWEUYZnD9dEO21kjbX8q_1wcIS_Gmpp7OlV_wqcigMRQXtVoeDic2BsiIeJXlvQ
+Message-ID: <CAMuHMdUDKFRsZWsZG9DY4PHdxQEDoPqzfeRx8MNTreOpxdLvpw@mail.gmail.com>
+Subject: Re: [PATCH 4/6] thermal: renesas: rzg3s: Add thermal driver for the
+ Renesas RZ/G3S SoC
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com, 
+	lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	magnus.damm@gmail.com, mturquette@baylibre.com, sboyd@kernel.org, 
+	p.zabel@pengutronix.de, ulf.hansson@linaro.org, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-clk@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	"open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 22/01/2025 11:14, Andy Yan wrote:
-> Hi, 
-> 
-> At 2025-01-22 16:04:59, "Krzysztof Kozlowski" <krzk@kernel.org> wrote:
->> On Tue, Jan 21, 2025 at 06:34:57PM +0800, Andy Yan wrote:
->>> From: Andy Yan <andy.yan@rock-chips.com>
->>>
->>> Add vop found on rk3576, the main difference between rk3576 and the
->>> previous vop is that each VP has its own interrupt line.
->>>
->>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
->>>
->>> ---
->>>
->>> Changes in v12:
->>> - Split from patch 10/13
->>
->> Order your patches finally. It's v12 and you still send binding after
->> the user. Read carefully submitting bindings/patches.
-> 
-> What do you mean by "sending binding after user" here? 
-> I think PATCH 1~9 are fix and preparations, PATCH 13("drm/rockchip: vop2: Add support for rk3576")
-> is the user that uses the new binding.
+Hi Claudiu,
 
-Ah, my bad. I thought that's the last one.
+CC iio
 
+On Fri, Jan 3, 2025 at 5:38=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> w=
+rote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The Renesas RZ/G3S SoC features a Thermal Sensor Unit (TSU) that reports
+> the junction temperature. The temperature is reported through a dedicated
+> ADC channel. Add a driver for the Renesas RZ/G3S TSU.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Best regards,
-Krzysztof
+Thanks for your patch!
+
+> --- /dev/null
+> +++ b/drivers/thermal/renesas/rzg3s_thermal.c
+
+> +static int rzg3s_thermal_probe(struct platform_device *pdev)
+> +{
+> +       struct rzg3s_thermal_priv *priv;
+> +       struct device *dev =3D &pdev->dev;
+> +       int ret;
+> +
+> +       priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +       if (!priv)
+> +               return -ENOMEM;
+> +
+> +       priv->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(priv->base))
+> +               return PTR_ERR(priv->base);
+> +
+> +       priv->channel =3D devm_iio_channel_get(dev, "tsu");
+
+Given there's only a single IIO channel, you could pass NULL instead
+of the name, and drop "io-channel-names" from the DT bindings.
+I don't know what's the IIO policy w.r.t. unnamed channels, though.
+
+> +       if (IS_ERR(priv->channel))
+> +               return dev_err_probe(dev, PTR_ERR(priv->channel), "Failed=
+ to get IIO channel!\n");
+> +
+> +       priv->rstc =3D devm_reset_control_get_exclusive_deasserted(dev, N=
+ULL);
+> +       if (IS_ERR(priv->rstc))
+> +               return dev_err_probe(dev, PTR_ERR(priv->rstc), "Failed to=
+ get reset!\n");
+> +
+> +       priv->dev =3D dev;
+> +       priv->mode =3D THERMAL_DEVICE_DISABLED;
+> +       platform_set_drvdata(pdev, priv);
+> +
+> +       pm_runtime_set_autosuspend_delay(dev, 300);
+> +       pm_runtime_use_autosuspend(dev);
+> +       pm_runtime_enable(dev);
+> +
+> +       ret =3D rzg3s_thermal_read_calib(priv);
+> +       if (ret) {
+> +               dev_err_probe(dev, ret, "Failed to read calibration data!=
+\n");
+> +               goto rpm_disable;
+> +       }
+> +
+> +       priv->tz =3D thermal_of_zone_register(dev->of_node, 0, priv, &rzg=
+3s_tz_of_ops);
+> +       if (IS_ERR(priv->tz)) {
+> +               dev_err_probe(dev, PTR_ERR(priv->tz), "Failed to register=
+ thermal zone!\n");
+> +               goto rpm_disable;
+> +       }
+> +
+> +       ret =3D thermal_add_hwmon_sysfs(priv->tz);
+> +       if (ret) {
+> +               dev_err_probe(dev, ret, "Failed to add hwmon sysfs!\n");
+> +               goto tz_unregister;
+> +       }
+> +
+> +       return 0;
+> +
+> +tz_unregister:
+> +       thermal_of_zone_unregister(priv->tz);
+> +rpm_disable:
+> +       pm_runtime_disable(dev);
+> +       pm_runtime_dont_use_autosuspend(dev);
+> +       return ret;
+> +}
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
