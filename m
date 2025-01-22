@@ -1,156 +1,248 @@
-Return-Path: <devicetree+bounces-140234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D09A1A18F00
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:57:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EF90A18F03
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:58:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3EA91884BCC
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:57:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4A22160E82
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 09:58:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30398211288;
-	Wed, 22 Jan 2025 09:57:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86288210F4B;
+	Wed, 22 Jan 2025 09:58:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b="SOkWeO44"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hscZqSrU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-o94.zoho.com (sender4-pp-o94.zoho.com [136.143.188.94])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AD45210F45;
-	Wed, 22 Jan 2025 09:57:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.94
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737539840; cv=pass; b=jnjYWqZfMfSq18PU02wL+omDLYjDCFRT9A0WAI9nacwov3Nd/GVuXybFF6vMWHGacH0/y1LrAYoXDaONTKJ6y+FWaMcEmxwgZZXW+ZDFGAZ551XR5xbfijP27kMl9wCMxQbrVxT2UEFU/5vyp1dbFzsOHZtVZnVCC6LVeXeTQfU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737539840; c=relaxed/simple;
-	bh=2kDeGFPRU5ySinR8BTj8CnBGsOS8PfC/VAHys1rOVcY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JLit07ryQdWKwQIK9tso/EDnYfovM3rjDbDDVLJ2Z0/MtZA+wOCSf0tbre4OCXYzQ5XLZvU6rT0A5PtuJWVVZN0bZ3GUWmZUTst9Uj1np+dMHDONPpfxaJwTZSDIytkVCQErdpONW4z/pFiXT30r33F76f/8myuFQwg2cMfIe9s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=kingxukai@zohomail.com header.b=SOkWeO44; arc=pass smtp.client-ip=136.143.188.94
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
-ARC-Seal: i=1; a=rsa-sha256; t=1737539805; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Zpm3EIWmz+kHUp8QG9TUENfhiYlXqhhg5Ng9Fhz5b46Zn52mHzu8UJg/OQycM4osGdNmtbch69/ZXs6NfkZ/ZKOOxgRdpFRlSRP82xdwhiWBJHpFnirWcfMCX2Vac5+e2NkfEgHLJAXPNkHobL2rCt9xQmBOHU8byilkjGAjfP4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1737539805; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Syb9XStZ74dZ9UjkC86uQY//S07l8lYvVVc6rFRliac=; 
-	b=Fk8TpOqf6JDcjE98+WkKcDIgBSupFTLJWkzOXUWjphQLbR4CidV7M0eWI+xevZw1g23vuxMKJJ100wO8kx3laTuWphelqBOOeMk3Uls7PAMjb7rAmI4+YkUR2xjn/CobA8iRLQG/cu3ESfx24e0F6FNHJbfIjk9iXGnf+OGMJ/E=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=zohomail.com;
-	spf=pass  smtp.mailfrom=kingxukai@zohomail.com;
-	dmarc=pass header.from=<kingxukai@zohomail.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1737539805;
-	s=zm2022; d=zohomail.com; i=kingxukai@zohomail.com;
-	h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Feedback-ID:Reply-To;
-	bh=Syb9XStZ74dZ9UjkC86uQY//S07l8lYvVVc6rFRliac=;
-	b=SOkWeO44kE2AW9l0Hh83lGQwokQ+k0A2oadXlA1biHJH7xm769I32zvZlFOIwuw+
-	gOto9k7E/zCSkQs566lEduLVZAsKGbWdNXw9alD5Kfl51Dq1fvBivwm9G+6TfKV4w7M
-	YVL5KzKtbQUzL182NC9TCh73UnTVKAqSRTFoBoMk=
-Received: by mx.zohomail.com with SMTPS id 173753980464133.89882163947368;
-	Wed, 22 Jan 2025 01:56:44 -0800 (PST)
-From: Xukai Wang <kingxukai@zohomail.com>
-Date: Wed, 22 Jan 2025 17:55:57 +0800
-Subject: [PATCH v3 3/3] riscv: dts: canaan: Add clock initial support for
- K230
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753E62101A0
+	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 09:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737539886; cv=none; b=a0CRBFzgl1p3MtvOGQYjLpTKqilttXyo4xQB15Ggu8pIjH8euSOsJmxy917mHMWuKOT0mVHHTOFPoNQyvb7AAQC3tUOlO96iDUuLZzBcAGF4OEdv6Bpk1opz0Yc9E/Ypw/zatJWqGF/kZak124pms6fPcGa2/l7VWvXXCZmKQDI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737539886; c=relaxed/simple;
+	bh=0t93RCDXl/7xUXDW5W9vqPWXCfpMB16UsYpP/NqJ6Vc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RdWkPTCPE8r5pSbehbgoMLBuTXFLQ5cunpDgGEfNiIq6ml7QsrD/+xpxsa32d8DnMNQToJVoqk6wxVPX56SwnDzYZISksvH3xr0fnEFARUfq6LEY5VY1soIzbaDOq0DDzlhXoLZB4J5HgAxTcAz6aEC6hUI8krg+gKb9ilK6GB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hscZqSrU; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53f757134cdso6882676e87.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 01:58:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737539882; x=1738144682; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lt+7T/OfDgu/+TjLQdN9iffz+QngVPZRwwA8knqRWaI=;
+        b=hscZqSrUBpsdDJlvGazLsFUbKQwp1m+j+Ena3k9KzDptbkDyIYvkp4UNh8aIkBVZLI
+         8r/6MHfVQkrFZQHyw3qPHX6SKSZRfoZ4RnEO+C0hTNjP/jLXCuYF/Vwlo0azMReoTQTS
+         V3bPU9MBGXLS2ydWMPdxXWP3tMhVFyEpI2jsUla+a/kdlWDXbwX46wdVEM28/Arusq6k
+         Gpv0ekeTK9HNC+uvD9dvpRjTP8M3oO8RXkF/AfFy/Iam+YcZg57shlU5c21BUSQUn8DZ
+         YAg2ztwdL4rDU8l653TDwGFaxu8wo+3VcCLlJLMGskpBwaVSG/WvMUmMx3WKH7ePYz39
+         7+CQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737539882; x=1738144682;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lt+7T/OfDgu/+TjLQdN9iffz+QngVPZRwwA8knqRWaI=;
+        b=iZONcW0Ncp8pvj0yqpZtBajI8YDFVNUd/n9z57xOuJDapHIUT14KdmV9ssS+iejUYa
+         YfY5DYBpmaxruGke/NhwrADzFejNWC6zM1KMxjjPFA40OP/sWwwx4ijyZckWCYDg9c5j
+         FymwAo1gF8qPOjyo0FAHB3k4U/D4l6iSv4QYQiHntPhNDin/ycd8mJD/Z0vId0AWXdRE
+         +4AvwCs9oHhtcIctaXvXVOX7SQ9nzuZhxn4MqiSCoqJhUjWBWjSVsFhdPlCgRNy3hScQ
+         3idw+bepEbEJOPVol6zXypaZ94by8iaL4p5YGHWCJn05NNxVZqOsPpIDQnugreqOFDRO
+         2MgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWQxc7Cl3Xsqn6ro9bzzXNtPkzoe7fdRn73LLcEVoCkLuSOQ5tGyK83xPvtKssLpudgDd0t6iKGjFZj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwPgr7G9uaS0s19irFZtqj0umfBcjkTXioiHHjW3goozwrgRh5
+	w26HY4DPvLXO/biWB33sGT0gVrI/UZ7+WcBF+iCTaV/IQVe5o9I9Y4wZjQgAd00=
+X-Gm-Gg: ASbGncsz2h9vxH5QE3qGu8iLIBX7ku0kQUO6BQKV4trn6g+awCl1GwzsvjU0yiJpZSK
+	b/kTW2piTNND9qdzTJ/wXsHfqs07yI9OMhCPeanmI0dAQTHAhW3UBO178f3ITqakpMAZJBeta9j
+	VvS1zm7U4qzzU2jVjvZmiy2bjQiWQnh36iJKU+RM02UF9ezAPVt8MpJfbRA3OQA+ZgnzB/XbtJj
+	21Ink0NNot93RQ3h6dmOmiAUx0tBerdNCvrNDc6awzLcONOQhlH4Pevp5hk23XM9gIAPCTp7DF/
+	XI3QIL73xlpMJK2e57STDUp7+Rx2ngx7bwNlFTdN1z1ZMi6KwQ==
+X-Google-Smtp-Source: AGHT+IHSPoERHwXBAu/mWABs14CcJsopKYTMwQjU2ZihLtIIx69YnItSD8BMvZFUb9/vqhUAaBtVuA==
+X-Received: by 2002:a05:6512:1084:b0:542:29b6:9c26 with SMTP id 2adb3069b0e04-5439c27d0c5mr7863371e87.47.1737539882463;
+        Wed, 22 Jan 2025 01:58:02 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5439af7364esm2166480e87.162.2025.01.22.01.58.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 22 Jan 2025 01:58:01 -0800 (PST)
+Date: Wed, 22 Jan 2025 11:57:59 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Sachin Gupta <quic_sachgupt@quicinc.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Bhupesh Sharma <bhupesh.sharma@linaro.org>, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, quic_cang@quicinc.com, quic_nguyenb@quicinc.com, 
+	quic_bhaskarv@quicinc.com, quic_mapa@quicinc.com, quic_narepall@quicinc.com, 
+	quic_nitirawa@quicinc.com, quic_rampraka@quicinc.com, quic_sartgarg@quicinc.com
+Subject: Re: [PATCH V3 3/4] mmc: sdhci-msm: Add Device tree parsing logic for
+ DLL settings
+Message-ID: <6xvsnmbnnvpmlgvmi42pt4d3ugkrxhrgrkp56szqhgh2foxe72@z4ildfxufq7j>
+References: <20250122094707.24859-1-quic_sachgupt@quicinc.com>
+ <20250122094707.24859-4-quic_sachgupt@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250122-b4-k230-clk-v3-3-bff755ac9cfc@zohomail.com>
-References: <20250122-b4-k230-clk-v3-0-bff755ac9cfc@zohomail.com>
-In-Reply-To: <20250122-b4-k230-clk-v3-0-bff755ac9cfc@zohomail.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Xukai Wang <kingxukai@zohomail.com>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Conor Dooley <conor@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
- Troy Mitchell <TroyMitchell988@gmail.com>
-X-Mailer: b4 0.14.2
-Feedback-ID: rr080112277910a4d436f4fbce1f2f21ad0000e158bfd99fa6093e83b8bb5a6e3bb66d9b742312236b742c8b:zu08011227264464127912d748287f1789000049c465d702938ae78b4da75186aaf627a908fcaf844eb5427b:rf0801122da4a83bf7efbd56ad96b034730000d3694be2e4d4cc0e0f2f45f682cf5e28a58e886fc72eba43ed599f227f702b:ZohoMail
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250122094707.24859-4-quic_sachgupt@quicinc.com>
 
-This patch provides basic support for the K230 clock, which does not
-cover all clocks.
+On Wed, Jan 22, 2025 at 03:17:06PM +0530, Sachin Gupta wrote:
+> This update introduces the capability to configure HS200
+> and HS400 DLL settings via the device tree and parsing it.
+> 
+> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
+> ---
+>  drivers/mmc/host/sdhci-msm.c | 86 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 86 insertions(+)
+> 
+> diff --git a/drivers/mmc/host/sdhci-msm.c b/drivers/mmc/host/sdhci-msm.c
+> index 2a5e588779fc..cc7756a59c55 100644
+> --- a/drivers/mmc/host/sdhci-msm.c
+> +++ b/drivers/mmc/host/sdhci-msm.c
+> @@ -256,6 +256,19 @@ struct sdhci_msm_variant_info {
+>  	const struct sdhci_msm_offset *offset;
+>  };
+>  
+> +/*
+> + * DLL registers which needs be programmed with HSR settings.
+> + * Add any new register only at the end and don't change the
+> + * sequence.
+> + */
+> +struct sdhci_msm_dll {
+> +	u32 dll_config[2];
+> +	u32 dll_config_2[2];
+> +	u32 dll_config_3[2];
+> +	u32 dll_usr_ctl[2];
+> +	u32 ddr_config[2];
+> +};
+> +
+>  struct sdhci_msm_host {
+>  	struct platform_device *pdev;
+>  	void __iomem *core_mem;	/* MSM SDCC mapped address */
+> @@ -264,6 +277,7 @@ struct sdhci_msm_host {
+>  	struct clk *xo_clk;	/* TCXO clk needed for FLL feature of cm_dll*/
+>  	/* core, iface, cal and sleep clocks */
+>  	struct clk_bulk_data bulk_clks[4];
+> +	struct sdhci_msm_dll dll;
+>  #ifdef CONFIG_MMC_CRYPTO
+>  	struct qcom_ice *ice;
+>  #endif
+> @@ -292,6 +306,7 @@ struct sdhci_msm_host {
+>  	u32 dll_config;
+>  	u32 ddr_config;
+>  	bool vqmmc_enabled;
+> +	bool artanis_dll;
+>  };
+>  
+>  static const struct sdhci_msm_offset *sdhci_priv_msm_offset(struct sdhci_host *host)
+> @@ -2400,6 +2415,74 @@ static int sdhci_msm_gcc_reset(struct device *dev, struct sdhci_host *host)
+>  	return ret;
+>  }
+>  
+> +static int sdhci_msm_dt_get_array(struct device *dev, const char *prop_name,
+> +				  u32 **bw_vecs, int *len)
 
-The clock tree of the K230 SoC consists of OSC24M,
-PLLs and sysclk.
+It just reads an array from the DT, please rename the bw_vecs param
+which is inaccurate in this case.
 
-Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
-Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
-Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
----
- arch/riscv/boot/dts/canaan/k230.dtsi | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+> +{
+> +	struct device_node *np = dev->of_node;
+> +	u32 *arr = NULL;
+> +	int ret = 0;
+> +	int sz;
+> +
+> +	if (!np)
+> +		return -ENODEV;
+> +
+> +	if (!of_get_property(np, prop_name, &sz))
+> +		return -EINVAL;
+> +
+> +	sz = sz / sizeof(*arr);
+> +	if (sz <= 0)
+> +		return -EINVAL;
+> +
+> +	arr = devm_kzalloc(dev, sz * sizeof(*arr), GFP_KERNEL);
+> +	if (!arr)
+> +		return -ENOMEM;
+> +
+> +	ret = of_property_read_u32_array(np, prop_name, arr, sz);
+> +	if (ret) {
+> +		dev_err(dev, "%s failed reading array %d\n", prop_name, ret);
+> +		*len = 0;
+> +		return ret;
+> +	}
+> +
+> +	*bw_vecs = arr;
+> +	*len = sz;
+> +	ret = 0;
+> +
+> +	return ret;
+> +}
+> +
+> +static int sdhci_msm_dt_parse_dll_info(struct device *dev, struct sdhci_msm_host *msm_host)
+> +{
+> +	int dll_table_len, dll_reg_count;
+> +	u32 *dll_table = NULL;
+> +	int i;
+> +
+> +	msm_host->artanis_dll = false;
+> +
+> +	if (sdhci_msm_dt_get_array(dev, "qcom,dll-hsr-list",
+> +				   &dll_table, &dll_table_len))
+> +		return -EINVAL;
+> +
+> +	dll_reg_count = sizeof(struct sdhci_msm_dll) / sizeof(u32);
+> +
+> +	if (dll_table_len != dll_reg_count) {
+> +		dev_err(dev, "Number of HSR entries are not matching\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	for (i = 0; i < 2; i++) {
+> +		msm_host->dll.dll_config[i] = dll_table[i];
+> +		msm_host->dll.dll_config_2[i] = dll_table[i + 1];
+> +		msm_host->dll.dll_config_3[i] = dll_table[i + 2];
+> +		msm_host->dll.dll_usr_ctl[i] = dll_table[i + 3];
+> +		msm_host->dll.ddr_config[i] = dll_table[i + 4];
+> +	}
+> +
+> +	msm_host->artanis_dll = true;
 
-diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi b/arch/riscv/boot/dts/canaan/k230.dtsi
-index 95c1a3d8fb1192e30113d96d3e96329545bc6ae7..e50ba03c2c21597e5f7d04a652db08f84101cbfb 100644
---- a/arch/riscv/boot/dts/canaan/k230.dtsi
-+++ b/arch/riscv/boot/dts/canaan/k230.dtsi
-@@ -3,6 +3,7 @@
-  * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
-  */
- 
-+#include <dt-bindings/clock/canaan,k230-clk.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- 
- /dts-v1/;
-@@ -65,6 +66,13 @@ apb_clk: apb-clk-clock {
- 		#clock-cells = <0>;
- 	};
- 
-+	osc24m: clock-24m {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "osc24m";
-+		#clock-cells = <0>;
-+	};
-+
- 	soc {
- 		compatible = "simple-bus";
- 		interrupt-parent = <&plic>;
-@@ -138,5 +146,29 @@ uart4: serial@91404000 {
- 			reg-shift = <2>;
- 			status = "disabled";
- 		};
-+
-+		sysclk: clock-controller@91102000 {
-+			compatible = "canaan,k230-clk";
-+			reg = <0x0 0x91102000 0x0 0x1000>,
-+			      <0x0 0x91100000 0x0 0x1000>;
-+			clocks = <&osc24m>;
-+			clock-output-names = "CPU0_ACLK", "CPU0_PLIC", "CPU0_NOC_DDRCP4",
-+					     "CPU0_PCLK", "PMU_PCLK", "HS_HCLK_HIGH_SRC",
-+					     "HS_HCLK_HIGH_GATE", "HS_HCLK_SRC",
-+					     "HS_SD0_HS_AHB_GAT", "HS_SD1_HS_AHB_GAT",
-+					     "HS_SSI1_HS_AHB_GA", "HS_SSI2_HS_AHB_GA",
-+					     "HS_USB0_HS_AHB_GA", "HS_USB1_HS_AHB_GA",
-+					     "HS_SSI0_AXI", "HS_SSI1", "HS_SSI2",
-+					     "HS_QSPI_AXI_SRC", "HS_SSI1_ACLK_GATE",
-+					     "HS_SSI2_ACLK_GATE", "HS_SD_CARD_SRC",
-+					     "HS_SD0_CARD_TX", "HS_SD1_CARD_TX",
-+					     "HS_SD_AXI_SRC", "HS_SD0_AXI_GATE",
-+					     "HS_SD1_AXI_GATE", "HS_SD0_BASE_GATE",
-+					     "HS_SD1_BASE_GATE", "HS_OSPI_SRC",
-+					     "HS_USB_REF_51M", "HS_SD_TIMER_SRC",
-+					     "HS_SD0_TIMER_GATE", "HS_SD1_TIMER_GATE",
-+					     "HS_USB0_REFERENCE", "HS_USB1_REFERENCE";
-+			#clock-cells = <1>;
-+		};
- 	};
- };
+And the pointer to dll_table is lost, lingering for the driver lifetime.
+Please drop the devm_ part and kfree() it once it is not used anymore.
+
+> +
+> +	return 0;
+> +}
+> +
+>  static int sdhci_msm_probe(struct platform_device *pdev)
+>  {
+>  	struct sdhci_host *host;
+> @@ -2446,6 +2529,9 @@ static int sdhci_msm_probe(struct platform_device *pdev)
+>  
+>  	msm_host->saved_tuning_phase = INVALID_TUNING_PHASE;
+>  
+> +	if (sdhci_msm_dt_parse_dll_info(&pdev->dev, msm_host))
+> +		goto pltfm_free;
+> +
+>  	ret = sdhci_msm_gcc_reset(&pdev->dev, host);
+>  	if (ret)
+>  		goto pltfm_free;
+> -- 
+> 2.17.1
+> 
 
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
