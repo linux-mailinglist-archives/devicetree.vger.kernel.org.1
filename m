@@ -1,189 +1,719 @@
-Return-Path: <devicetree+bounces-140429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46A28A19AF6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 23:36:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 388ECA19AFD
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 23:38:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13EC13AAFC2
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 22:36:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 013013AB8FA
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 22:38:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9948C1C5D60;
-	Wed, 22 Jan 2025 22:36:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD96C1CAA6A;
+	Wed, 22 Jan 2025 22:38:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OvmP44j0"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ddvNibj0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66BC61C4A06;
-	Wed, 22 Jan 2025 22:36:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C1B84A3E
+	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 22:38:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737585414; cv=none; b=oViAf9zo76/3LImXdg+v20IOD71qNa64FjE/iajEy9TjiKBhCtQ9inAHGCLAH6B9Osmrmz4bk8l8QZuRsijIfLTtnZmsXXwteTRcvrsI7WBMdzKIdXq90xAe/miFa/ZlcuZ17f4ePAuBylqpBVG5utuQLC/+K5Qg7Si6FrmCdv8=
+	t=1737585517; cv=none; b=V8w3N1g0MBfGjDSIQG9dlxv1yYj+Oz3eUJ5laX5I0vVIgMq1zWOY76Q5S9SkOFnbaBLef3kyxG0MgU7tJLXoj7btHelEXXL2hI9+8cdWKUhTG6elb31YZbjwngnTHpIimOBGSJFwT9L+719lZO71/9CImk2Uyd3Z7boNj3bpqUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737585414; c=relaxed/simple;
-	bh=SsrOaIloqeFcG2s8OyPYHeqIUA8VV6q9XB+ml53my3I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aiHEKfsESzuxIVRmb6m6GnyPSHQ1Xt1fAG0wbz5ivyrDtvoqedYoNsOtMChtXz4G67uk0O2UnIgBniPuUV3Wybicd/dFFYEgAqGbRv93HHcvSwOnDFJp1XbH8R3U0xX3WmD/e9cNNWQWy119EFTF53H7vBky4FNr2+QzpQGhJCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OvmP44j0; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e3a0acba5feso395250276.2;
-        Wed, 22 Jan 2025 14:36:52 -0800 (PST)
+	s=arc-20240116; t=1737585517; c=relaxed/simple;
+	bh=0nxmpyERqqyM+JO/ny6OIQ7+EPITpwuz+As7elXRXSo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iIPEOWZXI40NMgfRIHEuBTVxIBYffzWP2sI1TKfwnZHXtYLaR3WSHTJ1FcYsOqXp55tZaeeyvxLuvtbiiLxVtIQUkXJGAl9F8ev/zD5wmcuPt/2MoXJ9B7V4xlAv8heRYuqUYfhKDDx5JZLo/nu4+z7JqI4GQ/RVmzHNZ35EEfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ddvNibj0; arc=none smtp.client-ip=209.85.167.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3eba50d6da7so90166b6e.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 14:38:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737585411; x=1738190211; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qRIYMPfZ8j+79b6vhX+XsIXEOJ5ZV42s2D7LLOGgGJA=;
-        b=OvmP44j0SRB9KaZjWqsGwTriXoPmAF0CCorzv9lT/Ic4WVL8llD8pmf9N6IwfEFCNL
-         mnNJBrSxalEISHLvtx26RqDxX6iCFHLojgXhbDlxBnHtAHQlDnHHH8umOUuYILoz23dX
-         kfY1rENc13Q8WTbeb2AeokQ0IU9ckosbarhK57EpC5wHM3njHmhk70gnj99If2F4OGXW
-         z9LaRlFoPPJ19gdtDlGYL3SUqYN74qA2GipgjcRhp4cC14rk9P21DDCzIc48yv1Mkxps
-         Aheyg7NEooyOFedNA4DAan56cEks05keJPC3R3qnEo8lTHeoxjxYCd+tFcLBzVOnp2+S
-         PfFg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737585513; x=1738190313; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7bt9cL9wr0lXMGAtdLduMq4eacOv/CjujW2/TZvHg78=;
+        b=ddvNibj0qqpx/Cy/CKdaVGAWd8qOT/ftc7ZbWthBG2BU/ttGjYB2NDAyVnBkjedylJ
+         ERJDQUNfqVZGgqOhTyhT/54l5AFuyk60nhBDnEp9LIkHE+MLR59GQAwEKGs/Tg/NAr9k
+         tliWIZRy1KHtgCStHepVe29nh7KSakLvfkS+x2fgHJYI88FIOWcnXI1j4V+V6PGRhr9o
+         FLTOr/uCnbiXFhEN6+KxZdeAnnWbTO+OSLFsdt9Vgsm7SixJlWVBOMEnwyVxH2LYU7ld
+         KyLhgTNkPpYsWYgYJhhaXUVpbcFqgGByurXyGzHixGzkpptl2kh3u65rUzESp4GNZLcj
+         XiTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737585411; x=1738190211;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qRIYMPfZ8j+79b6vhX+XsIXEOJ5ZV42s2D7LLOGgGJA=;
-        b=h7RKGsx9HNVnEqFLdPhcQP2V2CXpJMWdHGzlK186ByrcsIZ3X3OvDvcRI8hWrhjwGi
-         6mg8AIlEnJ1MYbDIFpf8gqd83jnmvUxPte0ckc3RYD5Xsthm9S2fL/ioRxxcInqCxie4
-         P73wfh++d8MjiTr8jfMOS9wgfr0+S7DIFmyLIDgEFHJV82JzbKCtQEHfmhhSv/u9R37L
-         qTcnBHvGTA8bkDdJPTuiMw5mOcRzdmJdt75hIQJiA1ks6uWVf+gxv+RpoiAVEbRqfZPX
-         i70WkTj+57rp1sz8VZhOTNsmAZ/ZAYuMv96MOdVWp2SWnTG1CMA8pf68gEgzOonBJs72
-         I4fg==
-X-Forwarded-Encrypted: i=1; AJvYcCVXgwZUUcOANENnCPdsrIMAC/RaIvZGJ7m4fgYmXfoK9X0Wt2uVCwxxImj+fAw4JrpN8KzhahdZ2ali/Q==@vger.kernel.org, AJvYcCX7Fq3X9VpXhCCk048bZ9piLAwqGkgMvCsE+sAoXWbVrLTSitPPJkkPYQOxP+3FIcLTvWkwby8yMo7E@vger.kernel.org, AJvYcCXJ1TIyp90SC1ldvUasXJC5XejpN5aeChs3iA8/p6DKeRolCvzuEFqwN9SsK+Xq1DR9WBd2i6CnSCgKyrsl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZyliPx6yoD4ZpY43Jp4LZSmPvbVngtOvCha/bvSqHo+Rq0Hil
-	IsKWHOSRev9LsG3w80MHbCoDC4XL/DKeq+7JVoD2oCL8/9aGigAQEZq3KPsb5Fkr8Pt+6WpQ19X
-	6oIh7e7o/LXfRfbhRtqS3O1wSZMo=
-X-Gm-Gg: ASbGncvGp6++2cI3qOjwQD1xNAY4MYSuCZvb0J31BQhKx13Gj+SqP0Pu1JyWPOp1//v
-	X0yhcVYt80Xm8X3ndMTRuIAa01mVqzQzW0VXBlsey8i20D7/CeZ7z
-X-Google-Smtp-Source: AGHT+IEs0t0eySQJ2q+y7GEGMKKw6cHcK5BlIy2g2kXQBJauyBB4sR0P+jQ1AGofR+buRPyDxYAI+z2FacRSScGKKaM=
-X-Received: by 2002:a05:690c:968b:b0:6f6:d149:d64a with SMTP id
- 00721157ae682-6f6eb908ca1mr186504857b3.27.1737585411295; Wed, 22 Jan 2025
- 14:36:51 -0800 (PST)
+        d=1e100.net; s=20230601; t=1737585513; x=1738190313;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7bt9cL9wr0lXMGAtdLduMq4eacOv/CjujW2/TZvHg78=;
+        b=UKbRv2j2XgULawOGIuY/cTdNwL833B0cMzjCZ+5ZTZ4t+G2EuKVuupiUIQBstHzH/g
+         EJdJf/apVV8MvhbV1Px1ddWeC6cou360e8Todd84knyvylL2UdncsP2qVYSDpNFUQEWi
+         MBldE5Q4htjXuW5NQsWcoykLkmjNe7VzuANRSlLZ+OS9DXdY1J1PbFxh9aQT8rsuTSMY
+         wOQSjIY5GwPy+W3bWqKhFpducPMoqBfp3rcNQAUc1mX857ABH+SGWmWgLs5IOMjAw+bU
+         rdKErsn+y317PoeysUk6AagU1h11WaLALEgBEKgjZ2X16WwOxZPTAI1/uJgRxNcK8ACS
+         wctQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWa2V4/j0gHn6A5tnUWlVOagtR87M6ejEt/VjWmKrQTs6rWPiTyZg0m8+xou4fEjr04lQljyPS2s1is@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVVCmCaPkYjFj3t+Br8QIgpOGnXawDAzJwaMqPFeGgZA5PeKMq
+	K3VEs8FqaLplpgdQdN1NwDt4CEmU5Ct6wJHXbhn41Oz7PFTNodLCj6JP4MmdCrI=
+X-Gm-Gg: ASbGncswtBs0AgFQESwpDh5c3Nopn2rRgXmN+WQ/AAP56W3g9zpgGdaXzeJzdMrsRJp
+	Yzvpf4CMYeyKPmkCL6EevVOGrURTriFfgUNEAlhCyl2WDZAbTMWcAbl+JxN+3HMQfv+0qxPm8xf
+	mif34q/A/lKRC8bugVWvhZ1ZHMfFo6mbxeIrSiy1gWAw2BaCNAqe+e0JRNN4fAhG4cPZqxqXjSA
+	jdDUXWT+uyFe/VCr1JhIWrQfD8lUSz+ivRR8mvE+cJtARr7Zl+ByzMUx5bwx4pta1rO6hIOhtt5
+	bArm8J8/GzXdfExIBcTPJjWdR/lvzyI=
+X-Google-Smtp-Source: AGHT+IHxTtm0NCW5ptLZcDpW2fE3UCEZIzaY9Y6XQ1sO/kIQU5Zq3hpZQpJMhugzaCF/G+UUQJlOuw==
+X-Received: by 2002:a05:6870:2a42:b0:29e:719b:7837 with SMTP id 586e51a60fabf-2b1c08bb3f8mr12621545fac.13.1737585513087;
+        Wed, 22 Jan 2025 14:38:33 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7249b4852e0sm4082079a34.52.2025.01.22.14.38.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jan 2025 14:38:31 -0800 (PST)
+Message-ID: <c3846c9f-e804-4def-b400-c8220efdecf7@baylibre.com>
+Date: Wed, 22 Jan 2025 16:38:29 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250122001240.4166460-1-trini@konsulko.com> <20250122093236.6152c56c@akair>
- <20250122142058.GM3476@bill-the-cat> <20250122232010.1a5a0525@akair>
-In-Reply-To: <20250122232010.1a5a0525@akair>
-From: Robert Nelson <robertcnelson@gmail.com>
-Date: Wed, 22 Jan 2025 16:36:24 -0600
-X-Gm-Features: AWEUYZlQLNY2kE2F-j7-0O2gr9I4QkAgpDcfm-N1Dey0X4zBD9qgZuPllRLkhnI
-Message-ID: <CAOCHtYgJr_KK+ww9KhVinPwmNHpR_gCiPFNUnL8+tex9rbKXoQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: omap: Add TI Pandaboard A4 variant
-To: Andreas Kemnade <andreas@kemnade.info>
-Cc: Tom Rini <trini@konsulko.com>, linux-kernel@vger.kernel.org, 
-	Aaro Koskinen <aaro.koskinen@iki.fi>, Kevin Hilman <khilman@baylibre.com>, 
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] iio: adc: ad7191: add AD7191
+To: Alisa-Dariana Roman <alisadariana@gmail.com>,
+ Alisa-Dariana Roman <alisa.roman@analog.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>
+References: <20250122132821.126600-1-alisa.roman@analog.com>
+ <20250122132821.126600-3-alisa.roman@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <20250122132821.126600-3-alisa.roman@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jan 22, 2025 at 4:20=E2=80=AFPM Andreas Kemnade <andreas@kemnade.in=
-fo> wrote:
->
-> Am Wed, 22 Jan 2025 08:20:58 -0600
-> schrieb Tom Rini <trini@konsulko.com>:
->
-> > On Wed, Jan 22, 2025 at 09:32:36AM +0100, Andreas Kemnade wrote:
-> > > Am Tue, 21 Jan 2025 18:12:40 -0600
-> > > schrieb Tom Rini <trini@konsulko.com>:
-> > >
-> > > > Document the ti,omap4-panda-a4 compatible string in the appropriate
-> > > > place within the omap family binding file.
-> > > >
-> > > > Signed-off-by: Tom Rini <trini@konsulko.com>
-> > > > ---
-> > > > Cc: Aaro Koskinen <aaro.koskinen@iki.fi>
-> > > > Cc: Andreas Kemnade <andreas@kemnade.info>
-> > > > Cc: Kevin Hilman <khilman@baylibre.com>
-> > > > Cc: Roger Quadros <rogerq@kernel.org>
-> > > > Cc: Tony Lindgren <tony@atomide.com>
-> > > > Cc: Rob Herring <robh@kernel.org>
-> > > > Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> > > > Cc: Conor Dooley <conor+dt@kernel.org>
-> > > > Cc: linux-omap@vger.kernel.org
-> > > > Cc: devicetree@vger.kernel.org
-> > > > Cc: linux-kernel@vger.kernel.org
-> > > > ---
-> > > >  Documentation/devicetree/bindings/arm/ti/omap.yaml | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/arm/ti/omap.yaml b/D=
-ocumentation/devicetree/bindings/arm/ti/omap.yaml
-> > > > index 93e04a109a12..28e23ca766b4 100644
-> > > > --- a/Documentation/devicetree/bindings/arm/ti/omap.yaml
-> > > > +++ b/Documentation/devicetree/bindings/arm/ti/omap.yaml
-> > > > @@ -137,6 +137,7 @@ properties:
-> > > >                - motorola,xyboard-mz609
-> > > >                - motorola,xyboard-mz617
-> > > >                - ti,omap4-panda
-> > > > +              - ti,omap4-panda-a4
-> > > >                - ti,omap4-sdp
-> > > >            - const: ti,omap4430
-> > > >            - const: ti,omap4
-> > >
-> > > This allows compatible =3D "ti,omap4-panda-a4", "ti,omap4430", "ti,om=
-ap4"
-> > >
-> > > According to your other patch, you want
-> > > compatible =3D "ti,omap4-panda-a4", "ti,omap4-panda", "ti,omap4430",
-> > > "ti,omap4"
-> > >
-> > > so you need a construction similar to the "ti,omap3-beagle-ab4"
-> >
-> > Do you mean the order should change, or it should be an enum? I'm not
-> > sure where this is documented (the $id and $schema values in the file
-> > are just 404s so I guess not something to read directly?).
-> >
-> you would need a block like this:
->
->       - description: Early Pandaboard revision A4
->         items:
->           - const: ti,omap4-panda-a4
->           - const: ti,omap4-panda
->           - const: ti,omap4430
->           - const: ti,omap4
+On 1/22/25 7:20 AM, Alisa-Dariana Roman wrote:
+> AD7191 is a pin-programmable, ultralow noise 24-bit sigma-delta ADC
 
-Here's a good table:
+ultra-low
 
-https://omappedia.com/wiki/PandaBoard_Revisions#PandaBoard_Revision_History=
-:
+> designed for precision bridge sensor measurements. It features two
+> differential analog input channels, selectable output rates,
+> programmable gain, internal temperature sensor and simultaneous
+> 50Hz/60Hz rejection.
+> 
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+> ---
 
-The A4 was actually 'late' in the Pandaboard life, sadly the
-PandaBoard.org domain went down years ago with no real backup..
+...
 
-The biggest A4 change i've been able to dig up was a change of the i2c
-pull ups on the hdmi bus:
+> diff --git a/drivers/iio/adc/ad7191.c b/drivers/iio/adc/ad7191.c
+> new file mode 100644
+> index 000000000000..dd8151ad3f3f
+> --- /dev/null
+> +++ b/drivers/iio/adc/ad7191.c
+> @@ -0,0 +1,570 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * AD7191 ADC driver
+> + *
+> + * Copyright 2025 Analog Devices Inc.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/device.h>
+> +#include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/kernel.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/mutex.h>
+> +#include <linux/property.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/types.h>
+> +#include <linux/units.h>
+> +
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/adc/ad_sigma_delta.h>
 
-https://git.ti.com/gitweb?p=3Dti-linux-kernel/ti-linux-kernel.git;a=3Dblob;=
-f=3Darch/arm/boot/dts/omap4-panda-a4.dts;h=3Df1a6476af3716489007c12141d06f2=
-08ec2ebc94;hb=3Drefs/heads/ti-linux-4.14.y
+prefer alphabetical order
 
-I don't believe I ever saw an A5/A6 in my hands.
+> +
+> +#define ad_sigma_delta_to_ad7191(sigmad)	container_of((sigmad), struct ad7191_state, sd)
+> +
+> +#define AD7191_TEMP_CODES_PER_DEGREE	2815
+> +
+> +#define AD7191_EXT_CLK_ENABLE		0
+> +#define AD7191_INT_CLK_ENABLE		1
+> +
+> +#define AD7191_CHAN_MASK		BIT(0)
+> +#define AD7191_TEMP_MASK		BIT(1)
+> +
+> +#define AD7191_MAX_ODR_STATE		3
+> +#define AD7191_MAX_PGA_STATE		3
+> +
+> +enum ad7191_channel {
+> +	AD7191_CH_AIN1_AIN2 = 0,
 
-Since Panda pre-dates device-tree's normally these would have been named:
+0 isn't needed here.
 
-ti,omap4-panda-a2 (first production)
-ti,omap4-panda-a4
+> +	AD7191_CH_AIN3_AIN4,
+> +	AD7191_CH_TEMP
+> +};
+> +
+> +/*
+> + * NOTE:
+> + * The AD7191 features a dual-use data out ready DOUT/RDY output.
+> + * In order to avoid contentions on the SPI bus, it's therefore necessary
+> + * to use SPI bus locking.
+> + *
+> + * The DOUT/RDY output must also be wired to an interrupt-capable GPIO.
 
-But with this new thing called "device-tree" the A2 got
-`ti,omap4-panda` and the newer A4 got `ti,omap4-panda-a4`...
+Probably worth mentioning that the SPI controller CS gets wired to PDOWN pin
+on the ADC here since that isn't very obvious.
 
-Regards,
+> + */
+> +
+> +struct ad7191_state {
+> +	struct ad_sigma_delta		sd;
+> +	struct mutex			lock; // to protect sensor state
+> +
+> +	struct gpio_descs		*odr_gpios;
+> +	struct gpio_descs		*pga_gpios;
+> +	struct gpio_desc		*temp_gpio;
+> +	struct gpio_desc		*chan_gpio;
+> +	struct gpio_desc		*clksel_gpio;
+> +
+> +	u16				int_vref_mv;
+> +	u32				pga_state;
+> +	u32				scale_avail[4][2];
+> +	u32				odr_state;
+> +	u32				samp_freq_avail[4];
+> +
+> +	struct clk			*mclk;
+> +	u32				clksel_state;
+> +};
+> +
+> +static int ad7191_set_channel(struct ad_sigma_delta *sd, unsigned int channel)
 
---=20
-Robert Nelson
-https://rcn-ee.com/
+Would be less confusing to me if the channel parameter was changed to "address"
+since the actual value is the channel spec .address field.
+
+> +{
+> +	struct ad7191_state *st = ad_sigma_delta_to_ad7191(sd);
+> +	u8 temp_gpio_val, chan_gpio_val;
+> +
+> +	if (!FIELD_FIT(AD7191_CHAN_MASK | AD7191_TEMP_MASK, channel))
+> +		return -EINVAL;
+> +
+> +	chan_gpio_val = FIELD_GET(AD7191_CHAN_MASK, channel);
+> +	temp_gpio_val = FIELD_GET(AD7191_TEMP_MASK, channel);
+> +
+> +	gpiod_set_value(st->chan_gpio, chan_gpio_val);
+> +	gpiod_set_value(st->temp_gpio, temp_gpio_val);
+> +
+> +	return 0;
+> +}
+> +
+> +static int set_cs(struct ad_sigma_delta *sigma_delta, int pull_down)
+
+Make it ad7191_set_cs() to be consistent. And "assert" is probably a more common
+name instead of pull_down.
+
+> +{
+> +	struct spi_transfer t = {
+> +		.len = 0,
+> +		.cs_change = pull_down,
+> +	};
+> +	struct spi_message m;
+> +
+> +	spi_message_init(&m);
+> +	spi_message_add_tail(&t, &m);
+
+Can make this one line with spi_message_init_with_transfers().
+
+> +
+> +	return spi_sync_locked(sigma_delta->spi, &m);
+> +}
+> +
+> +static int ad7191_set_mode(struct ad_sigma_delta *sd,
+> +			   enum ad_sigma_delta_mode mode)
+> +{
+> +	struct ad7191_state *st = ad_sigma_delta_to_ad7191(sd);
+> +
+> +	switch (mode) {
+> +	case AD_SD_MODE_CONTINUOUS:
+> +	case AD_SD_MODE_SINGLE:
+> +		return set_cs(&st->sd, 1);
+> +	case AD_SD_MODE_IDLE:
+> +		return set_cs(&st->sd, 0);
+> +	default:
+> +		return 0;
+
+Should default return an error?
+
+> +	}
+> +}
+> +
+> +static const struct ad_sigma_delta_info ad7191_sigma_delta_info = {
+> +	.set_channel = ad7191_set_channel,
+> +	.set_mode = ad7191_set_mode,
+> +	.has_registers = false,
+> +};
+> +
+> +static int ad7191_init_regulators(struct iio_dev *indio_dev)
+> +{
+> +	struct ad7191_state *st = iio_priv(indio_dev);
+> +	struct device *dev = &st->sd.spi->dev;
+> +	int ret;
+> +
+> +	ret = devm_regulator_get_enable(dev, "avdd");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable specified AVdd supply\n");
+> +
+> +	ret = devm_regulator_get_enable(dev, "dvdd");
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable specified DVdd supply\n");
+> +
+> +	ret = devm_regulator_get_enable_read_voltage(dev, "vref");
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Failed to get Vref voltage\n");
+> +
+> +	st->int_vref_mv = ret / 1000;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad7191_gpio_setup(struct iio_dev *indio_dev)
+> +{
+> +	struct ad7191_state *st = iio_priv(indio_dev);
+> +	struct device *dev = &st->sd.spi->dev;
+> +
+> +	if (device_property_read_u32(dev, "adi,odr-state", &st->odr_state) == 0) {
+
+Usually we check for a specific error. Otherwise, if someone does something like
+using a string instead of an int in the .dts file, we will get the default value
+rather than an error.
+
+> +		if (st->odr_state > AD7191_MAX_ODR_STATE)
+> +			return dev_err_probe(dev, -EINVAL, "Invalid ODR state.\n");
+> +
+> +		dev_info(dev, "ODR is pin-strapped to %d\n", st->odr_state);
+
+dev_dbg(). or remove it. we can get the info by reading the samping_frequency
+attribute if needed.
+
+> +		st->odr_gpios = NULL;
+> +	} else {
+> +		st->odr_gpios = devm_gpiod_get_array(dev, "odr", GPIOD_OUT_LOW);
+> +		if (IS_ERR(st->odr_gpios))
+> +			return dev_err_probe(dev, PTR_ERR(st->odr_gpios),
+> +					     "Failed to get odr gpios.\n");
+> +	}
+> +
+> +	if (device_property_read_u32(dev, "adi,pga-state", &st->pga_state) == 0) {
+> +		if (st->odr_state > AD7191_MAX_PGA_STATE)
+
+Looks like copy/paste mistake. Should be checking pga_state here.
+
+> +			return dev_err_probe(dev, -EINVAL, "Invalid PGA state.\n");
+> +
+> +		dev_info(dev, "PGA is pin-strapped to %d\n", st->pga_state);
+> +		st->pga_gpios = NULL;
+> +	} else {
+> +		st->pga_gpios = devm_gpiod_get_array(dev, "pga", GPIOD_OUT_LOW);
+> +		if (IS_ERR(st->pga_gpios))
+> +			return dev_err_probe(dev, PTR_ERR(st->pga_gpios),
+> +					     "Failed to get pga gpios.\n");
+> +	}
+> +
+> +	if (device_property_read_u32(dev, "adi,clksel-state", &st->clksel_state) == 0) {
+> +		dev_info(dev, "CLKSEL is pin-strapped to %d\n", st->clksel_state);
+> +		st->clksel_gpio = NULL;
+> +	} else {
+> +		st->clksel_gpio = devm_gpiod_get(dev, "clksel", GPIOD_OUT_HIGH);
+> +		if (IS_ERR(st->clksel_gpio))
+> +			return dev_err_probe(dev, PTR_ERR(st->clksel_gpio),
+> +					     "Failed to get clksel gpio.\n");
+> +	}
+> +
+> +	st->temp_gpio = devm_gpiod_get(dev, "temp", GPIOD_OUT_LOW);
+> +	if (IS_ERR(st->temp_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(st->temp_gpio),
+> +				     "Failed to get temp gpio.\n");
+> +
+> +	st->chan_gpio = devm_gpiod_get(dev, "chan", GPIOD_OUT_LOW);
+> +	if (IS_ERR(st->chan_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(st->chan_gpio),
+> +				     "Failed to get chan gpio.\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad7191_clock_setup(struct ad7191_state *st)
+> +{
+
+As mentioned in the dt-bindings patch review, this could be simpified a bit if
+we remove some of the reduant/unnecessary properties.
+
+> +	struct device *dev = &st->sd.spi->dev;
+> +	u8 clksel_value;
+> +
+> +	st->mclk = devm_clk_get_enabled(dev, "mclk");
+> +	if (IS_ERR(st->mclk)) {
+> +		if (PTR_ERR(st->mclk) != -ENOENT)
+> +			return dev_err_probe(dev, PTR_ERR(st->mclk),
+> +					     "Failed to get mclk.\n");
+> +
+> +		/*
+> +		 * No external clock found, default to internal clock.
+> +		 */
+> +		clksel_value = AD7191_INT_CLK_ENABLE;
+> +		if (!st->clksel_gpio && st->clksel_state != AD7191_INT_CLK_ENABLE)
+> +			return dev_err_probe(dev, -EINVAL,
+> +				"Invalid CLKSEL state. To use the internal clock, CLKSEL must be high.\n");
+> +
+> +		dev_info(dev, "Using internal clock.\n");
+> +	} else {
+> +		clksel_value = AD7191_EXT_CLK_ENABLE;
+> +		if (!st->clksel_gpio && st->clksel_state != AD7191_EXT_CLK_ENABLE)
+> +			return dev_err_probe(dev, -EINVAL,
+> +				"Invalid CLKSEL state. To use the external clock, CLKSEL must be low.\n");
+> +
+> +		dev_info(dev, "Using external clock.\n");
+> +	}
+> +
+> +	if (st->clksel_gpio)
+> +		gpiod_set_value(st->clksel_gpio, clksel_value);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad7191_setup(struct iio_dev *indio_dev, struct device *dev)
+> +{
+> +	struct ad7191_state *st = iio_priv(indio_dev);
+> +	u64 scale_uv;
+> +	const int gain[4] = {1, 8, 64, 128};
+> +	int i, ret;
+> +
+> +	ret = ad7191_init_regulators(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad7191_gpio_setup(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad7191_clock_setup(st);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * Sampling frequencies in Hz, available in the documentation, Table 5.
+> +	 */
+> +	st->samp_freq_avail[0] = 120;
+> +	st->samp_freq_avail[1] = 60;
+> +	st->samp_freq_avail[2] = 50;
+> +	st->samp_freq_avail[3] = 10;
+
+Looks like this one could just be static const data. Or if ODR pins are hard-
+wired, maybe this should only have 1 value.
+
+> +
+> +	for (i = 0; i < ARRAY_SIZE(st->scale_avail); i++) {
+> +		scale_uv = ((u64)st->int_vref_mv * NANO) >>
+> +			   (indio_dev->channels[0].scan_type.realbits - 1);
+> +		do_div(scale_uv, gain[i]);
+> +		st->scale_avail[i][1] = do_div(scale_uv, NANO);
+> +		st->scale_avail[i][0] = scale_uv;
+
+Same here, if gain pins are hard-wired, then the other options aren't really
+available.
+
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad7191_read_raw(struct iio_dev *indio_dev,
+> +			   struct iio_chan_spec const *chan, int *val,
+> +			   int *val2, long m)
+> +{
+> +	struct ad7191_state *st = iio_priv(indio_dev);
+> +
+> +	switch (m) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		return ad_sigma_delta_single_conversion(indio_dev, chan, val);
+> +	case IIO_CHAN_INFO_SCALE:
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			guard(mutex)(&st->lock);
+> +			*val = st->scale_avail[st->pga_state][0];
+> +			*val2 = st->scale_avail[st->pga_state][1];
+> +			return IIO_VAL_INT_PLUS_NANO;
+> +		case IIO_TEMP:
+> +			*val = 0;
+> +			*val2 = NANO / AD7191_TEMP_CODES_PER_DEGREE;
+> +			return IIO_VAL_INT_PLUS_NANO;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		*val = -(1 << (chan->scan_type.realbits - 1));
+> +		switch (chan->type) {
+> +		case IIO_VOLTAGE:
+> +			return IIO_VAL_INT;
+> +		case IIO_TEMP:
+> +			*val -= 273 * AD7191_TEMP_CODES_PER_DEGREE;
+> +			return IIO_VAL_INT;
+> +		default:
+> +			return -EINVAL;
+> +		}
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		*val = st->samp_freq_avail[st->odr_state];
+> +		return IIO_VAL_INT;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int ad7191_set_gain(struct ad7191_state *st, int gain_index)
+> +{
+> +	unsigned long value = gain_index;
+> +
+> +	if (!st->pga_gpios)
+> +		return -EPERM;
+> +
+> +	st->pga_state = gain_index;
+> +
+> +	return gpiod_set_array_value(2, st->pga_gpios->desc,
+
+Replace hard-coded 2 with st->pga_gpios->ndescs.
+
+Also, gpiod_set_array_value_cansleep() should be OK.
+
+> +				     st->pga_gpios->info, &value);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ad7191_set_samp_freq(struct ad7191_state *st, int samp_freq_index)
+> +{
+> +	unsigned long value = samp_freq_index;
+> +
+> +	if (!st->odr_gpios)
+> +		return -EPERM;
+> +
+> +	st->odr_state = samp_freq_index;
+> +
+> +	return gpiod_set_array_value(2, st->odr_gpios->desc,
+> +				     st->odr_gpios->info, &value);
+
+ditto
+
+> +}
+> +
+> +static int __ad7191_write_raw(struct ad7191_state *st,
+> +			      struct iio_chan_spec const *chan,
+> +			      int val, int val2, long mask)
+> +{
+> +	int i;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_SCALE:
+> +		guard(mutex)(&st->lock);
+> +		for (i = 0; i < ARRAY_SIZE(st->scale_avail); i++) {
+> +			if (val2 != st->scale_avail[i][1])
+> +				continue;
+> +			return ad7191_set_gain(st, i);
+> +		}
+> +		return -EINVAL;
+> +
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		if (!val)
+> +			return -EINVAL;
+
+This check seems reduandant since we would get the same result below without it.
+
+> +
+> +		guard(mutex)(&st->lock);
+> +		for (i = 0; i < ARRAY_SIZE(st->samp_freq_avail); i++) {
+> +			if (val != st->samp_freq_avail[i])
+> +				continue;
+> +			return ad7191_set_samp_freq(st, i);
+> +		}
+> +		return -EINVAL;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+
+...
+
+> +static const struct iio_chan_spec ad7191_channels[] = {
+> +	{
+> +		.type = IIO_TEMP,
+> +		.address = AD7191_CH_TEMP,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_OFFSET),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
+> +		.scan_type = {
+> +			.sign = 'u',
+> +			.realbits = 24,
+> +			.storagebits = 24,
+
+IIO buffers are "natrually" aligned, so storagebits for anything > 16, <= 32 is
+going to be a 32-bit integer.
+
+> +			.endianness = IIO_BE,
+> +		},
+> +	},
+> +	{
+> +		.type = IIO_VOLTAGE,
+> +		.differential = 1,
+> +		.indexed = 1,
+> +		.channel = 1,
+> +		.channel2 = 2,
+> +		.address = AD7191_CH_AIN1_AIN2,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_OFFSET),
+
+A bit odd to have offset separate and scale by type, but I guess it isn't
+wrong.
+
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
+> +		.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE),
+> +		.scan_index = 1,
+> +		.scan_type = {
+> +			.sign = 'u',
+> +			.realbits = 24,
+> +			.storagebits = 24,
+> +			.endianness = IIO_BE,
+> +		},
+> +	},
+> +	{
+> +		.type = IIO_VOLTAGE,
+> +		.differential = 1,
+> +		.indexed = 1,
+> +		.channel = 3,
+> +		.channel2 = 4,
+> +		.address = AD7191_CH_AIN3_AIN4,
+> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+> +				      BIT(IIO_CHAN_INFO_OFFSET),
+> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ),
+> +		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
+> +		.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_SCALE),
+> +		.scan_index = 2,
+> +		.scan_type = {
+> +			.sign = 'u',
+> +			.realbits = 24,
+> +			.storagebits = 24,
+> +			.endianness = IIO_BE,
+> +		},
+> +	},
+> +	IIO_CHAN_SOFT_TIMESTAMP(3),
+> +};
+> +
+> +static int ad7191_probe(struct spi_device *spi)
+> +{
+> +	struct device *dev = &spi->dev;
+> +	struct ad7191_state *st;
+> +	struct iio_dev *indio_dev;
+> +	int ret;
+> +
+> +	if (!spi->irq) {
+> +		dev_err(dev, "no IRQ?\n");
+> +		return -ENODEV;
+
+return dev_err_probe(...);
+
+Or should we just let ad_sd_init() handle it?
+
+
+> +	}
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
+> +	if (!indio_dev)
+> +		return -ENOMEM;
+> +
+> +	st = iio_priv(indio_dev);
+> +
+> +	ret = devm_mutex_init(dev, &st->lock);
+> +	if (ret)
+> +		return ret;
+> +
+> +	indio_dev->name = "ad7191";
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->channels = ad7191_channels;
+> +	indio_dev->num_channels = ARRAY_SIZE(ad7191_channels);
+> +	indio_dev->info = &ad7191_info;
+> +
+> +	ad_sd_init(&st->sd, indio_dev, spi, &ad7191_sigma_delta_info);
+
+Need to check return value.
+
+> +
+> +	ret = devm_ad_sd_setup_buffer_and_trigger(dev, indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ad7191_setup(indio_dev, dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return devm_iio_device_register(dev, indio_dev);
+> +}
+> +
+> +static const struct of_device_id ad7191_of_match[] = {
+> +	{
+> +		.compatible = "adi,ad7191",
+> +	},
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, ad7191_of_match);
+> +
+> +static const struct spi_device_id ad7191_id_table[] = {
+> +	{ "ad7191", 0 },
+
+Could leave out the 0 here.
+
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(spi, ad7191_id_table);
+> +
+> +static struct spi_driver ad7191_driver = {
+> +	.driver = {
+> +		.name = "ad7191",
+> +		.of_match_table = ad7191_of_match,
+> +	},
+> +	.probe = ad7191_probe,
+
+Still missing .id_table here.
+
+> +};
+> +module_spi_driver(ad7191_driver);
+> +
+> +MODULE_AUTHOR("Alisa-Dariana Roman <alisa.roman@analog.com>");
+> +MODULE_DESCRIPTION("Analog Devices AD7191 ADC");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS(IIO_AD_SIGMA_DELTA);
+
 
