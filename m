@@ -1,94 +1,143 @@
-Return-Path: <devicetree+bounces-140416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9474A199F9
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 21:46:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DD1BA19A04
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 21:53:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C0C6166520
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 20:46:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D8547A4B54
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 20:53:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4F41A8F94;
-	Wed, 22 Jan 2025 20:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39BC41C462D;
+	Wed, 22 Jan 2025 20:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="U8VLO1Jz"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="QM7fOA/M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30B5F42065;
-	Wed, 22 Jan 2025 20:46:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0842F1B21B9
+	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 20:53:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737578779; cv=none; b=FwqHnHuViYvW3dm9LOxdEXxh7k0tsUsfCdn0MINvBo9teBrAYjJnM+cq6F9H6MNkL1alqbFZcOoMzMoorLWmO08KRNUwmAyzHkMtPhu/xEwaxxdjMoYGkcgK2ZU1ErgsXTFUDowQ4zZ76N5VQdTYn7tM5Dwlz00Sr8j/m8A1l+4=
+	t=1737579200; cv=none; b=nc8hreqAxMjZhm9c6JSh0mCQdGJCiReYxAEWwL4dxq6cSvlCtsTdA+9UFIgV2MGrVbOcR2eQbx50RfXAN8MqqrgNgx6jKXwQ0km9b0C1xjYPUkCeDRWzg3kLaDBheAljfKXCblxqFa/mu5HDNuzlMB/+X2wSw38KDH3vq6h/mjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737578779; c=relaxed/simple;
-	bh=yQNPUHvhKheci/WIXb4PkX51vNK7mEwyJ2pbAQHN9aU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Scuf0GZr1XKcJuCY96TyEfJrkv1XrdE16NgGrfLiwbCg2R267kKExbbo7d8TOdQd0xSgNpW5nQtCLjdkyZuTjHLyIui4md+q+QP8HpwaWhy/i8R7DpN05rZ7r+P/CpRmskZZ0DG7Jcujeeo8hvQfliROVjv4bdr9pLfG81544Qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=U8VLO1Jz; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=+djc2+MczXBbH+xU7MeLYMVOkGxmt0lObTeqQjidoV4=; b=U8VLO1JzM0eTagAzv/V1mcVxn3
-	c7Ah744PLLaWz+l0IscdDfXxegcdYYfF1cQyhT1p5dNXAbGoKGjvTxmGFxbKvVzjiDmQonNVLwIyz
-	UJyJk8kDrkP/LdRc2kIFc1xIe9yyrBqRZ7CRuTQTErTyS1PADSe46zlQifHdszZgCu+eoe8eHRP5h
-	+17zGWm9XDd1c+QqYe2DH3n8hvc/+yF2jqlMJySp1pYi1cKWd9vkiT4Mg3MnPSYCaSXm7DMK9RG3R
-	34ZR/i70JHS6yAksI//e+ZUYuAsHiEN7WBYTDextjZeB7vSPO1hFtH0UsipawljA8BGjlJVM5PKk/
-	es0VEaUg==;
-Date: Wed, 22 Jan 2025 21:46:04 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Tom Rini <trini@konsulko.com>
-Cc: Kevin Hilman <khilman@kernel.org>, linux-kernel@vger.kernel.org,
- Nishanth Menon <nm@ti.com>, Tony Lindgren <tony@atomide.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: omap4-panda-a4: Add missing model and
- compatible properties
-Message-ID: <20250122214604.79e1e829@akair>
-In-Reply-To: <20250122000824.GJ3476@bill-the-cat>
-References: <20250121200749.4131923-1-trini@konsulko.com>
-	<7hmsfjn5mm.fsf@baylibre.com>
-	<20250122000824.GJ3476@bill-the-cat>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1737579200; c=relaxed/simple;
+	bh=iCxCAx6ohnaH68e+Tgm1pRg7x5ZdMVCV9KhGCrGWUIk=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=KYxXdA3HQId6BE3WLNjI1uiyIkjLz81rIQKKmAdCoed+wZtnz3DoexK+BNmYy6jnngNBL+Afg8SOHlqGLx29S89S9cUBlH8+HaOjkWUXAAblhUCFt2S7wi731YUhawAeLukffw1LFJhxySSaK4239CTj3DQxTZ74INQVDJK8mso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=QM7fOA/M; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id E21172C0B9B;
+	Thu, 23 Jan 2025 09:53:08 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1737579188;
+	bh=iCxCAx6ohnaH68e+Tgm1pRg7x5ZdMVCV9KhGCrGWUIk=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=QM7fOA/M9b5OQEFRDAj7DWSKC0oyjDg1vDpNyp6okhhxP4BIE3ePuHIVBMB3j6Z4L
+	 ePHn1pVW+6GdXMYwsvQtKgWA5irYhrOpzAXmygZyGZtKuPrx+kGUD38nhgfGha1T0u
+	 Kh/zyiMRNnxubbKb2FkIPyBU7m3QiBfXAQ6tIK7uMF9HMri3QCdnc0tuYDdRj0sm53
+	 vG5ynwng3F2jrgjwAme655kRnnDebtqcS0YWvqZdnHsfIRLk8kJV3WUylstxonpjRw
+	 9duS6uM8klwQmwgOiSCKlYnQlUlWNnNv9JgSi0F+EpiR8XNQzObh7YXa1mP9FrfQYi
+	 4edx3qKl7/6VA==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B67915ab40001>; Thu, 23 Jan 2025 09:53:08 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.14; Thu, 23 Jan 2025 09:53:08 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1544.014; Thu, 23 Jan 2025 09:53:08 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: "lee@kernel.org" <lee@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"davem@davemloft.net" <davem@davemloft.net>, "edumazet@google.com"
+	<edumazet@google.com>, "kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>, "tsbogend@alpha.franken.de"
+	<tsbogend@alpha.franken.de>, "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+	"linux@armlinux.org.uk" <linux@armlinux.org.uk>, "sander@svanheule.net"
+	<sander@svanheule.net>, "markus.stockhausen@gmx.de"
+	<markus.stockhausen@gmx.de>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "netdev@vger.kernel.org"
+	<netdev@vger.kernel.org>, "linux-mips@vger.kernel.org"
+	<linux-mips@vger.kernel.org>
+Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: Add MDIO interface to
+ rtl9301-switch
+Thread-Topic: [PATCH v4 2/4] dt-bindings: mfd: Add MDIO interface to
+ rtl9301-switch
+Thread-Index: AQHbavAdfrwa1e98nEWkvQh+G18FzLMhm3mAgADUAAA=
+Date: Wed, 22 Jan 2025 20:53:08 +0000
+Message-ID: <db76d5ab-3eda-439d-8b92-c0423d1e39c8@alliedtelesis.co.nz>
+References: <20250120040214.2538839-1-chris.packham@alliedtelesis.co.nz>
+ <20250120040214.2538839-3-chris.packham@alliedtelesis.co.nz>
+ <20250122-macho-flat-sawfly-7ca93d@krzk-bin>
+In-Reply-To: <20250122-macho-flat-sawfly-7ca93d@krzk-bin>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <2FD9D3F406CDB94D91BF870C48475349@alliedtelesis.co.nz>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=67915ab4 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=VdSt8ZQiCzkA:10 a=SNri9qoxPTwurTm3CgAA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
 
-Hi,
-
-Am Tue, 21 Jan 2025 18:08:24 -0600
-schrieb Tom Rini <trini@konsulko.com>:
-
-> > If keeping it is just this binding update, then I'd say we keep it, but
-> > if it gets any more paninful to maintain, I'm also not going to argue
-> > very hard to keep it.  
-> 
-> I'm not in the position to see if any of the Pandaboards work at this
-> point, so I don't know if they're otherwise functional or a huge pile of
-> problems.
-
-I am still testing stuff with pandaboards. But I do not have the a4
-one. So yes they are functional. Compared with other devices still in
-use using the same SoC, here you can play around with everything, know
-the device. so it is a reference for keeping the really interesting
-devices working.
-
-Regarding the a4: I think it is better to keep that one in, just that
-nobody gets confused if he/she digs out his panda board for some
-comparison test and uses a wrong board revision.
-
-Regards,
-Andreas 
+DQpPbiAyMi8wMS8yMDI1IDIxOjE0LCBLcnp5c3p0b2YgS296bG93c2tpIHdyb3RlOg0KPiBPbiBN
+b24sIEphbiAyMCwgMjAyNSBhdCAwNTowMjoxMlBNICsxMzAwLCBDaHJpcyBQYWNraGFtIHdyb3Rl
+Og0KPj4gVGhlIE1ESU8gY29udHJvbGxlciBpcyBwYXJ0IG9mIHRoZSBzd2l0Y2ggb24gdGhlIFJU
+TDkzMDAgZmFtaWx5IG9mDQo+PiBkZXZpY2VzLiBBZGQgYSAkcmVmIHRvIHRoZSBtZmQgYmluZGlu
+ZyBmb3IgdGhlc2UgZGV2aWNlcy4NCj4+DQo+PiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBQYWNraGFt
+IDxjaHJpcy5wYWNraGFtQGFsbGllZHRlbGVzaXMuY28ubno+DQo+PiAtLS0NCj4+DQo+IFlvdSBu
+ZWVkIHRvIGV4cGxhaW4gbWVyZ2luZyBkZXBlbmRlbmNpZXMuIE5vdGhpbmcgaW4gY292ZXIgbGV0
+dGVyLA0KPiBub3RoaW5nIGhlcmUsIGJ1dCB0aGlzICpDQU5OT1QqIGJlIG1lcmdlZCBpbmRlcGVu
+ZGVudGx5Lg0KT0suIEknbGwgbWFrZSBzdXJlIHRvIGFkZCBhIG5vdGUgaGVyZSBhbmQgdG8gdGhl
+IHNlcmllcyBjb3ZlciBsZXR0ZXIuDQo+PiBOb3RlczoNCj4+ICAgICAgQ2hhbmdlcyBpbiB2NDoN
+Cj4+ICAgICAgLSBUaGVyZSBpcyBhIHNpbmdsZSBNRElPIGNvbnRyb2xsZXIgdGhhdCBoYXMgTURJ
+TyBidXNlcyBhcyBjaGlsZHJlbg0KPj4gICAgICBDaGFuZ2VzIGluIHYzOg0KPj4gICAgICAtIE5v
+bmUNCj4+ICAgICAgQ2hhbmdlcyBpbiB2MjoNCj4+ICAgICAgLSBOb25lDQo+Pg0KPj4gICAuLi4v
+YmluZGluZ3MvbWZkL3JlYWx0ZWsscnRsOTMwMS1zd2l0Y2gueWFtbCAgfCAyNCArKysrKysrKysr
+KysrKysrKysrDQo+PiAgIDEgZmlsZSBjaGFuZ2VkLCAyNCBpbnNlcnRpb25zKCspDQo+Pg0KPj4g
+ZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvcmVhbHRl
+ayxydGw5MzAxLXN3aXRjaC55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L21mZC9yZWFsdGVrLHJ0bDkzMDEtc3dpdGNoLnlhbWwNCj4+IGluZGV4IGYwNTMzMDNhYjFlNi4u
+YzE5ZDJjMjA5NDM0IDEwMDY0NA0KPj4gLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2Jp
+bmRpbmdzL21mZC9yZWFsdGVrLHJ0bDkzMDEtc3dpdGNoLnlhbWwNCj4+ICsrKyBiL0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvcmVhbHRlayxydGw5MzAxLXN3aXRjaC55YW1s
+DQo+PiBAQCAtMjgsNiArMjgsOSBAQCBwcm9wZXJ0aWVzOg0KPj4gICAgIHJlZzoNCj4+ICAgICAg
+IG1heEl0ZW1zOiAxDQo+PiAgIA0KPj4gKyAgbWRpby1jb250cm9sbGVyOg0KPj4gKyAgICAkcmVm
+OiAvc2NoZW1hcy9uZXQvcmVhbHRlayxydGw5MzAxLW1kaW8ueWFtbCMNCj4+ICsNCj4+ICAgICAn
+I2FkZHJlc3MtY2VsbHMnOg0KPj4gICAgICAgY29uc3Q6IDENCj4+ICAgDQo+PiBAQCAtMTEwLDUg
+KzExMywyNiBAQCBleGFtcGxlczoNCj4+ICAgICAgICAgICAgIH07DQo+PiAgICAgICAgICAgfTsN
+Cj4+ICAgICAgICAgfTsNCj4+ICsNCj4+ICsgICAgICBtZGlvLWNvbnRyb2xsZXIgew0KPiBObywg
+bm8gcmVzb3VyY2VzIGhlcmUsIG5vIHVuaXQgYWRkcmVzcy4gTG9vayBhdCBvdGhlciBub2RlcyAt
+IHRoZXkgaGF2ZQ0KPiB0aGUgcmVzb3VyY2UsIHRoZSBhZGRyZXNzLiBNaXhpbmcgc3VjaCBub2Rl
+cyBpcyBjbGVhciBpbmRpY2F0aW9uIHRoaXMgaXMNCj4gbm90IGNvcnJlY3QgaGFyZHdhcmUgZGVz
+Y3JpcHRpb24gYW5kIHlvdSBkbyB0aGlzIG9ubHkgZm9yIExpbnV4Lg0KPg0KPiBGb2xkIGNoaWxk
+IGRldmljZSBpbnRvIHBhcmVudC4NCg0KSW4gdGhpcyBwYXJ0aWN1bGFyIGNhc2UgYWxsIHRoZSBt
+ZGlvIHN0dWZmIGlzIGFjdHVhbGx5IGNvbnRhaW5lZCB0byBhIA0KcmFuZ2Ugc3RhcnRpbmcgYXQg
+b2Zmc2V0IDB4Y2EwMC4gSSBkcm9wcGVkIGl0IGJlY2F1c2UgaXQgd2FzIHNpbXBsZXIgaW4gDQp0
+aGUgZHJpdmVyIHRvIHVzZSB0aGUgZnVsbCAxNi1iaXQgYWRkcmVzcyByYXRoZXIgdGhhbiB0cnlp
+bmcgdG8gdXNlIA0Kb2Zmc2V0cyBmcm9tIHRoZSBiYXNlIGFkZHJlc3MgdGhhdCBkaWRuJ3QgY29y
+cmVzcG9uZCB0byB0aGUgZGF0YXNoZWV0LiANCkFzIHlvdSd2ZSBoaWdobGlnaHRlZCB0aGF0J3Mg
+bWFraW5nIHRoZSBkdC1iaW5kaW5nIGltcG9zZSBkcml2ZXIgDQpzcGVjaWZpY3Mgc28gd291bGQg
+YWRkaW5nIGJhY2sgYG1kaW8tY29udHJvbGxlckBjYTAwYCBhbmQgYHJlZyA9IDwweGNhMDAgDQow
+eDIwMD47YCBiZSBPSyBldmVuIGlmIHRoZSBkcml2ZXIgZG9lc24ndCBhY3R1YWxseSB1c2UgdGhl
+bT8NCg0KPg0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KPg==
 
