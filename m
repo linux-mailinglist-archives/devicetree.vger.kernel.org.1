@@ -1,156 +1,135 @@
-Return-Path: <devicetree+bounces-140307-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140309-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C403DA1927F
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 14:30:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28D05A19288
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 14:31:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7320F188028D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 13:30:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EAAF165B47
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 13:31:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6676F1805B;
-	Wed, 22 Jan 2025 13:30:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A90B42135B0;
+	Wed, 22 Jan 2025 13:30:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vfd+wum4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vv/Y+178"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7F61E4AB
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 13:30:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9E2521324E
+	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 13:30:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737552631; cv=none; b=tvY75cekrTnprFq75JJI7/MWvJVdb8UI6zI0Xi+pkfmGG5Pln/eC4jEKVZfs6uslF6iZhQxaS38JmOtZV3wNIibJqYAX+bwkoYJbKHhyGwLRTUpkwi+5hZ66s85wAjmz58Hq/NEj5lRdgiC9NFbq6TqAoSNRoEEmi+8H54Wbo/s=
+	t=1737552651; cv=none; b=KJGHl3oNwhaIL3+g9rXmnb6YemARLT/ekOYej0XqZ1bwpfmx7dsLUYKcwWmmpkdZJTPVp7HGdA0aAydL2L5xZXrczw6t6qq3vXQXqQ3TA6loEye9FbPFIZX+ywZGjFHACq26vvj/57mHRsXq2f/3ayVSS5DJfPkEzjvqz8Avf/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737552631; c=relaxed/simple;
-	bh=aFfcC6jiiGz1Osz0vw8EKi0+lxkltGCJDQoZCrR2Ux4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eJeLo1StN5wlx+2puwP4BtLJEZkPc73XOPp5bDMrHylb8V2pABODYQvpBlFasz2vIo/mL3JVLBoMrqA47pzo9SF/2hmT9tsKHl4LasBIjYGgfwkqBCRX5Srt7Gu/zhDt0HDKi0n0t6MavW6pSPzAafwYxi6GPLaHuxCqRbj0OTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vfd+wum4; arc=none smtp.client-ip=209.85.128.48
+	s=arc-20240116; t=1737552651; c=relaxed/simple;
+	bh=MT1Qd4GfkNXwqWLqiWPdrTymaf6z71RpZBpS8qzx2Bk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MXZD+0JUu1rqfIAPQKnwQfHQnx9SNbVGDBM0wp4SVWON+vvMl81ag9Xf8vrx/j9JfWwfeDvwV/z045hrZQoBx0BmCgb05yVKQGw4RCEb/xB4edwof15NU1v+uLtlGVvdaSuBCXyEzOkPjnX7/H0/CwW5Lk3s50cM/3iAl1SvEpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vv/Y+178; arc=none smtp.client-ip=209.85.167.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43626213fffso5657085e9.1
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 05:30:29 -0800 (PST)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5401bd6ccadso6910846e87.2
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 05:30:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737552628; x=1738157428; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NB6Rh/OFeXzQHL/a0mwC65e81QBFBxkxQjo9tidAdio=;
-        b=vfd+wum4b9E3w0Fcz9bN3ngiXfnVRQ3wRkSbmsT+us1AJj71QrptJ5KqxxHjAe3lOs
-         zrg4gF/H6JugCQciKnln49dCHw9UayBlZYBRLmKvy41/53G36pYTW2kOPE+E8Z4uPltE
-         WfvtcMza0/tHynGJlkidQr1A0H1xUe9Nt0WLmkBsFEEtelhdfAT1X1CwyPIQFHbm/kJq
-         LPxVeO7AuVsi4lz0jU7Ocbh62v2k4gQufWFuli+xnqH/uN9DoHPA/rgvM46zOqACSvyG
-         z7ZRwCVgiYl9dLWXNDDltlzrpqroTa6enoLHLrhPpXhvgPGAv1NNlIqSUhVva3fT9eLI
-         OM3A==
+        d=linaro.org; s=google; t=1737552648; x=1738157448; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MT1Qd4GfkNXwqWLqiWPdrTymaf6z71RpZBpS8qzx2Bk=;
+        b=vv/Y+178v6T/33PtFV1XX+V/CPi6mqf84bJy9c+E1vOtjZQp8QPy9+s7upo8Xw2ViH
+         JZ03icyH7aLJjEBJ1VUWjaj5uR6bORmRJmIXpxP1yQ9q1keAiD6WWPAIsDT5mUIUngnr
+         8Ms5Kh5OLncFqXSSqTUCGWP54Q8Le2dDiCCgmqjkyGuEfu0MxAOqaqC9cJWWI+7oauv8
+         xcnEHzpFNOkDHROQuXAqMiUN90vuD5aBwchQeOtlGDbD0pbhU/LCTlat89sVwzs5gcOy
+         5mlYVxK07KatnsL4GDNQ+JtkXl9WjdkHOYjoED/Lp+5TurSuSQoMs5MIccLDqTwzmoAL
+         R/9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737552628; x=1738157428;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NB6Rh/OFeXzQHL/a0mwC65e81QBFBxkxQjo9tidAdio=;
-        b=FmVrGsd8/PKr+DL48KDtYZH49uV5FpNyNRgLdyuXofwykjRhImuYIB9X0aKpf5RZKa
-         z5yxL41RQEkel8Ri4BTAZdzKa9nj4b+uQTeQPxPFN8yv+XYLadypgehd6tVmbrKKjysf
-         FQHi/lD65G+li2MgNeqQ8dt4NSDzkDFoe4B74BPOy36/kUCv5gCtN5LUlUUsNcy9wXiu
-         tGSWO2YNe6qyQDVEtJv+xIcNAeouWgEIUut3KH9Mz5QEkEBJ47G0JIwe5X0KXykrqWMw
-         aRYm/8eLcCd/e10M1Q4ux8KDHl6vdRtYbHoISU3Edeq0fTf0bUauGoDZnXB4pe/0EEdG
-         muhA==
-X-Forwarded-Encrypted: i=1; AJvYcCWunvxoHj/eouxxOuWXs9ecmNfRvrIkwfUy/voUAUxO4Af0rgnbVlsySGftJmaewyHgR6TrLgAueKDH@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2JvE0FevrWor6anioOLHPtUGPplCLj8unROa/xvMJ5onm290G
-	64FLuXFnCwA5tB+zSYiDdd4unM9CRU+3Eiu56wmJP9RKrR00mp9RydnBsZrMddk=
-X-Gm-Gg: ASbGncsq49ayPaGLqrlVVQiScfkG/3mYEfWn6L+Qk4H6NPOKKFwH6UgEczhfZhDOU5E
-	fORmf5/vpiJvPVLxISKAy4Kr+bZPQ+Ie5KdMqi4OZLhxKUoNGPTErHbQB8ng1lFZPR/o1zVsTWv
-	risEXlQo3OCp1OmAyOtFct4dGCQw2BrLrOJE05CJuRu4TaJZ8yesK37E8Q7rN3QzYRQrmW22z/W
-	GZxValtIKin3VJZ2TNkwMFxo5yKowSPYmQTPSiC9244NV0xaZooGGPQ0hjYSau1P7fFmm6vBFt9
-	92G2NNs=
-X-Google-Smtp-Source: AGHT+IEs9lAWF9RKOmcaZzHtX4TIStHBK+ZBY/o7F7o+SLwozXV7t/wh2J7X0yEr3mWNe9q0TILkWA==
-X-Received: by 2002:a5d:47a2:0:b0:38b:e22e:aee0 with SMTP id ffacd0b85a97d-38bf5b02a75mr19062848f8f.23.1737552627762;
-        Wed, 22 Jan 2025 05:30:27 -0800 (PST)
-Received: from [192.168.0.35] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf327556dsm16278714f8f.71.2025.01.22.05.30.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jan 2025 05:30:27 -0800 (PST)
-Message-ID: <f0079c85-0ff9-4663-9ba3-b208b3487db5@linaro.org>
-Date: Wed, 22 Jan 2025 13:30:26 +0000
+        d=1e100.net; s=20230601; t=1737552648; x=1738157448;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MT1Qd4GfkNXwqWLqiWPdrTymaf6z71RpZBpS8qzx2Bk=;
+        b=ayPMCNhRuySNhuU9gpWQuyDil7gT9WDFAhyOqSornH3A2Eanx9Toh8vKZDLA3JdPFU
+         er75E7hgkB2angmmeuK7tUHQeKoV5sZzTcgaNN+SnM7aiJnLcfzkMA3MeQtFYtJA7rL3
+         TrfrViSLUFzBMNWaWh0nlBu1sjIz3Q3U6V6B/fLTej4LyrdsKJLceBMJhDd7qjIFvh/B
+         vKRrwX3Vz6jieed54/H3lGzAqT4M8UTKOAws748l+FECiNMPKaK4+1E3pvwNFgEwhplM
+         14S0E+CNtVL7vU9ejsFpdnDLCUcdakchjZM+eLCgQgd9jBXKz6UrfljI/IwIS9hKD9TB
+         Dltg==
+X-Forwarded-Encrypted: i=1; AJvYcCU4S82+JeL8AUrKN5CCbUamG6nzr9J/0IEMnyTctx4h88E0yKVyu1oICl5g/7Agkib0U/QUvwW3r7uJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrGnuWRK6fiNB3So10xNWAMXD8rmTzxqqemgl5e9ENr5LaTfRO
+	MdMYrsfAQHzh6jtI0+KgSX+TeX1WF3UM6pyYzwYBu9QR2HsXoXhjGycJ1ei73quZ4xXLgZFCcFa
+	lvyvw6B7CHq+NgFqfsuwyfMq5Z1FWoVnXbF3Njg==
+X-Gm-Gg: ASbGnctaH8c2NEqEHGRJJGGilrx7uLL4IOZAxMRzjqLg7d4Oqux/gGSmV1QHMjJAbao
+	A+F+LAwaJ1BjLzCAGtuq8ONUH6vVBWROo03pMVyWrQ0bznuksjA==
+X-Google-Smtp-Source: AGHT+IGs/n7Ljor2d3ADarC6NG+9NmWSbVqt5BnALy/+iVRtZ9CeuWAGeuayEWCsA+u7d2kSrA4qXict3/8+PKzO1MM=
+X-Received: by 2002:a05:6512:ad5:b0:542:8d45:cb3e with SMTP id
+ 2adb3069b0e04-5439c241016mr8306080e87.18.1737552647836; Wed, 22 Jan 2025
+ 05:30:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: update clocks for sc7280-camss
-To: Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, akapatra@quicinc.com,
- hariramp@quicinc.com, andersson@kernel.org, konradybcio@kernel.org,
- hverkuil-cisco@xs4all.nl, cros-qcom-dts-watchers@chromium.org,
- catalin.marinas@arm.com, will@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20250121180746.1989996-1-quic_vikramsa@quicinc.com>
- <20250121180746.1989996-2-quic_vikramsa@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20250121180746.1989996-2-quic_vikramsa@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250110123923.270626-1-szemzo.andras@gmail.com>
+ <20250110123923.270626-4-szemzo.andras@gmail.com> <20250114141954.2785879a@donnerap.manchester.arm.com>
+ <CACRpkda0nx3SQtdjmXdCEbVJSWM10TM=p-6JbDjbiYcOSF5PxQ@mail.gmail.com>
+ <20250115152635.1b89e7f4@donnerap.manchester.arm.com> <CACRpkdYVTedEon0X-izvaDTGF6yRhD2s=Z6NEM=zBf4vD-T0Pg@mail.gmail.com>
+ <20250117145228.2fc8a64e@donnerap.manchester.arm.com>
+In-Reply-To: <20250117145228.2fc8a64e@donnerap.manchester.arm.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 22 Jan 2025 14:30:36 +0100
+X-Gm-Features: AbW1kvbmavQU6KJ-WzCpG2eI69ENGFRQZ6H5c_O0ajyC4q6k3ZeKpvUjD-d9bk8
+Message-ID: <CACRpkdZ29=mCqLku4Obq+E5j6kS4NZchwCtrTeCt0qUctn6Czg@mail.gmail.com>
+Subject: Re: [PATCH 03/12] pinctrl: sunxi: add driver for Allwinner V853.
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Andras Szemzo <szemzo.andras@gmail.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Maxime Ripard <mripard@kernel.org>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-gpio@vger.kernel.org, 
+	linux-pm@vger.kernel.org, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 21/01/2025 18:07, Vikram Sharma wrote:
-> Update clock names to make them consistent with existing platform i.e
-> qcom,sc8280xp-camss.yaml. Rename gcc_cam_hf_axi to gcc_axi_hf and add
-> gcc_axi_sf.
-> 
-> gcc_camera_ahb is always on and we don't need to enable it explicitly.
-> gcc_axi_sf is added to avoid unexpected hardware behaviour.
-> 
-> This change will not break ABI because the ABI hasn't been cemented yet as
-> the dtsi changes are not merged yet and there are no users for this driver
-> as of now.
-> 
-> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
-> ---
->   .../devicetree/bindings/media/qcom,sc7280-camss.yaml   | 10 +++++-----
->   1 file changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml b/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
-> index e11141b812a0..ee35e3bc97ff 100644
-> --- a/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
-> +++ b/Documentation/devicetree/bindings/media/qcom,sc7280-camss.yaml
-> @@ -55,8 +55,8 @@ properties:
->         - const: csiphy3_timer
->         - const: csiphy4
->         - const: csiphy4_timer
-> -      - const: gcc_camera_ahb
-> -      - const: gcc_cam_hf_axi
-> +      - const: gcc_axi_hf
-> +      - const: gcc_axi_sf
->         - const: icp_ahb
->         - const: vfe0
->         - const: vfe0_axi
-> @@ -310,8 +310,8 @@ examples:
->                        <&camcc CAM_CC_CSI3PHYTIMER_CLK>,
->                        <&camcc CAM_CC_CSIPHY4_CLK>,
->                        <&camcc CAM_CC_CSI4PHYTIMER_CLK>,
-> -                     <&gcc GCC_CAMERA_AHB_CLK>,
->                        <&gcc GCC_CAMERA_HF_AXI_CLK>,
-> +                     <&gcc GCC_CAMERA_SF_AXI_CLK>,
->                        <&camcc CAM_CC_ICP_AHB_CLK>,
->                        <&camcc CAM_CC_IFE_0_CLK>,
->                        <&camcc CAM_CC_IFE_0_AXI_CLK>,
-> @@ -343,8 +343,8 @@ examples:
->                             "csiphy3_timer",
->                             "csiphy4",
->                             "csiphy4_timer",
-> -                          "gcc_camera_ahb",
-> -                          "gcc_cam_hf_axi",
-> +                          "gcc_axi_hf",
-> +                          "gcc_axi_sf",
->                             "icp_ahb",
->                             "vfe0",
->                             "vfe0_axi",
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+On Fri, Jan 17, 2025 at 3:52=E2=80=AFPM Andre Przywara <andre.przywara@arm.=
+com> wrote:
+
+> That is actually a good argument: At the moment I am happy with my
+> proposal (the allwinner,pinmux =3D <number>; property), but that seems li=
+ke
+> standard #15 then.
+> So would biting the bullet and adopting the Apple/STM32 way then be more
+> sustainable?
+
+I suppose...
+
+> On the other hand: the allwinner,pinmux solution has the advantage of bei=
+ng
+> already written and proven working, also it stays very close to the
+> existing description/binding - so implementations like U-Boot could just
+> keep on using the "function" string.
+>
+> I am a bit torn here... I don't think I will find the solitude to
+> implement this "Apple" approach in the next few weeks.
+
+I think whatever the Allwinner maintainers agree is the best should
+be what you go for. It is a lot of hobbyist maintainers in this space
+and for them the bar should be lower.
+
+If you have buy-in from the other maintainers, then go for that
+solution.
+
+Yours,
+Linus Walleij
 
