@@ -1,483 +1,243 @@
-Return-Path: <devicetree+bounces-140149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8AFBA1896C
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 02:15:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F2C4A18975
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 02:23:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A5D333A5C63
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 01:15:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A168F7A2C06
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 01:23:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A348F49620;
-	Wed, 22 Jan 2025 01:15:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 826C24EB38;
+	Wed, 22 Jan 2025 01:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iBfySVe5"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="KsskfUUM";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="ak9JTiNV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45EA5182CD
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 01:15:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737508543; cv=none; b=TdVlwzotTt9Dp9Z2Amp6AJtJX4t+SjKINP5OCfdCD5n8T81Xl4Xfba7pF5ifGrfdcBxvUpt1stG8vxilDZN+m+5e30EoXa65+tNIHBuQyDq9kOjd+Oj2GYl8zqfEiDd1CBIM+uBnoYUUPMKY87t3ZVCPbMqnVbM2OuxivMDZ6lM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737508543; c=relaxed/simple;
-	bh=H0JfTWoUMRlsEkwm9VwEC/1mft12kUF3Cmx4VYZLd8g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Cvx6yt/qQ3LKimpGjAQwaZO2Cb464hyGU0YhDCYu2GMK2vsIaeZWSQsoBGs+//jPLk6HU8bigWDSrQqveM8AwZYHGHCZG6+0afrhFpX5l7g53riMwEulVJsNWeicl3P6/hxUfQdCFmKCJv1EVwtccAQ25Ro7wHzCLtE8ztdlkHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iBfySVe5; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-305ff7d1f3fso4791311fa.3
-        for <devicetree@vger.kernel.org>; Tue, 21 Jan 2025 17:15:39 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F051E517;
+	Wed, 22 Jan 2025 01:23:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737508995; cv=fail; b=MaQqvSesHP1ixQx26hVHAPt4Q3YY2zQJZmgm5Vm8tzH5uEU+VznySfHgiSMWJXMKJgAKc/tV/F/vhtkUZIzXRhLJbvRGqwM1mWBNBFxhXjqeZMhbE+JnWiNyPTx93tFjdxLtwJ2EB2xqe50XWbRl6vj0wVaMocr3FZZgWmkVtDc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737508995; c=relaxed/simple;
+	bh=VZJ1QtEYTFOxDu/VjEF7XIVvh/VpN9GNgBC5eD57c2w=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=ZOIHULWGYD8J+3PeOmAvqQvC2GIhbE/vaQFkEOTPPIB22jz5aVFcf15vNcWwlqgbwqFLoWNslruiC8Y/4lLAG02fWePF4l+Le4r0pnEB7QqifY5nJcKX3BuCphWy4q0R6NMw9+Q28jZDvNgzGsJ7A9zAeEiz/s6wnivGzi3Z9rs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=KsskfUUM; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=ak9JTiNV; arc=fail smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 6fd28906d85f11ef99858b75a2457dd9-20250122
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=VZJ1QtEYTFOxDu/VjEF7XIVvh/VpN9GNgBC5eD57c2w=;
+	b=KsskfUUMhQjS8wvK7EopLYwKAiIpNZzvobfCebxWHE6uTyLNvkhl8rZAWIyPA1270y24WSsbZN1QNxi0fXTocrC/SUXc5uKAWG+MEQ317dsWqW3lpV2hQvChH8A2ORobDARbylJOLT4bGemO6RyO7C17CU3W5qgDdZGtQcPQGd0=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.46,REQID:dae926e7-e08c-4adb-ae4d-411830907ded,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:60aa074,CLOUDID:fa2e430f-078a-483b-8929-714244d25c49,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102,TC:nil,Content:0|50,
+	EDM:-3,IP:nil,URL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0
+	,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: 6fd28906d85f11ef99858b75a2457dd9-20250122
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+	(envelope-from <ck.hu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 563253800; Wed, 22 Jan 2025 09:23:08 +0800
+Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1258.28; Wed, 22 Jan 2025 09:23:06 +0800
+Received: from HK2PR02CU002.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
+ 15.2.1258.28 via Frontend Transport; Wed, 22 Jan 2025 09:23:06 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DkQR79nkUsWFvuS1dG0vVi5FzcNo785sBlLkN7SGitFXCpaKQdu/a7zaeeHbSWnC8AfrKyVRs/y1d255Jdbs8YHOqlF+BOzWTCGz81K9UZm+lEv2fvZdjZAALEDybWmCusCl0YNmLd1oFxrlgCj+R/PSZYEMkCeqmznZjCjrcU+KlA2l3Zxj+bbStqByKQJ+kLt1X2pMINb1Pp1toQzTYKfQ/bbIARieGJ/t9ClhnuGzxaEZkt88Qv9AvwnbPD+cL3PlSpt7rzB3l6m2gGbi100x53/8rpcmGQF5qgvJe734GUTI8WXpg5WpsjjpqK89QfP+ItKpg2Ia3Cy4ws0YEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VZJ1QtEYTFOxDu/VjEF7XIVvh/VpN9GNgBC5eD57c2w=;
+ b=haH1jJjZKl5SQs2zJs2Q62t9zjlvkdkm1/nEQrq5Mxf3L6BkC4bZ0ZIXFxdIbFMDPdXGP4jbsY3Ikl/llL02sB0MuMDkS9TOYQC9s76foxfbxdklxmzeYWvoz5MegSSvgWplOa6Be0sE+DvFd09rzJp9S4JrlFuzGXRJusFarKxyPeXUaSqJEUr0wxDLKuXOWc2onUuGTs5itxgr44ZPLJjSwUdd5j/1Lssq5KKsCrRezIboLFTDNrDM+GZblDcPWOYUV5EoNw8s38Ucbwtz7BEKneIDS3ofYAPL6aQbqZciovLbuOFg8g0kX54ZRkOb/vW35y7iY1nXGL9azIbTlw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737508538; x=1738113338; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=71oTq1tfJ6OdXta5fX0Cv202oPwqJcZET2o/hNbVh+Y=;
-        b=iBfySVe5zJg7Zb9QVx+b871SDBwfIkK+0cfoE710A+jzyPJHh2nNamlw2YktliKfqi
-         e0Gfak0+unAu1TzAPMOSwO6bdNJ0KLUUrDodI3kMSZA0JM/AJLy1hMnEn5EFCCeMOUo6
-         qVAAcjIdto3NCfuqrgww1G5O0N9pr27URzIK24Fwj/oxCgDq06gHbfoXs6KJQgSCK9+1
-         AERDJeHQENbN7Sg4b43BMwHSuVazvJ5h7JLAiNIgEr90BmYz42Wg2gXFaZ7Y6evu13dW
-         dZ58EtJCe/SItrl9H8CZifKp+/fxuv5KSw5Hhm0r304lcdVLZwuVOASp5UVceyJ+dad5
-         L3Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737508538; x=1738113338;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=71oTq1tfJ6OdXta5fX0Cv202oPwqJcZET2o/hNbVh+Y=;
-        b=VTKY6dFULZ9IfGa9RrbR29d9N88SzefYL6gZZunVeg+p1vFbmifDb6tsyjCvROLH2X
-         fF8JbuNkdTZ+Bt1Mrs1EkGsJD98mFgzgPXOI1DtGj8yCIzWePqTLJoYnAVaXFS/2omW8
-         M49UfyQpymHeuL5OdoCvNvjt4sWifEV7fpnMtOxbAk2yhWBO3CI1HjsgAUrNJHUD0ROv
-         lY9q/8QwY0pGyMrxKZmxc1G2K0QJ6ulJLveqv58QW9mHXXQUb4ouehRZt6TNTc0tUtBo
-         XlFVeuRHf/sujtfXMBwpWFBbCc08doEGUp4dMOIo2rFyeCIke8Xgii+rh5iC7dWXYRGp
-         YcqA==
-X-Forwarded-Encrypted: i=1; AJvYcCVPX+oJueze1NUxx3kcvMh+DxRGLllU+hzSnfW1PvMggbWsYI0bdyOYd/3jWYyEsHIFqDU5JXGJthtO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5MzMkRq51t11Joag8/RVvo3BbMcbV44DnUfi5pUAl79vIuWHi
-	9hZVtt9wknNFqh0zbUtZlFSyRPNCYC1bmnpucnQKjV1F3ZAH0ZaDbNrIdZCDoIcGo4Kgqa9Sw3G
-	E
-X-Gm-Gg: ASbGncsQM2TI+AP/jGgvNcalKpg+e50DCl1bc7q7aH/rL+pHz+xgmzapOdk3VkHnkzI
-	fKQjN8rD+rqgT0ZmXHCV7/jHoxoKbYjh7DW5Xm8aIpAGu7ZZeiQvZ19wi8hPMGF6+VJ3elHPoED
-	AtTV8rRhMRs5yCgyXVMHCQu8P/F/VhwjKIZ7JDWS6ZoqIJuWMooiuo4skaKw03rWV3JRNtPiYF0
-	faRzKKWH+sgY3/HZFEGPa6gBICVOIccTB8cC3VxIkb3rm6EgymXzVj8UNyJl8m8mLfrGmXIyg8i
-	jLlrApYeP+tjU9XM4c6DIKa31I6zIaDHmFfGpB8q6yj/miIA
-X-Google-Smtp-Source: AGHT+IHve06/vEn3qIU2uDAYfBOs/5tXMrPkws0JE+XxC+z2d4pvx/ozboaTN8UCw67mkMvJeUa+pQ==
-X-Received: by 2002:a05:6512:1047:b0:540:2339:375c with SMTP id 2adb3069b0e04-5439c2811e3mr2251858e87.8.1737508538161;
-        Tue, 21 Jan 2025 17:15:38 -0800 (PST)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5439af77c23sm2020922e87.218.2025.01.21.17.15.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 21 Jan 2025 17:15:36 -0800 (PST)
-Message-ID: <c64f26a4-9ac4-4d1f-948c-3a40e380797f@linaro.org>
-Date: Wed, 22 Jan 2025 03:15:34 +0200
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=VZJ1QtEYTFOxDu/VjEF7XIVvh/VpN9GNgBC5eD57c2w=;
+ b=ak9JTiNVW406avLXC+/KGo94cA6OLD8t8n3obR8mAI/16NoquJWdFnnefzXqaTs5m8WT5V8bUwxeLiChgmqmBweCQEqdDv24WKgVKGhC5E56Ccc2+DI6nUaHOuv/twa1MkXC2UYVDHQgyI+ns9h5Prn8tbKchp6X7pwTnfbhRzc=
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com (2603:1096:400:1f4::13)
+ by JH0PR03MB7547.apcprd03.prod.outlook.com (2603:1096:990:9::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.20; Wed, 22 Jan
+ 2025 01:23:04 +0000
+Received: from TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::9ce6:1e85:c4a7:2a54]) by TYZPR03MB6624.apcprd03.prod.outlook.com
+ ([fe80::9ce6:1e85:c4a7:2a54%6]) with mapi id 15.20.8356.020; Wed, 22 Jan 2025
+ 01:23:04 +0000
+From: =?utf-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
+CC: "robh@kernel.org" <robh@kernel.org>, "jie.qiu@mediatek.com"
+	<jie.qiu@mediatek.com>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+	"simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
+	<mripard@kernel.org>, =?utf-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?=
+	<jitao.shi@mediatek.com>, "linux-mediatek@lists.infradead.org"
+	<linux-mediatek@lists.infradead.org>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "maarten.lankhorst@linux.intel.com"
+	<maarten.lankhorst@linux.intel.com>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "kernel@collabora.com" <kernel@collabora.com>,
+	"dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	=?utf-8?B?TGV3aXMgTGlhbyAo5buW5p+P6YieKQ==?= <Lewis.Liao@mediatek.com>,
+	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, =?utf-8?B?VG9tbXlZTCBDaGVuICjpmbPlvaXoia8p?=
+	<TommyYL.Chen@mediatek.com>, =?utf-8?B?SXZlcyBDaGVuamggKOmZs+S/iuW8mCk=?=
+	<Ives.Chenjh@mediatek.com>, "airlied@gmail.com" <airlied@gmail.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
+	<matthias.bgg@gmail.com>, =?utf-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?=
+	<Jason-JH.Lin@mediatek.com>, "junzhi.zhao@mediatek.com"
+	<junzhi.zhao@mediatek.com>
+Subject: Re: [PATCH v5 12/34] drm/mediatek: mtk_hdmi: Unregister audio
+ platform device on failure
+Thread-Topic: [PATCH v5 12/34] drm/mediatek: mtk_hdmi: Unregister audio
+ platform device on failure
+Thread-Index: AQHbZcr0rCxp4yO6/k6uyY/6cXDiBLMiDMgA
+Date: Wed, 22 Jan 2025 01:23:04 +0000
+Message-ID: <b1bcd983f5c1f88dff080127a6594ef6f9cfe75b.camel@mediatek.com>
+References: <20250113145232.227674-1-angelogioacchino.delregno@collabora.com>
+	 <20250113145232.227674-13-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20250113145232.227674-13-angelogioacchino.delregno@collabora.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Evolution 3.52.3-0ubuntu1 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB6624:EE_|JH0PR03MB7547:EE_
+x-ms-office365-filtering-correlation-id: 486ac702-e5cc-435e-e623-08dd3a83520c
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|7416014|1800799024|376014|366016|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?cW5EUjN5WDlHSHI0MkZPSERYemJGbG9QWG5vb1pQS1JiN0QzcWszOTdvMmx0?=
+ =?utf-8?B?eXNtVDI2Z0plS2l1N05CM0gvQ2RpK2Q2bXhwRTB0L3NiVWdhdHhqNjdoZU5S?=
+ =?utf-8?B?L2dRWmcwMFJtZDB4WVdIWFE0NHgwYnNlemFwT0hydUJxOTNCTWlESFpIejRS?=
+ =?utf-8?B?Rm5GQnhuUUVqV1lPRVk3R1ZJSFdHeDlnSVFIbWdUaGhiZVA1K0VqSm5RcXlr?=
+ =?utf-8?B?SFdqbHNoVHNkZllYdjVJOFQ1OUdFVUNKSVZ4cnVCWndhOHlFSThERWRKVzUr?=
+ =?utf-8?B?aXVjMyswZCtydWJzVkM3RnZjNmk5RmJBWVNzTGlyRzJCVmY5SzBNMDg5Mktt?=
+ =?utf-8?B?Q21ZVG81dGxBcWpENVZzZDRDSkpFT01OejF4aHBtT3RpNE9RNVlGSWw3d1k5?=
+ =?utf-8?B?YW9zQUduWnMyWUhsWjRFTHBjMXE2L0c0OFFsYzZJL0lKOEFxcjFCMlZ4blQw?=
+ =?utf-8?B?RUZUY3NNS2tUVW1aQVIxN1ZiRlpmVEJPYlUwVVZpWWVmOEwxUlZ5cXhGMDRt?=
+ =?utf-8?B?aFBWS2k4ZHRJN3krbE5QRnhOeThpcUdXZGJ4VG9kOFgzTHdicVMxa2h0Z1N3?=
+ =?utf-8?B?L1dzY0x2cjlyd2NKMkY1MC9YakJZTDNLeWxIOWJvY2hubUxkc3JtOE9GZmh2?=
+ =?utf-8?B?djlmZWFZVmpYK1I5cXVtdEdIc0R2Z0l4S0JtSkx6U3g2YzNvajlxVmhlYUk5?=
+ =?utf-8?B?cFdOZjM4dXRncExMMlgwSDV5VUdPRDZnQVhVZEVwZCtFa0lZTDR1S3FGYnVt?=
+ =?utf-8?B?T0pQVUUvaS9ENFNtcGZDMnVmVXlkQnZBcTM3QnVlRmFhN2drUndDZGJ2T29F?=
+ =?utf-8?B?R2JWcDdJUW8za3BqbC8yekJwZVNJajFOMHV4MXB6YXBRZEgrcFpwVGN1eHh2?=
+ =?utf-8?B?VmdhNFJ2alcrK3dMazRmL1NMTWx1VTZpVm9udWFUc0YyNDZnODJTYzZZeUNM?=
+ =?utf-8?B?QU5XUGpvK0JhK2pseXBQSWNpWlNnMXNUeSthbkxCdE8wL2xKMXk4NWJ4K1Q5?=
+ =?utf-8?B?Ti9FZzI0U3pWYWZaWjByM2R0U3NnbkxDcjhMQUFJODlFRUdhSFFEY2xhc0di?=
+ =?utf-8?B?OXZjMlVPd25VckthaW14VjRBYXdJTEg4V2NlczhVME1NVUJvbEVnL1RybTVq?=
+ =?utf-8?B?WXhkcHFzdy9ZbThZQ3EvdnZvWWY1SFVHMGJrMEp6bnhJa2NCUUlmcng3SEFG?=
+ =?utf-8?B?VFFwZ2R3cVpUNlFCcXhNbTFBK1F5MUVNNXR2TVpVdWN0MXhRU2hodlorcmVV?=
+ =?utf-8?B?TktlbkxaL1QzUGwrWFpBbW1KbDEybnkyY0w5NTNlY3l6T3hoQnFoUWl2eFJp?=
+ =?utf-8?B?TlRvc2N4Q041SzVSY2lrUitxaEdkQnY4OXZ0cWd1bkRlR1E0dlY3alFkdWY4?=
+ =?utf-8?B?UWZVR01rZzJvWGErU1pxcTN6QTcyb1g1enlHNCsyOEcycHI0VVpJemNXYVJv?=
+ =?utf-8?B?WU0rTWVBR2pCTzEvSGNzSFBDR0hpVUlLOEFLbUMwZElNTnJsNmpYeHZEbDVP?=
+ =?utf-8?B?Z1ZMSWxoNzRnMGZjcXVibzRUM3dYOE5jVkQ1bktZOXlEUDgvODNwUis3N0dx?=
+ =?utf-8?B?NWtYRWprTzEycUFhdk5UTzl1aU4wTjZZRHN3bnBCamVpeHd5UVhjdXdoMHFl?=
+ =?utf-8?B?d2E3dFhhSTkxZTJ5bTZHZmJoUC9tU3prMEJsNFJtaG1vb2V6RGsweDlpdU9O?=
+ =?utf-8?B?OXVQaE9TZ3VWT1E5T2RpS0VTRlBpSEhSdVoxTXppNi83RUlQR2MrRHA3UTVs?=
+ =?utf-8?B?L0JKNit1MFFOSUthQ0RYL29vMk8xenZpeVJBWTBRaStmV2ozOGNYK1hsVWJW?=
+ =?utf-8?B?ZDlxemg1WHlRdEdUT2cvY3B0SElnY1hBRDR2bmN0a21COGtsc1lrd0NCM2Fh?=
+ =?utf-8?B?bHkvR3I5UUFPdFA5amEwOEVSaGM2a0RqenZJNlM1MmMwSkl0ZWxscEJLZ1hx?=
+ =?utf-8?Q?cisI0PUp7PK5Zg2b+ztgZUg4rxwbrFn7?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6624.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(1800799024)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RHB3L1V3OGJVQllRcWZNQTlndlNQSUYyU3dUYTlHMXp5RkdIb1JmZ3M5K082?=
+ =?utf-8?B?Yk02S29QZSt6MVRROUlIZ0Fqb29XaHdEbVNYdDRIVlVrbWYzd1ZBL3JBR0I0?=
+ =?utf-8?B?QmdxVHY0a0hYaVc0MHpDaXdNNFd0MmRZL3RvV09DeTlUT0w1ZjBOYmU2dFBV?=
+ =?utf-8?B?cWJJMjlqWSt2S01mbzkwSmdmVDJ2aVZ0cW9aKzlUc3NUdDF3MnlseWtyK2Zp?=
+ =?utf-8?B?ZS9hck9ESHBTUzl4WmZLNU9SdThBWWxoRktQbHU0VVhGWU9EUTBiMFovdjR2?=
+ =?utf-8?B?cmYzSjJyUFVOSEhjeTYxYjFIWmhiRDRKUXpCR0IyWmZQWjV0bzVsMFA0YTRt?=
+ =?utf-8?B?TkdPNncyV3ZCM3diVit4MnJRZWEzQndWL1ZueHZkejJDd0VYTGJEOWpCV2Zz?=
+ =?utf-8?B?aGRGKzg4b2VQS2ZDT2pzOWN0TnNpRkYvWDR6SVlmQzF2cGhUekw0MTBoSDVM?=
+ =?utf-8?B?SlJMOGJWbnljMnNJYllDbTFxTTFndHhnc1dFVk9IT3RhRGtpMlBEeFFaOEhr?=
+ =?utf-8?B?QlVBLzExSm80NHZlWjg3WGFMRklXamtJNnV2QmJhSVpobTdWZFRmdWZCVG1R?=
+ =?utf-8?B?eXhsTlcyczVzSUFhcDFpQldmdm8rRlBJMlJSdWxaMXJidEMzbER2cVdOY05t?=
+ =?utf-8?B?UUE2VktFMUVRSDlnYkFOMGhEbXBwRnZLQzFIWEtGYU45OTZTWS8zRHdtVC9o?=
+ =?utf-8?B?aE02YzBBb3ZEZlpNZkZiZ0dlUUZuWXdURlJybS9pOU51aGE0eXdZVU5ZR2NW?=
+ =?utf-8?B?K0NRZFNwelA2ZVBkU1BFZ0F0akhRVFEwT0w2SFo3ZWhrQlpGcGRqVEo5YWZl?=
+ =?utf-8?B?NGFFKzdESkhMV3c3ZXYwSW95ZFFKWkJnakdmRUduNlZ6YXN6T1cwVFl2SzJm?=
+ =?utf-8?B?YS9mLzZHY2JZVE1aSlZtdzVDTzEyQzdDNVdHNENiZklCeGMvMXFOdGlNR3BM?=
+ =?utf-8?B?N2JEVWtsNTRHMUI5dzBHbUozSy9sc3oyeHp3dlFaUmZ0NzkwMGFvVWlGTko5?=
+ =?utf-8?B?RWRQREJvdTYrd1BkSzdkM3laMFV0U3VtODIrV1RrYXN3ZEhIbGZkRkpWOUhQ?=
+ =?utf-8?B?OEU0THdBR3RzSXhaMlY5TnRBWkVZOTcwTDhOUEo0M0plaVlUNTZ1dm1xYm9v?=
+ =?utf-8?B?MTJRODZ4YnRhSlZTZlJ0UklSYVMxZzVDR2VsU3dMcnFDZkNiTUpvQnN6bUFJ?=
+ =?utf-8?B?YzNIbGRMU1Y1QWlFVzBzYjdnM0w2ZGlObzlmakNldmI0WDVWdkJYTCtKTklV?=
+ =?utf-8?B?bkRhckw3U29Jbkp6UFppWnllTi9hRjRMNm9XUUVvRHdDeUxVblA4NVhZaXM5?=
+ =?utf-8?B?RmZHdUIyaFRDUDVpMXBGUks2UTBCOWwxREJRVkRwS2ZWRkR2bmo0ZUszNWZi?=
+ =?utf-8?B?dEgzTEhhbVpuVkJGYjZmUG12dU1TU3IxcTNLY3hXMFdTNnYvR3BremgzVnA1?=
+ =?utf-8?B?OXZnY1ZRSTVUc2tBeGxFcm5ubWRZbjhVRzJyUGJ3VUY2OFpFVDNVdTliMzY0?=
+ =?utf-8?B?M1JaYjVyblB5NlFuZThiSzNKQ0dIbng1czlJdVZSQnNXUmQvanFid0YwbzdX?=
+ =?utf-8?B?SDR2WVdES3hLazRtWWtnVGFrN0d0SEVpMU5xRXIwUUZpRjhUM2FWQkhXSFpu?=
+ =?utf-8?B?SzVJMDJ2NzM3aG9zZDRKRGprdFNCUXR4YWZJODBDTlJFK3A5M1JEeDRybHhr?=
+ =?utf-8?B?Q2UwR3hFV3NZS255cXdlZmgrNjRvcW80TnZPK1lKL1NNSjl0ZFB2c21mN1g2?=
+ =?utf-8?B?T2RqV0JFbzJkMzF6eWhMbjYwdnhGeGRPWW16bldWVFVqTHRjVXV1ZmxrQ2l6?=
+ =?utf-8?B?Wk5ZV1dQUUF3bng3dEd6RzJkWVV3WnRlSzEwSzFrQXNHWmQrR3Q1aWl6L202?=
+ =?utf-8?B?Z1pXbXIvVGh3N0FkZ0lxVUU4ejlSUGZkRXFWMUVEOUk2NStHUzViVzBvbVA2?=
+ =?utf-8?B?MHh3RU9USFpyVzJ2SXNzK25zWm56WFJrZUx6WG5PTTdTMmFDVjdSN1kwdmlq?=
+ =?utf-8?B?bnZYOUpaU1VPZVpyNUZaTTlyeXByVG9TcjNIMUVOeGpSQm9lMDArTHczbHBl?=
+ =?utf-8?B?VW9vTSt2Y0xvWHJmeXI1M0VBSnZndXBkMHlhTmlwbVlEYll3bTh2TWluQnJr?=
+ =?utf-8?Q?CPPFvzFvH4ApsUyRSz9MGbs7K?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DFBFB590BEC96546AAD6E20861B1AD55@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 16/16] media: qcom: camss: Add support for VFE 780
-Content-Language: ru-RU
-To: Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, hverkuil@xs4all.nl
-Cc: quic_eberman@quicinc.com, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com,
- Yongsheng Li <quic_yon@quicinc.com>
-References: <20250113043133.1387162-1-quic_depengs@quicinc.com>
- <20250113043133.1387162-17-quic_depengs@quicinc.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20250113043133.1387162-17-quic_depengs@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6624.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 486ac702-e5cc-435e-e623-08dd3a83520c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2025 01:23:04.7893
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: eN32gAl67LmihsTIXqGy3lpg3T60QL8z9fi5O8ZEClB236NAc999JpM8YjO8gd5JJWNcF3VBXBqELh5kccDLmw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7547
 
-On 1/13/25 06:31, Depeng Shao wrote:
-> Add support for VFE found on SM8550 (Titan 780). This implementation is
-> based on the titan 480 implementation. It supports the normal and lite
-> VFE.
-> 
-> Co-developed-by: Yongsheng Li <quic_yon@quicinc.com>
-> Signed-off-by: Yongsheng Li <quic_yon@quicinc.com>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Depeng Shao <quic_depengs@quicinc.com>
-> ---
->   drivers/media/platform/qcom/camss/Makefile    |   1 +
->   .../media/platform/qcom/camss/camss-vfe-780.c | 159 ++++++++++++++++++
->   drivers/media/platform/qcom/camss/camss-vfe.c |   2 +
->   drivers/media/platform/qcom/camss/camss-vfe.h |   1 +
->   drivers/media/platform/qcom/camss/camss.c     | 121 +++++++++++++
->   5 files changed, 284 insertions(+)
->   create mode 100644 drivers/media/platform/qcom/camss/camss-vfe-780.c
-> 
-> diff --git a/drivers/media/platform/qcom/camss/Makefile b/drivers/media/platform/qcom/camss/Makefile
-> index 9a723e8712a2..f6db5b3b5ace 100644
-> --- a/drivers/media/platform/qcom/camss/Makefile
-> +++ b/drivers/media/platform/qcom/camss/Makefile
-> @@ -17,6 +17,7 @@ qcom-camss-objs += \
->   		camss-vfe-4-8.o \
->   		camss-vfe-17x.o \
->   		camss-vfe-480.o \
-> +		camss-vfe-780.o \
->   		camss-vfe-gen1.o \
->   		camss-vfe.o \
->   		camss-video.o \
-> diff --git a/drivers/media/platform/qcom/camss/camss-vfe-780.c b/drivers/media/platform/qcom/camss/camss-vfe-780.c
-> new file mode 100644
-> index 000000000000..b9812d70f91b
-> --- /dev/null
-> +++ b/drivers/media/platform/qcom/camss/camss-vfe-780.c
-> @@ -0,0 +1,159 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Qualcomm MSM Camera Subsystem - VFE (Video Front End) Module v780 (SM8550)
-> + *
-> + * Copyright (c) 2024 Qualcomm Technologies, Inc.
-> + */
-> +
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +
-> +#include "camss.h"
-> +#include "camss-vfe.h"
-> +
-> +#define BUS_REG_BASE			(vfe_is_lite(vfe) ? 0x200 : 0xC00)
-> +
-> +#define VFE_BUS_WM_CGC_OVERRIDE		(BUS_REG_BASE + 0x08)
-> +#define		WM_CGC_OVERRIDE_ALL		(0x7FFFFFF)
-> +
-> +#define VFE_BUS_WM_TEST_BUS_CTRL	(BUS_REG_BASE + 0xDC)
-> +
-> +#define VFE_BUS_WM_CFG(n)		(BUS_REG_BASE + 0x200 + (n) * 0x100)
-> +#define		WM_CFG_EN			BIT(0)
-> +#define		WM_VIR_FRM_EN			BIT(1)
-> +#define		WM_CFG_MODE			BIT(16)
-> +#define VFE_BUS_WM_IMAGE_ADDR(n)	(BUS_REG_BASE + 0x204 + (n) * 0x100)
-> +#define VFE_BUS_WM_FRAME_INCR(n)	(BUS_REG_BASE + 0x208 + (n) * 0x100)
-> +#define VFE_BUS_WM_IMAGE_CFG_0(n)	(BUS_REG_BASE + 0x20c + (n) * 0x100)
-> +#define		WM_IMAGE_CFG_0_DEFAULT_WIDTH	(0xFFFF)
-> +#define VFE_BUS_WM_IMAGE_CFG_2(n)	(BUS_REG_BASE + 0x214 + (n) * 0x100)
-> +#define		WM_IMAGE_CFG_2_DEFAULT_STRIDE	(0xFFFF)
-> +#define VFE_BUS_WM_PACKER_CFG(n)	(BUS_REG_BASE + 0x218 + (n) * 0x100)
-> +
-> +#define VFE_BUS_WM_IRQ_SUBSAMPLE_PERIOD(n)	(BUS_REG_BASE + 0x230 + (n) * 0x100)
-> +#define VFE_BUS_WM_IRQ_SUBSAMPLE_PATTERN(n)	(BUS_REG_BASE + 0x234 + (n) * 0x100)
-> +#define VFE_BUS_WM_FRAMEDROP_PERIOD(n)		(BUS_REG_BASE + 0x238 + (n) * 0x100)
-> +#define VFE_BUS_WM_FRAMEDROP_PATTERN(n)		(BUS_REG_BASE + 0x23c + (n) * 0x100)
-> +
-> +#define VFE_BUS_WM_MMU_PREFETCH_CFG(n)		(BUS_REG_BASE + 0x260 + (n) * 0x100)
-> +#define VFE_BUS_WM_MMU_PREFETCH_MAX_OFFSET(n)	(BUS_REG_BASE + 0x264 + (n) * 0x100)
-> +
-> +/*
-> + * Bus client mapping:
-> + *
-> + * Full VFE:
-> + * 23 = RDI0, 24 = RDI1, 25 = RDI2
-> + *
-> + * VFE LITE:
-> + * 0 = RDI0, 1 = RDI1, 2 = RDI3, 4 = RDI4
-> + */
-> +#define RDI_WM(n)			((vfe_is_lite(vfe) ? 0x0 : 0x17) + (n))
-> +
-> +static void vfe_wm_start(struct vfe_device *vfe, u8 wm, struct vfe_line *line)
-> +{
-> +	struct v4l2_pix_format_mplane *pix =
-> +		&line->video_out.active_fmt.fmt.pix_mp;
-> +
-> +	wm = RDI_WM(wm);
-> +
-> +	/* no clock gating at bus input */
-> +	writel(WM_CGC_OVERRIDE_ALL, vfe->base + VFE_BUS_WM_CGC_OVERRIDE);
-> +
-> +	writel(0x0, vfe->base + VFE_BUS_WM_TEST_BUS_CTRL);
-
-Here you write 0x0 (hexadecimal), later you write 0 or 1 (decimal),
-please select one style and be consistent with it.
-
-> +
-> +	writel(ALIGN(pix->plane_fmt[0].bytesperline, 16) * pix->height >> 8,
-> +	       vfe->base + VFE_BUS_WM_FRAME_INCR(wm));
-> +	writel((WM_IMAGE_CFG_0_DEFAULT_WIDTH & 0xFFFF),
-> +	       vfe->base + VFE_BUS_WM_IMAGE_CFG_0(wm));
-> +	writel(WM_IMAGE_CFG_2_DEFAULT_STRIDE,
-> +	       vfe->base + VFE_BUS_WM_IMAGE_CFG_2(wm));
-> +	writel(0, vfe->base + VFE_BUS_WM_PACKER_CFG(wm));
-> +
-> +	/* no dropped frames, one irq per frame */
-> +	writel(0, vfe->base + VFE_BUS_WM_FRAMEDROP_PERIOD(wm));
-> +	writel(1, vfe->base + VFE_BUS_WM_FRAMEDROP_PATTERN(wm));
-> +	writel(0, vfe->base + VFE_BUS_WM_IRQ_SUBSAMPLE_PERIOD(wm));
-> +	writel(1, vfe->base + VFE_BUS_WM_IRQ_SUBSAMPLE_PATTERN(wm));
-> +
-> +	writel(1, vfe->base + VFE_BUS_WM_MMU_PREFETCH_CFG(wm));
-> +	writel(0xFFFFFFFF, vfe->base + VFE_BUS_WM_MMU_PREFETCH_MAX_OFFSET(wm));
-> +
-> +	writel(WM_CFG_EN | WM_CFG_MODE, vfe->base + VFE_BUS_WM_CFG(wm));
-> +}
-> +
-> +static void vfe_wm_stop(struct vfe_device *vfe, u8 wm)
-> +{
-> +	wm = RDI_WM(wm);
-> +	writel(0, vfe->base + VFE_BUS_WM_CFG(wm));
-> +}
-> +
-> +static void vfe_wm_update(struct vfe_device *vfe, u8 wm, u32 addr,
-> +			  struct vfe_line *line)
-> +{
-> +	wm = RDI_WM(wm);
-> +	writel((addr >> 8) & 0xFFFFFFFF, vfe->base + VFE_BUS_WM_IMAGE_ADDR(wm));
-
-addr is of u32 type, please remove the unneeded masking to 0xFFFFFFFF.
-
-> +
-> +	dev_dbg(vfe->camss->dev, "wm:%d, image buf addr:0x%x\n",
-> +		wm, addr);
-> +}
-> +
-> +static void vfe_reg_update(struct vfe_device *vfe, enum vfe_line_id line_id)
-> +{
-> +	int port_id = line_id;
-> +
-> +	camss_reg_update(vfe->camss, vfe->id, port_id, false);
-> +}
-> +
-> +static inline void vfe_reg_update_clear(struct vfe_device *vfe,
-> +					enum vfe_line_id line_id)
-> +{
-> +	int port_id = line_id;
-> +
-> +	camss_reg_update(vfe->camss, vfe->id, port_id, true);
-> +}
-> +
-> +static const struct camss_video_ops vfe_video_ops_780 = {
-> +	.queue_buffer = vfe_queue_buffer_v2,
-> +	.flush_buffers = vfe_flush_buffers,
-> +};
-> +
-> +static void vfe_subdev_init(struct device *dev, struct vfe_device *vfe)
-> +{
-> +	vfe->video_ops = vfe_video_ops_780;
-> +}
-> +
-> +static void vfe_global_reset(struct vfe_device *vfe)
-> +{
-> +	vfe_isr_reset_ack(vfe);
-> +}
-> +
-> +static irqreturn_t vfe_isr(int irq, void *dev)
-> +{
-> +	/* nop */
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int vfe_halt(struct vfe_device *vfe)
-> +{
-> +	/* rely on vfe_disable_output() to stop the VFE */
-> +	return 0;
-> +}
-> +
-> +const struct vfe_hw_ops vfe_ops_780 = {
-> +	.global_reset = vfe_global_reset,
-> +	.hw_version = vfe_hw_version,
-> +	.isr = vfe_isr,
-> +	.pm_domain_off = vfe_pm_domain_off,
-> +	.pm_domain_on = vfe_pm_domain_on,
-> +	.reg_update = vfe_reg_update,
-> +	.reg_update_clear = vfe_reg_update_clear,
-> +	.subdev_init = vfe_subdev_init,
-> +	.vfe_disable = vfe_disable,
-> +	.vfe_enable = vfe_enable_v2,
-> +	.vfe_halt = vfe_halt,
-> +	.vfe_wm_start = vfe_wm_start,
-> +	.vfe_wm_stop = vfe_wm_stop,
-> +	.vfe_buf_done = vfe_buf_done,
-> +	.vfe_wm_update = vfe_wm_update,
-> +};
-> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c b/drivers/media/platform/qcom/camss/camss-vfe.c
-> index 2a037860b09f..9ffa6bc72cf1 100644
-> --- a/drivers/media/platform/qcom/camss/camss-vfe.c
-> +++ b/drivers/media/platform/qcom/camss/camss-vfe.c
-> @@ -345,6 +345,7 @@ static u32 vfe_src_pad_code(struct vfe_line *line, u32 sink_code,
->   	case CAMSS_8250:
->   	case CAMSS_8280XP:
->   	case CAMSS_845:
-> +	case CAMSS_8550:
->   		switch (sink_code) {
->   		case MEDIA_BUS_FMT_YUYV8_1X16:
->   		{
-> @@ -1970,6 +1971,7 @@ static int vfe_bpl_align(struct vfe_device *vfe)
->   	case CAMSS_8250:
->   	case CAMSS_8280XP:
->   	case CAMSS_845:
-> +	case CAMSS_8550:
->   		ret = 16;
->   		break;
->   	default:
-> diff --git a/drivers/media/platform/qcom/camss/camss-vfe.h b/drivers/media/platform/qcom/camss/camss-vfe.h
-> index fcbf4f609129..9dec5bc0d1b1 100644
-> --- a/drivers/media/platform/qcom/camss/camss-vfe.h
-> +++ b/drivers/media/platform/qcom/camss/camss-vfe.h
-> @@ -243,6 +243,7 @@ extern const struct vfe_hw_ops vfe_ops_4_7;
->   extern const struct vfe_hw_ops vfe_ops_4_8;
->   extern const struct vfe_hw_ops vfe_ops_170;
->   extern const struct vfe_hw_ops vfe_ops_480;
-> +extern const struct vfe_hw_ops vfe_ops_780;
->   
->   int vfe_get(struct vfe_device *vfe);
->   void vfe_put(struct vfe_device *vfe);
-> diff --git a/drivers/media/platform/qcom/camss/camss.c b/drivers/media/platform/qcom/camss/camss.c
-> index e9519fb99f06..f4fbf0d73dd1 100644
-> --- a/drivers/media/platform/qcom/camss/camss.c
-> +++ b/drivers/media/platform/qcom/camss/camss.c
-> @@ -2127,6 +2127,125 @@ static const struct camss_subdev_resources csid_res_8550[] = {
->   	}
->   };
->   
-> +static const struct camss_subdev_resources vfe_res_8550[] = {
-> +	/* VFE0 */
-> +	{
-> +		.regulators = {},
-> +		.clock = { "gcc_axi_hf", "cpas_ahb", "cpas_fast_ahb_clk", "vfe0_fast_ahb",
-> +			   "vfe0", "cpas_vfe0", "camnoc_axi" },
-> +		.clock_rate = { { 0 },
-> +				{ 80000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 466000000, 594000000, 675000000, 785000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 300000000, 400000000 } },
-> +		.reg = { "vfe0" },
-> +		.interrupt = { "vfe0" },
-> +		.vfe = {
-> +			.line_num = 3,
-> +			.is_lite = false,
-> +			.has_pd = true,
-> +			.pd_name = "ife0",
-> +			.hw_ops = &vfe_ops_780,
-> +			.formats_rdi = &vfe_formats_rdi_845,
-> +			.formats_pix = &vfe_formats_pix_845
-> +		}
-> +	},
-> +	/* VFE1 */
-> +	{
-> +		.regulators = {},
-> +		.clock = { "gcc_axi_hf", "cpas_ahb", "cpas_fast_ahb_clk", "vfe1_fast_ahb",
-> +			   "vfe1", "cpas_vfe1", "camnoc_axi" },
-> +		.clock_rate = {	{ 0 },
-> +				{ 80000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 466000000, 594000000, 675000000, 785000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 300000000, 400000000 } },
-> +		.reg = { "vfe1" },
-> +		.interrupt = { "vfe1" },
-> +		.vfe = {
-> +			.line_num = 3,
-> +			.is_lite = false,
-> +			.has_pd = true,
-> +			.pd_name = "ife1",
-> +			.hw_ops = &vfe_ops_780,
-> +			.formats_rdi = &vfe_formats_rdi_845,
-> +			.formats_pix = &vfe_formats_pix_845
-> +		}
-> +	},
-> +	/* VFE2 */
-> +	{
-> +		.regulators = {},
-> +		.clock = { "gcc_axi_hf", "cpas_ahb", "cpas_fast_ahb_clk", "vfe2_fast_ahb",
-> +			   "vfe2", "cpas_vfe2", "camnoc_axi" },
-> +		.clock_rate = {	{ 0 },
-> +				{ 80000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 466000000, 594000000, 675000000, 785000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 300000000, 400000000 } },
-> +		.reg = { "vfe2" },
-> +		.interrupt = { "vfe2" },
-> +		.vfe = {
-> +			.line_num = 3,
-> +			.is_lite = false,
-> +			.has_pd = true,
-> +			.pd_name = "ife2",
-> +			.hw_ops = &vfe_ops_780,
-> +			.formats_rdi = &vfe_formats_rdi_845,
-> +			.formats_pix = &vfe_formats_pix_845
-> +		}
-> +	},
-> +	/* VFE3 lite */
-> +	{
-> +		.regulators = {},
-> +		.clock = { "gcc_axi_hf", "cpas_ahb", "cpas_fast_ahb_clk", "vfe_lite_ahb",
-> +			   "vfe_lite", "cpas_ife_lite", "camnoc_axi" },
-> +		.clock_rate = {	{ 0 },
-> +				{ 80000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 400000000, 480000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 300000000, 400000000 } },
-> +		.reg = { "vfe_lite0" },
-> +		.interrupt = { "vfe_lite0" },
-> +		.vfe = {
-> +			.line_num = 4,
-> +			.is_lite = true,
-> +			.hw_ops = &vfe_ops_780,
-> +			.formats_rdi = &vfe_formats_rdi_845,
-> +			.formats_pix = &vfe_formats_pix_845
-> +		}
-> +	},
-> +	/* VFE4 lite */
-> +	{
-> +		.regulators = {},
-> +		.clock = { "gcc_axi_hf", "cpas_ahb", "cpas_fast_ahb_clk", "vfe_lite_ahb",
-> +			   "vfe_lite", "cpas_ife_lite", "camnoc_axi" },
-> +		.clock_rate = {	{ 0 },
-> +				{ 80000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 400000000, 480000000 },
-> +				{ 300000000, 400000000 },
-> +				{ 300000000, 400000000 } },
-> +		.reg = { "vfe_lite1" },
-> +		.interrupt = { "vfe_lite1" },
-> +		.vfe = {
-> +			.line_num = 4,
-> +			.is_lite = true,
-> +			.hw_ops = &vfe_ops_780,
-> +			.formats_rdi = &vfe_formats_rdi_845,
-> +			.formats_pix = &vfe_formats_pix_845
-> +		}
-> +	},
-> +};
-> +
->   static const struct resources_icc icc_res_sm8550[] = {
->   	{
->   		.name = "ahb",
-> @@ -3181,11 +3300,13 @@ static const struct camss_resources sm8550_resources = {
->   	.pd_name = "top",
->   	.csiphy_res = csiphy_res_8550,
->   	.csid_res = csid_res_8550,
-> +	.vfe_res = vfe_res_8550,
->   	.csid_wrapper_res = &csid_wrapper_res_sm8550,
->   	.icc_res = icc_res_sm8550,
->   	.icc_path_num = ARRAY_SIZE(icc_res_sm8550),
->   	.csiphy_num = ARRAY_SIZE(csiphy_res_8550),
->   	.csid_num = ARRAY_SIZE(csid_res_8550),
-> +	.vfe_num = ARRAY_SIZE(vfe_res_8550),
->   	.link_entities = camss_link_entities
->   };
->   
-
---
-Best wishes,
-Vladimir
+SGksIEFuZ2VsbzoNCg0KT24gTW9uLCAyMDI1LTAxLTEzIGF0IDE1OjUyICswMTAwLCBBbmdlbG9H
+aW9hY2NoaW5vIERlbCBSZWdubyB3cm90ZToNCj4gRXh0ZXJuYWwgZW1haWwgOiBQbGVhc2UgZG8g
+bm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW50aWwgeW91IGhhdmUgdmVyaWZp
+ZWQgdGhlIHNlbmRlciBvciB0aGUgY29udGVudC4NCj4gDQo+IA0KPiBUaGUgcHJvYmUgZnVuY3Rp
+b24gb2YgdGhpcyBkcml2ZXIgbWF5IGZhaWwgYWZ0ZXIgcmVnaXN0ZXJpbmcgdGhlDQo+IGF1ZGlv
+IHBsYXRmb3JtIGRldmljZTogaW4gdGhhdCBjYXNlLCB0aGUgc3RhdGUgaXMgbm90IGdldHRpbmcN
+Cj4gY2xlYW5lZCB1cCwgbGVhdmluZyB0aGlzIGRldmljZSByZWdpc3RlcmVkLg0KPiANCj4gQWRk
+aW5nIHVwIHRvIHRoZSBtaXgsIHNob3VsZCB0aGUgcHJvYmUgZnVuY3Rpb24gb2YgdGhpcyBkcml2
+ZXINCj4gcmV0dXJuIGEgcHJvYmUgZGVmZXJyYWwgZm9yIE4gdGltZXMsIHdlJ3JlIHJlZ2lzdGVy
+aW5nIHVwIHRvIE4NCj4gYXVkaW8gcGxhdGZvcm0gZGV2aWNlcyBhbmQsIGFnYWluLCBuZXZlciBm
+cmVlaW5nIHRoZW0gdXAuDQo+IA0KPiBUbyBmaXggdGhpcywgYWRkIGEgcG9pbnRlciB0byB0aGUg
+YXVkaW8gcGxhdGZvcm0gZGV2aWNlIGluIHRoZQ0KPiBtdGtfaGRtaSBzdHJ1Y3R1cmUsIGFuZCBh
+ZGQgYSBkZXZtIGFjdGlvbiB0byB1bnJlZ2lzdGVyIGl0IHVwb24NCj4gZHJpdmVyIHJlbW92YWwg
+b3IgcHJvYmUgZmFpbHVyZS4NCg0KUmV2aWV3ZWQtYnk6IENLIEh1IDxjay5odUBtZWRpYXRlay5j
+b20+DQoNCj4gDQo+IEZpeGVzOiA4ZjgzZjI2ODkxZTEgKCJkcm0vbWVkaWF0ZWs6IEFkZCBIRE1J
+IHN1cHBvcnQiKQ0KPiBTaWduZWQtb2ZmLWJ5OiBBbmdlbG9HaW9hY2NoaW5vIERlbCBSZWdubyA8
+YW5nZWxvZ2lvYWNjaGluby5kZWxyZWdub0Bjb2xsYWJvcmEuY29tPg0KPiAtLS0NCg0K
 
