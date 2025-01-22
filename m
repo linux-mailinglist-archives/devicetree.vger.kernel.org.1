@@ -1,256 +1,136 @@
-Return-Path: <devicetree+bounces-140348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF447A194E8
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 16:18:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85808A194F5
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 16:19:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6512C3A3FB6
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 15:18:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 681E6188D456
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 15:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4AB72144C0;
-	Wed, 22 Jan 2025 15:18:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10D0A213E8A;
+	Wed, 22 Jan 2025 15:19:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uOd7RWhw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l6ZmkyrV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8711B2144B0;
-	Wed, 22 Jan 2025 15:18:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EFDC14AD3F;
+	Wed, 22 Jan 2025 15:19:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737559114; cv=none; b=G26K04S5NfpkVhjIAnoNGId66+70BkRY15kwFw+L9+ZnqrcUd1pzVkJKXr5SBSZ+aHglsbBfdNh2IbBHrOfcSwPbFA7t2uVgCQVN7xQ7dwL1LKdn2bglBMI2ygIdd/WdC/3GC9rWcVgZ9SmBv3AxatG4RtPyruiVMWts7V/rI8U=
+	t=1737559188; cv=none; b=MrjC8kvEUVxoe/0HqLWkTHXizduMBzf/m3qvLOCbmYhUvG8RNxgsqChM2PugISTJi4unlu1p84tLx6qnc5EKk5DUxUiP1IzE5zIpcNLOI3r2q/OaEAtEBW1jdZb8StJchZmv/OUxfux8vw4OKOYgLdFv56aMdgTVrDaAkAL4MzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737559114; c=relaxed/simple;
-	bh=nNGPdWI3XCIFccQmXFY/mLOyIewxTNrUA4q8QqeMk6Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jdJ4RS8RB6lMYTNpSZ/1IGdui0bq4ER2JeIMfWY5gIymk7qQnZE7AOuNtFwXJGjLalVESMZiTq7NKo8EPoSiwju32SeXalYmnFK5DmTN6RFbob4dEjy97zfjY3MlE6oNu/FcfCLE5QByK6cEcLDt8DfzF80eRw7ftgeb5oWbmC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uOd7RWhw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13F1DC4CED6;
-	Wed, 22 Jan 2025 15:18:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737559114;
-	bh=nNGPdWI3XCIFccQmXFY/mLOyIewxTNrUA4q8QqeMk6Q=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uOd7RWhw1hNxtcZDz7DKp6p0XyT2BbJa81qDD0G/cPPo14KDGiLbJqyvVn3HKmNNw
-	 EPI6X5X1OBPZD2FuNGwB6/0iRSXB8P4cF5O0Sw5CF4le+ybicLQwvBMfIIlv53eMVb
-	 yOpKguQL6zosUrnUy0kdBFDofvu68C78qgnh+iqlj/NzjddOJhW8lhVqZ0gplUwOSw
-	 FjUVoD6mKHU7/Zm4CTUiKsUSMCsGl5gYAISA2AamqJmo/DK9Q18I9g5Jy5Jx3JMVwC
-	 CMQiNaMQgB8vDMmoj/TifqFl5Ch3Pden/SgW9itBKUPRGtLbicrjUOctBDyn7bQBpl
-	 nk3nbTUwViVEg==
-Message-ID: <ea4ca423-c75d-468c-b5b2-673cd58e42c9@kernel.org>
-Date: Wed, 22 Jan 2025 16:18:26 +0100
+	s=arc-20240116; t=1737559188; c=relaxed/simple;
+	bh=Hw2fMyEc0mD0KGAvrjZ7XAAVrS0ZCn1jjJzhwZrVwBk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hzFtGTAxtU39T1nHtM6acLRW9ffah5e8JHmhZ7hfWwW8bewI24cFL5ATxLboorIbe/uY0XQd8vmfXIUUQR0oD6gpjrA0e0mkOvOnMRciU8obEYnnS3rBa1fXa9CvCrO7c5eMnEsb2igQchJ/GDKxckPA/0/J1JLGyRIxU5IBOmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l6ZmkyrV; arc=none smtp.client-ip=209.85.217.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4affbc4dc74so4069893137.0;
+        Wed, 22 Jan 2025 07:19:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737559185; x=1738163985; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/lpU57kzX6xm1n/A5ilQyKcz9kX/LPWchcpjfSi0e6c=;
+        b=l6ZmkyrVVjdo+AkwonkneqUkjZUbjB7vr/uBSzN7P1shAKZMwSOOwTo3u2QmNUoOCQ
+         QuHUPx+lZPBEkfnhIvbuRylPooeTFXAe5WR3rn0tTDjyqXXQntr6Xlz9n8kTGIEn1wae
+         MpEX+J22yjFUJ4Dpx41S9Wz68EMHwuNxL+j7ycEcH8LBTxbodpIGGXjucvFjbz3+X42d
+         Vq+SitcTTCObXbjp3e2SAY1nvNlpNh2FsMBa0znXLccPxOhFWsfwW7cC1q8w8m45qEwr
+         WISWHxVQN7ICz9hOTrysiSzGEdrhEwtXtJHQ7J2qKQ0LkxdWpw5cUmuoUfMQWO+FiJ9P
+         IjdQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737559185; x=1738163985;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/lpU57kzX6xm1n/A5ilQyKcz9kX/LPWchcpjfSi0e6c=;
+        b=buNnEnjU2JIhsKB2an8izFO2Wobh3eFcERXhYekANnoC94a+NbyXaQobqApoH2SwtM
+         yIev3T+cLd27YE5IF+F5ejEgtSZDFyrnZ44/Ywsxlq15B0okOUqH9eWkizfHfswXXa8Q
+         Aa6eQbmR/6rrUSfEGvFGC1IgBXZd20sPn8nexF4sUsLTgPLcTT7XvWuVM460ojB16mlG
+         n6MrRc0N0+P0dNoYBtL44aDO3aNNku56zrNZvqGg0RZebp9iwsaGfCUxHhrp3sARuCsT
+         hla4pp7jAnrsKQRvCz+oy2DpI3O5efBBTyh8CDqTI4+zdSACa+fpFI7kqQ+dFOG1Z55Y
+         VQgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU6JeNsdEiyV+HJfR9ZtB2s5FSvPin8/Sp8rlr4SeWtJXw3Q2B61jZwun5uXSjNWgEyeq8i4V/lmVg3Qw==@vger.kernel.org, AJvYcCUr/TGeg6C/7Ntn3cjJ1S72xLuaCfb626yuF16lZe1pRPRGWjKqq8mZApQN95Fa9TRt1VUotJOeMe+PsLZg@vger.kernel.org, AJvYcCVrKBDlRqDvjRo1fgCWB5jDuwmRomHy2+GZq08gNlPoc5NSCaE2LMENoMVHGzVhP/470h55R1m2ECg9@vger.kernel.org, AJvYcCWdT91r4q5sIe0Isuc+AmmWpIF93QghmP3PnG6ZgfA7o29+VgNA+fWOcUX5GqCroVCLfd+owMta6iE=@vger.kernel.org, AJvYcCX2zp4ibkGMT3usbh0dgIIM/2fYh+xtrebUXt1UZUAspXpf0wJK3BQdvlVCSDit41LmXTeKGo8/4CDEuf4=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw8/bUvSPInSfHgJkSh/T5eYXjZJdgDrArdEdUq7fXlyMAhqNat
+	WTTjHTPJOP5e5mqLIp16lDa2kEaPXWsSxih2RBReGV3cYlLfZe5I8FQF2PP6RaBpcXTTy/QQ/l0
+	Jact0zJdGNljGcZYuT6vPEpjGSFo6mikTj0M=
+X-Gm-Gg: ASbGncstagNoRc/iTwIjVnb0YeKtnSdhA6ChuqjaIX2xbks+ovlT+z93REdl2DeGRg3
+	Xjuup2u9FNYucjjHCDUP1nqARSgh25yobmUKUq/uja+bxmX3S3w==
+X-Google-Smtp-Source: AGHT+IF/9LBHhtXmfXdWr5Kvxv52FG642PNcPKWISvf0YHXBJ5aOnaRrvqUxYXhvvoPW9ZHHaa76RNotn7foQVaDVIk=
+X-Received: by 2002:a05:6102:3c9b:b0:4b6:d833:63b2 with SMTP id
+ ada2fe7eead31-4b6d834823dmr6718850137.10.1737559185272; Wed, 22 Jan 2025
+ 07:19:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/9] dt-bindings: spi: Add STM32 OSPI controller
-To: patrice.chotard@foss.st.com, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Arnd Bergmann <arnd@arndb.de>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- christophe.kerello@foss.st.com
-References: <20250122141037.953934-1-patrice.chotard@foss.st.com>
- <20250122141037.953934-2-patrice.chotard@foss.st.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250122141037.953934-2-patrice.chotard@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250108-starqltechn_integration_upstream-v14-0-f6e84ec20d96@gmail.com>
+ <20250108-starqltechn_integration_upstream-v14-7-f6e84ec20d96@gmail.com>
+ <20250109120158.GH6763@google.com> <CABTCjFAky55btJz3B=K2kL5gSJD9BYi5t15jaA2ga5asVT=3NQ@mail.gmail.com>
+ <20250121101531.GA1045870@google.com>
+In-Reply-To: <20250121101531.GA1045870@google.com>
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Date: Wed, 22 Jan 2025 18:19:33 +0300
+X-Gm-Features: AbW1kvatA4GcrF_L85FVLO9EmHFT0xc-4-zVysHVQ7JnwQGconCJsV8o4AhHVrI
+Message-ID: <CABTCjFDRw9ZWWE=97neVcRofFOZfJ9fcn6dBXnCG4TbtMCzi5A@mail.gmail.com>
+Subject: Re: [PATCH v14 07/10] mfd: simple-mfd-i2c: Add MAX77705 support
+To: Lee Jones <lee@kernel.org>
+Cc: Sebastian Reichel <sre@kernel.org>, Chanwoo Choi <cw00.choi@samsung.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
+	Hans de Goede <hdegoede@redhat.com>, Marek Szyprowski <m.szyprowski@samsung.com>, 
+	Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>, Purism Kernel Team <kernel@puri.sm>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org, 
+	linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 22/01/2025 15:10, patrice.chotard@foss.st.com wrote:
-> ---
->  .../bindings/spi/st,stm32-ospi.yaml           | 109 ++++++++++++++++++
->  1 file changed, 109 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/st,stm32-ospi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/st,stm32-ospi.yaml b/Documentation/devicetree/bindings/spi/st,stm32-ospi.yaml
-> new file mode 100644
-> index 000000000000..bf16252f85fa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/st,stm32-ospi.yaml
+=D0=B2=D1=82, 21 =D1=8F=D0=BD=D0=B2. 2025=E2=80=AF=D0=B3. =D0=B2 13:15, Lee=
+ Jones <lee@kernel.org>:
+>
+> On Wed, 15 Jan 2025, Dzmitry Sankouski wrote:
+>
+> > =D1=87=D1=82, 9 =D1=8F=D0=BD=D0=B2. 2025=E2=80=AF=D0=B3. =D0=B2 15:02, =
+Lee Jones <lee@kernel.org>:
+> > >
+> > > On Wed, 08 Jan 2025, Dzmitry Sankouski wrote:
+> > >
+> > > > Add MAX77705 support - fuel gauge and hwmon devices.
+> > > > Hwmon provides charger input and system bus measurements.
+> > > >
+> > > > Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> > (...)
+> > > >  static const struct of_device_id simple_mfd_i2c_of_match[] =3D {
+> > > >       { .compatible =3D "kontron,sl28cpld" },
+> > > >       { .compatible =3D "silergy,sy7636a", .data =3D &silergy_sy763=
+6a},
+> > > >       { .compatible =3D "maxim,max5970", .data =3D &maxim_max5970},
+> > > >       { .compatible =3D "maxim,max5978", .data =3D &maxim_max5970},
+> > > > +     { .compatible =3D "maxim,max77705-battery", .data =3D &maxim_=
+mon_max77705},
+> > >
+> > > Drop the battery part from the MFD (group) name please.
+> > >
+> >
+> > It will then conflict with MAX77705 mfd driver compatible.
+>
+> Where is that used?
 
+In MAX77705 MFD patch:
+https://patchwork.kernel.org/project/linux-pm/patch/20250117-starqltechn_in=
+tegration_upstream-v16-5-11afa877276c@gmail.com/
 
-Use compatible as filename.
-
-> @@ -0,0 +1,109 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/st,stm32-ospi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STM32 Octal Serial Peripheral Interface (OSPI)
-> +
-> +maintainers:
-> +  - Patrice Chotard <patrice.chotard@foss.st.com>
-> +
-> +allOf:
-> +  - $ref: spi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stm32mp25-ospi
-> +
-> +  reg:
-> +    description: registers
-
-That's not helping. Please take a look how other bindings do it.
-maxItems instead or you need to list the items with meaningful description.
-
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-
-Drop *cells.
-> +
-> +  memory-region:
-> +    maxItems: 1
-> +    description: Phandle to a node describing memory-map region to be used
-
-Drop description, redundant. Say something useful - the purpose - or
-just maxItems if purpose is obvious.
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 2
-
-You need to list and describe the items.
-
-> +
-> +  dmas:
-> +    items:
-> +      - description: tx DMA channel
-> +      - description: rx DMA channel
-
-maxItems: 2 is enough, because names define what these are
-
-> +
-> +  dma-names:
-> +    items:
-> +      - const: tx
-> +      - const: rx
-> +
-> +  st,syscfg-dlyb:
-> +    description: |
-> +      Use to set the OSPI delay block within SYSCFG to:
-
-Phandles to what? Describe also the destination device.
-
-> +        Tune the phase of the RX sampling clock (or DQS) in order
-
-Unneeded indentation.
-
-> +        to sample the data in their valid window.
-> +        Tune the phase of the TX launch clock in order to meet setup
-> +        and hold constraints of TX signals versus the memory clock.
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      minItems: 2
-> +      maxItems: 2
-
-Your example has only one item, so probably you wanted one more items
-with description. Now you miss one of matrix constraints.
-
-git grep -C 8 phandle-array
-(e.g. some sram or syscon examples)
-
-
-
-> +
-> +  access-controllers:
-> +    minItems: 1
-> +    maxItems: 2
-
-List the items.
-
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#address-cells"
-> +  - "#size-cells"
-
-Drop cells
-
-> +  - clocks
-> +  - interrupts
-> +  - st,syscfg-dlyb
-> +
-> +unevaluatedProperties: false
-> +
-
-
-
-Best regards,
-Krzysztof
+--=20
+Best regards and thanks for review,
+Dzmitry
 
