@@ -1,176 +1,149 @@
-Return-Path: <devicetree+bounces-140241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F898A18F7D
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:14:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C47CA18F82
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:15:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47BA63A05C7
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:14:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3901318817D9
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:16:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9454921128D;
-	Wed, 22 Jan 2025 10:14:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA4E31E3784;
+	Wed, 22 Jan 2025 10:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="B98Q3GTM"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="JTFgnUhm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09AB016BE3A;
-	Wed, 22 Jan 2025 10:14:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 888F2145FE0;
+	Wed, 22 Jan 2025 10:15:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737540895; cv=none; b=IWHuLIbvnK5FXPR6a5kaDFy7XpEo0T4otQmJxJpchFPsUg/pIVIUzxgM566fLgzTdFNCZ+7xgWoajwUptCKddIkhHKuDV9OPk5DwvZi0zuSgvqA8kFHSZhpV6AChmLZsHkasJE9lYeufBY4NBQlCrmFo3Pd+xZD99MfUrqVZXHA=
+	t=1737540952; cv=none; b=mKLkTI2PPqAB+6mwdArlGW2dxHEJ/Mn1gsmQFZF43ZBb+JVoGQ0R02oJaYryU4y4ZK4Zr36EinAmmMzyuA4H+il32wwyWE5FLryiv1Ept9Qi4v4tGIlNt7eFjXobuCKA2w/istWG2DM3NzzlJZEQKzW7GcvCB63ApcySWsyly9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737540895; c=relaxed/simple;
-	bh=4+4uZLHD6kNhJLuhB6neOeSmgmIQjvXBjGYBADEbMR8=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=LCX9ozmsEwFPQGYj0ZCNyNDUs2xxD53y5+FsocUZTN6oqfrODtmqyt5Q3u3+x/zO/pnjQOUBZZzO7uqALgBlvNkxgia77JXcCYiWWznXt2jrOWg5/vVub2G9TriSR0KINuq7DDtb1AmnGm8GJkh2WIGrCYNz8e7lQJQny3eZKLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=B98Q3GTM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50M9Cdmf011076;
-	Wed, 22 Jan 2025 10:14:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=kPC3bLg7DLGY4q7UzKY3aj
-	FKd1DNq/1qZHyavJM0vC8=; b=B98Q3GTMF2SakYI3avwch4yGgUHEMdxf+vl9Dp
-	ymdIGPk3ZQ+e1hKu+fiZYaxCs3qw1KEJykdIj8TfemmFvBcEyVGX2J8F05cX8fnd
-	4DLEDiHJGTRvL6orjAZKu4Ur1KLOztqhYVRyMAtbP93EQ6rSQo8N6SQlNXVQuqoU
-	6ZL0/ONUkj7fQUTvzRPrdrADrIZbJJo7qUKqP842FfXH1jzNeaFOlj1nkWBqyvTM
-	CSsdKNIJUZfwRXSOo43TZFpfd19eW25BSsZGZL3EimR4RHRN5Qru+EiLLwSqFElJ
-	nO0xYqwdf+4dKBhprvTWRKT43DFM/A4yefWk96wTgESx+cfw==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44awuh0563-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Jan 2025 10:14:50 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50MAEn00025022
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 22 Jan 2025 10:14:49 GMT
-Received: from hu-nkumarsi-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 22 Jan 2025 02:14:42 -0800
-From: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
-To: <kernel@quicinc.com>, <andersson@kernel.org>, <konradybcio@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <quic_akdwived@quicinc.com>, <quic_uchheda@quicinc.com>
-CC: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>,
-        Sahil Chandna
-	<quic_chandna@quicinc.com>
-Subject: [PATCH v3] arm64: dts: qcom: Add industrial mezzanine support for qcs6490-rb3gen2
-Date: Wed, 22 Jan 2025 15:44:24 +0530
-Message-ID: <20250122101424.1810844-1-quic_nkumarsi@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1737540952; c=relaxed/simple;
+	bh=4DtGnFpzM8f43M0udRhNnwjvmNlde+mVhX6RbziV3+g=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=kzGN5X5l9zE1Sb9i1ca+YO/FxCccwxwWcFNbSQa2ZB/V4Lf4EynA51Q6u8eq1OJJXeGWHy7SnkTZPSJiZdOzyEerGoi3kSix4ZYbVymSiovGtzyyp71y7JPFsdxtwAzxcS0FSno1gq/+LWSpWmSVA7gJBzOfOydCSfNZq7IJfFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=JTFgnUhm reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=X8Jqip2+EUnxTzwkbxgRzDjMVQmyTYWY55G8IQGsnqg=; b=J
+	TFgnUhmPLhBtBzXJEpH/oTSefjxwCukLrU0bnmvK83Vru1gpCSVSzt2TC0c2VDzg
+	+/e223PumNREJ/j8rtEIkmIYkwTSJYQJf5sOdZJcGC8J7JWD4YGlSh5KmO5MaUHa
+	kt1nUKfRTXluNWH0tfzYCBZNfRtJfDEjqIxYA9fkaw=
+Received: from andyshrk$163.com ( [58.22.7.114] ) by
+ ajax-webmail-wmsvr-40-141 (Coremail) ; Wed, 22 Jan 2025 18:14:38 +0800
+ (CST)
+Date: Wed, 22 Jan 2025 18:14:38 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, derek.foreman@collabora.com,
+	detlev.casanova@collabora.com, daniel@fooishbar.org, robh@kernel.org,
+	sebastian.reichel@collabora.com,
+	"Andy Yan" <andy.yan@rock-chips.com>
+Subject: Re:Re: [PATCH v12 12/13] dt-bindings: display: vop2: Add rk3576
+ support
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20240801(9da12a7b)
+ Copyright (c) 2002-2025 www.mailtech.cn 163com
+In-Reply-To: <20250122-amber-moth-of-upgrade-fa8331@krzk-bin>
+References: <20250121103254.2528004-1-andyshrk@163.com>
+ <20250121103500.2528258-1-andyshrk@163.com>
+ <20250122-amber-moth-of-upgrade-fa8331@krzk-bin>
+X-NTES-SC: AL_Qu2YBfmfv0As7iibZekfmkcVgOw9UcO5v/Qk3oZXOJF8jCrr+CUnVkFMJFbsweeONhCLrheYTj1O48h1bZN6b5MbUXGMFwQ7SUeIEvUXSRjajA==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: rv-3ILK6IKEDRQerkZ-EZ9dTJPF9W3iD
-X-Proofpoint-ORIG-GUID: rv-3ILK6IKEDRQerkZ-EZ9dTJPF9W3iD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-22_04,2025-01-22_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 adultscore=0
- suspectscore=0 phishscore=0 lowpriorityscore=0 mlxscore=0
- priorityscore=1501 spamscore=0 bulkscore=0 clxscore=1015 malwarescore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501220074
+Message-ID: <76fe64e1.7132.1948d81c1f4.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:jSgvCgD33_kOxZBn3c1cAA--.18436W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbB0gHcXmeQv7FH9wACsa
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-Add DTS support for Qualcomm qcs6490-rb3gen2 industrial mezzanine board.
-
-Signed-off-by: Sahil Chandna <quic_chandna@quicinc.com>
-Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
-
----
-Changes in v3:
-- Fixed tpm pinctrl node label.
-- Addressed comments by Dmitry.
-- Improved indentation/formatting.
-- Link to V2: https://lore.kernel.org/all/20250102190155.2593453-1-quic_nkumarsi@quicinc.com/
-
-Changes in V2:
-- Addressed comment by Konrad.
-- Validated dts bindings with dtb_checks suggested by Krzysztof.
-- Improved indentation/formatting.
-- Fixed bug encountered during testing.
-- Added dtb entry in makefile.
-- Link to V1: https://lore.kernel.org/all/20241206065156.2573-1-quic_chandna@quicinc.com/
----
- arch/arm64/boot/dts/qcom/Makefile             |  4 +++
- .../qcs6490-rb3gen2-industrial-mezzanine.dtso | 35 +++++++++++++++++++
- 2 files changed, 39 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 6ca8db4b8afe..16ac008c58d2 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -111,6 +111,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
-+
-+qcs6490-rb3gen2-industrial-mezzanine-dtbs	:= qcs6490-rb3gen2.dtb qcs6490-rb3gen2-industrial-mezzanine.dtbo
-+
-+dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-industrial-mezzanine.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-new file mode 100644
-index 000000000000..1498f32bd069
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
-+*/
-+
-+/dts-v1/;
-+/plugin/;
-+#include <dt-bindings/clock/qcom,gcc-sc7280.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+
-+&pm7250b_gpios {
-+	tpm_spi_reset: tpm-spi-reset-state {
-+		pins = "gpio5";
-+		function = "normal";
-+		power-source = <1>;
-+		output-high;
-+		input-disable;
-+		bias-pull-up;
-+		qcom,drive-strength = <3>;
-+	};
-+};
-+
-+&spi11 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	st33htpm0: tpm@0 {
-+		compatible = "st,st33htpm-spi", "tcg,tpm_tis-spi";
-+		reg = <0>;
-+		spi-max-frequency = <20000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tpm_spi_reset>;
-+	};
-+};
--- 
-2.34.1
-
+SGksIAoKQXQgMjAyNS0wMS0yMiAxNjowNDo1OSwgIktyenlzenRvZiBLb3psb3dza2kiIDxrcnpr
+QGtlcm5lbC5vcmc+IHdyb3RlOgo+T24gVHVlLCBKYW4gMjEsIDIwMjUgYXQgMDY6MzQ6NTdQTSAr
+MDgwMCwgQW5keSBZYW4gd3JvdGU6Cj4+IEZyb206IEFuZHkgWWFuIDxhbmR5LnlhbkByb2NrLWNo
+aXBzLmNvbT4KPj4gCj4+IEFkZCB2b3AgZm91bmQgb24gcmszNTc2LCB0aGUgbWFpbiBkaWZmZXJl
+bmNlIGJldHdlZW4gcmszNTc2IGFuZCB0aGUKPj4gcHJldmlvdXMgdm9wIGlzIHRoYXQgZWFjaCBW
+UCBoYXMgaXRzIG93biBpbnRlcnJ1cHQgbGluZS4KPj4gCj4+IFNpZ25lZC1vZmYtYnk6IEFuZHkg
+WWFuIDxhbmR5LnlhbkByb2NrLWNoaXBzLmNvbT4KPj4gCj4+IC0tLQo+PiAKPj4gQ2hhbmdlcyBp
+biB2MTI6Cj4+IC0gU3BsaXQgZnJvbSBwYXRjaCAxMC8xMwo+Cj5PcmRlciB5b3VyIHBhdGNoZXMg
+ZmluYWxseS4gSXQncyB2MTIgYW5kIHlvdSBzdGlsbCBzZW5kIGJpbmRpbmcgYWZ0ZXIKPnRoZSB1
+c2VyLiBSZWFkIGNhcmVmdWxseSBzdWJtaXR0aW5nIGJpbmRpbmdzL3BhdGNoZXMuCgpXaGF0IGRv
+IHlvdSBtZWFuIGJ5ICJzZW5kaW5nIGJpbmRpbmcgYWZ0ZXIgdXNlciIgaGVyZT8gCkkgdGhpbmsg
+UEFUQ0ggMX45IGFyZSBmaXggYW5kIHByZXBhcmF0aW9ucywgUEFUQ0ggMTMoImRybS9yb2NrY2hp
+cDogdm9wMjogQWRkIHN1cHBvcnQgZm9yIHJrMzU3NiIpCmlzIHRoZSB1c2VyIHRoYXQgdXNlcyB0
+aGUgbmV3IGJpbmRpbmcuCgo+Cj4+IAo+PiBDaGFuZ2VzIGluIHYxMToKPj4gLSBSZW1vdmUgcmVk
+dW5kYW50IG1pbi9tYXhJdGVtcyBjb25zdHJhaW50Cj4+IAo+PiBDaGFuZ2VzIGluIHYxMDoKPj4g
+LSBNb3ZlIGludGVycnVwdC1uYW1lcyBiYWNrIHRvIHRvcCBsZXZlbAo+PiAtIEFkZCBjb25zdHJh
+aW50IG9mIGludGVycnVwdHMgZm9yIGFsbCBwbGF0Zm9ybQo+PiAtIEFkZCBjb25zdHJhaW50IGZv
+ciBhbGwgZ3JmIHBoYW5kbGVzCj4+IC0gUmVvcmRlciBzb21lIHByb3BlcnRpZXMKPj4gCj4+IENo
+YW5nZXMgaW4gdjk6Cj4+IC0gRHJvcCAndm9wLScgcHJlZml4IG9mIGludGVycnVwdC1uYW1lcy4K
+Pj4gLSBBZGQgYmxhbmsgbGluZSBiZXR3ZWVuIERUIHByb3BlcnRpZXMKPj4gLSBSZW1vdmUgbGlz
+dCBpbnRlcnJ1cHQtbmFtZXMgaW4gdG9wIGxldmVsCj4+IAo+PiBDaGFuZ2VzIGluIHY4Ogo+PiAt
+IEZpeCBkdF9iaW5kaW5nX2NoZWNrIGVycm9ycwo+PiAtIG9yZGVyZWQgYnkgc29jIG5hbWUKPj4g
+LSBMaW5rIHRvIHRoZSBwcmV2aW91cyB2ZXJzaW9uOgo+PiAgIGh0dHBzOi8vbG9yZS5rZXJuZWwu
+b3JnL2xpbnV4LXJvY2tjaGlwLzZwbjNxanhvdGR0cHp1Y3B1bDI0eXJvN3BwZGRlend1aXpuZW92
+cXZtZ2R3eXYyajdwQHp0ZzRtcXlpcW1qZi9ULyN1Cj4+IAo+PiBDaGFuZ2VzIGluIHY0Ogo+PiAt
+IGRlc2NyaWJlIGNvbnN0cmFpbnQgU09DIGJ5IFNPQywgYXMgaW50ZXJydXB0cyBvZiByazM1NzYg
+aXMgdmVyeQo+PiAgIGRpZmZlcmVudCBmcm9tIG90aGVycwo+PiAtIERyb3AgS3J6eXN6dG9mJ3Mg
+UmV2aWV3ZWQtYnksIGFzIHRoaXMgdmVyc2lvbiBjaGFuZ2VkIGEgbG90Lgo+PiAKPj4gQ2hhbmdl
+cyBpbiB2MzoKPj4gLSBvcmRlcmVkIGJ5IHNvYyBuYW1lCj4+IC0gQWRkIGRlc2NyaXB0aW9uIGZv
+ciBuZXdseSBhZGRlZCBpbnRlcnJ1cHQKPj4gCj4+IENoYW5nZXMgaW4gdjI6Cj4+IC0gQWRkIGR0
+IGJpbmRpbmdzCj4+IAo+PiAgLi4uL2Rpc3BsYXkvcm9ja2NoaXAvcm9ja2NoaXAtdm9wMi55YW1s
+ICAgICAgIHwgNTUgKysrKysrKysrKysrKysrKysrLQo+PiAgMSBmaWxlIGNoYW5nZWQsIDUyIGlu
+c2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pCj4+IAo+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvcm9ja2NoaXAvcm9ja2NoaXAtdm9wMi55
+YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvcm9ja2NoaXAv
+cm9ja2NoaXAtdm9wMi55YW1sCj4+IGluZGV4IDE1N2EzN2VkODRkYS4uYTJhNjM2OWM3YjZmIDEw
+MDY0NAo+PiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9y
+b2NrY2hpcC9yb2NrY2hpcC12b3AyLnlhbWwKPj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL2Rpc3BsYXkvcm9ja2NoaXAvcm9ja2NoaXAtdm9wMi55YW1sCj4+IEBAIC0y
+MSw2ICsyMSw3IEBAIHByb3BlcnRpZXM6Cj4+ICAgICAgZW51bToKPj4gICAgICAgIC0gcm9ja2No
+aXAscmszNTY2LXZvcAo+PiAgICAgICAgLSByb2NrY2hpcCxyazM1Njgtdm9wCj4+ICsgICAgICAt
+IHJvY2tjaGlwLHJrMzU3Ni12b3AKPj4gICAgICAgIC0gcm9ja2NoaXAscmszNTg4LXZvcAo+PiAg
+Cj4+ICAgIHJlZzoKPj4gQEAgLTM4LDEwICszOSwyMSBAQCBwcm9wZXJ0aWVzOgo+PiAgICAgICAg
+LSBjb25zdDogZ2FtbWEtbHV0Cj4+ICAKPj4gICAgaW50ZXJydXB0czoKPj4gLSAgICBtYXhJdGVt
+czogMQo+PiArICAgIG1pbkl0ZW1zOiAxCj4+ICsgICAgbWF4SXRlbXM6IDQKPj4gICAgICBkZXNj
+cmlwdGlvbjoKPj4gLSAgICAgIFRoZSBWT1AgaW50ZXJydXB0IGlzIHNoYXJlZCBieSBzZXZlcmFs
+IGludGVycnVwdCBzb3VyY2VzLCBzdWNoIGFzCj4+IC0gICAgICBmcmFtZSBzdGFydCAoVlNZTkMp
+LCBsaW5lIGZsYWcgYW5kIG90aGVyIHN0YXR1cyBpbnRlcnJ1cHRzLgo+PiArICAgICAgRm9yIFZP
+UCB2ZXJzaW9uIHVuZGVyIHJrMzU3NiwgdGhlIGludGVycnVwdCBpcyBzaGFyZWQgYnkgc2V2ZXJh
+bCBpbnRlcnJ1cHQKPj4gKyAgICAgIHNvdXJjZXMsIHN1Y2ggYXMgZnJhbWUgc3RhcnQgKFZTWU5D
+KSwgbGluZSBmbGFnIGFuZCBvdGhlciBpbnRlcnJ1cHQgc3RhdHVzLgo+PiArICAgICAgRm9yIFZP
+UCB2ZXJzaW9uIGZyb20gcmszNTc2IHRoZXJlIGlzIGEgc3lzdGVtIGludGVycnVwdCBmb3IgYnVz
+IGVycm9yLCBhbmQKPj4gKyAgICAgIGV2ZXJ5IHZpZGVvIHBvcnQgaGFzIGl0J3MgaW5kZXBlbmRl
+bnQgaW50ZXJydXB0cyBmb3IgdnN5bmMgYW5kIG90aGVyIHZpZGVvCj4+ICsgICAgICBwb3J0IHJl
+bGF0ZWQgZXJyb3IgaW50ZXJydXB0cy4KPj4gKwo+PiArICBpbnRlcnJ1cHQtbmFtZXM6Cj4+ICsg
+ICAgaXRlbXM6Cj4+ICsgICAgICAtIGNvbnN0OiBzeXMKPj4gKyAgICAgIC0gY29uc3Q6IHZwMAo+
+PiArICAgICAgLSBjb25zdDogdnAxCj4+ICsgICAgICAtIGNvbnN0OiB2cDIKPj4gIAo+PiAgICAj
+IFNlZSBjb21wYXRpYmxlLXNwZWNpZmljIGNvbnN0cmFpbnRzIGJlbG93Lgo+PiAgICBjbG9ja3M6
+Cj4+IEBAIC0xMzUsNiArMTQ3LDggQEAgYWxsT2Y6Cj4+ICAgICAgICAgIGludGVycnVwdHM6Cj4+
+ICAgICAgICAgICAgbWF4SXRlbXM6IDEKPgo+U28gdGhpcyBjaGFuZ2UgbW92ZXMgdG8gdGhpcyBw
+YXRjaC4KPgo+PiAgCj4+ICsgICAgICAgIGludGVycnVwdC1uYW1lczogZmFsc2UKPj4gKwo+PiAg
+ICAgICAgICBwb3J0czoKPj4gICAgICAgICAgICByZXF1aXJlZDoKPj4gICAgICAgICAgICAgIC0g
+cG9ydEAwCj4+IEBAIC0xNDgsNiArMTYyLDM5IEBAIGFsbE9mOgo+PiAgICAgICAgcmVxdWlyZWQ6
+Cj4+ICAgICAgICAgIC0gcm9ja2NoaXAsZ3JmCj4+ICAKPj4gKyAgLSBpZjoKPj4gKyAgICAgIHBy
+b3BlcnRpZXM6Cj4+ICsgICAgICAgIGNvbXBhdGlibGU6Cj4+ICsgICAgICAgICAgY29udGFpbnM6
+Cj4+ICsgICAgICAgICAgICBlbnVtOgo+PiArICAgICAgICAgICAgICAtIHJvY2tjaGlwLHJrMzU3
+Ni12b3AKPj4gKyAgICB0aGVuOgo+PiArICAgICAgcHJvcGVydGllczoKPj4gKyAgICAgICAgY2xv
+Y2tzOgo+PiArICAgICAgICAgIG1pbkl0ZW1zOiA1Cj4KPk5vLiBZb3UgZGlkIG5vdCBpbXBsZW1l
+bnQgbXkgY29tbWVudCBhdCBhbGwuCj4KPlNvIGFnYWluOgo+IldoeSBtaW5JdGVtcz8gTm90aGlu
+ZyBpbiB0aGlzIHBhdGNoIG1ha2VzIHNlbnNlIGZvciBtZS4gTmVpdGhlciBjaGFuZ2luZwo+ZXhp
+c3RpbmcgYmluZGluZyBub3IgbmV3IGJpbmRpbmcgZm9yIHJrMzU3Ni4iCj4KPlRvIGFkZHJlc3Mg
+c3VjaCBjb21tZW50LCBjb21lIHdpdGggcmVhc29uYWJsZSBhbnN3ZXIgdG8gIndoeSIuIE5vdCBq
+dXN0Cj5zZW5kIHRoZSBzYW1lLiBJdCdzIGEgd2FzdGUgb2YgbXkgdGltZSB0byBrZWVwIHJldmll
+d2luZyB0aGUgc2FtZS4KPgo+QmVzdCByZWdhcmRzLAo+S3J6eXN6dG9mCj4K
 
