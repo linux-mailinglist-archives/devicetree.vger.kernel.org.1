@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-140249-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140250-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05DD1A18FAB
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:26:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CF73A18FB7
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:29:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 417AF166D42
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:26:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15FC47A118C
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC00E210F45;
-	Wed, 22 Jan 2025 10:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 865D621129C;
+	Wed, 22 Jan 2025 10:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rqGK1pdQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bOPvj/5F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A38320F970;
-	Wed, 22 Jan 2025 10:26:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5E721128A;
+	Wed, 22 Jan 2025 10:29:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737541601; cv=none; b=sRn4/XnK95yZaGXfy4vsCrYB7/FvhYh/H7BEsT7vHQz7sCBJS7gxrZpu3fJEaXHK+begq0CPMx6yTh+M6UZp07Qt0VbrHYy/bT1E5DxX72WvjYcLqpVN+BJ4sROMAVdjby77ycJ6zjJ9hEcftgl9+P+f0RS2YfHj0z6h+7fgzOU=
+	t=1737541762; cv=none; b=WGdTH70XIrZviezCSFYONXt2n9exxuTXRBlO67XukPF55DfqLmLx6PzvZqbOZU8vdXmTS4IsJueY/Lsp8rzWiDV+P9sigByDYS7dYyy1NPzSBKMxwoxusir/fnut4evxPugtyqfk0A1e8Tom83qF/+HwRHcqcHINTSlQxezZhD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737541601; c=relaxed/simple;
-	bh=7O4gjdkCaJQFUj6tNYvH0Zabd8akDH3evmzWVP671I8=;
+	s=arc-20240116; t=1737541762; c=relaxed/simple;
+	bh=um0lS4DsGQyE4fkosuc7MC9GnEa206XsxZ4NA+YNoZI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PTRx0YpfMTZJ4okVkCX7Nn6oUnth+L4EKW2/rpMRLZe1zW4/5syTss48YxlDYm7vrogkyYG9Pn2xEJjr6irJuTURFezbFAZgqEH9C6bhbibPB4R9uemftsmC3j7/K3bvb++MC+fMSYTeGEl9jERUlKjOSbOhgdiE5ZGi9c34oeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rqGK1pdQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DEDEC4CED6;
-	Wed, 22 Jan 2025 10:26:35 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=hX4d/+jDXGx2AVe39Wk7QzVJVKbkSJiSCL+ygQ81BH/oO6XLQ/JRRXMN8TGt/Or1jdId2LqxzRnD1Btd/GMEiiYWTEK39hALq7md7yBehhkdCsXU0KbGCU29KF+ah/d2W1DqpPSAx6ekOM20x7L4XSDUEajWLuWtImACydW8LL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bOPvj/5F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66B26C4CED6;
+	Wed, 22 Jan 2025 10:29:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737541601;
-	bh=7O4gjdkCaJQFUj6tNYvH0Zabd8akDH3evmzWVP671I8=;
+	s=k20201202; t=1737541761;
+	bh=um0lS4DsGQyE4fkosuc7MC9GnEa206XsxZ4NA+YNoZI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rqGK1pdQtFyMeYBuWGtTJ7wVMx7R7k2RLR8vBo3isWOEH5xf+wGyoG6aw07zpmVoT
-	 jttR+qimxK+nwJmdBdYHBLIij5Wek5f92clx3uBz5xSByHeXYRgG2OfDDRqiwNs0X5
-	 6UQ8yVSPVlNpqJ4KO29wmdvzmZEEAOuk7mrXB3PuIIVY8o0QJTQr3BFEzvnbjpNzd/
-	 pFZsoeeSCZcgWy4DKOV93xmofo7Vn6NzV8DYyP6d66Hf7lLaTlol+02E4IT4Yd9gwX
-	 +WxxI2rC2y5mn6jwT+9jGnjz99cg1Nx+dSRzp3nd9JmnRiB2w1qmIxwbIa0uCH9Xv3
-	 eo0rVsWXzuCyQ==
-Message-ID: <72b02fd1-5195-4bb0-b01d-5481b49a5680@kernel.org>
-Date: Wed, 22 Jan 2025 11:26:32 +0100
+	b=bOPvj/5FP7wJfcrNKqQaqUMuKUqRBgDrxM3mUrAAxQAc27DFuNzrUlTdVEcSdo8Nz
+	 RhMddUCj78+ct1xb/urJoGncjVYV4n/srB6KTUVxhUcpeUYRlOpNLybzv4HJ3FYwIV
+	 wc58hrgfeKkXGuUS9wI/Fj43JrludUVqdut4cPbK0aYRTgXT31AKNY8/t+l9cTZuBJ
+	 9vfMXQCQdVgI47dYJGPI3kCJRTMpizwZtwpVqNq22nOPx/PtNqyDgV1omcOY+cmAjp
+	 IQxF/JaXAONyW8Hn+iCSaRsDWY6ryYSxUqOtBbausdurK1vZqum+Ju0kzMe5imLQto
+	 1qLKYFdX0bafw==
+Message-ID: <09b3089b-bd44-4993-8377-f191c4a669c4@kernel.org>
+Date: Wed, 22 Jan 2025 11:29:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/4] dt-bindings: mmc: Add dll-hsr-list for HS400 and
- HS200 modes
-To: Sachin Gupta <quic_sachgupt@quicinc.com>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
- Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- quic_cang@quicinc.com, quic_nguyenb@quicinc.com, quic_bhaskarv@quicinc.com,
- quic_mapa@quicinc.com, quic_narepall@quicinc.com, quic_nitirawa@quicinc.com,
- quic_rampraka@quicinc.com, quic_sartgarg@quicinc.com
-References: <20250122094707.24859-1-quic_sachgupt@quicinc.com>
- <20250122094707.24859-2-quic_sachgupt@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v12 12/13] dt-bindings: display: vop2: Add rk3576 support
+To: Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, derek.foreman@collabora.com,
+ detlev.casanova@collabora.com, daniel@fooishbar.org, robh@kernel.org,
+ sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>
+References: <20250121103254.2528004-1-andyshrk@163.com>
+ <20250121103500.2528258-1-andyshrk@163.com>
+ <20250122-amber-moth-of-upgrade-fa8331@krzk-bin>
+ <76fe64e1.7132.1948d81c1f4.Coremail.andyshrk@163.com>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -109,37 +107,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250122094707.24859-2-quic_sachgupt@quicinc.com>
+In-Reply-To: <76fe64e1.7132.1948d81c1f4.Coremail.andyshrk@163.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 22/01/2025 10:47, Sachin Gupta wrote:
-> Document the 'dll-hsr-list' property for MMC device tree bindings.
-> The 'dll-hsr-list' property defines the DLL configurations for HS400
-> and HS200 modes.
+On 22/01/2025 11:14, Andy Yan wrote:
+> Hi, 
 > 
-> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> At 2025-01-22 16:04:59, "Krzysztof Kozlowski" <krzk@kernel.org> wrote:
+>> On Tue, Jan 21, 2025 at 06:34:57PM +0800, Andy Yan wrote:
+>>> From: Andy Yan <andy.yan@rock-chips.com>
+>>>
+>>> Add vop found on rk3576, the main difference between rk3576 and the
+>>> previous vop is that each VP has its own interrupt line.
+>>>
+>>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
+>>>
+>>> ---
+>>>
+>>> Changes in v12:
+>>> - Split from patch 10/13
+>>
+>> Order your patches finally. It's v12 and you still send binding after
+>> the user. Read carefully submitting bindings/patches.
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> index 8b393e26e025..65dc3053df75 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> @@ -133,6 +133,11 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description: platform specific settings for DLL_CONFIG reg.
->  
-> +  qcom,dll-hsr-list:
-> +    maxItems: 10
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+> What do you mean by "sending binding after user" here? 
+> I think PATCH 1~9 are fix and preparations, PATCH 13("drm/rockchip: vop2: Add support for rk3576")
+> is the user that uses the new binding.
 
-uint32 has only one item. Anyway, there is already DLL there, so don't
-duplicate or explain why this is different. Explain also why this is not
-deducible from the compatible.
-
-Please provide here link to DTS user so we can validate how you use it.
+Ah, my bad. I thought that's the last one.
 
 
 Best regards,
