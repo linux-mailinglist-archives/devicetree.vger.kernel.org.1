@@ -1,142 +1,147 @@
-Return-Path: <devicetree+bounces-140248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ECD2A18FAA
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05DD1A18FAB
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 11:26:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 025E516AFD3
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:25:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 417AF166D42
+	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 10:26:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A1E211A29;
-	Wed, 22 Jan 2025 10:25:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC00E210F45;
+	Wed, 22 Jan 2025 10:26:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="GTyru/vm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rqGK1pdQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85F1D211712
-	for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 10:25:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A38320F970;
+	Wed, 22 Jan 2025 10:26:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737541515; cv=none; b=If7tC2gWBdg067JD32BYxatep9v9QmOYX6TA94PXMA4n7oBDD619UrbXdKOrjEFXiiV6UM6txkJMlVaQhTOGbqU41UuGzRPxhq0vafoQV+IAp5SJyp7zT7ZNGuEuCR4EqAXfhSWjbDSXBQTOC654jpe08HNGtVIP715zeDRJCLE=
+	t=1737541601; cv=none; b=sRn4/XnK95yZaGXfy4vsCrYB7/FvhYh/H7BEsT7vHQz7sCBJS7gxrZpu3fJEaXHK+begq0CPMx6yTh+M6UZp07Qt0VbrHYy/bT1E5DxX72WvjYcLqpVN+BJ4sROMAVdjby77ycJ6zjJ9hEcftgl9+P+f0RS2YfHj0z6h+7fgzOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737541515; c=relaxed/simple;
-	bh=mKVbeLCZ5Zhwj38zZ5+OKDCOtAlsP8KiPIVX5xjl0ek=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WtXeefhuX+H0teixbvnke62TnLBh4aSx3EVq2UtX7e3ZzrSpJgjklJ91D7PiPWHRJwH8RTrC//WLw7Y6r4pz+WL+YJNsP5mfKvjhqBtEcqA3gG+FzXk9KjlDe+2ZFNW+Zp2xGt0zVt5p0gY3jJZOgrdM+dnvKdqkxxM5vma/NFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=GTyru/vm; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4361dc6322fso46637355e9.3
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 02:25:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737541512; x=1738146312; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RXZQ3iTLaTcFIc0MIbkuKG0+bnWN6S1esvXMq4e4+0s=;
-        b=GTyru/vmow4cxOOR5xOyqjBGlE13YFo8dkAlKlckzenadrHMhLlKleOHKWF7R7rwWk
-         vnoAhCEUgtMhmmHa8di43toyzZsWbZynUvmmbyXW8eR/ARSzfvx946ILPEFWb2eIZi7r
-         Uh3qADYwPJ+d6y275Xbf5wf4ZRVFGCJCpKbYvrIi/ZH6llU101K/X6lBM0OI5ttar3DN
-         KXqhQYqO4K2pnEOwZRiCoE471KPKESCNi4sRgYbEhmsXO1r+V1lY1D6QuWVxU0RKgvqk
-         3vb9812ZEAmS2B2L2Z9QNP7lR+I1Iivm76xB+6VUh00ZlUhX3O4tQ/avZilDDaWppT8L
-         e1PQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737541512; x=1738146312;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RXZQ3iTLaTcFIc0MIbkuKG0+bnWN6S1esvXMq4e4+0s=;
-        b=vGDYJwH4FE4An5mPJpotaW60bKkJ1QyVUjDduXnSvejejfGGLZjAghOrtsjI7GZA8S
-         kTphjyZ5jYRXyfjw/m+aQMYy6CVO5OIBD+USTO5hH5ffp24a4fU7HGuEqp57uk9B+Q8p
-         qag6Um1YS75ZsjUn+GrEcRev5rUIGvbG9Yb+Ljta6/zxar0jCoGeQjji1URTUe8GLCzn
-         wJmOY9dvuH7HZMBJuV0JRqrQbHOO5+anl4L9O94LLAUBVpGLb/mlJ9APrjq4YwvDJ51a
-         IyDzdl+Ncb4GDX27Uni1y1IWYEg6yHg7yxcpvSWDcLpU9+P2h8OPrD5PwhkTP8ZW7oBA
-         UCbA==
-X-Forwarded-Encrypted: i=1; AJvYcCVUMrzpCdQ3bSahXemry0i0a9CmriTyTj7AmY0u/2snALwJ7AubH2Qz4HL1TzKGLOtMhQ12sX2A2z60@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlWKZ69AhYK8s1rwV7n51o+8DTMce4ShPb7XRFmlqjMgGdihJu
-	RzvCCzFH7jZazo7AV61VbU7dMfnW6+5inBguIh7uh0Ikl9gVENhl3GXni4n14dCMPXhYTy0yf5/
-	d
-X-Gm-Gg: ASbGncsBNAEuxNxgbEkMfo26pt//aHnFdc3Ct2pLuxCoHxGUgVfdErw5mbinris0Xlg
-	7tuadfG+P1g0wMxO9xJRaoiG7CM2B0rPS02/M1EHjQqoF/whaMtdYAY99jgvrxqKCCyFOoavGI2
-	SJbSK2H2+wdtUrVNAmMf00w/GlGH7yl2yU2ELDNAXCaF7UffuhkwxG8NTQGIjBhSfNDmkeB2aYa
-	fRzz/wL6yBZrVWDZFg1GlW31whoeO9Mba2k7sQqlvV+Zh/FJhF0eAD9gRHjdjR77Ao=
-X-Google-Smtp-Source: AGHT+IFcdjMkbBVSBvPBcUMc6AIbuC7ugMJHA3X8FNx9ozrzI4NtnIr1pvfbPlrQNAdMI3bs+KTBkQ==
-X-Received: by 2002:a05:600c:3495:b0:434:a315:19c with SMTP id 5b1f17b1804b1-438913bdb0emr187626515e9.3.1737541511808;
-        Wed, 22 Jan 2025 02:25:11 -0800 (PST)
-Received: from localhost ([2001:4090:a245:80cb:f705:a3ac:14fe:4e1b])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438b31a1e69sm19459595e9.11.2025.01.22.02.25.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jan 2025 02:25:11 -0800 (PST)
-From: Markus Schneider-Pargmann <msp@baylibre.com>
-Date: Wed, 22 Jan 2025 11:24:36 +0100
-Subject: [PATCH 5/5] arm64: dts: ti: k3-am62p-j722s-common-wakeup: Add
- ddr-pmctrl, canuart-wake
+	s=arc-20240116; t=1737541601; c=relaxed/simple;
+	bh=7O4gjdkCaJQFUj6tNYvH0Zabd8akDH3evmzWVP671I8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PTRx0YpfMTZJ4okVkCX7Nn6oUnth+L4EKW2/rpMRLZe1zW4/5syTss48YxlDYm7vrogkyYG9Pn2xEJjr6irJuTURFezbFAZgqEH9C6bhbibPB4R9uemftsmC3j7/K3bvb++MC+fMSYTeGEl9jERUlKjOSbOhgdiE5ZGi9c34oeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rqGK1pdQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DEDEC4CED6;
+	Wed, 22 Jan 2025 10:26:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737541601;
+	bh=7O4gjdkCaJQFUj6tNYvH0Zabd8akDH3evmzWVP671I8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rqGK1pdQtFyMeYBuWGtTJ7wVMx7R7k2RLR8vBo3isWOEH5xf+wGyoG6aw07zpmVoT
+	 jttR+qimxK+nwJmdBdYHBLIij5Wek5f92clx3uBz5xSByHeXYRgG2OfDDRqiwNs0X5
+	 6UQ8yVSPVlNpqJ4KO29wmdvzmZEEAOuk7mrXB3PuIIVY8o0QJTQr3BFEzvnbjpNzd/
+	 pFZsoeeSCZcgWy4DKOV93xmofo7Vn6NzV8DYyP6d66Hf7lLaTlol+02E4IT4Yd9gwX
+	 +WxxI2rC2y5mn6jwT+9jGnjz99cg1Nx+dSRzp3nd9JmnRiB2w1qmIxwbIa0uCH9Xv3
+	 eo0rVsWXzuCyQ==
+Message-ID: <72b02fd1-5195-4bb0-b01d-5481b49a5680@kernel.org>
+Date: Wed, 22 Jan 2025 11:26:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 1/4] dt-bindings: mmc: Add dll-hsr-list for HS400 and
+ HS200 modes
+To: Sachin Gupta <quic_sachgupt@quicinc.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Adrian Hunter <adrian.hunter@intel.com>,
+ Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ quic_cang@quicinc.com, quic_nguyenb@quicinc.com, quic_bhaskarv@quicinc.com,
+ quic_mapa@quicinc.com, quic_narepall@quicinc.com, quic_nitirawa@quicinc.com,
+ quic_rampraka@quicinc.com, quic_sartgarg@quicinc.com
+References: <20250122094707.24859-1-quic_sachgupt@quicinc.com>
+ <20250122094707.24859-2-quic_sachgupt@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250122094707.24859-2-quic_sachgupt@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250122-topic-am62-dt-syscon-v6-13-v1-5-515d56edc35e@baylibre.com>
-References: <20250122-topic-am62-dt-syscon-v6-13-v1-0-515d56edc35e@baylibre.com>
-In-Reply-To: <20250122-topic-am62-dt-syscon-v6-13-v1-0-515d56edc35e@baylibre.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Siddharth Vadapalli <s-vadapalli@ti.com>, Nishanth Menon <nm@ti.com>, 
- Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, 
- Markus Schneider-Pargmann <msp@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1091; i=msp@baylibre.com;
- h=from:subject:message-id; bh=mKVbeLCZ5Zhwj38zZ5+OKDCOtAlsP8KiPIVX5xjl0ek=;
- b=owGbwMvMwCGm0rPl0RXRdfaMp9WSGNInHK+adOnjcd2UZTr56pOKd2zOl3dUPlBr4q99Wetyy
- 7w/a9a+6ihlYRDjYJAVU2S5+2Hhuzq56wsi1j1yhJnDygQyhIGLUwAmUsfPyLDw+WttJy1+tr99
- dzSrZwsxH9jckPb5WdzmBE6LUF7mtqmMDNvC9OKt/t86fkpoR0yisVH3jj7BxZaTJ4ipL3B4PJl
- nIT8A
-X-Developer-Key: i=msp@baylibre.com; a=openpgp;
- fpr=BADD88DB889FDC3E8A3D5FE612FA6A01E0A45B41
 
-Within the wkup-conf register range there are ddr-pmctrl and
-canuart-wake control registers. Add dedicated subnodes for these.
+On 22/01/2025 10:47, Sachin Gupta wrote:
+> Document the 'dll-hsr-list' property for MMC device tree bindings.
+> The 'dll-hsr-list' property defines the DLL configurations for HS400
+> and HS200 modes.
+> 
+> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> index 8b393e26e025..65dc3053df75 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
+> @@ -133,6 +133,11 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: platform specific settings for DLL_CONFIG reg.
+>  
+> +  qcom,dll-hsr-list:
+> +    maxItems: 10
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
----
- arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+uint32 has only one item. Anyway, there is already DLL there, so don't
+duplicate or explain why this is different. Explain also why this is not
+deducible from the compatible.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
-index 6f32135f00a551cfea4cc896fc03147271eab9b7..3daade3f4ffcfa669f109200e86c3e11da34e70c 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-wakeup.dtsi
-@@ -39,6 +39,16 @@ usb1_phy_ctrl: syscon@4018 {
- 			compatible = "ti,am62-usb-phy-ctrl", "syscon";
- 			reg = <0x4018 0x4>;
- 		};
-+
-+		ddr_pmctrl: syscon@80d0 {
-+			compatible = "ti,am62-ddr-pmctrl", "syscon";
-+			reg = <0x80d0 0x4>;
-+		};
-+
-+		canuart_wake: syscon@18300 {
-+			compatible = "ti,am62-canuart-wake", "syscon";
-+			reg = <0x18300 0x44>;
-+		};
- 	};
- 
- 	wkup_uart0: serial@2b300000 {
+Please provide here link to DTS user so we can validate how you use it.
 
--- 
-2.47.1
 
+Best regards,
+Krzysztof
 
