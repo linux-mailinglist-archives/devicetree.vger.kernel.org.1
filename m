@@ -1,181 +1,106 @@
-Return-Path: <devicetree+bounces-140447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 574D1A19D4A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 04:31:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4530A19D5D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 04:42:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CDD03AD7E5
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 03:31:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A2281887456
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 03:42:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3EFF1F5F6;
-	Thu, 23 Jan 2025 03:31:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24DDF8615A;
+	Thu, 23 Jan 2025 03:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="blL29bMI"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="VT3UG3Xv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A685FEE6;
-	Thu, 23 Jan 2025 03:31:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3A783A8D0;
+	Thu, 23 Jan 2025 03:42:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737603064; cv=none; b=SY8IcX/zA0NKbvw0t4dIvNGuWSUdSXEZ6X+Z1x672GhayA3+hEeU87nUEtHBHMGKiOZ1pDkZ5JaVa2h+GBGwTnf5jHVdJsdTeYWmGWJCLHSrN1HtZ4osLqiQ+DRELeF7c62GYtT4Ea4wWYB6eAwckKddC3leyWjhDxHnI4Rrpmk=
+	t=1737603723; cv=none; b=oW9Cmg9j3zUjjofn7Rt47k1p4m0VvmMbf4YED7gbvA9MgZ7jkRKc0vKkQg1D6ptruB6SsZIY067QXoOLRAFi0/WoYWql9pZ82yvC5huOdQt4a1tarS/UrpUKCP+fFUph5g1qMOnXBaIRPpKUU8380ZK2T3FdIOHMBK4LokfOgx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737603064; c=relaxed/simple;
-	bh=xrl5z8Ll2TqDuAd39ZGKT2p6sIGrMhLVtKtDEmreQjY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f3+WcJRDp/t/+NdjPCxXKY53+zveqHPmrOyU18lgWvR4BKvqQWgxhutreXOb3m3HJ5b0hXlav4LLgbvZY4X47PKIkTxGNv4NKIgeJXm1MjHpnJozr4BYI82whuULMLag/aJ/AkAqTj8iSQLyZ+Lob2jpVjlnlGniBhQ2a7iIKYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=blL29bMI; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2156e078563so5192205ad.2;
-        Wed, 22 Jan 2025 19:31:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737603062; x=1738207862; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=9TctogefYusXIIGZ4bwwlA4HUSpBuD5+2I0brlCcpsQ=;
-        b=blL29bMIo2NFwHp+dXukzBs0bL2Ul+20XTelpbF06TWt0saYddQavodIfbcf3u1QE8
-         MCdghpeRSAFzufSxSUrv++onap3+SNK4OFWKp8PACaKp/80+vyTgDnFnoZhN8qpG3AJo
-         0r3wXpHbaW0CQdZIHc+pXh3V1s/JQp5JfGr6fT9UN4oVe3aF/zkH1g6x9JsFkJlYzsb/
-         yH3Fr7aMgTwXqGb8mK58VdkYUNYh/RCWilzhVnDr7Eu++kSVEuTea3E0ti4D7nCzAcSU
-         7Pvd7Manz6DzOPm0iSovP4Ub4XCi0NoDnc95LxI6fIk9ILXCCYYRkka/AVqPaR7b+4GU
-         c1LQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737603062; x=1738207862;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9TctogefYusXIIGZ4bwwlA4HUSpBuD5+2I0brlCcpsQ=;
-        b=ipDYv914r2xdHrVgpXEilgwST8A3ePYOQpdv+SpFkD7aC1hLyh8RDD7w7mfVfmhRYE
-         fsCODCADOm4rgWB8fHJYVZUBshuTxphvR/TvH+QElUiBDsdrTo8JKJ1N4aBmsnSaYmhK
-         +7XzBoxseah29RpT2GxnqTgKZ+8y7NrG022Z+ktEpKT5qM6W5OlAhv4oZO3WsNI2fco7
-         YHWJF28K+dOHjuDlcMnIaa445J3Bqls7HRbUojksvnX8K0bNTGH0edXUI8BWPyltIO4+
-         q34+Iq/gprJNJYGoWlyDh9D+CbHo7MjUXq5xcNRm4SEM0Xvivhd33C1DxmuwtP7HxBlu
-         4w0A==
-X-Forwarded-Encrypted: i=1; AJvYcCUK7boU+96OWYb6Wh7D9Ra9ZSpfJESzERyVb/Ofx36FrMUsptmPdMdKATBVUNV7G2gQMTEyBlJDUD3Lr8w=@vger.kernel.org, AJvYcCWAOnHWIcaJU5RTi9+xMUHeO4SVDjGF423tfXzWTdVPSnYfDaXWiaUsjLopJBsDrUDKA5k8un/C9PNF@vger.kernel.org, AJvYcCXmG3sW/Pr09+6fzmoqJ+rWMHlZ3Sf8Sn8sQECOAeUXiAt8NVvMNpVRyoBJjPVbVTfKjg3PnPKNKuyZayfy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yye016XpzGiJ+CoZa+ZXYwFDslvg8b9YF268unX6IMxYzAZV3Eb
-	XBSHnVuLYJl/IjNISGJ4+sWQZzvQTTnA8ur88Oa+k8PEGBgKqK71
-X-Gm-Gg: ASbGncsj7YwAqpaOSo0y9P+mAzeIy+4e42xQt6gpvsYf6iNDIPwf1W12Iat0Vr7YFtO
-	yUFxfcPwk7yXjA9srz0Bxrb6/gQbth2YcdQItDY+BsO0oySk3I7xAeimZyvo6w6UtbU1iov8tk+
-	/HdnurQSWC3XHvIPDqTR2XLXD9NqMgDUPgCqLd5xdB5r8ld9NNU6nDCDdUm/xJncu7WTfU6n1Lf
-	3R19OrYn0geR+obj2EFiiUktKKHp/m8O9KLSVZcoalMHoD0fuAF7lxeRl8FZLWJpPI7m8Jvuzjm
-	n3Dn/IfzsKGBe5fjLL8HsqV6sKv/KN+LLpch8os9P5juBdYB7M4OLg==
-X-Google-Smtp-Source: AGHT+IFbBzLf6BPJZJvPUAmUWhra8zja4yvhl2s7pKKVwzoOvyATIV2J/hG4x+KItPeWB7iM89uD+g==
-X-Received: by 2002:a05:6a21:6d98:b0:1e1:72ce:fefc with SMTP id adf61e73a8af0-1eb214e5175mr41370085637.22.1737603062344;
-        Wed, 22 Jan 2025 19:31:02 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a9bcc323847sm9704724a12.23.2025.01.22.19.31.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 22 Jan 2025 19:31:01 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <0eda52b5-59c2-4ad2-bb2c-5846dbfbf3e9@roeck-us.net>
-Date: Wed, 22 Jan 2025 19:30:59 -0800
+	s=arc-20240116; t=1737603723; c=relaxed/simple;
+	bh=3RY4k2zboVV5daIxlBEkCjdDsAZaLavxRnGu8nEYbec=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ugba9sDAOAS3LjSJAaeqzcYWKg4A8zGnpyN6DmXtGmc+3ZKujAMQQjGHwKx234vuDNXLSBNoLAFJPlpzSOa7Nrv9p1+vzo/NIVebWBMIXT5xh2F+pBPr+HMEZbj0eE/Sm/cgAvAYO1D3kcvvTpylBQlN8glUYaxMV0w6ZT/lUwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=VT3UG3Xv; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=nxV6h48oOYNUXilv2b43vdsiPZOgrDsSq3hXRcY+eoY=; b=VT3UG3XvlCtX+ofHf2rAlwAlGk
+	Eg1t/wU6mPNFAxoymJ2dNMDPTLpf86x/ZLPF6018Q/qpmJH5grMNzIdgyCwQ2QNxJpBOLlvZfEwQ9
+	vhlzgRl0sM6S5go6ZxogW8bkU2jGoDEuZ2+YdrG3PlVunEPfs9+NFMvravK5IBcMDvnc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tao66-0078OE-Du; Thu, 23 Jan 2025 04:41:38 +0100
+Date: Thu, 23 Jan 2025 04:41:38 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc: Sander Vanheule <sander@svanheule.net>,
+	"lee@kernel.org" <lee@kernel.org>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"tsbogend@alpha.franken.de" <tsbogend@alpha.franken.de>,
+	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+	"markus.stockhausen@gmx.de" <markus.stockhausen@gmx.de>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+Subject: Re: [PATCH v4 4/4] net: mdio: Add RTL9300 MDIO driver
+Message-ID: <11d7fe78-958d-409f-a979-25cc1bc933a2@lunn.ch>
+References: <20250120040214.2538839-1-chris.packham@alliedtelesis.co.nz>
+ <20250120040214.2538839-5-chris.packham@alliedtelesis.co.nz>
+ <d4194a1560ff297e5ab3e6eae6d51b7c9d469381.camel@svanheule.net>
+ <63d6cf16-9581-4736-8592-bc5836fa51af@alliedtelesis.co.nz>
+ <faa4cf6e-40eb-4509-b3f0-198a9a45ccbd@lunn.ch>
+ <09bd2f04-96d6-4dba-92ee-22ccbd7f584f@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings:Add SQ52206 to ina2xx devicetree
- bindings
-To: Wenliang Yan <wenliang202407@163.com>, krzk@kernel.org
-Cc: conor+dt@kernel.org, corbet@lwn.net, devicetree@vger.kernel.org,
- jdelvare@suse.com, krzk+dt@kernel.org, linux-hwmon@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh@kernel.org
-References: <20250122-funky-beryl-whale-a8bcbb@krzk-bin>
- <20250123013626.1085859-1-wenliang202407@163.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <20250123013626.1085859-1-wenliang202407@163.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <09bd2f04-96d6-4dba-92ee-22ccbd7f584f@alliedtelesis.co.nz>
 
-On 1/22/25 17:36, Wenliang Yan wrote:
-> At 2025-01-22 15:59:02, "Krzysztof Kozlowski" <krzk@kernel.org> wrote:
->> On Wed, Jan 22, 2025 at 09:29:39AM +0800, Wenliang Yan wrote:
->>> Add the sq52206 compatible to the ina2xx.yaml
->>>
->>> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
->>> ---
->>>
->>> Add the meaning of 'shunt-gain' in SQ52206.
->>
->> You already sent v3... and you got comment from me. You ignored both
->> Conor and me, so me doing third time the same and expecting different
->> results would be definition of insanity.
->>
->> Please read carefully submitting patches before posting new version.
->>
->> Best regards,
->> Krzysztof
+On Wed, Jan 22, 2025 at 11:02:14PM +0000, Chris Packham wrote:
+> Hi Andrew,
 > 
-> Sorry, I have received your comment and 'acked'. I was originally
-> planning to resend [PATCH v3 2/2], because I have not received a
-> response from Guenter Roeck<linux@roeck-us.net>. However, I forgot to
-> add 'RESEND' in the title. Thank you for your patient reply.
-> I apologize again.
+> On 23/01/2025 10:47, Andrew Lunn wrote:
+> >> I believe the POLL_SEL configuration actually affects an internal port
+> >> polling unit. From the datasheets I have it seems pretty configurable, you
+> >> can tell it which phy registers to poll and what values indicate link
+> >> up/down (the defaults are conveniently setup to match the Realtek PHYs).
+> > You need to disable this. The linux PHY driver is driving the PHY, and
+> > the hardware has no idea what Linux is doing. Say the driver has
+> > changed the page to read a temperature sensor, when the switch does a
+> > poll. Rather than reading the link status, it gets some random value
+> > from the page containing the temperature sensor.
 > 
+> There's a mask that can be set via a register that can disable polling 
+> for a port. The trick will be deciding when to do so.
 
-A resend after just four days, plus dropping all Acks ? Are you serious ?
+On probe. And leave is disabled. phylink will provide you with all the
+information you need about link up, what the link speed is etc. There
+is no need for PPU.
 
-Please keep in mind that not all of us are getting paid for doing this.
-If I am otherwise busy, it will take longer. Sometimes it will take
-much longer. If you resend a patches, they will end up at the tail
-of my review queue. If you drop Acks, expect me to dig it all up,
-and figure out on my own what if anything changed, the patches will
-end up even further down, as in "I'll look into this series if I have
-nothing else left to review".
-
-Guenter
-
+	Andrew
 
