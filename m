@@ -1,148 +1,160 @@
-Return-Path: <devicetree+bounces-140488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9116A1A0E7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:35:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2DECA1A0EF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:36:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB6BA188E6B9
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:36:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A26D16DC94
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:36:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F21E20CCE3;
-	Thu, 23 Jan 2025 09:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08F5320C48D;
+	Thu, 23 Jan 2025 09:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nMLJB4cU"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lKLextV1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997FF1BC3F;
-	Thu, 23 Jan 2025 09:35:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E33020B7FD
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 09:36:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737624949; cv=none; b=mly4ZDFUbuAXm0DSC/AHegwUQ4F0t2towm20e68tq93xux3IY3/nZTAbFgsjtQcCfneGcA/YidKU9bnYWJz0NtyFpfBr0uM3C2bVn76kPLYylx9nAH4Y0wkqlwLbxl/29wvh4FxwLxSoYQ6U5ba0Ku1mw2M51KUGe4Y1ktYkC64=
+	t=1737625011; cv=none; b=L9wvZMKZOXnrDzkx2wQbTKbrZqgXwiIirJ3UT59RmKDe0CAWisNp+daPo/F8eJ2WAQeeeVrYf9UqvGlsU3QphO8DaYR50DKmeHLa+HNxiOx2F3/WN/kzT0TTUbH06scg5776AoZoEykKjtgX31eNXq+//6cJak/wLIb64oBaXG0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737624949; c=relaxed/simple;
-	bh=y0Ly2u2NnSAQO8P3s6m7Sc963t4Wck3Y0+hbiVHs6iA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=czuWHftGcnRR6OWMSADrPE7EICvpv3MH6Hz6ZUT0TqxQk9TZUhEYJuB6w06cshdCvLvmTxQQI4+hR7jK21PNGzfMeOTEGF1JM5PMFQp0MtJo8gkx0R6oGlN2EKjjTHyjaTigMoC6ap63NEGRPDnsWYcy7/9pCNXT8MRz8tQxZ5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nMLJB4cU; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9106560008;
-	Thu, 23 Jan 2025 09:35:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1737624939;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=P2YlYlx83cyR+45tTYr17HHrjYcIDaSt0mPlw1nFDgA=;
-	b=nMLJB4cULhW8v0VbdR2QbZ9njGeqo7RCBUWP9SbAAB57ymSLCOKNqSLwj0ilbF7cHjwTKJ
-	u4RHUQunWxctad88+JkgqGPeWyNFhfz+cB0kZ0HAcPDsL7zB6psDwSVX/5Jrk2YyLf3i7s
-	D7/w8xN9cEm/LcM5//Z4wuS6g5+rFx9l0Hjf2hAlo8xYjIySsjMfQD56BUAQUwqe3skYHB
-	DNU62quUCtH+Su5BFE95ZN0BYB3LUkwuDvd2QiUXSufJeBb2iPAioM5f0xQJpCt6PrRPtx
-	DF0RxnxzRaZCIUl/iMMqtTqc+FA1Ihoh6V2AV59eQvCg0tUv561BTBTxHaNcvQ==
-Date: Thu, 23 Jan 2025 10:35:34 +0100
-From: Kory Maincent <kory.maincent@bootlin.com>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski
- <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>,
- linux-arm-kernel@lists.infradead.org, Christophe Leroy
- <christophe.leroy@csgroup.eu>, Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Heiner Kallweit
- <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>, Marek
- =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
- <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
- mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>
-Subject: Re: [PATCH net-next RFC v2 2/6] net: ethtool: Introduce
- ETHTOOL_LINK_MEDIUM_* values
-Message-ID: <20250123103534.1ca273af@kmaincent-XPS-13-7390>
-In-Reply-To: <20250122174252.82730-3-maxime.chevallier@bootlin.com>
-References: <20250122174252.82730-1-maxime.chevallier@bootlin.com>
-	<20250122174252.82730-3-maxime.chevallier@bootlin.com>
-Organization: bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1737625011; c=relaxed/simple;
+	bh=pLA1VAdysi3QWT1YzWWAofzAgcdNkyhXQCeIS61SqaY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lucCXff/HS01SSA6TtIPTHGi15giZ2eU8GyJj702D2dyZltfdgyy4KgNC2fdR2kloWCLv18D+oG0KiePjs/973ZgEsKCYlXZsD1ujmNndzSh4MYf/qpmAdlCFZX5OiPLw6SDixkTQs4hfx/QU2exvLiGrIa+lJhaE2n/9awXrFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lKLextV1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50N4rsq1023550
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 09:36:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pDpDsEyaq84PXMnMErRjHhaGy20cS9ppfxY27+Hx0NE=; b=lKLextV107Tz1JOp
+	ZORVlw2nO3eSBX0HOITuZQn3aJGVemwvy6wVwkWs6i3XrzqKvQr2+WROJEbi0UtP
+	n3Gq3LfExCtxW96Y1RBlPFLxi66yAFz8uqyekH5AhNGqoF3vZbyM2a+0N1OCVZai
+	5T4tlbR4ql7j9NggQDzD9/b8Y6tXPLj4HICR/8cIPMFoC4KHFymClV/S62mw5/Un
+	L2T9E8YE1kT0BSneyU/jFgeXqlBtppe+Y8663hkAfxeeix0lXP5qu0weNfCXImLQ
+	cd5VB4PbNowWcLRX33bo8QJufXFSyxdk83Kax4r5qiMuPX9PybjF5rUmAZC4/XaU
+	dGUe5A==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44bf518m1c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 09:36:48 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-216717543b7so18576955ad.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 01:36:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737625008; x=1738229808;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pDpDsEyaq84PXMnMErRjHhaGy20cS9ppfxY27+Hx0NE=;
+        b=EQ4MDDvREGY9rFAB7b1hRiH6Ow0wi2Pxm2qC4rQ/o/4k21Ci48EpqoH0TBQpSep6Jw
+         HgWKNy3XPC9zZITefaBs62GAAxG9J1BJ3kJn26/08d/GvNhQN4re4TX0TR6uzJvKbFDl
+         xdRX2m2JkJuVPgn+0tkZ7dU4VM3iRPmVuw//ZfgI2eueSzyW5WsIPxi2qIwZsCx0UJza
+         OH93kdWRiyioUz+lunR40R+JFXY0nyzdNr2ui3PL3/nBuQAfidj4e6ZJlCRi7xq8fKCx
+         eUG0dCLIOw55ceMmolFmcezVTt6a2hgjaY6fsNcZfd6+/wFhMlndYZvpusx8m3jmJbiD
+         Hc/g==
+X-Forwarded-Encrypted: i=1; AJvYcCWulhCwN1kJLk0X1F3K0JnA00MwPem47c0KMc+ZKbRM8N0ZW1YxfJ4jEAlnwmXlAzoTA7xKy1F6pb3l@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHOJbOvRi12pWTBBB/1za0hgIOC73fIAXUjsT0+bztySttv2EV
+	05yTCbosgXEis6+3zAqqsm+1Bgwq/ziOMjpHFi2AZqjZ7fUvRbM+1HLfEKUxQw0k8t2hyIVDs0Z
+	vXtzayAfbRKihl35Lnfnv4Ta7RTWvXbpBMwcBKhaaMyFqde8VU52wjpCC3LXX
+X-Gm-Gg: ASbGncu7blYJWrtWuys2mCumMw428yLuvfdoiSpHZb3KhtUpNjcL+YD3kCTDHJ5JxXw
+	LSQifssRAqnu4i2cvMf/thBuQeu5aBP7nsakBeRWJ/zPjgLuz+wMwwQTqV8ej3VyKPoz4pC6FgE
+	ZxTMLMqVpBE4L1WdnGnUSYnPoy/vbC51qVQBo3to2Y+muhdN78zbNtZLpkYjFbjl7K3/A2pw6Wv
+	LqGstS4pq4BIvt7QB7G+BA0/ZCZ7cqe3XBcNXFno6DWKi9KA1UEPpCxRXP/AfkYKG7FqF0BaQOV
+	TVgWxHqDXI4=
+X-Received: by 2002:a17:903:2341:b0:216:45b9:43ad with SMTP id d9443c01a7336-21c355bf95emr381085675ad.34.1737625007894;
+        Thu, 23 Jan 2025 01:36:47 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFrG+ixy5+z5LdUN/la2h/iEkjxoQA/MQg3UkFsFXd4eWsquZuzJYsVHcv9f4B42mCexMbeXw==
+X-Received: by 2002:a17:903:2341:b0:216:45b9:43ad with SMTP id d9443c01a7336-21c355bf95emr381085365ad.34.1737625007536;
+        Thu, 23 Jan 2025 01:36:47 -0800 (PST)
+Received: from [10.64.68.153] ([114.94.8.21])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21d9220f9c9sm23006775ad.59.2025.01.23.01.36.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jan 2025 01:36:46 -0800 (PST)
+Message-ID: <a89e32d6-a88c-4f08-9d2a-93d9b75f3047@oss.qualcomm.com>
+Date: Thu, 23 Jan 2025 17:36:40 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
-
-On Wed, 22 Jan 2025 18:42:47 +0100
-Maxime Chevallier <maxime.chevallier@bootlin.com> wrote:
-
-> In an effort to have a better representation of Ethernet ports,
-> introduce enumeration values representing the various ethernet Mediums.
->=20
-> This is part of the 802.3 naming convention, for example :
->=20
-> 1000 Base T 4
->  |    |   | |
->  |    |   | \_ lanes (4)
->  |    |   \___ Medium (T =3D=3D Twisted Copper Pairs)
->  |    \_______ Baseband transmission
->  \____________ Speed
->=20
->  Other example :
->=20
-> 10000 Base K X 4
->            | | \_ lanes (4)
->            | \___ encoding (BaseX is 8b/10b while BaseR is 66b/64b)
->            \_____ Medium (K is backplane ethernet)
->=20
-> In the case of representing a physical port, only the medium and number
-> of lanes should be relevant. One exception would be 1000BaseX, which is
-> currently also used as a medium in what appears to be any of
-> 1000BaseSX, 1000BaseFX, 1000BaseCX and 1000BaseLX.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: sa8775p: Remove cdsp
+ compute-cb@10
+To: Ling Xu <quic_lxu5@quicinc.com>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org
+Cc: quic_kuiw@quicinc.com, quic_ekangupt@quicinc.com,
+        quic_kartsana@quicinc.com, kernel@quicinc.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, stable@kernel.org
+References: <cover.1737615222.git.quic_lxu5@quicinc.com>
+ <45e0882efe080d882fa083c16c51f613f70e52aa.1737615222.git.quic_lxu5@quicinc.com>
+Content-Language: en-US
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+In-Reply-To: <45e0882efe080d882fa083c16c51f613f70e52aa.1737615222.git.quic_lxu5@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: o39j6WIttlQ7OmuWa_XbOd_UPsb0uddr
+X-Proofpoint-GUID: o39j6WIttlQ7OmuWa_XbOd_UPsb0uddr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-23_04,2025-01-22_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1011
+ lowpriorityscore=0 bulkscore=0 phishscore=0 priorityscore=1501 spamscore=0
+ impostorscore=0 suspectscore=0 mlxlogscore=843 mlxscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501230073
 
 
 
-> -	__DEFINE_LINK_MODE_PARAMS(100, T, Half),
-> -	__DEFINE_LINK_MODE_PARAMS(100, T, Full),
-> -	__DEFINE_LINK_MODE_PARAMS(1000, T, Half),
-> -	__DEFINE_LINK_MODE_PARAMS(1000, T, Full),
-> +	__DEFINE_LINK_MODE_PARAMS_LANES(10, T, 2, 4, Half, T),
-> +	__DEFINE_LINK_MODE_PARAMS_LANES(10, T, 2, 4, Full, T),
-> +	__DEFINE_LINK_MODE_PARAMS_LANES(100, T, 2, 4, Half, T),
-> +	__DEFINE_LINK_MODE_PARAMS_LANES(100, T, 2, 4, Full, T),
+On 1/23/2025 5:19 PM, Ling Xu wrote:
+> Need to remove the context bank compute-cb@10 because secure cdsp
+> uses the s2-only stream.
+You need a line below just before your commit message if you are not the 
+original author.
+From: From Author <from@author.example.org>
+
+> 
+> Fixes: f7b01bfb4b47 ("arm64: qcom: sa8775p: Add ADSP and CDSP0 fastrpc nodes")
+> Cc: stable@kernel.org
+> Signed-off-by: Karthik Sanagavarapu <quic_kartsana@quicinc.com>
+> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sa8775p.dtsi | 8 --------
+>   1 file changed, 8 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> index 0aa27db21f3d..81b2fba94841 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+> @@ -4585,14 +4585,6 @@ compute-cb@9 {
+>   						dma-coherent;
+>   					};
+>   
+> -					compute-cb@10 {
+> -						compatible = "qcom,fastrpc-compute-cb";
+> -						reg = <10>;
+> -						iommus = <&apps_smmu 0x214a 0x04a0>,
+> -							 <&apps_smmu 0x218a 0x0400>;
+> -						dma-coherent;
+> -					};
+> -
+>   					compute-cb@11 {
+>   						compatible = "qcom,fastrpc-compute-cb";
+>   						reg = <11>;
 
 
-> -	__DEFINE_LINK_MODE_PARAMS(1000, KX, Full),
-> -	__DEFINE_LINK_MODE_PARAMS(10000, KX4, Full),
-> -	__DEFINE_LINK_MODE_PARAMS(10000, KR, Full),
-> +	__DEFINE_LINK_MODE_PARAMS(1000, KX, Full, K),
-> +	__DEFINE_LINK_MODE_PARAMS(10000, KX4, Full, K),
-> +	__DEFINE_LINK_MODE_PARAMS(10000, KR, Full, K),
-
-The medium information is used twice.
-Maybe we could redefine the __DEFINE_LINK_MODE_PARAMS like this to avoid
-redundant information:
-#define __DEFINE_LINK_MODE_PARAMS(_speed, _medium, _encoding, _lanes, _dupl=
-ex)
-
-And something like this when the lanes are not a fix number:
-#define __DEFINE_LINK_MODE_PARAMS_LANES_RANGE(_speed, _medium, _encoding,
-_min_lanes, _max_lanes, _duplex)
-
-Then we can remove all the __LINK_MODE_LANES_XX defines which may be
-wrong as you have spotted in patch 1.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Thanks,
+Jie
 
