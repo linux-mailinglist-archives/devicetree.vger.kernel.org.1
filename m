@@ -1,90 +1,91 @@
-Return-Path: <devicetree+bounces-140540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCA50A1A2C5
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:18:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79808A1A2CC
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:20:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E7361883E99
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 11:18:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5253169403
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 11:20:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A17420E011;
-	Thu, 23 Jan 2025 11:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D744A20E02E;
+	Thu, 23 Jan 2025 11:20:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nDEzVfw0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S0wktD6z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 550DB145A16
-	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 11:18:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6648145A16
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 11:19:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737631110; cv=none; b=qt0IqQFGvpUl+vD/jnb3BnbAZlbamgzel56FnlIjNNyAvhk/Mhzqk0uAz7DlKT/NqQpB2GOF3JSMowp+s3GLFXBtCpgH9ua7luwrWFnzEx6Pj8Vpf+J1Wjb/Q5W8F7Ge7qXBPRvXAoqMgFLiIq/0L27Opv/4FVpvmG8yElCgI9Q=
+	t=1737631201; cv=none; b=AlEf9qhDjH3oWq/9AtFw/fUpw5jiro8OILtyoWoPmAe9QMLi//f7hTCeOfG9nZMS6cUyk2cEiePImczWUAxj6wpSeG29G7HAewcBQFKDoa5rlUykhAJaHnwINgFBxjRq30NKCYDjjCnLh4MsLg6qDzgUJzZPzc8sRdryDZS5SIk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737631110; c=relaxed/simple;
-	bh=eBwW5zbv71K8qutX45hfPZ0zNtq+BiuyqeqEee7WwnA=;
+	s=arc-20240116; t=1737631201; c=relaxed/simple;
+	bh=1l20iob+kOh3pE0fiAdG7zL5ptUwPqyM3q8y32dM0bs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z7WlcGsnHJbL3ZgF2AvxY8KJvV7MLptwQoZknQHs5FKDoYptI7cKtCs2KODCW2EJI8gqwRwEslL+J2kpm5wGki/ktgmxETE2X6yhQak506aHBm2f+ZT8DWj1n8aq+chRn4up7bQaJb028jPGFAXI3IIj8XqaUw5O5eqb9Vz1EM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nDEzVfw0; arc=none smtp.client-ip=209.85.167.50
+	 Content-Type:Content-Disposition:In-Reply-To; b=ORM37d1k2H4I7guLaJ8/dOYRv6Zb67h3OIv1hQE5510kJSm2VvLFq6Zzr1HTnjQ9ur5GXuVJaM9TqUpKnWV0ZViwRiTax9uEpZd3x7NrMGtDEs9z2cEce3ke0gccM+WWkFDjnW6nQXwC8/f8G0wW4+wUPnvfGhiKkMMEKcNyaa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S0wktD6z; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-54026562221so771662e87.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 03:18:27 -0800 (PST)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-54298ec925bso964992e87.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 03:19:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737631106; x=1738235906; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1737631198; x=1738235998; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UvEVwvuAYsxT5Y9x89jkQ1Jw6WguxWcG6Luy7dy5Nuc=;
-        b=nDEzVfw0jXtucQCo/qzIPFy8CvZm8072/B72wlYzU9mmtH7wOJdg2Fu6RFcZQGY9+h
-         hIX6ZhP63/vTgbB8fk8CzmMF2opkA+GxO8hyIk8V1QXn3nFATJHn1QQfR3Qj6Bn6YUb3
-         59Z0he9Lpb3LeAfzKzmGogi3hOaZzt6ZEDvVhE7ua81WQritXW8Vcufb81XgjXMbFQaX
-         7Km6Coo5huLkRYazfND2m4af84PthZHo41lSGcQ4garTbCt/UnNxJmqe6jKbmT7ToWvp
-         aHGXbs6bNyCfBpjqgbtOGWyf26cAi+riwhWzYG6MkWHqZjNlrPyTZ2oHAyCjqtmR3P2o
-         Mnxg==
+        bh=1bsSCY5UtFIH4J3YGmp49wNWDSra2kfjxxhdqkpeB0c=;
+        b=S0wktD6zTImtmmRJAGCdjVHstbJad+3CqSyHr+DKOsyRZc7h7P3nnyu5gm8inuVWRG
+         BiYM5P+iMyLpaHberwYaNBfkD0rkD5dZgFx2ptI0qCuOIb/M9EiW1re6aDHFi42EVke4
+         jdcteC3UWoQxAjCgnwoq9/f6+mpBaVrL7USRelPxX/mt6m73fd/rDnOt3dN7bhI/PU5i
+         619fTi8YJ6+A/96vDF4Vwl2qQoOw6RQbFnTR/IxUG2g69s+RkZ02eXMvjxIVNx9XV4z6
+         0Uh4NObGNNSI1hGtjFItaXD3bp+if8QgQPwva090s3+nODd5VZddGD4KF3Op7BMowZEp
+         5svg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737631106; x=1738235906;
+        d=1e100.net; s=20230601; t=1737631198; x=1738235998;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=UvEVwvuAYsxT5Y9x89jkQ1Jw6WguxWcG6Luy7dy5Nuc=;
-        b=ijT95/jOM6G9HIprKarpHH6NJnaGuzZCNlYvh3kdzP0GPBbuz0Svnd33vcOmEbHp2H
-         ogPXQ1YT2xansm3y6PatCTp0ZhW1y6IG7fm3yclL3fkdkc7/B/u2LmOkm3gdMnag+qSw
-         f2Q4Kpaq63pai3GTWoMzu1KYoFWwO+9cPz2Jv6HQUBq4VQ6awZKdGEaIHrlaLRqAP5i0
-         RwTaDH3+u143jinrHzJVBQTYYqpUv4IcenOY6iWc2Dlvu+TCGRur7EDnLfQwynVsMi3u
-         QCQiN1YlIaKah8Dw1w/ViM8oVWELxVxzPcVFnc/FbW2lqCLQeyCBngRusEszuVnoaa3J
-         YH7A==
-X-Forwarded-Encrypted: i=1; AJvYcCUs7K4tSC+BokLNPwgMKxCfd7DU9bQ7ui16/pCjCijP2CQefmfyoYdP3oHYhMTCbBW/M0ysNSSYNZrR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvAGuu8SPnXLN+Y9qi78KsTAFOktpSGyi8bNMRC6I3GJsxWFmG
-	Y3fbe4n7xBAdvqLuXPWppn8N3WAe8aFbv/i1izRR4gIEKtgtCH0f0oJlLmjS/6yDt8UTpn4w++X
-	wD/c=
-X-Gm-Gg: ASbGncsVDRa/VPCzYiL2pw9babthtIbjtL0w7XN7zTS8RvejqX8SzFM3P5uTTOyNSFR
-	5yvFFmL5JC5fPIfgh4j49ekpCK5qJEQ+K+twU05XUjX8ay+J4ReQUtVFzy/jABoPJqypKZu22ts
-	jCTcStyUkzOj7i4RepH7FswTEhyuGdMchCeyJBZS9MlwhIbVFf/s9MJMv5flZ67aWzoe1i/JpXq
-	n0LlJTkP/iiuIPxyZBV7noiR6MDBPx+f5rqvFcU7F1wGQyoeQJRJgghwglclYtp9E/i7y5d6BFQ
-	R0LzYojCuM4Szi2tKCbULUQCO7ASyn7YJ6dJKSE8EarYyHshu3Y9OOg0i1hF/vYa8V9airs=
-X-Google-Smtp-Source: AGHT+IENy2Ug3csppkeopHh9QbwrZvqfkc5vnEYWdk97w8lHzVFPclfePClt1P3xTF7uC8Sx8ny0gw==
-X-Received: by 2002:a05:6512:b24:b0:540:2a92:7daa with SMTP id 2adb3069b0e04-5439c282032mr8212120e87.42.1737631106312;
-        Thu, 23 Jan 2025 03:18:26 -0800 (PST)
+        bh=1bsSCY5UtFIH4J3YGmp49wNWDSra2kfjxxhdqkpeB0c=;
+        b=XGOvsZ1/FrU9qZ6cGSntXxbd02CbCPUu13f7LBDpo7XGzzmf6AF++8zHZ9ZwuYF6D+
+         683JR/m4YdywdAq+NE9v9y5BABuXJtQdc/q2dcGuy+aK3IJrMHsykE0DM04mEtw07TCc
+         Bq3CXZPAX7Af7PImJDBWKsO3Oo0jZF9e0LzLCCHmCd/a88OT+p7RlmJCHxc38F/d7i3H
+         s8ulCG5oLcMaZhKN9lLu8xGIqRUS3bdA92ra8SI9k6CU8luniMd45b8SACypNIa4fM//
+         QQykocs4RPZa/QQbQGzbAFG8cKD1KBmu9SO8NwTOeFbhKXkgG/wceC9KeQZPboe43nqF
+         Iw0w==
+X-Forwarded-Encrypted: i=1; AJvYcCU5oOJQ0zRPFKAJp18/g9GdoPkZFtbuzwAlJIzLJyddOWnsiThbHHvJRkcgbN3RQEWXxtVIQqmUejSa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3X3nyMHaZ25bpOaf4wzhnogwf3mVLTKfbzYPDqoOTPVfjB1Nx
+	+TUqnFCxHdFsnLGX3aSt9YosYmPkWxB4avlo4JDQjYLJ8oseyxQQ8elqngV2pio=
+X-Gm-Gg: ASbGncv8j8OD0Jo4KrtGjyJIR69d0VVDyzQdX1UvP9ErhzsFCv9QB8GZVWfiE6YRSpU
+	DTnXJUf0pBohPSEHEIGy7A1MTLcRJ2cuSYavg8mGBFX2bQFJX0HfKxN/ArRfWs19F1rwAhk8U/L
+	yBJjwqr3BLHPN6UV6PNaMgHTsk6HI7g8REg5XNS9MR5lmM31srgXVkms5SD7uHgWlhiSYuopCDg
+	WwA+mkhZ9OGBaVrl0el4q2bsZAfxkjDJZP0Q5WPvACajkASY8/Wvn/acszLamc9KxXi3tyrT+Bo
+	KpYYW61+0DWBFsYNulZ1TBbPL4xXL5azycRfEbceIVKSmquxM1d5ifH34XFz
+X-Google-Smtp-Source: AGHT+IFJoD1ZpSDXSEK4+7GESjrAS6LXVt6ZkzdoNAPzcbKpEHkPVqYdSxIGbzeDq/Vi6d+KuKKiiA==
+X-Received: by 2002:a05:6512:10c8:b0:540:353a:df8e with SMTP id 2adb3069b0e04-5439c282caemr9883136e87.39.1737631197914;
+        Thu, 23 Jan 2025 03:19:57 -0800 (PST)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5439af1483fsm2613034e87.106.2025.01.23.03.18.24
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5439af60a20sm2652478e87.137.2025.01.23.03.19.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jan 2025 03:18:25 -0800 (PST)
-Date: Thu, 23 Jan 2025 13:18:23 +0200
+        Thu, 23 Jan 2025 03:19:56 -0800 (PST)
+Date: Thu, 23 Jan 2025 13:19:55 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: "Nirmesh Kumar Singh (Temp)" <quic_nkumarsi@quicinc.com>
-Cc: kernel@quicinc.com, andersson@kernel.org, konradybcio@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, quic_akdwived@quicinc.com, 
-	quic_uchheda@quicinc.com, Sahil Chandna <quic_chandna@quicinc.com>
-Subject: Re: [PATCH v3] arm64: dts: qcom: Add industrial mezzanine support
- for qcs6490-rb3gen2
-Message-ID: <q4fyimr2wydbwb7x6mhzip2wsixifhd4okxe3noqxzn366oq7i@nkecmifs2y4f>
-References: <20250122101424.1810844-1-quic_nkumarsi@quicinc.com>
- <f4xffmfwkwrenulklmwzjjmdfdhcf5cwundyfen54e2codrmlj@htzjpvk5vopp>
- <2acb758f-c1ff-426d-a363-befb8f97323f@quicinc.com>
+To: Damon Ding <damon.ding@rock-chips.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org, 
+	sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com, l.stach@pengutronix.de, 
+	andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com, 
+	kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v6 06/14] drm/bridge: analogix_dp: support to get
+ &analogix_dp_device.plat_data and &analogix_dp_device.aux
+Message-ID: <y4yzgkvcmvmphviuoroijaaotd2zdworbs5tfhdxh74kchirk6@dgoqwoksckiz>
+References: <20250123100747.1841357-1-damon.ding@rock-chips.com>
+ <20250123100747.1841357-7-damon.ding@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,129 +94,73 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2acb758f-c1ff-426d-a363-befb8f97323f@quicinc.com>
+In-Reply-To: <20250123100747.1841357-7-damon.ding@rock-chips.com>
 
-On Thu, Jan 23, 2025 at 04:35:34PM +0530, Nirmesh Kumar Singh (Temp) wrote:
+On Thu, Jan 23, 2025 at 06:07:39PM +0800, Damon Ding wrote:
+> Add two new functions: one to find &analogix_dp_device.plat_data via
+> &drm_dp_aux, and the other to get &analogix_dp_device.aux. Both of them
+> serve for the function of getting panel from DP AUX bus, which is why
+> they are included in a single commit.
 > 
-> On 1/23/2025 12:16 AM, Dmitry Baryshkov wrote:
-> > On Wed, Jan 22, 2025 at 03:44:24PM +0530, Nirmesh Kumar Singh wrote:
-> > > Add DTS support for Qualcomm qcs6490-rb3gen2 industrial mezzanine board.
-> > > 
-> > > Signed-off-by: Sahil Chandna <quic_chandna@quicinc.com>
-> > > Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
-> > > 
-> > > ---
-> > > Changes in v3:
-> > > - Fixed tpm pinctrl node label.
-> > > - Addressed comments by Dmitry.
-> > Which ones? Pleas be more specific in changelogs.
-> Ack
-> > 
-> > > - Improved indentation/formatting.
-> > > - Link to V2: https://lore.kernel.org/all/20250102190155.2593453-1-quic_nkumarsi@quicinc.com/
-> > > 
-> > > Changes in V2:
-> > > - Addressed comment by Konrad.
-> > > - Validated dts bindings with dtb_checks suggested by Krzysztof.
-> > > - Improved indentation/formatting.
-> > > - Fixed bug encountered during testing.
-> > > - Added dtb entry in makefile.
-> > > - Link to V1: https://lore.kernel.org/all/20241206065156.2573-1-quic_chandna@quicinc.com/
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/Makefile             |  4 +++
-> > >   .../qcs6490-rb3gen2-industrial-mezzanine.dtso | 35 +++++++++++++++++++
-> > >   2 files changed, 39 insertions(+)
-> > >   create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > > index 6ca8db4b8afe..16ac008c58d2 100644
-> > > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > > @@ -111,6 +111,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
-> > >   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
-> > >   dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
-> > >   dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
-> > > +
-> > > +qcs6490-rb3gen2-industrial-mezzanine-dtbs	:= qcs6490-rb3gen2.dtb qcs6490-rb3gen2-industrial-mezzanine.dtbo
-> > > +
-> > > +dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-industrial-mezzanine.dtb
-> > >   dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
-> > >   dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
-> > >   dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
-> > > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-> > > new file mode 100644
-> > > index 000000000000..1498f32bd069
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-industrial-mezzanine.dtso
-> > > @@ -0,0 +1,35 @@
-> > > +// SPDX-License-Identifier: BSD-3-Clause
-> > > +/*
-> > > + * Copyright (c) 2025, Qualcomm Innovation Center, Inc. All rights reserved.
-> > > +*/
-> > > +
-> > > +/dts-v1/;
-> > > +/plugin/;
-> > > +#include <dt-bindings/clock/qcom,gcc-sc7280.h>
-> > > +#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-> > > +
-> > > +&pm7250b_gpios {
-> > > +	tpm_spi_reset: tpm-spi-reset-state {
-> > > +		pins = "gpio5";
-> > > +		function = "normal";
-> > > +		power-source = <1>;
-> > > +		output-high;
-> > > +		input-disable;
-> > > +		bias-pull-up;
-> > > +		qcom,drive-strength = <3>;
-> > > +	};
-> > > +};
-> > > +
-> > > +&spi11 {
-> > > +	#address-cells = <1>;
-> > > +	#size-cells = <0>;
-> > > +	status = "okay";
-> > > +
-> > > +	st33htpm0: tpm@0 {
-> > > +		compatible = "st,st33htpm-spi", "tcg,tpm_tis-spi";
-> > > +		reg = <0>;
-> > > +		spi-max-frequency = <20000000>;
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&tpm_spi_reset>;
-> > Missing reset-gpios property. Otherwise there is no point in specifying
-> > the pinctrl.
-> The community previously rejected the GPIO reset function in the TPM driver
-> (tpm_tis_core.c). You can refer to the discussion [1].
+> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 14 ++++++++++++++
+>  include/drm/bridge/analogix_dp.h                   |  4 ++++
+>  2 files changed, 18 insertions(+)
 > 
-> From what I understand from the discussion in the patch, this decision was
-> made to prevent software from executing an incorrect reset sequence, which
-> could potentially reset the PCR banks of TPM chip.
-> 
-> However, a pinctrl node is necessary to ensure the PMIC GPIO is in the
-> correct state as required by the TPM chip.
+> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> index b05f5b9f5258..8251adfce2f9 100644
+> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
+> @@ -1794,6 +1794,20 @@ int analogix_dp_stop_crc(struct drm_connector *connector)
+>  }
+>  EXPORT_SYMBOL_GPL(analogix_dp_stop_crc);
+>  
+> +struct analogix_dp_plat_data *analogix_dp_aux_to_plat_data(struct drm_dp_aux *aux)
+> +{
+> +	struct analogix_dp_device *dp = to_dp(aux);
+> +
+> +	return dp->plat_data;
+> +}
+> +EXPORT_SYMBOL_GPL(analogix_dp_aux_to_plat_data);
+> +
+> +struct drm_dp_aux *analogix_dp_get_aux(struct analogix_dp_device *dp)
+> +{
+> +	return &dp->aux;
+> +}
+> +EXPORT_SYMBOL_GPL(analogix_dp_get_aux);
+> +
+>  MODULE_AUTHOR("Jingoo Han <jg1.han@samsung.com>");
+>  MODULE_DESCRIPTION("Analogix DP Core Driver");
+>  MODULE_LICENSE("GPL v2");
+> diff --git a/include/drm/bridge/analogix_dp.h b/include/drm/bridge/analogix_dp.h
+> index 6002c5666031..1b119b547988 100644
+> --- a/include/drm/bridge/analogix_dp.h
+> +++ b/include/drm/bridge/analogix_dp.h
+> @@ -7,6 +7,7 @@
+>  #ifndef _ANALOGIX_DP_H_
+>  #define _ANALOGIX_DP_H_
+>  
+> +#include <drm/display/drm_dp_aux_bus.h>
 
-No, pinctrl is not a replacement for GPIO calls. Please don't force GPIO
-levels using pinctrl.
+Nit: it should be enough to just forward-declare struct drm_dp_aux
+instead.
 
-Also, at least tpm-common.yaml defines reset-gpios. So declaring a GPIO
-using that property is a proper course of actions.
-
-The discussion clearly stated: if the GPIO is under software control,
-then it should be clear that PCRs do not work in such a system. Please
-consider implementing that suggestion.
-
+>  #include <drm/drm_crtc.h>
+>  
+>  struct analogix_dp_device;
+> @@ -48,4 +49,7 @@ void analogix_dp_unbind(struct analogix_dp_device *dp);
+>  int analogix_dp_start_crc(struct drm_connector *connector);
+>  int analogix_dp_stop_crc(struct drm_connector *connector);
+>  
+> +struct analogix_dp_plat_data *analogix_dp_aux_to_plat_data(struct drm_dp_aux *aux);
+> +struct drm_dp_aux *analogix_dp_get_aux(struct analogix_dp_device *dp);
+> +
+>  #endif /* _ANALOGIX_DP_H_ */
+> -- 
+> 2.34.1
 > 
-> [1] https://lore.kernel.org/lkml/20220407111849.5676-1-LinoSanfilippo@gmx.de/T/#m726d477dbce48c9e345e245f93d60f0aaa6f0994
-> 
-> Thanks,
-> 
-> Nirmesh
-> 
-> > 
-> > > +	};
-> > > +};
-> > > -- 
-> > > 2.34.1
-> > > 
 
 -- 
 With best wishes
