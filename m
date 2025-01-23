@@ -1,329 +1,383 @@
-Return-Path: <devicetree+bounces-140493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D001AA1A115
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:47:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEC84A1A11A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:48:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9273C3AC49B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:47:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16BA8168622
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:48:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E12A220D512;
-	Thu, 23 Jan 2025 09:47:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A635B20CCDE;
+	Thu, 23 Jan 2025 09:48:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="Xi74VzuB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rMOUMsAR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010032.outbound.protection.outlook.com [52.101.228.32])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B1D20D4F8;
-	Thu, 23 Jan 2025 09:47:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.32
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737625634; cv=fail; b=ls5gl7ulA3x+wR0N9Id+s02yDqvN2YUzOo0MaxinpkPF9fpHQakWHnKy9sDgywf07Wp5lmX0+NrMfup9e+RLDMpdbv7/Cjj6bfn1l80kt/miSSi/V4v+Vfafq8Y34tjI7MHttB3SujILIZqUV/C6zH4LQdRYkd12isjuBTlgd+E=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737625634; c=relaxed/simple;
-	bh=ietB86ylDMm7sx9bNn8cAjzOwRxd4GcAb4inQQ8uCKk=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=pG4N2poTVXoOsMNAytuzSuZzS7VsL0oFgHaWaevPnqo20PFW9xNeEw+gDBEDGgEP5fE7KhK+W2gcOeKiavHmfC0X7/NKFntSiXfyMcL/bV2ESpZLzD3J97KwTZbTXqpsJh5SgWlc8blAhvbHFKWR4y7tM8cntjjPGeGybDECovU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=Xi74VzuB; arc=fail smtp.client-ip=52.101.228.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ALG8egUYJF0Wxm7qMCVy1c4j1nxAzo7lOlzixvZHq5nTp1jq8PayW1oBUf8PYGEUCVHGfH7M6yF9thrDYUORocib3lrkL5dsRXKkJWl1oV55Dmjbf4j99I9qhWVi2eiw0MW6eUaI537sod1UTJr6QiVH7XS1M0ClHQn8HlvMcXxqDj5dzqMV8my4bTRBpW5CtyCKSqU5zuQfbMb0CL1yX6md5CZjLFTBYoUBVW4rQN3vp2mXnhC40MYmFr2esUQnhv2APaOUE81US0fW7m4ub2mh1P6nQ6AWnUZ+j/go9TucQwzK1oicwOb/+kiEUD3DV8k6VtBb/pFB+olMTwGZSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=O+gi1LLFRTGlSPUvtpVCa76J/9I+wn5umWFvCXyJUhA=;
- b=SMF7yUw4enHqfzFcpC6qiXgrdWzmQQKgva3Cg5QoeOUld+4AYTkvVN34OaNQ6jrW192jTPeleeAPdf0TkZSeTK/2GdPEh6zvOPIQP2beMsPoOrwGiX48ehNlHjAzw+bOMj3J8lyABZZrm61pQcXSG6OL5BymXdEcwAMRxhkI1G9toBuZo30YXdujhleoTEFz2dlpr/h2+Q7PCMuZfFFuMtI0lbwEdNcnhEye/Hg8ya0Aosm2Cm2IHHZoZXIBKusAaK58BGf4/yQYyZjaqVFw7JVSSsFPcak0YnFIkX/lkb6gCQX/65w0AnoPKHgJPQzZS+3+CieANNaFkfNZSrsTYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=O+gi1LLFRTGlSPUvtpVCa76J/9I+wn5umWFvCXyJUhA=;
- b=Xi74VzuB2pWTb474C+edKc2aKYFmssAfdPT+0m2h8WFvSukm5O6zQM35monkNorKCB798WRnSOQIUlhUZT9/aetWzZm482P9NbS+RNB0cs93hs+U+D9EqXn1RzeXMz8PNIQV2PnsWWwwVpWHsEt09UZmqXluxAw3O5k8tMPrroc=
-Received: from TYCPR01MB12093.jpnprd01.prod.outlook.com (2603:1096:400:448::7)
- by TYCPR01MB6367.jpnprd01.prod.outlook.com (2603:1096:400:93::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.16; Thu, 23 Jan
- 2025 09:47:06 +0000
-Received: from TYCPR01MB12093.jpnprd01.prod.outlook.com
- ([fe80::439:42dd:2bf:a430]) by TYCPR01MB12093.jpnprd01.prod.outlook.com
- ([fe80::439:42dd:2bf:a430%3]) with mapi id 15.20.8377.009; Thu, 23 Jan 2025
- 09:47:06 +0000
-From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: Biju Das <biju.das.jz@bp.renesas.com>, Geert Uytterhoeven
-	<geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Prabhakar Mahadev
- Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
-	<biju.das.au@gmail.com>
-Subject: RE: [PATCH 11/11] arm64: dts: renesas: r9a09g047: Add icu node
-Thread-Topic: [PATCH 11/11] arm64: dts: renesas: r9a09g047: Add icu node
-Thread-Index: AQHbayBlnSsKneewAUGZsaSGgCgvLbMkISaw
-Date: Thu, 23 Jan 2025 09:47:06 +0000
-Message-ID:
- <TYCPR01MB120939117680BD9FA8FA88AB0C2E02@TYCPR01MB12093.jpnprd01.prod.outlook.com>
-References: <20250120094715.25802-1-biju.das.jz@bp.renesas.com>
- <20250120094715.25802-12-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250120094715.25802-12-biju.das.jz@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYCPR01MB12093:EE_|TYCPR01MB6367:EE_
-x-ms-office365-filtering-correlation-id: 996fcd4a-7337-4e4f-2cfe-08dd3b92e612
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?FvzRqWhAuGVIw0Y5epXYGuU/D1CyDf5IURgPyiTEUg0lbvoIJxPwtN19E/L4?=
- =?us-ascii?Q?qEIZvOcAx1jNxPbyt5EBiN5b8Pyb9QYOp81B5pf8X1eqb2gA8kK6fdX8JrmW?=
- =?us-ascii?Q?ZFvXu6/e9uzAZaYy8KZgasA2Fz08AN/0ByaMjyMsWuRBqCJcQfYiC5lPPGPY?=
- =?us-ascii?Q?mIZVkyzxd4gzzctf0qhCARPfqBnPs/ljwN8k5Jblby/4MZK6DxZYEoa7DRVR?=
- =?us-ascii?Q?N9XvpEjEksksNYtJsqMcpqtpNmhHwfRjntL3BvdCqo8f0jXHPOY7L77EpeTI?=
- =?us-ascii?Q?+/rKci/Cl0t65FHtX92kiZg6pikhrlH6BpXQmwH5EIHUE9rNVorAMTsOYvpu?=
- =?us-ascii?Q?ffCri7Rz+XevUYIABMe/3rTHTF03UUloqxMYWM/McUC38DQTEXITk2yY0VOP?=
- =?us-ascii?Q?goP9OF0/LgLxtdXkruZ5mHOidkvEDjNxmIjI+GeEY8ZgEiin9nSTlOc7Sh03?=
- =?us-ascii?Q?Bej3PnUbIyVzKP7C64JS9t1o9wZwBkoglXt/FbAxh75arT1dqRck1UqYbdjt?=
- =?us-ascii?Q?rx0Lu9i4QZUC5V3kKfig5HG+7vyBlkzaZr3Fo34YL6IrmGlm772ftGyljob5?=
- =?us-ascii?Q?MOudNmy42cr45PIezfnE63Lh7tBGzACBoBby3ew/4sF0+jz5qShtytfnYz2C?=
- =?us-ascii?Q?S74hkSCfTKXNj8RiQ2Jn4lbA9t9q9DOw2nN0Y85ZD0jbjNTOmG4Dr5IVfYXz?=
- =?us-ascii?Q?wi18o0EYYbbvwi9UOvMYLX/D1GvLmiigi4+j1TwZ0KQFuJgsM8qcA3Jdrgm6?=
- =?us-ascii?Q?x4/6Hcar3A8PdY0kkRCdgckBVqhmOB+g4WCaJ++RtZvNKuhsuBO+0OFQxAll?=
- =?us-ascii?Q?bRiOHw4YucY4T9u4SZI8F7ZodAuAlILP1sUfdeWPmci0ae9ls9TZJ95eVtsU?=
- =?us-ascii?Q?D8DuybquyBYQrL78vu3xaA9NFaa+LCcWUynEcFmxcV3IY79cpQc8uPoMsYdu?=
- =?us-ascii?Q?v1SLEPrA9YxZoV07frIa4PaXI0Gor1huwvuIuwCqTYNxCBGbjtpdosS+t6tW?=
- =?us-ascii?Q?yA+j7v8Q7WHBS23yo2BpUNn3ZkJfZ2D0n2o66LSY3CY7f7I4Jk1OTUPaMxiN?=
- =?us-ascii?Q?ImMII6gQEKgD7cFHLLvWlZlESXy/tgEEeYWwO2K6qlqOzjpaPN2y9wx+MIZO?=
- =?us-ascii?Q?UEghb0wdLlgORcWksqruE0qRKgXC79ixTI3O0fWIVWUiqOpHLuNCtmnyxZwl?=
- =?us-ascii?Q?GWPoVy9UXouUL28phkdywa4XtWoSh7Yl4JJrVYLl2Iqci9XJi7rVD8DPB+VW?=
- =?us-ascii?Q?2BNQL7LbjPWwufNbQIdY7rbojpRiuHrv6lDFxhZm8TWs3TSlHjVpttapz5OT?=
- =?us-ascii?Q?BjBpkdZomYhj4LnpORzp+0CPzmI/mJO1yeKwF5MhrFvRIhexFZaYwMtQtmlL?=
- =?us-ascii?Q?icmQa+vEBxJn9gHEShd7m1B4Twz2dvYPEOT+T90SsIJwo8d4uFSC7NNNOV7P?=
- =?us-ascii?Q?Cfqi5RLkpo/RjxaCTMcmHA0T9JYpFj/v?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB12093.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?AThYFqFH4WGChFepm1vmAtZrnp+mwUq8O0fitc2uuQmIXBT1n0LAuZXYib/Q?=
- =?us-ascii?Q?fDyBk/zQNhNPFcrz1wng0ptXV/DvqCTj+GKSxUNiAU77STfwmhA5DOpQ5ebX?=
- =?us-ascii?Q?d5xSeyLyPXQuFKhopQSuL/LNNX7y9BNt6GxtwZWdX3y8O71nPBeuQX5U2pfq?=
- =?us-ascii?Q?goQvgUQgGnLTkUe1XsU43jjbU2bV6Y0tpKV/3T/fed0rZzVkRJjSUXLz07Dm?=
- =?us-ascii?Q?oAfsL6DD2TJx47jfxJS0JkNNoT6wEKvJTAVnlc0YjZi9Xm2SZ3Q2iglhuV08?=
- =?us-ascii?Q?YIKVNYIhinjdUf8ek0oD7GRSGsCtrPHnnLcvtdRFviZx0TfXjttZykop+Mm7?=
- =?us-ascii?Q?wv0kF/lDyfrmfEcN6nCUB6LssG9C8GdH4MqKRBW8dK913ucmgp8RBrAwnoxW?=
- =?us-ascii?Q?vVzhpx91CrEvhdjMZi8KBgF4DR+2p7n3/LGXl733RtukyYwiIbP4kJkA9R5O?=
- =?us-ascii?Q?eimEFoFMkecQZ/7iUAaQdlB9lPlrN03rh8S3dhzCFHZQnpX9+Y6y6VX6hDmx?=
- =?us-ascii?Q?2kTTd28SGg6xu+vh9H89EhiLrmn4L1qOPZyNixssO0H6/OeREVrI9QIflgQA?=
- =?us-ascii?Q?INqFqgtrysxXCwXchYSoY/uo0lQ0oudGTelpsptV4jIXlyPJDkpbIpEcrSnL?=
- =?us-ascii?Q?7s80megiaiLQPEem5Z6f9Hxvbi/1BwAvGMyg1Zhetr0zS/YDaO9goQVpLvT6?=
- =?us-ascii?Q?HXCl/AibWAR+z8B9STN+FLGtwbudx9gM+EzSkbheQ61Uqy1AZXqPqR8CImby?=
- =?us-ascii?Q?7PumLAFskDtQSqcgruJC4BWGx3j9hyqy6Xvj5ZsG4Ne0zNfwjeeEFZimdGt+?=
- =?us-ascii?Q?fFkdgdOXG2eCIPoaxPtmxNnNSR36Ckm4zwWeMzC749U+Cfmiehjj0FIDzhMn?=
- =?us-ascii?Q?6niRRxNn8NvoE/7/1hnSO0hwvDJZu/DDxeQ9MmDEIkUwbXVbDWHtiGFqOqtk?=
- =?us-ascii?Q?pc1R6Y/DBtDkWMYNZHRmdlUeooN4cpXk0nRx/eCEfXDbFUeI0QqwAMTHEcA9?=
- =?us-ascii?Q?EjoDCtp4hLFj4R9PmMoefU+rgOxBXXCjU2UaIWKynOYTWjUNdQ51jV1+Oa9r?=
- =?us-ascii?Q?TIXNKljzThObCNhaldQfTIs/F2jBWoB1eJCj4NOotTdTiskWCh3FByYc+yKm?=
- =?us-ascii?Q?/cTY5gtsrn0aoFk2TuVgNF5FMKiFuAErOc4GJHdzYlt7kemLDkc4zUIuBYaU?=
- =?us-ascii?Q?y/ZMBk0SnMSErYCjm8tbRMVVZ3cVUb2/xpLmjgxUq6wpXccO/WuErbOlxR2u?=
- =?us-ascii?Q?RzOgZdn/MNACUBYgypnX9bjrYuBqyNzqAKMMwAvevcGqjicBCeQSWK9kt6qW?=
- =?us-ascii?Q?MAQrnC66wIx+uGTubKgEnRdHvGQb8951KNklNw/nIcIufteExsRohef3PvrC?=
- =?us-ascii?Q?vSCXg5sOFT/rKRRCxz0P+RUAQm+iIjxqw5G6QMxanCi5SXhApynDsPxUNDjS?=
- =?us-ascii?Q?cuUyIk4TN6Y994uY4XoSxnSfAoz03A3Ic6juUPVElLixf+2DvgiKBlWWwmG/?=
- =?us-ascii?Q?DcvrG/jRXbbnsjAO1c8xJYO9L7I2tVmqO9WIBuyAtJPsnagVBycthNDOSMN5?=
- =?us-ascii?Q?iX+odQKrd7WWBuh5hrZeYfcZwtVq0VpPoqZYY7porqCJcN+qyEmfn88Z3kvs?=
- =?us-ascii?Q?lg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 493D21C54BB
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 09:47:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737625681; cv=none; b=DB5EbkCzNPKjvdoYvy4gCqaCD2ngcymZVZx4HcMdOWpIQiUranG/2fYpyoYYMRHm3Oq0og2R7ZTd28RerMkvRAs9ofbLrhVM83iBO4TUS9nm8LVaSvGX25PF1D5XyzHM1pPE4ptXdltoQXJhFkP8NLF0wq/1PMVmj0lSAn2wUOQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737625681; c=relaxed/simple;
+	bh=nrKHJmfJvwFv5nrJrHVM9swIhDVxD0sXbo2x8jdEiTI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YrZqaSJGUFD1V8uT2jHcsvnBnNY8rdziFTabUpQKuzqQPekxFmsISrqlE2JVJBgaLUkD6Q/jABr+OlX0fPy9JIQEBiUOcN7gke8jLuawSXY9LYOKFEePR8St/E02R/bIjeupOX9EzghN7hDtTPSnSztoX7yx5mP8otiTtIHxO7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rMOUMsAR; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-436249df846so4254855e9.3
+        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 01:47:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737625677; x=1738230477; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pE8zu1icsKGI4WzbfxHVe5+VKJ63wSeyle9mUsYhVpk=;
+        b=rMOUMsARWO4VsrxmS52EwqcfxKYkFudIcZ2aC/JYAb83ikKsL7GWljP0sPRCzlswS9
+         iBOynfDnQDrWMlJuKu2r12P0vgd5Gzx+n7VsxIvCdQkTmyPQ2adSeE/zJw71cY1a7A0S
+         PmsZ0onrSqOrPHYeCMpP6i2xxqyl4UiHLBWnKR21vxFkGJwcNUKsXmViurNvY1kawRxm
+         SkqQ6sL3B+cygqfR5iJ6RpqUSZRHwfP+uebLJtdHjP+cZnUs1cX/M/1WDCvJPHYYjpIh
+         g/ER/Rzc5qNqrT+r1PywJEoJG5QU4H/NJ4LfjguR65vPsqXzHvQN2M90+24qs3auVimM
+         UlzA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737625677; x=1738230477;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pE8zu1icsKGI4WzbfxHVe5+VKJ63wSeyle9mUsYhVpk=;
+        b=bGamIRpQETMg55BQ8Wj6rNrnVbpYMHT/B6MLzPPSuRRoBSsRJIFohWrRzEsnjpH7nT
+         yFNqxC8olTZXtwUTLEno6Y3rA1YjjGV/0YnNFW46854fwPfc+8535BgnMaIs7hqGfmfv
+         210ifYcSd+8iG1GoOIbchJi0vE6nUm8blfX4bE0Bv7/S3PyOWjjx1Robn6ZypaLB0f1l
+         LceissYz2vs0ErxE1Gy/FnBiXUA8sSQpEqZh+jYZHuAEyQ4Iu5q50vb1uBSBpvEuz5Vq
+         FoSy+0lk1on6/DZSgtvGIrH/gwewBhdhnCqTmbgUSdJcuk5gi2K6lS+q+VpvMz/aXTgF
+         PVrA==
+X-Forwarded-Encrypted: i=1; AJvYcCXQ+I3Z0CS4vbl1Bb3ozICF7kw4xQlk1hEBCbAaEeNgvX1mxCebJMleHT23gh329d7AORFuy9o+R9VI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfgkiPqV9mPEP8jop1lS2UdBAvIV207ojyNJD6z/OekpCV/k7r
+	2+d5q/Ufzinx7ZOKDFAtnn+sjdzp7NrPhqL82F8DMBmXlFczHkZcPRvq43nerK0=
+X-Gm-Gg: ASbGncvlsn6gyDlVHMiqlTvU63qo2dOxDYDi3h/uPyaRBe9z2W3Aw2DX9ygRuVqHCmu
+	QMKQo2b35yeHE6O5DSGoSFLCTCfL01rlJKrE+NS5WH6MDHavuxvbMNHfYuarKRD6Lt/5oUejBQZ
+	gNqEq+ibm4XQllrwyEwHsCaCGIU8oD8uMR56NTozHdsvwdcMERB5d6w5ZRlKCPKaGf59rX68OY9
+	mQKhn+tQ30IAyDDrMSRmV8hRrj8JicxB3kpDdEQuQK3B8nXDEfuGQFuDT/mV9EWjziXY+7tTd7B
+	7cAtEU377plWDq+RjicS1ifuow==
+X-Google-Smtp-Source: AGHT+IFpGqRI0uhBypE/kYoa6OZDlbHAQ8rUyR6P1QE9rkifRtaAfLASqqNBOYiJi0VPAsrex6S5zQ==
+X-Received: by 2002:a05:600c:a03:b0:434:a902:97cd with SMTP id 5b1f17b1804b1-438913ed350mr243080405e9.12.1737625677484;
+        Thu, 23 Jan 2025 01:47:57 -0800 (PST)
+Received: from [192.168.68.163] ([212.105.145.45])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438b3189924sm57873625e9.3.2025.01.23.01.47.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jan 2025 01:47:57 -0800 (PST)
+Message-ID: <a0864e05-f4a6-49e1-ae7d-0c471d038210@linaro.org>
+Date: Thu, 23 Jan 2025 09:47:55 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB12093.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 996fcd4a-7337-4e4f-2cfe-08dd3b92e612
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2025 09:47:06.7378
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: npNFkwPOKh2o5G6bFA8VHMlMvtjUPR0g810Xlom4wyyoLDO87guuRMuVOU01zlvha68ECma+U1PjyYITk1l/kb1pKbWey6TfzqJeptrNmeU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6367
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/5] Coresight: Add trace_id function to retrieving the
+ trace ID
+To: Jie Gan <quic_jiegan@quicinc.com>
+Cc: Jinlong Mao <quic_jinlmao@quicinc.com>, coresight@lists.linaro.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Tingwei Zhang <quic_tingweiz@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ Suzuki K Poulose <suzuki.poulose@arm.com>, Mike Leach
+ <mike.leach@linaro.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+References: <20241226011022.1477160-1-quic_jiegan@quicinc.com>
+ <20241226011022.1477160-3-quic_jiegan@quicinc.com>
+ <64731493-4bd1-4707-9452-5ca86744875b@linaro.org>
+ <d0c19d60-1043-4ac3-904f-c5b70ed32138@quicinc.com>
+Content-Language: en-US
+From: James Clark <james.clark@linaro.org>
+In-Reply-To: <d0c19d60-1043-4ac3-904f-c5b70ed32138@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Biju,
 
-Thanks for your patch!
 
-> From: Biju Das <biju.das.jz@bp.renesas.com>
-> Sent: 20 January 2025 09:47
-> Subject: [PATCH 11/11] arm64: dts: renesas: r9a09g047: Add icu node
->=20
-> Add interrupt control node to RZ/G3E ("R9A09G047") SoC DTSI
-> and add icu as interrupt-parent of pincontrol.
->=20
-> Also, define the ICU IRQs for board DT users.
->=20
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On 23/01/2025 6:28 am, Jie Gan wrote:
+> 
+> 
+> On 1/13/2025 8:02 PM, James Clark wrote:
+>>
+>>
+>> On 26/12/2024 1:10 am, Jie Gan wrote:
+>>> Add 'trace_id' function pointer in ops. It's responsible for
+>>> retrieving the device's trace ID.
+>>>
+>>> Add 'struct cs_sink_data' to store the data that is needed by
+>>> coresight_enable_path/coresight_disable_path. The structure
+>>> will be transmitted to the helper and sink device to enable
+>>> related funcationalities.
+>>>
+>>
+>> The new cs_sink_data struct is quite specific to this change. Can we 
+>> start passing the path around to enable/disable functions, that will 
+>> allow devices to gather anything they want in the future. Because we 
+>> already have coresight_get_sink(path), coresight_get_source(path) etc.
+>>
+>> And see below, but for this case we can also change the path struct to 
+>> contain the trace ID. Then all the new functions, allocations and 
+>> searches for the trace ID are unecessary. The CTCU will have access to 
+>> the path, and by the time its enable function is called the trace ID 
+>> is already assigned.
+>>
+>> It's also easier to understand at which point a trace ID is allocated, 
+>> rather than adding the trace_id() callbacks from everywhere which 
+>> could potentially either read or allocate. I suppose that's "safer" 
+>> because maybe it's not allocated, but I can't see what case it would 
+>> happen in reverse.
+>>
+>>> Signed-off-by: Jie Gan <quic_jiegan@quicinc.com>
+>>> ---
+>>>   drivers/hwtracing/coresight/coresight-core.c  | 59 +++++++++++++++----
+>>>   drivers/hwtracing/coresight/coresight-etb10.c |  3 +-
+>>>   .../hwtracing/coresight/coresight-etm-perf.c  | 37 ++++++++++--
+>>>   .../coresight/coresight-etm3x-core.c          | 30 ++++++++++
+>>>   .../coresight/coresight-etm4x-core.c          | 29 +++++++++
+>>>   drivers/hwtracing/coresight/coresight-priv.h  | 13 +++-
+>>>   drivers/hwtracing/coresight/coresight-stm.c   | 22 +++++++
+>>>   drivers/hwtracing/coresight/coresight-sysfs.c | 24 +++++++-
+>>>   .../hwtracing/coresight/coresight-tmc-etf.c   |  3 +-
+>>>   .../hwtracing/coresight/coresight-tmc-etr.c   |  6 +-
+>>>   drivers/hwtracing/coresight/coresight-tpda.c  | 20 +++++++
+>>>   drivers/hwtracing/coresight/coresight-trbe.c  |  4 +-
+>>>   drivers/hwtracing/coresight/ultrasoc-smb.c    |  3 +-
+>>>   include/linux/coresight.h                     |  6 ++
+>>>   14 files changed, 234 insertions(+), 25 deletions(-)
+>>>
+>>> diff --git a/drivers/hwtracing/coresight/coresight-core.c b/drivers/ 
+>>> hwtracing/coresight/coresight-core.c
+>>> index 0a9380350fb5..2e560b425fd4 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-core.c
+>>> +++ b/drivers/hwtracing/coresight/coresight-core.c
+>>> @@ -23,6 +23,7 @@
+>>>   #include "coresight-etm-perf.h"
+>>>   #include "coresight-priv.h"
+>>>   #include "coresight-syscfg.h"
+>>> +#include "coresight-trace-id.h"
+>>>   /*
+>>>    * Mutex used to lock all sysfs enable and disable actions and 
+>>> loading and
+>>> @@ -331,12 +332,12 @@ static int coresight_enable_helper(struct 
+>>> coresight_device *csdev,
+>>>       return helper_ops(csdev)->enable(csdev, mode, data);
+>>>   }
+>>> -static void coresight_disable_helper(struct coresight_device *csdev)
+>>> +static void coresight_disable_helper(struct coresight_device *csdev, 
+>>> void *data)
+>>>   {
+>>> -    helper_ops(csdev)->disable(csdev, NULL);
+>>> +    helper_ops(csdev)->disable(csdev, data);
+>>>   }
+>>> -static void coresight_disable_helpers(struct coresight_device *csdev)
+>>> +static void coresight_disable_helpers(struct coresight_device 
+>>> *csdev, void *data)
+>>>   {
+>>>       int i;
+>>>       struct coresight_device *helper;
+>>> @@ -344,7 +345,7 @@ static void coresight_disable_helpers(struct 
+>>> coresight_device *csdev)
+>>>       for (i = 0; i < csdev->pdata->nr_outconns; ++i) {
+>>>           helper = csdev->pdata->out_conns[i]->dest_dev;
+>>>           if (helper && coresight_is_helper(helper))
+>>> -            coresight_disable_helper(helper);
+>>> +            coresight_disable_helper(helper, data);
+>>>       }
+>>>   }
+>>> @@ -361,7 +362,7 @@ static void coresight_disable_helpers(struct 
+>>> coresight_device *csdev)
+>>>   void coresight_disable_source(struct coresight_device *csdev, void 
+>>> *data)
+>>>   {
+>>>       source_ops(csdev)->disable(csdev, data);
+>>> -    coresight_disable_helpers(csdev);
+>>> +    coresight_disable_helpers(csdev, NULL);
+>>>   }
+>>>   EXPORT_SYMBOL_GPL(coresight_disable_source);
+>>> @@ -371,7 +372,8 @@ EXPORT_SYMBOL_GPL(coresight_disable_source);
+>>>    * disabled.
+>>>    */
+>>>   static void coresight_disable_path_from(struct list_head *path,
+>>> -                    struct coresight_node *nd)
+>>> +                    struct coresight_node *nd,
+>>> +                    void *sink_data)
+>>>   {
+>>>       u32 type;
+>>>       struct coresight_device *csdev, *parent, *child;
+>>> @@ -417,13 +419,13 @@ static void coresight_disable_path_from(struct 
+>>> list_head *path,
+>>>           }
+>>>           /* Disable all helpers adjacent along the path last */
+>>> -        coresight_disable_helpers(csdev);
+>>> +        coresight_disable_helpers(csdev, sink_data);
+>>>       }
+>>>   }
+>>> -void coresight_disable_path(struct list_head *path)
+>>> +void coresight_disable_path(struct list_head *path, void *sink_data)
+>>>   {
+>>> -    coresight_disable_path_from(path, NULL);
+>>> +    coresight_disable_path_from(path, NULL, sink_data);
+>>>   }
+>>>   EXPORT_SYMBOL_GPL(coresight_disable_path);
+>>> @@ -505,10 +507,47 @@ int coresight_enable_path(struct list_head 
+>>> *path, enum cs_mode mode,
+>>>   out:
+>>>       return ret;
+>>>   err:
+>>> -    coresight_disable_path_from(path, nd);
+>>> +    coresight_disable_path_from(path, nd, sink_data);
+>>>       goto out;
+>>>   }
+>>> +int coresight_read_traceid(struct list_head *path, enum cs_mode mode,
+>>> +               struct coresight_trace_id_map *id_map)
+>>> +{
+>>> +    int trace_id, type;
+>>> +    struct coresight_device *csdev;
+>>> +    struct coresight_node *nd;
+>>> +
+>>> +    list_for_each_entry(nd, path, link) {
+>>
+>> What do you think about also changing the path to this:
+>>
+>>   struct coresight_path {
+>>     struct list_head *path,
+>>     u8 trace_id
+>>   };
+>>
+>> That would avoid having to traverse the path on every enable and would 
+>> remove this function. You could also cache the trace ID in the CTCU 
+>> for a similar benefit, but it wouldn't remove the need to call this at 
+>> least once.
+>>
+>> The expensive part should be the create path part, after that enable 
+>> and disable should be cheap because they happen on schedule for Perf 
+>> mode. We should be avoiding allocations and searches.
+>>
+>>> +        csdev = nd->csdev;
+>>> +        type = csdev->type;
+>>> +
+>>> +        switch (type) {
+>>> +        case CORESIGHT_DEV_TYPE_SOURCE:
+>>> +            if (source_ops(csdev)->trace_id != NULL) {
+>>> +                trace_id = source_ops(csdev)->trace_id(csdev,
+>>> +                                       mode,
+>>> +                                       id_map);
+>>> +                if (IS_VALID_CS_TRACE_ID(trace_id))
+>>> +                    goto out;
+>>> +            }
+>>> +            break;
+>>> +        case CORESIGHT_DEV_TYPE_LINK:
+>>> +            if (link_ops(csdev)->trace_id != NULL) {
+>>> +                trace_id = link_ops(csdev)->trace_id(csdev);
+>>> +                if (IS_VALID_CS_TRACE_ID(trace_id))
+>>> +                    goto out;
+>>> +            }
+>>> +            break;
+>>> +        default:
+>>> +            break;
+>>> +        }
+>>> +    }
+>>> +    return -EINVAL;
+>>> +out:
+>>> +    return trace_id;
+>>> +}
+>>> +
+>>>   struct coresight_device *coresight_get_sink(struct list_head *path)
+>>>   {
+>>>       struct coresight_device *csdev;
+>>> diff --git a/drivers/hwtracing/coresight/coresight-etb10.c b/drivers/ 
+>>> hwtracing/coresight/coresight-etb10.c
+>>> index aea9ac9c4bd0..904b5531c256 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-etb10.c
+>>> +++ b/drivers/hwtracing/coresight/coresight-etb10.c
+>>> @@ -173,7 +173,8 @@ static int etb_enable_perf(struct 
+>>> coresight_device *csdev, void *data)
+>>>       pid_t pid;
+>>>       unsigned long flags;
+>>>       struct etb_drvdata *drvdata = dev_get_drvdata(csdev->dev.parent);
+>>> -    struct perf_output_handle *handle = data;
+>>> +    struct cs_sink_data *sink_data = (struct cs_sink_data *)data;
+>>> +    struct perf_output_handle *handle = sink_data->handle;
+>>>       struct cs_buffers *buf = etm_perf_sink_config(handle);
+>>>       spin_lock_irqsave(&drvdata->spinlock, flags);
+>>> diff --git a/drivers/hwtracing/coresight/coresight-etm-perf.c b/ 
+>>> drivers/hwtracing/coresight/coresight-etm-perf.c
+>>> index ad6a8f4b70b6..e676edd42ddc 100644
+>>> --- a/drivers/hwtracing/coresight/coresight-etm-perf.c
+>>> +++ b/drivers/hwtracing/coresight/coresight-etm-perf.c
+>>> @@ -459,6 +459,7 @@ static void etm_event_start(struct perf_event 
+>>> *event, int flags)
+>>>       struct perf_output_handle *handle = &ctxt->handle;
+>>>       struct coresight_device *sink, *csdev = per_cpu(csdev_src, cpu);
+>>>       struct list_head *path;
+>>> +    struct cs_sink_data *sink_data = NULL;
+>>>       u64 hw_id;
+>>>       u8 trace_id;
+>>> @@ -498,9 +499,20 @@ static void etm_event_start(struct perf_event 
+>>> *event, int flags)
+>>>       if (WARN_ON_ONCE(!sink))
+>>>           goto fail_end_stop;
+>>> +    sink_data = kzalloc(sizeof(*sink_data), GFP_KERNEL);
+>>
+>> kzalloc can't be called from here. Check dmesg for the warning. That's 
+>> another reason to do this change on the path. Because the path is 
+>> allocated on etm_setup_aux() where allocations are allowed.
+>>
+> Hi, James
+> I just tried with following command and did not observe any warning info 
+> from dmesg, may I ask what's the issue may suffered here?
+> 
 
-Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+You might be missing some debugging configs like lockdep etc. The 
+warning is that etm_event_start() is a non-sleepable context and kzalloc 
+is sleepable. Even if it wasn't an error we still wouldn't want to do 
+it, etm_event_start() and stop are called too frequently.
 
-Cheers,
-Fab
+> root@qemuarm64:/data# ./perf record -e cs_etm/@tmc_etr0/ --per-thread ls
+> configs        kernel.txt     logs           lost+found     misc   
+> perf           perf.data      perf.data.old  root           time      
+> tzstorage      weston
+> [ perf record: Woken up 1 times to write data ]
+> [ perf record: Captured and wrote 0.145 MB perf.data ]
+> 
+> For the new patch version, I implemented an 8-bit hash table in the CTCU 
+> driver data to handle situations where multiple TPDMs are connected to 
+> the same TPDA device have been enabled. As we know, TPDMs share the 
+> trace_id of the TPDA device they are connected to. If we reset the bit 
+> based on the trace_id without checking the enabled refcount, it causes 
+> an issue where trace data from other enabled TPDM devices (sharing the 
+> same trace_id) cannot enter the ETR buffer, as it gets filtered out by 
+> the CTCU.
+I think sharing the code or a diagram might be easier to follow here. 
+The mention of a refcount makes sense but I don't follow the need for a 
+hash table. There are other places where single devices are shared by 
+multiple paths, like funnels, and they're all done with refcounts.
 
-> ---
->  arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 108 +++++++++++++++++++++
->  1 file changed, 108 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot=
-/dts/renesas/r9a09g047.dtsi
-> index 133aa3272d3a..0beac052f208 100644
-> --- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> @@ -8,6 +8,24 @@
->  #include <dt-bindings/clock/renesas,r9a09g047-cpg.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->=20
-> +#define RZG3E_NMI	0
-> +#define RZG3E_IRQ0	1
-> +#define RZG3E_IRQ1	2
-> +#define RZG3E_IRQ2	3
-> +#define RZG3E_IRQ3	4
-> +#define RZG3E_IRQ4	5
-> +#define RZG3E_IRQ5	6
-> +#define RZG3E_IRQ6	7
-> +#define RZG3E_IRQ7	8
-> +#define RZG3E_IRQ8	9
-> +#define RZG3E_IRQ9	10
-> +#define RZG3E_IRQ10	11
-> +#define RZG3E_IRQ11	12
-> +#define RZG3E_IRQ12	13
-> +#define RZG3E_IRQ13	14
-> +#define RZG3E_IRQ14	15
-> +#define RZG3E_IRQ15	16
-> +
->  / {
->  	compatible =3D "renesas,r9a09g047";
->  	#address-cells =3D <2>;
-> @@ -131,6 +149,95 @@ soc: soc {
->  		#size-cells =3D <2>;
->  		ranges;
->=20
-> +		icu: interrupt-controller@10400000 {
-> +			compatible =3D "renesas,r9a09g047-icu";
-> +			reg =3D <0 0x10400000 0 0x10000>;
-> +			#interrupt-cells =3D <2>;
-> +			#address-cells =3D <0>;
-> +			interrupt-controller;
-> +			interrupts =3D <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 428 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 433 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 436 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 437 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 440 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 441 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 262 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 263 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 265 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names =3D "nmi",
-> +					  "port_irq0", "port_irq1", "port_irq2",
-> +					  "port_irq3", "port_irq4", "port_irq5",
-> +					  "port_irq6", "port_irq7", "port_irq8",
-> +					  "port_irq9", "port_irq10", "port_irq11",
-> +					  "port_irq12", "port_irq13", "port_irq14",
-> +					  "port_irq15",
-> +					  "tint0", "tint1", "tint2", "tint3",
-> +					  "tint4", "tint5", "tint6", "tint7",
-> +					  "tint8", "tint9", "tint10", "tint11",
-> +					  "tint12", "tint13", "tint14", "tint15",
-> +					  "tint16", "tint17", "tint18", "tint19",
-> +					  "tint20", "tint21", "tint22", "tint23",
-> +					  "tint24", "tint25", "tint26", "tint27",
-> +					  "tint28", "tint29", "tint30", "tint31",
-> +					  "int-ca55-0", "int-ca55-1",
-> +					  "int-ca55-2", "int-ca55-3",
-> +					  "icu-error-ca55",
-> +					  "gpt-u0-gtciada", "gpt-u0-gtciadb",
-> +					  "gpt-u1-gtciada", "gpt-u1-gtciadb";
-> +			clocks =3D <&cpg CPG_MOD 0x5>;
-> +			power-domains =3D <&cpg>;
-> +			resets =3D <&cpg 0x36>;
-> +		};
-> +
->  		pinctrl: pinctrl@10410000 {
->  			compatible =3D "renesas,r9a09g047-pinctrl";
->  			reg =3D <0 0x10410000 0 0x10000>;
-> @@ -140,6 +247,7 @@ pinctrl: pinctrl@10410000 {
->  			gpio-ranges =3D <&pinctrl 0 0 232>;
->  			#interrupt-cells =3D <2>;
->  			interrupt-controller;
-> +			interrupt-parent =3D <&icu>;
->  			power-domains =3D <&cpg>;
->  			resets =3D <&cpg 0xa5>, <&cpg 0xa6>;
->  		};
-> --
-> 2.43.0
->=20
+> I need allocate memory when implement hash table(add/remove key entry) 
+> in coresight_enable_path flow, but you mentioned we cannot call kzalloc 
+> from here.
+> 
+> Thanks,
+> Jie
+> 
+
+Why not allocate on setup_aux()? That's called by userspace before the 
+session starts, and then the path is fixed from that point onwards so 
+you shouldn't need to do any more allocations. That's how it's setup 
+currently anyway.
 
 
