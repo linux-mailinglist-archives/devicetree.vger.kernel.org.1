@@ -1,175 +1,167 @@
-Return-Path: <devicetree+bounces-140559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3518FA1A3C7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 13:07:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59DA9A1A3F8
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 13:12:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 037B21881986
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:08:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94D62167D83
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:12:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B288620E6E5;
-	Thu, 23 Jan 2025 12:07:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BDC720E307;
+	Thu, 23 Jan 2025 12:12:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iYo1yVEU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FIwhRLM4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0356420DD72;
-	Thu, 23 Jan 2025 12:07:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC7020CCCF;
+	Thu, 23 Jan 2025 12:12:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737634072; cv=none; b=R12qPZZPBcZUv/wcckbVuEBvA7OZd69REu/KFoYWikl6jpOWO/+1weqgnROIMAQh0KVZh91QW1SVJBsLj715W0Cxvk3DOeM17t/8iu+lPw4yTWwQ6qQ8IwJDgrbRakce/cQjxex3+LTLfVO5dLq5VLtqCKE103XGusQT8IZDnh8=
+	t=1737634328; cv=none; b=LyOiFQ0MIl/OA2uXi5Xo00+yqQQDb4RBTZsL43+aklusD9jpgrDYkK1VoLkYkZ1QhzqVdGKfkmXa0094/5/kLQcAxPz2njfj9F3kOreGmn1UckZ5AuRkP1JYuRhMOPeUe8MCp4EfhLFo7P9MakuVdgrG8arkS1kWRVQ7N4RubBA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737634072; c=relaxed/simple;
-	bh=ZeIexN4amvexFLjXrqE9Kp1pHIHLK4d1flWZyFgJQgQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FFQZuQ2FFN3dTQnHznm5u7SCCi5Xliyo8KmKPA9IgllWUTE0cxodECFdil2tC1egsnl05ON2efsc3tFjwO497bLiBZl47z1PjKfO9f0II8tuJk2rRS6zhM/9yjYAecNqqrf0isUWYKMV6jKWQZaZnMqBsnIJkxw5/AJ6iB5gbwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iYo1yVEU; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50NAqKLL015837;
-	Thu, 23 Jan 2025 12:07:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ciwA2MPCleiFiaVjg17UfNND6tZ6x9t2suDc4aTpQjg=; b=iYo1yVEUG4XYWaHc
-	Id8gVgGExXKDO794alaBLCBqQUrLvyT/aWl26bWYUA/kbOVledp4xzy1hOMdpOjM
-	jjS20kP+INMG70lyHGoxjdZkTNCOqYXn/FbEe0HcZtIHBJ55/TZ2aDt8zS9TXhk4
-	PoXvWWQt6bcpr54jdYBQPXxqN94/3DstL0GsQntdogEcO9jqORUoubsDX45d8gEE
-	htMwdkh+Va0OyPC9YBUuNDvAbarA32eWIiHRNxDdrjZgFCvL4oEQdwzFOKU4JVI5
-	fVP1bGUnXKdNYO0rCUgHT9YU21Nd/ep2Iho7Mb3nuzOj3OIO+ydymiCfwQu3FP+C
-	dRf37g==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44bmcvg5pv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 Jan 2025 12:07:47 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50NC7kYx010160
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 Jan 2025 12:07:46 GMT
-Received: from [10.216.27.253] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 23 Jan
- 2025 04:07:40 -0800
-Message-ID: <08916876-2e24-4b4d-89ad-c0a6203bffd2@quicinc.com>
-Date: Thu, 23 Jan 2025 17:37:36 +0530
+	s=arc-20240116; t=1737634328; c=relaxed/simple;
+	bh=dKZvrf9HUMJiplbfkhdSNsOVNqxCZF9z5W+m6OzsrZE=;
+	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ujpCPRpEVVaL5bavqPoweUZOfnQwvBZ4EeINvGVJhCoCBRKhq9kMzpoTaC1YkT/1zFoLKKFXOFrXTSm6pL7fgOiIxHGN2CcHqf5dxL8Z0ORskkZ7Sq7qfPagt8QcMnIUVpJ1UaCym676j751tjJpp8yjb34UOQkx/XCB2Ea/MWI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FIwhRLM4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 219C7C4CED3;
+	Thu, 23 Jan 2025 12:12:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737634327;
+	bh=dKZvrf9HUMJiplbfkhdSNsOVNqxCZF9z5W+m6OzsrZE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=FIwhRLM4K50u5L38giWBy/7KLArFN7AgRp356rYlhbneQ5nn6vWiLWzONc0+oqd4Q
+	 vezI5X69TKBOd+hOr1OBaBz8RAH8ZMjWl4/aq1L15afgTysQ962hU1MCHwyyx+EBQP
+	 4ZCOY3ggy/87u2Bu/T7wm+Nult7kB+S8tmE416C8nCz0rizTvGibNSjZFaeV1op7Ha
+	 YsEBdwUR4LOPEYQIG9Wjzw+exhiN90ANsH2f3IEG18ppSdWVn8Ie3cNzoiNgus6eoq
+	 W6HOF6MGtPW/FglngQH+NeJRFOPlNK9VWoXkO38PHFFojFMlV4KOTpHVwyvLVzFMXz
+	 Pwr2mWDZWvJMg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
+	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.95)
+	(envelope-from <maz@kernel.org>)
+	id 1taw44-00EiS9-DM;
+	Thu, 23 Jan 2025 12:12:04 +0000
+Date: Thu, 23 Jan 2025 12:12:03 +0000
+Message-ID: <86msfhviek.wl-maz@kernel.org>
+From: Marc Zyngier <maz@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Chen Wang <unicorn_wang@outlook.com>,
+	Chen Wang <unicornxw@gmail.com>,
+	kw@linux.com,
+	u.kleine-koenig@baylibre.com,
+	aou@eecs.berkeley.edu,
+	arnd@arndb.de,
+	bhelgaas@google.com,
+	conor+dt@kernel.org,
+	guoren@kernel.org,
+	inochiama@outlook.com,
+	krzk+dt@kernel.org,
+	lee@kernel.org,
+	lpieralisi@kernel.org,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	pbrobinson@gmail.com,
+	robh@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	chao.wei@sophgo.com,
+	xiaoguang.xing@sophgo.com,
+	fengchun.li@sophgo.com,
+	helgaas@kernel.org
+Subject: Re: [PATCH v3 2/5] PCI: sg2042: Add Sophgo SG2042 PCIe driver
+In-Reply-To: <20250122173451.5c7pdchnyee7iy6t@thinkpad>
+References: <cover.1736923025.git.unicorn_wang@outlook.com>
+	<ddedd8f76f83fea2c6d3887132d2fe6f2a6a02c1.1736923025.git.unicorn_wang@outlook.com>
+	<20250119122353.v3tzitthmu5tu3dg@thinkpad>
+	<BM1PR01MB254540560C1281CE9898A5A0FEE12@BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM>
+	<20250122173451.5c7pdchnyee7iy6t@thinkpad>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V7 3/5] dt-bindings: interconnect: Add EPSS L3 compatible
- for SA8775P
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Odelu Kukatla <quic_okukatla@quicinc.com>,
-        "Mike
- Tipton" <mdtipton@quicinc.com>,
-        Vivek Aknurwar <viveka@quicinc.com>,
-        "Sibi
- Sankar" <quic_sibis@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250111161429.51-1-quic_rlaggysh@quicinc.com>
- <20250111161429.51-4-quic_rlaggysh@quicinc.com>
- <273w3qr5wix4srdum5qmrqdzzaw3uprqhhfmmgrwycrb6wlyqf@txuxzzyjyhfk>
-Content-Language: en-US
-From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-In-Reply-To: <273w3qr5wix4srdum5qmrqdzzaw3uprqhhfmmgrwycrb6wlyqf@txuxzzyjyhfk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Bkl84Gqqbn2xsRhxFRQjjOE-MACOuFIT
-X-Proofpoint-GUID: Bkl84Gqqbn2xsRhxFRQjjOE-MACOuFIT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-23_05,2025-01-22_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- clxscore=1015 malwarescore=0 impostorscore=0 mlxscore=0 bulkscore=0
- phishscore=0 spamscore=0 suspectscore=0 adultscore=0 priorityscore=1501
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501230092
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: manivannan.sadhasivam@linaro.org, unicorn_wang@outlook.com, unicornxw@gmail.com, kw@linux.com, u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, arnd@arndb.de, bhelgaas@google.com, conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com, krzk+dt@kernel.org, lee@kernel.org, lpieralisi@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com, pbrobinson@gmail.com, robh@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org, chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com, helgaas@kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 
-
-
-On 1/12/2025 3:01 PM, Krzysztof Kozlowski wrote:
-> On Sat, Jan 11, 2025 at 04:14:27PM +0000, Raviteja Laggyshetty wrote:
->> Add Epoch Subsystem (EPSS) L3 interconnect provider binding on
->> SA8775P SoCs.
+On Wed, 22 Jan 2025 17:34:51 +0000,
+Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
 > 
-> 1. And why is this not compatible with sm8250? There was lengthy
-> discussion and no outcome of it managed to get to commit msg. Really, so
-> we are going to repeat everything again and you will not get any acks.
+> + Marc (for the IRQCHIP implementation review)
 > 
-sa8775p is compatible with sm8250, but only difference is sa8775p has
-two instances of L3 EPSS. Initial patches were posted with two
-compatibles for supporting two instances.
-Later there was a comment to reuse the existing and avoid growing the
-compatibles in the driver.
-
-Initially we thought to have separate generic compatible
-"qcom,epss-l3-perf" for SoCs which support L3 voting through
-EPSS_L3_PERF state register. But actually, it is already supported in
-the driver for sm8250 and sc7280. We can reuse sm8250 or sc7280
-compatible for sa8775p.
-
-I will update the commit text with details in the next patch revision.
-
-
-> You have entire commit msg to explain things but instead you repeat what
-> the patch does. We can read the diff for that.
+> On Wed, Jan 22, 2025 at 09:28:12PM +0800, Chen Wang wrote:
+> > 
+> > > > +static int sg2042_pcie_setup_msi(struct sg2042_pcie *pcie,
+> > > > +				 struct device_node *msi_node)
+> > > > +{
+> > > > +	struct device *dev = pcie->cdns_pcie->dev;
+> > > > +	struct fwnode_handle *fwnode = of_node_to_fwnode(dev->of_node);
+> > > > +	struct irq_domain *parent_domain;
+> > > > +	int ret = 0;
+> > > > +
+> > > > +	if (!of_property_read_bool(msi_node, "msi-controller"))
+> > > > +		return -ENODEV;
+> > > > +
+> > > > +	ret = of_irq_get_byname(msi_node, "msi");
+> > > > +	if (ret <= 0) {
+> > > > +		dev_err(dev, "%pOF: failed to get MSI irq\n", msi_node);
+> > > > +		return ret;
+> > > > +	}
+> > > > +	pcie->msi_irq = ret;
+> > > > +
+> > > > +	irq_set_chained_handler_and_data(pcie->msi_irq,
+> > > > +					 sg2042_pcie_msi_chained_isr, pcie);
+> > > > +
+> > > > +	parent_domain = irq_domain_create_linear(fwnode, MSI_DEF_NUM_VECTORS,
+> > > > +						 &sg2042_pcie_msi_domain_ops, pcie);
+> > > > +	if (!parent_domain) {
+> > > > +		dev_err(dev, "%pfw: Failed to create IRQ domain\n", fwnode);
+> > > > +		return -ENOMEM;
+> > > > +	}
+> > > > +	irq_domain_update_bus_token(parent_domain, DOMAIN_BUS_NEXUS);
+> > > > +
+> > > The MSI controller is wired to PLIC isn't it? If so, why can't you use
+> > > hierarchial MSI domain implementation as like other controller drivers?
+> > 
+> > The method used here is somewhat similar to dw_pcie_allocate_domains() in
+> > drivers/pci/controller/dwc/pcie-designware-host.c. This MSI controller is
+> > about Method A, the PCIe controller implements an MSI interrupt controller
+> > inside, and connect to PLIC upward through only ONE interrupt line. Because
+> > MSI to PLIC is multiple to one, I use linear mode here and use chained ISR
+> > to handle the interrupts.
+> > 
 > 
-> 2. Binding *ALWAYS* comes before the user.
+> Hmm, ok. I'm not an IRQCHIP expert, but I'll defer to Marc to review the IRQCHIP
+> implementation part.
 
-Sure, I will update the patch order to bindings, driver and dt in next
-patch revision and will follow the same for future patchsets.
-> 
->>
->> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
->> ---
->>  Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
->> index 21dae0b92819..94f7f283787a 100644
->> --- a/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
->> +++ b/Documentation/devicetree/bindings/interconnect/qcom,osm-l3.yaml
->> @@ -33,6 +33,7 @@ properties:
->>                - qcom,sm6375-cpucp-l3
->>                - qcom,sm8250-epss-l3
->>                - qcom,sm8350-epss-l3
->> +              - qcom,sa8775p-epss-l3
->>            - const: qcom,epss-l3
-> 
-> Your driver suggests this is not really true - it is not compatible with
-> qcom,epss-l3. Maybe it is, maybe not, no clue, commit explains nothing.
+I don't offer this service anymore, I'm afraid.
 
-"qcom,epss-l3" is generic compatible introduced for EPSS H/W from sm8250
-SoC.  sm8250, sa8775p and sc7280 SoCs have same EPSS H/W and use
-EPSS_L3_PERF register for configuring the perf level. We thought to add
-generic compatible "qcom,epss-l3-perf" for configuring perf level
-through EPSS_L3_PERF register.
- Later, as suggested by reviewers, looks like using a different register
-cannot be a reason to have different generic compatible as the EPSS H/W
-is still same on all the SoCs.
-> 
-> Best regards,
-> Krzysztof
-> 
+As for the "I create my own non-hierarchical IRQ domain", this is
+something that happens for all completely mis-designed interrupt
+controllers, MSI or not, that multiplex interrupts.
 
+These implementations are stuck in the previous century, and seeing
+this on modern designs, for a "server SoC", is really pathetic.
+
+maybe you now understand why I don't offer this sort of reviewing
+service anymore.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
 
