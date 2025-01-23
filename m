@@ -1,64 +1,54 @@
-Return-Path: <devicetree+bounces-140659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7FAEA1ACCE
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 23:45:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70AD0A1ACD9
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 23:53:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5183188B9E0
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 22:45:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5BE516C181
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 22:53:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DAE1CAA90;
-	Thu, 23 Jan 2025 22:45:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086DD1CEACB;
+	Thu, 23 Jan 2025 22:53:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Phb1REmo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PI1yQRSK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BBA1487ED;
-	Thu, 23 Jan 2025 22:45:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D27DA14A4E1;
+	Thu, 23 Jan 2025 22:53:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737672322; cv=none; b=MdGIPD2pK9K/nXrCGkvvJ+Aj8HSJaNjpXNcgLzRW8UM82oqT/VDP9DjyiZbYhKW35L5uRD6yVPeAT9O65bjIunGLgyYPfLiaVhzkSzJ/ELPUAOYSawD226quT+DyJLcGP3QqXoqTBW/tpw3mIjhedWu/HcI2Q/A2kowgyRb7ItM=
+	t=1737672793; cv=none; b=KH69AOLvEoa/yqHEz4Mp8oCZ+tKpqhNXmbwKHIpF4p8Lj7DJQtjkdb2uahLXON60lvkGLBW658M7FZ1DNn78cBEIvqhzOxKHNcsldGBD3PHw9XLSVRgK6t6dDltksy16Qt3QWvytv0PNstdy0bJajxjCTxkkUdEdqOZ4i6IyOrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737672322; c=relaxed/simple;
-	bh=T6bckikkRvSw53DcAsE/gahId3+JXQyypP+wi/p2b1s=;
+	s=arc-20240116; t=1737672793; c=relaxed/simple;
+	bh=9kDaPBtiy4XqPZaW3KOJzyOgz0w8OU8/JMlV0tr7pPo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JHjc4Qag8YZipa2ateOLc1N0V+ZMP3ZAH9bLRM7oJdPZofPeiu04jifFKt1pwWwMrInptBKfUktm8k+LKOtLf/Aw7FexgoBEYv8ip7eAG5nOej+YKZRtjK/rp3+Y6pu18/UPXV/MSjlHEG35kIVXUJnfVGAFzMWaWgPxD6ZP+qg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Phb1REmo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3942BC4CEE1;
-	Thu, 23 Jan 2025 22:45:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ulakDYEWZuUVbBCiTv/mZOhaaIaj4kqWYOxx3jRUM1LAnq7jb3ao9sUCyGQVykWelJJ844ujY3RS0TRalbgJgt24l2PfNxpku8yffPnk+OUp0DfZCe9OTC+d04qvnBWum7KXqWyaBlloL25vzNoUZs76NyFU1HcoPvcm8R4/gxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PI1yQRSK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 070B3C4CED3;
+	Thu, 23 Jan 2025 22:53:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737672321;
-	bh=T6bckikkRvSw53DcAsE/gahId3+JXQyypP+wi/p2b1s=;
+	s=k20201202; t=1737672793;
+	bh=9kDaPBtiy4XqPZaW3KOJzyOgz0w8OU8/JMlV0tr7pPo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Phb1REmoA5InyOxlBQ/tjC2/R/ZDD2uNX/kCH3UUhPCRtLDqekgmsZez7nLjkEU7N
-	 YD+0GzJHDbAte0nJSs67wrD5Oa9vsNN9hItDNzQ6kmwkV/5sg9rZuxNwYuZ6r3HYYp
-	 ZzVF8u0Lja9kLnrD+77XFu2CW21mRMl9ynQYfGhmyG1FyrARiZ35VsDNokQmzsV4Kb
-	 XrdLZ8kvoLaNqzm1qfRmagQ8MvB7uLJr92ZTF4UiL8gWzqkfWASKuhl8DdwgOIqwqt
-	 HhaL2U5q3gHD117qsgvX+IRipFa224iLHH4ZPsqMiECIU1bwoSsniBd7pn2bj2PKvk
-	 1sGwviA70fi4A==
-Date: Thu, 23 Jan 2025 16:45:20 -0600
-From: Rob Herring <robh@kernel.org>
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Michal Simek <michal.simek@amd.com>, Mark Brown <broonie@kernel.org>,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Jinjie Ruan <ruanjinjie@huawei.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: spi: zynqmp-qspi: Add reset
-Message-ID: <20250123224520.GA456390-robh@kernel.org>
-References: <20250116225521.2688224-1-sean.anderson@linux.dev>
- <20250116225521.2688224-2-sean.anderson@linux.dev>
- <8a0d8789-7a0d-42b7-9aff-e867c14db3c9@amd.com>
- <b8e63009-13fb-493f-adf6-4d30adbe9b1b@linux.dev>
+	b=PI1yQRSKUKBZHNj3UT4rT8v5wWX/GOUzAT+z8danMHl1D1KVxw1uwKAxwxU34vHFM
+	 nThF0MeXWfcBt2mGgMV9KfyVnQXeVhYQgj7QeQRnjO96bTBHdfAMKpXTuAxrWhRg8g
+	 QeSWgGc1n2lkxaJ5VDXQbTNqoztxyRkNG6L4xSNhUX5ZHFTJqC00wG0zlWLbVAFwxy
+	 a+u7IPDNYqiJL7/NO3U9H1lYtAErU5AljrLMlWHwAQLYrzuFGAy2FCJM8qSz5wDqSj
+	 lOUsSodhMOeBgEyPaQBzaLjNREe8zFCi/pAdPcaqJeNljAvYtXNvwA5TQPtU7smygW
+	 Crk345F7qwoAA==
+Date: Thu, 23 Jan 2025 16:53:12 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] docs: dt-bindings: Document preferred line wrapping
+Message-ID: <173767279082.495218.9801817678940262482.robh@kernel.org>
+References: <20250118102247.18257-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,51 +57,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b8e63009-13fb-493f-adf6-4d30adbe9b1b@linux.dev>
+In-Reply-To: <20250118102247.18257-1-krzysztof.kozlowski@linaro.org>
 
-On Fri, Jan 17, 2025 at 11:12:15AM -0500, Sean Anderson wrote:
-> On 1/17/25 02:14, Michal Simek wrote:
-> > 
-> > 
-> > On 1/16/25 23:55, Sean Anderson wrote:
-> >> Add a reset to help recover from cancelled operations.
-> >>
-> >> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
-> >> ---
-> >>
-> >>   Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml | 6 ++++++
-> >>   1 file changed, 6 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-> >> index 04d4d3b4916d..901e15fcce2d 100644
-> >> --- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-> >> +++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
-> >> @@ -36,12 +36,16 @@ properties:
-> >>     power-domains:
-> >>       maxItems: 1
-> >>   +  resets:
-> >> +    maxItems: 1
-> >> +
-> >>   required:
-> >>     - compatible
-> >>     - reg
-> >>     - interrupts
-> >>     - clock-names
-> >>     - clocks
-> >> +  - resets
-> > 
-> > In 2/5 you are calling devm_reset_control_get_optional_exclusive() that's why I expect reset is not really required property.
+
+On Sat, 18 Jan 2025 11:22:47 +0100, Krzysztof Kozlowski wrote:
+> There are some patches with long lines as a result of checkpatch
+> enforcing 100, not 80, but checkpatch is only a tool not a coding style.
+> The Linux Kernel Coding Style is still clear here on preferred limit.
+> Mentioned preferred style of wrapping long lines in DTS, based on Linux
+> Kernel Coding Style.
 > 
-> It's optional for the driver for backwards compatibility. But for the
-> devicetree we make it mandatory since it should be included in all new
-> devicetrees.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  .../devicetree/bindings/dts-coding-style.rst     | 16 +++++++++++-----
+>  1 file changed, 11 insertions(+), 5 deletions(-)
+> 
 
-Generally, we discourage new required properties as that's an ABI 
-change. The exception is really when optional was a mistake. That's 
-arguably the case here if the h/w always has a reset.
+Applied, thanks!
 
-Unfortunately, there's not a way to distinguish 'required' from 
-'required for new users'.
-
-Rob
 
