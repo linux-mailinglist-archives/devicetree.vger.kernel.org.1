@@ -1,140 +1,128 @@
-Return-Path: <devicetree+bounces-140510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 009B1A1A1B3
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 11:17:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8BF1A1A1B5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 11:19:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC717188C915
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:18:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E46416A92B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A60AB20CCDF;
-	Thu, 23 Jan 2025 10:17:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E36E620CCDF;
+	Thu, 23 Jan 2025 10:19:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ILiLn5cW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com [209.85.222.47])
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21B611BDAB5;
-	Thu, 23 Jan 2025 10:17:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CFBE14AD19;
+	Thu, 23 Jan 2025 10:19:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737627473; cv=none; b=hGtiOAXiysUfxdIWX6RDmQXqeFoakH/3x4CVc9rmqvspa0qycgaPXDlNtcsvoaEEW+1QavYNXt2pRxr5B3A1SSP4qLOJx+hBnpdIg7uEG/DeyY0eJo7n6wVBPQCEqgFQoiXlPcn1gbIGXdH0ulcNPJD4B/Kol3GC6RZaM0zChBU=
+	t=1737627572; cv=none; b=KFLkXnid7dG8FBFmBNXKH17Un9caGWSYCJ5aDxS827ErEfu0tylvAFbKgval7Fl/zEN2POcWnR0wueW+H8lSIh7V1MWTNz9ju1LVVeUiDMD4U3Ande/5OiNflv4kZRkNlZSHBrB2bZOXhBztjRIxIpDOBAn66v/5ioau7UKQMy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737627473; c=relaxed/simple;
-	bh=P2RUfMtUaUMwXyCXljeugv1SZ6fb7UPccSCKE4Oi37g=;
+	s=arc-20240116; t=1737627572; c=relaxed/simple;
+	bh=qbpoKDddi362Sy79+0mWxpFtU06yaHegDxpYwpUh0XE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=d/pJF8MI6NNwil0XzcVFn9dKeUWHSqmExLOfJQeefNLNoeZTbRsIDZiQHgz6+LAilcX2ggVj+QSrcxKIfwvPVmUXoBtAnLbvl2s8ED+C2Dx7+s4WOs7j8AX/EdEygXc7zkFWS7/phiqUWXQwizdbcI5OjPLAMDO0PuyQaNC1FkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	 To:Cc:Content-Type; b=fKFVSpIZkmQib023qFKWU+jEbjKnmaBeMkpMLjpFUuQ9Wb6ve9JtHU75caUOyOqeu128Iw5bR0vUb9VAOPXHb/mgvkYgqNWBTsc9ENVAHJOLfqYUKAlBE+4D2muDnS05MQi9I5/FvkqsJSZbFslhFnBzSgZ7CShkxzPWkcWSyvQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ILiLn5cW; arc=none smtp.client-ip=209.85.222.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-860f0e91121so1048387241.0;
-        Thu, 23 Jan 2025 02:17:51 -0800 (PST)
+Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-7b98a2e3b3eso35275485a.2;
+        Thu, 23 Jan 2025 02:19:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737627570; x=1738232370; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qbpoKDddi362Sy79+0mWxpFtU06yaHegDxpYwpUh0XE=;
+        b=ILiLn5cWlxaC7TkTCefSQIwVdDlBtYWWwDuBdIu3Y+zg+VOZ1rg1qIs9i7oXzlcYwh
+         aCFgie9LK9dtjuvZ4Q436tPqcEIk6ssWGNWxS7D4MAVOuduE+wWyQ8CaZlxiVDf4eUJS
+         bB8ImR44JLz9egNTC6XPy+nHCkCJ7+cdvtIAedlVanFpYFzStqIj49tOmTbqQbZkYd5K
+         Uh4dmJqyW8yLqXzogqRlJ2Ru7BE8NjJnHF+jB1JfVGImVCit9+ZmmR/ms+48wBcveBc9
+         hlIvOmJ404jR61gDAUWS6HqcVa1Z0IIM+itP0cFZt0/7hmeVxSxSuahUmJR8ROxgy/8K
+         +MnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737627470; x=1738232270;
+        d=1e100.net; s=20230601; t=1737627570; x=1738232370;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YWJ1WtZtJWByVu29sfFsD4zbEKtC/5gZ6ueoqSs0P9c=;
-        b=M8+nCDAvsojaOLCAEYWnKXjTc0WNzMaMRZtVGp231Y/d9P5YkJ5n9Sjnksl2sTFmWG
-         N5Qx4B/MKKaqHtd8xP66CcR2XPT02aIJTvf0/5seJxepulvr0l/UA65lzsgrVQ6/aX80
-         KFDJhMwGGQMOFb2pOvlqE8tP7lrwkPAwV0WoDkRi22HmdM0iRgDnWmmzIDka4Os7l+zQ
-         /wZ+6PD8196T7OWLSfdSu4m1GBWjamSfPXJzuf258DOcbLaVJuSpyROLTmmyKjDfDgEd
-         UtJGAeuRGwCikahTJJGupD+hXtxgd8O3O/hg7YBIBIFfD0G8Xi6ypFlmE8uxP5m9+Btz
-         MsGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVFP9ODbNUzF9kMpyb48sGbZvGI5x/lX7ESCMBdttg6V0AdzXAkEPhQ1MktwRUtOLsH0lBL4BamImKS@vger.kernel.org, AJvYcCXSKAeXgbf8xPMCmm6gpiX26XP75RbpTfbfA3km8aK6KT7SO+nbF8BUBUi2kXWidJeMh3lwK0L4sDHL9ArBApHjSI4=@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywxg0FxIbgxYFhDR3BHrEAHcoyjeYQ+sOzRlZfoxZKI09WJF6sT
-	mwcVyPA4bgEYN16y3jpycUdxDv1vIA6buXvL3zUy/c3Qa8phh2cmItl0MMpq
-X-Gm-Gg: ASbGncsCCLHKlvrrJslp6vRglovMelL7sR7z1+n/YhVHgGorp6ieroWMUIFHrFj2gQe
-	9B62Gaze4em1tRShMwGqGfjUZc9HPR0FN4Xey6HMlkBhUCzoHIjDVAfAA8WIC1ByY4Q2mjCquQj
-	IuUuZJuz4za6bId0fHx/UCEOS2f0sU0uFvZ7OW8iyR7cyqNEhT3uoP/TysKv7pvdy6UlEXk9M09
-	z2puCs2P/kIWc0PxwoLdc8gm5G8qwsrtQr679VfR+65NeN2lakbCTosXuyX9tqRSHhUkTs1uBrS
-	h4d6EU+NlOeDnZAY8tCKP5Jjr+d2y2dilFt3RarsCyQ=
-X-Google-Smtp-Source: AGHT+IEqJwQ4LvIyZsN8EJItg4uKJnSgJYDAxndkaWk2zQy9SUGz5ffsrtvB+DxzDGRPt6OEJW4BWQ==
-X-Received: by 2002:a05:6102:3f0f:b0:4b6:9f4:7df0 with SMTP id ada2fe7eead31-4b6f7afc7c7mr2179928137.12.1737627469869;
-        Thu, 23 Jan 2025 02:17:49 -0800 (PST)
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4b68a208576sm3120377137.8.2025.01.23.02.17.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Jan 2025 02:17:49 -0800 (PST)
-Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-4afe2f6cecdso916674137.1;
-        Thu, 23 Jan 2025 02:17:49 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCV/ap2c6W3eX3fIc4fCjymK7JJP7J2XjEhR3ircgsBeLGJwU6VzSJCOWrbxyqPiwGaZpKKWprRXrnistPUgNTm7D2c=@vger.kernel.org, AJvYcCWXhSicMSpcA2XguMNLvU/epfs5zh2tPvvL573dFXVptMHSW4TvMtBuRjLXR/sa3aqvCH2YfEXfKp5c@vger.kernel.org
-X-Received: by 2002:a67:fb06:0:b0:4af:f576:b639 with SMTP id
- ada2fe7eead31-4b6f79f2ff3mr1533565137.4.1737627469202; Thu, 23 Jan 2025
- 02:17:49 -0800 (PST)
+        bh=qbpoKDddi362Sy79+0mWxpFtU06yaHegDxpYwpUh0XE=;
+        b=w5Q+DtQx14mxmf9GcZz8LWFoMsWBqKvV8jLCzMLfNGJENwRXnWSxl/xIp3I44Hye1o
+         6VmKW2h9tMVIS/XEg6NlytZlB/P74xBhRQxv8NXQZpJqiCCTnLm3t5eHCVcj0cpHcCnc
+         PKVwkEj7ygmvKRiYuTeEhIcTCGYmZ2OVuiZjM0/NKRmlpTBv8BBh06de+4UASpw7QdN6
+         lquHBn0IKBeEiGF6Y9qfpVaG3G4iRv5IHHsTWiKtSCz80Rn1IGJ5KYkc6rDwciby/cnx
+         L4/nRF+zMegwr7KA46+e9W9r+/ekXMyql7IWAPX/2NLDXth5nSi+sZluOinXdHvSNOdm
+         T1eg==
+X-Forwarded-Encrypted: i=1; AJvYcCUwXCs+FpO9+/wygEV8Hhyf1TovYQexdTMYoC4HqLkWY0YlfiMaA/pUa2Z7aN1EJO+/M/z8U8tfcxfo@vger.kernel.org, AJvYcCV4aKZ94S5+tOswJrGSETQXGRq2+P86EALtkgerYx+uAtn5EYQmiED/qCsRXeF52NWjcEoAjs/WcxAmDGP3@vger.kernel.org, AJvYcCWEHTtIjqgyTYqJNj4woNkxUXx9M5POOnR0i5gBXN+WsFqQcBuZd0qJn4WFgRr/uuj99RVEYBwNHtCaxA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyFwL8B6zN/7XkvzwUhrhJYOLOjrWc5GYZwed90YZC5nLMsq66
+	YV1BFMD5HiOE+NK6f9DjoCTTS1qd06oVhqxSY94RcZnBF1ECotWq8deoPT69Z1pdC7Kv6ce35ea
+	ApMPnjythLPO47In3NW2IO3HsOVo=
+X-Gm-Gg: ASbGncsoh3yHyqQoETzN/L9hinke7sBpe0WqrVEcR7NOJ4Kzv4qsjynTBuqbk3Sz3fI
+	yTw0JePteR/RhYTjnyGiE9xibyaj+Nw8JvjxGrqkBC023+8Hr27yPtQo5j455BWI=
+X-Google-Smtp-Source: AGHT+IE3ApFWnXNjyAzEBLDjCwvKVt3XG27QuphNd6AZj2pIwExOdYR4bhFPT8VmeyAd+0Z5nJnC7QsQL4WAeCPCJBU=
+X-Received: by 2002:a05:620a:468a:b0:7b1:543d:c99 with SMTP id
+ af79cd13be357-7be632024ebmr3682303785a.24.1737627570078; Thu, 23 Jan 2025
+ 02:19:30 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250115103858.104709-1-biju.das.jz@bp.renesas.com>
- <20250115103858.104709-6-biju.das.jz@bp.renesas.com> <TY3PR01MB1134612C1DF4639F12D829FF386192@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY3PR01MB1134612C1DF4639F12D829FF386192@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 23 Jan 2025 11:17:37 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWFexFfaqjBUbuEpurnDA1LPywB2pJ9ZJQZ=_3mmfgxoQ@mail.gmail.com>
-X-Gm-Features: AWEUYZlQG2m5DJ4g5IqAjuWd1hMZYirr_cI7KtfNlfaIPvVh-8dSdZ_F1_Bj83g
-Message-ID: <CAMuHMdWFexFfaqjBUbuEpurnDA1LPywB2pJ9ZJQZ=_3mmfgxoQ@mail.gmail.com>
-Subject: Re: [PATCH 5/5] arm64: dts: renesas: r9a09g047e57-smarc: Enable watchdog
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	"biju.das.au" <biju.das.au@gmail.com>
+References: <20241028175935.51250-1-arikalo@gmail.com> <87ed0uvqf7.fsf@BLaptop.bootlin.com>
+In-Reply-To: <87ed0uvqf7.fsf@BLaptop.bootlin.com>
+From: Aleksandar Rikalo <arikalo@gmail.com>
+Date: Thu, 23 Jan 2025 11:19:20 +0100
+X-Gm-Features: AbW1kvZBOb2fecymAIB3ioxucNgvNDIj2lpX15S6YQDnZ88q2SUMY8BIT2Tf8R4
+Message-ID: <CAGQJe6qBpQhBwhoLss8Y4MRurRs2p6_vym5XAiMmnHqd=nQC8w@mail.gmail.com>
+Subject: Re: [PATCH v8 00/13] MIPS: Support I6500 multi-cluster configuration
+To: Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, Theo Lebrun <theo.lebrun@bootlin.com>, 
+	Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org, 
+	Djordje Todorovic <djordje.todorovic@htecgroup.com>, Chao-ying Fu <cfu@wavecomp.com>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Geert Uytterhoeven <geert@linux-m68k.org>, 
+	Greg Ungerer <gerg@kernel.org>, Hauke Mehrtens <hauke@hauke-m.de>, 
+	Ilya Lipnitskiy <ilya.lipnitskiy@gmail.com>, Jiaxun Yang <jiaxun.yang@flygoat.com>, 
+	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
+	Marc Zyngier <maz@kernel.org>, Paul Burton <paulburton@kernel.org>, 
+	Peter Zijlstra <peterz@infradead.org>, Serge Semin <fancer.lancer@gmail.com>, 
+	Tiezhu Yang <yangtiezhu@loongson.cn>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Biju,
-
-On Wed, Jan 15, 2025 at 6:20=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> > From: Biju Das <biju.das.jz@bp.renesas.com>
-> > Enable WDT1 watchdog on RZ/G3E SMARC EVK platform.
-> >
-> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-
-Thanks for your patch!
-
-> > index c063d47e2952..33b036b6a93c 100644
-> > --- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> > +++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-> > @@ -29,3 +29,7 @@ &scif0 {
-> >       pinctrl-0 =3D <&scif_pins>;
-> >       pinctrl-names =3D "default";
-> >  };
-> > +
-> > +&wdt1 {
-> > +     status =3D "okay";
-> > +};
+On Wed, Jan 22, 2025 at 4:06=E2=80=AFPM Gregory CLEMENT
+<gregory.clement@bootlin.com> wrote:
 >
-> I will move this node to SoM dtsi on the next version, to have consistenc=
-y with
-> other Renesas RZ/G2L SoM modules.
+> Hello Aleksandar,
+>
+> > Taken from Paul Burton MIPS repo with minor changes from Chao-ying Fu.
+> > Tested with 64r6el_defconfig on Boston board in 2 cluster/2 VPU and
+> > 1 cluster/4 VPU configurations.
+>
+> I tested your series on top of v6.13, with some patches already
+> merged. Only the patch "[PATCH v8 09/13] MIPS: CPS: Boot CPUs in
+> secondary clusters" encountered a merge issue. You can review the fixed
+> version I created as an attachment.
+>
+> With the v2 series I sent a few days ago, cluster support continued to
+> work on EyeQ5 and EyeQ6. However, for specific needs requiring support
+> of EyeQ6, I will send a new version that takes into account the feedback
+> received.
+>
+> Gregory
 
-I can move it to arch/arm64/boot/dts/renesas/rzg3e-smarc-som.dtsi
-while applying, so you don't have to resend any patches related to
-other subsystems than the watchdog subsystem.
+Hello Gregory,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.15.
+Thank you for your time.
 
-Gr{oetje,eeting}s,
+I agree with the change in the attachment. Will you send it to the
+list or should I do it as a v9 version of the series?
 
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Aleksandar
 
