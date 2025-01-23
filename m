@@ -1,234 +1,173 @@
-Return-Path: <devicetree+bounces-140439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEB7CA19B90
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 00:43:41 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC66A19BB5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 01:21:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11B7E16AE57
-	for <lists+devicetree@lfdr.de>; Wed, 22 Jan 2025 23:43:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B7C47188D419
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 00:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82AB11CBEAC;
-	Wed, 22 Jan 2025 23:43:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 090608BF8;
+	Thu, 23 Jan 2025 00:20:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="Y8QLEU49"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="PIL97pPD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010000.outbound.protection.outlook.com [52.101.228.0])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3C61185B62;
-	Wed, 22 Jan 2025 23:43:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.0
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737589418; cv=fail; b=P34M6DtSv+Cwv7Zzkkqul0T6dmBWcbBL9sqM4SyA08VsyJ/3bl7gX2VQACcuRVH/cqVrw/WHQy2LeRwZrsFd3yKMTbGY/7mwRomTR9RzglCuZASCDE4ZLfrRGyMhq3BU0aRCUxPSdpL9K/cTRK+tb/Gv+/VVR0y6p/bnMSiFhe8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737589418; c=relaxed/simple;
-	bh=OpFNEOTvP2kFbiDWjdThp7cvS7h0Oboejs8h3WlszBw=;
-	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 Date:MIME-Version; b=DphLTTz20LHDNws93+8n0LlZv+0Rtx1R4EayOSA8lpCy7cjycFL9+N0FcCbW4ooKDvyyM493EpEBrvuzDthzE60Yv10zMFDtDSwsy1XXg/hFLbyPsdYW8Pay7Bl/5ztej7OAzv3CBJ3ShDN9tl6rx77gWlQklNuezmc3tbVz1zE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=Y8QLEU49; arc=fail smtp.client-ip=52.101.228.0
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TlkfaY5L3+KxuwGOGE2LlFlM3XdaRIjD9pwg008RFdgYOdSG2sPvfSaTf84h9J38AG50EhEV/cKW9TZAcOhpz96zCZozjCV1AL7Tdwdnqa9dd9M6k1yPcxszsg91DetGdX8avFRsoucP/hlec1XsydZhfWPxLRLBTz2V+wffwnAgB58LRtawmBrCm8t1XGD05/vtkoAmjhm0ZGsr9b8CS2F8C34QKNLJJrbcc/RDaL+alCCSGI30hDbA2AEQ6gtrIDrOzCzNPYwU0w6XlLQgRe6Wh7tfp3DXt2ehhRKN6gBI3kMXMhMF8lD8I/TRpLgDZ4HvDaknS8Qj3fgvuVwrSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=P7y6Ht1oQoKJUWbI320G3oYsNuVcEeaLTDOzee6sFWk=;
- b=B407CQqhjdBuFPtW77B1z/+5hmedJsnPmcWvq4OVhEoEYQCVFNRTg6LQ4Q7t48B0Ppcl5q2BnP6YaRj4eGcQFMVhrKsKjI5YHHC8X12xtbBkl1+HhD+ORt75++4uDZAH7LMYioedLnLtLHCyGFdDQsAJNd4tu3Csylj7x4XVUAE+aswiMKgH/uuo36T+EWIgWdm2iIZklDq+jR71msR1h1C73lsouCTCA1EeC+M4K++sK3n0aiDOEHqd1E5Lcrgo4Bu8VIoCsxr29RHZfs9oMtOUvC02TFMQWjGL48x3Iwdd5T7FYAZ9X1fvlifagBwAVVPoAWf8VVx09ggxdEDvaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P7y6Ht1oQoKJUWbI320G3oYsNuVcEeaLTDOzee6sFWk=;
- b=Y8QLEU49pYTXxlBrHvbxg9+f/eW3GGZKOIXliztzxWt2vAQZt5/3TSHWkluVrmzKHApXzzfTJviYegl0HiTc+7cwTqgtcfk5qtM7sNnU9l3xHmcQ9+v0bLt/1ijrsJFddvvquZAPGAXwD+EGljgsB2tgrQXyjrwZHBtFhkP/PEs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=renesas.com;
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11) by TYYPR01MB6571.jpnprd01.prod.outlook.com
- (2603:1096:400:e0::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.22; Wed, 22 Jan
- 2025 23:43:32 +0000
-Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
- ([fe80::c568:1028:2fd1:6e11%5]) with mapi id 15.20.8377.009; Wed, 22 Jan 2025
- 23:43:31 +0000
-Message-ID: <87wmem76u4.wl-kuninori.morimoto.gx@renesas.com>
-From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Rob Herring <robh@kernel.org>,
-	linux-sound@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ASoC: soc-core: Stop using of_property_read_bool() for non-boolean properties
-In-Reply-To: <db10e96fbda121e7456d70e97a013cbfc9755f4d.1737533954.git.geert+renesas@glider.be>
-References: <db10e96fbda121e7456d70e97a013cbfc9755f4d.1737533954.git.geert+renesas@glider.be>
-User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
-Content-Type: text/plain; charset=US-ASCII
-Date: Wed, 22 Jan 2025 23:43:31 +0000
-X-ClientProxiedBy: TYCP286CA0332.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:38e::18) To TYCPR01MB10914.jpnprd01.prod.outlook.com
- (2603:1096:400:3a9::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44BF74A3E
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 00:20:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.49
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737591656; cv=none; b=BXjTwrer0W4LMJjGEUJfAic8LQbSO6iurOGfsUiuPkHIrr+iu6c24DaM3Ww12RntrCTGL/J4oj62UrtMQdi1MefCAUJ3UNLktfMaiLTqfNNGNMlyNJmNvnykKrSMJWUeHeV0etQWIsuEgHJTnPfMirAY1RTwzqoxMX2bhQiM+4Y=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737591656; c=relaxed/simple;
+	bh=ZDi6YtWZXziTg6D4UNvvo7RGgVsQR8rLAbbT+wFZr5s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LVFTJsnecZRp1sgNTvOZD6cEu9GosTq/Mgvm/MvLjFgeC77t/xtIRl5ws1wYcqWI0zs4XFWWDg3OmRyM4sJ+diIzyDWNquxdJ6SR1OZ2izf4HqiD7wAd+cLo+xNfCzbYkr0h7RTO0Zr0KzuqMtVQQW4P+dMAoywuy9XAlHIo8oI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=PIL97pPD; arc=none smtp.client-ip=209.85.217.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-4aff31b77e8so121664137.1
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 16:20:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1737591654; x=1738196454; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=LQYmS/K43Vh7Ly2e6rLyN5ogWE84SBYmvh5FEE5WcR0=;
+        b=PIL97pPDHnBm8yM89r77BwigmVVZHKHnJYp0/VKDQxAD6LYWTDk6z9SeL52uPq2qVt
+         YAvnEdKmg6l6VBaxlQb5nDoSPWF38YtA3jdYq3rVgVDzK5MzTYX8j3Nyr/dgjMfvnkN3
+         /Rby2eLK5ZMyQwkMWL6GJtTAMySMKjOGQkBECxv/aE3yyX+E/cC6DiBmgwLA+bf0e2hi
+         eqXu3IEajlH3NWtp4eq4Bqc+UlbEegQpafgfAoYo7yrgiYXxHnoSuu9yc5TUsmgcZLvw
+         r3wta5Kk77Hm+nRhWOhPAQ4XA5kDHYLEQ6hM/xZbvtWJ0jm5nFK7xzMjDfNOBGKJxqku
+         e8jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737591654; x=1738196454;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=LQYmS/K43Vh7Ly2e6rLyN5ogWE84SBYmvh5FEE5WcR0=;
+        b=vpG8aPmzSCdjZ735iaqpGD+2XH9qLQFD6GXYXc7XEsEo7LKZyfpC43eMLmLNabBGYe
+         f6eGhNR/HO7bSplGVcP2zDOwUmpGt8+62AoEUhC0tt/tifkTb7AKvWBy/S/CrFrUZh1j
+         jH5R3A/PsB9YxTch7MSySTwEXI9Giu2jxHYmQfHkA/VanvGhwUI11SNm7vWb9KTjHUw9
+         mEzJjk1WQIOhYS2BLg5uzicGX1yS0xoVfOj3GtjWKEAs2AQiDnj6Vv4Px/sGbJmBbqyT
+         Fv0neOFs9SKXIlIlIKzdO/CBpiDMlgtgj7G/SDB7DGmE+9You4+oF+n75eSrS7anlrrD
+         M74g==
+X-Forwarded-Encrypted: i=1; AJvYcCV8kkwzry2NExc4XvfctYnQzPXl0qyfqpdbhCXcPFUJ/O2/eIJKQpt3tljeeQIgqJzw2b4mPzt80xUZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwCUkKLWx0pzujwGHidm8ug5fWfkY2TQj9/OVQEt85QhMdbnl7E
+	FH2o+40g36GfdFP/8qS9prWMNeHblmn3KDuaY4OksoKWuPUEhvvWTId0JcrMd548nIdCS4WESJK
+	RS5hIG9i1qJ2aLUk9jt+qogZsZ8trTIo7utAtzQ==
+X-Gm-Gg: ASbGncuC7kgJ9TSq5582MkzHsZhMkJY+p1li2Zh6SZ43fOgGI40zYNshztJeIi6r3zf
+	TulEEFCjvTJFmTur2nkSwfdHjIqIJ2Z4ho1aCQfPNg4kg1Hl10/wd/w==
+X-Google-Smtp-Source: AGHT+IGS36QaibGoBFEQ5pqS4obwFpQV2loOF1aOhCd0cA3B4BAUIWrn7Re5huNLf61E9aRtdauPhVyk0qicAYrC+KA=
+X-Received: by 2002:a67:e715:0:b0:4b2:5ca2:48fe with SMTP id
+ ada2fe7eead31-4b690c1bb38mr19355223137.15.1737591654141; Wed, 22 Jan 2025
+ 16:20:54 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYYPR01MB6571:EE_
-X-MS-Office365-Filtering-Correlation-Id: cbc67f3c-bfbd-42fb-8a23-08dd3b3e9449
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|1800799024|52116014|366016|7053199007|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?by2UO57NM6UASzT408s97HrwzuctzLV5x1j8u7VdZ2vkdq1TIgY592ZcEZcd?=
- =?us-ascii?Q?bnhOLFzW413mmYpWwkhn+BmmzkCKVReuKpmIbkTM7yERHKhdG3W5B6wai8eE?=
- =?us-ascii?Q?DzWstN3jkw4iEjD85jQrVbAOEFt4kFIYM/gjObX6pnh7s7P6mxKWz9zN3xQ3?=
- =?us-ascii?Q?kb/35vqtPIm8vM0c4m+5C3jBhrC2ZgprEnOn2sdxPTR7pN0PuqTuJ45ZwckV?=
- =?us-ascii?Q?T9Dqh3ruuh89wotMrByDYfWPpj9K2LQ8MBcnSutwAKPaV2ZSN1kGghvyC6qp?=
- =?us-ascii?Q?D2RXOiAKlpS1Y3SBLh01lwIrtJt47Z0s2mdVLHYYZp+PYnoDVCoLXu8LsUU+?=
- =?us-ascii?Q?wNe6FWtHHlYNsjbsKJNh0KXX0ijw/SLX7j0yODROtPo2gUG30StRuINg/l/9?=
- =?us-ascii?Q?Jjm+TypjLgI87+9H4N6/l5nnP1w6axtzUwxXysnodPW3G9VD3/zdMtOBKmKv?=
- =?us-ascii?Q?30k9u/RcLkai3nuhrElTGWNUjjKjxzjvRnCU9DTgmH4bg2fjgsPcMxVRbcBV?=
- =?us-ascii?Q?6W6pIgD22WeLKIDICQ4A7SHxOjIDIUlg1LxnCDocVwjzvc5Bc1eHk0+siGeg?=
- =?us-ascii?Q?nlj1f3aJvX/Qtv9VGZzIqrzRt/ym7JDh1Ty3R+tt7W/Qc2+R7DeuejhdPmFC?=
- =?us-ascii?Q?3BYjfajJsLuoD48g97eJUSsAo4ggt0puLvBC36UJ8UuCcLsId1Cng3fnuQke?=
- =?us-ascii?Q?emkerPejJm6UyLpvnmZHfUhhRhGDDmaYu3s3E8wvQ35QkMZ0fYBF9j2aJIM/?=
- =?us-ascii?Q?ce1+WSgy5xvgyuFDkNKHPt2Vl3eaUZeFsqel3/XG70vCBBI+AI8XiHz+Dc9j?=
- =?us-ascii?Q?IziWSM0yewe4P+qapLnCRHN0iW12DL0Tf9PmPq7V7/z+6QOiNfUJJjaO3HH+?=
- =?us-ascii?Q?jE5KEccA+9KUMQhQzJV+SzXuwhYjBztDZDY6aZjd5HZjcxbi/8KoZnvpIEWc?=
- =?us-ascii?Q?WEi3OOpcqqb9kveU29Fy/yRKUmNTF9j2DRMXV7plLSv3v0VKAQ+0/SmcQDry?=
- =?us-ascii?Q?IBgyUptQ0sEtcBCA0XQx0VCrzqj1hmnwyQJszZ2OcqEZpjFPrPbxDA42gFac?=
- =?us-ascii?Q?kNOJSGPeE8VNQysp7r2EVmMmKsct5oMX9rZm2KCqydJfb6xi6xaUOB/2uraj?=
- =?us-ascii?Q?tl95H0ppiKJf9EVEMV339BGtg1OJcxIfmsShnc4Lb0HnRIHGS1+wbelYF7Lo?=
- =?us-ascii?Q?7jzr4uFDqpdjqPqzDEcAK9FboIvLRaGOOT1lD8Bh2/km3AA73qZ2jqvInaNB?=
- =?us-ascii?Q?GbZQRRXvX7XeEbHTuRF3DNSesDpcjlvE/hAtiAeX/3KzNOS4SwvT+sKcGiW/?=
- =?us-ascii?Q?5qOpF2gemVUB8iAJDEZIYPqSULiM+8WwVtsSUyr3S8UQFvt0AyXzLB/M/yhN?=
- =?us-ascii?Q?YFaycj6LFX5NVzYlF5J04YwO1cmUCvUj0fwI7MOW3eobKzXWPFPvGSsqxK2R?=
- =?us-ascii?Q?MnAtyIKRSannIFAqdaxyfDM7s3OuMf1j?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(52116014)(366016)(7053199007)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?OsTN9JCouGnQhTYlmT0ZfhvITWlwGDTE+V2heLHF7oQM2apwklN3RVZEQbjv?=
- =?us-ascii?Q?Vt/HK+9x+yd+xoJhWG+yVBvSIwba08p7kqlB9oliTq7m9MQjdg49ENyaIy5m?=
- =?us-ascii?Q?nwRBFZFsHxapvfnmd5CHpkjQy2bIbJ00O3HFvEaClUmYGq5qPUglalXUuLYJ?=
- =?us-ascii?Q?oAfZdTXGCC+fzCPXj3sDzH9JWwfJqaW/h+hvEfPHLHNgEB3DqDyQR8a2PToC?=
- =?us-ascii?Q?KOlmn3Vp4ZAhtSQtwbJKQ6KN9QBXoZT+zyx/6OCiiYmE32Hn8DDJvtB8t8XR?=
- =?us-ascii?Q?ov3oT0/XYZDUhFXUpHA4fsatgU7JwxtdTGww1hF7fUltC+fRZeHvJjy0qH73?=
- =?us-ascii?Q?pgmq7S4bA+gRLefP5O9hIvARr+EDlrEhoqnM2VSzh9iaTiPzp6+O0U7stopm?=
- =?us-ascii?Q?EqHlDIx5C8w4sONkRWja8WO8rhat0y/Ng9Ov4m9hMPG3vIuFpmEBRV8Gfrhn?=
- =?us-ascii?Q?R+EAexs/G3Xl8tOZIl4tij2z+AlKBkWSQ+onFhy294U7Qoh18kTsclqIf47q?=
- =?us-ascii?Q?s82njcP6vDbX4EvHP581X/iuaWF20Ls07Fo3M3A7U/UWztxBhCCxsNdVpUuh?=
- =?us-ascii?Q?fSMzFI4q6GQs9gT9ydoD5f4oOK3aOaIrUWZmfSsPwUJIoAIsp5xl6sS3t6V0?=
- =?us-ascii?Q?lRQKNsiBkaSFWbSIgQNKLffUl6TGsSgPzxnNopErLHoqEzIqgQx54NhVaXnN?=
- =?us-ascii?Q?iHBZNZKtbGm1HOgB0+GjVHF7IY+frQqeq0A6SLTaZsCns/0XPTXXys99j50r?=
- =?us-ascii?Q?83fmwmIBOZXew0j4A6ai1vFN6FYMGNxJF5a1SABRM5FWxDTNKEvHA0OFi7GS?=
- =?us-ascii?Q?KagNdbIAUOY/ybWQeqINnG45l4P9LMYWwCCGCA/S5VbqH3fRXWAjIaMUHxga?=
- =?us-ascii?Q?I6oI7lukuFGHuRxI6Rv0QhoDaD/K+KPdxho4DIBr40bhLwRzDCQM9ZW28yay?=
- =?us-ascii?Q?MNe4qIWckEBs4iixzAJMECGY8tH8szyU0hzwDHI3bd8oYm5fplGDuipgdGdp?=
- =?us-ascii?Q?tMuGHXMjeHLwc7FBhMBNMJ5tLhVyvw0HKVgpWA+x9k5pEJSw0PV0TCjDfpl7?=
- =?us-ascii?Q?OjJARfbKPFkNwOyzEBvNq3N5q+E5aQ4yA6TwEgvS1U7GUKMeE38PqATKFwl9?=
- =?us-ascii?Q?xrbeRkoHVFj9HXStjGB1GtAnb5Jc3R37NkHsOm/hngNDEl5n5GDTFpEp0+ry?=
- =?us-ascii?Q?hJQRK1fftq1Tuu/Ntl9FUWDQfl4BAzAb+zkyUf+T1Se9py8jvkk+dCpvc5nQ?=
- =?us-ascii?Q?39b9QQWhP7ZPXlSssT3HRErd95mXZpSQXIsLgGIYcx9h4ZsAk+3jvxTyeQbs?=
- =?us-ascii?Q?uK66FKtp6e3UVT84LQn1EeZO9EwtU53IyXX66NAbdaw3nOzvXQQwJ/IS86D+?=
- =?us-ascii?Q?ZGrd7o/MrN7rdFFuo15qgC6srAiY67SsSnJfL0QH0r6GQ3JbF7UrgNDJ6da3?=
- =?us-ascii?Q?bA1FGtxyqmAkprMfXyeFkVdV3hfjnWlvn4wuOY3H2zZnzcBOTAf+f56dNrE+?=
- =?us-ascii?Q?U5R6fNmWIILgfPphuzUhIz7kcTjVPsWcVqrkMqXP5pJOU9mYI7dQJRPfIwiw?=
- =?us-ascii?Q?79B84FxK1qFF8L9dTHw+nh/tMa2KeleMQqMmoCt4iCTtuzmTqbTT9TtdMLRx?=
- =?us-ascii?Q?fSx0bmF/mmdvUUkNdXFJkds=3D?=
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cbc67f3c-bfbd-42fb-8a23-08dd3b3e9449
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2025 23:43:31.9534
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VZaBster+IUr86K5qzuTSyFHg9WFHTJ8bEs3QxT3Z/OK4Uos5nbmX+Z4OylUy1Ei7D3wZO4x88xT75XN3z+rHWCK19AuUaVHTHuFdzcO0lYDhmaNE1+PQsx7tpAdAe+1
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB6571
+References: <20241224093902.1632627-1-nylon.chen@sifive.com>
+ <zqkx7cx5nalslfmxeoxdnsjbvrvzajrjybsmsyeyc65a64sntr@gpc5qp6aoyp7>
+ <CAHh=Yk-_0rKB=FG6Voif2MDjtRxzUA5vXDP2J-o5=8ru1ewt0w@mail.gmail.com>
+ <CAHh=Yk-TosOmwEughfK9mMx-=DgzWK5H_bf6H641SGh1ue8BrA@mail.gmail.com>
+ <zneb3qwgf52zitcbq4wz76shnmhwfkabbsts3sussjpc5s5tsz@uneaxdfp4m2f>
+ <CAHh=Yk_oTdURhkna_saF6mrA9gDY=+v_j5NoY_7jTDLuZ=EXtg@mail.gmail.com>
+ <7bcnckef23w6g47ll5l3bktygedrcfvr7fk3qjuq2swtoffhec@zs4w4tuh6qvm> <5robb7ipl346daf3lqaqnsi3fcgj3wzmch5dqit2dczdyeknmv@dqft77bhwryg>
+In-Reply-To: <5robb7ipl346daf3lqaqnsi3fcgj3wzmch5dqit2dczdyeknmv@dqft77bhwryg>
+From: Nylon Chen <nylon.chen@sifive.com>
+Date: Thu, 23 Jan 2025 08:20:43 +0800
+X-Gm-Features: AWEUYZkxxC5R36IuSGHK0JpbYf5wkyKfRkWS3a02LUJNlLu-d6BFx1xVhDXXJ0c
+Message-ID: <CAHh=Yk-p69ppWWspEzzznhDnuk3i6dRGKzUaqZCwg_uAxB3FVA@mail.gmail.com>
+Subject: Re: [PATCH v10 0/3] Change PWM-controlled LED pin active mode and algorithm
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Samuel Holland <samuel.holland@sifive.com>, linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> =E6=96=BC 2025=E5=B9=
+=B41=E6=9C=8822=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=887:44=E5=AF=AB=
+=E9=81=93=EF=BC=9A
+>
+> Hello Nylon,
+>
+> I took another look in the driver and found another problem:
+Hi Uwe, Thank you for the information.
 
-Hi Geert, Mark
-
-Thank you for the patch
-
-> On R-Car:
-> 
->     OF: /sound: Read of boolean property 'simple-audio-card,bitclock-master' with a value.
->     OF: /sound: Read of boolean property 'simple-audio-card,frame-master' with a value.
-> 
-> or:
-> 
->     OF: /soc/sound@ec500000/ports/port@0/endpoint: Read of boolean property 'bitclock-master' with a value.
->     OF: /soc/sound@ec500000/ports/port@0/endpoint: Read of boolean property 'frame-master' with a value.
-> 
-> The use of of_property_read_bool() for non-boolean properties is
-> deprecated in favor of of_property_present() when testing for property
-> presence.
-> 
-> Replace testing for presence before calling of_property_read_u32() by
-> testing for an -EINVAL return value from the latter, to simplify the
-> code.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-(snip)
-> -	if (of_property_read_bool(np, "dai-tdm-slot-num")) {
-> -		ret = of_property_read_u32(np, "dai-tdm-slot-num", &val);
-> -		if (ret)
-> -			return ret;
-> -
-> -		if (slots)
-> -			*slots = val;
-> -	}
-(snip)
-> +	ret = of_property_read_u32(np, "dai-tdm-slot-num", &val);
-> +	if (ret && ret != -EINVAL)
-> +		return ret;
-> +	if (!ret && slots)
-> +		*slots = val;
-
-Looks good to me
-
-Acked-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-
-
-If my understanding was correct, old/new code should have same behavior.
-But because of the original code, new code looks complex for me.
-The case which this function return error are
-
-	(A) if property does not have a value
-	(B) if the property data isn't large enough
-
-I think "DT checker" will indicates error for both case ?
-If so, we can simply ignore these 2 cases. Then, the code will be more
-simple
-
-	ret = of_property_read_u32(np, "dai-tdm-slot-num", &val);
--	if (ret && ret != -EINVAL)
--		return ret;
-	if (!ret && slots)
-		*slots = val;
-
-I think this should be extra new patch (if people can agree about it).
-
-Thank you for your help !!
-
-Best regards
----
-Kuninori Morimoto
+I'll need some time to verify and understand these details, as well as
+conduct the relevant tests
+>
+> On Tue, Jan 21, 2025 at 07:12:10PM +0100, Uwe Kleine-K=C3=B6nig wrote:
+> > On Tue, Jan 21, 2025 at 04:47:46PM +0800, Nylon Chen wrote:
+> > > Uwe Kleine-K=C3=B6nig <u.kleine-koenig@baylibre.com> =E6=96=BC 2025=
+=E5=B9=B41=E6=9C=8821=E6=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=883:47=E5=
+=AF=AB=E9=81=93=EF=BC=9A
+> > > >
+> > > > Hello,
+> > > >
+> > > > On Sun, Jan 19, 2025 at 03:03:16PM +0800, Nylon Chen wrote:
+> > > > > I ran some basic tests by changing the period and duty cycle in b=
+oth
+> > > > > decreasing and increasing sequences (see the script below).
+> > > >
+> > > > What is clk_get_rate(ddata->clk) for you?
+> > > 130 MHz
+> >
+> > OK, so the possible period lengths are
+> >
+> >       (1 << (16 + scale)) / (130 MHz)
+> >
+> > for scale in [0, .. 15], right? That's
+> >
+> >       2^scale * 504123.07692307694 ns
+> >
+> > So testing period in the range between 5000 ns and 15000 ns isn't
+> > sensible? Did I get something wrong? If the above is right, switching
+> > between period=3D1008246 ns and 1008247 ns is likely to trigger a
+> > warning.
+>
+> The possible periods are of the form
+>
+>         2^scale * A
+>
+> where A is constant and only depends on the input clock rate. scale
+> ranges over [0, ... 15]. (If I got it right in my last mail, we have A =
+=3D
+> 504123.07692307694 ns.)
+>
+> If you request say:
+>
+>         .period =3D 3.9 * A
+>         .duty_cycle =3D 1.9 * A
+>
+> the period actually emitted by the PWM will be 2 * A. But to calculate
+> frac the originally requested period (i.e. 3.9 * A) is used. So frac
+> becomes 31927 resulting in .duty_cycle being ~0.974 A. A better value
+> would be frac =3D 62259 which results in .duty_cycle =E2=89=85 1.9 * A.
+> (Depending on A the values for frac might be off by one due to rounding
+> differences.)
+>
+> So I would expect that PWM_DEBUG is angry with you if you go from
+>
+>         .period =3D 2 * A
+>         .duty_cycle =3D 1.9 * A
+>
+> to
+>
+>         .period =3D 3.9 * A
+>         .duty_cycle =3D 1.9 * A
+>
+> .
+>
+> Best regards
+> Uwe
 
