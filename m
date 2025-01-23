@@ -1,75 +1,60 @@
-Return-Path: <devicetree+bounces-140651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42969A1AC73
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 23:09:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE2F8A1AC77
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 23:09:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E84D57A04B1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 22:09:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC10E3A4458
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 22:09:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 454DB1CBE94;
-	Thu, 23 Jan 2025 22:09:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95B5F1CCB26;
+	Thu, 23 Jan 2025 22:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="V+0Kwpzh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lZwJwS82"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51AD71C5F26;
-	Thu, 23 Jan 2025 22:09:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64CFB47A7E;
+	Thu, 23 Jan 2025 22:09:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737670157; cv=none; b=MMOeAutIifvsOOW7IlkCC8ILBKhMR2G0uACtzjY6uoJiDah8YVAc020nae6JeVpVkEorCkBChNT4VLelRL42oG/8+27agGXw5MDcTNQO4AhUYg4xzvl+BR4te6/1ooaJc64w3IKuu1gILDmu2CbTpl4N5qnER+HQB/RkbkCICvQ=
+	t=1737670188; cv=none; b=m5R3Ce2m6e+tDdcnk7gTmZzEvDWcLJPQyAnNt6upWx0WjUnsZ8CiMYU3eQQjenakI5PtbL7/ut5583RroLjclscbmq1Ik3HqIWZmmlGV0d4LVTaAdPGLcEFqQbeFKMVXw5OGH9rvBS1ETqtIuSEtYyvVF/jW25kB7b9FJusF68M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737670157; c=relaxed/simple;
-	bh=IuQh4hT3L/qUrsgJ79Lakle1pBHc2wT8MiSLNoLUORo=;
+	s=arc-20240116; t=1737670188; c=relaxed/simple;
+	bh=GnyZQ++mmddfCUBYwNZ3f5Vqkm3s2uA02jx7DMrwiCY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hxmKF50b89vzGf66PXFowydiUYqyst6q8HpWRuCYg95ABb5fhffGQwnbE6ZkheSs6EvnW4dUOzdvsMUuLP4fl1VHRQW3PDRuoUQ2zXotBNWONlSUG6fq3r8qvQQQsflIXQOixJJtRoxWO1DwNGwEg6Xvjt0bB7jPtdJlJFTwZR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=V+0Kwpzh; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=i7W0+D7OmrzJ+/mV8STt4tTPqf5Ys668103VYyhmepE=; b=V+0KwpzhktigBTBIpergSLBO58
-	5Z42QjoRUeppbs6OzNdaE3F7QzuEnhJLKzH4e6TJ56UyaoH5IG8XGuiV5jT+8IQvlnDK1XsB5an8f
-	9S9dGDg7bY2RHQXa8aA06dHS+30Ov3YbJ+deM+F6j2ETubVNC9V9ltD3rg5ZhVsne7ig=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tb5Nc-007Nyf-7p; Thu, 23 Jan 2025 23:08:52 +0100
-Date: Thu, 23 Jan 2025 23:08:52 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	"lee@kernel.org" <lee@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"tsbogend@alpha.franken.de" <tsbogend@alpha.franken.de>,
-	"hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-	"linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-	"sander@svanheule.net" <sander@svanheule.net>,
-	"markus.stockhausen@gmx.de" <markus.stockhausen@gmx.de>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v4 1/4] dt-bindings: net: Add Realtek MDIO controller
-Message-ID: <95923d9b-bf37-4256-a342-f71f4d814383@lunn.ch>
-References: <20250120040214.2538839-1-chris.packham@alliedtelesis.co.nz>
- <20250120040214.2538839-2-chris.packham@alliedtelesis.co.nz>
- <20250122-obedient-owl-from-ganymede-4a8343@krzk-bin>
- <6b026af2-62bc-4b7d-abc7-d4c6a99bd848@alliedtelesis.co.nz>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mwLZJQSDz3NY1NF0+XhdmGlBVrsKiwY3fA3NSeYQL2zhya20uZZe0VOb065KRouLDw4OF0WHVxzdTVAS+oXdT9GklTS4TwRcastzxKCy6TzUFvrtX0uvGJMIENWCeWF5SvQ9cy9r/tEq8riHNPWl6RHzs7IgRDmGlBvxq+0xI4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lZwJwS82; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A03EDC4CED3;
+	Thu, 23 Jan 2025 22:09:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737670187;
+	bh=GnyZQ++mmddfCUBYwNZ3f5Vqkm3s2uA02jx7DMrwiCY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lZwJwS82OuxHjBF5AJ6GC6Xi/lYX1aBwTXGxQbisfkf0cqlugv4s6fFfeWjY2x7im
+	 if//OEZkGSp/WwEghHn8qcvJQuQPGWFsP6W1qHJKIU6fhWT2ulVO1dzFSAi5ZWxbBP
+	 lomwVySojpwvAH7Vd6HIYr8b32vwNFegqbuzItcCpBz//Of8AwKb8QhlQRudhUIShu
+	 9yC+Mica9DTZD/wdA+l6zcvKjmw9PTY5DZa3f9IIn0uxn1gVfz3jvqDG5sCXHUCquG
+	 g36ZFL27at0tnyZC/hEG9dh2humKhyUbsVEmGrdwb2JLbzRd/gmo4WicoXaCcR1oHt
+	 AviIOrQt623LA==
+Date: Thu, 23 Jan 2025 16:09:46 -0600
+From: Rob Herring <robh@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ferry Toth <fntoth@gmail.com>
+Subject: Re: [PATCH v1 1/3] dt-bindings: usb: dwc3: Add a property to reserve
+ endpoints
+Message-ID: <20250123220946.GA407034-robh@kernel.org>
+References: <20250116154117.148915-1-andriy.shevchenko@linux.intel.com>
+ <20250116154117.148915-2-andriy.shevchenko@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,83 +63,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6b026af2-62bc-4b7d-abc7-d4c6a99bd848@alliedtelesis.co.nz>
+In-Reply-To: <20250116154117.148915-2-andriy.shevchenko@linux.intel.com>
 
-> >> +        properties:
-> >> +          realtek,port:
-> >> +            $ref: /schemas/types.yaml#/definitions/uint32
-> >> +            description:
-> >> +              The MDIO communication on the RTL9300 is abstracted by the switch. At
-> >> +              the software level communication uses the switch port to address the
-> >> +              PHY with the actual MDIO bus and address having been setup via the
-> >> +              parent mdio-bus and reg property.
-> > I don't quite get why this cannot be the 'reg' property. I understood that
-> > 'reg' of this node is not really used? Or you meant here this 'reg', not
-> > parent's 'reg'?
+On Thu, Jan 16, 2025 at 05:40:46PM +0200, Andy Shevchenko wrote:
+> Some of the endpoints may be reserved by hardware for different purposes,
+> e.g., tracing control and output. This is the case, for instance, on
+> Intel Merrifield and Moorefield platforms that reserve a few and USB driver
+> may not use them for the regular transfers. Add the respective bindings.
 > 
-> It's is a bit confusing (any suggestions for improving the description 
-> and/or commit message are welcome).
+> Signed-off-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> index 1cd0ca90127d..2ae8e5e85f78 100644
+> --- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> +++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+> @@ -109,6 +109,16 @@ properties:
+>    resets:
+>      minItems: 1
+>  
+> +  snps,reserved-endpoints:
+> +    description:
+> +      Reserve endpoints for other needs, e.g, for tracing control and output.
+> +      When set, the driver will avoid using them for the regular USB transfers.
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    maxItems: 30
 
-I don't know if it will actually help, but....
+Please make minItems explicit.
 
-We have two entangled configurations here.
-
-1) You have 4 MDIO busses which you need to describe using mdio.yaml
-   In this binding, reg is the address of the device on the bus, in
-   the range 0-31.
-
-2) The hardware was a pool of PHYs which you can map to address on the
-   MDIO busses.
-
-Rather than combining them, maybe it would be better to keep them
-separate. It is probably more error prone, but simpler to
-understand. And hopefully errors result in PHYs not being found during
-probe, so the problems are obvious.
-
-Maybe you can actually use phandles. You have the usual MDIO bus
-nodes:
-
-    mdio@5c030000 {
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        ethphy0: ethernet-phy@1 {
-            reg = <1>;
-        };
-
-        ethphy1: ethernet-phy@3 {
-            reg = <3>;
-        };
-    };
-
-    mdio@5c040000 {
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        ethphy2: ethernet-phy@1 {
-            reg = <1>;
-        };
-
-        ethphy3: ethernet-phy@3 {
-            reg = <3>;
-        };
-    };
-
-    mdio@5c050000 {
-       ...
-    }
-
-    mdio@5c060000 {
-       ...
-    }
-
-    And then a node which is a list of PHY phandles:
-
-    [&ethphy0, &ethphy1, &ethphy2, &ethphy3, ....]
-
-The 0th entry in the list tells you have to map the 0th PHY in the
-pool to an MDIO bus and address. Follow the phandle to get the MDIO
-bus and the address on the bus.
-
-	Andrew
+> +    items:
+> +      minimum: 2
+> +      maximum: 31
+> +
+>    snps,usb2-lpm-disable:
+>      description: Indicate if we don't want to enable USB2 HW LPM for host
+>        mode.
+> -- 
+> 2.43.0.rc1.1336.g36b5255a03ac
+> 
 
