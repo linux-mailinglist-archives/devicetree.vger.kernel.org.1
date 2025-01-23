@@ -1,212 +1,257 @@
-Return-Path: <devicetree+bounces-140565-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140566-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CB59A1A42C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 13:27:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF37DA1A430
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 13:28:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78F3516774A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:27:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 369EB7A0438
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:27:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BCF020E6F2;
-	Thu, 23 Jan 2025 12:27:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AE7320E70B;
+	Thu, 23 Jan 2025 12:28:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="ZpT6ZEBV"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="AEVEWwfp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011046.outbound.protection.outlook.com [40.107.74.46])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C09D320E715;
-	Thu, 23 Jan 2025 12:27:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737635249; cv=fail; b=q6x4JLWjPFifFrkHfK/WxYoGCbkbvc0dywo08LHr91OuG+i9207lAdbR6BowBsL6A0knt/jd0BKkloDNEdoRwUwYowfkN2hoietOGF2zzJZaCnliWSekRoEBg7URc9EgAEB6TPFzPvfVtHzJ1SXC1gNTagZJ0YxQRkhMR/naT2o=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737635249; c=relaxed/simple;
-	bh=eeOtsoIG91wifJm0P3PkpcS5t5+/QTZH1FiU+PNY5qg=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=SpbbXVwQVKF79wNH17WlrOnLTB90jxkhNpN65+83dqM7qSryhEteBRlWmUAzBsaa2xc56RnlX4mEOkX0gIR2c+/Jy+8+zsThT4piqVA8AOS0Z3D6EUWklZAXb0FVVcwlZmrzTvX+wWJw7E57muudgeXI7H1eypIYjBENw7XzoK0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=ZpT6ZEBV; arc=fail smtp.client-ip=40.107.74.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZW3pNScVWlmKZhnsJ8t0q9/PoOdLcEAPescVJ1ipvSX7tACeV3tuW+ta5/QNX+ZsfpuJJqqtgILtnt+Qcx/5gGWMxKFbpfYcP3PI1QhX5+rVq+2LPtAW8/lY1n5MMjAgHF7kX8CDWRIHaLED+EVIt9hHX7GHBji+BPIrkx/xoF2uloAG02rKWrCAIdM+NAIDiryHamXVfM51WFNIUJrD2x99mcLM3tjErauvg8xqcZPzu0QTP4dpVBPxrm/VC6OWygjO7a6a+lLM1xnt1hIovdF3zzwOoB58cHBkE1AV58tEK0d2R+ECQGkvcfRj9OW2yO7cp2OSbsv+1L8m9WjMxg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=l96cT7kYtkMwaf+W1pNsNp7ONT2K4ZNUHaYE6ke+tHk=;
- b=iAXB5SEF5wMYe9vUSzgaAc6mS05PjBwudT0PW5URjCmm4FRHBaXK+izCvxjfowT1CvEbnfK9aOIplkDs2doHBlsZ5To2W+eqZV1ypxG6DWPHmyxazO8C8jjfpJtqmmFfSmzxtjiMWxpDK2M+mIkMvHJTYWf9FOSXFcBr8qeSCLJ938TZ8d0QzCcoFgkw2H7iBUNzvOfp8kuWtyYbGus8UqHsw4OfQHyQ7NOCCiv06vkOdy6+qmGq+1O7veRDx1rafu0fFGyzn0i79XU3J2U35CO11aT/3utoW7khBryUhmssDj9nE2ykuG+SNT008FO/N5ShF8PPb+VElMYMe/ANtA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l96cT7kYtkMwaf+W1pNsNp7ONT2K4ZNUHaYE6ke+tHk=;
- b=ZpT6ZEBVx9UF/WSL8hUOwLSQqc69PioF2xv82250Q0wpv1waF3odJ6paeQk+283kqG+eU3RFOnbafN1qTvzFzo/PIV9A3IzXDASoJI8M71iOzVAZYgssfubYQ+aUDXNDglkQ2xAn4WRHuubidYu6FBFF13lac48zl6fZUxsRhQg=
-Received: from OSBPR01MB2775.jpnprd01.prod.outlook.com (2603:1096:604:13::17)
- by OS3PR01MB8413.jpnprd01.prod.outlook.com (2603:1096:604:191::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8356.22; Thu, 23 Jan
- 2025 12:27:22 +0000
-Received: from OSBPR01MB2775.jpnprd01.prod.outlook.com
- ([fe80::54f7:9a51:ae47:185b]) by OSBPR01MB2775.jpnprd01.prod.outlook.com
- ([fe80::54f7:9a51:ae47:185b%5]) with mapi id 15.20.8377.009; Thu, 23 Jan 2025
- 12:27:15 +0000
-From: John Madieu <john.madieu.xa@bp.renesas.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: "geert+renesas@glider.be" <geert+renesas@glider.be>, "robh@kernel.org"
-	<robh@kernel.org>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, Biju Das <biju.das.jz@bp.renesas.com>, Claudiu
- Beznea <claudiu.beznea.uj@bp.renesas.com>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "john.madieu@gmail.com" <john.madieu@gmail.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "magnus.damm@gmail.com"
-	<magnus.damm@gmail.com>
-Subject: RE: [PATCH v3 2/9] dt-bindings: soc: renesas: Add RZ/G3E variant SYS
- binding
-Thread-Topic: [PATCH v3 2/9] dt-bindings: soc: renesas: Add RZ/G3E variant SYS
- binding
-Thread-Index: AQHbbLn+0pXUz1uua0SSeZP5IZihULMj/AuAgABFDjA=
-Date: Thu, 23 Jan 2025 12:27:15 +0000
-Message-ID:
- <OSBPR01MB2775A037F15E614EDCFB0640FFE02@OSBPR01MB2775.jpnprd01.prod.outlook.com>
-References: <20250122103911.517484-1-john.madieu.xa@bp.renesas.com>
- <20250122103911.517484-3-john.madieu.xa@bp.renesas.com>
- <20250123-conscious-resolute-dog-b3dda7@krzk-bin>
-In-Reply-To: <20250123-conscious-resolute-dog-b3dda7@krzk-bin>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OSBPR01MB2775:EE_|OS3PR01MB8413:EE_
-x-ms-office365-filtering-correlation-id: f135ac9e-6d3b-4933-4734-08dd3ba94554
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|7416014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?JEeHojnbc3vfxjIbIBRFrFd5DSDjJMGfbG0iGe8t/mHQ1Cl8LhRLzyLW4Um4?=
- =?us-ascii?Q?ivxLJRtIEywr37+KLdXQ/vP+h9fX3eoF1yQbClBz0ogkeY9zxrg4p7nBt1yl?=
- =?us-ascii?Q?V/UffauOwXwlsdjWIGhdzPvBEG/Si5tIA7hfwpXcOR5+M2BuTtIWb0mLejl3?=
- =?us-ascii?Q?g4xrwQF6/4G5/+7xc/WgHGPPPkD9R8RM5/qrtAoSdNnGuGVffI1esEkxeyoj?=
- =?us-ascii?Q?ZzAkrX8BqXRb4ZDZQjSVdN99KANvMdreUI+hv8j2VOiIL/QsiYCRIoNA1Awh?=
- =?us-ascii?Q?izoXfjKeLZ7HCZPVzeyH+obrdC4Ugb4UCr7qKgGg3Hep0Mz6OvQB7JMEeosC?=
- =?us-ascii?Q?Y7Jdseyzus7BA0GZJM8cVtgsjh1PAncEC7QCSK4YHwYO18DYX9PnbIhTbWAh?=
- =?us-ascii?Q?dP23gvv2ODO+IpXrGibLAmeXpCTCx/k4ivoO2ISeKx0r6kjA7phG/k5RsiRL?=
- =?us-ascii?Q?gx1TqUo4gOg/dmM7+2QLOLAGTwxT13YgCxFYDZ2sB+7b6TgVg7LoN+N8gysI?=
- =?us-ascii?Q?pUAqbrnoB39l3DNkDwo2sFIbM0urp7DT3NCVYiKXsWKV6kopCZT48WhkVZdV?=
- =?us-ascii?Q?AUH6ROlMhfFj8Am3AN7925fNwHfHVB3ZNNheO3cAuLsmWsyEt3hoZeUz6Avw?=
- =?us-ascii?Q?0kyC4aMHih3cjUkiXYrFnIVlMqnA2qcahOwQqvx5URgItIRaDs6gI9wLqvOB?=
- =?us-ascii?Q?zB/muYP4BZpHRVRj5vu1zRfu6pz2YNnK9q9vydWs2/H9bvTbwfHcZf0my/za?=
- =?us-ascii?Q?JHAKIFC+MixaEs+cqaLj9t+3I8PAXgiotjGRjOoMbamWDF3br6YrLY2XvHqq?=
- =?us-ascii?Q?PI360ifsqAAqlTJAoBtq4uykVS6HEexKUElKLVXS8kOYSJXLm1Q0CvYPlAgZ?=
- =?us-ascii?Q?MYdi95TYDeLuEyXl9HSB9Gb733mIwZEvFSgcnggcskuTHufDW4GABTHnl2Uu?=
- =?us-ascii?Q?cTQHQKptMMzvXYyph6vS1NhYccqyW8sJSbSMBCLHJ9YF7gUcVfCl6xGrtylw?=
- =?us-ascii?Q?U9oqI3XU/uKu441AS25+BoJcUdj3e4hcJL1WBIzlMGDrvaBQ/VJtjMSvGNqd?=
- =?us-ascii?Q?J7+VtiDqCmkCVl+j1HruV7VuD/CijATR01IKYJn9Rcb01JgSRjPytGkVKXPt?=
- =?us-ascii?Q?pXQLcjjKXV+0DE53ZbZv10GBqbVgu3IKKTZKIf6NeaOY1hLTzQifgrZ7A1pw?=
- =?us-ascii?Q?x+6iyvOQ9A61VPhZxIXTVKBz7f54XJJqeiVQs7rKCRLyAtHBR8rKVTTkl1Gv?=
- =?us-ascii?Q?GUjkMHK2zrGS8ttyw7HwZ21j+ASySpviIRLnu+jqISnGpmth2sxPjwfT7RrY?=
- =?us-ascii?Q?mK0FKUgOOO+D/NRBE9q+WqZUe8gLbS3ACdpA+XhtkICVxVSaoK4L2PPytzaF?=
- =?us-ascii?Q?G2BKc3OhvfUJoLzKRk6+BTAiPdz1?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSBPR01MB2775.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?RxgtXxNZJK25sQhrUdx19CySXfNmSAY7B6FkStE6nXZkTNvfXbOcIHeNqHtJ?=
- =?us-ascii?Q?7Z3NDP7YWnxI02EkBR9i8Jmi1RTn+rE9VW+vidfFlbzexVhJbSFwwvfzFtSo?=
- =?us-ascii?Q?nXSm7yzEEdRZFBKcoQargJ8yPfznIvI2zMH3aTGMiu4YwHA0KrYPuhMyZFiT?=
- =?us-ascii?Q?xiMUSCo3g/hBwONmMyEzDNil8FofIqPan8ogHnA1sXTzltIwRgUJ8yaSs3iu?=
- =?us-ascii?Q?tP8iNCp0jCIn/D+3SgTOTxXqgjjbvHHnW3DDh6ESv7iW1S6RBypQB7+5NgWQ?=
- =?us-ascii?Q?mngGOuiAftaUeftdT7MO4/Aw2yvnkOE5h1AjYPRDLjuLxqi1wkuJPd36oq2G?=
- =?us-ascii?Q?iy7WPtSFbeDTXsco1QbRLprpTR5F5R3p0nWJOa3muxJ0DC6vekwcO6OkQzcO?=
- =?us-ascii?Q?DiffbyolYVksz5gCxla5vFVDJkdM2xeRgV0ik1cwikxNLt/KeEuQhxhMQJy3?=
- =?us-ascii?Q?ICSY/QJZADeCYYtNOUk4DlfJrM6izPOVDGTIVD49r/rfxevqdEuIaNmWMuLt?=
- =?us-ascii?Q?lcqmRrfWP0UutYhcr/T+kKQVmB7S0ierv3GNR1IMo4nUaOafeIFUJy19iMzf?=
- =?us-ascii?Q?in9gUkbu7AntTjhHA0i8TkslBpAtIPXOlrOz9d/bFrRxhtwoNe90dAkgiX15?=
- =?us-ascii?Q?x+p1d7EDsIX8k+AGbLuMwGJpEz2uI2sPsVMQSybv7mcsR8WAOGsu+gKpMdj5?=
- =?us-ascii?Q?NsmABcISBXdB/Yt49xBP2+kdnFUTBqCYZUyLjIbVbeIyWl5m7W9p1dWgPR7d?=
- =?us-ascii?Q?q2lTqnnzkEch1PjI//1mZACbNZWOW66OwtdUyV6emidvQZCdvL3litxrhFHJ?=
- =?us-ascii?Q?duoNSTUkUXX5LKsessqcmwpGrnWM8ySIJfmovRAphb4gBh62bdGZdPiVJHt5?=
- =?us-ascii?Q?lFCSir/XGEzh8JkaR1ADL/DJY587KpoSYkrL2BVPw3fKDxB2W4Yy3Fdcntdu?=
- =?us-ascii?Q?R2aTvJCk+cvtZPU9b6xkbYm4QO+9XP63GWWm8uQs7FaJ18xdhHaPxFtl4cDX?=
- =?us-ascii?Q?oVV9t6itS7IdqbaaM9UvZbuRQso0dA8WR8YTHrSK1DonMob5u451hukINo5b?=
- =?us-ascii?Q?JHfWUpsPo16E9et0rfnkYMDmm3gTmN+YllooiswHi8LMSyr6MMcLpdDu8omu?=
- =?us-ascii?Q?CLZDqI8fvSiqgHk5GpO9qp8jYGfBSXC/wzmKC5nfkizG82oHXHLlJvDUHtfB?=
- =?us-ascii?Q?ED8sND8AA8h0vtdfT7a9EYTwBaVkpqzRijhzdZUL7QpCOftoPL3BUuLYR3I9?=
- =?us-ascii?Q?8Y1cS+T00jRbv4FEC/7hyok/cWHXlFTci5ZRosW4E1pubYxG/+jXFm2+kjor?=
- =?us-ascii?Q?XrPI5V9c0KvrWUaeem1qW34oraTdxGQL4hrJz00Yb93dvJZYAZbUSPHWk4rb?=
- =?us-ascii?Q?pux9j4QJJWc1G1aEIofef+ATiijoqvClyGs/4HdMTGOEuvqRhY65zBEV1C++?=
- =?us-ascii?Q?wha3+QWzxJWW3xZIDRDq6mhepc12V+65vmSMFqHYPYJZq7CfHPsPhPkYliDb?=
- =?us-ascii?Q?+JJ5APjFvRF4m4ZB7IXoYJ1yUh49TQlBHK6G7KLsw5Sj9vn0KSwRQ5uAikV0?=
- =?us-ascii?Q?wsNBjqzmS+0LaoKX1Qrcs+O7huNsmJiq61BHlkV+4DT8PkkeJFy79+FCLEvB?=
- =?us-ascii?Q?NA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BA6020E6F2;
+	Thu, 23 Jan 2025 12:27:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737635281; cv=none; b=Zta/MX6ePW1+OxLHv6kH/cGi9ZG244gLU6Io8baX6XEqMg0R4z0fbPgDHZiAjy97YL28lTnYpxKHG/YYkzjLluqyZVhsNZ0SrEer/TyZGzNaAmgxfNOt/lfrR5uZxb/BhKfH3ndVg8bnzKeSw52kL66t4xdM+CSufAabD+9dsd4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737635281; c=relaxed/simple;
+	bh=87QOxN9grVOib/hH+LM5POuv8keCENLQWQeF7hQcDdE=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=ryqcGYy5dLfZTMsb8L5zlyaqpGtNyroJ1m7SncTDAS//k8OzRM6/0gf9+u79tFUgGlce8PTZFo/TybOa2GGzR7AxMZycQBjAWm1JsO1o7moOvH8z2REAGSt66Q62JD7yJW8ZzKlNSya77wrZybPobzpoQe6pbFne3D4FE7YUWLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=AEVEWwfp; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737635279; x=1769171279;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=87QOxN9grVOib/hH+LM5POuv8keCENLQWQeF7hQcDdE=;
+  b=AEVEWwfp/ovlUfR+pTfrJGbE2afVGtJv2OuXDkex8i1PKaOdmVgbsW5K
+   wIoy2Gzqk7b4zmWp6hA/iBu8vZ0pkai2NgMdiaPXsal31XfizZu/d8YjM
+   bbb9yrbrS2+samRg4thJBS5zCF09pb4jqhMaG6PqYKYVOgM7uDCSXKXNP
+   V/Te/16N7uHgNaKOaHIwlJTVJ5RUi0O08BQ97rbtH4EB+a0+Dgbma1cr5
+   GMXEz3xJUFWm7Ug7SgYQWWcrzBzdrbPMHhNsNnIEFCNTwttYMV8YEAVOX
+   kF5uSU2GESjM3molqiXE3Zn2uxW/953AIBQfqqh4fUWSR9uKp/7FHX+ln
+   g==;
+X-CSE-ConnectionGUID: /WK1rJAeSGKKC1EDhc6o+A==
+X-CSE-MsgGUID: J9ZpZDP0ToGZ6XXzYMWpRw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="38010312"
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; 
+   d="scan'208";a="38010312"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2025 04:27:58 -0800
+X-CSE-ConnectionGUID: 1EnuViEfSL+CW2HULfQNsw==
+X-CSE-MsgGUID: NwuHjsrQSyazuHsNRTEbDA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,228,1732608000"; 
+   d="scan'208";a="112440338"
+Received: from unknown (HELO localhost) ([10.237.66.160])
+  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2025 04:27:53 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Damon Ding <damon.ding@rock-chips.com>, Andy Yan <andyshrk@163.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org,
+ sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com,
+ l.stach@pengutronix.de, dmitry.baryshkov@linaro.org,
+ andy.yan@rock-chips.com, hjc@rock-chips.com, algea.cao@rock-chips.com,
+ kever.yang@rock-chips.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org
+Subject: Re: [PATCH v5 05/20] drm/rockchip: analogix_dp: Replace DRM_...()
+ functions with drm_...() or dev_...()
+In-Reply-To: <a8bee693-cbde-469d-abcf-363311cfd904@rock-chips.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20250109032725.1102465-1-damon.ding@rock-chips.com>
+ <20250109032725.1102465-6-damon.ding@rock-chips.com>
+ <40b09942.533e.19449c023a1.Coremail.andyshrk@163.com>
+ <a8bee693-cbde-469d-abcf-363311cfd904@rock-chips.com>
+Date: Thu, 23 Jan 2025 14:27:50 +0200
+Message-ID: <87ed0tn29l.fsf@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OSBPR01MB2775.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f135ac9e-6d3b-4933-4734-08dd3ba94554
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2025 12:27:15.5096
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LJsInToblwpv+RmWQXg9hjIkbRS/p+fUxV5TWsN1ZWuYUDjm7aXjYUrZJOOed3o61viqXNxYyZvsEONPaJ3U6o8IGqSpdTZYS6Kb4D8WWa8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: OS3PR01MB8413
+Content-Type: text/plain
 
-Hi Krzysztof,
+On Wed, 22 Jan 2025, Damon Ding <damon.ding@rock-chips.com> wrote:
+> Hi Andy,
+>
+> On 2025/1/9 14:28, Andy Yan wrote:
+>> 
+>> Hi Damon,
+>> 
+>> At 2025-01-09 11:27:10, "Damon Ding" <damon.ding@rock-chips.com> wrote:
+>>> According to the comments in include/drm/drm_print.h, the DRM_...()
+>>> functions are deprecated in favor of drm_...() or dev_...() functions.
+>>>
+>>> Use drm_err()/drm_dbg_core()/drm_dbg_kms() instead of
+>>> DRM_DEV_ERROR()/DRM_ERROR()/DRM_DEV_DEBUG()/DRM_DEBUG_KMS() after
+>>> rockchip_dp_bind() is called, and replace DRM_DEV_ERROR() with dev_err()
+>>> before calling it.
+>>>
+>>> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+>>> ---
+>>> .../gpu/drm/rockchip/analogix_dp-rockchip.c   | 29 ++++++++++---------
+>>> 1 file changed, 15 insertions(+), 14 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+>>> index 546d13f19f9b..8114c3238609 100644
+>>> --- a/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+>>> +++ b/drivers/gpu/drm/rockchip/analogix_dp-rockchip.c
+>>> @@ -100,13 +100,13 @@ static int rockchip_dp_poweron(struct analogix_dp_plat_data *plat_data)
+>>>
+>>> 	ret = clk_prepare_enable(dp->pclk);
+>>> 	if (ret < 0) {
+>>> -		DRM_DEV_ERROR(dp->dev, "failed to enable pclk %d\n", ret);
+>>> +		drm_err(dp->drm_dev, "failed to enable pclk %d\n", ret);
+>> 
+>>                 You just need to pass dp here:
+>>                  drm_err(dp, "failed to enable pclk %d\n", ret);
+>> 
+>
+> I see. It is really better to pass dp instead of dp->drm_dev. I will 
+> update all relevant logs in the next version.
 
-Thanks for your feedback.
+No, this was bad review feedback. You're absolutely expected to pass
+struct drm_device to drm_err() and friends.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: Thursday, January 23, 2025 8:45 AM
-> Subject: Re: [PATCH v3 2/9] dt-bindings: soc: renesas: Add RZ/G3E variant
-> SYS binding
->=20
-> On Wed, Jan 22, 2025 at 11:39:04AM +0100, John Madieu wrote:
-> > Add RZ/G3E (R9A09G047) variant to the existing RZ/V2H System
-> > Controller (SYS) binding as both IPs are compatible.
-> >
-> > They however have different SoC IDs, RZ/G3E has has VSP control
-> > Register compared to RZ/V2H SYS IP. Hence a new compatible string
-> > renesas,r9a09g047-sys introduced to handle these differences.
-> >
-> > Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
-> > ---
-> >  .../bindings/soc/renesas/renesas,r9a09g057-sys.yaml          | 5 ++++-
-> >  1 file changed, 4 insertions(+), 1 deletion(-)
-> >
->=20
-> <form letter>
-> This is a friendly reminder during the review process.
->=20
-> It looks like you received a tag and forgot to add it.
->=20
+BR,
+Jani.
 
-Thanks for the link[1].
 
-I forgot to add the Rb tag from Rob and I also updated the commit
-description. I Will fix it in v4.
+>
+>>> 		return ret;
+>>> 	}
+>>>
+>>> 	ret = rockchip_dp_pre_init(dp);
+>>> 	if (ret < 0) {
+>>> -		DRM_DEV_ERROR(dp->dev, "failed to dp pre init %d\n", ret);
+>>> +		drm_err(dp->drm_dev, "failed to dp pre init %d\n", ret);
+>>> 		clk_disable_unprepare(dp->pclk);
+>>> 		return ret;
+>>> 	}
+>>> @@ -126,12 +126,13 @@ static int rockchip_dp_powerdown(struct analogix_dp_plat_data *plat_data)
+>>> static int rockchip_dp_get_modes(struct analogix_dp_plat_data *plat_data,
+>>> 				 struct drm_connector *connector)
+>>> {
+>>> +	struct rockchip_dp_device *dp = pdata_encoder_to_dp(plat_data);
+>>> 	struct drm_display_info *di = &connector->display_info;
+>>> 	/* VOP couldn't output YUV video format for eDP rightly */
+>>> 	u32 mask = DRM_COLOR_FORMAT_YCBCR444 | DRM_COLOR_FORMAT_YCBCR422;
+>>>
+>>> 	if ((di->color_formats & mask)) {
+>>> -		DRM_DEBUG_KMS("Swapping display color format from YUV to RGB\n");
+>>> +		drm_dbg_kms(dp->drm_dev, "Swapping display color format from YUV to RGB\n");
+>>> 		di->color_formats &= ~mask;
+>>> 		di->color_formats |= DRM_COLOR_FORMAT_RGB444;
+>>> 		di->bpc = 8;
+>>> @@ -201,17 +202,17 @@ static void rockchip_dp_drm_encoder_enable(struct drm_encoder *encoder,
+>>> 	else
+>>> 		val = dp->data->lcdsel_big;
+>>>
+>>> -	DRM_DEV_DEBUG(dp->dev, "vop %s output to dp\n", (ret) ? "LIT" : "BIG");
+>>> +	drm_dbg_core(dp->drm_dev, "vop %s output to dp\n", (ret) ? "LIT" : "BIG");
+>>>
+>>> 	ret = clk_prepare_enable(dp->grfclk);
+>>> 	if (ret < 0) {
+>>> -		DRM_DEV_ERROR(dp->dev, "failed to enable grfclk %d\n", ret);
+>>> +		drm_err(dp->drm_dev, "failed to enable grfclk %d\n", ret);
+>>> 		return;
+>>> 	}
+>>>
+>>> 	ret = regmap_write(dp->grf, dp->data->lcdsel_grf_reg, val);
+>>> 	if (ret != 0)
+>>> -		DRM_DEV_ERROR(dp->dev, "Could not write to GRF: %d\n", ret);
+>>> +		drm_err(dp->drm_dev, "Could not write to GRF: %d\n", ret);
+>>>
+>>> 	clk_disable_unprepare(dp->grfclk);
+>>> }
+>>> @@ -236,7 +237,7 @@ static void rockchip_dp_drm_encoder_disable(struct drm_encoder *encoder,
+>>>
+>>> 	ret = rockchip_drm_wait_vact_end(crtc, PSR_WAIT_LINE_FLAG_TIMEOUT_MS);
+>>> 	if (ret)
+>>> -		DRM_DEV_ERROR(dp->dev, "line flag irq timed out\n");
+>>> +		drm_err(dp->drm_dev, "line flag irq timed out\n");
+>>> }
+>>>
+>>> static int
+>>> @@ -277,7 +278,7 @@ static int rockchip_dp_of_probe(struct rockchip_dp_device *dp)
+>>>
+>>> 	dp->grf = syscon_regmap_lookup_by_phandle(np, "rockchip,grf");
+>>> 	if (IS_ERR(dp->grf)) {
+>>> -		DRM_DEV_ERROR(dev, "failed to get rockchip,grf property\n");
+>>> +		dev_err(dev, "failed to get rockchip,grf property\n");
+>>> 		return PTR_ERR(dp->grf);
+>>> 	}
+>>>
+>>> @@ -287,19 +288,19 @@ static int rockchip_dp_of_probe(struct rockchip_dp_device *dp)
+>>> 	} else if (PTR_ERR(dp->grfclk) == -EPROBE_DEFER) {
+>>> 		return -EPROBE_DEFER;
+>>> 	} else if (IS_ERR(dp->grfclk)) {
+>>> -		DRM_DEV_ERROR(dev, "failed to get grf clock\n");
+>>> +		dev_err(dev, "failed to get grf clock\n");
+>>> 		return PTR_ERR(dp->grfclk);
+>>> 	}
+>>>
+>>> 	dp->pclk = devm_clk_get(dev, "pclk");
+>>> 	if (IS_ERR(dp->pclk)) {
+>>> -		DRM_DEV_ERROR(dev, "failed to get pclk property\n");
+>>> +		dev_err(dev, "failed to get pclk property\n");
+>>> 		return PTR_ERR(dp->pclk);
+>>> 	}
+>>>
+>>> 	dp->rst = devm_reset_control_get(dev, "dp");
+>>> 	if (IS_ERR(dp->rst)) {
+>>> -		DRM_DEV_ERROR(dev, "failed to get dp reset control\n");
+>>> +		dev_err(dev, "failed to get dp reset control\n");
+>>> 		return PTR_ERR(dp->rst);
+>>> 	}
+>>>
+>>> @@ -315,12 +316,12 @@ static int rockchip_dp_drm_create_encoder(struct rockchip_dp_device *dp)
+>>>
+>>> 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm_dev,
+>>> 							     dev->of_node);
+>>> -	DRM_DEBUG_KMS("possible_crtcs = 0x%x\n", encoder->possible_crtcs);
+>>> +	drm_dbg_kms(drm_dev, "possible_crtcs = 0x%x\n", encoder->possible_crtcs);
+>>>
+>>> 	ret = drm_simple_encoder_init(drm_dev, encoder,
+>>> 				      DRM_MODE_ENCODER_TMDS);
+>>> 	if (ret) {
+>>> -		DRM_ERROR("failed to initialize encoder with drm\n");
+>>> +		drm_err(drm_dev, "failed to initialize encoder with drm\n");
+>>> 		return ret;
+>>> 	}
+>>>
+>>> @@ -340,7 +341,7 @@ static int rockchip_dp_bind(struct device *dev, struct device *master,
+>>>
+>>> 	ret = rockchip_dp_drm_create_encoder(dp);
+>>> 	if (ret) {
+>>> -		DRM_ERROR("failed to create drm encoder\n");
+>>> +		drm_err(drm_dev, "failed to create drm encoder\n");
+>>> 		return ret;
+>>> 	}
+>>>
+>>> -- 
+>>> 2.34.1
+>>>
+>
+> Best regards,
+> Damon
 
-[1] https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/=
-submitting-patches.rst#L597
-
-Best regards,
-John
-
+-- 
+Jani Nikula, Intel
 
