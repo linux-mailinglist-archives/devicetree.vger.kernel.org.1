@@ -1,99 +1,113 @@
-Return-Path: <devicetree+bounces-140568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C8E1A1A448
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 13:30:37 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63185A1A4C1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 14:18:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DA7E1883CB9
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:30:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A340A7A32E9
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 13:18:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAF3C20E32D;
-	Thu, 23 Jan 2025 12:30:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0742520F076;
+	Thu, 23 Jan 2025 13:18:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="atGtDdFA"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="jI2Y5Xxu";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="gqUxT90L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
+Received: from fout-b6-smtp.messagingengine.com (fout-b6-smtp.messagingengine.com [202.12.124.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDE331C1F0C;
-	Thu, 23 Jan 2025 12:30:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8069D20E6EE;
+	Thu, 23 Jan 2025 13:18:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737635431; cv=none; b=G91CW+uZDsWhD3uJYINf7n6WXoec3HJ8/5HuyBmXiMd1Jj5x4oBRZQvYCO3MKEohIK/QzrjbiiK9m6CHaNZXZPVRNsaOtLFa5P3nDt1pW5TE0L9VVeMi+UHOHT3g847D9Bzer4OPf/WrG71jIOR9BlLB442bAJ7vTZ/vHPeGbak=
+	t=1737638291; cv=none; b=ofxzL7nUEUBWrRm+HVLK4gFbcmQERolvJQtdXMwchOmOz8uy01dzhTiPnDJcOZSYEsyR2NTimA/I6TJVPeOnZcjQ2lUN4Y9vATw61uZqcLPSfcKwc3EEWi+kHG0sw3VfUKAFLGtqmbA0DKa8fKUablp+33NvfpNE7GbNDDxLigs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737635431; c=relaxed/simple;
-	bh=1rGZAYv2pSYn8yxsvmPAt9l//t1iayRE4F3Et4UrMgI=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=fRPwwCSg36DL1b1u+Jp0FUd1+5g2XjFPNuHcl/oVwJr1p8f/hFWDn+2N80Iy855HPOpYdjUMxewl9rW5+jeYMh15/nbLXzOy12aJeOX27pnRqf7sGv+bIbj1pGBmUdt2Cxjsh7p8xCHRewPZ7u++VqfQ09s2i0+z3UYSnqNusoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=atGtDdFA; arc=none smtp.client-ip=162.240.238.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=39CuZZZdjSJEJPQMh+OB3G3RFMPggoTrQcp5t75nl8Y=; b=atGtDdFA/e4szMovQBwMFwgXZn
-	co6f+Ko4J890WcGUnR27tQkv47WQotAMgVeGUpdhIHs0P2Ay6ftyu4fzFvUfxjY4gJXetCJDuQPVF
-	TtvHLm8RmrsIztBJvjDPjdUo1rAYIKT0D+YzQ7UWKKjTGTUbxUSoHnI6m7EreB+hqZdtGl3u7i3jK
-	jdFp5M9z4gv7koNlNHcYAhghg/IUdc18Qj+WBrSOsb4jrB8OUSqc7QEeMiOVafkvItxkP9cg1eYCO
-	j17SlYjKKx1cM+3yFH74+WkQuyZmN8tWggp4l2iWs5idkuwdGvVJWIMAnAnxKfD8R3OFlpkkcyyER
-	g0jaFJug==;
-Received: from [122.175.9.182] (port=45111 helo=zimbra.couthit.local)
-	by server.wki.vra.mybluehostin.me with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <basharath@couthit.com>)
-	id 1tawLl-0005TL-35;
-	Thu, 23 Jan 2025 18:00:22 +0530
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id 5FE1A1781C63;
-	Thu, 23 Jan 2025 18:00:13 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 395D61782495;
-	Thu, 23 Jan 2025 18:00:13 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id 2df9ieE3WTUM; Thu, 23 Jan 2025 18:00:13 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id D9E111781C63;
-	Thu, 23 Jan 2025 18:00:12 +0530 (IST)
-Date: Thu, 23 Jan 2025 18:00:12 +0530 (IST)
-From: Basharath Hussain Khaja <basharath@couthit.com>
-To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc: basharath <basharath@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
-	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
-	kuba <kuba@kernel.org>, pabeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
-	conor+dt <conor+dt@kernel.org>, nm <nm@ti.com>, 
-	ssantosh <ssantosh@kernel.org>, tony <tony@atomide.com>, 
-	richardcochran <richardcochran@gmail.com>, 
-	parvathi <parvathi@couthit.com>, schnelle <schnelle@linux.ibm.com>, 
-	rdunlap <rdunlap@infradead.org>, diogo ivo <diogo.ivo@siemens.com>, 
-	m-karicheri2 <m-karicheri2@ti.com>, horms <horms@kernel.org>, 
-	jacob e keller <jacob.e.keller@intel.com>, 
-	m-malladi <m-malladi@ti.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	afd <afd@ti.com>, s-anna <s-anna@ti.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	linux-omap <linux-omap@vger.kernel.org>, 
-	pratheesh <pratheesh@ti.com>, prajith <prajith@ti.com>, 
-	vigneshr <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <1333946741.395386.1737635412707.JavaMail.zimbra@couthit.local>
-In-Reply-To: <6ac6161b-373a-47ce-801d-9e4ff1ef258c@wanadoo.fr>
-References: <20250109105600.41297-1-basharath@couthit.com> <20250109105600.41297-5-basharath@couthit.com> <6ac6161b-373a-47ce-801d-9e4ff1ef258c@wanadoo.fr>
-Subject: Re: [RFC PATCH 04/10] net: ti: prueth: Adds link detection, RX and
- TX support.
+	s=arc-20240116; t=1737638291; c=relaxed/simple;
+	bh=cjEAjAiRLVsTTvub2LJsuZuIZT444uLJ7AxCbIr4/+E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Kyh/tr/BbauSrtOoxFwfe2+UHJIy7QiMNJ+MEsJi/fIj1PtxM+cZORU+SbFXMl/xJTFj0HkoHir7JrbUZvwx1by20OBP+Pk6+DCLvU4Lk9qGu7zvZFpQJPyGYVptwSzPvKsOwFK0QYt9QrTdXvAEjRiQiTxWiZthmHaEHAcecIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=jI2Y5Xxu; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=gqUxT90L; arc=none smtp.client-ip=202.12.124.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-08.internal (phl-compute-08.phl.internal [10.202.2.48])
+	by mailfout.stl.internal (Postfix) with ESMTP id 4B0B3114013F;
+	Thu, 23 Jan 2025 08:18:08 -0500 (EST)
+Received: from phl-mailfrontend-01 ([10.202.2.162])
+  by phl-compute-08.internal (MEProxy); Thu, 23 Jan 2025 08:18:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1737638288;
+	 x=1737724688; bh=Uh4goQMXKVWayIS6AI2jPNKTPmhjtRQoTdZkg1sGjgM=; b=
+	jI2Y5XxujmrJMweJL208rrEQMNTfSwj08STxy/16zUvdrXkSgo3gij86BTNhc6o/
+	hegZ11gOYU+VI3rSiyMZYTYIGvoN49EBahkcgKDegJuOvt4ZTc/cL9D/qFc1Lrbr
+	INJUXeJ3ljP644thrQgAyOdu18kGMjguEN+HPzXMNWS+HCzgvGLrrnkKU3HpMhQQ
+	qf8SKO5zqOf455he6RcOSj+GWLSw1YlZI9LAj+AoVcn+5sX/NqoPyqdS/fQAvGLq
+	Rg6jYk6T7EjgCEJRn+TyzjH1Y74sZuaISE3PPyQmifJdtEMBDSiycm3+GDVGWOKM
+	WY90fRVBIGO7YVBeNu6x9A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1737638288; x=
+	1737724688; bh=Uh4goQMXKVWayIS6AI2jPNKTPmhjtRQoTdZkg1sGjgM=; b=g
+	qUxT90L9pYiqqIIe2iPlIFVbYQCSA5rNnDZSeFQPAxiE5lvTGbMCdWU/L4FrLIf7
+	D1aBMhPoThPqrM7OsyjUZWQRq3XGRP0CKCZhCxfstuc83xIwmpiwvEUY3rJo/6c3
+	ESIJgRU0q/ylD/Tx59skfI/7bWy7NOCxX6yWm17kMwgUjA14PKP+Lc2F1UW35pNu
+	lr8gAg4lzGfpKH1gVx0LcF3aHFaj8BpJWLwmF/t287n7xYsWhLho/WSzWRYJyL4t
+	W8h165y4+UBlkTHSrYv9Y860d25kROckhOfs3DtCcPSDanRs9h/lFQ85RXzcc315
+	EILA6p7YvEeVpZGl1WQJA==
+X-ME-Sender: <xms:j0GSZ-wGeLzee8z4YKBjF-7OKaKUosURApuBPN8l1uH00xMZWUM8Sw>
+    <xme:j0GSZ6QW2Wagu161qJ6kdMnYALmPyOVPW4pUm2dDeRQqm-B_hOU73bydTu_0WcKis
+    KtUkUuAWxz8qrP7xTQ>
+X-ME-Received: <xmr:j0GSZwVUVuNp4w4w5laOnnJVhNCUm577xd_LDC6wB18XT_1rLPpPEhpaAj2XkjXR1xofzFOt5FKcegYO_wfnq-Am48vOcXD0-g>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudejgedgudejiecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddt
+    jeenucfhrhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsoh
+    guvghrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgr
+    thhtvghrnhepfefhleelhfffjefgfedugfegjeelhfevheeikefhueelgfdtfeeuhefftd
+    dvleeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhep
+    nhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrd
+    hsvgdpnhgspghrtghpthhtohepjedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohep
+    mhgrrhgvgiesuggvnhigrdguvgdprhgtphhtthhopehgvggvrhhtsehlihhnuhigqdhmie
+    ekkhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthht
+    ohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoug
+    htsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhrvghnvghsrghsqdhs
+    ohgtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvg
+    gvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:j0GSZ0iwvWp6SpmuFpml3xnscU4UBor2233QlT_1ONoKaj6bbvkDFA>
+    <xmx:j0GSZwCDyA1Sup-2f9rOhOEwTSk2Flx7yh7sjHVtNByRoHgbGBZTLg>
+    <xmx:j0GSZ1Jj-Eh-RqBAAjlt1yNku_PjczTOOfDrlXh6UmnfE38zTBRfjQ>
+    <xmx:j0GSZ3CHM1ltUJeIKrer4O1VTBGDfAQU88hED_LWFRMU1QNZOwlX8A>
+    <xmx:kEGSZ-CRBYSJPWZWhz9rT6LaualE09gV8MCN4wW0g-Tg1nJqhaHJFbR2>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 23 Jan 2025 08:18:07 -0500 (EST)
+Date: Thu, 23 Jan 2025 14:18:05 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Marek Vasut <marex@denx.de>, Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset
+ gpio to mdio node
+Message-ID: <20250123131805.GJ3436806@ragnatech.se>
+References: <20241015144810.GD2838422@ragnatech.se>
+ <825e3b22-340c-4618-8d80-5d1b004fc0e4@denx.de>
+ <CAMuHMdV9XoJHHUM42YFwackdM+oRgP4k-SwZOTwqg0RJGETViw@mail.gmail.com>
+ <d6b35a1b-3f42-4071-99c1-dc87999c5cce@denx.de>
+ <CAMuHMdXW332YZahLw=vzfB6fZwc_9jL8uY-Uxj=Qyfov5vYQFw@mail.gmail.com>
+ <2f9df6fa-2474-4f35-af29-a1c280d5fe6f@denx.de>
+ <CAMuHMdUH32upHwwY7dXqk085LDWzkOz9cBv83FezVUbi27Ygpw@mail.gmail.com>
+ <4d7d6a7d-cbe8-4cbf-9fb1-2cdec0f11ce2@denx.de>
+ <CAMuHMdVnJPMLx=39=f+7S4vdRAC-0q0hKS6Ww=ELYEaLBx+gZw@mail.gmail.com>
+ <021aee32-795a-42c8-80e7-89cb8a45f935@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,119 +115,65 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF113 (Linux)/8.8.15_GA_3968)
-Thread-Topic: prueth: Adds link detection, RX and TX support.
-Thread-Index: wMpv7fMC/ugczbeFyu6r0nphcnNI/g==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.wki.vra.mybluehostin.me: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <021aee32-795a-42c8-80e7-89cb8a45f935@denx.de>
 
+Hello Geert, Marek,
 
-> Le 09/01/2025 =C3=A0 11:55, Basharath Hussain Khaja a =C3=A9crit=C2=A0:
->> From: Roger Quadros <rogerq@ti.com>
->>=20
->> Changes corresponding to link configuration such as speed and duplexity.
->> IRQ and handler initializations are performed for packet reception.Firmw=
-are
->> receives the packet from the wire and stores it into OCMC queue. Next, i=
-t
->> notifies the CPU via interrupt. Upon receiving the interrupt CPU will
->> service the IRQ and packet will be processed by pushing the newly alloca=
-ted
->> SKB to upper layers.
->>=20
->> When the user application want to transmit a packet, it will invoke
->> sys_send() which will inturn invoke the PRUETH driver, then it will writ=
-e
->> the packet into OCMC queues. PRU firmware will pick up the packet and
->> transmit it on to the wire.
->=20
-> Hi,
-> a few nitpicks.
->=20
-> ...
->=20
->> +static int icssm_prueth_tx_enqueue(struct prueth_emac *emac,
->> +=09=09=09=09   struct sk_buff *skb,
->> +=09=09=09=09   enum prueth_queue_id queue_id)
->> +{
->> +=09struct prueth_queue_desc __iomem *queue_desc;
->> +=09const struct prueth_queue_info *txqueue;
->> +=09u16 bd_rd_ptr, bd_wr_ptr, update_wr_ptr;
->> +=09struct net_device *ndev =3D emac->ndev;
->> +=09unsigned int buffer_desc_count;
->> +=09int free_blocks, update_block;
->> +=09bool buffer_wrapped =3D false;
->> +=09int write_block, read_block;
->> +=09void *src_addr, *dst_addr;
->> +=09int pkt_block_size;
->> +=09void __iomem *dram;
->> +=09int txport, pktlen;
->> +=09u32 wr_buf_desc;
->> +=09void *ocmc_ram;
->> +
->> +=09dram =3D emac->prueth->mem[emac->dram].va;
->> +=09if (eth_skb_pad(skb)) {
->> +=09=09if (netif_msg_tx_err(emac) && net_ratelimit())
->> +=09=09=09netdev_err(ndev, "packet pad failed");
->=20
-> Missing trailing \n.
->=20
->> +=09=09return -ENOMEM;
->> +=09}
->> +
->> +=09/* which port to tx: MII0 or MII1 */
->> +=09txport =3D emac->tx_port_queue;
->=20
-> ...
->=20
->> +static int icssm_emac_request_irqs(struct prueth_emac *emac)
->> +{
->> +=09struct net_device *ndev =3D emac->ndev;
->> +=09int ret =3D 0;
->=20
-> No need to init.
->=20
->> +
->> +=09ret =3D request_threaded_irq(emac->rx_irq, NULL, icssm_emac_rx_threa=
-d,
->> +=09=09=09=09   IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
->> +=09=09=09=09   ndev->name, ndev);
->> +=09if (ret) {
->> +=09=09netdev_err(ndev, "unable to request RX IRQ\n");
->> +=09=09return ret;
->> +=09}
->=20
-> ...
->=20
->> +static int icssm_emac_ndo_start_xmit(struct sk_buff *skb,
->> +=09=09=09=09     struct net_device *ndev)
->> +{
->> +=09struct prueth_emac *emac =3D netdev_priv(ndev);
->> +=09int ret =3D 0;
->> +=09u16 qid;
->> +
->> +=09if (unlikely(!emac->link)) {
->> +=09=09if (netif_msg_tx_err(emac) && net_ratelimit())
->> +=09=09=09netdev_err(ndev, "No link to transmit");
->=20
-> \n
->=20
->> +=09=09goto fail_tx;
->> +=09}
->> +
->> +=09qid =3D icssm_prueth_get_tx_queue_id(emac->prueth, skb);...
+On 2024-10-30 15:45:30 +0100, Marek Vasut wrote:
+> On 10/29/24 9:26 AM, Geert Uytterhoeven wrote:
+> 
+> [...]
+> 
+> > > > > > > revision, we can revisit this discussion ? Maybe bootloader-applied DTOs
+> > > > > > > could work then ?
+> > > > > > 
+> > > > > > So, what would you suggest when the PHY nodes would not have compatible
+> > > > > > strings?
+> > > > > I hope I already answered that question before.
+> > > > 
+> > > > Sorry, I may have missed that?
+> > > > 
+> > > > I really prefer not having the PHY compatible strings, as DT should
+> > > > describe only what cannot be auto-detected.
+> > > See paragraph above (*). My take on this is the exact opposite, better
+> > > describe the PHY in DT fully, including compatible strings, so that if
+> > > the PHY driver needs to do some sort of bring up tweak/fix/errata
+> > > workaround/... , it can do so by matching on the compatible string
+> > > without trying to bring the PHY up in some generic and potentially
+> > > problematic way.
+> > > 
+> > > The MDIO bus is not discoverable the same way as PCIe or USB is, so I
+> > > don't think the "DT should describe only what cannot be detected" is
+> > > really applicable to MDIO bus the same way it applies to PCIe or USB.
+> > 
+> > So you think this is similar to SPI NOR, where most FLASHes can be
+> > discovered with the JEDEC READ ID opcode?
+> 
+> Possibly, if you take broken-flash-reset DT property into account somehow.
+> Even SPI NOR does require a proper reset after all, else the READ ID opcode
+> may not work.
+> 
+> > See commit 4b0cb4e7ab2f777c
+> > ("dt-bindings: mtd: spi-nor: clarify the need for spi-nor compatibles"),
+> > which clarified why no new compatible values are accepted.
+> This works as long as your SPI NOR reset works.
 
-We will handle all comments in the next version.
+Seems we can't find a way forward with this. The core argument as I 
+understand it more about if we shall use device specific compatibles, or 
+probe the MDIO bus when possible.
 
-Thanks & Best Regards,
-Basharath
+As that issue would require more changes then the one done here. This 
+patch was more to align all nodes to behave the same and not adding any 
+new feature or fixing a bug. I will drop this patch from my backlog. I 
+did find the discussion informative and I learnt a bit, thanks for 
+taking time for that!
+
+If the larger question ever is settled I'm happy to pick this up at that 
+point.
+
+-- 
+Kind Regards,
+Niklas Söderlund
 
