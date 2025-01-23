@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-140632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAACCA1A9BF
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 19:43:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FDD3A1A9CA
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 19:46:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 030FA1670CF
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 18:43:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D69F4188DB03
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 18:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 651DA15746B;
-	Thu, 23 Jan 2025 18:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE6C14BF87;
+	Thu, 23 Jan 2025 18:46:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mle9lWV4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KcsoVOsY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36389155742;
-	Thu, 23 Jan 2025 18:43:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0A8A15746B;
+	Thu, 23 Jan 2025 18:46:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737657784; cv=none; b=miaW3Thd2zSF+tPIs09F/Pb8rfe0jlZmuYrmlQ/Dkdq0GMAZxTVIFzP54IJdBgAadfzs82wv4RCkdMbNezB6A/YFDjaMRg+FzoOe0n0P6jHVLrEoxEkiAjj5GTwYCwTY3zpVOFlr1vbpvt6dN827KwrP+RxePiDFmbQZRNOg9C0=
+	t=1737657993; cv=none; b=FaP9I3UmfgdJz7vKUy/voZHuQMEekV5z1XlbWxRgJACcCGE8MNUotZlOqSdzJnF5uMRu5Qh0tHLlVXeAOfX79PnkE1vgs/l0uprCxnWMYBbf1a3vljUuRy0bYgOV97kbxdexNKcEwqjWKjswT1T5AnU1yezirTcQ0CawrYb2K9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737657784; c=relaxed/simple;
-	bh=ajDAQvGl3Kq/VTkP8JLL6spOgXk8Q6dqBlIkfhJc0PU=;
+	s=arc-20240116; t=1737657993; c=relaxed/simple;
+	bh=xRs52lnDW+3EPY7W1diAkuIowIIBS5h+ZR8ZnRYlmzw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tr2PzL7L14Xyr2BeLbDfmS3X0sshfwvrDfEr7/uDflftcIMIdZyyVgAkSEqrnmS5UpBL2xioCdKd3bFoPLnbfs3RK+ah1ARGHPvy2TkN+GXtn8Wgb7bncqQqxRzw7INWwNUvjnTboGzB6hsZMKsmjHQ1jFoqhuglkPZ6td1tjAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mle9lWV4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B33FC4CED3;
-	Thu, 23 Jan 2025 18:43:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=M9uFfdpItjVk2Gk6ufZi3UBT8/Mr75qbwEkUjAlm9WAnYET4l6MA7A0Df3WcMNrqrTLUP4wK1l/e0KJ/Xw2wK6095urI23e1TizFj9M8Zyie73c+fC8JMe5ty9xUaN9NRYs4XxySA6amndCZAjTDxLBB4+cngBVJOc+Jp6D1zBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KcsoVOsY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5ED4DC4CED3;
+	Thu, 23 Jan 2025 18:46:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737657783;
-	bh=ajDAQvGl3Kq/VTkP8JLL6spOgXk8Q6dqBlIkfhJc0PU=;
+	s=k20201202; t=1737657993;
+	bh=xRs52lnDW+3EPY7W1diAkuIowIIBS5h+ZR8ZnRYlmzw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Mle9lWV4yl7T744NLRf8xKq0NxGVJrBjUQS+m13LH4RizsImRQJdvcnsTy38gjHEU
-	 wtd78Ngdyow1uIoT7QVEBKNs2MAxnkk4h7kTcq70Nc4o/x82SDOIQTjDPIdrQy7q9A
-	 OSx9rmt84JwpVVgJCWnslOKFANA8Wzieq0Snpp9ZE/smlabdGSxlhNlBEsnlsgR6Oq
-	 RmOqkgaPflzM1JeOUiQo9N8c2ncJrvFkyBmqhKY4viw9m9tAHMSJf22ae4lnd/1sVJ
-	 y6eT1t/jOR92FQvTTYq55EBe80YzdG6gDIqbMjJDccDNNS6mwmLjeUm3XuweuUb8+W
-	 u+G/XcGVsI7eQ==
-Date: Thu, 23 Jan 2025 18:42:58 +0000
+	b=KcsoVOsYhlA3/ktn1A28fZL/qamOfSb69vNnRHZ+Coo/Dyd1ghedXYE9e7P5KTQBv
+	 6l+StJwvpCLUY1SXLif+6kXE8Xl3Dx1sQrUM54AhbIVrIdcp1bO2jTrTSdbaF/G0SX
+	 gA7HVvE2W/1WIPVBs7FPUtuRp9rGHrZm1acQaDeNvcwaqzsE89NOm4fotvusPNtUOB
+	 8tnW9GHA3+n6fuXfIR6JtkSgBZmyv7KOPS1N29/0k5GS9HPb68Vgu+LAswGZVLamGs
+	 2UZZu7k+soKHtupNJN2ML6a+31dkrTpplwEOplV1m2glK3C24TwdAbzVMc1X7jizCE
+	 fOYbvYaX3TdEw==
+Date: Thu, 23 Jan 2025 18:46:28 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Tom Rini <trini@konsulko.com>
-Cc: linux-kernel@vger.kernel.org, Aaro Koskinen <aaro.koskinen@iki.fi>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
+To: Charan Pedumuru <charan.pedumuru@microchip.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Robert Nelson <robertcnelson@gmail.com>,
-	Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>,
-	devicetree@vger.kernel.org, linux-omap@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: omap: Add TI Pandaboard A4 variant
-Message-ID: <20250123-proved-celtic-938893d9baa3@spud>
-References: <20250123174901.1182176-1-trini@konsulko.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Ludovic Desroches <ludovic.desroches@microchip.com>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Durai Manickam KR <durai.manickamkr@microchip.com>
+Subject: Re: [PATCH v2] dt-bindings: dma: convert atmel-dma.txt to YAML
+Message-ID: <20250123-crucial-yelp-de4a63b0e3b5@spud>
+References: <20250123-dma-v1-1-054f1a77e733@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,81 +65,101 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="+NkPFfDh+nX1vEWC"
+	protocol="application/pgp-signature"; boundary="USuX8QMl72gqtfih"
 Content-Disposition: inline
-In-Reply-To: <20250123174901.1182176-1-trini@konsulko.com>
+In-Reply-To: <20250123-dma-v1-1-054f1a77e733@microchip.com>
 
 
---+NkPFfDh+nX1vEWC
+--USuX8QMl72gqtfih
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 23, 2025 at 11:49:00AM -0600, Tom Rini wrote:
-> Document the ti,omap4-panda-a4 compatible string in the appropriate
-> place within the omap family binding file.
+On Thu, Jan 23, 2025 at 02:58:01PM +0530, Charan Pedumuru wrote:
+> From: Durai Manickam KR <durai.manickamkr@microchip.com>
 >=20
-> Signed-off-by: Tom Rini <trini@konsulko.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
+> Add a description, required properties, appropriate compatibles and
+> missing properties like clocks and clock-names which are not defined in
+> the text binding for all the SoCs that are supported by microchip.
+>=20
+> Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
 > ---
 > Changes in v2:
-> - Include as part of the series with binding addition, make this be
->   first.
-> - Rework as suggested by Andreas Kemnade (slight rewording after Robert
->   reminded me A4 a production rev and not "alpha" rev.
->=20
-> Cc: Aaro Koskinen <aaro.koskinen@iki.fi>
-> Cc: Andreas Kemnade <andreas@kemnade.info>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Kevin Hilman <khilman@baylibre.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Robert Nelson <robertcnelson@gmail.com>
-> Cc: Roger Quadros <rogerq@kernel.org>
-> Cc: Tony Lindgren <tony@atomide.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-kernel@vger.kernel.org
-> Cc: linux-omap@vger.kernel.org
+> - Renamed the yaml file to a compatible.
+> - Removed `|` and description for common properties.
+> - Modified the commit message.
+> - Dropped the label for the node in examples.
+> - Link to v1: https://lore.kernel.org/all/20240215-dmac-v1-1-8f1c6f031c98=
+@microchip.com
 > ---
->  Documentation/devicetree/bindings/arm/ti/omap.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  .../bindings/dma/atmel,at91sam9g45-dma.yaml        | 67 ++++++++++++++++=
+++++++
+>  .../devicetree/bindings/dma/atmel-dma.txt          | 42 --------------
+>  2 files changed, 67 insertions(+), 42 deletions(-)
 >=20
-> diff --git a/Documentation/devicetree/bindings/arm/ti/omap.yaml b/Documen=
-tation/devicetree/bindings/arm/ti/omap.yaml
-> index 93e04a109a12..3603edd7361d 100644
-> --- a/Documentation/devicetree/bindings/arm/ti/omap.yaml
-> +++ b/Documentation/devicetree/bindings/arm/ti/omap.yaml
-> @@ -141,6 +141,13 @@ properties:
->            - const: ti,omap4430
->            - const: ti,omap4
-> =20
-> +      - description: OMAP4 PandaBoard Revision A4 and later
-> +        items:
-> +          - const: ti,omap4-panda-a4
-> +          - const: ti,omap4-panda
-> +          - const: ti,omap4430
-> +          - const: ti,omap4
+> diff --git a/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.=
+yaml b/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
+> new file mode 100644
+> index 000000000000..8d0d68786cbc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
+> @@ -0,0 +1,67 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/atmel,at91sam9g45-dma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->        - description: OMAP4 DuoVero with Parlor expansion board/daughter =
-board
->          items:
->            - const: gumstix,omap4-duovero-parlor
-> --=20
-> 2.43.0
->=20
+> +title: Atmel Direct Memory Access Controller (DMA)
+> +
+> +maintainers:
+> +  - Ludovic Desroches <ludovic.desroches@microchip.com>
+> +  - Tudor Ambarus <tudor.ambarus@linaro.org>
+> +
+> +description:
+> +  The Atmel Direct Memory Access Controller (DMAC) transfers data from a=
+ source
+> +  peripheral to a destination peripheral over one or more AMBA buses. On=
+e channel
+> +  is required for each source/destination pair. In the most basic config=
+uration,
+> +  the DMAC has one master interface and one channel. The master interfac=
+e reads
+> +  the data from a source and writes it to a destination. Two AMBA transf=
+ers are
+> +  required for each DMAC data transfer. This is also known as a dual-acc=
+ess transfer.
+> +  The DMAC is programmed via the APB interface.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
 
---+NkPFfDh+nX1vEWC
+compatible:
+ enum:
+
+You only have one option in your oneOf list.
+
+> +          - atmel,at91sam9g45-dma
+> +          - atmel,at91sam9rl-dma
+
+Blank line here please.
+
+> +  reg:
+> +    maxItems: 1
+
+--USuX8QMl72gqtfih
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5KNsgAKCRB4tDGHoIJi
-0r/QAQCv1miGZOK7Q9vZcktMU3WyWKs3QXduJlTTch/I7guAVQD/Y+AzWwVJKbBZ
-5stFtQUSFusmTCe35NNRWNT7mm5icQI=
-=Nv5Z
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5KOgwAKCRB4tDGHoIJi
+0t3xAP9LuhUuGfr5V4YXaUTK/z6aZn5QphsTGsu+j2FxTWKPBwEA2L8ZpbVYVkzA
+sY6/DEzfAl4U+5LlJFfTSIilXui4xAk=
+=UYo6
 -----END PGP SIGNATURE-----
 
---+NkPFfDh+nX1vEWC--
+--USuX8QMl72gqtfih--
 
