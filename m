@@ -1,135 +1,83 @@
-Return-Path: <devicetree+bounces-140472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E57A9A19F4E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 08:46:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BADA5A19F72
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 08:55:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1D453A0F97
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 07:46:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAF00188EF3D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 07:54:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 079E920101E;
-	Thu, 23 Jan 2025 07:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3315B20B7FF;
+	Thu, 23 Jan 2025 07:54:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m7BRyYIZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W+Exsl4h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDFF81C2DB2;
-	Thu, 23 Jan 2025 07:46:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3BCA1FF7B8;
+	Thu, 23 Jan 2025 07:54:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737618378; cv=none; b=CzbTOwanwyFJpQNOgyQE+v0u3rTcLGYz/QZdCxUSm3U/e0oaLMVi2a/inTyXXmPehJhvhgpXuiObJFC6bzQL0Z1OY5xAA/cTwZtQylq0aMlhs5Ep/UXmTM871zE9YgPR0wjBcZE/AgknW1Gft7IWmukrzZnmpMPMCeJEup2X654=
+	t=1737618881; cv=none; b=s5euWDv28S1I081hCAGXiP+1K3D6kgXzOOTe9dryuEd1WeCkU5ouglxDVsxR5ZhvWFSQ6DPrk6gfwPHzgyn3ISVlYNnkNydZfB0OJawK8HC80r5tx9zYttLh19c2Ze9VoysakKz/9tRAl54xOB8G9FCaBdd+fZFpQDV4y+ilFo0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737618378; c=relaxed/simple;
-	bh=I3k7vopjSztNtKboO75Z/5UaQQ4+I0esTmnCN2lKflo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V8SHXXJYQuzuBkhzJqVgOcPdfFYnGB9kP+B0heWGxMPQlA0p5wOXWM56bBW+W6CNuDuV2Pxp6wEbrTuXq1Go1WnGQWbR+2c7soCgaBOAdC3Bdt5h+zkKgvDqFWfwV8HCFk1UTGrb2W4RG/9VJAS3RRU+T1Cvjsi5j2mkcd+IHjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m7BRyYIZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5001C4CED3;
-	Thu, 23 Jan 2025 07:46:13 +0000 (UTC)
+	s=arc-20240116; t=1737618881; c=relaxed/simple;
+	bh=OrYcjJ5hzXu+46N9Vw6qrqFKTskY2lWjkvcWkrgGb0E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ebstOsk5gxjY2aeuC/W0VRb0AGpvTsCSLU3GqofxLXzKX/SyZn+mnFqKoT8dp1LVik3ke7MS8EnkA49uDiRb3AakCH/6sUP3krkS+lRgEjqy/xLzOVOu5N0HCXPU646uDdYoqDzQxw9UaLogPvHGwBbulRgZQ+HdX+zWoghG8Lk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W+Exsl4h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96BB1C4CED3;
+	Thu, 23 Jan 2025 07:54:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737618377;
-	bh=I3k7vopjSztNtKboO75Z/5UaQQ4+I0esTmnCN2lKflo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m7BRyYIZvbiO92bQG/nwtv1O7agEAKAcyVMhVW9aO39h0EoOyntr5yFXV3u72hOxj
-	 btJmyzrtDnXse4CjVdvCM2eknU8/W50Go5uG6q3oxP39mv9nsHJ/WzxNPcPrtWlLQU
-	 yLDBSbbZ7CbUa0UpAzOmIQ09HbEGTeyACwhEz7XnrVlENgVh7SdzxVLCtJYXjO0SGQ
-	 DxMNYh14/fT9DarKwKIBHoBNJEkMNtNUfvZ3KcINSRZIW/nwZdJroeMmA3Ohs9bsYS
-	 gswIJVTXyK8+ImG6LIq+Iyo0MNuwTH1zGc5nGqNVQi//m4j9/lGwCkkvny1zFahA0c
-	 cGrp6IwMh71uQ==
-Message-ID: <a31acd08-e5b7-44e8-857b-dd068f88013f@kernel.org>
-Date: Thu, 23 Jan 2025 08:46:11 +0100
+	s=k20201202; t=1737618879;
+	bh=OrYcjJ5hzXu+46N9Vw6qrqFKTskY2lWjkvcWkrgGb0E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W+Exsl4h6DMWnWCX1BbBSg9OMibYJglDCEoGX8rFhmA1WZtT3jVtpKv5WVPCnSkiU
+	 tFsgTfTWoHsKrZf0LrcTf1jGSoXAAtTEd+8zJ5NrXgGYLbeP8EdziU/5DA2XFHuEfr
+	 XoUYhOFG3k0E0RRrBRT6zGEXWZGbPdEIGz6GylgKg2x/QW4zlXHAGuTp6DOl4xngxX
+	 r9BamiDr88QmR76e0xVQXWvnUljatOeuS5RMbDGE5XHGHXXV6J1ljQV0y0qfNj2OGt
+	 xtuHlp1CrTsOFIWFnBrWAmqhHYx4GaoQydiCmqIWrzhho8vg6vJ8CKFZRs0UVxaCA4
+	 OakAcC9NnEgtA==
+Date: Thu, 23 Jan 2025 08:54:36 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
+	manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
+	p.zabel@pengutronix.de, dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v7 1/7] dt-bindings: phy: qcom,uniphy-pcie: Document PCIe
+ uniphy
+Message-ID: <20250123-analytic-pragmatic-bonobo-a0f5e1@krzk-bin>
+References: <20250122063411.3503097-1-quic_varada@quicinc.com>
+ <20250122063411.3503097-2-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/9] dt-bindings: soc: renesas: Add RZ/G3E variant SYS
- binding
-To: John Madieu <john.madieu.xa@bp.renesas.com>, geert+renesas@glider.be,
- robh@kernel.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: biju.das.jz@bp.renesas.com, claudiu.beznea.uj@bp.renesas.com,
- conor+dt@kernel.org, john.madieu@gmail.com, krzk+dt@kernel.org,
- linux-kernel@vger.kernel.org, magnus.damm@gmail.com
-References: <20250122103911.517484-1-john.madieu.xa@bp.renesas.com>
- <20250122103911.517484-3-john.madieu.xa@bp.renesas.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250122103911.517484-3-john.madieu.xa@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250122063411.3503097-2-quic_varada@quicinc.com>
 
-On 22/01/2025 11:39, John Madieu wrote:
-> Add RZ/G3E (R9A09G047) variant to the existing RZ/V2H System
-> Controller (SYS) binding as both IPs are compatible.
+On Wed, Jan 22, 2025 at 12:04:05PM +0530, Varadarajan Narayanan wrote:
+> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
 > 
-> They however have different SoC IDs, RZ/G3E has has VSP control Register
+> Document the Qualcomm UNIPHY PCIe 28LP present in IPQ5332.
+> 
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+> v7: * Add data type definition to 'num-lanes'
 
-
-And since you have to now resend entire patchset due to not reading
-submitting patches, then more work:
-
-Double 'has'
-
-> compared to RZ/V2H SYS IP. Hence a new compatible string renesas,r9a09g047-sys
-
-
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
-
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
+
 
