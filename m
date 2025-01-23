@@ -1,263 +1,210 @@
-Return-Path: <devicetree+bounces-140469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BA74A19EE7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 08:26:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C923EA19EEA
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 08:26:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 91AC47A3EAA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 07:26:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD89516A167
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 07:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F34F20B7E2;
-	Thu, 23 Jan 2025 07:26:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3FA20B7E4;
+	Thu, 23 Jan 2025 07:26:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="sClbXXEv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B2ZsFa5C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 980B220B21B;
-	Thu, 23 Jan 2025 07:26:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C0320B7F0
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 07:26:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737617163; cv=none; b=Sa1SXKZuBr19moHJ/KqghYU5LukWZQWvSYi6dzDwGAO9ImKWan0vN+41mRqErzj0fDLN3OlKCa1+mEZ6fVstdp7Xf3C2akpGGeEg+Hau4IiUfGt+pBIg9RhgZNSK9fjyvdrb5rguo6BL//n5gO9WExx+WkVTPxwKjmHtWjJO7Bw=
+	t=1737617174; cv=none; b=j4TSwMpR4KHTQdnAiSSJAe2Afi+jQP89Y3a0K+l0yJtDV3zbZdM0pCHkteo+R47e5T3po2F4aaERpcEXg2DMOKrsl9lqd4qStoz1hNahZTg7+CHPiJ4v/bPVTAgbbUU5Q5QPuZ7bixNzIt+EG8t/OTHAWWgUHNauXzG+qijLKaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737617163; c=relaxed/simple;
-	bh=+oTU2f7QVgMPnI5TDOFIx60vS3POz6R+KAMidl+5BuU=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=qqL4aHeBL7b/9b1XOm1HD1+/G3IMPe2FzuKbhHjb8d8s1Y3hFGJENgYcEvw0SZtvc87rrfwEAjS6o6f/26JvbwByUXa6lhhCK90eh5wLm6FZfGWwH4qAbXYULOrH8Js5iFup9zW6qW1+ZN+hkKeSebPW62dLbZHOkYU1w9dTR98=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=sClbXXEv; arc=none smtp.client-ip=162.240.238.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=veVVuKJ87/rWDfKKk1AslmxtqJaSaNITyAxbJjSZqBs=; b=sClbXXEvBxiDWOPpHjgna2Gr/r
-	y7v1+u6od2V3kWR5Nd3lCCR2kHu5jhH6cUl4U9+h//cIsVEFI3Gyiba6S9Q82ZyoN4iwE2FIsqS3W
-	DsxNnFTErn3b2PRzsPP0aO1xORwztmfTzvrZan4K5x7E1Y0CAPiBY4UJljzuJNZUzVxXW7Rbb6pdR
-	zFlvVbaokqMzbs96DSwagskLz3Km6HfJXaGxuzfEcM2jKKTtiijosYTR6xjXZ6hlBV8jb4jL3W9SA
-	r7PzG6sPpqv/jKYGPQ3jXs3ARB9GfbCtT8gfF15l/jQ2WFZPzE5ki1LeF45zlZ870NkaxDng6OGoV
-	+UMB5CsA==;
-Received: from [122.175.9.182] (port=20914 helo=zimbra.couthit.local)
-	by server.wki.vra.mybluehostin.me with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <basharath@couthit.com>)
-	id 1tarb9-0008NK-2D;
-	Thu, 23 Jan 2025 12:55:56 +0530
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id 81E7F1781A7D;
-	Thu, 23 Jan 2025 12:55:49 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 623C21782495;
-	Thu, 23 Jan 2025 12:55:49 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id CgdwGL9ompX1; Thu, 23 Jan 2025 12:55:49 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 1E2E41781A7D;
-	Thu, 23 Jan 2025 12:55:49 +0530 (IST)
-Date: Thu, 23 Jan 2025 12:55:48 +0530 (IST)
-From: Basharath Hussain Khaja <basharath@couthit.com>
-To: Jason Xing <kerneljasonxing@gmail.com>
-Cc: basharath <basharath@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
-	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
-	kuba <kuba@kernel.org>, pabeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
-	conor+dt <conor+dt@kernel.org>, nm <nm@ti.com>, 
-	ssantosh <ssantosh@kernel.org>, tony <tony@atomide.com>, 
-	richardcochran <richardcochran@gmail.com>, 
-	parvathi <parvathi@couthit.com>, schnelle <schnelle@linux.ibm.com>, 
-	rdunlap <rdunlap@infradead.org>, diogo ivo <diogo.ivo@siemens.com>, 
-	m-karicheri2 <m-karicheri2@ti.com>, horms <horms@kernel.org>, 
-	jacob e keller <jacob.e.keller@intel.com>, 
-	m-malladi <m-malladi@ti.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	afd <afd@ti.com>, s-anna <s-anna@ti.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	linux-omap <linux-omap@vger.kernel.org>, 
-	pratheesh <pratheesh@ti.com>, prajith <prajith@ti.com>, 
-	vigneshr <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <507763040.391350.1737617148913.JavaMail.zimbra@couthit.local>
-In-Reply-To: <CAL+tcoD6WuJH6yXaEGvuz_s3sROPXtEMeZw1hBNQvb6wnKKr-w@mail.gmail.com>
-References: <20250109105600.41297-1-basharath@couthit.com> <20250110055906.65086-7-basharath@couthit.com> <CAL+tcoD6WuJH6yXaEGvuz_s3sROPXtEMeZw1hBNQvb6wnKKr-w@mail.gmail.com>
-Subject: Re: [RFC PATCH 06/10] net: ti: prueth: Adds HW timestamping support
- for PTP using PRU-ICSS IEP module
+	s=arc-20240116; t=1737617174; c=relaxed/simple;
+	bh=NdZnuyMVKe+1RJUPeyXFqEJNn+CTnqa4jJGgTqCCOl4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QNQ9DrnBmzpAJMLk3iphyvamSYs/xyo6L469xCxyij8PZqCDhNMF3S89VVK6oCe3MZ5A9o2Cvj83/QDM1gQV6IldCzYIULW+YougLySAi+hrVMSzO9KyK2RvWDtLFQy9qIe2MeZ2iNmOGtacbSknl95EkvLfCzbdEDGtJOFq3kw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B2ZsFa5C; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-385e0d47720so80891f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 23:26:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737617170; x=1738221970; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=nMQfKcjyN3XjY9KdVgtaexw85mLCcMx0Q4C5a4FjcYU=;
+        b=B2ZsFa5CWxrpO29FFokt8URsAiLJ5Z2QVH2hKTXbFWXm9WmC1hyCitsX7YiiqoTrKf
+         SSIPLxj+HXgNDVdLcVadeSMH1lwQ0YtSZz0q/1RPhmkz1RxzJ/tXmT0fHSKIVffJmoA0
+         KCKXDsxUs+nzCSW903z6h1vfxYhmsCdlrhilK3aXVp8oFGnfBvRLGelpJUfQZrGltDod
+         NoSHBnmELDiD4LWm70ItJns2uIeCeOKJ9M3W4rSrsD+BKnBUzEPQluVjCZK3ikQjuoLo
+         ygVtGoj3WtWAdYwSC5rKDIvQJedQK1khT4oOZGBof1siwlnLqFFC+3B6QyJZ4R66tlgR
+         Acnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737617170; x=1738221970;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=nMQfKcjyN3XjY9KdVgtaexw85mLCcMx0Q4C5a4FjcYU=;
+        b=mZ1Xy1CG28PmoBdWE93vy/H04LJ4lKnSofe4P/2ihsL/ruXcwuUmy/7s7ozQ/+33OZ
+         NKwz1IZtigXZr41hoWnoXhQp/pf1r7/jpdbI3Mhj4V2Gt0SxRVT8XhAyklCwtF460+cl
+         FiS1zWzttgHfXhzAi0b8hLG7ngV61D6rZ7NM+GcnYfIWhujhwBu5CnCBVelb4r5YaKYy
+         Bce3hZQfPspARFxuMCYMGsFBaKti2Lh9tDfe+TgHvXda+TYA6Mmh0iGhwqyWCf0v4/5U
+         syD5Zmjhe+nhTwXKXApX7XTMHPx8CbTsr1hUa8cnmcIUe1UrCtqYxygsZvTSXd2ZZ+WK
+         qLlw==
+X-Forwarded-Encrypted: i=1; AJvYcCU230DNSjCGWo5kAd78xVkWoKnv1CmM5cYQfF9frO4YLojsaOFhZUXN8dHI8HajmTTJ3JBWWcrqTrns@vger.kernel.org
+X-Gm-Message-State: AOJu0YwyPIGty1JsK0C5oDmL3AesFoCie8XYbVcS2UVi1NYDOLF0Lq4z
+	1hnehl6mcZmGsPm8dO7hVBh685qjxbqZsdxOt9ql4Rqa7AXzQ3y3LoA8w9WyLLI=
+X-Gm-Gg: ASbGncs60ZaGjUv9/fwyJ+UjI2naZ6JCryrrSvU5aSFZ0JRGtv0QJ5tzm9BGp5Gj3sI
+	1kphUJpjhO4hs6G7WcL7WyI3STi3Diza8TXX/LKVPe9251ClcoFOD4iXYIgo9DhcvimUh+Y58wq
+	LRbfyHbo6kV/l4EUAd6zMyo7/XTTFRdEdwopB9uK/DIuBV5OOmBMRSbJpAOljEWpYKvg6+1LCm2
+	pOCculSw3ob1yZ4Ph5ijdEJZeav722KUVl07ueqDOaZ+ELIfHOzHxtq0n5I+iNyMA8MEJ9gv3vB
+	7Fz2SHHylMpZ1JdLXss4pV23
+X-Google-Smtp-Source: AGHT+IHb7c38GI9KFqxvE1ndExZtij3Ix+csS5cSw5JLp5XD0pptgjTkVg6vwIHa6IngTUW03BlTHA==
+X-Received: by 2002:a05:600c:3ac6:b0:42c:b55f:f4f with SMTP id 5b1f17b1804b1-438b17d0086mr25977105e9.6.1737617170565;
+        Wed, 22 Jan 2025 23:26:10 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438b31d98d7sm50414275e9.30.2025.01.22.23.26.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jan 2025 23:26:09 -0800 (PST)
+Message-ID: <3819c34c-6ec3-400a-a02d-f89216b417c6@linaro.org>
+Date: Thu, 23 Jan 2025 08:26:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - FF113 (Linux)/8.8.15_GA_3968)
-Thread-Topic: prueth: Adds HW timestamping support for PTP using PRU-ICSS IEP module
-Thread-Index: wTJ8No/eSvZZY8f30NQgDnaEMvdq2w==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.wki.vra.mybluehostin.me: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] firmware: stratix10-svc: Add
+ of_platform_default_populate()
+To: Mahesh Rao <mahesh.rao@intel.com>, Moritz Fischer <mdf@kernel.org>,
+ Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
+ Tom Rix <trix@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>
+Cc: linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Mahesh Rao <mahesh.rao@altera.com>
+References: <20250122-socfpga_sip_svc_misc-v1-0-cbdcd034ae34@intel.com>
+ <20250122-socfpga_sip_svc_misc-v1-3-cbdcd034ae34@intel.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20250122-socfpga_sip_svc_misc-v1-3-cbdcd034ae34@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> On Fri, Jan 10, 2025 at 2:01=E2=80=AFPM Basharath Hussain Khaja
-> <basharath@couthit.com> wrote:
->>
->> From: Roger Quadros <rogerq@ti.com>
->>
->> PRU-ICSS IEP module, which is capable of timestamping RX and
->> TX packets at HW level, is used for time synchronization by PTP4L.
->>
->> This change includes interaction between firmware and user space
->> application (ptp4l) with required packet timestamps. The driver
->> initializes the PRU firmware with appropriate mode and configuration
->> flags. Firmware updates local registers with the flags set by driver
->> and uses for further operation. RX SOF timestamp comes along with
->> packet and firmware will rise interrupt with TX SOF timestamp after
->> pushing the packet on to the wire.
->>
->> IEP driver is available in upstream and we are reusing for hardware
->> configuration for ICSSM as well. On top of that we have extended it
->> with the changes for AM57xx SoC.
->>
->> Extended ethtool for reading HW timestamping capability of the PRU
->> interfaces.
->>
->> Currently ordinary clock (OC) configuration has been validated with
->> Linux ptp4l.
->>
->> Signed-off-by: Roger Quadros <rogerq@ti.com>
->> Signed-off-by: Andrew F. Davis <afd@ti.com>
->> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
->> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
->> ---
->>  drivers/net/ethernet/ti/icssg/icss_iep.c      |  42 ++
->>  drivers/net/ethernet/ti/icssm/icssm_ethtool.c |  26 +
->>  drivers/net/ethernet/ti/icssm/icssm_prueth.c  | 443 +++++++++++++++++-
->>  drivers/net/ethernet/ti/icssm/icssm_prueth.h  |  11 +
->>  .../net/ethernet/ti/icssm/icssm_prueth_ptp.h  |  85 ++++
->>  5 files changed, 605 insertions(+), 2 deletions(-)
->>  create mode 100644 drivers/net/ethernet/ti/icssm/icssm_prueth_ptp.h
->>
->> diff --git a/drivers/net/ethernet/ti/icssg/icss_iep.c
->> b/drivers/net/ethernet/ti/icssg/icss_iep.c
->> index 768578c0d958..9a2ea13703d8 100644
->> --- a/drivers/net/ethernet/ti/icssg/icss_iep.c
->> +++ b/drivers/net/ethernet/ti/icssg/icss_iep.c
->> @@ -937,11 +937,53 @@ static const struct icss_iep_plat_data
->> am654_icss_iep_plat_data =3D {
->>         .config =3D &am654_icss_iep_regmap_config,
->>  };
->>
->> +static const struct icss_iep_plat_data am57xx_icss_iep_plat_data =3D {
->> +       .flags =3D ICSS_IEP_64BIT_COUNTER_SUPPORT |
->> +                ICSS_IEP_SLOW_COMPEN_REG_SUPPORT,
->> +       .reg_offs =3D {
->> +               [ICSS_IEP_GLOBAL_CFG_REG] =3D 0x00,
->> +               [ICSS_IEP_COMPEN_REG] =3D 0x08,
->> +               [ICSS_IEP_SLOW_COMPEN_REG] =3D 0x0C,
->> +               [ICSS_IEP_COUNT_REG0] =3D 0x10,
->> +               [ICSS_IEP_COUNT_REG1] =3D 0x14,
->> +               [ICSS_IEP_CAPTURE_CFG_REG] =3D 0x18,
->> +               [ICSS_IEP_CAPTURE_STAT_REG] =3D 0x1c,
->> +
->> +               [ICSS_IEP_CAP6_RISE_REG0] =3D 0x50,
->> +               [ICSS_IEP_CAP6_RISE_REG1] =3D 0x54,
->> +
->> +               [ICSS_IEP_CAP7_RISE_REG0] =3D 0x60,
->> +               [ICSS_IEP_CAP7_RISE_REG1] =3D 0x64,
->> +
->> +               [ICSS_IEP_CMP_CFG_REG] =3D 0x70,
->> +               [ICSS_IEP_CMP_STAT_REG] =3D 0x74,
->> +               [ICSS_IEP_CMP0_REG0] =3D 0x78,
->> +               [ICSS_IEP_CMP0_REG1] =3D 0x7c,
->> +               [ICSS_IEP_CMP1_REG0] =3D 0x80,
->> +               [ICSS_IEP_CMP1_REG1] =3D 0x84,
->> +
->> +               [ICSS_IEP_CMP8_REG0] =3D 0xc0,
->> +               [ICSS_IEP_CMP8_REG1] =3D 0xc4,
->> +               [ICSS_IEP_SYNC_CTRL_REG] =3D 0x180,
->> +               [ICSS_IEP_SYNC0_STAT_REG] =3D 0x188,
->> +               [ICSS_IEP_SYNC1_STAT_REG] =3D 0x18c,
->> +               [ICSS_IEP_SYNC_PWIDTH_REG] =3D 0x190,
->> +               [ICSS_IEP_SYNC0_PERIOD_REG] =3D 0x194,
->> +               [ICSS_IEP_SYNC1_DELAY_REG] =3D 0x198,
->> +               [ICSS_IEP_SYNC_START_REG] =3D 0x19c,
->> +       },
->> +       .config =3D &am654_icss_iep_regmap_config,
->> +};
->> +
->>  static const struct of_device_id icss_iep_of_match[] =3D {
->>         {
->>                 .compatible =3D "ti,am654-icss-iep",
->>                 .data =3D &am654_icss_iep_plat_data,
->>         },
->> +       {
->> +               .compatible =3D "ti,am5728-icss-iep",
->> +               .data =3D &am57xx_icss_iep_plat_data,
->> +       },
->>         {},
->>  };
->>  MODULE_DEVICE_TABLE(of, icss_iep_of_match);
->> diff --git a/drivers/net/ethernet/ti/icssm/icssm_ethtool.c
->> b/drivers/net/ethernet/ti/icssm/icssm_ethtool.c
->> index cce3276d5565..86d62d64dc4d 100644
->> --- a/drivers/net/ethernet/ti/icssm/icssm_ethtool.c
->> +++ b/drivers/net/ethernet/ti/icssm/icssm_ethtool.c
->> @@ -7,6 +7,7 @@
->>
->>  #include <linux/if_bridge.h>
->>  #include "icssm_prueth.h"
->> +#include "../icssg/icss_iep.h"
->>
->>  #define PRUETH_MODULE_VERSION "0.2"
->>  #define PRUETH_MODULE_DESCRIPTION "PRUSS Ethernet driver"
->> @@ -189,12 +190,37 @@ static void icssm_emac_get_regs(struct net_device =
-*ndev,
->>         regs->version =3D PRUETH_REG_DUMP_GET_VER(prueth);
->>  }
->>
->> +static int icssm_emac_get_ts_info(struct net_device *ndev,
->> +                                 struct kernel_ethtool_ts_info *info)
->> +{
->> +       struct prueth_emac *emac =3D netdev_priv(ndev);
->> +
->> +       if ((PRUETH_IS_EMAC(emac->prueth) && !emac->emac_ptp_tx_irq))
->> +               return ethtool_op_get_ts_info(ndev, info);
->> +
->> +       info->so_timestamping =3D
->> +               SOF_TIMESTAMPING_TX_HARDWARE |
->> +               SOF_TIMESTAMPING_TX_SOFTWARE |
->> +               SOF_TIMESTAMPING_RX_HARDWARE |
->> +               SOF_TIMESTAMPING_RX_SOFTWARE |
->> +               SOF_TIMESTAMPING_SOFTWARE |
->> +               SOF_TIMESTAMPING_RAW_HARDWARE;
->=20
-> In addtion to what Richard suggested, there is no need to re-mark the
-> following flags "SOF_TIMESTAMPING_RX_SOFTWARE" and
-> "SOF_TIMESTAMPING_SOFTWARE", please see __ethtool_get_ts_info().
->=20
+On 22/01/2025 06:58, Mahesh Rao wrote:
+> Add of_platform_default_populate() to stratix10-svc
+> driver as the firmware/svc node was moved out of soc.
+> This fixes the failed probing of child drivers of
+> svc node.
+> 
+> Fixes: 23c3ebed382a ("arm64: dts: socfpga: agilex: move firmware out of soc node")
+> 
 
-Yes. This module always uses IEP HW timestamping both on RX side and TX sid=
-e=20
-for better precision. We will clean this in the next version.
 
-Thanks & Best Regards,
-Basharath
+There is never a blank line between tags. Use: `git log`
+
+> Signed-off-by: Mahesh Rao <mahesh.rao@intel.com>
+
+> ---
+>  drivers/firmware/stratix10-svc.c | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/firmware/stratix10-svc.c b/drivers/firmware/stratix10-svc.c
+> index c5c78b869561b0c1e9602823ad1f501e98e3ce51..15a7207f7753dcd4e94da4aa9a6162fedb577fe9 100644
+> --- a/drivers/firmware/stratix10-svc.c
+> +++ b/drivers/firmware/stratix10-svc.c
+> @@ -1227,13 +1227,19 @@ static int stratix10_svc_drv_probe(struct platform_device *pdev)
+>  	if (!svc->intel_svc_fcs) {
+>  		dev_err(dev, "failed to allocate %s device\n", INTEL_FCS);
+>  		ret = -ENOMEM;
+> -		goto err_unregister_dev;
+> +		goto err_unregister_rsu_dev;
+>  	}
+>  
+>  	ret = platform_device_add(svc->intel_svc_fcs);
+>  	if (ret) {
+>  		platform_device_put(svc->intel_svc_fcs);
+> -		goto err_unregister_dev;
+> +		goto err_unregister_rsu_dev;
+> +	}
+> +
+> +	ret = of_platform_default_populate(dev_of_node(dev), NULL, dev);
+> +	if (ret < 0) {
+> +		of_platform_depopulate(dev);
+> +		goto err_unregister_fcs_dev;
+>  	}
+>  
+>  	dev_set_drvdata(dev, svc);
+> @@ -1242,7 +1248,9 @@ static int stratix10_svc_drv_probe(struct platform_device *pdev)
+>  
+>  	return 0;
+>  
+> -err_unregister_dev:
+> +err_unregister_fcs_dev:
+> +	platform_device_unregister(svc->intel_svc_fcs);
+> +err_unregister_rsu_dev:
+>  	platform_device_unregister(svc->stratix10_svc_rsu);
+>  err_free_kfifo:
+>  	kfifo_free(&controller->svc_fifo);
+
+
+You need to update remove() callback.
+
+
+
+
+Best regards,
+Krzysztof
 
