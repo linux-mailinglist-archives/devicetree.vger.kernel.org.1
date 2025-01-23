@@ -1,295 +1,329 @@
-Return-Path: <devicetree+bounces-140492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FABAA1A0FC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:42:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D001AA1A115
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:47:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D41D7188DB42
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:42:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9273C3AC49B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:47:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B03320CCCC;
-	Thu, 23 Jan 2025 09:42:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E12A220D512;
+	Thu, 23 Jan 2025 09:47:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UJ4zshe3"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="Xi74VzuB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010032.outbound.protection.outlook.com [52.101.228.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6995B20C48D;
-	Thu, 23 Jan 2025 09:42:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737625323; cv=none; b=G38yFnHW9eLdH6XBqNYAedjRWWoPDuuFE4/5IX3MgPHiTcvxJNR/5SQ1iyAty7So1jNoTYaxKGwHwfIW4mrVq3HsMIelyfbSLPZi+7W6nvsp2K1MEHQPTW2jDP7MyeoNlbbQt5BwtoP1XNCi1ZeOpV3IvgM2zrutYVkFR8URLIw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737625323; c=relaxed/simple;
-	bh=R8734WZE9YzXSuKpzfSaWJTn5B895MHzZ38V+/QD+Mg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Subject:Cc:
-	 References:In-Reply-To; b=k/KnKOXc8F7gZ8Xb02kuAZ8PQzPmPnUZHXwrRomFUpMnMLDp2AhDfF1hXDZZAPPMbxvANiyiV28Y/rCC1Vx6k7e6KZZQLRg0uQrWmRfGoSpr8RVuUJF0hShzm/IpdoRhleH1XuGUTBvgiLnO+S55pxe5mbwlV+zfctoJA0lKHoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UJ4zshe3; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DBBE31C0003;
-	Thu, 23 Jan 2025 09:41:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1737625318;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=igDCe1x3xTNsIM45RXmz5PFqCPI/aYPG1aPW/HcNGd4=;
-	b=UJ4zshe3EB8DFHjQ7p569pU14BPcj+YE2VPlKO9cqBCjMF07HiQG4iFVbG6osBFUxlUct6
-	MlMsS2Vfbucho97qjn61wEt+MWThhmloPXdlpnyZmcqzIA9K50ZrIvNBciPetNC/SEY8P2
-	Q1qjI/BSXLHFSesPWU+FxBbs59+QsOedCVGY9pEqwtpMsBSJGSvvL3mNAb5Fdy9hzibJlJ
-	FIkmwF8IwIkKT8ZjODVYy0g2ES6FC9o8I9WEwKEV67R5cGp3GIh4SSwt49SRacU87xGI6E
-	5gfXuca16Mv2dxBAgIr53X2OqYToKT46mzPHsmRbdyl6MJX5RpiHJfKSi3hLag==
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52B1D20D4F8;
+	Thu, 23 Jan 2025 09:47:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.32
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737625634; cv=fail; b=ls5gl7ulA3x+wR0N9Id+s02yDqvN2YUzOo0MaxinpkPF9fpHQakWHnKy9sDgywf07Wp5lmX0+NrMfup9e+RLDMpdbv7/Cjj6bfn1l80kt/miSSi/V4v+Vfafq8Y34tjI7MHttB3SujILIZqUV/C6zH4LQdRYkd12isjuBTlgd+E=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737625634; c=relaxed/simple;
+	bh=ietB86ylDMm7sx9bNn8cAjzOwRxd4GcAb4inQQ8uCKk=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=pG4N2poTVXoOsMNAytuzSuZzS7VsL0oFgHaWaevPnqo20PFW9xNeEw+gDBEDGgEP5fE7KhK+W2gcOeKiavHmfC0X7/NKFntSiXfyMcL/bV2ESpZLzD3J97KwTZbTXqpsJh5SgWlc8blAhvbHFKWR4y7tM8cntjjPGeGybDECovU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=Xi74VzuB; arc=fail smtp.client-ip=52.101.228.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ALG8egUYJF0Wxm7qMCVy1c4j1nxAzo7lOlzixvZHq5nTp1jq8PayW1oBUf8PYGEUCVHGfH7M6yF9thrDYUORocib3lrkL5dsRXKkJWl1oV55Dmjbf4j99I9qhWVi2eiw0MW6eUaI537sod1UTJr6QiVH7XS1M0ClHQn8HlvMcXxqDj5dzqMV8my4bTRBpW5CtyCKSqU5zuQfbMb0CL1yX6md5CZjLFTBYoUBVW4rQN3vp2mXnhC40MYmFr2esUQnhv2APaOUE81US0fW7m4ub2mh1P6nQ6AWnUZ+j/go9TucQwzK1oicwOb/+kiEUD3DV8k6VtBb/pFB+olMTwGZSw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=O+gi1LLFRTGlSPUvtpVCa76J/9I+wn5umWFvCXyJUhA=;
+ b=SMF7yUw4enHqfzFcpC6qiXgrdWzmQQKgva3Cg5QoeOUld+4AYTkvVN34OaNQ6jrW192jTPeleeAPdf0TkZSeTK/2GdPEh6zvOPIQP2beMsPoOrwGiX48ehNlHjAzw+bOMj3J8lyABZZrm61pQcXSG6OL5BymXdEcwAMRxhkI1G9toBuZo30YXdujhleoTEFz2dlpr/h2+Q7PCMuZfFFuMtI0lbwEdNcnhEye/Hg8ya0Aosm2Cm2IHHZoZXIBKusAaK58BGf4/yQYyZjaqVFw7JVSSsFPcak0YnFIkX/lkb6gCQX/65w0AnoPKHgJPQzZS+3+CieANNaFkfNZSrsTYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=O+gi1LLFRTGlSPUvtpVCa76J/9I+wn5umWFvCXyJUhA=;
+ b=Xi74VzuB2pWTb474C+edKc2aKYFmssAfdPT+0m2h8WFvSukm5O6zQM35monkNorKCB798WRnSOQIUlhUZT9/aetWzZm482P9NbS+RNB0cs93hs+U+D9EqXn1RzeXMz8PNIQV2PnsWWwwVpWHsEt09UZmqXluxAw3O5k8tMPrroc=
+Received: from TYCPR01MB12093.jpnprd01.prod.outlook.com (2603:1096:400:448::7)
+ by TYCPR01MB6367.jpnprd01.prod.outlook.com (2603:1096:400:93::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.16; Thu, 23 Jan
+ 2025 09:47:06 +0000
+Received: from TYCPR01MB12093.jpnprd01.prod.outlook.com
+ ([fe80::439:42dd:2bf:a430]) by TYCPR01MB12093.jpnprd01.prod.outlook.com
+ ([fe80::439:42dd:2bf:a430%3]) with mapi id 15.20.8377.009; Thu, 23 Jan 2025
+ 09:47:06 +0000
+From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Biju Das <biju.das.jz@bp.renesas.com>, Geert Uytterhoeven
+	<geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Prabhakar Mahadev
+ Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
+	<biju.das.au@gmail.com>
+Subject: RE: [PATCH 11/11] arm64: dts: renesas: r9a09g047: Add icu node
+Thread-Topic: [PATCH 11/11] arm64: dts: renesas: r9a09g047: Add icu node
+Thread-Index: AQHbayBlnSsKneewAUGZsaSGgCgvLbMkISaw
+Date: Thu, 23 Jan 2025 09:47:06 +0000
+Message-ID:
+ <TYCPR01MB120939117680BD9FA8FA88AB0C2E02@TYCPR01MB12093.jpnprd01.prod.outlook.com>
+References: <20250120094715.25802-1-biju.das.jz@bp.renesas.com>
+ <20250120094715.25802-12-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20250120094715.25802-12-biju.das.jz@bp.renesas.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYCPR01MB12093:EE_|TYCPR01MB6367:EE_
+x-ms-office365-filtering-correlation-id: 996fcd4a-7337-4e4f-2cfe-08dd3b92e612
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|376014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?FvzRqWhAuGVIw0Y5epXYGuU/D1CyDf5IURgPyiTEUg0lbvoIJxPwtN19E/L4?=
+ =?us-ascii?Q?qEIZvOcAx1jNxPbyt5EBiN5b8Pyb9QYOp81B5pf8X1eqb2gA8kK6fdX8JrmW?=
+ =?us-ascii?Q?ZFvXu6/e9uzAZaYy8KZgasA2Fz08AN/0ByaMjyMsWuRBqCJcQfYiC5lPPGPY?=
+ =?us-ascii?Q?mIZVkyzxd4gzzctf0qhCARPfqBnPs/ljwN8k5Jblby/4MZK6DxZYEoa7DRVR?=
+ =?us-ascii?Q?N9XvpEjEksksNYtJsqMcpqtpNmhHwfRjntL3BvdCqo8f0jXHPOY7L77EpeTI?=
+ =?us-ascii?Q?+/rKci/Cl0t65FHtX92kiZg6pikhrlH6BpXQmwH5EIHUE9rNVorAMTsOYvpu?=
+ =?us-ascii?Q?ffCri7Rz+XevUYIABMe/3rTHTF03UUloqxMYWM/McUC38DQTEXITk2yY0VOP?=
+ =?us-ascii?Q?goP9OF0/LgLxtdXkruZ5mHOidkvEDjNxmIjI+GeEY8ZgEiin9nSTlOc7Sh03?=
+ =?us-ascii?Q?Bej3PnUbIyVzKP7C64JS9t1o9wZwBkoglXt/FbAxh75arT1dqRck1UqYbdjt?=
+ =?us-ascii?Q?rx0Lu9i4QZUC5V3kKfig5HG+7vyBlkzaZr3Fo34YL6IrmGlm772ftGyljob5?=
+ =?us-ascii?Q?MOudNmy42cr45PIezfnE63Lh7tBGzACBoBby3ew/4sF0+jz5qShtytfnYz2C?=
+ =?us-ascii?Q?S74hkSCfTKXNj8RiQ2Jn4lbA9t9q9DOw2nN0Y85ZD0jbjNTOmG4Dr5IVfYXz?=
+ =?us-ascii?Q?wi18o0EYYbbvwi9UOvMYLX/D1GvLmiigi4+j1TwZ0KQFuJgsM8qcA3Jdrgm6?=
+ =?us-ascii?Q?x4/6Hcar3A8PdY0kkRCdgckBVqhmOB+g4WCaJ++RtZvNKuhsuBO+0OFQxAll?=
+ =?us-ascii?Q?bRiOHw4YucY4T9u4SZI8F7ZodAuAlILP1sUfdeWPmci0ae9ls9TZJ95eVtsU?=
+ =?us-ascii?Q?D8DuybquyBYQrL78vu3xaA9NFaa+LCcWUynEcFmxcV3IY79cpQc8uPoMsYdu?=
+ =?us-ascii?Q?v1SLEPrA9YxZoV07frIa4PaXI0Gor1huwvuIuwCqTYNxCBGbjtpdosS+t6tW?=
+ =?us-ascii?Q?yA+j7v8Q7WHBS23yo2BpUNn3ZkJfZ2D0n2o66LSY3CY7f7I4Jk1OTUPaMxiN?=
+ =?us-ascii?Q?ImMII6gQEKgD7cFHLLvWlZlESXy/tgEEeYWwO2K6qlqOzjpaPN2y9wx+MIZO?=
+ =?us-ascii?Q?UEghb0wdLlgORcWksqruE0qRKgXC79ixTI3O0fWIVWUiqOpHLuNCtmnyxZwl?=
+ =?us-ascii?Q?GWPoVy9UXouUL28phkdywa4XtWoSh7Yl4JJrVYLl2Iqci9XJi7rVD8DPB+VW?=
+ =?us-ascii?Q?2BNQL7LbjPWwufNbQIdY7rbojpRiuHrv6lDFxhZm8TWs3TSlHjVpttapz5OT?=
+ =?us-ascii?Q?BjBpkdZomYhj4LnpORzp+0CPzmI/mJO1yeKwF5MhrFvRIhexFZaYwMtQtmlL?=
+ =?us-ascii?Q?icmQa+vEBxJn9gHEShd7m1B4Twz2dvYPEOT+T90SsIJwo8d4uFSC7NNNOV7P?=
+ =?us-ascii?Q?Cfqi5RLkpo/RjxaCTMcmHA0T9JYpFj/v?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB12093.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?AThYFqFH4WGChFepm1vmAtZrnp+mwUq8O0fitc2uuQmIXBT1n0LAuZXYib/Q?=
+ =?us-ascii?Q?fDyBk/zQNhNPFcrz1wng0ptXV/DvqCTj+GKSxUNiAU77STfwmhA5DOpQ5ebX?=
+ =?us-ascii?Q?d5xSeyLyPXQuFKhopQSuL/LNNX7y9BNt6GxtwZWdX3y8O71nPBeuQX5U2pfq?=
+ =?us-ascii?Q?goQvgUQgGnLTkUe1XsU43jjbU2bV6Y0tpKV/3T/fed0rZzVkRJjSUXLz07Dm?=
+ =?us-ascii?Q?oAfsL6DD2TJx47jfxJS0JkNNoT6wEKvJTAVnlc0YjZi9Xm2SZ3Q2iglhuV08?=
+ =?us-ascii?Q?YIKVNYIhinjdUf8ek0oD7GRSGsCtrPHnnLcvtdRFviZx0TfXjttZykop+Mm7?=
+ =?us-ascii?Q?wv0kF/lDyfrmfEcN6nCUB6LssG9C8GdH4MqKRBW8dK913ucmgp8RBrAwnoxW?=
+ =?us-ascii?Q?vVzhpx91CrEvhdjMZi8KBgF4DR+2p7n3/LGXl733RtukyYwiIbP4kJkA9R5O?=
+ =?us-ascii?Q?eimEFoFMkecQZ/7iUAaQdlB9lPlrN03rh8S3dhzCFHZQnpX9+Y6y6VX6hDmx?=
+ =?us-ascii?Q?2kTTd28SGg6xu+vh9H89EhiLrmn4L1qOPZyNixssO0H6/OeREVrI9QIflgQA?=
+ =?us-ascii?Q?INqFqgtrysxXCwXchYSoY/uo0lQ0oudGTelpsptV4jIXlyPJDkpbIpEcrSnL?=
+ =?us-ascii?Q?7s80megiaiLQPEem5Z6f9Hxvbi/1BwAvGMyg1Zhetr0zS/YDaO9goQVpLvT6?=
+ =?us-ascii?Q?HXCl/AibWAR+z8B9STN+FLGtwbudx9gM+EzSkbheQ61Uqy1AZXqPqR8CImby?=
+ =?us-ascii?Q?7PumLAFskDtQSqcgruJC4BWGx3j9hyqy6Xvj5ZsG4Ne0zNfwjeeEFZimdGt+?=
+ =?us-ascii?Q?fFkdgdOXG2eCIPoaxPtmxNnNSR36Ckm4zwWeMzC749U+Cfmiehjj0FIDzhMn?=
+ =?us-ascii?Q?6niRRxNn8NvoE/7/1hnSO0hwvDJZu/DDxeQ9MmDEIkUwbXVbDWHtiGFqOqtk?=
+ =?us-ascii?Q?pc1R6Y/DBtDkWMYNZHRmdlUeooN4cpXk0nRx/eCEfXDbFUeI0QqwAMTHEcA9?=
+ =?us-ascii?Q?EjoDCtp4hLFj4R9PmMoefU+rgOxBXXCjU2UaIWKynOYTWjUNdQ51jV1+Oa9r?=
+ =?us-ascii?Q?TIXNKljzThObCNhaldQfTIs/F2jBWoB1eJCj4NOotTdTiskWCh3FByYc+yKm?=
+ =?us-ascii?Q?/cTY5gtsrn0aoFk2TuVgNF5FMKiFuAErOc4GJHdzYlt7kemLDkc4zUIuBYaU?=
+ =?us-ascii?Q?y/ZMBk0SnMSErYCjm8tbRMVVZ3cVUb2/xpLmjgxUq6wpXccO/WuErbOlxR2u?=
+ =?us-ascii?Q?RzOgZdn/MNACUBYgypnX9bjrYuBqyNzqAKMMwAvevcGqjicBCeQSWK9kt6qW?=
+ =?us-ascii?Q?MAQrnC66wIx+uGTubKgEnRdHvGQb8951KNklNw/nIcIufteExsRohef3PvrC?=
+ =?us-ascii?Q?vSCXg5sOFT/rKRRCxz0P+RUAQm+iIjxqw5G6QMxanCi5SXhApynDsPxUNDjS?=
+ =?us-ascii?Q?cuUyIk4TN6Y994uY4XoSxnSfAoz03A3Ic6juUPVElLixf+2DvgiKBlWWwmG/?=
+ =?us-ascii?Q?DcvrG/jRXbbnsjAO1c8xJYO9L7I2tVmqO9WIBuyAtJPsnagVBycthNDOSMN5?=
+ =?us-ascii?Q?iX+odQKrd7WWBuh5hrZeYfcZwtVq0VpPoqZYY7porqCJcN+qyEmfn88Z3kvs?=
+ =?us-ascii?Q?lg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 23 Jan 2025 10:41:57 +0100
-Message-Id: <D79CRMSWU0F1.30RZ853AES515@bootlin.com>
-From: "Antonin Godard" <antonin.godard@bootlin.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Shawn Guo" <shawnguo@kernel.org>, "Sascha
- Hauer" <s.hauer@pengutronix.de>, "Pengutronix Kernel Team"
- <kernel@pengutronix.de>, "Fabio Estevam" <festevam@gmail.com>
-Subject: Re: [PATCH 3/3] ARM: dts: imx6ul: Add Variscite Concerto board
- support
-Cc: "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <imx@lists.linux.dev>, <linux-arm-kernel@lists.infradead.org>
-X-Mailer: aerc 0.18.2-100-gc2048ef30452-dirty
-References: <20250121-varsom6ul-concerto-dts-v1-0-eb349acf0ac6@bootlin.com>
- <20250121-varsom6ul-concerto-dts-v1-3-eb349acf0ac6@bootlin.com>
- <56e74e80-8e90-4784-b284-bee1af35e37e@kernel.org>
-In-Reply-To: <56e74e80-8e90-4784-b284-bee1af35e37e@kernel.org>
-X-GND-Sasl: antonin.godard@bootlin.com
+MIME-Version: 1.0
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB12093.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 996fcd4a-7337-4e4f-2cfe-08dd3b92e612
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2025 09:47:06.7378
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: npNFkwPOKh2o5G6bFA8VHMlMvtjUPR0g810Xlom4wyyoLDO87guuRMuVOU01zlvha68ECma+U1PjyYITk1l/kb1pKbWey6TfzqJeptrNmeU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB6367
 
-Hi Krzysztof,
+Hi Biju,
 
-On Tue Jan 21, 2025 at 5:03 PM CET, Krzysztof Kozlowski wrote:
-> On 21/01/2025 10:33, Antonin Godard wrote:
->> This patch adds support for the Variscite Concerto Carrier Board.
->
-> Please do not use "This commit/patch/change", but imperative mood. See
-> longer explanation here:
-> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/sub=
-mitting-patches.rst#L95
+Thanks for your patch!
 
-Will do in v2.
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+> Sent: 20 January 2025 09:47
+> Subject: [PATCH 11/11] arm64: dts: renesas: r9a09g047: Add icu node
+>=20
+> Add interrupt control node to RZ/G3E ("R9A09G047") SoC DTSI
+> and add icu as interrupt-parent of pincontrol.
+>=20
+> Also, define the ICU IRQs for board DT users.
+>=20
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
->>
->> This Carrier-Board has the following:
->> - LVDS interface for the VLCD-CAP-GLD-LVDS 7" LCD 800 x 480 touch
->>   display (not configured)
->> - USB Host + USB OTG Connector
->> - 10/100 Mbps Ethernet
->> - miniPCI-Express slot
->> - SD Card connector
->> - Audio Headphone/Line In jack connectors
->> - S-ATA
->> - On-board DMIC
->>=20
->> Product Page: https://www.variscite.com/product/single-board-computers/c=
-oncerto-board
->>=20
->> This file is based on the one provided by Variscite on their own kernel,
->> but adapted for mainline.
->>=20
->> Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
->> ---
->>  arch/arm/boot/dts/nxp/imx/Makefile                 |   1 +
->>  .../boot/dts/nxp/imx/imx6ul-var-som-concerto.dts   | 331 ++++++++++++++=
-+++++++
->>  2 files changed, 332 insertions(+)
->>=20
->> diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/=
-imx/Makefile
->> index 39a153536d2a2b8f75b5fbe4332660f89442064a..94c9bc94cc8e2daa1fb3b568=
-6b0b58db1f6678b6 100644
->> --- a/arch/arm/boot/dts/nxp/imx/Makefile
->> +++ b/arch/arm/boot/dts/nxp/imx/Makefile
->> @@ -329,6 +329,7 @@ dtb-$(CONFIG_SOC_IMX6UL) +=3D \
->>  	imx6ul-tx6ul-0010.dtb \
->>  	imx6ul-tx6ul-0011.dtb \
->>  	imx6ul-tx6ul-mainboard.dtb \
->> +	imx6ul-var-som-concerto.dtb \
->>  	imx6ull-14x14-evk.dtb \
->>  	imx6ull-colibri-aster.dtb \
->>  	imx6ull-colibri-emmc-aster.dtb \
->> diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts b/arc=
-h/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..4289641d94c5a72ba985f339=
-652039dbf13da40c
->> --- /dev/null
->> +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
->> @@ -0,0 +1,331 @@
->> +// SPDX-License-Identifier: GPL-2.0+
->> +/*
->> + * Support for Variscite MX6 Concerto Carrier board with the VAR-SOM-MX=
-6UL
->> + * Variscite SoM mounted on it
->> + *
->> + * Copyright 2019 Variscite Ltd.
->> + * Copyright 2025 Bootlin
->> + */
->> +
->> +#include "imx6ul-var-som.dtsi"
->> +
->> +/ {
->> +	model =3D "Variscite VAR-SOM-MX6UL Concerto Board";
->> +	compatible =3D "variscite,mx6concerto", "variscite,var-som-imx6ul", "f=
-sl,imx6ul";
->> +
->> +	backlight {
->> +		compatible =3D "pwm-backlight";
->> +		pwms =3D <&pwm4 0 20000 0>;
->> +		brightness-levels =3D <0 4 8 16 32 64 128 255>;
->> +		default-brightness-level =3D <6>;
->> +		status =3D "okay";
->
-> Which file disables it?
+Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 
-This is a mistake, I forgot to remove this when removing the parts I couldn=
-'t
-test. Will remove this node in v2.
+Cheers,
+Fab
 
->> +	};
->> +
->> +	chosen {
->> +		stdout-path =3D &uart1;
->> +	};
->> +
->> +	gpio-keys {
->> +		compatible =3D "gpio-keys";
->> +		pinctrl-names =3D "default";
->> +		pinctrl-0 =3D <&pinctrl_gpio_key_back>, <&pinctrl_gpio_key_wakeup>;
->> +
->> +		key-back {
->> +			gpios =3D <&gpio4 14 GPIO_ACTIVE_LOW>;
->> +			linux,code =3D <KEY_BACK>;
->> +		};
->> +
->> +		key-wakeup {
->> +			gpios =3D <&gpio5 8 GPIO_ACTIVE_LOW>;
->> +			linux,code =3D <KEY_WAKEUP>;
->> +			wakeup-source;
->> +		};
->> +	};
->> +
->> +	leds {
->> +		compatible =3D "gpio-leds";
->> +		pinctrl-names =3D "default";
->> +		pinctrl-0 =3D <&pinctrl_gpio_leds>;
->> +
->> +		gpled2 {
->
-> led-0
-> led-1
-> led-2
+> ---
+>  arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 108 +++++++++++++++++++++
+>  1 file changed, 108 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot=
+/dts/renesas/r9a09g047.dtsi
+> index 133aa3272d3a..0beac052f208 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
+> @@ -8,6 +8,24 @@
+>  #include <dt-bindings/clock/renesas,r9a09g047-cpg.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>=20
+> +#define RZG3E_NMI	0
+> +#define RZG3E_IRQ0	1
+> +#define RZG3E_IRQ1	2
+> +#define RZG3E_IRQ2	3
+> +#define RZG3E_IRQ3	4
+> +#define RZG3E_IRQ4	5
+> +#define RZG3E_IRQ5	6
+> +#define RZG3E_IRQ6	7
+> +#define RZG3E_IRQ7	8
+> +#define RZG3E_IRQ8	9
+> +#define RZG3E_IRQ9	10
+> +#define RZG3E_IRQ10	11
+> +#define RZG3E_IRQ11	12
+> +#define RZG3E_IRQ12	13
+> +#define RZG3E_IRQ13	14
+> +#define RZG3E_IRQ14	15
+> +#define RZG3E_IRQ15	16
+> +
+>  / {
+>  	compatible =3D "renesas,r9a09g047";
+>  	#address-cells =3D <2>;
+> @@ -131,6 +149,95 @@ soc: soc {
+>  		#size-cells =3D <2>;
+>  		ranges;
+>=20
+> +		icu: interrupt-controller@10400000 {
+> +			compatible =3D "renesas,r9a09g047-icu";
+> +			reg =3D <0 0x10400000 0 0x10000>;
+> +			#interrupt-cells =3D <2>;
+> +			#address-cells =3D <0>;
+> +			interrupt-controller;
+> +			interrupts =3D <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 428 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 433 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 436 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 437 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 440 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 441 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 262 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 263 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 265 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names =3D "nmi",
+> +					  "port_irq0", "port_irq1", "port_irq2",
+> +					  "port_irq3", "port_irq4", "port_irq5",
+> +					  "port_irq6", "port_irq7", "port_irq8",
+> +					  "port_irq9", "port_irq10", "port_irq11",
+> +					  "port_irq12", "port_irq13", "port_irq14",
+> +					  "port_irq15",
+> +					  "tint0", "tint1", "tint2", "tint3",
+> +					  "tint4", "tint5", "tint6", "tint7",
+> +					  "tint8", "tint9", "tint10", "tint11",
+> +					  "tint12", "tint13", "tint14", "tint15",
+> +					  "tint16", "tint17", "tint18", "tint19",
+> +					  "tint20", "tint21", "tint22", "tint23",
+> +					  "tint24", "tint25", "tint26", "tint27",
+> +					  "tint28", "tint29", "tint30", "tint31",
+> +					  "int-ca55-0", "int-ca55-1",
+> +					  "int-ca55-2", "int-ca55-3",
+> +					  "icu-error-ca55",
+> +					  "gpt-u0-gtciada", "gpt-u0-gtciadb",
+> +					  "gpt-u1-gtciada", "gpt-u1-gtciadb";
+> +			clocks =3D <&cpg CPG_MOD 0x5>;
+> +			power-domains =3D <&cpg>;
+> +			resets =3D <&cpg 0x36>;
+> +		};
+> +
+>  		pinctrl: pinctrl@10410000 {
+>  			compatible =3D "renesas,r9a09g047-pinctrl";
+>  			reg =3D <0 0x10410000 0 0x10000>;
+> @@ -140,6 +247,7 @@ pinctrl: pinctrl@10410000 {
+>  			gpio-ranges =3D <&pinctrl 0 0 232>;
+>  			#interrupt-cells =3D <2>;
+>  			interrupt-controller;
+> +			interrupt-parent =3D <&icu>;
+>  			power-domains =3D <&cpg>;
+>  			resets =3D <&cpg 0xa5>, <&cpg 0xa6>;
+>  		};
+> --
+> 2.43.0
+>=20
 
-Will rename this node to led-0, and set the label to "gpled2" (this is how =
-it's
-named on the schematic/datasheet).
-
-> Are there other leds here?
-
-Nothing else is obvious to me on the schematic. There is no gpled0 or gpled=
-1.
-
->> +			gpios =3D <&gpio1 25 GPIO_ACTIVE_HIGH>;
->> +			linux,default-trigger =3D "heartbeat";
->
-> Missing function and color
-
-Will set the function to STATUS, color green. This is a general purpose led=
- that
-can be used for debugging purposes or as a status indicator, I think.
-
->> +		};
->> +	};
->> +};
->> +
->> +&can1 {
->> +	pinctrl-names =3D "default";
->> +	pinctrl-0 =3D <&pinctrl_flexcan1>;
->> +	status =3D "okay";
->> +};
->> +
->> +&fec1 {
->> +	status =3D "disabled";
->> +};
->> +
->> +&fec2 {
->> +	pinctrl-names =3D "default";
->> +	pinctrl-0 =3D <&pinctrl_enet2>, <&pinctrl_enet2_gpio>, <&pinctrl_enet2=
-_mdio>;
->> +	phy-mode =3D "rmii";
->> +	phy-handle =3D <&ethphy1>;
->> +	phy-reset-gpios =3D <&gpio5 5 GPIO_ACTIVE_LOW>;
->> +	phy-reset-duration =3D <100>;
->> +	status =3D "okay";
->> +
->> +	mdio {
->> +		#address-cells =3D <1>;
->> +		#size-cells =3D <0>;
->> +
->> +		ethphy1: ethernet-phy@3 {
->> +			compatible =3D "ethernet-phy-ieee802.3-c22";
->> +			micrel,rmii-reference-clock-select-25-mhz =3D <1>;
->> +			micrel,led-mode =3D <0>;
->> +			clocks =3D <&rmii_ref_clk>;
->> +			clock-names =3D "rmii-ref";
->> +			reg =3D <3>;
->> +		};
->> +	};
->> +};
->> +
->> +&i2c1 {
->> +	clock-frequency =3D <100000>;
->> +	pinctrl-names =3D "default";
->> +	pinctrl-0 =3D <&pinctrl_i2c1>;
->> +	status =3D "okay";
->> +
->> +	/* DS1337 RTC module */
->
-> Drop comment, obvious. This cannot be anything else, because node name
-> and compatible told that.
-
-Will do in v2.
-
->> +	rtc@68 {
->> +		/*
->> +		 * To actually use this interrupt
->> +		 * connect pins J14.8 & J14.10 on the Concerto-Board.
->> +		 */
->> +		compatible =3D "dallas,ds1337";
->> +		reg =3D <0x68>;
->> +		pinctrl-names =3D "default";
->> +		pinctrl-0 =3D <&pinctrl_rtc>;
->> +		interrupt-parent =3D <&gpio1>;
->> +		interrupts =3D <10 IRQ_TYPE_EDGE_FALLING>;
->> +	};
->> +};
->
->
-> Best regards,
-> Krzysztof
-
-Thanks for the review,
-Antonin
-
---=20
-Antonin Godard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
