@@ -1,167 +1,141 @@
-Return-Path: <devicetree+bounces-140560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59DA9A1A3F8
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 13:12:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD7D4A1A411
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 13:19:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94D62167D83
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:12:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 802DF3A08A0
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BDC720E307;
-	Thu, 23 Jan 2025 12:12:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A55420E70B;
+	Thu, 23 Jan 2025 12:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FIwhRLM4"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="d8SBvdIN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEC7020CCCF;
-	Thu, 23 Jan 2025 12:12:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BC3620E318
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 12:19:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737634328; cv=none; b=LyOiFQ0MIl/OA2uXi5Xo00+yqQQDb4RBTZsL43+aklusD9jpgrDYkK1VoLkYkZ1QhzqVdGKfkmXa0094/5/kLQcAxPz2njfj9F3kOreGmn1UckZ5AuRkP1JYuRhMOPeUe8MCp4EfhLFo7P9MakuVdgrG8arkS1kWRVQ7N4RubBA=
+	t=1737634785; cv=none; b=vGt2c1lmozu7RLZTMDIFQvwJUeryfdKYv+6OjjsElRGAZWLGSSuK+Y188ETICsos2rUqBzsynPJosLMmXOzQf6f6bfAJKTTZ/62EXFCRzOOItg25Y3/jlJyb+e6CTtqkT1QUwntWs2/NOcDc9dL1a/tb+h8wiLY9EpEu8EkxO8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737634328; c=relaxed/simple;
-	bh=dKZvrf9HUMJiplbfkhdSNsOVNqxCZF9z5W+m6OzsrZE=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ujpCPRpEVVaL5bavqPoweUZOfnQwvBZ4EeINvGVJhCoCBRKhq9kMzpoTaC1YkT/1zFoLKKFXOFrXTSm6pL7fgOiIxHGN2CcHqf5dxL8Z0ORskkZ7Sq7qfPagt8QcMnIUVpJ1UaCym676j751tjJpp8yjb34UOQkx/XCB2Ea/MWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FIwhRLM4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 219C7C4CED3;
-	Thu, 23 Jan 2025 12:12:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737634327;
-	bh=dKZvrf9HUMJiplbfkhdSNsOVNqxCZF9z5W+m6OzsrZE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=FIwhRLM4K50u5L38giWBy/7KLArFN7AgRp356rYlhbneQ5nn6vWiLWzONc0+oqd4Q
-	 vezI5X69TKBOd+hOr1OBaBz8RAH8ZMjWl4/aq1L15afgTysQ962hU1MCHwyyx+EBQP
-	 4ZCOY3ggy/87u2Bu/T7wm+Nult7kB+S8tmE416C8nCz0rizTvGibNSjZFaeV1op7Ha
-	 YsEBdwUR4LOPEYQIG9Wjzw+exhiN90ANsH2f3IEG18ppSdWVn8Ie3cNzoiNgus6eoq
-	 W6HOF6MGtPW/FglngQH+NeJRFOPlNK9VWoXkO38PHFFojFMlV4KOTpHVwyvLVzFMXz
-	 Pwr2mWDZWvJMg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.95)
-	(envelope-from <maz@kernel.org>)
-	id 1taw44-00EiS9-DM;
-	Thu, 23 Jan 2025 12:12:04 +0000
-Date: Thu, 23 Jan 2025 12:12:03 +0000
-Message-ID: <86msfhviek.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Chen Wang <unicorn_wang@outlook.com>,
-	Chen Wang <unicornxw@gmail.com>,
-	kw@linux.com,
-	u.kleine-koenig@baylibre.com,
-	aou@eecs.berkeley.edu,
-	arnd@arndb.de,
-	bhelgaas@google.com,
-	conor+dt@kernel.org,
-	guoren@kernel.org,
-	inochiama@outlook.com,
-	krzk+dt@kernel.org,
-	lee@kernel.org,
-	lpieralisi@kernel.org,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	pbrobinson@gmail.com,
-	robh@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	chao.wei@sophgo.com,
-	xiaoguang.xing@sophgo.com,
-	fengchun.li@sophgo.com,
-	helgaas@kernel.org
-Subject: Re: [PATCH v3 2/5] PCI: sg2042: Add Sophgo SG2042 PCIe driver
-In-Reply-To: <20250122173451.5c7pdchnyee7iy6t@thinkpad>
-References: <cover.1736923025.git.unicorn_wang@outlook.com>
-	<ddedd8f76f83fea2c6d3887132d2fe6f2a6a02c1.1736923025.git.unicorn_wang@outlook.com>
-	<20250119122353.v3tzitthmu5tu3dg@thinkpad>
-	<BM1PR01MB254540560C1281CE9898A5A0FEE12@BM1PR01MB2545.INDPRD01.PROD.OUTLOOK.COM>
-	<20250122173451.5c7pdchnyee7iy6t@thinkpad>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/29.4
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1737634785; c=relaxed/simple;
+	bh=k2NKAdYzXBEQPbHp1TZCEi86re+Y04PGu5jH/Pgq7Xg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BZxloVveL7Y2xVhw1KdETmgscPRzgEYM5oy93I5YmfmsXY3SqG5WMSK8dJFPPdF7fb0pnlbsSeJr1w15/BCshKy4pWsdZXprdZM6FrHm2OJAcquS96OrgNFYoddW2/CZtHeG31GFlVzrDinCMkyOKzBlWn3tUPuHKG2fMaJdn7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=d8SBvdIN; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50N4rRQO023102
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 12:19:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	J9CPG/hVBu7eJ/PuvKIffPx7v08z1gelltnc+QQ273Q=; b=d8SBvdINUqctG+Ap
+	O3+KIQ77cXm7+n7FdgyW5oj77lj/B7kGynP3NA+TbnmdSC52psyDl3Gkdt8o/v/z
+	/7YYXNL4VLw9JGMwLm1O6eC8EaMRMFtWUm98x8XmYq97oaOtku0+M/e1TSyLwY3v
+	WpusiGx9nvkLoNAmNpvrdyIfuTNVxQYufEIoLsp/U8mqC2sj2Xah7h4t5k++tlGW
+	cyIrX5/5y8Gw2lrF1oRowA/2DB6pR7oL5I1eerdP8mS5qsZyaBA7nvEGniw/We/l
+	0tJzoNAP9Zyz8OAu/ZRlh0w76RxdvS13YnoJwcPVpGj9Bqz9kWwOpN+VZsNJiX6K
+	jf8E6w==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44bf5190wp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 12:19:42 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6d8f15481bbso2133316d6.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 04:19:42 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737634781; x=1738239581;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=J9CPG/hVBu7eJ/PuvKIffPx7v08z1gelltnc+QQ273Q=;
+        b=jJeE3ahjGJwb6vXf/iDE6npEmPw/65pvDNzdRx85MUx0lyPdYIj5ws5NrM0alSfLYA
+         v6PxRriEujfkS4MwUm0vEgbUcaUxMCjvyXNn5reg2rIrEvjliK9/SyNngw/Pm8TR5ePi
+         h+IgUj9kqvmTEALB314N/jnHu0zeecULjG5yaGDJHMXKUb7Wq4iBFRHGfx6E3sokwg3C
+         6OwJ8IXD9pUzu4WBB/5uQ4jZJlTgefrC8Zubz5P9jgTFfAKAdgrOVvVVVQQr8MzrFeyS
+         GPrpsNFrwbAu4d8wK+5/9vqcuwQDsvyUgwvQBTE3RuBL7VIjXx52wH2p/eZdHJTdQEfs
+         TfvA==
+X-Gm-Message-State: AOJu0YwiJWRKM9KU9ojjJ2Z7XX2CygdT0b5tCwfR5uAXlQx7ybo4m3LD
+	02df6L8HFR6UEjF7Lmhi8ulmNua1yrPwOVBFo2DB8w8yKIO8iWPnpRSuNBUei1y1dw9KhN536pR
+	eaDN/BXU2ghgbup5U3800q9h5I7+RHmv2ZDtbegkXNWXwhGmLW0OZEtLR+Mhg
+X-Gm-Gg: ASbGnctHlbgi/3xRwC9YvjZMbTtBzKdJowj8+Jc9JU7lKqLBmeBNkEKQYRd//g+dSPX
+	EnTyzD2VB7WHf+dLNmgufRiCvQM6a+vVTP/r6i+Ov7NIexzaWv6Q9YrNEa1l/0yed2SprnJlyGB
+	yiUZfsS4CNiK8hzLzdNXDiXg/bQsBb2WPAaijs173KWrxEIQmBwdv8n4hXzVGcjV/Uvz2dk0JF1
+	/S6rIGXaQ3bdfCX3mUytxyxE7Zpc7CPxQcnK4XAc4a+E++Bn7siMxzGo3nZ7xXKIkJOYx7962O6
+	cBxfRl9S6fb3OWMRD4ztZirzze5G7Xn8Q9ul5++OVkAPs0/Y
+X-Received: by 2002:a05:6214:2427:b0:6d8:99b2:63c7 with SMTP id 6a1803df08f44-6e1b21db9a7mr125795146d6.9.1737634781425;
+        Thu, 23 Jan 2025 04:19:41 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFL9S3Cn6Xh1m8u1IJrR1ZW7VnorjrOrlsJRo8NPVU0jyMT1h/6dueqAdo7fGzvWSJ3efppQg==
+X-Received: by 2002:a05:6214:2427:b0:6d8:99b2:63c7 with SMTP id 6a1803df08f44-6e1b21db9a7mr125794946d6.9.1737634781138;
+        Thu, 23 Jan 2025 04:19:41 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab384f87d70sm1079289066b.142.2025.01.23.04.19.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jan 2025 04:19:40 -0800 (PST)
+Message-ID: <94ccb2c6-d68b-4bb6-8eaa-7ff72f575ab0@oss.qualcomm.com>
+Date: Thu, 23 Jan 2025 13:19:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: manivannan.sadhasivam@linaro.org, unicorn_wang@outlook.com, unicornxw@gmail.com, kw@linux.com, u.kleine-koenig@baylibre.com, aou@eecs.berkeley.edu, arnd@arndb.de, bhelgaas@google.com, conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com, krzk+dt@kernel.org, lee@kernel.org, lpieralisi@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com, pbrobinson@gmail.com, robh@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org, chao.wei@sophgo.com, xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com, helgaas@kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/3] arm64: dts: qcom: gaokun3: Add Embedded Controller
+ node
+To: Pengyu Luo <mitltlatltl@gmail.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+        linux-hwmon@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20250117140348.180681-1-mitltlatltl@gmail.com>
+ <20250117140348.180681-4-mitltlatltl@gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250117140348.180681-4-mitltlatltl@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: x94liKA41urW4ZILq8Gm7zffCYPDjJKC
+X-Proofpoint-GUID: x94liKA41urW4ZILq8Gm7zffCYPDjJKC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-23_05,2025-01-22_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 clxscore=1015
+ lowpriorityscore=0 bulkscore=0 phishscore=0 priorityscore=1501 spamscore=0
+ impostorscore=0 suspectscore=0 mlxlogscore=999 mlxscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501230094
 
-On Wed, 22 Jan 2025 17:34:51 +0000,
-Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
+On 17.01.2025 3:03 PM, Pengyu Luo wrote:
+> The Embedded Controller in the Huawei Matebook E Go is accessible on &i2c15
+> and provides battery and adapter status, port orientation status, as well
+> as HPD event notifications for two USB Type-C port, etc.
 > 
-> + Marc (for the IRQCHIP implementation review)
+> Add the EC to the device tree and describe the relationship among
+> the type-c connectors, role switches, orientation switches and the QMP
+> combo PHY.
 > 
-> On Wed, Jan 22, 2025 at 09:28:12PM +0800, Chen Wang wrote:
-> > 
-> > > > +static int sg2042_pcie_setup_msi(struct sg2042_pcie *pcie,
-> > > > +				 struct device_node *msi_node)
-> > > > +{
-> > > > +	struct device *dev = pcie->cdns_pcie->dev;
-> > > > +	struct fwnode_handle *fwnode = of_node_to_fwnode(dev->of_node);
-> > > > +	struct irq_domain *parent_domain;
-> > > > +	int ret = 0;
-> > > > +
-> > > > +	if (!of_property_read_bool(msi_node, "msi-controller"))
-> > > > +		return -ENODEV;
-> > > > +
-> > > > +	ret = of_irq_get_byname(msi_node, "msi");
-> > > > +	if (ret <= 0) {
-> > > > +		dev_err(dev, "%pOF: failed to get MSI irq\n", msi_node);
-> > > > +		return ret;
-> > > > +	}
-> > > > +	pcie->msi_irq = ret;
-> > > > +
-> > > > +	irq_set_chained_handler_and_data(pcie->msi_irq,
-> > > > +					 sg2042_pcie_msi_chained_isr, pcie);
-> > > > +
-> > > > +	parent_domain = irq_domain_create_linear(fwnode, MSI_DEF_NUM_VECTORS,
-> > > > +						 &sg2042_pcie_msi_domain_ops, pcie);
-> > > > +	if (!parent_domain) {
-> > > > +		dev_err(dev, "%pfw: Failed to create IRQ domain\n", fwnode);
-> > > > +		return -ENOMEM;
-> > > > +	}
-> > > > +	irq_domain_update_bus_token(parent_domain, DOMAIN_BUS_NEXUS);
-> > > > +
-> > > The MSI controller is wired to PLIC isn't it? If so, why can't you use
-> > > hierarchial MSI domain implementation as like other controller drivers?
-> > 
-> > The method used here is somewhat similar to dw_pcie_allocate_domains() in
-> > drivers/pci/controller/dwc/pcie-designware-host.c. This MSI controller is
-> > about Method A, the PCIe controller implements an MSI interrupt controller
-> > inside, and connect to PLIC upward through only ONE interrupt line. Because
-> > MSI to PLIC is multiple to one, I use linear mode here and use chained ISR
-> > to handle the interrupts.
-> > 
-> 
-> Hmm, ok. I'm not an IRQCHIP expert, but I'll defer to Marc to review the IRQCHIP
-> implementation part.
+> Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-I don't offer this service anymore, I'm afraid.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-As for the "I create my own non-hierarchical IRQ domain", this is
-something that happens for all completely mis-designed interrupt
-controllers, MSI or not, that multiplex interrupts.
-
-These implementations are stuck in the previous century, and seeing
-this on modern designs, for a "server SoC", is really pathetic.
-
-maybe you now understand why I don't offer this sort of reviewing
-service anymore.
-
-	M.
-
--- 
-Without deviation from the norm, progress is not possible.
+Konrad
 
