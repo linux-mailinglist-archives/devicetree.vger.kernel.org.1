@@ -1,279 +1,328 @@
-Return-Path: <devicetree+bounces-140649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C84CBA1ABFC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 22:38:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93484A1AC3C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 22:59:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B2673ADE16
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 21:38:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D327B1695D1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 21:59:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64DBE1CBE96;
-	Thu, 23 Jan 2025 21:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F8861CB501;
+	Thu, 23 Jan 2025 21:59:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i0Gl7ZvI"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="o5e2eNOV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3744B16EC19;
-	Thu, 23 Jan 2025 21:38:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 349B51ADC62
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 21:59:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737668300; cv=none; b=WAWetgBCxO39z08Bj98n6WJLAsMfk6HDqY4uu9NMxXqk31qnPHYb4fdf107BT4w3nh4qyEFkstm+pQN+hWil6mg6zou8D8HZjiMU9dSIpEBjly7Ppro7EHc9vm7KejLBARBjBRUI5rbCfGjE5sXDXrhwFkPDMIdUEjJyNlul/bQ=
+	t=1737669578; cv=none; b=Zzoh+BxVC9KSaYVmk2Tx4cxshIMOJdNrRG7uwRJnjYP5z/aKfwmWW7qHsFvlfeE0wh7vzBZ9Nor/KJhgHB14lUqQbQd6l8lSDsF8ifGYRLMn4pP4Lk791XwkgewrrSud5K4a3GGhDgsPst9JPssAvb+h0/UNWf/oWq0EN1E6THE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737668300; c=relaxed/simple;
-	bh=kIg09Min6QwFaovmaca18U9kozBuMZ1yuBDBVGZHNLw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I34qNNqjq1AxcsoEqOjUqtO2+IZjH3V4XFvPBhA/byMcsjkec+lZo0MVPFUgIKey1esx+ra223by+QpVS6KXyZ9V4jJPeaNQd0hIf1dGjYQ5KoHh00n5aSH7pT08PcHE8kQ+P/CpiCyx7ZSDioE2k3Yj/Nrcs35IsX28JKpzQo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i0Gl7ZvI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62AEAC4CED3;
-	Thu, 23 Jan 2025 21:38:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737668299;
-	bh=kIg09Min6QwFaovmaca18U9kozBuMZ1yuBDBVGZHNLw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i0Gl7ZvIuWU4RspKumbfgiP3PSD4xH0Ac1OIpaIVQ7wbHfcXEC3xzHjRNNUWHhdT7
-	 EyaW8WmYu/8mNAO0/UoTeo6doKEkdNDD9Rwhr+0mXjYlAFMtI+gGkREM23XdLPIMjU
-	 nEJwGXzJPx7O+coBGU9aYtBGVTHO5ooI48pAiSQNTNuursXmYsfpOWgotEDgdA9Zf0
-	 CRwFe4bPhNhsE7BYcKc40iZpgKIgU6+jhC4JASdjys8GdiIjCvve0I63E564CgLPeE
-	 f9zGCoQGzFUV/QcOaJh87AfD2PYRljR8v2eQlYCVTW3G6PngfnG4Bv8L5ad7rCBpI6
-	 57cW6lsfZqCnw==
-Date: Thu, 23 Jan 2025 15:38:18 -0600
-From: Rob Herring <robh@kernel.org>
-To: Christian Bruel <christian.bruel@foss.st.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
-	manivannan.sadhasivam@linaro.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, jingoohan1@gmail.com,
-	p.zabel@pengutronix.de, johan+linaro@kernel.org,
-	quic_schintav@quicinc.com, cassel@kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	fabrice.gasnier@foss.st.com
-Subject: Re: [PATCH v3 01/10] dt-bindings: PCI: Add STM32MP25 PCIe Root
- Complex bindings
-Message-ID: <20250123213818.GA401153-robh@kernel.org>
-References: <20250115092134.2904773-1-christian.bruel@foss.st.com>
- <20250115092134.2904773-2-christian.bruel@foss.st.com>
+	s=arc-20240116; t=1737669578; c=relaxed/simple;
+	bh=895XuhbxDuv+sPzXfLWDzt140VQ5Ymqg3n1dlkFqx2Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MZ4Gdwn6iA6xXyYd49z5enmgWxC41rSejCp1IxPEtnqWnVk5aVW0dt6kFlN/HFDEOyDved3mKekKWBdSVPLCOEqyre0m5bSsHAMBZwPt/l/nlW186TTUHe7vzyzwEwA7MDYwyJAKuPZC9Qo3O+bkEiOnaNTuL+tayMnmaVC6zIw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=o5e2eNOV; arc=none smtp.client-ip=209.85.167.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3ebb4aae80dso620417b6e.2
+        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 13:59:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1737669574; x=1738274374; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cP+WTpE4W8v8NY7Cs3v3hmlxICGWZmJCYyEWKtyHvKA=;
+        b=o5e2eNOVix2qjviS1VZHhpk5o77T3+Pq5qSIXoir3gsI7IuL89tNTW41bcImtHrYsI
+         SZkXW33ZZ7IGF4mCJHE7OBbFH8q/r29AgPiUD8mlxyeHCRyRF6hcHb3ikaeJIwKb7rIK
+         HbRMJYnd1pHasoAnmD1SE1eMHda6ymKDRJk+DlbOVPgNMx0t50GtZvFSN2R2D7xql1HZ
+         tVgw/dcMV3ktccwsoXUbDDCAme2Fix1z/4W8GrM2I1CzdP2/FpA8bsgYMocQL3Q7LZqo
+         YGwppZQQx1ZUiufOh1vYYAqkAWbC4C/5NRqK1E49/+wwE6CbFlZZXeWq1L9gaK+CkMcn
+         M0Hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737669574; x=1738274374;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cP+WTpE4W8v8NY7Cs3v3hmlxICGWZmJCYyEWKtyHvKA=;
+        b=LV9VhHD/k6g2pwWFY2Ha7YY83p3VLC5Vv0KnbzXsLLOdfg6vcxukBD9w3l4q6Muk8g
+         flTsTkRv7u79tUqimgDrOBRARC468O0Qf7nY3EBX8+QEI1jYXOd5G1E1fuojKstMrE3X
+         BPsPSH1tdW98UMc0Y3DLqpLOjFxFuYtRya5o+9TprVCTL7v8tp7th0HYxaTBU2WUnoBU
+         oi0t20YlCOD78ZyhZjw5OWkAWwmdvmpyMtDXQtgy21EeD4IW/elscc8Enc9adEmOvmED
+         Ph45xiuzUK+++n5dZwDQV5J+e0knk80ii7t87nSXLY7FyiKLO7n45W4BmXi2RNHld/2v
+         p0Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCVHab/UxvavN4vLpHZbXX4z4Q7DNgR5zX6iobB73N4RJE+s/uyfziZcJuSAs2i7MptE8V854kvMx5Yy@vger.kernel.org
+X-Gm-Message-State: AOJu0YxyMEnEgu88sc0FAXgLlB1SobrI/kZ3uLzYSOwM15dn5RKu84WU
+	kmf/dkjqLzqTEfAMupP9lasQn3tSNyiZ8ylW1UbNELc/c8zs5ef/GCFqrT2od7c=
+X-Gm-Gg: ASbGncuPxipJd4yzgyCu03Gqp7M14MtkTrIxMPN7XCUwr1/mw29MKGgNYMV6+YiNOJm
+	K935f+7IPReOSP77NQU4vlxOIUE/m5Kgp8vbEANRSD3GTsuu32yO62eeE7qeQS8MKMTQ/sAtwfl
+	JhprI304I8HD8Os8+IFH8An2sSksN/cEcVmQa3El/8oOVnRHK8hOnO+Y1Gg8qJxejddSm0LZ7hf
+	Bybjyv9/1WmswIfml3kI0GOrx7Ms8AxD3tD/q2xDA+fupE35YfAducAU1iZil0Uw5uGI5C22tu6
+	Kec3DENFVhWqNhw1FWrYOt2wWxyREZOBC6EQBMu3xA==
+X-Google-Smtp-Source: AGHT+IFJIxtCrItmKDeZa+vNZ5amirARpmYHPcMyyxIvd7GcILN90D1XtckmqOiJ81nA3YEarVZW5w==
+X-Received: by 2002:a05:6808:4d04:b0:3ea:5880:fe1d with SMTP id 5614622812f47-3f19fd53122mr14290643b6e.35.1737669574205;
+        Thu, 23 Jan 2025 13:59:34 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f1f088b0ddsm93388b6e.20.2025.01.23.13.59.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jan 2025 13:59:32 -0800 (PST)
+Message-ID: <6afc379a-2f9f-4462-ae30-ef6945a83236@baylibre.com>
+Date: Thu, 23 Jan 2025 15:59:30 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250115092134.2904773-2-christian.bruel@foss.st.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/7] dt-bindings: spi: zynqmp-qspi: Split the bus
+To: Sean Anderson <sean.anderson@linux.dev>, Mark Brown <broonie@kernel.org>,
+ Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org
+Cc: Jinjie Ruan <ruanjinjie@huawei.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
+ linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>
+References: <20250116232118.2694169-1-sean.anderson@linux.dev>
+ <20250116232118.2694169-2-sean.anderson@linux.dev>
+ <9f40295b-484a-48e8-b053-ff8550e589d7@baylibre.com>
+ <46a7eba6-a705-4543-b967-e83ccc89e7d4@linux.dev>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <46a7eba6-a705-4543-b967-e83ccc89e7d4@linux.dev>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jan 15, 2025 at 10:21:25AM +0100, Christian Bruel wrote:
-> Document the bindings for STM32MP25 PCIe Controller configured in
-> root complex mode.
+On 1/23/25 10:24 AM, Sean Anderson wrote:
+> On 1/21/25 19:16, David Lechner wrote:
+>> On 1/16/25 5:21 PM, Sean Anderson wrote:
+
+...
+
+>> Could we make a single device connected to both buses like this work using
+>> the proposed spi-lower and spi-upper or should we consider a different binding
+>> like the one I suggested?
 > 
-> Supports 4 INTx and MSI interrupts from the ARM GICv2m controller.
+> If you are willing to do the work to rewrite the SPI subsystem to handle
+> this, then I don't object to it in principle. Using a property would
+> also help with forwards compatibility. On the other hand, separate
+> busses are easier to implement since they integrate better with the SPI
+> subsystem (e.g. you can just call spi_register_controller to create all
+> the slaves).
 > 
-> STM32 PCIe may be in a power domain which is the case for the STM32MP25
-> based boards.
+> There have been some previous patches from Xilinx to handle this
+> use case [1], but IMO they were pretty hacky. They got this feature
+> merged into U-Boot and it broke many other boards and took a lot of
+> cleanup to fix. So I have intentionally only tackled the unsynchronized
+> use case since that requires no modification to areas outside of this
+> driver. I don't need the "parallel" use case and I am not interested in
+> doing the work required to implement it.
 > 
-> Supports WAKE# from wake-gpios
+> --Sean
 > 
-> Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
-> ---
->  .../bindings/pci/st,stm32-pcie-common.yaml    |  43 +++++++
->  .../bindings/pci/st,stm32-pcie-host.yaml      | 120 ++++++++++++++++++
->  2 files changed, 163 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-common.yaml
->  create mode 100644 Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/st,stm32-pcie-common.yaml b/Documentation/devicetree/bindings/pci/st,stm32-pcie-common.yaml
-> new file mode 100644
-> index 000000000000..9ee25bb25aac
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/st,stm32-pcie-common.yaml
-> @@ -0,0 +1,43 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/st,stm32-pcie-common.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STM32MP25 PCIe RC/EP controller
-> +
-> +maintainers:
-> +  - Christian Bruel <christian.bruel@foss.st.com>
-> +
-> +description:
-> +  STM32MP25 PCIe RC/EP common properties
-> +
-> +properties:
-> +  clocks:
-> +    maxItems: 1
-> +    description: PCIe system clock
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  phys:
-> +    maxItems: 1
+> [1] https://lore.kernel.org/linux-spi/20221017121249.19061-1-amit.kumar-mahapatra@amd.com/
 
-You have phys in host bridge and the root ports?
+Fair enough, and I think it can be done without breaking things like the multi
+CS support did.
 
-> +
-> +  phy-names:
-> +    const: pcie-phy
+Here are a couple of patches. Feel free to resubmit them with your series if
+they work for you. To make it work with your series, you should just need to
+modify the .dts to look like this:
 
--names is unless when there is only 1 entry. We already know it's a 
-'phy' for 'pcie', so the whole string adds nothing.
++          flash@0 {
++            compatible = "jedec,spi-nor";
++            reg = <0>;
++            spi-buses = <0>; /* lower */
++          };
++
++          flash@1 {
++            reg = <1>;
++            compatible = "jedec,spi-nor";
++            /* also OK to omit property in case of spi-buses = <0>; */
++          };
++
++          flash@2 {
++            reg = <2>;
++            compatible = "jedec,spi-nor";
++            spi-buses = <1>; /* upper */
++          };
 
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  access-controllers:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: GPIO controlled connection to PERST# signal
-> +    maxItems: 1
 
-You have multiple root ports, but only one PERST# signal?
+Then drop patch "spi: zynqmp-gqspi: Split the bus" of course.
 
-> +
-> +required:
-> +  - clocks
-> +  - resets
-> +
-> +additionalProperties: true
-> diff --git a/Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml b/Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml
-> new file mode 100644
-> index 000000000000..b5b8c92522e0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/st,stm32-pcie-host.yaml
-> @@ -0,0 +1,120 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/st,stm32-pcie-host.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: STMicroelectronics STM32MP25 PCIe Root Complex
-> +
-> +maintainers:
-> +  - Christian Bruel <christian.bruel@foss.st.com>
-> +
-> +description:
-> +  PCIe root complex controller based on the Synopsys DesignWare PCIe core.
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
-> +  - $ref: /schemas/pci/st,stm32-pcie-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: st,stm32mp25-pcie-rc
-> +
-> +  reg:
-> +    items:
-> +      - description: Data Bus Interface (DBI) registers.
-> +      - description: PCIe configuration registers.
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: config
-> +
-> +  msi-parent:
-> +    maxItems: 1
-> +
-> +  wake-gpios:
-> +    description: GPIO used as WAKE# input signal
-> +    maxItems: 1
-> +
-> +  wakeup-source: true
-> +
-> +dependentRequired:
-> +  wakeup-source: [ wake-gpios ]
-> +
-> +patternProperties:
-> +  '^pcie@[0-2],0$':
-> +    type: object
-> +    $ref: /schemas/pci/pci-pci-bridge.yaml#
-> +
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +
-> +      phys:
-> +        maxItems: 1
-> +
-> +      phy-names:
-> +        const: pcie-phy
-> +
-> +    required:
-> +      - phys
-> +      - phy-names
-> +      - ranges
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - interrupt-map
-> +  - interrupt-map-mask
-> +  - ranges
-> +  - dma-ranges
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/st,stm32mp25-rcc.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/phy/phy.h>
-> +    #include <dt-bindings/reset/st,stm32mp25-rcc.h>
-> +
-> +    pcie@48400000 {
-> +        compatible = "st,stm32mp25-pcie-rc";
-> +        device_type = "pci";
-> +        reg = <0x48400000 0x400000>,
-> +              <0x10000000 0x10000>;
-> +        reg-names = "dbi", "config";
-> +        #interrupt-cells = <1>;
-> +        interrupt-map-mask = <0 0 0 7>;
-> +        interrupt-map = <0 0 0 1 &intc 0 0 GIC_SPI 264 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <0 0 0 2 &intc 0 0 GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <0 0 0 3 &intc 0 0 GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <0 0 0 4 &intc 0 0 GIC_SPI 267 IRQ_TYPE_LEVEL_HIGH>;
-> +        #address-cells = <3>;
-> +        #size-cells = <2>;
-> +        ranges = <0x01000000 0x0 0x00000000 0x10010000 0x0 0x10000>,
-> +                 <0x02000000 0x0 0x10020000 0x10020000 0x0 0x7fe0000>,
-> +                 <0x42000000 0x0 0x18000000 0x18000000 0x0 0x8000000>;
-> +        dma-ranges = <0x42000000 0x0 0x80000000 0x80000000 0x0 0x80000000>;
-> +        clocks = <&rcc CK_BUS_PCIE>;
-> +        resets = <&rcc PCIE_R>;
-> +        msi-parent = <&v2m0>;
-> +        wakeup-source;
-> +        wake-gpios = <&gpioh 5 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> +        reset-gpios = <&gpioj 8 GPIO_ACTIVE_LOW>;
-> +        access-controllers = <&rifsc 68>;
-> +        power-domains = <&CLUSTER_PD>;
-> +
-> +        pcie@0,0 {
-> +          device_type = "pci";
-> +          reg = <0x0 0x0 0x0 0x0 0x0>;
-> +          phys = <&combophy PHY_TYPE_PCIE>;
-> +          phy-names = "pcie-phy";
-> +          #address-cells = <3>;
-> +          #size-cells = <2>;
-> +          ranges;
-> +        };
-> +
-> +    };
-> -- 
-> 2.34.1
-> 
+In zynqmp_qspi_probe(), add a line:
+
+	ctlr->num_buses = 2;
+
+And in the zynqmp_qspi_transfer_one() function, use spi->buses to select the
+correct bus:
+
+	xqspi->genfifobus = FIELD_PREP(GQSPI_GENFIFO_BUS_MASK, spi->buses);
+
+I don't have a SPI controller on hand with multiple buses, so I don't have
+any patch adding support to a specific controller. But I did build and run this
+and hacked in some stuff to the drivers I am working on to make sure it is
+working as advertised as best as I could with a single bus.
+
+
+---
+From: David Lechner <dlechner@baylibre.com>
+Date: Thu, 23 Jan 2025 15:32:08 -0600
+Subject: [PATCH 1/2] spi: dt-bindings: spi-peripheral-props: add spi-buses
+ property
+
+Add a spi-buses property to the spi-peripheral-props binding to allow
+specifying the SPI bus or buses that a peripheral is connected to in
+cases where the SPI controller has more than one physical SPI bus.
+
+Signed-off-by: David Lechner <dlechner@baylibre.com>
+---
+ .../devicetree/bindings/spi/spi-peripheral-props.yaml  | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+index 0bb443b8decd..a69d368a8ae6 100644
+--- a/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-peripheral-props.yaml
+@@ -88,6 +88,16 @@ properties:
+     description:
+       Delay, in microseconds, after a write transfer.
+ 
++  spi-buses:
++    description:
++      Array of bus numbers that describes which SPI buses of the controller are
++      connected to the peripheral. This only applies to peripherals connected
++      to specialized SPI controllers that have multiple SPI buses on a single
++      controller.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    default: [0]
++
+   stacked-memories:
+     description: Several SPI memories can be wired in stacked mode.
+       This basically means that either a device features several chip
+-- 
+2.43.0
+
+---
+From: David Lechner <dlechner@baylibre.com>
+Date: Thu, 23 Jan 2025 15:35:19 -0600
+Subject: [PATCH 2/2] spi: add support for multi-bus controllers
+
+Add support for SPI controllers with multiple physical SPI buses.
+
+This is common in the type of controller that can be used with parallel
+flash memories, but can be used for general purpose SPI as well.
+
+To indicate support, a controller just needs to set ctlr->num_buses to
+something greater than 1. Peripherals indicate which bus they are
+connected to via device tree (ACPI support can be added if needed).
+
+In the future, this can be extended to support peripherals that also
+have multiple SPI buses to use those buses at the same time by adding
+a similar bus flags field to struct spi_transfer.
+
+Signed-off-by: David Lechner <dlechner@baylibre.com>
+---
+ drivers/spi/spi.c       | 26 +++++++++++++++++++++++++-
+ include/linux/spi/spi.h | 13 +++++++++++++
+ 2 files changed, 38 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/spi/spi.c b/drivers/spi/spi.c
+index 10c365e9100a..f7722e5e906d 100644
+--- a/drivers/spi/spi.c
++++ b/drivers/spi/spi.c
+@@ -2364,7 +2364,7 @@ static void of_spi_parse_dt_cs_delay(struct device_node *nc,
+ static int of_spi_parse_dt(struct spi_controller *ctlr, struct spi_device *spi,
+ 			   struct device_node *nc)
+ {
+-	u32 value, cs[SPI_CS_CNT_MAX];
++	u32 value, buses[8], cs[SPI_CS_CNT_MAX];
+ 	int rc, idx;
+ 
+ 	/* Mode (clock phase/polarity/etc.) */
+@@ -2379,6 +2379,29 @@ static int of_spi_parse_dt(struct spi_controller *ctlr, struct spi_device *spi,
+ 	if (of_property_read_bool(nc, "spi-cs-high"))
+ 		spi->mode |= SPI_CS_HIGH;
+ 
++	rc = of_property_read_variable_u32_array(nc, "spi-buses", buses, 1,
++						 ARRAY_SIZE(buses));
++	if (rc < 0 && rc != -EINVAL) {
++		dev_err(&ctlr->dev, "%pOF has invalid 'spi-buses' property (%d)\n",
++			nc, rc);
++		return rc;
++	}
++
++	if (rc == -EINVAL) {
++		/* Default when property is omitted. */
++		spi->buses = BIT(0);
++	} else {
++		for (idx = 0; idx < rc; idx++) {
++			if (buses[idx] >= ctlr->num_buses) {
++				dev_err(&ctlr->dev,
++					"%pOF has out of range 'spi-buses' property (%d)\n",
++					nc, buses[idx]);
++				return -EINVAL;
++			}
++			spi->buses |= BIT(buses[idx]);
++		}
++	}
++
+ 	/* Device DUAL/QUAD mode */
+ 	if (!of_property_read_u32(nc, "spi-tx-bus-width", &value)) {
+ 		switch (value) {
+@@ -3072,6 +3095,7 @@ struct spi_controller *__spi_alloc_controller(struct device *dev,
+ 	mutex_init(&ctlr->add_lock);
+ 	ctlr->bus_num = -1;
+ 	ctlr->num_chipselect = 1;
++	ctlr->num_buses = 1;
+ 	ctlr->slave = slave;
+ 	if (IS_ENABLED(CONFIG_SPI_SLAVE) && slave)
+ 		ctlr->dev.class = &spi_slave_class;
+diff --git a/include/linux/spi/spi.h b/include/linux/spi/spi.h
+index 4c087009cf97..bc45d70e8c45 100644
+--- a/include/linux/spi/spi.h
++++ b/include/linux/spi/spi.h
+@@ -187,6 +187,11 @@ struct spi_device {
+ 	struct device		dev;
+ 	struct spi_controller	*controller;
+ 	u32			max_speed_hz;
++	/*
++	 * Bit flags indicating which buses this device is connected to. Only
++	 * applicable to multi-bus controllers.
++	 */
++	u8 			buses;
+ 	u8			chip_select[SPI_CS_CNT_MAX];
+ 	u8			bits_per_word;
+ 	bool			rt;
+@@ -570,6 +575,14 @@ struct spi_controller {
+ 	 */
+ 	u16			num_chipselect;
+ 
++	/*
++	 * Some specialized SPI controllers can have more than one physical
++	 * bus interface per controller. This specifies the number of buses
++	 * in that case. Other controllers do not need to set this (defaults
++	 * to 1).
++	 */
++	u16			num_buses;
++
+ 	/* Some SPI controllers pose alignment requirements on DMAable
+ 	 * buffers; let protocol drivers know about these requirements.
+ 	 */
+-- 
+2.43.0
+
+
 
