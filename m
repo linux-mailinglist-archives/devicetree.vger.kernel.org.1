@@ -1,151 +1,115 @@
-Return-Path: <devicetree+bounces-140527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6303AA1A22A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 11:47:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 78E6DA1A253
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 11:58:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C30A18826CE
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:47:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 945281689A5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:58:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01EB820D507;
-	Thu, 23 Jan 2025 10:47:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WWG9pLdt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81DB220E00E;
+	Thu, 23 Jan 2025 10:58:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54956186A;
-	Thu, 23 Jan 2025 10:47:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA0920DD7E;
+	Thu, 23 Jan 2025 10:58:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737629249; cv=none; b=T64E/y5NN6kDma9NGydWnMskGRFoTA7GYnG23QLo+8zpEgVq/9m6FkTbKcweRYeMqD9vq9z9wuFfo+JJL8q10PRh7Ws7VvAluqiAiySneZg6J1foHq5ehlPWyK3OjHXgewWJOBNdwuMfwN/4JIfA/bFab0VDPA9bnwlsVx13eGY=
+	t=1737629891; cv=none; b=ZwkTxsKKNYdne0eJ71YoTNP0kYUB+53/1GfULqi9d/FW/hIHA5WAD8cUCxnGiIMPZFVB4F+A3BuBW4jWk32EvLyJs84oROVQIwq2x5kksW2HoMFtEiORBSr+d0XR+cxmNuw/yt4nIo8YHhZqlcqgqHo+SRd6tFF2eJcaGyEMhzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737629249; c=relaxed/simple;
-	bh=Cewj0Md/NTh4ZJ5h70KHilACclNk2qKU09zvX8tHOaA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=TRs9mcI8zcZW/bNZidhgaJ/5iJKc3DoeaTtVA6CTwUkUB/lsD6F4KnNFFcTC/jazSfmNByCUgHl81LIIumQcOEZdAMXHoFHZq5AYnrs8zULhd9urhLpCbNhRzZtSMo/c4WkOn91Mefvzhbp9FUH0jhqpq3nWAyqmOMAoxPdlzds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WWG9pLdt; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50N6flWl015635;
-	Thu, 23 Jan 2025 10:47:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LXFfOM3cM4Bctga8ghtT0qc4KDj4JJJKBXLnvvtPKx0=; b=WWG9pLdtRAqTg7JL
-	Tdf/pxXTPGf8bohIAyI+IG+8AIFBefFfITqZzvHzRYYm7BqOwP8c3u+4OdzMH2uK
-	82WJN88olLSkJsW96mPHFhCuzQh5AnJY3InAvzHaL8CJaEAp6yrfMySaTJwxSYV6
-	ZOtmVbJEdQo6hQ+n176bZLH9/ecw5Tqz9QqgdtN7JOHz7HKNRFxUhr3RqIM4ay09
-	n0qbTSFvYbMMpoH8F+ArJN6hoRu1Y6ErB1ifqezL1UcSmH/fPV31emDuFtXbBNH/
-	BBBTr6XXer4xIKyAMErzORV/aUx4rGvMBlrAZcB4MIhdNF+US18oliudPZLvIVbk
-	VEtSaw==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44bgqrgjq4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 Jan 2025 10:47:25 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50NAlOIm009702
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 23 Jan 2025 10:47:24 GMT
-Received: from [10.216.27.253] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 23 Jan
- 2025 02:47:19 -0800
-Message-ID: <50b0f587-e4b6-4767-b284-f68a1e12b7d3@quicinc.com>
-Date: Thu, 23 Jan 2025 16:17:14 +0530
+	s=arc-20240116; t=1737629891; c=relaxed/simple;
+	bh=kzN1iPS05c08XIS5N8FhwFcahqh/Vzc/wu9+I2HFx3o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KC7sTI8leVERwN2KtcoP7cOHx03zoRtLN5aJiNmqEGBmb0DxKP/YufyR9HAS+O5GgEYB9WzhPsDTpIPFeATarj8CFaxITY9a9uxEIDbGemrUTbHZUaVwYpeFQPnphkBbT0YQG9I6MMhakyL+EOyJqfXuq35H1CnwrW194WoSFXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-5174db4e34eso1083156e0c.0;
+        Thu, 23 Jan 2025 02:58:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737629887; x=1738234687;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EEqnjUqnJvNRVIsnXUAtnL2nqKQ5PJvu7eehgiPdbTo=;
+        b=aEX10DpbyzsEtcs7r8vDw6a45tIZVtGMx9KfzRIcnbc0j856S4rSdO6gds/KLdu4AA
+         nnJhDHsO0h4gWjD2+L1O5moQ0Mb+9FXu377Coy+vEbB1p+aGb35fSJRb1rijO1Jlc1kI
+         5e3sZeoqJkqRAZOLbMOTg8egUGJhaGLQzNSqmwdQ6Zuao7M9hOPmaDkMD6tTMWhc/Oon
+         6wqNwN1VM8IIenPUEsdh2WbC3aAd40Pa4jYedRCbbOSPAilj7F1FPn2pWl/d6BusIfg9
+         43ghH53jr/OGZgM3HOXzsOGGI+zKBgmC4jp7rxC8ACvtKFxBoAUKljsHaHn2yDbmu+4f
+         4EXg==
+X-Forwarded-Encrypted: i=1; AJvYcCW/SOgoN2JfFkgvPXvYojNYSvuCu+EXk4ZgD58d46Cs4IOKDzoFYbEa0Y+Sv6QTOSB5IZ/biq88DCOufiTjNu/Mx4o=@vger.kernel.org, AJvYcCX+KIAYGRATqm5GLhWZkgccnzUmEdrAKeI6lmNg7WSjHWbHK/+7N7xihUh9CrDzOOlCYlRaZM2toAtkfkt7@vger.kernel.org, AJvYcCXwGCcDV6THjriCSHim/TYfLcyfCN2UZ+UgAcUNzEQd63zHqSQHSnaidZn+m8sfA3IyOE2bF8Sgvybt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyhsjknyigcd7MAoToyngIwCLcAy0CSrP8QHc8YJpExd7XZTzoV
+	LCa5bh4bysjqP9doaUnT6chQMSWshE9AAarmPWALubGaS89Ap08CiE+rl/b5
+X-Gm-Gg: ASbGnctGJ07nEQiq855xhL7nKLgceghqTVvn/816K2ss65/Okakghu90nYKmUrKE/yK
+	J+zveFfxW9+nRdxsiRtiERUQfDilux2kWGBPpI9DB9UT28D5kk9vih1dCre7SXiRScDjEuzmZGK
+	rarKKi6D0nlDAaYawbjf26ZsoYM5q60800VST/vlV3IqtSqxJJzOTPpyrcm+2hKGgo4B/562ziy
+	ZWAIJUckUUf76V+M9yFjxhoPBIBKoFmT9qkEWxD2Ku1I5FGxI9uiODy+UiMtf8HqpSqLIrxj+/9
+	lZsGbZAlcXEqjk46Jj84V+905MUvVAMIP/jxWLnAEnooOZciJrHg/w==
+X-Google-Smtp-Source: AGHT+IGkbQHU6z8P/lN8OlAzDb5SSq7KzZ2H4/bTS4Rx4S4IEWSBzsEKoGKP+/1zh/MxE7r0Ul6ygQ==
+X-Received: by 2002:a05:6122:d1f:b0:516:1e32:f8c7 with SMTP id 71dfb90a1353d-51e3db3b80fmr1137814e0c.0.1737629887316;
+        Thu, 23 Jan 2025 02:58:07 -0800 (PST)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8642cb09232sm3328939241.19.2025.01.23.02.58.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jan 2025 02:58:07 -0800 (PST)
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4afe2f6cecdso933098137.1;
+        Thu, 23 Jan 2025 02:58:07 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUgn1TBM/iwsCDPyx4an12FVhAWa1C6vKrluiedsLnvCyR9b18xHe8Ny1kZggBx4z0YSq5PkYzCq/cV9bac@vger.kernel.org, AJvYcCVDHhogD+g5KW+fgXgG3ejsE1kM+DgHEeQCfx6NFI8ybMakGFhiPAj4q7mtaVvFMuiWkHIQ4heXZv4fNoMjviBhIb0=@vger.kernel.org, AJvYcCWAYtNDLOQz7oYcuweoCmIjPHaaO4EAU7AQnzbXM4gXC1RmnS/slFqqvbnRZ9/m0KzPQU5oK8+rLpqb@vger.kernel.org
+X-Received: by 2002:a05:6102:3f55:b0:4b6:8bd1:6b5d with SMTP id
+ ada2fe7eead31-4b6f79c80a5mr268733137.1.1737629886920; Thu, 23 Jan 2025
+ 02:58:06 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V7 1/5] interconnect: core: Add dynamic id allocation
- support
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>,
-        Odelu Kukatla <quic_okukatla@quicinc.com>,
-        "Mike
- Tipton" <mdtipton@quicinc.com>,
-        Vivek Aknurwar <viveka@quicinc.com>,
-        "Sibi
- Sankar" <quic_sibis@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20250111161429.51-1-quic_rlaggysh@quicinc.com>
- <20250111161429.51-2-quic_rlaggysh@quicinc.com>
- <x4lsksrpwe5z6ti7gi2kufyhrpvffsmo2im3oqhqgfaft2ihfm@7xnd6bvy47rv>
-Content-Language: en-US
-From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
-In-Reply-To: <x4lsksrpwe5z6ti7gi2kufyhrpvffsmo2im3oqhqgfaft2ihfm@7xnd6bvy47rv>
+References: <20250116144752.1738574-1-iwamatsu@nigauri.org> <20250116144752.1738574-2-iwamatsu@nigauri.org>
+In-Reply-To: <20250116144752.1738574-2-iwamatsu@nigauri.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 23 Jan 2025 11:57:54 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWMi3sBNO3axxuZx8J3W7ANkYK+J03+-HYixjyn58fpjQ@mail.gmail.com>
+X-Gm-Features: AWEUYZndAqy8oIXiwOY5eOj1ZVKizXyp_gpeGKrmfMIjmGd0ho0gO4T1W-Nbb90
+Message-ID: <CAMuHMdWMi3sBNO3axxuZx8J3W7ANkYK+J03+-HYixjyn58fpjQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: soc: renesas: Document Renesas RZ/V2H
+ SoC variants
+To: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Masato Kiuchi <kiuchi_masato@yuridenki.co.jp>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: jDCtysMep1kIE7Pmf0Y51rPEy_zaK0Gb
-X-Proofpoint-GUID: jDCtysMep1kIE7Pmf0Y51rPEy_zaK0Gb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-23_04,2025-01-22_02,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=695 spamscore=0
- priorityscore=1501 mlxscore=0 suspectscore=0 lowpriorityscore=0
- malwarescore=0 bulkscore=0 phishscore=0 adultscore=0 clxscore=1015
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501230082
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Jan 16, 2025 at 3:48=E2=80=AFPM Nobuhiro Iwamatsu <iwamatsu@nigauri=
+.org> wrote:
+> Add SoC documentation for Renesas RZ/V2H(P) (r9a09g057h4[568]) SoC.
+>
+> Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.15.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-On 1/13/2025 1:44 PM, Dmitry Baryshkov wrote:
-> On Sat, Jan 11, 2025 at 04:14:25PM +0000, Raviteja Laggyshetty wrote:
->> Current interconnect framework is based on static IDs for creating node
->> and registering with framework. This becomes a limitation for topologies
->> where there are multiple instances of same interconnect provider. Add
->> icc_node_create_alloc_id() API to create icc node with dynamic id, this
->> will help to overcome the dependency on static IDs.
-> 
-> This doesn't overcome the dependency on static ID. Drivers still have to
-> manually lookup the resulting ID and use it to link the nodes. Instead
-> ICC framework should be providing a completely dynamic solution:
-> - icc_node_create() should get a completely dynamic counterpart. Use
->   e.g. 1000000 as a dynamic start ID.
-> - icc_link_create() shold get a counterpart which can create a link
->   between two icc_node instances directly, without an additional lookup.
-> 
-
-Agreed, with current implementation, still there is dependency on IDs
-for linking the nodes.
-Instead of relying on node names for the links, array of struct pointers
-will be used, this will eliminate the need for ID lookup and avoids
-extra loops.
-Instead of providing counter part for the ICC framework APIs which
-involves duplication of most of the code, I will modify the existing
-icc_node_create, icc_link_create and icc_node_add APIs to support both
-static and dynamic IDs.
-
-> You can check if your implementation is correct if you can refactor
-> existing ICC drivers (e.g. icc-clk and/or icc-rpm to drop ID arrays
-> completely).
-> 
-ok, I will check the implementation on icc-rpmh driver for sa8775p SoC.
->>
->> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
->> ---
->>  drivers/interconnect/core.c           | 32 +++++++++++++++++++++++++++
->>  include/linux/interconnect-provider.h |  6 +++++
->>  2 files changed, 38 insertions(+)
->>
-> 
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
