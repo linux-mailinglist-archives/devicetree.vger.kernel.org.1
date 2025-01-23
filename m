@@ -1,135 +1,121 @@
-Return-Path: <devicetree+bounces-140571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EE3BA1A588
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 15:13:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42063A1A61E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 15:50:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 796301884886
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 14:13:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32BFA1888120
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 14:50:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F1920F98A;
-	Thu, 23 Jan 2025 14:13:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDA392116F8;
+	Thu, 23 Jan 2025 14:50:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="PCE/eU1c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NvKyUaFJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993EC38F83;
-	Thu, 23 Jan 2025 14:13:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 146D820F971
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 14:50:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737641602; cv=none; b=eBHVaTNawLg1iubjkxrCl++Pt5MLX40wFYoIwOkLAXUxyTVbazLYO8b6gxtiRypbLPebg3rwMpuyOzZOzL0r46/qso2GXYTek9Bb6U5+AIv5bhBuKGMTaGZgqLrZOamtHt+UxUmKvA76NxXH3YnEcyNvmx96HoWAtRcJ5CpTrzE=
+	t=1737643817; cv=none; b=aQj+H+dFGsaIT0o6VetIty6NqAqoP4WEDC/bnXhezX6i+jr0MPt7nlVxkN3yol53If0Zldd4GEuUlYN968xPDy0QGPAwd0VnzERZpvkNj9Hakd48NL9gd/BfTdUdg8NFDDGn1HuqHGRAi2W7qpzB9FubNUFFEuKRyuefAii4E2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737641602; c=relaxed/simple;
-	bh=q8LmTJKOJQezaPFS6He6lElBi8erZyqZVVDeVrmDsyo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ce/EghGT+OoUGs7cT88BvhvrX0Ky4hYZHvvO9vTz5rZdn28UtJRc4GgnMkza4FPw0b9DS0jLCR0P5uoMAmOa7jq/0sjU8zgtK18ANVsvGht+e7V3i5YCwBVPJ2BxXi3WeV4naKJNxqsbt6XdPjInIQoPFPuJq1Cq788d1n8nRO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=PCE/eU1c; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=p45VRGSOINDkIe67fS7iMHwxgFxopSCi/AOBqXhbGmY=; b=PCE/eU1cR5E4izlRpAsI4T/9kB
-	wMjBLLP7jpiRt5hRywPqLzFOP9znGs/41NBm8LY51kAtFu1U486ybynDSB+4bowYWKeroh/3Afxkr
-	K8Bl7ANBbmj7RGQLiNgvCvqZbzgrDS/zfngZqNgpM6RCLJjSse87rIfBn52s5IZNUVox3/pNMwe5I
-	Ql6wQhMndduKU4g9Xx85tx0if7cyxvZB0KgMQkIyhcTJ5yYtKACoVk7JhEk8eefjxrNgfvJRcOTGV
-	8jGTwKL9UGV69qWAx8jEoYYGw5ULQB6gOpS62MZ8CKdtzQjwiPYO3OD2O46YAcuWUkiInIpSZzxYU
-	Bewwg5HA==;
-Received: from i53875b5c.versanet.de ([83.135.91.92] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1taxx8-0007CK-B4; Thu, 23 Jan 2025 15:13:02 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Quentin Schulz <quentin.schulz@cherry.de>,
- Niklas Cassel <cassel@kernel.org>
-Cc: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jagan Teki <jagan@edgeble.ai>,
- Michael Riesch <michael.riesch@wolfvision.net>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2 0/3] arm64: dts: rockchip: minimal support for Pre-ICT tester
- adapter for RK3588 Jaguar + add overlay tests
-Date: Thu, 23 Jan 2025 15:13:01 +0100
-Message-ID: <3324197.aV6nBDHxoP@diego>
-In-Reply-To: <Z5EY6uMmDCgfOzGO@ryzen>
-References:
- <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
- <6dd64754-fe72-4288-9724-b3cdaf193b3b@cherry.de> <Z5EY6uMmDCgfOzGO@ryzen>
+	s=arc-20240116; t=1737643817; c=relaxed/simple;
+	bh=pzL+hwWSZbLpe5CZkNXpC39Vd9f5AF/lHgVQ/J2PNqA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ivypjTmV6T41YEY1Uj2AmyxRzCb9eSk3i/Jzy0jAOSJveEpUVc2wbxIraIOayqEtJkyq0bjbIH20VrW2hcSqOZOIRlSCLAEaqcXhGSnI5JPW3YvJFuY+SVUgDnn5fz/B1pIZKfyt/8yRm8VVnHmMs00UQJ4bV8dexofe8zMApiM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NvKyUaFJ; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-436230de7a3so1504615e9.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 06:50:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737643814; x=1738248614; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0fYiDpg49XhpxJtKhKrLmW5WJA9Zrs3LZVuQhIUZhrQ=;
+        b=NvKyUaFJtJdCphih5zwGo80NE7mclka7rGTFEVaBNPqaz1BNVnm32TS397AzSbfp0O
+         ef0Xz8rVWFy2czhYrSy++oz8qM8mGZdaICGQgOGDh/qgRAzK0/mCmJecXAx9WHwdzdl8
+         nlHTNFlUDwW2x4LDliHsZyE9j2buIQI/ikEGA2IqZfrdfx/T/Eo+lAowoKhdFuBvllb8
+         oXa0Fq75WNbb2oUov/JEfCfuGrOlVe6p52zPgWGmS2L5c92AneCdwgdtU8tyQSYkbaX5
+         Y5pDKf8Fynmq3NJNbNmKotmj0HJ+BZeNc4iDF89f2T0CJFpFH5VsWDn8ySY9uPjf2Xus
+         cH1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737643814; x=1738248614;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0fYiDpg49XhpxJtKhKrLmW5WJA9Zrs3LZVuQhIUZhrQ=;
+        b=glo1uKuyJPyU89KbdpB/YpUh7uEG6MKMbHXcGVurO97E3b+9VaEaHjDticD5r8UNRg
+         WEwO+50HJy113LXFl4Y4C5jrgo31aEcUqBRKmCv5baYI9IG7KpiBhx4PfWqBJNRxTIk8
+         LYaDmOHnFXqXgtapTkHDD9KoiQv2KHxCRvUr+OBNSQ1oKbPMB/VS45AzFYTogE0LFNo1
+         jo0tpUaSvZ9KD5y7Xx5rGjV/yD6CvRHbxK+A++bgs7WSfmgrIeud4T8iNLsYHq40iXbf
+         cZoP87WssrxQ/Si8HsJ1Kz+MhO77Odgvb4+8v+2t7WtEW/PlDRSCdDuqiICBefn4Z0ha
+         2gqA==
+X-Forwarded-Encrypted: i=1; AJvYcCWv+9x9beiFXWDdawZ57Iw92uGn/QohP2JJkIUOz0K8cjADyw5dDtX6gzcp0tenZ8+19SnaJoPSvH6L@vger.kernel.org
+X-Gm-Message-State: AOJu0YyP7VLyWeAha8RLYws2wb4i04Y9M9D4yIZugPRwWYbrzZ5gz0wS
+	b7tx4Ow34hwIGroW/U6RS5vfD58xgaTk/oXYRkqfzYQlUVzqsbyeRePxnr53ahGGW59HA6cqfQj
+	j
+X-Gm-Gg: ASbGnct6Q/g3cIrpc/ADYqp6KnKV12TxtbgfJtk6ceEYVZ+bPR7JaYxAKjsBH7Kt+XT
+	QMCYA7jF/loJ6ptnlaOmhvPRC/kfS4Kxn6Gfx0KhAqzcsV6GAGh3oGeltNce9msK0pzmeZnLz0t
+	zBCLCAklNBFL3D9UXqZsNx4U230OCLgXD/HqFsiLa3eZpKz1TMCGzf1VcV1WgMk0dP+SSdfoOE9
+	RIx/dJfLnrcAYRRz/Vz0lcmbtV5pd41EruC3NJAearyMLVGU5XPg4nVhdgHTupwoBQodezPXwCz
+	n0cGOzXvZ89+ObIqCnU=
+X-Google-Smtp-Source: AGHT+IFraZskWSiAncX9nuxTsqA4Sy1YAJqZYJinqrdSh7dVc0J69TsH8PLargeQw26B/Mm6NFHXDQ==
+X-Received: by 2002:a05:600c:4f54:b0:434:f9c1:a5b1 with SMTP id 5b1f17b1804b1-4389141c9cemr93720135e9.3.1737643814329;
+        Thu, 23 Jan 2025 06:50:14 -0800 (PST)
+Received: from krzk-bin.. ([178.197.223.165])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf3222bebsm19625898f8f.30.2025.01.23.06.50.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Jan 2025 06:50:13 -0800 (PST)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] docs: dt: writing-schema: Describe validating one DTB
+Date: Thu, 23 Jan 2025 15:50:09 +0100
+Message-ID: <20250123145009.546923-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 
-Am Mittwoch, 22. Januar 2025, 17:12:26 CET schrieb Niklas Cassel:
-> On Wed, Jan 22, 2025 at 04:38:16PM +0100, Quentin Schulz wrote:
-> > So essentially, if SPL_ATF_NO_PLATFORM_PARAM is selected (the default for
-> > RK356x, RK3588, forced on on RK3308, enabled for the majority of RK3399
-> > boards, enabled for all RK3328 boards) the DT won't be passed to TF-A so no
-> > issue in terms of size on that side.
-> > If it is not selected, for TF-A < 2.4 (released 20201117, 4 years ago), a
-> > DTB bigger than 64KiB will crash TF-A.
-> > If it is not selected, for TF-A >= 2.4, a DTB bigger than 128KiB will result
-> > in TF-A not being able to read the DTB (for Rockchip, that means not being
-> > able to derive the UART settings (controller and baudrate) to use, and will
-> > use the compile-time default instead).
-> 
-> Not everyone is using binary blobs from Rockchip.
-> On my rock5b (rk3588), I'm building the bootloader using buildroot,
-> which is using upstream TrustedFirmware-A (v2.12).
-> 
-> 
-> > In short, I don't know where to go with that additional piece of
-> > information, but this is a bit bigger than simply moving things around and
-> > adding compile-time tests for overlay application.
-> 
-> This is significant information indeed.
+Running DT schema validation with `dtbs_check` is time consuming thus we
+also have ability to check only one DTB target like:
 
-I guess the question is, can this hurt existing devices?
+  make -j8 DT_SCHEMA_FILES=gpio CHECK_DTBS=y qcom/sm8450-hdk.dtb
 
-As Quentin mentioned, this only affects DTs that get handed over from
-U-Boot to TF-A (and maybe OP-TEE).
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/writing-schema.rst | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-So the whole range of things loading their DT from extlinux.conf or
-whatever are not really affected.
-
-
-DTs U-Boot can hand over are 2 types,
-(1) built from within u-boot and
-(2) stored somewhere centrally (SPI flash).
-
-
-Case (1) is again not affected, as U-Boot (and other bootloaders) may
-very well sync the DTS files, but generally not the build-system, so if
-U-Boot (or any other bootloader) creates DTBs with symbols is completely
-their own choice.
-
-
-And for case (2) I see the manufacturer being responsible. Having the DT
-in central storage makes it somewhat part of a "bios"-level in the hirarchy
-and the general guarantee is that new software _will work_ with older DTs,
-but the other way around is more a nice to have (old SW with new DTB).
-
-So if some manufacturer has a centrally located DTB this does not matter
-until they upgrade, and when that happens I do expect testing to happen
-at the manufacturers side, before rolling out a "bios update"
-
-
-Heiko
-
+diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
+index eb8ced400c7e..6dea741c5962 100644
+--- a/Documentation/devicetree/bindings/writing-schema.rst
++++ b/Documentation/devicetree/bindings/writing-schema.rst
+@@ -222,6 +222,10 @@ separated by ':'.
+     make dt_binding_check DT_SCHEMA_FILES=/gpio/
+     make dtbs_check DT_SCHEMA_FILES=trivial-devices.yaml
+ 
++Validation of one DT source by providing Makefile target::
++
++    make CHECK_DTBS=y target.dtb
++    make DT_SCHEMA_FILES=xxx.yaml CHECK_DTBS=y target.dtb
+ 
+ json-schema Resources
+ ---------------------
+-- 
+2.43.0
 
 
