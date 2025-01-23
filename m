@@ -1,136 +1,151 @@
-Return-Path: <devicetree+bounces-140526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CB23A1A225
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 11:47:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6303AA1A22A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 11:47:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADC49166BE2
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:47:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C30A18826CE
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:47:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D79320D507;
-	Thu, 23 Jan 2025 10:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01EB820D507;
+	Thu, 23 Jan 2025 10:47:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DUuzo9eH"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WWG9pLdt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D82186A;
-	Thu, 23 Jan 2025 10:47:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54956186A;
+	Thu, 23 Jan 2025 10:47:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737629233; cv=none; b=dt3EKVsr/xZ16YMt4QLeLEUJCzxtuEDjjeFWvB+RL0GtBz+UvUxUSWONSWg6c08xtdUd/zPjHMTYs8wZf8PNWy+kDvyO1UwmnOtERXjWU9ILvxNWcSLa2yxGoNdiymbVUqf1kzP52hABfIlTkCaIfKjP1MAforjFpJT+80K9Etc=
+	t=1737629249; cv=none; b=T64E/y5NN6kDma9NGydWnMskGRFoTA7GYnG23QLo+8zpEgVq/9m6FkTbKcweRYeMqD9vq9z9wuFfo+JJL8q10PRh7Ws7VvAluqiAiySneZg6J1foHq5ehlPWyK3OjHXgewWJOBNdwuMfwN/4JIfA/bFab0VDPA9bnwlsVx13eGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737629233; c=relaxed/simple;
-	bh=ldv2yx7//HvG97ZMakEiZJCNXqlwF//BRONJRWhNM/o=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gi0QfL7oCS8U2+EvmLICrddV3LUG+xFh+6qC0VsF2Vi3S1qVWAjq2fteGg/MTS5zM20HPWpGQGQBhACkFmftpRcYFb2x62XpocbG/jTBMz2M7hhT5Lv6hEsRWuLcn6ZRj0xb6nC3+RDq3RKuf6T2r4MqzdwOPzN+WCZCoXTRhGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DUuzo9eH; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 33211E000C;
-	Thu, 23 Jan 2025 10:47:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1737629228;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=z57cSE1YbxqFMvNXpCY9G1ml/Qmrt4h2lF0Z1wJAZeg=;
-	b=DUuzo9eHub7/9PHurqPsH7DVY2E29qZysu/JXIZMuv4LVRmHZ/6ECt7tt2VnNLXJ8aNBEH
-	R78LqtD/c5I3LNz2jM/92soLfSDNIPPM5ibHpyBjO1fdyWXFT9gJRk60J18pmwOuoXYaqC
-	JarofkUBD6J08p72p8SEVzURzJPyLC27BqGGutcCUADiDKWxPe7CZ3QqOXFcyvOWPsmRW8
-	pSdoP8nSBStB+hrABkz+8Ib9Yzxqr1x0j89/qHoNet9qPbWjnd4GlI2fwcte6KT6/bxL0/
-	7gKbf//tehBgA1qPdBCApsdvuWANLeTEO1C1EfEavc02x7DPVFb68LvC60LkBA==
-Date: Thu, 23 Jan 2025 11:47:02 +0100
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: davem@davemloft.net, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski
- <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
- <pabeni@redhat.com>, linux-arm-kernel@lists.infradead.org, Christophe Leroy
- <christophe.leroy@csgroup.eu>, Herve Codina <herve.codina@bootlin.com>,
- Florian Fainelli <f.fainelli@gmail.com>, Heiner Kallweit
- <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>,
- =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>, Marek
- =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
- <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
- <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
- mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>
-Subject: Re: [PATCH net-next RFC v2 1/6] net: ethtool: common: Make BaseT a
- 4-lanes mode
-Message-ID: <20250123114702.2c69f49f@fedora.home>
-In-Reply-To: <Z5E_FUxSZJWRWVAq@shell.armlinux.org.uk>
-References: <20250122174252.82730-1-maxime.chevallier@bootlin.com>
-	<20250122174252.82730-2-maxime.chevallier@bootlin.com>
-	<Z5E_FUxSZJWRWVAq@shell.armlinux.org.uk>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1737629249; c=relaxed/simple;
+	bh=Cewj0Md/NTh4ZJ5h70KHilACclNk2qKU09zvX8tHOaA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TRs9mcI8zcZW/bNZidhgaJ/5iJKc3DoeaTtVA6CTwUkUB/lsD6F4KnNFFcTC/jazSfmNByCUgHl81LIIumQcOEZdAMXHoFHZq5AYnrs8zULhd9urhLpCbNhRzZtSMo/c4WkOn91Mefvzhbp9FUH0jhqpq3nWAyqmOMAoxPdlzds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WWG9pLdt; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50N6flWl015635;
+	Thu, 23 Jan 2025 10:47:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LXFfOM3cM4Bctga8ghtT0qc4KDj4JJJKBXLnvvtPKx0=; b=WWG9pLdtRAqTg7JL
+	Tdf/pxXTPGf8bohIAyI+IG+8AIFBefFfITqZzvHzRYYm7BqOwP8c3u+4OdzMH2uK
+	82WJN88olLSkJsW96mPHFhCuzQh5AnJY3InAvzHaL8CJaEAp6yrfMySaTJwxSYV6
+	ZOtmVbJEdQo6hQ+n176bZLH9/ecw5Tqz9QqgdtN7JOHz7HKNRFxUhr3RqIM4ay09
+	n0qbTSFvYbMMpoH8F+ArJN6hoRu1Y6ErB1ifqezL1UcSmH/fPV31emDuFtXbBNH/
+	BBBTr6XXer4xIKyAMErzORV/aUx4rGvMBlrAZcB4MIhdNF+US18oliudPZLvIVbk
+	VEtSaw==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44bgqrgjq4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 Jan 2025 10:47:25 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50NAlOIm009702
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 23 Jan 2025 10:47:24 GMT
+Received: from [10.216.27.253] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 23 Jan
+ 2025 02:47:19 -0800
+Message-ID: <50b0f587-e4b6-4767-b284-f68a1e12b7d3@quicinc.com>
+Date: Thu, 23 Jan 2025 16:17:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V7 1/5] interconnect: core: Add dynamic id allocation
+ support
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Odelu Kukatla <quic_okukatla@quicinc.com>,
+        "Mike
+ Tipton" <mdtipton@quicinc.com>,
+        Vivek Aknurwar <viveka@quicinc.com>,
+        "Sibi
+ Sankar" <quic_sibis@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250111161429.51-1-quic_rlaggysh@quicinc.com>
+ <20250111161429.51-2-quic_rlaggysh@quicinc.com>
+ <x4lsksrpwe5z6ti7gi2kufyhrpvffsmo2im3oqhqgfaft2ihfm@7xnd6bvy47rv>
+Content-Language: en-US
+From: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+In-Reply-To: <x4lsksrpwe5z6ti7gi2kufyhrpvffsmo2im3oqhqgfaft2ihfm@7xnd6bvy47rv>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-GND-Sasl: maxime.chevallier@bootlin.com
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: jDCtysMep1kIE7Pmf0Y51rPEy_zaK0Gb
+X-Proofpoint-GUID: jDCtysMep1kIE7Pmf0Y51rPEy_zaK0Gb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-23_04,2025-01-22_02,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=695 spamscore=0
+ priorityscore=1501 mlxscore=0 suspectscore=0 lowpriorityscore=0
+ malwarescore=0 bulkscore=0 phishscore=0 adultscore=0 clxscore=1015
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501230082
 
-Hello Russell,
 
-On Wed, 22 Jan 2025 18:55:17 +0000
-"Russell King (Oracle)" <linux@armlinux.org.uk> wrote:
 
-> On Wed, Jan 22, 2025 at 06:42:46PM +0100, Maxime Chevallier wrote:
-> > When referring to BaseT ethernet, we are most of the time thinking of
-> > BaseT4 ethernet on Cat5/6/7 cables. This is therefore BaseT4, although
-> > BaseT4 is also possible for 100BaseTX. This is even more true now that
-> > we have a special __LINK_MODE_LANES_T1 mode especially for Single Pair
-> > ethernet.
-> > 
-> > Mark BaseT as being a 4-lanes mode.  
+On 1/13/2025 1:44 PM, Dmitry Baryshkov wrote:
+> On Sat, Jan 11, 2025 at 04:14:25PM +0000, Raviteja Laggyshetty wrote:
+>> Current interconnect framework is based on static IDs for creating node
+>> and registering with framework. This becomes a limitation for topologies
+>> where there are multiple instances of same interconnect provider. Add
+>> icc_node_create_alloc_id() API to create icc node with dynamic id, this
+>> will help to overcome the dependency on static IDs.
 > 
-> This is a problem:
-> 
-> 1.4.50 10BASE-T: IEEE 802.3 Physical Layer specification for a 10 Mb/s
-> CSMA/CD local area network over two pairs of twisted-pair telephone
-> wire. (See IEEE Std 802.3, Clause 14.)
-> 
-> Then we have the 100BASE-T* family, which can be T1, T2, T4 or TX.
-> T1 is over a single balanced twisted pair. T2 is over two pairs of
-> Cat 3 or better. T4 is over four pairs of Cat3/4/5.
-> 
-> The common 100BASE-T* type is TX, which is over two pairs of Cat5.
-> This is sadly what the ethtool 100baseT link modes are used to refer
-> to.
-> 
-> We do have a separate link mode for 100baseT1, but not 100baseT4.
-> 
-> So, these ethtool modes that are of the form baseT so far are
-> describing generally two pairs, one pair in each direction. (T1 is
-> a single pair that is bidirectional.)
-> 
-> It's only once we get to 1000BASE-T (1000baseT) that we get to an
-> ethtool link mode that has four lanes in a bidirectional fashion.
-> 
-> So, simply redefining this ends up changing 10baseT and 100baseT from
-> a single lane in each direction to four lanes (and is a "lane" here
-> defined as the total number of pairs used for communication in both
-> directions, or the total number of lanes used in either direction.
-> 
-> Hence, I'm not sure this makes sense.
+> This doesn't overcome the dependency on static ID. Drivers still have to
+> manually lookup the resulting ID and use it to link the nodes. Instead
+> ICC framework should be providing a completely dynamic solution:
+> - icc_node_create() should get a completely dynamic counterpart. Use
+>   e.g. 1000000 as a dynamic start ID.
+> - icc_link_create() shold get a counterpart which can create a link
+>   between two icc_node instances directly, without an additional lookup.
 > 
 
-I'm fine with your justification, so let's simplify and drop that
-patch then. That should also avoid the lanes/pairs confusion as well.
+Agreed, with current implementation, still there is dependency on IDs
+for linking the nodes.
+Instead of relying on node names for the links, array of struct pointers
+will be used, this will eliminate the need for ID lookup and avoids
+extra loops.
+Instead of providing counter part for the ICC framework APIs which
+involves duplication of most of the code, I will modify the existing
+icc_node_create, icc_link_create and icc_node_add APIs to support both
+static and dynamic IDs.
 
-Thanks for the feedback !
+> You can check if your implementation is correct if you can refactor
+> existing ICC drivers (e.g. icc-clk and/or icc-rpm to drop ID arrays
+> completely).
+> 
+ok, I will check the implementation on icc-rpmh driver for sa8775p SoC.
+>>
+>> Signed-off-by: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>
+>> ---
+>>  drivers/interconnect/core.c           | 32 +++++++++++++++++++++++++++
+>>  include/linux/interconnect-provider.h |  6 +++++
+>>  2 files changed, 38 insertions(+)
+>>
+> 
 
-Maxime
 
