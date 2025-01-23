@@ -1,165 +1,127 @@
-Return-Path: <devicetree+bounces-140633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FDD3A1A9CA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 19:46:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AEFCA1A9F4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 20:04:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D69F4188DB03
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 18:46:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CCFA1882CC7
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 19:04:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE6C14BF87;
-	Thu, 23 Jan 2025 18:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E559E15A85E;
+	Thu, 23 Jan 2025 19:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KcsoVOsY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FRehpicm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0A8A15746B;
-	Thu, 23 Jan 2025 18:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96DC13D882;
+	Thu, 23 Jan 2025 19:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737657993; cv=none; b=FaP9I3UmfgdJz7vKUy/voZHuQMEekV5z1XlbWxRgJACcCGE8MNUotZlOqSdzJnF5uMRu5Qh0tHLlVXeAOfX79PnkE1vgs/l0uprCxnWMYBbf1a3vljUuRy0bYgOV97kbxdexNKcEwqjWKjswT1T5AnU1yezirTcQ0CawrYb2K9Q=
+	t=1737659065; cv=none; b=P5w6Hov6W1mP5fwT05dTC6uU1wp2hji7L1HBofzBhwNf1A55laLElrHKgsVBO3aXFF9k6R4MAQp5SKW4lDNhI70GYoUF2F26HNka5XWshvhqczFgOFexfwcLca4/GDzDJYnfxZVpfwJSJzfGUIBubMQ4AEQ0xeodXGpRmkWjAv4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737657993; c=relaxed/simple;
-	bh=xRs52lnDW+3EPY7W1diAkuIowIIBS5h+ZR8ZnRYlmzw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M9uFfdpItjVk2Gk6ufZi3UBT8/Mr75qbwEkUjAlm9WAnYET4l6MA7A0Df3WcMNrqrTLUP4wK1l/e0KJ/Xw2wK6095urI23e1TizFj9M8Zyie73c+fC8JMe5ty9xUaN9NRYs4XxySA6amndCZAjTDxLBB4+cngBVJOc+Jp6D1zBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KcsoVOsY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5ED4DC4CED3;
-	Thu, 23 Jan 2025 18:46:30 +0000 (UTC)
+	s=arc-20240116; t=1737659065; c=relaxed/simple;
+	bh=hHJYIYvVQNSFfUvSqBc7Seoz8vNYl2K6sccCJXZy6JQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=sDfetzd5QgPyTF6MI5P+AnILw9RU6Y8v4zGQ619fcw8fhGcn03O0TUmijiMqfFpmpIPPNs985BXZ7Ewf+z0rj/VCjWIkYYBnmFdVlMI+m8jM1K4G5OXPceCNpVeObwbBnHvT5/IosAXP6DUaqynRtAaIL94j2Xhy9f82nigzmGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FRehpicm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4261C4CED3;
+	Thu, 23 Jan 2025 19:04:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737657993;
-	bh=xRs52lnDW+3EPY7W1diAkuIowIIBS5h+ZR8ZnRYlmzw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KcsoVOsYhlA3/ktn1A28fZL/qamOfSb69vNnRHZ+Coo/Dyd1ghedXYE9e7P5KTQBv
-	 6l+StJwvpCLUY1SXLif+6kXE8Xl3Dx1sQrUM54AhbIVrIdcp1bO2jTrTSdbaF/G0SX
-	 gA7HVvE2W/1WIPVBs7FPUtuRp9rGHrZm1acQaDeNvcwaqzsE89NOm4fotvusPNtUOB
-	 8tnW9GHA3+n6fuXfIR6JtkSgBZmyv7KOPS1N29/0k5GS9HPb68Vgu+LAswGZVLamGs
-	 2UZZu7k+soKHtupNJN2ML6a+31dkrTpplwEOplV1m2glK3C24TwdAbzVMc1X7jizCE
-	 fOYbvYaX3TdEw==
-Date: Thu, 23 Jan 2025 18:46:28 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@microchip.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Ludovic Desroches <ludovic.desroches@microchip.com>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Durai Manickam KR <durai.manickamkr@microchip.com>
-Subject: Re: [PATCH v2] dt-bindings: dma: convert atmel-dma.txt to YAML
-Message-ID: <20250123-crucial-yelp-de4a63b0e3b5@spud>
-References: <20250123-dma-v1-1-054f1a77e733@microchip.com>
+	s=k20201202; t=1737659065;
+	bh=hHJYIYvVQNSFfUvSqBc7Seoz8vNYl2K6sccCJXZy6JQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=FRehpicmepTuqm1yVXqleYwTJcp3Foa7lJjXlbM96PUuG7tuSxK7gS56iCJdPvjDq
+	 0C2/gPczTRzQ7sDBeT31rwsxA81T514+5sHXrfmJF5pYsubFNAc+6+rmJyIBEQMW8i
+	 GPRAtWtVQRcRFlfI8GkXNJOf2SSLrGh55++SiGERF2ZXDqjufdoxG9bSFp8d/H9WwS
+	 jzIav7GA5XgptD9oTH2rAoSFqZ3vCQLJ75sX6Hxsxa69Wq4f1eBT3GnjAMOrJOU0Gk
+	 2msFwHVBh0YgBlh1i569k8vrz9FvHHJtdhHgh/BvmH3Wg+QSoIgzk67idaYNsS6Ldc
+	 FcwCl7bJ7UnPg==
+Date: Thu, 23 Jan 2025 13:04:22 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
+Subject: Re: [PATCH v8 2/7] PCI: dwc: Use devicetree 'ranges' property to get
+ rid of cpu_addr_fixup() callback
+Message-ID: <20250123190422.GA1215672@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="USuX8QMl72gqtfih"
-Content-Disposition: inline
-In-Reply-To: <20250123-dma-v1-1-054f1a77e733@microchip.com>
-
-
---USuX8QMl72gqtfih
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <Z5JegF7i3Ig2pLYB@lizhi-Precision-Tower-5810>
 
-On Thu, Jan 23, 2025 at 02:58:01PM +0530, Charan Pedumuru wrote:
-> From: Durai Manickam KR <durai.manickamkr@microchip.com>
->=20
-> Add a description, required properties, appropriate compatibles and
-> missing properties like clocks and clock-names which are not defined in
-> the text binding for all the SoCs that are supported by microchip.
->=20
-> Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
-> ---
-> Changes in v2:
-> - Renamed the yaml file to a compatible.
-> - Removed `|` and description for common properties.
-> - Modified the commit message.
-> - Dropped the label for the node in examples.
-> - Link to v1: https://lore.kernel.org/all/20240215-dmac-v1-1-8f1c6f031c98=
-@microchip.com
-> ---
->  .../bindings/dma/atmel,at91sam9g45-dma.yaml        | 67 ++++++++++++++++=
-++++++
->  .../devicetree/bindings/dma/atmel-dma.txt          | 42 --------------
->  2 files changed, 67 insertions(+), 42 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.=
-yaml b/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
-> new file mode 100644
-> index 000000000000..8d0d68786cbc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/atmel,at91sam9g45-dma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Atmel Direct Memory Access Controller (DMA)
-> +
-> +maintainers:
-> +  - Ludovic Desroches <ludovic.desroches@microchip.com>
-> +  - Tudor Ambarus <tudor.ambarus@linaro.org>
-> +
-> +description:
-> +  The Atmel Direct Memory Access Controller (DMAC) transfers data from a=
- source
-> +  peripheral to a destination peripheral over one or more AMBA buses. On=
-e channel
-> +  is required for each source/destination pair. In the most basic config=
-uration,
-> +  the DMAC has one master interface and one channel. The master interfac=
-e reads
-> +  the data from a source and writes it to a destination. Two AMBA transf=
-ers are
-> +  required for each DMAC data transfer. This is also known as a dual-acc=
-ess transfer.
-> +  The DMAC is programmed via the APB interface.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
+On Thu, Jan 23, 2025 at 10:21:36AM -0500, Frank Li wrote:
+> On Fri, Jan 17, 2025 at 10:42:37AM -0500, Frank Li wrote:
+> > On Thu, Jan 16, 2025 at 05:29:16PM -0600, Bjorn Helgaas wrote:
+> > > On Thu, Jan 16, 2025 at 05:14:00PM -0600, Bjorn Helgaas wrote:
+> > > > On Tue, Nov 19, 2024 at 02:44:20PM -0500, Frank Li wrote:
+> > > > > parent_bus_addr in struct of_range can indicate address information just
+> > > > > ahead of PCIe controller. Most system's bus fabric use 1:1 map between
+> > > > > input and output address. but some hardware like i.MX8QXP doesn't use 1:1
+> > > > > map.
+> ...
 
-compatible:
- enum:
+> 	I saw you have not picked all of these patches during you rework
+> pci git branches.
+> 
+> 	I know you are busy, do you have chance to pick left patch for 6.14.
 
-You only have one option in your oneOf list.
+This series had a mix of things: several patches related to
+.cpu_addr_fixup(), plus several unrelated ones for PHY mode and i.MX8Q
+support.  I think I picked up all the unrelated ones.
 
-> +          - atmel,at91sam9g45-dma
-> +          - atmel,at91sam9rl-dma
+.cpu_addr_fixup() is a generic problem that affects dwc (dra7xx, imx6,
+artpec6, intel-gw, visconti), cadence (cadence-plat), and now
+apparently microchip.
 
-Blank line here please.
+I deferred these because I'm hoping we can come up with a more generic
+solution that's easier to apply across all these cases.  I don't
+really want to merge something that immediately needs to be reworked
+for other drivers.
 
-> +  reg:
-> +    maxItems: 1
+A few of the things I wonder about:
 
---USuX8QMl72gqtfih
-Content-Type: application/pgp-signature; name="signature.asc"
+  - dw_pcie_get_parent_addr() has no DWC dependencies, so it doesn't
+    make sense to me to have it be DWC-specific and copy and pasted
+    to other places that need something similar.
 
------BEGIN PGP SIGNATURE-----
+  - It doesn't seem elegant to iterate through for_each_pci_range() in
+    devm_of_pci_get_host_bridge_resources(), then again in
+    dw_pcie_host_init() for io_bus_addr, then again in
+    dw_pcie_iatu_setup() for each window.  Maybe that's the best we
+    can do, but maybe there's a way to capture what we need on the
+    first time through.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5KOgwAKCRB4tDGHoIJi
-0t3xAP9LuhUuGfr5V4YXaUTK/z6aZn5QphsTGsu+j2FxTWKPBwEA2L8ZpbVYVkzA
-sY6/DEzfAl4U+5LlJFfTSIilXui4xAk=
-=UYo6
------END PGP SIGNATURE-----
+  - The connection between .cpu_addr_fixup() and use_parent_dt_ranges
+    is clear in the patches remove a .cpu_addr_fixup(), but not in the
+    DWC patches on the other end.
 
---USuX8QMl72gqtfih--
+  - Ideally, "use_parent_dt_ranges" would be the default and we
+    wouldn't have a flag to indicate that, and drivers would have to
+    opt out instead of opt in.  They basically already do that by
+    implementing .cpu_addr_fixup(), so maybe we can take advantage of
+    that fact.
+
+Bjorn
 
