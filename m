@@ -1,356 +1,113 @@
-Return-Path: <devicetree+bounces-140588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 144A0A1A70F
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 16:27:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CAF4A1A706
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 16:27:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9505A7A1A34
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 15:27:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9EB6D188A5F7
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 15:27:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A2A62135D6;
-	Thu, 23 Jan 2025 15:27:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nkci6zzo"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F37372135B9;
+	Thu, 23 Jan 2025 15:26:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B83EE21322B;
-	Thu, 23 Jan 2025 15:27:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 647892135A0;
+	Thu, 23 Jan 2025 15:26:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737646025; cv=none; b=HWEFM0CJ3iBr2eJfTHkrPCm9o/O5fCEEZxv0UwE0LFcHP5+2XaaiAYlx4zrYMY4SvqEiaNoNdiofn4Yyer2IbKeGkf5N56F5YaoAhL/fucNwBNVr0vEnYWCX5c0piqE5Gzl/ZCmonAegxWUICWycmWKc24lCX3KgoeBwtBfsc58=
+	t=1737646010; cv=none; b=PJkYn4vPjJw6V2kQdPKOcdvpncEmf34lj3W5FwQTwVYsbwVia6aaLpbDK5dPGiPuISfUwumYWVM253PIOnSqZ0Eh0rrObWLqHhDpJmueZjVNK5TUAF8YUV/6l9kwO/iEHhjhOr0SXlLKoSe/jS/TMxmWOANFyx9km4sCwVL3Udc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737646025; c=relaxed/simple;
-	bh=MTePTFZO0fJY5+8Rwq04Zyp4iZ/qTd/L+xe/WvK/kzw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=CkDtO8cyvjsI/b1cSHmyXTDYtb80Bk8dp3yQkKsYp+5mmjTjRgRl1DTr5omPETTniDrNh5az15xq/cO4mRuEbzSOC36TK48c1/MlBhWccXNi2Tb6AGuwEqhNuKhZBQSVOO0yJe9dTUGkUS6ZZmSacehfSFDddZguw9Mp/VN2y4w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nkci6zzo; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1737646010; c=relaxed/simple;
+	bh=oaNoxDMiDntXyi66lcz+FmmY2IP5kt0GC3g2GTmswes=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gSQsAqMmZa42qq8ZSIW2OjmizbQYtb/lFKtXmM2K2iqyFGOOs129IMO0lwkiX5RRh2iYQCAdevU6iPlzD6yfYK8Yw+0vs10WiYDv1xqWP8oCUb0y3fpsJgXjQe+K0Xt63bbOhEimMCWtYw+x3YLmlww8Oe6sHL8DoPUqZ43Ty3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-21631789fcdso30429005ad.1;
-        Thu, 23 Jan 2025 07:27:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737646023; x=1738250823; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U6kosElOaSMZSNtX69a/Hsyj1tzL+5G6ZJzdXAObE/E=;
-        b=nkci6zzo21Lkz+kGzYwoAPi8Fm/sictfW8Zit06qRcfKvPJ71KmLgw3khkKGLg+7ib
-         FbxK6Aw8okO6eCUlkvArbXfpRm0FaK/qcBhb+6oShoJLKGz09PXj0ffeHwirmu3GEFJy
-         L5k/9W7QPzJ3eD/eJVsxETx0YyFnau0bDXOvgOBWrzJojcfmdGd/VlCzgOcWM0CUy8kE
-         t+o+I1wZAihf5X1fR5rkRCV3QdzMpcWHEQY3CKntV3alQENgORZcSQnbpnYxW6ukqa6Q
-         vy4jnITe9C225fiV5r+iLGXlcyrAfTIkn3ZWOMmAWNCIjHNXido0w9hgPAAUpciMbyBB
-         mlHg==
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-51878d9511bso428925e0c.0;
+        Thu, 23 Jan 2025 07:26:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737646023; x=1738250823;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1737646008; x=1738250808;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=U6kosElOaSMZSNtX69a/Hsyj1tzL+5G6ZJzdXAObE/E=;
-        b=SZtbLPs08w/MUHNrF6dRIv3t3ZHwXnHrVLpJxFlDPce1vkD7WTXbIuaUAT9CuEf5bg
-         /wN/Mv2NCvQR3pw2qj4n2RNJ7EsAMeMFhfWCyDfTum/1opXmLJvQdJFQQHCZd63Yji9+
-         5PTCd6Peo/ivX1IOXa4+6OhtWw91/UVjiYV9dhfx1kL2WnYJwWOkuzCPsx/aFgyWzORG
-         Ub++WP71Mj+xArs/wf5cQ5YwQTOZs8Kg9l9rKj78yFdubKcLgTDgN2+c9+DPsvJBnhqJ
-         Nl4lacy9zUd8QLWo5MwPAly6YdoSiMIdm0ZAFxqij2D1CwcNm+Mas1VWMajFQ0iPJrUB
-         10AA==
-X-Forwarded-Encrypted: i=1; AJvYcCUiqK3x9JH1aDN8U1BOfVJPYAN1RPndrYmZufsUmO8Lr6YwsUqqXlcXhmrOhQ1W2j/NxoeUEbdURtKKvC4r@vger.kernel.org, AJvYcCUyST4BVrvhM7h7SxkfmqIIH+MPctNzkaxNzo3U9fE0wdkCpvcyj7CPyzTN2B4ZQq5/j7s4iO+DiYX6etA=@vger.kernel.org, AJvYcCWKsHOne/Ixue5xegryUCt2sKkTYfBvs8clk5UbvdPtAkBfc7CG2XPaUqoRsZrZm3rx6s1xZHXloQsJjIGL@vger.kernel.org, AJvYcCWsFTqpS5/HXTqilkl7oqV8A/Yq5uXA/vng2dkzaPzbwulMpwn6GMhYRDpJEImxtaCSnJPnfcUciSaplnM4U2FK+H6k6Q==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+qcgUCtQGYL5FjvHB6SvJcI8wl43BSzIc7MzTtXaXREuM1+e2
-	bnCCa0hXBbqD4aeePn4+MtDL6jH2rqsEXtYQv/nf0vJqYfzD3vNS
-X-Gm-Gg: ASbGncvpwNbtTMfaDF5ML8GVuHt2b4T9wBlKeOuxpHKu35ok8EV9p7n4D5/pUUd5JZs
-	MGo3FazQ5CGi63c9USCwP5+zgImMXE/PQf0O1xf0XUqYnwGXQRjqMdAGm9MSqqznOIycDcryIaw
-	jtID4PseXe1LSWrIzEQ9MVEGO0zxX1GHVzoSET+LcTm0kPqspkj7mWEqt2pNlPQ1uTKkDwFplHt
-	J8FqvxPhXhTp1h68yeNNu0+onKQD3mbyxOXhDJvEwtmUw7q/NZmCoqRtd91Zl7sxt7hvyJMrxBI
-	pkVA9/jcoff9Wv2r
-X-Google-Smtp-Source: AGHT+IHFlluqRzeoleihkx/bcTrNne6uQb8YuY7g6wHNtvViX8qKUhx6520LrDuU/chdPPdA2LdZDw==
-X-Received: by 2002:a05:6a20:9c8b:b0:1e1:b878:de64 with SMTP id adf61e73a8af0-1eb696aeb45mr6435398637.6.1737646022746;
-        Thu, 23 Jan 2025 07:27:02 -0800 (PST)
-Received: from SC8280XP.. ([144.202.86.13])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a9bcdcf707dsm11247915a12.32.2025.01.23.07.26.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jan 2025 07:27:02 -0800 (PST)
-From: Pengyu Luo <mitltlatltl@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Hans de Goede <hdegoede@redhat.com>,
-	=?UTF-8?q?Ilpo=20J=C3=83=C2=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	platform-driver-x86@vger.kernel.org,
-	linux-hwmon@vger.kernel.org,
-	Pengyu Luo <mitltlatltl@gmail.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v6 3/3] arm64: dts: qcom: gaokun3: Add Embedded Controller node
-Date: Thu, 23 Jan 2025 23:25:59 +0800
-Message-ID: <20250123152559.52449-4-mitltlatltl@gmail.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20250123152559.52449-1-mitltlatltl@gmail.com>
-References: <20250123152559.52449-1-mitltlatltl@gmail.com>
+        bh=5ObmF4EAbz69jChCTuuA+EV0Ksc0exXQpmKmEqjaiDU=;
+        b=IpJJ5c8pkB/ZJRYiR9XJaU1PImtSVA74EOXEYgDecoFgYQ0xkctqKUjEdOuQkSuK/Q
+         VL/oOnbG/U2iWqbfWu3o2pguI5AGToKfafZDUlDTgmS40jFzUm8kzmRM1obvtSyfEHkN
+         RVig8eFWPMCif/pRN1SmC9sgaZwccGAL8KzGblTTZ5phP9mMlxlc8dHDlTlpF6Lyg1Oo
+         BFemFlCY27CHVztDM4nrizoxiDZDrNVwEPxzANOToh0S3FzGIq0WIISAVXr/ZeW1JY58
+         dmLodQIrTsZLx1oHgAWeUfwEMOZvfX35sBsGYqNYSmZssx4qqTPtHlYv/NEw4SpVfTGR
+         9vSA==
+X-Forwarded-Encrypted: i=1; AJvYcCV4ggLDMkvEDJSA1+GLcGK809ulYG1JQBcSxZh36APBFcS/HSyXUa/juOjbeXAiTG1GUERjktKxA5NL@vger.kernel.org, AJvYcCVYXs+3JTh3FIwC1/rIhBMGQZUKROg1obmb4x1jp1N19Hu+5FmMJxgLO+t5reA5Ib/yBwUhkj8T0pAM8jo5rGzaIHo=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRgu4oB5bOTE3obLNa2sh2kXUSBUMSGUXEJ5Ap+4L0XHrt+EdE
+	/Uiu6yf1cBUhiiGxZh+czlFuVmUXWug9AvHEuQeP8VqdUpCkSfTfDok8Odpn
+X-Gm-Gg: ASbGnctd5c0Kugtf7WwIarSB/J4fwy+dNwnGuwADVa4xmo0yUZI329CzMRwQ5Y5HVtp
+	lV5kYbuIEal86rVgSo8JUfMBtlyZct+hw4wFtcf1KHsJh0A2dTjR0wTasnw2z8J+8GvegXI8dAn
+	d//Aa9O2bINmMHEjuiiWVXQH9xRMK6CfoJSbFGuVu21i113xl+B8aRAtUwT6TZQgSWNF1L9TJF+
+	xJydmIlE31NfDCkrqMyg/rhGxI94qF8Y8bMERERmFbJ+TmMxHOuS80b0Ff/ysSf2YzZVFiuSJxc
+	lYo/YHmZ6ea9ZZ2qhPzzqvgGpt6pK9XxzKx6ag2U4mE=
+X-Google-Smtp-Source: AGHT+IEnzgJmHViyGwxnQgfWekiIVq2R+q15TL5sB+P1AapikW3UIMbbGvxrIhlEMuR71UEszFHllA==
+X-Received: by 2002:a05:6122:d22:b0:51c:c23e:8cd3 with SMTP id 71dfb90a1353d-51d5b253f42mr23305548e0c.4.1737646007826;
+        Thu, 23 Jan 2025 07:26:47 -0800 (PST)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8642cc7edd8sm3456437241.26.2025.01.23.07.26.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jan 2025 07:26:47 -0800 (PST)
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4afeb79b52fso307522137.0;
+        Thu, 23 Jan 2025 07:26:47 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXmAWvbGAluwCut8qimBg+mUsmHOpLLqM0eFriOYT+BIooxyyoihDS+trfmdHu7nlIurSY9XrQShZS4@vger.kernel.org, AJvYcCXmp62p7tWE6pEvATrXnvMQ/CQY0K9D+NamtpdMZj5iC6exbE65C/rj7CEc504qGvQs0YFakotdtzdo2exb8P8y9Ac=@vger.kernel.org
+X-Received: by 2002:a05:6102:4b15:b0:4b0:ccec:c9de with SMTP id
+ ada2fe7eead31-4b690d322famr23895215137.24.1737646007443; Thu, 23 Jan 2025
+ 07:26:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250118111344.361617-1-marek.vasut+renesas@mailbox.org> <20250118111344.361617-2-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20250118111344.361617-2-marek.vasut+renesas@mailbox.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 23 Jan 2025 16:26:35 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXe6ZOKXPRrG4pJTsP_6ZaAysHrsNGEC76ASPOfP0aaXw@mail.gmail.com>
+X-Gm-Features: AWEUYZmSg5HWSdLGc8j6CDEBswP0pzOY_OzDTJ5vSW2vEF9CejAiXtH9hbGKZEw
+Message-ID: <CAMuHMdXe6ZOKXPRrG4pJTsP_6ZaAysHrsNGEC76ASPOfP0aaXw@mail.gmail.com>
+Subject: Re: [PATCH 2/5] arm64: dts: renesas: spider-ethernet: Access rswitch
+ ports via phandles
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The Embedded Controller in the Huawei Matebook E Go is accessible on &i2c15
-and provides battery and adapter status, port orientation status, as well
-as HPD event notifications for two USB Type-C port, etc.
+On Sat, Jan 18, 2025 at 12:14=E2=80=AFPM Marek Vasut
+<marek.vasut+renesas@mailbox.org> wrote:
+> The r8a779f0.dtsi now contains labels for each rswitch port in
+> the form 'rswitchportN'. Use those to access rswitch ports and
+> slightly reduce the depth of this board DT. No functional change.
+>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-Add the EC to the device tree and describe the relationship among
-the type-c connectors, role switches, orientation switches and the QMP
-combo PHY.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.15.
 
-Signed-off-by: Pengyu Luo <mitltlatltl@gmail.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- .../boot/dts/qcom/sc8280xp-huawei-gaokun3.dts | 163 ++++++++++++++++++
- 1 file changed, 163 insertions(+)
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts b/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-index 09b95f89e..1667c7157 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-huawei-gaokun3.dts
-@@ -28,6 +28,7 @@ / {
- 
- 	aliases {
- 		i2c4 = &i2c4;
-+		i2c15 = &i2c15;
- 		serial1 = &uart2;
- 	};
- 
-@@ -216,6 +217,40 @@ map1 {
- 		};
- 	};
- 
-+	usb0-sbu-mux {
-+		compatible = "pericom,pi3usb102", "gpio-sbu-mux";
-+
-+		select-gpios = <&tlmm 164 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&usb0_sbu_default>;
-+		pinctrl-names = "default";
-+
-+		orientation-switch;
-+
-+		port {
-+			usb0_sbu_mux: endpoint {
-+				remote-endpoint = <&ucsi0_sbu>;
-+			};
-+		};
-+	};
-+
-+	usb1-sbu-mux {
-+		compatible = "pericom,pi3usb102", "gpio-sbu-mux";
-+
-+		select-gpios = <&tlmm 47 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&usb1_sbu_default>;
-+		pinctrl-names = "default";
-+
-+		orientation-switch;
-+
-+		port {
-+			usb1_sbu_mux: endpoint {
-+				remote-endpoint = <&ucsi1_sbu>;
-+			};
-+		};
-+	};
-+
- 	wcn6855-pmu {
- 		compatible = "qcom,wcn6855-pmu";
- 
-@@ -584,6 +619,97 @@ touchscreen@4f {
- 
- };
- 
-+&i2c15 {
-+	clock-frequency = <400000>;
-+
-+	pinctrl-0 = <&i2c15_default>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+
-+	embedded-controller@38 {
-+		compatible = "huawei,gaokun3-ec";
-+		reg = <0x38>;
-+
-+		interrupts-extended = <&tlmm 107 IRQ_TYPE_LEVEL_LOW>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		connector@0 {
-+			compatible = "usb-c-connector";
-+			reg = <0>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					ucsi0_hs_in: endpoint {
-+						remote-endpoint = <&usb_0_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					ucsi0_ss_in: endpoint {
-+						remote-endpoint = <&usb_0_qmpphy_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					ucsi0_sbu: endpoint {
-+						remote-endpoint = <&usb0_sbu_mux>;
-+					};
-+				};
-+			};
-+		};
-+
-+		connector@1 {
-+			compatible = "usb-c-connector";
-+			reg = <1>;
-+			power-role = "dual";
-+			data-role = "dual";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					ucsi1_hs_in: endpoint {
-+						remote-endpoint = <&usb_1_dwc3_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					ucsi1_ss_in: endpoint {
-+						remote-endpoint = <&usb_1_qmpphy_out>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					ucsi1_sbu: endpoint {
-+						remote-endpoint = <&usb1_sbu_mux>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &mdss0 {
- 	status = "okay";
- };
-@@ -1004,6 +1130,10 @@ &usb_0_dwc3 {
- 	dr_mode = "host";
- };
- 
-+&usb_0_dwc3_hs {
-+	remote-endpoint = <&ucsi0_hs_in>;
-+};
-+
- &usb_0_hsphy {
- 	vdda-pll-supply = <&vreg_l9d>;
- 	vdda18-supply = <&vreg_l1c>;
-@@ -1025,6 +1155,10 @@ &usb_0_qmpphy_dp_in {
- 	remote-endpoint = <&mdss0_dp0_out>;
- };
- 
-+&usb_0_qmpphy_out {
-+	remote-endpoint = <&ucsi0_ss_in>;
-+};
-+
- &usb_1 {
- 	status = "okay";
- };
-@@ -1033,6 +1167,10 @@ &usb_1_dwc3 {
- 	dr_mode = "host";
- };
- 
-+&usb_1_dwc3_hs {
-+	remote-endpoint = <&ucsi1_hs_in>;
-+};
-+
- &usb_1_hsphy {
- 	vdda-pll-supply = <&vreg_l4b>;
- 	vdda18-supply = <&vreg_l1c>;
-@@ -1054,6 +1192,10 @@ &usb_1_qmpphy_dp_in {
- 	remote-endpoint = <&mdss0_dp1_out>;
- };
- 
-+&usb_1_qmpphy_out {
-+	remote-endpoint = <&ucsi1_ss_in>;
-+};
-+
- &usb_2 {
- 	status = "okay";
- };
-@@ -1177,6 +1319,13 @@ i2c4_default: i2c4-default-state {
- 		bias-disable;
- 	};
- 
-+	i2c15_default: i2c15-default-state {
-+		pins = "gpio36", "gpio37";
-+		function = "qup15";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
- 	mode_pin_active: mode-pin-state {
- 		pins = "gpio26";
- 		function = "gpio";
-@@ -1301,6 +1450,20 @@ tx-pins {
- 		};
- 	};
- 
-+	usb0_sbu_default: usb0-sbu-state {
-+		pins = "gpio164";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
-+	usb1_sbu_default: usb1-sbu-state {
-+		pins = "gpio47";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+	};
-+
- 	wcd_default: wcd-default-state {
- 		reset-pins {
- 			pins = "gpio106";
--- 
-2.47.1
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
