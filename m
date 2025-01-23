@@ -1,105 +1,121 @@
-Return-Path: <devicetree+bounces-140536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A490A1A277
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:03:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EBD2A1A2DD
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:23:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D869C16E223
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 11:03:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17AD07A067D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 11:23:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0576A20F06D;
-	Thu, 23 Jan 2025 11:02:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D8D120E02F;
+	Thu, 23 Jan 2025 11:23:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NeQmVH94"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="jT8n2lft"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from mail-m15592.qiye.163.com (mail-m15592.qiye.163.com [101.71.155.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B89C720E6E5;
-	Thu, 23 Jan 2025 11:02:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 095D120E037;
+	Thu, 23 Jan 2025 11:23:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.92
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737630131; cv=none; b=bjO2Jpx7NFVlBJ+mdMzV8vBC8AE9J29TorMm9TUHnNb8BbWnaE7wlqpizck7BcQOuWEygJFWfe86l2Kb4/QbO0ZeSGMPqDyF18kKfb8IGG2syHKjO02IJEcWANkRUvYHjMyOy+s2Ny8DD24EtZByxxbChYpqXaqSEyCeHJxgewQ=
+	t=1737631430; cv=none; b=nDKVglx60vvch0EI4RDGoUO0QE363SmuRZ81dl7K7QlU8Xg1WQ+RA4kIQrSGIKofUpgH6XxMrF8Ke6Q+WG6oF6HdRJ29tWlntM56vgewJGElE0uvrFh71jVwibHyEBG06H8Eu23s8ckPgc4JqVaf5h0rh0FaXuKQ/5N0tiQJfL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737630131; c=relaxed/simple;
-	bh=nyoBjJeplMqsP6hiHUlqfIT5u31Sy7DAgdVBnnvQX4Q=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WDfdA9CcXkGZtXE6YgxP5jeHrmNp56+9aTp3OJLNyabMzWYeVIK/RF740lw7X6G9IElze451tHONyaWaMLrFFEzIjFwXP5viPIbkUbuNsEEcPz+P1gduA5HhArPkeXjG1/Nqva8TRiDRoZL2ZfSw1QzTc+paC/QuyOuK7z/MbTU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NeQmVH94; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C2790C000B;
-	Thu, 23 Jan 2025 11:02:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1737630128;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=z+xrqkHkD3Qz7CE8k+Ni75tjNz0Jjog+QmgQtGZGrmk=;
-	b=NeQmVH94j1VwlXNf7q6BUMpHMqPqZ0A2CT7zkp+dnSTi79v4atNIi5fqZM2tCs5HTCrnox
-	p50/3rp4TU0iWubfwfNUFukL/lF98sasoVmdLY7k/pNpWp4qk7FopG/cmF2IjULM8jv22L
-	bb6WZhLeY+2rLf/EsZcKTlFxHiu9UmhTM0JZazTfw1au3RXMHpRSKwp+B/m7BL179PKfWy
-	Jh+OzO66iH/NkRIwXxCT8WlV+2+KnQudzP0rNW1CvLcpRXcNGvCf+QiCU/Al1qq300Mmca
-	Ss0R69NESEFTyqYJ4Dt2p8xOvIW6B1JIzHqjhkOYLceoJwG+6fKqW3pqnjTCpw==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-Date: Thu, 23 Jan 2025 12:01:58 +0100
-Subject: [PATCH v3 5/5] MIPS: mobileye: dts: eyeq6h: Enable cluster support
+	s=arc-20240116; t=1737631430; c=relaxed/simple;
+	bh=C56MrLlhWcU08ZYkafZUUuJbyZi0cMLonjZabttx9/Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=TbS9Yml6Q8oleFLrAVkCNWlANgSoyxos/NoWPt6qmGtjrjimfRgeFNYSmWYWa0VNikU+ghqn+UrVZGi3B28JjV7Hgpi/U5sN0W0i1Fa3DjV5Lj6mAOIxPqNzaGM7Em+d0ZI7tL1jlvC1AoAqzWDiuEk7FnyBnm4+bojmucIhicQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=jT8n2lft; arc=none smtp.client-ip=101.71.155.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from zyb-HP-ProDesk-680-G2-MT.. (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 9818ae66;
+	Thu, 23 Jan 2025 18:08:08 +0800 (GMT+08:00)
+From: Damon Ding <damon.ding@rock-chips.com>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	rfoss@kernel.org,
+	vkoul@kernel.org,
+	sebastian.reichel@collabora.com,
+	cristian.ciocaltea@collabora.com,
+	l.stach@pengutronix.de,
+	dmitry.baryshkov@linaro.org,
+	andy.yan@rock-chips.com,
+	hjc@rock-chips.com,
+	algea.cao@rock-chips.com,
+	kever.yang@rock-chips.com,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	Damon Ding <damon.ding@rock-chips.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v6 05/14] dt-bindings: display: rockchip: analogix-dp: Add support to get panel from the DP AUX bus
+Date: Thu, 23 Jan 2025 18:07:38 +0800
+Message-Id: <20250123100747.1841357-6-damon.ding@rock-chips.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250123100747.1841357-1-damon.ding@rock-chips.com>
+References: <20250123100747.1841357-1-damon.ding@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250123-cluster-hci-broken-v3-5-8a7ec57cbf68@bootlin.com>
-References: <20250123-cluster-hci-broken-v3-0-8a7ec57cbf68@bootlin.com>
-In-Reply-To: <20250123-cluster-hci-broken-v3-0-8a7ec57cbf68@bootlin.com>
-To: Aleksandar Rikalo <arikalo@gmail.com>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-mips@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Gregory CLEMENT <gregory.clement@bootlin.com>
-X-Mailer: b4 0.14.2
-X-GND-Sasl: gregory.clement@bootlin.com
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQkoYTlZLSEsfH0tLQ0tDSENWFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a9492a22a0503a3kunm9818ae66
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6Mxg6CTo*OTIJEiw4QykLFDJK
+	PS0wCwpVSlVKTEhMTUlNQ0JLTU1PVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
+	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFKSkpINwY+
+DKIM-Signature:a=rsa-sha256;
+	b=jT8n2lftlIuor5cf/X98/4Ikx5Y7ysqM7XBPGvlfS/19w1s4T9/B6RdrF9xfqenEVdO9Y6B3U90NvX1gcQfZR6Q4ILVdzhfXtic362oJsqijf8SW5kmAvplItCmWPli4GPT7mMIKtLNPLF6vHPSZQNDCsf0GdMgOCVnlMLiaMN8=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=MCo0uAKS6QHvo55swHDZpLkV/TNxwwhILy3rryJVjxs=;
+	h=date:mime-version:subject:message-id:from;
 
-The CM3.5 device used in EyeQ6H SoCs incorrectly reports the status
-for Hardware Cache Initialization (HCI). This commit adds the
-compatible string for the CM to acknowledge this issue, which enables
-the use of the second CPU cluster.
+According to Documentation/devicetree/bindings/display/dp-aux-bus.yaml,
+it is a good way to get panel through the DP AUX bus.
 
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
+
 ---
- arch/mips/boot/dts/mobileye/eyeq6h.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/arch/mips/boot/dts/mobileye/eyeq6h.dtsi b/arch/mips/boot/dts/mobileye/eyeq6h.dtsi
-index 4a1a43f351d39625b520a16d035cacd2e29d157c..dabd5ed778b739b62f5c6e7348f1837a207dbb6c 100644
---- a/arch/mips/boot/dts/mobileye/eyeq6h.dtsi
-+++ b/arch/mips/boot/dts/mobileye/eyeq6h.dtsi
-@@ -32,6 +32,10 @@ cpu_intc: interrupt-controller {
- 		#interrupt-cells = <1>;
- 	};
+Changes in v4:
+- Move the dt-bindings commit before related driver commits
+
+Changes in v5:
+- Remove the unexpected change logs in commit message
+---
+ .../bindings/display/rockchip/rockchip,analogix-dp.yaml        | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+index 60dedf9b2be7..eaf4e67e232e 100644
+--- a/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
++++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml
+@@ -41,6 +41,9 @@ properties:
+     description:
+       This SoC makes use of GRF regs.
  
-+	coherency-manager {
-+		compatible = "mobileye,eyeq6-cm";
-+	};
++  aux-bus:
++    $ref: /schemas/display/dp-aux-bus.yaml#
 +
- 	xtal: clock-30000000 {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-
+ required:
+   - compatible
+   - clocks
 -- 
-2.45.2
+2.34.1
 
 
