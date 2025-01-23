@@ -1,75 +1,78 @@
-Return-Path: <devicetree+bounces-140460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C24EA19E8B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 07:48:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83321A19E8E
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 07:48:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0D34C7A5F2A
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 06:48:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7F01188CDB4
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 06:48:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B5BE1C3C1A;
-	Thu, 23 Jan 2025 06:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBE71CB518;
+	Thu, 23 Jan 2025 06:48:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="D7/6L80K"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="C+3Az0Vg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f66.google.com (mail-pj1-f66.google.com [209.85.216.66])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7ED614D44D
-	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 06:48:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84BCD1C5F31
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 06:48:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737614893; cv=none; b=U0yzoBoFTrRV4CChtbtiu4f4vsnCVkirGKhc3LkEePJLBZeUZeMeexy7KJcZrdi670D4wQIbVeM810T0u2lxJE9saoq7QDmCrf4FXMd+qNQKpb8I+sV9GoNGJFzPGIKap3f2A7wgpt/aNb4srY51IyeGX9cmxjUSbpwzsabmRrA=
+	t=1737614897; cv=none; b=DraMkIuLZq24g+vnFRmJ2u5360KHzY7GTrWInoE6Iy9AYJBoQNBui9vsIFeNnz8HPn7rj9HdUik+c+7aPkHYbLCgSSScZgpx4eTxkBnv6bOnSsXIDHUCymLZllxoxJiIRII1pxHtSBTHxgphUx4hWVql6EbxMIPPuKrWn6lu4No=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737614893; c=relaxed/simple;
-	bh=rBeyUlsllM5CmrczjqByP8u9qrrefEGxwXwqIDJLA7I=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=UicvJ1Topz26amp4lHAkxuq5eJcadgLen3PDZywtcbb/zDe1jeAjKS7uIsdytg+9QDKZb6ZeohwTu1fG5ixYDCn2AA52DJuVawb/A4TeqzTXS/fgUIT1L/vYcLZfPYl305LA0nEOf9OmPd2fM8UNatPnE+2tioq5j/38vOudPZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=D7/6L80K; arc=none smtp.client-ip=209.85.216.66
+	s=arc-20240116; t=1737614897; c=relaxed/simple;
+	bh=e4l4J6hUK66lbb+27pNmUpiv51k83qvvho2J2oXg9yI=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=W2Wv4xmxUCd2lieSXAdNN4AK/E1nATvr/hvnU9al3MnqTrvi6Z0FyeLZRUs6HoSQC2M2UsafsYMqR9S7H0gnECAy4o3ptkrQYtN0VugO88C8E9NQfuKCNwBG6nqe5hHp154yaBOgPu832caTjDaHZymigNyDup755Q5aZ/Ng/Vw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=C+3Az0Vg; arc=none smtp.client-ip=209.85.214.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-pj1-f66.google.com with SMTP id 98e67ed59e1d1-2f43da61ba9so882467a91.2
-        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 22:48:10 -0800 (PST)
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-216281bc30fso12027655ad.0
+        for <devicetree@vger.kernel.org>; Wed, 22 Jan 2025 22:48:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1737614890; x=1738219690; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=ihO8X/Bibunk5mKcN2BnLX6WPk2+H0kbY5VGF+D42yk=;
-        b=D7/6L80KN8z3NfId95Xb+eh+3PGuqm1eo3fGD3iDk5Eh0jtYv5W8X3ad8L7gdXB/8m
-         797et9Mow6Eau1PDncaYnYodBJcwBVM9srJ7UwSwhmTntTzIFCUvOE5oqnLU4mXvxj3E
-         tl/fr/GmVu+cqvudybN5A6zXrvmnL5Eg4PXIRzzs9ShtDQkHSvthPp5G1eSHTKPlujPH
-         TG1/Q/hpfs9/JR0pLxnDZd21n5M0QL48cpciULGtnbHKgGzrxYSmZhfiBGQ59zdfW1ye
-         93nC6aJtHKo2YF36Vjs7PmdeK7bisc/ilj94XTgWORw3QCHioab1v1YYewYCxyahKIMI
-         FKCA==
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1737614894; x=1738219694; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SwfobZv33V/+FGTeVO+tPqefOOlFn7XlfW7hi3srQwo=;
+        b=C+3Az0VgiEBF/Rkk3xJj8hHtf+FLDPvDSQwrVp0hhFo6Tki4wn5YjJkPmFvzkWJI84
+         Lgi6iytsmKKg4EqgHsp7S/O086NybE9wE2xWiCD+GjbLj+rzKlKTlQV5pQyK3oJKxN5Y
+         Qjas+j+uzoSVQ0XaiJw1puq2JBIoDKBBFnqDcOy/7fpxAFd9Xp7y6NY/+IeGwAL4Vfqp
+         jfY5Mpb0N/lwtryhhrGP/54gbzyXqfNM0YAuAtxgMITrdMvNtY07p6ctnLf1pn76n03U
+         0pnLW1rP0g86qNy5gbNDc5Su+3ChwfXUxLtDaORP4aXfu4t/vFNFh3umcAG1KRQPQShX
+         1yLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737614890; x=1738219690;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ihO8X/Bibunk5mKcN2BnLX6WPk2+H0kbY5VGF+D42yk=;
-        b=OO8JPnEG4LCcgvP5O9ldfNTW1V8ur8SPj4ef74DAMxR1k8tG7cTrMpd7r8Hilm6Ags
-         xMymgSQfyFiqbH4/oKDYzfRalExPYttOUw0yeUYJhp7MiZER5bquvah4C1rx+SxPAcTE
-         uIOMIiDlzRbCmb3zp9NOWf9yUW93GqKg/wp7pYx+zyD4HCWyBApfSZFGjh0qxs8O/zxa
-         8NDm1w14QLisPBJs1ThwA7KpPG3pyDKfRpf4kSJoMxysXzrP85h4Q87GPhPCXIe0l+8A
-         Zyc5Ha0PUybYhsebumLTGVIQ3bZleRGfCbziHPIy10etFyaJTwgo0pGdXYH0Gz33OaIL
-         FARg==
-X-Forwarded-Encrypted: i=1; AJvYcCXdT3rUBM31goC3KhlPGLi9jhYb6coC106kGMoQjIucJcVwVfmUUBg8sythvPHGw9mMmEux9/2cyTfT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/ykN5ODLy1O53Ezb1Fbz8XjO5BVc0IWrTCDTS+i4jJMDK3Mk+
-	PQRwMnN0HZSRrKm0g+fw929CWmrOuoKmS+jX8TV28MUVganFQZ/5krDtdvVTehU=
-X-Gm-Gg: ASbGnctUU+xbBUV8QNWv4OKkiv86fpYwbqyoMHZhBdXUzHmM3FABz/J/KghZ9OfmBJx
-	nSjvW/4DphgnOGyW6QZZZ/6XDYniMixyKb5ZxQNrXnVqDS4OLUlZBS0b8i140cxj3jQHeOZEq1F
-	7WPEmjHS1OCJj/sgqo5yU2Hc/RQDqhF44d9CEi3o3fnxgg3WPn7rih3kvgy9aldK4z3uhhzW6cU
-	/IyHxRlfP8iuRrg9+RIIQS7V4LGoMpE+z7dFPg9FH3nJkLQqD+ZAmQQAjwLGi/EIlPjilINEUJZ
-	Wk0M8N+bssIel3GvnkTALsh0D34062LDaOPc4sXank6un7PvixX/
-X-Google-Smtp-Source: AGHT+IG2nhLWzY19SrhP6ztMPfsB/clKVzmRCDCQniHVFDKX6lXFY0kbEQxUiFXyIHbXYuKJx8vKAA==
-X-Received: by 2002:a17:90b:520e:b0:2f5:88bb:118 with SMTP id 98e67ed59e1d1-2f782d4ef17mr30067834a91.22.1737614890004;
-        Wed, 22 Jan 2025 22:48:10 -0800 (PST)
+        d=1e100.net; s=20230601; t=1737614894; x=1738219694;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SwfobZv33V/+FGTeVO+tPqefOOlFn7XlfW7hi3srQwo=;
+        b=YnU1+YpvIKXeo2MRRJOgX1/Jo0HcKEwR4kuKw8uHaYeI6ZncYGcSjdaaK99ZHwT0Mb
+         7xdsdbVlcanm6LQFcrVRXej7wV1h/xBa8qt2PMmI27g19+KieiCryOO+YBOJ2+ZqQWna
+         7n86DksOZJQootrxSihGt5TVTIa7Hkj+4UkIY6NMStIqJ0ScU/CuhlVxrbNhdIg6bd3Q
+         czU+M1U2tmUoEase/4bsP8xl/kD6sG8gDo4ZXBGXTPDEjav1UWiDPiQr9H89JPSfKH+D
+         yZvJAMrMOywUuhSFm7dLR0fSxzYM/Zd49zWJTbtriol/+E+6d8oG5G4UTvpRRXgPH9sk
+         id7g==
+X-Forwarded-Encrypted: i=1; AJvYcCUk4Bs0WaAahF7EhHF3wOyNJ8TmBJ/qfF2R3RUtxOZTQV9h9gFdEeWLZzS3qvwgsU9SW2uJXTnrz5EX@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQeQJO2Z1fteDTesygw0EruFazfQqLYZEeP7KtoH4VoIZVANDK
+	Sq9Kb1ZJpxZDd5gz46n+j0liVrpY6xoJcvn5I0PpojfXnq6fBEi4v7JkcWlUOFdF4H6KyuIHsh3
+	N
+X-Gm-Gg: ASbGncvy55V09R1Syc8oOYSod0dpZ9Lywb6HnzMBIdZ4nZalew6QJotn21RTsKKxcyp
+	cBk7mM638M5ZqQv5ArwvoCi6Q5poJ5OKiuVEMyTSzYXQU/jwCElZ9GWu8Wc5ecMKHLmRBMxgdMr
+	l6fNipcPYkU2jtQk7Wl+pcLq0ql1AzD+Nx9bVzLpfG/qveEkXxvm2qXErH/+x2eQI/h9xQ0sRcj
+	wFhsg6yfr1A0snyCGDZFlFC8jt0QPAtZFDf5oJvt2p1PMw3K6ecu8i3a5hPKOADngfSUkMjVrWF
+	wQGG6E6gHic88awkI0UCiBdXPW04ppn5szMswWpNw7vb9HkWWyTI
+X-Google-Smtp-Source: AGHT+IFPp2dMwLLh/TYt3tGZ1O1dzVlAuA9tHPAAVKT+k+MdfX9nDHobaViIokflFeDSPNaTq3oJyg==
+X-Received: by 2002:a17:902:ec90:b0:216:3dc0:c8ab with SMTP id d9443c01a7336-21c3553b527mr340210705ad.9.1737614893777;
+        Wed, 22 Jan 2025 22:48:13 -0800 (PST)
 Received: from dgp100339560-01.huaqin.com ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a9bcc323777sm11923454a12.20.2025.01.22.22.48.06
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a9bcc323777sm11923454a12.20.2025.01.22.22.48.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 22 Jan 2025 22:48:09 -0800 (PST)
+        Wed, 22 Jan 2025 22:48:13 -0800 (PST)
 From: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
 To: neil.armstrong@linaro.org,
 	quic_jesszhan@quicinc.com,
@@ -88,10 +91,12 @@ Cc: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-Subject: [PATCH v4 0/3] drm/panel: support kingdisplay-kd110n11-51ie
-Date: Thu, 23 Jan 2025 14:47:55 +0800
-Message-Id: <20250123064758.743798-1-yelangyan@huaqin.corp-partner.google.com>
+Subject: [PATCH v4 1/3] dt-bindings: display: panel: Add compatible for KD110N11-51IE and 2082109QFH040022-50E
+Date: Thu, 23 Jan 2025 14:47:56 +0800
+Message-Id: <20250123064758.743798-2-yelangyan@huaqin.corp-partner.google.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250123064758.743798-1-yelangyan@huaqin.corp-partner.google.com>
+References: <20250123064758.743798-1-yelangyan@huaqin.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,35 +105,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Provides a single binding patch with correct alphabetical order for
-both panels, and adjusts alphabetical order for compatible properties.
+KINGDISPLAY KD110N11-51IE and STARRY 2082109QFH040022-50E are
+10.95-inch WUXGA TFT LCD panels, which fits in nicely with the
+existing panel-boe-tv101wum-nl6 driver. Hence, we add a new
+compatible with panel specific config.
 
-Changes in v4:
-- PATCH 1/3: Single bindings patch for both panels with proper alphabetical order
-- PATCH 2/3: Adjust the alphabetical order of the compatible attribute
-- PATCH 3/3: Adjust the alphabetical order of the compatible attribute
-- Link to v3: https://lore.kernel.org/all/20250117091438.1486732-1-yelangyan@huaqin.corp-partner.google.com/
+Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+---
+ .../devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml   | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Changes in v3:
-- Link to v2: https://lore.kernel.org/all/20250117050410.933312-1-yelangyan@huaqin.corp-partner.google.com/
-
-Changes in v2:
-- PATCH 1/4: Add compatible for KINGDISPLAY KD110N11-51IE
-- PATCH 2/4: Add compatible for STARRY 2082109QFH040022-50E
-- Link to v1: https://lore.kernel.org/all/20250116130530.3010117-1-yelangyan@huaqin.corp-partner.google.com/
-
-Langyan Ye (3):
-  dt-bindings: display: panel: Add compatible for KD110N11-51IE and
-    2082109QFH040022-50E
-  drm/panel: boe-tv101wum-nl6: support for kingdisplay-kd110n11-51ie
-    MIPI-DSI panel
-  drm/panel: boe-tv101wum-nl6: support for starry-2082109qfh040022-50e
-    MIPI-DSI panel
-
- .../display/panel/boe,tv101wum-nl6.yaml       |   4 +
- .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 270 ++++++++++++++++++
- 2 files changed, 274 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
+index 7a9f49e40e75..b740681605f8 100644
+--- a/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
++++ b/Documentation/devicetree/bindings/display/panel/boe,tv101wum-nl6.yaml
+@@ -30,8 +30,12 @@ properties:
+       - boe,tv110c9m-ll3
+         # INX HJ110IZ-01A 10.95" WUXGA TFT LCD panel
+       - innolux,hj110iz-01a
++        # KINGDISPLAY KD110N11-51IE 10.95" WUXGA TFT LCD panel
++      - kingdisplay,kd110n11-51ie
+         # STARRY 2081101QFH032011-53G 10.1" WUXGA TFT LCD panel
+       - starry,2081101qfh032011-53g
++        # STARRY 2082109QFH040022-50E 10.95" WUXGA TFT LCD panel
++      - starry,2082109qfh040022-50e
+         # STARRY ili9882t 10.51" WUXGA TFT LCD panel
+       - starry,ili9882t
+ 
 -- 
 2.34.1
 
