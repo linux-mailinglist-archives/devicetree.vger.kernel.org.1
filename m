@@ -1,237 +1,148 @@
-Return-Path: <devicetree+bounces-140487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140488-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F30A1A0D4
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:29:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9116A1A0E7
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 10:35:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D48C16D586
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:29:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB6BA188E6B9
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946F820C48B;
-	Thu, 23 Jan 2025 09:29:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F21E20CCE3;
+	Thu, 23 Jan 2025 09:35:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="N57L5Ruw"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nMLJB4cU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CAFF20C01B;
-	Thu, 23 Jan 2025 09:29:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997FF1BC3F;
+	Thu, 23 Jan 2025 09:35:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737624584; cv=none; b=gFb+nsX3wzE40aUs7OKymk3HJuP1/H3cqMyWNZMDIEYoAuXyfqj79BqQPR/LWpUNe+vauCNtVWQZoN70N/YTetwxpUcTL0PTvRrvKLSWthaElDDvkMUtCuIf1zXZ0/xxfKroTGLY8xGkCT2HAfGhbEri5QBFlOHSQ6dHz7ByaGM=
+	t=1737624949; cv=none; b=mly4ZDFUbuAXm0DSC/AHegwUQ4F0t2towm20e68tq93xux3IY3/nZTAbFgsjtQcCfneGcA/YidKU9bnYWJz0NtyFpfBr0uM3C2bVn76kPLYylx9nAH4Y0wkqlwLbxl/29wvh4FxwLxSoYQ6U5ba0Ku1mw2M51KUGe4Y1ktYkC64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737624584; c=relaxed/simple;
-	bh=TYa7l27dIFY5vdokhKSivIRGltNHtWDjnscfZtfaVSk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=IxuVQuxgAfdigvNkQO6leJyXHxHobu65jdw0g+4Jz3FYGBQZxbfCy5XlVsPi8mLAHzUJ9Oy8o1599XzvKmy3VVxBreeyNjJr8zFElSe9oDy+tPoLTF0YUSd6U6Q+BW4P4vHUTNWGOB9+rSyTLf1/vi2VG0Wqsp80+ueqGolihMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=N57L5Ruw; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1737624582; x=1769160582;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:to:cc;
-  bh=TYa7l27dIFY5vdokhKSivIRGltNHtWDjnscfZtfaVSk=;
-  b=N57L5Ruwm7G9TbRvOq9rkAugeWzxdSak85TeDlKbUUjb7QFc388519h0
-   jw+7Srtcw+mA3wij+EuJDxYXI62K4hKwYl5lk2SGAzJBaypDzeIcERjmv
-   6y0v05qpMjQmEqlJXV9EzD/KwYJDqk39B0/AMIExid7BC2d1XEgHtE+QV
-   SrS+H1gA3JUhZef5HLChaycqNKCZ2hGOpvNjxjthg/JJ4IlEPV66Tsh0S
-   S4gVfN+uZ1nj4W/hwmhIEa5qrDjPVOsQPBS2yRixNiB+/JgdEpTuzNVnu
-   J7GOeIj/06sT9vD+aH5WUOJYlkRJogp3bC+tCEwZiP0VBHSgS1J2cuSGg
-   w==;
-X-CSE-ConnectionGUID: Ia08KEWmSUiv0dAQl/Kc4w==
-X-CSE-MsgGUID: TKpjDec6StS1rxk9+d61Ug==
-X-IronPort-AV: E=Sophos;i="6.13,228,1732604400"; 
-   d="scan'208";a="204352971"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 23 Jan 2025 02:28:31 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 23 Jan 2025 02:28:10 -0700
-Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Thu, 23 Jan 2025 02:28:04 -0700
-From: Charan Pedumuru <charan.pedumuru@microchip.com>
-Date: Thu, 23 Jan 2025 14:58:01 +0530
-Subject: [PATCH v2] dt-bindings: dma: convert atmel-dma.txt to YAML
+	s=arc-20240116; t=1737624949; c=relaxed/simple;
+	bh=y0Ly2u2NnSAQO8P3s6m7Sc963t4Wck3Y0+hbiVHs6iA=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=czuWHftGcnRR6OWMSADrPE7EICvpv3MH6Hz6ZUT0TqxQk9TZUhEYJuB6w06cshdCvLvmTxQQI4+hR7jK21PNGzfMeOTEGF1JM5PMFQp0MtJo8gkx0R6oGlN2EKjjTHyjaTigMoC6ap63NEGRPDnsWYcy7/9pCNXT8MRz8tQxZ5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nMLJB4cU; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9106560008;
+	Thu, 23 Jan 2025 09:35:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1737624939;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=P2YlYlx83cyR+45tTYr17HHrjYcIDaSt0mPlw1nFDgA=;
+	b=nMLJB4cULhW8v0VbdR2QbZ9njGeqo7RCBUWP9SbAAB57ymSLCOKNqSLwj0ilbF7cHjwTKJ
+	u4RHUQunWxctad88+JkgqGPeWyNFhfz+cB0kZ0HAcPDsL7zB6psDwSVX/5Jrk2YyLf3i7s
+	D7/w8xN9cEm/LcM5//Z4wuS6g5+rFx9l0Hjf2hAlo8xYjIySsjMfQD56BUAQUwqe3skYHB
+	DNU62quUCtH+Su5BFE95ZN0BYB3LUkwuDvd2QiUXSufJeBb2iPAioM5f0xQJpCt6PrRPtx
+	DF0RxnxzRaZCIUl/iMMqtTqc+FA1Ihoh6V2AV59eQvCg0tUv561BTBTxHaNcvQ==
+Date: Thu, 23 Jan 2025 10:35:34 +0100
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski
+ <kuba@kernel.org>, Eric Dumazet <edumazet@google.com>, Paolo Abeni
+ <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>,
+ linux-arm-kernel@lists.infradead.org, Christophe Leroy
+ <christophe.leroy@csgroup.eu>, Herve Codina <herve.codina@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>, Heiner Kallweit
+ <hkallweit1@gmail.com>, Vladimir Oltean <vladimir.oltean@nxp.com>, Marek
+ =?UTF-8?B?QmVow7pu?= <kabel@kernel.org>, Oleksij Rempel
+ <o.rempel@pengutronix.de>, =?UTF-8?B?Tmljb2zDsg==?= Veronese
+ <nicveronese@gmail.com>, Simon Horman <horms@kernel.org>,
+ mwojtas@chromium.org, Antoine Tenart <atenart@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>
+Subject: Re: [PATCH net-next RFC v2 2/6] net: ethtool: Introduce
+ ETHTOOL_LINK_MEDIUM_* values
+Message-ID: <20250123103534.1ca273af@kmaincent-XPS-13-7390>
+In-Reply-To: <20250122174252.82730-3-maxime.chevallier@bootlin.com>
+References: <20250122174252.82730-1-maxime.chevallier@bootlin.com>
+	<20250122174252.82730-3-maxime.chevallier@bootlin.com>
+Organization: bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20250123-dma-v1-1-054f1a77e733@microchip.com>
-X-B4-Tracking: v=1; b=H4sIAKALkmcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDQyMj3ZTcRN1kI3Nzi5S0RBMjEzMloMqCotS0zAqwKdFKZUZKsbW1AFi
- hxxZZAAAA
-To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Nicolas
- Ferre" <nicolas.ferre@microchip.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Ludovic Desroches <ludovic.desroches@microchip.com>, Tudor Ambarus
-	<tudor.ambarus@linaro.org>
-CC: <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	"Durai Manickam KR" <durai.manickamkr@microchip.com>, Charan Pedumuru
-	<charan.pedumuru@microchip.com>
-X-Mailer: b4 0.14.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: kory.maincent@bootlin.com
 
-From: Durai Manickam KR <durai.manickamkr@microchip.com>
+On Wed, 22 Jan 2025 18:42:47 +0100
+Maxime Chevallier <maxime.chevallier@bootlin.com> wrote:
 
-Add a description, required properties, appropriate compatibles and
-missing properties like clocks and clock-names which are not defined in
-the text binding for all the SoCs that are supported by microchip.
+> In an effort to have a better representation of Ethernet ports,
+> introduce enumeration values representing the various ethernet Mediums.
+>=20
+> This is part of the 802.3 naming convention, for example :
+>=20
+> 1000 Base T 4
+>  |    |   | |
+>  |    |   | \_ lanes (4)
+>  |    |   \___ Medium (T =3D=3D Twisted Copper Pairs)
+>  |    \_______ Baseband transmission
+>  \____________ Speed
+>=20
+>  Other example :
+>=20
+> 10000 Base K X 4
+>            | | \_ lanes (4)
+>            | \___ encoding (BaseX is 8b/10b while BaseR is 66b/64b)
+>            \_____ Medium (K is backplane ethernet)
+>=20
+> In the case of representing a physical port, only the medium and number
+> of lanes should be relevant. One exception would be 1000BaseX, which is
+> currently also used as a medium in what appears to be any of
+> 1000BaseSX, 1000BaseFX, 1000BaseCX and 1000BaseLX.
 
-Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
-Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
----
-Changes in v2:
-- Renamed the yaml file to a compatible.
-- Removed `|` and description for common properties.
-- Modified the commit message.
-- Dropped the label for the node in examples.
-- Link to v1: https://lore.kernel.org/all/20240215-dmac-v1-1-8f1c6f031c98@microchip.com
----
- .../bindings/dma/atmel,at91sam9g45-dma.yaml        | 67 ++++++++++++++++++++++
- .../devicetree/bindings/dma/atmel-dma.txt          | 42 --------------
- 2 files changed, 67 insertions(+), 42 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml b/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
-new file mode 100644
-index 000000000000..8d0d68786cbc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
-@@ -0,0 +1,67 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/atmel,at91sam9g45-dma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel Direct Memory Access Controller (DMA)
-+
-+maintainers:
-+  - Ludovic Desroches <ludovic.desroches@microchip.com>
-+  - Tudor Ambarus <tudor.ambarus@linaro.org>
-+
-+description:
-+  The Atmel Direct Memory Access Controller (DMAC) transfers data from a source
-+  peripheral to a destination peripheral over one or more AMBA buses. One channel
-+  is required for each source/destination pair. In the most basic configuration,
-+  the DMAC has one master interface and one channel. The master interface reads
-+  the data from a source and writes it to a destination. Two AMBA transfers are
-+  required for each DMAC data transfer. This is also known as a dual-access transfer.
-+  The DMAC is programmed via the APB interface.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - atmel,at91sam9g45-dma
-+          - atmel,at91sam9rl-dma
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  "#dma-cells":
-+    description:
-+      Must be <2>, used to represent the number of integer cells in the dmas
-+      property of client devices.
-+    const: 2
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: dma_clk
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - "#dma-cells"
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dma-controller@ffffec00 {
-+        compatible = "atmel,at91sam9g45-dma";
-+        reg = <0xffffec00 0x200>;
-+        interrupts = <21>;
-+        #dma-cells = <2>;
-+        clocks = <&pmc 2 20>;
-+        clock-names = "dma_clk";
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/dma/atmel-dma.txt b/Documentation/devicetree/bindings/dma/atmel-dma.txt
-deleted file mode 100644
-index f69bcf5a6343..000000000000
---- a/Documentation/devicetree/bindings/dma/atmel-dma.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--* Atmel Direct Memory Access Controller (DMA)
--
--Required properties:
--- compatible: Should be "atmel,<chip>-dma".
--- reg: Should contain DMA registers location and length.
--- interrupts: Should contain DMA interrupt.
--- #dma-cells: Must be <2>, used to represent the number of integer cells in
--the dmas property of client devices.
--
--Example:
--
--dma0: dma@ffffec00 {
--	compatible = "atmel,at91sam9g45-dma";
--	reg = <0xffffec00 0x200>;
--	interrupts = <21>;
--	#dma-cells = <2>;
--};
--
--DMA clients connected to the Atmel DMA controller must use the format
--described in the dma.txt file, using a three-cell specifier for each channel:
--a phandle plus two integer cells.
--The three cells in order are:
--
--1. A phandle pointing to the DMA controller.
--2. The memory interface (16 most significant bits), the peripheral interface
--(16 less significant bits).
--3. Parameters for the at91 DMA configuration register which are device
--dependent:
--  - bit 7-0: peripheral identifier for the hardware handshaking interface. The
--  identifier can be different for tx and rx.
--  - bit 11-8: FIFO configuration. 0 for half FIFO, 1 for ALAP, 2 for ASAP.
--
--Example:
--
--i2c0@i2c@f8010000 {
--	compatible = "atmel,at91sam9x5-i2c";
--	reg = <0xf8010000 0x100>;
--	interrupts = <9 4 6>;
--	dmas = <&dma0 1 7>,
--	       <&dma0 1 8>;
--	dma-names = "tx", "rx";
--};
 
----
-base-commit: 232f121837ad8b1c21cc80f2c8842a4090c5a2a0
-change-id: 20250122-dma-c2778dfa4246
+> -	__DEFINE_LINK_MODE_PARAMS(100, T, Half),
+> -	__DEFINE_LINK_MODE_PARAMS(100, T, Full),
+> -	__DEFINE_LINK_MODE_PARAMS(1000, T, Half),
+> -	__DEFINE_LINK_MODE_PARAMS(1000, T, Full),
+> +	__DEFINE_LINK_MODE_PARAMS_LANES(10, T, 2, 4, Half, T),
+> +	__DEFINE_LINK_MODE_PARAMS_LANES(10, T, 2, 4, Full, T),
+> +	__DEFINE_LINK_MODE_PARAMS_LANES(100, T, 2, 4, Half, T),
+> +	__DEFINE_LINK_MODE_PARAMS_LANES(100, T, 2, 4, Full, T),
 
-Best regards,
--- 
-Charan Pedumuru <charan.pedumuru@microchip.com>
 
+> -	__DEFINE_LINK_MODE_PARAMS(1000, KX, Full),
+> -	__DEFINE_LINK_MODE_PARAMS(10000, KX4, Full),
+> -	__DEFINE_LINK_MODE_PARAMS(10000, KR, Full),
+> +	__DEFINE_LINK_MODE_PARAMS(1000, KX, Full, K),
+> +	__DEFINE_LINK_MODE_PARAMS(10000, KX4, Full, K),
+> +	__DEFINE_LINK_MODE_PARAMS(10000, KR, Full, K),
+
+The medium information is used twice.
+Maybe we could redefine the __DEFINE_LINK_MODE_PARAMS like this to avoid
+redundant information:
+#define __DEFINE_LINK_MODE_PARAMS(_speed, _medium, _encoding, _lanes, _dupl=
+ex)
+
+And something like this when the lanes are not a fix number:
+#define __DEFINE_LINK_MODE_PARAMS_LANES_RANGE(_speed, _medium, _encoding,
+_min_lanes, _max_lanes, _duplex)
+
+Then we can remove all the __LINK_MODE_LANES_XX defines which may be
+wrong as you have spotted in patch 1.
+
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
