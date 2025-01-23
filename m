@@ -1,112 +1,135 @@
-Return-Path: <devicetree+bounces-140543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84296A1A2DA
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:23:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14FD9A1A2D6
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 12:22:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EC0177A0473
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 11:22:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF777188464A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 11:22:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF1E20E329;
-	Thu, 23 Jan 2025 11:22:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C520020E02F;
+	Thu, 23 Jan 2025 11:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b="kavhcopT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U6jJOoa9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DD32145A16;
-	Thu, 23 Jan 2025 11:22:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737631371; cv=pass; b=cVZATUCLxq2JmJEwGrvecojacf9iZu8cNVGgVSBJRIdzuNffDCMOPJkR6uuSlwHwXxxZ1ged3BHLSVZq6p2WVQTaG6RmFShSjy0wW+wkLObLyKbqpH9XBODdwYuYGMO3+wozRNx3eu6jGCSQI2AyXTpB4N3xnbXlGRbMDjJUKTA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737631371; c=relaxed/simple;
-	bh=jVOr9SNQmPlWwygMvJvKOtQWwb+Pp03Gj2qwRMh5Bdk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Rknv4sUPWQzpxDrW4yleu+nfuoVyRpfoYB7VxeC508QPm3AWRTqEascQ0ty2Nau/Vm4WqUS8NKM5jcOjxaYbdUInzfk293fbXGtzHf8zesSJc/pP4e1jIIeXvMdhR9+CLbL+9kpGeA3i/hjY6ZMjze/IDvAaLEvm/g/qqpgzSlU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=dmitry.osipenko@collabora.com header.b=kavhcopT; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1737631315; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=YJvbM80sjDBPxamcQuyjR3dNW+7oLsMfUeBei18ZkmKSPDyjB/LnjOJnpsUd++rOGTaBmvhrXfMvYnLZ7ZQ14loAU08vUW+mr5At6X67ddGJL7f9TUSOxjPa351iMJ8lOfqzJ2z9CRGNw1T59x4TF6I5V0TruGPCI9hBPzVkWdk=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1737631315; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=RBk1ZeqWqkMzfPZglCYiALSDfj+N6We/OCFK6kR7Aow=; 
-	b=KbEWVc44sdtoTblvZY5FvIo48Pop0pU4E2E9l8ReZuKYY8ZSu3t86p9bRCnXu+13uGn2N8zmnDqTAC5BA3IjZm2lxC6Ig8anzOGPR5opO0tQWNRyz5U6pDcBJN7HAAjbeuWKbCYt86/lwnZNNCay0wE81gpFFryZgJc1XZdzgAs=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=dmitry.osipenko@collabora.com;
-	dmarc=pass header.from=<dmitry.osipenko@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1737631315;
-	s=zohomail; d=collabora.com; i=dmitry.osipenko@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=RBk1ZeqWqkMzfPZglCYiALSDfj+N6We/OCFK6kR7Aow=;
-	b=kavhcopT+pSgJHgsA8KeuFJKKPZ8n1ybvrL0ZnhZbJ4DJD4pzRIiEo5h9Ct6KCiN
-	wKUm9yMbK4KrTPLz77O+/CR6ReUDYpAToxGE42yK8fEVcDpFTBSVE93YsOuebK4ykdS
-	/xki0nFO3PSsetB1ymR3bRkLzUp3Mn0DQbAZI0HE=
-Received: by mx.zohomail.com with SMTPS id 17376313084433.398115110351114;
-	Thu, 23 Jan 2025 03:21:48 -0800 (PST)
-Message-ID: <67fcd668-dff4-4dda-bc65-27f13293680f@collabora.com>
-Date: Thu, 23 Jan 2025 14:21:42 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99BB1145A16;
+	Thu, 23 Jan 2025 11:22:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737631363; cv=none; b=Ex0a6HeSqVMGM1lFu+XF175vag8cQwlkgkjwwVqL8eIi7AdaP5b0YH5dEczn5DUsQ+MdZgM8qE7bN9Li9Z4wH4RP/sRdFahggMbbjJSCodDdloXQEzMkbkSjWdJvwfJa2xKpto2rY/h0Ydo4Tr9pC2c+FUN7IiTzblOX17dnrfs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737631363; c=relaxed/simple;
+	bh=dOPumK8qpk9/lF2H2ETAfWwPgfWjceIap9jfDJzhbCQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=AoTrFF5RPxP+y3H8SIxAdZIcUmtP8+r0MzwrcXLsl5S2OB5tzzg5aeWrbdfobvC/yHt6AD37mEOly1ja4BAM5BaUWNbvEUUC5Cmt4SCty/AHW+MBAkQa//k9galFqcFTuk68EKXV6yAK4nJN9UrI7TLNOj/6v2qwvLcNxwT6I/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U6jJOoa9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCD1DC4CED3;
+	Thu, 23 Jan 2025 11:22:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737631363;
+	bh=dOPumK8qpk9/lF2H2ETAfWwPgfWjceIap9jfDJzhbCQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=U6jJOoa9E7/CT2C3/91caq1JtSj0tQh/jMzWt6DTk8r8w8PtvqJ+Gd+pl5fQPOpHo
+	 rBU7c3ISLWVl+8dy74YjwInGSqHG9l0D3pLGU44zcgPyDPyZVa8nuZE/VgYcJs+Ucz
+	 hnTpXJwl+ahiaWzHd6O+xt7yeG/oaobCNUZ1W9RKH3iM+Gtsn6nMIV5bzXZlgoo3Ga
+	 QsDHUHTm34pMdIhQKCrbrv5wsEc1oN+o1bYKYVZmjYgaLouHo+DY1PHMepe9BDvVVF
+	 ai40tdrnqUb61zhmmFw4CgVNn++RSKtRsr7j8e+hKxCoWw7DyBJY2IboaODdIqlHfo
+	 YHxBbgw1FhlBw==
+Date: Thu, 23 Jan 2025 05:22:41 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v5 0/4] Add Synopsys DesignWare HDMI RX Controller
-To: Tim Surber <me@timsurber.de>, Shreeya Patel
- <shreeya.patel@collabora.com>, heiko@sntech.de, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de,
- jose.abreu@synopsys.com, nelson.costa@synopsys.com,
- shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com,
- hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl
-Cc: kernel@collabora.com, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
-References: <20241210193904.883225-1-shreeya.patel@collabora.com>
- <acb91a34-c0f8-4f03-8945-755b4e42dcf3@timsurber.de>
- <925d7571-48e4-437d-b55c-3f7bbad8af1d@collabora.com>
- <fbb5016e-678c-4e54-a6a8-0ccaa2bdf45c@timsurber.de>
- <a5226fac-2a5b-47f3-b32e-8662bf932bd4@collabora.com>
- <d61e344f-fcdd-47af-a142-e8d42edec045@timsurber.de>
- <9399a881-7d45-4ca3-8249-2e554184d038@collabora.com>
- <bed5f370-113f-4109-b8f4-870dd15e93ce@timsurber.de>
-From: Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Content-Language: en-US
-In-Reply-To: <bed5f370-113f-4109-b8f4-870dd15e93ce@timsurber.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, kever.yang@rock-chips.com, 
+ l.stach@pengutronix.de, linux-phy@lists.infradead.org, vkoul@kernel.org, 
+ linux-kernel@vger.kernel.org, cristian.ciocaltea@collabora.com, 
+ hjc@rock-chips.com, sebastian.reichel@collabora.com, 
+ dmitry.baryshkov@linaro.org, rfoss@kernel.org, krzk+dt@kernel.org, 
+ heiko@sntech.de, andy.yan@rock-chips.com, 
+ linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org, 
+ algea.cao@rock-chips.com, linux-rockchip@lists.infradead.org, 
+ conor+dt@kernel.org
+To: Damon Ding <damon.ding@rock-chips.com>
+In-Reply-To: <20250123100747.1841357-10-damon.ding@rock-chips.com>
+References: <20250123100747.1841357-1-damon.ding@rock-chips.com>
+ <20250123100747.1841357-10-damon.ding@rock-chips.com>
+Message-Id: <173763136187.3345079.11905359473404124812.robh@kernel.org>
+Subject: Re: [PATCH v6 09/14] dt-bindings: display: rockchip: analogix-dp:
+ Add support for RK3588
 
-Hi,
 
-On 1/19/25 05:14, Tim Surber wrote:
-> Hi Dmitry,
+On Thu, 23 Jan 2025 18:07:42 +0800, Damon Ding wrote:
+> Compared with RK3288/RK3399, the HBR2 link rate support is the main
+> improvement of RK3588 eDP TX controller, and there are also two
+> independent eDP display interfaces on RK3588 Soc.
 > 
-> I enabled the debug output and ran some tests again.
-...
+> The newly added 'apb' reset is to ensure the APB bus of eDP controller
+> works well on the RK3588 SoC.
 > 
-> Observe the reported fps of 86 in the above log file. Also gstreamer
-> reports a framerate of 214072/2475 - also around 86.
+> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
 > 
-> I could sometimes also create the "Device wants 1 planes" using RGB -
-> replugging fixed it, but could never fix it in YUV444.
+> ---
 > 
-> Next week I have time for more testing.
+> Changes in v2:
+> - Add the main defferences of the RK3588 eDP and the previous versions
+>   in commit message
+> 
+> Changes in v3:
+> - Expand the property clock-names, resets and reset-names
+> 
+> Changes in v4:
+> - Remove 'spdif' clock which added in v3
+> - Add the comment of newly added 'apb' reset in commit message
+> 
+> Changes in v5:
+> - Put the differences between RK3288/RK3399 and RK3588 into 'allOf'
+> 
+> Changes in v6:
+> - Keep the widest constraints and add only RK3588 related constraints
+>   into 'allOf'
+> ---
+>  .../rockchip/rockchip,analogix-dp.yaml        | 22 ++++++++++++++++++-
+>  1 file changed, 21 insertions(+), 1 deletion(-)
+> 
 
-Thanks for the testing! Could you please try to test YUV using a
-downstream driver stack? If it will work, then please post the
-downstream kernel log. Will be interesting to compare the timing values.
+My bot found errors running 'make dt_binding_check' on your patch:
 
--- 
-Best regards,
-Dmitry
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml: properties:reset-names: 'const' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
+	hint: Scalar and array keywords cannot be mixed
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/rockchip/rockchip,analogix-dp.yaml: properties:reset-names: 'const' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
+	hint: Scalar and array keywords cannot be mixed
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250123100747.1841357-10-damon.ding@rock-chips.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
