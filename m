@@ -1,191 +1,170 @@
-Return-Path: <devicetree+bounces-140606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B01A1A7BF
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 17:21:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05A55A1A7CF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 17:24:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDCD83AB0DF
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 16:20:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCD603A4FBD
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 16:24:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA3C211A03;
-	Thu, 23 Jan 2025 16:21:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CAA1212D82;
+	Thu, 23 Jan 2025 16:24:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="K+vuElEH"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="WICPg1uN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-170.mta0.migadu.com (out-170.mta0.migadu.com [91.218.175.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58B62116EA
-	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 16:20:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A48F12FF69
+	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 16:24:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737649260; cv=none; b=Qlfkjv46JS2yacbHvmHjjiFZo+EIfU5ShoeqXF1Bhx/i19j6O/W/MNGcj+NPErZSS7HgJL3Nwr2onFMIDfb0c9HWgXYRvw7kCC9/QmJKcu+Oh7UzWIPA5Fk5Zt4oUfkV1BSF6r3/XYFku/zJNaRQE2R2Y7Nl3sC2pfXA8qhqARU=
+	t=1737649491; cv=none; b=eQapB8B/O3o7c3bQzGWf2ulrhmEN+Y4qRZ2j35CHEcTTegsF2AoG8r+agDyiIv3tu2HHoKKb++a7IaSkImPFy+8lqGcLUBnF2qmot4FrvKTLM5DgT1XrKTecwZ4kVZLA2sx3+85Q/q7IIE+r4IWazeE6H7i3vNG8xESYUlQCtrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737649260; c=relaxed/simple;
-	bh=oy9T2x2+MBmD3OnnRS+yi2mR65j8O3Q1ZOmRzEM4vhM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Hmhsg9iSam/ZTuwtDkMMTep2Z5VD21xPaQqMFwD8YYQaN8FBSvGavF8FreQI8EQ8yRQeVKeakDyL+8xxsfqzO73LPgcGvAWkYthDrzqq88CMJw3KRMpkpl200kCBHoKxrsjVVwBOwu/0UhbC4LzBw07hd5ZPfwW1kYqquqArXB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=K+vuElEH; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-53f22fd6832so1203678e87.1
-        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 08:20:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1737649257; x=1738254057; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dP4iIFxpGRxJIuWg8fbKde8yqpGCy/LbovICFuWMxcc=;
-        b=K+vuElEHv4POWt8pe790n7fyVxiZEWiNWHXfWXREXUO8Vl1IvhLHz2ubdU5EQVEasH
-         vcr+ZORArzIvD9LHNBqvqjEVM8zqQ7Apk4uqatN3lqXiVpZA056xFocrR4DR8GnKf5p/
-         nDTANDUNDgOUQubove+L3aDtrYOq7S4Uvq74I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737649257; x=1738254057;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=dP4iIFxpGRxJIuWg8fbKde8yqpGCy/LbovICFuWMxcc=;
-        b=dRY1EN5cKDNECcI5sXXccFNLYj9+efJeppD4xbW4VixRblC5d9UGraJlTLsgNdm+tF
-         eRUD9D1uTzpSSQICuqvweXkfrhRbVbvAwyJJ3041srFfDBmJzobj9s7ycCr5TWDDcTLb
-         MlH4jsYyVQ/+CDM47ELcmezEiIYfbxCSotZtVj8sv40awW99yim6SIfSEwdOMQA20ylZ
-         EQSRNA9Tc+vKgjunzFRyJ/r7AE7fwCHLjDt7DdS0J47JoCJUAgsv/XYlR+ofY1EMnSNe
-         aRvme6oqMdIsuuyk9hsZepyKbZDIFisr2ad71H3xcgdmikOSTczNBaF+7BAY0BRnDf1x
-         aKFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU8R6s/gahNrGg8BqYwFM25vHASUtO9U7sOtZH6FPij8uynpH+zWs+dS7XW4Q50myMVmJqgAWYanOQE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9P+V26YbJhJ1badyAlNjrXweYvu7cDYqlP6TrxVwag7vZn7eg
-	cxk0Gj+MRdK4rtIimEHUJTWoizFAlIe8gOTftw8lUIKdbi4SNjxyU2F5NwwX7onekPlumivyH3i
-	elLzYbqQKsB5NOYUToUXuHflxPIQsFXfh3jfD
-X-Gm-Gg: ASbGncv4Gph0317q0/3az5m+wIaSq0AwSYUsR+X4PruJjfyzuXVB0hBvkAzRFHumVkI
-	OIlVYeKcv2UYdjBV96475HSZtdiHUXv5GwKMTe3p9aXhpnHFyAIaxUK05IQG812/uYwquxOuurJ
-	6HxRv8JCzow7NQG663Pw==
-X-Google-Smtp-Source: AGHT+IEKUB561xRTvYxXd4p0qNfpMRKfCZE8QX0G+Jn2kD2LonKgpFupCThYaQ1M0nTLUAE+dgJAYJFA1Lqm+sRFeOA=
-X-Received: by 2002:a05:6512:124e:b0:540:2549:b5ad with SMTP id
- 2adb3069b0e04-5439c246d35mr9447895e87.22.1737649256790; Thu, 23 Jan 2025
- 08:20:56 -0800 (PST)
+	s=arc-20240116; t=1737649491; c=relaxed/simple;
+	bh=qy0/oKdK6ZDd0dxJyAglEFYkBKaDoElQWR1/cadsPP8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VLH6glSphTLAE6mb9RQ19GDGEFs/9UurgcRUMuJIX3Os/MU/K0hNNLL6harO4Sn61eMi9L57b897HwQjwvTfaYhk+rS2tVlUnTadI264X61bnkQpjzBUisAQWzbNzowJ3si5ZYiwpGA1+bG/oY10nbuB3MjEvIy+BuMNN5cCPgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=WICPg1uN; arc=none smtp.client-ip=91.218.175.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <46a7eba6-a705-4543-b967-e83ccc89e7d4@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1737649482;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=itwqJx2tzman+sJPKbBqoRjHwiTIXUQ73v+2UV1gBF8=;
+	b=WICPg1uNcTyIIa143qvd7TIyaPFypFvnjpzy2TBctTOcb+kibsxGs0GtRCDR5mzy1ic0x5
+	HxwPLGbYXF6KzWKNxsZtOgH/O2oXtnJYDciC/0Vs0N+Rv2rVZD/a02VOWGw/eL9mzWusBL
+	F5Dd+yqZBd3Zd895GP44LkdQ38RmxQ8=
+Date: Thu, 23 Jan 2025 11:24:36 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
- <20250110123835.2719824-5-paul-pl.chen@mediatek.com> <173651725269.2671643.2891127782637834272.robh@kernel.org>
- <SG2PR03MB66367B4A9DBCC971F55DB326BC182@SG2PR03MB6636.apcprd03.prod.outlook.com>
- <d116e180-a056-4595-851c-ed1bb6f24cef@kernel.org> <b9405b09da418eb3c65592b53489d7f0dd4093f2.camel@mediatek.com>
- <e6fd5225-b437-4f3b-9835-f206ae4b9d2f@kernel.org> <843f2dcee012007572f41df991e52369c1e5ed22.camel@mediatek.com>
-In-Reply-To: <843f2dcee012007572f41df991e52369c1e5ed22.camel@mediatek.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 24 Jan 2025 00:20:45 +0800
-X-Gm-Features: AWEUYZkfWBp2Lo-8TZn9tTq4YyIX0WXHpEKOlB7N1Mjjx7XBDKyByJYKaE3h9KI
-Message-ID: <CAGXv+5G8C8F5ua595Z3zs-D4vUP6YSUaxaUTGPQY-kfZ6am61g@mail.gmail.com>
-Subject: Re: [PATCH 03/12] dt-bindings: display: mediatek: add EXDMA yaml for MT8196
-To: =?UTF-8?B?UGF1bC1wbCBDaGVuICjpmbPmn4/pnJYp?= <Paul-pl.Chen@mediatek.com>
-Cc: "robh@kernel.org" <robh@kernel.org>, "krzk@kernel.org" <krzk@kernel.org>, 
-	=?UTF-8?B?U3VubnkgU2hlbiAo5rKI5aeN5aeNKQ==?= <Sunny.Shen@mediatek.com>, 
-	=?UTF-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>, 
-	=?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	=?UTF-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?= <Xiandong.Wang@mediatek.com>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "fshao@chromium.org" <fshao@chromium.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
-	=?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>, 
-	=?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, 
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "treapking@chromium.org" <treapking@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 1/7] dt-bindings: spi: zynqmp-qspi: Split the bus
+To: David Lechner <dlechner@baylibre.com>, Mark Brown <broonie@kernel.org>,
+ Michal Simek <michal.simek@amd.com>, linux-spi@vger.kernel.org
+Cc: Jinjie Ruan <ruanjinjie@huawei.com>,
+ linux-arm-kernel@lists.infradead.org,
+ Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
+ linux-kernel@vger.kernel.org, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>
+References: <20250116232118.2694169-1-sean.anderson@linux.dev>
+ <20250116232118.2694169-2-sean.anderson@linux.dev>
+ <9f40295b-484a-48e8-b053-ff8550e589d7@baylibre.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <9f40295b-484a-48e8-b053-ff8550e589d7@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-On Fri, Jan 24, 2025 at 12:14=E2=80=AFAM Paul-pl Chen (=E9=99=B3=E6=9F=8F=
-=E9=9C=96)
-<Paul-pl.Chen@mediatek.com> wrote:
+On 1/21/25 19:16, David Lechner wrote:
+> On 1/16/25 5:21 PM, Sean Anderson wrote:
+>> This device supports two separate SPI busses: 
+> 
+> ...
+> 
+>> @@ -84,5 +94,32 @@ examples:
+>>          resets = <&zynqmp_reset ZYNQMP_RESET_QSPI>;
+>>          reg = <0x0 0xff0f0000 0x0 0x1000>,
+>>                <0x0 0xc0000000 0x0 0x8000000>;
+>> +
+>> +        spi-lower {
+>> +          #address-cells = <1>;
+>> +          #size-cells = <0>;
+>> +          num-cs = <2>;
+>> +          cs-gpios = <0>, <&gpio 5>;
+>> +
+>> +          flash@0 {
+>> +            reg = <0>;
+>> +            compatible = "jedec,spi-nor";
+>> +          };
+>> +
+>> +          flash@1 {
+>> +            reg = <1>;
+>> +            compatible = "jedec,spi-nor";
+>> +          };
+>> +        };
+>> +
+>> +        spi-upper {
+>> +          #address-cells = <1>;
+>> +          #size-cells = <0>;
+>> +
+>> +          flash@0 {
+>> +            reg = <0>;
+>> +            compatible = "jedec,spi-nor";
+>> +          };
+>> +        };
+>>        };
+>>      };
+> 
+> In the IIO subsystem, we've been recently working on several "advanced" ADCs
+> that could use a SPI controller like this. These ADCs have multiple input
+> channels that perform conversions in parallel and the data for each channel
+> needs to be read back on a separate serial line (MISO) at the same time. Another
+> similar case is to have two separate chips, but they share a conversion trigger
+> and essentially operate as a single composite device rather than two distinct
+> devices [1]. This would be similar to some ADCs that are daisy-chained where we
+> consider all of the chips in the chain as a single composite device, but they
+> would be in parallel rather than chained.
+> 
+> [1]: https://lore.kernel.org/linux-iio/e5e8eba7-2455-488b-a36f-e246844e11fd@baylibre.com/
 >
-> On Thu, 2025-01-23 at 08:21 +0100, Krzysztof Kozlowski wrote:
-> >
-> > External email : Please do not click links or open attachments until
-> > you have verified the sender or the content.
-> >
-> >
-> > On 23/01/2025 07:11, Paul-pl Chen (=E9=99=B3=E6=9F=8F=E9=9C=96) wrote:
-> > >
-> > > Hi Krzysztof
-> > >
-> > > I hope this email finds you well. I have a couple of questions
-> > > regarding the EXDMA commit patch and decoupling:
-> > >
-> > > 1. Would removing the example from the EXDMA commit patch be
-> > > sufficient
-> > > to achieve decoupling for EXDMA YAML and MTK clock/power header?
-> >
-> > No
-> >
-> > >
-> > > 2. If removing the example from the EXDMA YAML is not allowed, what
-> > > alternative changes could we implement to achieve decoupling?
-> >
-> > Don't use the header constants but just some fake phandle.
-> >
-> >
-> >
-> > Best regards,
-> > Krzysztof
->
-> Hi Krzysztof,
->
-> Once again, thanks for the review and reply.
->
-> SO If we apply Chenyu's suggestion:
->
-> + example:
-> +-|
->
-> +soc {
-> +
-> + disp_ovl0_exdma2: dma-controller@32850000 {
-> +compatible =3D "mediatek,mt8196-exdma";
-> +reg =3D <0 0x32850000 0 0x1000>;
-> +clocks =3D <13>;
-> +power-domains =3D <12>;
-> +mediatek,larb =3D <88>;
-> +iommus =3D <&mm_smmu 144>;
-> +#dma-cells =3D <1>;
-> +        };
-> +    };
->
-> Does this work for decoupling?
->
+> For those use cases though, as mentioned above, we only have a single device
+> that would be connected to both buses. So for such a SPI controller with
+> multiple buses, I was envisioning that instead of adding child nodes for each
+> of the child buses, that we would do something like add a spi-buses property
+> to the spi peripheral bindings where you could specify one or more buses that
+> a device was connected to.
+> 
+> e.g. a device connected to the lower bus would be spi-buses = <0>; one connected
+> to the upper bus would be spi-buses = <1>; and a device connected to both would
+> be spi-buses = <0>, <1>;.  This would also work for SPI controllers that have
+> 4 or 8 busses.
+> 
+> SPI controllers like these have a striping feature that allows to control both
+> buses at the same to either mirror the same data on both buses at the same
+> time when writing, e.g. for configuration or to read and write two different
+> bytes at the same time. A peripheral driver for device that was connected to
+> both buses could make use of this feature to craft a single SPI message with
+> transfers containing (new) parameters that specify which bus to use (one or
+> both) and, in the case of using both buses, to mirror or stripe the data.
+> 
+> Could we make a single device connected to both buses like this work using
+> the proposed spi-lower and spi-upper or should we consider a different binding
+> like the one I suggested?
 
-AFAIK it will since now it isn't including any headers.
+If you are willing to do the work to rewrite the SPI subsystem to handle
+this, then I don't object to it in principle. Using a property would
+also help with forwards compatibility. On the other hand, separate
+busses are easier to implement since they integrate better with the SPI
+subsystem (e.g. you can just call spi_register_controller to create all
+the slaves).
 
-ChenYu
+There have been some previous patches from Xilinx to handle this
+use case [1], but IMO they were pretty hacky. They got this feature
+merged into U-Boot and it broke many other boards and took a lot of
+cleanup to fix. So I have intentionally only tackled the unsynchronized
+use case since that requires no modification to areas outside of this
+driver. I don't need the "parallel" use case and I am not interested in
+doing the work required to implement it.
 
-> Best Regards,
->
-> Paul
->
->
->
->
-> ************* MEDIATEK Confidentiality Notice ********************
-> The information contained in this e-mail message (including any
-> attachments) may be confidential, proprietary, privileged, or otherwise
-> exempt from disclosure under applicable laws. It is intended to be
-> conveyed only to the designated recipient(s). Any use, dissemination,
-> distribution, printing, retaining or copying of this e-mail (including it=
-s
-> attachments) by unintended recipient(s) is strictly prohibited and may
-> be unlawful. If you are not an intended recipient of this e-mail, or beli=
-eve
-> that you have received this e-mail in error, please notify the sender
-> immediately (by replying to this e-mail), delete any and all copies of
-> this e-mail (including any attachments) from your system, and do not
-> disclose the content of this e-mail to any other person. Thank you!
+--Sean
+
+[1] https://lore.kernel.org/linux-spi/20221017121249.19061-1-amit.kumar-mahapatra@amd.com/
 
