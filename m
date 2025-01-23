@@ -1,201 +1,166 @@
-Return-Path: <devicetree+bounces-140480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F4165A1A002
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:38:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04D87A1A030
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:48:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C411F3A51B0
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 08:38:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C06E1188EFB6
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 08:48:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9B2E20C024;
-	Thu, 23 Jan 2025 08:38:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A943C20B7E6;
+	Thu, 23 Jan 2025 08:48:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bNHBkwM0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B0F320C023;
-	Thu, 23 Jan 2025 08:38:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B23315AF6;
+	Thu, 23 Jan 2025 08:48:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737621527; cv=none; b=FqFRXrBcbSEuFfXRKyjBfYhATQPiY47DgUofi0irBjOEEOUS7J3O4Cw7wnLqCboQIejBTcSDJEHyhPuCgdXEglAGZlZ7wc+Iuleq72QILvmxRAuHd7LZEAa9DLMZgQHAnBN1UpWR4e0BQS0O5DboZEzKOGm+ViMlZPy0AxKM+ks=
+	t=1737622080; cv=none; b=DOhZGsKj/MOw/ltJ9FKrLUXW6UIadC3MDkQD8nXddlbyXev26ZAVNDSyO/4HK2fG2N7BKVPPyzoWuJN+caFEx5Iqtd77Sq3cvdgOrQo0ECyU827KmHHROYij5NV4I5xnO3RIQ+rz0/PZWd9g2CSYWaaZWKkvuzFsEd0ovO4czX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737621527; c=relaxed/simple;
-	bh=MgRruCyZIpg1hbNzgzKNaagVQSI1te/n2s5cZA2cKv8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pYvXQKmFq6PsjlZvDOoykqLKAvDFMJgwtKywFuACB/sOT8A2Fvg5AUxRj55CDbKifpKU9zeMSDSVMR9Fh9z3kxFwzUcylkzWvgH5+WmfASfjrio8/MaE13dih7RI0VnbRPgRHxJEYmlMVdt/6nOCcOCo1reo/clL7O94Xg+7hHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-4afdfd3124dso180122137.2;
-        Thu, 23 Jan 2025 00:38:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737621524; x=1738226324;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mwQHsW4zwmLnjFYZmDHAoZyaz6EGWkjalGwPU0GkznM=;
-        b=skRyHmfaX/3rMo/QMxcZfe31XD9OmIGnheDManOhi5obr4ZBhepqlfaLpLuWgxxQnU
-         c8WHk55e4/vl2LFxKcduuYthB5fB7x2RyTYNRGdzmbFV/OSq1GkPyBZWbC70h6BbGcSe
-         wKXwi72fFhHDZLqvVtZPMTtsTo38kXiHNgqOUGtIs9f8ImQTySXmUY6+YLkvlcGP4ICe
-         N1Yh1V3weNactjZu8OTsrdlQnjWmMHR33NlbN23uJreLjVzWisU9I5dtgGK3uM9zWMxR
-         GpT/lSPcvSW2MkbIn+3c1EFOzWpmFSYqGolqovwQrYpmD2LeWVJ3lt+1vVD7p6FN/Vv1
-         TBQw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7bT/MQBbu7HLUXj4zceQTQXbgQRnB/x9+xVSgA/24Oy6k2q55NHSZNBf12fS7EeTmIJOLvARWhQoM@vger.kernel.org, AJvYcCUNp2uqKNGWrVJL63SO0W+Xv4rzKKUMTQTh7z3czZYE6DaLx3HlmgplbAvWuGhRk03Q5qb71gcbeVRhd7w=@vger.kernel.org, AJvYcCV4eLN5XmY6bfdesW/PeJNHLbYXnn9hroimi9OGtezGAGySQlaWJkVw0WRz7PISQHyPIRk/pwsYMMt3fF3K@vger.kernel.org, AJvYcCVgm8PKxNx1DgzHblbqMcTO2KJOoCfpoeCVUyeVQSjelcneW3SyCLjUc2Qxe58vP8e/YkUC2tOCw05hKP5fTg68QxY=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz10Ct+VaK09gF9MTeU69aL62xCAYkyZEm8ErSIgENNQmTlFE8+
-	yWnPLM2r5y59fjsiDNHomfcCrv66/lPJXFpvq64w+s8k+ngXuHZZjcJBKoMj
-X-Gm-Gg: ASbGncsKHI3kvERB/o1H/knD6DFV5ngegQGNdIMe7rFscU9DJs+9G07xqkA1AxET6wj
-	TQjvijTLnmg2hFSM2yR5DSv7y/uSLgdqs+vbp1WGnV+AFZqbBtVU2WM8kb1vVQOk79y/hHoCINZ
-	TzOWfrruhKEaVF+WZLKPvbCZKoBSXC8gCic6FmJfumcH8b6SHcegb4BKJnu+ho1i0SkJmC6++SI
-	usLm0MmnLSARZJPMQUXFqoIeAWRgaC4UVwkwjSm24MHIHFcrHjsJ0hx6lgJAx/1vmyY4axWoE6z
-	6xHeVDyQQNnQXYsPQHn/0pEWK1ImuMMwxgKZH5sb1IPTjeI=
-X-Google-Smtp-Source: AGHT+IFdpDkGm0xkEAAJKxaSQwlecO+O6PouOTcvg8n2/rojfW6rrTQaUzrPkdOd2nCgb0RD9+fYwg==
-X-Received: by 2002:a05:6102:5486:b0:4b2:5d10:2cc6 with SMTP id ada2fe7eead31-4b690bbbc2emr18524414137.6.1737621524175;
-        Thu, 23 Jan 2025 00:38:44 -0800 (PST)
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com. [209.85.221.181])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4b68a3191f4sm3063397137.20.2025.01.23.00.38.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 23 Jan 2025 00:38:43 -0800 (PST)
-Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-5187f0b893dso217338e0c.3;
-        Thu, 23 Jan 2025 00:38:43 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVYEsOAd0a80ciVDFy90x1o9lon+uLzLIPLiSZD1Nr7K1t1ALwtQLipuUNGYl/3acZAmG7jbE1ptxOG@vger.kernel.org, AJvYcCVYdJ+dpSPxuK86a+G6wdL7z+5MhkeqnBcr9Q+ITA1KyTiRT3DbT5+iT2t8FEWACw5kbnPaJrTyBtRoMQoYSqXJszk=@vger.kernel.org, AJvYcCVppp+ZSvyqLPUsfO2/BpXBJ2G/ZpFwyePzGIsnEbDaCitC6cR4uJ95LlbpsLBL2az58/40kOJFce6U9D0=@vger.kernel.org, AJvYcCWTvR8CBHqs9k5/X97GjL1CW6nBlM7NgHzMv0X0WOkO/dPGpGOenGikDlbScURNUVZ3lAtuzM/9S/aZOvtZ@vger.kernel.org
-X-Received: by 2002:a05:6102:570d:b0:4b6:d108:cac1 with SMTP id
- ada2fe7eead31-4b6d11811f8mr11475580137.9.1737621523558; Thu, 23 Jan 2025
- 00:38:43 -0800 (PST)
+	s=arc-20240116; t=1737622080; c=relaxed/simple;
+	bh=n+BAh08fVD4z19Wcdeq3qfIQuFbhUPaAqAZ6E2w6qKQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g9OoZuMoajM/t3eDtYYtZy9NzDdDGZwmSypH+TbcuJ6BC3+zH784CxSpaHFB2akegozXJdeEjCE3mdKHcV2SzQukFvtJueGVgjgnd+sdTd+lgTxxJWNTsh7gL0oGuu5FmsPUGHMeUjL42Dj6rNO1pNtUuL2mTva8rMhfv9H3iHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bNHBkwM0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 165E3C4CED3;
+	Thu, 23 Jan 2025 08:47:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737622079;
+	bh=n+BAh08fVD4z19Wcdeq3qfIQuFbhUPaAqAZ6E2w6qKQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bNHBkwM0Av8DnZEFzgc3bUVtPMa9s9JTpPLnUKYLmzMOtSivnhNkF5w056l555Znv
+	 JTNzfI5wQ5KEZG7xJ34F6eIZY6jRMLnepBuP0yofU6vPMSymtC9K1810WT/Yso2SLV
+	 se318h7cUgHQ+6/a2xHQqMgNlEFt61uGTUACegOdH3NgJDlsvtKefUYkng1UMuRfAS
+	 UslkiwNmyer+L7PFxbi+RK+SA6mMaVe5kAVNNGZh8p2T3xowDxKBuJfgWdZNCGD+e3
+	 +ZyAmYTRHsyYxTU3MYgJrzrz31jnwXJway7g3XS2Z2Hy+N4GRKq/9icy2/ah9IaLuT
+	 lP1fVpx8oDGHg==
+Message-ID: <9cc5cc32-9e21-4b95-9f00-a15d690c6d57@kernel.org>
+Date: Thu, 23 Jan 2025 09:47:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <db10e96fbda121e7456d70e97a013cbfc9755f4d.1737533954.git.geert+renesas@glider.be>
- <87wmem76u4.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87wmem76u4.wl-kuninori.morimoto.gx@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 23 Jan 2025 09:38:28 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWpxKgSGGJb9Oy4Bzy7y4zPxVve=0_mCWE0G1d4njCJ+A@mail.gmail.com>
-X-Gm-Features: AWEUYZlhVs-YS2W8tu6wHQ2P2ZBc9pMgHx0iSkPnWdB8Tka2A9Xe1rKavB5lPTg
-Message-ID: <CAMuHMdWpxKgSGGJb9Oy4Bzy7y4zPxVve=0_mCWE0G1d4njCJ+A@mail.gmail.com>
-Subject: Re: [PATCH] ASoC: soc-core: Stop using of_property_read_bool() for
- non-boolean properties
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>, 
-	linux-sound@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings:Add SQ52206 to ina2xx devicetree
+ bindings
+To: Wenliang Yan <wenliang202407@163.com>, linux@roeck-us.net
+Cc: conor+dt@kernel.org, corbet@lwn.net, devicetree@vger.kernel.org,
+ jdelvare@suse.com, krzk+dt@kernel.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robh@kernel.org
+References: <0eda52b5-59c2-4ad2-bb2c-5846dbfbf3e9@roeck-us.net>
+ <20250123075802.1105859-1-wenliang202407@163.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20250123075802.1105859-1-wenliang202407@163.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Morimoto-san,
+On 23/01/2025 08:58, Wenliang Yan wrote:
+> At 2025-01-23 11:30:59, "Guenter Roeck" <linux@roeck-us.net> wrote:
+>> On 1/22/25 17:36, Wenliang Yan wrote:
+>>> At 2025-01-22 15:59:02, "Krzysztof Kozlowski" <krzk@kernel.org> wrote:
+>>>> On Wed, Jan 22, 2025 at 09:29:39AM +0800, Wenliang Yan wrote:
+>>>>> Add the sq52206 compatible to the ina2xx.yaml
+>>>>>
+>>>>> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+>>>>> ---
+>>>>>
+>>>>> Add the meaning of 'shunt-gain' in SQ52206.
+>>>>
+>>>> You already sent v3... and you got comment from me. You ignored both
+>>>> Conor and me, so me doing third time the same and expecting different
+>>>> results would be definition of insanity.
+>>>>
+>>>> Please read carefully submitting patches before posting new version.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>
+>>> Sorry, I have received your comment and 'acked'. I was originally
+>>> planning to resend [PATCH v3 2/2], because I have not received a
+>>> response from Guenter Roeck<linux@roeck-us.net>. However, I forgot to
+>>> add 'RESEND' in the title. Thank you for your patient reply.
+>>> I apologize again.
+>>>
+>>
+>> A resend after just four days, plus dropping all Acks ? Are you serious ?
+>>
+>> Please keep in mind that not all of us are getting paid for doing this.
+>> If I am otherwise busy, it will take longer. Sometimes it will take
+>> much longer. If you resend a patches, they will end up at the tail
+>> of my review queue. If you drop Acks, expect me to dig it all up,
+>> and figure out on my own what if anything changed, the patches will
+>> end up even further down, as in "I'll look into this series if I have
+>> nothing else left to review".
+>>
+>> Guenter
+> 
+> Sorry for the inconvenience caused by my actions. I am just concerned that
+> you did not receive the email, and I will continue to wait for your review
+> and correction.
+What review? I am telling you that you ignored us twice and I am not
+doing the same third time expecting different results.
 
-On Thu, Jan 23, 2025 at 12:43=E2=80=AFAM Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> > On R-Car:
-> >
-> >     OF: /sound: Read of boolean property 'simple-audio-card,bitclock-ma=
-ster' with a value.
-> >     OF: /sound: Read of boolean property 'simple-audio-card,frame-maste=
-r' with a value.
-> >
-> > or:
-> >
-> >     OF: /soc/sound@ec500000/ports/port@0/endpoint: Read of boolean prop=
-erty 'bitclock-master' with a value.
-> >     OF: /soc/sound@ec500000/ports/port@0/endpoint: Read of boolean prop=
-erty 'frame-master' with a value.
-> >
-> > The use of of_property_read_bool() for non-boolean properties is
-> > deprecated in favor of of_property_present() when testing for property
-> > presence.
-> >
-> > Replace testing for presence before calling of_property_read_u32() by
-> > testing for an -EINVAL return value from the latter, to simplify the
-> > code.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> (snip)
-> > -     if (of_property_read_bool(np, "dai-tdm-slot-num")) {
-> > -             ret =3D of_property_read_u32(np, "dai-tdm-slot-num", &val=
-);
-> > -             if (ret)
-> > -                     return ret;
-> > -
-> > -             if (slots)
-> > -                     *slots =3D val;
-> > -     }
-> (snip)
-> > +     ret =3D of_property_read_u32(np, "dai-tdm-slot-num", &val);
-> > +     if (ret && ret !=3D -EINVAL)
-> > +             return ret;
-> > +     if (!ret && slots)
-> > +             *slots =3D val;
->
-> Looks good to me
->
-> Acked-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+How did you respond to this:
 
-Thank you!
+"Please read carefully submitting patches before posting new version."
 
-> If my understanding was correct, old/new code should have same behavior.
+?
 
-Indeed, that was my objective...
+How did you respond to previous acks?
 
-> But because of the original code, new code looks complex for me.
-> The case which this function return error are
->
->         (A) if property does not have a value
->         (B) if the property data isn't large enough
->
-> I think "DT checker" will indicates error for both case ?
-
-Correct, of_property_read_u32_array() would return -ENODATA resp.
--EOVERFLOW.
-
-> If so, we can simply ignore these 2 cases. Then, the code will be more
-> simple
->
->         ret =3D of_property_read_u32(np, "dai-tdm-slot-num", &val);
-> -       if (ret && ret !=3D -EINVAL)
-> -               return ret;
->         if (!ret && slots)
->                 *slots =3D val;
->
-> I think this should be extra new patch (if people can agree about it).
-
-That would be a change in behavior. Probably it would be fine for
-existing users, though, as no existing DTS should cause these errors,
-else sound wouldn't work.  For a new DTS, it would silently ignore errors.
-You are in a better position to make that decision, though.
-
-BTW, is there any specific reason the code always checks for the
-presence of "dai-tdm-slot-num", even if slots is NULL, and the result
-sn't used? I.e. would
-
-    if (slots) {
-            ret =3D of_property_read_u32(np, "dai-tdm-slot-num", &val);
-            if (!ret)
-                    *slots =3D val;
-            else if (ret !=3D -EINVAL)
-                    return ret;
-    }
-
-(perhaps dropping the else, as per above) be acceptable?
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Best regards,
+Krzysztof
 
