@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-140465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86877A19ECC
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 08:21:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AED72A19ECF
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 08:23:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D058188E321
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 07:21:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 02AD5168445
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 07:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFCBD1C5D6D;
-	Thu, 23 Jan 2025 07:21:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CFF61F470D;
+	Thu, 23 Jan 2025 07:23:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VqDXH+bM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HWQdizw9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE67A1BD01F;
-	Thu, 23 Jan 2025 07:21:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1F0F1BD01F;
+	Thu, 23 Jan 2025 07:23:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737616881; cv=none; b=IsnBwjkdHAzpk11PTq5mURRCh08lpa87sndX/5hP4MYa5rtsytV+5LuqeJtzxc8s7E9R3rSdmcYtnYFxXTiSyLDPs8dI9QHDZiLRrXZRNFwWuAoOIkmX3TndfxdcNL0rhSE659HgK3gxQ1nhjMW+EFoV8qTT8X514+3rYnDhv/I=
+	t=1737617003; cv=none; b=mwW924NaHBY8BgCyYyvMAYVAWNn4xNb9Y+eu6SiGH1SfVFSPh+5Ace1Ah6IkfcRwsWNivUG+nNHjfmgkrA7gVyeVIo//5+ZqERXNqtQZ13NmupV6ILi3ANT/0T3qv6WXyWlv6c/9x5BDck8kuLD2Hw0q/v0yHB5k60J7ixmwj3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737616881; c=relaxed/simple;
-	bh=nK8AIy/Tv012S0VNi5cXiOFKEzXFQyYEaGHg3tObdyM=;
+	s=arc-20240116; t=1737617003; c=relaxed/simple;
+	bh=ItLuklLhOA9AwJ2/eYWftUtQLR/KlFoiPlIdpKdCPO0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oT3KWRxB2SffD/HkhQmzsNwTKN+0J4dM86uw0LpghyJpbc/vdRLZ1hN0+sfuDZY0UU50UzoW6sz4DbVmMCg8W7NqFEcYGr45cunnIGKgTmmLzSUrPam/mw2m57d8pyf3oDoiB9hPqlNkx5CozJg7hbKw08+kvjuBoHy5fKwolO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VqDXH+bM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D0CFC4CED3;
-	Thu, 23 Jan 2025 07:21:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=sGeB028fXOSuaIynRltp5cpRSqNvcY3EPYs0Qkv17sxiFs24eNVmxvCNjTjsTfLOHyHx9rdRtDNh0+xyEAq2+fRnSROOLEumN4iA8zITc3Srkome8aPFyqdYRJxD3yc61k8tKAKEd+gTsJcvJMf5gJ4qclsToTp1+aZ0aZQku7k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HWQdizw9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0175CC4CED3;
+	Thu, 23 Jan 2025 07:23:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737616881;
-	bh=nK8AIy/Tv012S0VNi5cXiOFKEzXFQyYEaGHg3tObdyM=;
+	s=k20201202; t=1737617002;
+	bh=ItLuklLhOA9AwJ2/eYWftUtQLR/KlFoiPlIdpKdCPO0=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VqDXH+bMXCJbaGdTViprc7aa7gS+JF7e4dS+LkGkloK9L5B3A0H/8P6EPvHHvK6ko
-	 iai8d4/2GFx0BgMEKs+K1Mr4XIasogf7gksZAfkNwN4i7Ks5OtWwadH+cvTF3OUkoX
-	 Zy7CSA+CKLqzD0xNUeCgB1qI4R1+mvo8WJ6ODUPDbMOMOPIzG2rY9JgYdPyB8FKm/7
-	 sACFYeGLWiKudTdlnsEM2QoKw7gTxgaXNlWlcvocFRoDRpSUWPR/xmTs4SVforxxvQ
-	 kdZaVXgojUHQQJ4rrdgo8M6t3xM9vteVvPACNSNIHC2mfzBJrz+PaHtiyXEmd1Lfyw
-	 21GCD9DvJ88rA==
-Message-ID: <e6fd5225-b437-4f3b-9835-f206ae4b9d2f@kernel.org>
-Date: Thu, 23 Jan 2025 08:21:13 +0100
+	b=HWQdizw90n13A88yLm7rRiFQvP64HQ+Zt/P7F5HON5uVBzVOzoYkuK1uIrNHMOrPm
+	 XJzJjFSLZX/JYnyyufmsS9+d9bAqeW/OLMFA1z9ZrP8F6hCYPGuRArCtvTuxiBb7uR
+	 RYJiyOgISyIIKTQllrQvKSmuSc4Ims5fTEHqA9t6DKcitQEn3z2KHE0G0jj7TQh/i1
+	 HO6sYYQIEmYeMJn9Ms/aeDmLIcf4gOrLfJZPNRCEivVWoXMreIYPSERZwFMpwtVMHc
+	 /6mPc/bnBzsSVKyviFIc3dJyP3JV1gJ18vfyIh0AKVcH9eRcUCLPr3FBayrL4kieu5
+	 O4HtwsAhqlLCg==
+Message-ID: <4d61cffd-fe5e-440a-ad40-56e0c5fd2358@kernel.org>
+Date: Thu, 23 Jan 2025 08:23:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,39 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/12] dt-bindings: display: mediatek: add EXDMA yaml for
- MT8196
-To: =?UTF-8?B?UGF1bC1wbCBDaGVuICjpmbPmn4/pnJYp?= <Paul-pl.Chen@mediatek.com>,
- "robh@kernel.org" <robh@kernel.org>
-Cc: =?UTF-8?B?U3VubnkgU2hlbiAo5rKI5aeN5aeNKQ==?= <Sunny.Shen@mediatek.com>,
- =?UTF-8?B?U2lyaXVzIFdhbmcgKOeOi+eak+aYsSk=?= <Sirius.Wang@mediatek.com>,
- =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
- =?UTF-8?B?WGlhbmRvbmcgV2FuZyAo546L5YWI5YasKQ==?=
- <Xiandong.Wang@mediatek.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "fshao@chromium.org" <fshao@chromium.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= <Singo.Chang@mediatek.com>,
- =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- "treapking@chromium.org" <treapking@chromium.org>
-References: <20250110123835.2719824-1-paul-pl.chen@mediatek.com>
- <20250110123835.2719824-5-paul-pl.chen@mediatek.com>
- <173651725269.2671643.2891127782637834272.robh@kernel.org>
- <SG2PR03MB66367B4A9DBCC971F55DB326BC182@SG2PR03MB6636.apcprd03.prod.outlook.com>
- <d116e180-a056-4595-851c-ed1bb6f24cef@kernel.org>
- <b9405b09da418eb3c65592b53489d7f0dd4093f2.camel@mediatek.com>
+Subject: Re: [PATCH v5 05/10] dt-bindings: media: Add amlogic,c3-isp.yaml
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: keke.li@amlogic.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+ dan.scally@ideasonboard.com
+References: <20241227-c3isp-v5-0-c7124e762ff6@amlogic.com>
+ <20241227-c3isp-v5-5-c7124e762ff6@amlogic.com>
+ <0815e122-1f77-4f87-bc9d-386cc423c171@kernel.org>
+ <jja74umhccvvg2nmolavpuaafsqrqj6pylyrblhcem4so4hz2j@fyutf4duwyrv>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -128,28 +107,40 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <b9405b09da418eb3c65592b53489d7f0dd4093f2.camel@mediatek.com>
+In-Reply-To: <jja74umhccvvg2nmolavpuaafsqrqj6pylyrblhcem4so4hz2j@fyutf4duwyrv>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 23/01/2025 07:11, Paul-pl Chen (陳柏霖) wrote:
+On 22/01/2025 14:38, Jacopo Mondi wrote:
+> On Fri, Dec 27, 2024 at 08:22:22AM +0100, Krzysztof Kozlowski wrote:
+>> On 27/12/2024 08:09, Keke Li via B4 Relay wrote:
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 2
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: vapb
+>>> +      - const: isp0
+>>> +
+>>> +  assigned-clocks: true
+>>> +
+>>> +  assigned-clock-rates: true
+>>
+>> No, drop these. Request re-review if you add new properties.
 > 
-> Hi Krzysztof 
+> Why ?
 > 
-> I hope this email finds you well. I have a couple of questions
-> regarding the EXDMA commit patch and decoupling:
-> 
-> 1. Would removing the example from the EXDMA commit patch be sufficient
-> to achieve decoupling for EXDMA YAML and MTK clock/power header?
+> I think the patches should be re-checked and it's fair to ask to drop
+> the rb tag.
 
-No
+So I asked.
 
-> 
-> 2. If removing the example from the EXDMA YAML is not allowed, what
-> alternative changes could we implement to achieve decoupling?
-
-Don't use the header constants but just some fake phandle.
-
+> But the idea that patches once reviewed should not be
+> modified between two different versions of the same set seems really..
+> debatable ?
+No one said that. If you want to modify, no problem, but drop the tag.
+You cannot sneak new properties while keeping the review tag.
 
 
 Best regards,
