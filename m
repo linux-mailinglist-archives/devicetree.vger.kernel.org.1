@@ -1,125 +1,97 @@
-Return-Path: <devicetree+bounces-140449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BC34A19D68
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 04:47:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD0A6A19D77
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 05:10:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4C53B18890B4
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 03:47:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EBDC3ADDA0
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 04:10:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1017F12C7FD;
-	Thu, 23 Jan 2025 03:47:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B6D6126C02;
+	Thu, 23 Jan 2025 04:10:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="15TTNsVb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U8rw/56n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 240488615A
-	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 03:47:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28B612E62C;
+	Thu, 23 Jan 2025 04:10:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737604040; cv=none; b=b9cgcXnHAE3TF8D20rWmp75Wg0kgVmiTq/gJu7AODRmUvJVN2OXcyCNVBws7Wup2VDxfTa/Bq6MEOCRSY2Y1wUYF6Lutd4sTYHwCE+krjQJxAfWZv6IP/A19wuwkXrqmbaQijj4K74BGAKCxgcSyLW5tHIRckqAdztplr9UCXvk=
+	t=1737605407; cv=none; b=q76pzSseBW31aRQOvTICmnJNWzx8StkiVtxDmpTGBDXztM79fL76GMUWyKLazr6mRl30Bfh+PTyszSnnuorqN4nP/3LSv21p3EQ2DhY3ApBsVJPe7SC/hFZvWZGzfhX4jpuykJN6B7dItIiqkqpS7ZEVtQt3pP5L0hOTM8VeB6s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737604040; c=relaxed/simple;
-	bh=lx3tK0Wp1P/B3968du95L/hIoWqTCa1PDtwwXPi5uYQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=kE6cNs63UYqFypFLHf3CRJ6+Q+uieqFLot08a50Kn48dBy9gFFIgVut/SfWRoC4/o7qQSkRzsMmmmg3kujNiYNd3v5ZOKJcmEnUsEp68K58EXv76NEdDTxEFDb3SXY+pkXAPIRmAlWd7ousEu/Bm5U3FOxb+dWiuBqgWhQOkvPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=15TTNsVb; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id A9E5F2C0AC1;
-	Thu, 23 Jan 2025 16:47:14 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1737604034;
-	bh=lx3tK0Wp1P/B3968du95L/hIoWqTCa1PDtwwXPi5uYQ=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=15TTNsVbladkQRGOamtcptJ9NvqtuJnLpu9B9AwSUjRufGAx972YJNcKOFimUcUmf
-	 SlrdRMLOGAyTR8t5yq9dbzjdD7RwZ6sHLlzItohfc7ebT/TVfykxyiy98kCkH3S9eJ
-	 8FTZAIwmy2j3JsLl83ckkJelf2Iqy7d8WiXRIZ9PbhZk2ZC956wrVgPxg/ekVi5I3E
-	 Jpvh2XffRWzUlI5+n2Y1rzittP4p7L4KcISbMjkm41iBse/uGt/Thv+rroMtQECVVg
-	 hE+6MgHkUIvSCgFCqVZ5z/y0JDd9bXZq47BtsEyc3VaRvuxPkrSWWqFf2R6887KAwG
-	 q/q7JwTaqeZhA==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B6791bbc20001>; Thu, 23 Jan 2025 16:47:14 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Thu, 23 Jan 2025 16:47:14 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1544.014; Thu, 23 Jan 2025 16:47:14 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Sander Vanheule <sander@svanheule.net>, "lee@kernel.org" <lee@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>, "davem@davemloft.net"
-	<davem@davemloft.net>, "edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"tsbogend@alpha.franken.de" <tsbogend@alpha.franken.de>,
-	"hkallweit1@gmail.com" <hkallweit1@gmail.com>, "linux@armlinux.org.uk"
-	<linux@armlinux.org.uk>, "markus.stockhausen@gmx.de"
-	<markus.stockhausen@gmx.de>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "netdev@vger.kernel.org"
-	<netdev@vger.kernel.org>, "linux-mips@vger.kernel.org"
-	<linux-mips@vger.kernel.org>
-Subject: Re: [PATCH v4 4/4] net: mdio: Add RTL9300 MDIO driver
-Thread-Topic: [PATCH v4 4/4] net: mdio: Add RTL9300 MDIO driver
-Thread-Index: AQHbavAahUdhqEy5FEu2vKOQZxZljLMenFsAgACoywCAAzmNAIAAFNeAgABOEQCAAAGQgA==
-Date: Thu, 23 Jan 2025 03:47:14 +0000
-Message-ID: <b9f68f90-7c30-46b5-aed9-2ca1994494cf@alliedtelesis.co.nz>
-References: <20250120040214.2538839-1-chris.packham@alliedtelesis.co.nz>
- <20250120040214.2538839-5-chris.packham@alliedtelesis.co.nz>
- <d4194a1560ff297e5ab3e6eae6d51b7c9d469381.camel@svanheule.net>
- <63d6cf16-9581-4736-8592-bc5836fa51af@alliedtelesis.co.nz>
- <faa4cf6e-40eb-4509-b3f0-198a9a45ccbd@lunn.ch>
- <09bd2f04-96d6-4dba-92ee-22ccbd7f584f@alliedtelesis.co.nz>
- <11d7fe78-958d-409f-a979-25cc1bc933a2@lunn.ch>
-In-Reply-To: <11d7fe78-958d-409f-a979-25cc1bc933a2@lunn.ch>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
+	s=arc-20240116; t=1737605407; c=relaxed/simple;
+	bh=jIAvkyTigTAsrgEBmehd4gQwoyZk44PWXjLcnu9Lo+4=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=NzbbyUYSdYEtZzwFR/CVmi1FTQmmNYqjrAkLTgj9QwlIJTK0DJ9SB6mOxgVgi/LJ5jBOo7cCyEXS9kzqnBodJ8vV5PnbzctOkEBdXCEnJ3PZfQf7im6i1bIEnbcdq4mfwDnu9vsf9p7aLm86eNZmKH3esOpoILsUtBuApV3v964=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U8rw/56n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F16DEC4CEDF;
+	Thu, 23 Jan 2025 04:10:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737605407;
+	bh=jIAvkyTigTAsrgEBmehd4gQwoyZk44PWXjLcnu9Lo+4=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=U8rw/56nKZNrasZbLqSk7HPqliGYgjgu4jZg+vdc89uX4Q63w3uVqq0SXkh2hs6GL
+	 Cr4gqa/psKVXkc5YONBfuhGgca+TlZYS1hVCKoZe/fnEUi8l/XXhikJF0gm58+Kjrm
+	 EfisfPXRbeQzgfk7wuMzzs+2XPKye+cyIeSgxMCCkptz837LlF0yMR/OSIRXHZeeup
+	 LdS9mErZOrwH2EuqcXltIVDoN1MIW5VCjKTeMSKuVk0iut0yXIKyHPS5FwCOV5A4du
+	 Rd4OYI8qvD5ZYxN7jWMC8no4AKtzWWrblu7PJGqigDKA6UD0yG8pd2qzUyBPEadbun
+	 4tzZBuOU7H/xw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id AE23E380AA70;
+	Thu, 23 Jan 2025 04:10:32 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <C0F6EEC7549A094FBB7581A820C3E48A@alliedtelesis.co.nz>
-Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BNQQr0QG c=1 sm=1 tr=0 ts=6791bbc2 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=VdSt8ZQiCzkA:10 a=WLJjwHfe7vk9cptKtRgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v4] dt-bindings: net: qcom,ethqos: Correct fallback
+ compatible for qcom,qcs615-ethqos
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <173760543124.917319.17863724148091129767.git-patchwork-notify@kernel.org>
+Date: Thu, 23 Jan 2025 04:10:31 +0000
+References: <20250120-schema_qcs615-v4-1-d9d122f89e64@quicinc.com>
+In-Reply-To: <20250120-schema_qcs615-v4-1-d9d122f89e64@quicinc.com>
+To: Yijie Yang <quic_yijiyang@quicinc.com>
+Cc: vkoul@kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+ konradybcio@kernel.org, krzysztof.kozlowski@linaro.org,
+ netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 
-DQpPbiAyMy8wMS8yMDI1IDE2OjQxLCBBbmRyZXcgTHVubiB3cm90ZToNCj4gT24gV2VkLCBKYW4g
-MjIsIDIwMjUgYXQgMTE6MDI6MTRQTSArMDAwMCwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4+IEhp
-IEFuZHJldywNCj4+DQo+PiBPbiAyMy8wMS8yMDI1IDEwOjQ3LCBBbmRyZXcgTHVubiB3cm90ZToN
-Cj4+Pj4gSSBiZWxpZXZlIHRoZSBQT0xMX1NFTCBjb25maWd1cmF0aW9uIGFjdHVhbGx5IGFmZmVj
-dHMgYW4gaW50ZXJuYWwgcG9ydA0KPj4+PiBwb2xsaW5nIHVuaXQuIEZyb20gdGhlIGRhdGFzaGVl
-dHMgSSBoYXZlIGl0IHNlZW1zIHByZXR0eSBjb25maWd1cmFibGUsIHlvdQ0KPj4+PiBjYW4gdGVs
-bCBpdCB3aGljaCBwaHkgcmVnaXN0ZXJzIHRvIHBvbGwgYW5kIHdoYXQgdmFsdWVzIGluZGljYXRl
-IGxpbmsNCj4+Pj4gdXAvZG93biAodGhlIGRlZmF1bHRzIGFyZSBjb252ZW5pZW50bHkgc2V0dXAg
-dG8gbWF0Y2ggdGhlIFJlYWx0ZWsgUEhZcykuDQo+Pj4gWW91IG5lZWQgdG8gZGlzYWJsZSB0aGlz
-LiBUaGUgbGludXggUEhZIGRyaXZlciBpcyBkcml2aW5nIHRoZSBQSFksIGFuZA0KPj4+IHRoZSBo
-YXJkd2FyZSBoYXMgbm8gaWRlYSB3aGF0IExpbnV4IGlzIGRvaW5nLiBTYXkgdGhlIGRyaXZlciBo
-YXMNCj4+PiBjaGFuZ2VkIHRoZSBwYWdlIHRvIHJlYWQgYSB0ZW1wZXJhdHVyZSBzZW5zb3IsIHdo
-ZW4gdGhlIHN3aXRjaCBkb2VzIGENCj4+PiBwb2xsLiBSYXRoZXIgdGhhbiByZWFkaW5nIHRoZSBs
-aW5rIHN0YXR1cywgaXQgZ2V0cyBzb21lIHJhbmRvbSB2YWx1ZQ0KPj4+IGZyb20gdGhlIHBhZ2Ug
-Y29udGFpbmluZyB0aGUgdGVtcGVyYXR1cmUgc2Vuc29yLg0KPj4gVGhlcmUncyBhIG1hc2sgdGhh
-dCBjYW4gYmUgc2V0IHZpYSBhIHJlZ2lzdGVyIHRoYXQgY2FuIGRpc2FibGUgcG9sbGluZw0KPj4g
-Zm9yIGEgcG9ydC4gVGhlIHRyaWNrIHdpbGwgYmUgZGVjaWRpbmcgd2hlbiB0byBkbyBzby4NCj4g
-T24gcHJvYmUuIEFuZCBsZWF2ZSBpcyBkaXNhYmxlZC4gcGh5bGluayB3aWxsIHByb3ZpZGUgeW91
-IHdpdGggYWxsIHRoZQ0KPiBpbmZvcm1hdGlvbiB5b3UgbmVlZCBhYm91dCBsaW5rIHVwLCB3aGF0
-IHRoZSBsaW5rIHNwZWVkIGlzIGV0Yy4gVGhlcmUNCj4gaXMgbm8gbmVlZCBmb3IgUFBVLg0KDQpX
-b3JrcyBmb3IgbWUgOlAuDQo=
+Hello:
+
+This patch was applied to netdev/net.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Mon, 20 Jan 2025 15:08:28 +0800 you wrote:
+> The qcs615-ride utilizes the same EMAC as the qcs404, rather than the
+> sm8150. The current incorrect fallback could result in packet loss.
+> The Ethernet on qcs615-ride is currently not utilized by anyone. Therefore,
+> there is no need to worry about any ABI impact.
+> 
+> Fixes: 32535b9410b8 ("dt-bindings: net: qcom,ethqos: add description for qcs615")
+> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+> 
+> [...]
+
+Here is the summary with links:
+  - [v4] dt-bindings: net: qcom,ethqos: Correct fallback compatible for qcom,qcs615-ethqos
+    https://git.kernel.org/netdev/net/c/ba1af257a057
+
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
