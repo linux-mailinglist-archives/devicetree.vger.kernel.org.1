@@ -1,90 +1,81 @@
-Return-Path: <devicetree+bounces-140624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80E44A1A931
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 18:49:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C408A1A98B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 19:23:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3FCA3A5D74
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 17:49:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3317F3A86F3
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 18:23:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE7A19007E;
-	Thu, 23 Jan 2025 17:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06B9615A863;
+	Thu, 23 Jan 2025 18:23:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=konsulko.com header.i=@konsulko.com header.b="kEdc3Lka"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="U95CNjgz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A258216F858
-	for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 17:49:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 672E615746B;
+	Thu, 23 Jan 2025 18:23:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737654550; cv=none; b=ADs1PKGRD/tsB/+cWD3M0WHPe8jk0u/WNcov88FYVcSe+z8tgQChCfcgkgulFfVjViuxCSmzJytwouvS0ja/kSHDlON5MhK1qgiV3V2l4Jw2Xv7MBqr7SUkTaYIQ1cNJ+iprkCOOfvuTp/VXjHpt7n4Qx9hbNuqw6zXbm55GH04=
+	t=1737656583; cv=none; b=KM+w7sNAOE1yI0b+PEAFYjv13QktVrfjiianhobvGKEXxWR13flQ880AUSg4KvCSP330digcmj2xM7WOnbJi1eR+3dtlBpRC494qS/JI8mcNus+yyCkA6D/MKbZ+meut7TqPjRBn6WJI+cZaxX+CFvf9ugSoLVFDIEYFZYOcjx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737654550; c=relaxed/simple;
-	bh=jCBH+fmaVyLfjCJZk+iTpTdeo2GwfqaFEO++65lxCYQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Usg73uy152MshG2ig0btDOwJE3lH+yQpUKHKsYt0byoMbK8KiFa6HD+wxYGU5jT/yzy7Mz3Ov+hBzaZXkJU0O7hhWf5I1WXusmog/bWdKXmr9OXYt65Qmu+lfFLyrt6UTMWWuJUIXL6TgOXwIF11hHvDIMwijhdCrAcWqJ8rYWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=konsulko.com; spf=pass smtp.mailfrom=konsulko.com; dkim=pass (1024-bit key) header.d=konsulko.com header.i=@konsulko.com header.b=kEdc3Lka; arc=none smtp.client-ip=209.85.222.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=konsulko.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=konsulko.com
-Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-7be44a90468so131355385a.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 09:49:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google; t=1737654547; x=1738259347; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yoRqnvHsZvUJeikwcwZHMUql/hZyjzKs2CDqy+TdLPY=;
-        b=kEdc3Lka2E0WnaK+Crf3+LcxvFyu8guh70UyaEIUi+2lLDl+SeaCrS7NsPlGZpmXVZ
-         Gl//FcxZo4pBjushREd9DJVXtPCFGdtUsMfrto4tGCGj0wdwlG6LNhEjNvce/6RUs0UU
-         gfde4rLW7kITOxH8G2+k40E51wXxI8N/Rd/w4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737654547; x=1738259347;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yoRqnvHsZvUJeikwcwZHMUql/hZyjzKs2CDqy+TdLPY=;
-        b=PJAvvSz/kekAcUPTddIJ81w173Sla4tMHOwZu6RtdhpOscZNHx4HDMl0TNivSDw9M7
-         JLkTiQLwmz+dIqcHPWE1lV0fzvzJ8xPcnO7f1PEK6G18jbjW241aZZ8erOsIt0clBOaI
-         A/s1wIjaWwW8mPudPnhNiFKcyXmBA0o+JHkr7kNQOazWkqEAVqjZy+HdysO2e8PLqrhT
-         ZnnLznhVQ5L4SmRYTu5lbCidu2wFHMCnwa54/kWBdvcBbW6518lWzNG1uw/KY+M1s8I6
-         mJttD6F5+e6fKNW2OqYuu2PuFAcLU3IIcqnWcvusymRBwOgLVpy1lbavqlSQgM5TrDLp
-         yWhw==
-X-Forwarded-Encrypted: i=1; AJvYcCXgEyHAskLEtr8a8JzXto8aME2ODkaANYy5p1f2KxZ5x3DnctaUdht1KSG1171P0KIOhro70tpktsVw@vger.kernel.org
-X-Gm-Message-State: AOJu0YxjQM4MvxCO3N9qt57K3W1sSIJw91sOAyrtCOsdknaPZvhFHLNT
-	/RycU2nL35fYJLwOHg+0zvZJPiWDFErbzuJiAfv+ZYscn6s9v1jYWERYQSX0lHgESa150vfbrXm
-	tAVw=
-X-Gm-Gg: ASbGncvq25+G1RL193pCIMHH/tTJdX0gjV7yniNn36VHWPggnlhbu1wN6VhnNKX5Qu7
-	XeyGr8xCvO13ekeb4k7uBmMNKMWADpkK1K5nLF23zAbbJuJ1n4z33uyZ27Qh8oVl3IUOje4co5C
-	JxArFQ6QlF61rSzxA5nhsgI7op6Dd8a4ODHxAXMTYQczvgJTKod1BERZTxvXOSNz6aC8k0JQ3Ti
-	CN1drJ4VQd2hriVeyeH6oZdCLMfWxKNUCNAuZ+2wFBfx3CYnbuY43YeYwErAhBf3iKCF7HhY2sK
-	qF14ZaY=
-X-Google-Smtp-Source: AGHT+IHPCsLgbgKZmOqpcUWR62T9gwQ4cJkD0wdSrcXxQPraQfJH5NPL3KW11OpRVz9ZggRBKMzvww==
-X-Received: by 2002:a05:620a:1a81:b0:7b6:67df:51e3 with SMTP id af79cd13be357-7be631f481bmr2981045485a.16.1737654547497;
-        Thu, 23 Jan 2025 09:49:07 -0800 (PST)
-Received: from bill-the-cat.. ([189.177.145.20])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6e205136e02sm780536d6.20.2025.01.23.09.49.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jan 2025 09:49:06 -0800 (PST)
-From: Tom Rini <trini@konsulko.com>
-To: linux-kernel@vger.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Robert Nelson <robertcnelson@gmail.com>,
-	Tony Lindgren <tony@atomide.com>,
+	s=arc-20240116; t=1737656583; c=relaxed/simple;
+	bh=+vsdEJNW8UNjRvF7UCIpNPWK3eCwP5zuKBoxgzzvYBU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pouiQXCp1pUUkRPk3hLAxtPNfe7fXamTl9wuEqOmHfTQXQNpCwRGHdD48HCfZp+ekSdEbThLq88wKsRI49Wq7+TvTreXylEkJ3spD3rPvEiShHa7rtTXA58s/W8rrTufQ5EZJwGwGWp0fq5cmxeYO3eQJIWQxVWgLjlEl8M6E7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=U95CNjgz; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737656583; x=1769192583;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=+vsdEJNW8UNjRvF7UCIpNPWK3eCwP5zuKBoxgzzvYBU=;
+  b=U95CNjgz7OaTSTGAPLZnNUjnupNSs0qcyIvsCcWPjYUXwaamlf8/t7Q+
+   lOCeMaUV+7CFawWUQvPetmn6TzOAGB9Qaa6doCX7/wyp9Ri3GcnYeP7uY
+   PNtSpeKwPvyfIIrFegAg60s0IvGQ9uFukEkVu4qLFw+gfgx6Xn7u4kxJA
+   yAxfjFE8JhHnOeMzchBmDVKiHO9Q/Sdrl+JfLvzkP1pTzCB2whE2t/sRB
+   pEMHjGjfP790vRlSgmYeUcBIR0hFRQ9m4qsGaZdfI9zVh2ePUg/LmyL22
+   Q205gACcPPmzKUKCZov3bnCPLZq+gS16fwi6vZ7xsPI5tWMYEDpnSScS0
+   g==;
+X-CSE-ConnectionGUID: FbaVP699SlWKIvFwvLittQ==
+X-CSE-MsgGUID: QexcVjVuRB+ZYp1GBRAfHQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="49573232"
+X-IronPort-AV: E=Sophos;i="6.13,229,1732608000"; 
+   d="scan'208";a="49573232"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2025 10:23:02 -0800
+X-CSE-ConnectionGUID: Hb0NhblZS2q88NF00ARGww==
+X-CSE-MsgGUID: Qg2w+YxHSJOYJNo700G6uQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="111574792"
+Received: from test2-linux-lab.an.altera.com ([10.244.156.200])
+  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2025 10:23:01 -0800
+From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+To: lpieralisi@kernel.org,
+	kw@linux.com,
+	manivannan.sadhasivam@linaro.org,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dinguyen@kernel.org,
+	joyce.ooi@intel.com,
+	linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-omap@vger.kernel.org
-Subject: [PATCH v2 2/2] ARM: dts: omap4-panda-a4: Add missing model and compatible properties
-Date: Thu, 23 Jan 2025 11:49:01 -0600
-Message-ID: <20250123174901.1182176-2-trini@konsulko.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250123174901.1182176-1-trini@konsulko.com>
-References: <20250123174901.1182176-1-trini@konsulko.com>
+	linux-kernel@vger.kernel.org
+Cc: matthew.gerlach@altera.com,
+	peter.colberg@altera.com
+Subject: [PATCH v4 0/5] Add PCIe Root Port support for Agilex family of chips
+Date: Thu, 23 Jan 2025 12:19:27 -0600
+Message-Id: <20250123181932.935870-1-matthew.gerlach@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,47 +84,45 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-When moving the model and compatible properties out of the common
-Pandaboard files and in to the specific boards, the omap4-panda-a4
-file wasn't updated as well and so has lacked a model and compatible
-entry ever since.
+From: Matthew Gerlach <matthew.gerlach@altera.com>
 
-Fixes: a1a57abaaf82 ("ARM: dts: omap4-panda: Fix model and SoC family details")
-Signed-off-by: Tom Rini <trini@konsulko.com>
----
-Changes in v2:
-- Include as part of the series with binding addition, make this the
-  second patch.
+This patch set adds PCIe Root Port support for the Agilex family of FPGA chips.
+Version 3 of this patch set removes patches that have been accepted.
 
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Robert Nelson <robertcnelson@gmail.com>
-Cc: Tony Lindgren <tony@atomide.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Cc: linux-omap@vger.kernel.org
----
- arch/arm/boot/dts/ti/omap/omap4-panda-a4.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+Patch 1:
+  Add new compatible strings for the three variants of the Agilex PCIe controller IP.
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap4-panda-a4.dts b/arch/arm/boot/dts/ti/omap/omap4-panda-a4.dts
-index 8fd076e5d1b0..4b8bfd0188ad 100644
---- a/arch/arm/boot/dts/ti/omap/omap4-panda-a4.dts
-+++ b/arch/arm/boot/dts/ti/omap/omap4-panda-a4.dts
-@@ -7,6 +7,11 @@
- #include "omap443x.dtsi"
- #include "omap4-panda-common.dtsi"
- 
-+/ {
-+	model = "TI OMAP4 PandaBoard (A4)";
-+	compatible = "ti,omap4-panda-a4", "ti,omap4-panda", "ti,omap4430", "ti,omap4";
-+};
-+
- /* Pandaboard Rev A4+ have external pullups on SCL & SDA */
- &dss_hdmi_pins {
- 	pinctrl-single,pins = <
+Patch 2:
+  Add a label to the soc@0 device tree node to be used by patch 5.
+
+Patch 3:
+  Add base dtsi for PCIe Root Port support of the Agilex family of chips.
+
+Patch 4:
+  Add dts enabling PCIe Root Port support on an Agilex F-series Development Kit.
+
+Patch 5:
+  Update Altera PCIe controller driver to support the Agilex family of chips.
+D M, Sharath Kumar (1):
+  PCI: altera: Add Agilex support
+
+Matthew Gerlach (4):
+  dt-bindings: PCI: altera: Add binding for Agilex
+  arm64: dts: agilex: add soc0 label
+  arm64: dts: agilex: add dtsi for PCIe Root Port
+  arm64: dts: agilex: add dts enabling PCIe Root Port
+
+ .../bindings/pci/altr,pcie-root-port.yaml     |   9 +
+ arch/arm64/boot/dts/intel/Makefile            |   1 +
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |   2 +-
+ .../socfpga_agilex7f_socdk_pcie_root_port.dts |  16 ++
+ .../intel/socfpga_agilex_pcie_root_port.dtsi  |  55 ++++
+ drivers/pci/controller/pcie-altera.c          | 246 +++++++++++++++++-
+ 6 files changed, 319 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
+
 -- 
-2.43.0
+2.34.1
 
 
