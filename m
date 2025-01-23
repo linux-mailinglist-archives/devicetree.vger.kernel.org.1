@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-140598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A968CA1A76C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 16:58:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F38FFA1A76D
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 16:58:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D60627A22DE
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 15:58:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E9F23ABB57
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 15:58:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 684F7212D94;
-	Thu, 23 Jan 2025 15:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EF182144BE;
+	Thu, 23 Jan 2025 15:57:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S3kuVMyw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SmlWiEJk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422502139AC;
-	Thu, 23 Jan 2025 15:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7E9D2144A6;
+	Thu, 23 Jan 2025 15:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737647868; cv=none; b=HGtkAVYKslcoRh5ZPk5uqkYvOJGVIMd71NMfVUpna27HKhjLowlG4ahRHFeuUNyoDdhoitIJWxD7vKPDX8N3AQxMNY/mZsSkl2o9TL1VEL0ridDIYpfaFrr/YCo1riVSqLhb8O07AUg8TJo5VMc5nZnTMH+ZzlG7si6IiOua3qw=
+	t=1737647870; cv=none; b=u47h4V3DyPMrSvYCGSvpGwrZOPN/MosP7KLUlN/tqfxmiFm9QT9ZWyhAoLXQd2QUhUyCgi2yLCADqwLLmrdXLTyMjlhYaycT2j9gv3XAU+duwQ0t0ePkKdcwlCbs+s1sFiNblOd7tBn4E1mnjb871FF5/hyr408Xpof4CqXlJFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737647868; c=relaxed/simple;
-	bh=HDXxO9qAlUO62itZdH9ffW5f6oieeEZ+qyLExIJ0csA=;
+	s=arc-20240116; t=1737647870; c=relaxed/simple;
+	bh=ft8Jievp9zLCcxslQvNCpMJJr771yq6XaBBtLD9kMvU=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=jZwzXR9SkzG+y7UQNtsFk4NTBxKzh0kyb4DJWrsFDZmBtPG/GL4VGmkYjl6Yk/5yPI8Cbsurv3ubQ2hiQ1rxUU3kkIEap/erUm9impjQfx8mNgwRDsTHGsAK62Kv6ZIaVkMmU6e7FRpExzGKPksb1NyK0Y9O908cbPF6roeGKFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S3kuVMyw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0404DC4CEDD;
-	Thu, 23 Jan 2025 15:57:47 +0000 (UTC)
+	 Message-Id:Subject; b=a/ctS/gc61nxXV5odYrIXQAGV1xYySjD6yG4P3d8H1pT4QtTCuoc8k4fkqEd/OQZAz8o78o9IMUeZgj7q9EONknrDMHG4Cws54zGLLWNqqPAWddEi10CwMuW87Vf2clLWH8ZOHO9VvnYP/MRfBeHxPl1hncZkWPvKGzMVqAMWMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SmlWiEJk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 448B5C4CED3;
+	Thu, 23 Jan 2025 15:57:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737647868;
-	bh=HDXxO9qAlUO62itZdH9ffW5f6oieeEZ+qyLExIJ0csA=;
+	s=k20201202; t=1737647869;
+	bh=ft8Jievp9zLCcxslQvNCpMJJr771yq6XaBBtLD9kMvU=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=S3kuVMywcjybsUaZb5GdvcQCDNGNFTj8NgmSOjNj2PrcKbU+ru6FEP3VtzSwBvQsS
-	 8PhobbLGxx03onDIusJ3bSI5ujoimWBPLAvjvHo4DH0D6H37YDFRKA1JC+sEhHRUXg
-	 71n06VS2YLC94oqcZmI/teGKjpRHZck9qT1X4ildlb8aDhgReeuQ+666Umvj8vKP3w
-	 smRtG9fxfRxTrqKypY6zFGAFBcXRoKA/3a8TdOTQULF2pYpuIY7fJu8p5jJWB3FCW2
-	 pU3GN4MQCA5Vo5MtoFi4ZT5ajUbfMA5nXHWoO37jwD5FU39ZltMM20BbFiggocTPp1
-	 Ke7CW+B4gAb9w==
-Date: Thu, 23 Jan 2025 09:57:47 -0600
+	b=SmlWiEJkChX33WESinpqu8F9rIKOPOsZrPOKeRT8AI3FAIwHcs/Cq9WEwL+8OFWPP
+	 QJJ8ME5QD7b3+2zJ8OgtZyxnEDMRW2tmBoBPTuLGAOJkj2P7IQ90YClw78IuOfVzYc
+	 gWfgDx59pmvU4wTwDirmvNXVPy707RS/T+wj+w89+ej44ABbKEaWPC3YYqFaF2OhNB
+	 36aLbERTs2BlZ9H+hBvKIEYPowS0w/eb7KQRMfKKvdtLB7O17ophpFsK63ra8icoy5
+	 8fukKhT+59r0qYfsp6SiEF60Yt66KhSkV6R6TPyNdPRb0N+1pRRrWUoYz0jVlIvVFk
+	 fVIPSVDfjKLZg==
+Date: Thu, 23 Jan 2025 09:57:48 -0600
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,67 +51,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>, 
- linux-stm32@st-md-mailman.stormreply.com, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Maxime Coquelin <mcoquelin.stm32@gmail.com>, linux-kernel@vger.kernel.org, 
- kernel@pengutronix.de, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- =?utf-8?q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-In-Reply-To: <20250121-lxa-fairytux-v3-0-8d42d7d232fb@pengutronix.de>
-References: <20250121-lxa-fairytux-v3-0-8d42d7d232fb@pengutronix.de>
-Message-Id: <173764775141.3793586.6690578690442295161.robh@kernel.org>
-Subject: Re: [PATCH stm32-next v3 0/2] ARM: dts: stm32: lxa-fairytux2: add
- gen{1,2} boards
+Cc: Shawn Guo <shawnguo@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ linux-kernel@vger.kernel.org, Fabio Estevam <festevam@gmail.com>, 
+ devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, imx@lists.linux.dev
+To: Antonin Godard <antonin.godard@bootlin.com>
+In-Reply-To: <20250121-varsom6ul-concerto-dts-v1-0-eb349acf0ac6@bootlin.com>
+References: <20250121-varsom6ul-concerto-dts-v1-0-eb349acf0ac6@bootlin.com>
+Message-Id: <173764775251.3793618.182783828690702678.robh@kernel.org>
+Subject: Re: [PATCH 0/3] Add Variscite i.MX6UL SoM and Concerto board
+ support
 
 
-On Tue, 21 Jan 2025 12:14:04 +0100, Marc Kleine-Budde wrote:
-> Hello,
+On Tue, 21 Jan 2025 10:33:26 +0100, Antonin Godard wrote:
+> This patch series adds support for the i.MX6UL Variscite SoM
+> (VAR-SOM-6UL) and the Variscite Concerto Carrier Board.
 > 
-> this series adds support for the Linux Automation GmbH FairyTux2
-> boards generation 1 and 2.
+> I tested this with a VAR-SOM-6UL_G2_700C_512R_8N_IT_REV1.3A (one variant
+> of this SoM), meaning I couldn't test all of the possible options of the
+> SoM - so this device tree includes partial support for it.
 > 
-> The FairyTux2 is a small Linux device based on an Octavo Systems
-> OSD32MP153c SiP, that occupies just two slots on a DIN rail.
+> These are based on the 5.15 Variscite kernel fork but adapted for
+> mainline.
 > 
-> regards,
-> Marc
-> 
-> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
 > ---
-> Changes in v3:
-> - 2/2: fix use generic node names for external GPIO and USB Type-C controller (thanks Krzysztof)
-> - 2/2: LEDs: replace label by color and function property (thanks Krzysztof)
-> - 2/2: gen2: sort nodes of i2c1 by address (thanks Krzysztof)
-> - Link to v2: https://patch.msgid.link/20250120-lxa-fairytux-v2-0-95f4a0eaa44d@pengutronix.de
+> Antonin Godard (3):
+>       dt-bindings: arm: fsl: Add VAR-SOM-MX6UL SoM and Concerto board
+>       ARM: dts: imx6ul: Add Variscite VAR-SOM-MX6UL SoM support
+>       ARM: dts: imx6ul: Add Variscite Concerto board support
 > 
-> Changes in v2:
-> - 1/2: Added Krzysztof's Acked-by
-> - 2/2: fix alignment for gpio-line-names (thanks Krzysztof)
-> - 2/2: only use color:function for LED labels (thanks Krzysztof)
-> - 2/2: use generic node names for external GPIO and USB Type-C controller
-> - Link to v1: https://patch.msgid.link/20241210-lxa-fairytux-v1-0-9aea01cdb83e@pengutronix.de
-> 
+>  Documentation/devicetree/bindings/arm/fsl.yaml     |   6 +
+>  arch/arm/boot/dts/nxp/imx/Makefile                 |   1 +
+>  .../boot/dts/nxp/imx/imx6ul-var-som-concerto.dts   | 331 +++++++++++++++++++++
+>  arch/arm/boot/dts/nxp/imx/imx6ul-var-som.dtsi      | 232 +++++++++++++++
+>  4 files changed, 570 insertions(+)
 > ---
-> Leonard Göhrs (2):
->       dt-bindings: arm: stm32: add compatible strings for Linux Automation GmbH LXA FairyTux 2
->       ARM: dts: stm32: lxa-fairytux2: add Linux Automation GmbH FairyTux 2
-> 
->  .../devicetree/bindings/arm/stm32/stm32.yaml       |   2 +
->  arch/arm/boot/dts/st/Makefile                      |   2 +
->  .../boot/dts/st/stm32mp153c-lxa-fairytux2-gen1.dts | 103 ++++++
->  .../boot/dts/st/stm32mp153c-lxa-fairytux2-gen2.dts | 147 ++++++++
->  .../arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi | 397 +++++++++++++++++++++
->  5 files changed, 651 insertions(+)
-> ---
-> base-commit: b7ebfb84a09de6b44492974339654d8ffc5ad9e1
-> change-id: 20241210-lxa-fairytux-e730979d3d3f
+> base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
+> change-id: 20250120-varsom6ul-concerto-dts-a08be2a6219b
 > 
 > Best regards,
 > --
-> Marc Kleine-Budde <mkl@pengutronix.de>
+> Antonin Godard <antonin.godard@bootlin.com>
 > 
 > 
 > 
@@ -131,10 +115,10 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/st/' for 20250121-lxa-fairytux-v3-0-8d42d7d232fb@pengutronix.de:
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/nxp/' for 20250121-varsom6ul-concerto-dts-v1-0-eb349acf0ac6@bootlin.com:
 
-arch/arm/boot/dts/st/ste-hrefv60plus-tvk.dtb: gpio@a03fe000: compatible:0: 'stericsson,db8500-gpio' is not one of ['st,nomadik-gpio', 'mobileye,eyeq5-gpio']
-	from schema $id: http://devicetree.org/schemas/gpio/st,nomadik-gpio.yaml#
+arch/arm/boot/dts/nxp/imx/imx6dl-b125v2.dtb: clock-controller@20c4000: clocks: [[23]] is too short
+	from schema $id: http://devicetree.org/schemas/clock/imx6q-clock.yaml#
 
 
 
