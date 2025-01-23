@@ -1,166 +1,140 @@
-Return-Path: <devicetree+bounces-140481-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04D87A1A030
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:48:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A0C5A1A03B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:58:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C06E1188EFB6
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 08:48:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 18B71188F2C1
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 08:58:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A943C20B7E6;
-	Thu, 23 Jan 2025 08:48:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0536220C035;
+	Thu, 23 Jan 2025 08:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bNHBkwM0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="M6McpOru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B23315AF6;
-	Thu, 23 Jan 2025 08:48:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C08520C00D;
+	Thu, 23 Jan 2025 08:58:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737622080; cv=none; b=DOhZGsKj/MOw/ltJ9FKrLUXW6UIadC3MDkQD8nXddlbyXev26ZAVNDSyO/4HK2fG2N7BKVPPyzoWuJN+caFEx5Iqtd77Sq3cvdgOrQo0ECyU827KmHHROYij5NV4I5xnO3RIQ+rz0/PZWd9g2CSYWaaZWKkvuzFsEd0ovO4czX8=
+	t=1737622712; cv=none; b=hZsbB5wVREDrik8N71Vrdl3tbmbD7DijTocK6EahFRHPLGBpzT4xwaQ63pHU7NACrdoCoGyQhXBaIRcFNewKEcz5OOj729yqYMs506JWrKWvudzOwGw+EM/baXpUWgNvQpg+w9DB37aCXl8uIM5MVMo8x81xK1jlGO1/pi8Bppk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737622080; c=relaxed/simple;
-	bh=n+BAh08fVD4z19Wcdeq3qfIQuFbhUPaAqAZ6E2w6qKQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=g9OoZuMoajM/t3eDtYYtZy9NzDdDGZwmSypH+TbcuJ6BC3+zH784CxSpaHFB2akegozXJdeEjCE3mdKHcV2SzQukFvtJueGVgjgnd+sdTd+lgTxxJWNTsh7gL0oGuu5FmsPUGHMeUjL42Dj6rNO1pNtUuL2mTva8rMhfv9H3iHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bNHBkwM0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 165E3C4CED3;
-	Thu, 23 Jan 2025 08:47:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737622079;
-	bh=n+BAh08fVD4z19Wcdeq3qfIQuFbhUPaAqAZ6E2w6qKQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bNHBkwM0Av8DnZEFzgc3bUVtPMa9s9JTpPLnUKYLmzMOtSivnhNkF5w056l555Znv
-	 JTNzfI5wQ5KEZG7xJ34F6eIZY6jRMLnepBuP0yofU6vPMSymtC9K1810WT/Yso2SLV
-	 se318h7cUgHQ+6/a2xHQqMgNlEFt61uGTUACegOdH3NgJDlsvtKefUYkng1UMuRfAS
-	 UslkiwNmyer+L7PFxbi+RK+SA6mMaVe5kAVNNGZh8p2T3xowDxKBuJfgWdZNCGD+e3
-	 +ZyAmYTRHsyYxTU3MYgJrzrz31jnwXJway7g3XS2Z2Hy+N4GRKq/9icy2/ah9IaLuT
-	 lP1fVpx8oDGHg==
-Message-ID: <9cc5cc32-9e21-4b95-9f00-a15d690c6d57@kernel.org>
-Date: Thu, 23 Jan 2025 09:47:53 +0100
+	s=arc-20240116; t=1737622712; c=relaxed/simple;
+	bh=HkyeRQ66zp1oc6NXegGG+5zPV8GgPQJyFzgH5zMyigE=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=q7D9bM2jwpCv1Zw7HLbrJp1IptI1z8hQj/wceh5Kn894BrG2bRws/r3eTWWlB7NHgaX2SJLDswA/DLLd4zKy/Yt+tNK0+jW0QQGaG3Cyt32GXqFuRiR3fSxYdYilVnmtO7t35i/F+/I/SUqPK1Vnoevpo5vpvve1I2FEZBFSy8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=M6McpOru; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-38be3bfb045so1221273f8f.0;
+        Thu, 23 Jan 2025 00:58:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737622709; x=1738227509; darn=vger.kernel.org;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HkyeRQ66zp1oc6NXegGG+5zPV8GgPQJyFzgH5zMyigE=;
+        b=M6McpOruscsWDOzcdeDw/uEBtammRmlfH3opcjr5YJwVGs0cTG0ojYJK2iD86Xve69
+         +Q9GKu+C7vxmvi8CXP6o/UJZNvidPvxuVag1kBRd4vQ7cOZ+bPrncMHZpKkiwZfY52z6
+         WeR90hPbivu1sVlUkQUq+P+bbxj7ILKTIyarcNrpZ+p2AStUqxZdV+1tfXHjm3EX9qoZ
+         9T8EtX/y5St/7sA9rUBiQbdvtt9SnpTNpbNVO6P9q2oJhlj+jE+JEYB6F11iXkoVKMmO
+         ieTs18wlT2fDvdVe/oWekYewiyXMzI9K5V0lcrP1/hAnGsjKGYB8/TVuT9erF4qdT4N8
+         1qpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737622709; x=1738227509;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HkyeRQ66zp1oc6NXegGG+5zPV8GgPQJyFzgH5zMyigE=;
+        b=bL7PHrwghmopBrjPJJPKE/48y6ecgrott4zh0flVYzuLuxpce8DbXXGOp/ogfylzWH
+         WifdFTw3Q7z/dcpTzXQV/bRjtjgZ6QDiiG4lFvBKC+WSFZd5RFCK/bzcUH/HrB5i97X5
+         6uvpe5+Vxooz7s872nRLICNd8z6wN2N9n1SeEntqXE6sFLX5dFBdHowLtdZcBHPws29D
+         NBtkjh6+Ctf58nhWO8JGmyP3JOqKeUEN+I3Q7JXr2BZKorFJtNn9Jw6SRXgreoq7cOHY
+         UBHzh5n1a0fUyjZfGX6FGO77vLh0gzsmcenwOActP0XxLaEdbxoTfB4GPLb7F/aoYyC+
+         tazA==
+X-Forwarded-Encrypted: i=1; AJvYcCUG9HGVrzQBKBU0g31UqMQuDa5QIgSwlxrgQdLkfOWWuBxH8zEW5FBgBVndjQkgk9CC599i41dCg3y2@vger.kernel.org, AJvYcCV5qdw6yK6syI5FVjQZDsFP1SgIiNFZet0w90iM1emuAXlAaDymhuK1BPDW9ajApM+Av4Oe12/fHkU=@vger.kernel.org, AJvYcCV7CF0CIggqXvBVr1Md5lYICke1z/c8m8Rfc9xFg8SqF2og9Tly8dVQr8p2Ag5ZDcWohDuVPFW6tgdDsluC@vger.kernel.org, AJvYcCWT6VellgufhCioEGlwIWznbB1xdkkiSPGL6qDXTPb+xWmW5TsZic0ofk8pJp++WhV5U+KaHLSio/SleQ==@vger.kernel.org, AJvYcCWtv4uhBjeAolPeYmg572b2gZhCz4r9Z98IXKQV1yX8iXHggpQty7FiOqELu+tg+J3JLs4N0NS82RnE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHgUJGPUtRUuBWkJzw1qlHl5A8KEWg5NxrDSyYhTK4eNrjdQs4
+	V6cJTw1C2jhOZsvT/7xlGOPO/tv9W4A3ThSyLk04t6mJw1SZHHvP
+X-Gm-Gg: ASbGncvcBV8dJFoY7Q4AfWVAL7ofMSpmuK01ECNJ9OC+RGJfP9XLt2n8D+OAdJKJTB+
+	k92moCJztV8ejPSq+lpLBNw7nADNvwz2jp7tNtjYFmWMCJ7FOsTmyKNFW0gkclKji3otVj1emaf
+	o9o0qg+bfJlI3APQnUNpELBVSntWkVxZ4pKkUy+AzJPgjWg6sJh1D611rSf1TzBlyBc/8wmgeXL
+	ZMIi4Hj/nkenWPtZGvY8ZNBPgiZjLhj/gAPE9V8hLoDyWCkgS9kzXOOCGyU1G3j+UkSW1dhkxXg
+	hrqR1P3hPp2jByLhBACsGvCQxTKXmjM1DVkm5MUn6eQ=
+X-Google-Smtp-Source: AGHT+IHc1t5fGPvcthsivd2P9fI8/r4mtQiSRE3tXH+2jfQUvFcq70i0y1FajJPpW7lEuohcXqidQg==
+X-Received: by 2002:adf:f8c5:0:b0:388:c61d:4415 with SMTP id ffacd0b85a97d-38c22275647mr1806903f8f.18.1737622709399;
+        Thu, 23 Jan 2025 00:58:29 -0800 (PST)
+Received: from smtpclient.apple (185.174.17.62.zt.hu. [185.174.17.62])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38bf322236csm18793946f8f.39.2025.01.23.00.58.27
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 23 Jan 2025 00:58:29 -0800 (PST)
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings:Add SQ52206 to ina2xx devicetree
- bindings
-To: Wenliang Yan <wenliang202407@163.com>, linux@roeck-us.net
-Cc: conor+dt@kernel.org, corbet@lwn.net, devicetree@vger.kernel.org,
- jdelvare@suse.com, krzk+dt@kernel.org, linux-hwmon@vger.kernel.org,
- linux-kernel@vger.kernel.org, robh@kernel.org
-References: <0eda52b5-59c2-4ad2-bb2c-5846dbfbf3e9@roeck-us.net>
- <20250123075802.1105859-1-wenliang202407@163.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250123075802.1105859-1-wenliang202407@163.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3776.700.51\))
+Subject: Re: [PATCH 05/12] clk: sunxi-ng: add CCU drivers for V853
+From: =?utf-8?B?QW5kcsOhcyBTemVtesWR?= <szemzo.andras@gmail.com>
+In-Reply-To: <36af1162-cd43-4045-bb43-b8bbf44f9788@quicinc.com>
+Date: Thu, 23 Jan 2025 09:58:17 +0100
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Maxime Ripard <mripard@kernel.org>,
+ Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ =?utf-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org,
+ linux-gpio@vger.kernel.org,
+ linux-pm@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <266DB665-67E8-40FA-8BE6-E7F82955BAEB@gmail.com>
+References: <20250110123923.270626-1-szemzo.andras@gmail.com>
+ <20250110123923.270626-6-szemzo.andras@gmail.com>
+ <36af1162-cd43-4045-bb43-b8bbf44f9788@quicinc.com>
+To: Jeff Johnson <quic_jjohnson@quicinc.com>
+X-Mailer: Apple Mail (2.3776.700.51)
 
-On 23/01/2025 08:58, Wenliang Yan wrote:
-> At 2025-01-23 11:30:59, "Guenter Roeck" <linux@roeck-us.net> wrote:
->> On 1/22/25 17:36, Wenliang Yan wrote:
->>> At 2025-01-22 15:59:02, "Krzysztof Kozlowski" <krzk@kernel.org> wrote:
->>>> On Wed, Jan 22, 2025 at 09:29:39AM +0800, Wenliang Yan wrote:
->>>>> Add the sq52206 compatible to the ina2xx.yaml
->>>>>
->>>>> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
->>>>> ---
->>>>>
->>>>> Add the meaning of 'shunt-gain' in SQ52206.
->>>>
->>>> You already sent v3... and you got comment from me. You ignored both
->>>> Conor and me, so me doing third time the same and expecting different
->>>> results would be definition of insanity.
->>>>
->>>> Please read carefully submitting patches before posting new version.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>
->>> Sorry, I have received your comment and 'acked'. I was originally
->>> planning to resend [PATCH v3 2/2], because I have not received a
->>> response from Guenter Roeck<linux@roeck-us.net>. However, I forgot to
->>> add 'RESEND' in the title. Thank you for your patient reply.
->>> I apologize again.
->>>
->>
->> A resend after just four days, plus dropping all Acks ? Are you serious ?
->>
->> Please keep in mind that not all of us are getting paid for doing this.
->> If I am otherwise busy, it will take longer. Sometimes it will take
->> much longer. If you resend a patches, they will end up at the tail
->> of my review queue. If you drop Acks, expect me to dig it all up,
->> and figure out on my own what if anything changed, the patches will
->> end up even further down, as in "I'll look into this series if I have
->> nothing else left to review".
->>
->> Guenter
-> 
-> Sorry for the inconvenience caused by my actions. I am just concerned that
-> you did not receive the email, and I will continue to wait for your review
-> and correction.
-What review? I am telling you that you ignored us twice and I am not
-doing the same third time expecting different results.
 
-How did you respond to this:
+> On 23 Jan 2025, at 00:23, Jeff Johnson <quic_jjohnson@quicinc.com> =
+wrote:
+>=20
+> On 1/10/25 04:39, Andras Szemzo wrote:> =
++module_platform_driver(sun8i_v853_r_ccu_driver);
+>> +
+>> +MODULE_IMPORT_NS("SUNXI_CCU");
+>> +MODULE_LICENSE("GPL");
+>=20
+> Since commit 1fffe7a34c89 ("script: modpost: emit a warning when the
+> description is missing"), a module without a MODULE_DESCRIPTION() will
+> result in a warning with make W=3D1. Please add a MODULE_DESCRIPTION()
+> to avoid this warning in all of your new modules.
+>=20
 
-"Please read carefully submitting patches before posting new version."
-
-?
-
-How did you respond to previous acks?
-
-Best regards,
-Krzysztof
+Thanks for pointing it out, I=E2=80=99ll add it.=
 
