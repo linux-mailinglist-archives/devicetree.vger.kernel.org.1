@@ -1,492 +1,242 @@
-Return-Path: <devicetree+bounces-140630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E93FA1A999
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 19:23:58 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 720E0A1A9B5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 19:38:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46B37188B24E
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 18:23:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C0923A8B5B
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 18:38:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59B2C1B78E7;
-	Thu, 23 Jan 2025 18:23:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F7E155742;
+	Thu, 23 Jan 2025 18:38:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nSgXLFGt"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="CBiEy5d3";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="TBuyCnXa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from fhigh-a1-smtp.messagingengine.com (fhigh-a1-smtp.messagingengine.com [103.168.172.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F961A00F8;
-	Thu, 23 Jan 2025 18:23:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1DC15574E;
+	Thu, 23 Jan 2025 18:38:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737656588; cv=none; b=VV2Fn+2CXNQTsip+sBXWnoqMe49NXeMHlevoHPfJEiTfLy5BgV2JPpZPo58/rA/WDJQTn7oYExSipfQ0z6g7cJELSY3dP4vw2QzAsvC4qB28waT9VfFJ6rFT9OxF+x8Z+dYWtP8BtpNSjwNBWEPsnWez+b4FEvepE0q1CyyGX0k=
+	t=1737657485; cv=none; b=pqwQ4vwlRv5I77O9zO53dGRGOCBhCwZ8EevAMXd+64TYTdRKwO2m/RQfA5f8+G5h2mqI8N1XC4o7uOXc3c8BSPOB4/gFINbLSB0yjQGFLyLOobKyNCI3FuhetMI4EWFPHntssdHzVGWAosbdrjTajxict3DeC1wiJKy31OK98n4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737656588; c=relaxed/simple;
-	bh=0HuWDQaef8KBy57s4pTEBiDwuQqHnnikTnzKrZYJSoE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Et4qF9EdJagy4pmXyB+KnMbeVlkggMQUuD1N/8i4l9hzYJSkhEv6ZtYXBEgjj6k1Aa1v9p+YV6ecZ3xjQsRiSj3dU5jXXMndgsfstt4H1piqWQfJU6RQgLs+wHRvKMVhFjbsVS+hH5Ar34wlBqMfRfE1DOqmjB3E+5xnp5eW00s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nSgXLFGt; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737656586; x=1769192586;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=0HuWDQaef8KBy57s4pTEBiDwuQqHnnikTnzKrZYJSoE=;
-  b=nSgXLFGtSMES7HPd4qBaSPmr9bO/Ix2rZ2MCiRdySapH+WOi+4gxxBgk
-   M+XHZVtbVP3QULaBytD/b0S4y+C86lPVxKV+0jq5AMJvvbPnn69O5w7Jf
-   PeBnO+hCMhPVDsGW+bxlLDZCLc/302PxAXsOSDlfHcww9OXkwXT6Nn2q7
-   O20khFpAx3bklKBxSM1vLBp3f/QgMp5jtMNwTjDBLhwR+AbQ3EdYNc1vP
-   t6wtTstheC/9yFSHjXiIOKIMW6NQeeyHbTKOD32uKj48PnanBENky1QCR
-   u4M8KKLHjO+zaqU6MQoDHaGIyCOE3gUm36Osly9JGnwcXLrrzPVUODPso
-   w==;
-X-CSE-ConnectionGUID: Nn8oCGe7T/qzzgt47K3NVw==
-X-CSE-MsgGUID: duCwjfCZRZW5cA4gbYLZFQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11324"; a="49573274"
-X-IronPort-AV: E=Sophos;i="6.13,229,1732608000"; 
-   d="scan'208";a="49573274"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2025 10:23:06 -0800
-X-CSE-ConnectionGUID: cbZx3q/qS2SkszwCD66QrQ==
-X-CSE-MsgGUID: F3NeWhWLRQmbK7+S+yd24Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="111574833"
-Received: from test2-linux-lab.an.altera.com ([10.244.156.200])
-  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Jan 2025 10:23:05 -0800
-From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
-To: lpieralisi@kernel.org,
-	kw@linux.com,
-	manivannan.sadhasivam@linaro.org,
-	robh@kernel.org,
-	bhelgaas@google.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	dinguyen@kernel.org,
-	joyce.ooi@intel.com,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: matthew.gerlach@altera.com, peter.colberg@altera.com,
-	"D M, Sharath Kumar" <sharath.kumar.d.m@intel.com>,
-	D@web.codeaurora.org, M@web.codeaurora.org,
-	Matthew Gerlach <matthew.gerlach@linux.intel.com>
-Subject: [PATCH v4 5/5] PCI: altera: Add Agilex support
-Date: Thu, 23 Jan 2025 12:19:32 -0600
-Message-Id: <20250123181932.935870-6-matthew.gerlach@linux.intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250123181932.935870-1-matthew.gerlach@linux.intel.com>
-References: <20250123181932.935870-1-matthew.gerlach@linux.intel.com>
+	s=arc-20240116; t=1737657485; c=relaxed/simple;
+	bh=gS+JsjiQsfaevj5iF7bRRpl7Kht6CAZB5zDPGjdQm4w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uj1zoFCrBr86xA2GrV1hZ18sesE70t3Zzhu8/eq3L1OT8ZaDCFycFjwHFqb9K0KLP1kDQqA2r/qFONaui4FuIQ7jI2Tf8P99fNFmv5wxgPJh9WxyuiG3qm+gjfBMKDYDGYb9S830gJW0+y/u8boGdZD1EFL6mSdQ6PMOa/u8P6M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=CBiEy5d3; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=TBuyCnXa; arc=none smtp.client-ip=103.168.172.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 1DE1311400E4;
+	Thu, 23 Jan 2025 13:38:02 -0500 (EST)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-05.internal (MEProxy); Thu, 23 Jan 2025 13:38:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm2; t=1737657482;
+	 x=1737743882; bh=HUTQU5mANTyBEG4HhBxkrJ4GgQfZfqNMqaiW7sVkm1k=; b=
+	CBiEy5d3UTihLhWnJjuBWRwHpR/Dk2iPz0iSoA+TzGfFPM3r5nmGxARE0uKDHtHX
+	kHVOT9WA0HBGpLspKKdnjXvI0bmT+geVrnoupfN43cjOtD2JfPVw/eCjeYzkku2N
+	ptHWa5wO4Ri5B+HOFIzeoGd4hI2Trd7VPejZ+l291/v3p+8B0h0dcCQPZkKjUkh6
+	6oCWkflXBGCVDbzdIggtLU33QSeVZaByCaw+k1wjUjrYtpUeb2V7D3YDgJHxi4UN
+	QLgigUOo15lyFWO8Q6e1k/Afh67wFct0UWzx04lnQPx01BVCpPhIrI1Fq1QrHfWz
+	2MBy24ZmonrktVjJw0Edlw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1737657482; x=
+	1737743882; bh=HUTQU5mANTyBEG4HhBxkrJ4GgQfZfqNMqaiW7sVkm1k=; b=T
+	BuyCnXaPbJ+ihVzqXJCKkw0pIy0van2BQ8/ZpHb14AAISbQeoI2u4TYVtVPcBSak
+	cZbNEieND78hT+L9XEJQLx0PiPcTAW9stf5oi7kcTcdHQeGOkLXGycryYyFepN0w
+	z07w6j2WQ/UQFDEbM+0e4oiNHai7QalYLif7mbpqQxdbtm1Cn2MrsSBpFe23KiwI
+	Dc/S1mXXg0wwYv3dmFl16jXiDn7XBiDb6ZcvHHtBwyf6yH8QJYjWrDfKL9rves1c
+	nb2SocoR0OG8diTlnkS5KztpPumcvU4cv1BvAL5RpEV779ZmmlzU/yN5UTyxYQD+
+	dRP1Wp2MwZfbOIgtpqFrQ==
+X-ME-Sender: <xms:iYySZ5D0lPHX7aBXvy-IZC6BxTLTUzltVa9aFUtUP2hlojwCvseAXA>
+    <xme:iYySZ3id20xWO_OtTtqVk7qDznq2lKaVjLjF_NFTWZvogCE85pWAiK0kI8pNdQC29
+    Z0xdvXdSoFPr7NnhUc>
+X-ME-Received: <xmr:iYySZ0k0_DorKIWWpHfjtKr19UKf8MXHFDnHSMDbCWZqes2Zz1hPF0hMqDbqfSid-YoD4pKVjWFE-jLseQh6bo8rh937ugH8TQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudejgedgvdegtdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddt
+    jeenucfhrhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsoh
+    guvghrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgr
+    thhtvghrnhepffekgfdukeeghffhjeetvdeitdegteeikeffieduhfegveetjeevtdffvd
+    ekffdtnecuffhomhgrihhnpehkvghrnhgvlhdrohhrghenucevlhhushhtvghrufhiiigv
+    pedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshhouggvrhhluhhnug
+    dorhgvnhgvshgrshesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtthhopeekpdhm
+    ohguvgepshhmthhpohhuthdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrghssehglh
+    hiuggvrhdrsggvpdhrtghpthhtohepmhgrghhnuhhsrdgurghmmhesghhmrghilhdrtgho
+    mhdprhgtphhtthhopehmrghrvghkrdhvrghsuhhtodhrvghnvghsrghssehmrghilhgsoh
+    igrdhorhhgpdhrtghpthhtohephihoshhhihhhihhrohdrshhhihhmohgurgdruhhhsehr
+    vghnvghsrghsrdgtohhmpdhrtghpthhtohepkhhunhhinhhorhhirdhmohhrihhmohhtoh
+    drghigsehrvghnvghsrghsrdgtohhmpdhrtghpthhtoheplhhinhhugidqrhgvnhgvshgr
+    shdqshhotgesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqd
+    grrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphht
+    thhopeguvghvihgtvghtrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:iYySZzxFi3qHyMCkvIsoQ9xo6_gSlxw1FfV6GriyUltz-TdG_vg2gw>
+    <xmx:iYySZ-QmFGXAQJ8l1cgexfCYfX5bS-is-_i7zxZfC9aEpmqNuRrUWw>
+    <xmx:iYySZ2YDnDcnmNwLreDovbAHnUK10nctBztCHv0h-0pCpAuI8F1oyA>
+    <xmx:iYySZ_SnIOF4ZQJRHNIDJmpwV3m24SCPgM0IGFaugdWi40umI7J6kg>
+    <xmx:ioySZxHBNDunnY1VhaXuhYz2XGIGXMqyCsIAOupQcacWbPFKdFyTIoHl>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 23 Jan 2025 13:38:00 -0500 (EST)
+Date: Thu, 23 Jan 2025 19:37:58 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Magnus Damm <magnus.damm@gmail.com>,
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: renesas: r8a779f0: Disable rswitch ports by
+ default
+Message-ID: <20250123183758.GK3436806@ragnatech.se>
+References: <c4688de8e3289ad82c2cd85f0893eac660ac8890.1737649969.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <c4688de8e3289ad82c2cd85f0893eac660ac8890.1737649969.git.geert+renesas@glider.be>
 
-From: "D M, Sharath Kumar" <sharath.kumar.d.m@intel.com>
+Hello Geert,
 
-Add PCIe root port controller support for the Agilex family of chips.
-The Agilex PCIe IP has three variants that are mostly sw compatible,
-except for a couple register offsets. The P-Tile variant supports
-Gen3/Gen4 1x16. The F-Tile variant supports Gen3/Gen4 4x4, 4x8, and 4x16.
-The R-Tile variant improves on the F-Tile variant by adding Gen5 support.
+Thanks for your work.
 
-To simplify the implementation of pci_ops read/write functions,
-ep_{read/write}_cfg() callbacks were added to struct altera_pci_ops
-to easily distinguish between hardware variants.
+On 2025-01-23 17:37:10 +0100, Geert Uytterhoeven wrote:
+> The Renesas Ethernet Switch has three independent ports.  Each port can
+> act as a separate interface, and can be enabled or disabled
+> independently.  Currently all ports are enabled by default, hence board
+> DTS files that enable the switch must disable all unused ports
+> explicitly.
+> 
+> Disable all ports by default, and explicitly enable ports that are used,
+> next to their configuration.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> This is similar to how Ethernet switch ports are handled on RZ/N1D, and
+> CAN-FD channels on R-Car Gen3/4.
+> 
+> If accepted, I'm wondering if I should move it forward, before "[PATCH
+> 3/5] arm64: dts: renesas: s4sk: Access rswitch ports via phandles"[1],
+> which would become slightly simpler.
 
-Signed-off-by: D M, Sharath Kumar <sharath.kumar.d.m@intel.com>
-Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
----
-v4:
- - Add info to commit message.
- - Use {read/write}?_relaxed where appropriate.
- - Use BIT(12) instead of (1 << 12).
- - Clear IRQ before handling it.
- - add interrupt number to unexpected IRQ messge.
+I let you and Marek figure that out, for the content of this patch.
 
-v3:
- - Remove accepted patches from patch set.
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-v2:
- - Match historical style of subject.
- - Remove unrelated changes.
- - Fix indentation.
----
- drivers/pci/controller/pcie-altera.c | 246 ++++++++++++++++++++++++++-
- 1 file changed, 237 insertions(+), 9 deletions(-)
+> 
+> [1] https://lore.kernel.org/all/20250118111344.361617-3-marek.vasut+renesas@mailbox.org
+> ---
+>  arch/arm64/boot/dts/renesas/r8a779f0-spider-ethernet.dtsi | 3 +++
+>  arch/arm64/boot/dts/renesas/r8a779f0.dtsi                 | 3 +++
+>  arch/arm64/boot/dts/renesas/r8a779f4-s4sk.dts             | 6 ++----
+>  3 files changed, 8 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779f0-spider-ethernet.dtsi b/arch/arm64/boot/dts/renesas/r8a779f0-spider-ethernet.dtsi
+> index 892729786d00b36e..ad2b0398d35431a1 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779f0-spider-ethernet.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779f0-spider-ethernet.dtsi
+> @@ -57,6 +57,7 @@ &rswitch_port0 {
+>  	phy-handle = <&u101>;
+>  	phy-mode = "sgmii";
+>  	phys = <&eth_serdes 0>;
+> +	status = "okay";
+>  
+>  	mdio {
+>  		#address-cells = <1>;
+> @@ -75,6 +76,7 @@ &rswitch_port1 {
+>  	phy-handle = <&u201>;
+>  	phy-mode = "sgmii";
+>  	phys = <&eth_serdes 1>;
+> +	status = "okay";
+>  
+>  	mdio {
+>  		#address-cells = <1>;
+> @@ -93,6 +95,7 @@ &rswitch_port2 {
+>  	phy-handle = <&u301>;
+>  	phy-mode = "sgmii";
+>  	phys = <&eth_serdes 2>;
+> +	status = "okay";
+>  
+>  	mdio {
+>  		#address-cells = <1>;
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779f0.dtsi b/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+> index 840ba73c03f1b6f4..06be9f7720d64179 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779f0.dtsi
+> @@ -989,14 +989,17 @@ ethernet-ports {
+>  				rswitch_port0: port@0 {
+>  					reg = <0>;
+>  					phys = <&eth_serdes 0>;
+> +					status = "disabled";
+>  				};
+>  				rswitch_port1: port@1 {
+>  					reg = <1>;
+>  					phys = <&eth_serdes 1>;
+> +					status = "disabled";
+>  				};
+>  				rswitch_port2: port@2 {
+>  					reg = <2>;
+>  					phys = <&eth_serdes 2>;
+> +					status = "disabled";
+>  				};
+>  			};
+>  		};
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779f4-s4sk.dts b/arch/arm64/boot/dts/renesas/r8a779f4-s4sk.dts
+> index 24ecdf6e8476a945..df652e7b85c95ebe 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779f4-s4sk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a779f4-s4sk.dts
+> @@ -187,6 +187,7 @@ &rswitch_port0 {
+>  	phy-handle = <&ic99>;
+>  	phy-mode = "sgmii";
+>  	phys = <&eth_serdes 0>;
+> +	status = "okay";
+>  
+>  	mdio {
+>  		#address-cells = <1>;
+> @@ -205,6 +206,7 @@ &rswitch_port1 {
+>  	phy-handle = <&ic102>;
+>  	phy-mode = "sgmii";
+>  	phys = <&eth_serdes 1>;
+> +	status = "okay";
+>  
+>  	mdio {
+>  		#address-cells = <1>;
+> @@ -218,10 +220,6 @@ ic102: ethernet-phy@2 {
+>  	};
+>  };
+>  
+> -&rswitch_port2 {
+> -	status = "disabled";
+> -};
+> -
+>  &rwdt {
+>  	timeout-sec = <60>;
+>  	status = "okay";
+> -- 
+> 2.43.0
+> 
 
-diff --git a/drivers/pci/controller/pcie-altera.c b/drivers/pci/controller/pcie-altera.c
-index eb55a7f8573a..59cad9a84900 100644
---- a/drivers/pci/controller/pcie-altera.c
-+++ b/drivers/pci/controller/pcie-altera.c
-@@ -77,9 +77,19 @@
- #define S10_TLP_FMTTYPE_CFGWR0		0x45
- #define S10_TLP_FMTTYPE_CFGWR1		0x44
- 
-+#define AGLX_RP_CFG_ADDR(pcie, reg)	(((pcie)->hip_base) + (reg))
-+#define AGLX_RP_SECONDARY(pcie)		\
-+	readb(AGLX_RP_CFG_ADDR(pcie, PCI_SECONDARY_BUS))
-+
-+#define AGLX_BDF_REG			0x00002004
-+#define AGLX_ROOT_PORT_IRQ_STATUS	0x14c
-+#define AGLX_ROOT_PORT_IRQ_ENABLE	0x150
-+#define CFG_AER				BIT(4)
-+
- enum altera_pcie_version {
- 	ALTERA_PCIE_V1 = 0,
- 	ALTERA_PCIE_V2,
-+	ALTERA_PCIE_V3,
- };
- 
- struct altera_pcie {
-@@ -102,6 +112,11 @@ struct altera_pcie_ops {
- 			   int size, u32 *value);
- 	int (*rp_write_cfg)(struct altera_pcie *pcie, u8 busno,
- 			    int where, int size, u32 value);
-+	int (*ep_read_cfg)(struct altera_pcie *pcie, u8 busno,
-+			   unsigned int devfn, int where, int size, u32 *value);
-+	int (*ep_write_cfg)(struct altera_pcie *pcie, u8 busno,
-+			    unsigned int devfn, int where, int size, u32 value);
-+	void (*rp_isr)(struct irq_desc *desc);
- };
- 
- struct altera_pcie_data {
-@@ -112,6 +127,9 @@ struct altera_pcie_data {
- 	u32 cfgrd1;
- 	u32 cfgwr0;
- 	u32 cfgwr1;
-+	u32 port_conf_offset;
-+	u32 port_irq_status_offset;
-+	u32 port_irq_enable_offset;
- };
- 
- struct tlp_rp_regpair_t {
-@@ -131,6 +149,28 @@ static inline u32 cra_readl(struct altera_pcie *pcie, const u32 reg)
- 	return readl_relaxed(pcie->cra_base + reg);
- }
- 
-+static inline void cra_writew(struct altera_pcie *pcie, const u32 value,
-+			      const u32 reg)
-+{
-+	writew_relaxed(value, pcie->cra_base + reg);
-+}
-+
-+static inline u32 cra_readw(struct altera_pcie *pcie, const u32 reg)
-+{
-+	return readw_relaxed(pcie->cra_base + reg);
-+}
-+
-+static inline void cra_writeb(struct altera_pcie *pcie, const u32 value,
-+			      const u32 reg)
-+{
-+	writeb_relaxed(value, pcie->cra_base + reg);
-+}
-+
-+static inline u32 cra_readb(struct altera_pcie *pcie, const u32 reg)
-+{
-+	return readb_relaxed(pcie->cra_base + reg);
-+}
-+
- static bool altera_pcie_link_up(struct altera_pcie *pcie)
- {
- 	return !!((cra_readl(pcie, RP_LTSSM) & RP_LTSSM_MASK) == LTSSM_L0);
-@@ -145,6 +185,15 @@ static bool s10_altera_pcie_link_up(struct altera_pcie *pcie)
- 	return !!(readw(addr) & PCI_EXP_LNKSTA_DLLLA);
- }
- 
-+static bool aglx_altera_pcie_link_up(struct altera_pcie *pcie)
-+{
-+	void __iomem *addr = AGLX_RP_CFG_ADDR(pcie,
-+				   pcie->pcie_data->cap_offset +
-+				   PCI_EXP_LNKSTA);
-+
-+	return !!(readw_relaxed(addr) & PCI_EXP_LNKSTA_DLLLA);
-+}
-+
- /*
-  * Altera PCIe port uses BAR0 of RC's configuration space as the translation
-  * from PCI bus to native BUS.  Entire DDR region is mapped into PCIe space
-@@ -425,6 +474,103 @@ static int s10_rp_write_cfg(struct altera_pcie *pcie, u8 busno,
- 	return PCIBIOS_SUCCESSFUL;
- }
- 
-+static int aglx_rp_read_cfg(struct altera_pcie *pcie, int where,
-+			    int size, u32 *value)
-+{
-+	void __iomem *addr = AGLX_RP_CFG_ADDR(pcie, where);
-+
-+	switch (size) {
-+	case 1:
-+		*value = readb_relaxed(addr);
-+		break;
-+	case 2:
-+		*value = readw_relaxed(addr);
-+		break;
-+	default:
-+		*value = readl_relaxed(addr);
-+		break;
-+	}
-+
-+	/* interrupt pin not programmed in hardware, set to INTA */
-+	if (where == PCI_INTERRUPT_PIN && size == 1 && !(*value))
-+		*value = 0x01;
-+	else if (where == PCI_INTERRUPT_LINE && !(*value & 0xff00))
-+		*value |= 0x0100;
-+
-+	return PCIBIOS_SUCCESSFUL;
-+}
-+
-+static int aglx_rp_write_cfg(struct altera_pcie *pcie, u8 busno,
-+			     int where, int size, u32 value)
-+{
-+	void __iomem *addr = AGLX_RP_CFG_ADDR(pcie, where);
-+
-+	switch (size) {
-+	case 1:
-+		writeb_relaxed(value, addr);
-+		break;
-+	case 2:
-+		writew_relaxed(value, addr);
-+		break;
-+	default:
-+		writel_relaxed(value, addr);
-+		break;
-+	}
-+
-+	/*
-+	 * Monitor changes to PCI_PRIMARY_BUS register on root port
-+	 * and update local copy of root bus number accordingly.
-+	 */
-+	if (busno == pcie->root_bus_nr && where == PCI_PRIMARY_BUS)
-+		pcie->root_bus_nr = value & 0xff;
-+
-+	return PCIBIOS_SUCCESSFUL;
-+}
-+
-+static int aglx_ep_write_cfg(struct altera_pcie *pcie, u8 busno,
-+			     unsigned int devfn, int where, int size, u32 value)
-+{
-+	cra_writel(pcie, ((busno << 8) | devfn), AGLX_BDF_REG);
-+	if (busno > AGLX_RP_SECONDARY(pcie))
-+		where |= BIT(12); /* type 1 */
-+
-+	switch (size) {
-+	case 1:
-+		cra_writeb(pcie, value, where);
-+		break;
-+	case 2:
-+		cra_writew(pcie, value, where);
-+		break;
-+	default:
-+		cra_writel(pcie, value, where);
-+			break;
-+	}
-+
-+	return PCIBIOS_SUCCESSFUL;
-+}
-+
-+static int aglx_ep_read_cfg(struct altera_pcie *pcie, u8 busno,
-+			    unsigned int devfn, int where, int size, u32 *value)
-+{
-+	cra_writel(pcie, ((busno << 8) | devfn), AGLX_BDF_REG);
-+	if (busno > AGLX_RP_SECONDARY(pcie))
-+		where |= BIT(12); /* type 1 */
-+
-+	switch (size) {
-+	case 1:
-+		*value = cra_readb(pcie, where);
-+		break;
-+	case 2:
-+		*value = cra_readw(pcie, where);
-+		break;
-+	default:
-+		*value = cra_readl(pcie, where);
-+		break;
-+	}
-+
-+	return PCIBIOS_SUCCESSFUL;
-+}
-+
- static int _altera_pcie_cfg_read(struct altera_pcie *pcie, u8 busno,
- 				 unsigned int devfn, int where, int size,
- 				 u32 *value)
-@@ -437,6 +583,10 @@ static int _altera_pcie_cfg_read(struct altera_pcie *pcie, u8 busno,
- 		return pcie->pcie_data->ops->rp_read_cfg(pcie, where,
- 							 size, value);
- 
-+	if (pcie->pcie_data->ops->ep_read_cfg)
-+		return pcie->pcie_data->ops->ep_read_cfg(pcie, busno, devfn,
-+							where, size, value);
-+
- 	switch (size) {
- 	case 1:
- 		byte_en = 1 << (where & 3);
-@@ -481,6 +631,10 @@ static int _altera_pcie_cfg_write(struct altera_pcie *pcie, u8 busno,
- 		return pcie->pcie_data->ops->rp_write_cfg(pcie, busno,
- 						     where, size, value);
- 
-+	if (pcie->pcie_data->ops->ep_write_cfg)
-+		return pcie->pcie_data->ops->ep_write_cfg(pcie, busno, devfn,
-+						     where, size, value);
-+
- 	switch (size) {
- 	case 1:
- 		data32 = (value & 0xff) << shift;
-@@ -659,7 +813,30 @@ static void altera_pcie_isr(struct irq_desc *desc)
- 				dev_err_ratelimited(dev, "unexpected IRQ, INT%d\n", bit);
- 		}
- 	}
-+	chained_irq_exit(chip, desc);
-+}
-+
-+static void aglx_isr(struct irq_desc *desc)
-+{
-+	struct irq_chip *chip = irq_desc_get_chip(desc);
-+	struct altera_pcie *pcie;
-+	struct device *dev;
-+	u32 status;
-+	int ret;
-+
-+	chained_irq_enter(chip, desc);
-+	pcie = irq_desc_get_handler_data(desc);
-+	dev = &pcie->pdev->dev;
- 
-+	status = readl(pcie->hip_base + pcie->pcie_data->port_conf_offset +
-+		       pcie->pcie_data->port_irq_status_offset);
-+	if (status & CFG_AER) {
-+		writel(CFG_AER, (pcie->hip_base + pcie->pcie_data->port_conf_offset +
-+				 pcie->pcie_data->port_irq_status_offset));
-+		ret = generic_handle_domain_irq(pcie->irq_domain, 0);
-+		if (ret)
-+			dev_err_ratelimited(dev, "unexpected IRQ %d\n", pcie->irq);
-+	}
- 	chained_irq_exit(chip, desc);
- }
- 
-@@ -694,9 +871,9 @@ static int altera_pcie_parse_dt(struct altera_pcie *pcie)
- 	if (IS_ERR(pcie->cra_base))
- 		return PTR_ERR(pcie->cra_base);
- 
--	if (pcie->pcie_data->version == ALTERA_PCIE_V2) {
--		pcie->hip_base =
--			devm_platform_ioremap_resource_byname(pdev, "Hip");
-+	if (pcie->pcie_data->version == ALTERA_PCIE_V2 ||
-+	    pcie->pcie_data->version == ALTERA_PCIE_V3) {
-+		pcie->hip_base = devm_platform_ioremap_resource_byname(pdev, "Hip");
- 		if (IS_ERR(pcie->hip_base))
- 			return PTR_ERR(pcie->hip_base);
- 	}
-@@ -706,7 +883,7 @@ static int altera_pcie_parse_dt(struct altera_pcie *pcie)
- 	if (pcie->irq < 0)
- 		return pcie->irq;
- 
--	irq_set_chained_handler_and_data(pcie->irq, altera_pcie_isr, pcie);
-+	irq_set_chained_handler_and_data(pcie->irq, pcie->pcie_data->ops->rp_isr, pcie);
- 	return 0;
- }
- 
-@@ -719,6 +896,7 @@ static const struct altera_pcie_ops altera_pcie_ops_1_0 = {
- 	.tlp_read_pkt = tlp_read_packet,
- 	.tlp_write_pkt = tlp_write_packet,
- 	.get_link_status = altera_pcie_link_up,
-+	.rp_isr = altera_pcie_isr,
- };
- 
- static const struct altera_pcie_ops altera_pcie_ops_2_0 = {
-@@ -727,6 +905,16 @@ static const struct altera_pcie_ops altera_pcie_ops_2_0 = {
- 	.get_link_status = s10_altera_pcie_link_up,
- 	.rp_read_cfg = s10_rp_read_cfg,
- 	.rp_write_cfg = s10_rp_write_cfg,
-+	.rp_isr = altera_pcie_isr,
-+};
-+
-+static const struct altera_pcie_ops altera_pcie_ops_3_0 = {
-+	.rp_read_cfg = aglx_rp_read_cfg,
-+	.rp_write_cfg = aglx_rp_write_cfg,
-+	.get_link_status = aglx_altera_pcie_link_up,
-+	.ep_read_cfg = aglx_ep_read_cfg,
-+	.ep_write_cfg = aglx_ep_write_cfg,
-+	.rp_isr = aglx_isr,
- };
- 
- static const struct altera_pcie_data altera_pcie_1_0_data = {
-@@ -749,11 +937,44 @@ static const struct altera_pcie_data altera_pcie_2_0_data = {
- 	.cfgwr1 = S10_TLP_FMTTYPE_CFGWR1,
- };
- 
-+static const struct altera_pcie_data altera_pcie_3_0_f_tile_data = {
-+	.ops = &altera_pcie_ops_3_0,
-+	.version = ALTERA_PCIE_V3,
-+	.cap_offset = 0x70,
-+	.port_conf_offset = 0x14000,
-+	.port_irq_status_offset = AGLX_ROOT_PORT_IRQ_STATUS,
-+	.port_irq_enable_offset = AGLX_ROOT_PORT_IRQ_ENABLE,
-+};
-+
-+static const struct altera_pcie_data altera_pcie_3_0_p_tile_data = {
-+	.ops = &altera_pcie_ops_3_0,
-+	.version = ALTERA_PCIE_V3,
-+	.cap_offset = 0x70,
-+	.port_conf_offset = 0x104000,
-+	.port_irq_status_offset = AGLX_ROOT_PORT_IRQ_STATUS,
-+	.port_irq_enable_offset = AGLX_ROOT_PORT_IRQ_ENABLE,
-+};
-+
-+static const struct altera_pcie_data altera_pcie_3_0_r_tile_data = {
-+	.ops = &altera_pcie_ops_3_0,
-+	.version = ALTERA_PCIE_V3,
-+	.cap_offset = 0x70,
-+	.port_conf_offset = 0x1300,
-+	.port_irq_status_offset = 0x0,
-+	.port_irq_enable_offset = 0x4,
-+};
-+
- static const struct of_device_id altera_pcie_of_match[] = {
- 	{.compatible = "altr,pcie-root-port-1.0",
- 	 .data = &altera_pcie_1_0_data },
- 	{.compatible = "altr,pcie-root-port-2.0",
- 	 .data = &altera_pcie_2_0_data },
-+	{.compatible = "altr,pcie-root-port-3.0-f-tile",
-+	 .data = &altera_pcie_3_0_f_tile_data },
-+	{.compatible = "altr,pcie-root-port-3.0-p-tile",
-+	 .data = &altera_pcie_3_0_p_tile_data },
-+	{.compatible = "altr,pcie-root-port-3.0-r-tile",
-+	 .data = &altera_pcie_3_0_r_tile_data },
- 	{},
- };
- 
-@@ -791,11 +1012,18 @@ static int altera_pcie_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	/* clear all interrupts */
--	cra_writel(pcie, P2A_INT_STS_ALL, P2A_INT_STATUS);
--	/* enable all interrupts */
--	cra_writel(pcie, P2A_INT_ENA_ALL, P2A_INT_ENABLE);
--	altera_pcie_host_init(pcie);
-+	if (pcie->pcie_data->version == ALTERA_PCIE_V1 ||
-+	    pcie->pcie_data->version == ALTERA_PCIE_V2) {
-+		/* clear all interrupts */
-+		cra_writel(pcie, P2A_INT_STS_ALL, P2A_INT_STATUS);
-+		/* enable all interrupts */
-+		cra_writel(pcie, P2A_INT_ENA_ALL, P2A_INT_ENABLE);
-+		altera_pcie_host_init(pcie);
-+	} else if (pcie->pcie_data->version == ALTERA_PCIE_V3) {
-+		writel(CFG_AER,
-+		       pcie->hip_base + pcie->pcie_data->port_conf_offset +
-+		       pcie->pcie_data->port_irq_enable_offset);
-+	}
- 
- 	bridge->sysdata = pcie;
- 	bridge->busnr = pcie->root_bus_nr;
 -- 
-2.34.1
-
+Kind Regards,
+Niklas Söderlund
 
