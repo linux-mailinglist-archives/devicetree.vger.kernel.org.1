@@ -1,179 +1,181 @@
-Return-Path: <devicetree+bounces-140569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63185A1A4C1
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 14:18:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22A68A1A57C
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 15:09:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A340A7A32E9
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 13:18:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C1671886EB7
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 14:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0742520F076;
-	Thu, 23 Jan 2025 13:18:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9708520B7E4;
+	Thu, 23 Jan 2025 14:09:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="jI2Y5Xxu";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="gqUxT90L"
+	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="FUxSx0a3";
+	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="HhTmBpAF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b6-smtp.messagingengine.com (fout-b6-smtp.messagingengine.com [202.12.124.149])
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.164])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8069D20E6EE;
-	Thu, 23 Jan 2025 13:18:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.149
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737638291; cv=none; b=ofxzL7nUEUBWrRm+HVLK4gFbcmQERolvJQtdXMwchOmOz8uy01dzhTiPnDJcOZSYEsyR2NTimA/I6TJVPeOnZcjQ2lUN4Y9vATw61uZqcLPSfcKwc3EEWi+kHG0sw3VfUKAFLGtqmbA0DKa8fKUablp+33NvfpNE7GbNDDxLigs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737638291; c=relaxed/simple;
-	bh=cjEAjAiRLVsTTvub2LJsuZuIZT444uLJ7AxCbIr4/+E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kyh/tr/BbauSrtOoxFwfe2+UHJIy7QiMNJ+MEsJi/fIj1PtxM+cZORU+SbFXMl/xJTFj0HkoHir7JrbUZvwx1by20OBP+Pk6+DCLvU4Lk9qGu7zvZFpQJPyGYVptwSzPvKsOwFK0QYt9QrTdXvAEjRiQiTxWiZthmHaEHAcecIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=jI2Y5Xxu; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=gqUxT90L; arc=none smtp.client-ip=202.12.124.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-08.internal (phl-compute-08.phl.internal [10.202.2.48])
-	by mailfout.stl.internal (Postfix) with ESMTP id 4B0B3114013F;
-	Thu, 23 Jan 2025 08:18:08 -0500 (EST)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-08.internal (MEProxy); Thu, 23 Jan 2025 08:18:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1737638288;
-	 x=1737724688; bh=Uh4goQMXKVWayIS6AI2jPNKTPmhjtRQoTdZkg1sGjgM=; b=
-	jI2Y5XxujmrJMweJL208rrEQMNTfSwj08STxy/16zUvdrXkSgo3gij86BTNhc6o/
-	hegZ11gOYU+VI3rSiyMZYTYIGvoN49EBahkcgKDegJuOvt4ZTc/cL9D/qFc1Lrbr
-	INJUXeJ3ljP644thrQgAyOdu18kGMjguEN+HPzXMNWS+HCzgvGLrrnkKU3HpMhQQ
-	qf8SKO5zqOf455he6RcOSj+GWLSw1YlZI9LAj+AoVcn+5sX/NqoPyqdS/fQAvGLq
-	Rg6jYk6T7EjgCEJRn+TyzjH1Y74sZuaISE3PPyQmifJdtEMBDSiycm3+GDVGWOKM
-	WY90fRVBIGO7YVBeNu6x9A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1737638288; x=
-	1737724688; bh=Uh4goQMXKVWayIS6AI2jPNKTPmhjtRQoTdZkg1sGjgM=; b=g
-	qUxT90L9pYiqqIIe2iPlIFVbYQCSA5rNnDZSeFQPAxiE5lvTGbMCdWU/L4FrLIf7
-	D1aBMhPoThPqrM7OsyjUZWQRq3XGRP0CKCZhCxfstuc83xIwmpiwvEUY3rJo/6c3
-	ESIJgRU0q/ylD/Tx59skfI/7bWy7NOCxX6yWm17kMwgUjA14PKP+Lc2F1UW35pNu
-	lr8gAg4lzGfpKH1gVx0LcF3aHFaj8BpJWLwmF/t287n7xYsWhLho/WSzWRYJyL4t
-	W8h165y4+UBlkTHSrYv9Y860d25kROckhOfs3DtCcPSDanRs9h/lFQ85RXzcc315
-	EILA6p7YvEeVpZGl1WQJA==
-X-ME-Sender: <xms:j0GSZ-wGeLzee8z4YKBjF-7OKaKUosURApuBPN8l1uH00xMZWUM8Sw>
-    <xme:j0GSZ6QW2Wagu161qJ6kdMnYALmPyOVPW4pUm2dDeRQqm-B_hOU73bydTu_0WcKis
-    KtUkUuAWxz8qrP7xTQ>
-X-ME-Received: <xmr:j0GSZwVUVuNp4w4w5laOnnJVhNCUm577xd_LDC6wB18XT_1rLPpPEhpaAj2XkjXR1xofzFOt5FKcegYO_wfnq-Am48vOcXD0-g>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudejgedgudejiecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddt
-    jeenucfhrhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsoh
-    guvghrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgr
-    thhtvghrnhepfefhleelhfffjefgfedugfegjeelhfevheeikefhueelgfdtfeeuhefftd
-    dvleeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhep
-    nhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrd
-    hsvgdpnhgspghrtghpthhtohepjedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohep
-    mhgrrhgvgiesuggvnhigrdguvgdprhgtphhtthhopehgvggvrhhtsehlihhnuhigqdhmie
-    ekkhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthht
-    ohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoug
-    htsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdhrvghnvghsrghsqdhs
-    ohgtsehvghgvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvg
-    gvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:j0GSZ0iwvWp6SpmuFpml3xnscU4UBor2233QlT_1ONoKaj6bbvkDFA>
-    <xmx:j0GSZwCDyA1Sup-2f9rOhOEwTSk2Flx7yh7sjHVtNByRoHgbGBZTLg>
-    <xmx:j0GSZ1Jj-Eh-RqBAAjlt1yNku_PjczTOOfDrlXh6UmnfE38zTBRfjQ>
-    <xmx:j0GSZ3CHM1ltUJeIKrer4O1VTBGDfAQU88hED_LWFRMU1QNZOwlX8A>
-    <xmx:kEGSZ-CRBYSJPWZWhz9rT6LaualE09gV8MCN4wW0g-Tg1nJqhaHJFbR2>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 23 Jan 2025 08:18:07 -0500 (EST)
-Date: Thu, 23 Jan 2025 14:18:05 +0100
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Marek Vasut <marex@denx.de>, Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: renesas: white-hawk-cpu: Move avb0 reset
- gpio to mdio node
-Message-ID: <20250123131805.GJ3436806@ragnatech.se>
-References: <20241015144810.GD2838422@ragnatech.se>
- <825e3b22-340c-4618-8d80-5d1b004fc0e4@denx.de>
- <CAMuHMdV9XoJHHUM42YFwackdM+oRgP4k-SwZOTwqg0RJGETViw@mail.gmail.com>
- <d6b35a1b-3f42-4071-99c1-dc87999c5cce@denx.de>
- <CAMuHMdXW332YZahLw=vzfB6fZwc_9jL8uY-Uxj=Qyfov5vYQFw@mail.gmail.com>
- <2f9df6fa-2474-4f35-af29-a1c280d5fe6f@denx.de>
- <CAMuHMdUH32upHwwY7dXqk085LDWzkOz9cBv83FezVUbi27Ygpw@mail.gmail.com>
- <4d7d6a7d-cbe8-4cbf-9fb1-2cdec0f11ce2@denx.de>
- <CAMuHMdVnJPMLx=39=f+7S4vdRAC-0q0hKS6Ww=ELYEaLBx+gZw@mail.gmail.com>
- <021aee32-795a-42c8-80e7-89cb8a45f935@denx.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D891420E70A;
+	Thu, 23 Jan 2025 14:09:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.164
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737641358; cv=pass; b=SXdj49okDcUCT5sAmxtq3BCVIaRsmjhJwv6BP2X0qbYN5Sg3e8hUlgF8meF6OdSVFxUMAQ6irIIE4qSw60bHxPKcpv3N0gRQmhJ6lu9TIdvvpA94VgVEUjxLv33gS8rHn+NeCn037AjxCosbqprGoZ8/+EfCeX2bBZ1Cr2vFJL4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737641358; c=relaxed/simple;
+	bh=x1fFa1mX2cpGFUcYfFvQouJy3tWe308T65J/rUwMYYk=;
+	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
+	 Message-Id:References:To; b=J5woN4cyM6FHRUN0U7OktRlg2rpI8yuHhOzg9jQd51nyJykKiIhiLiBoA2EvG2tzm7ysbF0KKH/u+F7FWIEEuSw1Nqh7hNXxFcqhVoOnpgb2dxpHu/Zj5/b/O74YtopnKJMvuLIV93pM1xe3fhdxTMXVi0aE7R5j90czXyw0gRk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=FUxSx0a3; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=HhTmBpAF; arc=pass smtp.client-ip=81.169.146.164
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
+ARC-Seal: i=1; a=rsa-sha256; t=1737641165; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=pezeV67NOa+Ck54l4xdGEkvA+MHAlJVPr3imSuDz8T/3Qiio26PCszv8kp30eLejQf
+    5sNr26qOZMb3KZ3nJacN4H3ybOebEyd94/X5tjczpKUJZ5dVBYMBrlKfpBQ/vobQHpZN
+    NxNQ3+qAgpR37d8/ZsalWr0XBtus/syQeT5UdTUYJ2EK2Li/cdhFLMSFgLm1r2PjGpjw
+    JcF5wCxYylDMLGpV9TDoGs0K2KLB2Hvg5SBfTGczA2+1ynaamTWIRUQ3AtKRqvcMt8Z6
+    oaegj0XBcso/G4NGEpxwJFD66W8BEOAKBcYVFSowlW2Ek2ls/r/yL+L527JhA/0w6ppF
+    ca4Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1737641165;
+    s=strato-dkim-0002; d=strato.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=qOd/wQclXu4wS6VTQ3uZHgoG3iZXR/9baSy6qU4XdB0=;
+    b=QA+pUGvdHmMAXj8O6DpShJ2E5fuaYAAt3yg4LGfFKHabLCDhXnE1Tl/LnavudffB62
+    NjEVeAK4MCMr2KKqJzsFxynDLbFAlw3DXBrXjBOXZEF//lE8TygyDg7VOvKbbPzGqp4f
+    RQp8eLSjbNZpxD2QDHvWe0Z6D0wA2fgsRj4SKpzR0OCYGlGnmT6bFnEPIICEV7K6JGcq
+    OocepOZwCEWgkvdep87ife1c4xONig6Hv58q/LyMTByevQLaI0wI6tvd0GQxRKgU94aW
+    S8M6xxMneL2NkvyTvjM1XY+U7jLGPfAQhYsyrwmeEa/Grgfa02oRYDoqe83+zxJkSuLg
+    H9oA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1737641165;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=qOd/wQclXu4wS6VTQ3uZHgoG3iZXR/9baSy6qU4XdB0=;
+    b=FUxSx0a3fR8UcEMZ8MIpTqTmZxDIUsz9ihtWkb3TXrF/D+koYIdl2pdRltxA4eVogC
+    aG2sI3q1ULsomrRZ16U7zuYbzh0jeGnk0tieWJmMAHE7JSmX5L0B9i/fzdkT2cxBFvzF
+    XPtWHtJXeSztAklfxWnmKk4PvOmVY3NiTu0rmJ6qo9yhz39ik3Mci9zs4jQhhm7hyKY0
+    JA4rjHNLvnkOzuQZp66umHXrrN4L7txDIfL9JJn3++UrVx4aUdMZrMmWZ4OpEsDEiJkY
+    1hmqLcuNGIT02tkiKRFHLdQ16UQd14uonSAUHaYNRA7+NkG/cjEruHMptrEVqyW7o6sE
+    Fwcw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1737641165;
+    s=strato-dkim-0003; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=qOd/wQclXu4wS6VTQ3uZHgoG3iZXR/9baSy6qU4XdB0=;
+    b=HhTmBpAFmaZglcpbu8bA+TdnnwzTbi+y7OU/VLuGu/TnI2MjUHHmjKxkCZFWNYVyQi
+    S1DZsGz6e2AxkuL446AA==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yeToZ"
+Received: from smtpclient.apple
+    by smtp.strato.de (RZmta 51.2.21 DYNA|AUTH)
+    with ESMTPSA id Qeb5b110NE649yj
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+	(Client did not present a certificate);
+    Thu, 23 Jan 2025 15:06:04 +0100 (CET)
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <021aee32-795a-42c8-80e7-89cb8a45f935@denx.de>
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3776.700.51.11.1\))
+Subject: Re: [PATCH v2] Revert v6.2-rc1 and later "ARM: dts: bcm2835-rpi: Use
+ firmware clocks for display"
+From: "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <5221f64e-fda4-4daa-add7-1d0b26765113@broadcom.com>
+Date: Thu, 23 Jan 2025 15:05:53 +0100
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ devicetree <devicetree@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ stable <stable@vger.kernel.org>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+ linux-rpi-kernel@lists.infradead.org,
+ arm-soc <linux-arm-kernel@lists.infradead.org>,
+ Discussions about the Letux Kernel <letux-kernel@openphoenux.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <D6C59720-57A3-4EE0-A78C-F259F8906C0D@goldelico.com>
+References: <cb9e10dfb4f50207e33ddac16794ee6b806744da.1737217627.git.hns@goldelico.com>
+ <808a325f-81bc-4f5d-8c07-fa255ef2d25a@gmx.net>
+ <8F33BB1D-2210-421B-A788-8484C23DF4C6@goldelico.com>
+ <5221f64e-fda4-4daa-add7-1d0b26765113@broadcom.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>,
+ Stefan Wahren <wahrenst@gmx.net>
+X-Mailer: Apple Mail (2.3776.700.51.11.1)
 
-Hello Geert, Marek,
+Hi,
 
-On 2024-10-30 15:45:30 +0100, Marek Vasut wrote:
-> On 10/29/24 9:26 AM, Geert Uytterhoeven wrote:
-> 
-> [...]
-> 
-> > > > > > > revision, we can revisit this discussion ? Maybe bootloader-applied DTOs
-> > > > > > > could work then ?
-> > > > > > 
-> > > > > > So, what would you suggest when the PHY nodes would not have compatible
-> > > > > > strings?
-> > > > > I hope I already answered that question before.
-> > > > 
-> > > > Sorry, I may have missed that?
-> > > > 
-> > > > I really prefer not having the PHY compatible strings, as DT should
-> > > > describe only what cannot be auto-detected.
-> > > See paragraph above (*). My take on this is the exact opposite, better
-> > > describe the PHY in DT fully, including compatible strings, so that if
-> > > the PHY driver needs to do some sort of bring up tweak/fix/errata
-> > > workaround/... , it can do so by matching on the compatible string
-> > > without trying to bring the PHY up in some generic and potentially
-> > > problematic way.
-> > > 
-> > > The MDIO bus is not discoverable the same way as PCIe or USB is, so I
-> > > don't think the "DT should describe only what cannot be detected" is
-> > > really applicable to MDIO bus the same way it applies to PCIe or USB.
-> > 
-> > So you think this is similar to SPI NOR, where most FLASHes can be
-> > discovered with the JEDEC READ ID opcode?
-> 
-> Possibly, if you take broken-flash-reset DT property into account somehow.
-> Even SPI NOR does require a proper reset after all, else the READ ID opcode
-> may not work.
-> 
-> > See commit 4b0cb4e7ab2f777c
-> > ("dt-bindings: mtd: spi-nor: clarify the need for spi-nor compatibles"),
-> > which clarified why no new compatible values are accepted.
-> This works as long as your SPI NOR reset works.
+> Am 20.01.2025 um 17:34 schrieb Florian Fainelli =
+<florian.fainelli@broadcom.com>:
+>=20
+>=20
+>=20
+> On 1/19/2025 7:04 AM, 'H. Nikolaus Schaller' via =
+BCM-KERNEL-FEEDBACK-LIST,PDL wrote:
+>> Hi Stefan,
+>>> Am 19.01.2025 um 01:36 schrieb Stefan Wahren <wahrenst@gmx.net>:
+>>>=20
+>>> Hi,
+>>>=20
+>>> Am 18.01.25 um 17:27 schrieb H. Nikolaus Schaller:
+>>>> This reverts commit 27ab05e1b7e5c5ec9b4f658e1b2464c0908298a6.
+>>>>=20
+>>>> I tried to upgrade a RasPi 3B+ with Waveshare 7inch HDMI LCD
+>>>> from 6.1.y to 6.6.y but found that the display is broken with
+>>>> this log message:
+>>>>=20
+>>>> [   17.776315] vc4-drm soc:gpu: bound 3f400000.hvs (ops =
+vc4_drm_unregister [vc4])
+>>>> [   17.784034] platform 3f806000.vec: deferred probe pending
+>>>>=20
+>>>> Some tests revealed that while 6.1.y works, 6.2-rc1 is already =
+broken but all
+>>>> newer kernels as well. And a bisect did lead me to this patch.
+>>> I successfully tested every Kernel release until Linux 6.13-rc with =
+the
+>>> Raspberry Pi 3B+, so i prefer to step back and analyze this issue =
+further.
+>> Yes, I would be happy with any solution.
+>>> What kernel config do you use ?
+>> a private one which enables application specific drivers.
+>>> What is the value of CONFIG_CLK_RASPBERRYPI ?
+>> CONFIG_CLK_RASPBERRYPI is not set
+>> I checked where this is defined and it is in bcm2835_defconfig and
+>> multi_v7_defconfig by
+>> 4c6f5d4038af2c ("ARM: defconfig: enable cpufreq driver for RPi")
+>> which hides this requirement quite well and got therefore =
+unnoticed...
+>> Setting CONFIG_CLK_RASPBERRYPI=3Dy makes HDMI work without my =
+proposed revert.
+>> Tested with v6.2.16, v6.6.72, v6.12.10 and v6.13-rc7.
+>=20
+> I have been burned before by something similar and came up with this =
+patch series that I should resubmit after addressing Conor's comment:
+>=20
+> =
+https://lore.kernel.org/all/20240513235234.1474619-1-florian.fainelli@broa=
+dcom.com/
+>=20
+> Essentially, it removes the guess work, all you have to do is enable =
+CONFIG_ARCH_BCM2835 and it just works, which is how it should be IMHO.
 
-Seems we can't find a way forward with this. The core argument as I 
-understand it more about if we shall use device specific compatibles, or 
-probe the MDIO bus when possible.
+Sounds like a good idea!
 
-As that issue would require more changes then the one done here. This 
-patch was more to align all nodes to behave the same and not adding any 
-new feature or fixing a bug. I will drop this patch from my backlog. I 
-did find the discussion informative and I learnt a bit, thanks for 
-taking time for that!
+Supported-by: H. Nikolaus Schaller <hns@goldelico.com>
 
-If the larger question ever is settled I'm happy to pick this up at that 
-point.
+BR,
+Nikoalus
 
--- 
-Kind Regards,
-Niklas Söderlund
 
