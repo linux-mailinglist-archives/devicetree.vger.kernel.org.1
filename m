@@ -1,119 +1,113 @@
-Return-Path: <devicetree+bounces-140476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B22AA19F81
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 09:01:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B538A19F7A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 08:58:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 148F83AF72B
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 08:01:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31FAB1881B2F
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 07:58:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEC3320B816;
-	Thu, 23 Jan 2025 08:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DD58201100;
+	Thu, 23 Jan 2025 07:58:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="Hyh5BE2h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RqiibJS2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.3])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E268B26AF5;
-	Thu, 23 Jan 2025 08:01:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.3
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B9431C5D5F;
+	Thu, 23 Jan 2025 07:58:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737619270; cv=none; b=P+5sBwWLfnXEPjWQAj6xME6Yt3SvSLfifquDp9ACV65+sPbp2HqfL2mCCgiEo5tDqfPYRpA2qA3cmTd4MuS4gV5gFig7vENKrRt77KaMOrthw2SOiuWruqBfMSc5AFB8a2IjRLxoiR6sF498L69PM8GMAf9hEwVriBPjAJBQp7U=
+	t=1737619113; cv=none; b=QeqFQ99DQiJ7f87Os+H5T40uc7nypZeqLo3s4XaoFLdEMbajKUZsZRaM50u/fBUKUOpk0mZZydfJ29WVYxq9mi9ylsN46wKRhb2ICGyaAOA02/kLWUWm53eSKa8VQXpsLrAg0Fh8c/3BSaiP76P4xPHJrrlHjLBXzuI3FzqRrXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737619270; c=relaxed/simple;
-	bh=lcYsCEpfujjplOGh05dnr/FrVbV2xk3xJMHLdrG3Twg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uRs8tG3m4QvmmpVKIV5PU3Lvh3aqKKRKA6RN2ixZKNP3GyMwAHTO0DInDgV1hTVyxYbuY26WQ5MKxfg5mp7YdLKe+YKWP8hqd/04VfXiQdeeHF5k49kSGwLG+TdWve+hhxnD0djQ1eAyMVqiq5Y+qCPbQcu9R+UFMGXLxVuvx10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=Hyh5BE2h; arc=none smtp.client-ip=220.197.31.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=ZKG0i
-	gir4mFWmow2yjuKALw3vtyBOvdnOo2QP0afV7o=; b=Hyh5BE2hrz218+o3gTPkP
-	7wlO9fHOMJxMRqkHZohtXlWOtiDlp54a+bvh6axNdynU25ErThrz1Ve6BnkmrC7o
-	7n0iOlDfaz6BO31G8oqdECuQd2QCAbem9RhI6U93D9K8iD7U9g2szxiPcGLKTWg+
-	769Mw28l55W8+/nyEcLLm0=
-Received: from silergy-System-Product-Name.silergy.inc (unknown [])
-	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wD3P42Z9pFn_f9yHg--.56291S4;
-	Thu, 23 Jan 2025 15:58:18 +0800 (CST)
-From: Wenliang Yan <wenliang202407@163.com>
-To: linux@roeck-us.net
-Cc: conor+dt@kernel.org,
-	corbet@lwn.net,
-	devicetree@vger.kernel.org,
-	jdelvare@suse.com,
-	krzk+dt@kernel.org,
-	krzk@kernel.org,
-	linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	wenliang202407@163.com
-Subject: Re: [PATCH v3 1/2] dt-bindings:Add SQ52206 to ina2xx devicetree bindings
-Date: Thu, 23 Jan 2025 15:58:02 +0800
-Message-ID: <20250123075802.1105859-1-wenliang202407@163.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <0eda52b5-59c2-4ad2-bb2c-5846dbfbf3e9@roeck-us.net>
-References: <0eda52b5-59c2-4ad2-bb2c-5846dbfbf3e9@roeck-us.net>
+	s=arc-20240116; t=1737619113; c=relaxed/simple;
+	bh=vRVpTTzm2HBffJ77o4hXyb5EpuW+31OmOBfJ3t9pLnk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fHXATZFRc0XumbbQgnbjenog2gD7GYcHGxuMe5YTbed2YEAYZh9IJBC+WzaoSJQOwejZgJAN7e7dbBCOXZMVmyE+rQfmwogRN8WlnEKk2myjpnHux4DoUpT8idbId4Vqw/4Kik9036N+Th3DIqnkssFb8T452QGJc1GErjOdVJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RqiibJS2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AA38C4CEE0;
+	Thu, 23 Jan 2025 07:58:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737619112;
+	bh=vRVpTTzm2HBffJ77o4hXyb5EpuW+31OmOBfJ3t9pLnk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RqiibJS2JWQVpGfikZv1qrYNfL0ZaDHd3xqQQ8tmRGnXLa91v8g5PcmmP2cnfDzky
+	 704SMxZSGBgCfLpbqkJSmK9Fp+/XN+UrnZUa08ngFIh15plxOMvPh35CsfqsTdA/fh
+	 K26OuDipKw6eoVJCl2fZOwowsohfhUsgsyjNi3vFEfbSDAHgxDGskiZpR+qArUZTWa
+	 SmRUBMFdetFYzsMNQdz6obF3JFh1UT55mKBFQ4jhGv0/7JW70yq9qp8Mp40cvS1ivJ
+	 kGQ9xvLEjtCgZJA6MrPHvIs0RoeAlOvDMRdj33tqvLmp5xNC4RRMrpAeOIMK5n70H9
+	 gCCNtDEx+TWYQ==
+Date: Thu, 23 Jan 2025 08:58:29 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
+	manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
+	p.zabel@pengutronix.de, dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v7 5/7] dt-bindings: PCI: qcom: Document the IPQ5332 PCIe
+ controller
+Message-ID: <20250123-red-unicorn-of-piety-3c7de5@krzk-bin>
+References: <20250122063411.3503097-1-quic_varada@quicinc.com>
+ <20250122063411.3503097-6-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wD3P42Z9pFn_f9yHg--.56291S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7WrWxWw45JF4DCF15uryUJrb_yoW8AFyUpa
-	4fKF1FkFWUJryayws2vr10v3Wjq3s5tFyrXrn8WryruFn0gw1SqFWY9ws09w1kXwsagrWa
-	qa1jqas3Aa1DZa7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0JUL0ePUUUUU=
-X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/1tbiNQnd02eRqvTzgQABsp
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250122063411.3503097-6-quic_varada@quicinc.com>
 
-At 2025-01-23 11:30:59, "Guenter Roeck" <linux@roeck-us.net> wrote:
->On 1/22/25 17:36, Wenliang Yan wrote:
->> At 2025-01-22 15:59:02, "Krzysztof Kozlowski" <krzk@kernel.org> wrote:
->>> On Wed, Jan 22, 2025 at 09:29:39AM +0800, Wenliang Yan wrote:
->>>> Add the sq52206 compatible to the ina2xx.yaml
->>>>
->>>> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
->>>> ---
->>>>
->>>> Add the meaning of 'shunt-gain' in SQ52206.
->>>
->>> You already sent v3... and you got comment from me. You ignored both
->>> Conor and me, so me doing third time the same and expecting different
->>> results would be definition of insanity.
->>>
->>> Please read carefully submitting patches before posting new version.
->>>
->>> Best regards,
->>> Krzysztof
->> 
->> Sorry, I have received your comment and 'acked'. I was originally
->> planning to resend [PATCH v3 2/2], because I have not received a
->> response from Guenter Roeck<linux@roeck-us.net>. However, I forgot to
->> add 'RESEND' in the title. Thank you for your patient reply.
->> I apologize again.
->> 
->
->A resend after just four days, plus dropping all Acks ? Are you serious ?
->
->Please keep in mind that not all of us are getting paid for doing this.
->If I am otherwise busy, it will take longer. Sometimes it will take
->much longer. If you resend a patches, they will end up at the tail
->of my review queue. If you drop Acks, expect me to dig it all up,
->and figure out on my own what if anything changed, the patches will
->end up even further down, as in "I'll look into this series if I have
->nothing else left to review".
->
->Guenter
+On Wed, Jan 22, 2025 at 12:04:09PM +0530, Varadarajan Narayanan wrote:
+> Document the PCIe controller on IPQ5332 platform. IPQ5332 will
+> use IPQ9574 as the fall back compatible.
+> 
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+> v7: Moved ipq9574 related changes to a separate patch
+>     Add 'global' interrupt
+> 
+> v6: Commit message update only. Add info regarding the moving of
+>     ipq9574 from 5 "reg" definition to 5 or 6 reg definition.
+> 
+> v5: Re-arrange 5332 and 9574 compatibles to handle fallback usage in dts
+> 
+> v4: * v3 reused ipq9574 bindings for ipq5332. Instead add one for ipq5332
+>     * DTS uses ipq9574 compatible as fallback. Hence move ipq9574 to be able
+>       to use the 'reg' section for both ipq5332 and ipq9574. Else, dtbs_check
+>       and dt_binding_check flag errors.
+> ---
+>  .../devicetree/bindings/pci/qcom,pcie.yaml          | 13 +++++++++++--
+>  1 file changed, 11 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> index 413c6b76c26c..ead97286fd41 100644
+> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
+> @@ -34,6 +34,10 @@ properties:
+>        - items:
+>            - const: qcom,pcie-msm8998
+>            - const: qcom,pcie-msm8996
+> +      - items:
+> +          - enum:
+> +              - qcom,pcie-ipq5332
+> +          - const: qcom,pcie-ipq9574
 
-Sorry for the inconvenience caused by my actions. I am just concerned that
-you did not receive the email, and I will continue to wait for your review
-and correction.
+Repeated many times on reviews to qcom: don't add to the end of the
+lists. In case of multiple items, these are ordered by fallback, so this
+goes next to other ipq entry... wait, that's already qcom,pcie-ipq9574,
+so why are you duplicating?
+
+On what tree are you working?
 
 Best regards,
-Wenliang Yan
+Krzysztof
 
 
