@@ -1,181 +1,135 @@
-Return-Path: <devicetree+bounces-140570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A68A1A57C
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 15:09:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EE3BA1A588
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 15:13:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C1671886EB7
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 14:09:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 796301884886
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 14:13:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9708520B7E4;
-	Thu, 23 Jan 2025 14:09:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F1920F98A;
+	Thu, 23 Jan 2025 14:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="FUxSx0a3";
-	dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b="HhTmBpAF"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="PCE/eU1c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.164])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D891420E70A;
-	Thu, 23 Jan 2025 14:09:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.164
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737641358; cv=pass; b=SXdj49okDcUCT5sAmxtq3BCVIaRsmjhJwv6BP2X0qbYN5Sg3e8hUlgF8meF6OdSVFxUMAQ6irIIE4qSw60bHxPKcpv3N0gRQmhJ6lu9TIdvvpA94VgVEUjxLv33gS8rHn+NeCn037AjxCosbqprGoZ8/+EfCeX2bBZ1Cr2vFJL4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737641358; c=relaxed/simple;
-	bh=x1fFa1mX2cpGFUcYfFvQouJy3tWe308T65J/rUwMYYk=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=J5woN4cyM6FHRUN0U7OktRlg2rpI8yuHhOzg9jQd51nyJykKiIhiLiBoA2EvG2tzm7ysbF0KKH/u+F7FWIEEuSw1Nqh7hNXxFcqhVoOnpgb2dxpHu/Zj5/b/O74YtopnKJMvuLIV93pM1xe3fhdxTMXVi0aE7R5j90czXyw0gRk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com; spf=pass smtp.mailfrom=goldelico.com; dkim=pass (2048-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=FUxSx0a3; dkim=permerror (0-bit key) header.d=goldelico.com header.i=@goldelico.com header.b=HhTmBpAF; arc=pass smtp.client-ip=81.169.146.164
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=goldelico.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=goldelico.com
-ARC-Seal: i=1; a=rsa-sha256; t=1737641165; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=pezeV67NOa+Ck54l4xdGEkvA+MHAlJVPr3imSuDz8T/3Qiio26PCszv8kp30eLejQf
-    5sNr26qOZMb3KZ3nJacN4H3ybOebEyd94/X5tjczpKUJZ5dVBYMBrlKfpBQ/vobQHpZN
-    NxNQ3+qAgpR37d8/ZsalWr0XBtus/syQeT5UdTUYJ2EK2Li/cdhFLMSFgLm1r2PjGpjw
-    JcF5wCxYylDMLGpV9TDoGs0K2KLB2Hvg5SBfTGczA2+1ynaamTWIRUQ3AtKRqvcMt8Z6
-    oaegj0XBcso/G4NGEpxwJFD66W8BEOAKBcYVFSowlW2Ek2ls/r/yL+L527JhA/0w6ppF
-    ca4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1737641165;
-    s=strato-dkim-0002; d=strato.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=qOd/wQclXu4wS6VTQ3uZHgoG3iZXR/9baSy6qU4XdB0=;
-    b=QA+pUGvdHmMAXj8O6DpShJ2E5fuaYAAt3yg4LGfFKHabLCDhXnE1Tl/LnavudffB62
-    NjEVeAK4MCMr2KKqJzsFxynDLbFAlw3DXBrXjBOXZEF//lE8TygyDg7VOvKbbPzGqp4f
-    RQp8eLSjbNZpxD2QDHvWe0Z6D0wA2fgsRj4SKpzR0OCYGlGnmT6bFnEPIICEV7K6JGcq
-    OocepOZwCEWgkvdep87ife1c4xONig6Hv58q/LyMTByevQLaI0wI6tvd0GQxRKgU94aW
-    S8M6xxMneL2NkvyTvjM1XY+U7jLGPfAQhYsyrwmeEa/Grgfa02oRYDoqe83+zxJkSuLg
-    H9oA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1737641165;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=qOd/wQclXu4wS6VTQ3uZHgoG3iZXR/9baSy6qU4XdB0=;
-    b=FUxSx0a3fR8UcEMZ8MIpTqTmZxDIUsz9ihtWkb3TXrF/D+koYIdl2pdRltxA4eVogC
-    aG2sI3q1ULsomrRZ16U7zuYbzh0jeGnk0tieWJmMAHE7JSmX5L0B9i/fzdkT2cxBFvzF
-    XPtWHtJXeSztAklfxWnmKk4PvOmVY3NiTu0rmJ6qo9yhz39ik3Mci9zs4jQhhm7hyKY0
-    JA4rjHNLvnkOzuQZp66umHXrrN4L7txDIfL9JJn3++UrVx4aUdMZrMmWZ4OpEsDEiJkY
-    1hmqLcuNGIT02tkiKRFHLdQ16UQd14uonSAUHaYNRA7+NkG/cjEruHMptrEVqyW7o6sE
-    Fwcw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1737641165;
-    s=strato-dkim-0003; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=qOd/wQclXu4wS6VTQ3uZHgoG3iZXR/9baSy6qU4XdB0=;
-    b=HhTmBpAFmaZglcpbu8bA+TdnnwzTbi+y7OU/VLuGu/TnI2MjUHHmjKxkCZFWNYVyQi
-    S1DZsGz6e2AxkuL446AA==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0lFzL1yeToZ"
-Received: from smtpclient.apple
-    by smtp.strato.de (RZmta 51.2.21 DYNA|AUTH)
-    with ESMTPSA id Qeb5b110NE649yj
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-	(Client did not present a certificate);
-    Thu, 23 Jan 2025 15:06:04 +0100 (CET)
-Content-Type: text/plain;
-	charset=us-ascii
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 993EC38F83;
+	Thu, 23 Jan 2025 14:13:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737641602; cv=none; b=eBHVaTNawLg1iubjkxrCl++Pt5MLX40wFYoIwOkLAXUxyTVbazLYO8b6gxtiRypbLPebg3rwMpuyOzZOzL0r46/qso2GXYTek9Bb6U5+AIv5bhBuKGMTaGZgqLrZOamtHt+UxUmKvA76NxXH3YnEcyNvmx96HoWAtRcJ5CpTrzE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737641602; c=relaxed/simple;
+	bh=q8LmTJKOJQezaPFS6He6lElBi8erZyqZVVDeVrmDsyo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ce/EghGT+OoUGs7cT88BvhvrX0Ky4hYZHvvO9vTz5rZdn28UtJRc4GgnMkza4FPw0b9DS0jLCR0P5uoMAmOa7jq/0sjU8zgtK18ANVsvGht+e7V3i5YCwBVPJ2BxXi3WeV4naKJNxqsbt6XdPjInIQoPFPuJq1Cq788d1n8nRO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=PCE/eU1c; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=p45VRGSOINDkIe67fS7iMHwxgFxopSCi/AOBqXhbGmY=; b=PCE/eU1cR5E4izlRpAsI4T/9kB
+	wMjBLLP7jpiRt5hRywPqLzFOP9znGs/41NBm8LY51kAtFu1U486ybynDSB+4bowYWKeroh/3Afxkr
+	K8Bl7ANBbmj7RGQLiNgvCvqZbzgrDS/zfngZqNgpM6RCLJjSse87rIfBn52s5IZNUVox3/pNMwe5I
+	Ql6wQhMndduKU4g9Xx85tx0if7cyxvZB0KgMQkIyhcTJ5yYtKACoVk7JhEk8eefjxrNgfvJRcOTGV
+	8jGTwKL9UGV69qWAx8jEoYYGw5ULQB6gOpS62MZ8CKdtzQjwiPYO3OD2O46YAcuWUkiInIpSZzxYU
+	Bewwg5HA==;
+Received: from i53875b5c.versanet.de ([83.135.91.92] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1taxx8-0007CK-B4; Thu, 23 Jan 2025 15:13:02 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Quentin Schulz <quentin.schulz@cherry.de>,
+ Niklas Cassel <cassel@kernel.org>
+Cc: Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jagan Teki <jagan@edgeble.ai>,
+ Michael Riesch <michael.riesch@wolfvision.net>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v2 0/3] arm64: dts: rockchip: minimal support for Pre-ICT tester
+ adapter for RK3588 Jaguar + add overlay tests
+Date: Thu, 23 Jan 2025 15:13:01 +0100
+Message-ID: <3324197.aV6nBDHxoP@diego>
+In-Reply-To: <Z5EY6uMmDCgfOzGO@ryzen>
+References:
+ <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
+ <6dd64754-fe72-4288-9724-b3cdaf193b3b@cherry.de> <Z5EY6uMmDCgfOzGO@ryzen>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3776.700.51.11.1\))
-Subject: Re: [PATCH v2] Revert v6.2-rc1 and later "ARM: dts: bcm2835-rpi: Use
- firmware clocks for display"
-From: "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <5221f64e-fda4-4daa-add7-1d0b26765113@broadcom.com>
-Date: Thu, 23 Jan 2025 15:05:53 +0100
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Florian Fainelli <f.fainelli@gmail.com>,
- Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- devicetree <devicetree@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- stable <stable@vger.kernel.org>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
- linux-rpi-kernel@lists.infradead.org,
- arm-soc <linux-arm-kernel@lists.infradead.org>,
- Discussions about the Letux Kernel <letux-kernel@openphoenux.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <D6C59720-57A3-4EE0-A78C-F259F8906C0D@goldelico.com>
-References: <cb9e10dfb4f50207e33ddac16794ee6b806744da.1737217627.git.hns@goldelico.com>
- <808a325f-81bc-4f5d-8c07-fa255ef2d25a@gmx.net>
- <8F33BB1D-2210-421B-A788-8484C23DF4C6@goldelico.com>
- <5221f64e-fda4-4daa-add7-1d0b26765113@broadcom.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
- Stefan Wahren <wahrenst@gmx.net>
-X-Mailer: Apple Mail (2.3776.700.51.11.1)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
+Am Mittwoch, 22. Januar 2025, 17:12:26 CET schrieb Niklas Cassel:
+> On Wed, Jan 22, 2025 at 04:38:16PM +0100, Quentin Schulz wrote:
+> > So essentially, if SPL_ATF_NO_PLATFORM_PARAM is selected (the default for
+> > RK356x, RK3588, forced on on RK3308, enabled for the majority of RK3399
+> > boards, enabled for all RK3328 boards) the DT won't be passed to TF-A so no
+> > issue in terms of size on that side.
+> > If it is not selected, for TF-A < 2.4 (released 20201117, 4 years ago), a
+> > DTB bigger than 64KiB will crash TF-A.
+> > If it is not selected, for TF-A >= 2.4, a DTB bigger than 128KiB will result
+> > in TF-A not being able to read the DTB (for Rockchip, that means not being
+> > able to derive the UART settings (controller and baudrate) to use, and will
+> > use the compile-time default instead).
+> 
+> Not everyone is using binary blobs from Rockchip.
+> On my rock5b (rk3588), I'm building the bootloader using buildroot,
+> which is using upstream TrustedFirmware-A (v2.12).
+> 
+> 
+> > In short, I don't know where to go with that additional piece of
+> > information, but this is a bit bigger than simply moving things around and
+> > adding compile-time tests for overlay application.
+> 
+> This is significant information indeed.
 
-> Am 20.01.2025 um 17:34 schrieb Florian Fainelli =
-<florian.fainelli@broadcom.com>:
->=20
->=20
->=20
-> On 1/19/2025 7:04 AM, 'H. Nikolaus Schaller' via =
-BCM-KERNEL-FEEDBACK-LIST,PDL wrote:
->> Hi Stefan,
->>> Am 19.01.2025 um 01:36 schrieb Stefan Wahren <wahrenst@gmx.net>:
->>>=20
->>> Hi,
->>>=20
->>> Am 18.01.25 um 17:27 schrieb H. Nikolaus Schaller:
->>>> This reverts commit 27ab05e1b7e5c5ec9b4f658e1b2464c0908298a6.
->>>>=20
->>>> I tried to upgrade a RasPi 3B+ with Waveshare 7inch HDMI LCD
->>>> from 6.1.y to 6.6.y but found that the display is broken with
->>>> this log message:
->>>>=20
->>>> [   17.776315] vc4-drm soc:gpu: bound 3f400000.hvs (ops =
-vc4_drm_unregister [vc4])
->>>> [   17.784034] platform 3f806000.vec: deferred probe pending
->>>>=20
->>>> Some tests revealed that while 6.1.y works, 6.2-rc1 is already =
-broken but all
->>>> newer kernels as well. And a bisect did lead me to this patch.
->>> I successfully tested every Kernel release until Linux 6.13-rc with =
-the
->>> Raspberry Pi 3B+, so i prefer to step back and analyze this issue =
-further.
->> Yes, I would be happy with any solution.
->>> What kernel config do you use ?
->> a private one which enables application specific drivers.
->>> What is the value of CONFIG_CLK_RASPBERRYPI ?
->> CONFIG_CLK_RASPBERRYPI is not set
->> I checked where this is defined and it is in bcm2835_defconfig and
->> multi_v7_defconfig by
->> 4c6f5d4038af2c ("ARM: defconfig: enable cpufreq driver for RPi")
->> which hides this requirement quite well and got therefore =
-unnoticed...
->> Setting CONFIG_CLK_RASPBERRYPI=3Dy makes HDMI work without my =
-proposed revert.
->> Tested with v6.2.16, v6.6.72, v6.12.10 and v6.13-rc7.
->=20
-> I have been burned before by something similar and came up with this =
-patch series that I should resubmit after addressing Conor's comment:
->=20
-> =
-https://lore.kernel.org/all/20240513235234.1474619-1-florian.fainelli@broa=
-dcom.com/
->=20
-> Essentially, it removes the guess work, all you have to do is enable =
-CONFIG_ARCH_BCM2835 and it just works, which is how it should be IMHO.
+I guess the question is, can this hurt existing devices?
 
-Sounds like a good idea!
+As Quentin mentioned, this only affects DTs that get handed over from
+U-Boot to TF-A (and maybe OP-TEE).
 
-Supported-by: H. Nikolaus Schaller <hns@goldelico.com>
+So the whole range of things loading their DT from extlinux.conf or
+whatever are not really affected.
 
-BR,
-Nikoalus
+
+DTs U-Boot can hand over are 2 types,
+(1) built from within u-boot and
+(2) stored somewhere centrally (SPI flash).
+
+
+Case (1) is again not affected, as U-Boot (and other bootloaders) may
+very well sync the DTS files, but generally not the build-system, so if
+U-Boot (or any other bootloader) creates DTBs with symbols is completely
+their own choice.
+
+
+And for case (2) I see the manufacturer being responsible. Having the DT
+in central storage makes it somewhat part of a "bios"-level in the hirarchy
+and the general guarantee is that new software _will work_ with older DTs,
+but the other way around is more a nice to have (old SW with new DTB).
+
+So if some manufacturer has a centrally located DTB this does not matter
+until they upgrade, and when that happens I do expect testing to happen
+at the manufacturers side, before rolling out a "bios update"
+
+
+Heiko
+
 
 
