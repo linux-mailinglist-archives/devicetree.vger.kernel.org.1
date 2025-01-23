@@ -1,133 +1,181 @@
-Return-Path: <devicetree+bounces-140446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DEBDA19D22
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 04:08:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 574D1A19D4A
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 04:31:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4AD8169838
-	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 03:08:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CDD03AD7E5
+	for <lists+devicetree@lfdr.de>; Thu, 23 Jan 2025 03:31:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 292233595A;
-	Thu, 23 Jan 2025 03:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3EFF1F5F6;
+	Thu, 23 Jan 2025 03:31:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Voku3886"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="blL29bMI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAA43136E21;
-	Thu, 23 Jan 2025 03:07:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A685FEE6;
+	Thu, 23 Jan 2025 03:31:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737601668; cv=none; b=TpHLHRsTwDicG17sSK3dLL+s4yQA67BXMCPcT9wSOij6CZ5W19d+BjcuJvXFpXiYY3gqoVMVUWMnD+D69I0W76xgGwa8JlKjMH4f+VGo7HuyJMM58RKs0IyxWmNfb2sMsTA5D8a9/IeNkcv4O73Blzx3dXGyO6ZxVe3/olNfuDE=
+	t=1737603064; cv=none; b=SY8IcX/zA0NKbvw0t4dIvNGuWSUdSXEZ6X+Z1x672GhayA3+hEeU87nUEtHBHMGKiOZ1pDkZ5JaVa2h+GBGwTnf5jHVdJsdTeYWmGWJCLHSrN1HtZ4osLqiQ+DRELeF7c62GYtT4Ea4wWYB6eAwckKddC3leyWjhDxHnI4Rrpmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737601668; c=relaxed/simple;
-	bh=rgtIFMiDIGqDWDGfRmYETONKbMpImQPUu0l1rbUiXXA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t/TUcEQu4OAOycjhYJyzt4igczlUARX88f8JoYgR6yy2VEse84y4szzPYjfiuGv5+cD5vdjUzOmTuAKrgrz6sAcog9Dql8tDBrc/TkVdPH669mCXAaRZuygjikPtMSJuT46AU+4ss9H4sbFWngCxlNBK4zs2+zDcFvdEM1a9wlM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Voku3886; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15589C4CED2;
-	Thu, 23 Jan 2025 03:07:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737601667;
-	bh=rgtIFMiDIGqDWDGfRmYETONKbMpImQPUu0l1rbUiXXA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Voku3886LdDgNvBgjrXcs+wowXM05eUmbfczA5ah9Kl42LgXhz1y2KcqlSzMujK3y
-	 hr1KJdWu0lDnTyTpntR/iHFvqyUGMV+kpnZFXaatouOrY+CofI099tuFkie8rSdyJw
-	 uZok8QaUUXPqf2Rb9pVdIhOxhdZcYaE7sV8MT6Uei1MXTdE2Efo7jSfLEZ1wxaq0hw
-	 X5MW7VGChFYP98hTTxDBjCRe+Clj4Xyr8gzMQoYCImS/85Xrpf/4DVqH1IYuAAnr08
-	 7yY/sbHjoRzERxryrj24kWYzUwkGIXQRw4JhBEixc3jVWH42Y70uk0SHwh790DXh9t
-	 vOxQ/VQC2EzoQ==
-Date: Wed, 22 Jan 2025 21:07:43 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>, 
-	Wesley Cheng <quic_wcheng@quicinc.com>, Saravana Kannan <saravanak@google.com>, 
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.li@nxp.com>, linux-arm-msm@vger.kernel.org, 
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/12] usb: dwc3: qcom: Flatten dwc3 structure
-Message-ID: <3kuydb3b3ky4gczh5dyjjdcka2xlzgcv3ged4d432fgrprx7hr@byi7eg5fdvop>
-References: <20250113-dwc3-refactor-v3-0-d1722075df7b@oss.qualcomm.com>
- <20250114174452.GB1414434-robh@kernel.org>
- <srhxu3r4sxy5ntx53nicf7l43sdjpiwavzd2qsgq2ovquzvt3u@cskcthmqznex>
- <CAL_Jsq+4qzfy3kY+8LwPvGs4FkFKoregTAYu4-buJQZHkqJwyA@mail.gmail.com>
+	s=arc-20240116; t=1737603064; c=relaxed/simple;
+	bh=xrl5z8Ll2TqDuAd39ZGKT2p6sIGrMhLVtKtDEmreQjY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=f3+WcJRDp/t/+NdjPCxXKY53+zveqHPmrOyU18lgWvR4BKvqQWgxhutreXOb3m3HJ5b0hXlav4LLgbvZY4X47PKIkTxGNv4NKIgeJXm1MjHpnJozr4BYI82whuULMLag/aJ/AkAqTj8iSQLyZ+Lob2jpVjlnlGniBhQ2a7iIKYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=blL29bMI; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2156e078563so5192205ad.2;
+        Wed, 22 Jan 2025 19:31:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737603062; x=1738207862; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=9TctogefYusXIIGZ4bwwlA4HUSpBuD5+2I0brlCcpsQ=;
+        b=blL29bMIo2NFwHp+dXukzBs0bL2Ul+20XTelpbF06TWt0saYddQavodIfbcf3u1QE8
+         MCdghpeRSAFzufSxSUrv++onap3+SNK4OFWKp8PACaKp/80+vyTgDnFnoZhN8qpG3AJo
+         0r3wXpHbaW0CQdZIHc+pXh3V1s/JQp5JfGr6fT9UN4oVe3aF/zkH1g6x9JsFkJlYzsb/
+         yH3Fr7aMgTwXqGb8mK58VdkYUNYh/RCWilzhVnDr7Eu++kSVEuTea3E0ti4D7nCzAcSU
+         7Pvd7Manz6DzOPm0iSovP4Ub4XCi0NoDnc95LxI6fIk9ILXCCYYRkka/AVqPaR7b+4GU
+         c1LQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737603062; x=1738207862;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9TctogefYusXIIGZ4bwwlA4HUSpBuD5+2I0brlCcpsQ=;
+        b=ipDYv914r2xdHrVgpXEilgwST8A3ePYOQpdv+SpFkD7aC1hLyh8RDD7w7mfVfmhRYE
+         fsCODCADOm4rgWB8fHJYVZUBshuTxphvR/TvH+QElUiBDsdrTo8JKJ1N4aBmsnSaYmhK
+         +7XzBoxseah29RpT2GxnqTgKZ+8y7NrG022Z+ktEpKT5qM6W5OlAhv4oZO3WsNI2fco7
+         YHWJF28K+dOHjuDlcMnIaa445J3Bqls7HRbUojksvnX8K0bNTGH0edXUI8BWPyltIO4+
+         q34+Iq/gprJNJYGoWlyDh9D+CbHo7MjUXq5xcNRm4SEM0Xvivhd33C1DxmuwtP7HxBlu
+         4w0A==
+X-Forwarded-Encrypted: i=1; AJvYcCUK7boU+96OWYb6Wh7D9Ra9ZSpfJESzERyVb/Ofx36FrMUsptmPdMdKATBVUNV7G2gQMTEyBlJDUD3Lr8w=@vger.kernel.org, AJvYcCWAOnHWIcaJU5RTi9+xMUHeO4SVDjGF423tfXzWTdVPSnYfDaXWiaUsjLopJBsDrUDKA5k8un/C9PNF@vger.kernel.org, AJvYcCXmG3sW/Pr09+6fzmoqJ+rWMHlZ3Sf8Sn8sQECOAeUXiAt8NVvMNpVRyoBJjPVbVTfKjg3PnPKNKuyZayfy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yye016XpzGiJ+CoZa+ZXYwFDslvg8b9YF268unX6IMxYzAZV3Eb
+	XBSHnVuLYJl/IjNISGJ4+sWQZzvQTTnA8ur88Oa+k8PEGBgKqK71
+X-Gm-Gg: ASbGncsj7YwAqpaOSo0y9P+mAzeIy+4e42xQt6gpvsYf6iNDIPwf1W12Iat0Vr7YFtO
+	yUFxfcPwk7yXjA9srz0Bxrb6/gQbth2YcdQItDY+BsO0oySk3I7xAeimZyvo6w6UtbU1iov8tk+
+	/HdnurQSWC3XHvIPDqTR2XLXD9NqMgDUPgCqLd5xdB5r8ld9NNU6nDCDdUm/xJncu7WTfU6n1Lf
+	3R19OrYn0geR+obj2EFiiUktKKHp/m8O9KLSVZcoalMHoD0fuAF7lxeRl8FZLWJpPI7m8Jvuzjm
+	n3Dn/IfzsKGBe5fjLL8HsqV6sKv/KN+LLpch8os9P5juBdYB7M4OLg==
+X-Google-Smtp-Source: AGHT+IFbBzLf6BPJZJvPUAmUWhra8zja4yvhl2s7pKKVwzoOvyATIV2J/hG4x+KItPeWB7iM89uD+g==
+X-Received: by 2002:a05:6a21:6d98:b0:1e1:72ce:fefc with SMTP id adf61e73a8af0-1eb214e5175mr41370085637.22.1737603062344;
+        Wed, 22 Jan 2025 19:31:02 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-a9bcc323847sm9704724a12.23.2025.01.22.19.31.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 22 Jan 2025 19:31:01 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <0eda52b5-59c2-4ad2-bb2c-5846dbfbf3e9@roeck-us.net>
+Date: Wed, 22 Jan 2025 19:30:59 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_Jsq+4qzfy3kY+8LwPvGs4FkFKoregTAYu4-buJQZHkqJwyA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings:Add SQ52206 to ina2xx devicetree
+ bindings
+To: Wenliang Yan <wenliang202407@163.com>, krzk@kernel.org
+Cc: conor+dt@kernel.org, corbet@lwn.net, devicetree@vger.kernel.org,
+ jdelvare@suse.com, krzk+dt@kernel.org, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, robh@kernel.org
+References: <20250122-funky-beryl-whale-a8bcbb@krzk-bin>
+ <20250123013626.1085859-1-wenliang202407@163.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20250123013626.1085859-1-wenliang202407@163.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jan 15, 2025 at 12:51:42PM -0600, Rob Herring wrote:
-> On Tue, Jan 14, 2025 at 5:04 PM Bjorn Andersson <andersson@kernel.org> wrote:
-> >
-> > On Tue, Jan 14, 2025 at 11:44:52AM -0600, Rob Herring wrote:
-> > > On Mon, Jan 13, 2025 at 09:11:33PM -0800, Bjorn Andersson wrote:
-> > > > The USB IP-block found in most Qualcomm platforms is modelled in the
-> > > > Linux kernel as 3 different independent device drivers, but as shown by
-> > > > the already existing layering violations in the Qualcomm glue driver
-> > > > they can not be operated independently.
-> > > >
-> > > > With the current implementation, the glue driver registers the core and
-> > > > has no way to know when this is done. As a result, e.g. the suspend
-> > > > callbacks needs to guard against NULL pointer dereferences when trying
-> > > > to peek into the struct dwc3 found in the drvdata of the child.
-> > > >
-> > > > Missing from the upstream Qualcomm USB support is proper handling of
-> > > > role switching, in which the glue needs to be notified upon DRD mode
-> > > > changes. Several attempts has been made through the years to register
-> > > > callbacks etc, but they always fall short when it comes to handling of
-> > > > the core's probe deferral on resources etc.
-> > > >
-> > > > Furhtermore, the DeviceTree binding is a direct representation of the
-> > > > Linux driver model, and doesn't necessarily describe "the USB IP-block".
-> > > >
-> > > > This series therefor attempts to flatten the driver split, and operate
-> > > > the glue and core out of the same platform_device instance. And in order
-> > > > to do this, the DeviceTree representation of the IP block is flattened.
-> > > >
-> > > > To avoid littering the dwc3-qcom driver with the migration code - which
-> > > > we should be able to drop again in a LTS or two - this is now placed in
-> > > > drivers/of/overlays.
-> > > >
-> > > > A patch to convert a single platform - sc8280xp - is included in the
-> > > > series. The broader conversion will be submitted in a follow up series.
-> > >
-> > > Is it not possible to use the same overlays also fixup the .dts files at
-> > > build time?
-> > >
-> >
-> > I presume so. What would the benefit of that be, over fixing up the
-> > source asap?
+On 1/22/25 17:36, Wenliang Yan wrote:
+> At 2025-01-22 15:59:02, "Krzysztof Kozlowski" <krzk@kernel.org> wrote:
+>> On Wed, Jan 22, 2025 at 09:29:39AM +0800, Wenliang Yan wrote:
+>>> Add the sq52206 compatible to the ina2xx.yaml
+>>>
+>>> Signed-off-by: Wenliang Yan <wenliang202407@163.com>
+>>> ---
+>>>
+>>> Add the meaning of 'shunt-gain' in SQ52206.
+>>
+>> You already sent v3... and you got comment from me. You ignored both
+>> Conor and me, so me doing third time the same and expecting different
+>> results would be definition of insanity.
+>>
+>> Please read carefully submitting patches before posting new version.
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> The overlays would live with all the other dts files (I think kbuild
-> can add built-in dtbs from arch/*/boot/dts/). We can test at build
-> time they actually apply, and ensure the new dtb matches what the
-> fixup overlay creates.
+> Sorry, I have received your comment and 'acked'. I was originally
+> planning to resend [PATCH v3 2/2], because I have not received a
+> response from Guenter Roeck<linux@roeck-us.net>. However, I forgot to
+> add 'RESEND' in the title. Thank you for your patient reply.
+> I apologize again.
 > 
 
-That does sounds tempting, in particular since it sounds like it would
-provide  us with dt-validation of the end result.
+A resend after just four days, plus dropping all Acks ? Are you serious ?
 
-But, the build-time overlaid dtb files wouldn't be complete, as I
-programmatically transition some of the properties - to "fix" that I'd
-have to provide an overlay per board.
+Please keep in mind that not all of us are getting paid for doing this.
+If I am otherwise busy, it will take longer. Sometimes it will take
+much longer. If you resend a patches, they will end up at the tail
+of my review queue. If you drop Acks, expect me to dig it all up,
+and figure out on my own what if anything changed, the patches will
+end up even further down, as in "I'll look into this series if I have
+nothing else left to review".
 
-Second, it was my intention to transition all the boards to the new
-binding as soon as possible, to avoid adding more overlays when new
-boards are added. So any support-system we build up for this, would be
-immediately obsoleted.
+Guenter
 
-Regards,
-Bjorn
 
