@@ -1,185 +1,168 @@
-Return-Path: <devicetree+bounces-140747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B133A1B3E9
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 11:50:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81540A1B3F8
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 11:53:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D78AC16965D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 10:50:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 504E11887831
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 10:53:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EABE1CEEAA;
-	Fri, 24 Jan 2025 10:50:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DA8721A45F;
+	Fri, 24 Jan 2025 10:53:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="AJi1RdET"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SwdFc4Yy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6166023B0;
-	Fri, 24 Jan 2025 10:50:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A50461CDFC1;
+	Fri, 24 Jan 2025 10:53:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737715825; cv=none; b=MFHEBaFhuIuznK2Vj+8lWq9r31Xr6lsUyyGGfSJ+r2CkYv+fl0QerLHI/3twPnhDgGvk9RjwdQMsI8H7YKzZEoc/qcRJsPEMQkUljzG46uscIR1Rxbgbz0oa5vSamxBtzch4a3mAl1vxKEXZ9RLSoZEeFE/eadsHY6bd9pVlWdo=
+	t=1737716010; cv=none; b=UJyO9OESnVod0nVxFePpa6F2sNgeeo0h2w0i6e1EG6i4/uT3VUIyiHR+EfeWCoZHaG0mK5MI/WQwIKl4VRAsXDh0UgESPOqWSVXLbG4ns9p9Tcj6q5qwflGqajDZnbkbyxLiY4bjod/7X+QtZiaPm3t+xhjlpDupBVsD5AOLsnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737715825; c=relaxed/simple;
-	bh=fC8ojJw5iEcVAQVzUR0NhyFRUV/eovnO2xCfuULRoiI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FyxeTBItH1crtxySug1/S5b/6aWA94ltGE4jK9jxBom6+ttwZ+XpCsZryJJ3bPnQY9K4hLckxdXOsTBNxb3Zt9xxAxGFyMxpiGbRoH1xtffjf/ZDZStE+gTtqRlOoQaOfN4pxL8GvT2axuV4Y2I2tapjo91YlxnsTk+qlnmR56E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=AJi1RdET; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=MiQnZe19xTeyKMg3y9MMnUOo5lM09IYL0AIRWqs9OIk=; b=AJi1RdETunGs5e0jtvXn2U4atc
-	O2LlgL02wNcRfOfLDdR3mKwrVZndvKCaM8onyz+s0T15eNbkAilgH1dOZkwR+OnEDvwc42W7L6REp
-	2oeiHmS24BWpjPvRtzCCIFhQ1gBDipj79MG2i8RsdN97xopFsr44IGDVh0fHTOK+Gvgjm/aKJaw6S
-	z4hyeCQeNks7NfZpAY3Xt70ZdVcG07uIRG4/TwT6GpXl8NY9pgoVPFx8IxcFEun9ED5ySO716sK/h
-	wIzBiw3jUSM7oLEnKqviIOHX7x4SlrBpEszgoAkFDNJfjoguBzwzX5XQkuiM9lYtBPU+NSgIt/3Bk
-	HYfeBsFA==;
-Received: from i53875b5c.versanet.de ([83.135.91.92] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1tbHGP-00076S-KW; Fri, 24 Jan 2025 11:50:13 +0100
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Niklas Cassel <cassel@kernel.org>
-Cc: Quentin Schulz <quentin.schulz@cherry.de>,
- Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Jagan Teki <jagan@edgeble.ai>,
- Michael Riesch <michael.riesch@wolfvision.net>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject:
- Re: [PATCH v2 0/3] arm64: dts: rockchip: minimal support for Pre-ICT tester
- adapter for RK3588 Jaguar + add overlay tests
-Date: Fri, 24 Jan 2025 11:50:12 +0100
-Message-ID: <4860198.rnE6jSC6OK@diego>
-In-Reply-To: <Z5NpjAUFK_cMIWLj@ryzen>
-References:
- <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
- <3324197.aV6nBDHxoP@diego> <Z5NpjAUFK_cMIWLj@ryzen>
+	s=arc-20240116; t=1737716010; c=relaxed/simple;
+	bh=WVWjUCSc47y6PnPs/G9SHhPVzgiZqsqiHnmHFtGJgIY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oR2zI71y7GGTj/9/EOueWuGBtcubnfre7QtAreO1/hO5kKLiEaTxA9abv8PrkneWuF0jDXgYY89pigLEZKi3Wq7v91Pp18rYPOUPFoU7usm7DydzrtPqq4XbRy5uC/MM0YKF842Ego8LmN7/Ds/YKTM6zDb18H31L9sMWP1w7GA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SwdFc4Yy; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50O8bhZN031191;
+	Fri, 24 Jan 2025 10:53:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=Jy4Hvt7jmQzw8aWfAybkyE5v/OpYevXOZNg
+	4OTxJEoI=; b=SwdFc4YyK8ZI5AXoGETOzgzR0Wh0WGDdIi+FLepxZFgtlvdg4P8
+	Z/fCLLc4LDpDP3etEamRU+9VFlV4ICN5A3QwJwgtoTtZNjyxkqEzBc6jaLfHs4Ku
+	gyUVbmpK81tmFiBjcPm/4cJgbj2YMrz5Jin195nuy1LBP0SY9MvlsXnrtKZ5HLeT
+	qzmWqrAwQh1l/fAzQkrhdV2I+4DW2zl7hTZa4xL9gxTC8ZZ+v3qqDGlwuZ8AQmdD
+	xbBsR0ISAPV4q5Zm8xI/3TAbxE8W9MAIpzEP2mkoXBQ+xcx5O+SSQXA1q/x46Jph
+	xMD3a2Ny8/fjaLzjGX1/MlXguy6tNIPooVQ==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44c7h50d8g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Jan 2025 10:53:24 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 50OAnGJ5013012;
+	Fri, 24 Jan 2025 10:53:19 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4485cm9h01-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Jan 2025 10:53:19 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 50OArItJ016260;
+	Fri, 24 Jan 2025 10:53:18 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com ([10.213.97.252])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 50OArITk016259
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Jan 2025 10:53:18 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 4047106)
+	id B379C55C; Fri, 24 Jan 2025 16:23:17 +0530 (+0530)
+From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+To: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        broonie@kernel.or, andersson@kernel.org, konradybcio@kernel.org,
+        johan+linaro@kernel.org, dianders@chromium.org, agross@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org
+Cc: quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com,
+        Viken Dadhaniya <quic_vdadhani@quicinc.com>
+Subject: [PATCH v2 0/8] Add support to load QUP SE firmware from
+Date: Fri, 24 Jan 2025 16:23:01 +0530
+Message-Id: <20250124105309.295769-1-quic_vdadhani@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Aw1mGwVMO12_ZGrgCsC6a4o1gNHkDmi0
+X-Proofpoint-GUID: Aw1mGwVMO12_ZGrgCsC6a4o1gNHkDmi0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-24_04,2025-01-23_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 malwarescore=0 impostorscore=0 clxscore=1015 adultscore=0
+ suspectscore=0 lowpriorityscore=0 mlxscore=0 mlxlogscore=999 phishscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501240078
 
-Am Freitag, 24. Januar 2025, 11:21:00 CET schrieb Niklas Cassel:
-> On Thu, Jan 23, 2025 at 03:13:01PM +0100, Heiko St=FCbner wrote:
-> > Am Mittwoch, 22. Januar 2025, 17:12:26 CET schrieb Niklas Cassel:
-> > > On Wed, Jan 22, 2025 at 04:38:16PM +0100, Quentin Schulz wrote:
-> > > > So essentially, if SPL_ATF_NO_PLATFORM_PARAM is selected (the defau=
-lt for
-> > > > RK356x, RK3588, forced on on RK3308, enabled for the majority of RK=
-3399
-> > > > boards, enabled for all RK3328 boards) the DT won't be passed to TF=
-=2DA so no
-> > > > issue in terms of size on that side.
-> > > > If it is not selected, for TF-A < 2.4 (released 20201117, 4 years a=
-go), a
-> > > > DTB bigger than 64KiB will crash TF-A.
-> > > > If it is not selected, for TF-A >=3D 2.4, a DTB bigger than 128KiB =
-will result
-> > > > in TF-A not being able to read the DTB (for Rockchip, that means no=
-t being
-> > > > able to derive the UART settings (controller and baudrate) to use, =
-and will
-> > > > use the compile-time default instead).
-> > >=20
-> > > Not everyone is using binary blobs from Rockchip.
-> > > On my rock5b (rk3588), I'm building the bootloader using buildroot,
-> > > which is using upstream TrustedFirmware-A (v2.12).
-> > >=20
-> > >=20
-> > > > In short, I don't know where to go with that additional piece of
-> > > > information, but this is a bit bigger than simply moving things aro=
-und and
-> > > > adding compile-time tests for overlay application.
-> > >=20
-> > > This is significant information indeed.
-> >=20
-> > I guess the question is, can this hurt existing devices?
-> >=20
-> > As Quentin mentioned, this only affects DTs that get handed over from
-> > U-Boot to TF-A (and maybe OP-TEE).
-> >=20
-> > So the whole range of things loading their DT from extlinux.conf or
-> > whatever are not really affected.
-> >=20
-> >=20
-> > DTs U-Boot can hand over are 2 types,
-> > (1) built from within u-boot and
-> > (2) stored somewhere centrally (SPI flash).
-> >=20
-> >=20
-> > Case (1) is again not affected, as U-Boot (and other bootloaders) may
-> > very well sync the DTS files, but generally not the build-system, so if
-> > U-Boot (or any other bootloader) creates DTBs with symbols is completely
-> > their own choice.
-> >=20
-> >=20
-> > And for case (2) I see the manufacturer being responsible. Having the DT
-> > in central storage makes it somewhat part of a "bios"-level in the hira=
-rchy
-> > and the general guarantee is that new software _will work_ with older D=
-Ts,
-> > but the other way around is more a nice to have (old SW with new DTB).
-> >=20
-> > So if some manufacturer has a centrally located DTB this does not matter
-> > until they upgrade, and when that happens I do expect testing to happen
-> > at the manufacturers side, before rolling out a "bios update"
->=20
-> Personally, I'm all for letting the kernel build the DTBs with symbols.
->=20
-> (I have a patch that I keep rebasing on my tree only for that purpose.
-> Sure, I could modify my build scripts to build the DTB separately,
-> but with this patch, I do not need to do anything since the kernel
-> builds the DTBs already.)
->=20
-> Other platforms, e.g. TI already build many boards with symbols:
-> https://github.com/torvalds/linux/blob/v6.13/arch/arm64/boot/dts/ti/Makef=
-ile#L242-L261
->=20
->=20
-> You seems to have been against enabling symbols before:
-> https://lore.kernel.org/linux-rockchip/171941553475.921128.94674655392992=
-33735.b4-ty@sntech.de/
-> https://lore.kernel.org/linux-rockchip/1952472.6tgchFWduM@diego/
->=20
-> But if you have changed you mind, and you are no longer concerned about
-> doing so, then in my own self-interest I'm all for it :)
+In Qualcomm SoCs, firmware loading for Serial Engines (SE) in the QUP
+hardware has traditionally been managed by TrustZone (TZ). This setup
+handled Serial Engines(SE) assignments and access control permissions,
+ensuring a high level of security but limiting flexibility and
+accessibility.
+ 
+This limitation poses a significant challenge for developers who need more
+flexibility to enable any protocol on any of the SEs within the QUP
+hardware.
+ 
+To address this, we are introducing a change that opens the firmware
+loading mechanism to the Linux environment. This enhancement increases
+flexibility and allows for more streamlined and efficient management. We
+can now handle SE assignments and access control permissions directly
+within Linux, eliminating the dependency on TZ.
+ 
+We propose an alternative method for firmware loading and SE
+ownership/transfer mode configuration based on device tree configuration.
+This method does not rely on other execution environments, making it
+accessible to all developers.
+ 
+For SEs used prior to the kernel, their firmware will be loaded by the
+respective image drivers (e.g., Debug UART, Secure or trusted SE).
+Additionally, the GSI firmware, which is common to all SEs per QUPV3 core,
+will not be loaded by Linux driver but TZ only. At the kernel level, only
+the SE protocol driver should load the respective protocol firmware.
+---
+v1 -> v2:
 
-I'm all for keeping compatibility as good as possible and that issue came
-on the table way too often already ;-) . In the past it was essentially easy
-to go with "just don't enable symbols" and not go down the nitty-gritty
-detail route - because that whole mesh of different firmware combinations
-gives me a headache ;-) [0]
+- Drop the qcom,load-firmware property.
+- Remove the fixed firmware path.
+- Add the 'firmware-name' property in the QUP common driver.
+- Add logic to read the firmware path from the device tree.
+- Resolve kernel test robot warnings.
+- Update the 'qcom,xfer-mode' property description.
 
-So finally going through those possible affected variants gave me those
-thoughts of "is there even an actual problem with existing boards?".
-Especially wrt forward<->backwards compatibility.
+v1 Link: https://lore.kernel.org/linux-kernel/20241204150326.1470749-1-quic_vdadhani@quicinc.com/ 
+---
+Viken Dadhaniya (8):
+  dt-bindings: qcom: geni-se: Add 'firmware-name' property for firmware
+    loading
+  dt-bindings: i2c: qcom,i2c-geni: Add support for selecting data
+    transfer mode
+  spi: dt-bindings: Add support for selecting data transfer mode
+  dt-bindings: serial: Add support for selecting data transfer mode
+  soc: qcom: geni-se: Add support to load QUP SE Firmware via Linux
+    subsystem
+  i2c: qcom-geni: Load i2c qup Firmware from linux side
+  spi: geni-qcom: Load spi qup Firmware from linux side
+  serial: qcom-geni: Load UART qup Firmware from linux side
 
-Outcome is, I'm definitly not sure about myself, but also could not come
-up with an actual scenario. But that compile-time testing of applying
-DTBOs is way too great to pass up on :-)
+ .../bindings/i2c/qcom,i2c-geni-qcom.yaml      |   7 +
+ .../serial/qcom,serial-geni-qcom.yaml         |   8 +
+ .../bindings/soc/qcom/qcom,geni-se.yaml       |   5 +
+ .../bindings/spi/qcom,spi-geni-qcom.yaml      |   7 +
+ drivers/i2c/busses/i2c-qcom-geni.c            |   7 +-
+ drivers/soc/qcom/qcom-geni-se.c               | 444 ++++++++++++++++++
+ drivers/spi/spi-geni-qcom.c                   |   7 +-
+ drivers/tty/serial/qcom_geni_serial.c         |   7 +-
+ include/linux/soc/qcom/geni-se.h              |  17 +
+ include/linux/soc/qcom/qup-fw-load.h          | 179 +++++++
+ 10 files changed, 682 insertions(+), 6 deletions(-)
+ create mode 100644 include/linux/soc/qcom/qup-fw-load.h
 
-
-Heiko
-
-
-[0] If just some vendor would directly work on upstream TF-A from the
-beginning, instead of hacking up some half-decade old ATF  ... ;-)
-
+-- 
+2.34.1
 
 
