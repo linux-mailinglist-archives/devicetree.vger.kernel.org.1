@@ -1,311 +1,126 @@
-Return-Path: <devicetree+bounces-140806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EAABA1B825
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:48:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88D8FA1B824
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:47:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9A403AEAB4
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 14:47:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C6963AEC13
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 14:47:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E30FC1531EF;
-	Fri, 24 Jan 2025 14:47:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE9C149C4D;
+	Fri, 24 Jan 2025 14:47:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="yrgNEFGE"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="HPLhU6JO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.wki.vra.mybluehostin.me (server.wki.vra.mybluehostin.me [162.240.238.73])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F5A214C59B;
-	Fri, 24 Jan 2025 14:47:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.238.73
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB251146017
+	for <devicetree@vger.kernel.org>; Fri, 24 Jan 2025 14:47:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737730046; cv=none; b=rbkE9iht1T6qiwK8D2El63hfyqb3v/0MGh72by+CouKHOHUQFzVLCgjdyGp2eElaU6M7ejRhatwVHuCGbvyALJ4dJAD5DWpVMW4NZaU0z6GGrkVCTia4P/yBeZzqw4FAk+Na9mJnV4lOOD4+6DL/06HcA0fqbpsYOij5ZEEWRwE=
+	t=1737730043; cv=none; b=IV5fKDbr31/159pVyBkEJILVbWZDe3MVv3mIoqIppolOm/WeCegrh1D1XihXXFKxIZePhCSDvy8NVvcTMKpsybCXRQoRN3msLZ018vwm7dWs1rDcbQii6KnhQz/GOIO8Jg0h7eOoFJMHxp8aSWC8/Ss1YeEvwVU+vgl2vuM89OU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737730046; c=relaxed/simple;
-	bh=wu2GQcsOUddOTFtvDnQ95BD4CSom32zfXUWay83ow6s=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=joGPNZDkbqc3h/gQzNGAAVSfRanppNen/zDvCZL8QZmr+aC1mQrb5kFjVTPWRIvInDmTupaTdtcfLjkzuD9GIm51TVzrdv86ovp+lBUPlYKlUM3rPDZ/3Ois/JQhyQ2pqeeqirUqdQREKqso9IIN2xWUdoM0i/U3nFGXg98ZQHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=yrgNEFGE; arc=none smtp.client-ip=162.240.238.73
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=dTwVv8Q9VsLbA3MBy8CxgGJuPV4S+1OozgFAK6N4E8c=; b=yrgNEFGEsZD37kqZUYUJGYx9+r
-	7vUEpi2dLwSvI2RSjuL8smY0+dniLHr81+5nxFmLtnx7/nGxsYGBTMWKPcJVOcFJeOulxwcDN+x50
-	TUGCMTqbFuQlvGFxEVg3QoGUfVWCkqoZyajskOQAu+lrL8waj02Lhgl6r/8JnVIxc3pEepeY65ep8
-	iFtVXhgTWZbOuh9K7xnMGnoyrVGUzP8pleVSjij9buZWiR3IXlsb3uvYsYK7IeWJMRSNwY4007aOi
-	M3kAi6M//fisyZGYL/HL1Two/eFCr8axjDbxdz5YXlEyCuMeabdswguE+KV1SxzpTzYV9CoE/cUem
-	JUz62tyg==;
-Received: from [122.175.9.182] (port=38494 helo=cypher.couthit.local)
-	by server.wki.vra.mybluehostin.me with esmtpa (Exim 4.96.2)
-	(envelope-from <basharath@couthit.com>)
-	id 1tbKxr-0006Wf-1n;
-	Fri, 24 Jan 2025 20:17:20 +0530
-From: Basharath Hussain Khaja <basharath@couthit.com>
-To: danishanwar@ti.com,
-	rogerq@kernel.org,
-	andrew+netdev@lunn.ch,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	nm@ti.com,
-	ssantosh@kernel.org,
-	tony@atomide.com,
-	richardcochran@gmail.com,
-	parvathi@couthit.com,
-	basharath@couthit.com,
-	schnelle@linux.ibm.com,
-	rdunlap@infradead.org,
-	diogo.ivo@siemens.com,
-	m-karicheri2@ti.com,
-	horms@kernel.org,
-	jacob.e.keller@intel.com,
-	m-malladi@ti.com,
-	javier.carrasco.cruz@gmail.com,
-	afd@ti.com,
-	s-anna@ti.com
-Cc: linux-arm-kernel@lists.infradead.org,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	pratheesh@ti.com,
-	prajith@ti.com,
-	vigneshr@ti.com,
-	praneeth@ti.com,
-	srk@ti.com,
-	rogerq@ti.com,
-	krishna@couthit.com,
-	pmohan@couthit.com,
-	mohan@couthit.com
-Subject: [RFC v2 PATCH 10/10] arm: dts: ti: Adds device tree nodes for PRU Cores, IEP and eCAP modules of PRU-ICSS2 Instance.
-Date: Fri, 24 Jan 2025 20:15:55 +0530
-Message-Id: <20250124144555.1462044-11-basharath@couthit.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250124122353.1457174-1-basharath@couthit.com>
-References: <20250124122353.1457174-1-basharath@couthit.com>
+	s=arc-20240116; t=1737730043; c=relaxed/simple;
+	bh=eTaf9HW41uxqE2CPS5NCpTxA6jYnk9XYAKcaAuJgBMc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WaiBrj+Y9rVw8QN87eui9hPg87xjDvPZOWdZqgoNW3/C4tsPdDcY9uC5qU39YcONYtKLkdpMVzTej2tqJERVE3gNT/mZIKhiHHB/0dufKWe6Mi5RPt2ovxMN24DoXJVKqmQjnrKfauyv59vt39FtY7XrxlEMQc7lD7dMW22MBpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=HPLhU6JO; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1737730041;
+ bh=bWc4eegiqIRik/oWmiPzWCZlgXnb9uJU2PJU56uMGgM=;
+ b=HPLhU6JOarpRnBR2U8kQhxppWlm/DkEGvoJb8bI5g99fBkqmcGSxJngz1FkSvz40Uwq8aJd8p
+ KEdBhZqJl4/GgBGypN0C5vbvoodFqRZaPbl3lk2thh+lcPtoTbXhklRsSoHfHjd1F29F1OC5Suh
+ s/OJylCmLYbGrRa0QdZYUDX3gWHaXSzLX4vIP3ixtQozM5dEr81gc4IY38FrEiVLgfCy1g3vxyB
+ n1DdQVH3B9K3jvjV1k+lHYDL8uKO6z1ITo9MWbSOrsEygv5+taETOxZBR4HsDgaKjBnUnoMOEIU
+ jGs0n8xgsNSUN6XIEAB+LsVg0ytfT15A2AEJNGZ32J0w==
+X-Forward-Email-ID: 6793a7ea3e07d3fa85055a37
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <cae9cb0a-1500-4fbc-bbf4-a6266549bcb9@kwiboo.se>
+Date: Fri, 24 Jan 2025 15:47:00 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.wki.vra.mybluehostin.me
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.wki.vra.mybluehostin.me: authenticated_id: basharath@couthit.com
-X-Authenticated-Sender: server.wki.vra.mybluehostin.me: basharath@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 3/3] arm64: dts: rockchip: Increase VOP clk rate on
+ RK3328
+To: Elaine Zhang <zhangqing@rock-chips.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, kever.yang@rock-chips.com,
+ heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20250124064619.13893-1-zhangqing@rock-chips.com>
+ <20250124064619.13893-4-zhangqing@rock-chips.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20250124064619.13893-4-zhangqing@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Roger Quadros <rogerq@ti.com>
+Hi Elaine,
 
-The TI Sitara AM57xx series of devices consists of 2 PRU-ICSS instances
-(PRU-ICSS1 and PRU-ICSS2). This patch adds the device tree nodes for the
-PRU-ICSS2 instance to support DUAL-MAC mode of operation.
+On 2025-01-24 07:46, Elaine Zhang wrote:
+> The VOP on RK3328 needs to run at a higher rate in order to produce
+> a proper 3840x2160 signal.
+> Change to use 300MHz for VIO clk and 400MHz for VOP clk.
 
-Each PRU-ICSS instance consists of two PRU cores along with various
-peripherals such as the Interrupt Controller (PRU_INTC), the Industrial
-Ethernet Peripheral(IEP), the Real Time Media Independent Interface
-controller (MII_RT), and the Enhanced Capture (eCAP) event module.
+It is probably better to merge this change and the prior revert into a
+single patch with a Fixes-tag for the commit 0f2ddb128fa2 ("arm64: dts:
+rockchip: Increase VOP clk rate on RK3328") to ensure this change get
+backported correctly.
 
-am57-pruss.dtsi - Adds IEP and eCAP peripheral as child nodes of
-the PRUSS subsystem node.
+Regards,
+Jonas
 
-am57xx-idk-common.dtsi - Adds PRU-ICSS2 instance node along with
-PRU eth port information and corresponding port configuration. It includes
-interrupt mapping for packet reception, HW timestamp collection, and
-PRU Ethernet ports in MII mode.
-
-am571x-idk.dts, am572x-idk.dts and am574x-idk.dts - GPIO configuration
-along with delay configuration for individual PRU Ethernet port.
-
-Signed-off-by: Roger Quadros <rogerq@ti.com>
-Signed-off-by: Andrew F. Davis <afd@ti.com>
-Signed-off-by: Murali Karicheri <m-karicheri2@ti.com>
-Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
-Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
----
- arch/arm/boot/dts/ti/omap/am57-pruss.dtsi     | 11 ++++
- arch/arm/boot/dts/ti/omap/am571x-idk.dts      |  8 ++-
- arch/arm/boot/dts/ti/omap/am572x-idk.dts      | 10 +--
- arch/arm/boot/dts/ti/omap/am574x-idk.dts      | 10 +--
- .../boot/dts/ti/omap/am57xx-idk-common.dtsi   | 61 +++++++++++++++++++
- 5 files changed, 91 insertions(+), 9 deletions(-)
-
-diff --git a/arch/arm/boot/dts/ti/omap/am57-pruss.dtsi b/arch/arm/boot/dts/ti/omap/am57-pruss.dtsi
-index 46c5383f0eee..f73316625608 100644
---- a/arch/arm/boot/dts/ti/omap/am57-pruss.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/am57-pruss.dtsi
-@@ -170,6 +170,17 @@ pruss2_iepclk_mux: iepclk-mux@30 {
- 				};
- 			};
- 
-+			pruss2_iep: iep@2e000 {
-+				compatible = "ti,am5728-icss-iep";
-+				reg = <0x2e000 0x31c>;
-+				clocks = <&pruss2_iepclk_mux>;
-+			};
-+
-+			pruss2_ecap: ecap@30000 {
-+				compatible = "ti,pruss-ecap";
-+				reg = <0x30000 0x60>;
-+			};
-+
- 			pruss2_mii_rt: mii-rt@32000 {
- 				compatible = "ti,pruss-mii", "syscon";
- 				reg = <0x32000 0x58>;
-diff --git a/arch/arm/boot/dts/ti/omap/am571x-idk.dts b/arch/arm/boot/dts/ti/omap/am571x-idk.dts
-index 322cf79d22e9..02653b440585 100644
---- a/arch/arm/boot/dts/ti/omap/am571x-idk.dts
-+++ b/arch/arm/boot/dts/ti/omap/am571x-idk.dts
-@@ -214,5 +214,11 @@ &pruss1_mdio {
- };
- 
- &pruss2_mdio {
--	status = "disabled";
-+	reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-+	reset-delay-us = <2>;   /* PHY datasheet states 1uS min */
-+};
-+
-+&pruss2_eth {
-+	ti,pruss-gp-mux-sel = <4>,      /* MII2, needed for PRUSS1_MII0 */
-+			      <4>;      /* MII2, needed for PRUSS1_MII1 */
- };
-diff --git a/arch/arm/boot/dts/ti/omap/am572x-idk.dts b/arch/arm/boot/dts/ti/omap/am572x-idk.dts
-index 94a738cb0a4d..54a8ccb9ca14 100644
---- a/arch/arm/boot/dts/ti/omap/am572x-idk.dts
-+++ b/arch/arm/boot/dts/ti/omap/am572x-idk.dts
-@@ -28,10 +28,12 @@ &mmc2 {
- 	pinctrl-2 = <&mmc2_pins_ddr_rev20>;
- };
- 
--&pruss1_mdio {
--	status = "disabled";
-+&pruss2_eth0_phy {
-+	reset-gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
-+	reset-assert-us = <2>;   /* PHY datasheet states 1uS min */
- };
- 
--&pruss2_mdio {
--	status = "disabled";
-+&pruss2_eth1_phy {
-+	reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-+	reset-assert-us = <2>;   /* PHY datasheet states 1uS min */
- };
-diff --git a/arch/arm/boot/dts/ti/omap/am574x-idk.dts b/arch/arm/boot/dts/ti/omap/am574x-idk.dts
-index 47b9174d2353..47b6c6cb210c 100644
---- a/arch/arm/boot/dts/ti/omap/am574x-idk.dts
-+++ b/arch/arm/boot/dts/ti/omap/am574x-idk.dts
-@@ -40,10 +40,12 @@ &emif1 {
- 	status = "okay";
- };
- 
--&pruss1_mdio {
--	status = "disabled";
-+&pruss2_eth0_phy {
-+	reset-gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
-+	reset-assert-us = <2>;   /* PHY datasheet states 1uS min */
- };
- 
--&pruss2_mdio {
--	status = "disabled";
-+&pruss2_eth1_phy {
-+	reset-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
-+	reset-assert-us = <2>;   /* PHY datasheet states 1uS min */
- };
-diff --git a/arch/arm/boot/dts/ti/omap/am57xx-idk-common.dtsi b/arch/arm/boot/dts/ti/omap/am57xx-idk-common.dtsi
-index 43e3623f079c..0a7db6e8eef1 100644
---- a/arch/arm/boot/dts/ti/omap/am57xx-idk-common.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/am57xx-idk-common.dtsi
-@@ -155,6 +155,52 @@ src_clk_x1: src_clk_x1 {
- 		compatible = "fixed-clock";
- 		clock-frequency = <20000000>;
- 	};
-+
-+	/* Dual-MAC Ethernet application node on PRU-ICSS2 */
-+	pruss2_eth: pruss2-eth {
-+		compatible = "ti,am57-prueth";
-+		ti,prus = <&pru2_0>, <&pru2_1>;
-+		sram = <&ocmcram1>;
-+		ti,mii-rt = <&pruss2_mii_rt>;
-+		ti,iep = <&pruss2_iep>;
-+		ecap = <&pruss2_ecap>;
-+		interrupts = <20 2 2>, <21 3 3>;
-+		interrupt-names = "rx_hp", "rx_lp";
-+		interrupt-parent = <&pruss2_intc>;
-+
-+		ethernet-ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			pruss2_emac0: ethernet-port@0 {
-+				reg = <0>;
-+				phy-handle = <&pruss2_eth0_phy>;
-+				phy-mode = "mii";
-+				interrupts = <20 2 2>, <26 6 6>, <23 6 6>;
-+				interrupt-names = "rx", "emac_ptp_tx",
-+								"hsr_ptp_tx";
-+				/* Filled in by bootloader */
-+				local-mac-address = [00 00 00 00 00 00];
-+			};
-+
-+			pruss2_emac1: ethernet-port@1 {
-+				reg = <1>;
-+				phy-handle = <&pruss2_eth1_phy>;
-+				phy-mode = "mii";
-+				interrupts = <21 3 3>, <27 9 7>, <24 9 7>;
-+				interrupt-names = "rx", "emac_ptp_tx",
-+								"hsr_ptp_tx";
-+				/* Filled in by bootloader */
-+				local-mac-address = [00 00 00 00 00 00];
-+			};
-+		};
-+	};
-+
-+};
-+
-+&pruss2_iep {
-+	interrupt-parent = <&pruss2_intc>;
-+	interrupts = <7 7 8>;
-+	interrupt-names = "iep_cap_cmp";
- };
- 
- &dra7_pmx_core {
-@@ -606,3 +652,18 @@ dpi_out: endpoint {
- 		};
- 	};
- };
-+
-+&pruss2_mdio {
-+	status = "okay";
-+	pruss2_eth0_phy: ethernet-phy@0 {
-+		reg = <0>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <30 IRQ_TYPE_EDGE_FALLING>;
-+	};
-+
-+	pruss2_eth1_phy: ethernet-phy@1 {
-+		reg = <1>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <31 IRQ_TYPE_EDGE_FALLING>;
-+	};
-+};
--- 
-2.34.1
+> 
+> Fixes: 4b6764f200f2 ("Revert "arm64: dts: rockchip: Increase VOP clk
+> rate on RK3328"")
+> 
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> index f3ef8cbfbdae..0c905f411e92 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+> @@ -842,7 +842,8 @@
+>  			<&cru ACLK_BUS_PRE>, <&cru HCLK_BUS_PRE>,
+>  			<&cru PCLK_BUS_PRE>, <&cru ACLK_PERI_PRE>,
+>  			<&cru HCLK_PERI>, <&cru PCLK_PERI>,
+> -			<&cru SCLK_RTC32K>;
+> +			<&cru SCLK_RTC32K>, <&cru ACLK_VIO_PRE>,
+> +			<&cru ACLK_VOP_PRE>;
+>  		assigned-clock-parents =
+>  			<&cru HDMIPHY>, <&cru PLL_APLL>,
+>  			<&cru PLL_GPLL>, <&xin24m>,
+> @@ -863,7 +864,8 @@
+>  			<150000000>, <75000000>,
+>  			<75000000>, <150000000>,
+>  			<75000000>, <75000000>,
+> -			<32768>;
+> +			<32768>, <300000000>,
+> +			<400000000>;
+>  	};
+>  
+>  	usb2phy_grf: syscon@ff450000 {
 
 
