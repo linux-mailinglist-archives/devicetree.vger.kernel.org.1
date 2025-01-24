@@ -1,314 +1,230 @@
-Return-Path: <devicetree+bounces-140851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BA1AA1BB5A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 18:23:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89C0DA1BB78
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 18:31:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83B30160790
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 17:23:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC84716A252
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 17:31:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 819C01A4AA1;
-	Fri, 24 Jan 2025 17:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F9D19F41D;
+	Fri, 24 Jan 2025 17:31:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FJTn8sd9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hQvRZcd4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C0915CD79;
-	Fri, 24 Jan 2025 17:23:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 183183224;
+	Fri, 24 Jan 2025 17:31:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737739412; cv=none; b=KiiuDJ1Uc7nw3xzWT3ZUv5ff0IYGrgS3Kxh2Ks3zsa9m1YdMPBBpHz4d7GUe7UTk/I+QETOkM1pmp1QIPwHdCaz9RbwqT1LlaDrsyn0Ap2noxU5o3KMF8dosDcqgaDIq6V+5YiVjMu4T4o68ZhrbQTIitZrPEEEYmpCWfzybhgU=
+	t=1737739900; cv=none; b=DK0F8ihR3cY3wwWd3rfA2fpD/UUIagFi11DhexUUnJsIrpa05bIAW+HUo/J+7Wy44UepWiqecEDRdqQ5ho+KsNufNMB+ws0hvEmwtlxPbkVYhvO1vmkv/xjQFZDVGKCiEct6iniVSRmiVL+pa4FVRsy9BiE248WETC2WJSwoaKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737739412; c=relaxed/simple;
-	bh=kii8UKXKTCVP4t3hez8R7UOovKtmR1WSs/LMLiby0Lk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Js8D3N2s5cZr+l4i0ltksSBOy6v9/Ck6XTowoC5A28iGu73njpuseOlJgfFclIlvoMBk+F/ZKRnOp879VYSeZLeqeH/m6HDsXmZFk7vSRl68Js9k/1UtJjTGte/ZS8GY164FFR+KyHTDDWr/JuDIsfsOlptmW1+2yY6Sq4dHjYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FJTn8sd9; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-7bcf32a6582so203144585a.1;
-        Fri, 24 Jan 2025 09:23:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737739409; x=1738344209; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A4/vzmdSMKeOJ/C1GDf68MF2cf5I1Flzl1PjgFGcdcg=;
-        b=FJTn8sd9DIEusmpeEx/5oyFlYJwaMzFnj0LYWKpDRqOMgE16niv803UzjM5OUiOTry
-         8SPaXkG8WwtTqyzFVBf+CK7Ae4AAFq/WhTW7WNkFwtmbow6DF4zSovFu3PsBTgZfV1r5
-         4MMUn0EgOvjF9r/M3s0BACR87IDZSqW8rBSGJdOYvg0nZEb+KaAvDJmqs/ryucRmwOXw
-         sD6YT0wtXLuZuoy8j/GWYdMaFKppn6hvF2Ps6kHmMAdvuLfnniaMN94/TMLxycDT0jZd
-         IxFECsDU8NBxPattd8e0i5+a5r984EE6QH3tcAxcOtNmCY0ZIjlt2kBQUeRP8T22MNHr
-         N4Gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737739409; x=1738344209;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=A4/vzmdSMKeOJ/C1GDf68MF2cf5I1Flzl1PjgFGcdcg=;
-        b=df/LyDHJAR0JWKoy1Dj8eIaUBT8Mg6fpyIBNXdsqALj4LUFssxT8KIKWGoVIO+/x/O
-         /ytY/50Vo6Gwo4yPZiUgbWyaYm2maZODCFM+HV9grcPh9Dwrs4ENDvNBOwJ7zzEstHwc
-         71Iis94iNtJySyJjqKuJ1g0BEIKOvrcNWzsdVTqO3FGbFANV9nClCSKEEAOrsrwfXwan
-         /53TpRY65xbYZCfEPzJrnaB8lCQDUyCFlannb7cY/c75ZjIXwz+Qd7QBAYH+73w6l8ql
-         wiOxnGOxQ8LL/r7Hm9BZT5WZfESEQc0gmlskiZohO7weWM1rRynQ5LH4APovR/9ULmnS
-         netw==
-X-Forwarded-Encrypted: i=1; AJvYcCUI0w0wXQpVRX0XEBl+cs5sOz4iJDZekJiwYKKEx/Mj6WkZtMDfH5xsmMkXRL5hBOb4S+aXAAgNJDthXgRC@vger.kernel.org, AJvYcCUxbBwY1s72expqVMqOfszkfUQr0/hKimsXZ2UmtjRxj4i8xrwl1UVjsJ6Zgiftr6LaoFhj40kbGHpC@vger.kernel.org, AJvYcCXAA6ceGe2lNK5g39b5KRWFiuakEGbnUKOVzlzw1KV0GHtzRAIRJumC5wE9Wl3taLzBQ6cEWrKv@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcnVPyChFsaqO9n4VUybRj80eQVpnbff+FRnEKEk2nhzRGgj8D
-	8YA/z4UclcZMO9sxLwvMHJkMJzIsAWWjbtpR12TH2a2t+hupPhAfSdxYIYn7jmTf5MpDRVhgglS
-	Xx53B1nAhsMylLtdZZz5wOcuaxzI=
-X-Gm-Gg: ASbGncstZGBKol/k2HlXxAvPs/jd/652p9gQYBX73BfgCD5zBCicR5J93HsUmPYvD+J
-	tLaskD5UCxeQw3H8sciw/tZhZpJrvuWfiHL82UksJF9t5toPA+of7jDiiTwCmWLZowzurUwco8g
-	==
-X-Google-Smtp-Source: AGHT+IH/71bIsSUVZkYzfhIAkpahFedbMg/3ni3li/QddagsY09U7X5KUjEEkPxHsPsosORBWWQCWIZ/khOf2K+Bq2k=
-X-Received: by 2002:a05:620a:17aa:b0:7b6:c92e:2e6d with SMTP id
- af79cd13be357-7be63288b8dmr4180692485a.52.1737739409330; Fri, 24 Jan 2025
- 09:23:29 -0800 (PST)
+	s=arc-20240116; t=1737739900; c=relaxed/simple;
+	bh=hgo5Gm6nDhGIQgSJHFT/RmxBxdtq+iVJ5SoDgdrUDWI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eoqJ/ETibhlqkSpLrhoMtMswl0obWYmShYra9QLc8UuPOVd/PaoS/trzvUO4j8OU9cYk3cSitDkHSt6ZM2YKt54gt/9zXcfO2+aVm/OkDI/amh3GbMvk+1Xc/p28KyngyjBqzQpp/L1xyzVB1HB5/oslFn2RD+OhR7mnGcDulI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hQvRZcd4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FE7DC4CED2;
+	Fri, 24 Jan 2025 17:31:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737739899;
+	bh=hgo5Gm6nDhGIQgSJHFT/RmxBxdtq+iVJ5SoDgdrUDWI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hQvRZcd4e2GNQdo7p0U4OCCfPvGv6YOcR/Ps8DznEY6RoRrIRB/osheeIqYU+O+0B
+	 9EGwizhOSWwtVXT53fP3XGQeR05fXIKdOkbPDIQPh6yLWIhqhSSSWR//PK5LRWv5vR
+	 CubAIK9WJR+q0+wPXdUfkkTDnJQk8Xcb5vv7eZf6D+7a6m1opDV2Z7oeVjPT3UCqOV
+	 7ZQfxwNyvo76Z1kH6z5oMzCBHC8AFM/RFpTbpspC5qC2AzCvbGnMIm3UHEpnAHpaAG
+	 DY0WtlHXROP9+injXE/p8n9p914ERjlxe9yPN0/Ldm4qh9RNalYVmFIhQxmke/TjQI
+	 VwOJNjGPP9Iyw==
+Date: Fri, 24 Jan 2025 17:31:33 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Friday Yang =?utf-8?B?KOadqOmYsyk=?= <Friday.Yang@mediatek.com>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
+	"mturquette@baylibre.com" <mturquette@baylibre.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	Garmin Chang =?utf-8?B?KOW8teWutumKmCk=?= <Garmin.Chang@mediatek.com>,
+	"sboyd@kernel.org" <sboyd@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	Yong Wu =?utf-8?B?KOWQtOWLhyk=?= <Yong.Wu@mediatek.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: clock: mediatek: Add SMI LARBs reset
+ for MT8188
+Message-ID: <20250124-aide-feisty-821cf9cf1382@spud>
+References: <20250121065045.13514-1-friday.yang@mediatek.com>
+ <20250121065045.13514-2-friday.yang@mediatek.com>
+ <20250121-violet-widely-df3567b085a4@spud>
+ <2bfb6c05a3471e54f51c06895709853661e82c9a.camel@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250124052611.3705-1-eagle.alexander923@gmail.com>
- <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com>
- <a76f315f023a3f8f5435e0681119b4eb@manjaro.org> <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
- <61b494b209d7360d0f36adbf6d5443a4@manjaro.org>
-In-Reply-To: <61b494b209d7360d0f36adbf6d5443a4@manjaro.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Fri, 24 Jan 2025 21:23:18 +0400
-X-Gm-Features: AWEUYZmMc0C1SJlBvPcDZ7qyIIVJLWYZo934vdGbx4qMERT8_Fj27hNjzrjhk2A
-Message-ID: <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
- for rk3588
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Alexander Shiyan <eagle.alexander923@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, stable@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="D7rLUrhVT1Wjp55T"
+Content-Disposition: inline
+In-Reply-To: <2bfb6c05a3471e54f51c06895709853661e82c9a.camel@mediatek.com>
+
+
+--D7rLUrhVT1Wjp55T
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 24, 2025 at 2:37=E2=80=AFPM Dragan Simic <dsimic@manjaro.org> w=
-rote:
->
-> On 2025-01-24 11:25, Alexey Charkov wrote:
-> > On Fri, Jan 24, 2025 at 2:06=E2=80=AFPM Dragan Simic <dsimic@manjaro.or=
-g>
-> > wrote:
-> >> On 2025-01-24 09:33, Alexey Charkov wrote:
-> >> > On Fri, Jan 24, 2025 at 9:26=E2=80=AFAM Alexander Shiyan
-> >> > <eagle.alexander923@gmail.com> wrote:
-> >> >>
-> >> >> There is no pinctrl "gpio" and "otpout" (probably designed as
-> >> >> "output")
-> >> >> handling in the tsadc driver.
-> >> >> Let's use proper binding "default" and "sleep".
-> >> >
-> >> > This looks reasonable, however I've tried it on my Radxa Rock 5C and
-> >> > the driver still doesn't claim GPIO0 RK_PA1 even with this change. A=
-s
-> >> > a result, a simulated thermal runaway condition (I've changed the
-> >> > tshut temperature to 65000 and tshut mode to 1) doesn't trigger a PM=
-IC
-> >> > reset, even though a direct `gpioset 0 1=3D0` does.
-> >> >
-> >> > Are any additional changes needed to the driver itself?
-> >>
-> >> I've been digging through this patch the whole TSADC/OTP thing in the
-> >> last couple of hours, and AFAIK some parts of the upstream driver are
-> >> still missing, in comparison with the downstream driver.
-> >>
-> >> I've got some small suggestions for the patch itself, but the issue
-> >> you observed is obviously of higher priority, and I've singled it out
-> >> as well while digging through the code.
-> >>
-> >> Could you, please, try the patch below quickly, to see is it going to
-> >> fix the issue you observed?  I've got some "IRL stuff" to take care of
-> >> today, so I can't test it myself, and it would be great to know is it
-> >> the right path to the proper fix.
-> >>
-> >> diff --git i/drivers/thermal/rockchip_thermal.c
-> >> w/drivers/thermal/rockchip_thermal.c
-> >> index f551df48eef9..62f0e14a8d98 100644
-> >> --- i/drivers/thermal/rockchip_thermal.c
-> >> +++ w/drivers/thermal/rockchip_thermal.c
-> >> @@ -1568,6 +1568,11 @@ static int rockchip_thermal_probe(struct
-> >> platform_device *pdev)
-> >>          thermal->chip->initialize(thermal->grf, thermal->regs,
-> >>                                    thermal->tshut_polarity);
-> >>
-> >> +       if (thermal->tshut_mode =3D=3D TSHUT_MODE_GPIO)
-> >> +               pinctrl_select_default_state(dev);
-> >> +       else
-> >> +               pinctrl_select_sleep_state(dev);
-> >
-> > I believe no 'else' block is needed here, because if tshut_mode is not
-> > TSHUT_MODE_GPIO then the TSADC doesn't use this pin at all, so there's
-> > no reason for the driver to mess with its pinctrl state. I'd rather
-> > put a mirroring block to put the pin back to its 'sleep' state in the
-> > removal function for the TSHUT_MODE_GPIO case.
->
-> You're right, but the "else block" is what the downstream driver does,
+On Wed, Jan 22, 2025 at 07:40:12AM +0000, Friday Yang (=E6=9D=A8=E9=98=B3) =
+wrote:
+> On Tue, 2025-01-21 at 17:30 +0000, Conor Dooley wrote:
+> > On Tue, Jan 21, 2025 at 02:50:40PM +0800, Friday Yang wrote:
+> > > SMI LARBs require reset functions when applying clamp operations.
+> > > Add '#reset-cells' for the clock controller located in image,
+> > > camera
+> > > and IPE subsystems.
+> >=20
+> > A new required property is an abi break, please explain why this is
+> > required.
 
-Does it though? It only handles the TSHUT_MODE_GPIO case as far as I
-can tell (or TSHUT_MODE_OTP in downstream driver lingo) [1]
+You never answered this part. From a quick check, looks like the change
+you made will cause probe failures if the resets are not present? Maybe
+I misread the driver code in my quick skim - but that is the implication
+of a new required property, so I didn't dig super far.
 
-[1] https://github.com/radxa/kernel/blob/edb3eeeaa4643ecac6f4185d6d391c5747=
-35fca1/drivers/thermal/rockchip_thermal.c#L2564
+Adding new properties that break a driver is not really acceptable, so I
+hope I made a mistake there.
 
-> so I think it's better to simply stay on the safe side and follow that
-> logic in the upstream driver.  Is it really needed?  Perhaps not, but
-> it also shouldn't hurt.
->
-> > Will try and revert.
->
-> Awesome, thanks!
->
-> > P.S. Just looked at the downstream driver, and it actually calls
-> > TSHUT_MODE_GPIO TSHUT_MODE_OTP instead, so it seems that "otpout" was
-> > not a typo in the first place. So maybe the right approach here is not
-> > to change the device tree but rather fix the "gpio" / "otpout" pinctrl
-> > state handling in the driver.
->
-> Indeed, "otpout" wasn't a typo, and I've already addressed that in my
-> comments to Alexander's patch.  Will send that response a bit later.
->
-> I think it's actually better to accept the approach in Alexander's
-> patch, because the whole thing applies to other Rockchip SoCs as well,
-> not just to the RK3588(S).
+> What are "SMI LARBs"? Why did things previously work
+> > without
+> > acting as a reset controller?
+> >=20
+>=20
+> The background can refer to the discussion in the following link:
+>=20
+> https://lore.kernel.org/all/CAFGrd9qZhObQXvm2_abqaX83xMLqxjQETB2=3DwXpobD=
+WU1CnvkA@mail.gmail.com/
+>=20
+> https://lore.kernel.org/all/CAPDyKFpokXV2gJDgowbixTvOH_5VL3B5H8eyhP+KJ5Fa=
+sm2rFg@mail.gmail.com/
+> SMI clamp and reset operations should be implemented in SMI driver
+> instead of PM driver.
 
-Anyway, I've just tried it after including the changes below, and
-while /sys/kernel/debug/pinctrl/pinctrl-handles shows the expected
-pinctrls under tsadc, the driver still doesn't seem to be triggering a
-PMIC reset. Weird. Any thoughts welcome.
+So the answer to how it worked previously was that nothing actually used
+this multimedia interface?
 
-Best regards,
-Alexey
+Your commit message needs to explain why a new required property is okay
+and why it was not there before.
 
-rock-5c ~ # cat /sys/kernel/debug/pinctrl/pinctrl-handles
-Requested pin control handlers their pinmux maps:
-[...]
-device: fec00000.tsadc current state: default
- state: default
-   type: MUX_GROUP controller rockchip-pinctrl group: tsadc-shut (84)
-function: tsadc (84)
-   type: CONFIGS_PIN controller rockchip-pinctrl pin gpio0-1 (1)config 0000=
-0001
- state: sleep
-   type: MUX_GROUP controller rockchip-pinctrl group: tsadc-gpio-func
-(95) function: gpio-func (97)
-   type: CONFIGS_PIN controller rockchip-pinctrl pin gpio0-1 (1)config 0000=
-0001
-[...]
+Thanks,
+Conor.
 
-rock-5c ~ # gpioinfo 0
-gpiochip0 - 32 lines:
-       line   0:      unnamed "regulator-vdd-3v3" output active-high [used]
-       line   1:      unnamed       unused   input  active-high
-       line   2:      unnamed       unused   input  active-high
-       line   3:      unnamed       unused   input  active-high
-       line   4:      unnamed       unused   input  active-high
-       line   5:      unnamed       unused   input  active-high
-       line   6:      unnamed       unused   input  active-high
-       line   7:      unnamed       unused   input  active-high
-       line   8:      unnamed       unused   input  active-high
-       line   9:      unnamed       unused   input  active-high
-       line  10:      unnamed       unused   input  active-high
-       line  11:      unnamed       unused   input  active-high
-       line  12:      unnamed       unused   input  active-high
-       line  13:      unnamed       unused   input  active-high
-       line  14:      unnamed       unused   input  active-high
-       line  15:      unnamed       unused   input  active-high
-       line  16:      unnamed       unused   input  active-high
-       line  17:      unnamed       unused   input  active-high
-       line  18:      unnamed       unused   input  active-high
-       line  19:      unnamed       unused   input  active-high
-       line  20:      unnamed       unused   input  active-high
-       line  21:      unnamed "regulator-pcie2x1l2-3v3" output
-active-high [used]
-       line  22:      unnamed       unused   input  active-high
-       line  23:      unnamed       unused   input  active-high
-       line  24:      unnamed       unused   input  active-high
-       line  25:      unnamed       unused   input  active-high
-       line  26:      unnamed       unused   input  active-high
-       line  27:      unnamed       unused   input  active-high
-       line  28:      unnamed "regulator-vcc5v0-usb-otg0" output
-active-high [used]
-       line  29:      unnamed       unused   input  active-high
-       line  30:      unnamed       unused   input  active-high
-       line  31:      unnamed       unused   input  active-high
+>=20
+> I previously added the SMI reset control driver. However, the
+> reviewer's comments are correct, these functions have already
+> been implemented in the clock control driver. There is no need
+> to submit duplicate code.=20
+>=20
+> https://lore.kernel.org/lkml/20241120063305.8135-2-friday.yang@mediatek.c=
+om/
+>=20
+> https://lore.kernel.org/lkml/20241120063305.8135-3-friday.yang@mediatek.c=
+om/
+>=20
+>=20
+> On the MediaTek platform, the SMI block diagram like this:
+>=20
+>                 DRAM
+>                  |
+>             EMI(External Memory Interface)
+>                  |  |
+>           MediaTek IOMMU(Input Output Memory Management Unit)
+>                  |  |
+>              SMI-Common(Smart Multimedia Interface Common)
+>                  |
+>          +----------------+------------------+
+>          |                |                  |
+>          |                |                  |
+>          |                |                  |
+>          |                |                  |
+>          |                |                  |
+>        larb0       SMI-Sub-Common0     SMI-Sub-Common1
+>                    |      |     |      |             |
+>                   larb1  larb2 larb3  larb7       larb9
+>=20
+> The SMI-Common connects with SMI LARBs and IOMMU. The maximum LARBs
+> number that connects with a SMI-Common is 8. If the engines number is
+> over 8, sometimes we use a SMI-Sub-Common which is nearly same with
+> SMI-Common. It supports up to 8 input and 1 output(SMI-Common has 2
+> output).
+>=20
+> > >=20
+> > > Signed-off-by: Friday Yang <friday.yang@mediatek.com>
+> > > ---
+> > >  .../bindings/clock/mediatek,mt8188-clock.yaml | 21
+> > > +++++++++++++++++++
+> > >  1 file changed, 21 insertions(+)
+> > >=20
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/clock/mediatek,mt8188-
+> > > clock.yaml
+> > > b/Documentation/devicetree/bindings/clock/mediatek,mt8188-
+> > > clock.yaml
+> > > index 860570320545..2985c8c717d7 100644
+> > > --- a/Documentation/devicetree/bindings/clock/mediatek,mt8188-
+> > > clock.yaml
+> > > +++ b/Documentation/devicetree/bindings/clock/mediatek,mt8188-
+> > > clock.yaml
+> > > @@ -57,6 +57,27 @@ required:
+> > >    - reg
+> > >    - '#clock-cells'
+> > >=20
+> > > +allOf:
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            enum:
+> > > +              - mediatek,mt8188-camsys-rawa
+> > > +              - mediatek,mt8188-camsys-rawb
+> > > +              - mediatek,mt8188-camsys-yuva
+> > > +              - mediatek,mt8188-camsys-yuvb
+> > > +              - mediatek,mt8188-imgsys-wpe1
+> > > +              - mediatek,mt8188-imgsys-wpe2
+> > > +              - mediatek,mt8188-imgsys-wpe3
+> > > +              - mediatek,mt8188-imgsys1-dip-nr
+> > > +              - mediatek,mt8188-imgsys1-dip-top
+> > > +              - mediatek,mt8188-ipesys
+> > > +
+> > > +    then:
+> > > +      required:
+> > > +        - '#reset-cells'
+> > > +
+> > >  additionalProperties: false
+> > >=20
+> > >  examples:
+> > > --
+> > > 2.46.0
+> > >=20
 
-(note line 1: unused above)
+--D7rLUrhVT1Wjp55T
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-index 6e56d7704cbe..e8c4d9b3f828 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-rock-5c.dts
-@@ -873,6 +873,9 @@ regulator-state-mem {
-};
+-----BEGIN PGP SIGNATURE-----
 
-&tsadc {
-+       rockchip,hw-tshut-temp =3D <65000>;
-+       rockchip,hw-tshut-mode =3D <1>; /* tshut mode 0:CRU 1:GPIO */
-+       rockchip,hw-tshut-polarity =3D <0>; /* tshut polarity 0:LOW 1:HIGH =
-*/
-       status =3D "okay";
-};
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5POdQAKCRB4tDGHoIJi
+0i5YAP9Dx5bXus4xwjvaYC4iLzVHrcUXsxmP4pUtVR6hWDrycwD9GKZ11XB4OJbc
+HOrve7a/fbLIiPLQfLUBCD2A5m4nbQ8=
+=oF2i
+-----END PGP SIGNATURE-----
 
-diff --git a/drivers/thermal/rockchip_thermal.c
-b/drivers/thermal/rockchip_thermal.c
-index f551df48eef9..4f474906b2b0 100644
---- a/drivers/thermal/rockchip_thermal.c
-+++ b/drivers/thermal/rockchip_thermal.c
-@@ -1568,6 +1568,9 @@ static int rockchip_thermal_probe(struct
-platform_device *pdev)
-       thermal->chip->initialize(thermal->grf, thermal->regs,
-                                 thermal->tshut_polarity);
-
-+       if (thermal->tshut_mode =3D=3D TSHUT_MODE_GPIO)
-+               pinctrl_select_default_state(&pdev->dev);
-+
-       for (i =3D 0; i < thermal->chip->chn_num; i++) {
-               error =3D rockchip_thermal_register_sensor(pdev, thermal,
-                                               &thermal->sensors[i],
-@@ -1614,6 +1617,9 @@ static void rockchip_thermal_remove(struct
-platform_device *pdev)
-       }
-
-       thermal->chip->control(thermal->regs, false);
-+
-+       if (thermal->tshut_mode =3D=3D TSHUT_MODE_GPIO)
-+               pinctrl_pm_select_sleep_state(&pdev->dev);
-}
-
-static int __maybe_unused rockchip_thermal_suspend(struct device *dev)
-@@ -1629,7 +1635,8 @@ static int __maybe_unused
-rockchip_thermal_suspend(struct device *dev)
-       clk_disable(thermal->pclk);
-       clk_disable(thermal->clk);
-
--       pinctrl_pm_select_sleep_state(dev);
-+       if (thermal->tshut_mode =3D=3D TSHUT_MODE_GPIO)
-+               pinctrl_pm_select_sleep_state(dev);
-
-       return 0;
-}
-@@ -1674,7 +1681,8 @@ static int __maybe_unused
-rockchip_thermal_resume(struct device *dev)
-       for (i =3D 0; i < thermal->chip->chn_num; i++)
-               rockchip_thermal_toggle_sensor(&thermal->sensors[i], true);
-
--       pinctrl_pm_select_default_state(dev);
-+       if (thermal->tshut_mode =3D=3D TSHUT_MODE_GPIO)
-+               pinctrl_pm_select_default_state(dev);
-
-       return 0;
-}
+--D7rLUrhVT1Wjp55T--
 
