@@ -1,47 +1,58 @@
-Return-Path: <devicetree+bounces-140718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 711EEA1B194
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 09:23:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69429A1B199
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 09:23:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 224593AAB3E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 08:22:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B8B5716B9A2
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 08:23:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260BA218AD6;
-	Fri, 24 Jan 2025 08:22:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E29A218AD6;
+	Fri, 24 Jan 2025 08:23:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b0n8fqY+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE1F218AC0;
-	Fri, 24 Jan 2025 08:22:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3505D14A0A3;
+	Fri, 24 Jan 2025 08:23:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737706978; cv=none; b=jxZLvyhBNX+c6gcj9OBniUIjrCo4Q+8y83a3j0vJPdVXpyyEI6BffIUN8bKypQFcuxXW8h7xmUUaOPwHbV6XEgbUwrdHDsWQQME2EWgr+btGK3aFL8IYAsUmjp4/rHJDYSjdIKqSYEpfro2hiucb6bJQIMtJU2IpzugYM5iefOc=
+	t=1737707024; cv=none; b=unfNOYm0L4A3Sqq6Yc+QlpT1AG6tBtvbIHs3Y+R7C9I+uAxVvNkafV9ZPAk912nZaiKQwOUCJlnuyAv4t4BgNjY2LcK4Isj4ZLrkV3jilePZmUPJPH7l+q3aapQeuMUjmBbOGNuPZicGfY1nkRBBzhPBAPb3mRhc76CkhdLmG/k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737706978; c=relaxed/simple;
-	bh=Q1IpJfooWgV1G+ljvU7vx8poMzlFNzXjzXciEhEOxoU=;
+	s=arc-20240116; t=1737707024; c=relaxed/simple;
+	bh=1tbcRqhwFEG2E5LTry6DGDbyq3heUSSFyhAhh+CIYLA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EzL6l2SOps+WB86RkcTCj/UYkemF4uVta5mGWLYeG6utyK2NGMNgmIX1TkSXVe8Yw11Roi/GQ0NKYYyurhH/xJX3ZsbB2GpzF4MKXKowMyaSw4WuVOAu/N4oIlHpUEcbgvf51DfaloF2YqaQb+VWIEDRW2Ri7GeYi3Lrt1wS478=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 853C2C4CEDD;
-	Fri, 24 Jan 2025 08:22:56 +0000 (UTC)
-Date: Fri, 24 Jan 2025 09:22:54 +0100
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	 Content-Type:Content-Disposition:In-Reply-To; b=dAtraXdGd8qh+dQftoYh8UMhN76oXNK2ru1xV2tz9tRX2RmtHfExZFEjxpg/9yBOR0dG+5t27ZeL+SifcfPwHEfySuX62W3LhjHnSOeDrmGoXB6tlr6iICyM9IMKOvn8czGbwc7aBy6JN8Ount8QOH0jojY/S+zhkoL0NXEYH0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b0n8fqY+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C91ACC4CED2;
+	Fri, 24 Jan 2025 08:23:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737707023;
+	bh=1tbcRqhwFEG2E5LTry6DGDbyq3heUSSFyhAhh+CIYLA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b0n8fqY+/aucU7wAezK5y2R5VNnLReq/YIcZGJmjOZr5REbvmDlnTsPF7r5jpYWL5
+	 SHM5xfzgUCqLDv8Brx7JtS2a3Kr1G3zd0WwqZPKT0BT/4eAMFhaATu9Y48V3X3slOI
+	 dykRPWWSdG5L27nLWF1yAmuNkATDfxBSkU9NFpOwF7CccKNOaVIrTPvh7MfBeOtFBU
+	 TvGe5d708ec40iM77T1nPl3c497IrDig7XMd0dlIHCDW5ENquGjHRwDAeaDGTR7eld
+	 kXxyl2uNjGFoC45pgNP/+MPh5v4gAREEPGH/SPHJ6DI2oHbaN9xyIH99p8s73hLe1F
+	 6sFKR0dML3fcg==
+Date: Fri, 24 Jan 2025 09:23:40 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Julien Massot <julien.massot@collabora.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Siddharth Vadapalli <s-vadapalli@ti.com>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/5] dt-bindings: mfd: syscon: Add ti,am62-ddr-pmctrl
-Message-ID: <20250124-able-beagle-of-prowess-f5eb7a@krzk-bin>
-References: <20250122-topic-am62-dt-syscon-v6-13-v1-0-515d56edc35e@baylibre.com>
- <20250122-topic-am62-dt-syscon-v6-13-v1-2-515d56edc35e@baylibre.com>
- <20250124-heavy-jaybird-of-vitality-4cbe24@krzk-bin>
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: soc: renesas: Document MyIR Remi Pi
+ board
+Message-ID: <20250124-quick-competent-kangaroo-8d1eda@krzk-bin>
+References: <20250122-myir-remi-pi-v1-0-0e44e1cb8a90@collabora.com>
+ <20250122-myir-remi-pi-v1-1-0e44e1cb8a90@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,30 +61,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250124-heavy-jaybird-of-vitality-4cbe24@krzk-bin>
+In-Reply-To: <20250122-myir-remi-pi-v1-1-0e44e1cb8a90@collabora.com>
 
-On Fri, Jan 24, 2025 at 09:19:49AM +0100, Krzysztof Kozlowski wrote:
-> On Wed, Jan 22, 2025 at 11:24:33AM +0100, Markus Schneider-Pargmann wrote:
-> > Add compatible for ti,am62-ddr-pmctrl to the list. There is a DDR pmctrl
-> > register in the wkup-conf register space of am62a and am62p. This
-> > register controls DDR power management.
-> > 
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > ---
-> >  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
+On Wed, Jan 22, 2025 at 01:56:05PM +0100, Julien Massot wrote:
+> Document the MyIR Remi Pi" which is based on the Renesas
+> RZ/G2L ("R9A07G044L2") SoC.
 > 
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/soc/renesas/renesas.yaml | 7 +++++++
+>  1 file changed, 7 insertions(+)
 
-Un-acked, I missed the point that you really speak in commit msg about
-register and you really treat one register is a device. I assumed you
-only need that register from this device, but no. That obviously is not
-what this device is. Device is not a single register among 10000 others.
-IOW, You do not have 10000 devices there.
-
-So:
-
-NAK
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
