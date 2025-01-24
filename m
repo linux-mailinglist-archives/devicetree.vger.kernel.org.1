@@ -1,73 +1,82 @@
-Return-Path: <devicetree+bounces-140675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CF1FA1AF2E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 04:54:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 262A1A1AF67
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 05:27:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D308F7A5168
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 03:54:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 519373ACAF0
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 04:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE9631D63E3;
-	Fri, 24 Jan 2025 03:54:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F631D63FB;
+	Fri, 24 Jan 2025 04:27:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ioERmeCe"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="WG7YiOTK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f67.google.com (mail-ed1-f67.google.com [209.85.208.67])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0F361D63DA
-	for <devicetree@vger.kernel.org>; Fri, 24 Jan 2025 03:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66B7C23B0
+	for <devicetree@vger.kernel.org>; Fri, 24 Jan 2025 04:27:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737690865; cv=none; b=COOfUnU+b52CKXMQf1QQqCg9sSxlIavpjpdMBHjBQnXz8HSlSUDCiKJckFghZfykOBmiSVef1AFl2tDylu39rYzl1RZ1U/9ZxrRdN7g5uhoqcTXjeFMdn1813bGHXKem5Hvi4EF77jMh+myNWveY1frkK43auU1wM9LarPsD9Nc=
+	t=1737692856; cv=none; b=nm0ToKB0NixloxFO1urzL2tGepB0b2BVJ4UrlaiROLTHOw36o7ZJYMgZ0RMJega6wXMJJXpTnv/afRIXUFvma+9ORImbrjZJJS6cM7twgf/MqmAXkrSlcRtNzZfZPT89ClbjBzRMkqnMPcCQzX7i497AOhAeuew/ASaw7ImsCX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737690865; c=relaxed/simple;
-	bh=7SJYfNaQixDgAN2Y+cvoyflisp9x9nwhGNxUCEmIS5U=;
+	s=arc-20240116; t=1737692856; c=relaxed/simple;
+	bh=j/BuiNKJ6yVH7SYucYouITYrXzZHm2fJW+U85RQTjvo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nLdWGcgngt/hFdAW1R6rOBGd5ndDpQlYMsV1pwthuEjQNre6MvJQBmbfBiYB6guPp+Li00OmD1K90fNgthf6N+ZEXpehE5AglrvlT593Nr+q2qjVn3DbdLGSKdt7cI2PynrngyHJ7T+hKbj9yFFkjJUDoCruHY9uKs5I3DFShsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ioERmeCe; arc=none smtp.client-ip=209.85.208.67
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-ed1-f67.google.com with SMTP id 4fb4d7f45d1cf-5da135d3162so2712571a12.3
-        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 19:54:23 -0800 (PST)
+	 To:Cc:Content-Type; b=Fv+JVWr9to0FBQehZmgRxUUJwkW6f10LSqKQgFLCzYrCZWQsF7ZKTtMt4X7rrI5py//QV1/mgWMgtgIIQBFhd5fdl9m4cKWey96t6GrRishQi+FQUqMzXJ9SC5b8uo9r4vYSA0dKYyldmJTZDFfG+lcqrV5bkCWbWuRUw9nxGfQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=WG7YiOTK; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-542af38ecd6so2022901e87.0
+        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 20:27:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1737690862; x=1738295662; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1737692850; x=1738297650; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=7SJYfNaQixDgAN2Y+cvoyflisp9x9nwhGNxUCEmIS5U=;
-        b=ioERmeCejf0tZA/DQexNiam15wJqW0wTC+xDf+tbrgqWa2s++JhGoWpzHpygK7EmS6
-         NHG+MWjWZFU7TJ9TTVRjHkuLZZJ8Q0c7rDZzpCAm9l+y84rFjFIc2cZYLPrloHMFBuFS
-         AncrcoT9pkO8rz4zZYJYwcX++XnLnmh/fX45d+5uy/lxEgaKDVD4fyEUFfUoEexbhy/h
-         uxpQuX0bBTVnTvJi5yrNw86n8FP6KhjWNf9a7b7PTYiaqkFKzrOHHw2nfBetyPOlV5tV
-         ZDwhMPUcsohirPg7kfE2VozwU9Q5n5v4RY3I514CwKcRbAgAQ5W0u4/W2/dG/sAHU8LL
-         zKYQ==
+        bh=j/BuiNKJ6yVH7SYucYouITYrXzZHm2fJW+U85RQTjvo=;
+        b=WG7YiOTKtfF54JDvYq3ArVHtB0WoH3ABudOsi7qeN9lffHLATXSpbciLMEhqopJw47
+         wdqsMArIrJ9bQ+4puTHa7erHXVEEXTGd/Zl8cb2/ktd3uYGdk2eXcng18QWNz+l0Hfpw
+         IY2M4CuCn9kVmR+txVQiunnIIpcOvi8qqfk/s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737690862; x=1738295662;
+        d=1e100.net; s=20230601; t=1737692850; x=1738297650;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=7SJYfNaQixDgAN2Y+cvoyflisp9x9nwhGNxUCEmIS5U=;
-        b=SheG8jy+rCyYyHRdEj3kid/EbhILPIblkvq2kJCtNHa0GH4TBhktXnMCsFJkmivLtv
-         p/P4RUYObyA472UWFQAdA+GdIuGxc7f6e7CUfc4yshRmF8Abkg2jPx4bAz/ZC7C/iH1O
-         Ko2gC6oU6juwemXLPGr31BgrZi0Sig4L10h6M2EyvaMS3S3o+FHuatthhSamnMspiXSN
-         UhEFTZwSzcojMs56g+4ktB6Gp2wAth+i4RBERp0rAZc4RfNGzoxQqvBRPNEJuvff7Cny
-         UEl2iY3LUX9laX1Sq5z8gWQ3kyT7zD+ucGEp5O8wCO7lh3G/JqvF6zV7fFfWt5DDGMux
-         JDdA==
-X-Forwarded-Encrypted: i=1; AJvYcCUdvoBcBKKnzlfFmqjZ4KbgtvNAxJxuuq06TIbMCUP6sqJbvPXyHtLd4FRc5kArwCb4tKny2gt69nWp@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZQIWSl3jPahRA9ypi/j4kpKmw26vUkL5S6f5n80MFU3ussTSO
-	yc3T5z72aOF2lRfRrUG4glRLTjunuGub396RraysYHMgbyC5g/fAtb+ldyYENcB2lLFFpmkILID
-	lHZ4kshD7xs0ZxnEuBKGSfI/LZZCUy7DtIQbCZw==
-X-Gm-Gg: ASbGncvAgU8Xna4LVCdpmlkrCOhe5DxNRAkGgSnnsaNaZyOteNjLo8qeMLBSGBHViEO
-	8s3YHworV+KKUpYbfkHf231f8sgfwtFpJ3I5+3E/5jsNY8cH/tXmkQTqORUif3ASxUd2jfLHSEA
-	==
-X-Google-Smtp-Source: AGHT+IF8bVXy7iYErZ8SedJ5V/in/H73YbvG7t1RAexKW9SaCUsQjnP2VH6byiDyREO6wZOTw/C2zCUAkuuSCRZMhhs=
-X-Received: by 2002:a05:6402:849:b0:5d4:75b:8ced with SMTP id
- 4fb4d7f45d1cf-5db7db2c371mr25393812a12.32.1737690861691; Thu, 23 Jan 2025
- 19:54:21 -0800 (PST)
+        bh=j/BuiNKJ6yVH7SYucYouITYrXzZHm2fJW+U85RQTjvo=;
+        b=tCkSqI3oDlxsyNBKpNQjOHIcuEWXS6zeqCPcpSr++SXua4XcAL1DCPLn/pqBBmkpGj
+         ZcSX63MBPAMHeQVxwW92rpIi6DxHflCsnVHEKtltXiGbCkesaEBK9BbhLI3ba3ZdFREX
+         KjFlcPTQDlxFWF0cSr+eaKbJI2qIFuv0+y4HjAFRUtIbbo/LYm7RdUs6jKyI2KBK6zKh
+         B6KGbZdZqkU9WSklJ1zyqxYZiF0V6jztqSGh9pNyPU4sf/bhjjiG9RVmyL6yWFIbRRFi
+         x1NfgRPwF5vdvvTyHBTx3XSsBMyJGvXM33fWzCiDg8NvkF0IJRGpebIMHqXdR8w+3EwG
+         Fm+w==
+X-Forwarded-Encrypted: i=1; AJvYcCUWLaQ1s3m1JUE+zcQp6q2iuvZnOowtRCNKcPPcGw4sBrevhxtfD/ZjEl16HXwt2dQ1bJK+NTFkjV2O@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYqSH/XcHUtG6YOnQ9jZneDBjl6ZnRd0bYP+3vyb7yoe9Y4LC9
+	bgXHYrhCbT2rvx0vpoyir5nY2YZCrfECEAPokqWZRCLJd5Ufq/Xru5NIvP8EJ7qioOyEL1mCfHC
+	H7j70
+X-Gm-Gg: ASbGncv3UKkUbHFqfe+hrVtdB8igC48Dgxf7e2kbKEQ6CUNynMkvURyH5cGG2jRc4VS
+	KlG64+zeb7KS0HRfI0MIOVpxaJworELMzaJrkttQRgL6l4stHE7N1pB5rmsdDlq9R+7xvj6/8Xq
+	Gr/wD8ljJm8X1H0HUyCdmYuCli83VM4tHhP/2/7J8wYpUSwrzpzbsVATgJ+PIad7Hc8JsTAngah
+	w+aX4+yGvKFz+8kfzfDV5YzV+r6jW33Xbgaz+8ha5et4+PDQOSMA/6OVtnzMrFCMiEcy1UMduHo
+	Wl9egggeRil11V8ARteTvxg3xByzdKLgKtuY5p/ICAgES0zi
+X-Google-Smtp-Source: AGHT+IF5lLNkMxnF0eaKNVzyIiXjhDQVjP2WG+u0BU7bv/riLb4vhkd3O048MDEqzki81hdntpmJNQ==
+X-Received: by 2002:ac2:5225:0:b0:542:241e:75ae with SMTP id 2adb3069b0e04-5439c22d82emr8436994e87.9.1737692849519;
+        Thu, 23 Jan 2025 20:27:29 -0800 (PST)
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com. [209.85.208.170])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543c83799a4sm153019e87.166.2025.01.23.20.27.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jan 2025 20:27:29 -0800 (PST)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-30034ad2ca3so12366751fa.1
+        for <devicetree@vger.kernel.org>; Thu, 23 Jan 2025 20:27:28 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXFx3518kU/GGwnKJWTeiRWDZO+MAqKApfsjWdvR7duLrgzXddHGUIunyxp8ltA0bwnJMvNbwbGXtyT@vger.kernel.org
+X-Received: by 2002:a2e:bea1:0:b0:2ff:d044:61fc with SMTP id
+ 38308e7fff4ca-3072cb249a7mr109162531fa.33.1737692847757; Thu, 23 Jan 2025
+ 20:27:27 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,15 +84,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20250123064758.743798-1-yelangyan@huaqin.corp-partner.google.com>
- <20250123064758.743798-2-yelangyan@huaqin.corp-partner.google.com> <CAD=FV=Vr5DnACFoQnnFzPhF778Nv6LOZj43BqZX6vW_azMARZQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=Vr5DnACFoQnnFzPhF778Nv6LOZj43BqZX6vW_azMARZQ@mail.gmail.com>
-From: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-Date: Fri, 24 Jan 2025 11:54:10 +0800
-X-Gm-Features: AWEUYZlvVzjDKdhtKmsHEYmOfyIMPbtjP2fRkgFUgH8QBR-mYVhMfVRyQ_imAuE
-Message-ID: <CA++9cvpBHN-i82mMwd_WZZrDGEQog2DmUSWcE9hDxsREyhNdrg@mail.gmail.com>
+ <20250123064758.743798-2-yelangyan@huaqin.corp-partner.google.com>
+ <CAD=FV=Vr5DnACFoQnnFzPhF778Nv6LOZj43BqZX6vW_azMARZQ@mail.gmail.com> <CA++9cvpBHN-i82mMwd_WZZrDGEQog2DmUSWcE9hDxsREyhNdrg@mail.gmail.com>
+In-Reply-To: <CA++9cvpBHN-i82mMwd_WZZrDGEQog2DmUSWcE9hDxsREyhNdrg@mail.gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Thu, 23 Jan 2025 20:27:16 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=UNkjPH_i7+wJqbPGpugTmo=Ly2_1bj=-1SKS4fiaRAFQ@mail.gmail.com>
+X-Gm-Features: AWEUYZmsKLiAzRAqlcAQdor_5g31Vg2LFMBTq4YC6Rmtxp99wgbUKMuPl0RD4r0
+Message-ID: <CAD=FV=UNkjPH_i7+wJqbPGpugTmo=Ly2_1bj=-1SKS4fiaRAFQ@mail.gmail.com>
 Subject: Re: [PATCH v4 1/3] dt-bindings: display: panel: Add compatible for
  KD110N11-51IE and 2082109QFH040022-50E
-To: Doug Anderson <dianders@chromium.org>
+To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
 Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, 
 	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
 	airlied@gmail.com, simona@ffwll.ch, robh@kernel.org, krzk+dt@kernel.org, 
@@ -93,70 +104,70 @@ Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Doug,
-Your suggestion is very helpful to me, thank you.
+Hi,
 
-I confirmed the controller chips of these two panels, and it turned
-out that they use the HX83102 IC, so the correct approach is that I
-should add these two MIPI panels to the binding file/driver of the
-MIPI controller of HX83102.I would like to ask if I need to release a
-v5 version or resend a new email if I do this?
+On Thu, Jan 23, 2025 at 7:54=E2=80=AFPM Langyan Ye
+<yelangyan@huaqin.corp-partner.google.com> wrote:
+>
+> Hi Doug,
+> Your suggestion is very helpful to me, thank you.
 
-Thank you again for taking the time out of your busy schedule to guide me.
+One note: when responding on mailing lists, please don't "top post". I
+personally don't care that much, but many others do. See, for
+instance;
+
+https://subspace.kernel.org/etiquette.html#do-not-top-post-when-replying
+
+I'm sure if you search the internet you can find lots of other
+descriptions about top posting, including the usual:
+
+A: No.
+Q: Should I ever top-post?
 
 
-Doug Anderson <dianders@chromium.org> =E4=BA=8E2025=E5=B9=B41=E6=9C=8824=E6=
-=97=A5=E5=91=A8=E4=BA=94 01:46=E5=86=99=E9=81=93=EF=BC=9A
->
-> Hi,
->
-> On Wed, Jan 22, 2025 at 10:48=E2=80=AFPM Langyan Ye
-> <yelangyan@huaqin.corp-partner.google.com> wrote:
-> >
-> > KINGDISPLAY KD110N11-51IE and STARRY 2082109QFH040022-50E are
-> > 10.95-inch WUXGA TFT LCD panels, which fits in nicely with the
-> > existing panel-boe-tv101wum-nl6 driver. Hence, we add a new
-> > compatible with panel specific config.
->
-> FWIW, this is still missing acting on a request that Krzysztof made.
-> Specifically, instead of the above wordy patch description, he
-> suggested a much simpler patch description that was just one sentence.
-> I could believe his suggestion may be difficult to understand if your
-> English isn't strong. He said [1]:
->
-> > "Add a new compatible for foo bar panel ....". One sentence. Could be
-> > also one patch, not two patches
->
-> Putting that more concretely, you'd want to change your patch
-> description in this case to:
->
-> Add a new compatible for the panels KINGDISPLAY KD110N11-51IE and
-> STARRY 2082109QFH040022-50E.
->
-> ...and that's it.
->
-> Personally I wouldn't send a V5 just for this, but if Krzysztof
-> requests it strongly then I wouldn't object.
->
-> That all being said, the part of the CL description that Krzysztof
-> wants you to trim is actually somewhat relevant to me if I am to give
-> a Reviewed-By tag. The agreement from DRM folks seemed to be that we
-> don't want to jam all MIPI panels into one bindings file and one
-> driver. The idea is that they should be organized by the controller
-> chip. For some history here, see [2] and all of the discussion in
-> response to a previous patch [3].
->
-> So the question is: do the new panels you're adding actually share the
-> same onboard MIPI controller as the other ones in this file? If not
-> then you _do_ need to spin your patch. If there's already some other
-> bindings file / driver for the MIPI controller in these panels then
-> you can add to that. If not then you'd need to add a new bindings file
-> and a new driver.
->
-> [1] https://lore.kernel.org/r/9cf4efd5-cc4b-492c-a1f3-18a19ba7afeb@kernel=
-.org
-> [2] https://patchwork.freedesktop.org/patch/msgid/20240516072039.1287065-=
-3-yangcong5@huaqin.corp-partner.google.com
-> [3] https://lore.kernel.org/all/20240410071439.2152588-1-yangcong5@huaqin=
-.corp-partner.google.com/
+> I confirmed the controller chips of these two panels, and it turned
+> out that they use the HX83102 IC, so the correct approach is that I
+> should add these two MIPI panels to the binding file/driver of the
+> MIPI controller of HX83102.
+
+Yes, that sounds correct to me. So you'd move the bindings patch to
+add your compatible strings to:
+
+Documentation/devicetree/bindings/display/panel/himax,hx83102.yaml
+
+...and you'd add the code to:
+
+drivers/gpu/drm/panel/panel-himax-hx83102.c
+
+...when you do this, please make sure you're following the conventions
+of the "panel-himax-hx83102.c" driver file, like using the
+hx83102_enable_extended_cmds() function when appropriate and using the
+defines like "HX83102_SETPOWER", "HX83102_SETDISP", etc.
+
+
+> I would like to ask if I need to release a
+> v5 version or resend a new email if I do this?
+
+IMO you'd call it v5. You should probably drop Neil's Reviewed-by tag
+in this case since it's a major enough change that you'd want him to
+re-provide a review. You could add a note to the version history like
+"Dropped Neil's tags since V5 is very different from V4" or something
+like that.
+
+FWIW, for the bindings patch I would personally use the patch description:
+
+Add a new compatible for the panels KINGDISPLAY KD110N11-51IE and
+STARRY 2082109QFH040022-50E. Both panels use the HX83102 IC so add the
+compatible to the hx83102 bindings file.
+
+
+> Thank you again for taking the time out of your busy schedule to guide me=
+.
+
+The best way you can thank me is to teach others that you're working
+with the lessons you've learned about working with the upstream kernel
+mailing lists and sending patches. Maybe provide some internal
+documentation for other new engineers to follow. :-P
+
+-Doug
 
