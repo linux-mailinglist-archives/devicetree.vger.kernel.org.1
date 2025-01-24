@@ -1,189 +1,140 @@
-Return-Path: <devicetree+bounces-140778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E480A1B63C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 13:42:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF970A1B650
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 13:52:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 782D9162A1A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 12:42:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBFDB188AD28
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 12:52:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBC7521B1BE;
-	Fri, 24 Jan 2025 12:42:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="KgCYOHIH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82B8D4C6C;
+	Fri, 24 Jan 2025 12:52:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4822521ADB2;
-	Fri, 24 Jan 2025 12:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DE8A20ED;
+	Fri, 24 Jan 2025 12:52:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737722532; cv=none; b=ERlc71emSPmW3zos/78kVq4piw8K4Hzr9KafUxxkyovzKZhI+zjYyqAZqvYtVrtn3xsnputzoOGl/kwKn6GWPFaH8EsgokyMA6CpW7YFsxi31x+++YuO9zjZpdQjHij3DTkXmNCrUnrD8Lh2ah4jA3SNQncayxIsAjY2oa/g5JY=
+	t=1737723135; cv=none; b=j4+uZtwhApm48hlczzuXDQpdfE01dChN6ssLWCyFN2Ux08Wb3Oq1sGvDEpVOQ5PH133SteOigSLRt1gYKHm+K+Fd0RBn5afjL9AYbEShAvp2IvelecHq2cRw5/SUA8NrY1UJNPprWkRw43AJIAcMr6A3ayXifut7wXZjUVemrRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737722532; c=relaxed/simple;
-	bh=LrB1NL9sCl0E9cw6uEYx1FqVs3ie8bmx1aVs2RByPnA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Yr/WIZOuPY1w17QUrvFz+k5dhYOvIBBeO8zZkgTXazL7EGO/5rubZrgT6vWyZrEXIeBIBTmbJZYuZ1+FhOUv9X/CEFCMqI5uUh5GNXf8colOIeXpSwvvX6vv2Ss2p/Fhn6jWX3j689Z9qxodaPMCdjkS4m0TQfOlYX2GjUsy0Eo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=KgCYOHIH; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50OCft1f1355368
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Fri, 24 Jan 2025 06:41:55 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1737722515;
-	bh=Y0droG6bfOVQ9ccS8dcPaAEGjjMS1WyNZBdFc7z/3EM=;
-	h=From:To:CC:Subject:Date;
-	b=KgCYOHIHrPe3VeMYjUaew8+9jcRsa1Oa71tscE15qycA+G1yBoNzK8kbpA4Slo+Nr
-	 SJW2k2Vyg8/ipdjAGkI4sDsgpOTcVrQbbufmOzhtW+Azaw6b3DR//nVIe32N9DTdx0
-	 Di+Pxr69L4Tg25f4ObaNM83SVeDDWvrww6/+CpZk=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50OCft2s020912
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 24 Jan 2025 06:41:55 -0600
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 24
- Jan 2025 06:41:54 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 24 Jan 2025 06:41:54 -0600
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.104])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50OCforC023206;
-	Fri, 24 Jan 2025 06:41:51 -0600
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j784s4-j742s2-evm: Add overlay to enable USB0 Type-A
-Date: Fri, 24 Jan 2025 18:11:49 +0530
-Message-ID: <20250124124150.2024963-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1737723135; c=relaxed/simple;
+	bh=LmUgDWigoKreNEfXiBDNvFSj/48QclhHVtIubVnAteI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MKk8kw+QGBHBKAOqrX+SdFaLU9ddJ/POU+4fDrx/pxm9nUvHqNSOvvYaBrVJgp0xiFqSBea639aY4zvfohZGVk1lQPffA0XjFFkhoIosKlKMHdJ6z+H0loxn65asEQ1LFgZHGQeImJewGM+ma8Npz9tDFK9bVprmjLQSxKncB74=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-5174d53437eso1165261e0c.2;
+        Fri, 24 Jan 2025 04:52:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737723131; x=1738327931;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=E9ViOWMG5jKFCBvlpYS96nIlMfkNruTXof4tCvSO09Q=;
+        b=pZjIZPAZwAXrIl0Dg2YZOzWST/Wuybq8ff94IItIxUqA+Ltza6dW+6vwmgXwiVyIhY
+         H2aZ+PB5tJZ/eBo3VkDT8AfVaoSSArfXzAqkswQyjmHs9a2Rex6Jr/9U45aXeY4qymCl
+         hL8pjzrRImfOYb8nMeTxYZpkmII5++JtA3lRH1HYGNqVG0vyotC1Ot4HdgeCN4lBQYNs
+         bEygn/djXd5vAR0BvRqGATyu/moGX8sSkOAhhaoe6yYNWJB5yBWSJIVdhV5y6O0yOKlN
+         bz7PH7OPfQabQigxuRj2ojL67rkk7J4EGa2MZi3kYxuvpBNVDao/5TGRw8yFju22rOrJ
+         DmEA==
+X-Forwarded-Encrypted: i=1; AJvYcCUxsEMe47pHXkgy6pKHX+p0pNZxGwXwabaiHNNijolDr7V96VZ3ekH4UXnROX8ZL6aHyp6H4uq34RgH4Sca@vger.kernel.org, AJvYcCWcE5wyzgAnZTl0K70LiUTEGX8k97Se1rQJW2JgOBvDAmb0Z2pWZPFCl+TusueTDcPtFNt1+tMMw7GKuIAMRR0iEVU=@vger.kernel.org, AJvYcCXOSjiRQlCVbyqqT5Rg7NzPqWHkld7th4+lJ5lSvZp4FkU75cho8BY333M9CEu0IXNKYJ37T/HQqkY9qfcO@vger.kernel.org, AJvYcCXXOCT6qfsC/Sgd0qWdQ/yQceqjhomVTEgSJraqg6oCT9R7S1eVLOivLrTulyMvK3a/GG4wloA3GDsF@vger.kernel.org
+X-Gm-Message-State: AOJu0YwM33tk/3hkglbLHMEmRwe/4Gcgb/6YU6diKe1s0IhWsYVVH7Nl
+	KZUElF+bh1MUhUaNPZ/GgdQIp2LwRB7i/Pl79Xcz6qQGoPyM0GqWaE6bhvKq
+X-Gm-Gg: ASbGncv+b3GsgqQaJIY1DoqpCQswXc9kXmw3/YTW+MIRfeWWDX8X0Ibs533PIYtwVU5
+	d0kmlhD+w1TxU8zJF0lwxgTOsbNxm7p81kzvYolhsCEAiIAEFXfnr8fpTvl1M/7v6zIvtTaYNyx
+	C4Pa+orbugfhei9igNt1YFQdVwlRv4T7Z8j2PQou7p9AqmKXviJnC47CBZ4W5ae4B1ijgHPRyX5
+	Lj5mx3atq62Dn85HjC/YFVhXMTTDdWCIFoaD8OUyk16FteK3NQWf5CtMnioTHPChFeU/XyEWhXV
+	bRJShd1h/e+JT4L0fysFSR2C/1EbiX28Uq64WWbTwxk=
+X-Google-Smtp-Source: AGHT+IF6y5S6KWMXiRp35/8+JyTI+3Ypr15YkKFEvZANiCl+3YjkTEs+oYzAxSACz1ebUUQD6cXBvA==
+X-Received: by 2002:a05:6122:3c90:b0:516:1ab2:9955 with SMTP id 71dfb90a1353d-51d5b2fd549mr26305079e0c.6.1737723131402;
+        Fri, 24 Jan 2025 04:52:11 -0800 (PST)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-51e4eab083asm362009e0c.25.2025.01.24.04.52.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Jan 2025 04:52:11 -0800 (PST)
+Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4b60c221587so1174508137.3;
+        Fri, 24 Jan 2025 04:52:11 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUu/mfarSd1dDpjwQ9CG4+NHo9ajJLQ1FJP0+XAxkTTyiddxFwFCFi56qhNAfRP9BFbbMr8KUR26W4KOmi9o9wXev0=@vger.kernel.org, AJvYcCWi6DlGvUCruzq7dtKViiW+T7I86KLOw2PXSSN9uiSr4i4GdAXxVKVbB9E9tXEIOE3kuYLkGBowYg5e@vger.kernel.org, AJvYcCWwrvGLSMxt6yiEWmGRnSJN99rJuCJDQasy5JTnKtMAD2kt9Rb4paNhY3cSKWBiGAsgXnQb+US4mDVdh0Rf@vger.kernel.org, AJvYcCXSuIX73ru/jmtisLMcvopZ2Eapy9YtR2j9/QgJSqkwuENrVBTas+b9BfXj079rKINx06zwnDskLwFURXB2@vger.kernel.org
+X-Received: by 2002:a05:6102:14aa:b0:4af:c5c8:bb4c with SMTP id
+ ada2fe7eead31-4b690c77448mr26313856137.16.1737723130990; Fri, 24 Jan 2025
+ 04:52:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250120130936.1080069-1-claudiu.beznea.uj@bp.renesas.com> <20250120130936.1080069-3-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20250120130936.1080069-3-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 24 Jan 2025 13:51:59 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUofvZMtcEK3t5HMbqVDgU438Jc7KEcjJHBPcvkx91Y4w@mail.gmail.com>
+X-Gm-Features: AWEUYZnLtL6lUD3_WqVfbNgRZnKXNQLHeNVMFMY8Nvy7QcgsKzbRYc6SjAr-r2M
+Message-ID: <CAMuHMdUofvZMtcEK3t5HMbqVDgU438Jc7KEcjJHBPcvkx91Y4w@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] arm64: dts: renesas: rzg3s-smarc-switches: Add a
+ header to describe different switches
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
+	p.zabel@pengutronix.de, claudiu.beznea.uj@bp.renesas.com, 
+	wsa+renesas@sang-engineering.com, prabhakar.mahadev-lad.rj@bp.renesas.com, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The USB0 instance of the USB controller on both the J742S2 EVM and the
-J784S4 EVM supports a single USB interface at a time among the following:
-1. USB3.1 Gen1 Type C interface
-2. Two USB2.0 Type A interfaces via an on-board USB Hub.
+On Mon, Jan 20, 2025 at 2:09=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> There are different switches available on both the RZ/G3S SMARC Module an=
+d
+> RZ SMARC Carrier II boards. These switches are used to route different So=
+C
+> signals to different parts available on board.
+>
+> These switches are described in device trees through macros. These macros
+> are set accordingly such that the resulted compiled dtb to describe the
+> on-board switches states.
+>
+> The SCIF1 depends on the state of the SW_CONFIG3 and SW_OPT_MUX4 switches=
+.
+> SCIF1 can be enabled through a device tree overlay. To manage all switche=
+s
+> in a unified state and allow users to configure the output device tree, a=
+dd
+> a file that contains all switch definitions and states.
+>
+> Commit prepares the code to enable SCIF1 on the RZ/G3S overlay.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v4:
+> - adjusted the patch description
+> - used GPL-2.0-only OR BSD-2-Clause license
+> - used proper description for SW_CONFIG3
 
-By default, the USB3.1 Gen1 Type C interface is supported on both of the
-EVMs. Enable the USB2.0 Type A interface by configuring the USB2.0_MUX_SEL
-mux. Additionally, set the Dual-Role Mode to Host since a Type-A interface
-is only associated with the Host Mode of operation.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.15.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+Gr{oetje,eeting}s,
 
-Hello,
+                        Geert
 
-This patch is based on linux-next tagged next-20250124.
-Since Linux boot is broken on all TI K3 SoCs including
-J742S2 and J784S4 due to:
-https://github.com/torvalds/linux/commit/ba5095ebbc7a
-as indicated at:
-https://lore.kernel.org/r/b2413460-ec8b-4c77-99b8-4c32b262439a@ti.com/
-this patch was tested on J784S4-EVM by reverting the aforementioned commit.
-Logs validating the USB2.0 Type-A Connector on J784S4-EVM using a USB Pen
-Drive:
-https://gist.github.com/Siddharth-Vadapalli-at-TI/663d703912ae574e39d7a78421e404c8
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Regards,
-Siddharth.
-
- arch/arm64/boot/dts/ti/Makefile               |  7 +++++
- .../ti/k3-j784s4-j742s2-evm-usb0-type-a.dtso  | 29 +++++++++++++++++++
- 2 files changed, 36 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-usb0-type-a.dtso
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 8a4bdf87e2d4..95b8fd0981d7 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -127,6 +127,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-pcie0-pcie1-ep.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-j784s4-j742s2-evm-usb0-type-a.dtbo
- 
- # Boards with J742S2 SoC
- dtb-$(CONFIG_ARCH_K3) += k3-j742s2-evm.dtb
-@@ -209,10 +210,14 @@ k3-j721e-sk-csi2-dual-imx219-dtbs := k3-j721e-sk.dtb \
- 	k3-j721e-sk-csi2-dual-imx219.dtbo
- k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtbo
-+k3-j742s2-evm-usb0-type-a-dtbs := k3-j742s2-evm.dtb \
-+	k3-j784s4-j742s2-evm-usb0-type-a.dtbo
- k3-j784s4-evm-pcie0-pcie1-ep-dtbs := k3-j784s4-evm.dtb \
- 	k3-j784s4-evm-pcie0-pcie1-ep.dtbo
- k3-j784s4-evm-quad-port-eth-exp1-dtbs := k3-j784s4-evm.dtb \
- 	k3-j784s4-evm-quad-port-eth-exp1.dtbo
-+k3-j784s4-evm-usb0-type-a-dtbs := k3-j784s4-evm.dtb \
-+	k3-j784s4-j742s2-evm-usb0-type-a.dtbo
- k3-j784s4-evm-usxgmii-exp1-exp2-dtbs := k3-j784s4-evm.dtb \
- 	k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
- dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
-@@ -243,8 +248,10 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-j721e-evm-pcie1-ep.dtb \
- 	k3-j721e-sk-csi2-dual-imx219.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtb \
-+	k3-j742s2-evm-usb0-type-a.dtb \
- 	k3-j784s4-evm-pcie0-pcie1-ep.dtb \
- 	k3-j784s4-evm-quad-port-eth-exp1.dtb \
-+	k3-j784s4-evm-usb0-type-a.dtb \
- 	k3-j784s4-evm-usxgmii-exp1-exp2.dtb
- 
- # Enable support for device-tree overlays
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-usb0-type-a.dtso b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-usb0-type-a.dtso
-new file mode 100644
-index 000000000000..ba15d72d86d6
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-j742s2-evm-usb0-type-a.dtso
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * DT Overlay for enabling USB0 instance of USB on J784S4 and J742S2 EVMs for
-+ * Host Mode of operation with the Type-A Connector.
-+ *
-+ * J784S4 EVM Product Link: https://www.ti.com/tool/J784S4XEVM
-+ * J742S2 EVM Product Link: https://www.ti.com/tool/J742S2XH01EVM
-+ *
-+ * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+
-+&exp2 {
-+	p12-hog {
-+		/* P12 - USB2.0_MUX_SEL */
-+		gpio-hog;
-+		gpios = <12 GPIO_ACTIVE_HIGH>;
-+		output-high;
-+		line-name = "USB2.0_MUX_SEL";
-+	};
-+};
-+
-+&usb0 {
-+	dr_mode = "host";
-+};
--- 
-2.43.0
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
