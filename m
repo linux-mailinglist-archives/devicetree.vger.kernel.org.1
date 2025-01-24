@@ -1,124 +1,104 @@
-Return-Path: <devicetree+bounces-140811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3207A1B846
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 16:01:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1448A1B851
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 16:03:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85DFC3A4428
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:01:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A09833A439E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:03:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D02084A5B;
-	Fri, 24 Jan 2025 15:01:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43FA578F57;
+	Fri, 24 Jan 2025 15:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LS0NeLy4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MI2cX+Qk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254714206E;
-	Fri, 24 Jan 2025 15:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1841514A624;
+	Fri, 24 Jan 2025 15:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737730903; cv=none; b=TVkj9wxIAJ+YNDqz/1ancmgmnU0pbEdDqwgkhStDlRIoDJHKwbh4fhrrlr2n9NBvd5saFpS3wRK+F+e0dSq/rKcyxnBlPrcuVMabNw0NJRpByR9yIENZbqSjAbiIFKGP6T8YUlBnCryplSrwpmged3NBDXMVSP4kNel1jjf9zM8=
+	t=1737731026; cv=none; b=oKvXMPEAtFZSGLOt+Lk6QJcTGUpf7CVsZQjWXZ5BzcwWFgW+elB2NtkPokKTG5YxqjQg8FNc5ypaMMkek6chrJsoYMbeJTPrV3ycYck6DE+rDpIRj+VDkzVhHPDbGPXE0qT5Wtsts9lmC89BoKrRZhcJLZtTNIWdKarhkZA9nx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737730903; c=relaxed/simple;
-	bh=+sKWvutBnhoT3u6vmgXqQEluf5+44IlXaH1XhyuWoKg=;
+	s=arc-20240116; t=1737731026; c=relaxed/simple;
+	bh=jqkOR5IaLZypgbg8zfK8rZbCZ7q9h48m/tKpfA0HnBI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OUgTbKgCVr9qCGRMXfrBcfBFQvpOw7yiAao1xiy2aRfNNmZ8+P163Tv/gYVMqB7PR0Fux3xXSebkgvxgnGly4IIpDzOry71wRO1HsNGWub9rHZ6rOdKihkxN749kUpipb8S4kP1LlyDmc+1uTMHzeGqFKpxrOiCUnqxUoxMAJho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LS0NeLy4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86A7DC4CEE6;
-	Fri, 24 Jan 2025 15:01:42 +0000 (UTC)
+	 To:Cc:Content-Type; b=YhCYhCQg4vVLUxXWs2KBuruGjwZwVVAtgWHl4PGQZ0Af1V6Z0+AoT1XU+oqC6kZYrKTsw0seJIAtGNLXnFTmT+12BVPyjrTW51MgW1kTLdqmaOGKoVkS+hZrLVy7ZvS6xHA6Tf3YQoZffhRIP1dxtCyLGC4OFs/ZLuODlV2ZxOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MI2cX+Qk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21586C4CEE5;
+	Fri, 24 Jan 2025 15:03:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737730902;
-	bh=+sKWvutBnhoT3u6vmgXqQEluf5+44IlXaH1XhyuWoKg=;
+	s=k20201202; t=1737731024;
+	bh=jqkOR5IaLZypgbg8zfK8rZbCZ7q9h48m/tKpfA0HnBI=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=LS0NeLy4JLmappwJK6o68N9jqtBZ33UoCKaSLDeeVV/9kAazwpqRTXPYTdC1edHsJ
-	 AiErkPb0Oeb/il89/iHADnjfwHVJhajZAkMac3uoL+L6YLCPecp8SqtYlntWmjrU+S
-	 cJYab8rsCptKvAYl6vuk3Ctx/A+crPv2a5Dztua36MMnIKdBMjVckAzs2KYSNZM4+u
-	 exdObxrolbGYdEg40/HB5YVZiDJRYXDYR8i+B0S1aj9OokQxfYq3UPNTR89QxiUiqM
-	 ur19ovsnnhUk185L5jyTLu4Tss/1G5ykNDsPjiyj3kknkB7PhZ7FJqFWfluEXoRadv
-	 As3fy0g3Z8vrw==
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-53e384e3481so2060967e87.2;
-        Fri, 24 Jan 2025 07:01:42 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWKkMRBeRpPlZwmZoVEcYKxxvQJahwTh/WWPyZ0dPCtEu1IwVzK6I/4dAcWnH5rjJLq+CwL+f/y3ixA/Q==@vger.kernel.org, AJvYcCWSoXuPzccw9dMDReDac/tEzCPMZUNVhEc5V3ujKSko6Gbud4xQoIesaYe/yF56vISRaPcAmxekFC9Ono/Chg==@vger.kernel.org, AJvYcCWr3l1Hq2cOzmawGdj1j5cfDTZIefSyG+2UeOLXOmp4cmfQiiktF+x7EgHRbXi0mI4X6UIiiJ67VFzeFAIELMA=@vger.kernel.org, AJvYcCXNPdL9R5BhNvDeyvivH/IrWrm2ddWxxN1y8lGMHjaU6dcPiAOgzsdOoV1DfXVCZPvq0CsWOwiHGirN@vger.kernel.org, AJvYcCXS+ab9cRGrCnrY4fUgW8oPh3rkzSfgk8ATuUo1z2JyeaI6/bzdPCMQnxbFMSStPHXx03MRXxYUh6MWYl/o@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdnWYKbuQebxKuBOuXc5/f3dcf4FQ7+Q7RAJQMvvFaoqTGRi2w
-	/08o9/jT4Lfg0XtX0OCOrpRdsQFXtG6tXWIVBwEQkK8g/kEamDqkHKQEg/N87wV6/KossnUJwvc
-	Wy36LCUUWy/EUmKx3XXXJ4FcKzA==
-X-Google-Smtp-Source: AGHT+IFhSnvfCuiCvL0OttX5PAnYoRXrSbi4TViakpq1cAbRQhI69YWUaroaQ+b8YKbg+lHMfXE6iddIvuIgn3sY5aM=
-X-Received: by 2002:ac2:4c56:0:b0:53e:fa8b:8227 with SMTP id
- 2adb3069b0e04-5439c27b239mr12676852e87.45.1737730900608; Fri, 24 Jan 2025
- 07:01:40 -0800 (PST)
+	b=MI2cX+QkypS+qBF/LY+cf6VrxYgFmslmBJLGfPMrEdKIdmmtYvFgfDFPKHKst87gx
+	 vvUHvFnMphzn3FnsdGeWzQ0DqgVcBTMcPrrCSY2KeRvbh930V0IxJAiYHTV25o5Yaz
+	 fm7ZbzJ0HCu2MFuY12KPV5I7o1aksB/XdVCM3CtdTIntEThFrcqAJnCd+8H0PbHS2K
+	 yOSXKU42WTSh6Phg9mYP0aKkARo0xvYOFKyNC1UtVPJ8jfKqJHnsdV7BQZQQMSQ1+0
+	 V1qnMSrBtBpWBMNlTqiiE7ZXke+M2oMgBD/70a8D2jIXat/8ths9216EqdzII/pVNj
+	 Op96UUrcGkbmQ==
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5401bd6cdb7so2306266e87.2;
+        Fri, 24 Jan 2025 07:03:44 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVIYmY8KUkWXIryOskVBL3ZPIwKt0m+DzfQKtFTfQwNVLUKAm5iOvvEfeuP/Yq9NbGGXc2eKleuEBeJ@vger.kernel.org, AJvYcCXqouGiVMnJ5X7+r3IVXVM3ewomjSUALLekVXKTTSSt46X3SP3+qTuFSHPfpRJhxO+/3jU93+rEdWNGm9g6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzA/VKQRY2oLs71IzaOWDTnttsmg4zsXzPXBlv//N4MGR35yh/
+	a3fZMC0EbZYbYul7NUw8SQUCNz7290K9+P54UVNQi7FxTmfvC0TTx77VtIvUoxn3P2iaGj/Fh1/
+	djB2PkhsbA5vUqsoCxRliDjkX6A==
+X-Google-Smtp-Source: AGHT+IFHtEAdJXXHuiJ86yZqtWULD0NzbhXIAQW296neg2pXJ8HoxEuCLy+oIz/vD23sgKBZqAjhes8fwCcW8yzQ1JY=
+X-Received: by 2002:a05:6512:aca:b0:542:a73d:a39c with SMTP id
+ 2adb3069b0e04-5439c281150mr12219584e87.49.1737731022443; Fri, 24 Jan 2025
+ 07:03:42 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250124101038.3871768-1-krishna.chundru@oss.qualcomm.com> <20250124101038.3871768-3-krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <20250124101038.3871768-3-krishna.chundru@oss.qualcomm.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 24 Jan 2025 09:01:27 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJE2x7XVkVKQuECTYfrML9V2TxdVNF-=EyTBbnGUEvhzw@mail.gmail.com>
-X-Gm-Features: AWEUYZlZJKsHinlSKqERUaTFlBEcUmg36ma0x9e7aGVnEsRJpf41kGM_GSo4ajU
-Message-ID: <CAL_JsqJE2x7XVkVKQuECTYfrML9V2TxdVNF-=EyTBbnGUEvhzw@mail.gmail.com>
-Subject: Re: [PATCH V2 2/2] schemas: pci: bridge: Document PCIe N_FTS
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: andersson@kernel.org, dmitry.baryshkov@linaro.org, 
-	manivannan.sadhasivam@linaro.org, krzk@kernel.org, helgaas@kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	lpieralisi@kernel.org, kw@linux.com, conor+dt@kernel.org, 
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree-spec@vger.kernel.org, quic_vbadigan@quicinc.com
+References: <6592d024-8d43-4b0c-8036-16df2bac9446@nokia.com>
+In-Reply-To: <6592d024-8d43-4b0c-8036-16df2bac9446@nokia.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Fri, 24 Jan 2025 09:03:29 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+KhUj9AbUMAjDdFXKRCyotrLtn3kx4qynM1ao4YueCCg@mail.gmail.com>
+X-Gm-Features: AWEUYZl2r9s5bG-7fBObIw5WZuN8z4mtnmgdcfijk0mKky4SL6VmDNbZJ9j-p1o
+Message-ID: <CAL_Jsq+KhUj9AbUMAjDdFXKRCyotrLtn3kx4qynM1ao4YueCCg@mail.gmail.com>
+Subject: Re: Keep bootloader DTB when ACPI is enabled
+To: Stefan Wiehler <stefan.wiehler@nokia.com>
+Cc: Frank Rowand <frowand.list@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "x86@kernel.org" <x86@kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 24, 2025 at 4:11=E2=80=AFAM Krishna Chaitanya Chundru
-<krishna.chundru@oss.qualcomm.com> wrote:
+On Tue, Jan 21, 2025 at 2:18=E2=80=AFAM Stefan Wiehler <stefan.wiehler@noki=
+a.com> wrote:
 >
-> Per PCIe r6.0, sec 4.2.5.1, during Link training, a PCIe component
-> captures the N_FTS value it receives.  Per 4.2.5.6, when
-> transitioning the Link from L0s to L0, it must transmit N_FTS Fast
-> Training Sequences to enable the receiver to obtain bit and Symbol
-> lock.
+> Hi all,
 >
-> Components may have device-specific ways to configure N_FTS values
-> to advertise during Link training.  Define an n_fts array with an
-> entry for each supported data rate.
->
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.co=
-m>
-> ---
->  dtschema/schemas/pci/pci-bus-common.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
->
-> diff --git a/dtschema/schemas/pci/pci-bus-common.yaml b/dtschema/schemas/=
-pci/pci-bus-common.yaml
-> index a9309af..968df43 100644
-> --- a/dtschema/schemas/pci/pci-bus-common.yaml
-> +++ b/dtschema/schemas/pci/pci-bus-common.yaml
-> @@ -128,6 +128,15 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      enum: [ 1, 2, 4, 8, 16, 32 ]
->
-> +  n-fts:
-> +    description:
-> +      The number of Fast Training Sequences (N_FTS) required by the
-> +      Receiver (this component) when transitioning the Link from L0s
-> +      to L0; advertised during initial Link training
-> +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> +    minItems: 1
-> +    maxItems: 5
+> We store various metadata (e.g. IDs and serial numbers) in the DT which m=
+ust be
+> consistent over multiple product generations; therefore we enable CONFIG_=
+OF
+> even when ACPI is used for boot. On such ACPI-based (i.e. x86) boards, AC=
+PI is
+> used for boot while the DT holds only product-specific nodes not of any
+> interest to the core kernel. While this is currently not an issue on our =
+6.1
+> kernel, I noticed that commit 7b937cc243e5 ("of: Create of_root if no dtb
+> provided by firmware") drops the bootloader provided DTB if ACPI is not
+> disabled [1]. When one removes this check, several warnings are emitted b=
+ecause
+> register_lapic_address() and topology_register_boot_apic() are called fro=
+m both
+> ACPI and DT initialization [2] [3].
 
-You still need to define what each entry is.
+I think both of these issues are fixed by this series[1]. I intend to
+pick up patch 2. Patch 1 can go thru x86 tree.
 
-> +
->    reset-gpios:
->      description: GPIO controlled connection to PERST# signal
->      maxItems: 1
-> --
-> 2.34.1
->
+Rob
+
+[1] https://lore.kernel.org/all/20250105172741.3476758-1-dmaluka@chromium.o=
+rg
 
