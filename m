@@ -1,79 +1,109 @@
-Return-Path: <devicetree+bounces-140858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EE6CA1BDAC
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 21:54:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D52DA1BE28
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 22:57:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 205693ACF0C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 20:54:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF97C168995
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 21:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2CF31DC05F;
-	Fri, 24 Jan 2025 20:54:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AFB21E7C3C;
+	Fri, 24 Jan 2025 21:57:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="JfSel7QF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O7nwlIFh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 275001DB366;
-	Fri, 24 Jan 2025 20:54:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 004D51E7C2F;
+	Fri, 24 Jan 2025 21:57:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737752085; cv=none; b=aByiYOHbzPu8Uf1TfMu/uOGAZJUrEtQAqAQP0D5uN6LS2nw6QmlRiJqB4kRvPCVn1MAyUEcQeqQv2r0rDnOHG3if66SgTILQoEas5raBzbouR38dCL9AZJIqayagzm1KVn7ZQHANsa5BLUgvnnsIlxxJL/vOmSs3jkrSDg/UC/c=
+	t=1737755834; cv=none; b=DIzCGestodV9YxQhWxncZn/6hzG8KUof1Htx/C3aH9fdb+rKcMBPUeGaLDtGP6w6g8GMT87xqM4mUpd6jImWH4XCL78BK12Pb8qtsLOqyf50sGznNZK1lTIWn0x4+k/ZSqQXiC6LaiU9Mb7Em60n8yH2KWeUQdGzHklNmjlvel0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737752085; c=relaxed/simple;
-	bh=bhQXCVw1bvBBSpezG1XHNPUGaH1nj1sWk1Dg2F/Qdyw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YfwAvhDIVQylx+2OuOoBnR4Yt3jtHoyBqCyQ4Tp0UvV8bxJ9VUY6u8Uq/eKphDzoGWPTjnqT8nMeakKFiy1sEFLU5Yy2gGubTMrzteXLcWgewziVB1PAgTak2Q9BiUHANxPwdZKuA63JFPYGVQB/BwgTEeIEkF/rsb46gQRfNvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=JfSel7QF; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=Q6hbJURnMhCnEYKFjyF2DAG0VF2IxqR5JLxyc6m2pzk=; b=JfSel7QFOgeb/SN0o63V6jFU4d
-	7prmsnXLwMeifqTGK/Jqzppbq9ci1TWLyXvoO913LkExA2SKT5qDF9K4J2ULQ3o7OJygO0F4z5WhM
-	cEdmzq6W36TktdLerKEoOZvOrjA4Rd67UMNGIi9mekEYt86jxzeLz0G/xXdo1tyR3nQ/syF3PImv9
-	ggCbok2OfX5/Y6qFcBDT8ZPTCgpXsGD5a5kmCD7AqgOu1YyJG1a158vVb9vS2mx7FIOF4zHmiQge6
-	33hz4lJsBRSenA7FoSjIUHkHKVD/R+lQpn5ZBqnRgvmHeRtps0+iyL7AzHd9ccdcgS45h0axBSKJy
-	0rLJTguA==;
-Date: Fri, 24 Jan 2025 21:54:09 +0100
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Tom Rini <trini@konsulko.com>
-Cc: linux-kernel@vger.kernel.org, Aaro Koskinen <aaro.koskinen@iki.fi>,
- Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Robert Nelson <robertcnelson@gmail.com>, Roger Quadros <rogerq@kernel.org>,
- Tony Lindgren <tony@atomide.com>, devicetree@vger.kernel.org,
- linux-omap@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: omap: Add TI Pandaboard A4 variant
-Message-ID: <20250124215409.1d5cc5aa@akair>
-In-Reply-To: <20250123174901.1182176-1-trini@konsulko.com>
-References: <20250123174901.1182176-1-trini@konsulko.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1737755834; c=relaxed/simple;
+	bh=Q7uTIGXnF3+V6UGj2SMBqxcD5RmKtDs9tMyDUPoZADI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QeJrB7x1T86cYhwjnb783Y3pdhGM8uWqS8lE3PhmNTiY8axhGHUT0n6Ot9xGPYGM8NRqI0Q1Rl7FXuWUsq7RT33TBkZ5EmActDkaIIgl3IpcKbZ0fPZQ4KZM7tzzXl8+hx9MO9J4Xl2XedmitQDCsTyzQtXEvL6TUvb65GeT4tU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O7nwlIFh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45749C4CEDF;
+	Fri, 24 Jan 2025 21:57:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737755833;
+	bh=Q7uTIGXnF3+V6UGj2SMBqxcD5RmKtDs9tMyDUPoZADI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O7nwlIFhQzDHVN4GlbYBhabf9FYfEySS1lUn3cEWm059ZM0fWugC+LiiizVivxhuv
+	 0+gOAcdgLudJtdXnleuoBRgEx6w6PhBgt3vgU4sqmzt/mqf9QJ17JnIWGnc+aI8T21
+	 6qROb6XLTYNLtT31fwwIOy1JsuI1mtUPYuZyLCsCWsx8q72kdmtw5seox8czu7sdWR
+	 K3ON8X7vxLDb7fwQs/OKJ7oxzMsCDkqymksw8PmcM2cPsx6SfsWJmPOIqGCEclWirg
+	 UgZHlxyd1Z0Rn7LzgWkzCeyv6nT8Y1fyGMQq+mEvxBJ+jJwoqi4QoleK6DPf00JkuR
+	 sXZYf0buiIU9Q==
+Date: Fri, 24 Jan 2025 15:57:12 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Dmytro Maluka <dmaluka@chromium.org>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	=?utf-8?Q?Bart=C5=82omiej?= Grzesik <bgrzesik@google.com>,
+	Shikha Panwar <shikhapanwar@google.com>, x86@kernel.org,
+	devicetree@vger.kernel.org,
+	=?iso-8859-1?Q?Pierre-Cl=E9ment?= Tosi <ptosi@google.com>,
+	Saurabh Sengar <ssengar@linux.microsoft.com>,
+	Grzegorz Jaszczyk <jaszczyk@google.com>,
+	Keir Fraser <keirf@google.com>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	Michal Mazurek <mazurekm@google.com>,
+	Borislav Petkov <bp@alien8.de>, Will Deacon <will@kernel.org>,
+	Usama Arif <usamaarif642@gmail.com>,
+	Stephen Boyd <sboyd@kernel.org>, "H. Peter Anvin" <hpa@zytor.com>,
+	Tomasz Nowicki <tnowicki@google.com>,
+	Ingo Molnar <mingo@redhat.com>, linux-kernel@vger.kernel.org,
+	Frank Rowand <frowand.list@gmail.com>,
+	Saravana Kannan <saravanak@google.com>
+Subject: Re: [PATCH v2 2/2] of/fdt: Restore possibility to use both ACPI and
+ FDT from bootloader
+Message-ID: <173775582906.2508547.16287496501873966942.robh@kernel.org>
+References: <20250105172741.3476758-1-dmaluka@chromium.org>
+ <20250105172741.3476758-3-dmaluka@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250105172741.3476758-3-dmaluka@chromium.org>
 
-Am Thu, 23 Jan 2025 11:49:00 -0600
-schrieb Tom Rini <trini@konsulko.com>:
 
-> Document the ti,omap4-panda-a4 compatible string in the appropriate
-> place within the omap family binding file.
+On Sun, 05 Jan 2025 17:27:41 +0000, Dmytro Maluka wrote:
+> There are cases when the bootloader provides information to the kernel
+> in both ACPI and DTB, not interchangeably. One such use case is virtual
+> machines in Android. When running on x86, the Android Virtualization
+> Framework (AVF) boots VMs with ACPI like it is usually done on x86 (i.e.
+> the virtual LAPIC, IOAPIC, HPET, PCI MMCONFIG etc are described in ACPI)
+> but also passes various AVF-specific boot parameters in DTB. This allows
+> reusing the same implementations of various AVF components on both
+> arm64 and x86.
 > 
-> Signed-off-by: Tom Rini <trini@konsulko.com>
+> Commit 7b937cc243e5 ("of: Create of_root if no dtb provided by firmware")
+> removed the possibility to do that, since among other things
+> it introduced forcing emptying the bootloader-provided DTB if ACPI is
+> enabled (probably assuming that if ACPI is available, a DTB can only be
+> useful for applying overlays to it afterwards, for testing purposes).
+> 
+> So restore this possibility. Instead of completely preventing using ACPI
+> and DT together, rely on arch-specific setup code to prevent using both
+> to set up the same things (see various acpi_disabled checks under arch/).
+> 
+> Fixes: 7b937cc243e5 ("of: Create of_root if no dtb provided by firmware")
+> Signed-off-by: Dmytro Maluka <dmaluka@chromium.org>
+> ---
+>  drivers/of/fdt.c | 10 +---------
+>  1 file changed, 1 insertion(+), 9 deletions(-)
+> 
 
-Reviewed-by: Andreas Kemnade <andreas@kemnade.info>
+Applied, thanks!
 
-Regards,
-Andreas
 
