@@ -1,148 +1,161 @@
-Return-Path: <devicetree+bounces-140738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1ED7A1B369
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 11:21:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB146A1B370
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 11:25:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D15E16D503
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 10:21:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99214188C27A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 10:25:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A76451DB148;
-	Fri, 24 Jan 2025 10:21:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 411AB21A443;
+	Fri, 24 Jan 2025 10:25:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="c9B89+1H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZK6VcNC5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DFA613D520;
-	Fri, 24 Jan 2025 10:21:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B1D921A438;
+	Fri, 24 Jan 2025 10:25:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737714066; cv=none; b=C5oNgDSqN9qGErdJqw1H9zAZ5UGzJa9FuUWLkuPuctiosajkbfOFjutj5iyC3tqnPvOocFKITCS1tUY8Lra0Tbr1oJ2oaBfLJVsua5BCYwp1A5Tj3ya6VEUzb8vULG0v26K5Zp0MjcvKxF4Pc6TNE4KMDAITVcLvNyv8VQhk5xk=
+	t=1737714340; cv=none; b=LXJvVFdPt6KE7y1NDD+xFKcl8Palk6vJFxfhYk0QuatOf/lSWJL5F03Wa0t6LFOQNzWKG8lEtPwPNQNs9s3NqbhKsBlFXT3lEM7QdSKvQIQZlFCQBDNSIEVU7sc0Qi4uT7+ABfYKyGGHz06G1kJN1VZaprLVI+K+4LTHi9Gz3tg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737714066; c=relaxed/simple;
-	bh=1rxi/IQFlqsCoGaYN4R4JXonbt8cWgjyvBPnXzr8SOc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lLRzIRboLoV4WzMaO/pq/12HQq4sTmNSVw8F0UWLHZEQWFUdFiKycnvpQp51U8hnIz/Q+eIA6yx36njZUbqCLRbLizy5dDb4pl0x4yVwmSo0Hfrq+iBIfOwswJBbtBMgwUOkrxSlrrZeyb/4L56DYoYC7Z+9yQ29rvPycA7GMf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=c9B89+1H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71B10C4CED2;
-	Fri, 24 Jan 2025 10:21:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737714065;
-	bh=1rxi/IQFlqsCoGaYN4R4JXonbt8cWgjyvBPnXzr8SOc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=c9B89+1HAsf6XleKtnR0iRfZeUjw82iVnl2pDygJDF/EbvlmUJG5n2gdLbIlZPAET
-	 PYjnl+1k1X9jNR+/mC9b+3CGhXWb3ptRjjZApW1F/KNbZ7J8pCXsbRN3DvVDtKmldm
-	 QxjjIb9zfEU21WNePhsnAsANpXS9/K7luGGE7G0OTqaApBVwVBYkVSsusMctfOimPh
-	 PsD+0DzTPfcelGqZeG4VRKw+HkM784WmpVT7g+BEJ3VR7XoTswYwITGRiJdetmYfgu
-	 XmCOD+plmtdyCzuYmYcvMgBQgFRJ9lak0n1MD/QjImM3bRXgdSZnTzD8W5/QDa1Iju
-	 z/uqPD1EpEv+Q==
-Date: Fri, 24 Jan 2025 11:21:00 +0100
-From: Niklas Cassel <cassel@kernel.org>
-To: Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>
-Cc: Quentin Schulz <quentin.schulz@cherry.de>,
-	Quentin Schulz <foss+kernel@0leil.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] arm64: dts: rockchip: minimal support for Pre-ICT
- tester adapter for RK3588 Jaguar + add overlay tests
-Message-ID: <Z5NpjAUFK_cMIWLj@ryzen>
-References: <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
- <6dd64754-fe72-4288-9724-b3cdaf193b3b@cherry.de>
- <Z5EY6uMmDCgfOzGO@ryzen>
- <3324197.aV6nBDHxoP@diego>
+	s=arc-20240116; t=1737714340; c=relaxed/simple;
+	bh=Pn1VHnC8upceAvBXekXvza/HH2xUUC9O+30xJBhaWrA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ECOGwBB4hNuxggTsoz2bLfql+OxRikYmdwVYRVFqBDPHuHPYlVRH2Vme96YdvHmDIcRFfto1JcTZ3njXPJwA6Jy0Xe7phNYaveGkuPwkEIf/67LDtyy1lSXBNJhTck0WopRx1RfbLIvjcC4bkvlRAc4mhya1VrRIM+zAUonb1pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZK6VcNC5; arc=none smtp.client-ip=209.85.160.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-4679fc9b5f1so17044591cf.1;
+        Fri, 24 Jan 2025 02:25:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737714337; x=1738319137; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aVSfEDxnvDA5rGvCvnbh0Gb+paH+zzrZtcmrNCp+8Yc=;
+        b=ZK6VcNC5KJyfnSMrek/DCf5MWRnpb6KLyE7pWlp5bBrvns1ZHBtBbl7vC6wxmPGF+T
+         PV7cVxfwFm1HZEX7qwVbF+Oxg7fZYY6qlN9++0mERZOM/QnVqTyb7agDN/s0gBRHcpdW
+         MdS4sz3BCdV9jSwFuzyh47/2HI5U+eDqv0t5qNH161a2cfwonN5T8ZkOClcY4uCym3Wa
+         QTfOGMLrpgWlhu4J+TtRvd+nP7JW5PReAlTK2NsjfxzvgW4RbEI8bcRFzwdj7vO1dBOg
+         rH5d0+zB2LlBW6Y4SHWY/8Z3srONA1g0rWYcfpX6e0FqE29zPz4+fwLbzCy1DnRgtSYB
+         AVTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737714337; x=1738319137;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=aVSfEDxnvDA5rGvCvnbh0Gb+paH+zzrZtcmrNCp+8Yc=;
+        b=XGkjaVLNbS7OFgfIw64X2saAvmHfAzDD0m/eTq6lB8+uT8Uz97/3qooQ/XC9AD9gOc
+         mZdi6VRdTIBDz4M+Ad7lqX0XsM/4xybbdSm5t03OuJuxGQhD2sIk2SLqpXR8QXD1LCcs
+         PWZ/LpHv5DVxkVuRaCAac6+G7McfB2Sxra9qsBjo6G5GN63BYg0nIYT2O8FrIke3eirZ
+         62r8zg+yLtdw1ZouuN5Lv2WCjtKJeeRJsZo2zr6Tffi+GeZIJm2hDVb++XH9AGWPd6Ww
+         /Ge7kpvFxF+ts7fKUy2ffqbviBqjx1HX08cPF165tDc4GgrIcsAFCvfzSkjb/X++EgQz
+         0TKw==
+X-Forwarded-Encrypted: i=1; AJvYcCU3+LVoGjbAwKqRs4GGV2FMRig/fTafoTcmpjAmHp5EG1YJbnfUEmSxhTalez1YZhy5LkLIbUB2@vger.kernel.org, AJvYcCW+UtySwyho6W9jxSf2oTXLgxO5DixM4ubZjJIwOGbUDz6WBep/HEUau4JGnK62BqU6tRenWjAg7iDgJqvi@vger.kernel.org, AJvYcCWTMMeGhJEKAIGAH5jyk40ie6m7dQj02XuiaOhN3raDcMSKdXC/UuVAX75c0J9f2iFmF2EpLsBQ/o0S@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnZmFr6apqnYF2Jhvhdwpl3xVKDPHjY9d7mt7UuaFvWH02JUCi
+	oxB+cWbrEWjToeF/MvKevblqvUpLXc9zpedRvAYO7AI3mLCcykuxEmoIKUKq8HBvZgi8SurueXb
+	cJCc+Q7o7H/m+iXvZbs3ytb08E/ovupGnVGTBduBW
+X-Gm-Gg: ASbGncvHB8gDfo57mW3ZajCqEO2rTDnX6KZD+yTjDPRU74s7/z0hiTOo+vu5lOQY3AM
+	goP4rzI/2fVu48Tn4siyKizjqLu5ojh+0T8KUGlZefdK/i5chWV9d6L0/Za+Kfdqe8LaiEmNC8i
+	aK/0JNWODHwRe58+XjQfQ=
+X-Google-Smtp-Source: AGHT+IG19zMkzxnogxqTUpCFFCWHU7lU6d2GX59oTfrT4bEh/Qp/+jBldUiAWHgLhmBH9A6JXxMmUJ7olZ5BQkuj30g=
+X-Received: by 2002:a05:622a:d4:b0:467:8703:a737 with SMTP id
+ d75a77b69052e-46e12a9a34bmr447365691cf.29.1737714337203; Fri, 24 Jan 2025
+ 02:25:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3324197.aV6nBDHxoP@diego>
+References: <20250124052611.3705-1-eagle.alexander923@gmail.com>
+ <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com> <a76f315f023a3f8f5435e0681119b4eb@manjaro.org>
+In-Reply-To: <a76f315f023a3f8f5435e0681119b4eb@manjaro.org>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Fri, 24 Jan 2025 14:25:27 +0400
+X-Gm-Features: AWEUYZkJo1DrsP2L7lNkxItCPiQqRHHFgNLzNRHQsNokpADbfabjg0z5a8nFqdE
+Message-ID: <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
+ for rk3588
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Alexander Shiyan <eagle.alexander923@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, stable@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Jan 23, 2025 at 03:13:01PM +0100, Heiko Stübner wrote:
-> Am Mittwoch, 22. Januar 2025, 17:12:26 CET schrieb Niklas Cassel:
-> > On Wed, Jan 22, 2025 at 04:38:16PM +0100, Quentin Schulz wrote:
-> > > So essentially, if SPL_ATF_NO_PLATFORM_PARAM is selected (the default for
-> > > RK356x, RK3588, forced on on RK3308, enabled for the majority of RK3399
-> > > boards, enabled for all RK3328 boards) the DT won't be passed to TF-A so no
-> > > issue in terms of size on that side.
-> > > If it is not selected, for TF-A < 2.4 (released 20201117, 4 years ago), a
-> > > DTB bigger than 64KiB will crash TF-A.
-> > > If it is not selected, for TF-A >= 2.4, a DTB bigger than 128KiB will result
-> > > in TF-A not being able to read the DTB (for Rockchip, that means not being
-> > > able to derive the UART settings (controller and baudrate) to use, and will
-> > > use the compile-time default instead).
-> > 
-> > Not everyone is using binary blobs from Rockchip.
-> > On my rock5b (rk3588), I'm building the bootloader using buildroot,
-> > which is using upstream TrustedFirmware-A (v2.12).
-> > 
-> > 
-> > > In short, I don't know where to go with that additional piece of
-> > > information, but this is a bit bigger than simply moving things around and
-> > > adding compile-time tests for overlay application.
-> > 
-> > This is significant information indeed.
-> 
-> I guess the question is, can this hurt existing devices?
-> 
-> As Quentin mentioned, this only affects DTs that get handed over from
-> U-Boot to TF-A (and maybe OP-TEE).
-> 
-> So the whole range of things loading their DT from extlinux.conf or
-> whatever are not really affected.
-> 
-> 
-> DTs U-Boot can hand over are 2 types,
-> (1) built from within u-boot and
-> (2) stored somewhere centrally (SPI flash).
-> 
-> 
-> Case (1) is again not affected, as U-Boot (and other bootloaders) may
-> very well sync the DTS files, but generally not the build-system, so if
-> U-Boot (or any other bootloader) creates DTBs with symbols is completely
-> their own choice.
-> 
-> 
-> And for case (2) I see the manufacturer being responsible. Having the DT
-> in central storage makes it somewhat part of a "bios"-level in the hirarchy
-> and the general guarantee is that new software _will work_ with older DTs,
-> but the other way around is more a nice to have (old SW with new DTB).
-> 
-> So if some manufacturer has a centrally located DTB this does not matter
-> until they upgrade, and when that happens I do expect testing to happen
-> at the manufacturers side, before rolling out a "bios update"
+On Fri, Jan 24, 2025 at 2:06=E2=80=AFPM Dragan Simic <dsimic@manjaro.org> w=
+rote:
+>
+> Hello Alexey,
+>
+> On 2025-01-24 09:33, Alexey Charkov wrote:
+> > On Fri, Jan 24, 2025 at 9:26=E2=80=AFAM Alexander Shiyan
+> > <eagle.alexander923@gmail.com> wrote:
+> >>
+> >> There is no pinctrl "gpio" and "otpout" (probably designed as
+> >> "output")
+> >> handling in the tsadc driver.
+> >> Let's use proper binding "default" and "sleep".
+> >
+> > This looks reasonable, however I've tried it on my Radxa Rock 5C and
+> > the driver still doesn't claim GPIO0 RK_PA1 even with this change. As
+> > a result, a simulated thermal runaway condition (I've changed the
+> > tshut temperature to 65000 and tshut mode to 1) doesn't trigger a PMIC
+> > reset, even though a direct `gpioset 0 1=3D0` does.
+> >
+> > Are any additional changes needed to the driver itself?
+>
+> I've been digging through this patch the whole TSADC/OTP thing in the
+> last couple of hours, and AFAIK some parts of the upstream driver are
+> still missing, in comparison with the downstream driver.
+>
+> I've got some small suggestions for the patch itself, but the issue
+> you observed is obviously of higher priority, and I've singled it out
+> as well while digging through the code.
+>
+> Could you, please, try the patch below quickly, to see is it going to
+> fix the issue you observed?  I've got some "IRL stuff" to take care of
+> today, so I can't test it myself, and it would be great to know is it
+> the right path to the proper fix.
+>
+> diff --git i/drivers/thermal/rockchip_thermal.c
+> w/drivers/thermal/rockchip_thermal.c
+> index f551df48eef9..62f0e14a8d98 100644
+> --- i/drivers/thermal/rockchip_thermal.c
+> +++ w/drivers/thermal/rockchip_thermal.c
+> @@ -1568,6 +1568,11 @@ static int rockchip_thermal_probe(struct
+> platform_device *pdev)
+>          thermal->chip->initialize(thermal->grf, thermal->regs,
+>                                    thermal->tshut_polarity);
+>
+> +       if (thermal->tshut_mode =3D=3D TSHUT_MODE_GPIO)
+> +               pinctrl_select_default_state(dev);
+> +       else
+> +               pinctrl_select_sleep_state(dev);
 
-Personally, I'm all for letting the kernel build the DTBs with symbols.
+I believe no 'else' block is needed here, because if tshut_mode is not
+TSHUT_MODE_GPIO then the TSADC doesn't use this pin at all, so there's
+no reason for the driver to mess with its pinctrl state. I'd rather
+put a mirroring block to put the pin back to its 'sleep' state in the
+removal function for the TSHUT_MODE_GPIO case.
 
-(I have a patch that I keep rebasing on my tree only for that purpose.
-Sure, I could modify my build scripts to build the DTB separately,
-but with this patch, I do not need to do anything since the kernel
-builds the DTBs already.)
+Will try and revert.
 
-Other platforms, e.g. TI already build many boards with symbols:
-https://github.com/torvalds/linux/blob/v6.13/arch/arm64/boot/dts/ti/Makefile#L242-L261
+P.S. Just looked at the downstream driver, and it actually calls
+TSHUT_MODE_GPIO TSHUT_MODE_OTP instead, so it seems that "otpout" was
+not a typo in the first place. So maybe the right approach here is not
+to change the device tree but rather fix the "gpio" / "otpout" pinctrl
+state handling in the driver.
 
-
-You seems to have been against enabling symbols before:
-https://lore.kernel.org/linux-rockchip/171941553475.921128.9467465539299233735.b4-ty@sntech.de/
-https://lore.kernel.org/linux-rockchip/1952472.6tgchFWduM@diego/
-
-But if you have changed you mind, and you are no longer concerned about
-doing so, then in my own self-interest I'm all for it :)
-
-
-Kind regards,
-Niklas
+Best,
+Alexey
 
