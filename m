@@ -1,60 +1,46 @@
-Return-Path: <devicetree+bounces-140712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90636A1B16A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 09:10:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 72AC8A1B183
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 09:19:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF57A16BB82
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 08:10:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBA7C1639EA
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 08:19:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE026205ADE;
-	Fri, 24 Jan 2025 08:10:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uBEEXYtF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC7D4218ABA;
+	Fri, 24 Jan 2025 08:19:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA5C205AD2;
-	Fri, 24 Jan 2025 08:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE96114A0A3;
+	Fri, 24 Jan 2025 08:19:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737706237; cv=none; b=a5njUqTbqUGYEnMsTmMxUcDvm7neRZokO9/nTfPTZUBceqbupUn6ShIx4vcu8sKoKMiJPhPAdKaLObgIX9sEDB87IEKRhrVdeEHYj0N3J0m+K++vk3xvJi3GFZZT9RTrMQvJZCgBfXeb25pYl7+esFhu5YmO/RHthKglXOUfaDE=
+	t=1737706793; cv=none; b=pa+91niT5t8VwXAk1qf6fIAfIaqVNGxfwuomK0iCEGt8EorWjSuxstKegXsaDrcDj4Fu1qN68AqiVbefN+6IoTU8bOCGukQyvs4iLbkDDTcvUFka671KBzaXnoHDyJrv4x8JEklQkFiqFDxDombNL7w94IUwt9MfJFDrQ4gA+vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737706237; c=relaxed/simple;
-	bh=5/s9gWaTZKbMFZoIoQ7KLfhqbFshe8YqcBEHwCpr/IE=;
+	s=arc-20240116; t=1737706793; c=relaxed/simple;
+	bh=OfafaSI1YKLaVTsU+uJWMl5q54Zf6DYlqUDlNi9XGrg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TUBvQzS3fSut2/fNCD2SdcgTnBzhfwbQriYzUjvLlfAi2EeMNfUFsn4xeUoN6/oKxgFNoCelwWEJZrFpTofaqRd0ZDUBSg/XbZA0JMu2p11jyYkzEh6oNHNPDXUQFeYtjqDUpu2y1Txp5ZQYe9vp+nSw7YiIE7zYqZcW6o8RtDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uBEEXYtF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FFC6C4CEE2;
-	Fri, 24 Jan 2025 08:10:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737706236;
-	bh=5/s9gWaTZKbMFZoIoQ7KLfhqbFshe8YqcBEHwCpr/IE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=uBEEXYtF92FvxyOXkggIvGkGgY3f0YCptxfceXN84Me+B44IV8zoqvVdCA7Gbg8NJ
-	 X29+mK5FhpgkOqvVuUmP4yaH94gKUtjLJrCMgTcyYEMAq0yUEuaALx79OXfv6CMZ6Y
-	 9stp7McnMrRxq/GMPnigRgXXKs7zizbhRapvQEL+2fnemWqYeT4H/DCrKKb5kKWaS1
-	 VVGg2lezuhJfeZcytuxo31ph9OUJWdnlCQ+e6AD4BnVE76gJ0gpugSh9a5sZg1yKD7
-	 oEsvQO12hkMel8LfZO3zNcKhDntRktIrPdvgquLNhZXoCSC7LVwGIhOTTA1coXR5FE
-	 gbhJ4qFSq25jg==
-Date: Fri, 24 Jan 2025 09:10:33 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Vikram Sharma <quic_vikramsa@quicinc.com>
-Cc: rfoss@kernel.org, todor.too@gmail.com, bryan.odonoghue@linaro.org, 
-	mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	akapatra@quicinc.com, hariramp@quicinc.com, andersson@kernel.org, 
-	konradybcio@kernel.org, hverkuil-cisco@xs4all.nl, cros-qcom-dts-watchers@chromium.org, 
-	catalin.marinas@arm.com, will@kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel@quicinc.com
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: update clocks for sc7280-camss
-Message-ID: <20250124-raspberry-aardwark-of-downpour-fc12cc@krzk-bin>
-References: <20250121180746.1989996-1-quic_vikramsa@quicinc.com>
- <20250121180746.1989996-2-quic_vikramsa@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=KuRpHSI3HQpoE5/34oj2GUr+eBLVQ/XurhHPK24vlYmzRpFBAnClmW6wBNum8jyWBqCnQtDtnoYs7GZ2T1K8Cn4EaAT7GJPNTE/4nSPoOC05gtgGfJUmlO4L5GMXJpWotTClSJU1jQ20uuaIR/R+lnmLK9gSVB3Z+Ux3J8vW0dM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DA8FC4CEDD;
+	Fri, 24 Jan 2025 08:19:51 +0000 (UTC)
+Date: Fri, 24 Jan 2025 09:19:49 +0100
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Siddharth Vadapalli <s-vadapalli@ti.com>, Nishanth Menon <nm@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/5] dt-bindings: mfd: syscon: Add ti,am62-ddr-pmctrl
+Message-ID: <20250124-heavy-jaybird-of-vitality-4cbe24@krzk-bin>
+References: <20250122-topic-am62-dt-syscon-v6-13-v1-0-515d56edc35e@baylibre.com>
+ <20250122-topic-am62-dt-syscon-v6-13-v1-2-515d56edc35e@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,26 +49,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250121180746.1989996-2-quic_vikramsa@quicinc.com>
+In-Reply-To: <20250122-topic-am62-dt-syscon-v6-13-v1-2-515d56edc35e@baylibre.com>
 
-On Tue, Jan 21, 2025 at 11:37:45PM +0530, Vikram Sharma wrote:
-> Update clock names to make them consistent with existing platform i.e
-> qcom,sc8280xp-camss.yaml. Rename gcc_cam_hf_axi to gcc_axi_hf and add
-> gcc_axi_sf.
+On Wed, Jan 22, 2025 at 11:24:33AM +0100, Markus Schneider-Pargmann wrote:
+> Add compatible for ti,am62-ddr-pmctrl to the list. There is a DDR pmctrl
+> register in the wkup-conf register space of am62a and am62p. This
+> register controls DDR power management.
 > 
-> gcc_camera_ahb is always on and we don't need to enable it explicitly.
-> gcc_axi_sf is added to avoid unexpected hardware behaviour.
-> 
-> This change will not break ABI because the ABI hasn't been cemented yet as
-> the dtsi changes are not merged yet and there are no users for this driver
-> as of now.
-> 
-> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 > ---
->  .../devicetree/bindings/media/qcom,sc7280-camss.yaml   | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
