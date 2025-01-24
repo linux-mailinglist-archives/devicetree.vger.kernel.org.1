@@ -1,219 +1,185 @@
-Return-Path: <devicetree+bounces-140746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12956A1B3BB
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 11:46:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B133A1B3E9
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 11:50:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08DF216B8CB
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 10:46:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D78AC16965D
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 10:50:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554951D0B8E;
-	Fri, 24 Jan 2025 10:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EABE1CEEAA;
+	Fri, 24 Jan 2025 10:50:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="AJi1RdET"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17701CDFC1;
-	Fri, 24 Jan 2025 10:46:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6166023B0;
+	Fri, 24 Jan 2025 10:50:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737715593; cv=none; b=hPlAkuYnhLG46NHQaAUYTrleqLSe7oL8Wd+99NTp4Cvu6mAJ7DIHx9PUTFCuVM1Dy/DRaRZZ26mrv7W4BhFALgFVfek7Imqe1UWDuTQbvK8lb/Wmw6u/1vEKeKVAig0I1YJAGzYYXqfre8XGkDqTJf8CJfSBmHc9krjhc1sn6gA=
+	t=1737715825; cv=none; b=MFHEBaFhuIuznK2Vj+8lWq9r31Xr6lsUyyGGfSJ+r2CkYv+fl0QerLHI/3twPnhDgGvk9RjwdQMsI8H7YKzZEoc/qcRJsPEMQkUljzG46uscIR1Rxbgbz0oa5vSamxBtzch4a3mAl1vxKEXZ9RLSoZEeFE/eadsHY6bd9pVlWdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737715593; c=relaxed/simple;
-	bh=uiVP2cponumgq7ARcj3mrftTAJfRsaJ9ZuyrsDj/qsU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PlB+t4KFsCKDZUehnXbReEDchSE3W8owDqjZf1WQ9PavNyX7Mjiqh75D5pCaipP4gBrY8NhstpTDbdt/gVTbt8tm8Jf95Cyv34nMCW5QEhoixYEw/5IDw14gqR3U+FQzK0gJbtAdK9rPDxKT4Ux4PjSsjriYuHCwbRDKs2JJICo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from [IPV6:2605:59c0:20f3:a400:5304:e921:4d34:736a] (unknown [IPv6:2605:59c0:20f3:a400:5304:e921:4d34:736a])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id E8C17B4B325B;
-	Fri, 24 Jan 2025 11:46:23 +0100 (CET)
-Message-ID: <9d4783b1-3dfe-482c-a963-ccc66c9b0f1a@freeshell.de>
-Date: Fri, 24 Jan 2025 02:46:22 -0800
+	s=arc-20240116; t=1737715825; c=relaxed/simple;
+	bh=fC8ojJw5iEcVAQVzUR0NhyFRUV/eovnO2xCfuULRoiI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FyxeTBItH1crtxySug1/S5b/6aWA94ltGE4jK9jxBom6+ttwZ+XpCsZryJJ3bPnQY9K4hLckxdXOsTBNxb3Zt9xxAxGFyMxpiGbRoH1xtffjf/ZDZStE+gTtqRlOoQaOfN4pxL8GvT2axuV4Y2I2tapjo91YlxnsTk+qlnmR56E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=AJi1RdET; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=MiQnZe19xTeyKMg3y9MMnUOo5lM09IYL0AIRWqs9OIk=; b=AJi1RdETunGs5e0jtvXn2U4atc
+	O2LlgL02wNcRfOfLDdR3mKwrVZndvKCaM8onyz+s0T15eNbkAilgH1dOZkwR+OnEDvwc42W7L6REp
+	2oeiHmS24BWpjPvRtzCCIFhQ1gBDipj79MG2i8RsdN97xopFsr44IGDVh0fHTOK+Gvgjm/aKJaw6S
+	z4hyeCQeNks7NfZpAY3Xt70ZdVcG07uIRG4/TwT6GpXl8NY9pgoVPFx8IxcFEun9ED5ySO716sK/h
+	wIzBiw3jUSM7oLEnKqviIOHX7x4SlrBpEszgoAkFDNJfjoguBzwzX5XQkuiM9lYtBPU+NSgIt/3Bk
+	HYfeBsFA==;
+Received: from i53875b5c.versanet.de ([83.135.91.92] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1tbHGP-00076S-KW; Fri, 24 Jan 2025 11:50:13 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Niklas Cassel <cassel@kernel.org>
+Cc: Quentin Schulz <quentin.schulz@cherry.de>,
+ Quentin Schulz <foss+kernel@0leil.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jagan Teki <jagan@edgeble.ai>,
+ Michael Riesch <michael.riesch@wolfvision.net>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH v2 0/3] arm64: dts: rockchip: minimal support for Pre-ICT tester
+ adapter for RK3588 Jaguar + add overlay tests
+Date: Fri, 24 Jan 2025 11:50:12 +0100
+Message-ID: <4860198.rnE6jSC6OK@diego>
+In-Reply-To: <Z5NpjAUFK_cMIWLj@ryzen>
+References:
+ <20250116-pre-ict-jaguar-v2-0-157d319004fc@cherry.de>
+ <3324197.aV6nBDHxoP@diego> <Z5NpjAUFK_cMIWLj@ryzen>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/5] riscv: dts: starfive: jh7110-common: replace
- syscrg clock assignments
-To: Conor Dooley <conor@kernel.org>, Hal Feng <hal.feng@starfivetech.com>
-Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Minda Chen <minda.chen@starfivetech.com>
-References: <20250102194530.418127-1-e@freeshell.de>
- <20250102194530.418127-2-e@freeshell.de>
- <20250104-mutilated-unpaved-008eebdb200a@spud>
- <56c372c3-bb8b-4150-9b34-a6cca906d740@freeshell.de>
- <20250106-suggest-waltz-47d7f7760069@spud>
- <ZQ2PR01MB1307A9E106AE06E144875D6EE619A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
- <20250115-bunkmate-reluctant-a9bad52d8a04@spud>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <20250115-bunkmate-reluctant-a9bad52d8a04@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+
+Am Freitag, 24. Januar 2025, 11:21:00 CET schrieb Niklas Cassel:
+> On Thu, Jan 23, 2025 at 03:13:01PM +0100, Heiko St=FCbner wrote:
+> > Am Mittwoch, 22. Januar 2025, 17:12:26 CET schrieb Niklas Cassel:
+> > > On Wed, Jan 22, 2025 at 04:38:16PM +0100, Quentin Schulz wrote:
+> > > > So essentially, if SPL_ATF_NO_PLATFORM_PARAM is selected (the defau=
+lt for
+> > > > RK356x, RK3588, forced on on RK3308, enabled for the majority of RK=
+3399
+> > > > boards, enabled for all RK3328 boards) the DT won't be passed to TF=
+=2DA so no
+> > > > issue in terms of size on that side.
+> > > > If it is not selected, for TF-A < 2.4 (released 20201117, 4 years a=
+go), a
+> > > > DTB bigger than 64KiB will crash TF-A.
+> > > > If it is not selected, for TF-A >=3D 2.4, a DTB bigger than 128KiB =
+will result
+> > > > in TF-A not being able to read the DTB (for Rockchip, that means no=
+t being
+> > > > able to derive the UART settings (controller and baudrate) to use, =
+and will
+> > > > use the compile-time default instead).
+> > >=20
+> > > Not everyone is using binary blobs from Rockchip.
+> > > On my rock5b (rk3588), I'm building the bootloader using buildroot,
+> > > which is using upstream TrustedFirmware-A (v2.12).
+> > >=20
+> > >=20
+> > > > In short, I don't know where to go with that additional piece of
+> > > > information, but this is a bit bigger than simply moving things aro=
+und and
+> > > > adding compile-time tests for overlay application.
+> > >=20
+> > > This is significant information indeed.
+> >=20
+> > I guess the question is, can this hurt existing devices?
+> >=20
+> > As Quentin mentioned, this only affects DTs that get handed over from
+> > U-Boot to TF-A (and maybe OP-TEE).
+> >=20
+> > So the whole range of things loading their DT from extlinux.conf or
+> > whatever are not really affected.
+> >=20
+> >=20
+> > DTs U-Boot can hand over are 2 types,
+> > (1) built from within u-boot and
+> > (2) stored somewhere centrally (SPI flash).
+> >=20
+> >=20
+> > Case (1) is again not affected, as U-Boot (and other bootloaders) may
+> > very well sync the DTS files, but generally not the build-system, so if
+> > U-Boot (or any other bootloader) creates DTBs with symbols is completely
+> > their own choice.
+> >=20
+> >=20
+> > And for case (2) I see the manufacturer being responsible. Having the DT
+> > in central storage makes it somewhat part of a "bios"-level in the hira=
+rchy
+> > and the general guarantee is that new software _will work_ with older D=
+Ts,
+> > but the other way around is more a nice to have (old SW with new DTB).
+> >=20
+> > So if some manufacturer has a centrally located DTB this does not matter
+> > until they upgrade, and when that happens I do expect testing to happen
+> > at the manufacturers side, before rolling out a "bios update"
+>=20
+> Personally, I'm all for letting the kernel build the DTBs with symbols.
+>=20
+> (I have a patch that I keep rebasing on my tree only for that purpose.
+> Sure, I could modify my build scripts to build the DTB separately,
+> but with this patch, I do not need to do anything since the kernel
+> builds the DTBs already.)
+>=20
+> Other platforms, e.g. TI already build many boards with symbols:
+> https://github.com/torvalds/linux/blob/v6.13/arch/arm64/boot/dts/ti/Makef=
+ile#L242-L261
+>=20
+>=20
+> You seems to have been against enabling symbols before:
+> https://lore.kernel.org/linux-rockchip/171941553475.921128.94674655392992=
+33735.b4-ty@sntech.de/
+> https://lore.kernel.org/linux-rockchip/1952472.6tgchFWduM@diego/
+>=20
+> But if you have changed you mind, and you are no longer concerned about
+> doing so, then in my own self-interest I'm all for it :)
+
+I'm all for keeping compatibility as good as possible and that issue came
+on the table way too often already ;-) . In the past it was essentially easy
+to go with "just don't enable symbols" and not go down the nitty-gritty
+detail route - because that whole mesh of different firmware combinations
+gives me a headache ;-) [0]
+
+So finally going through those possible affected variants gave me those
+thoughts of "is there even an actual problem with existing boards?".
+Especially wrt forward<->backwards compatibility.
+
+Outcome is, I'm definitly not sure about myself, but also could not come
+up with an actual scenario. But that compile-time testing of applying
+DTBOs is way too great to pass up on :-)
 
 
-On 1/15/25 01:35, Conor Dooley wrote:
-> On Wed, Jan 15, 2025 at 06:33:08AM +0000, Hal Feng wrote:
->>> On 07.01.25 04:08, Conor Dooley wrote:
->>> On Sat, Jan 04, 2025 at 01:04:30PM -0800, E Shattow wrote:
->>>> Hi, Conor  (added CC: Minda Chen, Hal Feng)
->>>>
->>>> On 1/4/25 10:33, Conor Dooley wrote:
->>>>> On Thu, Jan 02, 2025 at 11:45:07AM -0800, E Shattow wrote:
->>>>>> Replace syscrg assignments of clocks, clock parents, and rates,
->>>>>> for compatibility with downstream boot loader SPL secondary
->>>>>> program loader.
->>>>>>
->>>>>> Signed-off-by: E Shattow <e@freeshell.de>
->>>>>> ---
->>>>>>    arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 12 +++++++++---
->>>>>>    1 file changed, 9 insertions(+), 3 deletions(-)
->>>>>>
->>>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->>>>>> b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->>>>>> index 48fb5091b817..55c6743100a7 100644
->>>>>> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->>>>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
->>>>>> @@ -359,9 +359,15 @@ spi_dev0: spi@0 {
->>>>>>    };
->>>>>>    &syscrg {
->>>>>> -	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_CORE>,
->>>>>> -			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
->>>>>> -	assigned-clock-rates = <500000000>, <1500000000>;
->>>>>> +	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_ROOT>,
->>>>>> +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
->>>>>> +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
->>>>>> +			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
->>>>>> +	assigned-clock-parents = <&pllclk JH7110_PLLCLK_PLL0_OUT>,
->>>>>> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
->>>>>> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
->>>>>> +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
->>>>>> +	assigned-clock-rates = <0>, <0>, <0>, <0>;
->>>>>
->>>>> Why is assigned rates here 0s, rather than the property just removed?
->>>>>
->>>>>>    };
->>>>>>    &sysgpio {
->>>>>> --
->>>>>> 2.45.2
->>>>>>
->>>>
->>>> Assigned rates all zeroes is how it is in U-Boot. Removing the
->>>> assigned-clock-rates property as suggested does work in U-Boot and
->>>> Linux both.
->>>>
->>>> For context, U-Boot fails when replacing assigned-clocks to
->>>> JH7110_SYSCLK_CPU_CORE (500MHz) and JH7110_PLLCLK_PLL0_OUT
->>> (1500MHz)
->>>> from Linux. So I tried to merge all properties together and in testing
->>>> then U-Boot failed (or I did it wrong). However replacing the Linux
->>>> properties with the U-Boot configuration (above) on Linux does work for
->>> both.
->>>>
->>>> I do not know if this is correct but I can test any suggestions and
->>>> report if they are working.
->>>>
->>>> Do these changes make sense? Are there other variations I should test?
->>>
->>> I'd like the commit message to at least explain why these clocks need to be
->>> set to zero (I assume that means disabled?). Maybe the StarFive folks know
->>> why it is required?
->>
->> Here "assigned-clock-rates = <0>, ..." means skipping setting clock rates.
->> You can refer to
->> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/clock/clock.yaml/
-> 
-> If you check the wording there, it says:
->    To skip setting parent or rate of a clock its corresponding entry should be
->    set to 0, or can be omitted if it is not followed by any non-zero entry.
-> Since all clocks are being set to 0 above, we should be in the "can be
-> omitted" case for the entire property, no? That would...
-> 
->> Linux here setting JH7110_SYSCLK_CPU_CORE to 500MHz and JH7110_PLLCLK_PLL0_OUT
->> to 1500MHz are for increasing the CPU frequency to 1500MHz.
->>
->> VF2 u-boot is still running at 1000MHz now. You failed to set JH7110_PLLCLK_PLL0_OUT
->> to 1500MHz, because CPU power supply voltage needs to be increased before running at
->> 1500MHz.
+Heiko
 
-Conor / Hal,  how does this work:
 
-Are these the minimum and maximum values for CPU frequency, CPU CORE and 
-PLL0 OUT ?
+[0] If just some vendor would directly work on upstream TF-A from the
+beginning, instead of hacking up some half-decade old ATF  ... ;-)
 
->>
->> I think a better choice now is changing Linux device tree as follows:
->>
->> &syscrg {
->> 	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_ROOT>,
->> 			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
->> 			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
->> 			  <&syscrg JH7110_SYSCLK_QSPI_REF>,
->> 			  <&syscrg JH7110_SYSCLK_CPU_CORE>,
->> 			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
->> 	assigned-clock-parents = <&pllclk JH7110_PLLCLK_PLL0_OUT>,
->> 				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
->> 				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
->> 				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
->> 	assigned-clock-rates = <0>, <0>, <0>, <0>, <500000000>, <1500000000>;
->> };
-> 
-> ...make this one a reasonable change...
-> 
->> For u-boot, if there is no requirement to run u-boot at 1500MHz, just keep
->> &syscrg {
->> 	assigned-clock-rates = <0>, <0>, <0>, <0>;
->> };
-> 
-> ...but not this one.
-> 
->> in u-boot device tree. If we need running 1500MHz in u-boot, I will send a patch
->> to implement it and then &syscrg{...} in u-boot device tree can be dropped.
->>
->> Best regards,
->> Hal
 
-Hal,
-
-What voltage (and speed) has less heat output?
-
-I think it must be configured to be *reliable first* as it is pictured 
-being a developer board on a person's desk (with no extra accessory - no 
-fans, heatsink, etc.) and for example doing work as of a Linux kernel 
-compile with using all cores.
-
-We should not force a configuration that will fail for the common 
-situation. What voltage and clock speed is the best for continuous 
-reliable operation of a JH7110 CPU with no added heatsink or fan and at 
-ambient temperature?
-
-Does CPU frequency range need to be given in devicetree? Can instead 
-this be done with userspace tool or Linux subsystem at runtime?
-
-The thermal dissipation of JH7110 CPU will be depend on the board layout 
-and physical application. So, my opinion here:  I think any minimum and 
-maximum CPU frequency limit that is given by manufacturer recommendation 
-of safe continuous operation is okay for dts include. If some part of 
-this frequency range is not reliable (from undervolt, or overheat) then 
-it is a "no" from me in Linux and in U-Boot. The fact of failing to boot 
-(in U-Boot) because JH7110 CPU default voltage is not high enough for 
-1500MHz operation tells me this is a wrong idea or there is missing code 
-in U-Boot to select a default sane clock speed and voltage.
-
--E
 
