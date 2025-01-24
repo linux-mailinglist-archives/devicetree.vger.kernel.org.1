@@ -1,156 +1,219 @@
-Return-Path: <devicetree+bounces-140745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B591A1B3B3
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 11:45:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12956A1B3BB
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 11:46:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A97D1684FA
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 10:45:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08DF216B8CB
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 10:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B76271CAA6A;
-	Fri, 24 Jan 2025 10:45:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="O0C1Z+uk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554951D0B8E;
+	Fri, 24 Jan 2025 10:46:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from freeshell.de (freeshell.de [116.202.128.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2BAC23B0;
-	Fri, 24 Jan 2025 10:45:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B17701CDFC1;
+	Fri, 24 Jan 2025 10:46:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737715521; cv=none; b=hZJoty0Wfw3bDL7gkpSDBL0kVZ0EC6C11msySIF9EkAoDKm0AcOycsanigzY8R+D7f41bFQ7jflTJuhauGMfUq5d8Vec/dnS/OOZTknONRt7LXdEWybDZ2qDG0xqCgThVNdHiJcvrD/JBE3jvpCmEIm/giEsNaBfSzMSLx5ouF8=
+	t=1737715593; cv=none; b=hPlAkuYnhLG46NHQaAUYTrleqLSe7oL8Wd+99NTp4Cvu6mAJ7DIHx9PUTFCuVM1Dy/DRaRZZ26mrv7W4BhFALgFVfek7Imqe1UWDuTQbvK8lb/Wmw6u/1vEKeKVAig0I1YJAGzYYXqfre8XGkDqTJf8CJfSBmHc9krjhc1sn6gA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737715521; c=relaxed/simple;
-	bh=UU1D6cLtnNXp1L6yKtrPmNZ2coL0AbJ00Jt9qKxE+hY=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=gc3TpV2+8RWPofs+LXcCG8kPAxjscQnbjcYfre4lOBaPF3NjBdF5zDUIJT9ksvCLU46GhqMf9R9dlhZ7UFgunFlzO+hiPWdM7XYI9xN8uCmoKsij1+5Y6zlPZGU09BMSUIl67C9yrH9FSstMZSwEeAV7mjDqLYRD9dH2p3hMK+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=O0C1Z+uk; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1737715593; c=relaxed/simple;
+	bh=uiVP2cponumgq7ARcj3mrftTAJfRsaJ9ZuyrsDj/qsU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PlB+t4KFsCKDZUehnXbReEDchSE3W8owDqjZf1WQ9PavNyX7Mjiqh75D5pCaipP4gBrY8NhstpTDbdt/gVTbt8tm8Jf95Cyv34nMCW5QEhoixYEw/5IDw14gqR3U+FQzK0gJbtAdK9rPDxKT4Ux4PjSsjriYuHCwbRDKs2JJICo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [IPV6:2605:59c0:20f3:a400:5304:e921:4d34:736a] (unknown [IPv6:2605:59c0:20f3:a400:5304:e921:4d34:736a])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id E8C17B4B325B;
+	Fri, 24 Jan 2025 11:46:23 +0100 (CET)
+Message-ID: <9d4783b1-3dfe-482c-a963-ccc66c9b0f1a@freeshell.de>
+Date: Fri, 24 Jan 2025 02:46:22 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1737715517;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TjhryoFxs8c1/zbPEqglA2ihRcdYXJLFxUAIwp/GWlA=;
-	b=O0C1Z+ukiA/GBNKIKb7QiaebB/oX8/9TyasBTQkie/GY6B9toAGa9YfndGBpKWWdII1qiA
-	icN2t8WbhaZuojCcoJ9ExhKI0mgTKghiKcCSQQsx/ExkXBHpQ3VL61Bm5yWsfIoIUdndNX
-	JJyIl8dFszNudd4tSOs145pa/rRlkolsdsKKLQDu82A7BsNxiFLdyauIDmF2ZEE6v1R3KJ
-	pmcoRnH0ZhB98NrD8gEelGFC2x/WMSX31/Lvw9zHWe1UH+qtmuc3V1kqA2Se/SpUnh7Osn
-	ndY9w3S93zbFIdn+kYEnUC02r0D5wDD0vXm/egp4Qcfh5i6j+sycOllEv9faQw==
-Date: Fri, 24 Jan 2025 11:45:17 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Alexander Shiyan <eagle.alexander923@gmail.com>, Rob Herring
- <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, devicetree@vger.kernel.org, Sebastian Reichel
- <sebastian.reichel@collabora.com>, stable@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
- for rk3588
-In-Reply-To: <61b494b209d7360d0f36adbf6d5443a4@manjaro.org>
-References: <20250124052611.3705-1-eagle.alexander923@gmail.com>
- <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com>
- <a76f315f023a3f8f5435e0681119b4eb@manjaro.org>
- <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
- <61b494b209d7360d0f36adbf6d5443a4@manjaro.org>
-Message-ID: <99f5fca6e9778e20287d807d1830b7a2@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/5] riscv: dts: starfive: jh7110-common: replace
+ syscrg clock assignments
+To: Conor Dooley <conor@kernel.org>, Hal Feng <hal.feng@starfivetech.com>
+Cc: Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Minda Chen <minda.chen@starfivetech.com>
+References: <20250102194530.418127-1-e@freeshell.de>
+ <20250102194530.418127-2-e@freeshell.de>
+ <20250104-mutilated-unpaved-008eebdb200a@spud>
+ <56c372c3-bb8b-4150-9b34-a6cca906d740@freeshell.de>
+ <20250106-suggest-waltz-47d7f7760069@spud>
+ <ZQ2PR01MB1307A9E106AE06E144875D6EE619A@ZQ2PR01MB1307.CHNPR01.prod.partner.outlook.cn>
+ <20250115-bunkmate-reluctant-a9bad52d8a04@spud>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <20250115-bunkmate-reluctant-a9bad52d8a04@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 2025-01-24 11:37, Dragan Simic wrote:
-> On 2025-01-24 11:25, Alexey Charkov wrote:
->> On Fri, Jan 24, 2025 at 2:06 PM Dragan Simic <dsimic@manjaro.org> 
->> wrote:
->>> On 2025-01-24 09:33, Alexey Charkov wrote:
->>> > On Fri, Jan 24, 2025 at 9:26 AM Alexander Shiyan
->>> > <eagle.alexander923@gmail.com> wrote:
->>> >>
->>> >> There is no pinctrl "gpio" and "otpout" (probably designed as
->>> >> "output")
->>> >> handling in the tsadc driver.
->>> >> Let's use proper binding "default" and "sleep".
->>> >
->>> > This looks reasonable, however I've tried it on my Radxa Rock 5C and
->>> > the driver still doesn't claim GPIO0 RK_PA1 even with this change. As
->>> > a result, a simulated thermal runaway condition (I've changed the
->>> > tshut temperature to 65000 and tshut mode to 1) doesn't trigger a PMIC
->>> > reset, even though a direct `gpioset 0 1=0` does.
->>> >
->>> > Are any additional changes needed to the driver itself?
->>> 
->>> I've been digging through this patch the whole TSADC/OTP thing in the
->>> last couple of hours, and AFAIK some parts of the upstream driver are
->>> still missing, in comparison with the downstream driver.
->>> 
->>> I've got some small suggestions for the patch itself, but the issue
->>> you observed is obviously of higher priority, and I've singled it out
->>> as well while digging through the code.
->>> 
->>> Could you, please, try the patch below quickly, to see is it going to
->>> fix the issue you observed?  I've got some "IRL stuff" to take care 
->>> of
->>> today, so I can't test it myself, and it would be great to know is it
->>> the right path to the proper fix.
->>> 
->>> diff --git i/drivers/thermal/rockchip_thermal.c
->>> w/drivers/thermal/rockchip_thermal.c
->>> index f551df48eef9..62f0e14a8d98 100644
->>> --- i/drivers/thermal/rockchip_thermal.c
->>> +++ w/drivers/thermal/rockchip_thermal.c
->>> @@ -1568,6 +1568,11 @@ static int rockchip_thermal_probe(struct
->>> platform_device *pdev)
->>>          thermal->chip->initialize(thermal->grf, thermal->regs,
->>>                                    thermal->tshut_polarity);
->>> 
->>> +       if (thermal->tshut_mode == TSHUT_MODE_GPIO)
->>> +               pinctrl_select_default_state(dev);
->>> +       else
->>> +               pinctrl_select_sleep_state(dev);
->> 
->> I believe no 'else' block is needed here, because if tshut_mode is not
->> TSHUT_MODE_GPIO then the TSADC doesn't use this pin at all, so there's
->> no reason for the driver to mess with its pinctrl state. I'd rather
->> put a mirroring block to put the pin back to its 'sleep' state in the
->> removal function for the TSHUT_MODE_GPIO case.
-> 
-> You're right, but the "else block" is what the downstream driver does,
-> so I think it's better to simply stay on the safe side and follow that
-> logic in the upstream driver.  Is it really needed?  Perhaps not, but
-> it also shouldn't hurt.
-> 
->> Will try and revert.
-> 
-> Awesome, thanks!
 
-Actually...  Revert or report? :)
+On 1/15/25 01:35, Conor Dooley wrote:
+> On Wed, Jan 15, 2025 at 06:33:08AM +0000, Hal Feng wrote:
+>>> On 07.01.25 04:08, Conor Dooley wrote:
+>>> On Sat, Jan 04, 2025 at 01:04:30PM -0800, E Shattow wrote:
+>>>> Hi, Conor  (added CC: Minda Chen, Hal Feng)
+>>>>
+>>>> On 1/4/25 10:33, Conor Dooley wrote:
+>>>>> On Thu, Jan 02, 2025 at 11:45:07AM -0800, E Shattow wrote:
+>>>>>> Replace syscrg assignments of clocks, clock parents, and rates,
+>>>>>> for compatibility with downstream boot loader SPL secondary
+>>>>>> program loader.
+>>>>>>
+>>>>>> Signed-off-by: E Shattow <e@freeshell.de>
+>>>>>> ---
+>>>>>>    arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 12 +++++++++---
+>>>>>>    1 file changed, 9 insertions(+), 3 deletions(-)
+>>>>>>
+>>>>>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>>>>> b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>>>>> index 48fb5091b817..55c6743100a7 100644
+>>>>>> --- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>>>>> +++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
+>>>>>> @@ -359,9 +359,15 @@ spi_dev0: spi@0 {
+>>>>>>    };
+>>>>>>    &syscrg {
+>>>>>> -	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_CORE>,
+>>>>>> -			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
+>>>>>> -	assigned-clock-rates = <500000000>, <1500000000>;
+>>>>>> +	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_ROOT>,
+>>>>>> +			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
+>>>>>> +			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
+>>>>>> +			  <&syscrg JH7110_SYSCLK_QSPI_REF>;
+>>>>>> +	assigned-clock-parents = <&pllclk JH7110_PLLCLK_PLL0_OUT>,
+>>>>>> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+>>>>>> +				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+>>>>>> +				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
+>>>>>> +	assigned-clock-rates = <0>, <0>, <0>, <0>;
+>>>>>
+>>>>> Why is assigned rates here 0s, rather than the property just removed?
+>>>>>
+>>>>>>    };
+>>>>>>    &sysgpio {
+>>>>>> --
+>>>>>> 2.45.2
+>>>>>>
+>>>>
+>>>> Assigned rates all zeroes is how it is in U-Boot. Removing the
+>>>> assigned-clock-rates property as suggested does work in U-Boot and
+>>>> Linux both.
+>>>>
+>>>> For context, U-Boot fails when replacing assigned-clocks to
+>>>> JH7110_SYSCLK_CPU_CORE (500MHz) and JH7110_PLLCLK_PLL0_OUT
+>>> (1500MHz)
+>>>> from Linux. So I tried to merge all properties together and in testing
+>>>> then U-Boot failed (or I did it wrong). However replacing the Linux
+>>>> properties with the U-Boot configuration (above) on Linux does work for
+>>> both.
+>>>>
+>>>> I do not know if this is correct but I can test any suggestions and
+>>>> report if they are working.
+>>>>
+>>>> Do these changes make sense? Are there other variations I should test?
+>>>
+>>> I'd like the commit message to at least explain why these clocks need to be
+>>> set to zero (I assume that means disabled?). Maybe the StarFive folks know
+>>> why it is required?
+>>
+>> Here "assigned-clock-rates = <0>, ..." means skipping setting clock rates.
+>> You can refer to
+>> https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/clock/clock.yaml/
+> 
+> If you check the wording there, it says:
+>    To skip setting parent or rate of a clock its corresponding entry should be
+>    set to 0, or can be omitted if it is not followed by any non-zero entry.
+> Since all clocks are being set to 0 above, we should be in the "can be
+> omitted" case for the entire property, no? That would...
+> 
+>> Linux here setting JH7110_SYSCLK_CPU_CORE to 500MHz and JH7110_PLLCLK_PLL0_OUT
+>> to 1500MHz are for increasing the CPU frequency to 1500MHz.
+>>
+>> VF2 u-boot is still running at 1000MHz now. You failed to set JH7110_PLLCLK_PLL0_OUT
+>> to 1500MHz, because CPU power supply voltage needs to be increased before running at
+>> 1500MHz.
 
->> P.S. Just looked at the downstream driver, and it actually calls
->> TSHUT_MODE_GPIO TSHUT_MODE_OTP instead, so it seems that "otpout" was
->> not a typo in the first place. So maybe the right approach here is not
->> to change the device tree but rather fix the "gpio" / "otpout" pinctrl
->> state handling in the driver.
+Conor / Hal,  how does this work:
+
+Are these the minimum and maximum values for CPU frequency, CPU CORE and 
+PLL0 OUT ?
+
+>>
+>> I think a better choice now is changing Linux device tree as follows:
+>>
+>> &syscrg {
+>> 	assigned-clocks = <&syscrg JH7110_SYSCLK_CPU_ROOT>,
+>> 			  <&syscrg JH7110_SYSCLK_BUS_ROOT>,
+>> 			  <&syscrg JH7110_SYSCLK_PERH_ROOT>,
+>> 			  <&syscrg JH7110_SYSCLK_QSPI_REF>,
+>> 			  <&syscrg JH7110_SYSCLK_CPU_CORE>,
+>> 			  <&pllclk JH7110_PLLCLK_PLL0_OUT>;
+>> 	assigned-clock-parents = <&pllclk JH7110_PLLCLK_PLL0_OUT>,
+>> 				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+>> 				 <&pllclk JH7110_PLLCLK_PLL2_OUT>,
+>> 				 <&syscrg JH7110_SYSCLK_QSPI_REF_SRC>;
+>> 	assigned-clock-rates = <0>, <0>, <0>, <0>, <500000000>, <1500000000>;
+>> };
 > 
-> Indeed, "otpout" wasn't a typo, and I've already addressed that in my
-> comments to Alexander's patch.  Will send that response a bit later.
+> ...make this one a reasonable change...
 > 
-> I think it's actually better to accept the approach in Alexander's
-> patch, because the whole thing applies to other Rockchip SoCs as well,
-> not just to the RK3588(S).
+>> For u-boot, if there is no requirement to run u-boot at 1500MHz, just keep
+>> &syscrg {
+>> 	assigned-clock-rates = <0>, <0>, <0>, <0>;
+>> };
+> 
+> ...but not this one.
+> 
+>> in u-boot device tree. If we need running 1500MHz in u-boot, I will send a patch
+>> to implement it and then &syscrg{...} in u-boot device tree can be dropped.
+>>
+>> Best regards,
+>> Hal
+
+Hal,
+
+What voltage (and speed) has less heat output?
+
+I think it must be configured to be *reliable first* as it is pictured 
+being a developer board on a person's desk (with no extra accessory - no 
+fans, heatsink, etc.) and for example doing work as of a Linux kernel 
+compile with using all cores.
+
+We should not force a configuration that will fail for the common 
+situation. What voltage and clock speed is the best for continuous 
+reliable operation of a JH7110 CPU with no added heatsink or fan and at 
+ambient temperature?
+
+Does CPU frequency range need to be given in devicetree? Can instead 
+this be done with userspace tool or Linux subsystem at runtime?
+
+The thermal dissipation of JH7110 CPU will be depend on the board layout 
+and physical application. So, my opinion here:  I think any minimum and 
+maximum CPU frequency limit that is given by manufacturer recommendation 
+of safe continuous operation is okay for dts include. If some part of 
+this frequency range is not reliable (from undervolt, or overheat) then 
+it is a "no" from me in Linux and in U-Boot. The fact of failing to boot 
+(in U-Boot) because JH7110 CPU default voltage is not high enough for 
+1500MHz operation tells me this is a wrong idea or there is missing code 
+in U-Boot to select a default sane clock speed and voltage.
+
+-E
 
