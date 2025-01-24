@@ -1,177 +1,147 @@
-Return-Path: <devicetree+bounces-140685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9BEBA1B06E
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 07:36:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BA1AA1B072
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 07:37:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA682165C34
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 06:36:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1262C1888A7A
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 06:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB1451D8E1D;
-	Fri, 24 Jan 2025 06:36:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A91C1D90C8;
+	Fri, 24 Jan 2025 06:36:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="V7rZp0U4"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aA2A4xWk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40EC1D5CD4;
-	Fri, 24 Jan 2025 06:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CA5D1D6DC8;
+	Fri, 24 Jan 2025 06:36:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737700561; cv=none; b=AJi9dHdYDgdX8gFk53rlZ2tZ5aquRn5t8kSgLfXDDkodMkSSekCr7B47SvW18vLmijCAOZB939Y0P4Z0IgNnN2aLx9N0NqRT6vUsrSg9SiQrpZd8nOksnsfCPEa2yiaoTUzDyMp95QGukCDlUFQH/L0GH7jBc/9w8jwg/CwdH7Q=
+	t=1737700617; cv=none; b=G6KijQuYmwVOGXQf8ded6pUd62TpszdldnVLh9AlfrOQPUgntl0pue8+jxxlNBjgsXkZVwr/VoBAYokoblTGOR40YUm3bph1myJQveVXxjHIczle2h+NIIUNbJExlCXhufVI1Jbh8X2AmYp8MlRQNWzkllYNCgbQWgN+n/IlGqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737700561; c=relaxed/simple;
-	bh=WehGuOZPruh3HK8C0tSDDUs3YUz71+0V2RKd11uplro=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=OUfCccqnL27B7howOr0Q9k5VbhpExM6A2T6Cq2Ifu/dnT3865j3x4peBoIE/spL3xQ04ZstfKnI/wVGB5aMFYBrPhG7W3OF6TLjgCu5YGsVJXRY49FfyHqqlyXl2lbzoe0Ue7ilrt+P4547meCmlV+Y1zNNA7cIS+t73XH9CLH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=V7rZp0U4; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1737700617; c=relaxed/simple;
+	bh=L/cxqniFp/YvovrC3aJ7w5qlG0gQyGBbm59E/eveoSA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DI7c++3rNC1JkUQeu88ewAjzSMs2yl6w60JhAAhTxmc6Z8ylyIaVjdE+N5Gx5zDWIUzCEeWQVmU1vG82Z47M5XClC/cq0NOqhGYZayOvwPcNmqeqO04WQQWc19tn+3m/RWmU5hejy1E1g6vFLZyKdPZoSPVs947/o2U5cuHvM2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aA2A4xWk; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3862b40a6e0so1243935f8f.0;
+        Thu, 23 Jan 2025 22:36:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737700614; x=1738305414; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qD42bGDiKgUU3jqwhIoJJ3N7RjHnLjnUN9aCwhVaCNA=;
+        b=aA2A4xWknNeNloQCs5LWoMZK6AI9SYusRSQvIkWeE+j4rOxn17KwEZU/3cTNFeXrGj
+         HAPGlDeZx+pfRdb3pNcRbW6Gu1OQMlQhbOjHcTyDkETJZ1+xBUi4gIxi8uDdl4TtUzG7
+         UfIj9Na06jbXSQDxYBOz0UaaSIiaw0Yh5/zcbvlaYKIBLore1PY4Oah8TeWLHop8QOqU
+         cJNC9OD+MN0C1NX3eJbYQFf5lruqm0b/feekG5LzzgZ3Jtl+Olk3tMtqIrbrGBhO0lD/
+         vbMv6Ko8ZF1sDRCvIRtomQ9Aa3maQ0irV9NIaz/qv4pWkUmUfi/UeFum61UpY0g89irS
+         GWpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737700614; x=1738305414;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qD42bGDiKgUU3jqwhIoJJ3N7RjHnLjnUN9aCwhVaCNA=;
+        b=kd+kI/3GPW1Et/CQ6WU9d3j7ZO/pOn4MiJF79qQ9BTaUIrNvZhaoXE2RUKOVfPcA1d
+         bwk5P4nKfJO75jPDvgX+rKAJ2FR8Pb5GuYtsTKEIyeVJuqkffScasOxlHA9BAWQt3U95
+         sLidE7jOdF1yRaz/75YEpDT5vxA/DvoCLQLgmvMySub2m1vqCPfbDA6OzOJ4YuSTTNDZ
+         E+7bUdcYvJCldm9t1coDfZ1D9qK8RH4kttYMniyAtRJtcUFk7Ly5GJdIhPBDLNdkGKoK
+         zv7PNUynH9/KNWs2R/O9nor+fmiJMuGCvF9ryjUT8MHlvVihXjQDBKG0CPLRajGffKXA
+         h6HA==
+X-Forwarded-Encrypted: i=1; AJvYcCU2XnME7bVJyHUYpf1Tritdy9TUNAvVotlV6QrNT/0jTiDd8QIOHhsCAwJf97zmc2DaEQIifEu7W/tO@vger.kernel.org, AJvYcCVbRLFOCAk0p8Do84o0KsC3Id4JzwkVb86Ei20DYcA0gRY4FMbS8MgRvv9xCDmA7ruVOdkt/ERN@vger.kernel.org, AJvYcCXkc8Jl3hPfve93KKjQitWjIR0sXMvqPYMcAtkQ4jBAfjU3hDvZDBzctzxK1Rf9q6CYokR8y+kchRevKZxb@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywjo8NIP8RJbietZa9ogtJHRIVDtxammdobsprfUN4xPyrf9UUV
+	fIU5fzKxnmNIU2s88upjASmPZS8/4c/hvQ6Y/b3HLdZiCq802G10
+X-Gm-Gg: ASbGncv4sxrGUFDCatQl8+jQU3YlGO8Gax3wHaFvXo2iC24CxQgfyXBtqOuQchZ6wL1
+	MiIegHXXq4r29pRfdeIicRDF6LQbJpvdgEz1p3i+ZDuum5Z0hhZdQra4ioTqX9OQTot1z1gV+s3
+	eJy8o6TTgIuz+GCSirPfAuwpdpAc82wWZFfqCzxXghQ+IRLz8CU9ZPp1aYQNXl9LbdovzuFEu8x
+	E16EahblRwhutKnnd+7lqBno6CiU/rw8dj8AP6VDM2SxGmn9661tEMwGM6SJ0Np/PP0IIDwVpc4
+X-Google-Smtp-Source: AGHT+IF/tPKOK5uKHtTT55cjsVYoXp0pX/8CStvn6oo+Uu7E0hNcuca78Ym4KT0IHBa4IA7aO4lbsQ==
+X-Received: by 2002:a05:6000:108d:b0:385:f677:8594 with SMTP id ffacd0b85a97d-38bf57a238bmr21881677f8f.43.1737700614224;
+        Thu, 23 Jan 2025 22:36:54 -0800 (PST)
+Received: from debian ([2a00:79c0:60b:6500:303:6c5b:4b07:6715])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a1c3fedsm1682552f8f.85.2025.01.23.22.36.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Jan 2025 22:36:52 -0800 (PST)
+Date: Fri, 24 Jan 2025 07:36:50 +0100
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: ethernet-phy: add
+ property tx-amplitude-100base-tx-gain-milli
+Message-ID: <20250124063650.GA4002@debian>
+References: <20250120-dp83822-tx-swing-v2-0-07c99dc42627@liebherr.com>
+ <20250120-dp83822-tx-swing-v2-1-07c99dc42627@liebherr.com>
+ <20250121-augmented-coati-of-correction-1f30db@krzk-bin>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1737700551;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=yDcVaVVMzrXp9l580+Ibh1Pcrfg4xdal5MP+F108Ii4=;
-	b=V7rZp0U47HCH4FUtf6IyKFL7rtDgum7Ud4Vaha/e1ppJBCu+Rkeo6qkO/da+tnAvVu5Oln
-	vAy3Uuxq7HvTq9OsNkRaoIQJbdcYQXun/CDw5H8ivsu0PAtAuf2YBwsKGhB91FLiBIaTVJ
-	VLCsJXbS196nQF5idKZ/Io+zLZDdDvTs9nrIkBnsSq0v436BKJSpMbEt0PARPWn5ClCenE
-	r2SMOEBy2/RAbJvGsRSERPjqKzjGzwYL0u90eGnNFDskz8LIv8eE+tZonUmJtVKNQgUI6J
-	QLghRufuU70FSaRfLVD22ZJ0BhxYCC6chXxW/nUmTtM+sas+WrFbA/T9H6mNvA==
-Date: Fri, 24 Jan 2025 07:35:50 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Tianling Shen <cnsztl@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Jonas
- Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org, Peter Geis
- <pgwipeout@gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: change eth phy mode to rgmii-id for
- orangepi r1 plus lts
-In-Reply-To: <98387508-10de-4c2e-80ad-05d0d86b7006@gmail.com>
-References: <20250119091154.1110762-1-cnsztl@gmail.com>
- <ce15f141688c4c537ac3307b6fbed283@manjaro.org>
- <59893a67-18c7-4ab3-9b2a-5a17091d4b6c@gmail.com>
- <dffd06a341b58e9689f578c3456cc11d@manjaro.org>
- <65f4e27f-3dc4-4eaf-be4d-265ce0325ade@gmail.com>
- <98387508-10de-4c2e-80ad-05d0d86b7006@gmail.com>
-Message-ID: <59e46b34e1c8f9197565fea917335d3f@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250121-augmented-coati-of-correction-1f30db@krzk-bin>
 
-Hello Tianling,
+Hi Krzysztof,
 
-On 2025-01-24 07:28, Tianling Shen wrote:
-> On 2025/1/19 23:48, Tianling Shen wrote:
->> On 2025/1/19 19:36, Dragan Simic wrote:
->>> On 2025-01-19 12:15, Tianling Shen wrote:
->>>> On 2025/1/19 17:54, Dragan Simic wrote:
->>>>> Thanks for the patch.  Please, see a comment below.
->>>>> 
->>>>> On 2025-01-19 10:11, Tianling Shen wrote:
->>>>>> In general the delay should be added by the PHY instead of the 
->>>>>> MAC,
->>>>>> and this improves network stability on some boards which seem to
->>>>>> need different delay.
->>>>>> 
->>>>>> Fixes: 387b3bbac5ea ("arm64: dts: rockchip: Add Xunlong OrangePi 
->>>>>> R1 Plus LTS")
->>>>>> Cc: stable@vger.kernel.org # 6.6+
->>>>>> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
->>>>>> ---
->>>>>>  arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts | 3 
->>>>>> +--
->>>>>>  arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts     | 1 
->>>>>> +
->>>>>>  arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi    | 1 
->>>>>> -
->>>>>>  3 files changed, 2 insertions(+), 3 deletions(-)
->>>>>> 
->>>>>> diff --git
->>>>>> a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
->>>>>> b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
->>>>>> index 67c246ad8b8c..ec2ce894da1f 100644
->>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
->>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus-lts.dts
->>>>>> @@ -17,8 +17,7 @@ / {
->>>>>> 
->>>>>>  &gmac2io {
->>>>>>      phy-handle = <&yt8531c>;
->>>>>> -    tx_delay = <0x19>;
->>>>>> -    rx_delay = <0x05>;
->>>>>> +    phy-mode = "rgmii-id";
->>>>> 
->>>>> Shouldn't the "tx_delay" and "rx_delay" DT parameters be converted
->>>>> into the "tx-internal-delay-ps" and "rx-internal-delay-ps" 
->>>>> parameters,
->>>>> respectively, so the Motorcomm PHY driver can pick them up and
->>>>> actually configure the internal PHY delays?
->>>> 
->>>> The documentation[1] says "{t,r}x-internal-delay-ps" default to 1950
->>>> and that value already works fine on my board.
->>>> 
->>>> 1. https://www.kernel.org/doc/Documentation/devicetree/bindings/net/ 
->>>> motorcomm%2Cyt8xxx.yaml
->>> 
->>> I see, but those values differ from the values found in the
->>> "tx_delay" and "rx_delay" DT parameters, so I think this patch
->>> should be tested with at least one more Orange Pi R1 Plus LTS
->>> board, to make sure it's all still fine.
->> 
->> This patch has been tested on 2 boards, and we will do more tests in 
->> next week.
->> 
+Am Tue, Jan 21, 2025 at 11:17:34AM +0100 schrieb Krzysztof Kozlowski:
+> On Mon, Jan 20, 2025 at 02:50:21PM +0100, Dimitri Fedrau wrote:
+> > Add property tx-amplitude-100base-tx-gain-milli in the device tree bindings
+> > for configuring the tx amplitude of 100BASE-TX PHYs. Modifying it can be
+> > necessary to compensate losses on the PCB and connector, so the voltages
+> > measured on the RJ45 pins are conforming.
+> > 
+> > Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
+> > ---
+> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > index 2c71454ae8e362e7032e44712949e12da6826070..ce65413410c2343a3525e746e72b6c6c8bb120d0 100644
+> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> > @@ -232,6 +232,14 @@ properties:
+> >        PHY's that have configurable TX internal delays. If this property is
+> >        present then the PHY applies the TX delay.
+> >  
+> > +  tx-amplitude-100base-tx-gain-milli:
+> > +    description: |
+> > +      Transmit amplitude gain applied (in milli units) for 100BASE-TX. When
 > 
-> Managed to test on another board and looks so far so good.
-> (Working network connection, no packet drop)
+> milli is unit prefix, not the unit. What is the unit? percentage? basis
+> point?
+> 
+I think it would be better to switch to percentage. Resolution should be
+fine. I would switch to:
+tx-amplitude-100base-tx-percent
 
-Sounds good to me, thanks for the additional testing.
+> > +      omitted, the PHYs default will be left as is. If not present, default to
+> > +      1000 (no actual gain applied).
+> 
+> Don't repeat constraints in free form text.
+> 
+Will fix this.
 
->>>>>>      status = "okay";
->>>>>> 
->>>>>>      mdio {
->>>>>> diff --git 
->>>>>> a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
->>>>>> b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
->>>>>> index 324a8e951f7e..846b931e16d2 100644
->>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
->>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
->>>>>> @@ -15,6 +15,7 @@ / {
->>>>>> 
->>>>>>  &gmac2io {
->>>>>>      phy-handle = <&rtl8211e>;
->>>>>> +    phy-mode = "rgmii";
->>>>>>      tx_delay = <0x24>;
->>>>>>      rx_delay = <0x18>;
->>>>>>      status = "okay";
->>>>>> diff --git 
->>>>>> a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
->>>>>> b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
->>>>>> index 4f193704e5dc..09508e324a28 100644
->>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
->>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dtsi
->>>>>> @@ -109,7 +109,6 @@ &gmac2io {
->>>>>>      assigned-clocks = <&cru SCLK_MAC2IO>, <&cru SCLK_MAC2IO_EXT>;
->>>>>>      assigned-clock-parents = <&gmac_clk>, <&gmac_clk>;
->>>>>>      clock_in_out = "input";
->>>>>> -    phy-mode = "rgmii";
->>>>>>      phy-supply = <&vcc_io>;
->>>>>>      pinctrl-0 = <&rgmiim1_pins>;
->>>>>>      pinctrl-names = "default";
+Best regards,
+Dimitri
 
