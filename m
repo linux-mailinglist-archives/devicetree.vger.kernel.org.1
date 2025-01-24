@@ -1,127 +1,141 @@
-Return-Path: <devicetree+bounces-140733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0382A1B343
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 11:06:56 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31BE5A1B34F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 11:11:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C63671886410
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 10:07:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 64BED165DCA
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 10:11:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CDF9219A68;
-	Fri, 24 Jan 2025 10:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E57219A68;
+	Fri, 24 Jan 2025 10:10:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="TcGThC+G"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WX6Y35iC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69EA91B87C3;
-	Fri, 24 Jan 2025 10:06:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1786D21ADB2
+	for <devicetree@vger.kernel.org>; Fri, 24 Jan 2025 10:10:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737713212; cv=none; b=tIe7UxFXHWAP8bQoupQiX/OrP7Pd+K58YsOkGCboKhBbRoiQNyEhzXegCe1b0dwNhB9h3U4cOnFqnopuLelyMfsXidvKw3Yy79plFtvWPP+9FezGVi3YHeSI9+SKdpeZNM+Egwb3/SkQ6B1B6UTILRNkGV41WMyjiCkR4HmrIVU=
+	t=1737713458; cv=none; b=qG2nnqXbaovc/1hgAbdNV+/+GZ9lrAFh9lY5SH6APD7DXCDmK85c6t74Cayt7T8MDTOr4/BnDoYH6JxYm0H9vrIC21+0rxzLvZJV1TuSd1w39qhzQbZyIT/pPWYkzQ1p/H3R2U8/bOqTkYiTGq2OpClFN8uMxteXrbVA3usdk14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737713212; c=relaxed/simple;
-	bh=a2RpuIR8Z45DeYLYN8YY8l5drejZaIiOyjQ77ZA1v/4=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=DKbNIH/N6klu+YZ7Ud817SaGmp25oJY3DhvTTHHoDXrwzBiaOw7lx7pj0Vy3IX4NuSdVxJXA6cLewCnYfj99t/6WrZ5J30alPghccuYusfPxmDSYCfeL3rlqVTedHDbb/n0fZHY4reKqCTOe5hUah14cSLOhuqa01eRh7xisZ8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=TcGThC+G; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1737713458; c=relaxed/simple;
+	bh=n8LBnxrDnBbcUXm/xD+VonYiva2MgEDrR8IbQUCoyGs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=aeDXAUTMo1rQD2FazcM7bk+JKRI1GRO3I2oihjW/GB+3vu3o3CdHWKfygihn3RmBURf9A/QCzAoBYKbjFjZK6TaT18evxWSiAmvuWwM4UoikQ4Ofj6GXRHLYjNhRORPe+iZYJdGsb6YrjCiEeVS3VmCdJtij9Vz1CiyvQ4wFshw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WX6Y35iC; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50O5TgF3027233
+	for <devicetree@vger.kernel.org>; Fri, 24 Jan 2025 10:10:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=9NBpxVg2cBMC6znT9WBrpS6Wfd6zoznAlFR
+	eZfrgsW0=; b=WX6Y35iCRJ8/LvrXYDqlJCfCj7r+rLn8ReP/VSffq4OFX3SwVHe
+	bq6e7BWdsF8Whxad1gXrDRpxfJAuGoGj0ASKw+cZTuhOn+/9koP/WfgbWCoi4Orn
+	c/scdESldRhWS92qKXsODagUditLe6itiKubJnL4NKB9u8lj5ELhroQxzl8aQLvI
+	p8H9QwYAufpbhHXHWogODApmlR+Ipnpip2wDumMcmM/gB0PdmSl8Q9qguZfYoRKt
+	5vYs21/oVoqXcz/qopjm21DItjjWvpwIfWiTvNloLLuxbHpQKQLvtY9oZYfvb1fH
+	1S3HJb3x/frHGtSZVMwQ50tcxX8Tei3tMeA==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44c4rngq1w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 24 Jan 2025 10:10:50 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2167141e00eso42102355ad.2
+        for <devicetree@vger.kernel.org>; Fri, 24 Jan 2025 02:10:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737713449; x=1738318249;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9NBpxVg2cBMC6znT9WBrpS6Wfd6zoznAlFReZfrgsW0=;
+        b=CKoz2hX5Sa+84ZTOdO1ugyQP6hToSYQWCYAptzdIyhf9s0WlOruUlB5Qc1CPfIMo8u
+         R0XV8Apvl0wavz9HLnfMY6Mt/+LGdUMTUBh4e/MdZaEDoZ2BBhPeNJyh0ct4kAekyYAu
+         X1ObVeN8vpW6TDzV+7HeuBraAvMfLnRzF+QtxprTU9nKHsnCyqcilcHR7LYpS9bWU4O7
+         /G2Qfpm8/L86aASAjEFtOGHJQzFVPdb2TkEKk9zN3nT/pM9ku0wbJlTk+XWmVCJH+WEJ
+         f+ya5u3yiYcZjYeTVBLWcafOAQWpI+nYFM2R0IDJjhcrVU2EaWeSYv8SIyNQ86TxBh2S
+         LzfA==
+X-Forwarded-Encrypted: i=1; AJvYcCVYkSiIOvIiRFmFNY64pM8NyYkTB7qkCI5UMHlQlb2JALfW/uXZhzcqv7DoQvo3LeUusjob1WLqoxfR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOHxJ/ZZhay9QgkxT/RG8MleBjwYevEt/5sYrIu9k/mYsZRJ2m
+	8G8cTpXE8+eE5ShhOeHKvoaWIuZt7RMEUkHr7C7mQPx0IByseC/DdsyQZ5hKpMw310rtVInAflA
+	8QRjWwBv+sIEPNNZc7I/jZfuWEYjxin4MlyGaak6kWU5a0g7zYPPanUCb2xMV
+X-Gm-Gg: ASbGncs2xmsjs4p9uETME71fJXonva3l2GkX8NE1IUK9QuP0lCLZm/1rym0QvyhtELz
+	AVrbUvnDAq/kxv+H80xa2n9Jk21jegKhxfxdWDs3STQjOWUkARY2VlmebFy9SCRP62911RaFedg
+	5NGyBP9NN9wuTZnicTVJvu4Iqm+0p17B38y4mRq5yL2tEu3Zx0F64tFYljPibxxAvwTac38PLPE
+	lmFu3ER5XpHPynlijrNs5KSOUPXLU+63spULka3+8OFldr5GmBlIWyuH5EHjfDPHeqUlTKKKy1+
+	LZ+IzJdCBzp8uQ+Y+wbn2vxG/nZU8w==
+X-Received: by 2002:a17:902:f601:b0:21a:82b7:feab with SMTP id d9443c01a7336-21c35594fd9mr441785725ad.33.1737713448967;
+        Fri, 24 Jan 2025 02:10:48 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGABoegU/H7TpE+0qoZZPoBSDODBsyYLWoLVFOYvGbOKcXuJH6boH3o2G7cWF/3MfuPx8Cbvw==
+X-Received: by 2002:a17:902:f601:b0:21a:82b7:feab with SMTP id d9443c01a7336-21c35594fd9mr441785265ad.33.1737713448598;
+        Fri, 24 Jan 2025 02:10:48 -0800 (PST)
+Received: from hu-krichai-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21da4141dacsm12773825ad.133.2025.01.24.02.10.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 24 Jan 2025 02:10:48 -0800 (PST)
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+To: andersson@kernel.org, robh@kernel.org, dmitry.baryshkov@linaro.org,
+        manivannan.sadhasivam@linaro.org, krzk@kernel.org, helgaas@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        lpieralisi@kernel.org, kw@linux.com, conor+dt@kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree-spec@vger.kernel.org, quic_vbadigan@quicinc.com,
+        Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Subject: [PATCH V2 0/2] schemas: pci: bridge: Document PCI L0s & L1 entry delay and N_FTS
+Date: Fri, 24 Jan 2025 15:40:36 +0530
+Message-Id: <20250124101038.3871768-1-krishna.chundru@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1737713208;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=GKwdTEzM5lSaWxcEJQL3dOATIOQEUYkzh3DpFXffH58=;
-	b=TcGThC+GsdFJdZ4xP0tnYgTpMftKU8XSefORI5jxJhNQJJ4GvobaG+aC2S3tdNNGn8hrIJ
-	x/Mdi7Eqe7IILPSprRDF6ERrdTwuod+ApSMBhCxcYb50PhnjwzF4YnuDCLoY/F/u0IG/+v
-	5dxdcWnuPslFwrEH6o3YsCtYreBE3K23h1/WpoECGE/5t7wdWds6PqZXOPShJSffQ9b8gK
-	iaKsB85Ul3uglAtYsTDyhbibr7X1azgjlsuPuSTDuWPTnR2ZZKjM4wgHqB2ME0LxZUcm7h
-	7Udp5m5xw07iGmFXgwmHLG8EWdy/kR+i2OqaitqILv4u2cwZuD+JM6l8pqkbEg==
-Date: Fri, 24 Jan 2025 11:06:47 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Alexander Shiyan <eagle.alexander923@gmail.com>, Rob Herring
- <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, devicetree@vger.kernel.org, Sebastian Reichel
- <sebastian.reichel@collabora.com>, stable@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
- for rk3588
-In-Reply-To: <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com>
-References: <20250124052611.3705-1-eagle.alexander923@gmail.com>
- <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com>
-Message-ID: <a76f315f023a3f8f5435e0681119b4eb@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-Proofpoint-GUID: gGeUZNBaaOb3ChP1cM6-Y4gZfTu9GZw6
+X-Proofpoint-ORIG-GUID: gGeUZNBaaOb3ChP1cM6-Y4gZfTu9GZw6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-24_04,2025-01-23_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 phishscore=0 adultscore=0 bulkscore=0
+ suspectscore=0 mlxscore=0 mlxlogscore=999 spamscore=0 clxscore=1015
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501240073
 
-Hello Alexey,
+Some controllers and endpoints provide provision to program the entry
+delays of L0s & L1 which will allow the link to enter L0s & L1 more
+aggressively to save power.
 
-On 2025-01-24 09:33, Alexey Charkov wrote:
-> On Fri, Jan 24, 2025 at 9:26 AM Alexander Shiyan
-> <eagle.alexander923@gmail.com> wrote:
->> 
->> There is no pinctrl "gpio" and "otpout" (probably designed as 
->> "output")
->> handling in the tsadc driver.
->> Let's use proper binding "default" and "sleep".
-> 
-> This looks reasonable, however I've tried it on my Radxa Rock 5C and
-> the driver still doesn't claim GPIO0 RK_PA1 even with this change. As
-> a result, a simulated thermal runaway condition (I've changed the
-> tshut temperature to 65000 and tshut mode to 1) doesn't trigger a PMIC
-> reset, even though a direct `gpioset 0 1=0` does.
-> 
-> Are any additional changes needed to the driver itself?
+Per PCIe r6.0, sec 4.2.5.1, during Link training, a PCIe component
+captures the N_FTS value it receives.  Per 4.2.5.6, when
+transitioning the Link from L0s to L0, it must transmit N_FTS Fast
+Training Sequences to enable the receiver to obtain bit and Symbol
+lock.
 
-I've been digging through this patch the whole TSADC/OTP thing in the
-last couple of hours, and AFAIK some parts of the upstream driver are
-still missing, in comparison with the downstream driver.
+Components may have device-specific ways to configure N_FTS values
+to advertise during Link training.  Define an n_fts array with an
+entry for each supported data rate.
 
-I've got some small suggestions for the patch itself, but the issue
-you observed is obviously of higher priority, and I've singled it out
-as well while digging through the code.
+Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+---
+changes in v2:-
+- Split N_FTS & L1 and L0s entry delay in two patches (bjorn)
+- Update the commit text, description (bjorn)
 
-Could you, please, try the patch below quickly, to see is it going to
-fix the issue you observed?  I've got some "IRL stuff" to take care of
-today, so I can't test it myself, and it would be great to know is it
-the right path to the proper fix.
+Krishna Chaitanya Chundru (2):
+  schemas: pci: bridge: Document PCI L0s & L1 entry delay
+  schemas: pci: bridge: Document PCIe N_FTS
 
-diff --git i/drivers/thermal/rockchip_thermal.c 
-w/drivers/thermal/rockchip_thermal.c
-index f551df48eef9..62f0e14a8d98 100644
---- i/drivers/thermal/rockchip_thermal.c
-+++ w/drivers/thermal/rockchip_thermal.c
-@@ -1568,6 +1568,11 @@ static int rockchip_thermal_probe(struct 
-platform_device *pdev)
-         thermal->chip->initialize(thermal->grf, thermal->regs,
-                                   thermal->tshut_polarity);
+ dtschema/schemas/pci/pci-bus-common.yaml | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-+       if (thermal->tshut_mode == TSHUT_MODE_GPIO)
-+               pinctrl_select_default_state(dev);
-+       else
-+               pinctrl_select_sleep_state(dev);
-+
-         for (i = 0; i < thermal->chip->chn_num; i++) {
-                 error = rockchip_thermal_register_sensor(pdev, thermal,
-                                                 &thermal->sensors[i],
+-- 
+2.34.1
 
-If you could test it, please, it would be great, and I'd prepare the
-proper patch tomorrow or so.
 
