@@ -1,147 +1,86 @@
-Return-Path: <devicetree+bounces-140686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BA1AA1B072
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 07:37:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 774DDA1B086
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 07:51:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1262C1888A7A
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 06:37:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2196F3A81DC
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 06:51:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A91C1D90C8;
-	Fri, 24 Jan 2025 06:36:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FF971D90BC;
+	Fri, 24 Jan 2025 06:51:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aA2A4xWk"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Bm2kb4XJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m49220.qiye.163.com (mail-m49220.qiye.163.com [45.254.49.220])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CA5D1D6DC8;
-	Fri, 24 Jan 2025 06:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E2D11D63DF;
+	Fri, 24 Jan 2025 06:51:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.220
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737700617; cv=none; b=G6KijQuYmwVOGXQf8ded6pUd62TpszdldnVLh9AlfrOQPUgntl0pue8+jxxlNBjgsXkZVwr/VoBAYokoblTGOR40YUm3bph1myJQveVXxjHIczle2h+NIIUNbJExlCXhufVI1Jbh8X2AmYp8MlRQNWzkllYNCgbQWgN+n/IlGqA=
+	t=1737701504; cv=none; b=duHeMqwEEX/vd5jdbI0+x3eZcXyoAhZtbue0VsguqVlHZlMpggTSZN6HUJ670YKbesGNKNxMSQHLqTzM3uMWnPIb6EXzFz1MbwkdFZHIi+7LJNPjOM7iuIBinnO0uWefAdgJVf0cCFYv99PTzmw62OnwpojjVd8mq5l2TOcMSUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737700617; c=relaxed/simple;
-	bh=L/cxqniFp/YvovrC3aJ7w5qlG0gQyGBbm59E/eveoSA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DI7c++3rNC1JkUQeu88ewAjzSMs2yl6w60JhAAhTxmc6Z8ylyIaVjdE+N5Gx5zDWIUzCEeWQVmU1vG82Z47M5XClC/cq0NOqhGYZayOvwPcNmqeqO04WQQWc19tn+3m/RWmU5hejy1E1g6vFLZyKdPZoSPVs947/o2U5cuHvM2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aA2A4xWk; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3862b40a6e0so1243935f8f.0;
-        Thu, 23 Jan 2025 22:36:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1737700614; x=1738305414; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=qD42bGDiKgUU3jqwhIoJJ3N7RjHnLjnUN9aCwhVaCNA=;
-        b=aA2A4xWknNeNloQCs5LWoMZK6AI9SYusRSQvIkWeE+j4rOxn17KwEZU/3cTNFeXrGj
-         HAPGlDeZx+pfRdb3pNcRbW6Gu1OQMlQhbOjHcTyDkETJZ1+xBUi4gIxi8uDdl4TtUzG7
-         UfIj9Na06jbXSQDxYBOz0UaaSIiaw0Yh5/zcbvlaYKIBLore1PY4Oah8TeWLHop8QOqU
-         cJNC9OD+MN0C1NX3eJbYQFf5lruqm0b/feekG5LzzgZ3Jtl+Olk3tMtqIrbrGBhO0lD/
-         vbMv6Ko8ZF1sDRCvIRtomQ9Aa3maQ0irV9NIaz/qv4pWkUmUfi/UeFum61UpY0g89irS
-         GWpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737700614; x=1738305414;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qD42bGDiKgUU3jqwhIoJJ3N7RjHnLjnUN9aCwhVaCNA=;
-        b=kd+kI/3GPW1Et/CQ6WU9d3j7ZO/pOn4MiJF79qQ9BTaUIrNvZhaoXE2RUKOVfPcA1d
-         bwk5P4nKfJO75jPDvgX+rKAJ2FR8Pb5GuYtsTKEIyeVJuqkffScasOxlHA9BAWQt3U95
-         sLidE7jOdF1yRaz/75YEpDT5vxA/DvoCLQLgmvMySub2m1vqCPfbDA6OzOJ4YuSTTNDZ
-         E+7bUdcYvJCldm9t1coDfZ1D9qK8RH4kttYMniyAtRJtcUFk7Ly5GJdIhPBDLNdkGKoK
-         zv7PNUynH9/KNWs2R/O9nor+fmiJMuGCvF9ryjUT8MHlvVihXjQDBKG0CPLRajGffKXA
-         h6HA==
-X-Forwarded-Encrypted: i=1; AJvYcCU2XnME7bVJyHUYpf1Tritdy9TUNAvVotlV6QrNT/0jTiDd8QIOHhsCAwJf97zmc2DaEQIifEu7W/tO@vger.kernel.org, AJvYcCVbRLFOCAk0p8Do84o0KsC3Id4JzwkVb86Ei20DYcA0gRY4FMbS8MgRvv9xCDmA7ruVOdkt/ERN@vger.kernel.org, AJvYcCXkc8Jl3hPfve93KKjQitWjIR0sXMvqPYMcAtkQ4jBAfjU3hDvZDBzctzxK1Rf9q6CYokR8y+kchRevKZxb@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywjo8NIP8RJbietZa9ogtJHRIVDtxammdobsprfUN4xPyrf9UUV
-	fIU5fzKxnmNIU2s88upjASmPZS8/4c/hvQ6Y/b3HLdZiCq802G10
-X-Gm-Gg: ASbGncv4sxrGUFDCatQl8+jQU3YlGO8Gax3wHaFvXo2iC24CxQgfyXBtqOuQchZ6wL1
-	MiIegHXXq4r29pRfdeIicRDF6LQbJpvdgEz1p3i+ZDuum5Z0hhZdQra4ioTqX9OQTot1z1gV+s3
-	eJy8o6TTgIuz+GCSirPfAuwpdpAc82wWZFfqCzxXghQ+IRLz8CU9ZPp1aYQNXl9LbdovzuFEu8x
-	E16EahblRwhutKnnd+7lqBno6CiU/rw8dj8AP6VDM2SxGmn9661tEMwGM6SJ0Np/PP0IIDwVpc4
-X-Google-Smtp-Source: AGHT+IF/tPKOK5uKHtTT55cjsVYoXp0pX/8CStvn6oo+Uu7E0hNcuca78Ym4KT0IHBa4IA7aO4lbsQ==
-X-Received: by 2002:a05:6000:108d:b0:385:f677:8594 with SMTP id ffacd0b85a97d-38bf57a238bmr21881677f8f.43.1737700614224;
-        Thu, 23 Jan 2025 22:36:54 -0800 (PST)
-Received: from debian ([2a00:79c0:60b:6500:303:6c5b:4b07:6715])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a1c3fedsm1682552f8f.85.2025.01.23.22.36.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jan 2025 22:36:52 -0800 (PST)
-Date: Fri, 24 Jan 2025 07:36:50 +0100
-From: Dimitri Fedrau <dima.fedrau@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: ethernet-phy: add
- property tx-amplitude-100base-tx-gain-milli
-Message-ID: <20250124063650.GA4002@debian>
-References: <20250120-dp83822-tx-swing-v2-0-07c99dc42627@liebherr.com>
- <20250120-dp83822-tx-swing-v2-1-07c99dc42627@liebherr.com>
- <20250121-augmented-coati-of-correction-1f30db@krzk-bin>
+	s=arc-20240116; t=1737701504; c=relaxed/simple;
+	bh=FjmqzohXw1BCFVFHHigcG0Qz+t/CQtTShQFq2UXXtuA=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=Z8c6MdAvMPqMEB+ZAgv3HidMvE/XnKWQK+BitYwPxuAkLKhLohVYwCZ5lQA/BBgcvp4nXmTKggYZ3NOkV/1W6hKCy72yH0GMNVepbQaRSO0R1eci6Vm+iCvLabm2hhLZt6/e6az1KGFgkt/8WKEf8tDtGXZyFe0CWw5WpAqgHCo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Bm2kb4XJ; arc=none smtp.client-ip=45.254.49.220
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from localhost.localdomain (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 994456e1;
+	Fri, 24 Jan 2025 14:46:22 +0800 (GMT+08:00)
+From: Elaine Zhang <zhangqing@rock-chips.com>
+To: mturquette@baylibre.com,
+	sboyd@kernel.org,
+	kever.yang@rock-chips.com,
+	zhangqing@rock-chips.com,
+	heiko@sntech.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-clk@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	huangtao@rock-chips.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v1 0/3] clk: rockchip: Fixed some incorrect commits
+Date: Fri, 24 Jan 2025 14:46:16 +0800
+Message-Id: <20250124064619.13893-1-zhangqing@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGk0ZGlZKGklKTkpIGkhPSB1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
+	hVSktLVUpCS0tZBg++
+X-HM-Tid: 0a94970fcd5e03a3kunm994456e1
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NDY6URw4IzIPDiEWARMZDB80
+	EEsaCjBVSlVKTEhMTEtKSkNPSkJDVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUhCTzcG
+DKIM-Signature:a=rsa-sha256;
+	b=Bm2kb4XJ8h9ZAx8pB34IrXe66neBGLNV0dJTem0EA4zI/qtoWWtbeXI3wgkmx7bkekvL7BBCNJf+GA1GL2KwRlT8pp7C8h/3VwmMYvJCN4FpyRcwpK1Xa1yUte4e8wgTY22Cht5HSKvhg2OhSfvxUCg2voduaUeC37DKFotG0LA=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=hakErszKHTtOs4Wy81rK0wCSNo3C7i1Eglw64nX85ko=;
+	h=date:mime-version:subject:message-id:from;
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250121-augmented-coati-of-correction-1f30db@krzk-bin>
 
-Hi Krzysztof,
+Elaine Zhang (3):
+  Revert "clk: rockchip: Set parent rate for DCLK_VOP clock on RK3228"
+  Revert "arm64: dts: rockchip: Increase VOP clk rate on RK3328"
+  arm64: dts: rockchip: Increase VOP clk rate on RK3328
 
-Am Tue, Jan 21, 2025 at 11:17:34AM +0100 schrieb Krzysztof Kozlowski:
-> On Mon, Jan 20, 2025 at 02:50:21PM +0100, Dimitri Fedrau wrote:
-> > Add property tx-amplitude-100base-tx-gain-milli in the device tree bindings
-> > for configuring the tx amplitude of 100BASE-TX PHYs. Modifying it can be
-> > necessary to compensate losses on the PCB and connector, so the voltages
-> > measured on the RJ45 pins are conforming.
-> > 
-> > Signed-off-by: Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/ethernet-phy.yaml | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > index 2c71454ae8e362e7032e44712949e12da6826070..ce65413410c2343a3525e746e72b6c6c8bb120d0 100644
-> > --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-> > @@ -232,6 +232,14 @@ properties:
-> >        PHY's that have configurable TX internal delays. If this property is
-> >        present then the PHY applies the TX delay.
-> >  
-> > +  tx-amplitude-100base-tx-gain-milli:
-> > +    description: |
-> > +      Transmit amplitude gain applied (in milli units) for 100BASE-TX. When
-> 
-> milli is unit prefix, not the unit. What is the unit? percentage? basis
-> point?
-> 
-I think it would be better to switch to percentage. Resolution should be
-fine. I would switch to:
-tx-amplitude-100base-tx-percent
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 10 ++++++----
+ drivers/clk/rockchip/clk-rk3228.c        |  2 +-
+ 2 files changed, 7 insertions(+), 5 deletions(-)
 
-> > +      omitted, the PHYs default will be left as is. If not present, default to
-> > +      1000 (no actual gain applied).
-> 
-> Don't repeat constraints in free form text.
-> 
-Will fix this.
+-- 
+2.17.1
 
-Best regards,
-Dimitri
 
