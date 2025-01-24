@@ -1,114 +1,124 @@
-Return-Path: <devicetree+bounces-140802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92F2DA1B7E2
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:28:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0B2FA1B834
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:51:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 927F9188EFC8
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 14:28:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3E5117A5597
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 14:51:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CAF312BF02;
-	Fri, 24 Jan 2025 14:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF110143C5D;
+	Fri, 24 Jan 2025 14:51:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="ib584NwX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [207.246.76.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C464378F4E;
-	Fri, 24 Jan 2025 14:28:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2736653389
+	for <devicetree@vger.kernel.org>; Fri, 24 Jan 2025 14:51:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.246.76.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737728907; cv=none; b=p1f4x7sJ2WHsp7G0pn2Jlyttnyj5fpeXYbpp/pzTFWOQyG6VdeAHqbpu3YNaArC6v09ff4veN1RcHDee7hGK6SNHUkhx7DLMfH2c5HbLr1xG+LnBmpID/+/0WQvUL0Bx19O4t1KiXxhuwniPbTcRdMba3F/4ThdYvWAZ+vCx+zM=
+	t=1737730304; cv=none; b=Yc6+w2oBrnETxFheZYXS0WlVT6LhECsMc6H0falO0KL2v1eo/w0jp9awYAOhtcSOU6Jr8XDH2j/z2kcHCg43x7ddFCIHipsAT1URbPOj77l6DzwHw0RbSojJGfTb8JST779bGTMw8hB8+1ntOuRyoIvTDnyaoqFu0YJP6RCVqG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737728907; c=relaxed/simple;
-	bh=1bNvBA3VIFA9Pmc5f1nYPc343BJoKnsfSeExW9DH95Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EHDY/Hv5DrynkpwFBd3UwJlWIG4ufWCPvjxjko92BjbYNEDJyJ5g+iODnmLoAQeIitt1J7sDYihrgiR4DoZctEpD9Wl/7ie+gQcAADB+MSLavMcOHovNAe2lK4jHbYdeMeRjvaXMCJcBlm9qdm63phNrSNYjbfN4aznKykfdd7U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-4afeccfeda2so1197084137.1;
-        Fri, 24 Jan 2025 06:28:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737728904; x=1738333704;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=f80Wzt+C7da5n0Wkf0bUKJR8arPqx9+zMTHT9w/x7FA=;
-        b=mzBo5kEEW/lc2aXIxNu8Si9IIg+1lRpGwCuxGcV40DOt+EbgZ0945oegUx1bVMxj3J
-         KLIM13Qq/HWf2/OwcUNo09XLx8qednv/n96LHOUL42cc+0E30RiHtdr0ZAxwJ0dlXWq5
-         LIxps2y8DoAcOK7PS0anXjWJY0nyx1YA3Pkxtd8ZvdS8lEbVPGcAXksj25KZ4oReZbnY
-         FcoQR/DruWw99gcZlQKPj6bDkonBO/+mBN1Hxr8Wr7oOZJTkHNHPZacs86hat6zWajTY
-         9f96HgL4j4zO3nsHBMNLvTqFb4HdlmiAFfe3b0BB6aIH3a35YbASuCoZlfbjCKtTQ1Ax
-         HSyw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1u2DrQbtEYmJbhztJ+bJSqWIGJvhZhY1iglb+C9rL7ycEdFdkq11u76tFRtoY8OvubYhGvk3JG/VFAREJ@vger.kernel.org, AJvYcCVSALrAKRwGgFx4IQo/WAKSEHl9OivV7C7gQG+PtFuFBP0jhqVEWF/XozLKRfT+DT3UWHodNk0TfoOjhEabkHntRnA=@vger.kernel.org, AJvYcCXSdEdLlkHHz9cApKXEjsgv2igTi42174JcZtXSUyWbI2qrZmPgKSk1pqoiywnZMQN3A+lC5+Kfo6VQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqL391YTsYXO2s3ihiUyrnzycnTb2WuCKv8JtHHwdyGq8poe02
-	GB9YZMUhk0KULIm+05CEDJsmZ5WtBSJwCb3vTcPZkO0dJARssbYlpWzYtwD8
-X-Gm-Gg: ASbGncsjmqyPVl7iMcyaNOl/J6FMaQrJaQmbksBKuUGkmN489JkvdIdeAvl3cLU7gLE
-	2dkfOewnJHGc5u5cTAyRC1gqodFfqyTgBPh6QSkED1R0BcjMKdW53KzJuzG4ixdYiIs/1ck64Px
-	5mwue/dYUJVK7DthWeO2ioBiHecD7QAkEOXvK+cDXHQzuL3gd0W2+2F+uss7no5GTPAsFZHec+a
-	7ZZ+mfIZUsx2H2EJnnn2iHkbLZsUnmnAZQnFmMQFqozNrEAHoyd8mPSHIgbDncsJbQGNcUiZHiD
-	SDRRc2CKi1eY13xpBzyHvNbH7lgEEhiOSOMIxnyXFu5wb6M=
-X-Google-Smtp-Source: AGHT+IFq3BhC9xlDK/yTmfR2P8xEgf8jWBR6S1sTnHl0KM3tDFK+qi5guKYAUV10KvvOwh+nvN2MEw==
-X-Received: by 2002:a05:6102:370a:b0:4af:de39:8daa with SMTP id ada2fe7eead31-4b690b7ca31mr22551686137.4.1737728903905;
-        Fri, 24 Jan 2025 06:28:23 -0800 (PST)
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-864a9c98e0esm423683241.34.2025.01.24.06.28.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jan 2025 06:28:23 -0800 (PST)
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-51619b06a1cso1270597e0c.3;
-        Fri, 24 Jan 2025 06:28:23 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVgX/IS5HYrSmFGFZm1GctsMLicdxBpmK7PnO1f4/s5deG7qwIG7GYnROjFIqCTVkcAkWsevQT9ZweMXcyH@vger.kernel.org, AJvYcCW9BLKmtM85j8tFQ8VzurCcNuuesYWXf/GdpQTD+1iSiEccGTak1mM0QZxhpt3RW5bDtI2/XO7JAuT+M9cfMWWvqKI=@vger.kernel.org, AJvYcCWHhMOgCBc9nGR/5/slOpmOM7H2Rg2UcP28SvywOFNCE1uvOupMUn6E5FbwYeJuYvHSSI5j5dTIKTDG@vger.kernel.org
-X-Received: by 2002:a05:6122:d91:b0:510:3a9:bb87 with SMTP id
- 71dfb90a1353d-51d592b421amr23225906e0c.1.1737728903128; Fri, 24 Jan 2025
- 06:28:23 -0800 (PST)
+	s=arc-20240116; t=1737730304; c=relaxed/simple;
+	bh=DOW7ZQCoyBFfJmoCI5MTQFFq9YjIfjcsUIXQyLyB98w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qs//k4kcFMZIBfJ1AA/UX7gnB88GNcZ/fQbJbSRmGtxzGTqO3YHN2v0xixA9X7M1FH8pJNF+FyIKGAFbnk6C3ObYVYr7sRpzyJ48X9kQSh6TdEDq4eySsH87yBbEBckXgH3b4lHjjuT5uYj0DHePJm+a/F/pNj3QUyEXOu7QsDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=ib584NwX; arc=none smtp.client-ip=207.246.76.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1737730301;
+ bh=MsYLWrXefMP5m34iCp3jAP9mKY5iNXf4rWORER2MwmY=;
+ b=ib584NwXehaHFS8jPjUg1LbanMFRvH+XFgwD61X6Y7+BYY+lPUggGyU+AeM4wXwDiMtVF4ITR
+ 3AatVKo33gI9nzsr8Jg/NNwy7cpyZUrslHcbe4ShVlanFF3btup6mWc/cr/Pghi/P3cszxfsVsx
+ Q8qQR6oQ1MoAyHPnr/io3ef1mQJXyLQJoTSFwBYHW164jTofUvjlW8gUxahly5MIf1RrQEgbnvC
+ SlY/EhjMckjzzn1vlK+CWx428qjsrZ8UUyiHqB64SL2cjCauVjs2jhU282HQDmRlc9Pnnku9yvA
+ V+TiEtg8oYCoHghW7686Rwk+Rb+eqfhwNAeOmtM93ggg==
+X-Forward-Email-ID: 6793a67f3e07d3fa850557b4
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 207.246.76.47
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <d95d317c-5f6e-42bd-94a9-e1a6c7685e2f@kwiboo.se>
+Date: Fri, 24 Jan 2025 15:40:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250123170508.13578-1-john.madieu.xa@bp.renesas.com> <20250123170508.13578-7-john.madieu.xa@bp.renesas.com>
-In-Reply-To: <20250123170508.13578-7-john.madieu.xa@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 24 Jan 2025 15:28:11 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXw_PGnBLYm7sHLffCpN=og58kOsG1o+nZAK_cJQmkHLg@mail.gmail.com>
-X-Gm-Features: AWEUYZkpTwRqRVj6DIDEQ89dIst5jaJIth6HjwjEYZ05_K-L_Pv0q1QLnxzow58
-Message-ID: <CAMuHMdXw_PGnBLYm7sHLffCpN=og58kOsG1o+nZAK_cJQmkHLg@mail.gmail.com>
-Subject: Re: [PATCH v4 6/9] soc: renesas: rzv2h: Add a callback to print
- SoC-specific extra features
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: krzk+dt@kernel.org, robh@kernel.org, biju.das.jz@bp.renesas.com, 
-	claudiu.beznea.uj@bp.renesas.com, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, john.madieu@gmail.com, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	magnus.damm@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/3] Revert "clk: rockchip: Set parent rate for
+ DCLK_VOP clock on RK3228"
+To: Elaine Zhang <zhangqing@rock-chips.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, kever.yang@rock-chips.com,
+ heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20250124064619.13893-1-zhangqing@rock-chips.com>
+ <20250124064619.13893-2-zhangqing@rock-chips.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20250124064619.13893-2-zhangqing@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 23, 2025 at 6:05=E2=80=AFPM John Madieu
-<john.madieu.xa@bp.renesas.com> wrote:
-> Some RZ/V2H SoC variants feature a Mali-G31 (GPU) and/or a Mali-C55 (ISP)
-> IP(s). Detect and inform about their presence during SoC identification.
-> Also detect PLL frequency and warn in case of mismatch.
->
-> Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
+Hi Elaine,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 2025-01-24 07:46, Elaine Zhang wrote:
+> This reverts commit 1d34b9757523c1ad547bd6d040381f62d74a3189.
+> 
+> RK3228 Only GPLL and CPLL, GPLL is a common clock, does not allow
+> dclk_vop to change its frequency, CPLL is used by GMAC,
+> if dclk_vop use CLK_SET_RATE_PARENT and CLK_SET_RATE_NO_REPARENT flags will
+> affect the GMAC function.
 
-Gr{oetje,eeting}s,
+Please explain how CPLL and GPLL is affected by this? According to TRM
+the hdmiphy is default parent (reset value), this is also how similar
+clock is defined for RK3328.
 
-                        Geert
+  vop_pll_sel  
+  Control vop clock PLL source selection.  
+  1'b0: select hdmiphy pll clock (reset value)
+  1'b1: select vop dclk
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Maybe the dclk_vop name is causing confusion, or am I missing something?
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Regards,
+Jonas
+
+> 
+> If the client application does not use GMAC and CPLL is free, make this
+> change on the local branch.
+> 
+> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+> ---
+>  drivers/clk/rockchip/clk-rk3228.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/clk/rockchip/clk-rk3228.c b/drivers/clk/rockchip/clk-rk3228.c
+> index ed602c27b624..9c0284607766 100644
+> --- a/drivers/clk/rockchip/clk-rk3228.c
+> +++ b/drivers/clk/rockchip/clk-rk3228.c
+> @@ -409,7 +409,7 @@ static struct rockchip_clk_branch rk3228_clk_branches[] __initdata = {
+>  			RK2928_CLKSEL_CON(29), 0, 3, DFLAGS),
+>  	DIV(0, "sclk_vop_pre", "sclk_vop_src", 0,
+>  			RK2928_CLKSEL_CON(27), 8, 8, DFLAGS),
+> -	MUX(DCLK_VOP, "dclk_vop", mux_dclk_vop_p, CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+> +	MUX(DCLK_VOP, "dclk_vop", mux_dclk_vop_p, 0,
+>  			RK2928_CLKSEL_CON(27), 1, 1, MFLAGS),
+>  
+>  	FACTOR(0, "xin12m", "xin24m", 0, 1, 2),
+
 
