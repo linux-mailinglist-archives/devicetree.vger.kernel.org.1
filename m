@@ -1,123 +1,122 @@
-Return-Path: <devicetree+bounces-140808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C29BEA1B836
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:56:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87481A1B839
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:56:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3CF5188D1CD
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 14:56:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 852F0188EEF1
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 14:56:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A031448F2;
-	Fri, 24 Jan 2025 14:56:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86E0B1465B3;
+	Fri, 24 Jan 2025 14:56:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dkICDLnz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k3ZXKWAH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69103C0B;
-	Fri, 24 Jan 2025 14:55:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEE9D3C0B;
+	Fri, 24 Jan 2025 14:56:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737730560; cv=none; b=Ce++7lXeMn4FwhYeYiAbj254VR24Yt3gLmqer/9aIUDo6mwObTpKNLNQf0bSXjtGsx9/QP0FOZiJ73SbDkQzD1cIIweAhkv/pLEm5cSq68Spe3Ehci8qfs7vNf9jM4nGUyoyTDg80wrXm9WUfU3MZ07ikAGVEG4ZFDKFjlyUtsA=
+	t=1737730577; cv=none; b=Fsa22MNvuxUSLms6PZebZUeu8AM6N4uI33iQKDB3oVOTREorP5gmLfjCk1R78D3Yt8gPClsR8kOGX7bkxR3Vt0GyJsylxn58m6GfBjdurGvSn5JwnNtMlEWoSQbfhh+8hsYLDtrfh9svnS5KJyoeJPFCqu+RJk8tEp/u2XGPzdg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737730560; c=relaxed/simple;
-	bh=eIFstfTr6DUAcbWZYk/a2amZZzuS8W3KIA/N9vfhlOI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pB3qmGv3P/bJSXtpWLuk8Mg8ZUraydvdE6bMGJfZJs7kGukhMUh2xUg+PtJ2i2ZtvAkaHGIVvjnt1FMGCz+Yl2Quyd8o0JGv4Gx0uhkEHebO9OsVeew9rwczGUodX2PlbkwRzC6ckQAH2qzV4hzFqCohUQLVZdoiUYuMDg3MXuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dkICDLnz; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737730558; x=1769266558;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=eIFstfTr6DUAcbWZYk/a2amZZzuS8W3KIA/N9vfhlOI=;
-  b=dkICDLnzS+1whGBGWl5yf71O3kGsjJZgH6msg/oGzdh0NiVNK/CrDjL/
-   zOCqYnIRZxUKWTKkeOaOM1fyavyw6oMuBzJIv1/faj6wBpBveh0muuaxb
-   glsbexwHp1DxgpPpfIV9/6kBa6auJWScWrtI/LvYbh5mOW3x2vGTwch/n
-   AGZyO2JGnzsT7Vty/1pEkePIOW7q1qr+dK9coUBL+shmJcWJtbS0ur7Hf
-   AtKoFY+gG+LWkQQsA0yVgM/wpN+bsHYv62tWAW9gKUsnvEZg7lVd5go14
-   rSFo26zcNj1Ge3n1idL28P0xvGGeWeAY2oNhX+ptyw3jYXmcsWixMOQQM
-   A==;
-X-CSE-ConnectionGUID: 56XCAhLjSrKBDKDRo0AToA==
-X-CSE-MsgGUID: HcmcBCMfSISEQq4iBqs6kw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="55677212"
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; 
-   d="scan'208";a="55677212"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2025 06:55:57 -0800
-X-CSE-ConnectionGUID: lpYGPPCiQY27z5+/R+CfOA==
-X-CSE-MsgGUID: IHTVAX5oR7uS0lhe3PwXsA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; 
-   d="scan'208";a="112792640"
-Received: from smile.fi.intel.com ([10.237.72.58])
-  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2025 06:55:54 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1tbL68-00000004qQZ-0Mrj;
-	Fri, 24 Jan 2025 16:55:52 +0200
-Date: Fri, 24 Jan 2025 16:55:51 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Ferry Toth <fntoth@gmail.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: usb: dwc3: Add a property to reserve
- endpoints
-Message-ID: <Z5Op98D94JzAZurB@smile.fi.intel.com>
-References: <20250116154117.148915-1-andriy.shevchenko@linux.intel.com>
- <20250116154117.148915-2-andriy.shevchenko@linux.intel.com>
- <20250123220946.GA407034-robh@kernel.org>
+	s=arc-20240116; t=1737730577; c=relaxed/simple;
+	bh=gOSnG516AQWd/tWj1MLID//GigpPHmqBezrYFe7Kj4w=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=GAkerAw+0gM1Me9XVWdLAettt7OgN08zhlI5hW61ZptuFeG/vfyXdO/1gIO8tyzfsyZOrHjfn7VRTEUVdp5gmjks/awfbtycgSemHKxOvMqXjqVTebMvbKbMr6N/ZoWW6wMml/Sn+3e9eQZ3ki/5I0F3xD7y07VK0Ym45eDUYRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k3ZXKWAH; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-4361f65ca01so22793305e9.1;
+        Fri, 24 Jan 2025 06:56:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737730574; x=1738335374; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=hmQ18C9MeCo0UCNJIujHAEajbVUBuKz0DqhdhG4JTb4=;
+        b=k3ZXKWAHFx2BL609M3FFV4bifZ39+qNJwxF/1BP45oNB19lWt1Kge0zO0ILzvFA3pr
+         oFFBlAEwpkQLNLKpnakXm9HjEycC+e4sDXwJVlqEAqUirdOo/ZHZ/QpVIJjLlENqZtWb
+         5fSjsflrXkdv1rh56eG24oCIj+c40aXXnOT2yQxmUinOW/e6DhPKbgVk0mW1PJo8S3a9
+         oLTiMdNvWNE46K0Kk6F+Rkjo1XXMcOTMkZeJ9LZZ/Gh1WyjBoF366l/JVH4/tP37kMR8
+         xEZA0cf9cCXPQcvLxHKDeM5J1UtqEZ3mhdI4eoH5f2ypILY0u9+E7H/Xid5Tayj6S3r1
+         jBxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737730574; x=1738335374;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hmQ18C9MeCo0UCNJIujHAEajbVUBuKz0DqhdhG4JTb4=;
+        b=qqpCnUs+PdyxzjRzwOarYxcsrzeNZPi9zXduffQKweFWWGLqAr6heXq7avC+o/cNUT
+         0V5K1Yv7P7nKhP4rAMpyY+H8TGLSYkhHIlymI9DcvKj2971qSSSytfNu9O8i08IlNt2P
+         FCs7imCPVg5vQBntKrWPAOT+wLe64bn3KA/mtguvdv0aAj6U7RE/SpA8BwsHG54IMOSi
+         RwRUwaO4gk6YJaDiY/8tDEqK8q8bbceBTu0IymFQONx563G9XYpu263fBzqx8q9IZpTw
+         x9fGnaTjJyyNNimr4SVNSA8CCDM6FvqazEi3bHbMk3LlVGxvM0+JW0F0sFDqLpPaCZ/d
+         K93w==
+X-Forwarded-Encrypted: i=1; AJvYcCVX2oxC5QJgInw3hXy8yGp1quVUfiJ7nH1aqnRkUUAyJjm1J2ljtMHtu3mskJS5hJvsdDKZ00KFNRXiLsE=@vger.kernel.org, AJvYcCW+OBM7ZK5kDY8rQ5Md6gFdRzL7nXg5D+l7QhNWZZidzHMUDkuoNeLeozNxUcIR2myTAtpak67fg8mt@vger.kernel.org, AJvYcCXAyhfKBwLBP4JgKP03ygRfwWezbeswUjW9B0QlKPidpfGNteVp5/VtNq+TX/SBoOMWbetPNA+3CvbltYyh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWgyqcWqup6GA3/RxEMtCK903IMMKCWkArky0l3BwrKMBdBkeW
+	MejNkA3I0B6oAjw/C6+B9rrIdDPS0Fv8hSd2naY3I/yMGsqd0w45
+X-Gm-Gg: ASbGnctNp885en93pGAyJpxodcFsN/EC/w2nWxRzErVbHPTn1zvyxMKJjrSi/ElMTmX
+	rCbjVWWfAkm4ij9JTGK1LyrHW7YGQVfnRTwLMNpataY9QE2SUKOOngJ7zLSQAu3qERMptP8g/3c
+	VbVWWel2+4VhYmyzti/7yP82tH9vA3bf0u8W3lh+n4wqES9nqngg4/ZHKSeDcKoBo9KSmM9j6jG
+	wt4wBmn548CMaS5iA2HnwsYi0i4c67/Gw/asiRBVCxqcbMGv+TGw6NjXxvCsMM00zwxrKk4CRog
+	ovdbrLew6PO/h1ry9NQW0WSTi4lEMksJlmpY12Og2KZp0d2ZHJn1rRaNsds/5oj7iEia1uGREg0
+	7HCfTz3MlkB9gyMRanyG5y7nmzYEPGl05W36FH1YezcTzr1Nk0JjSSl8vUnMhhljp39rureAWUj
+	TjOVjTyw==
+X-Google-Smtp-Source: AGHT+IHDiUAwKaImn0AEmySCypFyqvAIe5+5lTW4iDSlgdWJchU3ikFc8BG8MZP5tfzS1ehC7RA6Tw==
+X-Received: by 2002:a05:600c:19cc:b0:436:fb9e:26c with SMTP id 5b1f17b1804b1-438913de937mr284299305e9.17.1737730573716;
+        Fri, 24 Jan 2025 06:56:13 -0800 (PST)
+Received: from ?IPV6:2a02:8388:e103:2700:901d:34fb:88b0:2f4d? (2a02-8388-e103-2700-901d-34fb-88b0-2f4d.cable.dynamic.v6.surfer.at. [2a02:8388:e103:2700:901d:34fb:88b0:2f4d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438bd4d2c0esm28932315e9.33.2025.01.24.06.56.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 24 Jan 2025 06:56:13 -0800 (PST)
+Message-ID: <9c2bcef2-4e8c-4856-9a49-1f02110284a5@gmail.com>
+Date: Fri, 24 Jan 2025 15:56:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250123220946.GA407034-robh@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+From: Andrei Lalaev <andrey.lalaev@gmail.com>
+Subject: Re: [PATCH 1/2] hwmon: add driver for HTU31
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: jdelvare@suse.com, linux@roeck-us.net, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250123202528.223966-1-andrey.lalaev@gmail.com>
+ <20250123202528.223966-2-andrey.lalaev@gmail.com>
+ <20250124-refined-belligerent-hornet-270b14@krzk-bin>
+Content-Language: en-GB
+In-Reply-To: <20250124-refined-belligerent-hornet-270b14@krzk-bin>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 23, 2025 at 04:09:46PM -0600, Rob Herring wrote:
-> On Thu, Jan 16, 2025 at 05:40:46PM +0200, Andy Shevchenko wrote:
-> > Some of the endpoints may be reserved by hardware for different purposes,
-> > e.g., tracing control and output. This is the case, for instance, on
-> > Intel Merrifield and Moorefield platforms that reserve a few and USB driver
-> > may not use them for the regular transfers. Add the respective bindings.
-
-...
-
-> > +  snps,reserved-endpoints:
-> > +    description:
-> > +      Reserve endpoints for other needs, e.g, for tracing control and output.
-> > +      When set, the driver will avoid using them for the regular USB transfers.
-> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > +    maxItems: 30
+On 24.01.2025 09:31, Krzysztof Kozlowski wrote:
+> On Thu, Jan 23, 2025 at 09:25:06PM +0100, Andrei Lalaev wrote:
+>>     ibmpowernv
+>> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+>> index 4cbaba15d86e..e123e06ba352 100644
+>> --- a/drivers/hwmon/Kconfig
+>> +++ b/drivers/hwmon/Kconfig
+>> @@ -789,6 +789,17 @@ config SENSORS_HS3001
+>>  	  This driver can also be built as a module. If so, the module
+>>  	  will be called hs3001.
+>>  
 > 
-> Please make minItems explicit.
+> Looks like you add here stray spaces.
+> 
 
-    minItems: 0
-    maxItems: 30
+Could you please explain what you mean? I see only 1 tab and 2 spaces right after it,
+but they were here even before my patch.
 
-Is this what you want to see here?
-
-> > +    items:
-> > +      minimum: 2
-> > +      maximum: 31
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best regards,
+Andrei Lalaev
 
