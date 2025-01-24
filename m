@@ -1,129 +1,211 @@
-Return-Path: <devicetree+bounces-140856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F0D5A1BCB0
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 20:16:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A721EA1BCF1
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 20:44:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 152BC3A41CD
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 19:16:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73199188E514
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 19:44:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E67C2218EB9;
-	Fri, 24 Jan 2025 19:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B6A921ADA6;
+	Fri, 24 Jan 2025 19:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gG7Qqohy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C63CA64;
-	Fri, 24 Jan 2025 19:16:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2A31BEF9E;
+	Fri, 24 Jan 2025 19:44:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737746173; cv=none; b=QaDf5r5ndCKi4q5ORnw17qE/CL6SAmRBX3e3Dl46+2Wusq7SKB93HluJmO0ZrZLf2uUcDGMPD3LJXN7TpQY+JHrYhuKTj4zFCxpQfUhQ6X3EAp6WGnN+Uj9KquKTVmxe+rWagG2wDt2ZS0jmwlqejQu7cKtMTFJbsgQsBEPONLQ=
+	t=1737747888; cv=none; b=jMFg50DvBfCgo7pMC6YBmVejfjSPXsAvi8dMNFxcBkmQrFKPw5du1/SvMf+vk73KW0c4ar8nkNyjr0oQT7bsC/WV5Mvsnw3WnSdUt38i8IMRdJWnI6XNhKEPHjiVTJc+p1rK7nta8lh7KIzymCxHcr7GBNUvtvTJxdBHWiFOC14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737746173; c=relaxed/simple;
-	bh=B1TY+gWfw5kSsTv05I5LRy3PXH7u3mxBGlY9hpCbAow=;
+	s=arc-20240116; t=1737747888; c=relaxed/simple;
+	bh=LSs/JB9ZFnTscL+SI1y++GjqRBAyIDDV5bevHheiAEo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ed7f4W4zJY571p+7c9XSz08RsYyN4I+b1cSr1eKfEvL4LwVwU5f9+PK8iYm020WMxasmSvcpNgHsqfIt8izFgjbisCEfkKE2Y0ntxbjktJTlblId+Lsmwd3pxRk76UlS8NK7qy4T7WAIgasDVtRUTRsrCZI9cLhb1R7QJx94ENg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	 To:Cc:Content-Type; b=peXPFBbuwshj/3YLGMpWt2VuPhPUr2aimqmnwQhU2WfGCv6djk9CSSUdmUMpGCtkZDv6KCv7U5D8bZbPyugEzDAr3jsQtYWhQrhQui0bZHW8RhmUKt9Q3maQVApDXBX9Pia5+M2IENPD/ACzQ5l7F+qbt8dOspALSDwDYZL/P/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gG7Qqohy; arc=none smtp.client-ip=209.85.219.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-4afe6a8d2e1so1293668137.1;
-        Fri, 24 Jan 2025 11:16:11 -0800 (PST)
+Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-6dd420f82e2so30780006d6.1;
+        Fri, 24 Jan 2025 11:44:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737747885; x=1738352685; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SOD2UfYHJSjZl/pt9FbtcUXEWsxQSEJ9vHhIuaxcBT8=;
+        b=gG7Qqohy3TkwTAq2YDpQtTOm30kJvzHY2p9HHTLwSJtsDs5O4RNhAk7jxxIDVonxQw
+         Gh6EaQERaKU5KOkcPPEVwf74ASC9B7GY1mJZ1zK83EYkaBpMb7gRqUdcq1oZF/reRik/
+         n/vYOEg+fKvxssX1HqUhBh558yVR55Q+P3PHY5+lsJUIjCBbhaNb5Gkcgb9pyegpUhdG
+         5ZRFeNmlYUOidgE4PRt0eGehVb23EQjKqlHRX+PZNqsd3fRKHEBfVbYbpo8DchxogoDx
+         UIudXh/3I8bfE/GEiFAmS7MbrXekkYgkhDtns3yeF7ZrXYWUzN1zTgM/011RsovRNiis
+         qDvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737746169; x=1738350969;
+        d=1e100.net; s=20230601; t=1737747885; x=1738352685;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sUiAggrw836WY8haHSpcFLw3hnkVmLvRNNQSCCN4ANQ=;
-        b=F3UO53gPppp+5SP7QN1veXXAF7pbKnrGajrr+SR4iErAh1cG5EZ5yvJiYnhNDQgIxR
-         LFTxxfRe2NhAnK0PYXa7+7RUsOG5v+dQB0F3+Gm/i7XIjOh3jyShPs8+d27ONglz8tNa
-         0bqfN58K8PUZIQPuLSABGAwMEqbQA7m1ivq0M/ZYfRek1dQTmJDMlWV40f5pEEZV1qXJ
-         /WibncZiwQcfv1ebFRKDsXUgMwaQB/prl3pmArVRfUgnDX9Z16p/7SwOa08MgSJh2uNg
-         +GUmyDBmA7Gbn0Fm60AEizdwSZsgiso7t7bCZUvt7tt6T9wr9Y7HRLMG9EGbWztrg26q
-         d6fw==
-X-Forwarded-Encrypted: i=1; AJvYcCV0J/PiowvGIgPkENmII3DBhlcSgIITc1/NeVYfzdt4aEXjdFnkdQEN8YCC93t49XevtVfZbZN+2E2n4q3vYEhF2dE=@vger.kernel.org, AJvYcCXc7/1roRqprocvOdhKSz7iRbtRW9BHKYo3Zaq/Ac/hnvRdUEmi/BgLLZqsicO9b3c+m2f+rlZTwU8ludI3@vger.kernel.org, AJvYcCXeQwBn9YYxgFoXCbWhqHcIK7msFkg2ZCt2ltYzBo8wJYkn+qybioS3+YaaLLaziGZB6bPkTshlsTgw32hQ@vger.kernel.org, AJvYcCXwHj7h5ykf4viTp3qDeopqCfmXFs3ldTiYXvvBi5q5/1C/9A8GpH6aV7IJzJ62okr3iXDZ1yn1A3D1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7bJwk/lOb0RHkoAm/mY0iEgpvML8yqa5CbupHGFWbBt3BG8x5
-	APFBw7KDVGX8IisvMTZ/C+6REIxRA9ifTDJS4+lLWjQ/zir+yAI/rcSLlbYn
-X-Gm-Gg: ASbGncuecu3dlPV6RBJfzTX/CZwHCHjEDyuCmsdRJKEF3HTfwOF61pB43Y7tM6Ex9Iy
-	rfhpvmPc6v7LEhHmdSduAQDYTVRHgVCDKGrSxxSPBLvaeV8uWIysokh4Pcf/prTlCeZ8KyR5N2g
-	42L5boJ5lX9GKH/vKbnQ7SzNPn5fDuJEKJM3dzOma5BFSIwwpZF7yMeNPtYI+vYOpBJKbjI9oG2
-	PZvmzJsjmyenySin/kxiQtiogMju3xcoZbF089WkJ/E+MoHNhPXNk8J/Zhn/wGGUqwlm/MQ7i8Q
-	g2QYAymUDJMAbpImMfKaaKCRcVyNPVslyad6o+5GArg=
-X-Google-Smtp-Source: AGHT+IEL2nNKaU1SqWY6jSQ4d6IHw3BfXoc1f1P7cdIjuAiHGr7IaKkHt+fWdte5TMR2tdvMw0+QFg==
-X-Received: by 2002:a05:6102:3596:b0:4b2:cdf4:81f7 with SMTP id ada2fe7eead31-4b6f7a1ea2bmr9696507137.5.1737746168935;
-        Fri, 24 Jan 2025 11:16:08 -0800 (PST)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4b7097cc426sm548553137.13.2025.01.24.11.16.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jan 2025 11:16:08 -0800 (PST)
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-85ba8b1c7b9so1353500241.1;
-        Fri, 24 Jan 2025 11:16:08 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUHBbQhiULRc0jrUYNf+zjjBllj6GT5ZJV9pVf6jucLRZChKHImT2cCTypNcBU9OWXtjnvtLq85OjSsRatj@vger.kernel.org, AJvYcCUJtQO8D91aCsYVdvRSYs/Plh7839QXWE3cnHvCduFI/ZFNJ7sZT1/GmAIbOGRtttNe5kHrz1SOCVxk@vger.kernel.org, AJvYcCVQjT7u1P0c7m0UOoaR0OL7kJ9N1C8HvWONe5Eg6UvTyWb5DHCZjx4VVOzdKdb8Eg92poxHiJIeZD14Z/Hco28rJM4=@vger.kernel.org, AJvYcCWrJoepeWTLZ3HyS6AbJS0d/+Fn1q/f202BApDKNYqUe7m+aVwYArlSFYlGSxUE3L9DShTmbl8N+psNn+Xt@vger.kernel.org
-X-Received: by 2002:a05:6122:3b8b:b0:518:8915:89ec with SMTP id
- 71dfb90a1353d-51e4fb65a5emr4782858e0c.1.1737746168139; Fri, 24 Jan 2025
- 11:16:08 -0800 (PST)
+        bh=SOD2UfYHJSjZl/pt9FbtcUXEWsxQSEJ9vHhIuaxcBT8=;
+        b=sUkHjayCzA7zhBykhIc4sOXnFN5ac8Zadk6RiFyg/6XienyKFi6UDtgG+zbAXFoXfg
+         XHtjgx3ntJMAj5ZYcwpLsXsKbvgesVTN2jCQ3Bc1QlAMl5srYaR3v6bEUzlR+ocXF9Ko
+         ATGRfcaFzJupXB1Vy5otqDGSS5KO2bOST3CnaUJDydJ7qRs83RQeQfnPtAZmU52Cl/kD
+         RCMuGrv6ukC9Z5/T1pCYmwmOq0ZwRkaCUc6ns4dkAzanCB9thUN91CPfIE/wCVvBK1Td
+         QsVHL2P+mZhqEDOs9FIA3zQqFblKeTZbh3netxDkV6+S/ANiRpAfq6Og0EgZ4x2s6J1R
+         rgFg==
+X-Forwarded-Encrypted: i=1; AJvYcCVh12KDFFc6R6jjdLRKUeOCgMuPcjAe8XRXbopm1Z7kcgY1pbMpd/s+pwRWgKfWe2GB2h+Jd6K5sIVA@vger.kernel.org, AJvYcCVl+9f+2zUNCgHaJM1hoelE/SoElnVsMltQjmhigGzk8hkwEpANHJqZxAiKIyAzLCX3Pkm2z0zEQ6czAZNV@vger.kernel.org, AJvYcCXh1P/jbBfe0MOtlW1B/PILx6SHQX6SYv+Pd9ECGdGsbdnJGlbT3fmbEtkPu9Bp4143JvqNaou0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxhi6vMMmR0n7nnkG6D6jtpdc9R7coTVse3sLrJC4cdubxWYsd5
+	0tjOlFr3gDSABMJXpfhHZuzIqrAZOhsrj7TzanFSjRgkN/lLU3o+z1COKPSlO0rsUXtN3hjD/OT
+	5j/IS1U4Yo88XMPysZFwNF8/geXo=
+X-Gm-Gg: ASbGnctx5LlP25cXF/zA0SyOOg0mA3HpsvptiPscUbAFdHae4NUFQMa3Fu43z3ckEwl
+	rA0ZDsh8UJHZHwyxnigPZI6R+zcIKzdZ723LCwa3eseOdVwdtrhKilEkJQEGaW2c5J+OP+KxvHQ
+	==
+X-Google-Smtp-Source: AGHT+IEwdcGyIv8lm858FpPS9WNGZiSmay44cu0Hl9ikO4VKi94V+TJkWI5vKNLFcYt7f/0KTwOHH8wB/TpJhS5EnOk=
+X-Received: by 2002:a05:6214:3b81:b0:6dd:13b0:1008 with SMTP id
+ 6a1803df08f44-6e1b220a25emr426812666d6.30.1737747885315; Fri, 24 Jan 2025
+ 11:44:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250120130936.1080069-1-claudiu.beznea.uj@bp.renesas.com> <20250120130936.1080069-5-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20250120130936.1080069-5-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 24 Jan 2025 20:15:56 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVjvKmR-0ZiYGiAwXf6dfx9O9HtG2JXht9iDwV7oKdwDQ@mail.gmail.com>
-X-Gm-Features: AWEUYZk4daPJyNEFJ3tb9_WILi26dZhW6oaUjWo8962k_8YMza8zSBNUc9xrvAI
-Message-ID: <CAMuHMdVjvKmR-0ZiYGiAwXf6dfx9O9HtG2JXht9iDwV7oKdwDQ@mail.gmail.com>
-Subject: Re: [PATCH v4 4/4] arm64: dts: renesas: r9a08g045s33-smarc-pmod: Add
- overlay for SCIF1
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
-	p.zabel@pengutronix.de, claudiu.beznea.uj@bp.renesas.com, 
-	wsa+renesas@sang-engineering.com, prabhakar.mahadev-lad.rj@bp.renesas.com, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
+References: <20250124052611.3705-1-eagle.alexander923@gmail.com>
+ <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com>
+ <a76f315f023a3f8f5435e0681119b4eb@manjaro.org> <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
+ <61b494b209d7360d0f36adbf6d5443a4@manjaro.org> <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
+In-Reply-To: <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Fri, 24 Jan 2025 23:44:34 +0400
+X-Gm-Features: AWEUYZm_EiKPNGxbgHDs4gZQ4CmxiOcxC-PdiZ0tcOXrYDeOTA-NItxJz0l0e0g
+Message-ID: <CABjd4Yy14bpjzvFyc8et-=pmds5uwzfxNqcs7L=+XRXBogZEsQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
+ for rk3588
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Alexander Shiyan <eagle.alexander923@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, stable@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 20, 2025 at 2:09=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+On Fri, Jan 24, 2025 at 9:23=E2=80=AFPM Alexey Charkov <alchark@gmail.com> =
 wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
-> Add DT overlay for SCIF1 (of the Renesas RZ/G3S SoC) routed through the
-> PMOD1_3A interface available on the Renesas RZ SMARC Carrier II board.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-
-> --- a/arch/arm64/boot/dts/renesas/Makefile
-> +++ b/arch/arm64/boot/dts/renesas/Makefile
-> @@ -143,6 +143,9 @@ r9a07g054l2-smarc-cru-csi-ov5645-dtbs :=3D r9a07g054l=
-2-smarc.dtb r9a07g054l2-smarc
->  dtb-$(CONFIG_ARCH_R9A07G054) +=3D r9a07g054l2-smarc-cru-csi-ov5645.dtb
->
->  dtb-$(CONFIG_ARCH_R9A08G045) +=3D r9a08g045s33-smarc.dtb
-> +dtb-$(CONFIG_ARCH_R9A07G043) +=3D r9a08g045s33-smarc-pmod1-type-3a.dtbo
-> +r9a08g045s33-smarc-pmod1-type-3a-dtbs :=3D r9a08g045s33-smarc.dtb r9a08g=
-045s33-smarc-pmod1-type-3a.dtbo
-> +dtb-$(CONFIG_ARCH_R9A07G043) +=3D r9a08g045s33-smarc-pmod1-type-3a.dtb
-
-s/7G043/8G045/ while applying...
-
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
+> On Fri, Jan 24, 2025 at 2:37=E2=80=AFPM Dragan Simic <dsimic@manjaro.org>=
+ wrote:
+> >
+> > On 2025-01-24 11:25, Alexey Charkov wrote:
+> > > On Fri, Jan 24, 2025 at 2:06=E2=80=AFPM Dragan Simic <dsimic@manjaro.=
+org>
+> > > wrote:
+> > >> On 2025-01-24 09:33, Alexey Charkov wrote:
+> > >> > On Fri, Jan 24, 2025 at 9:26=E2=80=AFAM Alexander Shiyan
+> > >> > <eagle.alexander923@gmail.com> wrote:
+> > >> >>
+> > >> >> There is no pinctrl "gpio" and "otpout" (probably designed as
+> > >> >> "output")
+> > >> >> handling in the tsadc driver.
+> > >> >> Let's use proper binding "default" and "sleep".
+> > >> >
+> > >> > This looks reasonable, however I've tried it on my Radxa Rock 5C a=
+nd
+> > >> > the driver still doesn't claim GPIO0 RK_PA1 even with this change.=
+ As
+> > >> > a result, a simulated thermal runaway condition (I've changed the
+> > >> > tshut temperature to 65000 and tshut mode to 1) doesn't trigger a =
+PMIC
+> > >> > reset, even though a direct `gpioset 0 1=3D0` does.
+> > >> >
+> > >> > Are any additional changes needed to the driver itself?
+> > >>
+> > >> I've been digging through this patch the whole TSADC/OTP thing in th=
+e
+> > >> last couple of hours, and AFAIK some parts of the upstream driver ar=
+e
+> > >> still missing, in comparison with the downstream driver.
+> > >>
+> > >> I've got some small suggestions for the patch itself, but the issue
+> > >> you observed is obviously of higher priority, and I've singled it ou=
 t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> > >> as well while digging through the code.
+> > >>
+> > >> Could you, please, try the patch below quickly, to see is it going t=
+o
+> > >> fix the issue you observed?  I've got some "IRL stuff" to take care =
+of
+> > >> today, so I can't test it myself, and it would be great to know is i=
+t
+> > >> the right path to the proper fix.
+> > >>
+> > >> diff --git i/drivers/thermal/rockchip_thermal.c
+> > >> w/drivers/thermal/rockchip_thermal.c
+> > >> index f551df48eef9..62f0e14a8d98 100644
+> > >> --- i/drivers/thermal/rockchip_thermal.c
+> > >> +++ w/drivers/thermal/rockchip_thermal.c
+> > >> @@ -1568,6 +1568,11 @@ static int rockchip_thermal_probe(struct
+> > >> platform_device *pdev)
+> > >>          thermal->chip->initialize(thermal->grf, thermal->regs,
+> > >>                                    thermal->tshut_polarity);
+> > >>
+> > >> +       if (thermal->tshut_mode =3D=3D TSHUT_MODE_GPIO)
+> > >> +               pinctrl_select_default_state(dev);
+> > >> +       else
+> > >> +               pinctrl_select_sleep_state(dev);
+> > >
+> > > I believe no 'else' block is needed here, because if tshut_mode is no=
+t
+> > > TSHUT_MODE_GPIO then the TSADC doesn't use this pin at all, so there'=
+s
+> > > no reason for the driver to mess with its pinctrl state. I'd rather
+> > > put a mirroring block to put the pin back to its 'sleep' state in the
+> > > removal function for the TSHUT_MODE_GPIO case.
+> >
+> > You're right, but the "else block" is what the downstream driver does,
+>
+> Does it though? It only handles the TSHUT_MODE_GPIO case as far as I
+> can tell (or TSHUT_MODE_OTP in downstream driver lingo) [1]
+>
+> [1] https://github.com/radxa/kernel/blob/edb3eeeaa4643ecac6f4185d6d391c57=
+4735fca1/drivers/thermal/rockchip_thermal.c#L2564
+>
+> > so I think it's better to simply stay on the safe side and follow that
+> > logic in the upstream driver.  Is it really needed?  Perhaps not, but
+> > it also shouldn't hurt.
+> >
+> > > Will try and revert.
+> >
+> > Awesome, thanks!
+> >
+> > > P.S. Just looked at the downstream driver, and it actually calls
+> > > TSHUT_MODE_GPIO TSHUT_MODE_OTP instead, so it seems that "otpout" was
+> > > not a typo in the first place. So maybe the right approach here is no=
+t
+> > > to change the device tree but rather fix the "gpio" / "otpout" pinctr=
+l
+> > > state handling in the driver.
+> >
+> > Indeed, "otpout" wasn't a typo, and I've already addressed that in my
+> > comments to Alexander's patch.  Will send that response a bit later.
+> >
+> > I think it's actually better to accept the approach in Alexander's
+> > patch, because the whole thing applies to other Rockchip SoCs as well,
+> > not just to the RK3588(S).
+>
+> Anyway, I've just tried it after including the changes below, and
+> while /sys/kernel/debug/pinctrl/pinctrl-handles shows the expected
+> pinctrls under tsadc, the driver still doesn't seem to be triggering a
+> PMIC reset. Weird. Any thoughts welcome.
+
+I found the culprit. "otpout" (or "default" if we follow Alexander's
+suggested approach) pinctrl state should refer to the &tsadc_shut_org
+config instead of &tsadc_shut - then the PMIC reset works.
+
+Best,
+Alexey
 
