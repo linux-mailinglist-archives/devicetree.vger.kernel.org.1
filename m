@@ -1,156 +1,353 @@
-Return-Path: <devicetree+bounces-140724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5B31A1B1B6
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 09:27:26 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FABCA1B1BF
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 09:32:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 600733AEA90
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 08:27:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78C9B3AB7EB
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 08:31:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14AF1218E9F;
-	Fri, 24 Jan 2025 08:27:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C5071DB12C;
+	Fri, 24 Jan 2025 08:31:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="OYTYvei2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U07SYBSY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973176.qiye.163.com (mail-m1973176.qiye.163.com [220.197.31.76])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64321218E81;
-	Fri, 24 Jan 2025 08:26:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC25218EBD;
+	Fri, 24 Jan 2025 08:31:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737707223; cv=none; b=HWSKNlpObKgeFKcCbvh1BESLqSsAHANum/MZA/ljAE0dI+04imP7Srd1pqrqzA5o9Cy+jm2sTbX4McjOqXTJj4g00kZc87pALUxE/QdoAUj99C5cvMlKDnn6qxxwke11M/l1MKJSWyMy70/Q+/bni1Gwoj6CzzG9ZA800M/BMsw=
+	t=1737707511; cv=none; b=jd5nhtezPlIfvNtftGAbQLrWp1YSkDb6BAf9+8I2fM/EWWUS+PVTV8bjutavcFGF1E+nfmGiCGi/LGUC69djJ3iz64MYlXdhDfpU6EoEwiSEzKJiuNH1s72R4kz0L0mGbHDowFO9RpW7RbWG+kyO/qcuFko2ui5XNs6Oq87wcNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737707223; c=relaxed/simple;
-	bh=6jtIRYrGnUSTwsRQ3uMu7S90Wr3eOBczV5eVEJKo0Wc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cpxRbVPXvboGJoGxHF7dQdV5BTm/hSoAXA5leI6LFrVJuj2CvHf9du+raSrTtX+1U3w2DK/VUerPrKfjmwmg6MJp2kwSOmwiEqfMK7VkjThLpvJdoPxtfhHSfsWqquyXIAKkp3m9sZWI29hscBv7dd11jpcOrv8sbo+fe3KqbMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=OYTYvei2; arc=none smtp.client-ip=220.197.31.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.26] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 996fdf6b;
-	Fri, 24 Jan 2025 16:26:49 +0800 (GMT+08:00)
-Message-ID: <c1718efc-85de-4356-aa15-2296a0780b2f@rock-chips.com>
-Date: Fri, 24 Jan 2025 16:26:48 +0800
+	s=arc-20240116; t=1737707511; c=relaxed/simple;
+	bh=ihIY6K38uM0IeGs8jpN6weJMOPLxjPhVvC5EBclPDKA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kFrZVw4yyzwn+DJ/lcr4mQdellPXtRtDJRO8Q20RhqXQ/Rj1j3zhmRg0W1Jj8KOnUosR/VJcFJ05Xx7ZQomTXZ+ulQD0q3KubqkGBE82PCzbYIR0ugMOLsneClOr9gkWgx1XDJ8LSJM5a3cIVgjqSL397KRG3l0CwYayO87VQ7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U07SYBSY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08AFAC4CEE1;
+	Fri, 24 Jan 2025 08:31:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737707510;
+	bh=ihIY6K38uM0IeGs8jpN6weJMOPLxjPhVvC5EBclPDKA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U07SYBSYC8FQiemJnuZJh1CKNYr6NlSv2+cZvp9GAlDfYbDyGz4AFOEwb3fFBtdHN
+	 2DRW44kqGalUfSgXF2QgUq+e0nssRlY4JfbAHyWJ0zb3IoX7mh/9XmuwyT+MTnlx0n
+	 iXuKkwCQEsT7y9urRn0eLnUDOmh5pI90ACaUFN9ezC9SPkXqUb1Til/3uvbCxrkFfJ
+	 kf9KFZTf5esg6k2bcsIxlNqissXMXLl6nVcVeHd4Of2vAcFTDBI8Q5ur9j74lfJ/fQ
+	 j0R4RJqtvhViTX4CUZJekynaR8f5CIYgQL8QMUXygZx3SeRD67JnFIKLpnyLb6AUgU
+	 SYZ8AQwTR8KRg==
+Date: Fri, 24 Jan 2025 09:31:47 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Andrei Lalaev <andrey.lalaev@gmail.com>
+Cc: jdelvare@suse.com, linux@roeck-us.net, conor+dt@kernel.org, 
+	krzk+dt@kernel.org, robh@kernel.org, linux-hwmon@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] hwmon: add driver for HTU31
+Message-ID: <20250124-refined-belligerent-hornet-270b14@krzk-bin>
+References: <20250123202528.223966-1-andrey.lalaev@gmail.com>
+ <20250123202528.223966-2-andrey.lalaev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 06/14] drm/bridge: analogix_dp: support to get
- &analogix_dp_device.plat_data and &analogix_dp_device.aux
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, rfoss@kernel.org, vkoul@kernel.org,
- sebastian.reichel@collabora.com, cristian.ciocaltea@collabora.com,
- l.stach@pengutronix.de, andy.yan@rock-chips.com, hjc@rock-chips.com,
- algea.cao@rock-chips.com, kever.yang@rock-chips.com,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20250123100747.1841357-1-damon.ding@rock-chips.com>
- <20250123100747.1841357-7-damon.ding@rock-chips.com>
- <y4yzgkvcmvmphviuoroijaaotd2zdworbs5tfhdxh74kchirk6@dgoqwoksckiz>
-Content-Language: en-US
-From: Damon Ding <damon.ding@rock-chips.com>
-In-Reply-To: <y4yzgkvcmvmphviuoroijaaotd2zdworbs5tfhdxh74kchirk6@dgoqwoksckiz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQklMHlZOSE9DSUxNGh9DQkhWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a94976bc3a103a3kunm996fdf6b
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MU06Mzo4OTIXHiFLMDBKCA82
-	F1YwCxZVSlVKTEhMTEtMSUpKT09CVTMWGhIXVR8aFhQVVR8SFRw7CRQYEFYYExILCFUYFBZFWVdZ
-	EgtZQVlOQ1VJSVVMVUpKT1lXWQgBWUFJQ0pLNwY+
-DKIM-Signature:a=rsa-sha256;
-	b=OYTYvei2Jt0VQn6+xbTs8MyEcoB25VtrUR7lof7WSmjRXwxJEUCpdeds8/R8FPtylnCqhMnxEYfnwWe8lhF4tAhafN/OQ4GNnzOSdhxEy1abwkDbtmF4hEXF63QkK1mmAn5qGwbNW9EOHOAF24wqZRsOfWhLaNR2Zq2sBlFtpoM=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=/8oAL6qTbQWJkj8r9VXN/YNw8cpkGC6GOUpg2XwzQs8=;
-	h=date:mime-version:subject:message-id:from;
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250123202528.223966-2-andrey.lalaev@gmail.com>
 
-Hi Dmitry,
+On Thu, Jan 23, 2025 at 09:25:06PM +0100, Andrei Lalaev wrote:
+>     ibmpowernv
+> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+> index 4cbaba15d86e..e123e06ba352 100644
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -789,6 +789,17 @@ config SENSORS_HS3001
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called hs3001.
+>  
 
-On 2025/1/23 19:19, Dmitry Baryshkov wrote:
-> On Thu, Jan 23, 2025 at 06:07:39PM +0800, Damon Ding wrote:
->> Add two new functions: one to find &analogix_dp_device.plat_data via
->> &drm_dp_aux, and the other to get &analogix_dp_device.aux. Both of them
->> serve for the function of getting panel from DP AUX bus, which is why
->> they are included in a single commit.
->>
->> Signed-off-by: Damon Ding <damon.ding@rock-chips.com>
->> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   drivers/gpu/drm/bridge/analogix/analogix_dp_core.c | 14 ++++++++++++++
->>   include/drm/bridge/analogix_dp.h                   |  4 ++++
->>   2 files changed, 18 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->> index b05f5b9f5258..8251adfce2f9 100644
->> --- a/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->> +++ b/drivers/gpu/drm/bridge/analogix/analogix_dp_core.c
->> @@ -1794,6 +1794,20 @@ int analogix_dp_stop_crc(struct drm_connector *connector)
->>   }
->>   EXPORT_SYMBOL_GPL(analogix_dp_stop_crc);
->>   
->> +struct analogix_dp_plat_data *analogix_dp_aux_to_plat_data(struct drm_dp_aux *aux)
->> +{
->> +	struct analogix_dp_device *dp = to_dp(aux);
->> +
->> +	return dp->plat_data;
->> +}
->> +EXPORT_SYMBOL_GPL(analogix_dp_aux_to_plat_data);
->> +
->> +struct drm_dp_aux *analogix_dp_get_aux(struct analogix_dp_device *dp)
->> +{
->> +	return &dp->aux;
->> +}
->> +EXPORT_SYMBOL_GPL(analogix_dp_get_aux);
->> +
->>   MODULE_AUTHOR("Jingoo Han <jg1.han@samsung.com>");
->>   MODULE_DESCRIPTION("Analogix DP Core Driver");
->>   MODULE_LICENSE("GPL v2");
->> diff --git a/include/drm/bridge/analogix_dp.h b/include/drm/bridge/analogix_dp.h
->> index 6002c5666031..1b119b547988 100644
->> --- a/include/drm/bridge/analogix_dp.h
->> +++ b/include/drm/bridge/analogix_dp.h
->> @@ -7,6 +7,7 @@
->>   #ifndef _ANALOGIX_DP_H_
->>   #define _ANALOGIX_DP_H_
->>   
->> +#include <drm/display/drm_dp_aux_bus.h>
-> 
-> Nit: it should be enough to just forward-declare struct drm_dp_aux
-> instead.
-> 
+Looks like you add here stray spaces.
 
-I will move the header file to the driver of Rockchip Analogix DP and 
-just use the forward-declare here in the next version.
+> +config SENSORS_HTU31
+> +	tristate "Measurement Specialties HTU31 humidity and temperature sensor"
+> +	depends on I2C
+> +	select CRC8
+> +	help
+> +	  If you say yes here you get support for the HTU31 humidity
+> +	  and temperature sensors.
+> +
+> +	  This driver can also be built as a module. If so, the module
+> +	  will be called htu31.
+> +
+>  config SENSORS_IBMAEM
+>  	tristate "IBM Active Energy Manager temperature/power sensors and control"
+>  	select IPMI_SI
+> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+> index b7ef0f0562d3..02465d959d14 100644
+> --- a/drivers/hwmon/Makefile
+> +++ b/drivers/hwmon/Makefile
+> @@ -199,6 +199,7 @@ obj-$(CONFIG_SENSORS_SCH5636)	+= sch5636.o
+>  obj-$(CONFIG_SENSORS_SFCTEMP)	+= sfctemp.o
+>  obj-$(CONFIG_SENSORS_SG2042_MCU) += sg2042-mcu.o
+>  obj-$(CONFIG_SENSORS_SL28CPLD)	+= sl28cpld-hwmon.o
+> +obj-$(CONFIG_SENSORS_HTU31)	+= htu31.o
+>  obj-$(CONFIG_SENSORS_SHT15)	+= sht15.o
+>  obj-$(CONFIG_SENSORS_SHT21)	+= sht21.o
+>  obj-$(CONFIG_SENSORS_SHT3x)	+= sht3x.o
+> diff --git a/drivers/hwmon/htu31.c b/drivers/hwmon/htu31.c
+> new file mode 100644
+> index 000000000000..09f979a8db92
+> --- /dev/null
+> +++ b/drivers/hwmon/htu31.c
+> @@ -0,0 +1,335 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * The driver for Measurement Specialties HTU31 Temperature and Humidity sensor.
+> + *
+> + * Copyright (C) 2025
+> + * Author: Andrei Lalaev <andrey.lalaev@gmail.com>
+> + */
+> +
+> +#include <linux/array_size.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/crc8.h>
+> +#include <linux/delay.h>
+> +#include <linux/hwmon.h>
+> +#include <linux/hwmon-sysfs.h>
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/module.h>
+> +
+> +#define HTU31_READ_TEMP_HUM_CMD	0x00
+> +#define HTU31_READ_SERIAL_CMD		0x0a
+> +#define HTU31_CONVERSION_CMD		0x5e
+> +#define HTU31_HEATER_OFF_CMD		0x02
+> +#define HTU31_HEATER_ON_CMD		0x04
+> +
+> +#define HTU31_TEMP_HUM_LEN		6
+> +
+> +/* Conversion time for the highest resolution */
+> +#define HTU31_HUMIDITY_CONV_TIME	10000 /* us */
+> +#define HTU31_TEMPERATURE_CONV_TIME	15000 /* us */
+> +
+> +#define HTU31_SERIAL_NUMBER_LEN	3
+> +#define HTU31_SERIAL_NUMBER_CRC_LEN	1
+> +#define HTU31_SERIAL_NUMBER_CRC_OFFSET	3
+> +
+> +#define HTU31_CRC8_INIT_VAL		0
+> +#define HTU31_CRC8_POLYNOMIAL		0x31
+> +DECLARE_CRC8_TABLE(htu31_crc8_table);
+> +
+> +struct htu31_data {
+> +	struct i2c_client *client;
+> +	struct mutex i2c_lock;
 
->>   #include <drm/drm_crtc.h>
->>   
->>   struct analogix_dp_device;
->> @@ -48,4 +49,7 @@ void analogix_dp_unbind(struct analogix_dp_device *dp);
->>   int analogix_dp_start_crc(struct drm_connector *connector);
->>   int analogix_dp_stop_crc(struct drm_connector *connector);
->>   
->> +struct analogix_dp_plat_data *analogix_dp_aux_to_plat_data(struct drm_dp_aux *aux);
->> +struct drm_dp_aux *analogix_dp_get_aux(struct analogix_dp_device *dp);
->> +
->>   #endif /* _ANALOGIX_DP_H_ */
->> -- 
->> 2.34.1
->>
-> 
+What is the lock guarding? See checkpatch below. What's confusing is
+that you call it I2C but it also covers some memcpy operations and this
+rtcuture, so much wider scope. Be detaile when fixing checkpatch
+warning.
+
+Please run scripts/checkpatch.pl and fix reported warnings. After that,
+run also 'scripts/checkpatch.pl --strict' and (probably) fix more
+warnings. Some warnings can be ignored, especially from --strict run,
+but the code here looks like it needs a fix. Feel free to get in touch
+if the warning is not clear.
+
+
+> +	long wait_time;
+> +	long temperature;
+> +	long humidity;
+> +	u8 serial_number[HTU31_SERIAL_NUMBER_LEN];
+> +	bool heater_enable;
+> +};
+> +
+> +static long htu31_temp_to_millicelsius(long val)
+> +{
+> +	return -40000 + DIV_ROUND_CLOSEST(165000 * val, 65535);
+> +}
+> +
+> +static long htu31_relative_humidity(long val)
+> +{
+> +	return DIV_ROUND_CLOSEST(100000 * val, 65535);
+> +}
+> +
+> +static int htu31_data_fetch_command(struct htu31_data *data)
+> +{
+> +	struct i2c_client *client = data->client;
+> +	u8 conversion_on = HTU31_CONVERSION_CMD;
+> +	u8 read_data_cmd = HTU31_READ_TEMP_HUM_CMD;
+> +	u8 t_h_buf[HTU31_TEMP_HUM_LEN] = {};
+> +	struct i2c_msg msgs[] = {
+> +		{
+> +			.addr = client->addr,
+> +			.flags = 0,
+> +			.len = 1,
+> +			.buf = &read_data_cmd,
+> +		},
+> +		{
+> +			.addr = client->addr,
+> +			.flags = I2C_M_RD,
+> +			.len = sizeof(t_h_buf),
+> +			.buf = t_h_buf,
+> +		},
+> +	};
+> +	int ret;
+> +	u8 crc;
+> +
+> +	guard(mutex)(&data->i2c_lock);
+> +
+> +	ret = i2c_master_send(client, &conversion_on, 1);
+> +	if (ret != 1) {
+> +		ret = ret < 0 ? ret : -EIO;
+> +		dev_err(&client->dev,
+> +			"Conversion command is failed. Error code: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	fsleep(data->wait_time);
+> +
+> +	ret = i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
+> +	if (ret != ARRAY_SIZE(msgs)) {
+> +		ret = ret < 0 ? ret : -EIO;
+> +		dev_err(&client->dev,
+> +			"T&H command is failed. Error code: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	crc = crc8(htu31_crc8_table, &t_h_buf[0], 2, HTU31_CRC8_INIT_VAL);
+> +	if (crc != t_h_buf[2]) {
+> +		dev_err(&client->dev, "Temperature CRC mismatch\n");
+> +		return -EIO;
+> +	}
+> +
+> +	crc = crc8(htu31_crc8_table, &t_h_buf[3], 2, HTU31_CRC8_INIT_VAL);
+> +	if (crc != t_h_buf[5]) {
+> +		dev_err(&client->dev, "Humidity CRC mismatch\n");
+> +		return -EIO;
+> +	}
+> +
+> +	data->temperature = htu31_temp_to_millicelsius(be16_to_cpup((__be16 *) &t_h_buf[0]));
+> +	data->humidity = htu31_relative_humidity(be16_to_cpup((__be16 *) &t_h_buf[3]));
+> +
+> +	return 0;
+> +}
+> +
+> +static umode_t htu31_is_visible(const void *data, enum hwmon_sensor_types type,
+> +		u32 attr, int channel)
+> +{
+> +	switch (type) {
+> +	case hwmon_temp:
+> +	case hwmon_humidity:
+> +		return 0444;
+> +	default:
+> +		return 0;
+> +	}
+> +}
+> +
+> +static int htu31_read(struct device *dev, enum hwmon_sensor_types type,
+> +		u32 attr, int channel, long *val)
+> +{
+> +	struct htu31_data *data = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = htu31_data_fetch_command(data);
+> +
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	switch (type) {
+> +	case hwmon_temp:
+> +		if (attr != hwmon_temp_input)
+> +			return -EINVAL;
+> +
+> +		*val = data->temperature;
+> +		break;
+> +	case hwmon_humidity:
+> +		if (attr != hwmon_humidity_input)
+> +			return -EINVAL;
+> +
+> +		*val = data->humidity;
+> +		break;
+> +	default:
+> +		return -EOPNOTSUPP;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int serial_number_populate(struct htu31_data *data)
+
+htu31_read_serial_number(...)
+
+
+> +{
+> +	struct i2c_client *client = data->client;
+> +	u8 read_sn_cmd = HTU31_READ_SERIAL_CMD;
+> +	u8 sn_buf[HTU31_SERIAL_NUMBER_LEN + HTU31_SERIAL_NUMBER_CRC_LEN];
+> +	struct i2c_msg msgs[] = {
+> +		{
+> +			.addr = client->addr,
+> +			.flags = 0,
+> +			.len = 1,
+> +			.buf = &read_sn_cmd,
+> +		},
+> +		{
+> +			.addr = client->addr,
+> +			.flags = I2C_M_RD,
+> +			.len = sizeof(sn_buf),
+> +			.buf = sn_buf,
+> +		},
+> +	};
+> +	int ret;
+> +	u8 crc;
+> +
+> +	guard(mutex)(&data->i2c_lock);
+> +
+> +	ret = i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
+> +	if (ret < 0)
+> +		return -EIO;
+> +
+> +	crc = crc8(htu31_crc8_table, sn_buf, HTU31_SERIAL_NUMBER_LEN, HTU31_CRC8_INIT_VAL);
+> +	if (crc != sn_buf[HTU31_SERIAL_NUMBER_CRC_OFFSET]) {
+> +		dev_err(&client->dev, "Serial number CRC mismatch\n");
+> +		return -EIO;
+> +	}
+> +
+> +	memcpy(data->serial_number, sn_buf, HTU31_SERIAL_NUMBER_LEN);
+
+...
+
+> +#if IS_ENABLED(CONFIG_OF)
+> +static const struct of_device_id htu31_of_match[] = {
+> +	{ .compatible = "meas,htu31" },
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, htu31_of_match);
+> +#endif
+> +
+> +static struct i2c_driver htu31_driver = {
+> +	.driver = {
+> +		.name = "htu31",
+> +		.of_match_table = of_match_ptr(htu31_of_match),
+> +	},
+> +	.probe = htu31_probe,
+> +	.id_table = htu31_id,
+> +};
+> +module_i2c_driver(htu31_driver);
+> +
+> +MODULE_AUTHOR("Andrei Lalaev <andrey.lalaev@gmail.com>");
+> +MODULE_DESCRIPTION("HTU31 Temperature and Humidity sensor driver");
+> +MODULE_VERSION("1.0");
+
+Drop version. Linux kernel defines the version.
 
 Best regards,
-Damon
+Krzysztof
 
 
