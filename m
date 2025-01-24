@@ -1,122 +1,139 @@
-Return-Path: <devicetree+bounces-140832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46F1CA1B965
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 16:36:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E38A3A1B989
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 16:42:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76BF13B2344
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:29:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 138C73A5272
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0731CCEE0;
-	Fri, 24 Jan 2025 15:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03233154C04;
+	Fri, 24 Jan 2025 15:39:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U4A738mc"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="eho4Z2j2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3AE165F18;
-	Fri, 24 Jan 2025 15:26:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EF6923A0;
+	Fri, 24 Jan 2025 15:39:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737732406; cv=none; b=oR/ocYq33wMI1fKCkow0/jZg1pXo5EX1HZMX3awImTZt4ohsbfEKeg4khuuVID8E8+ukwcTzhFXLPXKJDJX3TnGevYjz/Xw/7N+l1O51pjcyJfElLZ0IErqlvof9lfZgoRYQRn73W2qE5BD26DRX7p3z+XLPVYRHhPYI3bPZ4KQ=
+	t=1737733192; cv=none; b=gi9ByG4ug9MyiWrIyel9475DYA7TlWnHinThPVU7IFZ3Vx+B+5w7V4FnMQRE8YnYwIYEmuCGNvvxTIVu0gALLKmKZbQKKKo4JFcEAPXdv8xYGDsqFVm61nlBbsBeLj7GstqbferuUgrKUXrdtw1gPizQXesatjOanxf9MF2DE/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737732406; c=relaxed/simple;
-	bh=I4B5vKu/OpviD5xTex6t7kYbehRnv7GHY2vV2m5BMRg=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=oadxx3N9FOqKfLlqhjguK6jlBkpBNy85+vwqnsLB680jukauM2AJp3BdZHo9j1ZzQF6EArWaGUvVWzCg6Du+6nyWaxCzlbWG+s2ypkA3jCzq6Wmx+fHoBYs6iVHb3bvpF15HGuMD30axAQ2Sllg3l7XRSPppb+HDQJ9+E+1m8h4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U4A738mc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28016C4CED2;
-	Fri, 24 Jan 2025 15:26:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737732406;
-	bh=I4B5vKu/OpviD5xTex6t7kYbehRnv7GHY2vV2m5BMRg=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=U4A738mcAAEIs7r19RonddZcsikZAB02tsGwV+vgsHqOIr1CJKvcbqYBt6HZ7H3Ae
-	 kvZyZ03DkiKpdbj24Z7WAnY+NfQSccmUKRFoo+5yIeUQfgsqx63YqKllghGVxCrzlv
-	 xPCdeJHmED5PeUfhQ8fUxr0sQbD9VROBp0Tczs4eaa1HLgWz8ZaVw/k1kr7mc4WQyp
-	 h365gT01aFavd/RRG9zB7O5hJwNXYKB4LRlJPFHQk3ByWuCCbXKxEhkJ3qSAq2iJb0
-	 W3WCGsk2lWslbpVkmGLq1bOxRHE+1LIIXRdnobP866laWLObhWQ3O5KKO780+W7SCB
-	 t1SawWHHG7jww==
-Date: Fri, 24 Jan 2025 09:26:45 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1737733192; c=relaxed/simple;
+	bh=Vs8+PPwO+IZu4btLhd3LMGzuXwM8R1ARNGOEZ5kLMNM=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=eBHzvlYB/JJTHpZaRovzj79CNYBR7ug7Cn9ohBJc1Q9edCeTUGVZulgUqfyqB9ej3/xmkz2Xr8RqMp8EMMw0B2lRCtpMO7oNjjSwecFYJuhfB5/2vmbEbxRzu7/CJP6htgdS9TIT2RpU7QtbmoeiaKCqgFP5W7J8CrF383xZsbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=eho4Z2j2; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50OEn2HL007140;
+	Fri, 24 Jan 2025 10:39:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=KuirWxd6zQbs52bVKOtYaHeUTv6
+	VjLO6uy0QRSLCZXY=; b=eho4Z2j2/bpA2Wchh69T66VMNYZJq4QPOx3j81uYbtf
+	QZRE89MUjcQ1hdK33Y7BDz+qPZI5g+kqZfsBL6TrPgpgIXdLJq0tOpldbo3PxPzc
+	yZsRImhI66Vd9wG+UryuEdyR1YbvctIKL7MV6Fu1nZjvQxBS8GNYRSfz7ThfmzsN
+	ULRD+E5iUUL/L5iZYIhrF4vLiAPsjUcYsQgu7dz+94Lk2Hzt1EmldWZztarFL2M2
+	D/2RIb+MEp7js+jPR0r+VvAWlrwhxdqIom57IHCF7PPwH97LYAzFjn44AsPmybvv
+	WX0s5RklUr3FW3EE2fo/MEE+R9EGVxqiGzNBA1acDbw==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 44ccxx076k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Jan 2025 10:39:36 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 50OFdYlZ064588
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 24 Jan 2025 10:39:34 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 24 Jan 2025 10:39:34 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Fri, 24 Jan 2025 10:39:34 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Fri, 24 Jan 2025 10:39:34 -0500
+Received: from CENCARNA-L02.ad.analog.com (CENCARNA-L02.ad.analog.com [10.117.116.131])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 50OFdFBA032412;
+	Fri, 24 Jan 2025 10:39:22 -0500
+From: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+Subject: [PATCH 0/2] Add support for LT3074 low voltage linear regulator
+Date: Fri, 24 Jan 2025 23:39:05 +0800
+Message-ID: <20250124-upstream-lt3074-v1-0-7603f346433e@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: andersson@kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, krzk+dt@kernel.org, quic_jprakash@quicinc.com, 
- quic_kamalw@quicinc.com, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
- konradybcio@kernel.org
-To: Rakesh Kota <quic_kotarake@quicinc.com>
-In-Reply-To: <20250124070200.3969230-1-quic_kotarake@quicinc.com>
-References: <20250124070200.3969230-1-quic_kotarake@quicinc.com>
-Message-Id: <173773232224.1805161.13299626383351520341.robh@kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcs6490-rb3gen2: Add vadc and adc-tm
- channels
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABm0k2cC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDQyMT3dKC4pKi1MRc3ZwSYwNzE11DI2NjCxMjE7NUgyQloK6CotS0zAq
+ widGxtbUAeqMc8WEAAAA=
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+        "Guenter Roeck" <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
+        "Delphine CC Chiu" <Delphine_CC_Chiu@Wiwynn.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-hwmon@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>,
+        Cedric Encarnacion
+	<cedricjustine.encarnacion@analog.com>
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1737733156; l=1213;
+ i=cedricjustine.encarnacion@analog.com; s=20250124;
+ h=from:subject:message-id; bh=Vs8+PPwO+IZu4btLhd3LMGzuXwM8R1ARNGOEZ5kLMNM=;
+ b=rePvu3igITi0Dblt1YhsK6REg55itEHw/9uWuVbOoznYSJG0jP4YAR4Q/IeGrzmqK5C/pM6Qt
+ 2hI2G3AvC+2AKhxhefweeHBTF9uZ/onzby7owyO5b6D225WsdVxySBv
+X-Developer-Key: i=cedricjustine.encarnacion@analog.com; a=ed25519;
+ pk=ZsngY3B4sfltPVR5j8+IO2Sr8Db8Ck+fVCs+Qta+Wlc=
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: GpHw-eh259UVUk8DmmeUQkksw2lnjegQ
+X-Proofpoint-ORIG-GUID: GpHw-eh259UVUk8DmmeUQkksw2lnjegQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-24_06,2025-01-23_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ lowpriorityscore=0 priorityscore=1501 spamscore=0 adultscore=0
+ clxscore=1015 mlxlogscore=999 bulkscore=0 impostorscore=0 malwarescore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501240110
 
+Introduce hardware monitoring and regulator support for LT3074. The
+component is an ultrafast, ultralow noise 3A, 5.5V dropout linear
+regulator with a PMBus serial interface that allows telemetry for
+input/output voltage, output current, and die temperature. It has a
+single channel and requires a bias voltage which can be monitored via
+manufacturer-specific registers.
 
-On Fri, 24 Jan 2025 12:32:00 +0530, Rakesh Kota wrote:
-> Add support for vadc and adc-tm channels which are used for
-> monitoring thermistors present on the platform.
-> 
-> - Add the necessary includes for qcom,spmi-adc7-pm7325 and
->   qcom,spmi-adc7-pmk8350.
-> - Add thermal zones for quiet-thermal, sdm-skin-thermal, and
->   xo-thermal, and define their polling delays and thermal sensors.
-> - Configure the pm7325_temp_alarm node to use the pmk8350_vadc
->   channel for thermal monitoring.
-> - Configure the pmk8350_adc_tm node to enable its thermal sensors
->   and define their registers and settings.
-> - Configure the pmk8350_vadc node to define its channels and settings
-> 
-> Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 114 +++++++++++++++++++
->  1 file changed, 114 insertions(+)
-> 
+Signed-off-by: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
+---
+Cedric Encarnacion (2):
+      dt-bindings: trivial-devices: add lt3074
+      hwmon: (pmbus/lt3074): add support for lt3074
 
+ .../devicetree/bindings/trivial-devices.yaml       |   2 +
+ Documentation/hwmon/index.rst                      |   1 +
+ Documentation/hwmon/lt3074.rst                     |  72 ++++++++++++
+ drivers/hwmon/pmbus/Kconfig                        |  18 +++
+ drivers/hwmon/pmbus/Makefile                       |   1 +
+ drivers/hwmon/pmbus/lt3074.c                       | 122 +++++++++++++++++++++
+ 6 files changed, 216 insertions(+)
+---
+base-commit: a76539b293677c5c163b9285b0cd8dd420d33989
+change-id: 20250124-upstream-lt3074-123384246e0b
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250124070200.3969230-1-quic_kotarake@quicinc.com:
-
-arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pmic@2: pwm:nvmem: [[346, 347]] is too short
-	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pwm: nvmem: [[346, 347]] is too short
-	from schema $id: http://devicetree.org/schemas/leds/leds-qcom-lpg.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pmic@0: adc@3100: 'oneOf' conditional failed, one must be fixed:
-	'#address-cells', '#size-cells', 'channel@103', 'channel@144', 'channel@146', 'channel@44', 'pmk8350-die-temp@3' do not match any of the regexes: 'pinctrl-[0-9]+'
-	'#address-cells', '#size-cells', 'channel@103', 'channel@144', 'channel@146', 'channel@44', 'interrupts', 'pmk8350-die-temp@3' do not match any of the regexes: 'pinctrl-[0-9]+'
-	'pmk8350-die-temp@3' does not match any of the regexes: '^channel@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	['qcom,spmi-adc7'] is too short
-	'qcom,spmi-adc7' is not one of ['qcom,pm8226-iadc', 'qcom,pm8941-iadc']
-	'qcom,spmi-adc7' is not one of ['qcom,pmi8998-rradc', 'qcom,pm660-rradc']
-	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: adc@3100: 'pmk8350-die-temp@3' does not match any of the regexes: '^channel@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/iio/adc/qcom,spmi-vadc.yaml#
-
-
-
-
+Best regards,
+-- 
+Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
 
 
