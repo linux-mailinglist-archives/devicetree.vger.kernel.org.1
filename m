@@ -1,486 +1,269 @@
-Return-Path: <devicetree+bounces-140694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EE94A1B0AC
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 08:05:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1040A1B08E
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 07:59:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A04657A574D
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 07:05:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 627D43AA4D4
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 06:58:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDB571DA0ED;
-	Fri, 24 Jan 2025 07:05:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061281D95A9;
+	Fri, 24 Jan 2025 06:58:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="b1GB69mb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FYtsc1+C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-71.smtpout.orange.fr [80.12.242.71])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBD1B33998;
-	Fri, 24 Jan 2025 07:05:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.71
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5D3E1D63DF;
+	Fri, 24 Jan 2025 06:58:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737702341; cv=none; b=KODPSizHHZ7CPMt4w/TsE8Y3VJGtoF0zG6Zpa41TSfVpkAG9h142gse/xULtuHF4c5B6YKiVxqLxr5C46sJiZ2JX0NHXrKkCztRrxenupctN2ZBb2VPDpY+8c6T/faK7FFHJt5ZA6aNLn+suvFQwa5wVkAlgnoeKEeoQ52Is6RU=
+	t=1737701937; cv=none; b=ktTDbcfQGkgOZuBOiYTRfqfj+0viaINtQi9+bwG9pYrInd2apFHlQq90NJWHB5f0O0LR8GcP8cWbMjVPhcfXN077Fi4XP8+gGhBZITYuwalVK3incYQ21GeB895ueiFWFTWbAeYY/KWsO2Bt7PZ4vbCcFGeG6vPoblvKYekYVFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737702341; c=relaxed/simple;
-	bh=08uoD3woXjERLG5JzZv6BFt+o7geQ9cqxyIA9Yj/fI8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GYQulL2f9pZxH3OnWeGM8LdmCtsnJdLFB+UOwlSAy6/1L0z4zS3ui8MkErAKTQDyOXixfFsUm0JrNrO0LJRwqrNV9gHg+jIznNpLJ9UwcCf3VFBmF328+j3q2s+R26Hl8M6et+U3FrWCrGtFKsXvpOjiBWHsFVJPJVMvgt9cbYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=b1GB69mb; arc=none smtp.client-ip=80.12.242.71
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id bDc5toKkkk1FUbDc8tQVJk; Fri, 24 Jan 2025 07:56:29 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1737701789;
-	bh=+PMaPjaDgkEmBs+qk3oGEtVev1zbxLFsascDcXBSXIs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=b1GB69mb3/DSkvBNjCUnEDIbW0woSzabdhRaU2AziXeCBxRwTSwL3/xxIOnAYV6bf
-	 ZFh/TN7q4NYStWjZ5R3Z2E+HFUBmaSZ6xedEFJVWsa3JEEc1fRteVY6KMDQdTT4OVt
-	 4ynHhBO1jWh0tSA4yCKgg09HTG8Ip1Rl22EirbeRwM62Nl5vq/tOWZYDGCtoP1+Dd6
-	 ShPVvGbuR1lcaH8vtUeR+M3063XuHCy3kLfYhLpHPZxGroVxEvs/X1mV2t7Gq6hqAU
-	 ZNsZqWeXFp33oV6tyfcCZa88ZGsENS7O9yvwgZuG9lpkEiaHzz//smv6rCHERu1jua
-	 kkxbd/Dxb2pWg==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Fri, 24 Jan 2025 07:56:29 +0100
-X-ME-IP: 90.11.132.44
-Message-ID: <3e47eadc-59b7-4730-89bc-b18e9483fca2@wanadoo.fr>
-Date: Fri, 24 Jan 2025 07:56:20 +0100
+	s=arc-20240116; t=1737701937; c=relaxed/simple;
+	bh=rPt77Coe5Zulhw136U/oU/5suFRS1l65UL3xb7q2sKY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c/sH54Nnu3RVcjMZ5raD1XJejkkRZ3A3ft4092kguRzXOBJLWWD9uYGAHuTfYsuoF5FlV8Dc9mdWa+eLffAGuyaVqS+h54kraLzk1UoZruLb2BQIfATcs7yAaPyALKS1e6ZVM8XtORQYFA9oZPAVjI4//nc5SboJSsqTmUS4ic0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FYtsc1+C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DE05C4CED2;
+	Fri, 24 Jan 2025 06:58:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737701937;
+	bh=rPt77Coe5Zulhw136U/oU/5suFRS1l65UL3xb7q2sKY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FYtsc1+CjrhyXgLIpObYL9lZrs4rBJnutVvjXNg3dWdNEq/nEPcV1QdeJleis1L87
+	 PJK/gQGgF8N3bLgncRCAcweCJRHgohSwLEJmGaXww5GDbzTfixmAGauLCWoRtdQVLS
+	 vqVcdFJmz1JBFmJGmuVB5QHOTNakbrzNOWfCN8PvWVIqX9yfRkRZXn24fXOgvpKyZp
+	 0sMlhFf5P7/ecKJ+YMMFkRQf4AJ9FfF0ds/QZS3PmHIqSxpyHtYEIfEBUgSIAQc7Tg
+	 KIZU3ohAGHJx4ys8jlfmiqsuByidAKucfNmbj55bH3Sa0HDMocTboiH0zYXvcnHbXK
+	 FJxBrobQV102A==
+Date: Fri, 24 Jan 2025 12:28:43 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: cros-qcom-dts-watchers@chromium.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_vpernami@quicinc.com, quic_mrana@quicinc.com,
+	mmareddy@quicinc.com,
+	Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Subject: Re: [PATCH v3 4/4] PCI: qcom: Enable ECAM feature
+Message-ID: <20250124065843.te5p55qgjyina53z@thinkpad>
+References: <20250121-enable_ecam-v3-0-cd84d3b2a7ba@oss.qualcomm.com>
+ <20250121-enable_ecam-v3-4-cd84d3b2a7ba@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] media: ox05b1s: Add omnivision OX05B1S raw sensor
- driver
-To: Mirela Rabulea <mirela.rabulea@nxp.com>, mchehab@kernel.org,
- sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
- laurent.pinchart+renesas@ideasonboard.com, robh@kernel.org,
- krzk+dt@kernel.org, bryan.odonoghue@linaro.org, laurentiu.palcu@nxp.com,
- robert.chiras@nxp.com
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- LnxRevLi@nxp.com, kieran.bingham@ideasonboard.com, hdegoede@redhat.com,
- dave.stevenson@raspberrypi.com, mike.rudenko@gmail.com,
- alain.volmat@foss.st.com, devicetree@vger.kernel.org, conor+dt@kernel.org,
- alexander.stein@ew.tq-group.com, umang.jain@ideasonboard.com,
- zhi.mao@mediatek.com, festevam@denx.de, julien.vuillaumier@nxp.com,
- alice.yuan@nxp.com
-References: <20250124001243.446511-1-mirela.rabulea@nxp.com>
- <20250124001243.446511-3-mirela.rabulea@nxp.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20250124001243.446511-3-mirela.rabulea@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250121-enable_ecam-v3-4-cd84d3b2a7ba@oss.qualcomm.com>
 
-Le 24/01/2025 à 01:12, Mirela Rabulea a écrit :
-> Add a v4l2 subdevice driver for the Omnivision OX05B1S RGB-IR sensor.
+On Tue, Jan 21, 2025 at 02:32:22PM +0530, Krishna Chaitanya Chundru wrote:
+> The ELBI registers falls after the DBI space, PARF_SLV_DBI_ELBI register
+> gives us the offset from which ELBI starts. so use this offset and cfg
+> win to map these regions instead of doing the ioremap again.
 > 
-> The Omnivision OX05B1S is a 1/2.5-Inch CMOS image sensor with an
-> active array size of 2592 x 1944.
+> On root bus, we have only the root port. Any access other than that
+> should not go out of the link and should return all F's. Since the iATU
+> is configured for the buses which starts after root bus, block the
+> transactions starting from function 1 of the root bus to the end of
+> the root bus (i.e from dbi_base + 4kb to dbi_base + 1MB) from going
+> outside the link through ECAM blocker through PARF registers.
 > 
-> The following features are supported for OX05B1S:
-> - Manual exposure an gain control support
-> - vblank/hblank control support
-> - Supported resolution: 2592 x 1944 @ 30fps (SGRBG10)
-> 
-> Signed-off-by: Mirela Rabulea <mirela.rabulea@nxp.com>
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 > ---
-
-...
-
-> +static int ox05b1s_power_on(struct ox05b1s *sensor)
+>  drivers/pci/controller/dwc/pcie-qcom.c | 81 ++++++++++++++++++++++++++++++++--
+>  1 file changed, 77 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index dc102d8bd58c..cf94718d3059 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -52,6 +52,7 @@
+>  #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
+>  #define PARF_Q2A_FLUSH				0x1ac
+>  #define PARF_LTSSM				0x1b0
+> +#define PARF_SLV_DBI_ELBI			0x1b4
+>  #define PARF_INT_ALL_STATUS			0x224
+>  #define PARF_INT_ALL_CLEAR			0x228
+>  #define PARF_INT_ALL_MASK			0x22c
+> @@ -61,6 +62,17 @@
+>  #define PARF_DBI_BASE_ADDR_V2_HI		0x354
+>  #define PARF_SLV_ADDR_SPACE_SIZE_V2		0x358
+>  #define PARF_SLV_ADDR_SPACE_SIZE_V2_HI		0x35c
+> +#define PARF_BLOCK_SLV_AXI_WR_BASE		0x360
+> +#define PARF_BLOCK_SLV_AXI_WR_BASE_HI		0x364
+> +#define PARF_BLOCK_SLV_AXI_WR_LIMIT		0x368
+> +#define PARF_BLOCK_SLV_AXI_WR_LIMIT_HI		0x36c
+> +#define PARF_BLOCK_SLV_AXI_RD_BASE		0x370
+> +#define PARF_BLOCK_SLV_AXI_RD_BASE_HI		0x374
+> +#define PARF_BLOCK_SLV_AXI_RD_LIMIT		0x378
+> +#define PARF_BLOCK_SLV_AXI_RD_LIMIT_HI		0x37c
+> +#define PARF_ECAM_BASE				0x380
+> +#define PARF_ECAM_BASE_HI			0x384
+> +
+>  #define PARF_NO_SNOOP_OVERIDE			0x3d4
+>  #define PARF_ATU_BASE_ADDR			0x634
+>  #define PARF_ATU_BASE_ADDR_HI			0x638
+> @@ -84,6 +96,7 @@
+>  
+>  /* PARF_SYS_CTRL register fields */
+>  #define MAC_PHY_POWERDOWN_IN_P2_D_MUX_EN	BIT(29)
+> +#define PCIE_ECAM_BLOCKER_EN			BIT(26)
+>  #define MST_WAKEUP_EN				BIT(13)
+>  #define SLV_WAKEUP_EN				BIT(12)
+>  #define MSTR_ACLK_CGC_DIS			BIT(10)
+> @@ -294,15 +307,60 @@ static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
+>  	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
+>  }
+>  
+> +static int qcom_pci_config_ecam(struct dw_pcie_rp *pp)
 > +{
-> +	struct device *dev = &sensor->i2c_client->dev;
-> +	int ret = 0;
 
-No need to init.
+void qcom_pci_config_ecam()?
 
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+> +	u64 addr, addr_end;
+> +	u32 val;
 > +
-> +	ret = regulator_bulk_enable(OX05B1S_NUM_SUPPLIES, sensor->supplies);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to enable regulators\n");
-> +		return ret;
-> +	}
-> +
-> +	/* get out of powerdown and reset */
-> +	gpiod_set_value_cansleep(sensor->rst_gpio, 0);
-> +
-> +	ret = clk_prepare_enable(sensor->sensor_clk);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Enable sensor clk fail ret=%d\n", ret);
-> +		goto reg_off;
-> +	}
-> +
-> +	/* with XVCLK@24MHz, t2 = 6ms required delay for ox05b1s before first SCCB transaction */
-> +	fsleep(6000);
-> +
-> +	return ret;
+> +	/* Set the ECAM base */
+> +	writel(lower_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE);
 
-return 0;
+You can use _relaxed variants in this function.
 
+> +	writel(upper_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE_HI);
 > +
-> +reg_off:
-> +	regulator_bulk_disable(OX05B1S_NUM_SUPPLIES, sensor->supplies);
+> +	/*
+> +	 * The only device on root bus is the Root Port. Any access other than that
+> +	 * should not go out of the link and should return all F's. Since the iATU
+> +	 * is configured for the buses which starts after root bus, block the transactions
+> +	 * starting from function 1 of the root bus to the end of the root bus (i.e from
+> +	 * dbi_base + 4kb to dbi_base + 1MB) from going outside the link.
+
+Why can't you impose this limitation with the iATU mapping itself? I mean, why
+can't the mapping be limited to 4K to cover only device 00.0? I believe the min
+iATU window size is 4K on all platforms.
+
+> +	 */
+> +	addr = pci->dbi_phys_addr + SZ_4K;
+> +	writel(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE);
+> +	writel(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE_HI);
 > +
-> +	return ret;
+> +	writel(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE);
+> +	writel(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE_HI);
+> +
+> +	addr_end = pci->dbi_phys_addr + SZ_1M - 1;
+> +
+> +	writel(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT);
+> +	writel(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT_HI);
+> +
+> +	writel(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT);
+> +	writel(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT_HI);
+> +
+> +	val = readl(pcie->parf + PARF_SYS_CTRL);
+> +	val |= PCIE_ECAM_BLOCKER_EN;
+> +	writel(val, pcie->parf + PARF_SYS_CTRL);
+
+nit; newline
+
+> +	return 0;
 > +}
-
-...
-
-> +/* needs sensor lock and power on */
-> +static int ox05b1s_apply_current_mode(struct ox05b1s *sensor)
-> +{
-> +	struct device *dev = &sensor->i2c_client->dev;
-> +	struct ox05b1s_reglist *reg_data = sensor->mode->reg_data;
-> +	u32 w = sensor->mode->width;
-> +	u32 h = sensor->mode->height;
-> +	int ret = 0;
 > +
-> +	cci_write(sensor->regmap, OX05B1S_REG_SW_RST, 0x01, NULL);
-> +
-> +	while (reg_data->regs) {
-> +		ret = ox05b1s_write_reg_array(sensor, reg_data->regs);
+>  static int qcom_pcie_start_link(struct dw_pcie *pci)
+>  {
+>  	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+> +	int ret;
+>  
+>  	if (pcie_link_speed[pci->max_link_speed] == PCIE_SPEED_16_0GT) {
+>  		qcom_pcie_common_set_16gt_equalization(pci);
+>  		qcom_pcie_common_set_16gt_lane_margining(pci);
+>  	}
+>  
+> +	if (pci->pp.ecam_mode) {
+> +		ret = qcom_pci_config_ecam(&pci->pp);
 > +		if (ret)
-> +			goto out;
-> +		reg_data++;
+> +			return ret;
 > +	}
-> +
-> +	cci_write(sensor->regmap, OX05B1S_REG_X_OUTPUT_SIZE, w, &ret);
-> +	cci_write(sensor->regmap, OX05B1S_REG_Y_OUTPUT_SIZE, h, &ret);
-> +	if (ret)
-> +		goto out;
-> +
-> +	/* setup handler will write actual controls into sensor registers */
-> +	ret =  __v4l2_ctrl_handler_setup(&sensor->ctrls.handler);
+>  	/* Enable Link Training state machine */
+>  	if (pcie->cfg->ops->ltssm_enable)
+>  		pcie->cfg->ops->ltssm_enable(pcie);
+> @@ -1233,6 +1291,7 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>  	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+> +	u16 offset;
+>  	int ret;
+>  
+>  	qcom_ep_reset_assert(pcie);
+> @@ -1241,6 +1300,11 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+>  	if (ret)
+>  		return ret;
+>  
+> +	if (pp->ecam_mode) {
+> +		offset = readl(pcie->parf + PARF_SLV_DBI_ELBI);
+> +		pcie->elbi = pci->dbi_base + offset;
 
-2 spaces after '='
-
-> +
-> +out:
-> +	if (ret < 0)
-> +		dev_err(dev, "Failed to apply mode %dx%d,bpp=%d\n", w, h,
-> +			sensor->mode->bpp);
-> +
-> +	return ret;
-> +}
-
-...
-
-> +static int ox05b1s_get_frame_desc(struct v4l2_subdev *sd, unsigned int pad,
-> +				  struct v4l2_mbus_frame_desc *fd)
-> +{
-> +	struct i2c_client *client = v4l2_get_subdevdata(sd);
-> +	struct ox05b1s *sensor = client_to_ox05b1s(client);
-> +
-> +	fd->type = V4L2_MBUS_FRAME_DESC_TYPE_CSI2;
-> +	fd->num_entries = 1;
-> +
-> +	/* get sensor current code*/
-
-Missing space before */
-
-> +	mutex_lock(&sensor->lock);
-> +	fd->entry[0].pixelcode = sensor->mode->code;
-> +	mutex_unlock(&sensor->lock);
-> +
-> +	fd->entry[0].bus.csi2.vc = 0;
-> +	fd->entry[0].bus.csi2.dt = ox05b1s_code2dt(fd->entry[0].pixelcode);
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static void ox05b1s_get_gpios(struct ox05b1s *sensor)
-> +{
-> +	struct device *dev = &sensor->i2c_client->dev;
-> +
-> +	sensor->rst_gpio = devm_gpiod_get_optional(dev, "reset",
-> +						   GPIOD_OUT_HIGH);
-> +	if (IS_ERR(sensor->rst_gpio))
-> +		dev_warn(dev, "No sensor reset pin available");
-
-Missing ending \n
-
-> +}
-> +
-> +static int ox05b1s_get_regulators(struct ox05b1s *sensor)
-> +{
-> +	struct device *dev = &sensor->i2c_client->dev;
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < OX05B1S_NUM_SUPPLIES; i++)
-> +		sensor->supplies[i].supply = ox05b1s_supply_name[i];
-> +
-> +	return devm_regulator_bulk_get(dev, OX05B1S_NUM_SUPPLIES, sensor->supplies);
-> +}
-> +
-> +static int ox05b1s_read_chip_id(struct ox05b1s *sensor)
-> +{
-> +	struct device *dev = &sensor->i2c_client->dev;
-> +	u64 chip_id = 0;
-> +	char *camera_name;
-> +	int ret = 0;
-
-No need to init.
-
-> +
-> +	ret = cci_read(sensor->regmap, OX05B1S_REG_CHIP_ID, &chip_id, NULL);
-> +	if (ret) {
-> +		dev_err(dev, "Camera chip_id read error\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	switch (chip_id) {
-> +	case 0x580542:
-> +		camera_name = "ox05b1s";
-> +		break;
-> +	default:
-> +		camera_name = "unknown";
-> +		break;
-> +	}
-> +
-> +	if (chip_id == sensor->model->chip_id) {
-> +		dev_dbg(dev, "Camera %s detected, chip_id=%llx\n", camera_name, chip_id);
-> +	} else {
-> +		dev_err(dev, "Detected %s camera (chip_id=%llx), but expected %s (chip_id=%x)\n",
-> +			camera_name, chip_id, sensor->model->name, sensor->model->chip_id);
-> +		ret = -ENODEV;
-
-Could be return -ENODEV;
-and return 0; below, to ease reading.
+Can't you derive this offset for non-ECAM mode also?
 
 > +	}
 > +
-> +	return ret;
-> +}
-> +
-> +static int ox05b1s_probe(struct i2c_client *client)
-> +{
-> +	int retval;
-
-Using just 'ret' would be slighly shorter and more consistent with other 
-functions above.
-
-> +	struct device *dev = &client->dev;
-> +	struct v4l2_subdev *sd;
-> +	struct ox05b1s *sensor;
-> +
-> +	sensor = devm_kzalloc(dev, sizeof(*sensor), GFP_KERNEL);
-> +	if (!sensor)
-> +		return -ENOMEM;
-> +
-> +	sensor->regmap = devm_cci_regmap_init_i2c(client, 16);
-> +	if (IS_ERR(sensor->regmap))
-> +		return PTR_ERR(sensor->regmap);
-> +
-> +	sensor->i2c_client = client;
-> +
-> +	sensor->model = of_device_get_match_data(dev);
-> +
-> +	ox05b1s_get_gpios(sensor);
-> +
-> +	/* Get system clock, xvclk */
-> +	sensor->sensor_clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(sensor->sensor_clk))
-> +		return dev_err_probe(dev, PTR_ERR(sensor->sensor_clk),
-> +				     "Failed to get xvclk\n");
-> +
-> +	retval = ox05b1s_get_regulators(sensor);
-> +	if (retval)
-> +		return dev_err_probe(dev, retval, "Failed to get regulators\n");
-> +
-> +	sd = &sensor->subdev;
-> +	v4l2_i2c_subdev_init(sd, client, &ox05b1s_subdev_ops);
-> +	sd->internal_ops = &ox05b1s_internal_ops;
-> +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> +	sd->dev = &client->dev;
-> +	sd->entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> +	sensor->pads[OX05B1S_SENS_PAD_SOURCE].flags = MEDIA_PAD_FL_SOURCE;
-> +	retval = media_entity_pads_init(&sd->entity, OX05B1S_SENS_PADS_NUM,
-> +					sensor->pads);
-> +	if (retval)
-> +		goto probe_out;
-> +
-> +	mutex_init(&sensor->lock);
-
-This could be devm_mutex_init().
-This would slighlty simplify the remove function.
-Otherwise, a mutex_destroy() is potentialy missing in the error handling 
-of the probe.
-
-> +
-> +	retval = ox05b1s_init_controls(sensor);
-> +	if (retval)
-> +		goto probe_err_entity_cleanup;
-> +
-> +	/* power on manually */
-> +	retval = ox05b1s_power_on(sensor);
-> +	if (retval) {
-> +		dev_err(dev, "Failed to power on\n");
-
-dev_err_probe() can still be used to be consistent with other error path 
-above.
-
-> +		goto probe_err_free_ctrls;
+>  	ret = phy_set_mode_ext(pcie->phy, PHY_MODE_PCIE, PHY_MODE_PCIE_RC);
+>  	if (ret)
+>  		goto err_deinit;
+> @@ -1613,6 +1677,13 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  	pci->ops = &dw_pcie_ops;
+>  	pp = &pci->pp;
+>  
+> +	pp->bridge = devm_pci_alloc_host_bridge(dev, 0);
+> +	if (!pp->bridge) {
+> +		ret = -ENOMEM;
+> +		goto err_pm_runtime_put;
 > +	}
 > +
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_get_noresume(dev);
-> +	pm_runtime_enable(dev);
-> +
-> +	retval = ox05b1s_read_chip_id(sensor);
-> +	if (retval)
-> +		goto probe_err_pm_runtime;
-> +
-> +	v4l2_i2c_subdev_set_name(sd, client, sensor->model->name, NULL);
-> +
-> +	/* Centrally managed subdev active state */
-> +	sd->state_lock = &sensor->lock;
-> +	retval = v4l2_subdev_init_finalize(sd);
-> +	if (retval < 0) {
-> +		dev_err(dev, "Subdev init error: %d\n", retval);
+> +	pci->pp.ecam_mode = dw_pcie_ecam_supported(pp);
 
-Same
+you should be able to set this in designware-host.c
 
-> +		goto probe_err_pm_runtime;
-> +	}
-> +
-> +	retval = v4l2_async_register_subdev_sensor(sd);
-> +	if (retval < 0) {
-> +		dev_err(&client->dev, "Async register failed, ret=%d\n", retval);
+>  	pcie->pci = pci;
+>  
+>  	pcie->cfg = pcie_cfg;
+> @@ -1629,10 +1700,12 @@ static int qcom_pcie_probe(struct platform_device *pdev)
+>  		goto err_pm_runtime_put;
+>  	}
+>  
+> -	pcie->elbi = devm_platform_ioremap_resource_byname(pdev, "elbi");
+> -	if (IS_ERR(pcie->elbi)) {
+> -		ret = PTR_ERR(pcie->elbi);
+> -		goto err_pm_runtime_put;
+> +	if (!pp->ecam_mode) {
+> +		pcie->elbi = devm_platform_ioremap_resource_byname(pdev, "elbi");
+> +		if (IS_ERR(pcie->elbi)) {
+> +			ret = PTR_ERR(pcie->elbi);
+> +			goto err_pm_runtime_put;
 
-Same
+You can drop this if the ELBI offset can be derived from PARF register on all
+platforms.
 
-> +		goto probe_err_subdev_cleanup;
-> +	}
-> +
-> +	sensor->mode = &sensor->model->supported_modes[0];
-> +	ox05b1s_update_controls(sensor);
-> +
-> +	pm_runtime_set_autosuspend_delay(dev, 1000);
-> +	pm_runtime_use_autosuspend(dev);
-> +	pm_runtime_put_autosuspend(dev);
-> +
-> +	return 0;
-> +
-> +probe_err_subdev_cleanup:
-> +	v4l2_subdev_cleanup(sd);
-> +probe_err_pm_runtime:
-> +	pm_runtime_put_noidle(dev);
-> +	pm_runtime_disable(dev);
-> +	ox05b1s_runtime_suspend(dev);
-> +probe_err_free_ctrls:
-> +	v4l2_ctrl_handler_free(&sensor->ctrls.handler);
-> +probe_err_entity_cleanup:
-> +	media_entity_cleanup(&sd->entity);
-> +probe_out:
-> +	return retval;
-> +}
+- Mani
 
-...
-
-> +static struct i2c_driver ox05b1s_i2c_driver = {
-> +	.driver = {
-> +		.name  = "ox05b1s",
-
-2 spaces after .name.
-
-> +		.pm = pm_ptr(&ox05b1s_pm_ops),
-> +		.of_match_table	= ox05b1s_of_match,
-> +	},
-> +	.probe	= ox05b1s_probe,
-> +	.remove = ox05b1s_remove,
-> +};
-> +
-> +module_i2c_driver(ox05b1s_i2c_driver);
-> +MODULE_DESCRIPTION("Omnivision OX05B1S MIPI Camera Subdev Driver");
-> +MODULE_AUTHOR("Mirela Rabulea <mirela.rabulea@nxp.com>");
-> +MODULE_LICENSE("GPL");
-> diff --git a/drivers/media/i2c/ox05b1s/ox05b1s_modes.c b/drivers/media/i2c/ox05b1s/ox05b1s_modes.c
-> new file mode 100644
-> index 000000000000..1f3b822d4482
-> --- /dev/null
-> +++ b/drivers/media/i2c/ox05b1s/ox05b1s_modes.c
-> @@ -0,0 +1,63 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Register configurations for all sensor supported modes
-> + * Copyright (C) 2024, NXP
-> + * Copyright (C) 2024, Omnivision
-> + * Copyright (C) 2024, Verisilicon
-> + *
-> + */
-> +
-> +#include "ox05b1s.h"
-> +
-> +/*
-> + * Register configuration for Omnivision OX05B1S raw camera
-> + * 2592X1944_30FPS_FULL_RGBIr 2592 1944
-> + */
-> +struct ox05b1s_reg ovx5b_init_setting_2592x1944[] = {
-
-I think this could easily be made a const struct.
-
-> +	{ 0x0107, 0x01 },
-> +	{ 0x0307, 0x02 },
-> +	{ 0x034a, 0x05 },
-> +	{ 0x040b, 0x5c },
-> +	{ 0x040c, 0xcd },
-> +	{ 0x3009, 0x2e },
-> +	{ 0x3219, 0x08 },
-> +	{ 0x3684, 0x6d },
-> +	{ 0x3685, 0x6d },
-> +	{ 0x3686, 0x6d },
-> +	{ 0x3687, 0x6d },
-> +	{ 0x368c, 0x07 },
-> +	{ 0x368d, 0x07 },
-> +	{ 0x368e, 0x07 },
-> +	{ 0x368f, 0x00 },
-> +	{ 0x3690, 0x04 },
-> +	{ 0x3691, 0x04 },
-> +	{ 0x3692, 0x04 },
-> +	{ 0x3693, 0x04 },
-> +	{ 0x3698, 0x00 },
-> +	{ 0x36a0, 0x05 },
-> +	{ 0x36a2, 0x16 },
-> +	{ 0x36a3, 0x03 },
-> +	{ 0x36a4, 0x07 },
-> +	{ 0x36a5, 0x24 },
-> +	{ 0x36e3, 0x09 },
-> +	{ 0x3702, 0x0a },
-> +	{ 0x3821, 0x04 }, /* mirror */
-> +	{ 0x3822, 0x10 },
-> +	{ 0x382b, 0x03 },
-> +	{ 0x3866, 0x10 },
-> +	{ 0x386c, 0x46 },
-> +	{ 0x386d, 0x08 },
-> +	{ 0x386e, 0x7b },
-> +	{ 0x4802, 0x00 },
-> +	{ 0x481b, 0x3c },
-> +	{ 0x4837, 0x19 },
-> +	{ /* sentinel*/ },
-
-Nitpick: no need for ending comma after a terminator.
-
-> +};
-> +
-> +struct ox05b1s_reglist ox05b1s_reglist_2592x1944[] = {
-
-I think this could easily be made a const struct.
-
-> +	{
-> +		.regs = ovx5b_init_setting_2592x1944
-> +	}, {
-> +		/* sentinel */
-> +	}
-> +};
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
