@@ -1,126 +1,123 @@
-Return-Path: <devicetree+bounces-140805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88D8FA1B824
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:47:58 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C29BEA1B836
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:56:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C6963AEC13
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 14:47:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3CF5188D1CD
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 14:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE9C149C4D;
-	Fri, 24 Jan 2025 14:47:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27A031448F2;
+	Fri, 24 Jan 2025 14:56:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="HPLhU6JO"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dkICDLnz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB251146017
-	for <devicetree@vger.kernel.org>; Fri, 24 Jan 2025 14:47:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69103C0B;
+	Fri, 24 Jan 2025 14:55:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737730043; cv=none; b=IV5fKDbr31/159pVyBkEJILVbWZDe3MVv3mIoqIppolOm/WeCegrh1D1XihXXFKxIZePhCSDvy8NVvcTMKpsybCXRQoRN3msLZ018vwm7dWs1rDcbQii6KnhQz/GOIO8Jg0h7eOoFJMHxp8aSWC8/Ss1YeEvwVU+vgl2vuM89OU=
+	t=1737730560; cv=none; b=Ce++7lXeMn4FwhYeYiAbj254VR24Yt3gLmqer/9aIUDo6mwObTpKNLNQf0bSXjtGsx9/QP0FOZiJ73SbDkQzD1cIIweAhkv/pLEm5cSq68Spe3Ehci8qfs7vNf9jM4nGUyoyTDg80wrXm9WUfU3MZ07ikAGVEG4ZFDKFjlyUtsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737730043; c=relaxed/simple;
-	bh=eTaf9HW41uxqE2CPS5NCpTxA6jYnk9XYAKcaAuJgBMc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WaiBrj+Y9rVw8QN87eui9hPg87xjDvPZOWdZqgoNW3/C4tsPdDcY9uC5qU39YcONYtKLkdpMVzTej2tqJERVE3gNT/mZIKhiHHB/0dufKWe6Mi5RPt2ovxMN24DoXJVKqmQjnrKfauyv59vt39FtY7XrxlEMQc7lD7dMW22MBpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=HPLhU6JO; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1737730041;
- bh=bWc4eegiqIRik/oWmiPzWCZlgXnb9uJU2PJU56uMGgM=;
- b=HPLhU6JOarpRnBR2U8kQhxppWlm/DkEGvoJb8bI5g99fBkqmcGSxJngz1FkSvz40Uwq8aJd8p
- KEdBhZqJl4/GgBGypN0C5vbvoodFqRZaPbl3lk2thh+lcPtoTbXhklRsSoHfHjd1F29F1OC5Suh
- s/OJylCmLYbGrRa0QdZYUDX3gWHaXSzLX4vIP3ixtQozM5dEr81gc4IY38FrEiVLgfCy1g3vxyB
- n1DdQVH3B9K3jvjV1k+lHYDL8uKO6z1ITo9MWbSOrsEygv5+taETOxZBR4HsDgaKjBnUnoMOEIU
- jGs0n8xgsNSUN6XIEAB+LsVg0ytfT15A2AEJNGZ32J0w==
-X-Forward-Email-ID: 6793a7ea3e07d3fa85055a37
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 0.4.40
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <cae9cb0a-1500-4fbc-bbf4-a6266549bcb9@kwiboo.se>
-Date: Fri, 24 Jan 2025 15:47:00 +0100
+	s=arc-20240116; t=1737730560; c=relaxed/simple;
+	bh=eIFstfTr6DUAcbWZYk/a2amZZzuS8W3KIA/N9vfhlOI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pB3qmGv3P/bJSXtpWLuk8Mg8ZUraydvdE6bMGJfZJs7kGukhMUh2xUg+PtJ2i2ZtvAkaHGIVvjnt1FMGCz+Yl2Quyd8o0JGv4Gx0uhkEHebO9OsVeew9rwczGUodX2PlbkwRzC6ckQAH2qzV4hzFqCohUQLVZdoiUYuMDg3MXuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dkICDLnz; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737730558; x=1769266558;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eIFstfTr6DUAcbWZYk/a2amZZzuS8W3KIA/N9vfhlOI=;
+  b=dkICDLnzS+1whGBGWl5yf71O3kGsjJZgH6msg/oGzdh0NiVNK/CrDjL/
+   zOCqYnIRZxUKWTKkeOaOM1fyavyw6oMuBzJIv1/faj6wBpBveh0muuaxb
+   glsbexwHp1DxgpPpfIV9/6kBa6auJWScWrtI/LvYbh5mOW3x2vGTwch/n
+   AGZyO2JGnzsT7Vty/1pEkePIOW7q1qr+dK9coUBL+shmJcWJtbS0ur7Hf
+   AtKoFY+gG+LWkQQsA0yVgM/wpN+bsHYv62tWAW9gKUsnvEZg7lVd5go14
+   rSFo26zcNj1Ge3n1idL28P0xvGGeWeAY2oNhX+ptyw3jYXmcsWixMOQQM
+   A==;
+X-CSE-ConnectionGUID: 56XCAhLjSrKBDKDRo0AToA==
+X-CSE-MsgGUID: HcmcBCMfSISEQq4iBqs6kw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11325"; a="55677212"
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; 
+   d="scan'208";a="55677212"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2025 06:55:57 -0800
+X-CSE-ConnectionGUID: lpYGPPCiQY27z5+/R+CfOA==
+X-CSE-MsgGUID: IHTVAX5oR7uS0lhe3PwXsA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,231,1732608000"; 
+   d="scan'208";a="112792640"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jan 2025 06:55:54 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tbL68-00000004qQZ-0Mrj;
+	Fri, 24 Jan 2025 16:55:52 +0200
+Date: Fri, 24 Jan 2025 16:55:51 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ferry Toth <fntoth@gmail.com>
+Subject: Re: [PATCH v1 1/3] dt-bindings: usb: dwc3: Add a property to reserve
+ endpoints
+Message-ID: <Z5Op98D94JzAZurB@smile.fi.intel.com>
+References: <20250116154117.148915-1-andriy.shevchenko@linux.intel.com>
+ <20250116154117.148915-2-andriy.shevchenko@linux.intel.com>
+ <20250123220946.GA407034-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] arm64: dts: rockchip: Increase VOP clk rate on
- RK3328
-To: Elaine Zhang <zhangqing@rock-chips.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, kever.yang@rock-chips.com,
- heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20250124064619.13893-1-zhangqing@rock-chips.com>
- <20250124064619.13893-4-zhangqing@rock-chips.com>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250124064619.13893-4-zhangqing@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250123220946.GA407034-robh@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Elaine,
+On Thu, Jan 23, 2025 at 04:09:46PM -0600, Rob Herring wrote:
+> On Thu, Jan 16, 2025 at 05:40:46PM +0200, Andy Shevchenko wrote:
+> > Some of the endpoints may be reserved by hardware for different purposes,
+> > e.g., tracing control and output. This is the case, for instance, on
+> > Intel Merrifield and Moorefield platforms that reserve a few and USB driver
+> > may not use them for the regular transfers. Add the respective bindings.
 
-On 2025-01-24 07:46, Elaine Zhang wrote:
-> The VOP on RK3328 needs to run at a higher rate in order to produce
-> a proper 3840x2160 signal.
-> Change to use 300MHz for VIO clk and 400MHz for VOP clk.
+...
 
-It is probably better to merge this change and the prior revert into a
-single patch with a Fixes-tag for the commit 0f2ddb128fa2 ("arm64: dts:
-rockchip: Increase VOP clk rate on RK3328") to ensure this change get
-backported correctly.
-
-Regards,
-Jonas
-
+> > +  snps,reserved-endpoints:
+> > +    description:
+> > +      Reserve endpoints for other needs, e.g, for tracing control and output.
+> > +      When set, the driver will avoid using them for the regular USB transfers.
+> > +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> > +    maxItems: 30
 > 
-> Fixes: 4b6764f200f2 ("Revert "arm64: dts: rockchip: Increase VOP clk
-> rate on RK3328"")
-> 
-> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3328.dtsi | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> index f3ef8cbfbdae..0c905f411e92 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-> @@ -842,7 +842,8 @@
->  			<&cru ACLK_BUS_PRE>, <&cru HCLK_BUS_PRE>,
->  			<&cru PCLK_BUS_PRE>, <&cru ACLK_PERI_PRE>,
->  			<&cru HCLK_PERI>, <&cru PCLK_PERI>,
-> -			<&cru SCLK_RTC32K>;
-> +			<&cru SCLK_RTC32K>, <&cru ACLK_VIO_PRE>,
-> +			<&cru ACLK_VOP_PRE>;
->  		assigned-clock-parents =
->  			<&cru HDMIPHY>, <&cru PLL_APLL>,
->  			<&cru PLL_GPLL>, <&xin24m>,
-> @@ -863,7 +864,8 @@
->  			<150000000>, <75000000>,
->  			<75000000>, <150000000>,
->  			<75000000>, <75000000>,
-> -			<32768>;
-> +			<32768>, <300000000>,
-> +			<400000000>;
->  	};
->  
->  	usb2phy_grf: syscon@ff450000 {
+> Please make minItems explicit.
+
+    minItems: 0
+    maxItems: 30
+
+Is this what you want to see here?
+
+> > +    items:
+> > +      minimum: 2
+> > +      maximum: 31
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
