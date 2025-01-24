@@ -1,106 +1,124 @@
-Return-Path: <devicetree+bounces-140810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A904FA1B840
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:57:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F3207A1B846
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 16:01:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 828E03AB5C0
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 14:56:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85DFC3A4428
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 15:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35D35146A7A;
-	Fri, 24 Jan 2025 14:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D02084A5B;
+	Fri, 24 Jan 2025 15:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="4gfHYnQe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LS0NeLy4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5224313CA97;
-	Fri, 24 Jan 2025 14:56:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254714206E;
+	Fri, 24 Jan 2025 15:01:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737730603; cv=none; b=a16MERLGhN6Q88FTBrJIhCVYro3Y1AoEN9TcvNAwQ19WJYc2KElpwm++BqtCMPeDCylif33YlRkPpgLzrfLFPkAUfuwEpiEIcUnN68sHZvaqZ04euGFhZDfvaGiua7aok/x3JNzcAJwANkSfcL58JX8H5bxjfms0do8A5hLA1ME=
+	t=1737730903; cv=none; b=TVkj9wxIAJ+YNDqz/1ancmgmnU0pbEdDqwgkhStDlRIoDJHKwbh4fhrrlr2n9NBvd5saFpS3wRK+F+e0dSq/rKcyxnBlPrcuVMabNw0NJRpByR9yIENZbqSjAbiIFKGP6T8YUlBnCryplSrwpmged3NBDXMVSP4kNel1jjf9zM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737730603; c=relaxed/simple;
-	bh=Yjbyq6ifIYb5MG0SmTH26q7S6EHuu8cYd/CzuEG6/vI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tlsNayqjt+ANYmbD2LKWpS0vC/nsxOZ9F22M/YNh0PN6AhbjSXtOasxIhuLPikk2qwfa2YT9Qx2tPKCO6dXUCrViRr1eDSop5ggKGERWpuKesVBnBfFmQhBSwZQOMpEQZYJ47PGJRr3A+/pzTTxCUxargJR3irFA5lBs5f7cilI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=4gfHYnQe; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=J5kjHkJnOHEQs5ufwKsC59GIKFl8SpG5yJzGjmGDr5w=; b=4gfHYnQetFNudQQ+w0vRAFchfg
-	Y4EJjpeJ/W5BT2yO0YcIuG4oKRxO0hO6s3EWVekqKFoQ89SXc6yD20w6pJZxVGHBhEjdVLJLt3/cv
-	Fi/9fQU0C5QsxoPygdVzEqlZx+xOAqg9qkI9e8HomDOlVKUbQkCBD0bGSdx/h+8x1k3Q=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1tbL6Y-007cTY-5X; Fri, 24 Jan 2025 15:56:18 +0100
-Date: Fri, 24 Jan 2025 15:56:18 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Willie Thai <wthai@nvidia.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	joel@jms.id.au, andrew@codeconstruct.com.au, kees@kernel.org,
-	tony.luck@intel.com, gpiccoli@igalia.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org, openbmc@lists.ozlabs.org,
-	leohu@nvidia.com, tingkaic@nvidia.com, dkodihalli@nvidia.com,
-	wthai <wthai@willie-obmc-builder.nvidia.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Nvidia's GB200NVL
- BMC
-Message-ID: <7b47725f-fb57-454c-82f6-859202060243@lunn.ch>
-References: <20250124051819.7714-1-wthai@nvidia.com>
+	s=arc-20240116; t=1737730903; c=relaxed/simple;
+	bh=+sKWvutBnhoT3u6vmgXqQEluf5+44IlXaH1XhyuWoKg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OUgTbKgCVr9qCGRMXfrBcfBFQvpOw7yiAao1xiy2aRfNNmZ8+P163Tv/gYVMqB7PR0Fux3xXSebkgvxgnGly4IIpDzOry71wRO1HsNGWub9rHZ6rOdKihkxN749kUpipb8S4kP1LlyDmc+1uTMHzeGqFKpxrOiCUnqxUoxMAJho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LS0NeLy4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86A7DC4CEE6;
+	Fri, 24 Jan 2025 15:01:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737730902;
+	bh=+sKWvutBnhoT3u6vmgXqQEluf5+44IlXaH1XhyuWoKg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=LS0NeLy4JLmappwJK6o68N9jqtBZ33UoCKaSLDeeVV/9kAazwpqRTXPYTdC1edHsJ
+	 AiErkPb0Oeb/il89/iHADnjfwHVJhajZAkMac3uoL+L6YLCPecp8SqtYlntWmjrU+S
+	 cJYab8rsCptKvAYl6vuk3Ctx/A+crPv2a5Dztua36MMnIKdBMjVckAzs2KYSNZM4+u
+	 exdObxrolbGYdEg40/HB5YVZiDJRYXDYR8i+B0S1aj9OokQxfYq3UPNTR89QxiUiqM
+	 ur19ovsnnhUk185L5jyTLu4Tss/1G5ykNDsPjiyj3kknkB7PhZ7FJqFWfluEXoRadv
+	 As3fy0g3Z8vrw==
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-53e384e3481so2060967e87.2;
+        Fri, 24 Jan 2025 07:01:42 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWKkMRBeRpPlZwmZoVEcYKxxvQJahwTh/WWPyZ0dPCtEu1IwVzK6I/4dAcWnH5rjJLq+CwL+f/y3ixA/Q==@vger.kernel.org, AJvYcCWSoXuPzccw9dMDReDac/tEzCPMZUNVhEc5V3ujKSko6Gbud4xQoIesaYe/yF56vISRaPcAmxekFC9Ono/Chg==@vger.kernel.org, AJvYcCWr3l1Hq2cOzmawGdj1j5cfDTZIefSyG+2UeOLXOmp4cmfQiiktF+x7EgHRbXi0mI4X6UIiiJ67VFzeFAIELMA=@vger.kernel.org, AJvYcCXNPdL9R5BhNvDeyvivH/IrWrm2ddWxxN1y8lGMHjaU6dcPiAOgzsdOoV1DfXVCZPvq0CsWOwiHGirN@vger.kernel.org, AJvYcCXS+ab9cRGrCnrY4fUgW8oPh3rkzSfgk8ATuUo1z2JyeaI6/bzdPCMQnxbFMSStPHXx03MRXxYUh6MWYl/o@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdnWYKbuQebxKuBOuXc5/f3dcf4FQ7+Q7RAJQMvvFaoqTGRi2w
+	/08o9/jT4Lfg0XtX0OCOrpRdsQFXtG6tXWIVBwEQkK8g/kEamDqkHKQEg/N87wV6/KossnUJwvc
+	Wy36LCUUWy/EUmKx3XXXJ4FcKzA==
+X-Google-Smtp-Source: AGHT+IFhSnvfCuiCvL0OttX5PAnYoRXrSbi4TViakpq1cAbRQhI69YWUaroaQ+b8YKbg+lHMfXE6iddIvuIgn3sY5aM=
+X-Received: by 2002:ac2:4c56:0:b0:53e:fa8b:8227 with SMTP id
+ 2adb3069b0e04-5439c27b239mr12676852e87.45.1737730900608; Fri, 24 Jan 2025
+ 07:01:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250124051819.7714-1-wthai@nvidia.com>
+References: <20250124101038.3871768-1-krishna.chundru@oss.qualcomm.com> <20250124101038.3871768-3-krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <20250124101038.3871768-3-krishna.chundru@oss.qualcomm.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 24 Jan 2025 09:01:27 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJE2x7XVkVKQuECTYfrML9V2TxdVNF-=EyTBbnGUEvhzw@mail.gmail.com>
+X-Gm-Features: AWEUYZlZJKsHinlSKqERUaTFlBEcUmg36ma0x9e7aGVnEsRJpf41kGM_GSo4ajU
+Message-ID: <CAL_JsqJE2x7XVkVKQuECTYfrML9V2TxdVNF-=EyTBbnGUEvhzw@mail.gmail.com>
+Subject: Re: [PATCH V2 2/2] schemas: pci: bridge: Document PCIe N_FTS
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: andersson@kernel.org, dmitry.baryshkov@linaro.org, 
+	manivannan.sadhasivam@linaro.org, krzk@kernel.org, helgaas@kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	lpieralisi@kernel.org, kw@linux.com, conor+dt@kernel.org, 
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree-spec@vger.kernel.org, quic_vbadigan@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jan 24, 2025 at 05:18:19AM +0000, Willie Thai wrote:
-> From: wthai <wthai@willie-obmc-builder.nvidia.com>
-> 
-> The GB200NVL BMC is an Aspeed Ast2600 based BMC
-> for Nvidia Blackwell GB200NVL platform.
-> 
-> Signed-off-by: wthai <wthai@nvidia.com>
+On Fri, Jan 24, 2025 at 4:11=E2=80=AFAM Krishna Chaitanya Chundru
+<krishna.chundru@oss.qualcomm.com> wrote:
+>
+> Per PCIe r6.0, sec 4.2.5.1, during Link training, a PCIe component
+> captures the N_FTS value it receives.  Per 4.2.5.6, when
+> transitioning the Link from L0s to L0, it must transmit N_FTS Fast
+> Training Sequences to enable the receiver to obtain bit and Symbol
+> lock.
+>
+> Components may have device-specific ways to configure N_FTS values
+> to advertise during Link training.  Define an n_fts array with an
+> entry for each supported data rate.
+>
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.co=
+m>
+> ---
+>  dtschema/schemas/pci/pci-bus-common.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+>
+> diff --git a/dtschema/schemas/pci/pci-bus-common.yaml b/dtschema/schemas/=
+pci/pci-bus-common.yaml
+> index a9309af..968df43 100644
+> --- a/dtschema/schemas/pci/pci-bus-common.yaml
+> +++ b/dtschema/schemas/pci/pci-bus-common.yaml
+> @@ -128,6 +128,15 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      enum: [ 1, 2, 4, 8, 16, 32 ]
+>
+> +  n-fts:
+> +    description:
+> +      The number of Fast Training Sequences (N_FTS) required by the
+> +      Receiver (this component) when transitioning the Link from L0s
+> +      to L0; advertised during initial Link training
+> +    $ref: /schemas/types.yaml#/definitions/uint8-array
+> +    minItems: 1
+> +    maxItems: 5
 
-I'm not sure that is a valid name for a Signed-off-by. I would expect
-something like:
+You still need to define what each entry is.
 
-Signed-off-by: Willie Thai <wthai@nvidia.com>
-
-> +&mac0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	phy-mode = "rgmii-rxid";
-> +	max-speed = <1000>;
-> +	phy-handle = <&ethphy3>;
-> +	pinctrl-0 = <&pinctrl_rgmii1_default>;
-> +};
-
-This phy-mode is wrong. There is a long discussion about this, started
-from a BMC submitted by IBM. Please wait until Aspeed fix the MAC
-driver before adding support for RGMII based ethernet. You are
-probably innocent here, apart from failing to sanity check vendor
-advise, which happens to be wrong.
-
-https://lore.kernel.org/netdev/20250107162350.1281165-10-ninad@linux.ibm.com/T/
-https://lore.kernel.org/linux-arm-kernel/bebbba7b-f86e-4dc4-8253-65d34cb84804@linux.ibm.com/T/
-
-The max-speed parameter should also be unneeded. Unless you have a
-real need for it. Does this MAC/PHY combination support higher speeds,
-but they are broken for some reason, so you need to avoid them?
-
-	Andrew
+> +
+>    reset-gpios:
+>      description: GPIO controlled connection to PERST# signal
+>      maxItems: 1
+> --
+> 2.34.1
+>
 
