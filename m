@@ -1,91 +1,177 @@
-Return-Path: <devicetree+bounces-140721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04606A1B1A1
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 09:25:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD8DAA1B1B0
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 09:27:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 096171887D7C
-	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 08:25:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D37C3AE38F
+	for <lists+devicetree@lfdr.de>; Fri, 24 Jan 2025 08:26:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6E0C218EA7;
-	Fri, 24 Jan 2025 08:25:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446D5218EBD;
+	Fri, 24 Jan 2025 08:26:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="azExpTcO"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y7Nw/TS3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F167218E85;
-	Fri, 24 Jan 2025 08:25:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D166218E99;
+	Fri, 24 Jan 2025 08:26:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737707121; cv=none; b=ZMW153NFDnn5uKqiGt7zDM3JgaLzXcO98IagKc8/e9nx6uc8WT25r44y8Yf4kURUd3N62L+t9K6K+N74kUH6a5CySEVAHi8W6jcOCPHBzXtSZ7mnd/gjU/BuL8E3hkkRT1yZUB010/Q1556g0b7X9om3LsIqUYt30e8iOR6Cul8=
+	t=1737707204; cv=none; b=vBL/NMcsiTjXiKg+4E+AINPcpyOTO0aNbh9ilQiCHRzMBSHauCKPSFlBb0DyGCjw9exUibF8ziWBpSSNDiwk4VUvdHZEwu0KladOKG+yZxLFtSRlgQ4b3nemqsKsD8heozf4JpKyJo6Lz5Z2Uw5Vr8KXvVdd7/Fz/08P6Rx7fhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737707121; c=relaxed/simple;
-	bh=avPkR0WZvpgTxvx1IutqBvspKK1NkA3OyHUlutbIs1o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qFcldmsxBR7ahmHybvSWKrrvy+/cD9JCj9BOz1VdM96XjW36SRqWoCuOZDy2j/PobJHAu2iyyCMof34/Mi11uGV9BfqgdQLwhDIGNd7I/gqtBQXVzUzsw7lP6fasPklPx1pDKuXqJ22OYroLNdCkV8kqSgvZPluILe3tN+mwqQw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=azExpTcO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2CD7EC4CED2;
-	Fri, 24 Jan 2025 08:25:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737707121;
-	bh=avPkR0WZvpgTxvx1IutqBvspKK1NkA3OyHUlutbIs1o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=azExpTcOnITnBTMVmrHIeeLyPJDcBA+wpDCwpVFDweJTFjKumRPGtdhq/DxH/cnYp
-	 X/Lm5mC7ppddhZOfMUO7nqa8oewpZrsxPArKRHQXQy6Rd3Aot4DMbq2MVSYMZifzG6
-	 jqfkWoYF4reefhmttytvukO1uSwVcXLmmQbs6RwYlTr6kJXHcbDzj7J6qWhoqGDrnE
-	 B9UiPzBTfWL2e3ALvgxacnM4JMO2aZqS6oWG6cgyB2+Bkp0XT5ToX1CgEv+D3Kabp5
-	 xJ+J9F2/ThSturDL2QDo0XtxU51gU50y/qLk7CUXxhq+hx7FopjOpZj5dOQ1awarSG
-	 wPOgGsyJq3Yyw==
-Date: Fri, 24 Jan 2025 09:25:17 +0100
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Daniel Baluta <daniel.baluta@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, broonie@kernel.org, 
-	shawnguo@kernel.org, conor+dt@kernel.org, peng.fan@nxp.com, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, lgirdwood@gmail.com, 
-	peter.ujfalusi@linux.intel.com, linux-sound@vger.kernel.org, imx@lists.linux.dev, 
-	Iuliana Prodan <iuliana.prodan@nxp.com>
-Subject: Re: [PATCH 1/4] dt-bindings: arm: imx: Add board revisions for
- i.MX8MP, i.MX8QM and i.MX8QXP
-Message-ID: <20250124-meaty-tunneling-raven-eabb6a@krzk-bin>
-References: <20250122163544.1392869-1-daniel.baluta@nxp.com>
- <20250122163544.1392869-2-daniel.baluta@nxp.com>
+	s=arc-20240116; t=1737707204; c=relaxed/simple;
+	bh=Dv1vAXZI8vsRs4O+g2BpElnnLuNaKougAOdum6jfCUE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=vBUDV3m/8AlswjZQ1tcYxg00LIbbDop3hCa20hRc2+KW5EUzBd3P8qMwei+0bv+Qzzs9TSMf2XWwce1W6bTeRCHEtjAIVz2gZyPlyZPYNkqUBH/Dv8B/egThLVzfJwFX6WAJknq1FP29WETznf78SnIicgh9egZzXQ7VWkxLt9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y7Nw/TS3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50O82bLg032689;
+	Fri, 24 Jan 2025 08:26:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	sjbcESiU6USB4wlS8JMciyTQKB0lub0M2yPt8IZm/AE=; b=Y7Nw/TS3DMnI+06k
+	x4URVuBACUMf9aV7YXw1RbWp0ZWUuqR4gLMPgH5KFdEZC78k3DSetBSHmxSY8HZy
+	2GA5Id98KD5tdDHoDuSm8a7ndTMpkt6TYylrtN3gVH7imyt5X+QJ8R5JzSocLaF1
+	h+we/IkMWCHbYFWLOEHhmGFj526bawBOotijqztYrLMpSLzciniFq9ryxijR4mjQ
+	gjgofZV9AF9P4XnxOVSKroMEKD2jw2jRmQL7O+nhnLyuOpC9/8CMsR4sEheRzOlm
+	8JuAEM9hA+LmaazcM1QGO9p792efJX3OdQdRRCP/QaBFqJIr8j1+6Pwhi/POZNt/
+	Qr4kfA==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44c70ng21w-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Jan 2025 08:26:35 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50O8QYYr015205
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 24 Jan 2025 08:26:34 GMT
+Received: from [10.216.14.228] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 24 Jan
+ 2025 00:26:28 -0800
+Message-ID: <6e35eea5-2c7b-5d71-f39d-f9196a3c1b76@quicinc.com>
+Date: Fri, 24 Jan 2025 13:56:25 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250122163544.1392869-2-daniel.baluta@nxp.com>
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 3/4] PCI: dwc: Reduce DT reads by allocating host
+ bridge via DWC glue driver
+Content-Language: en-US
+To: Manivannan Sadhasivam <mani@kernel.org>,
+        Krishna Chaitanya Chundru
+	<krishna.chundru@oss.qualcomm.com>
+CC: <cros-qcom-dts-watchers@chromium.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <quic_vbadigan@quicinc.com>, <quic_vpernami@quicinc.com>,
+        <quic_mrana@quicinc.com>, <mmareddy@quicinc.com>
+References: <20250121-enable_ecam-v3-0-cd84d3b2a7ba@oss.qualcomm.com>
+ <20250121-enable_ecam-v3-3-cd84d3b2a7ba@oss.qualcomm.com>
+ <20250124061828.ncycdpxqd6fqpjib@thinkpad>
+From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
+In-Reply-To: <20250124061828.ncycdpxqd6fqpjib@thinkpad>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: KzrbjIr4tr0Nq9uV4eq3G75CKKG6k1P0
+X-Proofpoint-ORIG-GUID: KzrbjIr4tr0Nq9uV4eq3G75CKKG6k1P0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-24_03,2025-01-23_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 adultscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
+ bulkscore=0 spamscore=0 mlxlogscore=984 clxscore=1015 suspectscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501240060
 
-On Wed, Jan 22, 2025 at 06:35:41PM +0200, Daniel Baluta wrote:
-> From: Iuliana Prodan <iuliana.prodan@nxp.com>
+
+
+On 1/24/2025 11:48 AM, Manivannan Sadhasivam wrote:
+> On Tue, Jan 21, 2025 at 02:32:21PM +0530, Krishna Chaitanya Chundru wrote:
+>> Allow DWC glue drivers to allocate the host bridge, avoiding redundant
+>> device tree reads primarily in dw_pcie_ecam_supported().
+>>
 > 
-> wm8960 codec is EOL so we have i.MX8MP EVK Rev B4,
-> i.MX8QM MEK Rev D and i.MX8QXP MEK WCPU boards with
-> wm8962 codec.
-> Therefore, add compatibles for them.
-
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
-
+> I don't understand what you mean by 'redundant device tree reads'. Please
+> explain.
 > 
-> Signed-off-by: Iuliana Prodan <iuliana.prodan@nxp.com>
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+In dw_pcie_ecam_supported () we are trying to read bus-range to find
+maximum bus range value. devm_pci_alloc_host_bridge() is already reading
+bus range it. If we move devm_pci_alloc_host_bridge() to start of the
+controller probe we can avoid reading the dt and use values stored in 
+the host bridge.
+This was recommended by bjorn in the v2.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+I will update the commit text in the next series.
+> - Mani
+> 
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> ---
+>>   drivers/pci/controller/dwc/pcie-designware-host.c | 13 +++++++------
+>>   1 file changed, 7 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+>> index 3888f9fe5af1..0acf9db44f2c 100644
+>> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+>> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+>> @@ -484,8 +484,8 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>>   	struct device *dev = pci->dev;
+>>   	struct device_node *np = dev->of_node;
+>>   	struct platform_device *pdev = to_platform_device(dev);
+>> +	struct pci_host_bridge *bridge = pp->bridge;
+>>   	struct resource_entry *win;
+>> -	struct pci_host_bridge *bridge;
+>>   	struct resource *res;
+>>   	int ret;
+>>   
+>> @@ -497,11 +497,12 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>>   		return -ENODEV;
+>>   	}
+>>   
+>> -	bridge = devm_pci_alloc_host_bridge(dev, 0);
+>> -	if (!bridge)
+>> -		return -ENOMEM;
+>> -
+>> -	pp->bridge = bridge;
+>> +	if (!pp->bridge) {
+>> +		bridge = devm_pci_alloc_host_bridge(dev, 0);
+>> +		if (!bridge)
+>> +			return -ENOMEM;
+>> +		pp->bridge = bridge;
+>> +	}
+>>   
+>>   	pp->cfg0_size = resource_size(res);
+>>   	pp->cfg0_base = res->start;
+>>
+>> -- 
+>> 2.34.1
+>>
+> 
 
