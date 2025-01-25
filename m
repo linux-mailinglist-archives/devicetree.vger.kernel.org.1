@@ -1,117 +1,148 @@
-Return-Path: <devicetree+bounces-140918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05BABA1C4F9
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 19:46:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55FC1A1C54C
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 22:29:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D2153A075A
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 18:46:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08FB87A3C4A
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 21:29:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6A9784D29;
-	Sat, 25 Jan 2025 18:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F354820468D;
+	Sat, 25 Jan 2025 21:29:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tZzJY5dQ"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="gU/XTUY5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 837667083D;
-	Sat, 25 Jan 2025 18:46:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75926204684
+	for <devicetree@vger.kernel.org>; Sat, 25 Jan 2025 21:29:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737830779; cv=none; b=Grq+ViMMj4f0aAzVkfZGiL1WDzpXm0gQNOEp9QZvJXvMdsJ8TpD4QAnoEb3/NXmiRv9a441bgaVtuQ1zLPTZMq0rgmVRsPgl3K3Ch9VTxh8Q1x21ZdGbqAXX7PYx0/ojNuvwvw0mTpWu/6JOnbB/sVKtKz5tskafV+2WG/OskMI=
+	t=1737840553; cv=none; b=TTEMs8n4IqwJ80UiZ20F/xcZ4Pxqk2u21jA+u0lqMHSBjQZCB5lqLUwQwYFdpaM08zhEkqPb5dLhT4cqNdIr/1d91gIo9FHxI0jrkt3AmLL76VdjWz0HFI7l+VSLHcfTi/XUDwVp88cdIgSW4AWhzHz4viz6l5U60WPyPEgtT8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737830779; c=relaxed/simple;
-	bh=H8QwGyV0uR+W7rIUL6aSwdgYBF4gwlvwp7RqlTEl5fE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=onh959ivlAcpKd74Ka5fOBQ/WcsiA7PIRvPdAPXZfD6Qe6NaGwLK8EZdvZikuXddUIcK9besfHsDoa6ixXHyRii/Q6/sEf0uDFjOPAmWH3e37gb0IVbOXDWNXLH/CuCAxLPpWKNfnoe2fRR2N3M92s71PjBo729OBgQA1INNgYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tZzJY5dQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD7FFC4CED6;
-	Sat, 25 Jan 2025 18:46:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737830779;
-	bh=H8QwGyV0uR+W7rIUL6aSwdgYBF4gwlvwp7RqlTEl5fE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tZzJY5dQYZBNtN69P02xWQLG0SlpQfLphrFx1Qa/zehiCeiSIiyB5h2aR8ZRoiXj2
-	 BjqoVfmiNC54kC1V/xbDHpvRS74QGU+zwaMHxP+qidhWejw1XBK4hf+dOx4QwtFNeC
-	 zRIVMjiiNnyUsfKgDJ3xm3RiLnzxnLCls6LQU4LCz3rYXYemBz2ruIAnuUy0JvvjGC
-	 xDwdDwtwpmpURF0WNBDf/DyaKmUtifhXdaV/Rvz/RA5qscAz0vQzQ6CBgTz8H2+aeC
-	 6MT9EC/upOd2PTCLuvzMTFN8aB+k7rBZnH/TW/ycVKsP678VrSM7p0CcfGWBPtX5BO
-	 VYBDu+Vpi0r/w==
-Received: by venus (Postfix, from userid 1000)
-	id B59D318389A; Sat, 25 Jan 2025 19:46:16 +0100 (CET)
-Date: Sat, 25 Jan 2025 19:46:16 +0100
-From: Sebastian Reichel <sre@kernel.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Jonathan Marek <jonathan@marek.ca>, 
-	linux-arm-msm@vger.kernel.org, linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100: enable rtc
-Message-ID: <lxmbrjscksvvq63o4w2vehiubuseajyu4ruqxpb3mcvrebekc5@vzwhpg5j2p2o>
-References: <20250120144152.11949-1-johan+linaro@kernel.org>
+	s=arc-20240116; t=1737840553; c=relaxed/simple;
+	bh=NM9R4AEFHYfq5k9ExvyYEZKAJ2zvHEerEs3wJuX/PxU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bcv1v0JJKceW+3YB2XzAYGn6sDh0r07Q5nEVPFcoN07f5sHOWHppyVY861ZFRE1DkXOMJrNFPEkcPieRJQH+8THx8qH9f31QoQhD1nGUphnWLZcS7aZLGE9lZv/d4NboYUrFGC3OTaMHuu0oltePL06g61CzBs1uhh2Xt77QKbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=gU/XTUY5; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1737840545;
+ bh=PLiub32TzGOVCaRQu14Q2l8GT6j31oGwqg3AtHjXG9A=;
+ b=gU/XTUY5ztPo8cAbTDVmoZmgkY6P6B0vFiXJjwVzpsdRplcx8zi+vFoKxTN4BdnuPOdA91xoq
+ Bct+Kf0IcATcQ5lF1aucZkxzR834GAWMdC7uennRBaASFIFzA54a2Xk157hsydli2gYU9/RNWuU
+ WarmiYPhMTy+jriIrXCFoA28279gCzuSi8TsqmeipBArhJexmZdeiPsRkGWC7Y1bGQqfiyNmz6B
+ W76DwEWF3JfXsTanFALfaGKa7B3KHtuJtFiw3J05yTqHt/chyXF8ONuMfCxUBWvz8T2Li0W5Fon
+ RJI9/sfVjjW6h5HEEuxrvqME+cTxqmQuC6XNh8mcqVYg==
+X-Forward-Email-ID: 6795578c58390289d47a0c06
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 0.4.40
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <e0bef56d-0777-4467-8ddc-3b8b23d7ac21@kwiboo.se>
+Date: Sat, 25 Jan 2025 22:28:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="twmgl5q7xfyqqjth"
-Content-Disposition: inline
-In-Reply-To: <20250120144152.11949-1-johan+linaro@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] Revert "clk: rockchip: Set parent rate for
+ DCLK_VOP clock on RK3228"
+To: Elaine Zhang <zhangqing@rock-chips.com>, Alex Bee <knaerzche@gmail.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, kever.yang@rock-chips.com,
+ heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-clk@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, huangtao@rock-chips.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20250125011545.15547-1-zhangqing@rock-chips.com>
+ <20250125011545.15547-2-zhangqing@rock-chips.com>
+ <8752cfda-b90a-4296-a08b-054b177aa586@gmail.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <8752cfda-b90a-4296-a08b-054b177aa586@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi Elaine,
 
---twmgl5q7xfyqqjth
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100: enable rtc
-MIME-Version: 1.0
+On 2025-01-25 06:38, Alex Bee wrote:
+> Hi Elaine,
+> 
+> Am 25.01.25 um 02:15 schrieb Elaine Zhang:
+>> This reverts commit 1d34b9757523c1ad547bd6d040381f62d74a3189.
+>>
+>> RK3228 Only GPLL and CPLL, GPLL is a common clock, does not allow
+>> dclk_vop to change its frequency, CPLL is used by GMAC,
+>> if dclk_vop use CLK_SET_RATE_PARENT and CLK_SET_RATE_NO_REPARENT flags will
+>> affect the GMAC function.
+>>
+> how do you come to this conclusion?
+> 
+> On the RK3228, hdmiphy is the default parent of dclk_vop, a clock that is
+> not even generated by the CRU but is the output of an external HDMI PHY.
+> The CLK_SET_RATE_NO_REPARENT flag ensures that the parent of dclk_vop never
+> changes to sclk_vop_pre (and thus never uses CPLL or GPLL). With
+> CLK_SET_RATE_PARENT we only ensure that we can use all rates of [0] since
+> there is no divider between dclk_vop and hdmiphy. Overall it is pretty much
+> the same situation as for RK3328, which handles these clocks in the same
+> way (see dclk_lcdc for RK3328).
 
-Hi,
+I came to similar conclusion for v1 of this patch, see [2].
 
-On Mon, Jan 20, 2025 at 03:41:45PM +0100, Johan Hovold wrote:
-> This series adds support for utilising the UEFI firmware RTC offset to
-> the Qualcomm PMIC RTC driver and uses that to enable the RTC on all X
-> Elite machines.
->=20
-> Included is also a patch to switch the Lenovo ThinkPad X13s over to
-> using the UEFI offset.
+Maybe we should assign clk parent in DT similar to rk3328.dtsi to make
+it extra clear that hdmiphy should be used as parent?
 
-I've been using this series for the last few days and it seems to
-work well.
+  assigned-clocks = <&cru DCLK_VOP>;
+  assigned-clock-parents = <&cru SCLK_HDMI_PHY>;
 
-Tested-by: Sebastian Reichel <sre@kernel.org> # Lenovo T14s Gen6
+Also for next revert patch you send, please include the patch author in
+the recipient list :-)
 
-Greetings,
+[2] https://lore.kernel.org/all/d95d317c-5f6e-42bd-94a9-e1a6c7685e2f@kwiboo.se/
 
--- Sebastian
+Regards,
+Jonas
 
---twmgl5q7xfyqqjth
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> Regards,
+> Alex
+> 
+> [0] [1] 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/phy/rockchip/phy-rockchip-inno-hdmi.c?h=v6.13#n293
+>> If the client application does not use GMAC and CPLL is free, make this
+>> change on the local branch.
+>>
+>> Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+>> ---
+>>   drivers/clk/rockchip/clk-rk3228.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/clk/rockchip/clk-rk3228.c b/drivers/clk/rockchip/clk-rk3228.c
+>> index ed602c27b624..9c0284607766 100644
+>> --- a/drivers/clk/rockchip/clk-rk3228.c
+>> +++ b/drivers/clk/rockchip/clk-rk3228.c
+>> @@ -409,7 +409,7 @@ static struct rockchip_clk_branch rk3228_clk_branches[] __initdata = {
+>>   			RK2928_CLKSEL_CON(29), 0, 3, DFLAGS),
+>>   	DIV(0, "sclk_vop_pre", "sclk_vop_src", 0,
+>>   			RK2928_CLKSEL_CON(27), 8, 8, DFLAGS),
+>> -	MUX(DCLK_VOP, "dclk_vop", mux_dclk_vop_p, CLK_SET_RATE_PARENT | CLK_SET_RATE_NO_REPARENT,
+>> +	MUX(DCLK_VOP, "dclk_vop", mux_dclk_vop_p, 0,
+>>   			RK2928_CLKSEL_CON(27), 1, 1, MFLAGS),
+>>   
+>>   	FACTOR(0, "xin12m", "xin24m", 0, 1, 2),
+> 
+> 
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmeVMXAACgkQ2O7X88g7
-+po3sQ/+K8NMmf84/+Ka/THBmL37nNwGSk9jkKIM1pbfE2VE4+iucxmCcptX9uxo
-W3SDUosI80ZvSZv0BuUJZqE9ON7GVR14pMVcx8LxCvyQ0oYzRu8ti4T/0rCCO0Uo
-23Ku8afn1PhXpuwssHRiPoHX9atJ+0MUKKmjNYq01xstoqZcv7EUFoFMRwMbwdH7
-H/RQ6I7rQcsmkPN3M0yUiOL1dtR5CvhfgDvkCnBMy5e+hOXXrNy7Xku5C96SdCoN
-KMVTxtCuYyzxBK8CztyP9ycJ6Oy8abiN/WDvD/XyXEAWQdmx5pdPBgU744DdD6rK
-0K2eTT9Lfid9m2A3jN3EIghTPXx5PlmkoITyvNXMJn5b0S1iyl5sdWpzb7Ombh7d
-AmwXtk3Y05fxv1vEsMVkywEa4kmDuwlBamEGLFy8KfnEwYr/53L2nL+3+ugkHLnk
-yzP3HiaJarz9pLhzG3U59XXuCKGkcOdyoexP+BJuyKKWykOAvnfk3smnNKeTRJpH
-a+WoI/o/A5yOiSzirE+Mj6suuo5DKclQy0NgrozWP5nfNu4lUbM7wnJzZLPV6q2T
-V5rdOQUaCMfw3oZghVv7nRVQ+ojbPBXZYWjXfMVIHgGNqu9n9jZ2o+fGqYUd3rj5
-SYtKNutlLQ0tn2/zYrBDoQQmUwwxrnmhiSGzMpfrm9lnzErLQMI=
-=ukGj
------END PGP SIGNATURE-----
-
---twmgl5q7xfyqqjth--
 
