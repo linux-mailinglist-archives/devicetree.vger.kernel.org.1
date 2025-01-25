@@ -1,114 +1,110 @@
-Return-Path: <devicetree+bounces-140872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EA61A1C010
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 02:16:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 90051A1C090
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 04:04:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74E18188751D
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 01:16:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9537D188533A
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 03:04:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20B1F1EEA2C;
-	Sat, 25 Jan 2025 01:16:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72EEC70830;
+	Sat, 25 Jan 2025 03:04:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="b4WwNxdX"
+	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="aJNeYu5n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m3288.qiye.163.com (mail-m3288.qiye.163.com [220.197.32.88])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF011DE4EA;
-	Sat, 25 Jan 2025 01:16:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.88
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.2])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 672CD80034;
+	Sat, 25 Jan 2025 03:04:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.2
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737767766; cv=none; b=tm2uwNFOGaYCtXpz8c1+Io0fk3TkcNOLwXRx4wF7uenJJWMToelLjCiJ5ocwDO8nxQ8RuWarS2LDxpEgb8Q8NDWYCR94td+IhmEgEPaMq7vsgEftwghhI3J3j4mPvcg+aJMrNdRLqQVQqDDFulwkKByYrHqN0jVn+CFzKIsKBsA=
+	t=1737774251; cv=none; b=HQRaT1vCkIf18DXnBs3PPfUtGFFHii8i0P1KG/VLtpvHmFFHv3f8yQcqzwR5juVqxmMEEGqfwMi1EqvYjCx8vzErc/vyN0ZHlCRczMQZdkPIZ5VioRIE+0fuIPTVkk+y5Xj+m/ZlqwT2PUFabllld72tX/D+gc5qBSKk58ovrVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737767766; c=relaxed/simple;
-	bh=o+cfxavDlECfwchTqvmJ413/PuSxyTPOgssOsk4/rjY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=sW9duROjv4JQ8MhFx/Kuu7bF9qYSSXl9KCTKfgnaihs45auEMiiFkGRYlCdqmNEcIrpAmFKztTtM84eqF3bSayDq2KB1mugm9c3T3FdvLtOvdd/dhN7xt0BCUr/LhvtFxMen+6zNo3ry603sAstllC68fT77gDGJUz7a6DRxwK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=b4WwNxdX; arc=none smtp.client-ip=220.197.32.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from localhost.localdomain (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 9a2d1331;
-	Sat, 25 Jan 2025 09:15:53 +0800 (GMT+08:00)
-From: Elaine Zhang <zhangqing@rock-chips.com>
-To: mturquette@baylibre.com,
-	sboyd@kernel.org,
-	kever.yang@rock-chips.com,
-	zhangqing@rock-chips.com,
-	heiko@sntech.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-clk@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	huangtao@rock-chips.com,
+	s=arc-20240116; t=1737774251; c=relaxed/simple;
+	bh=iwMrKPUtdksCm20rNy99Q9sCRLNQuFGue9T7y1A+wkU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Yr0S+A3rHPb+14UwCqSKGzO4YknuDdJ0oyWqX4ubLA5vrk44U5shhHCAF3sDhqOdPCA5fSzq+SA2xwkP1loFZQMBAYCluf65LkkV3YubXeiwMjq7xZ+8x6702KxbE9PKlvCtvuCnOiPy40ACcQXFzkaQwhL49K3eYqLr5Fd+mOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=aJNeYu5n; arc=none smtp.client-ip=117.135.210.2
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=From:Subject:Date:Message-ID:MIME-Version; bh=XEEbb
+	ltAAns4tDgmbWOXBWFItEIpvnE/kHRLpxjMq+Q=; b=aJNeYu5nbD8ZaHXVsWd5T
+	Aj65zkEufNppDIW1B6EabpOBVmo3s1xKbn6oR+Z7cUI5t365dsQR/8AMbhsN/XNr
+	KY5ZEKYofndwVGG1hSHbi5h2ht9rKc41bQm3PPNInwSV0hSpajSvc2iNoRcIiooU
+	G0wJu0Jc6gZ0tUXX8s9PPQ=
+Received: from silergy-System-Product-Name.silergy.inc (unknown [])
+	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wDXjXdnVJRn4+zBHw--.4932S5;
+	Sat, 25 Jan 2025 11:03:07 +0800 (CST)
+From: Wenliang Yan <wenliang202407@163.com>
+To: christophe.jaillet@wanadoo.fr,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Wenliang Yan <wenliang202407@163.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-hwmon@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: Increase VOP clk rate on RK3328
-Date: Sat, 25 Jan 2025 09:15:45 +0800
-Message-Id: <20250125011545.15547-4-zhangqing@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250125011545.15547-1-zhangqing@rock-chips.com>
-References: <20250125011545.15547-1-zhangqing@rock-chips.com>
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQhpCS1YdQ0oaGE5NTk1KTB5WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0
-	hVSktLVUpCS0tZBg++
-X-HM-Tid: 0a949b07979903a3kunm9a2d1331
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OE06EAw6HTIWLBopQi0ePQpD
-	EgoaCVFVSlVKTEhMTE1MTE5PQk9JVTMWGhIXVQETGhUcChIVHDsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQUpJSUo3Bg++
-DKIM-Signature:a=rsa-sha256;
-	b=b4WwNxdX7lD64Xgn+Ba2i0xa3x5BwqzyI6b/EFkUtuSD1P4sUYqaHi99dIH3r6R/ErcTQlDGiEQg/HETtpN8Ul7Fc3zz1tIbUyB/lha82hOo+QvPF5JYMW5BVg2RHXbzVGvuUyIo4qxOMtiOyHboxbZCJkyu8rJxExHmjGUXP9g=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=5XL1oRgjrMvBC7HZIH3WlKDBfELy6YvngrqD5H+FELs=;
-	h=date:mime-version:subject:message-id:from;
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v4 1/2] dt-bindings:Add SQ52206 to ina2xx devicetree bindings
+Date: Sat, 25 Jan 2025 11:02:59 +0800
+Message-ID: <20250125030300.1230967-2-wenliang202407@163.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250125030300.1230967-1-wenliang202407@163.com>
+References: <20250125030300.1230967-1-wenliang202407@163.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDXjXdnVJRn4+zBHw--.4932S5
+X-Coremail-Antispam: 1Uf129KBjvJXoWrtFy7ZFW7Jr4DGr1DGrykXwb_yoW8JrW7p3
+	y3GF17tryFgr13W3y8t3WkGr15Z3Wv9a18KF1DJr1Fga1DXa4Yqa9xKr1kKF1UCr1fZFWr
+	WFn2gr48tw40yw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0piTGQDUUUUU=
+X-CM-SenderInfo: xzhqzxhdqjjiisuqlqqrwthudrp/1tbioxjf02eUTE5ncwAAsS
 
-The VOP on RK3328 needs to run at a higher rate in order to produce
-a proper 3840x2160 signal.
-Change to use 300MHz for VIO clk and 400MHz for VOP clk.
+Add the sq52206 compatible to the ina2xx.yaml
 
-Fixes: 0f2ddb128fa2 ("arm64: dts: rockchip: Increase VOP clk rate on RK3328")
-
-Signed-off-by: Elaine Zhang <zhangqing@rock-chips.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Wenliang Yan <wenliang202407@163.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3328.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-index f3ef8cbfbdae..0c905f411e92 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-@@ -842,7 +842,8 @@
- 			<&cru ACLK_BUS_PRE>, <&cru HCLK_BUS_PRE>,
- 			<&cru PCLK_BUS_PRE>, <&cru ACLK_PERI_PRE>,
- 			<&cru HCLK_PERI>, <&cru PCLK_PERI>,
--			<&cru SCLK_RTC32K>;
-+			<&cru SCLK_RTC32K>, <&cru ACLK_VIO_PRE>,
-+			<&cru ACLK_VOP_PRE>;
- 		assigned-clock-parents =
- 			<&cru HDMIPHY>, <&cru PLL_APLL>,
- 			<&cru PLL_GPLL>, <&xin24m>,
-@@ -863,7 +864,8 @@
- 			<150000000>, <75000000>,
- 			<75000000>, <150000000>,
- 			<75000000>, <75000000>,
--			<32768>;
-+			<32768>, <300000000>,
-+			<400000000>;
- 	};
+Add the meaning of 'shunt-gain' in SQ52206.
+
+ Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+index 05a9cb36cd82..bf2b334ba5c7 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+@@ -20,6 +20,7 @@ description: |
+ properties:
+   compatible:
+     enum:
++      - silergy,sq52206
+       - silergy,sy24655
+       - ti,ina209
+       - ti,ina219
+@@ -58,6 +59,9 @@ properties:
+       shunt voltage, and a value of 4 maps to ADCRANGE=0 such that a wider
+       voltage range is used.
  
- 	usb2phy_grf: syscon@ff450000 {
++      For SQ52206,the shunt-gain value 1 mapps to ADCRANGE=10/11, the value 2
++      mapps to ADCRANGE=01, and the value 4 mapps to ADCRANGE=00.
++
+       The default value is device dependent, and is defined by the reset value
+       of PGA/ADCRANGE in the respective configuration registers.
+     $ref: /schemas/types.yaml#/definitions/uint32
 -- 
-2.17.1
+2.43.0
 
 
