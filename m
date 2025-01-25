@@ -1,138 +1,207 @@
-Return-Path: <devicetree+bounces-140903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F485A1C348
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 13:44:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75750A1C34E
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 13:47:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8E27A168F07
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 12:44:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 449321889783
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 12:47:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9BB82080E3;
-	Sat, 25 Jan 2025 12:44:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D7842080D2;
+	Sat, 25 Jan 2025 12:47:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="PxK0sMKU"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ks4wyVRD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78EC207E18;
-	Sat, 25 Jan 2025 12:44:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E27F420766B
+	for <devicetree@vger.kernel.org>; Sat, 25 Jan 2025 12:47:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737809043; cv=none; b=O9B0fo1e1f+uDRu1dAfxVqzPlzWw3zIowTsB6pDGEkJguoI3VT6C2/6/cqSEwFlmlM6bUoaQr7su2RreoLW5mVYnP1OG5PfgLJZGhxwVAjswcqkh9O+lMnAEe1t9V00yLV2mjb7Dcezu191o3/CCkDZrUniHco8aZu8DwJguanY=
+	t=1737809261; cv=none; b=UQVcPLBH5O7fg8clszmghaotjUi2YKw7M4ky5QcCuk6JNqNM/O5HVH51QgtY8kutC2tsD/9g8HYZjGj9nHJAYtcXSLM6SXV4yYUJzwF8XpRD9skAL+QIZ4q65djNkTwWKTTWstky/sE5Lsn8TKjl8+jG+ulDwd2aXFMHlTFk18o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737809043; c=relaxed/simple;
-	bh=NlaAKhY+IZwJhCTyPYWy+HGapQ1kdZ3i1g6TA8GP9Qc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mhqwsyZKRBbSG3oN3HMZiHUk6Hhd7mnzfoa9uH+vEtiM/5Yr0WkCc/hRi0RdqgcYqIY+PtASV1WulK7MiISTwkN3DEfj7IMbgeN7jhKhtudLsMEkIx0ruXMguzK8KcGurbdYLoYiCkP01uHfK0ESG06wrv+X1h6cJYfedpJCDFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=PxK0sMKU; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737809042; x=1769345042;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NlaAKhY+IZwJhCTyPYWy+HGapQ1kdZ3i1g6TA8GP9Qc=;
-  b=PxK0sMKUkHnBZSgN0X58EW67Cr0Msygtba7zGeO4SBuOderSJP6dcCCF
-   QMGIJb2qzaMK8eVPUU0yk2tkb64zcWciIINmt1UWsY6ISOPCjE2/O6CGp
-   6h1dM/toBTqoWMGmaNWnu9kB7RShnU5MIx7p0Oyk0os4fDCD1KAEnc5xA
-   86T8DZ+fHPurTL+YKPXigmMTvH+fLHfkRot/qqgHvTfPevwxFsE+9Zgtk
-   qdVX7nXkv7dSj9bVXHjwychtlEHa31zw9Lll5YNvqm7HCptWPwOoaQTrn
-   EuZY0JhP23vXPmU+WTqGPjtnGa8cNzcbImWVTTdra1HFu9LZ9Pv2odUTi
-   g==;
-X-CSE-ConnectionGUID: K74TjVHtT7ezNlG1E0aBMg==
-X-CSE-MsgGUID: 16e0MM14RoWe+ZqzvxW8LQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11326"; a="37590023"
-X-IronPort-AV: E=Sophos;i="6.13,234,1732608000"; 
-   d="scan'208";a="37590023"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2025 04:44:01 -0800
-X-CSE-ConnectionGUID: aZKkiA7rSxWOWJZF61T1sw==
-X-CSE-MsgGUID: Qskw6ZrORVSq3BsHg4s8JQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="131311353"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 25 Jan 2025 04:43:57 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tbfVz-000doF-1O;
-	Sat, 25 Jan 2025 12:43:55 +0000
-Date: Sat, 25 Jan 2025 20:43:01 +0800
-From: kernel test robot <lkp@intel.com>
-To: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-i2c@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-hwmon@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, Guenter Roeck <linux@roeck-us.net>,
-	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Radu Sabau <radu.sabau@analog.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Alexis Czezar Torreno <alexisczezar.torreno@analog.com>,
-	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH v4 2/3] hwmon: (pmbus/adp1050): Add support for adp1051,
- adp1055 and ltp8800
-Message-ID: <202501252028.3VEwAFiG-lkp@intel.com>
-References: <20250124151746.1130-3-cedricjustine.encarnacion@analog.com>
+	s=arc-20240116; t=1737809261; c=relaxed/simple;
+	bh=j3ChbYvYouWV7XVpY7PgSRYLKAkIA5ZPWcLzLL1TU/s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=q4tDprqAPADY8y9WQWIu/gMWdXaTvLBOxGVsOnsJB5wUGaQY9ytFjEQWXEyjYYVNSm9taviUVA99od8NyWTYcSjKJWl7kIxdbwWPQjZEV5ERYyaEr6t6PjW/ve7x8PsrXwyF8lMFfmdpwwL39BZpYSOnCd9b0ztokrqRvjFj5lA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ks4wyVRD; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50PBuSK3020422
+	for <devicetree@vger.kernel.org>; Sat, 25 Jan 2025 12:47:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	bPHYDzKyLDqAStG7X6WB1480nUaAfLXUbqKAnfMUwYc=; b=ks4wyVRDD/MUUAu6
+	JZGc4s/AzeKbW30xUP7kykfLX7o45ckKiRrDrXsXg971wQ+1V/VlV65hmVGvr06v
+	FuuzupkijrU9TzvRf12Q5uF2tRq6hESPaDmQQW7AvHIGeafHsjEs5OWMpoD0975v
+	C3YlI+cyoB1VwNscCsXZcyGbRby4GyGZ8+Kx6HTU3sBCojiRf052z7KFBrxBA0Rv
+	e1Hdpz6rfLghk0TR2wbp3r172suhH8kXdV9KgcMJ8aj+uGTwnTkQtpJRqdU0oyN0
+	uZ2ajTV1x1VJleQM77wTG9yW5QrSTD/ycW/Sk6Hx4HZ0RK6CBTNAQUor6kKshuad
+	K4qWAw==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44cs20rgnr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 25 Jan 2025 12:47:32 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-467975f1b53so7440821cf.3
+        for <devicetree@vger.kernel.org>; Sat, 25 Jan 2025 04:47:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737809252; x=1738414052;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bPHYDzKyLDqAStG7X6WB1480nUaAfLXUbqKAnfMUwYc=;
+        b=knCBT2FxDKgyUiB4VGlbi/Iy/HeyIYzvgH6S/A6fpk1idMHjh4sjw9L6z1ecjF6byD
+         XvYS6AO17Q4s+w3YtiNRUo4GQCula2/hfFT0QsMQqGGyxNAicUXfFcAJMRFa6zyPaxFE
+         v7UAhnKKuFqRxRVn9aoPB7uM59USaJso429JUhRjKMoTBflxGj0QLLy38h+qmSgnfwyW
+         lDkP7PGNZkjGA/TWluo/4cPSl9GDhFHIjGlQamew3ddzoJ4TBu/2k/RgUMFCR/O2JsYe
+         xGCOGKSNNh4IgRdpn/66tAicHaWD1Z1gAOO66rUygtwZwBFDHegy2JTh6ZWh8UiHScvL
+         qM7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVvrcBDi/eFUEZDnvlRsZPI+XlunVwZWpUSL1j6pIQXrCsNoxPN6WrbYCxppcl7533ijKZAntAfkkEQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyRdr9JX/X/t4gq43HiI0dkBFvPTPbzB8Wp09G64qCHIiG8T1f
+	a8RWJxII7VGiZit93f6Gg+sQagF0NAFeWKcqCeQfI/W19UQTCdyexL59ZBx/jwB4jY8s4sGom22
+	wGy/qygL0odhYuzNAcq1NfqjdZDn8o+Zf2xaSIrURejbiXZw/SwbS8T8iv4G+
+X-Gm-Gg: ASbGncuw8rCCFV8Q7AcSxwQCV4X0qsbr2AGn+gZyNqHgYnxxGpL6b/IZDmnELzPsHmi
+	CI9HJ/CvYtD1+kf+a5Pyd/EGwbDZaGJRiS5quZrtve3P/Ea3hyE9IfvzHKuhzFzPtwgJU83klYB
+	KfLIovLWdSm4EFguZFcxTuyMl5zsJWvFO6j13dHSy3CcC7J34x0fgRdAoelmOTIoYeIj8sripQv
+	Wrxqr8o8TXy9Lq4QsRdztLRRPalIefg9MQZujNi2bEwIIyuwU7s6GmaJCx3jB6WjJJpAmZSBJDX
+	H9ouBC16oXPwmzH3ZwuS26rJWCfHB2S62JRwHm2oJGpwpebO+r67fTxCEb0=
+X-Received: by 2002:a05:620a:3947:b0:7b6:c3ad:6cc5 with SMTP id af79cd13be357-7be6320bd0cmr1982389985a.8.1737809251678;
+        Sat, 25 Jan 2025 04:47:31 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG+tpPHmY40FelAxI+bcpsjIWf+i8whl2Z89kTM+JXBxL0YetqZNT3ifGIkOBx7/dSycvzLDg==
+X-Received: by 2002:a05:620a:3947:b0:7b6:c3ad:6cc5 with SMTP id af79cd13be357-7be6320bd0cmr1982387885a.8.1737809251258;
+        Sat, 25 Jan 2025 04:47:31 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab6760fbb9fsm283557166b.142.2025.01.25.04.47.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 25 Jan 2025 04:47:29 -0800 (PST)
+Message-ID: <79281aca-c275-4055-8d2c-d2407b0f9811@oss.qualcomm.com>
+Date: Sat, 25 Jan 2025 13:47:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250124151746.1130-3-cedricjustine.encarnacion@analog.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] PCI: of: Add API to retrieve equalization presets
+ from device tree
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        konrad.dybcio@oss.qualcomm.com, quic_mrana@quicinc.com,
+        quic_vbadigan@quicinc.com, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+References: <20250124-preset_v2-v4-0-0b512cad08e1@oss.qualcomm.com>
+ <20250124-preset_v2-v4-2-0b512cad08e1@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250124-preset_v2-v4-2-0b512cad08e1@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: XNf8Jn2YQ6O5yj7dhPH3jw1SpocAiWH6
+X-Proofpoint-ORIG-GUID: XNf8Jn2YQ6O5yj7dhPH3jw1SpocAiWH6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-25_05,2025-01-23_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ adultscore=0 priorityscore=1501 mlxlogscore=999 mlxscore=0 phishscore=0
+ suspectscore=0 clxscore=1015 spamscore=0 impostorscore=0 bulkscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501250092
 
-Hi Cedric,
+On 24.01.2025 12:22 PM, Krishna Chaitanya Chundru wrote:
+> PCIe equalization presets are predefined settings used to optimize
+> signal integrity by compensating for signal loss and distortion in
+> high-speed data transmission.
+> 
+> As per PCIe spec 6.0.1 revision section 8.3.3.3 & 4.2.4 for data rates
+> of 8.0 GT/s, 16.0 GT/s, 32.0 GT/s, and 64.0 GT/s, there is a way to
+> configure lane equalization presets for each lane to enhance the PCIe
+> link reliability. Each preset value represents a different combination
+> of pre-shoot and de-emphasis values. For each data rate, different
+> registers are defined: for 8.0 GT/s, registers are defined in section
+> 7.7.3.4; for 16.0 GT/s, in section 7.7.5.9, etc. The 8.0 GT/s rate has
+> an extra receiver preset hint, requiring 16 bits per lane, while the
+> remaining data rates use 8 bits per lane.
+> 
+> Based on the number of lanes and the supported data rate, this function
+> reads the device tree property and stores in the presets structure.
+> 
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> ---
+>  drivers/pci/of.c  | 47 +++++++++++++++++++++++++++++++++++++++++++++++
+>  drivers/pci/pci.h | 24 +++++++++++++++++++++++-
+>  2 files changed, 70 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> index dacea3fc5128..7aa17c0042c5 100644
+> --- a/drivers/pci/of.c
+> +++ b/drivers/pci/of.c
+> @@ -826,3 +826,50 @@ u32 of_pci_get_slot_power_limit(struct device_node *node,
+>  	return slot_power_limit_mw;
+>  }
+>  EXPORT_SYMBOL_GPL(of_pci_get_slot_power_limit);
+> +
+> +/**
+> + * of_pci_get_equalization_presets - Parses the "eq-presets-ngts" property.
+> + *
+> + * @dev: Device containing the properties.
+> + * @presets: Pointer to store the parsed data.
+> + * @num_lanes: Maximum number of lanes supported.
+> + *
+> + * If the property is present read and store the data in the preset structure
+> + * assign default value 0xff to indicate property is not present.
+> + *
+> + * If the property is not found or is invalid, returns 0.
+> + */
+> +int of_pci_get_equalization_presets(struct device *dev,
+> +				    struct pci_eq_presets *presets,
+> +				    int num_lanes)
+> +{
+> +	char name[20];
+> +	int ret;
+> +
+> +	presets->eq_presets_8gts[0] = 0xff;
+> +	if (of_property_present(dev->of_node, "eq-presets-8gts")) {
+> +		ret = of_property_read_u16_array(dev->of_node, "eq-presets-8gts",
+> +						 presets->eq_presets_8gts, num_lanes);
+> +		if (ret) {
+> +			dev_err(dev, "Error reading eq-presets-8gts %d\n", ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	for (int i = 0; i < EQ_PRESET_TYPE_MAX; i++) {
+> +		presets->eq_presets_Ngts[i][0] = 0xff;
+> +		snprintf(name, sizeof(name), "eq-presets-%dgts", 8 << (i + 1));
+> +		if (of_property_present(dev->of_node, name)) {
 
-kernel test robot noticed the following build warnings:
+of_property_count_u8_elems returns -EINVAL if the property does not exist
 
-[auto build test WARNING on a76539b293677c5c163b9285b0cd8dd420d33989]
+you can then drop a level of indentation:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Cedric-Encarnacion/dt-bindings-hwmon-pmbus-adp1050-Add-adp1051-adp1055-and-ltp8800/20250124-233047
-base:   a76539b293677c5c163b9285b0cd8dd420d33989
-patch link:    https://lore.kernel.org/r/20250124151746.1130-3-cedricjustine.encarnacion%40analog.com
-patch subject: [PATCH v4 2/3] hwmon: (pmbus/adp1050): Add support for adp1051, adp1055 and ltp8800
-config: arm-randconfig-r133-20250125 (https://download.01.org/0day-ci/archive/20250125/202501252028.3VEwAFiG-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 14.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20250125/202501252028.3VEwAFiG-lkp@intel.com/reproduce)
+ret = of_property_read_u8_array...;
+if (ret == -EINVAL) {
+	continue;
+} else {
+	...
+}
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501252028.3VEwAFiG-lkp@intel.com/
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/hwmon/pmbus/adp1050.c:74:14: sparse: sparse: incorrect type in assignment (different modifiers) @@     expected struct pmbus_driver_info *info @@     got void const * @@
-   drivers/hwmon/pmbus/adp1050.c:74:14: sparse:     expected struct pmbus_driver_info *info
-   drivers/hwmon/pmbus/adp1050.c:74:14: sparse:     got void const *
+similarly above for 8gts
 
-vim +74 drivers/hwmon/pmbus/adp1050.c
-
-    69	
-    70	static int adp1050_probe(struct i2c_client *client)
-    71	{
-    72		struct pmbus_driver_info *info;
-    73	
-  > 74		info = i2c_get_match_data(client);
-    75		if (!info)
-    76			return -ENODEV;
-    77	
-    78		return pmbus_do_probe(client, info);
-    79	}
-    80	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Konrad
 
