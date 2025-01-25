@@ -1,393 +1,259 @@
-Return-Path: <devicetree+bounces-140914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8C5AA1C3C6
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 15:40:02 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A1E0A1C448
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 17:16:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11532165177
-	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 14:40:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 232E51888B15
+	for <lists+devicetree@lfdr.de>; Sat, 25 Jan 2025 16:16:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89DAA26ACC;
-	Sat, 25 Jan 2025 14:39:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99930208AD;
+	Sat, 25 Jan 2025 16:16:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KHuye4vj"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IsOUjW+S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56A75208D0;
-	Sat, 25 Jan 2025 14:39:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8815C1372;
+	Sat, 25 Jan 2025 16:16:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737815995; cv=none; b=f/KSh6UVM0HQUBjoxNRikem7Qi/0WFbnANj0TyFuqNb2IGDCk6MyQNGbljGEwBDU0JUpVA+pGz0Gh3eVdzEexstR3re24rBSc7C5VnjmkYfAshnTw+qenJV4CWv57WpO5snOk1FxPWkbb+jX+/SBgaGi1t2IMeR8S/n80Q6OV9g=
+	t=1737821800; cv=none; b=aBr0VYn8NDKH9buO7Di3nX7u6dKepEvt2+uyPDbNakvYPdeou++5yH6lFCD1ZTScdYY1y5YGs2UQ+Sj+LNnlS/eRzm7O58Rk98rBo5WO1PMuMhss+xpLiEY2x2WkNlLnG6EgC7pa/T/jEHcop5xj3nuQlLq69fhJobzL1lRL+F0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737815995; c=relaxed/simple;
-	bh=ZI7ZvS4RmdNXc+hCYub/u4cdPrY8DXwvp9nPZ2/ix1g=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=B6Og3fkEeDWlz0+mfd5krLRLenHLybZu78SpRZDsyhIzyrTSADnGdd1kE4djWbCmaQDsGTHyUMhMz8+P/FJgHu9YRV2tk0G7bmbfgl3Ui9hhgMqg7n83sbE6tgmR7SOfC4I7oaef2B4OwzQVpQ+Z8BUPnhJj0sgtvYg/a0jbMaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KHuye4vj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9B2CC4CED6;
-	Sat, 25 Jan 2025 14:39:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737815993;
-	bh=ZI7ZvS4RmdNXc+hCYub/u4cdPrY8DXwvp9nPZ2/ix1g=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=KHuye4vjiOI4btYX7yZZBPIccgHUjekK5hxiZ4HJaCIkaNJU9bjRw94xvGzjsmxKn
-	 CmapCl70JHS0wgUpD4a7342rmIvfJCJ8KoyyJwr6DDeEDkB64r1rLVMRVVVMQk48EJ
-	 VnZCjNNZPoDlZ/sfyIP8txKWMhzOiRmF5Ci9MbjxQzs0NFWNbEKYiLkaX8fuqs1gAc
-	 4MA9j1Yu05g7xwTp/inm2tiUHSQYsWUvouSjHKCg9Cf1TXVYI7vOzaNEQoiRqBkWZ4
-	 NwjeaooAFZcx4smskmxe5qoPU4cWRGTUu1F8gdQGuLrrFJhGVnvi5yWRMuqVh24Rp7
-	 LG42NMcPS4vXQ==
-Date: Sat, 25 Jan 2025 14:39:42 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Alisa-Dariana Roman <alisadariana@gmail.com>
-Cc: Alisa-Dariana Roman <alisa.roman@analog.com>, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>, David Lechner <dlechner@baylibre.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Linus
- Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-Subject: Re: [PATCH v2 2/2] iio: adc: ad7191: add AD7191
-Message-ID: <20250125143942.3df83c3d@jic23-huawei>
-In-Reply-To: <20250122132821.126600-3-alisa.roman@analog.com>
-References: <20250122132821.126600-1-alisa.roman@analog.com>
-	<20250122132821.126600-3-alisa.roman@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1737821800; c=relaxed/simple;
+	bh=yWJEn8zBPCM+vhRHeZAqLPayrGku3Jj0hMOlqCwBIaI=;
+	h=Date:From:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=jrXyp87IrtTrz346vrnCSTNPSsInDWqUIWE7stMPe+Y3qVUQfAK3joMpTYW6BoSicDVhs+WzrJo9ZulyaNbKYtbMXN5Ai07V6zPeiKWXV1VDKUtxN/EHi6IpJZosyxu1SCUtfb/TRuyU5FHmJLSCh2/F5r0WeNAK+7UtZHG/OkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IsOUjW+S; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737821799; x=1769357799;
+  h=date:from:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=yWJEn8zBPCM+vhRHeZAqLPayrGku3Jj0hMOlqCwBIaI=;
+  b=IsOUjW+SH7jWHIPCGKPmeJyaCqupnREAnmM/MB1wC52Q3qdzRiKC7JvL
+   v7OrfP3wsVbcGwov30QVWRUKgkw0FRRY8Af+clOHRwk0ac/XxElXFq+BM
+   5a8tXnZaHGXU2ZwepjkhwSsGxoyRJEh7HYqEKjdTbuZag/k8s623qAppD
+   MUbdBOARftmvMGxcbCSKBT7oPWFNx9MDjULoReLh1srYihKpNtWS5zawo
+   QGGOYt9hCPY4klvbtb7dHvudVCjO2CXhq+4WEicLc3gjiDm4Kh73KHBq5
+   vLUDRb1mwvQy3wbTgcbZiFu3lRTQQTOjNdjNJ3LulJWoZ6pbKFFTXOil2
+   Q==;
+X-CSE-ConnectionGUID: 2yetf9cmQhOzea3+jcNVVg==
+X-CSE-MsgGUID: jRfwRC8eQv29jWnQsbgPBw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11326"; a="38507305"
+X-IronPort-AV: E=Sophos;i="6.13,234,1732608000"; 
+   d="scan'208";a="38507305"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2025 08:16:38 -0800
+X-CSE-ConnectionGUID: S7gogHSVQVKTN9VtzmLy6w==
+X-CSE-MsgGUID: mV6XjxVbSbOvGEvgMQpeDg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,234,1732608000"; 
+   d="scan'208";a="107837842"
+Received: from sj-2308-osc3.sj.altera.com ([10.244.138.69])
+  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Jan 2025 08:16:37 -0800
+Date: Sat, 25 Jan 2025 08:16:37 -0800 (PST)
+From: matthew.gerlach@linux.intel.com
+To: =?ISO-8859-15?Q?Ilpo_J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org, 
+    robh@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, 
+    conor+dt@kernel.org, dinguyen@kernel.org, joyce.ooi@intel.com, 
+    linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+    LKML <linux-kernel@vger.kernel.org>, matthew.gerlach@altera.com, 
+    peter.colberg@altera.com, 
+    "D M, Sharath Kumar" <sharath.kumar.d.m@intel.com>, D@web.codeaurora.org, 
+    M@web.codeaurora.org
+Subject: Re: [PATCH v4 5/5] PCI: altera: Add Agilex support
+In-Reply-To: <f2c9061a-6a9c-4cd1-8a3f-a286a2eb30a8@linux.intel.com>
+Message-ID: <e3e95c4b-9b71-c2f5-4c83-2e4048627d89@linux.intel.com>
+References: <20250123181932.935870-1-matthew.gerlach@linux.intel.com> <20250123181932.935870-6-matthew.gerlach@linux.intel.com> <f2c9061a-6a9c-4cd1-8a3f-a286a2eb30a8@linux.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="8323329-1565007811-1737821797=:3336834"
 
-On Wed, 22 Jan 2025 15:20:40 +0200
-Alisa-Dariana Roman <alisadariana@gmail.com> wrote:
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-> AD7191 is a pin-programmable, ultralow noise 24-bit sigma-delta ADC
-> designed for precision bridge sensor measurements. It features two
-> differential analog input channels, selectable output rates,
-> programmable gain, internal temperature sensor and simultaneous
-> 50Hz/60Hz rejection.
-> 
-> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
-Hi Alisa-Dariana,
-
-A few additional comments inline. Hopefully not too much overlap
-with other reviews
-
-Jonathan
-
-> diff --git a/drivers/iio/adc/ad7191.c b/drivers/iio/adc/ad7191.c
-> new file mode 100644
-> index 000000000000..dd8151ad3f3f
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad7191.c
-> @@ -0,0 +1,570 @@
+--8323329-1565007811-1737821797=:3336834
+Content-Type: text/plain; charset=ISO-8859-15; format=flowed
+Content-Transfer-Encoding: 8BIT
 
 
-> +static int set_cs(struct ad_sigma_delta *sigma_delta, int pull_down)
-> +{
-> +	struct spi_transfer t = {
-> +		.len = 0,
-> +		.cs_change = pull_down,
-> +	};
-> +	struct spi_message m;
-> +
-> +	spi_message_init(&m);
-> +	spi_message_add_tail(&t, &m);
 
-spi_message_init_with_transfers() given there is no spi_sync_transfers_locked()
-and probably not enough users to make it worth adding.
+On Fri, 24 Jan 2025, Ilpo Järvinen wrote:
 
-
-> +
-> +	return spi_sync_locked(sigma_delta->spi, &m);
-> +}
+> On Thu, 23 Jan 2025, Matthew Gerlach wrote:
 >
-
-> +static int ad7191_gpio_setup(struct iio_dev *indio_dev)
-> +{
-> +	struct ad7191_state *st = iio_priv(indio_dev);
-> +	struct device *dev = &st->sd.spi->dev;
-> +
-> +	if (device_property_read_u32(dev, "adi,odr-state", &st->odr_state) == 0) {
-> +		if (st->odr_state > AD7191_MAX_ODR_STATE)
-> +			return dev_err_probe(dev, -EINVAL, "Invalid ODR state.\n");
-> +
-> +		dev_info(dev, "ODR is pin-strapped to %d\n", st->odr_state);
-
-dev_dbg for all these. 
-
-> +		st->odr_gpios = NULL;
-> +	} else {
-> +		st->odr_gpios = devm_gpiod_get_array(dev, "odr", GPIOD_OUT_LOW);
-> +		if (IS_ERR(st->odr_gpios))
-> +			return dev_err_probe(dev, PTR_ERR(st->odr_gpios),
-> +					     "Failed to get odr gpios.\n");
-> +	}
-> +
-> +	if (device_property_read_u32(dev, "adi,pga-state", &st->pga_state) == 0) {
-> +		if (st->odr_state > AD7191_MAX_PGA_STATE)
-> +			return dev_err_probe(dev, -EINVAL, "Invalid PGA state.\n");
-> +
-> +		dev_info(dev, "PGA is pin-strapped to %d\n", st->pga_state);
-> +		st->pga_gpios = NULL;
-> +	} else {
-> +		st->pga_gpios = devm_gpiod_get_array(dev, "pga", GPIOD_OUT_LOW);
-> +		if (IS_ERR(st->pga_gpios))
-> +			return dev_err_probe(dev, PTR_ERR(st->pga_gpios),
-> +					     "Failed to get pga gpios.\n");
-> +	}
-> +
-> +	if (device_property_read_u32(dev, "adi,clksel-state", &st->clksel_state) == 0) {
-> +		dev_info(dev, "CLKSEL is pin-strapped to %d\n", st->clksel_state);
-> +		st->clksel_gpio = NULL;
-> +	} else {
-> +		st->clksel_gpio = devm_gpiod_get(dev, "clksel", GPIOD_OUT_HIGH);
-> +		if (IS_ERR(st->clksel_gpio))
-> +			return dev_err_probe(dev, PTR_ERR(st->clksel_gpio),
-> +					     "Failed to get clksel gpio.\n");
-> +	}
-> +
-> +	st->temp_gpio = devm_gpiod_get(dev, "temp", GPIOD_OUT_LOW);
-> +	if (IS_ERR(st->temp_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(st->temp_gpio),
-> +				     "Failed to get temp gpio.\n");
-> +
-> +	st->chan_gpio = devm_gpiod_get(dev, "chan", GPIOD_OUT_LOW);
-> +	if (IS_ERR(st->chan_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(st->chan_gpio),
-> +				     "Failed to get chan gpio.\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad7191_clock_setup(struct ad7191_state *st)
-> +{
-> +	struct device *dev = &st->sd.spi->dev;
-> +	u8 clksel_value;
-> +
-> +	st->mclk = devm_clk_get_enabled(dev, "mclk");
-> +	if (IS_ERR(st->mclk)) {
-> +		if (PTR_ERR(st->mclk) != -ENOENT)
-> +			return dev_err_probe(dev, PTR_ERR(st->mclk),
-> +					     "Failed to get mclk.\n");
-> +
-> +		/*
-> +		 * No external clock found, default to internal clock.
-Single line comment if anything.  Kind of obvious from code anyway
-so could drop the comment..
-
-> +		 */
-> +		clksel_value = AD7191_INT_CLK_ENABLE;
-> +		if (!st->clksel_gpio && st->clksel_state != AD7191_INT_CLK_ENABLE)
-> +			return dev_err_probe(dev, -EINVAL,
-> +				"Invalid CLKSEL state. To use the internal clock, CLKSEL must be high.\n");
-> +
-> +		dev_info(dev, "Using internal clock.\n");
-
-dev_dbg() for this stuff.  Driver shouldn't be that noisy about details like this
-
-> +	} else {
-> +		clksel_value = AD7191_EXT_CLK_ENABLE;
-> +		if (!st->clksel_gpio && st->clksel_state != AD7191_EXT_CLK_ENABLE)
-> +			return dev_err_probe(dev, -EINVAL,
-> +				"Invalid CLKSEL state. To use the external clock, CLKSEL must be low.\n");
-> +
-> +		dev_info(dev, "Using external clock.\n");
-> +	}
-> +
-> +	if (st->clksel_gpio)
-> +		gpiod_set_value(st->clksel_gpio, clksel_value);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad7191_setup(struct iio_dev *indio_dev, struct device *dev)
-> +{
-> +	struct ad7191_state *st = iio_priv(indio_dev);
-> +	u64 scale_uv;
-> +	const int gain[4] = {1, 8, 64, 128};
-> +	int i, ret;
-> +
-> +	ret = ad7191_init_regulators(indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad7191_gpio_setup(indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad7191_clock_setup(st);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Sampling frequencies in Hz, available in the documentation, Table 5.
-
-I'd just go with
-	 /* Sampling frequencies in Hz, see Table 5 */
-
-Unlikely it would be anywhere else and 'in the documentation' isn't
-very specific.
-
-> +	 */
-> +	st->samp_freq_avail[0] = 120;
-> +	st->samp_freq_avail[1] = 60;
-> +	st->samp_freq_avail[2] = 50;
-> +	st->samp_freq_avail[3] = 10;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(st->scale_avail); i++) {
-> +		scale_uv = ((u64)st->int_vref_mv * NANO) >>
-> +			   (indio_dev->channels[0].scan_type.realbits - 1);
-> +		do_div(scale_uv, gain[i]);
-> +		st->scale_avail[i][1] = do_div(scale_uv, NANO);
-> +		st->scale_avail[i][0] = scale_uv;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int ad7191_read_raw(struct iio_dev *indio_dev,
-> +			   struct iio_chan_spec const *chan, int *val,
-> +			   int *val2, long m)
-> +{
-> +	struct ad7191_state *st = iio_priv(indio_dev);
-> +
-> +	switch (m) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		return ad_sigma_delta_single_conversion(indio_dev, chan, val);
-> +	case IIO_CHAN_INFO_SCALE:
-> +		switch (chan->type) {
-> +		case IIO_VOLTAGE:
-
-As below.  Make the scope explicit with {}
-
-> +			guard(mutex)(&st->lock);
-> +			*val = st->scale_avail[st->pga_state][0];
-> +			*val2 = st->scale_avail[st->pga_state][1];
-> +			return IIO_VAL_INT_PLUS_NANO;
-> +		case IIO_TEMP:
-> +			*val = 0;
-> +			*val2 = NANO / AD7191_TEMP_CODES_PER_DEGREE;
-> +			return IIO_VAL_INT_PLUS_NANO;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +	case IIO_CHAN_INFO_OFFSET:
-> +		*val = -(1 << (chan->scan_type.realbits - 1));
-> +		switch (chan->type) {
-> +		case IIO_VOLTAGE:
-> +			return IIO_VAL_INT;
-> +		case IIO_TEMP:
-> +			*val -= 273 * AD7191_TEMP_CODES_PER_DEGREE;
-> +			return IIO_VAL_INT;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		*val = st->samp_freq_avail[st->odr_state];
-> +		return IIO_VAL_INT;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-
-> +
-> +static int __ad7191_write_raw(struct ad7191_state *st,
-> +			      struct iio_chan_spec const *chan,
-> +			      int val, int val2, long mask)
-> +{
-> +	int i;
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_SCALE:
-scope should be defined and obvious if you want to use guard.
-
-	case IIO_CHAN_INFO_SCALE: {
-		guard(mutex)(&st->lock);
-...
-
-		return -EINVAL;
-	}
-> +		guard(mutex)(&st->lock);
-> +		for (i = 0; i < ARRAY_SIZE(st->scale_avail); i++) {
-> +			if (val2 != st->scale_avail[i][1])
-> +				continue;
-> +			return ad7191_set_gain(st, i);
-> +		}
-> +		return -EINVAL;
-> +
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		if (!val)
-> +			return -EINVAL;
-> +
-> +		guard(mutex)(&st->lock);
-
-Same here.
-
-> +		for (i = 0; i < ARRAY_SIZE(st->samp_freq_avail); i++) {
-> +			if (val != st->samp_freq_avail[i])
-> +				continue;
-> +			return ad7191_set_samp_freq(st, i);
-> +		}
-> +		return -EINVAL;
-> +
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
-> +static int ad7191_probe(struct spi_device *spi)
-> +{
-> +	struct device *dev = &spi->dev;
-> +	struct ad7191_state *st;
-> +	struct iio_dev *indio_dev;
-> +	int ret;
-> +
-> +	if (!spi->irq) {
-> +		dev_err(dev, "no IRQ?\n");
-
-Can't the ad_sigma_delta library figure this out for all devices?
-Feels odd to check it here when this code never directly uses it.
+>> From: "D M, Sharath Kumar" <sharath.kumar.d.m@intel.com>
+>>
+>> Add PCIe root port controller support for the Agilex family of chips.
+>> The Agilex PCIe IP has three variants that are mostly sw compatible,
+>> except for a couple register offsets. The P-Tile variant supports
+>> Gen3/Gen4 1x16. The F-Tile variant supports Gen3/Gen4 4x4, 4x8, and 4x16.
+>> The R-Tile variant improves on the F-Tile variant by adding Gen5 support.
+>>
+>> To simplify the implementation of pci_ops read/write functions,
+>> ep_{read/write}_cfg() callbacks were added to struct altera_pci_ops
+>> to easily distinguish between hardware variants.
+>>
+>> Signed-off-by: D M, Sharath Kumar <sharath.kumar.d.m@intel.com>
+>> Signed-off-by: Matthew Gerlach <matthew.gerlach@linux.intel.com>
 
 
-> +		return -ENODEV;
-> +	}
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*st));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	st = iio_priv(indio_dev);
-> +
-> +	ret = devm_mutex_init(dev, &st->lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	indio_dev->name = "ad7191";
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->channels = ad7191_channels;
-> +	indio_dev->num_channels = ARRAY_SIZE(ad7191_channels);
-> +	indio_dev->info = &ad7191_info;
-> +
-> +	ad_sd_init(&st->sd, indio_dev, spi, &ad7191_sigma_delta_info);
-> +
-> +	ret = devm_ad_sd_setup_buffer_and_trigger(dev, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = ad7191_setup(indio_dev, dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
+[snip]
+
+>> +}
+>> +
+>> +static inline void cra_writeb(struct altera_pcie *pcie, const u32 value,
+>> +			      const u32 reg)
+>> +{
+>> +	writeb_relaxed(value, pcie->cra_base + reg);
+>> +}
+>> +
+>> +static inline u32 cra_readb(struct altera_pcie *pcie, const u32 reg)
+>> +{
+>> +	return readb_relaxed(pcie->cra_base + reg);
+>> +}
+>> +
+>>  static bool altera_pcie_link_up(struct altera_pcie *pcie)
+>>  {
+>>  	return !!((cra_readl(pcie, RP_LTSSM) & RP_LTSSM_MASK) == LTSSM_L0);
+>> @@ -145,6 +185,15 @@ static bool s10_altera_pcie_link_up(struct altera_pcie *pcie)
+>>  	return !!(readw(addr) & PCI_EXP_LNKSTA_DLLLA);
+>>  }
+>>
+>> +static bool aglx_altera_pcie_link_up(struct altera_pcie *pcie)
+>> +{
+>> +	void __iomem *addr = AGLX_RP_CFG_ADDR(pcie,
+>> +				   pcie->pcie_data->cap_offset +
+>> +				   PCI_EXP_LNKSTA);
+>> +
+>> +	return !!(readw_relaxed(addr) & PCI_EXP_LNKSTA_DLLLA);
+>
+> This returns bool so double negations are not necessary.
+
+I will remove unecessary !!
+
+>
+>> +}
+>> +
+>>  /*
+>>   * Altera PCIe port uses BAR0 of RC's configuration space as the translation
+>>   * from PCI bus to native BUS.  Entire DDR region is mapped into PCIe space
+>> @@ -425,6 +474,103 @@ static int s10_rp_write_cfg(struct altera_pcie *pcie, u8 busno,
+>>  	return PCIBIOS_SUCCESSFUL;
+>>  }
+>>
+>> +static int aglx_rp_read_cfg(struct altera_pcie *pcie, int where,
+>> +			    int size, u32 *value)
+>> +{
+>> +	void __iomem *addr = AGLX_RP_CFG_ADDR(pcie, where);
+>> +
+>> +	switch (size) {
+>> +	case 1:
+>> +		*value = readb_relaxed(addr);
+>> +		break;
+>> +	case 2:
+>> +		*value = readw_relaxed(addr);
+>> +		break;
+>> +	default:
+>> +		*value = readl_relaxed(addr);
+>> +		break;
+>> +	}
+>> +
+>> +	/* interrupt pin not programmed in hardware, set to INTA */
+>> +	if (where == PCI_INTERRUPT_PIN && size == 1 && !(*value))
+>> +		*value = 0x01;
+>> +	else if (where == PCI_INTERRUPT_LINE && !(*value & 0xff00))
+>> +		*value |= 0x0100;
+>> +
+>> +	return PCIBIOS_SUCCESSFUL;
+>> +}
+>> +
+>> +static int aglx_rp_write_cfg(struct altera_pcie *pcie, u8 busno,
+>> +			     int where, int size, u32 value)
+>> +{
+>> +	void __iomem *addr = AGLX_RP_CFG_ADDR(pcie, where);
+>> +
+>> +	switch (size) {
+>> +	case 1:
+>> +		writeb_relaxed(value, addr);
+>> +		break;
+>> +	case 2:
+>> +		writew_relaxed(value, addr);
+>> +		break;
+>> +	default:
+>> +		writel_relaxed(value, addr);
+>> +		break;
+>> +	}
+>> +
+>> +	/*
+>> +	 * Monitor changes to PCI_PRIMARY_BUS register on root port
+>> +	 * and update local copy of root bus number accordingly.
+>> +	 */
+>> +	if (busno == pcie->root_bus_nr && where == PCI_PRIMARY_BUS)
+>> +		pcie->root_bus_nr = value & 0xff;
+>> +
+>> +	return PCIBIOS_SUCCESSFUL;
+>> +}
+>> +
+>> +static int aglx_ep_write_cfg(struct altera_pcie *pcie, u8 busno,
+>> +			     unsigned int devfn, int where, int size, u32 value)
+>> +{
+>> +	cra_writel(pcie, ((busno << 8) | devfn), AGLX_BDF_REG);
+>> +	if (busno > AGLX_RP_SECONDARY(pcie))
+>> +		where |= BIT(12); /* type 1 */
+>
+> Add a define to replace the comment?
+
+I will create a suitably name macro; so that a comment won't be necessary.
+
+>
+>> +
+>> +	switch (size) {
+>> +	case 1:
+>> +		cra_writeb(pcie, value, where);
+>> +		break;
+>> +	case 2:
+>> +		cra_writew(pcie, value, where);
+>> +		break;
+>> +	default:
+>> +		cra_writel(pcie, value, where);
+>> +			break;
+>> +	}
+>> +
+>> +	return PCIBIOS_SUCCESSFUL;
+>> +}
+>> +
+>> +static int aglx_ep_read_cfg(struct altera_pcie *pcie, u8 busno,
+>> +			    unsigned int devfn, int where, int size, u32 *value)
+>> +{
+>> +	cra_writel(pcie, ((busno << 8) | devfn), AGLX_BDF_REG);
+>> +	if (busno > AGLX_RP_SECONDARY(pcie))
+>> +		where |= BIT(12); /* type 1 */
+>
+> Same here?
+
+Yes, use a better macro here too.
+
+>
+> -- 
+> i.
+
+Thanks for the review,
+Matthew Gerlach
+
+>
+>
+--8323329-1565007811-1737821797=:3336834--
 
