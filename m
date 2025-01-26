@@ -1,115 +1,155 @@
-Return-Path: <devicetree+bounces-140929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9524A1C6E7
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 08:52:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EDAEA1C700
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 09:29:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAF821882A7E
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 07:52:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D0B318867E7
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 08:29:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20FB4145A03;
-	Sun, 26 Jan 2025 07:52:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B06A7145A11;
+	Sun, 26 Jan 2025 08:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="T8yMRU5e"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="W78w2Ide"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3045513D8A4;
-	Sun, 26 Jan 2025 07:52:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737877971; cv=pass; b=jx5T2sVl+ymULsk4eoW4Mu9iBiKWGR2EbzC7P7+yWIQLnSC10oUPLEXm//Fw3bTJO1nLgxk1A5O87FXn9TH2Nqba4tKDXSHFXy9JzhEvDoe6Sr/YvuW8eD8xiTxL7LbqsYP1Gd44bzNjEfUDx9tX0lndCJvRIi9gD6UB9QyoJHU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737877971; c=relaxed/simple;
-	bh=rKrfr/SptBQwbiTQvVMn3VkOim1ngQyQbkwKURXsQe0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=K98jS6KckgjX8hJNc8i1l4c8qOEdiyutzX5HFxpt7WixdTYXXjYCy5V50K0KhKZ9R0k5Q/Om5B/V7CqCXOsE5mwfX/feRDD8FBGPkOXyBLEkLukM7dqGhCiGCCIRidt0bCqXHK8h/tIPmtF7ijVmGcMBzl6MPa/OeKT88xiKxto=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=T8yMRU5e; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1737877935; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=Hiaj4Q/l4XgTHZ1UlHoVp1dfiYa3vJfH5aB4zbrSJ++Kxwdl/ZqopWpec6FRJQsp/yid6ZeShIe7+Ctm6BeZrDPTxFOo5Z0D4UZlDvqRWtJcK5uyBuUpFDzf9V49H1RzmDmBkJKW3fHyosSt8vr6kcodHhL5ql3UltFx2N0F7ug=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1737877935; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=rKrfr/SptBQwbiTQvVMn3VkOim1ngQyQbkwKURXsQe0=; 
-	b=n6EjTY5UFcCfpnHwsarFSORN2XBbH7qYlggOYiiRoaryZs7SfzP8YitOyUT6yM/ZDXaF6CrTMna9g1o6Hv2g+m+vhTCA/L0p/u7a6BOi/E0c3xeUOQeaXNOhK8r+B6wgSQl6idZrD8R20t9fj2tB+0CFMT6NDN6B8LOgxl09W+o=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1737877935;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=rKrfr/SptBQwbiTQvVMn3VkOim1ngQyQbkwKURXsQe0=;
-	b=T8yMRU5eO3MOLIWJOA/l7FJgfGWn1CiCW5GV4PqmFC9E0B90a3ddXIDW2dYu/rYj
-	5i1Rlr1/ZERlaXpumZ08VPrH2n0TdJKh+yALKO4wMv/IozHTAAboyooqGIxY8qSfMUl
-	IoSiCxZyHCEG2CgT2FEkxpC+pBXOIXsQYUASnZmK+fzMruF+ZHg79SBnqNsAAjfYbps
-	UO72TwRFxcQXfkzOFzSggZ8D8aUYX70wdm8qd+IkZYxviCubim2ke5ZciWFkBu88hVQ
-	hOQnlbYKVLkO6a+RwemUEUqs0KIcl07nulpaMJz3yW/tl5BncHvoTDabQP2Wbub5Hrd
-	tBPEeNyk1Q==
-Received: by mx.zohomail.com with SMTPS id 173787791929919.86951080894619;
-	Sat, 25 Jan 2025 23:51:59 -0800 (PST)
-Message-ID: <db43243ea653073d223e640f064cd480da7e2cf5.camel@icenowy.me>
-Subject: Re: [PATCH v2 5/5] ASoC: sun4i-codec: change h616 card name
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Ryan Walklin <ryan@testtoast.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi
- Iwai <tiwai@suse.com>,  Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org, Chris Morgan
-	 <macromorgan@hotmail.com>
-Date: Sun, 26 Jan 2025 15:51:53 +0800
-In-Reply-To: <20250125070458.13822-6-ryan@testtoast.com>
-References: <20250125070458.13822-1-ryan@testtoast.com>
-	 <20250125070458.13822-6-ryan@testtoast.com>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901CD1482F5;
+	Sun, 26 Jan 2025 08:29:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1737880162; cv=none; b=WRI7k6tmzJ2vxGkQXVWux+pVXKudN2V7a6XDwbRww3wW5kENQRod3puWDHVvd06wPiYijPGJXI1yhDrw5NKq6hCGywiNvwkwXi037WGRytp91JLY50yau3ziYWG4wTIj2HH3g/g2y74L5oF0wvskvFsEJqwoRN6vp4WU+oE71yE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1737880162; c=relaxed/simple;
+	bh=id30FrHgdekIhpGO6P9y7Sf203U4VQx52sSlCxi/MH4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oKE2Eqdxfp3J+DxWOMvnaMR16eeXb35HTUYrLrYthBhiWocaXaZP4/vLz34SiIi2G4a3HBrJKnCAlbSy6YpEqQ7vJBRVKhMicCwt+WbOyYPK9MZDUM3PUFYXS9LJNLovrXjk/ENLeZiGiiLoEIeiNSM74b+4jP+cZ+SfsTs7kcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=W78w2Ide; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737880160; x=1769416160;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=id30FrHgdekIhpGO6P9y7Sf203U4VQx52sSlCxi/MH4=;
+  b=W78w2IdehAetIw3p/gI1gGmPzFv+Cvm2RdbKUI7Tj3qfXP1r9UJVWu7U
+   tzQ4ECqvvyjM1a8gAQixP1nhsOykp7MWyBkeWrOSHW6DxZ2WcyuPIavXC
+   81r1Tn2L9EIn3oOdd3K762HU1UAzvqicubLgfK7u/GetAawL4LmcwKR1C
+   lMOgMFpoZH15RXLJ46fjJ+i1DmHFvLPGtvGB4f6fr2o4mtSrqLMsA2RV9
+   flQxcsAC8gVax4qZPSJtqc2Lq0sjlQpe1oFv3ZIFEYE0FGxy4XAQNS69N
+   yYKHwHQtLvoNT+/OmNd4BLxJXrDl5rIf/HTs5a13WHYw2v+ZRBYXjzeDk
+   g==;
+X-CSE-ConnectionGUID: mCm0+3F9ScyYFZUbcbChZA==
+X-CSE-MsgGUID: vVgvKrvETtuYswSqNji96w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11326"; a="60829893"
+X-IronPort-AV: E=Sophos;i="6.13,236,1732608000"; 
+   d="scan'208";a="60829893"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2025 00:29:19 -0800
+X-CSE-ConnectionGUID: vgDsUFFGTbmSgjbMTztW4A==
+X-CSE-MsgGUID: 2r9dY8huQC6Mgauwd/PaUQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,236,1732608000"; 
+   d="scan'208";a="139015778"
+Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
+  by orviesa002.jf.intel.com with ESMTP; 26 Jan 2025 00:29:16 -0800
+Date: Sun, 26 Jan 2025 16:28:55 +0800
+From: Xu Yilun <yilun.xu@linux.intel.com>
+To: Mahesh Rao <mahesh.rao@intel.com>
+Cc: Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
+	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Mahesh Rao <mahesh.rao@altera.com>
+Subject: Re: [PATCH 3/3] firmware: stratix10-svc: Add
+ of_platform_default_populate()
+Message-ID: <Z5XyR9QE3kcQDOPe@yilunxu-OptiPlex-7050>
+References: <20250122-socfpga_sip_svc_misc-v1-0-cbdcd034ae34@intel.com>
+ <20250122-socfpga_sip_svc_misc-v1-3-cbdcd034ae34@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250122-socfpga_sip_svc_misc-v1-3-cbdcd034ae34@intel.com>
 
-5ZyoIDIwMjUtMDEtMjXmmJ/mnJ/lha3nmoQgMjA6MDAgKzEzMDDvvIxSeWFuIFdhbGtsaW7lhpnp
-gZPvvJoKPiBBZGRpbmcgamFjayBkZXRlY3Rpb24gcmVxdWlyZXMgc291bmQgc2VydmVycyB0byBh
-Y3Qgb24gdGhlIGVtaXR0ZWQKPiBldmVudHMsIHdoaWNoIGFyZSBkZXNjcmliZWQgYnkgQUxTQSBV
-c2UgQ2FzZSBNYW5hZ2VyIGNvbmZpZ3VyYXRpb25zCj4gaW4KPiB1c2Vyc3BhY2UuIFRoZXNlIGNv
-bmZpZ3VyYXRpb25zIGluY2x1ZGUgdGhlIGNhcmQgbmFtZSBpbiB0aGUgZmlsZQo+IHBhdGgsCj4g
-c28gYWx0ZXIgdGhlIGNhcmQgbmFtZSBmb3IgdGhlIEg2MTYgdG8gcmVtb3ZlIHNwYWNlcywgbWFr
-aW5nIFVDTQo+IHJlZmVyZW5jaW5nIGVhc2llci4gQWRkIGEgbG9uZ19uYW1lIHRvIG1haW50YWlu
-IGNvbnNpc3RlbmN5IHdpdGggdGhlCj4gb3RoZXIgZHJpdmVycy4KPiAKPiBUaGUgY29ycmVzcG9u
-ZGluZyBBTFNBIFVDTSBwYXRjaCBpcyBoZXJlOgo+IGh0dHBzOi8vZ2l0aHViLmNvbS9hbHNhLXBy
-b2plY3QvYWxzYS11Y20tY29uZi9wdWxsLzQ5MQo+IAo+IFNpZ25lZC1vZmYtYnk6IFJ5YW4gV2Fs
-a2xpbiA8cnlhbkB0ZXN0dG9hc3QuY29tPgo+IAo+IC0tCj4gQ2hhbmdlbG9nIHYxLi52MjoKPiAt
-IFNlcGFyYXRlIHBhdGNoIGZvciBjYXJkLT5sb25nX25hbWUKPiAtIE5vdGUgVUNNIHBhdGNoIGxp
-bmsKPiAtLS0KPiDCoHNvdW5kL3NvYy9zdW54aS9zdW40aS1jb2RlYy5jIHwgMyArKy0KPiDCoDEg
-ZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkKPiAKPiBkaWZmIC0t
-Z2l0IGEvc291bmQvc29jL3N1bnhpL3N1bjRpLWNvZGVjLmMgYi9zb3VuZC9zb2Mvc3VueGkvc3Vu
-NGktCj4gY29kZWMuYwo+IGluZGV4IDM3MDFmNTZjNzI3NTYuLjY4ZTJkODIyMjhhMGIgMTAwNjQ0
-Cj4gLS0tIGEvc291bmQvc29jL3N1bnhpL3N1bjRpLWNvZGVjLmMKPiArKysgYi9zb3VuZC9zb2Mv
-c3VueGkvc3VuNGktY29kZWMuYwo+IEBAIC0yMDEyLDcgKzIwMTIsOCBAQCBzdGF0aWMgc3RydWN0
-IHNuZF9zb2NfY2FyZAo+ICpzdW41MGlfaDYxNl9jb2RlY19jcmVhdGVfY2FyZChzdHJ1Y3QgZGV2
-aWNlICpkZXYpCj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgY2FyZC0+ZGV2wqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgPSBkZXY7Cj4gwqDCoMKgwqDCoMKgwqDCoGNhcmQtPm93bmVywqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqA9IFRISVNfTU9EVUxFOwo+IC3CoMKgwqDCoMKgwqDCoGNhcmQt
-Pm5hbWXCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgPSAiSDYxNiBBdWRpbyBDb2RlYyI7Cj4g
-K8KgwqDCoMKgwqDCoMKgY2FyZC0+bmFtZcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqA9ICJo
-NjE2LWF1ZGlvLWNvZGVjIjsKPiArwqDCoMKgwqDCoMKgwqBjYXJkLT5sb25nX25hbWXCoMKgwqDC
-oMKgwqDCoMKgwqA9ICJINjE2IEF1ZGlvIENvZGVjIjsKCkkgdGhpbmsgaXQncyBwYXJ0IG9mIHRo
-ZSB1c2Vyc3BhY2UgQVBJIHRoYXQgc2hvdWxkIGJlIGtlcHQgc3RhYmxlLgoKPiDCoMKgwqDCoMKg
-wqDCoMKgY2FyZC0+ZHJpdmVyX25hbWXCoMKgwqDCoMKgwqDCoD0gInN1bjRpLWNvZGVjIjsKPiDC
-oMKgwqDCoMKgwqDCoMKgY2FyZC0+Y29udHJvbHPCoMKgwqDCoMKgwqDCoMKgwqDCoD0gc3VuNTBp
-X2g2MTZfY2FyZF9jb250cm9sczsKPiDCoMKgwqDCoMKgwqDCoMKgY2FyZC0+bnVtX2NvbnRyb2xz
-wqDCoMKgwqDCoMKgPQo+IEFSUkFZX1NJWkUoc3VuNTBpX2g2MTZfY2FyZF9jb250cm9scyk7Cgo=
+On Wed, Jan 22, 2025 at 01:58:45PM +0800, Mahesh Rao wrote:
+> Add of_platform_default_populate() to stratix10-svc
+> driver as the firmware/svc node was moved out of soc.
+> This fixes the failed probing of child drivers of
+> svc node.
+> 
+> Fixes: 23c3ebed382a ("arm64: dts: socfpga: agilex: move firmware out of soc node")
+> 
+> Signed-off-by: Mahesh Rao <mahesh.rao@intel.com>
+> ---
+>  drivers/firmware/stratix10-svc.c | 14 +++++++++++---
+>  1 file changed, 11 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/firmware/stratix10-svc.c b/drivers/firmware/stratix10-svc.c
+> index c5c78b869561b0c1e9602823ad1f501e98e3ce51..15a7207f7753dcd4e94da4aa9a6162fedb577fe9 100644
+> --- a/drivers/firmware/stratix10-svc.c
+> +++ b/drivers/firmware/stratix10-svc.c
+> @@ -1227,13 +1227,19 @@ static int stratix10_svc_drv_probe(struct platform_device *pdev)
+>  	if (!svc->intel_svc_fcs) {
+>  		dev_err(dev, "failed to allocate %s device\n", INTEL_FCS);
+>  		ret = -ENOMEM;
+> -		goto err_unregister_dev;
+> +		goto err_unregister_rsu_dev;
+>  	}
+>  
+>  	ret = platform_device_add(svc->intel_svc_fcs);
+>  	if (ret) {
+>  		platform_device_put(svc->intel_svc_fcs);
+> -		goto err_unregister_dev;
+> +		goto err_unregister_rsu_dev;
+> +	}
+> +
+> +	ret = of_platform_default_populate(dev_of_node(dev), NULL, dev);
+> +	if (ret < 0) {
 
+	if (ret)  is just fine.
+
+> +		of_platform_depopulate(dev);
+> +		goto err_unregister_fcs_dev;
+
+You wanna destroy everything even if some child drivers work?
+And do we need to do depopulation on driver remove?
+I'm actually a little confused how to handle populate() fail and
+depopulate().
+
+Thanks,
+Yilun
+
+>  	}
+>  
+>  	dev_set_drvdata(dev, svc);
+> @@ -1242,7 +1248,9 @@ static int stratix10_svc_drv_probe(struct platform_device *pdev)
+>  
+>  	return 0;
+>  
+> -err_unregister_dev:
+> +err_unregister_fcs_dev:
+> +	platform_device_unregister(svc->intel_svc_fcs);
+> +err_unregister_rsu_dev:
+>  	platform_device_unregister(svc->stratix10_svc_rsu);
+>  err_free_kfifo:
+>  	kfifo_free(&controller->svc_fifo);
+> 
+> -- 
+> 2.35.3
+> 
+> 
 
