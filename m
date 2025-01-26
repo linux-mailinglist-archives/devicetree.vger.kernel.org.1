@@ -1,178 +1,142 @@
-Return-Path: <devicetree+bounces-140927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81251A1C668
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 07:10:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 078BEA1C6A3
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 08:30:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC3693A8312
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 06:10:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 717687A14BD
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 07:29:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9886670805;
-	Sun, 26 Jan 2025 06:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1E9019D07E;
+	Sun, 26 Jan 2025 07:30:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="BoSYA+YN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LcGcUO2e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 924D9433CE;
-	Sun, 26 Jan 2025 06:10:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 235F419C54A
+	for <devicetree@vger.kernel.org>; Sun, 26 Jan 2025 07:29:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737871834; cv=none; b=K0KH/ZWNNagqcDQVB0PFaIsf/hvvDWpokB8ywTr+hCZ0m5pJXe609tmgl43IM6eARI2W5d8ZzatRa15NgZJ2EK5o0kKi0vyyihTpIXFxCBNDS6dRtE8liz08cB5NEdAurVDX7nNYbKlPFrNjlQsJV5h7xQMRS8U2N/NOuEUUwMU=
+	t=1737876600; cv=none; b=rW40JltcyBJSQ2obaSAYsK/1iJTI/q5xzNjaPalJHvB6erMaSQb5Qz/0VaXTZY01RsYwClV1I8DHu2fhdpjVuczaYOiO5IxIw9atPpXMwbq/NyoWphtz4vDoZqwmyLVPzXCVfPhwoUB5vB1ELPvPVqe5F27J4WI0b9JJkufDHew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737871834; c=relaxed/simple;
-	bh=Dg9hTwzDKC3lcngdjYoy+m6pN3yMd5ZfDcbRo9fdDpo=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=IOFH5BeS8QjHUKyjppERksOxBVBcwZFEckFbWoz/hXLG1bj8sOk0/cD3/7wJeqPz4/ld7aY0YYCw9w21ohR6/lRv/Zur4g20fZKJ9GWiW0yl9b2QwMWXDQANJXaOqMkGwYlNoE8N9QZpfK38rc6HX1FMg9BCN+aiJuTUCfBYosQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=BoSYA+YN; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1737876600; c=relaxed/simple;
+	bh=Cj3am8EY8dyXip8njKWY5dUo1Uu06z/0Iuv1BTsliLM=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=R1izZvpK6YpghN2rdHXg/GiyC1A8nE5OSYHQGJt8yiJ7QTfSypFCcBtZ0tXJ0KyKOPPc0iOvB6mMmTzxGowWeSQCw3f0woH+PeTYwyHBPXy4isvjaGzLQCNDD+CPcnQjsINV5DPqsTMh+nA3FnMXWqxUnXSGHKEMwNY0ZONkFxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LcGcUO2e; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-216634dd574so40841835ad.2
+        for <devicetree@vger.kernel.org>; Sat, 25 Jan 2025 23:29:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737876598; x=1738481398; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=lWEYm1Wvugz22VZTmmCSh9dWYssFgpGfT0lCZXzX6jQ=;
+        b=LcGcUO2e9+mTI3hvOkjXTMttCUujWo0ylX/oJuGLzmrluT9zZFrFv3PA4yuhXJpuGt
+         Fk02yhn1AYhl1z4UUXPhPgoF4spu9eKsP7Q2SCSX1oj5mNqiTbyy7c13rPGf78IoRLBU
+         V48mhwYJUt1U3E+bHmOlixyXK8rCdQvxrYklYFSJAXlgUIgW+vIxpwNRFnwYGDVcAyy+
+         CHICGq0UesWGb0c21WEgZYuFO+UBguNvEwrCbGtWSbfNU59vzE77z2Pc8dhujrFbKqqL
+         4LwAjRsWwBLON0NmvsJPaGoWil6Zv1Sgr81h70JSam6zGA4S7cLjE+kj/xgESTRTyThj
+         wTJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737876598; x=1738481398;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lWEYm1Wvugz22VZTmmCSh9dWYssFgpGfT0lCZXzX6jQ=;
+        b=NDcb/C+l72vS3U8XVMT4heSGYAonqww9N92J4579V5YZKTQ68kNMXSRVntJkI/hGp5
+         YAoUwtylymTAH3xeeznhif/s3so+OM1GlKGVdtosLLWEAZ+ti0pocSPzZ377mwQBtnGQ
+         +V3S/3TaGMwIFQhJCIrRjd9uABAazKeGFhpC8QPGNTxuVrXcAyHROlsYtQx3hsSpnfs8
+         f0QfK5HTPnzdJuOsZ6Fnqau+1DLeDVrmpbibMPntTAzkWrO0IXcBCCqCtLQqfQ/DW4RO
+         lTqv6KfgN/z6Avyt8eK5h8bgGNMM7CQ46o+wTZZVCf/X8XcVtgBmBgDY7WpN6c8IRwqP
+         mAhg==
+X-Forwarded-Encrypted: i=1; AJvYcCWwO8wKZUavCelilMwEPIgclZiswTHKL144XTask6pf/SVrepIcna9XZXO5Sfaax9xnWQvU3GOK7Oc8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw5bjmCbxsx6af/4GjbQEwqC0gfFrXInzj0XG2TMwt8JZdqTcKG
+	sh2BXKsqN+lddYA0fp55OhtJkbRzRuqcy62olJ036Mo4SJa9tkulamcd7I1/VQ==
+X-Gm-Gg: ASbGncu/PSPX9z7fJ+1t221jV2sWdFkGwS7nbvP45/qUUueBOTkoKlDW/VmHaI4z2Sh
+	AdIIEltnrTOerWsWQ2wDqLo/5DTjA/1wbtbPlcvTahB/fnZ2Gl2maTbz5jh0g9iLw3duZsiWFcZ
+	jJq+GKn5sK69YVNx5Z61CO9x5HCAWyLAANogZeF05N99PLI4fI12ahzjDTrpAuH4RLjXKuE5upq
+	yUNSwNiislNC7IDCkejKz3i5+FwrnU63B+R0/ZbK0uJ3Od2f5yQbKaPzXSdaHulTx79kIiWwanC
+	lV59
+X-Google-Smtp-Source: AGHT+IFD0g9cKNN5kJkF+EtlX2a/2RSBTYh3J6vZZB5CmCmj+BPQyEJoszp2cnYSPKR9enWkHM+YrQ==
+X-Received: by 2002:a05:6a20:9191:b0:1e6:8f10:8ba2 with SMTP id adf61e73a8af0-1eb2145eab3mr55988433637.9.1737876598420;
+        Sat, 25 Jan 2025 23:29:58 -0800 (PST)
+Received: from ?IPv6:::1? ([2409:40f4:3047:1c2c:8000::])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-72f8a78ee7bsm4940924b3a.170.2025.01.25.23.29.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 25 Jan 2025 23:29:58 -0800 (PST)
+Date: Sun, 26 Jan 2025 12:59:52 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+CC: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 3/6] phy: qcom: qmp-pcie: Add X1P42100 Gen4x4 PHY
+User-Agent: K-9 Mail for Android
+In-Reply-To: <h6zfhxkc4dj2ueaxipha6prbvmv7pnqglghtjs7vkhlc2s7ndi@vhbj4uojlzwd>
+References: <20250125-topic-x1p4_dts-v1-0-02659a08b044@oss.qualcomm.com> <20250125-topic-x1p4_dts-v1-3-02659a08b044@oss.qualcomm.com> <h6zfhxkc4dj2ueaxipha6prbvmv7pnqglghtjs7vkhlc2s7ndi@vhbj4uojlzwd>
+Message-ID: <A64B8332-78F2-4B76-908E-4119E4A54BAE@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1737871830;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cElRMI26kDUSrPRrVyetsiiM/S0G4rSifs7vMEkuMyM=;
-	b=BoSYA+YN8DT70FM/64U/Q+bBiO35QdHpf2DFaywph2W9xYyJWIts4K5wjUescUkk4usIm+
-	TOoQzB/ftyB+qevWHicX1H8OmXRYYzI07gN7AnqLaUEgv4NMEddRPpZVyyN9VrYTmMKHwa
-	30eFNwTpDdQCdKVlrG1lYKTVK54ryoEYagkqUqSXt/cU4sstvuzubBlEoOAaMb9REkr2eS
-	BuwYrO57pnyBqlRdBwbJBTe1q8cnsXZ8RQAOOAUxAtMjDzBHLIvmKSRSTtvQ/N7E5um9pW
-	Wd1OReYHbtLte7RXrw/IsWieNfQ9CT6mS0oaOO80UqYK+lwWulf2NuyxTxdY2g==
-Date: Sun, 26 Jan 2025 07:10:30 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Alexander Shiyan <eagle.alexander923@gmail.com>, Rob Herring
- <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, devicetree@vger.kernel.org, Sebastian Reichel
- <sebastian.reichel@collabora.com>, stable@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
- for rk3588
-In-Reply-To: <CABjd4Yy14bpjzvFyc8et-=pmds5uwzfxNqcs7L=+XRXBogZEsQ@mail.gmail.com>
-References: <20250124052611.3705-1-eagle.alexander923@gmail.com>
- <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com>
- <a76f315f023a3f8f5435e0681119b4eb@manjaro.org>
- <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
- <61b494b209d7360d0f36adbf6d5443a4@manjaro.org>
- <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
- <CABjd4Yy14bpjzvFyc8et-=pmds5uwzfxNqcs7L=+XRXBogZEsQ@mail.gmail.com>
-Message-ID: <5bfe48fd72e2a82f5b2d8b00d8a79d35@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 2025-01-24 20:44, Alexey Charkov wrote:
-> On Fri, Jan 24, 2025 at 9:23 PM Alexey Charkov <alchark@gmail.com> 
-> wrote:
->> On Fri, Jan 24, 2025 at 2:37 PM Dragan Simic <dsimic@manjaro.org> 
->> wrote:
->> > On 2025-01-24 11:25, Alexey Charkov wrote:
->> > > On Fri, Jan 24, 2025 at 2:06 PM Dragan Simic <dsimic@manjaro.org>
->> > > wrote:
->> > >> On 2025-01-24 09:33, Alexey Charkov wrote:
->> > >> > On Fri, Jan 24, 2025 at 9:26 AM Alexander Shiyan
->> > >> > <eagle.alexander923@gmail.com> wrote:
->> > >> >>
->> > >> >> There is no pinctrl "gpio" and "otpout" (probably designed as
->> > >> >> "output")
->> > >> >> handling in the tsadc driver.
->> > >> >> Let's use proper binding "default" and "sleep".
->> > >> >
->> > >> > This looks reasonable, however I've tried it on my Radxa Rock 5C and
->> > >> > the driver still doesn't claim GPIO0 RK_PA1 even with this change. As
->> > >> > a result, a simulated thermal runaway condition (I've changed the
->> > >> > tshut temperature to 65000 and tshut mode to 1) doesn't trigger a PMIC
->> > >> > reset, even though a direct `gpioset 0 1=0` does.
->> > >> >
->> > >> > Are any additional changes needed to the driver itself?
->> > >>
->> > >> I've been digging through this patch the whole TSADC/OTP thing in the
->> > >> last couple of hours, and AFAIK some parts of the upstream driver are
->> > >> still missing, in comparison with the downstream driver.
->> > >>
->> > >> I've got some small suggestions for the patch itself, but the issue
->> > >> you observed is obviously of higher priority, and I've singled it out
->> > >> as well while digging through the code.
->> > >>
->> > >> Could you, please, try the patch below quickly, to see is it going to
->> > >> fix the issue you observed?  I've got some "IRL stuff" to take care of
->> > >> today, so I can't test it myself, and it would be great to know is it
->> > >> the right path to the proper fix.
->> > >>
->> > >> diff --git i/drivers/thermal/rockchip_thermal.c
->> > >> w/drivers/thermal/rockchip_thermal.c
->> > >> index f551df48eef9..62f0e14a8d98 100644
->> > >> --- i/drivers/thermal/rockchip_thermal.c
->> > >> +++ w/drivers/thermal/rockchip_thermal.c
->> > >> @@ -1568,6 +1568,11 @@ static int rockchip_thermal_probe(struct
->> > >> platform_device *pdev)
->> > >>          thermal->chip->initialize(thermal->grf, thermal->regs,
->> > >>                                    thermal->tshut_polarity);
->> > >>
->> > >> +       if (thermal->tshut_mode == TSHUT_MODE_GPIO)
->> > >> +               pinctrl_select_default_state(dev);
->> > >> +       else
->> > >> +               pinctrl_select_sleep_state(dev);
->> > >
->> > > I believe no 'else' block is needed here, because if tshut_mode is not
->> > > TSHUT_MODE_GPIO then the TSADC doesn't use this pin at all, so there's
->> > > no reason for the driver to mess with its pinctrl state. I'd rather
->> > > put a mirroring block to put the pin back to its 'sleep' state in the
->> > > removal function for the TSHUT_MODE_GPIO case.
->> >
->> > You're right, but the "else block" is what the downstream driver does,
->> 
->> Does it though? It only handles the TSHUT_MODE_GPIO case as far as I
->> can tell (or TSHUT_MODE_OTP in downstream driver lingo) [1]
->> 
->> [1] 
->> https://github.com/radxa/kernel/blob/edb3eeeaa4643ecac6f4185d6d391c574735fca1/drivers/thermal/rockchip_thermal.c#L2564
->> 
->> > so I think it's better to simply stay on the safe side and follow that
->> > logic in the upstream driver.  Is it really needed?  Perhaps not, but
->> > it also shouldn't hurt.
->> >
->> > > Will try and revert.
->> >
->> > Awesome, thanks!
->> >
->> > > P.S. Just looked at the downstream driver, and it actually calls
->> > > TSHUT_MODE_GPIO TSHUT_MODE_OTP instead, so it seems that "otpout" was
->> > > not a typo in the first place. So maybe the right approach here is not
->> > > to change the device tree but rather fix the "gpio" / "otpout" pinctrl
->> > > state handling in the driver.
->> >
->> > Indeed, "otpout" wasn't a typo, and I've already addressed that in my
->> > comments to Alexander's patch.  Will send that response a bit later.
->> >
->> > I think it's actually better to accept the approach in Alexander's
->> > patch, because the whole thing applies to other Rockchip SoCs as well,
->> > not just to the RK3588(S).
->> 
->> Anyway, I've just tried it after including the changes below, and
->> while /sys/kernel/debug/pinctrl/pinctrl-handles shows the expected
->> pinctrls under tsadc, the driver still doesn't seem to be triggering a
->> PMIC reset. Weird. Any thoughts welcome.
-> 
-> I found the culprit. "otpout" (or "default" if we follow Alexander's
-> suggested approach) pinctrl state should refer to the &tsadc_shut_org
-> config instead of &tsadc_shut - then the PMIC reset works.
 
-Huh, thanks for debugging, but this is quite confusing.  Let me dig
-through everything again later today.
+
+On January 25, 2025 11:00:23 PM GMT+05:30, Dmitry Baryshkov <dmitry=2Ebary=
+shkov@linaro=2Eorg> wrote:
+>On Sat, Jan 25, 2025 at 04:31:19AM +0100, Konrad Dybcio wrote:
+>> From: Konrad Dybcio <konrad=2Edybcio@oss=2Equalcomm=2Ecom>
+>>=20
+>> Add a new, common configuration for Gen4x4 V6 PHYs without an init
+>> sequence=2E
+>>=20
+>> The bootloader configures the hardware once and the OS retains that
+>> configuration by using the NOCSR reset line (which doesn't drop
+>> register state on assert) in place of the "full reset" one=2E
+>
+>I know your opinion, but my 2c would still be for not depending on the
+>bootloader=2E I think that was the rule for ages for many possible
+>reasons=2E
+>
+
+But if Linux or other OS can trust the bootloader, then it makes perfect s=
+ense to rely on them=2E Obviously, the question here is that on which platf=
+orms this level of trust should be established=2E And the answer I got was =
+starting from the compute platforms (atleast X1E)=2E
+
+So let's take it on an experimental basis and see how it goes? If at all a=
+ny problem arises, we can always resort to in kernel sequences=2E
+
+- Mani
+
+>>=20
+>> Use this new configuration for X1P42100's Gen4x4 PHY=2E
+>>=20
+>> Signed-off-by: Konrad Dybcio <konrad=2Edybcio@oss=2Equalcomm=2Ecom>
+>> ---
+>>  drivers/phy/qualcomm/phy-qcom-qmp-pcie=2Ec | 18 ++++++++++++++++++
+>>  1 file changed, 18 insertions(+)
+>
+
+=E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
+=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
+=E0=AF=8D
 
