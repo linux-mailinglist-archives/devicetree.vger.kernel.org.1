@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-140930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EDAEA1C700
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 09:29:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EFBE0A1C73F
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 11:00:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D0B318867E7
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 08:29:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 049711886F45
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 10:00:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B06A7145A11;
-	Sun, 26 Jan 2025 08:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F212E40E;
+	Sun, 26 Jan 2025 10:00:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="W78w2Ide"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WldJR+KX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901CD1482F5;
-	Sun, 26 Jan 2025 08:29:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1540425A625;
+	Sun, 26 Jan 2025 10:00:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737880162; cv=none; b=WRI7k6tmzJ2vxGkQXVWux+pVXKudN2V7a6XDwbRww3wW5kENQRod3puWDHVvd06wPiYijPGJXI1yhDrw5NKq6hCGywiNvwkwXi037WGRytp91JLY50yau3ziYWG4wTIj2HH3g/g2y74L5oF0wvskvFsEJqwoRN6vp4WU+oE71yE=
+	t=1737885619; cv=none; b=sYxQs9GJGiIsd4RJpmG9Y2J5UxEWUlzAp58lrhxJxgg1RZS0JSEPLPLWj2mZXkna3QxQO4VrMVztsC5m5Sp594h0peGbmPpX/Jxt7N2ScqdrdTPVAIJ1Y3iHGK5OFW5yXtFeM3xAO4JbKON9v5yvjRM8b6y052dCK0XnwAOxpbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737880162; c=relaxed/simple;
-	bh=id30FrHgdekIhpGO6P9y7Sf203U4VQx52sSlCxi/MH4=;
+	s=arc-20240116; t=1737885619; c=relaxed/simple;
+	bh=FqefYPyktdbWrX/Z0y4N7YCDCvcgWP9onoYVQ44dKZw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oKE2Eqdxfp3J+DxWOMvnaMR16eeXb35HTUYrLrYthBhiWocaXaZP4/vLz34SiIi2G4a3HBrJKnCAlbSy6YpEqQ7vJBRVKhMicCwt+WbOyYPK9MZDUM3PUFYXS9LJNLovrXjk/ENLeZiGiiLoEIeiNSM74b+4jP+cZ+SfsTs7kcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=W78w2Ide; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=URfcy+NaO4F/6u+Pb53ziF+trrIKYF9gPm5MdKzl1SjOvJu6Z26mcwhjwcWIa5pBLpOj/KHdzl/j15b43RylwwnucUUaFnUrOYoXS4FwSZW4AWZwyxwTzzld0gd24Ut7Q2GchYaf6jSRzT4WMJzMoXLw519dYlLeHpPA1zBNfCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WldJR+KX; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737880160; x=1769416160;
+  t=1737885617; x=1769421617;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=id30FrHgdekIhpGO6P9y7Sf203U4VQx52sSlCxi/MH4=;
-  b=W78w2IdehAetIw3p/gI1gGmPzFv+Cvm2RdbKUI7Tj3qfXP1r9UJVWu7U
-   tzQ4ECqvvyjM1a8gAQixP1nhsOykp7MWyBkeWrOSHW6DxZ2WcyuPIavXC
-   81r1Tn2L9EIn3oOdd3K762HU1UAzvqicubLgfK7u/GetAawL4LmcwKR1C
-   lMOgMFpoZH15RXLJ46fjJ+i1DmHFvLPGtvGB4f6fr2o4mtSrqLMsA2RV9
-   flQxcsAC8gVax4qZPSJtqc2Lq0sjlQpe1oFv3ZIFEYE0FGxy4XAQNS69N
-   yYKHwHQtLvoNT+/OmNd4BLxJXrDl5rIf/HTs5a13WHYw2v+ZRBYXjzeDk
+  bh=FqefYPyktdbWrX/Z0y4N7YCDCvcgWP9onoYVQ44dKZw=;
+  b=WldJR+KXl+WsfwlRZt3lng76F8+rnjIeoJ5fFQdO+dryRAW81smL5yBe
+   HS4+4fhKB4BDppsDvYC06AAoznBq/uB8qtQb5Dgn/4TtIqPWgy54krwdk
+   f9D1Yz3bDhVPy/1FNpUYfSDCD4Fz/JlAFNtknBBKaUDQOc8CiLG9bFVcj
+   F7T1hHTF3YUE3V7hxYNEXxfdblQtRQdQQWTvK+q9b/40oVSg2fEocLVJ7
+   u9O2frqr7aPnlVkzYYlxztjAlZdrqkWbC4w+DQNaGDBiJTIWhn+/rEJ7M
+   Z6N7pJUoDnb6+mcq/aGsKpK6Oih7BZ1KBQXsFerc39fi9YIL+6A/hdb6h
    g==;
-X-CSE-ConnectionGUID: mCm0+3F9ScyYFZUbcbChZA==
-X-CSE-MsgGUID: vVgvKrvETtuYswSqNji96w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11326"; a="60829893"
+X-CSE-ConnectionGUID: SxqD5vsTQn6YHzqmiWDpzA==
+X-CSE-MsgGUID: ElyRDUagSACe/5JdjhUFqw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11326"; a="38066873"
 X-IronPort-AV: E=Sophos;i="6.13,236,1732608000"; 
-   d="scan'208";a="60829893"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2025 00:29:19 -0800
-X-CSE-ConnectionGUID: vgDsUFFGTbmSgjbMTztW4A==
-X-CSE-MsgGUID: 2r9dY8huQC6Mgauwd/PaUQ==
+   d="scan'208";a="38066873"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2025 02:00:15 -0800
+X-CSE-ConnectionGUID: mrlWfIAyTfahD7RY2Z+nvA==
+X-CSE-MsgGUID: KBomorHtSz2uMOuwpz7Wqg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,236,1732608000"; 
-   d="scan'208";a="139015778"
-Received: from yilunxu-optiplex-7050.sh.intel.com (HELO localhost) ([10.239.159.165])
-  by orviesa002.jf.intel.com with ESMTP; 26 Jan 2025 00:29:16 -0800
-Date: Sun, 26 Jan 2025 16:28:55 +0800
-From: Xu Yilun <yilun.xu@linux.intel.com>
-To: Mahesh Rao <mahesh.rao@intel.com>
-Cc: Moritz Fischer <mdf@kernel.org>, Wu Hao <hao.wu@intel.com>,
-	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="145413634"
+Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 26 Jan 2025 02:00:13 -0800
+Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1tbzR4-000fBv-1h;
+	Sun, 26 Jan 2025 10:00:10 +0000
+Date: Sun, 26 Jan 2025 17:59:44 +0800
+From: kernel test robot <lkp@intel.com>
+To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dinh Nguyen <dinguyen@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-fpga@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Mahesh Rao <mahesh.rao@altera.com>
-Subject: Re: [PATCH 3/3] firmware: stratix10-svc: Add
- of_platform_default_populate()
-Message-ID: <Z5XyR9QE3kcQDOPe@yilunxu-OptiPlex-7050>
-References: <20250122-socfpga_sip_svc_misc-v1-0-cbdcd034ae34@intel.com>
- <20250122-socfpga_sip_svc_misc-v1-3-cbdcd034ae34@intel.com>
+	Saravana Kannan <saravanak@google.com>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Basharath Hussain Khaja <basharath@couthit.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>
+Subject: Re: [PATCH 2/2] of: address: Add kunit test for
+ __of_address_resource_bounds()
+Message-ID: <202501261727.x0aztept-lkp@intel.com>
+References: <20250120-of-address-overflow-v1-2-dd68dbf47bce@linutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,73 +83,106 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250122-socfpga_sip_svc_misc-v1-3-cbdcd034ae34@intel.com>
+In-Reply-To: <20250120-of-address-overflow-v1-2-dd68dbf47bce@linutronix.de>
 
-On Wed, Jan 22, 2025 at 01:58:45PM +0800, Mahesh Rao wrote:
-> Add of_platform_default_populate() to stratix10-svc
-> driver as the firmware/svc node was moved out of soc.
-> This fixes the failed probing of child drivers of
-> svc node.
-> 
-> Fixes: 23c3ebed382a ("arm64: dts: socfpga: agilex: move firmware out of soc node")
-> 
-> Signed-off-by: Mahesh Rao <mahesh.rao@intel.com>
-> ---
->  drivers/firmware/stratix10-svc.c | 14 +++++++++++---
->  1 file changed, 11 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/firmware/stratix10-svc.c b/drivers/firmware/stratix10-svc.c
-> index c5c78b869561b0c1e9602823ad1f501e98e3ce51..15a7207f7753dcd4e94da4aa9a6162fedb577fe9 100644
-> --- a/drivers/firmware/stratix10-svc.c
-> +++ b/drivers/firmware/stratix10-svc.c
-> @@ -1227,13 +1227,19 @@ static int stratix10_svc_drv_probe(struct platform_device *pdev)
->  	if (!svc->intel_svc_fcs) {
->  		dev_err(dev, "failed to allocate %s device\n", INTEL_FCS);
->  		ret = -ENOMEM;
-> -		goto err_unregister_dev;
-> +		goto err_unregister_rsu_dev;
->  	}
->  
->  	ret = platform_device_add(svc->intel_svc_fcs);
->  	if (ret) {
->  		platform_device_put(svc->intel_svc_fcs);
-> -		goto err_unregister_dev;
-> +		goto err_unregister_rsu_dev;
-> +	}
-> +
-> +	ret = of_platform_default_populate(dev_of_node(dev), NULL, dev);
-> +	if (ret < 0) {
+Hi Thomas,
 
-	if (ret)  is just fine.
+kernel test robot noticed the following build warnings:
 
-> +		of_platform_depopulate(dev);
-> +		goto err_unregister_fcs_dev;
+[auto build test WARNING on ffd294d346d185b70e28b1a28abe367bbfe53c04]
 
-You wanna destroy everything even if some child drivers work?
-And do we need to do depopulation on driver remove?
-I'm actually a little confused how to handle populate() fail and
-depopulate().
+url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Wei-schuh/of-address-Fix-empty-resource-handling-in-__of_address_resource_bounds/20250120-221141
+base:   ffd294d346d185b70e28b1a28abe367bbfe53c04
+patch link:    https://lore.kernel.org/r/20250120-of-address-overflow-v1-2-dd68dbf47bce%40linutronix.de
+patch subject: [PATCH 2/2] of: address: Add kunit test for __of_address_resource_bounds()
+config: arc-randconfig-r121-20250126 (https://download.01.org/0day-ci/archive/20250126/202501261727.x0aztept-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 13.2.0
+reproduce: (https://download.01.org/0day-ci/archive/20250126/202501261727.x0aztept-lkp@intel.com/reproduce)
 
-Thanks,
-Yilun
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202501261727.x0aztept-lkp@intel.com/
 
->  	}
->  
->  	dev_set_drvdata(dev, svc);
-> @@ -1242,7 +1248,9 @@ static int stratix10_svc_drv_probe(struct platform_device *pdev)
->  
->  	return 0;
->  
-> -err_unregister_dev:
-> +err_unregister_fcs_dev:
-> +	platform_device_unregister(svc->intel_svc_fcs);
-> +err_unregister_rsu_dev:
->  	platform_device_unregister(svc->stratix10_svc_rsu);
->  err_free_kfifo:
->  	kfifo_free(&controller->svc_fifo);
-> 
-> -- 
-> 2.35.3
-> 
-> 
+sparse warnings: (new ones prefixed by >>)
+>> drivers/of/of_test.c:130:47: sparse: sparse: cast truncates bits from constant value (100000000 becomes 0)
+   drivers/of/of_test.c:131:45: sparse: sparse: cast truncates bits from constant value (100000000 becomes 0)
+>> drivers/of/of_test.c:138:45: sparse: sparse: cast truncates bits from constant value (100000ffe becomes ffe)
+
+vim +130 drivers/of/of_test.c
+
+    72	
+    73	static const struct of_address_resource_bounds_case of_address_resource_bounds_cases[] = {
+    74		{
+    75			.start = 0,
+    76			.size = 0,
+    77			.ret = 0,
+    78			.res_start = 0,
+    79			.res_end = -1,
+    80		},
+    81		{
+    82			.start = 0,
+    83			.size = 0x1000,
+    84			.ret = 0,
+    85			.res_start = 0,
+    86			.res_end = 0xfff,
+    87		},
+    88		{
+    89			.start = 0x1000,
+    90			.size = 0,
+    91			.ret = 0,
+    92			.res_start = 0x1000,
+    93			.res_end = 0xfff,
+    94		},
+    95		{
+    96			.start = 0x1000,
+    97			.size = 0x1000,
+    98			.ret = 0,
+    99			.res_start = 0x1000,
+   100			.res_end = 0x1fff,
+   101		},
+   102		{
+   103			.start = 1,
+   104			.size = RESOURCE_SIZE_MAX,
+   105			.ret = 0,
+   106			.res_start = 1,
+   107			.res_end = RESOURCE_SIZE_MAX,
+   108		},
+   109		{
+   110			.start = RESOURCE_SIZE_MAX,
+   111			.size = 1,
+   112			.ret = 0,
+   113			.res_start = RESOURCE_SIZE_MAX,
+   114			.res_end = RESOURCE_SIZE_MAX,
+   115		},
+   116		{
+   117			.start = 2,
+   118			.size = RESOURCE_SIZE_MAX,
+   119			.ret = -EOVERFLOW,
+   120		},
+   121		{
+   122			.start = RESOURCE_SIZE_MAX,
+   123			.size = 2,
+   124			.ret = -EOVERFLOW,
+   125		},
+   126		{
+   127			.start = 0x100000000ULL,
+   128			.size = 1,
+   129			.ret = sizeof(resource_size_t) > sizeof(u32) ? 0 : -EOVERFLOW,
+ > 130			.res_start = (resource_size_t)0x100000000,
+   131			.res_end = (resource_size_t)0x100000000,
+   132		},
+   133		{
+   134			.start = 0x1000,
+   135			.size = 0xffffffff,
+   136			.ret = sizeof(resource_size_t) > sizeof(u32) ? 0 : -EOVERFLOW,
+   137			.res_start = (resource_size_t)0x1000,
+ > 138			.res_end = (resource_size_t)0x100000ffe,
+   139		},
+   140	};
+   141	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
