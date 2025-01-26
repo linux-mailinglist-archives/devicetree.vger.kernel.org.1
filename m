@@ -1,188 +1,149 @@
-Return-Path: <devicetree+bounces-140931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFBE0A1C73F
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 11:00:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43C9EA1C78B
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 12:39:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 049711886F45
-	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 10:00:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 689241887CD0
+	for <lists+devicetree@lfdr.de>; Sun, 26 Jan 2025 11:39:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45F212E40E;
-	Sun, 26 Jan 2025 10:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D01F14AD20;
+	Sun, 26 Jan 2025 11:39:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="WldJR+KX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XSJTIfQO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1540425A625;
-	Sun, 26 Jan 2025 10:00:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C02284D29
+	for <devicetree@vger.kernel.org>; Sun, 26 Jan 2025 11:39:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737885619; cv=none; b=sYxQs9GJGiIsd4RJpmG9Y2J5UxEWUlzAp58lrhxJxgg1RZS0JSEPLPLWj2mZXkna3QxQO4VrMVztsC5m5Sp594h0peGbmPpX/Jxt7N2ScqdrdTPVAIJ1Y3iHGK5OFW5yXtFeM3xAO4JbKON9v5yvjRM8b6y052dCK0XnwAOxpbQ=
+	t=1737891553; cv=none; b=QEZqUUlPm0W4B/AhFq+c4m14KSIKF2kiBv2W64TfSIK60Fu2U7peWk7NNRCM26N375vk2Wn8lI80RxHW6MWWUNKfsC6p+5HYQrtjdZBh6e2ORHszrMM6GjPJDATMjT5bAwCjNl8Zb6qj93mtm3OETRmz8fREAqGR5bzpiLQ7h6c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737885619; c=relaxed/simple;
-	bh=FqefYPyktdbWrX/Z0y4N7YCDCvcgWP9onoYVQ44dKZw=;
+	s=arc-20240116; t=1737891553; c=relaxed/simple;
+	bh=Vcvl+jjlmmvw9f0BXdc7GAb6boRiVFapSbGNQ8KJ43E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=URfcy+NaO4F/6u+Pb53ziF+trrIKYF9gPm5MdKzl1SjOvJu6Z26mcwhjwcWIa5pBLpOj/KHdzl/j15b43RylwwnucUUaFnUrOYoXS4FwSZW4AWZwyxwTzzld0gd24Ut7Q2GchYaf6jSRzT4WMJzMoXLw519dYlLeHpPA1zBNfCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=WldJR+KX; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737885617; x=1769421617;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FqefYPyktdbWrX/Z0y4N7YCDCvcgWP9onoYVQ44dKZw=;
-  b=WldJR+KXl+WsfwlRZt3lng76F8+rnjIeoJ5fFQdO+dryRAW81smL5yBe
-   HS4+4fhKB4BDppsDvYC06AAoznBq/uB8qtQb5Dgn/4TtIqPWgy54krwdk
-   f9D1Yz3bDhVPy/1FNpUYfSDCD4Fz/JlAFNtknBBKaUDQOc8CiLG9bFVcj
-   F7T1hHTF3YUE3V7hxYNEXxfdblQtRQdQQWTvK+q9b/40oVSg2fEocLVJ7
-   u9O2frqr7aPnlVkzYYlxztjAlZdrqkWbC4w+DQNaGDBiJTIWhn+/rEJ7M
-   Z6N7pJUoDnb6+mcq/aGsKpK6Oih7BZ1KBQXsFerc39fi9YIL+6A/hdb6h
-   g==;
-X-CSE-ConnectionGUID: SxqD5vsTQn6YHzqmiWDpzA==
-X-CSE-MsgGUID: ElyRDUagSACe/5JdjhUFqw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11326"; a="38066873"
-X-IronPort-AV: E=Sophos;i="6.13,236,1732608000"; 
-   d="scan'208";a="38066873"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Jan 2025 02:00:15 -0800
-X-CSE-ConnectionGUID: mrlWfIAyTfahD7RY2Z+nvA==
-X-CSE-MsgGUID: KBomorHtSz2uMOuwpz7Wqg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="145413634"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa001.jf.intel.com with ESMTP; 26 Jan 2025 02:00:13 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tbzR4-000fBv-1h;
-	Sun, 26 Jan 2025 10:00:10 +0000
-Date: Sun, 26 Jan 2025 17:59:44 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: oe-kbuild-all@lists.linux.dev,
-	Basharath Hussain Khaja <basharath@couthit.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>
-Subject: Re: [PATCH 2/2] of: address: Add kunit test for
- __of_address_resource_bounds()
-Message-ID: <202501261727.x0aztept-lkp@intel.com>
-References: <20250120-of-address-overflow-v1-2-dd68dbf47bce@linutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=aEk4VpIWINHh7O02+HHgR7+DlgmHwV+KvZkzyuFN+LatJEuAEj5gWQ34SWbSQzdKJlgMRG25CXuA4smSAEM5TSelGgUNRhBW71+bA/SyFgxXXTzOujfiChZPYEc2Vfj9+YkP3DRqAeI8yxuHaH+T9qAyiNnxJghbw4JIpA6AqSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XSJTIfQO; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5401e6efffcso3940848e87.3
+        for <devicetree@vger.kernel.org>; Sun, 26 Jan 2025 03:39:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737891549; x=1738496349; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=m3Z4T8xpTA0ju5YKhedGkcsXKqlbXo5WcnVj25PggZw=;
+        b=XSJTIfQOGoaBU3VjLRxOQ5DB4FSeBrDdRkFWLK73nzfiSWFdQwOFoOun79NjN2nFmN
+         2VxahfHLmDto3VyInagU9TMOgirldZ1X4q4KcEte7/IcwdpMx5zTSZ9Z2MUv/PxmnfMV
+         YkeHJ4nD4wljAQvw9CK5aB4cfqxQKSxz7eLQVOmk9wXiWYHOW07cU5gTvVa2+N0eWqNx
+         6XILaIod74PIq/wdGZ6FvBuBGFrJWZWfRnsonAjsaUFhZgWi2bc+r7AvXVLHxatFGaqL
+         j0ac7oXbU3er8G4qtE5B60Wx7kO2KFU0AqzTemtiyA5CbRaQ0V0JpYcSkZwAfUBgeC0w
+         Ko+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737891549; x=1738496349;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=m3Z4T8xpTA0ju5YKhedGkcsXKqlbXo5WcnVj25PggZw=;
+        b=vdfThamUViM8KMT1nYLEdHr3XhPIUIRsN2kbCQZzRvhN3YaxJI9vfOl/omtakGD/nV
+         6P7f3FhehufGrjzKjYaVqxRWf9VcFWB4rEGGtzP6/JdygKSp+R7mgMkoea8FnpXu8N6o
+         5GOVdrTo6n53tiWYhoESOPBI7jUjbHfDqUwsM5y3r9blpEwziepQqjfZyIdeA7R+kXyu
+         PtMv0uyaJ6ZdCMt/vjn0af60n89rcVEKHyHnN0764wN9wyZyLptCtQSiHmSFy0pdLdVc
+         XBECtg0CONDltqSauQkJXJ4PrEE1v123U5bJ9uym+viBGDFmHMNhVSFBp3y7j7d29Lm3
+         dM9w==
+X-Forwarded-Encrypted: i=1; AJvYcCU2SXM0HV80IWvU6JC4Lze4J91+VUwUakaj2nErk7ZgAzJ5SiH6icVTN7VgdRIKF8sLpK16VlQ0Egc2@vger.kernel.org
+X-Gm-Message-State: AOJu0YxE0Ym+gToqJ2gZirMyfvPQC2eLcLcM/iPMqBiknlJ35Ai+j1oJ
+	R5bH35vTn4NondsSUJeaQgoD2VEVDYXGp7Um0yAGZXckgC5hX+KwGAvsyrGVFEI=
+X-Gm-Gg: ASbGncufcBeEbguNdtLHr9Jr5eV+/dqF/2RoekK+zaXIafQhJUXheojn5uFZsp72mYO
+	qzGh8rccpWtw4h6IDoUd/xM6ZFMIU7Q2PT28PC+28KVFT/HKWF1asEv/uTlsRsN/furGBLTMh6g
+	7t2yOlJi99f0EW1krMetrGR+uLpWpPebzYLYsh6YnuIVfBgOVuitMiNvzHYjJl/JjqIWMEkk+/p
+	Ow7/BlePY6sey1Okyhpr5uk2JonDqySXoQzJ4YfWAAFKpRAALZWfBGqDhjVdp5i3ylIVoG2Yxi5
+	JnpIh3v/eSdB3u7AXbC12r89k8Q+TL1hKhTsy9cdoCpTaDj72ootWFtCTHV1IIrn2byHfYg=
+X-Google-Smtp-Source: AGHT+IGMHz3yK8zw+JbmUqjlC1MUV7n1Bow+QOgrcHWxA5uT+4qGx15AKrfg0wrgyvIOzYzTx823pA==
+X-Received: by 2002:ac2:5225:0:b0:542:241e:75ae with SMTP id 2adb3069b0e04-5439c22d82emr10805896e87.9.1737891549075;
+        Sun, 26 Jan 2025 03:39:09 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543c822f785sm910462e87.75.2025.01.26.03.39.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Jan 2025 03:39:07 -0800 (PST)
+Date: Sun, 26 Jan 2025 13:39:05 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Marijn Suijten <marijn.suijten@somainline.org>, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 3/6] phy: qcom: qmp-pcie: Add X1P42100 Gen4x4 PHY
+Message-ID: <cy3x35h4id3gegwb23j6rwblx2pecpw7ffjpri5ddqdd35kzrt@bxdmaumb6bbp>
+References: <20250125-topic-x1p4_dts-v1-0-02659a08b044@oss.qualcomm.com>
+ <20250125-topic-x1p4_dts-v1-3-02659a08b044@oss.qualcomm.com>
+ <h6zfhxkc4dj2ueaxipha6prbvmv7pnqglghtjs7vkhlc2s7ndi@vhbj4uojlzwd>
+ <A64B8332-78F2-4B76-908E-4119E4A54BAE@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250120-of-address-overflow-v1-2-dd68dbf47bce@linutronix.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <A64B8332-78F2-4B76-908E-4119E4A54BAE@linaro.org>
 
-Hi Thomas,
+On Sun, Jan 26, 2025 at 12:59:52PM +0530, Manivannan Sadhasivam wrote:
+> 
+> 
+> On January 25, 2025 11:00:23 PM GMT+05:30, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
+> >On Sat, Jan 25, 2025 at 04:31:19AM +0100, Konrad Dybcio wrote:
+> >> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> >> 
+> >> Add a new, common configuration for Gen4x4 V6 PHYs without an init
+> >> sequence.
+> >> 
+> >> The bootloader configures the hardware once and the OS retains that
+> >> configuration by using the NOCSR reset line (which doesn't drop
+> >> register state on assert) in place of the "full reset" one.
+> >
+> >I know your opinion, but my 2c would still be for not depending on the
+> >bootloader. I think that was the rule for ages for many possible
+> >reasons.
+> >
+> 
+> But if Linux or other OS can trust the bootloader, then it makes perfect sense to rely on them. Obviously, the question here is that on which platforms this level of trust should be established. And the answer I got was starting from the compute platforms (atleast X1E).
 
-kernel test robot noticed the following build warnings:
+Is there any way how those values can be lost that we still might want
+to support ? The GDSC going to the OFF state? Some deep sleep state or a
+power collapse? Actual suspend to RAM (instead of current S2Idle)?
 
-[auto build test WARNING on ffd294d346d185b70e28b1a28abe367bbfe53c04]
+> 
+> So let's take it on an experimental basis and see how it goes? If at all any problem arises, we can always resort to in kernel sequences.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Wei-schuh/of-address-Fix-empty-resource-handling-in-__of_address_resource_bounds/20250120-221141
-base:   ffd294d346d185b70e28b1a28abe367bbfe53c04
-patch link:    https://lore.kernel.org/r/20250120-of-address-overflow-v1-2-dd68dbf47bce%40linutronix.de
-patch subject: [PATCH 2/2] of: address: Add kunit test for __of_address_resource_bounds()
-config: arc-randconfig-r121-20250126 (https://download.01.org/0day-ci/archive/20250126/202501261727.x0aztept-lkp@intel.com/config)
-compiler: arceb-elf-gcc (GCC) 13.2.0
-reproduce: (https://download.01.org/0day-ci/archive/20250126/202501261727.x0aztept-lkp@intel.com/reproduce)
+Sounds like a good proposal. Can possibly have a corresponding 'do not
+merge' patch with actual init tables?
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501261727.x0aztept-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/of/of_test.c:130:47: sparse: sparse: cast truncates bits from constant value (100000000 becomes 0)
-   drivers/of/of_test.c:131:45: sparse: sparse: cast truncates bits from constant value (100000000 becomes 0)
->> drivers/of/of_test.c:138:45: sparse: sparse: cast truncates bits from constant value (100000ffe becomes ffe)
-
-vim +130 drivers/of/of_test.c
-
-    72	
-    73	static const struct of_address_resource_bounds_case of_address_resource_bounds_cases[] = {
-    74		{
-    75			.start = 0,
-    76			.size = 0,
-    77			.ret = 0,
-    78			.res_start = 0,
-    79			.res_end = -1,
-    80		},
-    81		{
-    82			.start = 0,
-    83			.size = 0x1000,
-    84			.ret = 0,
-    85			.res_start = 0,
-    86			.res_end = 0xfff,
-    87		},
-    88		{
-    89			.start = 0x1000,
-    90			.size = 0,
-    91			.ret = 0,
-    92			.res_start = 0x1000,
-    93			.res_end = 0xfff,
-    94		},
-    95		{
-    96			.start = 0x1000,
-    97			.size = 0x1000,
-    98			.ret = 0,
-    99			.res_start = 0x1000,
-   100			.res_end = 0x1fff,
-   101		},
-   102		{
-   103			.start = 1,
-   104			.size = RESOURCE_SIZE_MAX,
-   105			.ret = 0,
-   106			.res_start = 1,
-   107			.res_end = RESOURCE_SIZE_MAX,
-   108		},
-   109		{
-   110			.start = RESOURCE_SIZE_MAX,
-   111			.size = 1,
-   112			.ret = 0,
-   113			.res_start = RESOURCE_SIZE_MAX,
-   114			.res_end = RESOURCE_SIZE_MAX,
-   115		},
-   116		{
-   117			.start = 2,
-   118			.size = RESOURCE_SIZE_MAX,
-   119			.ret = -EOVERFLOW,
-   120		},
-   121		{
-   122			.start = RESOURCE_SIZE_MAX,
-   123			.size = 2,
-   124			.ret = -EOVERFLOW,
-   125		},
-   126		{
-   127			.start = 0x100000000ULL,
-   128			.size = 1,
-   129			.ret = sizeof(resource_size_t) > sizeof(u32) ? 0 : -EOVERFLOW,
- > 130			.res_start = (resource_size_t)0x100000000,
-   131			.res_end = (resource_size_t)0x100000000,
-   132		},
-   133		{
-   134			.start = 0x1000,
-   135			.size = 0xffffffff,
-   136			.ret = sizeof(resource_size_t) > sizeof(u32) ? 0 : -EOVERFLOW,
-   137			.res_start = (resource_size_t)0x1000,
- > 138			.res_end = (resource_size_t)0x100000ffe,
-   139		},
-   140	};
-   141	
+> 
+> - Mani
+> 
+> >> 
+> >> Use this new configuration for X1P42100's Gen4x4 PHY.
+> >> 
+> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> >> ---
+> >>  drivers/phy/qualcomm/phy-qcom-qmp-pcie.c | 18 ++++++++++++++++++
+> >>  1 file changed, 18 insertions(+)
+> >
+> 
+> மணிவண்ணன் சதாசிவம்
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
