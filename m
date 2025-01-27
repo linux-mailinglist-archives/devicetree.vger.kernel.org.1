@@ -1,275 +1,190 @@
-Return-Path: <devicetree+bounces-141058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CF7AA1D44E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 11:22:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 515FDA1D458
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 11:23:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C68B18882B4
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 10:22:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE909188845D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 10:23:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD6C81FC7F9;
-	Mon, 27 Jan 2025 10:22:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD8811FCFE5;
+	Mon, 27 Jan 2025 10:23:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="i3lfpVk2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DJFwnw47"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBDFB179BF;
-	Mon, 27 Jan 2025 10:22:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A36F11FC7F9
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 10:23:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737973368; cv=none; b=KEm9/aIFVhZeIWi85130sz4AbvbaZezVtlkOuQ/2QAPcWxUCbXbQTR/ETTfqXy59oFubGp4F9VUFxfOwP9K50YUgprRtnMDCJQgAbeft2rlou+RityFKOEYii+E7Bw+8+o/zl+r67TuLRJ4/ZtYbvhBjPvogOgG6ndcmsqt5tJ8=
+	t=1737973413; cv=none; b=txEbH6UyylxXngzeHbi6qnf+XE26Wy0Gev7ZFUAeNpJMglwsu0fSOwV7MaM7kaElKXsuOXQQHghcEkVNHm4aK6SALUO3kCTM58nNVuoV+ZxnqGB0CRfAxLciUXUArHTTHQBCIjNbwvYRPAf7efCEh0CyDDlpbL61ktC9n+SuuC0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737973368; c=relaxed/simple;
-	bh=7+Qct7BeymG7lOqPogQ8tjt4CwnzfX9+dQChIt/gR5o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=TPp6k4XnWc9ropQWsbNEQ7INjjropoj9gP/KkTzHUHFgao3GaBPrSYVMnEIx5B6ieDouQO93xLEA+tI11uIWg7diJT27IK2LHuGBNtjSfwFduIPk/PpXfKxW3YupBo8X18mkArGuCLGL6Uz9cZfelyNW7q5dIQ90yPVRFRCpOuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=i3lfpVk2; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1737973367; x=1769509367;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:to:cc;
-  bh=7+Qct7BeymG7lOqPogQ8tjt4CwnzfX9+dQChIt/gR5o=;
-  b=i3lfpVk20l+R+Y0/ti9a1cQN2ZUjyNkdOsuZ+o5AxfSysQ92dMLU/vha
-   /KLgkrpHxucAW/Tc43NZvZ/VMvePy+ud1TRcBGXBeUUE7I4e9Zhzxx9I5
-   WPYI0OwWJValQN7FNR+yLHyKw9jBi7T+wGJyXOnMn6aP9pNw4B38JhQCx
-   9STaq07yYwD5Irc/sm/X0wZJEAyEu56oVvkd42rqJE+B0rCYyzqcMPYH/
-   dKEWvY043D/vVuhjXjDFCWCApCtmobjwisXs+ctJ30eTGPoLANL3Ig6h3
-   CaXYM177Jz9Y/EZ+md56IgKwqB/SYxwoTpyEzo2D6EZ3NXZDiPJOeSgp6
-   g==;
-X-CSE-ConnectionGUID: 6/71w3G4TJKoIyAFZm+R7w==
-X-CSE-MsgGUID: a9lbd0A9Qua1pNFSFbBmAg==
-X-IronPort-AV: E=Sophos;i="6.13,238,1732604400"; 
-   d="scan'208";a="37388198"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 27 Jan 2025 03:22:40 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 27 Jan 2025 03:22:09 -0700
-Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Mon, 27 Jan 2025 03:22:04 -0700
-From: Charan Pedumuru <charan.pedumuru@microchip.com>
-Date: Mon, 27 Jan 2025 15:51:58 +0530
-Subject: [PATCH v3] dt-bindings: dma: convert atmel-dma.txt to YAML
+	s=arc-20240116; t=1737973413; c=relaxed/simple;
+	bh=/ziQCxNO8jspCZEWeweEbldQZWZOoyzeslfitT30Ucs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OzLrlFpYT0TCiAxkjQRUzCJlTCmLJKm8U/BZOmbmR2TVflMKB38qzdgtmsNAt0SJwo8wH9Qay+qH+21HT0Gkxe3/fBxXl6GAuZsKZC+gLWRA5SlbRabPk29PTQJTmJ4mdIsoZpZM6uy1P5PTssDGq4POtcsNgd5uGrKDWZ1baDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DJFwnw47; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50R4rgbA022789
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 10:23:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	hGB5OVb68LNt8gE8AS+bpnEVv8dQ+ZWfbCKV+Fgql1s=; b=DJFwnw47aPPLlcK9
+	HWN/KcRu8+0A34vgbRvLmEldSMPh61ljyB/ekcDy+FL3+geO6HqAyWgMRDuI0fYb
+	yLY+szCFQQD60ymx13gFrE2Wgd+fapD/uLeu0jBCL4+cZCmcnujYIis3+SMoVj/v
+	d0RHHqAZ8+IgKFt2juXwKcQrrCiZ2mp+Hbejtc5HTir3FdL7S5YIFKPNVYKiaQmC
+	VZVoefqy5JaV8/K1eGqSln3oDHCSBMrsi3gz8/+JxdR/HvIxhfDGIDhnQp8NgtTB
+	qIYLtgHRfUasMIxWRJO8KZvcwRTGmutW3QUbeAJNnP2aRo5QvnLRHTBdkHqBBSQH
+	lJo43A==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44e3h2rm0b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 10:23:30 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-467a437e5feso12436621cf.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 02:23:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737973409; x=1738578209;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=hGB5OVb68LNt8gE8AS+bpnEVv8dQ+ZWfbCKV+Fgql1s=;
+        b=PfVD+/YQklguGQQEiTmsT5MP3M2xkmdAAnUcTl/Rga0cWv0qcZjtA8FWN01dnWBDqT
+         3O0ozRV3MXO6eGcKH/J0GIzthtBEgkWYkTKwkHEH2/EuelzyV4jKyxMe2AWmMc8YyubB
+         GVk6CsTChCX6R5zdBvZOFooethUYWcC4linRmdcIFIAxkfghz1YR+IKPB3NfXDmHrArx
+         12stbrvBwf90Hkb1niZ4uJS2SZ4Zi7gfuoHz7WnatWV2ZcMn2ngbNQrwm+euGi2hkT4L
+         SVEz8zAGSz8OJx2dQXWfqrGw8rC1eBJiPQR4dCiwl/RNvTAL7owKILRg1LgGM+CH0vUS
+         YSIw==
+X-Forwarded-Encrypted: i=1; AJvYcCV3i8FMhqq/rpSWK+UgjMzR/4hUXzGAeZmOfc+7rj4Zk8P27/+SSCh8hgP/XMHyC3NiqmqyvKgY/+3g@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQ4FXiPExxnf0aFYc56Z/wVwtnu0lHrmBCAgpTczTBMFRHR1Zt
+	l3y2q5E9RVU6nsUkWN6ix1Gr5HWk9OiZjosAiRhh6xpF6InWSbAOTn80x+cQgPf+e7Wv/x5lj3r
+	GW6aTLOtVWoOvlyZIFymjrmEUKInWYiNUxM/I5SUvTYQOkIeHeic727kQm3kL
+X-Gm-Gg: ASbGncs6TVI4USA7FH53xOkv4EDl3I8oLzgRIWVTpxW9BNH+JaEullMAE5tVHC+XEBh
+	XIpXWfTdeDou1Ew9TsuraDzY39rUJOG+uiFbrW0ErKZxjq8OYLEvmR2d8A6LjoGytiwYiKlOCkD
+	khPSYzbQ7aIoe9BSHJtJvC0BKH/99uTyXRBtLidLVZQ7B60EqEvlQAPAXdxwBJG0kWXvfj73aYl
+	Sxe/QCZNhZkVAOjM9sV+/Ig6sCNXZBiu/lWsbbzhdY2Wc7Bibc6JXr6FP9IZ6bLAgMK2MT1Vpd5
+	aL23Ul6wR5KQG8YGIDUQZ9+yMn0hTtJq7t/0Ejo+7FyuVI88cn8FSVjM2aA=
+X-Received: by 2002:a05:622a:1aa0:b0:467:825e:133b with SMTP id d75a77b69052e-46e12ba1478mr227274641cf.13.1737973409381;
+        Mon, 27 Jan 2025 02:23:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHhhZmUefm+tAZLgJqV2ZW+k6GYLfZ7Ycaf8L6tOGjzPWuZ8gyIBxlMk/OY2hdBHc96AIiM+Q==
+X-Received: by 2002:a05:622a:1aa0:b0:467:825e:133b with SMTP id d75a77b69052e-46e12ba1478mr227274371cf.13.1737973408993;
+        Mon, 27 Jan 2025 02:23:28 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab675e11a1esm562672266b.33.2025.01.27.02.23.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jan 2025 02:23:28 -0800 (PST)
+Message-ID: <3ed5858c-3030-4edc-847d-28ff54ea5aea@oss.qualcomm.com>
+Date: Mon, 27 Jan 2025 11:23:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: sm8750: Add UFS nodes for SM8750
+ SoC
+To: Melody Olvera <quic_molvera@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        Bjorn Andersson
+ <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+        Satya Durga Srinivasu Prabhala <quic_satyap@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-scsi@vger.kernel.org, Nitin Rawat <quic_nitirawa@quicinc.com>,
+        Manish Pandey <quic_mapa@quicinc.com>
+References: <20250113-sm8750_ufs_master-v1-0-b3774120eb8c@quicinc.com>
+ <20250113-sm8750_ufs_master-v1-4-b3774120eb8c@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250113-sm8750_ufs_master-v1-4-b3774120eb8c@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-ID: <20250127-test-v3-1-1b5f5b3f64fc@microchip.com>
-X-B4-Tracking: v=1; b=H4sIAEVel2cC/03MywrDIBCF4VcJs+4Urxi66nuELsSMdRbGoBIKI
- e9e6arLD/5zTmhUmRo8phMqHdy4bAP6NkFIfnsT8joMSigrpHLYqXWcBdlg5hCdcTDSvVLkz+9
- meQ3HWjL2VMn/jzWu2eMhUaKwJkrvHDmtn5lDLSHxfg8lw3V9AUjY1DyVAAAA
-To: Ludovic Desroches <ludovic.desroches@microchip.com>, Vinod Koul
-	<vkoul@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nicolas Ferre
-	<nicolas.ferre@microchip.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Andrei Simion <andrei.simion@microchip.com>
-CC: <linux-arm-kernel@lists.infradead.org>, <dmaengine@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Durai Manickam
- KR" <durai.manickamkr@microchip.com>, Charan Pedumuru
-	<charan.pedumuru@microchip.com>
-X-Mailer: b4 0.14.1
+X-Proofpoint-GUID: mEs1LjXd7a2bkvEp_I4v_S8oy6U3Rqz2
+X-Proofpoint-ORIG-GUID: mEs1LjXd7a2bkvEp_I4v_S8oy6U3Rqz2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-27_04,2025-01-27_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
+ phishscore=0 lowpriorityscore=0 adultscore=0 spamscore=0 mlxscore=0
+ bulkscore=0 priorityscore=1501 mlxlogscore=999 suspectscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501270083
 
-From: Durai Manickam KR <durai.manickamkr@microchip.com>
+On 13.01.2025 10:46 PM, Melody Olvera wrote:
+> From: Nitin Rawat <quic_nitirawa@quicinc.com>
+> 
+> Add UFS host controller and PHY nodes for SM8750 SoC.
+> 
+> Co-developed-by: Manish Pandey <quic_mapa@quicinc.com>
+> Signed-off-by: Manish Pandey <quic_mapa@quicinc.com>
+> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> Signed-off-by: Melody Olvera <quic_molvera@quicinc.com>
+> ---
 
-Add a description, required properties, appropriate compatibles and
-missing properties like clocks and clock-names which are not defined in
-the text binding for all the SoCs that are supported by microchip.
-Update the text binding name `atmel-dma.txt` to
-`atmel,at91sam9g45-dma.yaml` for the files which reference to
-`atmel-dma.txt`. Drop Tudor name from maintainers.
+I don't see anything wrong per se here, just some style nits
+atop the other replies:
 
-Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
-Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
----
-Changes in v3:
-- Renamed the text binding name `atmel-dma.txt` to
-  `atmel,at91sam9g45-dma.yaml` for the files which reference to
-  `atmel-dma.txt`.
-- Removed `oneOf` and add a blank line in properties.
-- Dropped Tudor name from maintainers.
-- Link to v2: https://lore.kernel.org/r/20250123-dma-v1-1-054f1a77e733@microchip.com
+[...]
 
-Changes in v2:
-- Renamed the yaml file to a compatible.
-- Removed `|` and description for common properties.
-- Modified the commit message.
-- Dropped the label for the node in examples.
-- Link to v1: https://lore.kernel.org/all/20240215-dmac-v1-1-8f1c6f031c98@microchip.com
----
- .../bindings/dma/atmel,at91sam9g45-dma.yaml        | 66 ++++++++++++++++++++++
- .../devicetree/bindings/dma/atmel-dma.txt          | 42 --------------
- .../devicetree/bindings/misc/atmel-ssc.txt         |  2 +-
- MAINTAINERS                                        |  2 +-
- 4 files changed, 68 insertions(+), 44 deletions(-)
+> +		ufs_mem_hc: ufs@1d84000 {
+> +			compatible = "qcom,sm8750-ufshc", "qcom,ufshc", "jedec,ufs-2.0";
 
-diff --git a/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml b/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
-new file mode 100644
-index 000000000000..d6d16869b7db
---- /dev/null
-+++ b/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/dma/atmel,at91sam9g45-dma.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Atmel Direct Memory Access Controller (DMA)
-+
-+maintainers:
-+  - Ludovic Desroches <ludovic.desroches@microchip.com>
-+
-+description:
-+  The Atmel Direct Memory Access Controller (DMAC) transfers data from a source
-+  peripheral to a destination peripheral over one or more AMBA buses. One channel
-+  is required for each source/destination pair. In the most basic configuration,
-+  the DMAC has one master interface and one channel. The master interface reads
-+  the data from a source and writes it to a destination. Two AMBA transfers are
-+  required for each DMAC data transfer. This is also known as a dual-access transfer.
-+  The DMAC is programmed via the APB interface.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - atmel,at91sam9g45-dma
-+      - atmel,at91sam9rl-dma
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  "#dma-cells":
-+    description:
-+      Must be <2>, used to represent the number of integer cells in the dmas
-+      property of client devices.
-+    const: 2
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: dma_clk
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - "#dma-cells"
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    dma-controller@ffffec00 {
-+        compatible = "atmel,at91sam9g45-dma";
-+        reg = <0xffffec00 0x200>;
-+        interrupts = <21>;
-+        #dma-cells = <2>;
-+        clocks = <&pmc 2 20>;
-+        clock-names = "dma_clk";
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/dma/atmel-dma.txt b/Documentation/devicetree/bindings/dma/atmel-dma.txt
-deleted file mode 100644
-index f69bcf5a6343..000000000000
---- a/Documentation/devicetree/bindings/dma/atmel-dma.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--* Atmel Direct Memory Access Controller (DMA)
--
--Required properties:
--- compatible: Should be "atmel,<chip>-dma".
--- reg: Should contain DMA registers location and length.
--- interrupts: Should contain DMA interrupt.
--- #dma-cells: Must be <2>, used to represent the number of integer cells in
--the dmas property of client devices.
--
--Example:
--
--dma0: dma@ffffec00 {
--	compatible = "atmel,at91sam9g45-dma";
--	reg = <0xffffec00 0x200>;
--	interrupts = <21>;
--	#dma-cells = <2>;
--};
--
--DMA clients connected to the Atmel DMA controller must use the format
--described in the dma.txt file, using a three-cell specifier for each channel:
--a phandle plus two integer cells.
--The three cells in order are:
--
--1. A phandle pointing to the DMA controller.
--2. The memory interface (16 most significant bits), the peripheral interface
--(16 less significant bits).
--3. Parameters for the at91 DMA configuration register which are device
--dependent:
--  - bit 7-0: peripheral identifier for the hardware handshaking interface. The
--  identifier can be different for tx and rx.
--  - bit 11-8: FIFO configuration. 0 for half FIFO, 1 for ALAP, 2 for ASAP.
--
--Example:
--
--i2c0@i2c@f8010000 {
--	compatible = "atmel,at91sam9x5-i2c";
--	reg = <0xf8010000 0x100>;
--	interrupts = <9 4 6>;
--	dmas = <&dma0 1 7>,
--	       <&dma0 1 8>;
--	dma-names = "tx", "rx";
--};
-diff --git a/Documentation/devicetree/bindings/misc/atmel-ssc.txt b/Documentation/devicetree/bindings/misc/atmel-ssc.txt
-index f9fb412642fe..b159dc2298b6 100644
---- a/Documentation/devicetree/bindings/misc/atmel-ssc.txt
-+++ b/Documentation/devicetree/bindings/misc/atmel-ssc.txt
-@@ -14,7 +14,7 @@ Required properties:
- Required properties for devices compatible with "atmel,at91sam9g45-ssc":
- - dmas: DMA specifier, consisting of a phandle to DMA controller node,
-   the memory interface and SSC DMA channel ID (for tx and rx).
--  See Documentation/devicetree/bindings/dma/atmel-dma.txt for details.
-+  See Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml for details.
- - dma-names: Must be "tx", "rx".
- 
- Optional properties:
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 962eab2ce359..f1f4e3956f45 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15348,7 +15348,7 @@ M:	Ludovic Desroches <ludovic.desroches@microchip.com>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	dmaengine@vger.kernel.org
- S:	Supported
--F:	Documentation/devicetree/bindings/dma/atmel-dma.txt
-+F:	Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
- F:	drivers/dma/at_hdmac.c
- F:	drivers/dma/at_xdmac.c
- F:	include/dt-bindings/dma/at91.h
+1 compatible per lines, please
 
----
-base-commit: 232f121837ad8b1c21cc80f2c8842a4090c5a2a0
-change-id: 20250127-test-80e5c48cf747
+> +			reg = <0x0 0x01d84000 0x0 0x3000>;
+> +
+> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			clocks = <&gcc GCC_UFS_PHY_AXI_CLK>,
+> +				 <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
+> +				 <&gcc GCC_UFS_PHY_AHB_CLK>,
+> +				 <&gcc GCC_UFS_PHY_UNIPRO_CORE_CLK>,
+> +				 <&rpmhcc RPMH_LN_BB_CLK3>,
+> +				 <&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
+> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
+> +				 <&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
+> +			clock-names = "core_clk",
+> +				      "bus_aggr_clk",
+> +				      "iface_clk",
+> +				      "core_clk_unipro",
+> +				      "ref_clk",
+> +				      "tx_lane0_sync_clk",
+> +				      "rx_lane0_sync_clk",
+> +				      "rx_lane1_sync_clk";
+> +			freq-table-hz = <100000000 403000000>,
+> +					<0 0>,
+> +					<0 0>,
+> +					<100000000 403000000>,
+> +					<100000000 403000000>,
+> +					<0 0>,
+> +					<0 0>,
+> +					<0 0>;
+> +
+> +			resets = <&gcc GCC_UFS_PHY_BCR>;
+> +			reset-names = "rst";
+> +
+> +
+> +
 
-Best regards,
--- 
-Charan Pedumuru <charan.pedumuru@microchip.com>
+stray double \n
 
+Konrad
 
