@@ -1,80 +1,112 @@
-Return-Path: <devicetree+bounces-141077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66B17A1D526
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 12:15:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85D26A1D55F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 12:33:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD3823A543C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 11:15:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A72B07A2D13
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 11:32:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D01E71FDA85;
-	Mon, 27 Jan 2025 11:15:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A00F1FECB0;
+	Mon, 27 Jan 2025 11:32:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nI3rP9Cy"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="0sWa5k9Y";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3iHIpuAB";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="0sWa5k9Y";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3iHIpuAB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B62325A646;
-	Mon, 27 Jan 2025 11:15:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C7341FDE1E;
+	Mon, 27 Jan 2025 11:32:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737976555; cv=none; b=lik2yZLqQnB5bVVotuUkHZ1xyuAi7McTIQJHgkTXnhwUyxrRE9Y5qyyKTHB/YTEJ5IhAvMlSycb3U++0cGjvrcQxbf7OrkaoqX2DIJ63cWaglaFpS8blZ/7EGi2f88YFNm/4UVRmnWyD8VKI4+2aFXK8J51PkPBHiLG7reAVCfc=
+	t=1737977576; cv=none; b=RE9vXD5gb59yUAouvhBsTCSxkk4k3Ma+yraJipMhKCnknwyMk3mb441ThSOIqL6kZTWe5hPgMxiyQZo4Qc3492927/LLv7y4MCDin1ltCXbZNRP9vimw4bCXPJj3NTA061ptfJQpag4M+BSqPp1Y0SzdjAuNCobM2QoyN+CwjEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737976555; c=relaxed/simple;
-	bh=dnt5G5cTLN6et5WLfWpNYAoPzrYL0gIYizEfFHiPTp8=;
+	s=arc-20240116; t=1737977576; c=relaxed/simple;
+	bh=y+vHtdTSJC4DjGyFpjQSejkmKcu/p6Kw/FabSI2N5kc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jFQXB+SnJTB8S7yr/KioIimO02pcBo2pjzKpQrdyfHoVmMqcOYxoA0KOVF5hu0hZuDrttAzQ+3MYwHHPi4ikLAxKydKiZEoQRT9aCHF03Tez/2I5/vHHqEdtOkT+2OWJt9E0GS0SnDrOPttfyS3Scfe7xYzpA3kpFXC5emyjJuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nI3rP9Cy; arc=none smtp.client-ip=192.198.163.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1737976554; x=1769512554;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=dnt5G5cTLN6et5WLfWpNYAoPzrYL0gIYizEfFHiPTp8=;
-  b=nI3rP9CyBDGAXlf/k1fb40zb5PSbsS44hb9X85RPDHCdZscJ0gRBfgTg
-   /RqnZK0jK4phktVuSUlzKACx0Vc9hByFRe0JV/GTgqY5iG4k6565mvjGO
-   NG2zXXb+JhKhjvsHtR05h4VUNcM5B5ZsLqwjVYgf50T6vEtKO7LGdXZOe
-   vGWQzkTWHH+VcoOONVfed4nu35SDR05efFOEulyAfjOqeECt7e21wW6xZ
-   OET+n8pJvcscOY3IG/AMF8eUD9/Eg9/UdsprcTzMFgUj/mdIgAjpcEG1y
-   RVuNcI4UZ1JBiA2OX5h3sUEYRgT60dAKyM1UIJz5xLLg0+qa+yu5Gli2/
-   w==;
-X-CSE-ConnectionGUID: qBTDDL3wTJaR05WAJrDY4w==
-X-CSE-MsgGUID: lehS68FATGOCqc/pOqr51Q==
-X-IronPort-AV: E=McAfee;i="6700,10204,11327"; a="38602136"
-X-IronPort-AV: E=Sophos;i="6.13,238,1732608000"; 
-   d="scan'208";a="38602136"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2025 03:15:54 -0800
-X-CSE-ConnectionGUID: B0HQc5HGTz2NrWoQIe/KsQ==
-X-CSE-MsgGUID: 3xAqkLeoS1G65HTBgIXvJQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.13,238,1732608000"; 
-   d="scan'208";a="139283529"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by orviesa002.jf.intel.com with ESMTP; 27 Jan 2025 03:15:51 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tcN5o-000ghP-2g;
-	Mon, 27 Jan 2025 11:15:48 +0000
-Date: Mon, 27 Jan 2025 19:15:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	Basharath Hussain Khaja <basharath@couthit.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>
-Subject: Re: [PATCH v2] of: address: Add kunit test for
- __of_address_resource_bounds()
-Message-ID: <202501271803.wd0vg8zR-lkp@intel.com>
-References: <20250127-of-address-overflow-v2-1-61b5046044e9@linutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kIepXFt+EuDbmNIRO2WTltPZnnF9UKQekvHwftNiCPPB20nFzuNbuhZ1Nl0uLr5rPId7My0DNpNIQxc8PSSHLU4fMOd9XGRMbvczVUgnrlhTk/pnzguB3546aFeepd/9NiNPWiRmdfxX8XC/GpIRdME+duIInauRHTvEHvI5V0Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=0sWa5k9Y; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=3iHIpuAB; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=0sWa5k9Y; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=3iHIpuAB; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 693C91F383;
+	Mon, 27 Jan 2025 11:32:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1737977572; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m+UeXUAFZ9jac5oktZG7LFtZi5Y22Ga8bFH0IEhCvRQ=;
+	b=0sWa5k9YwfERVrJVLcAvbrvep4w+HQh6KtYygR5tyt1SbWVYDlTgu5wfsxGiTIRdFRgWdA
+	KcoIh9llf6MTv5p+NUnM5m0WN9Yh5v6q7Zx3q++Qs1vZotYwr4a1UZJ8XQNar5vazajyku
+	2EwMx/r48apRIutlVOu67IkHS6ahdUE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1737977572;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m+UeXUAFZ9jac5oktZG7LFtZi5Y22Ga8bFH0IEhCvRQ=;
+	b=3iHIpuABV3QWSTxVHHP7aMW6Vy811/Y42l/axR6ce8XMPpUIkxzPH/JK11DQbFffB7MlD8
+	TttF5h9HLnjjKFBg==
+Authentication-Results: smtp-out2.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1737977572; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m+UeXUAFZ9jac5oktZG7LFtZi5Y22Ga8bFH0IEhCvRQ=;
+	b=0sWa5k9YwfERVrJVLcAvbrvep4w+HQh6KtYygR5tyt1SbWVYDlTgu5wfsxGiTIRdFRgWdA
+	KcoIh9llf6MTv5p+NUnM5m0WN9Yh5v6q7Zx3q++Qs1vZotYwr4a1UZJ8XQNar5vazajyku
+	2EwMx/r48apRIutlVOu67IkHS6ahdUE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1737977572;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m+UeXUAFZ9jac5oktZG7LFtZi5Y22Ga8bFH0IEhCvRQ=;
+	b=3iHIpuABV3QWSTxVHHP7aMW6Vy811/Y42l/axR6ce8XMPpUIkxzPH/JK11DQbFffB7MlD8
+	TttF5h9HLnjjKFBg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 468E9137C0;
+	Mon, 27 Jan 2025 11:32:52 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id aWAxEeRul2ecawAAD6G6ig
+	(envelope-from <iivanov@suse.de>); Mon, 27 Jan 2025 11:32:52 +0000
+Date: Mon, 27 Jan 2025 13:32:51 +0200
+From: "Ivan T. Ivanov" <iivanov@suse.de>
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH v5 -next 00/11] Add PCIe support for bcm2712
+Message-ID: <20250127113251.b2tqacoalcjrtcap@localhost.localdomain>
+References: <20250120130119.671119-1-svarbanov@suse.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,132 +115,85 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250127-of-address-overflow-v2-1-61b5046044e9@linutronix.de>
+In-Reply-To: <20250120130119.671119-1-svarbanov@suse.de>
+X-Spam-Level: 
+X-Spamd-Result: default: False [-2.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	ARC_NA(0.00)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	RCVD_TLS_ALL(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,broadcom.com,linutronix.de,kernel.org,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com];
+	RCVD_COUNT_TWO(0.00)[2];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:email]
+X-Spam-Score: -2.80
+X-Spam-Flag: NO
 
-Hi Thomas,
+Hi Stan,
 
-kernel test robot noticed the following build warnings:
+On 01-20 15:01, Stanimir Varbanov wrote:
+> 
+> Here is v5 of the series which aims to add support for PCIe on bcm2712 SoC
+> used by RPi5. Previous v4 can be found at [1].
+> 
+> Based the series on linux-next because of vc4 gpu node in bcm2712.dtsi.
+> 
+> v4 -> v5 changes include:
+>  - Addressed comments to interrupt-controller driver. (Thomas)
+>  - Fixed DTB warnings  broadcom/bcm2712-rpi-5-b.dtb.
+>  - New patch in the series to fix missing of_node_put.
+>  - New patch to make a softdep to a MIP MSI-X driver.
+>  - Dropped the patch which adds MSI-X support in pcie-brcmstb driver,
+>    and instead use DT dma-ranges to pass the needed information. (Jim)
+> 
+> For more detailed info check patches.
+> 
+> Comments are welcome!
+> ~Stan
+> 
+> [1] https://patchwork.kernel.org/project/linux-pci/cover/20241025124515.14066-1-svarbanov@suse.de/
+> 
+> Stanimir Varbanov (11):
+>   dt-bindings: interrupt-controller: Add bcm2712 MSI-X DT bindings
+>   dt-bindings: PCI: brcmstb: Update bindings for PCIe on bcm2712
+>   irqchip: Add Broadcom bcm2712 MSI-X interrupt controller
+>   PCI: brcmstb: Reuse config structure
+>   PCI: brcmstb: Expand inbound window size up to 64GB
+>   PCI: brcmstb: Add bcm2712 support
+>   PCI: brcmstb: Adjust PHY PLL setup to use a 54MHz input refclk
+>   PCI: brcmstb: Adding a softdep to MIP MSI-X driver
+>   PCI: brcmstb: Fix for missing of_node_put
+>   arm64: dts: broadcom: bcm2712: Add PCIe DT nodes
+>   arm64: dts: broadcom: bcm2712-rpi-5-b: Enable PCIe DT nodes
+> 
+>  .../brcm,bcm2712-msix.yaml                    |  60 ++++
+>  .../bindings/pci/brcm,stb-pcie.yaml           |   6 +-
+>  .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |   8 +
+>  arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 147 +++++++++
+>  drivers/irqchip/Kconfig                       |  16 +
+>  drivers/irqchip/Makefile                      |   1 +
+>  drivers/irqchip/irq-bcm2712-mip.c             | 292 ++++++++++++++++++
+>  drivers/pci/controller/pcie-brcmstb.c         | 147 ++++++---
+>  8 files changed, 632 insertions(+), 45 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
+>  create mode 100644 drivers/irqchip/irq-bcm2712-mip.c
 
-[auto build test WARNING on 15e2f65f2ecfeb8e39315522e2b5cfdc5651fc10]
+Thanks! This works fine.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Thomas-Wei-schuh/of-address-Add-kunit-test-for-__of_address_resource_bounds/20250127-165902
-base:   15e2f65f2ecfeb8e39315522e2b5cfdc5651fc10
-patch link:    https://lore.kernel.org/r/20250127-of-address-overflow-v2-1-61b5046044e9%40linutronix.de
-patch subject: [PATCH v2] of: address: Add kunit test for __of_address_resource_bounds()
-config: hexagon-randconfig-001-20250127 (https://download.01.org/0day-ci/archive/20250127/202501271803.wd0vg8zR-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250127/202501271803.wd0vg8zR-lkp@intel.com/reproduce)
+Tested-by: Ivan T. Ivanov <iivanov@suse.de>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501271803.wd0vg8zR-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/of/of_test.c:140:42: warning: implicit conversion from 'long long' to 'resource_size_t' (aka 'unsigned int') changes value from 4294971390 to 4094 [-Wconstant-conversion]
-     135 |         {
-         |         ~
-     136 |                 .start = 0x1000,
-     137 |                 .size = 0xffffffff,
-     138 |                 .ret = resource_size_32bit() ? -EOVERFLOW : 0,
-     139 |                 .res_start = 0x1000,
-     140 |                 .res_end = resource_size_32bit() ? 0 : 0x100000ffe,
-         |                                                        ^~~~~~~~~~~
-   drivers/of/of_test.c:133:42: warning: implicit conversion from 'long long' to 'resource_size_t' (aka 'unsigned int') changes value from 4294967296 to 0 [-Wconstant-conversion]
-     128 |         {
-         |         ~
-     129 |                 .start = 0x100000000ULL,
-     130 |                 .size = 1,
-     131 |                 .ret = resource_size_32bit() ? -EOVERFLOW : 0,
-     132 |                 .res_start = resource_size_32bit() ? 0 : 0x100000000,
-     133 |                 .res_end = resource_size_32bit() ? 0 : 0x100000000,
-         |                                                        ^~~~~~~~~~~
-   drivers/of/of_test.c:132:44: warning: implicit conversion from 'long long' to 'resource_size_t' (aka 'unsigned int') changes value from 4294967296 to 0 [-Wconstant-conversion]
-     128 |         {
-         |         ~
-     129 |                 .start = 0x100000000ULL,
-     130 |                 .size = 1,
-     131 |                 .ret = resource_size_32bit() ? -EOVERFLOW : 0,
-     132 |                 .res_start = resource_size_32bit() ? 0 : 0x100000000,
-         |                                                          ^~~~~~~~~~~
-   3 warnings generated.
-
-
-vim +140 drivers/of/of_test.c
-
-    74	
-    75	static const struct of_address_resource_bounds_case of_address_resource_bounds_cases[] = {
-    76		{
-    77			.start = 0,
-    78			.size = 0,
-    79			.ret = 0,
-    80			.res_start = 0,
-    81			.res_end = -1,
-    82		},
-    83		{
-    84			.start = 0,
-    85			.size = 0x1000,
-    86			.ret = 0,
-    87			.res_start = 0,
-    88			.res_end = 0xfff,
-    89		},
-    90		{
-    91			.start = 0x1000,
-    92			.size = 0,
-    93			.ret = 0,
-    94			.res_start = 0x1000,
-    95			.res_end = 0xfff,
-    96		},
-    97		{
-    98			.start = 0x1000,
-    99			.size = 0x1000,
-   100			.ret = 0,
-   101			.res_start = 0x1000,
-   102			.res_end = 0x1fff,
-   103		},
-   104		{
-   105			.start = 1,
-   106			.size = RESOURCE_SIZE_MAX,
-   107			.ret = 0,
-   108			.res_start = 1,
-   109			.res_end = RESOURCE_SIZE_MAX,
-   110		},
-   111		{
-   112			.start = RESOURCE_SIZE_MAX,
-   113			.size = 1,
-   114			.ret = 0,
-   115			.res_start = RESOURCE_SIZE_MAX,
-   116			.res_end = RESOURCE_SIZE_MAX,
-   117		},
-   118		{
-   119			.start = 2,
-   120			.size = RESOURCE_SIZE_MAX,
-   121			.ret = -EOVERFLOW,
-   122		},
-   123		{
-   124			.start = RESOURCE_SIZE_MAX,
-   125			.size = 2,
-   126			.ret = -EOVERFLOW,
-   127		},
-   128		{
-   129			.start = 0x100000000ULL,
-   130			.size = 1,
-   131			.ret = resource_size_32bit() ? -EOVERFLOW : 0,
-   132			.res_start = resource_size_32bit() ? 0 : 0x100000000,
-   133			.res_end = resource_size_32bit() ? 0 : 0x100000000,
-   134		},
-   135		{
-   136			.start = 0x1000,
-   137			.size = 0xffffffff,
-   138			.ret = resource_size_32bit() ? -EOVERFLOW : 0,
-   139			.res_start = 0x1000,
- > 140			.res_end = resource_size_32bit() ? 0 : 0x100000ffe,
-   141		},
-   142	};
-   143	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
