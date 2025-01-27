@@ -1,133 +1,168 @@
-Return-Path: <devicetree+bounces-141175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D07AA1DB40
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:24:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 585BFA1DB58
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:33:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61E9D1887C51
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:24:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77AD11886D7A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:33:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF587189F57;
-	Mon, 27 Jan 2025 17:24:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D19418B467;
+	Mon, 27 Jan 2025 17:33:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RIETnMy/"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="a3mMV5wa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4DE07DA6A;
-	Mon, 27 Jan 2025 17:24:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B152A4EB51
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 17:33:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737998655; cv=none; b=qzJ9se6CuqigdZWJjEjmWf2S36oAEzLkBftvJkFwMsEZ7mgsscwQvRfP0yystaX0fQ7xJAKcIlnBRGLcLJO4nWHTXJhSXk2XB6IdMv6ZmbD9qrhlY9d1Ap8Jz8I9pINFW0xyLwosIMmXjiwKCB4uwleTxruw/db42gn65dltNHI=
+	t=1737999212; cv=none; b=PgbiCdhj/X7M6QBKPtNo5IpRR5NqtmjAy6YvQ7R2Xfo4QiIKW8HLTjq7K7wMQPIn0TuytqLb8+BjDARJTQrVeu27NM7xeupb9Wsj498pnmnl72eJPK+eAvovbSg2ARwUxE9poARNZ2hPlFEqBbYY08S85URrReKaqDC19AyYny0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737998655; c=relaxed/simple;
-	bh=wkhnpEpAsljzBOm/dhhaDMdpFim5ax/EUa4KeXTgRvs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fVc1BpnYcLhpL7Qq3fhBYHCkYR31DGK/fCrMM2d3UvRbbiDDd7b8X64S+ntqK0ceUHcsZe2TqIAOaxqAm3GJPUvqwfqW6helKmILbvV5YmpFSR1aUtSC7AIgk4M1GyBIHYLcTQN0HC9/CuaGhbJoH+Y0f1sDTo/+vcduPbbqFVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RIETnMy/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2B14C4CED2;
-	Mon, 27 Jan 2025 17:24:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737998655;
-	bh=wkhnpEpAsljzBOm/dhhaDMdpFim5ax/EUa4KeXTgRvs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RIETnMy/PA28fn/9Ab3MON8qHnkafAcpgpE1wNr0uF3GyY59g6hKLGNqZuCEpSnHx
-	 gFtCLp4FnyxNLbwrwEWwikYhbLp6EXiEEjyGo5xYXUBr0H4S7GVxVBEf3NJ6fn+WW5
-	 B9r+/b8+mNgBAJWQ7//01bpMhjZYk2cVp5VCOLnQotxww6a3d63weOYPLKYQx5giCg
-	 2ceJ79dBrt0o7OcN3PXYv/LCnjvjFnhrLhJ6qNmPp7UHGBigl+HPgM5HQhKHMpzMBu
-	 QKkKJ3Wendlef+dHaSTUWdJ+GlT1EJ58BEgosjBGh7X6JTKGI3SuSSBLJQeanV1Sxq
-	 hMuMnTXCz1wjg==
-Message-ID: <2dd9bffa-17d5-4635-b2da-15f59cf07590@kernel.org>
-Date: Mon, 27 Jan 2025 18:24:11 +0100
+	s=arc-20240116; t=1737999212; c=relaxed/simple;
+	bh=PtvF2ljJmxhhlJMH9AIPk9UkWeLfLTgFsHEohSaRufs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ejYUfnJwpxgad6B1AwQrZ4toXyjRpSpJJMjdWh2oz8x9ssfNDlEbKjg98EAvshG5RrvnI2WLGR6H/x+uVtnHyvZLXbgN4MyssFZNtGKmBS886bgGje5VwYZ0G7143Umfq/+TfV53CmDBT9ns3pocFVdS3GNFStqmOVtztzKcVQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=a3mMV5wa; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-53e3a227b82so4298468e87.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 09:33:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1737999204; x=1738604004; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EDIJjS17Z0cKxHytk07h/hYFHTsGXB25W2Fi4Mqsrss=;
+        b=a3mMV5waQAcfezUvZOloZbAgjOURRev2800AAwHq/3u+cAuxzDoABo21QD/tCmrukf
+         VMP7b7EBAQ4XDo0HYOvN9zKLakfFLt/3yJ+bkre3P9f1dNMBE8WCmAc8Uxwjt3Ft4kyJ
+         78C2Y0fLEsYTT1SI5BGOfMnwwGzBTfhT/gisw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737999204; x=1738604004;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EDIJjS17Z0cKxHytk07h/hYFHTsGXB25W2Fi4Mqsrss=;
+        b=N5zJRFEGdHCiosLeTEa+LKSgYkBWfs/0RwDjbBw+fm7zXEdP2/T64k2M/IoaEgi7xQ
+         wlvRpSLw6panKgAPdwEitH/O/L39CaYAcCruXMz55sdktg6j5H4am1LrVKqtp/SvYQuI
+         4oCkLNflrqp2fLp8qRPtdMsJ2sY0S9qLLBL2ydDNHThxEXqvysTM8E+Zwh674FmzFIzI
+         ZsSNhpgl7t70jm6oi2RQUnpmHhxzsJZbhHJsxmtsVLvrQTWn0ZYAw93T+4bNmFB08nmb
+         aZoCc0z/yG42pzdFFYDFjBXdmoZi3vQSy8nwXyMLssXM5QecMyP/cjc37z8rss+F6Qlx
+         IC8w==
+X-Forwarded-Encrypted: i=1; AJvYcCWqrt9+nnvte29fQLtLjAnQC513Wu3MAu+JGc/llqLGmbOrhXB/5tXPNfU29GvLRrC7mT+/U+ip3Yhj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwXjtC17TXbj/rZm8Kk5WUEYgd/fO1PkeT/MlrNCEg6rwC5lMTe
+	6iOWqmsCOwvoXuv5kZy5VVoWcF8WwjpZrrhD4yLEi86e6p147/UyRQ+5JrXhP9XHeLEKG6qAZVz
+	KsA==
+X-Gm-Gg: ASbGnctHuHR+8aznIQZ0LWF/DjzEuEpIiyuUAiiRnJTh+mnyImfrfM2wluH8ncVjMPR
+	wMvCyxLBrHrxsBHaPJ4S6eAgDTNRe0TDZHwyqHm8RprIbiYK3aheggq/zKkq8uSxEuXpfmXGd/t
+	BcUtCtj3P1viU+ElFN/bwVHomYKO2RQIj99nR9r71I6d2/zbXvdkC88o3c5LTGS3NE6OueloCB9
+	dKSyC1xAHk3VC4H7P60qQMJyUoIz2j2QndzxxeBsrd0JFltFWRc/32/yLLb4MpJSmIzF5SOelcW
+	o1Ehu/Fh1i6M1t49SIImv9EVWRfVvmOY6f2vzD7tU1inTZSu
+X-Google-Smtp-Source: AGHT+IE2uZh/oWtSArSCY+sBYzfrXs0UdjYZE0eULnxq8aKTQNW9ANsoXzwHb6SjgaG46V7c3N0ORA==
+X-Received: by 2002:a19:7717:0:b0:543:bb21:425e with SMTP id 2adb3069b0e04-543bb214402mr6511556e87.4.1737999203677;
+        Mon, 27 Jan 2025 09:33:23 -0800 (PST)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543c8379b6bsm1374378e87.196.2025.01.27.09.33.21
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jan 2025 09:33:22 -0800 (PST)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-3003c0c43c0so50255801fa.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 09:33:21 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCWTYwaXqGA9BqMAh704I+hMyjzuK5TqI3T4iJRaJIlAoNpHhGuV8hphmu8OY/LX8+4LEKkF267feRYt@vger.kernel.org
+X-Received: by 2002:a2e:a4c9:0:b0:302:1c90:58d9 with SMTP id
+ 38308e7fff4ca-3072ca7fa0bmr113889451fa.16.1737999200851; Mon, 27 Jan 2025
+ 09:33:20 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: ti: am64-phyboard-electra: Add DT overlay for
- X27 connector
-To: Daniel Schultz <d.schultz@phytec.de>, nm@ti.com, vigneshr@ti.com,
- kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: w.egorov@phytec.de, upstream@lists.phytec.de
-References: <20250127065756.3086450-1-d.schultz@phytec.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250127065756.3086450-1-d.schultz@phytec.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20250127014605.1862287-1-yelangyan@huaqin.corp-partner.google.com>
+ <20250127014605.1862287-2-yelangyan@huaqin.corp-partner.google.com> <20250127-copper-dalmatian-of-excitement-c474da@krzk-bin>
+In-Reply-To: <20250127-copper-dalmatian-of-excitement-c474da@krzk-bin>
+From: Doug Anderson <dianders@chromium.org>
+Date: Mon, 27 Jan 2025 09:33:08 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=XcVnkYSzanqinLX65gRc5434WGbvauavBZPpabfT-2Yw@mail.gmail.com>
+X-Gm-Features: AWEUYZkdPPfcTVvf2U86dKbCSDMihhgNkb4v-_QGXFo1taQ6eo6FgJO1X5WUccw
+Message-ID: <CAD=FV=XcVnkYSzanqinLX65gRc5434WGbvauavBZPpabfT-2Yw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: display: panel: Add compatible for
+ CSOT PNA957QT1-1
+To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 27/01/2025 07:57, Daniel Schultz wrote:
-> +&main_spi1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&main_spi1_pins_default>;
-> +	ti,pindir-d0-out-d1-in = <1>;
-> +	status = "okay";
-> +
-> +	spidev@0 {
+Langyan,
+
+On Mon, Jan 27, 2025 at 12:43=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+>
+> On Mon, Jan 27, 2025 at 09:46:04AM +0800, Langyan Ye wrote:
+> > Add a new compatible for the panel CSOT PNA957QT1-1. This panel
+> > uses HX83102 IC, so add the compatible to the hx83102 binding files.
+> >
+> > Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+> > ---
+> >  .../devicetree/bindings/display/panel/himax,hx83102.yaml        | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/panel/himax,hx83=
+102.yaml b/Documentation/devicetree/bindings/display/panel/himax,hx83102.ya=
+ml
+> > index c649fb085833..d876269e1fac 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/himax,hx83102.yam=
+l
+> > +++ b/Documentation/devicetree/bindings/display/panel/himax,hx83102.yam=
+l
+> > @@ -18,6 +18,8 @@ properties:
+> >        - enum:
+> >            # Boe nv110wum-l60 11.0" WUXGA TFT LCD panel
+> >            - boe,nv110wum-l60
+> > +          # CSOT pna957qt1-1 10.95" WUXGA TFT LCD panel
+> > +          - csot,pna957qt1-1
+>
+> You need to add such vendor prefix first.
+
+Since you may not know what this means, Krzysztof expects you to add a
+new patch to the front of your series adding an entry into
+"Documentation/devicetree/bindings/vendor-prefixes.yaml" for "csot".
+Based on my experience with eDP panels made by them, presumably "csot"
+is "China Star Optoelectronics Technology Co., Ltd" ?
 
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> It does not look like you tested the DTS against bindings. Please run
+> 'make dtbs_check W=3D1' (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
+rces-with-the-devicetree-schema/
+> for instructions).
+> Maybe you need to update your dtschema and yamllint. Don't rely on
+> distro packages for dtschema and be sure you are using the latest
+> released dtschema.
+
+It's important that you figure out how to do the above so you can
+validate your bindings yourself.
 
 
-> +		compatible = "rohm,dh2228fv";
+> Point us to your DTS so we can validate that you really tested it.
 
+Krzysztof: not sure what you're asking for here. I assume Langyan is
+posting support for this panel for hardware they are trying to bring
+up, and the device tree may not be officially posted anywhere yet.
+This is not really a requirement, is it? Given that Langyan is just
+adding a compatible to an existing binding, it seems like we can be
+fairly certain that the binding is fine without needing an extra dts
+example, right?
 
-That's not the device you have there. You cannot use other compatibles.
-
-
-Best regards,
-Krzysztof
+-Doug
 
