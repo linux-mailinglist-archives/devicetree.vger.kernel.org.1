@@ -1,91 +1,105 @@
-Return-Path: <devicetree+bounces-141193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99C1AA1DBBD
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 19:00:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92A48A1DBE7
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 19:10:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A87233A6E1D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:00:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE52A3A53E2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:10:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069F118C930;
-	Mon, 27 Jan 2025 18:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5256718D65F;
+	Mon, 27 Jan 2025 18:10:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kwRBOSpw"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="AfTBVeNH";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="9d+a+D1o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C86BB18B48B;
-	Mon, 27 Jan 2025 18:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B80F918D649;
+	Mon, 27 Jan 2025 18:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738000828; cv=none; b=ERPDbknxl/y1ZYv+ibWOWWNAyVBkv10pEAsXb3xwhuzoAfJ4yMP5IsTEjFh9QqC25qbVMxeD3PPiKi2Q04kXC4A9Jpv7uU6EZk0UVq7Yl9YT3u+uOgHZaXqGME7E9tG/530SHeuuPij1SVhdjTXZfyE540PX3ObcsOzmhpESeiU=
+	t=1738001435; cv=none; b=nXkcCazteH/0SlEXf0NSKUUB4fdaMSUvJg9r+flgF1SIraHsqMFBU+lEGYnigZYixBrUlA4zBhkiPBZs/Jr1NflJGmHz2taJ7+M4MebvJQW489JoekwiqdxOSfeyTRlRL7dEcS5NHDPN8cV/vvhiBxIu/oEjszrX2MNRS0Vhyt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738000828; c=relaxed/simple;
-	bh=46MM4+5JRn0cpDs6bLnICSZXnvQ6YkR3OrnqzcdZnsg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AAwacv5ZgtufgAoIny5BuxDAJH0knp1L6csvKumYS1Wn+S8Fi6r8bmXARjRXXQwQRiiSS192fqp3HVNw66WITUjn7Ia7KQ0lR2wBPYYHB1c+q/8BN1c8JfoO6oBKrnoL4OWbx7FWAfXtiWvoupSo748DE75FnQCyCtBYWxThv0E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kwRBOSpw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AD2DC4CEE0;
-	Mon, 27 Jan 2025 18:00:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738000828;
-	bh=46MM4+5JRn0cpDs6bLnICSZXnvQ6YkR3OrnqzcdZnsg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kwRBOSpwt7hCsv1k1jcYSgAy8tFJL1iDXlvdKOYENfzr/+6PsmmfUEEXTM6xcIc+Y
-	 fSq+37dib1m9fLSymvxt/HZoc2mArT586nOSh+72O3pSzJQyMrPbKdTFOhJcR9UxKG
-	 9/Ze/8XxsVX+OLPuuKPTJetdRPJCNt1tt8KJvdca/pz7PlsZgHaWkRV4zUA90jeSdA
-	 yG1aono+hVgXx4ZmNYFWBnFXa5GNLXMaQgLfnIOmik2YAwC02blYgYQd93gnau+d1w
-	 n9EoYauZOAIxKO3BaA55DUi+0KrQrukm4Gnj5ZSapXX19oKxSBF42OoDKxM+y+K9Hh
-	 lWiFXOxYX6Ldg==
-Date: Mon, 27 Jan 2025 12:00:27 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Jonathan Marek <jonathan@marek.ca>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	linux-rtc@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 2/7] dt-bindings: rtc: qcom-pm8xxx: document
- qcom,no-alarm flag
-Message-ID: <173800082586.538050.18039812124468938594.robh@kernel.org>
-References: <20250120144152.11949-1-johan+linaro@kernel.org>
- <20250120144152.11949-3-johan+linaro@kernel.org>
+	s=arc-20240116; t=1738001435; c=relaxed/simple;
+	bh=sW6A4mZSE5UQOYvsd/QaeHsnmQsGmlxZb+kaj70zryg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=qzuXjoBtjnLwwIDr3WcFrThBmSykgomutkcC/HN/5bwAO1uRavZyaXD4/FgACda5mp4fGus9GcHe2yJv/c2gLasiy3YjxxXZX7Acor9MqGFOL7bdZmmqSwEoHEYfpRaXWF/ohVWoKnynWETAPovVd5R9LCeeOVuJuMlMn+FEdXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=AfTBVeNH; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=9d+a+D1o; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1738001431;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pirFz880PHbl7Wsu56VW30PJh1UmmzZuboMbJFV0f10=;
+	b=AfTBVeNH/KTFCBWBIDIdyxrcqzkaCjvXFQD717inHpxdKq7RWRRkd/0Q/TOWz7tXL1L+3c
+	DTfIewtewEJNl57fRNWLpn1RljU+Q17YGytKeSw/2Ww5SvRHkQNgrbUE1NK8JzcWnaLPM+
+	bSYHEC4AEUKKfCQ4flblBbrONfwH0xFHD2wFgoB7jQNegBJr4PdeYsBAgtLyiyZORa7rz/
+	aubZCmQAmyYKXX/Y82j+kQafqoeWzD1KjbWi9FCz0QZ4pQuKz5NQaTe/Vr0iTp9c7pHgRH
+	PtwGtS98oYJSeBf9WFYg8456k0OclH18bGAKXs4TCIeyzbhLDuIp8oa3LH/z+w==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1738001431;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pirFz880PHbl7Wsu56VW30PJh1UmmzZuboMbJFV0f10=;
+	b=9d+a+D1oiQsTecowN1fpws3+HVT50yXPpNcciisFoaJvwhgEVDXVSwc7zfvsbfA2d18HAz
+	4MT/ITjMeLI9jhAg==
+To: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org, Broadcom
+ internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Florian Fainelli
+ <florian.fainelli@broadcom.com>, Jim Quinlan <jim2101024@gmail.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>, Bjorn Helgaas
+ <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ kw@linux.com, Philipp Zabel <p.zabel@pengutronix.de>, Andrea della Porta
+ <andrea.porta@suse.com>, Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
+ <jonathan@raspberrypi.com>, Dave Stevenson
+ <dave.stevenson@raspberrypi.com>, Stanimir Varbanov <svarbanov@suse.de>
+Subject: Re: [PATCH v5 -next 03/11] irqchip: Add Broadcom bcm2712 MSI-X
+ interrupt controller
+In-Reply-To: <20250120130119.671119-4-svarbanov@suse.de>
+References: <20250120130119.671119-1-svarbanov@suse.de>
+ <20250120130119.671119-4-svarbanov@suse.de>
+Date: Mon, 27 Jan 2025 19:10:31 +0100
+Message-ID: <87bjvs86w8.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250120144152.11949-3-johan+linaro@kernel.org>
+Content-Type: text/plain
 
+On Mon, Jan 20 2025 at 15:01, Stanimir Varbanov wrote:
 
-On Mon, 20 Jan 2025 15:41:47 +0100, Johan Hovold wrote:
-> From: Jonathan Marek <jonathan@marek.ca>
-> 
-> Qualcomm x1e80100 firmware sets the ownership of the RTC alarm to ADSP.
-> Thus writing to RTC alarm registers and receiving alarm interrupts is not
-> possible.
-> 
-> Add a qcom,no-alarm flag to support RTC on this platform.
-> 
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> Link: https://lore.kernel.org/r/20241015004945.3676-3-jonathan@marek.ca
-> [ johan: move vendor property; use boolean; reword description ]
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+> Add an interrupt controller driver for MSI-X Interrupt Peripheral (MIP)
+> hardware block found in bcm2712. The interrupt controller is used to
+> handle MSI-X interrupts from peripherials behind PCIe endpoints like
+> RP1 south bridge found in RPi5.
+>
+> There are two MIPs on bcm2712, the first has 64 consecutive SPIs
+> assigned to 64 output vectors, and the second has 17 SPIs, but only
+> 8 of them are consecutive starting at the 8th output vector.
+>
+> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
 
+As this is a new controller and required for the actual PCI muck, I
+think the best way is to take it through the PCI tree, unless someone
+wants me to pick the whole lot up.
+
+Thanks,
+
+        tglx
 
