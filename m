@@ -1,194 +1,179 @@
-Return-Path: <devicetree+bounces-141165-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B07CA1DA79
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:24:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B042A1DA7C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:24:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D5F718857BB
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:24:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D73818855DE
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8DD515573F;
-	Mon, 27 Jan 2025 16:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F231716088F;
+	Mon, 27 Jan 2025 16:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ud9wuQDB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JAOvx+Wq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C6631547F2;
-	Mon, 27 Jan 2025 16:24:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4BE015D5C4;
+	Mon, 27 Jan 2025 16:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737995068; cv=none; b=WLBJqmYJE6kzJ/VhQDfp8QCBIbMsNC8FNGb01LMoxtubysD5CSxWiLaI88SqGrn2ZWSaqw6F3XxpcjXS9k5d38NNVa1Q87zVBg23brB3PBwhmRcw9uH9oTmzmWOPc3BjfMhNeZEn9+RnQm6+W0Wv+TFFVQmTEYLVPDOwsGov1BY=
+	t=1737995070; cv=none; b=gs48wn4hKxbV/xOxZfGEQLdA0jp44jVAm7lsLfuIaMP+qX9H8Ki0flKYa5sCKt0X/v35U5S5/WyyBgzwiRJLRI9AzgzXsk0GlGWsE/8GSK0Ua+34+MdFsz981lTf4B80C+rJIpcwXSfZyF1gmLMtry20U+BzGJtvT9GZ/8/Ns20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737995068; c=relaxed/simple;
-	bh=P1XAvO3VDlbIoA2FFuYha3SIR6cyChDAtMKtoP6rroo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BGDV5We0SuvrzVgVfEDUVmxNCPOyqoeYQ1NSm+kk/eCEk5rCIn5rkspd7ldjWehqUjbcbnGgER6XrIDWS5Kvs+X0Ehi6GL/YhPiHUOv025nrK4ZmsjnFlzVzS5xlAxIfGcL0Y/aveFNhW/FwZ3U7hD39KZ8BxkUEhmrVGIi1/M0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ud9wuQDB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11122C4CEE9;
-	Mon, 27 Jan 2025 16:24:28 +0000 (UTC)
+	s=arc-20240116; t=1737995070; c=relaxed/simple;
+	bh=3GQ89bXnzyIgOnNfecZVS7byL1hgPnkSj2dfqs+Bric=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=E1bbG7wenGuqEj5tkX5smAlqT6zj0y2X+FBRqUFo+6F3WDOBC6XLnyY7ZGSyNJ7ECefbRCtNWY0wnsH2njptJNgfE/9Go9q++vqh1lbuNg6Fugvm+eJRN/BxdQMm4A0iLbfVoV/MLPVIIbbhEkn/yByTSkSfpS5BNtPuVtG9kko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JAOvx+Wq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E3CDC4CED2;
+	Mon, 27 Jan 2025 16:24:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737995068;
-	bh=P1XAvO3VDlbIoA2FFuYha3SIR6cyChDAtMKtoP6rroo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=ud9wuQDBCD+VNndwuXVUkXuOV/EbvHeRxA0Sd1z9ru/nfg1dGxb1vG29TrHNGJT19
-	 MKr+FyS8/3tkrdLl2tX4GLOxIEdPEPQhOruKO6RLDHaZqPpDgq3SL4Vp41bG/OmF0t
-	 00307Vn8UaQfjz+vX1PSJGUPzh2Yg1/4LLSj3Mugl8KrTpe6ccTaYmFlR48Donu6XD
-	 TSsAtR6Xr1UTesEDOZjYSgDiWzD3SgyT/VOpEEEeEn+H3s0LikY1eRP1XkcgeFV1dR
-	 goym7egsufaC+Ry3GG6K/0IL/Y+C0k15DkN6bO+HVyHHeckw8cGSjMhhp+QIbNvOTy
-	 +lid0z6K1NRMQ==
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-54024aa9febso4938730e87.1;
-        Mon, 27 Jan 2025 08:24:27 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUsqYXviTqK0IvtGZmuItPGaXxwICZ+YQSIhlGKhC5L1/HEjxfrX+cSimU4ZOvWg3nhAuAakXWnRgXk@vger.kernel.org, AJvYcCWGRBKjjcVNKNfbVWxNKLAHDOfE3RLreLaDyx4tsysCZ/lWqd6xu7DgyIsiLkunVWgvbfcQETYAKqEZqdd4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz7wmaTmfZZGZH7yLBKkRSmQQjFDRhxv25ignafY9ZOdRG68Ez6
-	+WIjOVV6XkNLBWTFJx+maqjy6N2qrs3z8HD9fmzzOyH5wSB/tm9TTe8yLzFmPkGh8xZlOmebHN0
-	sFPSJcxzKZ1fPy47DLUaKTMYi8g==
-X-Google-Smtp-Source: AGHT+IHO7xcGOPrToRZlwr3nuIUx/JCC3FFTG/RQH5LwAJUEK267HLoXlDeEikLsLokRDuugPuNKRciTbG4rkyqs+/k=
-X-Received: by 2002:a05:6512:108a:b0:540:1fd6:4e4f with SMTP id
- 2adb3069b0e04-5439c246c5fmr14519142e87.22.1737995066304; Mon, 27 Jan 2025
- 08:24:26 -0800 (PST)
+	s=k20201202; t=1737995070;
+	bh=3GQ89bXnzyIgOnNfecZVS7byL1hgPnkSj2dfqs+Bric=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=JAOvx+WqLE4ze7rDZuoMQpn8FNgRD8wV5gEa7R+ZxYbTF8miCC0kTfv/MZMbNg+ap
+	 ofIFCbji8FdHTY+8krlxbo5n2IFXHJP0tCh17rzQI/Fmck4YT4OlvmZbGJ5TwB9xfx
+	 W4iJEd45aIJdRJy5YBAeOI2e8RvmmKkQo+nqQDYhEQg0G+eHG9tir9LFFMZ66mHKgC
+	 C0FXxfMKKIYTrC8NbrdeshVmFR4GVPK1E9h1CYC5I9f/aqiAF6CwgzsPtPIi/b6Wum
+	 JPKFIBH7vx/7lzAJHY8TUYJ9LpoEvCppEvcB3k4CKzdAAotPJwWMyrqojmaJAiYqLP
+	 WyjVXWIG7DiqA==
+Message-ID: <374e16d6-46aa-4bdf-85e9-bc2e33c38057@kernel.org>
+Date: Mon, 27 Jan 2025 17:24:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250124152008.313-1-alireza.sanaee@huawei.com> <20250124152008.313-2-alireza.sanaee@huawei.com>
-In-Reply-To: <20250124152008.313-2-alireza.sanaee@huawei.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 27 Jan 2025 10:24:13 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKFjQeaoGn5PRn1=P49mag-Kyik7EwtsOU8fcdvYhPcOA@mail.gmail.com>
-X-Gm-Features: AWEUYZnVRYg0HjS13AR3X4YMrcQBzFYQx47bdwZghD62tZ_Wvr7bmwA4jHcafg4
-Message-ID: <CAL_JsqKFjQeaoGn5PRn1=P49mag-Kyik7EwtsOU8fcdvYhPcOA@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 1/1] base/of/cacheinfo: support l1 entry in dt
-To: Alireza Sanaee <alireza.sanaee@huawei.com>
-Cc: mark.rutland@arm.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, jonathan.cameron@huawei.com, 
-	linux-arm-kernel@lists.infradead.org, shameerali.kolothum.thodi@huawei.com, 
-	zhao1.liu@intel.com, yangyicong@hisilicon.com, rrendec@redhat.com, 
-	catalin.marinas@arm.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/8] dt-bindings: serial: Add support for selecting
+ data transfer mode
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Viken Dadhaniya <quic_vdadhani@quicinc.com>, andi.shyti@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.or,
+ andersson@kernel.org, konradybcio@kernel.org, johan+linaro@kernel.org,
+ dianders@chromium.org, agross@kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+ linux-spi@vger.kernel.org, quic_msavaliy@quicinc.com,
+ quic_anupkulk@quicinc.com
+References: <20250124105309.295769-1-quic_vdadhani@quicinc.com>
+ <20250124105309.295769-5-quic_vdadhani@quicinc.com>
+ <10060d39-87a4-4565-a2a6-80c93ac2266a@kernel.org>
+ <dudqd2y42wy6iq2k73aphd5ol4mtq7z4c54zhd27rl745rrw5x@p3oummf2jke7>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <dudqd2y42wy6iq2k73aphd5ol4mtq7z4c54zhd27rl745rrw5x@p3oummf2jke7>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Jan 24, 2025 at 9:20=E2=80=AFAM Alireza Sanaee
-<alireza.sanaee@huawei.com> wrote:
->
-> This commit simply assumes that CPU node entries may point to a cache
-> node that basically act as a l1-cache and there are some CPU nodes
-> without describing any caches but a next-level-cache property that
-> points to l1-cache.
+On 27/01/2025 15:27, Dmitry Baryshkov wrote:
+> On Mon, Jan 27, 2025 at 08:02:12AM +0100, Krzysztof Kozlowski wrote:
+>> On 24/01/2025 11:53, Viken Dadhaniya wrote:
+>>> Data transfer mode is fixed by TrustZone (TZ), which currently restricts
+>>> developers from modifying the transfer mode from the APPS side.
+>>>
+>>> Document the 'qcom,xfer-mode' properties to select the data transfer mode,
+>>> either GPI DMA (Generic Packet Interface) or non-GPI mode (PIO/CPU DMA).
+>>>
+>>> UART controller can operate in one of two modes based on the
+>>> 'qcom,xfer-mode' property, and the firmware is loaded accordingly.
+>>>
+>>> Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+>>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+>>> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+>>> ---
+>>>
+>>> v1 -> v2:
+>>>
+>>> - Drop 'qcom,load-firmware' property and add 'firmware-name' property in
+>>>   qup common driver.
+>>> - Update commit log.
+>>>
+>>> v1 Link: https://lore.kernel.org/linux-kernel/20241204150326.1470749-4-quic_vdadhani@quicinc.com/
+>>> ---
+>>> ---
+>>>  .../devicetree/bindings/serial/qcom,serial-geni-qcom.yaml | 8 ++++++++
+>>>  1 file changed, 8 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
+>>> index dd33794b3534..383773b32e47 100644
+>>> --- a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
+>>> +++ b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
+>>> @@ -56,6 +56,13 @@ properties:
+>>>    reg:
+>>>      maxItems: 1
+>>>  
+>>> +  qcom,xfer-mode:
+>>> +    description: Set the value to 1 for non-GPI (FIFO/CPU DMA) mode and 3 for GPI DMA mode.
+>>> +      The default mode is FIFO.
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    enum: [1, 3]
+>>> +
+>>> +
+>>
+>> Just one blank line, but anyway, this property should not be in three
+>> places. Do you really expect that each of serial engines within one
+>> GeniQUP will be configured differently by TZ?
+> 
+> Yes, each SE is configured separately and it's quite frequent when
+> different SEs have different DMA configuration.
 
-This commit message needs some work. Read documentation on writing
-commit messages.
+Well, I checked at sm8550 and sm8650 and each pair of SE - which shares
+resources - has the same DMAs, so I would not call it frequent. Care to
+bring an example where same serial engines have different DMAs and
+different TZ? We do not talk about single QUP.
 
-Why/when does describing L1 cache in the cpu nodes not work? That is
-the assumption in the bindings. If we're changing that, there may need
-to be a binding/spec change.
+Anyway, if you need property per node, this has to be shared schema.
 
->
-> Signed-off-by: Alireza Sanaee <alireza.sanaee@huawei.com>
-> ---
->  drivers/base/cacheinfo.c | 54 +++++++++++++++++++++++++++-------------
->  1 file changed, 37 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/base/cacheinfo.c b/drivers/base/cacheinfo.c
-> index cf0d455209d7..d119228fc392 100644
-> --- a/drivers/base/cacheinfo.c
-> +++ b/drivers/base/cacheinfo.c
-> @@ -83,7 +83,31 @@ bool last_level_cache_is_shared(unsigned int cpu_x, un=
-signed int cpu_y)
->
->  #ifdef CONFIG_OF
->
-> -static bool of_check_cache_nodes(struct device_node *np);
-> +static bool of_check_cache_node(struct device_node *np) {
-> +       if (of_property_present(np, "cache-size")   ||
-> +           of_property_present(np, "i-cache-size") ||
-> +           of_property_present(np, "d-cache-size") ||
-> +           of_property_present(np, "cache-unified"))
-> +               return true;
-> +       return false;
-> +}
-> +
-> +static bool of_check_cache_nodes(struct device_node *np)
-> +{
-> +       if (of_property_present(np, "cache-size")   ||
-> +           of_property_present(np, "i-cache-size") ||
-> +           of_property_present(np, "d-cache-size") ||
-> +           of_property_present(np, "cache-unified"))
-
-This is the same code as of_check_cache_node(), use it.
-
-> +               return true;
-> +
-> +       struct device_node *next __free(device_node) =3D of_find_next_cac=
-he_node(np);
-> +       if (next) {
-> +               return true;
-> +       }
-> +
-> +       return false;
-> +}
-> +
->
->  /* OF properties to query for a given cache type */
->  struct cache_type_info {
-> @@ -218,11 +242,23 @@ static int cache_setup_of_node(unsigned int cpu)
->         while (index < cache_leaves(cpu)) {
->                 this_leaf =3D per_cpu_cacheinfo_idx(cpu, index);
->                 if (this_leaf->level !=3D 1) {
-> +                       /* Always go one level down for level > 1 */
->                         struct device_node *prev __free(device_node) =3D =
-np;
->                         np =3D of_find_next_cache_node(np);
->                         if (!np)
->                                 break;
-> +               } else {
-> +                       /* For level 1, check compatibility */
-> +                       if (!of_device_is_compatible(np, "cache") &&
-> +                           !of_check_cache_node(np)) {
-> +                               struct device_node *prev __free(device_no=
-de) =3D np;
-> +                               np =3D of_find_next_cache_node(np);
-> +                               if (!np)
-> +                                       break;
-> +                               continue; /* Skip to next index without p=
-rocessing */
-> +                       }
->                 }
-> +
->                 cache_of_set_props(this_leaf, np);
->                 this_leaf->fw_token =3D np;
->                 index++;
-> @@ -234,22 +270,6 @@ static int cache_setup_of_node(unsigned int cpu)
->         return 0;
->  }
->
-> -static bool of_check_cache_nodes(struct device_node *np)
-> -{
-> -       if (of_property_present(np, "cache-size")   ||
-> -           of_property_present(np, "i-cache-size") ||
-> -           of_property_present(np, "d-cache-size") ||
-> -           of_property_present(np, "cache-unified"))
-> -               return true;
-> -
-> -       struct device_node *next __free(device_node) =3D of_find_next_cac=
-he_node(np);
-> -       if (next) {
-> -               return true;
-> -       }
-> -
-> -       return false;
-> -}
-> -
->  static int of_count_cache_leaves(struct device_node *np)
->  {
->         unsigned int leaves =3D 0;
-> --
-> 2.34.1
->
+Best regards,
+Krzysztof
 
