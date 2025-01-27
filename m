@@ -1,91 +1,136 @@
-Return-Path: <devicetree+bounces-141192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11DB7A1DBB6
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:59:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FF6FA1DBC2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 19:01:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7045016273A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:59:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 917D7188711C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:01:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6EC18A6A1;
-	Mon, 27 Jan 2025 17:59:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0161618A6DE;
+	Mon, 27 Jan 2025 18:00:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jL1eRz64"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="vMhuLTt9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433E217BA1;
-	Mon, 27 Jan 2025 17:59:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDAC818A6D5
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 18:00:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738000785; cv=none; b=IeJ1Evns6+nLNDmVSvBKcFwb3jrWc/yULqLi6g1H0+WiV8Hi9WQaYuChsHuNYWSfVNMPeAs76coZixywXfT5wUMD0DuobVmxpMdNA2ZQa0fKO2JJFkbpiIemm4LsrAmYXatbCuvKDTSYBMqKXqh29pKbdTNtuN9ntvRz7WT/QRA=
+	t=1738000837; cv=none; b=KEBTVivOY0WfBiqx6tq+VGJ4OLpYqhmIof49rXUEDqiTGMDZYU1RcD8a48Qz9koFqrGbJ3f3XuAqas/9K7ZO9LsaMMwzIqsuuwMdPhu6y6IpcKZWxrnpbLJ5M1XkurYS8SdjXWEqVkKHywpoNsMnPIJ0Ty5IAcsfDfP8LIurpdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738000785; c=relaxed/simple;
-	bh=c9fNMiYQ6IaAXSHNLRvX7gWgmxv11IcH5CNf8x744j4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=izg9O7UAX0VURAee/Gj1zoNPwo/AIS++c4Qcn9fFyF9Z9sqXxv5tazxTCv2fhmMGvQf0Il29S399NMETvbdENDkf5g/EDHlw2VBFZ72x7LLA5eUBz0M+nUZnx+ekOQMTkK/wEW6K53AcAdnMzBVVxL+SorFSxR6ybR/LYvg0450=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jL1eRz64; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76AEDC4CED2;
-	Mon, 27 Jan 2025 17:59:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738000784;
-	bh=c9fNMiYQ6IaAXSHNLRvX7gWgmxv11IcH5CNf8x744j4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jL1eRz64jrGD1ExY+hDpmzMxq+qv1SJgTwEyLDz/7hF7LKjWZlcIG7ZTETSArNlbx
-	 B3cnxtP2/xdU+vfUZsbuP3NLKIo75Clg4Se1FvvkCPyJ2Fp5ZvHe7DXjxUH4Y2opA9
-	 +ApGDsDym8XhAzIwop8RLC7ocLsyeY2FIlf/u8c8+++4wyc9kJtJBh6hmOlDkCcc+W
-	 4L4u4/lNmbEY/H28q+y2lQ2ncDVmwo2lJY0Eu1ER1UecvFvUF1hk4rt364eXodXm6w
-	 Z8KC7b2lQ29ahPBocJXNjFFj9EeS4ha+tQ2vyEUpfrtjvAKwf+oYDoAEZAU/1W0NPJ
-	 XVPbTL4gAd0RA==
-Date: Mon, 27 Jan 2025 11:59:43 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Stanimir Varbanov <svarbanov@suse.de>
-Cc: linux-rpi-kernel@lists.infradead.org,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jim Quinlan <jim2101024@gmail.com>,
-	Jonathan Bell <jonathan@raspberrypi.com>, kw@linux.com,
-	linux-arm-kernel@lists.infradead.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 -next 02/11] dt-bindings: PCI: brcmstb: Update
- bindings for PCIe on bcm2712
-Message-ID: <173800078306.536877.920317411552148665.robh@kernel.org>
-References: <20250120130119.671119-1-svarbanov@suse.de>
- <20250120130119.671119-3-svarbanov@suse.de>
+	s=arc-20240116; t=1738000837; c=relaxed/simple;
+	bh=/xFRDq/2vwCvymGSfdoLId8wVkRDEO8hZUJkiCT0Yg4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PiphrerRM4uKMEVG6FfkL2yBNdmm9S3U9fq7qq2sYAzvRgrGfNWp5N7k4R8x5/08v73gPI40oZ1cDaOEa/+38VdbwKCo2VkqDn8CSrOCOMIvmw3sXqhqbr9UucBYNqmKdzoSjQBYLWecSzWSN/g3/p2l4fqtO0D8drs51ROPEf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=vMhuLTt9; arc=none smtp.client-ip=91.218.175.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Message-ID: <50370a62-2e5e-45de-888f-ef3d1bfbb482@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1738000818;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=w8Ru8ILQt5YFwEkLQVtu+jlM11XhzHTarqvoBjmEMYo=;
+	b=vMhuLTt9/XtylOqFAAaifb88drjAdXo0hXinvRFeza0t+LZYsthkZP9Gb987JhA+1/3api
+	N+YiH+hc9iA6eLVCqENqySAKqYDLQq6lTvoE8ewlD//CoW5xnrJIEy/3eMcU5dDeQQ/DEz
+	cbHLRoq6oM+7OWLqg2B1EfwpNuF+UBA=
+Date: Mon, 27 Jan 2025 13:00:14 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250120130119.671119-3-svarbanov@suse.de>
+Subject: Re: [PATCH 1/5] dt-bindings: spi: zynqmp-qspi: Add reset
+To: Rob Herring <robh@kernel.org>
+Cc: Michal Simek <michal.simek@amd.com>, Mark Brown <broonie@kernel.org>,
+ linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Jinjie Ruan <ruanjinjie@huawei.com>, linux-arm-kernel@lists.infradead.org,
+ Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
+ Miquel Raynal <miquel.raynal@bootlin.com>, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ devicetree@vger.kernel.org
+References: <20250116225521.2688224-1-sean.anderson@linux.dev>
+ <20250116225521.2688224-2-sean.anderson@linux.dev>
+ <8a0d8789-7a0d-42b7-9aff-e867c14db3c9@amd.com>
+ <b8e63009-13fb-493f-adf6-4d30adbe9b1b@linux.dev>
+ <20250123224520.GA456390-robh@kernel.org>
+ <34e84bd2-381b-4f3e-99e1-92f7a878ed15@linux.dev>
+ <20250127175752.GA511180-robh@kernel.org>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Sean Anderson <sean.anderson@linux.dev>
+In-Reply-To: <20250127175752.GA511180-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-
-On Mon, 20 Jan 2025 15:01:10 +0200, Stanimir Varbanov wrote:
-> Update brcmstb PCIe controller bindings with bcm2712 compatible.
+On 1/27/25 12:57, Rob Herring wrote:
+> On Thu, Jan 23, 2025 at 05:57:41PM -0500, Sean Anderson wrote:
+>> On 1/23/25 17:45, Rob Herring wrote:
+>> > On Fri, Jan 17, 2025 at 11:12:15AM -0500, Sean Anderson wrote:
+>> >> On 1/17/25 02:14, Michal Simek wrote:
+>> >> > 
+>> >> > 
+>> >> > On 1/16/25 23:55, Sean Anderson wrote:
+>> >> >> Add a reset to help recover from cancelled operations.
+>> >> >>
+>> >> >> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+>> >> >> ---
+>> >> >>
+>> >> >>   Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml | 6 ++++++
+>> >> >>   1 file changed, 6 insertions(+)
+>> >> >>
+>> >> >> diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+>> >> >> index 04d4d3b4916d..901e15fcce2d 100644
+>> >> >> --- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+>> >> >> +++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+>> >> >> @@ -36,12 +36,16 @@ properties:
+>> >> >>     power-domains:
+>> >> >>       maxItems: 1
+>> >> >>   +  resets:
+>> >> >> +    maxItems: 1
+>> >> >> +
+>> >> >>   required:
+>> >> >>     - compatible
+>> >> >>     - reg
+>> >> >>     - interrupts
+>> >> >>     - clock-names
+>> >> >>     - clocks
+>> >> >> +  - resets
+>> >> > 
+>> >> > In 2/5 you are calling devm_reset_control_get_optional_exclusive() that's why I expect reset is not really required property.
+>> >> 
+>> >> It's optional for the driver for backwards compatibility. But for the
+>> >> devicetree we make it mandatory since it should be included in all new
+>> >> devicetrees.
+>> > 
+>> > Generally, we discourage new required properties as that's an ABI 
+>> > change. The exception is really when optional was a mistake. That's 
+>> > arguably the case here if the h/w always has a reset.
+>> 
+>> This device has a reset on ZynqMP and Versal.
+>> 
+>> The driver still considers this property optional, so it's not an ABI break.
+>> But I made it required in the schema to help out the folks at AMD when they
+>> get around to upstreaming the Versal devicetree :)
 > 
-> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> ---
->  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
-> 
+> Not 'the driver', but 'a driver'. You can't say what *all* drivers do. 
+> If I write a new driver and read the schema, then I can say 'resets is 
+> required so I'll make it required in my new driver'. But then my new 
+> driver doesn't work with an older DT that didn't have resets which was 
+> valid at the time.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+OK, I'll add a description to this effect. The humans can read that, and
+the machines won't care.
 
+--Sean
 
