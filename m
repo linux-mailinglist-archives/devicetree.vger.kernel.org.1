@@ -1,199 +1,113 @@
-Return-Path: <devicetree+bounces-141078-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85D26A1D55F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 12:33:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7120A1D566
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 12:37:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A72B07A2D13
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 11:32:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 380E43A6C16
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 11:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A00F1FECB0;
-	Mon, 27 Jan 2025 11:32:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="0sWa5k9Y";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3iHIpuAB";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="0sWa5k9Y";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="3iHIpuAB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7951C1FE454;
+	Mon, 27 Jan 2025 11:37:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C7341FDE1E;
-	Mon, 27 Jan 2025 11:32:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9905A1FCFEF;
+	Mon, 27 Jan 2025 11:37:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737977576; cv=none; b=RE9vXD5gb59yUAouvhBsTCSxkk4k3Ma+yraJipMhKCnknwyMk3mb441ThSOIqL6kZTWe5hPgMxiyQZo4Qc3492927/LLv7y4MCDin1ltCXbZNRP9vimw4bCXPJj3NTA061ptfJQpag4M+BSqPp1Y0SzdjAuNCobM2QoyN+CwjEA=
+	t=1737977865; cv=none; b=jZcdaRlU1muaCNr9lB1SsvysbOgkYUH4UBtBO1tVrpXet/ehHyvRCi5sPL1IMEwjG61ZMDr9+jjC9siYvAMRfs2TTD614MXf13xC5O0vqyk+GcJkshy+a3+mgJ1zlIl2OAed1MzaXFCNU57QLu8awbASdH0D16N5Wm8UfWeQO9Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737977576; c=relaxed/simple;
-	bh=y+vHtdTSJC4DjGyFpjQSejkmKcu/p6Kw/FabSI2N5kc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kIepXFt+EuDbmNIRO2WTltPZnnF9UKQekvHwftNiCPPB20nFzuNbuhZ1Nl0uLr5rPId7My0DNpNIQxc8PSSHLU4fMOd9XGRMbvczVUgnrlhTk/pnzguB3546aFeepd/9NiNPWiRmdfxX8XC/GpIRdME+duIInauRHTvEHvI5V0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=0sWa5k9Y; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=3iHIpuAB; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=0sWa5k9Y; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=3iHIpuAB; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id 693C91F383;
-	Mon, 27 Jan 2025 11:32:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1737977572; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=m+UeXUAFZ9jac5oktZG7LFtZi5Y22Ga8bFH0IEhCvRQ=;
-	b=0sWa5k9YwfERVrJVLcAvbrvep4w+HQh6KtYygR5tyt1SbWVYDlTgu5wfsxGiTIRdFRgWdA
-	KcoIh9llf6MTv5p+NUnM5m0WN9Yh5v6q7Zx3q++Qs1vZotYwr4a1UZJ8XQNar5vazajyku
-	2EwMx/r48apRIutlVOu67IkHS6ahdUE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1737977572;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=m+UeXUAFZ9jac5oktZG7LFtZi5Y22Ga8bFH0IEhCvRQ=;
-	b=3iHIpuABV3QWSTxVHHP7aMW6Vy811/Y42l/axR6ce8XMPpUIkxzPH/JK11DQbFffB7MlD8
-	TttF5h9HLnjjKFBg==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1737977572; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=m+UeXUAFZ9jac5oktZG7LFtZi5Y22Ga8bFH0IEhCvRQ=;
-	b=0sWa5k9YwfERVrJVLcAvbrvep4w+HQh6KtYygR5tyt1SbWVYDlTgu5wfsxGiTIRdFRgWdA
-	KcoIh9llf6MTv5p+NUnM5m0WN9Yh5v6q7Zx3q++Qs1vZotYwr4a1UZJ8XQNar5vazajyku
-	2EwMx/r48apRIutlVOu67IkHS6ahdUE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1737977572;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=m+UeXUAFZ9jac5oktZG7LFtZi5Y22Ga8bFH0IEhCvRQ=;
-	b=3iHIpuABV3QWSTxVHHP7aMW6Vy811/Y42l/axR6ce8XMPpUIkxzPH/JK11DQbFffB7MlD8
-	TttF5h9HLnjjKFBg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 468E9137C0;
-	Mon, 27 Jan 2025 11:32:52 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id aWAxEeRul2ecawAAD6G6ig
-	(envelope-from <iivanov@suse.de>); Mon, 27 Jan 2025 11:32:52 +0000
-Date: Mon, 27 Jan 2025 13:32:51 +0200
-From: "Ivan T. Ivanov" <iivanov@suse.de>
-To: Stanimir Varbanov <svarbanov@suse.de>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1737977865; c=relaxed/simple;
+	bh=+7Rvu3OIS9P9E9/P8C77MzIZhAknNVNVlQhS8lpE46k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hNptvQjEy77U7kX4hPtjo+hBssdOjzyr4y0IQmpVaToPuIIEhCV9X3TEn8Qff7M2E2YQN7UKzSiPGyylja41ExyL8dcV4wp0PQZtqd3KmRaNb6wIOXMLsPJhASyuCuCrSzlLaxqS/snGKn4FdzrgXiYq3l8TdmNWLrfIl0pRnYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-CSE-ConnectionGUID: eBV7ahw5TwSknbxw1MBvUg==
+X-CSE-MsgGUID: eNG52IO+TDy7cr+FJSXzqA==
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 27 Jan 2025 20:37:41 +0900
+Received: from localhost.localdomain (unknown [10.226.94.28])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 95AE441F25BB;
+	Mon, 27 Jan 2025 20:37:25 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Jim Quinlan <jim2101024@gmail.com>,
-	Nicolas Saenz Julienne <nsaenz@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH v5 -next 00/11] Add PCIe support for bcm2712
-Message-ID: <20250127113251.b2tqacoalcjrtcap@localhost.localdomain>
-References: <20250120130119.671119-1-svarbanov@suse.de>
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v2 00/12] Add Support for RZ/G3E ICU
+Date: Mon, 27 Jan 2025 11:36:55 +0000
+Message-ID: <20250127113723.24479-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250120130119.671119-1-svarbanov@suse.de>
-X-Spam-Level: 
-X-Spamd-Result: default: False [-2.80 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[22];
-	ARC_NA(0.00)[];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FUZZY_BLOCKED(0.00)[rspamd.com];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	RCVD_TLS_ALL(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,lists.infradead.org,broadcom.com,linutronix.de,kernel.org,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com];
-	RCVD_COUNT_TWO(0.00)[2];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:email]
-X-Spam-Score: -2.80
-X-Spam-Flag: NO
+Content-Transfer-Encoding: 8bit
 
-Hi Stan,
+The ICU block on the RZ/G3E SoC is almost identical to the one found on
+the RZ/V2H SoC, with the following differences:
+ - The TINT register offset is 0x830 compared to 0x30 on RZ/V2H.
+ - The number of supported GPIO interrupts for TINT selection is 141
+   instead of 86.
+ - The pin index and TINT selection index are not in the 1:1 map
+ - The number of TSSR registers is 15 instead of 8
+ - Each TSSR register can program 2 TINTs instead of 4 TINTs
 
-On 01-20 15:01, Stanimir Varbanov wrote:
-> 
-> Here is v5 of the series which aims to add support for PCIe on bcm2712 SoC
-> used by RPi5. Previous v4 can be found at [1].
-> 
-> Based the series on linux-next because of vc4 gpu node in bcm2712.dtsi.
-> 
-> v4 -> v5 changes include:
->  - Addressed comments to interrupt-controller driver. (Thomas)
->  - Fixed DTB warnings  broadcom/bcm2712-rpi-5-b.dtb.
->  - New patch in the series to fix missing of_node_put.
->  - New patch to make a softdep to a MIP MSI-X driver.
->  - Dropped the patch which adds MSI-X support in pcie-brcmstb driver,
->    and instead use DT dma-ranges to pass the needed information. (Jim)
-> 
-> For more detailed info check patches.
-> 
-> Comments are welcome!
-> ~Stan
-> 
-> [1] https://patchwork.kernel.org/project/linux-pci/cover/20241025124515.14066-1-svarbanov@suse.de/
-> 
-> Stanimir Varbanov (11):
->   dt-bindings: interrupt-controller: Add bcm2712 MSI-X DT bindings
->   dt-bindings: PCI: brcmstb: Update bindings for PCIe on bcm2712
->   irqchip: Add Broadcom bcm2712 MSI-X interrupt controller
->   PCI: brcmstb: Reuse config structure
->   PCI: brcmstb: Expand inbound window size up to 64GB
->   PCI: brcmstb: Add bcm2712 support
->   PCI: brcmstb: Adjust PHY PLL setup to use a 54MHz input refclk
->   PCI: brcmstb: Adding a softdep to MIP MSI-X driver
->   PCI: brcmstb: Fix for missing of_node_put
->   arm64: dts: broadcom: bcm2712: Add PCIe DT nodes
->   arm64: dts: broadcom: bcm2712-rpi-5-b: Enable PCIe DT nodes
-> 
->  .../brcm,bcm2712-msix.yaml                    |  60 ++++
->  .../bindings/pci/brcm,stb-pcie.yaml           |   6 +-
->  .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |   8 +
->  arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 147 +++++++++
->  drivers/irqchip/Kconfig                       |  16 +
->  drivers/irqchip/Makefile                      |   1 +
->  drivers/irqchip/irq-bcm2712-mip.c             | 292 ++++++++++++++++++
->  drivers/pci/controller/pcie-brcmstb.c         | 147 ++++++---
->  8 files changed, 632 insertions(+), 45 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
->  create mode 100644 drivers/irqchip/irq-bcm2712-mip.c
+Add support for the RZ/G3E ICU driver.
 
-Thanks! This works fine.
+v1->v2:
+ * Collected tags
+ * Split the simplification patch into two.
+ * Updated commit header and description for patch#4.
+ * Replaced devm_reset_control_get_optional_exclusive_deasserted()->
+   devm_reset_control_get_exclusive_deasserted().
+ * Moved simplification using devm_pm_runtime_enable() to patch#5.
+ * Aligned kernel doc, struct members and struct initializers in
+   a tabular fashion.
+ * Renamed the macro ICU_PB5_TINT->ICU_RZV2H_TSSEL_MAX_VAL.
+ * Replaced hexa decimal constant with ICU_RZV2H_TSSEL_MAX_VAL in struct
+   rzv2h_hw_params.
+ * Introduced ICU_RZG3E_{TSSEL_MAX_VAL,TINT_OFFSET} macros and used these
+   macros in struct rzv2h_hw_params rather than using the hex constants.
 
-Tested-by: Ivan T. Ivanov <iivanov@suse.de>
+Biju Das (12):
+  dt-bindings: interrupt-controller: renesas,rzv2h-icu: Document RZ/G3E
+    SoC
+  clk: renesas: r9a09g047: Add ICU clock/reset
+  irqchip/renesas-rzv2h: Drop irqchip from struct rzv2h_icu_priv
+  irqchip/renesas-rzv2h: Use
+    devm_reset_control_get_exclusive_deasserted()
+  irqchip/renesas-rzv2h: Simplify rzv2h_icu_init()
+  irqchip/renesas-rzv2h: Add struct rzv2h_hw_info with t_offs variable
+  irqchip/renesas-rzv2h: Add max_tssel variable to struct rzv2h_hw_info
+  irqchip/renesas-rzv2h: Add tssr_k variable to struct rzv2h_hw_info
+  irqchip/renesas-rzv2h: Add tssel_mask and tssel_shift variables to
+    struct rzv2h_hw_info
+  irqchip/renesas-rzv2h: Add tien variable to struct rzv2h_hw_info
+  irqchip/renesas-rzv2h: Add RZ/G3E support
+  arm64: dts: renesas: r9a09g047: Add icu node
+
+ .../renesas,rzv2h-icu.yaml                    |   6 +-
+ arch/arm64/boot/dts/renesas/r9a09g047.dtsi    | 108 ++++++++++++
+ drivers/clk/renesas/r9a09g047-cpg.c           |   3 +
+ drivers/irqchip/irq-renesas-rzv2h.c           | 162 +++++++++++++-----
+ 4 files changed, 232 insertions(+), 47 deletions(-)
+
+-- 
+2.43.0
 
 
