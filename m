@@ -1,461 +1,212 @@
-Return-Path: <devicetree+bounces-141163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 788B9A1D986
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:31:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46CBBA1DA23
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:05:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 868A318873BD
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 15:31:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D56551885AB2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:05:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8DB3155335;
-	Mon, 27 Jan 2025 15:31:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C349515CD41;
+	Mon, 27 Jan 2025 16:04:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AG4ivKIR"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="ySTOmZoW";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="bK2PMFIk";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="zawGZfuv";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="r1CyFRsS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7985013C809;
-	Mon, 27 Jan 2025 15:31:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01415155C87;
+	Mon, 27 Jan 2025 16:04:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737991881; cv=none; b=LNDEaH5ECc1jxfITQYjXJztZ/7f0GSu99lXLv8Re2LHeMa/H/7nErNYqPr8fToP4mikBB+o/txT5ugf31/98zhB2xoraR9BjXvBnBfgt8uf1AX+9x5x7m3X6VSV9m37ikZKGOPnXYJncXjcSyJwSNVAiS6FW8VSDabMXjrKAA+w=
+	t=1737993889; cv=none; b=Y9IrfPJj8gw3V+UKKsOeZ1vVmPJnWkpt8j6aeMEmU+IHcE4ZnfP1O+MEirAKziL2eXAva0xntqLtWt1SUzIp9usv4mz7+vsNLuk6U/52lo7HsUS8X4ds1AnT81f0u73DOfPlmInxesjgFLFxSD7YOFWFKjI71n0j+6O94wyrMRY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737991881; c=relaxed/simple;
-	bh=IwWJxlPhO4gAXyf1FzdPApkUs977qHlevTG9Hf456Nw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ooL2++AKACcFn2Yt71lUk2dtSOyWI4uQBe8MI15wJdWlJdC6bDtIP6delV/w1YK9kKCsKAP3/uF4QdFX1t0meDoLLL+e4YU3KGEAZ3oXciJ3ng4lpUOtKK/Zhb00pRs7lFXzDpVhFvit6xdfVIPdlXqiKEc/OpdGTfLLE5+XXoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AG4ivKIR; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id EEAD944317;
-	Mon, 27 Jan 2025 15:31:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1737991871;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	s=arc-20240116; t=1737993889; c=relaxed/simple;
+	bh=7ET6BVX8ZQhudY1LxhOtxAAF9CiLaN5bQ+Ej7qLPLaA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=quyfaTwrZ7Yv1YT13emitjgFLkYZubuHM0oNDkzNjXthZMeaj8Nzr8ZPRcXFcIhXCYLAYWuXd6KpYJ22pbNl74MJZdyn+RZ5tfbZD0HDIdFPO4SWtjule5qnu1GMk2RH4rDCRdH325pZJidq/1tkgYbWUvBAerV1vwc3mOqFM6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=ySTOmZoW; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=bK2PMFIk; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=zawGZfuv; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=r1CyFRsS; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out2.suse.de (Postfix) with ESMTPS id C7E151F383;
+	Mon, 27 Jan 2025 16:04:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1737993886; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=E1HYT0DH0xxTs5kTZOk37ftZCKO3u/UWOtbK7ctFKbI=;
-	b=AG4ivKIR1h1Lsd96KKHOFlTHiB9TbTZUkHN4sDwRQtFbTy865SB1kiCfzi8mQMmf4mksgn
-	Lbwbw/gSLblZgYYYNylaS1MEPONUQ0mAvEB52m95KRnV3OMRJx+O7SXPImckgLdzQ3u1kD
-	Y1lNF/aa2ecwG4LiI5ASzVBOfDuInMuMI7/GVOtxdKcMPM3237lnjvZNwfSFZiZ6NlVZTd
-	hC1GhLenIX7f/Wt3i1tibr2PKLT0N0RpJIOnv4kM17Yk4CB6FrXokyU1/W3lmFK+FPsMG4
-	Fo8RVJeNr6haMgNPLBADmWvTHVUvxAtrZIhS2ZyL51c9655DaKtTlNGlIzztjg==
-From: Antonin Godard <antonin.godard@bootlin.com>
-Date: Mon, 27 Jan 2025 16:31:02 +0100
-Subject: [PATCH v2 3/3] ARM: dts: imx6ul: Add Variscite Concerto board
- support
+	bh=Doi5XPUCZ2nG9x2OZWRFRlVh/JHCmgk5nDDgwb+TmJ4=;
+	b=ySTOmZoWjM9vn3Ai0JpWG/MEbXtGIx3QuCFgr84chqXUhAcq4KFxnUFae0Yjnl92eXBaos
+	uLNNi0UM3iCtUzVQTcVFYkj8p1no/Fdg+1N+uScvB0z4IVHhcQRP//BJCz+aJUPTvJJl6P
+	cXe9CrklU5oR/zJkSB1b+emHjQ7wCgI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1737993886;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Doi5XPUCZ2nG9x2OZWRFRlVh/JHCmgk5nDDgwb+TmJ4=;
+	b=bK2PMFIki3eN7lB4Dr/NooL5SoFp6WG57uigv4ncJ4eo378O/zP1UDABJXv7pRouFCEC2+
+	6iKXZ/akLAcoIfBg==
+Authentication-Results: smtp-out2.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=zawGZfuv;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=r1CyFRsS
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1737993885; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Doi5XPUCZ2nG9x2OZWRFRlVh/JHCmgk5nDDgwb+TmJ4=;
+	b=zawGZfuv/UK6W2qQnAZ6mHhuWVeIfI02zDZPTgJhyo7iGRdoXE1YxoR7ydWwnFwR+n8uaX
+	8EcqH94DkSCDR+KOYAqUxrTVlYOqHW9hmFjIEzXMHfuxop+1+vHXUpMhCEvUb0ck+d6IiY
+	pej6CFJktO2jqBNk2wfQ65wevsQSSXc=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1737993885;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Doi5XPUCZ2nG9x2OZWRFRlVh/JHCmgk5nDDgwb+TmJ4=;
+	b=r1CyFRsSi47QzxDz6FwCN6RR5cZLpphnfIDc7bLuWLwPyN3LmWrjVjt9ziO69eAFB6iqa4
+	XOorc8/TjCZjv3Bw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id C8CA3137C0;
+	Mon, 27 Jan 2025 16:04:43 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id H3d+Lpuul2e6egAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Mon, 27 Jan 2025 16:04:43 +0000
+Message-ID: <151116ad-b671-4f4d-a231-6b2288d08158@suse.de>
+Date: Mon, 27 Jan 2025 18:04:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250127-varsom6ul-concerto-dts-v2-3-4dac29256989@bootlin.com>
-References: <20250127-varsom6ul-concerto-dts-v2-0-4dac29256989@bootlin.com>
-In-Reply-To: <20250127-varsom6ul-concerto-dts-v2-0-4dac29256989@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- Antonin Godard <antonin.godard@bootlin.com>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9023;
- i=antonin.godard@bootlin.com; h=from:subject:message-id;
- bh=IwWJxlPhO4gAXyf1FzdPApkUs977qHlevTG9Hf456Nw=;
- b=owEBbQKS/ZANAwAIAdGAQUApo6g2AcsmYgBnl6a8VH4XcmCDh2zM80A5dqFMKFzkPRcyFDKz8
- rJD/fEBbyaJAjMEAAEIAB0WIQSGSHJRiN1AG7mg0//RgEFAKaOoNgUCZ5emvAAKCRDRgEFAKaOo
- NtXUD/9tmWLAA7H1ZYQvhO8sbdYfbuhAkCgIdAniNyEzQoOKTaYLP6QyLiQxLC41qZ9ytPShm+k
- k+Uu2+UpgJYjMzfvDIYXkRxjdX4CKi/lyL4QlVo1MB0AKdq2pCa5hKoIgSxQ7Db3J73Hx081Dbs
- tZLKQjfHeTGz+OvgJ6FpIwiuQDGLndbTpXbRs6o4rVogBYI4NErL4/P1KQ3hPMRYv7QHLlbzL+d
- 93FFg042x6h5bPIeRsgU0uahOE3Spoj/NfU/Xa9HRK0OdKImLNQy71hZRNRaGKtRLNDZCysP4Pj
- Se2/2XL2QAaEJ5PMy42/x3LBwNdqR3S6sglZVKypxQUouNoTNssoXk/cP4pENUP53fwFlCB7ii2
- 7NQmyCdm+cBI3NhH5YXqB4w8XzVFxYMc8w0KmVhs1+mgBYBxtIlGVFOfdxz+Tzr/5sPF4iAZnK4
- EPPAYWLqx5jHtDE8CTiWUNhGNev9MP1+n9U4xRHaIyDXqbOROz85JXzgcRxGKadelAuO8hIQZZ7
- m0qmrUIiyHaq5wXn7e22pTWc56oOLM6fh+GnL8ngQoS+4TUPPCsgFMZIctOfbAQdq6VHKNCSAM2
- oOOeCF8W37nmOxsCyJ1LvUUqwUuiZ6ah27jbCmb21dbQv3cnMNnSej63dkRCUfbh0TNRXBslYgr
- MmHfFbKcXLqqjWg==
-X-Developer-Key: i=antonin.godard@bootlin.com; a=openpgp;
- fpr=8648725188DD401BB9A0D3FFD180414029A3A836
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudejgedgudefheegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhfffugggtgffkfhgjvfevofesthejredtredtjeenucfhrhhomheptehnthhonhhinhcuifhouggrrhguuceorghnthhonhhinhdrghhouggrrhgusegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeekgeekvdduvdetheetgeefgfeljeevgfegkeduheeutdevvddtfedvveettddtvdenucffohhmrghinhepvhgrrhhishgtihhtvgdrtghomhenucfkphepvdgrtddumegtsgdugeemheehieemjegrtddtmeejtgehtgemiegruggvmeejleegkeemgedtheelnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddumegtsgdugeemheehieemjegrtddtmeejtgehtgemiegruggvmeejleegkeemgedtheelpdhhvghloheplgduvdejrddtrddurddungdpmhgrihhlfhhrohhmpegrnhhtohhnihhnrdhgohgurghrugessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepudefpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehshhgrfihnghhuoheskhgvr
- hhnvghlrdhorhhgpdhrtghpthhtohepkhgvrhhnvghlsehpvghnghhuthhrohhnihigrdguvgdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepshdrhhgruhgvrhesphgvnhhguhhtrhhonhhigidruggvpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghlsehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-GND-Sasl: antonin.godard@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 -next 09/11] PCI: brcmstb: Fix for missing of_node_put
+To: Stanimir Varbanov <svarbanov@suse.de>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ linux-pci@vger.kernel.org,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jim Quinlan <jim2101024@gmail.com>,
+ Nicolas Saenz Julienne <nsaenz@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Andrea della Porta <andrea.porta@suse.com>,
+ Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
+ <jonathan@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ stable@vger.kernel.org
+References: <20250120130119.671119-1-svarbanov@suse.de>
+ <20250120130119.671119-10-svarbanov@suse.de>
+ <1abdd175-280a-442a-a27a-9bc01c0a04c0@broadcom.com>
+ <d8c0f79f-1896-4afa-86e3-bd330218f362@suse.de>
+Content-Language: en-US
+From: Stanimir Varbanov <svarbanov@suse.de>
+In-Reply-To: <d8c0f79f-1896-4afa-86e3-bd330218f362@suse.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: C7E151F383
+X-Spam-Score: -3.01
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-3.01 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	ARC_NA(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	RCPT_COUNT_TWELVE(0.00)[23];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com];
+	RCVD_TLS_ALL(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linutronix.de,kernel.org,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com,vger.kernel.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+	DKIM_TRACE(0.00)[suse.de:+];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo]
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spam-Flag: NO
+X-Spam-Level: 
 
-Add support for the Variscite Concerto Carrier Board with:
+Hi,
 
-- LVDS interface for the VLCD-CAP-GLD-LVDS 7" LCD 800 x 480 touch
-  display (not configured)
-- USB Host + USB OTG Connector
-- 10/100 Mbps Ethernet
-- miniPCI-Express slot
-- SD Card connector
-- Audio Headphone/Line In jack connectors
-- S-ATA
-- On-board DMIC
+On 1/22/25 6:20 PM, Stanimir Varbanov wrote:
+> Hi Florian,
+> 
+> On 1/21/25 8:32 PM, Florian Fainelli wrote:
+>> On 1/20/25 05:01, Stanimir Varbanov wrote:
+>>> A call to of_parse_phandle() increments refcount, of_node_put must be
+>>> called when done the work on it. Fix missing of_node_put() on the
+>>> msi_np device node by using scope based of_node_put() cleanups.
+>>>
+>>> Cc: stable@vger.kernel.org # v5.10+
+>>> Fixes: 40ca1bf580ef ("PCI: brcmstb: Add MSI support")
+>>> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+>>> ---
+>>> v4 -> v5:
+>>>   - New patch in the series.
+>>>
+>>>   drivers/pci/controller/pcie-brcmstb.c | 3 ++-
+>>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/pci/controller/pcie-brcmstb.c b/drivers/pci/
+>>> controller/pcie-brcmstb.c
+>>> index 744fe1a4cf9c..546056f7f0d3 100644
+>>> --- a/drivers/pci/controller/pcie-brcmstb.c
+>>> +++ b/drivers/pci/controller/pcie-brcmstb.c
+>>> @@ -1844,7 +1844,8 @@ static struct pci_ops brcm7425_pcie_ops = {
+>>>     static int brcm_pcie_probe(struct platform_device *pdev)
+>>>   {
+>>> -    struct device_node *np = pdev->dev.of_node, *msi_np;
+>>> +    struct device_node *msi_np __free(device_node) = NULL;
+>>
+>> In the interest of making this a straight back port to 5.10 that does
+>> not have all of the __free() goodies, I would just add the missing
+>> of_node_put() where necessary.
+> 
+> Good point. Thank you.
+> 
+>>
+>> Also, since this is a bug fix, you should probably make it appear
+>> earlier in the patch series, or even sent it as a separate fix entirely.
+> 
+> OK, will send it as a standalone patch (as v2 with your comment addressed).
 
-Product Page: https://www.variscite.com/product/single-board-computers/concerto-board
+Sent here [1], now separate from this series.
 
-This file is based on the one provided by Variscite on their own kernel,
-but adapted for mainline.
+~Stan
 
-Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
----
- arch/arm/boot/dts/nxp/imx/Makefile                 |   1 +
- .../boot/dts/nxp/imx/imx6ul-var-som-concerto.dts   | 320 +++++++++++++++++++++
- 2 files changed, 321 insertions(+)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/Makefile b/arch/arm/boot/dts/nxp/imx/Makefile
-index 39a153536d2a..94c9bc94cc8e 100644
---- a/arch/arm/boot/dts/nxp/imx/Makefile
-+++ b/arch/arm/boot/dts/nxp/imx/Makefile
-@@ -329,6 +329,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
- 	imx6ul-tx6ul-0010.dtb \
- 	imx6ul-tx6ul-0011.dtb \
- 	imx6ul-tx6ul-mainboard.dtb \
-+	imx6ul-var-som-concerto.dtb \
- 	imx6ull-14x14-evk.dtb \
- 	imx6ull-colibri-aster.dtb \
- 	imx6ull-colibri-emmc-aster.dtb \
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-new file mode 100644
-index 000000000000..4955d5193be3
---- /dev/null
-+++ b/arch/arm/boot/dts/nxp/imx/imx6ul-var-som-concerto.dts
-@@ -0,0 +1,320 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Support for Variscite MX6 Concerto Carrier board with the VAR-SOM-MX6UL
-+ * Variscite SoM mounted on it
-+ *
-+ * Copyright 2019 Variscite Ltd.
-+ * Copyright 2025 Bootlin
-+ */
-+
-+#include "imx6ul-var-som.dtsi"
-+#include <dt-bindings/leds/common.h>
-+
-+/ {
-+	model = "Variscite VAR-SOM-MX6UL Concerto Board";
-+	compatible = "variscite,mx6ulconcerto", "variscite,var-som-imx6ul", "fsl,imx6ul";
-+
-+	chosen {
-+		stdout-path = &uart1;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_key_back>, <&pinctrl_gpio_key_wakeup>;
-+
-+		key-back {
-+			gpios = <&gpio4 14 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_BACK>;
-+		};
-+
-+		key-wakeup {
-+			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_WAKEUP>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpio_leds>;
-+
-+		led-0 {
-+			function = LED_FUNCTION_STATUS;
-+			color = <LED_COLOR_ID_GREEN>;
-+			label = "gpled2";
-+			gpios = <&gpio1 25 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+};
-+
-+&can1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flexcan1>;
-+	status = "okay";
-+};
-+
-+&fec1 {
-+	status = "disabled";
-+};
-+
-+&fec2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enet2>, <&pinctrl_enet2_gpio>, <&pinctrl_enet2_mdio>;
-+	phy-mode = "rmii";
-+	phy-handle = <&ethphy1>;
-+	phy-reset-gpios = <&gpio5 5 GPIO_ACTIVE_LOW>;
-+	phy-reset-duration = <100>;
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethphy1: ethernet-phy@3 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			micrel,rmii-reference-clock-select-25-mhz = <1>;
-+			micrel,led-mode = <0>;
-+			clocks = <&rmii_ref_clk>;
-+			clock-names = "rmii-ref";
-+			reg = <3>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	rtc@68 {
-+		/*
-+		 * To actually use this interrupt
-+		 * connect pins J14.8 & J14.10 on the Concerto-Board.
-+		 */
-+		compatible = "dallas,ds1337";
-+		reg = <0x68>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_rtc>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <10 IRQ_TYPE_EDGE_FALLING>;
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl_enet2: enet2grp {
-+		fsl,pins = <
-+			MX6UL_PAD_ENET2_RX_EN__ENET2_RX_EN	0x1b0b0
-+			MX6UL_PAD_ENET2_RX_ER__ENET2_RX_ER	0x1b0b0
-+			MX6UL_PAD_ENET2_RX_DATA0__ENET2_RDATA00	0x1b0b0
-+			MX6UL_PAD_ENET2_RX_DATA1__ENET2_RDATA01	0x1b0b0
-+			MX6UL_PAD_ENET2_TX_EN__ENET2_TX_EN	0x1b0b0
-+			MX6UL_PAD_ENET2_TX_DATA0__ENET2_TDATA00	0x1b0b0
-+			MX6UL_PAD_ENET2_TX_DATA1__ENET2_TDATA01	0x1b0b0
-+			MX6UL_PAD_ENET2_TX_CLK__ENET2_REF_CLK2	0x4001b031
-+		>;
-+	};
-+
-+	pinctrl_enet2_mdio: enet2-mdiogrp {
-+		fsl,pins = <
-+			MX6UL_PAD_GPIO1_IO06__ENET2_MDIO	0x1b0b0
-+			MX6UL_PAD_GPIO1_IO07__ENET2_MDC		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_enet2_gpio: enet2-gpiogrp {
-+		fsl,pins = <
-+			MX6UL_PAD_SNVS_TAMPER5__GPIO5_IO05	0x1b0b0 /* fec2 reset */
-+		>;
-+	};
-+
-+	pinctrl_flexcan1: flexcan1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART3_RTS_B__FLEXCAN1_RX	0x1b020
-+			MX6UL_PAD_UART3_CTS_B__FLEXCAN1_TX	0x1b020
-+		>;
-+	};
-+
-+	pinctrl_gpio_key_back: gpio-key-backgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_CE1_B__GPIO4_IO14	0x17059 /* Back */
-+		>;
-+	};
-+
-+	pinctrl_gpio_leds: gpio-ledsgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x1b0b0	/* GPLED2 */
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_CSI_PIXCLK__I2C1_SCL		0x4001b8b0
-+			MX6UL_PAD_CSI_MCLK__I2C1_SDA		0x4001b8b0
-+		>;
-+	};
-+
-+	pinctrl_pwm4: pwm4grp {
-+		fsl,pins = <
-+			MX6UL_PAD_GPIO1_IO05__PWM4_OUT		0x110b0
-+		>;
-+	};
-+
-+	pinctrl_rtc: rtcgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_JTAG_MOD__GPIO1_IO10		0x1b0b0 /* RTC alarm IRQ */
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART1_TX_DATA__UART1_DCE_TX	0x1b0b1
-+			MX6UL_PAD_UART1_RX_DATA__UART1_DCE_RX	0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_uart5: uart5grp {
-+		fsl,pins = <
-+			MX6UL_PAD_CSI_DATA00__UART5_DCE_TX	0x1b0b1
-+			MX6UL_PAD_CSI_DATA01__UART5_DCE_RX	0x1b0b1
-+			MX6UL_PAD_GPIO1_IO09__UART5_DCE_CTS	0x1b0b1
-+			MX6UL_PAD_GPIO1_IO08__UART5_DCE_RTS	0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_usb_otg1_id: usbotg1idgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_UART3_TX_DATA__ANATOP_OTG1_ID	0x17059
-+		>;
-+	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX6UL_PAD_GPIO1_IO01__WDOG1_WDOG_B	0x78b0
-+		>;
-+	};
-+
-+	pinctrl_gpio_key_wakeup: gpio-keys-wakeupgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_SNVS_TAMPER8__GPIO5_IO08	0x17059 /* Wakeup */
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x17059
-+			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x17059
-+			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x17059
-+			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
-+			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
-+			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_100mhz: usdhc1-100mhzgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170b9
-+			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100b9
-+			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170b9
-+			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170b9
-+			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170b9
-+			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170b9
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_200mhz: usdhc1-200mhzgrp {
-+		fsl,pins = <
-+			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x170f9
-+			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x100f9
-+			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x170f9
-+			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x170f9
-+			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x170f9
-+			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x170f9
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_gpio: usdhc1-gpiogrp {
-+		fsl,pins = <
-+			MX6UL_PAD_GPIO1_IO00__GPIO1_IO00	0x1b0b1 /* CD */
-+		>;
-+	};
-+};
-+
-+&pwm4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm4>;
-+	status = "okay";
-+};
-+
-+&snvs_pwrkey {
-+	status = "disabled";
-+};
-+
-+&snvs_rtc {
-+	status = "disabled";
-+};
-+
-+&tsc {
-+	/*
-+	 * Conflics with wdog1 ext-reset-output & SD CD pins,
-+	 * so we keep it disabled by default.
-+	 */
-+	status = "disabled";
-+};
-+
-+/* Console UART */
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+/* ttymxc4 UART */
-+&uart5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart5>;
-+	uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usb_otg1_id>;
-+	dr_mode = "otg";
-+	disable-over-current;
-+	srp-disable;
-+	hnp-disable;
-+	adp-disable;
-+	status = "okay";
-+};
-+
-+&usbotg2 {
-+	dr_mode = "host";
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	/*
-+	 * To actually use ext-reset-output
-+	 * connect pins J17.3 & J17.8 on the Concerto-Board
-+	 */
-+	fsl,ext-reset-output;
-+};
-+
-+&usdhc1 {
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc1>, <&pinctrl_usdhc1_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc1_100mhz>, <&pinctrl_usdhc1_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc1_200mhz>, <&pinctrl_usdhc1_gpio>;
-+	cd-gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
-+	no-1-8-v;
-+	keep-power-in-suspend;
-+	wakeup-source;
-+	status = "okay";
-+};
-
--- 
-2.47.0.2.g7caf9f4c55.dirty
-
+[1]
+https://lore.kernel.org/lkml/20250122222955.1752778-1-svarbanov@suse.de/T/
 
