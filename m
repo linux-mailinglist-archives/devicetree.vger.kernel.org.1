@@ -1,400 +1,440 @@
-Return-Path: <devicetree+bounces-141213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79AF6A1DD50
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 21:22:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E418AA1DD76
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 21:37:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03B65188662E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 20:22:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 29C177A0879
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 20:37:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09D85198A11;
-	Mon, 27 Jan 2025 20:22:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E55817799F;
+	Mon, 27 Jan 2025 20:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="D+z1M8Ia"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="HsZUtmfF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8A6D1953BD;
-	Mon, 27 Jan 2025 20:22:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738009335; cv=none; b=IVGep1dMn+o+WBvItuXL9enn2iJkbHeecYbSBxTMbB/HLscaZleap8IRJJx4Af/ECiN7fMAQiZQGr4otLRoywUe4yjXNp2rONYhpo//zFBNdwVrtpHqkeh8tcOYSkCdgKvO++eljgJDInebtATJzJ8tCDROXpwRt54zYlHJ7oto=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738009335; c=relaxed/simple;
-	bh=u3aZn0KHf2AF5UztR4SnXDCQgITElEbs9Imq2Y++paQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=uHTKbYJ7BF6iB7yweNLv6v9toq0zi8PUXw0JoCcm2dri4vVFFhBvZfw22U7o+/zStst+LHagWq1TE8JkhXmV+pLVo/vdcyKFnOiFmu9LRNiwOlO8YC5qvs5VvzCtKT150tTIUPBYtMaZS0ktXlNioe45QV3ngLPpxzAGgrXPfCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=D+z1M8Ia; arc=none smtp.client-ip=173.249.15.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
-dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
-	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding:In-Reply-To:References;
-	bh=aY5JeHYJ5UgvGFFLVKuLxjQPnG18D87SgziU66MY8TA=;
-	b=D+z1M8Ian63MtZgmKtfkYiXcQvetpC/YxgTGrorIXgxjCGKcdgPSY8iLlA8qGTsJmjUmx6mabbczuWgqgjSoAwaQqItPZVyDY9GS9vVHoREqjqein3Ct9AhNmkSZ9Yazz6pGgNm46HShSbYzQGhur3G9kwj3xvZTR3OvltKGHiA=
-Received: from lukas-hpz440workstation.lan.sk100508.local (cm70-231.liwest.at [212.241.70.231])
-	by mail.netcube.li with ESMTPSA
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256)
-	; Mon, 27 Jan 2025 21:21:41 +0100
-From: Lukas Schmid <lukas.schmid@netcube.li>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Maxime Ripard <mripard@kernel.org>
-Cc: Lukas Schmid <lukas.schmid@netcube.li>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v7 4/4] ARM: dts: sunxi: add support for NetCube Systems Kumquat
-Date: Mon, 27 Jan 2025 21:21:25 +0100
-Message-Id: <20250127202127.971172-5-lukas.schmid@netcube.li>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250127202127.971172-1-lukas.schmid@netcube.li>
-References: <20250127202127.971172-1-lukas.schmid@netcube.li>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 025D71990AB;
+	Mon, 27 Jan 2025 20:37:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738010259; cv=pass; b=U+oaukwQQJowpASs1S0Ifqw6mXcGTc/BDnSh/8Ts5mvOuJD5rWz3en4uH+0BNZvOz/Z0PzcDKtxS4r1CntLtlRypetArsruvBYW7GnRrFy8sq9qTMWOhS8gYojk+w4T6x7xZm+AE6v5B+uSaqnAmdEtKF1CsT7bk++SApw7umoc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738010259; c=relaxed/simple;
+	bh=O5rYUOacbEHhK12k1my0DmG52LSEZLx81i4pCGnG8+U=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PDPAqeBfN+QPvtRwqje2t/guuDdIX7VcU85cHgtWJh8sAaB1CCvR3eIRptWVXSv6CrqA0Yeh76RYHhX2tuvnlnZfAVIPbhaxl2VhGfHeKiCGf/SSvZZjCacJoe2Uvod5bTTDwboZIDabEldyhbjAKpSr87YCuwjycbAsh5+PVgU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=HsZUtmfF; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1738010072; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=JvPNQXAjRihfB45A8uBw9MuIKFhA55RWkOYdOW5G/IJgIGWw2P0IzIgRWSBPu3yEFtLYxZVvuihariIzSeguPN8fyFI8ht0ZbP9wFqXke30pupo2A6T+/fh8i7anvPMMUreq7JeGqjCNCU6KCVwUajnWPJqzRSgkJA0aJ/IJ8RA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1738010072; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=dRwpVnoMHPQMiPuilTgQ/bbK1mdxwl1rfZxvWnvOjZE=; 
+	b=BVSG0sqGkJyE3vhMA9CcO0LEc2avYnEbFuHMq+Uq2PRsjEr+QUq0nlhiuIjzyzzcOaNiA2LZTd3NF6V+XbPwOoP5pWsmx52bEeo9RHuLxh67csnpdt/0EYMJWjpNYSlS0ZV2lSsZVMJfi3JUf9zT4umcMqC9qDyZ872HaTZ2YGE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1738010072;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=dRwpVnoMHPQMiPuilTgQ/bbK1mdxwl1rfZxvWnvOjZE=;
+	b=HsZUtmfFZQqYGo7HkY6orYjhRMEyiZ6FM1+qo2ZmZxBQ25ac8iER6fsPld80uC2B
+	nsu+6JanqVBZ0jJsPBcquVcGRsGd5HRi2TTE4JslHuk2PvTb/wS1R+KHs/MVDHzBCR1
+	Y0wLyCtA3QOj7kAUIvhfHWX9xX7NXsVqWJiKm+sY=
+Received: by mx.zohomail.com with SMTPS id 1738010064065940.6144380297951;
+	Mon, 27 Jan 2025 12:34:24 -0800 (PST)
+From: Detlev Casanova <detlev.casanova@collabora.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+ Alexey Charkov <alchark@gmail.com>, Jianfeng Liu <liujianfeng1994@gmail.com>,
+ Dragan Simic <dsimic@manjaro.org>, FUKAUMI Naoki <naoki@radxa.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Johan Jonker <jbx6244@gmail.com>, Kever Yang <kever.yang@rock-chips.com>,
+ Sugar Zhang <sugar.zhang@rock-chips.com>,
+ Algea Cao <algea.cao@rock-chips.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, kernel@collabora.com
+Subject:
+ Re: [PATCH v2 1/2] drm/bridge: synopsys: Add audio support for dw-hdmi-qp
+Date: Mon, 27 Jan 2025 15:34:21 -0500
+Message-ID: <4954567.GXAFRqVoOG@earth>
+In-Reply-To: <mpj5o2kdadkwsutjdtmze6riycdan3w7mohgqdzxiwfpvlh7zx@eocnqikqwrwt>
+References:
+ <20250123222850.223255-1-detlev.casanova@collabora.com>
+ <20250123222850.223255-2-detlev.casanova@collabora.com>
+ <mpj5o2kdadkwsutjdtmze6riycdan3w7mohgqdzxiwfpvlh7zx@eocnqikqwrwt>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
+X-ZohoMailClient: External
 
-NetCube Systems Kumquat is a board based on the Allwinner V3s SoC,
-including:
+On Friday, 24 January 2025 00:01:38 EST Dmitry Baryshkov wrote:
+> On Thu, Jan 23, 2025 at 05:28:06PM -0500, Detlev Casanova wrote:
+> > From: Sugar Zhang <sugar.zhang@rock-chips.com>
+> > 
+> > Register the dw-hdmi-qp bridge driver as an HDMI audio codec.
+> > 
+> > The register values computation functions (for n) are based on the
+> > downstream driver, as well as the register writing functions.
+> > 
+> > The driver uses the generic HDMI Codec framework in order to implement
+> > the HDMI audio support.
+> > 
+> > Signed-off-by: Sugar Zhang <sugar.zhang@rock-chips.com>
+> > Signed-off-by: Detlev Casanova <detlev.casanova@collabora.com>
+> > ---
+> > 
+> >  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 424 +++++++++++++++++++
+> >  1 file changed, 424 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> > b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c index
+> > b281cabfe992e..f79d38de4c6c4 100644
+> > --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> > +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> > @@ -36,6 +36,66 @@
+> > 
+> >  #define SCRAMB_POLL_DELAY_MS	3000
+> > 
+> > +/*
+> > + * Unless otherwise noted, entries in this table are 100% optimization.
+> > + * Values can be obtained from hdmi_compute_n() but that function is
+> > + * slow so we pre-compute values we expect to see.
+> > + *
+> > + * All 32k and 48k values are expected to be the same (due to the way
+> > + * the math works) for any rate that's an exact kHz.
+> > + */
+> > +static const struct dw_hdmi_audio_tmds_n {
+> > +	unsigned long tmds;
+> > +	unsigned int n_32k;
+> > +	unsigned int n_44k1;
+> > +	unsigned int n_48k;
+> > +} common_tmds_n_table[] = {
+> > +	{ .tmds = 25175000, .n_32k = 4096, .n_44k1 = 12854, .n_48k = 6144, 
+},
+> > +	{ .tmds = 25200000, .n_32k = 4096, .n_44k1 = 5656, .n_48k = 6144, },
+> 
+> These values do not seem to match the tables in HDMI, Appendix D. Is
+> there any reason for that?
 
-- 64MB DDR2 included in SoC
-- 10/100 Mbps Ethernet
-- USB-C DRD
-- Audio Codec
-- Isolated CAN-FD
-- ESP32 over SDIO
-- 8MB SPI-NOR Flash for bootloader
-- I2C EEPROM for MAC addresses
-- SDIO Connector for eMMC or SD-Card
-- 8x 12/24V IOs, 4x normally open relays
-- DS3232 RTC
-- QWIIC connectors for external I2C devices
+From what I see, this seems to be because CTS is never set in the driver (same 
+behavior as downstream driver, which overrides CTS).
+So for values where CTS != TMDS/1000 in the recommendations table, N is 
+different here to make up for it.
 
-Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
----
- arch/arm/boot/dts/allwinner/Makefile          |   2 +
- .../allwinner/sun8i-v3s-netcube-kumquat.dts   | 278 ++++++++++++++++++
- 2 files changed, 280 insertions(+)
- create mode 100644 arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
+Do you think I should Improve the behavior to set CTS when needed ?
 
-diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
-index 48666f73e638..d799ad153b37 100644
---- a/arch/arm/boot/dts/allwinner/Makefile
-+++ b/arch/arm/boot/dts/allwinner/Makefile
-@@ -199,6 +199,7 @@ DTC_FLAGS_sun8i-h3-nanopi-r1 := -@
- DTC_FLAGS_sun8i-h3-orangepi-pc := -@
- DTC_FLAGS_sun8i-h3-bananapi-m2-plus-v1.2 := -@
- DTC_FLAGS_sun8i-h3-orangepi-pc-plus := -@
-+DTC_FLAGS_sun8i-v3s-netcube-kumquat := -@
- dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-a23-evb.dtb \
- 	sun8i-a23-gt90h-v4.dtb \
-@@ -261,6 +262,7 @@ dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-v3s-anbernic-rg-nano.dtb \
- 	sun8i-v3s-licheepi-zero.dtb \
- 	sun8i-v3s-licheepi-zero-dock.dtb \
-+	sun8i-v3s-netcube-kumquat.dtb \
- 	sun8i-v40-bananapi-m2-berry.dtb
- dtb-$(CONFIG_MACH_SUN9I) += \
- 	sun9i-a80-optimus.dtb \
-diff --git a/arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts b/arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
-new file mode 100644
-index 000000000000..e4e98ddfbd96
---- /dev/null
-+++ b/arch/arm/boot/dts/allwinner/sun8i-v3s-netcube-kumquat.dts
-@@ -0,0 +1,278 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2025 Lukas Schmid <lukas.schmid@netcube.li>
-+ */
-+
-+/dts-v1/;
-+#include "sun8i-v3s.dtsi"
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/{
-+	model = "NetCube Systems Kumquat";
-+	compatible = "netcube,kumquat", "allwinner,sun8i-v3s";
-+
-+	aliases {
-+		serial0 = &uart0;
-+		ethernet0 = &emac;
-+		rtc0 = &ds3232;
-+		rtc1 = &rtc; /* not battery backed */
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	/* 40 MHz Crystal Oscillator on PCB */
-+	clk_can0: clock-can0 {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency  = <40000000>;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		autorepeat;
-+
-+		key-user {
-+			label = "GPIO Key User";
-+			linux,code = <KEY_PROG1>;
-+			gpios = <&pio 1 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PB2 */
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-heartbeat {
-+			gpios = <&pio 4 4 GPIO_ACTIVE_HIGH>; /* PE4 */
-+			linux,default-trigger = "heartbeat";
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+		};
-+
-+		led-mmc0-act {
-+			gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>; /* PF6 */
-+			linux,default-trigger = "mmc0";
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_DISK;
-+		};
-+	};
-+
-+	/* EA3036C Switching 3 Channel Regulator - Channel 2 */
-+	reg_vcc3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&reg_vcc5v0>;
-+	};
-+
-+	/* K7805-1000R3 Switching Regulator supplied from main 12/24V terminal block */
-+	reg_vcc5v0: regulator-5v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+};
-+
-+&codec {
-+	allwinner,audio-routing =
-+		"Headphone", "HP",
-+		"Headphone", "HPCOM",
-+		"MIC1", "Mic",
-+		"Mic", "HBIAS";
-+	status = "okay";
-+};
-+
-+&ehci {
-+	status = "okay";
-+};
-+
-+&emac {
-+	allwinner,leds-active-low;
-+	nvmem-cells = <&eth0_macaddress>;
-+	nvmem-cell-names = "mac-address";
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	ds3232: rtc@68 {
-+		compatible = "dallas,ds3232";
-+		reg = <0x68>;
-+	};
-+
-+	eeprom0: eeprom@50 {
-+		compatible = "atmel,24c02";		/* actually it's a 24AA02E48 */
-+		reg = <0x50>;
-+		pagesize = <16>;
-+		read-only;
-+		vcc-supply = <&reg_vcc3v3>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		eth0_macaddress: macaddress@fa {
-+			reg = <0xfa 0x06>;
-+		};
-+	};
-+
-+	tusb320: typec@60 {
-+		compatible = "ti,tusb320";
-+		reg = <0x60>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <1 5 IRQ_TYPE_EDGE_FALLING>;
-+	};
-+};
-+
-+/* Exposed as the Flash/SD Header on the board */
-+&mmc0 {
-+	vmmc-supply = <&reg_vcc3v3>;
-+	bus-width = <4>;
-+	broken-cd;
-+	status = "okay";
-+};
-+
-+/* Connected to the on-board ESP32 */
-+&mmc1 {
-+	vmmc-supply = <&reg_vcc3v3>;
-+	bus-width = <4>;
-+	broken-cd;
-+	status = "okay";
-+};
-+
-+&ohci {
-+	status = "okay";
-+};
-+
-+/* Disable external 32k osc as it is broken on current revision */
-+&osc32k {
-+	status = "disabled";
-+};
-+
-+&pio {
-+	vcc-pb-supply = <&reg_vcc3v3>;
-+	vcc-pc-supply = <&reg_vcc3v3>;
-+	vcc-pe-supply = <&reg_vcc3v3>;
-+	vcc-pf-supply = <&reg_vcc3v3>;
-+	vcc-pg-supply = <&reg_vcc3v3>;
-+
-+	gpio-line-names = "", "", "", "", // PA
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "CAN_nCS", "CAN_nINT", "USER_SW", "PB3", // PB
-+			  "USB_ID", "USBC_nINT", "I2C0_SCL", "I2C0_SDA",
-+			  "UART0_TX", "UART0_RX", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "SPI_MISO", "SPI_SCK", "FLASH_nCS", "SPI_MOSI", // PC
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "", // PD
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "Q12", "Q11", "Q10", "Q9", // PE
-+			  "LED_SYS0", "I1", "Q1", "Q2",
-+			  "I2", "I3", "Q3", "Q4",
-+			  "I4", "I5", "Q5", "Q6",
-+			  "I6", "I7", "Q7", "Q8",
-+			  "I8", "UART1_TXD", "UART1_RXD", "ESP_nRST",
-+			  "ESP_nBOOT", "", "", "",
-+			  "", "", "", "",
-+			  "SD_D1", "SD_D0", "SD_CLK", "SD_CMD", // PF
-+			  "SD_D3", "SD_D2", "LED_SYS1", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "ESP_CLK", "ESP_CMD", "ESP_D0", "ESP_D1", // PG
-+			  "ESP_D2", "ESP_D3", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "",
-+			  "", "", "", "";
-+};
-+
-+/* Disable external 32k osc as it is broken on current revision */
-+&rtc {
-+	/delete-property/ clocks;
-+};
-+
-+/* Exposed as a USB-C connector with USB-Serial converter */
-+&uart0 {
-+	pinctrl-0 = <&uart0_pb_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+/* Connected to the Bootloader/Console of the ESP32 */
-+&uart1 {
-+	pinctrl-0 = <&uart1_pe_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&usb_otg {
-+	extcon = <&tusb320 0>;
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&usbphy {
-+	usb0_id_det-gpios = <&pio 1 4 GPIO_ACTIVE_HIGH>; /* PB4 */
-+	status = "okay";
-+};
-+
-+&spi0 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	cs-gpios = <0>, <&pio 1 0 GPIO_ACTIVE_LOW>; /* PB0 */
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		label = "firmware";
-+		spi-max-frequency = <40000000>;
-+	};
-+
-+	can@1 {
-+		compatible = "microchip,mcp2518fd";
-+		reg = <1>;
-+		clocks = <&clk_can0>;
-+		interrupt-parent = <&pio>;
-+		interrupts = <1 1 IRQ_TYPE_LEVEL_LOW>;  /* PB1 */
-+		spi-max-frequency = <20000000>;
-+		vdd-supply = <&reg_vcc3v3>;
-+		xceiver-supply = <&reg_vcc3v3>;
-+	};
-+};
--- 
-2.39.5
+This also made me realize that in this patch set, a CTS value is used but 
+never set to anything different to 0, which needs to be changed anyway.
+
+> > +	{ .tmds = 27000000, .n_32k = 4096, .n_44k1 = 5488, .n_48k = 6144, },
+> > +	{ .tmds = 28320000, .n_32k = 4096, .n_44k1 = 5586, .n_48k = 6144, },
+> > +	{ .tmds = 30240000, .n_32k = 4096, .n_44k1 = 5642, .n_48k = 6144, },
+> > +	{ .tmds = 31500000, .n_32k = 4096, .n_44k1 = 5600, .n_48k = 6144, },
+> > +	{ .tmds = 32000000, .n_32k = 4096, .n_44k1 = 5733, .n_48k = 6144, },
+> > +	{ .tmds = 33750000, .n_32k = 4096, .n_44k1 = 6272, .n_48k = 6144, },
+> > +	{ .tmds = 36000000, .n_32k = 4096, .n_44k1 = 5684, .n_48k = 6144, },
+> > +	{ .tmds = 40000000, .n_32k = 4096, .n_44k1 = 5733, .n_48k = 6144, },
+> > +	{ .tmds = 49500000, .n_32k = 4096, .n_44k1 = 5488, .n_48k = 6144, },
+> > +	{ .tmds = 50000000, .n_32k = 4096, .n_44k1 = 5292, .n_48k = 6144, },
+> > +	{ .tmds = 54000000, .n_32k = 4096, .n_44k1 = 5684, .n_48k = 6144, },
+> > +	{ .tmds = 65000000, .n_32k = 4096, .n_44k1 = 7056, .n_48k = 6144, },
+> > +	{ .tmds = 68250000, .n_32k = 4096, .n_44k1 = 5376, .n_48k = 6144, },
+> > +	{ .tmds = 71000000, .n_32k = 4096, .n_44k1 = 7056, .n_48k = 6144, },
+> > +	{ .tmds = 72000000, .n_32k = 4096, .n_44k1 = 5635, .n_48k = 6144, },
+> > +	{ .tmds = 73250000, .n_32k = 4096, .n_44k1 = 14112, .n_48k = 6144, 
+},
+> > +	{ .tmds = 74250000, .n_32k = 4096, .n_44k1 = 6272, .n_48k = 6144, },
+> > +	{ .tmds = 75000000, .n_32k = 4096, .n_44k1 = 5880, .n_48k = 6144, },
+> > +	{ .tmds = 78750000, .n_32k = 4096, .n_44k1 = 5600, .n_48k = 6144, },
+> > +	{ .tmds = 78800000, .n_32k = 4096, .n_44k1 = 5292, .n_48k = 6144, },
+> > +	{ .tmds = 79500000, .n_32k = 4096, .n_44k1 = 4704, .n_48k = 6144, },
+> > +	{ .tmds = 83500000, .n_32k = 4096, .n_44k1 = 7056, .n_48k = 6144, },
+> > +	{ .tmds = 85500000, .n_32k = 4096, .n_44k1 = 5488, .n_48k = 6144, },
+> > +	{ .tmds = 88750000, .n_32k = 4096, .n_44k1 = 14112, .n_48k = 6144, 
+},
+> > +	{ .tmds = 97750000, .n_32k = 4096, .n_44k1 = 14112, .n_48k = 6144, 
+},
+> > +	{ .tmds = 101000000, .n_32k = 4096, .n_44k1 = 7056, .n_48k = 6144, 
+},
+> > +	{ .tmds = 106500000, .n_32k = 4096, .n_44k1 = 4704, .n_48k = 6144, 
+},
+> > +	{ .tmds = 108000000, .n_32k = 4096, .n_44k1 = 5684, .n_48k = 6144, 
+},
+> > +	{ .tmds = 115500000, .n_32k = 4096, .n_44k1 = 5712, .n_48k = 6144, 
+},
+> > +	{ .tmds = 119000000, .n_32k = 4096, .n_44k1 = 5544, .n_48k = 6144, 
+},
+> > +	{ .tmds = 135000000, .n_32k = 4096, .n_44k1 = 5488, .n_48k = 6144, 
+},
+> > +	{ .tmds = 146250000, .n_32k = 4096, .n_44k1 = 6272, .n_48k = 6144, 
+},
+> > +	{ .tmds = 148500000, .n_32k = 4096, .n_44k1 = 5488, .n_48k = 6144, 
+},
+> > +	{ .tmds = 154000000, .n_32k = 4096, .n_44k1 = 5544, .n_48k = 6144, 
+},
+> > +	{ .tmds = 162000000, .n_32k = 4096, .n_44k1 = 5684, .n_48k = 6144, 
+},
+> > +
+> > +	/* For 297 MHz+ HDMI spec have some other rule for setting N */
+> > +	{ .tmds = 297000000, .n_32k = 3073, .n_44k1 = 4704, .n_48k = 5120, 
+},
+> > +	{ .tmds = 594000000, .n_32k = 3073, .n_44k1 = 9408, .n_48k = 10240, 
+},
+> > +
+> > +	/* End of table */
+> > +	{ .tmds = 0,         .n_32k = 0,    .n_44k1 = 0,    .n_48k = 0, },
+> > +};
+> > +
+> > 
+> >  struct dw_hdmi_qp_i2c {
+> >  
+> >  	struct i2c_adapter	adap;
+> > 
+> > @@ -83,6 +143,326 @@ static void dw_hdmi_qp_mod(struct dw_hdmi_qp *hdmi,
+> > unsigned int data,> 
+> >  	regmap_update_bits(hdmi->regm, reg, mask, data);
+> >  
+> >  }
+> > 
+> > +static struct dw_hdmi_qp *dw_hdmi_qp_from_bridge(struct drm_bridge
+> > *bridge) +{
+> > +	struct dw_hdmi_qp *hdmi = container_of(bridge, struct dw_hdmi_qp,
+> > bridge); +
+> > +	return hdmi;
+> 
+> Just `return container_of(bridge, struct dw_hdmi_qp, bridge);`
+> 
+> > +}
+> > +
+> 
+> [...]
+> 
+> > +
+> > +static int dw_hdmi_qp_audio_enable(struct drm_connector *connector,
+> > +			    struct drm_bridge *bridge)
+> > +{
+> > +	struct dw_hdmi_qp *hdmi = dw_hdmi_qp_from_bridge(bridge);
+> > +
+> > +	if (connector->status == connector_status_connected)
+> > +		dw_hdmi_qp_mod(hdmi, 0, 
+AVP_DATAPATH_PACKET_AUDIO_SWDISABLE,
+> > GLOBAL_SWDISABLE); +
+> > +	return 0;
+> > +}
+> > +
+> > +static int dw_hdmi_qp_audio_prepare(struct drm_connector *connector,
+> > +			     struct drm_bridge *bridge,
+> > +			     struct hdmi_codec_daifmt *fmt,
+> > +			     struct hdmi_codec_params *hparms)
+> > +{
+> > +	struct dw_hdmi_qp *hdmi = dw_hdmi_qp_from_bridge(bridge);
+> > +	struct drm_connector_state *conn_state =
+> > +		drm_atomic_helper_connector_duplicate_state(connector);
+> > +	bool ref2stream = false;
+> > +	unsigned long long tmds_char_rate = conn_state->hdmi.tmds_char_rate;
+> > +
+> > +	drm_atomic_helper_connector_destroy_state(connector, conn_state);
+> 
+> This looks suspicious. I'd suggest storing tmds_char_rate to struct
+> dw_hdmi_qp in .atomic_commit instead of playing with the state.
+
+It is destroyed because it was duplicated above. I could store the value in 
+.atomic_enable (is that what you meant ?) indeed.
+
+> > +
+> > +	if (connector->status != connector_status_connected) {
+> > +		dev_dbg(hdmi->dev, "connector status is not connected\n");
+> > +		return 0;
+> > +	}
+> > +
+> > +	if (fmt->bit_clk_provider | fmt->frame_clk_provider) {
+> > +		dev_err(hdmi->dev, "unsupported clock settings\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	if (fmt->bit_fmt == SNDRV_PCM_FORMAT_IEC958_SUBFRAME_LE)
+> > +		ref2stream = true;
+> > +
+> > +	dw_hdmi_qp_set_audio_interface(hdmi, fmt, hparms);
+> > +	dw_hdmi_qp_set_sample_rate(hdmi, tmds_char_rate, hparms-
+>sample_rate);
+> > +	dw_hdmi_qp_set_channel_status(hdmi, hparms->iec.status, ref2stream);
+> > +	drm_atomic_helper_connector_hdmi_update_audio_infoframe(connector,
+> > &hparms->cea); +
+> > +	return 0;
+> > +}
+> > +
+> > +static void dw_hdmi_qp_audio_disable(struct drm_connector *connector,
+> > +			      struct drm_bridge *bridge)
+> > +{
+> > +	struct dw_hdmi_qp *hdmi = container_of(bridge, struct dw_hdmi_qp,
+> > bridge); +
+> > +	if (connector->status != connector_status_connected) {
+> > +		dev_dbg(hdmi->dev, "connector status is not connected\n");
+> > +		return;
+> > +	}
+> 
+> Will audio stream be disabled on disconnect?
+
+No, indeed, I need to review the disconnect sequence, as the HDMI audio 
+registers cannot be accessed when the VOP has been disabled.
+
+> And anyway the InfoFrame should be cleared by a call to
+> drm_atomic_helper_connector_hdmi_clear_audio_infoframe().
+> 
+> > +
+> > +	/*
+> > +	 * Keep ACR, AUDI, AUDS packet always on to make SINK device
+> > +	 * active for better compatibility and user experience.
+> > +	 *
+> > +	 * This also fix POP sound on some SINK devices which wakeup
+> > +	 * from suspend to active.
+> > +	 */
+> > +	dw_hdmi_qp_mod(hdmi, I2S_BPCUV_RCV_DIS, I2S_BPCUV_RCV_MSK,
+> > +		  AUDIO_INTERFACE_CONFIG0);
+> > +	dw_hdmi_qp_mod(hdmi, AUDPKT_PBIT_FORCE_EN | AUDPKT_CHSTATUS_OVR_EN,
+> > +		  AUDPKT_PBIT_FORCE_EN_MASK | AUDPKT_CHSTATUS_OVR_EN_MASK,
+> > +		  AUDPKT_CONTROL0);
+> > +
+> > +	dw_hdmi_qp_mod(hdmi, AVP_DATAPATH_PACKET_AUDIO_SWDISABLE,
+> > +		  AVP_DATAPATH_PACKET_AUDIO_SWDISABLE, GLOBAL_SWDISABLE);
+> > +}
+> > +
+> > 
+> >  static int dw_hdmi_qp_i2c_read(struct dw_hdmi_qp *hdmi,
+> >  
+> >  			       unsigned char *buf, unsigned int length)
+> >  
+> >  {
+> > 
+> > @@ -361,6 +741,40 @@ static int dw_hdmi_qp_config_drm_infoframe(struct
+> > dw_hdmi_qp *hdmi,> 
+> >  	return 0;
+> >  
+> >  }
+> > 
+> > +static int dw_hdmi_qp_config_audio_infoframe(struct dw_hdmi_qp *hdmi,
+> > +					     const u8 *buffer, size_t 
+len)
+> > +{
+> > +	/*
+> > +	 * AUDI_CONTENTS0: { RSV, HB2, HB1, RSV }
+> > +	 * AUDI_CONTENTS1: { PB3, PB2, PB1, PB0 }
+> > +	 * AUDI_CONTENTS2: { PB7, PB6, PB5, PB4 }
+> > +	 *
+> > +	 * PB0: CheckSum
+> > +	 * PB1: | CT3    | CT2  | CT1  | CT0  | F13  | CC2 | CC1 | CC0 |
+> > +	 * PB2: | F27    | F26  | F25  | SF2  | SF1  | SF0 | SS1 | SS0 |
+> > +	 * PB3: | F37    | F36  | F35  | F34  | F33  | F32 | F31 | F30 |
+> > +	 * PB4: | CA7    | CA6  | CA5  | CA4  | CA3  | CA2 | CA1 | CA0 |
+> > +	 * PB5: | DM_INH | LSV3 | LSV2 | LSV1 | LSV0 | F52 | F51 | F50 |
+> > +	 * PB6~PB10: Reserved
+> > +	 *
+> > +	 * AUDI_CONTENTS0 default value defined by HDMI specification,
+> > +	 * and shall only be changed for debug purposes.
+> > +	 * So, we only configure payload byte from PB0~PB7(2 word total).
+> > +	 */
+> > +	regmap_bulk_write(hdmi->regm, PKT_AUDI_CONTENTS1, &buffer[3], 2);
+> 
+> Please also update PKT_AUDI_CONTENTS0, in case it gets damaged somehow.
+
+These are simply the values in the first 4 bytes of buffer then ?
+
+> > +
+> > +	/* Enable ACR, AUDI, AMD */
+> > +	dw_hdmi_qp_mod(hdmi,
+> > +		  PKTSCHED_ACR_TX_EN | PKTSCHED_AUDI_TX_EN | 
+PKTSCHED_AMD_TX_EN,
+> > +		  PKTSCHED_ACR_TX_EN | PKTSCHED_AUDI_TX_EN | 
+PKTSCHED_AMD_TX_EN,
+> > +		  PKTSCHED_PKT_EN);
+> > +
+> > +	/* Enable AUDS */
+> > +	dw_hdmi_qp_mod(hdmi, PKTSCHED_AUDS_TX_EN, PKTSCHED_AUDS_TX_EN,
+> > PKTSCHED_PKT_EN); +
+> > +	return 0;
+> > +}
+> > +
+> > 
+> >  static void dw_hdmi_qp_bridge_atomic_enable(struct drm_bridge *bridge,
+> >  
+> >  					    struct drm_bridge_state 
+*old_state)
+> >  
+> >  {
+> > 
+> > @@ -477,6 +891,9 @@ static int dw_hdmi_qp_bridge_write_infoframe(struct
+> > drm_bridge *bridge,> 
+> >  	case HDMI_INFOFRAME_TYPE_DRM:
+> >  		return dw_hdmi_qp_config_drm_infoframe(hdmi, buffer, len);
+> > 
+> > +	case HDMI_INFOFRAME_TYPE_AUDIO:
+> > +		return dw_hdmi_qp_config_audio_infoframe(hdmi, buffer, len);
+> > +
+> > 
+> >  	default:
+> >  		dev_dbg(hdmi->dev, "Unsupported infoframe type %x\n", 
+type);
+> >  		return 0;
+> > 
+> > @@ -494,6 +911,9 @@ static const struct drm_bridge_funcs
+> > dw_hdmi_qp_bridge_funcs = {> 
+> >  	.hdmi_tmds_char_rate_valid = 
+dw_hdmi_qp_bridge_tmds_char_rate_valid,
+> >  	.hdmi_clear_infoframe = dw_hdmi_qp_bridge_clear_infoframe,
+> >  	.hdmi_write_infoframe = dw_hdmi_qp_bridge_write_infoframe,
+> > 
+> > +	.hdmi_audio_startup = dw_hdmi_qp_audio_enable,
+> > +	.hdmi_audio_shutdown = dw_hdmi_qp_audio_disable,
+> > +	.hdmi_audio_prepare = dw_hdmi_qp_audio_prepare,
+> > 
+> >  };
+> >  
+> >  static irqreturn_t dw_hdmi_qp_main_hardirq(int irq, void *dev_id)
+> > 
+> > @@ -603,6 +1023,10 @@ struct dw_hdmi_qp *dw_hdmi_qp_bind(struct
+> > platform_device *pdev,> 
+> >  	if (IS_ERR(hdmi->bridge.ddc))
+> >  	
+> >  		return ERR_CAST(hdmi->bridge.ddc);
+> > 
+> > +	hdmi->bridge.hdmi_audio_max_i2s_playback_channels = 8;
+> > +	hdmi->bridge.hdmi_audio_dev = dev;
+> > +	hdmi->bridge.hdmi_audio_dai_port = 1;
+> > +
+> > 
+> >  	ret = devm_drm_bridge_add(dev, &hdmi->bridge);
+> >  	if (ret)
+> >  	
+> >  		return ERR_PTR(ret);
+
+Regards,
+
+Detlev.
 
 
 
