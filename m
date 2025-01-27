@@ -1,94 +1,66 @@
-Return-Path: <devicetree+bounces-141190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FE47A1DBAA
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:57:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 645FCA1DBAE
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:58:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF8CA3A4C70
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:57:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D058164389
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 143EB18A6BD;
-	Mon, 27 Jan 2025 17:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E87818DF60;
+	Mon, 27 Jan 2025 17:57:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z2t69b/1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="taB8rt8O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8C5217BEB6
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 17:57:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4AE218A6A1;
+	Mon, 27 Jan 2025 17:57:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738000672; cv=none; b=Um+1x201Im17CB/hDX2RTeHJPVIWLnyn5rY51dIjBGoA3a0PLy3RoErRTBzd7zwmLWIiGkbeoEv2URCtecdQTeOJYFMf07lZnViMDXL4ZCMFLY5RtY3aJwKdJGmpxf89AuSsXszu5rUzR4fHRIUKUqNHzUPItMskKwQTqCNaqrQ=
+	t=1738000674; cv=none; b=Nb8WcrS0D6SRpbkcdqqbZSEo69Y93n1ZHUC+6XGpGrsYrWpICuowhtb6iW8D60U/JZiXK4BPtqIQY6t1E97DpECG+l32MrMJrjLjxL6RAkEWYxXTIHo5rVhtu2j4/Om3SkLVhaAhPeVgeVhX/D0hVmBYr7BykrLj53hk41k2Idk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738000672; c=relaxed/simple;
-	bh=LKzqPSmhEkUHLUqV7oQeSbbuEI+VGAc5+n4An93Ywks=;
+	s=arc-20240116; t=1738000674; c=relaxed/simple;
+	bh=eRwlImKfy6D/j0+aY/e+F/BQIXecmw3nRjEYPm5CEZs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EkUbRgUrt5cYqdOjYzReU92k6oRcilDU5ooYMNwDwBNutNxiRr/WnB0NPNgjQzME1uFeGoXZnPO7PARRgw6mk4vuuL4NCsKTOuxa0y/jKpUUKFV5YpqwQ8j2AKzYD0n6/vV0VWFoGJdYITlf0V2v9qPiZ+H9s/97E49PvZohrRY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z2t69b/1; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-43621d27adeso31906145e9.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 09:57:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1738000668; x=1738605468; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=M77PcxvNpcs48QUZQw5/KaTcNduAiPl13GqlIh2dsls=;
-        b=Z2t69b/1S20BpayF6m/mSCiK5ZXqMAOOt7YObD6B/kMcm1zo8yRPYyCjxft/BUfl9F
-         LyeDOiEjRmF18Yl+lWApaEBvy9HdOAAEY38JMMqqadV67ncv6kk4Phs/IjacJIS/yVnW
-         Ereh2CTFEDCT2bdEKL3rvuo/lWdb91uZnmBE8XptP9Ri9Ebl8LPmqLmG7nCZViknRwJy
-         u8+BwuoUWm06KZMKC/s692tCbz6z5HX01mb42PMTnOAoljGzgYVWWDIXjtJryfVkTy9P
-         JtNeWEf1RlDKj0FCgO27Np3w0J7pNR7LZ6GihcoRiTHxL2Km5KTsudyaAeyQHYMhDD/f
-         8ruA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738000668; x=1738605468;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=M77PcxvNpcs48QUZQw5/KaTcNduAiPl13GqlIh2dsls=;
-        b=I4yqUdYX9VDuU8bCSsTiuJO0jOpFvYzQBs2pW8/v8Mur5HXktkmz821ZX5+4bHi/uM
-         sZ3ATyVne78JFxTArXMiib8CrgnUQ2tNMsSFnX7tVJNkTS+k9cYn4lEDNwM3tVNd3r5Y
-         yNVpYc+R/2jIMVeVVFnDWBYVUSfAFkoHltY7NUXNU6NSlEiTPWWdlr7YLKlDkkwuD4Xd
-         jJFaPm6XTbDsX1Puh2pWpG9XQcMcHKGPiinrY/LzeaJax55kWSJnDHQ/ePSoD3ABRCkJ
-         LVwfuNi2dQZkPSn8EMnBq3J+qVnsCAO9CO+vHiPXQvlsBCDInGh/PLhuQwjqlTn+HHqi
-         p8dA==
-X-Forwarded-Encrypted: i=1; AJvYcCWtRHnTAI1bFi9gAXwmJPBevdubu1xYEv8M9NBdZkFDLF9xFhYePdonZMyeOLd2bbtfoGcdO+CxiKeZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxdg03qIAV+30Ngovuzgbs9+AJKwCkxfCMLxYerAyZYSrQpLzoZ
-	aBmVYsoNDXPRv7ReC1q4L65+A1AyKTO6SRnAdQpYNmVfv4WVFs8qccQtx59TLOA=
-X-Gm-Gg: ASbGncurC3Y45Ka9psJBLGDS2Fmv7i6eTRv/1nOQ7/2Ba+9IPXK+6yeUI4brNZNdhDX
-	7VDWx81ClhWuGCqeavSyTcAVnyaDNrX5fjEfe4EmZkrHGFhpD2VMRL4vvLm4aTV9uiwIcTCKgC9
-	CuE8OjoM954XM+uPcX8QPDcPNvsJqHpLjy9cCk67BHD8jZW8uhAL/OSH2ogiwZMJXZr7UiiaeFt
-	BFxm/gZqpSiT5qZVmxsyW5K4QmlLV438+6ViVyFfBAfPiijUlgtyyUfyU9Ax+sjQGPPSd4gYliq
-	mdzQbTNlg9ubni+s
-X-Google-Smtp-Source: AGHT+IGgQC/VZ4z0/ddu2PPeryPS8PgsDhSQ5DPW3/GEQZHDA32wG/2eJS1c8ZIEWKfIjZwD5N4E7Q==
-X-Received: by 2002:a05:600c:4f06:b0:436:e3ea:4447 with SMTP id 5b1f17b1804b1-4389144f00amr434896275e9.30.1738000667959;
-        Mon, 27 Jan 2025 09:57:47 -0800 (PST)
-Received: from linaro.org ([2a02:2454:ff21:ef30:4750:4bda:32ab:b090])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438bd4d2952sm141323345e9.34.2025.01.27.09.57.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jan 2025 09:57:46 -0800 (PST)
-Date: Mon, 27 Jan 2025 18:57:41 +0100
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=aknis7UfsakWp7MEl/U5+AweHd1N5ft6Nt4h5YrQlNu3JdNG3BcvROYB2i/xCOlVo4I3pG7FsFaiOxIoQqAl6mdkgvanxK+hNRysqvLaYAlzFRcd8M2Vh1RFka0OhoAe0hkQjgU7ZLHX+1KLVuNjudzhCVew56RlGbvFnS16soo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=taB8rt8O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37DE6C4CED2;
+	Mon, 27 Jan 2025 17:57:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738000673;
+	bh=eRwlImKfy6D/j0+aY/e+F/BQIXecmw3nRjEYPm5CEZs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=taB8rt8Ov96Pr5tafV52h4gb5vqvmzMkRXJ+WUxoB/5DikFq1O2MDk33898jRyxzZ
+	 wYA5bn9D336Pez6mMV/OJthVdR80+y79gz5NBI3F9CryDNlJBOZyLARn2RFZfEVrMy
+	 Jfqh0wlUj43NglHquCaOUPfno/Cqe/8/Jcg+EdGmI5aWvWE2jwGhcCEU8t6wT8I7/g
+	 syxdPMq5e03TTj4WvxzyZ7K5dkElHPbF43ZXuCHzXVQ6KcnKNoVKcqUtTZuurfH1X2
+	 dH7AqG6klq7oWoehDJLfwbOvgLiJ/3Opu+kt4G2J4HbR5R0QAgT6PGZISGA8T9ObLv
+	 ph7i0hIeMA6pQ==
+Date: Mon, 27 Jan 2025 11:57:52 -0600
+From: Rob Herring <robh@kernel.org>
+To: Sean Anderson <sean.anderson@linux.dev>
+Cc: Michal Simek <michal.simek@amd.com>, Mark Brown <broonie@kernel.org>,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jinjie Ruan <ruanjinjie@huawei.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, Frank Li <Frank.li@nxp.com>,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/12] usb: dwc3: qcom: Flatten dwc3 structure
-Message-ID: <Z5fJFRMHIvKoN4cE@linaro.org>
-References: <20250113-dwc3-refactor-v3-0-d1722075df7b@oss.qualcomm.com>
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: spi: zynqmp-qspi: Add reset
+Message-ID: <20250127175752.GA511180-robh@kernel.org>
+References: <20250116225521.2688224-1-sean.anderson@linux.dev>
+ <20250116225521.2688224-2-sean.anderson@linux.dev>
+ <8a0d8789-7a0d-42b7-9aff-e867c14db3c9@amd.com>
+ <b8e63009-13fb-493f-adf6-4d30adbe9b1b@linux.dev>
+ <20250123224520.GA456390-robh@kernel.org>
+ <34e84bd2-381b-4f3e-99e1-92f7a878ed15@linux.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,194 +69,62 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250113-dwc3-refactor-v3-0-d1722075df7b@oss.qualcomm.com>
+In-Reply-To: <34e84bd2-381b-4f3e-99e1-92f7a878ed15@linux.dev>
 
-On Mon, Jan 13, 2025 at 09:11:33PM -0800, Bjorn Andersson wrote:
-> The USB IP-block found in most Qualcomm platforms is modelled in the
-> Linux kernel as 3 different independent device drivers, but as shown by
-> the already existing layering violations in the Qualcomm glue driver
-> they can not be operated independently.
+On Thu, Jan 23, 2025 at 05:57:41PM -0500, Sean Anderson wrote:
+> On 1/23/25 17:45, Rob Herring wrote:
+> > On Fri, Jan 17, 2025 at 11:12:15AM -0500, Sean Anderson wrote:
+> >> On 1/17/25 02:14, Michal Simek wrote:
+> >> > 
+> >> > 
+> >> > On 1/16/25 23:55, Sean Anderson wrote:
+> >> >> Add a reset to help recover from cancelled operations.
+> >> >>
+> >> >> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
+> >> >> ---
+> >> >>
+> >> >>   Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml | 6 ++++++
+> >> >>   1 file changed, 6 insertions(+)
+> >> >>
+> >> >> diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+> >> >> index 04d4d3b4916d..901e15fcce2d 100644
+> >> >> --- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+> >> >> +++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
+> >> >> @@ -36,12 +36,16 @@ properties:
+> >> >>     power-domains:
+> >> >>       maxItems: 1
+> >> >>   +  resets:
+> >> >> +    maxItems: 1
+> >> >> +
+> >> >>   required:
+> >> >>     - compatible
+> >> >>     - reg
+> >> >>     - interrupts
+> >> >>     - clock-names
+> >> >>     - clocks
+> >> >> +  - resets
+> >> > 
+> >> > In 2/5 you are calling devm_reset_control_get_optional_exclusive() that's why I expect reset is not really required property.
+> >> 
+> >> It's optional for the driver for backwards compatibility. But for the
+> >> devicetree we make it mandatory since it should be included in all new
+> >> devicetrees.
+> > 
+> > Generally, we discourage new required properties as that's an ABI 
+> > change. The exception is really when optional was a mistake. That's 
+> > arguably the case here if the h/w always has a reset.
 > 
-> With the current implementation, the glue driver registers the core and
-> has no way to know when this is done. As a result, e.g. the suspend
-> callbacks needs to guard against NULL pointer dereferences when trying
-> to peek into the struct dwc3 found in the drvdata of the child.
+> This device has a reset on ZynqMP and Versal.
 > 
-> Missing from the upstream Qualcomm USB support is proper handling of
-> role switching, in which the glue needs to be notified upon DRD mode
-> changes. Several attempts has been made through the years to register
-> callbacks etc, but they always fall short when it comes to handling of
-> the core's probe deferral on resources etc.
-> 
-> Furhtermore, the DeviceTree binding is a direct representation of the
-> Linux driver model, and doesn't necessarily describe "the USB IP-block".
-> 
-> This series therefor attempts to flatten the driver split, and operate
-> the glue and core out of the same platform_device instance. And in order
-> to do this, the DeviceTree representation of the IP block is flattened.
-> 
-> To avoid littering the dwc3-qcom driver with the migration code - which
-> we should be able to drop again in a LTS or two - this is now placed in
-> drivers/of/overlays.
-> 
-> A patch to convert a single platform - sc8280xp - is included in the
-> series. The broader conversion will be submitted in a follow up series.
-> 
-> [...]
-> ---
-> Bjorn Andersson (12):
->       dt-bindings: usb: snps,dwc3: Split core description
->       dt-bindings: usb: Introduce qcom,snps-dwc3
->       of: dynamic: Add of_changeset_add_prop_copy()
->       of: overlays: Introduce dwc3 flattening overlay
->       of: overlays: dwc3-flattening: Add Qualcomm Arm32 overlays
->       of: overlays: dwc3-flattening: Add Qualcomm Arm64 board overlays
->       of: overlays: dwc3-flattening: Provide overlay symbols
->       usb: dwc3: core: Expose core driver as library
->       usb: dwc3: core: Don't touch resets and clocks
->       usb: dwc3: qcom: Don't rely on drvdata during probe
->       usb: dwc3: qcom: Transition to flattened model
->       arm64: dts: qcom: sc8280x: Flatten the USB nodes
-> 
->  .../devicetree/bindings/usb/qcom,dwc3.yaml         |   13 +-
->  .../devicetree/bindings/usb/qcom,snps-dwc3.yaml    |  618 ++++++++
->  .../devicetree/bindings/usb/snps,dwc3-common.yaml  |  415 ++++++
->  .../devicetree/bindings/usb/snps,dwc3.yaml         |  391 +----
->  arch/arm64/boot/dts/qcom/sa8295p-adp.dts           |   12 +-
->  arch/arm64/boot/dts/qcom/sa8540p-ride.dts          |    5 +-
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts          |   12 +-
->  .../boot/dts/qcom/sc8280xp-huawei-gaokun3.dts      |   10 +-
->  .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |   11 +-
->  .../boot/dts/qcom/sc8280xp-microsoft-arcata.dts    |   10 +-
->  .../boot/dts/qcom/sc8280xp-microsoft-blackrock.dts |   18 +-
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi             |  157 +-
->  drivers/of/Kconfig                                 |    2 +
->  drivers/of/Makefile                                |    2 +
->  drivers/of/dynamic.c                               |   20 +
->  drivers/of/overlays/Kconfig                        |   15 +
->  drivers/of/overlays/Makefile                       |    3 +
->  drivers/of/overlays/dwc3-flattening/Makefile       |   94 ++
->  .../of/overlays/dwc3-flattening/dwc3-flattening.c  | 1552 ++++++++++++++++++++
->  .../of/overlays/dwc3-flattening/dwc3-flattening.h  |  188 +++
->  .../overlays/dwc3-flattening/dwc3-qcom_apq8094.dts |   32 +
->  .../overlays/dwc3-flattening/dwc3-qcom_apq8096.dts |   60 +
->  .../dwc3-qcom_apq8096_inforce_ifc6640.dts          |   58 +
->  .../overlays/dwc3-flattening/dwc3-qcom_ipq4018.dts |   36 +
->  .../dwc3-qcom_ipq4018_8dev_jalapeno.dts            |   38 +
->  .../overlays/dwc3-flattening/dwc3-qcom_ipq4019.dts |   38 +
->  .../overlays/dwc3-flattening/dwc3-qcom_ipq5018.dts |   28 +
->  .../overlays/dwc3-flattening/dwc3-qcom_ipq5332.dts |   32 +
->  .../overlays/dwc3-flattening/dwc3-qcom_ipq5424.dts |   58 +
->  .../overlays/dwc3-flattening/dwc3-qcom_ipq6018.dts |   54 +
->  .../overlays/dwc3-flattening/dwc3-qcom_ipq8064.dts |   40 +
->  .../overlays/dwc3-flattening/dwc3-qcom_ipq8074.dts |   58 +
->  .../overlays/dwc3-flattening/dwc3-qcom_ipq9574.dts |   29 +
->  .../overlays/dwc3-flattening/dwc3-qcom_msm8953.dts |   32 +
->  .../overlays/dwc3-flattening/dwc3-qcom_msm8992.dts |   32 +
->  .../overlays/dwc3-flattening/dwc3-qcom_msm8994.dts |   32 +
->  .../overlays/dwc3-flattening/dwc3-qcom_msm8996.dts |   58 +
->  .../dwc3-qcom_msm8996_oneplus_oneplus3.dts         |   56 +
->  .../dwc3-qcom_msm8996_oneplus_oneplus3t.dts        |   56 +
->  .../dwc3-qcom_msm8996_sony_dora_row.dts            |   57 +
->  .../dwc3-qcom_msm8996_sony_kagura_row.dts          |   57 +
->  .../dwc3-qcom_msm8996_sony_keyaki_row.dts          |   57 +
->  .../dwc3-qcom_msm8996_xiaomi_gemini.dts            |   56 +
->  .../dwc3-qcom_msm8996_xiaomi_natrium.dts           |   56 +
->  .../dwc3-qcom_msm8996_xiaomi_scorpio.dts           |   56 +
->  .../overlays/dwc3-flattening/dwc3-qcom_msm8998.dts |   34 +
->  .../dwc3-qcom_msm8998_fxtec_pro1.dts               |   35 +
->  .../dwc3-qcom_msm8998_oneplus_cheeseburger.dts     |   32 +
->  .../dwc3-qcom_msm8998_oneplus_dumpling.dts         |   32 +
->  .../dwc3-qcom_msm8998_sony_xperia_lilac.dts        |   35 +
->  .../dwc3-qcom_msm8998_sony_xperia_maple.dts        |   35 +
->  .../dwc3-qcom_msm8998_sony_xperia_poplar.dts       |   35 +
->  .../dwc3-qcom_msm8998_xiaomi_sagit.dts             |   32 +
->  .../overlays/dwc3-flattening/dwc3-qcom_qcm2290.dts |   32 +
->  .../overlays/dwc3-flattening/dwc3-qcom_qcm6490.dts |   63 +
->  .../overlays/dwc3-flattening/dwc3-qcom_qcs404.dts  |   56 +
->  .../overlays/dwc3-flattening/dwc3-qcom_qcs615.dts  |   62 +
->  .../overlays/dwc3-flattening/dwc3-qcom_qcs8300.dts |   62 +
->  .../overlays/dwc3-flattening/dwc3-qcom_qdu1000.dts |   38 +
->  .../overlays/dwc3-flattening/dwc3-qcom_qru1000.dts |   38 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sa8155p.dts |   71 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sa8540p.dts |  129 ++
->  .../overlays/dwc3-flattening/dwc3-qcom_sa8775p.dts |   90 ++
->  .../dwc3-flattening/dwc3-qcom_sar2130p.dts         |   39 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sc7180.dts  |   39 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sc7280.dts  |   63 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sc8180x.dts |  109 ++
->  .../dwc3-flattening/dwc3-qcom_sc8280xp.dts         |  129 ++
->  .../dwc3-qcom_sc8280xp_microsoft_blackrock.dts     |  121 ++
->  .../overlays/dwc3-flattening/dwc3-qcom_sda660.dts  |   59 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sdm450.dts  |   33 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sdm630.dts  |   57 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sdm632.dts  |   32 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sdm636.dts  |   59 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sdm660.dts  |   57 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sdm670.dts  |   36 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sdm845.dts  |   64 +
->  .../dwc3-qcom_sdm845_lenovo_yoga_c630.dts          |   67 +
->  .../dwc3-flattening/dwc3-qcom_sdm845_lg_judyln.dts |   67 +
->  .../dwc3-flattening/dwc3-qcom_sdm845_lg_judyp.dts  |   67 +
->  .../dwc3-qcom_sdm845_qcom_sdm845_mtp.dts           |   67 +
->  .../dwc3-qcom_sdm845_samsung_starqltechn.dts       |   67 +
->  .../dwc3-qcom_sdm845_samsung_w737.dts              |   67 +
->  .../dwc3-qcom_sdm845_shift_axolotl.dts             |   67 +
->  .../dwc3-qcom_sdm845_thundercomm_db845c.dts        |   67 +
->  .../dwc3-qcom_sdm845_xiaomi_beryllium.dts          |   67 +
->  .../dwc3-qcom_sdm845_xiaomi_beryllium_ebbg.dts     |   67 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sdx55.dts   |   38 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sdx65.dts   |   38 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sdx75.dts   |   36 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm4250.dts  |   37 +
->  .../dwc3-qcom_sm4250_oneplus_billie2.dts           |   35 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm6115.dts  |   37 +
->  .../dwc3-qcom_sm6115_lenovo_j606f.dts              |   35 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm6125.dts  |   36 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm6350.dts  |   39 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm6375.dts  |   36 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm7125.dts  |   39 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm7225.dts  |   39 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm7325.dts  |   60 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm8150.dts  |   67 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm8250.dts  |   67 +
->  .../dwc3-qcom_sm8250_xiaomi_elish.dts              |   64 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm8350.dts  |   67 +
->  .../dwc3-qcom_sm8350_microsoft_surface_duo2.dts    |   67 +
->  .../dwc3-qcom_sm8350_qcom_sm8350_hdk.dts           |   69 +
->  .../dwc3-qcom_sm8350_qcom_sm8350_mtp.dts           |   67 +
->  .../dwc3-qcom_sm8350_sony_pdx214_generic.dts       |   67 +
->  .../dwc3-qcom_sm8350_sony_pdx215_generic.dts       |   67 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm8450.dts  |   39 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm8550.dts  |   39 +
->  .../overlays/dwc3-flattening/dwc3-qcom_sm8650.dts  |   39 +
->  .../dwc3-flattening/dwc3-qcom_x1e80100.dts         |  153 ++
->  .../dwc3-qcom_x1e80100_hp_omnibook_x14.dts         |  149 ++
->  drivers/usb/dwc3/core.c                            |  167 ++-
->  drivers/usb/dwc3/dwc3-qcom.c                       |  149 +-
->  drivers/usb/dwc3/glue.h                            |   22 +
->  include/linux/of.h                                 |    3 +
->  118 files changed, 8389 insertions(+), 670 deletions(-)
-> ---
+> The driver still considers this property optional, so it's not an ABI break.
+> But I made it required in the schema to help out the folks at AMD when they
+> get around to upstreaming the Versal devicetree :)
 
-This is quite a lot of code and new files for a temporary migration.
-It's also difficult to test these changes fully, since there are
-separate overlays for each SoC and sometimes even each board.
+Not 'the driver', but 'a driver'. You can't say what *all* drivers do. 
+If I write a new driver and read the schema, then I can say 'resets is 
+required so I'll make it required in my new driver'. But then my new 
+driver doesn't work with an older DT that didn't have resets which was 
+valid at the time.
 
-Would it be easier to just duplicate the dwc3-qcom driver for now?
-Making a copy of the current dwc3-qcom.c would be just 1000 lines of
-extra code, compared to more than 7000 for the overlay approach.
-
-The copy (e.g. dwc3-qcom-legacy.c) would keep handling the old bindings
-with the existing code (that is known to work to some extent). We can
-then improve upon the main version without risk of breaking any old
-DTBs. If we decide to drop support for the old DTBs at some point, we
-can just drop dwc3-qcom-legacy.
-
-This approach is also not pretty, but I think the risk and effort would
-be lower than making sure the overlay approach works on all the affected
-targets.
-
-Thanks,
-Stephan
+Rob
 
