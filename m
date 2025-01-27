@@ -1,175 +1,147 @@
-Return-Path: <devicetree+bounces-141138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12E10A1D909
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:09:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8528DA1D910
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:11:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D8043A4D27
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 15:09:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E27E4165B03
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 15:11:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55214136E3F;
-	Mon, 27 Jan 2025 15:09:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F8D0136341;
+	Mon, 27 Jan 2025 15:11:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VyJWWy5W"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="QINq9xwl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F022126C18
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 15:09:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66FA538DEC;
+	Mon, 27 Jan 2025 15:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737990592; cv=none; b=Ph0yMv+M0Q45Z3qUTIzzd3VW8o6AwjAsE0mya4PgPrSiSqUHGpncFqhfuYWmpddZIl6R7SR+SnfHWTYpbFt4Ct/aUNqLG478zQdRHUo8C05G22WxqP2UkZ/W2iYcfC+GCo/UXutT1gvIt7lPo6Qh5zH0rbwiXucNqvgj9rZL+qw=
+	t=1737990667; cv=none; b=nLfnvkeMaBcRm6EqZr5AXLpWqKkuhFyBrQRszruyJIXBy27LKtwGSgv3r01N2G9FXNPbbYsbGC8IpgulPkT0CAZXv4TbVQZr7VfIWrrEOnp4R+TV9KUOmX7pFArmWS4VEmPExFbUR559/qO2nQ8ijj0m0lQqrFXCd8lR5bd6LbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737990592; c=relaxed/simple;
-	bh=vk6eegcDQlCeAb16eHY+Dyc3eJ/4L2f6+6OSZcJmOo0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Nvk+CxEiarsMsnB48S4Bw7h4fEAmprvQCpXui0RrpHaNa8V+KfTb/06QFuECjlMUHXy+EcaeijD/wAAEzTxc0jXSVWiepYqARmRQy3PylQ4rMaXnhg21qgJZGbLyVgC1c+ZdGNK6kPvW/Bnd1W02J+VKd/FH/oP0VhzjyD8Htv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VyJWWy5W; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50RD3cFa019921
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 15:09:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	q1M9K9onRDZHs4xXpD/oUoEIGN1Kl9raP+JdO9Spve0=; b=VyJWWy5WQB+wDHp8
-	gcYYoHMy4RjluJgSghJWuSzxuVI+0EXI/LpCDTga+6H8AWRFHCf7rGOwlZbCxPFP
-	aBeYqplgUaXbLEesI77zeRB1/GfufqbDfsC7mnh2yK4HPvHQC/R3ZdK/9KhCpRQd
-	P0OauqG9rkr9RaiwaWP//QR70bStOGrt3kMMd7G82BEziaxpQjzeg81lSeYqQH77
-	+FZlnEFAAHyUe80OpXwGgA2CluXdYxDdzURqaOC6MxwXaFGtPKTuF3Y4HdB1TbOR
-	nYUUu1m94SSwXhx6pfQqYX7c5Q/REoXm/OYY/JHICtrsdk7LbwQ7VccHm8zX9FPP
-	A9MiYg==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44eapq88c3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 15:09:49 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-6d8824c96cdso13009986d6.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 07:09:49 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737990588; x=1738595388;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q1M9K9onRDZHs4xXpD/oUoEIGN1Kl9raP+JdO9Spve0=;
-        b=m6rePE//YSY2lR1DJRr4s08jCtPieMHBC9J86LouqH64xmeZ1PCx+AX03CWLVYxNvZ
-         wJV7EzHIb1TfYfVQ/txwmi8wPg/GbkUTboZj+NqZqwQurx/edESc6PUKI81Ou1xA5Sw0
-         tM2zCzzRadwBvj8cKC+fMeOmDWK0cn60u/AS4JWg8nWz9l0KahVaHv8Ft2edDYOtylHS
-         HwSgCUQ6PGH55NcqceNW1yDqRZjuHs1MTmcRov2ebKJ3SDIL0JpyREu3viNlSkwmOBtd
-         8fRjozwM9/DvxwPlpeGKfm8pvrJfxH49lobE/0tJTZqrR2/KtrZVQmmNhnWLow5/i+Ig
-         TBLg==
-X-Forwarded-Encrypted: i=1; AJvYcCULXjz67PmjNC+uwpCobWfLOSFg/zOncazMHiMAfNf27EuZKRoq5+mZKc8DAGxlhCZkqdNu4a+OQ9VM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxl4JOgaAs2CQXhsU8E4g+gPv0+j4I9BDkz8gMO47XKgZ0eHfGH
-	KH2B+fu3zT6ccHHY7Eext8JF/V9MMc3/ppgLyn3S6WhMllky/gH9CuJKUR8kAE69YpEk6nTr0cQ
-	MDBHMs0MUS1DeSrVfV140QMl8piczgEu+Ro/PugxJX3RIwLMOmDX2ZLBcONQ0
-X-Gm-Gg: ASbGnctls0K9I6BDXA8jF0EpoG+Laf+JPTQqBeKU16EioV/vtJTDKGtosBg/PCqE3U0
-	d30fob2ZDL7lIv7bHu2LbKKF29+rEhpeOJgfVbRR2zlT7vPeGE7c7EUvfMJd3ZYxS2DC46NCbKK
-	vWaGLYRm1BKLbZobQbeTTxIspytqyDgxjFnP5eDN6WtpWokILjGoFwBQCktQChVb5x4ySkspv74
-	Ilt/z8dILBkZoDD28p7Dk2nflbZcEANpMlgR+6+OTD62OUgHsWeJqtyNpC06OWAtY7TrpBz5+oP
-	Ze7Lg1BPS/+vE44RWyBbGOB9ZShVlgyW0f7q6yODNP4SGviz+pX44RR1SOs=
-X-Received: by 2002:a05:622a:4c:b0:461:3cd2:390 with SMTP id d75a77b69052e-46e12b66c84mr214706921cf.12.1737990588414;
-        Mon, 27 Jan 2025 07:09:48 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHvLul3KJuVI1C3G9NdQZ3wh+3aRyv5HreyY2fD6i8wz/7hoATCxR4KvugABSZs/is9GHEAbA==
-X-Received: by 2002:a05:622a:4c:b0:461:3cd2:390 with SMTP id d75a77b69052e-46e12b66c84mr214706701cf.12.1737990588042;
-        Mon, 27 Jan 2025 07:09:48 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dc18618362sm5531741a12.14.2025.01.27.07.09.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jan 2025 07:09:47 -0800 (PST)
-Message-ID: <befced20-6090-4e79-a60b-af75e88faa27@oss.qualcomm.com>
-Date: Mon, 27 Jan 2025 16:09:44 +0100
+	s=arc-20240116; t=1737990667; c=relaxed/simple;
+	bh=FV5x4h1U7sxcz55kqdgXTDcicKcC67T4rW37QzwoaXM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=H5voSoTwJqozkfvLUbYBQm0Y7fbTufs2SMakMaau5vJbMJ7OO0EsIht5/TbIbck8IJYDFztpZSN++ruJOh4iNpKh+jZuXXmQ79W3u40BV5o2irIAPL4In37joKmuGvXR/T+bKhXMrHT1n0D/dvi6ajvPUmnWQSS160s5wkoIeIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=QINq9xwl; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
+	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50RDWCMw005712;
+	Mon, 27 Jan 2025 10:10:49 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=z/Ft/eDFh9IU3HITlqMjO/x0cqA
+	TfPsAbE5Ol/sBiMc=; b=QINq9xwlFQMIKhjbY73aZKV5oW7i87Zzr0I+KqaO9MI
+	VBeQWYInnz7kyhAieiv9mHXHxHc2O5gs6qTUYSyOnIN2ALheP7TzrN7/FrQsvTy0
+	f9W3DEOy4ZQS8+Uo4lbyU0x3SJxXbkF2b/Rdglr9t4IZpLgp6BQCyc8SLMoSr926
+	r6vksGRGM90egQt9ftZZsGDIGmkx9aB4fVlIsWjVzvbM+56BVfn3nlc6YGbBtKWL
+	mDwL/ePi87VOx+7sWBHWgeV2yGIHmiSc8fYegf5+tFGLsSNKAO2gUrxNfyMj9bOF
+	WG1TWyNKZZmyIh7olhlq/1Wz4qWoVo/HKlz2TivMW5g==
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 44eb44gd9k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Jan 2025 10:10:49 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 50RFAm9N038336
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 27 Jan 2025 10:10:48 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 27 Jan
+ 2025 10:10:47 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 27 Jan 2025 10:10:47 -0500
+Received: from JSANTO12-L01.ad.analog.com ([10.65.60.206])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 50RFAYqW008222;
+	Mon, 27 Jan 2025 10:10:36 -0500
+From: Jonathan Santos <Jonathan.Santos@analog.com>
+To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: Jonathan Santos <Jonathan.Santos@analog.com>, <lars@metafoo.de>,
+        <Michael.Hennerich@analog.com>, <marcelo.schmitt@analog.com>,
+        <jic23@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <jonath4nns@gmail.com>,
+        <marcelo.schmitt1@gmail.com>
+Subject: [PATCH v2 00/16] Add features, improvements, and fixes
+Date: Mon, 27 Jan 2025 12:10:31 -0300
+Message-ID: <cover.1737985435.git.Jonathan.Santos@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 9/9] ARM: dts: qcom: msm8226-samsung-matisse-common:
- Enable modem
-To: Luca Weiss <luca@lucaweiss.eu>,
-        Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        =?UTF-8?Q?Matti_Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250126-msm8226-modem-v2-0-e88d76d6daff@lucaweiss.eu>
- <20250126-msm8226-modem-v2-9-e88d76d6daff@lucaweiss.eu>
- <Z5dVc9yTynAsPDcZ@linaro.org> <5638469.LvFx2qVVIh@lucaweiss.eu>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <5638469.LvFx2qVVIh@lucaweiss.eu>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: CCFeA3gWyEpZIKoG4fBgVt_GDqViyr-v
-X-Proofpoint-GUID: CCFeA3gWyEpZIKoG4fBgVt_GDqViyr-v
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-ORIG-GUID: 8vPwloxfYnQqo3D2hKjy06i9Js_nLyiJ
+X-Proofpoint-GUID: 8vPwloxfYnQqo3D2hKjy06i9Js_nLyiJ
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-01-27_07,2025-01-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- malwarescore=0 spamscore=0 phishscore=0 adultscore=0 clxscore=1015
- mlxscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
- lowpriorityscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2501270121
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
+ malwarescore=0 lowpriorityscore=0 mlxlogscore=919 phishscore=0
+ adultscore=0 suspectscore=0 clxscore=1015 mlxscore=0 priorityscore=1501
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501270121
 
-On 27.01.2025 2:34 PM, Luca Weiss wrote:
-> On maandag 27 januari 2025 10:44:19 Midden-Europese standaardtijd Stephan 
-> Gerhold wrote:
->> On Sun, Jan 26, 2025 at 09:57:28PM +0100, Luca Weiss wrote:
->>> From: Matti Lehtimäki <matti.lehtimaki@gmail.com>
->>>
->>> Enable modem remoteproc on samsung,matisse-wifi & matisselte.
->>>
->>> Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
->>> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
->>> ---
->>>  arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi | 7 +++++
-> ++
->>>  1 file changed, 7 insertions(+)
->>>
->>> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-
-> common.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
->>> index fbd568c7d6b7415d240aa1a2329d07cf9135274c..
-> 4155bfb2136022f2a85d69451c34f06ed2a700ac 100644
->>> --- a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
->>> +++ b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
->>> @@ -225,6 +225,13 @@ &blsp1_uart3 {
->>>  	status = "okay";
->>>  };
->>>  
->>> +&modem {
->>> +	mx-supply = <&pm8226_l3>;
->>> +	pll-supply = <&pm8226_l8>;
->>
->> Hmmmmm, so I was looking at msm8926.dtsi downstream and it seems to
->> override the msm8226.dtsi modem/mss definition [1]:
->>
->>  1. ext-bhs-reg is dropped
->>  2. vdd_mss-supply is added
-> 
-> That's the same what I found, and have working with more (currently hacky) 
-> patches on msm8926-htc-memul. I decided against introducing it with this 
-> series since these patches have been pending for too long and initially when I 
-> was doing 8926, I wasn't sure how to make this into a proper patch. Now my 
-> idea is to introduce a "static const struct rproc_hexagon_res msm8926_mss" 
-> with the compatible qcom,msm8926-mss-pil which has these two differences.
-> I think that's a better idea than adding some extra conditionals around to 
-> make the mss-supply optional and ext-bhs somehow optional in the driver based 
-> on dt.
+This patch series introduces some new features, improvements,
+and fixes for the AD7768-1 ADC driver. 
 
-Sounds good. It would then live in msm8926.dtsi which already exists
+The goal is to support all key functionalities listed in the device
+datasheet, including filter mode selection, common mode voltage output
+configuration and GPIO support. Additionally, this includes fixes 
+for SPI communication and for IIO interface, and also code improvements
+to enhance maintainability and readability.
+---
+Changes in v2:
+* Removed synchronization over SPI property and replaced it for trigger-sources.
+* Added GPIO controller documentation.
+* VCM output control changed from an IIO attribute to a devicetree property (static value).
+* Converted driver to use regmap and dropped spi_read_reg and spi_write_reg pacthes.
+* replaced decimation_rate attribute for oversampling_ratio and dropped device specific documentation patch.
+* Added low pass -3dB cutoff attribute.
+* Addressed review comments, see individual pacthes.
+* Link to v1: https://lore.kernel.org/linux-iio/cover.1736201898.git.Jonathan.Santos@analog.com/T/#t
+---
+Jonathan Santos (11):
+  dt-bindings: iio: adc: ad7768-1: add trigger-sources property
+  dt-bindings: iio: adc: ad7768-1: Document GPIO controller
+  dt-bindings: iio: adc: ad7768-1: add VMC output property
+  Documentation: ABI: add wideband filter type to  sysfs-bus-iio
+  iio: adc: ad7768-1: set MOSI idle state to prevent accidental reset
+  iio: adc: ad7768-1: convert driver to use regmap
+  iio: adc: ad7768-1: remove unnecessary locking
+  iio: adc: ad7768-1: add multiple scan types to support 16-bits mode
+  iio: adc: ad7768-1: add support for Synchronization over SPI
+  iio: adc: ad7768-1: add filter type and oversampling ratio attributes
+  iio: adc: ad7768-1: add low pass -3dB cutoff attribute
 
-Konrad
+Sergiu Cuciurean (5):
+  iio: adc: ad7768-1: Fix conversion result sign
+  iio: adc: ad7768-1: Add reset gpio
+  iio: adc: ad7768-1: Move buffer allocation to a separate function
+  iio: adc: ad7768-1: Add VCM output support
+  iio: adc: ad7768-1: Add GPIO controller support
+
+ Documentation/ABI/testing/sysfs-bus-iio       |   2 +
+ .../bindings/iio/adc/adi,ad7768-1.yaml        |  42 +-
+ drivers/iio/adc/ad7768-1.c                    | 889 +++++++++++++++---
+ include/dt-bindings/iio/adc/adi,ad7768-1.h    |  16 +
+ 4 files changed, 816 insertions(+), 133 deletions(-)
+ create mode 100644 include/dt-bindings/iio/adc/adi,ad7768-1.h
+
+
+base-commit: 5de07b8a24cf44cdb78adeab790704bf577c2c1d
+prerequisite-patch-id: 8b531bca46f7c7ea1c0f6d232d162fd05fda52f7
+-- 
+2.34.1
+
 
