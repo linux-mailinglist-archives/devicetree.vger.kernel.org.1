@@ -1,110 +1,174 @@
-Return-Path: <devicetree+bounces-141100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6D69A1D6E7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 14:35:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05BE6A1D70F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 14:44:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B5901653D9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 13:34:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 55613162898
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 13:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A9AD200109;
-	Mon, 27 Jan 2025 13:34:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3885B1FFC46;
+	Mon, 27 Jan 2025 13:44:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gyEJ7sXU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uplUxJmG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A17F1FFC63;
-	Mon, 27 Jan 2025 13:34:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CE231FF1B6
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 13:44:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737984866; cv=none; b=XVen3gSQwmPuz7IGve1pYMhEBhNj2qKPTxmLE1PYahwLL9qjzIwfVmRU1W/C18P39r7dcg0XXIJc9CB6seOYp2N3hPooXlxKRjs3N8qdn0wJANo2Pted7Roz9ZJfCKOPweZIml6KN1boVEQqqozLwKPUfSWHLbQVf9aqkVh4qQw=
+	t=1737985468; cv=none; b=E56j06Uv9/qU4EKGbtX+28OwIGA1DqJOu7rIU+sTEsNBCG818Pxcfw6cCSo9WS48fIXMT/j3LNI1LaB55BsAju54jN7sfRlN2AlZfkFTaeQCgTEnfvMuDifhOD6/4mBOzrppntXtVc3jB5Z7zPPDwKIcaer0jkJwoWDkycwsSgw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737984866; c=relaxed/simple;
-	bh=8GFFgNVaClpSXODaY2TeaAq6suTF74nUb8dYDHUkUSE=;
+	s=arc-20240116; t=1737985468; c=relaxed/simple;
+	bh=Rkx1iTUUeQZ9jItjTalKVKe5WXo2fdI4KcmHPpiHqRA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HvTXKNV3Wjx7WYDp9jQ7iwv2JAee2ogQUkam7ijpQUA6KO4xP/xnu4uBvAlGevC5QEagk/4fJrPLglt/rcWDQZ/pHC3BQWoPpNOqAotkoyPrqGqA2g7RpL0nIUSsERLAtKP2Qdsb1kn2o9J4lfUF9Kssp8lOpQaDRez5F0ktmXo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gyEJ7sXU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9ED36C4CED2;
-	Mon, 27 Jan 2025 13:34:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737984866;
-	bh=8GFFgNVaClpSXODaY2TeaAq6suTF74nUb8dYDHUkUSE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gyEJ7sXUckBx8Y6Z5hIaZt67gi8veOibwPUFljmsKcUM5TRDWt3DH43WeFdGsKDp1
-	 G7dsQKKhbqHmto/+4bPrM1vL6l5hK90ht1Y/8oKoLrWZfh/8KFJ2q/CRZVIcceiv3c
-	 ziEd8NeIko+DOhOY8I94MDI6cLVaNrZN/PD59zL48OOVPwj7TwDaHnXD6Zp9+qfUJ1
-	 kKiRizH8qfbUx/hUc+ds6Enm7l9gNAhEgLYoCurTol2jaPC/AfDH7OvO0wh3EouJtK
-	 GL3ZJkAHbEjZpDMSo50vBXOGLc0p1HtB+yENozkEieADVovs577B65sawVeIyGdkeG
-	 WZ1NVQXRNoQhw==
-Date: Mon, 27 Jan 2025 13:34:21 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Lee Jones <lee@kernel.org>
-Cc: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=EkG2vg3pUBW5lQj9QgbCmqMyaXUybKNqvEpbJ77rq3ohiWkjY5Yy8rNAe9OIZfmXnwkwP4q7X65OdprfKy/6p7tF02pHP3jD072vfpjN/QV6K3g7VjkYffVdISr639bSiN42QhXmoyVlnQ0pLrKT4DjdZ3kUOHNlcRkhxOLeRdQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uplUxJmG; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-4368a293339so51179235e9.3
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 05:44:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737985464; x=1738590264; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=5dzExPNnBd5BadPD/edPrSpxx4imET/WpNDJrURoTE0=;
+        b=uplUxJmGoppbh4zz6hGf2VSXzkgiEYeQ11SGd8LNLhsLTHFFJ01TRqW6Odtn6sePKY
+         lgGhfiyrmMeeCQE7CeiDQS/R+uTM3zFYEvX7bVPV8uQcJFglaSTcAXgp/bYk9NOehTIY
+         F0OlC4BJr5m248IVqiVZifUyXute/29GlSjevdyXpm0dZCzR5ZV4KOaWGfRLA79W6P8Z
+         aQLQumCShRQG6NMImTdqIiN6CRkQQ0VukVhy8eeUz9rmaLo2uhWwWlL/cAKzQCRlG2u+
+         aGDDYf5t9HyEVgZsxW5l4OsJizvxYURwj0nEQCtkJy7TapDik3cySJwGl1/kughQNe8h
+         7wCA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737985464; x=1738590264;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5dzExPNnBd5BadPD/edPrSpxx4imET/WpNDJrURoTE0=;
+        b=uBbedjYkLX0lDdXfXhB9GTwemNKexqCUJONVLuwVy5QBkeuDV7VhE9quu9DiGCSUa0
+         3+WBf/I0L485fnGNhW8cONzBtGEOQaRempoulkl15jAzQuWlFj3+tMQN94ZBThaZy5os
+         5h/sEZlHgZ1NJcJyuqDO/O3uZDs2KZwFylLspNbOgApeDxKy+O+GTymsOT+KyFPtGjpn
+         v3LMizDZSfo5NCOQqr3Qyx6hb5eMb7HTGIfYpOgTFn5i+qD6StKIcRQSNEl77TyEWHSD
+         JNHNgyKVcZrgnNSnoh02Iubyx3KMaAHuG8HrsPJE0rC/vXbmlwT0u4VchGr885BNk+Iw
+         7/TQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVBWN9ymrHKIKapMttH0eJUnDDpbopKJffPfvyCMmgB2KE0PqKb/I9lf9o69XQho6m9B6SqMnOPPobj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxeaT1gZxMofLBc3AQ08rvHQmIjBglQIcjnFNu7KOS10D5Hh1Xs
+	vRBoSCKv2+SnE7U9k8sAPho0h/WII1sftshsewWsrhp+cDzkHM4g4ORK5uq/KVE=
+X-Gm-Gg: ASbGnctHA/S3TwxaqAMarkNrRffTXbOVYy1dRx2F36WNQiJLgty9HfBoNvCI7wPoDg3
+	rq/QgBZlX779MYRRwwR+6j6L7i9QoIyLu/rSrrwxYl5asDtl0bujqdNdzE/oL5FZoU97Y7aiLl5
+	Hws7pRTft3NSwu+LOZ98aUcWuvI3HSwf1DwOSnagz12Gw6nvaI54DX1pzbo6xsdtSiAaAWMyf/m
+	E0J/ccoGYZ8WbqJxWOk/sxRMV2eid+eGyrZFY7vC7fRcY3iT28eUq39Shse/1ftWF4TIPX/RajH
+	JojUS+xpjyxZBhtE
+X-Google-Smtp-Source: AGHT+IFcNIACKzDb7XoSvjv5r3ta+0ItVzl4s9sZxBESJf9DT3bmkXC5vB5QT61u2Xtp4cyOELCBYA==
+X-Received: by 2002:a05:600c:5486:b0:434:f586:753c with SMTP id 5b1f17b1804b1-438913ca694mr374369155e9.7.1737985464361;
+        Mon, 27 Jan 2025 05:44:24 -0800 (PST)
+Received: from linaro.org ([2a02:2454:ff21:ef30:4750:4bda:32ab:b090])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438bd4d2a82sm131777985e9.36.2025.01.27.05.44.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jan 2025 05:44:23 -0800 (PST)
+Date: Mon, 27 Jan 2025 14:44:18 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Tony Lindgren <tony@atomide.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] dt-bindings: mfd: motorola-cpcap: Document
- audio-codec interrupts
-Message-ID: <026c4c9c-bab6-4a28-ad3a-77b9daf5eb72@sirena.org.uk>
-References: <20250122164129.807247-1-ivo.g.dimitrov.75@gmail.com>
- <20250122164129.807247-4-ivo.g.dimitrov.75@gmail.com>
- <a60f468e-857a-4f4c-b3d9-3ee8faf6602a@sirena.org.uk>
- <20250127132725.GC1440743@google.com>
+	Stephan Gerhold <stephan@gerhold.net>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Matti =?iso-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>,
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 9/9] ARM: dts: qcom: msm8226-samsung-matisse-common:
+ Enable modem
+Message-ID: <Z5eNsk5Vvp6BxmJ9@linaro.org>
+References: <20250126-msm8226-modem-v2-0-e88d76d6daff@lucaweiss.eu>
+ <20250126-msm8226-modem-v2-9-e88d76d6daff@lucaweiss.eu>
+ <Z5dVc9yTynAsPDcZ@linaro.org>
+ <5638469.LvFx2qVVIh@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bNORB6210QAchGdN"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250127132725.GC1440743@google.com>
-X-Cookie: Printed on recycled paper.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5638469.LvFx2qVVIh@lucaweiss.eu>
 
+On Mon, Jan 27, 2025 at 02:34:08PM +0100, Luca Weiss wrote:
+> On maandag 27 januari 2025 10:44:19 Midden-Europese standaardtijd Stephan 
+> Gerhold wrote:
+> > On Sun, Jan 26, 2025 at 09:57:28PM +0100, Luca Weiss wrote:
+> > > From: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+> > > 
+> > > Enable modem remoteproc on samsung,matisse-wifi & matisselte.
+> > > 
+> > > Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+> > > Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> > > ---
+> > >  arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi | 7 +++++
+> ++
+> > >  1 file changed, 7 insertions(+)
+> > > 
+> > > diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-
+> common.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
+> > > index fbd568c7d6b7415d240aa1a2329d07cf9135274c..
+> 4155bfb2136022f2a85d69451c34f06ed2a700ac 100644
+> > > --- a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
+> > > +++ b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
+> > > @@ -225,6 +225,13 @@ &blsp1_uart3 {
+> > >  	status = "okay";
+> > >  };
+> > >  
+> > > +&modem {
+> > > +	mx-supply = <&pm8226_l3>;
+> > > +	pll-supply = <&pm8226_l8>;
+> > 
+> > Hmmmmm, so I was looking at msm8926.dtsi downstream and it seems to
+> > override the msm8226.dtsi modem/mss definition [1]:
+> > 
+> >  1. ext-bhs-reg is dropped
+> >  2. vdd_mss-supply is added
+> 
+> That's the same what I found, and have working with more (currently hacky) 
+> patches on msm8926-htc-memul. I decided against introducing it with this 
+> series since these patches have been pending for too long and initially when I 
+> was doing 8926, I wasn't sure how to make this into a proper patch. Now my 
+> idea is to introduce a "static const struct rproc_hexagon_res msm8926_mss" 
+> with the compatible qcom,msm8926-mss-pil which has these two differences.
+> I think that's a better idea than adding some extra conditionals around to 
+> make the mss-supply optional and ext-bhs somehow optional in the driver based 
+> on dt.
+> 
 
---bNORB6210QAchGdN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Yeah, that sounds good. Could add a new qcom-msm8926.dtsi include that
+overrides the compatible and /delete-property/ the ext-bhs-reg. Then
+just #include that only for matisselte and add the mss-supply there.
 
-On Mon, Jan 27, 2025 at 01:27:25PM +0000, Lee Jones wrote:
-> On Thu, 23 Jan 2025, Mark Brown wrote:
+> > 
+> > This common include seems to cover both apq8026 (matissewifi) and
+> > msm8926 (matisselte).
+> 
+> That's a very good point. I didn't think much about the matisse patches since 
+> they were introduced by Matti but yes... Either I add the msm8926 support in 
+> the same series already, or we just enable modem for matissewifi for now. I 
+> think I'll opt for the latter since the series is already 9 patches long and I 
+> don't want to make it too complicated.
+> 
 
-> > On Wed, Jan 22, 2025 at 06:41:27PM +0200, Ivaylo Dimitrov wrote:
-> > > Add DT binding for the audio-codec headset detection interrupts.
+Either way is fine for me. I guess I'd personally throw it in one
+series, just because it fits well together and it can take quite some
+time to get patches applied. :-)
 
-> > Lee, would it be OK to merge this via ASoC?
-
-> I'm not sure why you would want to and it may make subsequent changes
-> more challenging to merge, but if you really want to ...
-
-It's the binding documentation for the ASoC change in the final patch.
-
---bNORB6210QAchGdN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmeXi1wACgkQJNaLcl1U
-h9Cpvwf+OldwpK3Lu+wk4SHda0N8nLT4no7CICKdvX0vA7bFN54hw4GlboGkd8xf
-RvTjBfJZQ9vOx9ohlN5e0N/2DiV/U6xDkD7zpBUBF+5nKDShg0pTgRFhg3iBhk9P
-oye/FOlYRtpN0WI+yhqtoO94ByiXoPMb3wNU/rcctf6dX7QHRjnHl/AhLlUG820M
-mMhaY9PX3Lk/FHr74Syj5K0MBI98eQ1kiHQtY9eCRG1dCQDdjLFT9IiIxhrOTNp3
-rjWGlMGxl2It4gh2mOpcHngF+kMVT6QXYFxjmdm0TV4Uy0SMnFBv6mfFzPw6X1uN
-Cj0R7iM6P2m43NJJiGjkU0YxXuli9w==
-=R03O
------END PGP SIGNATURE-----
-
---bNORB6210QAchGdN--
+Thanks,
+Stephan
 
