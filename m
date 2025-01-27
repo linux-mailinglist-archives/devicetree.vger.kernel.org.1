@@ -1,128 +1,110 @@
-Return-Path: <devicetree+bounces-141224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 470AAA200A9
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 23:37:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 482F0A200C0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 23:41:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43A7E3A50B4
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 22:37:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EF6C3A7062
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 22:40:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 959EA1DA11B;
-	Mon, 27 Jan 2025 22:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E25AE1DC197;
+	Mon, 27 Jan 2025 22:40:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bQtGzaPn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ohpJOPhh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D6B31B3F3D;
-	Mon, 27 Jan 2025 22:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B093A1D90B1;
+	Mon, 27 Jan 2025 22:40:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738017441; cv=none; b=eL+IbHOqrv3IgcfLyeVbXE+zu6WEbIhGn3sCcBwJ8hn5cUlqGwX9sHjbzQZKH+ONxCP2CTUJupMKkV2Wn4yPh/nt8oH8Hf9USqVPsxHGPV5sSXDSvJABT3Q4elA43mFvywKIvTAO8dRWWWPMcxP8yVolcaxaRJKZH2UMrEhaUZ4=
+	t=1738017653; cv=none; b=k9Lm8Z6R0zdLCz5zBoqorG3E7pKKQhNF7/+IzdTH5Cs8LW/VqO3xuTd/6jTWslJ17cJm7irYObeukdYE8rtiqw9HThSFbik2HdOGPocgq4Fmy6nFj56LXx5V0PRPJ7Wrv+nwDOSa2fGUpwzJyzuhwC2TCAxLZSVa3GE9jePnYmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738017441; c=relaxed/simple;
-	bh=Q15LT01SKkEFQ7s0hq0N1TkWUsaoeZM4yduP53hP4u0=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=LU3e4WQj0xph70yUWfaQhX9+vj3yDld+QFu3FvwRgYUmAGM67qKxcY4+yz8XlA5HImUz66CzeCfydjDXp8x97wDMj8cpRy5KZpM1jQ+xnMJUejc5u7dxttX1QmKEo/D5tx12btF8+HS1WBvfrd6c7hicIZy3Md8kwNgP/qVQRS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bQtGzaPn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6443C4CED2;
-	Mon, 27 Jan 2025 22:37:20 +0000 (UTC)
+	s=arc-20240116; t=1738017653; c=relaxed/simple;
+	bh=8n6GFq2wSsDW3UJiuOFend+qwj0qBJNXurbpJnrEFGY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TzzsBsHkor5bfJmuFQoLw/pIT+mxNgUmpWuEkN7awGtpKXHTyGcPULo0x0ggUhyfxfY1NS8rvhlU9aOMMD6IX1sei5nm1cmE6oN37e7lUab33l1ZpQ0mbnMNUAi/+7YCYapEzz2EeihPRYA2QUqzJbIb36CHQtwQkZKxVADjFHM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ohpJOPhh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB268C4CED2;
+	Mon, 27 Jan 2025 22:40:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738017440;
-	bh=Q15LT01SKkEFQ7s0hq0N1TkWUsaoeZM4yduP53hP4u0=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=bQtGzaPnRrUJCqC+vTx35sPL5jya7O1ggSd0wyDWIAKkWGhhQ+p6lyxYPjaCF8UFH
-	 ZIvytX26MmRny0dg5RVRbgtvTqLVCG2VFuHBPRRB44qEVKbx5QXktzDMiixc16fetB
-	 4yEV5Ha16sc2wMBEZFqBfKAczUqtHxR2OkxRH+451OZJ8G/SHgjLOlITmH4ZV/xDfS
-	 z/Z/YLkxAAVV/RAJY7xc7vxNbBbR/OZX6n5E+0QWN7734D93DJVF2F6Ii+2vun0MeB
-	 g1ipWsL92ApcZZmYzsDTLmUSpCIDJe7dVQPfVisuZOyQywqT7mAhAKRiq3QbJCCU+5
-	 7bDlm8633wTmA==
-Date: Mon, 27 Jan 2025 16:37:19 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1738017653;
+	bh=8n6GFq2wSsDW3UJiuOFend+qwj0qBJNXurbpJnrEFGY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ohpJOPhhj8jAFO655veGMIMxliz9kaesGQVF5VL6+7F5BqBXW4u4qQSBBJXDBtXxr
+	 apYbv9TPCKrf4WX09+K+RiquAl8cyDrw3vHsVWEhcFR9lrZaRXa+19n5eUc6RoGUpa
+	 miXj2dtTDf13Q8HmBY07woVRhn0n1SzgfC8dpgjsSZ+61Hj1YC2PS50zbhzGZw7Hwn
+	 +l/Hh6jSarFT7I6GLNUKC0BcdpZljClIcoe5IGmbc65uLER7aWrb+XkI1waAK7Sozq
+	 7Rx4xAq7EttpFoGQTwEyNC5rCth1qjUObYxA8ZIYA5ryhSK22fRU+SN3bjo/BsJVs0
+	 ztTRL2NHgxmhQ==
+Date: Mon, 27 Jan 2025 16:40:50 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Felipe Balbi <balbi@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
+	Saravana Kannan <saravanak@google.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Frank Li <Frank.li@nxp.com>, linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 00/12] usb: dwc3: qcom: Flatten dwc3 structure
+Message-ID: <hn5lcdbdmvdntmufgvzju2xsvxwplxeoechzgtxgmqkcswooxc@6zuqbfyriqnc>
+References: <20250113-dwc3-refactor-v3-0-d1722075df7b@oss.qualcomm.com>
+ <Z5fJFRMHIvKoN4cE@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Hari Nagalla <hnagalla@ti.com>, 
- devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, Devarsh Thakkar <devarsht@ti.com>, 
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Judith Mendez <jm@ti.com>
-In-Reply-To: <20250127221631.3974583-1-jm@ti.com>
-References: <20250127221631.3974583-1-jm@ti.com>
-Message-Id: <173801742334.1179786.10533536271725116340.robh@kernel.org>
-Subject: Re: [PATCH 0/4] Add R5F and C7xv device nodes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z5fJFRMHIvKoN4cE@linaro.org>
 
-
-On Mon, 27 Jan 2025 16:16:27 -0600, Judith Mendez wrote:
-> For am62x and am62ax devices, this patch series adds device
-> nodes for the R5 cores and C7xv DSP subsystem found in their
-> respective voltage domain, based on the device TRMs [0][1].
+On Mon, Jan 27, 2025 at 06:57:41PM +0100, Stephan Gerhold wrote:
+> On Mon, Jan 13, 2025 at 09:11:33PM -0800, Bjorn Andersson wrote:
+[..]
+> >  118 files changed, 8389 insertions(+), 670 deletions(-)
+> > ---
 > 
-> Boot tested on am62x SK and am62ax SK boards.
+> This is quite a lot of code and new files for a temporary migration.
+> It's also difficult to test these changes fully, since there are
+> separate overlays for each SoC and sometimes even each board.
 > 
-> [0] https://www.ti.com/lit/pdf/spruj16
-> [1] https://www.ti.com/lit/pdf/spruiv7
+> Would it be easier to just duplicate the dwc3-qcom driver for now?
+> Making a copy of the current dwc3-qcom.c would be just 1000 lines of
+> extra code, compared to more than 7000 for the overlay approach.
 > 
-> Devarsh Thakkar (1):
->   arm64: dts: ti: k3-am62a-wakeup: Add R5F device node
+> The copy (e.g. dwc3-qcom-legacy.c) would keep handling the old bindings
+> with the existing code (that is known to work to some extent). We can
+> then improve upon the main version without risk of breaking any old
+> DTBs. If we decide to drop support for the old DTBs at some point, we
+> can just drop dwc3-qcom-legacy.
 > 
-> Hari Nagalla (2):
->   arm64: dts: ti: k3-am62-wakeup: Add wakeup r5f node
->   arm64: dts: ti: k3-am62a-mcu: Add R5F remote proc node
-> 
-> Jai Luthra (1):
->   arm64: dts: ti: k3-am62a-main: Add C7xv device node
-> 
->  arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi  | 24 ++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am62a-main.dtsi   | 11 +++++++
->  arch/arm64/boot/dts/ti/k3-am62a-mcu.dtsi    | 36 +++++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi | 23 +++++++++++++
->  4 files changed, 94 insertions(+)
-> 
-> --
-> 2.48.0
-> 
-> 
+> This approach is also not pretty, but I think the risk and effort would
+> be lower than making sure the overlay approach works on all the affected
+> targets.
 > 
 
+I like this suggestion.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+It's much more isolated and we know the current state of the driver
+works with the current dtbs out there - so backwards compatibility would
+be handled. I also did end up having to use separate compatibles for the
+old and new binding/driver, so this should be quite clean - i.e.
+nicer than the overlay-based path...
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+The one drawback would be that devices that isn't updated to a new dtb
+would not gain the upcoming improved support for role switching, or any
+of the improvements in pm_runtime-support (as I assume we'd only care
+about the new driver). But I think that's worth the saving in
+complexity.
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/ti/' for 20250127221631.3974583-1-jm@ti.com:
-
-arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb: dsp@7e000000: 'mboxes' is a required property
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb: dsp@7e000000: 'memory-region' is a required property
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-arch/arm64/boot/dts/ti/k3-am62a7-phyboard-lyra-rdk.dtb: dsp@7e000000: 'mboxes' is a required property
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-arch/arm64/boot/dts/ti/k3-am62a7-phyboard-lyra-rdk.dtb: dsp@7e000000: 'memory-region' is a required property
-	from schema $id: http://devicetree.org/schemas/remoteproc/ti,k3-dsp-rproc.yaml#
-
-
-
-
-
+Regards,
+Bjorn
 
