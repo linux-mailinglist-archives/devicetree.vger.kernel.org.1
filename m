@@ -1,105 +1,210 @@
-Return-Path: <devicetree+bounces-141195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92A48A1DBE7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 19:10:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 166ECA1DBF6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 19:17:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE52A3A53E2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:10:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 604933A4DDD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:17:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5256718D65F;
-	Mon, 27 Jan 2025 18:10:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEEEC18B482;
+	Mon, 27 Jan 2025 18:17:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="AfTBVeNH";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="9d+a+D1o"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ddC7HyoA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B80F918D649;
-	Mon, 27 Jan 2025 18:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C7013C9C4;
+	Mon, 27 Jan 2025 18:17:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738001435; cv=none; b=nXkcCazteH/0SlEXf0NSKUUB4fdaMSUvJg9r+flgF1SIraHsqMFBU+lEGYnigZYixBrUlA4zBhkiPBZs/Jr1NflJGmHz2taJ7+M4MebvJQW489JoekwiqdxOSfeyTRlRL7dEcS5NHDPN8cV/vvhiBxIu/oEjszrX2MNRS0Vhyt4=
+	t=1738001848; cv=none; b=JamNnByozSxccuEQ/J6DbYRESSi9UkZXxOnrDCt8lCrkfUJ1KZi8USanUrFVUI7Z5d/0AhlFUfXTrZZLd39aysaChi9TUBKDdlLE+1gAYXUxzGNEJ33uqef8XTAsXF3moiMinj/K0QhGDq5n80GkdSYCT2ov42Clq5/eHRp5DmE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738001435; c=relaxed/simple;
-	bh=sW6A4mZSE5UQOYvsd/QaeHsnmQsGmlxZb+kaj70zryg=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=qzuXjoBtjnLwwIDr3WcFrThBmSykgomutkcC/HN/5bwAO1uRavZyaXD4/FgACda5mp4fGus9GcHe2yJv/c2gLasiy3YjxxXZX7Acor9MqGFOL7bdZmmqSwEoHEYfpRaXWF/ohVWoKnynWETAPovVd5R9LCeeOVuJuMlMn+FEdXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=AfTBVeNH; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=9d+a+D1o; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1738001431;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pirFz880PHbl7Wsu56VW30PJh1UmmzZuboMbJFV0f10=;
-	b=AfTBVeNH/KTFCBWBIDIdyxrcqzkaCjvXFQD717inHpxdKq7RWRRkd/0Q/TOWz7tXL1L+3c
-	DTfIewtewEJNl57fRNWLpn1RljU+Q17YGytKeSw/2Ww5SvRHkQNgrbUE1NK8JzcWnaLPM+
-	bSYHEC4AEUKKfCQ4flblBbrONfwH0xFHD2wFgoB7jQNegBJr4PdeYsBAgtLyiyZORa7rz/
-	aubZCmQAmyYKXX/Y82j+kQafqoeWzD1KjbWi9FCz0QZ4pQuKz5NQaTe/Vr0iTp9c7pHgRH
-	PtwGtS98oYJSeBf9WFYg8456k0OclH18bGAKXs4TCIeyzbhLDuIp8oa3LH/z+w==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1738001431;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pirFz880PHbl7Wsu56VW30PJh1UmmzZuboMbJFV0f10=;
-	b=9d+a+D1oiQsTecowN1fpws3+HVT50yXPpNcciisFoaJvwhgEVDXVSwc7zfvsbfA2d18HAz
-	4MT/ITjMeLI9jhAg==
-To: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org, Broadcom
- internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli
- <florian.fainelli@broadcom.com>, Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>, Bjorn Helgaas
- <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- kw@linux.com, Philipp Zabel <p.zabel@pengutronix.de>, Andrea della Porta
- <andrea.porta@suse.com>, Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
- <jonathan@raspberrypi.com>, Dave Stevenson
- <dave.stevenson@raspberrypi.com>, Stanimir Varbanov <svarbanov@suse.de>
-Subject: Re: [PATCH v5 -next 03/11] irqchip: Add Broadcom bcm2712 MSI-X
- interrupt controller
-In-Reply-To: <20250120130119.671119-4-svarbanov@suse.de>
-References: <20250120130119.671119-1-svarbanov@suse.de>
- <20250120130119.671119-4-svarbanov@suse.de>
-Date: Mon, 27 Jan 2025 19:10:31 +0100
-Message-ID: <87bjvs86w8.ffs@tglx>
+	s=arc-20240116; t=1738001848; c=relaxed/simple;
+	bh=bPMgdUx6tBcvM4b3enWsKBCUp6vLClclKDzrrTXyl/w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SFeXZNFB2U9dXh4gr4F86IYquv6uDbNc0j1S2LPmnYFPuaKscU6cv+S+IeX7PLnzGS0hmEjC8ka7xe/W6uDb0xZCTa2eaYVS+jdXcSg5WaxF5luuy8juU43M1T7aVK6LqKWQj9le6sU8Q/cX+A23HwNY65VHrzvrFGnsEitziGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ddC7HyoA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4C83C4CED2;
+	Mon, 27 Jan 2025 18:17:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738001847;
+	bh=bPMgdUx6tBcvM4b3enWsKBCUp6vLClclKDzrrTXyl/w=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ddC7HyoAuAE23vOxPA0afI327iU6OWwMgQRKPpr+/BqszfR+Mch+m+c+8DynCieGY
+	 4cR+sjldUqfscWal3R8Twe5t7rdoHvnWbm5Q1/U6CnbHuiYe/6gRuFt8i+Ak4POiUy
+	 EHF/MhRhh7C8NJjk15PqjC74lwt4d3Gbh0ZCd5SNF1Rr9NtxDsDPWr9WR4b4Eyx2E/
+	 4bWYxb0ybR3ulGbihEvATCm4nEFGbiaiwULmzkhxl2Er4SpQcEqxR6tI6tYQEuNshb
+	 Y7HNACn49ymJ02zTmo9VCP0334rcKpy2styY3bbuV0HP9Wy/xTVzFQOG8z+KfpQk1I
+	 VliHDJwHw1kyA==
+Date: Mon, 27 Jan 2025 12:17:26 -0600
+From: Rob Herring <robh@kernel.org>
+To: Olof Johansson <olof@lixom.net>
+Cc: Yixun Lan <dlan@gentoo.org>, Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Jesse Taube <mr.bossman075@gmail.com>,
+	Inochi Amaoto <inochiama@outlook.com>,
+	Icenowy Zheng <uwu@icenowy.me>,
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: spacemit: add support for K1
+ SoC
+Message-ID: <20250127181726.GA538260-robh@kernel.org>
+References: <20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org>
+ <20250121-03-k1-gpio-v4-1-4641c95c0194@gentoo.org>
+ <Z5FPJLzAEVXGWJnE@chonkvm.lixom.net>
+ <20250123113042-GYA38135@gentoo>
+ <Z5LOdh-4UxRtteOy@chonkvm.lixom.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Z5LOdh-4UxRtteOy@chonkvm.lixom.net>
 
-On Mon, Jan 20 2025 at 15:01, Stanimir Varbanov wrote:
+On Thu, Jan 23, 2025 at 03:19:18PM -0800, Olof Johansson wrote:
+> On Thu, Jan 23, 2025 at 11:30:42AM +0000, Yixun Lan wrote:
+> > Hi Olof:
+> >  thanks for your reivew
+> > 
+> > On 12:03 Wed 22 Jan     , Olof Johansson wrote:
+> > > Hi,
+> > > 
+> > > On Tue, Jan 21, 2025 at 11:38:11AM +0800, Yixun Lan wrote:
+> > > > The GPIO controller of K1 support basic functions as input/output,
+> > > > all pins can be used as interrupt which route to one IRQ line,
+> > > > trigger type can be select between rising edge, failing edge, or both.
+> > > > There are four GPIO ports, each consisting of 32 pins.
+> > > > 
+> > > > Signed-off-by: Yixun Lan <dlan@gentoo.org>
+> > > > ---
+> > > >  .../devicetree/bindings/gpio/spacemit,k1-gpio.yaml | 116 +++++++++++++++++++++
+> > > >  1 file changed, 116 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml b/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
+> > > > new file mode 100644
+> > > > index 0000000000000000000000000000000000000000..dd9459061aecfcba84e6a3c5052fbcddf6c61150
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/gpio/spacemit,k1-gpio.yaml
+> > > > @@ -0,0 +1,116 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/gpio/spacemit,k1-gpio.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: SpacemiT K1 GPIO controller
+> > > > +
+> > > > +maintainers:
+> > > > +  - Yixun Lan <dlan@gentoo.org>
+> > > > +
+> > > > +description:
+> > > > +  The controller's registers are organized as sets of eight 32-bit
+> > > > +  registers with each set of port controlling 32 pins.  A single
+> > > > +  interrupt line is shared for all of the pins by the controller.
+> > > > +  Each port will be represented as child nodes with the generic
+> > > > +  GPIO-controller properties in this bindings file.
+> > > 
+> > > There's only one interrupt line for all ports, but you have a binding that
+> > > duplicates them for every set of ports. That seems overly complicated,
+> > > doesn't it? They'd all bind the same handler, so there's no benefit in
+> > > providing the flexibility,.
+> > > 
+> > yes, all ports share same interrupt line, but each port has its own
+> > irq related handling register, so it make sense to describe as per gpio irqchip
+> > 
+> > also see comments below
+> > 
+> > > > +properties:
+> > > > +  $nodename:
+> > > > +    pattern: "^gpio@[0-9a-f]+$"
+> > > > +
+> > > > +  compatible:
+> > > > +    const: spacemit,k1-gpio
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  "#address-cells":
+> > > > +    const: 1
+> > > > +
+> > > > +  "#size-cells":
+> > > > +    const: 0
+> > > > +
+> > > > +patternProperties:
+> > > > +  "^gpio-port@[0-9a-f]+$":
+> > > > +    type: object
+> > > > +    properties:
+> > > > +      compatible:
+> > > > +        const: spacemit,k1-gpio-port
+> > > > +
+> > > > +      reg:
+> > > > +        maxItems: 1
+> > > > +
+> > > > +      gpio-controller: true
+> > > > +
+> > > > +      "#gpio-cells":
+> > > > +        const: 2
+> > > > +
+> > > > +      gpio-ranges: true
+> > > > +
+> > > > +      interrupts:
+> > > > +        maxItems: 1
+> > > > +
+> > > > +      interrupt-controller: true
+> > > > +
+> > > > +      "#interrupt-cells":
+> > > > +        const: 2
+> > > > +        description:
+> > > > +          The first cell is the GPIO number, the second should specify interrupt
+> > > > +          flag. The controller does not support level interrupts, so flags of
+> > > > +          IRQ_TYPE_LEVEL_HIGH, IRQ_TYPE_LEVEL_LOW should not be used.
+> > > > +          Refer <dt-bindings/interrupt-controller/irq.h> for valid flags.
+> > > 
+> > > Same here, since there's no real flexibility between the banks, it might
+> > > make sense to consider a 3-cell GPIO specifier instead, and having
+> > how to handle the fourth gpio port? I would like to have uniform driver for all ports
+> > 
+> > > the first cell indicate bank. I could see this argument go in either
+> > > direction, but I'm not sure I understand why to provide a gpio-controller
+> > > per bank.
+> > > 
+> > 
+> > IIUC, your suggestion here was same as the implementation of patch v3 of this driver[1],
+> >  while combining all four ports into one irqchip, which NACKed by maintainer[2].
+> >  I tend to agree having a gpio-controller per bank provide more flexibility,
+> >  easy to leverage generic gpio framework, even each port can be disabled or enabled,
+> >  and IMO having shared irq handler isn't really a problem..
+> > 
+> > [1] https://lore.kernel.org/r/20241225-03-k1-gpio-v3-0-27bb7b441d62@gentoo.org
+> > [2] https://lore.kernel.org/r/CACRpkdZPD2C2iPwOX_kW1Ug8jVkdHhhc7iFycHtzj5LQ0XWNgQ@mail.gmail.com
+> > https://lore.kernel.org/r/CACRpkdYgGho=VQabonq4HccEiXBH2qM76K45oDaV1Jyi0xZ-YA@mail.gmail.com
+> 
+> Hmm, I don't understand the reasoning there, but it's not my subsystem.
+> 
+> It seems worse to me to misdescribe the hardware as separate blocks
+> with a device-tree binding that no longer describes the actual hardware,
+> but it's not up to me.
 
-> Add an interrupt controller driver for MSI-X Interrupt Peripheral (MIP)
-> hardware block found in bcm2712. The interrupt controller is used to
-> handle MSI-X interrupts from peripherials behind PCIe endpoints like
-> RP1 south bridge found in RPi5.
->
-> There are two MIPs on bcm2712, the first has 64 consecutive SPIs
-> assigned to 64 output vectors, and the second has 17 SPIs, but only
-> 8 of them are consecutive starting at the 8th output vector.
->
-> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+I agree. It's clearly 1 block given the first 3 banks are interleaved.
 
-Reviewed-by: Thomas Gleixner <tglx@linutronix.de>
+If Linux can't handle 1 node for N gpio_chip's, then that's a Linux 
+problem. Maybe it can, IDK. The lookup from a DT node to gpio_chip just 
+needs to match on more than just DT node pointer, but look at the node 
+ptr and arg cells.
 
-As this is a new controller and required for the actual PCI muck, I
-think the best way is to take it through the PCI tree, unless someone
-wants me to pick the whole lot up.
-
-Thanks,
-
-        tglx
+Rob
 
