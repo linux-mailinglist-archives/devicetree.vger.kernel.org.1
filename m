@@ -1,149 +1,128 @@
-Return-Path: <devicetree+bounces-141177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B05A1DB5A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:34:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04B06A1DB68
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:39:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C21BB1884192
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:34:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B6013A80F5
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:39:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D67518B476;
-	Mon, 27 Jan 2025 17:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 128EA18B470;
+	Mon, 27 Jan 2025 17:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="daa5LANB"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EXo0scUS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 505621662EF
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 17:33:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A36E186E26;
+	Mon, 27 Jan 2025 17:39:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737999230; cv=none; b=Fs86xq3e4IOjvyRzTb+IiNL5FndMrVxr/jIS6Zy5hjWJIth3JNTAuobfgPSWvJJd28hv2DFQ/MRH7xDcsswA7fhttvBH1q18vbW4MpCdKOCM65rPoc0qSGMs/cdbpW5mMSZSduaWtZg+fdYy05pH2G/3udUWyqOUKtcs8NgVqpQ=
+	t=1737999563; cv=none; b=uEeaPD5YMhUVxD81HCLEExTGLXYE4xIlPeGQ5si43IQ2M8V1KkXfaHV2SkRiMmvNwrg2wjc4rpYATyid60wqVlExkvK0ywZtM0yGqSgAA3vmJ1r3cknI3P0Kav9r2xrjR6mU/UxM5GAN9PSblL4RuMWTcvDUAlVS0wvM8OByNTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737999230; c=relaxed/simple;
-	bh=yH8B3vGn7Jg4vExpowlmr+t8L8e0q0jCWUzjRJ9QQQA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c/gzjpX+JqsfhYZ7g5d1/fK2LEZznUM1KQ/nUWAh+/920fo2yB6dI3Xh8gmUA+z6H7zW7K1UzHR5MisjshlHdNBt8Wc1UcRWnl99HubHook51zSc03w56jn/KLkh7g3/kPdkqW4cU62aTU8EXe/w9i4zggk1DZsXgB+6uAnW4X4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=daa5LANB; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53e384e3481so4539850e87.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 09:33:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1737999223; x=1738604023; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2q28uO9Sl+8BmaEfGyy+z8Preej4d/ejPXFkJVl2+6s=;
-        b=daa5LANBgI27EcomiHCXdhJqK/Tt2f6UQ+au8lJ1rSlWUBnRt1Idd2iMkYQTJBtyUT
-         LWPw2PHJbPAyQCud/dU/ew9hFa6HbaUD7iaQRd680MQaV7I8uK3ovxZ6VCVFVQDwwq44
-         TQeO1kPxFbVX78ZCxtwsrhkhgTG9S+uKTil4Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737999223; x=1738604023;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2q28uO9Sl+8BmaEfGyy+z8Preej4d/ejPXFkJVl2+6s=;
-        b=Gy7MaTAeFlh9IsDM9PwUEiR9DgZqhOhoVKvzwt6bDUdUaawC3BuX0gce2jqhYnPXxu
-         whdMh4wfND0cNxN2ytoRRnT6zq3VPgbxdVHYL/BuZnt/xqCWFhJY/YEQQx2TaDP4az3F
-         KTcrQlr++qUwJG6wz7YdyatjKyvAbHb5pIiXYAjlk+y0L7nt6C4/zS2zu2v5iy2VrA2H
-         EUSatvyqAb5zLlVur48fAA7u0xBxoKqIipfuPgwf+ZNPltlOMc7C22C7L1MQ6aNQnZcd
-         xgmDfn6DiYXBsfKpKlSQAnoKBRKkcU9XkNaORNUpwwN66H89hP1iDPFAD1850mSgovG4
-         ngow==
-X-Forwarded-Encrypted: i=1; AJvYcCVZ13r2DgWkFpdx1m2CPcEYy5cjCmZi5sZuGkNVskUkuUBUZuxEiPNZyk2U7t7VomdsAcSCsjg7i6pY@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXZGOCUncb7kUL07Sx9n/Rf4jgdyDQtUWRlPOYqfJ6FZ+VG/No
-	3QoqTnD0U0INeVEE4Q+L6ozwh4/7z/8oQFG+DEQ7oAqQMco8ZjrdRYyjRhNNUNOSLZj8uFgeLsb
-	guw==
-X-Gm-Gg: ASbGncu+Vp6nKyVhLIdxWKNGcPOAetfmUMEgnC1JyNY42XWifXpJOyWW5/8hnEBYkoS
-	Fb9rv1G6XCbILjzXjPnM/iQvv0DqzOpZDEEEgtWBOiBlGM01zjGyANKN6BVvpptMy8yeG5Xu7DV
-	vrQA232cj36PQfI9Nw6EdTLyA4VGxjyhm5BmKDl4DYuWlddSBb4XpAlVrI5maUrroOMRv2rdsJG
-	cz4nDvVZnoNY8RbRkjNDkyreUBde7lBC3C8ENlrWk/JqNwOXZGFp/XSIaEdIrP4Lz4WOCKyyJBQ
-	77ZMngcZmttAElPlZc8JeqFyXNCLaJlm88583apABlkMgHY6
-X-Google-Smtp-Source: AGHT+IHsa+PFp3AUs+Y/f7mxkaF1gdV7Vrgmp9TATKGGewjWw57jQEiZLFMohPeTgEh2dSKnz58JJw==
-X-Received: by 2002:a05:6512:230f:b0:540:1a0c:9bac with SMTP id 2adb3069b0e04-5439c267480mr15570231e87.34.1737999223364;
-        Mon, 27 Jan 2025 09:33:43 -0800 (PST)
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543c83816bdsm1358358e87.232.2025.01.27.09.33.30
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jan 2025 09:33:38 -0800 (PST)
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-3043e84c687so40766171fa.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 09:33:30 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUU5fgE68cdQ/j2yn46MJzXRiVab7g/Dvqdx4RVmVBMKuuJiE0dL4sdh5YCT8GXoontEer/FND6kmO4@vger.kernel.org
-X-Received: by 2002:a2e:a4c2:0:b0:302:29a5:6e21 with SMTP id
- 38308e7fff4ca-3072ca5bb11mr113388411fa.3.1737999210250; Mon, 27 Jan 2025
- 09:33:30 -0800 (PST)
+	s=arc-20240116; t=1737999563; c=relaxed/simple;
+	bh=vUl3BBblF1TpZhv6GejNg8E3VUJoE5Ss3qGOnHYq+yg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jtsTUUvDPlL/qhZWKS2TNRTESgfBGU8cEjW3Js0alrDbMEVeJF+tWY6KwxoMH5P2/GVOdYGikWabIOaXWJbNVT6PlSxaieb4axETf36sUWEbMJHL2fGSE6FH6ZKCM9P9tngquFCy+QsvfPU2jHeZkz/igIyGXaBqT+odwLrt2zc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EXo0scUS; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737999561; x=1769535561;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=vUl3BBblF1TpZhv6GejNg8E3VUJoE5Ss3qGOnHYq+yg=;
+  b=EXo0scUSVRIPdQeLp5DrNqd1eI6xAE0ZOcHtFlfAgIluUhrfBfa8iIU2
+   doeCoo9ATmb01FB1L/5vNvIU8RI4Rs1OHiqPq/Qz1hPbAaVA0+BpjucQC
+   /QcJsYLt6VbCw+MgDwPpdy2Swwgdms3U3wLVo7bwn0CLmsUIRfmyrAM6x
+   AuegvZzkq8cpHvETQcW3F4IVrRSaOkayY3bVnhlW4GgIMz34MYQHff95t
+   hXXw5uw4NtMtXLoXuawKAXGBdqUVo5LjFv3EqQx5IVmVgY9bxI7UbpWbv
+   zdOpgonIi36ffyxiP6pAlXqhUXA5kE4H/MjMcZAAGnMLlXOwlnHD6mROX
+   Q==;
+X-CSE-ConnectionGUID: GowW+wz5SRaZSrfAquZ6rA==
+X-CSE-MsgGUID: ab+op6geTcmOlqP20KRZiA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="26069464"
+X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; 
+   d="scan'208";a="26069464"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2025 09:39:20 -0800
+X-CSE-ConnectionGUID: ln/ONh/aQbaIIl+GU7Zb1w==
+X-CSE-MsgGUID: valmFYn6QiyBo2t3dMPTFw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="113124887"
+Received: from test2-linux-lab.an.altera.com ([10.244.156.200])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2025 09:39:19 -0800
+From: Matthew Gerlach <matthew.gerlach@linux.intel.com>
+To: lpieralisi@kernel.org,
+	kw@linux.com,
+	manivannan.sadhasivam@linaro.org,
+	robh@kernel.org,
+	bhelgaas@google.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dinguyen@kernel.org,
+	joyce.ooi@intel.com,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: matthew.gerlach@altera.com,
+	peter.colberg@altera.com,
+	Matthew Gerlach <matthew.gerlach@linux.intel.com>
+Subject: [PATCH v5 0/5] Add PCIe Root Port support for Agilex family of chips
+Date: Mon, 27 Jan 2025 11:35:45 -0600
+Message-Id: <20250127173550.1222427-1-matthew.gerlach@linux.intel.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250127014605.1862287-1-yelangyan@huaqin.corp-partner.google.com>
- <20250127014605.1862287-3-yelangyan@huaqin.corp-partner.google.com>
-In-Reply-To: <20250127014605.1862287-3-yelangyan@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 27 Jan 2025 09:33:18 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=VBYbY6x0xmDAbXPD7yfyJm5XLqdHBWC-8RcyVCkXasxA@mail.gmail.com>
-X-Gm-Features: AWEUYZmx-PxOZI0vw4Etv8fiXebC9FIHrAauGLI-1uDnCcUL38QZHwIOI1ep6VI
-Message-ID: <CAD=FV=VBYbY6x0xmDAbXPD7yfyJm5XLqdHBWC-8RcyVCkXasxA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] drm/panel: panel-himax-hx83102: support for
- csot-pna957qt1-1 MIPI-DSI panel
-To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
-Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi,
+This patch set adds PCIe Root Port support for the Agilex family of FPGA chips.
+Version 3 of this patch set removes patches that have been accepted.
 
-On Sun, Jan 26, 2025 at 5:46=E2=80=AFPM Langyan Ye
-<yelangyan@huaqin.corp-partner.google.com> wrote:
->
-> The csot-pna957qt1-1 is a 10.95" TFT panel. The MIPI controller on this
-> panel is the same as the other panels here, so add this panel to this
-> driver. From the datasheet, MIPI needs to keep the LP11 state before
-> the lcm_reset pin is pulled high, so increase lp11_before_reset flag.
+Patch 1:
+  Add new compatible strings for the three variants of the Agilex PCIe controller IP.
 
-Drop the part about LP11. You must have copied it from an earlier
-panel where that flag still made sense. It doesn't make sense to talk
-about given the current state of the driver.
+Patch 2:
+  Add a label to the soc@0 device tree node to be used by patch 3.
 
+Patch 3:
+  Add base dtsi for PCIe Root Port support of the Agilex family of chips.
 
-> @@ -396,6 +397,103 @@ static int ivo_t109nw41_init(struct hx83102 *ctx)
->         return dsi_ctx.accum_err;
->  };
->
-> +static int csot_pna957qt1_1_init(struct hx83102 *ctx)
-> +{
+Patch 4:
+  Add dts enabling PCIe Root Port support on an Agilex F-series Development Kit.
 
-nit: can you keep the functions sorted to match the bindings? So this
-function would be in between the BOE init function and the IVO init
-function?
+Patch 5:
+  Update Altera PCIe controller driver to support the Agilex family of chips.
 
+D M, Sharath Kumar (1):
+  PCI: altera: Add Agilex support
 
-> @@ -462,6 +560,28 @@ static const struct hx83102_panel_desc ivo_t109nw41_=
-desc =3D {
->         .init =3D ivo_t109nw41_init,
->  };
->
-> +static const struct drm_display_mode csot_pna957qt1_1_default_mode =3D {
-> +       .clock =3D 177958,
+Matthew Gerlach (4):
+  dt-bindings: PCI: altera: Add binding for Agilex
+  arm64: dts: agilex: add soc0 label
+  arm64: dts: agilex: add dtsi for PCIe Root Port
+  arm64: dts: agilex: add dts enabling PCIe Root Port
 
-nit: similarly, sort the default_mode / desc between the BOE one and
-the IVO one.
+ .../bindings/pci/altr,pcie-root-port.yaml     |   9 +
+ arch/arm64/boot/dts/intel/Makefile            |   1 +
+ arch/arm64/boot/dts/intel/socfpga_agilex.dtsi |   2 +-
+ .../socfpga_agilex7f_socdk_pcie_root_port.dts |  16 ++
+ .../intel/socfpga_agilex_pcie_root_port.dtsi  |  55 ++++
+ drivers/pci/controller/pcie-altera.c          | 253 +++++++++++++++++-
+ 6 files changed, 326 insertions(+), 10 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex7f_socdk_pcie_root_port.dts
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_pcie_root_port.dtsi
 
+-- 
+2.34.1
 
-Other than small nits, this looks pretty nice to me and I'd expect to
-give a Reviewed-by tag on v2 unless something major changes.
-
-
--Doug
 
