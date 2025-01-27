@@ -1,154 +1,203 @@
-Return-Path: <devicetree+bounces-141132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F2E5A1D84F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 15:27:23 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B99CBA1D886
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 15:37:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5DE85161850
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 14:27:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 183C63A3C44
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 14:37:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD6C417548;
-	Mon, 27 Jan 2025 14:27:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BE3DFC0B;
+	Mon, 27 Jan 2025 14:37:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N/MxKlNW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XtLSBLQL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5DC627468
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 14:27:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 573758460
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 14:37:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737988035; cv=none; b=PYMljdVtL5+QwRvtqN7kWUVEaCj79ZqPB8PtimJFjphsNVJQnQfko838Jgk+EJ7Eby5EWY8Mv08/IczrTtsH5XoPyFZLk6c/s6pMyi6ZSN66m4ryfkHDrS6eebiJoKD5PvIB4414N9LTPjbOfc/wWLHRmZpUe8sL8ZWB8SdWyZs=
+	t=1737988632; cv=none; b=B/pKmsNFT5pBV8ctRCfXmcFyCG8SV/8SAez+mXcVo0yTfFRw01hiONTgRMQgP9XzF9Uz5iJJUBAlNA3DoMu1xJIAFLFQGmPe4KM+I+KCyCjSxQWXO9NAqimLGXXelGC6rHCZoWDT/ckBPbnjhPxoPGGGPaDuxmLma+WggMqlUxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737988035; c=relaxed/simple;
-	bh=v86r3EIlz1+h3GOoj/7Oe+SvuDCoWXauHahA8PSsQ9s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oqO0a1kVqOHjPJ58P67nWfFWn4xAsI5VXc/jAOX7nQY/y0dIRumOmEKGpxe77zD3a43iiCgUmb9yfOyjIkYmfI1chPEACXJDt7brUE/CcJjVAcCi87un3oRH5E3psry7/2QiTIgkmFjZ8CfFlvcbueTAcf5Cb2s1BpIvYDReU1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N/MxKlNW; arc=none smtp.client-ip=209.85.167.46
+	s=arc-20240116; t=1737988632; c=relaxed/simple;
+	bh=V8U3uWMoTBpz84xCteNBmdNyAPu+B+T+tW18jdXjSWM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Osw7jGsKMf0Ocab/I6u9L+SPT5yI/iCvQTW+qeMY/KZSuzj+Teg9Q0jtajsjGLrqX0B/oQ8Q5UPaGfmDPjkCtxBRzgN1UTmyTzfUlP+qaCe1B/boGRNJEA72/SI5yQV8XIJUakmrbDqlhl/e/1Fsv2mnGQpDPjFMMLaoT/cIRf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XtLSBLQL; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5401bd6ccadso4769779e87.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 06:27:12 -0800 (PST)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-385d7fe2732so482989f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 06:37:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737988031; x=1738592831; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=tzvLpRdV8RsEmkfgVe41djDQCfra04Tf73tKiUg1ifQ=;
-        b=N/MxKlNWmnaK3MPmZ+WC4ILOhFU3ZNQbxT1HssjhXgIYj0GI1fe8N9HnWvpDdKXJcp
-         RQyqjR0RQvjOGLiTGjLD4kfH3cAtXAtKDLaLuwan26G2rP3WIAlXU1haB+QgRPbmGJNq
-         sDMNjmi5B26TBfPHRtd95cpthOVsGKBdhLYeWQrYtXLLj7Bndw/RG4ISs2YV2PBTR7uy
-         H4OrS9uOQ74sELt5al6DjbXzxu0s+jE/kQUC46w2ZXubIOIlT30aShhTXVDWRiMczVE2
-         fLldxi74oQgDIA/+0o16jqCHQKCOP64tVFz6Qv0iJFlome98BlIIyIEqJQkJWh31NFEK
-         IOtg==
+        d=linaro.org; s=google; t=1737988628; x=1738593428; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=0Mgmvx7qMUfxppC0GnNZyd9TXM/c1npLJP/jRYaybk0=;
+        b=XtLSBLQLFi+N6yIgTbNHPJ5xue6ZbxNFnrOrEreH6ES/HSTG2lqEozST8/nZUHHGs7
+         G2gb+47VmuYuiaAp5hNU5FLSOPKMy06Ug2lM2lSOozNFnXkA4uZcnWMxV51m8O4/1fMM
+         tOqGj3VQm0HbF7RxS25UTjIGgKDPP3c+OfLkIUQkToTCiew9p1eL9EGPZA9xeTgHWlIA
+         rxaAjCSpU3DP1ADPHx0GSf3vOSx6CnU4QBwtj6AiTnmxFh5Ug5AuN7N6VZkRvcswJh9/
+         PZyrnYYO9p/sYaJhjpEbzxgCWy88gIGvLHOXCtgZRrMDUdDF7dDWUp8O3TYbU/Pzl5iY
+         HdTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737988031; x=1738592831;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tzvLpRdV8RsEmkfgVe41djDQCfra04Tf73tKiUg1ifQ=;
-        b=Qdyvl7SLXPly+pLKnkhzGOEL8ddR+96E6seWd3SBp5j2f2aF4HeXVbSHJLBPPfORO2
-         IX+GfWZEcXtCMcRHgVus/qh9GdtircGXaV+BjcuAPExLKWRCzIGkQJG0B8ZGXMXJRgup
-         5Icr9dWN3L7NvbJyW8KeVhq/oaPkNaNzjiN70k5v9r5vmkX1rN2tTq5eyVjQs5GFq806
-         s+ozsrN9t4I71xD+c0O9XeoGfilYMdYbRUUQaaUKN9VPtfsYpxjxZCe9JiR42kSyP1ph
-         cHJZx4DwV5lWah2S06pKU8iiL6F2Ta7UZkhgP8papxyy7czpV1+YaFYYQM/BUJPtLnkj
-         O5Yg==
-X-Forwarded-Encrypted: i=1; AJvYcCWjO53SUgQsHTR+rVhZH3fc1dVEc3lsvSk6q8MSxarePZoBbaAJ0ZJ/nPsw1DSzkq6QLOtQbIiascYj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVssM8KFJmhp36jTVSSOm8YcMXVUAsIp+UscAgi9f+/tUGokMW
-	cDnn6LDQGJQPl424QFlPtmPcy062EbztZh89Rp0Di1Ar60KMQed0SpWh85pn0L0=
-X-Gm-Gg: ASbGnctyFUzsZhi+eTnCXDN398HILcioVHCcbkfWgt6YLZHE6r5W+oPng/N21/hNokg
-	fP3RRV0ZXwcLw9OsRK/UBq1lTANIqggu5HYrQsn5rXOnBexaDESSpfM5Cs7OL2vx5YwXMh1ntSS
-	IsrTds8TJS7dNKrSiMM9w0NkPR+jEbrg0d+eZFnoPCGRtfxFeI94pGGzi77fBfJmst4NpJ9TMKC
-	LFAINQhGO+ybkK1nRL54+FPjjdMOvVx0NJGIdVS/lk1iukqW9L3JyYQcPSUE91ZFADzIP4s5Vco
-	DtA7Q324iURGtzwdmPsbc9FbkvbFzsRYL7Y5kAwK5yC0EBHQCH36rjQdTQyr
-X-Google-Smtp-Source: AGHT+IE7G8wjtK979b4O6Nuj0hnM9/BLca8MZ6bqkJGxgYjf9X4Ezr5Qy4KlAM4toJWld4WHK+gA0Q==
-X-Received: by 2002:a05:6512:b24:b0:540:2a92:7daa with SMTP id 2adb3069b0e04-5439c282032mr13583417e87.42.1737988030790;
-        Mon, 27 Jan 2025 06:27:10 -0800 (PST)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543c8368362sm1297614e87.124.2025.01.27.06.27.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jan 2025 06:27:09 -0800 (PST)
-Date: Mon, 27 Jan 2025 16:27:07 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Viken Dadhaniya <quic_vdadhani@quicinc.com>, andi.shyti@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.or, andersson@kernel.org, 
-	konradybcio@kernel.org, johan+linaro@kernel.org, dianders@chromium.org, 
-	agross@kernel.org, linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-spi@vger.kernel.org, quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com
-Subject: Re: [PATCH v2 4/8] dt-bindings: serial: Add support for selecting
- data transfer mode
-Message-ID: <dudqd2y42wy6iq2k73aphd5ol4mtq7z4c54zhd27rl745rrw5x@p3oummf2jke7>
-References: <20250124105309.295769-1-quic_vdadhani@quicinc.com>
- <20250124105309.295769-5-quic_vdadhani@quicinc.com>
- <10060d39-87a4-4565-a2a6-80c93ac2266a@kernel.org>
+        d=1e100.net; s=20230601; t=1737988628; x=1738593428;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0Mgmvx7qMUfxppC0GnNZyd9TXM/c1npLJP/jRYaybk0=;
+        b=YjlI3Nd9wysRhb6wSF76cssVC2lbk18hqykVmO9R/YTEmdHNXH4PhBR9+2sV+a2uFU
+         R05lBVhzJcZK3MS3ga80lDEVokGqsCwCKdcgJd0fYXnUXNr1kPqjdPPg/fphiLAMFnjf
+         /aZmSPdo46nTXg0QPxAYCByfSAU6uXJiWfgwPPZOBLK2/dp4V61hSQVGzlDP8JrSg4eh
+         eQlINxJLVx6LCzwAFSFZ9pcN0KflUdlLMi1JRRr7JaOtKEQjJR8vsB8hhnk/x+7kuZBG
+         MfDfqTwXgW5CqCrB97OekMSvzDGIVW+B4Wmn4eMBwradhwY9+JD/Yi14ShjKudBkACtZ
+         7o5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXDQjDn1NMAzN1DgvtZYgTemC9K2FctsmG9dfEKjZ65+YXwYunG7zHJrPLbwkk4BkIJHhq5vO8DeBsQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YynQ+bA2gmVx4LklQB8GXSf8UFRRf8/PZITjeGgeX2Q16IHu67u
+	I51T1mX04s0rK0eMtyocsb6Usjr2lm6yUnnWP41NqH2CQp0gBmFhfGNZTRgyMT8=
+X-Gm-Gg: ASbGncvEx/VPWvu5UAYMEAqGVxZ8xbgXPX1/t4CpEqhynBI0CyEZ1E9xp7VMORg9XMn
+	38HuYGd7DeSi9g0i2XHph+EkwJGC1fXtxlGSHbojVoILAEgd1QQMoIp8sLhJYGwXk9AZ+O76vvB
+	qczw0V+fYeXuFaZXfWEKFCuluT7gcbSk0zM4A/4yJ1csvHVtF4ELShtMjg3qwRWOXT1fufNLAeI
+	fXD3Wk2VJlTQIWtoXMV5VoaXn0VwSmLAROx3rt4UcL9VdXjvunSnacJFAFxiR24h0nZx6JoRYOp
+	/zbF3ZR0WHHa3Zv+0R0gurAL3HUy6sMmMA==
+X-Google-Smtp-Source: AGHT+IENuP2Rt5tOjWZU4PEZeGsfKlhVaK+H06dVS97mfTD04yvo4YEOsPpfj4rxnyHPSjUgjLDcew==
+X-Received: by 2002:a5d:588a:0:b0:385:edb7:69cc with SMTP id ffacd0b85a97d-38bf57bf3efmr14586098f8f.12.1737988628534;
+        Mon, 27 Jan 2025 06:37:08 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.218.98])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a176490sm11036310f8f.1.2025.01.27.06.37.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jan 2025 06:37:08 -0800 (PST)
+Message-ID: <7038f0a5-f7ae-44da-abee-bd04fecf74b4@linaro.org>
+Date: Mon, 27 Jan 2025 15:37:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <10060d39-87a4-4565-a2a6-80c93ac2266a@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: display/msm/dsi-phy: Add header with
+ exposed clock IDs
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Rob Clark <robdclark@gmail.com>, Abhinav Kumar
+ <quic_abhinavk@quicinc.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Krishna Manikandan <quic_mkrishn@quicinc.com>,
+ linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+References: <20250127132105.107138-1-krzysztof.kozlowski@linaro.org>
+ <4vy6tjdvhkplly3uqqekdmz6brkcbac6pijrn6gdyz4x3hralr@meeugoua2ats>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <4vy6tjdvhkplly3uqqekdmz6brkcbac6pijrn6gdyz4x3hralr@meeugoua2ats>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jan 27, 2025 at 08:02:12AM +0100, Krzysztof Kozlowski wrote:
-> On 24/01/2025 11:53, Viken Dadhaniya wrote:
-> > Data transfer mode is fixed by TrustZone (TZ), which currently restricts
-> > developers from modifying the transfer mode from the APPS side.
-> > 
-> > Document the 'qcom,xfer-mode' properties to select the data transfer mode,
-> > either GPI DMA (Generic Packet Interface) or non-GPI mode (PIO/CPU DMA).
-> > 
-> > UART controller can operate in one of two modes based on the
-> > 'qcom,xfer-mode' property, and the firmware is loaded accordingly.
-> > 
-> > Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-> > Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
-> > Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
-> > ---
-> > 
-> > v1 -> v2:
-> > 
-> > - Drop 'qcom,load-firmware' property and add 'firmware-name' property in
-> >   qup common driver.
-> > - Update commit log.
-> > 
-> > v1 Link: https://lore.kernel.org/linux-kernel/20241204150326.1470749-4-quic_vdadhani@quicinc.com/
-> > ---
-> > ---
-> >  .../devicetree/bindings/serial/qcom,serial-geni-qcom.yaml | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
-> > index dd33794b3534..383773b32e47 100644
-> > --- a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
-> > +++ b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
-> > @@ -56,6 +56,13 @@ properties:
-> >    reg:
-> >      maxItems: 1
-> >  
-> > +  qcom,xfer-mode:
-> > +    description: Set the value to 1 for non-GPI (FIFO/CPU DMA) mode and 3 for GPI DMA mode.
-> > +      The default mode is FIFO.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [1, 3]
-> > +
-> > +
+On 27/01/2025 14:56, Dmitry Baryshkov wrote:
+> On Mon, Jan 27, 2025 at 02:21:04PM +0100, Krzysztof Kozlowski wrote:
+>> DSI phys, from earliest (28 nm) up to newest (3 nm) generation, provide
+>> two clocks.  The respective clock ID is used by drivers and DTS, so it
+>> should be documented as explicit ABI.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>
+>> ---
+>>
+>> Patch for Display tree, although with Ack from clock.
+>> ---
+>>  .../devicetree/bindings/display/msm/dsi-phy-common.yaml  | 2 ++
+>>  MAINTAINERS                                              | 1 +
+>>  include/dt-bindings/clock/qcom,dsi-phy-28nm.h            | 9 +++++++++
+>>  3 files changed, 12 insertions(+)
+>>  create mode 100644 include/dt-bindings/clock/qcom,dsi-phy-28nm.h
+>>
 > 
-> Just one blank line, but anyway, this property should not be in three
-> places. Do you really expect that each of serial engines within one
-> GeniQUP will be configured differently by TZ?
+>> diff --git a/include/dt-bindings/clock/qcom,dsi-phy-28nm.h b/include/dt-bindings/clock/qcom,dsi-phy-28nm.h
+>> new file mode 100644
+>> index 000000000000..ab94d58377a1
+>> --- /dev/null
+>> +++ b/include/dt-bindings/clock/qcom,dsi-phy-28nm.h
+> 
+> I think this should be dt-bindings/phy/qcom,foo.h
 
-Yes, each SE is configured separately and it's quite frequent when
-different SEs have different DMA configuration.
 
--- 
-With best wishes
-Dmitry
+Both options - clock or phy - work for me, although with slight
+preference of keeping foo constants only in foo (so clock -> clock)
+because then clock maintainer sees it as well. Also because I would
+judge by type of constants (so again clock constants -> clock
+directory), not type of device. We have several MFD devices, like PMICs,
+which have a clock, so bindings should go to mfd? But mfd is not a real
+device, but Linux subsystem.
+
+For many other archs, e.g Mediatek, pretty often even for the same
+device, the binding headers are split between clock and reset. I know
+that Qualcomm GCC has it in one file, with exceptions (ipq, qca8k). Also
+these other archs have bindings file in e.g. soc or arm, but the header
+in respective subsystem
+
+With exceptions of am654 and pisatchio-usb headers, we don't store clock
+constants in phy.
+
+Unless someone insists or there is existing qcom convention, then I
+rather prefer to keep it in clock.
+
+Best regards,
+Krzysztof
 
