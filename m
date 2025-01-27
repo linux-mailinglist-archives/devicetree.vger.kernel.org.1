@@ -1,98 +1,122 @@
-Return-Path: <devicetree+bounces-141188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1EE1A1DB9A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:52:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E80F5A1DB9F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:53:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CF8C1616EE
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:52:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 342BC1889ADF
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:53:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A9117BEC5;
-	Mon, 27 Jan 2025 17:52:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52706189F56;
+	Mon, 27 Jan 2025 17:53:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="iJqw0Y/I";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="VFGL8DfT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FhDelnfB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1655A1632EF;
-	Mon, 27 Jan 2025 17:52:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B9C1632EF;
+	Mon, 27 Jan 2025 17:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738000347; cv=none; b=qb+n9YL3dw4nfPgbJq43Kl6HlTtv3PKW5HgHsDSolgYEtnsbzqskUMXTwgdi8P2FK/iMjMya0Q9salyGYhuIIZ+zfLXc/ptpf5u2qM2CrJKo+E65BF67uMkhKqyPQBkqSvQUTy4vGe4UAj9PFv8XkL+UOe7rJHuuDLHny8sn+mU=
+	t=1738000427; cv=none; b=Tj+L3WniDc0KhU6u6DPlykX87a+hbW3nYk0FVrrvHbUOc8AQf2nB/vzGUoFDZ/+8o2lI407HcjvyBQ/sbvMALJsCE5xwnK8XGekGPkbOLT1vvchEcETkSb8Fw0eCXPQRMqgLexvPOpJmVzRjrlw8FdtDOcVsodb+nrAopR1M1VU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738000347; c=relaxed/simple;
-	bh=lL5um/sMTN4EQBWWgGguD/wCi1CgexKIorUJi08LPXo=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=A7JR6KQq6SBTL0kY7xwOc6g8uTvHBVil0eGqT492qMxgBNhgmdR4MOT59k67SNAOhm0RgS4NhOcXHZZkEkkVtp9Pfq2kgPZ3mf8pQDoXGtk8nkHrcEJByige1kKtKQuvO3ry7rrs9eUmAQsCk/qW7E9j6yYMzBLsjjABUFW9LD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=iJqw0Y/I; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=VFGL8DfT; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1738000344;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TOlQGAOrFNEkdLS0RWXAijH0T2zahF0AUY6O5HkV56U=;
-	b=iJqw0Y/ISbwn6iZ+5Asg5nc8WdREWNtcRf0RX6tK26ZEzj7vdEd70HMF3JhU+kEdjLR1Jl
-	coTVpiF9pctggg7wIxgOXKoGlPWWNsOpfFtjqf7ozwPw5YGUAV/uhRdU3NPEKx6aZWEiaa
-	i0Okvfse8KwVtd4dbd2EswJ1xXVT8a36W+z98fIHmuadfbAeG26XymgMZLhjCojSrhBWZ5
-	q+9vERIYrYf57BvWzl+xR7koza2s/+69cqmyRoK1LOMLgUEBZvUgFDJYwPQYPv3RqL7TbK
-	j3XNAYpQOPbMl+3BXKFkKJKxjTTozo7zkHkZWkkPa4/VJeuslqqhW3CnGdw9Rw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1738000344;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TOlQGAOrFNEkdLS0RWXAijH0T2zahF0AUY6O5HkV56U=;
-	b=VFGL8DfTCdjujN4Ijpccci2cB2onhOkb3QVnd7xcTSPXNbKCs5gGr4FnSFhU9dp8WAtZWj
-	wg6WGWTG7pvYutDA==
-To: Vladimir Kondratiev <Vladimir.Kondratiev@mobileye.com>, Rob Herring
- <robh@kernel.org>
-Cc: Anup Patel <anup@brainfault.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
- <aou@eecs.berkeley.edu>, "linux-riscv@lists.infradead.org"
- <linux-riscv@lists.infradead.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: interrupt-controller: add
- risc-v,aplic hart indexes
-In-Reply-To: <VI1PR09MB2333835FB0314EE32094D55F941E2@VI1PR09MB2333.eurprd09.prod.outlook.com>
-References: <20250109113814.3254448-1-vladimir.kondratiev@mobileye.com>
- <20250109113814.3254448-2-vladimir.kondratiev@mobileye.com>
- <20250110162235.GB2975507-robh@kernel.org>
- <VI1PR09MB2333835FB0314EE32094D55F941E2@VI1PR09MB2333.eurprd09.prod.outlook.com>
-Date: Mon, 27 Jan 2025 18:52:23 +0100
-Message-ID: <87ed0o87qg.ffs@tglx>
+	s=arc-20240116; t=1738000427; c=relaxed/simple;
+	bh=D6rTYlJ7adtRt6OVqK+mDWFMjreMOILxT7XBoOHfLEY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jPAxkOsS1NfrjGCeefZxa+5ppMKwOVbW1P83zC14E4uwftYYFC/EgavFqn4qtrXW+PcLx6ob2BukN+zCO4wQ6v2WvGk9afAFEAgTKNxSjurXVi8ma/b0EB/MbRh7Nhe3QG7MAYuckH6tEg3N2WfEwm1ADaL4i1TGV718Zc/Onxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FhDelnfB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51EA2C4CED2;
+	Mon, 27 Jan 2025 17:53:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738000427;
+	bh=D6rTYlJ7adtRt6OVqK+mDWFMjreMOILxT7XBoOHfLEY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FhDelnfBbP0zvX54YLY/nI+7R+AJivkYOcPZkheUdzxsHuDfHgyIegUuTy1HSIWDA
+	 52zw5M5wAC3RRlhyLeTLvLH0jjcP1Yi+H2wnT8sOgfWoPaIHWcB3pk+b8oXFpa4xfR
+	 zCLtv00exLWY1VmK8mFBUS8hJnHS7fv46EnCxd6l0qfYn5rj4DVUs6oEiur8Aqel7o
+	 HOgL+VbLJ9ONh6tKBn9QqjDVNBFMys64pkevk2zDb8MMEepZfrN1NafmDhvwBlTdec
+	 urTqH83+I3/fUne2Qf2NLA9Ywr3qbi9pbkUKZLmAQNZt7B82XxzXg+ZKqXB4lqIB9M
+	 n9BURY8VbUUlQ==
+Date: Mon, 27 Jan 2025 17:53:42 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] dt-bindings: iio: adf4371: add refin mode
+Message-ID: <20250127-makeshift-legroom-bb02764c6ed6@spud>
+References: <20250127101026.5320-1-antoniu.miclaus@analog.com>
+ <20250127101026.5320-2-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="m24T8jOaz/caQgXq"
+Content-Disposition: inline
+In-Reply-To: <20250127101026.5320-2-antoniu.miclaus@analog.com>
 
-On Sun, Jan 12 2025 at 08:38, Vladimir Kondratiev wrote:
->>> Document optional property "riscv,hart-indexes"
->
->>That is obvious reading the diff. Why do you need this?
->
-> I say it briefly in the description for the property.
-> In more details this is described in the other patch comment
-> - for code that uses this property.
-> Is it better to repeat more detailed description in this patch
-> comment as well?
 
-Obviously. Each patch has to be self contained and explain what it is
-about.
+--m24T8jOaz/caQgXq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
+On Mon, Jan 27, 2025 at 12:10:21PM +0200, Antoniu Miclaus wrote:
+> Add support for selecting between single-ended and differential
+> reference input.
+>=20
+> Input frequency boundaries are change based on the mode selected
+> (single-ended/differential).
+>=20
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+> no changes in v6.
 
-        tglx
+Why'd you not pick up my ack?
+https://lore.kernel.org/all/20250121-crumb-dispense-b455b591481a@spud/
+:
+>  Documentation/devicetree/bindings/iio/frequency/adf4371.yaml | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml=
+ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> index 1cb2adaf66f9..53d607441612 100644
+> --- a/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> +++ b/Documentation/devicetree/bindings/iio/frequency/adf4371.yaml
+> @@ -30,8 +30,9 @@ properties:
+> =20
+>    clock-names:
+>      description:
+> -      Must be "clkin"
+> -    maxItems: 1
+> +      Must be "clkin" if the input reference is single ended or "clkin-d=
+iff"
+> +      if the input reference is differential.
+> +    enum: [clkin, clkin-diff]
+> =20
+>    adi,mute-till-lock-en:
+>      type: boolean
+> --=20
+> 2.48.1
+>=20
+
+--m24T8jOaz/caQgXq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5fIJgAKCRB4tDGHoIJi
+0tyqAQCHsWuqf153qokbl2mu+I+QiG6wFR7hqRawftbxoFYReQEA+L8PDfzvr45y
+bw3yBThZH3lGHxySkaBrEm0sD4JpVAk=
+=HrzY
+-----END PGP SIGNATURE-----
+
+--m24T8jOaz/caQgXq--
 
