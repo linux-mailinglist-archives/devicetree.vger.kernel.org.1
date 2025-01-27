@@ -1,213 +1,159 @@
-Return-Path: <devicetree+bounces-141095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4540AA1D67F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 14:21:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A612A1D6B3
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 14:26:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 555BD3A2AB7
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 13:21:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA0CF164E19
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 13:26:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6987E1FF7D9;
-	Mon, 27 Jan 2025 13:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7DC61FF7A2;
+	Mon, 27 Jan 2025 13:26:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uQbHqjSm"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YPjvXoNJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E15881FF61A
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 13:21:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E09781FDE28;
+	Mon, 27 Jan 2025 13:26:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737984075; cv=none; b=r9rUDUwnhspsBAzSjToIlC8PtyxmmwtNNg9lvYcfkG8AbvOl/SwYaMOkVm7VwvaZNluRpd+xgbKEKDjf047HfqARXLvk9yyVxdB0iJHXOAQ/olHt0DgOmpIbmf9xIPngwB2wSSwCZywKRCFQgAOJm0ej+Id8wRR8k/nMjZYXMH8=
+	t=1737984408; cv=none; b=OpXx+SMnLWv4Kp5JGRjJVMomrWCcukyyrnqCjENPG8OdfzdOctEtJ9wGF57YfmXLG9Uq/bzeQjzJ9aaMyNseNzX6DDZ2hp6oPHpIiAW3KnjlRAZTJOYtbitvRzcn9/jUJTp8wkGTrHWpOOo49gFDk3n+fBFTQxRODI1l8pirXoE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737984075; c=relaxed/simple;
-	bh=IUbaxPS+HQnJ43himjlEznUpNzuts8QFvAEId8JRW6E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WAO94S6vsAkIIbpdaA45ah4JshA4l8e8Wueq0rCZgUzKx2jPxWFWKE4MrMKX96ZNzSSVGRNRb//hLJPMDRFEGqDLfu5kCEwobVieP9yMiID3w8Ga7x28yeD6sAqd+Y9pbeVah2/WpPxIEabt1qsOPon3Mrwh64fZMbYoJ9gqlTc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uQbHqjSm; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-436381876e2so2767655e9.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 05:21:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737984071; x=1738588871; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1lrk19+x0xCyWtNAM9zqIl3MR0fAbQ4p3LHFnpdDhys=;
-        b=uQbHqjSmL3xY6zOmgponX/GjfcHJVTbPqMZ3SXL4jNsl238sUGEDNNS9etdIemPEqk
-         fu9g279Ktu7veueqXUM7YmwotHehJgfSL43vMD7czk4ox7B5Clo4CovdpnxPDrrL+Cvh
-         vEKgwLn/zDNs+a/n19P+/zSU0aou247ln6Sbeuqqp38OVklvCJaFmAhRYZEMpr9Ejmh4
-         evSeeHWffJIKHjg7YXfgCNX5fyr2ODPEmLsVX8NKElrbBL2uk1JD6zuRePd3OBuQTzQF
-         P7wAnrtvr2yzoiGGIizlAVRndxyaFia4VFoS4YcI0FdnnesOHVwdKQB3s6BtbIzPac3R
-         xAdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737984071; x=1738588871;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1lrk19+x0xCyWtNAM9zqIl3MR0fAbQ4p3LHFnpdDhys=;
-        b=CrJ1WLkL/XYW2e88xCxNW/XrMcZrR4efwv15YUcFYLoSZbFm/qitOZSogTLZ9kGvuq
-         L0AjoQ2nZWfJuJH7fx70UTLnxzSfVinudTQ9w2M4uTo8e9NLeiZC7x0tGEZ4fZkafAjj
-         vlcssbdJXy0n6hp8+DqEdseOXE+0iV9osQT7DSynAOUSmuwWE0zQJBizhrY2rLJlWZtz
-         kC4/9EoXN/5lSg0YO5xYmgEVXttGiOlTXtSB3F1KtHduL0437ptVG4r0QmoYqUXwi/GS
-         yFFoH8NBvPskeNVJ2FXsOydmObBF6OKttYbsqFY/RplG07LtV4hci0kZpMxjIo40hr2O
-         GJuA==
-X-Forwarded-Encrypted: i=1; AJvYcCWiHnk4pvzSedT2YIklhunv7QaCYJqAel3TXSoep3teArG+tfedU9s8rvAM+/hRgMaNJuGvRcF1jX4c@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfFzbPkgmlyI09CsLINWKzCqJsnv86G1ldG4m05SHeoMkmZum5
-	KVXC+m5ekjqu3Zhwz4tWt/eVSRpPpXWFakqZfwLLgbixT0yNU7ZLikxuPueH9y0=
-X-Gm-Gg: ASbGncsBi65CU4RM3BZilv4+Aubq1F9RXVsUIN/AjE1wSj9KrypkR67oQLG9hOEaMCy
-	alxCz38h8FR7d76NL3uO1ENthxvXn1zcB7zrvIKmCvAkha3u+wBTrjZtWBVO/5Pw2ovPd5pNAAj
-	1RdmBeJ43TJ5EyP8CgJiaDHB4lXCzFHeTtEDWE1YxIURgxn3FHu7I9R7OHAKEUN6fvwPswIYpXk
-	95NanHOKy1d1NhaytqsaKlTaEXQ0MtVa9upfEt9R8McVPONFMkqSGSJFT8181NXmiujUnfWyPjI
-	O/ZqoEnEDF3EwBCZNg==
-X-Google-Smtp-Source: AGHT+IFQ3yteVkt9TcZzs8X17uQXuOmJxl9Leoqq2TKqJE6nDiurSR7kDwbdcXBuU+CbDYLyoR4UeQ==
-X-Received: by 2002:a05:600c:1f10:b0:436:fb10:d595 with SMTP id 5b1f17b1804b1-438b1763eeemr80946485e9.1.1737984070644;
-        Mon, 27 Jan 2025 05:21:10 -0800 (PST)
-Received: from krzk-bin.. ([178.197.218.98])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438bd4b9977sm132386105e9.25.2025.01.27.05.21.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jan 2025 05:21:10 -0800 (PST)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Clark <robdclark@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krishna Manikandan <quic_mkrishn@quicinc.com>,
-	linux-arm-msm@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] drm/msm/dsi/phy: Use the header with clock IDs
-Date: Mon, 27 Jan 2025 14:21:05 +0100
-Message-ID: <20250127132105.107138-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250127132105.107138-1-krzysztof.kozlowski@linaro.org>
-References: <20250127132105.107138-1-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1737984408; c=relaxed/simple;
+	bh=h0qT8iQaaqvhxmNxxU3dstNgJHiEo3wYtKUz1k0RERU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=L31F5izuIKbN4LPLacospsCwbmK3JtgtH5oYWnQps3xGwB+fKrOJoImdyfE/Pc6eT2SxRVUrmYgEh6BntN5anBlPxS6Yukrmwkq+9oNOmQNg5WH+j3vaYR27wuiRIxHjNmTyrTNPxKzjgOqFBgKYGt2LpVlKVbukNEExZbnRKpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YPjvXoNJ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50R0tDO8001841;
+	Mon, 27 Jan 2025 13:26:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	RBirlOQuqZ9z97hxsMQLPN82U5nWcgrsp+jEESJprQ0=; b=YPjvXoNJBn2vMXt+
+	KL6CNuDsNmOpP8SvQLH0vV0BxJH3J3+4/7K8pKAxFHNJauPUky4MqTu05Hj/fOTt
+	hyVzimJ0uyYynQQl2T3Dhaid0/p0Oq+FkiiRUDaTa3PgyG6PQ5OVxItbJG1L9+Yw
+	yxmgEGpZhhZMTiX6VbZbNt0RxK6i9ZEYA7PPdWPDL5H8l8AZSa9Mj52Fc6EFox+b
+	x18xtRvM1pMJRz+oLTGe5IbXQHUikEmRVD63rkdx5v33M0j2Kfn2yzocHko6OlZa
+	38Qt2knM6Rl7FsafifryC7wn17JWX/Z7234bZVsH/81NJgdZPqek/D2yv3J5N8gu
+	6qx4mQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44dwg0sf0q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Jan 2025 13:26:41 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50RDQe0j024936
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Jan 2025 13:26:40 GMT
+Received: from [10.217.217.143] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 27 Jan
+ 2025 05:26:37 -0800
+Message-ID: <1add841d-84d8-48b7-af79-f81c7bd893bd@quicinc.com>
+Date: Mon, 27 Jan 2025 18:56:34 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcs6490-rb3gen2: Add vadc and adc-tm channels
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: <andersson@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <krzk+dt@kernel.org>,
+        <quic_jprakash@quicinc.com>, <quic_kamalw@quicinc.com>,
+        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <konradybcio@kernel.org>
+References: <20250124070200.3969230-1-quic_kotarake@quicinc.com>
+ <173773232224.1805161.13299626383351520341.robh@kernel.org>
+Content-Language: en-US
+From: Rakesh Kota <quic_kotarake@quicinc.com>
+In-Reply-To: <173773232224.1805161.13299626383351520341.robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: VBu1Iv8lkn4sEHXohOKXJiq6eV1MDNCl
+X-Proofpoint-ORIG-GUID: VBu1Iv8lkn4sEHXohOKXJiq6eV1MDNCl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-27_05,2025-01-27_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ phishscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ mlxlogscore=762 impostorscore=0 adultscore=0 bulkscore=0 mlxscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501270107
 
-Use the header with clock IDs to bind the interface between driver and
-DTS.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- drivers/gpu/drm/msm/dsi/phy/dsi_phy.h           | 5 ++---
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c      | 1 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c      | 1 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm.c      | 1 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm_8960.c | 1 +
- drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c       | 1 +
- 6 files changed, 7 insertions(+), 3 deletions(-)
+On 1/24/2025 8:56 PM, Rob Herring (Arm) wrote:
+> On Fri, 24 Jan 2025 12:32:00 +0530, Rakesh Kota wrote:
+>> Add support for vadc and adc-tm channels which are used for
+>> monitoring thermistors present on the platform.
+>>
+>> - Add the necessary includes for qcom,spmi-adc7-pm7325 and
+>>    qcom,spmi-adc7-pmk8350.
+>> - Add thermal zones for quiet-thermal, sdm-skin-thermal, and
+>>    xo-thermal, and define their polling delays and thermal sensors.
+>> - Configure the pm7325_temp_alarm node to use the pmk8350_vadc
+>>    channel for thermal monitoring.
+>> - Configure the pmk8350_adc_tm node to enable its thermal sensors
+>>    and define their registers and settings.
+>> - Configure the pmk8350_vadc node to define its channels and settings
+>>
+>> Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 114 +++++++++++++++++++
+>>   1 file changed, 114 insertions(+)
+>>
+>
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>
+>    pip3 install dtschema --upgrade
+>
+>
+> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250124070200.3969230-1-quic_kotarake@quicinc.com:
+>
+> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pmic@2: pwm:nvmem: [[346, 347]] is too short
+> 	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pwm: nvmem: [[346, 347]] is too short
+> 	from schema $id: http://devicetree.org/schemas/leds/leds-qcom-lpg.yaml#
+> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: pmic@0: adc@3100: 'oneOf' conditional failed, one must be fixed:
+> 	'#address-cells', '#size-cells', 'channel@103', 'channel@144', 'channel@146', 'channel@44', 'pmk8350-die-temp@3' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	'#address-cells', '#size-cells', 'channel@103', 'channel@144', 'channel@146', 'channel@44', 'interrupts', 'pmk8350-die-temp@3' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 	'pmk8350-die-temp@3' does not match any of the regexes: '^channel@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> 	['qcom,spmi-adc7'] is too short
+> 	'qcom,spmi-adc7' is not one of ['qcom,pm8226-iadc', 'qcom,pm8941-iadc']
+> 	'qcom,spmi-adc7' is not one of ['qcom,pmi8998-rradc', 'qcom,pm660-rradc']
+> 	from schema $id: http://devicetree.org/schemas/mfd/qcom,spmi-pmic.yaml#
+> arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dtb: adc@3100: 'pmk8350-die-temp@3' does not match any of the regexes: '^channel@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> 	from schema $id: http://devicetree.org/schemas/iio/adc/qcom,spmi-vadc.yaml#
 
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-index fdb6c648e16f..7541ffde6521 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
-@@ -6,6 +6,7 @@
- #ifndef __DSI_PHY_H__
- #define __DSI_PHY_H__
- 
-+#include <dt-bindings/clock/qcom,dsi-phy-28nm.h>
- #include <linux/clk-provider.h>
- #include <linux/delay.h>
- #include <linux/regulator/consumer.h>
-@@ -85,9 +86,7 @@ struct msm_dsi_dphy_timing {
- 	u8 hs_halfbyte_en_ckln;
- };
- 
--#define DSI_BYTE_PLL_CLK		0
--#define DSI_PIXEL_PLL_CLK		1
--#define NUM_PROVIDED_CLKS		2
-+#define NUM_PROVIDED_CLKS		(DSI_PIXEL_PLL_CLK + 1)
- 
- #define DSI_LANE_MAX			5
- 
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c
-index 677c62571811..9812b4d69197 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_10nm.c
-@@ -3,6 +3,7 @@
-  * Copyright (c) 2018, The Linux Foundation
-  */
- 
-+#include <dt-bindings/clock/qcom,dsi-phy-28nm.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/iopoll.h>
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
-index 2c3cbe0f2870..3a1c8ece6657 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
-@@ -3,6 +3,7 @@
-  * Copyright (c) 2016, The Linux Foundation. All rights reserved.
-  */
- 
-+#include <dt-bindings/clock/qcom,dsi-phy-28nm.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/delay.h>
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm.c
-index 1383e3a4e050..90348a2af3e9 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm.c
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm.c
-@@ -3,6 +3,7 @@
-  * Copyright (c) 2015, The Linux Foundation. All rights reserved.
-  */
- 
-+#include <dt-bindings/clock/qcom,dsi-phy-28nm.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- 
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm_8960.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm_8960.c
-index 5311ab7f3c70..f3643320ff2f 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm_8960.c
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_28nm_8960.c
-@@ -3,6 +3,7 @@
-  * Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
-  */
- 
-+#include <dt-bindings/clock/qcom,dsi-phy-28nm.h>
- #include <linux/clk-provider.h>
- #include <linux/delay.h>
- 
-diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-index ed8192d56b06..305042c29b2b 100644
---- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-+++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_7nm.c
-@@ -3,6 +3,7 @@
-  * Copyright (c) 2018, The Linux Foundation
-  */
- 
-+#include <dt-bindings/clock/qcom,dsi-phy-28nm.h>
- #include <linux/clk.h>
- #include <linux/clk-provider.h>
- #include <linux/iopoll.h>
--- 
-2.43.0
+Thank you for your review..!
+And After updating the dt-schema, I am also encountering the same error
+According to the documentation, I need to change the pmk8350-die-temp 
+channel name to channel@3. I will correct this in the next patch set.
 
+>
+>
+>
+>
 
