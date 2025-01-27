@@ -1,170 +1,122 @@
-Return-Path: <devicetree+bounces-141204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B32B7A1DC99
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 20:19:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4A2AA1DCAA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 20:21:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEFE71885168
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 19:19:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33FBB7A0611
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 19:21:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD83318CC1C;
-	Mon, 27 Jan 2025 19:19:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 228E71917E3;
+	Mon, 27 Jan 2025 19:21:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BJtK6kBZ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NqHSRvi6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 735B517B50A;
-	Mon, 27 Jan 2025 19:19:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A3F4190676;
+	Mon, 27 Jan 2025 19:21:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738005548; cv=none; b=aRFLr4BYkSPz4TJb11IwIAMrrb+P37BAYUypdpcKpPnY1La9JIBYU6dOn41Eh+fM4MybHTxQVjLQ701gHdgfnbtYV4k4otMrpXqH1Zm7TAXZM4iVE4IeRBdr9Sc+2f/ohLZFvbkddzVODdWqPTwInpvoT/iRctyYZeO73H11iXs=
+	t=1738005711; cv=none; b=ac7GL8gLGhBlLieJxdKqILiZ5cTCXb4Zx049TEr8Dr2qrW3mGKNwfzS6kYePFk1FJ7hFhCKmdnxq6yFclcLUE4LicMHQaaUWN5k2TCU0PxCUzQv05ZxTFyNadlrfsgpEBIJJHkaTeuUxtErvO01iEeSaphGX1pGIkF4JFEKGUY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738005548; c=relaxed/simple;
-	bh=SqI1KbVFdalLEwk0SH3vc66dMLl3ElqNrXqEzL5h/HM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N+MJ9auLEuVO+XYmDa2BVqimJVo+ZjUTmQQnNedlAzWQhFR1/mf4EUZFHac1f8zLLFbtwga84uhEm/PWY8Utv83Ftrnm/2UqcIgLSxCtqy+HHQQ5QBCZ7tBE/lJYYgSUBr5ggwpjFWMFXCXWlFaMkFfs2vWhEWEht2F/xGc3ap0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BJtK6kBZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9ACEC4CED2;
-	Mon, 27 Jan 2025 19:19:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738005547;
-	bh=SqI1KbVFdalLEwk0SH3vc66dMLl3ElqNrXqEzL5h/HM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BJtK6kBZpRiUGZfqgbJTc/udEd1XWuf9oMolAVnW/3MUyzr/VpFnPVC5/7Z+C2ZW5
-	 H4xZFEKHvEL65IT298wqlKAk3od1QxNgzouDgBSEeezkJbzO8kmxz9+NxJTx6B4tW7
-	 sMPLHejjRK8U2J4OwZ61VrWD9wWrOA2NfkU2kByBK8PffuDP1uFcznH4clbYjJEZx/
-	 F6I1dI+eNv6P4r5ejps4HQ4IN2q8nzIcnt32TPj5Rhf8JOwkT2YqxGvad8PCYYksIz
-	 xXMPOS3cEykoIugGXphW0ZcZhtLKSzPkYBsstJiJq7GcxhKdNyYUseaBsC3ASg/OlG
-	 zRQSVTyOCzqiQ==
-Date: Mon, 27 Jan 2025 13:19:06 -0600
-From: Rob Herring <robh@kernel.org>
-To: Varadarajan Narayanan <quic_varada@quicinc.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org,
-	konradybcio@kernel.org, p.zabel@pengutronix.de,
-	dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com,
-	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH v8 5/7] dt-bindings: PCI: qcom: Document the IPQ5332 PCIe
- controller
-Message-ID: <20250127191906.GA704182-robh@kernel.org>
-References: <20250127072850.3777975-1-quic_varada@quicinc.com>
- <20250127072850.3777975-6-quic_varada@quicinc.com>
+	s=arc-20240116; t=1738005711; c=relaxed/simple;
+	bh=aAWNI+mDKOBMiU2ylcqk6ai9x3TKCghjCJ2MBTvYpxw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ryTR+DN2c+3G2CCr8MaqDJMYKNZ3yt75WkDm9kL5Kpm88yOWb9MfgaDaBKftkeJNeE5qltwdWTACbs1qi1tAoRQ2oj9PvrHGBBk3TuwVShOWGAC6UwUw5s2gtITsnKW+njg50Ews0ITYv1NGA/oGcXOSbJkG2T8LHrQw4X8SCYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NqHSRvi6; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3862a921123so3210347f8f.3;
+        Mon, 27 Jan 2025 11:21:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738005707; x=1738610507; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yNw9OnOc9yEJnO/vmpScrROeULk4MAFwK1l5JpCMHTk=;
+        b=NqHSRvi6U1wkS9G3oMsNNz+hxJRKrgIym5a+We3HEeW511NLYKkyddG46/f52ESehD
+         y64f0BPMPKtewxi7aceZPgnJ6KClMoRl6gW2GB75x3eVtCB2TBVaeJw9sAk5hL2BvkXs
+         u6vODyaC4XXuJvguEHQbZeiVT9xf8YiAA18J/hlZdBXXnVvdloqtDzyPdvsQQv2uHzqS
+         KitAzKgFQjAXgJDuuhSUcyXd9V2V3JnMXHuQ/7MkcGwPO0Jqp+Go9qNQNilUmODwLM4L
+         vwhjnmCIo7111dCViDmuzF2LU+HwA9ZGlEpCRPlfF/dvOfrUveJ+2gUngnoi7A8L+Y1K
+         ltSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738005707; x=1738610507;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yNw9OnOc9yEJnO/vmpScrROeULk4MAFwK1l5JpCMHTk=;
+        b=PVcr4bEi1hD5l4KKQGVlGe0CLZTHQ/waSvB3J9SypCMIB8N81fNSXWd5n1TA08WJ3x
+         r7SrrMJWnj/u+oFeDibxQGsaGmSjgLIKAo8KajPTsz1Lrvn9p7wVIulRVaJlKBqmPEoR
+         4563X9qR3q5Ak1zXzVOX3qj7fEoVLPH4H1Z2eCWzLBNZQDpDeKdb+pBvkQNcjc6noTEX
+         La/rBVOWbqjLKpZHqBv9qnFKz9trRpck0KPNUzOhoSiq6WBHWflf++rqnxKxY5emhY7z
+         xMZUEsA8Pj1RD89dxyxk5/BefAzmfG/+TJAJQw679LoV0Trid0jGbGlbfBk1asfunrki
+         MzGw==
+X-Forwarded-Encrypted: i=1; AJvYcCW6HPe98V016oawzeLvEH5n5kmLQIuqWFb3ow4KbWdciJlLf6gqWIP0lWQqkV07xDKY0AtNiEPcmMCb@vger.kernel.org, AJvYcCWQiimM/hmR/+7NqY32eHvItvtW6Wpe/5HbViC/TLza1vb5q/IBkHjoA1D9Ul7v8/sfX0EVCQU99POvBqY=@vger.kernel.org, AJvYcCXgxL3wetZ69HVBajH/lYKuKC9he6HxMoUGxFJf3LfsRzwS6Czro3IQw9AM62UbhZJhn/qlMlUsMgIL+I9U@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0WIy1J7LLEeD/99dAfTbohkvZiiA2r0Z9yha/QRvZ55uQMuPa
+	QaS1CYGE5eRm4oFDbt8aedG5ef30pk5WjAeKzqeD36/3Ay9w52I8rLHRUrfmyZ8=
+X-Gm-Gg: ASbGnctrqp6Jji4i3Wp2mDzPf8sJQTrqUbSRRCyvRPV1PUKjOZYvKI6h0q9dvOe1o9Z
+	4KmOWv3qIZ9N5TINvA5Ry9Q+Bruai/e5ss2SIZzuwCVjVzLMzWy2XBrhbb+69+w7KKdVwEttQfm
+	lUiAOFO+50ypDKuE7wGVHrgJpxm8voM6mI8U4PiAv7rjmj76oGrFupPm1jVNnQD8/Zi01eYnazQ
+	EEkdE2LUbnk6JfedPdluBX7Ys7V3eu7g5GWsk63KOcLs5T31V8J/fuETnR1sL4u8qt+slrA1TTI
+	WojHJL8K2oWTCLP85Nl3YQ/7tmaEZx60hOZEx6Ltm5JgX3n+uvsEJ11w+TXHfBnDp/WEMDZMGkm
+	SbcndnprPPIUKFQWMBzc0vkCLjanhiF32WAy48y/QO7duiPNt4CDAOagNHIEZiGjZ8tk7BrTHK9
+	dw3WCRVA==
+X-Google-Smtp-Source: AGHT+IHZhmTE4brzo3d8hezDVlU7nabOTvbGztXIvOlUBIrKqCqUk8VID9wkgaynPTdEZQKtaNobKQ==
+X-Received: by 2002:a5d:5f8c:0:b0:386:3329:6a04 with SMTP id ffacd0b85a97d-38bf57a957cmr49687207f8f.39.1738005707357;
+        Mon, 27 Jan 2025 11:21:47 -0800 (PST)
+Received: from ?IPV6:2a02:8388:e103:2700:6509:cde7:b0a9:d5b3? (2a02-8388-e103-2700-6509-cde7-b0a9-d5b3.cable.dynamic.v6.surfer.at. [2a02:8388:e103:2700:6509:cde7:b0a9:d5b3])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a1144f6sm11736713f8f.0.2025.01.27.11.21.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jan 2025 11:21:47 -0800 (PST)
+Message-ID: <57e08fc1-a319-4778-ba4a-28655f413511@gmail.com>
+Date: Mon, 27 Jan 2025 20:21:45 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250127072850.3777975-6-quic_varada@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: hwmon: Add description for sensor HTU31
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: jdelvare@suse.com, linux@roeck-us.net, conor+dt@kernel.org,
+ robh@kernel.org, christophe.jaillet@wanadoo.fr, linux-hwmon@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250126144155.430263-1-andrey.lalaev@gmail.com>
+ <20250126144155.430263-3-andrey.lalaev@gmail.com>
+ <20250127-agate-mouflon-of-promotion-6df8ee@krzk-bin>
+Content-Language: en-GB
+From: Andrei Lalaev <andrey.lalaev@gmail.com>
+In-Reply-To: <20250127-agate-mouflon-of-promotion-6df8ee@krzk-bin>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jan 27, 2025 at 12:58:48PM +0530, Varadarajan Narayanan wrote:
-> Document the PCIe controller on IPQ5332 platform. IPQ5332 will
-> use IPQ9574 as the fall back compatible.
+On 27.01.2025 08:07, Krzysztof Kozlowski wrote:
+> On Sun, Jan 26, 2025 at 03:40:56PM +0100, Andrei Lalaev wrote:
+>> Add trivial binding for HTU31 Temperature and Humidity sensor.
+>>
+>> Signed-off-by: Andrei Lalaev <andrey.lalaev@gmail.com>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>>  1 file changed, 2 insertions(+)
+>>
 > 
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
-> v8: Use ipq9574 as fallback compatible for ipq5332 along with ipq5424
+> Please version your patchsets correctly. `git format-patch -v2` or b4.
 > 
-> v7: Moved ipq9574 related changes to a separate patch
->     Add 'global' interrupt
+> This is not v1 and you could not get my ack on v1.
 > 
-> v6: Commit message update only. Add info regarding the moving of
->     ipq9574 from 5 "reg" definition to 5 or 6 reg definition.
-> 
-> v5: Re-arrange 5332 and 9574 compatibles to handle fallback usage in dts
-> 
-> v4: * v3 reused ipq9574 bindings for ipq5332. Instead add one for ipq5332
->     * DTS uses ipq9574 compatible as fallback. Hence move ipq9574 to be able
->       to use the 'reg' section for both ipq5332 and ipq9574. Else, dtbs_check
->       and dt_binding_check flag errors.
-> ---
->  Documentation/devicetree/bindings/pci/qcom,pcie.yaml | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> index 4b4927178abc..2ffa8480a665 100644
-> --- a/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie.yaml
-> @@ -33,6 +33,7 @@ properties:
->            - qcom,pcie-sdx55
->        - items:
->            - enum:
-> +              - qcom,pcie-ipq5332
->                - qcom,pcie-ipq5424
->            - const: qcom,pcie-ipq9574
->        - items:
-> @@ -49,11 +50,11 @@ properties:
->  
->    interrupts:
->      minItems: 1
-> -    maxItems: 8
-> +    maxItems: 9
->  
->    interrupt-names:
->      minItems: 1
-> -    maxItems: 8
-> +    maxItems: 9
->  
->    iommu-map:
->      minItems: 1
-> @@ -209,6 +210,7 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,pcie-ipq5332
->                - qcom,pcie-ipq9574
 
-As both of these compatibles will be present, you don't need to add 
-ipq5332 here.
+Oh, my bad, sorry, I manually edited the cover letter and forgot about patches' subjects :/
 
->                - qcom,pcie-sdx55
->      then:
-> @@ -411,6 +413,7 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,pcie-ipq5332
->                - qcom,pcie-ipq9574
+Should I resend v2 with normal versioning, or would you prefer me to go straight to v3?
 
-Same here.
-
->      then:
->        properties:
-> @@ -443,6 +446,7 @@ allOf:
->          interrupts:
->            minItems: 8
->          interrupt-names:
-> +          minItems: 8
->            items:
->              - const: msi0
->              - const: msi1
-> @@ -452,6 +456,7 @@ allOf:
->              - const: msi5
->              - const: msi6
->              - const: msi7
-> +            - const: global
->  
->    - if:
->        properties:
-> @@ -559,6 +564,7 @@ allOf:
->                enum:
->                  - qcom,pcie-apq8064
->                  - qcom,pcie-ipq4019
-> +                - qcom,pcie-ipq5332
->                  - qcom,pcie-ipq8064
->                  - qcom,pcie-ipq8064v2
->                  - qcom,pcie-ipq8074
-> -- 
-> 2.34.1
-> 
+Best regards,
+Andrei Lalaev
 
