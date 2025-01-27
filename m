@@ -1,63 +1,87 @@
-Return-Path: <devicetree+bounces-141061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0A82A1D469
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 11:28:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBAB4A1D493
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 11:33:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8120188539A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 10:28:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B8043A786B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 10:33:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A79941FCFE5;
-	Mon, 27 Jan 2025 10:28:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 773581FDE15;
+	Mon, 27 Jan 2025 10:33:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GoWWALOi"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IgfXBgRu"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07469179BF;
-	Mon, 27 Jan 2025 10:28:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC0011FDA99
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 10:33:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737973701; cv=none; b=Gp84ZmE+ImP7uQ3umB1iM+6nVsCfQC1OTvLBUytxz0iuBfsw7KvpHs0WhTE6cHGSOBHw37P+TB/htJ03dsjZjdMuKXgf1nEk1UaOnw+dGKvnkhsoOvkQrACftjftFh5/TVJUcclFScZRu2j1dLIXYbdumuyx+h+aFQdcLRV/TCo=
+	t=1737974032; cv=none; b=CLwsNTxVUsnPBrBbTvmrH129Xdcl0iXCp9W+hcSOYn1kwv+xESWSI3eY8QQuEff7XDtIeQGy1erTGHAs2xIzH8IbBvkOhmzMUH2p/qOO7JXvtgMMadEHW4C+vo9YZQpfifXi9CG4UDXUo2mGk2Z3oTbWcvQkD0GETCuu0lmpOyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737973701; c=relaxed/simple;
-	bh=anbZvoycItxzL/ax5dnITiTK6ouc+y/780hWodztk8U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=gouEQ+L43CdmNYrMsEFuOTsOJhDJfDGc1XbD3s9QtbUb0gqlxkiVJdoqC6XS961JjJEN9br5WbK7MMfjJZVW3P7MWgsjGD5NfCC/YxmVpI84KRPmbp6qSKIyTOiwvcZvJQJILz49WpjUxnSFt0kV/D4SkjitOjiTOjO2eojzwS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GoWWALOi; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50R4rdcm022755;
-	Mon, 27 Jan 2025 10:28:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	s=arc-20240116; t=1737974032; c=relaxed/simple;
+	bh=/2jpubJ76LTJrMU6CNiePQvY30kXVSm/q0TgYoXBqjQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=pdT9OiOgU5Cio7JaHVCcwr0B/DQ++RuLpJ12fBRxcyRpHdh32xqu791zxSAM7d4DAQPTEsfvLr0tpBKkRHzNNwLRlrWu0nmyGiDat/+hVSy4/FrmSDGC0epLlpf2p8Ep05/cRNHNX8oWeP4mt0ZUqeqmfeI9uOfrbqyaOHkFGJY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IgfXBgRu; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50R4kSJN017994
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 10:33:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	k3c3dhh0fSQ4PciaJSHFWGlDEsyIJ8YOrVapKIKGIdQ=; b=GoWWALOiXKOjCtzV
-	7LON8rS0dPgAB4OmJLi0wCUzCJQWhXq1LXSlIl2ydXhsKIfEbrq09AO6GG37zD7e
-	7G+IT0zdR5UNvotswlRHGFEjg73al2qa7n488StPxoO8VJ0pHYZBEwEWGOiMZlVR
-	NdwACd28LRszHTKm4qXiqqJW7RavUOlWlc00m6Dc9W4P0lmI+PKoyACqdg81iiDV
-	irgIP6wi97EVa+6BQGBFXkA1skch0a/LfSIWARN4xqdl/buuZSWDk3V8Aj41klmI
-	PuVcx55ajY8Xe99Pi3BhcsRw3vLG0e73CNTO3U5MXF7yZYlK0mtK+fJaPoUzcGNW
-	RPTl9A==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44e3h2rm8s-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Jan 2025 10:28:14 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50RASDs0018691
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Jan 2025 10:28:13 GMT
-Received: from [10.152.203.17] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 27 Jan
- 2025 02:28:08 -0800
-Message-ID: <833c9114-cc9e-4ea3-a0f5-c56d61e95462@quicinc.com>
-Date: Mon, 27 Jan 2025 15:57:56 +0530
+	XO2U/FigudNpheyHXoXOoPHFQtk40Wecm2MIHQ46a/o=; b=IgfXBgRuoBpyzHLm
+	87T/vhiyRMqeaMA8yDAoh2daETixNkgOlovwRezDOvWS62leBJ6onvmyP8/2W2Vs
+	yaPhQkqGsrP0OxTjrYJ97Bius2/8L/kiC+YlOfB5g+/F8fD4KsgPJKlgd1hN4URI
+	wesiJdh/lGXLr8P+/20hVMv4Nogm3FANwqXW6TJ3uzJVyQDlO6f0rbDIItiUCSI+
+	VOqOvWf+tiZsRKwysHBwobzu8bkC9JklHyePd9urGKC/u2hhPAl3UHLFi6Q/JPuI
+	IoX2MRce2lT9eOU1Wqo6SYE498VlswjJeDMNGJQG8dhUXuOR995TqiEGMuRHaez9
+	w4/bmA==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44e3dr0n7m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 10:33:49 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-46e4842dbd0so14155861cf.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 02:33:49 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737974028; x=1738578828;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XO2U/FigudNpheyHXoXOoPHFQtk40Wecm2MIHQ46a/o=;
+        b=qJC2v7ltlwSeLlmV02VV+9VYRK+YUo6zexVPdJz6+MPDBtJglK6HdD8+Sl0MCu7vzB
+         UbCl96hA7Aoetnyp7n6E83kkuhVTqsFYhsRHOyZPJDsKK1bdTyh7++mnHMqh/hIgkORO
+         SjXsgk4FM2CgkalqQxGpQ3gHG8BzRVlDmZHJV05lVKmC0qgtm+nOwbsOmWW+mWrAlAK1
+         X+eZYXC9AdrWNO7up7VKReu95DB6JTdgoipuDH4wBES2X8VLmK9HQsfokZiNzG7od1Zc
+         T0EpGYAn//Ud1ySLOHhGU0Pi2FtbmH65DKg8Llak72l8XS2lcsi4gt31uYJWbmBHnwvD
+         /ABQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV9u03Hmo8f9IuTWDhtmK+gEBO3DjzRpvddLmQIE72ugkCNGQTsG6on20ufyOxAA9Rzj6/8w1HpWNES@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7YJ5aMArBgiFx9s/XooLblpHCMpPGqVsI8oClvNYqcyvQTJmd
+	IepkNHqGwy2SbBHpUDZAv9RvKzUuDV9PW/qXHJjo2BS246mtfSUiX8w5m25rR3P4P/PmG3LNaqO
+	e2LgEMYvRaw3bw9eXjhfOdsBCWMaRr9VXZkWB01GLu2SYY6tnvM8DHEsQ+kne
+X-Gm-Gg: ASbGncvuOEK1HDuFOE/yqeV+NH5D7P8GIJq7XvGY6Eow/+CLwfHrZaol1HUCyZbS+DA
+	Pt/p+ZxR54NT3Hbc5pXVJ9QkJAgUXtzsc80OhIWg7iDdiQ9ERW6tun2D/jqAzfsx9wOWtbIOqbX
+	odlL1LG4UsNu9SOQno9QqB4WnTdeGR2at87AnN741KHPZp0o5NK0hAZNmXly0+MYoaDf5+SsUM7
+	AILeAtVZs1k2XA7hEMG9R2OB2APQKIN7yU3nOPAwt0vMA76Aa0D5BBbrtpEkKvHo80CtJU0IEmM
+	FMN8Nw+82ZE54Yy9Gx6wxp+y/GmiKpWF8kt89TDQmaSaYFmQ1Su/4EVe+uE=
+X-Received: by 2002:a05:622a:1803:b0:464:af83:ba34 with SMTP id d75a77b69052e-46e12b66e5amr244210321cf.10.1737974028683;
+        Mon, 27 Jan 2025 02:33:48 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IESlsEC/uSt6b1mkLIn8XmnzDYv15ZT2kv/xQfb7JQbhSlZz5OYDm9Co0pS+uRxerAZbiUQAQ==
+X-Received: by 2002:a05:622a:1803:b0:464:af83:ba34 with SMTP id d75a77b69052e-46e12b66e5amr244210171cf.10.1737974028369;
+        Mon, 27 Jan 2025 02:33:48 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab67b28ad13sm513244266b.41.2025.01.27.02.33.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jan 2025 02:33:47 -0800 (PST)
+Message-ID: <e697cc99-e96b-4e84-8b70-23c5ef015a0d@oss.qualcomm.com>
+Date: Mon, 27 Jan 2025 11:33:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,142 +89,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 0/2] mailbox: tmel-qmp: Introduce QCOM TMEL QMP mailbox
- driver
-To: Jeff Johnson <jeff.johnson@oss.qualcomm.com>, <jassisinghbrar@gmail.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <manivannan.sadhasivam@linaro.org>,
-        <dmitry.baryshkov@linaro.org>
-CC: Aditya Kumar Singh <aditya.kumar.singh@oss.qualcomm.com>
-References: <20241231054900.2144961-1-quic_srichara@quicinc.com>
- <02396f29-5d1c-4595-8c31-c67cf70fdffe@oss.qualcomm.com>
+Subject: Re: [PATCH v7 4/7] arm64: dts: qcom: ipq9574: Reorder reg and
+ reg-names
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, bhelgaas@google.com,
+        lpieralisi@kernel.org, kw@linux.com, manivannan.sadhasivam@linaro.org,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org,
+        konradybcio@kernel.org, p.zabel@pengutronix.de,
+        dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+References: <20250122063411.3503097-1-quic_varada@quicinc.com>
+ <20250122063411.3503097-5-quic_varada@quicinc.com>
 Content-Language: en-US
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <02396f29-5d1c-4595-8c31-c67cf70fdffe@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250122063411.3503097-5-quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: AT_j7slwmjLX0rdqXUA_93fP_yNZiMU5
-X-Proofpoint-ORIG-GUID: AT_j7slwmjLX0rdqXUA_93fP_yNZiMU5
+X-Proofpoint-ORIG-GUID: bcPL08VsGFNpSNLXQ-LGgjb0slwolIMx
+X-Proofpoint-GUID: bcPL08VsGFNpSNLXQ-LGgjb0slwolIMx
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-01-27_04,2025-01-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 clxscore=1015
- phishscore=0 lowpriorityscore=0 adultscore=0 spamscore=0 mlxscore=0
- bulkscore=0 priorityscore=1501 mlxlogscore=999 suspectscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501270084
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
+ mlxlogscore=975 priorityscore=1501 phishscore=0 adultscore=0 clxscore=1015
+ spamscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501270085
 
-Hi Jeff,
-
-On 1/24/2025 11:23 AM, Jeff Johnson wrote:
-> On 12/30/24 21:48, Sricharan R wrote:
->> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->>
->> The QMP mailbox is the primary means of communication between TME-L SS
->> and other subsystem on the SoC. A dedicated pair of inbound and outbound
->> mailboxes is implemented for each subsystem/external execution environment
->> which needs to communicate with TME-L for security services. The inbound
->> mailboxes are used to send IPC requests to TME-L, which are then processed
->> by TME-L firmware and accordingly the responses are sent to the requestor
->> via outbound mailboxes.
->>
->> It is an IPC transport protocol which is light weight and supports
->> a subset of API's. It handles link initialization, negotiation,
->> establishment and communication across client(APPSS/BTSS/AUDIOSS)
->> and server(TME-L SS).
->>
->>     -----------------------------------------------       ---------------------------------------------------
->>    |                                              |       |                                                 |
->>    |                 SOC  CLIENT                  | SOC   |                TME-L  SS                        |
->>    |                                              | AHB   |                                                 |
->>    |     ----------    ---------   ---------      |       | ------    -------     --------    ------------  |
->>    |     |        |    |       |   |       |      | WO    | |     | R |     |     |      |    |SERVICES   | |
->>    |     | APPS   |<-->| TMEL  |<->|       |------------->| | IN  |-->|     |     | TMEL |    |--------   | |
->>    |     |        |    | COM   |   | QMP   |      | RO    | |     | W | QMP |<--->| COM  |<-->| a) ATTEST | |
->>    |     |        |    |       |   |       |<-------------| | OUT |<--|     |     |      |    | b) CRYPTO | |
->>    |     |        |    |       |   |       |      |       | |     |   |     |     |      |    | .. more   | |
->>    |     ---------     ---------   ---------      |       | ------    -------     -------     ------------  |
->>    |                                              |       |                                                 |
->>     -----------------------------------------------       --------------------------------------------------
->>
->> TME-L SS provides different kinds of services like secureboot, remote image authentication,
->> key management, crypto, OEM provisioning etc. This patch adds support for remote image
->> authentication. Support for rest of the services can be added.
->>
->> Remote proc driver subscribes to this mailbox and uses the mbox_send_message to use
->> TME-L to securely authenticate/teardown the images.
->>
->> Since clients like same rproc driver use SCM/TMEL across socs, the goal here was to abstract the
->> TMEL-QMP SS functionality, so that clients should be able to connect and send messages with
->> a common API.
->>
->> [v1] RFC Post
->>
->> [v2]
->>       Added HW description in the bindings patch.
->>       Fixed review comments for bindings from Krzysztof and Dmitry
->>       Changed patch#2 driver to add work for mailbox tx processing
->>       Cleaned up patch#2 for some checkpatch warnings.
->>       There are some checkpatch [CHECK] like below, which looks like false positive.
->>
->> 	CHECK: Macro argument 'm' may be better as '(m)' to avoid precedence issues
->> 	#1072: FILE: include/linux/mailbox/tmelcom-qmp.h:40:
->> 	+#define TMEL_MSG_UID_CREATE(m, a)      ((u32)(((m & 0xff) << 8) | (a & 0xff)))
->>
->>
->> Sricharan Ramabadhran (2):
->>    dt-bindings: mailbox: Document qcom,tmel-qmp
->>    mailbox: tmelite-qmp: Introduce TMEL QMP mailbox driver
->>
->>   .../bindings/mailbox/qcom,tmelite-qmp.yaml    |  65 ++
->>   drivers/mailbox/Kconfig                       |   7 +
->>   drivers/mailbox/Makefile                      |   2 +
->>   drivers/mailbox/qcom-tmel-qmp.c               | 969 ++++++++++++++++++
->>   include/linux/mailbox/tmelcom-qmp.h           | 157 +++
->>   5 files changed, 1200 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mailbox/qcom,tmelite-qmp.yaml
->>   create mode 100644 drivers/mailbox/qcom-tmel-qmp.c
->>   create mode 100644 include/linux/mailbox/tmelcom-qmp.h
->>
+On 22.01.2025 7:34 AM, Varadarajan Narayanan wrote:
+> The 'reg' & 'reg-names' constraints used in the bindings and dtsi
+> are different resulting in dt_bindings_check errors. Re-order
+> them to address following errors.
 > 
-> This series was listed as a prerequisite for a WLAN patch I'm
-> reviewing, and when I used my WLAN automation to pull into my
-> workspace the following issues were flagged.
+> 	arch/arm64/boot/dts/qcom/ipq9574-rdp449.dtb: pcie@20000000: reg-names:0: 'parf' was expected
 > 
->  From kernel-doc:
-> drivers/mailbox/qcom-tmel-qmp.c:153: warning: Function parameter or struct member 'qwork' not described in 'qmp_device'
-> drivers/mailbox/qcom-tmel-qmp.c:153: warning: Function parameter or struct member 'data' not described in 'qmp_device'
-> drivers/mailbox/qcom-tmel-qmp.c:153: warning: Function parameter or struct member 'ch_in_use' not described in 'qmp_device'
-> drivers/mailbox/qcom-tmel-qmp.c:304: warning: Function parameter or struct member 'mdev' not described in 'qmp_send_data'
-> drivers/mailbox/qcom-tmel-qmp.c:304: warning: Excess function parameter 'chan' description in 'qmp_send_data'
-> drivers/mailbox/qcom-tmel-qmp.c:394: warning: Function parameter or struct member 'mdev' not described in 'qmp_recv_data'
-> drivers/mailbox/qcom-tmel-qmp.c:394: warning: Excess function parameter 'mbox' description in 'qmp_recv_data'
-> drivers/mailbox/qcom-tmel-qmp.c:438: warning: Function parameter or struct member 'mdev' not described in 'qmp_rx'
-> drivers/mailbox/qcom-tmel-qmp.c:438: warning: Excess function parameter 'mbox' description in 'qmp_rx'
-> drivers/mailbox/qcom-tmel-qmp.c:859: warning: No description found for return value of 'tmel_qmp_mbox_of_xlate'
-> 10 warnings as Errors
->
-  ok, will fix in V3.
-
->  From checkpatch --codespell:
-> 1d333d61d25de60704447c9b2dbee165927696d3:16: WARNING:TYPO_SPELLING: 'requestor' may be misspelled - perhaps 'requester'?
-> 1d333d61d25de60704447c9b2dbee165927696d3:76: WARNING:TYPO_SPELLING: 'requestor' may be misspelled - perhaps 'requester'?
-> total: 0 errors, 2 warnings, 65 lines checked
-> cb1085a6ed62b0d1c7400ff9257490e431afe7b0:313: WARNING:TYPO_SPELLING: 'initated' may be misspelled - perhaps 'initiated'?
-> cb1085a6ed62b0d1c7400ff9257490e431afe7b0:316: WARNING:TYPO_SPELLING: 'succes' may be misspelled - perhaps 'success'?
-> cb1085a6ed62b0d1c7400ff9257490e431afe7b0:357: WARNING:TYPO_SPELLING: 'succes' may be misspelled - perhaps 'success'?
-> cb1085a6ed62b0d1c7400ff9257490e431afe7b0:910: WARNING:TYPO_SPELLING: 'controlls' may be misspelled - perhaps 'controls'?
-> total: 0 errors, 4 warnings, 1144 lines checked
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 52 +++++++++++++++++----------
+>  1 file changed, 34 insertions(+), 18 deletions(-)
 > 
-  ok, i did run checkpatch --strict, but not --codespell.
-  Will fix in V3.
+> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> index 942290028972..d27c55c7f6e4 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+> @@ -876,12 +876,16 @@ frame@b128000 {
+>  
+>  		pcie1: pcie@10000000 {
+>  			compatible = "qcom,pcie-ipq9574";
+> -			reg =  <0x10000000 0xf1d>,
+> -			       <0x10000f20 0xa8>,
+> -			       <0x10001000 0x1000>,
+> -			       <0x000f8000 0x4000>,
+> -			       <0x10100000 0x1000>;
+> -			reg-names = "dbi", "elbi", "atu", "parf", "config";
+> +			reg = <0x000f8000 0x4000>,
+> +			      <0x10000000 0xf1d>,
+> +			      <0x10000f20 0xa8>,
+> +			      <0x10001000 0x1000>,
+> +			      <0x10100000 0x1000>;
 
-Regards,
-  Sricharan
+The unit address (the one after '@' in the node definition) is supposed to
+match the first 'reg' entry. So you need to update that and reorder the
+nodes accordingly.
+
+Krzysztof, is this acceptable to pick up given the reg entries are being
+shuffled around?
+
+Konrad
 
