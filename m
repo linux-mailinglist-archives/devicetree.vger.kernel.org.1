@@ -1,117 +1,124 @@
-Return-Path: <devicetree+bounces-141169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D2AA1DA9F
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:31:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF850A1DAA3
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 870BF18890F8
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:31:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A50B9167B77
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6757F175D48;
-	Mon, 27 Jan 2025 16:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F25155756;
+	Mon, 27 Jan 2025 16:31:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="so+SN6jH"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="e/Ub9+g9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39083156C76;
-	Mon, 27 Jan 2025 16:30:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E95C149C7D;
+	Mon, 27 Jan 2025 16:31:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737995457; cv=none; b=Zcx/fkQMurc0Wnwm2VJKqrMtqTr4M3RHtbhMy2JySrn5aMKwenFVhRHS5uewB4Cq7o59gHtraGhKGb96iV5gF7OCJjqRuP28tpKevzKe2BicL3xvQeBKHIpJ6exhoNQ7pxCnr2mnvYGju87TPoUr8RCPVg1PBMnNt3gtoD53tIQ=
+	t=1737995495; cv=none; b=tJG5KXkEYDehpCK982HShxFSoFWvsdlUq/hAdp9W229gtpS/MgJ5lnh71x1D5N+BYlfz3plKxihxCso7k1zs9CVefI5Eis80HzBrzyyKvj/0tg5yC+4HGKb/yOxFJ337YTWiQyGXLoWpp72FC1NMDa9kGIFxp7X44VHN8//kwBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737995457; c=relaxed/simple;
-	bh=EOzsobw0dCup/mm1V1SWK598t/wpvmmRb/NcHzpJ+QE=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=c48SRsUIlsJ0WDs9p+1ZpMVVkTa3jVrO2nEhp6qFisNajHp82uw6l7SY8jOVCTNTTMg+VfKcjhSS/SXDQB89DBNns17N/MmTpMuusKJBWsOkLEKMPoP1+ARmAovp2V7srHQAtOpC+MJgEIdlLU+bB87LBCXzpj97QUBFfbmsrRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=so+SN6jH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E117FC4CEE3;
-	Mon, 27 Jan 2025 16:30:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737995457;
-	bh=EOzsobw0dCup/mm1V1SWK598t/wpvmmRb/NcHzpJ+QE=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=so+SN6jHebOP6I2KOuBtUn3TKAEchOJPyvRAooETXz5zaKuP+Ok7RvYm2jI2rUrQ1
-	 ZeUMZrLOC5SuRT25KtH2AAeQpjK+Q7/mBNz/PP4aVDwyMXF9CB8IsFfgXmF0Peg4n1
-	 oqPEZeTpf3KjlyzIldpKxWx3F+c4s6//1vPHpanjpPrGNxUiI+KAQu2tibHjMkxyka
-	 OyHBrLAbMM9UMmMq6YOCTP/FojL2Sx1/8m5qv1R/WPyS6YofR0AyLpziso/la8pnSl
-	 BiTFBxWqwI7XdviGbGhpWXyfO9rc34P0bQLTIAMqDpxbjjrXAeNfd7ACsFjuv/LPW3
-	 91wpOegjAV2NQ==
-Date: Mon, 27 Jan 2025 10:30:55 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1737995495; c=relaxed/simple;
+	bh=1DjhvfxtjyVnF9bqJLbWN7eRDHmylbXDmbHfOvhv8kA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=lY4SS6v6WWm9bmNN+Q8cEG0hDjpgIU9P9HKhegGVgfVxhP4bqr1+quoGLmu/iBvqFKMqlZSIavHXkjiaIGo/1RfG4d6NPqNDRDm7pNfer2db8g9JzRXJR1ess5MIgtUrqjW3kkQFclzUq5T86djcE3L5zX78seQxw4TN90Xb5z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=e/Ub9+g9; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737995494; x=1769531494;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=1DjhvfxtjyVnF9bqJLbWN7eRDHmylbXDmbHfOvhv8kA=;
+  b=e/Ub9+g9D8wPoElkKeoMW794F7lGVJsAoyLNK1dhYvR8cWEDzvujighb
+   OB5dqYWBvwbIFOyIUEfE4x1eNorNJlwxHwJbs4JTXWSBtJV4oleB/pRM1
+   oYQtiuLd9TNlNSCgxoIrX3qQq7AnPNm0HNNo1QmzqgrPQanmb+W1bdy5f
+   DkLxIS5v5S0aud7Dva3IAYzLyly7NMu/rDbHrBGoPDEfXAW6QHtq6w/QQ
+   EisRnHkcuqK3Bed4kJAF1HlrMRK53p2JW42bZU6fVyyJYpG3rRi5K7Dxn
+   pMo+z0pz6BZjpb5iq6WHFTJv5fvIfkUVaShj5xupVaAp4qndF+magQVS9
+   Q==;
+X-CSE-ConnectionGUID: W7NnDVn7RR6MjmJCxrValQ==
+X-CSE-MsgGUID: 6er5z5d9S6OMktlZMqZ7sA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="56003919"
+X-IronPort-AV: E=Sophos;i="6.13,238,1732608000"; 
+   d="scan'208";a="56003919"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2025 08:31:33 -0800
+X-CSE-ConnectionGUID: WOXF0TtzTH+8nVtcK7xSRg==
+X-CSE-MsgGUID: y5CllUwXTTiXsj1EuI+OkQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,238,1732608000"; 
+   d="scan'208";a="113513051"
+Received: from apgc00009.png.altera.com ([10.244.70.6])
+  by orviesa004.jf.intel.com with ESMTP; 27 Jan 2025 08:31:29 -0800
+From: Mahesh Rao <mahesh.rao@intel.com>
+To: conor@kernel.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dinguyen@kernel.org,
+	hao.wu@intel.com,
+	krzk+dt@kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-fpga@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	mahesh.rao@altera.com,
+	mahesh.rao@intel.com,
+	mdf@kernel.org,
+	robh@kernel.org,
+	trix@redhat.com,
+	yilun.xu@intel.com
+Subject: Re: [PATCH 1/3] dt-bindings: fpga: stratix10: Convert to json-schema
+Date: Tue, 28 Jan 2025 00:31:01 +0800
+Message-Id: <20250127163101.40369-1-mahesh.rao@intel.com>
+X-Mailer: git-send-email 2.35.3
+In-Reply-To: <20250122-duller-headwear-33d84e15a764@spud>
+References: <20250122-duller-headwear-33d84e15a764@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: marcelo.schmitt1@gmail.com, marcelo.schmitt@analog.com, 
- krzk+dt@kernel.org, conor+dt@kernel.org, jic23@kernel.org, 
- linux-iio@vger.kernel.org, Michael.Hennerich@analog.com, 
- linux-kernel@vger.kernel.org, jonath4nns@gmail.com, 
- devicetree@vger.kernel.org, lars@metafoo.de
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-In-Reply-To: <e17337bc3b0f2e95d3d4f7b6daa7755881e11fba.1737985435.git.Jonathan.Santos@analog.com>
-References: <cover.1737985435.git.Jonathan.Santos@analog.com>
- <e17337bc3b0f2e95d3d4f7b6daa7755881e11fba.1737985435.git.Jonathan.Santos@analog.com>
-Message-Id: <173799545339.405668.16086159730707197381.robh@kernel.org>
-Subject: Re: [PATCH v2 04/16] dt-bindings: iio: adc: ad7768-1: add VMC
- output property
+Content-Transfer-Encoding: 8bit
 
+Hi Conor Dooley,
 
-On Mon, 27 Jan 2025 12:12:05 -0300, Jonathan Santos wrote:
-> The AD7768-1 provides a buffered common-mode voltage output
-> on the VCM pin that can be used to bias analog input signals.
+Thanks for reviewing the patch.
+
+On Wed, 22 Jan 2025 18:35:51 +0000, Conor Dooley wrote:
+> > Convert intel,stratix10-soc fpga manager devicetree binding file from
+> > freeform format to json-schema.
+> >
+> > Signed-off-by: Mahesh Rao <mahesh.rao@intel.com>
+> > +maintainers:
+> > +  - Moritz Fischer <mdf@kernel.org>
 > 
-> Add adi,vcm-output to enable the configuration of the VCM output
-> circuit.
-> 
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> ---
-> v2 Changes:
-> * New patch in v2.
-> ---
->  .../bindings/iio/adc/adi,ad7768-1.yaml           | 10 ++++++++++
->  include/dt-bindings/iio/adc/adi,ad7768-1.h       | 16 ++++++++++++++++
->  2 files changed, 26 insertions(+)
->  create mode 100644 include/dt-bindings/iio/adc/adi,ad7768-1.h
+> Are these maintainers actually correct? Does Moritz work on Altera stuff, or
+> did you just add him cos he is a subsystem maintainer? Really what's here
+> should be people that understand the hardware.
 > 
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Sorry I initially had added list from maintaner script,I will change to 
+people who works with the hardware in the next revision.
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml:69:9: [warning] wrong indentation: expected 6 but found 8 (indentation)
-./Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml:101:6: [error] missing starting space in comment (comments)
+> > +  - Wu Hao <hao.wu@intel.com>
+> > +  - Xu Yilun <yilun.xu@intel.com>
+> > +
+> > +description: |
+> 
+> The | here isn't needed, nor is point out that this is a binding in the line
+> below. Please describe what the hardware is here instead.
+> 
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.example.dts:39.35-36 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
+Sure I will update the info in the next revision.
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/e17337bc3b0f2e95d3d4f7b6daa7755881e11fba.1737985435.git.Jonathan.Santos@analog.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Best regards
+Mahesh Rao
 
