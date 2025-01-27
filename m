@@ -1,169 +1,186 @@
-Return-Path: <devicetree+bounces-141216-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41EECA1DD89
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 21:46:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7DF9A2000E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 22:43:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7FF897A164A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 20:46:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33C8816555B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 21:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FCE194A6B;
-	Mon, 27 Jan 2025 20:46:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C1FE1D89EF;
+	Mon, 27 Jan 2025 21:43:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="khvpONAK"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="RhDpFeTe";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="X/EF7ghQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-b7-smtp.messagingengine.com (fout-b7-smtp.messagingengine.com [202.12.124.150])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FDB18E756;
-	Mon, 27 Jan 2025 20:46:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E9D4190664;
+	Mon, 27 Jan 2025 21:43:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738010775; cv=none; b=jh0EpkYMOdr2IZmfq8aJvXHayzQ0Ma+UhefVG9VdSWIcNMUJuo4N104lI6L3khLnFS4qjFOs4M/U1wxlDA6mo5jR0T9FaN7VeC8EDs7AkC5TQMRLXCB0Ui9G7kL3J+jEegfQWCnGM/cIfktPB/dnoGtJSTjip85pLEHI5gmQwhk=
+	t=1738014221; cv=none; b=hPxtcoz69yeVncVJC/QuAleIbezeXUEFwZ+pY/DVMLAQGzkMl8M6AiPSKmR0emSf3ihOPO8DI3YUcT6dX426huQniXxwrdLi/nGBkUi0EvAEutZd1X9ferURL2mW/gaMXbcwNB2UHUDHZGdxztqhYz57VOtFMT53NkdFqczV1ZY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738010775; c=relaxed/simple;
-	bh=xcZUmOduASjcFU2l+TPt7JE9O9AsRQh+pMzUv+ptJHc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Lt8rUsdvMagcjYc8WN591KIIAjBE0pFu6y/4WCahc0s5kqRXn/LxzYKvKwtSEZGiWylAfu93rK1p0TvinCIGfhh/NNvjrfvkYB0omg9gTrkZvGfA87T+HZVEneHcNjb/AVXbaL25V82KVw2EGnK4CXpXVYWa5LlQNaAgotVAf9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=khvpONAK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0FFCC4CED2;
-	Mon, 27 Jan 2025 20:46:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738010774;
-	bh=xcZUmOduASjcFU2l+TPt7JE9O9AsRQh+pMzUv+ptJHc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=khvpONAKiR1DtKZJ2UCgl6U//jcW6XTfUiAFHlfEAxRNNbH1etcuw5z/RLFswNQR/
-	 cHA5zIBXfElNqzx8lODH7OlPxDw5X6Zr3Yp+yUBNKTJmRj7IVFuaUAE5DJY7g7Oes1
-	 NYDIwT9Ihoxs9wXaCFbw+OGCysISDtjJ6PPuwZvyNOsirwGdUXUdJ0CqUqhBZntH7u
-	 6UpTp+Br+j4tnZbPBuMC8Bic9LHs7SltPvxXwGPSX6WqbamHj9TUpj1TV4v/im+Yza
-	 pAUH/Ro999TQ5aClY+4VUUXZYsc7JisZ1EPxiZydP8EGMjiEE0zcviV7zXm5rtsU6t
-	 wSIldBurN9vmA==
-Date: Mon, 27 Jan 2025 14:46:13 -0600
-From: Rob Herring <robh@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@microchip.com>
-Cc: Ludovic Desroches <ludovic.desroches@microchip.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Andrei Simion <andrei.simion@microchip.com>,
-	linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Durai Manickam KR <durai.manickamkr@microchip.com>
-Subject: Re: [PATCH v3] dt-bindings: dma: convert atmel-dma.txt to YAML
-Message-ID: <20250127204613.GA820642-robh@kernel.org>
-References: <20250127-test-v3-1-1b5f5b3f64fc@microchip.com>
+	s=arc-20240116; t=1738014221; c=relaxed/simple;
+	bh=btFMGF0l0jNhP3EztGvtxGOBdYKRNVHIlfwFFvFLHnw=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=ooB0H2+SLqZ4PHk5uZUOb8CtX3gcAaL4K5Bxka8gi2Hw/80/rowj1SdN1WKXoaJUu6ImyY0eFpgAvw6dvrNVG1ZI+4teIN5PqzcnkLMBe73/ERu/w6u3Ued9RH1dYtoJm7MVUe2QHF7nCydUzQzPrAe8oXIKbwiBBrwi9MvZW0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=RhDpFeTe; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=X/EF7ghQ; arc=none smtp.client-ip=202.12.124.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from phl-compute-09.internal (phl-compute-09.phl.internal [10.202.2.49])
+	by mailfout.stl.internal (Postfix) with ESMTP id A2B8A114014F;
+	Mon, 27 Jan 2025 16:43:37 -0500 (EST)
+Received: from phl-imap-12 ([10.202.2.86])
+  by phl-compute-09.internal (MEProxy); Mon, 27 Jan 2025 16:43:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1738014217;
+	 x=1738100617; bh=UCxpzQHjRe5ProJN41gRZFDzvEjuC1U2OY/rjzYivPs=; b=
+	RhDpFeTevnFgafM5InT8qPaILRBcl0+GeGtLNfGO0UkvA6pfMIbb2QbjGK2ZILiK
+	Ddh3xMgJTa8Nu3xmp+RmRZTswakZieMJzpt1nmucQNt0vLZpDZY+AWbW48TWc39E
+	LklrPY6Af/q4lXRa0rF+mYauyVCSxpsq74Mswdl1MCccWqP9C8JpXetEV9TzOanW
+	XihAvSo5eZK9+04cnGhsJ9feAuA01XaP7VksbPKX7I56hHENbf/dj79CEE6+2pFK
+	C/aF0V4iE2GvjruNUE9RZglJGi/kdUNNnVKVjA6HNsbX6TNWn/Qp6oKOa5gZ0PsJ
+	sM9KCsiTcWz+w6sZrw6jlA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1738014217; x=
+	1738100617; bh=UCxpzQHjRe5ProJN41gRZFDzvEjuC1U2OY/rjzYivPs=; b=X
+	/EF7ghQ3UIFV5XUlo3yIcdEUJfxWKGc5p97976Z4lmDxS5IfwUMi2PdZ3w0v3QhB
+	9Cp/yQC63LxEkhd5RQdkLHhinoSdl18GEgO2AFQ44XlGCKIhryeuFNhpjcamIxMs
+	+Usfb8wQ54dWlfgNJPJ7+tra2Et+0SOChwOCgdSy+b1TY8EoQKQIuwCpR+AjdtpT
+	oY7iDTjlUZMk44HDrl+Mll5JkQDlJRZvbdX24CwBCPAwEEgjevlSh2xWQmqkKz/T
+	FBH9uGpedTZlHo/9n0bMqTurerBGdGk7UDtbNImN3DcIQB9086g3xIaciLeJCetK
+	Kx2iQYQiNhYobmEOFtiVA==
+X-ME-Sender: <xms:Cf6XZyj_FlrqH9fqvvmrxRgohU2suZvDk_EipLcZnztqLWd9pdsklg>
+    <xme:Cf6XZzCw3jXeTdRulKjG62EZk1QKbAEzPMgs1MuPBQSce_XhgmNggX7qfzwlkRJ9w
+    uIWJLUBnGo35CE-EcU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudejgedgudegfedtucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
+    pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
+    gvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtqhertder
+    tdejnecuhfhrohhmpedflfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghngh
+    esfhhlhihgohgrthdrtghomheqnecuggftrfgrthhtvghrnhepjeehfeduvddtgffgvdff
+    keethefhlefgvdevvdekuefffeekheehgeevhfevteejnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihg
+    ohgrthdrtghomhdpnhgspghrtghpthhtohepudefpdhmohguvgepshhmthhpohhuthdprh
+    gtphhtthhopehtshgsohhgvghnugesrghlphhhrgdrfhhrrghnkhgvnhdruggvpdhrtghp
+    thhtohepghhrvghgohhrhidrtghlvghmvghnthessghoohhtlhhinhdrtghomhdprhgtph
+    htthhopehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmpdhrtghpthhtohep
+    thhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoh
+    eprghrihhkrghlohesghhmrghilhdrtghomhdprhgtphhtthhopegtohhnohhrodguthes
+    khgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorh
+    hgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehtrgif
+    fhhikhdrsggrhihouhhksehmohgsihhlvgihvgdrtghomh
+X-ME-Proxy: <xmx:Cf6XZ6F8vAV0ALE9d3kPE6kHgXbG5SauMhOSl61cURbng6eZckpipQ>
+    <xmx:Cf6XZ7QiiZAiu0-_DHyJStp--OJmpYWod0HWWTUgXvDUTvCGWU2oCg>
+    <xmx:Cf6XZ_xCxRFO_ipK-YoedjDbOlSE3YZ1l3_8vDCvHyGbPc6j8jokyg>
+    <xmx:Cf6XZ56JYpQTzjqjpqiPR90mXXtRD0b2qIWD-nrS6gEr-Gfje8Wk3w>
+    <xmx:Cf6XZyopveRRLdUew8blSyMtbZOld_L1QARk-6ZLgXehZnVsJEVbbimd>
+Feedback-ID: ifd894703:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 21FE11C20066; Mon, 27 Jan 2025 16:43:37 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250127-test-v3-1-1b5f5b3f64fc@microchip.com>
+Date: Mon, 27 Jan 2025 21:43:16 +0000
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
+ "Aleksandar Rikalo" <arikalo@gmail.com>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>
+Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-Id: <afa2e874-c078-4c3e-b485-d948a0bb6a6f@app.fastmail.com>
+In-Reply-To: <20250123-cluster-hci-broken-v3-2-8a7ec57cbf68@bootlin.com>
+References: <20250123-cluster-hci-broken-v3-0-8a7ec57cbf68@bootlin.com>
+ <20250123-cluster-hci-broken-v3-2-8a7ec57cbf68@bootlin.com>
+Subject: Re: [PATCH v3 2/5] dt-bindings: mips: mips-cm: Add a new compatible string for
+ EyeQ6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jan 27, 2025 at 03:51:58PM +0530, Charan Pedumuru wrote:
-> From: Durai Manickam KR <durai.manickamkr@microchip.com>
-> 
-> Add a description, required properties, appropriate compatibles and
-> missing properties like clocks and clock-names which are not defined in
-> the text binding for all the SoCs that are supported by microchip.
-> Update the text binding name `atmel-dma.txt` to
-> `atmel,at91sam9g45-dma.yaml` for the files which reference to
-> `atmel-dma.txt`. Drop Tudor name from maintainers.
-> 
-> Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
+
+
+=E5=9C=A82025=E5=B9=B41=E6=9C=8823=E6=97=A5=E4=B8=80=E6=9C=88 =E4=B8=8A=E5=
+=8D=8811:01=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+> The CM3.5 used on EyeQ6 reports that Hardware Cache Initialization is
+> complete, but in reality it's not the case. It also incorrectly
+> indicates that Hardware Cache Initialization is supported. This new
+> compatible string allows warning about this broken feature that cannot
+> be detected at runtime.
+>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
 > ---
-> Changes in v3:
-> - Renamed the text binding name `atmel-dma.txt` to
->   `atmel,at91sam9g45-dma.yaml` for the files which reference to
->   `atmel-dma.txt`.
-> - Removed `oneOf` and add a blank line in properties.
-> - Dropped Tudor name from maintainers.
-> - Link to v2: https://lore.kernel.org/r/20250123-dma-v1-1-054f1a77e733@microchip.com
-> 
-> Changes in v2:
-> - Renamed the yaml file to a compatible.
-> - Removed `|` and description for common properties.
-> - Modified the commit message.
-> - Dropped the label for the node in examples.
-> - Link to v1: https://lore.kernel.org/all/20240215-dmac-v1-1-8f1c6f031c98@microchip.com
-> ---
->  .../bindings/dma/atmel,at91sam9g45-dma.yaml        | 66 ++++++++++++++++++++++
->  .../devicetree/bindings/dma/atmel-dma.txt          | 42 --------------
->  .../devicetree/bindings/misc/atmel-ssc.txt         |  2 +-
->  MAINTAINERS                                        |  2 +-
->  4 files changed, 68 insertions(+), 44 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml b/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
-> new file mode 100644
-> index 000000000000..d6d16869b7db
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
-> @@ -0,0 +1,66 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/dma/atmel,at91sam9g45-dma.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  Documentation/devicetree/bindings/mips/mti,mips-cm.yaml | 12 ++++++++=
++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml=20
+> b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+> index=20
+> 4324b2306535f1bf66c44b1f96be9094ee282041..d129d6382847768dc026336d8d2c=
+7328b6b81f9b=20
+> 100644
+> --- a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+> +++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+> @@ -19,7 +19,12 @@ maintainers:
+>=20
+>  properties:
+>    compatible:
+> -    const: mti,mips-cm
+> +    oneOf:
+> +      - const: mti,mips-cm
+> +      - const: mobileye,eyeq6-cm
+> +        description:
+> +          On EyeQ6 the HCI (Hardware Cache Initialization) informatio=
+n for
+> +          the L2 cache in multi-cluster configuration is broken.
+>=20
+>    reg:
+>      description:
+> @@ -44,4 +49,9 @@ examples:
+>        compatible =3D "mti,mips-cm";
+>        reg =3D <0x1bde8000 0x8000>;
+>      };
 > +
-> +title: Atmel Direct Memory Access Controller (DMA)
-> +
-> +maintainers:
-> +  - Ludovic Desroches <ludovic.desroches@microchip.com>
-> +
-> +description:
-> +  The Atmel Direct Memory Access Controller (DMAC) transfers data from a source
-> +  peripheral to a destination peripheral over one or more AMBA buses. One channel
-> +  is required for each source/destination pair. In the most basic configuration,
-> +  the DMAC has one master interface and one channel. The master interface reads
-> +  the data from a source and writes it to a destination. Two AMBA transfers are
-> +  required for each DMAC data transfer. This is also known as a dual-access transfer.
-> +  The DMAC is programmed via the APB interface.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - atmel,at91sam9g45-dma
-> +      - atmel,at91sam9rl-dma
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#dma-cells":
-> +    description:
-> +      Must be <2>, used to represent the number of integer cells in the dmas
-> +      property of client devices.
+> +  - |
+> +    coherency-manager {
+> +      compatible =3D "mobileye,eyeq6-cm";
 
-You failed to address Conor's comment on this. The above is useless 
-because the schema says it is 2 and the description is for any #dma-cells. 
+I think =E2=80=9Cmobileye,eyeq6-cm=E2=80=9D, =E2=80=9Cmti,mips-cm=E2=80=9D=
+ would describe the hardware better as eyeq6=E2=80=99s CM is just a spec=
+ial variant of mips-cm.
 
-What's missing is answering "what do the 2 cells contain exactly?" That 
-was captured in this text:
+But I=E2=80=99m fine with leaving it as is.
 
-> -The three cells in order are:
-> -
-> -1. A phandle pointing to the DMA controller.
-> -2. The memory interface (16 most significant bits), the peripheral interface
-> -(16 less significant bits).
-> -3. Parameters for the at91 DMA configuration register which are device
-> -dependent:
-> -  - bit 7-0: peripheral identifier for the hardware handshaking interface. The
-> -  identifier can be different for tx and rx.
-> -  - bit 11-8: FIFO configuration. 0 for half FIFO, 1 for ALAP, 2 for ASAP.
 
-Adapt this for the description. (Note it is phandle plus 2 cells, not 3 
-cells, so you *can* omit the phandle part.)
+Thanks
 
-Rob
+> +    };
+>  ...
+>
+> --=20
+> 2.45.2
+
+--=20
+- Jiaxun
 
