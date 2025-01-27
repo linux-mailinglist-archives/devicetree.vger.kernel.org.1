@@ -1,256 +1,154 @@
-Return-Path: <devicetree+bounces-140988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEA5DA1D094
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 06:09:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D775A1D0AE
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 06:34:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B53DF1887987
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 05:09:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5710D1884E40
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 05:34:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D913C1547FE;
-	Mon, 27 Jan 2025 05:09:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11F6116CD1D;
+	Mon, 27 Jan 2025 05:34:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dCXssLii"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kVr78fZG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91D02282EE;
-	Mon, 27 Jan 2025 05:09:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5839A153808
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 05:34:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737954543; cv=none; b=dg0meGMIPcPobJdikZjSfxBC+lsZnqt38pDga2AkWnKSLed8XmvkYDpa2UUomAFrE1SzEM7SYwguCUZcC0jpXLja5NlCX+OKEO2/iW964zj6rJClbdJhaA9cULXf5G5jRm20VqA0rqN3EGnwiZ0B0n1R4b7oJKR8rHUx3/2/E1M=
+	t=1737956066; cv=none; b=n2/12wnqlwm1Hic+iqp+mqw+MAvjzP7mRR8H6EK67/1RFAfadz73Ji5EhdkHESyMcxfnbNacoujG14YiJM2JIo+tv1UbXgQWzlIWFq7SsAr26ttGeIGhZ6GXTxAigz+IHUlpZqRlHKmnRas1mcD7WoeTmGjqZDT7iN/DJ2f3rJo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737954543; c=relaxed/simple;
-	bh=SRnaJ7NOhy1yqtMSuRpVYvCRnbZCyG9ICmKcrEhZu1c=;
+	s=arc-20240116; t=1737956066; c=relaxed/simple;
+	bh=GBGBjMhgsFdTiGft+y8/1jivaBQZgN9QkGKZbY65T98=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X8H8YSQ9Cf4EauD0WoVJvNy0eW6ZMCUZFi5/CXrDHQ+4oaG4sHSxL2uP/nCw+37WSmdjKiC3OpPPdYGSsdnLuZLqyeXL1pXhiUlPIJYq82BLhcX04UldmRmOycSV1Yp+lr/Gz8rMdSVo/GnJmxXzsRidEZAT+mvH7kQbVvJMGEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dCXssLii; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1EBCC4CED2;
-	Mon, 27 Jan 2025 05:09:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737954543;
-	bh=SRnaJ7NOhy1yqtMSuRpVYvCRnbZCyG9ICmKcrEhZu1c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dCXssLii/zSRuNLuQUKKGyPENsQBo8Sn5CnYY3O3FxYVAjvruFGyZ57EqKUguv/ra
-	 S1h9azhs45cKCSaEPcpsFRa1xKUdQaiOE1O3mn5BZdEeVFQfTlDF7bD3TDraPrBc+3
-	 nPr1oEW2dfuaWfsgk5bejmSntOo7SnDsTmo+1COoCYTPp06T7kKbcFbJdDA8zzvyNe
-	 x/H0vNeh34Ov9EMHHnfnz+3OUzplGfUJFvMSQcKI5nvKJbwxbMBt6ha/ffzx8jCdb9
-	 hCqZ+eanBhx2pBGe+B8aQ+DqKIv74Gk+cWfnDnM6BJFAzTM3tPgAH3xzHh4Ww7eGxN
-	 yKnd77AdR7MFA==
-Date: Sun, 26 Jan 2025 23:09:01 -0600
-From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.ne@posteo.net>
-Cc: devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-	Scott Wood <oss@buserror.net>,
-	Madhavan Srinivasan <maddy@linux.ibm.com>,
-	Michael Ellerman <mpe@ellerman.id.au>,
-	Nicholas Piggin <npiggin@gmail.com>,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Naveen N Rao <naveen@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=WubjmiHByR0NUjEzmDEGse/fAzIccDM++kjRgoADydwPwkE/U588fGb034pThdSz04Pjb2AGNrOT80E3j3Rq9Togg9bZ0wlr6/mMCmTf7LXeIFSB8r1/DVyrtvxyLWMFN34arVMJ1cOB19lG4CZDsF+P7CpjEMPAen8MDq7sSnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kVr78fZG; arc=none smtp.client-ip=209.85.214.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-21661be2c2dso66559095ad.1
+        for <devicetree@vger.kernel.org>; Sun, 26 Jan 2025 21:34:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737956063; x=1738560863; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=LYrDkx9vO5H0pWQvLKCfpCZMVAnzkpiFqaoqphbY3jQ=;
+        b=kVr78fZGoC5uvOxlyRqwEvINFGIXopMqiBJc5wV3cfuCklB3i9P0YK7D2pRqS6SQPm
+         2W7MFL5fbHxiI2rDNtDDm3VFCpOtu5O5IUii5Ev8u9YEMoAhpqBIXH74BB2puh0ukWXg
+         TglKbfRJrJH4VJhwAwimZFLQcGrAkavHWyJYmFrkEYSXQGF1C9hYE0TBm+yZ/PAnDtI9
+         O+E3JIHP1rw5kY9swa3cpb+yyStaP8IN196HZoEg7Lj4ylx5aHzVOD0ujbtnu6CQcqEo
+         uHTT/fC09eDtcQ90bpoN/1YqmHoMde6ctJoi18FeAb1MqYaOWwhcYVQ7NdGvvPDeckx1
+         DW5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737956063; x=1738560863;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=LYrDkx9vO5H0pWQvLKCfpCZMVAnzkpiFqaoqphbY3jQ=;
+        b=a3JPswGDug4DCHujExahLL0nbeg2OmMqXsIMIj90cZGBmVh2qQbl/PAOllq2+fOn35
+         gpzztWaBggqFqzriZXn+QXHjSl7uAH7H3SkxCGDZAteG72ZXmUGCT63zro2axk0Ui0yX
+         Nuf/ETLZJdrspdYHqwfdCMxDjlRqwiUhueKITal7+3aark0KLT9fWdjoF7W+EjmXywWq
+         HDcnKMeFPEsyAreMo009O7d+mEjFy2lesjvAcDFSXgELT7qLU5MIqeLHuYRW36kRvxj5
+         rn7lpOOA+dbbOno0b6oUbq/XmaIYDj+AQyaz+CKpMi37kt8//xV3CRNT+3fFRofmijJw
+         LSFg==
+X-Forwarded-Encrypted: i=1; AJvYcCWrd3zVQvfopLlWSgHbi12JAh3hfJmayLUQiMo56lRnvpVt1pCbvw4QQ1+ywpvBEgUS2080JFntnc76@vger.kernel.org
+X-Gm-Message-State: AOJu0YwWkZPsu4UwxDZaMiHJ38enCBO5mpGyema1wjGtd1x9FlDxNsnV
+	ew+9dnlcyWzHyjkrc5KWKsiRTW7vpgRdxqlK8XqrYSsvrB8UjpWlUnYWhI5JdA==
+X-Gm-Gg: ASbGncsri/J0nlHLD1upuRLxvBVmDRba6c6Ya6479HIlEY7Q4nO46bgZOJz4GI3y4h4
+	+n84cmdgUyE9f7fzileSy8dZrei0OP20MFtJUz4ZkW43kyUfhwWa4Etf+CiObJd4VgFO2R9toxj
+	FaoIGpR2l3QMr8yztkJ8otNleCnIVTyhLJR2VOKnki0ur11ZBEdHwM/UScax0p5+p6yRknZQZJv
+	nP1+vUDorlmM9l4hj3tmGoemKw4hEV4rq7JJcvHn6Wk9iYaPS6UO/tyA36ZmuCXESdz65yuhgcf
+	9Dm6OkGYLDwVotg=
+X-Google-Smtp-Source: AGHT+IF23Vozd3CbI/d3xt3xyb44QrIyJVEbk6LiztTlg7LAAGEdExVb14y+5qQXhhQn+eUfWxjVDQ==
+X-Received: by 2002:a17:902:f28b:b0:215:9bc2:42ec with SMTP id d9443c01a7336-21c356092ecmr385990925ad.47.1737956063641;
+        Sun, 26 Jan 2025 21:34:23 -0800 (PST)
+Received: from thinkpad ([120.60.139.80])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21da4141baesm54005795ad.144.2025.01.26.21.34.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Jan 2025 21:34:23 -0800 (PST)
+Date: Mon, 27 Jan 2025 11:04:12 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Niklas Cassel <cassel@kernel.org>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S. Miller" <davem@davemloft.net>, Lee Jones <lee@kernel.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	=?iso-8859-1?Q?J=2E_Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Mark Brown <broonie@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org,
-	linux-ide@vger.kernel.org, linux-crypto@vger.kernel.org,
-	dmaengine@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, linux-spi@vger.kernel.org,
-	linux-mtd@lists.infradead.org
-Subject: Re: [PATCH 8/9] dt-bindings: spi: Convert Freescale SPI bindings to
- YAML
-Message-ID: <20250127050901.GB3127337-robh@kernel.org>
-References: <20250126-ppcyaml-v1-0-50649f51c3dd@posteo.net>
- <20250126-ppcyaml-v1-8-50649f51c3dd@posteo.net>
+	Bjorn Andersson <andersson@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH 3/6] phy: qcom: qmp-pcie: Add X1P42100 Gen4x4 PHY
+Message-ID: <20250127053412.anbdj6hgwcmkildf@thinkpad>
+References: <20250125-topic-x1p4_dts-v1-0-02659a08b044@oss.qualcomm.com>
+ <20250125-topic-x1p4_dts-v1-3-02659a08b044@oss.qualcomm.com>
+ <h6zfhxkc4dj2ueaxipha6prbvmv7pnqglghtjs7vkhlc2s7ndi@vhbj4uojlzwd>
+ <A64B8332-78F2-4B76-908E-4119E4A54BAE@linaro.org>
+ <cy3x35h4id3gegwb23j6rwblx2pecpw7ffjpri5ddqdd35kzrt@bxdmaumb6bbp>
+ <20250126163222.nhcxvr4m2vncwi23@thinkpad>
+ <CAA8EJpq-aNVhSc0fTf4zD63VgrzDokR5uvdGiPvecaBHXYtd+Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250126-ppcyaml-v1-8-50649f51c3dd@posteo.net>
+In-Reply-To: <CAA8EJpq-aNVhSc0fTf4zD63VgrzDokR5uvdGiPvecaBHXYtd+Q@mail.gmail.com>
 
-On Sun, Jan 26, 2025 at 07:59:03PM +0100, J. Neusch�fer wrote:
-> fsl-spi.txt contains the bindings for the fsl,spi and fsl,espi
-> contollers. Convert them to YAML.
+On Sun, Jan 26, 2025 at 11:43:38PM +0200, Dmitry Baryshkov wrote:
+> On Sun, 26 Jan 2025 at 18:32, Manivannan Sadhasivam
+> <manivannan.sadhasivam@linaro.org> wrote:
+> >
+> > On Sun, Jan 26, 2025 at 01:39:05PM +0200, Dmitry Baryshkov wrote:
+> > > On Sun, Jan 26, 2025 at 12:59:52PM +0530, Manivannan Sadhasivam wrote:
+> > > >
+> > > >
+> > > > On January 25, 2025 11:00:23 PM GMT+05:30, Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
+> > > > >On Sat, Jan 25, 2025 at 04:31:19AM +0100, Konrad Dybcio wrote:
+> > > > >> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> > > > >>
+> > > > >> Add a new, common configuration for Gen4x4 V6 PHYs without an init
+> > > > >> sequence.
+> > > > >>
+> > > > >> The bootloader configures the hardware once and the OS retains that
+> > > > >> configuration by using the NOCSR reset line (which doesn't drop
+> > > > >> register state on assert) in place of the "full reset" one.
+> > > > >
+> > > > >I know your opinion, but my 2c would still be for not depending on the
+> > > > >bootloader. I think that was the rule for ages for many possible
+> > > > >reasons.
+> > > > >
+> > > >
+> > > > But if Linux or other OS can trust the bootloader, then it makes perfect sense to rely on them. Obviously, the question here is that on which platforms this level of trust should be established. And the answer I got was starting from the compute platforms (atleast X1E).
+> > >
+> > > Is there any way how those values can be lost that we still might want
+> > > to support ? The GDSC going to the OFF state? Some deep sleep state or a
+> > > power collapse? Actual suspend to RAM (instead of current S2Idle)?
+> > >
+> >
+> > As per Konrad's reply to my identical question, PHY register state is supposed
+> > to be maintained by MX domain even during CX PC. This seem to be case on X1E
+> > based platforms (compute).
 > 
-> Signed-off-by: J. Neusch�fer <j.ne@posteo.net>
-> ---
->  .../devicetree/bindings/spi/fsl,espi.yaml          | 56 +++++++++++++++++
->  Documentation/devicetree/bindings/spi/fsl,spi.yaml | 71 ++++++++++++++++++++++
->  Documentation/devicetree/bindings/spi/fsl-spi.txt  | 62 -------------------
->  3 files changed, 127 insertions(+), 62 deletions(-)
+> Is MX on during S2RAM?
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/fsl,espi.yaml b/Documentation/devicetree/bindings/spi/fsl,espi.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..350275760210c5763af0c7b1e1522ccbfb97eec7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/fsl,espi.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/fsl,espi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale eSPI (Enhanced Serial Peripheral Interface) controller
-> +
-> +maintainers:
-> +  - J. Neusch�fer <j.ne@posteo.net>
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,mpc8536-espi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts: true
 
-How many?
+Qcom says that their current s2idle implementation is equal to S2RAM (when CX PC
+is achieved). In that sense, yes, MX is ON during S2RAM. Do note that, on
+majority of the platforms, MX is the AON (Always ON) domain.
 
-> +
-> +  fsl,espi-num-chipselects:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: The number of the chipselect signals.
+- Mani
 
-Constraints?
-
-> +
-> +  fsl,csbef:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Chip select assertion time in bits before frame starts
-
-Constraints?
-
-> +
-> +  fsl,csaft:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Chip select negation time in bits after frame ends
-
-Constraints?
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - fsl,espi-num-chipselects
-> +
-> +allOf:
-> +  - $ref: spi-controller.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi@110000 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        compatible = "fsl,mpc8536-espi";
-> +        reg = <0x110000 0x1000>;
-> +        interrupts = <53 0x2>;
-> +        interrupt-parent = <&mpic>;
-> +        fsl,espi-num-chipselects = <4>;
-> +        fsl,csbef = <1>;
-> +        fsl,csaft = <1>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/spi/fsl,spi.yaml b/Documentation/devicetree/bindings/spi/fsl,spi.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..8efa971b5954a93665cb624345774f2966bb5648
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/fsl,spi.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/fsl,spi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale SPI (Serial Peripheral Interface) controller
-> +
-> +maintainers:
-> +  - J. Neusch�fer <j.ne@posteo.net>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,spi
-> +      - aeroflexgaisler,spictrl
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  cell-index:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: |
-> +      QE SPI subblock index.
-> +      0: QE subblock SPI1
-> +      1: QE subblock SPI2
-> +
-> +  mode:
-> +    description: SPI operation mode
-> +    enum:
-> +      - cpu
-> +      - cpu-qe
-> +
-> +  interrupts: true
-> +
-> +  clock-frequency:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-Don't need a type.
-
-> +    description: input clock frequency to non FSL_SOC cores
-> +
-> +  cs-gpios: true
-> +
-> +  fsl,spisel_boot:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      For the MPC8306 and MPC8309, specifies that the SPISEL_BOOT signal is used
-> +      as chip select for a slave device. Use reg = <number of gpios> in the
-> +      corresponding child node, i.e. 0 if the cs-gpios property is not present.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - mode
-> +  - interrupts
-> +
-> +allOf:
-> +  - $ref: spi-controller.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi@4c0 {
-> +        cell-index = <0>;
-> +        compatible = "fsl,spi";
-> +        reg = <0x4c0 0x40>;
-> +        interrupts = <82 0>;
-> +        interrupt-parent = <&intc>;
-> +        mode = "cpu";
-> +        cs-gpios = <&gpio 18 1          // device reg=<0>
-> +                    &gpio 19 1>;        // device reg=<1>
-> +    };
+-- 
+மணிவண்ணன் சதாசிவம்
 
