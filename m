@@ -1,134 +1,170 @@
-Return-Path: <devicetree+bounces-141241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC936A2010C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 23:49:38 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 263BEA200D6
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 23:46:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 273FC1653AF
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 22:49:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77737165CFA
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 22:46:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EE541F1506;
-	Mon, 27 Jan 2025 22:46:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 811FD1DC9B3;
+	Mon, 27 Jan 2025 22:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="elp8XQ6Y"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="M/IK30QO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61DB31DFD89;
-	Mon, 27 Jan 2025 22:46:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A13F1990B7
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 22:46:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738018006; cv=none; b=ssbTtn5mNJw+BqnduHFHhK4/kYezhRwaD8Vfe4ifse7YwQHXbHxofeD3+ngJBhYalCVkwpEGLYWrCmkfvrksT9Llenujc+gWJLHRP0ZZO/+wkWQ7eHfggRDuZnRpUhYz/CTmg0ZQckUnR5euH07RRZpUn3ecndpVj5Lnaf3A5UU=
+	t=1738017983; cv=none; b=GHLiafOtleHdtMYK1Bw0Dcy0nJgHVDQqwTNFc7SGe4c22iQXsOPkk8eVerXLkEuHoXPPsgGrGy/Y75FXAghAic1Gvtj24EXie9UsH5ZVTG2X2F+qQJwcSC+JPBXsYPeofVJox27WJMailDImkjmXyq2zQqyv4btgBrk4v2InptE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738018006; c=relaxed/simple;
-	bh=mE3WxwSPnjxQoKLiFGLPQWGmaOQeOmzENxg/qdhMBSY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=hXJ+s56eIYJmB9Ye4E8x/oDSnWFeSP87C3w/aNRS4a9Ij0euCRStOM1VmWmamssPZejbVRcUNeXRWmV2rfqH3Xov2Upe6himkL0mKLEWHCXQltXErP4IIQL97ZdCHlQ4ZI43LR/bX1RhL3XhR36JEs6W0x+XhsjxgV5iGJ4DNTk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=elp8XQ6Y; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1738017999; bh=mE3WxwSPnjxQoKLiFGLPQWGmaOQeOmzENxg/qdhMBSY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=elp8XQ6YPrAK8OtHqOjPR3Z2wovcRsEvjy294brNbAseqPwMdhQYpsxRG5n+1rtx+
-	 7guJZ9yc2yM4uSYUWM09ipieHjZ+NmBkFfJ3jlJ9VCcfgPqPhQg4MXDk8F5eBE7wQL
-	 NJdn6BKzqSEWl2pUlIM/UpcDjs7aEERu4uuhQ/Dk=
-From: Luca Weiss <luca@lucaweiss.eu>
-Date: Mon, 27 Jan 2025 23:45:45 +0100
-Subject: [PATCH v3 13/13] ARM: dts: qcom: msm8226-samsung-matisse-common:
- Enable modem
+	s=arc-20240116; t=1738017983; c=relaxed/simple;
+	bh=TL6ix5Jd4YZkMFQZJvrHPcvBCtELUKRUX9Ewr+Ak6zc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JxhwnhflgxUAahUxcvPkNUylGr1VIe8GBblwkK2CtA47PkAjnx2bYiGoCcfl3DAKEgR38Fgo6RAoOuGf5iTxYjcFCZh35q5LfJkWYgHtOvwXbPVP0N/quw/RK+oq1snioCihJrTc7TVI6CTzhixzKfrEhFZzb3NMwOshnpdlL90=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=M/IK30QO; arc=none smtp.client-ip=209.85.161.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oo1-f53.google.com with SMTP id 006d021491bc7-5fa2a2bdde9so1119096eaf.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 14:46:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738017979; x=1738622779; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GN7epJb6kPL5GnwOif+YIvik/vnwU971oO3M9RsRo28=;
+        b=M/IK30QOj7z88rvufHTpstDsCio2cnCI2xbOHcq4YsiJetrbZOtROCbOwefObDxCus
+         EAcdXQn43omWrJafbzEyuBukbWh2w94OpRyj1PHHuBkd77mbRsQ0GDz5Ud/yQ6W7dL/+
+         GkrTYFnopMtgGZI/ZPs/NnJg/BakXj0x9SJDDmI3k52vqPBTANoD3WPJzMeDn6kXxoAK
+         0gWdt0eddetYyqaHlI3AamatNOU8RzvvBPv4xbXAdOlXq85adQVK/82qDCGWHAh35P/+
+         0Ie9nMP38XdFylPlyqmhOkZJ5qS2pIT/1eAZAzbCNrjJj3zGNdv3QR/1raql5B3v+SlG
+         7YLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738017979; x=1738622779;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GN7epJb6kPL5GnwOif+YIvik/vnwU971oO3M9RsRo28=;
+        b=Zv6JnwbV2TfIJA0XfSalslu/KKHdAZABw5jwyzBX5rjeyyRHTz5Tk71mbYZTtQmkNF
+         eXvtqnK50fqPTGpb/D+QBoEriNPPUUh19Kh5R6SWJlEs/WbAvKcVEzmTvV4lClbbCFsy
+         EtjNfkpkMN37RSq99SNdOrsodpCPtsdgwnp9sr0GChTlRorDviYzOFddKRv7t25uZX0k
+         vnQmg3TrnYwt6vJO+FNdqWmoM5geKHuQ9eOqwadY0t7e8MhbYTM5SNTWrBYVIyZkqUua
+         PVabFPyR5uyxhnqejrdaqx9EDX44jUiG9WkGC4syt+b+tZK4d7ytQ5acQA/71fkc4TyC
+         LVkg==
+X-Forwarded-Encrypted: i=1; AJvYcCX8ZCBleYA+9qg402INtB34xJJzgFagVCQSDLkhv+tsuJDesiTi+hu9nUNeEwD/qpDg2KZDZ/n3ph/V@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJcs8LNu92IHqtBXqPjBpCYg/Rvq9HRBD+4cFEIzmVutuR/sCf
+	p2GbrXSXry8hd43CghMK9MFICKqLjzNgoVRZPHxFDbxns2mJmkdXqjAKungcmTWZYO6rpMwLNub
+	L
+X-Gm-Gg: ASbGncvEZPaUNUnR/qYaiuV5sDx+aKFpg6Rqiiy+xd0Y3S4PY0SMpmaAERGsxVw0oPu
+	JjDy5db7pPP65d+IdMJkftsS3AqLMz7DBdBZJ8czlj8JZeODkk8l+/mLhHSrMPcT0ToeFUxZQP5
+	Wu1hJK9RVgOdhP3EdJSNHlu4BCfU/eISQ0Anbf4gLmTpd9xtfrRbYf9NxpV3/GhEVXrdnt2/pWi
+	TyHR+DiiQluebQ17iCuqvZ+0JzvC4CCZW5jL/hLTepgXniuQicd3h+foHhQlEUX2dNz3gbKOEmo
+	qewcpXqvfCLTNHjWsMUFClVdj0fZtaAO62aorEx+6g==
+X-Google-Smtp-Source: AGHT+IF8Ge5d9gQ9QysqTcZJLOBCMrr0ch/XmoPITtji0GkXQNbkP8LBAT3amNh6s/yyDouhPUb+Sw==
+X-Received: by 2002:a05:6820:1e0b:b0:5fa:2e20:a371 with SMTP id 006d021491bc7-5fa3876111emr24438260eaf.1.1738017979415;
+        Mon, 27 Jan 2025 14:46:19 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5fa8b9b8fd3sm2519790eaf.40.2025.01.27.14.46.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jan 2025 14:46:19 -0800 (PST)
+Message-ID: <b8c68fef-3427-4617-989d-20529d9293dc@baylibre.com>
+Date: Mon, 27 Jan 2025 16:46:17 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250127-msm8226-modem-v3-13-67e968787eef@lucaweiss.eu>
-References: <20250127-msm8226-modem-v3-0-67e968787eef@lucaweiss.eu>
-In-Reply-To: <20250127-msm8226-modem-v3-0-67e968787eef@lucaweiss.eu>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- =?utf-8?q?Matti_Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Luca Weiss <luca@lucaweiss.eu>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1665; i=luca@lucaweiss.eu;
- h=from:subject:message-id; bh=p2uZKUC/cC98/Emuc0q/l0zqi6X3Z3jBScIikxvDilk=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBnmAzKNlbaD0ZX5QiUDcIYnGuLuMVE3gatnoYnd
- 6I5XwrlcF+JAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZ5gMygAKCRBy2EO4nU3X
- VoTyD/9uQ0kSlsnJs99087Xs5np1NycVcUZRUyyE3DhAkUFUy4KKAYkYFqBTkpC/trMWSW8L2lG
- uYKrmPvXiQQ8TzdpDzIolkotGIgw/RmHzvvvOpnxWU1GYguVUKkGIHppLQ4WZL9s78vATw/OHdY
- 5cC57nkMm5IzVpqi7ouSDxcknv4dUmJlujc/KzKaWuD2HPvSFyMWhPkDX2sPjkWmbdDOlnubCZS
- ve2dJUeeOZTAe9GKQupO5tMvbrd129GSFwieYvzc13k/D9/s874f+NUUPJdhgb9AOI12bzErB3N
- ouql9nmFFbYqLQC8rQiZq654WRC2UCaAcKHuKbUTFYCVbaNwAiFVjbvdxbCRYTCNzrbosPOd975
- Eadk/EnqgQe/Rg1zEU95S3wRa9otB8TPE6iuXOHYcbDmTuGbTzGFtRkgMhdXbaoxcu6AWlHpuSe
- mM0qPpSZJon4XZOZ7Lg8nSUZ2A+lf2qlwcK1vR4X910EsAxNB/kGjEUbo7w/lM8Vc1u8aJxsNAP
- mtYDtw+n+UfFhB2JuAvoEczk8SivGoR1oUX9LxOa226tnT1VjWeNWZgCo/U2JN+XB/IvH64JBIS
- 4g5Rn+S2iIKunsCpf80ZMpKAqR2JuBME/OEHzN6M3BIBfij3QxIrXsG/O8HphUse7Hdv+InDW5y
- gsggzCvs9vM+pHQ==
-X-Developer-Key: i=luca@lucaweiss.eu; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 09/16] iio: adc: ad7768-1: remove unnecessary locking
+To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: lars@metafoo.de, Michael.Hennerich@analog.com,
+ marcelo.schmitt@analog.com, jic23@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, jonath4nns@gmail.com,
+ marcelo.schmitt1@gmail.com
+References: <cover.1737985435.git.Jonathan.Santos@analog.com>
+ <df331cd681feb756d06df4173f67f75ec655bfb2.1737985435.git.Jonathan.Santos@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <df331cd681feb756d06df4173f67f75ec655bfb2.1737985435.git.Jonathan.Santos@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+On 1/27/25 9:13 AM, Jonathan Santos wrote:
+> The current locking is only preventing a triggered buffer Transfer and a
+> debugfs register access from happening at the same time. If a register
+> access happens during a buffered read, the action is doomed to fail anyway,
+> since we need to write a magic value to exit continuous read mode.
+> 
+> Remove locking from the trigger handler and use
+> iio_device_claim_direct_mode() instead in the register access function.
+> 
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> ---
+> v2 Changes:
+> * New patch in v2. It replaces the guard(mutex) patch. 
+> ---
+>  drivers/iio/adc/ad7768-1.c | 23 ++++++++++-------------
+>  1 file changed, 10 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
+> index 17a49bf74637..5e2093be9b92 100644
+> --- a/drivers/iio/adc/ad7768-1.c
+> +++ b/drivers/iio/adc/ad7768-1.c
+> @@ -271,16 +271,16 @@ static int ad7768_reg_access(struct iio_dev *indio_dev,
+>  	struct ad7768_state *st = iio_priv(indio_dev);
+>  	int ret;
+>  
+> -	mutex_lock(&st->lock);
+> -	if (readval) {
+> +	ret = iio_device_claim_direct_mode(indio_dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (readval)
+>  		ret = regmap_read(st->regmap, reg, readval);
+> -		if (ret)
+> -			goto err_unlock;
+> -	} else {
+> +	else
+>  		ret = regmap_write(st->regmap, reg, writeval);
+> -	}
+> -err_unlock:
+> -	mutex_unlock(&st->lock);
+> +
+> +	iio_device_release_direct_mode(indio_dev);
+>  
+>  	return ret;
+>  }
+> @@ -495,18 +495,15 @@ static irqreturn_t ad7768_trigger_handler(int irq, void *p)
+>  	struct ad7768_state *st = iio_priv(indio_dev);
+>  	int ret;
+>  
+> -	mutex_lock(&st->lock);
+> -
+>  	ret = spi_read(st->spi, &st->data.scan.chan, 3);
+>  	if (ret < 0)
+> -		goto err_unlock;
+> +		goto out;
+>  
+>  	iio_push_to_buffers_with_timestamp(indio_dev, &st->data.scan,
+>  					   iio_get_time_ns(indio_dev));
+>  
+> -err_unlock:
+> +out:
+>  	iio_trigger_notify_done(indio_dev->trig);
+> -	mutex_unlock(&st->lock);
+>  
+>  	return IRQ_HANDLED;
+>  }
 
-Enable modem remoteproc on samsung,matisse-wifi & matisselte.
-
-The mattisselte - being msm8926 - requires an extra mss-supply, so add
-that as well.
-
-Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
-Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
----
- arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi | 7 +++++++
- arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts      | 4 ++++
- 2 files changed, 11 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
-index 0a3147656f36ca2616e0e3cc7c1dd808b55f3a88..f1544a7e8369c329360e235c48291a5d4c261fdc 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
-@@ -229,6 +229,13 @@ &blsp1_uart3 {
- 	status = "okay";
- };
- 
-+&modem {
-+	mx-supply = <&pm8226_l3>;
-+	pll-supply = <&pm8226_l8>;
-+
-+	status = "okay";
-+};
-+
- &rpm_requests {
- 	regulators {
- 		compatible = "qcom,rpm-pm8226-regulators";
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts b/arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts
-index 772827cad972ad4ff032cfb9310568c5d2f0170f..73e19176eb97af569d99580c6b28fb2e0ec7f1b3 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8926-samsung-matisselte.dts
-@@ -28,6 +28,10 @@ reg_tsp_3p3v: regulator-tsp-3p3v {
- 	};
- };
- 
-+&modem {
-+	mss-supply = <&pm8226_s5>;
-+};
-+
- &tlmm {
- 	tsp_en1_default_state: tsp-en1-default-state {
- 		pins = "gpio32";
-
--- 
-2.48.1
-
+I think the lock can be fully removed from struct ad7768_state  if it isn't
+being used anymore (and remove mutex_init() in probe()).
 
