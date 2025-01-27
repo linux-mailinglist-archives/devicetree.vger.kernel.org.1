@@ -1,241 +1,114 @@
-Return-Path: <devicetree+bounces-141046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26C3BA1D37A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 10:32:57 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BE41A1D39F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 10:39:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C71C91885B17
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 09:32:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BAC23188206F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 09:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BC301FE472;
-	Mon, 27 Jan 2025 09:32:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57DB81FDE0A;
+	Mon, 27 Jan 2025 09:39:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UqhyNiAV"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Eeyr4+lv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACD111FDA9C;
-	Mon, 27 Jan 2025 09:32:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5618A1FC7E7;
+	Mon, 27 Jan 2025 09:39:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737970332; cv=none; b=r/7oAe0BcoHkIndQ1KMkC753eJ2L9MUGpEXIQVraLnvg52b74EKVw5bwfMTRa2+TufoN/it8xVauAvnP3Uh1xxN8GLPy9Sego8WIjBc2IVKvGdDvMwh1YSmfH8ThGZbThaXMHrI0bXQYF2ultR75uV8Cf6aSIihFQPrnJT3seHM=
+	t=1737970752; cv=none; b=NAw8kpSklAzZBmTglM3xw8tsHgLIhQEjy17iXqQmeX4tCvFW2tU87cQ/hkWJ2lQJ80O45DxhCAJ8cl5R18nVXIoOaSZdWSqxDOuaVE2r8i4bb2y3HZqAx7eTtqeEX+XYW3eVUvVa1CoXoZ8Usr9Byumv+c5Z9NLTiTsjOX47DoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737970332; c=relaxed/simple;
-	bh=CDckDTWRVbLLHVsSqCmObMMPBHpC3XZ8+xevYDfnDTk=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PTo9ny3E8jKqwhxZSwF7Luc32fjD3Xb2INjO1kTTOFWy/jvDvmGjaEaoMa+ir348sVPm80kFPgmQSsoGxPEdyUe3Nbe8jKRUVs9bNMXIS+I4hcT6wejissh+hK7pOFK7uzQ5YqUTEw1rHpegwiaTU6xj/SbCUmuOTtH74d9aAQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UqhyNiAV; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50R1hUrc008471;
-	Mon, 27 Jan 2025 09:32:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	xrwZitG5Pruqvw3YvFX++HaCjin3bRg7HvX3tHo6OZc=; b=UqhyNiAVzSsoKGl+
-	0LFaJXEzGfK5xZ+cVCOn0Qe85Orvu2h4LEqubCzPPI18EdmRFU85PE4W3+XgvK6m
-	YSAV0gxT+wUYrvaiqWZjDduPq8O9nQVHX4X2YYwLhpW0b4JBY1wW5GDIpI/DhhJN
-	rzPwibwzAi3eB7Y57FGbLCmyWusfWmcc0SjbqxY/h3poJVFZyhLCtjgiIdaOz8lc
-	g9f7Jd4ouC/je745wZ/5B93z73h5qcO3jmu6sviivvJNu3102vpcY+0lhLfRFwIH
-	gu2Ng4WCHA8WFsYNjVvTeRVoTc1cmzmDbKhWwESk38Ceokb8TJcaWzxBEEJ0eSvR
-	2Po4Pg==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44dhu9hq4c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Jan 2025 09:32:06 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50R9W5S9030866
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Jan 2025 09:32:05 GMT
-Received: from hu-srichara-blr.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 27 Jan 2025 01:32:01 -0800
-From: Sricharan R <quic_srichara@quicinc.com>
-To: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <konradybcio@kernel.org>, <rafael@kernel.org>,
-        <viresh.kumar@linaro.org>, <ilia.lin@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>
-CC: <quic_srichara@quicinc.com>
-Subject: [PATCH 4/4] arm64: dts: qcom: ipq5424: Enable cpufreq support
-Date: Mon, 27 Jan 2025 15:01:28 +0530
-Message-ID: <20250127093128.2611247-5-quic_srichara@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250127093128.2611247-1-quic_srichara@quicinc.com>
-References: <20250127093128.2611247-1-quic_srichara@quicinc.com>
+	s=arc-20240116; t=1737970752; c=relaxed/simple;
+	bh=/oF01OFEyDn9qTjpcxcGftFf5uENLZ1d5cGlslzgPcc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hwrIYSlU0Ma1abYLkk5YIgeSC8C0baS6S2CCukxTc/0P4JQcrbCLtS19AT8eSYOeplHV46NhiiCRXeuisJPoBy387MiaSkV5Kuf4Zg80VqySQIbjO7XfUhNNgCNQYX/BEE0IizOJI5NnChSHQW2CMFcguolnkt6zPhHT7g07L8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Eeyr4+lv; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1737970748;
+	bh=/oF01OFEyDn9qTjpcxcGftFf5uENLZ1d5cGlslzgPcc=;
+	h=From:Subject:Date:To:Cc:From;
+	b=Eeyr4+lvrNIRr9FiGOniPZ/qyJmRJTuD7rAUYjNqmnSC8hkbXJgpMGckDA4Zu1FNK
+	 zbPrXGgjaYMNW1nfZluWxVD7e07wnS6GUW9aGzLxa+xq6U6KVQXZudEh/+IwWJTK9k
+	 XnVfViMXfy1h0DQC1sBHDfAAMR08rea1QwQjG1uKUt4IVZW9GW07X2O2AYd1AYD0Vu
+	 kZrx7NdXo/gstS+BojtDWFDHVO7E7CfmwgKrt8H2m8ar8dfe9c6P+WjjXy5Z1Mg3AT
+	 IJHoEdBXsNdg8h0sCKVd3Jxc2z2EAdHzJGYmFn1whryhWNaEPSdrQghc5x+VPMRrKp
+	 AuNKHfisqz2XA==
+Received: from apertis-1.home (2a01cb088CcA73006086F5f072C6a07A.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:8cca:7300:6086:f5f0:72c6:a07a])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id EAFAE17E0B25;
+	Mon, 27 Jan 2025 10:39:07 +0100 (CET)
+From: Julien Massot <julien.massot@collabora.com>
+Subject: [PATCH v2 0/2] Add basic support for MyIR Remi Pi
+Date: Mon, 27 Jan 2025 10:38:45 +0100
+Message-Id: <20250127-myir-remi-pi-v2-0-7bd3a1c62752@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 4r0cpW53rfduI2Ln8-Nftt1L49yWmm0X
-X-Proofpoint-ORIG-GUID: 4r0cpW53rfduI2Ln8-Nftt1L49yWmm0X
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-27_04,2025-01-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 impostorscore=0
- phishscore=0 adultscore=0 mlxlogscore=999 suspectscore=0 malwarescore=0
- clxscore=1011 mlxscore=0 lowpriorityscore=0 bulkscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501270076
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACVUl2cC/3XMQQqDMBCF4avIrDslCabVrrxHcRHjWAfUyKRIR
+ XL3pu67/B+874BIwhThURwgtHHksOQwlwL86JYXIfe5wShjlTYG550FhWbGlbEu+5uydrDVvYZ
+ 8WYUG/pzcs809cnwH2U9907/1D7RpVKioLEn7rnK1anyYJtcFcVcfZmhTSl/zbJElrAAAAA==
+X-Change-ID: 20250122-myir-remi-pi-94d6055f5879
+To: Geert Uytterhoeven <geert+renesas@glider.be>, 
+ Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Julien Massot <julien.massot@collabora.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
 
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+The Remi Pi is a compact board based on the Renesas RZ/G2L SoC.
 
-Add the qfprom, cpu clocks, A53 PLL and cpu-opp-table required for
-CPU clock scaling.
+This initial patchset add support for basic functions:
+     - UART
+     - I2C
+     - HDMI
+     - Ethernet
 
-Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+More work is needed to support the remaining functions such as
+USB Type C, SD card, Audio, Wi-Fi and Bluetooth.
+
+Some schematics are available at https://down.myir-tech.com/RemiPi/
+
+Signed-off-by: Julien Massot <julien.massot@collabora.com>
 ---
- arch/arm64/boot/dts/qcom/ipq5424.dtsi | 71 +++++++++++++++++++++++++++
- 1 file changed, 71 insertions(+)
+Changes in v2:
+- Reorder Makefile entry to be sorted
+- Remove underscore from DT nodes names
+- Fix compatible for ethernet nodes and remove uneeded properties
+- Remove uneeded x1-clock
+- Link to v1: https://lore.kernel.org/r/20250122-myir-remi-pi-v1-0-0e44e1cb8a90@collabora.com
 
-diff --git a/arch/arm64/boot/dts/qcom/ipq5424.dtsi b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-index 577b88cd5172..3c07f7c28c4a 100644
---- a/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq5424.dtsi
-@@ -7,6 +7,7 @@
-  */
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/clock/qcom,apss-ipq.h>
- #include <dt-bindings/clock/qcom,ipq5424-gcc.h>
- #include <dt-bindings/reset/qcom,ipq5424-gcc.h>
- #include <dt-bindings/gpio/gpio.h>
-@@ -38,6 +39,11 @@ cpu0: cpu@0 {
- 			reg = <0x0>;
- 			enable-method = "psci";
- 			next-level-cache = <&l2_0>;
-+			clocks = <&apss_clk APSS_SILVER_CORE_CLK>,
-+				 <&apss_clk L3_CORE_CLK>;
-+			clock-names = "cpu", "l3_core";
-+			operating-points-v2 = <&cpu_opp_table>;
-+
- 			l2_0: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-@@ -58,6 +64,10 @@ cpu1: cpu@100 {
- 			enable-method = "psci";
- 			reg = <0x100>;
- 			next-level-cache = <&l2_100>;
-+			clocks = <&apss_clk APSS_SILVER_CORE_CLK>,
-+				 <&apss_clk L3_CORE_CLK>;
-+			clock-names = "cpu", "l3_core";
-+			operating-points-v2 = <&cpu_opp_table>;
- 
- 			l2_100: l2-cache {
- 				compatible = "cache";
-@@ -73,6 +83,10 @@ cpu2: cpu@200 {
- 			enable-method = "psci";
- 			reg = <0x200>;
- 			next-level-cache = <&l2_200>;
-+			clocks = <&apss_clk APSS_SILVER_CORE_CLK>,
-+				 <&apss_clk L3_CORE_CLK>;
-+			clock-names = "cpu", "l3_core";
-+			operating-points-v2 = <&cpu_opp_table>;
- 
- 			l2_200: l2-cache {
- 				compatible = "cache";
-@@ -88,6 +102,10 @@ cpu3: cpu@300 {
- 			enable-method = "psci";
- 			reg = <0x300>;
- 			next-level-cache = <&l2_300>;
-+			clocks = <&apss_clk APSS_SILVER_CORE_CLK>,
-+				 <&apss_clk L3_CORE_CLK>;
-+			clock-names = "cpu", "l3_core";
-+			operating-points-v2 = <&cpu_opp_table>;
- 
- 			l2_300: l2-cache {
- 				compatible = "cache";
-@@ -98,6 +116,39 @@ l2_300: l2-cache {
- 		};
- 	};
- 
-+	cpu_opp_table: opp-table-cpu {
-+		compatible = "operating-points-v2-kryo-cpu";
-+		opp-shared;
-+		nvmem-cells = <&cpu_speed_bin>;
-+
-+		/*
-+		 * CPU supports two frequencies and the fuse has LValue instead
-+		 * of limits. As only two frequencies are supported, considering
-+		 * zero Lvalue as no limit and Lvalue as 1.4GHz limit.
-+		 * ------------------------------------------------------------
-+		 * Frequency     BIT1    BIT0    opp-supported-hw
-+		 *	      1.4GHz  No Limit
-+		 * ------------------------------------------------------------
-+		 * 1416000000      1       1	    0x3
-+		 * 1800000000      0       1	    0x1
-+		 * ------------------------------------------------------------
-+		 */
-+
-+		opp-1416000000 {
-+			opp-hz = /bits/ 64 <1416000000>;
-+			opp-microvolt = <1>;
-+			opp-supported-hw = <0x3>;
-+			clock-latency-ns = <200000>;
-+		};
-+
-+		opp-1800000000 {
-+			opp-hz = /bits/ 64 <1800000000>;
-+			opp-microvolt = <2>;
-+			opp-supported-hw = <0x1>;
-+			clock-latency-ns = <200000>;
-+		};
-+	};
-+
- 	memory@80000000 {
- 		device_type = "memory";
- 		/* We expect the bootloader to fill in the size */
-@@ -151,6 +202,18 @@ soc@0 {
- 		#size-cells = <2>;
- 		ranges = <0 0 0 0 0x10 0>;
- 
-+		qfprom@a6000 {
-+			compatible = "qcom,qfprom";
-+			reg = <0x0 0xa6000 0x0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			cpu_speed_bin: cpu-speed-bin@234 {
-+				reg = <0x234 0x1>;
-+				bits = <0 8>;
-+			};
-+		};
-+
- 		tlmm: pinctrl@1000000 {
- 			compatible = "qcom,ipq5424-tlmm";
- 			reg = <0 0x01000000 0 0x300000>;
-@@ -363,6 +426,14 @@ frame@f42d000 {
- 			};
- 		};
- 
-+		apss_clk: apss-clock@fa80000 {
-+			compatible = "qcom,ipq5424-apss-clk";
-+			reg = <0x0 0x0fa80000 0x0 0x20000>;
-+			clocks = <&xo_board>, <&gcc GPLL0>;
-+			clock-names = "xo", "gpll0";
-+			#clock-cells = <1>;
-+		};
-+
- 		tmel_qmp: qmp@32090000 {
- 			compatible = "qcom,ipq5424-tmel-qmp", "qcom,tmel-qmp";
- 			reg = <0 0x32090000 0 0x2000>;
+---
+Julien Massot (2):
+      dt-bindings: soc: renesas: Document MyIR Remi Pi board
+      arm64: renesas: add initial support for MYIR Remi Pi
+
+ .../devicetree/bindings/soc/renesas/renesas.yaml   |   7 +
+ arch/arm64/boot/dts/renesas/Makefile               |   1 +
+ .../arm64/boot/dts/renesas/r9a07g044l2-remi-pi.dts | 388 +++++++++++++++++++++
+ 3 files changed, 396 insertions(+)
+---
+base-commit: c4b9570cfb63501638db720f3bee9f6dfd044b82
+change-id: 20250122-myir-remi-pi-94d6055f5879
+
+Best regards,
 -- 
-2.34.1
+Julien Massot <julien.massot@collabora.com>
 
 
