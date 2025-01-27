@@ -1,86 +1,129 @@
-Return-Path: <devicetree+bounces-141173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BAEDA1DADD
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:56:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A875A1DB00
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:07:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5670D1889135
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:56:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F3D8616357B
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:07:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0030215CD78;
-	Mon, 27 Jan 2025 16:56:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 571091885BD;
+	Mon, 27 Jan 2025 17:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fb0hE2Lz"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ablNZYVg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9275433CB;
-	Mon, 27 Jan 2025 16:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A6E1885B3;
+	Mon, 27 Jan 2025 17:07:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737996983; cv=none; b=R+vPBrH0NPGLtKhdO/lVqULXPtndgFs3Y2mBTtKgJdwhYWGQueCi/zesz1LgbERWwxqkGM2TCC9PrVUho8TXePpxLBXCgVR2iMcZFN2flP4jAvFwj9jVXZwKhxtm7YEhyLgdzCU9jhOVWR9T0TKYItMbpJSNChJ9xpEwWdEusXI=
+	t=1737997638; cv=none; b=gJ52Sc5kA/6taSOA8RDKZo++KIELa8PjeO7RAfoxfMGa0ogh7I0Q8Zi1tvGVakckTzr0O4457DtwtxfPjljbeFfLN28qGALEh4m0SByBRp9guiOrOZ3RSh+sYR3qgsLhyCD7kA3tXpvIbatmZ5ObEN8e4c2xjWHfcK+LOlhJfQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737996983; c=relaxed/simple;
-	bh=Icp1z06DcSKJEBEZLh/HqaKK5uWkxBLX4qEKaiKT0g8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SYy6xsPEPlPiq6EDnH7npS488kQeaQmmUXhHmHnvMa1afZL18MSYyZvw0Vp5ZT27wSM4D9+VkI7mA8Fkc3NAhn8rF/qpSwz4pjvWxSKGhMS9rHxOfWTTZCe470utxe7s0I5EKu8VM5FYq8HcodKrDNSmYFEzQ2rQFB6Ced2Ng6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fb0hE2Lz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1390BC4CED2;
-	Mon, 27 Jan 2025 16:56:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737996983;
-	bh=Icp1z06DcSKJEBEZLh/HqaKK5uWkxBLX4qEKaiKT0g8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fb0hE2LztpT+UF5YgFqYGB8TNmnGCAPb+rs7zq0g4nGT0fJvtx9db3fjQJepVskSV
-	 U2Bmo/OUlBUdrp4ehM6amzOM9B0p79EN0eSj3BR0GD9jm80i4hVsFeEfiJNigoCl/K
-	 GOzbS1LQAy3CbJjHAbkO5cEcnEFwFBWeAxAq05CQTBiCw/15UVfD/gHRKUqqrjmaRs
-	 SIpfcsQSE+EfUrN1cHvu1JogK7KJmuG8Qig0sjSuR0ybRawdVX/hTApJxtyvgalKwx
-	 nb8qcvJy9jzDFvn6qX9gB0tix/FfeRZ7e4pB5Bzc31OEPZhDD3A+F/7nmG/OA2zAT4
-	 QMSPVwi5bbL9w==
-Date: Mon, 27 Jan 2025 10:56:22 -0600
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: marcelo.schmitt@analog.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, jic23@kernel.org, jonath4nns@gmail.com,
-	linux-iio@vger.kernel.org, lars@metafoo.de,
-	linux-kernel@vger.kernel.org, Michael.Hennerich@analog.com,
-	marcelo.schmitt1@gmail.com, krzk+dt@kernel.org
-Subject: Re: [PATCH v2 03/16] dt-bindings: iio: adc: ad7768-1: Document GPIO
- controller
-Message-ID: <173799698101.443043.276821250672905938.robh@kernel.org>
-References: <cover.1737985435.git.Jonathan.Santos@analog.com>
- <dc866cb508917828f83242f3438dd1d6ac9d874c.1737985435.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1737997638; c=relaxed/simple;
+	bh=pUUB8KCG//LM2unGcwdG84Ht4M5/P2N62irppFkJmKw=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=ruBOiJclIuPiKGriO364/8DM5XeiKeCUxB0S2Yu5wt95oQbaKJaLU7eo4j32+q6IuTyAivdpqfzqPcImfFeWKfQ0NZfwxPqbmsSSIMIgshOHYnTMp1tJmG8vNVg5RJM0BhXXvuAeXJ08ZxDKdtFisllzQP6UzxmXCTDJYtkmhmQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ablNZYVg; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1737997636; x=1769533636;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=pUUB8KCG//LM2unGcwdG84Ht4M5/P2N62irppFkJmKw=;
+  b=ablNZYVggf89mP/sUC8WJPP0/WKkEOGKcrjh8+TVlj/TfKPhj7VbJ1fC
+   5Q/V7jPbvUy9dX3uHwlMsQ2yLu4v8WtYcdtiOAgPrdltUPa+aoxE94nuj
+   ekgljmECGmToYlwirXGeFsJ1qACjMx0GI0ieDTX8atvprIq5eE7/9k1Cu
+   yti+q+MWfD7bXoN3uGOHxw/BWfdJAJcf8YHOAOs1CNk0cVo+VywEVRccV
+   irN7ZUfD1YwOfnyNoWK261MUKzVpAVU84oNw/a1MgJCAN5t7cMsvyJHXk
+   fOoiiHD7YO6NECW5kp0QLXFDu67q9Q11T69AZ+NbBzMl4GR4jbne7mi0j
+   Q==;
+X-CSE-ConnectionGUID: J6zClvOUSAqrAQoanoIR4g==
+X-CSE-MsgGUID: 48MkT0FESiqEP/X5KOZozg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="42132364"
+X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; 
+   d="scan'208";a="42132364"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2025 09:07:15 -0800
+X-CSE-ConnectionGUID: IQ5gXYMaTT2Mt9HIK+ONuw==
+X-CSE-MsgGUID: MldP2UXrRcCTnDkgiRpHHg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; 
+   d="scan'208";a="108464717"
+Received: from apgc00009.png.altera.com ([10.244.70.6])
+  by orviesa006.jf.intel.com with ESMTP; 27 Jan 2025 09:07:12 -0800
+From: Mahesh Rao <mahesh.rao@intel.com>
+To: conor@kernel.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dinguyen@kernel.org,
+	hao.wu@intel.com,
+	krzk+dt@kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-fpga@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	mahesh.rao@altera.com,
+	mahesh.rao@intel.com,
+	mdf@kernel.org,
+	robh@kernel.org,
+	trix@redhat.com,
+	yilun.xu@intel.com
+Subject: Re: [PATCH 2/3] dt-bindings: firmware: stratix10: Convert to json-schema
+Date: Tue, 28 Jan 2025 01:07:05 +0800
+Message-Id: <20250127170705.12988-1-mahesh.rao@intel.com>
+X-Mailer: git-send-email 2.35.3
+In-Reply-To: <20250122-decode-celtic-fb7a491957bb@spud>
+References: <20250122-decode-celtic-fb7a491957bb@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dc866cb508917828f83242f3438dd1d6ac9d874c.1737985435.git.Jonathan.Santos@analog.com>
+Content-Transfer-Encoding: 8bit
 
+Hi Conor Dooley,
 
-On Mon, 27 Jan 2025 12:11:44 -0300, Jonathan Santos wrote:
-> The AD7768-1 ADC exports four bidirectional GPIOs accessible
-> via register map.
-> 
-> Document GPIO properties necessary to enable GPIO controller for this
-> device.
-> 
-> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> ---
-> v2 Changes:
-> * New patch in v2.
-> ---
->  .../devicetree/bindings/iio/adc/adi,ad7768-1.yaml      | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+On Wed, 22 Jan 2025 18:40:41 +0000, Conor Dooley wrote:
+> > Convert intel,stratix10-svc service layer devicetree binding file from
+> > freeform format to json-schema.
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> > +
+> > +  method:
+> > +    enum: [smc, hvc]
+> > +    description: supervisory call method to be used for the service layer.
+> 
+> This looks to be missing a type (string) and an explanation of what "smc" and
+> "hvc" are.
+> 
 
+Thanks for pointing out , will do the change in next revision.
+
+> > +
+> > +  fpga-mgr:
+> > +    $ref: /schemas/fpga/intel,stratix10-soc-fpga-mgr.yaml
+> > +    description: Optional child node for fpga manager to perform fabric
+> configuration.
+> 
+> This is new and not justified in your commit message. Please explain where
+> this has come from in v2.
+> 
+> Cheers,
+> Conor.
+> 
+
+Sure, this is an optional child node/driver present in the device tree for
+the Agilex SoC devices, but it was not mentioned in the text documentation.
+Therefore, I had included it here. I will provide more details about this
+change in the next version.
+
+Best Regards
+Mahesh Rao
 
