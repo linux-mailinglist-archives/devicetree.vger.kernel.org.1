@@ -1,173 +1,130 @@
-Return-Path: <devicetree+bounces-141156-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141157-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 802A2A1D94A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:16:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B1A3A1D956
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:17:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A14F1887799
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 15:16:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDBEE3A6A8A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 15:16:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ACF414A617;
-	Mon, 27 Jan 2025 15:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 885DC1422D4;
+	Mon, 27 Jan 2025 15:16:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="TTohG8pf"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P249/K6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FAA714A630;
-	Mon, 27 Jan 2025 15:14:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56DA86A33B
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 15:16:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737990900; cv=none; b=vDXpkwJJ29Mn1lVRYPtG95w0smgyUXmlOO+4M6O0zQnZkAh+y/gPDxXNg67QAfXHM6uMZghiZsdB4df/Acuk2Bo2vUiBuRhZLGau2YdYrTSwK1XVm8PCRflH3S5LzTx475rYBMsoNd3KJ4+DKgeHSZQS78Ht+qXlamw4N+rL1ys=
+	t=1737990976; cv=none; b=VJbaNJToZFu/X1bgyacdusomKgNTiOlu3KNmuYIMOJdCWwTzjM3yX2NCTvhcgRo8s5hFwo2h8cPAiT0tUNnooacx8Ra4CeZ8CA1pXz44T1jC0MZf/5qaD5kvT+Pqpy0Bha+pZlMi6+QZd3wfGu9Fm4ioK0xI8j4cyyEA/h9s+N8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737990900; c=relaxed/simple;
-	bh=vjcQkQgpYpar4YF8wJPb0qQjbsU4Jj0yEOpyN5bDYjc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=adSEATYplSdQkP4UuXRHBOF1MvZRf1aRvx93EwZEzJpBxY79Qs+Hj6u1zybiSHYHox1tegjXQ8+IFbDjILCKEklSgBHc+h4ASMyh5+3Cw9Bunt5nMMRa0nfunYscPRCwwzYSxliKwQeTF6bwjfXgcJeRpiJ/Jkrk7EcBTNvejtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=TTohG8pf; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50RDWB9U005682;
-	Mon, 27 Jan 2025 10:14:44 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=FiWRO
-	hV+YSU4lSmrrRh3jrZVpIJthc4jSCHfbK4WoGQ=; b=TTohG8pfwTeMA7Bl/ESmp
-	KZJZzqzpIZs4eY/2i19AMc6CO6pzb1iYa3Zd16dJb6azSvGgQkiwIovK489eanqp
-	G0v9dNWdKzUHJUE3h+m2tG9qPN98PJlhTpo/jBoqK7jKPuci+7CXIHZpGtcH0wYY
-	bPed/wetJXINonsfY1iUMsLFiKJK/rKyBmk6lm9RmwkCi6I1TLesqoddrekMnqor
-	cr+azAzOA9BDnhyI81ECYG9bbn2v14iSuTLBh9GXKIutNl4KdAgCKyIkmez2YWLF
-	hTyJMMc55y+yn5XI/Z76WnktxcvHBOSNGPe2D5FZKgKfjDorJCc51mQwZXNJrZ6v
-	A==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 44eb44gdqm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 27 Jan 2025 10:14:44 -0500 (EST)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 50RFEhnC011128
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 27 Jan 2025 10:14:43 -0500
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.14; Mon, 27 Jan
- 2025 10:14:43 -0500
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Mon, 27 Jan 2025 10:14:43 -0500
-Received: from JSANTO12-L01.ad.analog.com ([10.65.60.206])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 50RFEWPk008470;
-	Mon, 27 Jan 2025 10:14:34 -0500
-From: Jonathan Santos <Jonathan.Santos@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: Jonathan Santos <Jonathan.Santos@analog.com>, <lars@metafoo.de>,
-        <Michael.Hennerich@analog.com>, <marcelo.schmitt@analog.com>,
-        <jic23@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <jonath4nns@gmail.com>,
-        <marcelo.schmitt1@gmail.com>
-Subject: [PATCH v2 16/16] iio: adc: ad7768-1: add low pass -3dB cutoff attribute
-Date: Mon, 27 Jan 2025 12:14:31 -0300
-Message-ID: <91b697b66a42ead9e05dd4e79d6fb1e776c569d6.1737985435.git.Jonathan.Santos@analog.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1737985435.git.Jonathan.Santos@analog.com>
-References: <cover.1737985435.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1737990976; c=relaxed/simple;
+	bh=uGfClbJNYW3WlXwU/kbZPJMDflOSclIXAFXm1sTN3xw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aenqMHVR/R6A8+tdXb4b42sQj4Rq2GqMvLu++qdgyI5kMA3rvTSHMY9P2gLsS3TEEYG35j+g3aNEGb2qgvf4A6P4J5y1L3XbifNjC6+GhLU8g+UeC5JImBCKx0Vbm9VZWBCfdnCYo4gRniZxTmfqJppVRcGUomvRaZTh8Jdg0cI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P249/K6n; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e46ebe19489so6117645276.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 07:16:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737990972; x=1738595772; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Z3fdf68cKnEaIGamBbArQHWaVBKPqUrbMqE+m1JNXYk=;
+        b=P249/K6n+pRZlUb3RP47FXUAiuvAYDnyTJ7eo6HO99aHQ8RO+lAxmT+hps3b3tMjKr
+         HhJDZRtWu5jtGzfclCyWYCdbd4bszyXHLc6azDkMFdVxtdj375IOz2sx8wzBvruict8l
+         FtsLx8m8/j7CB7tta0vO8EzAO5lMive22ng4Ru2wjhua1+Q5hdACb2KNTfKFs1Ba4kMk
+         XEPVMh/OMGacEnyXv6z9Wu5W5L/puFemRbssuXZzkaS0mgYM3A8JyZDHsYmmWak174+V
+         t8bxBtX8iy3fXMCZrOCHqz5JwH3YtwoNkqUZ+816ykY/Jxzj/qSwN+zqvkcg/I3Lt/Bz
+         Hx+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737990972; x=1738595772;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Z3fdf68cKnEaIGamBbArQHWaVBKPqUrbMqE+m1JNXYk=;
+        b=WQxn3lFCxt3Hth7sFiT0Sy7WSfegWNYyYvy2u9ak7WUC9O5gcRBvgyuilLLX2N1mE2
+         s4sBnpyOVyeW8lIq1Pf8+FvAbIhz5kDwEQHWoi6jH804IGYkuEo+VsmxU3BL0XkeH1Ri
+         Xy7k3K7U0rkg+giYTznsQZoCh4KNKkarXedDjJXDQ8Goe7iEuGZagb65Nzgelwd56Ftc
+         Aeu86j9skcsszjEukSVxaXYp9BklHjhYVE4CRumHa2mR0el/I+U9Ehzf9kky68GCLSaW
+         04LUEA0Sjvi2mkrPlvv4kLcntVgfGm2kJkzxyeJlUEFWmqujAPK69ImtpmHAaFBbLpEg
+         aiRg==
+X-Forwarded-Encrypted: i=1; AJvYcCXF+xrdzqvqdKUGHol6o5zUVVjaqD8ZL3MAdD18VYLrS3ryAQZk1M/koAwziFt6U88QvnPGnmJlJkI/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyrw1TrkOJ6NkBKBf4wYAq/0QBvwBbgMVsqlbc6e0l3r4TOfHIk
+	5vHl/WLBszHD03H2/3RXUrGoSapI5E0+bxONuwaZXTD999DaQGhgaUEd75LAESd4QtUjeltHxT3
+	bFQtb9Ef98sRNkH0OtlKabpVn/XjN0kjcXgXkGw==
+X-Gm-Gg: ASbGncuEAS42JGFaO4sGQ1Qz42tJ1ctVPVz2prYI+iNsb3YmaWt2y1XAQmyp39fzTcn
+	euRcTUPJZh9h7wvzX0htq29JeslcIfQoMUoPGOzGF0G29CbcU3UpJeN+5SrdkUAg=
+X-Google-Smtp-Source: AGHT+IE7Vja9677she6CObvFAbVBiI5Ys+p+eByoUyFiITh4qV3MJatrF8vKcAYHzhv31KbUMJyT51BBZJ0PLRNDtTM=
+X-Received: by 2002:a05:6902:150c:b0:e57:88a0:3ca with SMTP id
+ 3f1490d57ef6-e57b1344ac2mr27218044276.40.1737990972298; Mon, 27 Jan 2025
+ 07:16:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-ORIG-GUID: YKygPqYe-rc38pZs783o70mI8dS4A2yp
-X-Proofpoint-GUID: YKygPqYe-rc38pZs783o70mI8dS4A2yp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-27_07,2025-01-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 bulkscore=0
- malwarescore=0 lowpriorityscore=0 mlxlogscore=999 phishscore=0
- adultscore=0 suspectscore=0 clxscore=1015 mlxscore=0 priorityscore=1501
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501270121
+References: <20250120184728.18325-1-ansuelsmth@gmail.com> <20250120184728.18325-2-ansuelsmth@gmail.com>
+ <20250121-zippy-umber-fossa-abbfb0@krzk-bin> <679770d8.7b0a0220.b6f23.38b4@mx.google.com>
+In-Reply-To: <679770d8.7b0a0220.b6f23.38b4@mx.google.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Mon, 27 Jan 2025 16:15:36 +0100
+X-Gm-Features: AWEUYZnk9Xh1b_Hveu4tndN_oObnjQYSeVJzcpRRCX5DJCyFhAmHsJWAlWuduBA
+Message-ID: <CAPDyKFoEDbSfQA3xPCUPsJCOdiDVdAjB1Fno=S7yrqJXSqnfXA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] mmc: mtk-sd: add support for AN7581 MMC Host
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Chaotian Jing <chaotian.jing@mediatek.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Wenbin Mei <wenbin.mei@mediatek.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	upstream@airoha.com
+Content-Type: text/plain; charset="UTF-8"
 
-Ad7768-1 has a different -3db frequency multiplier depending on
-the filter type configured. The cutoff frequency also varies according
-to the current ODR.
+On Mon, 27 Jan 2025 at 12:41, Christian Marangi <ansuelsmth@gmail.com> wrote:
+>
+> On Tue, Jan 21, 2025 at 08:59:19AM +0100, Krzysztof Kozlowski wrote:
+> > On Mon, Jan 20, 2025 at 07:47:02PM +0100, Christian Marangi wrote:
+> > > -                   pinctrl_select_state(host->pinctrl, host->pins_uhs);
+> > > +                   /* Skip setting uhs pins if not supported */
+> > > +                   if (host->pins_uhs)
+> > > +                           pinctrl_select_state(host->pinctrl, host->pins_uhs);
+> > >             } else {
+> > >                     dev_pm_clear_wake_irq(host->dev);
+> > >             }
+> > > @@ -2816,9 +2835,12 @@ static int msdc_of_clock_parse(struct platform_device *pdev,
+> > >     if (IS_ERR(host->src_clk))
+> > >             return PTR_ERR(host->src_clk);
+> > >
+> > > -   host->h_clk = devm_clk_get(&pdev->dev, "hclk");
+> > > -   if (IS_ERR(host->h_clk))
+> > > -           return PTR_ERR(host->h_clk);
+> > > +   /* AN7581 SoC doesn't have hclk */
+> > > +   if (!device_is_compatible(&pdev->dev, "airoha,an7581-mmc")) {
+> >
+> > Please avoid coding compatible in multiple places. Not only because
+> > above check is slow comparing to check on integer, but it just scales
+> > poorly and leads to less readable further code. Use driver data with
+> > model name or flags/quirks bitmask.
+> >
+>
+> I implemented this in a more compatible way so we don't need an
+> additional compatible anymore. Soo this series is not needed anymore.
+>
+> Should I flag these as not applicable anywhere in the patchwork systems?
 
-Add a readonly low pass -3dB frequency cutoff attribute to clarify to
-the user which bandwidth is being allowed depending on the filter
-configurations.
+No need to, just send new versions.
 
-Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
----
-v2 Changes:
-* New patch in v2.
----
- drivers/iio/adc/ad7768-1.c | 23 +++++++++++++++++++++--
- 1 file changed, 21 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
-index 6d0b430a8d54..daf91ef6f77b 100644
---- a/drivers/iio/adc/ad7768-1.c
-+++ b/drivers/iio/adc/ad7768-1.c
-@@ -149,6 +149,18 @@ enum ad7768_scan_type {
- 	AD7768_SCAN_TYPE_HIGH_SPEED,
- };
- 
-+/*
-+ * -3dB cutoff frequency multipliers (relative to ODR) for
-+ * each filter type. Values are multiplied by 1000.
-+ */
-+static const int ad7768_filter_3db_odr_multiplier[] = {
-+	[SINC5] = 204,
-+	[SINC5_DEC_X8] = 204,
-+	[SINC5_DEC_X16] = 204,
-+	[SINC3] = 261,
-+	[WIDEBAND] = 433,
-+};
-+
- static const int ad7768_mclk_div_rates[4] = {
- 	16, 8, 4, 2,
- };
-@@ -202,7 +214,8 @@ static const struct iio_chan_spec ad7768_channels[] = {
- 		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
- 		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
- 		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ) |
--					   BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),
-+					   BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO) |
-+					   BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY),
- 		.ext_info = ad7768_ext_info,
- 		.indexed = 1,
- 		.channel = 0,
-@@ -802,7 +815,7 @@ static int ad7768_read_raw(struct iio_dev *indio_dev,
- {
- 	struct ad7768_state *st = iio_priv(indio_dev);
- 	const struct iio_scan_type *scan_type;
--	int scale_uv, ret;
-+	int scale_uv, ret, temp;
- 
- 	scan_type = iio_get_current_scan_type(indio_dev, chan);
- 	if (IS_ERR(scan_type))
-@@ -842,6 +855,12 @@ static int ad7768_read_raw(struct iio_dev *indio_dev,
- 	case IIO_CHAN_INFO_OVERSAMPLING_RATIO:
- 		*val = st->oversampling_ratio;
- 
-+		return IIO_VAL_INT;
-+
-+	case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-+		temp = st->samp_freq * ad7768_filter_3db_odr_multiplier[st->filter_type];
-+		*val = DIV_ROUND_CLOSEST(temp, 1000);
-+
- 		return IIO_VAL_INT;
- 	}
- 
--- 
-2.34.1
-
+Kind regards
+Uffe
 
