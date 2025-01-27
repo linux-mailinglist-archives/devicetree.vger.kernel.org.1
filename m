@@ -1,84 +1,63 @@
-Return-Path: <devicetree+bounces-141214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD334A1DD6E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 21:35:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41EECA1DD89
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 21:46:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 280BB165D1A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 20:35:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7FF897A164A
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 20:46:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 802D5197A8E;
-	Mon, 27 Jan 2025 20:35:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0FCE194A6B;
+	Mon, 27 Jan 2025 20:46:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lmFsocao"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="khvpONAK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCD9E18FDA5;
-	Mon, 27 Jan 2025 20:35:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FDB18E756;
+	Mon, 27 Jan 2025 20:46:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738010152; cv=none; b=HCcVJV0vXZscl+IySJSscIsocFJJK/77VmRgIVPq8K2kMWdggHkY2fGw40GNxi42bcXYr2lLSDbMn8LKQd6tkTPdJds3A4a66LVMgYomoXuByV659b53bvJFGKmbJ/CkzS2pg9fTS0x2EQ/M94Xv7BAT7LqxJbVwFWdvuP6H3js=
+	t=1738010775; cv=none; b=jh0EpkYMOdr2IZmfq8aJvXHayzQ0Ma+UhefVG9VdSWIcNMUJuo4N104lI6L3khLnFS4qjFOs4M/U1wxlDA6mo5jR0T9FaN7VeC8EDs7AkC5TQMRLXCB0Ui9G7kL3J+jEegfQWCnGM/cIfktPB/dnoGtJSTjip85pLEHI5gmQwhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738010152; c=relaxed/simple;
-	bh=5eMJRLtuqqyveoagaSTgOeIYAFsliPhaMbkd6gMZSaU=;
+	s=arc-20240116; t=1738010775; c=relaxed/simple;
+	bh=xcZUmOduASjcFU2l+TPt7JE9O9AsRQh+pMzUv+ptJHc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kEu3rInXD/qGKvYn0giBkSP7RrNEpTUt7Yduj4gRMXwJkPaa6AcIiYfXcKeGHNvaVE2CpI8Le4ttj72dGqEkQeVQdQc11iPKbb4RdDu6VM4aWXmEGlp6Linga2pdkFi5qve4eKWVDtORTEavpiGIdidXnkxvXH8Q1Ha/crACd+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lmFsocao; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738010151; x=1769546151;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=5eMJRLtuqqyveoagaSTgOeIYAFsliPhaMbkd6gMZSaU=;
-  b=lmFsocaowAq5bsYdK4kIFzDgLldL7+9k6Z75UoOPuHBIu5V2VzCtyMdX
-   VrAJDA1PxWdfyy5ytwvPMr1pOkGTBzJDeexhHG9JmxbOZR8898ZqsRypj
-   p+aYqYsDXcWgCM2US3XzJuW72eQMYAKqmryo4BfEPQrLLufdxq4AiVdOG
-   GUXxqYc5yMIaRivQmZinCtW/hJ/A1qYo5gonzF8aCOxlg5dpiaOEdk0Z0
-   4CeoqnFyw1Dl0FBa9EKqcYlNDyfOyFcQCZ3mghnYUYAMrHq6rmdp0LWb/
-   MD5wQpvOvG5wFevq3kBZuhN65u9iMQ8frcNGs+QuQPNJ1GLttQJdQHwlf
-   Q==;
-X-CSE-ConnectionGUID: /fsOZOB6QnKUhq5woy8ywg==
-X-CSE-MsgGUID: ahXy+uORQL+lFQGzBMszaQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11328"; a="63845729"
-X-IronPort-AV: E=Sophos;i="6.13,239,1732608000"; 
-   d="scan'208";a="63845729"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jan 2025 12:35:48 -0800
-X-CSE-ConnectionGUID: 5guNiBOYQBmsRAtUYuMsUA==
-X-CSE-MsgGUID: nc+loxkyS++liyYqNhESqw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="113171423"
-Received: from lkp-server01.sh.intel.com (HELO d63d4d77d921) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 27 Jan 2025 12:35:45 -0800
-Received: from kbuild by d63d4d77d921 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1tcVpf-000h8Z-0t;
-	Mon, 27 Jan 2025 20:35:43 +0000
-Date: Tue, 28 Jan 2025 04:35:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Cedric Encarnacion <cedricjustine.encarnacion@analog.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lt8rUsdvMagcjYc8WN591KIIAjBE0pFu6y/4WCahc0s5kqRXn/LxzYKvKwtSEZGiWylAfu93rK1p0TvinCIGfhh/NNvjrfvkYB0omg9gTrkZvGfA87T+HZVEneHcNjb/AVXbaL25V82KVw2EGnK4CXpXVYWa5LlQNaAgotVAf9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=khvpONAK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0FFCC4CED2;
+	Mon, 27 Jan 2025 20:46:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738010774;
+	bh=xcZUmOduASjcFU2l+TPt7JE9O9AsRQh+pMzUv+ptJHc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=khvpONAKiR1DtKZJ2UCgl6U//jcW6XTfUiAFHlfEAxRNNbH1etcuw5z/RLFswNQR/
+	 cHA5zIBXfElNqzx8lODH7OlPxDw5X6Zr3Yp+yUBNKTJmRj7IVFuaUAE5DJY7g7Oes1
+	 NYDIwT9Ihoxs9wXaCFbw+OGCysISDtjJ6PPuwZvyNOsirwGdUXUdJ0CqUqhBZntH7u
+	 6UpTp+Br+j4tnZbPBuMC8Bic9LHs7SltPvxXwGPSX6WqbamHj9TUpj1TV4v/im+Yza
+	 pAUH/Ro999TQ5aClY+4VUUXZYsc7JisZ1EPxiZydP8EGMjiEE0zcviV7zXm5rtsU6t
+	 wSIldBurN9vmA==
+Date: Mon, 27 Jan 2025 14:46:13 -0600
+From: Rob Herring <robh@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@microchip.com>
+Cc: Ludovic Desroches <ludovic.desroches@microchip.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-i2c@vger.kernel.org,
-	Cedric Encarnacion <cedricjustine.encarnacion@analog.com>
-Subject: Re: [PATCH 2/2] hwmon: (pmbus/lt3074): add support for lt3074
-Message-ID: <202501280459.uH0yw7av-lkp@intel.com>
-References: <20250124-upstream-lt3074-v1-2-7603f346433e@analog.com>
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Andrei Simion <andrei.simion@microchip.com>,
+	linux-arm-kernel@lists.infradead.org, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Durai Manickam KR <durai.manickamkr@microchip.com>
+Subject: Re: [PATCH v3] dt-bindings: dma: convert atmel-dma.txt to YAML
+Message-ID: <20250127204613.GA820642-robh@kernel.org>
+References: <20250127-test-v3-1-1b5f5b3f64fc@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,45 +66,104 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250124-upstream-lt3074-v1-2-7603f346433e@analog.com>
+In-Reply-To: <20250127-test-v3-1-1b5f5b3f64fc@microchip.com>
 
-Hi Cedric,
+On Mon, Jan 27, 2025 at 03:51:58PM +0530, Charan Pedumuru wrote:
+> From: Durai Manickam KR <durai.manickamkr@microchip.com>
+> 
+> Add a description, required properties, appropriate compatibles and
+> missing properties like clocks and clock-names which are not defined in
+> the text binding for all the SoCs that are supported by microchip.
+> Update the text binding name `atmel-dma.txt` to
+> `atmel,at91sam9g45-dma.yaml` for the files which reference to
+> `atmel-dma.txt`. Drop Tudor name from maintainers.
+> 
+> Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
+> ---
+> Changes in v3:
+> - Renamed the text binding name `atmel-dma.txt` to
+>   `atmel,at91sam9g45-dma.yaml` for the files which reference to
+>   `atmel-dma.txt`.
+> - Removed `oneOf` and add a blank line in properties.
+> - Dropped Tudor name from maintainers.
+> - Link to v2: https://lore.kernel.org/r/20250123-dma-v1-1-054f1a77e733@microchip.com
+> 
+> Changes in v2:
+> - Renamed the yaml file to a compatible.
+> - Removed `|` and description for common properties.
+> - Modified the commit message.
+> - Dropped the label for the node in examples.
+> - Link to v1: https://lore.kernel.org/all/20240215-dmac-v1-1-8f1c6f031c98@microchip.com
+> ---
+>  .../bindings/dma/atmel,at91sam9g45-dma.yaml        | 66 ++++++++++++++++++++++
+>  .../devicetree/bindings/dma/atmel-dma.txt          | 42 --------------
+>  .../devicetree/bindings/misc/atmel-ssc.txt         |  2 +-
+>  MAINTAINERS                                        |  2 +-
+>  4 files changed, 68 insertions(+), 44 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml b/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
+> new file mode 100644
+> index 000000000000..d6d16869b7db
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/atmel,at91sam9g45-dma.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/dma/atmel,at91sam9g45-dma.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel Direct Memory Access Controller (DMA)
+> +
+> +maintainers:
+> +  - Ludovic Desroches <ludovic.desroches@microchip.com>
+> +
+> +description:
+> +  The Atmel Direct Memory Access Controller (DMAC) transfers data from a source
+> +  peripheral to a destination peripheral over one or more AMBA buses. One channel
+> +  is required for each source/destination pair. In the most basic configuration,
+> +  the DMAC has one master interface and one channel. The master interface reads
+> +  the data from a source and writes it to a destination. Two AMBA transfers are
+> +  required for each DMAC data transfer. This is also known as a dual-access transfer.
+> +  The DMAC is programmed via the APB interface.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - atmel,at91sam9g45-dma
+> +      - atmel,at91sam9rl-dma
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  "#dma-cells":
+> +    description:
+> +      Must be <2>, used to represent the number of integer cells in the dmas
+> +      property of client devices.
 
-kernel test robot noticed the following build warnings:
+You failed to address Conor's comment on this. The above is useless 
+because the schema says it is 2 and the description is for any #dma-cells. 
 
-[auto build test WARNING on a76539b293677c5c163b9285b0cd8dd420d33989]
+What's missing is answering "what do the 2 cells contain exactly?" That 
+was captured in this text:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Cedric-Encarnacion/dt-bindings-trivial-devices-add-lt3074/20250124-234209
-base:   a76539b293677c5c163b9285b0cd8dd420d33989
-patch link:    https://lore.kernel.org/r/20250124-upstream-lt3074-v1-2-7603f346433e%40analog.com
-patch subject: [PATCH 2/2] hwmon: (pmbus/lt3074): add support for lt3074
-config: x86_64-randconfig-r071-20250126 (https://download.01.org/0day-ci/archive/20250128/202501280459.uH0yw7av-lkp@intel.com/config)
-compiler: gcc-11 (Debian 11.3.0-12) 11.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250128/202501280459.uH0yw7av-lkp@intel.com/reproduce)
+> -The three cells in order are:
+> -
+> -1. A phandle pointing to the DMA controller.
+> -2. The memory interface (16 most significant bits), the peripheral interface
+> -(16 less significant bits).
+> -3. Parameters for the at91 DMA configuration register which are device
+> -dependent:
+> -  - bit 7-0: peripheral identifier for the hardware handshaking interface. The
+> -  identifier can be different for tx and rx.
+> -  - bit 11-8: FIFO configuration. 0 for half FIFO, 1 for ALAP, 2 for ASAP.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202501280459.uH0yw7av-lkp@intel.com/
+Adapt this for the description. (Note it is phandle plus 2 cells, not 3 
+cells, so you *can* omit the phandle part.)
 
-All warnings (new ones prefixed by >>):
-
->> drivers/hwmon/pmbus/lt3074.c:103:34: warning: 'lt3074_of_match' defined but not used [-Wunused-const-variable=]
-     103 | static const struct of_device_id lt3074_of_match[] = {
-         |                                  ^~~~~~~~~~~~~~~
-
-
-vim +/lt3074_of_match +103 drivers/hwmon/pmbus/lt3074.c
-
-   102	
- > 103	static const struct of_device_id lt3074_of_match[] = {
-   104		{ .compatible = "adi,lt3074" },
-   105		{}
-   106	};
-   107	MODULE_DEVICE_TABLE(of, lt3074_of_match);
-   108	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Rob
 
