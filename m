@@ -1,498 +1,147 @@
-Return-Path: <devicetree+bounces-141049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24E96A1D3A4
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 10:40:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6D83A1D3C1
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 10:44:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89833164D3D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 09:39:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC92A3A413E
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 09:44:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA1991FE464;
-	Mon, 27 Jan 2025 09:39:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26D6E1FDA97;
+	Mon, 27 Jan 2025 09:44:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Pnari/Ny"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oxs1J9uH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D4611FDA9E;
-	Mon, 27 Jan 2025 09:39:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9C921D540
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 09:44:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737970753; cv=none; b=ZMTy3XnFVj8WreqilbBbxFstoPQa/5J9S7qta9c7tERB2T4mllkHJud+rX+Fg7TqA2fZuRy72PPYIBNCGpCAOx9KydBknq+dzxcmfvgEMmvmYtRMsEWuzalYtbodaLWF3vAovE5nHa7k8NQ55VzMNGdmD6wszkxqR6gKjeH0eJs=
+	t=1737971067; cv=none; b=D4V0fy3oROTpJmSPZegBA0UoVDuaxSw5juDDKLmRue/PMZaXCGUHboOdk3CWwx/6rcRsyCejinjNEr6z7EuWrvbYyqpbPEjEzcyDi3uxL9azX5WJmIKPN2SavZnbsn1IYcPhesrJiIzFbCrLGGuZ+YrLcJ4/rgP6iXH+hB8nDUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737970753; c=relaxed/simple;
-	bh=LIJJ2HU8KIEnnk6p7+G/YjNCu3nkzV/HgBND4ydiPfY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FoTDULkMndeHhQXLR/GyMmFoMQId7H3nhcG1xC6oRmUo6haP2HlJrgLdFBDGgu4wkwYRpxbG20YzJA74kSMN+5KCDHweLSIc5PQyJg3DMD8HUOPn0geSMsYwxnKGzY/Ys81sQzARwxPpwduYIvaWZzSWmw3b6kGuh+elbMMHwzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Pnari/Ny; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1737970749;
-	bh=LIJJ2HU8KIEnnk6p7+G/YjNCu3nkzV/HgBND4ydiPfY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=Pnari/NyVHAXQFLcya6JPKrxqq1nT17Azm3MFfpmWaTNjogSYu6Nv+svoGsOkgg1Z
-	 Bd8qfJpV4e/U+AEMw6ZFHMSDngm7Axjzj6UwEPMQwexQca/LJSzDMWCOBG3eh3zI7G
-	 DnpDd73JOOURM/zGITACn1txP7OtFkmzqh9KU6Pl5DHLD/YB47Dh0GUb3vaUDTC/mo
-	 n+Aq15pUSRCdQGqlkZuNoVG9ALQQL8rfH63qsTv+hqy5URvxLBGYMXJJAF5y9CKTqY
-	 SPuK2JuQlg9Op/SlUb4Rhh2j9Fy3OtMl3iEFdHwPSCxrecZ1uG2gUsqUi+YzPDtFbJ
-	 XiBXOCG62jrRg==
-Received: from apertis-1.home (2a01cb088CcA73006086F5f072C6a07A.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:8cca:7300:6086:f5f0:72c6:a07a])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3EA2A17E0FC9;
-	Mon, 27 Jan 2025 10:39:09 +0100 (CET)
-From: Julien Massot <julien.massot@collabora.com>
-Date: Mon, 27 Jan 2025 10:38:47 +0100
-Subject: [PATCH v2 2/2] arm64: renesas: add initial support for MYIR Remi
- Pi
+	s=arc-20240116; t=1737971067; c=relaxed/simple;
+	bh=9jJZyeUyg0zikH4UtIlg5nWLIpseFqe533l5KP1qBOI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IzkEBUosok6zxRDlSSIXRscLdM72eQ9LFoS2EIq15v4RdD7K5raSU5tdniGvKx8LL/IMRNvwlGsIM0YELjEZ6IkE/n87BUIwyxzVzmIGHqx4wfiTbqYkQNVJJI0gXMvUGQRMut0suRWHZbedXQTtUOV90XPg83UkDFZLSZ8QB6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oxs1J9uH; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-aa68b513abcso874711966b.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 01:44:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1737971062; x=1738575862; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=+g42ZZsF9uGOWVqjqCc38LCDEOFw2n1iiO+fEJtZ9qs=;
+        b=oxs1J9uH0IVQoHJLkYHDlqMJIoofT6NLaOvnxREbuLRyh2SqtlSmHmHapfriyEXK1/
+         ihUHtVNfTFrYBWoCDMtIvaBmVhmprvrXiL040FNxbFkz7ONi/zna4EhA+xvDPYnG2Isn
+         5daFUTCTpPDWp7XRe2CjeZVEe1l0DgSOxh2bVT0HWNes6u+CKSSuboj14sFQg3ABBnCZ
+         Dl0BbJjS0USAQ89xn8Iaccgwvl4Ut6s7qBwEBSpnZc367FfQY5vROIuIZYY5RugzpG0Y
+         3BxE7q9Lsa1+ojPraFqmkJ3GSRTelkWv2UOq+C84XNOXqR4qmBQpdkJs+sFgElNzXbR8
+         Tzhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737971062; x=1738575862;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+g42ZZsF9uGOWVqjqCc38LCDEOFw2n1iiO+fEJtZ9qs=;
+        b=atbllVVfLu0hlABlK5UCfIWzuDd7IepKN6cXvRluetN6Mu9u1G1SJhKpM9uk+AVJRR
+         iydMh+CP6Q3OR5G3C5GCad6n4/4uY27vGUgBQ+VcpZ8ffyKiFtFLTWVuraUVlvXm6Xvq
+         4/sJT8IGOJ/cdUt4Lw8etfLFtAnObw9t9TXoR6beefePqdPe9cxhialK2mzKlzZRX22g
+         kKk+wfHPQ2FwG8bY3mYFbFeM4tIq9pVYzVJ9ovf86sDiMlbBYGkDxqVNR9YeBHCGHS6r
+         5CG3QaFtTPZ0qJlIy/9sZeZFRBocQakenSI0wiwN8S8EqEwLVBTQBV+yPZtLObi26CJV
+         Hmxw==
+X-Forwarded-Encrypted: i=1; AJvYcCUl31/41GRaokYCgCGuyjT9TodG4ouih8rX951IqwPOUDmkZNSHWc0wGiJS7GV6w80z8aRz2XZbezJ4@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1kZWIMd9IJhYKEkZH3Lzbrq5ycjAIrwEjkEdd9qyflDKVmN5K
+	1LJ+rnPgJAjf5vHG00NKNDbcKdNzRDNI2qgOdkQ/POX92RMsVE6pnmLOUOLYAUo=
+X-Gm-Gg: ASbGncv8ZJdiOEwMEHCud5cxcJA+v8zo9SHrKBa0vdZvd6/2W0DMGkhylagzV1KC/ET
+	SuE3pQLj7NOobj15w7DMSR3Jgd4hTV9NtAaKlsUPO7glzcEcFtSbHqEKwg/uawMfFioj5GTURJl
+	6XqFxlVTrE3RgwkTDOX4gApcY85dVhcq28P7NQ18tbizNeU8ZhKxxKzqOZAPaPZEy1AHh+WXYS1
+	kHe4OmkGqShHZs0rHjjcumIcexeMufm9/nA6QLrzr5dC7OvBSNqyc6IhvdGs+I1MM7O1P/kjoQI
+	N0F4LShjL67i+hOH
+X-Google-Smtp-Source: AGHT+IGSnkZoIxf5l4DY7TrfG+TC93Dg72qOcjfSrizHd0Z/5y8zaPbCHfMSy2ZUXYKHJebPCxzUHA==
+X-Received: by 2002:a17:907:d1b:b0:aab:cd45:5d3c with SMTP id a640c23a62f3a-ab38b3c7729mr3974838666b.50.1737971062028;
+        Mon, 27 Jan 2025 01:44:22 -0800 (PST)
+Received: from linaro.org ([2a02:2454:ff21:ef30:f64e:7d70:e55f:6da8])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab675e67814sm551424566b.74.2025.01.27.01.44.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jan 2025 01:44:21 -0800 (PST)
+Date: Mon, 27 Jan 2025 10:44:19 +0100
+From: Stephan Gerhold <stephan.gerhold@linaro.org>
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Stephan Gerhold <stephan@gerhold.net>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Matti =?iso-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>,
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 9/9] ARM: dts: qcom: msm8226-samsung-matisse-common:
+ Enable modem
+Message-ID: <Z5dVc9yTynAsPDcZ@linaro.org>
+References: <20250126-msm8226-modem-v2-0-e88d76d6daff@lucaweiss.eu>
+ <20250126-msm8226-modem-v2-9-e88d76d6daff@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250127-myir-remi-pi-v2-2-7bd3a1c62752@collabora.com>
-References: <20250127-myir-remi-pi-v2-0-7bd3a1c62752@collabora.com>
-In-Reply-To: <20250127-myir-remi-pi-v2-0-7bd3a1c62752@collabora.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>, 
- Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Julien Massot <julien.massot@collabora.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250126-msm8226-modem-v2-9-e88d76d6daff@lucaweiss.eu>
 
-Add basic support for the MyIR Remi Pi (based on r9a07g044l2):
- - UART
- - i2c
- - emmc
- - USB host
- - HDMI output
- - Ethernet
+On Sun, Jan 26, 2025 at 09:57:28PM +0100, Luca Weiss wrote:
+> From: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+> 
+> Enable modem remoteproc on samsung,matisse-wifi & matisselte.
+> 
+> Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> ---
+>  arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
+> index fbd568c7d6b7415d240aa1a2329d07cf9135274c..4155bfb2136022f2a85d69451c34f06ed2a700ac 100644
+> --- a/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
+> +++ b/arch/arm/boot/dts/qcom/qcom-msm8226-samsung-matisse-common.dtsi
+> @@ -225,6 +225,13 @@ &blsp1_uart3 {
+>  	status = "okay";
+>  };
+>  
+> +&modem {
+> +	mx-supply = <&pm8226_l3>;
+> +	pll-supply = <&pm8226_l8>;
 
-Signed-off-by: Julien Massot <julien.massot@collabora.com>
----
- arch/arm64/boot/dts/renesas/Makefile               |   1 +
- .../arm64/boot/dts/renesas/r9a07g044l2-remi-pi.dts | 388 +++++++++++++++++++++
- 2 files changed, 389 insertions(+)
+Hmmmmm, so I was looking at msm8926.dtsi downstream and it seems to
+override the msm8226.dtsi modem/mss definition [1]:
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 97228a3cb99c163d299b508ee7653aafea3d1a3a..6824c63a1b154acf13de7e3d44bb10d5754738c4 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -126,6 +126,7 @@ dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044c2-smarc-cru-csi-ov5645.dtbo
- r9a07g044c2-smarc-cru-csi-ov5645-dtbs := r9a07g044c2-smarc.dtb r9a07g044c2-smarc-cru-csi-ov5645.dtbo
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044c2-smarc-cru-csi-ov5645.dtb
- 
-+dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-remi-pi.dtb
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc.dtb
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc-cru-csi-ov5645.dtbo
- r9a07g044l2-smarc-cru-csi-ov5645-dtbs := r9a07g044l2-smarc.dtb r9a07g044l2-smarc-cru-csi-ov5645.dtbo
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044l2-remi-pi.dts b/arch/arm64/boot/dts/renesas/r9a07g044l2-remi-pi.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..57d318ded704a970c09fd8f7205ccf7bc221e318
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044l2-remi-pi.dts
-@@ -0,0 +1,388 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the MYiR Remi Pi
-+ *
-+ * Copyright (C) 2022 MYiR Electronics Corp.
-+ * Copyright (C) 2025 Collabora Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-+
-+#include "r9a07g044l2.dtsi"
-+
-+/ {
-+	model = "MYIR Tech Limited Remi Pi MYB-YG2LX-REMI";
-+	compatible = "myir,remi-pi", "renesas,r9a07g044l2", "renesas,r9a07g044";
-+
-+	aliases {
-+		ethernet0 = &eth0;
-+		ethernet1 = &eth1;
-+
-+		serial0 = &scif0;
-+		serial1 = &scif1;
-+		serial2 = &scif2;
-+		serial3 = &scif3;
-+
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+		i2c2 = &i2c2;
-+		i2c3 = &i2c3;
-+
-+		mmc0 = &sdhi0;
-+		mmc1 = &sdhi1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@48000000 {
-+		device_type = "memory";
-+		/* first 128MB is reserved for secure area. */
-+		reg = <0x0 0x48000000 0x0 0x38000000>;
-+	};
-+
-+	reg_5p0v: regulator-5p0v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-5.0V";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	reg_3p3v: regulator-3p3v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-3.3V";
-+		vin-supply = <&reg_5p0v>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_1p8v: regulator-1p8v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.8V";
-+		vin-supply = <&reg_3p3v>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		regulator-always-on;
-+	};
-+
-+	reg_1p1v: regulator-vdd-core {
-+		compatible = "regulator-fixed";
-+		regulator-name = "fixed-1.1V";
-+		regulator-min-microvolt = <1100000>;
-+		regulator-max-microvolt = <1100000>;
-+		regulator-always-on;
-+	};
-+
-+	hdmi-out {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+		ddc-i2c-bus = <&i2c1>;
-+
-+		port {
-+			hdmi_con: endpoint {
-+				remote-endpoint = <&lt8912_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&eth0 {
-+	pinctrl-0 = <&eth0_pins>;
-+	pinctrl-names = "default";
-+	phy-handle = <&phy0>;
-+	phy-mode = "rgmii-id";
-+	status = "okay";
-+
-+	phy0: ethernet-phy@4 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <4>;
-+		interrupts-extended = <&pinctrl RZG2L_GPIO(44, 2) IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&eth1 {
-+	pinctrl-0 = <&eth1_pins>;
-+	pinctrl-names = "default";
-+	phy-handle = <&phy1>;
-+	phy-mode = "rgmii-id";
-+	status = "okay";
-+
-+	phy1: ethernet-phy@6 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <6>;
-+		interrupts-extended = <&pinctrl RZG2L_GPIO(43, 2) IRQ_TYPE_LEVEL_LOW>;
-+	};
-+};
-+
-+&extal_clk {
-+	clock-frequency = <24000000>;
-+};
-+
-+&gpu {
-+	mali-supply = <&reg_1p1v>;
-+};
-+
-+&ostm1 {
-+	status = "okay";
-+};
-+
-+&ostm2 {
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	i2c0_pins: i2c0 {
-+		pins = "RIIC0_SDA", "RIIC0_SCL";
-+		input-enable;
-+	};
-+
-+	i2c1_pins: i2c1 {
-+		pins = "RIIC1_SDA", "RIIC1_SCL";
-+		input-enable;
-+	};
-+
-+	i2c2_pins: i2c2 {
-+		pinmux = <RZG2L_PORT_PINMUX(3, 0, 2)>, /* SDA */
-+			 <RZG2L_PORT_PINMUX(3, 1, 2)>; /* SCL */
-+	};
-+
-+	i2c3_pins: i2c3 {
-+		pinmux = <RZG2L_PORT_PINMUX(18, 0, 3)>, /* SDA */
-+			 <RZG2L_PORT_PINMUX(18, 1, 3)>; /* SCL */
-+	};
-+
-+	spi0_pins: spi0 {
-+		pinmux = <RZG2L_PORT_PINMUX(47, 0, 5)>, /* CLK */
-+			 <RZG2L_PORT_PINMUX(47, 1, 5)>, /* MOSI */
-+			 <RZG2L_PORT_PINMUX(47, 2, 5)>, /* MISO */
-+			 <RZG2L_PORT_PINMUX(47, 3, 5)>; /* Chip Enable*/
-+	};
-+
-+	eth0_pins: eth0 {
-+		pinmux = <RZG2L_PORT_PINMUX(27, 1, 1)>, /* ET0_MDC */
-+			 <RZG2L_PORT_PINMUX(28, 0, 1)>, /* ET0_MDIO */
-+			 <RZG2L_PORT_PINMUX(20, 0, 1)>, /* ET0_TXC */
-+			 <RZG2L_PORT_PINMUX(20, 1, 1)>, /* ET0_TX_CTL */
-+			 <RZG2L_PORT_PINMUX(20, 2, 1)>, /* ET0_TXD0 */
-+			 <RZG2L_PORT_PINMUX(21, 0, 1)>, /* ET0_TXD1 */
-+			 <RZG2L_PORT_PINMUX(21, 1, 1)>, /* ET0_TXD2 */
-+			 <RZG2L_PORT_PINMUX(22, 0, 1)>, /* ET0_TXD3 */
-+			 <RZG2L_PORT_PINMUX(24, 0, 1)>, /* ET0_RXC */
-+			 <RZG2L_PORT_PINMUX(24, 1, 1)>, /* ET0_RX_CTL */
-+			 <RZG2L_PORT_PINMUX(25, 0, 1)>, /* ET0_RXD0 */
-+			 <RZG2L_PORT_PINMUX(25, 1, 1)>, /* ET0_RXD1 */
-+			 <RZG2L_PORT_PINMUX(26, 0, 1)>, /* ET0_RXD2 */
-+			 <RZG2L_PORT_PINMUX(26, 1, 1)>; /* ET0_RXD3 */
-+	};
-+
-+	eth1_pins: eth1 {
-+		pinmux = <RZG2L_PORT_PINMUX(37, 0, 1)>, /* ET1_MDC */
-+			 <RZG2L_PORT_PINMUX(37, 1, 1)>, /* ET1_MDIO */
-+			 <RZG2L_PORT_PINMUX(29, 0, 1)>, /* ET1_TXC */
-+			 <RZG2L_PORT_PINMUX(29, 1, 1)>, /* ET1_TX_CTL */
-+			 <RZG2L_PORT_PINMUX(30, 0, 1)>, /* ET1_TXD0 */
-+			 <RZG2L_PORT_PINMUX(30, 1, 1)>, /* ET1_TXD1 */
-+			 <RZG2L_PORT_PINMUX(31, 0, 1)>, /* ET1_TXD2 */
-+			 <RZG2L_PORT_PINMUX(31, 1, 1)>, /* ET1_TXD3 */
-+			 <RZG2L_PORT_PINMUX(33, 1, 1)>, /* ET1_RXC */
-+			 <RZG2L_PORT_PINMUX(34, 0, 1)>, /* ET1_RX_CTL */
-+			 <RZG2L_PORT_PINMUX(34, 1, 1)>, /* ET1_RXD0 */
-+			 <RZG2L_PORT_PINMUX(35, 0, 1)>, /* ET1_RXD1 */
-+			 <RZG2L_PORT_PINMUX(35, 1, 1)>, /* ET1_RXD2 */
-+			 <RZG2L_PORT_PINMUX(36, 0, 1)>; /* ET1_RXD3 */
-+	};
-+
-+	sdhi0_pins: sd0 {
-+		sd0_data {
-+			pins = "SD0_DATA0", "SD0_DATA1", "SD0_DATA2", "SD0_DATA3",
-+			       "SD0_DATA4", "SD0_DATA5", "SD0_DATA6", "SD0_DATA7";
-+			power-source = <1800>;
-+		};
-+
-+		sd0_ctrl {
-+			pins = "SD0_CLK", "SD0_CMD";
-+			power-source = <1800>;
-+		};
-+
-+		sd0_rst {
-+			pins = "SD0_RST#";
-+			power-source = <1800>;
-+		};
-+	};
-+
-+	sdhi0_pins_uhs: sd0_uhs {
-+		sd0_data_uhs {
-+			pins = "SD0_DATA0", "SD0_DATA1", "SD0_DATA2", "SD0_DATA3",
-+			       "SD0_DATA4", "SD0_DATA5", "SD0_DATA6", "SD0_DATA7";
-+			power-source = <1800>;
-+		};
-+
-+		sd0_ctrl_uhs {
-+			pins = "SD0_CLK", "SD0_CMD";
-+			power-source = <1800>;
-+		};
-+
-+		sd0_rst_uhs {
-+			pins = "SD0_RST#";
-+			power-source = <1800>;
-+		};
-+	};
-+
-+	usb1_pins: usb1 {
-+		pinmux = <RZG2L_PORT_PINMUX(42, 0, 1)>, /* VBUS */
-+			 <RZG2L_PORT_PINMUX(42, 1, 1)>; /* OVC */
-+	};
-+
-+	scif0_pins: scif0 {
-+		pinmux = <RZG2L_PORT_PINMUX(38, 0, 1)>, /* TxD */
-+			 <RZG2L_PORT_PINMUX(38, 1, 1)>; /* RxD */
-+	};
-+
-+	scif1_pins: scif1 {
-+		pinmux = <RZG2L_PORT_PINMUX(40, 0, 1)>, /* TxD */
-+			 <RZG2L_PORT_PINMUX(40, 1, 1)>; /* RxD */
-+	};
-+
-+	scif2_pins: scif2 {
-+		pinmux = <RZG2L_PORT_PINMUX(48, 0, 1)>, /* TxD */
-+			 <RZG2L_PORT_PINMUX(48, 1, 1)>; /* RxD */
-+	};
-+
-+	scif3_pins: scif3 {
-+		pinmux = <RZG2L_PORT_PINMUX(0, 0, 5)>, /* TxD */
-+			 <RZG2L_PORT_PINMUX(0, 1, 5)>; /* RxD */
-+	};
-+};
-+
-+&sdhi0 {
-+	pinctrl-0 = <&sdhi0_pins>;
-+	pinctrl-1 = <&sdhi0_pins_uhs>;
-+	pinctrl-names = "default", "state_uhs";
-+
-+	vmmc-supply = <&reg_3p3v>;
-+	vqmmc-supply = <&reg_1p8v>;
-+	bus-width = <8>;
-+	mmc-hs200-1_8v;
-+	non-removable;
-+	fixed-emmc-driver-type = <1>;
-+	status = "okay";
-+};
-+
-+&usb2_phy1 {
-+	pinctrl-0 = <&usb1_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
-+&dsi {
-+	status = "okay";
-+	ports {
-+		port@1 {
-+			dsi_out: endpoint {
-+				remote-endpoint = <&lt8912_in>;
-+				data-lanes = <1 2 3 4>;
-+			};
-+		};
-+	};
-+};
-+
-+&du {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	pinctrl-0 = <&i2c0_pins>;
-+	pinctrl-names = "default";
-+
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	hdmi-bridge@48 {
-+		compatible = "lontium,lt8912b";
-+		reg = <0x48> ;
-+		reset-gpios = <&pinctrl RZG2L_GPIO(42, 2) GPIO_ACTIVE_LOW>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				lt8912_in: endpoint {
-+					data-lanes = <1 2 3 4>;
-+					remote-endpoint = <&dsi_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				lt8912_out: endpoint {
-+					remote-endpoint = <&hdmi_con>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	pinctrl-0 = <&i2c1_pins>;
-+	pinctrl-names = "default";
-+	clock-frequency = <100000>;
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	pinctrl-0 = <&i2c2_pins>;
-+	pinctrl-names = "default";
-+	clock-frequency = <100000>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	pinctrl-0 = <&i2c3_pins>;
-+	pinctrl-names = "default";
-+	clock-frequency = <100000>;
-+	status = "okay";
-+};
-+
-+&scif0 {
-+	pinctrl-0 = <&scif0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&scif2 {
-+	pinctrl-0 = <&scif2_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&scif3 {
-+	pinctrl-0 = <&scif3_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+
-+&phyrst {
-+	status = "okay";
-+};
-+
-+&mtu3 {
-+	status = "okay";
-+};
+ 1. ext-bhs-reg is dropped
+ 2. vdd_mss-supply is added
 
--- 
-2.47.1
+This common include seems to cover both apq8026 (matissewifi) and
+msm8926 (matisselte).
 
+Do we need to handle this difference?
+
+First time I see such a difference between variants of a single SoC.
+Looking at all the overrides in msm8926.dtsi, it seems like they made
+quite some rework for the "LTE variant".
+
+Thanks,
+Stephan
+
+[1]: https://github.com/GalaxyTab4/android_kernel_samsung_matissewifi/blob/45f97bab323176fead18c8ddc20dc57d979904a3/arch/arm/boot/dts/msm8226/msm8926.dtsi#L32-L40
 
