@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-141186-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141187-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18A0FA1DB8E
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:51:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF8AA1DB95
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:51:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 644E93A8B13
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:51:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DDC57A3EA9
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 17:51:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7687189912;
-	Mon, 27 Jan 2025 17:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7391418C337;
+	Mon, 27 Jan 2025 17:51:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pxem3p8G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZihJJ26E"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F28617C224;
-	Mon, 27 Jan 2025 17:51:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D55418BC26;
+	Mon, 27 Jan 2025 17:51:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738000263; cv=none; b=fXPENLBVl1Frnst5x3N2+ZW05lFiEMvusGPsBBJB9xjBu9FCOM0qR3UZL25M0qeZlOLwZeZx83WunHTcMl1CN0QwUEjVSUkdDIfJxrS9kRn9NsMb42RfqSoGVT+qHpIm/HeYHQmCw0edEWCNMHswcQn7CY2BZav1jaNWXdgUSxM=
+	t=1738000300; cv=none; b=rennMRf5kjTRp47cyyr0FD4gPf8NyTpakK5MlzF7xB3Wpu4buhyH2ZFraUPppkMNkZg1Zc0n8nv3W4136YJbkUIDbax66l/dDu4RhB7tt1+fFMLJM9y7LuYQpTpfnK6N09mB71peozsDoxEBRS/dugp7h4GPAw8AxtCdIeSXvPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738000263; c=relaxed/simple;
-	bh=IeTCcvQEisr6CkVqokJme6NmzUrMdXyWgz64L5KANvs=;
+	s=arc-20240116; t=1738000300; c=relaxed/simple;
+	bh=IWnhynaYs9UhLgD4QSl3asorXOnxX63sXit4/2adtOk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qf/OtYRUEby2tuHD041pFhMLEY4Wx7Q2zKQ+Vb4FhQVXD7A1vllHiTh80LgTRRsXJapNNLaMqD48hG8QZW+eoJtaCGHb4vYEzy1mUkJQAaHyc+IbrE3UVU8vRoZVrTtDtY9uSGyiyOTImKL4/i3+24vF0hEqDe+xu+7RtFW4biM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pxem3p8G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0B3DC4CED2;
-	Mon, 27 Jan 2025 17:51:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=A0FpWLqyiJHIYjeTpOOjJ5qBSQcSMcHcu+4cxout0KCV6fMBvSl4Md/ltVQpMT4dxMTBfz++Yn7k+0C0Pw3DUoMt2XDwZZKRp+CnbVXD5WmS4K1Bw3CsloeOJiztREPUYebiys7/rGbSNj9xgsD8wIHMzgxJgNNkK9prLz8kpXc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZihJJ26E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C73EC4CEE3;
+	Mon, 27 Jan 2025 17:51:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738000263;
-	bh=IeTCcvQEisr6CkVqokJme6NmzUrMdXyWgz64L5KANvs=;
+	s=k20201202; t=1738000299;
+	bh=IWnhynaYs9UhLgD4QSl3asorXOnxX63sXit4/2adtOk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pxem3p8GUhsE3BXpT/RE78TL6fV4Fme7XY7kYoSYXuqHHjbqsOAR50EUUBZ9AYBoD
-	 3ZlkyO2yiKWYgqICyLQbPZ/FsVpe+tYfpgIi5JkNglF6yUODyHCLmZFuwA4kTwoNYf
-	 +EoFsmllOCqPHZkVRjlXbg2GJKtRqqaqdi9hv3zkHm2OeyZws9gOa9o/BrcBKDR+s9
-	 YhEl44bevk0pAEhMNBcBvILBphLW3bvWiQtcoTSNUVNXFq7WFKEuoKXxmOq0Q0XaOF
-	 VcldK+o3S2de2JzHzft5H69XxfUzkpImbAItswXNU6fTwt0yIB5sovta4aTaWBexIU
-	 9EXabjMpwYULw==
-Date: Mon, 27 Jan 2025 17:50:58 +0000
+	b=ZihJJ26EhTE4kO3fmKWFGPAmlRrEkkMbw02V7USCY6o1gzHgUjbp0yAbIdKntb69M
+	 BtLHFqyb5dV9E7jcbIMuell5x/Vem5WXvk8yeQRVDJebxVPYSGEsY3fe9hM7BKQA8Y
+	 uYKUCgAl69IK1kJBnuE6mcon5LKH1lm+qsSIYx2S7+GuPYhygxRWt5LUOVnzXxPxcd
+	 2AOMKTN17x6j11f1HS7EcbQWF2/9EjZv8FIIpAUM6mvOhrZUSLjARQrL6zhGoPiEX4
+	 FnfKywpDpWQ5mP6YBQzvNZgblESRHr3fdCTHCgsqqDMroSzl/Lw/sE48YEH0XIZmt6
+	 DhPP5xVOFoNVw==
+Date: Mon, 27 Jan 2025 17:51:35 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Mahesh Rao <mahesh.rao@intel.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, dinguyen@kernel.org,
-	hao.wu@intel.com, krzk+dt@kernel.org,
-	krzysztof.kozlowski@linaro.org, linux-fpga@vger.kernel.org,
-	linux-kernel@vger.kernel.org, mahesh.rao@altera.com, mdf@kernel.org,
-	robh@kernel.org, trix@redhat.com, yilun.xu@intel.com
-Subject: Re: [PATCH 2/3] dt-bindings: firmware: stratix10: Convert to
- json-schema
-Message-ID: <20250127-bunt-tremble-b13b319d6575@spud>
-References: <20250122-decode-celtic-fb7a491957bb@spud>
- <20250127170705.12988-1-mahesh.rao@intel.com>
+To: Antonin Godard <antonin.godard@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: fsl: Add VAR-SOM-MX6UL SoM and
+ Concerto board
+Message-ID: <20250127-antiquity-spelling-fd54076afe66@spud>
+References: <20250127-varsom6ul-concerto-dts-v2-0-4dac29256989@bootlin.com>
+ <20250127-varsom6ul-concerto-dts-v2-1-4dac29256989@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,71 +64,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="C5tprECUZk2KV6Hi"
+	protocol="application/pgp-signature"; boundary="cReqDgVidX28TjYo"
 Content-Disposition: inline
-In-Reply-To: <20250127170705.12988-1-mahesh.rao@intel.com>
+In-Reply-To: <20250127-varsom6ul-concerto-dts-v2-1-4dac29256989@bootlin.com>
 
 
---C5tprECUZk2KV6Hi
+--cReqDgVidX28TjYo
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 28, 2025 at 01:07:05AM +0800, Mahesh Rao wrote:
-> Hi Conor Dooley,
+On Mon, Jan 27, 2025 at 04:31:00PM +0100, Antonin Godard wrote:
+> Add support for the Variscite i.MX6UL VAR-SOM-MX6UL and the Variscite
+> Concerto carrier board.
 >=20
-> On Wed, 22 Jan 2025 18:40:41 +0000, Conor Dooley wrote:
-> > > Convert intel,stratix10-svc service layer devicetree binding file from
-> > > freeform format to json-schema.
-> >=20
->=20
-> > > +
-> > > +  method:
-> > > +    enum: [smc, hvc]
-> > > +    description: supervisory call method to be used for the service =
-layer.
-> >=20
-> > This looks to be missing a type (string) and an explanation of what "sm=
-c" and
-> > "hvc" are.
-> >=20
->=20
-> Thanks for pointing out , will do the change in next revision.
->=20
-> > > +
-> > > +  fpga-mgr:
-> > > +    $ref: /schemas/fpga/intel,stratix10-soc-fpga-mgr.yaml
-> > > +    description: Optional child node for fpga manager to perform fab=
-ric
-> > configuration.
-> >=20
-> > This is new and not justified in your commit message. Please explain wh=
-ere
-> > this has come from in v2.
-> >=20
-> > Cheers,
-> > Conor.
-> >=20
->=20
-> Sure, this is an optional child node/driver present in the device tree for
-> the Agilex SoC devices, but it was not mentioned in the text documentatio=
-n.
-> Therefore, I had included it here. I will provide more details about this
-> change in the next version.
+> Signed-off-by: Antonin Godard <antonin.godard@bootlin.com>
 
-Aye, the change itself is fine. Just mention what the rationale for
-adding it is and you're good.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---C5tprECUZk2KV6Hi
+--cReqDgVidX28TjYo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5fHggAKCRB4tDGHoIJi
-0qS9AP9EDgZ0iRT6T2wpRtOcjzLPWNpMTLB4i3FUVTzdwdnldgEAskvMbUG3Sv/u
-uMMt+fcRlAAnj0uoZrHXTr5+bHNWVwE=
-=gpoJ
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5fHpgAKCRB4tDGHoIJi
+0saFAQDHIIOY1ZLLliCFzyxW+U5lKPDJYiKB5mzQ8E2yHA7J2gD+OYMYk3bw/t4w
+NWrIqwr7PCXzAQUakE//RoKJNUvNSg4=
+=Xs+l
 -----END PGP SIGNATURE-----
 
---C5tprECUZk2KV6Hi--
+--cReqDgVidX28TjYo--
 
