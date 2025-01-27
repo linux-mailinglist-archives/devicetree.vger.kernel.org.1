@@ -1,130 +1,173 @@
-Return-Path: <devicetree+bounces-141157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B1A3A1D956
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:17:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38ACBA1D952
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 16:16:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDBEE3A6A8A
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 15:16:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 36D2A7A3C6F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 15:16:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 885DC1422D4;
-	Mon, 27 Jan 2025 15:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F5548837;
+	Mon, 27 Jan 2025 15:16:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P249/K6n"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lRybVIDH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56DA86A33B
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 15:16:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 099C619BBA
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 15:16:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737990976; cv=none; b=VJbaNJToZFu/X1bgyacdusomKgNTiOlu3KNmuYIMOJdCWwTzjM3yX2NCTvhcgRo8s5hFwo2h8cPAiT0tUNnooacx8Ra4CeZ8CA1pXz44T1jC0MZf/5qaD5kvT+Pqpy0Bha+pZlMi6+QZd3wfGu9Fm4ioK0xI8j4cyyEA/h9s+N8=
+	t=1737990999; cv=none; b=TrMNNvZPmyQf/0QzNl7TzoIBB0NtofbooKxiMB8c/ifOKPycgEuFs4gIqM100WdzKRocTi2SWWhqjWqOtzLsVHeBgAvKgIS1kn4Has27zTH0Zf9t+DrjVS4z720e7OZ3D08gMQ+UcYvXfdIVSLW72zZL4Rp5sQG2mp5IZNOgyq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737990976; c=relaxed/simple;
-	bh=uGfClbJNYW3WlXwU/kbZPJMDflOSclIXAFXm1sTN3xw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aenqMHVR/R6A8+tdXb4b42sQj4Rq2GqMvLu++qdgyI5kMA3rvTSHMY9P2gLsS3TEEYG35j+g3aNEGb2qgvf4A6P4J5y1L3XbifNjC6+GhLU8g+UeC5JImBCKx0Vbm9VZWBCfdnCYo4gRniZxTmfqJppVRcGUomvRaZTh8Jdg0cI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P249/K6n; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e46ebe19489so6117645276.2
-        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 07:16:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1737990972; x=1738595772; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z3fdf68cKnEaIGamBbArQHWaVBKPqUrbMqE+m1JNXYk=;
-        b=P249/K6n+pRZlUb3RP47FXUAiuvAYDnyTJ7eo6HO99aHQ8RO+lAxmT+hps3b3tMjKr
-         HhJDZRtWu5jtGzfclCyWYCdbd4bszyXHLc6azDkMFdVxtdj375IOz2sx8wzBvruict8l
-         FtsLx8m8/j7CB7tta0vO8EzAO5lMive22ng4Ru2wjhua1+Q5hdACb2KNTfKFs1Ba4kMk
-         XEPVMh/OMGacEnyXv6z9Wu5W5L/puFemRbssuXZzkaS0mgYM3A8JyZDHsYmmWak174+V
-         t8bxBtX8iy3fXMCZrOCHqz5JwH3YtwoNkqUZ+816ykY/Jxzj/qSwN+zqvkcg/I3Lt/Bz
-         Hx+A==
+	s=arc-20240116; t=1737990999; c=relaxed/simple;
+	bh=XXWwenXnSMIfC4eeFgueYgwPm2Um/6LbxvB2XdF7djg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=DlKL7xMw4EHGRdnLM40HOpBIl0KdYcHYLhAWduKbRqWT0PWuo4YpPBcxMocFmduI43j53MY7YJaVP4/mg/C6U8VjmXEaJs8M3qQZr7R3DKTWk4hSRkJbEgEjNNZe2iMmH0NpdVra5BNlHe+2DS7PcI3uVfRCVI3E3HvQRIYT2C8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lRybVIDH; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50RD3Vph019452
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 15:16:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	eiOVlvy8O2sljdqhnTACcFcT/c+BYziyN9TVv9igCSg=; b=lRybVIDH/erv8Rke
+	Huf178CITEZwh89jtxljjRNIzq6MtfNnY4DVt2h63q73kCiKDAD/gTfsXj+FB+Uj
+	pRbtnxm1o92a6I+EFD3TM09Vl7nAXJuH6mKMZ5PGytMUDTvq+2CAZuF1SYuMOHAJ
+	3CXyD920lvofbQB5GAEUzG5ZirwLhTgj/puBfkJ78x47kTAiGvsiitML7n/CuW3c
+	MFnJ9bhqy8rx+Z5eo4VWGUIKTRuBQZE3Di5UNlz41238pNf3f9R1k3OZGYZUw3ZT
+	sjp7NRj0cfSNM5IKTMushd+UqASJL0axMZz1mxgfknjiaetChpWnxHoIKfIDhw6L
+	b/jS6g==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44eapq88x4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 15:16:37 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7b71321b993so63033385a.2
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 07:16:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737990972; x=1738595772;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Z3fdf68cKnEaIGamBbArQHWaVBKPqUrbMqE+m1JNXYk=;
-        b=WQxn3lFCxt3Hth7sFiT0Sy7WSfegWNYyYvy2u9ak7WUC9O5gcRBvgyuilLLX2N1mE2
-         s4sBnpyOVyeW8lIq1Pf8+FvAbIhz5kDwEQHWoi6jH804IGYkuEo+VsmxU3BL0XkeH1Ri
-         Xy7k3K7U0rkg+giYTznsQZoCh4KNKkarXedDjJXDQ8Goe7iEuGZagb65Nzgelwd56Ftc
-         Aeu86j9skcsszjEukSVxaXYp9BklHjhYVE4CRumHa2mR0el/I+U9Ehzf9kky68GCLSaW
-         04LUEA0Sjvi2mkrPlvv4kLcntVgfGm2kJkzxyeJlUEFWmqujAPK69ImtpmHAaFBbLpEg
-         aiRg==
-X-Forwarded-Encrypted: i=1; AJvYcCXF+xrdzqvqdKUGHol6o5zUVVjaqD8ZL3MAdD18VYLrS3ryAQZk1M/koAwziFt6U88QvnPGnmJlJkI/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyrw1TrkOJ6NkBKBf4wYAq/0QBvwBbgMVsqlbc6e0l3r4TOfHIk
-	5vHl/WLBszHD03H2/3RXUrGoSapI5E0+bxONuwaZXTD999DaQGhgaUEd75LAESd4QtUjeltHxT3
-	bFQtb9Ef98sRNkH0OtlKabpVn/XjN0kjcXgXkGw==
-X-Gm-Gg: ASbGncuEAS42JGFaO4sGQ1Qz42tJ1ctVPVz2prYI+iNsb3YmaWt2y1XAQmyp39fzTcn
-	euRcTUPJZh9h7wvzX0htq29JeslcIfQoMUoPGOzGF0G29CbcU3UpJeN+5SrdkUAg=
-X-Google-Smtp-Source: AGHT+IE7Vja9677she6CObvFAbVBiI5Ys+p+eByoUyFiITh4qV3MJatrF8vKcAYHzhv31KbUMJyT51BBZJ0PLRNDtTM=
-X-Received: by 2002:a05:6902:150c:b0:e57:88a0:3ca with SMTP id
- 3f1490d57ef6-e57b1344ac2mr27218044276.40.1737990972298; Mon, 27 Jan 2025
- 07:16:12 -0800 (PST)
+        d=1e100.net; s=20230601; t=1737990996; x=1738595796;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eiOVlvy8O2sljdqhnTACcFcT/c+BYziyN9TVv9igCSg=;
+        b=smSXlKmwlq7rlMI6epMfanNeLbs5juH8sr0jDcpcPqQ9ifdOSzYm8hZcqbZkoKNFcv
+         ysmrQi2j98Q8Ip49xS9ufuA2RZg/QG229QKDNsBj1GurdzKLXKpGAS3lkBfTZorvYjDR
+         bvmIoAk66Tp0dvMNjz9iuiaCzYFfwspsFMwqUUTuUg9bYCgeSjU7e5OdPZEizRbUt5T1
+         P2DRtY61zbLBSlkQWD3XGcLd7aThl9StT7uJv6vwwdiwlIK0w/hNV5+Jr/RmVhb5bOGU
+         qSlIXD+62wIrvPb/mYqUkWMAlt/6Q3Q89pn4+QD4YSF9OqDB8EI/bYYXAtjRpjoyls8M
+         HXIQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVlm0VZNtNwWxI5eUYvC3mKMQbbUTAjE4Jfk27Txrs8jlpGlkzyI5szxioeW51yPWyvqOU2hvlayuua@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBC3b+dr6epXMoSv+gQQw5NAw0RNHDoL3cbXQHJoAC2zG5kUrV
+	08jN1EorWwXpyltltajcFXNm2DGyLsEiKQHS8A9jbqenmnOyYciWIClqxTIeWYoHVXE4ZqKoVFy
+	jbs7sCoJqKKWH1OclfTjQZhzaa79vwqUdaEYx3CRD+K7CpTcYaTPI/TTkFdvy
+X-Gm-Gg: ASbGnctryoWxnCnOdRkN+tD+YMUcvw+u0QLuOLy0p+VLXiiBgR5FxmvTPXT9eQKIEgQ
+	xHr1u6ja2kDsEkklp21owo03Iqxtccm7aFzJHkHa5pwRmhAFrmgT0PC+K6aValHZd/TfA6QEqdx
+	3UL9o7XPlGIaEc1476/wtln4VuhZV/7fX0NYZrqC4Cka7rsXpHAOK2Z5QiktH+CE1pqyRs8G44R
+	aoTbXcTbPRg5nC9u0W+vgdOQTCJylUAhqiX0TVU0aUNcb0D3dmZUNssqYJZ70AkHfmUldShNc9Y
+	Wl98Bj/32G0x194/zm/Hhma+6IFv0V0eONyikqC3hDelky8vey+/7NMxPpM=
+X-Received: by 2002:a05:622a:1a23:b0:467:85f9:2a67 with SMTP id d75a77b69052e-46e12a940b8mr232903621cf.8.1737990995890;
+        Mon, 27 Jan 2025 07:16:35 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHHbQBaClGLDjf47vJiIgHk5bysqAnHMsfctaPHSAVkHPdBSwDmwLdwjqjUQMvLgQ8TfbrmWw==
+X-Received: by 2002:a05:622a:1a23:b0:467:85f9:2a67 with SMTP id d75a77b69052e-46e12a940b8mr232903471cf.8.1737990995484;
+        Mon, 27 Jan 2025 07:16:35 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dc186b37b6sm5388019a12.56.2025.01.27.07.16.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jan 2025 07:16:35 -0800 (PST)
+Message-ID: <60d02c55-0d18-4704-9126-8b8ffef5bd68@oss.qualcomm.com>
+Date: Mon, 27 Jan 2025 16:16:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250120184728.18325-1-ansuelsmth@gmail.com> <20250120184728.18325-2-ansuelsmth@gmail.com>
- <20250121-zippy-umber-fossa-abbfb0@krzk-bin> <679770d8.7b0a0220.b6f23.38b4@mx.google.com>
-In-Reply-To: <679770d8.7b0a0220.b6f23.38b4@mx.google.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Mon, 27 Jan 2025 16:15:36 +0100
-X-Gm-Features: AWEUYZnk9Xh1b_Hveu4tndN_oObnjQYSeVJzcpRRCX5DJCyFhAmHsJWAlWuduBA
-Message-ID: <CAPDyKFoEDbSfQA3xPCUPsJCOdiDVdAjB1Fno=S7yrqJXSqnfXA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] mmc: mtk-sd: add support for AN7581 MMC Host
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Chaotian Jing <chaotian.jing@mediatek.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Wenbin Mei <wenbin.mei@mediatek.com>, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	upstream@airoha.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 2/7] phy: qcom: Introduce PCIe UNIPHY 28LP driver
+To: Varadarajan Narayanan <quic_varada@quicinc.com>, lpieralisi@kernel.org,
+        kw@linux.com, manivannan.sadhasivam@linaro.org, robh@kernel.org,
+        bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org,
+        vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org,
+        konradybcio@kernel.org, p.zabel@pengutronix.de,
+        dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+References: <20250127072850.3777975-1-quic_varada@quicinc.com>
+ <20250127072850.3777975-3-quic_varada@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250127072850.3777975-3-quic_varada@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: RxNqTTRH74huq79y1WutsFBjg1C65hRd
+X-Proofpoint-GUID: RxNqTTRH74huq79y1WutsFBjg1C65hRd
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-27_07,2025-01-27_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 spamscore=0 phishscore=0 adultscore=0 clxscore=1015
+ mlxscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=999 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2501270122
 
-On Mon, 27 Jan 2025 at 12:41, Christian Marangi <ansuelsmth@gmail.com> wrote:
->
-> On Tue, Jan 21, 2025 at 08:59:19AM +0100, Krzysztof Kozlowski wrote:
-> > On Mon, Jan 20, 2025 at 07:47:02PM +0100, Christian Marangi wrote:
-> > > -                   pinctrl_select_state(host->pinctrl, host->pins_uhs);
-> > > +                   /* Skip setting uhs pins if not supported */
-> > > +                   if (host->pins_uhs)
-> > > +                           pinctrl_select_state(host->pinctrl, host->pins_uhs);
-> > >             } else {
-> > >                     dev_pm_clear_wake_irq(host->dev);
-> > >             }
-> > > @@ -2816,9 +2835,12 @@ static int msdc_of_clock_parse(struct platform_device *pdev,
-> > >     if (IS_ERR(host->src_clk))
-> > >             return PTR_ERR(host->src_clk);
-> > >
-> > > -   host->h_clk = devm_clk_get(&pdev->dev, "hclk");
-> > > -   if (IS_ERR(host->h_clk))
-> > > -           return PTR_ERR(host->h_clk);
-> > > +   /* AN7581 SoC doesn't have hclk */
-> > > +   if (!device_is_compatible(&pdev->dev, "airoha,an7581-mmc")) {
-> >
-> > Please avoid coding compatible in multiple places. Not only because
-> > above check is slow comparing to check on integer, but it just scales
-> > poorly and leads to less readable further code. Use driver data with
-> > model name or flags/quirks bitmask.
-> >
->
-> I implemented this in a more compatible way so we don't need an
-> additional compatible anymore. Soo this series is not needed anymore.
->
-> Should I flag these as not applicable anywhere in the patchwork systems?
+On 27.01.2025 8:28 AM, Varadarajan Narayanan wrote:
+> From: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> 
+> Add Qualcomm PCIe UNIPHY 28LP driver support present
+> in Qualcomm IPQ5332 SoC and the phy init sequence.
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Nitheesh Sekar <quic_nsekar@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
 
-No need to, just send new versions.
+[...]
 
-Kind regards
-Uffe
+> +	usleep_range(CLK_EN_DELAY_MIN_US, CLK_EN_DELAY_MAX_US);
+> +
+> +	qcom_uniphy_pcie_init(phy);
+> +	return 0;
+
+Please add a newline before the return statement
+
+[...]
+
+> +static int qcom_uniphy_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct phy_provider *phy_provider;
+> +	struct device *dev = &pdev->dev;
+> +	struct qcom_uniphy_pcie *phy;
+> +	struct phy *generic_phy;
+> +	int ret;
+> +
+> +	phy = devm_kzalloc(&pdev->dev, sizeof(*phy), GFP_KERNEL);
+> +	if (!phy)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, phy);
+> +	phy->dev = &pdev->dev;
+> +
+> +	phy->data = of_device_get_match_data(dev);
+> +	if (!phy->data)
+> +		return -EINVAL;
+> +
+> +	phy->lanes = 1;
+> +	if (of_property_read_u32(dev_of_node(dev), "num-lanes", &phy->lanes))
+> +		dev_info(dev, "Not able to get num-lanes. Assuming 1\n");
+
+return dev_err_probe(dev, ret, "Couldn't read num-lanes\n");
+
+And please make num-lanes required in bindings there
+
+We don't want silent fallbacks in such cases, as it's easy to miss those and
+e.g. ship a product which would then run the PCIe link at half the speed
+
+Konrad
 
