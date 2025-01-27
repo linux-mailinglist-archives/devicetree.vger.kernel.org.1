@@ -1,118 +1,116 @@
-Return-Path: <devicetree+bounces-140975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-140976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FB3FA1CF4C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 01:20:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7E3BA1CF81
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 02:46:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54D777A2396
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 00:20:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 704797A159F
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 01:46:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C5D01853;
-	Mon, 27 Jan 2025 00:20:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635ABB644;
+	Mon, 27 Jan 2025 01:46:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FNtV65Di"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="Ogkj1gde"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66AAB10E3;
-	Mon, 27 Jan 2025 00:20:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D53F56AAD
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 01:46:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737937228; cv=none; b=Pg10mRdqHvftC2UVlrpj6ZSQ6O6ks6YB8Fl7QW3C9bU12nitmZNPg15H3q3vE+ijvKRTXfewbBcn4VpwwSgg041ILBXI9WuVCpvFqTnOuV06voaAEKOgTktJrTE2da1LlQ0sFNtzmABLBTSO2lzG/+a24zSXN0tspwuS91dNkX8=
+	t=1737942375; cv=none; b=ZHysmohPidiV0Aj+XRI2fRp6rWCC+287tzqmQjI8fxyyZiZiucMEariwirg5GAIEXlqw0SIY2xkrX9bQQ83sb+RTBFFJxhK1+2X0wjh5K4QohSNLT0es5xXiwbaBA398IxrBLQMQSIfc10PLtqxBAPkJbb3lOvaxvg5vGNGE/WE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737937228; c=relaxed/simple;
-	bh=pvbhsvlel3bVPxM0Y048DFc6UY6hgAQodODCIgqQqbg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y/A6E6pIOvwOA5p7hG0HQpYo6huO+NtmDY53li1GXNQoeMI+g71yvGk5ZG85k3j/Dw/4yii8L7P4jIPBKkWrH0I+noiRMGlzXSfp4wM08plABSgLMSluxnQb2CgYfYN8vjaIwXs2pFif319agwKZxjwlBC4yi26CbTRXNVyG04o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FNtV65Di; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8010EC4CED3;
-	Mon, 27 Jan 2025 00:20:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737937227;
-	bh=pvbhsvlel3bVPxM0Y048DFc6UY6hgAQodODCIgqQqbg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FNtV65DiPS+iHf2jLd8v9TJWlrzIXfObbR52fjtOenBTdGXmbYNyt49PqNTXADrFs
-	 2fftvfdeHLRViAoXKpgr37EwF0xK03whe/0hjiXkI+Ms03NFUOqUtVDBMV2BWPw+K/
-	 YE117Ah9BkqbcZKKzyzrwH2Z99tb/YkZokizvcakHxJcAqaEN3QF38DxgHq3hk7l/G
-	 XJCcvIldQoD1HpLlQz9gAE32aduMLfuo8fYFmQ8p9KuHvLVI2fNuNmpfBRQeDx5dvi
-	 MONJYgKFgWNBoWTnX7yHi2nfHNmOhzVWZGgErikRuKh8Hg+w7q5Ezb1FPz4o3ZExHc
-	 yr60JaJyzB4aA==
-Date: Sun, 26 Jan 2025 18:20:26 -0600
-From: Rob Herring <robh@kernel.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Jonathan Marek <jonathan@marek.ca>, linux-arm-msm@vger.kernel.org,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/7] arm64: dts: qcom: x1e80100: enable rtc
-Message-ID: <20250127002026.GA2534668-robh@kernel.org>
-References: <20250120144152.11949-1-johan+linaro@kernel.org>
+	s=arc-20240116; t=1737942375; c=relaxed/simple;
+	bh=pDvIw1GDMcvGKhiaZI+KEPOVaQsUM3Gy9hVWmOu/MUY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=OOu0TBdGnwuLOA2KgYMreqY2Vn6GnoY/UTL/n5Azdkqs7DcKQgkk1y1fi7gG1RfEsK6Zt1nl9c5Eh7WpWo4L8XychOcgpH5DfuLw314zMrai3khfDLtc568k/V4PJB2L9otz1jqoBJnr7xwnRg3Gt1PK37A5QKZcWcPT5NsKc6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=Ogkj1gde; arc=none smtp.client-ip=209.85.214.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-21644aca3a0so90976005ad.3
+        for <devicetree@vger.kernel.org>; Sun, 26 Jan 2025 17:46:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1737942373; x=1738547173; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5RsY0FJYh8Mg72JGIAX2jOiKQUfY87RZcqUfL58/Txk=;
+        b=Ogkj1gdekl44O391Qc/FATU9DfufyqkiIizzTq8Ux0uJCRqFSyq/bcOisEOxkrh7Er
+         eE33C+bKelG1ihs5nJMfA3jePP2bRjs+xGbLbp2tRb2fSar10nnW6ECf+V7EnpvTos6Q
+         b3yhk+E8BntPpdor8OA+Vc7pox8NwKV7CyN+ICrpTlHfEqX2+ixEuOo+PSignnt0Hnnx
+         qI4OBeQ/S2WCz/EkpuccaLd9tqObo2+6zFiUHVFW+L0mJayzit5ldJKZOICok4Zw9B+u
+         GfZGa/ZNQfkLYaQfB4imz+l0nXK58sVTUUsHjkTks0MlEk6YQJ+xq0qTVvEQcbpySocq
+         xaUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737942373; x=1738547173;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5RsY0FJYh8Mg72JGIAX2jOiKQUfY87RZcqUfL58/Txk=;
+        b=KEyGY5uAfH/+yaMrAfRFRIanjGhtDWkWhEWC/KwitLxeUNDMKIT7g1vAeMS1LWOzoZ
+         ZluvgLxP4fB5uyguUKH4DnWWGEEPwdWiQmNhts95JCUU/0y30HXp3+y8chiyyeYk8s1s
+         xqOXeLerk3zxyAmVEQZa2MoalEu1qGaD1ug+/ODajPTZ0K4f+sAg7J9I21kuuTwzZuwK
+         v5D3Sqa+w1Ff283LCwwXiSiZyslIyxBtiXxiGdivNNXT+xBVILeHMrSbZ5Drfl/+L6AD
+         Av2l+TKxOteb1C7h4RZ9nIU+2mZ2aN1PUo75AMVyb6UKCITKbefBd89yPv66vGAaNdC0
+         /obA==
+X-Forwarded-Encrypted: i=1; AJvYcCUNoGOODMp4nR/Z9uBrTXX2SL1gPOaY0v4IVvXb8oSSVJFgTghlVgM1osF9Halpx+NO2UHrFidm0eBo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1LA6QfT8F5Z8LSUligoMcsXdqWg325Wll08fUZpM52Lbru/8l
+	lHATV2j7fzn7B+P+GdF+Lensbed98SI+Pn4tCzQwbsmXvgkkAVFL8FHBpZ7TziI=
+X-Gm-Gg: ASbGnctYfnZTzqLCQgw+/GQYZwmc3kzDn0TzsapU6CgGKuENY6bhpPGJfh+D/H7cON1
+	ljxUVBZoA8xTkNqaVNs8DX4qSaOb/lTxUPt1xBhJIMqs6ql9QA8PwdWOvVqlscBVVHFog11VF6y
+	br3VVrwlQVph1aSPSLNYwZZWMSxP8dg1AnuCIct075K2MUcojSqS1n6lR5qvX3cAoEb8RUrn84o
+	wKdtR42IvM0lc9O9ZwclqYSWq1+Ocw49L3ms3PWquvViZcpI9Dky8BVP6ZQ7Gm2oa0iCijZ27oD
+	qkcvEtEATsmkYmKNi2lowAa9KKJuwEF41QomUcuD9oIo6ipLhTRD
+X-Google-Smtp-Source: AGHT+IEOPRBz6WQ4EitH6B7+CmA6sNE5X/hbPdALVt58bY7uN7m2ozrloc6Kvy4FEt2HJB5mXkDBZg==
+X-Received: by 2002:a17:903:41c3:b0:215:4f3b:cb20 with SMTP id d9443c01a7336-21c3554b37emr589252295ad.23.1737942373083;
+        Sun, 26 Jan 2025 17:46:13 -0800 (PST)
+Received: from dgp100339560-01.huaqin.com ([116.66.212.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21da4141f93sm51344205ad.147.2025.01.26.17.46.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 26 Jan 2025 17:46:12 -0800 (PST)
+From: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+To: neil.armstrong@linaro.org,
+	quic_jesszhan@quicinc.com,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dianders@chromium.org
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+Subject: [PATCH v1 0/2] support for csot-pna957qt1-1 MIPI-DSI panel
+Date: Mon, 27 Jan 2025 09:46:03 +0800
+Message-Id: <20250127014605.1862287-1-yelangyan@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250120144152.11949-1-johan+linaro@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jan 20, 2025 at 03:41:45PM +0100, Johan Hovold wrote:
-> This series adds support for utilising the UEFI firmware RTC offset to
-> the Qualcomm PMIC RTC driver and uses that to enable the RTC on all X
-> Elite machines.
-> 
-> Included is also a patch to switch the Lenovo ThinkPad X13s over to
-> using the UEFI offset.
-> 
-> The RTCs in many Qualcomm devices are effectively broken due to the time
-> registers being read-only. Instead some other non-volatile memory can be
-> used to store an offset which a driver can take into account. On Windows
-> on Arm laptops, the UEFI firmware (and Windows) use a UEFI variable for
-> storing such an offset.
-> 
-> When RTC support for the X13s was added two years ago we did not yet
-> have UEFI variable support for these machines in mainline and there were
-> also some concerns regarding flash wear. [1] As not all Qualcomm
-> platforms have UEFI firmware anyway, we instead opted to use a PMIC
-> scratch register for storing the offset. [2]
-> 
-> On the UEFI machines in question this is however arguable not correct
-> as it means that the RTC time can differ between the UEFI firmware (and
-> Windows) and Linux.
-> 
-> Now that the (reverse engineered) UEFI variable implementation has been
-> merged and thoroughly tested, let's switch to using that to store the
-> RTC offset also on Linux. The flash wear concerns can be mitigated by
-> deferring writes due to clock drift until shutdown.
-> 
-> Note that this also avoids having to wait for months for Qualcomm to
-> provide a free PMIC SDAM scratch register for X1E and future platforms,
-> and specifically allows us to enable the RTC on X1E laptops today.
-> 
-> Rob had some concerns about adding a DT property for indicating that a
-> machine uses UEFI for storing the offset and suggested that the driver
-> should probe for this instead. Unfortunately, this is easier said than
-> done given that UEFI variable support itself is probed for and may not
-> be available until after the RTC driver probes.
+The csot-pna957qt1-1 panel uses HX83102 IC, so add the compatible to
+the hx83102 binding files and add this panel to panel-himax-hx83102.c.
 
-This information would be useful in the binding commit...
+Langyan Ye (2):
+  dt-bindings: display: panel: Add compatible for CSOT PNA957QT1-1
+  drm/panel: panel-himax-hx83102: support for csot-pna957qt1-1 MIPI-DSI
+    panel
 
-Seems like something I would say, but this is v1 and I have no memory of 
-discussing this. I would also say probe ordering is not a DT problem, 
-but sounds like an OS problem. Aren't there other things needing EFI 
-variables earlyish too? Do you really want to have to update the DT to 
-enable this?
+ .../bindings/display/panel/himax,hx83102.yaml |   2 +
+ drivers/gpu/drm/panel/panel-himax-hx83102.c   | 123 ++++++++++++++++++
+ 2 files changed, 125 insertions(+)
 
-OTOH, it's one property, meh.
+-- 
+2.34.1
 
-Rob
 
