@@ -1,110 +1,124 @@
-Return-Path: <devicetree+bounces-141225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 482F0A200C0
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 23:41:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59308A200C8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 23:43:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EF6C3A7062
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 22:40:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A042E3A2F0D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 22:43:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E25AE1DC197;
-	Mon, 27 Jan 2025 22:40:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E38F1DC04A;
+	Mon, 27 Jan 2025 22:43:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ohpJOPhh"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Ig2stEPc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B093A1D90B1;
-	Mon, 27 Jan 2025 22:40:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D519018FC7B
+	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 22:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738017653; cv=none; b=k9Lm8Z6R0zdLCz5zBoqorG3E7pKKQhNF7/+IzdTH5Cs8LW/VqO3xuTd/6jTWslJ17cJm7irYObeukdYE8rtiqw9HThSFbik2HdOGPocgq4Fmy6nFj56LXx5V0PRPJ7Wrv+nwDOSa2fGUpwzJyzuhwC2TCAxLZSVa3GE9jePnYmQ=
+	t=1738017817; cv=none; b=J6oojgUlHFLunaGg+eaF2gFJF/gqXfLzujmmcwdn/ZxzBwuT3ihrCOHbALGM3z021U1XyGF4akWCPGVaz5csgJBYChLvYZtQpeU5TkQn5CSzAarn3DPc7n6y6J5AXvl2hoTNAjnNW86uLa0pXV2yeGiRP0C1/iqh3yPmUygT5C8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738017653; c=relaxed/simple;
-	bh=8n6GFq2wSsDW3UJiuOFend+qwj0qBJNXurbpJnrEFGY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TzzsBsHkor5bfJmuFQoLw/pIT+mxNgUmpWuEkN7awGtpKXHTyGcPULo0x0ggUhyfxfY1NS8rvhlU9aOMMD6IX1sei5nm1cmE6oN37e7lUab33l1ZpQ0mbnMNUAi/+7YCYapEzz2EeihPRYA2QUqzJbIb36CHQtwQkZKxVADjFHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ohpJOPhh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB268C4CED2;
-	Mon, 27 Jan 2025 22:40:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738017653;
-	bh=8n6GFq2wSsDW3UJiuOFend+qwj0qBJNXurbpJnrEFGY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ohpJOPhhj8jAFO655veGMIMxliz9kaesGQVF5VL6+7F5BqBXW4u4qQSBBJXDBtXxr
-	 apYbv9TPCKrf4WX09+K+RiquAl8cyDrw3vHsVWEhcFR9lrZaRXa+19n5eUc6RoGUpa
-	 miXj2dtTDf13Q8HmBY07woVRhn0n1SzgfC8dpgjsSZ+61Hj1YC2PS50zbhzGZw7Hwn
-	 +l/Hh6jSarFT7I6GLNUKC0BcdpZljClIcoe5IGmbc65uLER7aWrb+XkI1waAK7Sozq
-	 7Rx4xAq7EttpFoGQTwEyNC5rCth1qjUObYxA8ZIYA5ryhSK22fRU+SN3bjo/BsJVs0
-	 ztTRL2NHgxmhQ==
-Date: Mon, 27 Jan 2025 16:40:50 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Felipe Balbi <balbi@kernel.org>, Wesley Cheng <quic_wcheng@quicinc.com>, 
-	Saravana Kannan <saravanak@google.com>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Frank Li <Frank.li@nxp.com>, linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/12] usb: dwc3: qcom: Flatten dwc3 structure
-Message-ID: <hn5lcdbdmvdntmufgvzju2xsvxwplxeoechzgtxgmqkcswooxc@6zuqbfyriqnc>
-References: <20250113-dwc3-refactor-v3-0-d1722075df7b@oss.qualcomm.com>
- <Z5fJFRMHIvKoN4cE@linaro.org>
+	s=arc-20240116; t=1738017817; c=relaxed/simple;
+	bh=nZ2PZDxOYffw3fIxkBpzrvJAhv3ukfRuhS6Z4PMFvig=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IGXmfvtKKn0fmr6hafFYVCxCdC40B+bYDqzyCQ8DS0UL2Ttjj2Gx9OBCYijSbOLJagD0Kizbtkns4msznnjUAjrkbal/X/zLSZOOCOJR4yR2E4AkRK/i/NlSGxoY2Z2hrV4rF0mLYqLA3M2YNGN2dufe9dHfCIzViOoz4GBOiYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Ig2stEPc; arc=none smtp.client-ip=209.85.210.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-71df1f45b0cso2979291a34.1
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 14:43:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738017814; x=1738622614; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zDNkNEpdnFoXUQ60eecA3sCT3Ukoe3YW3y86FzhMNSo=;
+        b=Ig2stEPc9y/b0cYNyCeJ1D0sqpPQRAj7i6f5MyzXZW13sMPKsqyIWXnPux262JI6zE
+         1AGzynUI3ATgrkag5Ji/XEkZ7P8SxGK9LNfU0Jopw10ndGo1YYDGoy3LpCFjbLHfo708
+         3rf8FqyK1ZQ41NIsJPSmo6jeF7CSAoYWHIs4kONzVVR7t9j3ihx0yV3E8rbhhnzheFJh
+         +UTyPItc/nHOT2PxjzeFg+2nrx9iHHfWnSbBFWaSEH49T5Ra6XGCgJm287RWcPwZWoTE
+         0mpHSiPqWSSPG6R8Y2twkwQjaxx8buNeKe7kwhmJaVlcOtW7yP0cT24GvwIk8g33rVCg
+         NkeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738017814; x=1738622614;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zDNkNEpdnFoXUQ60eecA3sCT3Ukoe3YW3y86FzhMNSo=;
+        b=OqhreHvILMXltPoaRSqoKYzbt5T4+O7h8mSkPkrk+F+q+w+4TxZBcNML0etXsg3tDP
+         ePC+z1COYvCHbASYwDu0hrMlPTkaavpEM/aGSU0I6Fq3/U5P66G7QXLRNrs9YDmMYh4S
+         3x7fSGXJiOJW35EXRzYGStAb2tu4TJMm5lfLo1rs9nZyEU+0wu53rtvkGMzN2zun7Qwe
+         Zw60LJiSs41Wr12x5n+gVKW8orjGCGbjnO7VxMy+rTdGTzcEWchqmlrIDDSCFb4EIVNz
+         QJQejyEGryaVprZKfoUJ7mBmFozZJlWlg4VAwoVQQAmkpDhIL3E/ct5GXhi7+tEwg6Ox
+         xELQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVJy9JvbZT35JM3B5Cs33w8isM6sI4nqHCz7tJ1Q1mefUQOUUpIGhweFlNOAIQU2dwsVoKugL3Pc91u@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyb8e2QgfBWGmcA2XlKiZGcRxVeOJFV20inixiMXgpdVTLKBQHp
+	+VGih6wHvplpWRMefB31ndvuoFHa6ynFMkQxEDmP+xYMNk8ApPyaYZ30WfYj7rs=
+X-Gm-Gg: ASbGncvOChW769qC/2a7kiQlSPSicY1Mbdulk2PYeNB9XxWOpq3sWKoVKAWnA4QUbD7
+	PoUeTuqYUF9sn0BhrrMWsVFKrjR8Djve/kkp9MlBY9hUsd7ufP/oPCkGI6u6WKq18FSi/meTgh9
+	ywnaBrx38S0pkH4PpfPDOKaAHhuAD/U6A9WReOTpKrMxdQoF66Ym1pcBgHOmmOAfIqO3PKkednA
+	PIdZeVoe0BGOcZ6p3bPIMgU9qlC9qn919disQXnnWxD/cRnmxuueE66lMBaOCuX8XEGAzWjVt7J
+	ro5B2/CEr0Hy8jBwKWUlZ5j8s+rckAv83UXnpNmphA==
+X-Google-Smtp-Source: AGHT+IGG0EIXQSanj4mI6ftrrsuaTgRbSOGy3aZ/Tc95s25rH1GouqvtWdjuyaKysgGDS1S+BnO9aA==
+X-Received: by 2002:a05:6830:6184:b0:71d:ef3a:815c with SMTP id 46e09a7af769-72648bd192amr693896a34.4.1738017813886;
+        Mon, 27 Jan 2025 14:43:33 -0800 (PST)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-724ecda4c98sm2540532a34.7.2025.01.27.14.43.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 27 Jan 2025 14:43:32 -0800 (PST)
+Message-ID: <3f3bf49e-0797-48e4-a2a9-25b9ad79c174@baylibre.com>
+Date: Mon, 27 Jan 2025 16:43:31 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Z5fJFRMHIvKoN4cE@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 08/16] iio: adc: ad7768-1: Add reset gpio
+To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: Sergiu Cuciurean <sergiu.cuciurean@analog.com>, lars@metafoo.de,
+ Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, jic23@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ jonath4nns@gmail.com, marcelo.schmitt1@gmail.com
+References: <cover.1737985435.git.Jonathan.Santos@analog.com>
+ <722340b0efff3ed22a763ce6581c96ca403316d8.1737985435.git.Jonathan.Santos@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <722340b0efff3ed22a763ce6581c96ca403316d8.1737985435.git.Jonathan.Santos@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jan 27, 2025 at 06:57:41PM +0100, Stephan Gerhold wrote:
-> On Mon, Jan 13, 2025 at 09:11:33PM -0800, Bjorn Andersson wrote:
-[..]
-> >  118 files changed, 8389 insertions(+), 670 deletions(-)
-> > ---
+On 1/27/25 9:12 AM, Jonathan Santos wrote:
+> From: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
 > 
-> This is quite a lot of code and new files for a temporary migration.
-> It's also difficult to test these changes fully, since there are
-> separate overlays for each SoC and sometimes even each board.
+> Depending on the controller, the default state of a gpio can vary. This
+> change excludes the probability that the dafult state of the ADC reset
+> gpio will be HIGH if it will be passed as reference in the devicetree.
 > 
-> Would it be easier to just duplicate the dwc3-qcom driver for now?
-> Making a copy of the current dwc3-qcom.c would be just 1000 lines of
-> extra code, compared to more than 7000 for the overlay approach.
-> 
-> The copy (e.g. dwc3-qcom-legacy.c) would keep handling the old bindings
-> with the existing code (that is known to work to some extent). We can
-> then improve upon the main version without risk of breaking any old
-> DTBs. If we decide to drop support for the old DTBs at some point, we
-> can just drop dwc3-qcom-legacy.
-> 
-> This approach is also not pretty, but I think the risk and effort would
-> be lower than making sure the overlay approach works on all the affected
-> targets.
-> 
+> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
 
-I like this suggestion.
+Since you (Jonathan Santos) are the one submitting these patches, you should
+add your Signed-off-by: here on the last line since you are the last one
+touching the patch. And if you feel you made significant changes on top of
+Sergiu's original patch, could could even add a Co-developed-by: line before
+that.
 
-It's much more isolated and we know the current state of the driver
-works with the current dtbs out there - so backwards compatibility would
-be handled. I also did end up having to use separate compatibles for the
-old and new binding/driver, so this should be quite clean - i.e.
-nicer than the overlay-based path...
+More info: https://www.kernel.org/doc/html/latest/process/submitting-patches.html#sign-your-work-the-developer-s-certificate-of-origin
 
-The one drawback would be that devices that isn't updated to a new dtb
-would not gain the upcoming improved support for role switching, or any
-of the improvements in pm_runtime-support (as I assume we'd only care
-about the new driver). But I think that's worth the saving in
-complexity.
+> ---
+> v2 Changes:
+> * Replaced usleep_range() for fsleep() and gpiod_direction_output() for 
+>   gpiod_set_value_cansleep().
+> * Reset via SPI register is performed if the Reset GPIO is not defined. 
+> ---
+Reviewed-by: David Lechner <dlechner@baylibre.com>
 
-Regards,
-Bjorn
 
