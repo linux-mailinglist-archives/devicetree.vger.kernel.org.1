@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-141014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03D96A1D1B1
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 08:45:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAEE9A1D1B7
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 08:48:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 926F97A2B74
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 07:45:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31D36162AE2
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 07:48:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B484C172BD5;
-	Mon, 27 Jan 2025 07:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7501A1FC111;
+	Mon, 27 Jan 2025 07:48:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a96NsVws"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AcjVdmGd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87E2F86340;
-	Mon, 27 Jan 2025 07:45:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CF86189B9D;
+	Mon, 27 Jan 2025 07:48:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737963947; cv=none; b=P3767Hz6AX6cyAtqzK1zsnjqltuvCP2b4gOjS7KD/LZ8j7A9bkNM6l1Jg5dzoKsxXiWVF+NJv6TrCiYjqwOqESCBsT+WPslL3Rg8e+/gI2JnijYT6sN6MU4Fmsj5An46K1jOO0pdibbz9cOk2SoJ/CtF5DybRmrlC6TJXdn6CYc=
+	t=1737964102; cv=none; b=GGgdxE4C6h2DedZosfZ74b1w4xef6ogl3/IRKNGrPW0Oav7+zri2f87rSWQ/GWSYSuhymKCxxOCbfzsOEUcW0gMDTJ6OqhN+M2zjE0Y4wv5SwFb5ZV0teAm9Jz+rtIVi0m9VUprEVnz3+94QD5QpST3zLBRf4KcWsAwjKMVVwqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737963947; c=relaxed/simple;
-	bh=1seX6KcPTZeSJOHCdm+TRnON88ZHdXtD+WYjwa8HEwo=;
+	s=arc-20240116; t=1737964102; c=relaxed/simple;
+	bh=tdXuqfRrBC8ui0Vd36c31GzT2w+e2Q3ACD1hOw81m98=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Omsc3i57mtuY9pMzxDcmSBHmmMJi49rBhVWZ4ylQN06Nv1xQ0yOFj/WmSeuFqROmwGwNxG4S5UJqcNz7F/vwKcwy+7OTq/52FIwluUQkWpowunLbBw8+7bN/Dl2p5QW1s24ITToQWrxvDc9whayMVTOPSpQCMI3Ddq6OeJVfTVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a96NsVws; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28406C4CED2;
-	Mon, 27 Jan 2025 07:45:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lfJl0wAoFwqMk4SPZ/qsoUGCxUptKHIdWidvrG2K17VDwpAIpXvkH5sf9ZmMLcD13L0JJ8l0J1jBxZLU4qrP6VRb5AAqGOukrMUXJTZgGqFv8YK70HHBEfqIfCOTeZegBjxBozgaQgh3HupCZU3E9ewyskfTa687/L0kYe78x3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AcjVdmGd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23860C4CED2;
+	Mon, 27 Jan 2025 07:48:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1737963947;
-	bh=1seX6KcPTZeSJOHCdm+TRnON88ZHdXtD+WYjwa8HEwo=;
+	s=k20201202; t=1737964102;
+	bh=tdXuqfRrBC8ui0Vd36c31GzT2w+e2Q3ACD1hOw81m98=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=a96NsVwsCpQRG54wb0Sg9eGNwtpf5HKVHrAw8r81upePQcPcsMwXIZ8CF3imvxoVC
-	 63L3tf71UZe0xP8OPDbwuE5dFs3qI+DW/C+Uz6kqpiYVaHjl4NOLEWiFMJdoWKDumB
-	 b47GPH+CqJf4uhqntXcP/kDHhnmE6G0A6p7XjmaPtuD+WSV3QDJEE00cNtD5j5Dbs2
-	 pfVYOlQukLIDoVCT5ec/kekS+X1EL5b+KAZ4fXH1rrQPp5GolbQK59jU6QBN21yy3r
-	 F1qjnfIwK4oPsWJXD1WneDda97Ck2h78GCc7dXblWf0zLmPQwbKQ/8Fyn4t7EMKgLX
-	 zvclPaRHckChA==
-Date: Mon, 27 Jan 2025 08:45:43 +0100
+	b=AcjVdmGd8JZH/b3AVWbFqLqZ6EHHwiQVbh5NvCFAFRqTYeH5iN995lPysvs6D5xqD
+	 rHfLR0/mm4Z0MMWbxcGOirsKwNp2ZDlwogw7Jsgc1qBg935WRwww4S+A6QUIa0gMOL
+	 mWcXC4pFSDUHpysN1TI5RLppERKn7Ojj/azsyejKdw59RCkdt/Cd8q5PWPqeCSMBtp
+	 deNwL1CIGh9mYR9ab+Amiq3eZrs3H51dgdEtYRz1MH0bgvUcP2ZxTHtRXqtrRi3l0c
+	 8fSfuk07SttHHgNm4o6VdulbiPa5jA2qBNUnjO/K1QV4kPCF/Q2q7TmzDr8GqZmZOB
+	 znjT4v7cKgcFw==
+Date: Mon, 27 Jan 2025 08:48:18 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, Devarsh Thakkar <devarsht@ti.com>, 
-	Jai Luthra <jai.luthra@ideasonboard.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v2 18/22] media: dt-bindings: ti,ds90ub960: Allow setting
- serializer address
-Message-ID: <20250127-aquatic-herring-of-speed-29a59f@krzk-bin>
-References: <20250124-ub9xx-improvements-v2-0-f7075c99ea20@ideasonboard.com>
- <20250124-ub9xx-improvements-v2-18-f7075c99ea20@ideasonboard.com>
+To: Luca Weiss <luca@lucaweiss.eu>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+	Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Matti =?utf-8?Q?Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>, 
+	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/9] dt-bindings: remoteproc: qcom,msm8916-mss-pil:
+ Support platforms with one power domain
+Message-ID: <20250127-bee-of-strongest-cookies-cd1ace@krzk-bin>
+References: <20250126-msm8226-modem-v2-0-e88d76d6daff@lucaweiss.eu>
+ <20250126-msm8226-modem-v2-1-e88d76d6daff@lucaweiss.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,31 +64,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250124-ub9xx-improvements-v2-18-f7075c99ea20@ideasonboard.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250126-msm8226-modem-v2-1-e88d76d6daff@lucaweiss.eu>
 
-On Fri, Jan 24, 2025 at 05:17:55PM +0200, Tomi Valkeinen wrote:
-> From: Jai Luthra <jai.luthra@ideasonboard.com>
-> 
-> The serializer's I2C address on the FPD-Link bus is usually communicated
-> to the deserializer once the forward-channel is established. But in some
-> cases it might be necessary to program the serializer (over the
-> back-channel) before the forward-channel is established.
-> 
-> This can be used e.g. to correct serializer configuration which
-> otherwise would prevent the FC to be enabled. To be able to communicate
-> to the serializer before the forward-channel is up, the deserializer
-> driver neds to know the default i2c address of the serializer.
-> 
-> Allow setting the serializer i2c address using the 'reg' property. This
-> is optional, and usually not needed.
-> 
-> Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+On Sun, Jan 26, 2025 at 09:57:20PM +0100, Luca Weiss wrote:
+> From: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
+>=20
+> Add support for platforms such as MSM8974 which have the mx voltage rail
+> exposed as regulator and only cx voltage rail as power domain.
+>=20
+> Signed-off-by: Matti Lehtim=C3=A4ki <matti.lehtimaki@gmail.com>
+> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
 > ---
-> Cc: devicetree@vger.kernel.org
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
+> New patch in v2 split from previous first patch
+>   - Improve description of changes
+>   - Add one power domain changes to existing MSM8974
+>   - Add missing minItems to other platforms
+>   - Require mx-supply for MSM8974
+> ---
+>  .../bindings/remoteproc/qcom,msm8916-mss-pil.yaml  | 34 ++++++++++++++++=
++++---
+>  1 file changed, 30 insertions(+), 4 deletions(-)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
