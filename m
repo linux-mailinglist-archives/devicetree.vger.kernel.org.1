@@ -1,140 +1,149 @@
-Return-Path: <devicetree+bounces-141027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B63FA1D287
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 09:45:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F33FA1D288
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 09:46:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E62CD16675C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 08:45:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B7041886FA3
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 08:46:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7471FCCE5;
-	Mon, 27 Jan 2025 08:45:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7350216CD1D;
+	Mon, 27 Jan 2025 08:46:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="pdj5lU+D"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Ncg/m0Uy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx.denx.de (mx.denx.de [89.58.32.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C77241FCD00
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 08:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9E0E126BEE;
+	Mon, 27 Jan 2025 08:46:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.32.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737967508; cv=none; b=EyJyVfZopdZ9H/en+GBRQd9TSEY0gL1fdaLFf7Hvox/O9ZFDTDZ9xiWCUgZFAE4O+yTHEr2QxcnDxCWhY6r03gKoLO7W8p+/zBvycFSibnogEcArsBeYykoiFfx8Gxd/jIFDYVCS9CvwtMr5PEF8WB70TML4+zNnrzrJpoBHXIY=
+	t=1737967581; cv=none; b=WN/QLdlDuvuisPLeEXGERuqFI21vU3VyXxQfq5mjfKDW8ptDZ4QxxzlrYHzZzbu479OW6KhBeWTr/6vPBuz67/eKmmH7D9Xd2hmL1xImsGxfBUSzrYTl54iTtW/u1WVXvR828Fx+cHkHwKQ+QmU4QO+VCkgSEp+etREAh/4n7uA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737967508; c=relaxed/simple;
-	bh=DRgRHg2H9HZndRrP19dAAUkF/GOcikF2Dd4jfd5iTPk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HBX4UwveRGtrgRPlCTg18p8GXm9viYXd//m+cDsToeA1YhBHocU++Y1/iR4ukXyQj8HHUN2f4NkyjcV4hey3F1740yV0c5M3JOTbGmHI1vIUV9Khx4+FezrpLymVLeJLBrSlb6VYvKl4j0CfzUYp4aFjDQspqjs6Y4Nu+dIGHFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=pdj5lU+D; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-386329da1d9so2084597f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 00:45:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1737967504; x=1738572304; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bz2kSYLl3e38VCG/b+eXaZea6pK/eL1ZVqCIQrW1rHw=;
-        b=pdj5lU+DvNs15tLNvzWQp3FHPJNjXDjVDe2GnZ7On2VpyXlGi94/xA5UGKaq2JF9Ru
-         wsRJZawYHzhwInDGtpodNfD1gOdY58gWSL7egw4DhN/8aedkXx+bb3SnrJVnRokoFwSK
-         XKegrU/qbEN8nalAZYwhgqPQZ0YQ3FhZ2USQoVdhr12lgxbPt1Svvv9riynDRoO4cJ7V
-         ckL/TKTRF2yW8/2U4a8Gy3mSgOxUrHFN4tdApSL5CvbJHVG2nwK1jg3v4affA7vRiioj
-         Gh+EQH5mpCJP5+i6stSeyO/jLg42MYLZjepLSoxc3W8L33j7eD0PmzlpU9Rx9jH08BtJ
-         FsMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737967504; x=1738572304;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bz2kSYLl3e38VCG/b+eXaZea6pK/eL1ZVqCIQrW1rHw=;
-        b=u4nd6Z97GroHS2Wge2Vt5m+fAy2cXsS3xxLnmJ1kk/o6UiEjsr+cpd/4IhXCocHO2Q
-         1AM5P1rWaidXh/CkWo+vpEIjUiNP/NhlcYfKpp5xn0wdYVu3vQrNIDwh/oFzvxWO8cfi
-         q+85E6GTS3X4uZSqblTpU7np2t3FHEtUbe6YIs9CbE89o4XsJeuPd++7t0D4vsz9BfbS
-         +f/dkmC1bew2U3ExZ9Yt2etuOoG/IA1CjAsCiylgp4jtZTB+cjQ2yX54aFFgUoFw4MHD
-         pSCU6VUYwf7NkdSQ806Vz3sXpxRSrI5z8nHQWdwzoylFi+XtUEmXGreCUNrJ9NzAbZeP
-         8vxA==
-X-Forwarded-Encrypted: i=1; AJvYcCUqTS6VtTlhWNOqzyf7DJxqKC+StFtoPrcHPMtLp3qwXiTU13LL+YHXr5EHLZ1WIfqYZKX6RgW2zIne@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgGN6H4200ITAhKvYCbUhv2ysfQf+82ze3juS9uISjbQK56qf0
-	vEjB41is88JWelNnUmxD01VsipNUnn35FcN9cfIc/s2AuaJ1GbrolJpucSQEPN8=
-X-Gm-Gg: ASbGnctE/z6TxJ0DXa3JakwhTL1B9PhtPFhlgHDvzhV3kgaDbsHtDNaN2yzpXfO/2rj
-	60IafdH2k2KfhtukhBdLcUhGdAqcm1a9MydYKmC1SvCVsK03QNb8gJoZHWASB/jebhJ7I7ncIwF
-	KdidpeVYJMUsx9GRk7MXoJk2/DGmDJg4lSMrid8+SWqMHybwqeH1E/NJOj5PPhMBcSMQ6Wr8NAe
-	lpdwCxDaZzGT2UDVV/TxY6Dh8EbkhuU8nRch11UbhBj7aEgnsgDhNrmHAJBXGNtNU1Bx6PSNmjG
-	zDNlZCIwO0GT
-X-Google-Smtp-Source: AGHT+IGWqfhgnm7mqqj6MlWyyva4ixlrWco+wQr8HSdWnEWxXD9z+L+c1tqnICNsQrM+oKfyIH0FqQ==
-X-Received: by 2002:a05:6000:18ab:b0:37e:d2b7:acd5 with SMTP id ffacd0b85a97d-38bf5655900mr33401129f8f.8.1737967504213;
-        Mon, 27 Jan 2025 00:45:04 -0800 (PST)
-Received: from [192.168.50.4] ([82.78.167.35])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a17d6b2sm10635095f8f.34.2025.01.27.00.45.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jan 2025 00:45:03 -0800 (PST)
-Message-ID: <4074b42d-fb49-45ee-9f38-31a105ce6a67@tuxon.dev>
-Date: Mon, 27 Jan 2025 10:45:02 +0200
+	s=arc-20240116; t=1737967581; c=relaxed/simple;
+	bh=oflsJOOec4WWztBuFJpA8hs4acUDwTH5Ld1MJbbUHY0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SmmTmoPn6qe5uXsRN4yk284lTydYKSwQ0UnDB8x9DmGxG6npw1hUiDlFKlcszPzRMlEB8ZygBmWzFjSdz/H4tvnsNJxV3kJ8Bfx7MWAUlyNL/LmJgDZbFPLEHvjEeTwWthYgAMu0J2jfKhhhqXdd3jYRdLX4/ZqV+gJ1iOeqmBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Ncg/m0Uy; arc=none smtp.client-ip=89.58.32.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 609D4103802C0;
+	Mon, 27 Jan 2025 09:46:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de; s=mx-20241105;
+	t=1737967576;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Vu8WbV5HoQEeSN6onJ3P6ua3kZ0O/7C1HK5pPtVdu2o=;
+	b=Ncg/m0Uyy+pp5ZYX852OvabB9aN7V44WCtmS/TFaQbhHP/VStPAkEF2IvYMuhbfneAYhTg
+	ZhKVBe2gh/Dwj3gRGczXCf5uxmX5aA4IZBzeuykNPg2xmPDPYL1QM4K4tWE//gjY2BQSfz
+	qeqTl2Fwr5yqzslrdq+3mzZR0NMaXHPdA+NEbP1J2o6/6EPsccwK3Glrj4T6GegdO6QQj9
+	KKulvt/wxLQRGPWoJP3Jo6DdYIS9lATUHlMa7ci57JJDGLzBS2dyUxE5SPZ49h7Ub0Vkzo
+	jlT+WKObUXoZzBjwykvRMHtfSihCXe4hscyDiEqTqBtd9Gi6vJzvXhC0EYyjJw==
+Date: Mon, 27 Jan 2025 09:46:12 +0100
+From: Lukasz Majewski <lukma@denx.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
+ Hauer <s.hauer@pengutronix.de>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Pengutronix Kernel Team
+ <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Stefan
+ Wahren <wahrenst@gmx.net>
+Subject: Re: [RESEND PATCH v11 1/3] dt-bindings: display: Add
+ powertip,{st7272|hx8238a} as DT Schema description
+Message-ID: <20250127094612.27f8fca3@wsk>
+In-Reply-To: <1cde6d04-6fe9-4d09-a11e-26cef6bcf2af@kernel.org>
+References: <20250109154149.1212631-1-lukma@denx.de>
+	<20250120085724.5caf80af@wsk>
+	<20250127091910.4184d9a0@wsk>
+	<1cde6d04-6fe9-4d09-a11e-26cef6bcf2af@kernel.org>
+Organization: denx.de
+X-Mailer: Claws Mail 3.19.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] arm64: dts: renesas: r9a08g045s33-smarc-pmod: Add
- overlay for SCIF1
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: magnus.damm@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, gregkh@linuxfoundation.org, jirislaby@kernel.org,
- p.zabel@pengutronix.de, claudiu.beznea.uj@bp.renesas.com,
- wsa+renesas@sang-engineering.com, prabhakar.mahadev-lad.rj@bp.renesas.com,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org
-References: <20250120130936.1080069-1-claudiu.beznea.uj@bp.renesas.com>
- <20250120130936.1080069-5-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdVjvKmR-0ZiYGiAwXf6dfx9O9HtG2JXht9iDwV7oKdwDQ@mail.gmail.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <CAMuHMdVjvKmR-0ZiYGiAwXf6dfx9O9HtG2JXht9iDwV7oKdwDQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="Sig_/AIAMn5jyaeJmAnXYLmXxvJC";
+ protocol="application/pgp-signature"; micalg=pgp-sha512
+X-Last-TLS-Session-Version: TLSv1.3
+
+--Sig_/AIAMn5jyaeJmAnXYLmXxvJC
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
+
+Hi Krzysztof,
+
+> On 27/01/2025 09:19, Lukasz Majewski wrote:
+> > Dear Community,
+> >  =20
+> >> Dear Community,
+> >> =20
+> >>> This patch provides the DT Schema description of:
+> >>> - powertip,st7272  320 x 240 LCD display
+> >>> - powertip,hx8238a 320 x 240 LCD display
+> >>>
+> >>> Used with the different HW revisions of btt3 devices.
+> >>>    =20
+> >>
+> >> Gentle ping on this patch... =20
+>=20
+>=20
+> Merge window, not need to ping anyone, unless these are fixes. Are
+> these? Do not look like.
+
+Please correct me if I'm wring (or something has changed recently), but
+wasn't there a policy that DTS bindings are allowed to be pulled no
+matter if merge window is open or not?
+
+>=20
+> >> =20
+> >=20
+> > Gentle ping on this patch... =20
+>=20
+> Still merge window, really no need to ping twice.
+>=20
+> Best regards,
+> Krzysztof
 
 
 
-On 24.01.2025 21:15, Geert Uytterhoeven wrote:
-> On Mon, Jan 20, 2025 at 2:09 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> Add DT overlay for SCIF1 (of the Renesas RZ/G3S SoC) routed through the
->> PMOD1_3A interface available on the Renesas RZ SMARC Carrier II board.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
->> --- a/arch/arm64/boot/dts/renesas/Makefile
->> +++ b/arch/arm64/boot/dts/renesas/Makefile
->> @@ -143,6 +143,9 @@ r9a07g054l2-smarc-cru-csi-ov5645-dtbs := r9a07g054l2-smarc.dtb r9a07g054l2-smarc
->>  dtb-$(CONFIG_ARCH_R9A07G054) += r9a07g054l2-smarc-cru-csi-ov5645.dtb
->>
->>  dtb-$(CONFIG_ARCH_R9A08G045) += r9a08g045s33-smarc.dtb
->> +dtb-$(CONFIG_ARCH_R9A07G043) += r9a08g045s33-smarc-pmod1-type-3a.dtbo
->> +r9a08g045s33-smarc-pmod1-type-3a-dtbs := r9a08g045s33-smarc.dtb r9a08g045s33-smarc-pmod1-type-3a.dtbo
->> +dtb-$(CONFIG_ARCH_R9A07G043) += r9a08g045s33-smarc-pmod1-type-3a.dtb
-> 
-> s/7G043/8G045/ while applying...
 
-Sorry about that! Thank you for handling it.
+Best regards,
 
-> 
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-> 
-> In personal conversations with technical people, I call myself a hacker. But
-> when I'm talking to journalists I just say "programmer" or something like that.
->                                 -- Linus Torvalds
+Lukasz Majewski
 
+--
+
+DENX Software Engineering GmbH,      Managing Director: Erika Unter
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/AIAMn5jyaeJmAnXYLmXxvJC
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAmeXR9QACgkQAR8vZIA0
+zr30Wwf/aP+psctksxI1zRk+d4Tmnf6QH81RMXVaLB9Xc/VH2Aqui2i4f2zZURXF
+NT9NVY+NZb5gzMzZNZlfILLqe5e7iMgVGvmHXBu/Fe83WERJhgMp6nKLjNO/QPLu
+aYoMvJcXgB0ILb8U9bryTafgO8pVcc91wyts/w3xmwVqvrjjKAItyzey8g422agC
+5DcfO/Pydc2+R7Z1GDemDyg2zm0OiHk/uR0CpZxLsHYJSFjR+VEbCrtlsbKNUufo
+jAuJftrxfy9k0zWyN773HZVtluS18t8Sg9xS/MlV01+WZ/EYI8GqCJSKUbEFJr3Q
+nZhmHmSe0vaMSTPfmPOTK0NDsj+0iQ==
+=URYN
+-----END PGP SIGNATURE-----
+
+--Sig_/AIAMn5jyaeJmAnXYLmXxvJC--
 
