@@ -1,136 +1,91 @@
-Return-Path: <devicetree+bounces-141194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FF6FA1DBC2
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 19:01:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99C1AA1DBBD
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 19:00:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 917D7188711C
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:01:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A87233A6E1D
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 18:00:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0161618A6DE;
-	Mon, 27 Jan 2025 18:00:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069F118C930;
+	Mon, 27 Jan 2025 18:00:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="vMhuLTt9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kwRBOSpw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDAC818A6D5
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 18:00:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C86BB18B48B;
+	Mon, 27 Jan 2025 18:00:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738000837; cv=none; b=KEBTVivOY0WfBiqx6tq+VGJ4OLpYqhmIof49rXUEDqiTGMDZYU1RcD8a48Qz9koFqrGbJ3f3XuAqas/9K7ZO9LsaMMwzIqsuuwMdPhu6y6IpcKZWxrnpbLJ5M1XkurYS8SdjXWEqVkKHywpoNsMnPIJ0Ty5IAcsfDfP8LIurpdk=
+	t=1738000828; cv=none; b=ERPDbknxl/y1ZYv+ibWOWWNAyVBkv10pEAsXb3xwhuzoAfJ4yMP5IsTEjFh9QqC25qbVMxeD3PPiKi2Q04kXC4A9Jpv7uU6EZk0UVq7Yl9YT3u+uOgHZaXqGME7E9tG/530SHeuuPij1SVhdjTXZfyE540PX3ObcsOzmhpESeiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738000837; c=relaxed/simple;
-	bh=/xFRDq/2vwCvymGSfdoLId8wVkRDEO8hZUJkiCT0Yg4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PiphrerRM4uKMEVG6FfkL2yBNdmm9S3U9fq7qq2sYAzvRgrGfNWp5N7k4R8x5/08v73gPI40oZ1cDaOEa/+38VdbwKCo2VkqDn8CSrOCOMIvmw3sXqhqbr9UucBYNqmKdzoSjQBYLWecSzWSN/g3/p2l4fqtO0D8drs51ROPEf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=vMhuLTt9; arc=none smtp.client-ip=91.218.175.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
-Message-ID: <50370a62-2e5e-45de-888f-ef3d1bfbb482@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
-	t=1738000818;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=w8Ru8ILQt5YFwEkLQVtu+jlM11XhzHTarqvoBjmEMYo=;
-	b=vMhuLTt9/XtylOqFAAaifb88drjAdXo0hXinvRFeza0t+LZYsthkZP9Gb987JhA+1/3api
-	N+YiH+hc9iA6eLVCqENqySAKqYDLQq6lTvoE8ewlD//CoW5xnrJIEy/3eMcU5dDeQQ/DEz
-	cbHLRoq6oM+7OWLqg2B1EfwpNuF+UBA=
-Date: Mon, 27 Jan 2025 13:00:14 -0500
+	s=arc-20240116; t=1738000828; c=relaxed/simple;
+	bh=46MM4+5JRn0cpDs6bLnICSZXnvQ6YkR3OrnqzcdZnsg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AAwacv5ZgtufgAoIny5BuxDAJH0knp1L6csvKumYS1Wn+S8Fi6r8bmXARjRXXQwQRiiSS192fqp3HVNw66WITUjn7Ia7KQ0lR2wBPYYHB1c+q/8BN1c8JfoO6oBKrnoL4OWbx7FWAfXtiWvoupSo748DE75FnQCyCtBYWxThv0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kwRBOSpw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AD2DC4CEE0;
+	Mon, 27 Jan 2025 18:00:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738000828;
+	bh=46MM4+5JRn0cpDs6bLnICSZXnvQ6YkR3OrnqzcdZnsg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kwRBOSpwt7hCsv1k1jcYSgAy8tFJL1iDXlvdKOYENfzr/+6PsmmfUEEXTM6xcIc+Y
+	 fSq+37dib1m9fLSymvxt/HZoc2mArT586nOSh+72O3pSzJQyMrPbKdTFOhJcR9UxKG
+	 9/Ze/8XxsVX+OLPuuKPTJetdRPJCNt1tt8KJvdca/pz7PlsZgHaWkRV4zUA90jeSdA
+	 yG1aono+hVgXx4ZmNYFWBnFXa5GNLXMaQgLfnIOmik2YAwC02blYgYQd93gnau+d1w
+	 n9EoYauZOAIxKO3BaA55DUi+0KrQrukm4Gnj5ZSapXX19oKxSBF42OoDKxM+y+K9Hh
+	 lWiFXOxYX6Ldg==
+Date: Mon, 27 Jan 2025 12:00:27 -0600
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Jonathan Marek <jonathan@marek.ca>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	linux-rtc@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH 2/7] dt-bindings: rtc: qcom-pm8xxx: document
+ qcom,no-alarm flag
+Message-ID: <173800082586.538050.18039812124468938594.robh@kernel.org>
+References: <20250120144152.11949-1-johan+linaro@kernel.org>
+ <20250120144152.11949-3-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/5] dt-bindings: spi: zynqmp-qspi: Add reset
-To: Rob Herring <robh@kernel.org>
-Cc: Michal Simek <michal.simek@amd.com>, Mark Brown <broonie@kernel.org>,
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
- Jinjie Ruan <ruanjinjie@huawei.com>, linux-arm-kernel@lists.infradead.org,
- Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>, Conor Dooley
- <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- devicetree@vger.kernel.org
-References: <20250116225521.2688224-1-sean.anderson@linux.dev>
- <20250116225521.2688224-2-sean.anderson@linux.dev>
- <8a0d8789-7a0d-42b7-9aff-e867c14db3c9@amd.com>
- <b8e63009-13fb-493f-adf6-4d30adbe9b1b@linux.dev>
- <20250123224520.GA456390-robh@kernel.org>
- <34e84bd2-381b-4f3e-99e1-92f7a878ed15@linux.dev>
- <20250127175752.GA511180-robh@kernel.org>
-Content-Language: en-US
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Sean Anderson <sean.anderson@linux.dev>
-In-Reply-To: <20250127175752.GA511180-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250120144152.11949-3-johan+linaro@kernel.org>
 
-On 1/27/25 12:57, Rob Herring wrote:
-> On Thu, Jan 23, 2025 at 05:57:41PM -0500, Sean Anderson wrote:
->> On 1/23/25 17:45, Rob Herring wrote:
->> > On Fri, Jan 17, 2025 at 11:12:15AM -0500, Sean Anderson wrote:
->> >> On 1/17/25 02:14, Michal Simek wrote:
->> >> > 
->> >> > 
->> >> > On 1/16/25 23:55, Sean Anderson wrote:
->> >> >> Add a reset to help recover from cancelled operations.
->> >> >>
->> >> >> Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
->> >> >> ---
->> >> >>
->> >> >>   Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml | 6 ++++++
->> >> >>   1 file changed, 6 insertions(+)
->> >> >>
->> >> >> diff --git a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
->> >> >> index 04d4d3b4916d..901e15fcce2d 100644
->> >> >> --- a/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
->> >> >> +++ b/Documentation/devicetree/bindings/spi/spi-zynqmp-qspi.yaml
->> >> >> @@ -36,12 +36,16 @@ properties:
->> >> >>     power-domains:
->> >> >>       maxItems: 1
->> >> >>   +  resets:
->> >> >> +    maxItems: 1
->> >> >> +
->> >> >>   required:
->> >> >>     - compatible
->> >> >>     - reg
->> >> >>     - interrupts
->> >> >>     - clock-names
->> >> >>     - clocks
->> >> >> +  - resets
->> >> > 
->> >> > In 2/5 you are calling devm_reset_control_get_optional_exclusive() that's why I expect reset is not really required property.
->> >> 
->> >> It's optional for the driver for backwards compatibility. But for the
->> >> devicetree we make it mandatory since it should be included in all new
->> >> devicetrees.
->> > 
->> > Generally, we discourage new required properties as that's an ABI 
->> > change. The exception is really when optional was a mistake. That's 
->> > arguably the case here if the h/w always has a reset.
->> 
->> This device has a reset on ZynqMP and Versal.
->> 
->> The driver still considers this property optional, so it's not an ABI break.
->> But I made it required in the schema to help out the folks at AMD when they
->> get around to upstreaming the Versal devicetree :)
+
+On Mon, 20 Jan 2025 15:41:47 +0100, Johan Hovold wrote:
+> From: Jonathan Marek <jonathan@marek.ca>
 > 
-> Not 'the driver', but 'a driver'. You can't say what *all* drivers do. 
-> If I write a new driver and read the schema, then I can say 'resets is 
-> required so I'll make it required in my new driver'. But then my new 
-> driver doesn't work with an older DT that didn't have resets which was 
-> valid at the time.
+> Qualcomm x1e80100 firmware sets the ownership of the RTC alarm to ADSP.
+> Thus writing to RTC alarm registers and receiving alarm interrupts is not
+> possible.
+> 
+> Add a qcom,no-alarm flag to support RTC on this platform.
+> 
+> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+> Link: https://lore.kernel.org/r/20241015004945.3676-3-jonathan@marek.ca
+> [ johan: move vendor property; use boolean; reword description ]
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
 
-OK, I'll add a description to this effect. The humans can read that, and
-the machines won't care.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
---Sean
 
