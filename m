@@ -1,165 +1,128 @@
-Return-Path: <devicetree+bounces-141066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F430A1D4DD
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 11:54:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06D16A1D4E4
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 11:57:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B50711885B2D
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 10:54:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2A9F016182C
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 10:57:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B871FDE33;
-	Mon, 27 Jan 2025 10:54:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C46B71FE449;
+	Mon, 27 Jan 2025 10:57:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iPkEyI3a"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="AyOhSgCG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ECAE1FCD13
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 10:54:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 208661FCD13;
+	Mon, 27 Jan 2025 10:57:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737975261; cv=none; b=WEln8+oQIWv9iOR7szBBbpyd8F6OuIf9MObL++cy3uaRL8DmCEg1I7ta0lsz52QR2rlOgrEhh2kcOYY+4+dJXzVFQASVFxx+9SXoxidwTxqXH5N3AiXgBogqeKQqzEMadQJjvtlWtDWhygmnUp0yjkM1IxdQu/W/wlWNTGdKFD0=
+	t=1737975466; cv=none; b=bunPGLsXjGm56yl/tmik6QCl7BcndVP4L8F+4N+/ihR9IcTE+MXRUnsBVas+PQwtFjjrfdyj9gr29iPxBKGuY987dUdrCXpyK+klQo88RF6Rwqe4YQbBVAFbsd2zrfKE2zbZtoSgeDoLMau9FOBxKf0eGtkJXkw3eXZwMelxqgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737975261; c=relaxed/simple;
-	bh=eoUjWMI2xXVc1bCu26t67OLjDxGsCRPjEglWJrKmVa0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dkyYfoYEbmxpWsaiE+16gtJ87XBnqZ674AVZyoqbL+bki1ocitV9oUkPHzrYo7Gvm5xxPOdopsoSAu3Aw8v4eI/n/yotfSfjppLUQ973JKLxJueERLdOknHlULJr7x9ZyeSdR49+d6q0jYEPZGCnnso0+KvS0I1kBmvtUdera1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iPkEyI3a; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50R6KZn2031836
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 10:54:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	G9HKj4wDiL7xDBm3wgQ+V7mP8yHsPldSV25Xyv02u98=; b=iPkEyI3aE2F0BFtG
-	MfR8SklglgAlcvxJ0eYsMXFhHnPa1weS+jlRkzpJBOU4CKAibosWMlS1UrgmwzhM
-	RSfax7RlAkGhVs+VJi1yT3ABIkNElI5cMXrg2MkeOf1ayKaE+P5Sz+GX72fEycWC
-	myC1mcT0Gx6LeKlG0MiaA+ERl0kPegRpLAODz110nwMCEzJ67UmnUiCfji9Tw63C
-	vNUM2sl9CpXRtTNXs+0nfdp2osdqbQB48QhPDOeM0u3PlLeiq3sXHDw7Bb9lEPcS
-	a/dANSRyfRYvoeRedN7jyKKVg6F/Brmp1oCRad48s3LJzBEG/K6aL9D2SsAI6x+u
-	utetXw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44e4su0gh3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 10:54:20 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-467975f1b53so13049181cf.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 02:54:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1737975258; x=1738580058;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G9HKj4wDiL7xDBm3wgQ+V7mP8yHsPldSV25Xyv02u98=;
-        b=urjwymKEJjGgg2MAQwch8A+NQbws9HzjktI7A6d8nSxcRAStR/M6QqBVuLslIHGrGx
-         nAr1OUPvdz1A3e14g/rV0ZruL9ydVsRo3doA/tDjbgzNErbkkNLdh6c0/4pilFzAb7pB
-         GYAbbcO4pCgRqmSpLHU3qLQr1/lvk40KeiUX2hUT6vbzkg0wWrvw00wgrX/r7zdohVMR
-         ERq3vrRlQpqCQ/GlDkrfW2wFJ3Clkzm3lxP6Zf3un7Ux3o+OG/R5+H+rMsKdyPKws9Gb
-         0XTSr1SBoBP2tv0wZ32AW3B5BkC0nfZYiK9jNU2qrxlijrKRLMGANknn99qvnaxLQPBs
-         J0tQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWqcAdCjbKXTVlywJ0fbzQjQ7yMzm37RG4GIqDh0vKIKcCyKxR+tIzhDPd5ib6nV6Y79wkEj9NPWhEJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsJMKQ4A45eeLDZHpTyZ0CbcXWEjXAxEHgb855nQqnQ0Zjm53h
-	qUyEigj6ZV5t4PjN3jO46Z1bBVw7lRFxml/dtTieUwgrhnqvqpQg2q9otQgG5YTh3nfDcQrifsn
-	GlFoHAFnluhFqkOB1iVQQFg95Q6XBPLcdgiiS/C1L0yK4eWaQ8Yl+POLWK2sa
-X-Gm-Gg: ASbGncsasVfhpSgkYjq21SQoupPtWdmeflka/ofVzkeQJ6/ztq8n4GMNIq732DQDhxs
-	Fl5Y8ZUT2zK/Ri7eM9q4URdHAdpA9UZs8BPYL99c+/Vu7cfGAJPOiG4k5h/rhmBmBOCSdkldmiR
-	jo00D30wZQ+6fD9Ekz0SQAPrV+Aqvsfuy6OpU30wZ37orduITMvubvS5nKdpUoEKFRfS+4yKxda
-	AF++mxd7VLFwOXoXv3GvgZrgCOxtJ0DrRk9YttoPRvKrZqP6ysgOxinaGgnKRMghLDT9YZYXoq2
-	5myb12HyUpwAOd4J3+TG+8/eBRTX1p80LBFrv4PuKIOWX+7220qcF+8668I=
-X-Received: by 2002:a05:620a:4252:b0:7b6:d252:b4e8 with SMTP id af79cd13be357-7be6320aecbmr2022597485a.7.1737975258622;
-        Mon, 27 Jan 2025 02:54:18 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IHLegkOXqfbmbDmOnvnddwfCzVxW7OtwuWsxf6by4w3Z0CSPVtQurx3VlxhCgCSewn5FxVG2Q==
-X-Received: by 2002:a05:620a:4252:b0:7b6:d252:b4e8 with SMTP id af79cd13be357-7be6320aecbmr2022595585a.7.1737975258230;
-        Mon, 27 Jan 2025 02:54:18 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab675e64dc9sm552735366b.45.2025.01.27.02.54.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jan 2025 02:54:17 -0800 (PST)
-Message-ID: <817ae72c-babc-4d87-b935-010b1651d301@oss.qualcomm.com>
-Date: Mon, 27 Jan 2025 11:54:15 +0100
+	s=arc-20240116; t=1737975466; c=relaxed/simple;
+	bh=htWYpFro1ZCNNFreaW4T97HNxIoLyS5v+duavn1sjPo=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NRDwlFgqnyEa6Rt3mgkVdhGjnNxmOWxlQlyS1Q/uev+HE2WkKYDOFbvDR8e0MEOm9A96kRvSbgF40fvDmFhjjSd7vduwPzu7g9wOcQu/wyDIX4s+QAAeHUYLew3Vuj90WoApBlHnCI7xrU6nkf87842O1lsjmSbK3ST3N72g90k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=AyOhSgCG; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50R9bkXf005532;
+	Mon, 27 Jan 2025 05:57:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=KsJEc5+KR1Pp94/+Og9A2jL/nrE
+	Ry40wCCw/dtKzd94=; b=AyOhSgCGCwPwJ2n5awa27BY4eS/OZABJGEDjmsy/z0u
+	lLF65fCdCuCKPhoWhgrqUcU6tUztn33VuPZd/xMlaox4HzoJiHKlMEaWYNPtfXOQ
+	MgpajoLWsxrrYD2reJ1E2HhAVOLl8LnoSWGeo9F4NH1Hf73r+RScellk+bx6LPjg
+	93QU4qMg3GBwrLbcnXXVVObUWxnFmRmJB+SS9bB0h2tlqB/4xf1T0QbNXXJoMzcd
+	1eFD/vrcvUkOWWdV0eWdABro0K49IgcrN2Icld85pzpHwRPu42Nw0VV/8vd2JdTr
+	2s/tBDaJu/V5JS+g0DmPbIhlJS73YrHeJfttEkHj3rA==
+Received: from nwd2mta4.analog.com ([137.71.173.58])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 44e2n11bg0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 27 Jan 2025 05:57:42 -0500 (EST)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 50RAvewG001763
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 27 Jan 2025 05:57:40 -0500
+Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
+ ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 27 Jan 2025 05:57:40 -0500
+Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
+ ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Mon, 27 Jan 2025 05:57:40 -0500
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Mon, 27 Jan 2025 05:57:40 -0500
+Received: from amiclaus-VirtualBox.ad.analog.com (AMICLAUS-L02.ad.analog.com [10.48.65.165])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 50RAvUT6018078;
+	Mon, 27 Jan 2025 05:57:32 -0500
+From: Antoniu Miclaus <antoniu.miclaus@analog.com>
+To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pwm@vger.kernel.org>
+CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Subject: [PATCH v11 0/8] Add support for AD485x DAS Family
+Date: Mon, 27 Jan 2025 12:57:18 +0200
+Message-ID: <20250127105726.6314-1-antoniu.miclaus@analog.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add cpu scaling clock node
-To: Taniya Das <quic_tdas@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_manafm@quicinc.com
-References: <20241108-qcs615-mm-dt-nodes-v1-0-b2669cac0624@quicinc.com>
- <20241108-qcs615-mm-dt-nodes-v1-2-b2669cac0624@quicinc.com>
- <cgg3s6f555eb4jl5segz7irwx2kkza7w6zucfyo7myrbjhng3v@2qmyrobzakhd>
- <71635b71-71e4-4c17-add1-bf41ce770632@quicinc.com>
- <scfoxmstfqgvqmxovb7h5gulh6bjhgexs6yxe2n75izc7sawby@djphyr2ilei3>
- <97f5f5b1-b4f9-4d0d-88fb-4c7a0f1c26ac@quicinc.com>
- <CAA8EJppOHw5u_dMW=uXgyp3NSJmv9fwNvEL63NCqOpXUKPz5vA@mail.gmail.com>
- <608afa23-ca4e-48dd-b929-4466560a7e61@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <608afa23-ca4e-48dd-b929-4466560a7e61@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: fSricHoObJS35RRar7oQShYe5BMj3xOn
-X-Proofpoint-GUID: fSricHoObJS35RRar7oQShYe5BMj3xOn
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: 4serGn82St7lF7nGGYUzFrsy3us-zmqh
+X-Proofpoint-ORIG-GUID: 4serGn82St7lF7nGGYUzFrsy3us-zmqh
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
  definitions=2025-01-27_04,2025-01-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
- clxscore=1015 suspectscore=0 impostorscore=0 malwarescore=0 mlxscore=0
- lowpriorityscore=0 priorityscore=1501 spamscore=0 phishscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501270087
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ priorityscore=1501 impostorscore=0 lowpriorityscore=0 spamscore=0
+ bulkscore=0 suspectscore=0 mlxscore=0 clxscore=1015 mlxlogscore=961
+ phishscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501270088
 
-On 20.01.2025 11:57 AM, Taniya Das wrote:
-> 
-> 
-> On 1/20/2025 4:06 PM, Dmitry Baryshkov wrote:
->> On Mon, 20 Jan 2025 at 12:34, Taniya Das <quic_tdas@quicinc.com> wrote:
->>>
->>>
->>>
->>> On 1/20/2025 2:16 PM, Dmitry Baryshkov wrote:
->>>>>> This doesn't follow the bindings, does it?
->>>>> I will add and re-use the closest target compatible.
->>>>>
->>>>>>> +          reg = <0 0x18323000 0 0x1400>,
->>>>>>> +                <0 0x18325800 0 0x1400>;
->>>>>>> +          reg-names = "freq-domain0", "freq-domain1";
->>>>>>> +
->>>>>>> +          clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
->>>>>>> +          clock-names = "xo", "alternate";
->>>>>> Are the DCVSH interrupts?
->>>>>>
->>>>> This target does not have DCVSH interrupts directly connected to the
->>>>> CPUFREQ-HW.
->>>> So, does it require a separate LMH driver, like the one used for sdm845?
->>>
->>> I will check how it is handled on QCS615 as it is closer to SC7180 and I
->>> didn't see any LMH handling there as well.
->>
->> At least sm6150-thermal.dtsi declares two LMH blocks.
-> 
-> QCS615 also has 2 LMH blocks, but the handling of interrupts will be done from the LMH driver, integration with CPUFREQ-HW driver is still under evaluation.
+Add support for AD485X fully buffered, 8-channel simultaneous sampling,
+16/20-bit, 1 MSPS data acquisition system (DAS) with differential, wide
+common-mode range inputs.
 
-Currently platforms from the 8150 era, using drivers/thermal/qcom/lmh.c
-expose the LMH device as an irqchip and pass the per-instance IRQ it
-provides to cpufreq, instead of the latter directly consuming a GIC irq
+Most of the review comments which make sense in v9 were addressed. Some of them
+might have been ommitted, especially those that are a matter of preference.
+Since we reached v10, I tried to cover everything that was pointed out until now.
 
-Konrad
+Antoniu Miclaus (8):
+  iio: backend: add API for interface get
+  iio: backend: add support for data size set
+  iio: backend: add API for oversampling
+  iio: adc: adi-axi-adc: add interface type
+  iio: adc: adi-axi-adc: set data format
+  iio: adc: adi-axi-adc: add oversampling
+  dt-bindings: iio: adc: add ad4851
+  iio: adc: ad4851: add ad485x driver
+
+ .../bindings/iio/adc/adi,ad4851.yaml          |  153 ++
+ drivers/iio/adc/Kconfig                       |   14 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/ad4851.c                      | 1302 +++++++++++++++++
+ drivers/iio/adc/adi-axi-adc.c                 |   93 ++
+ drivers/iio/industrialio-backend.c            |   60 +
+ include/linux/iio/backend.h                   |   19 +
+ 7 files changed, 1642 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad4851.yaml
+ create mode 100644 drivers/iio/adc/ad4851.c
+
+-- 
+2.48.1
+
 
