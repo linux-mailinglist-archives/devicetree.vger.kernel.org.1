@@ -1,171 +1,140 @@
-Return-Path: <devicetree+bounces-141088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13360A1D5D5
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 13:11:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B45C8A1D5D8
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 13:16:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5D8AA7A2615
-	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 12:11:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9E451886BE0
+	for <lists+devicetree@lfdr.de>; Mon, 27 Jan 2025 12:16:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29D571FECC7;
-	Mon, 27 Jan 2025 12:11:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72211FDA84;
+	Mon, 27 Jan 2025 12:16:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ao8+068B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DBCB1FC107;
-	Mon, 27 Jan 2025 12:11:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B60071E868;
+	Mon, 27 Jan 2025 12:16:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1737979904; cv=none; b=tRgDDUPe++WM9UCElAA5+mAlKLZXvR3bYMN7vSKXTmbxu4HsJOCMHFTc1Qg5LA0l7qMRfFD3aUKCS2agp7iTZnfEykCY8WY4MqbEqvLkqD4SHZZk7enrGQ3STljouMH0VfBapmEkAgfr0IUIyG8pcJMzH309HE0cuKkvYkr7sgc=
+	t=1737980188; cv=none; b=d+FLszKvwXrLBPmKt1EggqEyUmQIbSo+JO/ufKj1FxQ+NHRGOLaUBDdIsqyCFHRjakbex2VtWW63ENBzzS6y3JgbvsKvMKCo2fJajIMkiLCa6ag3ANAtRV8C15qqaAHPUdRpjK8zK/EhCiDLXFzUZf4LluMrW+wICZWkt76PtYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1737979904; c=relaxed/simple;
-	bh=k9ZLEoH9HATkGyHWH0/l6mW3YDdG57zQKHP6gvOKtCo=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=klGSzK1/MmnhqQyaYLfkKSDzTs8Pl5YnrRDV0dbDWcpesHE4BJz5Rt80hGXrxCE8RjJkXPT/TR5GYDcfdTp659WCG2HLeOzbBZuHzi/MoaTey1Az8Xz6pKsTXyWROzX0B9f3wdw2tEN8NEP0zzOjWClgQ6g8MBtp/+fgOsX3YW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4YhS1m40Bbz6K9C8;
-	Mon, 27 Jan 2025 20:11:08 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id B26401400C8;
-	Mon, 27 Jan 2025 20:11:38 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Mon, 27 Jan
- 2025 13:11:38 +0100
-Date: Mon, 27 Jan 2025 12:11:36 +0000
-From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-To: Alireza Sanaee <alireza.sanaee@huawei.com>
-CC: <robh@kernel.org>, <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<shameerali.kolothum.thodi@huawei.com>, <zhao1.liu@intel.com>,
-	<yangyicong@hisilicon.com>, <rrendec@redhat.com>, <catalin.marinas@arm.com>
-Subject: Re: [RFC PATCH v1 1/1] base/of/cacheinfo: support l1 entry in dt
-Message-ID: <20250127121136.00007f14@huawei.com>
-In-Reply-To: <20250124152008.313-2-alireza.sanaee@huawei.com>
-References: <20250124152008.313-1-alireza.sanaee@huawei.com>
-	<20250124152008.313-2-alireza.sanaee@huawei.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1737980188; c=relaxed/simple;
+	bh=8UoMfghNuqjM4GO5G0g9QnxbKEyGU/vL7wVUcoVKSJM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=M7u/hMlbtNlSCSGWO75BGcIK1haNnQKPi5Z2vqW7uk1QZiYlkwFvS2XEujuGqbmCuOnss3PDX/MzNIJPM0xc/YLIJIHbiwqyoqqmzmAuXYMabpXxVn0mfm6xNuY/5hCf6QapSZPkgcX/4cJZfppH9t5zd+lyYLaeRPcIixcAWaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ao8+068B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E243C4CED2;
+	Mon, 27 Jan 2025 12:16:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1737980188;
+	bh=8UoMfghNuqjM4GO5G0g9QnxbKEyGU/vL7wVUcoVKSJM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ao8+068BjAULhfsIiFodk+Uup2twKoSGzLxd5QKzenA7P1ljnrTNzUwnV0FQdNKf7
+	 GVuMw5wGfh4yV3HkYOPBroyWLRUYrBeqrZWsOTnsm7W3BLSVX/JhYIUgeJVhi9qSkx
+	 sUrFJ/SVmQKZaT6V3h644WvOIbzqNA/5GpkS1x/Q/rwTk+QCrfIKLk0UEVB1utdei0
+	 mZ1K5Bp8aW2GZh+KpLqWzpQZarrWh7RKhf8svrRB0U0BmkJY0m8TmpD8x7DlQz7vkc
+	 dBJyuDkkOfNFRwD8TZd8rB1maRs559wzxNSxC5Vjf5SRH0xhhCGbqO0GJQN2N2HCw7
+	 I+iw8xetQEKhg==
+Message-ID: <4bcc6282-4ebc-48a1-8644-ef2c322e0441@kernel.org>
+Date: Mon, 27 Jan 2025 13:16:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] hwmon: add driver for HTU31
+To: Andrei Lalaev <andrey.lalaev@gmail.com>
+Cc: jdelvare@suse.com, linux@roeck-us.net, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, linux-hwmon@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250123202528.223966-1-andrey.lalaev@gmail.com>
+ <20250123202528.223966-2-andrey.lalaev@gmail.com>
+ <20250124-refined-belligerent-hornet-270b14@krzk-bin>
+ <9c2bcef2-4e8c-4856-9a49-1f02110284a5@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <9c2bcef2-4e8c-4856-9a49-1f02110284a5@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500009.china.huawei.com (7.191.174.84) To
- frapeml500008.china.huawei.com (7.182.85.71)
 
-On Fri, 24 Jan 2025 15:20:08 +0000
-Alireza Sanaee <alireza.sanaee@huawei.com> wrote:
-
-> This commit simply assumes that CPU node entries may point to a cache
-> node that basically act as a l1-cache and there are some CPU nodes
-> without describing any caches but a next-level-cache property that
-> points to l1-cache.
+On 24/01/2025 15:56, Andrei Lalaev wrote:
+> On 24.01.2025 09:31, Krzysztof Kozlowski wrote:
+>> On Thu, Jan 23, 2025 at 09:25:06PM +0100, Andrei Lalaev wrote:
+>>>     ibmpowernv
+>>> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+>>> index 4cbaba15d86e..e123e06ba352 100644
+>>> --- a/drivers/hwmon/Kconfig
+>>> +++ b/drivers/hwmon/Kconfig
+>>> @@ -789,6 +789,17 @@ config SENSORS_HS3001
+>>>  	  This driver can also be built as a module. If so, the module
+>>>  	  will be called hs3001.
+>>>  
+>>
+>> Looks like you add here stray spaces.
+>>
 > 
-> Signed-off-by: Alireza Sanaee <alireza.sanaee@huawei.com>
-> ---
->  drivers/base/cacheinfo.c | 54 +++++++++++++++++++++++++++-------------
->  1 file changed, 37 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/base/cacheinfo.c b/drivers/base/cacheinfo.c
-> index cf0d455209d7..d119228fc392 100644
-> --- a/drivers/base/cacheinfo.c
-> +++ b/drivers/base/cacheinfo.c
-> @@ -83,7 +83,31 @@ bool last_level_cache_is_shared(unsigned int cpu_x, unsigned int cpu_y)
->  
->  #ifdef CONFIG_OF
->  
-> -static bool of_check_cache_nodes(struct device_node *np);
-> +static bool of_check_cache_node(struct device_node *np) {
-> +	if (of_property_present(np, "cache-size")   ||
-> +	    of_property_present(np, "i-cache-size") ||
-> +	    of_property_present(np, "d-cache-size") ||
-> +	    of_property_present(np, "cache-unified"))
-> +		return true;
-> +	return false;
-> +}
-> +
-> +static bool of_check_cache_nodes(struct device_node *np)
-> +{
-> +	if (of_property_present(np, "cache-size")   ||
-> +	    of_property_present(np, "i-cache-size") ||
-> +	    of_property_present(np, "d-cache-size") ||
-> +	    of_property_present(np, "cache-unified"))
-> +		return true;
+> Could you please explain what you mean? I see only 1 tab and 2 spaces right after it,
+> but they were here even before my patch.
 
-	if (of_check_cache_node(np))
-		return true;
-> +
-> +	struct device_node *next __free(device_node) = of_find_next_cache_node(np);
-> +	if (next) {
 
-Hmm. Was like this before, but general kernel style is no brackets for single statement
-if block.
+Diff in mutt looked like having stray spaces added in this hunk. Exactly
+that line I commented under, not in some other place. There was no tab
+and 2 spaces.
 
-> +		return true;
-> +	}
-> +
-> +	return false;
-> +}
-> +
->  
->  /* OF properties to query for a given cache type */
->  struct cache_type_info {
-> @@ -218,11 +242,23 @@ static int cache_setup_of_node(unsigned int cpu)
->  	while (index < cache_leaves(cpu)) {
->  		this_leaf = per_cpu_cacheinfo_idx(cpu, index);
->  		if (this_leaf->level != 1) {
-> +			/* Always go one level down for level > 1 */
->  			struct device_node *prev __free(device_node) = np;
->  			np = of_find_next_cache_node(np);
->  			if (!np)
->  				break;
-> +		} else {
-> +			/* For level 1, check compatibility */
-> +			if (!of_device_is_compatible(np, "cache") &&
-> +			    !of_check_cache_node(np)) {
-> +				struct device_node *prev __free(device_node) = np;
-> +				np = of_find_next_cache_node(np);
-> +				if (!np)
-> +					break;
-> +				continue; /* Skip to next index without processing */
-> +			}
->  		}
-> +
->  		cache_of_set_props(this_leaf, np);
->  		this_leaf->fw_token = np;
->  		index++;
-> @@ -234,22 +270,6 @@ static int cache_setup_of_node(unsigned int cpu)
->  	return 0;
->  }
->  
-> -static bool of_check_cache_nodes(struct device_node *np)
-> -{
-> -	if (of_property_present(np, "cache-size")   ||
-> -	    of_property_present(np, "i-cache-size") ||
-> -	    of_property_present(np, "d-cache-size") ||
-> -	    of_property_present(np, "cache-unified"))
-> -		return true;
-> -
-> -	struct device_node *next __free(device_node) = of_find_next_cache_node(np);
-> -	if (next) {
-> -		return true;
-> -	}
-> -
-> -	return false;
-> -}
-> -
->  static int of_count_cache_leaves(struct device_node *np)
->  {
->  	unsigned int leaves = 0;
+If you double checked and are sure there is no stray space, then fine.
+Could be just mutt....
 
+Best regards,
+Krzysztof
 
