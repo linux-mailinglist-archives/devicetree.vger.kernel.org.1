@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-141499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFD6DA20F7C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 18:16:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80595A20F92
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 18:29:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E61383A6B65
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:16:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 981343A5598
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:29:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDF83193084;
-	Tue, 28 Jan 2025 17:16:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A441DB34E;
+	Tue, 28 Jan 2025 17:29:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="M+wK459A"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Sk5W4IMI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 987301684AE
-	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 17:16:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 303BC1684AE
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 17:29:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738084569; cv=none; b=cICLTCluEA7vUuajPjzPaiJcVVE5iuWSOBjG4wqHklkOuMsiKnQK1KTG3/HLr7g/lYIRnxhSdCr+XvcX2/U/CmikyrfsAgmDPkihRyWjLvUF7JA/xp+JN866jAJPHryMwOK4O8clNn3Fa6C7U36g8S36MHNgX/WxSNysiYkiNzQ=
+	t=1738085379; cv=none; b=fN18C3QpVfPtNAaLiDQXcpKxNM8TD6KSlTSmVTy3axqQqUEruX57GD9tqBwrDbV5gAvj8YFn/tY1XkrKT6/Igx16wvJQFi4hBHnjPNmtmmj2CUCHoztnRyMwPJBHd0zLpFcQx0v4ErgNFdvBFYHHZBXBWE4EpE+8acmVcZVh+UM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738084569; c=relaxed/simple;
-	bh=QMZ/XvkweAPoe46VgNf1XY/0LwZdCFmd6qv/UpxY7YQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=F4xZCH7Cy7wkoSwqH741YKrmSEqsD+/s0MCqaFGxrDS5xThtabk2BGOhXpY7KF3AsK/OeYkr8PtnN6EkaEzrSjyss0SCMrykAOd1tvTsq0Im0LA3K3nMzJf/bQ/Nu4V1Fh8VQKYvqQLZIY/rrIsj78PLjN+am6yp0lv2tvkdYPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=M+wK459A; arc=none smtp.client-ip=209.85.221.45
+	s=arc-20240116; t=1738085379; c=relaxed/simple;
+	bh=fKuHBkO6gVVCFCdSJFQAmff53FXkCTXexy+1dsxfSo0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FM6FVVwYRPCsWBW09hBdKvlyGu1IXfmvqFWqQ0OE8zz8NiBE1av2JRZxCN6qM1E4K60FPWj4AV9NbmTqyvHKJRONoY84xd21jDm2cI+58J2dvtNjB2xLzZP8iny0sfmfSG1fmKpkBo30OvPf+YFG9TO/4SZRqtXIVyiv0r9BvC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Sk5W4IMI; arc=none smtp.client-ip=209.85.128.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3862d6d5765so3556475f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 09:16:06 -0800 (PST)
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-436a03197b2so40406025e9.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 09:29:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738084565; x=1738689365; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738085375; x=1738690175; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GtKHk5OuOKVS4XECraUREwb+pHnUWcAkIiYsVCyL/F0=;
-        b=M+wK459AN0qs2oE2f4CUiRQmeTpn3+GZX3uTbo4rXv3WR2zswciq8PlJPurCmuy8vg
-         fdyHQ4EuJsTzGWe7UdhhbROQoVl92SjX2b2nT9yButBAvXPP1c3+3TMJx/Bav7vl6Yaa
-         j4P/r80Zjhbbo8o6R+v2WlmIFxyZKsNUIQumzFB1TMnz32QYE7ioe4UX4PowSzw+jPOk
-         veUQi5ELr2OACRRXlrUavxsmp4YnTpzRHHw84hqHGRBOs9miKwNNk9mbur5SYDeDlEi1
-         LHkXGk8gp2fWHMU6y+mzZ20626/eiYSZkIibryddg8cS5IjlVBkY1WdU2rKj7YlwDVDG
-         FSOA==
+        bh=kAOnfJk8Ll5ALd+bAgw7fUl/0BuZl2jjNY6ByjGEDvQ=;
+        b=Sk5W4IMIE8oPoQT5baYKfQq/spmbVlq4FueAkeQx7QoQS5kJS+ercrbGVgkQngR1Dg
+         Z5s0LL1EUVHTomHvsTotSGNmp7lqwYhJ92GOe2HsRW7WAOxhMzkOBsaH9SVBgtMGHpkX
+         r3ZsP7R46Hjz8Ew4T2Uz6kYgfam0WvoBXTo1uPZ9sjlB9qxOg3mViXpb2GDPJsXHD3zs
+         hPyJJPYZUdM0Zw2iMJeWrTDNQZtY38rGuDOu4QEoJQ40GFjGDRPv0Ws7f/H4EsKjGGj/
+         77YpTT6Lo+Xq0bhMxPzEKmfwUSkGSb8K2wKUo73pHAcldUugwpV79sYUyih1GU0RRO3y
+         B6KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738084565; x=1738689365;
+        d=1e100.net; s=20230601; t=1738085375; x=1738690175;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=GtKHk5OuOKVS4XECraUREwb+pHnUWcAkIiYsVCyL/F0=;
-        b=pFs9C7mpEasUALXIbr//8NATZGLymEIgQdZilZY9K96GmTQfLRK8f/L7gdAc/lAmqK
-         k4ln8EHQdCgWkX5U8LwcL2N8fsa9/ogyHLWgTVSAKfG6+7zTs61TO6ZFSKXvJiaBmuD7
-         GZmJayvWaDgm37+XarTsfThoM9BbaAj2WzBEes6NFylO2f3QQdLbD0NauM3YNKqMx2wa
-         mo8aJV2Ai17PkvfcQtMU2eNSVUpfgIUkP0w65/4ZLNkllVRHpc1Qb6qVhPEYPDWTgtDc
-         CosACc7Bd3KJZ+HG5Gwl2i3e9nsBCAOwFTzzDRZn911xgGcMKdZzTeoDegsiXn7jaFQe
-         2FrA==
-X-Forwarded-Encrypted: i=1; AJvYcCWZkoThcQk7gcP4i976avyLbDAj0U9PTWe5agRA//WndJl7hRONQ9cNlcd7UN4aenlVViyh+B4DiBsC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPc7Bhv4y5XAZIAkurgh4LypgLPbYXG0Ae5G8OaH1hiy1KIw2m
-	9linvfFVQdL3l4dVz3DXOg5H2qgVTYkJxiGuSZql4J5mepC9PmnZCO+fSjOMSKI=
-X-Gm-Gg: ASbGnctnRXhKb3Ny9SvUYW8efu4FGTCHZ8QyFGZana6NSG7E1g55pLFAsGw8N44XUKT
-	kGTTvyNWbehvy2T0ViCq8lWcAlvKPJsH1IIWSJ66B52lSN1RZ7V+vxEsFLS7lMQD44Z5VSrQkEH
-	nJdiJ/28wF1TEfArhP0x4DUxA6ikIK+/+/ayMz8zi3tzuTUnAnI2YWMYlM/aEWaI5x9AisowLqT
-	PdIdjB/9UUdJGHoL15udb1GAmXzKEmqQ/GWmYWZFblGXVU5NOVkDxJOvknBORZwJQTF9Ib1Seh1
-	U2ZUHJ49DZ0wwQiQJryFS1LQ8SGlp5gJa4+7484w02Oism90X83Ar16/FQ==
-X-Google-Smtp-Source: AGHT+IGvLelAGjP3Cp2NtFnJU1ZBrvpSEr1QQ/aekKmtr/sBfPTElE2SYJmLWChkgQi4KPqF+xdNCg==
-X-Received: by 2002:a05:6000:1acc:b0:386:4a16:dad7 with SMTP id ffacd0b85a97d-38bf566e605mr42464688f8f.10.1738084564811;
-        Tue, 28 Jan 2025 09:16:04 -0800 (PST)
+        bh=kAOnfJk8Ll5ALd+bAgw7fUl/0BuZl2jjNY6ByjGEDvQ=;
+        b=kUm0sgqGxAzMUnyUqKVRlXrsd1oYZoYVqvLAGA3iIX2RGEkDRI7yeAY7xWa020aakY
+         eHSImJ35LmkgnOUcI/aZiSADwdpU7vzESwjNfibnQt56uhVcF+5csnrm1uiKWWBscfBg
+         qXakE7Vl+0eR/qFVtDv5pRHIFj/xLHJzIJC6tNo60cqfLGoljAh8niJkt5ZGIwzYhJV5
+         YoOmwOeubUI5ueFByhQg1z8MkxaKDjmoj2UyhgUlfEJClMPrbx3tISwQAv4bmiKmPYxu
+         YV1/GvoKTFS+Q6sZpEBSqc/6/rc9ntaGM6q2OVfvOxpKvP1Q5BH6vHb2cCtPvNIzG/FH
+         g08A==
+X-Forwarded-Encrypted: i=1; AJvYcCXFZP0P9RLL+++mE4OeSsktU9QvQrYmmNCQyee0LTuweHKu3Xt3PT2CYdkhjJR5Fquwtfcp10F95qsD@vger.kernel.org
+X-Gm-Message-State: AOJu0YzFF448wIlnmaeJbHRroM16M8JLsMjB/zgHvVf9UYzsUB354YNW
+	VP1l0DNWIguY6Y+2Bfow7Y7lZFYb7rtc3wvJE8DvYdKeSZy679/NO6m0EtUAiDo=
+X-Gm-Gg: ASbGnctN2mvREjBGmCbbTkzeWpV5F9WwaPQNwLC5DRUp3tIpzces2Ct2qFsN7ELiYco
+	/E0FM0e4qWwEAhekVF1X7LiZQiRXrhcpj6wtiq5tA0nm8jRuK/Y8t0yTn8epPizBk/GUdmCIcNJ
+	8Tx64VSVsZyEUQAufCeB98GDnfoolvi9l2PTmI/RCLPw/cOn90B5QDWY7+p6GW6qfPyYQ5BIG76
+	6K3a2WaMBZ8no7fXRLHVkXKOG8AkWMI4B5dvu/OcwbbrSP1iklbdx6I5cVZ45hoQBnwG5E556y9
+	TwyvFRaD+2lH5loI11XdJH1kCYgw2y9gpg+rpqrp5p8lL7FsHZK4UZ9ZkQ==
+X-Google-Smtp-Source: AGHT+IHnpSIh7KU+VCphvReRqNWdtBF2d0uF1DAtcKvgsSCXu3zyZ0DubN85Diq5BBxqLd4dY6fFfA==
+X-Received: by 2002:a05:600c:1d07:b0:436:488f:50a with SMTP id 5b1f17b1804b1-438913ef4b7mr434270445e9.17.1738085375435;
+        Tue, 28 Jan 2025 09:29:35 -0800 (PST)
 Received: from localhost (p200300f65f018b0400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f01:8b04::1b9])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a1bb057sm14845730f8f.62.2025.01.28.09.16.03
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438bd4d3dbcsm179373075e9.40.2025.01.28.09.29.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jan 2025 09:16:04 -0800 (PST)
+        Tue, 28 Jan 2025 09:29:35 -0800 (PST)
 From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
 To: Dinh Nguyen <dinguyen@kernel.org>
 Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: socfpga: Add basic support for Terrasic's de10-nano
-Date: Tue, 28 Jan 2025 18:15:55 +0100
-Message-ID: <20250128171556.1499810-2-u.kleine-koenig@baylibre.com>
+	linux-arm-kernel@lists.infradead.org
+Subject: [RESEND PATCH] ARM: dts: socfpga: Add basic support for Terrasic's de10-nano
+Date: Tue, 28 Jan 2025 18:29:17 +0100
+Message-ID: <20250128172917.4565-2-u.kleine-koenig@baylibre.com>
 X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -88,7 +88,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3096; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=QMZ/XvkweAPoe46VgNf1XY/0LwZdCFmd6qv/UpxY7YQ=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnmRDMdfxA+UOslSYa5+JkWzCdHpCvw5lHuKL+5 y5uo86ycs6JATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZ5kQzAAKCRCPgPtYfRL+ TnAsCACM4/0P1OIAwzHsTJOTWKa797EqJdKMuT+H/yxsu7KuYgKIPwoqIkx2b97t2SbWYnc1RUH Y+atAyzS+GapAhXdvrk+RomFGCWQXiuGEX7t1DyKmTGkhstDTKB+h7PwL0PqehkJEQ1WMcJbKkQ pi992GUHW5et20FQBMoxxxkGivTQtqL5u93CFP0WPZbipv55PKhDb/5FyMcPOCWPQPvi9RSeLa1 d96uG6RnAuc+Fm6y4/yaRbvvVqAAi4K5Nv17JuzwBZb5DsoMSthDUlBosLth89zVnFEVAP54h/p MDR6hoO2P4cBVEIiQ7KqbfUk90+s7eAmx+D/qquND2LM/nHw
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3277; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=fKuHBkO6gVVCFCdSJFQAmff53FXkCTXexy+1dsxfSo0=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnmRPuX5/KFs5VhMXgFqmSiVVzJ5bVQ6PPqTreF OJZrXZWdRuJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZ5kT7gAKCRCPgPtYfRL+ Th6LCACXWfB1qMkmQaGWkV0VXqqQa6kJih4Vt2gIq1LZIscv0643PwW/2NSQcz2V9NHDeJTS0sM t88P4qTYZYQnMHWdkE5qkU0v324hMsIZVKyr/Xdid6C4rqCETDUNOSsqNZhLI4qyUWPGWRmBhmO XVk4FVdRS9FBb+Jl3rLItBmSFXisCYzytrtMdK6Bh1Sb97LeHnta6/cZZLNcz3oJ7dOaBz2QdQ7 RZ4fYRFr6pC1o5JsS4h8wRYTJ/6mQJ2XLUXPz4oGV2U+L+U33DxGyBaXpZISbNFeMODQHRuOdVR JxsU1IuH77mmFeCQLAbMHmzw8/qHjN1+EAMLFR0aeGy77Iac
 X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
 
@@ -97,6 +97,14 @@ a micro SD card.
 
 Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
 ---
+Hello,
+
+in the variant I sent 15 min ago I fatfingered the address of the
+linux-arm-kernel list. So here comes a resend with the right address ...
+
+Sorry for the noise
+Uwe
+
  arch/arm/boot/dts/intel/socfpga/Makefile      |  1 +
  .../socfpga/socfpga_cyclone5_de10nano.dts     | 90 +++++++++++++++++++
  2 files changed, 91 insertions(+)
