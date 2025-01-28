@@ -1,134 +1,108 @@
-Return-Path: <devicetree+bounces-141465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74C09A20CC6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:17:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6779A20CD6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:20:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC6FA18858EA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 15:17:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 231963A741C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 15:20:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB52B1C5F3F;
-	Tue, 28 Jan 2025 15:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD5DB1CDA2E;
+	Tue, 28 Jan 2025 15:20:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Hvl2r6Jn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4540E1B4F3D;
-	Tue, 28 Jan 2025 15:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB64E1B041F;
+	Tue, 28 Jan 2025 15:20:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738077462; cv=none; b=MNDIoN34pvsTOD7EvF6BFbm6CBLfvo8nsSkLEj03x86q/n0t47czVTXyENjLwpSSNA06ZIdu7pBEzzlnf1YcKiknjIyFc9ShkYZCXyoyqUsRcA8P3mGEoCFvjjdez70bXJxbGFTpDzqOO8ArKfuOF6ildox+GWH+o04FG/tZ8Fg=
+	t=1738077604; cv=none; b=WwJAJ1cahGB/EJ1dPpnyR6KZpSb7xbpXxr0+4XPBSgeS4hQfffibU462AdmTlZWKQ1m1MoG+AfnNoXYVxoT8hx0Hri8p77Hba5w86Okt70X+8ktTXWOYRULh5eCUsQdISk67RjOrvJ3zDfjbZXztgicuwhivKTyq5/2wxSRr1dY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738077462; c=relaxed/simple;
-	bh=K1mfat7yZZDuXM07aBjw1kgeOuQMu7giijSpVBzogGY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fykFKKmbD74a9dipxXUMrOrIL96bi8FVa8fqjZasr9iL3Le1ogAffRVV49GY4A0W8l8efsffi0sR0yWiNwY9OM02dS1tRsAHnVoxPqqglAr+pvyT5U7c5LYGYvxNdWXzlQu5GEGuMcODOu6fXh+NC3k1xMa6fpn8EDvilzQpbyA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-7b6e9317a2aso588378785a.0;
-        Tue, 28 Jan 2025 07:17:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738077458; x=1738682258;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VGuWHyiF9ctoAje4s+46RUnL3RpuwHxdw+4GO7WuRkk=;
-        b=plaJByDAs3sECVEpc2zLKB9vDK06Ne2NvaUnm4Q08QkkTmWFyp63RN6QEa96HvGVtk
-         XTWsmn482dJThUTVM81KPObIebzhdRq+bJqdQsrRO4r8rnwSccFtSRwWJPg6yOo8Kdf/
-         50K0Cf4uiipdvPDQKs477K6qV535Bhcx9L3X5wlhDBaPXQnjsrrfY9KRdn6gNXPlNzP/
-         /W9r0QGetOexdsjddgKZxQyfu9VMvpNqJwaO6dI6IsuA8H5BxXUYxGVsYX0QdL8YC41G
-         kHnAITeNaVLTIE2iqfwBsE7BbMWyfWbO9APVhuOa5ty32akIHp/hQ0FvZ0EIdPMFiJ/H
-         HDog==
-X-Forwarded-Encrypted: i=1; AJvYcCW2zeU8kDhq9u9WwWiwqebyhJqn7khu3TF30/owrVtpky9StCyBeOHZJMYluLMQ4UqeqVp0vp5DMSgo@vger.kernel.org, AJvYcCWvJ8qMPuwj/Uk2QlHn2tc96XcO7wfWc5OR7H002TIsjNQhtMKlgdmvxL0wocSTTaT1/29jD/gmITrf9NNhRX8BGjo=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxydgPAU5Cbo7VOB3k+taVD3lm6C5sBNkkMEb3Zhq44ghK6lBjX
-	AFTIoEEFrvEdudKli8eGfTSo2hy5+gnh7A3bltIH75GMTyldBr+NeX1pfTB1
-X-Gm-Gg: ASbGncuIaGGB4AX1TuaRMhIaoAhFcE+JSNjjrOlasOU9Ojf8GjKawrLFzQfk3NDi7DA
-	U2uq4F+MQIWBk/7vv4cx9eWP4o2GXZi7d8YU3xSAuG1J5WYowxL2da+vpT+g+WZSu+7oQiRotcV
-	9fe3/9hQWER56MV6qgYgZR/G1gGVYIYH8X8G11xCmSZSS/4B4AWOF/mDXEez2VZ5utReWBSvvEq
-	d9DfUe6Jxqe4CVTk0HtfWUvlVFcU9hMZoTUJbpiw0QTxmjaNj12LdUcw1j5+HgecfBq6AAIz7x5
-	KfMgUv77dGq71pvk6b/csA1mAJr2fQao9628EXKF0ihb5SseeCHwet/nKg==
-X-Google-Smtp-Source: AGHT+IGR2hexxyDqVT12fHCVmJpuVzxG62gHQ6Nq2S7m9rTQXt9LTEfDg5yu3WG82q3W7roCy44sqA==
-X-Received: by 2002:a05:620a:408f:b0:7b6:d7be:2e4 with SMTP id af79cd13be357-7bff402e32amr474874585a.26.1738077458008;
-        Tue, 28 Jan 2025 07:17:38 -0800 (PST)
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com. [209.85.160.169])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-46e66b67fe5sm51614071cf.57.2025.01.28.07.17.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jan 2025 07:17:37 -0800 (PST)
-Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-4679d366adeso57299891cf.1;
-        Tue, 28 Jan 2025 07:17:37 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCU/mYn28TaJ+7RKwrHpy9KXMWqmEZ7K+sqKxRwjIDosNqWTz3WAhFtiHhrmhBNqz+GR8IZCTracW4Y6CkPQZjSr6Ok=@vger.kernel.org, AJvYcCUlKE66IPScS/wvS0uP7avO2OR9u8lVbbjlcVxiRAnI7nHdfwTNnkkyCsWiCqpWtcJzDgv5a8qckwkD@vger.kernel.org
-X-Received: by 2002:ac8:5703:0:b0:467:5734:da89 with SMTP id
- d75a77b69052e-46fc4a93034mr46919631cf.23.1738077457405; Tue, 28 Jan 2025
- 07:17:37 -0800 (PST)
+	s=arc-20240116; t=1738077604; c=relaxed/simple;
+	bh=/M3sluiHSQ79DO/JWZhFhxH1LzXYMDwMfYXtk623IT4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fUzXZ5nKyEftSzCUTy4PZ8KqR8Rb9lSS+EzVUTzTEudnE2l8nyZ1yRpijrAzv3Skwb4eJ6NSEHOEdJIlqlL9G3stNw2IpxV2mVScxiT19MFabf93APurw5KHasL2zgvC7k68oF3/ZcooNXr6iBd2bZ6ElZg8KICfkVp3oXuPpEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Hvl2r6Jn; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0C3A8496;
+	Tue, 28 Jan 2025 16:18:36 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1738077518;
+	bh=/M3sluiHSQ79DO/JWZhFhxH1LzXYMDwMfYXtk623IT4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Hvl2r6JnjxPhpXspXDdU9PxgZ7CvA31J5qb3ox9CyPTBKy3uXjcvmHdturEqWO/Uh
+	 2jKJJU1/3pzNqNu62vUnfcsoznWxhlJt6FMyoOsgM6gNCLpMQtHcnOj+Tjj0/2UfTm
+	 b+NS4+rmEqSwXw+ez/wyx9ktZ9PG+uLGp10r46KI=
+Message-ID: <b03dc27c-4bc8-4faf-b60d-b7ca5f1c5d18@ideasonboard.com>
+Date: Tue, 28 Jan 2025 17:19:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250128104714.80807-1-biju.das.jz@bp.renesas.com> <20250128104714.80807-2-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250128104714.80807-2-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 28 Jan 2025 16:17:25 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVwxpK+6fVfwkYWFvRF5kzpY3tp6FH3Or=grJsxojO64w@mail.gmail.com>
-X-Gm-Features: AWEUYZm6mxOAun8F224kiPtEivUrP340BRXHyz28XvR3L7aNmcVHfWnWPpjH6x8
-Message-ID: <CAMuHMdVwxpK+6fVfwkYWFvRF5kzpY3tp6FH3Or=grJsxojO64w@mail.gmail.com>
-Subject: Re: [PATCH v3 01/13] dt-bindings: interrupt-controller:
- renesas,rzv2h-icu: Document RZ/G3E SoC
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>, 
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: display: renesas,du: narrow
+ interrupts and resets per variants
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, dri-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Conor Dooley <conor.dooley@microchip.com>
+References: <20250128094719.63776-1-krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+In-Reply-To: <20250128094719.63776-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Biju,
+Hi,
 
-Thanks for your patch!
+On 28/01/2025 11:47, Krzysztof Kozlowski wrote:
+> Each variable-length property like interrupts or resets must have fixed
+> constraints on number of items for given variant in binding.  The
+> clauses in "if:then:" block should define both limits: upper and lower.
+> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> This was sent already in August 2024 (!) and still not picked up. Thus
+> some other people started doing similar in December.
+> 
+> Can this be finally merged?
+> https://lore.kernel.org/all/20240818173003.122025-1-krzysztof.kozlowski@linaro.org/
+> 
+> Changes in v2:
+> 1. Add Ack
+> 2. Rebase
+> ---
+>   .../devicetree/bindings/display/renesas,du.yaml      | 12 ++++++++++++
+>   1 file changed, 12 insertions(+)
 
-On Tue, 28 Jan 2025 at 11:47, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Document RZ/G3E (R9A09G047) ICU bindings. The ICU block on the RZ/G3E
-> SoC is almost identical to the one found on the RZ/V2H SoC, with the
-> following differences:
->  - The TINT register offset is 0x830 compared to 0x30 on RZ/V2H.
+The series looks good to me.
 
-The first TINT register is at offset 0x820 vs. 0x20.
-Perhaps:
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
 
-   - The TINT register base offset is 0x800 instead of zero.
+I'll push to drm-misc-next.
 
->  - The number of supported GPIO interrupts for TINT selection is 141
->    instead of 86.
->  - The pin index and TINT selection index are not in the 1:1 map
->  - The number of TSSR registers is 15 instead of 8
->  - Each TSSR register can program 2 TINTs instead of 4 TINTs
->
-> Hence new compatible string "renesas,r9a09g047-icu" is added for RZ/G3E
-> SoC.
->
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Reviewed-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+  Tomi
 
-The rest LGTM, so with the above fixed:
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
