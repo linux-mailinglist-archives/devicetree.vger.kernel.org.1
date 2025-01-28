@@ -1,132 +1,252 @@
-Return-Path: <devicetree+bounces-141437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D97D2A20B00
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 14:10:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDB8BA20B30
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 14:17:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25B913A514D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 13:10:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1449F3A1716
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 13:17:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04BF01A256B;
-	Tue, 28 Jan 2025 13:10:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB50E19D06A;
+	Tue, 28 Jan 2025 13:17:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Cyu9JXmr"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="STBS9u+L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 909ED29CE7
-	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 13:10:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79F4185931;
+	Tue, 28 Jan 2025 13:17:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738069817; cv=none; b=Z03sPMhs+EHDTPYzz57FpnTuYbuZwh85y/kWHMpAfGXZvmWJCvKa1pMycAZhhfrN3DeKOFKhLkTX4LTnOcWYg+Nm7pXCxXxc7usWrRMzxHoBGJ7X+iPIoJZECInJetZx1VwhZGcopN3HJTtvZBwi1FWCttBoq0SqScm6GtYOYyI=
+	t=1738070268; cv=none; b=nI+rRcoLUf/bin8V5Z1IkczEP9ir2glmREj2rzoblCglC28ukL4SbD6EMOn855DIHNSRjOmozAAm1nKU4JB+G4FSprb8P1sq5jhdI04oB7W1RHSlkaYaiAzSvD++XZhj09XCnZ4NcQuWjZnyjwDvoZ1WwQc2huaPQdlvEsykPww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738069817; c=relaxed/simple;
-	bh=C9eJdPKQ3DYmqyJ3e2mFtLaMk3r2b+mYc28C9kSYDCk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QEC5cZ8rnYFpVvwTMokd1j6y1rCwMpOSW2Gyq//PngmmZPoWtcCmfSCmgSN6LF0Di6eJZe1pI3a1QCNAW1YIwI7JLLCVlSA6jsL49A9OHpqBhoAdHb9sDGMWsZSBwjo3Ci37DGhE5LzfONp9cVEfbytCVHI2rKQrH2Hcm6/2AIU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Cyu9JXmr; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50S1sgYn032251
-	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 13:10:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	QaJUNr1HRRotcP4falm1ElQNWfqwO9Kk41jDuSZGXj0=; b=Cyu9JXmrl4Wcxb2S
-	qK4H5YPzKcO832p0q5Q06ISAjUj8rv2E3hdwM06rhly6VzG9aBa1gra3fbOT3xWj
-	VQhtnLh/yovp5jSri3z/iuyxB1rHxsLAf9no1shRinfd56AmHFq5Ad0JARxSmA6M
-	xa0QLtrLGupsEYTC2Qb5KHgWbUgwMSSnLtrpM/wUvwVYFvgKOsp2YVxOyZUGbl+D
-	wyBHsXg0Q8kaC/Xx3mlp+KgVph5IRuHd9l6LCJ4mVppfxBQRO5kL0P7lEV4BcdYI
-	uNk8NZOCleGnmp2dQxiKIg9Wo+6JfjqGj5tkQmIXyeYGo6hNfXjWhQxTaRitXI19
-	c6oB5Q==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44enyq19e2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 13:10:15 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7b6e43ed084so115838485a.0
-        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 05:10:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738069814; x=1738674614;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QaJUNr1HRRotcP4falm1ElQNWfqwO9Kk41jDuSZGXj0=;
-        b=AJT6lulh0weSKCBhgHnizobVkAGvKLTgpI0/vDDMFJom6vsN3XzvJ5Hydegkj7nLt5
-         0dxebwLfwf7OXnPm8TrpIHDFLQuHeshLjjYRK93wp9kC42xEn+nxGk8GvHzDGKR91xOO
-         BTiAabGhFte1F3ZX4Ciws6zrz1KQU5tWIX+cB+FKb+jzlZ6nbT8LXHj15an9JYW6/5wZ
-         giSJMIVclo83CkJLLcnx5DLLdUc2oEAUUFtcN1Kch3IklBMyUWxrHGsi37eAM19lECFz
-         dTW04rNl0ISaRW4EocNjPkcLfT5B6UqqyOgsEw26YV9xOlqjJzq5etQ67nnR8hXQnk+m
-         rXxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX6pK8UaYvXNkEKBZRiIvZAVTBuNw8GtaLMgTO0UZdAglYjgkx4cMYELWwQwOeoHCiZmAXHQWLu1rfC@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJPpukXnw1xIb5BNZslBAquC0pcy0RnwcIc5fmlcMVFNHy23fE
-	uKPGJriMh40NbRnmfl4R1ynu7AFpdrT4ZqHOJRTrtzgVoYNBtQqXLL0FbfhRgG80hUq4axPPPLI
-	VueRVEUNkIGe5F9UdW469HcnUaLV+BhIYXrRDlIp3Lig52umotWguEUAHbCRa
-X-Gm-Gg: ASbGncsLlSN3/KBTH4Hh36E1xNHcdlVUC9cwgZW8oUE+nb4LhW+v+h+38XNNT64uYCd
-	DhjHIvtDV9gxmXpoQF+VainTxOssClS8RfHSIhQwK78MAtPMqYJ11VzURWC6bDpvYfV0rNY64y1
-	t/cWmXB9r2yo/gxYJGV3JHJIJY8kqqqych2A+L/9Ch9b0Pn/doOR1qRjAtK1zphWLDHbSXSqXUI
-	UMX2l4Jxnu/+VrbVRi/0quJLfdMtr8EM+40hxUgRxEAZoRnlmw4aG7GS/Aby09Itxwggj+b39Ej
-	hLKOgDyshUandpY1vUKEYvjQVd/mflLJyQNMFUe0E4ltKHkLWMfqwh54y18=
-X-Received: by 2002:a05:620a:4414:b0:7b6:7133:b8a4 with SMTP id af79cd13be357-7be631f023emr2762218785a.6.1738069814405;
-        Tue, 28 Jan 2025 05:10:14 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IEWkIlVjPK9TaqHCjHI4paUEgn3Q83dA8c28+FX3LjONMEoBgsAbpKwUEIltymS1oWCXUiFNw==
-X-Received: by 2002:a05:620a:4414:b0:7b6:7133:b8a4 with SMTP id af79cd13be357-7be631f023emr2762216485a.6.1738069813982;
-        Tue, 28 Jan 2025 05:10:13 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5dc186183eesm7179187a12.10.2025.01.28.05.10.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jan 2025 05:10:13 -0800 (PST)
-Message-ID: <dccbc4dc-0102-4f46-8e57-17d9dc8e41e7@oss.qualcomm.com>
-Date: Tue, 28 Jan 2025 14:10:11 +0100
+	s=arc-20240116; t=1738070268; c=relaxed/simple;
+	bh=98kXBdxRQblqVYlGPy67fOXlBJtaWs9p1Zfnvmpx1rs=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=VeTuD5clqBg/MnlyOjajrJ/U/ns3nw4Bbsv20Ug4G+fJwYbMeYCSNOhq3rHBGSba6Zl/SmKVb27L//IpwoA7eg5bE4uGAM39EFxGB055+z8US8ZmoOCDpITWDfdGy4ezUkSTQm+Y5Ambarm/NGSfAoFi5ZdNZlgTNroYJ6TcxcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=STBS9u+L; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50SDH00d1185639
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 28 Jan 2025 07:17:00 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1738070220;
+	bh=98kXBdxRQblqVYlGPy67fOXlBJtaWs9p1Zfnvmpx1rs=;
+	h=Date:From:Subject:To:CC:References:In-Reply-To;
+	b=STBS9u+LehGIgHLMXitumTZf3pDyrg310HsNtAyvkRWNoBRtzJ2mQQXpfVsIOHpo4
+	 cAX/+U3ZN+9ynXhpOyRNot0tTANowcrZcYkOEctRAzvnvU86j0J9fsTsLywWsx1Y3/
+	 qbzZkDGYNveYFozCMmtLUCjGuFztkwNM+tXB1ffI=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50SDH0XK057397
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 28 Jan 2025 07:17:00 -0600
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 28
+ Jan 2025 07:17:00 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 28 Jan 2025 07:16:59 -0600
+Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193] (may be forged))
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50SDGsvt014946;
+	Tue, 28 Jan 2025 07:16:54 -0600
+Message-ID: <dea025e1-98d4-2dcf-e729-19c9d49bf3ae@ti.com>
+Date: Tue, 28 Jan 2025 18:46:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/10] arm64: dts: qcom: sm8650: add UFS OPP table instead
- of freq-table-hz property
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250115-topic-sm8x50-upstream-dt-icc-update-v1-0-eaa8b10e2af7@linaro.org>
- <20250115-topic-sm8x50-upstream-dt-icc-update-v1-10-eaa8b10e2af7@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+From: Devarsh Thakkar <devarsht@ti.com>
+Subject: Re: [PATCH 2/2] drm/tidss: Add support for AM62L display subsystem
+To: Aradhya Bhatia <aradhya.bhatia@linux.dev>,
+        "jyri.sarha@iki.fi"
+	<jyri.sarha@iki.fi>,
+        "tomi.valkeinen@ideasonboard.com"
+	<tomi.valkeinen@ideasonboard.com>,
+        "airlied@gmail.com" <airlied@gmail.com>,
+        "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        "tzimmermann@suse.de"
+	<tzimmermann@suse.de>,
+        "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>,
+        "simona@ffwll.ch" <simona@ffwll.ch>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh@kernel.org"
+	<robh@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>
+CC: "Bajjuri, Praneeth" <praneeth@ti.com>,
+        "Raghavendra, Vignesh"
+	<vigneshr@ti.com>,
+        "Jain, Swamil" <s-jain1@ti.com>,
+        "Donadkar, Rishikesh"
+	<r-donadkar@ti.com>,
+        "Choudhary, Jayesh" <j-choudhary@ti.com>,
+        "Shenoy,
+ Harikrishna" <h-shenoy@ti.com>
+References: <20241231090432.3649158-1-devarsht@ti.com>
+ <20241231090432.3649158-3-devarsht@ti.com>
+ <eab600f6-bfc2-489c-b384-5b620164a556@linux.dev>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250115-topic-sm8x50-upstream-dt-icc-update-v1-10-eaa8b10e2af7@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: B227xyODvxHwPMSnMm0wRljeZ-1SFPSR
-X-Proofpoint-GUID: B227xyODvxHwPMSnMm0wRljeZ-1SFPSR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-28_04,2025-01-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- mlxscore=0 priorityscore=1501 malwarescore=0 lowpriorityscore=0
- phishscore=0 spamscore=0 bulkscore=0 adultscore=0 suspectscore=0
- mlxlogscore=898 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501280100
+In-Reply-To: <eab600f6-bfc2-489c-b384-5b620164a556@linux.dev>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 15.01.2025 2:44 PM, Neil Armstrong wrote:
-> Swich to an OPP table for the UFS frequency scaling instead of
-> the deprecated freq-table-hz property.
-> 
-> The Operating Point table will also provide the associated
-> power domain level.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
+Hi Aradhya,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On 18/01/25 14:57, Aradhya Bhatia wrote:
+> Hi Devarsh,
+>
+> Thanks for the patches.
+>
 
-Konrad
+Thanks for the review.
+
+> On 31/12/24 14:34, Devarsh Thakkar wrote:
+>> Enable display for AM62L DSS [1] which supports only a single display
+>> pipeline using a single overlay manager, single video port and a single
+>> video lite pipeline which does not support scaling.
+>>
+>> The output of video port is routed to SoC boundary via DPI interface and
+>> the DPI signals from the video port are also routed to DSI Tx controller
+>> present within the SoC.
+>>
+>> [1]: Section 11.7 (Display Subsystem and Peripherals)
+>> Link : https://www.ti.com/lit/pdf/sprujb4
+>>
+>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>> ---
+
+<snip>
+>> 
+>> +const struct dispc_features dispc_am62l_feats = {
+>> +    .max_pclk_khz = {
+>> +            [DISPC_VP_DPI] = 165000,
+>
+> The TRM mentions that the max the VP PLL can go is 150MHz, so maybe you
+> might need to update this.
+>
+> That said, as far as I understand, the IP itself can support 165 MHz,
+> and I am wondering, what would we do if there comes out a new SoC that
+> uses AM62L DSS as is, but just bumps up the PLL capacity to 165MHz.
+>
+> It would be odd to have a ditto feats structure with just the frequency
+> updated.
+
+TRM mentions max VP PLL frequency as 165 Mhz and not 150 Mhz. Please refer
+Table 11-343. DSS Signals for MIPI DPI 2.0 or BT.656/BT.1120 section in
+section 11.7.1.2.1 DSS Parallel Interface of  AM62L TRM [1].
+>
+>> +    },
+>> +
+>> +    .subrev = DISPC_AM62L,
+>> +
+>> +    .common = "common",
+>> +    .common_regs = tidss_am65x_common_regs,
+>
+> Also, I don't think we should utilize this as is.
+>
+> The AM62L common regions is different, and is, at best, a subset of the
+> AM65x/AM62x common register space.
+>
+> For example, registers VID_IRQ{STATUS, ENABLE}_0 have been dropped,
+> along with VP_IRQ{STATUS, ENABLE}_1.
+>
+> - Which brings to my next concern...
+>
+
+Thanks for pointing out, I probably missed this since the use-case still
+worked since VP interrupts were still enabled and those were sufficient to
+drive the display
+but the VID underflow interrupts and VID specific bits were probably not
+enabled at-all due to above miss, so agreed
+we should probably go ahead with a different reg space for AM62L due to
+aforementioned differences.
+
+>> +
+>> +    .num_vps = 1,
+>> +    .vp_name = { "vp1" },
+>> +    .ovr_name = { "ovr1" },
+>> +    .vpclk_name =  { "vp1" },
+>> +    .vp_bus_type = { DISPC_VP_DPI },
+>> +
+>> +    .vp_feat = { .color = {
+>> +                    .has_ctm = true,
+>> +                    .gamma_size = 256,
+>> +                    .gamma_type = TIDSS_GAMMA_8BIT,
+>> +            },
+>> +    },
+>> +
+>> +    .num_planes = 1,
+>> +    .vid_name = { "vidl1" },
+>> +    .vid_lite = { true },
+>> +    .vid_order = { 0 },
+>
+> ...
+>
+> Usually, VID1 is the first video pipeline, while VIDL1 remains the
+> second. Which is why vid1 occupies the index 0, and vidl1 occupies 1 -
+> even from the hardware perspective.
+>
+> While AM62L has only one video (lite) pipeline - vidl1, and there is no
+> vid1, the hardware still treats vidl1 at index 1.
+>
+> For example, the TRM has defined DISPC_VID_IRQ{STATUS, ENABLE}_1 (and
+> not _0) in the common region.
+>
+> So, the vid_order here should be 1, not 0.
+>
+
+We will have a separate register space for AM62L which would only have
+DISPC_VID_IRQ{STATUS, ENABLE}_1 mapped,
+so that should handle it.Also I think vid_order semantically maps to zorder
+and since there is only a single plane available on AM62L
+it is not correct to assign vid_order as 1 just to align with VIDL reg bit fields.
+Furthermore, vid_order set to 1 won't work too, since driver also uses
+vid_order for indexing the reg space for vid. For e.g.
+if we use vid_order as 1 then hw_plane would get assigned as 1 too, then
+dispc_vid* functions (as seen below) would fail as
+there is no base_vid region at index 1 for AM62L as it has only single video
+register space i.e. for VIDL.
+
+static                                                                                                 
+ 
+void dispc_vid_write(struct dispc_device *dispc, u32 hw_plane, u16 reg, u32
+val)                         
+{                                                                                                      
+ 
+        void __iomem *base =
+dispc->base_vid[hw_plane];                                                  
+                                                                                                       
+ 
+        iowrite32(val, base +
+reg);                                                                      
+}                                                                                                      
+ 
+
+But with hw_plane set to 0 we also need to handle bit fields for VIDL which
+are still at index 5 for registers DSS_COMMON_DISPC_IRQENABLE_SET,
+DSS_COMMON_DISPC_IRQENABLE_CLR and DSS_COMMON_DISPC_IRQSTATUS_(RAW) and also
+DSS_OVR1_ATTRIBUTES_0 which expects 1 to be set in bits 4:1,
+and existing dispc_k3* functions managing these registers were handling it via
+hw_plane set to 1.  To handle this and also since AM62L is the only one K3 SoC
+which only supports VIDL plane, I will be adding separate wrapper implementer
+functions dispc_am62l_ovr_set_plane, dispc_am62l_set_irqenable to handle this.
+
+Regards
+Devarsh
 
