@@ -1,298 +1,545 @@
-Return-Path: <devicetree+bounces-141313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3E8FA20523
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 08:44:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99E24A20529
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 08:49:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B90B01886565
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 07:44:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C006D1883328
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 07:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0AE51DD0C7;
-	Tue, 28 Jan 2025 07:44:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A3D1D90B9;
+	Tue, 28 Jan 2025 07:48:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b="jwAOLhTt"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gCdNh9Lm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2127.outbound.protection.outlook.com [40.107.20.127])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E86ECA59;
-	Tue, 28 Jan 2025 07:44:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.127
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738050277; cv=fail; b=U1Qm/dUzwelah1jMoXq+Z1yhaGF+Ld+ezZDdoxox+5roybQR8f+rFF1Lmlq1aIAsbzBYX61AbEyqONCpemMFr+mcmd6TmQKzWKvFN2Dfv1WZP77e6PjNfcgHxVfCFO3YF2ZiYnF6kzvygR6W5pppa6dGmR8soZl786iJGznqFsw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738050277; c=relaxed/simple;
-	bh=U3vPhIOVkbfGWD5AoUQ079XqrqP5fRJnWnG6AfaavzA=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=SkHU8puEXfXa9ii5N1aJatX8JndYYPhgrBaPgV2a/Jc8OzIy7OJ1r/EtWfUgJscYyLPA0p2TeuouM82m39wM/xF+AGZY+nog1Hyp+2Zoy00cWBzfytkRIeHwLiMmISnRFLzLwdAzuMVHMgyGaTTbjO1SPi6iXNE9zUiDqckNrXs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de; spf=pass smtp.mailfrom=kontron.de; dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b=jwAOLhTt; arc=fail smtp.client-ip=40.107.20.127
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kontron.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dqIcBbliAJmIZVz7z8hUIRaLHu9Okl/rLWAp7y3ec4j0ZnB00flfAMvSfyvEVwAAZAd7ado7CWfB8jxBzgq/B3VMCTvS35MKWGf3I4id9U03YQkrHeoc4QWDI9Md7c1euk2hvU5+sMuSUHwsBnSBKhl371ZxioSSkQNgHPykXkbehd78dKeJuwwz7aetGK+UKHZs0ssryRjgJdXniNx+VdiEXkPfXXU9pIPSSzRGayx9cJMs5VGLbsnQlaol7tOVhkbm9xuX890jkkZwMPHd+zifl3m3gicE71vYwzXh0W++3XGmacZBiy7e5ht5Y6ECDXcZxX+qjm4DueWSkmIB2g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A+97jkE5/z2gA1RHkJdByi7wnhRY7DRBb9MAzG4lzkc=;
- b=uilPlyOdDvUh/0ZQgSsHPGRta2Y7CC3GNaqj+rxsC4ZdwVI+7osi464Mqh+hIhtrxLH5ppqwUQSuMFNSKhr0WahgGSI7uRNvUOSEfg1ZvJdL8QiVh+k/aZsMX0oIm05LldUyREo2NYHIY3BvI76DF8y21GI7aysC3MPGJjRGBWo9CJUKm08r45z7SCviJz9X4RflAWZIHXIJBjAHsGNa+XYsGyF8ba9JXvtnV2I3k/y3GcnsBQsxI1dptGsxB66fZ9mjdNXMmtGZxr/wH5EFy5kX2khbDgTpvn43s9Afbf+MvHbzIer4H0ouAklOXK8krVlz8HUZo8OSc8WpvywTHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
- dkim=pass header.d=kontron.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
- s=selector2-mysnt-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A+97jkE5/z2gA1RHkJdByi7wnhRY7DRBb9MAzG4lzkc=;
- b=jwAOLhTt+vk8Rs647gpeboao9r04Z4AyFchVGXqff8f0Xby8wVkXi/TLSF9TsUpBvbNCBO8rK5nC5fzTMT3geHuO0+aPCU5UuYEuCoxISByLvpYwea8NGieJKoasQDdrxELF0Isp0BWVjDhAL6jChxmPHwC/qGa25ZgJ5uQ51wA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=kontron.de;
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
- by AM7PR10MB3272.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:105::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8398.15; Tue, 28 Jan
- 2025 07:44:31 +0000
-Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::b854:7611:1533:2a19]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::b854:7611:1533:2a19%4]) with mapi id 15.20.8398.013; Tue, 28 Jan 2025
- 07:44:30 +0000
-Message-ID: <15348147-8806-47b7-85c0-2850c7296ed0@kontron.de>
-Date: Tue, 28 Jan 2025 08:44:28 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/9] Use correct LDO5 control registers for PCA9450
-To: Frieder Schrempf <frieder@fris.de>, linux-arm-kernel@lists.infradead.org,
- Marek Vasut <marex@denx.de>, Conor Dooley <conor@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Robin Gong <yibin.gong@nxp.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>
-Cc: Bo Liu <liubo03@inspur.com>, Conor Dooley <conor.dooley@microchip.com>,
- Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
- Joy Zou <joy.zou@nxp.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20241218152842.97483-1-frieder@fris.de>
-Content-Language: en-US, de-DE
-From: Frieder Schrempf <frieder.schrempf@kontron.de>
-In-Reply-To: <20241218152842.97483-1-frieder@fris.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR3P281CA0003.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1d::22) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:102:263::10)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF6B02AD2D;
+	Tue, 28 Jan 2025 07:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738050532; cv=none; b=cJcX/iwME5IM1OwvI+b47uzuz6sGSXHmWpIigjmUZAA1PHm6sGO76usMtdqOlMQx9pHM+fofo3NC1xV7aDRd3DCZzn1BUJIdgLsFsJVI9aWL7rku98oSs5/RgLPs31Qa5OxWaBA1FljyEfnDe9EnLeSWR1PbxRByjbFgCmQQngc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738050532; c=relaxed/simple;
+	bh=nUsTPbSDCyusoGvI3Bg8Azv9QcjrBFaFCmRYLm4mDvA=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IVVtpugEiuuSAZPfMZaYA71Fc5ef1DhTMjQQ4GHYOEZ902uF9iBTHhSKEob+r+CxyaNq4B57BJ9gNggfOKz0GxDYiDiLIML0acI+jv2VVb87ZPS1kAdS6jAkbIA9jBcC3LdhYI2KQCEc45cLCCRZX/EgBZPLOUR9w90fwlJk1oU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gCdNh9Lm; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50S0Vf9V002698;
+	Tue, 28 Jan 2025 07:48:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=4s+SJUaGUDkO5ABlta4Jojct
+	rfP/Q2Dd5HccoK2RIM4=; b=gCdNh9LmKPAFKGYL9oI8otcf6WM7UlV/OLkcBxK2
+	/gfAXut3Qe7sDn0RfMj/qYxnm/1FRv9RDRB3AjIxJUJqiuhd3DfAkvk0L9ho9zqW
+	b4ymsrt497SAuuOddJywSoRQxn516WxMiAj7UOzhRmBZ6jzVnmdD4T7UQXK39SEA
+	s7xmHLsw6az5JF95nY2rvtdthyzn6576Of4LOKIXwD8DHDWUEKMgq8TS16GlaD6w
+	qfD3U2/nnVGzKDUp/o0fgSwutay2099xG5iaYGR26StnApfcrIgsk9myka3giN08
+	NqUyWsUZ4uxYF7iU1LE8gFYJEDg7OzS8JZMDqM9BCyubKA==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44emry0qey-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Jan 2025 07:48:44 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50S7mh2f020707
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Jan 2025 07:48:43 GMT
+Received: from hu-varada-blr.qualcomm.com (10.80.80.8) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 27 Jan 2025 23:48:38 -0800
+Date: Tue, 28 Jan 2025 13:18:34 +0530
+From: Varadarajan Narayanan <quic_varada@quicinc.com>
+To: Sricharan R <quic_srichara@quicinc.com>
+CC: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <konradybcio@kernel.org>, <rafael@kernel.org>,
+        <viresh.kumar@linaro.org>, <ilia.lin@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH 2/4] clk: qcom: apss-ipq5424: Add ipq5424 apss clock
+ controller
+Message-ID: <Z5iL0p6AaY2G9s1v@hu-varada-blr.qualcomm.com>
+References: <20250127093128.2611247-1-quic_srichara@quicinc.com>
+ <20250127093128.2611247-3-quic_srichara@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PA4PR10MB5681:EE_|AM7PR10MB3272:EE_
-X-MS-Office365-Filtering-Correlation-Id: b4d0037f-39df-4175-1504-08dd3f6f997c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?OU9renFaUjV5UHVnZ3huWU9IcUh0SVlSbzlLOTI2R0Z5WWZVUVlKNzIrY1ZW?=
- =?utf-8?B?K0djYlhQMnBFUDQraUtIU29XNE9NVjdoRThNeXVjZ0N2Z2ZPWWNkSlRLQnZU?=
- =?utf-8?B?SjZTdGVreVZoTHpLUEcrNXhhZUdvRTVtSGdvWklXM09DMmtjOXBGcDBtVUZX?=
- =?utf-8?B?VVdnSzJ0QmNuakdxbWphd3JJZ1BjaGt6WU1IcE5zMWlKbHVremRha1dsUERz?=
- =?utf-8?B?dEtGam9hL0VSZ3h5bm1Fc2N4aUJQZ2ZYTmNOa2NkR2RSVnV6T0lpdWlJSVlj?=
- =?utf-8?B?cFJiL0x3cVRXb25pQWhQekJraGVha0x0Y01kOW5LUlR4cGhxZUk3RzFJa1Jr?=
- =?utf-8?B?YUNxbHFjM3V5eUFWR09uWCtMQTFZWU1mNTJ1SDhhYURYdjVDdUNSMXFoTlAr?=
- =?utf-8?B?MkloSGY5bWQzYVhER2JJNUFPK0pmNkI3ZXZ1ZmpiNGdPSTRyQmhwTzBHNXFT?=
- =?utf-8?B?T1dSak9MeVZDcUM4TmRFa05kTU9WTEtwdU5qL2lDQWh3NDliRzlqb3VWUXZQ?=
- =?utf-8?B?Tk1SemdJRW1Fd0Q3Y2R1VzJvdnB0NFZjaGtRTGFWR09uSXlmMGkrdVlnUUgx?=
- =?utf-8?B?UkRSYlQ2NHoycXRESjBpSVRmSkdNd2VNNW8ydFlWN01sc1lOcDd5djIzWnNI?=
- =?utf-8?B?U2JCWG5JazJ6cjljRzdRZjFtb2NKMm9CY2JQOElIWUZDdUVWNjhMWjVqT05B?=
- =?utf-8?B?SHc5WE1nYjF0WUxlTTFreDlIaG9Ec0E2SkFPeXlqdk9tUXhJNzlob2p2Zjhl?=
- =?utf-8?B?WjJ3UEh3d2RLQW5kMU5hZXQvOE5SSWJ4Z3ZkSTNsVzM5aC8rZFFpdGUvNUVO?=
- =?utf-8?B?SkZURFJ5OGRGS1ljSy9rTkRzOWVFVEdpbTBaQ1BRVGF5SmRRaGNmVVo2T0Jn?=
- =?utf-8?B?TWFpdWRadWRFL3g4VDdqMXdoREZKa1QvUnoveEl1L1o4RktmVmFpSGNiVU1i?=
- =?utf-8?B?WGhWYjFLN1NnbDN4OUJKc0x1eHA3Y2hkcEE5N0dvcDNuL2lzRHp4WWdXWUt0?=
- =?utf-8?B?d05KQlJIc1M4Z2l6TklTNEc3L1I4ZHN5cVFyQmhRTWNQMlFDN2xlTjluUExw?=
- =?utf-8?B?a2VTWVlRU3NBR1IzL1RsN244TDUvWU1GczMyWHBDOTF6MkZHM0Q2ZlBnWXo4?=
- =?utf-8?B?VEE5WFgzVjRTWnRUOURaZVhQbWlUVlRxR2dlME5oNHFkQjhNMmVzSlViRTRX?=
- =?utf-8?B?alZUdXRTZGZObVdtUUFKWUxhYU00c1BjZEVFaDFVSHBCbWFCTVNNR2ZHMUIx?=
- =?utf-8?B?VHVuQi83aDNsam9ETVducERETG9hRCtWWXpzSzdXelVRVFoxWnVHT1JoN0dQ?=
- =?utf-8?B?Q2hnTXpqLzk1ZTdXU0NFOXJSbkFzVkVoSTRnTHF1cGEwakxMdHZyYUlKUGNK?=
- =?utf-8?B?SHBtL2gzSWxaS2QvVkdQdG9IZ0pUQVhFZ2JRSzdScjFjRVhoQmNuMXB0cmZl?=
- =?utf-8?B?WU1aanpLcUFsWGNzTzlsZjhQdllpTDJuZ1FlREZxZEs5WFJSN3NyZS9IV1Bi?=
- =?utf-8?B?c3ExQnh5Zit0N3JteGt6VTZFSEhUZEtlWHJ4ajRsYnd4bjBvblI2NlB3eW9O?=
- =?utf-8?B?OFlCZHpjY2RGaTVuWW5CeVV2MzFEQUxPbVF6MzZwSzF0aWx1dmxRVlptcldB?=
- =?utf-8?B?dlBHbWZqelhOVTFFOTNVL25vck54RHBhWG1MelpKeHNrZkhiQ0QxV3lUYlln?=
- =?utf-8?B?K1NIQS8xc0hHbVVwdFRsV0l3bmMxQ0Z5VTZHUWtYdExWMzVGNXJXbGNCRmZ0?=
- =?utf-8?B?dDQxV3ZXdHNmSTM5STBSUlVXT1pFYkQvb0tXMjlnS1FRK2hSa2RoazJpU05H?=
- =?utf-8?B?T2J0N2pOb0d1b0NaOFVkcHlVcldnd0tLRmdiRXNWbmZmUVRldEptdjJYdXBv?=
- =?utf-8?Q?0r4fNLIFEOK/N?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NkdPcit4SnFpMUsraENqWTJ3OHZKcGo5cFpKSkZYRitWT0s0Y1hWSXQ0ZE5q?=
- =?utf-8?B?ZXpldURMMmV6OWFvVDRtWVNiQWE5K2dHL2w0MUwzMUxDRGNybXJjTjdmekNr?=
- =?utf-8?B?T0FrSG56OVNEekNSa1Y1emcvUzc2UVVZWTVHbmlacFluUW1CUmo2dlZQVllr?=
- =?utf-8?B?b0Fac1RUVWxxOGd3djVpRGhTckY3SnlPckN3bWk0MzZmUitnamRvQStmbzkv?=
- =?utf-8?B?MXN0WTRjNjkxLzc2RkNqeVhJaGpPemJnbEtsU2RLYlFrVmRWV1l1dkoxdXFM?=
- =?utf-8?B?VFYrdlFaTTZCZUo5aSs2UG5pTTZycXdpeHNuNno5Yjk1WFVqSjRxUmpvODlF?=
- =?utf-8?B?bGhNVHNkRjV0TE00eFcveVd0U0lSTm1mSm5GQmhaRlJtNEI5Tm1COGZNM0h0?=
- =?utf-8?B?SlQ1NmI2OXF0REllUUpyd0J1QWZJRlFnRkhRT3g4RHllOXJ5YXlzSjVSNVg3?=
- =?utf-8?B?RFQweExSUWNkNncvMThyTk5XZEJHeWttRDVKWlYwclVWdXcyYUEyc25TN0ZC?=
- =?utf-8?B?ZFlzd3plU0k4bWNBYm5zdUlnM25kS0JrclkwalBCd09MMkEwa25MOXduVkRi?=
- =?utf-8?B?WlhxM2JrUW8xUm1kRC9heGJXMnJjcFhlditkQlZjR0I3eWo5M1BsRHlxTzJB?=
- =?utf-8?B?Q1JkN05NUXpJdEp1TDZVRW1NMFMzcVJ3Y0V6TmJ3QSs5bC93OHNBdHNoVm9L?=
- =?utf-8?B?dnV3WUdpL24vS1hrVXRkVjhrQitKK2RuMk1ObUc1cERzL0RFNEtVSmZlaWxK?=
- =?utf-8?B?N2V1VjQvY2FDbHo4cXFseXVacXFHUVJCK1ZMWWsyckM4aTJYa1dRYWdlSVpZ?=
- =?utf-8?B?ZnR6c1plQytHdlgxNzNkVTFJQlNZMFNTL1Bsd0RXYy8xRWVIdjR3TzFNSUkz?=
- =?utf-8?B?MzN5cVA3VDNFeGsydlFyYzNTcE5BQ0JRaUZyUVpJcSsrT1pVd2owOVRiZFBk?=
- =?utf-8?B?N0FIaWtNZFJrZE9LdDdDN1BPZmRQb0EwRG4xcFFSTG9Ed3krcFJIM1IyU0Z3?=
- =?utf-8?B?VEU0V3V2ZVF6OWJYek1mZFFJNVpXa0VxUVBiOWVIK1duQnlIOXprOWkrbWRD?=
- =?utf-8?B?S0MyMFo2NFBZTVFGbXR6cy9tYVluOGhTZjRTYU5vRHhoTEZtU2E1THFycG12?=
- =?utf-8?B?THRRa3prNk5TOVB3cXdXWUoxOXlOclMyZmM4bHYydHZ0ZWJlSkYzQ251MXpP?=
- =?utf-8?B?Y0VkeDdpOHNoQllRS0pla0VkNFZKRE0xdmwvR3Z5RFBzOGQwSklsNjdEckUx?=
- =?utf-8?B?bkRFeWlrbEppMithajlYUkI0NjRaVWxObVl1Z2xDMERZMmpDQWVGWVB1a2I2?=
- =?utf-8?B?SWVEWEhGMEdjRmhYK2YxN2EraWhKVCsyenpRcFBoN1daN2tjZVBzOElpMXVs?=
- =?utf-8?B?aWF5YWZKdHYrblhMRndmUkdUTGdqRDZlNXRFamllSkEybDlhSTJEc01LeC9O?=
- =?utf-8?B?RE5OWDlRWm51aTkva2F4Z0ZUbDhwK1FYY2pnUWU4cDF0R2gvN1hseVBSWm0v?=
- =?utf-8?B?MjhFWWVTTGlKc01nVkxORkFVRzNld2ZWWSs3ZHl5ai82SC9GcmpLUUlyK0Y3?=
- =?utf-8?B?bm1nUFpIWGxVK084NHovUlBkcCt2cjNpRm5RQnoyeUUvaUhBTnMyUWVRTTg4?=
- =?utf-8?B?MnBhbnR6VktZZWJFR1pOSEt3V1AwVW40N0dVZHNldWFXaThHL3M1SnVKZnM2?=
- =?utf-8?B?bUo4VjFSRG9sTWRCVW9sR2dVRGNMY0JxVGh4STlwc1E5NEkrNG1paE5YQVpT?=
- =?utf-8?B?NVpmN1FqbEJBSG1rMUpObWp4QkhGUHFVV2tRZExENGZqYTY4bW53TEloR2R5?=
- =?utf-8?B?Q0VFK0c4aGlwbzNVRFhHSUNIZVFBbzlWQjhsTjFEdVNncWdlSFppaW40cHRN?=
- =?utf-8?B?RS9iOWFTczlBaG5ZdDU4azhTSnRuaThwQXNRam9TUWlqd2R5bWo4ci8xZC83?=
- =?utf-8?B?N2ZVM3NHUklUdmxwei9oQ2FCd2w1clh4YytxQzQ1b0FuSE9TWUQ5UDVtdkJZ?=
- =?utf-8?B?Ukp5bVE3Y0JHS3pnTjhaYjZLaUZQeW9IME9vMEw0RWhtVGJkSUJBT0hBeVRt?=
- =?utf-8?B?czAwWktxSEJHdFZDWWRiQzNSSEc2T2VxcHdya2RueGRBMXU3M3UvWG00cUU2?=
- =?utf-8?B?ZldyUkxxbGFRaTdjM0FES29mNjFyTXJCa0g1MUV1NGkwaUpINWxISGM5WU9p?=
- =?utf-8?B?OXc9PQ==?=
-X-OriginatorOrg: kontron.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4d0037f-39df-4175-1504-08dd3f6f997c
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2025 07:44:30.7205
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9y6Od3zcffpKm6T2c3g1Oz/cpebzJa3AYei59EJG5VJ4CWVUm5sxz5aLPZFNLfUKoW8uwgzQ4oQhL56/ktV6pHfu6CP+qd1aC8nVNvRbK60=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR10MB3272
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250127093128.2611247-3-quic_srichara@quicinc.com>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: OWIFAp6WvZHedOy-GZ9ULBHZkGhmuL1T
+X-Proofpoint-GUID: OWIFAp6WvZHedOy-GZ9ULBHZkGhmuL1T
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-28_02,2025-01-27_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ mlxlogscore=999 clxscore=1011 impostorscore=0 malwarescore=0 spamscore=0
+ adultscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501280058
 
-Hi,
+On Mon, Jan 27, 2025 at 03:01:26PM +0530, Sricharan R wrote:
+> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>
+> CPU on Qualcomm ipq5424 is clocked by huayra PLL with RCG support.
+> Add support for the APSS PLL, RCG and clock enable for ipq5424.
+> The PLL, RCG register space are clubbed. Hence adding new APSS driver
+> for both PLL and RCG/CBC control. Also the L3 cache has a separate pll
+> and needs to be scaled along with the CPU.
+>
+> Co-developed-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> ---
+>  drivers/clk/qcom/Kconfig        |   7 +
+>  drivers/clk/qcom/Makefile       |   1 +
+>  drivers/clk/qcom/apss-ipq5424.c | 373 ++++++++++++++++++++++++++++++++
+>  3 files changed, 381 insertions(+)
+>  create mode 100644 drivers/clk/qcom/apss-ipq5424.c
+>
+> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+> index ef89d686cbc4..9a03257d67e0 100644
+> --- a/drivers/clk/qcom/Kconfig
+> +++ b/drivers/clk/qcom/Kconfig
+> @@ -190,6 +190,13 @@ config IPQ_APSS_6018
+>  	  Say Y if you want to support CPU frequency scaling on
+>  	  ipq based devices.
+>
+> +config IPQ_APSS_5424
+> +	tristate "IPQ APSS Clock Controller"
+> +	help
+> +	  Support for APSS Clock controller on Qualcom IPQ5424 platform.
+> +	  Say Y if you want to support CPU frequency scaling on ipq based
+> +	  devices.
+> +
+>  config IPQ_GCC_4019
+>  	tristate "IPQ4019 Global Clock Controller"
+>  	help
+> diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+> index b09dbdc210eb..db15514e7367 100644
+> --- a/drivers/clk/qcom/Makefile
+> +++ b/drivers/clk/qcom/Makefile
+> @@ -28,6 +28,7 @@ obj-$(CONFIG_CLK_X1E80100_GPUCC) += gpucc-x1e80100.o
+>  obj-$(CONFIG_CLK_X1E80100_TCSRCC) += tcsrcc-x1e80100.o
+>  obj-$(CONFIG_CLK_QCM2290_GPUCC) += gpucc-qcm2290.o
+>  obj-$(CONFIG_IPQ_APSS_PLL) += apss-ipq-pll.o
+> +obj-$(CONFIG_IPQ_APSS_5424) += apss-ipq5424.o
+>  obj-$(CONFIG_IPQ_APSS_6018) += apss-ipq6018.o
+>  obj-$(CONFIG_IPQ_GCC_4019) += gcc-ipq4019.o
+>  obj-$(CONFIG_IPQ_GCC_5018) += gcc-ipq5018.o
+> diff --git a/drivers/clk/qcom/apss-ipq5424.c b/drivers/clk/qcom/apss-ipq5424.c
+> new file mode 100644
+> index 000000000000..2bd6ee7575dc
+> --- /dev/null
+> +++ b/drivers/clk/qcom/apss-ipq5424.c
+> @@ -0,0 +1,373 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2018, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
 
-On 18.12.24 4:27 PM, Frieder Schrempf wrote:
-> From: Frieder Schrempf <frieder.schrempf@kontron.de>
-> 
-> This is a follow-up of [1].
-> 
-> The main objective of this is to fix the PCA9450 driver to
-> use the correct control register for the LDO5 regulator.
-> 
-> Currently the control register to use for LDO5 is hardcoded to
-> LDO5CTRL_H. This is wrong for two reasons:
-> 
-> 1. LDO5CTRL_H doesn't contain the bits for enabling/disabling
->    the regulator. Only LDO5CTRL_L does.
-> 
-> 2. The actual output voltage of the regulator is determined by
->    the LDO5CTRL_H only if the SD_VSEL input is HIGH. If it is
->    low, then LDO5CTRL_L is used. The driver does not take this
->    into account.
-> 
-> This can cause several problems:
-> 
-> 1. LDO5 can not be turned on/off and we rely on the bootloader
->    to leave it turned on. On the other hand we can't save
->    power if LDO5 is unused.
-> 
-> 2. There is a potential for corner-cases where switching
->    SD_VSEL via USDHC_VSELECT and writing to the (wrong)
->    control register can cause wrong output voltage and therfore
->    SD card failures (not observed yet).
-> 
-> 3. Reading the current voltage of the LDO5 regulator (e. g. via
->    sysfs can yield the wrong value as the voltage is read from
->    the wrong control register.
-> 
-> At the same time there is now hardware that hardwires SD_VSEL
-> to a fixed LOW level and therefore relies on switching the
-> voltage only via a single control register. We add support for
-> this through an additional property "nxp,sd-vsel-fixed-low" in
-> the LDO5 node.
-> 
-> Summary of binding changes (patch 1):
-> 
-> 1. Adjust the bindings to remove the old and abandoned use of
->    sd-vsel-gpios property.
-> 
-> 2. Adjust the bindings to use sd-vsel-gpios in the LDO5 node to
->    retrieve an input that can be used to sample the SD_VSEL
->    status.
-> 
-> 3. Adjust bindings to allow "nxp,sd-vsel-fixed-low" to be used
->    for boards that have SD_VSEL hardwired to low level.
-> 
-> Summary of driver changes (patch 2-6):
-> 
-> 1. Remove the old sd-vsel-gpios handling.
-> 
-> 2. Use the new sd-vsel-gpios property to determine the correct
->    control register for LDO5.
-> 
-> 3. Fix the enable register for LDO5.
-> 
-> 4. Support hardware with fixed low level of SD_VSEL.
-> 
-> Summary of devicetree changes (patch 7-9):
-> 
-> Implement the changes in the devicetrees for Kontron hardware
-> (i.MX8MM, i.MX8MP and i.MX93).
-> 
-> Changelog:
-> 
-> v2 -> v3:
-> 
-> * Merge binding patches into one and extend commit message
-> * Rebase to next-20241218
-> 
-> v1 -> v2:
-> 
-> * Split binding patch
-> * Add solution for hardwired SD_VSEL
-> * Leave regulator core untouched as requested by Mark
-> * Add devicetree changes for i.MX8MP and i.MX93
-> 
-> [1] https://lore.kernel.org/lkml/20230213155833.1644366-1-frieder@fris.de/
-> 
-> Frieder Schrempf (9):
->   dt-bindings: regulator: pca9450: Add properties for handling LDO5
->   arm64: dts: imx8mp-skov-reva: Use hardware signal for SD card VSELECT
->   Revert "regulator: pca9450: Add SD_VSEL GPIO for LDO5"
->   regulator: pca9450: Fix control register for LDO5
->   regulator: pca9450: Fix enable register for LDO5
->   regulator: pca9450: Handle hardware with fixed SD_VSEL for LDO5
->   arm64: dts: imx8mm-kontron: Add support for reading SD_VSEL signal
->   arm64: dts: imx93-kontron: Fix SD card IO voltage control
->   arm64: dts: imx8mp-kontron: Add support for reading SD_VSEL signal
-> 
->  .../regulator/nxp,pca9450-regulator.yaml      |  29 ++++-
->  .../boot/dts/freescale/imx8mm-kontron-bl.dts  |  10 +-
->  .../dts/freescale/imx8mm-kontron-osm-s.dtsi   |   7 +-
->  .../dts/freescale/imx8mp-kontron-osm-s.dtsi   |   7 +-
->  .../boot/dts/freescale/imx8mp-skov-reva.dtsi  |   5 +-
->  .../dts/freescale/imx93-kontron-osm-s.dtsi    |   5 +-
->  drivers/regulator/pca9450-regulator.c         | 103 +++++++++++++++---
->  7 files changed, 133 insertions(+), 33 deletions(-)
-> 
+2025
 
-I just want to ask kindly if there is any feedback for the driver and
-devicetree changes in this set?
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/err.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#include <dt-bindings/clock/qcom,apss-ipq.h>
+> +#include <dt-bindings/arm/qcom,ids.h>
+> +
+> +#include "clk-alpha-pll.h"
+> +#include "clk-branch.h"
+> +#include "clk-rcg.h"
+> +#include "clk-regmap.h"
+> +#include "common.h"
+> +
+> +#define GPLL0_CLK_RATE		800000000
+> +#define CPU_NOM_CLK_RATE	1416000000
+> +#define CPU_TURBO_CLK_RATE	1800000000
+> +#define L3_NOM_CLK_RATE		984000000
+> +#define L3_TURBO_CLK_RATE	1272000000
+> +
+> +enum {
+> +	P_XO,
+> +	P_GPLL0,
+> +	P_APSS_PLL_EARLY,
+> +	P_L3_PLL,
+> +};
+> +
+> +struct apss_clk {
+> +	struct notifier_block cpu_clk_notifier;
+> +	struct clk_hw *hw;
+> +	struct device *dev;
+> +	struct clk *l3_clk;
+> +};
+> +
+> +/*
+> + * IPQ5424 Huayra PLL offsets are different from the one mentioned in the
+> + * clk-alpha-pll.c, hence define the IPQ5424 offsets here
+> + */
+
+This seems to be same as clk_alpha_pll_regs[CLK_ALPHA_PLL_TYPE_HUAYRA_2290]
+in clk-alpha-pll.c. Please see if that can be used here.
+
+> +static const u8 ipq5424_pll_offsets[][PLL_OFF_MAX_REGS] = {
+> +	[CLK_ALPHA_PLL_TYPE_HUAYRA] =  {
+> +		[PLL_OFF_L_VAL] = 0x04,
+> +		[PLL_OFF_ALPHA_VAL] = 0x08,
+> +		[PLL_OFF_USER_CTL] = 0x0c,
+> +		[PLL_OFF_CONFIG_CTL] = 0x10,
+> +		[PLL_OFF_CONFIG_CTL_U] = 0x14,
+> +		[PLL_OFF_CONFIG_CTL_U1] = 0x18,
+> +		[PLL_OFF_TEST_CTL] = 0x1c,
+> +		[PLL_OFF_TEST_CTL_U] = 0x20,
+> +		[PLL_OFF_TEST_CTL_U1] = 0x24,
+> +		[PLL_OFF_STATUS] = 0x38,
+> +	},
+> +};
+> +
+> +static struct clk_alpha_pll ipq5424_apss_pll = {
+> +	.offset = 0x0,
+> +	.regs = ipq5424_pll_offsets[CLK_ALPHA_PLL_TYPE_HUAYRA],
+> +	.flags = SUPPORTS_DYNAMIC_UPDATE,
+> +	.clkr = {
+> +		.enable_reg = 0x0,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(struct clk_init_data){
+> +			.name = "apss_pll",
+> +			.parent_data = &(const struct clk_parent_data) {
+> +				.fw_name = "xo-board-clk",
+> +			},
+> +			.parent_names = (const char *[]){ "xo-board-clk"},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_huayra_ops,
+> +		},
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data parents_apss_silver_clk_src[] = {
+> +	{ .fw_name = "xo-board-clk" },
+> +	{ .fw_name = "gpll0" },
+> +	{ .hw = &ipq5424_apss_pll.clkr.hw },
+> +};
+> +
+> +static const struct parent_map parents_apss_silver_clk_src_map[] = {
+> +	{ P_XO, 0 },
+> +	{ P_GPLL0, 4 },
+> +	{ P_APSS_PLL_EARLY, 5 },
+> +};
+> +
+> +static const struct freq_tbl ftbl_apss_clk_src[] = {
+> +	F(GPLL0_CLK_RATE, P_GPLL0, 1, 0, 0),
+> +	F(CPU_NOM_CLK_RATE, P_APSS_PLL_EARLY, 1, 0, 0),
+> +	F(CPU_TURBO_CLK_RATE, P_APSS_PLL_EARLY, 1, 0, 0),
+> +	{ }
+> +};
+> +
+> +static struct clk_rcg2 apss_silver_clk_src = {
+> +	.cmd_rcgr = 0x0080,
+> +	.freq_tbl = ftbl_apss_clk_src,
+> +	.hid_width = 5,
+> +	.parent_map = parents_apss_silver_clk_src_map,
+> +	.clkr.hw.init = &(struct clk_init_data){
+> +		.name = "apss_silver_clk_src",
+> +		.parent_data = parents_apss_silver_clk_src,
+> +		.num_parents = ARRAY_SIZE(parents_apss_silver_clk_src),
+> +		.ops = &clk_rcg2_ops,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_branch apss_silver_core_clk = {
+> +	.halt_reg = 0x008c,
+> +	.clkr = {
+> +		.enable_reg = 0x008c,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(struct clk_init_data){
+> +			.name = "apss_silver_core_clk",
+> +			.parent_hws = (const struct clk_hw *[]){
+> +				&apss_silver_clk_src.clkr.hw },
+> +			.num_parents = 1,
+> +			.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> +			.ops = &clk_branch2_ops,
+> +		},
+> +	},
+> +};
+> +
+> +static struct clk_alpha_pll ipq5424_l3_pll = {
+> +	.offset = 0x10000,
+> +	.regs = ipq5424_pll_offsets[CLK_ALPHA_PLL_TYPE_HUAYRA],
+> +	.flags = SUPPORTS_DYNAMIC_UPDATE,
+> +	.clkr = {
+> +		.enable_reg = 0x0,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(struct clk_init_data){
+> +			.name = "l3_pll",
+> +			.parent_data = &(const struct clk_parent_data) {
+> +				.fw_name = "xo-board-clk",
+> +			},
+> +			.parent_names = (const char *[]){ "xo-board-clk"},
+> +			.num_parents = 1,
+> +			.ops = &clk_alpha_pll_huayra_ops,
+> +		},
+> +	},
+> +};
+> +
+> +static const struct clk_parent_data parents_l3_clk_src[] = {
+> +	{ .fw_name = "xo-board-clk" },
+> +	{ .fw_name = "gpll0" },
+> +	{ .hw = &ipq5424_l3_pll.clkr.hw },
+> +};
+> +
+> +static const struct parent_map parents_l3_clk_src_map[] = {
+> +	{ P_XO, 0 },
+> +	{ P_GPLL0, 4 },
+> +	{ P_L3_PLL, 5 },
+> +};
+> +
+> +static const struct freq_tbl ftbl_l3_clk_src[] = {
+> +	F(GPLL0_CLK_RATE, P_GPLL0, 1, 0, 0),
+> +	F(L3_NOM_CLK_RATE, P_L3_PLL, 1, 0, 0),
+> +	F(L3_TURBO_CLK_RATE, P_L3_PLL, 1, 0, 0),
+> +	{ }
+> +};
+> +
+> +static struct clk_rcg2 l3_clk_src = {
+> +	.cmd_rcgr = 0x10080,
+> +	.freq_tbl = ftbl_l3_clk_src,
+> +	.hid_width = 5,
+> +	.parent_map = parents_l3_clk_src_map,
+> +	.clkr.hw.init = &(struct clk_init_data){
+> +		.name = "l3_clk_src",
+> +		.parent_data = parents_l3_clk_src,
+> +		.num_parents = ARRAY_SIZE(parents_l3_clk_src),
+> +		.ops = &clk_rcg2_ops,
+> +		.flags = CLK_SET_RATE_PARENT,
+> +	},
+> +};
+> +
+> +static struct clk_branch l3_core_clk = {
+> +	.halt_reg = 0x1008c,
+> +	.clkr = {
+> +		.enable_reg = 0x1008c,
+> +		.enable_mask = BIT(0),
+> +		.hw.init = &(struct clk_init_data){
+> +			.name = "l3_clk",
+> +			.parent_hws = (const struct clk_hw *[]){
+> +				&l3_clk_src.clkr.hw },
+> +			.num_parents = 1,
+> +			.flags = CLK_SET_RATE_PARENT | CLK_IS_CRITICAL,
+> +			.ops = &clk_branch2_ops,
+> +		},
+> +	},
+> +};
+> +
+> +static const struct regmap_config apss_ipq5424_regmap_config = {
+> +	.reg_bits       = 32,
+> +	.reg_stride     = 4,
+> +	.val_bits       = 32,
+> +	.max_register   = 0x20000,
+> +	.fast_io        = true,
+> +};
+> +
+> +static struct clk_regmap *apss_ipq5424_clks[] = {
+> +	[APSS_PLL_EARLY] = &ipq5424_apss_pll.clkr,
+> +	[APSS_SILVER_CLK_SRC] = &apss_silver_clk_src.clkr,
+> +	[APSS_SILVER_CORE_CLK] = &apss_silver_core_clk.clkr,
+> +	[L3_PLL] = &ipq5424_l3_pll.clkr,
+> +	[L3_CLK_SRC] = &l3_clk_src.clkr,
+> +	[L3_CORE_CLK] = &l3_core_clk.clkr,
+> +
+> +};
+> +
+> +static const struct qcom_cc_desc apss_ipq5424_desc = {
+> +	.config = &apss_ipq5424_regmap_config,
+> +	.clks = apss_ipq5424_clks,
+> +	.num_clks = ARRAY_SIZE(apss_ipq5424_clks),
+> +};
+> +
+> +static const struct alpha_pll_config apss_pll_config = {
+> +	.l = 0x3b,
+> +	.config_ctl_val = 0x08200920,
+> +	.config_ctl_hi_val = 0x05008001,
+> +	.config_ctl_hi1_val = 0x04000000,
+> +	.test_ctl_val = 0x0,
+> +	.test_ctl_hi_val = 0x0,
+> +	.test_ctl_hi1_val = 0x0,
+> +	.user_ctl_val = 0x1,
+> +	.early_output_mask = BIT(3),
+> +	.aux2_output_mask = BIT(2),
+> +	.aux_output_mask = BIT(1),
+> +	.main_output_mask = BIT(0),
+> +};
+> +
+> +static const struct alpha_pll_config l3_pll_config = {
+> +	.l = 0x29,
+> +	.config_ctl_val = 0x08200920,
+> +	.config_ctl_hi_val = 0x05008001,
+> +	.config_ctl_hi1_val = 0x04000000,
+> +	.test_ctl_val = 0x0,
+> +	.test_ctl_hi_val = 0x0,
+> +	.test_ctl_hi1_val = 0x0,
+> +	.user_ctl_val = 0x1,
+> +	.early_output_mask = BIT(3),
+> +	.aux2_output_mask = BIT(2),
+> +	.aux_output_mask = BIT(1),
+> +	.main_output_mask = BIT(0),
+> +};
+> +
+> +static unsigned long get_l3_clk_from_tbl(unsigned long rate)
+> +{
+> +	struct clk_rcg2 *l3_rcg2 = container_of(&l3_clk_src.clkr, struct clk_rcg2, clkr);
+> +	u8 max_clk = sizeof(ftbl_apss_clk_src) / sizeof(struct freq_tbl);
+> +	u8 loop;
+> +
+> +	for (loop = 0; loop < max_clk; loop++)
+> +		if (ftbl_apss_clk_src[loop].freq == rate)
+> +			return l3_rcg2->freq_tbl[loop].freq;
+> +	return 0;
+> +}
+> +
+> +static int cpu_clk_notifier_fn(struct notifier_block *nb, unsigned long action,
+> +			       void *data)
+> +{
+> +	struct apss_clk *apss_ipq5424_cfg = container_of(nb, struct apss_clk, cpu_clk_notifier);
+> +	struct clk_notifier_data *cnd = (struct clk_notifier_data *)data;
+> +	struct device *dev = apss_ipq5424_cfg->dev;
+> +	unsigned long rate = 0, l3_rate;
+> +	int err = 0;
+
+No need to init 'err' here.
+
+> +
+> +	dev_dbg(dev, "action:%ld old_rate:%ld new_rate:%ld\n", action,
+> +		cnd->old_rate, cnd->new_rate);
+> +
+> +	switch (action) {
+> +	case PRE_RATE_CHANGE:
+> +		if (cnd->old_rate < cnd->new_rate)
+> +			rate = cnd->new_rate;
+> +	break;
+> +	case POST_RATE_CHANGE:
+> +		if (cnd->old_rate > cnd->new_rate)
+> +			rate = cnd->new_rate;
+> +	break;
+> +	};
+> +
+> +	if (!rate)
+> +		goto notif_ret;
+> +
+> +	l3_rate = get_l3_clk_from_tbl(rate);
+> +	if (!l3_rate) {
+> +		dev_err(dev, "Failed to get l3 clock rate from l3_tbl\n");
+> +		return NOTIFY_BAD;
+> +	}
+> +
+> +	err = clk_set_rate(apss_ipq5424_cfg->l3_clk, l3_rate);
+> +	if (err) {
+> +		dev_err(dev, "Failed to set l3 clock rate(%ld) err(%d)\n", l3_rate, err);
+> +		return NOTIFY_BAD;
+> +	}
+> +
+> +notif_ret:
+> +	return NOTIFY_OK;
+> +}
+> +
+> +static int apss_ipq5424_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct apss_clk *apss_ipq5424_cfg;
+> +	struct regmap *regmap;
+> +	void __iomem *base;
+> +	int ret;
+> +
+> +	apss_ipq5424_cfg = devm_kzalloc(&pdev->dev, sizeof(struct apss_clk), GFP_KERNEL);
+> +	if (IS_ERR_OR_NULL(apss_ipq5424_cfg))
+> +		return PTR_ERR(apss_ipq5424_cfg);
+> +
+> +	base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	regmap = devm_regmap_init_mmio(dev, base, &apss_ipq5424_regmap_config);
+> +	if (!regmap)
+> +		return PTR_ERR(regmap);
+> +
+> +	clk_alpha_pll_configure(&ipq5424_l3_pll, regmap, &l3_pll_config);
+> +
+> +	clk_alpha_pll_configure(&ipq5424_apss_pll, regmap, &apss_pll_config);
+> +
+> +	ret = qcom_cc_really_probe(dev, &apss_ipq5424_desc, regmap);
+> +	if (ret)
+> +		return ret;
+> +
+> +	dev_dbg(&pdev->dev, "Registered APSS & L3 clock provider\n");
+> +
+> +	apss_ipq5424_cfg->dev = dev;
+> +	apss_ipq5424_cfg->hw = &apss_silver_clk_src.clkr.hw;
+> +	apss_ipq5424_cfg->cpu_clk_notifier.notifier_call = cpu_clk_notifier_fn;
+> +
+> +	apss_ipq5424_cfg->l3_clk = clk_hw_get_clk(&l3_core_clk.clkr.hw, "l3_clk");
+> +	if (IS_ERR(apss_ipq5424_cfg->l3_clk)) {
+> +		dev_err(&pdev->dev, "Failed to get L3 clk, %ld\n",
+> +			PTR_ERR(apss_ipq5424_cfg->l3_clk));
+> +		return PTR_ERR(apss_ipq5424_cfg->l3_clk);
+> +	}
+> +
+> +	ret = devm_clk_notifier_register(&pdev->dev, apss_ipq5424_cfg->hw->clk,
+> +					 &apss_ipq5424_cfg->cpu_clk_notifier);
+
+Use return devm_clk_notifier_register(...) and below lines can be skipped.
 
 Thanks
-Frieder
+Varada
 
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id apss_ipq5424_match_table[] = {
+> +	{ .compatible = "qcom,ipq5424-apss-clk" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, apss_ipq5424_match_table);
+> +
+> +static struct platform_driver apss_ipq5424_driver = {
+> +	.probe = apss_ipq5424_probe,
+> +	.driver = {
+> +		.name   = "apss-ipq5424-clk",
+> +		.of_match_table = apss_ipq5424_match_table,
+> +	},
+> +};
+> +
+> +module_platform_driver(apss_ipq5424_driver);
+> +
+> +MODULE_DESCRIPTION("QCOM APSS IPQ5424 CLK Driver");
+> +MODULE_LICENSE("GPL v2");
+>
+> --
+> 2.34.1
+>
 
