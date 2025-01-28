@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-141365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 067B9A20844
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:09:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ACEA8A20860
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:21:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BBA716489E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:09:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF7813A292D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:21:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB48019CC0C;
-	Tue, 28 Jan 2025 10:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65DE519C56D;
+	Tue, 28 Jan 2025 10:21:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GCJ4Fjl4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D5WgrIBh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E26C156669;
-	Tue, 28 Jan 2025 10:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 297FD1552E3;
+	Tue, 28 Jan 2025 10:21:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738058989; cv=none; b=uDb2TAOp2RpGICvxfrKs66a9QoF0qYOKv9Y1IK1WBRkWdS+0CmzW9As0RBtGxGWy8Pei/962qKu4C3zN3iIpBEbHWYqIbFN/4Xkn0HSRy+7sjjpQDpIrjRsIoOFkiko4wmN0ZyvsSCU/IQ98PTdE0uxxOeLAixLm3KlBZxO7W2k=
+	t=1738059670; cv=none; b=aj2uMI7ZHhQP8hbyZCBHLQnhs7vfNQAVGi2SHUMe8f4fEFr7HR0unCU2pZu2IlwuMbYbzNGKaQp8aa14y3epdPAdsDi2RJoyILePnYbxUBYBpZ02oNMuECCymt5vRD1U8sIfdorAnBuQuSqu8OUGCt0BnZqNe/gL986qr7HyX1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738058989; c=relaxed/simple;
-	bh=OISSWgvkSbEVcJUb2bzvWSLklg+uLGPm74ASjpg6puM=;
+	s=arc-20240116; t=1738059670; c=relaxed/simple;
+	bh=tG6mcmUL//T3dY7eugZ21T/eIkcmm+M0E+Ha8wNsnPE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z514Zpb1q1dQUdfUCw51hdbtqHOqkTxsFEwTerKJEIuNgzCJG1TMrUUoT0SKF36bvnXl6wYSX3I7leRzPOuDLEW9EE+McJ7+1n/qH3uZzRjG1uCJPNrf8PK00FnfKbgGk20bqsg3N0QlyVpiLjXQW1OcicSjG4Y58iixOQRKkgM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GCJ4Fjl4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76507C4CED3;
-	Tue, 28 Jan 2025 10:09:42 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CeGLIAWnKnos8byIx9o3Tmz3yomjQbL3bSI8irY1lgEbf7J+hepZfClv+s0/+pOdXxExdlBf9SGszx/gFiCswmsQM09fVR65p1y9rypoI6ttWOma8rBnwT/d3SedIz5aIOF1fSBr0YilDWwSkLBgy1ewqVIMHDgNLODmWddcmLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D5WgrIBh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE66AC4CED3;
+	Tue, 28 Jan 2025 10:21:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738058989;
-	bh=OISSWgvkSbEVcJUb2bzvWSLklg+uLGPm74ASjpg6puM=;
+	s=k20201202; t=1738059669;
+	bh=tG6mcmUL//T3dY7eugZ21T/eIkcmm+M0E+Ha8wNsnPE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=GCJ4Fjl4CtRma41qVkWz8SfYUitVzhv5veIXnhfdeIb3Kux9uZxQwCIBYZKmUjAIW
-	 ndIzG5kyLWshMUGzg2hblXMeAe3zUSQqDu3uTKdagOzu9vJiFBjh1EvhgY7ESA2B4A
-	 EAqhn5fMN/34PgpKwzjqMvTvwzPmO94KcXKOk60IM0myxScK0ne2zerJfajPj9Ykui
-	 nxq776PDeld3lPeQzH7BaPS4aXGO/BqbMRLrDUGeX7UDyVhgONUCiSknf0K1C4bWap
-	 W2uABdWVfXsxOQ6B+f5GM+H8w7GZmq7Vqy6Y2A7HFAxn4+duv4c0ZiZ56Przo2txhC
-	 mBWItkkbnuaLA==
-Message-ID: <1e9f7f94-3d0c-4258-b9de-746d0b22ec06@kernel.org>
-Date: Tue, 28 Jan 2025 11:09:40 +0100
+	b=D5WgrIBhTGAIRNDrwGbI1TxJBTk/XCTq2J3oahkhaxz8DaZssV61OBcehp8twoZWV
+	 BEL5u/V0msVl4C2O6Oe8nsqr8lmT/ez1iqWRUP/jq2yWyBqdewwYNfMOakSN1VBAh/
+	 fZ32DneXussN2hOLNb64+WIqeTcpr61VwIlM+otuoK1SMCSuZc2bK28U0GSqikIC7F
+	 BMivLnBxyc22y6DK45sIYMGxJv0kNbZcxSv/at5pdV0WSJmT40DK3DIHPmq6SojZO9
+	 N01LUKNSmmfh1HxJKA4oxgPtWr2VdeKfS6IB6S2FnBUxcNjmKn+AhfSd8D62wmI6XV
+	 peEyAGSNr2d8g==
+Message-ID: <112fe636-1328-49f0-8f0a-395764e118c7@kernel.org>
+Date: Tue, 28 Jan 2025 11:21:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,32 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/7] drm: Add DSI/DP support for Renesas r8a779h0 V4M
- and grey-hawk board
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: describe the ath12k AHB
+ module
+To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
+Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
- Jagan Teki <jagan@amarulasolutions.com>, Sam Ravnborg <sam@ravnborg.org>,
- Biju Das <biju.das.jz@bp.renesas.com>
-Cc: dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- linux-clk@vger.kernel.org, stable@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20241217-rcar-gh-dsi-v5-0-e77421093c05@ideasonboard.com>
- <aa858619-56f6-4d3a-b27d-f38cbfa57d98@ideasonboard.com>
+ Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+References: <20250128091012.2574478-1-quic_rajkbhag@quicinc.com>
+ <20250128091012.2574478-2-quic_rajkbhag@quicinc.com>
+ <0ca970e7-cc9a-4853-86de-5f01dc6d82a2@kernel.org>
+ <1bd2dca3-1fa0-424d-95e8-cdb887f1d9e2@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -121,35 +108,51 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <aa858619-56f6-4d3a-b27d-f38cbfa57d98@ideasonboard.com>
+In-Reply-To: <1bd2dca3-1fa0-424d-95e8-cdb887f1d9e2@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 17/12/2024 14:33, Tomi Valkeinen wrote:
-> Hi all,
+On 28/01/2025 10:29, Raj Kumar Bhagat wrote:
+> On 1/28/2025 2:47 PM, Krzysztof Kozlowski wrote:
+>> On 28/01/2025 10:10, Raj Kumar Bhagat wrote:
+>>> Add device-tree bindings for the ATH12K module found in the IPQ5332
+>>> device.
+>>>
+>>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+>>> ---
+>>>  .../net/wireless/qcom,ath12k-ahb.yaml         | 317 ++++++++++++++++++
+>>>  1 file changed, 317 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+>>
+>> It was v4, now v1? So entire previous discussion and feedback is
+>> missing? Go to previous series and implement entire feedback. Then use
+>> proper versioning, proper changelog and make it obvious/understandable
+>> to us, instead of sending v1 after v4 in entirely separate thread.
+>>
 > 
-> On 17/12/2024 07:31, Tomi Valkeinen wrote:
->> Add everything needed to support the DSI output on Renesas r8a779h0
->> (V4M) SoC, and the DP output (via sn65dsi86 DSI to DP bridge) on the
->> Renesas grey-hawk board.
->>
->> Overall the DSI and the board design is almost identical to Renesas
->> r8a779g0 and white-hawk board.
->>
->> Note: the v4 no longer has the dts and the clk patches, as those have
->> been merged to renesas-devel.
+> I was asked to send DTS as a separate series, this is a new series for
+> DTS hence stated with v1.
+
+
+But we do not talk about DTS here, but bindings.
+
+
+> To address the undocumented ABIs we have changes in dt-binding and hence
+
+That's v1 so how it could have changes in the first place? Unless this
+is v5?
+
+> corresponding changes in driver as well. Let me know If we could send the
+> complete series as v5.
+> 
+>> I also do not understand why this is sent to arm soc. That's wireless patch.
 >>
 > 
-> I have pushed this to drm-misc-next. Thank you all for the reviews!
-I am confused how this is supposed to work. You merged your own patches
-for Renesas DRM, even not being the Renesas DRM maintainer, while my
-much earlier patchset was "only" reviewed by Renesas DRM maintainers but
-not picked up by them.
+> All the email list are as per - './scripts/get_maintainer.pl'
 
-So maybe you are the Renesas DRM maintainer? But get_maintainers.pl is
-silent on that, so I don't Cc you.
 
-Can you guys clarify that so maintainers file reflect reality?
+I am asking why this patch is part of the arm soc patchset. This is
+networking/wireless patch.
 
 Best regards,
 Krzysztof
