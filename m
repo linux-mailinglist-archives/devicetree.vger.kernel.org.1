@@ -1,175 +1,102 @@
-Return-Path: <devicetree+bounces-141349-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141350-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EF57A20740
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:22:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94EE0A20745
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:24:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D08F1881634
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 09:22:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8B4F1688E7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 09:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED6461E009F;
-	Tue, 28 Jan 2025 09:22:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9F451DF97E;
+	Tue, 28 Jan 2025 09:24:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PBahelHu"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="RwBEXPtN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6851DFD99;
-	Tue, 28 Jan 2025 09:22:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9CF91E521;
+	Tue, 28 Jan 2025 09:24:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738056127; cv=none; b=Fen3uvbnXTRWwsapbS0eoMTmOFrTPMrdfKoXUBIc6AE9OTnZH3C39SN/MqtC/V6EulYM3BaqED+P55h41bJ+wVu1h6/mg5Um/lFb8fCdfjunkIrs5H0kdkXvVcfGzVGqDtonhRQ5wL6wOIOVT34YhzLXlFB+VO3+hqvjme2V3tU=
+	t=1738056283; cv=none; b=ij2N3F9bvAXl+VvBgnBfvrOuNe+9smhszm+s7R3HLFEkAN7ua4T0Gfy1CZSY4RWFObGIKUvwfuP/6cDWGs14eMWGGjkqpI16yGcPlXh60Nc3AvnwcMwsIROxbmJtTRy2SXYOBqNfSIOE5vl1lah4W/ncoiWWYoFst8a9U3rZbeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738056127; c=relaxed/simple;
-	bh=ZGMtfJK8F/y9wYUABuXbsCjnUzFs+mshaotaFvxQtBA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PdFT4oL1bDiJH7dr2oEWPnxXriPqssEoW48NlQt8xUU/uQkpm2PeTXBvjF47QGoXfW1Ep4HFXHfHtjzl6NTbayJ+jtfcQeOHEONmyU+a62tv2PbepnH1Q67pjqckWNZkoAPMZJlHUni6GTC//5uba1tF5xRY/aVpyJ7VFDZhmaY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PBahelHu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 327D7C4CEE1;
-	Tue, 28 Jan 2025 09:22:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738056127;
-	bh=ZGMtfJK8F/y9wYUABuXbsCjnUzFs+mshaotaFvxQtBA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PBahelHuMA+pwUqaBYu/kN9lXamu7webxLVzp9zsa8b1k1tPycvXMleSrKmOygvNU
-	 zCAWRMFZttb60xb/15alXrFy7e14yaOab+28DTwnzzNz7B85t87/mIGeESr1pkDFpE
-	 ul5IkSUve94owKZK0tnFWDlTMTnAAkChFl9GsTHWUR+RHFca5H16iCsdj9oq27Sup5
-	 p8LLcxluQPtmJkF0oR37giKW8Xzl/IHWZsWuaO3V/aK5ATD2XhqJp8FxVTeD7IlbzX
-	 EfrrhIAiTtuo1DDcJMfbr77gbhHTCEzbxb/1HWYf98CoB8bqJD/Tksz3YSoeHG1K6Q
-	 zMyORrcFYOa8Q==
-Message-ID: <b3ff05c1-6424-4ace-a873-ddf1a0d3d07d@kernel.org>
-Date: Tue, 28 Jan 2025 10:22:01 +0100
+	s=arc-20240116; t=1738056283; c=relaxed/simple;
+	bh=PE0sYlUT9OfFJ8ehhiSAenKDNBYW1RrVTrWTzyg29sw=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=lIvE4XBoP3+gKH0gz7zsSWG+fbi0xl6/wIFIfs+PkBbTQZj17CtQJeVnFuZQvmXXQvRoXDgW6bGS1Il1ch3b5QjzydKYjSZTqeFsF5X/KygkntnruyDEFbchdPDB+lBb93fgHuL+1rK5Inm4CxYEDeBh2dITnm2Bl9tgmEGe7b8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=RwBEXPtN; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: add wifi node for IPQ5332 based
- RDP441
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20250128091012.2574478-1-quic_rajkbhag@quicinc.com>
- <20250128091012.2574478-3-quic_rajkbhag@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250128091012.2574478-3-quic_rajkbhag@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1738056274;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CD6aGMkGgUesAlsT3HDG5pObkWdXtnRJmAMs5WiLGeg=;
+	b=RwBEXPtNpHhxIK0t1mNdkDQc4WmPYgNvEIrU0KFOUGiJhLvU1tUPFOFS4REGW1ckPFLfrQ
+	H8qzihaB1kt/C2NzPQ/gy4Qr+9qvnivYaw8kx0sBiXNVyc25ul18bOiE9rVxx2JQ9Nmlp4
+	aQ6nuSf5CI3yuCt29gsJGFDLnKKCRB6gP8KiR0Jraq/MFqpysbGp1GXosdIUa2tZLWEBGV
+	QDRtFGGuTuVPxOftgmEuUdOUPXG7cxigRIg3sXFAXQc2+ZbghIhOmlJ2xNXusGwapbPj8s
+	ugEVWMbUsodqcY6N/wV/t0Optb2qVQebaMc+aQFHPP7w4zQwdxkMDfYexkJong==
+Date: Tue, 28 Jan 2025 10:24:33 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexander Shiyan <eagle.alexander923@gmail.com>
+Cc: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, Sebastian Reichel
+ <sebastian.reichel@collabora.com>, stable@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
+ for rk3588
+In-Reply-To: <CAP1tNvTRER=QzC29Udw4ffOetVECWV+MfZ2o-mbUFvuZ0_i-Kw@mail.gmail.com>
+References: <20250124052611.3705-1-eagle.alexander923@gmail.com>
+ <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com>
+ <a76f315f023a3f8f5435e0681119b4eb@manjaro.org>
+ <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
+ <61b494b209d7360d0f36adbf6d5443a4@manjaro.org>
+ <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
+ <CABjd4Yy14bpjzvFyc8et-=pmds5uwzfxNqcs7L=+XRXBogZEsQ@mail.gmail.com>
+ <CAP1tNvTRER=QzC29Udw4ffOetVECWV+MfZ2o-mbUFvuZ0_i-Kw@mail.gmail.com>
+Message-ID: <b57d8a834f5c07e37e0e7ee74346c700@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 28/01/2025 10:10, Raj Kumar Bhagat wrote:
-> +	/*                 Default Profile
-> +	 * +============+==============+=====================+
-> +	 * |            |              |                     |
-> +	 * | Region     | Start Offset |       Size          |
-> +	 * |            |              |                     |
-> +	 * +------------+--------------+---------------------+
-> +	 * |            |              |                     |
-> +	 * |            |              |                     |
-> +	 * |            |              |                     |
-> +	 * | WLAN Q6    |  0x4A900000  |       43MB          |
-> +	 * |            |              |                     |
-> +	 * |            |              |                     |
-> +	 * +------------+--------------+---------------------+
-> +	 * | M3 Dump    |  0x4D400000  |       1MB           |
-> +	 * +============+==============+=====================+
-> +	 * |                                                 |
-> +	 * |                                                 |
-> +	 * |                                                 |
-> +	 * |            Rest of memory for Linux             |
-> +	 * |                                                 |
-> +	 * |                                                 |
-> +	 * |                                                 |
-> +	 * +=================================================+
-> +	 */
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		q6_region: wcss@4a900000 {
-> +			reg = <0x0 0x4a900000 0x0 0x02b00000>;
-> +			no-map;
-> +		};
-> +
-> +		m3_dump: m3-dump@4d400000 {
+Hello Alexander,
 
-This fails with your wireless patchset.
+On 2025-01-26 15:25, Alexander Shiyan wrote:
+>> > > I think it's actually better to accept the approach in Alexander's
+>> > > patch, because the whole thing applies to other Rockchip SoCs as well,
+>> > > not just to the RK3588(S).
+>> >
+>> > Anyway, I've just tried it after including the changes below, and
+>> > while /sys/kernel/debug/pinctrl/pinctrl-handles shows the expected
+>> > pinctrls under tsadc, the driver still doesn't seem to be triggering a
+>> > PMIC reset. Weird. Any thoughts welcome.
+>> 
+>> I found the culprit. "otpout" (or "default" if we follow Alexander's
+>> suggested approach) pinctrl state should refer to the &tsadc_shut_org
+>> config instead of &tsadc_shut - then the PMIC reset works.
+> 
+> Great, I'll use this in v2.
 
-> +			reg = <0x0 0x4D400000 0x0 0x100000>;
-> +			no-map;
-> +		};
-> +	};
->  };
->  
->  &blsp1_i2c1 {
-> @@ -63,3 +104,16 @@ data-pins {
->  		};
->  	};
->  };
-> +
-> +&wifi0 {
-> +	memory-region = <&q6_region>, <&m3_dump>;
-> +	memory-region-names = "q6-region", "m3-dump";
-
-Binding said you have four items. I don't understand why this varies and
-why this is 2 items instead.
-
-
-Best regards,
-Krzysztof
+Please, let's wait with the v2 until I go through the whole thing again,
+which I expected to have done already, but had some other "IRL stuff" 
+that
+introduced a delay.
 
