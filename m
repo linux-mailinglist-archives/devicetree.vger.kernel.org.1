@@ -1,168 +1,195 @@
-Return-Path: <devicetree+bounces-141483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4C02A20E6C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:23:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE103A20E82
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:27:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E287A3A4794
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:23:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DF60167446
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E78611D515B;
-	Tue, 28 Jan 2025 16:23:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6FF1DB346;
+	Tue, 28 Jan 2025 16:27:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OSv+uuah"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="TFmaGkOa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C02A1AA1FE;
-	Tue, 28 Jan 2025 16:23:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472711D9A48
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 16:27:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738081412; cv=none; b=nEJbGjgBZ3u6QQGIG6vvI62UrCIhu3VGJvGHJbKVUhrq3EIks/RodP43kJ9UrF0rds0x/s/2lIfKw4aLuCYhkfB/hBCIgXjSRGZ8TTM814yIiOtmQSFV6alcPC/5ypyjW6dmeuImRM7at4m7wlaEO7XS2/mFopfWsAEZMy6gthQ=
+	t=1738081637; cv=none; b=rIr6cMzVMqRT6PPX/52mO+6zMDwSob6DSEeyBNIXGxe/ceMq+VVO4Um4t1Xd5d9ouIzB054iPOj93O6QAFl6wEeT9XBGfRT7nUusBqa9XCfjbBOKaarBPBq3Md5FztCLq08xr1DNEgGyDg0sZz92IwQ/LPIFoQM4rWDKFa53MMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738081412; c=relaxed/simple;
-	bh=08Gs03T39FQeLfYc4DMLMcovI+nRd3HZQ+wnQ3AVNSc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=WwkxV6x3BH4ybW4L7+8nCvkbyw3pp5TvGghdH4b9pM/UsSMNZBM9VHOwOdIp6nDQGEPCYFTdmj+5Rwdlziq1H3UUTcvAz4aVs/Uzy/lGEnsilACbI3g8RNEkT/aCuLxd1EQvoPY7UL+ctk+yK6EBvLzmB+3u5mqfui6I62/6hg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OSv+uuah; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9DCF7FF802;
-	Tue, 28 Jan 2025 16:23:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1738081408;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=UISrEYUv5egLukU1TttywZkjVzOvJAxp/VRzu80B0B0=;
-	b=OSv+uuahAzEa1ARoziqtWPzIrM/mDRHukpcKZdaEaFQEBNtI840FpNF2IRIMqr3Zg6Qn74
-	i4hwXVPesslIrd/eYmIxv0tfLATja8RAqrj9f0X7YvVlErR9VWbhHGKaXOTD3/ir6uVo1q
-	LTvJaOrfc12o2Y2o8oXhBJ0jqWt8uJ1OkGHHNifgKCye8PhHGPPUDlf+yWZjEXCPYPhbKp
-	7GsZ4jjgziLfNhwj2JmaUk25SFxCbdIv/FkDHVdamGaqCFUsrk9T9MoruVK5T7AThNEz7t
-	92IiDVlMICKuTsrTO0ALtcjWOXkb5PZjSHOMyVP9rfU+yPUz79/AjXjwQHZ3Xg==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh@kernel.org>
-Cc: Aleksandar Rikalo <arikalo@gmail.com>, Thomas Bogendoerfer
- <tsbogend@alpha.franken.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vladimir Kondratiev
- <vladimir.kondratiev@mobileye.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
- <theo.lebrun@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, "linux-mips@vger.kernel.org"
- <linux-mips@vger.kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] dt-bindings: mips: mips-cm: Add a new compatible
- string for EyeQ6
-In-Reply-To: <bf08785b-9963-4539-92ef-b73c3abe8c19@app.fastmail.com>
-References: <20250123-cluster-hci-broken-v3-0-8a7ec57cbf68@bootlin.com>
- <20250123-cluster-hci-broken-v3-2-8a7ec57cbf68@bootlin.com>
- <afa2e874-c078-4c3e-b485-d948a0bb6a6f@app.fastmail.com>
- <CAL_JsqKXYruNn+MtxbvCCWU2OmqeV-uAyyzN+F-ppSJVscr91w@mail.gmail.com>
- <bf08785b-9963-4539-92ef-b73c3abe8c19@app.fastmail.com>
-Date: Tue, 28 Jan 2025 17:23:26 +0100
-Message-ID: <87tt9iucu9.fsf@BLaptop.bootlin.com>
+	s=arc-20240116; t=1738081637; c=relaxed/simple;
+	bh=bG+t/CzJT5bkoQhWeyO22+5w5KevtD23rkGzScuT6Ks=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:In-Reply-To:
+	 Content-Type:References; b=r5rByUdvza8xtzzAsTU0TGA0ZRh1q1cQnfOOEzoT6NbugsSl2H89fRbBAANzXBm/NVAfNQJCXFVd8BSE4AwBnCQZ+DXcEKFwWLmONv5D+Idko8jwo0DAF1UduLa1SSN4QA1ESM5x/0Y+dUE8BXcEzNv709HDeIoVZ9K4vygdr40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=TFmaGkOa; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250128162712euoutp025ef952ad4cb37c661cb584a233551771~e6AlFqE2M2638626386euoutp02c
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 16:27:12 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250128162712euoutp025ef952ad4cb37c661cb584a233551771~e6AlFqE2M2638626386euoutp02c
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1738081632;
+	bh=fFbTh+PWSmdRFBoGu9O4DUva9iXla1md7758aeiDLz4=;
+	h=Date:Subject:From:To:Cc:In-Reply-To:References:From;
+	b=TFmaGkOaOngHdMQ/pXWXbzPxRWkXqYTQQ7blYdU3MnDfl4Ui55OQEmZS92nkRU0QK
+	 9TX/PY4ci0p5GYDsRhsOWS2re8kN/l4fph6zMyF8e9fF3u2UyhZjQvigLMkKzbjp+H
+	 aiwUFOqcNtxzG4ahagzXxHPBOw/dUlGvc2SLwdcg=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+	20250128162712eucas1p1c6f2938e96b8144aaccff7d0c3905440~e6Akmdgug0040500405eucas1p1R;
+	Tue, 28 Jan 2025 16:27:12 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+	eusmges2new.samsung.com (EUCPMTA) with SMTP id 6C.C2.20409.06509976; Tue, 28
+	Jan 2025 16:27:12 +0000 (GMT)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250128162711eucas1p2bfe8403d51943e5d5e7bc99c165a3a3b~e6AkKpP0F2095320953eucas1p2R;
+	Tue, 28 Jan 2025 16:27:11 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20250128162711eusmtrp14491c4910474d6a0c0a4fb4333444735~e6AkJufsr1458214582eusmtrp1e;
+	Tue, 28 Jan 2025 16:27:11 +0000 (GMT)
+X-AuditID: cbfec7f4-c0df970000004fb9-38-67990560a4fa
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 84.F2.19654.F5509976; Tue, 28
+	Jan 2025 16:27:11 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250128162710eusmtip144e6661f192407d315ac892b5ee175de~e6Ai2D0jv2024520245eusmtip1G;
+	Tue, 28 Jan 2025 16:27:10 +0000 (GMT)
+Message-ID: <51846fb3-3d86-4ba7-8504-0725d3cd738f@samsung.com>
+Date: Tue, 28 Jan 2025 17:27:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: gregory.clement@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC v3 04/18] firmware: thead: Add AON firmware protocol
+ driver
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
+	wefu@redhat.com, jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, frank.binns@imgtec.com,
+	matt.coster@imgtec.com, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+	ulf.hansson@linaro.org, jszhang@kernel.org, p.zabel@pengutronix.de,
+	m.szyprowski@samsung.com, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org,
+	linux-pm@vger.kernel.org
+Content-Language: en-US
+In-Reply-To: <0324973c-2180-4077-a000-b7b6d895b7aa@samsung.com>
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SfUxbZRTGfW9v771tUrgUTF9Rx0LG4pyygajvnEPmmLlomGiWmGwaaLa7
+	DsdX2nXTzY/yMdygncCQj4IWcANsVj5qYaWhVFltGczC2AZIoEyFZCDIKh1kKMXRdsp/v/Oc
+	5815zslLcYRXiVAqNeM4K80Qp4UTfLzd9qD/+RRupWR72QqJeobrMNT2t5pEl80ODGmsDi5y
+	DhowdOv+PIGapgZIdNecjaOhxq9JlGtrJtC02kmg/v4WErmUTi66aaom0ILKClD7Qh6BdNZx
+	EtW62nB00WgCKP9cPRfd6N2Lxp09OJq+qeSgfHUgWu00ksgz1Iqjqj8tJDLMFnORXfceyrOU
+	4nEbmPmRMyQzOz2NM1fPuknGvFiDMx3qcZJRdlwHjF57jmDGhjoJ5ptr7zAThXaM+f7i50ye
+	zoYxX65sZ+a7bhPMeYMWMIO5w2SS8AD/1cNsWuoJVrotNoV/tLbBCrLs/I+Gij2EAgxQBYBH
+	QToGDruNnALAp4R0I4AaTTnmK9wANiunuL5iAcAC8yLn0ZOl7y75XQ0AFlsq/cUcgNcNjfia
+	S0DHQu3UIrnGOB0Bq1ZngE8PgtcqJ72ex+kwODFa4fUE02/DpsLb3DUm6Gh4p0Hj5RB6Cxxe
+	WfLG4NCdXFhW2uJtcGgRHJ3UYGvMo1+D5TmDmE8Pg1fmqr0bQfoGH2p6nf7c8bDngRv3cTCc
+	sRtIHz8F+y4o/XomvNP2l9//CexQ2v28E445lokCQD0csAU2m7b55N2wtWTWK0M6AI7MBfki
+	BMCS9nKOTxbAs/lCn3sz/Eqp+m+oo7EdKwLh6nVXUa9bTL1uGfX/c2sArgUiVi5Ll7Cy6Az2
+	ZKRMnC6TZ0giD2Wm68HDf97nsbuNoGHGFdkNMAp0A0hxwkMEHzgqJELBYfHHp1hpZrJUnsbK
+	usGTFB4uEtRZzkiEtER8nD3Gslms9FEXo3ihCuwIoGZsn5bxkuIU708I5LlGg+HyclhOb32x
+	2Fl193Rl4NYBUXCmsui5mOVC4Hol+V7r6hPchJgR3bGTp35sUaTMHjwR77miv9WVwB9SyWP7
+	E7+oFWe/+Fn2rpyDNaKc0Q8jdrwRVb/pH0dKyB8Hdr+ZzFv1MBx4vvDbH5Rq+87ZIzNxqKKl
+	7d6cqeunsYSquv18W6i1ZE+QfrDnLVFAoCL/UFGWLnSxQOdOTFrauO/dkR1btYmWpgu1P0ed
+	Rpd6m2o8Val79728oflpV/DqZOnvGf3teboJ3saA/fH66vL7quG53wBm6vvlGVWAxbVnl/Yx
+	2vBr9EutParNEamvv7Ap0WwOx2VHxVHPcqQy8b+TFE+hVgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKKsWRmVeSWpSXmKPExsVy+t/xu7rxrDPTDXauU7c4cX0Rk8XW37PY
+	LdbsPcdkMf/IOVaLe5e2MFlc+fqezWLd0wvsFi/2NrJYXFsxl92i+dh6NouXs+6xWZw/v4Hd
+	4mPPPVaLy7vmsFl87j3CaLHtcwubxdojd9ktFn7cymKxZMcuRou2zmWsFhdPuVrcvXeCxeLl
+	5R5mi7ZZ/Bb/9+xgt/h3bSOLxex3+9kttryZyGpxfG24Rcv+KSwOch7vb7Sye7x5+ZLF43DH
+	F3aPvd8WsHjsnHWX3aNn5xlGj02rOtk87lzbw+Yx72Sgx/3u40wem5fUe7SsPcbk0f/XwOP9
+	vqtsHn1bVjF6XGq+zh4gFKVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdobB5rZWSqpG9n
+	k5Kak1mWWqRvl6CXsXD5EcaC41wV1yb+Y2tgvMDRxcjJISFgIvF95VKmLkYuDiGBpYwSyy5e
+	ZoNIyEhc637JAmELS/y51sUGUfSaUWJFywZ2kASvgJ3EqqffwGwWAVWJ2f9fMULEBSVOznwC
+	1iwqIC9x/9YMsBphAV+JJdf2M4HYbAJGEg+Wz2cFsUUENCWu//3OCrKAWWAPq8ThzZ+htq1n
+	krj0cRVYB7OAuMStJ/PBbE4Be4npTZeAbA6guLrE+nlCECXyEtvfzmGewCg0C8kds5B0z0Lo
+	mIWkYwEjyypGkdTS4tz03GIjveLE3OLSvHS95PzcTYzA9LXt2M8tOxhXvvqod4iRiYPxEKME
+	B7OSCG/suRnpQrwpiZVVqUX58UWlOanFhxhNgWExkVlKNDkfmEDzSuINzQxMDU3MLA1MLc2M
+	lcR52a6cTxMSSE8sSc1OTS1ILYLpY+LglGpgmhkpFen85fHhW6F71sgEGC2b/zmMNytTba3N
+	NM17uwImv+WVYYrSZg97kSPq0bX01u+rglURPc0PJzoVvVnw58WZd73fXs6Wd02+UH7jgvf/
+	3pD2SUfCHJ8V+HvH7i4tvNPq5c/IsPjmD7v1lp9+C68MvPg3Mrty9oO6KdbZFdd331TRPnPV
+	Vdjo5xXbFvuPHhGu0Y/W73g1adGZdXc4F0nlcfHtvTu/43tjfpTo5h+af7lbP025rhj6zTro
+	tFLjguldRU0GqqFCL2bU/3l8omxxs1T024LqCFPV7Qrdhx85aXuJMB+vVX2oxe92vfJ7s8jk
+	0IVPTnZvL5zWF/ux7PbZtnVzPj8IbjfpXXzxpRJLcUaioRZzUXEiAD4ihYDoAwAA
+X-CMS-MailID: 20250128162711eucas1p2bfe8403d51943e5d5e7bc99c165a3a3b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250120172124eucas1p233b3f6da39e7064db62b02a66bc1ac29
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250120172124eucas1p233b3f6da39e7064db62b02a66bc1ac29
+References: <20250120172111.3492708-1-m.wilczynski@samsung.com>
+	<CGME20250120172124eucas1p233b3f6da39e7064db62b02a66bc1ac29@eucas1p2.samsung.com>
+	<20250120172111.3492708-5-m.wilczynski@samsung.com>
+	<20250121-small-ruby-seahorse-7475d0@krzk-bin>
+	<0324973c-2180-4077-a000-b7b6d895b7aa@samsung.com>
 
-> =E5=9C=A82025=E5=B9=B41=E6=9C=8827=E6=97=A5=E4=B8=80=E6=9C=88 =E4=B8=8B=
-=E5=8D=8810:07=EF=BC=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
->> On Mon, Jan 27, 2025 at 3:43=E2=80=AFPM Jiaxun Yang <jiaxun.yang@flygoat=
-.com> wrote:
->>>
->>>
->>>
->>> =E5=9C=A82025=E5=B9=B41=E6=9C=8823=E6=97=A5=E4=B8=80=E6=9C=88 =E4=B8=8A=
-=E5=8D=8811:01=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
->>> > The CM3.5 used on EyeQ6 reports that Hardware Cache Initialization is
->>> > complete, but in reality it's not the case. It also incorrectly
->>> > indicates that Hardware Cache Initialization is supported. This new
->>> > compatible string allows warning about this broken feature that cannot
->>> > be detected at runtime.
->>> >
->>> > Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
->>> > ---
->>> >  Documentation/devicetree/bindings/mips/mti,mips-cm.yaml | 12 +++++++=
-++++-
->>> >  1 file changed, 11 insertions(+), 1 deletion(-)
->>> >
->>> > diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
->>> > b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
->>> > index
->>> > 4324b2306535f1bf66c44b1f96be9094ee282041..d129d6382847768dc026336d8d2=
-c7328b6b81f9b
->>> > 100644
->>> > --- a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
->>> > +++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
->>> > @@ -19,7 +19,12 @@ maintainers:
->>> >
->>> >  properties:
->>> >    compatible:
->>> > -    const: mti,mips-cm
->>> > +    oneOf:
->>> > +      - const: mti,mips-cm
->>> > +      - const: mobileye,eyeq6-cm
->>> > +        description:
->>> > +          On EyeQ6 the HCI (Hardware Cache Initialization) informati=
-on for
->>> > +          the L2 cache in multi-cluster configuration is broken.
->>> >
->>> >    reg:
->>> >      description:
->>> > @@ -44,4 +49,9 @@ examples:
->>> >        compatible =3D "mti,mips-cm";
->>> >        reg =3D <0x1bde8000 0x8000>;
->>> >      };
->>> > +
->>> > +  - |
->>> > +    coherency-manager {
->>> > +      compatible =3D "mobileye,eyeq6-cm";
->>>
->>> I think =E2=80=9Cmobileye,eyeq6-cm=E2=80=9D, =E2=80=9Cmti,mips-cm=E2=80=
-=9D would describe the hardware better as eyeq6=E2=80=99s CM is just a spec=
-ial variant of mips-cm.
+
+
+On 1/28/25 16:54, Michal Wilczynski wrote:
+> 
+> 
+> On 1/21/25 10:56, Krzysztof Kozlowski wrote:
+> 
+>>> diff --git a/include/linux/firmware/thead/thead,th1520-aon.h b/include/linux/firmware/thead/thead,th1520-aon.h
+>>> new file mode 100644
+>>> index 000000000000..3daa17c01d17
+>>> --- /dev/null
+>>> +++ b/include/linux/firmware/thead/thead,th1520-aon.h
+>>> @@ -0,0 +1,186 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0 */
+>>> +/*
+>>> + * Copyright (C) 2021 Alibaba Group Holding Limited.
+>>> + */
+>>> +
+>>> +#ifndef _THEAD_AON_H
+>>> +#define _THEAD_AON_H
+>>> +
+>>> +#include <linux/device.h>
+>>> +#include <linux/types.h>
+>>> +
+>>> +#define AON_RPC_MSG_MAGIC (0xef)
+>>> +#define TH1520_AON_RPC_VERSION 2
+>>> +#define TH1520_AON_RPC_MSG_NUM 7
+>>> +
+>>> +extern struct th1520_aon_chan *aon_chan;
 >>
->> Is s/w that only understands =E2=80=9Cmti,mips-cm=E2=80=9D useful on eye=
-q6 chip? If
->> so, I agree. If not, then a fallback compatible is not useful.
->
-> Yes, mobileye,eyeq6-cm only enable an additional bug workaround in softwa=
-re.
->
+>> Drop all externs.
+> 
+> This is required so the code will compile as the
+> int th1520_aon_call_rpc(struct th1520_aon_chan *aon_chan, void *msg);
+> is non static and exposed in the same header.
+> 
+> I really would like to keep th1520_aon_call_rpc in this header, as it
+> could be useful for other drivers to construct their own RPC calls to
+> reboot or shutdown the system e.g watchdog.
 
-Having "mti,mips-cm" is not useful for the EyeQ6 chip. On the EyeQ6, we
-obtain all relevant information related to CM dynamically without
-needing this compatible string.
+Oh I get it, simply drop extern not the whole expression, sorry it's
+fine.
 
-> The programming interfaces and so on remains unchanged.
-
-Even without a compatible string, we are able to utilize the CM. At
-present, there is no node in the device tree, and apart from the
-hardware being faulty, we do not need it.
-
->
-> Also other firmware components like U-Boot doesn=E2=80=99t need to be awa=
-re of
-> eyeq6 variant.
-
-It's the same for the firmware; they don't need to have "mti, mips-cm"
-information, as they can retrieve all they need dynamically.
-
-Gregory
-
---=20
-Gr=C3=A9gory CLEMENT, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> 
+>>
+>>
+>> Best regards,
+>> Krzysztof
+>>
+>>
 
