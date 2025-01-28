@@ -1,94 +1,94 @@
-Return-Path: <devicetree+bounces-141250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40013A202E5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 02:11:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9249AA202EB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 02:16:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 62F547A295C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 01:11:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DA56B3A3E2C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 01:16:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F3638385;
-	Tue, 28 Jan 2025 01:11:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6899D1F5FA;
+	Tue, 28 Jan 2025 01:16:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="LZMeVwsD";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="g8ZxxBnN"
+	dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b="nNPqoa6X";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="G/jEQ5zr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a8-smtp.messagingengine.com (fhigh-a8-smtp.messagingengine.com [103.168.172.159])
+Received: from fout-a5-smtp.messagingengine.com (fout-a5-smtp.messagingengine.com [103.168.172.148])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E45623A1CD;
-	Tue, 28 Jan 2025 01:10:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.159
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 652503BBF0;
+	Tue, 28 Jan 2025 01:16:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.148
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738026660; cv=none; b=YODxdTn8N4ymBsnzvfA8RjAv0aeiw7KA6ocyACqeKIYrbarvQdnTQ1MjdLha+aWBe4u3/Q59YvAbSWUZ9XYE6upeAhtWFzoBeOcquTmGq0nEEpTMqRFYvHrTz6PdWcxmI+18HaGk/GlYzH1VMrvZfF2FjE0jqzTlCar1wjjqIZU=
+	t=1738027006; cv=none; b=Z4ucZmFokbK5ZVHSaBGaR2VRHX42YhlRhdZhmw9Iui9+O4JulwI9I98RBG8nr4U8+Ob1qlnJUeVmy0pAEdyTp4W14lkSm6Tu2dLle8BI5QV9anwNRi628uzfOTyXRVJaBYWZ7CMpwQD/FGW5OBK2AdXCIUSBtvwwr5pAKIx6QYA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738026660; c=relaxed/simple;
-	bh=9Y9ifQAs4cn2c4vccyu4WadO175dQTf2XIDg7UBRWFU=;
+	s=arc-20240116; t=1738027006; c=relaxed/simple;
+	bh=cvEi3ugjLpGaxNqNHplqEf1s1AHw0uGGNZCujPELn6U=;
 	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=f17UjpRhEpQivwzF2g0WWwqi1B1pY7lQbSqg6QCQEm5FWRFBXAEiWWGB5tEU4jbfz6jGR3ybxM/tno+laoFJ4KJrkQIT9XBJsjPN0vdwtTM7+kMSP8ItFyoxfVaKvjeoxhdcnQxvsSTcLF2Z49ncujJf03vPBy51WbVKuewyYlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=LZMeVwsD; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=g8ZxxBnN; arc=none smtp.client-ip=103.168.172.159
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id E3453114028A;
-	Mon, 27 Jan 2025 20:10:57 -0500 (EST)
-Received: from phl-imap-07 ([10.202.2.97])
-  by phl-compute-04.internal (MEProxy); Mon, 27 Jan 2025 20:10:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm3;
-	 t=1738026657; x=1738113057; bh=9Y9ifQAs4cn2c4vccyu4WadO175dQTf2
-	XIDg7UBRWFU=; b=LZMeVwsDOHbrE65ahjKW0YsDxmBd348k10Xl+scqK8MoKcJ/
-	AvWgS/wmsqGbQn8oGdvrWVS9O76tyeA1Dx4SI5Wm+IJhM0zcSJ6gL4Yx1pcor8G5
-	KDgA8iw0iaM66X2GqRByV2uDp9OVR5YoRsjv8LwxP+jb8Fal18atc5BG1McY51lE
-	M3kobTsQe96+LBLcWZYcNBNyXCNFNwVzJOgmeYlA6h6dTNACBaEyUw5XF38V7QBp
-	61tnLP1Sc8h8InuyjPSJfwHpOL8/VSCK2yaIDn/Qg2wWAMZPqt7IckZvnkfFgWN/
-	fBXJscyK7xwqT6omXW/bkG7uuYmM7mDWPxAu3g==
+	 Subject:Content-Type; b=rJkLJCySTganWQF7AYVK10A+nAgs9PSAoApgR79G0MDK2aeL9FFdjZMaDhmyrKm5n41srT5wxccdKsgP0jJhyjY+bGJi4dVhG1PvvWfgWrIh2nlWnQtrskpDP6OhPl5h9o6PrNhUBvTm+rDU7Es3c5S+pmUsqTjMIuZGnxq3O3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com; spf=pass smtp.mailfrom=flygoat.com; dkim=pass (2048-bit key) header.d=flygoat.com header.i=@flygoat.com header.b=nNPqoa6X; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=G/jEQ5zr; arc=none smtp.client-ip=103.168.172.148
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=flygoat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flygoat.com
+Received: from phl-compute-09.internal (phl-compute-09.phl.internal [10.202.2.49])
+	by mailfout.phl.internal (Postfix) with ESMTP id 665A41380847;
+	Mon, 27 Jan 2025 20:16:43 -0500 (EST)
+Received: from phl-imap-12 ([10.202.2.86])
+  by phl-compute-09.internal (MEProxy); Mon, 27 Jan 2025 20:16:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1738027003;
+	 x=1738113403; bh=EJr9YwHqVSdiJ6heQ3v1l56gv80JW7+pzyAQy3ggJAw=; b=
+	nNPqoa6XnmK/OvQFroNoo6zsLQLffHUK9G6pIZt4gFqkN+EAYUl6aFgHK7IBofpH
+	fbTb5pwNiWmXmI2wfB0Sa3EjgeSq6utFvrwb0emz2bFQvJW1XUGyFX3YN0BbL7rM
+	rpvDaJfboeX5ctdiDWqKOXKtYck5YiHlCNf4qvLhktzH45XRpKFaytYeMu/salSM
+	Z03Po2ASyok/lCtcycAl3wDDQf1FuARNJzsXlC5PTiYlagHQccMl026oAgDNAF6j
+	IFcmj1OIu6UThU6dL7m60mSb2q7L9AYUMHrbOyVJalFFqeLTA3Qx1FNiKvpYdqB9
+	u3y0D5DfbKBWBSu2nqEkZA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
 	messagingengine.com; h=cc:cc:content-transfer-encoding
 	:content-type:content-type:date:date:feedback-id:feedback-id
 	:from:from:in-reply-to:in-reply-to:message-id:mime-version
 	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1738026657; x=
-	1738113057; bh=9Y9ifQAs4cn2c4vccyu4WadO175dQTf2XIDg7UBRWFU=; b=g
-	8ZxxBnNB6r0QBtTmNNSZsmGpKKWb8PNcZRJlJ4TD8RM4PG+bA0XUfeMo6SfIXwmY
-	cWL4/q6GFz+3rW8ubDX696Tg4Pzx0Q58ox27FeQhQDbhDzNymNJmA7sawesoABCv
-	T1oBtWRrMZuHm44spmFJxonBMzPpbjmFoazZmZChIvspPVYLu2wULh6f6U+Ftt1F
-	DO4saFODU1DxL9b4T0d0H3V8yUNPuQ1S1fox1Fiu3ZO9ZUL/0fzuvzTEWzeFCwlw
-	WiVaRT7TQGQwnm3ubae/9jfo1c/BrUW8JBtmtRvrG91YVe7jtwKPeeJ5RfMGLg46
-	omEg99MxaLeEkifmIk6yA==
-X-ME-Sender: <xms:oC6YZ7tDBT4d9rAs3oJQ9Bkks_80SIiF9Y2Z2z0wy5sFpdhmM2GNYQ>
-    <xme:oC6YZ8f0cQXKuFI1y609kpDuWbUx87IJpzsXX6MG-QbsfOVP9Ou_oO1FbWjMibdY4
-    0fLjxiTMthdWyKCTQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudejgedgudegjeduucetufdoteggodetrf
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1738027003; x=
+	1738113403; bh=EJr9YwHqVSdiJ6heQ3v1l56gv80JW7+pzyAQy3ggJAw=; b=G
+	/jEQ5zrWvRfFybpMTHUF6Q6rBqUcgPjSAVxql4d7/qcQF+XX9DtQOLF5/c1ijKtg
+	W2Tbk/KrtHMEf1oQTHYkVYxe2TB2M+XW5HKjPDpHHhk8mi+wuAeqcoSTjUJYsQQv
+	K0YwaqLetCrz7t/BN1aoFMUFdOLVa6gPElcqmsGu1SGkOy2+SKaddMq9VTH4CqlU
+	qwsJQjgHJ8PP2a7dwvWeL35oUhgxr7H6Az7cEMHPvO0Y3jewve74B5dcPDCuyGbe
+	guVSV4mbtU05cNMHffUZbTcS27tzPQDfgn55v3RHpFx8/XZCdajQk0l7phnqSPCO
+	iu0WxLybIe8l+D1gTANaQ==
+X-ME-Sender: <xms:-S-YZ8ezlA1_6wBE5BWKJmB_8FUIld-Thh2DMtTbntKVSuSpEuW8pw>
+    <xme:-S-YZ-NxP_cm6yKGaca1yigBdkkgCCM6wArBZmf7CeepGfGPjq409ijph7QGDQDDM
+    KZfbRdUa2fzP8dHPb4>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefuddrudejgedgudegjeefucetufdoteggodetrf
     dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggv
     pdfurfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpih
     gvnhhtshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtqhertder
-    tdejnecuhfhrohhmpedftfihrghnucghrghlkhhlihhnfdcuoehrhigrnhesthgvshhtth
-    horghsthdrtghomheqnecuggftrfgrthhtvghrnhepgefhgfektdeuieduueekvdevvefh
-    udeuhfehvdeigfffudehueeiieehhfefgfevnecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomheprhihrghnsehtvghsthhtohgrshhtrdgtohhmpdhn
-    sggprhgtphhtthhopedufedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepfigvnh
-    hssegtshhivgdrohhrghdprhgtphhtthhopehjvghrnhgvjhdrshhkrhgrsggvtgesghhm
-    rghilhdrtghomhdprhgtphhtthhopehlghhirhgufihoohgusehgmhgrihhlrdgtohhmpd
-    hrtghpthhtohepmhgrtghrohhmohhrghgrnheshhhothhmrghilhdrtghomhdprhgtphht
-    thhopehufihusehitggvnhhofiihrdhmvgdprhgtphhtthhopegsrhhoohhnihgvsehkvg
-    hrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgvlheslhhi
-    shhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopehlihhnuhigqdhsuhhngi
-    hisehlihhsthhsrdhlihhnuhigrdguvghvpdhrtghpthhtohepphgvrhgvgiesphgvrhgv
-    gidrtgii
-X-ME-Proxy: <xmx:oC6YZ-xaROToKlvlj2JmOZDqieFzTUgnLMYCfnFV7OnENNjYNp0NMA>
-    <xmx:oC6YZ6MqPlmJssMktbVS3zjWHlqlF5TLhci4YXcFyejlD7jOeXlz8g>
-    <xmx:oC6YZ79dTr6S0gJI322w0ubHmXLmeDsEB67JjVrFMK8EL-cssukNwg>
-    <xmx:oC6YZ6Ugkv565B2m4tjlNC1RJC4HDq21Mq5fD0Vxn7dPRlj1Xsl_9A>
-    <xmx:oS6YZ-W19g9RCkHYsRP3Ba6glrUiwjZYmtH1UcfzfZNr2LZ1Fn8b4msU>
-Feedback-ID: idc0145fc:Fastmail
+    tdejnecuhfhrohhmpedflfhirgiguhhnucgjrghnghdfuceojhhirgiguhhnrdihrghngh
+    esfhhlhihgohgrthdrtghomheqnecuggftrfgrthhtvghrnhepjeehfeduvddtgffgvdff
+    keethefhlefgvdevvdekuefffeekheehgeevhfevteejnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepjhhirgiguhhnrdihrghnghesfhhlhihg
+    ohgrthdrtghomhdpnhgspghrtghpthhtohepudefpdhmohguvgepshhmthhpohhuthdprh
+    gtphhtthhopehtshgsohhgvghnugesrghlphhhrgdrfhhrrghnkhgvnhdruggvpdhrtghp
+    thhtohepghhrvghgohhrhidrtghlvghmvghnthessghoohhtlhhinhdrtghomhdprhgtph
+    htthhopehthhgvohdrlhgvsghruhhnsegsohhothhlihhnrdgtohhmpdhrtghpthhtohep
+    thhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtghpthhtoh
+    eprghrihhkrghlohesghhmrghilhdrtghomhdprhgtphhtthhopegtohhnohhrodguthes
+    khgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorh
+    hgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehtrgif
+    fhhikhdrsggrhihouhhksehmohgsihhlvgihvgdrtghomh
+X-ME-Proxy: <xmx:-S-YZ9jH-RQvOSeQVP78Ui42IQkQKB5SH5IzzbJIL2iLRvv1H7cuew>
+    <xmx:-S-YZx-T6SfkpIT_OGStZO61x-WwJdSj6kzH8ydFNOZhSdSJ3WfFFw>
+    <xmx:-S-YZ4tCeZcNTPO_uiPlVO9-7PGT2HhOLXEQ7ZV61DWQweF_-4xEGg>
+    <xmx:-S-YZ4HTdNOZMpgi_TNsZ7vPi6GdnPrEwxXdoMFhSs2x0gNltqvMow>
+    <xmx:-y-YZ5HIgbcmzYH5DDf-x9r41mDhkcB5OXlPlPJF6nMqgfrzYrKLvFRU>
+Feedback-ID: ifd894703:Fastmail
 Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 6149EBA006F; Mon, 27 Jan 2025 20:10:56 -0500 (EST)
+	id BB3F61C20066; Mon, 27 Jan 2025 20:16:41 -0500 (EST)
 X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -96,51 +96,110 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 28 Jan 2025 14:10:30 +1300
-From: "Ryan Walklin" <ryan@testtoast.com>
-To: "Icenowy Zheng" <uwu@icenowy.me>, "Liam Girdwood" <lgirdwood@gmail.com>,
- "Mark Brown" <broonie@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>,
- "Takashi Iwai" <tiwai@suse.com>, "Chen-Yu Tsai" <wens@csie.org>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>,
- "Samuel Holland" <samuel@sholland.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- "Chris Morgan" <macromorgan@hotmail.com>
-Message-Id: <c5ade280-d607-4870-a4e0-7d455f6bc6c3@app.fastmail.com>
-In-Reply-To: <db43243ea653073d223e640f064cd480da7e2cf5.camel@icenowy.me>
-References: <20250125070458.13822-1-ryan@testtoast.com>
- <20250125070458.13822-6-ryan@testtoast.com>
- <db43243ea653073d223e640f064cd480da7e2cf5.camel@icenowy.me>
-Subject: Re: [PATCH v2 5/5] ASoC: sun4i-codec: change h616 card name
+Date: Tue, 28 Jan 2025 01:16:20 +0000
+From: "Jiaxun Yang" <jiaxun.yang@flygoat.com>
+To: "Rob Herring" <robh@kernel.org>
+Cc: "Gregory CLEMENT" <gregory.clement@bootlin.com>,
+ "Aleksandar Rikalo" <arikalo@gmail.com>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ "Tawfik Bayouk" <tawfik.bayouk@mobileye.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Message-Id: <bf08785b-9963-4539-92ef-b73c3abe8c19@app.fastmail.com>
+In-Reply-To: 
+ <CAL_JsqKXYruNn+MtxbvCCWU2OmqeV-uAyyzN+F-ppSJVscr91w@mail.gmail.com>
+References: <20250123-cluster-hci-broken-v3-0-8a7ec57cbf68@bootlin.com>
+ <20250123-cluster-hci-broken-v3-2-8a7ec57cbf68@bootlin.com>
+ <afa2e874-c078-4c3e-b485-d948a0bb6a6f@app.fastmail.com>
+ <CAL_JsqKXYruNn+MtxbvCCWU2OmqeV-uAyyzN+F-ppSJVscr91w@mail.gmail.com>
+Subject: Re: [PATCH v3 2/5] dt-bindings: mips: mips-cm: Add a new compatible string for
+ EyeQ6
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, 26 Jan 2025, at 8:51 PM, Icenowy Zheng wrote:
-> =E5=9C=A8 2025-01-25=E6=98=9F=E6=9C=9F=E5=85=AD=E7=9A=84 20:00 +1300=EF=
-=BC=8CRyan Walklin=E5=86=99=E9=81=93=EF=BC=9A
 
-Hi Icenowy, thanks for reviewing!
 
->> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0card->name=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=3D "H=
-616 Audio Codec";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0card->name=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=3D "h=
-616-audio-codec";
->> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0card->long_name=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=3D "H616 Audio Codec";
+=E5=9C=A82025=E5=B9=B41=E6=9C=8827=E6=97=A5=E4=B8=80=E6=9C=88 =E4=B8=8B=E5=
+=8D=8810:07=EF=BC=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
+> On Mon, Jan 27, 2025 at 3:43=E2=80=AFPM Jiaxun Yang <jiaxun.yang@flygo=
+at.com> wrote:
+>>
+>>
+>>
+>> =E5=9C=A82025=E5=B9=B41=E6=9C=8823=E6=97=A5=E4=B8=80=E6=9C=88 =E4=B8=8A=
+=E5=8D=8811:01=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+>> > The CM3.5 used on EyeQ6 reports that Hardware Cache Initialization =
+is
+>> > complete, but in reality it's not the case. It also incorrectly
+>> > indicates that Hardware Cache Initialization is supported. This new
+>> > compatible string allows warning about this broken feature that can=
+not
+>> > be detected at runtime.
+>> >
+>> > Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>> > ---
+>> >  Documentation/devicetree/bindings/mips/mti,mips-cm.yaml | 12 +++++=
+++++++-
+>> >  1 file changed, 11 insertions(+), 1 deletion(-)
+>> >
+>> > diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>> > b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>> > index
+>> > 4324b2306535f1bf66c44b1f96be9094ee282041..d129d6382847768dc026336d8=
+d2c7328b6b81f9b
+>> > 100644
+>> > --- a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>> > +++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>> > @@ -19,7 +19,12 @@ maintainers:
+>> >
+>> >  properties:
+>> >    compatible:
+>> > -    const: mti,mips-cm
+>> > +    oneOf:
+>> > +      - const: mti,mips-cm
+>> > +      - const: mobileye,eyeq6-cm
+>> > +        description:
+>> > +          On EyeQ6 the HCI (Hardware Cache Initialization) informa=
+tion for
+>> > +          the L2 cache in multi-cluster configuration is broken.
+>> >
+>> >    reg:
+>> >      description:
+>> > @@ -44,4 +49,9 @@ examples:
+>> >        compatible =3D "mti,mips-cm";
+>> >        reg =3D <0x1bde8000 0x8000>;
+>> >      };
+>> > +
+>> > +  - |
+>> > +    coherency-manager {
+>> > +      compatible =3D "mobileye,eyeq6-cm";
+>>
+>> I think =E2=80=9Cmobileye,eyeq6-cm=E2=80=9D, =E2=80=9Cmti,mips-cm=E2=80=
+=9D would describe the hardware better as eyeq6=E2=80=99s CM is just a s=
+pecial variant of mips-cm.
 >
-> I think it's part of the userspace API that should be kept stable.
+> Is s/w that only understands =E2=80=9Cmti,mips-cm=E2=80=9D useful on e=
+yeq6 chip? If
+> so, I agree. If not, then a fallback compatible is not useful.
 
-I don't have a strong feeling about this change, but can anyone suggest =
-any other options for how to manage this name being picked up by UCM as =
-a file path? I guess the UCM paths can include spaces, but this is sligh=
-tly unwieldy and may break if proper escaping is not done.
+Yes, mobileye,eyeq6-cm only enable an additional bug workaround in softw=
+are.
 
-Would appreciate if any of the ALSA devs could weigh in on best practice=
- here.
+The programming interfaces and so on remains unchanged.
 
-Regards,
+Also other firmware components like U-Boot doesn=E2=80=99t need to be aw=
+are of eyeq6 variant.
 
-Ryan
+Thanks
+
+>
+> Rob
+
+--=20
+- Jiaxun
 
