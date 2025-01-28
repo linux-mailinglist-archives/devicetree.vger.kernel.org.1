@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-141357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E482A2078A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:41:37 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5BC3A2078F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:42:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C96916806D
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 09:41:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40883166658
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 09:42:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1889E199252;
-	Tue, 28 Jan 2025 09:41:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFE29199938;
+	Tue, 28 Jan 2025 09:42:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="EGTg2eQl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FpKXmVQ6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 734C7C2ED;
-	Tue, 28 Jan 2025 09:41:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD2CC2ED;
+	Tue, 28 Jan 2025 09:42:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738057292; cv=none; b=oNXAE7XoddN+NFPWM6yRtBg6MAnQBzd0X3tTohcnDg70PKYOK0LOgoMXP3pqy9Qz5DedrlM8jkULUNGF7nPBlLBUo9wZN/LDUAJX/LPIWrdHyodog3xOFymdwpndyhGh6xLhC6n3bScAhsuQ7n8xfAI4xOawuNPWIqV4mmVj9XM=
+	t=1738057344; cv=none; b=dwbLON2y7N7BT4LG9SaNto9TjYy2Q1J+J4Pm1LO4+SEONHzsiUhovG3tMyXrNpc4taaFshPuhnsNRyEsTmaa/CT+SScsRoXpvdrq0z2Ap7yuTZYJZu5ZW3DjMKGA3XevNhj8IS32c4/1YGQRkTq7BigQj1uxfhRJToKoXasPRpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738057292; c=relaxed/simple;
-	bh=uBJKX/d+0J/YgvDZkVAOZ/0xe4feKJ3rGDkSkrVnI7U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Obt3O6MDLVxY0pq6pkdzITnb2dtr4v0w0CjHgYSzcxEQTt3QgyKSJTrID+yFv6o8l7seeAOVq9UgSkXwlq68fI8FFbUyevRIkvVSD5Eff3EpK28UGP36JS9BMZMWU/9SpKYJcXT4rXiAHgiLt3eghmWK92qEkdDKJSCRpq7uuqQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=EGTg2eQl; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50S0Vod2002950;
-	Tue, 28 Jan 2025 09:41:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qGkukPgangna9iKZ9EqZRIQO3/75FNBNDmH6yVQC8Yc=; b=EGTg2eQlc6xnjhih
-	2GBoYy6TdK902JddumNFzFOxWA7HXkRqpQWiRMuSoJeZmrop2Q1PIBuKLipReuJE
-	MWQAFl1QpI3GJPYlWUsAN4SZ+JF+zl40g4N9a+FLSfI7mqaLa5RJa1JXadVlRsTu
-	dEPYoPMDD+OOc4Mhq8A7AVMi5VxJ6ne/uksGm39UPlqm2xLuctq89ZtLCOLmY/VR
-	KGcmHZATLwxhNaCq9aRGDQTRcBmWNArFip13HB5jbr44mfxuOmY5LwcI8s34Ukko
-	DGinNueCpQqyy967BTwJhQ5bovwqmiiETvmqSGne2jA3xUQpqFo6BQSVUjAGjcIX
-	k/E9UQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44emry0xk2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Jan 2025 09:41:24 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50S9f8kr014863
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Jan 2025 09:41:08 GMT
-Received: from [10.151.40.239] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 28 Jan
- 2025 01:41:04 -0800
-Message-ID: <a752a135-9cd0-402b-b0fb-967491cfdaee@quicinc.com>
-Date: Tue, 28 Jan 2025 15:11:01 +0530
+	s=arc-20240116; t=1738057344; c=relaxed/simple;
+	bh=8UmfTiUjgig6HkJA7ndG8uEs4d9kM/xDaFqPN0Q9zao=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=icg3/zHP42+RoqmueDMX6TAWl1SgPOxcyLOpoPqoBeQMaH9xDMLq8L99ysvAESW6q/MBzWP6QmAtr4EY7XJVtnY24UXQVuC4TWMliQDCTBYPhjmP6aL4Im8Vq1RiyHYVh9Ywf0BZFSNaudpbc8DOnF0nffhpuxt7T3+9/WSFAe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FpKXmVQ6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6050C4CED3;
+	Tue, 28 Jan 2025 09:42:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738057344;
+	bh=8UmfTiUjgig6HkJA7ndG8uEs4d9kM/xDaFqPN0Q9zao=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=FpKXmVQ6np+7gd4q/WhO8Rl/Acpfqxz0HCSwkfTWUyK9Mp5a1ahWcKCGDCfieGa5E
+	 lCBi2D+SBz3148F0M9I/pL1XdA6uAv3n8rHHK8UzH5mUZk07prXmd0YSMy63W0Heku
+	 FUSH0iN+1yejig5nmzWmTp63zBypBoW03zIAdxBAb4XGruP0XoFa7YlzsUKvra9xk1
+	 oobDOaAXZNidUi07PC23oz0DjGqwnNnc1oAQQ5VuN9cH/QXZy15vP2KBKgApvLCn84
+	 b7Y0fh8ugYY28y3wqBeaQO6l8SZ8zwJbbszLAk3DuOibyGa8WoYrZjicEcgsKyiuwz
+	 Q5hHjFW/Ye//Q==
+Message-ID: <1a04d8e9-ef02-40e5-b070-82c9a35ad0cd@kernel.org>
+Date: Tue, 28 Jan 2025 10:42:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,111 +50,105 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: add wifi node for IPQ5332 based
- RDP441
-To: Krzysztof Kozlowski <krzk@kernel.org>, <ath12k@lists.infradead.org>
-CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Jeff Johnson <jjohnson@kernel.org>,
-        Bjorn
- Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20250128091012.2574478-1-quic_rajkbhag@quicinc.com>
- <20250128091012.2574478-3-quic_rajkbhag@quicinc.com>
- <b3ff05c1-6424-4ace-a873-ddf1a0d3d07d@kernel.org>
+Subject: Re: [PATCH v5 3/7] dt-bindings: display: renesas,du: Add missing
+ constraints
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
+ Jagan Teki <jagan@amarulasolutions.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Biju Das <biju.das.jz@bp.renesas.com>, dri-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ linux-clk@vger.kernel.org,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+References: <20241217-rcar-gh-dsi-v5-0-e77421093c05@ideasonboard.com>
+ <20241217-rcar-gh-dsi-v5-3-e77421093c05@ideasonboard.com>
+ <jn5fsjg5zufi2c3u3tvpzoafrshgrze67e5x4iyhbyzf7opwbp@6i5vqdgeor3l>
 Content-Language: en-US
-From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
-In-Reply-To: <b3ff05c1-6424-4ace-a873-ddf1a0d3d07d@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <jn5fsjg5zufi2c3u3tvpzoafrshgrze67e5x4iyhbyzf7opwbp@6i5vqdgeor3l>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: przWctJGitIxmfNxgpsBrbJOG3EQ-dX2
-X-Proofpoint-GUID: przWctJGitIxmfNxgpsBrbJOG3EQ-dX2
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-28_03,2025-01-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- mlxlogscore=999 clxscore=1015 impostorscore=0 malwarescore=0 spamscore=0
- adultscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
- definitions=main-2501280075
 
-On 1/28/2025 2:52 PM, Krzysztof Kozlowski wrote:
-> On 28/01/2025 10:10, Raj Kumar Bhagat wrote:
->> +	/*                 Default Profile
->> +	 * +============+==============+=====================+
->> +	 * |            |              |                     |
->> +	 * | Region     | Start Offset |       Size          |
->> +	 * |            |              |                     |
->> +	 * +------------+--------------+---------------------+
->> +	 * |            |              |                     |
->> +	 * |            |              |                     |
->> +	 * |            |              |                     |
->> +	 * | WLAN Q6    |  0x4A900000  |       43MB          |
->> +	 * |            |              |                     |
->> +	 * |            |              |                     |
->> +	 * +------------+--------------+---------------------+
->> +	 * | M3 Dump    |  0x4D400000  |       1MB           |
->> +	 * +============+==============+=====================+
->> +	 * |                                                 |
->> +	 * |                                                 |
->> +	 * |                                                 |
->> +	 * |            Rest of memory for Linux             |
->> +	 * |                                                 |
->> +	 * |                                                 |
->> +	 * |                                                 |
->> +	 * +=================================================+
->> +	 */
->> +
->> +	reserved-memory {
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +
->> +		q6_region: wcss@4a900000 {
->> +			reg = <0x0 0x4a900000 0x0 0x02b00000>;
->> +			no-map;
->> +		};
->> +
->> +		m3_dump: m3-dump@4d400000 {
+On 17/12/2024 07:25, Krzysztof Kozlowski wrote:
+> On Tue, Dec 17, 2024 at 07:31:37AM +0200, Tomi Valkeinen wrote:
+>> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>>
+>> The binding is missing maxItems for all renesas,cmms and renesas,vsps
+>> properties. As the amount of cmms or vsps is always a fixed amount, set
+>> the maxItems to match the minItems.
+>>
+>> Also add the minItems and maxItems to the top level properties.
+>>
+>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>> ---
+>>  Documentation/devicetree/bindings/display/renesas,du.yaml | 15 ++++++++++++++-
+>>  1 file changed, 14 insertions(+), 1 deletion(-)
 > 
-> This fails with your wireless patchset.
-> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Yes, this will fail with v4 wireless patch.
-We have v5 (yet to be sent) to read the correct reserved memory. Since,
-in v4 I was asked to address and send DTS patch separately, The corresponding
-driver patches are yet to be sent.
+So you just repeated parts I sent much earlier...
 
->> +			reg = <0x0 0x4D400000 0x0 0x100000>;
->> +			no-map;
->> +		};
->> +	};
->>  };
->>  
->>  &blsp1_i2c1 {
->> @@ -63,3 +104,16 @@ data-pins {
->>  		};
->>  	};
->>  };
->> +
->> +&wifi0 {
->> +	memory-region = <&q6_region>, <&m3_dump>;
->> +	memory-region-names = "q6-region", "m3-dump";
-> 
-> Binding said you have four items. I don't understand why this varies and
-> why this is 2 items instead.
-> 
+https://lore.kernel.org/all/20240818173003.122025-2-krzysztof.kozlowski@linaro.org/
 
-In total we have 4 items, with minItems as 2.
-The other 2 items (q6-caldb & mlo-global-mem) functionalities are not yet enabled
-in ath12k driver. Hence these memory are not reserved yet.
+That one got reviews but was not merged for some reason.
+
+Best regards,
+Krzysztof
 
