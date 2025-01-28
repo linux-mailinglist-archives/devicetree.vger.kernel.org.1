@@ -1,149 +1,135 @@
-Return-Path: <devicetree+bounces-141514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A027A211D5
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 19:51:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 10885A21210
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 20:17:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A3E1C18855C6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 18:51:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DA7718888C7
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 19:17:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921841DE8A5;
-	Tue, 28 Jan 2025 18:50:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CBC01DE89B;
+	Tue, 28 Jan 2025 19:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="FgXRQqbv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QuLCdu6P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1A7F1C3BFE
-	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 18:50:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54B2119ABB6;
+	Tue, 28 Jan 2025 19:17:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738090257; cv=none; b=VW0JiUNiU4dPsxWxt7iyryIcCrcVPEk9M9w99HJ3MDI5KFa8p7/eo6qnXgW5XNrtSK+L8V1x6C5y72jxhEYBGGrvJ6RykH0HrR8lTc+Vh25RG+PuhTNOKs7nbPdFI4mUCfViACfiXSKcpTTQ/K4h7Ze/OPhkOcNXc3VIjvqC09U=
+	t=1738091860; cv=none; b=G+VjKr3tmAA3q7x6lb9pgmmhsQQ+tIn90r3j1Z2jLxN9gF8ViiCC44GOD0HjM+QrCuDEGA3xEDnGIerSU4tMCNJspLRHDm3RbU5Yf6kiPim8mTX91a7/b2rXM96btDaKt+cj6iGQe7zn67/6JCvafibi94Yj/0E1GclnOOoLXzA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738090257; c=relaxed/simple;
-	bh=QzR2zraDzhdPmnen2nrSyJqHz3aAkzNNFUeKfO2nd2U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oWJQpquw7xjySHahWTVg0GnsKRVPnk9sfY7ocH2rK81Pt+V8d9OxL1jD2WZ42blHFyU6/F0Ra72HL2tuil/YdNSW8nZdGrtd+TurxdypaW1kK9ZS0SqMEfzyoIgQDWKv7pRIC3WlP9KMMDK7mxLPHBfVgesEPlqDwBGIA0rjLfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=FgXRQqbv; arc=none smtp.client-ip=209.85.166.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-844ce6d0716so438863639f.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 10:50:55 -0800 (PST)
+	s=arc-20240116; t=1738091860; c=relaxed/simple;
+	bh=HclQeSXNWk73MG/VCY0ymlf9djRRfgYtyS750b8YFf4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iYL75kKSm96waFnFRZy0563jJuGqkNn9Z69QAjaJFx5zc/ggUMxmv5FWx3kBZhO9AOOYEot02VeEfDlVi0vtkAX7VnypN7ob8M4SRr5sycqaCx9wZurJj7rFM1R6Fdm/M8rGrRaCLMUAecENSsBSswce2M/yc1VElgnLdfq4DiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QuLCdu6P; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-4361f664af5so69081465e9.1;
+        Tue, 28 Jan 2025 11:17:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1738090255; x=1738695055; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=PqUXIYlkxvfYqINhnODqmqhH4YgyMU363PiAXYfM844=;
-        b=FgXRQqbvIZOSBidugCFWKte19e9rYPeCLuWX+Yf76F85qVSQJAmvhDiN2xuQytyNAq
-         LnLmvgbesdjtmrUtL/0FgEBg0X6WdBXIZESuPWC4QpXl8qCgd58L85le8YmhiuEDf/i2
-         YDBvHCyVNr+ruxM+WN7MPX7HzZdPzYfncUsY19o8GiJ7k1KZQNvfv8gDpy8Q4jIYp2wi
-         p7xdTEWnDd/HpJGl6oJphjSMhqbjkX9KhMa5ZodGO60fIEBRmSDqinJwLgMHie6gVLtR
-         avH47rqMgsWrnJtuciTvNdXaHBFWk3DSsfi9lgCcLr0OmAEcttrpus/yFtL6ZOC8s95O
-         EQaA==
+        d=gmail.com; s=20230601; t=1738091857; x=1738696657; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Csbh9siOV35c/RvGSTUxPDPr6dab+119Jwb6H885+xg=;
+        b=QuLCdu6PcU70glgDEL4E+ZtUSUbPXtvqdFDarzLj1a6GSaevE5gqlkHSKwY5buyQXS
+         4vqtYpz/ekKB+Fo7Dq2lYS404GMd2RdjnDV/VGyjHGUwXbxl4rDS7bIyGb2DxrP6XU45
+         /fmc1klEnIasQeH+uOGbR2FJrb1oOPfCG2A5pCk2y9+PhsDNylMrzTLo4O+gPHn6zehS
+         QQ+SeH+5izSJIHT/s4gGeJlyGFlGOm2N/4o1ic5zyvqp/3iCGBCGkuD556X9uJbzG1Yl
+         t+hO7G0EqU91FthkdSJ39h+3Dy43bxaw+kg0vu8b1WLHmGsFlL57KkOY899xfcn09pHG
+         eJMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738090255; x=1738695055;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PqUXIYlkxvfYqINhnODqmqhH4YgyMU363PiAXYfM844=;
-        b=Ha3vdfYqsvl98YNmeKczYut70e9s1MKwwqljd6jp8POTmeg7NW9U0a5psE7/a3oLyf
-         Fgjij1m+SANfwQ08wDKXsffIs1a2+udt+2GMKCNSIExMF/QHvGkkxOuhUrXq9rfOBlCh
-         mYbtoHLhLlqAjFKE3qAQIosBM1lcOQD0LTk1T9gmD3PWKFhVSCqF6K2/HfvLzpd9OBTH
-         VgTC77BzrgI85zRbk9ILv7walw+rIv75gpUSglANVry2iIgIlR8pFEJfOOduSEehWP5Z
-         KWfdQicJalFRyUmcnyFXtUYEZPGPgAlYJonWq0nkDfI2oVY3iEYTh12Vw59Mx/oSVNlU
-         Ki3Q==
-X-Gm-Message-State: AOJu0YzsTe7Z2IaR4tSrtQmtMZA3ygX5nYzUHeAi9d7J5FAeCN+AE7yl
-	XD3S0HAiv6Lc9yBG0EuxlJ3YMGUhutqflQtn4v5Ljj6Fm0qlo21C4QQG6lLt8DM=
-X-Gm-Gg: ASbGncs7USzcwfwgEr7gaY8LMDsoaEgNMlgPiuE3SivMefdzo9nmbYX+VPDYSjoOl1J
-	t6BplD6Vm4sAX+LL5YppQDY26ShI6zFP3zRFVW32d+Ewx/u/iFHuoTEQ/E49TddBb+I3c5h9AY4
-	RzeHRlgDSOpk4bE311xcQvV8nujASaLnGSOG6jI/GWQ+tgmoX/t8BwMITad30+CV7/3eDXB+20C
-	+B/G1sA8h1dVm34pjW84b/w30E+ULRJfu6eKAbvlf5YVq7uTzfDw3GKdgIJgFh8xOb/qGHgRAA4
-	h+CgiBRFHpTwbq8Z7w8o4uNfQpy67jqW8kgzSp0=
-X-Google-Smtp-Source: AGHT+IFS83gkdSZV4Cxk7SmOYgYnYCl3sC6BIr3NPp/pphQx7I/0PqjJZKMuyvqAaF0628suLeEFSA==
-X-Received: by 2002:a05:6602:380b:b0:847:22a7:240e with SMTP id ca18e2360f4ac-85439fa6279mr40636739f.13.1738090254958;
-        Tue, 28 Jan 2025 10:50:54 -0800 (PST)
-Received: from [100.64.0.1] ([165.188.116.9])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-8521e035792sm345458739f.40.2025.01.28.10.50.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jan 2025 10:50:54 -0800 (PST)
-Message-ID: <9dc005ef-3cba-4f9d-9d99-6a6fa49d9383@sifive.com>
-Date: Tue, 28 Jan 2025 12:50:52 -0600
+        d=1e100.net; s=20230601; t=1738091857; x=1738696657;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Csbh9siOV35c/RvGSTUxPDPr6dab+119Jwb6H885+xg=;
+        b=G7xUVkYQp91U3zSfdprOhSHdkmjGxFwsPrTWYNZNNgtvSCsV58Ufu4edhChv5yJyAN
+         W03rqwzzN8z3PiYFDbn9y7VHWrRhJz0iw/gn4eCj8RSr9GFPzHzoI6TechYiRDYToHz0
+         jgTKj2+LBUmNyE4sKw7szDdrAGwN2/SR8xlT+a2hANIvUfH1ltNVQNJ1e6OivsvPZRgH
+         TQgOQMFHe3A/52LnQOspB4OSvmVDbVDb854TrLYdYTBtd4fd+MLWQ8yD2uzJ9fofmTVd
+         juKG6KNd/ikuSSLNzZa+tz3IFkmL8g8AmI94S3DeEs+FoSeN001zHOOcmlk+nWc6fVuK
+         9ybQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX2Hs6vdUBpBm2IFuf3Kehyk2sfwqHPU99nztaSmOBlB+osXLMS6HV/bQ5d5s/PPaJeBLsyhALYXoHm@vger.kernel.org, AJvYcCXUaftmHSUYceDKWH6j2+sFWeigYPJmk4AIf3sqmiVtmnhnQL+yD6IBcCUYRgvX/wb3PpMR90Yt1VhhNtP/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0Xp2BzS9PfMCtre5w5sZugVxATskTjVb7mrScIi6mr0gNlDnY
+	Tq0g/B5C4hoQvdEvWAsRr4e/Pl/4HqQpdN8BT05E6obX4SYPiWSk
+X-Gm-Gg: ASbGncsj1oelHjJYH/oPfD13xDFzDWw7nPcSYd6LOGlpN3fhj+uePgcU5UDBHdCKFCy
+	JK8YU7IWWSZRYfyyu2UpJ566NCNBL1e2nMbANXoDQnza7QKkslWzdtYfVwOjVjvcurUWb6wTC+p
+	apGWPGKg6IbjUYpm15IT54FE2GQ1QWCeLHXG9rXvwcHI3VoAyb6YQ92aN2NagNR2xFMbWNiT7sH
+	VXFyUPxpcJw1vAV6igJqZSnbYUl9ZTJZzvO681dQZ7uaarnvq2QWbzJR0qOvzF6PZMkE2+Swr5I
+	rDTfnala0gkQWHsT4CnV+esf5edF+BmC2djCSEebL+wSQ9WWIB0HXY95FAzNgkAKH8F8ksIWnhi
+	JHtW3CmiUqhhGMNNJfSGlsFt3lT9E6OCMyIUtA2BVg3gU
+X-Google-Smtp-Source: AGHT+IHC/OiEXS39+h0eXpymOh8xYQAl2W2ruV2a+SJE9qKy/dQIG0lB3tRhjyJ7qu9FDnc4NjyqRQ==
+X-Received: by 2002:a05:600c:35d3:b0:434:f586:753c with SMTP id 5b1f17b1804b1-438dc3c3790mr1319575e9.7.1738091857169;
+        Tue, 28 Jan 2025 11:17:37 -0800 (PST)
+Received: from thinkpad-p52.telekom.ip (2a02-8388-e103-2700-a24c-4303-c631-1166.cable.dynamic.v6.surfer.at. [2a02:8388:e103:2700:a24c:4303:c631:1166])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438bd54c0ecsm181224365e9.30.2025.01.28.11.17.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jan 2025 11:17:36 -0800 (PST)
+From: Andrei Lalaev <andrey.lalaev@gmail.com>
+To: linux@roeck-us.net,
+	krzk@kernel.org,
+	robh@kernel.org,
+	christophe.jaillet@wanadoo.fr,
+	jdelvare@suse.com
+Cc: linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	conor+dt@kernel.org,
+	andrey.lalaev@gmail.com
+Subject: [PATCH v3 0/2] Add driver for HTU31
+Date: Tue, 28 Jan 2025 20:16:39 +0100
+Message-ID: <20250128191730.739428-1-andrey.lalaev@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: spacemit: add support for K1
- SoC
-To: Rob Herring <robh@kernel.org>, Linus Walleij <linus.walleij@linaro.org>
-Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
- Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, Yixun Lan
- <dlan@gentoo.org>, linux-gpio@vger.kernel.org,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-kernel@vger.kernel.org,
- Conor Dooley <conor@kernel.org>, Yangyu Chen <cyy@cyyself.name>,
- Palmer Dabbelt <palmer@dabbelt.com>, Jesse Taube <mr.bossman075@gmail.com>,
- Jisheng Zhang <jszhang@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Olof Johansson <olof@lixom.net>,
- Inochi Amaoto <inochiama@outlook.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-riscv@lists.infradead.org
-References: <20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org>
- <20250121-03-k1-gpio-v4-1-4641c95c0194@gentoo.org>
- <Z5FPJLzAEVXGWJnE@chonkvm.lixom.net> <20250123113042-GYA38135@gentoo>
- <Z5LOdh-4UxRtteOy@chonkvm.lixom.net>
- <20250127181726.GA538260-robh@kernel.org> <20250128031712-GYB47737@gentoo>
- <CACRpkdYbSOHD9UH5=+qjztxS3Cq_rxaoOT9tFtD8ZWm9zQGnPw@mail.gmail.com>
- <CAL_Jsq+f56DoH5YTV85ZqP52sMzkOtHtjWzQ7Tu4FhKSjTSpEQ@mail.gmail.com>
-From: Samuel Holland <samuel.holland@sifive.com>
-Content-Language: en-US
-In-Reply-To: <CAL_Jsq+f56DoH5YTV85ZqP52sMzkOtHtjWzQ7Tu4FhKSjTSpEQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 2025-01-28 10:58 AM, Rob Herring wrote:
-> On Tue, Jan 28, 2025 at 10:03 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->>
->> On Tue, Jan 28, 2025 at 4:17 AM Yixun Lan <dlan@gentoo.org> wrote:
->>
->>> [Rob]
->>>> If Linux can't handle 1 node for N gpio_chip's, then that's a Linux
->>>> problem. Maybe it can, IDK.
->>>
->>> I haven't seen somthing like this to register 1 node for multi gpio_chips..
->>> To gpio/pinctrl maintainer (Linus Walleij), do you have suggestion on this?
->>
->> For Linux we can call bgpio_init() three times and
->> devm_gpiochip_add_data() three times on the result and if we use the
->> approach with three cells (where the second is instance 0,1,2 and the
->> last one the offset 0..31) then it will work all just the same I guess?
->>
->> foo-gpios <&gpio 2 7 GPIO_ACTIVE_LOW>;
->>
->> for offset 7 on block 2 for example.
->>
->> We need a custom xlate function I suppose.
->>
->> It just has not been done that way before, everybody just did
->> 2-cell GPIOs.
-> 
-> You can do either 3 cells or 2 cells splitting the 1st cell into
-> <bank><index>. I'm pretty sure we have some cases of the latter.
+This patch series adds support for HTU31 humidity and temperature
+sensor.
 
-There is also at least one example of 3-cell GPIOs:
+Changes in v3:
+- move serial number attribute to debugfs
+- fix the position of entry in Makefile to keep alphabetical order
+- fix the patch versioning
 
-Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
+Changes in v2:
+- replace DIV_ROUND_CLOSEST with DIV_ROUND_CLOSEST_ULL to prevent
+  possible overflow
+- drop mutex locking from htu31_read_serial_number, as the function is
+  only called from probe
+- add description of the private data structure
+- fix the issues pointed by Christophe
+- add an entry to MAINTAINERS file
+- add Krzysztof's ACK to dt-bindings patch
 
-It supports controllers with varying numbers of pins per bank and banks in each
-instance. Compared to the design described above, it shares a single gpio_chip
-across all banks in a controller instance.
+v1: https://lore.kernel.org/all/20250123202528.223966-1-andrey.lalaev@gmail.com/#t
 
-Regards,
-Samuel
+Andrei Lalaev (2):
+  hwmon: add driver for HTU31
+  dt-bindings: hwmon: Add description for sensor HTU31
+
+ .../devicetree/bindings/trivial-devices.yaml  |   2 +
+ Documentation/hwmon/htu31.rst                 |  37 ++
+ Documentation/hwmon/index.rst                 |   1 +
+ MAINTAINERS                                   |   6 +
+ drivers/hwmon/Kconfig                         |  11 +
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/htu31.c                         | 351 ++++++++++++++++++
+ 7 files changed, 409 insertions(+)
+ create mode 100644 Documentation/hwmon/htu31.rst
+ create mode 100644 drivers/hwmon/htu31.c
+
+-- 
+2.48.1
 
 
