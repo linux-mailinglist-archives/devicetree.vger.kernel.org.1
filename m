@@ -1,117 +1,173 @@
-Return-Path: <devicetree+bounces-141496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BB5BA20F4F
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:58:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43606A20F58
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 18:01:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C30341685A6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:58:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F2533A9550
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:01:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D7A01B86EF;
-	Tue, 28 Jan 2025 16:58:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CA5B19DF7D;
+	Tue, 28 Jan 2025 17:01:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jcnvgYKc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="a6J4Kzym"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F40751ACECE;
-	Tue, 28 Jan 2025 16:58:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B99BF1A7249;
+	Tue, 28 Jan 2025 17:01:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738083497; cv=none; b=LukvOVAJeRnuynxfG1GJkRTGJcs+ayG/DD3lJb3/aPM6QxvthFS124DlibZPSbp3Dwk3hMIs+O7KdGfcwW3IWYa131nFk5AwZ8pRII0GhbYU2/nALFvBzCLQLSl9vkFwnshuH9LWQmsllbAMTmOABkVbh0yTMUrEAkGeOHki7KU=
+	t=1738083671; cv=none; b=eUq4bmyfIcW7TJuzlwjw1GMvKbHI4kHP/Mm5QyNuTublZcxdakYKfl3AQVJYa44J60brpRXDrMV5WD3F8LNccOq5OW38W8rCMaTEv0F+rKi/Q0Hg0YON4ZHLf3Zr2rqcmrwJc33z5aqMAagkIF5wVTtvVsLj+Jqur1DjnOmXDg4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738083497; c=relaxed/simple;
-	bh=y0G/CNUpOShOI21G2rXVvvmIYC7FYgCkYYNmc2IXvb0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OWJEZr9zDF05gXBZrBv5ly3AU6aJVDoNFK7+YZDywhsN0SSlhU3TdOkDETc7lNY6HsKRgEOPWMysbUjSMPBvcaamfBhMpzTAmrEB0iBI+sD4XzlwwY6LPHqCg90K0e6HD9+/f4zvDXUE7ooJWonkNr0RrGrT60ss5pkAewh/jaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jcnvgYKc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52982C4CEE9;
-	Tue, 28 Jan 2025 16:58:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738083496;
-	bh=y0G/CNUpOShOI21G2rXVvvmIYC7FYgCkYYNmc2IXvb0=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=jcnvgYKcqmBb61GSD68TxjoEjj0LXe3WZBmBGGn9fWCWJ8yanWHrpbCZ/5ELUrJIK
-	 gAvjAwegHqkbQY4lSItbsbP9NVc6aZz1gJEVm/lqxykxYB9SE3ZpDzxqZiAOejT9W+
-	 W806RdH6d+0khAyUdR0fhS38zNaPsDANx1zgvg3YZCetkQZdEtgtQom6WH9xQI0HLR
-	 4gkGoI+d6WqXx2R17sK05xfQhjctLuID45bIv098Pakd5MCCeAKLCZ6DVgaqdTiL3X
-	 pWCl1+sPXbO6L7gw4CWAAVdKsbunNw+rdFl2AZ7vc1i5bOJXOpLSHT76oBAi3aMo8x
-	 1kKcltAko2eFw==
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-53e3a227b82so5312034e87.0;
-        Tue, 28 Jan 2025 08:58:16 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUdmRKtIgRgVliFQ9fpY8ogXd5mhRGi61MWyXZt8R+w70IvejzFeqZwOushl9IyjVxtGSR5o41Xx3a1kw==@vger.kernel.org, AJvYcCUmuXq5Q4x/TVrNW2DRVixPK2uE3EFPe/6la47BT6z9rvf2RqxFnsfr85Mk3sGNo5qr4Nq3NKDs82u1Hg91@vger.kernel.org, AJvYcCX7wkv79cg0P9YPEt2I83rzbb+LUkIkbADMBME9PsEohmUtv50Szqu2m6pKDYLyrnPIli5+C2GMfbpS@vger.kernel.org
-X-Gm-Message-State: AOJu0YysExt5aSzZQwZrFcnRYU4hjXYajWpdgL86KJCOdPzlatmo1yNb
-	bzvt2WNn6hnMUpY/SNOfz3RtjuLax5Covr2yi7G0gx+L/6iwZD2iWJ2usM0dqAWX1O3MS8Gb9PU
-	YUN9QH+PluXc+5Jsm1DX+8VCiSw==
-X-Google-Smtp-Source: AGHT+IGZBJ5sNC4e/lfqrnbWISj/cWgnjLcnpHkbkXiOQn3yUrA0tM+/GVs4Jx8zNEw9eiDrE3RJVIQzxYNeXv8+DK8=
-X-Received: by 2002:a05:6512:159b:b0:540:358e:36b9 with SMTP id
- 2adb3069b0e04-5439c2807e3mr17546566e87.45.1738083494575; Tue, 28 Jan 2025
- 08:58:14 -0800 (PST)
+	s=arc-20240116; t=1738083671; c=relaxed/simple;
+	bh=mF05j41uzO5AxIr0Ne4o7R1QcFWIE4/Zp6PanRtvlqI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=A/nVfLM5jcLt+6ZSDEN7iU5DyfrZB54RpqqTH/qP5MD3j0bcvOgXpyeDrreIqX0VArFQwvjG5K2WMHFbKw55BpwVsBNXKpkQPeaCl99cg6ferqQvogi3nQGWoX/0I0xtXJEF5cm58VRflsheaFghFxpSV7w1mE87lAedyD0U3I8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=a6J4Kzym; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50SDnwHQ013084;
+	Tue, 28 Jan 2025 17:01:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	2OUjp/zwujNr5r3x6a5AB+/OVSf9RqiUYrcvyBEc3to=; b=a6J4Kzym7I7lXk6a
+	CyTUOCmHQeLWm4losU79xPsMWqPdcqMalHzqcoDNtk/IHs42500lRjhgdSlUAzdy
+	NRc92Tjc3dBSxlVrpjbDhXzyl6TXHPciT1OQAxrfmSlJmg0DfnTIfLhacSSdf1+9
+	1FCancfAwd1aSiYvRR6iesC8Q5LbCu64AJTTD4XOrEyMEoxOj3XtUg9YaqtlZiQ9
+	Swl266f6EPMo1howaaiFEQNbjL1dnfMIM6s+LkWIwVX0UWrH6cUQSkamwI2zGQYN
+	UarkrF0HGCduLfwg3E17BfhW1ERx8WqVsqBPS9FUpD1rfTFX+Rjx6tKpfI5wrivK
+	APuvtg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44f0fcrff0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Jan 2025 17:01:03 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50SH12mp000765
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Jan 2025 17:01:02 GMT
+Received: from [10.216.5.143] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 28 Jan
+ 2025 09:00:57 -0800
+Message-ID: <f69fea6c-c6a3-461f-96e5-2e6ccd76cf73@quicinc.com>
+Date: Tue, 28 Jan 2025 22:30:54 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org>
- <20250121-03-k1-gpio-v4-1-4641c95c0194@gentoo.org> <Z5FPJLzAEVXGWJnE@chonkvm.lixom.net>
- <20250123113042-GYA38135@gentoo> <Z5LOdh-4UxRtteOy@chonkvm.lixom.net>
- <20250127181726.GA538260-robh@kernel.org> <20250128031712-GYB47737@gentoo> <CACRpkdYbSOHD9UH5=+qjztxS3Cq_rxaoOT9tFtD8ZWm9zQGnPw@mail.gmail.com>
-In-Reply-To: <CACRpkdYbSOHD9UH5=+qjztxS3Cq_rxaoOT9tFtD8ZWm9zQGnPw@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 28 Jan 2025 10:58:01 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+f56DoH5YTV85ZqP52sMzkOtHtjWzQ7Tu4FhKSjTSpEQ@mail.gmail.com>
-X-Gm-Features: AWEUYZnuV1NO_CdVjSEHj4BGZlEY-zMnXERRyRsEZ22al7MVrBDW1ebcFa4k10c
-Message-ID: <CAL_Jsq+f56DoH5YTV85ZqP52sMzkOtHtjWzQ7Tu4FhKSjTSpEQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: spacemit: add support for K1 SoC
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Yixun Lan <dlan@gentoo.org>, Olof Johansson <olof@lixom.net>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Conor Dooley <conor@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>, 
-	Jisheng Zhang <jszhang@kernel.org>, Jesse Taube <mr.bossman075@gmail.com>, 
-	Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
-	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: add wifi node for IPQ5332 based
+ RDP441
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski
+	<krzk@kernel.org>, <ath12k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20250128091012.2574478-1-quic_rajkbhag@quicinc.com>
+ <20250128091012.2574478-3-quic_rajkbhag@quicinc.com>
+ <b3ff05c1-6424-4ace-a873-ddf1a0d3d07d@kernel.org>
+ <a752a135-9cd0-402b-b0fb-967491cfdaee@quicinc.com>
+ <fd55ba36-d90d-4507-9c52-912f667c4193@oss.qualcomm.com>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <fd55ba36-d90d-4507-9c52-912f667c4193@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: qZFjIMZSZTtvCrogJ-hSiNS9lYNfIUZR
+X-Proofpoint-ORIG-GUID: qZFjIMZSZTtvCrogJ-hSiNS9lYNfIUZR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-28_04,2025-01-27_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 adultscore=0 spamscore=0 phishscore=0 lowpriorityscore=0
+ clxscore=1015 mlxlogscore=999 mlxscore=0 impostorscore=0 malwarescore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501280125
 
-On Tue, Jan 28, 2025 at 10:03=E2=80=AFAM Linus Walleij <linus.walleij@linar=
-o.org> wrote:
->
-> On Tue, Jan 28, 2025 at 4:17=E2=80=AFAM Yixun Lan <dlan@gentoo.org> wrote=
-:
->
-> > [Rob]
-> > > If Linux can't handle 1 node for N gpio_chip's, then that's a Linux
-> > > problem. Maybe it can, IDK.
-> >
-> > I haven't seen somthing like this to register 1 node for multi gpio_chi=
-ps..
-> > To gpio/pinctrl maintainer (Linus Walleij), do you have suggestion on t=
-his?
->
-> For Linux we can call bgpio_init() three times and
-> devm_gpiochip_add_data() three times on the result and if we use the
-> approach with three cells (where the second is instance 0,1,2 and the
-> last one the offset 0..31) then it will work all just the same I guess?
->
-> foo-gpios <&gpio 2 7 GPIO_ACTIVE_LOW>;
->
-> for offset 7 on block 2 for example.
->
-> We need a custom xlate function I suppose.
->
-> It just has not been done that way before, everybody just did
-> 2-cell GPIOs.
+On 1/28/2025 5:02 PM, Konrad Dybcio wrote:
+> On 28.01.2025 10:41 AM, Raj Kumar Bhagat wrote:
+>> On 1/28/2025 2:52 PM, Krzysztof Kozlowski wrote:
+>>> On 28/01/2025 10:10, Raj Kumar Bhagat wrote:
+>>>> +	/*                 Default Profile
+>>>> +	 * +============+==============+=====================+
+>>>> +	 * |            |              |                     |
+>>>> +	 * | Region     | Start Offset |       Size          |
+>>>> +	 * |            |              |                     |
+>>>> +	 * +------------+--------------+---------------------+
+>>>> +	 * |            |              |                     |
+>>>> +	 * |            |              |                     |
+>>>> +	 * |            |              |                     |
+>>>> +	 * | WLAN Q6    |  0x4A900000  |       43MB          |
+>>>> +	 * |            |              |                     |
+>>>> +	 * |            |              |                     |
+>>>> +	 * +------------+--------------+---------------------+
+>>>> +	 * | M3 Dump    |  0x4D400000  |       1MB           |
+>>>> +	 * +============+==============+=====================+
+>>>> +	 * |                                                 |
+>>>> +	 * |                                                 |
+>>>> +	 * |                                                 |
+>>>> +	 * |            Rest of memory for Linux             |
+>>>> +	 * |                                                 |
+>>>> +	 * |                                                 |
+>>>> +	 * |                                                 |
+>>>> +	 * +=================================================+
+>>>> +	 */
+>>>> +
+>>>> +	reserved-memory {
+>>>> +		#address-cells = <2>;
+>>>> +		#size-cells = <2>;
+>>>> +		ranges;
+>>>> +
+>>>> +		q6_region: wcss@4a900000 {
+>>>> +			reg = <0x0 0x4a900000 0x0 0x02b00000>;
+>>>> +			no-map;
+>>>> +		};
+>>>> +
+>>>> +		m3_dump: m3-dump@4d400000 {
+>>>
+>>> This fails with your wireless patchset.
+>>>
+>>
+>> Yes, this will fail with v4 wireless patch.
+>> We have v5 (yet to be sent) to read the correct reserved memory. Since,
+>> in v4 I was asked to address and send DTS patch separately, The corresponding
+>> driver patches are yet to be sent.
+> 
+> I think the intention was to send them separately, but together time-wise, so
+> that the large set of net changes is somewhat shrunk, but the reviewers can
+> cross-reference both series if/as needed
+> 
 
-You can do either 3 cells or 2 cells splitting the 1st cell into
-<bank><index>. I'm pretty sure we have some cases of the latter.
+Yes, the intention is similar: to get DT related reviews before posting the next
+version (v5) of the driver changes.
 
-Rob
+>>
+>>>> +			reg = <0x0 0x4D400000 0x0 0x100000>;
+> 
+> Please use lowercase hex
+> 
+
+Thanks, will do in next version.
 
