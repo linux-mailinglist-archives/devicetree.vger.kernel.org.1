@@ -1,258 +1,156 @@
-Return-Path: <devicetree+bounces-141364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C839A20832
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:06:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 067B9A20844
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:09:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8E8F188AD03
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:04:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BBA716489E
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:09:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E16E71991CA;
-	Tue, 28 Jan 2025 10:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB48019CC0C;
+	Tue, 28 Jan 2025 10:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="VsI37p0G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GCJ4Fjl4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2139.outbound.protection.outlook.com [40.107.241.139])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD88718FDD2;
-	Tue, 28 Jan 2025 10:04:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.241.139
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738058669; cv=fail; b=M9CLZwan8V7Nz/faetFxGOoNGIsDVdlKdxbY4P4Y48VpDMKubfunBuBG1RW2ue6GRB5pFUWF7pabvCZIuoofP7s2831FouBaLBEUABKxTmiK2pSIcg8ztXua8pZkNnl2RN3pliTyEA7DBqQ1PgN+6BlY1PRJE1WVjJA9C2oeuxg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738058669; c=relaxed/simple;
-	bh=98y0boZOrCaXfl3VUPO/BdSalEElNmbbwpxyeQYTM90=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ecd4TosTEhCo/GDT1M7wbcsVT8PE089Xf0xsD/Gj3DZ3mnC/KpjbVu6NY0EUpK6N1GZABtdqQPWW/kRz46RCB9pVwbgeu0/AKrlNqGm9jpw9hBOO1UcOjhp7/nxL6HFu4e5w6eRZsJS6gtz+e35k8wIQQK2o6u5nFhPxpeN3qFw=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=VsI37p0G; arc=fail smtp.client-ip=40.107.241.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aLAH2imath3STeDW6EI6lrsRmoyGSg/2EHDyf6u12fBVwwZ3Q8qCPpDfDUmwwNGK7lnT4uJjZhTvY0wC+IlORuqk0taSBFzXiFR8wIsQ47ruxyAT53qb+BKM97UiD9+JQuggdXHCQ8q8ibSXMdRhxf/QQxrPdC01f43mjDiWHTQbKwY/fTMHLWNTDe1zRzVX5werSLniDankipuDWKgo9W+N9cPuooYKfjAvWB+bIZPMktQOW/YYJ7/7snxuHMHeU4nui/9Zzzo3K3TRXIaGvKHSkI8/AEG0hhi4ZhXvL5DAHnKV59PwHV6nbXwfh8byL0suJr10LVrIJ4GlWW2jSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+ai6XYg5ZQ7rOyvnSSDTNCrOijS8XSlgokewkA+GyW0=;
- b=fEACtdJAiNvTOanzCbVWpwQZCpHZhlGQ2wyjM3W207V3a5OvDgHR4HvEzb4l8j4NXhVA/sdti4FkDEngnAR9V+QaBl9LHamq+j0YPy/PCKrn3fID2ycRVZHA4gv538EWeKXsywC2WcoVxjVD/tXh3qzwhdS8HMjzsgtxhkmngqeOW2Bd0Lq3fO1NPeN2sQLXpJ/edtylyJ/8l4IZVV9ml70WkXKYbxa+EffYpAhROM85Kb679LHbkSTaYn4U4r0YgbSae5v9fSxnMHlJq2akJHgywl6MsRDsWNFVTMlpoQ5jUpvO+SxLXPc8MKXMv++AJx1bSxshWgRF2UXH3VxkLw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=ti.com smtp.mailfrom=phytec.de; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine header.from=phytec.de;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+ai6XYg5ZQ7rOyvnSSDTNCrOijS8XSlgokewkA+GyW0=;
- b=VsI37p0GPOdADOUx576mpSZMq/krv4FhEU3CLg6fDDXTlUbN+ahX0RUAodtCBjitRMO+7Z4k8O3oMWYfxPFklSG1EVZ2a2FLJbCk2vs7Jr3NxGPe3wh1AEzdUZO4SoDXZ83hfGNoHrTLu6FW0ED6YReKy+gqwB4eoBQdCEReSkeOg+zppWFB45UK+nEle1LCkYgu8XyINcyUeXXRsFcfjhzRrkq0Mq4nGpiomxzZ21vlF/muvqFd/YmMmIGTUyzWwhXlGUU5Pj+TjYM+9FHP3a1+ttaS/PBzWjEUI6fTBZKV1L6IK8t0VDIAZroXEMqYu2BjsRdm5w39LDKD/iH1FA==
-Received: from DUZPR01CA0064.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:3c2::17) by PR3P195MB0635.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:102:27::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.23; Tue, 28 Jan
- 2025 10:04:20 +0000
-Received: from DB1PEPF000509F6.eurprd02.prod.outlook.com
- (2603:10a6:10:3c2:cafe::a0) by DUZPR01CA0064.outlook.office365.com
- (2603:10a6:10:3c2::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8377.23 via Frontend Transport; Tue,
- 28 Jan 2025 10:04:17 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Diagnostix.phytec.de (91.26.50.189) by
- DB1PEPF000509F6.mail.protection.outlook.com (10.167.242.152) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8398.14 via Frontend Transport; Tue, 28 Jan 2025 10:04:19 +0000
-Received: from Berlix.phytec.de (172.25.0.12) by Diagnostix.phytec.de
- (172.25.0.14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Tue, 28 Jan
- 2025 11:04:19 +0100
-Received: from ls-radium.phytec (172.25.39.17) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.44; Tue, 28 Jan
- 2025 11:04:15 +0100
-From: Daniel Schultz <d.schultz@phytec.de>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <w.egorov@phytec.de>, <upstream@lists.phytec.de>, Daniel Schultz
-	<d.schultz@phytec.de>
-Subject: [PATCH v2] arm64: dts: ti: am64-phyboard-electra: Add DT overlay for X27 connector
-Date: Tue, 28 Jan 2025 02:03:56 -0800
-Message-ID: <20250128100356.462934-1-d.schultz@phytec.de>
-X-Mailer: git-send-email 2.25.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E26C156669;
+	Tue, 28 Jan 2025 10:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1738058989; cv=none; b=uDb2TAOp2RpGICvxfrKs66a9QoF0qYOKv9Y1IK1WBRkWdS+0CmzW9As0RBtGxGWy8Pei/962qKu4C3zN3iIpBEbHWYqIbFN/4Xkn0HSRy+7sjjpQDpIrjRsIoOFkiko4wmN0ZyvsSCU/IQ98PTdE0uxxOeLAixLm3KlBZxO7W2k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1738058989; c=relaxed/simple;
+	bh=OISSWgvkSbEVcJUb2bzvWSLklg+uLGPm74ASjpg6puM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z514Zpb1q1dQUdfUCw51hdbtqHOqkTxsFEwTerKJEIuNgzCJG1TMrUUoT0SKF36bvnXl6wYSX3I7leRzPOuDLEW9EE+McJ7+1n/qH3uZzRjG1uCJPNrf8PK00FnfKbgGk20bqsg3N0QlyVpiLjXQW1OcicSjG4Y58iixOQRKkgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GCJ4Fjl4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76507C4CED3;
+	Tue, 28 Jan 2025 10:09:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738058989;
+	bh=OISSWgvkSbEVcJUb2bzvWSLklg+uLGPm74ASjpg6puM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=GCJ4Fjl4CtRma41qVkWz8SfYUitVzhv5veIXnhfdeIb3Kux9uZxQwCIBYZKmUjAIW
+	 ndIzG5kyLWshMUGzg2hblXMeAe3zUSQqDu3uTKdagOzu9vJiFBjh1EvhgY7ESA2B4A
+	 EAqhn5fMN/34PgpKwzjqMvTvwzPmO94KcXKOk60IM0myxScK0ne2zerJfajPj9Ykui
+	 nxq776PDeld3lPeQzH7BaPS4aXGO/BqbMRLrDUGeX7UDyVhgONUCiSknf0K1C4bWap
+	 W2uABdWVfXsxOQ6B+f5GM+H8w7GZmq7Vqy6Y2A7HFAxn4+duv4c0ZiZ56Przo2txhC
+	 mBWItkkbnuaLA==
+Message-ID: <1e9f7f94-3d0c-4258-b9de-746d0b22ec06@kernel.org>
+Date: Tue, 28 Jan 2025 11:09:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Diagnostix.phytec.de (172.25.0.14) To Berlix.phytec.de
- (172.25.0.12)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509F6:EE_|PR3P195MB0635:EE_
-X-MS-Office365-Filtering-Correlation-Id: c0f2ef1f-3e4f-40d7-5ff6-08dd3f8321b5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|36860700013|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?UhFrzyiT2VU96Xv6SyEUYwYN4oKH5dE1mDF9gi5+A0oIoCvpPTb2CzpbOHt/?=
- =?us-ascii?Q?WaDbKyU2b3ix8ldN4O7Y5W+BPXqe9u+Sjr+HSRjV+gKoMrlDOKf6Fu4o6zox?=
- =?us-ascii?Q?5i/Z51CPCm/daiPPE4DtS8Zb1uQ+ExLMDwN1RcQTugC/Vrth9c3OiZJvqi6f?=
- =?us-ascii?Q?TZa2H+2SpqtlsmHNBX/ns+l5r2Zm90Ka3JZ9L6ycQrwRmPZ8Rgumkhn55ceK?=
- =?us-ascii?Q?3DKD5wA4k0x9ltt9eya2lKtd8t/GSI/0s4DRwB3qnZQsfYEumGFfB0w/VArI?=
- =?us-ascii?Q?GV2dWH3lNLefITOy02ikZXLNBjSJV6CNt7Q+nE0sGDiA7OsWIFPa2blK4R9I?=
- =?us-ascii?Q?fSmIuBK8PeL34Si7hXcMkk8jOKHEmPkjxxjt1xa9ttdJr2nP2Eu6bFUkSoRC?=
- =?us-ascii?Q?S7wflBGv5V8B2HrvxOpPR9ROH4Z2edzTw6iwEFdSD0mF2b0WywEudO1WnxPE?=
- =?us-ascii?Q?OQcCuwaFrEd4WGDL1LNo3ThLFbARwMwXznjsz4TzGu4o0Jfl3iRRYIuvWdn0?=
- =?us-ascii?Q?QEPfQN/ViWhFzV7EzFSXhp4ob2SlANgEGDuC5+UH71+0wcrYNl3MKF9ey34i?=
- =?us-ascii?Q?9yNdezLMBscQg+X84fr7OLB7BRf165v/lqmqjfx/8nd17PV+q8Npup+DyY8a?=
- =?us-ascii?Q?sO+dNzXlbxD1YqQ56MtyVi6U9LNxRCvCdtqgvxT1s6BvbiXQxWzsDYRFkbLy?=
- =?us-ascii?Q?XxfYPBcVWyC6jEzMWuzgRuNmLUzwAgUdkCHYHe0tquxbst5+GBx5L+eXoLOU?=
- =?us-ascii?Q?bHuaJ4bbQM1JuVRE8EP0wxpr+VcuY2uBhcMXLLxzFHcYx1LhcDMn1SBAmSBB?=
- =?us-ascii?Q?RiOkv9BPpxhWt4wygBkUZH5O+fvS0Wx0YRWVd5ku0kGF5zUR4jNmOYLPkF+o?=
- =?us-ascii?Q?ePg8l+IO8gCND0fC1jPPOlkYgYnyrdDAdrngofUWq7lbBCDSeNfGrgVx9Uli?=
- =?us-ascii?Q?F4z+cGeE1WpbkTxL+v+RoPtNGYVk5uMYLePwVsGDD+3nvLRhhNichz623qjd?=
- =?us-ascii?Q?39R/NIirEMP42J86Z/Pcf3w9sVKA992wtUhxo+UlCSjls9ca2YcAPGKiqT8P?=
- =?us-ascii?Q?QSA8r2uyWR3CDh3Y9afXB2Ej453En2rR8G7TqCXqYsC42z6UeTcJdfd7uVzj?=
- =?us-ascii?Q?cWmOeYzWy2EhdGZEh9IPXgFNd3sZ1psSsEEBPj2vmzcNZQuj6ByFWkFAWd+T?=
- =?us-ascii?Q?X9TSW6BAY0Zr0tk9Yam/wjeX0++71yh2tys9LqMLReZRdZqnAUKITvOC2hgT?=
- =?us-ascii?Q?SGNOym4yhNJ+W5mo9N2ZUEwDnd0xpFNJvAyg/SjhJfOwsA7Zt7HWO/sklxJk?=
- =?us-ascii?Q?ykYb4lcfeT5rYyhp20APOqm0WxnfsTFijBqJzJeJz6g7RkjUqtDdZrIUkKup?=
- =?us-ascii?Q?2hlJbZH772XUL50CecodmaEH+vg2Fw+Bj66Dz7CzUk12KAtpiqmwNDNjOwfn?=
- =?us-ascii?Q?lXO60RYYzylyYQZRpK+xoLwHrAWF3L4CGbSB9dcni/Kb8810hKnBu7ht3vhC?=
- =?us-ascii?Q?8G5JOqhJ5bdTAMw=3D?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:Diagnostix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(36860700013)(82310400026);DIR:OUT;SFP:1102;
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2025 10:04:19.4653
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0f2ef1f-3e4f-40d7-5ff6-08dd3f8321b5
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Diagnostix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB1PEPF000509F6.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3P195MB0635
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/7] drm: Add DSI/DP support for Renesas r8a779h0 V4M
+ and grey-hawk board
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
+ Jagan Teki <jagan@amarulasolutions.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Biju Das <biju.das.jz@bp.renesas.com>
+Cc: dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ linux-clk@vger.kernel.org, stable@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20241217-rcar-gh-dsi-v5-0-e77421093c05@ideasonboard.com>
+ <aa858619-56f6-4d3a-b27d-f38cbfa57d98@ideasonboard.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <aa858619-56f6-4d3a-b27d-f38cbfa57d98@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add a device tree overlay for SPI1 , UART3 and GPIO1 on
-X27 connector.
+On 17/12/2024 14:33, Tomi Valkeinen wrote:
+> Hi all,
+> 
+> On 17/12/2024 07:31, Tomi Valkeinen wrote:
+>> Add everything needed to support the DSI output on Renesas r8a779h0
+>> (V4M) SoC, and the DP output (via sn65dsi86 DSI to DP bridge) on the
+>> Renesas grey-hawk board.
+>>
+>> Overall the DSI and the board design is almost identical to Renesas
+>> r8a779g0 and white-hawk board.
+>>
+>> Note: the v4 no longer has the dts and the clk patches, as those have
+>> been merged to renesas-devel.
+>>
+> 
+> I have pushed this to drm-misc-next. Thank you all for the reviews!
+I am confused how this is supposed to work. You merged your own patches
+for Renesas DRM, even not being the Renesas DRM maintainer, while my
+much earlier patchset was "only" reviewed by Renesas DRM maintainers but
+not picked up by them.
 
-By default, not all interfaces on the X27 connector are accessible
-due to being disabled or set to alternative pin mux configurations.
-This overlay activates and configures these interfaces to support
-connections with external devices.
+So maybe you are the Renesas DRM maintainer? But get_maintainers.pl is
+silent on that, so I don't Cc you.
 
-Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
-Signed-off-by: Daniel Schultz <d.schultz@phytec.de>
----
-Changes in v2:
-  Removed the spidev from main_spi1.
+Can you guys clarify that so maintainers file reflect reality?
 
- arch/arm64/boot/dts/ti/Makefile               |  3 +
- ...phyboard-electra-x27-gpio1-spi1-uart3.dtso | 63 +++++++++++++++++++
- 2 files changed, 66 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-x27-gpio1-spi1-uart3.dtso
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 8a4bdf87e2d4..03d4cecfc001 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -54,6 +54,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-nand.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-gpio-fan.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-pcie-usb2.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-x27-gpio1-spi1-uart3.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
-@@ -185,6 +186,8 @@ k3-am642-phyboard-electra-gpio-fan-dtbs := \
- 	k3-am642-phyboard-electra-rdk.dtb k3-am642-phyboard-electra-gpio-fan.dtbo
- k3-am642-phyboard-electra-pcie-usb2-dtbs := \
- 	k3-am642-phyboard-electra-rdk.dtb k3-am642-phyboard-electra-pcie-usb2.dtbo
-+k3-am642-phyboard-electra-x27-gpio1-spi1-uart3-dtbs := \
-+	k3-am642-phyboard-electra-rdk.dtb k3-am642-phyboard-electra-x27-gpio1-spi1-uart3.dtbo
- k3-am642-tqma64xxl-mbax4xxl-sdcard-dtbs := \
- 	k3-am642-tqma64xxl-mbax4xxl.dtb k3-am64-tqma64xxl-mbax4xxl-sdcard.dtbo
- k3-am642-tqma64xxl-mbax4xxl-wlan-dtbs := \
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-x27-gpio1-spi1-uart3.dtso b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-x27-gpio1-spi1-uart3.dtso
-new file mode 100644
-index 000000000000..996c42ec4253
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am642-phyboard-electra-x27-gpio1-spi1-uart3.dtso
-@@ -0,0 +1,63 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/*
-+ * Copyright (C) 2025 PHYTEC Messtechnik GmbH
-+ * Authors:
-+ *   Wadim Egorov <w.egorov@phytec.de>
-+ *   Daniel Schultz <d.schultz@phytec.de>
-+ *
-+ * GPIO, SPI and UART examples for the X27 expansion connector.
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	aliases {
-+		serial5 = "/bus@f4000/serial@2830000";
-+	};
-+};
-+
-+&main_pmx0 {
-+	main_gpio1_exp_header_gpio_pins_default: main-gpio1-exp-header-gpio-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0220, PIN_INPUT, 7)	/* (D14) SPI1_CS1.GPIO1_48 */
-+		>;
-+	};
-+
-+	main_spi1_pins_default: main-spi1-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0224, PIN_INPUT, 0)	/* (C14) SPI1_CLK */
-+			AM64X_IOPAD(0x021C, PIN_OUTPUT, 0)	/* (B14) SPI1_CS0 */
-+			AM64X_IOPAD(0x0228, PIN_OUTPUT, 0)	/* (B15) SPI1_D0 */
-+			AM64X_IOPAD(0x022C, PIN_INPUT, 0)	/* (A15) SPI1_D1 */
-+		>;
-+	};
-+
-+	main_uart3_pins_default: main-uart3-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0048, PIN_INPUT, 2)       /* (U20) GPMC0_AD3.UART3_RXD */
-+			AM64X_IOPAD(0x004c, PIN_OUTPUT, 2)      /* (U18) GPMC0_AD4.UART3_TXD */
-+		>;
-+	};
-+};
-+
-+&main_gpio1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_gpio1_exp_header_gpio_pins_default>;
-+	status = "okay";
-+};
-+
-+&main_spi1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_spi1_pins_default>;
-+	ti,pindir-d0-out-d1-in = <1>;
-+	status = "okay";
-+};
-+
-+&main_uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_uart3_pins_default>;
-+	status = "okay";
-+};
--- 
-2.25.1
-
+Best regards,
+Krzysztof
 
