@@ -1,143 +1,161 @@
-Return-Path: <devicetree+bounces-141371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1A61A2088B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:30:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A03C2A208AE
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:39:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CBEF168119
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:30:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEB7318838C6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:39:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3A8E19B5B1;
-	Tue, 28 Jan 2025 10:30:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1787719D8A7;
+	Tue, 28 Jan 2025 10:39:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DU2v8UIV"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="s54sh6K7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 177BC19340D;
-	Tue, 28 Jan 2025 10:30:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E40C19B3EC;
+	Tue, 28 Jan 2025 10:39:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738060220; cv=none; b=E15hRM4Zu5J6Ub3H2wcFBgGhKv6DOdvtRVZTEY0ZT91ZKloqeYDMu+DvXIvJ9O6PTQtpOsDKt/3sOO4rsT+OyTHISWIczN3ALQzjRoeisdSPeQw7qLOvc/JGasdoHwEp9z8bZwLyv4rlNQP8f9GGkaiW/iuquSrCBK+eXhQ2OZ0=
+	t=1738060750; cv=none; b=PHODdHIvKQUR/YgmRpMz4fW80Yet6pD9XKgYjqitqLDESMUgLCCsVvuYz/RiR8Oipg7vrs6Uz7Nz+POFUJBrE2RBExb8UKn06J95XtSwli9TakElJUdBqHwM4Lvxt+XSn4pSGKUuAWv4Ol4Qt1poPTuO1ssB0nenmGecRTG5PTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738060220; c=relaxed/simple;
-	bh=2veFNGdTL1atZAhB2vrZxwxXadzUoQya1iQSnNw0RO8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TzE0WhFq6jpVtO2E0wJlGdwNmzcAz3qoj4C0SHAJdX+ZqgyDhVnFVypb3x9fENrIisJSUOXWbVeTAGLJBYd/1T1/7QRuhtvZXjPzuiRinoLPMRw5jB3cyl2A69m2okfQ5MRqM67a6OKxW6Cv9Yvwvm9bjtlgSIb0dE8L6meYxNI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DU2v8UIV; arc=none smtp.client-ip=209.85.160.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-4679eacf2c5so52876761cf.0;
-        Tue, 28 Jan 2025 02:30:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738060215; x=1738665015; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2veFNGdTL1atZAhB2vrZxwxXadzUoQya1iQSnNw0RO8=;
-        b=DU2v8UIVHvrdHZKnwMiYzrFwg2OBQ+tVBMyvd3ypfDcXeK1B6b51WR8/MzcpbspA8f
-         N+2anIpkTTfu2l0+IvfyQkJCGuDHVEZnim24zkhD+P54T3C6tgLKlZ8stXGE9Z8oruqu
-         XZQEatCQIxaolt/6l/RFQWDOC1+01bUcV1smaEx6e0b+EriaK8IYGk2VA7rhoQ3sx6og
-         TSJzPp3Tz2zuTkvQB3Myon+mBmkXhv96b2PRabaDBJ4IwJOsYbD8m21FC+bi1PUywO9R
-         TK7vGffxtzcBFbilqQ1EXtKxMbZ/ri8/hu7qoShfqvgCwIzbGgjFAa4JUYFa6lk+vAAl
-         T9aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738060215; x=1738665015;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2veFNGdTL1atZAhB2vrZxwxXadzUoQya1iQSnNw0RO8=;
-        b=rEmkTyEwe0/cQg5qmWdbPx27Ub6HQYHcE+k/1CPdgFcF2hH0KYN3RRDixYExGv9Dt8
-         cT/4Sk7/3zUXauk+V7RnQFjavoamz7I9tNupqJ0m4uHjT8bFQ0lFq9HJOrLogH0ASsbi
-         AWKhRb3UMr6k1TS6P5wodMeWECXUeWmNv6D9ftIcRN39mr0hUWsgCbtZII4yQulYdMDn
-         XRwYNZHkxHU0VMS95zQ3bw86LsooVS779XK2OX7xnZLY7uERKTOGgGpI8fqg0tW134Ve
-         27xNOOHG180/920ncqOmpYhv8SRLoSeQfKzRAdVIurkOyvtwcTOjZBIbwlebtAXW3amv
-         tG1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUjvZdu2F0GVFsYqsezxtBtcVjf7e5jWd1nxcDh7Xce5ITdlREONNM90I+oUrVsp0hqAZWrAUmr@vger.kernel.org, AJvYcCVjnBoGnHFrUVNMBvtMxo/XMRdXr+pFb4EXR6dLtJpksOpP9KRGcQ0/PVf1bV8hn1FP4guxcHuAVxmr@vger.kernel.org, AJvYcCXBYvUXJovPnrJouaH+LQMHV7aBxTH9R5jGTTt4WEPogCEFYfmCD902GDEKN5hzi6x1quV9m0yV99joqWxr@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTjX7qeMtus9mCkP+OyZpTbkkXx+0BbgniYPxg4rRceMSikI92
-	x3/80ChEi4PHh9kCB3zcIiMnLsltUwfAvHxfJE624qwdV8TnKMKnQdwpdR/uNVTj6ww/zh/F67n
-	RVRJ/a0aqtL8Oykn+iwVSjjqtMjs=
-X-Gm-Gg: ASbGncuJdYvgSaaUJPKlAC1OV4WR9m725PJpI79v1aEW63yO0f2OO4SEKekLb1WBBEa
-	XvIGjTMxZ4iVaORHEWRNP96/GyMoDanE5MQtV/RNCgVxjkfTJBK3AOqv4RRCjDqMbq6F7iSOf
-X-Google-Smtp-Source: AGHT+IFptAPSbmWwcq0EvSGs9/WQk9gEFjx4eFpUlVUg+jaJrVO+3/mHFzqrzQpEkuhDpBlIt/Oq38oTIAXUASFu73U=
-X-Received: by 2002:a05:622a:2d5:b0:467:87df:851a with SMTP id
- d75a77b69052e-46e12a56380mr637928261cf.12.1738060214750; Tue, 28 Jan 2025
- 02:30:14 -0800 (PST)
+	s=arc-20240116; t=1738060750; c=relaxed/simple;
+	bh=TMz8RaSEgGX1lG0+yGPN+mRRlbTRMGvyD+mxnFXTdg4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Utp1BWA8DqcR2wlVm753EgXsUamPJLmL/TE/pQ8BCPiX7uYwMNUlng4pLfN/4evGZzIJ7z7aXAHOLZ5FLFFurreC9Mp+rW55/mj1Q6r47ufKJ+DqZceDMkaX/13kJ923ivR0+b7F9trpDGz8fq5uZYGxQXf4Lohu41HgF9VIcbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=s54sh6K7; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F35756DF;
+	Tue, 28 Jan 2025 11:37:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1738060677;
+	bh=TMz8RaSEgGX1lG0+yGPN+mRRlbTRMGvyD+mxnFXTdg4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=s54sh6K7naTE6z+1b/6br9BiUo4y6SZemEaeWGHhevgqVKgIbrRYTwhd0H0FD5+sS
+	 CkkN3tiBPwXU/tmAmYcX+v+0C70AfDuS476syxJrWmrkmwBYv1Iq9V1lVKpg0vmorE
+	 RmGHU1jW62nCeYVEaFdTl8sCiBEKJjuJ3yk7FTKI=
+Message-ID: <010a6378-2b1d-45e3-918b-ca5f7c40a6ae@ideasonboard.com>
+Date: Tue, 28 Jan 2025 12:38:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250124052611.3705-1-eagle.alexander923@gmail.com>
- <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com>
- <a76f315f023a3f8f5435e0681119b4eb@manjaro.org> <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
- <61b494b209d7360d0f36adbf6d5443a4@manjaro.org> <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
- <CABjd4Yy14bpjzvFyc8et-=pmds5uwzfxNqcs7L=+XRXBogZEsQ@mail.gmail.com>
- <CAP1tNvTRER=QzC29Udw4ffOetVECWV+MfZ2o-mbUFvuZ0_i-Kw@mail.gmail.com> <b57d8a834f5c07e37e0e7ee74346c700@manjaro.org>
-In-Reply-To: <b57d8a834f5c07e37e0e7ee74346c700@manjaro.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Tue, 28 Jan 2025 14:30:03 +0400
-X-Gm-Features: AWEUYZkFoDxmRPVn24plApRoTji5kgp1WG-euAKTrUa39_3kburtp9GexnHZUNs
-Message-ID: <CABjd4YwCH93-=Cqck5TiuJoTUkYbRh0495J6w=J8t93oHdt43g@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
- for rk3588
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Alexander Shiyan <eagle.alexander923@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, stable@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 3/7] dt-bindings: display: renesas,du: Add missing
+ constraints
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
+ Jagan Teki <jagan@amarulasolutions.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Biju Das <biju.das.jz@bp.renesas.com>, dri-devel@lists.freedesktop.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ linux-clk@vger.kernel.org,
+ Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+References: <20241217-rcar-gh-dsi-v5-0-e77421093c05@ideasonboard.com>
+ <20241217-rcar-gh-dsi-v5-3-e77421093c05@ideasonboard.com>
+ <jn5fsjg5zufi2c3u3tvpzoafrshgrze67e5x4iyhbyzf7opwbp@6i5vqdgeor3l>
+ <1a04d8e9-ef02-40e5-b070-82c9a35ad0cd@kernel.org>
+Content-Language: en-US
+From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <1a04d8e9-ef02-40e5-b070-82c9a35ad0cd@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Jan 28, 2025 at 1:24=E2=80=AFPM Dragan Simic <dsimic@manjaro.org> w=
-rote:
->
-> Hello Alexander,
->
-> On 2025-01-26 15:25, Alexander Shiyan wrote:
-> >> > > I think it's actually better to accept the approach in Alexander's
-> >> > > patch, because the whole thing applies to other Rockchip SoCs as w=
-ell,
-> >> > > not just to the RK3588(S).
-> >> >
-> >> > Anyway, I've just tried it after including the changes below, and
-> >> > while /sys/kernel/debug/pinctrl/pinctrl-handles shows the expected
-> >> > pinctrls under tsadc, the driver still doesn't seem to be triggering=
- a
-> >> > PMIC reset. Weird. Any thoughts welcome.
-> >>
-> >> I found the culprit. "otpout" (or "default" if we follow Alexander's
-> >> suggested approach) pinctrl state should refer to the &tsadc_shut_org
-> >> config instead of &tsadc_shut - then the PMIC reset works.
-> >
-> > Great, I'll use this in v2.
->
-> Please, let's wait with the v2 until I go through the whole thing again
+Hi,
 
-I, for one, would welcome a v2 that could be tested and confirmed
-working with and without driver changes. Especially given that:
- - the changes are pretty small
- - hardware docs say nothing about the difference between TSADC_SHUT
-vs. TSADC_SHUT_ORG, except that one is config #2 and the other is
-config #1
- - none of the source trees I looked at seem to enable PMIC based
-resets on any RK3588-based boards, so these pinctrl configs appear to
-have never been tested in the wild for RK3588*
+On 28/01/2025 11:42, Krzysztof Kozlowski wrote:
+> On 17/12/2024 07:25, Krzysztof Kozlowski wrote:
+>> On Tue, Dec 17, 2024 at 07:31:37AM +0200, Tomi Valkeinen wrote:
+>>> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>>>
+>>> The binding is missing maxItems for all renesas,cmms and renesas,vsps
+>>> properties. As the amount of cmms or vsps is always a fixed amount, set
+>>> the maxItems to match the minItems.
+>>>
+>>> Also add the minItems and maxItems to the top level properties.
+>>>
+>>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/display/renesas,du.yaml | 15 ++++++++++++++-
+>>>   1 file changed, 14 insertions(+), 1 deletion(-)
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> So you just repeated parts I sent much earlier...
+> 
+> https://lore.kernel.org/all/20240818173003.122025-2-krzysztof.kozlowski@linaro.org/
+> 
+> That one got reviews but was not merged for some reason.
 
-So trying and testing seems to be the only way to understand the best
-way forward. Unless, of course, someone from Rockchip can comment on
-how the hardware works with TSADC_SHUT vs. TSADC_SHUT_ORG.
+Yes, that was somehow missed. The patches still look relevant to me. 
+Should I rebase and sort out the conflicts, or would you like to rebase it?
 
-Best regards,
-Alexey
+  Tomi
 
-> which I expected to have done already, but had some other "IRL stuff"
-> that
-> introduced a delay.
 
