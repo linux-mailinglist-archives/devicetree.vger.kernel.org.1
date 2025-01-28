@@ -1,183 +1,111 @@
-Return-Path: <devicetree+bounces-141477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B4F3A20E35
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:16:12 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4547A20E3B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:16:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 174137A1296
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:15:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E3F6188336B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:16:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E644E1D515B;
-	Tue, 28 Jan 2025 16:16:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E38621D63CE;
+	Tue, 28 Jan 2025 16:16:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Hge9pbJa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r+qjE8gX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B00991A8F79
-	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 16:16:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B75CF1A8F79;
+	Tue, 28 Jan 2025 16:16:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738080964; cv=none; b=cLseI6EZqA/cK4crezPO25s/If0SI7qutNfoStWgX2+Wvnb402eZAqShnoaTchA9EMkv7JLTZiFEObGDpFgy6urXE6YXh97d2pgx1nI2NuHXyWX03S1gRrvn6obxZXsftclilKshiXwxvMj3DA2AJAdzvjwPJ61O+JDcj8BrCnY=
+	t=1738080975; cv=none; b=KsM5oqSz4u2r88Rl2kP8BOXJ/eRBC9nsD9Kj8EqB7edqxlpwrzwB85pHncJ9UuXrsCgsaFs+wHYPu8EjFO+0hJ3i5SLIq9IzWkX6r7sgUEPYJl84FOO7sBz2FJXfWMO+hl+EwKD0DFlYDrl3B76ZwEHS8iVJ178XDTvlyuyOegE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738080964; c=relaxed/simple;
-	bh=aW/6gRy4vh1cQ/UhFCd9W6hG9dPvBCWRkXazoAlGt/A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U44J++J+EsBWuVyUGpcOBMaIUYoEe1k9Ni4on9rs1ZpeG7YFETLhJrwfBg38tf1OgaactOmt+yXsG1MF9L1aj2HPbqz4FTeEaI0G0bvrcuidD5mlvfjn248B9kOFjyayd31o7o2Z84uOIid2DwnzctM4ZGZWUHJ/P+A9TxozMxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Hge9pbJa; arc=none smtp.client-ip=209.85.161.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f50.google.com with SMTP id 006d021491bc7-5f31d3b4f8cso1315105eaf.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 08:16:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738080962; x=1738685762; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hIAEQeg78QZ/lezyk1TRO3AWQG1bJJ5m1rzrXE3HII8=;
-        b=Hge9pbJapbtgFqty25IV2Jpn93QYSDXPU5H1NkTIR03BVsL/gMJ+k5z3IciyGsrw/7
-         FVSDkAa+dj11/NS9LmcXC/FZCfyxtWkusETcXFChisi03MeJJ8PYNdX/0iupf7kHGUju
-         PWXZGwaAi1Q48anEkr+FbQ0t8t1edUS1phJWNmylkxwqzFl6is6Mst8FT7LzvZ22UoYz
-         seMQnDRZi3JXMURquLCEJk2QGdLLZ0cTLLzsOcABeNfTq/p9b12qY0Ms+yaGZcUz40Tl
-         FBqrImJFO1ah4zbV4joioODCsJ7hGrYBH2ufFYsdimzEUknDsQ8V3EE/xTwmiHVd1tqz
-         ymdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738080962; x=1738685762;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hIAEQeg78QZ/lezyk1TRO3AWQG1bJJ5m1rzrXE3HII8=;
-        b=pcJLzeE+73wbPjzEMYx7e3ch5BdAkbNG4nqo5Gqh6oePUXMT0sdVufsYx1gihdwzvc
-         8pVjfyEZhKuDXZRBja7YlSao6+grmpR9JBxl8+o3GV0b4IVrslSHRmn9T+whldkeO7Dv
-         CGIyY5LRlRUX5pU/jcoK6jKAIAuFEnepKEe6jxjAsDVU31yhM1TQ8wPrs3lbb75AyF6L
-         txDPuYP9EZCyNLuodMunznFLZHLVdG/PkYGD9Xy1kFVtJo58x0aDkGn0xQ3OoaScGb2j
-         18Spg46QtfHREJkVhMap+15kMNGLHvpWps2BgPDlCShwpQe++ySuca2vYDuVXRSVaHgp
-         dPzg==
-X-Forwarded-Encrypted: i=1; AJvYcCXaCM2MrNpvMMoN7znHNsKZVFDJ+zHk7jsSZG8JdFTcEIT8hRS9sO2wQhRrH8ElvL40oHxlHgPzEW+T@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhuKqFBcJbepx3I2eesj0McmYiPsGLCgKIq+LEMT+vpEvjblfT
-	yL8JE3t4ahpmjdoesjp47vxoaHLjqaN4m0jHeuc1lP0EyZ1xF1kyf7xbEDBitE4=
-X-Gm-Gg: ASbGncuVQe4juvb7KYl+2VyWXu+rXzz8meOhoLvZr6gt8RtZDsVH1Icvv8igRiQoHFB
-	uwCluyFMPUT/qJUCJb9NACGhuDWmyuCBrjobBDVFGSmeYwjQ/Zk+7VIYFb1IMgntvTLc0URpvE+
-	AK75eBDXDMvnM90gNz2mXwc1ZChwzlFitxaOi7RjVa/giNDZofxDt8gmH9RD6qvM1A90k/4G4r8
-	mDhYiK94NKcV+7csY276DB/X7P18cfCOSSdbmfIKI7LtnzmbtmrEu3kwwSopJ2x+PVz8Kcy3qnv
-	xRUQVMz4umI5QjpH1rQaSN2DBiPrpSArIJ9ERen8jAXBzDkRucVM
-X-Google-Smtp-Source: AGHT+IEREbV08zViG4ro+q6+GbmAwN6L5mM4g1b+2nZW4JAo0bbqiGtKBOnnzRCek2knpbearmMH9w==
-X-Received: by 2002:a4a:ec49:0:b0:5f6:765c:d260 with SMTP id 006d021491bc7-5fa3889955dmr28139232eaf.7.1738080961757;
-        Tue, 28 Jan 2025 08:16:01 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5fa8b9a1f5bsm2931148eaf.30.2025.01.28.08.16.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jan 2025 08:16:01 -0800 (PST)
-Message-ID: <08d8e97d-752d-4fa7-95f0-d828ef80f7b8@baylibre.com>
-Date: Tue, 28 Jan 2025 10:16:00 -0600
+	s=arc-20240116; t=1738080975; c=relaxed/simple;
+	bh=QOM4i6GUL2MHb3m5mTtV7vnp81GN9S+tKlZ3rMO9zyM=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=Sr/Tc995b/F2PU4LNNlSx5ppEB8Lxd5BCZ67a6v3iDTjUcK0loIHFF9snsHWE0kqvnqO39E6euSEaSD9MUsmP4glmeOpjRnjZtC9VU5GuHLVBXHnKmNztBmKTpLBkB17AY7oGMMEVtHe5FDO1mVtcCTxQLC899Ptg0/daD0ixHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r+qjE8gX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF5B7C4CED3;
+	Tue, 28 Jan 2025 16:16:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738080974;
+	bh=QOM4i6GUL2MHb3m5mTtV7vnp81GN9S+tKlZ3rMO9zyM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=r+qjE8gXRl3vJybXHZ3oebEVfKiqPvXpTw1Rn+rblFqaZzvGZAoTgzBNjkEG7gO8V
+	 Rts+FXz7amXzzaiklWOU6oHHOvbC6CjS9VzJK0kRhhgwl8xqZPTxTNhBwr44VtDK91
+	 mlioLj4hrQtSqHfySsF5y6bwV5LCfGoOaroA39wRdAu1VN/ZBdA2B6HV/JnwLmpp46
+	 jBTHJ3YqgGN18dcZHZ4/AThdr/LpWtaX0Rg67zmY6M++FAsZ5cYPw3t4lbb5oQwyko
+	 Rnm8CZLziGlprvwDycbkxPUa+zMBUw9ClxH2yKl1dNYAWScSmDDXYIRI7WKLgVttYM
+	 CATboix/QzJ9Q==
+Date: Tue, 28 Jan 2025 10:16:12 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	=?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
+Subject: Re: [PATCH v2 01/21] arm64: dts: qcom: sm8250: Add PCIe bridge node
+Message-ID: <20250128161612.GA319610@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 5/8] iio: adc: adi-axi-adc: set data format
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>, jic23@kernel.org,
- robh@kernel.org, conor+dt@kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org
-Cc: Nuno Sa <nuno.sa@analog.com>
-References: <20250127105726.6314-1-antoniu.miclaus@analog.com>
- <20250127105726.6314-6-antoniu.miclaus@analog.com>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <20250127105726.6314-6-antoniu.miclaus@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250128134514.u7mgxzwxqohzy5oj@thinkpad>
 
-On 1/27/25 4:57 AM, Antoniu Miclaus wrote:
-> Add support for selecting the data format within the AXI ADC ip.
+On Tue, Jan 28, 2025 at 07:15:14PM +0530, Manivannan Sadhasivam wrote:
+> On Tue, Jan 21, 2025 at 05:11:31PM -0600, Bjorn Helgaas wrote:
+> ...
+
+> > Let me back up; I don't think we're understanding each other.  This
+> > DT:
+> > 
+> >   pcie@0 {
+> >     bus-range = <0x01 0xff>;
+> > 
+> >     &pcieport0 {
+> >       wifi@0 {
+> > 	reg = <0x10000 0x0 0x0 0x0 0x0>;
+> > 
+> > says that wifi@0 is at 01:00.0, which is only true if the pcie@0
+> > secondary bus number is 01.  The power-up default is 00, so it's
+> > only 01 if either firmware or Linux has programmed it that way.
+> > 
+> > I claim this DT assumes the pcie@0 secondary bus number is
+> > programmed either by firmware or Linux.  This makes me a bit
+> > nervous because AFAIK there's nothing that guarantees Linux would
+> > choose bus 01.
 > 
-> Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> ---
-> no changes in v11.
->  drivers/iio/adc/adi-axi-adc.c | 46 +++++++++++++++++++++++++++++++++++
->  1 file changed, 46 insertions(+)
-> 
-> diff --git a/drivers/iio/adc/adi-axi-adc.c b/drivers/iio/adc/adi-axi-adc.c
-> index d2e1dc63775c..3c213ca5ff8e 100644
-> --- a/drivers/iio/adc/adi-axi-adc.c
-> +++ b/drivers/iio/adc/adi-axi-adc.c
-> @@ -45,6 +45,12 @@
->  #define ADI_AXI_ADC_REG_CTRL			0x0044
->  #define    ADI_AXI_ADC_CTRL_DDR_EDGESEL_MASK	BIT(1)
->  
-> +#define ADI_AXI_ADC_REG_CNTRL_3			0x004c
-> +#define   AD485X_CNTRL_3_PACKET_FORMAT_MSK	GENMASK(1, 0)
-> +#define   AD485X_PACKET_FORMAT_20BIT		0x0
-> +#define   AD485X_PACKET_FORMAT_24BIT		0x1
-> +#define   AD485X_PACKET_FORMAT_32BIT		0x2
-> +
->  #define ADI_AXI_ADC_REG_DRP_STATUS		0x0074
->  #define   ADI_AXI_ADC_DRP_LOCKED		BIT(17)
->  
-> @@ -312,6 +318,45 @@ static int axi_adc_interface_type_get(struct iio_backend *back,
->  	return 0;
->  }
->  
-> +static int axi_adc_data_size_set(struct iio_backend *back, unsigned int size)
-> +{
-> +	struct adi_axi_adc_state *st = iio_backend_get_priv(back);
-> +	unsigned int val;
-> +
-> +	switch (size) {
-> +	/*
-> +	 * There are two different variants of the AXI AD485X IP block, a 16-bit
-> +	 * and a 20-bit variant.
-> +	 * The 0x0 value (AD485X_PACKET_FORMAT_20BIT) is corresponding also to
-> +	 * the 16-bit variant of the IP block.
-> +	 */
-> +	case 16:
-> +	case 20:
-> +		val = AD485X_PACKET_FORMAT_20BIT;
-> +		break;
-> +	case 24:
-> +		val = AD485X_PACKET_FORMAT_24BIT;
-> +		break;
-> +	/*
-> +	 * The 0x2 (AD485X_PACKET_FORMAT_32BIT) corresponds only to the 20-bit
-> +	 * variant of the IP block. Setting this value properly is ensured by
-> +	 * the upper layers of the drivers calling the axi-adc functions.
-> +	 * Also, for 16-bit IP block, the 0x2 (AD485X_PACKET_FORMAT_32BIT)
-> +	 * value is handled as maximum size available which is 24-bit for this
-> +	 * configuration.
-> +	 */
-> +	case 32:
-> +		val = AD485X_PACKET_FORMAT_32BIT;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	return regmap_update_bits(st->regmap, ADI_AXI_ADC_REG_CNTRL_3,
-> +				  AD485X_CNTRL_3_PACKET_FORMAT_MSK,
-> +				  FIELD_PREP(AD485X_CNTRL_3_PACKET_FORMAT_MSK, val));
-> +}
-> +
->  static struct iio_buffer *axi_adc_request_buffer(struct iio_backend *back,
->  						 struct iio_dev *indio_dev)
->  {
-> @@ -360,6 +405,7 @@ static const struct iio_backend_ops adi_axi_adc_ops = {
->  	.test_pattern_set = axi_adc_test_pattern_set,
->  	.chan_status = axi_adc_chan_status,
->  	.interface_type_get = axi_adc_interface_type_get,
-> +	.data_size_set = axi_adc_data_size_set,
->  	.debugfs_reg_access = iio_backend_debugfs_ptr(axi_adc_reg_access),
->  	.debugfs_print_chan_status = iio_backend_debugfs_ptr(axi_adc_debugfs_print_chan_status),
->  };
+> Why do you think so? PCI devices are scanned in a depth-first
+> manner, so the bus number should match the DT order. Like, while
+> scanning the bus under pcie@0, it should use 01 as the secondary bus
+> number as it is going to be the first bus after the root bus. I
+> don't know how linux or any other OS would end up using a different
+> bus number.
 
-Why was [1] not addressed?
+In this case of the first bridge on the root bus, it's very likely
+that the secondary bus will be 01.
 
-[1]: https://lore.kernel.org/linux-iio/9c262f599fb9b42feac99cfb541723a0a6f50e6b.camel@gmail.com/
+If there are more bridges, it's dangerous to make assumptions about
+their secondary bus numbers because those bus numbers depend on what
+hierarchies have already been enumerated and any additional space
+assigned in anticipation of hotplug.
+
+I don't know of any spec that requires the OS to assign bus numbers in
+a certain way, and it feels kind of subtle if this kind of DT
+description is only reliable for things below the first bridge on a
+root bus.
+
+Bjorn
 
