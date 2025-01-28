@@ -1,132 +1,155 @@
-Return-Path: <devicetree+bounces-141344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68645A20721
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:19:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 046C9A20726
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:19:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5FA816942C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 09:19:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 54864188B24C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 09:19:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CD801DF97E;
-	Tue, 28 Jan 2025 09:17:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CQYbxL51"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD5E91DFE10;
+	Tue, 28 Jan 2025 09:18:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 388171DF74F;
-	Tue, 28 Jan 2025 09:17:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 082CD1DF757
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 09:18:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738055845; cv=none; b=tO49GClHl1AFbhYNgyH2zIxo4ZnD/u+szCV74uqxe6soIsKsQmRnNSx3KYBuF75Gaellz/kH1JUPyCzIR4NcDo1+8jpT5+1hfP0US4ijH5qQRQGL5j51hS7kykkbQLnWtQy/6DD2GLwhkshfuitEZdNlNrjR9J3792xXfcDiDyc=
+	t=1738055909; cv=none; b=KhBfsQxyB7tZdYFrZGygU/aFWlkf/K4HAgct+SEoGtsbeL8iccF7dxBjEjeS+Mljon6+ZTQ/ULZCfoxB0BHr2pj3f5F7r3pfw3h09QoGv3zV8vZHDTyAjB77O3djSB9KkS3B7rnlWlsH3l7gume8uHaAhse7j3NVq6x4E+r+uuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738055845; c=relaxed/simple;
-	bh=yVSjSWszN/9BPiVWvmLAGyXUmEWeXoGABsqhdxrbxHY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ELbh/HxJJvQyiMPa0E90vpy/7BuNgZ7t93MeTmPNQD0lKFNWEqmxkrhsbx1sKFQWDIfCuSvcLzOC3YTBZUOyk8TvVZDZ3dcpDPoFSsnrfDTkv1qb5mdmQmjIxm+6Eoo8JEdt4tk2yK7Dx0hRtJGJiAMQbuypfH0NFtB3L19zoMw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CQYbxL51; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADCE8C4CED3;
-	Tue, 28 Jan 2025 09:17:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738055844;
-	bh=yVSjSWszN/9BPiVWvmLAGyXUmEWeXoGABsqhdxrbxHY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CQYbxL51i05yY9ApsiCSV7X1Y4qEfFMN2t5ECbwMeJe9cayxyKcyrcQffNxHfeXDh
-	 jw990/p9l1lVXHKAHPGvxByNvwZtn53MKxKrX0K24RQ1P+lqYUjmrXZFi0nOxz/VA+
-	 9pmR3MgzPF1kfAHqnN4GOX8UHaLYiXnNoCWrQ7Fhzf9W3l+RylCb8w3wVbM6OHD/Vx
-	 BcoZcifkhvCLChigXHF0YzypF34n2j2ACITYlg4X01bqpBCEmJ9TFQtC24KT4bp3us
-	 eAzs8vpJ69nUjvkvuk82eZNFT5VTsm8jHcVxvAE8JeTobJVZKXk6W8WD5BDT5BABC7
-	 LDCFagq67+LsA==
-Message-ID: <0ca970e7-cc9a-4853-86de-5f01dc6d82a2@kernel.org>
-Date: Tue, 28 Jan 2025 10:17:18 +0100
+	s=arc-20240116; t=1738055909; c=relaxed/simple;
+	bh=16YnyOH7xom0w8z7EmJ1N0PdsPQqvXJ8xXyEPUZ0THg=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=SxSVQOG6Q+IzWyOwq04oDOJNwwraTWxPmy159j0E5CLWVfZGrVL/rWkcUAmxzaXNWOE2Nm8uXjloBoP74BHG8nNE4hk6/xu9PqxtgezLHt4PVF6KlYLEsz9L2Xw4g6gKrMsLA8/8YzvfnlrvFFRjHRkyohFRkXruNihnCryZ1rI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tchjI-0002II-Ly; Tue, 28 Jan 2025 10:17:56 +0100
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tchjH-002Gpb-1q;
+	Tue, 28 Jan 2025 10:17:55 +0100
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1tchjH-0001lT-1Y;
+	Tue, 28 Jan 2025 10:17:55 +0100
+Message-ID: <3d6cfb082ef8ee0fc66c885a84f64ae0a851234b.camel@pengutronix.de>
+Subject: Re: [PATCH v2 4/9] memory: Add STM32 Octo Memory Manager driver
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: patrice.chotard@foss.st.com, Mark Brown <broonie@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Alexandre Torgue
+ <alexandre.torgue@foss.st.com>,  Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Arnd Bergmann <arnd@arndb.de>, Catalin
+ Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org,  linux-kernel@vger.kernel.org,
+ christophe.kerello@foss.st.com
+Date: Tue, 28 Jan 2025 10:17:55 +0100
+In-Reply-To: <20250128081731.2284457-5-patrice.chotard@foss.st.com>
+References: <20250128081731.2284457-1-patrice.chotard@foss.st.com>
+	 <20250128081731.2284457-5-patrice.chotard@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: describe the ath12k AHB
- module
-To: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>, ath12k@lists.infradead.org
-Cc: linux-wireless@vger.kernel.org, Kalle Valo <kvalo@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jeff Johnson <jjohnson@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20250128091012.2574478-1-quic_rajkbhag@quicinc.com>
- <20250128091012.2574478-2-quic_rajkbhag@quicinc.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20250128091012.2574478-2-quic_rajkbhag@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 28/01/2025 10:10, Raj Kumar Bhagat wrote:
-> Add device-tree bindings for the ATH12K module found in the IPQ5332
-> device.
-> 
-> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+On Di, 2025-01-28 at 09:17 +0100, patrice.chotard@foss.st.com wrote:
+> From: Patrice Chotard <patrice.chotard@foss.st.com>
+>=20
+> Octo Memory Manager driver (OMM) manages:
+>   - the muxing between 2 OSPI busses and 2 output ports.
+>     There are 4 possible muxing configurations:
+>       - direct mode (no multiplexing): OSPI1 output is on port 1 and OSPI=
+2
+>         output is on port 2
+>       - OSPI1 and OSPI2 are multiplexed over the same output port 1
+>       - swapped mode (no multiplexing), OSPI1 output is on port 2,
+>         OSPI2 output is on port 1
+>       - OSPI1 and OSPI2 are multiplexed over the same output port 2
+>   - the split of the memory area shared between the 2 OSPI instances.
+>   - chip select selection override.
+>   - the time between 2 transactions in multiplexed mode.
+>   - check firewall access.
+>=20
+> Signed-off-by: Patrice Chotard <patrice.chotard@foss.st.com>
+> Signed-off-by: Christophe Kerello <christophe.kerello@foss.st.com>
 > ---
->  .../net/wireless/qcom,ath12k-ahb.yaml         | 317 ++++++++++++++++++
->  1 file changed, 317 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+>  drivers/memory/Kconfig     |  17 ++
+>  drivers/memory/Makefile    |   1 +
+>  drivers/memory/stm32_omm.c | 509 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 527 insertions(+)
+>  create mode 100644 drivers/memory/stm32_omm.c
+>=20
+[...]
+> diff --git a/drivers/memory/stm32_omm.c b/drivers/memory/stm32_omm.c
+> new file mode 100644
+> index 000000000000..6f20fe0183ec
+> --- /dev/null
+> +++ b/drivers/memory/stm32_omm.c
+> @@ -0,0 +1,509 @@
+[...]
+> +static int stm32_omm_configure(struct device *dev)
+> +{
+> +	struct stm32_omm *omm =3D dev_get_drvdata(dev);
+> +	struct reset_control *rstc;
+> +	unsigned long clk_rate, clk_rate_max =3D 0;
+> +	int ret;
+> +	u8 i;
+> +	u32 mux =3D 0;
+> +	u32 cssel_ovr =3D 0;
+> +	u32 req2ack =3D 0;
+> +
+> +	omm->clk =3D devm_clk_get(dev, NULL);
+> +	if (IS_ERR(omm->clk)) {
+> +		dev_err(dev, "Failed to get OMM clock (%ld)\n",
+> +			PTR_ERR(omm->clk));
+> +
+> +		return PTR_ERR(omm->clk);
+> +	}
+> +
+> +	ret =3D pm_runtime_resume_and_get(dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* parse children's clock */
+> +	for (i =3D 0; i < omm->nb_child; i++) {
+> +		clk_rate =3D clk_get_rate(omm->child[i].clk);
+> +		if (!clk_rate) {
+> +			dev_err(dev, "Invalid clock rate\n");
+> +			goto err_clk_disable;
+> +		}
+> +
+> +		if (clk_rate > clk_rate_max)
+> +			clk_rate_max =3D clk_rate;
+> +	}
+> +
+> +	rstc =3D devm_reset_control_get_optional(dev, NULL);
 
-It was v4, now v1? So entire previous discussion and feedback is
-missing? Go to previous series and implement entire feedback. Then use
-proper versioning, proper changelog and make it obvious/understandable
-to us, instead of sending v1 after v4 in entirely separate thread.
+Please use devm_reset_control_get_optional_exclusive() directly.
 
-I also do not understand why this is sent to arm soc. That's wireless patch.
-
-Best regards,
-Krzysztof
+regards
+Philipp
 
