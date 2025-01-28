@@ -1,142 +1,81 @@
-Return-Path: <devicetree+bounces-141305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 967BBA204ED
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 08:12:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0301A20500
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 08:20:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCB8C3A284E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 07:12:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28FE93A4303
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 07:20:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B061E198842;
-	Tue, 28 Jan 2025 07:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB02F18BBB9;
+	Tue, 28 Jan 2025 07:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aXBuOYiL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nGP30Imz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11524192D84;
-	Tue, 28 Jan 2025 07:12:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD55383A5;
+	Tue, 28 Jan 2025 07:20:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738048359; cv=none; b=BCZrG998TfP34aXoZb7Lm5EczPp1EH2/bVvOhb3LApg9jQqWDRFKwaD38s6y8KVQhWFcto2PAlgNiC6+KdII3y3HL2ER4j7B9RI0fM9sf5vbKE+1Z1ith7J3I/i3auia8Qj5Esj0fquZosh+AWSOzGdzswnNIpkkkuch+trFFrc=
+	t=1738048851; cv=none; b=gyKfHFgv8lRUc7be7qaUm6TZtuJnc/ObkR+sK91qHEUdFwonBolJonsXHltHv3RB+JP08+2dN/gMLx7w4FKmr55v6Jqh4c0aT+HDaz6kmjtg9Kg+ltACHhcR28zsecym1EdUBCvb6iDRihiyEzGCpWrH8o8C/yduMmTFV7GoYLg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738048359; c=relaxed/simple;
-	bh=3Hq/aQRA6XtpaP8m2hWyIrpgOuAkx1dzItP3xXOz7g4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aSAqEEM9FVEregXYfouzp7+sV6bcgth5HSGMgm8V5fQdsdz7dQ9jHGC3D7SEsU3e+9diUEAR+3DikfFhHubbvmIz5E5Y9KvntDbaeznaDOVCqcG/HF2ZnpuUXniKB/5fCOoO1ml9n5G6YryrVBtkIQLvgC4H6AzwOXbbyoEt+Cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aXBuOYiL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50S5qXjC028267;
-	Tue, 28 Jan 2025 07:12:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	AD7gsPnSNQeBvV3Zwp8fvkKBiRLpeCVhXd7KYhv2Uz4=; b=aXBuOYiL/VNAPq+v
-	6PbIxhonFiLWK7Aw3beMaIpZQSWxncI5baciarnLZLbcACHy0jR14+JuY/ii0L9s
-	IEf3sPeF6R5yy7A7p1visnohnVCs1B043AvOS6Y5vxDK5RSE2IRap/SY6x+RxqXY
-	pstg5K18KjDKvy1hnGBI/qkJsHJHqXGsqh+GOaW8MIKCiSfftt2sU9dNMQCf71+w
-	8LVOUkKyd/nEQKdL+JVvE5YH5k6OWvuozylLIFmVaTrG0U2wb3SoqqMiCuIUn3yf
-	wG5YEOn4hJZkjMQohgGxZZM6qzKIt+iAd3mf18wyq/+73EDUqQkm56LAdjj6y7wY
-	Xci63g==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44esfq071d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Jan 2025 07:12:31 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50S7CUIv032677
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 28 Jan 2025 07:12:30 GMT
-Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 27 Jan
- 2025 23:12:23 -0800
-Message-ID: <fe34b401-e9a8-4a69-853c-4bcd468e6cc7@quicinc.com>
-Date: Tue, 28 Jan 2025 12:42:19 +0530
+	s=arc-20240116; t=1738048851; c=relaxed/simple;
+	bh=6imr/Ij8DmjqfODuyxHY3qf/1LVweAyqgXMuWL7+KPI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NfBx8P7gGjO0bNHZCLk7hLAsJkA5karyGT03grkClEs8WZjjCdmHACkp02ZSCbO4UAXkXtB5C0/MhvAfVyzUvHfAMI6Q7nAfuPx1xVK938v9jMU/CKwIWsybf/noqOpBoIA1IsZs9y5IXDSJugQL/45Y60vjSxK+zC/HhF7vumI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nGP30Imz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42E23C4CEE4;
+	Tue, 28 Jan 2025 07:20:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738048851;
+	bh=6imr/Ij8DmjqfODuyxHY3qf/1LVweAyqgXMuWL7+KPI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nGP30ImzrO8XZS8eU8Swnk2985zVVKwBIHzZuE80spUwbG1vLTA4kSUuyYrMdzOEq
+	 yGOcLKuJCqDF/XDgs/9KHikqEY7dv+iC1SGnyonAuAVNwCDR7PFtadrGcYKChx5pbA
+	 Og+aUNj/b2tTJBmIDNxKnAwIyfChQ26C+iInxayKCDtA+Q8GIXqsH33Ou3k9mohCsB
+	 r2pPIcWi2VD2jV22SRSesMMsrNYu0QqmJH1txYu0iU7SqmWu4gty/stNA+Ep5jL7dh
+	 pFnxJ7F0d7XQ9ojyyZHp5YGrhFsTGRo9d/s8HQezpu3qtz/MnNdWsuLVu7XnG+DvYw
+	 KjybRFqPrax0A==
+Date: Tue, 28 Jan 2025 08:20:47 +0100
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Lukas Schmid <lukas.schmid@netcube.li>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/4] dt-bindings: arm: sunxi: Add NetCube Systems
+ Kumquat board
+Message-ID: <20250128-grumpy-bird-of-plenty-dc7abb@krzk-bin>
+References: <20250127202127.971172-1-lukas.schmid@netcube.li>
+ <20250127202127.971172-3-lukas.schmid@netcube.li>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: clock: update interconnect cells for
- ipq5424
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <lpieralisi@kernel.org>, <kw@linux.com>,
-        <manivannan.sadhasivam@linaro.org>, <bhelgaas@google.com>,
-        <konradybcio@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20250125035920.2651972-1-quic_mmanikan@quicinc.com>
- <20250125035920.2651972-3-quic_mmanikan@quicinc.com>
- <20250127-amethyst-capybara-from-uranus-5e6bf4@krzk-bin>
-Content-Language: en-US
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <20250127-amethyst-capybara-from-uranus-5e6bf4@krzk-bin>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: HGZM0DjtlzhOkKvK2dHA0wC0vy-mq6IE
-X-Proofpoint-ORIG-GUID: HGZM0DjtlzhOkKvK2dHA0wC0vy-mq6IE
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-28_02,2025-01-27_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
- adultscore=0 mlxlogscore=999 phishscore=0 lowpriorityscore=0
- suspectscore=0 bulkscore=0 priorityscore=1501 impostorscore=0
- clxscore=1015 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2411120000 definitions=main-2501280053
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250127202127.971172-3-lukas.schmid@netcube.li>
 
+On Mon, Jan 27, 2025 at 09:21:23PM +0100, Lukas Schmid wrote:
+> The NetCube Systems Kumquat is an Embedded Controller based
+> on the Allwinner V3s SoC. It is intended for Smart Home or
+> Industrial automation without the need for a traditional PLC
 
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
 
-On 1/27/2025 12:57 PM, Krzysztof Kozlowski wrote:
-> On Sat, Jan 25, 2025 at 09:29:18AM +0530, Manikanta Mylavarapu wrote:
->> Interconnect cells differ between the IPQ5332 and IPQ5424.
->> Therefore, update the interconnect cells according to the SoC.
-> 
-> Why do they differ? Why they cannot be the same?
-> 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Based on the comment received here [1], i updated interconnect cells to 2
-to accommodate icc tags for IPQ5424.
+Best regards,
+Krzysztof
 
-[1]: https://lore.kernel.org/linux-arm-msm/20250119124551.nl5272bz36ozvlqu@thinkpad/
-
-I will update interconnect cells to 2 for IPQ5332 as well.
-
->>
->> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->> ---
->>  .../devicetree/bindings/clock/qcom,ipq5332-gcc.yaml       | 8 ++++++--
->>  1 file changed, 6 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml
->> index 1230183fc0a9..fac7922d2473 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,ipq5332-gcc.yaml
->> @@ -35,8 +35,6 @@ properties:
->>        - description: PCIE 2-lane PHY3 pipe clock source
->>  
->>    '#power-domain-cells': false
->> -  '#interconnect-cells':
->> -    const: 1
-> 
-> Properties are always defined top-level or in other schema.
-
-I will define it in top-level and initialize with 2.
-
-Thanks & Regards,
-Manikanta.
 
