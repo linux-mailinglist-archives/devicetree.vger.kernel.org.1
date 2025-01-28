@@ -1,226 +1,149 @@
-Return-Path: <devicetree+bounces-141500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141501-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80595A20F92
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 18:29:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23370A20FA2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 18:34:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 981343A5598
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:29:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 855411637F3
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0A441DB34E;
-	Tue, 28 Jan 2025 17:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B116F14A08E;
+	Tue, 28 Jan 2025 17:34:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Sk5W4IMI"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FRP5Xavk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 303BC1684AE
-	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 17:29:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12BAE1EEE6;
+	Tue, 28 Jan 2025 17:34:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738085379; cv=none; b=fN18C3QpVfPtNAaLiDQXcpKxNM8TD6KSlTSmVTy3axqQqUEruX57GD9tqBwrDbV5gAvj8YFn/tY1XkrKT6/Igx16wvJQFi4hBHnjPNmtmmj2CUCHoztnRyMwPJBHd0zLpFcQx0v4ErgNFdvBFYHHZBXBWE4EpE+8acmVcZVh+UM=
+	t=1738085685; cv=none; b=RmzRC5FLK8wAxoOqaZeb+lWSo3ZD6/6uWkiO7FqBBkPWAh/gL4qjn062IKty1F8GZnMlmv82OKKcskblBow77QfvuNlRhpHONlASZoqqHKPdEBPlMnE3hfTmQjoOcfcBeMPvHvDHPcy4TM5bPEGq7Hq2twNYsJq726kk0AnVPXI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738085379; c=relaxed/simple;
-	bh=fKuHBkO6gVVCFCdSJFQAmff53FXkCTXexy+1dsxfSo0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=FM6FVVwYRPCsWBW09hBdKvlyGu1IXfmvqFWqQ0OE8zz8NiBE1av2JRZxCN6qM1E4K60FPWj4AV9NbmTqyvHKJRONoY84xd21jDm2cI+58J2dvtNjB2xLzZP8iny0sfmfSG1fmKpkBo30OvPf+YFG9TO/4SZRqtXIVyiv0r9BvC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Sk5W4IMI; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-436a03197b2so40406025e9.2
-        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 09:29:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738085375; x=1738690175; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=kAOnfJk8Ll5ALd+bAgw7fUl/0BuZl2jjNY6ByjGEDvQ=;
-        b=Sk5W4IMIE8oPoQT5baYKfQq/spmbVlq4FueAkeQx7QoQS5kJS+ercrbGVgkQngR1Dg
-         Z5s0LL1EUVHTomHvsTotSGNmp7lqwYhJ92GOe2HsRW7WAOxhMzkOBsaH9SVBgtMGHpkX
-         r3ZsP7R46Hjz8Ew4T2Uz6kYgfam0WvoBXTo1uPZ9sjlB9qxOg3mViXpb2GDPJsXHD3zs
-         hPyJJPYZUdM0Zw2iMJeWrTDNQZtY38rGuDOu4QEoJQ40GFjGDRPv0Ws7f/H4EsKjGGj/
-         77YpTT6Lo+Xq0bhMxPzEKmfwUSkGSb8K2wKUo73pHAcldUugwpV79sYUyih1GU0RRO3y
-         B6KQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738085375; x=1738690175;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=kAOnfJk8Ll5ALd+bAgw7fUl/0BuZl2jjNY6ByjGEDvQ=;
-        b=kUm0sgqGxAzMUnyUqKVRlXrsd1oYZoYVqvLAGA3iIX2RGEkDRI7yeAY7xWa020aakY
-         eHSImJ35LmkgnOUcI/aZiSADwdpU7vzESwjNfibnQt56uhVcF+5csnrm1uiKWWBscfBg
-         qXakE7Vl+0eR/qFVtDv5pRHIFj/xLHJzIJC6tNo60cqfLGoljAh8niJkt5ZGIwzYhJV5
-         YoOmwOeubUI5ueFByhQg1z8MkxaKDjmoj2UyhgUlfEJClMPrbx3tISwQAv4bmiKmPYxu
-         YV1/GvoKTFS+Q6sZpEBSqc/6/rc9ntaGM6q2OVfvOxpKvP1Q5BH6vHb2cCtPvNIzG/FH
-         g08A==
-X-Forwarded-Encrypted: i=1; AJvYcCXFZP0P9RLL+++mE4OeSsktU9QvQrYmmNCQyee0LTuweHKu3Xt3PT2CYdkhjJR5Fquwtfcp10F95qsD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFF448wIlnmaeJbHRroM16M8JLsMjB/zgHvVf9UYzsUB354YNW
-	VP1l0DNWIguY6Y+2Bfow7Y7lZFYb7rtc3wvJE8DvYdKeSZy679/NO6m0EtUAiDo=
-X-Gm-Gg: ASbGnctN2mvREjBGmCbbTkzeWpV5F9WwaPQNwLC5DRUp3tIpzces2Ct2qFsN7ELiYco
-	/E0FM0e4qWwEAhekVF1X7LiZQiRXrhcpj6wtiq5tA0nm8jRuK/Y8t0yTn8epPizBk/GUdmCIcNJ
-	8Tx64VSVsZyEUQAufCeB98GDnfoolvi9l2PTmI/RCLPw/cOn90B5QDWY7+p6GW6qfPyYQ5BIG76
-	6K3a2WaMBZ8no7fXRLHVkXKOG8AkWMI4B5dvu/OcwbbrSP1iklbdx6I5cVZ45hoQBnwG5E556y9
-	TwyvFRaD+2lH5loI11XdJH1kCYgw2y9gpg+rpqrp5p8lL7FsHZK4UZ9ZkQ==
-X-Google-Smtp-Source: AGHT+IHnpSIh7KU+VCphvReRqNWdtBF2d0uF1DAtcKvgsSCXu3zyZ0DubN85Diq5BBxqLd4dY6fFfA==
-X-Received: by 2002:a05:600c:1d07:b0:436:488f:50a with SMTP id 5b1f17b1804b1-438913ef4b7mr434270445e9.17.1738085375435;
-        Tue, 28 Jan 2025 09:29:35 -0800 (PST)
-Received: from localhost (p200300f65f018b0400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f01:8b04::1b9])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-438bd4d3dbcsm179373075e9.40.2025.01.28.09.29.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 28 Jan 2025 09:29:35 -0800 (PST)
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Dinh Nguyen <dinguyen@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [RESEND PATCH] ARM: dts: socfpga: Add basic support for Terrasic's de10-nano
-Date: Tue, 28 Jan 2025 18:29:17 +0100
-Message-ID: <20250128172917.4565-2-u.kleine-koenig@baylibre.com>
-X-Mailer: git-send-email 2.47.1
+	s=arc-20240116; t=1738085685; c=relaxed/simple;
+	bh=Z3hziaJj19jRiKHPij/W67cwPZ0GjZ6AHXjd8gMHN0s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=emNRBsK1afs04a34f+7T0im/cqFsBxC14AIzI1KYoqaTR9mHfJ3nnXKUMJ96d6GMm+/JL7/JXqZhOV2zUfkw1ew/f3XpjvbX161Wf8GC9spNjqqIsGkmEamJnle6XkZI0m8BdKRYVmAuNh1Zl28rQQD2cg6iOTROWpOZV+ijRRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FRP5Xavk; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50SFqVbj032373;
+	Tue, 28 Jan 2025 17:34:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4E/11L6bTr/abK1jSaUDzqcbdGdMmdVqWMAVsWUG+4E=; b=FRP5Xavkct1J9Pvz
+	gUSLKTIu2z9q+uhaaQ3tMvvYYaUz/20xU10LcUQ5TUbalMWsEuwQGJsuJIhPsxic
+	HXOny3uNV3E6f3wbft52DYuUsfri2UZFqBeAsfVDNleJlaGtU9pzOfv/CRhQ6QkC
+	mew70Ob7aSvPY+H/a54Up/xcq47q+54f+8mZykqAhvs2+y6Rmc+DvNLdw9V4hb6Q
+	57Bkq6QaQQjCSvsW99egU1yUeFwNQHTJ2eXSQZat4s3Cs4gODMphgKoVd9vwZdf9
+	aqNtLqf4FsFh/eUfSCl+o8X9FcU7762NT4yxd74513SYrYzsTcxXwvXowlJIcyDW
+	ztxPtQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44f28y084n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Jan 2025 17:34:38 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50SHYbjV024257
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Jan 2025 17:34:37 GMT
+Received: from [10.216.5.143] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 28 Jan
+ 2025 09:34:33 -0800
+Message-ID: <0de7039c-d94e-4857-922f-29274d8632d9@quicinc.com>
+Date: Tue, 28 Jan 2025 23:04:29 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3277; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=fKuHBkO6gVVCFCdSJFQAmff53FXkCTXexy+1dsxfSo0=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnmRPuX5/KFs5VhMXgFqmSiVVzJ5bVQ6PPqTreF OJZrXZWdRuJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZ5kT7gAKCRCPgPtYfRL+ Th6LCACXWfB1qMkmQaGWkV0VXqqQa6kJih4Vt2gIq1LZIscv0643PwW/2NSQcz2V9NHDeJTS0sM t88P4qTYZYQnMHWdkE5qkU0v324hMsIZVKyr/Xdid6C4rqCETDUNOSsqNZhLI4qyUWPGWRmBhmO XVk4FVdRS9FBb+Jl3rLItBmSFXisCYzytrtMdK6Bh1Sb97LeHnta6/cZZLNcz3oJ7dOaBz2QdQ7 RZ4fYRFr6pC1o5JsS4h8wRYTJ/6mQJ2XLUXPz4oGV2U+L+U33DxGyBaXpZISbNFeMODQHRuOdVR JxsU1IuH77mmFeCQLAbMHmzw8/qHjN1+EAMLFR0aeGy77Iac
-X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: describe the ath12k AHB
+ module
+To: Krzysztof Kozlowski <krzk@kernel.org>, <ath12k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        Bjorn
+ Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20250128091012.2574478-1-quic_rajkbhag@quicinc.com>
+ <20250128091012.2574478-2-quic_rajkbhag@quicinc.com>
+ <0ca970e7-cc9a-4853-86de-5f01dc6d82a2@kernel.org>
+ <1bd2dca3-1fa0-424d-95e8-cdb887f1d9e2@quicinc.com>
+ <112fe636-1328-49f0-8f0a-395764e118c7@kernel.org>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <112fe636-1328-49f0-8f0a-395764e118c7@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: duoJqxOjIVtVhRNbowjgCOArEyuFRZEA
+X-Proofpoint-ORIG-GUID: duoJqxOjIVtVhRNbowjgCOArEyuFRZEA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-28_04,2025-01-27_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 impostorscore=0
+ mlxlogscore=999 clxscore=1015 priorityscore=1501 spamscore=0
+ malwarescore=0 mlxscore=0 adultscore=0 phishscore=0 suspectscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501280129
 
-This dts is enough to make the board boot to Linux with the rootfs on
-a micro SD card.
+On 1/28/2025 3:51 PM, Krzysztof Kozlowski wrote:
+> On 28/01/2025 10:29, Raj Kumar Bhagat wrote:
+>> On 1/28/2025 2:47 PM, Krzysztof Kozlowski wrote:
+>>> On 28/01/2025 10:10, Raj Kumar Bhagat wrote:
+>>>> Add device-tree bindings for the ATH12K module found in the IPQ5332
+>>>> device.
+>>>>
+>>>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+>>>> ---
+>>>>  .../net/wireless/qcom,ath12k-ahb.yaml         | 317 ++++++++++++++++++
+>>>>  1 file changed, 317 insertions(+)
+>>>>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
+>>>
+>>> It was v4, now v1? So entire previous discussion and feedback is
+>>> missing? Go to previous series and implement entire feedback. Then use
+>>> proper versioning, proper changelog and make it obvious/understandable
+>>> to us, instead of sending v1 after v4 in entirely separate thread.
+>>>
+>>
+>> I was asked to send DTS as a separate series, this is a new series for
+>> DTS hence stated with v1.
+> 
+> 
+> But we do not talk about DTS here, but bindings.
+> 
+> 
+>> To address the undocumented ABIs we have changes in dt-binding and hence
+> 
+> That's v1 so how it could have changes in the first place? Unless this
+> is v5?
+> 
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
----
-Hello,
+Sure, I understand your point now.
+I shouldn't have sent dt-binding here along with DTS as v1. dt-binding should
+go with wireless patch-set in v5.
 
-in the variant I sent 15 min ago I fatfingered the address of the
-linux-arm-kernel list. So here comes a resend with the right address ...
+Let me know your thoughts on the next steps:
+1. I will send v5 for 'wifi: ath12k: add Ath12k AHB driver support for IPQ5332'
+   along with dt-binding.
 
-Sorry for the noise
-Uwe
-
- arch/arm/boot/dts/intel/socfpga/Makefile      |  1 +
- .../socfpga/socfpga_cyclone5_de10nano.dts     | 90 +++++++++++++++++++
- 2 files changed, 91 insertions(+)
- create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
-
-diff --git a/arch/arm/boot/dts/intel/socfpga/Makefile b/arch/arm/boot/dts/intel/socfpga/Makefile
-index c467828aeb4b..7f69a0355ea5 100644
---- a/arch/arm/boot/dts/intel/socfpga/Makefile
-+++ b/arch/arm/boot/dts/intel/socfpga/Makefile
-@@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += \
- 	socfpga_cyclone5_mcvevk.dtb \
- 	socfpga_cyclone5_socdk.dtb \
- 	socfpga_cyclone5_de0_nano_soc.dtb \
-+	socfpga_cyclone5_de10nano.dtb \
- 	socfpga_cyclone5_sockit.dtb \
- 	socfpga_cyclone5_socrates.dtb \
- 	socfpga_cyclone5_sodia.dtb \
-diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
-new file mode 100644
-index 000000000000..d1f23a57a94d
---- /dev/null
-+++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
-@@ -0,0 +1,90 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2017, Intel Corporation
-+ *
-+ * based on socfpga_cyclone5_de0_nano_soc.dts
-+ */
-+/dts-v1/;
-+
-+#include "socfpga_cyclone5.dtsi"
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/gpio/gpio.h>
-+
-+/ {
-+	model = "Terasic DE10-Nano";
-+	compatible = "altr,socfpga-cyclone5", "altr,socfpga";
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@0 {
-+		/* 1 GiB */
-+		device_type = "memory";
-+		reg = <0x0 0x40000000>;
-+	};
-+
-+	soc {
-+		fpga_axi: axi_h2f_lw_bridge@ff200000 {
-+			compatible = "simple-bus";
-+			reg = <0xff200000 0x00200000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0x00000000 0xff200000 0x00200000>;
-+		};
-+	};
-+};
-+
-+&gmac1 {
-+	/* Uses a KSZ9031RNX phy */
-+	status = "okay";
-+	phy-mode = "rgmii";
-+
-+	rxd0-skew-ps = <420>;
-+	rxd1-skew-ps = <420>;
-+	rxd2-skew-ps = <420>;
-+	rxd3-skew-ps = <420>;
-+	txen-skew-ps = <0>;
-+	txc-skew-ps = <1860>;
-+	rxdv-skew-ps = <420>;
-+	rxc-skew-ps = <1680>;
-+};
-+
-+&gpio0 {
-+	status = "okay";
-+};
-+
-+&gpio1 {
-+	status = "okay";
-+};
-+
-+&gpio2 {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	clock-frequency = <100000>;
-+	status = "okay";
-+
-+	accelerometer@53 {
-+		compatible = "adi,adxl34x";
-+		reg = <0x53>;
-+		/* HPS_GSENSOR_INT is routed to UART0_RX/CAN0_RX/SPIM0_SS1/HPS_GPIO61 */
-+		interrupt-parent = <&portc>;
-+		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-+	};
-+};
-+
-+&mmc0 {
-+	/* micro SD card socket J11 */
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	/*
-+	 * Accessible via USB (FT232R) on Mini-USB plug J4
-+	 * RX = TRACE_D0/SPIS0_CLK/UART0_RX/HPS_GPIO49
-+	 * TX = TRACE_D1/SPIS0_MOSI/UART0_TX/HPS_GPIO50
-+	 */
-+	clock-frequency = <100000000>;
-+};
-
-base-commit: 5ffa57f6eecefababb8cbe327222ef171943b183
--- 
-2.47.1
-
+2. In a separate series, I will send only DTS changes as v2, considering the
+   review comments in this version as v1 for DTS.
 
