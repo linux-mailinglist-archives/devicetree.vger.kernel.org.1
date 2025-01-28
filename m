@@ -1,145 +1,168 @@
-Return-Path: <devicetree+bounces-141482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 926C2A20E6A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:22:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4C02A20E6C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:23:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0092F16643A
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:22:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E287A3A4794
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:23:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 949B11BFE10;
-	Tue, 28 Jan 2025 16:22:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E78611D515B;
+	Tue, 28 Jan 2025 16:23:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="uqtrmIdi"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OSv+uuah"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF90D1DAC88;
-	Tue, 28 Jan 2025 16:22:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C02A1AA1FE;
+	Tue, 28 Jan 2025 16:23:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738081335; cv=none; b=ggY28FTLWbcRKKU6u6tOWsPJovC6jFKnSSlfvy7Ow7IIPlvu9ahZbfL3gr3MFG+ieFQ5i3ncjxGXZT5Nn/TTSMuTK8ztpjnGwBva8tkgZ1QeyXgRciU34pi21o/PeBAS91W9uWF3mO5xa7VE+xX5DqmuzGA1+Kd+15Ms3lyrbds=
+	t=1738081412; cv=none; b=nEJbGjgBZ3u6QQGIG6vvI62UrCIhu3VGJvGHJbKVUhrq3EIks/RodP43kJ9UrF0rds0x/s/2lIfKw4aLuCYhkfB/hBCIgXjSRGZ8TTM814yIiOtmQSFV6alcPC/5ypyjW6dmeuImRM7at4m7wlaEO7XS2/mFopfWsAEZMy6gthQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738081335; c=relaxed/simple;
-	bh=uH/lxq8lu5P/j8Dc3+jG777lJ5HIU52S1rxPE7hA1DE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ksZz/qZ3wgWmS7igxZ2nCsSCuaSvOwzJib7swnIiP7kFZ0BXVU1ukrywyJ534//VjwHaNl/SlaQmaYLItgrV8JsB0nid8wVthY2a0iLFBgyfLSke5tPqVZ8do/5gC01r4JyS9WejL2YAGrr7wLfd59Pcl8LCukOUiqsJP4DOzSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=uqtrmIdi; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50SGM5Em2031163
-	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Tue, 28 Jan 2025 10:22:05 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1738081325;
-	bh=a993OaTmApiSLYlbcO9FRYc1TtEbUHIgXSDEucVTzdo=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=uqtrmIdiNt8YICveSIYOuI4iwA71sM7ttGG2uTrkhJTbYn5kxfvrxKj76cPznY8EM
-	 j/Sxck0VqJE5fFNDHIxI5P6E+jQ6sL4hTcBVaH4SN8/TsclA+ry9aukayjHAT7Qabs
-	 DDaqvHvt3gCH8GJGpxOEK7pQGdCEVXxnaaDQrDF4=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50SGM5oY004743;
-	Tue, 28 Jan 2025 10:22:05 -0600
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 28
- Jan 2025 10:22:04 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 28 Jan 2025 10:22:04 -0600
-Received: from [10.250.32.214] ([10.250.32.214])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50SGM4Zv083379;
-	Tue, 28 Jan 2025 10:22:04 -0600
-Message-ID: <950a1e23-a943-41b0-979a-4e7a4a264fdd@ti.com>
-Date: Tue, 28 Jan 2025 10:22:04 -0600
+	s=arc-20240116; t=1738081412; c=relaxed/simple;
+	bh=08Gs03T39FQeLfYc4DMLMcovI+nRd3HZQ+wnQ3AVNSc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=WwkxV6x3BH4ybW4L7+8nCvkbyw3pp5TvGghdH4b9pM/UsSMNZBM9VHOwOdIp6nDQGEPCYFTdmj+5Rwdlziq1H3UUTcvAz4aVs/Uzy/lGEnsilACbI3g8RNEkT/aCuLxd1EQvoPY7UL+ctk+yK6EBvLzmB+3u5mqfui6I62/6hg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OSv+uuah; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9DCF7FF802;
+	Tue, 28 Jan 2025 16:23:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1738081408;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=UISrEYUv5egLukU1TttywZkjVzOvJAxp/VRzu80B0B0=;
+	b=OSv+uuahAzEa1ARoziqtWPzIrM/mDRHukpcKZdaEaFQEBNtI840FpNF2IRIMqr3Zg6Qn74
+	i4hwXVPesslIrd/eYmIxv0tfLATja8RAqrj9f0X7YvVlErR9VWbhHGKaXOTD3/ir6uVo1q
+	LTvJaOrfc12o2Y2o8oXhBJ0jqWt8uJ1OkGHHNifgKCye8PhHGPPUDlf+yWZjEXCPYPhbKp
+	7GsZ4jjgziLfNhwj2JmaUk25SFxCbdIv/FkDHVdamGaqCFUsrk9T9MoruVK5T7AThNEz7t
+	92IiDVlMICKuTsrTO0ALtcjWOXkb5PZjSHOMyVP9rfU+yPUz79/AjXjwQHZ3Xg==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Jiaxun Yang <jiaxun.yang@flygoat.com>, Rob Herring <robh@kernel.org>
+Cc: Aleksandar Rikalo <arikalo@gmail.com>, Thomas Bogendoerfer
+ <tsbogend@alpha.franken.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vladimir Kondratiev
+ <vladimir.kondratiev@mobileye.com>, =?utf-8?Q?Th=C3=A9o?= Lebrun
+ <theo.lebrun@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, "linux-mips@vger.kernel.org"
+ <linux-mips@vger.kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] dt-bindings: mips: mips-cm: Add a new compatible
+ string for EyeQ6
+In-Reply-To: <bf08785b-9963-4539-92ef-b73c3abe8c19@app.fastmail.com>
+References: <20250123-cluster-hci-broken-v3-0-8a7ec57cbf68@bootlin.com>
+ <20250123-cluster-hci-broken-v3-2-8a7ec57cbf68@bootlin.com>
+ <afa2e874-c078-4c3e-b485-d948a0bb6a6f@app.fastmail.com>
+ <CAL_JsqKXYruNn+MtxbvCCWU2OmqeV-uAyyzN+F-ppSJVscr91w@mail.gmail.com>
+ <bf08785b-9963-4539-92ef-b73c3abe8c19@app.fastmail.com>
+Date: Tue, 28 Jan 2025 17:23:26 +0100
+Message-ID: <87tt9iucu9.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-am62-wakeup: Add wakeup r5f node
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Devarsh Thakkar
-	<devarsht@ti.com>,
-        Hari Nagalla <hnagalla@ti.com>
-References: <20250127221631.3974583-1-jm@ti.com>
- <20250127221631.3974583-2-jm@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250127221631.3974583-2-jm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: gregory.clement@bootlin.com
 
-On 1/27/25 4:16 PM, Judith Mendez wrote:
-> From: Hari Nagalla <hnagalla@ti.com>
-> 
-> AM62 SoC devices have a single core R5F processor in wakeup domain.
-> The R5F processor in wakeup domain is used as a device manager
-> for the SoC.
-> 
-> Co-authored-by: Devarsh Thakkar <devarsht@ti.com>
-> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> [Judith: Fix commit message header]
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 24 ++++++++++++++++++++++
->   1 file changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> index 9b8a1f85aa15c..79708c1c214f8 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
-> @@ -106,6 +106,30 @@ wkup_rti0: watchdog@2b000000 {
->   		status = "reserved";
->   	};
->   
-> +	wkup_r5fss0: r5fss@78000000 {
-> +		compatible = "ti,am62-r5fss";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x78000000 0x00 0x78000000 0x8000>,
-> +				 <0x78100000 0x00 0x78100000 0x8000>;
-> +		power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
-> +
-> +		wkup_r5fss0_core0: r5f@78000000 {
-> +			compatible = "ti,am62-r5f";
-> +			reg = <0x78000000 0x00008000>,
-> +			      <0x78100000 0x00008000>;
-> +			reg-names = "atcm", "btcm";
-> +			ti,sci = <&dmsc>;
-> +			ti,sci-dev-id = <121>;
-> +			ti,sci-proc-ids = <0x01 0xff>;
-> +			resets = <&k3_reset 121 1>;
-> +			firmware-name = "ti-sysfw/ti-fs-stub-firmware-am62x-gp-signed.bin";
+> =E5=9C=A82025=E5=B9=B41=E6=9C=8827=E6=97=A5=E4=B8=80=E6=9C=88 =E4=B8=8B=
+=E5=8D=8810:07=EF=BC=8CRob Herring=E5=86=99=E9=81=93=EF=BC=9A
+>> On Mon, Jan 27, 2025 at 3:43=E2=80=AFPM Jiaxun Yang <jiaxun.yang@flygoat=
+.com> wrote:
+>>>
+>>>
+>>>
+>>> =E5=9C=A82025=E5=B9=B41=E6=9C=8823=E6=97=A5=E4=B8=80=E6=9C=88 =E4=B8=8A=
+=E5=8D=8811:01=EF=BC=8CGregory CLEMENT=E5=86=99=E9=81=93=EF=BC=9A
+>>> > The CM3.5 used on EyeQ6 reports that Hardware Cache Initialization is
+>>> > complete, but in reality it's not the case. It also incorrectly
+>>> > indicates that Hardware Cache Initialization is supported. This new
+>>> > compatible string allows warning about this broken feature that cannot
+>>> > be detected at runtime.
+>>> >
+>>> > Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>>> > ---
+>>> >  Documentation/devicetree/bindings/mips/mti,mips-cm.yaml | 12 +++++++=
+++++-
+>>> >  1 file changed, 11 insertions(+), 1 deletion(-)
+>>> >
+>>> > diff --git a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>>> > b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>>> > index
+>>> > 4324b2306535f1bf66c44b1f96be9094ee282041..d129d6382847768dc026336d8d2=
+c7328b6b81f9b
+>>> > 100644
+>>> > --- a/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>>> > +++ b/Documentation/devicetree/bindings/mips/mti,mips-cm.yaml
+>>> > @@ -19,7 +19,12 @@ maintainers:
+>>> >
+>>> >  properties:
+>>> >    compatible:
+>>> > -    const: mti,mips-cm
+>>> > +    oneOf:
+>>> > +      - const: mti,mips-cm
+>>> > +      - const: mobileye,eyeq6-cm
+>>> > +        description:
+>>> > +          On EyeQ6 the HCI (Hardware Cache Initialization) informati=
+on for
+>>> > +          the L2 cache in multi-cluster configuration is broken.
+>>> >
+>>> >    reg:
+>>> >      description:
+>>> > @@ -44,4 +49,9 @@ examples:
+>>> >        compatible =3D "mti,mips-cm";
+>>> >        reg =3D <0x1bde8000 0x8000>;
+>>> >      };
+>>> > +
+>>> > +  - |
+>>> > +    coherency-manager {
+>>> > +      compatible =3D "mobileye,eyeq6-cm";
+>>>
+>>> I think =E2=80=9Cmobileye,eyeq6-cm=E2=80=9D, =E2=80=9Cmti,mips-cm=E2=80=
+=9D would describe the hardware better as eyeq6=E2=80=99s CM is just a spec=
+ial variant of mips-cm.
+>>
+>> Is s/w that only understands =E2=80=9Cmti,mips-cm=E2=80=9D useful on eye=
+q6 chip? If
+>> so, I agree. If not, then a fallback compatible is not useful.
+>
+> Yes, mobileye,eyeq6-cm only enable an additional bug workaround in softwa=
+re.
+>
 
-What is this firmware name? This doesn't exist in linux-firmware,
-should use the normal name like "am62-wkup-r5f0_0-fw", then we
-can use symlinks in our userspace to map to whatever firmware we
-want to run.
+Having "mti,mips-cm" is not useful for the EyeQ6 chip. On the EyeQ6, we
+obtain all relevant information related to CM dynamically without
+needing this compatible string.
 
-Andrew
+> The programming interfaces and so on remains unchanged.
 
-> +			ti,atcm-enable = <1>;
-> +			ti,btcm-enable = <1>;
-> +			ti,loczrama = <1>;
-> +		};
-> +	};
-> +
->   	wkup_vtm0: temperature-sensor@b00000 {
->   		compatible = "ti,j7200-vtm";
->   		reg = <0x00 0xb00000 0x00 0x400>,
+Even without a compatible string, we are able to utilize the CM. At
+present, there is no node in the device tree, and apart from the
+hardware being faulty, we do not need it.
+
+>
+> Also other firmware components like U-Boot doesn=E2=80=99t need to be awa=
+re of
+> eyeq6 variant.
+
+It's the same for the firmware; they don't need to have "mti, mips-cm"
+information, as they can retrieve all they need dynamically.
+
+Gregory
+
+--=20
+Gr=C3=A9gory CLEMENT, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
