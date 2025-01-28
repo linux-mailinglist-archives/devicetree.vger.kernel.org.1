@@ -1,161 +1,133 @@
-Return-Path: <devicetree+bounces-141372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A03C2A208AE
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:39:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E862A208B8
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:41:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEB7318838C6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:39:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA2DC1605A6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:41:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1787719D8A7;
-	Tue, 28 Jan 2025 10:39:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AF2519DF44;
+	Tue, 28 Jan 2025 10:41:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="s54sh6K7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fuUZKx2+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E40C19B3EC;
-	Tue, 28 Jan 2025 10:39:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE94D19B3EC
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 10:40:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738060750; cv=none; b=PHODdHIvKQUR/YgmRpMz4fW80Yet6pD9XKgYjqitqLDESMUgLCCsVvuYz/RiR8Oipg7vrs6Uz7Nz+POFUJBrE2RBExb8UKn06J95XtSwli9TakElJUdBqHwM4Lvxt+XSn4pSGKUuAWv4Ol4Qt1poPTuO1ssB0nenmGecRTG5PTc=
+	t=1738060860; cv=none; b=HPql4j38yEuWg14CA17eLiTsnFqHT/FPyvPZBpLdRcvmzRP3fexSeR6nfJmIfCRCbV3jpcODH1om9h/CBAIRb4AwHLm/2mpeXAi8wwVNnzf2KHiA6crXDNhu8R55l9wP75ApZM+IsQRu9IVocup7bi7lOgCbllSEVyV08QIQEt4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738060750; c=relaxed/simple;
-	bh=TMz8RaSEgGX1lG0+yGPN+mRRlbTRMGvyD+mxnFXTdg4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Utp1BWA8DqcR2wlVm753EgXsUamPJLmL/TE/pQ8BCPiX7uYwMNUlng4pLfN/4evGZzIJ7z7aXAHOLZ5FLFFurreC9Mp+rW55/mj1Q6r47ufKJ+DqZceDMkaX/13kJ923ivR0+b7F9trpDGz8fq5uZYGxQXf4Lohu41HgF9VIcbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=s54sh6K7; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F35756DF;
-	Tue, 28 Jan 2025 11:37:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1738060677;
-	bh=TMz8RaSEgGX1lG0+yGPN+mRRlbTRMGvyD+mxnFXTdg4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=s54sh6K7naTE6z+1b/6br9BiUo4y6SZemEaeWGHhevgqVKgIbrRYTwhd0H0FD5+sS
-	 CkkN3tiBPwXU/tmAmYcX+v+0C70AfDuS476syxJrWmrkmwBYv1Iq9V1lVKpg0vmorE
-	 RmGHU1jW62nCeYVEaFdTl8sCiBEKJjuJ3yk7FTKI=
-Message-ID: <010a6378-2b1d-45e3-918b-ca5f7c40a6ae@ideasonboard.com>
-Date: Tue, 28 Jan 2025 12:38:59 +0200
+	s=arc-20240116; t=1738060860; c=relaxed/simple;
+	bh=fHkCcPoOld5Vayx/a8s9YzaCZAQ95P6ms4pCUpWbve4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qw+HWi0quNro+qubO5J9Ap37xFVKS4Y1/L6ectOy91trUpg0G/K4WNJ7EIoXvvnDorx3BfA+5KAMetlCtQF8feEM5WZAdNt3uHaqs+rCcFaupEy4IL8yK8TywFTPT7ewRRuXeJPsYgY9x2qQoYiD/b8bfrcPNgxIdfYaMljCHeQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fuUZKx2+; arc=none smtp.client-ip=209.85.219.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e573136107bso9003580276.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 02:40:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738060857; x=1738665657; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=X+TSS9BHptLsGt0UNSzZvK+YPeXxKpKM6xF2wxrn1RY=;
+        b=fuUZKx2+1D3VSoq+KDIEF8RFNMkVR4AtIuLyPSIC3bm20DRGGR/CLuZAODreqNbN19
+         guLENp2N8B9qbjNw+RdB3O/2XKpG+Lntl+ZS7M1lnrFC3UziM474HXXqWkfwFKpn4/yQ
+         5uGmclhJ0E+OqFR165R5/XcDn1wUfG/SctlQgWPJMjmYrTtDpbEPfXBoBCel3QvyZpQI
+         a52YA1061xhKhH0eBVOqzOzp0lXAAif8UBrjTkoY4WL3YmXELUcbrd1R1jP2MPHnLW0j
+         KwfeSd1mxcgo0LBaNV2EkyySkSgbbQs2qbk7FLx+LhIzaN3sa1/ExLIpEQ0TBEyO1oUQ
+         EUMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738060857; x=1738665657;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X+TSS9BHptLsGt0UNSzZvK+YPeXxKpKM6xF2wxrn1RY=;
+        b=YggW+zIdEU4efvlfKiSJRAfOdXKrn6esdbW7QiEWETM1Ah8+4x1K/kAjJNHD9YJWjl
+         Rw+Fr19O1ul6I8K8nmxkOzc/FbNBoeBzQJeXaINUanj+WxWHHUbHIbhwqcT1Wq+zN0FZ
+         /XNm41/QGUOzTKMxL5J31vg7TdMGwwPOc51puCmaPldgPmCh/sB/dPc+wuyN2sYR9w+1
+         wrx9BvVQuU2z/L66Ihjf0v1r/lDkmrKG7+o8tu2GjfB59tEBWIiVktuBcpBCNBE/5Opd
+         S5sMn8r5IvPe189eVTLgSqXu3WeIg71PmErqLPjalaP4G95HhS3DGWhytUDPfxc2n1Rp
+         w+mA==
+X-Forwarded-Encrypted: i=1; AJvYcCX8hyXTPg15OHHnWnPJJx78s16B0ILpXlLRlZsTbr/zqeepr41CTl2w9C89Y9Ri4RECzgY/WNiMimPZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFVkuTDJ+I+SsGXJJdnnCjKVqPIcm2Dxztn4ZZ52ipIOx6TXkD
+	PfWnsHs0NSvREuK40qiGy2KlWAI0bxjGko9Z7nh9OC4RlJgSV809dn0uDfR75mdUkzU0b09/k0n
+	DG+A+bEseEUJMWkQ8x2jSijwR+G7okW1xMoXlXA==
+X-Gm-Gg: ASbGnctdZIF/7SSlaReFcIhTi/mR45x2XdgGrSBRULrxqH8R0MeR6Rs4SEdpIHf2CA8
+	gMcLH/QX73LFLnBcEkOMe9eaYymWxEBLAzQwbrCvEA/rk9wpEMHIUPDoYjW+RSi3b1mi3lHmpjA
+	==
+X-Google-Smtp-Source: AGHT+IEmH8cViK+UxbmsoUoGLBe5kZAMQb5oP5iNgocXG2Sf79bsQ7NtGK8mhIzgG/5TkGLx1PVW6ZLN6j/dzVO3Q3g=
+X-Received: by 2002:a05:6902:161a:b0:e57:94bd:4e0a with SMTP id
+ 3f1490d57ef6-e57b13451bcmr34589002276.40.1738060857692; Tue, 28 Jan 2025
+ 02:40:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/7] dt-bindings: display: renesas,du: Add missing
- constraints
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, LUU HOAI <hoai.luu.ub@renesas.com>,
- Jagan Teki <jagan@amarulasolutions.com>, Sam Ravnborg <sam@ravnborg.org>,
- Biju Das <biju.das.jz@bp.renesas.com>, dri-devel@lists.freedesktop.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- linux-clk@vger.kernel.org,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-References: <20241217-rcar-gh-dsi-v5-0-e77421093c05@ideasonboard.com>
- <20241217-rcar-gh-dsi-v5-3-e77421093c05@ideasonboard.com>
- <jn5fsjg5zufi2c3u3tvpzoafrshgrze67e5x4iyhbyzf7opwbp@6i5vqdgeor3l>
- <1a04d8e9-ef02-40e5-b070-82c9a35ad0cd@kernel.org>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Autocrypt: addr=tomi.valkeinen@ideasonboard.com; keydata=
- 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
-In-Reply-To: <1a04d8e9-ef02-40e5-b070-82c9a35ad0cd@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20241202-rpmpd-sm6375-v1-1-12a4f0182133@fairphone.com> <D7CS06UAY85B.1L2QQXQ63GFZ7@fairphone.com>
+In-Reply-To: <D7CS06UAY85B.1L2QQXQ63GFZ7@fairphone.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 28 Jan 2025 11:40:20 +0100
+X-Gm-Features: AWEUYZmLWZpIy6dPlIk9mwW7-sSnAKdnFhxVFch4NAa0RB7-7jLqSeJPT2NrRsA
+Message-ID: <CAPDyKFq3xQPVzocPi13+AWoiWPpvejoAotMOM4VE4FA0BLqv0g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: power: rpmpd: Fix comment for SM6375
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, ~postmarketos/upstreaming@lists.sr.ht, 
+	phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Mon, 27 Jan 2025 at 11:16, Luca Weiss <luca.weiss@fairphone.com> wrote:
+>
+> On Mon Dec 2, 2024 at 4:45 PM CET, Luca Weiss wrote:
+> > During an earlier commit, the comment from SM6350 was copied without
+> > modifying. Adjust the comment to reflect the defines.
+>
+> Ping, could this trivial patch be picked up please?
 
-On 28/01/2025 11:42, Krzysztof Kozlowski wrote:
-> On 17/12/2024 07:25, Krzysztof Kozlowski wrote:
->> On Tue, Dec 17, 2024 at 07:31:37AM +0200, Tomi Valkeinen wrote:
->>> From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
->>>
->>> The binding is missing maxItems for all renesas,cmms and renesas,vsps
->>> properties. As the amount of cmms or vsps is always a fixed amount, set
->>> the maxItems to match the minItems.
->>>
->>> Also add the minItems and maxItems to the top level properties.
->>>
->>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
->>> ---
->>>   Documentation/devicetree/bindings/display/renesas,du.yaml | 15 ++++++++++++++-
->>>   1 file changed, 14 insertions(+), 1 deletion(-)
->>
->> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> So you just repeated parts I sent much earlier...
-> 
-> https://lore.kernel.org/all/20240818173003.122025-2-krzysztof.kozlowski@linaro.org/
-> 
-> That one got reviews but was not merged for some reason.
+I pick it up after the merge window closes, via my pmdomain tree.
 
-Yes, that was somehow missed. The patches still look relevant to me. 
-Should I rebase and sort out the conflicts, or would you like to rebase it?
+Kind regards
+Uffe
 
-  Tomi
-
+>
+> Regards
+> Luca
+>
+> >
+> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > ---
+> >  include/dt-bindings/power/qcom-rpmpd.h | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+> > index df599bf462207267a412eac8e01634189a696a59..d9b7bac309537cbfd2488e7d4fe21d195c919ef5 100644
+> > --- a/include/dt-bindings/power/qcom-rpmpd.h
+> > +++ b/include/dt-bindings/power/qcom-rpmpd.h
+> > @@ -65,7 +65,7 @@
+> >  #define SM6350_MSS   4
+> >  #define SM6350_MX    5
+> >
+> > -/* SM6350 Power Domain Indexes */
+> > +/* SM6375 Power Domain Indexes */
+> >  #define SM6375_VDDCX         0
+> >  #define SM6375_VDDCX_AO      1
+> >  #define SM6375_VDDCX_VFL     2
+> >
+> > ---
+> > base-commit: 40384c840ea1944d7c5a392e8975ed088ecf0b37
+> > change-id: 20241202-rpmpd-sm6375-06582e126d7f
+> >
+> > Best regards,
+>
 
