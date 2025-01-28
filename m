@@ -1,147 +1,149 @@
-Return-Path: <devicetree+bounces-141468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D0B5A20D62
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:45:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DE88A20D71
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:47:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 843733A42A0
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 15:45:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 204F7167F1B
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 15:47:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB5441D5165;
-	Tue, 28 Jan 2025 15:45:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731891D63CC;
+	Tue, 28 Jan 2025 15:47:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PPoFvl2F"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NxBpCUpb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5241AAE0D;
-	Tue, 28 Jan 2025 15:45:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8738019DF61
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 15:47:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738079139; cv=none; b=kEOcOeCYkS3rHlc5/kjfAwNZMQB+OaXGOX5YQD6nyYqhrMA1k0u8e3eDHOUsTk0LC2kAMLDY7ke+P8nzpXZ/TDTaY0srK4q2il2M6nhIs9cKKA0XZw7l8/iC7YNLSJYZd2AvDOVsXoGUcvf69XikKiDkwV+r1VunL/fjFklxP84=
+	t=1738079252; cv=none; b=agQtqzgLkhbBWdlCJ1pprxm5VkzTTJz1yzbafrcQgEGdfuIOPwWZbSiIiwdBepOsTTDDcFDpuBNLKphE58e0/ZmWs8WBRjiRsnvDMaurOkuovvgS5jgh9jKzuBGjCL27ibAwi09B66LsvjwqZRh6VAVj9Ulbw7RFp9Kj5IDKlw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738079139; c=relaxed/simple;
-	bh=y5fiGOpqHsjA5txZTC792Ta1uJ8fD21vvbxKBCkhSwo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V2rBfU5ThkFWHQcrPJVbaF13DyI+SN0hVwDuv19+xlnZwR4BBgc1xPmjEKjX2sK+qxpKxJEazgtSbgocCAoQVFR9w1yS2fa8MyfG0BLGnCf3tlZZLJZUW90/xzN+IQH4JO6GzU3472HK1ku25WdrS+AA2dqJzC8vRJR1XVL3Krk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PPoFvl2F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAE9EC4CED3;
-	Tue, 28 Jan 2025 15:45:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738079139;
-	bh=y5fiGOpqHsjA5txZTC792Ta1uJ8fD21vvbxKBCkhSwo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PPoFvl2FNra+3ckqpvLYQ20USwf3/15iHNEjTckFICgs2tuHlAlYKYTP0rkMEset1
-	 +7+d+0SHBn/GgPvU5ceG5sebvE0j3K0cciKjUD7+tEYR9qYWc8cGOw4Wc2hpb3uWFv
-	 iC8P+SoIQItyVKJQPgU8T/w50bAnmdh9z6/9GfdBExaxHwPFY5o/rXUy0qs12oU2J3
-	 KmQimFQVwb9+qvwfBqDMGKa7BVNhEABtAkKzYVMTwNHARi2lO2FhRJzKBPH3FcXTXK
-	 Ef0TAu9UF2NFaBmsbEJx01KpyWggysiT2/b7kqNKivKBCWXnxUpgkRZ2FDcqNnyM6b
-	 nYAR8cq2vDu1A==
-Date: Tue, 28 Jan 2025 09:45:38 -0600
-From: Rob Herring <robh@kernel.org>
-To: Swathi K S <swathi.ks@samsung.com>
-Cc: krzk@kernel.org, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, conor+dt@kernel.org,
-	richardcochran@gmail.com, mcoquelin.stm32@gmail.com, andrew@lunn.ch,
-	alim.akhtar@samsung.com, linux-fsd@tesla.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, alexandre.torgue@foss.st.com,
-	peppe.cavallaro@st.com, joabreu@synopsys.com, rcsekar@samsung.com,
-	ssiddha@tesla.com, jayati.sahu@samsung.com,
-	pankaj.dubey@samsung.com, ravi.patel@samsung.com,
-	gost.dev@samsung.com
-Subject: Re: [PATCH v5 1/4] dt-bindings: net: Add FSD EQoS device tree
- bindings
-Message-ID: <20250128154538.GA3539469-robh@kernel.org>
-References: <20250128102558.22459-1-swathi.ks@samsung.com>
- <CGME20250128102725epcas5p44b02ac2980a3aeb0016ce9fdef011ecf@epcas5p4.samsung.com>
- <20250128102558.22459-2-swathi.ks@samsung.com>
+	s=arc-20240116; t=1738079252; c=relaxed/simple;
+	bh=ORpfm8gqz7BJwSi63RXYjOXHuDS2RzlvCyhJKnf9cco=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=smk1ptIrKCr98/lzQrVe3sqf/E+mYVCP/3bbf5SJZiHZHPvbh7yecmAa3BfDQZ1bObIDAgICWcEjxLU4LCPFyJivcO1X5W4rsfBj7aEDh6y9h4K9C4HRosZ23if+lHGzv3dqtEb24zm1m8DRgpcLzK2g/7TOqkAzhqxVBamk0oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NxBpCUpb; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-3072f8dc069so61711801fa.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 07:47:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738079249; x=1738684049; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ORpfm8gqz7BJwSi63RXYjOXHuDS2RzlvCyhJKnf9cco=;
+        b=NxBpCUpbTd37+jRA4l5TsQ4NW4iaAg1mBr2hYu8v/WMNc/Rq5w6wQ5KCK1TPajNeGs
+         QSb92YLGFhffN9LktqByjZsUMDYZ+0gJW0m4wQqebzBzZEmXeyiovBqmYKh6ojuju1b1
+         Ewy0faaYc9Gzyr0Q3itBmnm4Y6vjYiHPjzb2nlAYN4RneqPydmqrwP3aKL8sJ6c2z9wm
+         w+uqU7YR5yJuIiNOsVx2SHszb6l1ZGm6b/Q3dHF/978LBZ1XBaxXUnR8bHJlYz6NqwZi
+         ci4VO3VXQvmg6sspSFDO6F73bAdldMx5aWr6l1tswziMp8dlQ6hA7nemSFUkXhVHKk60
+         iavg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738079249; x=1738684049;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ORpfm8gqz7BJwSi63RXYjOXHuDS2RzlvCyhJKnf9cco=;
+        b=S3eF7KnVELYakkPhUPf6C9GUcx+fpIIObVwXQzZY0ebGCJv1lDZFx9zqBNTvINbPbH
+         KS70rFV6wK3MV1frCdFbKtb4dFKG0hnKVFv3VjoHk1qw3WvVv5henkLrQL9gdGdFp9zv
+         phFuXyq8BUHV991hZCxc3q99A1Do6URQ/+zyr4kQAklj82dzq1TiSCOfGxgZyVLOnCii
+         7FrC3H0MPLBH8mnsFkHNuCj9zYHs2RCPKDGA+VX5JichZltoJtvkiqBWmnD6FUzHb52q
+         0oTiXaJn1oL8q/rbgSr0gE6/5ZdUJ+9D+lh2LsHptxVZT8/daJueAMVpCRFAEnGneSOu
+         oNHA==
+X-Forwarded-Encrypted: i=1; AJvYcCXA24FyH5Or5viKoy1uT/eE7mxE3NHWhB6U5fxTyaBPktY6wD6VMoQjMZszx2WNez4ROOe+HLrG7SlG@vger.kernel.org
+X-Gm-Message-State: AOJu0YwUggrhh0+CVem7+0BFM3asGNhlekSwoll0T/pvJe2+qNPt+AHQ
+	q/uB/is+nA5+Ccd01I73EEvdkjvJfZh2Mu/4kZ3iC6jRjrbnsx+aNK4d59294I6DDxvPbWVEZeu
+	VehHjV+t27l1fggh+Hhf00Rww7QSZUjQ1vCiSvQ==
+X-Gm-Gg: ASbGncvaZCQDE5jyuE3sKFePXk/rI1gIPea8cD+R7xO9uwtLn4wzA7aI2pvD8Kxcd1R
+	10AqbXtWHAHLcEAAwEqCkpU8PxKfM/M2KZLQE7L0CkTzunXsqGpWp45JXZWFbqEKEK2a6dqA=
+X-Google-Smtp-Source: AGHT+IFzJzZ2trars/DKC2OeK820bAEA4OESZ8xv0fZ7CNGPrWwWN85tqO2dBttYZ+HZbEEhgHIzk9XO6G2yur8X4WM=
+X-Received: by 2002:a2e:be27:0:b0:302:4132:499 with SMTP id
+ 38308e7fff4ca-3072cb22561mr176573531fa.25.1738079248573; Tue, 28 Jan 2025
+ 07:47:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250128102558.22459-2-swathi.ks@samsung.com>
+References: <20250121-03-k1-gpio-v4-0-4641c95c0194@gentoo.org>
+ <20250121-03-k1-gpio-v4-1-4641c95c0194@gentoo.org> <Z5FPJLzAEVXGWJnE@chonkvm.lixom.net>
+ <20250123113042-GYA38135@gentoo> <Z5LOdh-4UxRtteOy@chonkvm.lixom.net> <20250127181726.GA538260-robh@kernel.org>
+In-Reply-To: <20250127181726.GA538260-robh@kernel.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 28 Jan 2025 16:47:17 +0100
+X-Gm-Features: AWEUYZnoc3lmDNNFG2cVuqRGGhatacTuYZ1Uow9WWWXEfz68QbxO7Kxh6hOpHpw
+Message-ID: <CACRpkdaj+cJFsYqJF5OY0v=Och6nxnBKV0C9aWb6-aLZhZobdg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/4] dt-bindings: gpio: spacemit: add support for K1 SoC
+To: Rob Herring <robh@kernel.org>
+Cc: Olof Johansson <olof@lixom.net>, Yixun Lan <dlan@gentoo.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Conor Dooley <conor@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Yangyu Chen <cyy@cyyself.name>, 
+	Jisheng Zhang <jszhang@kernel.org>, Jesse Taube <mr.bossman075@gmail.com>, 
+	Inochi Amaoto <inochiama@outlook.com>, Icenowy Zheng <uwu@icenowy.me>, 
+	Meng Zhang <zhangmeng.kevin@linux.spacemit.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jan 28, 2025 at 03:55:55PM +0530, Swathi K S wrote:
-> Add FSD Ethernet compatible in Synopsys dt-bindings document. Add FSD
-> Ethernet YAML schema to enable the DT validation.
-> 
-> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
-> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
-> Signed-off-by: Swathi K S <swathi.ks@samsung.com>
-> ---
->  .../devicetree/bindings/net/snps,dwmac.yaml   |  5 +-
->  .../bindings/net/tesla,fsd-ethqos.yaml        | 91 +++++++++++++++++++
->  2 files changed, 94 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/tesla,fsd-ethqos.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> index 91e75eb3f329..2243bf48a0b7 100644
-> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> @@ -103,6 +103,7 @@ properties:
->          - starfive,jh7100-dwmac
->          - starfive,jh7110-dwmac
->          - thead,th1520-gmac
-> +        - tesla,fsd-ethqos
->  
->    reg:
->      minItems: 1
-> @@ -126,7 +127,7 @@ properties:
->  
->    clocks:
->      minItems: 1
-> -    maxItems: 8
-> +    maxItems: 10
->      additionalItems: true
->      items:
->        - description: GMAC main clock
-> @@ -138,7 +139,7 @@ properties:
->  
->    clock-names:
->      minItems: 1
-> -    maxItems: 8
-> +    maxItems: 10
->      additionalItems: true
->      contains:
->        enum:
-> diff --git a/Documentation/devicetree/bindings/net/tesla,fsd-ethqos.yaml b/Documentation/devicetree/bindings/net/tesla,fsd-ethqos.yaml
-> new file mode 100644
-> index 000000000000..579a7bd1701d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/tesla,fsd-ethqos.yaml
-> @@ -0,0 +1,91 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/tesla,fsd-ethqos.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: FSD Ethernet Quality of Service
-> +
-> +maintainers:
-> +  - Swathi K S <swathi.ks@samsung.com>
-> +
-> +description:
-> +  Tesla ethernet devices based on dwmmac support Gigabit ethernet.
-> +
-> +allOf:
-> +  - $ref: snps,dwmac.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: tesla,fsd-ethqos.yaml
+On Mon, Jan 27, 2025 at 7:17=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+> [Olof]
+> > It seems worse to me to misdescribe the hardware as separate blocks
+> > with a device-tree binding that no longer describes the actual hardware=
+,
+> > but it's not up to me.
+>
+> I agree. It's clearly 1 block given the first 3 banks are interleaved.
+>
+> If Linux can't handle 1 node for N gpio_chip's, then that's a Linux
+> problem. Maybe it can, IDK. The lookup from a DT node to gpio_chip just
+> needs to match on more than just DT node pointer, but look at the node
+> ptr and arg cells.
 
-Humm...
+Any operating system benefits from modeling the GPIOs such that
+one set of 32bit registers [r0, r1 .. rn] becomes a discrete entity for
+the OS.
+
+Reasoning: any OS will want to be able to control several lines in
+a single hardware operation, such as a register write, for example
+to shake a clock and data line with a single write_to_register()
+operation. If the hardware is described in chunks of 32 bit registers,
+this is easy - Data Out Register, Data In Register, Direction
+Register n bits, if an multiple-write/read operation hits this entity, we
+know it can be handled with a single register write or read.
+
+Yes, the same can be achieved by hardcoding this split into the
+driver. But having the binding like such encourages it.
+
+foo-gpios =3D <&gpio2 0>, <&gpio2 7>;
+
+both need to be set high at outset, well they are in the same
+entity and controlled by a single register, so (+/- overhead):
+
+fooreg =3D fooreg | (1 << 0) | (1 << 7);
+
+I agree this hardware is harder to classify as such since the blocks
+share a single IRQ line - if they had individual IRQ lines it would be
+a done deal, they are subblocks - yet shared IRQ lines are not *that*
+uncommon.
+
+Does this modeling reflect how the hardware actually looks? Likely.
+
+The way GPIOs are built up from silicon io-cells are not that complex.
+All the 32 bits from the set of registers will be routed to consecutive
+pins, looking at the pin layout of the SoC would confirm if subsequent
+bits map to subsequent pins.
+
+Yours,
+Linus Walleij
 
