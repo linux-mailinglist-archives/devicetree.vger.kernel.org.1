@@ -1,183 +1,140 @@
-Return-Path: <devicetree+bounces-141394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC6C3A209C2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 12:33:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2868AA209CF
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 12:38:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ED6671886BCD
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:33:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46E5B7A1AB5
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:38:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65E4C19F111;
-	Tue, 28 Jan 2025 11:33:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C146A1A0B08;
+	Tue, 28 Jan 2025 11:38:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JcjtIjhB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C028D199FA2;
-	Tue, 28 Jan 2025 11:33:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF461A0711
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 11:38:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738064001; cv=none; b=anZ19HHaRsMa3zB6H9Q+Qz0Sfjh++gAKk/T+iohtaEbqes3YLNIQ+UZbZEDhtKwgxpGKn3s6p91U24IpYKeYSj9m25bcycYg+AvY5CbX7xZSmPjC0W6MCVN93HkwbY+Uu7nCJZ2ZXheCiKgda61hkOfD/cwGf/Yc8z2liCsl/yY=
+	t=1738064292; cv=none; b=n8zxkNAPc6Uyd+0UAUhTUMKdnXj9e05AlRZuEdLzEk0YLqx/4KeEaolXSV2t5kQU0SCDrI1PE9oRDNwTHJahOlWtXGEF+bwnvhaEqUY45Q5tCozdbrd+sWV2NBJ5sJ6oNZHuVqj/jOKOM4fF2Fec2zREnR2WCZ/CZKtL9o5MYmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738064001; c=relaxed/simple;
-	bh=tnPANPQp/iMd7ygA5qHRfQpX/WHlo4nFKXP1SUwAJ38=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h2Milg1kprtqH5UhMnheIt8y7qBcK9BVbjWeAbVpOjt7qgN8PksPvtjfvceoSRZxgaHxXAR9caQWqnDhhhcVeya1w7vH0CCQKeMmM+G/FwAS+4eMLTnZghBddN1j3qDMquGY8yHe2wbj5yMz/2TVUTS7ghFBVoz1AzigbaTpmdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-85c5a913cffso3056267241.0;
-        Tue, 28 Jan 2025 03:33:19 -0800 (PST)
+	s=arc-20240116; t=1738064292; c=relaxed/simple;
+	bh=0BgJYAFmIfhKmUiJdaRGDiHPwseznBuyo9kvKgzoZC4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Z44ZUdXYz1VUAAFRGrEtgLuNboEGWiYvUU9CxKnC4v7yLXzci3pdbrHadEE4gUeucWDrlX8wfSgdT3HaJiAw/L3sDPlI/Kr2YnLdUFCWZuYy+MWX46Ohil862gFwcA/beE6PDfPBidaewBYLfGr5jyCYwzKNmYQprCzAcVNeXQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JcjtIjhB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50S4utEY000395
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 11:38:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6g2echZ7j23XTXqq2EVMBCfIeLtHvBBfpj4T6nbNFPw=; b=JcjtIjhB+rwU6PJZ
+	on49s2BRQJb1L6kyZYUCWxsPP1DR4Lwniz2tu6Ypqnrkkr+pHt+fkr/IwmBL7iFE
+	2AnT2IT2E4jU2N09jA2iCIURWMullinXOL4x1uSTTqttG/W9CMf4y+Q1b7q5h2/Y
+	8Zcli1tBEZw+6OK/CZzpZi6g2Y3HY/TM+w0UssSDWMibNrTrx1MtFZvE2QCBWPjN
+	fQMMrOhXBGcLYv7Q0W27AlFc/dH4aPYK+qx2TN6NZ4Q3i0sWCx5QLtbIJlevORq8
+	6ifAG+V7gzK0Cibr6ajfn7cPgZlp3I7XM0Tfr52t/9KAN3UnAAnj7LDDWc7i+qz4
+	MruBCw==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44ernkrvc0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 11:38:09 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-46b3359e6deso13897971cf.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 03:38:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738063997; x=1738668797;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9MqtICvzZgY6SSLmB9xB0fcdPuyJ3N2axr9vtSPs85Q=;
-        b=OAGrbYRO7ZsJfTQtorlr5K3imCsBJrRZZEhlJcAdIpu9QU4y/Y3EnOJLzXljlVtFUr
-         pN/Q0gJR70HHp3pdsyFXp5EDAbrFABeud4svgTW7Ps2LhARwuEsSGRbfVCbKu9zZviMJ
-         6cXPVf3yPlqQE8vqYIPMg5uVaPWQjMxZVJqOKdDbPSoNeLg17BEy12k2+jJmvADD71Dn
-         R9gyu7pQjbxrXurQ4geZ4RQJjr5J7KxKFGsBbMnjz/TIerROlNbeZh9YprasWSUrqti2
-         TmTBnmBVEnn2QM9PphSqNyq6VHQYiMFqy6UCzWsQTG83UaXUrA/NpeXSekEEY9MdNZoM
-         rdwA==
-X-Forwarded-Encrypted: i=1; AJvYcCX8q/971MY632UILvsKZua7SiEi6JftgSZ82Vqkc6Ng4AiDaYn4w3w3rH8lq4mdWhzajdHy7Lib9tRH@vger.kernel.org, AJvYcCXSRypLuxFj+/Oiyt2tvrUebFNS4sFu46Mu6mdeXAxOI1NXCz/CQNA61zia6JbyW6QIrkw9yeOYel0WO0MD4c18OE0=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkhZY0MTt7Cxnri+2/+KKOPc6miPj+iO91YpeQWtN4eYH5tquR
-	BchzxP4vUtQa97O+A9QiXrtg1QZtzKT2ojNaMg5sJfASLcr0ASSva/tY3dnr
-X-Gm-Gg: ASbGncvef/5C0VWcwHyj0PFQ0RmYcUSdmuq0qxfO6wUro3HuQ4ZAwn9OOxa7ToiPeV0
-	Yw4s8wtici4rDE1SxOixPDE8nnFdMhHA3ZDXgfpWu0fO1ytA0A7yKWJlWSD6WUOWlcM9BWtj7yQ
-	BS4Opu6GfumgRXu9zKwqd5j1stvw3Q5iyvXmoExZCOheoiYp6Rp+odt+eyKMsjaNZJp2BU7InaF
-	HfY3uPCQUfZkz4IhY+OdbvU83XYRPdx2j9rG6jWg9XvCmZKQM7BYx1MXESIcE0yqU7MbqGmIDKX
-	Q634jjjEhEXg1EqDYkG5In0+aI3xxw98gT5iQHt1HFtuGKD9tUESCA==
-X-Google-Smtp-Source: AGHT+IG8zuJwiXxUoCXaBZxA1yZn8lvWTbG1Az+93DFBejIl669D8cGuN84wzS6irxt52ygfrRV7Ow==
-X-Received: by 2002:a05:6102:3913:b0:4b6:8fc5:2e7c with SMTP id ada2fe7eead31-4b690be8eb5mr37966757137.12.1738063997386;
-        Tue, 28 Jan 2025 03:33:17 -0800 (PST)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-864a9c17e31sm2282783241.22.2025.01.28.03.33.17
+        d=1e100.net; s=20230601; t=1738064289; x=1738669089;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6g2echZ7j23XTXqq2EVMBCfIeLtHvBBfpj4T6nbNFPw=;
+        b=WBu+yoY+tPxS1XUQGe0KRGf2IfEWwFq9Y4M1pYJe/yitGhxNgORCcqWrToTmHsRN6/
+         RLgeycq6AQlH77jOLXSd0YW263tGnvnGyinQlL1c61H7+erSdRO7jMB6CrUvGMi6YPy6
+         TYAr9cjcDRH0JaG1Sym8vsB2Yj64mirPWh+2xEWcPk/qfyOgMB0uRJqNJ7qVNA/SguAk
+         sOlh1PRFJJ45RnvkYTOYWnbdCeiMFBPf9nGLHt7GK5BlP3GPObIz4Ite7TcwZqj+WVUz
+         rXX1CGvawELzswtZCLjJ2Ky1byiphAYAUwyTCy4gyq34i5jemGJV8QSxCIk6uW7PC51L
+         yLPg==
+X-Forwarded-Encrypted: i=1; AJvYcCVXeqX7wVv5IUljNxtCvrCQU5LHeEDMm03oOVT1jNsJ9Hq1rapChE1ySejslPBnPj8xPA278DBB24XN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyz8OUAuhLMsvY8x8ILErJTncqW7/vIQR1e2qnh49SJyw0DP7ML
+	hPKKal/Farcmlg972ZyBczQgKJrnHhSiAtHSx/Uu03q3nhAsQyZNQhwm7fzHPM9mFZ9jQmmjiEa
+	7eIYu1855wCUpzvEsrmGoF5CZ0rQKWqcqSr4LnTZm0E3xDChCb2oKPN2uVT+uhAHCLbtW
+X-Gm-Gg: ASbGnctLtAj4OGG/6sZGyDjBF5gVwhhkGRf4XHQQJCDNta/rbv12ZLg2k2ixK+fMTeb
+	pPUIdbk7jqqB2eWIPk4GBCNRiuoPOPQVNvzDqjyjM6CWMV+ldKkSUEHglGm3qNJpFPUeqIOhCDk
+	YcM8G7TAq7rB7/Hje30civRxyhyW37J/uHg2pQGq/m0Yl8iRFhFWSAzl9zzIXnVzUZMyjZa1U6q
+	ScgsWiyObZNPCCnoqWyjBbPHI8UJTUisuBENgJXvvNj5Blk1j9n13Xo5bXRJQx5hrdRbUdpGIM1
+	Bgz0DTElE2a0KCnHwKjf6DTrzUWFhHDMpt29ie9wncftz2nR1QXejygLj40=
+X-Received: by 2002:a05:622a:608a:b0:46e:12fc:500f with SMTP id d75a77b69052e-46e12fc506cmr246727331cf.0.1738064289113;
+        Tue, 28 Jan 2025 03:38:09 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFCf2Y9aDvZCCSYPHZnq/Vme37o1Wy6pWQCZOXgJJV7jmJIX4dtvvrEwoqFnFZJe5GemRYcBA==
+X-Received: by 2002:a05:622a:608a:b0:46e:12fc:500f with SMTP id d75a77b69052e-46e12fc506cmr246727201cf.0.1738064288803;
+        Tue, 28 Jan 2025 03:38:08 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab6760fc485sm764439766b.160.2025.01.28.03.38.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jan 2025 03:33:17 -0800 (PST)
-Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-4affbb7ef2dso4517682137.0;
-        Tue, 28 Jan 2025 03:33:17 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUIA/JkwbUKKU0VhHW+GU+9OD1VfozRDnEOnBT4xIB4vPS/JC6ZgWu2JgyEOeoTrKK6h18MvQh6Si4/@vger.kernel.org, AJvYcCXjPMJuvhdlFlwJk11nY35DHoYL7ajV5ZW0OagwhaLVkHHuhSvh1b/T16EfJDtcLOH9E9HHr7TMoS9pv9ob65yAgYo=@vger.kernel.org
-X-Received: by 2002:a05:6102:3f03:b0:4b2:7534:f26e with SMTP id
- ada2fe7eead31-4b690c77e52mr38354510137.16.1738063997008; Tue, 28 Jan 2025
- 03:33:17 -0800 (PST)
+        Tue, 28 Jan 2025 03:38:08 -0800 (PST)
+Message-ID: <772b211d-ca23-4810-8d92-a67892da4fbf@oss.qualcomm.com>
+Date: Tue, 28 Jan 2025 12:38:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250126134616.37334-1-biju.das.jz@bp.renesas.com> <20250126134616.37334-6-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20250126134616.37334-6-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 28 Jan 2025 12:33:05 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX+S7t+Z0ZbT7zTgmPFqHnSZWAYcZ4cJzzE3u+j2-9ZAA@mail.gmail.com>
-X-Gm-Features: AWEUYZmBCOQBBHpcl0geg1tLlT5Yz2FF6YuO09W2QfAWI0ZQOPy-AUT57-Wu4Xo
-Message-ID: <CAMuHMdX+S7t+Z0ZbT7zTgmPFqHnSZWAYcZ4cJzzE3u+j2-9ZAA@mail.gmail.com>
-Subject: Re: [PATCH 5/7] arm64: dts: renesas: r9a09g047: Add SDHI0-SDHI2 nodes
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: ipq5424: Add PCIe PHYs and
+ controller nodes
+To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, andersson@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, lpieralisi@kernel.org,
+        kw@linux.com, manivannan.sadhasivam@linaro.org, bhelgaas@google.com,
+        konradybcio@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
+Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
+References: <20250125035920.2651972-1-quic_mmanikan@quicinc.com>
+ <20250125035920.2651972-4-quic_mmanikan@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250125035920.2651972-4-quic_mmanikan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: ALc4HQ6hXb1sp2PQppVHDFDo4T1VRnOh
+X-Proofpoint-ORIG-GUID: ALc4HQ6hXb1sp2PQppVHDFDo4T1VRnOh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-28_04,2025-01-27_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
+ malwarescore=0 clxscore=1015 adultscore=0 impostorscore=0
+ lowpriorityscore=0 priorityscore=1501 mlxlogscore=638 spamscore=0
+ phishscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501280090
 
-Hi Biju,
+On 25.01.2025 4:59 AM, Manikanta Mylavarapu wrote:
+> Add PCIe0, PCIe1, PCIe2, PCIe3 (and corresponding PHY) devices
+> found on IPQ5424 platform. The PCIe0 & PCIe1 are 1-lane Gen3
+> host whereas PCIe2 & PCIe3 are 2-lane Gen3 host.
+> 
+> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+> ---
+> Changes in V3:
+> 	- Replace all instances of ‘0’ with ‘0x0’ wherever applicable in
+> 	  PCIe nodes.
+> 	- Place both compatible entries in a single line for each PCIe
+> 	  controller node.
+> 	- Global interrupt is defined for each PCIe controller node.
+> 	- Remove all clocks except the RCHNG clock from the assigned-clocks.
+> 	- ICC tag is defined for the interconnect path of each pcie controller
+> 	  node.
 
-On Sun, 26 Jan 2025 at 14:46, Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Add SDHI0-SDHI2 nodes to RZ/G3E ("R9A09G047") SoC DTSI.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+This one is wrong, please undo..
 
-Thanks for your patch!
-
-> --- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-> @@ -518,6 +518,63 @@ gic: interrupt-controller@14900000 {
->                         interrupt-controller;
->                         interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
->                 };
-> +
-> +               sdhi0: mmc@15c00000  {
-> +                       compatible = "renesas,sdhi-r9a09g047", "renesas,sdhi-r9a09g057";
-> +                       reg = <0x0 0x15c00000 0 0x10000>;
-> +                       interrupts = <GIC_SPI 735 IRQ_TYPE_LEVEL_HIGH>,
-> +                                    <GIC_SPI 736 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&cpg CPG_MOD 0xa3>, <&cpg CPG_MOD 0xa5>,
-> +                                <&cpg CPG_MOD 0xa4>, <&cpg CPG_MOD 0xa6>;
-> +                       clock-names = "core", "clkh", "cd", "aclk";
-> +                       resets = <&cpg 0xa7>;
-> +                       power-domains = <&cpg>;
-> +                       status = "disabled";
-> +
-> +                       vqmmc_sdhi0: vqmmc-regulator {
-> +                               regulator-name = "SDHI0-VQMMC";
-> +                               regulator-min-microvolt = <1800000>;
-> +                               regulator-max-microvolt = <3300000>;
-> +                       };
-> +               };
-> +
-> +               sdhi1: mmc@15c10000 {
-> +                       compatible = "renesas,sdhi-r9a09g047", "renesas,sdhi-r9a09g057";
-> +                       reg = <0x0 0x15c10000 0 0x10000>;
-> +                       interrupts = <GIC_SPI 737 IRQ_TYPE_LEVEL_HIGH>,
-> +                                    <GIC_SPI 738 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&cpg CPG_MOD 0xa7>, <&cpg CPG_MOD 0xa9>,
-> +                                <&cpg CPG_MOD 0xa8>, <&cpg CPG_MOD 0xaa>;
-> +                       clock-names = "core", "clkh", "cd", "aclk";
-> +                       resets = <&cpg 0xa8>;
-> +                       power-domains = <&cpg>;
-> +                       status = "disabled";
-> +
-> +                       vqmmc_sdhi1: vqmmc-regulator {
-> +                               regulator-name = "SDHI1-VQMMC";
-> +                               regulator-min-microvolt = <1800000>;
-> +                               regulator-max-microvolt = <3300000>;
-> +                       };
-> +               };
-> +
-> +               sdhi2: mmc@15c20000 {
-> +                       compatible = "renesas,sdhi-r9a09g047", "renesas,sdhi-r9a09g057";
-> +                       reg = <0x0 0x15c20000 0 0x10000>;
-> +                       interrupts = <GIC_SPI 739 IRQ_TYPE_LEVEL_HIGH>,
-> +                                    <GIC_SPI 740 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&cpg CPG_MOD 0xab>, <&cpg CPG_MOD 0xad>,
-> +                                <&cpg CPG_MOD 0xac>, <&cpg CPG_MOD 0xae>;
-> +                       clock-names = "core", "clkh", "cd", "aclk";
-> +                       resets = <&cpg 0xa9>;
-> +                       power-domains = <&cpg>;
-> +                       status = "disabled";
-> +
-> +                       vqmmc_sdhi2: vqmmc-regulator {
-> +                               regulator-name = "SDHI2-VQMMC";
-> +                               regulator-min-microvolt = <1800000>;
-> +                               regulator-max-microvolt = <3300000>;
-> +                       };
-> +               };
->         };
->
->         timer {
-
-Shouldn't the vqmmc-regulator subnodes be added in the board DTS,
-when needed (i.e. at least for SDHI[12])? Or do you expect the board DTS
-to /delete-node/ them when they are not needed?
-
-Is it possible that SDHI0 does not need the regulator control, e.g.
-in case of a fixed voltage?
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Konrad
 
