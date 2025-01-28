@@ -1,207 +1,211 @@
-Return-Path: <devicetree+bounces-141399-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99EC0A209ED
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 12:48:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F4F0A209F2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 12:49:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B90861885EEA
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:48:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80C513A3E1D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:49:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D1F019D8A7;
-	Tue, 28 Jan 2025 11:48:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAEAA1A2391;
+	Tue, 28 Jan 2025 11:49:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GXNI+uH3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2ED119CC11;
-	Tue, 28 Jan 2025 11:48:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 608CF19DF75
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 11:49:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738064903; cv=none; b=tUXpKvzNUFM/ZfcE/ZnmLyVltga/ZrUrGWQHiz02H/5hQcIC0xxzMM2MC2/EGODd0fjvsouL+mr0Lzc0IhxqYpqWKOd3PAsJP9KhIFEEqR8oH8kXWfD5wr13UJKAGBR/Lwr/PMiTXCrXy9CTI8qK0SH2KGmv4HI2E4Kab+4D5UE=
+	t=1738064959; cv=none; b=hiZ1pw7EbNa2q+Tafhof6+1x0Uq/m6+1eX2GmdVmU4MzzCbvH9UAfOH1nGza/w9IFAWd0heiuz46ki/QjTJEb2mtjudCc3Jg2cw9J7ileNa+/IbZGFzTV9b/VXNAfX2f+8pDyrbIf9/h3nGGciW/C8WuWn0C+8H20HDscvMIEp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738064903; c=relaxed/simple;
-	bh=qz24RbaqsVBJxJ4yT4PUajzIJGaIR/iROS/05qYJpdk=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dfcpoL6qNSzNmVKGzag+1BISj5n9YS2uGlzb1hbLuUJP90bJT5rhc9Ey83DroytHmV2bTe/4ya9oDgBhzQAnUy71MkBIJ1UXL2NtzedX72x4YjCl+gizYOUXQrbFPHG+NVfE1Sm4ZzHkNnP/DZAEbwH0PhHMlqO2B1f2cth2hjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Yj3QZ3SqNz6M4HK;
-	Tue, 28 Jan 2025 19:46:14 +0800 (CST)
-Received: from frapeml500003.china.huawei.com (unknown [7.182.85.28])
-	by mail.maildlp.com (Postfix) with ESMTPS id 60B9D140157;
-	Tue, 28 Jan 2025 19:48:18 +0800 (CST)
-Received: from localhost (10.48.150.41) by frapeml500003.china.huawei.com
- (7.182.85.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 28 Jan
- 2025 12:48:17 +0100
-Date: Tue, 28 Jan 2025 11:48:11 +0000
-From: Alireza Sanaee <alireza.sanaee@huawei.com>
-To: Rob Herring <robh@kernel.org>
-CC: <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <jonathan.cameron@huawei.com>,
-	<linux-arm-kernel@lists.infradead.org>,
-	<shameerali.kolothum.thodi@huawei.com>, <zhao1.liu@intel.com>,
-	<yangyicong@hisilicon.com>, <rrendec@redhat.com>, <catalin.marinas@arm.com>
-Subject: Re: [RFC PATCH v1 1/1] base/of/cacheinfo: support l1 entry in dt
-Message-ID: <20250128114811.00007685.alireza.sanaee@huawei.com>
-In-Reply-To: <CAL_JsqKFjQeaoGn5PRn1=P49mag-Kyik7EwtsOU8fcdvYhPcOA@mail.gmail.com>
-References: <20250124152008.313-1-alireza.sanaee@huawei.com>
-	<20250124152008.313-2-alireza.sanaee@huawei.com>
-	<CAL_JsqKFjQeaoGn5PRn1=P49mag-Kyik7EwtsOU8fcdvYhPcOA@mail.gmail.com>
-Organization: Huawei
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1738064959; c=relaxed/simple;
+	bh=hLf3J4DjMIUSXWpFAlaJabK1uiLzBJKg0YsOiU74pXo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l/5mMdWvQUt5MKwh7y/hIGmkr/WnyGTIoVuFVBEWXtChYkxUYa4CckNz1tGmSHkm5NW+iU0tUK/qOtD4B458P556qMFIBkVUFypx8zMoc2utBEbvB/Gt1SHp5wrlgcQxw/Pov0xVcO52SFk+HIIhHY1bDg7WIccBlwP5AzctCcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GXNI+uH3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50S0DplG011347
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 11:49:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XMTiSyzPz9jN6LjslTgsVpii1bcW4uZ/GQwmU5IYtGc=; b=GXNI+uH3KnbxPjTH
+	l2oYdcER7tGYJgBtANdRnoZ0uQ6pWgrEbspZHPoVa40WG2Oavlge8j8jnGwVizFT
+	q33Agv3h2qa00wjQTSY+G3wkSXpJpEW4ECckhEsu3rR2NR1UWcTWZ/afkqUgDCjE
+	z0Rfg5PMqk0rSynv7picopekQWwArCWzu82QQSs0tucyzTm29wOY14YUOJTq1XK3
+	SjQ9SjBYPcQVMJYPl5f+xqVr9TzrdupIcFDOSmD+Pb6yVUPKRSjexJO9Y9Xueyt3
+	dliR6pykwpxPuiDmmYAQwxzZsl6TgOv7xtW9wRVMSNFWQ6MTeJiegKC9TnNXMTGR
+	KkXuEg==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44emgts8af-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 11:49:15 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-7be6f7207cbso147510685a.2
+        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 03:49:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738064954; x=1738669754;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XMTiSyzPz9jN6LjslTgsVpii1bcW4uZ/GQwmU5IYtGc=;
+        b=P7iXxPni6dB3fYXGKrAHYUc617RQEGVs/Df0mk1UQI5n+4olkdcDXPpTfSU+JM5SZQ
+         8dNmR/0uYTSDuqvm/+8L1Ynw4hXIFxdhRI3JA2q+O7y+0e8xx2UmoZlv/hZGEhJawQBB
+         Ieu2wzs502mPgLEYUrVAa10CzyLatJWSBwckJFyj+zQkbsLgYQwDE+33VAJoeqvMTRcS
+         g1/mYAKr2LiWPju3aAe2a3ZIH2c7FkVKqli9DNMmt69YQo6+5Z/RoCgVB31Z7EemJ65+
+         nZKYS2XjAJdYPJdb4NVqZQcvI/OZy+KEAPSWnHwuGXfpwBH9Ho9WK0+N1Fjf3Fp5QQkh
+         5Gvg==
+X-Forwarded-Encrypted: i=1; AJvYcCVkSa7kSjfqdnSh8/DMgPY4t4WmqgMUeaESEOUS+qG5c8e5Hc9kqnq2YF/ekUjj/udsUxKiPLizAZqj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPWhRpyJyf5X+T+ppoKf65Hbf9lRvBpPjZywbxAJiXOAMPs4wh
+	qu1aajbOUhV645kNoG2UyWGM14vbWX+ZbzlvnlGLwxRjmEOn0sadC1cUlDygtFR1ryCN0TvRLKs
+	qqL6VcH4g55djEHWpxmZhEO8jGMRR+VF1RBRkfn9JI73gVZdk0EuXSKvQXYPR
+X-Gm-Gg: ASbGncta/PjHJqEbJakL1WMBl2DgzbWpvt4adYRgHEmcLVG0hktoXHsn7AJcxopT29V
+	FFtGNz9Fve40FQLVuvFupzSQdIGtjEikGqTmUvoM1G3HjHWLcSz2/ZLiXM64bBM7CdHKWupm9N+
+	9MyRqA1tKIP8bSt7BjDKYwlAEd1O5DngtnAOCZ3+WwByayAbMqH+n4sWqAxC61FdCb5kZzUzWqf
+	HHZow54V0S5vIUr8+bzNqfuukZEW+wI+jKI3IirWKXsqiXCTowIXqGJKm25CN5R6dkqiVaWKo9Z
+	PSYJ8PoYuyzD/oFALFly/LOaR5XaiSTM1xf5UQ2mf+3+S0p790Y+CIwoXLA=
+X-Received: by 2002:a05:620a:d95:b0:7b6:c405:b586 with SMTP id af79cd13be357-7be8b30bf0amr1587055885a.8.1738064954089;
+        Tue, 28 Jan 2025 03:49:14 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHI1dJiPQTIhshRK4KWxNT9fbuaLY+4vOaJg+z5KunJ7ft3YpJ0l4tsvlrwy0o1H/pwbMZbNw==
+X-Received: by 2002:a05:620a:d95:b0:7b6:c405:b586 with SMTP id af79cd13be357-7be8b30bf0amr1587053485a.8.1738064953639;
+        Tue, 28 Jan 2025 03:49:13 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab6760fbbbasm770357666b.146.2025.01.28.03.49.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jan 2025 03:49:12 -0800 (PST)
+Message-ID: <42345315-0c64-417b-9e48-bc95a8d9e388@oss.qualcomm.com>
+Date: Tue, 28 Jan 2025 12:49:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml500006.china.huawei.com (7.191.161.198) To
- frapeml500003.china.huawei.com (7.182.85.28)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcs6490-rb3gen2: Add vadc and adc-tm channels
+To: Rakesh Kota <quic_kotarake@quicinc.com>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: quic_kamalw@quicinc.com, quic_jprakash@quicinc.com
+References: <20250124070200.3969230-1-quic_kotarake@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250124070200.3969230-1-quic_kotarake@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: q0ssllwggun4xGSdp5YTeRf3oNfXXw3T
+X-Proofpoint-GUID: q0ssllwggun4xGSdp5YTeRf3oNfXXw3T
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-28_04,2025-01-27_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
+ suspectscore=0 adultscore=0 malwarescore=0 mlxlogscore=789 mlxscore=0
+ phishscore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2411120000 definitions=main-2501280091
 
-On Mon, 27 Jan 2025 10:24:13 -0600
-Rob Herring <robh@kernel.org> wrote:
+On 24.01.2025 8:02 AM, Rakesh Kota wrote:
+> Add support for vadc and adc-tm channels which are used for
+> monitoring thermistors present on the platform.
+> 
+> - Add the necessary includes for qcom,spmi-adc7-pm7325 and
+>   qcom,spmi-adc7-pmk8350.
+> - Add thermal zones for quiet-thermal, sdm-skin-thermal, and
+>   xo-thermal, and define their polling delays and thermal sensors.
+> - Configure the pm7325_temp_alarm node to use the pmk8350_vadc
+>   channel for thermal monitoring.
+> - Configure the pmk8350_adc_tm node to enable its thermal sensors
+>   and define their registers and settings.
+> - Configure the pmk8350_vadc node to define its channels and settings
+> 
+> Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
+> ---
 
-> On Fri, Jan 24, 2025 at 9:20=E2=80=AFAM Alireza Sanaee
-> <alireza.sanaee@huawei.com> wrote:
-> >
-> > This commit simply assumes that CPU node entries may point to a
-> > cache node that basically act as a l1-cache and there are some CPU
-> > nodes without describing any caches but a next-level-cache property
-> > that points to l1-cache. =20
->=20
-> This commit message needs some work. Read documentation on writing
-> commit messages.
+[...]
 
-Hi Rob,
+> +&pmk8350_adc_tm {
+> +	status = "okay";
+> +
+> +	sdm-skin-therm@3 {
+> +		reg = <3>;
+> +		io-channels = <&pmk8350_vadc PM7325_ADC7_AMUX_THM3_100K_PU>;
+> +		qcom,ratiometric;
+> +		qcom,hw-settle-time-us = <200>;
+> +	};
+> +
+> +	quiet-therm@1 {
+> +		reg = <1>;
+> +		io-channels = <&pmk8350_vadc PM7325_ADC7_AMUX_THM1_100K_PU>;
+> +		qcom,ratiometric;
+> +		qcom,hw-settle-time-us = <200>;
+> +	};
+> +
+> +	xo-therm@0 {
+> +		reg = <0>;
+> +		io-channels = <&pmk8350_vadc PMK8350_ADC7_AMUX_THM1_100K_PU>;
+> +		qcom,ratiometric;
+> +		qcom,hw-settle-time-us = <200>;
+> +	};
 
-Thanks for the feedback.
+For nodes with a unit address (numbers after '@'), please sort them by that
+address (this will make it slightly out of sync with the alphabetically-sorted
+thermal-zones, but it is what it is sometimes
 
-I am going to update this text to give more background.
+> +};
+> +
+>  &pm8350c_pwm {
+>  	nvmem = <&pmk8350_sdam_21>,
+>  		<&pmk8350_sdam_22>;
+> @@ -789,6 +865,44 @@ &pmk8350_rtc {
+>  	status = "okay";
+>  };
+>  
+> +&pmk8350_vadc {
+> +	channel@44 {
+> +		reg = <PMK8350_ADC7_AMUX_THM1_100K_PU>;
+> +		label = "xo_therm";
+> +		qcom,hw-settle-time = <200>;
+> +		qcom,pre-scaling = <1 1>;
+> +		qcom,ratiometric;
+> +	};
+> +
+> +	channel@103 {
+> +		reg = <PM7325_ADC7_DIE_TEMP>;
+> +		label = "pm7325_die_temp";
+> +		qcom,pre-scaling = <1 1>;
+> +	};
+> +
+> +	channel@144 {
+> +		reg = <PM7325_ADC7_AMUX_THM1_100K_PU>;
+> +		qcom,ratiometric;
+> +		qcom,hw-settle-time = <200>;
+> +		qcom,pre-scaling = <1 1>;
+> +		label = "pm7325_quiet_therm";
+> +	};
+> +
+> +	channel@146 {
+> +		reg = <PM7325_ADC7_AMUX_THM3_100K_PU>;
+> +		qcom,ratiometric;
+> +		qcom,hw-settle-time = <200>;
+> +		qcom,pre-scaling = <1 1>;
+> +		label = "pm7325_sdm_skin_therm";
+> +	};
+> +
+> +	pmk8350-die-temp@3 {
+> +		reg = <PMK8350_ADC7_DIE_TEMP>;
+> +		label = "pmk8350_die_temp";
+> +		qcom,pre-scaling = <1 1>;
+> +	};
 
->=20
-> Why/when does describing L1 cache in the cpu nodes not work? That is
-> the assumption in the bindings. If we're changing that, there may need
-> to be a binding/spec change.
+Similarly here
 
-Yes, I will have to send a patch regarding the spec too. Will send a
-patch as well.
-
-My plan is to first send a new revision and then send the updates
-related to the spec, and then hopefully we can converge there.
-
-Thanks,
-Alireza
->=20
-> >
-> > Signed-off-by: Alireza Sanaee <alireza.sanaee@huawei.com>
-> > ---
-> >  drivers/base/cacheinfo.c | 54
-> > +++++++++++++++++++++++++++------------- 1 file changed, 37
-> > insertions(+), 17 deletions(-)
-> >
-> > diff --git a/drivers/base/cacheinfo.c b/drivers/base/cacheinfo.c
-> > index cf0d455209d7..d119228fc392 100644
-> > --- a/drivers/base/cacheinfo.c
-> > +++ b/drivers/base/cacheinfo.c
-> > @@ -83,7 +83,31 @@ bool last_level_cache_is_shared(unsigned int
-> > cpu_x, unsigned int cpu_y)
-> >
-> >  #ifdef CONFIG_OF
-> >
-> > -static bool of_check_cache_nodes(struct device_node *np);
-> > +static bool of_check_cache_node(struct device_node *np) {
-> > +       if (of_property_present(np, "cache-size")   ||
-> > +           of_property_present(np, "i-cache-size") ||
-> > +           of_property_present(np, "d-cache-size") ||
-> > +           of_property_present(np, "cache-unified"))
-> > +               return true;
-> > +       return false;
-> > +}
-> > +
-> > +static bool of_check_cache_nodes(struct device_node *np)
-> > +{
-> > +       if (of_property_present(np, "cache-size")   ||
-> > +           of_property_present(np, "i-cache-size") ||
-> > +           of_property_present(np, "d-cache-size") ||
-> > +           of_property_present(np, "cache-unified")) =20
->=20
-> This is the same code as of_check_cache_node(), use it.
->=20
-> > +               return true;
-> > +
-> > +       struct device_node *next __free(device_node) =3D
-> > of_find_next_cache_node(np);
-> > +       if (next) {
-> > +               return true;
-> > +       }
-> > +
-> > +       return false;
-> > +}
-> > +
-> >
-> >  /* OF properties to query for a given cache type */
-> >  struct cache_type_info {
-> > @@ -218,11 +242,23 @@ static int cache_setup_of_node(unsigned int
-> > cpu) while (index < cache_leaves(cpu)) {
-> >                 this_leaf =3D per_cpu_cacheinfo_idx(cpu, index);
-> >                 if (this_leaf->level !=3D 1) {
-> > +                       /* Always go one level down for level > 1 */
-> >                         struct device_node *prev
-> > __free(device_node) =3D np; np =3D of_find_next_cache_node(np);
-> >                         if (!np)
-> >                                 break;
-> > +               } else {
-> > +                       /* For level 1, check compatibility */
-> > +                       if (!of_device_is_compatible(np, "cache") &&
-> > +                           !of_check_cache_node(np)) {
-> > +                               struct device_node *prev
-> > __free(device_node) =3D np;
-> > +                               np =3D of_find_next_cache_node(np);
-> > +                               if (!np)
-> > +                                       break;
-> > +                               continue; /* Skip to next index
-> > without processing */
-> > +                       }
-> >                 }
-> > +
-> >                 cache_of_set_props(this_leaf, np);
-> >                 this_leaf->fw_token =3D np;
-> >                 index++;
-> > @@ -234,22 +270,6 @@ static int cache_setup_of_node(unsigned int
-> > cpu) return 0;
-> >  }
-> >
-> > -static bool of_check_cache_nodes(struct device_node *np)
-> > -{
-> > -       if (of_property_present(np, "cache-size")   ||
-> > -           of_property_present(np, "i-cache-size") ||
-> > -           of_property_present(np, "d-cache-size") ||
-> > -           of_property_present(np, "cache-unified"))
-> > -               return true;
-> > -
-> > -       struct device_node *next __free(device_node) =3D
-> > of_find_next_cache_node(np);
-> > -       if (next) {
-> > -               return true;
-> > -       }
-> > -
-> > -       return false;
-> > -}
-> > -
-> >  static int of_count_cache_leaves(struct device_node *np)
-> >  {
-> >         unsigned int leaves =3D 0;
-> > --
-> > 2.34.1
-> > =20
->=20
-
+Konrad
 
