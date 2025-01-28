@@ -1,72 +1,64 @@
-Return-Path: <devicetree+bounces-141484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141485-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE103A20E82
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:27:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89B33A20E87
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:27:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DF60167446
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:27:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C03353A787F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:27:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6FF1DB346;
-	Tue, 28 Jan 2025 16:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 764A41DE2C0;
+	Tue, 28 Jan 2025 16:27:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="TFmaGkOa"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="xEld7KT9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472711D9A48
-	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 16:27:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 781851DD88E;
+	Tue, 28 Jan 2025 16:27:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738081637; cv=none; b=rIr6cMzVMqRT6PPX/52mO+6zMDwSob6DSEeyBNIXGxe/ceMq+VVO4Um4t1Xd5d9ouIzB054iPOj93O6QAFl6wEeT9XBGfRT7nUusBqa9XCfjbBOKaarBPBq3Md5FztCLq08xr1DNEgGyDg0sZz92IwQ/LPIFoQM4rWDKFa53MMY=
+	t=1738081640; cv=none; b=QHiMhEkkrLr5QBsb0TqNCjTrXc0B2SI3pPB7Sp4M4AlEFEwBxWd5jMO23XIBeOLSYCeBrbfuycXjG9El6j2iBL1wMvzWDGmtPijv5ih3BwsKwaNXJKxIiPLcsBXI97NNxX7JMTUZHx27Dm8FSC4oFmRA6yh1CYpvL+5L4Tbxq0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738081637; c=relaxed/simple;
-	bh=bG+t/CzJT5bkoQhWeyO22+5w5KevtD23rkGzScuT6Ks=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:In-Reply-To:
-	 Content-Type:References; b=r5rByUdvza8xtzzAsTU0TGA0ZRh1q1cQnfOOEzoT6NbugsSl2H89fRbBAANzXBm/NVAfNQJCXFVd8BSE4AwBnCQZ+DXcEKFwWLmONv5D+Idko8jwo0DAF1UduLa1SSN4QA1ESM5x/0Y+dUE8BXcEzNv709HDeIoVZ9K4vygdr40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=TFmaGkOa; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250128162712euoutp025ef952ad4cb37c661cb584a233551771~e6AlFqE2M2638626386euoutp02c
-	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 16:27:12 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250128162712euoutp025ef952ad4cb37c661cb584a233551771~e6AlFqE2M2638626386euoutp02c
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1738081632;
-	bh=fFbTh+PWSmdRFBoGu9O4DUva9iXla1md7758aeiDLz4=;
-	h=Date:Subject:From:To:Cc:In-Reply-To:References:From;
-	b=TFmaGkOaOngHdMQ/pXWXbzPxRWkXqYTQQ7blYdU3MnDfl4Ui55OQEmZS92nkRU0QK
-	 9TX/PY4ci0p5GYDsRhsOWS2re8kN/l4fph6zMyF8e9fF3u2UyhZjQvigLMkKzbjp+H
-	 aiwUFOqcNtxzG4ahagzXxHPBOw/dUlGvc2SLwdcg=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20250128162712eucas1p1c6f2938e96b8144aaccff7d0c3905440~e6Akmdgug0040500405eucas1p1R;
-	Tue, 28 Jan 2025 16:27:12 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges2new.samsung.com (EUCPMTA) with SMTP id 6C.C2.20409.06509976; Tue, 28
-	Jan 2025 16:27:12 +0000 (GMT)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250128162711eucas1p2bfe8403d51943e5d5e7bc99c165a3a3b~e6AkKpP0F2095320953eucas1p2R;
-	Tue, 28 Jan 2025 16:27:11 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20250128162711eusmtrp14491c4910474d6a0c0a4fb4333444735~e6AkJufsr1458214582eusmtrp1e;
-	Tue, 28 Jan 2025 16:27:11 +0000 (GMT)
-X-AuditID: cbfec7f4-c0df970000004fb9-38-67990560a4fa
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id 84.F2.19654.F5509976; Tue, 28
-	Jan 2025 16:27:11 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250128162710eusmtip144e6661f192407d315ac892b5ee175de~e6Ai2D0jv2024520245eusmtip1G;
-	Tue, 28 Jan 2025 16:27:10 +0000 (GMT)
-Message-ID: <51846fb3-3d86-4ba7-8504-0725d3cd738f@samsung.com>
-Date: Tue, 28 Jan 2025 17:27:10 +0100
+	s=arc-20240116; t=1738081640; c=relaxed/simple;
+	bh=F5EKCT5c1ITZ5+JYI2KVdo4O1adnaZxGxVOQ15Cfnms=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=b5WeDIBsv+4Hl1ajRSc0u9Q4N3xznClO+oGAsaLiAhyOVv/TNrmDOESAxErFnzXho6UG0rVVcXvb+P2vURHjBByJxmOpFmL/xHkREV6muQCMUFQrnqdCDt55ByfkDUWoNYcDry2na5KjQAzGGFYZWyNDBtgbzwYOCIieTnhuM9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=xEld7KT9; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTPS id 50SGRCHl1991342
+	(version=TLSv1.2 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 28 Jan 2025 10:27:12 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1738081632;
+	bh=cC0KMS0vR8Sacv6KHUAZ+n02/v/BMfPwtB7yIm17/P8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=xEld7KT9eRIA/7mzjTT9W4raW+WMASjsjsN6IHKWABf2f4WKkIqdWk2WBJUtnOyU4
+	 q63Rm9RXiRuCdduncfAzTtIVRR/kt/M2YDTo48fc6wqo0pM3fyfrdoANnW06IsbJ6a
+	 VGhLLH/cjdyELze/3ceAaz8A7NALP2cWqYc9HtmQ=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 50SGRCxj024979
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 28 Jan 2025 10:27:12 -0600
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 28
+ Jan 2025 10:27:11 -0600
+Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 28 Jan 2025 10:27:11 -0600
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 50SGRBoE088372;
+	Tue, 28 Jan 2025 10:27:11 -0600
+Message-ID: <6d896633-0545-4e2c-ac7d-a05686a0df49@ti.com>
+Date: Tue, 28 Jan 2025 10:27:11 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,122 +66,92 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v3 04/18] firmware: thead: Add AON firmware protocol
- driver
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
-	wefu@redhat.com, jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, frank.binns@imgtec.com,
-	matt.coster@imgtec.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
-	ulf.hansson@linaro.org, jszhang@kernel.org, p.zabel@pengutronix.de,
-	m.szyprowski@samsung.com, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, dri-devel@lists.freedesktop.org,
-	linux-pm@vger.kernel.org
+Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-am62-wakeup: Add wakeup r5f node
+To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Devarsh Thakkar
+	<devarsht@ti.com>,
+        Hari Nagalla <hnagalla@ti.com>
+References: <20250127221631.3974583-1-jm@ti.com>
+ <20250127221631.3974583-2-jm@ti.com>
+ <950a1e23-a943-41b0-979a-4e7a4a264fdd@ti.com>
 Content-Language: en-US
-In-Reply-To: <0324973c-2180-4077-a000-b7b6d895b7aa@samsung.com>
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SfUxbZRTGfW9v771tUrgUTF9Rx0LG4pyygajvnEPmmLlomGiWmGwaaLa7
-	DsdX2nXTzY/yMdygncCQj4IWcANsVj5qYaWhVFltGczC2AZIoEyFZCDIKh1kKMXRdsp/v/Oc
-	5815zslLcYRXiVAqNeM4K80Qp4UTfLzd9qD/+RRupWR72QqJeobrMNT2t5pEl80ODGmsDi5y
-	DhowdOv+PIGapgZIdNecjaOhxq9JlGtrJtC02kmg/v4WErmUTi66aaom0ILKClD7Qh6BdNZx
-	EtW62nB00WgCKP9cPRfd6N2Lxp09OJq+qeSgfHUgWu00ksgz1Iqjqj8tJDLMFnORXfceyrOU
-	4nEbmPmRMyQzOz2NM1fPuknGvFiDMx3qcZJRdlwHjF57jmDGhjoJ5ptr7zAThXaM+f7i50ye
-	zoYxX65sZ+a7bhPMeYMWMIO5w2SS8AD/1cNsWuoJVrotNoV/tLbBCrLs/I+Gij2EAgxQBYBH
-	QToGDruNnALAp4R0I4AaTTnmK9wANiunuL5iAcAC8yLn0ZOl7y75XQ0AFlsq/cUcgNcNjfia
-	S0DHQu3UIrnGOB0Bq1ZngE8PgtcqJ72ex+kwODFa4fUE02/DpsLb3DUm6Gh4p0Hj5RB6Cxxe
-	WfLG4NCdXFhW2uJtcGgRHJ3UYGvMo1+D5TmDmE8Pg1fmqr0bQfoGH2p6nf7c8bDngRv3cTCc
-	sRtIHz8F+y4o/XomvNP2l9//CexQ2v28E445lokCQD0csAU2m7b55N2wtWTWK0M6AI7MBfki
-	BMCS9nKOTxbAs/lCn3sz/Eqp+m+oo7EdKwLh6nVXUa9bTL1uGfX/c2sArgUiVi5Ll7Cy6Az2
-	ZKRMnC6TZ0giD2Wm68HDf97nsbuNoGHGFdkNMAp0A0hxwkMEHzgqJELBYfHHp1hpZrJUnsbK
-	usGTFB4uEtRZzkiEtER8nD3Gslms9FEXo3ihCuwIoGZsn5bxkuIU708I5LlGg+HyclhOb32x
-	2Fl193Rl4NYBUXCmsui5mOVC4Hol+V7r6hPchJgR3bGTp35sUaTMHjwR77miv9WVwB9SyWP7
-	E7+oFWe/+Fn2rpyDNaKc0Q8jdrwRVb/pH0dKyB8Hdr+ZzFv1MBx4vvDbH5Rq+87ZIzNxqKKl
-	7d6cqeunsYSquv18W6i1ZE+QfrDnLVFAoCL/UFGWLnSxQOdOTFrauO/dkR1btYmWpgu1P0ed
-	Rpd6m2o8Val79728oflpV/DqZOnvGf3teboJ3saA/fH66vL7quG53wBm6vvlGVWAxbVnl/Yx
-	2vBr9EutParNEamvv7Ap0WwOx2VHxVHPcqQy8b+TFE+hVgQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKKsWRmVeSWpSXmKPExsVy+t/xu7rxrDPTDXauU7c4cX0Rk8XW37PY
-	LdbsPcdkMf/IOVaLe5e2MFlc+fqezWLd0wvsFi/2NrJYXFsxl92i+dh6NouXs+6xWZw/v4Hd
-	4mPPPVaLy7vmsFl87j3CaLHtcwubxdojd9ktFn7cymKxZMcuRou2zmWsFhdPuVrcvXeCxeLl
-	5R5mi7ZZ/Bb/9+xgt/h3bSOLxex3+9kttryZyGpxfG24Rcv+KSwOch7vb7Sye7x5+ZLF43DH
-	F3aPvd8WsHjsnHWX3aNn5xlGj02rOtk87lzbw+Yx72Sgx/3u40wem5fUe7SsPcbk0f/XwOP9
-	vqtsHn1bVjF6XGq+zh4gFKVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdobB5rZWSqpG9n
-	k5Kak1mWWqRvl6CXsXD5EcaC41wV1yb+Y2tgvMDRxcjJISFgIvF95VKmLkYuDiGBpYwSyy5e
-	ZoNIyEhc637JAmELS/y51sUGUfSaUWJFywZ2kASvgJ3EqqffwGwWAVWJ2f9fMULEBSVOznwC
-	1iwqIC9x/9YMsBphAV+JJdf2M4HYbAJGEg+Wz2cFsUUENCWu//3OCrKAWWAPq8ThzZ+htq1n
-	krj0cRVYB7OAuMStJ/PBbE4Be4npTZeAbA6guLrE+nlCECXyEtvfzmGewCg0C8kds5B0z0Lo
-	mIWkYwEjyypGkdTS4tz03GIjveLE3OLSvHS95PzcTYzA9LXt2M8tOxhXvvqod4iRiYPxEKME
-	B7OSCG/suRnpQrwpiZVVqUX58UWlOanFhxhNgWExkVlKNDkfmEDzSuINzQxMDU3MLA1MLc2M
-	lcR52a6cTxMSSE8sSc1OTS1ILYLpY+LglGpgmhkpFen85fHhW6F71sgEGC2b/zmMNytTba3N
-	NM17uwImv+WVYYrSZg97kSPq0bX01u+rglURPc0PJzoVvVnw58WZd73fXs6Wd02+UH7jgvf/
-	3pD2SUfCHJ8V+HvH7i4tvNPq5c/IsPjmD7v1lp9+C68MvPg3Mrty9oO6KdbZFdd331TRPnPV
-	Vdjo5xXbFvuPHhGu0Y/W73g1adGZdXc4F0nlcfHtvTu/43tjfpTo5h+af7lbP025rhj6zTro
-	tFLjguldRU0GqqFCL2bU/3l8omxxs1T024LqCFPV7Qrdhx85aXuJMB+vVX2oxe92vfJ7s8jk
-	0IVPTnZvL5zWF/ux7PbZtnVzPj8IbjfpXXzxpRJLcUaioRZzUXEiAD4ihYDoAwAA
-X-CMS-MailID: 20250128162711eucas1p2bfe8403d51943e5d5e7bc99c165a3a3b
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250120172124eucas1p233b3f6da39e7064db62b02a66bc1ac29
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20250120172124eucas1p233b3f6da39e7064db62b02a66bc1ac29
-References: <20250120172111.3492708-1-m.wilczynski@samsung.com>
-	<CGME20250120172124eucas1p233b3f6da39e7064db62b02a66bc1ac29@eucas1p2.samsung.com>
-	<20250120172111.3492708-5-m.wilczynski@samsung.com>
-	<20250121-small-ruby-seahorse-7475d0@krzk-bin>
-	<0324973c-2180-4077-a000-b7b6d895b7aa@samsung.com>
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <950a1e23-a943-41b0-979a-4e7a4a264fdd@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi Andrew,
 
-
-On 1/28/25 16:54, Michal Wilczynski wrote:
-> 
-> 
-> On 1/21/25 10:56, Krzysztof Kozlowski wrote:
-> 
->>> diff --git a/include/linux/firmware/thead/thead,th1520-aon.h b/include/linux/firmware/thead/thead,th1520-aon.h
->>> new file mode 100644
->>> index 000000000000..3daa17c01d17
->>> --- /dev/null
->>> +++ b/include/linux/firmware/thead/thead,th1520-aon.h
->>> @@ -0,0 +1,186 @@
->>> +/* SPDX-License-Identifier: GPL-2.0 */
->>> +/*
->>> + * Copyright (C) 2021 Alibaba Group Holding Limited.
->>> + */
->>> +
->>> +#ifndef _THEAD_AON_H
->>> +#define _THEAD_AON_H
->>> +
->>> +#include <linux/device.h>
->>> +#include <linux/types.h>
->>> +
->>> +#define AON_RPC_MSG_MAGIC (0xef)
->>> +#define TH1520_AON_RPC_VERSION 2
->>> +#define TH1520_AON_RPC_MSG_NUM 7
->>> +
->>> +extern struct th1520_aon_chan *aon_chan;
+On 1/28/25 10:22 AM, Andrew Davis wrote:
+> On 1/27/25 4:16 PM, Judith Mendez wrote:
+>> From: Hari Nagalla <hnagalla@ti.com>
 >>
->> Drop all externs.
+>> AM62 SoC devices have a single core R5F processor in wakeup domain.
+>> The R5F processor in wakeup domain is used as a device manager
+>> for the SoC.
+>>
+>> Co-authored-by: Devarsh Thakkar <devarsht@ti.com>
+>> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+>> [Judith: Fix commit message header]
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi | 24 ++++++++++++++++++++++
+>>   1 file changed, 24 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi 
+>> b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+>> index 9b8a1f85aa15c..79708c1c214f8 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62-wakeup.dtsi
+>> @@ -106,6 +106,30 @@ wkup_rti0: watchdog@2b000000 {
+>>           status = "reserved";
+>>       };
+>> +    wkup_r5fss0: r5fss@78000000 {
+>> +        compatible = "ti,am62-r5fss";
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +        ranges = <0x78000000 0x00 0x78000000 0x8000>,
+>> +                 <0x78100000 0x00 0x78100000 0x8000>;
+>> +        power-domains = <&k3_pds 119 TI_SCI_PD_EXCLUSIVE>;
+>> +
+>> +        wkup_r5fss0_core0: r5f@78000000 {
+>> +            compatible = "ti,am62-r5f";
+>> +            reg = <0x78000000 0x00008000>,
+>> +                  <0x78100000 0x00008000>;
+>> +            reg-names = "atcm", "btcm";
+>> +            ti,sci = <&dmsc>;
+>> +            ti,sci-dev-id = <121>;
+>> +            ti,sci-proc-ids = <0x01 0xff>;
+>> +            resets = <&k3_reset 121 1>;
+>> +            firmware-name = 
+>> "ti-sysfw/ti-fs-stub-firmware-am62x-gp-signed.bin";
 > 
-> This is required so the code will compile as the
-> int th1520_aon_call_rpc(struct th1520_aon_chan *aon_chan, void *msg);
-> is non static and exposed in the same header.
-> 
-> I really would like to keep th1520_aon_call_rpc in this header, as it
-> could be useful for other drivers to construct their own RPC calls to
-> reboot or shutdown the system e.g watchdog.
+> What is this firmware name? This doesn't exist in linux-firmware,
+> should use the normal name like "am62-wkup-r5f0_0-fw", then we
+> can use symlinks in our userspace to map to whatever firmware we
+> want to run.
 
-Oh I get it, simply drop extern not the whole expression, sorry it's
-fine.
+Understood, will respin with fixed name, thanks.
+
+~ Judith
 
 > 
->>
->>
->> Best regards,
->> Krzysztof
->>
->>
+> Andrew
+> 
+>> +            ti,atcm-enable = <1>;
+>> +            ti,btcm-enable = <1>;
+>> +            ti,loczrama = <1>;
+>> +        };
+>> +    };
+>> +
+>>       wkup_vtm0: temperature-sensor@b00000 {
+>>           compatible = "ti,j7200-vtm";
+>>           reg = <0x00 0xb00000 0x00 0x400>,
+
 
