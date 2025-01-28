@@ -1,67 +1,58 @@
-Return-Path: <devicetree+bounces-141502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37BE5A20FAF
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 18:39:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C78A20FB9
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 18:44:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91CB6166F2E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:39:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 303D21666B0
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:44:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFBF11D79B3;
-	Tue, 28 Jan 2025 17:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B24E41D7E54;
+	Tue, 28 Jan 2025 17:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pdy+m9ai"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="ISJqIALJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DBB51BDA91;
-	Tue, 28 Jan 2025 17:39:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF4731B21BF
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 17:44:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738085949; cv=none; b=sSd9lkF86lozAnUL+zdRvsuJCXbYfAbj6x8DjU4K90HTLuXMs3okkYZoVPfZk7eIDFRKc12TP9xVPvG3anBQmlYXnUnXOg4rsmykNOjgyP9qkJSiVRNvewUqwKi3QwVGtJ56xkO/o2oSY1tnBEMh4YLrM07WChsDe8Tp3SWkUfc=
+	t=1738086272; cv=none; b=g5WAoSkHy8v13tTxLqRx+XLJBfUo95wzscIxEcqteB/jSxqO2amTD74WOag9K+ymsxOY2qSI5GkCrmEeA3kRbOX7ozW5SHXeq61YOgdNVhwtcJsYi2Zd+ptg2WtJZE3AQECwdFLacDr+++9XXViGchAFEYg6FvKmZDqhvvTjhR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738085949; c=relaxed/simple;
-	bh=jjeI4vwu2iND+mSguPTJSTWaIvWFuRgs4M594184mbE=;
+	s=arc-20240116; t=1738086272; c=relaxed/simple;
+	bh=HNbwzwz5EopvGghC6rTpU5v/V8S1Y0wVAuGl9XVDT4o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WgqdDq/xqWoFZeXbiEG5r+zH+uIm6AB8kmYURFR+9az8pwkkPPVD6ETGI4lWftTgP0niIhR+hPDF34+ftyRKZrHJB2Ag/FZsy6bJ6zYPXw2FFqO/KTYRe6YEVXxN1LcDw35Raorhf9WNP36Kohb58cEcHon7/S4viXIvlmva5SE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pdy+m9ai; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FFC2C4CED3;
-	Tue, 28 Jan 2025 17:39:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738085949;
-	bh=jjeI4vwu2iND+mSguPTJSTWaIvWFuRgs4M594184mbE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pdy+m9aiWaJ/5lwS/fspPrSkiIdjkugamqy269xrv+LCCC9inYpUsFjBqWwy60+Cy
-	 Kj1mby5Gpz4umZUm2gsuECX6Uul7b7VMD6pQ4yFWS+VkdjKGOHv9e/ljgyY244RhY2
-	 pyR2BIo+IvnmbRE3TRkQTRATvID14T7gNYtGImVVdv7yI6gmAdOIWlq5D6elEwdVQY
-	 QuXLqRs1NK9zKvTtYVY3EoDhsOtq9R6tui5JBohfJnBELy4qZpCYEfhX2Mbh08b+P4
-	 +0n83a3XIwfaxQr+AzMDsDs9+7BYeeTpwpoyJ06ZpT1jVw5B8Jo3RWx0GLjsk+WOk2
-	 S8elNmAkeEaJg==
-Date: Tue, 28 Jan 2025 11:39:08 -0600
-From: Rob Herring <robh@kernel.org>
-To: Imran Shaik <quic_imrashai@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=hthLLIS7ewExmK9notZefyp15Ek3BGF7B9uaS//FLNQRbNZeHira48TB2zrMA8FkzwOLVcqopEd7ndgD5sphXdkQRUFpjeATQ1yZ/9y8ZFL15dOWOKs8f9pcCnyZhcmOQTxKytgdgPAsUrg1KSx2ymiEhFcR+qA6Dt4tDOscz+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=ISJqIALJ; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=KuTFPn3BWudhk89I6Q5e7sp5NTwdicXotg+TALDJneg=; b=ISJqIALJ3dEvTVp9ptojRhD3gA
+	KY5uM7hwlAsZgW2gPQACqTxgSx+JyYYQmyOt9djHAw+F83Xid6U+Wy4tzPOWFdvAIGHxLVH5rRyXx
+	7O9Ofrh6S/Gtt/CQJvtVrsd1q0kZSFGoyf6OqLZ+KwMA5A/ayqxek5+Qw9Qle2Z5pv+k=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1tcpdS-008uZO-Ig; Tue, 28 Jan 2025 18:44:26 +0100
+Date: Tue, 28 Jan 2025 18:44:26 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>
+Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ajit Pandey <quic_ajipan@quicinc.com>,
-	Taniya Das <quic_tdas@quicinc.com>,
-	Jagadeesh Kona <quic_jkona@quicinc.com>,
-	Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Subject: Re: [PATCH v4 0/6] Add support for GPUCC, CAMCC and VIDEOCC on
- Qualcomm QCS8300 platform
-Message-ID: <20250128173908.GA3705252-robh@kernel.org>
-References: <20250109-qcs8300-mm-patches-new-v4-0-63e8ac268b02@quicinc.com>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [RESEND PATCH] ARM: dts: socfpga: Add basic support for
+ Terrasic's de10-nano
+Message-ID: <f9aad21c-64f9-413b-a3ea-18825515944c@lunn.ch>
+References: <20250128172917.4565-2-u.kleine-koenig@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,46 +61,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250109-qcs8300-mm-patches-new-v4-0-63e8ac268b02@quicinc.com>
+In-Reply-To: <20250128172917.4565-2-u.kleine-koenig@baylibre.com>
 
-On Thu, Jan 09, 2025 at 02:27:43PM +0530, Imran Shaik wrote:
-> This patch series add support for GPUCC, CAMCC and VIDEOCC on Qualcomm
-> QCS8300 platform.
-> 
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
-> ---
-> Changes in v4:
-> - Updated the commit text as per the comment from Bjorn.
-> - Fixed the CamCC QDSS clock offset.
-> - Link to v3: https://lore.kernel.org/all/20241024-qcs8300-mm-patches-v2-0-76c905060d0a@quicinc.com/
-> 
-> Changes in v3:
-> - Added new GPUCC and CAMCC binding headers for QCS8300 as per the review comments
-> - Updated the new bindings header files for GPUCC and CAMCC drivers. 
-> - Added the R-By tags received in v2.
-> - Link to v2: https://lore.kernel.org/r/20241024-qcs8300-mm-patches-v2-0-76c905060d0a@quicinc.com
-> 
-> Changes in v2:
-> - Updated commit text details in bindings patches as per the review comments.
-> - Sorted the compatible order and updated comment in VideoCC driver patch as per the review comments.
-> - Added the R-By tags received in V1.
-> - Link to v1: https://lore.kernel.org/r/20241018-qcs8300-mm-patches-v1-0-859095e0776c@quicinc.com
-> 
-> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
-> 
-> ---
-> Imran Shaik (6):
->       dt-bindings: clock: qcom: Add GPU clocks for QCS8300
->       clk: qcom: Add support for GPU Clock Controller on QCS8300
->       dt-bindings: clock: qcom: Add CAMCC clocks for QCS8300
->       clk: qcom: Add support for Camera Clock Controller on QCS8300
->       dt-bindings: clock: qcom: Add QCS8300 video clock controller
->       clk: qcom: Add support for Video Clock Controller on QCS8300
+> +&gmac1 {
+> +	/* Uses a KSZ9031RNX phy */
+> +	status = "okay";
+> +	phy-mode = "rgmii";
+> +
+> +	rxd0-skew-ps = <420>;
+> +	rxd1-skew-ps = <420>;
+> +	rxd2-skew-ps = <420>;
+> +	rxd3-skew-ps = <420>;
+> +	txen-skew-ps = <0>;
+> +	txc-skew-ps = <1860>;
+> +	rxdv-skew-ps = <420>;
+> +	rxc-skew-ps = <1680>;
+> +};
 
-I've applied the bindings patches because the .dts files using them are 
-already in Linus' tree.
+Hi Uwe
 
-Bjorn, please stop taking dts changes without the bindings.
+The convectional meaning of phy-mode 'rgmii' is that the PCB provides
+the 2ns delay. Here you are abusing the
 
-Rob
+> +	txc-skew-ps = <1860>;
+> +	rxc-skew-ps = <1680>;
+
+To add these delays.
+
+Please test without these two lines, and change phy-mode to
+'rgmii-id'. 1680 is rather low, so it might not work. Look for CRC
+errors for received packets.
+
+	Andrew
+
 
