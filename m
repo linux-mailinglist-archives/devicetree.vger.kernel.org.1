@@ -1,102 +1,133 @@
-Return-Path: <devicetree+bounces-141350-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94EE0A20745
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:24:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8214BA20755
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:29:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8B4F1688E7
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 09:24:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6407D3A32F2
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 09:29:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9F451DF97E;
-	Tue, 28 Jan 2025 09:24:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00171E04A9;
+	Tue, 28 Jan 2025 09:29:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="RwBEXPtN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="K5N5u7lQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9CF91E521;
-	Tue, 28 Jan 2025 09:24:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 222A41DFE1D;
+	Tue, 28 Jan 2025 09:29:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738056283; cv=none; b=ij2N3F9bvAXl+VvBgnBfvrOuNe+9smhszm+s7R3HLFEkAN7ua4T0Gfy1CZSY4RWFObGIKUvwfuP/6cDWGs14eMWGGjkqpI16yGcPlXh60Nc3AvnwcMwsIROxbmJtTRy2SXYOBqNfSIOE5vl1lah4W/ncoiWWYoFst8a9U3rZbeU=
+	t=1738056564; cv=none; b=GbL5ZvRf1pZf+WUTpsP85fK6IspnNif3aNLD6xk9H76tnJSRYkJu2fB2z/JfkoW5NCW9XO+vq9tnZ5hnXGBDQjYzpL58urqvTGYLiRwKdpyFfxmxpCkpe9xKIThnWNbsW1q2sxYuYysmuA5gaMW9qa1+lI1DAVdXR9JBEJuj9us=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738056283; c=relaxed/simple;
-	bh=PE0sYlUT9OfFJ8ehhiSAenKDNBYW1RrVTrWTzyg29sw=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=lIvE4XBoP3+gKH0gz7zsSWG+fbi0xl6/wIFIfs+PkBbTQZj17CtQJeVnFuZQvmXXQvRoXDgW6bGS1Il1ch3b5QjzydKYjSZTqeFsF5X/KygkntnruyDEFbchdPDB+lBb93fgHuL+1rK5Inm4CxYEDeBh2dITnm2Bl9tgmEGe7b8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=RwBEXPtN; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1738056564; c=relaxed/simple;
+	bh=efk1dgvlYW88vIHhxfjxNBZTM8CdBATup+ASwZsHJ2w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Fd9JbvOtA0+pKqP8Dx07CZtOhm3DC52LCGYFzYjjxcHTD9nnwj+rLC5oX/48tjcegFV1pfg7kPkGE/aXoAuAdfNqgKHIyaAgaTgpDHdf/F+jH9loNvbhRuKsB3zU4ISYLrLYbwiui9KoHkPR+KcEw0FdjCY1wQBUKxM1n26nl4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=K5N5u7lQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50S0VocD002950;
+	Tue, 28 Jan 2025 09:29:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	claHLXbH5lmJ3EZDLUdZVqkZ81FgUMtb2qbwvcKR/tA=; b=K5N5u7lQvCwlwJOo
+	BQBzHL0v09pQ9KBzSWq+FDxrBAZtlK6xqv7a6A72oK7fzXcNzTMM4Te63cFTLfVg
+	R7ZRrqiIm0ne0ctJHDs+jrKRoT21rAZaKnV8+QlYFtGJvHAfUs8QXWEtlXjFLMwW
+	mfOwjs5AM/vAkiU9P+yI27oeNtcnBkvYgolobDFwuMJ3WxMyXcJi3ToGrDTQ5bAh
+	mqnyTjbpAGnpj0Go4oTADRfzZDNPQbAb2M7Kdt7aoXRuD02Q0l0CpZXqz+VdwNBr
+	yJwLLEryAahjX4yyxjqU+rToX1ZN089Bpiv30HFmfWjYjyhuY7CA55nnmHBjWTgS
+	y/eTpA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44emry0ws2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Jan 2025 09:29:17 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 50S9TGxY001567
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 28 Jan 2025 09:29:16 GMT
+Received: from [10.151.40.239] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 28 Jan
+ 2025 01:29:11 -0800
+Message-ID: <1bd2dca3-1fa0-424d-95e8-cdb887f1d9e2@quicinc.com>
+Date: Tue, 28 Jan 2025 14:59:08 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1738056274;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CD6aGMkGgUesAlsT3HDG5pObkWdXtnRJmAMs5WiLGeg=;
-	b=RwBEXPtNpHhxIK0t1mNdkDQc4WmPYgNvEIrU0KFOUGiJhLvU1tUPFOFS4REGW1ckPFLfrQ
-	H8qzihaB1kt/C2NzPQ/gy4Qr+9qvnivYaw8kx0sBiXNVyc25ul18bOiE9rVxx2JQ9Nmlp4
-	aQ6nuSf5CI3yuCt29gsJGFDLnKKCRB6gP8KiR0Jraq/MFqpysbGp1GXosdIUa2tZLWEBGV
-	QDRtFGGuTuVPxOftgmEuUdOUPXG7cxigRIg3sXFAXQc2+ZbghIhOmlJ2xNXusGwapbPj8s
-	ugEVWMbUsodqcY6N/wV/t0Optb2qVQebaMc+aQFHPP7w4zQwdxkMDfYexkJong==
-Date: Tue, 28 Jan 2025 10:24:33 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexander Shiyan <eagle.alexander923@gmail.com>
-Cc: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, Sebastian Reichel
- <sebastian.reichel@collabora.com>, stable@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
- for rk3588
-In-Reply-To: <CAP1tNvTRER=QzC29Udw4ffOetVECWV+MfZ2o-mbUFvuZ0_i-Kw@mail.gmail.com>
-References: <20250124052611.3705-1-eagle.alexander923@gmail.com>
- <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com>
- <a76f315f023a3f8f5435e0681119b4eb@manjaro.org>
- <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
- <61b494b209d7360d0f36adbf6d5443a4@manjaro.org>
- <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
- <CABjd4Yy14bpjzvFyc8et-=pmds5uwzfxNqcs7L=+XRXBogZEsQ@mail.gmail.com>
- <CAP1tNvTRER=QzC29Udw4ffOetVECWV+MfZ2o-mbUFvuZ0_i-Kw@mail.gmail.com>
-Message-ID: <b57d8a834f5c07e37e0e7ee74346c700@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: describe the ath12k AHB
+ module
+To: Krzysztof Kozlowski <krzk@kernel.org>, <ath12k@lists.infradead.org>
+CC: <linux-wireless@vger.kernel.org>, Kalle Valo <kvalo@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>,
+        Jeff Johnson <jjohnson@kernel.org>,
+        Bjorn
+ Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+References: <20250128091012.2574478-1-quic_rajkbhag@quicinc.com>
+ <20250128091012.2574478-2-quic_rajkbhag@quicinc.com>
+ <0ca970e7-cc9a-4853-86de-5f01dc6d82a2@kernel.org>
+Content-Language: en-US
+From: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+In-Reply-To: <0ca970e7-cc9a-4853-86de-5f01dc6d82a2@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: whHjXphh8AbHOZkHJhbuJxESvrcjNOY5
+X-Proofpoint-GUID: whHjXphh8AbHOZkHJhbuJxESvrcjNOY5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-28_03,2025-01-27_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ mlxlogscore=999 clxscore=1015 impostorscore=0 malwarescore=0 spamscore=0
+ adultscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2411120000
+ definitions=main-2501280073
 
-Hello Alexander,
-
-On 2025-01-26 15:25, Alexander Shiyan wrote:
->> > > I think it's actually better to accept the approach in Alexander's
->> > > patch, because the whole thing applies to other Rockchip SoCs as well,
->> > > not just to the RK3588(S).
->> >
->> > Anyway, I've just tried it after including the changes below, and
->> > while /sys/kernel/debug/pinctrl/pinctrl-handles shows the expected
->> > pinctrls under tsadc, the driver still doesn't seem to be triggering a
->> > PMIC reset. Weird. Any thoughts welcome.
->> 
->> I found the culprit. "otpout" (or "default" if we follow Alexander's
->> suggested approach) pinctrl state should refer to the &tsadc_shut_org
->> config instead of &tsadc_shut - then the PMIC reset works.
+On 1/28/2025 2:47 PM, Krzysztof Kozlowski wrote:
+> On 28/01/2025 10:10, Raj Kumar Bhagat wrote:
+>> Add device-tree bindings for the ATH12K module found in the IPQ5332
+>> device.
+>>
+>> Signed-off-by: Raj Kumar Bhagat <quic_rajkbhag@quicinc.com>
+>> ---
+>>  .../net/wireless/qcom,ath12k-ahb.yaml         | 317 ++++++++++++++++++
+>>  1 file changed, 317 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/net/wireless/qcom,ath12k-ahb.yaml
 > 
-> Great, I'll use this in v2.
+> It was v4, now v1? So entire previous discussion and feedback is
+> missing? Go to previous series and implement entire feedback. Then use
+> proper versioning, proper changelog and make it obvious/understandable
+> to us, instead of sending v1 after v4 in entirely separate thread.
+> 
 
-Please, let's wait with the v2 until I go through the whole thing again,
-which I expected to have done already, but had some other "IRL stuff" 
-that
-introduced a delay.
+I was asked to send DTS as a separate series, this is a new series for
+DTS hence stated with v1.
+
+To address the undocumented ABIs we have changes in dt-binding and hence
+corresponding changes in driver as well. Let me know If we could send the
+complete series as v5.
+
+> I also do not understand why this is sent to arm soc. That's wireless patch.
+> 
+
+All the email list are as per - './scripts/get_maintainer.pl'
 
