@@ -1,117 +1,174 @@
-Return-Path: <devicetree+bounces-141491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 612E9A20F2B
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:51:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FC2DA20F2D
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:51:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B4F21882C9C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:51:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DDC957A137F
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22D171DE2CE;
-	Tue, 28 Jan 2025 16:48:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87DA21AC891;
+	Tue, 28 Jan 2025 16:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="0KgFhe5h"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="h1KOQIju"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E17C19E967;
-	Tue, 28 Jan 2025 16:48:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C5B11A23A2;
+	Tue, 28 Jan 2025 16:51:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738082907; cv=none; b=MkQLLqyWVfwX5rQQ4CGGtAilFYj6Pg1QBiNZeJ51m/9fDIELc7Xnksrj7xdk06sPGn2U3SQXBsgdT4Mb/xVap/Jc2erIl4ewWD/CXmOdAR4j5xPtz/aYiV8e8GvB29rOunsitKMV4+EtIyOYbcNdDqzmZjQddAsYcQqAqPaqwR4=
+	t=1738083062; cv=none; b=IgqeG8gJQsOs2HGmmSm2JCGPdLfhBpv9tgZRLT7bAPNYGJ0HhSIzDWp4XoT1K/7EubCJ5XuElGPZorK4AA+QMmoits6HSeQKH5E72pxdDLYKU9CeKLHFygBxj6dL754RlwVnh1bUVUB7EBFHw68LEPWlc2SmsOznKrxP7X2Z4iM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738082907; c=relaxed/simple;
-	bh=QUgIaiKIHUoeTNF5idK00mg36DHP/yGOTioSLtL1oqw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QNpmXtNykbbInrf7k21sl+o264MPS5DJbN3QuOysfkMaeG7CWFW4YO1PiWlqv8uYoo/e9btNYhk470k079GSqo3h3XjvgtjHs8Lo6qi3SF49/b3XJSTGy47gGbmdAfcX3eLrmFMYWEmFLH4EcqgwqMTuLgoERL+l2v2iujjMGUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=0KgFhe5h; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1738082903; bh=QUgIaiKIHUoeTNF5idK00mg36DHP/yGOTioSLtL1oqw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=0KgFhe5haH86Znix7V682YfUl/b3Y+Lk4EekPJ5K14b3ylA80tXvrKhIA8BqiuVpZ
-	 3W5md8T1hIRVfowalOb79byJp02aw4HKirAgtrv8hOJd9dmWzITCKowkAQykzkyoDQ
-	 XIS+o9TMrMlVt5zUm5Cd34H74A1S9lafq35QrejU=
-From: Luca Weiss <luca@lucaweiss.eu>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Stephan Gerhold <stephan@gerhold.net>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Matti =?UTF-8?B?TGVodGltw6RraQ==?= <matti.lehtimaki@gmail.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 12/13] ARM: dts: qcom: msm8926-htc-memul: Enable modem
-Date: Tue, 28 Jan 2025 17:48:22 +0100
-Message-ID: <4981867.31r3eYUQgx@lucaweiss.eu>
-In-Reply-To: <9badd95d-65d5-4a49-8317-1d09a8844b21@oss.qualcomm.com>
-References:
- <20250127-msm8226-modem-v3-0-67e968787eef@lucaweiss.eu>
- <20250127-msm8226-modem-v3-12-67e968787eef@lucaweiss.eu>
- <9badd95d-65d5-4a49-8317-1d09a8844b21@oss.qualcomm.com>
+	s=arc-20240116; t=1738083062; c=relaxed/simple;
+	bh=Aan9fr1tdpl/w1qbzZhAh4nJ5CuKWrNcxaNMGIbPEys=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g3z+oGkbbfNSpgxjphZxhmT1JLNCrh2Q7Sch3Ti2yTNt3WUmAbZ8I1uyVkV4Fx9T3kHaiIjt5ra7FfEnHAYhf48oxTD2XoJCFUtUt6nbpjjDRAdr+Ld3IJGlf3bRlGkNKuYmuprpk4n9A9J42x9pZZO5SwoKJS8uVhs/B8w1egQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=h1KOQIju; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738083061; x=1769619061;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=Aan9fr1tdpl/w1qbzZhAh4nJ5CuKWrNcxaNMGIbPEys=;
+  b=h1KOQIju/3fZf8cncRbTSaEYrZH5wStisMwGgJIv+j7itbHHzaOxNUYu
+   2m7+hEVHwefKJIsDV/ckcdkhwR0SGdXxhVMrfO77CjotBMuKv00GDwaHz
+   tU6TAO4yc9D4Dk+tz+WvicpO2EnltSCqohl3ZezfAqmI7HG8xXuAi7bp/
+   NGv9NyQ323tKXvV0nelu55KrvvWwYcbkraytcWs9fpGqSVxiSlKzP1DyB
+   MiAwLCVfhwtzBNbntc4XvS7MGyErIYg7YPKclaDNRUOU+Ymqf2/lATcFw
+   HgHotmSJr8plQwcdoKXA7S8vFH0jO2OL5VXZKiY+EaoqlfV6ik1DncIV5
+   g==;
+X-CSE-ConnectionGUID: F7JdSpE/TnCL5RsouGpEjA==
+X-CSE-MsgGUID: tUi2ewZrTZ6vP1StKZghnA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11329"; a="38277623"
+X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; 
+   d="scan'208";a="38277623"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2025 08:51:00 -0800
+X-CSE-ConnectionGUID: MlQX91//S82s7U+6BW0vug==
+X-CSE-MsgGUID: 0PKzmbaESf614QUbRieP0Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.13,241,1732608000"; 
+   d="scan'208";a="108601274"
+Received: from smile.fi.intel.com ([10.237.72.58])
+  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jan 2025 08:50:57 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1tcone-000000067v1-2RyX;
+	Tue, 28 Jan 2025 18:50:54 +0200
+Date: Tue, 28 Jan 2025 18:50:54 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Felipe Balbi <balbi@kernel.org>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ferry Toth <fntoth@gmail.com>
+Subject: Re: [PATCH v1 3/3] usb: dwc3: gadget: Skip endpoints ep[18]{in,out}
+ on Intel Merrifield
+Message-ID: <Z5kK7mkrcrPE43sw@smile.fi.intel.com>
+References: <20250116154117.148915-1-andriy.shevchenko@linux.intel.com>
+ <20250116154117.148915-4-andriy.shevchenko@linux.intel.com>
+ <20250116233937.s7mv5mu4tfuaexy2@synopsys.com>
+ <Z4pcMUDsFZ8-deW_@smile.fi.intel.com>
+ <20250121234616.eomj7r73o6ce3u2r@synopsys.com>
+ <Z5EbnXy-BRmgFpVh@smile.fi.intel.com>
+ <20250128022134.3xuw263bet5akoa4@synopsys.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250128022134.3xuw263bet5akoa4@synopsys.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On dinsdag 28 januari 2025 12:14:09 Midden-Europese standaardtijd Konrad 
-Dybcio wrote:
-> On 27.01.2025 11:45 PM, Luca Weiss wrote:
-> > Enable the modem found on the MSM8926 HTC One Mini 2.
+On Tue, Jan 28, 2025 at 02:21:40AM +0000, Thinh Nguyen wrote:
+> On Wed, Jan 22, 2025, Andy Shevchenko wrote:
+> > On Tue, Jan 21, 2025 at 11:46:17PM +0000, Thinh Nguyen wrote:
+> > > On Fri, Jan 17, 2025, Andy Shevchenko wrote:
+> > > > On Thu, Jan 16, 2025 at 11:39:42PM +0000, Thinh Nguyen wrote:
+> > > > > On Thu, Jan 16, 2025, Andy Shevchenko wrote:
+
+...
+
+> > > > > > + * Intel Merrifield uses these endpoints for tracing and they shouldn't be used
+> > > > > > + * for normal transfers, we need to skip them.
+> > > > > > + * • 1 High BW Bulk IN (IN#1) (RTIT)
+> > > > > > + * • 1 1KB BW Bulk IN (IN#8) + 1 1KB BW Bulk OUT (Run Control) (OUT#8)
+> > > > > 
+> > > > > Please use regular bullet character and list the endpoint per line.
+> > > > 
+> > > > Which is...?
+> > > > 
+> > > > To my curiosity, what's wrong with the above?
+> > > 
+> > > Please use a character that we can find on the keyboard (- or * for
+> > > example).
 > > 
-> > Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
-> > ---
-> >  arch/arm/boot/dts/qcom/qcom-msm8926-htc-memul.dts | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
+> > Hmm... We can find all characters on keyboard by using standard approach of
+> > typing Unicode ones. I'm not sure why this is a problem. Linux kernel is UTF-8
+> > ready project (from source tree point of view), at least I haven't found any
+> > limitations in the documentation.
 > > 
-> > diff --git a/arch/arm/boot/dts/qcom/qcom-msm8926-htc-memul.dts b/arch/arm/
-boot/dts/qcom/qcom-msm8926-htc-memul.dts
-> > index 
-d6eaa82cee4daf6a1386902f537f1351811d4a06..cb571aa13c11598182dc020f064fe8268bcc061f 
-100644
-> > --- a/arch/arm/boot/dts/qcom/qcom-msm8926-htc-memul.dts
-> > +++ b/arch/arm/boot/dts/qcom/qcom-msm8926-htc-memul.dts
-> > @@ -195,6 +195,16 @@ &blsp1_i2c6 {
-> >  	/* TPS61310 Flash/Torch @ 33 */
-> >  };
-> >  
-> > +&modem {
-> > +	mx-supply = <&pm8226_l3>;
-> > +	pll-supply = <&pm8226_l8>;
-> > +	mss-supply = <&pm8226_s5>;
-> > +
-> > +	firmware-name = "qcom/msm8926/memul/mba.b00", "qcom/msm8926/memul/
-modem.mdt";
+> > Note, this is _not_ a kernel-doc style to which you may refer when pointing out
 > 
-> mbn?
+> I'm not requesting this out of any kernel-doc style. It's just a
+> personal preference and consistency in dwc3. If it's not too difficult,
+> please use "-".
 
-The mba gets loaded with .b00 for some reason, not even the .mdt.
+As I said...
 
-And at least on this device the .mbn doesn't work at all either, but this 
-might be due to very weird firmware loading on this board - because also for 
-loading wcnss firmware I needed to add a quite weird hack to make it load.
-
-Modem fortunately loads fine like this.
-
-Regards
-Luca
-
+> But if you must insist, future lists would need to be
+> consistent to this new unicode style. Then I would need to ask others to
+> use the new Unicode one. Typically typing * doesn't automatically
+> convert to • unless you edit using Word, and so I prefer something I and
+> others can easily find on the keyboard.
 > 
-> Konrad
+> > to the how lists should be represented.
+> > 
+> > But it's not big deal for me to change the • character.
+
+...not a big deal to me, I will change as requested.
+
+> > > And why would you want to list them like this:
+> > > 
+> > > 	* Endpoint A
+> > > 	* Endpoint B + Endpoint C
+> > 
+> > Because:
+> > 1) they are logically connected;
+> > 2) the above is the exact citation from the specification and I would like to
+> > keep it that way.
+> > 
+> > > As oppose to:
+> > > 
+> > > 	* Endpoint A
+> > > 	* Endpoint B
+> > > 	* Endpoint C
 > 
+> If you prefer to keep the snippet of your vendor specification intact,
+> we can instead document this fully in the commit message and note the
+> EBC feature. Remove these comments here.
 
+I prefer to have a comment to explain magic numbers. I just want it to be
+as closer as possible to the specification wording.
 
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
 
