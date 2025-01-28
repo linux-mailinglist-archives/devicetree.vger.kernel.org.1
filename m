@@ -1,109 +1,218 @@
-Return-Path: <devicetree+bounces-141498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 311BDA20F6E
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 18:08:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AFD6DA20F7C
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 18:16:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90239162A49
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:08:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E61383A6B65
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 17:16:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF631D934C;
-	Tue, 28 Jan 2025 17:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDF83193084;
+	Tue, 28 Jan 2025 17:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l/6mvE9h"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="M+wK459A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5372A27452;
-	Tue, 28 Jan 2025 17:08:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 987301684AE
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 17:16:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738084102; cv=none; b=ZTlipPYhys0vQ7BMMRJFA+SmHiad3cR8iiWQbITIyBBpyssByB2kAGlg9jcj7YXY4tYG8zgyRVwOHpST2obAE1wo4qu6shML4dRjmaGhnbN5JFm+TfJjA795cG0465nTj0t73vLxq5mKUWbR2iXU9N+0Dihh5UShEJj+KUzmVD0=
+	t=1738084569; cv=none; b=cICLTCluEA7vUuajPjzPaiJcVVE5iuWSOBjG4wqHklkOuMsiKnQK1KTG3/HLr7g/lYIRnxhSdCr+XvcX2/U/CmikyrfsAgmDPkihRyWjLvUF7JA/xp+JN866jAJPHryMwOK4O8clNn3Fa6C7U36g8S36MHNgX/WxSNysiYkiNzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738084102; c=relaxed/simple;
-	bh=0Ce//lGHBgdfmKI4iMTq6vLN/8VD1OQeflBzlYcF9Qc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lPW6NfzTGVMFi+NDFE/S8qU0mEiVSCBTkIrtnFCdhkmsL3c7+RJjK2/TAyaTFpeVlZ1Ck5rFcqH/eJy4tUyrEU/eBYdLGEXBwF/2WTIwTW/nUrOGwaXvLdk6xmTR4vzKTChwEzQ42gifzXxBpNaos/kyqfIulPs1jOjjt5SwWCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l/6mvE9h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21721C4CEE1;
-	Tue, 28 Jan 2025 17:08:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738084101;
-	bh=0Ce//lGHBgdfmKI4iMTq6vLN/8VD1OQeflBzlYcF9Qc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l/6mvE9hBv1sdFJpuYWSRUZ1cK7VI3ndu3YK25sjmmnvFRMDeRzOVUes3q/hQONSd
-	 iYvjcN+XsaHk5fStX4vpKFYHCFLD+534EB3fDWuRHq+dFg6VMytYDmC05aAYMJwgEc
-	 X7fnQsAae43MAH/XZ3HNNCLrrVVyz4gleUsMP98n+r54VnmthgVLQHSehp4QhI3TMF
-	 zL5KYqKkb0vtHds/cN12LG3eXlNHgwDRZXhlv2lRkAT++E38McUT0tcfJxTLPEJNfB
-	 Q+rkefk7JhGEZ6QawEfPMRs7UkCEFPdbSGaJE/AuLykHpzqPDlosjNRNqJv3jHTBr7
-	 ZFVhpcYpXPkBQ==
-Date: Tue, 28 Jan 2025 17:08:17 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc: "jic23@kernel.org" <jic23@kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-Subject: Re: [PATCH v6 1/3] dt-bindings: iio: adf4371: add refin mode
-Message-ID: <20250128-jaws-outward-66aadf0b0412@spud>
-References: <20250127101026.5320-1-antoniu.miclaus@analog.com>
- <20250127101026.5320-2-antoniu.miclaus@analog.com>
- <20250127-makeshift-legroom-bb02764c6ed6@spud>
- <CY4PR03MB3399981C39318501A2FEE87A9BEF2@CY4PR03MB3399.namprd03.prod.outlook.com>
+	s=arc-20240116; t=1738084569; c=relaxed/simple;
+	bh=QMZ/XvkweAPoe46VgNf1XY/0LwZdCFmd6qv/UpxY7YQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=F4xZCH7Cy7wkoSwqH741YKrmSEqsD+/s0MCqaFGxrDS5xThtabk2BGOhXpY7KF3AsK/OeYkr8PtnN6EkaEzrSjyss0SCMrykAOd1tvTsq0Im0LA3K3nMzJf/bQ/Nu4V1Fh8VQKYvqQLZIY/rrIsj78PLjN+am6yp0lv2tvkdYPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=M+wK459A; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3862d6d5765so3556475f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 09:16:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738084565; x=1738689365; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=GtKHk5OuOKVS4XECraUREwb+pHnUWcAkIiYsVCyL/F0=;
+        b=M+wK459AN0qs2oE2f4CUiRQmeTpn3+GZX3uTbo4rXv3WR2zswciq8PlJPurCmuy8vg
+         fdyHQ4EuJsTzGWe7UdhhbROQoVl92SjX2b2nT9yButBAvXPP1c3+3TMJx/Bav7vl6Yaa
+         j4P/r80Zjhbbo8o6R+v2WlmIFxyZKsNUIQumzFB1TMnz32QYE7ioe4UX4PowSzw+jPOk
+         veUQi5ELr2OACRRXlrUavxsmp4YnTpzRHHw84hqHGRBOs9miKwNNk9mbur5SYDeDlEi1
+         LHkXGk8gp2fWHMU6y+mzZ20626/eiYSZkIibryddg8cS5IjlVBkY1WdU2rKj7YlwDVDG
+         FSOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738084565; x=1738689365;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GtKHk5OuOKVS4XECraUREwb+pHnUWcAkIiYsVCyL/F0=;
+        b=pFs9C7mpEasUALXIbr//8NATZGLymEIgQdZilZY9K96GmTQfLRK8f/L7gdAc/lAmqK
+         k4ln8EHQdCgWkX5U8LwcL2N8fsa9/ogyHLWgTVSAKfG6+7zTs61TO6ZFSKXvJiaBmuD7
+         GZmJayvWaDgm37+XarTsfThoM9BbaAj2WzBEes6NFylO2f3QQdLbD0NauM3YNKqMx2wa
+         mo8aJV2Ai17PkvfcQtMU2eNSVUpfgIUkP0w65/4ZLNkllVRHpc1Qb6qVhPEYPDWTgtDc
+         CosACc7Bd3KJZ+HG5Gwl2i3e9nsBCAOwFTzzDRZn911xgGcMKdZzTeoDegsiXn7jaFQe
+         2FrA==
+X-Forwarded-Encrypted: i=1; AJvYcCWZkoThcQk7gcP4i976avyLbDAj0U9PTWe5agRA//WndJl7hRONQ9cNlcd7UN4aenlVViyh+B4DiBsC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPc7Bhv4y5XAZIAkurgh4LypgLPbYXG0Ae5G8OaH1hiy1KIw2m
+	9linvfFVQdL3l4dVz3DXOg5H2qgVTYkJxiGuSZql4J5mepC9PmnZCO+fSjOMSKI=
+X-Gm-Gg: ASbGnctnRXhKb3Ny9SvUYW8efu4FGTCHZ8QyFGZana6NSG7E1g55pLFAsGw8N44XUKT
+	kGTTvyNWbehvy2T0ViCq8lWcAlvKPJsH1IIWSJ66B52lSN1RZ7V+vxEsFLS7lMQD44Z5VSrQkEH
+	nJdiJ/28wF1TEfArhP0x4DUxA6ikIK+/+/ayMz8zi3tzuTUnAnI2YWMYlM/aEWaI5x9AisowLqT
+	PdIdjB/9UUdJGHoL15udb1GAmXzKEmqQ/GWmYWZFblGXVU5NOVkDxJOvknBORZwJQTF9Ib1Seh1
+	U2ZUHJ49DZ0wwQiQJryFS1LQ8SGlp5gJa4+7484w02Oism90X83Ar16/FQ==
+X-Google-Smtp-Source: AGHT+IGvLelAGjP3Cp2NtFnJU1ZBrvpSEr1QQ/aekKmtr/sBfPTElE2SYJmLWChkgQi4KPqF+xdNCg==
+X-Received: by 2002:a05:6000:1acc:b0:386:4a16:dad7 with SMTP id ffacd0b85a97d-38bf566e605mr42464688f8f.10.1738084564811;
+        Tue, 28 Jan 2025 09:16:04 -0800 (PST)
+Received: from localhost (p200300f65f018b0400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f01:8b04::1b9])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a1bb057sm14845730f8f.62.2025.01.28.09.16.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jan 2025 09:16:04 -0800 (PST)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Dinh Nguyen <dinguyen@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: socfpga: Add basic support for Terrasic's de10-nano
+Date: Tue, 28 Jan 2025 18:15:55 +0100
+Message-ID: <20250128171556.1499810-2-u.kleine-koenig@baylibre.com>
+X-Mailer: git-send-email 2.47.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="k0WGqJOdsKe1eGNZ"
-Content-Disposition: inline
-In-Reply-To: <CY4PR03MB3399981C39318501A2FEE87A9BEF2@CY4PR03MB3399.namprd03.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3096; i=u.kleine-koenig@baylibre.com; h=from:subject; bh=QMZ/XvkweAPoe46VgNf1XY/0LwZdCFmd6qv/UpxY7YQ=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBnmRDMdfxA+UOslSYa5+JkWzCdHpCvw5lHuKL+5 y5uo86ycs6JATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZ5kQzAAKCRCPgPtYfRL+ TnAsCACM4/0P1OIAwzHsTJOTWKa797EqJdKMuT+H/yxsu7KuYgKIPwoqIkx2b97t2SbWYnc1RUH Y+atAyzS+GapAhXdvrk+RomFGCWQXiuGEX7t1DyKmTGkhstDTKB+h7PwL0PqehkJEQ1WMcJbKkQ pi992GUHW5et20FQBMoxxxkGivTQtqL5u93CFP0WPZbipv55PKhDb/5FyMcPOCWPQPvi9RSeLa1 d96uG6RnAuc+Fm6y4/yaRbvvVqAAi4K5Nv17JuzwBZb5DsoMSthDUlBosLth89zVnFEVAP54h/p MDR6hoO2P4cBVEIiQ7KqbfUk90+s7eAmx+D/qquND2LM/nHw
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
 
+This dts is enough to make the board boot to Linux with the rootfs on
+a micro SD card.
 
---k0WGqJOdsKe1eGNZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+---
+ arch/arm/boot/dts/intel/socfpga/Makefile      |  1 +
+ .../socfpga/socfpga_cyclone5_de10nano.dts     | 90 +++++++++++++++++++
+ 2 files changed, 91 insertions(+)
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
 
-On Tue, Jan 28, 2025 at 10:24:37AM +0000, Miclaus, Antoniu wrote:
-> > On Mon, Jan 27, 2025 at 12:10:21PM +0200, Antoniu Miclaus wrote:
-> > > Add support for selecting between single-ended and differential
-> > > reference input.
-> > >
-> > > Input frequency boundaries are change based on the mode selected
-> > > (single-ended/differential).
-> > >
-> > > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
-> > > ---
-> > > no changes in v6.
-> >=20
-> > Why'd you not pick up my ack?
-> > https://lore.kernel.org/all/20250121-crumb-dispense-
-> > b455b591481a@spud/
-> I'm sorry, I missed it. Should I send a new version with it?
+diff --git a/arch/arm/boot/dts/intel/socfpga/Makefile b/arch/arm/boot/dts/intel/socfpga/Makefile
+index c467828aeb4b..7f69a0355ea5 100644
+--- a/arch/arm/boot/dts/intel/socfpga/Makefile
++++ b/arch/arm/boot/dts/intel/socfpga/Makefile
+@@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += \
+ 	socfpga_cyclone5_mcvevk.dtb \
+ 	socfpga_cyclone5_socdk.dtb \
+ 	socfpga_cyclone5_de0_nano_soc.dtb \
++	socfpga_cyclone5_de10nano.dtb \
+ 	socfpga_cyclone5_sockit.dtb \
+ 	socfpga_cyclone5_socrates.dtb \
+ 	socfpga_cyclone5_sodia.dtb \
+diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
+new file mode 100644
+index 000000000000..d1f23a57a94d
+--- /dev/null
++++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
+@@ -0,0 +1,90 @@
++// SPDX-License-Identifier: GPL-2.0+
++/*
++ * Copyright (C) 2017, Intel Corporation
++ *
++ * based on socfpga_cyclone5_de0_nano_soc.dts
++ */
++/dts-v1/;
++
++#include "socfpga_cyclone5.dtsi"
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/gpio/gpio.h>
++
++/ {
++	model = "Terasic DE10-Nano";
++	compatible = "altr,socfpga-cyclone5", "altr,socfpga";
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory@0 {
++		/* 1 GiB */
++		device_type = "memory";
++		reg = <0x0 0x40000000>;
++	};
++
++	soc {
++		fpga_axi: axi_h2f_lw_bridge@ff200000 {
++			compatible = "simple-bus";
++			reg = <0xff200000 0x00200000>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0x00000000 0xff200000 0x00200000>;
++		};
++	};
++};
++
++&gmac1 {
++	/* Uses a KSZ9031RNX phy */
++	status = "okay";
++	phy-mode = "rgmii";
++
++	rxd0-skew-ps = <420>;
++	rxd1-skew-ps = <420>;
++	rxd2-skew-ps = <420>;
++	rxd3-skew-ps = <420>;
++	txen-skew-ps = <0>;
++	txc-skew-ps = <1860>;
++	rxdv-skew-ps = <420>;
++	rxc-skew-ps = <1680>;
++};
++
++&gpio0 {
++	status = "okay";
++};
++
++&gpio1 {
++	status = "okay";
++};
++
++&gpio2 {
++	status = "okay";
++};
++
++&i2c0 {
++	clock-frequency = <100000>;
++	status = "okay";
++
++	accelerometer@53 {
++		compatible = "adi,adxl34x";
++		reg = <0x53>;
++		/* HPS_GSENSOR_INT is routed to UART0_RX/CAN0_RX/SPIM0_SS1/HPS_GPIO61 */
++		interrupt-parent = <&portc>;
++		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
++	};
++};
++
++&mmc0 {
++	/* micro SD card socket J11 */
++	status = "okay";
++};
++
++&uart0 {
++	/*
++	 * Accessible via USB (FT232R) on Mini-USB plug J4
++	 * RX = TRACE_D0/SPIS0_CLK/UART0_RX/HPS_GPIO49
++	 * TX = TRACE_D1/SPIS0_MOSI/UART0_TX/HPS_GPIO50
++	 */
++	clock-frequency = <100000000>;
++};
 
-No.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+base-commit: 5ffa57f6eecefababb8cbe327222ef171943b183
+-- 
+2.47.1
 
---k0WGqJOdsKe1eGNZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5kPAQAKCRB4tDGHoIJi
-0tpCAQC7PFZULjMXr5GZ13XQ/nZhcPNLbZX2PkXQo0PL6U8x9wEAuKMKBU0Ng0aL
-J7dDQdR20Jaq3ZgqDXf9MXGNRHDRfwA=
-=GSBa
------END PGP SIGNATURE-----
-
---k0WGqJOdsKe1eGNZ--
 
