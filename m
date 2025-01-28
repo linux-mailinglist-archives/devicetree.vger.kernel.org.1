@@ -1,59 +1,60 @@
-Return-Path: <devicetree+bounces-141306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0301A20500
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 08:20:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 647B2A20503
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 08:27:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28FE93A4303
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 07:20:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B973E1660BA
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 07:27:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB02F18BBB9;
-	Tue, 28 Jan 2025 07:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEDCA198842;
+	Tue, 28 Jan 2025 07:27:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nGP30Imz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iXeAVvjm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD55383A5;
-	Tue, 28 Jan 2025 07:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88B97383A5;
+	Tue, 28 Jan 2025 07:27:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738048851; cv=none; b=gyKfHFgv8lRUc7be7qaUm6TZtuJnc/ObkR+sK91qHEUdFwonBolJonsXHltHv3RB+JP08+2dN/gMLx7w4FKmr55v6Jqh4c0aT+HDaz6kmjtg9Kg+ltACHhcR28zsecym1EdUBCvb6iDRihiyEzGCpWrH8o8C/yduMmTFV7GoYLg=
+	t=1738049258; cv=none; b=s02UfudNg/ZXVsKZ09blwKDUXdYkEaOWQ5wk0mI1BdLzawhI513AMwzMh08FtVo20RoYid1IaG2/Amm5eifdasc9dwhHu1bfHF0C5CedmdfnLaXrab6zxzYWvvtAW9mHrXXWU8S/2cyL0ezBumXeif902Vs2wsOxbjGr8Bo0//0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738048851; c=relaxed/simple;
-	bh=6imr/Ij8DmjqfODuyxHY3qf/1LVweAyqgXMuWL7+KPI=;
+	s=arc-20240116; t=1738049258; c=relaxed/simple;
+	bh=+sa8ABbz7eaRoFnDc8THWn9YGk3681ZYFZ8XGntL9lU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NfBx8P7gGjO0bNHZCLk7hLAsJkA5karyGT03grkClEs8WZjjCdmHACkp02ZSCbO4UAXkXtB5C0/MhvAfVyzUvHfAMI6Q7nAfuPx1xVK938v9jMU/CKwIWsybf/noqOpBoIA1IsZs9y5IXDSJugQL/45Y60vjSxK+zC/HhF7vumI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nGP30Imz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 42E23C4CEE4;
-	Tue, 28 Jan 2025 07:20:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Vo6tsVY9e2Zg7pSay+ExYfVHJd1QqgT7Uy6Dxo8gblipD/FLu08PTACrWZAHKH1LUbTHG/62pGJImyAcr7qXex69ieITUiJIMl2DKDQiQ0hzvsiWlyvP3jb00Hvg2DxH9UmdYJNGcOQABwBWhsCSpY3NZyrxW4D0qqffcAQcL1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iXeAVvjm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11601C4CED3;
+	Tue, 28 Jan 2025 07:27:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738048851;
-	bh=6imr/Ij8DmjqfODuyxHY3qf/1LVweAyqgXMuWL7+KPI=;
+	s=k20201202; t=1738049257;
+	bh=+sa8ABbz7eaRoFnDc8THWn9YGk3681ZYFZ8XGntL9lU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nGP30ImzrO8XZS8eU8Swnk2985zVVKwBIHzZuE80spUwbG1vLTA4kSUuyYrMdzOEq
-	 yGOcLKuJCqDF/XDgs/9KHikqEY7dv+iC1SGnyonAuAVNwCDR7PFtadrGcYKChx5pbA
-	 Og+aUNj/b2tTJBmIDNxKnAwIyfChQ26C+iInxayKCDtA+Q8GIXqsH33Ou3k9mohCsB
-	 r2pPIcWi2VD2jV22SRSesMMsrNYu0QqmJH1txYu0iU7SqmWu4gty/stNA+Ep5jL7dh
-	 pFnxJ7F0d7XQ9ojyyZHp5YGrhFsTGRo9d/s8HQezpu3qtz/MnNdWsuLVu7XnG+DvYw
-	 KjybRFqPrax0A==
-Date: Tue, 28 Jan 2025 08:20:47 +0100
+	b=iXeAVvjmyuQzKycAAB4vYhkz618HYojLKROyvVNIz6gW5RbcWYRCqTJCjUB3ZdHU8
+	 5jX+bGVaTjIns86RhL+l5RtMdsQIhjmvkpQJqDarfFPIkMDWw8lHoXiITg6fxytWh6
+	 hY3gV6aXcbTSmmWyWOp5FRAcQInjLf+UymGZAp9JjyusvT0bgUUvBoPOLV6kdt9YVT
+	 T+KIAgbNyhxOjTgwSur+7Wi2oqWFtq7BqAKAwG8AchHOfDUeQem6FY1/BSYeG29/Of
+	 XrKXKnTgj5OzdcqZOpTJZqvi4U1h3OsTcCnUh5uflGgWCy49RDQlnwjK0sbg2YjftJ
+	 IrzEXJAu32ROw==
+Date: Tue, 28 Jan 2025 08:27:34 +0100
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Lukas Schmid <lukas.schmid@netcube.li>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/4] dt-bindings: arm: sunxi: Add NetCube Systems
- Kumquat board
-Message-ID: <20250128-grumpy-bird-of-plenty-dc7abb@krzk-bin>
-References: <20250127202127.971172-1-lukas.schmid@netcube.li>
- <20250127202127.971172-3-lukas.schmid@netcube.li>
+To: Varadarajan Narayanan <quic_varada@quicinc.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
+	manivannan.sadhasivam@linaro.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	vkoul@kernel.org, kishon@kernel.org, andersson@kernel.org, konradybcio@kernel.org, 
+	p.zabel@pengutronix.de, dmitry.baryshkov@linaro.org, quic_nsekar@quicinc.com, 
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v9 5/7] dt-bindings: PCI: qcom: Document the IPQ5332 PCIe
+ controller
+Message-ID: <20250128-astonishing-kingfisher-of-skill-babe3e@krzk-bin>
+References: <20250128062708.573662-1-quic_varada@quicinc.com>
+ <20250128062708.573662-6-quic_varada@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +63,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250127202127.971172-3-lukas.schmid@netcube.li>
+In-Reply-To: <20250128062708.573662-6-quic_varada@quicinc.com>
 
-On Mon, Jan 27, 2025 at 09:21:23PM +0100, Lukas Schmid wrote:
-> The NetCube Systems Kumquat is an Embedded Controller based
-> on the Allwinner V3s SoC. It is intended for Smart Home or
-> Industrial automation without the need for a traditional PLC
+On Tue, Jan 28, 2025 at 11:57:06AM +0530, Varadarajan Narayanan wrote:
+> Document the PCIe controller on IPQ5332 platform. IPQ5332 will
+> use IPQ9574 as the fall back compatible.
+> 
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> ---
+> v9: Remove superfluous ipq5332 constraint since the fallback is present
+> 
+> v8: Use ipq9574 as fallback compatible for ipq5332 along with ipq5424
+> 
+> v7: Moved ipq9574 related changes to a separate patch
+>     Add 'global' interrupt
+> 
+> v6: Commit message update only. Add info regarding the moving of
+>     ipq9574 from 5 "reg" definition to 5 or 6 reg definition.
+> 
+> v5: Re-arrange 5332 and 9574 compatibles to handle fallback usage in dts
+> 
+> v4: * v3 reused ipq9574 bindings for ipq5332. Instead add one for ipq5332
+>     * DTS uses ipq9574 compatible as fallback. Hence move ipq9574 to be able
+>       to use the 'reg' section for both ipq5332 and ipq9574. Else, dtbs_check
+>       and dt_binding_check flag errors.
+> ---
 
-Please wrap commit message according to Linux coding style / submission
-process (neither too early nor over the limit):
-https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
+Same problems as ipq5424.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+What's more, you are doing the same, so this is a conflicting change
+coming from the same company or even the same team.
+
+It is not the open source community's job, not the maintainer's job to
+coordinate tasks and teams in Qualcomm. Qualcomm people should
+coordinate their teams.
+
+It's merge window, you and your colleagues keep sending new versions of
+big patchsets with conflicting changes, without any coordination. Amount
+of patches is just overwhelming. Lack of coordination and any reflection
+is just discouraging.
+
+Can you slow down and actually sync to send something reasonable?
+
+And not during the merge window?
 
 Best regards,
 Krzysztof
