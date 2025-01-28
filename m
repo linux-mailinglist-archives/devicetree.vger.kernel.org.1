@@ -1,866 +1,263 @@
-Return-Path: <devicetree+bounces-141303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13D5BA204A2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 07:47:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE8A5A2049A
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 07:46:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C028F1657F2
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 06:47:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 057C71887C99
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 06:47:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B51F1DEFD8;
-	Tue, 28 Jan 2025 06:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7280618C035;
+	Tue, 28 Jan 2025 06:46:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="tQTTDC1P"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="lk4FUHqk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2046.outbound.protection.outlook.com [40.107.244.46])
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2050.outbound.protection.outlook.com [40.107.220.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB131DED45;
-	Tue, 28 Jan 2025 06:47:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D774A1A;
+	Tue, 28 Jan 2025 06:46:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.50
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738046831; cv=fail; b=oZcCPxy/4+gIMwk+uh9lCqswqpDtdCpH1a6vR7vDT1gFaINGlsavAMkOKq8mZkA4WDaHjRAEHiAyzQYRAfVpxk6VWmDAXTXGx3EhYxNX/p7PcT5a8YCtFcZraSe6VZCdR0m+rlexPw6VHFIFw+/ZvXNDIvoXohtu5wYoq05dCL4=
+	t=1738046815; cv=fail; b=fLNlxQ1etyBkQYmn8tlm1lkl362NA5lxNly8k0WSkH27mVqnRVGUXY6glnU3BQN1BJIzzpOdopJB6aqSFvsMrxxaQtngHxRfdFXsI6EAsd02BLShQZuOrwKuW+pceSdeQ2skTLdOA7d7O9ZQX5c9sF6ZiJLrcV+ny+yJgMAA+VE=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738046831; c=relaxed/simple;
-	bh=FDvWkK0pAX3M/K0fit89rVQ+m4JMQEjw6QKAaS3ndyE=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f/SwCBztYJabLpZkah1LHnIokPzZ7aN6eawIzZy4B9tJusFdczEuw7LRNk39odOfdyD04uxhBPCA2S72a8Z4LW5EmRFcDKkhMeOP4UCMQ+gSu2IWsfPYX54QFS/Z7SsRTdVa8jbVG77rxFKrILvWhtTgl5WhtCJjfyyFQ3Eyc3M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=tQTTDC1P; arc=fail smtp.client-ip=40.107.244.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
+	s=arc-20240116; t=1738046815; c=relaxed/simple;
+	bh=IdHsrvlQFShzb6TaK4f0bUVuTtLOgRNWtFZgCJhYOM4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=IPuc6H49PAF+uf5fjHhW2xVuzpEYw8dhF+fB0q4Jb+HArG384Qh6oW8j8iBzS3tkSyEjuqx58BFO8KRTSlRYfiSNQmqDpvfzySnnDa+ouiwYHsVzau3jxsW6XTDFXND+M8IWcJ/NTtUWGdLLf4fbSBkjlmgsZCi8b0Iz5iRvWAo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=lk4FUHqk; arc=fail smtp.client-ip=40.107.220.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qgG0vfx/Zyx5fszzmr+F310K6ee2yVZbznXaJA2scl1aQXXx74C6yxXV7taeFW/Iyj2UV0MpBlcZaOf8byJD+L3JdKfYJY9U1v9IKJv5Uzlv9bEHcewTHoFRqTP4t8FgJyUK2fCn7sDxc1s0oOJKMqDuGzy0lNZmVPZ/qblTZCB+13rFTHO6kCkrEtBmOlnpkv2q8e9f3uSefS1me/ic+zZmntyKdM+RaqTE7VgkpfDmS4FfwVCC1p5ixxtK+r1oOaFxLMnSsRxv4zzZJPt9NgU2CNQ2G12F/x5dqvb8K8nJzwsmKRn5QzmcLFKIFA0ZQwvNbPBCd4ZsJblqU7NO4Q==
+ b=FO0kS2XyxEliV9wkYDyoQn12GYH6Z2CsQjdiFa0ghbmCX2rCI3oCetcDR94+X1Fvrca42Tx2ep3HeEuPMiB3G+QyFEb7K4ERk72myYXBXtsZof8Gcv4Ju9Bg0htNZHWYk81f8oG1k6iE/A6axheEOjGdz8nArPLLTurjgkhf80oJGVqWZaDeybj0FX1TfZKKpkSemn40VkgU7ctsv/k2Gfw0W/2rCgstRq38Andb5/hVO9U9nifsfH8C8eKgk8xGke+kaYP3g5ROd6jbg0OQvQwvylXdAUnT/j+aIciXjS9vvBCupncNN2tmTE2eeUYgxukyKE0/x+RMXEQKUoERcA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wGxsOO59yMATV4oHZpZiBQH3SL8rPHhWV41cx3jS0JQ=;
- b=ZJ8QXBZrR99YykOH4+wzFnOJC+FXlUFsdXc8BP4+Be30pWyOUtwltfydGOralY3f2uoeWPCJTJ5jfoH1VKTF7NeOJ9snOR8sNPtjsCW3rbOPu8lKXi/3JdAh2KR+E0dxb9WBxDXKt2RbradKzn3C9ktiaEb7VdLB7BouDucNaMQDoo3D1TLsaT1LgkK0rltLXb7KglbhGKVPB0afSoRDSLIK5vLjWbbuNsrvUjpTpyyepdB58NEDNdCJQn3bamBUkGS5cGyG6dBR7Ci2P5OJCPlQwKVgyis5L+b1TDPLwzjnIB84VKc6wS+blKF9YI9LzXGA21NMD//FI4uW41JMdA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=linuxfoundation.org
- smtp.mailfrom=nvidia.com; dmarc=pass (p=reject sp=reject pct=100) action=none
- header.from=nvidia.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=IdHsrvlQFShzb6TaK4f0bUVuTtLOgRNWtFZgCJhYOM4=;
+ b=L8ryrMRpHBRlmjlAzwvhfzMzYYuiM+Aj0jmUPMm/Uptd38qebeTIm2HQpwOwBNG/l6PGYqn4IvMarr2Fe5bXGO2xNQaBTU22BwIZzk3NU1sTlUAHYueHIim21maWluiwB5qsSPkZvNI670fj7n5+xITk00ABU9HX2Kt76pIA9dFqdlc6gT47j1A2AVqwPKOnz/VqHyrdQqPnMZkapIRi3aUeq0oZglfpF29vqztGdidnvslERpKkBPMhJHHS/yAaihnDXk/LubPD8udxwhNOWEBR0Un5dAzqGXN1p+nORRvm77Yh7dWsj0jfoEUQdA2In6inQNZL38mTgkeNqxHwyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wGxsOO59yMATV4oHZpZiBQH3SL8rPHhWV41cx3jS0JQ=;
- b=tQTTDC1P+bakTdiq8qbwh6Rb1CQVOdHVdxgMgFAbT1Lwwkjan+hMYwF8piJF8/qhcmOG4QRy3IM9Pu9OdG8kxDV0WjxgUHR0hOHMEtgmpztnFUoe+HJj5SD3deu6fO82QFgbU8Z1S+Xw5nXrqMAUh3AKM2s9Bd7nzzxy8y39GkCV8mRq6hqMZFCv/5ntVuM5GqqtPADo+ISmIlR5f8bsq8Jcp7OrFopCil4z59riKDmJqwraVeIr8MsxaIMDJhwrnirF/Y+cPXf+2C3DnHstO6xaeDVP20P94Kcxn3i2b5UvrFgc0UDjXSkvbjhLGas59kawyJ7vnmzSlg5BhPZa8w==
-Received: from BYAPR07CA0106.namprd07.prod.outlook.com (2603:10b6:a03:12b::47)
- by MN2PR12MB4240.namprd12.prod.outlook.com (2603:10b6:208:1d3::14) with
+ bh=IdHsrvlQFShzb6TaK4f0bUVuTtLOgRNWtFZgCJhYOM4=;
+ b=lk4FUHqk9fkMLfAvqEhLm9fhFUfFOGgKbrbuTC7dqiRpJ0+/56VsgkxWnryv3N2EsUwoObqxCPeyQEbgDHXtAQfZjsEev2krZ3PBUqWFJqHg9IWQ6P1MndZEhBcNiIqZeoElddVYd53pmtjpXaIT5SHqeE1wwxqGYc4S1IxphZYWDh42Gke136aal4XErWr9MlywHz0gx2TXnL3wyqAKEC8TbRdskFZD4vGgfhQbbrjayQdGPKafHpW51sY6aYUZ9Gt/RHxieNNfMW4Rw15736a0noHv7JPY7cZdlzgC0WI/fFWvp9UJlasEjmdKOaCtqV5Va9RW0MrhW7OGVoGYtg==
+Received: from SA3PR11MB7414.namprd11.prod.outlook.com (2603:10b6:806:31c::19)
+ by SA2PR11MB4796.namprd11.prod.outlook.com (2603:10b6:806:117::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.22; Tue, 28 Jan
- 2025 06:47:02 +0000
-Received: from SJ5PEPF00000209.namprd05.prod.outlook.com
- (2603:10b6:a03:12b:cafe::d6) by BYAPR07CA0106.outlook.office365.com
- (2603:10b6:a03:12b::47) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.8356.20 via Frontend Transport; Tue,
- 28 Jan 2025 06:47:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- SJ5PEPF00000209.mail.protection.outlook.com (10.167.244.42) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8398.14 via Frontend Transport; Tue, 28 Jan 2025 06:47:01 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Mon, 27 Jan
- 2025 22:47:00 -0800
-Received: from drhqmail202.nvidia.com (10.126.190.181) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Mon, 27 Jan 2025 22:46:59 -0800
-Received: from NV-2XGVVG3.nvidia.com (10.127.8.10) by mail.nvidia.com
- (10.126.190.181) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
- Transport; Mon, 27 Jan 2025 22:46:54 -0800
-From: Kartik Rajput <kkartik@nvidia.com>
-To: <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
-	<jonathanh@nvidia.com>, <hvilleneuve@dimonoff.com>, <arnd@kernel.org>,
-	<geert+renesas@glider.be>, <robert.marko@sartura.hr>,
-	<schnelle@linux.ibm.com>, <andriy.shevchenko@linux.intel.com>,
-	<linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
-Subject: [PATCH 2/2] serial: tegra-utc: Add driver for Tegra UART Trace Controller (UTC)
-Date: Tue, 28 Jan 2025 12:16:33 +0530
-Message-ID: <20250128064633.12381-3-kkartik@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250128064633.12381-1-kkartik@nvidia.com>
-References: <20250128064633.12381-1-kkartik@nvidia.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8377.23; Tue, 28 Jan
+ 2025 06:46:50 +0000
+Received: from SA3PR11MB7414.namprd11.prod.outlook.com
+ ([fe80::c62:b3af:49ff:79e6]) by SA3PR11MB7414.namprd11.prod.outlook.com
+ ([fe80::c62:b3af:49ff:79e6%4]) with mapi id 15.20.8377.021; Tue, 28 Jan 2025
+ 06:46:44 +0000
+From: <Charan.Pedumuru@microchip.com>
+To: <robh@kernel.org>
+CC: <Ludovic.Desroches@microchip.com>, <vkoul@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <Nicolas.Ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <claudiu.beznea@tuxon.dev>,
+	<Andrei.Simion@microchip.com>, <linux-arm-kernel@lists.infradead.org>,
+	<dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <Durai.ManickamKR@microchip.com>
+Subject: Re: [PATCH v3] dt-bindings: dma: convert atmel-dma.txt to YAML
+Thread-Topic: [PATCH v3] dt-bindings: dma: convert atmel-dma.txt to YAML
+Thread-Index: AQHbcKVhVjSa433gwU6echnpn1RbarMrF7aAgACnx4A=
+Date: Tue, 28 Jan 2025 06:46:44 +0000
+Message-ID: <7ee1b6cb-f743-4d15-8c90-a3d4fc4eac4d@microchip.com>
+References: <20250127-test-v3-1-1b5f5b3f64fc@microchip.com>
+ <20250127204613.GA820642-robh@kernel.org>
+In-Reply-To: <20250127204613.GA820642-robh@kernel.org>
+Accept-Language: en-IN, en-US
+Content-Language: en-IN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA3PR11MB7414:EE_|SA2PR11MB4796:EE_
+x-ms-office365-filtering-correlation-id: e3aa5a67-99ad-40fc-3009-08dd3f67875f
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA3PR11MB7414.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(7416014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|376014|366016|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?UmFZaVBNeFF6My93Z0hQQk5UUkFLbG05VHRMM2M2a3pZQWVDV1EvYWZtbkky?=
+ =?utf-8?B?bXgwZGltUW9ZZlJQR0hKMHZtSXJPcVJSZDYvVkFiek56THdDLzR6c21MRlRD?=
+ =?utf-8?B?a1gyRi96bHJYZXRKZTBOdDNicEdjQ2lvZGNQNTdiYjhvdzhQeE5CRmovWTUr?=
+ =?utf-8?B?cC9yeGFncU1pRkZSTHl6OWprRE9lODNTNEtmOUpJTWxFWHNIbGs5U2FCZnF2?=
+ =?utf-8?B?cVhBSm0wa3dGc21mRm1SWnE2c1plRnRlZ2F3a3BSUmcycWExYzAwZElQbVJq?=
+ =?utf-8?B?SEFOOW14MDkyY0d5bEg5b3JSeFBScDdnaTEvMFlkN1V2NzNUbXlzR1FnZTRi?=
+ =?utf-8?B?NDVXZU9Va3JlYWVFYUhtMjkrdUxYamRlQk1uK05QZFJOTkdjcGtyOXVHQTlS?=
+ =?utf-8?B?clg5Z3pZUnE0dzgvZ2N0bmxYOENHeFZhOU9nVm5RTWphbFozcnlPZE9oNC8y?=
+ =?utf-8?B?U2RvUS9hVXFvWkE5SlRGZEFBZjYxZHhkaGRIcGlqV1A0MTV1SlJqR3V6em5V?=
+ =?utf-8?B?ZVA2UHZWbFBPRjJrSnRRQm5CSVhuL053cXVjWnp0OER3SDNTV1dxQVYvL08x?=
+ =?utf-8?B?a1puQTV3RU55TFdPL2dveFU3M1NRd0ZUTExEb1hYY2VTU2NmSGpnYkJac1FK?=
+ =?utf-8?B?RUNZdGFHVEl3SEd4L096RUlyZUkzVkdnZC8rcG8yK002Y0o0M3YzTzI0S00x?=
+ =?utf-8?B?WnZsMUtBbS9NWGRtRFl1TWthMnR0TVd6akNuTmxCQm8yTzNZWml3dklpdUs0?=
+ =?utf-8?B?Q250b1lYQjExRzNRb2NGeHFYVWZ4QnVSRjJkSU4weExpV24wbXdUb01CQlRo?=
+ =?utf-8?B?cFAySFV3cHk4cm1aUWxPdmxCcFNQRkZOeWhxdmpJSmNqTVlleVY3UEd3aWh0?=
+ =?utf-8?B?N3JLcEhjdVEzR2JIZUoxRjFsQ0hPazVNTVZUL042MlA1SEZ5OHBtcC94QlIz?=
+ =?utf-8?B?VVdtTGNHRkM5Yk1FVHlzVzNRR1dEQnpBRlBlYVVHdy9TaWljaVU3bUQ2bVpi?=
+ =?utf-8?B?RkJpNFN2alFSU0lVbktDSFdZWWwrTkVhN25mRGljbUw0d0VUNU1YN0RHaThG?=
+ =?utf-8?B?bk40YVU3NVVpcjRKT2VXRmJmY040YUpYOGxYOWQ2eGxiM240Rkc3UkJlMEhh?=
+ =?utf-8?B?cGVqS3RJVENJWmd2VnJ1cDNTcllRWEZ2NitFL3ErQ2VEMzRXOWY4b1ArZ1Vy?=
+ =?utf-8?B?OTdqQnVGeVVzMDhObEhlbERxa00wRW82UThNTHU4eUlBV2FJMDRQZG9EQ0Zz?=
+ =?utf-8?B?eEEvdWc1VVNSck14ejc5L0o1Y3BTVGpTZXEzeGd6R0hEOGd6VkZtZ2tKYVNR?=
+ =?utf-8?B?VXZjMW40a2RSdXIwSlR3bGtTNUVsb0F5RkxJNitpaTdyeHFwNmNrWjJPU1Fy?=
+ =?utf-8?B?WGRIOG5jQkxucTJ4aW5KbFN5c3BVcFpKTDVqdkFSQUpSM3BOUUZYMSsveURR?=
+ =?utf-8?B?RlNFcFpFYndnL3B4bDZjZzBSSm5mT2YxSFVrbHY4SGo0R1pnRnY4SGp6VGwz?=
+ =?utf-8?B?bkVzOFExWkV5NHVGbHV4Y2lNaWt6ZnBvdjBJMDZaTVFNZzRqZTQxM0ZyMHZP?=
+ =?utf-8?B?UGpHRHlBT3dZb1dwTzZ2ayt5c2xqTjNtYWJQR0tlZWpnVGs2OGl5NloyVUg5?=
+ =?utf-8?B?dXFhU0gwNXYyT1BsV2NETjdXSWU3SGVEeHM3d3pwNENQNjMvRWl2a2VKQ21t?=
+ =?utf-8?B?WjBFcU5ocU5DMCtKUVFhZDQ0Wk9JMmZZSW56cHBTUTZPZWRNazlLRFZZNW1j?=
+ =?utf-8?B?Ung1OVRoTlNvaTFxT3hwWTVpU3VjT2szSEFwaUE0R0tLcjJFSGFpSmRTeXpK?=
+ =?utf-8?B?NmovUGNEbVZjcnpteU9mQjI3ZUZmNkNGdHVqdTBkSVhlbHRad0luSldhTzU1?=
+ =?utf-8?B?TUVDQUpKalc1UG42Z1YvQzdYaW1zVlVFNGJxRWZkYXFRRXc9PQ==?=
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?ZEJYVFJmWVlmbWRzUFBWK3h4NHMvVndpb0pZUE5nYXUzUU9wWUFXeSs4QVg4?=
+ =?utf-8?B?b29JYkVxaGUrQWdUZVB2bHJLdGVpUjBDcWpHNUc2ZkZPM00rbUVkczJrekFH?=
+ =?utf-8?B?RzNQRG9SbFcxb0kxLy9LaEVUY0dwVWI2MS8zTmsxc2w5YzBvN0VFNGFLU2o1?=
+ =?utf-8?B?OTYxVjB3MnVsMXlreVJCVXBhMm5BYmxsYitjZ0lOTTNHUjdOMmZ2ZnFEZXhm?=
+ =?utf-8?B?OXpJWFhmbHNXajluVFZ1ZmFCaUkxSnJEcHRSdjFIVUxESk1nYWpWbWF0Q011?=
+ =?utf-8?B?M2tqQWFNOHhXRFZ2aGNYOG1hU2JnMng3ZFRBQ1hFM3kyMTNpNjNodkpiVWRw?=
+ =?utf-8?B?MlhROTVYN2dzbEdtL2xldy9zVkFnZ0RBdlhnSDZOYk00VURnNlMzMzdwVERj?=
+ =?utf-8?B?TC9uQXp4VDd5SmgwSEZ4RXJiWFdLZXZuZElqS2Zkd0hScXEvcjYwNStxdnZp?=
+ =?utf-8?B?T21XK2RrckREZ21VOTg2MkpWZDU1VWpOUzBlSjlMblovL21YaFRQNUhHNWJ3?=
+ =?utf-8?B?eXE0MXhMQkJweXZoK3dEeUR3Wi84OUdBcGRPYzhiSGc1WWc4TytjSGgxbHIx?=
+ =?utf-8?B?QlZCZDY3OFdnUXdURnV3KzFVL0NTUkEwci9IdDQ0L3Z0N0E4RUR0Rkt0citk?=
+ =?utf-8?B?d04yK0JMNitPd2JYQURaQXJjeUl1djQzZjE5T0NrVHhsMTNIVFVuaHFxajEv?=
+ =?utf-8?B?WWRWandmZ1hPR2U2MXVZeXJ2YkZ5aGpLdVRsZjAwcEJVdHVqaVllYzBURE01?=
+ =?utf-8?B?ZnhyOTNzQ25VT1VwNmhZVm0vK3RiWXJmcm90cGdyZ3ZsOHYwWHhrYjV4RFRQ?=
+ =?utf-8?B?WUljSVVpSCtkMVp6ZkJnM1ZMbW1GZG5rc1M0L3NhL0t3NEdva25vWThBN0E2?=
+ =?utf-8?B?QmhKYVpCT01ET3Q2RTVMZjl1dXBpQTZ0VDlMVm5ieVFibks3MU40Mm50S0xT?=
+ =?utf-8?B?aVUwclZqUjBJYVU4WnRlYWpUdnE4RThtQmxoZUp4bFlHRDBUMTUyRjYxd3Vt?=
+ =?utf-8?B?cE5QaTNMTFoyWTd5dHZuZUJ6d1JFdnVvRE9Gd2tjUXJiQUxoU2c0c1Q1c0lG?=
+ =?utf-8?B?eEtrWG0vcWJOSDFoNWFIdnJPcjFIM2NHU0VLUnREZ0pMK2NXcE1pMWRJL1BM?=
+ =?utf-8?B?WHREUlFpTjZyT2NJakpJS29BZjRUQS9aTGtUTVBJbEFXT1JucVBVT1EwQ1N1?=
+ =?utf-8?B?TmJyR2NsYnZ4dytYdHk3enNSV2VFdERuU09jU1Q5MzBBc2s2dmd2c09ML3RQ?=
+ =?utf-8?B?YThHSDFxRTVBdTJWejlzWW1Eb0hrVFQ2Q1p1OTJZbFJFTnllUDNhcXVidUVD?=
+ =?utf-8?B?c2tpK3duMUpQZHZwRi9yR1NLZklNRHpxSHAyeFFiZHRUTWEraWRYSy96Tnlq?=
+ =?utf-8?B?c24ySWR4Y25jUm1rL2tQRlkwMDk0RnpPNjJqQ1pNWnpPSHk2NkFLYm9LaERL?=
+ =?utf-8?B?TDlYb2QwQnpsZ0V0dTFGN1hHcWswVlBPQ1dueW14aEwzdXhzMWloMjZwU3hW?=
+ =?utf-8?B?STNJUTVkdUdnNHBFb1pvWUs2RU5xK29YY2Nwa0FvVHdnR0FUVGNkUjVKRytG?=
+ =?utf-8?B?ajlnUmcrVGhvbUt1cWtqTHgwR1dqRnRCdUlNejNpVkIzbTVaU1pSTmxLSzk0?=
+ =?utf-8?B?VUF5bTEzd2dZeWpRa0NNTnFaV0hDVStWUFIyenZqL1M1NnR3TnU5WmxLUW1H?=
+ =?utf-8?B?R01rMjlRMXFDaUJaeWg4Ti9NOHZxOHU1WVRDcDhZZWdmMm5PTkExc1FRL0k3?=
+ =?utf-8?B?Rm9jUlVMYnlEb2g2ZWQ3ODVjMmJUTHBPVUk4V1dvTit2dnY3MkhGWnRXVnFY?=
+ =?utf-8?B?TXJCbVhyeTRBZ1RSM291RzV4clAzazZ3cXoycVgwakFhK1pJTk1hR2pMVnZo?=
+ =?utf-8?B?SU10Q3gxeCtNMUpqQVI4UVoxZnlUM0hEcHVWSDdhTGFFay9ldUNYbVJjcXRB?=
+ =?utf-8?B?UEJQZ1paZlErVGtidkhneTBkYW15RkFITGlqYmh3Rk1ETTZQOEpyaW5tU2JS?=
+ =?utf-8?B?KzhGM0dXWGYrRm1qUE9VZUlQUmIvdzhCaS9PQ3J3ZGZQSkJ5Z3FIQXd5Skhq?=
+ =?utf-8?B?M1U5RGFxWFRNUkZVTWdhdjhvS29xSG9UMU1HeEdTdjdVRXJsWkVBMDBPODVM?=
+ =?utf-8?B?U3lXTVNjd0I1UnJzdXhuQTErQ294WGttUWxnbVpEMXJuUHM4eUtKaUhhRVg2?=
+ =?utf-8?B?V1E9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <FCAA1044D8D23A40BF7DD94E08827B36@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: AnonymousSubmission
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF00000209:EE_|MN2PR12MB4240:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5a387a84-db57-44fb-dee5-08dd3f6791e3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|7416014|376014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ws6pUNK03OQS0jTvUZcjdGMKIV/mBYoBsD5LOlBsPE85sncvxRvinEOdlgO9?=
- =?us-ascii?Q?JV4x6rwcsPhTfG9p5KmnMK5Jje1QQgOmcfz07sxYGSw4jO8v7BgIkVcn3Zww?=
- =?us-ascii?Q?A73Zeu0NYoiOGWPhndzdItsCQigU9dqMhFIWWGmYuakDOsRB6BkRJuIS8RI0?=
- =?us-ascii?Q?bLHAi5tyqVwBOR093sDJlUdWXK1kuu7XaELQGneO9Q9gfog0R94LORQohssS?=
- =?us-ascii?Q?TmO2M+GP82ReLVSO5x+YL2FrsAJGHV/3o8iHQjADAmV9N7Yu5pFBRhV5UCE3?=
- =?us-ascii?Q?eC8RrRRvu4uY6PjPtim6M+3NoRvhDkUXQf7U87cqm0wlriyqY+z4YPlyKQ39?=
- =?us-ascii?Q?gziSKKc5CKulKlLaXJdLIe33zpe3ezP/euSqdhWHxGh7JVceQKPug4pA6r1V?=
- =?us-ascii?Q?2xyJ/YAaDzLDwKI0mpd3k9P2PTVwJWJrCb6VRQqxMbx8sKSIGDlSw6gC7Gov?=
- =?us-ascii?Q?pnxTcQJiRNzR9TuFRDer5qObws0U2tguuCaU49YqvsBGgkJAApwWaVAwR5BZ?=
- =?us-ascii?Q?xXKojfi8vLfhN57dXB8f6J3Z93rZtJ/+VlHTMaGT32+59O1qaNDsuNyiybtc?=
- =?us-ascii?Q?PoKa7I0lbb7ytZOwHPT9wzAVvRNe4hDViz5dbh2jhq9hAeqeKJOWQJZCpYYM?=
- =?us-ascii?Q?vMCUD6urbdM8OWIqdGiQAB1n4nEcyuv4wzzfl+uJJrCfMTKlDiCrYMA5VHin?=
- =?us-ascii?Q?0uGqzIk4B+yjcbBjD3vt9P0z6EKn+5YOs0U3C7XiyXyPWfSJHwBVtKzNK7AQ?=
- =?us-ascii?Q?YAYN/8Pm6DW56XC5cbvrifG0zLWHQvGC6rK+1V8VB+7saQb1DeuB5NM3SYBK?=
- =?us-ascii?Q?O6NLKyowpM8vjMTqEpNIgDUb2iNXswVfkdft2EXm4ZSy2z3d0b7n+UDo0Ox/?=
- =?us-ascii?Q?+2IVIihoZAoVWkLUN0X0KyLBhEmwIy5kgu2kbiPUK9ranl//PEw52Nk3L0tE?=
- =?us-ascii?Q?QHVo960m1LQ75TzQ5HoNN4ByxkJQ/mAB7Wc1Hhx/YbuBFNk/HFt27CPef0gQ?=
- =?us-ascii?Q?mfL3plEZ4dX76yPK53zxnlryfmHr/94oGndPXLTPj028kDzNgI+1wuBZoO6G?=
- =?us-ascii?Q?ZVrlGa1dHDHSdMp1qCk7nZ5U6d1u4AN24M+MXHQXzDXyUgcC8ehhsiZsJbIQ?=
- =?us-ascii?Q?7vL0F0svgTQUNrgyx86Xo+fTBwtmRW7Tb2yjTUtCE1Hk/jWRxS1by/dv7pMZ?=
- =?us-ascii?Q?ZoNca5vgY1Z3ek7NfpQxUxZ31r68m04PECplsSEuGjqYpJuiLSuY+7RiWUyW?=
- =?us-ascii?Q?pP34elrsB0TJLR57KwL285ERqtneIqaRQM6bSQre4RIxQyOyuGmAe8lTuO0K?=
- =?us-ascii?Q?fOQNtdCP5SwhFcEamvEQJcXXlCOBrbM7Bis0N1ztUwNCOBATM/o7Rn4arNBd?=
- =?us-ascii?Q?KtvSKXVCZeCBorYK3xrAnmMpB/RYyZJVL0ujyTxnDt30LSRhyqoccD7LgiFO?=
- =?us-ascii?Q?Tp5XK1EbYJ2UA7Nf/SVpN6H7c8lKucbKdZG3tqv9h6lgzVMswr3Bx2einhh7?=
- =?us-ascii?Q?TfoMMRcqqjhPMsiwFDA8T/3s0z7zlb736gSq?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(7416014)(376014)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2025 06:47:01.7977
+X-OriginatorOrg: microchip.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB7414.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e3aa5a67-99ad-40fc-3009-08dd3f67875f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Jan 2025 06:46:44.1425
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5a387a84-db57-44fb-dee5-08dd3f6791e3
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ5PEPF00000209.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4240
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +85qPzhEtO2mQ9NM/JYkvJN+Dh+0qRSGT5lJdjCybU3aixjPL/94PNG3JXchVsKlAdS9fzvV5HX3xQXKUX1jkgdWv9MfzCIr+jnOWD6vfAE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4796
 
-The Tegra264 SoC supports the UART Trace Controller (UTC), which allows
-multiple firmware clients (up to 16) to share a single physical UART.
-Each client is provided with its own interrupt and has access to a
-128-character wide FIFO for both transmit (TX) and receive (RX)
-operations.
-
-Add tegra-utc driver to support Tegra UART Trace Controller (UTC)
-client.
-
-Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
----
- drivers/tty/serial/Kconfig     |  23 ++
- drivers/tty/serial/Makefile    |   1 +
- drivers/tty/serial/tegra-utc.c | 641 +++++++++++++++++++++++++++++++++
- 3 files changed, 665 insertions(+)
- create mode 100644 drivers/tty/serial/tegra-utc.c
-
-diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
-index 976dae3bb1bb..edc56a3c0ace 100644
---- a/drivers/tty/serial/Kconfig
-+++ b/drivers/tty/serial/Kconfig
-@@ -306,6 +306,29 @@ config SERIAL_TEGRA_TCU_CONSOLE
- 
- 	  If unsure, say Y.
- 
-+config SERIAL_TEGRA_UTC
-+	tristate "NVIDIA Tegra UART Trace Controller"
-+	depends on ARCH_TEGRA || COMPILE_TEST
-+	select SERIAL_CORE
-+	help
-+	  Support for Tegra UTC (UART Trace controller) client serial port.
-+
-+	  UTC is a HW based serial port that allows multiplexing multiple data
-+	  streams of up to 16 UTC clients into a single hardware serial port.
-+
-+config SERIAL_TEGRA_UTC_CONSOLE
-+	bool "Support for console on a Tegra UTC serial port"
-+	depends on SERIAL_TEGRA_UTC
-+	select SERIAL_CORE_CONSOLE
-+	default SERIAL_TEGRA_UTC
-+	help
-+	  If you say Y here, it will be possible to use a Tegra UTC client as
-+	  the system console (the system console is the device which receives
-+	  all kernel messages and warnings and which allows logins in single
-+	  user mode).
-+
-+	  If unsure, say Y.
-+
- config SERIAL_MAX3100
- 	tristate "MAX3100/3110/3111/3222 support"
- 	depends on SPI
-diff --git a/drivers/tty/serial/Makefile b/drivers/tty/serial/Makefile
-index 6ff74f0a9530..7190914ba707 100644
---- a/drivers/tty/serial/Makefile
-+++ b/drivers/tty/serial/Makefile
-@@ -86,6 +86,7 @@ obj-$(CONFIG_SERIAL_STM32)		+= stm32-usart.o
- obj-$(CONFIG_SERIAL_SUNPLUS)		+= sunplus-uart.o
- obj-$(CONFIG_SERIAL_TEGRA)		+= serial-tegra.o
- obj-$(CONFIG_SERIAL_TEGRA_TCU)		+= tegra-tcu.o
-+obj-$(CONFIG_SERIAL_TEGRA_UTC)		+= tegra-utc.o
- obj-$(CONFIG_SERIAL_TIMBERDALE)		+= timbuart.o
- obj-$(CONFIG_SERIAL_TXX9)		+= serial_txx9.o
- obj-$(CONFIG_SERIAL_UARTLITE)		+= uartlite.o
-diff --git a/drivers/tty/serial/tegra-utc.c b/drivers/tty/serial/tegra-utc.c
-new file mode 100644
-index 000000000000..3d44e83f9302
---- /dev/null
-+++ b/drivers/tty/serial/tegra-utc.c
-@@ -0,0 +1,641 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// SPDX-FileCopyrightText: Copyright (c) 2025 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-+/*
-+ * NVIDIA Tegra UTC (UART Trace Controller) driver.
-+ */
-+
-+#include <linux/console.h>
-+#include <linux/kthread.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/serial.h>
-+#include <linux/serial_core.h>
-+#include <linux/slab.h>
-+#include <linux/string.h>
-+#include <linux/tty.h>
-+#include <linux/tty_flip.h>
-+
-+#define TEGRA_UTC_ENABLE			0x0
-+#define TEGRA_UTC_ENABLE_CLIENT_ENABLE		BIT(0)
-+
-+#define TEGRA_UTC_FIFO_THRESHOLD		0x8
-+
-+#define TEGRA_UTC_COMMAND			0xc
-+#define TEGRA_UTC_COMMAND_FLUSH			BIT(1)
-+#define TEGRA_UTC_COMMAND_RESET			BIT(0)
-+
-+#define TEGRA_UTC_DATA				0x20
-+
-+#define TEGRA_UTC_FIFO_STATUS			0x100
-+#define TEGRA_UTC_FIFO_TIMEOUT			BIT(4)
-+#define TEGRA_UTC_FIFO_OVERFLOW			BIT(3)
-+#define TEGRA_UTC_FIFO_REQ			BIT(2)
-+#define TEGRA_UTC_FIFO_FULL			BIT(1)
-+#define TEGRA_UTC_FIFO_EMPTY			BIT(0)
-+
-+#define TEGRA_UTC_FIFO_OCCUPANCY		0x104
-+
-+#define TEGRA_UTC_INTR_STATUS			0x108
-+#define TEGRA_UTC_INTR_SET			0x10c
-+#define TEGRA_UTC_INTR_MASK			0x110
-+#define TEGRA_UTC_INTR_CLEAR			0x114
-+#define TEGRA_UTC_INTR_TIMEOUT			BIT(4)
-+#define TEGRA_UTC_INTR_OVERFLOW			BIT(3)
-+#define TEGRA_UTC_INTR_REQ			BIT(2)
-+#define TEGRA_UTC_INTR_FULL			BIT(1)
-+#define TEGRA_UTC_INTR_EMPTY			BIT(0)
-+
-+#define UART_NR					16
-+
-+struct tegra_utc_soc {
-+	unsigned int fifosize;
-+};
-+
-+struct tegra_utc_port {
-+	const struct tegra_utc_soc *soc;
-+#if IS_ENABLED(CONFIG_SERIAL_TEGRA_UTC_CONSOLE)
-+	struct console console;
-+#endif
-+	struct uart_port port;
-+
-+	void __iomem *rx_base;
-+	void __iomem *tx_base;
-+
-+	u32 tx_irqmask;
-+	u32 rx_irqmask;
-+
-+	u32 fifo_threshold;
-+	u32 baudrate;
-+	int irq;
-+};
-+
-+static u32 tegra_utc_rx_readl(struct tegra_utc_port *tup, unsigned int offset)
-+{
-+	void __iomem *addr = tup->rx_base + offset;
-+
-+	return readl_relaxed(addr);
-+}
-+
-+static void tegra_utc_rx_writel(struct tegra_utc_port *tup, u32 val, unsigned int offset)
-+{
-+	void __iomem *addr = tup->rx_base + offset;
-+
-+	writel_relaxed(val, addr);
-+}
-+
-+static u32 tegra_utc_tx_readl(struct tegra_utc_port *tup, unsigned int offset)
-+{
-+	void __iomem *addr = tup->tx_base + offset;
-+
-+	return readl_relaxed(addr);
-+}
-+
-+static void tegra_utc_tx_writel(struct tegra_utc_port *tup, u32 val, unsigned int offset)
-+{
-+	void __iomem *addr = tup->tx_base + offset;
-+
-+	writel_relaxed(val, addr);
-+}
-+
-+static void tegra_utc_enable_tx_irq(struct tegra_utc_port *tup)
-+{
-+	tup->tx_irqmask = TEGRA_UTC_INTR_REQ;
-+
-+	tegra_utc_tx_writel(tup, tup->tx_irqmask, TEGRA_UTC_INTR_MASK);
-+	tegra_utc_tx_writel(tup, tup->tx_irqmask, TEGRA_UTC_INTR_SET);
-+}
-+
-+static void tegra_utc_disable_tx_irq(struct tegra_utc_port *tup)
-+{
-+	tup->tx_irqmask = 0x0;
-+
-+	tegra_utc_tx_writel(tup, tup->tx_irqmask, TEGRA_UTC_INTR_MASK);
-+	tegra_utc_tx_writel(tup, tup->tx_irqmask, TEGRA_UTC_INTR_SET);
-+}
-+
-+static void tegra_utc_stop_tx(struct uart_port *port)
-+{
-+	struct tegra_utc_port *tup = container_of(port, struct tegra_utc_port, port);
-+
-+	tegra_utc_disable_tx_irq(tup);
-+}
-+
-+static void tegra_utc_init_tx(struct tegra_utc_port *tup)
-+{
-+	/* Disable TX. */
-+	tegra_utc_tx_writel(tup, 0x0, TEGRA_UTC_ENABLE);
-+
-+	/* Update the FIFO Threshold. */
-+	tegra_utc_tx_writel(tup, tup->fifo_threshold, TEGRA_UTC_FIFO_THRESHOLD);
-+
-+	/* Clear and mask all the interrupts. */
-+	tegra_utc_tx_writel(tup, TEGRA_UTC_INTR_REQ | TEGRA_UTC_INTR_FULL | TEGRA_UTC_INTR_EMPTY,
-+			    TEGRA_UTC_INTR_CLEAR);
-+	tegra_utc_disable_tx_irq(tup);
-+
-+	/* Enable TX. */
-+	tegra_utc_tx_writel(tup, TEGRA_UTC_ENABLE_CLIENT_ENABLE, TEGRA_UTC_ENABLE);
-+}
-+
-+static void tegra_utc_init_rx(struct tegra_utc_port *tup)
-+{
-+	tup->rx_irqmask = TEGRA_UTC_INTR_REQ | TEGRA_UTC_INTR_TIMEOUT;
-+
-+	tegra_utc_rx_writel(tup, TEGRA_UTC_COMMAND_RESET, TEGRA_UTC_COMMAND);
-+	tegra_utc_rx_writel(tup, tup->fifo_threshold, TEGRA_UTC_FIFO_THRESHOLD);
-+
-+	/* Clear all the pending interrupts. */
-+	tegra_utc_rx_writel(tup, TEGRA_UTC_INTR_TIMEOUT | TEGRA_UTC_INTR_OVERFLOW |
-+			    TEGRA_UTC_INTR_REQ | TEGRA_UTC_INTR_FULL |
-+			    TEGRA_UTC_INTR_EMPTY, TEGRA_UTC_INTR_CLEAR);
-+	tegra_utc_rx_writel(tup, tup->rx_irqmask, TEGRA_UTC_INTR_MASK);
-+	tegra_utc_rx_writel(tup, tup->rx_irqmask, TEGRA_UTC_INTR_SET);
-+
-+	/* Enable RX. */
-+	tegra_utc_rx_writel(tup, TEGRA_UTC_ENABLE_CLIENT_ENABLE, TEGRA_UTC_ENABLE);
-+}
-+
-+static bool tegra_utc_tx_char(struct tegra_utc_port *tup, u8 c)
-+{
-+	if (tegra_utc_tx_readl(tup, TEGRA_UTC_FIFO_STATUS) & TEGRA_UTC_FIFO_FULL)
-+		return false;
-+
-+	tegra_utc_tx_writel(tup, c, TEGRA_UTC_DATA);
-+
-+	return true;
-+}
-+
-+static bool tegra_utc_tx_chars(struct tegra_utc_port *tup)
-+{
-+	struct tty_port *tport = &tup->port.state->port;
-+	u8 c;
-+
-+	if (tup->port.x_char) {
-+		if (!tegra_utc_tx_char(tup, tup->port.x_char))
-+			return true;
-+
-+		tup->port.x_char = 0;
-+	}
-+
-+	if (kfifo_is_empty(&tport->xmit_fifo) || uart_tx_stopped(&tup->port)) {
-+		tegra_utc_stop_tx(&tup->port);
-+		return false;
-+	}
-+
-+	while (kfifo_peek(&tport->xmit_fifo, &c)) {
-+		if (!tegra_utc_tx_char(tup, c))
-+			break;
-+
-+		kfifo_skip(&tport->xmit_fifo);
-+	}
-+
-+	if (kfifo_len(&tport->xmit_fifo) < WAKEUP_CHARS)
-+		uart_write_wakeup(&tup->port);
-+
-+	if (kfifo_is_empty(&tport->xmit_fifo)) {
-+		tegra_utc_stop_tx(&tup->port);
-+		return false;
-+	}
-+
-+	return true;
-+}
-+
-+static void tegra_utc_rx_chars(struct tegra_utc_port *tup)
-+{
-+	struct tty_port *port = &tup->port.state->port;
-+	unsigned int max_chars = 256;
-+	unsigned int flag;
-+	u32 status;
-+	int sysrq;
-+	u32 ch;
-+
-+	while (--max_chars) {
-+		status = tegra_utc_rx_readl(tup, TEGRA_UTC_FIFO_STATUS);
-+		if (status & TEGRA_UTC_FIFO_EMPTY)
-+			break;
-+
-+		ch = tegra_utc_rx_readl(tup, TEGRA_UTC_DATA);
-+		flag = TTY_NORMAL;
-+		tup->port.icount.rx++;
-+
-+		if (status & TEGRA_UTC_FIFO_OVERFLOW)
-+			tup->port.icount.overrun++;
-+
-+		uart_port_unlock(&tup->port);
-+		sysrq = uart_handle_sysrq_char(&tup->port, ch & 0xff);
-+		uart_port_lock(&tup->port);
-+
-+		if (!sysrq)
-+			tty_insert_flip_char(port, ch, flag);
-+	}
-+
-+	tty_flip_buffer_push(port);
-+}
-+
-+static irqreturn_t tegra_utc_isr(int irq, void *dev_id)
-+{
-+	struct tegra_utc_port *tup = dev_id;
-+	unsigned long flags;
-+	u32 status;
-+
-+	uart_port_lock_irqsave(&tup->port, &flags);
-+
-+	/* Process RX_REQ and RX_TIMEOUT interrupts. */
-+	do {
-+		status = tegra_utc_rx_readl(tup, TEGRA_UTC_INTR_STATUS) & tup->rx_irqmask;
-+		if (status) {
-+			tegra_utc_rx_writel(tup, tup->rx_irqmask, TEGRA_UTC_INTR_CLEAR);
-+			tegra_utc_rx_chars(tup);
-+		}
-+	} while (status);
-+
-+	/* Process TX_REQ interrupt. */
-+	do {
-+		status = tegra_utc_tx_readl(tup, TEGRA_UTC_INTR_STATUS) & tup->tx_irqmask;
-+		if (status) {
-+			tegra_utc_tx_writel(tup, tup->tx_irqmask, TEGRA_UTC_INTR_CLEAR);
-+			tegra_utc_tx_chars(tup);
-+		}
-+	} while (status);
-+
-+	uart_port_unlock_irqrestore(&tup->port, flags);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static unsigned int tegra_utc_tx_empty(struct uart_port *port)
-+{
-+	struct tegra_utc_port *tup = container_of(port, struct tegra_utc_port, port);
-+
-+	return tegra_utc_tx_readl(tup, TEGRA_UTC_FIFO_OCCUPANCY) ? 0 : TIOCSER_TEMT;
-+}
-+
-+static void tegra_utc_set_mctrl(struct uart_port *port, unsigned int mctrl)
-+{
-+}
-+
-+static unsigned int tegra_utc_get_mctrl(struct uart_port *port)
-+{
-+	return 0;
-+}
-+
-+static void tegra_utc_start_tx(struct uart_port *port)
-+{
-+	struct tegra_utc_port *tup = container_of(port, struct tegra_utc_port, port);
-+
-+	if (tegra_utc_tx_chars(tup))
-+		tegra_utc_enable_tx_irq(tup);
-+}
-+
-+static void tegra_utc_stop_rx(struct uart_port *port)
-+{
-+	struct tegra_utc_port *tup = container_of(port, struct tegra_utc_port, port);
-+
-+	tup->rx_irqmask = 0x0;
-+	tegra_utc_rx_writel(tup, tup->rx_irqmask, TEGRA_UTC_INTR_MASK);
-+	tegra_utc_rx_writel(tup, tup->rx_irqmask, TEGRA_UTC_INTR_SET);
-+}
-+
-+static void tegra_utc_hw_init(struct tegra_utc_port *tup)
-+{
-+	tegra_utc_init_tx(tup);
-+	tegra_utc_init_rx(tup);
-+}
-+
-+static int tegra_utc_startup(struct uart_port *port)
-+{
-+	struct tegra_utc_port *tup = container_of(port, struct tegra_utc_port, port);
-+	int ret;
-+
-+	tegra_utc_hw_init(tup);
-+
-+	ret = request_irq(tup->irq, tegra_utc_isr, 0, dev_name(port->dev), tup);
-+	if (ret < 0) {
-+		dev_err(port->dev, "failed to register interrupt handler\n");
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void tegra_utc_shutdown(struct uart_port *port)
-+{
-+	struct tegra_utc_port *tup = container_of(port, struct tegra_utc_port, port);
-+
-+	tegra_utc_rx_writel(tup, 0x0, TEGRA_UTC_ENABLE);
-+	free_irq(tup->irq, tup);
-+}
-+
-+static void tegra_utc_set_termios(struct uart_port *port, struct ktermios *termios,
-+				  const struct ktermios *old)
-+{
-+	struct tegra_utc_port *tup = container_of(port, struct tegra_utc_port, port);
-+	unsigned long flags;
-+
-+	tty_termios_encode_baud_rate(termios, tup->baudrate, tup->baudrate);
-+	termios->c_cflag &= ~(CSIZE | CSTOPB | PARENB | PARODD);
-+	termios->c_cflag &= ~(CMSPAR | CRTSCTS);
-+	termios->c_cflag |= CS8 | CLOCAL;
-+
-+	uart_port_lock_irqsave(port, &flags);
-+	uart_update_timeout(port, CS8, tup->baudrate);
-+	uart_port_unlock_irqrestore(port, flags);
-+}
-+
-+#ifdef CONFIG_CONSOLE_POLL
-+
-+static int tegra_utc_poll_init(struct uart_port *port)
-+{
-+	struct tegra_utc_port *tup = container_of(port, struct tegra_utc_port, port);
-+
-+	tegra_utc_hw_init(tup);
-+	return 0;
-+}
-+
-+static int tegra_utc_get_poll_char(struct uart_port *port)
-+{
-+	struct tegra_utc_port *tup = container_of(port, struct tegra_utc_port, port);
-+
-+	while (tegra_utc_rx_readl(tup, TEGRA_UTC_FIFO_STATUS) & TEGRA_UTC_FIFO_EMPTY)
-+		cpu_relax();
-+
-+	return tegra_utc_rx_readl(tup, TEGRA_UTC_DATA);
-+}
-+
-+static void tegra_utc_put_poll_char(struct uart_port *port, unsigned char ch)
-+{
-+	struct tegra_utc_port *tup = container_of(port, struct tegra_utc_port, port);
-+
-+	while (tegra_utc_tx_readl(tup, TEGRA_UTC_FIFO_STATUS) & TEGRA_UTC_FIFO_FULL)
-+		cpu_relax();
-+
-+	tegra_utc_tx_writel(tup, ch, TEGRA_UTC_DATA);
-+}
-+
-+#endif
-+
-+static const struct uart_ops tegra_utc_uart_ops = {
-+	.tx_empty = tegra_utc_tx_empty,
-+	.set_mctrl = tegra_utc_set_mctrl,
-+	.get_mctrl = tegra_utc_get_mctrl,
-+	.stop_tx = tegra_utc_stop_tx,
-+	.start_tx = tegra_utc_start_tx,
-+	.stop_rx = tegra_utc_stop_rx,
-+	.startup = tegra_utc_startup,
-+	.shutdown = tegra_utc_shutdown,
-+	.set_termios = tegra_utc_set_termios,
-+#ifdef CONFIG_CONSOLE_POLL
-+	.poll_init = tegra_utc_poll_init,
-+	.poll_get_char = tegra_utc_get_poll_char,
-+	.poll_put_char = tegra_utc_put_poll_char,
-+#endif
-+};
-+
-+#if IS_ENABLED(CONFIG_SERIAL_TEGRA_UTC_CONSOLE)
-+#define TEGRA_UTC_DEFAULT_FIFO_THRESHOLD	0x4
-+#define TEGRA_UTC_EARLYCON_MAX_BURST_SIZE	128
-+
-+static void tegra_utc_putc(struct uart_port *port, unsigned char c)
-+{
-+	writel(c, port->membase + TEGRA_UTC_DATA);
-+}
-+
-+static void tegra_utc_early_write(struct console *con, const char *s, unsigned int n)
-+{
-+	struct earlycon_device *dev = con->data;
-+
-+	while (n) {
-+		u32 burst_size = TEGRA_UTC_EARLYCON_MAX_BURST_SIZE;
-+
-+		burst_size -= readl(dev->port.membase + TEGRA_UTC_FIFO_OCCUPANCY);
-+		if (n < burst_size)
-+			burst_size = n;
-+
-+		uart_console_write(&dev->port, s, burst_size, tegra_utc_putc);
-+
-+		n -= burst_size;
-+		s += burst_size;
-+	}
-+}
-+
-+static int __init tegra_utc_early_console_setup(struct earlycon_device *device, const char *opt)
-+{
-+	if (!device->port.membase)
-+		return -ENODEV;
-+
-+	/* Configure TX */
-+	writel(TEGRA_UTC_COMMAND_FLUSH | TEGRA_UTC_COMMAND_RESET,
-+		device->port.membase + TEGRA_UTC_COMMAND);
-+	writel(TEGRA_UTC_DEFAULT_FIFO_THRESHOLD, device->port.membase + TEGRA_UTC_FIFO_THRESHOLD);
-+
-+	/* Clear and mask all the interrupts. */
-+	writel(TEGRA_UTC_INTR_REQ | TEGRA_UTC_INTR_FULL | TEGRA_UTC_INTR_EMPTY,
-+		device->port.membase + TEGRA_UTC_INTR_CLEAR);
-+
-+	writel(0x0, device->port.membase + TEGRA_UTC_INTR_MASK);
-+	writel(0x0, device->port.membase + TEGRA_UTC_INTR_SET);
-+
-+	/* Enable TX. */
-+	writel(TEGRA_UTC_ENABLE_CLIENT_ENABLE, device->port.membase + TEGRA_UTC_ENABLE);
-+
-+	device->con->write = tegra_utc_early_write;
-+
-+	return 0;
-+}
-+OF_EARLYCON_DECLARE(tegra_utc, "nvidia,tegra264-utc", tegra_utc_early_console_setup);
-+
-+static void tegra_utc_console_putchar(struct uart_port *port, unsigned char ch)
-+{
-+	struct tegra_utc_port *tup = container_of(port, struct tegra_utc_port, port);
-+
-+	tegra_utc_tx_writel(tup, ch, TEGRA_UTC_DATA);
-+}
-+
-+static void tegra_utc_console_write(struct console *cons, const char *s, unsigned int count)
-+{
-+	struct tegra_utc_port *tup = container_of(cons, struct tegra_utc_port, console);
-+	unsigned long flags;
-+	int locked = 1;
-+
-+	if (tup->port.sysrq || oops_in_progress)
-+		locked = uart_port_trylock_irqsave(&tup->port, &flags);
-+	else
-+		uart_port_lock_irqsave(&tup->port, &flags);
-+
-+	while (count) {
-+		u32 burst_size = tup->soc->fifosize;
-+
-+		burst_size -= tegra_utc_tx_readl(tup, TEGRA_UTC_FIFO_OCCUPANCY);
-+		if (count < burst_size)
-+			burst_size = count;
-+
-+		uart_console_write(&tup->port, s, burst_size, tegra_utc_console_putchar);
-+
-+		count -= burst_size;
-+		s += burst_size;
-+	};
-+
-+	if (locked)
-+		uart_port_unlock_irqrestore(&tup->port, flags);
-+}
-+
-+static int tegra_utc_console_setup(struct console *cons, char *options)
-+{
-+	struct tegra_utc_port *tup = container_of(cons, struct tegra_utc_port, console);
-+
-+	tegra_utc_init_tx(tup);
-+
-+	return 0;
-+}
-+#endif
-+
-+static struct uart_driver tegra_utc_driver = {
-+	.driver_name	= "tegra-utc",
-+	.dev_name	= "ttyUTC",
-+	.nr		= UART_NR
-+};
-+
-+static void tegra_utc_setup_port(struct device *dev, struct tegra_utc_port *tup,
-+				 unsigned int index)
-+{
-+	tup->port.dev		= dev;
-+	tup->port.fifosize	= tup->soc->fifosize;
-+	tup->port.flags		= UPF_BOOT_AUTOCONF;
-+	tup->port.iotype	= UPIO_MEM;
-+	tup->port.ops		= &tegra_utc_uart_ops;
-+	tup->port.type		= PORT_TEGRA_TCU;
-+	tup->port.line		= index;
-+	tup->port.private_data	= tup;
-+
-+#if IS_ENABLED(CONFIG_SERIAL_TEGRA_UTC_CONSOLE)
-+	strscpy(tup->console.name, "ttyUTC", sizeof(tup->console.name));
-+	tup->console.write	= tegra_utc_console_write;
-+	tup->console.device	= uart_console_device;
-+	tup->console.setup	= tegra_utc_console_setup;
-+	tup->console.flags	= CON_PRINTBUFFER | CON_CONSDEV | CON_ANYTIME;
-+	tup->console.data	= &tegra_utc_driver;
-+#endif
-+}
-+
-+static int tegra_utc_register_port(struct tegra_utc_port *tup)
-+{
-+	int ret;
-+
-+	ret = uart_add_one_port(&tegra_utc_driver, &tup->port);
-+	if (ret)
-+		return ret;
-+
-+#if IS_ENABLED(CONFIG_SERIAL_TEGRA_UTC_CONSOLE)
-+	register_console(&tup->console);
-+#endif
-+
-+	return 0;
-+}
-+
-+static int tegra_utc_probe(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct tegra_utc_port *tup;
-+	int index;
-+	int ret;
-+
-+	index = of_alias_get_id(np, "serial");
-+	if (index < 0) {
-+		dev_err(&pdev->dev, "failed to get alias id, err %d\n", index);
-+		return index;
-+	}
-+
-+	tup = devm_kzalloc(&pdev->dev, sizeof(struct tegra_utc_port), GFP_KERNEL);
-+	if (!tup)
-+		return -ENOMEM;
-+
-+	ret = of_property_read_u32(np, "current-speed", &tup->baudrate);
-+	if (ret) {
-+		dev_err(&pdev->dev, "missing current-speed device-tree property\n");
-+		return ret;
-+	}
-+
-+	ret = of_property_read_u32(np, "nvidia,utc-fifo-threshold", &tup->fifo_threshold);
-+	if (ret) {
-+		dev_err(&pdev->dev, "missing nvidia,fifo-threshold device-tree property\n");
-+		return ret;
-+	}
-+
-+	tup->irq = platform_get_irq(pdev, 0);
-+	if (tup->irq < 0) {
-+		dev_err(&pdev->dev, "failed to get interrupt\n");
-+		return tup->irq;
-+	}
-+
-+	tup->soc = of_device_get_match_data(&pdev->dev);
-+
-+	tup->tx_base = devm_platform_ioremap_resource_byname(pdev, "tx");
-+	if (IS_ERR(tup->tx_base))
-+		return PTR_ERR(tup->tx_base);
-+
-+	tup->rx_base = devm_platform_ioremap_resource_byname(pdev, "rx");
-+	if (IS_ERR(tup->rx_base))
-+		return PTR_ERR(tup->rx_base);
-+
-+	tegra_utc_setup_port(&pdev->dev, tup, index);
-+	platform_set_drvdata(pdev, tup);
-+
-+	return tegra_utc_register_port(tup);
-+}
-+
-+static void tegra_utc_remove(struct platform_device *pdev)
-+{
-+	struct tegra_utc_port *tup = platform_get_drvdata(pdev);
-+
-+	uart_remove_one_port(&tegra_utc_driver, &tup->port);
-+}
-+
-+static const struct tegra_utc_soc tegra264_utc_soc = {
-+	.fifosize = 128,
-+};
-+
-+static const struct of_device_id tegra_utc_of_match[] = {
-+	{ .compatible = "nvidia,tegra264-utc", .data = &tegra264_utc_soc },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, tegra_utc_of_match);
-+
-+static struct platform_driver tegra_utc_platform_driver = {
-+	.probe = tegra_utc_probe,
-+	.remove = tegra_utc_remove,
-+	.driver = {
-+		.name = "tegra-utc",
-+		.of_match_table = tegra_utc_of_match,
-+	},
-+};
-+
-+static int __init tegra_utc_init(void)
-+{
-+	int ret;
-+
-+	ret = uart_register_driver(&tegra_utc_driver);
-+	if (ret)
-+		return ret;
-+
-+	ret = platform_driver_register(&tegra_utc_platform_driver);
-+	if (ret) {
-+		uart_unregister_driver(&tegra_utc_driver);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+module_init(tegra_utc_init);
-+
-+static void __exit tegra_utc_exit(void)
-+{
-+	platform_driver_unregister(&tegra_utc_platform_driver);
-+	uart_unregister_driver(&tegra_utc_driver);
-+}
-+module_exit(tegra_utc_exit);
-+
-+MODULE_AUTHOR("Kartik Rajput <kkartik@nvidia.com>");
-+MODULE_DESCRIPTION("Tegra UART Trace Controller");
-+MODULE_LICENSE("GPL");
--- 
-2.43.0
-
+T24gMjgvMDEvMjUgMDI6MTYsIFJvYiBIZXJyaW5nIHdyb3RlOg0KPiBFWFRFUk5BTCBFTUFJTDog
+RG8gbm90IGNsaWNrIGxpbmtzIG9yIG9wZW4gYXR0YWNobWVudHMgdW5sZXNzIHlvdSBrbm93IHRo
+ZSBjb250ZW50IGlzIHNhZmUNCj4NCj4gT24gTW9uLCBKYW4gMjcsIDIwMjUgYXQgMDM6NTE6NThQ
+TSArMDUzMCwgQ2hhcmFuIFBlZHVtdXJ1IHdyb3RlOg0KPj4gRnJvbTogRHVyYWkgTWFuaWNrYW0g
+S1IgPGR1cmFpLm1hbmlja2Fta3JAbWljcm9jaGlwLmNvbT4NCj4+DQo+PiBBZGQgYSBkZXNjcmlw
+dGlvbiwgcmVxdWlyZWQgcHJvcGVydGllcywgYXBwcm9wcmlhdGUgY29tcGF0aWJsZXMgYW5kDQo+
+PiBtaXNzaW5nIHByb3BlcnRpZXMgbGlrZSBjbG9ja3MgYW5kIGNsb2NrLW5hbWVzIHdoaWNoIGFy
+ZSBub3QgZGVmaW5lZCBpbg0KPj4gdGhlIHRleHQgYmluZGluZyBmb3IgYWxsIHRoZSBTb0NzIHRo
+YXQgYXJlIHN1cHBvcnRlZCBieSBtaWNyb2NoaXAuDQo+PiBVcGRhdGUgdGhlIHRleHQgYmluZGlu
+ZyBuYW1lIGBhdG1lbC1kbWEudHh0YCB0bw0KPj4gYGF0bWVsLGF0OTFzYW05ZzQ1LWRtYS55YW1s
+YCBmb3IgdGhlIGZpbGVzIHdoaWNoIHJlZmVyZW5jZSB0bw0KPj4gYGF0bWVsLWRtYS50eHRgLiBE
+cm9wIFR1ZG9yIG5hbWUgZnJvbSBtYWludGFpbmVycy4NCj4+DQo+PiBTaWduZWQtb2ZmLWJ5OiBE
+dXJhaSBNYW5pY2thbSBLUiA8ZHVyYWkubWFuaWNrYW1rckBtaWNyb2NoaXAuY29tPg0KPj4gU2ln
+bmVkLW9mZi1ieTogQ2hhcmFuIFBlZHVtdXJ1IDxjaGFyYW4ucGVkdW11cnVAbWljcm9jaGlwLmNv
+bT4NCj4+IC0tLQ0KPj4gQ2hhbmdlcyBpbiB2MzoNCj4+IC0gUmVuYW1lZCB0aGUgdGV4dCBiaW5k
+aW5nIG5hbWUgYGF0bWVsLWRtYS50eHRgIHRvDQo+PiAgICBgYXRtZWwsYXQ5MXNhbTlnNDUtZG1h
+LnlhbWxgIGZvciB0aGUgZmlsZXMgd2hpY2ggcmVmZXJlbmNlIHRvDQo+PiAgICBgYXRtZWwtZG1h
+LnR4dGAuDQo+PiAtIFJlbW92ZWQgYG9uZU9mYCBhbmQgYWRkIGEgYmxhbmsgbGluZSBpbiBwcm9w
+ZXJ0aWVzLg0KPj4gLSBEcm9wcGVkIFR1ZG9yIG5hbWUgZnJvbSBtYWludGFpbmVycy4NCj4+IC0g
+TGluayB0byB2MjogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvci8yMDI1MDEyMy1kbWEtdjEtMS0w
+NTRmMWE3N2U3MzNAbWljcm9jaGlwLmNvbQ0KPj4NCj4+IENoYW5nZXMgaW4gdjI6DQo+PiAtIFJl
+bmFtZWQgdGhlIHlhbWwgZmlsZSB0byBhIGNvbXBhdGlibGUuDQo+PiAtIFJlbW92ZWQgYHxgIGFu
+ZCBkZXNjcmlwdGlvbiBmb3IgY29tbW9uIHByb3BlcnRpZXMuDQo+PiAtIE1vZGlmaWVkIHRoZSBj
+b21taXQgbWVzc2FnZS4NCj4+IC0gRHJvcHBlZCB0aGUgbGFiZWwgZm9yIHRoZSBub2RlIGluIGV4
+YW1wbGVzLg0KPj4gLSBMaW5rIHRvIHYxOiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAy
+NDAyMTUtZG1hYy12MS0xLThmMWM2ZjAzMWM5OEBtaWNyb2NoaXAuY29tDQo+PiAtLS0NCj4+ICAg
+Li4uL2JpbmRpbmdzL2RtYS9hdG1lbCxhdDkxc2FtOWc0NS1kbWEueWFtbCAgICAgICAgfCA2NiAr
+KysrKysrKysrKysrKysrKysrKysrDQo+PiAgIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL2RtYS9h
+dG1lbC1kbWEudHh0ICAgICAgICAgIHwgNDIgLS0tLS0tLS0tLS0tLS0NCj4+ICAgLi4uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvbWlzYy9hdG1lbC1zc2MudHh0ICAgICAgICAgfCAgMiArLQ0KPj4gICBN
+QUlOVEFJTkVSUyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAyICst
+DQo+PiAgIDQgZmlsZXMgY2hhbmdlZCwgNjggaW5zZXJ0aW9ucygrKSwgNDQgZGVsZXRpb25zKC0p
+DQo+Pg0KPj4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9k
+bWEvYXRtZWwsYXQ5MXNhbTlnNDUtZG1hLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvZG1hL2F0bWVsLGF0OTFzYW05ZzQ1LWRtYS55YW1sDQo+PiBuZXcgZmlsZSBtb2Rl
+IDEwMDY0NA0KPj4gaW5kZXggMDAwMDAwMDAwMDAwLi5kNmQxNjg2OWI3ZGINCj4+IC0tLSAvZGV2
+L251bGwNCj4+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kbWEvYXRt
+ZWwsYXQ5MXNhbTlnNDUtZG1hLnlhbWwNCj4+IEBAIC0wLDAgKzEsNjYgQEANCj4+ICsjIFNQRFgt
+TGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9SIEJTRC0yLUNsYXVzZSkNCj4+ICsl
+WUFNTCAxLjINCj4+ICstLS0NCj4+ICskaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFz
+L2RtYS9hdG1lbCxhdDkxc2FtOWc0NS1kbWEueWFtbCMNCj4+ICskc2NoZW1hOiBodHRwOi8vZGV2
+aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4+ICsNCj4+ICt0aXRsZTogQXRt
+ZWwgRGlyZWN0IE1lbW9yeSBBY2Nlc3MgQ29udHJvbGxlciAoRE1BKQ0KPj4gKw0KPj4gK21haW50
+YWluZXJzOg0KPj4gKyAgLSBMdWRvdmljIERlc3JvY2hlcyA8bHVkb3ZpYy5kZXNyb2NoZXNAbWlj
+cm9jaGlwLmNvbT4NCj4+ICsNCj4+ICtkZXNjcmlwdGlvbjoNCj4+ICsgIFRoZSBBdG1lbCBEaXJl
+Y3QgTWVtb3J5IEFjY2VzcyBDb250cm9sbGVyIChETUFDKSB0cmFuc2ZlcnMgZGF0YSBmcm9tIGEg
+c291cmNlDQo+PiArICBwZXJpcGhlcmFsIHRvIGEgZGVzdGluYXRpb24gcGVyaXBoZXJhbCBvdmVy
+IG9uZSBvciBtb3JlIEFNQkEgYnVzZXMuIE9uZSBjaGFubmVsDQo+PiArICBpcyByZXF1aXJlZCBm
+b3IgZWFjaCBzb3VyY2UvZGVzdGluYXRpb24gcGFpci4gSW4gdGhlIG1vc3QgYmFzaWMgY29uZmln
+dXJhdGlvbiwNCj4+ICsgIHRoZSBETUFDIGhhcyBvbmUgbWFzdGVyIGludGVyZmFjZSBhbmQgb25l
+IGNoYW5uZWwuIFRoZSBtYXN0ZXIgaW50ZXJmYWNlIHJlYWRzDQo+PiArICB0aGUgZGF0YSBmcm9t
+IGEgc291cmNlIGFuZCB3cml0ZXMgaXQgdG8gYSBkZXN0aW5hdGlvbi4gVHdvIEFNQkEgdHJhbnNm
+ZXJzIGFyZQ0KPj4gKyAgcmVxdWlyZWQgZm9yIGVhY2ggRE1BQyBkYXRhIHRyYW5zZmVyLiBUaGlz
+IGlzIGFsc28ga25vd24gYXMgYSBkdWFsLWFjY2VzcyB0cmFuc2Zlci4NCj4+ICsgIFRoZSBETUFD
+IGlzIHByb2dyYW1tZWQgdmlhIHRoZSBBUEIgaW50ZXJmYWNlLg0KPj4gKw0KPj4gK3Byb3BlcnRp
+ZXM6DQo+PiArICBjb21wYXRpYmxlOg0KPj4gKyAgICBlbnVtOg0KPj4gKyAgICAgIC0gYXRtZWws
+YXQ5MXNhbTlnNDUtZG1hDQo+PiArICAgICAgLSBhdG1lbCxhdDkxc2FtOXJsLWRtYQ0KPj4gKw0K
+Pj4gKyAgcmVnOg0KPj4gKyAgICBtYXhJdGVtczogMQ0KPj4gKw0KPj4gKyAgaW50ZXJydXB0czoN
+Cj4+ICsgICAgbWF4SXRlbXM6IDENCj4+ICsNCj4+ICsgICIjZG1hLWNlbGxzIjoNCj4+ICsgICAg
+ZGVzY3JpcHRpb246DQo+PiArICAgICAgTXVzdCBiZSA8Mj4sIHVzZWQgdG8gcmVwcmVzZW50IHRo
+ZSBudW1iZXIgb2YgaW50ZWdlciBjZWxscyBpbiB0aGUgZG1hcw0KPj4gKyAgICAgIHByb3BlcnR5
+IG9mIGNsaWVudCBkZXZpY2VzLg0KPiBZb3UgZmFpbGVkIHRvIGFkZHJlc3MgQ29ub3IncyBjb21t
+ZW50IG9uIHRoaXMuIFRoZSBhYm92ZSBpcyB1c2VsZXNzDQo+IGJlY2F1c2UgdGhlIHNjaGVtYSBz
+YXlzIGl0IGlzIDIgYW5kIHRoZSBkZXNjcmlwdGlvbiBpcyBmb3IgYW55ICNkbWEtY2VsbHMuDQo+
+DQo+IFdoYXQncyBtaXNzaW5nIGlzIGFuc3dlcmluZyAid2hhdCBkbyB0aGUgMiBjZWxscyBjb250
+YWluIGV4YWN0bHk/IiBUaGF0DQo+IHdhcyBjYXB0dXJlZCBpbiB0aGlzIHRleHQ6DQoNClN1cmUs
+IHRoYW5rcyBmb3IgcG9pbnRpbmcgaXQgb3V0LCBJIHdpbGwgcmV3cml0ZSB0aGUgZGVzY3JpcHRp
+b24gDQpmb2xsb3dpbmcgdGhlIGJlbG93IGZvcm1hdCBleGNsdWRpbmcgdGhlIHBoYW5kbGUgcGFy
+dC4NCg0KPg0KPj4gLVRoZSB0aHJlZSBjZWxscyBpbiBvcmRlciBhcmU6DQo+PiAtDQo+PiAtMS4g
+QSBwaGFuZGxlIHBvaW50aW5nIHRvIHRoZSBETUEgY29udHJvbGxlci4NCj4+IC0yLiBUaGUgbWVt
+b3J5IGludGVyZmFjZSAoMTYgbW9zdCBzaWduaWZpY2FudCBiaXRzKSwgdGhlIHBlcmlwaGVyYWwg
+aW50ZXJmYWNlDQo+PiAtKDE2IGxlc3Mgc2lnbmlmaWNhbnQgYml0cykuDQo+PiAtMy4gUGFyYW1l
+dGVycyBmb3IgdGhlIGF0OTEgRE1BIGNvbmZpZ3VyYXRpb24gcmVnaXN0ZXIgd2hpY2ggYXJlIGRl
+dmljZQ0KPj4gLWRlcGVuZGVudDoNCj4+IC0gIC0gYml0IDctMDogcGVyaXBoZXJhbCBpZGVudGlm
+aWVyIGZvciB0aGUgaGFyZHdhcmUgaGFuZHNoYWtpbmcgaW50ZXJmYWNlLiBUaGUNCj4+IC0gIGlk
+ZW50aWZpZXIgY2FuIGJlIGRpZmZlcmVudCBmb3IgdHggYW5kIHJ4Lg0KPj4gLSAgLSBiaXQgMTEt
+ODogRklGTyBjb25maWd1cmF0aW9uLiAwIGZvciBoYWxmIEZJRk8sIDEgZm9yIEFMQVAsIDIgZm9y
+IEFTQVAuDQo+IEFkYXB0IHRoaXMgZm9yIHRoZSBkZXNjcmlwdGlvbi4gKE5vdGUgaXQgaXMgcGhh
+bmRsZSBwbHVzIDIgY2VsbHMsIG5vdCAzDQo+IGNlbGxzLCBzbyB5b3UgKmNhbiogb21pdCB0aGUg
+cGhhbmRsZSBwYXJ0LikNCj4NCj4gUm9iDQoNCg0KLS0gDQpCZXN0IFJlZ2FyZHMsDQpDaGFyYW4u
+DQoNCg==
 
