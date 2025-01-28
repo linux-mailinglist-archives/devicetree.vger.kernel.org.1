@@ -1,79 +1,72 @@
-Return-Path: <devicetree+bounces-141472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2C4EA20DC3
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:56:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43267A20DD6
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 16:59:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 23D181882423
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 15:56:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 975B3165E39
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 15:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172F01D7992;
-	Tue, 28 Jan 2025 15:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8761D90C5;
+	Tue, 28 Jan 2025 15:59:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="YGqO+qe7"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="eKfbjJF3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 113061B0404
-	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 15:56:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E1381D6DA3
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 15:59:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738079805; cv=none; b=j8KPsJGYnFO+sr4OHmWag/EHkV3Qbykr6ndNL3ZX95roLD3I72NG5AfLzrQ/9fZMk25wBbIyP8UfMhEcb0GA0e6UTUkHGxOT/luuVFktvpRGdVDvHIdZPjL8j7Gi+y3wI95hWsrAiYeiu+kbb4VAsxJudVoy83u+q499FzcWAVE=
+	t=1738079989; cv=none; b=Kj30WKaAQ+Vr8ChP2xOYgkSBnw3wdZPqphtLzeUhJEC3eqVreFh8ME5//mhI847c1E3Hf4vOJLOrtZeR15Au+hSsoHwcio8eql5CJRpBEdNypi0pNSz6enQS0VnBlxyNeJNO6hHwSC4nyCTb1pytipkcj3/PyKaYN3M9octMSAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738079805; c=relaxed/simple;
-	bh=U1CRXAgspDWLAL9BhnasVoFw3dIoFPyaUQBg3kwcafc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G2YYTTf1n67bKIvvyJxfvkFdLVbp0zR1rF/IAhd3xXu31mYoBEYZVUs6M4FyYsigzDHYyCUYNv0z/78dusnXOori99JL28VJwOHIv646W55x7NFW4TTpQQL9rtR3bjy5MLgRm4HD/eQIAgw/5aWffp8a0bk8lM7mPim4td7UW+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=YGqO+qe7; arc=none smtp.client-ip=209.85.167.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3eb3c143727so3330041b6e.1
-        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 07:56:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738079801; x=1738684601; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=I2Qw44d6HeXewj2arD8dL/6DqT4U1JV+B9kC0ec4R8I=;
-        b=YGqO+qe7NxqU8msv1DCe7UijfIGza7KAudeUSePl3kCzof2NU5vfKtotqLgW/FeL5z
-         8oOh6fWygQLVzWr4Hjwl6I4QrBM9oD91XKGFjDP7j3suKW38H3agWCaIdMvN9SnWUax8
-         chaBCwdnn4JhnGSm/FNn99S+7uo7uqsNygviwyvDrYBC+KQF3nt1fQctNJrrjWk3t2nf
-         xeT2eeCyv8mMH7dEZXPhY0zTx/gtEa6N6YmQLChlsvDEJm7ADn+AcHFgCoLv/lOi5LqA
-         5quEw0WjnYiCu2NTXTdrU4Z3g7BeBvoab9u76IOMyxyb+qPG9Q8K4PBYz/NlZFsF5pna
-         dybA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738079801; x=1738684601;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=I2Qw44d6HeXewj2arD8dL/6DqT4U1JV+B9kC0ec4R8I=;
-        b=b62Ii7+4vgvXjteOA3tDmwiIBZt/dKINBJGoZ3NiCd5KVityUvsYP8XLP4ceF7MR+Q
-         7tS+LSzrC48A/RTPtWQLCelq+tTlZozCxeCxsMf3BpVGZpuZ6vBNvKF3sNLIUfxyjDDU
-         tMrklRRBFq1byT209UksTxEnoO5M6iYsd6ooYH725f/rAPndfa69hTQobT7xNpBK5Pb2
-         IFSqZvynbeQCyyYbH9+op0860BYwzNaVem3TTkiwEEh7VSImWdi9S8Qbl5Qd+2Yg4zK1
-         n/Lyu1gWPujzfJNRJMnrUe7nVOZ2E0o6dat2b8Dny0Kw8tfjLxyuHQf/Z7s4msvUoRXu
-         0IyA==
-X-Forwarded-Encrypted: i=1; AJvYcCXIlMgX6mDXJ3i//dQgTX1Z/imdgRa1rSNDOzvbigLBinPlC3nugpIdqHW+coZNMVfohXcyvbhJXlj9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXBZIWqutZ81fL/D1m6NLnTBpTvVnhiRMOBGZtEIWLcE0wsMt/
-	G/DtP4GehPzGzbtjMrOzbrHplTY480gD/1zdlvSVcuHXhrG2ydZCze/UcJu3FeM=
-X-Gm-Gg: ASbGncvCgngKm3gXEjXl5/OAnwqEvaneXSxouFb6Q2rGmkheuJ6cgahcC4kYF9a9PUs
-	yuvup8XAYWVve6m5/0pMjEh3ZwLkCwSNSZsjwJT8BqG/cnBXEdjNmT9/0kHNtoSJEL6EICHHI5v
-	CqpmC+4zVXzRE1DtKhhqrJcqULixbZpZM7XCmmscxjN5ciu/0GXEXOvXkusBKMkoRmR6Y6D89Wm
-	gW9DA56mJb1FpA2bhlRY1nbVwzVX1F8ABH5wlHv62RDF7fylOt0wfUHsQSZzN3/s0bcptKP3y7f
-	/rS8322vCZ+UdsfycPBIxfxDc8kMumwaizWsy4VBj2C3PVvFM3/D
-X-Google-Smtp-Source: AGHT+IFtfyDR9boDmmfEF591oA/p0B2VQoOq0QZKo6ZB7tolgqw9/zygWP3UxD/QMyhPqXrDRH8u2Q==
-X-Received: by 2002:a05:6808:14cc:b0:3eb:64a8:837c with SMTP id 5614622812f47-3f313c8e04amr2330880b6e.6.1738079800976;
-        Tue, 28 Jan 2025 07:56:40 -0800 (PST)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3f1f088b0ddsm3134959b6e.20.2025.01.28.07.56.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jan 2025 07:56:39 -0800 (PST)
-Message-ID: <a6e57474-6eff-4f7b-8204-8137f95a33e7@baylibre.com>
-Date: Tue, 28 Jan 2025 09:56:37 -0600
+	s=arc-20240116; t=1738079989; c=relaxed/simple;
+	bh=AyGYx44x/LxsX+GE0pirsfezoMh4jSTmt8+h1nxcqFg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=QWgj88zjFibcOAWJctws2fVHT5mkGmLa9UJSVyUknKpZdaxMwhUlcDNNE0L/jcIqW46Np+5XYYmTlalcTJjfkZeFkCVAG6/dQY4tQh3/nORLEWn4U5hFSqkFqyBVeRLkF7evi7gmUelFH1kUjBh68/fhcLy0j+GBpOP5paLl7Tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=eKfbjJF3; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250128155944euoutp0274275498603bddec655ce2255d2272e7~e5omUwoqI2663726637euoutp029
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 15:59:44 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250128155944euoutp0274275498603bddec655ce2255d2272e7~e5omUwoqI2663726637euoutp029
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1738079984;
+	bh=iwJ+epY4nSd+sLjdpwzOYTKuCc1d7Es+yGTdW2i3PBc=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=eKfbjJF3lyf5iEGiWw8QUA/EOlL4r6JQPwua64OaPT4xTF6Po1YRMHp+GiLPxUeyz
+	 LN9skB1H+8gcw4TNhrRhPJRqEao6/oEeS8CA/8OqoIsDhmG90RbrIoRr7sB6jBYhqy
+	 oyntdtYJpp0x99FurAb3VtvHbCyMn1x6bWe0DoP0=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+	20250128155944eucas1p2d96354f049a647c89aa1e1cd9abac150~e5ol2hEv-0796807968eucas1p2h;
+	Tue, 28 Jan 2025 15:59:44 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+	eusmges3new.samsung.com (EUCPMTA) with SMTP id 6C.1E.20397.0FEF8976; Tue, 28
+	Jan 2025 15:59:44 +0000 (GMT)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250128155943eucas1p2a013a245dc7ebb3789dbd935ac4227fc~e5olaK1XY1919719197eucas1p2t;
+	Tue, 28 Jan 2025 15:59:43 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+	eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20250128155943eusmtrp2555de54ab9e83820cf9f12f834b2aa38~e5olZJVJW0160501605eusmtrp2L;
+	Tue, 28 Jan 2025 15:59:43 +0000 (GMT)
+X-AuditID: cbfec7f5-ed1d670000004fad-45-6798fef0b33c
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+	eusmgms2.samsung.com (EUCPMTA) with SMTP id 4F.CF.19654.FEEF8976; Tue, 28
+	Jan 2025 15:59:43 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250128155942eusmtip272ccc759c57bd6953e7f8d3ee7843ec4~e5okLEtjt3036030360eusmtip2b;
+	Tue, 28 Jan 2025 15:59:42 +0000 (GMT)
+Message-ID: <4c8a5979-c0e0-460f-9809-4cf8b10e40ce@samsung.com>
+Date: Tue, 28 Jan 2025 16:59:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,177 +74,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/16] dt-bindings: iio: adc: ad7768-1: add
- trigger-sources property
-To: 0044dd4b-01ce-4ca0-9855-8c239b9bfb6f@baylibre.com
-Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, lars@metafoo.de,
- Michael.Hennerich@analog.com, marcelo.schmitt@analog.com, jic23@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- marcelo.schmitt1@gmail.com
-References: <cover.1737985435.git.Jonathan.Santos@analog.com>
- <f3972e6aa4ff3869ded1f0dbeb58c43b824b3932.1737985435.git.Jonathan.Santos@analog.com>
- <0044dd4b-01ce-4ca0-9855-8c239b9bfb6f@baylibre.com>
- <Z5jx9mJdi3Zh7Mx6@JSANTO12-L01.ad.analog.com>
-From: David Lechner <dlechner@baylibre.com>
+Subject: Re: [RFC v3 05/18] pmdomain: thead: Add power-domain driver for
+ TH1520
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, drew@pdp7.com, guoren@kernel.org,
+	wefu@redhat.com, jassisinghbrar@gmail.com, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, frank.binns@imgtec.com,
+	matt.coster@imgtec.com, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+	jszhang@kernel.org, p.zabel@pengutronix.de, m.szyprowski@samsung.com,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	dri-devel@lists.freedesktop.org, linux-pm@vger.kernel.org
 Content-Language: en-US
-In-Reply-To: <Z5jx9mJdi3Zh7Mx6@JSANTO12-L01.ad.analog.com>
-Content-Type: text/plain; charset=UTF-8
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <CAPDyKFrKKZ4RL5y+sCKAOK71ap7O3aTTc6rY9NrvcHt4hh6EVQ@mail.gmail.com>
 Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01SfVRTdRj2d+/dvWOewWWg/DKLwr6wAo04/lIOSgc696gds0g9Hg1W3IbJ
+	19lAjegEOBaDUYAIY0AzQOXQAMOBgOOjSQwIl2IC6YYrlQJBvqTEjOV2qfjved/3ed/nfd7z
+	8nGRgVzFPxCXyErjxDE+pIBo7Jo3vzy1oJasO3l9OeoeLMdQw18aCulazRjSdpp5aLhfj6Gf
+	5iZJVHv7EoV+b00j0EBVGYWOdtWRaFQzTKJp1TAPXWkpJdFsTidAjbNyEtV0Win09XQDgSqb
+	WgBSKE/x0OXeMGQd7ibQ6BUVjhQaN2Q3NFFoYeBbApXcbaeQfjyPh0w1u5G8vYDY8gQzOZRB
+	MeOjowRzIfMexbT+cYJgmjVWilE19wGmvlpJMpYBA8l81bOTuZFtwpizlZ8x8poujPny73XM
+	ZNtVkvlCXw2Y/qOD1FuivYKgKDbmwCFW6h8cKYi+WlRPJqQJjxjn2olUMCPIAnw+pF+FXWfC
+	s4CAL6KrAPx54TLOBfcAvDtowrhgFsCC+WqQBVycHb35ZQRXOA2gvWhokTUBoPXSQ56DJaSD
+	odJi4Dk0CPpZaFQncWl32FN8i3DgFbQ3vHFNTTmwB70TXuyxObEn/QI0/PIjzzETp8t5sKeh
+	wtmA017w2i0t5sAk/Qq0ndY6tVweNVsqCjGO4w3PTZQ6PUD6ogB+YzmFc2uHwtJ8yyL2gGMm
+	PcXh1dDezA2FdDy0NcwsclJgs8q0iDdBi/kB6TCD076wrsWfS4fAC2NlOHdHVzg04c6t4Arz
+	G4sW00KYqRBx7OfgcVXOf6LmqkYsF/hollxFs8SkZokZzf+6JwBRDbzYJFmshJUFxLGH/WTi
+	WFlSnMTvg/jYevDowX9YMM01gaqxaT8jwPjACCAf9/EU7jerJSJhlPjjZFYaHyFNimFlRvA4
+	n/DxEpa3Z0hEtEScyB5k2QRW+m8V47usSsUKYCWw2cZRtlUZ5Jr34YRvX2FH8p0QccV+a1t3
+	WGim3GNj8tanttP3w4LTjjw85oUpI6OeH9p2faDwpcCPXH5zT10ZUGL/lNQF5q5+cYtQTeii
+	ff3k3zfalqUff1sYuSbjcGyYfSHFl8mZcuvNDdq348yDKa1i2yevu54XpJzsdzMa1kzq1r6W
+	oE3X1itaSLbcs26lPq9u3H1X4tMl9zePzC/L/jwsZLdufQQ2dqe2f+sbEcKUd2qbdxQvrx0p
+	OD81s2Gj/x5cFv5Yeltivzr1zxXjN29vPjQTGZgYcI4OfWbq5tnvijtG3uO9v/dg3Lv1bb9u
+	wjdgu/pC3yzs0Hc/6R0+uW+PDyGLFq9fi0tl4n8A4DKPEk8EAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPKsWRmVeSWpSXmKPExsVy+t/xe7rv/81IN1j0VcvixPVFTBZbf89i
+	t1iz9xyTxfwj51gt7l3awmRx5et7Not1Ty+wW7zY28hicW3FXHaL5mPr2SxezrrHZvGx5x6r
+	xeVdc9gsPvceYbTY9rmFzWLtkbvsFgs/bmWxWLJjF6NFW+cyVouLp1wt7t47wWLx8nIPs0Xb
+	LH6L/3t2sFv8u7aRxWL2u/3sFlveTGS1OL423KJl/xQWB1mP9zda2T3evHzJ4nG44wu7x95v
+	C1g8ds66y+7Rs/MMo8emVZ1sHneu7WHzmHcy0ON+93Emj81L6j1a1h5j8uj/a+Dxft9VNo++
+	LasYPS41X2cPEIrSsynKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcks
+	Sy3St0vQy7g6fRNbQSNvxaGv+1kaGD9xdTFyckgImEicmjSXpYuRi0NIYCmjxMJ9T5ghEjIS
+	17pfskDYwhJ/rnWxQRS9ZpS4erqfCSTBK2An0XlnD2sXIwcHi4CqxKEZpRBhQYmTM5+A9YoK
+	yEvcvzWDHcQWFgiUOHvyAZgtIqAhsefheVaQmcwCi1glthzazw6xYAKTRN/+c2wgVcwC4hK3
+	nswHW8YmYCTxYPl8VhCbE2jSncXTmEAWMwuoS6yfJwRRLi+x/e0c5gmMQrOQ3DELyaRZCB2z
+	kHQsYGRZxSiSWlqcm55bbKRXnJhbXJqXrpecn7uJEZiyth37uWUH48pXH/UOMTJxMB5ilOBg
+	VhLhjT03I12INyWxsiq1KD++qDQntfgQoykwKCYyS4km5wOTZl5JvKGZgamhiZmlgamlmbGS
+	OC/blfNpQgLpiSWp2ampBalFMH1MHJxSDUy54RXrPb37FvAFxDRwFD9ccahDuchNarN4smz7
+	EfkSpRwZB8Y911dEiyXs0HeMXFksxjuv2fJW4G+eK/rHBfPZxTPcmi7uYBetnBVwee1yxg9f
+	t/k2vdKyYiysOOe/Q3XuhL/CRwUquLqi376e7eQY9v75tH0+exZHKa2f09l/47nTDfX6cE1p
+	vvvGgrF/L37Rt+Z/bagZ+pXz1o70JAdfo7n/Qssq1if+/aBy0mjCnRnL+Rne+fluWXBc3CYw
+	dP+LHJE0Hx0J/mn/M9R7r0+J+CL0zvTp8xmNCaJpS2tVXZW2u4cdVH0yrVyy1OtGgm7DxwKB
+	Df3OXHHNO6/Uxl78wnVvlaRUzO2mbS4flFiKMxINtZiLihMBosuwKuIDAAA=
+X-CMS-MailID: 20250128155943eucas1p2a013a245dc7ebb3789dbd935ac4227fc
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250120172125eucas1p141540607f423eea4c55b2bd22ff5adf0
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20250120172125eucas1p141540607f423eea4c55b2bd22ff5adf0
+References: <CGME20250120172125eucas1p141540607f423eea4c55b2bd22ff5adf0@eucas1p1.samsung.com>
+	<20250120172111.3492708-1-m.wilczynski@samsung.com>
+	<20250120172111.3492708-6-m.wilczynski@samsung.com>
+	<CAPDyKFrKKZ4RL5y+sCKAOK71ap7O3aTTc6rY9NrvcHt4hh6EVQ@mail.gmail.com>
 
-On 1/28/25 9:04 AM, Jonathan Santos wrote:
-> On 01/27, David Lechner wrote:
->> On 1/27/25 9:11 AM, Jonathan Santos wrote:
->>> Add a new trigger-sources property to enable synchronization across
->>> multiple devices. This property references the main device (or
->>> trigger provider) responsible for generating the pulse to drive the
->>> SYNC_IN of all devices in the setup.
->>>
->>> In addition to GPIO synchronization, The AD7768-1 also supports
->>> synchronization over SPI, which use is recommended when the GPIO
->>> cannot provide a pulse synchronous with the base MCLK signal. It
->>> consists of looping back the SYNC_OUT to the SYNC_IN pin and send
->>> a command via SPI to trigger the synchronization.
->>>
->>> SPI-based synchronization is enabled in the absence of adi,sync-in-gpios
->>> property. Since adi,sync-in-gpios is not long the only method, remove it
->>> from required properties.
->>>
->>> While at it, add description to the interrupt property.
->>>
->>> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
->>> ---
->>> v2 Changes:
->>> * Patch added as replacement for adi,sync-in-spi patch.
->>> * addressed the request for a description to interrupts property.
->>> ---
->>>  .../bindings/iio/adc/adi,ad7768-1.yaml        | 22 +++++++++++++++++--
->>>  1 file changed, 20 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
->>> index 3ce59d4d065f..3e119cf1754b 100644
->>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
->>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
->>> @@ -26,7 +26,17 @@ properties:
->>>    clock-names:
->>>      const: mclk
->>>  
->>> +  trigger-sources:
->>> +    description:
->>> +      References the main device responsible for synchronization. In a single
->>> +      device setup, reference the own node.
->>> +    maxItems: 1
->>
->> We probably actually need 2 here. One for /SYNC_IN and one for a GPIO3 pin
->> acting as the /START signal.
->>
->>> +
->>>    interrupts:
->>> +    description:
->>> +      Specifies the interrupt line associated with the ADC. This refers
->>> +      to the DRDY (Data Ready) pin, which signals when conversion results are
->>> +      available.
->>>      maxItems: 1
->>>  
->>>    '#address-cells':
->>> @@ -46,6 +56,8 @@ properties:
->>>        sampling. A pulse is always required if the configuration is changed
->>>        in any way, for example if the filter decimation rate changes.
->>>        As the line is active low, it should be marked GPIO_ACTIVE_LOW.
->>> +      In the absence of this property, Synchronization over SPI will be
->>> +      enabled.
->>
->> Isn't /SYNC_OUT connected to /SYNC_IN required for synchronization over SPI?
->>
->> If yes, instead of adding this text, I would make the binding have:
->>
-> 
-> Yes, but the synchronization over SPI is enabled in the absence of the GPIO.
-> The trigger-sources property would indicate if the sync provider is the
-> own device or not. As i said below, maybe i misunderstood.
-> 
->> oneOf:
->>   - required:
->>       - trigger-sources
->>   - required:
->>        - adi,sync-in-gpios
->>
-> 
-> Wouldn't be simpler to consider the absence of sync-in-gpio? this way we
-> have less changes in the ABI.
 
-Maybe it is me that missed something, but if I'm reading the datasheet
-correctly, then sync over SPI only works if /SYNC_IN is wired to /SYNC_OUT.
-And the chip isn't going to work correctly without some sort of sync. So we
-need something wired to /SYNC_IN no matter what.
 
-In any case, the DT bindings should just say how the chip is wired up and not
-dictate how the driver should behave. So what I was going for with this is to
-have the bindings say that something has to be wired to /SYNC_IN and we can
-leave it up to the driver to decide what to do with this information.
+On 1/21/25 10:55, Ulf Hansson wrote:
+> On Mon, 20 Jan 2025 at 18:21, Michal Wilczynski
+> <m.wilczynski@samsung.com> wrote:
+>>
+>> The T-Head TH1520 SoC contains multiple power islands that can be
+>> programmatically turned on and off using the AON (Always-On) protocol
+>> and a hardware mailbox [1]. The relevant mailbox driver has already been
+>> merged into the mainline kernel in commit 5d4d263e1c6b ("mailbox:
+>> Introduce support for T-head TH1520 Mailbox driver");
+>>
+>> This commit introduces a power-domain driver for the TH1520 SoC, which
+>> is using AON firmware protocol to communicate with E902 core through the
+>> hardware mailbox. This way it can send power on/off commands to the E902
+>> core.
+>>
+>> Link: https://protect2.fireeye.com/v1/url?k=aca9147a-cd220149-aca89f35-000babff9bb7-dfbb0fd97ae06334&q=1&e=7a720b7b-4489-48b9-b901-404180e7bc23&u=https%3A%2F%2Fopenbeagle.org%2Fbeaglev-ahead%2Fbeaglev-ahead%2F-%2Fblob%2Fmain%2Fdocs%2FTH1520%2520System%2520User%2520Manual.pdf [1]
+>>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> 
+> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+> 
+> I guess this depends on patch2 and patch3. Not sure what's the best
+> way to merge this, but I can certainly funnel them all three through
+> my pmdomain tree if that sounds feasible. Just let me know.
+> 
+> Kind regards
+> Uffe
+
+Thanks Ulf. I've made some changes based on my discussion with
+Krzysztof, so I'll hold off on adding your Reviewed-by tag until v4.
+Once we've addressed any remaining comments, it would be great if you
+could take the firmware and power-domain patches through your tree.
 
 > 
->>>  
->>>    reset-gpios:
->>>      maxItems: 1
->>> @@ -57,6 +69,9 @@ properties:
->>>    "#io-channel-cells":
->>>      const: 1
->>>  
->>> +  "#trigger-source-cells":
->>> +    const: 0
->>> +
->>>  required:
->>>    - compatible
->>>    - reg
->>> @@ -65,7 +80,8 @@ required:
->>>    - vref-supply
->>>    - spi-cpol
->>>    - spi-cpha
->>> -  - adi,sync-in-gpios
->>> +  - trigger-sources
->>> +  - #trigger-source-cells
->>>  
->>>  patternProperties:
->>>    "^channel@([0-9]|1[0-5])$":
->>> @@ -99,7 +115,7 @@ examples:
->>>          #address-cells = <1>;
->>>          #size-cells = <0>;
->>>  
->>> -        adc@0 {
->>> +        adc0: adc@0 {
->>>              compatible = "adi,ad7768-1";
->>>              reg = <0>;
->>>              spi-max-frequency = <2000000>;
->>> @@ -109,6 +125,8 @@ examples:
->>>              interrupts = <25 IRQ_TYPE_EDGE_RISING>;
->>>              interrupt-parent = <&gpio>;
->>>              adi,sync-in-gpios = <&gpio 22 GPIO_ACTIVE_LOW>;
->>
->> Don't we need to drop adi,sync-in-gpios here? I don't think we would have two
->> things connected to /SYNC_IN at the same time.
->>
-> 
-> I guess i misunderstood the use of trigger-sources. I thought it would
-> indicate the trigger provider or main device. Like if it points to other
-> device we should use it to drive the SYNC_IN of all devices.
-> 
-> Then what happens if the trigger-sources points to other node? we would't be
-> able to driver the SYNC_IN in case of any configuration change?
-
-I think you understand the trigger-source bindings correctly. 
-
-The driver doesn't have to support everything that the DT bindings allow. This
-series is big enough already, so we can defer figuring out how to implement
-triggers other than the loopback case later. :-) We just want to make the DT
-bindings as complete as we can now.
-
-> 
->>> +            trigger-sources = <&adc0>;
->>> +            #trigger-source-cells = <0>;
->>>              reset-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
->>>              clocks = <&ad7768_mclk>;
->>>              clock-names = "mclk";
->>
+>> ---
 
 
