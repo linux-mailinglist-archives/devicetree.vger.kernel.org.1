@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-141255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78D72A20301
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 02:29:05 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 974DCA20304
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 02:29:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BBAA18865D1
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 01:29:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4C9C164281
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 01:29:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7292D42AA3;
-	Tue, 28 Jan 2025 01:28:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16FCC6BB5B;
+	Tue, 28 Jan 2025 01:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ZOONgcZf"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iDIwqkM2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E0E1B59A
-	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 01:28:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D669AF9F8
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 01:29:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738027739; cv=none; b=Uvpn8YbW2SglWG0A8YPhvtTUZR9BTVVVoT6ngODcuUtlIGHLOZ19p6Y5dsM0FKtd/Cqky8hgn+6suISnfBOvFms7nZzBmFk9HCyPnRuWLzkV6nsbNvaw9tMLlDJ/dQBoG1gm1aVlwaHWSPT13gkcn77ghlBRdF3p2OFena4p8z8=
+	t=1738027792; cv=none; b=j9y3n67oVPcryL7uuy/IMZVQQQ1qRRRoidmlm+sWbakmrrwoymOFOoqFQzURE3srJjgbWXoqS83LVY3YvSe/HBO2Hskg2NCLV4ajxQLXeCKTDFyGIstGPTO0OvE4Zt2kTUX19C5jJTeCl4HMy3OJGIQLc9sGsszIS0tHMHCz8XQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738027739; c=relaxed/simple;
-	bh=VMJ//ZhdKIakDGRD4fQVsxWko+dmrXyV7Md0xi2/MdU=;
+	s=arc-20240116; t=1738027792; c=relaxed/simple;
+	bh=9/bGvL4F17smn7WDTDFIkahQbwnnX7F+HQ1CNr7ZZLM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FjraA/dazlUFLb371BMJxg8ed/joPrAsypVqVfOXGBuDLsuq50dCvhgxfz4YzIhP9F/GVSA5s7cwQKOf00N0op2Gm6yIp/aEZSUsN4GKqMpyBhmmAIIWvPjiLI+4sSfD5l7Ju4fgmsBB7LFsh2IDddHuHUJxcnt6pb5Wj1SQ2cU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ZOONgcZf; arc=none smtp.client-ip=209.85.167.172
+	 In-Reply-To:Content-Type; b=CHpBPi961w+Ta1HFT1aYs93ZNqWCNiSwfGMmRN1vQUjZhZ4ie12oPw4Tx0VclgYg14XgiblOVm1fzYAhibEux1KNwviozsWcQdxPlIoC5k8vNylMXQgHHGjlvcWDyDlDB+vb4IbTXlFLMPMZVt/2vs7hkZCoN7ooafR6Zxa5f/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iDIwqkM2; arc=none smtp.client-ip=209.85.210.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-3ebadbb14dcso2378394b6e.3
-        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 17:28:57 -0800 (PST)
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-71e1d7130a5so2593993a34.0
+        for <devicetree@vger.kernel.org>; Mon, 27 Jan 2025 17:29:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738027737; x=1738632537; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738027789; x=1738632589; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=08SMuDcYjRA/fEa36MDvgrTUtG8yD3JTS9Dq0JR83M0=;
-        b=ZOONgcZfy/AY2aZ1a/qEKIWLwhi/okJKwAug9wFn7QiP7wCu39Uq7RWSzqQbfbKr4P
-         9YN5TWW0Lkk756b47C3hbKI3lhesJ30izHrtURsJd2alQJGO+By7IBdejsifansgCPjd
-         wcx14y4L7qGDrqNuqeNw3KWHdfvhyEZEPVZlriJ4E4FUWm71S0Zw9zSnr0kMXeUSLJgT
-         lA8dswNJlmEWVaLSKri4w7UnO8CIiPUboxdPZkun2dpBBV7mKECpdrgB86+9bL+vi9+X
-         UL3IzYZIrbVxkihF+N/LfbJsi/TUGDJLC72W1nYiAQ45eaLH/cQdETVUONX3vzg1su3y
-         TmIw==
+        bh=a6y4MxzqmAehNmh2Sb54Nx7dQy95evF+sKrOHq2yxoI=;
+        b=iDIwqkM2X1/eIK4J5EF1SLQekVf6C2f29Lv19UFP/XuWd1qISuGmYQXoSmGZBwwVmk
+         tvDga29OWm0Bz55XTRGBAJqIyTiYRSrhW33C9qoDhFYKw/Qwc+tKjY5t9ykrtcwceEbM
+         +6pcz649aYmly5iCGo/zFTbMJZm/O5E+i3X+Yvk6DTaSm0EydphsvQKfESXjy46QkuYh
+         F5XST+2iyOrzK3ZVMmVUgv0txFPZgIn0y9fxBVHUuTYindqBV1dizsvV4MwO2CBr0UBs
+         np5tqnUoI/h0Yt5V6WciOo6aCmJqHcUMNGXIg/LGA6xOEfHeXe5LT+LjBY2ayQrLVYpW
+         8HAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738027737; x=1738632537;
+        d=1e100.net; s=20230601; t=1738027789; x=1738632589;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=08SMuDcYjRA/fEa36MDvgrTUtG8yD3JTS9Dq0JR83M0=;
-        b=dt0ltWuo4n5cfWxKOSN4L5ZMXhqYYz5Mw50SvFcW04k349ZffaXE4MvuBWTYj4ZES+
-         +8fyjtk8x7dhnHS0EGJ2Kz5dn7LGma/vWhxS84/yuf1ho6qPrcBqmYBb5dc8hf8urrZ4
-         KQ4YMKcMT6DK3lq2VfqyH47nePFBGBaKAUh3NaHYueNoSKm6MVVp8dJmmCgvn+Sozj2s
-         8G8yR0WcIlrmhw9y8hGflbgSqmCFtykhoOuVJgxpWnCzLvE3wN6NGQcvlLwaSXNTJrVA
-         1y4yU+VE1lIl4AyWKgO2xvMgqncx5dw3sOQMosvLWH8UOYeX5A45DqLam+P24kS+uEmY
-         zHtw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7UetfS1OP3zhm/DWsVWg3tOU+EZHJdtmbbxZ9b34P/54y6BMuIApUj7ss/YHQ1+NA/RjStjlnYwwP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1z3JoGnzijLMpoL27u6Q9Dx98Btm4Lx0WF5/HSo+tNLTdUOPh
-	rbfKdpPEnjoeLiDNXOviCSBVBeO+X7RJRtiH0mqVLtmY3ilu/qBa7LJgyJmULSE=
-X-Gm-Gg: ASbGncujs/1D61QlWWr7DbrJcA56VdnXgXtqQnxVSGuC+Erh16UAa5Vy8WMBY3Sdekc
-	jSI85XTicaCiPGRTd3Btvpo8XLyh880gFCReFHyL/TcI1FuQumz07HwWJZZUjz7WZlaFeASTMed
-	8p80LXeTmQo6c0oY1g6Xwec3CpO+A53j5CdGlXF0sc0xFAdF1A9/txAtR1H+zeUy+lNvi4mmijW
-	0+RDubEQe+XZcZl7tdJrrSExC2epoC1E6aCOhNkKCxEmZLdjVhzIqzlsu4pyrsfS3fCsxoMSE8B
-	KfN6B/xamk+dTA7s+jtx335PqKiCwYiCpP7269wdog==
-X-Google-Smtp-Source: AGHT+IG3JUrxTb1AoGq609NrxgfziYTKUspi+XNC7GFLYp3ofHKCUStTpoa0hxkLnYjImNXy0+o71Q==
-X-Received: by 2002:a05:6808:228a:b0:3e6:3878:3b9c with SMTP id 5614622812f47-3f19fc4d943mr27361274b6e.8.1738027736676;
-        Mon, 27 Jan 2025 17:28:56 -0800 (PST)
+        bh=a6y4MxzqmAehNmh2Sb54Nx7dQy95evF+sKrOHq2yxoI=;
+        b=KoSVsanfHz7P7fNKAIwFBU4f2dwC7pD3LBpejhrcxyERPwEmGZeLvpxCx6Qq3Ljida
+         gwZ4/Kh3qaDy2+Wag2WsfZDpjPSQmC00PY8bg5Pqr4ixy11hHIDTKpSf47x47WfZx5Ay
+         z1yXRKI0cMsQvMhSAfzxTRFixFwnQ51hNmFLyPj0Wk/G7IL6H66/A79KJSmQ99Y/vEmX
+         AyZu1Kof6dh7QPr+C48WjmtFswvS3TzpI8RmYfylSZlt+7qqrayV+CazUZfJXndA7lUl
+         UVb7t2M7NdHBALqgllRoY9TXaEd4Ud+BF3AGgjGlAOH4zggADVvgdw+GMJVg/YXzTX+2
+         mMtA==
+X-Forwarded-Encrypted: i=1; AJvYcCXVuBmd3+lis716p/8TJ4NlHDrusqwOXWTVL/M6o3R1E52Y7Zp4R+RzVSNaWvsg5KF0SMf8ramMOACK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyz1m9p68sQzXNiz4x49diUBqyy7S+mHhqiWgMXfa5G80gBkTGU
+	tWbW6nVAFR8MX3mnvsJa1MhgPVHyHjWr0uwUfTPpyNrOX+7glmecGImqx6fvMsY=
+X-Gm-Gg: ASbGncsE5hmU8MK/oO76TU156nc9Z1d3tRuGW2bRjmPXiGdScTRNqOAR1RAyLBDqB1x
+	f5f0+UnazU/y0z8aqm0T6fn+WjiWWfTVu4HVdbUMoNqufSeUPwburdYQMYcd6pcaCAJFZ+CjzMa
+	buzekqJm4oL2fFeoV6sRPnPfbQZpJe3Zy8D7OrJtG3eD/hpmSpEYQRWbxTBV+mfvxzI+IR14IVZ
+	L3iYCMOxVswjwHfTBlUXQYL+4rDf82888Ly2a+9OnMHqCMa88jmbf35MMsxO0yUXfc6vejaRyO6
+	wMAlf0QyofC+NXeTKrvdKI3jc5X2WmFOese+0bjS+g==
+X-Google-Smtp-Source: AGHT+IGztRBFKPQ4aWidgULtezyMD2+PtCa0TOriX4E/1tOs0fJW00OSyn3xzwrSeMrWVRCOnduy5Q==
+X-Received: by 2002:a05:6830:6986:b0:71f:c1df:12c4 with SMTP id 46e09a7af769-7249da7182dmr25915243a34.11.1738027788862;
+        Mon, 27 Jan 2025 17:29:48 -0800 (PST)
 Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-724ecf98615sm2680304a34.56.2025.01.27.17.28.53
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-724ecf8471dsm2683857a34.42.2025.01.27.17.29.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 27 Jan 2025 17:28:55 -0800 (PST)
-Message-ID: <0044dd4b-01ce-4ca0-9855-8c239b9bfb6f@baylibre.com>
-Date: Mon, 27 Jan 2025 19:28:53 -0600
+        Mon, 27 Jan 2025 17:29:48 -0800 (PST)
+Message-ID: <9b8204f2-107a-477e-a822-c1649af12d02@baylibre.com>
+Date: Mon, 27 Jan 2025 19:29:47 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,8 +81,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/16] dt-bindings: iio: adc: ad7768-1: add
- trigger-sources property
+Subject: Re: [PATCH v2 07/16] iio: adc: ad7768-1: convert driver to use regmap
 To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc: lars@metafoo.de, Michael.Hennerich@analog.com,
@@ -90,127 +89,257 @@ Cc: lars@metafoo.de, Michael.Hennerich@analog.com,
  krzk+dt@kernel.org, conor+dt@kernel.org, jonath4nns@gmail.com,
  marcelo.schmitt1@gmail.com
 References: <cover.1737985435.git.Jonathan.Santos@analog.com>
- <f3972e6aa4ff3869ded1f0dbeb58c43b824b3932.1737985435.git.Jonathan.Santos@analog.com>
+ <0968f9cfc55c5ac80492a88bbe95fc8ff7208fa5.1737985435.git.Jonathan.Santos@analog.com>
 From: David Lechner <dlechner@baylibre.com>
 Content-Language: en-US
-In-Reply-To: <f3972e6aa4ff3869ded1f0dbeb58c43b824b3932.1737985435.git.Jonathan.Santos@analog.com>
+In-Reply-To: <0968f9cfc55c5ac80492a88bbe95fc8ff7208fa5.1737985435.git.Jonathan.Santos@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 1/27/25 9:11 AM, Jonathan Santos wrote:
-> Add a new trigger-sources property to enable synchronization across
-> multiple devices. This property references the main device (or
-> trigger provider) responsible for generating the pulse to drive the
-> SYNC_IN of all devices in the setup.
-> 
-> In addition to GPIO synchronization, The AD7768-1 also supports
-> synchronization over SPI, which use is recommended when the GPIO
-> cannot provide a pulse synchronous with the base MCLK signal. It
-> consists of looping back the SYNC_OUT to the SYNC_IN pin and send
-> a command via SPI to trigger the synchronization.
-> 
-> SPI-based synchronization is enabled in the absence of adi,sync-in-gpios
-> property. Since adi,sync-in-gpios is not long the only method, remove it
-> from required properties.
-> 
-> While at it, add description to the interrupt property.
+On 1/27/25 9:12 AM, Jonathan Santos wrote:
+> Convert the AD7768-1 driver to use the regmap API for register
+> access. This change simplifies and standardizes register interactions,
+> reducing code duplication and improving maintainability.
 > 
 > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
 > ---
 > v2 Changes:
-> * Patch added as replacement for adi,sync-in-spi patch.
-> * addressed the request for a description to interrupts property.
+> * New patch in v2.
 > ---
->  .../bindings/iio/adc/adi,ad7768-1.yaml        | 22 +++++++++++++++++--
->  1 file changed, 20 insertions(+), 2 deletions(-)
+>  drivers/iio/adc/ad7768-1.c | 82 +++++++++++++++++++++++++++-----------
+>  1 file changed, 58 insertions(+), 24 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> index 3ce59d4d065f..3e119cf1754b 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> @@ -26,7 +26,17 @@ properties:
->    clock-names:
->      const: mclk
+> diff --git a/drivers/iio/adc/ad7768-1.c b/drivers/iio/adc/ad7768-1.c
+> index 95ba89435652..fb8d6fae5f8a 100644
+> --- a/drivers/iio/adc/ad7768-1.c
+> +++ b/drivers/iio/adc/ad7768-1.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+> +#include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/sysfs.h>
+>  #include <linux/spi/spi.h>
+> @@ -153,6 +154,7 @@ static const struct iio_chan_spec ad7768_channels[] = {
 >  
-> +  trigger-sources:
-> +    description:
-> +      References the main device responsible for synchronization. In a single
-> +      device setup, reference the own node.
-> +    maxItems: 1
+>  struct ad7768_state {
+>  	struct spi_device *spi;
+> +	struct regmap *regmap;
+>  	struct regulator *vref;
+>  	struct mutex lock;
+>  	struct clk *mclk;
+> @@ -176,12 +178,17 @@ struct ad7768_state {
+>  	} data __aligned(IIO_DMA_MINALIGN);
+>  };
+>  
+> -static int ad7768_spi_reg_read(struct ad7768_state *st, unsigned int addr,
+> -			       unsigned int len)
+> +static int ad7768_spi_reg_read(void *context, unsigned int addr,
+> +			       unsigned int *val)
+>  {
+> -	unsigned int shift;
+> +	struct iio_dev *dev = context;
+> +	struct ad7768_state *st;
+> +	unsigned int shift, len;
+>  	int ret;
+>  
+> +	st = iio_priv(dev);
 
-We probably actually need 2 here. One for /SYNC_IN and one for a GPIO3 pin
-acting as the /START signal.
+This can be combined with the variable declaration.
 
+> +	/* Regular value size is 1 Byte, but 3 Bytes for ADC data */
+
+Probably not currently needed but COEFF_DATA register is also 3 bytes.
+
+> +	len = (addr == AD7768_REG_ADC_DATA) ? 3 : 1;
+>  	shift = 32 - (8 * len);
+>  	st->data.d8[0] = AD7768_RD_FLAG_MSK(addr);
+>  
+> @@ -190,13 +197,19 @@ static int ad7768_spi_reg_read(struct ad7768_state *st, unsigned int addr,
+>  	if (ret < 0)
+>  		return ret;
+>  
+> -	return (be32_to_cpu(st->data.d32) >> shift);
+> +	*val = be32_to_cpu(st->data.d32) >> shift;
 > +
->    interrupts:
-> +    description:
-> +      Specifies the interrupt line associated with the ADC. This refers
-> +      to the DRDY (Data Ready) pin, which signals when conversion results are
-> +      available.
->      maxItems: 1
+> +	return 0;
+>  }
 >  
->    '#address-cells':
-> @@ -46,6 +56,8 @@ properties:
->        sampling. A pulse is always required if the configuration is changed
->        in any way, for example if the filter decimation rate changes.
->        As the line is active low, it should be marked GPIO_ACTIVE_LOW.
-> +      In the absence of this property, Synchronization over SPI will be
-> +      enabled.
-
-Isn't /SYNC_OUT connected to /SYNC_IN required for synchronization over SPI?
-
-If yes, instead of adding this text, I would make the binding have:
-
-oneOf:
-  - required:
-      - trigger-sources
-  - required:
-       - adi,sync-in-gpios
-
->  
->    reset-gpios:
->      maxItems: 1
-> @@ -57,6 +69,9 @@ properties:
->    "#io-channel-cells":
->      const: 1
->  
-> +  "#trigger-source-cells":
-> +    const: 0
+> -static int ad7768_spi_reg_write(struct ad7768_state *st,
+> +static int ad7768_spi_reg_write(void *context,
+>  				unsigned int addr,
+>  				unsigned int val)
+>  {
+> +	struct iio_dev *dev = context;
+> +	struct ad7768_state *st;
 > +
->  required:
->    - compatible
->    - reg
-> @@ -65,7 +80,8 @@ required:
->    - vref-supply
->    - spi-cpol
->    - spi-cpha
-> -  - adi,sync-in-gpios
-> +  - trigger-sources
-> +  - #trigger-source-cells
+> +	st = iio_priv(dev);
+>  	st->data.d8[0] = AD7768_WR_FLAG_MSK(addr);
+>  	st->data.d8[1] = val & 0xFF;
 >  
->  patternProperties:
->    "^channel@([0-9]|1[0-5])$":
-> @@ -99,7 +115,7 @@ examples:
->          #address-cells = <1>;
->          #size-cells = <0>;
+> @@ -206,16 +219,16 @@ static int ad7768_spi_reg_write(struct ad7768_state *st,
+>  static int ad7768_set_mode(struct ad7768_state *st,
+>  			   enum ad7768_conv_mode mode)
+>  {
+> -	int regval;
+> +	int regval, ret;
 >  
-> -        adc@0 {
-> +        adc0: adc@0 {
->              compatible = "adi,ad7768-1";
->              reg = <0>;
->              spi-max-frequency = <2000000>;
-> @@ -109,6 +125,8 @@ examples:
->              interrupts = <25 IRQ_TYPE_EDGE_RISING>;
->              interrupt-parent = <&gpio>;
->              adi,sync-in-gpios = <&gpio 22 GPIO_ACTIVE_LOW>;
+> -	regval = ad7768_spi_reg_read(st, AD7768_REG_CONVERSION, 1);
+> -	if (regval < 0)
+> -		return regval;
+> +	ret = regmap_read(st->regmap, AD7768_REG_CONVERSION, &regval);
+> +	if (ret)
+> +		return ret;
+>  
+>  	regval &= ~AD7768_CONV_MODE_MSK;
+>  	regval |= AD7768_CONV_MODE(mode);
+>  
+> -	return ad7768_spi_reg_write(st, AD7768_REG_CONVERSION, regval);
+> +	return regmap_write(st->regmap, AD7768_REG_CONVERSION, regval);
+>  }
+>  
+>  static int ad7768_scan_direct(struct iio_dev *indio_dev)
+> @@ -234,9 +247,10 @@ static int ad7768_scan_direct(struct iio_dev *indio_dev)
+>  	if (!ret)
+>  		return -ETIMEDOUT;
+>  
+> -	readval = ad7768_spi_reg_read(st, AD7768_REG_ADC_DATA, 3);
+> -	if (readval < 0)
+> -		return readval;
+> +	ret = regmap_read(st->regmap, AD7768_REG_ADC_DATA, &readval);
+> +	if (ret)
+> +		return ret;
+> +
+>  	/*
+>  	 * Any SPI configuration of the AD7768-1 can only be
+>  	 * performed in continuous conversion mode.
+> @@ -258,13 +272,11 @@ static int ad7768_reg_access(struct iio_dev *indio_dev,
+>  
+>  	mutex_lock(&st->lock);
+>  	if (readval) {
+> -		ret = ad7768_spi_reg_read(st, reg, 1);
+> -		if (ret < 0)
+> +		ret = regmap_read(st->regmap, reg, readval);
+> +		if (ret)
+>  			goto err_unlock;
 
-Don't we need to drop adi,sync-in-gpios here? I don't think we would have two
-things connected to /SYNC_IN at the same time.
+Can drop the if and goto.
 
-> +            trigger-sources = <&adc0>;
-> +            #trigger-source-cells = <0>;
->              reset-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
->              clocks = <&ad7768_mclk>;
->              clock-names = "mclk";
+> -		*readval = ret;
+> -		ret = 0;
+>  	} else {
+> -		ret = ad7768_spi_reg_write(st, reg, writeval);
+> +		ret = regmap_write(st->regmap, reg, writeval);
+>  	}
+>  err_unlock:
+>  	mutex_unlock(&st->lock);
+> @@ -283,7 +295,7 @@ static int ad7768_set_dig_fil(struct ad7768_state *st,
+>  	else
+>  		mode = AD7768_DIG_FIL_DEC_RATE(dec_rate);
+>  
+> -	ret = ad7768_spi_reg_write(st, AD7768_REG_DIGITAL_FILTER, mode);
+> +	ret = regmap_write(st->regmap, AD7768_REG_DIGITAL_FILTER, mode);
+>  	if (ret < 0)
+>  		return ret;
+>  
+> @@ -320,7 +332,7 @@ static int ad7768_set_freq(struct ad7768_state *st,
+>  	 */
+>  	pwr_mode = AD7768_PWR_MCLK_DIV(ad7768_clk_config[idx].mclk_div) |
+>  		   AD7768_PWR_PWRMODE(ad7768_clk_config[idx].pwrmode);
+> -	ret = ad7768_spi_reg_write(st, AD7768_REG_POWER_CLOCK, pwr_mode);
+> +	ret = regmap_write(st->regmap, AD7768_REG_POWER_CLOCK, pwr_mode);
+>  	if (ret < 0)
+>  		return ret;
+>  
+> @@ -447,11 +459,11 @@ static int ad7768_setup(struct ad7768_state *st)
+>  	 * to 10. When the sequence is detected, the reset occurs.
+>  	 * See the datasheet, page 70.
+>  	 */
+> -	ret = ad7768_spi_reg_write(st, AD7768_REG_SYNC_RESET, 0x3);
+> +	ret = regmap_write(st->regmap, AD7768_REG_SYNC_RESET, 0x3);
+>  	if (ret)
+>  		return ret;
+>  
+> -	ret = ad7768_spi_reg_write(st, AD7768_REG_SYNC_RESET, 0x2);
+> +	ret = regmap_write(st->regmap, AD7768_REG_SYNC_RESET, 0x2);
+>  	if (ret)
+>  		return ret;
+>  
+> @@ -509,18 +521,19 @@ static int ad7768_buffer_postenable(struct iio_dev *indio_dev)
+>  	 * continuous read mode. Subsequent data reads do not require an
+>  	 * initial 8-bit write to query the ADC_DATA register.
+>  	 */
+> -	return ad7768_spi_reg_write(st, AD7768_REG_INTERFACE_FORMAT, 0x01);
+> +	return regmap_write(st->regmap, AD7768_REG_INTERFACE_FORMAT, 0x01);
+>  }
+>  
+>  static int ad7768_buffer_predisable(struct iio_dev *indio_dev)
+>  {
+>  	struct ad7768_state *st = iio_priv(indio_dev);
+> +	unsigned int regval;
+
+Intention could be more clear by calling this "unused". Otherwise, it can look
+like a bug if you don't fully understand what the comment below means.
+
+>  
+>  	/*
+>  	 * To exit continuous read mode, perform a single read of the ADC_DATA
+>  	 * reg (0x2C), which allows further configuration of the device.
+>  	 */
+> -	return ad7768_spi_reg_read(st, AD7768_REG_ADC_DATA, 3);
+> +	return regmap_read(st->regmap, AD7768_REG_ADC_DATA, &regval);
+>  }
+>  
+>  static const struct iio_buffer_setup_ops ad7768_buffer_ops = {
+> @@ -563,6 +576,20 @@ static int ad7768_set_channel_label(struct iio_dev *indio_dev,
+>  	return 0;
+>  }
+>  
+> +static const struct regmap_bus ad7768_regmap_bus = {
+> +	.reg_write = ad7768_spi_reg_write,
+> +	.reg_read = ad7768_spi_reg_read,
+> +	.reg_format_endian_default = REGMAP_ENDIAN_BIG,
+> +	.val_format_endian_default = REGMAP_ENDIAN_BIG,
+
+The bus read function is calling be32_to_cpu(), so we probably want to remove
+that or change the default here.
+
+> +};
+> +
+> +static const struct regmap_config ad7768_regmap_config = {
+> +	.name = "ad7768-1",
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+
+Should this be 24 since the largest registers are 24-bit?
+
+Another option could be to just use a regular spi_*() API for that register
+instead of regmap_*() and avoid trying to do something that regmap doesn't
+really handle.
+
+Or we could possibly use regmap_bulk_read(), but that feels a bit hacky too
+since it isn't actually how that function was intended to be used.
+
+> +	.max_register = AD7768_REG_MCLK_COUNTER,
+> +};
+> +
+>  static int ad7768_probe(struct spi_device *spi)
+>  {
+>  	struct ad7768_state *st;
+> @@ -592,6 +619,13 @@ static int ad7768_probe(struct spi_device *spi)
+>  
+>  	st->spi = spi;
+>  
+> +	st->regmap = devm_regmap_init(&spi->dev,
+> +				      &ad7768_regmap_bus, indio_dev,
+> +				      &ad7768_regmap_config);
+> +	if (IS_ERR(st->regmap))
+> +		return dev_err_probe(&spi->dev, PTR_ERR(st->regmap),
+> +				     "Failed to initialize regmap");
+> +
+>  	st->vref = devm_regulator_get(&spi->dev, "vref");
+>  	if (IS_ERR(st->vref))
+>  		return PTR_ERR(st->vref);
 
 
