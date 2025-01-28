@@ -1,132 +1,153 @@
-Return-Path: <devicetree+bounces-141375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED1A9A208C6
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:44:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE5B6A208CB
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 11:46:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35B333A278C
-	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:44:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33F763A1937
+	for <lists+devicetree@lfdr.de>; Tue, 28 Jan 2025 10:45:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44AE919D07B;
-	Tue, 28 Jan 2025 10:44:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20DA619D8A8;
+	Tue, 28 Jan 2025 10:45:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="WNFLx3YF"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TybtrqSL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4050F1552E3;
-	Tue, 28 Jan 2025 10:44:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7673E198A08
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 10:45:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738061079; cv=none; b=FmrvaOUhGubftPsEalS+nREEZOfXQEViO6oSwB/E3/qBxbMbt7hkODES0zVgfaulxYpkNCXxjmZlN2qMkgnfqhrfWhB5vkrj2T3e5QqVL3SgC5KqEt+BYabQKBc8gHw9JJvXgzPbY+vEsO1KQ8RuOYGwnWUBU7tijK59PwZmLHc=
+	t=1738061159; cv=none; b=F1oQ6d5cuDEMJPv8qt1kaYo0vBaQmkHbKtte4ZGjPK8D6MTREGwKlJfpo7zg/BAOaH6SKxgbSl+WrWnFSb4thuTMN1AEcCB6fDlQAd9fScjgdowaPkcF62+0eLcbVSWTKrzs+pei3iYZFJxChj4UtwC9id9PRxFm0mpCfAAcYnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738061079; c=relaxed/simple;
-	bh=yEg1lAFxoXAhEHU1VEETd+Vp4yfTsw4yiVGXpqpB9Rc=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=vDPqPj95xJaUjogyL/IITNAwuzZY4gU3Z16ezLRjBFGdcVwYAguqKucP5FUajSwrctP+GGuIUNelumbHf1ZvE/NSL8PWc7CkkND/YHlzHRUoeroNUThXZxd8Qe71mF2gyNYOqXg7m+BSnUpOh0G72DRNI+kOm3T9Lms2R/bF0vM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=WNFLx3YF; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1738061159; c=relaxed/simple;
+	bh=GJMM8b0YGs6hY400QPvNBX6AR5cfnc9XZ4UHVNpX/rw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=R5RKB2AvAQgufv/Wi5/vqz+CMqMV7fkBHjAQORNC9R6oVk6NfRXKnfrFvceJa7yD7IHwvbjqBq9qafinLEZHi4bpI883G6dNwC3+R+D76YehPAih15ldk8Xi7Yje0zSCA9ALH9R2Z2PXfXRdV1PFYNL43P5fardI+NyolwoCkV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TybtrqSL; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50SADIE8027034
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 10:45:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OhsgF7rKwe5JIC/AdPCbzMZyNaFWY1m5uKPa21q85mM=; b=TybtrqSLfqTg9WlU
+	WcFZgquIjsrOe4SZBTlQHaAD4RYXGzlnkO4/Jc/GJjzEOG8eCMyFos/tx9dmmfis
+	dbIt3NwlJ5ez3ChTaN1xcX4bAH4oGDvlu/wKbQ06IYE7rDqlCJbO/M13EcpS3Jvj
+	hznIo5RYCPSHBfdPwUzY/bByH1zvoeJ5ISLsWAa2VFoi46AAVTAH/GqizhTzSe2U
+	c9x3kEBnbBUm8TyynpJtimUb0UGqoTuC3wAocJRnUtj/6rZ24xMU0NzFeUlONc7P
+	5kJhMGKBZQ4mV6DMWro/GxT8dZsAuO3a3QpzczSnSNQ9EN4QziQ1tdJsx03mxMTr
+	zf800Q==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44ew9n833e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 10:45:56 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-7b6f28dc247so111323185a.3
+        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 02:45:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738061155; x=1738665955;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OhsgF7rKwe5JIC/AdPCbzMZyNaFWY1m5uKPa21q85mM=;
+        b=enl90OalG0oSB5uEP7NoPYJCKvF+zYqwRKLCkCURyddNi0wvPtNoHmmVroEytSZc9M
+         RFr/Ams+RZG/AO5dQ1RDhX/8ODwLM2eK2ympRebDopuTRZZ3xJ7Lq69RFKFX4oXHX1E6
+         jaUeZoB24zLB9nNQjD743Ae6OVR10mJ6mxCE+Ql5JxiqcpLR8s0BaN6v6nOZyxZqVdcd
+         lopoMvhiNbZ2dRqYj1juhvSprxDuaz1TP1nxGJ7a1KHOSWmff/FwcDhQXRpkWHTTkBj2
+         MKssVTMAM1S2y2aq/1cu3CGUQM+HaO2hvK0QmNFygXQbgsoNVvmG0Ir2Ng6Ox0KCc/wk
+         IG0Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVV/Fb9RMHX6u5Ypgok4MAslSnG3GC+rpTGsMiUEilCSnpniVwveCcJXCXKkEtM2R+HP71V6iQfHTxu@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZ+GmrImt+FT5PnPk4c7LXRqvoylmjiqxyW0apq9OJ/ZNetOnm
+	1gGc4x42JlLohBU1ZxUeRydsU5gmw4gxrt94w+MQPqUx3CrLgmtXINO7nL1tQI1aipeoWWWPjrp
+	W5KY+vlLQE0WHmRkJHw+YJvneZfkgigqM2pduNYCvLuTzxuMHXDHcfwb/64dx
+X-Gm-Gg: ASbGncvKe/0oNCHXUkoLgTytuBKsWa2VhoejknunlmMIHHXS20UQ70WZefnMZN+a0dY
+	SgkR8DSrMt12EjDtBYO+Or9/MRboMHs6d9jiLB+Yifw/6lv0J7B3NTiMuO5Wy9Sn75q/v9P+61v
+	hpvLRdDwiZvGFwGz6fApRw3SPbovpezp9DF2V4P8Hfi2X8SPW/1iQLqN2VEcEQdgO9LBsJLCknK
+	jg3xhNF3kXpjKBWAS9HfH6yo1ZO3tM/lsvGbybwZ6U5hl0wYCOMHzIqpazcIIXX18f/X5svX4Fs
+	89RUOUKpiCBcuoOcsAeo3HBeXc0dON752YiXnH6SJPGmC43F2M49n60/hUI=
+X-Received: by 2002:a05:620a:254f:b0:7b6:d089:2749 with SMTP id af79cd13be357-7be63208909mr2263812085a.7.1738061155469;
+        Tue, 28 Jan 2025 02:45:55 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG+FDki7Hsh32PGe0Kwr8rrgkS9gmvZ9XJ3Lcqs2QPF8jw+4HDYwrPfciPwydWMrJyTCkQ6bA==
+X-Received: by 2002:a05:620a:254f:b0:7b6:d089:2749 with SMTP id af79cd13be357-7be63208909mr2263810985a.7.1738061155103;
+        Tue, 28 Jan 2025 02:45:55 -0800 (PST)
+Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab6760ab363sm760272266b.114.2025.01.28.02.45.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jan 2025 02:45:53 -0800 (PST)
+Message-ID: <5b0f9cd4-df65-4963-8d6d-5bdf759ba0c5@oss.qualcomm.com>
+Date: Tue, 28 Jan 2025 11:45:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1738061074;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=QH2HlRrsM2GhBqfQeM842UlYrI8bH7FA97PniLkwhl0=;
-	b=WNFLx3YFReVPhS8mPLJ+8dWLkj7tr6Z5rlcSM2MBg2AlKXwjQwOYTyUZ7BuIy9cl88zSRg
-	9L7QNBrhJTIxbdft7iM1P+wPCvkXVvFBA0CDNbX9oKzXFYPKCPZVjzH+e9KVXAMRll4JG8
-	boKosHygywwhKQ7xIsa9MtIZVb8M9nk56NLhzf1qVSLLxENSJqyM6+dM5JV9JrBqhw5ESm
-	eqrdC+qqUJ7QOL5Wq8OY/pcLTF8jFTfl4/B92L6B0g2k10D3DUNLajEFHQpL67DMSYhIKV
-	knmDzwnuzqgJlPsEFmi/PuyL9iVg57bBwNfmLLkPTkT29wL164GeBWvft+kNEA==
-Date: Tue, 28 Jan 2025 11:44:34 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Alexander Shiyan <eagle.alexander923@gmail.com>, Rob Herring
- <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, devicetree@vger.kernel.org, Sebastian Reichel
- <sebastian.reichel@collabora.com>, stable@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
- for rk3588
-In-Reply-To: <CABjd4YwCH93-=Cqck5TiuJoTUkYbRh0495J6w=J8t93oHdt43g@mail.gmail.com>
-References: <20250124052611.3705-1-eagle.alexander923@gmail.com>
- <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com>
- <a76f315f023a3f8f5435e0681119b4eb@manjaro.org>
- <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
- <61b494b209d7360d0f36adbf6d5443a4@manjaro.org>
- <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
- <CABjd4Yy14bpjzvFyc8et-=pmds5uwzfxNqcs7L=+XRXBogZEsQ@mail.gmail.com>
- <CAP1tNvTRER=QzC29Udw4ffOetVECWV+MfZ2o-mbUFvuZ0_i-Kw@mail.gmail.com>
- <b57d8a834f5c07e37e0e7ee74346c700@manjaro.org>
- <CABjd4YwCH93-=Cqck5TiuJoTUkYbRh0495J6w=J8t93oHdt43g@mail.gmail.com>
-Message-ID: <1498db1c6664b39b49cfc71d2e4eb5ef@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 04/13] remoteproc: qcom_q6v5_mss: Handle platforms with
+ one power domain
+To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
+        phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        =?UTF-8?Q?Matti_Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250127-msm8226-modem-v3-0-67e968787eef@lucaweiss.eu>
+ <20250127-msm8226-modem-v3-4-67e968787eef@lucaweiss.eu>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250127-msm8226-modem-v3-4-67e968787eef@lucaweiss.eu>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-Proofpoint-GUID: rDDOUdu2SNcZ31EIopZ1iFiadGOonjWK
+X-Proofpoint-ORIG-GUID: rDDOUdu2SNcZ31EIopZ1iFiadGOonjWK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
+ definitions=2025-01-28_04,2025-01-27_01,2024-11-22_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 spamscore=0 mlxscore=0 priorityscore=1501
+ mlxlogscore=892 adultscore=0 malwarescore=0 phishscore=0 suspectscore=0
+ impostorscore=0 clxscore=1015 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2411120000 definitions=main-2501280083
 
-Hello Alexey,
-
-On 2025-01-28 11:30, Alexey Charkov wrote:
-> On Tue, Jan 28, 2025 at 1:24 PM Dragan Simic <dsimic@manjaro.org> 
-> wrote:
->> On 2025-01-26 15:25, Alexander Shiyan wrote:
->> >> > > I think it's actually better to accept the approach in Alexander's
->> >> > > patch, because the whole thing applies to other Rockchip SoCs as well,
->> >> > > not just to the RK3588(S).
->> >> >
->> >> > Anyway, I've just tried it after including the changes below, and
->> >> > while /sys/kernel/debug/pinctrl/pinctrl-handles shows the expected
->> >> > pinctrls under tsadc, the driver still doesn't seem to be triggering a
->> >> > PMIC reset. Weird. Any thoughts welcome.
->> >>
->> >> I found the culprit. "otpout" (or "default" if we follow Alexander's
->> >> suggested approach) pinctrl state should refer to the &tsadc_shut_org
->> >> config instead of &tsadc_shut - then the PMIC reset works.
->> >
->> > Great, I'll use this in v2.
->> 
->> Please, let's wait with the v2 until I go through the whole thing 
->> again
+On 27.01.2025 11:45 PM, Luca Weiss wrote:
+> For example MSM8974 has mx voltage rail exposed as regulator and only cx
+> voltage rail is exposed as power domain. This power domain (cx) is
+> attached internally in power domain and cannot be attached in this driver.
 > 
-> I, for one, would welcome a v2 that could be tested and confirmed
-> working with and without driver changes. Especially given that:
->  - the changes are pretty small
->  - hardware docs say nothing about the difference between TSADC_SHUT
-> vs. TSADC_SHUT_ORG, except that one is config #2 and the other is
-> config #1
->  - none of the source trees I looked at seem to enable PMIC based
-> resets on any RK3588-based boards, so these pinctrl configs appear to
-> have never been tested in the wild for RK3588*
+> Fixes: 8750cf392394 ("remoteproc: qcom_q6v5_mss: Allow replacing regulators with power domains")
+> Co-developed-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+> Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> ---
+>  drivers/remoteproc/qcom_q6v5_mss.c | 20 +++++++++++++++++---
+>  1 file changed, 17 insertions(+), 3 deletions(-)
 > 
-> So trying and testing seems to be the only way to understand the best
-> way forward. Unless, of course, someone from Rockchip can comment on
-> how the hardware works with TSADC_SHUT vs. TSADC_SHUT_ORG.
+> diff --git a/drivers/remoteproc/qcom_q6v5_mss.c b/drivers/remoteproc/qcom_q6v5_mss.c
+> index e78bd986dc3f256effce4470222c0a5faeea86ec..0e1b0934ceedd13d5790b798afc95d68a8314c75 100644
+> --- a/drivers/remoteproc/qcom_q6v5_mss.c
+> +++ b/drivers/remoteproc/qcom_q6v5_mss.c
+> @@ -1831,6 +1831,13 @@ static int q6v5_pds_attach(struct device *dev, struct device **devs,
+>  	while (pd_names[num_pds])
+>  		num_pds++;
+>  
+> +	/* Handle single power domain */
+> +	if (num_pds == 1 && dev->pm_domain) {
+> +		devs[0] = dev;
+> +		pm_runtime_enable(dev);
 
-Perhaps the best approach would be to have the v2 that works without
-the driver changes, so it can be propagated into the stable kernels.
+This call can fail
 
-Then, a separate series, which I'll volunteer for, :) would introduce
-the cleanups and any needed driver changes, which wouldn't be propagated
-into the stable kernels.  That way, we'd have the minimal bugfixes in
-stable kernels, and the nice cleanups in the latest kernel version.
-
-Of course, detailed testing is mandatory.
-
->> which I expected to have done already, but had some other "IRL stuff"
->> that introduced a delay.
+Konrad
 
