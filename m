@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-141745-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDE75A2240F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 19:37:36 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C82AA22426
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 19:45:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C60418884E2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 18:37:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26E6C3A54A4
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 18:44:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A22501E0E11;
-	Wed, 29 Jan 2025 18:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE9BB1E260A;
+	Wed, 29 Jan 2025 18:45:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aU05Sn+H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iuDDCjO7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E071DE8A9;
-	Wed, 29 Jan 2025 18:37:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A559C1E2007;
+	Wed, 29 Jan 2025 18:45:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738175851; cv=none; b=mTY6YgK5Mj+KfpIvozVhXJ4mwiGY0fGCgGrvqLURCBtTNQoDR0jadXcVElKMBOpTSuepB5/Aku0oHD5NuFazHRJTyLGSyeFKtGt1UxSF4g1dY9YglMMeyYjCYMG0SHrSu/A3KXQlJcI7SqFVfViubgpY7NFVM9Ky7iyA7T5+N7A=
+	t=1738176302; cv=none; b=thcpK0I9nKtkNrcf+ytN0CybFdk5/A+qRx6fi/eN6iOOnsc0fLTgsPeU/pwN3joQLU6D1SjtFlXHsFDRFln0+29743LBq8VZEQ0i1A5qOKrGxRdrkudgW59YLSuS+v3FK+RR6qNX56fwIAvFBS9IxPIApZCanQ4CmpeAOcOjX20=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738175851; c=relaxed/simple;
-	bh=qGPL15CX/rOkQRuqw5v83IMJIkBOMkf0xQeoJl3DMYw=;
+	s=arc-20240116; t=1738176302; c=relaxed/simple;
+	bh=XI5EV5L/ep/hcn58yFNkRkgtLi2iD6V1JUusRcU+1vs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aUgA8DrJ3vdykMwzJTT+kBeRa1VrLZSN9YqnGf+L/EHdOPtYp0doHMXG9wBGbkMlJB5Npyku4dMGUq2593uJjtWNXm9AlUw0gXYJtvkEIVDJjfqHGEqEE60YwXJFu/FTyXten3BTOrfdH4zzknj/mBMphJW8OrWcO/B/JmDx1xI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aU05Sn+H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AE5FAC4CED1;
-	Wed, 29 Jan 2025 18:37:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=TkW0EW4hKIzfnf0j6o/bfFa5KYZnO3V0pG9inrHfaLRUwptZOtsg/sy4EzDiOmOD/7DsiEKqdqHoPiPLfUeZSdkmUTvz302/wudlh9HsixFjSNsyup4im6XUIv7MLODUMJN3IFj4Lfe7LQjD2ZV6hYF5VluQypQJe69b8VzNXw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iuDDCjO7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAC0EC4CED1;
+	Wed, 29 Jan 2025 18:44:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738175850;
-	bh=qGPL15CX/rOkQRuqw5v83IMJIkBOMkf0xQeoJl3DMYw=;
+	s=k20201202; t=1738176302;
+	bh=XI5EV5L/ep/hcn58yFNkRkgtLi2iD6V1JUusRcU+1vs=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aU05Sn+HmhzZk1WNVJEvP3Lledt1b1J+0PS/0ZAfFCac6zrs6eBfj9PxwEcyzqqRZ
-	 baQxbHXWWlp2VqNxN3VWYqPQUdjXUXthx8TYcRj1k3Rxik5ZnaC7fB9rC35Dw7297M
-	 l4t2UugW2FwON8I9JgGN1NvP6rISTZemHMZ1OhjbdUOZ2GumFpfQWWoXNQJ8G2Ca9b
-	 JoYWzEzwS8Ea4K+Ul+cGlhstqNhCHXy4hkyS4NppBzD+sPKJklUnumSCwznOODHbQL
-	 nN0xxAXdFY3Unvizvpqip1tEGqM3FqcsjxPLCWOGfRPQlMptQnaSawz8j7i1W+g2P1
-	 7ESZb/I2c0x0g==
-Message-ID: <eace86ef-5c07-41b8-92fd-7f16fed3e28a@kernel.org>
-Date: Wed, 29 Jan 2025 19:37:25 +0100
+	b=iuDDCjO7+zBZVuKBv+v05G8LKwOe49ZY1aFcC+wYkQywOwL+I6rIwl/nEqqzindk4
+	 fK8Nhzo80xJYuob9VaOukXyFL9EbpDDr+7DD07E3atOYF14odALvrbhl5mdHWqdomM
+	 3kjhqfLyexv/1gfIMwCDcl5ehYBqoQv0uKhob22oH1ba+3vmGW7cDrX/pwQqMPRXHw
+	 6clKJnUknYk+5Ff0sTeUkPQrFx2wsLbgzrc5w7axL5EUBR6asvITMn1L2WC134NuMg
+	 YIHWLPyqqBTpFb+tUPWYtznnhutdjjkgiYSaIb7zB9HlLRxHywmhCBQMbfc+dPwlvy
+	 NyKYqyuYG8jNQ==
+Message-ID: <9c573fff-31e6-4319-b8d1-527a3487cc20@kernel.org>
+Date: Wed, 29 Jan 2025 19:44:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 13/14] arm64: dts: renesas: Add initial support for
- renesas RZ/T2H eval board
-To: Thierry Bultel <thierry.bultel.yh@bp.renesas.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250129165122.2980-1-thierry.bultel.yh@bp.renesas.com>
- <20250129165122.2980-14-thierry.bultel.yh@bp.renesas.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: qcom,wcnss-pil: Add support
+ for single power-domain platforms
+To: Luca Weiss <luca@lucaweiss.eu>, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephan Gerhold <stephan.gerhold@linaro.org>,
+ =?UTF-8?Q?Matti_Lehtim=C3=A4ki?= <matti.lehtimaki@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250129-wcnss-singlepd-v1-0-b01a6ba0b1bd@lucaweiss.eu>
+ <20250129-wcnss-singlepd-v1-1-b01a6ba0b1bd@lucaweiss.eu>
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -105,48 +107,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20250129165122.2980-14-thierry.bultel.yh@bp.renesas.com>
+In-Reply-To: <20250129-wcnss-singlepd-v1-1-b01a6ba0b1bd@lucaweiss.eu>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 29/01/2025 17:37, Thierry Bultel wrote:
-> diff --git a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-> new file mode 100644
-> index 000000000000..f2b448aaec82
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
-> @@ -0,0 +1,37 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +/*
-> + * Device Tree Source for the RZ/T2H Development EVK board
-> + *
-> + * Copyright (C) 2025 Renesas Electronics Corp.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "r9a09g077m44.dtsi"
-> +
-> +/ {
-> +	model = "Renesas Development EVK based on r9a09g077m44";
-> +	compatible = "renesas,r9a9g077m44-rzt2h-evk", "renesas,r9a9g077";
-> +
-> +	aliases {
-> +		serial0 = &sci0;
-> +	};
-> +
-> +	chosen {
-> +		bootargs = "ignore_loglevel";
-
-Drop, that's development, not wide-mainline use.
-
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-
-Stray blank line.
+On 29/01/2025 18:51, Luca Weiss wrote:
+> From: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+> 
+> Support platforms such as MSM8226 and MSM8974 with only one power rail
+> (CX) modelled as power domain while MX and PX are regulators.
+> 
+> Signed-off-by: Matti Lehtimäki <matti.lehtimaki@gmail.com>
+> [luca: reword commit message]
+> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
+> ---
+>  Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
+> index 8e033b22d28cfa8203234f744b3b408e976e20c3..d3c71bcf0f02122eb0dae214f135d8d7f71a9600 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,wcnss-pil.yaml
+> @@ -69,9 +69,11 @@ properties:
+>        CX regulator to be held on behalf of the booting of the WCNSS core.
+>  
+>    power-domains:
+> +    minItems: 1
+>      maxItems: 2
+>  
+>    power-domain-names:
+> +    minItems: 1
 
 
+This should be further narrowed in allOf:if:then per each variant,
+because now you say that all devices here can have only one power
+domain... unless the compatibles do not allow that, but then explain in
+commit msg.
 
 Best regards,
 Krzysztof
