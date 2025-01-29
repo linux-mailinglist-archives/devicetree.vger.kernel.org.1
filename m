@@ -1,194 +1,128 @@
-Return-Path: <devicetree+bounces-141734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E36B5A2236F
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 18:54:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D53D7A22386
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 19:01:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 540001632A5
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:54:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46B6C7A21DB
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 18:00:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F52E1E0DCC;
-	Wed, 29 Jan 2025 17:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE56E1DED7B;
+	Wed, 29 Jan 2025 18:01:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BU+nGcuT"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mW24PutO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 121791DFE16;
-	Wed, 29 Jan 2025 17:54:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FFB5190696;
+	Wed, 29 Jan 2025 18:01:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738173244; cv=none; b=exDYUhJ9iItRhL/YElxCI463X+0PmidirRJ76WQY6A+gQ6zCU++v5Kn8SCW4qolS8K14GlEn7tXPjQ1zDr8T/qMZsEtGoP44vzl/b8iLpD2jYXec0TFI4+GBG/fqJJU9zAscQZgjEL0XyEIKjsZ3wlNbHuLkX2GxyM5RRGXWALQ=
+	t=1738173702; cv=none; b=U1W2w3ZaMcOykDhQXUVpSilZT0VMeV3zJYdGPH01PCHNsDK6uXjx+xK4wVDcV6lOROFkwVgvD17A/tRBgUCPbD3jMASw3LH+10mtQ/Ca0U+1PtiBjhfG6lQEvB7DzLilINagl3nK0u40N+FrFFbCceI6rJGiP4IeayTXNoobEY0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738173244; c=relaxed/simple;
-	bh=Zyf2Hutc5cy0T89YVPvTglk6LxkQN6P68b7+zGZ837w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ub+/lFn8dmgTZ77IkJyuiW3N0BOYbeN5zc9+uWOlcM90tT8tl5WbGdQ9nGwm+C7xU9kiAXsJw4W9no7QrOl5uDW75FMysIq7qDIDECDpI8j6fiZWBW6FlpkUzSwqH6jVT+O1cX2Nie1uqRxGfmgLfDHuDV7kwJnj1IZ+NanZxR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BU+nGcuT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 454BFC4CED1;
-	Wed, 29 Jan 2025 17:54:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738173243;
-	bh=Zyf2Hutc5cy0T89YVPvTglk6LxkQN6P68b7+zGZ837w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BU+nGcuTtFSX63zvw1OdWg01bkYPv85CIq9lThHNzW8t3mpk5pTpn0NqgjviFTmRG
-	 9uVfhz8se45xyyaEoJqxNWNjKuRHlArPi8QK/gm8W4zzZRChSe5OMBBJs4YmF6Xk01
-	 sPPyyCDIlHHO8uk0UwfddpjuVyJA/DKOtpq6iajj1opHiHc44poT3PnxtTO9Wvohzn
-	 lL6dN2TRIQYh2GV3Uk1SIrsvbOp91L6c7FJTLx3O2QtGJ7nQ+mVSh+Ti7kAb9zQvj2
-	 Q4jA3SJG9OJICbc50j21pWb8Of7cSotac9oTJ3OYI880BfnboqeSHWj3FWLzUXsC/j
-	 HDAusBlf+F/iw==
-Date: Wed, 29 Jan 2025 17:53:57 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Patrice CHOTARD <patrice.chotard@foss.st.com>
-Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, linux-spi@vger.kernel.org,
+	s=arc-20240116; t=1738173702; c=relaxed/simple;
+	bh=YCUyhaRoDJqojgBQgfjgIDWzf44BcOOrli9JHxA0gDg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=SdZpqVWAon/qlxa5xOUmgbozM2LQ2RTz1B03BfshG8qeY5u4za+XZDNU61zrREkRspZpxu/VMmGWIs4QqxZaEctwNx2Glrt4VzpmyCQK2xgt0f6QnRbtjSvvYcpoLvYiHNvMQf7d0dZ4RgSVIec8RAFYpC9MqcQhLxgkqpRMIt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mW24PutO; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1738173701; x=1769709701;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=YCUyhaRoDJqojgBQgfjgIDWzf44BcOOrli9JHxA0gDg=;
+  b=mW24PutOkrrOx3F7OUiOpomr+tDV45ONMqh6Z4yKYmgeJvi5e3FW4Hp7
+   2YJjPmNbi3KQAWoLw9cJvQx9C6NZkkux43cqfoAiIOQ1QxQuVRA2puLyQ
+   NyoAeZXcn0V+g1URoNmh2rX+N6SbAb+pg/NfLp08c/znG9pUczYKvsEpJ
+   0gWdIDLk2BoIpXuWaqNmBrWi95stjwVAikgzOiEI+K8PFYKeysMXxhZZV
+   /l0FDTi8ZinRWVFWlMZ1U9HjjrQf3d4SKxrm0d3HDXYpMD9N5VBNVyrr1
+   umtnR2guEmEr8SskwQ2wPX4lWjeeU9U6pncsZ4Maf+0E4hQ5IdnZWkS93
+   A==;
+X-CSE-ConnectionGUID: BpYv2x32RqOv+ZYXHxEaNQ==
+X-CSE-MsgGUID: enRa9aqIRAmDG9XjhqJWEQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="64063502"
+X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; 
+   d="scan'208";a="64063502"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2025 10:01:40 -0800
+X-CSE-ConnectionGUID: u9qfmyypSEuEfTgWD0qpNw==
+X-CSE-MsgGUID: DrMVmwTWSO26RK/SJXpM0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
+   d="scan'208";a="109551745"
+Received: from apgcp0c531115.png.altera.com ([10.244.76.209])
+  by orviesa007.jf.intel.com with ESMTP; 29 Jan 2025 10:01:36 -0800
+From: Mahesh Rao <mahesh.rao@intel.com>
+To: yilun.xu@linux.intel.com
+Cc: conor+dt@kernel.org,
 	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	christophe.kerello@foss.st.com
-Subject: Re: [PATCH v2 1/9] dt-bindings: spi: Add STM32 OSPI controller
-Message-ID: <20250129-feminize-spotlight-2cee53f8b463@spud>
-References: <20250128081731.2284457-1-patrice.chotard@foss.st.com>
- <20250128081731.2284457-2-patrice.chotard@foss.st.com>
- <20250128-panama-manly-a753d91c297c@spud>
- <e3d01bce-a7d4-4690-8a2f-3bbb1ee5ccb7@foss.st.com>
+	dinguyen@kernel.org,
+	hao.wu@intel.com,
+	krzk+dt@kernel.org,
+	krzysztof.kozlowski@linaro.org,
+	linux-fpga@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	mahesh.rao@altera.com,
+	mahesh.rao@intel.com,
+	mdf@kernel.org,
+	robh@kernel.org,
+	trix@redhat.com,
+	yilun.xu@intel.com
+Subject: Re: [PATCH 3/3] firmware: stratix10-svc: Add of_platform_default_populate()
+Date: Thu, 30 Jan 2025 02:01:13 +0800
+Message-Id: <20250129180113.17219-1-mahesh.rao@intel.com>
+X-Mailer: git-send-email 2.35.3
+In-Reply-To: <Z5XyR9QE3kcQDOPe@yilunxu-OptiPlex-7050>
+References: <Z5XyR9QE3kcQDOPe@yilunxu-OptiPlex-7050>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="klBchq5Iv61GqXw7"
-Content-Disposition: inline
-In-Reply-To: <e3d01bce-a7d4-4690-8a2f-3bbb1ee5ccb7@foss.st.com>
+Content-Transfer-Encoding: 8bit
 
+Hi Yilun,
+Thanks for reviewing the patch.
 
---klBchq5Iv61GqXw7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Sun, 26 Jan 2025 16:28:55 +0800, Xu Yilun wrote:
+> > Add of_platform_default_populate() to stratix10-svc driver as the
+> > firmware/svc node was moved out of soc.
+> > This fixes the failed probing of child drivers of svc node.
+> >
+> > Fixes: 23c3ebed382a ("arm64: dts: socfpga: agilex: move firmware out
+> > of soc node")
 
-On Wed, Jan 29, 2025 at 06:40:23PM +0100, Patrice CHOTARD wrote:
-> On 1/28/25 19:02, Conor Dooley wrote:
-> > On Tue, Jan 28, 2025 at 09:17:23AM +0100, patrice.chotard@foss.st.com w=
-rote:
-> >> +  memory-region:
-> >> +    maxItems: 1
-> >=20
-> > Whatever about not having descriptions for clocks or reg when there's
-> > only one, I think a memory region should be explained.
->=20
-> ok i will add :
->=20
->     description: |
+> > +	ret = of_platform_default_populate(dev_of_node(dev), NULL, dev);
+> > +	if (ret < 0) {
+> 
+> 	if (ret)  is just fine.
 
-The | isn't needed here.
+ok ,I will make the change.
 
->       Memory region to be used for memory-map read access.
+> 
+> > +		of_platform_depopulate(dev);
+> > +		goto err_unregister_fcs_dev;
+> 
+> You wanna destroy everything even if some child drivers work?
 
-I don't think that's a good explanation, sorry. Why's a memory-region
-required for read access?
+Currently, there is no requirement to retain the driver if a child component fails.
+we will handle it if it is needed in the future.
 
-> >> +
-> >> +  clocks:
-> >> +    maxItems: 1
-> >> +
-> >> +  interrupts:
-> >> +    maxItems: 1
-> >> +
-> >> +  resets:
-> >> +    items:
-> >> +      - description: phandle to OSPI block reset
-> >> +      - description: phandle to delay block reset
-> >> +
-> >> +  dmas:
-> >> +    maxItems: 2
-> >> +
-> >> +  dma-names:
-> >> +    items:
-> >> +      - const: tx
-> >> +      - const: rx
-> >> +
-> >> +  st,syscfg-dlyb:
-> >> +    description: phandle to syscon block
-> >> +      Use to set the OSPI delay block within syscon to
-> >> +      tune the phase of the RX sampling clock (or DQS) in order
-> >> +      to sample the data in their valid window and to
-> >> +      tune the phase of the TX launch clock in order to meet setup
-> >> +      and hold constraints of TX signals versus the memory clock.
-> >> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> >=20
-> > Why do you need a phandle here? I assume looking up by compatible ain't
-> > possible because you have multiple controllers on the SoC? Also, I don't
->=20
-> Yes, we got 2 OCTOSPI controller, each of them have a dedicated delay blo=
-ck
->  syscfg register.
+> And do we need to do depopulation on driver remove?
 
-:+1:=20
+I think yes , I have missed this. I will add depopulate in the remove callback().
 
-> > think your copy-paste "phandle to" stuff here is accurate:
-> >       st,syscfg-dlyb =3D <&syscfg 0x1000>;
-> > There's an offset here that you don't mention in your description.
->=20
-> I will add it as following:
->=20
->   st,syscfg-dlyb:
->     description:
->       Use to set the OSPI delay block within syscon to
->       tune the phase of the RX sampling clock (or DQS) in order
->       to sample the data in their valid window and to
->       tune the phase of the TX launch clock in order to meet setup
->       and hold constraints of TX signals versus the memory clock.
->     $ref: /schemas/types.yaml#/definitions/phandle-array
->     items:
->       - description: phandle to syscfg
->       - description: register offset within syscfg
+> I'm actually a little confused how to handle populate() fail and depopulate().
 
-:+1:
+I think this was a mistake on my side. I will make the change in next revision.
 
-> >> +  access-controllers:
-> >> +    description: phandle to the rifsc device to check access right
-> >> +      and in some cases, an additional phandle to the rcc device for
-> >> +      secure clock control
-> >=20
-> > This should be described using items rather than a free-form list.
->=20
->   access-controllers:
->     description: phandle to the rifsc device to check access right
->       and in some cases, an additional phandle to the rcc device for
->       secure clock control
->     items:
->       - description: phandle to bus controller or to clock controller
->       - description: access controller specifier
->      minItems: 1
->      maxItems: 2
-
-These updates look fine to me.
-
---klBchq5Iv61GqXw7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZ5prNQAKCRB4tDGHoIJi
-0tiOAQDd9BF6yvC5/EHySEFWBLCC14sZW3m0j9Y5sHG+IFLYJQD/SiGc3aoOaqRR
-GvI0wjS/7qTgY+FgXginJwblZbIzNAs=
-=C2X+
------END PGP SIGNATURE-----
-
---klBchq5Iv61GqXw7--
+Best Regards,
+Mahesh Rao
 
