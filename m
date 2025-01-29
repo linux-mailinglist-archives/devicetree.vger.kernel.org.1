@@ -1,173 +1,134 @@
-Return-Path: <devicetree+bounces-141609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE8DBA2191D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 09:35:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C74AA219C3
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 10:18:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EBC5163774
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 08:35:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2EAD47A2A8A
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 09:17:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DABD193409;
-	Wed, 29 Jan 2025 08:35:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C101AB6D4;
+	Wed, 29 Jan 2025 09:17:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="TW1pgqUA"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=mobileye.com header.i=@mobileye.com header.b="F01zPqdH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa1.hc555-34.eu.iphmx.com (esa1.hc555-34.eu.iphmx.com [23.90.104.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3472D19048D
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 08:35:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BC7F1A0714;
+	Wed, 29 Jan 2025 09:17:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.90.104.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738139728; cv=none; b=Bw4L5hCmUpFHqPicwMrWlRMF6mAYw5q1xwQv+W19iJPSzSX8Nqt7yNnEklaN3xE2Y5T2vjLEwKuXdpu+CCZedHSZkqZWhKlaLLB2VjrwsCGxn2kk9rAQvQ+8OBKdxzwmDxWHHQKEq+/28N5p1xyA/Ru9va2TvWjZ1VSbtRYVnLk=
+	t=1738142278; cv=none; b=AF6y1+3nNZrc3uQfxPJYamg/JqpX7yd7tmOm4WRXK7env6zoel+i/k7jZD0auOGVSzeptVAQtkY3sIEdELFmjbZtguW9ZpqE/1pQuMRZG5DTGrBrf3NKVACu3r+FM/4eRI3HdVqiU45Va2FHN/igg2QH5Xz+makunQGmUJlbas4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738139728; c=relaxed/simple;
-	bh=6JWEsMHzCEXoNop+CD5KSXZ0qpMvWow+yGHr1jf3M2E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BwROFHVNE3B4zE+G5I6F69NjmLqj/PD8921vvW8V/LZx3/Iu5sXSVyClIxYQg3BmWEtz6gu0tXC/vjEYRCPohfVNhZk787b+ZvsHkDz5V/WmuzUThUNptWhrm5o41KMzx/PO0b12mXdhJfLOLqC791NkuT15RcLsNOvxlVrecv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=TW1pgqUA; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3863703258fso242710f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 00:35:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1738139723; x=1738744523; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zuYqXLN9pWWEEMuag1Wep+j9GMbtuULX7qFuR3zF6Qo=;
-        b=TW1pgqUAQlPSXFhwbp+YZTIJzbzO4bOZP483chc2TMsbLrpxZTLWAlMHQV3lYlCCcB
-         Z+lXjijzxpEyjWBD/CA5GmwLhC/CviVxCDe7ZjXpiaC8FZF/ykACBz3TPKLDFpTFFR3N
-         pfQRUAVibZA6rce4X7Zda6EGOxAz+wYDmwFD5dQOYNd4SCXMV/uCRGDANH+re7rwRIXr
-         lsByMGY+8+gk8kwVqKoJZuMVBUlyOZ8CZUEpgO5uN0lFqm6zo0SZU7u0BtJ0YYmsH8Zs
-         YZYh8183WomZEpZeuMNZNy7ryN089se+zsEGZst+c94xri2uRrqXYuuVSNa4OzYemgh4
-         NtGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738139723; x=1738744523;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zuYqXLN9pWWEEMuag1Wep+j9GMbtuULX7qFuR3zF6Qo=;
-        b=aClw5r7T45C/62IQZQSDTP2aAewGd+LqU5kR/bvc6IWne50j7ljr8ieqd+g/IdqOSY
-         WX/IoJhANqfrTcpTZkEu0qwEV3lPeEElFwAa8OR/DNMD16eTs8G3LoaU3c+WlqsjKZ7A
-         Sk6FZI1D0HxMyKhxn6CQTMzhW1eEsA/Y3Q04TYSFDBOrR/pc+Re08H9z8nr2B86Bg2Gb
-         5wCOoixSPgt8KOnD8aadOBIBfudsFcrtzH/A96OQMV5TCgnt7U/rJOOcW1/+FvVWreck
-         O1Pf0OQwj6jBT73n7GCPWgEsQVUXcVZCfB0UOoe/d39LrE1hD3AX1uFpYCsQpgQ3BUnU
-         ujug==
-X-Forwarded-Encrypted: i=1; AJvYcCXM47KI1g1Falmw1Jl2Dri1HUjX6x0n64cvteCJXePVvdaxtqFG2aEuGUfOKUmyW1BnZherJUY5bhtC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwA0HKW6uGRGeLFgrjwE+YmWX7h2JZIbA+nv1f0rqkZgO5qqH4E
-	RlKEiESgizzCHE9PbnWaoCZ9tDYeipJs35uUVmHOyLXhmJYTocVYz503mrwZMoE=
-X-Gm-Gg: ASbGncsiUUUqLowmRbR/ud6BgaYfNBHym0xw5TKQ/7Z5eXRCw4nV8tXGddwvf8XY8xS
-	mPEtruj85tXjpxNDtmIXrOfxloWIPD+uoMSxD7crbmp+y31JecyBrLXNIiJhgwXSvN/qpwf1YAY
-	YUXN7ciaCeztwj/5tiVbTlvoVmLz7fjgb9ITF2bRPOjBWngo+nfMHiOE118++JS/iGx62bRbULt
-	tnhdn0wThNbTR0SDdJ+fHhTwOayOxcL81YRs2gtQj0/Aq6LvC1IwXV3J65OXQWMLNkdT09MWVag
-	InHJt2x/RQpJskhy4OfpAhDJfoszT4SzFF8Q+qXq0GgEFaT0IedPMF2MPw==
-X-Google-Smtp-Source: AGHT+IGd2UpE4x7adX1HKMcNLR5Di8u1V53T20UlS2WB4LkUGl/DfaURLgDVMysvwbgsJdQBfoiELQ==
-X-Received: by 2002:a05:6000:1847:b0:385:e328:8908 with SMTP id ffacd0b85a97d-38c51079cacmr1719764f8f.29.1738139723079;
-        Wed, 29 Jan 2025 00:35:23 -0800 (PST)
-Received: from localhost (p200300f65f018b0400000000000001b9.dip0.t-ipconnect.de. [2003:f6:5f01:8b04::1b9])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a1baf65sm16624223f8f.64.2025.01.29.00.35.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jan 2025 00:35:22 -0800 (PST)
-Date: Wed, 29 Jan 2025 09:35:21 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [RESEND PATCH] ARM: dts: socfpga: Add basic support for
- Terrasic's de10-nano
-Message-ID: <tjkdekrcxoot3inwcboqc76iljbkjgjaamo55u2k2glr7aubjh@y3465k547zwz>
-References: <20250128172917.4565-2-u.kleine-koenig@baylibre.com>
- <f9aad21c-64f9-413b-a3ea-18825515944c@lunn.ch>
+	s=arc-20240116; t=1738142278; c=relaxed/simple;
+	bh=K3OD3dxywITjvy6jKlbNNMbo87dMZ77ETsuJ9jOPISQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=esrB7h+8Jqh33L1UM8r/sYzTK7BpsTZxcz8ogM8R2diw45G/brpKZ2wCvZWWqqVH7r740NGCJbCudaktFp5KSC1NvZaMisBj6AgPFOvn46n1DNxfJ6Ydz+ShlYx/loIJ9/ihU6VWvxVCAJGbvkL7nXnWitHW0cYMsssliXeWcPo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com; spf=pass smtp.mailfrom=mobileye.com; dkim=fail (0-bit key) header.d=mobileye.com header.i=@mobileye.com header.b=F01zPqdH reason="key not found in DNS"; arc=none smtp.client-ip=23.90.104.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mobileye.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mobileye.com
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=mobileye.com; i=@mobileye.com; q=dns/txt; s=MoEyIP;
+  t=1738142275; x=1769678275;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=K3OD3dxywITjvy6jKlbNNMbo87dMZ77ETsuJ9jOPISQ=;
+  b=F01zPqdHU/ZS+GG9Rs6EXaU4/HwOW/1XXA4mUZ4PTfpl5tjTmbQ2W/qF
+   axT8uie7xki/A0SjjN6uB9jtjmo7Pn155Wo88UcPf2IY3knKZish8W9Pn
+   Zs0BaH2lG1X9dMinHqVWViZMnttpyAsWcE0t3+P5qeDDigpQJmokkS0ap
+   tQddeiv+T/q52IV5N8PrE7DuvPjLE2BQLNBWYcHW6ejYlnNFJfSDMXBKL
+   ZyjLNI7jrO96rL/uu47wY3kqip8pieAnYs/QUGYGHgS6aOQM5H1waVG5t
+   8xWp7Mv2lTibSv+3jis0j3+F7Y9mMKn3uJacE7RFRmiKZmb1dmskV4T47
+   Q==;
+X-CSE-ConnectionGUID: BgIeckuzRxmdnMHdXtrD1A==
+X-CSE-MsgGUID: HZgsU7KdRPKidvCKuGL2Sw==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from unknown (HELO ces02_data.me-corp.lan) ([146.255.191.134])
+  by esa1.hc555-34.eu.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2025 11:16:42 +0200
+X-CSE-ConnectionGUID: 5JdEmO9hSfSifX91jEuKPA==
+X-CSE-MsgGUID: mmL03Lr1STOTFpLkRb7fHw==
+Received: from unknown (HELO epgd022.me-corp.lan) ([10.154.54.6])
+  by ces02_data.me-corp.lan with SMTP; 29 Jan 2025 11:16:40 +0200
+Received: by epgd022.me-corp.lan (sSMTP sendmail emulation); Wed, 29 Jan 2025 11:16:41 +0200
+From: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+To: Anup Patel <anup@brainfault.org>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Cc: linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>
+Subject: [PATCH v5 0/2] riscv,aplic: support for hart indexes
+Date: Wed, 29 Jan 2025 11:16:35 +0200
+Message-ID: <20250129091637.1667279-1-vladimir.kondratiev@mobileye.com>
+In-Reply-To: <87ed0o87qg.ffs@tglx>
+References: <87ed0o87qg.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="lvjgmcreqtqyinlr"
-Content-Disposition: inline
-In-Reply-To: <f9aad21c-64f9-413b-a3ea-18825515944c@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Risc-v APLIC uses "hart index" to access data per destination hart.
+Current implementation assumes hart indexes are consecutive integers
+starting from 0, while Risc-V documentation says it may be
+arbitrary numbers, with a clue that it may be related to the hart IDs.
+
+In all boards I see in today's kernel, hart IDs are consecutive
+integers, thus using dart IDs is the same as indexes.
+
+However, for the MIPS P8700, hart IDs are different from indexes,
+on this SoC they encode thread number, core and cluster in bits
+[0..3], [4..15], [16..19] resulting Soc consisting of 3 clusters *
+4 cores * 2 threads with hart IDs:
+0x0, 0x1, 0x10, 0x11, 0x20, 0x21, 0x30, 0x31, 0x10000 etc.
+
+Change default hart index to be hart ID related to the start of domain,
+and add optional property to configure arbitrary indexes.
+
+Use of "device_property" API allows to cover both ACPI and OF in single
+code
+
+1-st commit adds dt-bindings, 2-nd - code
+
+Changed from v1:
+1. use as fallback logical indexes instead of hart ids
+2. refactor code to avoid unnecessary memory allocation
+
+Changed from v2:
+1. change property name to plural "riscv,hart-indexes"
+
+Changed from v3:
+1. added missing recepients as per "get_maintainer.pl"
+   no other changes
+
+Changed from v4:
+1. Verbose comment for the dt-bindings commit
+
+Vladimir Kondratiev (2):
+  dt-bindings: interrupt-controller: add risc-v,aplic hart indexes
+  irqchip/riscv-aplic: add support for hart indexes
+
+ .../interrupt-controller/riscv,aplic.yaml     |  8 ++++++
+ drivers/irqchip/irq-riscv-aplic-direct.c      | 25 ++++++++++++++++---
+ 2 files changed, 30 insertions(+), 3 deletions(-)
 
 
---lvjgmcreqtqyinlr
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [RESEND PATCH] ARM: dts: socfpga: Add basic support for
- Terrasic's de10-nano
-MIME-Version: 1.0
+base-commit: ffd294d346d185b70e28b1a28abe367bbfe53c04
+-- 
+2.43.0
 
-Hello Andrew,
-
-On Tue, Jan 28, 2025 at 06:44:26PM +0100, Andrew Lunn wrote:
-> > +&gmac1 {
-> > +	/* Uses a KSZ9031RNX phy */
-> > +	status =3D "okay";
-> > +	phy-mode =3D "rgmii";
-> > +
-> > +	rxd0-skew-ps =3D <420>;
-> > +	rxd1-skew-ps =3D <420>;
-> > +	rxd2-skew-ps =3D <420>;
-> > +	rxd3-skew-ps =3D <420>;
-> > +	txen-skew-ps =3D <0>;
-> > +	txc-skew-ps =3D <1860>;
-> > +	rxdv-skew-ps =3D <420>;
-> > +	rxc-skew-ps =3D <1680>;
-> > +};
->=20
-> The convectional meaning of phy-mode 'rgmii' is that the PCB provides
-> the 2ns delay. Here you are abusing the
->=20
-> > +	txc-skew-ps =3D <1860>;
-> > +	rxc-skew-ps =3D <1680>;
->=20
-> To add these delays.
-
-Ah, at some point I already knew that. Thanks for repeating that hint.
-(Back then it was for
-arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts.)
-
-> Please test without these two lines, and change phy-mode to
-> 'rgmii-id'. 1680 is rather low, so it might not work. Look for CRC
-> errors for received packets.
-
-I did an apt upgrade involving > 100 MB downloads with rgmii-id and
-afterwards I had:
-
-	# ip -stats link show dev eth0
-	2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode=
- DEFAU
-	LT group default qlen 1000
-	    link/ether ee:5f:09:22:72:da brd ff:ff:ff:ff:ff:ff
-	    RX:  bytes packets errors dropped  missed   mcast
-	     158336739  113000      0       0       0       0
-	    TX:  bytes packets errors dropped carrier collsns
-		482481    5094      0       0       0       0
-
-so that seems to be fine, right?
-
-Best regards
-Uwe
-
---lvjgmcreqtqyinlr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmeZ6EYACgkQj4D7WH0S
-/k4qaQgAlRiE8Bu3Vj9y++KvX2u4tfM6GeiZTH5zpWwNoS+LaTs+1R9Nn+pfAgYC
-txyvZp0iygZc6e3IMmciuXbeZ1eFV8s8FMpBdzIGI/gQZWiItQdPkOFa4NJy1dlV
-fKn45byHBTuPOdGKEWXYzTR0U5SWWdQcqojaokPf91uxOn3x6ypHdRapdI4pF6OR
-2sYFRDOQD0BSQUHCL55rAGW2/ccy+R1MdASugqtsrXknqGDe1TpHbDFn7oSveIjd
-JcNH2fw9zSTAR4xihf8jRyWymy5UQ9K4nB3MlFnx7qrXXrrnrp5QcphVs8vWdT6C
-EhE1mwk5br+ntDGTD1+ubCNAM/mQ0g==
-=mF3H
------END PGP SIGNATURE-----
-
---lvjgmcreqtqyinlr--
 
