@@ -1,261 +1,214 @@
-Return-Path: <devicetree+bounces-141646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37184A21BE2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 12:15:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2EAAA21C23
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 12:27:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9AC9716638A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:15:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5BB33A3659
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 11:27:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB2B1B85D1;
-	Wed, 29 Jan 2025 11:15:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7E01B87F7;
+	Wed, 29 Jan 2025 11:27:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="cbwRLcva"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vWj29di4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C9FE18EFDE
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 11:15:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07C801AD403
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 11:27:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738149326; cv=none; b=sZfFGHlwW942soSw7GE50DMfHRVVvnbAzxrC20D5HIpanYsBRvvX34DTgUBNLIMywcvrL+RR3/5ouXdMKT5nFgS7OKJ4AueFC893XpzSuR8psPmVKG+ZUaKID4kpvRUFNguM4SsyWsJLAB7ZLsKsE1wL7oJuyzSV4R62qnnSchY=
+	t=1738150059; cv=none; b=faap4W4oaDABWhE8wSGtna9guWVkgr3BfHwgH4fwBI5lv7o1VeBGufE2UKXc4EydfDoK7es022GlJUWQK3S15ZH3rncvx5elY03IDXPhy7nqAIW+aDpKuXwtoOvG6tlt1kPwLVe653CqfMH34/u0xU9d0hDJ/QaHQy5Mh7KipEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738149326; c=relaxed/simple;
-	bh=yV7QEmCBi6cLzgr71zomg3RgQJOJnAcFx9LRGTWFOT8=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=s4XKbtFxMeLmzNPNmsez4sou/xcp7t7aZ/rSw+Oe0tJXLtQKIafgAhLRINIWLmQ7jL/YLyZgobBApL3Y3IKxSksvj514LkR99R65JWiS2ZgyvL0gIfUul55LyqCnaujJF+mrP2bs4TiYY/HCtwbZNkJY3mWGHD3ucg929V7jnxc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=cbwRLcva; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250129111521epoutp029db3a9f87178895bad66b1c8b80b08ee~fJZlCNkje0212002120epoutp02R
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 11:15:21 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250129111521epoutp029db3a9f87178895bad66b1c8b80b08ee~fJZlCNkje0212002120epoutp02R
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1738149321;
-	bh=Z9fllAJYUN6AmYP7n2l4q34f+Blz1Lv5y24Ho/5gbdU=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=cbwRLcva/yLp7wSN1TZAoM5dwPTBTHkNdbHX0DQnUS1WKThHTsiR8NOrp2+XTHIjQ
-	 PVv+suDDJNS+F1FX4WT27zaM/0tmk8JHm28eU93eqNaZS26HyvFqgAuT+2GNiPd8qY
-	 cb8B9SuTo/nsG52Bwj8r74baGeOf5MQlz85uRZf4=
-Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTP id
-	20250129111520epcas5p443f7775626d65b9f83bca31bc0e87b55~fJZkSPuBa0428904289epcas5p4x;
-	Wed, 29 Jan 2025 11:15:20 +0000 (GMT)
-Received: from epsmgec5p1new.samsung.com (unknown [182.195.38.182]) by
-	epsnrtp1.localdomain (Postfix) with ESMTP id 4YjfhQ49S2z4x9Pr; Wed, 29 Jan
-	2025 11:15:18 +0000 (GMT)
-Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
-	epsmgec5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	B2.A6.19710.6CD0A976; Wed, 29 Jan 2025 20:15:18 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250129092103epcas5p138d9dfb58098b7acfe8e77f0d6bffe59~fH1yAHLuU1266012660epcas5p1H;
-	Wed, 29 Jan 2025 09:21:03 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20250129092103epsmtrp2ac876043b0b127adcc9eea9eac8d50f7~fH1x_7w3h0501805018epsmtrp2r;
-	Wed, 29 Jan 2025 09:21:03 +0000 (GMT)
-X-AuditID: b6c32a44-363dc70000004cfe-79-679a0dc68091
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	42.43.23488.FF2F9976; Wed, 29 Jan 2025 18:21:03 +0900 (KST)
-Received: from FDSFTE596 (unknown [107.122.82.131]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250129092059epsmtip2d1fe8ddc7c96e182e3bec5dc88374132~fH1ufWQlF0959509595epsmtip2O;
-	Wed, 29 Jan 2025 09:20:59 +0000 (GMT)
-From: "Swathi K S" <swathi.ks@samsung.com>
-To: "'Rob Herring'" <robh@kernel.org>
-Cc: <krzk@kernel.org>, <davem@davemloft.net>, <edumazet@google.com>,
-	<kuba@kernel.org>, <pabeni@redhat.com>, <conor+dt@kernel.org>,
-	<richardcochran@gmail.com>, <mcoquelin.stm32@gmail.com>, <andrew@lunn.ch>,
-	<alim.akhtar@samsung.com>, <linux-fsd@tesla.com>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<alexandre.torgue@foss.st.com>, <peppe.cavallaro@st.com>,
-	<joabreu@synopsys.com>, <rcsekar@samsung.com>, <ssiddha@tesla.com>,
-	<jayati.sahu@samsung.com>, <pankaj.dubey@samsung.com>,
-	<ravi.patel@samsung.com>, <gost.dev@samsung.com>
-In-Reply-To: <20250128154538.GA3539469-robh@kernel.org>
-Subject: RE: [PATCH v5 1/4] dt-bindings: net: Add FSD EQoS device tree
- bindings
-Date: Wed, 29 Jan 2025 14:50:57 +0530
-Message-ID: <003001db722f$1d7e56d0$587b0470$@samsung.com>
+	s=arc-20240116; t=1738150059; c=relaxed/simple;
+	bh=QbzMdo5twuN8qHdUuuA8eKAEXsCU81mC2eMowoF6pkE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CNtWgZKGFTbeSqx/cug1k9F02s1py0EzjuPNEpYFDc67Ky7d3LJQ4DxHblJ6+jH+f2/AQ/AE8UFgJ6EGBxWQefU86l4IoUQeaG3oBRqy1+tPPc3TfwZAqtxA077Y/gNQY3Ag+OMFhdd1VxfFArMhxeB9+m1iTRT5NbFURdGEBc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vWj29di4; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53f22fd6887so7290334e87.2
+        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 03:27:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738150055; x=1738754855; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=MdMhtxP5R+RhzbtYpl+nDYBC1VN7c30OWolTsuKS8Es=;
+        b=vWj29di4IP3TNXPK3gzSGQuOHcrcyYXppym3TmeABM4iG0x+wofmD7dneNKRhlwC22
+         b4Zt3GIghhTTyRBgkkyWEjSBoc3SfZ46puJujWzyT2YhdH8bGM9IW5A1eCDh6UN+0Vb+
+         QvuveqUYT2tb8o+f+t5bmK+YQFtI/uo3uKW/GAx45jA5nkIKwr25nuBLTHYc9zLX12s/
+         fQY4Q8Uy0DPakT6CUqY+ZXyYrb/1qJtkEzM6KgdbIh5NR9pv1f+ZFQXVNh9S9vSidxAv
+         7VimNHfALmxYe8V9DB0p+dDlsqwJa7fCI8FHGHKVIQJ/tyh/r21t6Rftoz4x0SRVsd1Q
+         pg4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738150055; x=1738754855;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MdMhtxP5R+RhzbtYpl+nDYBC1VN7c30OWolTsuKS8Es=;
+        b=RuodF2wJUGVbebImhwjG3oodcSdnwFf0mP5OltNukJYnJwRg/BhJpyh/Gs5vyMi6K7
+         15gxURqlQzin3TXfJUlOLpReHf5wEw2H/kZsL9zgwxt0ZMlNtL4YA6CtUEziTT1Tfkgp
+         1m36ioEQteJiYya+4o368XdIsm0J+Vev4GnyE0lzJP2/CeCqigrP26WvYxL7GKKP9OyT
+         bHxI4XwUYvO9pFwQl8kEDbnVRB+8wdZBvs3sPfPhvqNOOSX8i6/qUY0v8IhCMuCtAY+Z
+         8Tmo+IyxrUfC/2ungEmQYEmbPdBztYT8wJlyl+Jv7ypLGocOO5oWZGKNpJAyUqouc09T
+         h6XA==
+X-Forwarded-Encrypted: i=1; AJvYcCWDuUCW8WYGckFaARq3/VXAMXK57qMkbmDiI5Bw9FkfS0HARO960bDb46aAfBSZl9TbJXC+TmMzNsn4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhkZdCgxpGGqRBs9oKrxVtDtoGh5DbLgBeJeE+FnXt8SMzGgpm
+	03PdaX1u8Ma5RAKIkbFn/43bplOLeS+FkujWzrsq4HIUFXzL8NJ2ZSmcDefPXCE=
+X-Gm-Gg: ASbGncvR3S4odkj51Wnb/soB7UgxI0pxzb7vtYIf3gPCxElORF8Vvx8dxPD0/zJOBPu
+	tuMm9Dv7oUe+JlduJHnJFvLh8HfsMOoe1sNki2zDX3gNO2xUBjKTDQCYnOZsd3U6WcwAkOW7xsu
+	mdaOmSh+NIw5ZDWLVV0LKzqRRep7Fnptqz2yiqXdtfKV/Wd84Df2n6PIlQZ8CK+xiX6qg6/e/ne
+	V+dZUdhZJf2uILdGJg2YHdoHf8NSqw7xP1i0KkY5OWgAXsjzz80wGeWOditpIdHlX7dvaPs6LXC
+	kUZVHKr3A4t1vEzDHgKv0FZ6lIhqe8bJKK/GlTrLLZSupvxiFnz2CWyFWJO3chwHa7DEkrg=
+X-Google-Smtp-Source: AGHT+IFtlc94QWGgPJciAfKJd6iML1fdimMywpw4Q1xwQVsFRb8X3q+yuNtr1tZBr1nfLKPhKsx6OQ==
+X-Received: by 2002:a05:6512:148:b0:540:2ff1:3c7c with SMTP id 2adb3069b0e04-543e4bdff2amr733639e87.7.1738150054904;
+        Wed, 29 Jan 2025 03:27:34 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543c837949esm1965905e87.160.2025.01.29.03.27.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jan 2025 03:27:33 -0800 (PST)
+Date: Wed, 29 Jan 2025 13:27:32 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>
+Cc: quic_vgarodia@quicinc.com, quic_abhinavk@quicinc.com, 
+	mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, 
+	hverkuil@xs4all.nl, sebastian.fricke@collabora.com, bryan.odonoghue@linaro.org, 
+	neil.armstrong@linaro.org, nicolas@ndufresne.ca, u.kleine-koenig@baylibre.com, 
+	stefan.schmidt@linaro.org, lujianhua000@gmail.com, linux-arm-msm@vger.kernel.org, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	krzysztof.kozlowski@linaro.org, johan@kernel.org
+Subject: Re: [RFC PATCH v10 1/2] media: iris: introduce helper module to
+ select video driver
+Message-ID: <dl5gxjxvajoq3tszujqrew7ynvepufcr2qj7ztj7ksgv2fxtdt@zaeqtxuwbayb>
+References: <20250128080429.3911091-1-quic_dikshita@quicinc.com>
+ <20250128080429.3911091-2-quic_dikshita@quicinc.com>
+ <sb3beoyhnlcdfjbm37ogpdoph7m4fecpbuu3myglnpzblpnqhw@wdyskeps3uuh>
+ <45c3676a-aafe-59e8-910d-af82031c24a6@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQDx5RsunPn3lkU9PtjwM0wRa6rGBAHz93duAhzDMjcBqxsRNrTStT1Q
-Content-Language: en-in
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Te1BUVRzHO/fuvXfRWeaGqEdA27ZyAgF3dYFDAQWR3QynpXKa0QhvcGch
-	YHfbBxTlY4Cc4qWMSbjyDkgXAl1hY3lFiJDoAE3AgIU8AkHwwUiZgEi7LBT/feb3+37P9/x+
-	Zw4fdyijnPjRCi2nVrCxInIdz3TZ1c2jTaCXi/OLXNDc7WyAhvNNJOoabMFRRWMnhnK7Unio
-	oLWTQONtoxQaaDZjqLWjBEM3i+8RqKvrAoW6TZkEMv7ZR6CRqffRb3W5JMrpasJQat8YgfIX
-	fyBQW+Em9PDaHYCKa/6i0NJ0DUAjMw0U0nfXEqj1+iSOlhpqKVQ8XEi86sxUnx/AmPETNRRj
-	1g9STKFRxxgNX5PMpZKjjLl2FmPuN/WSTGa1ATA/N0mY8UeNOFP90yxgniTlUcyscZvM/kCM
-	XxTHRnJqIaeIUEZGK+T+orfeDX8t3MtbLPGQ+CIfkVDBxnH+ouAQmcee6FjLSkTCeDZWZynJ
-	WI1GtDPAT63UaTlhlFKj9RdxqshYlVTlqWHjNDqF3FPBaV+SiMW7vCzCQzFRQ6O/81SXtn06
-	Y3I/BmZhKrDjQ1oKLx83k6lgHd+Brgcwf9AArA0H+gGAt0bcbY2HAM7lTOCrjjt16SuiRgDL
-	0ymbaBLAU6e7SWuDpN1gcWYTZWVH+gWYpB/mWUU4fY2Aj3JOLbvtaB9Y1FxPWHkDHQoL+jOX
-	zTyLoST7l2UW0L6wt3+GZ+On4dUzY8uM08/AH+/mrtxICOfGywhb2B7YkTtL2jSb4ZW5dNwa
-	DOlRO1iWXsqzGYJhSVsJZuMNcKq9mrKxE5y910jaOByWZ/au6KPg4HzWSv0V2NyTa6nzLQGu
-	sKpup628FZ7uqMRsufYwY2Fs5XgBrM1f5efg4nTfypFboKn0PnUSiPRrRtOvGU2/ZgT9/2mF
-	gGcAWziVJk7ORXipJAou4b/3jlDGGcHyh3ELrgX9BU88WwDGBy0A8nGRoyCsM0fuIIhkP0vk
-	1MpwtS6W07QAL8u+s3CnjRFKy49TaMMlUl+x1NvbW+q721si2ixINqfIHWg5q+ViOE7FqVd9
-	GN/O6Rg2MjzPowfQmxcDhe9pbxw9BxLWy4qqbzrvqxxfr87+suNg8vHDJaPcvo1nE9OWEkYT
-	Nx1YmGj1o64HsBWV0n++KPv18TdfZcXHJ5Xu4h2WiBt63Kuqfd5+Z6H9CBvXvj2w70Z66LnH
-	BnrolhDslpmO2BtCcZfJDJcMj0DWuZ50DPjow5czzPtD8Db7oO8CMUL37Cem8jBCNSGVoFzZ
-	H2datEVv3K5y/XZRJuV9kILt2G48KyDvus987j8liyVDY3rmq4LS8ob2Vlx1C3sxcfrj5zv3
-	H7pwcGtQR9p5zV2jGfdIXhzlnzB8734yJG/mqeC/8+QiT/fX8z0v+kQ/uJKx120HJuJpoliJ
-	G67WsP8C+lQY67kEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupjleLIzCtJLcpLzFFi42LZdlhJXvf/p5npBj+38Vr8fDmN0eLBvG1s
-	FufvHmK2WLP3HJPFnPMtLBbzj5xjtXh67BG7xc0DO5ksjpxawmRxb9E7Vovz5zewW1zY1sdq
-	senxNVaLh6/CLS7vmsNmMeP8PiaLrmtPWC3m/V3LanFsgZjFt9NvGC0Wbf3CbvH/9VZGi4cf
-	9rBbzLqwg9XiyJkXzBb/9+xgt1j0YAGrg7THlpU3mTye9m9l99g56y67x4JNpR6bVnWyeWxe
-	Uu+xc8dnJo/3+66yefRtWcXocXCfocfTH3uZPbbs/8zo8a9pLrvH501yAXxRXDYpqTmZZalF
-	+nYJXBn3H91mKdgsV/Fhm04D42eJLkZODgkBE4k3u3oYuxi5OIQEdjNKNK69xgaRkJT41DyV
-	FcIWllj57zk7RNEzRomtF1pZQBJsAloSi/r2sYPYIgKqEk2zHrCAFDELvGSV6Lj5DKFj35n1
-	YB2cAuYSCw/sBhsrLOAvMe3SQTCbBah7ybQTYKt5BSwlrt74wAJhC0qcnPkEyOYAmqon0baR
-	ESTMLCAvsf3tHGaI6xQkfj5dxgpxhJvEqTmf2SBqxCWO/uxhnsAoPAvJpFkIk2YhmTQLSccC
-	RpZVjJKpBcW56bnJhgWGeanlesWJucWleel6yfm5mxjBSUZLYwfju29N+ocYmTgYDzFKcDAr
-	ifDGnpuRLsSbklhZlVqUH19UmpNafIhRmoNFSZx3pWFEupBAemJJanZqakFqEUyWiYNTqoHJ
-	L39y0I6oPxcSNjm+tlvpW2f/5PO0JzeWiildWFkYGN4vff/wh+A3Ow3m5pzcsP7zdBbZlzyN
-	hvm77Dt48hbN7E9XWGLP3y8oVvn20e+T05MV3Krsf+g87Sgu+/H79uyebyIaPErnj76dMOOu
-	v5B6O0NVbOTFCYrrLJu5u3JKz7oI35z/nKVo0qTg0t371qn83Gi60jo+ofXDr8NC+mY2V0Wn
-	63BPn26UYsRx7NJufsGGvwU8TkzKrsHfLhpPtb7tuVPr+r1nh0+u2i+YZNdS6nvjpIdS8d1V
-	xxdJTOU53Gs1SSuT9aHzsypvUSku51sWVU9ef7Db024kscxAcap0/WXmXm2T7q9Hu1vrc+SV
-	WIozEg21mIuKEwElC802oQMAAA==
-X-CMS-MailID: 20250129092103epcas5p138d9dfb58098b7acfe8e77f0d6bffe59
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: REQ_APPROVE
-CMS-TYPE: 105P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250128102725epcas5p44b02ac2980a3aeb0016ce9fdef011ecf
-References: <20250128102558.22459-1-swathi.ks@samsung.com>
-	<CGME20250128102725epcas5p44b02ac2980a3aeb0016ce9fdef011ecf@epcas5p4.samsung.com>
-	<20250128102558.22459-2-swathi.ks@samsung.com>
-	<20250128154538.GA3539469-robh@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <45c3676a-aafe-59e8-910d-af82031c24a6@quicinc.com>
 
-
-
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: 28 January 2025 21:16
-> To: Swathi K S <swathi.ks@samsung.com>
-> Cc: krzk@kernel.org; davem@davemloft.net; edumazet@google.com;
-> kuba@kernel.org; pabeni@redhat.com; conor+dt@kernel.org;
-> richardcochran@gmail.com; mcoquelin.stm32@gmail.com; andrew@lunn.ch;
-> alim.akhtar@samsung.com; linux-fsd@tesla.com; netdev@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-stm32@st-
-> md-mailman.stormreply.com; linux-arm-kernel@lists.infradead.org; linux-
-> samsung-soc@vger.kernel.org; alexandre.torgue@foss.st.com;
-> peppe.cavallaro@st.com; joabreu@synopsys.com; rcsekar@samsung.com;
-> ssiddha@tesla.com; jayati.sahu@samsung.com;
-> pankaj.dubey@samsung.com; ravi.patel@samsung.com;
-> gost.dev@samsung.com
-> Subject: Re: [PATCH v5 1/4] dt-bindings: net: Add FSD EQoS device tree
-> bindings
+On Wed, Jan 29, 2025 at 03:23:22PM +0530, Dikshita Agarwal wrote:
 > 
-> On Tue, Jan 28, 2025 at 03:55:55PM +0530, Swathi K S wrote:
-> > Add FSD Ethernet compatible in Synopsys dt-bindings document. Add FSD
-> > Ethernet YAML schema to enable the DT validation.
-> >
-> > Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
-> > Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
-> > Signed-off-by: Swathi K S <swathi.ks@samsung.com>
-> > ---
-> >  .../devicetree/bindings/net/snps,dwmac.yaml   |  5 +-
-> >  .../bindings/net/tesla,fsd-ethqos.yaml        | 91 +++++++++++++++++++
-> >  2 files changed, 94 insertions(+), 2 deletions(-)  create mode 100644
-> > Documentation/devicetree/bindings/net/tesla,fsd-ethqos.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > index 91e75eb3f329..2243bf48a0b7 100644
-> > --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-> > @@ -103,6 +103,7 @@ properties:
-> >          - starfive,jh7100-dwmac
-> >          - starfive,jh7110-dwmac
-> >          - thead,th1520-gmac
-> > +        - tesla,fsd-ethqos
-> >
-> >    reg:
-> >      minItems: 1
-> > @@ -126,7 +127,7 @@ properties:
-> >
-> >    clocks:
-> >      minItems: 1
-> > -    maxItems: 8
-> > +    maxItems: 10
-> >      additionalItems: true
-> >      items:
-> >        - description: GMAC main clock
-> > @@ -138,7 +139,7 @@ properties:
-> >
-> >    clock-names:
-> >      minItems: 1
-> > -    maxItems: 8
-> > +    maxItems: 10
-> >      additionalItems: true
-> >      contains:
-> >        enum:
-> > diff --git
-> > a/Documentation/devicetree/bindings/net/tesla,fsd-ethqos.yaml
-> > b/Documentation/devicetree/bindings/net/tesla,fsd-ethqos.yaml
-> > new file mode 100644
-> > index 000000000000..579a7bd1701d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/net/tesla,fsd-ethqos.yaml
-> > @@ -0,0 +1,91 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause %YAML 1.2
-> > +---
-> > +$id:
-> > +https://protect2.fireeye.com/v1/url?k=6d811f84-0c0a0abe-6d8094cb-
-> 74fe
-> > +4860008a-af9296512b2d412c&q=1&e=ccfde7ee-b20c-400e-ab77-
-> 48df91b2df3c&
-> > +u=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fnet%2Ftesla%2Cfsd-
-> ethqos.ya
-> > +ml%23
-> > +$schema:
-> > +https://protect2.fireeye.com/v1/url?k=82ab8361-e320965b-82aa082e-
-> 74fe
-> > +4860008a-8834d7e9197f59d4&q=1&e=ccfde7ee-b20c-400e-ab77-
-> 48df91b2df3c&
-> > +u=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23
-> > +
-> > +title: FSD Ethernet Quality of Service
-> > +
-> > +maintainers:
-> > +  - Swathi K S <swathi.ks@samsung.com>
-> > +
-> > +description:
-> > +  Tesla ethernet devices based on dwmmac support Gigabit ethernet.
-> > +
-> > +allOf:
-> > +  - $ref: snps,dwmac.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: tesla,fsd-ethqos.yaml
 > 
-> Humm...
+> On 1/28/2025 9:44 PM, Dmitry Baryshkov wrote:
+> > On Tue, Jan 28, 2025 at 01:34:28PM +0530, Dikshita Agarwal wrote:
+> >> Introduce a helper module with a kernel param to select between
+> >> venus and iris drivers for platforms supported by both drivers.
+> >>
+> >> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> >> ---
+> >>  drivers/media/platform/qcom/Makefile          |  1 +
+> >>  drivers/media/platform/qcom/iris/iris_core.h  |  1 +
+> >>  drivers/media/platform/qcom/iris/iris_probe.c |  3 +
+> >>  drivers/media/platform/qcom/venus/core.c      |  5 ++
+> >>  .../platform/qcom/video_drv_helper/Makefile   |  4 ++
+> >>  .../qcom/video_drv_helper/video_drv_helper.c  | 70 +++++++++++++++++++
+> >>  .../qcom/video_drv_helper/video_drv_helper.h  | 11 +++
+> >>  7 files changed, 95 insertions(+)
+> >>  create mode 100644 drivers/media/platform/qcom/video_drv_helper/Makefile
+> >>  create mode 100644 drivers/media/platform/qcom/video_drv_helper/video_drv_helper.c
+> >>  create mode 100644 drivers/media/platform/qcom/video_drv_helper/video_drv_helper.h
+> >>
+> >> diff --git a/drivers/media/platform/qcom/Makefile b/drivers/media/platform/qcom/Makefile
+> >> index ea2221a202c0..15accde3bd67 100644
+> >> --- a/drivers/media/platform/qcom/Makefile
+> >> +++ b/drivers/media/platform/qcom/Makefile
+> >> @@ -2,3 +2,4 @@
+> >>  obj-y += camss/
+> >>  obj-y += iris/
+> >>  obj-y += venus/
+> >> +obj-y += video_drv_helper/
+> >> diff --git a/drivers/media/platform/qcom/iris/iris_core.h b/drivers/media/platform/qcom/iris/iris_core.h
+> >> index 37fb4919fecc..7108e751ff88 100644
+> >> --- a/drivers/media/platform/qcom/iris/iris_core.h
+> >> +++ b/drivers/media/platform/qcom/iris/iris_core.h
+> >> @@ -107,5 +107,6 @@ struct iris_core {
+> >>  
+> >>  int iris_core_init(struct iris_core *core);
+> >>  void iris_core_deinit(struct iris_core *core);
+> >> +extern bool video_drv_should_bind(struct device *dev, bool is_iris_driver);
+> > 
+> > s/extern //g
+> > 
+> >>  
+> >>  #endif
+> >> diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
+> >> index 954cc7c0cc97..276461ade811 100644
+> >> --- a/drivers/media/platform/qcom/iris/iris_probe.c
+> >> +++ b/drivers/media/platform/qcom/iris/iris_probe.c
+> >> @@ -196,6 +196,9 @@ static int iris_probe(struct platform_device *pdev)
+> >>  	u64 dma_mask;
+> >>  	int ret;
+> >>  
+> >> +	if (!video_drv_should_bind(&pdev->dev, true))
+> >> +		return -ENODEV;
+> >> +
+> >>  	core = devm_kzalloc(&pdev->dev, sizeof(*core), GFP_KERNEL);
+> >>  	if (!core)
+> >>  		return -ENOMEM;
+> >> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+> >> index 77d48578ecd2..b38be7812efe 100644
+> >> --- a/drivers/media/platform/qcom/venus/core.c
+> >> +++ b/drivers/media/platform/qcom/venus/core.c
+> >> @@ -369,12 +369,17 @@ static int venus_add_dynamic_nodes(struct venus_core *core)
+> >>  static void venus_remove_dynamic_nodes(struct venus_core *core) {}
+> >>  #endif
+> >>  
+> >> +extern bool video_drv_should_bind(struct device *dev, bool is_iris_driver);
+> > 
+> > Use #include instead.
+> > 
+> >> +
+> >>  static int venus_probe(struct platform_device *pdev)
+> >>  {
+> >>  	struct device *dev = &pdev->dev;
+> >>  	struct venus_core *core;
+> >>  	int ret;
+> >>  
+> >> +	if (!video_drv_should_bind(&pdev->dev, false))
+> >> +		return -ENODEV;
+> >> +
+> >>  	core = devm_kzalloc(dev, sizeof(*core), GFP_KERNEL);
+> >>  	if (!core)
+> >>  		return -ENOMEM;
+> >> diff --git a/drivers/media/platform/qcom/video_drv_helper/Makefile b/drivers/media/platform/qcom/video_drv_helper/Makefile
+> >> new file mode 100644
+> >> index 000000000000..82567e0392fb
+> >> --- /dev/null
+> >> +++ b/drivers/media/platform/qcom/video_drv_helper/Makefile
+> >> @@ -0,0 +1,4 @@
+> >> +# Makefile for Video driver helper
+> >> +
+> >> +obj-m := video_drv_helper.o
+> > 
+> > Always built as a module? And what if iris or venus are built into the
+> > kernel?
+> iris and venus are always built as module,
 
-Hi Rob, 
-Could you help me understand if there is anything wrong here?
+This is not correct.
 
--Swathi
+> and if we are adding the
+> dependency of this module on IRIS && VENUS then this can't be Y I think.
 
+It surely can. Moreover, if one doesn't enable both Iris and Venus, this
+module is completely unnecessary.
+
+> > Add a normal Kconfig symbol, tristate, no Kconfig string. Use depends on
+> > IRIS && VENUS (and maybe default y) to let it be built only if both
+> > drivers are enabled.
+
+-- 
+With best wishes
+Dmitry
 
