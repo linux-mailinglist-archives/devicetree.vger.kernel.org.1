@@ -1,206 +1,160 @@
-Return-Path: <devicetree+bounces-141677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01721A21F11
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:26:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DBFEA21F25
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:31:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33C051882DE1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:26:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 069F97A0FB9
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:30:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AE714BFA2;
-	Wed, 29 Jan 2025 14:26:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9D119E97F;
+	Wed, 29 Jan 2025 14:31:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PdWseG1g"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="K5psjeig"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EA1B29CE8
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 14:26:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A77C8F4A;
+	Wed, 29 Jan 2025 14:31:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738160786; cv=none; b=fHPN/4spAWu2Z6HNzBokcQBY0kTG/mx3oqR3jYiWCYq5N0yiyWSJtA2/BL1ymcE3o8RHcHjZ7ZVg6+1PVgDYCU4PgtRPKpZax/nYsfHHh/fx2gHNopNHdz2FnIDHb+v2VgGJCp8fccwtCJ1XFhz06VqO9zLOE9X0sFfA1Zte1co=
+	t=1738161069; cv=none; b=NehvOLYz2xMeV2qlx7SAy0izrW0MZrpJPNhkCxU0NtkgbsErhRKvkh4fMbNQ2AGBvk9XDZcX3JGyV6cOePAW7HC+c+qibBW7fi3IROhT9dTtiWfcOgsvz3pjMY51ssHIlshU6eor+TSwXo/SmSQopX5QencFKGyoHY/UFUVsR8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738160786; c=relaxed/simple;
-	bh=upO1szqsGrctpocpedrWQrUbVSGuOGiUp8W6bu7k4Ok=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Cy6yVscNjtRScgBX2/wCgBM//mj3hFdsbW0dQcvC6nlLpAEfW58R8fbfoi1Gy5bS4wBdALN0ewI16+O2HZNhDveVTHvoS4SUJnydW2BK1d14yRBufATfzKlTp45S6mAsvcveUIGJSfX+6gUoxIbvZbOXXkl58wUTW5uZAPfor0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PdWseG1g; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 50T8Sgiw012733
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 14:26:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Y90IeSV1c8E1ITAjBf3zASZwIa5fTfZk4/hpGgHosLc=; b=PdWseG1gZStW2kaH
-	gdJA6YppHYoKdzSdkAe7v/IzPNxTa37U9LXXyi1pec6AqJIOn1tWzdF6DDGMla7n
-	4NSW2eC28RcAUDkx2JAhjlcEq2pkvW8okvHYCOcC/CLVtub1y4z/YrY+IuAiELsi
-	ib5/xaRdokjLkYlOs0K4rIpVniXgX19pPjPe/CLa17LZgsWujNYPr4OHPp+ns4LT
-	1luN1IHlPHJ9BZEwKja9BdDojIqWVUknTerZp+GKNnzWm3wZhpljzA6EunWo02ab
-	Nb18AtYaf6vlmVxLaJrH6USNYARMPtUYytxoOnc6cAe+v/8YVdkoAzVQc+jrLJWf
-	cGEHDw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 44fguvgmx8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 14:26:23 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-467975f1b53so18913361cf.3
-        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 06:26:23 -0800 (PST)
+	s=arc-20240116; t=1738161069; c=relaxed/simple;
+	bh=FcXgyIivx49AZaW56v7gXTj5YhT8hxXrGxu8jaRa20c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ueoGs7DAA1yQ25HOWwpEMf5zAavvG+I+zvqx5/ZKSjCNLTQYR9ErBxKcj+qxYj2it6vcGoUaBwSJbJxNSRXYjdCiddBL5RgKKVYHxPg760iDDluj1Eq1QuwSOp0NbKHeOY6mSbAbVF/knpJhWVO+6O/oFxd6on/8MEznee+fWkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=K5psjeig; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-385e1fcb0e1so3682379f8f.2;
+        Wed, 29 Jan 2025 06:31:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738161066; x=1738765866; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ytQod/TtXir+lgbcpVQDva+UZpavOsy0mPhHQcNBVUU=;
+        b=K5psjeigqNXkhjpMBa5mrbyXV6ToyPCEgIwH1EJUhrMZddGjsvFTIA5XhlwUMvEwvi
+         TNjnGCroWI2VYiQ+JVqfObQk17mStsc3Ujf4nS2W4zNfB7ITxY7HS/90NeE45o7t7Itf
+         Rz9kyV8EU6EeOMNT12O7SwIE3GRBHzDfbKzJg2EpDlMTkxYlRbQAjU62QLvrRNwFbIKd
+         AX1tGSPf0l/Hv9YuJRFWfmdhXbIg/jOOqBj/Od7ICKXCLpoDawESqBewTwA9o8M3pg/W
+         B6fmhHVlPY6xrXeRAOk8H6JUsEieD2c9z9IHfYgiJrHWICIOK3LjR6L6CPlrmiroVBz3
+         c1WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738160778; x=1738765578;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y90IeSV1c8E1ITAjBf3zASZwIa5fTfZk4/hpGgHosLc=;
-        b=qr0MU+oDGnO/AWOPXPlKU8kjs6PGszYKoCr4SFI5XKI6D5oU+u1oQeEOAv+fTDNU8C
-         KFxV6/zwQaSSk0oJNJZNqPDOLjZzvc26wox5aMQrfrjU3bsSIoaSKSjmY6xCw0neqP0+
-         zMZCQxvBDwpOIt96hdBuymCphOqrRGpgTkqI2EfrX9OQsrXiogVO1/s9mMFyV1uBMOZr
-         u/Rodi+fNP1/koxzcDG0LCtk7KqBiDRVH+5nEqRbi7JQLfpPJ800CXHuwdZq26Qrm+zp
-         +ijqZAMqKpZ2fFCOpcWu5j7FhDFwiFJzNEPrs6Dk1iFp3z9rxpwP5jIH5cH7DxLMbY0S
-         JttA==
-X-Forwarded-Encrypted: i=1; AJvYcCU9yp4Sd1MH8qvq3Fk6QB+aQs0fCGegfaSx1Vh6NuHiROP9ARuPJ1imTG7U6c6C072V5w2vfKPxz5Gh@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSe2fvtPl6jHTK+JNh69fZN5MqF47J5T2B0Q2UQYPksraZ9jaK
-	XD6UeOKyIyvLvCgD2eWG/iEQxNI4ajsnoBhGEqsfB4PI2Qx1wkPSPQvrhrvr9NMBOkTssVnGs55
-	WZU+63pCzAX39PWG+uT46V/Bajgq0i03uOHHOLxJ/b7D5VT/XV7XooUgdKu5+
-X-Gm-Gg: ASbGncvxvFr+qFN3NhLr7+Omx9y/D8S2Medwy+CFGYa3gyf4qWUuhPRfiiInoyOxGD8
-	87vS0z+SCQybedXeaJGu/e0C6YLIPt6nSK56J/JBHHQN85jxNYEa55zqxdALIV0CB9QtbaWJRdt
-	i6lgcg3ybWwa6BOxYHwwbK0nJMvpK3ntjXrJhwsRNOseVxYO4d9VT/EkV2dNd6hkbp3o1+dS4tf
-	a2jrS5EOgnUr5qDhmYRiZJKFeLltqp4ny16FSNb1I34v7j4qkR9ZauU7ROLEuDa/YNFu8M1YWu4
-	KnVzW0zQzUGbz3Hv3TMFSW55iJxEvyCX7BWrQlr4PjZzYiLwpWBB31ak5+8=
-X-Received: by 2002:a05:622a:1496:b0:467:6486:78bb with SMTP id d75a77b69052e-46fd0a41b9fmr18841581cf.5.1738160778376;
-        Wed, 29 Jan 2025 06:26:18 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFCNf1RBTp6oWIGRWle1mL3ksQXz1UepkfqPVNPLNu7sLQ0Ep4heqkzXkKY2PW3Bx/m6WbeIg==
-X-Received: by 2002:a05:622a:1496:b0:467:6486:78bb with SMTP id d75a77b69052e-46fd0a41b9fmr18841291cf.5.1738160777971;
-        Wed, 29 Jan 2025 06:26:17 -0800 (PST)
-Received: from [192.168.65.90] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-ab676114a73sm972451466b.162.2025.01.29.06.26.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 29 Jan 2025 06:26:17 -0800 (PST)
-Message-ID: <ba800255-e2b0-4b92-9ff0-f7ed744fec8c@oss.qualcomm.com>
-Date: Wed, 29 Jan 2025 15:26:15 +0100
+        d=1e100.net; s=20230601; t=1738161066; x=1738765866;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ytQod/TtXir+lgbcpVQDva+UZpavOsy0mPhHQcNBVUU=;
+        b=PmQ2wyaPDqv/DrslNFYK4+qQGDxV7vmQwDUCy73ZAEpijDP5lxVXhhNdnFVaxtvmJ8
+         A+DgGI2ko2tMANifvGapE1cX7fmnnq6/i5Xq8NtBmAToIQ4sjKMZalafnjFb4XrGWE5d
+         JDilai7DTXhU+kqHukD43w5wbnw2E4yFMSbkRmrelGKf5X5BUQ3rTrd2GqBfwv15eg3+
+         jMVEJKk0IywSgz5yCr2vbo14aZ1Kjo3aFnBCFy0K3gfS4DZfeyTNjQGyLxFS8bD8Qyi2
+         Zj4iLqLzzz2P1TaiXLG6eZyaFV+MpjJ3jFL3qvWMNBlD59Dv+7++tP4vKxk1iQNNGYx/
+         I28w==
+X-Forwarded-Encrypted: i=1; AJvYcCUK8sk5SKf2nHhtAwOFRuMv2xZwk8WhRbzAW3MpDAbXaVOA/9ka+6a4Tx6gBriP/j1Q8oNrXDKkYko3@vger.kernel.org, AJvYcCUYOYXQ97TFA+aH1oRuefDgkdEYYmeQYmniDz9f7JCmm/fug6w1XLG28C5syI7sbAiUt7+Msni1dlYy@vger.kernel.org, AJvYcCWAGq/RgQqj2Iq+pR5Jf31MObvqJgjRMP7k6wSeSReyZ+CWlsZSqMG0YoGIh3YulojTY0zNN0T1qETI@vger.kernel.org, AJvYcCX/WHv+hyUvkue3QVTj5wjdKhgw+dBx1H7bBGLRzuqRm+tCS6OYGxtTMBug66DJqwvzBaEYh7WsjyEYFHEa@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRKai9aaxlXHFbM+lc4hQGOyi9o3RocFMLSWRayMlecbnuH2vA
+	PO9DPRFVFmdhvi4ialLqT/nYa9rO9F0OG61fufps6YUAkU+/pkVwscjJxg==
+X-Gm-Gg: ASbGncvQvfJT//VA/PXUplXW7W6U0BO15Dx4soUGHXP8A/cBui1zr8O2z5D+in9bNtu
+	ZHV1Oj2/PaksOzjvLlAN5iRyJOT/bH5N+UbdNa5zFBdCuGKx4F1/3r85ZLmTKaN9YmiCurYMLm/
+	HQqHwzB+SdgKnokBgq5/RtG+ASTVpwnb6ENRxRNCGYjvRB0vqxb+QwuWp1XvX9rAOHSVAXTJ1e8
+	fI0GQROUqbUfd5SatqnvrM6PWJzajnZlBkSXcPpm822cMfkJZB4BZf+zjWbDtkLxUAR0auwQSln
+	r/FGIDnZrPw=
+X-Google-Smtp-Source: AGHT+IEkYN1blNmo/ag8BHYSdfY2J+/Gmwq/Duyn9qyH0VzAY6O2WJ/WYyKGG4ohQR21Nj1Cjc1cyg==
+X-Received: by 2002:a05:6000:1a88:b0:38b:f3f4:57af with SMTP id ffacd0b85a97d-38c5208e9cbmr3557747f8f.35.1738161066018;
+        Wed, 29 Jan 2025 06:31:06 -0800 (PST)
+Received: from spiri.. ([82.77.155.83])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a188c28sm17596201f8f.54.2025.01.29.06.31.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 29 Jan 2025 06:31:05 -0800 (PST)
+From: Alisa-Dariana Roman <alisadariana@gmail.com>
+X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
+To: Alisa-Dariana Roman <alisa.roman@analog.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	David Lechner <dlechner@baylibre.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Subject: [PATCH v3 0/3] Add support for AD7191
+Date: Wed, 29 Jan 2025 16:29:01 +0200
+Message-ID: <20250129143054.225322-1-alisa.roman@analog.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: qcs8300: Add device node for
- gfx_smmu
-To: Pratyush Brahma <quic_pbrahma@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, andersson@kernel.org
-Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Prakash Gupta <quic_guptap@quicinc.com>
-References: <20241227110024.30203-1-quic_pbrahma@quicinc.com>
- <1c8af731-c551-4d72-84a0-f14d57bec4ec@oss.qualcomm.com>
- <e7abe34c-9df9-425b-933e-cc744a63b80c@quicinc.com>
- <41fd6b59-249d-4f19-9ff8-4ae169a6db05@oss.qualcomm.com>
- <27aa8dc3-34b9-40e7-93bc-e52118b46138@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <27aa8dc3-34b9-40e7-93bc-e52118b46138@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: 2MltieDlyGBygUczDkR-rv8zkYssDQxN
-X-Proofpoint-GUID: 2MltieDlyGBygUczDkR-rv8zkYssDQxN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1057,Hydra:6.0.680,FMLib:17.12.68.34
- definitions=2025-01-29_02,2025-01-29_01,2024-11-22_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 spamscore=0 mlxlogscore=999 bulkscore=0 suspectscore=0
- mlxscore=0 adultscore=0 priorityscore=1501 malwarescore=0 impostorscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2411120000 definitions=main-2501290117
 
-On 28.01.2025 11:02 AM, Pratyush Brahma wrote:
-> 
-> On 1/9/2025 8:56 PM, Konrad Dybcio wrote:
->> On 8.01.2025 1:10 PM, Pratyush Brahma wrote:
->>> On 12/30/2024 6:49 PM, Konrad Dybcio wrote:
->>>> On 27.12.2024 12:00 PM, Pratyush Brahma wrote:
->>>>> Add the device node for gfx smmu that is required for gpu
->>>>> specific address translations.
->>>>>
->>>>> This patch depends on the patch series [1] posted by Imran Shaik
->>>>> adding the clock support for gpu.
->>>>>
->>>>> [1] https://lore.kernel.org/all/802d32f1-ff7e-4d61-83f1-f804ee1750ed@oss.qualcomm.com/
->>>>>
->>>>> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
->>>>> ---
->>>>>    arch/arm64/boot/dts/qcom/qcs8300.dtsi | 37 +++++++++++++++++++++++++++
->>>>>    1 file changed, 37 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->>>>> index 80226992a65d..8eb688e2df0a 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
->>>>> @@ -816,6 +816,43 @@
->>>>>                #power-domain-cells = <1>;
->>>>>            };
->>>>>    +        adreno_smmu: iommu@3da0000 {
->>>>> +            compatible = "qcom,qcs8300-smmu-500", "qcom,adreno-smmu",
->>>>> +                   "qcom,smmu-500", "arm,mmu-500";
->>>>> +            reg = <0x0 0x3da0000 0x0 0x20000>;
->>>>> +            #iommu-cells = <2>;
->>>>> +            #global-interrupts = <2>;
->>>>> +            dma-coherent;
->>>>> +
->>>>> +            power-domains = <&gpucc GPU_CC_CX_GDSC>;
->>>>> +            clocks = <&gcc GCC_GPU_MEMNOC_GFX_CLK>,
->>>>> +                 <&gcc GCC_GPU_SNOC_DVM_GFX_CLK>,
->>>>> +                 <&gpucc GPU_CC_AHB_CLK>,
->>>>> +                 <&gpucc GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK>,
->>>>> +                 <&gpucc GPU_CC_CX_GMU_CLK>,
->>>>> +                 <&gpucc GPU_CC_HUB_CX_INT_CLK>,
->>>>> +                 <&gpucc GPU_CC_HUB_AON_CLK>;
->>>>> +            clock-names = "gcc_gpu_memnoc_gfx_clk",
->>>>> +                      "gcc_gpu_snoc_dvm_gfx_clk",
->>>>> +                      "gpu_cc_ahb_clk",
->>>>> +                      "gpu_cc_hlos1_vote_gpu_smmu_clk",
->>>>> +                      "gpu_cc_cx_gmu_clk",
->>>>> +                      "gpu_cc_hub_cx_int_clk",
->>>>> +                      "gpu_cc_hub_aon_clk";
->>>> Most of these entries look totally bogus, please make sure you only
->>>> reference the ones actually required
->>> These entries are exactly similar to the ones we use in sa8775p as well [1] and the usecases
->>> haven't changed between qcs8300 and sa8775p.
->>>
->>> Can you please let me know which entries you find irrelevant here?
->> Well, I'm particularly unsure about CX_GMU and the HUB clocks.
->> I >>don't think<< they don't have much to do with the SMMU, but please
->> check internally with someone who knows for sure
-> I checked internally and found that these clocks are required for gpu smmu operations
-> as we don't use interconnect voting mechanism here as we do downstream. Hence the
-> list of clocks is same across all targets using gpu smmu as described in [1] previously.
 
-I managed to dig up some documents too.. It seems you're right, however the order
-is supposed to be slightly different:
+Thank you all for your feedback! Here is the updated series of patches!
 
-GPU_CC_CX_GMU_CLK
-GPU_CC_HUB_CX_INT_CLK
-GPU_CC_HLOS1_VOTE_GPU_SMMU_CLK
-GCC_GPU_MEMNOC_GFX_CLK
+I addressed all the replies' points, except for the one about the size of the
+avail array being 1 when the pga/odr pins are pin-strapped. David raised a very
+good point, but, for now, I left the size fixed to 4, since the functions for
+setting the values return error anyway when they are pin-strapped.
 
-Unsure if it *actually* matters given we've added them in a random order on a
-multitude of platforms and there haven't been any visible adverse effects.
+I thought of 3 approaches:
+	- dynamic allocation for the avail arrays
+	- different avail array for the 2 different cases (pin-strap or gpios)
+	- different channels array for the 2 different cases (probably too much)
 
-With GPU_CC_AHB not being mentioned but it being quite reasonable to be there
-judging by its name. Enabling HLOS1_VOTE normally enables some more clocks (some
-known by Linux, some not), but here the docs are rather cryptic on that topic.
+If the current setup if not good enough, which approach would be the best?
 
-I'm not sure about SNoC_DVM on this one as well, but other SoCs require it so
-it's probably safe so assume this one does so as well
+Kind regards,
+Alisa-Dariana Roman.
 
-I've verified the interrupt numbers, so please just alter the property order /
-whitespaces / general style of the node to match x1e80100.dtsi and we'll get
-this merged
+---
 
-Konrad
+v2: https://lore.kernel.org/all/20250122132821.126600-1-alisa.roman@analog.com/
+
+v2 -> v3:
+	- correct binding title
+	- remove clksel_state and clksel_gpio, assume the clksel pin is always
+pinstrapped
+	- rephrase clocks description accordingly
+	- simplify binding constraints
+	- specify in binding description that PDOWN must be connected to SPI's
+controller's CS
+	- add minItems for gpios in bindings
+	- make scope explicit for mutex guard
+	- remove spi irq check
+	- add id_table to spi_driver struct
+	- changed comments as suggested
+	- use spi_message_init_with_transfers()
+	- default returns an error in ad7191_set_mode()
+	- replace hard-coded 2 with st->pga_gpios->ndescs
+	- use gpiod_set_array_value_cansleep()
+	- change .storagebits to 32
+	- check return value for ad_sd_init()
+	- change to adi,odr-value and adi,pga-value, which now accepts the value as
+suggested
+	- modify variables names and refactor the setup of odr and pga gpios,
+indexes and available arrays into ad7191_config_setup(), since they are all
+related
+	- add ad7191.rst
+
+v1: https://lore.kernel.org/all/20241221155926.81954-1-alisa.roman@analog.com/
+
+v1 -> v2:
+	- removed patch adding function in ad_sigma_delta.h/.c
+	- added a function set_cs() for asserting/deasserting the cs
+	- handle pinstrapping cases
+	- refactored all clock handling
+	- updated bindings: corrected and added new things
+	- -> address of the channels is used in set_channel()
+	- addressed all the other changes
+
 
