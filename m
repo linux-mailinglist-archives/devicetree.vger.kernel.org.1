@@ -1,128 +1,158 @@
-Return-Path: <devicetree+bounces-141735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D53D7A22386
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 19:01:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0E7BA2239E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 19:10:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46B6C7A21DB
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 18:00:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2AE50163CE2
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 18:10:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE56E1DED7B;
-	Wed, 29 Jan 2025 18:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7801DED7B;
+	Wed, 29 Jan 2025 18:10:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mW24PutO"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="UPQeY7k/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FFB5190696;
-	Wed, 29 Jan 2025 18:01:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 613461917D9;
+	Wed, 29 Jan 2025 18:10:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738173702; cv=none; b=U1W2w3ZaMcOykDhQXUVpSilZT0VMeV3zJYdGPH01PCHNsDK6uXjx+xK4wVDcV6lOROFkwVgvD17A/tRBgUCPbD3jMASw3LH+10mtQ/Ca0U+1PtiBjhfG6lQEvB7DzLilINagl3nK0u40N+FrFFbCceI6rJGiP4IeayTXNoobEY0=
+	t=1738174220; cv=none; b=Bz/3oF/C1FWukqtlz5682MwyMJEzsz+r6P8QMfE/lFg5szkdoOKiuMS7+463rQeU9gDJcpKys8v4B/iJs08Vcde1wJ3navoNazWf3LFgibiWUz/O9DbOZgCPDyR1uo/iaKZogKmxB086eiK6J/MqogKMeLvLWtV12jD3iIVvues=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738173702; c=relaxed/simple;
-	bh=YCUyhaRoDJqojgBQgfjgIDWzf44BcOOrli9JHxA0gDg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=SdZpqVWAon/qlxa5xOUmgbozM2LQ2RTz1B03BfshG8qeY5u4za+XZDNU61zrREkRspZpxu/VMmGWIs4QqxZaEctwNx2Glrt4VzpmyCQK2xgt0f6QnRbtjSvvYcpoLvYiHNvMQf7d0dZ4RgSVIec8RAFYpC9MqcQhLxgkqpRMIt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mW24PutO; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1738173701; x=1769709701;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=YCUyhaRoDJqojgBQgfjgIDWzf44BcOOrli9JHxA0gDg=;
-  b=mW24PutOkrrOx3F7OUiOpomr+tDV45ONMqh6Z4yKYmgeJvi5e3FW4Hp7
-   2YJjPmNbi3KQAWoLw9cJvQx9C6NZkkux43cqfoAiIOQ1QxQuVRA2puLyQ
-   NyoAeZXcn0V+g1URoNmh2rX+N6SbAb+pg/NfLp08c/znG9pUczYKvsEpJ
-   0gWdIDLk2BoIpXuWaqNmBrWi95stjwVAikgzOiEI+K8PFYKeysMXxhZZV
-   /l0FDTi8ZinRWVFWlMZ1U9HjjrQf3d4SKxrm0d3HDXYpMD9N5VBNVyrr1
-   umtnR2guEmEr8SskwQ2wPX4lWjeeU9U6pncsZ4Maf+0E4hQ5IdnZWkS93
-   A==;
-X-CSE-ConnectionGUID: BpYv2x32RqOv+ZYXHxEaNQ==
-X-CSE-MsgGUID: enRa9aqIRAmDG9XjhqJWEQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11330"; a="64063502"
-X-IronPort-AV: E=Sophos;i="6.13,244,1732608000"; 
-   d="scan'208";a="64063502"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jan 2025 10:01:40 -0800
-X-CSE-ConnectionGUID: u9qfmyypSEuEfTgWD0qpNw==
-X-CSE-MsgGUID: DrMVmwTWSO26RK/SJXpM0A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.12,224,1728975600"; 
-   d="scan'208";a="109551745"
-Received: from apgcp0c531115.png.altera.com ([10.244.76.209])
-  by orviesa007.jf.intel.com with ESMTP; 29 Jan 2025 10:01:36 -0800
-From: Mahesh Rao <mahesh.rao@intel.com>
-To: yilun.xu@linux.intel.com
-Cc: conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dinguyen@kernel.org,
-	hao.wu@intel.com,
-	krzk+dt@kernel.org,
-	krzysztof.kozlowski@linaro.org,
-	linux-fpga@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	mahesh.rao@altera.com,
-	mahesh.rao@intel.com,
-	mdf@kernel.org,
-	robh@kernel.org,
-	trix@redhat.com,
-	yilun.xu@intel.com
-Subject: Re: [PATCH 3/3] firmware: stratix10-svc: Add of_platform_default_populate()
-Date: Thu, 30 Jan 2025 02:01:13 +0800
-Message-Id: <20250129180113.17219-1-mahesh.rao@intel.com>
-X-Mailer: git-send-email 2.35.3
-In-Reply-To: <Z5XyR9QE3kcQDOPe@yilunxu-OptiPlex-7050>
-References: <Z5XyR9QE3kcQDOPe@yilunxu-OptiPlex-7050>
+	s=arc-20240116; t=1738174220; c=relaxed/simple;
+	bh=gMOapHYKVwtDoMIzCsesAyRHGCdSk9BOTKS4hZgV0s8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eNhNO7CoSjBjEde26TrphL61lvtm3cINtZJUqQDlkBB850WSaBJgJew98vdwTzQxMhWfrbhwikXrzZe+4GM5V0nAvAmkI+52hWd8eSG+MgTcGxKJUdofXxXyy3gZDNvxFLP9YfQb0By7qYebvnAr32bDsqhL0NKVh2VC9H5Idrc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=UPQeY7k/; arc=none smtp.client-ip=217.72.192.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1738174203; x=1738779003;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=0gH4fty1iZLIvHJirTG78ZCFfaqlvNXj5sdZpZQlg7Q=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=UPQeY7k/+i15z5WYoVjxYADFcT9h4llHSrRGTt3wzITZNGDA+zO2ursUO1rhfwB2
+	 soXz6WJNDTHyGq14f22nqLCLhZD5/MaI35NbtoTEAHutQkakXCEuxrvloBVXA8mbp
+	 6szvL2282pVVCUWUsQEduUshF8oN0gHw0Z49Ga1I1EDO4hmu/KLUqiakW2WkCNeER
+	 BAymj6um/ruBZ67D5EEh20ZEdVuZslDSYRagqDvPAaCu7zoJkxCceYIIJNMbB1Jag
+	 cYSdgaFaoBds27qfmtnqRjlUy1NNOAEdvA6jWXDXRmf1rJP6Ko2h/MEGiTo5y0oBI
+	 x1gwfAkMI0P8e9hDUw==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.152] ([62.226.41.231]) by mrelayeu.kundenserver.de
+ (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MIdaF-1tixGI0eZR-006Tag; Wed, 29 Jan 2025 19:10:03 +0100
+Message-ID: <044ce59c-0e88-4af0-a1c4-85e5d845fc04@oldschoolsolutions.biz>
+Date: Wed, 29 Jan 2025 19:10:01 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/6] X1P42100 DT and PCIe PHY bits
+To: Konrad Dybcio <konradybcio@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+References: <20250125-topic-x1p4_dts-v1-0-02659a08b044@oss.qualcomm.com>
+Content-Language: en-US
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <20250125-topic-x1p4_dts-v1-0-02659a08b044@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:rgS6R69+EMZL6buCYSYarAw9vHwG1EFkx8Mhk7T/U3FkPpv/fzc
+ 8qmgijp2hnWTkMPFrZBXf+iIqnXtK+xp9m8Bjv0S7gs93PuoUrVtcvo6hB5/s+2NFOOc/vR
+ vuJ9PsiVgQtsNoFL7UVkOV8vNHd2wBURfQA0blb0k3k8gIv4DhFbev8vImSgumvP6yyYQph
+ H7s80zEyT8LhH2TH5aX5w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:OvsIYLMQuZg=;tMcbzYeFgKIQxJjLWn+8RXX3qjr
+ spyXhKax0GKN1gsZXCWNYe3vcWhV6VfqcRsvepDGVZU6no1WoK9snvsht1b4+HZ7Buhm74X7z
+ 1CThnypK/QcR7dga0xMpPRZrm8jWAk2ZPy9jfnfr1LcDo1rl59pf8T32mY6mvV1ucnq1Rgvts
+ tBz1OmWLy35suheqTZja4GsjX7QDzPcVmXJlP9ZV3xkcT3aCGqDCMMbEw/6rX+yE4CZRMVu5I
+ /HSQ4dMXnaQMMVmYfkLVToFNjBc/cVWGkDyC+TLrBZbND6YhNPm/8p0OyIQF3ArsWNfJxmdgO
+ IO5oK50RGfA0YC7Azm2OnPuH6w4VoyMrE52vCEPmwabo5q/eKq/MPwJjJgJcnfqHaGRmcQIIz
+ c7Lj5q1ps2jOcy70jTyOKO/fpO8KJlb0Rbve3Q95G3h8wfWC0Xcc7IXqzNZokhbZmaajNg4MX
+ Jzz4ksbh5QgmHAMT514pN1rmeekCp5DtJ5C769FJAwYGC+vTsGIwOwCHtvk02xK7wN/Yt8tMv
+ HC+iqkvx3MqkcmgkrAQKxKD3MZmfCjXSYMq5fJMN29S3oZ8PgcN48gCiD0bAn4QGidHqDvQJX
+ YCGQ+ZCif3Zc5e9nCcS65K6JlN9WMCY/WXElR11Q+jp6G+TIhTQ3HuU+UCcILsrQGMpRkfiYw
+ iokHENdkNuc1tU1TlLj8RPgsXxrAuYOncePB4wHpoOlruVAhlwikzQjaJD39BY2m+uViPt1jK
+ YCSLHnL3WF5USJBRE/Xj7lSNlnY1nEHvtWG82R1/KVq4bfoNxZVvby1UkaJYxut2dVrg8ukS9
+ Ds4sfxY9XBAunGZoGQcDH57/shDSM0F89owI24+Hij4IiwV90j13H0gcs2I8ZCVxfOJ7Y4Ndj
+ gq/vPVHldigxaqgPWZKoHE9YMA4P4RHhWAN0QQev+5UhSxbR963AoOgDONqyecyCQUexIqAj0
+ wIjdvlwGk0wHKQwqdFZC5fPMhqCeLkIMoIzcQc1TnUwTJVTa+wtxkSucAvZvOsMQy3hjCwqWI
+ 7S5VDppJ4DREya4I8j7Ye32LHrrabSbUmluca9ZpJ91WLQLRn1xqhoS0TQQS5A/030Lf4oVgC
+ SmUdLtS1tWamSzF9G+AJawyskAokC9QfGYtpwIA3CXOBrsbM7ORgQXh36iBszM22bphmCU58t
+ INQw8eIivAmhcnrBAn5xtBh8vmrateD3NFIZegsw/xA==
 
-Hi Yilun,
-Thanks for reviewing the patch.
+On 25.01.25 04:31, Konrad Dybcio wrote:
+> X1P42100 is a(n indirect) derivative of X1E80100 - the silicon is
+> actually different and it's not a fused down part.
+>
+> Introduce the DTS bits required to support it by mostly reusing the
+> X1E SoC and CRD DTSIs. The most notable differences from our software
+> PoV are a different GPU (support for which will be added later), 4
+> less CPUs and some nuances in the PCIe hardware.
+>
+> This series very strictly depends on the NOCSR PCIe PHY reset patches.
+>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+> Konrad Dybcio (6):
+>        dt-bindings: phy: qcom,qmp-pcie: Add X1P42100 PCIe Gen4x4 PHY
+>        dt-bindings: phy: qcom,qmp-pcie: Drop reset number constraints
+>        phy: qcom: qmp-pcie: Add X1P42100 Gen4x4 PHY
+>        arm64: dts: qcom: x1e80100: Wire up PCIe PHY NOCSR resets
+>        arm64: dts: qcom: Commonize X1 CRD DTSI
+>        arm64: dts: qcom: Add X1P42100 SoC and CRD
+>
+>   .../bindings/phy/qcom,sc8280xp-qmp-pcie-phy.yaml   |   26 +-
+>   arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+>   .../dts/qcom/{x1e80100-crd.dts =3D> x1-crd.dtsi}     |    7 -
+>   arch/arm64/boot/dts/qcom/x1e80100-crd.dts          | 1270 +-----------=
+--------
+>   arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi       |    2 +-
+>   arch/arm64/boot/dts/qcom/x1e80100.dtsi             |   44 +-
+>   arch/arm64/boot/dts/qcom/x1p42100-crd.dts          |   17 +
+>   arch/arm64/boot/dts/qcom/x1p42100.dtsi             |   81 ++
+>   drivers/phy/qualcomm/phy-qcom-qmp-pcie.c           |   18 +
+>   9 files changed, 148 insertions(+), 1318 deletions(-)
+> ---
+> base-commit: d7dfdec72fb32629d1affc32ff37a66a7fd1fb53
+> change-id: 20250125-topic-x1p4_dts-3b9509bce3a3
+> prerequisite-message-id: 20250121094140.4006801-1-quic_wenbyao@quicinc.c=
+om
+> prerequisite-patch-id: 719a1c1319a8f25be57f1e9bc68887684ff0d7cd
+> prerequisite-patch-id: 44ff71b8033fc91867a83a2f8f063fd0d9951d5e
+>
+> Best regards,
 
-On Sun, 26 Jan 2025 16:28:55 +0800, Xu Yilun wrote:
-> > Add of_platform_default_populate() to stratix10-svc driver as the
-> > firmware/svc node was moved out of soc.
-> > This fixes the failed probing of child drivers of svc node.
-> >
-> > Fixes: 23c3ebed382a ("arm64: dts: socfpga: agilex: move firmware out
-> > of soc node")
+Hi Konrad,
 
-> > +	ret = of_platform_default_populate(dev_of_node(dev), NULL, dev);
-> > +	if (ret < 0) {
-> 
-> 	if (ret)  is just fine.
+I applied the series, and its successfully tested on Lenovo Thinkbook 16
+G7 QOY.=C2=A0[1] Thank you!
 
-ok ,I will make the change.
+[1]
+https://github.com/jglathe/linux_ms_dev_kit/commits/jg/ubuntu-qcom-x1e-6.1=
+3/
 
-> 
-> > +		of_platform_depopulate(dev);
-> > +		goto err_unregister_fcs_dev;
-> 
-> You wanna destroy everything even if some child drivers work?
+Tested-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
 
-Currently, there is no requirement to retain the driver if a child component fails.
-we will handle it if it is needed in the future.
+with best regards
 
-> And do we need to do depopulation on driver remove?
+Jens
 
-I think yes , I have missed this. I will add depopulate in the remove callback().
-
-> I'm actually a little confused how to handle populate() fail and depopulate().
-
-I think this was a mistake on my side. I will make the change in next revision.
-
-Best Regards,
-Mahesh Rao
 
