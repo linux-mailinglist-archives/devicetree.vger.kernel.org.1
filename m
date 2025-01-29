@@ -1,153 +1,576 @@
-Return-Path: <devicetree+bounces-141683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 089D5A21F56
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:38:54 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0298A21F5B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:39:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 61D9A16499D
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:38:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEDE31882F16
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:39:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BAC01ACED2;
-	Wed, 29 Jan 2025 14:38:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15EA31AE005;
+	Wed, 29 Jan 2025 14:39:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kTxGkEiW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="sdsBj7MG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1AC71474A7;
-	Wed, 29 Jan 2025 14:38:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E36951D9320
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 14:39:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738161528; cv=none; b=PwBqxeyfF//KJZp8gGq/Mv018Yph8pbc0HCrPHgh3jCvoNdCnjx8eIIlHGerS7IrXoqqaOWeGhkjcdIrSfjndcIRp064zjAyw98G0cW9bY+RMING1IAmf+FJqQWXnTHGnhfTZHk31VR2ifEAslGJo6qfTu/C5dmHNhZ57LjM72s=
+	t=1738161574; cv=none; b=PBBG+iYAgalECGuygf3BfZIlqB6FIRFHZOLzqaSNb0BxuGdrfkoMHCOrkXhykK5eR8qo6JfJ3VwwnkgxfhGvPoab8Uq1iVFW8gsmg+3RNyZdWLWDCszMh31KQF6mWwxkRpb5ubhDrEeXmAKpzZDK0vpJLLp9kti02PRM94+n7mQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738161528; c=relaxed/simple;
-	bh=OkCNQkU+YeRWADPSOxaPGMR7ew+ooErLA1y3kpUQjsU=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=d+wJfxxiMD08+y/Et4X651sqeqi2aJQdqiS91ytpptM7WFVMg/zKLas2amOnhFbge9oS+YRRMGUz2z+uqPHzcsyFfXnJvDl4ujtzbGydNqSojGnIAgMviJ5ijJudcIVZjV8gqMDU/zGMyvkQ6zRymSiYLoLE5PUXgwHnVJC5Onk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kTxGkEiW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8323BC4CED1;
-	Wed, 29 Jan 2025 14:38:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738161528;
-	bh=OkCNQkU+YeRWADPSOxaPGMR7ew+ooErLA1y3kpUQjsU=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=kTxGkEiWjGvG8nn7UZEVujOkbYJKjBW9KEENtD9+tYn/LFofSyKGhsX6vh2Xsxtvf
-	 37PaVhsKBijrxaaujhpVYyL7jkKygQaX8yl4RoRLlltZjmht0IfmM+gvgN8BV+QRAt
-	 AC/LtIZkoAAjdAgFrPbsFDVg2ZLn/Mjc9wbWey7vQQ3njivCJzc669zDawXM94Hjku
-	 Xs0U6rCpoD/l9yP+DA2SNkgPDxvJhEW3vZ0d/69M8ehPVEmUYifJwdArtJKPk4kPfT
-	 pR5q2/pxfO88QeApw3+ywuMxtTTzw/Hchr7eg3CeE4oHbEt9RL81UMVeMA0jCJt+2J
-	 +CbA4n+QsTzAw==
-Date: Wed, 29 Jan 2025 08:38:47 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1738161574; c=relaxed/simple;
+	bh=kPq7/hsS/8OKjb6gmJApMof5oROF6MQ0eTv3Pmrzeyw=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Aev6wuw8bkul5B/Z5yoi4eSA4eXLse7WtTS602n12ErhbT2UKt4vT/HltLTH2XvUjU0hLzufi1MaivaIvU8BiBuYowkWjZ/DV1s1cEdVqsEluojecDISINML443qhe4tRlBWetx4Lj/vCNUHllI7AT7n97xaVXPRn5u3stOia30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=sdsBj7MG; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-43622267b2eso71041815e9.0
+        for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 06:39:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738161569; x=1738766369; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=I10NoHY+u/TvRxYfRQBnrpAvzZWfiMl3M75oWoE1K/c=;
+        b=sdsBj7MGGb0isX8y9LjnsN/JOrv/UxbljHan+jNMJV39xVJS6JCH+evW1mVYHwROIq
+         WaBzm/Hsz92v28nApvYoIUt/3FbkZTDuCIOQOxJ3KrXNHX6XWP325EnHjMBw9ATza6qS
+         pUBcdYBej/fUSYXB8k4RpkXJDMZc2f6n1rTzGdrJr/EVRiHIIDcOHJnhDlO3uhwX2cpd
+         VA5lXxr5zuAFOH6EttPDrYA8yshtaVS3Xy8feZ3KbDPscFLVg6jquHy9363a2wfeA2eG
+         e9Ald/pBRjhVj8IiiHlE5I/X463OxkY2fAD+bRCPEEr7Km0J7pb2wyGY4Z9pmUxdHRFs
+         Ojfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738161569; x=1738766369;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=I10NoHY+u/TvRxYfRQBnrpAvzZWfiMl3M75oWoE1K/c=;
+        b=fBhKicojv5hVqsCf+Rz4OGnwJ/eHHJ6BcChfwnYN+VS+POkun1RDdWfsD6nKYeIKOk
+         k1RV+7/P8/KtiagC9mdfaLU5/I+gcRilCsMqpnx0r75iSzG+8xm6DQBM+PKpONS3zsQQ
+         K7GbzjXPlT8jQUy59gSBU3+pOzyoo3Do8gVSUZCy2u8pod2pO+90FPVx5JgkLqwsLKP8
+         aPLTGdrzzyd4Ul5VpGYxfRDGQ49uhv9rxR7xyt+5Ek5IKRmKgjxHc89Qc4/WAhRt8jYC
+         BzPaGkp5ffX744PX6THxFVAXTgwbMHCV3AOUIX5cMJ99jsuTt5SWuQ8TwKeMZ0vr3SJC
+         e8Lg==
+X-Forwarded-Encrypted: i=1; AJvYcCWBtHvB0kmm7cfqjIfAa7bxwMM5SP9jOFYSz56jBSWQXVwUz7nEarSMEC3YKeZzbIfEnveVnOlZYNNf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxemjtGF1E2cYdoEYuNtF+gRCHLsFhKRVKrOwHcDrgU6XDwEqwy
+	XRsLLr1UQbvUDqABJwkIfp7w47R6+R5MDgK1oaDGyOoxAGkqitwZhKgAE+VbgxA=
+X-Gm-Gg: ASbGnctAKVkNeS46TmiqX+kh1preDIfl303E0B503GRt6cAzp753uUBVl1LSAkrbfMm
+	QSADv6BrY48T/pLsR2EW6v30GqY9+kvGPt/5CVtF3JbKjQf30hgXGH8JYUV+PTTHtUPGuI4svQX
+	kqD7LRHvrnjlZTsxt+dL1dfsf+5R5UTC1RAAsM5b9nPYreifAm1V5dxtZSfI7c90+EnydumvbiJ
+	2igXMqzk70LdBw4UzOzxCngdqjKXaxdh1f89CZZi2pfT4/9nOMWGkcxW7XsKWwcFNu1z7FJ0Wes
+	efSz3STfMrFGvjKX4Cd6PWYHfyBGzEt0QcNLuIGIpgABe6e5w6SFSywJq9gtRiB2grjP
+X-Google-Smtp-Source: AGHT+IGxUTn9q33mrdjmNDYY+yLLOmERoqF8GBK29zVWeuX1W4trQ+CIFQRiUJ3GApzGMTYWcdoJ5A==
+X-Received: by 2002:a05:600c:83ce:b0:431:5632:448b with SMTP id 5b1f17b1804b1-438dc41d5c4mr24792125e9.25.1738161569123;
+        Wed, 29 Jan 2025 06:39:29 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:b25e:a614:863b:566e? ([2a01:e0a:982:cbb0:b25e:a614:863b:566e])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a1bad16sm17687999f8f.68.2025.01.29.06.39.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jan 2025 06:39:28 -0800 (PST)
+Message-ID: <16cdcbe6-510b-4a9a-9341-eb600f34e595@linaro.org>
+Date: Wed, 29 Jan 2025 15:39:28 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, imx@lists.linux.dev, 
- devicetree@vger.kernel.org, hongxing.zhu@nxp.com, 
- Conor Dooley <conor+dt@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-In-Reply-To: <20250128211559.1582598-1-Frank.Li@nxp.com>
-References: <20250128211559.1582598-1-Frank.Li@nxp.com>
-Message-Id: <173816122537.2059289.17775029103516660947.robh@kernel.org>
-Subject: Re: [PATCH 1/5] arm64: dts: imx8-ss-hsio: fix indentation in pcie
- node
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8650: harmonize all unregulated
+ thermal trip points
+To: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250129-topic-sm8650-other-thermal-fixes-v1-1-2ceb36bdcd6e@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250129-topic-sm8650-other-thermal-fixes-v1-1-2ceb36bdcd6e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Hi,
 
-On Tue, 28 Jan 2025 16:15:55 -0500, Frank Li wrote:
-> Fix indentation in pcie node.
+On 29/01/2025 11:40, Neil Armstrong wrote:
+> While the CPUs thermal is handled by the LMH, and GPU has a passive
+> cooldowm via the HLOS DCVS, all the other thermal blocks only have
+> hot and critical and no passive/active trip points.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Passive or active thermal management for those blocks should
+> be either defined if somehow we can express those in DT or
+> in the board definition if there's an active cooling device
+> available.
+> 
+> Cleanup the trip points names and adjust the temperatures to
+> the downstream reference implementation where the following
+> trip points are defined:
+> - "reset-mon" to 115C
+> - "thermal-engine" to 125C
+> where we can map them to hot and critical trip points.
+> 
+> In the case a passive or active cooling device would be
+> available, the downstream reference implementation uses
+> the 95C "tj" trip point, as we already use for the
+> gpuss thermal blocks.
+
+As I was told, the tsens MAX_THRESHOLD which leads to a system
+monitor thermal shutdown is set at 120C, so I need to update this
+patch accordingly.
+
+Neil
+
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
->  arch/arm64/boot/dts/freescale/imx8-ss-hsio.dtsi | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> Depends on:
+> - https://lore.kernel.org/all/20250129-topic-sm8650-thermal-cpu-idle-v3-0-62ab1a64098d@linaro.org/
+> ---
+>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 170 +++++++++++++++++------------------
+>   1 file changed, 85 insertions(+), 85 deletions(-)
 > 
-
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/freescale/' for 20250128211559.1582598-1-Frank.Li@nxp.com:
-
-arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8dx-colibri-iris-v2.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qxp-tqma8xqp-mba8xx.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8dxl-evk.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8dx-colibri-aster.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qxp-colibri-iris.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8dx-colibri-eval-v3.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-eval.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-eval.dtb: /bus@5f000000/pcie-ep@5f000000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8dx-colibri-iris.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.2.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.2.dtb: /bus@5f000000/pcie-ep@5f000000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c300000: clocks: [[27, 87], [27, 36], [27, 35], [27, 88], [61, 0]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml#
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c300000: clock-names: ['pcie', 'pcie_bus', 'pcie_phy', 'pcie_aux', 'ref'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml#
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c300000: clocks: [[27, 87], [27, 36], [27, 35], [27, 88], [61, 0]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml#
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c300000: clock-names: ['pcie', 'pcie_bus', 'pcie_phy', 'pcie_aux', 'ref'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml#
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c300000: clock-names: ['pcie', 'pcie_bus', 'pcie_phy', 'pcie_aux', 'ref'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml#
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c300000: Unevaluated properties are not allowed ('fsl,max-link-speed', 'power-domains', 'vpcie-supply' were unexpected)
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml#
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c380000: clocks: [[27, 87], [27, 36], [27, 35], [27, 88], [61, 0]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml#
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c380000: clock-names: ['pcie', 'pcie_bus', 'pcie_phy', 'pcie_aux', 'ref'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml#
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c380000: clocks: [[27, 87], [27, 36], [27, 35], [27, 88], [61, 0]] is too long
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml#
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c380000: clock-names: ['pcie', 'pcie_bus', 'pcie_phy', 'pcie_aux', 'ref'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml#
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c380000: clock-names: ['pcie', 'pcie_bus', 'pcie_phy', 'pcie_aux', 'ref'] is too long
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml#
-arch/arm64/boot/dts/freescale/imx95-19x19-evk.dtb: pcie@4c380000: Unevaluated properties are not allowed ('fsl,max-link-speed', 'power-domains', 'vpcie-supply' were unexpected)
-	from schema $id: http://devicetree.org/schemas/pci/fsl,imx6q-pcie.yaml#
-arch/arm64/boot/dts/freescale/imx8qm-mek.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-eval-v1.2.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-eval-v1.2.dtb: /bus@5f000000/pcie-ep@5f000000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-mek.dtb: /bus@5f000000/pcie-ep@5f000000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-eval.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-eval.dtb: /bus@5f000000/pcie-ep@5f000000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.1.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-v1.1-ixora-v1.1.dtb: /bus@5f000000/pcie-ep@5f000000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-ixora-v1.1.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-ixora-v1.1.dtb: /bus@5f000000/pcie-ep@5f000000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qxp-colibri-iris-v2.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8dxp-tqma8xdp-mba8xx.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-eval-v1.2.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qm-apalis-eval-v1.2.dtb: /bus@5f000000/pcie-ep@5f000000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qxp-colibri-aster.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-arch/arm64/boot/dts/freescale/imx8qxp-mek.dtb: /bus@5f000000/pcie-ep@5f010000: failed to match any schema with compatible: ['fsl,imx8q-pcie-ep']
-
-
-
-
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> index 3ec3a65ddd612e83cab6a1f574813aed2e99b4cf..0dd81aad8c5b6e710b31f489205444b154d898be 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+> @@ -5843,14 +5843,14 @@ aoss0-thermal {
+>   			thermal-sensors = <&tsens0 0>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				aoss0-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				aoss0-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -5861,14 +5861,14 @@ cpuss0-thermal {
+>   			thermal-sensors = <&tsens0 1>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				cpuss0-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				cpuss0-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -5879,14 +5879,14 @@ cpuss1-thermal {
+>   			thermal-sensors = <&tsens0 2>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				cpuss1-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				cpuss1-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -5897,14 +5897,14 @@ cpuss2-thermal {
+>   			thermal-sensors = <&tsens0 3>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				cpuss2-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				cpuss2-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -5915,14 +5915,14 @@ cpuss3-thermal {
+>   			thermal-sensors = <&tsens0 4>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				cpuss3-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				cpuss3-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6053,14 +6053,14 @@ aoss1-thermal {
+>   			thermal-sensors = <&tsens1 0>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				aoss1-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				aoss1-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6133,14 +6133,14 @@ nsphvx0-thermal {
+>   			thermal-sensors = <&tsens2 6>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				nsphvx0-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+> -				nsphvx1-critical {
+> -					temperature = <110000>;
+> +				nsphvx0-critical {
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6153,14 +6153,14 @@ nsphvx1-thermal {
+>   			thermal-sensors = <&tsens2 7>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				nsphvx1-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				nsphvx1-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6173,14 +6173,14 @@ nsphmx0-thermal {
+>   			thermal-sensors = <&tsens2 8>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				nsphmx0-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				nsphmx0-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6193,14 +6193,14 @@ nsphmx1-thermal {
+>   			thermal-sensors = <&tsens2 9>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				nsphmx1-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				nsphmx1-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6213,14 +6213,14 @@ nsphmx2-thermal {
+>   			thermal-sensors = <&tsens2 10>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				nsphmx2-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				nsphmx2-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6233,14 +6233,14 @@ nsphmx3-thermal {
+>   			thermal-sensors = <&tsens2 11>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				nsphmx3-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				nsphmx3-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6253,14 +6253,14 @@ video-thermal {
+>   			thermal-sensors = <&tsens1 12>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				video-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				video-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6273,14 +6273,14 @@ ddr-thermal {
+>   			thermal-sensors = <&tsens1 13>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				ddr-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				ddr-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6291,14 +6291,14 @@ camera0-thermal {
+>   			thermal-sensors = <&tsens1 14>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				camera0-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				camera0-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6309,14 +6309,14 @@ camera1-thermal {
+>   			thermal-sensors = <&tsens1 15>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				camera1-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				camera1-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6327,14 +6327,14 @@ aoss2-thermal {
+>   			thermal-sensors = <&tsens2 0>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				aoss2-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				aoss2-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6609,14 +6609,14 @@ modem0-thermal {
+>   			thermal-sensors = <&tsens2 9>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				modem0-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				modem0-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6627,14 +6627,14 @@ modem1-thermal {
+>   			thermal-sensors = <&tsens2 10>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				modem1-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				modem1-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6645,14 +6645,14 @@ modem2-thermal {
+>   			thermal-sensors = <&tsens2 11>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				modem2-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				modem2-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> @@ -6663,14 +6663,14 @@ modem3-thermal {
+>   			thermal-sensors = <&tsens2 12>;
+>   
+>   			trips {
+> -				trip-point0 {
+> -					temperature = <90000>;
+> -					hysteresis = <2000>;
+> +				modem3-hot {
+> +					temperature = <115000>;
+> +					hysteresis = <5000>;
+>   					type = "hot";
+>   				};
+>   
+>   				modem3-critical {
+> -					temperature = <110000>;
+> +					temperature = <125000>;
+>   					hysteresis = <0>;
+>   					type = "critical";
+>   				};
+> 
+> ---
+> base-commit: 2616c1ec96d966abb922248fe48b12dbd4297dfc
+> change-id: 20250129-topic-sm8650-other-thermal-fixes-72a431ca91a5
+> 
+> Best regards,
 
 
