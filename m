@@ -1,353 +1,231 @@
-Return-Path: <devicetree+bounces-141681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9C4BA21F34
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:32:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD8F9A21F55
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 15:38:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E0F5188508A
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:32:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12B92164A04
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 14:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AB221DE2B9;
-	Wed, 29 Jan 2025 14:31:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9C5219E97F;
+	Wed, 29 Jan 2025 14:38:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nAE+abt1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cg34zhZf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A5A01DE2AD;
-	Wed, 29 Jan 2025 14:31:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83463195980
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 14:38:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738161082; cv=none; b=ARYPg5S/XOjIhUzXsN0mpk44gvZx8KWzJKtAYDWQtuK6Yyt+X0a53zpkVsrf5EeCB1FVx+9dk/twfJeP1NGNpuu7gA0qbc/mV0MfzEJ/AfOvu2wQmBS7ydQG3tCaWQZ/ytDlQ27mh7v9re8MhwIFP7990imVw7MrQKjVzoT/SP8=
+	t=1738161527; cv=none; b=dp2QB7xX0m4Q1/dADyiNh9jcnAbDC9ES7XVV7Mc/l6z77up30Zq9415Y4qMe/GK+FyCJmlnIKPmDSVjUMKZ9o45nuBkb83r/Zr4YSqtpXZxxVwNg1yFzPwzYjIzXjR5w7Z3EwCBdUsv81ahYaR6Q5CK0QnLqemkOXsPnbaEHbeQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738161082; c=relaxed/simple;
-	bh=e3V/pWALSBlAObPG3P9mBEB4NbMxyum+9X2NBodYXQo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aJuabA5TCfHYBx6QWVddM62AkkJQwctirdRYZgFmgqkybsx/MAO30gAyKH/ES01XubIpcyzQmxM5D/z1snOOK1cVyi5nI9aPx7ft3hv4jQBgTB8rohODDPTjK09RbovvQSNEWp6YVzsPz7gMCpqjcQ/N/luVK9zWlZM/vFvtWBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nAE+abt1; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-385eed29d17so3632988f8f.0;
-        Wed, 29 Jan 2025 06:31:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1738161079; x=1738765879; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=miyeZJV3+QhPfUzADf8i5CBE/rWd1iwNyDv2mqJH69Y=;
-        b=nAE+abt1Vo3eU5uTMgbyYyqlo+bnTUr/v4QidFXQs6o4yANWs2nl/wNwx6aAJUzKph
-         /64u/kXAUb1kxN8eu73/rMwoZUA5YwnxJQSIdCuadj5VqSHBkYAtT/BIpgXHlb4cubLl
-         68dnzoGSzgvogp0gs4dEsMS2aw2dQOvFTA8RSJVQ5Xqf4r8JpKTZchaV6UfDKs02Nwf3
-         Y2ZRyLJLaua7+7Rmyw/9DZ12gIs6RrTtEJMkN8lWwDJ4ssXjKLx0zr5bTMaDoMzOhDVy
-         VMZYTNzBs22sLTg4UGUUCg6sneqsu34o6wTLfJCxxj7/OxFnC3CkIbxaFq+t1/Tp3s/V
-         DJMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1738161079; x=1738765879;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=miyeZJV3+QhPfUzADf8i5CBE/rWd1iwNyDv2mqJH69Y=;
-        b=pI5i6BjPtqc8BxCs4dT+0bm1o0zROo8MiWZj/qT8ia+UbWDmroPgnOYMlWmayyJq/o
-         xVzqwAZoVtiaegOlLsQ0L/AkORxaMyOGnYrYj5kWU700ORkZMF+B8X0rogVvbzmvaEEc
-         P8kEqA/Iygo8Mlo/qnhRzAVR6m3g44T/6IYokgdk0I+YBC5WOHHoz3l0FDexTMJDFtO2
-         8UZ8T/Mo//lG7l6T+Vk5Ve1mh1VKQ338amkqMbDFf4VOMmgL758CJC7IitEmpxtocfpD
-         MOgN4J/kh+MRwupucXf1pcQGto905hBxncCBVLshhAiSSDRe9e1wfPquPWlCti3SCBe1
-         cUiA==
-X-Forwarded-Encrypted: i=1; AJvYcCUToLsODeYdP0HxkWm6vJ9UVcdN3m2cRYSQKK/kjM77nCPS4z/9/k/Gyspte0+Xw2Mh4VGX780lnoZu@vger.kernel.org, AJvYcCV8C5dPHGSjK/G37ijXuVu7+Pq0Hl0hNFIla3NDaFrbRXBaisiTtoKR4/1+WxSd6JlZGj23MMY1eLzg@vger.kernel.org, AJvYcCW8j3+mpAqi2YlG+lLUjmcaFTGxkTRU8VCUcnDmj+v7a+WIwvoJt6O273AgYpesVFfD98cEbVONReFfAlcn@vger.kernel.org, AJvYcCWbUhyiqaVg3I0zyfhrrpW5NNzZDLQg2JwwET5qgF22UtJNmn8oWX+TV7DHPEbyXXJ7Q4vDIF37aTF+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWoNUZyuHNE/7z9MsoREp7uh4vax2bT0YZkWBn8tx7nDQPTgot
-	I2fNc1KNlyF4z7x6W3sNmCzrhaJb+0xCLK1Cl3zvTkYYid+GSGje
-X-Gm-Gg: ASbGncuL3rhtc6Ve+YtxhQWbHvSmVFcQftD7vGpmXOSTkqoAmzdKNNE3ycKrf2Urhac
-	jjK4pJuogbInWjRVNrwnP+dHgLWC9AshJwfQK/qmWl5E5HKFBfZzcj5idE0q9oGk0SNb65EHjeh
-	usr/KkMiTTWeKD9j0BWvcjDWmwFqbZOmJ+6WMeoun7l8sOJRrmf76ulJisE/3INoepbVx7fGbc8
-	FUngj6YHWsoqAeQStLbHP9dfJyqFnxNd93aOfglZc25hG2qmEgp5lxnKIKceX8SA2UHkrQDHEu1
-	dimLALOXE1w=
-X-Google-Smtp-Source: AGHT+IH9IhL6y2UynnxwOlYzrjLn3rlV7PgtakufueQxqIuJZ6QJwGeyWPM99dxqXv4dDxcaBj3kdg==
-X-Received: by 2002:a05:6000:e06:b0:385:faec:d94d with SMTP id ffacd0b85a97d-38c520b69d1mr2553095f8f.51.1738161078421;
-        Wed, 29 Jan 2025 06:31:18 -0800 (PST)
-Received: from spiri.. ([82.77.155.83])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-38c2a188c28sm17596201f8f.54.2025.01.29.06.31.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 29 Jan 2025 06:31:18 -0800 (PST)
-From: Alisa-Dariana Roman <alisadariana@gmail.com>
-X-Google-Original-From: Alisa-Dariana Roman <alisa.roman@analog.com>
-To: Alisa-Dariana Roman <alisa.roman@analog.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	David Lechner <dlechner@baylibre.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>
-Subject: [PATCH v3 3/3] docs: iio: add AD7191
-Date: Wed, 29 Jan 2025 16:29:04 +0200
-Message-ID: <20250129143054.225322-4-alisa.roman@analog.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250129143054.225322-1-alisa.roman@analog.com>
-References: <20250129143054.225322-1-alisa.roman@analog.com>
+	s=arc-20240116; t=1738161527; c=relaxed/simple;
+	bh=Ijc0D3c2quW9xa+fv7bpYpp4DktBUIOvlL0TbDbI0As=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=rUrTu3OFtAWbo/9RB804g7B0fmI0hQZfLFgsu77XKfMmucCCn8MsBbQ9gqQtUZRzawIk6Th5M223iGcdNHn1YWxSgTS7vrzaZCdoZQftytd/W53e8Ty8YPJOB5wKDx62GpUx9io+H6/w00CH76+r5t2/52AmGwOlaTqUGpGTREg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cg34zhZf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16F2DC4CED1;
+	Wed, 29 Jan 2025 14:38:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1738161527;
+	bh=Ijc0D3c2quW9xa+fv7bpYpp4DktBUIOvlL0TbDbI0As=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=cg34zhZfxDDIacyWEgp3ImPXrPqvIUmowVqmg5Tn8Srd+Ti6JJyI6CufZNqHDj3DM
+	 xOfkVeIu445BLOI+2otUsA8CYsNAwacyMf4u3/XT5nM/DOSfLvqfi4y2bXi5hR6NqH
+	 ii5yK0732ZQuCKNf4JGKAa8TNqHUuvy1RsKAxEmGD2jEUAstoUk3CaHTQ+vF51Ciug
+	 vR3qfNmL3Be/Kb9RtysiHECBZzDRyq3iiq1p+29jnWQ9eWPtlyitK1RetplhOeJB4E
+	 v4hRRXf23VUs9dMnjltnS55LxE4tc7b6ZjajfLycj5NqtFBfiaqvdRN9/FPzvdugGe
+	 4qKQ2VB7gDKCA==
+Date: Wed, 29 Jan 2025 08:38:46 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Dinh Nguyen <dinguyen@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+In-Reply-To: <20250128172917.4565-2-u.kleine-koenig@baylibre.com>
+References: <20250128172917.4565-2-u.kleine-koenig@baylibre.com>
+Message-Id: <173816122476.2059271.15221051769130232976.robh@kernel.org>
+Subject: Re: [RESEND PATCH] ARM: dts: socfpga: Add basic support for
+ Terrasic's de10-nano
 
-Add documentation for AD7191 driver.
 
-Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
----
- Documentation/iio/ad7191.rst | 230 +++++++++++++++++++++++++++++++++++
- 1 file changed, 230 insertions(+)
- create mode 100644 Documentation/iio/ad7191.rst
+On Tue, 28 Jan 2025 18:29:17 +0100, Uwe Kleine-König wrote:
+> This dts is enough to make the board boot to Linux with the rootfs on
+> a micro SD card.
+> 
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
+> ---
+> Hello,
+> 
+> in the variant I sent 15 min ago I fatfingered the address of the
+> linux-arm-kernel list. So here comes a resend with the right address ...
+> 
+> Sorry for the noise
+> Uwe
+> 
+>  arch/arm/boot/dts/intel/socfpga/Makefile      |  1 +
+>  .../socfpga/socfpga_cyclone5_de10nano.dts     | 90 +++++++++++++++++++
+>  2 files changed, 91 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dts
+> 
 
-diff --git a/Documentation/iio/ad7191.rst b/Documentation/iio/ad7191.rst
-new file mode 100644
-index 000000000000..78aa5fefe128
---- /dev/null
-+++ b/Documentation/iio/ad7191.rst
-@@ -0,0 +1,230 @@
-+.. SPDX-License-Identifier: GPL-2.0-only
-+
-+==============
-+AD7191 driver
-+==============
-+
-+Device driver for Analog Devices AD7191 ADC.
-+
-+Supported devices
-+================
-+
-+* `AD7191 <https://www.analog.com/AD7191>`_
-+
-+The AD7191 is a high precision, low noise, 24-bit Σ-Δ ADC with integrated PGA.
-+It features two differential input channels, an internal temperature sensor,and
-+configurable sampling rates.
-+
-+Device Configuration
-+===================
-+
-+Pin Configuration
-+----------------
-+
-+The driver supports both pin-strapped and GPIO-controlled configurations for ODR
-+(Output Data Rate) and PGA (Programmable Gain Amplifier) settings. These
-+configurations are mutually exclusive - you must use either pin-strapped or GPIO
-+control for each setting, not both.
-+
-+ODR Configuration
-+^^^^^^^^^^^^^^^^
-+
-+The ODR can be configured either through GPIO control or pin-strapping:
-+
-+- When using GPIO control, specify the "odr-gpios" property in the device tree
-+- For pin-strapped configuration, specify the "adi,odr-value" property in the
-+device tree
-+
-+Available ODR settings:
-+  - 120 Hz (ODR1=0, ODR2=0)
-+  - 60 Hz (ODR1=0, ODR2=1)
-+  - 50 Hz (ODR1=1, ODR2=0)
-+  - 10 Hz (ODR1=1, ODR2=1)
-+
-+PGA Configuration
-+^^^^^^^^^^^^^^^
-+
-+The PGA can be configured either through GPIO control or pin-strapping:
-+
-+- When using GPIO control, specify the "pga-gpios" property in the device tree
-+- For pin-strapped configuration, specify the "adi,pga-value" property in the
-+device tree
-+
-+Available PGA gain settings:
-+  - 1x (PGA1=0, PGA2=0)
-+  - 8x (PGA1=0, PGA2=1)
-+  - 64x (PGA1=1, PGA2=0)
-+  - 128x (PGA1=1, PGA2=1)
-+
-+Clock Configuration
-+-----------------
-+
-+The AD7191 supports both internal and external clock sources:
-+
-+- When CLKSEL pin is tied LOW: Uses internal 4.92MHz clock (no clock property
-+needed)
-+- When CLKSEL pin is tied HIGH: Requires external clock source
-+  - Can be a crystal between MCLK1 and MCLK2 pins
-+  - Or a CMOS-compatible clock driving MCLK2 pin
-+  - Must specify the "clocks" property in device tree when using external clock
-+
-+SPI Interface Requirements
-+------------------------
-+
-+The AD7191 has specific SPI interface requirements:
-+
-+- The DOUT/RDY output is dual-purpose and requires SPI bus locking
-+- DOUT/RDY must be connected to an interrupt-capable GPIO
-+- The SPI controller's chip select must be connected to the PDOWN pin of the ADC
-+- When CS (PDOWN) is high, the device powers down and resets internal circuitry
-+- SPI mode 3 operation (CPOL=1, CPHA=1) is required
-+
-+Power Supply Requirements
-+-----------------------
-+
-+The device requires the following power supplies:
-+
-+- AVdd: Analog power supply
-+- DVdd: Digital power supply
-+- Vref: Reference voltage supply (external)
-+
-+All power supplies must be specified in the device tree.
-+
-+Device Attributes
-+===============
-+
-+The AD7191 provides several attributes through the IIO sysfs interface:
-+
-+Voltage Input Differential Channels
-+---------------------------------
-+
-++-------------------+----------------------------------------------------------+
-+| Attribute         | Description                                              |
-++===================+==========================================================+
-+| raw               | Raw ADC output value                                     |
-++-------------------+----------------------------------------------------------+
-+| scale             | Scale factor to convert raw value to voltage             |
-++-------------------+----------------------------------------------------------+
-+| offset            | Voltage offset                                           |
-++-------------------+----------------------------------------------------------+
-+| sampling_frequency| Current sampling frequency setting                       |
-++-------------------+----------------------------------------------------------+
-+
-+Temperature Sensor
-+----------------
-+
-++-------------------+----------------------------------------------------------+
-+| Attribute         | Description                                              |
-++===================+==========================================================+
-+| raw               | Raw temperature sensor output value                      |
-++-------------------+----------------------------------------------------------+
-+| scale             | Scale factor to convert raw value to temperature         |
-++-------------------+----------------------------------------------------------+
-+| offset            | Temperature calibration offset                           |
-++-------------------+----------------------------------------------------------+
-+
-+Available Attributes
-+------------------
-+
-+The following attributes show available configuration options:
-+
-+- sampling_frequency_available: List of supported sampling frequencies
-+- scale_available: List of supported scale factors (based on PGA settings)
-+
-+Channel Configuration
-+===================
-+
-+The device provides three channels:
-+
-+1. Temperature Sensor
-+   - 24-bit unsigned
-+   - Internal temperature measurement
-+   - Temperature in millidegrees Celsius
-+
-+2. Differential Input (AIN1-AIN2)
-+   - 24-bit unsigned
-+   - Differential voltage measurement
-+   - Configurable gain via PGA
-+
-+3. Differential Input (AIN3-AIN4)
-+   - 24-bit unsigned
-+   - Differential voltage measurement
-+   - Configurable gain via PGA
-+
-+Device Tree Bindings
-+===================
-+
-+Required Properties
-+-----------------
-+
-+- compatible: Should be "adi,ad7191"
-+- reg: SPI chip select number
-+- spi-max-frequency: Maximum SPI clock frequency
-+- spi-cpol: Must be present (set to 1)
-+- spi-cpha: Must be present (set to 1)
-+- interrupts: Interrupt mapping for DOUT/RDY pin
-+- avdd-supply: Analog power supply
-+- dvdd-supply: Digital power supply
-+- vref-supply: Reference voltage supply
-+- temp-gpios: GPIO for temperature channel selection
-+- chan-gpios: GPIO for input channel selection
-+
-+Optional Properties
-+-----------------
-+
-+- clocks: Required when using external clock (CLKSEL=1), must be absent for
-+internal clock
-+- adi,odr-value: Pin-strapped ODR configuration (120, 60, 50, or 10)
-+- adi,pga-value: Pin-strapped PGA configuration (1, 8, 64, or 128)
-+- odr-gpios: GPIOs for ODR control (mutually exclusive with adi,odr-value)
-+- pga-gpios: GPIOs for PGA control (mutually exclusive with adi,pga-value)
-+
-+Example Device Tree
-+-----------------
-+
-+.. code-block:: dts
-+
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ad7191@0 {
-+            compatible = "adi,ad7191";
-+            reg = <0>;
-+            spi-max-frequency = <1000000>;
-+
-+            /* Required SPI mode 3 */
-+            spi-cpol;
-+            spi-cpha;
-+
-+            /* Interrupt for DOUT/RDY pin */
-+            interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
-+            interrupt-parent = <&gpio>;
-+
-+            /* Power supplies */
-+            avdd-supply = <&avdd>;
-+            dvdd-supply = <&dvdd>;
-+            vref-supply = <&vref>;
-+
-+            /* Optional external clock */
-+            clocks = <&ad7191_mclk>;
-+
-+            /* Configuration - either use GPIO control or pin-strapped values */
-+            adi,pga-value = <1>;
-+            odr-gpios = <&gpio 23 GPIO_ACTIVE_HIGH>,
-+                       <&gpio 24 GPIO_ACTIVE_HIGH>;
-+
-+            /* Required GPIO controls */
-+            temp-gpios = <&gpio 22 GPIO_ACTIVE_HIGH>;
-+            chan-gpios = <&gpio 27 GPIO_ACTIVE_HIGH>;
-+        };
-+    };
-+
-+Buffer Support
-+============
-+
-+This driver supports IIO triggered buffers. See Documentation/iio/iio_devbuf.rst
-+for more information about IIO triggered buffers.
--- 
-2.43.0
+
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/intel/' for 20250128172917.4565-2-u.kleine-koenig@baylibre.com:
+
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /: compatible: 'oneOf' conditional failed, one must be fixed:
+	['altr,socfpga-cyclone5', 'altr,socfpga'] is too short
+	'altr,socfpga-cyclone5' is not one of ['altr,socfpga-arria5-socdk']
+	'altr,socfpga-cyclone5' is not one of ['altr,socfpga-arria10-socdk']
+	'altr,socfpga-cyclone5' is not one of ['enclustra,mercury-pe1', 'google,chameleon-v3']
+	'altr,socfpga-cyclone5' is not one of ['altr,socfpga-cyclone5-socdk', 'denx,mcvevk', 'ebv,socrates', 'macnica,sodia', 'novtech,chameleon96', 'samtec,vining', 'terasic,de0-atlas', 'terasic,socfpga-cyclone5-sockit']
+	'altr,socfpga-cyclone5' is not one of ['altr,socfpga-stratix10-socdk', 'altr,socfpga-stratix10-swvp']
+	'altr,socfpga-vt' was expected
+	'altr,socfpga-arria5' was expected
+	'altr,socfpga-arria10' was expected
+	'enclustra,mercury-aa1' was expected
+	'altr,socfpga-cyclone5' was expected
+	'altr,socfpga-stratix10' was expected
+	from schema $id: http://devicetree.org/schemas/arm/altera.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: pmu@ff111000: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/arm/pmu.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: soc: stmmac-axi-config: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: soc: base_fpga_region: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: soc: sdramedac: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: soc: usbphy: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: amba: $nodename:0: 'amba' does not match '^([a-z][a-z0-9\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: pdma@ffe01000: $nodename:0: 'pdma@ffe01000' does not match '^dma-controller(@.*)?$'
+	from schema $id: http://devicetree.org/schemas/dma/arm,pl330.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: base_fpga_region: $nodename:0: 'base_fpga_region' does not match '^fpga-region(@.*|-([0-9]|[1-9][0-9]+))?$'
+	from schema $id: http://devicetree.org/schemas/fpga/fpga-region.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: clkmgr@ffd04000: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/arm/altera/socfpga-clk-manager.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: osc2: 'clock-frequency' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: f2s_periph_ref_clk: 'clock-frequency' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: f2s_sdram_ref_clk: 'clock-frequency' is a required property
+	from schema $id: http://devicetree.org/schemas/clock/fixed-clock.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40: failed to match any schema with compatible: ['altr,socfpga-pll-clock']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40/mpuclk@48: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40/mainclk@4c: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40/dbg_base_clk@50: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40/main_qspi_clk@54: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40/main_nand_sdmmc_clk@58: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/main_pll@40/cfg_h2f_usr0_clk@5c: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80: failed to match any schema with compatible: ['altr,socfpga-pll-clock']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80/emac0_clk@88: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80/emac1_clk@8c: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80/per_qsi_clk@90: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80/per_nand_mmc_clk@94: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80/per_base_clk@98: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/periph_pll@80/h2f_usr1_clk@9c: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/sdram_pll@c0: failed to match any schema with compatible: ['altr,socfpga-pll-clock']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/sdram_pll@c0/ddr_dqs_clk@c8: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/sdram_pll@c0/ddr_2x_dqs_clk@cc: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/sdram_pll@c0/ddr_dq_clk@d0: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/sdram_pll@c0/h2f_usr2_clk@d4: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/mpu_periph_clk: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/mpu_l2_ram_clk: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/l4_main_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/l3_main_clk: failed to match any schema with compatible: ['altr,socfpga-perip-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/l3_mp_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/l3_sp_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/l4_mp_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/l4_sp_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/dbg_at_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/dbg_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/dbg_trace_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/dbg_timer_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/cfg_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/h2f_user0_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/emac_0_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/emac_1_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/usb_mp_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/spi_m_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/can0_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/can1_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/gpio_db_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/h2f_user1_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/sdmmc_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/sdmmc_clk_divided: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/nand_x_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/nand_ecc_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/nand_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/qspi_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/ddr_dqs_clk_gate: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/ddr_2x_dqs_clk_gate: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/ddr_dq_clk_gate: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/clkmgr@ffd04000/clocks/h2f_user2_clk: failed to match any schema with compatible: ['altr,socfpga-gate-clk']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: fpga_bridge@ff400000: $nodename:0: 'fpga_bridge@ff400000' does not match '^fpga-bridge(@.*|-([0-9]|[1-9][0-9]+))?$'
+	from schema $id: http://devicetree.org/schemas/fpga/altr,socfpga-hps2fpga-bridge.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: fpga_bridge@ff500000: $nodename:0: 'fpga_bridge@ff500000' does not match '^fpga-bridge(@.*|-([0-9]|[1-9][0-9]+))?$'
+	from schema $id: http://devicetree.org/schemas/fpga/altr,socfpga-hps2fpga-bridge.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/fpgamgr@ff706000: failed to match any schema with compatible: ['altr,socfpga-fpga-mgr']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/ethernet@ff700000: failed to match any schema with compatible: ['altr,socfpga-stmmac', 'snps,dwmac-3.70a', 'snps,dwmac']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/ethernet@ff702000: failed to match any schema with compatible: ['altr,socfpga-stmmac', 'snps,dwmac-3.70a', 'snps,dwmac']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/i2c@ffc04000/accelerometer@53: failed to match any schema with compatible: ['adi,adxl34x']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/eccmgr: failed to match any schema with compatible: ['altr,socfpga-ecc-manager']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/eccmgr/l2-ecc@ffd08140: failed to match any schema with compatible: ['altr,socfpga-l2-ecc']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/eccmgr/ocram-ecc@ffd08144: failed to match any schema with compatible: ['altr,socfpga-ocram-ecc']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: sram@ffff0000: '#address-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: sram@ffff0000: '#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: sram@ffff0000: 'ranges' is a required property
+	from schema $id: http://devicetree.org/schemas/sram/sram.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: spi@ff705000: resets: [[6, 37]] is too short
+	from schema $id: http://devicetree.org/schemas/spi/cdns,qspi-nor.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: /soc/sdramedac: failed to match any schema with compatible: ['altr,sdram-edac']
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: sysmgr@ffd08000: compatible: 'oneOf' conditional failed, one must be fixed:
+	['altr,sys-mgr', 'syscon'] is too long
+	'altr,sys-mgr-s10' was expected
+	'altr,sys-mgr' was expected
+	from schema $id: http://devicetree.org/schemas/soc/altera/altr,sys-mgr.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: timer0@ffc08000: 'reset-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/timer/snps,dw-apb-timer.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: timer1@ffc09000: 'reset-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/timer/snps,dw-apb-timer.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: timer2@ffd00000: 'reset-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/timer/snps,dw-apb-timer.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: timer3@ffd01000: 'reset-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/timer/snps,dw-apb-timer.yaml#
+arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_de10nano.dtb: axi_h2f_lw_bridge@ff200000: $nodename:0: 'axi_h2f_lw_bridge@ff200000' does not match '^([a-z][a-z0-9\-]+-bus|bus|localbus|soc|axi|ahb|apb)(@.+)?$'
+	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+
+
+
+
 
 
