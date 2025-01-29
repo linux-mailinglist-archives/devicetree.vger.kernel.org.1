@@ -1,92 +1,98 @@
-Return-Path: <devicetree+bounces-141712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 528BCA22201
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:46:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E47A6A2220B
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 17:48:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DA3E3A2CF1
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:46:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12FE03A290E
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 16:48:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAFDA1DF251;
-	Wed, 29 Jan 2025 16:46:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C39F11DF27E;
+	Wed, 29 Jan 2025 16:48:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H//wKLLR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="inRJPxWI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A823313957E;
-	Wed, 29 Jan 2025 16:46:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C68D1DE892;
+	Wed, 29 Jan 2025 16:48:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738169185; cv=none; b=TB9Spg5PUkgxkbjnJl80Ok/wQEH4ORPhBaPcehxAVKImy5m7Ym+qYwsUlYq7A3sEfbShY4UVLERZClHFxUKOfAoNBwGhtEMJjVS8cfLeAHJC8CA3BZ0qGiVdSLom/EEL6rTN6Zr2J/5rPofL6JIpZ277iPhCeWhKtqXHInOMUyw=
+	t=1738169303; cv=none; b=OOZIo9emFEuaIcS0RJaQ3ykbfzP3XvtLDrUdsosKayBGJYUVRNtmjNf8kbVKNV8k/GjzbqieDHW/ldaxhpcm956ebgyBrcUoIRwTHu2m9kiJOdFAHsJAyuM9CDikYM/oIlHJU2V86EWYjYoYD+QT38yZpJEq80Gt2eqfzaqYZhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738169185; c=relaxed/simple;
-	bh=+7dE6xxM1MDrrSw+p+oGO9/K2fEH2oBNr9zQLgO5+9k=;
+	s=arc-20240116; t=1738169303; c=relaxed/simple;
+	bh=cPMFrVnixusw96a9Fmo4JtHymED1dltOdhQWwoD/u/g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E9YEZDvVS8rsxKGqEnWu/8OVHV6iXqPVxfrLJQZMzCRy9+8P+L/BzTUXl9KXvF8ZpJmYPcxyaDX07e5O/clf+WpJW4GtPpxSeMjJ40ymOs+VR2qwYZlShZjd0a7nKtBT4wxKivtAqExapf2ECGy6asHrw4WwO6T0wgwgEbqYbkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H//wKLLR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BB87C4CED3;
-	Wed, 29 Jan 2025 16:46:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DYmI9uuGSbmzJMUoFO9DZFOjIDFBm6XNdtvMScGn3+PiU7X1gN8hD2gxyqV3tut4Lv4SQro3jWsNRLIMUeWVnj00Eo6gbUFEtfFV5z6K4hR5d+AXx76fpRVtIOj2rAjBB7nQqDvOJxkm5k2LZQLInSXKOgfFC00xtdl3/3Pb6GY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=inRJPxWI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDFF8C4CED1;
+	Wed, 29 Jan 2025 16:48:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738169185;
-	bh=+7dE6xxM1MDrrSw+p+oGO9/K2fEH2oBNr9zQLgO5+9k=;
+	s=k20201202; t=1738169303;
+	bh=cPMFrVnixusw96a9Fmo4JtHymED1dltOdhQWwoD/u/g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=H//wKLLR39baaQLqUDBlA3B079tJFKWNOSQdXhYOqvPR7gCwJXn+1af+DPjgG8XJP
-	 aQXB2MTDSWJ2Gz8xN8vb9n2c/cX/f1lBjvYAn6ydN5gMXN8M5Mm0HSESRmAcEJCrSC
-	 8iuV/Hp2ZyZmiNJ0Y0GuuQ4MCCTntklZXD1cEpqj59rxQX8MX801w28J1oZip0qVku
-	 Nb4esqEPw6/5pZ8ZspAOcWkhb81ruezQKLQhVYhoPrduwlqtJicM/9i+nJZCgIHtkb
-	 sCicGAsTWxXYz7tB71fRAnRrPQ+qJA2S6Hg/IipfzbITIudjpBgITtxPgwDLG5OctD
-	 6ls+ZmzpJzE9Q==
-Date: Wed, 29 Jan 2025 10:46:24 -0600
+	b=inRJPxWIOygy7umlyR4ye39g733FIqVFLcvIGW2lUG+dVNp/BE14XX8E4JIiA1Vgg
+	 E2aEfu7o5dTjXuiYfdtk9khNsdLJuL7TuL+7R5tP+eHNviYtdkpVicxPbP7VubIwqi
+	 7MP6DPULsd+EeMkwSDJzDVy3IEHh9IgDj4OfGzaAqFotraMrlVOrB9N6GIOSJaExeg
+	 CboYAVzXGEcPLgUqicr2UdW6s504QHaaDI6fzO+5qNqFDfLei33ZxXypVwuPkaIj+B
+	 ZLJ+Im4KK0aRMCMvocetnLunuYaY2Kup/za4G1r9l0x2IRMMpRWDk5GAESTACstozP
+	 HIgkA+Vu3tTFw==
+Date: Wed, 29 Jan 2025 10:48:22 -0600
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Guillaume Stols <gstols@baylibre.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Alexandru Ardelean <aardelean@baylibre.com>,
-	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-	David Lechner <dlechner@baylibre.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Michael Hennerich <michael.hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v3 02/10] dt-bindings: iio: dac: adi-axi-adc: add ad7606
- variant
-Message-ID: <173816918368.2213890.7415978291666353573.robh@kernel.org>
-References: <20250129-wip-bl-ad7606_add_backend_sw_mode-v3-0-c3aec77c0ab7@baylibre.com>
- <20250129-wip-bl-ad7606_add_backend_sw_mode-v3-2-c3aec77c0ab7@baylibre.com>
+To: Thomas =?iso-8859-1?Q?Wei=DFschuh?= <thomas.weissschuh@linutronix.de>
+Cc: Basharath Hussain Khaja <basharath@couthit.com>,
+	Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] of: address: Add kunit test for
+ __of_address_resource_bounds()
+Message-ID: <173816930010.2216376.7589401365931628062.robh@kernel.org>
+References: <20250129-of-address-overflow-v3-1-95d1760ed791@linutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20250129-wip-bl-ad7606_add_backend_sw_mode-v3-2-c3aec77c0ab7@baylibre.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250129-of-address-overflow-v3-1-95d1760ed791@linutronix.de>
 
 
-On Wed, 29 Jan 2025 12:03:03 +0100, Angelo Dureghello wrote:
-> From: Guillaume Stols <gstols@baylibre.com>
+On Wed, 29 Jan 2025 14:35:27 +0100, Thomas Weiﬂschuh wrote:
+> The overflow checking has to deal with different datatypes and
+> edgecases. Add a new kunit testcase to make sure it works correctly.
 > 
-> A new compatible is added to reflect the specialized version of the HDL.
-> We use the parallel interface to write the ADC's registers, and
-> accessing this interface requires to use ADI_AXI_REG_CONFIG_RD,
-> ADI_AXI_REG_CONFIG_WR and ADI_AXI_REG_CONFIG_CTRL in a custom fashion.
-> 
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-> Co-developed-by: Angelo Dureghello <adureghello@baylibre.com>
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> Signed-off-by: Thomas Weiﬂschuh <thomas.weissschuh@linutronix.de>
 > ---
->  .../devicetree/bindings/iio/adc/adi,axi-adc.yaml   | 70 +++++++++++++++++++++-
->  1 file changed, 69 insertions(+), 1 deletion(-)
+> Changes in v3:
+> - Avoid constant truncation warnings by using u64 for test case
+>   expectations
+> - Run through 0day before submission
+> - Link to v2: https://lore.kernel.org/r/20250127-of-address-overflow-v2-1-61b5046044e9@linutronix.de
+> 
+> Changes in v2:
+> - Rebase on robh/for-master
+> - Drop already applied patch
+> - Add missing MODULE_IMPORT_NS()
+> - Fix sparse warnings: "cast truncates bits from constant value"
+> - Link to v1: https://lore.kernel.org/r/20250120-of-address-overflow-v1-0-dd68dbf47bce@linutronix.de
+> ---
+> Technically it's possible to run this unittest with !CONFIG_OF_ADDRESS,
+> so there is an explicit check inside the test.
+> It would also be possible to add a dedicated source file, but that
+> seemed like a lot of churn to me.
+> ---
+>  drivers/of/address.c    |   5 +-
+>  drivers/of/of_private.h |   4 ++
+>  drivers/of/of_test.c    | 119 +++++++++++++++++++++++++++++++++++++++++++++++-
+>  3 files changed, 126 insertions(+), 2 deletions(-)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
