@@ -1,119 +1,176 @@
-Return-Path: <devicetree+bounces-141575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-141576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7BA2A21637
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 02:42:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76317A21682
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 03:21:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 013CF3A59D2
-	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 01:42:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B984D161DAE
+	for <lists+devicetree@lfdr.de>; Wed, 29 Jan 2025 02:21:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0F3818787F;
-	Wed, 29 Jan 2025 01:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4019618FC65;
+	Wed, 29 Jan 2025 02:21:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ww5gOyeX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PJYHdyCI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B054114A60A;
-	Wed, 29 Jan 2025 01:42:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E725218DF80
+	for <devicetree@vger.kernel.org>; Wed, 29 Jan 2025 02:21:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1738114940; cv=none; b=Ji/7TO03r61ApxK2BYzad17QDvzdMRNZKoAx9zS7fYOgVQZKrPGpJqkJEEQGcC47m4rzY9kka3NSUF68HPDq8LSkficAEmzbgWrzhj0eWyQejAnB+YwPy3D3Qp2+hbINqsfq23pWYNvhFRmUDjwqS+nbv8DfDyUYNQkV/tQ+mpo=
+	t=1738117298; cv=none; b=PnsHlcTKZJhuo/95NRlF4Nyh1haV5bqp+Y0TDGjF9etSYHbFpOYZi5J7EKfEkBcfzk8GPGmJKaTuXJrBC8nq7zu17liZBUsnZWw5FwPSvf5llZqr6v4tcX7jlBVwMGC8go573zWwnON9iI5/AXVy1g4dZKXzycG2NOBk4CRJPxk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1738114940; c=relaxed/simple;
-	bh=XsBY+N8Xy+Xq/wB4sa5tol2/3SUkstHmrkcWo6Zmqwo=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=kc7yEPmtSz7a6UGMHqps4sUoSX5jrzoTCKPSZx93j5+gGDE6rfTT5DIPfNVfKaubJSCxRwd8168CfZi8nY00ueSXiwGV1iBg2uRrdHI7rK1hmFaCWxC642A3vmWPkKgEeCcdLolb1uM2zG+bV/zSW3Q7P0R5OZAj3hEQjb94mJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ww5gOyeX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08C8CC4CED3;
-	Wed, 29 Jan 2025 01:42:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1738114938;
-	bh=XsBY+N8Xy+Xq/wB4sa5tol2/3SUkstHmrkcWo6Zmqwo=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=Ww5gOyeXthUxw1WP6Z+SUn2RxAFSBx01TRULJHQT6xdG6EEEdVrN2bjEKFDQGZd6L
-	 riF1Mc3K4WWIw1KS8xctGA1uFXYcd1rcA1WQQS60O+g97Spg3fxW+Y0PZ9XK9hwaQk
-	 9GkmQs8SMQUR6SMwMLqJF82u2hiVChnX9p37Wl+K+x+Ce0i/qI1MSN+FNBdSNajLMn
-	 uj5jOh4R0aCBdpn1RFo1shsl7Zr33hH5291xELxoVry9lPpjZ9pUgutq90RGaevLDC
-	 8crQXJw7hC3lahBd5Js/8woZOz4Ca9DoKDpRa3GH1XsyRvk3JlEz9uQJDzLba0oRs8
-	 KRaFQL65b6PHw==
-Date: Tue, 28 Jan 2025 19:42:17 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1738117298; c=relaxed/simple;
+	bh=ClyITuF8gOnzs/F3NZb6ENAP9stJFnJgE1LAv9csGYs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nDe9EZ7sS9TUBAt+4P99BHqBKCu6Utl5utIusUomggveP9gkWeZeiahLKUjeKLFFE9yKcxODf7XvnIr4KzAuFUVIoNn5cjOaXd0J/FETJISh5qzf/YDhkdD641MHxlWiHictbjF3dz+Mo3ux86Sg7HYx9zcL7jm/rlirXSxoj3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PJYHdyCI; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-543d8badc30so3158595e87.0
+        for <devicetree@vger.kernel.org>; Tue, 28 Jan 2025 18:21:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1738117293; x=1738722093; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lhVC/jY9oSkBWKgGztp81ZX5vLd9ni6/ghgnT90rp+w=;
+        b=PJYHdyCIm9xZGeITClzrO6WHqyVJEVh7jpVEqtysZvOXALjGF4rSZ9uhEfIXlmaHDr
+         SoLCkZPjer9NBDwv7YJ1rjqLmmAU2KUQsnacAP7G/SRs1TJd4UszHR5RHy6RQzkfwgXc
+         CRHQPthNtcQVvpEpIHchSFYQ4AsmrxHJkZDbr9Xqh2kKUawpb6dREjHSUPhwTFDREyar
+         mCCc4i3DofWGY3vZUo3gUkKfUD7y9bqDeYXgjDVraqTnpdcx/Pjwqossjv4uMWKbqTpW
+         fcvFwsc8NECy4dkudNIdaHkOfH09CR1BgJz76ar5M0JEJnf2PLQ8Tp+F1LG7Mo7CbmMt
+         bY0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738117293; x=1738722093;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lhVC/jY9oSkBWKgGztp81ZX5vLd9ni6/ghgnT90rp+w=;
+        b=D1ZIo7ZE9M5jsmO+g5tr7VTvsqtBiXnC+Lc7d8l74iGpZKpU7xf3+G+83U9iQVTOWn
+         sz8TXhNd1j+yZC/o2mU562vxAzs4mwFTRMuQ5S5jmXkj3wgnfV3f8FyUw42ZxToowMBA
+         V9Wk4nRt+FRsbwrVxgJCK0elf+MZ+ORvaEqs+JDYIYdzm6IJIXCcXaCqSfQ99zfqoWRC
+         +sJzUELt1omvCJf8K4Y70FfQM8YcbWGv3LymusXWSpICsIrtM+wzn4FMiEZJ/i30H3Mi
+         BfbC2PZ2HyFIMJ0zXvvwVGsrV9UQq2WZLnnpUcpn8ctD9ssoFW6bsL3tvO7STheonnwn
+         sOuw==
+X-Forwarded-Encrypted: i=1; AJvYcCWaOKGKsPTJqPFvG413mP4z9hLu2bekH9j7DjY3C5QO8QQQadn9f5+se6Y/GgiT6tQn03Sc3155GxMr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWE9GST2D+bQ+ndIukmPwkfjYUcP2NL/CylwcP6Hf1o2QbIscH
+	L49qMjcMjuekSFHhvsCHn4traywj9ygYwMRrDIW4oAHwlncyWPMVFI5ZIcCjj7I=
+X-Gm-Gg: ASbGnctmRgM0uAPr9E/TjsTeAhPabs58SopvwoNnubzxSOll0BuKMbmXdHAdhaoiaVS
+	a9aI4QMwE+qOodeLL656kJBISSNb9OdRA5W4U6gxcNUwN5aohRSLzsm59t+jZvtw93hok3EPTTX
+	SnXehIHoTCHyn7ZqCbH43Yl/mrcAGakZ5yMTNneYsbKYfiRRRp99zCYTnx1BuUtgSZIqi24vObC
+	PFeP0EA84aJJZKJIOuZ194U0fu2OW11SPbV2OFp5r9pZu9TpGYGd9bkt/h3rIw6Bfgyndlo2A6V
+	AxlLfsrd9S9lYlBs/SKTVNmIIikFoHeuBqadihjup72i6t0AySWZFXZ5rsoE3xw/0xv3CH2gSF2
+	bJBRVUg==
+X-Google-Smtp-Source: AGHT+IFCsKhtG6nSDsI742TadJTivtvw91Ucb98NwdkXhuO5uH0m74kP7qa7ILD4yusdJNvna23Ihw==
+X-Received: by 2002:a05:6512:3081:b0:542:2999:2e43 with SMTP id 2adb3069b0e04-543e4c011acmr409942e87.24.1738117292885;
+        Tue, 28 Jan 2025 18:21:32 -0800 (PST)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--b8c.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::b8c])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-543c836846asm1808863e87.116.2025.01.28.18.21.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 28 Jan 2025 18:21:31 -0800 (PST)
+Date: Wed, 29 Jan 2025 04:21:29 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Viken Dadhaniya <quic_vdadhani@quicinc.com>, andi.shyti@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	gregkh@linuxfoundation.org, jirislaby@kernel.org, broonie@kernel.or, andersson@kernel.org, 
+	konradybcio@kernel.org, johan+linaro@kernel.org, dianders@chromium.org, 
+	agross@kernel.org, linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
+	linux-spi@vger.kernel.org, quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com
+Subject: Re: [PATCH v2 4/8] dt-bindings: serial: Add support for selecting
+ data transfer mode
+Message-ID: <v5n7wn3saiymi2ncgi35drzdjfeaa4ng2ftia6ggex6oh74ocg@7vuskxosh726>
+References: <20250124105309.295769-1-quic_vdadhani@quicinc.com>
+ <20250124105309.295769-5-quic_vdadhani@quicinc.com>
+ <10060d39-87a4-4565-a2a6-80c93ac2266a@kernel.org>
+ <dudqd2y42wy6iq2k73aphd5ol4mtq7z4c54zhd27rl745rrw5x@p3oummf2jke7>
+ <374e16d6-46aa-4bdf-85e9-bc2e33c38057@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: guoren@kernel.org, krzk+dt@kernel.org, aou@eecs.berkeley.edu, 
- airlied@gmail.com, wefu@redhat.com, ulf.hansson@linaro.org, 
- jszhang@kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, jassisinghbrar@gmail.com, 
- linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-clk@vger.kernel.org, palmer@dabbelt.com, 
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
- mturquette@baylibre.com, p.zabel@pengutronix.de, m.szyprowski@samsung.com, 
- linux-riscv@lists.infradead.org, simona@ffwll.ch, drew@pdp7.com, 
- frank.binns@imgtec.com, conor+dt@kernel.org, tzimmermann@suse.de, 
- sboyd@kernel.org, paul.walmsley@sifive.com, matt.coster@imgtec.com
-To: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <20250128194816.2185326-13-m.wilczynski@samsung.com>
-References: <20250128194816.2185326-1-m.wilczynski@samsung.com>
- <CGME20250128194841eucas1p29048dc05a26475d8323a7a318a8c7a25@eucas1p2.samsung.com>
- <20250128194816.2185326-13-m.wilczynski@samsung.com>
-Message-Id: <173811493702.543459.14627465568650161345.robh@kernel.org>
-Subject: Re: [PATCH v4 12/18] dt-bindings: gpu: Add support for T-HEAD
- TH1520 GPU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <374e16d6-46aa-4bdf-85e9-bc2e33c38057@kernel.org>
 
-
-On Tue, 28 Jan 2025 20:48:10 +0100, Michal Wilczynski wrote:
-> Add bindings for the PowerVR BXM-4-64 GPU integrated in the T-HEAD
-> TH1520 SoC.  This GPU requires two clocks.
+On Mon, Jan 27, 2025 at 05:24:21PM +0100, Krzysztof Kozlowski wrote:
+> On 27/01/2025 15:27, Dmitry Baryshkov wrote:
+> > On Mon, Jan 27, 2025 at 08:02:12AM +0100, Krzysztof Kozlowski wrote:
+> >> On 24/01/2025 11:53, Viken Dadhaniya wrote:
+> >>> Data transfer mode is fixed by TrustZone (TZ), which currently restricts
+> >>> developers from modifying the transfer mode from the APPS side.
+> >>>
+> >>> Document the 'qcom,xfer-mode' properties to select the data transfer mode,
+> >>> either GPI DMA (Generic Packet Interface) or non-GPI mode (PIO/CPU DMA).
+> >>>
+> >>> UART controller can operate in one of two modes based on the
+> >>> 'qcom,xfer-mode' property, and the firmware is loaded accordingly.
+> >>>
+> >>> Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> >>> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> >>> Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+> >>> ---
+> >>>
+> >>> v1 -> v2:
+> >>>
+> >>> - Drop 'qcom,load-firmware' property and add 'firmware-name' property in
+> >>>   qup common driver.
+> >>> - Update commit log.
+> >>>
+> >>> v1 Link: https://lore.kernel.org/linux-kernel/20241204150326.1470749-4-quic_vdadhani@quicinc.com/
+> >>> ---
+> >>> ---
+> >>>  .../devicetree/bindings/serial/qcom,serial-geni-qcom.yaml | 8 ++++++++
+> >>>  1 file changed, 8 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
+> >>> index dd33794b3534..383773b32e47 100644
+> >>> --- a/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
+> >>> +++ b/Documentation/devicetree/bindings/serial/qcom,serial-geni-qcom.yaml
+> >>> @@ -56,6 +56,13 @@ properties:
+> >>>    reg:
+> >>>      maxItems: 1
+> >>>  
+> >>> +  qcom,xfer-mode:
+> >>> +    description: Set the value to 1 for non-GPI (FIFO/CPU DMA) mode and 3 for GPI DMA mode.
+> >>> +      The default mode is FIFO.
+> >>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>> +    enum: [1, 3]
+> >>> +
+> >>> +
+> >>
+> >> Just one blank line, but anyway, this property should not be in three
+> >> places. Do you really expect that each of serial engines within one
+> >> GeniQUP will be configured differently by TZ?
+> > 
+> > Yes, each SE is configured separately and it's quite frequent when
+> > different SEs have different DMA configuration.
 > 
-> Document the integration details including clock, reset, power domain
-> and interrupt assignments. Add a dt-bindings example showing the proper
-> usage of the compatible string "thead,th1520-gpu" along with
-> "img,img-bxm".
+> Well, I checked at sm8550 and sm8650 and each pair of SE - which shares
+> resources - has the same DMAs, so I would not call it frequent. Care to
+> bring an example where same serial engines have different DMAs and
+> different TZ? We do not talk about single QUP.
+
+Well, I don't have access to the latest sm8550 / sm8650 devcfg sources.
+I checked the RB5 ones. As far as I understand out of 14 enabled SEs
+only two are configured for the GSI DMA, others should use FIFO / SE
+DMA. Same applies to the SM8250 MTP devices. Checking the RB1 / RB2
+setup also shows 3 out of 6 SEs being set for GSI.
+
 > 
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  .../bindings/gpu/img,powervr-rogue.yaml       | 39 +++++++++++++++++--
->  1 file changed, 35 insertions(+), 4 deletions(-)
+> Anyway, if you need property per node, this has to be shared schema.
 > 
+> Best regards,
+> Krzysztof
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/gpu/img,powervr-rogue.example.dts:46.28-29 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/gpu/img,powervr-rogue.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1506: dt_binding_check] Error 2
-make: *** [Makefile:251: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250128194816.2185326-13-m.wilczynski@samsung.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+-- 
+With best wishes
+Dmitry
 
